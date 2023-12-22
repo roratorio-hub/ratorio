@@ -1,0 +1,9 @@
+
+
+body:not([class="CLS_BODY_ALTERNATIVE"]) {
+	background-color : #dddddd;
+}
+
+body[class="CLS_BODY_ALTERNATIVE"] {
+	background-color : #ffffff;
+}

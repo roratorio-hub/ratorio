@@ -1,0 +1,197 @@
+
+/* 計算機ヘッダ部分 */
+#OBJID_CALCULAATOR_HEADER {
+	display: flex;
+	justify-content: start;
+	align-items: start;
+	margin: 0 0 1em;
+}
+
+
+
+/* 展開式設定欄共通（新形式） */
+
+/* ブロック大枠 */
+.folding-block-MIG {
+	width: max-content;
+	border: 3px double black;
+	background-color: #ddddff;
+	line-height: 1.5;
+}
+
+/* 展開操作ラベル */
+.folding-switch-MIG ~ label {
+	display: inline-block;
+	margin-right: 0.5em;
+	padding: 0.125em;
+}
+
+/* 説明ページリンク */
+.folding-switch-MIG ~ .folding-link-help-MIG {
+	display: inline-block;
+	margin: 0 0.5em;
+	padding: 0.125em;
+}
+
+/* ブロック本体 */
+.folding-switch-MIG:checked ~ .folding-block-body-MIG {
+	padding: 0.5em;
+	display: grid;
+	row-gap: 0.5em;
+}
+.folding-switch-MIG:not(:checked) ~ .folding-block-body-MIG {
+	display: none;
+}
+body:not([class="CLS_BODY_ALTERNATIVE"]) .folding-block-body-MIG {
+	background-color : #dddddd;
+}
+body[class="CLS_BODY_ALTERNATIVE"] .folding-block-body-MIG {
+	background-color : #ffffff;
+}
+.folding-block-body-MIG {
+	border-top: 1px solid black;
+}
+
+/* ブロック内ボタン共通 */
+.folding-block-body-MIG button {
+	padding: 0.125em 1em;
+	margin: 0 1em;
+}
+
+
+
+/* セーブ操作ブロック */
+
+/* ブロック大枠 */
+#OBJID_SAVE_BLOCK_MIG {
+	margin-left: 1em;
+}
+
+/* 入力欄系 */
+#OBJID_SELECT_SAVE_DATA_MIG {
+	grid-row: 1;
+	grid-column: 1 / 3;
+}
+#OBJID_INPUT_SAVE_NAME_MIG {
+	grid-row: 2;
+	grid-column: 1 / 3;
+	line-height: 1.5;
+}
+/* セーブデータ操作ボタン系 */
+#OBJID_BUTTON_LOAD_SAVE_DATA_MIG {
+	grid-row: 1;
+	grid-column: 3;
+}
+#OBJID_BUTTON_SAVE_SAVE_DATA_MIG {
+	grid-row: 1;
+	grid-column: 4;
+}
+#OBJID_BUTTON_DELETE_SAVE_DATA_MIG {
+	grid-row: 1;
+	grid-column: 5;
+}
+/* URL出力系 */
+#OBJID_BUTTON_URL_OUT_MIG {
+	grid-row: 3;
+	grid-column: 1;
+}
+#OBJID_INPUT_URL_OUT_MIG {
+	grid-row: 3;
+	grid-column: 2 / 5;
+}
+#OBJID_BUTTON_COPY_URL_OUT_MIG {
+	grid-row: 3;
+	grid-column: 5;
+}
+/* URL入力系 */
+#OBJID_BUTTON_URL_IN_MIG {
+	grid-row: 4;
+	grid-column: 1;
+}
+#OBJID_INPUT_URL_IN_MIG {
+	grid-row: 4;
+	grid-column: 2 / 5;
+}
+#OBJID_BUTTON_CLEAR_URL_IN_MIG {
+	grid-row: 4;
+	grid-column: 5;
+}
+
+
+
+/* 新装備ブロック */
+#OBJID_SHADOW_EQUIPS_MIG {
+	margin: 0.5em 0 1.5em 3px;
+}
+
+/* 全体グリッド */
+.folding-block-body-MIG.shadow-equips {
+	grid-template-columns: repeat(12, auto);
+	column-gap: 1em;
+}
+
+/* ラッパ要素 */
+:is(.equip-block, .equip-conf, .item-conf, .card-conf, .rndopt-conf) {
+	display: contents;
+}
+/* 表示制御チェックボックス */
+:is(.equip-ctrl, .item-ctrl, .card-ctrl, .rndopt-ctrl) {
+	display: none;
+}
+/* 設定欄ラッパ　表示動作 */
+.equip-ctrl:not(:checked) ~ .equip-conf,
+.item-ctrl:not(:checked) ~ .item-conf,
+.card-ctrl:not(:checked) ~ .card-conf,
+.rndopt-ctrl:not(:checked) ~ .rndopt-conf {
+	display: none;
+}
+
+/* カード選択欄（ランダムオプションが、<select> 2個必要なので） */
+.equip-conf .card-select {
+	grid-column-end: span 2;
+}
+
+/* 区切り線 */
+.equip-conf .divider-line {
+	grid-column: 1/-1;
+	border-top: 1px solid black;
+	padding: 0 -0.5em;
+}
+
+
+
+
+
+/* 攻撃方法部分 */
+#OBJID_ATTACK_BLOCK_MIG {
+	display: flex;
+	justify-content: start;
+	align-items: start;
+	margin: 0 0 0.5em;
+}
+
+/* 各種設定欄 */
+#OBJID_ATTACK_SETTING_BLOCK_MIG {
+	margin-left: 1em;
+}
+
+#OBJID_ATTACK_SETTING_AUTO_CALC_MIG {
+	grid-row: 1;
+	grid-column: 1;
+}
+#OBJID_ATTACK_SETTING_DIGIT3_MIG {
+	grid-row: 2;
+	grid-column: 1;
+}
+#OBJID_ATTACK_SETTING_ACTIVE_INTERVAL_MIG {
+	grid-row: 3;
+	grid-column: 1;
+	display: flex;
+	justify-content: start;
+}
+#OBJID_ATTACK_SETTING_CASTSIM_INTERVAL_MIG {
+	grid-row: 4;
+	grid-column: 1;
+	display: flex;
+	justify-content: start;
+}

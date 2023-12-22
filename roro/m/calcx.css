@@ -1,0 +1,412 @@
+
+
+
+
+*.CSSCLS_GENERAL_COLOR_RED {
+	color : #ff0000;
+}
+
+*.CSSCLS_GENERAL_COLOR_RED_BOLD {
+	color : #ff0000;
+	font-weight : bold;
+}
+
+
+
+
+
+#OBJID_CHK_DISABLE_FLOATING:not(:checked) ~ div.CSSCLS_DIV_FLOATING_MENU {
+	position : fixed;
+	top : 2%;
+	right : 2%;
+	background-color : #ddddff;
+}
+
+#OBJID_CHK_DISABLE_FLOATING:checked ~ div.CSSCLS_DIV_FLOATING_MENU .CSSCLS_FLOATING_INFO_AREA_INTO_BODY {
+	display: none;
+}
+#OBJID_CHK_DISABLE_FLOATING:not(:checked) ~ div.CSSCLS_DIV_FLOATING_MENU .CSSCLS_FLOATING_INFO_AREA_GOTO_FLOAT {
+	display: none;
+}
+
+#OBJID_CHK_DISABLE_FLOATING ~ div.CSSCLS_DIV_FLOATING_MENU :is(.CSSCLS_FLOATING_INFO_AREA_INTO_BODY, .CSSCLS_FLOATING_INFO_AREA_GOTO_FLOAT) .CSSCLS_FLOATING_INFO_AREA_DISP_BUTTON_TEXT {
+	flex: 0 1 auto;
+	margin-right: 0.125em;
+	margin-left: 2em;
+	font-size: smaller;
+	padding: 0 0.5em;
+	border: 1px solid gray;
+	border-radius: 5px;
+	background-color: #cccccc;
+	cursor: pointer;
+}
+
+div.CSSCLS_DIV_FLOATING_MENU *.CSSCLS_FLOATING_MENU_FONT_SIZE_SMALL_SMALL {
+	font-size : x-small;
+}
+
+div.CSSCLS_DIV_FLOATING_MENU *.CSSCLS_FLOATING_MENU_FONT_SIZE_SMALL {
+	font-size : small;
+}
+
+div.CSSCLS_DIV_FLOATING_MENU *.CSSCLS_FLOATING_MENU_FONT_SIZE_LARGE {
+	font-size : large;
+}
+
+div.CSSCLS_DIV_FLOATING_MENU *.CSSCLS_FLOATING_MENU_FONT_SIZE_LARGE_LARGE {
+	font-size : x-large;
+}
+
+td.CSSCLS_FLOATING_INFO_DISP_TABLE {
+	vertical-align : top;
+}
+
+td.CSSCLS_FLOATING_INFO_ALIGN_CENTER {
+	text-align : center;
+}
+
+td.CSSCLS_FLOATING_INFO_ALIGN_RIGHT {
+	text-align : right;
+}
+
+
+
+
+
+span.CSSCLS_MONSTER_PARAM_GOOD {
+	font-weight : bold;
+	color : #0000ff;
+}
+
+span.CSSCLS_MONSTER_PARAM_BAD {
+	font-weight : bold;
+	color : #ff0000;
+}
+
+span.CSSCLS_ITEM_INFO_SET_INFO {
+	font-size : smaller;
+	font-weight : bold;
+}
+
+span.CSSCLS_ITEM_INFO_TIME_ITEM_INFO {
+	font-size : smaller;
+	font-weight : bold;
+}
+
+span.CSSCLS_ITEM_INFO_PENALTY_INFO {
+	color : green;
+	font-weight : bold;
+}
+
+
+
+span.CSSCLS_SKILL_RATIO_PLUS {
+	font-weight : bold;
+	color : #0000ff;
+}
+
+span.CSSCLS_SKILL_RATIO_MINUS {
+	font-weight : bold;
+	color : #ff0000;
+}
+
+
+
+label.CSSCLS_CONF_USING_MESSAGE_USING {
+	font-weight : bold;
+}
+
+
+
+TD.CSSCLS_LEARNED_SKILL_TARGET {
+	background-color : #ccffcc;
+	font-weight : bold;
+}
+
+TD.CSSCLS_SWITCH_HEADER {
+	background-color : #ddddff;
+}
+
+TD.CSSCLS_SWITCH_HEADER_USED {
+	background-color : #ff7777;
+}
+
+TD.CSSCLS_INFO_HEADER {
+	background-color : #ddddff;
+}
+
+
+
+select.CSSCLS_SELECTED_LEARNED_SKILL {
+	background-color : #ffcccc;
+}
+
+
+
+select.CSSCLS_SELECTED_MOB_CONF_DEBUF {
+	background-color : #ffcccc;
+}
+
+input.CSSCLS_CHECKED_MOB_CONF_DEBUF {
+	background-color : #ffcccc;
+}
+
+input.CSSCLS_INPUTTED_MOB_CONF_DEBUF {
+	background-color : #ffcccc;
+}
+
+
+
+select.CSSCLS_SELECTED_MOB_CONF_BUF {
+	background-color : #ffcccc;
+}
+
+input.CSSCLS_CHECKED_MOB_CONF_BUF {
+	background-color : #ffcccc;
+}
+
+input.CSSCLS_INPUTTED_MOB_CONF_BUF {
+	background-color : #ffcccc;
+}
+
+
+
+select.CSSCLS_SELECTED_MOB_CONF_PLAYER {
+	background-color : #ffcccc;
+}
+
+input.CSSCLS_CHECKED_MOB_CONF_PLAYER {
+	background-color : #ffcccc;
+}
+
+input.CSSCLS_INPUTTED_MOB_CONF_PLAYER {
+	background-color : #ffcccc;
+}
+
+
+
+select.CSSCLS_SELECTED_MOB_CONF_INPUT {
+	background-color : #ffcccc;
+}
+
+input.CSSCLS_CHECKED_MOB_CONF_INPUT {
+	background-color : #ffcccc;
+}
+
+input.CSSCLS_INPUTTED_MOB_CONF_INPUT {
+	background-color : #ffcccc;
+}
+
+
+
+select.CSSCLS_SELECTED_CONF {
+	background-color : #ffcccc;
+}
+
+td.CSSCLS_SELECTED_CONF_TD {
+	background-color : #ffcccc;
+}
+
+input.CSSCLS_CHECKED_CONF {
+	background-color : #ffcccc;
+}
+
+input.CSSCLS_INPUTTED_CONF {
+	background-color : #ffcccc;
+}
+
+
+
+table.CSSCLS_EXTRA_INFO_DISP_TABLE {
+	border : thin solid;
+	width : 100%;
+}
+
+td.CSSCLS_EXTRA_INFO_DISP_TABLE {
+	border : thin solid;
+}
+
+td.CSSCLS_EXTRA_INFO_DISP_TABLE_GRAY_BACK {
+	border : thin solid;
+	background-color : #cccccc;
+}
+
+td.CSSCLS_EXTRA_INFO_DISP_TABLE_PHYSICAL_SPEC_OUTER {
+	vertical-align : top;
+}
+
+td.CSSCLS_EXTRA_INFO_DISP_TABLE_PHYSICAL_SPEC_TITLE {
+	border : thin solid;
+	text-align : center;
+}
+
+td.CSSCLS_EXTRA_INFO_DISP_TABLE_PHYSICAL_SPEC_VALUE {
+	text-align : right;
+}
+
+td.CSSCLS_EXTRA_INFO_DISP_TABLE_MAGICAL_SPEC_OUTER {
+	vertical-align : top;
+}
+
+td.CSSCLS_EXTRA_INFO_DISP_TABLE_MAGICAL_SPEC_TITLE {
+	border : thin solid;
+	text-align : center;
+}
+
+td.CSSCLS_EXTRA_INFO_DISP_TABLE_MAGICAL_SPEC_VALUE {
+	text-align : right;
+}
+
+td.CSSCLS_EXTRA_INFO_DISP_TABLE_RESIST_ELEMENT {
+	border : thin solid;
+	text-align : center;
+}
+
+span.CSSCLS_EXTRA_INFO_DISP_TABLE_BLUE {
+	color : #0000ff;
+}
+
+span.CSSCLS_EXTRA_INFO_DISP_TABLE_RED {
+	color : #ff0000;
+}
+
+span.CSSCLS_EXTRA_INFO_DISP_TABLE_SPEC_VALUE_BLUE {
+	color : #0000ff;
+}
+
+span.CSSCLS_EXTRA_INFO_DISP_TABLE_SPEC_VALUE_RED {
+	color : #ff0000;
+}
+
+
+
+
+
+td.CSSCLS_EXTRA_INFO_DISP_TABLE_SKILL_CARD_NAME {
+	border : thin solid;
+}
+
+td.CSSCLS_EXTRA_INFO_DISP_TABLE_SKILL_CARD {
+	border : thin solid;
+	text-align : center;
+}
+
+td.CSSCLS_EXTRA_INFO_DISP_TABLE_SKILL_CARD_HEAD {
+	border : thin solid;
+	background-color : #ccffcc;
+	text-align : center;
+}
+
+td.CSSCLS_EXTRA_INFO_DISP_TABLE_SKILL_CARD_GRAY_BACK {
+	border : thin solid;
+	background-color : #cccccc;
+	text-align : center;
+}
+
+td.CSSCLS_EXTRA_INFO_DISP_TABLE_SKILL_CARD_JUST {
+	border : thin solid;
+	background-color : #ffffcc;
+	font-weight : bold;
+	text-align : center;
+}
+
+td.CSSCLS_EXTRA_INFO_DISP_TABLE_SKILL_CARD_NG {
+	border : thin solid;
+	background-color : #ffcccc;
+	font-weight : bold;
+	text-align : center;
+}
+
+
+
+:is(#BATTLE_RESULT_BASIC, #BATTLE_RESULT_DAMAGE) {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(7em, max-content));
+	gap: 2px;
+	padding: 2px;
+	border: 1px solid black;
+
+	/* 横のテーブルとの頭合わせ。本来は不要。 */
+	margin-top: 3px;
+}
+#BATTLE_RESULT_BASIC {
+	grid-template-columns: repeat(2, minmax(7em, max-content));
+}
+
+:is(#BATTLE_RESULT_BASIC, #BATTLE_RESULT_DAMAGE) > div {
+	padding: 0.25em 0.5em 0.125em 0.25em;
+	border: 1px solid black;
+}
+
+.CSSCLS_BTLRSLT_HEADER {
+	background-color : #ddddff;
+}
+
+.CSSCLS_BTLRSLT_METHOD_LABEL, .CSSCLS_BTLRSLT_RAYING_LABEL {
+	background-color : #ddeedd;
+}
+.CSSCLS_BTLRSLT_METHOD_LABEL_APPEND {
+	background-color : #eeeecc;
+}
+.CSSCLS_BTLRSLT_PERSEC_LABEL {
+	background-color : #eedddd;
+}
+.CSSCLS_BTLRSLT_CENTERING {
+	text-align: center;
+}
+.CSSCLS_BTLRSLT_VALUE {
+	text-align: right;
+}
+.CSSCLS_BTLRSLT_DISUSABLE {
+	color: #dd0000;
+	text-align: center;
+}
+
+/* タブ制御 */
+/*
+#BATTLE_RESULT_DAMAGE:not(.CSSFLG_BTLRSLT_TAB_ALL):not(.CSSFLG_BTLRSLT_TAB_BASIC) .BTLRSLT_TAB_BASIC {
+	display: none;
+}
+#BATTLE_RESULT_DAMAGE:not(.CSSFLG_BTLRSLT_TAB_ALL):not(.CSSFLG_BTLRSLT_TAB_DAMAGE) .BTLRSLT_TAB_DAMAGE {
+	display: none;
+}
+#BATTLE_RESULT_DAMAGE:not(.CSSFLG_BTLRSLT_TAB_ALL):not(.CSSFLG_BTLRSLT_TAB_RESULT) .BTLRSLT_TAB_RESULT {
+	display: none;
+}
+*/
+
+/* パート展開 */
+#BATTLE_RESULT_BASIC #BTLRSLT_PART_BASE:not(:checked) ~ .BTLRSLT_PART_BASE {
+	display: none;
+}
+#BATTLE_RESULT_BASIC #BTLRSLT_PART_CAST:not(:checked) ~ .BTLRSLT_PART_CAST {
+	display: none;
+}
+#BATTLE_RESULT_DAMAGE #BTLRSLT_PART_ATKDMG:not(:checked) ~ .BTLRSLT_PART_ATKDMG {
+	display: none;
+}
+#BATTLE_RESULT_DAMAGE #BTLRSLT_PART_ATKCNT:not(:checked) ~ .BTLRSLT_PART_ATKCNT {
+	display: none;
+}
+#BATTLE_RESULT_DAMAGE #BTLRSLT_PART_EXP:not(:checked) ~ .BTLRSLT_PART_EXP {
+	display: none;
+}
+#BATTLE_RESULT_DAMAGE #BTLRSLT_PART_RECEIVE:not(:checked) ~ .BTLRSLT_PART_RECEIVE {
+	display: none;
+}
+
+/* 詳細表示 */
+#BATTLE_RESULT_DAMAGE.CSSFLG_BTLRSLT_DAMAGE_DETAIL .BTLRSLT_DAMAGE_TOTAL {
+	display: none;
+}
+#BATTLE_RESULT_DAMAGE:not(.CSSFLG_BTLRSLT_DAMAGE_DETAIL) .BTLRSLT_DAMAGE_DETAIL {
+	display: none;
+}
+
+
+
+
+
+
+
+
