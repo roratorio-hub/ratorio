@@ -1,0 +1,42 @@
+enchant_list:
+  - itemId: "4999"
+    name: "スペシャルエンチャント（オーブ）"
+    hash: "C3y4C2h1I3A4J5D2h1J5D5A5A5f3"
+    enchants:
+      - slot: 4
+        refine: 0
+        id_list:
+          - id: 1425  # Def50%無視
+          - id: 1428  # Mdef50%無視
+          - id: 1179  # 詠唱妨害不可
+          - id: 659   # SpecialStr
+          - id: 599   # SpecialAgi
+          - id: 660   # SpecialVit
+          - id: 661   # SpecialInt
+          - id: 662   # SpecialDex
+          - id: 663   # SpecialLuk
+      - slot: 3
+        refine: 0
+        id_list:
+          - id: 1247  # スキルディレイ-15%
+          - id: 1425  # Def50%無視
+          - id: 1428  # Mdef50%無視
+          - id: 659   # SpecialStr
+          - id: 599   # SpecialAgi
+          - id: 660   # SpecialVit
+          - id: 661   # SpecialInt
+          - id: 662   # SpecialDex
+          - id: 663   # SpecialLuk
+      - slot: 2
+        refine: 0
+        id_list:
+          - id: 668   # Str+10
+          - id: 673   # Agi+10
+          - id: 678   # Vit+10
+          - id: 683   # Int+10
+          - id: 688   # Dex+10
+          - id: 692   # Luk+10
+          - id: 2222  # ゾディアック
+            
+
+            

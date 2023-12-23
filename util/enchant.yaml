@@ -1,0 +1,30 @@
+enchant_list:
+  - itemId: "5001"
+    name: "スペシャルエンチャント（キョウ）"
+    hash: "C3y4C2h1I3A4J5D2h1J5D5B2h3A3"
+    enchants:
+      - slot: 4
+        refine: 6
+        id_list:
+          - id: 1247  # スキルディレイ-15%
+          - id: 1179  # 詠唱妨害不可
+          - id: 1975  # 凱歌
+          - id: 2043  # 厄災
+      - slot: 3
+        refine: 8
+        id_list:
+          - id: 1655  # 火属性付与
+          - id: 1656  # 水属性付与
+          - id: 1657  # 風属性付与
+          - id: 1658  # 地属性付与
+          - id: 1659  # 聖属性付与
+          - id: 1660  # 闇属性付与
+          - id: 1661  # 念属性付与
+          - id: 1662  # 毒属性付与
+          - id: 1663  # 不死属性付与
+      - slot: 2
+        refine: 10
+        id_list:
+          - id: 2220  # 黒翼 
+
+            

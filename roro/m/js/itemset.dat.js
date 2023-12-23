@@ -1,5 +1,12 @@
 (function () {
 
+	ItemIdToSetIdMap = new Array();
+
+	/*
+	ToDo : usachoco
+	s_SE の初期化でリレーション定義するとインデックスがわかりにくいので
+	new Array(); しておいて後からインデックス指定して挿入したほうが良い
+	*/
 	w_SE = [
 		[],
 		[737,436,475],
@@ -2394,8 +2401,6 @@
 		[-2742,-2741,-1245],
 	];
 
-	ItemIdToSetIdMap = new Array();
-
 	ItemIdToSetIdMap[9] = [95];
 	ItemIdToSetIdMap[23] = [578];
 	ItemIdToSetIdMap[50] = [94];
@@ -4633,10 +4638,7 @@
 	CardIdToSetIdMap[2739] = [2389];
 	CardIdToSetIdMap[2741] = [2390];
 
-
-
 	PetIdToSetIdMap = new Array();
-
 	PetIdToSetIdMap[1] = [1439];
 	PetIdToSetIdMap[10] = [1438];
 	PetIdToSetIdMap[13] = [1437];
@@ -4672,4 +4674,17 @@
 	PetIdToSetIdMap[89] = [1564];
 	PetIdToSetIdMap[90] = [1570];
 
+	/* --- usachoco 追加データ -------------------------- */
+	// トゥーサイドダイヤモンドブーツ + 天地崩壊
+	w_SE[2391] = [4996,4995,-2417];
+	ItemIdToSetIdMap[4995] = [2391];
+	// 偽神のイビルアイ + 祈りの晩鐘
+	w_SE[2392] = [4998,4997,-2662];
+	ItemIdToSetIdMap[4997] = [2392];
+	// コズミックコネクション + ゾディアック
+	w_SE[2393] = [5000,4999,-2222,];
+	ItemIdToSetIdMap[4999] = [2393];
+	// スクリーミングゴーストパーティ + 黒翼の使徒
+	w_SE[2394] = [5002,5001,-2220,];
+	ItemIdToSetIdMap[5001] = [2394];
 })();
