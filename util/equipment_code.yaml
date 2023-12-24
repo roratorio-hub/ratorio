@@ -1,0 +1,25 @@
+equipment:
+  - name: 上段
+    code: 50
+  - name: 中断
+    code: 51
+  - name: 下段
+    code: 52
+  - name: 鎧
+    code: 60
+  - name: 盾
+    code: 61
+  - name: 肩
+    code: 62
+  - name: 靴
+    code: 63
+  - name: アクセサリー
+    code: 64
+  - name: アクセサリー(1)
+    code: 65
+  - name: アクセサリー(2)
+    code: 66
+  - name: エンチャント
+    code: 99
+  - name: セット
+    code: 100

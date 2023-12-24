@@ -1,30 +1,502 @@
-enchant_list:
-  - itemId: "5001"
-    name: "スペシャルエンチャント（キョウ）"
-    hash: "C3y4C2h1I3A4J5D2h1J5D5B2h3A3"
-    enchants:
-      - slot: 4
-        refine: 6
-        id_list:
-          - id: 1247  # スキルディレイ-15%
-          - id: 1179  # 詠唱妨害不可
-          - id: 1975  # 凱歌
-          - id: 2043  # 厄災
-      - slot: 3
-        refine: 8
-        id_list:
-          - id: 1655  # 火属性付与
-          - id: 1656  # 水属性付与
-          - id: 1657  # 風属性付与
-          - id: 1658  # 地属性付与
-          - id: 1659  # 聖属性付与
-          - id: 1660  # 闇属性付与
-          - id: 1661  # 念属性付与
-          - id: 1662  # 毒属性付与
-          - id: 1663  # 不死属性付与
-      - slot: 2
-        refine: 10
-        id_list:
-          - id: 2220  # 黒翼 
-
-            
+skill_list:
+  - name: "潜在覚醒(アースストレインI)"
+    capabilities:
+      - type: "BaseLvが上がる度にダメージUp"
+        refine:  0
+        each_lv:  3
+        atk_percent_up:  1
+        skill_id:  531
+  - name: "潜在覚醒(アースドライブI)"
+    capabilities:
+      - type: "BaseLvが上がる度にダメージUp"
+        refine:  0
+        each_lv:  3
+        atk_percent_up:  1
+        skill_id:  585
+  - name: "潜在覚醒(アックストルネードI)"
+    capabilities:
+      - type: "BaseLvが上がる度にダメージUp"
+        refine:  0
+        each_lv:  2
+        atk_percent_up:  1
+        skill_id:  541
+  - name: "潜在覚醒(アックスブーメランI)"
+    capabilities:
+      - type: "BaseLvが上がる度にダメージUp"
+        refine:  0
+        each_lv:  2
+        atk_percent_up:  1
+        skill_id:  542
+  - name: "潜在覚醒(アドラムスI)"
+    capabilities:
+      - type: "BaseLvが上がる度にダメージUp"
+        refine:  0
+        each_lv:  2
+        atk_percent_up:  1
+        skill_id:  478
+  - name: "潜在覚醒(アローストームII)"
+    capabilities:
+      - type: "BaseLvが上がる度にダメージUp"
+        refine:  0
+        each_lv:  10
+        atk_percent_up:  1
+        skill_id:  498
+  - name: "潜在覚醒(イグニッションブレイクII)"
+    capabilities:
+      - type: "BaseLvが上がる度にダメージUp"
+        refine:  0
+        each_lv:  2
+        atk_percent_up:  1
+        skill_id:  445
+  - name: "潜在覚醒(イヌハッカメテオI)"
+    capabilities:
+      - type: "BaseLvが上がる度にダメージUp"
+        refine:  0
+        each_lv:  5
+        atk_percent_up:  1
+        skill_id:  922
+  - name: "潜在覚醒(インスピレーションI)"
+    capabilities:
+      - type: "BaseLvが上がる度にダメージUp"
+        refine:  0
+        each_lv:  1
+        atk_percent_up:  0
+        skill_id:  587
+  - name: "潜在覚醒(ヴェラチュールスピアーI)"
+    capabilities:
+      - type: "BaseLvが上がる度にダメージUp"
+        refine:  0
+        each_lv:  3
+        atk_percent_up:  1
+        skill_id:  669
+  - name: "潜在覚醒(エイムドボルトI)"
+    capabilities:
+      - type: "BaseLvが上がる度にダメージUp"
+        refine:  0
+        each_lv:  10
+        atk_percent_up:  1
+        skill_id:  497
+  - name: "潜在覚醒(エスパI)"
+    capabilities:
+      - type: "BaseLvが上がる度にダメージUp"
+        refine:  0
+        each_lv:  5
+        atk_percent_up:  1
+        skill_id:  968
+  - name: "潜在覚醒(カートキャノンI)"
+    capabilities:
+      - type: "BaseLvが上がる度にダメージUp"
+        refine:  0
+        each_lv:  2
+        atk_percent_up:  1
+        skill_id:  723
+  - name: "潜在覚醒(カートトルネードI)"
+    capabilities:
+      - type: "BaseLvが上がる度にダメージUp"
+        refine:  0
+        each_lv:  2
+        atk_percent_up:  1
+        skill_id:  722
+  - name: "潜在覚醒(キャノンスピアI)"
+    capabilities:
+      - type: "BaseLvが上がる度にダメージUp"
+        refine:  0
+        each_lv:  3
+        atk_percent_up:  1
+        skill_id:  569
+  - name: "潜在覚醒(キャロットビートI)"
+    capabilities:
+      - type: "BaseLvが上がる度にダメージUp"
+        refine:  0
+        each_lv:  5
+        atk_percent_up:  1
+        skill_id:  933
+  - name: "潜在覚醒(クリムゾンロックI)"
+    capabilities:
+      - type: "BaseLvが上がる度にダメージUp"
+        refine:  0
+        each_lv:  5
+        atk_percent_up:  1
+        skill_id:  527
+  - name: "潜在覚醒(クロスリッパースラッシャーI)"
+    capabilities:
+      - type: "BaseLvが上がる度にダメージUp"
+        refine:  0
+        each_lv:  2
+        atk_percent_up:  1
+        skill_id:  475
+  - name: "潜在覚醒(サイキックウェーブI)"
+    capabilities:
+      - type: "BaseLvが上がる度にダメージUp"
+        refine:  0
+        each_lv:  3
+        atk_percent_up:  1
+        skill_id:  662
+  - name: "潜在覚醒(サベージの魂II)"
+    capabilities:
+      - type: "BaseLvが上がる度にダメージUp"
+        refine:  0
+        each_lv:  5
+        atk_percent_up:  1
+        skill_id:  938
+  - name: "潜在覚醒(シールドプレスI)"
+    capabilities:
+      - type: "BaseLvが上がる度にダメージUp"
+        refine:  0
+        each_lv:  2
+        atk_percent_up:  1
+        skill_id:  572
+  - name: "潜在覚醒(シビアレインストームII)"
+    capabilities:
+      - type: "BaseLvが上がる度にダメージUp"
+        refine:  0
+        each_lv:  3
+        atk_percent_up:  1
+        skill_id:  642
+  - name: "潜在覚醒(ジャックフロストII)"
+    capabilities:
+      - type: "BaseLvが上がる度にダメージUp"
+        refine:  0
+        each_lv:  2
+        atk_percent_up:  1
+        skill_id:  520
+  - name: "潜在覚醒(ジュデックスII)"
+    capabilities:
+      - type: "BaseLvが上がる度にダメージUp"
+        refine:  0
+        each_lv:  2
+        atk_percent_up:  1
+        skill_id:  476
+  - name: "潜在覚醒(スペルフィストI)"
+    capabilities:
+      - type: "BaseLvが上がる度にダメージUp"
+        refine:  0
+        each_lv:  2
+        atk_percent_up:  1
+        skill_id:  660
+  - name: "潜在覚醒(スポアエクスプロージョンI)"
+    capabilities:
+      - type: "BaseLvが上がる度にダメージUp"
+        refine:  0
+        each_lv:  2
+        atk_percent_up:  1
+        skill_id:  736
+  - name: "潜在覚醒(ソウルエクスパンションI)"
+    capabilities:
+      - type: "BaseLvが上がる度にダメージUp"
+        refine:  0
+        each_lv:  5
+        atk_percent_up:  1
+        skill_id:  518
+  - name: "潜在覚醒(ソニックウェーブI)"
+    capabilities:
+      - type: "BaseLvが上がる度にダメージUp"
+        refine: 0
+        each_lv: 2
+        atk_percent_up: 1
+        skill_id: 440
+  - name: "潜在覚醒(トライアングルショットI)"
+    capabilities:
+      - type: "BaseLvが上がる度にダメージUp"
+        refine: 0
+        each_lv: 3
+        atk_percent_up: 1
+        skill_id: 608
+  - name: "潜在覚醒(バニシングポイントI)"
+    capabilities:
+      - type: "BaseLvが上がる度にダメージUp"
+        refine: 0
+        each_lv: 1
+        atk_percent_up: 1
+        skill_id: 570
+  - name: "潜在覚醒(パワースイングI)"
+    capabilities:
+      - type: "BaseLvが上がる度にダメージUp"
+        refine: 0
+        each_lv: 2
+        atk_percent_up: 1
+        skill_id: 543
+  - name: "潜在覚醒(ファイアーレインI)"
+    capabilities:
+      - type: "BaseLvが上がる度にダメージUp"
+        refine: 0
+        each_lv: 2
+        atk_percent_up: 1
+        skill_id: 828
+  - name: "潜在覚醒(フェイタルメナスI)"
+    capabilities:
+      - type: "BaseLvが上がる度にダメージUp"
+        refine: 0
+        each_lv: 3
+        atk_percent_up: 1
+        skill_id: 606
+  - name: "潜在覚醒(ヘルインフェルノI)"
+    capabilities:
+      - type: "BaseLvが上がる度にダメージUp"
+        refine: 0
+        each_lv: 2
+        atk_percent_up: 1
+        skill_id: 528
+  - name: "潜在覚醒(マタタビランスI)"
+    capabilities:
+      - type: "BaseLvが上がる度にダメージUp"
+        refine: 0
+        each_lv: 5
+        atk_percent_up: 1
+        skill_id: 920
+  - name: "潜在覚醒(メタリックサウンドI)"
+    capabilities:
+      - type: "BaseLvが上がる度にダメージUp"
+        refine: 0
+        each_lv: 3
+        atk_percent_up: 1
+        skill_id: 641
+  - name: "潜在覚醒(ラウンドトリップI)"
+    capabilities:
+      - type: "BaseLvが上がる度にダメージUp"
+        refine: 0
+        each_lv: 2
+        atk_percent_up: 1
+        skill_id: 835
+  - name: "潜在覚醒(レイオブジェネシスI)"
+    capabilities:
+      - type: "BaseLvが上がる度にダメージUp"
+        refine: 0
+        each_lv: 3
+        atk_percent_up: 1
+        skill_id: 583
+  - name: "潜在覚醒(ローリングカッターI)"
+    capabilities:
+      - type: "BaseLvが上がる度にダメージUp"
+        refine: 0
+        each_lv: 2
+        atk_percent_up: 1
+        skill_id: 474
+  - name: "潜在覚醒(獅子吼II)"
+    capabilities:
+      - type: "BaseLvが上がる度にダメージUp"
+        refine: 0
+        each_lv: 1
+        atk_percent_up: 1
+        skill_id: 622
+  - name: "潜在覚醒(十文字斬りI)"
+    capabilities:
+      - type: "BaseLvが上がる度にダメージUp"
+        refine: 0
+        each_lv: 3
+        atk_percent_up: 1
+        skill_id: 766
+  - name: "潜在覚醒(死霊爆発I)"
+    capabilities:
+      - type: "BaseLvが上がる度にダメージUp"
+        refine: 0
+        each_lv: 5
+        atk_percent_up: 1
+        skill_id: 977
+  - name: "潜在覚醒(太陽爆発I)"
+    capabilities:
+      - type: "BaseLvが上がる度にダメージUp"
+        refine: 0
+        each_lv: 10
+        atk_percent_up: 1
+        skill_id: 951
+  - name: "潜在覚醒(天羅地網I)"
+    capabilities:
+      - type: "BaseLvが上がる度にダメージUp"
+        refine: 0
+        each_lv: 2
+        atk_percent_up: 1
+        skill_id: 610
+  - name: "潜在覚醒(爆気散弾I)"
+    capabilities:
+      - type: "BaseLvが上がる度にダメージUp"
+        refine: 0
+        each_lv: 2
+        atk_percent_up: 1
+        skill_id: 612
+  - name: "潜在覚醒(風魔手裏剣 -乱華-I)"
+    capabilities:
+      - type: "BaseLvが上がる度にダメージUp"
+        refine: 0
+        each_lv: 4
+        atk_percent_up: 1
+        skill_id: 770
+  - name: "潜在覚醒(満月脚II)"
+    capabilities:
+      - type: "BaseLvが上がる度にダメージUp"
+        refine: 0
+        each_lv: 10
+        atk_percent_up: 1
+        skill_id: 955
+  - name: "潜在覚醒(雷光弾I)"
+    capabilities:
+      - type: "BaseLvが上がる度にダメージUp"
+        refine: 0
+        each_lv: 2
+        atk_percent_up: 1
+        skill_id: 623
+  - name: "潜在覚醒(流星落下I)"
+    capabilities:
+      - type: "BaseLvが上がる度にダメージUp"
+        refine: 0
+        each_lv: 10
+        atk_percent_up: 1
+        skill_id: 959
+  - name: "潜在解放(アークビショップII)"
+    capabilities:
+      # [真理の解放]と共に装備時、追加で[オラティオ]の再使用待機時間 - 1.5秒
+      # [シレンティウム]の再使用待機時間 - 14秒
+      - type: "BaseLvが上がる度にダメージUp"
+        refine:  0
+        each_lv:  1
+        atk_percent_up:  0
+        skill_id:  0
+  - name: "潜在解放(ウォーロックII)"
+    capabilities:
+      # [真理の解放]と共に装備時、[クリムゾンロック]の固定詠唱時間 - 100%
+      # ―――――――――――――
+      # [真理の解放]と共に装備時、追加で[テレキネシスインテンス]の再使用待機時間 - 185秒
+      # 装備解除時、[テレキネシスインテンス]を解除する
+      - type: "BaseLvが上がる度にダメージUp"
+        refine:  0
+        each_lv:  1
+        atk_percent_up:  0
+        skill_id:  0
+  - name: "潜在解放(ギロチンクロスII)"
+    capabilities:
+      # [豪傑]と共に装備時、追加で[ダーククロー]の再使用待機時間 - 35秒
+      # [ローリングカッター]の再使用待機時間 - 0.2秒
+      - type: "BaseLvが上がる度にダメージUp"
+        refine:  0
+        each_lv:  1
+        atk_percent_up:  0
+        skill_id:  0
+  - name: "潜在解放(サモナーII)"
+    capabilities:
+      # [真理の解放]と共に装備時、追加で[ニャングラス]使用時、10秒間、[イヌハッカメテオ]の消費SP - 79
+      # [マタタビランス]の消費SP - 29
+      - type: "BaseLvが上がる度にダメージUp"
+        refine:  0
+        each_lv:  1
+        atk_percent_up:  0
+        skill_id:  0
+  - name: "潜在解放(ジェネティックII)"
+    capabilities:
+      # [豪傑]と共に装備時、追加で[カートトルネード]の再使用待機時間 - 0.2秒
+      # [カートトルネード]使用時3秒間、必中攻撃 + 100%
+      - type: "BaseLvが上がる度にダメージUp"
+        refine:  0
+        each_lv:  1
+        atk_percent_up:  0
+        skill_id:  0
+  - name: "潜在解放(シャドウチェイサーII)"
+    capabilities:
+      # [豪傑]と共に装備時、追加で[トライアングルショット]使用時、一定確率で20秒間、[アンリミット]Lv5状態になる
+      # 装備解除時、[アンリミット]を解除する
+      - type: "BaseLvが上がる度にダメージUp"
+        refine:  0
+        each_lv:  1
+        atk_percent_up:  0
+        skill_id:  0
+  - name: "潜在解放(ソウルリーパーII)"
+    capabilities:
+      # [真理の解放]と共に装備時、[エスパ]、[エスフ]の固定詠唱時間 - 100%
+      # ―――――――――――――
+      # [真理の解放]と共に装備時、追加で[死霊爆発]の再使用待機時間 - 0.5秒
+      - type: "BaseLvが上がる度にダメージUp"
+        refine:  0
+        each_lv:  1
+        atk_percent_up:  0
+        skill_id:  0
+  - name: "潜在解放(ソーサラーII)"
+    capabilities:
+      # 真理の解放]と共に装備時、[サイキックウェーブ]の固定詠唱時間 - 100%
+      # ――――――――――――
+      # 真理の解放]と共に装備時、追加で[ヴェラチュールスピアー]の再使用待機時間 - 1秒
+      - type: "BaseLvが上がる度にダメージUp"
+        refine:  0
+        each_lv:  1
+        atk_percent_up:  0
+        skill_id:  0
+  - name: "潜在解放(ミンストレル&ワンダラーI)"
+    capabilities:
+      # [真理の解放]と共に装備時、追加で[メタリックサウンド]の再使用待機時間 - 0.2秒
+      # [安らぎの子守唄]の再使用待機時間 - 2秒
+      - type: "BaseLvが上がる度にダメージUp"
+        refine:  0
+        each_lv:  1
+        atk_percent_up:  0
+        skill_id:  0
+  - name: "潜在解放(メカニックII)"
+    capabilities:
+      # [豪傑]と共に装備時、追加で[アックストルネード]、[マグマイラプション]の再使用待機時間 - 2秒    
+      - type: "BaseLvが上がる度にダメージUp"
+        refine:  0
+        each_lv:  1
+        atk_percent_up:  0
+        skill_id:  0
+  - name: "潜在解放(リベリオンII)"
+    capabilities:
+      # [豪傑]と共に装備時、追加で[ラウンドトリップ]の再使用待機時間 - 0.2秒
+      # [リッチズコイン]の再使用待機時間 - 3秒    
+      - type: "BaseLvが上がる度にダメージUp"
+        refine:  0
+        each_lv:  1
+        atk_percent_up:  0
+        skill_id:  0
+  - name: "潜在解放(ルーンナイトII)"
+    capabilities:
+      # [豪傑]と共に装備時、追加で[イグニッションブレイク]の再使用待機時間 - 0.3秒
+      # [ソニックウェーブ]の再使用待機時間 - 0.2秒    
+      - type: "BaseLvが上がる度にダメージUp"
+        refine:  0
+        each_lv:  1
+        atk_percent_up:  0
+        skill_id:  0
+  - name: "潜在解放(レンジャーII)"
+    capabilities:
+      # [豪傑]と共に装備時、追加で[アローストーム]の再使用待機時間 - 0.2秒
+      # [アンリミット]の再使用待機時間 - 240秒
+      # 装備解除時、[アンリミット]を解除する
+      - type: "BaseLvが上がる度にダメージUp"
+        refine:  0
+        each_lv:  1
+        atk_percent_up:  0
+        skill_id:  0
+  - name: "潜在解放(ロイヤルガードII)"
+    capabilities:
+      # [豪傑]と共に装備時、追加で[アースドライブ]の詠唱時間 - 1秒
+      # [シールドスペル]の再使用待機時間 - 1.5秒    
+      - type: "BaseLvが上がる度にダメージUp"
+        refine:  0
+        each_lv:  1
+        atk_percent_up:  0
+        skill_id:  0
+  - name: "潜在解放(影狼&朧I)"
+    capabilities:
+      # [豪傑]と共に装備時、追加で[十六夜]の再使用待機時間 - 30秒
+      # [風魔手裏剣 -乱華-]の再使用待機時間 - 0.2秒
+      - type: "BaseLvが上がる度にダメージUp"
+        refine:  0
+        each_lv:  1
+        atk_percent_up:  0
+        skill_id:  0
+  - name: "潜在解放(修羅II)"
+    capabilities:
+      # [豪傑]と共に装備時、追加で[吸気功]の再使用待機時間 - 3秒
+      # [天羅地網]使用時、3秒間、完全回避 + 95
+      - type: "BaseLvが上がる度にダメージUp"
+        refine:  0
+        each_lv:  1
+        atk_percent_up:  0
+        skill_id:  0
+  - name: "潜在解放(星帝II)"
+    capabilities:
+      # [豪傑]と共に装備時、追加で[朔月脚]の再使用待機時間 - 0.2秒
+      # ―――――――――――――
+      # [豪傑]と共に装備時、[満月脚]の固定詠唱時間 - 1秒
+      - type: "BaseLvが上がる度にダメージUp"
+        refine:  0
+        each_lv:  1
+        atk_percent_up:  0
+        skill_id:  0

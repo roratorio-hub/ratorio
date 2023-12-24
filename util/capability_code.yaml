@@ -1,0 +1,85 @@
+capabilities:
+  - name: 一般耐性
+    code: 79
+  - name: ボス耐性
+    code: 77
+  - name: プレイヤー耐性
+    code: 243
+  - name: 壊れない
+    code: 194
+  - name: 全ステータス上昇
+    code: 217
+  - name: MAXHP増加
+    code: 15
+  - name: ディレイ減少
+    code: 74
+  - name: MDEF加算
+    code: 19
+  - name: 水属性耐性
+    code: 61
+  - name: 土属性耐性
+    code: 62
+  - name: 火属性耐性
+    code: 63
+  - name: 風属性耐性
+    code: 64
+  - name: 毒属性耐性
+    code: 65
+  - name: 聖属性耐性
+    code: 66
+  - name: 闇属性耐性
+    code: 67
+  - name: 念属性耐性
+    code: 68
+  - name: 不死属性耐性
+    code: 69
+  - name: 必中
+    code: 86
+  - name: ASPD増加
+    code: 12
+  - name: 全種族への物理ダメージ増加
+    code: 261
+  - name: 全種族への魔法ダメージ増加
+    code: 266
+  - name: ATK加算
+    code: 17
+  - name: MATK加算
+    code: 100
+  - name: 大型への物理ダメージ増加
+    code: 29
+  - name: 中型への物理ダメージ増加
+    code: 28
+  - name: 小型への物理ダメージ増加
+    code: 27
+  - name: 大型への魔法ダメージ増加
+    code: 99
+  - name: 中型への魔法ダメージ増加
+    code: 98
+  - name: 小型への魔法ダメージ増加
+    code: 97
+  - name: 物理ダメージ増加
+    code: 80
+  - name: 魔法ダメージ増加
+    code: 89
+  - name: 全属性への物理ダメージ増加
+    code: 262
+  - name: 全属性への魔法ダメージ増加
+    code: 269
+  - name: クレッシブボルトのダメージ増加
+    code: 6051
+  - name: ゲイルストームのダメージ増加
+    code: 6047
+  - name: Pow上昇
+    code: 230
+  - name: Sta上昇
+    code: 231
+  - name: Wis上昇
+    code: 232
+  - name: Spl上昇
+    code: 233
+  - name: Con上昇
+    code: 234
+  - name: Crt上昇
+    code: 235
+  - name: 全特性ステータス上昇
+    code: 236

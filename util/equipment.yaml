@@ -1,0 +1,54 @@
+item_list:
+  - name: 星座の印章
+    yomi: セイサノインシヨウ
+    desc: 
+    type: アクセサリー(1)
+    slot: 1
+    def: 0
+    weight: 10
+    required: 200
+    capabilities:
+      - type: 壊れない
+        value: 1
+      - type: ASPD増加
+        value: 10
+      - type: 物理ダメージ増加
+        value: 10
+      - type: 魔法ダメージ増加
+        value: 10
+      - type: プレイヤー耐性
+        value: 3
+      - type: 全属性への物理ダメージ増加
+        value: 1
+        per_lv: 10
+      - type: 全属性への魔法ダメージ増加
+        value: 1
+        per_lv: 10
+      - type: 全特性ステータス上昇
+        value: 10
+    enchant:
+      name: スペシャルエンチャント（キョウ）
+      slot_list:
+        - slot: 4
+          refine: 6
+          enchant_list:
+            - name: スキルディレイ-15%
+            - name: 詠唱妨害不可
+            - name: 英雄の凱歌
+            - name: 厄災の魔将
+        - slot: 3
+          refine: 8
+          enchant_list:
+            - name: 火属性付与(鎧)
+            - name: 水属性付与(鎧)
+            - name: 風属性付与(鎧)
+            - name: 地属性付与(鎧)
+            - name: 聖属性付与(鎧)
+            - name: 闇属性付与(鎧)
+            - name: 念属性付与(鎧)
+            - name: 毒属性付与(鎧)
+            - name: 不死属性付与(鎧)
+        - slot: 2
+          refine: 10
+          enchant_list:
+            - name: 黒翼の使徒
