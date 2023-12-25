@@ -1,6 +1,7 @@
 
 import re
 import os
+import sys
 import yaml
 
 ENCHANT     = 99
@@ -87,6 +88,10 @@ def getCapabilityRecord(capability):
         at_refine = capability['at_refine']
     if 'per_lv' in capability:
         per_baselv = capability['per_lv']
+    capability_code = capability_dict.get(type)
+    if not capability_code:
+        print(f"コードが見つかりません: {type}")
+        sys.exit(0)
     code = f"{per_baselv}00000{at_refine:02d}{per_refine:01d}{capability_dict.get(type):05d}"
     return f"{int(code)},{value},"
 

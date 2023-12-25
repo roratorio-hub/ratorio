@@ -663,5 +663,14 @@
 	// スクリーミングゴーストパーティ
 	g_constDataManager.enchListDataManager.sourceArray[624] = [624,-1,0,0,[["スペシャルエンチャント（キョウ）","C3y4C2h1I3A4J5D2h1J5D5B2h3A3"]],[],[[[174,[50,[5001]]],,[[[178,[27,[4]]],,[[[187,[59,6],[60,4]],,[[[186,[51,[1247,1179,1975,2043,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,8],[60,4]],,[[[186,[51,[1655,1656,1657,1658,1659,1660,1661,1662,1663,]]],,[]]]]]],[[178,[27,[2]]],,[[[187,[59,10],[60,4]],,[[[186,[51,[2220,]]],,[]]]]]],]]],[]];
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5001] = [624];	
-
+	// 星座の印章
+	g_constDataManager.enchListDataManager.sourceArray[625] = [625,-1,0,0,[["星座の塔エンチャント","C3y4C2h1I3A4J5D2h1J5D5B2h3A9"]],[],[[[174,[50,[5004]]],,[[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[668,673,678,683,688,692,1179,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[1975,2043,2005,1813,2028,2311,2437,2668,]]],,[]]]]]],[[178,[27,[2]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[2809,2810,2811,2812,2813,2814,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5003] = [625];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5004] = [625];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5005] = [625];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5006] = [625];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5007] = [625];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5008] = [625];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5009] = [625];
+	
 })();

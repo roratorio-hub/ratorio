@@ -13,6 +13,8 @@ capabilities:
     code: 15
   - name: ディレイ減少
     code: 74
+  - name: DEF加算
+    code: 18
   - name: MDEF加算
     code: 19
   - name: 水属性耐性
@@ -41,6 +43,8 @@ capabilities:
     code: 261
   - name: 全種族への魔法ダメージ増加
     code: 266
+  - name: CRI加算
+    code: 10
   - name: ATK加算
     code: 17
   - name: MATK加算
@@ -83,3 +87,5 @@ capabilities:
     code: 235
   - name: 全特性ステータス上昇
     code: 236
+  - name: Mdef無視
+    code: 298

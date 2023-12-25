@@ -1,7 +1,7 @@
 item_list:
-  - name: 星座の印章
-    yomi: セイサノインシヨウ
-    desc: 
+  - name: 星座の印章(力)
+    yomi: セイサノインシヨウチカラ
+    desc: 計算機の仕様で、純粋なPowが100未満でも必中攻撃+15%が適用されます
     type: アクセサリー(1)
     slot: 1
     def: 0
@@ -24,31 +24,140 @@ item_list:
       - type: 全属性への魔法ダメージ増加
         value: 1
         per_lv: 10
-      - type: 全特性ステータス上昇
+      - type: 必中
+        value: 15
+  - name: 星座の印章(体力)
+    yomi: セイサノインシヨウタイリヨク
+    desc: ※計算機の仕様で、純粋なStaが100未満でもDef+300が適用されます
+    type: アクセサリー(1)
+    slot: 1
+    def: 0
+    weight: 10
+    required: 200
+    capabilities:
+      - type: 壊れない
+        value: 1
+      - type: ASPD増加
         value: 10
-    enchant:
-      name: スペシャルエンチャント（キョウ）
-      slot_list:
-        - slot: 4
-          refine: 6
-          enchant_list:
-            - name: スキルディレイ-15%
-            - name: 詠唱妨害不可
-            - name: 英雄の凱歌
-            - name: 厄災の魔将
-        - slot: 3
-          refine: 8
-          enchant_list:
-            - name: 火属性付与(鎧)
-            - name: 水属性付与(鎧)
-            - name: 風属性付与(鎧)
-            - name: 地属性付与(鎧)
-            - name: 聖属性付与(鎧)
-            - name: 闇属性付与(鎧)
-            - name: 念属性付与(鎧)
-            - name: 毒属性付与(鎧)
-            - name: 不死属性付与(鎧)
-        - slot: 2
-          refine: 10
-          enchant_list:
-            - name: 黒翼の使徒
+      - type: 物理ダメージ増加
+        value: 10
+      - type: 魔法ダメージ増加
+        value: 10
+      - type: プレイヤー耐性
+        value: 3
+      - type: 全属性への物理ダメージ増加
+        value: 1
+        per_lv: 10
+      - type: 全属性への魔法ダメージ増加
+        value: 1
+        per_lv: 10
+      - type: DEF加算
+        value: 300
+  - name: 星座の印章(創造)
+    yomi: セイサノインシヨウソウソウ
+    desc: 計算機の仕様で、純粋なCrtが100未満でもCri+50が適用されます
+    type: アクセサリー(1)
+    slot: 1
+    def: 0
+    weight: 10
+    required: 200
+    capabilities:
+      - type: 壊れない
+        value: 1
+      - type: ASPD増加
+        value: 10
+      - type: 物理ダメージ増加
+        value: 10
+      - type: 魔法ダメージ増加
+        value: 10
+      - type: プレイヤー耐性
+        value: 3
+      - type: 全属性への物理ダメージ増加
+        value: 1
+        per_lv: 10
+      - type: 全属性への魔法ダメージ増加
+        value: 1
+        per_lv: 10
+      - type: CRI加算
+        value: 50
+  - name: 星座の印章(魔力)
+    yomi: セイサノインシヨウマリヨク
+    desc: 計算機の仕様で、純粋なSplが100未満でもMdef100%無視が適用されます
+    type: アクセサリー(1)
+    slot: 1
+    def: 0
+    weight: 10
+    required: 200
+    capabilities:
+      - type: 壊れない
+        value: 1
+      - type: ASPD増加
+        value: 10
+      - type: 物理ダメージ増加
+        value: 10
+      - type: 魔法ダメージ増加
+        value: 10
+      - type: プレイヤー耐性
+        value: 3
+      - type: 全属性への物理ダメージ増加
+        value: 1
+        per_lv: 10
+      - type: 全属性への魔法ダメージ増加
+        value: 1
+        per_lv: 10
+      - type: Mdef無視
+        value: 100
+  - name: 星座の印章(聡明)
+    yomi: セイサノインシヨウソウメイ
+    desc: 計算機の仕様で、純粋なWisが100未満でもMdef+50が適用されます
+    type: アクセサリー(1)
+    slot: 1
+    def: 0
+    weight: 10
+    required: 200
+    capabilities:
+      - type: 壊れない
+        value: 1
+      - type: ASPD増加
+        value: 10
+      - type: 物理ダメージ増加
+        value: 10
+      - type: 魔法ダメージ増加
+        value: 10
+      - type: プレイヤー耐性
+        value: 3
+      - type: 全属性への物理ダメージ増加
+        value: 1
+        per_lv: 10
+      - type: 全属性への魔法ダメージ増加
+        value: 1
+        per_lv: 10
+      - type: MDEF加算
+        value: 50
+  - name: 星座の印章(集中)
+    yomi: セイサノインシヨウシユウチウ
+    desc: 計算機の仕様で、純粋なConが100未満でもディレイ-15%が適用されます
+    type: アクセサリー(1)
+    slot: 1
+    def: 0
+    weight: 10
+    required: 200
+    capabilities:
+      - type: 壊れない
+        value: 1
+      - type: ASPD増加
+        value: 10
+      - type: 物理ダメージ増加
+        value: 10
+      - type: 魔法ダメージ増加
+        value: 10
+      - type: プレイヤー耐性
+        value: 3
+      - type: 全属性への物理ダメージ増加
+        value: 1
+        per_lv: 10
+      - type: 全属性への魔法ダメージ増加
+        value: 1
+        per_lv: 10
+      - type: ディレイ減少
+        value: 15
