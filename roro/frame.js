@@ -50,7 +50,7 @@ function SetMainMenuFrame(){
 	objA = document.createElement("a");
 	objA.setAttribute("href", "../main/main.html");
 	objA.setAttribute("style", "text-decoration: none; color: black; font-size: larger;");
-	objA.appendChild(document.createTextNode("避難所MENU"));
+	objA.appendChild(document.createTextNode("MENU"));
 	objDivGrp.appendChild(objA);
 	objDivGrp.appendChild(document.createElement("br"));
 
@@ -67,6 +67,7 @@ function SetMainMenuFrame(){
 
 
 
+/*
 
 
 	//----------------------------------------------------------------
@@ -407,7 +408,7 @@ function SetMainMenuFrame(){
 
 
 
-
+*/
 
 	//----------------------------------------------------------------
 	//
@@ -421,12 +422,31 @@ function SetMainMenuFrame(){
 	//--------------------------------
 	// リンク
 	//--------------------------------
-	objA = document.createElement("a");
-	objDivGrp.appendChild(objA);
-	objA.setAttribute("href", "../link/link.html");
-	objA.appendChild(document.createTextNode("リンク"));
+	objDivGrp.appendChild(document.createTextNode("－ 連絡先 －"));
 	objDivGrp.appendChild(document.createElement("br"));
 
+	objA = document.createElement("a");
+	objDivGrp.appendChild(objA);
+	objA.setAttribute("href", "https://github.com/usachoco/ratorio/tree/dev");
+	objA.setAttribute("target", "_blank");
+	objA.appendChild(document.createTextNode("Github"));
+	objDivGrp.appendChild(document.createElement("br"));
+
+	objA = document.createElement("a");
+	objDivGrp.appendChild(objA);
+	objA.setAttribute("href", "https://ro-mastodon.puyo.jp/@usachoco");
+	objA.setAttribute("target", "_blank");
+	objA.appendChild(document.createTextNode("RO丼"));
+	objDivGrp.appendChild(document.createElement("br"));
+
+	objA = document.createElement("a");
+	objDivGrp.appendChild(objA);
+	objA.setAttribute("href", "https://twitter.com/usamimichoco");
+	objA.setAttribute("target", "_blank");
+	objA.appendChild(document.createTextNode("twitter/x"));
+	objDivGrp.appendChild(document.createElement("br"));
+
+/*
 	//--------------------------------
 	// ダウンロード
 	//--------------------------------
@@ -445,6 +465,7 @@ function SetMainMenuFrame(){
 	objA.appendChild(document.createTextNode("ミラクル計算機"));
 	objDivGrp.appendChild(document.createElement("br"));
 
+*/	
 
 	objInput = document.createElement("input");
 	objDivGrp.appendChild(objInput);
@@ -453,9 +474,8 @@ function SetMainMenuFrame(){
 	objInput.setAttribute("value", "背景色切替");
 	objInput.setAttribute("onclick", "SwitchBGColor()");
 	objInput.setAttribute("style", "margin-top: 3em;");
+
 }
-
-
 
 g_BGColorSwitch = false;
 
