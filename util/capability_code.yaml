@@ -69,10 +69,27 @@ capabilities:
     code: 262
   - name: 全属性への魔法ダメージ増加
     code: 269
+  # -- 修正検討
+  # code = 5000 + 目的スキルコード という暗黙知に頼ってるのはよろしく無い
   - name: クレッシブボルトのダメージ増加
     code: 6051
   - name: ゲイルストームのダメージ増加
     code: 6047
+  - name: エスパのダメージ増加
+    code: 5968
+  - name: エスフのダメージ増加
+    code: 5969
+  - name: 朔月脚のダメージ増加
+    code: 5954
+  - name: ファイアーダンスのダメージ増加
+    code: 5830
+  - name: 風魔手裏剣 -乱華-のダメージ増加
+    code: 5770
+  - name: サベージの魂のダメージ増加
+    code: 5938
+  - name: マタタビランスのダメージ増加
+    code: 5920
+  # -------------
   - name: Pow上昇
     code: 230
   - name: Sta上昇
@@ -89,3 +106,5 @@ capabilities:
     code: 236
   - name: Mdef無視
     code: 298
+  - name: Def無視
+    code: 293

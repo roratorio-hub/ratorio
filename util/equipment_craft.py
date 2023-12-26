@@ -58,6 +58,12 @@ def loadEquipmentTypeDict():
     return {capability.get('name'): capability.get('code') for capability in config['equipment']}
 
 
+def loadEquipableCodeDict():
+    with open(f'{script_dir}/equipable_code.yaml', 'r', encoding='utf-8') as f:
+        config = yaml.safe_load(f)
+    return {capability.get('name'): capability.get('code') for capability in config['equipable_list']}
+
+
 def getEnchantDict(enchant_list):
     return {item[1]: item[0] for item in enchant_list}
 
@@ -104,7 +110,7 @@ slotinfo_list = loadSlotInfoList()
 equipment_type_list = loadEquipmentTypeDict()
 enchant_dict = getEnchantDict(enchant_list)
 capability_dict = loadCapabilityDict()
-
+equipable_dict = loadEquipableCodeDict()
 
 if __name__ == "__main__":
     item_dat_js = []
@@ -124,8 +130,9 @@ if __name__ == "__main__":
         item_id += 1
         base_id = item_id
         equipment_type = equipment_type_list.get(item_info["type"])
-        record  = f'ItemObjNew[{item_id}] = [{item_id},{equipment_type},0,{item_info["def"]},0,'
-        record += f'{item_info["slot"]},{item_info["weight"]},{item_info["required"]},'
+        equipable_code = equipable_dict.get(item_info["required_job"])
+        record  = f'ItemObjNew[{item_id}] = [{item_id},{equipment_type},{equipable_code},{item_info["atk_or_def"]},{item_info["weapon_lv"]},'
+        record += f'{item_info["slot"]},{item_info["weight"]},{item_info["required_lv"]},'
         record += f'"{item_info["name"]}","{item_info["yomi"]}","{item_info["desc"]}",'
         for capability in item_info['capabilities']:
             record += getCapabilityRecord(capability)

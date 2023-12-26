@@ -1,163 +1,92 @@
 item_list:
-  - name: 星座の印章(力)
-    yomi: セイサノインシヨウチカラ
-    desc: 計算機の仕様で、純粋なPowが100未満でも必中攻撃+15%が適用されます
-    type: アクセサリー(1)
+  # グレイシア武器のセット効果は 4966 を参照, エンチャントは 600, 602 を参照
+  - name: グレイシア風魔手裏剣
+    yomi: クレイシアフウマシユリケン
+    desc: 超越段階が1以上の時、精錬値が1上がる度に追加で、物理・魔法攻撃時、全ての種族のモンスターに与えるダメージ + 7%（計算機未対応）
+    type: 手裏剣
+    atk_or_def: 150
     slot: 1
-    def: 0
-    weight: 10
-    required: 200
+    weapon_lv: 3
+    weight: 150
+    required_job: 蜃気楼 不知火
+    required_lv: 220
     capabilities:
       - type: 壊れない
         value: 1
-      - type: ASPD増加
-        value: 10
-      - type: 物理ダメージ増加
-        value: 10
-      - type: 魔法ダメージ増加
-        value: 10
+      - type: MATK加算
+        value: 160
       - type: プレイヤー耐性
+        value: 40
+      - type: 物理ダメージ増加
+        per_refine: 1
+        value: 6
+      - type: 魔法ダメージ増加
+        per_refine: 1
         value: 3
-      - type: 全属性への物理ダメージ増加
-        value: 1
-        per_lv: 10
-      - type: 全属性への魔法ダメージ増加
-        value: 1
-        per_lv: 10
-      - type: 必中
-        value: 15
-  - name: 星座の印章(体力)
-    yomi: セイサノインシヨウタイリヨク
-    desc: ※計算機の仕様で、純粋なStaが100未満でもDef+300が適用されます
-    type: アクセサリー(1)
+  - name: グレイシアハンドガン
+    yomi: クレイシアハントカン
+    desc: 超越段階が1以上の時、精錬値が1上がる度に追加で、物理・魔法攻撃時、全ての種族のモンスターに与えるダメージ + 7%（計算機未対応）
+    type: ハンドガン
+    atk_or_def: 70
     slot: 1
-    def: 0
-    weight: 10
-    required: 200
+    weapon_lv: 3
+    weight: 35
+    required_job: ナイトウォッチ
+    required_lv: 220
     capabilities:
       - type: 壊れない
         value: 1
-      - type: ASPD増加
-        value: 10
-      - type: 物理ダメージ増加
-        value: 10
-      - type: 魔法ダメージ増加
-        value: 10
       - type: プレイヤー耐性
+        value: 40
+      - type: 物理ダメージ増加
+        per_refine: 1
+        value: 6
+      - type: 魔法ダメージ増加
+        per_refine: 1
         value: 3
-      - type: 全属性への物理ダメージ増加
-        value: 1
-        per_lv: 10
-      - type: 全属性への魔法ダメージ増加
-        value: 1
-        per_lv: 10
-      - type: DEF加算
-        value: 300
-  - name: 星座の印章(創造)
-    yomi: セイサノインシヨウソウソウ
-    desc: 計算機の仕様で、純粋なCrtが100未満でもCri+50が適用されます
-    type: アクセサリー(1)
+  - name: グレイシアベーシックソード
+    yomi: クレイシアヘエシツクソオト
+    desc: 超越段階が1以上の時、精錬値が1上がる度に追加で、物理・魔法攻撃時、全ての種族のモンスターに与えるダメージ + 7%（計算機未対応）
+    type: 片手剣
+    atk_or_def: 150
     slot: 1
-    def: 0
-    weight: 10
-    required: 200
+    weapon_lv: 3
+    weight: 120
+    required_job: ハイパーノービス
+    required_lv: 220
     capabilities:
       - type: 壊れない
         value: 1
-      - type: ASPD増加
+      - type: MATK加算
+        value: 130
+      - type: プレイヤー耐性
         value: 10
       - type: 物理ダメージ増加
-        value: 10
+        per_refine: 1
+        value: 6
       - type: 魔法ダメージ増加
-        value: 10
-      - type: プレイヤー耐性
+        per_refine: 1
         value: 3
-      - type: 全属性への物理ダメージ増加
-        value: 1
-        per_lv: 10
-      - type: 全属性への魔法ダメージ増加
-        value: 1
-        per_lv: 10
-      - type: CRI加算
-        value: 50
-  - name: 星座の印章(魔力)
-    yomi: セイサノインシヨウマリヨク
-    desc: 計算機の仕様で、純粋なSplが100未満でもMdef100%無視が適用されます
-    type: アクセサリー(1)
+  - name: グレイシアフォックステイル
+    yomi: クレイシアフオツクステイル
+    desc: 超越段階が1以上の時、精錬値が1上がる度に追加で、物理・魔法攻撃時、全ての種族のモンスターに与えるダメージ + 7%（計算機未対応）
+    type: 杖
+    atk_or_def: 150
     slot: 1
-    def: 0
-    weight: 10
-    required: 200
+    weapon_lv: 3
+    weight: 40
+    required_job: スピリットハンドラー
+    required_lv: 220
     capabilities:
       - type: 壊れない
         value: 1
-      - type: ASPD増加
+      - type: MATK加算
+        value: 180
+      - type: プレイヤー耐性
         value: 10
       - type: 物理ダメージ増加
-        value: 10
+        per_refine: 1
+        value: 6
       - type: 魔法ダメージ増加
-        value: 10
-      - type: プレイヤー耐性
+        per_refine: 1
         value: 3
-      - type: 全属性への物理ダメージ増加
-        value: 1
-        per_lv: 10
-      - type: 全属性への魔法ダメージ増加
-        value: 1
-        per_lv: 10
-      - type: Mdef無視
-        value: 100
-  - name: 星座の印章(聡明)
-    yomi: セイサノインシヨウソウメイ
-    desc: 計算機の仕様で、純粋なWisが100未満でもMdef+50が適用されます
-    type: アクセサリー(1)
-    slot: 1
-    def: 0
-    weight: 10
-    required: 200
-    capabilities:
-      - type: 壊れない
-        value: 1
-      - type: ASPD増加
-        value: 10
-      - type: 物理ダメージ増加
-        value: 10
-      - type: 魔法ダメージ増加
-        value: 10
-      - type: プレイヤー耐性
-        value: 3
-      - type: 全属性への物理ダメージ増加
-        value: 1
-        per_lv: 10
-      - type: 全属性への魔法ダメージ増加
-        value: 1
-        per_lv: 10
-      - type: MDEF加算
-        value: 50
-  - name: 星座の印章(集中)
-    yomi: セイサノインシヨウシユウチウ
-    desc: 計算機の仕様で、純粋なConが100未満でもディレイ-15%が適用されます
-    type: アクセサリー(1)
-    slot: 1
-    def: 0
-    weight: 10
-    required: 200
-    capabilities:
-      - type: 壊れない
-        value: 1
-      - type: ASPD増加
-        value: 10
-      - type: 物理ダメージ増加
-        value: 10
-      - type: 魔法ダメージ増加
-        value: 10
-      - type: プレイヤー耐性
-        value: 3
-      - type: 全属性への物理ダメージ増加
-        value: 1
-        per_lv: 10
-      - type: 全属性への魔法ダメージ増加
-        value: 1
-        per_lv: 10
-      - type: ディレイ減少
-        value: 15
