@@ -89,6 +89,9 @@ capabilities:
     code: 5938
   - name: マタタビランスのダメージ増加
     code: 5920
+  - name: ハンマーオブゴッドのダメージ増加  
+    code: 5839
+  - name: 
   # -------------
   - name: Pow上昇
     code: 230
