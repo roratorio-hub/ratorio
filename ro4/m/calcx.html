@@ -240,7 +240,76 @@
 	<!-- その他、機能系 javascript ファイル -->
 	<script type="text/javascript" src="js/castsim.js"></script>
 	<script type="text/javascript" src="js/browsermigration.js"></script>
-	<meta name="google-site-verification" content="hSXj8kbImvh7xj9DDl0xxPyDla05hFiL5bqmIx2aIys" />
+
+	<!-- 検索可能ドロップダウンリスト用 -->
+	<script src="../../jquery/jquery.min.js"></script>
+	<link href="../../jquery/select2.min.css" rel="stylesheet" />
+	<link href="../../jquery/select2.custom.css" rel="stylesheet" />
+	<script src="../../jquery/select2.min.js"></script>
+	<script>
+		$.fn.select2.defaults.set("dropdownAutoWidth", "true");
+		$.fn.select2.defaults.set("width", "auto");
+
+		$.fn.select2.defaults.set("minimumResultsForSearch", "6");
+		function LoadSelect2() {
+			$('#OBJID_SELECT_JOB').select2();
+			$('#OBJID_ARMS_RIGHT').select2();
+			$('#OBJID_ARMS_RIGHT_CARD_1').select2();
+			$('#OBJID_ARMS_RIGHT_CARD_2').select2();
+			$('#OBJID_ARMS_RIGHT_CARD_3').select2();
+			$('#OBJID_ARMS_RIGHT_CARD_4').select2();
+			$('#OBJID_ARMS_LEFT').select2();
+			$('#OBJID_ARMS_LEFT_CARD_1').select2();
+			$('#OBJID_ARMS_LEFT_CARD_2').select2();
+			$('#OBJID_ARMS_LEFT_CARD_3').select2();
+			$('#OBJID_ARMS_LEFT_CARD_4').select2();
+			$('#OBJID_HEAD_TOP').select2();
+			$('#OBJID_HEAD_TOP_CARD_1').select2();
+			$('#OBJID_HEAD_TOP_CARD_2').select2();
+			$('#OBJID_HEAD_TOP_CARD_3').select2();
+			$('#OBJID_HEAD_TOP_CARD_4').select2();
+			$('#OBJID_HEAD_MID').select2();
+			$('#OBJID_HEAD_MID_CARD_1').select2();
+			$('#OBJID_HEAD_MID_CARD_2').select2();
+			$('#OBJID_HEAD_MID_CARD_3').select2();
+			$('#OBJID_HEAD_MID_CARD_4').select2();
+			$('#OBJID_HEAD_UNDER').select2();
+			$('#OBJID_SHIELD').select2();
+			$('#OBJID_SHIELD_CARD_1').select2();
+			$('#OBJID_SHIELD_CARD_2').select2();
+			$('#OBJID_SHIELD_CARD_3').select2();
+			$('#OBJID_SHIELD_CARD_4').select2();
+			$('#OBJID_BODY').select2();
+			$('#OBJID_BODY_CARD_1').select2();
+			$('#OBJID_BODY_CARD_2').select2();
+			$('#OBJID_BODY_CARD_3').select2();
+			$('#OBJID_BODY_CARD_4').select2();
+			$('#OBJID_SHOULDER').select2();
+			$('#OBJID_SHOULDER_CARD_1').select2();
+			$('#OBJID_SHOULDER_CARD_2').select2();
+			$('#OBJID_SHOULDER_CARD_3').select2();
+			$('#OBJID_SHOULDER_CARD_4').select2();
+			$('#OBJID_SHOES').select2();
+			$('#OBJID_SHOES_CARD_1').select2();
+			$('#OBJID_SHOES_CARD_2').select2();
+			$('#OBJID_SHOES_CARD_3').select2();
+			$('#OBJID_SHOES_CARD_4').select2();
+			$('#OBJID_ACCESSARY_1').select2();
+			$('#OBJID_ACCESSARY_1_CARD_1').select2();
+			$('#OBJID_ACCESSARY_1_CARD_2').select2();
+			$('#OBJID_ACCESSARY_1_CARD_3').select2();
+			$('#OBJID_ACCESSARY_1_CARD_4').select2();
+			$('#OBJID_ACCESSARY_2').select2();
+			$('#OBJID_ACCESSARY_2_CARD_1').select2();			
+			$('#OBJID_ACCESSARY_2_CARD_2').select2();			
+			$('#OBJID_ACCESSARY_2_CARD_3').select2();			
+			$('#OBJID_ACCESSARY_2_CARD_4').select2();			
+		};
+		$(document).ready(function() {
+			LoadSelect2();
+		});		
+	</script>
+
 </head>
 
 
@@ -320,7 +389,7 @@
 														<td style="min-width: 7em;"><select id="OBJID_SELECT_JOB_LEVEL" name="A_JobLV"onChange="StAllCalc()"></select></td>
 
 														<td style="min-width: 4em; text-align:center;">職業</td>
-														<td style="min-width: 7em;"><select id="OBJID_SELECT_JOB" name="A_JOB" onChange="OnChangeJobSelect(this.value) | StAllCalc() | CalcStatusPoint(false)"></select></td>
+														<td style="min-width: 7em;"><select id="OBJID_SELECT_JOB" name="A_JOB" onChange="OnChangeJobSelect(this.value) | StAllCalc() | CalcStatusPoint(false) | LoadSelect2()"></select></td>
 													</tr>
 
 													<tr>
@@ -596,7 +665,7 @@
 								</table>
 
 								<br>
-
+<!--
 								<table>
 									<tbody>
 										<tr>
@@ -607,7 +676,7 @@
 								</table>
 
 								<br>
-
+-->
 								<table>
 									<tbody>
 										<tr>

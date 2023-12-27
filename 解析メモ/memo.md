@@ -325,4 +325,90 @@ enchInfoArrayAllSlots = RebuildCardSelectSubCollectEnchListData(enchListId, ench
 ],
 ```
 
+## foot.js
 
+純粋なステータスが上がる度に発動する効果はここに書かれていると思われる
+
+	// 純粋なステータスが上がる度に条件を取得
+	spDefPureStatusBy = Math.floor(spDefRemain / ITEM_SP_PURE_STR_BY_10_OFFSET);
+	if (1 <= spDefPureStatusBy && spDefPureStatusBy <= 6) {
+		spValPureStatus = Math.floor(pureStatusValue[spDefPureStatusBy - 1] / 10);
+	}
+	else if (7 == spDefPureStatusBy) {
+		spValPureStatus = pureStatusValue[PARAM_DEX];
+	}
+	else if (8 == spDefPureStatusBy) {
+		spValPureStatus = pureStatusValue[PARAM_VIT];
+	}
+	spDefRemain = spDefRemain % ITEM_SP_PURE_STR_BY_10_OFFSET;
+
+例えばExtraInt系のcardIDは以下の通り
+
+	[1859,99,"ExtraStr","",100000080,1,25000000080,5,0],
+	[1860,99,"ExtraAgi","",200000086,1,26000000086,5,0],
+	[1861,99,"ExtraVit","",300000092,1,27000000092,5,0],
+	[1862,99,"ExtraInt","",400000089,1,28000000089,5,0],
+	[1863,99,"ExtraDex","",500000025,1,29000000025,5,0],
+	[1864,99,"ExtraLuk","",600000070,1,30000000070,5,0],
+
+純粋なIntが10上がる度に追加で魔法攻撃で与えるダメージ + 1%
+純粋なIntが110以上の時、追加で魔法攻撃で与えるダメージ + 5%
+
+なのでこのように読み取れる
+
+    0       # BaseLv 0 毎に発動する
+    00      # 不明
+    00      #
+    4       # 純粋なInt(4)が10上がる度に発動する
+    00      # 精錬値 0 以上で発動する
+    0       # 精錬値 0 毎に発動する
+    00      # スキルの威力増加フラグはなし
+    089     # スキルID 89 = 魔法ダメージUp
+
+
+    0       # BaseLv 0 毎に発動する
+    00      # 不明
+    28      # 純粋なInt(28)が110以上のときに発動する
+    0       # 純粋なステータスが上がる度に発動する効果なし
+    00      # 精錬値条件なし
+    0       # 精錬値条件なし
+    00      # スキル威力増加フラグなし
+    089     # スキルID 89 = 魔法ダメージUp
+
+純粋なステータス x が n 以上の時に発動する効果は 110 のみ定義されている？
+なぜなら Str > 100 で効果が発動する　拳闘士のグローブ　は foot.js で個別定義されているため
+
+## item.h.js
+
+EnumItemSpId に純粋なステータス毎に発動する効果フラグが定義されている
+start = 100000000, offset = 100000000 
+
+		"ITEM_SP_PURE_STR_BY_10_OFFSET",
+		"ITEM_SP_PURE_AGI_BY_10_OFFSET",
+		"ITEM_SP_PURE_VIT_BY_10_OFFSET",
+		"ITEM_SP_PURE_INT_BY_10_OFFSET",
+		"ITEM_SP_PURE_DEX_BY_10_OFFSET",
+		"ITEM_SP_PURE_LUK_BY_10_OFFSET",
+
+		"ITEM_SP_PURE_DEX_BY_1_OFFSET",
+		"ITEM_SP_PURE_VIT_BY_1_OFFSET",
+
+アイテム能力フラグは全てここに書かれていそう
+例えば EnumItemSpId に詠唱短縮効果も定義されている
+
+	[
+		"ITEM_SP_SKILL_DAMAGE_OFFSET",
+		"ITEM_SP_SKILL_CAST_TIME_OFFSET",
+		"ITEM_SP_SKILL_CAST_MINUS_OFFSET",
+		"ITEM_SP_SKILL_FIXED_TIME_OFFSET",
+		"ITEM_SP_SKILL_FIXED_MINUS_OFFSET",
+		"ITEM_SP_RESERVED_15000",			// 未使用（15000）
+		"ITEM_SP_RESERVED_17000",			// 未使用（17000）
+		"ITEM_SP_SKILL_COOL_MINUS_OFFSET",
+		"ITEM_SP_SKILL_COST_SCALING_OFFSET",
+		"ITEM_SP_SKILL_COST_MINUS_OFFSET",
+	],
+	5000,
+	2000
+
+他にもちゃんと読むべき

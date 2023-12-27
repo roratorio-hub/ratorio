@@ -98,7 +98,13 @@ def getCapabilityRecord(capability):
     if not capability_code:
         print(f"コードが見つかりません: {type}")
         sys.exit(0)
-    code = f"{per_baselv}00000{at_refine:02d}{per_refine:01d}{capability_dict.get(type):05d}"
+    code  = f"{per_baselv}"
+    code += f"00"                               # 不明コード
+    code += f"00"                               # 純粋なステータス x が110以上の時に発動する {x : 25=Str, 26=Agi, 27=Vit, 28=Int, 29=Dex, 30=Luk}
+    code += f"0"                                # 純粋なステータス x が10増加する度に発動する {x : 1=Str, 2=Agi, 3=Vit, 4=Int, 5=Dex, 6=Luk}
+    code += f"{at_refine:02d}"                  # 精錬値が n 以上の時に発動する
+    code += f"{per_refine:01d}"                 # 精錬値が n 上がる度に発動する
+    code += f"{capability_dict.get(type):05d}"  # 発動する効果ID
     return f"{int(code)},{value},"
 
 # -----------------------------------
