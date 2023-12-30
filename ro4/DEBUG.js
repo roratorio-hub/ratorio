@@ -6,6 +6,7 @@
 
 // デバッグ環境フラグ
 _DEBUG = false;
+//_DEBUG = true;
 
 // データ作成フラグ
 _DATA_CREATE_MODE = (_DEBUG && true);

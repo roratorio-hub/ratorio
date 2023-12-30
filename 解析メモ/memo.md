@@ -383,7 +383,7 @@ enchInfoArrayAllSlots = RebuildCardSelectSubCollectEnchListData(enchListId, ench
 EnumItemSpId に純粋なステータス毎に発動する効果フラグが定義されている
 start = 100000000, offset = 100000000 
 
-		"ITEM_SP_PURE_STR_BY_10_OFFSET",
+		"ITEM_SP_PURE_STR_BY_10_OFFSET",    // 
 		"ITEM_SP_PURE_AGI_BY_10_OFFSET",
 		"ITEM_SP_PURE_VIT_BY_10_OFFSET",
 		"ITEM_SP_PURE_INT_BY_10_OFFSET",
@@ -397,18 +397,22 @@ start = 100000000, offset = 100000000
 例えば EnumItemSpId に詠唱短縮効果も定義されている
 
 	[
-		"ITEM_SP_SKILL_DAMAGE_OFFSET",
-		"ITEM_SP_SKILL_CAST_TIME_OFFSET",
-		"ITEM_SP_SKILL_CAST_MINUS_OFFSET",
-		"ITEM_SP_SKILL_FIXED_TIME_OFFSET",
-		"ITEM_SP_SKILL_FIXED_MINUS_OFFSET",
+		"ITEM_SP_SKILL_DAMAGE_OFFSET",      // 05000 指定スキルのダメージの割合増加
+		"ITEM_SP_SKILL_CAST_TIME_OFFSET",   // 07000 指定スキルの変動詠唱の割合減少
+		"ITEM_SP_SKILL_CAST_MINUS_OFFSET",  // 09000 指定スキルの変動詠唱の減算
+		"ITEM_SP_SKILL_FIXED_TIME_OFFSET",  // 11000 指定スキルの固定詠唱の割合減少
+		"ITEM_SP_SKILL_FIXED_MINUS_OFFSET", // 13000 指定スキルの固定詠唱の減算
 		"ITEM_SP_RESERVED_15000",			// 未使用（15000）
 		"ITEM_SP_RESERVED_17000",			// 未使用（17000）
-		"ITEM_SP_SKILL_COOL_MINUS_OFFSET",
-		"ITEM_SP_SKILL_COST_SCALING_OFFSET",
-		"ITEM_SP_SKILL_COST_MINUS_OFFSET",
+		"ITEM_SP_SKILL_COOL_MINUS_OFFSET",  // 19000 指定スキルのクールタイムの減算
+		"ITEM_SP_SKILL_COST_SCALING_OFFSET",// 21000 指定スキルの消費SPの加算
+		"ITEM_SP_SKILL_COST_MINUS_OFFSET",  // 23000 指定スキルの消費SPの減算
 	],
 	5000,
 	2000
 
-他にもちゃんと読むべき
+インペリアル系によくある別のセット効果を打ち消すフラグもある
+
+		"ITEM_SP_INVALIDATE_ITEM_SP",		// 指定アイテムの効果無効
+		"ITEM_SP_INVALIDATE_CARD_SP",		// 指定カードの効果無効 
+

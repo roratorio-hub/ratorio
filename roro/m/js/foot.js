@@ -29939,6 +29939,14 @@ function CheckSpDefBaseLvOver(spDefRemain) {
 			return -1;
 		}
 		break;
+	/* usachoco テスト
+	むりでした
+	case 7:
+		if (n_A_BaseLV < 250) {
+			return -1;
+		}
+		break;
+	*/
 	}
 
 	// 条件を満たす場合は、残りのＳＰ定義値を返す

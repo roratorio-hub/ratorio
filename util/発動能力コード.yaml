@@ -1,0 +1,147 @@
+capabilities:
+  - name: CRI加算
+    code: 10
+  - name: 完全回避
+    code: 11
+  - name: ASPD増加
+    code: 12
+  - name: MAXHP増加
+    code: 15
+  - name: MAXSP増加
+    code: 16
+  - name: ATK加算
+    code: 17
+  - name: DEF加算
+    code: 18
+  - name: MDEF加算
+    code: 19
+  - name: 遠距離ダメージ増加
+    code: 25
+  - name: 小型への物理ダメージ増加
+    code: 27
+  - name: 中型への物理ダメージ増加
+    code: 28
+  - name: 大型への物理ダメージ増加
+    code: 29
+  - name: 動物型への物理ダメージ増加  
+    code: 32
+  - name: 水属性耐性
+    code: 61
+  - name: 土属性耐性
+    code: 62
+  - name: 火属性耐性
+    code: 63
+  - name: 風属性耐性
+    code: 64
+  - name: 毒属性耐性
+    code: 65
+  - name: 聖属性耐性
+    code: 66
+  - name: 闇属性耐性
+    code: 67
+  - name: 念属性耐性
+    code: 68
+  - name: 不死属性耐性
+    code: 69
+  - name: クリティカルダメージ増加
+    code: 70
+  - name: ディレイ減少
+    code: 74
+  - name: ボス耐性
+    code: 77
+  - name: 一般耐性
+    code: 79
+  - name: 物理ダメージ増加
+    code: 80
+  - name: 必中
+    code: 86
+  - name: 魔法ダメージ増加
+    code: 89
+  - name: 小型への魔法ダメージ増加
+    code: 97
+  - name: 中型への魔法ダメージ増加
+    code: 98
+  - name: 大型への魔法ダメージ増加
+    code: 99
+  - name: MATK加算
+    code: 100
+  - name: 壊れない
+    code: 194
+  - name: 全ステータス上昇
+    code: 217
+  - name: アイテムの効果が発動しない
+    code: 218
+  - name: カードの効果が発動しない    
+    code: 219 
+  - name: スキル使用可能
+    code: 220
+  - name: オートスペル発動
+    code: 221
+  - name: スキル使用可能（説明非表示）
+    code: 224
+  - name: オートスペル発動（説明非表示）
+    code: 225
+  - name: Pow上昇
+    code: 230
+  - name: Sta上昇
+    code: 231
+  - name: Wis上昇
+    code: 232
+  - name: Spl上昇
+    code: 233
+  - name: Con上昇
+    code: 234
+  - name: Crt上昇
+    code: 235
+  - name: 全特性ステータス上昇
+    code: 236
+  - name: プレイヤー耐性
+    code: 243
+  - name: 全種族への物理ダメージ増加
+    code: 261
+  - name: 全属性への物理ダメージ増加
+    code: 262
+  - name: 全種族への魔法ダメージ増加
+    code: 266
+  - name: 全属性への魔法ダメージ増加
+    code: 269
+  - name: DEF無視
+    code: 293
+  - name: MDEF無視
+    code: 298
+  - name: 無属性魔法ダメージ増加
+    code: 340
+  - name: 水属性魔法ダメージ増加
+    code: 341
+  - name: 地属性魔法ダメージ増加
+    code: 342
+  - name: 火属性魔法ダメージ増加
+    code: 343
+  - name: 風属性魔法ダメージ増加
+    code: 344
+  - name: 毒属性魔法ダメージ増加
+    code: 345
+  - name: 聖属性魔法ダメージ増加
+    code: 346
+  - name: 闇属性魔法ダメージ増加
+    code: 347
+  - name: 念属性魔法ダメージ増加
+    code: 348
+  - name: 不死属性魔法ダメージ増加
+    code: 349
+  - name: スキルダメージ増加
+    code: 5000
+  - name: スキル変動詠唱割合減少
+    code: 7000
+  - name: スキル変動詠唱ミリ秒減少
+    code: 9000
+  - name: スキル固定詠唱割合減少
+    code: 11000
+  - name: スキル固定詠唱ミリ秒減少
+    code: 13000
+  - name: スキルクールタイムミリ秒減少
+    code: 19000
+  - name: スキル消費SP割合増加
+    code: 21000
+  - name: スキル消費SP固定値減少
+    code: 23000
