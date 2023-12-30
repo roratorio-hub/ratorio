@@ -50,7 +50,7 @@ function SetMainMenuFrame(){
 	objA = document.createElement("div");
 //  objA.setAttribute("href", "../main/main.html");
 	objA.setAttribute("style", "text-decoration: none; color: black; font-size: larger;");
-	objA.appendChild(document.createTextNode("ROratorio-HUB"));
+	objA.appendChild(document.createTextNode("ROラトリオHub"));
 	objDivGrp.appendChild(objA);
 //	objDivGrp.appendChild(document.createElement("br"));
 
@@ -454,7 +454,7 @@ function SetMainMenuFrame(){
 
 	objA = document.createElement("a");
 	objDivGrp.appendChild(objA);
-	objA.setAttribute("href", "https://github.com/roratorio-hub");
+	objA.setAttribute("href", "https://github.com/roratorio-hub/ratorio");
 	objA.setAttribute("target", "_blank");
 	objA.appendChild(document.createTextNode("Github"));
 	objDivGrp.appendChild(document.createElement("br"));
