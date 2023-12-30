@@ -1,5 +1,12 @@
 (function () {
 
+	ItemIdToSetIdMap = new Array();
+
+	/*
+	ToDo : usachoco
+	s_SE の初期化でリレーション定義するとインデックスがわかりにくいので
+	new Array(); しておいて後からインデックス指定して挿入したほうが良い
+	*/
 	w_SE = [
 		[],
 		[737,436,475],
@@ -2394,8 +2401,6 @@
 		[-2742,-2741,-1245],
 	];
 
-	ItemIdToSetIdMap = new Array();
-
 	ItemIdToSetIdMap[9] = [95];
 	ItemIdToSetIdMap[23] = [578];
 	ItemIdToSetIdMap[50] = [94];
@@ -4633,10 +4638,7 @@
 	CardIdToSetIdMap[2739] = [2389];
 	CardIdToSetIdMap[2741] = [2390];
 
-
-
 	PetIdToSetIdMap = new Array();
-
 	PetIdToSetIdMap[1] = [1439];
 	PetIdToSetIdMap[10] = [1438];
 	PetIdToSetIdMap[13] = [1437];
@@ -4672,4 +4674,167 @@
 	PetIdToSetIdMap[89] = [1564];
 	PetIdToSetIdMap[90] = [1570];
 
+	/* --- usachoco 追加データ -------------------------- */
+
+	// w_SE[2391] から数えられるようにダミーデータ
+	// w_SE[2390] = [0,0,0];
+
+	w_SE[2391] = [-2744,-2743,-1245,];
+	CardIdToSetIdMap[2743] = [2391,];
+	w_SE[2392] = [-2746,-2745,-1348,];
+	CardIdToSetIdMap[2745] = [2392,];
+	w_SE[2393] = [-2748,-2747,-1245,];
+	CardIdToSetIdMap[2747] = [2393,];
+	w_SE[2394] = [-2750,-2749,-1348,];
+	CardIdToSetIdMap[2749] = [2394,];
+	w_SE[2395] = [-2752,-2751,-1348,];
+	CardIdToSetIdMap[2751] = [2395,];
+	w_SE[2396] = [-2754,-2753,-1245,];
+	CardIdToSetIdMap[2753] = [2396,];
+	w_SE[2397] = [-2756,-2755,-1245,];
+	CardIdToSetIdMap[2755] = [2397,];
+	w_SE[2398] = [-2758,-2757,-1348,];
+	CardIdToSetIdMap[2757] = [2398,];
+	w_SE[2399] = [-2760,-2759,-1348,];
+	CardIdToSetIdMap[2759] = [2399,];
+	w_SE[2400] = [-2762,-2761,-1348,];
+	CardIdToSetIdMap[2761] = [2400,];
+	w_SE[2401] = [-2764,-2763,-1348,];
+	CardIdToSetIdMap[2763] = [2401,];
+	w_SE[2402] = [-2766,-2765,-1245,];
+	CardIdToSetIdMap[2765] = [2402,];
+	w_SE[2403] = [-2768,-2767,-1348,];
+	CardIdToSetIdMap[2767] = [2403,];
+	w_SE[2404] = [-2770,-2769,-1245,];
+	CardIdToSetIdMap[2769] = [2404,];
+	w_SE[2405] = [-2772,-2771,-1245,];
+	CardIdToSetIdMap[2771] = [2405,];
+	w_SE[2406] = [-2774,-2773,-1245,];
+	CardIdToSetIdMap[2773] = [2406,];
+	w_SE[2407] = [-2776,-2775,-1348,];
+	CardIdToSetIdMap[2775] = [2407,];
+	w_SE[2408] = [-2778,-2777,-1348,];
+	CardIdToSetIdMap[2777] = [2408,];
+	w_SE[2409] = [-2780,-2779,-1348,];
+	CardIdToSetIdMap[2779] = [2409,];
+	w_SE[2410] = [-2782,-2781,-1348,];
+	CardIdToSetIdMap[2781] = [2410,];
+	w_SE[2411] = [-2784,-2783,-1348,];
+	CardIdToSetIdMap[2783] = [2411,];
+	w_SE[2412] = [-2786,-2785,-1348,];
+	CardIdToSetIdMap[2785] = [2412,];
+	w_SE[2413] = [-2794,-2793,-1348,];
+	CardIdToSetIdMap[2793] = [2413,];
+	w_SE[2414] = [-2796,-2795,-1245,];
+	CardIdToSetIdMap[2795] = [2414,];
+	w_SE[2415] = [-2798,-2797,-1348,];
+	CardIdToSetIdMap[2797] = [2415,];
+	w_SE[2416] = [-2800,-2799,-1348,];
+	CardIdToSetIdMap[2799] = [2416,];
+	w_SE[2417] = [-2802,-2801,-1348,];
+	CardIdToSetIdMap[2801] = [2417,];
+	w_SE[2418] = [-2805,-2804,-1348,];
+	w_SE[2419] = [-2806,-2804,-1245,];
+	CardIdToSetIdMap[2804] = [2418,2419,];
+	w_SE[2420] = [-2809,-2808,-1348,];
+	CardIdToSetIdMap[2808] = [2420,];
+	w_SE[2421] = [-2811,-2810,-1348,];
+	CardIdToSetIdMap[2810] = [2421,];
+	w_SE[2422] = [-2813,-2812,-1348,];
+	CardIdToSetIdMap[2812] = [2422,];
+	w_SE[2423] = [-2815,-2814,-1348,];
+	CardIdToSetIdMap[2814] = [2423,];
+	w_SE[2424] = [-2817,-2816,-1245,];
+	CardIdToSetIdMap[2816] = [2424,];
+	w_SE[2425] = [-2819,-2818,-1245,];
+	CardIdToSetIdMap[2818] = [2425,];
+	w_SE[2426] = [-2821,-2820,-1348,];
+	CardIdToSetIdMap[2820] = [2426,];
+	w_SE[2427] = [-2823,-2822,-1348,];
+	CardIdToSetIdMap[2822] = [2427,];
+	w_SE[2428] = [-2825,-2824,-1348,];
+	CardIdToSetIdMap[2824] = [2428,];
+	w_SE[2429] = [-2827,-2826,-1245,];
+	CardIdToSetIdMap[2826] = [2429,];
+	w_SE[2430] = [-2830,-2829,-1245,];
+	CardIdToSetIdMap[2829] = [2430,];
+	w_SE[2431] = [-2833,-2832,-1348,];
+	CardIdToSetIdMap[2832] = [2431,];
+	w_SE[2432] = [-2835,-2834,-1348,];
+	CardIdToSetIdMap[2834] = [2432,];
+	w_SE[2433] = [-2837,-2836,-1348,];
+	CardIdToSetIdMap[2836] = [2433,];
+	w_SE[2434] = [-2839,-2838,-1245,];
+	CardIdToSetIdMap[2838] = [2434,];
+	w_SE[2435] = [-2841,-2840,-1348,];
+	CardIdToSetIdMap[2840] = [2435,];
+	w_SE[2436] = [-2843,-2842,-1348,];
+	CardIdToSetIdMap[2842] = [2436,];
+	w_SE[2437] = [-2845,-2844,-1348,];
+	CardIdToSetIdMap[2844] = [2437,];
+	w_SE[2438] = [-2847,-2846,-1348,];
+	CardIdToSetIdMap[2846] = [2438,];
+	w_SE[2439] = [-2849,-2848,-1348,];
+	CardIdToSetIdMap[2848] = [2439,];
+	w_SE[2440] = [-2851,-2850,-1348,];
+	CardIdToSetIdMap[2850] = [2440,];
+	w_SE[2441] = [-2853,-2852,-1245,];
+	CardIdToSetIdMap[2852] = [2441,];
+	w_SE[2442] = [-2855,-2854,-1245,];
+	CardIdToSetIdMap[2854] = [2442,];
+	w_SE[2443] = [-2857,-2856,-1245,];
+	CardIdToSetIdMap[2856] = [2443,];
+	w_SE[2444] = [-2859,-2858,-1348,];
+	CardIdToSetIdMap[2858] = [2444,];
+	w_SE[2445] = [-2862,-2861,-1348,];
+	CardIdToSetIdMap[2861] = [2445,];
+	w_SE[2446] = [-2864,-2863,-1348,];
+	CardIdToSetIdMap[2863] = [2446,];
+	w_SE[2447] = [-2866,-2865,-1245,];
+	CardIdToSetIdMap[2865] = [2447,];
+	w_SE[2448] = [-2868,-2867,-1348,];
+	CardIdToSetIdMap[2867] = [2448,];
+	w_SE[2449] = [-2870,-2869,-1348,];
+	CardIdToSetIdMap[2869] = [2449,];
+	w_SE[2450] = [-2872,-2871,-1348,];
+	CardIdToSetIdMap[2871] = [2450,];
+	w_SE[2451] = [-2875,-2874,-1245,];
+	CardIdToSetIdMap[2874] = [2451,];
+	w_SE[2452] = [-2877,-2876,-1245,];
+	CardIdToSetIdMap[2876] = [2452,];
+	w_SE[2453] = [-2879,-2878,-1348,];
+	CardIdToSetIdMap[2878] = [2453,];
+	w_SE[2454] = [-2881,-2880,-1348,];
+	CardIdToSetIdMap[2880] = [2454,];
+	w_SE[2455] = [-2883,-2882,-1348,];
+	CardIdToSetIdMap[2882] = [2455,];
+	w_SE[2456] = [-2885,-2884,-1348,];
+	CardIdToSetIdMap[2884] = [2456,];
+	w_SE[2457] = [-2893,-2892,4877,];
+	CardIdToSetIdMap[2892] = [2457,];
+	w_SE[2458] = [-2898,-2897,-2043,];
+	CardIdToSetIdMap[2897] = [2458,];	
+	w_SE[2459] = [4996,4995,-2417,];
+	ItemIdToSetIdMap[4995] = [2459,];
+	w_SE[2460] = [4998,4997,-2662,];
+	ItemIdToSetIdMap[4997] = [2460,];
+	w_SE[2461] = [5000,4999,-2222,];
+	ItemIdToSetIdMap[4999] = [2461,];
+	w_SE[2462] = [5002,5001,-2220,];
+	ItemIdToSetIdMap[5001] = [2462,];
+	w_SE[2463] = [5011,5010,-2311,];
+	ItemIdToSetIdMap[5010] = [2463,];
+	w_SE[2464] = [5013,5012,-2311,];
+	ItemIdToSetIdMap[5012] = [2464,];
+	w_SE[2465] = [5015,5014,-2311,];
+	ItemIdToSetIdMap[5014] = [2465,];
+	w_SE[2466] = [5017,5016,-2311,];
+	ItemIdToSetIdMap[5016] = [2466,];
+	w_SE[2467] = [5025,5024,-2028,];
+	w_SE[2468] = [5026,5024,-2662,];
+	ItemIdToSetIdMap[5024] = [2467,2468,];
+	w_SE[2469] = [5028,5027,-2028,];
+	w_SE[2470] = [5029,5027,-2662,];
+	ItemIdToSetIdMap[5027] = [2469,2470,];
+	
 })();

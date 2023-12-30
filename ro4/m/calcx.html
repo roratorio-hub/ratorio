@@ -2,9 +2,9 @@
 
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
-	<meta name="description" content="オンラインゲーム「Ragnarok Online」のステータス計算機">
+	<meta name="description" content="オンラインゲーム「Ragnarok Online」のステータス計算機の避難所の避難所">
 
-	<title>計算機</title>
+	<title>避難所^2</title>
 
 	<base href="../../roro/m/">
 
@@ -100,7 +100,7 @@
 
 	<!-- データ作成系、データ移行系 javascript ファイル -->
 	<!-- 非デバッグ環境では読み込まない。リリース時にはコメントアウトすること -->
-<!--
+	<!--
 	<script type="text/javascript" src="js/debug/CAliasDataMaker.js"></script>
 	<script type="text/javascript" src="js/debug/CSkillDataMaker.js"></script>
 	<script type="text/javascript" src="js/debug/CUsableSkillDataMaker.js"></script>
@@ -183,8 +183,8 @@
 	<script type="text/javascript" src="js/migration/debug/test/CMigTestCondition.js"></script>
 	<script type="text/javascript" src="js/migration/debug/test/CMigTestCase.js"></script>
 	<script type="text/javascript" src="js/migration/debug/test/CMigItemDataTest.js"></script>
--->
-
+	-->
+	
 	<!-- 機能処理系 javascript ファイル -->
 	<script type="text/javascript" src="../../ro4/m/js/calcautospell.js"></script>
 	<script type="text/javascript" src="js/rndench.js"></script>
@@ -241,6 +241,75 @@
 	<script type="text/javascript" src="js/castsim.js"></script>
 	<script type="text/javascript" src="js/browsermigration.js"></script>
 
+	<!-- 検索可能ドロップダウンリスト用 -->
+	<script src="../../jquery/jquery.min.js"></script>
+	<link href="../../jquery/select2.min.css" rel="stylesheet" />
+	<link href="../../jquery/select2.custom.css" rel="stylesheet" />
+	<script src="../../jquery/select2.min.js"></script>
+	<script>
+		$.fn.select2.defaults.set("dropdownAutoWidth", "true");
+		$.fn.select2.defaults.set("width", "auto");
+
+		$.fn.select2.defaults.set("minimumResultsForSearch", "6");
+		function LoadSelect2() {
+			$('#OBJID_SELECT_JOB').select2();
+			$('#OBJID_ARMS_RIGHT').select2();
+			$('#OBJID_ARMS_RIGHT_CARD_1').select2();
+			$('#OBJID_ARMS_RIGHT_CARD_2').select2();
+			$('#OBJID_ARMS_RIGHT_CARD_3').select2();
+			$('#OBJID_ARMS_RIGHT_CARD_4').select2();
+			$('#OBJID_ARMS_LEFT').select2();
+			$('#OBJID_ARMS_LEFT_CARD_1').select2();
+			$('#OBJID_ARMS_LEFT_CARD_2').select2();
+			$('#OBJID_ARMS_LEFT_CARD_3').select2();
+			$('#OBJID_ARMS_LEFT_CARD_4').select2();
+			$('#OBJID_HEAD_TOP').select2();
+			$('#OBJID_HEAD_TOP_CARD_1').select2();
+			$('#OBJID_HEAD_TOP_CARD_2').select2();
+			$('#OBJID_HEAD_TOP_CARD_3').select2();
+			$('#OBJID_HEAD_TOP_CARD_4').select2();
+			$('#OBJID_HEAD_MID').select2();
+			$('#OBJID_HEAD_MID_CARD_1').select2();
+			$('#OBJID_HEAD_MID_CARD_2').select2();
+			$('#OBJID_HEAD_MID_CARD_3').select2();
+			$('#OBJID_HEAD_MID_CARD_4').select2();
+			$('#OBJID_HEAD_UNDER').select2();
+			$('#OBJID_SHIELD').select2();
+			$('#OBJID_SHIELD_CARD_1').select2();
+			$('#OBJID_SHIELD_CARD_2').select2();
+			$('#OBJID_SHIELD_CARD_3').select2();
+			$('#OBJID_SHIELD_CARD_4').select2();
+			$('#OBJID_BODY').select2();
+			$('#OBJID_BODY_CARD_1').select2();
+			$('#OBJID_BODY_CARD_2').select2();
+			$('#OBJID_BODY_CARD_3').select2();
+			$('#OBJID_BODY_CARD_4').select2();
+			$('#OBJID_SHOULDER').select2();
+			$('#OBJID_SHOULDER_CARD_1').select2();
+			$('#OBJID_SHOULDER_CARD_2').select2();
+			$('#OBJID_SHOULDER_CARD_3').select2();
+			$('#OBJID_SHOULDER_CARD_4').select2();
+			$('#OBJID_SHOES').select2();
+			$('#OBJID_SHOES_CARD_1').select2();
+			$('#OBJID_SHOES_CARD_2').select2();
+			$('#OBJID_SHOES_CARD_3').select2();
+			$('#OBJID_SHOES_CARD_4').select2();
+			$('#OBJID_ACCESSARY_1').select2();
+			$('#OBJID_ACCESSARY_1_CARD_1').select2();
+			$('#OBJID_ACCESSARY_1_CARD_2').select2();
+			$('#OBJID_ACCESSARY_1_CARD_3').select2();
+			$('#OBJID_ACCESSARY_1_CARD_4').select2();
+			$('#OBJID_ACCESSARY_2').select2();
+			$('#OBJID_ACCESSARY_2_CARD_1').select2();			
+			$('#OBJID_ACCESSARY_2_CARD_2').select2();			
+			$('#OBJID_ACCESSARY_2_CARD_3').select2();			
+			$('#OBJID_ACCESSARY_2_CARD_4').select2();			
+		};
+		$(document).ready(function() {
+			LoadSelect2();
+		});		
+	</script>
+
 </head>
 
 
@@ -267,17 +336,6 @@
 
 							<div>
 								<div id="OBJID_CALCULAATOR_HEADER">
-									<div>
-										<strong style="color: red;">
-											本サイトの管理人が、ＲＯの内外で素性を明かすことは絶対にありません。<br>
-											管理人の名を語る人物がいても偽物ですので、十分にご注意ください。<br>
-										</strong>
-										<p style="color: #009900; font-weight: bold; margin: 0;">
-											こちらは、クリティカル仕様変更や四次職に対応する次世代版です。<br>
-											計算結果が誤っていたり、バグで計算機が停止するリスクが高いので、ご注意ください。<br>
-											（従来のデータは、安定版でURL出力し、こちらでURL入力することでご利用いただけます）<br>
-										</p>
-									</div>
 									<div id="OBJID_SAVE_BLOCK_MIG" class="folding-block-MIG">
 										<input type="checkbox" id="OBJID_SWITCH_SAVE_CTRL_MIG" class="folding-switch-MIG">
 										<label for="OBJID_SWITCH_SAVE_CTRL_MIG">セーブ／ロード</label>
@@ -326,7 +384,7 @@
 														<td style="min-width: 7em;"><select id="OBJID_SELECT_JOB_LEVEL" name="A_JobLV"onChange="StAllCalc()"></select></td>
 
 														<td style="min-width: 4em; text-align:center;">職業</td>
-														<td style="min-width: 7em;"><select id="OBJID_SELECT_JOB" name="A_JOB" onChange="OnChangeJobSelect(this.value) | StAllCalc() | CalcStatusPoint(false)"></select></td>
+														<td style="min-width: 7em;"><select id="OBJID_SELECT_JOB" name="A_JOB" onChange="OnChangeJobSelect(this.value) | StAllCalc() | CalcStatusPoint(false) | LoadSelect2()"></select></td>
 													</tr>
 
 													<tr>
@@ -602,7 +660,7 @@
 								</table>
 
 								<br>
-
+<!--
 								<table>
 									<tbody>
 										<tr>
@@ -613,7 +671,7 @@
 								</table>
 
 								<br>
-
+-->
 								<table>
 									<tbody>
 										<tr>
@@ -2038,7 +2096,9 @@
 <script type="text/javascript" src="js/CExtraInfoAreaComponentManager.js"></script>
 <script type="text/javascript" src="js/CFloatingInfoAreaComponentManager.js"></script>
 <script type="text/javascript" src="js/CCalcDataTextCreator.js"></script>
-<script type="text/javascript" src="js/CNewsAreaComponentManager.js"></script>
+<!-- ニュースエリアを停止 usachoco
+	<script type="text/javascript" src="js/CNewsAreaComponentManager.js"></script>
+-->
 
 <!-- [MIG] 操作処理系 javascript ファイル -->
 <script type="text/javascript" src="../../ro4/m/js/CShadowEquipController.js"></script>
@@ -2080,4 +2140,5 @@
 <script type="text/javascript" src="js/migration/debug/test/CMigTestAreaComponentManager.js"></script>
 <script type="text/javascript" src="js/migration/mig.test.js"></script>
 -->
+
 </html>

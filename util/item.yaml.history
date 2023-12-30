@@ -1,0 +1,1388 @@
+item_list:
+  - name: アウェイキングブルーム
+    yomi: アウエイキンクフルウム
+    type: 上段
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 10
+    weight: 50
+    required_lv: 100
+    required_job: 制限なし
+    capabilities:
+      - name: MDEF加算
+        value: 10
+      - name: 一般耐性
+        value: 20
+      - name: ボス耐性
+        value: 20
+      - name: プレイヤー耐性
+        value: 13
+      - name: ディレイ減少
+        value: 2
+        per_refine: 1
+      - name: 全属性への物理ダメージ増加
+        value: 15
+        at_refine: 7
+      - name: 全属性への魔法ダメージ増加
+        value: 15
+        at_refine: 7
+      - name: MAXHP増加
+        value: 10
+        at_refine: 7
+      - name: MAXSP増加
+        value: 10
+        at_refine: 7
+      - name: 全属性への物理ダメージ増加
+        value: 25
+        at_refine: 9
+      - name: 全属性への魔法ダメージ増加
+        value: 25
+        at_refine: 9
+      - name: 全ステータス上昇
+        value: 10
+        at_refine: 9
+    enchant:
+      name: スペシャルエンチャント（キョウ）
+      slot_list:
+        - slot: 4
+          refine: 6
+          enchant_list:
+            - name: "SpecialStr"
+            - name: "SpecialAgi"
+            - name: "SpecialVit"
+            - name: "SpecialInt"
+            - name: "SpecialDex"
+            - name: "SpecialLuk"
+            - name: "潜在覚醒(アースストレインI)"
+            - name: "潜在覚醒(アースドライブI)"
+            - name: "潜在覚醒(アックストルネードI)"
+            - name: "潜在覚醒(アックスブーメランI)"
+            - name: "潜在覚醒(アドラムスI)"
+            - name: "潜在覚醒(アローストームII)"
+            - name: "潜在覚醒(イグニッションブレイクII)"
+            - name: "潜在覚醒(イヌハッカメテオI)"
+            - name: "潜在覚醒(インスピレーションI)"
+            - name: "潜在覚醒(ヴェラチュールスピアーI)"
+            - name: "潜在覚醒(エイムドボルトI)"
+            - name: "潜在覚醒(エスパI)"
+            - name: "潜在覚醒(カートキャノンI)"
+            - name: "潜在覚醒(カートトルネードI)"
+            - name: "潜在覚醒(キャノンスピアI)"
+            - name: "潜在覚醒(キャロットビートI)"
+            - name: "潜在覚醒(クリムゾンロックI)"
+            - name: "潜在覚醒(クロスリッパースラッシャーI)"
+            - name: "潜在覚醒(サイキックウェーブI)"
+            - name: "潜在覚醒(サベージの魂II)"
+            - name: "潜在覚醒(シールドプレスI)"
+            - name: "潜在覚醒(シビアレインストームII)"
+            - name: "潜在覚醒(ジャックフロストII)"
+            - name: "潜在覚醒(ジュデックスII)"
+            - name: "潜在覚醒(スペルフィストI)"
+            - name: "潜在覚醒(スポアエクスプロージョンI)"
+            - name: "潜在覚醒(ソウルエクスパンションI)"
+            - name: "潜在覚醒(ソニックウェーブI)"
+            - name: "潜在覚醒(トライアングルショットI)"
+            - name: "潜在覚醒(バニシングポイントI)"
+            - name: "潜在覚醒(パワースイングI)"
+            - name: "潜在覚醒(ファイアーレインI)"
+            - name: "潜在覚醒(フェイタルメナスI)"
+            - name: "潜在覚醒(ヘルインフェルノI)"
+            - name: "潜在覚醒(マタタビランスI)"
+            - name: "潜在覚醒(メタリックサウンドI)"
+            - name: "潜在覚醒(ラウンドトリップI)"
+            - name: "潜在覚醒(レイオブジェネシスI)"
+            - name: "潜在覚醒(ローリングカッターI)"
+            - name: "潜在覚醒(獅子吼II)"
+            - name: "潜在覚醒(十文字斬りI)"
+            - name: "潜在覚醒(死霊爆発I)"
+            - name: "潜在覚醒(太陽爆発I)"
+            - name: "潜在覚醒(天羅地網I)"
+            - name: "潜在覚醒(爆気散弾I)"
+            - name: "潜在覚醒(風魔手裏剣 -乱華-I)"
+            - name: "潜在覚醒(満月脚II)"
+            - name: "潜在覚醒(雷光弾I)"
+            - name: "潜在覚醒(流星落下I)"
+        - slot: 3
+          refine: 8
+          enchant_list:
+            - name: "SpecialStr"
+            - name: "SpecialAgi"
+            - name: "SpecialVit"
+            - name: "SpecialInt"
+            - name: "SpecialDex"
+            - name: "SpecialLuk"
+            - name: "潜在覚醒(アースストレインI)"
+            - name: "潜在覚醒(アースドライブI)"
+            - name: "潜在覚醒(アックストルネードI)"
+            - name: "潜在覚醒(アックスブーメランI)"
+            - name: "潜在覚醒(アドラムスI)"
+            - name: "潜在覚醒(アローストームII)"
+            - name: "潜在覚醒(イグニッションブレイクII)"
+            - name: "潜在覚醒(イヌハッカメテオI)"
+            - name: "潜在覚醒(インスピレーションI)"
+            - name: "潜在覚醒(ヴェラチュールスピアーI)"
+            - name: "潜在覚醒(エイムドボルトI)"
+            - name: "潜在覚醒(エスパI)"
+            - name: "潜在覚醒(カートキャノンI)"
+            - name: "潜在覚醒(カートトルネードI)"
+            - name: "潜在覚醒(キャノンスピアI)"
+            - name: "潜在覚醒(キャロットビートI)"
+            - name: "潜在覚醒(クリムゾンロックI)"
+            - name: "潜在覚醒(クロスリッパースラッシャーI)"
+            - name: "潜在覚醒(サイキックウェーブI)"
+            - name: "潜在覚醒(サベージの魂II)"
+            - name: "潜在覚醒(シールドプレスI)"
+            - name: "潜在覚醒(シビアレインストームII)"
+            - name: "潜在覚醒(ジャックフロストII)"
+            - name: "潜在覚醒(ジュデックスII)"
+            - name: "潜在覚醒(スペルフィストI)"
+            - name: "潜在覚醒(スポアエクスプロージョンI)"
+            - name: "潜在覚醒(ソウルエクスパンションI)"
+            - name: "潜在覚醒(ソニックウェーブI)"
+            - name: "潜在覚醒(トライアングルショットI)"
+            - name: "潜在覚醒(バニシングポイントI)"
+            - name: "潜在覚醒(パワースイングI)"
+            - name: "潜在覚醒(ファイアーレインI)"
+            - name: "潜在覚醒(フェイタルメナスI)"
+            - name: "潜在覚醒(ヘルインフェルノI)"
+            - name: "潜在覚醒(マタタビランスI)"
+            - name: "潜在覚醒(メタリックサウンドI)"
+            - name: "潜在覚醒(ラウンドトリップI)"
+            - name: "潜在覚醒(レイオブジェネシスI)"
+            - name: "潜在覚醒(ローリングカッターI)"
+            - name: "潜在覚醒(獅子吼II)"
+            - name: "潜在覚醒(十文字斬りI)"
+            - name: "潜在覚醒(死霊爆発I)"
+            - name: "潜在覚醒(太陽爆発I)"
+            - name: "潜在覚醒(天羅地網I)"
+            - name: "潜在覚醒(爆気散弾I)"
+            - name: "潜在覚醒(風魔手裏剣 -乱華-I)"
+            - name: "潜在覚醒(満月脚II)"
+            - name: "潜在覚醒(雷光弾I)"
+            - name: "潜在覚醒(流星落下I)"
+        - slot: 2
+          refine: 10
+          enchant_list:
+            - name: 覇王
+            - name: 暴走した魔力
+            - name: 大鷲の眼光
+            - name: 豪傑
+            - name: 真理の解放
+            - name: 死の欲動
+  - name: トゥーサイドダイヤモンドブーツ
+    yomi: トウウサイトタイヤモントフウツ
+    type: 靴
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 30
+    weight: 80
+    required_lv: 100
+    required_job: 制限なし
+    capabilities:
+      - name: 壊れない
+        value: 1
+      - name: MDEF加算
+        value: 15
+      - name: 一般耐性
+        value: 5
+      - name: ボス耐性
+        value: 5
+      - name: プレイヤー耐性
+        value: 10
+      - name: MAXHP増加
+        value: 4
+        per_refine: 1
+      - name: ディレイ減少
+        value: 15
+        at_refine: 5
+      - name: 物理ダメージ増加
+        value: 15
+        at_refine: 5
+      - name: 魔法ダメージ増加
+        value: 15
+        at_refine: 5
+      - name: ディレイ減少
+        value: 25
+        at_refine: 7
+      - name: 物理ダメージ増加
+        value: 25
+        at_refine: 7
+      - name: 魔法ダメージ増加
+        value: 25
+        at_refine: 7
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 天地崩壊
+        capabilities:
+          - name: 全ステータス上昇
+            value: 30
+          - name: 物理ダメージ増加
+            value: 30
+          - name: 魔法ダメージ増加
+            value: 30
+    enchant:
+      name: スペシャルエンチャント（タロー）
+      slot_list:
+        - slot: 4
+          refine: 8
+          enchant_list:
+            - name: 豪傑
+            - name: 真理の解放
+        - slot: 3
+          refine: 9
+          enchant_list:
+            - name: "潜在解放(アークビショップII)"
+            - name: "潜在解放(ウォーロックII)"
+            - name: "潜在解放(ギロチンクロスII)"
+            - name: "潜在解放(サモナーII)"
+            - name: "潜在解放(ジェネティックII)"
+            - name: "潜在解放(シャドウチェイサーII)"
+            - name: "潜在解放(ソウルリーパーII)"
+            - name: "潜在解放(ソーサラーII)"
+            - name: "潜在解放(ミンストレル&ワンダラーI)"
+            - name: "潜在解放(メカニックII)"
+            - name: "潜在解放(リベリオンII)"
+            - name: "潜在解放(ルーンナイトII)"
+            - name: "潜在解放(レンジャーII)"
+            - name: "潜在解放(ロイヤルガードII)"
+            - name: "潜在解放(影狼&朧I)"
+            - name: "潜在解放(修羅II)"
+            - name: "潜在解放(星帝II)"
+        - slot: 2
+          refine: 10
+          enchant_list:
+            - name: 天地崩壊
+  - name: 偽神のイビルアイ
+    yomi: キシンノイヒルアイ
+    type: 中段
+    slot: 10
+    weapon_lv: 0
+    atk_or_def: 2
+    weight: 10
+    required_lv: 100
+    required_job: 制限なし
+    capabilities:
+      - name: 壊れない
+        value: 1
+      - name: ATK加算
+        value: 1
+        per_lv: 1
+      - name: MATK加算
+        value: 1
+        per_lv: 1
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 祈りの晩鐘
+        capabilities:
+          - name: プレイヤー耐性
+            value: 5
+          - name: 聖属性耐性
+            value: 5
+          - name: 念属性耐性
+            value: 5
+    enchant:
+      name: スペシャルエンチャント（オーブ）
+      slot_list:
+        - slot: 4
+          refine: 0
+          enchant_list:
+            - name: "スキルディレイ-15%"
+            - name: "必中攻撃+25%"
+            - name: "SpecialStr"
+            - name: "SpecialAgi"
+            - name: "SpecialVit"
+            - name: "SpecialInt"
+            - name: "SpecialDex"
+            - name: "SpecialLuk"
+            - name: "豊穣の女神"
+        - slot: 3
+          refine: 0
+          enchant_list:
+            - name: "MaxHP+15%"
+            - name: "MaxSP+15%"
+            - name: "SpecialStr"
+            - name: "SpecialAgi"
+            - name: "SpecialVit"
+            - name: "SpecialInt"
+            - name: "SpecialDex"
+            - name: "SpecialLuk"
+            - name: "詠唱妨害不可"
+            - name: "透視"
+        - slot: 2
+          refine: 0
+          enchant_list:
+            - name: "Str+10"
+            - name: "Agi+10"
+            - name: "Vit+10"
+            - name: "Int+10"
+            - name: "Dex+10"
+            - name: "Luk+10"
+            - name: "完全回避+3"
+            - name: "祈りの晩鐘"
+  - name: コズミックコネクション
+    yomi: コスミツクコネクシヨン
+    desc: "[ゾディアック]と共に装備時、詠唱が中断されない"
+    type: 下段
+    slot: 0
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 10
+    required_lv: 100
+    required_job: 制限なし
+    capabilities:
+      - name: 壊れない
+        value: 1
+      - name: 小型への物理ダメージ増加
+        value: 15
+      - name: 中型への物理ダメージ増加
+        value: 15
+      - name: 大型への物理ダメージ増加
+        value: 15
+      - name: 小型への魔法ダメージ増加
+        value: 15
+      - name: 中型への魔法ダメージ増加
+        value: 15
+      - name: 大型への魔法ダメージ増加
+        value: 15
+    set_list:
+      - set:
+        entity_list:
+          - card_name: ゾディアック
+        capabilities:
+          - name: 全ステータス上昇
+            value: 10
+          - name: プレイヤー耐性
+            value: 3
+    enchant:
+      name: スペシャルエンチャント（オーブ）
+      slot_list:
+        - slot: 4
+          refine: 0
+          enchant_list:
+            - name: "Def50%無視"
+            - name: "Mdef50%無視"
+            - name: "詠唱妨害不可"
+            - name: "SpecialStr"
+            - name: "SpecialAgi"
+            - name: "SpecialVit"
+            - name: "SpecialInt"
+            - name: "SpecialDex"
+            - name: "SpecialLuk"
+        - slot: 3
+          refine: 0
+          enchant_list:
+            - name: "スキルディレイ-15%"
+            - name: "Def50%無視"
+            - name: "Mdef50%無視"
+            - name: "SpecialStr"
+            - name: "SpecialAgi"
+            - name: "SpecialVit"
+            - name: "SpecialInt"
+            - name: "SpecialDex"
+            - name: "SpecialLuk"          
+        - slot: 2
+          refine: 0
+          enchant_list:
+            - name: "Str+10"
+            - name: "Agi+10"
+            - name: "Vit+10"
+            - name: "Int+10"
+            - name: "Dex+10"
+            - name: "Luk+10"
+            - name: "ゾディアック"
+
+  - name: スクリーミングゴーストパーティ
+    yomi: スクリイミンクコオストパアテイ
+    type: 鎧
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 100
+    weight: 100
+    required_lv: 100
+    required_job: 制限なし
+    capabilities:
+      - name: 壊れない
+        value: 1
+      - name: 一般耐性
+        value: 5
+      - name: ボス耐性
+        value: 5
+      - name: プレイヤー耐性
+        value: 7
+      - name: ATK加算
+        value: 30
+        per_refine: 1
+      - name: MATK加算
+        value: 30
+        per_refine: 1
+      - name: ASPD増加
+        value: 10
+        at_refine: 7
+      - name: 全種族への物理ダメージ増加
+        value: 15
+        at_refine: 7
+      - name: 全種族への魔法ダメージ増加
+        value: 15
+        at_refine: 7
+      - name: 必中
+        value: 25
+        at_refine: 9
+      - name: 全種族への物理ダメージ増加
+        value: 25
+        at_refine: 9
+      - name: 全種族への魔法ダメージ増加
+        value: 25
+        at_refine: 9
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 黒翼の使徒
+        capabilities:
+          - name: 念属性耐性
+            value: 15
+          - name: 全種族への物理ダメージ増加
+            value: 30
+          - name: 全種族への魔法ダメージ増加
+            value: 30
+    enchant:
+      name: スペシャルエンチャント（オーブ）
+      slot_list:
+        - slot: 4
+          refine: 6
+          enchant_list:
+            - name: "スキルディレイ-15%"
+            - name: "詠唱妨害不可"
+            - name: "英雄の凱歌"
+            - name: "厄災の魔将"
+        - slot: 3
+          refine: 8
+          enchant_list:
+            - name: "火属性付与(鎧)"
+            - name: "水属性付与(鎧)"
+            - name: "風属性付与(鎧)"
+            - name: "地属性付与(鎧)"
+            - name: "聖属性付与(鎧)"
+            - name: "闇属性付与(鎧)"
+            - name: "念属性付与(鎧)"
+            - name: "毒属性付与(鎧)"
+            - name: "不死属性付与(鎧)"          
+        - slot: 2
+          refine: 10
+          enchant_list:
+            - name: "黒翼の使徒"         
+
+  - name: 星座の印章
+    yomi: セイサノインシヨウ
+    desc: "（計算機暫定実装）BaseLvが250の時、追加で全ての特性ステータス + 10"
+    type: アクセサリー(1)
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 10
+    required_lv: 200
+    required_job: 4次職 拡張4次職
+    capabilities:
+      - name: 壊れない
+        value: 1
+      - name: ASPD増加
+        value: 10
+      - name: 物理ダメージ増加
+        value: 10
+      - name: 魔法ダメージ増加
+        value: 10
+      - name: プレイヤー耐性
+        value: 3
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_lv: 10
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_lv: 10
+      - name: 全特性ステータス上昇
+        value: 10
+    enchant:
+      name: 星座の塔エンチャント
+      slot_list:
+        - slot: 4
+          refine: 0
+          enchant_list:
+            - name: "Str+10"
+            - name: "Agi+10"
+            - name: "Vit+10"
+            - name: "Int+10"
+            - name: "Dex+10"
+            - name: "Luk+10"
+            - name: "詠唱妨害不可"
+        - slot: 3
+          refine: 0
+          enchant_list:
+            - name: "英雄の凱歌"
+            - name: "厄災の魔将"
+            - name: "起源の王"
+            - name: "殺意の怨念"
+            - name: "豊穣の女神"
+            - name: "異境の統轄者"
+            - name: "知識の探求者"
+            - name: "最果ての支配者"          
+        - slot: 2
+          refine: 0
+          enchant_list:
+            - name: "魔獣の爪牙"
+            - name: "不滅の肉体"
+            - name: "叡知の王冠"
+            - name: "根源への到達"
+            - name: "蒼穹の覇者"
+            - name: "天与の才"
+
+  - name: 星座の印章(力)
+    yomi: セイサノインシヨウチカラ
+    desc: "（計算機暫定実装）純粋なPowが100の時、追加で必中攻撃 + 15%"
+    type: アクセサリー(1)
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 10
+    required_lv: 200
+    required_job: 4次職 拡張4次職
+    capabilities:
+      - name: 壊れない
+        value: 1
+      - name: ASPD増加
+        value: 10
+      - name: 物理ダメージ増加
+        value: 10
+      - name: 魔法ダメージ増加
+        value: 10
+      - name: プレイヤー耐性
+        value: 3
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_lv: 10
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_lv: 10
+      - name: 必中
+        value: 15
+  - name: 星座の印章(体力)
+    yomi: セイサノインシヨウタイリヨク
+    desc: "（計算機暫定実装）純粋なStaが100の時、追加でDef + 300"
+    type: アクセサリー(1)
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 10
+    required_lv: 200
+    required_job: 4次職 拡張4次職
+    capabilities:
+      - name: 壊れない
+        value: 1
+      - name: ASPD増加
+        value: 10
+      - name: 物理ダメージ増加
+        value: 10
+      - name: 魔法ダメージ増加
+        value: 10
+      - name: プレイヤー耐性
+        value: 3
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_lv: 10
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_lv: 10
+      - name: DEF加算
+        value: 300
+  - name: 星座の印章(創造)
+    yomi: セイサノインシヨウソウソウ
+    desc: "（計算機暫定実装）純粋なCrtが100の時、追加でCri + 50"
+    type: アクセサリー(1)
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 10
+    required_lv: 200
+    required_job: 4次職 拡張4次職
+    capabilities:
+      - name: 壊れない
+        value: 1
+      - name: ASPD増加
+        value: 10
+      - name: 物理ダメージ増加
+        value: 10
+      - name: 魔法ダメージ増加
+        value: 10
+      - name: プレイヤー耐性
+        value: 3
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_lv: 10
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_lv: 10
+      - name: CRI加算
+        value: 50
+  - name: 星座の印章(魔力)
+    yomi: セイサノインシヨウマリヨク
+    desc: "（計算機暫定実装）純粋なCrtが100の時、追加で全ての種族のMdef 100%無視"
+    type: アクセサリー(1)
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 10
+    required_lv: 200
+    required_job: 4次職 拡張4次職
+    capabilities:
+      - name: 壊れない
+        value: 1
+      - name: ASPD増加
+        value: 10
+      - name: 物理ダメージ増加
+        value: 10
+      - name: 魔法ダメージ増加
+        value: 10
+      - name: プレイヤー耐性
+        value: 3
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_lv: 10
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_lv: 10
+      - name: MDEF無視
+        value: 100
+  - name: 星座の印章(聡明)
+    yomi: セイサノインシヨウソウメイ
+    desc: "（計算機暫定実装）純粋なWisが100の時、追加でMdef + 50"
+    type: アクセサリー(1)
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 10
+    required_lv: 200
+    required_job: 4次職 拡張4次職
+    capabilities:
+      - name: 壊れない
+        value: 1
+      - name: ASPD増加
+        value: 10
+      - name: 物理ダメージ増加
+        value: 10
+      - name: 魔法ダメージ増加
+        value: 10
+      - name: プレイヤー耐性
+        value: 3
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_lv: 10
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_lv: 10
+      - name: MDEF加算
+        value: 50
+  - name: 星座の印章(集中)
+    yomi: セイサノインシヨウシユウチユウ
+    desc: "（計算機暫定実装）純粋なWisが100の時、追加でスキルディレイ - 15%"
+    type: アクセサリー(1)
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 10
+    required_lv: 200
+    required_job: 4次職 拡張4次職
+    capabilities:
+      - name: 壊れない
+        value: 1
+      - name: ASPD増加
+        value: 10
+      - name: 物理ダメージ増加
+        value: 10
+      - name: 魔法ダメージ増加
+        value: 10
+      - name: プレイヤー耐性
+        value: 3
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_lv: 10
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_lv: 10
+      - name: ディレイ減少
+        value: 15
+  - name: グレイシア風魔手裏剣
+    yomi: クレイシアフウマシユリケン
+    desc: "（計算機未実装）[グレイシア風魔手裏剣]の超越段階が1以上の時、精錬値が1上がる度に追加で物理・魔法攻撃時、全ての種族のモンスターに与えるダメージ + 7%"
+    type: 手裏剣
+    slot: 1
+    weapon_lv: 3
+    atk_or_def: 150
+    weight: 150
+    required_lv: 220
+    required_job: 蜃気楼 不知火
+    capabilities:
+      - name: MATK加算
+        value: 160
+      - name: 壊れない
+        value: 1
+      - name: プレイヤー耐性
+        value: 40
+      - name: 物理ダメージ増加
+        value: 6
+        per_refine: 1
+      - name: 魔法ダメージ増加
+        value: 3
+        per_refine: 1
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 異境の統轄者
+        capabilities:
+          - name: DEF無視
+            value: 100
+          - name: MDEF無視
+            value: 100
+          - name: ATK加算
+            value: 1
+            per_lv: 1
+          - name: MATK加算
+            value: 1
+            per_lv: 1
+          
+  - name: グレイシアハンドガン
+    yomi: クレイシアハントカン
+    desc: "（計算機未実装）[グレイシアハンドガン]の超越段階が1以上の時、精錬値が1上がる度に追加で物理・魔法攻撃時、全ての種族のモンスターに与えるダメージ + 7%"
+    type: ハンドガン
+    slot: 1
+    weapon_lv: 3
+    atk_or_def: 70
+    weight: 35
+    required_lv: 220
+    required_job: ナイトウォッチ
+    capabilities:
+      - name: プレイヤー耐性
+        value: 40
+      - name: 物理ダメージ増加
+        value: 6
+        per_refine: 1
+      - name: 魔法ダメージ増加
+        value: 3
+        per_refine: 1
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 異境の統轄者
+        capabilities:
+          - name: DEF無視
+            value: 100
+          - name: MDEF無視
+            value: 100
+          - name: ATK加算
+            value: 1
+            per_lv: 1
+          - name: MATK加算
+            value: 1
+            per_lv: 1
+  - name: グレイシアベーシックソード
+    yomi: クレイシアヘエシツクソオト
+    desc: "（計算機未実装）[グレイシアベーシックソード]の超越段階が1以上の時、精錬値が1上がる度に追加で物理・魔法攻撃時、全ての種族のモンスターに与えるダメージ + 7%"
+    type: 片手剣
+    slot: 1
+    weapon_lv: 3
+    atk_or_def: 150
+    weight: 120
+    required_lv: 220
+    required_job: ハイパーノービス
+    capabilities:
+      - name: MATK加算
+        value: 130
+      - name: プレイヤー耐性
+        value: 10
+      - name: 物理ダメージ増加
+        value: 6
+        per_refine: 1
+      - name: 魔法ダメージ増加
+        value: 3
+        per_refine: 1
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 異境の統轄者
+        capabilities:
+          - name: DEF無視
+            value: 100
+          - name: MDEF無視
+            value: 100
+          - name: ATK加算
+            value: 1
+            per_lv: 1
+          - name: MATK加算
+            value: 1
+            per_lv: 1
+  - name: グレイシアフォックステイル
+    yomi: クレイシアフオツクステイル
+    desc: "（計算機未実装）[グレイシアフォックステイル]の超越段階が1以上の時、精錬値が1上がる度に追加で物理・魔法攻撃時、全ての種族のモンスターに与えるダメージ + 7%"
+    type: 杖
+    slot: 1
+    weapon_lv: 3
+    atk_or_def: 150
+    weight: 40
+    required_lv: 220
+    required_job: スピリットハンドラー
+    capabilities:
+      - name: 壊れない
+        value: 1
+      - name: MATK加算
+        value: 180
+      - name: プレイヤー耐性
+        value: 10
+      - name: 物理ダメージ増加
+        value: 6
+        per_refine: 1
+      - name: 魔法ダメージ増加
+        value: 3
+        per_refine: 1
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 異境の統轄者
+        capabilities:
+          - name: DEF無視
+            value: 100
+          - name: MDEF無視
+            value: 100
+          - name: ATK加算
+            value: 1
+            per_lv: 1
+          - name: MATK加算
+            value: 1
+            per_lv: 1
+  - name: アドゥルテル・フィデス・ライフル
+    yomi: アトウルテルフイテスライフル
+    type: ライフル
+    slot: 1
+    weapon_lv: 4
+    atk_or_def: 170
+    weight: 85
+    required_lv: 200
+    required_job: ナイトウォッチ
+    capabilities:
+      - name: スキルダメージ増加
+        skill: ハンマーオブゴッド
+        per_status_10: Int
+        value: 7
+      - name: スキルダメージ増加
+        skill: ハンマーオブゴッド
+        at_status_110: Int
+        value: 30
+      - name: 物理ダメージ増加
+        value: 10
+        per_refine: 1
+  - name: アドゥルテル・フィデス・メイス
+    yomi: アトウルテルフイテスメイス
+    type: 鈍器
+    slot: 1
+    weapon_lv: 4
+    atk_or_def: 150
+    weight: 150
+    required_lv: 200
+    required_job: ハイパーノービス
+    capabilities:
+      - name: 壊れない
+        value: 1
+      - name: MATK加算
+        value: 110
+      - name: 魔法ダメージ増加
+        value: 5
+        per_refine: 1
+  - name: アドゥルテル・フィデス・スターダストブック
+    yomi: アトウルテルフイテススタアタストフツク
+    type: 本
+    slot: 1
+    weapon_lv: 4
+    atk_or_def: 120
+    weight: 80
+    required_lv: 200
+    required_job: 天帝
+    capabilities:
+      - name: 壊れない
+        value: 1
+      - name: MATK加算
+        value: 140
+      - name: 物理ダメージ増加
+        value: 10
+        per_refine: 1
+  - name: アドゥルテル・フィデス・ソウルスティック
+    yomi: アトウルテルフイテススタアタストソウルステイツク
+    type: 杖
+    slot: 1
+    weapon_lv: 4
+    atk_or_def: 60
+    weight: 30
+    required_lv: 200
+    required_job: ソウルアセティック
+    capabilities:
+      - name: 壊れない
+        value: 1
+      - name: MATK加算
+        value: 180
+      - name: 魔法ダメージ増加
+        value: 5
+        per_refine: 1
+  - name: アドゥルテル・フィデス・ダガー
+    yomi: アトウルテルフイテススタアタストタカア
+    type: 短剣
+    slot: 1
+    weapon_lv: 4
+    atk_or_def: 120
+    weight: 60
+    required_lv: 200
+    required_job: 蜃気楼 不知火
+    capabilities:
+      - name: MATK加算
+        value: 120
+      - name: 物理ダメージ増加
+        value: 10
+        per_refine: 1
+  - name: アドゥルテル・フィデス・フォックステイル
+    yomi: アトウルテルフイテスフオツクステイル
+    type: 杖
+    slot: 1
+    weapon_lv: 4
+    atk_or_def: 150
+    weight: 40
+    required_lv: 200
+    required_job: スピリットハンドラー
+    capabilities:
+      - name: 壊れない
+        value: 1
+      - name: MATK加算
+        value: 180
+      - name: 物理ダメージ増加
+        value: 10
+        per_refine: 1
+  - name: ウィワートゥス・フィデス・スターダストブック
+    yomi: ウイワアトウスフイテススタアタストフツク
+    type: 本
+    slot: 1
+    weapon_lv: 4
+    atk_or_def: 120
+    weight: 80
+    required_lv: 200
+    required_job: 天帝
+    capabilities:
+      - name: 壊れない
+        value: 1
+      - name: MATK加算
+        value: 140
+      - name: 全種族への物理ダメージ増加
+        value: 13
+        per_refine: 1
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豊穣の女神
+        capabilities:
+          - name: スキルダメージ増加
+            skill: 天地万星
+            value: 25
+          - name: スキルダメージ増加
+            skill: 天命落星
+            value: 25
+          - name: スキルダメージ増加
+            skill: 天星
+            value: 25
+          - name: プレイヤー耐性
+            value: 10
+      - set:
+        entity_list:
+          - card_name: 祈りの晩鐘
+        capabilities:
+          - name: MAXHP増加
+            value: 15
+          - name: ボス耐性
+            value: 10
+          - name: スキル使用可能
+            skill: プロヴィデンス
+            skill_lv: 3
+
+  - name: ウィワートゥス・フィデス・ソウルスティック
+    yomi: ウイワアトウスフイテススタアタストソウルステイツク
+    type: 杖
+    slot: 1
+    weapon_lv: 4
+    atk_or_def: 60
+    weight: 30
+    required_lv: 200
+    required_job: ソウルアセティック
+    capabilities:
+      - name: 壊れない
+        value: 1
+      - name: MATK加算
+        value: 180
+      - name: 全種族への魔法ダメージ増加
+        value: 13
+        per_refine: 1
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豊穣の女神
+        capabilities:
+          - name: スキルダメージ増加
+            skill: 青龍符
+            value: 25
+          - name: スキルダメージ増加
+            skill: 白虎符
+            value: 25
+          - name: スキルダメージ増加
+            skill: 朱雀符
+            value: 25
+          - name: スキルダメージ増加
+            skill: 玄武符
+            value: 25
+          - name: スキルダメージ増加
+            skill: 四方神符
+            value: 25
+          - name: スキルダメージ増加
+            skill: 四方五行陣
+            value: 25
+          - name: プレイヤー耐性
+            value: 10
+      - set:
+        entity_list:
+          - card_name: 祈りの晩鐘
+        capabilities:
+          - name: MAXHP増加
+            value: 15
+          - name: ボス耐性
+            value: 10
+          - name: スキル使用可能
+            skill: プロヴィデンス
+            skill_lv: 3
+  - name: 情熱あふれるラビットリボン
+    yomi: シヨウネツアフレルラヒツトリホン
+    type: 上段
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 10
+    weight: 50
+    required_lv: 200
+    required_job: 4次職 拡張4次職
+    capabilities:
+      - name: Con上昇
+        value: 3
+      - name: プレイヤー耐性
+        value: 13
+      - name: 一般耐性
+        value: 20
+      - name: ボス耐性
+        value: 20
+      - name: 物理ダメージ増加
+        value: 40
+      - name: スキルダメージ増加
+        skill: リズムシューティング
+        value: 1
+        per_lv: 10
+      - name: スキルダメージ増加
+        skill: ロゼブロッサム
+        value: 1
+        per_lv: 10
+      - name: Con上昇
+        value: 1
+        per_refine: 1
+    enchant:
+      name: スペシャルエンチャント（オーブ）
+      slot_list:
+        - slot: 4
+          refine: 0
+          enchant_list:
+            - name: "潜在解放(トルバドゥール&トルヴェールI)"
+        - slot: 3
+          refine: 8
+          enchant_list:
+            - name: "Str+10"
+            - name: "Agi+10"
+            - name: "Vit+10"
+            - name: "Int+10"
+            - name: "Dex+10"
+            - name: "Luk+10"
+            - name: "スキルディレイ-15%"
+            - name: "大鷲の眼光"
+        - slot: 2
+          refine: 9
+          enchant_list:
+            - name: "Str+10"
+            - name: "Agi+10"
+            - name: "Vit+10"
+            - name: "Int+10"
+            - name: "Dex+10"
+            - name: "Luk+10"
+            - name: "スキルディレイ-15%"
+            - name: "英雄の凱歌"
+  - name: ウォルフライエ
+    yomi: ウオルフライエ
+    type: 上段
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 10
+    weight: 50
+    required_lv: 200
+    required_job: 4次職 拡張4次職
+    capabilities:
+      - name: Pow上昇
+        value: 3
+      - name: プレイヤー耐性
+        value: 13
+      - name: 一般耐性
+        value: 20
+      - name: ボス耐性
+        value: 20
+      - name: 物理ダメージ増加
+        value: 40
+      - name: スキルダメージ増加
+        skill: オーバースラッシュ
+        value: 1
+        per_lv: 10
+      - name: スキルダメージ増加
+        skill: グランドジャッジメント
+        value: 1
+        per_lv: 10
+      - name: スキルダメージ増加
+        skill: シールドシューティング
+        value: 1
+        per_lv: 10
+      - name: Pow上昇
+        value: 1
+        per_refine: 1
+    enchant:
+      name: スペシャルエンチャント（オーブ）
+      slot_list:
+        - slot: 4
+          refine: 0
+          enchant_list:
+            - name: "潜在解放(インペリアルガードIII)"
+        - slot: 3
+          refine: 8
+          enchant_list:
+            - name: "Str+10"
+            - name: "Agi+10"
+            - name: "Vit+10"
+            - name: "Int+10"
+            - name: "Dex+10"
+            - name: "Luk+10"
+            - name: "スキルディレイ-15%"
+            - name: "覇王"
+        - slot: 2
+          refine: 9
+          enchant_list:
+            - name: "Str+10"
+            - name: "Agi+10"
+            - name: "Vit+10"
+            - name: "Int+10"
+            - name: "Dex+10"
+            - name: "Luk+10"
+            - name: "スキルディレイ-15%"
+            - name: "英雄の凱歌"
+  - name: リングオブアルテミス
+    yomi: リンクオフアルテミス
+    type: アクセサリー
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 10
+    required_lv: 200
+    required_job: 4次職 拡張4次職
+    capabilities:
+      - name: Con上昇
+        value: 3
+      - name: CRI加算
+        value: 50
+      - name: 物理ダメージ増加
+        value: 10
+      - name: プレイヤー耐性
+        value: 3
+      - name: スキル固定詠唱割合減少
+        skill: エイムドボルト
+        value: 100
+      - name: スキルダメージ増加
+        skill: クレッシブボルト
+        value: 1
+        per_lv: 10
+      - name: スキルダメージ増加
+        skill: ゲイルストーム
+        value: 1
+        per_lv: 10
+    enchant:
+      name: スペシャルエンチャント（モチモチ）
+      slot_list:
+        - slot: 4
+          refine: 0
+          enchant_list:
+            - name: "Str+7"
+            - name: "Agi+7"
+            - name: "Vit+7"
+            - name: "Int+7"
+            - name: "Dex+7"
+            - name: "Luk+7"
+            - name: "SpecialStr"
+            - name: "SpecialAgi"
+            - name: "SpecialVit"
+            - name: "SpecialInt"
+            - name: "SpecialDex"
+            - name: "SpecialLuk"
+            - name: "攻撃速度+15%"
+            - name: "スキルディレイ-15%"
+        - slot: 3
+          refine: 8
+          enchant_list:
+            - name: "Str+7"
+            - name: "Agi+7"
+            - name: "Vit+7"
+            - name: "Int+7"
+            - name: "Dex+7"
+            - name: "Luk+7"
+            - name: "SpecialStr"
+            - name: "SpecialAgi"
+            - name: "SpecialVit"
+            - name: "SpecialInt"
+            - name: "SpecialDex"
+            - name: "SpecialLuk"
+            - name: "MaxHP+15%"
+            - name: "潜在解放(ウィンドホークIV)"
+        - slot: 2
+          refine: 9
+          enchant_list:
+            - name: "Str+7"
+            - name: "Agi+7"
+            - name: "Vit+7"
+            - name: "Int+7"
+            - name: "Dex+7"
+            - name: "Luk+7"
+            - name: "SpecialStr"
+            - name: "SpecialAgi"
+            - name: "SpecialVit"
+            - name: "SpecialInt"
+            - name: "SpecialDex"
+            - name: "SpecialLuk"
+            - name: "大鷲の眼光"
+  - name: ウサギ柄のシャツ
+    yomi: ウサキカラノシヤツ
+    type: 鎧
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 80
+    weight: 40
+    required_lv: 220
+    required_job: マジシャン系 アコライト系 ソウルリンカー系
+    capabilities:
+      - name: MAXSP増加
+        value: 25
+      - name: プレイヤー耐性
+        value: 7
+      - name: 火属性魔法ダメージ増加
+        value: 10
+        at_refine: 6
+      - name: 闇属性魔法ダメージ増加
+        value: 10
+        at_refine: 6
+      - name: 無属性魔法ダメージ増加
+        value: 10
+        at_refine: 6
+      - name: 火属性魔法ダメージ増加
+        value: 10
+        at_refine: 8
+      - name: 闇属性魔法ダメージ増加
+        value: 10
+        at_refine: 8
+      - name: 無属性魔法ダメージ増加
+        value: 10
+        at_refine: 8
+    enchant:
+      name: スペシャルエンチャント（モチモチ）
+      slot_list:
+        - slot: 4
+          refine: 7
+          enchant_list:
+            - name: "Str+1"
+            - name: "Str+2"
+            - name: "Str+3"
+            - name: "Agi+1"
+            - name: "Agi+2"
+            - name: "Agi+3"
+            - name: "Vit+1"
+            - name: "Vit+2"
+            - name: "Vit+3"
+            - name: "Int+1"
+            - name: "Int+2"
+            - name: "Int+3"
+            - name: "Dex+1"
+            - name: "Dex+2"
+            - name: "Dex+3"
+            - name: "Luk+1"
+            - name: "Luk+2"
+            - name: "Luk+3"
+            - name: "SpecialStr"
+            - name: "SpecialAgi"
+            - name: "SpecialVit"
+            - name: "SpecialInt"
+            - name: "SpecialDex"
+            - name: "SpecialLuk"
+            - name: "厄災の魔将"
+        - slot: 3
+          refine: 8
+          enchant_list:
+            - name: "Str+1"
+            - name: "Str+2"
+            - name: "Str+3"
+            - name: "Agi+1"
+            - name: "Agi+2"
+            - name: "Agi+3"
+            - name: "Vit+1"
+            - name: "Vit+2"
+            - name: "Vit+3"
+            - name: "Int+1"
+            - name: "Int+2"
+            - name: "Int+3"
+            - name: "Dex+1"
+            - name: "Dex+2"
+            - name: "Dex+3"
+            - name: "Luk+1"
+            - name: "Luk+2"
+            - name: "Luk+3"
+            - name: "SpecialStr"
+            - name: "SpecialAgi"
+            - name: "SpecialVit"
+            - name: "SpecialInt"
+            - name: "SpecialDex"
+            - name: "SpecialLuk"
+            - name: "暴走した魔力"
+        - slot: 2
+          refine: 9
+          enchant_list:
+            - name: "Str+1"
+            - name: "Str+2"
+            - name: "Str+3"
+            - name: "Agi+1"
+            - name: "Agi+2"
+            - name: "Agi+3"
+            - name: "Vit+1"
+            - name: "Vit+2"
+            - name: "Vit+3"
+            - name: "Int+1"
+            - name: "Int+2"
+            - name: "Int+3"
+            - name: "Dex+1"
+            - name: "Dex+2"
+            - name: "Dex+3"
+            - name: "Luk+1"
+            - name: "Luk+2"
+            - name: "Luk+3"
+            - name: "SpecialStr"
+            - name: "SpecialAgi"
+            - name: "SpecialVit"
+            - name: "SpecialInt"
+            - name: "SpecialDex"
+            - name: "SpecialLuk"
+            - name: "新暦"
+
+

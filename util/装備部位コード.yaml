@@ -1,0 +1,70 @@
+equipment:
+  - name: 素手
+    code: 0
+  - name: 短剣
+    code: 1
+  - name: 片手剣
+    code: 2
+  - name: 両手剣
+    code: 3
+  - name: 片手槍
+    code: 4
+  - name: 両手槍
+    code: 5
+  - name: 片手斧
+    code: 6
+  - name: 両手斧
+    code: 7
+  - name: 鈍器
+    code: 8
+  - name: 杖
+    code: 9
+  - name: 弓
+    code: 10
+  - name: カタール  
+    code: 11
+  - name: 本
+    code: 12
+  - name: ナックル
+    code: 13
+  - name: 楽器
+    code: 14
+  - name: 鞭
+    code: 15
+  - name: 手裏剣
+    code: 16
+  - name: ハンドガン
+    code: 17
+  - name: ライフル
+    code: 18
+  - name: ショットガン
+    code: 19
+  - name: ガトリングガン
+    code: 20
+  - name: グレネードガン
+    code: 21
+  - name: 上段
+    code: 50
+  - name: 中段
+    code: 51
+  - name: 下段
+    code: 52
+  - name: 鎧
+    code: 60
+  - name: 盾
+    code: 61
+  - name: 肩
+    code: 62
+  - name: 靴
+    code: 63
+  - name: アクセサリー
+    code: 64
+  - name: アクセサリー(1)
+    code: 65
+  - name: アクセサリー(2)
+    code: 66
+  - name: エンチャント
+    code: 99
+  - name: セット
+    code: 100
+

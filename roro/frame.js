@@ -47,12 +47,12 @@ function SetMainMenuFrame(){
 	//--------------------------------
 	// タイトル
 	//--------------------------------
-	objA = document.createElement("a");
-	objA.setAttribute("href", "../main/main.html");
+	objA = document.createElement("div");
+//  objA.setAttribute("href", "../main/main.html");
 	objA.setAttribute("style", "text-decoration: none; color: black; font-size: larger;");
-	objA.appendChild(document.createTextNode("避難所MENU"));
+	objA.appendChild(document.createTextNode("ROratorio-HUB"));
 	objDivGrp.appendChild(objA);
-	objDivGrp.appendChild(document.createElement("br"));
+//	objDivGrp.appendChild(document.createElement("br"));
 
 
 
@@ -67,6 +67,7 @@ function SetMainMenuFrame(){
 
 
 
+/*
 
 
 	//----------------------------------------------------------------
@@ -407,26 +408,74 @@ function SetMainMenuFrame(){
 
 
 
-
+*/
 
 	//----------------------------------------------------------------
-	//
-	// その他グループ
-	//
+	// Notice
 	//----------------------------------------------------------------
 	objDivGrp = document.createElement("div");
-	objDivGrp.setAttribute("style", "margin-top: 3em;");
+	objDivGrp.setAttribute("style", "margin-top: 0.5em;");
 	objDiv.appendChild(objDivGrp);
+
+	objA = document.createElement("a");
+	objDivGrp.appendChild(objA);
+	objA.setAttribute("href", "../../information/index.html");
+	objA.setAttribute("target", "_blank");
+	objA.appendChild(document.createTextNode("このサイトについて"));
+	objDivGrp.appendChild(document.createElement("br"));
+
+	objA = document.createElement("a");
+	objDivGrp.appendChild(objA);
+	objA.setAttribute("href", "../../information/todo.html");
+	objA.setAttribute("target", "_blank");
+	objA.appendChild(document.createTextNode("今後の予定"));
+	objDivGrp.appendChild(document.createElement("br"));
+
+	objA = document.createElement("a");
+	objDivGrp.appendChild(objA);
+	objA.setAttribute("href", "../../information/history/index.html");
+	objA.setAttribute("target", "_blank");
+	objA.appendChild(document.createTextNode("更新履歴"));
+	objDivGrp.appendChild(document.createElement("br"));
+
+	objHr = document.createElement("hr");
+	objHr.setAttribute("style", "margin: 0");
+	objDiv.appendChild(objHr);
 
 	//--------------------------------
 	// リンク
 	//--------------------------------
-	objA = document.createElement("a");
-	objDivGrp.appendChild(objA);
-	objA.setAttribute("href", "../link/link.html");
-	objA.appendChild(document.createTextNode("リンク"));
+	objDivGrp = document.createElement("div");
+	objDivGrp.setAttribute("style", "margin-top: 1.0em;");
+	objDiv.appendChild(objDivGrp);
+
+	objDivGrp.appendChild(document.createTextNode("－ 外部リンク －"));
 	objDivGrp.appendChild(document.createElement("br"));
 
+	objA = document.createElement("a");
+	objDivGrp.appendChild(objA);
+	objA.setAttribute("href", "https://github.com/roratorio-hub");
+	objA.setAttribute("target", "_blank");
+	objA.appendChild(document.createTextNode("Github"));
+	objDivGrp.appendChild(document.createElement("br"));
+
+	objA = document.createElement("a");
+	objDivGrp.appendChild(objA);
+	objA.setAttribute("href", "https://roratorio-hinanjo.net/roro/main/main.html");
+	objA.setAttribute("target", "_blank");
+	objA.appendChild(document.createTextNode("ROラトリオ避難所"));
+	objDivGrp.appendChild(document.createElement("br"));
+
+	objA = document.createElement("a");
+	objDivGrp.appendChild(objA);
+	objA.setAttribute("href", "http://roratorio.2-d.jp/ro/");
+	objA.setAttribute("target", "_blank");
+	objA.appendChild(document.createTextNode("ROラトリオ"));
+	objDivGrp.appendChild(document.createElement("br"));
+
+
+
+/*
 	//--------------------------------
 	// ダウンロード
 	//--------------------------------
@@ -445,6 +494,7 @@ function SetMainMenuFrame(){
 	objA.appendChild(document.createTextNode("ミラクル計算機"));
 	objDivGrp.appendChild(document.createElement("br"));
 
+*/	
 
 	objInput = document.createElement("input");
 	objDivGrp.appendChild(objInput);
@@ -453,9 +503,8 @@ function SetMainMenuFrame(){
 	objInput.setAttribute("value", "背景色切替");
 	objInput.setAttribute("onclick", "SwitchBGColor()");
 	objInput.setAttribute("style", "margin-top: 3em;");
+
 }
-
-
 
 g_BGColorSwitch = false;
 

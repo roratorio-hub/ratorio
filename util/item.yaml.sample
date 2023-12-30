@@ -1,0 +1,29 @@
+item_list:
+  - name: 情熱あふれるラビットリボン
+    yomi: シヨウネツアフレルラヒツトリホン
+    type: 上段
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 10
+    weight: 50
+    required_lv: 200
+    required_job: 4次職 拡張4次職
+    capabilities:
+      - name: Con上昇
+        value: 1
+        per_refine: 1
+    enchant:
+      name: スペシャルエンチャント（オーブ）
+      slot_list:
+        - slot: 4
+          refine: 0
+          enchant_list:
+            - name: "潜在解放(トルバドゥール&トルヴェールI)"
+        - slot: 3
+          refine: 8
+          enchant_list:
+            - name: "Str+10"
+        - slot: 2
+          refine: 9
+          enchant_list:
+            - name: "Str+10"

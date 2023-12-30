@@ -1,0 +1,19 @@
+card:
+  - name: 制限なし
+    code: 0
+  - name: 武器
+    code: 1
+  - name: 頭
+    code: 2
+  - name: 盾
+    code: 3
+  - name: 鎧
+    code: 4
+  - name: 肩
+    code: 5
+  - name: 靴
+    code: 6
+  - name: アクセサリー
+    code: 7
+  - name: エンチャント  
+    code: 99
