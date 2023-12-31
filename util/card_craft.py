@@ -222,7 +222,7 @@ if __name__ == "__main__":
     itemset_id = getLatestIdFromItemSet()
     enchant_id = getLatestId(slotinfo_list)
     
-    with open(f'{script_dir}/enchant.yaml', 'r', encoding='utf-8') as f:
+    with open(f'{script_dir}/card.yaml', 'r', encoding='utf-8') as f:
         config = yaml.safe_load(f)
 
     for enchant_info in config['card_list']:
