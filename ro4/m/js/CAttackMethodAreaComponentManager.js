@@ -3336,6 +3336,23 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 			);
 			break;
 
+			// オプションリストを生成、追加
+			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+				"レインボーホーン",
+				[
+					[ELM_ID_VANITY,	"なし"],
+					[ELM_ID_WATER,	"Lv1:水属性"],
+					[ELM_ID_WIND,	"Lv2:風属性"],
+					[ELM_ID_EARTH,	"Lv3:地属性"],
+					[ELM_ID_FIRE,	"Lv4:火属性"],
+					[ELM_ID_DARK,	"Lv5:闇属性"],
+					[ELM_ID_HOLY,	"Lv6:聖属性"],
+				],
+				0
+			);
+			break;
+
+
 
 		//----------------------------------------------------------------
 		// サモナー：ピッキ突き
