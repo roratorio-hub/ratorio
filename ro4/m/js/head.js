@@ -7872,7 +7872,8 @@ else {
 		case SKILL_ID_INUHAKKA_METEOR:
 			wActiveHitNum = 7;
 
-			n_A_Weapon_zokusei = ELM_ID_VANITY;
+//			n_A_Weapon_zokusei = ELM_ID_VANITY;		// 属性付与対応
+			n_A_Weapon_zokusei = attackMethodConfArray[0].GetOptionValue(1);
 
 			wbairitu = 700;
 			wHITsuu = attackMethodConfArray[0].GetOptionValue(0) / 2;
