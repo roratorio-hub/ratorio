@@ -24,7 +24,7 @@ card_list:
     desc: ""  
     type: エンチャント  
     capabilities:  
-      - type: スキルダメージ増加  
+      - name: スキルダメージ増加  
         skill: アースストレイン  
         value: 1  
         per_lv: 3  
@@ -33,7 +33,7 @@ card_list:
         entity_list:  
           - card_name: 真理の解放  
         capabilities:  
-          - type: スキルクールタイムミリ秒減少  
+          - name: スキルクールタイムミリ秒減少  
             skill: アースストレイン  
             value: 3000  
 ```  

@@ -2,7 +2,7 @@ card_list:
   - name: 潜在覚醒(アースストレインI)
     type: エンチャント
     capabilities:
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: アースストレイン
         value: 1
         per_lv: 3
@@ -11,13 +11,13 @@ card_list:
         entity_list:
           - card_name: 真理の解放
         capabilities:
-          - type: スキルクールタイムミリ秒減少
+          - name: スキルクールタイムミリ秒減少
             skill: アースストレイン
             value: 3000
   - name: 潜在覚醒(アローストームII)
     type: エンチャント
     capabilities:
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: アローストーム
         value: 1
         per_lv: 10
@@ -26,13 +26,13 @@ card_list:
         entity_list:
           - card_name: 豪傑
         capabilities:
-          - type: スキルクールタイムミリ秒減少
+          - name: スキルクールタイムミリ秒減少
             skill: アローストーム
             value: 300
   - name: 潜在覚醒(ヴェラチュールスピアーI)
     type: エンチャント
     capabilities:
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: ヴェラチュールスピアー
         value: 1
         per_lv: 3
@@ -41,13 +41,13 @@ card_list:
         entity_list:
           - card_name: 真理の解放
         capabilities:
-          - type: スキルクールタイムミリ秒減少
+          - name: スキルクールタイムミリ秒減少
             skill: ヴェラチュールスピアー
             value: 1000
   - name: 潜在覚醒(エイムドボルトI)
     type: エンチャント
     capabilities:
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: エイムドボルト
         value: 1
         per_lv: 10
@@ -56,13 +56,13 @@ card_list:
         entity_list:
           - card_name: 豪傑
         capabilities:
-          - type: スキルクールタイムミリ秒減少
+          - name: スキルクールタイムミリ秒減少
             skill: エイムドボルト
             value: 250
   - name: 潜在覚醒(キャノンスピアI)
     type: エンチャント
     capabilities:
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: キャノンスピア
         value: 1
         per_lv: 3
@@ -71,13 +71,13 @@ card_list:
         entity_list:
           - card_name: 豪傑
         capabilities:
-          - type: スキルクールタイムミリ秒減少
+          - name: スキルクールタイムミリ秒減少
             skill: キャノンスピア
             value: 1000
   - name: 潜在覚醒(ジャックフロストII)
     type: エンチャント
     capabilities:
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: ジャックフロスト
         value: 1
         per_lv: 2
@@ -86,21 +86,21 @@ card_list:
         entity_list:
           - card_name: 真理の解放
         capabilities:
-          - type: スキル固定詠唱割合減少
+          - name: スキル固定詠唱割合減少
             skill: ジャックフロスト
             value: 100
   - name: 潜在覚醒(スペルフィストI)
     type: エンチャント
     capabilities:
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: ファイアーボルト
         value: 1
         per_lv: 2
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: コールドボルト
         value: 1
         per_lv: 2
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: ライトニングボルト
         value: 1
         per_lv: 2
@@ -109,22 +109,22 @@ card_list:
         entity_list:
           - card_name: 真理の解放
         capabilities:
-          - type: スキル使用可能
+          - name: スキル使用可能
             skill: ダブルアタック
             skill_lv: 10
-          - type: スキル固定詠唱ミリ秒減少
+          - name: スキル固定詠唱ミリ秒減少
             skill: ファイアーボルト
             value: -10000
-          - type: スキル固定詠唱ミリ秒減少
+          - name: スキル固定詠唱ミリ秒減少
             skill: コールドボルト
             value: -10000
-          - type: スキル固定詠唱ミリ秒減少
+          - name: スキル固定詠唱ミリ秒減少
             skill: ライトニングボルト
             value: -10000
   - name: 潜在覚醒(十文字斬りI)
     type: エンチャント
     capabilities:
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: 十文字斬り
         value: 1
         per_lv: 3
@@ -133,13 +133,13 @@ card_list:
         entity_list:
           - card_name: 豪傑
         capabilities:
-          - type: スキルクールタイムミリ秒減少
+          - name: スキルクールタイムミリ秒減少
             skill: 十文字斬り
             value: 600
   - name: 潜在覚醒(太陽爆発I)
     type: エンチャント
     capabilities:
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: 太陽爆発
         value: 1
         per_lv: 10
@@ -148,13 +148,13 @@ card_list:
         entity_list:
           - card_name: 豪傑
         capabilities:
-          - type: スキルクールタイムミリ秒減少
+          - name: スキルクールタイムミリ秒減少
             skill: 太陽爆発
             value: 10000
   - name: 潜在覚醒(満月脚II)
     type: エンチャント
     capabilities:
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: 満月脚
         value: 1
         per_lv: 10
@@ -163,13 +163,13 @@ card_list:
         entity_list:
           - card_name: 豪傑
         capabilities:
-          - type: スキルクールタイムミリ秒減少
+          - name: スキルクールタイムミリ秒減少
             skill: 月の光
             value: 10000
   - name: 潜在覚醒(流星落下I)
     type: エンチャント
     capabilities:
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: 流星落下
         value: 1
         per_lv: 10
@@ -178,7 +178,7 @@ card_list:
         entity_list:
           - card_name: 豪傑
         capabilities:
-          - type: スキルクールタイムミリ秒減少
+          - name: スキルクールタイムミリ秒減少
             skill: 星の光
             value: 10000
   - name: 潜在解放(アークビショップII)
@@ -188,10 +188,10 @@ card_list:
         entity_list:
           - card_name: 真理の解放
         capabilities:
-          - type: スキルクールタイムミリ秒減少
+          - name: スキルクールタイムミリ秒減少
             skill: オラティオ
             value: 1500
-          - type: スキルクールタイムミリ秒減少
+          - name: スキルクールタイムミリ秒減少
             skill: シレンティウム
             value: 14000
   - name: 潜在解放(ギロチンクロスII)
@@ -201,10 +201,10 @@ card_list:
         entity_list:
           - card_name: 豪傑
         capabilities:
-          - type: スキルクールタイムミリ秒減少
+          - name: スキルクールタイムミリ秒減少
             skill: ダーククロー
             value: 35000
-          - type: スキルクールタイムミリ秒減少
+          - name: スキルクールタイムミリ秒減少
             skill: ローリングカッター
             value: 200
 
@@ -215,13 +215,13 @@ card_list:
         entity_list:
           - card_name: 真理の解放
         capabilities:
-          - type: スキル固定詠唱割合減少
+          - name: スキル固定詠唱割合減少
             skill: エスパ
             value: 100
-          - type: スキル固定詠唱割合減少
+          - name: スキル固定詠唱割合減少
             skill: エスフ
             value: 100
-          - type: スキルクールタイムミリ秒減少
+          - name: スキルクールタイムミリ秒減少
             skill: 死霊爆発
             value: 500
   - name: 潜在解放(ソーサラーII)
@@ -231,10 +231,10 @@ card_list:
         entity_list:
           - card_name: 真理の解放
         capabilities:
-          - type: スキル固定詠唱割合減少
+          - name: スキル固定詠唱割合減少
             skill: サイキックウェーブ
             value: 100
-          - type: スキルクールタイムミリ秒減少
+          - name: スキルクールタイムミリ秒減少
             skill: ヴェラチュールスピアー
             value: 1000
   - name: 潜在解放(ミンストレル&ワンダラーI)
@@ -244,10 +244,10 @@ card_list:
         entity_list:
           - card_name: 真理の解放
         capabilities:
-          - type: スキルクールタイムミリ秒減少
+          - name: スキルクールタイムミリ秒減少
             skill: メタリックサウンド
             value: 200
-          - type: スキルクールタイムミリ秒減少
+          - name: スキルクールタイムミリ秒減少
             skill: 安らぎの子守唄
             value: 2000
   - name: 潜在解放(メカニックII)
@@ -257,10 +257,10 @@ card_list:
         entity_list:
           - card_name: 豪傑
         capabilities:
-          - type: スキルクールタイムミリ秒減少
+          - name: スキルクールタイムミリ秒減少
             skill: アックストルネード
             value: 2000
-          - type: スキルクールタイムミリ秒減少
+          - name: スキルクールタイムミリ秒減少
             skill: マグマイラプション
             value: 2000
   - name: 潜在解放(リベリオンII)
@@ -270,10 +270,10 @@ card_list:
         entity_list:
           - card_name: 豪傑
         capabilities:
-          - type: スキルクールタイムミリ秒減少
+          - name: スキルクールタイムミリ秒減少
             skill: ラウンドトリップ
             value: 200
-          - type: スキルクールタイムミリ秒減少
+          - name: スキルクールタイムミリ秒減少
             skill: リッチズコイン
             value: 3000
   - name: 潜在解放(ルーンナイトII)
@@ -283,10 +283,10 @@ card_list:
         entity_list:
           - card_name: 豪傑
         capabilities:
-          - type: スキルクールタイムミリ秒減少
+          - name: スキルクールタイムミリ秒減少
             skill: イグニッションブレイク
             value: 300
-          - type: スキルクールタイムミリ秒減少
+          - name: スキルクールタイムミリ秒減少
             skill: ソニックウェーブ
             value: 200
   - name: 潜在解放(ロイヤルガードII)
@@ -296,10 +296,10 @@ card_list:
         entity_list:
           - card_name: 豪傑
         capabilities:
-          - type: スキル変動詠唱ミリ秒減少
+          - name: スキル変動詠唱ミリ秒減少
             skill: アースドライブ
             value: 1000
-          - type: スキルクールタイムミリ秒減少
+          - name: スキルクールタイムミリ秒減少
             skill: シールドスペル
             value: 1500
   - name: 潜在解放(影狼&朧I)
@@ -309,10 +309,10 @@ card_list:
         entity_list:
           - card_name: 豪傑
         capabilities:
-          - type: スキルクールタイムミリ秒減少
+          - name: スキルクールタイムミリ秒減少
             skill: 十六夜
             value: 30000
-          - type: スキルクールタイムミリ秒減少
+          - name: スキルクールタイムミリ秒減少
             skill: 風魔手裏剣 -乱華-
             value: 200
   - name: 潜在解放(星帝II)
@@ -322,55 +322,55 @@ card_list:
         entity_list:
           - card_name: 豪傑
         capabilities:
-          - type: スキル固定詠唱ミリ秒減少
+          - name: スキル固定詠唱ミリ秒減少
             skill: 満月脚
             value: 1000
-          - type: スキルクールタイムミリ秒減少
+          - name: スキルクールタイムミリ秒減少
             skill: 朔月脚
             value: 200
   - name: 氷華の魔力(ソウルリーパーI)
     type: エンチャント
     capabilities:
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: エスパ
         value: 5
         per_refine: 1
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: エスフ
         value: 5
         per_refine: 1
   - name: 氷華の魔力(星帝I)
     type: エンチャント
     capabilities:
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: 朔月脚
         value: 5
         per_refine: 1
   - name: 氷華の魔力(リベリオンI)
     type: エンチャント
     capabilities:
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: ファイアーダンス
         value: 5
         per_refine: 1
   - name: 氷華の魔力(影狼&朧I)
     type: エンチャント
     capabilities:
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: 風魔手裏剣 -乱華-
         value: 5
         per_refine: 1
   - name: 氷華の魔力(サモナーI)
     type: エンチャント
     capabilities:
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: サベージの魂
         value: 5
         per_refine: 1
   - name: 氷華の魔力(サモナーII)
     type: エンチャント
     capabilities:
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: マタタビランス
         value: 5
         per_refine: 1
@@ -381,7 +381,7 @@ card_list:
         entity_list:
           - card_name: 豪傑
         capabilities:
-          - type: スキル固定詠唱ミリ秒減少
+          - name: スキル固定詠唱ミリ秒減少
             skill: 天地万星
             value: 1500
   - name: 潜在解放(ソウルアセティックI)
@@ -391,10 +391,10 @@ card_list:
         entity_list:
           - card_name: 真理の解放
         capabilities:
-          - type: スキル固定詠唱ミリ秒減少
+          - name: スキル固定詠唱ミリ秒減少
             skill: 四方神符
             value: 500
-          - type: スキル固定詠唱ミリ秒減少
+          - name: スキル固定詠唱ミリ秒減少
             skill: 四方五行陣
             value: 500
   - name: 潜在解放(インペリアルガードIII)
@@ -404,7 +404,7 @@ card_list:
         entity_list:
           - card_name: 豪傑
         capabilities:
-          - type: スキルクールタイムミリ秒減少
+          - name: スキルクールタイムミリ秒減少
             skill: オーバースラッシュ
             value: 200
   - name: 潜在解放(ウィンドホークIV)
@@ -414,10 +414,10 @@ card_list:
         entity_list:
           - card_name: 豪傑
         capabilities:
-          - type: スキルクールタイムミリ秒減少
+          - name: スキルクールタイムミリ秒減少
             skill: クレッシブボルト
             value: 100
-          - type: スキルクールタイムミリ秒減少
+          - name: スキルクールタイムミリ秒減少
             skill: ゲイルストーム
             value: 100
   - name: 潜在解放(トルバドゥール&トルヴェールI)
@@ -427,17 +427,17 @@ card_list:
         entity_list:
           - card_name: 豪傑
         capabilities:
-          - type: スキルクールタイムミリ秒減少
+          - name: スキルクールタイムミリ秒減少
             skill: リズムシューティング
             value: 200
-          - type: スキルクールタイムミリ秒減少
+          - name: スキルクールタイムミリ秒減少
             skill: ロゼブロッサム
             value: 200
   - name: 潜在覚醒(アドラムスI)
     type: エンチャント
     desc: "[真理の解放]と共に装備時、追加で[アドラムス]使用時、一定確率で自分にオートスペル[セイフティウォール]Lv3発動<br>[セイフティウォール]の習得Lvが4以上の場合、習得Lvで発動（計算機未実装）"
     capabilities:
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: アドラムス
         value: 1
         per_lv: 2
@@ -449,21 +449,21 @@ card_list:
         entity_list:
           - card_name: 豪傑
         capabilities:
-          - type: スキルクールタイムミリ秒減少
+          - name: スキルクールタイムミリ秒減少
             skill: インスピレーション
             value: 10000
       - set:
         entity_list:
           - card_name: 真理の解放
         capabilities:
-          - type: スキルクールタイムミリ秒減少
+          - name: スキルクールタイムミリ秒減少
             skill: インスピレーション
             value: 10000
   - name: 潜在覚醒(ジュデックスII)
     type: エンチャント
     desc: "[真理の解放]と共に装備時、追加で[ジュデックス]使用時、一定確率で自分にオートスペル[セイフティウォール]Lv3発動<br>[セイフティウォール]の習得Lvが4以上の場合、習得Lvで発動（計算機未実装）"
     capabilities:
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: ジュデックス
         value: 1
         per_lv: 2
@@ -471,7 +471,7 @@ card_list:
     type: エンチャント
     desc: "（計算機暫定対応）[豪傑]と共に装備時、追加で物理攻撃命中時、一定確率で10秒間、[アースドライブ]の消費SP - 83"
     capabilities:
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: アースドライブ
         value: 1
         per_lv: 3
@@ -480,14 +480,14 @@ card_list:
         entity_list:
           - card_name: 豪傑
         capabilities:
-          - type: スキル消費SP固定値減少
+          - name: スキル消費SP固定値減少
             skill: アースドライブ
             value: 83
   - name: 潜在覚醒(アックストルネードI)
     desc: "豪傑と共に装備時、特定条件下で[アックストルネード]のダメージ増加効果が発動しない<br>・特定条件<br>[グレースマグマスーツ]と[ノブレスオブリージュ]のセット効果発動（計算機未実装）"
     type: エンチャント
     capabilities: 
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: アックストルネード
         value: 1
         per_lv: 2
@@ -496,7 +496,7 @@ card_list:
         entity_list:
           - card_name: 豪傑
         capabilities:
-          - type: スキルダメージ増加
+          - name: スキルダメージ増加
             skill: アックストルネード
             value: 1
             per_lv: 2
@@ -504,7 +504,7 @@ card_list:
     desc: "豪傑と共に装備時、特定条件下で[アックスブーメラン]のダメージ増加効果が発動しない<br>・特定条件<br>[グレースマグマスーツ]と[ノブレスオブリージュ]のセット効果発動（計算機未実装）"
     type: エンチャント
     capabilities:
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: アックスブーメラン
         value: 1
         per_lv: 2
@@ -513,7 +513,7 @@ card_list:
         entity_list:
           - card_name: 豪傑
         capabilities:
-          - type: スキルダメージ増加
+          - name: スキルダメージ増加
             skill: アックスブーメラン
             value: 1
             per_lv: 2
@@ -521,7 +521,7 @@ card_list:
     desc: "豪傑と共に装備時、特定条件下で[イグニッションブレイク]の再使用待機時間減少効果が発動しない<br>・特定条件<br>[ジャスパーサークレット]装備<br>[アスモデウスの翼]装備（計算機未実装）"
     type: エンチャント
     capabilities:
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: イグニッションブレイク
         value: 1
         per_lv: 2
@@ -530,14 +530,14 @@ card_list:
         entity_list:
           - card_name: 豪傑
         capabilities:
-          - type: スキルクールタイムミリ秒減少
+          - name: スキルクールタイムミリ秒減少
             skill: イグニッションブレイク
             value: 2500
   - name: 潜在覚醒(イヌハッカメテオI)
     type: エンチャント
     desc: "（計算機暫定対応）[真理の解放]と共に装備時、追加で魔法攻撃命中時、一定確率で10秒間、[イヌハッカメテオ]の消費SP - 79"
     capabilities:
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: イヌハッカメテオ
         value: 1
         per_lv: 5
@@ -546,14 +546,14 @@ card_list:
         entity_list:
           - card_name: 真理の解放
         capabilities:
-          - type: スキル消費SP固定値減少
+          - name: スキル消費SP固定値減少
             skill: イヌハッカメテオ
             value: 79
   - name: 潜在覚醒(エスパI)
     desc: "真理の解放と装備時、特定条件下で[エスパ]のダメージ増加効果が発動しない<br>・特定条件<br>[グレーススカルローブ]と[ノブレスオブリージュ]のセット効果発動（計算機未実装）"
     type: エンチャント
     capabilities:
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: エスパ
         value: 1
         per_lv: 5
@@ -562,7 +562,7 @@ card_list:
         entity_list:
           - card_name: 真理の解放
         capabilities:
-          - type: スキルダメージ増加
+          - name: スキルダメージ増加
             skill: エスパ
             value: 1
             per_lv: 2
@@ -570,7 +570,7 @@ card_list:
     type: エンチャント
     desc: "（計算機暫定対応）[豪傑]と共に装備時、追加で物理攻撃命中時、一定確率で10秒間、[カートキャノン]の消費SP - 49"    
     capabilities:
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: カートキャノン
         value: 1
         per_lv: 2
@@ -579,14 +579,14 @@ card_list:
         entity_list:
           - card_name: 豪傑
         capabilities:
-          - type: スキル消費SP固定値減少
+          - name: スキル消費SP固定値減少
             skill: カートキャノン
             value: 49
   - name: 潜在覚醒(カートトルネードI)
     type: エンチャント
     desc: "（計算機暫定対応）[豪傑]と共に装備時、追加で物理攻撃命中時、一定確率で10秒間、[カートトルネード]の消費SP - 19"    
     capabilities:
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: カートトルネード
         value: 1
         per_lv: 2
@@ -595,14 +595,14 @@ card_list:
         entity_list:
           - card_name: 豪傑
         capabilities:
-          - type: スキル消費SP固定値減少
+          - name: スキル消費SP固定値減少
             skill: カートトルネード
             value: 19
   - name: 潜在覚醒(キャロットビートI)
     desc: "[豪傑]と共に装備時、特定条件下で[キャロットビート]の再使用待機時間減少効果が発動しない<br>・特定条件<br>[よちよちウリボウスタイ]装備<br>[ノブレスオブリージュ]と[グレースアニマルローブ]のセット効果発動（計算機未実装）"
     type: エンチャント
     capabilities:
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: キャロットビート
         value: 1
         per_lv: 5
@@ -611,14 +611,14 @@ card_list:
         entity_list:
           - card_name: 豪傑
         capabilities:
-          - type: スキルクールタイムミリ秒減少
+          - name: スキルクールタイムミリ秒減少
             skill: キャロットビート
             value: 300
   - name: 潜在覚醒(クリムゾンロックI)
     desc: "[真理の解放]と共に装備時、特定条件下で[クリムゾンロック]のダメージ増加効果が発動しない<br>・特定条件<br>[グレースパニッシュメントローブ]装備（計算機未実装）"
     type: エンチャント
     capabilities:
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: クリムゾンロック
         value: 1
         per_lv: 5
@@ -627,7 +627,7 @@ card_list:
         entity_list:
           - card_name: 真理の解放
         capabilities:
-          - type: スキルダメージ増加
+          - name: スキルダメージ増加
             skill: クリムゾンロック
             value: 1
             per_lv: 2
@@ -635,18 +635,18 @@ card_list:
     desc: "（計算機暫定対応）[豪傑]と共に装備時、追加で[クロスリッパースラッシャー]使用時、10秒間、[ローリングカッター]で与えるダメージ + 150%"
     type: エンチャント
     capabilities:
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: クロスリッパースラッシャー
         value: 1
         per_lv: 2
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: ローリングカッター
         value: 150
   - name: 潜在覚醒(サイキックウェーブI)
     desc: "[真理の解放]と共に装備時、特定条件下で[サイキックウェーブ]の再使用待機時間減少効果が発動しない<br>・特定条件<br>[古代龍の宝冠]装備<br>[赤い猫耳魔女帽子]装備<br>[双魚宮のダイアデム]と[ゾディアック]のセット効果発動（計算機未実装）"
     type: エンチャント
     capabilities:
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: サイキックウェーブ
         value: 1
         per_lv: 3
@@ -655,14 +655,14 @@ card_list:
         entity_list:
           - card_name: 真理の解放
         capabilities:
-          - type: スキルクールタイムミリ秒減少
+          - name: スキルクールタイムミリ秒減少
             skill: サイキックウェーブ
             value: 2000
   - name: 潜在覚醒(サベージの魂II)
     desc: "[豪傑]と共に装備時、追加で物理攻撃命中時、一定確率で15秒間、[猪突猛進]状態になる（計算機未実装）"
     type: エンチャント
     capabilities:
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: サベージの魂
         value: 1
         per_lv: 5
@@ -670,7 +670,7 @@ card_list:
     desc: "（計算機暫定対応）[豪傑]と共に装備時、追加で物理攻撃命中時、一定確率で10秒間、[シールドプレス]の消費SP - 27"
     type: エンチャント
     capabilities:
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: シールドプレス
         value: 1
         per_lv: 2
@@ -679,14 +679,14 @@ card_list:
         entity_list:
           - card_name: 豪傑
         capabilities:
-          - type: スキル消費SP固定値減少
+          - name: スキル消費SP固定値減少
             skill: シールドプレス
             value: 27
   - name: 潜在覚醒(シビアレインストームII)
     desc: "[豪傑]と共に装備時、特定条件下で[シビアレインストーム]の再使用待機時間減少効果が発動しない<br>・特定条件<br>[嵐の弓]装備<br>[暴威のマフラー]装備<br>[グレースレインストームスーツ]装備<br>[エルヴンボウ]と[スカラバハイヒール]のセット効果発動（計算機未実装）"
     type: エンチャント
     capabilities:
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: シビアレインストーム
         value: 1
         per_lv: 3
@@ -695,14 +695,14 @@ card_list:
         entity_list:
           - card_name: 豪傑
         capabilities:
-          - type: スキルクールタイムミリ秒減少
+          - name: スキルクールタイムミリ秒減少
             skill: シビアレインストーム
             value: 2000
   - name: 潜在覚醒(スポアエクスプロージョンI)
     type: エンチャント
     desc: "（計算機暫定対応）[豪傑]と共に装備時、追加で物理攻撃命中時、一定確率で10秒間、[スポアエクスプロージョン]の消費SP - 99"
     capabilities:
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: スポアエクスプロージョン
         value: 1
         per_lv: 2
@@ -711,14 +711,14 @@ card_list:
         entity_list:
           - card_name: 豪傑
         capabilities:
-          - type: スキル消費SP固定値減少
+          - name: スキル消費SP固定値減少
             skill: スポアエクスプロージョン
             value: 99
   - name: 潜在覚醒(ソウルエクスパンションI)
     desc: "[真理の解放]と共に装備時、特定条件下で[ソウルエクスパンション]のダメージ増加効果が発動しない<br>・特定条件<br>[グレースパニッシュメントローブ]と[ノブレスオブリージュ]のセット効果発動（計算機未実装）"
     type: エンチャント
     capabilities:
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: ソウルエクスパンション
         value: 1
         per_lv: 5
@@ -727,7 +727,7 @@ card_list:
         entity_list:
           - card_name: 真理の解放
         capabilities:
-          - type: スキルダメージ増加
+          - name: スキルダメージ増加
             skill: ソウルエクスパンション
             value: 1
             per_lv: 3
@@ -735,7 +735,7 @@ card_list:
     type: エンチャント
     desc: "（計算機暫定対応）[豪傑]と共に装備時、追加で物理攻撃命中時、一定確率で10秒間、[ソニックウェーブ]の消費SP - 56"
     capabilities:
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: ソニックウェーブ
         value: 1
         per_lv: 2
@@ -744,14 +744,14 @@ card_list:
         entity_list:
           - card_name: 豪傑
         capabilities:
-          - type: スキル消費SP固定値減少
+          - name: スキル消費SP固定値減少
             skill: ソニックウェーブ
             value: 56
   - name: 潜在覚醒(トライアングルショットI)
     type: エンチャント
     desc: "（計算機暫定対応）[豪傑]と共に装備時、追加で物理攻撃命中時、一定確率で10秒間、[トライアングルショット]の消費SP - 17"
     capabilities:
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: トライアングルショット
         value: 1
         per_lv: 3
@@ -760,14 +760,14 @@ card_list:
         entity_list:
           - card_name: 豪傑
         capabilities:
-          - type: スキル消費SP固定値減少
+          - name: スキル消費SP固定値減少
             skill: トライアングルショット
             value: 17
   - name: 潜在覚醒(バニシングポイントI)
     type: エンチャント
     desc: "（計算機暫定対応）[豪傑]と共に装備時、追加で物理攻撃命中時、一定確率で10秒間、[バニシングポイント]の消費SP - 24"
     capabilities:
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: バニシングポイント
         value: 1
         per_lv: 1
@@ -776,14 +776,14 @@ card_list:
         entity_list:
           - card_name: 豪傑
         capabilities:
-          - type: スキル消費SP固定値減少
+          - name: スキル消費SP固定値減少
             skill: バニシングポイント
             value: 24
   - name: 潜在覚醒(パワースイングI)
     type: エンチャント
     desc: "（計算機暫定対応）[豪傑]と共に装備時、追加で物理攻撃命中時、一定確率で10秒間、[パワースイング]の消費SP - 27"
     capabilities:
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: パワースイング
         value: 1
         per_lv: 2
@@ -792,14 +792,14 @@ card_list:
         entity_list:
           - card_name: 豪傑
         capabilities:
-          - type: スキル消費SP固定値減少
+          - name: スキル消費SP固定値減少
             skill: パワースイング
             value: 27
   - name: 潜在覚醒(ファイアーレインI)
     desc: "[豪傑]と共に装備時、特定条件下で[ファイアーレイン]のダメージ増加効果が発動しない<br>・特定条件<br>[グレースガトリングスーツ]装備<br>[ジャガーノート]装備（計算機未実装）"
     type: エンチャント
     capabilities:
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: ファイアーレイン
         value: 1
         per_lv: 2
@@ -808,7 +808,7 @@ card_list:
         entity_list:
           - card_name: 豪傑
         capabilities:
-          - type: スキルダメージ増加
+          - name: スキルダメージ増加
             skill: ファイアーレイン
             value: 1
             per_lv: 1
@@ -816,7 +816,7 @@ card_list:
     type: エンチャント
     desc: "（計算機暫定対応）[豪傑]と共に装備時、追加で物理攻撃命中時、一定確率で10秒間、[フェイタルメナス]の消費SP - 46"
     capabilities:
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: フェイタルメナス
         value: 1
         per_lv: 3
@@ -825,14 +825,14 @@ card_list:
         entity_list:
           - card_name: 豪傑
         capabilities:
-          - type: スキル消費SP固定値減少
+          - name: スキル消費SP固定値減少
             skill: フェイタルメナス
             value: 46        
   - name: 潜在覚醒(ヘルインフェルノI)
     type: エンチャント
     desc: "（計算機暫定対応）[真理の解放]と共に装備時、追加で魔法攻撃命中時、一定確率で10秒間、[ヘルインフェルノ]の消費SP - 29"
     capabilities:
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: ヘルインフェルノ
         value: 1
         per_lv: 2
@@ -841,14 +841,14 @@ card_list:
         entity_list:
           - card_name: 真理の解放
         capabilities:
-          - type: スキル消費SP固定値減少
+          - name: スキル消費SP固定値減少
             skill: ヘルインフェルノ
             value: 29        
   - name: 潜在覚醒(マタタビランスI)
     type: エンチャント
     desc: "（計算機暫定対応）[真理の解放]と共に装備時、追加で魔法攻撃命中時、一定確率で10秒間、[マタタビランス]の消費SP - 29"
     capabilities:
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: マタタビランス
         value: 1
         per_lv: 5
@@ -857,14 +857,14 @@ card_list:
         entity_list:
           - card_name: 真理の解放
         capabilities:
-          - type: スキル消費SP固定値減少
+          - name: スキル消費SP固定値減少
             skill: マタタビランス
             value: 29             
   - name: 潜在覚醒(メタリックサウンドI)
     type: エンチャント
     desc: "（計算機暫定対応）[真理の解放]と共に装備時、追加で魔法攻撃命中時、一定確率で10秒間、[メタリックサウンド]の消費SP - 24"
     capabilities:
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: メタリックサウンド
         value: 1
         per_lv: 3
@@ -873,14 +873,14 @@ card_list:
         entity_list:
           - card_name: 真理の解放
         capabilities:
-          - type: スキル消費SP固定値減少
+          - name: スキル消費SP固定値減少
             skill: メタリックサウンド
             value: 24        
   - name: 潜在覚醒(ラウンドトリップI)
     desc: "[豪傑]と共に装備時、特定条件下で[ラウンドトリップ]のダメージ増加効果が発動しない<br>・特定条件<br>[ノブレスオブリージュ]と[グレースガトリングスーツ]のセット効果発動（計算機未実装）"
     type: エンチャント
     capabilities:
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: ラウンドトリップ
         value: 1
         per_lv: 2
@@ -889,7 +889,7 @@ card_list:
         entity_list:
           - card_name: 豪傑
         capabilities:
-          - type: スキルダメージ増加
+          - name: スキルダメージ増加
             skill: ラウンドトリップ
             value: 3
             per_lv: 1
@@ -897,18 +897,18 @@ card_list:
     desc: "[真理の解放]と共に装備時、追加で[プレッシャー]使用時、一定確率で敵を中心にオートスペル[レイオブジェネシス]Lv3発動<br>[レイオブジェネシス]の習得Lvが4以上の場合、習得Lvで発動"
     type: エンチャント
     capabilities:
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: レイオブジェネシス
         value: 1
         per_lv: 3
-      - type: オートスペル発動（説明非表示）
+      - name: オートスペル発動（説明非表示）
         skill: レイオブジェネシス
         skill_lv: 10
   - name: 潜在覚醒(ローリングカッターI)
     desc: "[豪傑]と共に装備時、特定条件下で[ローリングカッター]のダメージ増加効果が発動しない<br>・特定条件<br>[天蝎宮のシューズ]装備<br>[再生の思念体シューズ]と[リッパークロス]のセット効果発動<br>[エンドオブザワールド]装備（計算機未実装）"
     type: エンチャント
     capabilities:
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: ローリングカッター
         value: 1
         per_lv: 2
@@ -917,7 +917,7 @@ card_list:
         entity_list:
           - card_name: 豪傑
         capabilities:
-          - type: スキルダメージ増加
+          - name: スキルダメージ増加
             skill: ローリングカッター
             value: 2
             per_lv: 1
@@ -925,7 +925,7 @@ card_list:
     desc: "[豪傑]と共に装備時、特定条件下で[獅子吼]の再使用待機時間減少効果が発動しない<br>・特定条件<br>[悪魔の手]装備<br>[怨霊怪異の耳]装備<br>[天魔外道の外套]装備（計算機未実装）"
     type: エンチャント
     capabilities:
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: 獅子吼
         value: 1
         per_lv: 1
@@ -934,14 +934,14 @@ card_list:
         entity_list:
           - card_name: 豪傑
         capabilities:
-          - type: スキルクールタイムミリ秒減少
+          - name: スキルクールタイムミリ秒減少
             skill: 獅子吼
             value: 9700
   - name: 潜在覚醒(死霊爆発I)
     desc: "[真理の解放]と共に装備時、特定条件下で[死霊爆発]のダメージ増加効果が発動しない<br>・特定条件<br>[グレーススカルローブ]と[ノブレスオブリージュ]のセット効果発動（計算機未実装）"
     type: エンチャント
     capabilities:
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: 死霊爆発
         value: 1
         per_lv: 5
@@ -950,7 +950,7 @@ card_list:
         entity_list:
           - card_name: 真理の解放
         capabilities:
-          - type: スキルダメージ増加
+          - name: スキルダメージ増加
             skill: 死霊爆発
             value: 1
             per_lv: 2
@@ -958,7 +958,7 @@ card_list:
     desc: "[豪傑]と共に装備時、特定条件下で[天羅地網]のダメージ増加効果が発動しない<br>・特定条件<br>[獅子宮のリング]装備<br>[辰戌の腕輪]装備<br>[グレース天地スーツ]と[ノブレスオブリージュ]のセット効果発動（計算機未実装）"
     type: エンチャント
     capabilities:
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: 天羅地網
         value: 1
         per_lv: 2
@@ -967,7 +967,7 @@ card_list:
         entity_list:
           - card_name: 豪傑
         capabilities:
-          - type: スキルダメージ増加
+          - name: スキルダメージ増加
             skill: 天羅地網
             value: 2
             per_lv: 1
@@ -975,7 +975,7 @@ card_list:
     desc: "[豪傑]と共に装備時、特定条件下で[爆気散弾]の再使用待機時間減少効果が発動しない<br>・特定条件<br>[イラフィースト]装備<br>[サンクトゥス]装備<br>[覇王]と[アーヌルス イラ]のセット効果発動（計算機未実装）"
     type: エンチャント
     capabilities:
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: 爆気散弾
         value: 1
         per_lv: 2
@@ -984,14 +984,14 @@ card_list:
         entity_list:
           - card_name: 豪傑
         capabilities:
-          - type: スキルクールタイムミリ秒減少
+          - name: スキルクールタイムミリ秒減少
             skill: 爆気散弾
             value: 9700
   - name: 潜在覚醒(風魔手裏剣 -乱華-I)
     type: エンチャント
     desc: "（計算機暫定対応）[豪傑]と共に装備時、追加で物理攻撃命中時、一定確率で10秒間、[風魔手裏剣 -乱華-]の消費SP - 59"
     capabilities:
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: 風魔手裏剣 -乱華-
         value: 1
         per_lv: 4
@@ -1000,14 +1000,14 @@ card_list:
         entity_list:
           - card_name: 豪傑
         capabilities:
-          - type: スキル消費SP固定値減少
+          - name: スキル消費SP固定値減少
             skill: 風魔手裏剣 -乱華-
             value: 59       
   - name: 潜在覚醒(雷光弾I)
     type: エンチャント
     desc: "[豪傑]と共に装備時、追加で物理攻撃命中時、一定確率で15秒間、[雷光弾]使用時、オートスペル[練気功]Lv1発動（計算機未実装）"
     capabilities:
-      - type: スキルダメージ増加
+      - name: スキルダメージ増加
         skill: 雷光弾
         value: 1
         per_lv: 2
@@ -1019,10 +1019,10 @@ card_list:
         entity_list:
           - card_name: 真理の解放
         capabilities:
-          - type: スキル固定詠唱割合減少
+          - name: スキル固定詠唱割合減少
             skill: クリムゾンロック
             value: 100
-          - type: スキルクールタイムミリ秒減少
+          - name: スキルクールタイムミリ秒減少
             skill: テレキネシスインテンス
             value: 185000
   - name: 潜在解放(サモナーII)
@@ -1033,10 +1033,10 @@ card_list:
         entity_list:
           - card_name: 真理の解放
         capabilities:
-          - type: スキル消費SP固定値減少
+          - name: スキル消費SP固定値減少
             skill: イヌハッカメテオ
             value: 79
-          - type: スキル消費SP固定値減少
+          - name: スキル消費SP固定値減少
             skill: マタタビランス
             value: 29
   - name: 潜在解放(ジェネティックII)
@@ -1047,10 +1047,10 @@ card_list:
         entity_list:
           - card_name: 豪傑
         capabilities:
-          - type: スキルクールタイムミリ秒減少
+          - name: スキルクールタイムミリ秒減少
             skill: カートトルネード
             value: 200
-          - type: 必中
+          - name: 必中
             value: 100
   - name: 潜在解放(シャドウチェイサーII)
     type: エンチャント
@@ -1060,7 +1060,7 @@ card_list:
         entity_list:
           - card_name: 豪傑
         capabilities:
-          - type: スキル使用可能
+          - name: スキル使用可能
             skill: アンリミット
             skill_lv: 5
   - name: 潜在解放(レンジャーII)
@@ -1071,10 +1071,10 @@ card_list:
         entity_list:
           - card_name: 豪傑
         capabilities:
-          - type: スキルクールタイムミリ秒減少
+          - name: スキルクールタイムミリ秒減少
             skill: アローストーム
             value: 200
-          - type: スキルクールタイムミリ秒減少
+          - name: スキルクールタイムミリ秒減少
             skill: アンリミット
             value: 24000
   - name: 潜在解放(修羅II)
@@ -1085,88 +1085,88 @@ card_list:
         entity_list:
           - card_name: 豪傑
         capabilities:
-          - type: スキルクールタイムミリ秒減少
+          - name: スキルクールタイムミリ秒減少
             skill: 吸気功
             value: 30000
-          - type: 完全回避
+          - name: 完全回避
             value: 95
   - name: 魔獣の爪牙
     type: エンチャント
     desc: "（計算機暫定対応）物理・魔法攻撃命中時、一定確率で10秒間、Pow + 100"
     capabilities:
-      - type: Pow上昇
+      - name: Pow上昇
         value: 100
   - name: 不滅の肉体
     type: エンチャント
     desc: "（計算機暫定対応）物理・魔法攻撃命中時、一定確率で10秒間、Sta + 100"
     capabilities:
-      - type: Sta上昇
+      - name: Sta上昇
         value: 100
   - name: 叡知の王冠
     type: エンチャント
     desc: "（計算機暫定対応）物理・魔法攻撃命中時、一定確率で10秒間、Wis + 100"
     capabilities:
-      - type: Wis上昇
+      - name: Wis上昇
         value: 100
   - name: 根源への到達
     type: エンチャント
     desc: "（計算機暫定対応）物理・魔法攻撃命中時、一定確率で10秒間、Spl + 100"
     capabilities:
-      - type: Spl上昇
+      - name: Spl上昇
         value: 100
   - name: 蒼穹の覇者
     type: エンチャント
     desc: "（計算機暫定対応）物理・魔法攻撃命中時、一定確率で10秒間、Con + 100"
     capabilities:
-      - type: Con上昇
+      - name: Con上昇
         value: 100
   - name: 天与の才
     type: エンチャント
     desc: "（計算機暫定対応）物理・魔法攻撃命中時、一定確率で10秒間、Crt + 100"
     capabilities:
-      - type: Crt上昇
+      - name: Crt上昇
         value: 100
 
   - name: エクストラジョーカー
     type: 肩
     capabilities:
-      - type: 遠距離ダメージ増加
+      - name: 遠距離ダメージ増加
         value: 5
     set_list:
       - set:
         entity_list:
           - item_name: 銀の矢
         capabilities:
-          - type: 聖属性耐性
+          - name: 聖属性耐性
             value: 50
   - name: エルジェーベト
     type: 武器
     desc: "（計算機暫定対応）物理攻撃命中時、一定確率で敵にオートスペル[ヘルインフェルノ]Lv3発動"
     capabilities:
-      - type: オートスペル発動（説明非表示）
+      - name: オートスペル発動（説明非表示）
         skill: ヘルインフェルノ
         skill_lv: 3
   - name: ジェニファー
     type: アクセサリー
     capabilities:
-      - type: 毒属性魔法ダメージ増加
+      - name: 毒属性魔法ダメージ増加
         value: 10
   - name: ジクラウス
     type: 鎧
     capabilities:
-      - type: 動物型への物理ダメージ増加
+      - name: 動物型への物理ダメージ増加
         value: 1
         per_refine: 1
-      - type: 動物型への物理ダメージ増加
+      - name: 動物型への物理ダメージ増加
         value: 10
         at_refine: 9
   - name: ゴブリンキング
     type: 鎧
     capabilities:
-      - type: クリティカルダメージ増加
+      - name: クリティカルダメージ増加
         value: 2
         per_status_10: Luk
-      - type: クリティカルダメージ増加
+      - name: クリティカルダメージ増加
         value: 20
         at_status_130: Luk
     set_list:
@@ -1174,9 +1174,9 @@ card_list:
         entity_list:
           - card_name: 厄災の魔将
         capabilities:
-          - type: MAXHP増加
+          - name: MAXHP増加
             value: 50
-          - type: スキル使用可能
+          - name: スキル使用可能
             skill: ヘッドクラッシュ
             skill_lv: 5
 
