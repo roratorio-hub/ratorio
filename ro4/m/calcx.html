@@ -241,90 +241,31 @@
 	<script type="text/javascript" src="js/castsim.js"></script>
 	<script type="text/javascript" src="js/browsermigration.js"></script>
 
-	<!-- 検索可能ドロップダウンリスト用 -->
+	<!-- ここからjQuery -->
 	<script src="../../jquery/jquery.min.js"></script>
-	<link href="../../jquery/select2.min.css" rel="stylesheet" />
-	<link href="../../jquery/select2.custom.css" rel="stylesheet" />
-	<script src="../../jquery/select2.min.js"></script>
+	<!-- カードセレクトリストの50音順並び替え -->
+	<script src="../../jquery/custom/custom.js"></script>
+	<!-- アイテム多すぎて選ぶの大変だから検索可能ドロップダウンリストに置き換え -->
+	<link href="../../jquery/select2/select2.min.css" rel="stylesheet" />
+	<link href="../../jquery/select2/select2.custom.css" rel="stylesheet" />
+	<script src="../../jquery/select2/select2.min.js"></script>
+	<script src="../../jquery/select2/select2.custom.js"></script>
+	<!-- jQuery function 初回実行 -->
 	<script>
-		$.fn.select2.defaults.set("dropdownAutoWidth", "true");
-		$.fn.select2.defaults.set("width", "auto");
-
-		$.fn.select2.defaults.set("minimumResultsForSearch", "6");
-		function LoadSelect2() {
-			$('#OBJID_SELECT_JOB').select2();
-			$('#OBJID_ARMS_RIGHT').select2();
-			$('#OBJID_ARMS_RIGHT_CARD_1').select2();
-			$('#OBJID_ARMS_RIGHT_CARD_2').select2();
-			$('#OBJID_ARMS_RIGHT_CARD_3').select2();
-			$('#OBJID_ARMS_RIGHT_CARD_4').select2();
-			$('#OBJID_ARMS_LEFT').select2();
-			$('#OBJID_ARMS_LEFT_CARD_1').select2();
-			$('#OBJID_ARMS_LEFT_CARD_2').select2();
-			$('#OBJID_ARMS_LEFT_CARD_3').select2();
-			$('#OBJID_ARMS_LEFT_CARD_4').select2();
-			$('#OBJID_HEAD_TOP').select2();
-			$('#OBJID_HEAD_TOP_CARD_1').select2();
-			$('#OBJID_HEAD_TOP_CARD_2').select2();
-			$('#OBJID_HEAD_TOP_CARD_3').select2();
-			$('#OBJID_HEAD_TOP_CARD_4').select2();
-			$('#OBJID_HEAD_MID').select2();
-			$('#OBJID_HEAD_MID_CARD_1').select2();
-			$('#OBJID_HEAD_MID_CARD_2').select2();
-			$('#OBJID_HEAD_MID_CARD_3').select2();
-			$('#OBJID_HEAD_MID_CARD_4').select2();
-			$('#OBJID_HEAD_UNDER').select2();
-			$('#OBJID_SHIELD').select2();
-			$('#OBJID_SHIELD_CARD_1').select2();
-			$('#OBJID_SHIELD_CARD_2').select2();
-			$('#OBJID_SHIELD_CARD_3').select2();
-			$('#OBJID_SHIELD_CARD_4').select2();
-			$('#OBJID_BODY').select2();
-			$('#OBJID_BODY_CARD_1').select2();
-			$('#OBJID_BODY_CARD_2').select2();
-			$('#OBJID_BODY_CARD_3').select2();
-			$('#OBJID_BODY_CARD_4').select2();
-			$('#OBJID_SHOULDER').select2();
-			$('#OBJID_SHOULDER_CARD_1').select2();
-			$('#OBJID_SHOULDER_CARD_2').select2();
-			$('#OBJID_SHOULDER_CARD_3').select2();
-			$('#OBJID_SHOULDER_CARD_4').select2();
-			$('#OBJID_SHOES').select2();
-			$('#OBJID_SHOES_CARD_1').select2();
-			$('#OBJID_SHOES_CARD_2').select2();
-			$('#OBJID_SHOES_CARD_3').select2();
-			$('#OBJID_SHOES_CARD_4').select2();
-			$('#OBJID_ACCESSARY_1').select2();
-			$('#OBJID_ACCESSARY_1_CARD_1').select2();
-			$('#OBJID_ACCESSARY_1_CARD_2').select2();
-			$('#OBJID_ACCESSARY_1_CARD_3').select2();
-			$('#OBJID_ACCESSARY_1_CARD_4').select2();
-			$('#OBJID_ACCESSARY_2').select2();
-			$('#OBJID_ACCESSARY_2_CARD_1').select2();			
-			$('#OBJID_ACCESSARY_2_CARD_2').select2();			
-			$('#OBJID_ACCESSARY_2_CARD_3').select2();			
-			$('#OBJID_ACCESSARY_2_CARD_4').select2();			
-		};
 		$(document).ready(function() {
+			SortCardSelectOption();
 			LoadSelect2();
 		});		
 	</script>
-
 </head>
 
-
-
-
 <body>
-
 	<table>
 		<tr>
 			<td style="min-width:120px; border-right: 1px solid gray; white-space: normal; vertical-align: top;">
 				<span id="ID_FRAME"></span>
 				<br>
 			</td>
-
-
 
 			<td style="white-space: normal; vertical-align: top;">
 
@@ -364,8 +305,6 @@
 										</div>
 									</div>
 								</div>
-	
-
 
 								<table>
 									<tr>
@@ -390,7 +329,7 @@
 														<td style="min-width: 7em;"><select id="OBJID_SELECT_JOB_LEVEL" name="A_JobLV"onChange="StAllCalc()"></select></td>
 
 														<td style="min-width: 4em; text-align:center;">職業</td>
-														<td style="min-width: 7em;"><select id="OBJID_SELECT_JOB" name="A_JOB" onChange="OnChangeJobSelect(this.value) | StAllCalc() | CalcStatusPoint(false) | LoadSelect2()"></select></td>
+														<td style="min-width: 7em;"><select id="OBJID_SELECT_JOB" name="A_JOB" onChange="OnChangeJobSelect(this.value) | StAllCalc() | CalcStatusPoint(false) | LoadSelect2() | SortCardSelectOption()"></select></td>
 													</tr>
 
 													<tr>
@@ -432,13 +371,10 @@
 															<span id="OBJID_SPAN_STATUS_BONUS_LUK"></span>
 														</td>
 													</tr>
-
 												</table>
-
 
 												<div id="OBJID_DIV_STATUS_NOTICE">
 												</div>
-
 
 												<table border="1">
 													<tr>
@@ -446,10 +382,6 @@
 														<td style="min-width: 4em; text-align: right; padding-right: 0.5em;"><span id = "A_STPOINT">0000</span></td>
 													</tr>
 												</table>
-
-
-
-
 
 												<table id="OBJID_TABLE_SPEC_STATUS" border="1" style="margin-top: 1em;">
 													<tr>
@@ -1846,10 +1778,6 @@
 							</tbody>
 						</table>
 
-
-
-
-
 						<hr>
 
 						<p>
@@ -1859,9 +1787,6 @@
 						</p>
 
 						<hr>
-
-
-
 
 						<p style="font-weight: bold;">
 							次世代版でのURL出力／URL入力は、セーブ欄から行うようになります。<br>
@@ -1908,20 +1833,12 @@
 							</tr>
 							<tr>
 								<td colspan="2">
-									※URL を入力してボタンを押すと、解析してデータを表示します。旧計算機の URL も使えます。
+									※URL を入力してボタンを押すと、解析してデータを表示します。
 								</td>
 							</tr>
 						</table>
 
-
-
-
-
 						<hr>
-
-
-
-
 
 						<table>
 							<tbody>
@@ -1932,10 +1849,6 @@
 							</tbody>
 						</table>
 
-
-
-
-
 						<table>
 							<tbody>
 								<tr>
@@ -1945,8 +1858,6 @@
 							</tbody>
 						</table>
 
-
-
 						<table>
 							<tbody>
 								<tr>
@@ -1955,8 +1866,6 @@
 								</tr>
 							</tbody>
 						</table>
-
-
 
 						<table>
 							<tbody>
@@ -2146,5 +2055,4 @@
 <script type="text/javascript" src="js/migration/debug/test/CMigTestAreaComponentManager.js"></script>
 <script type="text/javascript" src="js/migration/mig.test.js"></script>
 -->
-
 </html>

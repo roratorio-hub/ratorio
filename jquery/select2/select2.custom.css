@@ -22,3 +22,7 @@
 .select2-container--disabled {
     display: none;
 }
+/* ドロップダウンリストが狭すぎたのでサイズ拡大 */
+.select2-results__options {
+    max-height: 400px !important; 
+}
