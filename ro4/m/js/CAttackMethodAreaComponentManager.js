@@ -3334,8 +3334,10 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 				],
 				5
 			);
-			break;
-
+			// スピリットハンドラーではない場合、レインボーホーンを選択させない
+			if (!IsSameJobClass(MIG_JOB_ID_SPIRIT_HANDLER)) {
+				break;
+			}
 			// オプションリストを生成、追加
 			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
 				"レインボーホーン",

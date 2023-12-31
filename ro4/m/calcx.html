@@ -315,7 +315,7 @@
 													<tr>
 														<td colSpan="6" bgcolor="#DDDDFF">
 															<span>基本ステータス</span>
-															　　　　
+															
 															<input id="OBJID_CHECK_AUTO_BASE_LEVEL" type="checkbox" name="BLVauto" checked="checked">
 															<label for="OBJID_CHECK_AUTO_BASE_LEVEL">BaseLVを自動調節する</label>
 														</td>
@@ -1822,7 +1822,7 @@
 						<table>
 							<tr>
 								<td>
-									<input type="button" id="OBJID_BUTTON_URL_IN" value="URL入力" onclick="OnClickUrlIn()">
+									<input type="button" id="OBJID_BUTTON_URL_IN" value="URL入力" onclick="OnClickUrlIn() | LoadSelect2()">
 								</td>
 								<td>
 									<input type="text" id="OBJID_URL_IN" value="" size=130>
