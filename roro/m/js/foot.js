@@ -16774,11 +16774,23 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 		//----------------------------------------------------------------
 		if ((cardCount = CardNumSearch(CARD_ID_ICE_FUNAMUSHI)) > 0) {
 
-			// 「推奨の矢」と同時装備
+			// 「水晶の矢」と同時装備
 			if (n_A_Arrow == ARROW_ID_SUISHONO_YA) {
 				n_tok[ITEM_SP_RESIST_ELM_WATER] += 50;
 			}
 		}
+
+		//----------------------------------------------------------------
+		// 「エクストラジョーカー」カードの、矢との同時装備による効果
+		//----------------------------------------------------------------
+		if ((cardCount = CardNumSearch(CARD_ID_EXTRA_JORKER)) > 0) {
+
+			// 「銀の矢」と同時装備
+			if (n_A_Arrow == ARROW_ID_GINNO_YA) {
+				n_tok[ITEM_SP_RESIST_ELM_HOLY] += 50;
+			}
+		}
+
 
 		//----------------------------------------------------------------
 		// 「スプンタアールマティ」の、スキル習得による効果（ペナルティ）
