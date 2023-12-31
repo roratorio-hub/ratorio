@@ -28477,6 +28477,40 @@ function StPlusCalc() {
 	wSPC_CRT += wSPC_SPEC_ALL;
 
 
+	//----------------------------------------------------------------
+	// 「性能カスタマイズ」の、効果
+	//----------------------------------------------------------------
+	confval = g_objCharaConfCustomStatus.GetConf(CCharaConfCustomStatus.CONF_ID_POW_PLUS);
+	if (confval != 0) {
+		wSPC_POW += confval;
+	}
+
+	confval = g_objCharaConfCustomStatus.GetConf(CCharaConfCustomStatus.CONF_ID_STA_PLUS);
+	if (confval != 0) {
+		wSPC_STA += confval;
+	}
+
+	confval = g_objCharaConfCustomStatus.GetConf(CCharaConfCustomStatus.CONF_ID_WIS_PLUS);
+	if (confval != 0) {
+		wSPC_WIS += confval;
+	}
+
+	confval = g_objCharaConfCustomStatus.GetConf(CCharaConfCustomStatus.CONF_ID_SPL_PLUS);
+	if (confval != 0) {
+		wSPC_SPL += confval;
+	}
+
+	confval = g_objCharaConfCustomStatus.GetConf(CCharaConfCustomStatus.CONF_ID_CON_PLUS);
+	if (confval != 0) {
+		wSPC_CON += confval;
+	}
+
+	confval = g_objCharaConfCustomStatus.GetConf(CCharaConfCustomStatus.CONF_ID_CRT_PLUS);
+	if (confval != 0) {
+		wSPC_CRT += confval;
+	}
+
+
 
 	// 「砂時計のネックレス」の効果（ペナルティ）
 	if ((itemCount = EquipNumSearch(ITEM_ID_SUNADOKENO_NECKLACE)) > 0) {
