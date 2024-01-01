@@ -3342,8 +3342,8 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
 				"レインボーホーン",
 				[
-					[ELM_ID_VANITY,	"なし"],
-					[ELM_ID_WATER,	"Lv1:水属性"],
+					[ELM_ID_VANITY,	"なし"],		// 属性は common.js で EnumElmId として定義されている
+					[ELM_ID_WATER,	"Lv1:水属性"],  // ELM_ID_VANITY = 0 から
 					[ELM_ID_WIND,	"Lv2:風属性"],
 					[ELM_ID_EARTH,	"Lv3:地属性"],
 					[ELM_ID_FIRE,	"Lv4:火属性"],

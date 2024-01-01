@@ -7872,8 +7872,13 @@ else {
 		case SKILL_ID_INUHAKKA_METEOR:
 			wActiveHitNum = 7;
 
-//			n_A_Weapon_zokusei = ELM_ID_VANITY;		// 属性付与対応
-			n_A_Weapon_zokusei = attackMethodConfArray[0].GetOptionValue(1);
+			// スピリットハンドラーのレインボーホーン追加に伴い任意の属性を取れるように変更
+			if (attackMethodConfArray[0].optionValueArray.length == 1) {
+				// 属性未定義の場合
+				n_A_Weapon_zokusei = ELM_ID_VANITY;
+			} else {
+				n_A_Weapon_zokusei = attackMethodConfArray[0].GetOptionValue(1); 
+			};
 
 			wbairitu = 700;
 			wHITsuu = attackMethodConfArray[0].GetOptionValue(0) / 2;

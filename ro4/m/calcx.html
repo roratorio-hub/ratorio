@@ -291,7 +291,7 @@
 											</select>
 											<input id="OBJID_INPUT_SAVE_NAME_MIG" type="textbox" size="24" placeholder="名前入力可能（20文字まで）">
 
-											<button id="OBJID_BUTTON_LOAD_SAVE_DATA_MIG" type="button" onclick="OnClickLoadSaveData()">ロード</button>
+											<button id="OBJID_BUTTON_LOAD_SAVE_DATA_MIG" type="button" onclick="OnClickLoadSaveData() | SortCardSelectOption() | LoadSelect2()">ロード</button>
 											<button id="OBJID_BUTTON_SAVE_SAVE_DATA_MIG" type="button" onclick="OnClickSaveSaveData()">セーブ</button>
 											<button id="OBJID_BUTTON_DELETE_SAVE_DATA_MIG" type="button" onclick="OnClickDeleteSaveData()">削除</button>
 
@@ -299,7 +299,7 @@
 											<input id="OBJID_INPUT_URL_OUT_MIG" type="textbox" size="24">
 											<button id="OBJID_BUTTON_COPY_URL_OUT_MIG" type="button" onclick="HtmlCopyToClipboardById('OBJID_INPUT_URL_OUT_MIG')">コピー</button>
 
-											<button id="OBJID_BUTTON_URL_IN_MIG" type="button" onclick="OnClickUrlInMIG()">URL入力</button>
+											<button id="OBJID_BUTTON_URL_IN_MIG" type="button" onclick="OnClickUrlInMIG() | SortCardSelectOption() | LoadSelect2()">URL入力</button>
 											<input id="OBJID_INPUT_URL_IN_MIG" type="textbox" size="24">
 											<button id="OBJID_BUTTON_CLEAR_URL_IN_MIG" type="button" onclick="HtmlSetObjectValueById('OBJID_INPUT_URL_IN_MIG', '')">クリア</button>
 										</div>
@@ -329,7 +329,7 @@
 														<td style="min-width: 7em;"><select id="OBJID_SELECT_JOB_LEVEL" name="A_JobLV"onChange="StAllCalc()"></select></td>
 
 														<td style="min-width: 4em; text-align:center;">職業</td>
-														<td style="min-width: 7em;"><select id="OBJID_SELECT_JOB" name="A_JOB" onChange="OnChangeJobSelect(this.value) | StAllCalc() | CalcStatusPoint(false) | LoadSelect2() | SortCardSelectOption()"></select></td>
+														<td style="min-width: 7em;"><select id="OBJID_SELECT_JOB" name="A_JOB" onChange="OnChangeJobSelect(this.value) | StAllCalc() | CalcStatusPoint(false) | SortCardSelectOption() | LoadSelect2()"></select></td>
 													</tr>
 
 													<tr>
@@ -1822,7 +1822,7 @@
 						<table>
 							<tr>
 								<td>
-									<input type="button" id="OBJID_BUTTON_URL_IN" value="URL入力" onclick="OnClickUrlIn() | LoadSelect2()">
+									<input type="button" id="OBJID_BUTTON_URL_IN" value="URL入力" onclick="OnClickUrlIn() | SortCardSelectOption() | LoadSelect2()">
 								</td>
 								<td>
 									<input type="text" id="OBJID_URL_IN" value="" size=130>
