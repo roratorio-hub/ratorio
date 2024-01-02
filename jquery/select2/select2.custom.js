@@ -12,44 +12,22 @@ const SEARCHABLE_SELECT_LIST = [
     '#OBJID_ARMS_LEFT_CARD_4',
     '#OBJID_HEAD_TOP',
     '#OBJID_HEAD_TOP_CARD_1',
-    '#OBJID_HEAD_TOP_CARD_2',
-    '#OBJID_HEAD_TOP_CARD_3',
-    '#OBJID_HEAD_TOP_CARD_4',
     '#OBJID_HEAD_MID',
     '#OBJID_HEAD_MID_CARD_1',
-    '#OBJID_HEAD_MID_CARD_2',
-    '#OBJID_HEAD_MID_CARD_3',
-    '#OBJID_HEAD_MID_CARD_4',
     '#OBJID_HEAD_UNDER',
     '#OBJID_SHIELD',
     '#OBJID_SHIELD_CARD_1',
-    '#OBJID_SHIELD_CARD_2',
-    '#OBJID_SHIELD_CARD_3',
-    '#OBJID_SHIELD_CARD_4',
     '#OBJID_BODY',
     '#OBJID_BODY_CARD_1',
-    '#OBJID_BODY_CARD_2',
-    '#OBJID_BODY_CARD_3',
-    '#OBJID_BODY_CARD_4',
     '#OBJID_SHOULDER',
     '#OBJID_SHOULDER_CARD_1',
-    '#OBJID_SHOULDER_CARD_2',
-    '#OBJID_SHOULDER_CARD_3',
-    '#OBJID_SHOULDER_CARD_4',
     '#OBJID_SHOES',
     '#OBJID_SHOES_CARD_1',
-    '#OBJID_SHOES_CARD_2',
-    '#OBJID_SHOES_CARD_3',
-    '#OBJID_SHOES_CARD_4',
     '#OBJID_ACCESSARY_1',
     '#OBJID_ACCESSARY_1_CARD_1',
-    '#OBJID_ACCESSARY_1_CARD_2',
-    '#OBJID_ACCESSARY_1_CARD_3',
     '#OBJID_ACCESSARY_1_CARD_4',
     '#OBJID_ACCESSARY_2',
     '#OBJID_ACCESSARY_2_CARD_1',
-    '#OBJID_ACCESSARY_2_CARD_2',
-    '#OBJID_ACCESSARY_2_CARD_3',
     '#OBJID_ACCESSARY_2_CARD_4',
 ];
 $.fn.select2.defaults.set("dropdownAutoWidth", "true");
@@ -58,5 +36,10 @@ $.fn.select2.defaults.set("minimumResultsForSearch", "12");
 function LoadSelect2() {
     SEARCHABLE_SELECT_LIST.forEach((select_id) => {
         $(select_id).select2();
+        // アクセの場合、同一スロットがカードとエンチャントに利用される場合があるので、スロットの状態によって検索機能をON/OFFする
+        var isEnchant = $(select_id + ' option:contains(エンチャントなし)').length > 0;
+        if (isEnchant) {
+            $(select_id).select2('destroy');
+        };
     });
 };
