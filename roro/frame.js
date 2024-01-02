@@ -462,6 +462,13 @@ function SetMainMenuFrame(){
 
 	objA = document.createElement("a");
 	objDivGrp.appendChild(objA);
+	objA.setAttribute("href", "https://discord.gg/wcKE7PkQ9x");
+	objA.setAttribute("target", "_blank");
+	objA.appendChild(document.createTextNode("Discord"));
+	objDivGrp.appendChild(document.createElement("br"));
+
+	objA = document.createElement("a");
+	objDivGrp.appendChild(objA);
 	objA.setAttribute("href", "https://roratorio-hinanjo.net/roro/main/main.html");
 	objA.setAttribute("target", "_blank");
 	objA.appendChild(document.createTextNode("ROラトリオ避難所"));

@@ -14,7 +14,9 @@ const CARD_SELECT_ID = [
     '#OBJID_SHOULDER_CARD_1',
     '#OBJID_SHOES_CARD_1',
     '#OBJID_ACCESSARY_1_CARD_1',
+    '#OBJID_ACCESSARY_1_CARD_4',
     '#OBJID_ACCESSARY_2_CARD_1',
+    '#OBJID_ACCESSARY_2_CARD_4',
     ];
 const PRESERVED_HEAD_OPTIONS = [
     '(カードなし)',
@@ -92,33 +94,38 @@ const PRESERVED_FOOT_OPTIONS = [
 function SortCardSelectOption() {
     CARD_SELECT_ID.forEach((select_id) => {
         var select = $(select_id);
-        var options = select.find('option');
-        // 並びを固定したい先頭要素を保護
-        var preservedHeadMap = {};
-        PRESERVED_HEAD_OPTIONS.forEach(function(option, index) {
-            preservedHeadMap[option] = index;
-        });
-        var preserved_head = options.filter(function() {
-            return preservedHeadMap[this.text] !== undefined;
-        });
-        // 並びを固定したい末尾要素を保護
-        var preservedFootMap = {};
-        var originalOrderFoot = [];
-        PRESERVED_FOOT_OPTIONS.forEach(function(option, index) {
-            preservedFootMap[option] = index;
-        });
-        var preserved_foot = options.filter(function() {
-            return preservedFootMap[this.text] !== undefined;
-        });
-        // 先頭・末尾の要素を削除
-        var rest = options.filter(function() {
-            return preservedHeadMap[this.text] === undefined && preservedFootMap[this.text] === undefined;
-        });
-        // その他の要素を50音順にソート
-        rest.sort(function(a, b) {
-            return a.text.localeCompare(b.text, 'ja');
-        });
-        // 先頭要素 + ソートされた要素 + 末尾要素
-        select.empty().append(preserved_head).append(rest).append(preserved_foot);
+        // アクセの場合、同一スロットがカードとエンチャントに利用される場合がある
+        // エンチャントの場合はソート不要
+        var isEnchant = $(select_id + ' option:contains(エンチャントなし)').length > 0;
+        if (!isEnchant) {
+            var options = select.find('option');
+            // 並びを固定したい先頭要素を保護
+            var preservedHeadMap = {};
+            PRESERVED_HEAD_OPTIONS.forEach(function(option, index) {
+                preservedHeadMap[option] = index;
+            });
+            var preserved_head = options.filter(function() {
+                return preservedHeadMap[this.text] !== undefined;
+            });
+            // 並びを固定したい末尾要素を保護
+            var preservedFootMap = {};
+            var originalOrderFoot = [];
+            PRESERVED_FOOT_OPTIONS.forEach(function(option, index) {
+                preservedFootMap[option] = index;
+            });
+            var preserved_foot = options.filter(function() {
+                return preservedFootMap[this.text] !== undefined;
+            });
+            // 先頭・末尾の要素を削除
+            var rest = options.filter(function() {
+                return preservedHeadMap[this.text] === undefined && preservedFootMap[this.text] === undefined;
+            });
+            // その他の要素を50音順にソート
+            rest.sort(function(a, b) {
+                return a.text.localeCompare(b.text, 'ja');
+            });
+            // 先頭要素 + ソートされた要素 + 末尾要素
+            select.empty().append(preserved_head).append(rest).append(preserved_foot);
+        };
     });
 };
