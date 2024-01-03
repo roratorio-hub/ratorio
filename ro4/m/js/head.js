@@ -2234,7 +2234,12 @@ else {
 			n_Enekyori=1;
 			wActiveHitNum = 3;
 
-			wbairitu = 2000 + 100 * n_A_ActiveSkillLV;
+//			wbairitu = 2000 + 100 * n_A_ActiveSkillLV;	//旧仕様
+			wbairitu = 1000 + 100 * n_A_ActiveSkillLV;	// Lv99まで
+			if(n_A_BaseLV >= 100) {
+				// Lv100以降にボーナスが乗る
+				wbairitu = (wbairitu + (n_A_STR * 100)) * (n_A_BaseLV / 100);
+			}
 
 			//----------------------------------------------------------------
 			// 「サモナー　生命の魂効果<BR>(残りHP)」の、「アニマル系スキル」強化
