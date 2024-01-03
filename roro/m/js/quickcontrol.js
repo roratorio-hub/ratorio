@@ -128,7 +128,7 @@ function OnClickQuickControlSW(){
 	objInput = document.createElement("input");
 	objInput.setAttribute("type", "button");
 	objInput.setAttribute("value", "適用");
-	objInput.setAttribute("onClick", "OnClickQuickControlSetItemPack()");
+	objInput.setAttribute("onClick", "OnClickQuickControlSetItemPack() | SortCardSelectOption() | LoadSelect2()");
 	objTd.appendChild(objInput);
 
 	objTr = document.createElement("tr");
