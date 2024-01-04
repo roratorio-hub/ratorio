@@ -7878,7 +7878,7 @@ else {
 			break;
 
 		case SKILL_ID_INUHAKKA_METEOR:
-			wActiveHitNum = 7;
+//			wActiveHitNum = 7;	// 分割ダメージを削除
 
 			// スピリットハンドラーのレインボーホーン追加に伴い任意の属性を取れるように変更
 			if (attackMethodConfArray[0].optionValueArray.length == 1) {
@@ -7888,7 +7888,12 @@ else {
 				n_A_Weapon_zokusei = attackMethodConfArray[0].GetOptionValue(1); 
 			};
 
-			wbairitu = 700;
+//			wbairitu = 700;		// 旧仕様
+			wbairitu = 400;		// 新仕様
+			if(n_A_BaseLV >= 100) {
+				// Base100以上の場合BaseLvが影響するように変更
+				wbairitu = wbairitu * (n_A_BaseLV / 100);
+			}
 			wHITsuu = attackMethodConfArray[0].GetOptionValue(0) / 2;
 			wCast = 2000;
 			n_Delay[2] = 3000;
