@@ -1,3 +1,7 @@
+"""
+拡張四次職のJOBボーナスを mig.job.dat.js が要求する配列形式に変換するスクリプト
+公式サイトから拾い集めた値をTAB区切りのCSVにしたファイルを食べさせること
+"""
 import os
 import re
 
@@ -15,9 +19,11 @@ for filename in os.listdir(f"{script_dir}/config"):
         for line in lines:
             pattern = r'^(\d+)\t(\d+)\t(\d+)\t(\d+)\t(\d+)\t(\d+)\t(\d+)\t(\d+)\t(\d+)\t(\d+)\t(\d+)\t(\d+)\t(\d+)'
             matche = re.findall(pattern, line)[0]
-            joblv = int(matche[0])
+            # 食べさせたデータの index 0 は JobLv
+            joblv = int(matche[0]) 
             for i in range(1, len(matche)):
+                # このスクリプトでは index 1 = str だけど mig.job.dat.js では str = 0 なので i - 1 
                 if matche[i] == '1':
-                    result += f"[{joblv},{i}],"
+                    result += f"[{joblv},{i-1}],"
         print(filename)
         print(result)
