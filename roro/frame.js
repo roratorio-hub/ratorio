@@ -437,7 +437,7 @@ function SetMainMenuFrame(){
 	objA.setAttribute("target", "_blank");
 	objA.appendChild(document.createTextNode("更新履歴"));
 	objDivGrp.appendChild(document.createElement("br"));
-	objDivGrp.appendChild(document.createTextNode("2024/01/03 更新"));
+	objDivGrp.appendChild(document.createTextNode("2024/01/04 更新"));
 
 	objHr = document.createElement("hr");
 	objHr.setAttribute("style", "margin: 0");
