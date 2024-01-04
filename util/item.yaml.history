@@ -1385,4 +1385,716 @@ item_list:
             - name: "SpecialLuk"
             - name: "新暦"
 
+  - name: プレジションフィスト
+    yomi: プレシシヨンフイスト
+    type: ナックル
+    slot: 3
+    weapon_lv: 2400004
+    atk_or_def: 140
+    weight: 40
+    required_lv: 220
+    required_job: インクイジター
+    capabilities:
+      - name: MATK加算
+        value: 100
+      - name: 物理ダメージ増加
+        value: 110
+      - name: スキルダメージ増加
+        skill: 第二撃：審判
+        value: 10
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: 第三撃：浄化
+        value: 10
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: 第二撃：審判
+        value: 15
+        at_refine: 9
+      - name: スキルダメージ増加
+        skill: 第三撃：浄化
+        value: 15
+        at_refine: 9
+      - name: Pow上昇
+        value: 20
+        at_refine: 10
 
+  - name: プレジションリュート
+    yomi: プレシシヨンリユウト
+    type: 楽器
+    slot: 3
+    weapon_lv: 2400004
+    atk_or_def: 180
+    weight: 25
+    required_lv: 220
+    required_job: トルバドゥール
+    capabilities:
+      - name: MATK加算
+        value: 120
+      - name: 魔法ダメージ増加
+        value: 60
+      - name: スキルダメージ増加
+        skill: サウンドブレンド
+        value: 10
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: メタリックフューリー
+        value: 10
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: サウンドブレンド
+        value: 15
+        at_refine: 9
+      - name: スキルダメージ増加
+        skill: メタリックフューリー
+        value: 15
+        at_refine: 9
+      - name: Spl上昇
+        value: 20
+        at_refine: 10
+
+  - name: プレジションホイップ
+    yomi: プレシシヨンホイツフ
+    type: 鞭
+    slot: 3
+    weapon_lv: 2400004
+    atk_or_def: 150
+    weight: 50
+    required_lv: 220
+    required_job: トルヴェール
+    capabilities:
+      - name: MATK加算
+        value: 120
+      - name: 魔法ダメージ増加
+        value: 60
+      - name: スキルダメージ増加
+        skill: サウンドブレンド
+        value: 10
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: メタリックフューリー
+        value: 10
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: サウンドブレンド
+        value: 15
+        at_refine: 9
+      - name: スキルダメージ増加
+        skill: メタリックフューリー
+        value: 15
+        at_refine: 9
+      - name: Spl上昇
+        value: 20
+        at_refine: 10
+
+  - name: プレジションボウ
+    yomi: プレシシヨンホウ
+    type: 弓
+    slot: 3
+    weapon_lv: 2400004
+    atk_or_def: 160
+    weight: 90
+    required_lv: 220
+    required_job: ウィンドホーク
+    capabilities:
+      - name: MATK加算
+        value: 170
+      - name: ボス耐性
+        value: 40
+      - name: 物理ダメージ増加
+        value: 110
+      - name: スキルダメージ増加
+        skill: ホークブーメラン
+        value: 10
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: ホークラッシュ
+        value: 10
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: ホークブーメラン
+        value: 15
+        at_refine: 9
+      - name: スキルダメージ増加
+        skill: ホークラッシュ
+        value: 15
+        at_refine: 9
+      - name: Con上昇
+        value: 20
+        at_refine: 10
+
+  - name: ソリッドワンド
+    yomi: ソリツトワント
+    type: 杖
+    slot: 3
+    weapon_lv: 2400004
+    atk_or_def: 60
+    weight: 30
+    required_lv: 220
+    required_job: ソウルアセティック
+    capabilities:
+      - name: MATK加算
+        value: 180
+      - name: 魔法ダメージ増加
+        value: 60
+      - name: スキルダメージ増加
+        skill: 青龍符
+        value: 10
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: 白虎符
+        value: 10
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: 朱雀符
+        value: 10
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: 玄武符
+        value: 10
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: 四方神符
+        value: 10
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: 四方五行陣
+        value: 10
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: 青龍符
+        value: 15
+        at_refine: 9
+      - name: スキルダメージ増加
+        skill: 白虎符
+        value: 15
+        at_refine: 9
+      - name: スキルダメージ増加
+        skill: 朱雀符
+        value: 15
+        at_refine: 9
+      - name: スキルダメージ増加
+        skill: 玄武符
+        value: 15
+        at_refine: 9
+      - name: スキルダメージ増加
+        skill: 四方神符
+        value: 15
+        at_refine: 9
+      - name: スキルダメージ増加
+        skill: 四方五行陣
+        value: 15
+        at_refine: 9
+      - name: Spl上昇
+        value: 20
+        at_refine: 10
+
+  - name: ソリッドスピアー
+    yomi: ソリツトスピアア
+    type: 片手槍
+    slot: 3
+    weapon_lv: 2400004
+    atk_or_def: 150
+    weight: 180
+    required_lv: 220
+    required_job: インペリアルガード
+    capabilities:
+      - name: MATK加算
+        value: 110
+      - name: 物理ダメージ増加
+        value: 110
+      - name: スキルダメージ増加
+        skill: オーバースラッシュ
+        value: 10
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: グランドジャッジメント
+        value: 10
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: シールドシューティング
+        value: 10
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: オーバースラッシュ
+        value: 15
+        at_refine: 9
+      - name: スキルダメージ増加
+        skill: グランドジャッジメント
+        value: 15
+        at_refine: 9
+      - name: スキルダメージ増加
+        skill: シールドシューティング
+        value: 15
+        at_refine: 9
+      - name: Pow上昇
+        value: 20
+        at_refine: 10
+
+  - name: ソリッドマニュアル
+    yomi: ソリツトマニユアル
+    type: 本
+    slot: 3
+    weapon_lv: 2400004
+    atk_or_def: 120
+    weight: 80
+    required_lv: 220
+    required_job: エレメンタルマスター
+    capabilities:
+      - name: MATK加算
+        value: 140
+      - name: 魔法ダメージ増加
+        value: 60
+      - name: スキルダメージ増加
+        skill: コンフラグレーション
+        value: 10
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: ダイヤモンドストーム
+        value: 10
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: ライトニングランド
+        value: 10
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: テラドライブ
+        value: 10
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: ベナムスワンプ
+        value: 10
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: コンフラグレーション
+        value: 15
+        at_refine: 9
+      - name: スキルダメージ増加
+        skill: ダイヤモンドストーム
+        value: 15
+        at_refine: 9
+      - name: スキルダメージ増加
+        skill: ライトニングランド
+        value: 15
+        at_refine: 9
+      - name: スキルダメージ増加
+        skill: テラドライブ
+        value: 15
+        at_refine: 9
+      - name: スキルダメージ増加
+        skill: ベナムスワンプ
+        value: 15
+        at_refine: 9
+      - name: Spl上昇
+        value: 20
+        at_refine: 10
+
+  - name: ソリッドスタッフ
+    yomi: ソリツトスタツフ
+    type: 杖
+    slot: 3
+    weapon_lv: 2400004
+    atk_or_def: 120
+    weight: 240
+    required_lv: 220
+    required_job: アークメイジ
+    capabilities:
+      - name: MATK加算
+        value: 270
+      - name: 魔法ダメージ増加
+        value: 60
+      - name: ボス耐性
+        value: 40
+      - name: スキルダメージ増加
+        skill: クリムゾンアロー
+        value: 10
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: フローズンスラッシュ
+        value: 10
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: ストームキャノン
+        value: 10
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: ロックダウン
+        value: 10
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: クリムゾンアロー
+        value: 15
+        at_refine: 9
+      - name: スキルダメージ増加
+        skill: フローズンスラッシュ
+        value: 15
+        at_refine: 9
+      - name: スキルダメージ増加
+        skill: ストームキャノン
+        value: 15
+        at_refine: 9
+      - name: スキルダメージ増加
+        skill: ロックダウン
+        value: 15
+        at_refine: 9
+      - name: Spl上昇
+        value: 20
+        at_refine: 10
+
+  - name: ソリッドクレイモア
+    yomi: ソリツトクレイモア
+    type: 両手剣
+    slot: 3
+    weapon_lv: 2400004
+    atk_or_def: 280
+    weight: 900
+    required_lv: 220
+    required_job: ドラゴンナイト
+    capabilities:
+      - name: MATK加算
+        value: 230
+      - name: 物理ダメージ増加
+        value: 110
+      - name: ボス耐性
+        value: 40
+      - name: スキルダメージ増加
+        skill: ハックアンドスラッシャー
+        value: 10
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: マッドネスクラッシャー
+        value: 10
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: ハックアンドスラッシャー
+        value: 15
+        at_refine: 9
+      - name: スキルダメージ増加
+        skill: マッドネスクラッシャー
+        value: 15
+        at_refine: 9
+      - name: Pow上昇
+        value: 20
+        at_refine: 10
+
+  - name: ウィキッドブレード
+    yomi: ウイキツトフレエト
+    type: 片手剣
+    slot: 3
+    weapon_lv: 2400004
+    atk_or_def: 150
+    weight: 120
+    required_lv: 220
+    required_job: バイオロ
+    capabilities:
+      - name: MATK加算
+        value: 130
+      - name: 物理ダメージ増加
+        value: 110
+      - name: スキルダメージ増加
+        skill: アシディファイドゾーン(水)
+        value: 10
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: アシディファイドゾーン(地)
+        value: 10
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: アシディファイドゾーン(水)
+        value: 15
+        at_refine: 9
+      - name: スキルダメージ増加
+        skill: アシディファイドゾーン(地)
+        value: 15
+        at_refine: 9
+      - name: Pow上昇
+        value: 20
+        at_refine: 10
+
+  - name: ウィキッドダガー
+    yomi: ウイキツトタカア
+    type: 短剣
+    slot: 3
+    weapon_lv: 2400004
+    atk_or_def: 120
+    weight: 60
+    required_lv: 220
+    required_job: アビスチェイサー
+    capabilities:
+      - name: MATK加算
+        value: 120
+      - name: 魔法ダメージ増加
+        value: 60
+      - name: スキルダメージ増加
+        skill: アビススクエア
+        value: 10
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: オメガアビスストライク
+        value: 10
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: アビススクエア
+        value: 15
+        at_refine: 9
+      - name: スキルダメージ増加
+        skill: オメガアビスストライク
+        value: 15
+        at_refine: 9
+      - name: Spl上昇
+        value: 20
+        at_refine: 10
+
+  - name: ウィキッドブック
+    yomi: ウイキツトフツク
+    type: 本
+    slot: 3
+    weapon_lv: 2400004
+    atk_or_def: 120
+    weight: 80
+    required_lv: 220
+    required_job: 天帝
+    capabilities:
+      - name: MATK加算
+        value: 140
+      - name: 物理ダメージ増加
+        value: 110
+      - name: スキルダメージ増加
+        skill: 天地万星
+        value: 10
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: 天命落星
+        value: 10
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: 天星
+        value: 10
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: 天地万星
+        value: 15
+        at_refine: 9
+      - name: スキルダメージ増加
+        skill: 天命落星
+        value: 15
+        at_refine: 9
+      - name: スキルダメージ増加
+        skill: 天星
+        value: 15
+        at_refine: 9
+      - name: Pow上昇
+        value: 20
+        at_refine: 10
+
+  - name: ウィキッドクロス
+    yomi: ウイキツトクロス
+    type: 鈍器
+    slot: 3
+    weapon_lv: 2400004
+    atk_or_def: 150
+    weight: 150
+    required_lv: 220
+    required_job: カーディナル
+    capabilities:
+      - name: MATK加算
+        value: 110
+      - name: 物理ダメージ増加
+        value: 110
+      - name: スキルダメージ増加
+        skill: ペティティオ
+        value: 10
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: エフィリゴ
+        value: 10
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: ペティティオ
+        value: 15
+        at_refine: 9
+      - name: スキルダメージ増加
+        skill: エフィリゴ
+        value: 15
+        at_refine: 9
+      - name: Pow上昇
+        value: 20
+        at_refine: 10
+
+  - name: ウィキッドカタール
+    yomi: ウイキツトカタアル
+    type: カタール
+    slot: 3
+    weapon_lv: 2400004
+    atk_or_def: 150
+    weight: 280
+    required_lv: 220
+    required_job: シャドウクロス
+    capabilities:
+      - name: MATK加算
+        value: 250
+      - name: 物理ダメージ増加
+        value: 110
+      - name: スキルダメージ増加
+        skill: インパクトクレーター
+        value: 10
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: サベージインパクト
+        value: 10
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: インパクトクレーター
+        value: 15
+        at_refine: 9
+      - name: スキルダメージ増加
+        skill: サベージインパクト
+        value: 15
+        at_refine: 9
+      - name: Pow上昇
+        value: 20
+        at_refine: 10
+
+  - name: ウィキッドアックス
+    yomi: ウイキツトアツクス
+    type: 両手斧
+    slot: 3
+    weapon_lv: 2400004
+    atk_or_def: 320
+    weight: 400
+    required_lv: 220
+    required_job: マイスター
+    capabilities:
+      - name: MATK加算
+        value: 200
+      - name: ボス耐性
+        value: 40
+      - name: 物理ダメージ増加
+        value: 110
+      - name: スキルダメージ増加
+        skill: アックスストンプ
+        value: 10
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: ラッシュクエイク
+        value: 10
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: アックスストンプ
+        value: 15
+        at_refine: 9
+      - name: スキルダメージ増加
+        skill: ラッシュクエイク
+        value: 15
+        at_refine: 9
+      - name: Pow上昇
+        value: 20
+        at_refine: 10
+
+  - name: フォーティファイドワンド
+    yomi: フオオテイフアイトワント
+    type: 杖
+    slot: 2
+    weapon_lv: 2400004
+    atk_or_def: 60
+    weight: 30
+    required_lv: 200
+    required_job: ソウルアセティック
+    capabilities:
+      - name: MATK加算
+        value: 180
+      - name: 魔法ダメージ増加
+        value: 60
+      - name: スキルダメージ増加
+        skill: 青龍符
+        value: 10
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: 白虎符
+        value: 10
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: 朱雀符
+        value: 10
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: 玄武符
+        value: 10
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: 四方神符
+        value: 10
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: 四方五行陣
+        value: 10
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: 青龍符
+        value: 15
+        at_refine: 9
+      - name: スキルダメージ増加
+        skill: 白虎符
+        value: 15
+        at_refine: 9
+      - name: スキルダメージ増加
+        skill: 朱雀符
+        value: 15
+        at_refine: 9
+      - name: スキルダメージ増加
+        skill: 玄武符
+        value: 15
+        at_refine: 9
+      - name: スキルダメージ増加
+        skill: 四方神符
+        value: 15
+        at_refine: 9
+      - name: スキルダメージ増加
+        skill: 四方五行陣
+        value: 15
+        at_refine: 9
+      - name: Spl上昇
+        value: 20
+        at_refine: 10
+
+  - name: リラプスブック
+    yomi: リラフスフツク
+    type: 本
+    slot: 2
+    weapon_lv: 2400004
+    atk_or_def: 120
+    weight: 80
+    required_lv: 200
+    required_job: 天帝
+    capabilities:
+      - name: MATK加算
+        value: 140
+      - name: 物理ダメージ増加
+        value: 110
+      - name: スキルダメージ増加
+        skill: 天地万星
+        value: 10
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: 天命落星
+        value: 10
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: 天星
+        value: 10
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: 天地万星
+        value: 15
+        at_refine: 9
+      - name: スキルダメージ増加
+        skill: 天命落星
+        value: 15
+        at_refine: 9
+      - name: スキルダメージ増加
+        skill: 天星
+        value: 15
+        at_refine: 9
+      - name: Pow上昇
+        value: 20
+        at_refine: 10

@@ -143,6 +143,14 @@ AT_STATUS_130_CODE = {
     'Dex': 41,
     'Luk': 42,
 }
+AT_SP_STATUS_100_CODE = {
+    'Pow': 43,
+    'Sta': 44,
+    'Wis': 45,
+    'Spl': 46,
+    'Con': 47,
+    'Crt': 48,
+}
 AT_BASE_LV_CODE = {
     170: 1,
     100: 2,
@@ -171,6 +179,8 @@ def getCapabilityRecord(capability):
         at_status = AT_STATUS_110_CODE[capability['at_status_110']]
     elif 'at_status_130' in capability:
         at_status = AT_STATUS_130_CODE[capability['at_status_130']]
+    elif 'at_sp_status_100' in capability:
+        at_status = AT_SP_STATUS_100_CODE[capability['at_sp_status_100']]
     at_baselv = 0
     if 'at_lv' in capability:
         at_baselv = AT_BASE_LV_CODE[capability['at_lv']]
