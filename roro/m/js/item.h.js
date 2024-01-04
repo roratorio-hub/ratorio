@@ -903,9 +903,13 @@ CGlobalConstManager.DefinePseudoEnum(
 		"ITEM_SP_PURE_INT_130_OFFSET",	// 40000000000
 		"ITEM_SP_PURE_DEX_130_OFFSET",	// 41000000000
 		"ITEM_SP_PURE_LUK_130_OFFSET",	// 42000000000
-		/* usachoco テスト 
+
 		"ITEM_SP_PURE_POW_100_OFFSET",	// 43000000000
-		*/
+		"ITEM_SP_PURE_STA_100_OFFSET",	// 44000000000
+		"ITEM_SP_PURE_WIS_100_OFFSET",	// 45000000000
+		"ITEM_SP_PURE_SPL_100_OFFSET",	// 46000000000
+		"ITEM_SP_PURE_CON_100_OFFSET",	// 47000000000
+		"ITEM_SP_PURE_CRT_100_OFFSET",	// 48000000000
 	],
 	1000000000,
 	1000000000
@@ -1699,9 +1703,8 @@ function GetItemExplainText(spId, spValue) {
 
 
 	// 『純粋な○○が△△以上の時』条件
-	var statusName = ["Str", "Agi", "Vit", "Int", "Dex", "Luk", 
-						/*"Pow",*/	// usachoco テスト
-					];
+	var statusName = ["Str", "Agi", "Vit", "Int", "Dex", "Luk",];
+	var spStatusName = ["Pow", "Sta", "Wis", "Spl", "Con", "Crt"];
 
 	var pureStatus = Math.floor(spId / ITEM_SP_PURE_STR_90_OFFSET);
 	var pureStatusEffect = spId % ITEM_SP_PURE_STR_90_OFFSET;
@@ -1727,11 +1730,9 @@ function GetItemExplainText(spId, spValue) {
 	else if (37 <= pureStatus && pureStatus <= 42) {
 		condTextPureStatus += "純粋な" + statusName[pureStatus - 37] +  "が130以上の時、";
 	}
-	/* usachoco テスト 
 	else if (43 <= pureStatus && pureStatus <= 48) {
-		condTextPureStatus += "純粋な" + statusName[pureStatus - 43] +  "が100以上の時、";
+		condTextPureStatus += "純粋な" + spStatusName[pureStatus - 43] +  "が100以上の時、";
 	}
-	*/
 	
 	spId = pureStatusEffect;
 

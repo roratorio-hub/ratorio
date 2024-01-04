@@ -30031,20 +30031,42 @@ function CheckSpDefPureStatus(spDefRemain) {
 
 	var pureStatusValue = [SU_STR, SU_AGI, SU_VIT, SU_INT, SU_DEX, SU_LUK];
 	var pureStatusCondition = [90, 108, 120, 125, 110, 80, 130];
-
 	var idxValue = 0;
 	var idxCondition = 0;
 
 	// 条件を取得
 	spDefCondition = Math.floor(spDefRemain / spDefBase);
 
-	// 条件から検査配列の添え字を計算
-	idxValue = (spDefCondition - 1) % 6;
-	idxCondition = Math.floor((spDefCondition - 1) / 6);
+	// 特性ステータス対応
+	const SU_POW = g_pureStatus[6];
+	const SU_STA = g_pureStatus[7];
+	const SU_WIS = g_pureStatus[8];
+	const SU_SPL = g_pureStatus[9];
+	const SU_CON = g_pureStatus[10];
+	const SU_CRT = g_pureStatus[11];
+	var pureSpStatusValue = [SU_POW, SU_STA, SU_WIS, SU_SPL, SU_CON, SU_CRT];
 
-	// 条件を検査し、満たさない場合は -1 を返す
-	if (pureStatusValue[idxValue] < pureStatusCondition[idxCondition]) {
-		return -1;
+	if (spDefCondition >= Math.floor(ITEM_SP_PURE_POW_100_OFFSET/spDefBase) 
+		&& spDefCondition <= Math.floor(ITEM_SP_PURE_CRT_100_OFFSET/spDefBase)) {
+		// 特性ステータスの場合
+
+		// 条件を検査し、満たさない場合は -1 を返す
+		idxValue = (spDefCondition - 1) % 6
+		if (pureSpStatusValue[idxValue] < 100) {
+			return -1;
+		}
+
+	} else {
+		// 基本ステータスの場合
+
+		// 条件から検査配列の添え字を計算
+		idxValue = (spDefCondition - 1) % 6;
+		idxCondition = Math.floor((spDefCondition - 1) / 6);
+
+		// 条件を検査し、満たさない場合は -1 を返す
+		if (pureStatusValue[idxValue] < pureStatusCondition[idxCondition]) {
+			return -1;
+		}
 	}
 
 	// 条件を満たす場合は、残りのＳＰ定義値を返す
