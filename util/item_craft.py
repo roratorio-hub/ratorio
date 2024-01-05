@@ -189,7 +189,10 @@ def getCapabilityRecord(capability):
     value = int(capability['value']) if 'value' in capability else None
     if 'skill' in capability:
         skill_code = SKILL_CODE.get(capability['skill'])
-        if 'skill_lv' in capability:
+        # スキル習得時に発動する効果の場合
+        if capability_code in [199]:
+            value = skill_code
+        elif 'skill_lv' in capability:
             # スキル使用可能になる能力の場合
             if capability_code in [220, 222, 224]:
                 value = USABLE_SKILL_CODE.get((skill_code, int(capability['skill_lv'])))

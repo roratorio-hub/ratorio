@@ -6024,6 +6024,14 @@ function GetStatusModifyMaxHpUp() {
 		val += 8 * LearnedSkillSearch(SKILL_ID_INSPIRATION) * itemCount;
 	}
 
+	//----------------------------------------------------------------
+	// 「りんりんニャンカーベル」の、スキル習得による効果
+	//----------------------------------------------------------------
+	if ((itemCount = EquipNumSearch(ITEM_ID_RINRIN_NYAN_KABERU)) > 0) {		// りんりんニャンカーベル装備中
+		val += 3 * LearnedSkillSearch(SKILL_ID_NODOWO_NARASU) * itemCount;	// のどを鳴らすが1上がる度に3%
+	}
+
+
 
 // 防具効果　ここまで
 //------------------------------------------------------------------------------------------------

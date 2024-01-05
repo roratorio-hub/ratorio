@@ -23624,6 +23624,21 @@ function GetCastFixOfSkillForCastTimeFixed(skillId) {
 		}
 	}
 
+	//----------------------------------------------------------------
+	// 「りんりんにゃんカーベル」の、「マグロシールド」短縮
+	//----------------------------------------------------------------
+	if (skillId == SKILL_ID_MAGURO_SHIELD) {								// マグロシールドを評価するとき
+		if ((eqpnum = EquipNumSearch(ITEM_ID_RINRIN_NYAN_KABERU)) > 0) {	// りんりんニャンカーベル装備中で
+			if (LearnedSkillSearch(SKILL_ID_UMINO_TAMASHI) >= 1) {			// 海の魂Lv1習得していれば
+				castfix -= 1000 * eqpnum;									// 固定詠唱 1000 ms 短縮
+			}
+		}
+	}
+
+	if ((itemCount = EquipNumSearchMIG(ITEM_ID_RINRIN_NYAN_KABERU)) > 0) {
+		n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_RACE_ALL] += 8 * LearnedSkillSearch(SKILL_ID_NYAN_GRASS) * itemCount;
+	}
+
 
 
 	//----------------------------------------------------------------
