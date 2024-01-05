@@ -153,6 +153,20 @@ AT_STATUS_130_CODE = {
     'Dex': 41,
     'Luk': 42,
 }
+AT_SP_STATUS_100_CODE = {
+    'Pow': 43,
+    'Sta': 44,
+    'Wis': 45,
+    'Spl': 46,
+    'Con': 47,
+    'Crt': 48,
+}
+AT_BASE_LV_CODE = {
+    170: 1,
+    100: 2,
+     99: 3,
+    175: 4,
+}
 
 SKILL_CODE = loadSkillDict()
 USABLE_SKILL_CODE = loadUsableSkillDict()
@@ -175,6 +189,11 @@ def getCapabilityRecord(capability):
         at_status = AT_STATUS_110_CODE[capability['at_status_110']]
     elif 'at_status_130' in capability:
         at_status = AT_STATUS_130_CODE[capability['at_status_130']]
+    elif 'at_sp_status_100' in capability:
+        at_status = AT_SP_STATUS_100_CODE[capability['at_sp_status_100']]
+    at_baselv = 0
+    if 'at_lv' in capability:
+        at_baselv = AT_BASE_LV_CODE[capability['at_lv']]
 
     # 能力値取得
     value = int(capability['value']) if 'value' in capability else None
@@ -191,9 +210,10 @@ def getCapabilityRecord(capability):
             # スキル性能が変化する能力の場合
             capability_code += SKILL_CODE.get(capability['skill'])
 
-    code  = f"{per_baselv}"                     # ベースLvが n 上がる度に発動する
+    code  = f"{at_baselv}"                      # ベースLvが n 以上のときに（Lv99は "以下" で判定）
+    code += f"{per_baselv:02d}"                 # ベースLvが n 上がる度に発動する
     code += f"00"                               # 不明コード
-    code += f"{at_status:02d}"              # 純粋なステータス x が110以上の時に発動する {x : 25=Str, 26=Agi, 27=Vit, 28=Int, 29=Dex, 30=Luk}
+    code += f"{at_status:02d}"                  # 純粋なステータス x が n 以上の時に発動する
     code += f"{per_status_10:01d}"              # 純粋なステータス x が10増加する度に発動する {x : 1=Str, 2=Agi, 3=Vit, 4=Int, 5=Dex, 6=Luk}
     code += f"{at_refine:02d}"                  # 精錬値が n 以上の時に発動する
     code += f"{per_refine:01d}"                 # 精錬値が n 上がる度に発動する

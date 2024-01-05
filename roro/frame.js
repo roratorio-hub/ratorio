@@ -437,10 +437,28 @@ function SetMainMenuFrame(){
 	objA.setAttribute("target", "_blank");
 	objA.appendChild(document.createTextNode("更新履歴"));
 	objDivGrp.appendChild(document.createElement("br"));
-	objDivGrp.appendChild(document.createTextNode("2024/01/04 更新"));
+	objDivGrp.appendChild(document.createTextNode("2024/01/05 更新"));
 
 	objHr = document.createElement("hr");
 	objHr.setAttribute("style", "margin: 0");
+	objDiv.appendChild(objHr);
+
+	//----------------------------------------------------------------
+	// Information
+	//----------------------------------------------------------------
+	objDivGrp = document.createElement("div");
+	objDivGrp.setAttribute("style", "margin-top: 0.5em;");
+	objDiv.appendChild(objDivGrp);
+
+	objA = document.createElement("a");
+	objDivGrp.appendChild(objA);
+	objA.setAttribute("href", "../../information/response/index.html");
+	objA.setAttribute("target", "_blank");
+	objA.appendChild(document.createTextNode("Q&A"));
+	objDivGrp.appendChild(document.createElement("br"));
+
+	objHr = document.createElement("hr");
+	objHr.setAttribute("style", "margin-top: 10");
 	objDiv.appendChild(objHr);
 
 	//--------------------------------

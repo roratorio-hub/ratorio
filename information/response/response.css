@@ -1,0 +1,12 @@
+div.question {
+    margin-top: 10px;
+    margin-left: 5px;
+    font-weight: bold;
+    
+}
+
+div.answer {
+    margin-top: 10px;
+    margin-left: 35px;
+    color: green;
+}

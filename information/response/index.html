@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>フォームからお寄せ頂いた情報への回答</title>
+
+        <link rel="stylesheet" href="./response.css" type="text/css">
+    </head>
+    <body>
+        <h1>フォームからお寄せ頂いた情報への回答</h1>
+        Googleフォームからお寄せ頂いた情報には直接返信することが出来ないので<br>
+        回答出来そうなものはこのページに記載します<br>
+        <br>
+        <hr>
+        <div class="question">
+            スピハンのシャドウアクセがセーブ後の反映がされなくリセットされます<br>
+            同時に性能カスタマイズのスキル倍率が１００％から４％になってセーブされるバグもありました。<br>
+        </div>
+        <div class="answer">
+            シャドウアクセサリの事象は再現確認が取れていないので確認中です<br>
+            スキル倍率が100%から4%に変化してしまう事象は再現出来ており現在
+            <a href="https://github.com/roratorio-hub/ratorio/issues/33#issue-2065373945">バグ修正作業中</a>です<br>
+        </div>
+        <hr>
+        <div class="question">
+            ウィンドホークが装備可能な「プレジションボウ」において「[プレジションボウ]の<br>
+            精錬値が10の時、追加でCon + 20」という効果ではなく、無条件にCon+20されているように思われます<br>
+            他の同系統の武器で確認したわけではないので、もしかしたら他のウィキッドシリーズなどでも同様の挙動になっている可能性もあるかと思いますので、一度確認いただければと思います<br>
+        </div>
+        <div class="answer">
+            仰るとおりプレジションボウと同時期に追加したアイテムの効果が全て誤っている事を確認しました<br>
+            修正完了済みです<br>
+        </div>
+        <hr>
+        <div class="question">
+            イヌハッカメテオの変更（10/27、11/28パッチにて変更)<br>
+            威力検証（実測値）<br><br>
+            A<br>
+            BaseLv200<br>
+            MATK268 + 0<br>
+            vsポリン イヌハッカメテオLv5<br>
+            与ダメージ(1HIT) 2052<br><br>
+            B<br>
+            BaseLv196<br>
+            MATK 279 + 0<br>
+            vsポリン イヌハッカメテオLv5<br>
+            与ダメージ(1HIT) 2093<br><br>
+            A、Bどちらも以下の式で一致しました。(スキル倍率はスキル説明より400%）<br>
+            ダメージ = floor(MATK * スキル倍率 * BaseLv/100 * (1000 + MDEF)/(1000+MDEF+10)<br><br>
+            github使ったことがないのでこちらで投稿させていただきます。おそらく以下の変更でいけると思いますが、自信がないので参考程度でお願いします。<br>
+            head.js<br>
+            7881                         wActiveHitNum = 7; を削除<br>
+            7891                         wbairitu = 700;を<br>
+            7891                    wbairitu = 400 * n_A_BaseLV / 100;  に変更"            <br>
+        </div>
+        <div class="answer">
+            提案していただいた計算式で、私の猫の実測値とも合うことを確認できました<br>
+            新しい計算式を反映済みです<br>
+        </div>
+        <hr>
+        <div class="question">
+            キャロットビートの新計算式で対応していただけると助かります！            
+        </div>
+        <div class="answer">
+            実測値を採取してから<a href="https://github.com/roratorio-hub/ratorio/issues/23#issue-2063219703">対応予定</a>です<br>
+            まずは拡張四次職の未実装スキル対応を優先したいため、その後の着手になる予定です<br>
+            少々お待ち下さい<br>
+        </div>
+        <hr>
+        <div class="question">
+            スピハンのパッシブスキル スピリットマスタリーと<br>
+            各職共通ですがシャドウ装備も実装していただけると特性ステータス関連が一通り終わるので助かります。<br>
+        </div>
+        <div class="answer">
+            スピリットハンドラー追加時の作業ミスでシャドウ装備が付けられない状態になっていました<br>
+            シャドウ装備を付けられるように修正済みです<br>
+            スピリットマスタリーについては現在対応していますので少々お待ち下さい<br>
+        </div>
+        <hr>
+        <div class="question">
+            github で、アイテムとしてカード、エンチャントをデータ追加する際の手順の文書、サンプルはどこかに上がっていますか？
+        </div>
+        <div class="answer">
+            現時点では整備されたドキュメントは用意出来ていません<br>
+            もう少し落ち着いたら<a href="https://github.com/roratorio-hub/ratorio/wiki">Wiki</a>にまとめたいと考えています<br>
+        </div>
+        <hr>
+        <div class="question">
+            その他、ステータス情報をご提供頂いている方々<br>
+            - Base250/Job49のスピリットハンドラーですが、素の状態？(キャラセレ画面)では素VIT110、INT88でHP78445、SP2867でした。<br>
+        </div>
+        <div class="answer">
+            ありがとうございます<br>
+            拡張四次職の未実装スキル対応が終わったら、順次反映していきたいと思います<br>
+        </div>
+    </body>
+</html>
