@@ -46,7 +46,8 @@
 // CURRENT_VERSION = 49;	// 四次職特性ステータス対応
 // CURRENT_VERSION = 50;	// 四次職支援対応
 // CURRENT_VERSION = 51;	// ウルフオーブエンチャント定義対応
-CURRENT_VERSION = 52;	// Lv240解放
+// CURRENT_VERSION = 52;	// Lv240解放
+CURRENT_VERSION = 53;	// 特性ステータスセーブ対応
 // 旧データ構造は、最大でバージョン 99 まで
 
 
@@ -813,6 +814,15 @@ function SaveSystem(funcSaveDataModify = null){
 		for (idx = 0; idx < g_confDataYozi.length; idx++) {
 			SaveData[1831 + idx] = g_confDataYozi[idx];
 		}
+
+		//----------------------------------------------------------------
+		// [1861 - 1880] 性能カスタマイズ（特性ステータス関連）
+		//----------------------------------------------------------------
+		for (idx = 0; idx < g_confDataCustomSpecStatus.length; idx++) {
+			SaveData[1861 + idx] = CSaveDataConverter.ConvertSignedToUnsigned(g_confDataCustomSpecStatus[idx], saveDataMappingArray[1861 + idx]);
+		}
+
+
 
 	}
 
@@ -4855,6 +4865,14 @@ function DecodeUrl(loadDataUrl){
 		}
 
 
+		//----------------------------------------------------------------
+		// 性能カスタマイズ（特性ステータス関連）の読み込み
+		//----------------------------------------------------------------
+		for (idx = 0; idx < g_confDataCustomSpecStatus.length; idx++) {
+			g_confDataCustomSpecStatus[idx] = CSaveDataConverter.ConvertUnsignedToSigned(SaveData[1861 + idx], saveDataMappingArrayCurrent[1861 + idx]);
+		}
+
+
 
 		//----------------------------------------------------------------
 		// ステータスを再計算
@@ -4947,6 +4965,9 @@ function DecodeUrl(loadDataUrl){
 
 	g_objCharaConfCustomSkill.RefreshSelectAreaHeader();
 	g_objCharaConfCustomSkill.RefreshControlCSS();
+
+	g_objCharaConfCustomSpecStatus.RefreshSelectAreaHeader();
+	g_objCharaConfCustomSpecStatus.RefreshControlCSS();
 
 	g_objMobConfInput.RefreshControlsByVars();
 
