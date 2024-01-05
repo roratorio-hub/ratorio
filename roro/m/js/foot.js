@@ -28492,32 +28492,32 @@ function StPlusCalc() {
 	//----------------------------------------------------------------
 	// 「性能カスタマイズ」の、効果
 	//----------------------------------------------------------------
-	confval = g_objCharaConfCustomStatus.GetConf(CCharaConfCustomStatus.CONF_ID_POW_PLUS);
+	confval = g_objCharaConfCustomSpecStatus.GetConf(CCharaConfCustomSpecStatus.CONF_ID_POW_PLUS);
 	if (confval != 0) {
 		wSPC_POW += confval;
 	}
 
-	confval = g_objCharaConfCustomStatus.GetConf(CCharaConfCustomStatus.CONF_ID_STA_PLUS);
+	confval = g_objCharaConfCustomSpecStatus.GetConf(CCharaConfCustomSpecStatus.CONF_ID_STA_PLUS);
 	if (confval != 0) {
 		wSPC_STA += confval;
 	}
 
-	confval = g_objCharaConfCustomStatus.GetConf(CCharaConfCustomStatus.CONF_ID_WIS_PLUS);
+	confval = g_objCharaConfCustomSpecStatus.GetConf(CCharaConfCustomSpecStatus.CONF_ID_WIS_PLUS);
 	if (confval != 0) {
 		wSPC_WIS += confval;
 	}
 
-	confval = g_objCharaConfCustomStatus.GetConf(CCharaConfCustomStatus.CONF_ID_SPL_PLUS);
+	confval = g_objCharaConfCustomSpecStatus.GetConf(CCharaConfCustomSpecStatus.CONF_ID_SPL_PLUS);
 	if (confval != 0) {
 		wSPC_SPL += confval;
 	}
 
-	confval = g_objCharaConfCustomStatus.GetConf(CCharaConfCustomStatus.CONF_ID_CON_PLUS);
+	confval = g_objCharaConfCustomSpecStatus.GetConf(CCharaConfCustomSpecStatus.CONF_ID_CON_PLUS);
 	if (confval != 0) {
 		wSPC_CON += confval;
 	}
 
-	confval = g_objCharaConfCustomStatus.GetConf(CCharaConfCustomStatus.CONF_ID_CRT_PLUS);
+	confval = g_objCharaConfCustomSpecStatus.GetConf(CCharaConfCustomSpecStatus.CONF_ID_CRT_PLUS);
 	if (confval != 0) {
 		wSPC_CRT += confval;
 	}
@@ -30560,6 +30560,10 @@ function Init(){
 	g_confDataCustomSkill = new Array();
 	g_objCharaConfCustomSkill = new CCharaConfCustomSkill(g_confDataCustomSkill);
 	g_objCharaConfCustomSkill.BuildUpSelectArea(document.getElementById("OBJID_TD_CHARA_CONF_CUSTOM_SKILL"), false);
+
+	g_confDataCustomSpecStatus = new Array();
+	g_objCharaConfCustomSpecStatus = new CCharaConfCustomSpecStatus(g_confDataCustomSpecStatus);
+	g_objCharaConfCustomSpecStatus.BuildUpSelectArea(document.getElementById("OBJID_TD_CHARA_CONF_CUSTOM_SPECSTATUS"), false);
 
 
 

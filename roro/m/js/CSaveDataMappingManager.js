@@ -72,6 +72,7 @@ CSaveDataMappingManager.GetMappingArray = function (version) {
 	mappingArray = mappingArray.concat(CSaveDataMappingManager.__GetMappingArrayEnchListId(version));
 	mappingArray = mappingArray.concat(CSaveDataMappingManager.__GetMappingArraySpecStatus(version));
 	mappingArray = mappingArray.concat(CSaveDataMappingManager.__GetMappingArrayBuffSkill4(version));
+	mappingArray = mappingArray.concat(CSaveDataMappingManager.__GetMappingArrayCharaConfCustomSpecStatus(version));
 
 	return mappingArray;
 };
@@ -926,7 +927,6 @@ CSaveDataMappingManager.__GetMappingArrayCharaConfCustomStatus = function (versi
 		1, 2, 3, 2, 3, 2, 2, 3, 3, 3,
 		3, 3, 3, 2, 2, 2, 2, 2, 2, 2,
 		2, 2, 3, 3, 3, 3, 3, 3, 3, 3,
-		3,
 	];
 
 	return mappingArray;
@@ -1158,3 +1158,28 @@ CSaveDataMappingManager.__GetMappingArrayBuffSkill4 = function (version) {
 
 	return mappingArray;
 };
+
+/**
+ * （内部関数）マッピング配列を取得する（性能カスタマイズ（特性ステータス関連））.
+ * @param version バージョン
+ * @return マッピング配列
+ */
+CSaveDataMappingManager.__GetMappingArrayCharaConfCustomSpecStatus = function (version) {
+
+	var mappingArray = null;
+
+	// バージョン 52 まで
+	if (version <= 52) {
+	}
+
+	// バージョン 53 以降
+	else {
+		mappingArray = [
+			1, 3, 3, 3, 3, 3, 3, 3, 3, 3,
+			3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
+		];
+	}
+
+	return mappingArray;
+};
+

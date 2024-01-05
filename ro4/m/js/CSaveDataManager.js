@@ -725,6 +725,7 @@ class CSaveDataManager {
 		g_objCharaConfCustomAtk.OnSaveDataLoaded();
 		g_objCharaConfCustomDef.OnSaveDataLoaded();
 		g_objCharaConfCustomSkill.OnSaveDataLoaded();
+		g_objCharaConfCustomSpecStatus.OnSaveDataLoaded();
 		RefreshMobConfPlayerSelectAreaHeader();
 		RefreshMobConfPlayerControlCSS();
 		g_objMobConfInput.RefreshControlsByVars();
