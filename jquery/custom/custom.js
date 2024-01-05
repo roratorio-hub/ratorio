@@ -98,6 +98,9 @@ function SortCardSelectOption() {
         // エンチャントの場合はソート不要
         var isEnchant = $(select_id + ' option:contains(エンチャントなし)').length > 0;
         if (!isEnchant) {
+            // 現在の選択位置を保存する (Firefox対応)
+            var selectValue = select.val();
+
             var options = select.find('option');
             // 並びを固定したい先頭要素を保護
             var preservedHeadMap = {};
@@ -126,6 +129,10 @@ function SortCardSelectOption() {
             });
             // 先頭要素 + ソートされた要素 + 末尾要素
             select.empty().append(preserved_head).append(rest).append(preserved_foot);
+
+            // 選択位置を復元する(Firefox対応)
+            select.val(selectValue);
         };
     });
+
 };
