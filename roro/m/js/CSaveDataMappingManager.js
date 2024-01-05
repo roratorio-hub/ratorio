@@ -926,7 +926,9 @@ CSaveDataMappingManager.__GetMappingArrayCharaConfCustomStatus = function (versi
 		1, 2, 3, 2, 3, 2, 2, 3, 3, 3,
 		3, 3, 3, 2, 2, 2, 2, 2, 2, 2,
 		2, 2, 3, 3, 3, 3, 3, 3, 3, 3,
+		/* バグ発生のため切り戻し
 		3,
+		*/
 	];
 
 	return mappingArray;

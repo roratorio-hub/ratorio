@@ -28488,7 +28488,7 @@ function StPlusCalc() {
 	wSPC_CON += wSPC_SPEC_ALL;
 	wSPC_CRT += wSPC_SPEC_ALL;
 
-
+/* バグ発生のため切り戻し
 	//----------------------------------------------------------------
 	// 「性能カスタマイズ」の、効果
 	//----------------------------------------------------------------
@@ -28521,7 +28521,7 @@ function StPlusCalc() {
 	if (confval != 0) {
 		wSPC_CRT += confval;
 	}
-
+*/
 
 
 	// 「砂時計のネックレス」の効果（ペナルティ）
@@ -30068,7 +30068,7 @@ function CheckSpDefPureStatus(spDefRemain) {
 			return -1;
 		}
 	}
-
+ 
 	// 条件を満たす場合は、残りのＳＰ定義値を返す
 	return (spDefRemain % spDefBase);
 }

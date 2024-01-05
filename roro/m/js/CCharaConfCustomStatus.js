@@ -12,7 +12,10 @@ function CCharaConfCustomStatus(confArray) {
 
 	// 設定の限界値
 	// この数を超える場合は、セーブデータの拡張が必要
+	/* バグ発生のため切り戻し	
 	this.confCountLimit = 31;
+	*/
+	this.confCountLimit = 30;
 
 
 
@@ -238,7 +241,7 @@ function CCharaConfCustomStatus(confArray) {
 		this.confDataObj[confId] = confData;
 		confId++;
 
-
+/* バグ発生のため切り戻し
 
 		CCharaConfCustomStatus.CONF_ID_POW_PLUS = confId;
 		confData = [
@@ -322,7 +325,7 @@ function CCharaConfCustomStatus(confArray) {
 		this.confDataObj[confId] = confData;
 		confId++;
 
-
+*/
 
 		CCharaConfCustomStatus.CONF_ID_HIT_PLUS = confId;
 		confData = [
@@ -540,6 +543,7 @@ function CCharaConfCustomStatus(confArray) {
 		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfCustomStatus.CONF_ID_INT_PLUS];
 		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfCustomStatus.CONF_ID_DEX_PLUS];
 		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfCustomStatus.CONF_ID_LUK_PLUS];
+/* バグ発生のため切り戻し
 		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfCustomStatus.CONF_ID_BLANK];
 		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfCustomStatus.CONF_ID_POW_PLUS];
 		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfCustomStatus.CONF_ID_STA_PLUS];
@@ -547,6 +551,7 @@ function CCharaConfCustomStatus(confArray) {
 		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfCustomStatus.CONF_ID_SPL_PLUS];
 		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfCustomStatus.CONF_ID_CON_PLUS];
 		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfCustomStatus.CONF_ID_CRT_PLUS];
+*/
 		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfCustomStatus.CONF_ID_BLANK];
 		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfCustomStatus.CONF_ID_HIT_PLUS];
 		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfCustomStatus.CONF_ID_FLEE_PLUS];
