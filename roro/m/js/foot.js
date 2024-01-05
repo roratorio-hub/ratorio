@@ -23635,12 +23635,6 @@ function GetCastFixOfSkillForCastTimeFixed(skillId) {
 		}
 	}
 
-	if ((itemCount = EquipNumSearchMIG(ITEM_ID_RINRIN_NYAN_KABERU)) > 0) {
-		n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_RACE_ALL] += 8 * LearnedSkillSearch(SKILL_ID_NYAN_GRASS) * itemCount;
-	}
-
-
-
 	//----------------------------------------------------------------
 	// 精霊スキルによる短縮
 	//----------------------------------------------------------------
