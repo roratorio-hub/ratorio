@@ -436,11 +436,9 @@ function SetMainMenuFrame(){
 	objA.setAttribute("href", "../../information/history/index.html");
 	objA.setAttribute("target", "_blank");
 	objA.appendChild(document.createTextNode("更新履歴"));
-	objDivGrp.appendChild(document.createElement("br"));
-	objDivGrp.appendChild(document.createTextNode("2024/01/05 更新"));
 
 	objHr = document.createElement("hr");
-	objHr.setAttribute("style", "margin: 0");
+	objHr.setAttribute("style", "margin-top: 10");
 	objDiv.appendChild(objHr);
 
 	//----------------------------------------------------------------
@@ -499,6 +497,21 @@ function SetMainMenuFrame(){
 	objA.appendChild(document.createTextNode("ROラトリオ"));
 	objDivGrp.appendChild(document.createElement("br"));
 
+	objHr = document.createElement("hr");
+	objHr.setAttribute("style", "margin-top: 10");
+	objDiv.appendChild(objHr);
+
+	//----------------------------------------------------------------
+	// 更新日時表示
+	//----------------------------------------------------------------
+	objDivGrp = document.createElement("div");
+	objDivGrp.setAttribute("style", "margin-top: 0.5em;");
+	objDiv.appendChild(objDivGrp);
+
+	objDivGrp.appendChild(document.createTextNode("更新日時"));
+	objDivGrp.appendChild(document.createElement("br"));
+	objDivGrp.appendChild(document.createTextNode("2024/01/06 09:00"));
+	objDivGrp.appendChild(document.createElement("br"));
 
 
 /*

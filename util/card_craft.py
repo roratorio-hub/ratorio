@@ -60,6 +60,14 @@ def loadCardList():
     matches = re.findall(pattern, js_code)
     return [[int(id), name] for id, type, name in matches if int(type)]
 
+
+def getLatestIdFromCard():
+    pattern = r'\[(\d+),\d+,[^,]+,[^,]+,.*0\]'
+    with open(f'{script_dir}/../roro/m/js/card.dat.js', 'r', encoding='utf-8') as file:
+        js_code = file.read()
+    matches = re.findall(pattern, js_code)
+    return max([int(id) for id in matches])
+
             
 def loadItemList():
     pattern = r'\[(\d+),(\d+),\d+,\d+,\d+,\d+,\d+,\d+,([^,]*),[^,]*,[^,]*,[^]]*0\]'
@@ -199,7 +207,10 @@ def getCapabilityRecord(capability):
     value = int(capability['value']) if 'value' in capability else None
     if 'skill' in capability:
         skill_code = SKILL_CODE.get(capability['skill'])
-        if 'skill_lv' in capability:
+        # スキル習得時に発動する効果の場合
+        if capability_code in [199]:
+            value = skill_code
+        elif 'skill_lv' in capability:
             # スキル使用可能になる能力の場合
             if capability_code in [220, 222, 224]:
                 value = USABLE_SKILL_CODE.get((skill_code, int(capability['skill_lv'])))
@@ -238,7 +249,7 @@ if __name__ == "__main__":
     mig_enchlist_dat_js = []
 
     # card.dat.js, itemset.dat.js, enchlist.dat.js で使われている最新の ID を取得する
-    card_id = getLatestId(card_list)
+    card_id = getLatestIdFromCard()
     itemset_id = getLatestIdFromItemSet()
     enchant_id = getLatestId(slotinfo_list)
     

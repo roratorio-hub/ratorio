@@ -57,6 +57,10 @@ capabilities:
     code: 86
   - name: 魔法ダメージ増加
     code: 89
+  - name: ヒール系スキル使用時HP回復量増加
+    code: 91
+  - name: ヒール系スキルを受けた時HP回復量増加
+    code: 92
   - name: 小型への魔法ダメージ増加
     code: 97
   - name: 中型への魔法ダメージ増加
@@ -67,6 +71,8 @@ capabilities:
     code: 100
   - name: 壊れない
     code: 194
+  - name: スキル習得時効果
+    code: 199
   - name: 全ステータス上昇
     code: 217
   - name: アイテムの効果が発動しない
