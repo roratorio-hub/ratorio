@@ -35618,7 +35618,24 @@ function CSkillManager() {
 		this.dataArray[skillId] = skillData;
 		skillId++;
 
+		// ----------------------------------------------------------------
+		// スピリットマスタリー
+		// ----------------------------------------------------------------
+		SKILL_ID_SPIRIT_MASTERY = skillId;
+		skillData = new function() {
+			this.prototype = new CSkillData();
+			CSkillData.call(this);
 
+			this.id = skillId;
+			this.name = "スピリットマスタリー";
+			this.kana = "スヒリツトマスタリイ";
+			this.maxLv = 10;
+			this.type = CSkillData.TYPE_PASSIVE;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_VOID;
+		};
+		this.dataArray[skillId] = skillData;
+		skillId++;
 
 
 

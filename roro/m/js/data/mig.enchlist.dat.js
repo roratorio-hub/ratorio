@@ -673,14 +673,14 @@
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5014] = [600,601];	
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5016] = [600,601];	
 	// フィデス　拡張四次
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5018] = [546];	
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5019] = [546];	
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5020] = [546];	
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5021] = [546];	
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5022] = [546];	
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5023] = [546];	
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5024] = [546];	
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5027] = [546];	
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5018] = [546];	// アドゥルテル・フィデス・ライフル
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5019] = [546];	// アドゥルテル・フィデス・メイス
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5020] = [546];	// アドゥルテル・フィデス・スターダストブック
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5021] = [546];	// アドゥルテル・フィデス・ソウルスティック
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5022] = [546];	// アドゥルテル・フィデス・ダガー
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5023] = [546];	// アドゥルテル・フィデス・フォックステイル
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5024] = [546];	// ウィワートゥス・フィデス・スターダストブック
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5027] = [546];	// ウィワートゥス・フィデス・ソウルスティック
 	// 12月クジ
 	g_constDataManager.enchListDataManager.sourceArray[632] = [632,-1,0,0,[["スペシャルエンチャント（オーブ）","C3y4C2h1I3A4J5D2h1J5D5A5A5f3"]],[],[[[174,[50,[5030]]],,[[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[2801,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,8],[60,4]],,[[[186,[51,[668,673,678,683,688,692,1247,1303,]]],,[]]]]]],[[178,[27,[2]]],,[[[187,[59,9],[60,4]],,[[[186,[51,[668,673,678,683,688,692,1247,1975,]]],,[]]]]]],]]],[]];
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5030] = [632];

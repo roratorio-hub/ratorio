@@ -1205,6 +1205,7 @@
 	SKILL_ID_SHIHO_GOGYO_ZIN = 1202;
 	SKILL_ID_TENCHI_SHINRE = 1203;
 	SKILL_ID_SHIHO_FU_ZYOTAI = 1204;
+	SKILL_ID_SPIRIT_MASTERY = 1205;
 
 	SkillObjNew = [
 		[0,1,"通常攻撃"],
@@ -2412,6 +2413,7 @@
 		[1202,5,"(×)四方五行陣"],
 		[1203,10,"天地神霊"],
 		[1204,5,"四方符状態"],
+		[1205,10,"スピリットマスタリー"],
 	];
 
 })();
