@@ -1206,6 +1206,8 @@
 	SKILL_ID_TENCHI_SHINRE = 1203;
 	SKILL_ID_SHIHO_FU_ZYOTAI = 1204;
 	SKILL_ID_SPIRIT_MASTERY = 1205;
+	SKILL_ID_SANREI_ITTAI = 1206;
+	SKILL_ID_NYAN_BRESSING = 1207;
 
 	SkillObjNew = [
 		[0,1,"通常攻撃"],
@@ -2414,6 +2416,8 @@
 		[1203,10,"天地神霊"],
 		[1204,5,"四方符状態"],
 		[1205,10,"スピリットマスタリー"],
+		[1206,5,"三霊一体"],
+		[1207,5,"にゃんブレッシング"],
 	];
 
 })();

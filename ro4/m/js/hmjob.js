@@ -581,6 +581,15 @@ function GetPAtk() {
 		value += [0, 1, 2, 3, 4, 5, 6, 7, 9, 12, 15][sklLv];
 	}
 
+	// 「スピリットハンドラー」スキル「三霊一体」による効果
+	if ((sklLv = UsedSkillSearch(SKILL_ID_SANREI_ITTAI)) > 0) {
+		value += 3 * sklLv;
+	}
+
+	// 「スピリットハンドラー」スキル「にゃんブレッシング」による効果
+	if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_NYAN_BRESSING]) > 0) {
+		value += 5 * bufLv;
+	}
 
 	return value;
 }
@@ -695,7 +704,16 @@ function GetSMatk() {
 		value += [0, 1, 2, 3, 4, 5, 6, 7, 9, 12, 15][sklLv];
 	}
 
+	// 「スピリットハンドラー」スキル「三霊一体」による効果
+	if ((sklLv = UsedSkillSearch(SKILL_ID_SANREI_ITTAI)) > 0) {
+		value += 3 * sklLv;
+	}
 
+	// 「スピリットハンドラー」スキル「にゃんブレッシング」による効果
+	if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_NYAN_BRESSING]) > 0) {
+		value += 5 * bufLv;
+	}
+	
 	return value;
 }
 
