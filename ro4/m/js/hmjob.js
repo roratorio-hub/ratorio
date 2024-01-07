@@ -591,6 +591,21 @@ function GetPAtk() {
 		value += 5 * bufLv;
 	}
 
+	// 「ハイパーノービス」スキル「独学 -戦闘学-」による効果
+	if ((sklLv = UsedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU)) > 0) {
+		value += [0, 1, 2, 3, 4, 5, 6, 7, 9, 12, 15][sklLv];
+	}
+
+	// 「ナイトウォッチ」スキル「P.F.I」による効果
+	if ((sklLv = UsedSkillSearch(SKILL_ID_PFI)) > 0) {
+		value += sklLv;
+	}
+
+	// 「ナイトウォッチ」スキル「ヒドゥンカード」による効果
+	if ((sklLv = UsedSkillSearch(SKILL_ID_HIDDEN_CARD)) > 0) {
+		value += sklLv + 5;
+	}			
+
 	return value;
 }
 
@@ -713,7 +728,13 @@ function GetSMatk() {
 	if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_NYAN_BRESSING]) > 0) {
 		value += 5 * bufLv;
 	}
+
+	// 「ハイパーノービス」スキル「独学 -魔導学-」による効果
+	if ((sklLv = UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU)) > 0) {
+		value += [0, 1, 2, 3, 4, 5, 6, 7, 9, 12, 15][sklLv];
+	}
 	
+
 	return value;
 }
 
@@ -1083,6 +1104,12 @@ function ApplySpecModify(spid, spVal) {
 		if ((sklLv = UsedSkillSearch(SKILL_ID_HYOHO_SHUREN)) > 0) {
 			spVal += [0, 3, 6, 9, 12, 15, 20, 25, 30, 40, 50][sklLv];
 		}
+
+		// 「ナイトウォッチ」スキル「インテンシブエイム」による効果
+		if ((sklLv = UsedSkillSearch(SKILL_ID_INTENSIVE_AIM)) > 0) {
+			spVal += 250;
+		}
+
 		break;
 
 	case ITEM_SP_FLEE_PLUS:
@@ -1129,6 +1156,12 @@ function ApplySpecModify(spid, spVal) {
 				break;
 			}
 		}
+
+		// 「ナイトウォッチ」スキル「インテンシブエイム」による効果
+		if ((sklLv = UsedSkillSearch(SKILL_ID_INTENSIVE_AIM)) > 0) {
+			spVal += 50;
+		}
+
 		break;
 
 	case ITEM_SP_MAXHP_UP:
@@ -1154,6 +1187,13 @@ function ApplySpecModify(spid, spVal) {
 		if ((sklLv = UsedSkillSearch(SKILL_ID_KYOZINNA_SHINNEN)) > 0) {
 			spVal += 100;
 		}
+
+		// 「ナイトウォッチ」スキル「インテンシブエイム」による効果
+		if ((sklLv = UsedSkillSearch(SKILL_ID_INTENSIVE_AIM)) > 0) {
+			spVal += 100;
+		}
+
+
 		break;
 
 	case ITEM_SP_DEF_PLUS:
@@ -1216,6 +1256,12 @@ function ApplySpecModify(spid, spVal) {
 		if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_TENCHI_SHINRE]) > 0) {
 			spVal += 10 + bufLv;
 		}
+
+		// 「ナイトウォッチ」スキル「ヒドゥンカード」による効果
+		if ((sklLv = UsedSkillSearch(SKILL_ID_HIDDEN_CARD)) > 0) {
+			spVal += 100 + sklLv * 10;
+		}		
+
 		break;
 
 	case ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_SMALL:
