@@ -1208,6 +1208,14 @@
 	SKILL_ID_SPIRIT_MASTERY = 1205;
 	SKILL_ID_SANREI_ITTAI = 1206;
 	SKILL_ID_NYAN_BRESSING = 1207;
+	SKILL_ID_MARIN_FESTIVAL = 1208;
+	SKILL_ID_SAND_FESTIVAL = 1209;
+	SKILL_ID_DOKUGAKU_SENTOGAKU = 1210;
+	SKILL_ID_DOKUGAKU_MADOGAKU = 1211;
+	SKILL_ID_PFI = 1212;
+	SKILL_ID_GRENADE_MASTERY = 1213;
+	SKILL_ID_INTENSIVE_AIM = 1214;
+	SKILL_ID_HIDDEN_CARD = 1215;
 
 	SkillObjNew = [
 		[0,1,"通常攻撃"],
@@ -2418,6 +2426,14 @@
 		[1205,10,"スピリットマスタリー"],
 		[1206,5,"三霊一体"],
 		[1207,5,"にゃんブレッシング"],
+		[1208,5,"マリンフェスティバル"],
+		[1209,5,"サンドフェスティバル"],
+		[1210,10,"独学 -戦闘学-"],
+		[1211,10,"独学 -魔導学-"],
+		[1212,10,"P.F.I"],
+		[1213,10,"グレネードマスタリー"],
+		[1214,1,"インテンシブエイム"],
+		[1215,10,"ヒドゥンカード"],
 	];
 
 })();

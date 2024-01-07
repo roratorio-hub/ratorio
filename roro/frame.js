@@ -510,7 +510,7 @@ function SetMainMenuFrame(){
 
 	objDivGrp.appendChild(document.createTextNode("更新日時"));
 	objDivGrp.appendChild(document.createElement("br"));
-	objDivGrp.appendChild(document.createTextNode("2024/01/07 08:00"));
+	objDivGrp.appendChild(document.createTextNode("2024/01/07 17:00"));
 	objDivGrp.appendChild(document.createElement("br"));
 
 

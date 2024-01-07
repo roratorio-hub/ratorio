@@ -274,6 +274,29 @@ function CCharaConfYozi(confArray) {
 		this.confDataObj[confId] = confData;
 		confId++;
 
+		CCharaConfYozi.CONF_ID_MARIN_FESTIVAL = confId;
+		confData = [
+			confId,
+			CConfBase.ConfText("マリンフェスティバル"),
+			CConfBase.ConfControlType(CONTROL_TYPE_SELECTBOX_NUMBER),
+			CConfBase.ConfDefaultValue(0),
+			CConfBase.ConfMinValue(0),
+			CConfBase.ConfMaxValue(5)
+		];
+		this.confDataObj[confId] = confData;
+		confId++;
+
+		CCharaConfYozi.CONF_ID_SAND_FESTIVAL = confId;
+		confData = [
+			confId,
+			CConfBase.ConfText("サンドフェスティバル"),
+			CConfBase.ConfControlType(CONTROL_TYPE_SELECTBOX_NUMBER),
+			CConfBase.ConfDefaultValue(0),
+			CConfBase.ConfMinValue(0),
+			CConfBase.ConfMaxValue(5)
+		];
+		this.confDataObj[confId] = confData;
+		confId++;
 
 		CCharaConfYozi.CONF_ID_DUMMY = confId;
 		confData = [
@@ -336,6 +359,8 @@ function CCharaConfYozi(confArray) {
 		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfYozi.CONF_ID_GOGYO_FU];
 		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfYozi.CONF_ID_TENCHI_SHINRE];
 		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfYozi.CONF_ID_NYAN_BRESSING];
+		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfYozi.CONF_ID_MARIN_FESTIVAL];
+		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfYozi.CONF_ID_SAND_FESTIVAL];
 		this.confDataObj = confDataOBJSorted;
 
 	}

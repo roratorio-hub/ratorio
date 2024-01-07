@@ -28572,7 +28572,33 @@ function StPlusCalc() {
 		wSPC_CRT += value;
 	}
 
+	// 四次職支援「サンドフェスティバル」による効果
+	if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_SAND_FESTIVAL]) > 0) {
+		if (g_confDataYozi[CCharaConfYozi.CONF_ID_RERIGIO] == 0) {
+			value = 2 * bufLv;
 
+			wSPC_STA += value;
+			wSPC_WIS += value;
+			wSPC_SPL += value;
+		}
+	}
+
+	// 四次職支援「マリンフェスティバル」による効果
+	if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_MARIN_FESTIVAL]) > 0) {
+		if (g_confDataYozi[CCharaConfYozi.CONF_ID_BENEDICTUM] == 0) {
+			value = 2 * bufLv;
+
+			wSPC_POW += value;
+			wSPC_CON += value;
+			wSPC_CRT += value;	
+		}
+	}
+
+	// 「ナイトウォッチ」スキル「グレネードマスタリー」による効果
+	if ((sklLv = UsedSkillSearch(SKILL_ID_GRENADE_MASTERY)) > 0) {
+		wSPC_CON += sklLv
+	}
+	
 
 	// 特性ステータス補正の保持
 	var spc4thArray = StoreSpecStatusBonusAll(wSPC_POW, wSPC_STA, wSPC_WIS, wSPC_SPL, wSPC_CON, wSPC_CRT);
