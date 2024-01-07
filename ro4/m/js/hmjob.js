@@ -598,7 +598,16 @@ function GetPAtk() {
 
 	// 「ナイトウォッチ」スキル「P.F.I」による効果
 	if ((sklLv = UsedSkillSearch(SKILL_ID_PFI)) > 0) {
-		value += sklLv;
+		// 銃装備時のみ
+		switch (n_A_WeaponType) {
+			case ITEM_KIND_HANDGUN:
+			case ITEM_KIND_RIFLE:
+			case ITEM_KIND_SHOTGUN:
+			case ITEM_KIND_GATLINGGUN:
+			case ITEM_KIND_GRENADEGUN:
+				value += sklLv;
+				break;
+			}	
 	}
 
 	// 「ナイトウォッチ」スキル「ヒドゥンカード」による効果

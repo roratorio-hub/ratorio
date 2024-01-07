@@ -35801,7 +35801,7 @@ function CSkillManager() {
 			this.name = "インテンシブエイム";
 			this.kana = "インテンシフエイム";
 			this.maxLv = 1;
-			this.type = CSkillData.TYPE_PASSIVE;
+			this.type = CSkillData.TYPE_ACTIVE;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
 		};
@@ -35820,7 +35820,7 @@ function CSkillManager() {
 			this.name = "ヒドゥンカード";
 			this.kana = "ヒトウンカアト";
 			this.maxLv = 10;
-			this.type = CSkillData.TYPE_PASSIVE;
+			this.type = CSkillData.TYPE_ACTIVE;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
 		};
