@@ -65,6 +65,7 @@ g_charaData = {
 g_confDataCustomStatusMIG = null;
 g_confDataSpecMIG = null;
 g_confDataCustomSkillMIG = null;
+g_confDataCustomSpecStatusMIG = null;
 
 function ResetConfDataAllMIG (bAsOnLoad) {
 
@@ -80,6 +81,7 @@ function ResetConfDataAllMIG (bAsOnLoad) {
 	// TODO: マジックナンバー
 	// CSaveDataUnitの該当クラスの要素数を直接指定している
 	g_confDataCustomStatusMIG = Array(46).fill(0);
+	g_confDataCustomSpecStatusMIG = Array(12).fill(0);
 	g_confDataSpecMIG = [
 		[Array(53).fill(0), Array(53).fill(0), Array(53).fill(0)],
 		[Array(53).fill(0), Array(53).fill(0), Array(53).fill(0)],

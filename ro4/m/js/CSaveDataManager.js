@@ -183,6 +183,11 @@ class CSaveDataManager {
 			// 処理方式が異なるので空マップ
 			new Map()
 		],
+		[
+			SAVE_DATA_UNIT_TYPE_CHARA_CONF_SPEC_BASIC,
+			// 処理方式が異なるので空マップ
+			new Map()
+		],
 	]);
 
 
@@ -652,7 +657,10 @@ class CSaveDataManager {
 		// TODO: 構造変更後、撤去予定
 
 		// グローバル変数のデータ調整
-		let spliceArray = g_confDataCustomStatusMIG.slice(0, 22);
+		let spliceArray = g_confDataCustomSpecStatusMIG.slice(0, 24);
+		g_confDataCustomSpecStatus.splice(1, spliceArray.length, ...spliceArray);
+
+		spliceArray = g_confDataCustomStatusMIG.slice(0, 22);
 		g_confDataCustomStatus.splice(1, spliceArray.length, ...spliceArray);
 
 		spliceArray = g_confDataCustomStatusMIG.slice(22, 25);
