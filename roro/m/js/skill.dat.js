@@ -1216,6 +1216,7 @@
 	SKILL_ID_GRENADE_MASTERY = 1213;
 	SKILL_ID_INTENSIVE_AIM = 1214;
 	SKILL_ID_HIDDEN_CARD = 1215;
+	SKILL_ID_ONLY_ONE_BULLET = 1216;
 
 	SkillObjNew = [
 		[0,1,"通常攻撃"],
@@ -2434,6 +2435,7 @@
 		[1213,10,"グレネードマスタリー"],
 		[1214,1,"インテンシブエイム"],
 		[1215,10,"ヒドゥンカード"],
+		[1216,5,"オンリーワンバレット"],
 	];
 
 })();

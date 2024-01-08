@@ -4044,8 +4044,46 @@ g_bUnknownCasts = true;
 			wbairitu *= n_A_BaseLV / 100;
 			break;
 
+		/*
+			「ナイトウォッチ」スキル「オンリーワンバレット」
+		*/
+		case SKILL_ID_ONLY_ONE_BULLET:
+
+			// 使用武器制限
+			if (n_A_WeaponType != ITEM_KIND_HANDGUN && n_A_WeaponType != ITEM_KIND_RIFLE) {
+				wbairitu = 0;
+				break;
+			}
+
+			// TODO: 詠唱時間等未実測スキル
+			g_bUnknownCasts = true;
+
+			// 遠距離属性
+			n_Enekyori = 1;
+
+			if (n_A_WeaponType == ITEM_KIND_HANDGUN) {
+				wbairitu = 4000 + (700 * n_A_ActiveSkillLV);
+				bCri = false; // クリティカルしない
+			}
+			else if (n_A_WeaponType == ITEM_KIND_RIFLE) {
+				wbairitu = 2800 + (500 * n_A_ActiveSkillLV);
+			}
+			
+			// CON補正
+			wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+
+			// 照準カウンター補正
+			counter = attackMethodConfArray[0].GetOptionValue(0);
+			wbairitu += counter * (950 + (150 * n_A_ActiveSkillLV));
+
+			// ベースレベル補正
+			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
+			break;
 
 
+/* --------------------------------------------------
+↑ 物理攻撃スキル追加位置
+-------------------------------------------------- */
 
 		default:
 			bDefaultFormula = false;
@@ -9478,9 +9516,9 @@ g_bUnknownCasts = true;
 			wbairitu *= n_A_BaseLV / 100;
 			break;
 
-
-
-
+/* --------------------------------------------------
+↑ 魔法攻撃スキル追加位置
+-------------------------------------------------- */
 
 		}
 
@@ -19198,6 +19236,11 @@ function _SUB_ApplyMonsterDefence(mobData, dmg){
 
 	// シャドウスタブ
 	if (n_A_ActiveSkill == SKILL_ID_SHADOW_STAB) {
+		bPenetrate = true;
+	}
+
+	// ハンドガン装備時のオンリーワンバレット
+	if (n_A_ActiveSkill == SKILL_ID_ONLY_ONE_BULLET && n_A_WeaponType == ITEM_KIND_HANDGUN) {
 		bPenetrate = true;
 	}
 
