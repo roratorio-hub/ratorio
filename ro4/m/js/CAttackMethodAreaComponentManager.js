@@ -3609,6 +3609,34 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 			);
 			break;
 
+		//----------------------------------------------------------------
+		// ナイトウォッチ：照準カウンター
+		//----------------------------------------------------------------
+		case SKILL_ID_ONLY_ONE_BULLET:
+
+			// オプションリストを生成、追加
+			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+				"照準カウンター",
+				[
+					[0, "なし"],
+					[1, "1 個"],
+					[2, "2 個"],
+					[3, "3 個"],
+					[4, "4 個"],
+					[5, "5 個"],
+					[6, "6 個"],
+					[7, "7 個"],
+					[8, "8 個"],
+					[9, "9 個"],
+					[10,"10 個"],
+				],
+				0
+			);
+			break;
+
+
+
+
 		}
 
 	}

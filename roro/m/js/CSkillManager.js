@@ -35827,8 +35827,32 @@ function CSkillManager() {
 		this.dataArray[skillId] = skillData;
 		skillId++;
 
+		// ----------------------------------------------------------------
+		// オンリーワンバレット
+		// ----------------------------------------------------------------
+		SKILL_ID_ONLY_ONE_BULLET = skillId;
+		skillData = new function() {
+			this.prototype = new CSkillData();
+			CSkillData.call(this);
 
+			this.id = skillId;
+			this.name = "オンリーワンバレット";
+			this.kana = "オンリイワンハレツト";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
+			this.range = CSkillData.RANGE_LONG;
+			this.element = CSkillData.ELEMENT_VOID;
 
+			this.CriActRate = (skillLv, charaData, specData, mobData) => {
+				return this._CriActRate100(skillLv, charaData, specData, mobData);
+			}
+
+			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {
+				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
+			}			
+		};
+		this.dataArray[skillId] = skillData;
+		skillId++;		
 	}
 
 	// 初期化
