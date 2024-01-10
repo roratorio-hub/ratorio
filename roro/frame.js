@@ -436,6 +436,13 @@ function SetMainMenuFrame(){
 	objA.setAttribute("href", "../../information/history/index.html");
 	objA.setAttribute("target", "_blank");
 	objA.appendChild(document.createTextNode("更新履歴"));
+	objDivGrp.appendChild(document.createElement("br"));
+
+	objA = document.createElement("a");
+	objDivGrp.appendChild(objA);
+	objA.setAttribute("href", "../../information/wanted/index.html");
+	objA.setAttribute("target", "_blank");
+	objA.appendChild(document.createTextNode("情報提供のお願い"));
 
 	objHr = document.createElement("hr");
 	objHr.setAttribute("style", "margin-top: 10");
@@ -510,7 +517,7 @@ function SetMainMenuFrame(){
 
 	objDivGrp.appendChild(document.createTextNode("更新日時"));
 	objDivGrp.appendChild(document.createElement("br"));
-	objDivGrp.appendChild(document.createTextNode("2024/01/08 20:30"));
+	objDivGrp.appendChild(document.createTextNode("2024/01/10 13:00"));
 	objDivGrp.appendChild(document.createElement("br"));
 
 
