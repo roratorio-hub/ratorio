@@ -43,3 +43,8 @@ function LoadSelect2() {
         };
     });
 };
+$(function(){
+    $("#OBJID_SELECT_JOB, #OBJID_ARMS_RIGHT, #OBJID_ARMS_LEF, #OBJID_HEAD_TOP, #OBJID_ACCESSARY_1, #OBJID_ACCESSARY_2").on("select2:select", ()=>{
+        LoadSelect2();
+    })
+});
