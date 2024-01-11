@@ -183,6 +183,11 @@ class CSaveDataManager {
 			// 処理方式が異なるので空マップ
 			new Map()
 		],
+		[
+			SAVE_DATA_UNIT_TYPE_CHARA_CONF_SPEC_BASIC,
+			// 処理方式が異なるので空マップ
+			new Map()
+		],
 	]);
 
 
@@ -641,6 +646,7 @@ class CSaveDataManager {
 		funcCallApplyConfigSpec(this, CSaveDataConst.specKindAttackAny, g_confDataSpecMIG[0][2]);
 		funcCallApplyConfigSpec(this, CSaveDataConst.specKindDefencekAny, g_confDataSpecMIG[1][2]);
 		funcCallApplyConfig(this, SAVE_DATA_UNIT_TYPE_CHARA_CONF_SKILL, g_confDataCustomSkillMIG);
+		funcCallApplyConfig(this, SAVE_DATA_UNIT_TYPE_CHARA_CONF_SPEC_BASIC, g_confDataCustomSpecStatusMIG);
 		funcCallApplyMob(this, SAVE_DATA_UNIT_TYPE_MOB);
 		funcCallApplyMobConfPlayer(this, SAVE_DATA_UNIT_TYPE_MOB_CONF_PLAYER, n_B_TAISEI);
 		funcCallApplyMobConfInput(this, SAVE_DATA_UNIT_TYPE_MOB_CONF_INPUT);
@@ -652,7 +658,10 @@ class CSaveDataManager {
 		// TODO: 構造変更後、撤去予定
 
 		// グローバル変数のデータ調整
-		let spliceArray = g_confDataCustomStatusMIG.slice(0, 22);
+		let spliceArray = g_confDataCustomSpecStatusMIG.slice(0, 24);
+		g_confDataCustomSpecStatus.splice(1, spliceArray.length, ...spliceArray);
+
+		spliceArray = g_confDataCustomStatusMIG.slice(0, 22);
 		g_confDataCustomStatus.splice(1, spliceArray.length, ...spliceArray);
 
 		spliceArray = g_confDataCustomStatusMIG.slice(22, 25);
@@ -662,7 +671,7 @@ class CSaveDataManager {
 		spliceArray.push(g_confDataSpecMIG[0][0][37]);
 		spliceArray.push(g_confDataSpecMIG[0][0][41]);
 		spliceArray.push(g_confDataSpecMIG[0][0][47]);
-		spliceArray.push(g_confDataSpecMIG[0][0][1]);
+		spliceArray.push(g_confDataSpecMIG[0][2][1]);
 		spliceArray.push(g_confDataCustomStatusMIG[26]);
 		spliceArray.push(g_confDataSpecMIG[0][0][51]);
 		spliceArray.push(g_confDataCustomStatusMIG[29]);
@@ -704,6 +713,9 @@ class CSaveDataManager {
 		spliceArray.push(g_confDataCustomSkillMIG[4]);
 		spliceArray.push(g_confDataCustomSkillMIG[5]);
 		g_confDataCustomSkill.splice(1, spliceArray.length, ...spliceArray);
+		spliceArray = g_confDataCustomSpecStatusMIG.slice(0, 24);
+		g_confDataCustomSpecStatus.splice(1, spliceArray.length, ...spliceArray);
+
 
 
 

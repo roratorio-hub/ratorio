@@ -1217,6 +1217,10 @@
 	SKILL_ID_INTENSIVE_AIM = 1214;
 	SKILL_ID_HIDDEN_CARD = 1215;
 	SKILL_ID_ONLY_ONE_BULLET = 1216;
+	SKILL_ID_SPIRAL_SHOOTING = 1217;
+	SKILL_ID_MAGAZIN_FOR_ONE = 1218;
+	SKILL_ID_VIGILANT_AT_NIGHT = 1219;
+	SKILL_ID_WILD_FIRE = 1220;
 
 	SkillObjNew = [
 		[0,1,"通常攻撃"],
@@ -2436,6 +2440,10 @@
 		[1214,1,"インテンシブエイム"],
 		[1215,10,"ヒドゥンカード"],
 		[1216,5,"オンリーワンバレット"],
+		[1217,5,"スパイラルシューティング"],
+		[1218,5,"マガジンフォーワン"],
+		[1219,5,"ビジラントアットナイト"],
+		[1220,5,"ワイルドファイア"],
 	];
 
 })();
