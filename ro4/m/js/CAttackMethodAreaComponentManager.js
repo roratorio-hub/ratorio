@@ -3613,6 +3613,10 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 		// ナイトウォッチ：照準カウンター
 		//----------------------------------------------------------------
 		case SKILL_ID_ONLY_ONE_BULLET:
+		case SKILL_ID_SPIRAL_SHOOTING:
+		case SKILL_ID_MAGAZIN_FOR_ONE:
+		case SKILL_ID_VIGILANT_AT_NIGHT:
+		case SKILL_ID_WILD_FIRE:
 
 			// オプションリストを生成、追加
 			attackMethodOptList = funcCreateOptionList(attackMethodOptList,

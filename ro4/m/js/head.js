@@ -4084,6 +4084,164 @@ g_bUnknownCasts = true;
 			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
 			break;
 
+		/*
+			「ナイトウォッチ」スキル「スパイラルシューティング」
+		*/
+		case SKILL_ID_SPIRAL_SHOOTING:
+			// ToDo: グレネードのダメージは未実測
+
+			// 使用武器制限
+			if (n_A_WeaponType != ITEM_KIND_GRENADEGUN && n_A_WeaponType != ITEM_KIND_RIFLE) {
+				wbairitu = 0;
+				break;
+			}
+
+			// TODO: 詠唱時間等未実測スキル
+			g_bUnknownCasts = true;
+
+			// 遠距離属性
+			n_Enekyori = 1;
+
+			if (n_A_WeaponType == ITEM_KIND_GRENADEGUN) {
+				wbairitu = 1250 + (250 * n_A_ActiveSkillLV);
+				bCri = false;	// クリティカルしない
+				wHITsuu = 2;	// 2ヒットする
+			}
+			else if (n_A_WeaponType == ITEM_KIND_RIFLE) {
+				wbairitu = 1950 + (350 * n_A_ActiveSkillLV);
+			}
+			
+			// CON補正
+			// グレネードを試せていないので丸め誤差がある場合はこちらに置き換える
+			// wbairitu += ROUNDDOWN((3 * GetTotalSpecStatus(MIG_PARAM_ID_CON)) / wHITsuu) * wHITsuu;
+			wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+
+			// 照準カウンター補正
+			counter = attackMethodConfArray[0].GetOptionValue(0);
+			wbairitu += counter * (550 + (100 * n_A_ActiveSkillLV));
+
+			// ベースレベル補正
+			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
+			break;
+
+		/*
+			「ナイトウォッチ」スキル「マガジンフォーワン」
+		*/
+		case SKILL_ID_MAGAZIN_FOR_ONE:
+			// ToDo: ガトリングのダメージは未実測
+
+			// 使用武器制限
+			if (n_A_WeaponType != ITEM_KIND_HANDGUN && n_A_WeaponType != ITEM_KIND_GATLINGGUN) {
+				wbairitu = 0;
+				break;
+			}
+
+			// TODO: 詠唱時間等未実測スキル
+			g_bUnknownCasts = true;
+
+			// 遠距離属性
+			n_Enekyori = 1;
+
+			if (n_A_WeaponType == ITEM_KIND_GATLINGGUN) {
+				wbairitu = 350 + (50 * n_A_ActiveSkillLV);
+				bCri = false;	// クリティカルしない
+				wHITsuu = 10;	// 10ヒットする
+			}
+			else if (n_A_WeaponType == ITEM_KIND_HANDGUN) {
+				wbairitu = 500 + (50 * n_A_ActiveSkillLV);
+				wHITsuu = 6;	// 6ヒットする
+			}
+			
+			// CON補正
+			// ヒット数で再計算されて丸め誤差がある
+			wbairitu += ROUNDDOWN((3 * GetTotalSpecStatus(MIG_PARAM_ID_CON)) / wHITsuu) * wHITsuu
+
+			// 照準カウンター補正
+			counter = attackMethodConfArray[0].GetOptionValue(0);
+			wbairitu += counter * (125 + (25 * n_A_ActiveSkillLV));
+
+			// ベースレベル補正
+			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
+			break;
+
+		/*
+			「ナイトウォッチ」スキル「ビジラントアットナイト」
+		*/
+		case SKILL_ID_VIGILANT_AT_NIGHT:
+			// ToDo: ガトリングのダメージは未実測
+
+			// 使用武器制限
+			if (n_A_WeaponType != ITEM_KIND_SHOTGUN && n_A_WeaponType != ITEM_KIND_GATLINGGUN) {
+				wbairitu = 0;
+				break;
+			}
+
+			// TODO: 詠唱時間等未実測スキル
+			g_bUnknownCasts = true;
+
+			// 遠距離属性
+			n_Enekyori = 1;
+
+			if (n_A_WeaponType == ITEM_KIND_GATLINGGUN) {
+				wbairitu = 350 + (50 * n_A_ActiveSkillLV);
+				wHITsuu = 7;	// 7ヒットする
+				// def無視は別の場所で定義
+			}
+			else if (n_A_WeaponType == ITEM_KIND_SHOTGUN) {
+				wbairitu = 700 + (100 * n_A_ActiveSkillLV);
+				wHITsuu = 4;	// 4ヒットする
+			}
+			
+			// CON補正
+			// ヒット数で再計算されず丸め誤差が無い
+			wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+
+			// 照準カウンター補正
+			counter = attackMethodConfArray[0].GetOptionValue(0);
+			wbairitu += counter * (250 + (50 * n_A_ActiveSkillLV));
+
+			// ベースレベル補正
+			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
+			break;
+
+		/*
+			「ナイトウォッチ」スキル「ワイルドファイア」
+		*/
+		case SKILL_ID_WILD_FIRE:
+
+			// 使用武器制限
+			if (n_A_WeaponType != ITEM_KIND_SHOTGUN && n_A_WeaponType != ITEM_KIND_GRENADEGUN) {
+				wbairitu = 0;
+				break;
+			}
+
+			// スキル説明にないが3Hitスキル
+			wHITsuu = 3;
+
+			// TODO: 詠唱時間等未実測スキル
+			g_bUnknownCasts = true;
+
+			// 遠距離属性
+			n_Enekyori = 1;
+
+			// 基礎倍率
+			wbairitu = 2800 + (500 * n_A_ActiveSkillLV);
+
+			// CON補正
+			wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+
+			// 照準カウンター補正
+			counter = attackMethodConfArray[0].GetOptionValue(0);
+			wbairitu += counter * (950 + (150 * n_A_ActiveSkillLV));
+
+			// ベースレベル補正
+			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
+
+			// ヒット数で分割
+			// ToDo : 1 hit あたりのダメージ誤差が -1 から -2 程度存在するので /3 する位置の調整が必要
+			wbairitu = wbairitu / 3;
+			break;
+
 
 /* --------------------------------------------------
 ↑ 物理攻撃スキル追加位置
@@ -19245,6 +19403,11 @@ function _SUB_ApplyMonsterDefence(mobData, dmg){
 
 	// ハンドガン装備時のオンリーワンバレット
 	if (n_A_ActiveSkill == SKILL_ID_ONLY_ONE_BULLET && n_A_WeaponType == ITEM_KIND_HANDGUN) {
+		bPenetrate = true;
+	}
+
+	// ガトリングガン装備時のビジラントアットナイト
+	if (n_A_ActiveSkill == SKILL_ID_VIGILANT_AT_NIGHT && n_A_WeaponType == ITEM_KIND_GATLINGGUN) {
 		bPenetrate = true;
 	}
 

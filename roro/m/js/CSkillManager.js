@@ -35849,10 +35849,99 @@ function CSkillManager() {
 
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
-			}			
+			}
+		};
+		this.dataArray[skillId] = skillData;
+		skillId++;
+
+		// ----------------------------------------------------------------
+		// スパイラルシューティング
+		// ----------------------------------------------------------------
+		SKILL_ID_SPIRAL_SHOOTING = skillId;
+		skillData = new function() {
+			this.prototype = new CSkillData();
+			CSkillData.call(this);
+
+			this.id = skillId;
+			this.name = "スパイラルシューティング";
+			this.kana = "スハイラルシユウテインク";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
+			this.range = CSkillData.RANGE_LONG;
+			this.element = CSkillData.ELEMENT_VOID;
+			this.CriActRate = (skillLv, charaData, specData, mobData) => {
+				return this._CriActRate100(skillLv, charaData, specData, mobData);
+			}
+			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {
+				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
+			}
+		};
+		this.dataArray[skillId] = skillData;
+		skillId++;
+
+		// ----------------------------------------------------------------
+		// マガジンフォーワン
+		// ----------------------------------------------------------------
+		SKILL_ID_MAGAZIN_FOR_ONE = skillId;
+		skillData = new function() {
+			this.prototype = new CSkillData();
+			CSkillData.call(this);
+
+			this.id = skillId;
+			this.name = "マガジンフォーワン";
+			this.kana = "マカシンフオオワン";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
+			this.range = CSkillData.RANGE_LONG;
+			this.element = CSkillData.ELEMENT_VOID;
+			this.CriActRate = (skillLv, charaData, specData, mobData) => {
+				return this._CriActRate100(skillLv, charaData, specData, mobData);
+			}
+			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {
+				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;		
+
+		// ----------------------------------------------------------------
+		// ビジラントアットナイト
+		// ----------------------------------------------------------------
+		SKILL_ID_VIGILANT_AT_NIGHT = skillId;
+		skillData = new function() {
+			this.prototype = new CSkillData();
+			CSkillData.call(this);
+
+			this.id = skillId;
+			this.name = "ビジラントアットナイト";
+			this.kana = "ヒシラントアツトナイト";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
+			this.range = CSkillData.RANGE_LONG;
+			this.element = CSkillData.ELEMENT_VOID;
+		};
+		this.dataArray[skillId] = skillData;
+		skillId++;		
+
+		// ----------------------------------------------------------------
+		// ワイルドファイア
+		// ----------------------------------------------------------------
+		SKILL_ID_WILD_FIRE = skillId;
+		skillData = new function() {
+			this.prototype = new CSkillData();
+			CSkillData.call(this);
+
+			this.id = skillId;
+			this.name = "ワイルドファイア";
+			this.kana = "ワイルトフアイア";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
+			this.range = CSkillData.RANGE_LONG;
+			this.element = CSkillData.ELEMENT_VOID;
+		};
+		this.dataArray[skillId] = skillData;
+		skillId++;	
+
 	}
 
 	// 初期化

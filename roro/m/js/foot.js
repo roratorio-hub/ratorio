@@ -30237,12 +30237,14 @@ function ROUNDDOWN(num){
 	return num;
 }
 
-
-
-
-
-
-
+function ROUNDUP(num){
+	if(num >= 0){
+		num = Math.ceil(num)
+	}else{
+		num = Math.floor(num);
+	}
+	return num;
+}
 
 
 
