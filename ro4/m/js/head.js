@@ -4182,23 +4182,25 @@ g_bUnknownCasts = true;
 			// 遠距離属性
 			n_Enekyori = 1;
 
+			// 照準カウンター
+			counter = attackMethodConfArray[0].GetOptionValue(0);
+
 			if (n_A_WeaponType == ITEM_KIND_GATLINGGUN) {
 				wbairitu = 350 + (50 * n_A_ActiveSkillLV);
 				wHITsuu = 7;	// 7ヒットする
-				// def無視は別の場所で定義
+				// 照準カウンター補正
+				wbairitu += counter * (125 + (25 * n_A_ActiveSkillLV));
 			}
 			else if (n_A_WeaponType == ITEM_KIND_SHOTGUN) {
 				wbairitu = 700 + (100 * n_A_ActiveSkillLV);
 				wHITsuu = 4;	// 4ヒットする
+				// 照準カウンター補正
+				wbairitu += counter * (250 + (50 * n_A_ActiveSkillLV));
 			}
 			
 			// CON補正
-			// ヒット数で再計算されず丸め誤差が無い
+			// ヒット数で再計算されず丸め誤差が無い (ショットガンで実測)
 			wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
-
-			// 照準カウンター補正
-			counter = attackMethodConfArray[0].GetOptionValue(0);
-			wbairitu += counter * (250 + (50 * n_A_ActiveSkillLV));
 
 			// ベースレベル補正
 			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);

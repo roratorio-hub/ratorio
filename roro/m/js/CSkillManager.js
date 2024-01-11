@@ -35921,7 +35921,7 @@ function CSkillManager() {
 			this.element = CSkillData.ELEMENT_VOID;
 		};
 		this.dataArray[skillId] = skillData;
-		skillId++;		
+		skillId++;
 
 		// ----------------------------------------------------------------
 		// ワイルドファイア
