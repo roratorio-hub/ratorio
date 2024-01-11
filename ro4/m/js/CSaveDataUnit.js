@@ -6348,9 +6348,9 @@ class CSaveDataUnitParse extends CSaveDataUnitBase {
 		for (let idx = 0; idx < g_confDataCustomStatus.length; idx++) {
 			// HP/SP領域不足バグ対応
 			let converted = CSaveDataConverter.ConvertUnsignedToSigned(saveDataArrayOld[1580 + idx], saveDataMappingArrayCurrent[1580 + idx]);
-			if ((idx == 2) || (idx == 4)) {
-				converted = 0;
-			}
+//			if ((idx == 2) || (idx == 4)) {
+//				converted = 0;
+//			}
 			convertedArrayBasic.push([((converted < 0) ? 1 : 0), Math.abs(converted)]);
 		}
 		const convertedArrayAtk = [];
