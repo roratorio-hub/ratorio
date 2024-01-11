@@ -950,62 +950,62 @@ class CSaveDataConst {
 	/**
 	 * プロパティ名：特性ステータス（PAtk）（符号）.
 	 */
-	static propNameStPAtkPlusSign = "stPAtkSign";
+	static propNameStPAtkPlusSign = "stPAtkPlusSign";
 
 	/**
 	 * プロパティ名：特性ステータス（PAtk）.
 	 */
-	static propNameStPAtkPlus = "stPAtk";
+	static propNameStPAtkPlus = "stPAtkPlus";
 
 	/**
 	 * プロパティ名：特性ステータス（SMatk）（符号）.
 	 */
-	static propNameStSMatkPlusSign = "stSMatkSign";
+	static propNameStSMatkPlusSign = "stSMatkPlusSign";
 
 	/**
 	 * プロパティ名：特性ステータス（SMatk）.
 	 */
-	static propNameStSMatkPlus = "stSMatk";
+	static propNameStSMatkPlus = "stSMatkPlus";
 
 	/**
 	 * プロパティ名：特性ステータス（HPlus）（符号）.
 	 */
-	static propNameStHPlusPlusSign = "stHPlusSign";
+	static propNameStHPlusPlusSign = "stHPlusPlusSign";
 
 	/**
 	 * プロパティ名：特性ステータス（HPlus）.
 	 */
-	static propNameStHPlusPlus = "stHPlus";
+	static propNameStHPlusPlus = "stHPlusPlus";
 
 	/**
 	 * プロパティ名：特性ステータス（CRate）（符号）.
 	 */
-	static propNameStCRatePlusSign = "stCRateSign";
+	static propNameStCRatePlusSign = "stCRatePlusSign";
 
 	/**
 	 * プロパティ名：特性ステータス（CRate）.
 	 */
-	static propNameStCRatePlus = "stCRate";
+	static propNameStCRatePlus = "stCRatePlus";
 
 	/**
 	 * プロパティ名：特性ステータス（Res）（符号）.
 	 */
-	static propNameStResPlusSign = "stResSign";
+	static propNameStResPlusSign = "stResPlusSign";
 
 	/**
 	 * プロパティ名：特性ステータス（Res）.
 	 */
-	static propNameStResPlus = "stRes";
+	static propNameStResPlus = "stResPlus";
 
 	/**
 	 * プロパティ名：特性ステータス（Mres）（符号）.
 	 */
-	static propNameStMresPlusSign = "stMresSign";
+	static propNameStMresPlusSign = "stMresPlusSign";
 
 	/**
 	 * プロパティ名：特性ステータス（Mres）.
 	 */
-	static propNameStMresPlus = "stMres";
+	static propNameStMresPlus = "stMresPlus";
 
 	/**
 	 * サブプロパティ名：設定無効化.
@@ -4721,7 +4721,7 @@ const SAVE_DATA_UNIT_TYPE_CHARA_CONF_SPECIALIZE = CSaveDataUnitTypeManager.regis
 			this.registerPropInfo(CSaveDataConst.propNameSpecDamageSign, 1);
 			this.registerPropInfo(CSaveDataConst.propNameSpecDamage, CSaveDataConst.propBitsMaxAbs500);
 			this.registerPropInfo(CSaveDataConst.propNameSpecCriticalDamageSign, 1);
-			this.registerPropInfo(CSaveDataConst.propNameSpecCriticalDamage, CSaveDataConst.propBitsMaxAbs500);
+			this.registerPropInfo(CSaveDataConst.propNameSpecCriticalDamage, CSaveDataConst.propBitsMaxAbs1k);
 			this.registerPropInfo(CSaveDataConst.propNameSpecMapSign, 1);
 			this.registerPropInfo(CSaveDataConst.propNameSpecMap, CSaveDataConst.propBitsMaxAbs500);
 
