@@ -2515,10 +2515,6 @@ class CSaveDataUnitBase {
 				propNameCountMap.set(propName, propNameReadCount + 1);
 				continue;
 			}
-			else if (propNameReadCount >= 1){
-				// すでに読み取っているところは更新しない
-				continue;
-			}
 
 			// 取得したプロパティが制御フラグの場合、制御情報を変更する
 			if (propName == CSaveDataConst.propNameParseCtrlFlag) {
