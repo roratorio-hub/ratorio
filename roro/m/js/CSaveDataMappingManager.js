@@ -924,7 +924,7 @@ CSaveDataMappingManager.__GetMappingArrayCharaConfCustomStatus = function (versi
 	var mappingArray = null;
 
 	mappingArray = [
-		1, 2, 3, 2, 3, 2, 2, 3, 3, 3,
+		1, 2, 4, 2, 4, 2, 2, 3, 3, 3,
 		3, 3, 3, 2, 2, 2, 2, 2, 2, 2,
 		2, 2, 3, 3, 3, 3, 3, 3, 3, 3,
 	];
