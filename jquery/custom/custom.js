@@ -124,11 +124,35 @@ function SortCardSelectOption() {
                 return preservedHeadMap[this.text] === undefined && preservedFootMap[this.text] === undefined;
             });
             // その他の要素を50音順にソート
-            rest.sort(function(a, b) {
-                return a.text.localeCompare(b.text, 'ja');
-            });
+            // rest.sort(function(a, b) {
+            //     return a.text.localeCompare(b.text, 'ja');
+            // });
             // 先頭要素 + ソートされた要素 + 末尾要素
-            select.empty().append(preserved_head).append(rest).append(preserved_foot);
+            // select.empty().append(preserved_head).append(rest).append(preserved_foot);
+            
+            // その他の要素を50音順にソート
+            var sort_key = [];
+            var items = [];
+            if (select_id.indexOf("ARMS") > 1) {
+                sort_key = CardSortOBJ[1];
+            } else if (select_id.indexOf("HEAD") > 1) {
+                sort_key = CardSortOBJ[2];
+            } else if (select_id.indexOf("SHIELD") > 1) {
+                sort_key = CardSortOBJ[3];
+            } else if (select_id.indexOf("BODY") > 1) {
+                sort_key = CardSortOBJ[4];
+            } else if (select_id.indexOf("SHOULDER") > 1) {
+                sort_key = CardSortOBJ[5];
+            } else if (select_id.indexOf("SHOES") > 1) {
+                sort_key = CardSortOBJ[6];
+            } else if (select_id.indexOf("ACCESSARY") > 1) {
+                sort_key = CardSortOBJ[7];
+            }
+            sort_key.forEach(function(val, index) {
+                items[index] = rest[index];
+            })
+            // 先頭要素 + ソートされた要素 + 末尾要素
+            select.empty().append(preserved_head).append(items).append(preserved_foot);
 
             // 選択位置を復元する(Firefox対応)
             select.val(selectValue);
