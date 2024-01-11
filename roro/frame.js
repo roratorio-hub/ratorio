@@ -1,8 +1,8 @@
-const last_updated = "2024/01/10 13:00";
+const last_updated = "2024/01/12 08:00";
+/*
 function SetMainMenuFrame(){
 
 	var bModeXX = false;
-
 	var objRoot = null;
 	var objDiv = null;
 	var objDivGrp = null;
@@ -10,8 +10,6 @@ function SetMainMenuFrame(){
 	var objA = null;
 	var objInput = null;
 	var objHr = null;
-
-
 
 	objRoot = document.getElementById("ID_FRAME");
 
@@ -22,19 +20,12 @@ function SetMainMenuFrame(){
 		if (!objRoot) {
 			return;
 		}
-
 		bModeXX = true;
 	}
-
-
 
 	objDiv = document.createElement("div");
 	objDiv.setAttribute("style", "font-size : small; text-align : center; line-height: 2;");
 	objRoot.appendChild(objDiv);
-
-
-
-
 
 	//----------------------------------------------------------------
 	//
@@ -68,7 +59,7 @@ function SetMainMenuFrame(){
 
 
 
-/*
+
 
 
 	//----------------------------------------------------------------
@@ -408,11 +399,8 @@ function SetMainMenuFrame(){
 	objA.appendChild(document.createTextNode("投稿フォーム"));
 
 
-
-*/
-
 	//----------------------------------------------------------------
-	// Notice
+	// Information
 	//----------------------------------------------------------------
 	objDivGrp = document.createElement("div");
 	objDivGrp.setAttribute("style", "margin-top: 0.5em;");
@@ -450,7 +438,7 @@ function SetMainMenuFrame(){
 	objDiv.appendChild(objHr);
 
 	//----------------------------------------------------------------
-	// Information
+	// Contact Us
 	//----------------------------------------------------------------
 	objDivGrp = document.createElement("div");
 	objDivGrp.setAttribute("style", "margin-top: 0.5em;");
@@ -462,13 +450,13 @@ function SetMainMenuFrame(){
 	objA.setAttribute("target", "_blank");
 	objA.appendChild(document.createTextNode("Q&A"));
 	objDivGrp.appendChild(document.createElement("br"));
-
+	
 	objHr = document.createElement("hr");
 	objHr.setAttribute("style", "margin-top: 10");
 	objDiv.appendChild(objHr);
 
 	//--------------------------------
-	// リンク
+	// Link
 	//--------------------------------
 	objDivGrp = document.createElement("div");
 	objDivGrp.setAttribute("style", "margin-top: 1.0em;");
@@ -521,8 +509,6 @@ function SetMainMenuFrame(){
 	objDivGrp.appendChild(document.createTextNode("2024/01/10 13:00"));
 	objDivGrp.appendChild(document.createElement("br"));
 
-
-/*
 	//--------------------------------
 	// ダウンロード
 	//--------------------------------
@@ -541,8 +527,6 @@ function SetMainMenuFrame(){
 	objA.appendChild(document.createTextNode("ミラクル計算機"));
 	objDivGrp.appendChild(document.createElement("br"));
 
-*/	
-
 	objInput = document.createElement("input");
 	objDivGrp.appendChild(objInput);
 	objDivGrp.appendChild(document.createElement("br"));
@@ -550,8 +534,8 @@ function SetMainMenuFrame(){
 	objInput.setAttribute("value", "背景色切替");
 	objInput.setAttribute("onclick", "SwitchBGColor()");
 	objInput.setAttribute("style", "margin-top: 3em;");
-
 }
+*/
 
 g_BGColorSwitch = false;
 
@@ -599,14 +583,18 @@ templ = `
           <li class="menu-item"><span class="menu-title"><a href="../../information/todo.html" class="local">今後の予定</a></span></li>
           <li class="menu-item"><span class="menu-title"><a href="../../information/history/index.html" class="local">更新履歴</a></span></li>
           <li class="menu-item"><span class="menu-title"><a href="../../information/wanted/index.html" class="local">情報提供のお願い</a></span></li>
-          <li class="menu-header" style="padding-top: 10px"><span>Contact Us</span></li>
+
+		  <li class="menu-header" style="padding-top: 10px"><span>Contact Us</span></li>
           <li class="menu-item"><span class="menu-title"><a href="../../information/response/index.html" class="local">Q&amp;A</a></span></li>
-          <li class="menu-header" style="padding-top: 10px"><span>Link</span></li>
-          <li class="menu-item"><span class="menu-title"><a href="https://github.com/roratorio-hub/ratorio">Github</a></span></li>
+		  <li class="menu-item"><span class="menu-title"><a href="https://forms.gle/Ai6ghaDT2tV89AVW8" target="_blank">Googleフォーム</a></span></li>
           <li class="menu-item"><span class="menu-title"><a href="https://discord.gg/wcKE7PkQ9x">Discord</a></span></li>
+          <li class="menu-item"><span class="menu-title"><a href="https://github.com/roratorio-hub/ratorio">Github</a></span></li>
+
+		  <li class="menu-header" style="padding-top: 10px"><span>Link</span></li>
           <li class="menu-item"><span class="menu-title"><a href="https://roratorio-hinanjo.net/roro/main/main.html">ROラトリオ避難所</a></span></li>
           <li class="menu-item"><span class="menu-title"><a href="http://roratorio.2-d.jp/ro/">ROラトリオ</a></span></li>
-          <li class="menu-header" style="padding-top: 20px"><span>Updated</span></li>
+
+		  <li class="menu-header" style="padding-top: 20px"><span>Updated</span></li>
           <li class="menu-item"><span class="menu-title">${last_updated}</span></li>
         </ul>
       </nav>
