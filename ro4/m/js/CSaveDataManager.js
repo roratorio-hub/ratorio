@@ -670,7 +670,7 @@ class CSaveDataManager {
 		spliceArray.push(g_confDataSpecMIG[0][0][37]);
 		spliceArray.push(g_confDataSpecMIG[0][0][41]);
 		spliceArray.push(g_confDataSpecMIG[0][0][47]);
-		spliceArray.push(g_confDataSpecMIG[0][0][1]);
+		spliceArray.push(g_confDataSpecMIG[0][2][1]);
 		spliceArray.push(g_confDataCustomStatusMIG[26]);
 		spliceArray.push(g_confDataSpecMIG[0][0][51]);
 		spliceArray.push(g_confDataCustomStatusMIG[29]);
