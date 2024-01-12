@@ -2961,12 +2961,18 @@ g_bUnknownCasts = true;
 		case SKILL_ID_GALE_STORM:
 
 // TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
+//g_bUnknownCasts = true;
 
 			// 弓のみ発動可能
 			switch (n_A_WeaponType) {
 
 			case ITEM_KIND_BOW:
+
+				// 詠唱時間等
+				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 
 				// 距離属性
 				n_Enekyori = 1;
