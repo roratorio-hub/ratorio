@@ -92,6 +92,7 @@ const PRESERVED_FOOT_OPTIONS = [
     '女教皇のカード(逆位置)',
     ];
 function SortCardSelectOption() {
+    return;
     CARD_SELECT_ID.forEach((select_id) => {
         var select = $(select_id);
         // アクセの場合、同一スロットがカードとエンチャントに利用される場合がある
