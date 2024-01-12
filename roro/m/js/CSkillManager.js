@@ -32069,6 +32069,26 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_VOID;
+
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 120;
+			}
+
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return (100 + (200 * skillLv));
+			}
+
+			this.CastTimeFixed = function(skillLv, charaDataManger) {
+				return 600;
+			}
+
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return (150 * skillLv);
+			}
+
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 500;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
