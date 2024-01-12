@@ -589,7 +589,7 @@ function __RebuildSlotAsCardShort(eqpRgnId, objidPrifix) {
 	// カード選択セレクトボックス
 	objSelect = HtmlCreateElement("select", objTd);
 	HtmlSetAttribute(objSelect, "id", objidPrifix + "_CARD_SHORT");
-	HtmlSetAttribute(objSelect, "onChange", strOnChange + "| SortCardSelectOption() | LoadSelect2()");
+	HtmlSetAttribute(objSelect, "onChange", strOnChange + "| LoadSelect2()");
 	if (bVisible) {
 		objSelect.removeAttribute("disabled");
 		objSelect.setAttribute("style", "visibility : visible");
