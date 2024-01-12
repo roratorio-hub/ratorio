@@ -2961,12 +2961,18 @@ g_bUnknownCasts = true;
 		case SKILL_ID_GALE_STORM:
 
 // TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
+//g_bUnknownCasts = true;
 
 			// 弓のみ発動可能
 			switch (n_A_WeaponType) {
 
 			case ITEM_KIND_BOW:
+
+				// 詠唱時間等
+				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 
 				// 距離属性
 				n_Enekyori = 1;
@@ -4087,14 +4093,17 @@ g_bUnknownCasts = true;
 			wbairitu += counter * (950 + (150 * n_A_ActiveSkillLV));
 
 			// ベースレベル補正
-			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
+			wbairitu *= n_A_BaseLV / 100;
 			break;
 
 		/*
 			「ナイトウォッチ」スキル「スパイラルシューティング」
 		*/
 		case SKILL_ID_SPIRAL_SHOOTING:
-			// ToDo: グレネードのダメージは未実測
+			/*
+				グレネードのダメージサンプルにばらつきがあり計算機と実測値の誤差を正確に観測できていないが
+				下限と上限の間に収まっているため暫定リリース
+			*/
 
 			// 使用武器制限
 			if (n_A_WeaponType != ITEM_KIND_GRENADEGUN && n_A_WeaponType != ITEM_KIND_RIFLE) {
@@ -4118,8 +4127,6 @@ g_bUnknownCasts = true;
 			}
 			
 			// CON補正
-			// グレネードを試せていないので丸め誤差がある場合はこちらに置き換える
-			// wbairitu += ROUNDDOWN((3 * GetTotalSpecStatus(MIG_PARAM_ID_CON)) / wHITsuu) * wHITsuu;
 			wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
 
 			// 照準カウンター補正
@@ -4127,14 +4134,17 @@ g_bUnknownCasts = true;
 			wbairitu += counter * (550 + (100 * n_A_ActiveSkillLV));
 
 			// ベースレベル補正
-			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
+			wbairitu *= n_A_BaseLV / 100;
 			break;
 
 		/*
 			「ナイトウォッチ」スキル「マガジンフォーワン」
 		*/
 		case SKILL_ID_MAGAZIN_FOR_ONE:
-			// ToDo: ガトリングのダメージは未実測
+			/*
+			 ダメージ実測値との誤差なしを確認したためリリース
+			 ただし BaseLv 200 のみで確認
+			*/
 
 			// 使用武器制限
 			if (n_A_WeaponType != ITEM_KIND_HANDGUN && n_A_WeaponType != ITEM_KIND_GATLINGGUN) {
@@ -4157,24 +4167,27 @@ g_bUnknownCasts = true;
 				wbairitu = 500 + (50 * n_A_ActiveSkillLV);
 				wHITsuu = 6;	// 6ヒットする
 			}
-			
-			// CON補正
-			// ヒット数で再計算されて丸め誤差がある
-			wbairitu += ROUNDDOWN((3 * GetTotalSpecStatus(MIG_PARAM_ID_CON)) / wHITsuu) * wHITsuu
 
+			// CON補正
+			wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+			
 			// 照準カウンター補正
 			counter = attackMethodConfArray[0].GetOptionValue(0);
 			wbairitu += counter * (125 + (25 * n_A_ActiveSkillLV));
 
 			// ベースレベル補正
-			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
+			wbairitu *= n_A_BaseLV / 100;
 			break;
 
 		/*
 			「ナイトウォッチ」スキル「ビジラントアットナイト」
 		*/
 		case SKILL_ID_VIGILANT_AT_NIGHT:
-			// ToDo: ガトリングのダメージは未実測
+			/*
+			 ガトリング使用時の Con 誤差が +1 ～ +3 程度 発生しているが
+			 Con 係数を -0.05 すると誤差が -1 ～ +2 になるので丸め誤差が発生している可能性あり
+			 ほぼ実測値に寄せているので暫定リリース
+			*/
 
 			// 使用武器制限
 			if (n_A_WeaponType != ITEM_KIND_SHOTGUN && n_A_WeaponType != ITEM_KIND_GATLINGGUN) {
@@ -4192,30 +4205,36 @@ g_bUnknownCasts = true;
 			counter = attackMethodConfArray[0].GetOptionValue(0);
 
 			if (n_A_WeaponType == ITEM_KIND_GATLINGGUN) {
-				wbairitu = 350 + (50 * n_A_ActiveSkillLV);
 				wHITsuu = 7;	// 7ヒットする
+				// 基本倍率
+				wbairitu = 350 + (50 * n_A_ActiveSkillLV);
 				// 照準カウンター補正
 				wbairitu += counter * (125 + (25 * n_A_ActiveSkillLV));
+				// CON補正
+				wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
 			}
 			else if (n_A_WeaponType == ITEM_KIND_SHOTGUN) {
-				wbairitu = 700 + (100 * n_A_ActiveSkillLV);
 				wHITsuu = 4;	// 4ヒットする
+				// 基本倍率
+				wbairitu = 700 + (100 * n_A_ActiveSkillLV);
 				// 照準カウンター補正
 				wbairitu += counter * (250 + (50 * n_A_ActiveSkillLV));
+				// CON補正
+				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
 			}
-			
-			// CON補正
-			// ヒット数で再計算されず丸め誤差が無い (ショットガンで実測)
-			wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
 
 			// ベースレベル補正
-			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
+			wbairitu *= n_A_BaseLV / 100;
 			break;
 
 		/*
 			「ナイトウォッチ」スキル「ワイルドファイア」
 		*/
 		case SKILL_ID_WILD_FIRE:
+			/*
+				グレネードのダメージサンプルにばらつきがあり計算機と実測値の誤差を正確に観測できていないが下限と上限の間に収まっている
+				ショットガンもダメージ誤差が -2 ～ -1 あるがほぼ実測値に寄せているため暫定リリース
+			*/
 
 			// 使用武器制限
 			if (n_A_WeaponType != ITEM_KIND_SHOTGUN && n_A_WeaponType != ITEM_KIND_GRENADEGUN) {
@@ -4243,10 +4262,9 @@ g_bUnknownCasts = true;
 			wbairitu += counter * (950 + (150 * n_A_ActiveSkillLV));
 
 			// ベースレベル補正
-			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
+			wbairitu *= n_A_BaseLV / 100;
 
 			// ヒット数で分割
-			// ToDo : 1 hit あたりのダメージ誤差が -1 から -2 程度存在するので /3 する位置の調整が必要
 			wbairitu = wbairitu / 3;
 			break;
 
