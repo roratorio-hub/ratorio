@@ -35791,7 +35791,7 @@ function CSkillManager() {
 		skillId++;
 
 		// ----------------------------------------------------------------
-		// 
+		// グレネードマスタリー
 		// ----------------------------------------------------------------
 		SKILL_ID_GRENADE_MASTERY = skillId;
 		skillData = new function() {
@@ -35810,7 +35810,7 @@ function CSkillManager() {
 		skillId++;
 
 		// ----------------------------------------------------------------
-		// 
+		// インテンシブエイム
 		// ----------------------------------------------------------------
 		SKILL_ID_INTENSIVE_AIM = skillId;
 		skillData = new function() {
@@ -35829,7 +35829,7 @@ function CSkillManager() {
 		skillId++;
 
 		// ----------------------------------------------------------------
-		// 
+		// ヒドゥンカード
 		// ----------------------------------------------------------------
 		SKILL_ID_HIDDEN_CARD = skillId;
 		skillData = new function() {
@@ -35961,6 +35961,94 @@ function CSkillManager() {
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;	
+
+		// ----------------------------------------------------------------
+		// タイガースラッシュ
+		// ----------------------------------------------------------------
+		SKILL_ID_TIGER_SLASH = skillId;
+		skillData = new function() {
+			this.prototype = new CSkillData();
+			CSkillData.call(this);
+
+			this.id = skillId;
+			this.name = "(×)タイガースラッシュ";
+			this.kana = "タイカアスラツシユ";
+			this.maxLv = 7;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
+			this.range = CSkillData.RANGE_LONG;
+			this.element = CSkillData.ELEMENT_VOID;
+			this.CriActRate = (skillLv, charaData, specData, mobData) => {
+				return this._CriActRate100(skillLv, charaData, specData, mobData);
+			}
+			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {
+				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
+			}
+		};
+		this.dataArray[skillId] = skillData;
+		skillId++;		
+
+		// ----------------------------------------------------------------
+		// タイガーハウリング
+		// ----------------------------------------------------------------
+		SKILL_ID_TIGER_HOWLING = skillId;
+		skillData = new function() {
+			this.prototype = new CSkillData();
+			CSkillData.call(this);
+
+			this.id = skillId;
+			this.name = "(×)タイガーハウリング";
+			this.kana = "タイカアハウリンク";
+			this.maxLv = 7;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
+			this.range = CSkillData.RANGE_LONG;
+			this.element = CSkillData.ELEMENT_VOID;
+		};
+		this.dataArray[skillId] = skillData;
+		skillId++;		
+
+		// ----------------------------------------------------------------
+		// タイガーストライク
+		// ----------------------------------------------------------------
+		SKILL_ID_TIGER_STRIKE = skillId;
+		skillData = new function() {
+			this.prototype = new CSkillData();
+			CSkillData.call(this);
+
+			this.id = skillId;
+			this.name = "(×)タイガーストライク";
+			this.kana = "タイカアストライク";
+			this.maxLv = 7;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
+			this.range = CSkillData.RANGE_LONG;
+			this.element = CSkillData.ELEMENT_VOID;
+			this.CriActRate = (skillLv, charaData, specData, mobData) => {
+				return this._CriActRate100(skillLv, charaData, specData, mobData);
+			}
+			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {
+				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
+			}
+		};
+		this.dataArray[skillId] = skillData;
+		skillId++;		
+
+		// ----------------------------------------------------------------
+		// にゃん友 -鉄虎-
+		// ----------------------------------------------------------------
+		SKILL_ID_NYANTOMO_TEKKO = skillId;
+		skillData = new function() {
+			this.prototype = new CSkillData();
+			CSkillData.call(this);
+
+			this.id = skillId;
+			this.name = "にゃん友 -鉄虎-";
+			this.kana = "ニヤントモテツコ";
+			this.maxLv = 1;
+			this.type = CSkillData.TYPE_PASSIVE;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_VOID;
+		};
+		this.dataArray[skillId] = skillData;
+		skillId++;		
 
 	}
 
