@@ -188,6 +188,11 @@ class CSaveDataManager {
 			// 処理方式が異なるので空マップ
 			new Map()
 		],
+		[
+			SAVE_DATA_UNIT_TYPE_EQUIP_ARROW,
+			// 処理方式が異なるので空マップ
+			new Map()
+		],
 	]);
 
 
@@ -618,6 +623,9 @@ class CSaveDataManager {
 //		n_A_Arrow = (itemIDArrow !== undefined) ? (floorBigInt32(itemIDArrow) - ITEM_ID_ARROW_NONE) : ARROW_ID_NONE;
 //		HtmlSetObjectValueById("OBJID_SELECT_ARROW", n_A_Arrow);
 
+		let arrowArray = [];
+		funcCallApplyConfig(this, SAVE_DATA_UNIT_TYPE_EQUIP_ARROW, arrowArray);
+
 		// 適切な順序で処理関数を呼び出す
 		funcCallApplyCommon(this, SAVE_DATA_UNIT_TYPE_CHARA);
 
@@ -723,6 +731,8 @@ class CSaveDataManager {
 
 		// 画面表示リフレッシュ処理（既存移植）
 		OnClickSkillSWLearned();
+		n_A_Arrow = arrowArray[0];
+		HtmlSetObjectValueById("OBJID_SELECT_ARROW", n_A_Arrow);
 		Click_A8(false);	// BuffChara（旧：支援スキル８（その他の支援/設定））
 		Click_A1(false);	// BuffSelf
 		g_objCharaConfIchizi.OnSaveDataLoaded();
