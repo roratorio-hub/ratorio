@@ -923,11 +923,21 @@ CSaveDataMappingManager.__GetMappingArrayCharaConfCustomStatus = function (versi
 
 	var mappingArray = null;
 
-	mappingArray = [
-		1, 2, 4, 2, 4, 2, 2, 3, 3, 3,
-		3, 3, 3, 2, 2, 2, 2, 2, 2, 2,
-		2, 2, 3, 3, 3, 3, 3, 3, 3, 3,
-	];
+	// バージョン 52 まで
+	if (version <= 52) {
+		mappingArray = [
+			1, 2, 3, 2, 3, 2, 2, 3, 3, 3,
+			3, 3, 3, 2, 2, 2, 2, 2, 2, 2,
+			2, 2, 3, 3, 3, 3, 3, 3, 3, 3,
+		];
+	}
+	else {
+		mappingArray = [
+			1, 2, 4, 2, 4, 2, 2, 3, 3, 3,
+			3, 3, 3, 2, 2, 2, 2, 2, 2, 2,
+			2, 2, 3, 3, 3, 3, 3, 3, 3, 3,
+		];
+	}
 
 	return mappingArray;
 };
