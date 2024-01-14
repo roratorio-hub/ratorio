@@ -1221,6 +1221,10 @@
 	SKILL_ID_MAGAZIN_FOR_ONE = 1218;
 	SKILL_ID_VIGILANT_AT_NIGHT = 1219;
 	SKILL_ID_WILD_FIRE = 1220;
+	SKILL_ID_TIGER_SLASH = 1221;
+	SKILL_ID_TIGER_HOWLING = 1222;
+	SKILL_ID_TIGER_STRIKE = 1223;
+	SKILL_ID_NYANTOMO_TEKKO = 1224;
 
 	SkillObjNew = [
 		[0,1,"通常攻撃"],
@@ -2444,6 +2448,10 @@
 		[1218,5,"マガジンフォーワン"],
 		[1219,5,"ビジラントアットナイト"],
 		[1220,5,"ワイルドファイア"],
+		[1221,7,"(×)タイガースラッシュ"],
+		[1222,7,"(×)タイガーハウリング"],
+		[1223,7,"(×)タイガーストライク"],
+		[1224,1,"にゃん友 -鉄虎-"],
 	];
 
 })();

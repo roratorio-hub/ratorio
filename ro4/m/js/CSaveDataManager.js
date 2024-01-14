@@ -45,7 +45,7 @@ class CSaveDataManager {
 				[CSaveDataConst.propNameEqpRgnAccessory2, "OBJID_ACCESSARY_2"],
 
 // TODO: 現状、矢は特殊処理
-//				[CSaveDataConst.propNameEqpRgnArrow, "OBJID_SELECT_ARROW"],
+				[CSaveDataConst.propNameEqpRgnArrow, "OBJID_SELECT_ARROW"],
 			])
 		],
 		[
@@ -185,6 +185,11 @@ class CSaveDataManager {
 		],
 		[
 			SAVE_DATA_UNIT_TYPE_CHARA_CONF_SPEC_BASIC,
+			// 処理方式が異なるので空マップ
+			new Map()
+		],
+		[
+			SAVE_DATA_UNIT_TYPE_EQUIP_ARROW,
 			// 処理方式が異なるので空マップ
 			new Map()
 		],
@@ -521,6 +526,7 @@ class CSaveDataManager {
 
 		// グローバル変数の初期化（移行対応変数のみ）
 		ResetConfDataAllMIG(false);
+		n_A_Arrow = 0;		// 再ロード時のバグ対応
 
 		// 必要な情報を収集する
 		const idxMap = new SKeyMap();
@@ -610,18 +616,22 @@ class CSaveDataManager {
 
 		// TODO: 構造変更後、撤去予定
 		// 矢の調整
-		const idxArrow = idxMapEqpRgns.get(CSaveDataConst.eqpRgnKindItem);
-		const equipableID = (idxArrow !== undefined) ? this.#saveDataUnitArray[idxArrow].getProp(CSaveDataConst.propNameEqpRgnArrow) : undefined;
-		const idxEquipable = (equipableID !== undefined) ? mapDefEquipables.get(floorBigInt32(equipableID)) : undefined;
-		const itemIDArrow = (idxEquipable !== undefined) ? this.#saveDataUnitArray[idxEquipable].getProp(CSaveDataConst.propNameItemID) : undefined;
-		n_A_Arrow = (itemIDArrow !== undefined) ? (floorBigInt32(itemIDArrow) - ITEM_ID_ARROW_NONE) : ARROW_ID_NONE;
-		HtmlSetObjectValueById("OBJID_SELECT_ARROW", n_A_Arrow);
+//		const idxArrow = idxMapEqpRgns.get(CSaveDataConst.eqpRgnKindItem);
+//		const equipableID = (idxArrow !== undefined) ? this.#saveDataUnitArray[idxArrow].getProp(CSaveDataConst.propNameEqpRgnArrow) : undefined;
+//		const idxEquipable = (equipableID !== undefined) ? mapDefEquipables.get(floorBigInt32(equipableID)) : undefined;
+//		const itemIDArrow = (idxEquipable !== undefined) ? this.#saveDataUnitArray[idxEquipable].getProp(CSaveDataConst.propNameItemID) : undefined;
+//		n_A_Arrow = (itemIDArrow !== undefined) ? (floorBigInt32(itemIDArrow) - ITEM_ID_ARROW_NONE) : ARROW_ID_NONE;
+//		HtmlSetObjectValueById("OBJID_SELECT_ARROW", n_A_Arrow);
+
+		let arrowArray = [];
+		funcCallApplyConfig(this, SAVE_DATA_UNIT_TYPE_EQUIP_ARROW, arrowArray);
 
 		// 適切な順序で処理関数を呼び出す
 		funcCallApplyCommon(this, SAVE_DATA_UNIT_TYPE_CHARA);
 
 		// TODO: 暫定措置
-		HtmlSetObjectValueById("OBJID_SELECT_ARROW", n_A_Arrow);
+//		HtmlSetObjectValueById("OBJID_SELECT_ARROW", n_A_Arrow);
+		funcCallApplyEquipable(this, CSaveDataConst.propNameEqpRgnArrow);
 
 		funcCallApplyEquipable(this, CSaveDataConst.eqpRgnKindItem);
 		funcCallApplyEquipable(this, CSaveDataConst.eqpRgnKindCostume);
@@ -721,6 +731,8 @@ class CSaveDataManager {
 
 		// 画面表示リフレッシュ処理（既存移植）
 		OnClickSkillSWLearned();
+		n_A_Arrow = arrowArray[0];
+		HtmlSetObjectValueById("OBJID_SELECT_ARROW", n_A_Arrow);
 		Click_A8(false);	// BuffChara（旧：支援スキル８（その他の支援/設定））
 		Click_A1(false);	// BuffSelf
 		g_objCharaConfIchizi.OnSaveDataLoaded();

@@ -4055,7 +4055,7 @@ g_bUnknownCasts = true;
 				wHITsuu = 3;
 				break;
 			}
-	
+
 			// ベースレベル補正
 			wbairitu *= n_A_BaseLV / 100;
 			break;
@@ -4084,7 +4084,7 @@ g_bUnknownCasts = true;
 			else if (n_A_WeaponType == ITEM_KIND_RIFLE) {
 				wbairitu = 2800 + (500 * n_A_ActiveSkillLV);
 			}
-			
+
 			// CON補正
 			wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
 
@@ -4125,7 +4125,7 @@ g_bUnknownCasts = true;
 			else if (n_A_WeaponType == ITEM_KIND_RIFLE) {
 				wbairitu = 1950 + (350 * n_A_ActiveSkillLV);
 			}
-			
+
 			// CON補正
 			wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
 
@@ -4170,7 +4170,7 @@ g_bUnknownCasts = true;
 
 			// CON補正
 			wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
-			
+
 			// 照準カウンター補正
 			counter = attackMethodConfArray[0].GetOptionValue(0);
 			wbairitu += counter * (125 + (25 * n_A_ActiveSkillLV));
@@ -4268,6 +4268,122 @@ g_bUnknownCasts = true;
 			wbairitu = wbairitu / 3;
 			break;
 
+
+		/*
+			「スピリットハンドラー」スキル「タイガースラッシュ」
+		*/
+		case SKILL_ID_TIGER_SLASH:
+			/*
+				にゃん友習得時の実測値との誤差 -1 以内を確認ずみ
+				ToDo: にゃん友未習得時の実測値が未確認
+			*/
+
+			// TODO: 詠唱時間等未実測スキル
+			g_bUnknownCasts = true;
+
+			// 遠距離属性
+			n_Enekyori = 1;
+
+			// スキル説明にないが2Hitスキル
+			wHITsuu = 2;
+
+			if (UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0 || UsedSkillSearch(SKILL_ID_NYANTOMO_TEKKO) > 0) {
+				// 基礎倍率
+				wbairitu = 4350 + (450 * n_A_ActiveSkillLV);
+			} else {
+				// 基礎倍率
+				wbairitu = 3050 + (350 * n_A_ActiveSkillLV);
+				// クリティカル無し
+				bCri = false;
+			}
+
+			// POW補正
+			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+
+			// ベースレベル補正
+			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = ROUNDDOWN(wbairitu);
+
+			// 2分割ダメージ
+			wbairitu /= 2;
+
+			break;
+
+
+		/*
+			「スピリットハンドラー」スキル「タイガーハウリング」
+		*/
+		case SKILL_ID_TIGER_HOWLING:
+			/*
+				にゃん友習得時の実測値との誤差 -2 以内を確認ずみ
+				ToDo: にゃん友未習得時の実測値が未確認
+			*/
+
+			// TODO: 詠唱時間等未実測スキル
+			g_bUnknownCasts = true;
+
+			// 遠距離属性
+			n_Enekyori = 1;
+
+			// スキル説明にないが3Hitスキル
+			wHITsuu = 3;
+
+			if (UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0 || UsedSkillSearch(SKILL_ID_NYANTOMO_TEKKO) > 0) {
+				// 基礎倍率
+				wbairitu = 3400 + (300 * n_A_ActiveSkillLV);
+			} else {
+				// 基礎倍率
+				wbairitu = 2100 + (200 * n_A_ActiveSkillLV);
+			}
+
+			// POW補正
+			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+
+			// ベースレベル補正
+			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = ROUNDDOWN(wbairitu);
+
+			// 3分割ダメージ
+			wbairitu /= 3;
+
+			break;
+
+
+		/*
+			「スピリットハンドラー」スキル「タイガーストライク」
+		*/
+		case SKILL_ID_TIGER_STRIKE:
+			/*
+				にゃん友習得時の実測値との誤差なしを確認ずみ
+				ToDo: にゃん友未習得時の実測値が未確認
+			*/
+
+			// TODO: 詠唱時間等未実測スキル
+			g_bUnknownCasts = true;
+
+			// 遠距離属性
+			n_Enekyori = 1;
+
+			wHITsuu = 3;
+
+			if (UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0 || UsedSkillSearch(SKILL_ID_NYANTOMO_TEKKO) > 0) {
+				// 基礎倍率
+				wbairitu = 650 + (150 * n_A_ActiveSkillLV);
+			} else {
+				// 基礎倍率
+				wbairitu = 400 + (100 * n_A_ActiveSkillLV);
+				// クリティカル無し
+				bCri = false;
+			}
+
+			// POW補正
+			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+
+			// ベースレベル補正
+			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = ROUNDDOWN(wbairitu);
+
+			break;
 
 /* --------------------------------------------------
 ↑ 物理攻撃スキル追加位置
@@ -10058,10 +10174,10 @@ function GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfAr
 
 		sklLv = UsedSkillSearch(SKILL_ID_VIGOR);
 		if (sklLv > 0) {
-	
+
 			// 基本倍率
 			let ampWork = 100 + (10 * sklLv);
-	
+
 			// 人間(プレイヤーを除く)・天使形では、追加倍率
 			switch (parseInt(mobData[MONSTER_DATA_INDEX_RACE], 10)) {
 			case RACE_ID_HUMAN:
@@ -10073,7 +10189,7 @@ function GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfAr
 				ampWork *= 2;
 				break;
 			}
-	
+
 			w += ampWork;
 		}
 	}
@@ -18195,16 +18311,16 @@ function calc() {
 		if (w_HIT > 100) {
 			w_HIT = 100;
 		}
-	
+
 		// フェイタルメナスの命中率減少ペナルティ
 		if (n_A_ActiveSkill == SKILL_ID_FATAL_MENUS) {
-	
+
 			w_HIT -= Math.floor(w_HIT * (35 - 5 * n_A_ActiveSkillLV - (n_A_ActiveSkillLV >= 6 ? 5 : 0)) / 100);
-	
+
 			// 確率範囲補正
 			w_HIT = Math.min(100, Math.max(5, w_HIT));
 		}
-	
+
 		// 丸め処理
 		w_HIT = Math.floor(w_HIT * 100)/100;
 	}
@@ -19261,20 +19377,20 @@ function GetWeaponAtk(strdex, strBonus, armsType, armsLv, armsAtk, sizeModify,
 				}
 			}
 		};
-	
+
 		switch (atkSkillId) {
-	
+
 		// 追加属性ダメージ系が適用されないスキル
 		case SKILL_ID_METEOR_ASSALT:
 		case SKILL_ID_FAINT_BOMB:
 			break;
-	
+
 		default:
 			// 『△属性物理攻撃力+○○%』の効果が、マグナムブレイク状態と同様の効果であるため、計算式調整
-	
+
 			// 適用される効果を特定する（複数設定している場合、最も効果の高いものだけを適用する）
 			// ＥＤＰは特殊扱いで、最後に判定するものとする
-	
+
 			// 時限効果「ボルケリン」カード（地、20%）
 			if (TimeItemNumSearch(TIME_ITEM_ID_VOLCARING) > 0) {
 				funcSelectAppendDamage(ELM_ID_EARTH, 20);
@@ -19295,7 +19411,7 @@ function GetWeaponAtk(strdex, strBonus, armsType, armsLv, armsAtk, sizeModify,
 			if (TimeItemNumSearch(TIME_ITEM_ID_DOKUTSU_FUTOKA) > 0) {
 				funcSelectAppendDamage(ELM_ID_WATER, 20);
 			}
-	
+
 			// 時限効果「共感する者」カード（水、10%）
 			if (TimeItemNumSearch(TIME_ITEM_ID_KYOKANSURU_MONO) > 0) {
 				funcSelectAppendDamage(ELM_ID_WATER, 10);
@@ -19328,12 +19444,12 @@ function GetWeaponAtk(strdex, strBonus, armsType, armsLv, armsAtk, sizeModify,
 			if (TimeItemNumSearch(TIME_ITEM_ID_KAKYU_RGAN) > 0) {
 				funcSelectAppendDamage(ELM_ID_DARK, 10);
 			}
-	
+
 			// 性能カスタマイズの効果
 			for (let loopElmId = ELM_ID_VANITY; loopElmId <= ELM_ID_UNDEAD; loopElmId++) {
 				funcSelectAppendDamage(loopElmId, n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP_ELM_VANITY + loopElmId]);
 			}
-	
+
 			// （特殊扱い）エンチャントデッドリーポイズンの効果（毒、25%、対象スキル特殊）
 			if (appendDamageRate == 0) {
 
