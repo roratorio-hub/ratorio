@@ -32079,11 +32079,11 @@ function CSkillManager() {
 			}
 
 			this.CastTimeFixed = function(skillLv, charaDataManger) {
-				return 600;
+				return 500;
 			}
 
 			this.DelayTimeCommon = function(skillLv, charaDataManger) {
-				return (150 * skillLv);
+				return (500 * skillLv);
 			}
 
 			this.CoolTime = function(skillLv, charaDataManger) {
