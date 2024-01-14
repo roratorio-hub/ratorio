@@ -5675,9 +5675,19 @@
 		[0]
 	]
 	ordered_info_for_all = [800,801,802,803,804,805,806,807,808,809,810,811,812,813,814,815,816,817,1016,1068,1257,1670,1258,1668,1259,1629,1260,1631,1261,1633,1262,1635,1263,1637,1264,1894,1265,1666,1266,1672,1267,1639,1268,1898,1434,1896,1436,1674,1438,1900,1440,1676,1906,1908,1902,1904];
-	sorted_card = CardObjNew.toSorted((a,b) =>{
-		return String(a[3]||a[2]).localeCompare(String(b[3]||b[2]), 'ja');
-	})
+
+	if (typeof CardObjNew.toSorted === 'function') {
+		// Chromium系など比較的多くのブラウザ対応
+		sorted_card = CardObjNew.toSorted((a,b) =>{
+			return String(a[3]||a[2]).localeCompare(String(b[3]||b[2]), 'ja');
+		})
+	} else {
+		// WaterFox5.1.3対応
+		sorted_card = CardObjNew.slice().sort((a, b) => {
+			return String(a[3] || a[2]).localeCompare(String(b[3] || b[2]), 'ja');
+		});
+	}
+
 	for (i = 0; i < card_ordered_info.length; i++) {
 		CardSortOBJ[i] = card_ordered_info[i].concat(sorted_card.filter(c => {
 			return (c && c[2] != "類"  &&(!card_ordered_info[i].includes(c[0])) && (c[1] == (i==0?1:i)));
