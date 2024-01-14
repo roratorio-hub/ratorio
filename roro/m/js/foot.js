@@ -29676,7 +29676,7 @@ function GetEquippedSPSubSPPet(spid, invalidPetIdArray, bListUp) {
 
 		// 追加すべきＳＰ定義値を計算
 
-		spValToCorrect = petData[ CARD_DATA_INDEX_SPBEGIN + spDefIdx + 1 ];
+		spValToCorrect = petData[ PET_DATA_INDEX_SPBEGIN + spDefIdx + 1 ];
 
 		// 精錬値が上がる度に条件が設定されている場合
 		if (spDefRefineBy > 0) {
