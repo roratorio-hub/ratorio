@@ -1,0 +1,184 @@
+
+<html>
+
+<head>
+
+	<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+
+	<title>RO カードデータ一覧</title>
+
+	<link rel="stylesheet" href="../common.css" type="text/css">
+	<link rel="stylesheet" href="../m/calcx.css" type="text/css">
+
+	<script type="text/javascript" src="../common/js/util.js"></script>
+
+	<script type="text/javascript" src="../../ro4/DEBUG.js"></script>
+
+	<script type="text/javascript" src="../m/js/CGlobalConstManager.js"></script>
+	<script type="text/javascript" src="../m/js/CNameKana.js"></script>
+	<script type="text/javascript" src="../m/js/common.js"></script>
+
+
+
+	<!-- [MIG] データ定義系 javascript ファイル -->
+	<script type="text/javascript" src="../../ro4/m/js/data/mig.job.h.js"></script>
+	<script type="text/javascript" src="../m/js/data/mig.itemsp.h.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigJobData.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigStateData.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigEquipableSpTag.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigEquipableStaticData.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigEquipableSpData.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigEquipableData.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigConstDataManagerSubBase.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigConstDataManagerSubJob.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigConstDataManagerSubState.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigConstDataManagerSubBuff.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigConstDataManagerSubMonster.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigConstDataManagerSubArrow.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigConstDataManagerSubItem.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigConstDataManagerSubCard.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigConstDataManagerSubEnchList.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigConstDataManagerSubRndOpt.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigConstDataManager.js"></script>
+
+	<!-- グローバル変数定義 javascript ファイル（others 用） -->
+	<script type="text/javascript" src="../../ro4/m/js/global.js"></script>
+
+	<!-- [MIG] dat ファイル -->
+	<script type="text/javascript" src="../../ro4/m/js/data/mig.job.dat.js"></script>
+	<script type="text/javascript" src="../m/js/data/mig.enchlist.dat.js"></script>
+
+	<!-- 処理系 -->
+	<script type="text/javascript" src="../m/js/skill.h.js"></script>
+	<script type="text/javascript" src="../m/js/skill.dat.js"></script>
+	<script type="text/javascript" src="../m/js/usableskill.h.js"></script>
+	<script type="text/javascript" src="../m/js/usableskill.dat.js"></script>
+	<script type="text/javascript" src="../m/js/autospell.h.js"></script>
+	<script type="text/javascript" src="../m/js/autospell.dat.js"></script>
+	<script type="text/javascript" src="../m/js/monster.h.js"></script>
+	<script type="text/javascript" src="../m/js/monster.dat.js"></script>
+	<script type="text/javascript" src="../m/js/item.h.js"></script>
+	<script type="text/javascript" src="../m/js/item.dat.js"></script>
+	<script type="text/javascript" src="../m/js/card.h.js"></script>
+	<script type="text/javascript" src="../m/js/card.dat.js"></script>
+	<script type="text/javascript" src="../m/js/pet.h.js"></script>
+	<script type="text/javascript" src="../m/js/pet.dat.js"></script>
+	<script type="text/javascript" src="../m/js/itemset.h.js"></script>
+	<script type="text/javascript" src="../m/js/itemset.dat.js"></script>
+	<script type="text/javascript" src="../m/js/timeitem.h.js"></script>
+	<script type="text/javascript" src="../m/js/timeitem.dat.js"></script>
+
+	<script type="text/javascript" src="../m/js/CItemInfoManager.js"></script>
+
+	<script type="text/javascript" src="js/hmcardlist.js"></script>
+
+</head>
+
+
+
+
+<body onload="OnLoadCardList()">
+
+	<table>
+		<tbody>
+			<tr>
+				<td style="width:120px; border-right: 1px solid gray; white-space: normal; vertical-align: top;">
+					<span id="ID_FRAME"></span>
+					<br>
+				</td>
+
+				<td style="white-space: normal; vertical-align: top;">
+
+					<div style="padding-right: 80px;">
+
+						<form name="ItemForm">
+							計算機用のデータを表示しているため、ゲーム内の表示と違うことがあります。<br>
+
+							<table border="1">
+								<tbody>
+									<tr>
+
+										<td>
+											選択
+										</td>
+										<td>
+											<select id="OBJID_SELECT_CARD_KIND" onChange="OnChangeKindRestrict()">
+											</select>
+										</td>
+
+										<td>
+											並べ替え
+										</td>
+										<td>
+											<select name="F_SORT" onChange="RefreshCardListTable()">
+												<option value="2">文字コード順
+											</select>
+										</td>
+
+									</tr>
+								</tbody>
+							</table>
+
+							<table border="1">
+								<tbody>
+									<tr>
+										<td>オプション</td>
+
+										<td>
+											<input type="checkbox" id="OBJID_INPUT_SHOW_ENCHANT_INFO" onchange="OnChangeShowEnchantInfo()">
+											<label for="OBJID_INPUT_SHOW_ENCHANT_INFO">エンチャント情報を表示</label>
+											　
+										</td>
+									</tr>
+								</tbody>
+							</table>
+
+							<table>
+								<tbody>
+									<tr>
+										<td>
+											※文字コード順(英数字→ひらがな→カタカナ→漢字)
+										</td>
+									</tr>
+									<tr>
+										<td>
+											※エンチャント情報の表示は、<font color="red">種類として「エンチャント効果」を選択した場合のみ</font>、表示されます。
+										</td>
+									</tr>
+									<tr>
+										<td>
+											※エンチャント情報を表示する場合、<font color="red">多少、処理に時間がかかります。</font>ご注意ください。
+										</td>
+									</tr>
+									<tr>
+										<td>
+											※エンチャント情報を表示する場合、表示欄が大きくなります。ご注意ください。
+										</td>
+									</tr>
+									<tr>
+										<td>
+											※エンチャント情報では、エンチャント可能条件（精錬値7以上、など）は考慮されませんので、ご注意ください。
+										</td>
+									</tr>
+								</tbody>
+							</table>
+
+							<span id="OBJID_SPAN_ROOT_OF_CARD_LIST">
+							</span>
+
+						</form>
+
+					</div>
+
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+</body>
+
+
+
+<script type="text/javascript" src="../frame.js"></script>
+
+</html>
