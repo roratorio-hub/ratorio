@@ -3,6 +3,7 @@ import re
 import os
 import yaml
 import sys
+from craft_util import *
 
 ENCHANT     = 99
 
@@ -45,16 +46,9 @@ def loadUsableSkillDict() -> dict:
     return { (int(m[1]), int(m[2])): int(m[0]) for m in re.findall(pattern, js_code) }
 
 
-def loadEnchantList():
-    pattern = r'\[(\d+),(\d+),"([^"]+)",[^]]*0\]'
-    with open(f'{script_dir}/../roro/m/js/card.dat.js', 'r', encoding='utf-8') as file:
-        js_code = file.read()
-    matches = re.findall(pattern, js_code)
-    return [[int(id), name] for id, type, name in matches if int(type) == ENCHANT]
-
-
 def loadCardList():
-    pattern = r'\[(\d+),(\d+),"(.*)",".*",0\]'
+    #pattern = r'\[(\d+),(\d+),"(.*)",".*",0\]'
+    pattern = r'\[(\d+),(\d+),"([^,]+)",[^,]*,[^,]*,.*0\]'
     with open(f'{script_dir}/../roro/m/js/card.dat.js', 'r', encoding='utf-8') as file:
         js_code = file.read()
     matches = re.findall(pattern, js_code)
@@ -62,7 +56,9 @@ def loadCardList():
 
 
 def getLatestIdFromCard():
-    pattern = r'\[(\d+),\d+,[^,]+,[^,]+,.*0\]'
+    """card.dat.jsに定義されている最も大きい CardID を返す
+    """
+    pattern = r'\[(\d+),\d+,[^,]+,[^,]*,[^,]*,.*0\]'
     with open(f'{script_dir}/../roro/m/js/card.dat.js', 'r', encoding='utf-8') as file:
         js_code = file.read()
     matches = re.findall(pattern, js_code)
@@ -84,14 +80,6 @@ def loadSlotInfoList():
     matches = re.findall(pattern, js_code)
     return [[int(id), name, code] for id, name, code, item_id in matches]
 
-
-def loadCardDict() -> dict:
-    """key = カードorエンチャント名, value = cardID"""
-    pattern = r'\[(\d+),(\d+),"([^"]+)"'
-    with open(f'{script_dir}/../roro/m/js/card.dat.js', 'r', encoding='utf-8') as file:
-        js_code = file.read()
-    matches = re.findall(pattern, js_code)
-    return {name: int(id) for id, type, name in matches if int(type) != 100}
 
 
 def getLatestIdFromItemSet():
@@ -267,8 +255,9 @@ if __name__ == "__main__":
         card_id += 1
         base_id = card_id
         description = enchant_info['desc'] if 'desc' in enchant_info else ""
+        yomi = enchant_info['yomi'] if 'yomi' in enchant_info else ""
         card_type = CARD_TYPE_CODE.get(enchant_info["type"])
-        record  = f'CardObjNew[{card_id}] = [{card_id},{card_type},"{enchant_info["name"]}","{description}",'
+        record  = f'CardObjNew[{card_id}] = [{card_id},{card_type},"{enchant_info["name"]}","{yomi}","{description}",'
         if 'capabilities' in enchant_info:
             for capability in enchant_info['capabilities']:
                 record += getCapabilityRecord(capability)
@@ -287,7 +276,7 @@ if __name__ == "__main__":
             card_to_set_record = f"CardIdToSetIdMap[{base_id}] = ["
             for set_info in enchant_info['set_list']:
                 card_id += 1
-                record  = f'CardObjNew[{card_id}] = [{card_id},100,0,"",'
+                record  = f'CardObjNew[{card_id}] = [{card_id},100,0,"","",'
                 for capability in set_info['capabilities']:
                     record += getCapabilityRecord(capability)
                 record += "0];"
