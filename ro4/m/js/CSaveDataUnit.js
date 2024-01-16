@@ -6796,7 +6796,7 @@ class CSaveDataUnitParse extends CSaveDataUnitBase {
 		[dataTextWork, bitOffset] = saveDataUnit.convertFromOldFormat(dataTextWork, bitOffset,
 			0,
 			((1n << 1n) - 1n),
-			(saveDataArrayOld[12]),
+			((saveDataArrayOld[12]) + 1),
 		);
 
 
