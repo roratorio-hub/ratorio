@@ -73,6 +73,7 @@
 	<script type="text/javascript" src="../m/js/CItemInfoManager.js"></script>
 
 	<script type="text/javascript" src="js/hmcardlist.js"></script>
+	<script type="text/javascript" src="../../jquery/jquery.min.js"></script>
 
 </head>
 
@@ -80,20 +81,14 @@
 
 
 <body onload="OnLoadCardList()" style="overflow-y:auto">
-
-	<table>
-		<tbody>
-			<tr>
-				<td style="width:120px; border-right: 1px solid gray; white-space: normal; vertical-align: top;">
-					<span id="ID_FRAME"></span>
-					<br>
-				</td>
-
-				<td style="white-space: normal; vertical-align: top;">
-
-					<div style="padding-right: 80px;">
-
-						<form name="ItemForm">
+	<div class="wrapper">
+		<div class="side">
+			<span id="ID_FRAME"></span>
+		</div>
+		<div class="content">
+			<div style="padding: 20px 34px">
+	
+				<form name="ItemForm">
 							計算機用のデータを表示しているため、ゲーム内の表示と違うことがあります。<br>
 
 							<table border="1">
@@ -168,15 +163,10 @@
 							<span id="OBJID_SPAN_ROOT_OF_CARD_LIST">
 							</span>
 
-						</form>
-
-					</div>
-
-				</td>
-			</tr>
-		</tbody>
-	</table>
-
+				</form>
+			</div>
+		</div>
+	</div>
 </body>
 
 
