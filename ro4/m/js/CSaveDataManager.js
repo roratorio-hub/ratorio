@@ -731,7 +731,7 @@ class CSaveDataManager {
 
 		// 画面表示リフレッシュ処理（既存移植）
 		OnClickSkillSWLearned();
-		n_A_Arrow = (arrowArray[0]; - 1)
+		n_A_Arrow = (arrowArray[0] - 1);
 		HtmlSetObjectValueById("OBJID_SELECT_ARROW", n_A_Arrow);
 		Click_A8(false);	// BuffChara（旧：支援スキル８（その他の支援/設定））
 		Click_A1(false);	// BuffSelf
