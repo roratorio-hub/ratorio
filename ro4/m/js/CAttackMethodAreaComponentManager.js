@@ -3638,8 +3638,80 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 			);
 			break;
 
+		//----------------------------------------------------------------
+		// 蜃気楼・不知火：悪夢
+		//----------------------------------------------------------------
+		case SKILL_ID_GENJUTSU_KAGE_NUI:
 
+			// オプションリストを生成、追加
+			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+				"悪夢",
+				[
+					[0, "無し"],
+					[1, "有り"],
+				],
+				0
+			);
+			break;
 
+		//----------------------------------------------------------------
+		// 蜃気楼・不知火：風魔手裏剣トラップ
+		//----------------------------------------------------------------
+		case SKILL_ID_FUMASHURIKEN_KOUCHIKU:
+
+			// オプションリストを生成、追加
+			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+				"風魔手裏剣トラップ",
+				[
+					[0, "無し"],
+					[1, "有り"],
+				],
+				0
+			);
+			break;
+
+		//----------------------------------------------------------------
+		// ハイパーノービス：ダブルボウリングバッシュ巻き込み数
+		//----------------------------------------------------------------
+		case SKILL_ID_DOUBLE_BOWLING_BASH:
+
+			// オプションリストを生成、追加
+			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+				"巻き込み数",
+				[
+					[0, "無し"],
+					[1, "２～３体"],
+					[2, "４体～"],
+				],
+				0
+			);
+			break;
+
+		//----------------------------------------------------------------
+		// ドラゴンナイト：ドラゴニックブレス
+		//----------------------------------------------------------------
+		case SKILL_ID_DRAGONIC_BREATH:
+
+			// オプションリストを生成、追加
+			attackMethodOptList = funcCreateOptionListAsInput(attackMethodOptList,
+				"現在のHP (0の場合MaxHPで計算)",
+				[
+					["type", "number"],
+					["min", 0],
+					["max", 9999999],
+				],
+				0
+			);
+			attackMethodOptList = funcCreateOptionListAsInput(attackMethodOptList,
+				"現在のSP (0の場合MaxSPで計算)",
+				[
+					["type", "number"],
+					["min", 0],
+					["max", 999999],
+				],
+				0
+			);
+			break;
 
 		}
 
