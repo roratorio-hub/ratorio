@@ -9371,6 +9371,14 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 			chkary.push(70);
 		}
 
+		//----------------------------------------------------------------
+		// 「ミストレス＋ワンダーエッグバスケットセット」の効果
+		//----------------------------------------------------------------
+		if (EquipNumSearchMIG(ITEM_ID_WANDER_EGG_BASKET_MISTRESS_SET)) {
+			if (n_A_BaseLV >= 100) {
+				chkary.push(70);
+			} 
+		}
 
 
 

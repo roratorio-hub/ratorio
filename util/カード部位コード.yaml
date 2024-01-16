@@ -17,3 +17,5 @@ card:
     code: 7
   - name: エンチャント  
     code: 99
+  - name: ペット
+    code: -1
