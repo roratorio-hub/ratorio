@@ -26172,72 +26172,83 @@ function ApplyAttackDamageAmplify(mobData, dmg){
 	// 戦闘エリアによる補正
 	switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
 
-	// YE攻城戦TEの場合
-	case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_GVG_TE:
-	case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_SHINKIRO:
+		// YE攻城戦（マッチング・小規模・乱戦）の場合
+		case MOB_CONF_PLAYER_ID_SENTO_AREA_YE:
+			// 全ての攻撃ダメージが一律 1/20
+			dmg = Math.floor(dmg / 20);
+			break;
 
-		switch (n_A_ActiveSkill) {
-
-		// セルフディストラクション
-		case SKILL_ID_SELF_DESTRUCTION:
-		case SKILL_ID_SELF_DESTRUCTION_MAX:
+		// YE攻城戦TE（模擬戦）の場合
+		case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_GVG_TE:
+			// 全ての攻撃ダメージが一律 1/10
 			dmg = Math.floor(dmg / 10);
 			break;
 
-		// その他、全ての攻撃ダメージが一律 1/5
-		default:
+		// YEコロッセオの場合
+		case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
+			// 全ての攻撃ダメージが一律 1/10
+			dmg = Math.floor(dmg / 10);
+			break;
+
+		/** 
+		 * 以下のエリア設定は殆ど利用されないと思いますが
+		 * 消したときの影響が確認できていないため残しておきます 
+		 * */
+			
+		// YE蜃気楼の場合
+		case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_SHINKIRO:
+			switch (n_A_ActiveSkill) {
+				// セルフディストラクション
+				case SKILL_ID_SELF_DESTRUCTION:
+				case SKILL_ID_SELF_DESTRUCTION_MAX:
+					dmg = Math.floor(dmg / 10);
+					break;
+				// その他、全ての攻撃ダメージが一律 1/5
+				default:
+					dmg = Math.floor(dmg / 5);
+					break;
+			}
+			break;
+
+		// 攻城戦TE(通常鯖)の場合
+		case MOB_CONF_PLAYER_ID_SENTO_AREA_GVG_TE:
+
+			// 全ての攻撃ダメージが一律 1/5
 			dmg = Math.floor(dmg / 5);
 			break;
-		}
-		break;
 
-	// 攻城戦TEの場合
-	case MOB_CONF_PLAYER_ID_SENTO_AREA_GVG_TE:
+		// それ以外（PvPルーム、通常鯖の攻城戦）の場合
+		default:
 
-		// 全ての攻撃ダメージが一律 1/5
-		dmg = Math.floor(dmg / 5);
-		break;
+			// シーズ補正貫通スキルのチェック
+			// ・クラッシュストライク
+			// ・イクシードブレイク
+			var SES_kantuu = [456, 578];
 
-	// YE攻城戦、YEコロッセオの場合
-	case MOB_CONF_PLAYER_ID_SENTO_AREA_YE:
-	case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
+			if(NumSearch(n_A_ActiveSkill, SES_kantuu) == 0){
 
-		// 全ての攻撃ダメージが一律 1/10
-		dmg = Math.floor(dmg / 10);
-		break;
+				// シーズ補正貫通スキルでない、かつ、シーズ補正適用の場合
+				if(n_Ses == 1){
 
-	// それ以外の場合
-	default:
+					// 通常攻撃でなければ、60% の補正
+					if(n_A_ActiveSkill != 0) {
+						dmg = Math.floor(dmg * 0.6);
+					}
 
-		// シーズ補正貫通スキルのチェック
-		// ・クラッシュストライク
-		// ・イクシードブレイク
-		var SES_kantuu = [456, 578];
+					// 遠距離通常攻撃の場合は、80% への補正
+					else if(n_Enekyori == 1) {
+						dmg = Math.floor(dmg * 0.8);
+					}
 
-		if(NumSearch(n_A_ActiveSkill, SES_kantuu) == 0){
-
-			// シーズ補正貫通スキルでない、かつ、シーズ補正適用の場合
-			if(n_Ses == 1){
-
-				// 通常攻撃でなければ、60% の補正
-				if(n_A_ActiveSkill != 0) {
-					dmg = Math.floor(dmg * 0.6);
-				}
-
-				// 遠距離通常攻撃の場合は、80% への補正
-				else if(n_Enekyori == 1) {
-					dmg = Math.floor(dmg * 0.8);
-				}
-
-				// TODO : 謎補正　モンスターが対プレイヤーでない場合（たぶん、GvGの防衛値）
-				if(mobData[0] != MONSTER_ID_PLAYER){
-					if(n_A_PassSkill8[15]) {
-						dmg = Math.floor(dmg * (10 / (n_A_PassSkill8[15] * 5)));
+					// TODO : 謎補正　モンスターが対プレイヤーでない場合（たぶん、GvGの防衛値）
+					if(mobData[0] != MONSTER_ID_PLAYER){
+						if(n_A_PassSkill8[15]) {
+							dmg = Math.floor(dmg * (10 / (n_A_PassSkill8[15] * 5)));
+						}
 					}
 				}
 			}
-		}
-		break;
+			break;
 	}
 
 	// ダーククロー後の状態における、ダメージ増加の適用
@@ -26335,51 +26346,65 @@ function ApplyReceiveDamageAmplify(mobData, dmg) {
 	// 戦闘エリアによる補正
 	switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
 
-	// YE攻城戦TEの場合
-	case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_GVG_TE:
-	case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_SHINKIRO:
+		// YE攻城戦（マッチング・小規模・乱戦）の場合
+		case MOB_CONF_PLAYER_ID_SENTO_AREA_YE:
+			// 全ての攻撃ダメージが一律 1/20
+			dmg = Math.floor(dmg / 20);
+			break;
 
-		// 全ての攻撃ダメージが一律 1/5
-		dmg = Math.floor(dmg / 5);
-		break;
+		// YE攻城戦TE（模擬戦）の場合
+		case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_GVG_TE:
+			// 全ての攻撃ダメージが一律 1/10
+			dmg = Math.floor(dmg / 10);
+			break;
 
-	// 攻城戦TEの場合
-	case MOB_CONF_PLAYER_ID_SENTO_AREA_GVG_TE:
+		// YEコロッセオの場合
+		case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
+			// 全ての攻撃ダメージが一律 1/10
+			dmg = Math.floor(dmg / 10);
+			break;
 
-		// 全ての攻撃ダメージが一律 1/5
-		dmg = Math.floor(dmg / 5);
-		break;
+		/** 
+		 * 以下のエリア設定は利用する場面が存在しないはずですが
+		 * 消したときの影響が確認できていないため残しておきます 
+		 * */
 
-	// YE攻城戦、YEコロッセオの場合
-	case MOB_CONF_PLAYER_ID_SENTO_AREA_YE:
-	case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
+		// YE蜃気楼の場合
+		case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_SHINKIRO:
 
-		// 全ての攻撃ダメージが一律 1/10
-		dmg = Math.floor(dmg / 10);
-		break;
+			// 全ての攻撃ダメージが一律 1/5
+			dmg = Math.floor(dmg / 5);
+			break;
 
-	// それ以外の場合
-	default:
+		// 攻城戦TEの場合
+		case MOB_CONF_PLAYER_ID_SENTO_AREA_GVG_TE:
 
-		// シーズ補正適用の場合
-		if(n_Ses == 1){
+			// 全ての攻撃ダメージが一律 1/5
+			dmg = Math.floor(dmg / 5);
+			break;
 
-			// 現状、敵からの攻撃は近接物理通常攻撃しか計算していないため、補正不要
+		// それ以外（PvP、通常鯖の攻城戦）の場合
+		default:
 
-/*
-			// 通常攻撃でなければ、60% の補正
-			if(n_A_ActiveSkill != 0) {
-				dmg = Math.floor(dmg * 0.6);
+			// シーズ補正適用の場合
+			if(n_Ses == 1){
+
+				// 現状、敵からの攻撃は近接物理通常攻撃しか計算していないため、補正不要
+
+	/*
+				// 通常攻撃でなければ、60% の補正
+				if(n_A_ActiveSkill != 0) {
+					dmg = Math.floor(dmg * 0.6);
+				}
+
+				// 遠距離通常攻撃の場合は、80% への補正
+				else if(n_Enekyori == 1) {
+					dmg = Math.floor(dmg * 0.8);
+				}
+	*/
+
 			}
-
-			// 遠距離通常攻撃の場合は、80% への補正
-			else if(n_Enekyori == 1) {
-				dmg = Math.floor(dmg * 0.8);
-			}
-*/
-
-		}
-		break;
+			break;
 	}
 
 	return dmg;
