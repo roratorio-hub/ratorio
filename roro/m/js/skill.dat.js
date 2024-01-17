@@ -1225,6 +1225,25 @@
 	SKILL_ID_TIGER_HOWLING = 1222;
 	SKILL_ID_TIGER_STRIKE = 1223;
 	SKILL_ID_NYANTOMO_TEKKO = 1224;
+	SKILL_ID_KAGE_NO_MAI = 1225;
+	SKILL_ID_KAGE_ISSEN = 1226;
+	SKILL_ID_KAGE_GARI = 1227;
+	SKILL_ID_GENJUTSU_KAGE_NUI = 1228;
+	SKILL_ID_FUMASHURIKEN_SHOUAKU = 1229;
+	SKILL_ID_FUMASHURIKEN_KOUCHIKU = 1230;
+	SKILL_ID_JUPITER_THUNDER_STORM = 1231;
+	SKILL_ID_HELLS_DRIVE = 1232;
+	SKILL_ID_NAPALM_VULKAN_STRIKE = 1233;
+	SKILL_ID_METEOR_STORM_BUSTER = 1234;
+	SKILL_ID_DOUBLE_BOWLING_BASH = 1235;
+	SKILL_ID_MEGA_SONIC_BLOW = 1236;
+	SKILL_ID_SPARK_BLASTER = 1237;
+	SKILL_ID_TRIPLE_LASER = 1238;
+	SKILL_ID_EXPLOSIVE_POWDER = 1239;
+	SKILL_ID_MEYHEMIC_THORNS = 1240;
+	SKILL_ID_DRAGONIC_BREATH = 1241;
+	SKILL_ID_MIGHTY_SMASH = 1242;
+	SKILL_ID_AXE_STOMP_STATUS = 1243;
 
 	SkillObjNew = [
 		[0,1,"通常攻撃"],
@@ -2452,6 +2471,26 @@
 		[1222,7,"(×)タイガーハウリング"],
 		[1223,7,"(×)タイガーストライク"],
 		[1224,1,"にゃん友 -鉄虎-"],
+		[1225,10,"(×)影の舞"],
+		[1226,10,"(×)影一閃"],
+		[1227,10,"(×)影狩り"],
+		[1228,1,"(×)幻術 -影縫い-"],
+		[1229,10,"(×)風魔手裏剣 -掌握-"],
+		[1230,10,"(×)風魔手裏剣 -構築-"],
+		[1231,10,"(×)ユピテルサンダーストーム"],
+		[1232,10,"(×)ヘルズドライブ"],
+		[1233,10,"(×)ナパームバルカンストライク"],
+		[1234,10,"(×)メテオストームバスター"],
+		[1235,10,"(×)ダブルボウリングバッシュ"],
+		[1236,10,"(×)メガソニックブロー"],
+		[1237,10,"(×)スパークブラスター"],
+		[1238,5,"(×)トリプルレーザー"],
+		[1239,5,"(×)エクスプロッシブパウダー"],
+		[1240,10,"(×)メイヘミックソーンズ"],
+		[1241,10,"(×)ドラゴニックブレス"],
+		[1242,10,"(×)マイティスマッシュ"],
+		[1243,1,"アックスストンプ状態"],
+
 	];
 
 })();
