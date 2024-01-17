@@ -2,7 +2,7 @@
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
 
-	<title>RO カードデータ一覧</title>
+	<title>RO アイテムデータ一覧</title>
 
 	<link rel="stylesheet" href="../common.css" type="text/css">
 	<link rel="stylesheet" href="../m/calcx.css" type="text/css">
@@ -67,97 +67,107 @@
 
 	<script type="text/javascript" src="../m/js/CItemInfoManager.js"></script>
 
-	<script type="text/javascript" src="js/hmcardlist.js"></script>
+	<!-- 共通処理呼び出し用 -->
+	<script type="text/javascript" src="../m/js/slotpager.js"></script>
+	<script type="text/javascript" src="../m/js/hmcard.js"></script>
+
+	<script type="text/javascript" src="js/hmitemlist.js"></script>
 	<script type="text/javascript" src="../../jquery/jquery.min.js"></script>
 
 </head>
 
 
 
-
-<body onload="OnLoadCardList()" style="overflow-y:auto">
+<body onload="OnLoadItemList()">
 	<div class="wrapper">
 		<div class="side">
 			<span id="ID_FRAME"></span>
 		</div>
 		<div class="content">
 			<div style="padding: 20px 34px">
-	
 				<form name="ItemForm">
-							計算機用のデータを表示しているため、ゲーム内の表示と違うことがあります。<br>
+					計算機用のデータを表示しているため、ゲーム内の表示と違うことがあります。<br>
+					<span style="color : red;">
+						『すべての武器』、または、『すべての防具』を選ぶと、データが多いため、表示に時間がかかります。<br>
+						先に職業を指定しておくと、多少表示が早くなります。
+					</span>
+					<table border="1">
+						<tbody>
+							<tr>
+								<td>選択</td>
+								<td>
+									<select id="OBJID_SELECT_ITEM_KIND" onchange="OnChangeKindRestrict()">
+									</select>
+								</td>
+								<td>並べ替え</td>
+								<td>
+									<select id="OBJID_SELECT_SORT_ATTR" onchange="OnChangeSortCondition()">
+										<option value=4>武器LV
+										<option value=3>ATK/DEF
+										<option value=6>重量
+										<option value=7>装備LV
+										<option value=9>五十音順
+									</select>
+								</td>
+								<td>職業で抽出</td>
+								<td>
+									<select id="OBJID_SELECT_JOB_RESTRICT" onchange="OnChangeJobRestrict()">
+									</select>
+								</td>
+							</tr>
+						</tbody>
+					</table>
 
-							<table border="1">
-								<tbody>
-									<tr>
+					<table border="1">
+						<tbody>
+							<tr>
+								<td>オプション</td>
+								<td>
+									<input type="checkbox" id="OBJID_INPUT_SHOW_SP" name="F_SORT6" onchange="OnChnageShowSP()">
+									<label for="OBJID_INPUT_SHOW_SP">特殊効果を表示</label>
+									　
+								</td>
+								<td>
+									<input type="checkbox" id="OBJID_INPUT_SORT_DESC" onchange="OnChangeSortCondition()">
+									<label for="OBJID_INPUT_SORT_DESC">降順表示</label>
+									　
+								</td>
+								<td>
+									<input type="checkbox" id="OBJID_INPUT_SLOT_RESTRICT" onchange="OnChangeSlotRestrict()">
+									<label for="OBJID_INPUT_SLOT_RESTRICT">スロット0を表示しない</label>
+									　
+								</td>
+								<td>
+									<input type="checkbox" id="OBJID_INPUT_SHOW_ENCHANT_INFO" onchange="OnChangeShowEnchantInfo()">
+									<label for="OBJID_INPUT_SHOW_ENCHANT_INFO">エンチャント情報を表示</label>
+									　
+								</td>
+							</tr>
+						</tbody>
+					</table>
 
-										<td>
-											選択
-										</td>
-										<td>
-											<select id="OBJID_SELECT_CARD_KIND" onChange="OnChangeKindRestrict()">
-											</select>
-										</td>
-
-										<td>
-											並べ替え
-										</td>
-										<td>
-											<select name="F_SORT" onChange="RefreshCardListTable()">
-												<option value="2">文字コード順
-											</select>
-										</td>
-
-									</tr>
-								</tbody>
-							</table>
-
-							<table border="1">
-								<tbody>
-									<tr>
-										<td>オプション</td>
-
-										<td>
-											<input type="checkbox" id="OBJID_INPUT_SHOW_ENCHANT_INFO" onchange="OnChangeShowEnchantInfo()">
-											<label for="OBJID_INPUT_SHOW_ENCHANT_INFO">エンチャント情報を表示</label>
-											　
-										</td>
-									</tr>
-								</tbody>
-							</table>
-
-							<table>
-								<tbody>
-									<tr>
-										<td>
-											※文字コード順(英数字→ひらがな→カタカナ→漢字)
-										</td>
-									</tr>
-									<tr>
-										<td>
-											※エンチャント情報の表示は、<font color="red">種類として「エンチャント効果」を選択した場合のみ</font>、表示されます。
-										</td>
-									</tr>
-									<tr>
-										<td>
-											※エンチャント情報を表示する場合、<font color="red">多少、処理に時間がかかります。</font>ご注意ください。
-										</td>
-									</tr>
-									<tr>
-										<td>
-											※エンチャント情報を表示する場合、表示欄が大きくなります。ご注意ください。
-										</td>
-									</tr>
-									<tr>
-										<td>
-											※エンチャント情報では、エンチャント可能条件（精錬値7以上、など）は考慮されませんので、ご注意ください。
-										</td>
-									</tr>
-								</tbody>
-							</table>
-
-							<span id="OBJID_SPAN_ROOT_OF_CARD_LIST">
-							</span>
-
+					<table>
+						<tbody>
+							<tr>
+								<td>
+									※エンチャント情報を表示する場合、多少、処理に時間がかかります。ご注意ください。
+								</td>
+							</tr>
+							<tr>
+								<td>
+									※エンチャント情報を表示する場合、表示欄が大きくなります。ご注意ください。
+								</td>
+							</tr>
+							<tr>
+								<td>
+									※エンチャント情報では、エンチャント可能条件（精錬値7以上、など）は考慮されませんので、ご注意ください。
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<div id="OBJID_DIV_ITEM_LIST">
+					</div>
+					<br>
 				</form>
 			</div>
 		</div>

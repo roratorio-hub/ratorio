@@ -88,6 +88,27 @@ CGlobalConstManager.DefineEnum(
 
 		"JOB_ID_STAR_EMPEROR",	// 64
 		"JOB_ID_SOUL_REAPER",	// 65
+
+		"MIG_JOB_ID_DRAGON_KNIGHT", 	// 66
+		"MIG_JOB_ID_SHADOW_CROSS",  	// 67
+		"MIG_JOB_ID_CARDINAL",  		// 68
+		"MIG_JOB_ID_WIND_HAWK",  		// 69
+		"MIG_JOB_ID_ARCH_MAGE",  		// 70
+		"MIG_JOB_ID_MEISTER",  			// 71
+		"MIG_JOB_ID_IMPERIAL_GUARD",	// 72
+		"MIG_JOB_ID_ABYSS_CHASER",  	// 73
+		"MIG_JOB_ID_INQUISITOR",  		// 74
+		"MIG_JOB_ID_TROUBADOUR",  		// 75
+		"MIG_JOB_ID_TROUVERE",  		// 76
+		"MIG_JOB_ID_ELEMENTAL_MASTER",  // 77
+		"MIG_JOB_ID_BIOLO",  			// 78
+		"MIG_JOB_ID_SKY_EMPEROR",  		// 79
+		"MIG_JOB_ID_SOUL_ASCETIC",  	// 80
+		"MIG_JOB_ID_SHINKIROU",  		// 81
+		"MIG_JOB_ID_SHIRANUI",  		// 82
+		"MIG_JOB_ID_NIGHT_WATCH",  		// 83
+		"MIG_JOB_ID_HYPER_NOVICE",  	// 84
+		"MIG_JOB_ID_SPIRIT_HANDLER",	// 85		
 	]
 );
 
@@ -379,8 +400,9 @@ function GetHigherJobSeriesID(jobID) {
 function IsDoramJob(jobID) {
 
 	switch (jobID) {
-	case JOB_ID_SUMMONER:
-		return true;
+		case JOB_ID_SUMMONER:
+		case MIG_JOB_ID_SPIRIT_HANDLER:
+			return true;
 	}
 
 	return false;
@@ -397,9 +419,11 @@ function IsDualArmsJob(jobID) {
 	}
 
 	switch (jobID) {
-	case JOB_ID_KAGERO:
-	case JOB_ID_OBORO:
-		return true;
+		case JOB_ID_KAGERO:
+		case JOB_ID_OBORO:
+		case MIG_JOB_ID_SHINKIROU:
+		case MIG_JOB_ID_SHIRANUI:
+			return true;
 	}
 
 	return false;
