@@ -2985,6 +2985,15 @@ g_bUnknownCasts = true;
 
 				// ベースレベル補正
 				wbairitu *= n_A_BaseLV / 100;
+				// カラミティゲイル状態で Mob の種族が動物・魚介の場合ダメージ２倍
+				if (UsedSkillSearch(SKILL_ID_CALAMITY_GALE) > 0) {
+					switch (mobData[MONSTER_DATA_INDEX_RACE]) {
+					case RACE_ID_FISH:
+					case RACE_ID_ANIMAL:
+						wbairitu *= 2;
+						break;
+					}
+				}
 				break;
 
 			default:
@@ -3069,6 +3078,20 @@ g_bDefinedDamageIntervals = true;
 				case "3":
 					battleCalcInfo.dmgAmpRate += 50;
 					break;
+				}
+
+				// カラミティゲイル状態で Mob の種族が魚介または動物の場合ダメージ２倍、他種族の場合 1.25 倍
+				if (UsedSkillSearch(SKILL_ID_CALAMITY_GALE) > 0) {
+					switch (mobData[MONSTER_DATA_INDEX_RACE]) {
+					case RACE_ID_FISH:
+					case RACE_ID_ANIMAL:
+						wbairitu *= 1.25;
+						wbairitu *= 2;
+						break;
+					default:
+						wbairitu *= 1.25;
+						break;
+					}
 				}
 				break;
 
