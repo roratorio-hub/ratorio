@@ -36,4 +36,4 @@ jobs:
           ${{ github.ref_name }}\n
           @${{ github.actor }} さんが ${{ github.event_name }} しました\n
           ${{ env.Commit_Message }}\n
-          ${{ if github.event_name == 'pull_request' }} ${{ github.event.pull_request.html_url }} ${{ else }} ${{ github.event.compare }} ${{ endif }}
+          ${{ if github.event_name == 'pull_request' }}Pull Request URL: ${{ github.event.pull_request.html_url }}${{ else }}Commit URL: ${{ github.event.compare }}${{ endif }}
