@@ -1,0 +1,24 @@
+name: Discord Message Notify
+
+on:
+  push:
+    branches:
+      - master
+      - dev
+  pull_request:
+    branches:
+      - master
+      - dev
+
+jobs:
+  myjob:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Actions Status Discord
+        uses: sarisia/actions-status-discord@v1.13.0
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          title: イベント通知
+          nofail: true
+          noprefix: true
+          notimestamp: true
