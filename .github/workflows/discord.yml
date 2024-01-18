@@ -1,0 +1,36 @@
+# @reference
+# https://qiita.com/suupia/items/f5e08faeedffb18efbf2
+# 
+name: Discord Message Notify
+
+on:
+  push:
+    branches: 
+    - webhook-test
+    - dev
+  pull_request:
+    branches:
+    - webhook-test
+    - dev
+
+jobs:
+  notify_discord_of_push:
+    name: Get Commit Message
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out repo's head branch
+      uses: actions/checkout@v2.4.0
+      with:
+          ref: ${{ github.head_ref }} #For pull_request events, GITHUB_REF contains the merge branch (refs/pull/:prNumber/merge).
+    - name: Get commit message
+      run: |
+        echo "Commit_Message=$(git log --pretty=oneline --all --abbrev-commit)" >> $GITHUB_ENV
+    - name: Notify discord
+      uses: appleboy/discord-action@0.0.3
+      with:
+        webhook_id: ${{ secrets.WEBHOOK_ID }}
+        webhook_token: ${{ secrets.WEBHOOK_TOKEN }}
+        color: "#48f442"
+        username: "GitHub Bot"
+        args: "${{ github.event_name }} by @${{ github.actor }} \nmessage: ${{ env.Commit_Message }}"
+
