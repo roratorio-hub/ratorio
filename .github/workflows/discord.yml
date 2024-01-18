@@ -32,4 +32,10 @@ jobs:
         webhook_token: ${{ secrets.WEBHOOK_TOKEN }}
         color: "#48f442"
         username: "GitHub Bot"
-        args: "${{ github.ref_name }}\n @${{ github.actor }} さんが ${{ github.event_name }} しました\n${{ env.Commit_Message }}"
+        args: >
+          ${{ github.ref_name }}
+          @${{ github.actor }} さんが ${{ github.event_name }} しました
+          ${{ env.Commit_Message }}
+          ${{ if github.event_name == 'pull_request' }} Pull Request URL: ${{ github.event.pull_request.html_url }}
+          ${{ else }} Commit URL: ${{ github.event.compare }}
+          ${{ endif }}
