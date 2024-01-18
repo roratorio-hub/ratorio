@@ -20,7 +20,11 @@ jobs:
       uses: actions/checkout@v2.4.0
       with:
           ref: ${{ github.head_ref }} #For pull_request events, GITHUB_REF contains the merge branch (refs/pull/:prNumber/merge).
-     
+
+    - name: Get commit message
+      run: |
+        echo "Commit_Message=$(git log --pretty=oneline --all --abbrev-commit)" >> $GITHUB_ENV
+  
     - name: Discord Message Notify
       uses: appleboy/discord-action@0.0.3
       with:
