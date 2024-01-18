@@ -1822,6 +1822,10 @@ function StAllCalc(){
 		if (sklLv > 0) {
 			defDiv = 1;
 		}
+		sklLv = UsedSkillSearch(SKILL_ID_CALAMITY_GALE);
+		if (sklLv > 0) {
+			defDiv = 1;
+		}
 	}
 
 	// ロードナイト　バーサーク
@@ -1929,6 +1933,10 @@ function StAllCalc(){
 		if (sklLv > 0) {
 			defMinus = 1;
 		}
+		sklLv = UsedSkillSearch(SKILL_ID_CALAMITY_GALE);
+		if (sklLv > 0) {
+			defMinus = 1;
+		}
 	}
 
 	// 「ロードナイト　バーサーク」の、効果（ペナルティ）
@@ -2021,6 +2029,10 @@ function StAllCalc(){
 		if (sklLv > 0) {
 			mdefDiv = 1;
 		}
+		sklLv = UsedSkillSearch(SKILL_ID_CALAMITY_GALE);
+		if (sklLv > 0) {
+			mdefDiv = 1;
+		}		
 	}
 
 	// 「ロードナイト　バーサーク」の、効果（ペナルティ）
@@ -2093,6 +2105,10 @@ function StAllCalc(){
 		if (sklLv > 0) {
 			mdefMinus = 1;
 		}
+		sklLv = UsedSkillSearch(SKILL_ID_CALAMITY_GALE);
+		if (sklLv > 0) {
+			mdefMinus = 1;
+		}			
 	}
 
 	// 「ジェネティック　Ｓホム　ペインキラー」の、効果
@@ -12319,23 +12335,56 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 		case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
 		case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_SHINKIRO:
 
-			sklLv = UsedSkillSearch(SKILL_ID_UNLIMIT);
-			if (sklLv > 0) {
-
-				// 特定の戦闘エリアでの補正
-				switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
-
-				case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
-					n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += 250 + 20 * sklLv;
-					break;
-
-				default:
-					n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += 50 * sklLv;
-					break;
-
+			// カラミティゲイル状態では無い場合のみ処理する
+			if (UsedSkillSearch(SKILL_ID_CALAMITY_GALE) == 0) {
+				sklLv = UsedSkillSearch(SKILL_ID_UNLIMIT);
+				if (sklLv > 0) {
+	
+					// 特定の戦闘エリアでの補正
+					switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
+	
+					case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
+						n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += 250 + 20 * sklLv;
+						break;
+	
+					default:
+						n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += 50 * sklLv;
+						break;
+	
+					}
 				}
 			}
 		}
+
+		//----------------------------------------------------------------
+		// ウィンドホーク　カラミティゲイル
+		// PvP, GvG 等では効果を発揮しない（YEは使用可能の模様）
+		//----------------------------------------------------------------
+		switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
+			case MOB_CONF_PLAYER_ID_SENTO_AREA_NONE:
+			case MOB_CONF_PLAYER_ID_SENTO_AREA_MH:
+			case MOB_CONF_PLAYER_ID_SENTO_AREA_YE:
+			case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_GVG_TE:
+			case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
+			case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_SHINKIRO:
+	
+				sklLv = UsedSkillSearch(SKILL_ID_CALAMITY_GALE);
+				if (sklLv > 0) {
+	
+					// 特定の戦闘エリアでの補正
+					switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
+	
+					case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
+						//n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += 250 + 20 * 5;//アンリミットLV.5発動状態にする。
+						break;
+	
+					default:
+						n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += 50 * 5;//アンリミットLV.5発動状態にする。
+						break;
+	
+					}
+				}
+			}
 
 		//----------------------------------------------------------------
 		// 「三次職支援　アクラウスダッシュ」の効果（サモナー限定）

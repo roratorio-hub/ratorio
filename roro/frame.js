@@ -1,4 +1,4 @@
-const last_updated = "2024/01/17 09:00";
+const last_updated = "2024/01/18 09:00";
 /*
 function SetMainMenuFrame(){
 
@@ -578,7 +578,12 @@ templ = `
     <div class="sidebar-content">
       <nav class="menu">
         <ul>
-          <li class="menu-header"><span>Information</span></li>
+		  <li class="menu-header"><span>Main</span></li>
+		  <li class="menu-item"><span class="menu-title"><a href="../../ro4/m/calcx.html">計算機</a></span></li>
+		  <li class="menu-item"><span class="menu-title"><a href="../../roro/other/cardlist.html">カード一覧</a></span></li>
+		  <li class="menu-item"><span class="menu-title"><a href="../../roro/other/itemlist.html">アイテム一覧</a></span></li>
+
+		  <li class="menu-header"><span>Information</span></li>
           <li class="menu-item"><span class="menu-title"><a href="../../information/index.html" class="local">このサイトについて</a></span></li>
           <li class="menu-item"><span class="menu-title"><a href="../../information/todo.html" class="local">今後の予定</a></span></li>
           <li class="menu-item"><span class="menu-title"><a href="../../information/history/index.html" class="local">更新履歴</a></span></li>
@@ -587,7 +592,7 @@ templ = `
 
 		  <li class="menu-header" style="padding-top: 10px"><span>Contact Us</span></li>
           <li class="menu-item"><span class="menu-title"><a href="../../information/response/index.html" class="local">Q&amp;A</a></span></li>
-		  <li class="menu-item"><span class="menu-title"><a href="https://forms.gle/Ai6ghaDT2tV89AVW8" target="_blank">Googleフォーム</a></span></li>
+		  <li class="menu-item"><span class="menu-title"><a href="https://forms.gle/Ai6ghaDT2tV89AVW8"">Googleフォーム</a></span></li>
           <li class="menu-item"><span class="menu-title"><a href="https://discord.gg/wcKE7PkQ9x">Discord</a></span></li>
           <li class="menu-item"><span class="menu-title"><a href="https://github.com/roratorio-hub/ratorio">Github</a></span></li>
 

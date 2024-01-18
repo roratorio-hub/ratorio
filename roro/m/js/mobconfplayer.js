@@ -973,15 +973,15 @@ function BuildUpMobConfPlayerSelectArea(objRoot, bAsExpand) {
 				objTd.appendChild(objSelect);
 
 				objOption = HtmlCreateElementOption(MOB_CONF_PLAYER_ID_SENTO_AREA_NONE, "-", objSelect);
+				objOption = HtmlCreateElementOption(MOB_CONF_PLAYER_ID_SENTO_AREA_YE, "(YE)攻城戦", objSelect);
+				objOption = HtmlCreateElementOption(MOB_CONF_PLAYER_ID_SENTO_AREA_YE_GVG_TE, "(YE)模擬戦", objSelect);
+				objOption = HtmlCreateElementOption(MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM, "(YE)コロッセオ", objSelect);
 				objOption = HtmlCreateElementOption(MOB_CONF_PLAYER_ID_SENTO_AREA_GVG, "攻城戦", objSelect);
 				objOption = HtmlCreateElementOption(MOB_CONF_PLAYER_ID_SENTO_AREA_GVG_TE, "攻城戦TE", objSelect);
-				objOption = HtmlCreateElementOption(MOB_CONF_PLAYER_ID_SENTO_AREA_YE, "(YE)攻城戦", objSelect);
-				objOption = HtmlCreateElementOption(MOB_CONF_PLAYER_ID_SENTO_AREA_YE_GVG_TE, "(YE)攻城戦TE", objSelect);
-				objOption = HtmlCreateElementOption(MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM, "(YE)コロッセオ", objSelect);
 				objOption = HtmlCreateElementOption(MOB_CONF_PLAYER_ID_SENTO_AREA_PVP, "PvP", objSelect);
-				objOption = HtmlCreateElementOption(MOB_CONF_PLAYER_ID_SENTO_AREA_URDR, "ウルド", objSelect);
 				objOption = HtmlCreateElementOption(MOB_CONF_PLAYER_ID_SENTO_AREA_MH, "MH", objSelect);
 				objOption = HtmlCreateElementOption(MOB_CONF_PLAYER_ID_SENTO_AREA_YE_SHINKIRO, "(YE)蜃気楼の塔", objSelect);
+				objOption = HtmlCreateElementOption(MOB_CONF_PLAYER_ID_SENTO_AREA_URDR, "(削除予定)ウルド", objSelect);
 
 				// 初期値設定
 				objSelect.setAttribute("value", MobConfPlayerOBJ[idx][MOB_CONF_PLAYER_DATA_INDEX_DEFAULT_VALUE]);

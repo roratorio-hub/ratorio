@@ -189,5 +189,7 @@ equipable_list:
     code: 191
   - name: 4次職 拡張4次職
     code: 192
+  - name: ハイパーノービス 4次職マジシャン系 4次職アコライト系 ソウルアセティック
+    code: 193
   - name: サモナー系
     code: 201
