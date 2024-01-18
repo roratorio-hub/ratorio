@@ -1,3 +1,8 @@
+# @reference
+# https://qiita.com/toshipon/items/2a1513b584650dcd81c1
+# https://qiita.com/suupia/items/f5e08faeedffb18efbf2
+#
+
 name: Discord Message Notify
 
 on:
@@ -10,6 +15,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+ 
+    - name: Check out repo's head branch
+      uses: actions/checkout@v2.4.0
+      with:
+          ref: ${{ github.head_ref }} #For pull_request events, GITHUB_REF contains the merge branch (refs/pull/:prNumber/merge).
+     
     - name: Discord Message Notify
       uses: appleboy/discord-action@0.0.3
       with:
