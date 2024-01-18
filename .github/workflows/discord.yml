@@ -32,4 +32,4 @@ jobs:
         webhook_token: ${{ secrets.WEBHOOK_TOKEN }}
         color: "#48f442"
         username: "GitHub Bot"
-        args: "${{ github.ref }}\nThe ${{ github.event_name }} event triggered. by @${{ github.actor }} \nmessage: ${{ env.Commit_Message }}"
+        args: "${{ github.ref_name }}\n @${{ github.actor }} さんが ${{ github.event_name }} しました\n${{ env.Commit_Message }}"
