@@ -364,7 +364,6 @@ function DispData(selectedCardKind, cardDataArray) {
 		prefix = "";
 		suffix = "";
 		if (prefix_index >= 0) {
-			console.log(prefix_index)
 			prefix = card_prefix.get_prefix(prefix_index);
 			suffix = card_prefix.get_suffix(prefix_index);
 		}
