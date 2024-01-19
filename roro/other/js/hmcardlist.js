@@ -354,12 +354,19 @@ function DispData(selectedCardKind, cardDataArray) {
 	}
 
 
-
+	card_prefix = new CardPrefix();
 	// 表示欄生成
 	for (idx = 0; idx < cardDataArray.length; idx++) {
 
 		cardData = cardDataArray[idx];
 		cardId = cardData[CARD_DATA_INDEX_ID];
+		prefix_index = card_prefix.get_index_by_name(cardDataArray[idx][CARD_DATA_INDEX_NAME]);
+		prefix = "";
+		suffix = "";
+		if (prefix_index >= 0) {
+			prefix = card_prefix.get_prefix(prefix_index);
+			suffix = card_prefix.get_suffix(prefix_index);
+		}
 
 		// 30行ごとにヘッダを追加
 		if (idx % 30 == 0) {
@@ -415,6 +422,11 @@ function DispData(selectedCardKind, cardDataArray) {
 
 		objText = document.createTextNode(cardDataArray[idx][CARD_DATA_INDEX_NAME]);
 		objTd.appendChild(objText);
+		if (prefix||suffix) {
+			objTd.appendChild(document.createElement("br"));
+			objText = document.createTextNode(`(${prefix||suffix})`)
+			objTd.appendChild(objText);
+		}
 
 		if (selectedCardKind == CARD_KIND_DMY_FOR_ALL) {
 			objTd = document.createElement("td");
