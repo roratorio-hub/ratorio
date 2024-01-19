@@ -355,6 +355,8 @@ function DispData(selectedCardKind, cardDataArray) {
 
 
 	card_prefix = new CardPrefix();
+	const condition = document.getElementById("F_CONDITION").value;
+	let rownum = 0;
 	// 表示欄生成
 	for (idx = 0; idx < cardDataArray.length; idx++) {
 
@@ -367,9 +369,17 @@ function DispData(selectedCardKind, cardDataArray) {
 			prefix = card_prefix.get_prefix(prefix_index);
 			suffix = card_prefix.get_suffix(prefix_index);
 		}
+		if (condition) {
+			hit = cardDataArray[idx][CARD_DATA_INDEX_NAME].includes(condition);
+			hit = hit || prefix.includes(condition) || suffix.includes(condition);
+			tmp = document.createElement("span");
+			CItemInfoManager.RebuildInfoTableSubCardDetail(tmp, cardId, false);
+			hit = hit || tmp.textContent.includes(condition);
+			if(!hit) continue;
+		}
 
 		// 30行ごとにヘッダを追加
-		if (idx % 30 == 0) {
+		if (rownum++ % 30 == 0) {
 			objTr = document.createElement("tr");
 			objTr.setAttribute("bgcolor", "#aaaaff");
 			objTbody.appendChild(objTr);
