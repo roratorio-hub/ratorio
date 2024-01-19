@@ -5,10 +5,11 @@ on:
     branches:
       - master
       - dev
-  pull_request:
+  pull_request_target:
     branches:
       - master
       - dev
+      - webhook-test
 
 jobs:
   myjob:
