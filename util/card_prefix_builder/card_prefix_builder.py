@@ -14,12 +14,15 @@ def load_card_names(cards: dict):
         terms = line.split("#")
         if len(terms) <= 2:
             continue
-        if not terms[1].endswith("カード"):
+        if not terms[1].endswith("カード") and not terms[1].endswith("(逆位置)"):
             if terms[0] in cards:
                 del cards[terms[0]]
             continue
         if terms[0] in cards:
-            cards[terms[1][:-3]] = cards[terms[0]]
+            if terms[1][-4] == "の" or terms[1].endswith("(逆位置)"):
+                cards[terms[1]] = cards[terms[0]]
+            else:
+                cards[terms[1][:-3]] = cards[terms[0]]
             del cards[terms[0]]
     return cards
 
