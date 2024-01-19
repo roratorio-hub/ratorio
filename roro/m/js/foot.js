@@ -22169,18 +22169,20 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 				// 全ての種族のＤＥＦ無視
 				ignoreDef += n_tok[ITEM_SP_IGNORE_DEF_RACE_ALL];
 
-				// 特定種族のＤＥＦ無視
+				// 特定種族のＤＥＦ無視7
 				ignoreDef += n_tok[ITEM_SP_IGNORE_DEF_RACE_SOLID + mobData[MONSTER_DATA_INDEX_RACE]];
 
 				// 錐効果値を計算
 				n_A_QUAKE_KIRI = mobData[MONSTER_DATA_INDEX_DEF_DIV_IGNORE_BUFF] * (100 - ignoreDef) / 100.0 / 2;
 
 				// エクスピアティオの効果で補正する
-				if (g_confDataSanzi[CCharaConfSanzi.CONF_ID_EXPIATIO] > 0) {
-					n_A_QUAKE_KIRI -= (n_A_QUAKE_KIRI * ((20 * g_confDataSanzi[CCharaConfSanzi.CONF_ID_EXPIATIO]) / 100));
-				}
-				else if (UsedSkillSearch(SKILL_ID_EXPIATIO)) {
-					n_A_QUAKE_KIRI -= (n_A_QUAKE_KIRI * ((20 * UsedSkillSearch(SKILL_ID_EXPIATIO)) / 100));
+				if (n_A_QUAKE_KIRI > 0) {
+					if (g_confDataSanzi[CCharaConfSanzi.CONF_ID_EXPIATIO] > 0) {
+						n_A_QUAKE_KIRI -= (n_A_QUAKE_KIRI * ((20 * g_confDataSanzi[CCharaConfSanzi.CONF_ID_EXPIATIO]) / 100));
+					}
+					else if (UsedSkillSearch(SKILL_ID_EXPIATIO)) {
+						n_A_QUAKE_KIRI -= (n_A_QUAKE_KIRI * ((20 * UsedSkillSearch(SKILL_ID_EXPIATIO)) / 100));
+					}
 				}
 
 				// 負数だと、floor 処理での丸め仕様が違うようなので。また、IE では Math.sign() 未サポート
