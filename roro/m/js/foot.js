@@ -22169,7 +22169,7 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 				// 全ての種族のＤＥＦ無視
 				ignoreDef += n_tok[ITEM_SP_IGNORE_DEF_RACE_ALL];
 
-				// 特定種族のＤＥＦ無視7
+				// 特定種族のＤＥＦ無視
 				ignoreDef += n_tok[ITEM_SP_IGNORE_DEF_RACE_SOLID + mobData[MONSTER_DATA_INDEX_RACE]];
 
 				// 錐効果値を計算
