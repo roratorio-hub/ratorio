@@ -696,7 +696,7 @@ CSaveDataMappingManager.__GetMappingArrayMobConfPlayer = function (version) {
 
 	// バージョン 26 以降
 	// 小型耐性のセーブ領域が不足していたバグを修正
-	else {
+	else if (version < 54) {
 		mappingArray = [
 			3, 2, 2, 2, 2, 2, 2, 1, 2, 2,
 			2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
@@ -705,6 +705,20 @@ CSaveDataMappingManager.__GetMappingArrayMobConfPlayer = function (version) {
 			2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
 
 			2, 2, 2,
+		];
+	}
+
+	// バージョン 54 以降
+	// 最大HPの拡張とRES/MRES対応
+	else {
+		mappingArray = [
+			5, 2, 2, 2, 2, 2, 2, 1, 2, 2,
+			2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+			2, 2, 2, 2, 2, 2, 1, 2, 2, 2,
+			2, 2, 2, 2, 2, 2, 3, 3, 2, 2,
+			2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+
+			2, 2, 2, 2, 2,
 		];
 	}
 
