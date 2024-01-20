@@ -10623,7 +10623,9 @@ function GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfAr
 
 
 
-
+/**
+ *  物理ダメージ増加
+ */
 
 function ATKbaiJYOUSAN(wJ) {
 
@@ -10631,6 +10633,11 @@ function ATKbaiJYOUSAN(wJ) {
 
 	if(n_A_WeaponType == 11 && UsedSkillSearch(SKILL_ID_KATAR_KENKYU)) {
 		w += 10 + 2 * UsedSkillSearch(SKILL_ID_KATAR_KENKYU);
+	}
+
+	// デバフ「クエイク状態」による効果
+	if (n_B_IJYOU[MOB_CONF_DEBUF_ID_QUAKE_DEBUFF] > 0) {
+		w += 15;
 	}
 
 	// 「モンスター状態異常　カイト」

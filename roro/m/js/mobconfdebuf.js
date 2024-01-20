@@ -770,6 +770,18 @@ function InitMobConfDebufData() {
 	MobConfDebufId++;
 
 
+	MOB_CONF_DEBUF_ID_QUAKE_DEBUFF = MobConfDebufId;
+	MobConfDebufData = [
+		MobConfDebufId,
+		MobConfDebufText("クエイク状態"),
+		MobConfDebufControlType(CONTROL_TYPE_CHECKBOX),
+		MobConfDebufDefaultValue(0),
+		MobConfDebufMinValue(0),
+		MobConfDebufMaxValue(1)
+	];
+	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
+	MobConfDebufId++;	
+
 
 	//----------------------------------------------------------------
 	// データ定義数チェック
@@ -845,6 +857,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJSorted[MobConfDebufOBJSorted.length] = MobConfDebufOBJ[MOB_CONF_DEBUF_ID_ADORAMUS_DEBUFF];
 	MobConfDebufOBJSorted[MobConfDebufOBJSorted.length] = MobConfDebufOBJ[MOB_CONF_DEBUF_ID_MARSH_OF_ABYSS];
 	MobConfDebufOBJSorted[MobConfDebufOBJSorted.length] = MobConfDebufOBJ[MOB_CONF_DEBUF_ID_EARTH_DRIVE_DEBUFF];
+	MobConfDebufOBJSorted[MobConfDebufOBJSorted.length] = MobConfDebufOBJ[MOB_CONF_DEBUF_ID_QUAKE_DEBUFF];
 	MobConfDebufOBJ = MobConfDebufOBJSorted;
 
 }
