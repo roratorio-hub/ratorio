@@ -36564,7 +36564,7 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(×)トリプルレーザー";
+			this.name = "トリプルレーザー";
 			this.kana = "トリフルレエサア";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -36576,23 +36576,21 @@ function CSkillManager() {
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
-			/*
 			this.CostFixed = function(skillLv, charaDataManger) {
-				return 0;
+				return 140;
 			}
 			this.CastTimeVary = function(skillLv, charaDataManger) {
-				return 0;
+				return 2000;
 			}
 			this.CastTimeFixed = function(skillLv, charaDataManger) {
-				return (0 * skillLv);
+				return 500;
 			}
 			this.DelayTimeCommon = function(skillLv, charaDataManger) {
-				return 0;
+				return 1000 * skillLv;
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {
-				return 0;
+				return 500;
 			}
-			*/
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;

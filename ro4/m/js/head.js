@@ -4556,23 +4556,21 @@ g_bUnknownCasts = true;
 			wbairitu *= n_A_BaseLV / 100;										// BaseLv補正
 			break;
 
+		// 「マイスター」スキル「トリプルレーザー」
 		case SKILL_ID_TRIPLE_LASER:
 			if (UsedSkillSearch(SKILL_ID_MADOGEAR) == 0) {
 				n_Buki_Muri = 1
 				wbairitu = 0;
 				break;
 			}
-			g_bUnknownCasts = true;	// 詠唱時間など未計測フラグ
 			n_Enekyori = 1;	// 遠距離フラグ
-			/*
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			*/
 			wHITsuu = 3;
 			wbairitu = 1100 + (200 * n_A_ActiveSkillLV);						// 基礎倍率
-			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);				// 特性ステータス補正
+			wbairitu += 7 * GetTotalSpecStatus(MIG_PARAM_ID_POW);				// 特性ステータス補正
 			wbairitu *= n_A_BaseLV / 100;										// BaseLv補正
 			break;
 
