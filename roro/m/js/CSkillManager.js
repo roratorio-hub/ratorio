@@ -32089,6 +32089,21 @@ function CSkillManager() {
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 500;
 			}
+
+			this.CriActRate = (skillLv, charaData, specData, mobData) => {
+				if (UsedSkillSearch(SKILL_ID_CALAMITY_GALE) > 0) {
+					return this._CriActRate100(skillLv, charaData, specData, mobData);
+				} else {
+					return 0;
+				}
+			}
+			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {
+				if (UsedSkillSearch(SKILL_ID_CALAMITY_GALE) > 0) {
+					return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
+				} else {
+					return 0;
+				}
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;

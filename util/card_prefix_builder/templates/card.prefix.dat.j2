@@ -1,0 +1,16 @@
+class CardPrefix {
+  constructor() {
+    this.card_prefix = [{% for k, v in card_prefix.items() %}
+    {%if v.startswith("オブ") %}["{{k}}", "", "{{v}}"],{%else%}["{{k}}", "{{v}}", ""],{% endif %}{% endfor %}
+    ];
+  };
+  get_index_by_name(name) {
+    return this.card_prefix.findIndex(r => {return r[0] == name});
+  }
+  get_prefix(idx) {
+    return this.card_prefix[idx][1];
+  }
+  get_suffix(idx) {
+    return this.card_prefix[idx][2];
+  }
+}
