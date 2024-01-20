@@ -32712,12 +32712,27 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(×)ラッシュクエイク";
+			this.name = "ラッシュクエイク";
 			this.kana = "ラツシユクエイク";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 440;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return 3000;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 500;
+			}			
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;

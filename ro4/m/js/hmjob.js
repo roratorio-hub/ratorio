@@ -1493,11 +1493,15 @@ function ApplySpecModify(spid, spVal) {
 
 	case ITEM_SP_SHORTRANGE_DAMAGE_UP:
 
-	// 四次職支援「天地神霊」による効果
+		// 四次職支援「天地神霊」による効果
 		if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_TENCHI_SHINRE]) > 0) {
 			spVal += 10 + bufLv;
 		}
-		break;
+		// 「マイスター」スキル「ラッシュ状態」による効果
+		if ((sklLv = UsedSkillSearch(SKILL_ID_RUSH_STATE)) > 0) {
+			spVal += 2 * sklLv;
+		}
+		break;		
 
 	case ITEM_SP_P_ATK_PLUS:
 
@@ -1546,14 +1550,6 @@ function ApplySpecModify(spid, spVal) {
 				}
 				break;
 			}
-		}
-		break;
-
-	case ITEM_SP_SHORTRANGE_DAMAGE_UP:
-
-		// 「マイスター」スキル「ラッシュ状態」による効果
-		if ((sklLv = UsedSkillSearch(SKILL_ID_RUSH_STATE)) > 0) {
-			spVal += 2 * sklLv;
 		}
 		break;
 

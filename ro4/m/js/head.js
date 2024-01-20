@@ -3142,19 +3142,17 @@ g_bDefinedDamageIntervals = true;
 			break;
 
 		case SKILL_ID_RUSH_QUAKE:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-
 			// 距離属性
 			n_Enekyori = 0;
-
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 基本倍率
 			wbairitu = (800 * n_A_ActiveSkillLV);
-
 			// POW補正
-			wbairitu += 30 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
+			wbairitu += 20 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 			// 無・昆虫形はダメージ倍率２倍
 			switch (mobData[MONSTER_DATA_INDEX_RACE]) {
 			case RACE_ID_SOLID:
@@ -3162,7 +3160,6 @@ g_bUnknownCasts = true;
 				wbairitu *= 2;
 				break;
 			}
-
 			// ベースレベル補正
 			wbairitu *= n_A_BaseLV / 100;
 			break;
