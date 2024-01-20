@@ -2962,10 +2962,10 @@ g_bUnknownCasts = true;
 			}
 			break;
 
+		// 「ウィンドホーク」スキル「ゲイルストーム」
 		case SKILL_ID_GALE_STORM:
-
-// TODO: 詠唱時間等未実測スキル
-//g_bUnknownCasts = true;
+			// ダメージ実測値に基づき誤差が+4程度あるが許容範囲と判断
+			// ただしワシの目のスキルLv補正が計算されていないので不安は残る
 
 			// 弓のみ発動可能
 			switch (n_A_WeaponType) {
@@ -3046,7 +3046,11 @@ g_bDefinedDamageIntervals = true;
 
 			break;
 
+		// 「ウィンドホーク」スキル「クレッシブボルト」
 		case SKILL_ID_CRESSIVE_VOLT:
+			// TODO:
+			// 実測値と計算結果の間に最大3桁程度の誤差あり
+			// ワシの目のスキルLv補正が乗っていないのでそこから見直し必要
 
 			// 弓のみ発動可能
 			switch (n_A_WeaponType) {

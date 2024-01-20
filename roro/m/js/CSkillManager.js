@@ -31997,7 +31997,7 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(×)カラミティゲイル";
+			this.name = "カラミティゲイル";
 			this.kana = "カラミテイケイル";
 			this.maxLv = 1;
 			this.type = CSkillData.TYPE_ACTIVE;
@@ -32063,7 +32063,7 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(×)ゲイルストーム";
+			this.name = "ゲイルストーム";
 			this.kana = "ケイルストオム";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -32216,7 +32216,7 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(×)クレッシブボルト";
+			this.name = "(△)クレッシブボルト";
 			this.kana = "クレツシフホルト";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
