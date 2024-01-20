@@ -35604,7 +35604,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 玄武符
 		// ----------------------------------------------------------------
-		SKILL_ID_SEIRYU_FU = skillId;
+		SKILL_ID_GENBU_FU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);

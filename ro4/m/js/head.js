@@ -9972,8 +9972,8 @@ g_bUnknownCasts = true;
 
 		case SKILL_ID_SEIRYU_FU:
 
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
+			// TODO: 詠唱時間等未実測スキル
+			g_bUnknownCasts = true;
 
 			// 属性は暖かい風依存
 			n_A_Weapon_zokusei = eval(document.calcForm.A_Weapon_zokusei.value);
@@ -9993,10 +9993,10 @@ g_bUnknownCasts = true;
 			else {
 				wbairitu = 1500 + (200 * n_A_ActiveSkillLV);
 			}
-
 			// SPL補正
-			wbairitu += 8 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-
+			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+			// 護符修練 補正
+			wbairitu += 5 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_GOFU_SHUREN);
 			// ベースレベル補正
 			wbairitu *= n_A_BaseLV / 100;
 			break;
