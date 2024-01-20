@@ -383,6 +383,17 @@ function CCharaConfNizi(confArray) {
 		confId++;
 
 
+		CCharaConfNizi.CONF_ID_MAXIMIZE_POWER = confId;
+		confData = [
+			confId,
+			CConfBase.ConfText("マキシマイズパワー"),
+			CConfBase.ConfControlType(CONTROL_TYPE_CHECKBOX),
+			CConfBase.ConfDefaultValue(0),
+			CConfBase.ConfMinValue(0),
+			CConfBase.ConfMaxValue(1)
+		];
+		this.confDataObj[confId] = confData;
+		confId++;
 
 
 
@@ -438,7 +449,7 @@ function CCharaConfNizi(confArray) {
 		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_ADRENALINE_RUSH];
 		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_OVER_TRUST];
 		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_WEAPON_PERFECTION];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_DUMMY];
+		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_MAXIMIZE_POWER];
 		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_KIKO];
 		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_KONGO];
 		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_DEFENDER];

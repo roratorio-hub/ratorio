@@ -3833,23 +3833,25 @@ g_bDefinedDamageIntervals = true;
 			}
 			break;
 
+		// 「天帝」スキル「天地一陽」
 		case SKILL_ID_TENCHI_ICHIYO:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-
 			// 距離属性
 			n_Enekyori = 0;
-
+			// 詠唱時間など
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 基本倍率
 			wbairitu = 250 + (50 * n_A_ActiveSkillLV);
-
 			// POW補正
-			wbairitu += 1 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
+			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+			// 天気修練 補正
+			wbairitu += 5 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_TENKI_SHUREN);
 			// ベースレベル補正
 			wbairitu *= n_A_BaseLV / 100;
 			break;
+
 
 		case SKILL_ID_TAITEN_ICHIYO:
 
@@ -17475,7 +17477,7 @@ function Click_Skill7SW(){
 			[39, "SP増加ポーション", ["なし","(小)","(中)","(大)"]],
 		],
 		[
-			[40, "マキシマイズパワー"],
+			[40, "(効果なし)マキシマイズパワー"],
 			[41, "戦闘薬", ["なし","戦闘薬","高級戦闘薬"]],
 			[48, "古代精霊のお守り"],
 		],
@@ -19684,7 +19686,7 @@ function GetWeaponAtk(strdex, strBonus, armsType, armsLv, armsAtk, sizeModify,
 	}
 
 	// マキシマイズパワーが有効の場合は、最小＝最大＝基礎武器ATKで固定
-	else if (UsedSkillSearch(SKILL_ID_MAXIMIZE_POWER) > 0) {
+	else if (UsedSkillSearch(SKILL_ID_MAXIMIZE_POWER) > 0 || g_confDataNizi[CCharaConfNizi.CONF_ID_MAXIMIZE_POWER] > 0) {
 		wpnAtkArray[0] = wpnAtkBase;
 		wpnAtkArray[2] = wpnAtkBase;
 	}
