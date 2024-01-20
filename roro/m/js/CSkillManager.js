@@ -35073,13 +35073,27 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(×)太天一陽";
+			this.name = "太天一陽";
 			this.kana = "タイテンイチヨウ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
-
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 230;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {
+				return (0 * skillLv);
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return 500;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 2000;
+			}
 			this.CriActRate = (skillLv, charaData, specData, mobData) => {
 
 				// 正午、天気の身状態の場合のみ
@@ -35093,7 +35107,6 @@ function CSkillManager() {
 
 				return this._CriActRate100(skillLv, charaData, specData, mobData);
 			}
-
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {
 
 				// 正午、天気の身状態の場合のみ
