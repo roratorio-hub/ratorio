@@ -2887,6 +2887,10 @@ g_bUnknownCasts = true;
 
 			case ITEM_KIND_BOW:
 
+				// ディレイ、クールタイム
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+
 				// 補助スキルレベル取得
 				var sklLvSub = UsedSkillSearch(SKILL_ID_SHIZEN_SHINWA);
 
