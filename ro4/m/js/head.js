@@ -4537,22 +4537,22 @@ g_bUnknownCasts = true;
 			wbairitu *= n_A_BaseLV / 100;										// BaseLv補正
 			break;
 
+		// 「マイスター」スキル「スパークブラスター」
 		case SKILL_ID_SPARK_BLASTER:
+			// 錐効果がついた時にダメージ実測値との誤差があるので(△)スキル
+			// DEF無視スキルのため錐周りの計算がうまく出来ていないと思われる
 			if (UsedSkillSearch(SKILL_ID_MADOGEAR) == 0) {
 				n_Buki_Muri = 1
 				wbairitu = 0;
 				break;
 			}
-			g_bUnknownCasts = true;	// 詠唱時間など未計測フラグ
 			n_Enekyori = 1;	// 遠距離フラグ
-			/*
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			*/
 			wbairitu = 3000 + (300 * n_A_ActiveSkillLV);						// 基礎倍率
-			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);				// 特性ステータス補正
+			wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_POW);				// 特性ステータス補正
 			wbairitu *= n_A_BaseLV / 100;										// BaseLv補正
 			break;
 
