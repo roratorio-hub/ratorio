@@ -36720,29 +36720,27 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(×)マイティスマッシュ";
+			this.name = "マイティスマッシュ";
 			this.kana = "マイテイスマツシユ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
-			/*
 			this.CostFixed = function(skillLv, charaDataManger) {
-				return 0;
+				return 250;
 			}
 			this.CastTimeVary = function(skillLv, charaDataManger) {
-				return 0;
+				return 200 * skillLv;
 			}
 			this.CastTimeFixed = function(skillLv, charaDataManger) {
-				return (0 * skillLv);
+				return 0;
 			}
 			this.DelayTimeCommon = function(skillLv, charaDataManger) {
-				return 0;
+				return 500 * skillLv;
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {
-				return 0;
+				return 500;
 			}
-			*/
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;

@@ -4087,6 +4087,7 @@ g_bUnknownCasts = true;
 
 			// 使用武器制限
 			if (n_A_WeaponType != ITEM_KIND_HANDGUN && n_A_WeaponType != ITEM_KIND_RIFLE) {
+				n_Buki_Muri = 1
 				wbairitu = 0;
 				break;
 			}
@@ -4127,6 +4128,7 @@ g_bUnknownCasts = true;
 
 			// 使用武器制限
 			if (n_A_WeaponType != ITEM_KIND_GRENADEGUN && n_A_WeaponType != ITEM_KIND_RIFLE) {
+				n_Buki_Muri = 1
 				wbairitu = 0;
 				break;
 			}
@@ -4168,6 +4170,7 @@ g_bUnknownCasts = true;
 
 			// 使用武器制限
 			if (n_A_WeaponType != ITEM_KIND_HANDGUN && n_A_WeaponType != ITEM_KIND_GATLINGGUN) {
+				n_Buki_Muri = 1
 				wbairitu = 0;
 				break;
 			}
@@ -4211,6 +4214,7 @@ g_bUnknownCasts = true;
 
 			// 使用武器制限
 			if (n_A_WeaponType != ITEM_KIND_SHOTGUN && n_A_WeaponType != ITEM_KIND_GATLINGGUN) {
+				n_Buki_Muri = 1
 				wbairitu = 0;
 				break;
 			}
@@ -4258,6 +4262,7 @@ g_bUnknownCasts = true;
 
 			// 使用武器制限
 			if (n_A_WeaponType != ITEM_KIND_SHOTGUN && n_A_WeaponType != ITEM_KIND_GRENADEGUN) {
+				n_Buki_Muri = 1
 				wbairitu = 0;
 				break;
 			}
@@ -4534,6 +4539,7 @@ g_bUnknownCasts = true;
 
 		case SKILL_ID_SPARK_BLASTER:
 			if (UsedSkillSearch(SKILL_ID_MADOGEAR) == 0) {
+				n_Buki_Muri = 1
 				wbairitu = 0;
 				break;
 			}
@@ -4552,6 +4558,7 @@ g_bUnknownCasts = true;
 
 		case SKILL_ID_TRIPLE_LASER:
 			if (UsedSkillSearch(SKILL_ID_MADOGEAR) == 0) {
+				n_Buki_Muri = 1
 				wbairitu = 0;
 				break;
 			}
@@ -4606,6 +4613,7 @@ g_bUnknownCasts = true;
 
 		case SKILL_ID_DRAGONIC_BREATH:
 			if (UsedSkillSearch(SKILL_ID_DRAGON_TRAINING) == 0) {
+				n_Buki_Muri = 1
 				wbairitu = 0;
 				break;
 			}
@@ -4637,24 +4645,24 @@ g_bUnknownCasts = true;
 			wbairitu *= n_A_BaseLV / 100;									// BaseLv補正
 			break;
 
+		// 「マイスター」スキル「マイティスマッシュ」
 		case SKILL_ID_MIGHTY_SMASH:
 			// 使用武器制限
 			if (n_A_WeaponType != ITEM_KIND_AXE && n_A_WeaponType != ITEM_KIND_AXE_2HAND) {
+				n_Buki_Muri = 1
 				wbairitu = 0;
 				break;
 			}
-			g_bUnknownCasts = true;	// 詠唱時間など未計測フラグ
-			/*
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			*/
+			// アックスストンプ状態の場合 2 hit
 			if (UsedSkillSearch(SKILL_ID_AXE_STOMP_STATUS) > 0) {
 				wHITsuu = 2;
 			}
 			wbairitu = 1500 + (150 * n_A_ActiveSkillLV);						// 基礎倍率
-			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);				// 特性ステータス補正
+			wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_POW);				// 特性ステータス補正
 			wbairitu *= n_A_BaseLV / 100;										// BaseLv補正
 			break;
 
