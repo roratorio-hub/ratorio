@@ -5151,6 +5151,11 @@ const SAVE_DATA_UNIT_TYPE_MOB_CONF_PLAYER = CSaveDataUnitTypeManager.register(
 				CSaveDataConst.propNameStResistSizeSmall,
 				CSaveDataConst.propNameStRace,
 
+				CSaveDataConst.propNameStResPlusSign,
+				CSaveDataConst.propNameStResPlus,
+				CSaveDataConst.propNameStMresPlusSign,
+				CSaveDataConst.propNameStMresPlus,
+
 				CSaveDataConst.propNameStPowSign,
 				CSaveDataConst.propNameStPow,
 				CSaveDataConst.propNameStStaSign,
@@ -5184,7 +5189,7 @@ const SAVE_DATA_UNIT_TYPE_MOB_CONF_PLAYER = CSaveDataUnitTypeManager.register(
 			// プロパティ定義情報の登録
 			this.registerPropInfo(CSaveDataConst.propNameOptCode, 6);
 			// （旧形式の領域的には52個用意されていたが末尾は使用していなかったので切り捨て）
-			this.registerPropInfo(CSaveDataConst.propNameParseCtrlFlag, 78);
+			this.registerPropInfo(CSaveDataConst.propNameParseCtrlFlag, 82);
 
 			this.registerPropInfo(CSaveDataConst.propNameStMaxHP, CSaveDataConst.propBitsMaxAbs4M);
 			this.registerPropInfo(CSaveDataConst.propNameStDefDiv, CSaveDataConst.propBitsMaxAbs10k);
@@ -5252,6 +5257,10 @@ const SAVE_DATA_UNIT_TYPE_MOB_CONF_PLAYER = CSaveDataUnitTypeManager.register(
 			this.registerPropInfo(CSaveDataConst.propNameStResistSizeSmallSign, 1);
 			this.registerPropInfo(CSaveDataConst.propNameStResistSizeSmall, CSaveDataConst.propBitsMaxAbs200);
 			this.registerPropInfo(CSaveDataConst.propNameStRace, 1);
+			this.registerPropInfo(CSaveDataConst.propNameStResPlusSign, 1);
+			this.registerPropInfo(CSaveDataConst.propNameStResPlus, CSaveDataConst.propBitsMaxAbs1k);
+			this.registerPropInfo(CSaveDataConst.propNameStMresPlusSign, 1);
+			this.registerPropInfo(CSaveDataConst.propNameStMresPlus, CSaveDataConst.propBitsMaxAbs1k);
 			this.registerPropInfo(CSaveDataConst.propNameStPowSign, 1);
 			this.registerPropInfo(CSaveDataConst.propNameStPow, CSaveDataConst.propBitsMaxAbs1k);
 			this.registerPropInfo(CSaveDataConst.propNameStStaSign, 1);
@@ -6644,7 +6653,7 @@ class CSaveDataUnitParse extends CSaveDataUnitBase {
 			saveDataUnit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_MOB_CONF_PLAYER))();
 			[dataTextWork, bitOffset] = saveDataUnit.convertFromOldFormat(dataTextWork, bitOffset,
 				0,
-				((1n << 78n) - 1n),
+				((1n << 82n) - 1n),
 
 				signValueArray[0][1],
 				signValueArray[1][1],
@@ -6665,7 +6674,11 @@ class CSaveDataUnitParse extends CSaveDataUnitBase {
 				signValueArray[38][1],
 				...(signValueArray[39]),
 				signValueArray[40][1],
-				...(Array(12).fill(0))
+				...(Array(1).fill(0)),
+				signValueArray[41][1],
+				...(Array(1).fill(0)),
+				signValueArray[42][1],
+				...(Array(12).fill(0)),
 			);
 		}
 
