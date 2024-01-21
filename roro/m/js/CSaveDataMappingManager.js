@@ -73,6 +73,7 @@ CSaveDataMappingManager.GetMappingArray = function (version) {
 	mappingArray = mappingArray.concat(CSaveDataMappingManager.__GetMappingArraySpecStatus(version));
 	mappingArray = mappingArray.concat(CSaveDataMappingManager.__GetMappingArrayBuffSkill4(version));
 	mappingArray = mappingArray.concat(CSaveDataMappingManager.__GetMappingArrayCharaConfCustomSpecStatus(version));
+	mappingArray = mappingArray.concat(CSaveDataMappingManager.__GetMappingArrayMobConfPlayer2(version));
 
 	return mappingArray;
 };
@@ -696,7 +697,7 @@ CSaveDataMappingManager.__GetMappingArrayMobConfPlayer = function (version) {
 
 	// バージョン 26 以降
 	// 小型耐性のセーブ領域が不足していたバグを修正
-	else if (version < 54) {
+	else {
 		mappingArray = [
 			3, 2, 2, 2, 2, 2, 2, 1, 2, 2,
 			2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
@@ -705,20 +706,6 @@ CSaveDataMappingManager.__GetMappingArrayMobConfPlayer = function (version) {
 			2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
 
 			2, 2, 2,
-		];
-	}
-
-	// バージョン 54 以降
-	// 最大HPの拡張とRES/MRES対応
-	else {
-		mappingArray = [
-			5, 2, 2, 2, 2, 2, 2, 1, 2, 2,
-			2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-			2, 2, 2, 2, 2, 2, 1, 2, 2, 2,
-			2, 2, 2, 2, 2, 2, 3, 3, 2, 2,
-			2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-
-			2, 2, 2, 2, 2,
 		];
 	}
 
@@ -1206,4 +1193,36 @@ CSaveDataMappingManager.__GetMappingArrayCharaConfCustomSpecStatus = function (v
 
 	return mappingArray;
 };
+
+/**
+ * （内部関数）マッピング配列を取得する（対プレイヤー設定2）.
+ * @param version バージョン
+ * @return マッピング配列
+ */
+CSaveDataMappingManager.__GetMappingArrayMobConfPlayer2 = function (version) {
+
+	var mappingArray = null;
+
+	// バージョン 54 まで
+	if (version < 54) {
+	}
+
+	// バージョン 54 以降
+	// 拡張容量域を確保
+	else {
+		mappingArray = [
+			3, 2, 2, 2, 2, 2, 2, 1, 2, 2,
+			2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+			2, 2, 2, 2, 2, 2, 1, 2, 2, 2,
+			2, 2, 2, 2, 2, 2, 3, 3, 2, 2,
+			2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+
+			2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+		];
+	}
+
+
+	return mappingArray;
+};
+
 
