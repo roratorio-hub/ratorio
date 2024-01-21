@@ -43,7 +43,7 @@ templ = `
           <li class="menu-item"><span class="menu-title"><a href="../../information/history/index.html" class="local">更新履歴</a></span></li>
           <!--<li class="menu-item"><span class="menu-title"><a href="../../information/alert/index.html" class="local">不具合のお知らせ</a></span></li>-->
           <li class="menu-item"><span class="menu-title"><a href="../../information/wanted/index.html" class="local">[募集] スキル情報</a></span></li>
-		  <li class="menu-item"><span class="menu-title"><a href="../../information/wanted/forgvg.html" class="local">[募集] GvG情報</a></span></li>
+		      <!--<li class="menu-item"><span class="menu-title"><a href="../../information/wanted/forgvg.html" class="local">[募集] GvG情報</a></span></li>-->
 
 		  <li class="menu-header" style="padding-top: 10px"><span>Contact Us</span></li>
           <li class="menu-item"><span class="menu-title"><a href="../../information/response/index.html" class="local">Q&amp;A</a></span></li>
