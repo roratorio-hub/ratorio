@@ -4039,20 +4039,29 @@ g_bDefinedDamageIntervals = true;
 			wbairitu *= n_A_BaseLV / 100;
 			break;
 
+		// 「天帝」スキル「天命落星」
 		case SKILL_ID_TENME_RAKUSE:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
+			// ダメージ誤差が+2程度あるが許容範囲と判断
 
 			// 距離属性
 			n_Enekyori = 0;
-
+			// 詠唱時間など
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// 設置スキル
+			g_bDefinedDamageIntervals = true;
+			// ダメージ間隔
+			n_Delay[5] = 300;
+			// オブジェクト存続時間
+			n_Delay[6] = 3000;
 			// 基本倍率
 			wbairitu = 150 + (100 * n_A_ActiveSkillLV);
-
 			// POW補正
-			wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
+			wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+			// 天気修練 補正
+			wbairitu += 5 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_TENKI_SHUREN);
 			// ベースレベル補正
 			wbairitu *= n_A_BaseLV / 100;
 			break;
