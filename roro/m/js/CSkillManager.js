@@ -35398,17 +35398,30 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(×)天羅万象";
+			this.name = "天羅万象";
 			this.kana = "テンラハンシヨウ";
-			this.maxLv = 5;
+			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
-
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 230;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return 3000;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 5000;
+			}						
 			this.CriActRate = (skillLv, charaData, specData, mobData) => {
 				return this._CriActRate100(skillLv, charaData, specData, mobData);
 			}
-
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}

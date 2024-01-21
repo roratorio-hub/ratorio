@@ -4093,33 +4093,31 @@ g_bDefinedDamageIntervals = true;
 			wbairitu *= n_A_BaseLV / 100;
 			break;
 
+		// 「天帝」スキル「天羅万象」
 		case SKILL_ID_TENRA_BANSHO:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
 
 			// 距離属性
 			n_Enekyori = 0;
-
+			// 詠唱時間など
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 基本倍率
-			wbairitu = 0 + (300 * n_A_ActiveSkillLV);
-
+			wbairitu = 300 * n_A_ActiveSkillLV;
 			// POW補正
 			wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
 			// 悪魔・人間(プレイヤーを除く)形では、３回ヒット
 			wHITsuu = 1;
 			switch (parseInt(mobData[MONSTER_DATA_INDEX_RACE], 10)) {
-			case RACE_ID_HUMAN:
-				if (mobData[MONSTER_DATA_INDEX_ID] == MONSTER_ID_PLAYER) {
+				case RACE_ID_HUMAN:
+					if (mobData[MONSTER_DATA_INDEX_ID] == MONSTER_ID_PLAYER) {
+						break;
+					}
+				case RACE_ID_DEMON:
+					wHITsuu = 3;
 					break;
-				}
-				// breakしない
-			case RACE_ID_DEMON:
-				wHITsuu = 3;
-				break;
 			}
-
 			// ベースレベル補正
 			wbairitu *= n_A_BaseLV / 100;
 			break;
