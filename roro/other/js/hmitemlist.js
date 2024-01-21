@@ -303,7 +303,21 @@ function BuildUpItemList() {
 
 				objTd = document.createElement("td");
 				objTr.appendChild(objTd);
-				objText = document.createTextNode("ペナ解消STR");
+				switch (condKind) {
+					case ITEM_KIND_BOW:
+					case ITEM_KIND_MUSICAL:
+					case ITEM_KIND_WHIP:
+					case ITEM_KIND_HANDGUN:
+					case ITEM_KIND_RIFLE:
+					case ITEM_KIND_SHOTGUN:
+					case ITEM_KIND_GATLINGGUN:
+					case ITEM_KIND_GRENADEGUN:
+						objText = document.createTextNode("ペナ解消DEX");
+						break;
+					default:
+						objText = document.createTextNode("ペナ解消STR");
+						break;
+				}
 				objTd.appendChild(objText);
 
 			}
