@@ -35296,12 +35296,27 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(×)天地万星";
+			this.name = "(△)天地万星";
 			this.kana = "テンチバンセイ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 270;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return [0, 6400, 7100, 8000, 8700, 9500][skillLv];
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {
+				return 500 + 200 * skillLv;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return 1000 * skillLv;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 3250 - 250 * skillLv;
+			}			
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
