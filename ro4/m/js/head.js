@@ -4013,7 +4013,6 @@ g_bDefinedDamageIntervals = true;
 
 		// 「天帝」スキル「天地万星」
 		case SKILL_ID_TENCHI_BANSE:
-			// 変動詠唱と固定詠唱に不明点が残るため△スキル
 			// ダメージ誤差が+4程度あるが許容範囲と判断
 
 			// 距離属性

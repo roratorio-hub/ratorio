@@ -35296,7 +35296,7 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(△)天地万星";
+			this.name = "天地万星";
 			this.kana = "テンチバンセイ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -35306,7 +35306,7 @@ function CSkillManager() {
 				return 270;
 			}
 			this.CastTimeVary = function(skillLv, charaDataManger) {
-				return [0, 6400, 7100, 8000, 8700, 9500][skillLv];
+				return 5500 + 800 * skillLv;
 			}
 			this.CastTimeFixed = function(skillLv, charaDataManger) {
 				return 500 + 200 * skillLv;
