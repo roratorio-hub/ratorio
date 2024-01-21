@@ -489,7 +489,10 @@ function InitMobConfPlayerData() {
 	MobConfPlayerOBJ[MobConfPlayerId] = MobConfPlayerData;
 	MobConfPlayerId++;
 
-
+/*
+現在の対人環境においてFLEEによる回避は現実的ではないので
+ATKと合わせて重要度が低いと判断し
+RES, MRESに置き換える
 
 	MOB_CONF_PLAYER_ID_STR = MobConfPlayerId;
 	MobConfPlayerData = [
@@ -516,8 +519,32 @@ function InitMobConfPlayerData() {
 	];
 	MobConfPlayerOBJ[MobConfPlayerId] = MobConfPlayerData;
 	MobConfPlayerId++;
+*/
+
+	MOB_CONF_PLAYER_ID_RES = MobConfPlayerId;
+	MobConfPlayerData = [
+		MobConfPlayerId,
+		MobConfPlayerText("RES"),
+		MobConfPlayerControlType(CONTROL_TYPE_SELECTBOX_NUMBER),
+		MobConfPlayerDefaultValue(0),
+		MobConfPlayerMinValue(-100),
+		MobConfPlayerMaxValue(500)
+	];
+	MobConfPlayerOBJ[MobConfPlayerId] = MobConfPlayerData;
+	MobConfPlayerId++;
 
 
+	MOB_CONF_PLAYER_ID_MRES = MobConfPlayerId;
+	MobConfPlayerData = [
+		MobConfPlayerId,
+		MobConfPlayerText("MRES"),
+		MobConfPlayerControlType(CONTROL_TYPE_SELECTBOX_NUMBER),
+		MobConfPlayerDefaultValue(0),
+		MobConfPlayerMinValue(-100),
+		MobConfPlayerMaxValue(500)
+	];
+	MobConfPlayerOBJ[MobConfPlayerId] = MobConfPlayerData;
+	MobConfPlayerId++;
 
 	MOB_CONF_PLAYER_ID_VIT = MobConfPlayerId;
 	MobConfPlayerData = [
@@ -692,8 +719,14 @@ function InitMobConfPlayerData() {
 	MobConfPlayerOBJSorted[MobConfPlayerOBJSorted.length] = MobConfPlayerOBJ[MOB_CONF_PLAYER_ID_SHUZOKU];
 	MobConfPlayerOBJSorted[MobConfPlayerOBJSorted.length] = MobConfPlayerOBJ[MOB_CONF_PLAYER_ID_BASE_LV];
 	MobConfPlayerOBJSorted[MobConfPlayerOBJSorted.length] = MobConfPlayerOBJ[MOB_CONF_PLAYER_ID_MAXHP];
+/*
+現在の対人環境においてFLEEによる回避は現実的ではないので
+ATKと合わせて重要度が低いと判断し
+RES, MRESに置き換える
+
 	MobConfPlayerOBJSorted[MobConfPlayerOBJSorted.length] = MobConfPlayerOBJ[MOB_CONF_PLAYER_ID_STR];
 	MobConfPlayerOBJSorted[MobConfPlayerOBJSorted.length] = MobConfPlayerOBJ[MOB_CONF_PLAYER_ID_AGI];
+*/
 	MobConfPlayerOBJSorted[MobConfPlayerOBJSorted.length] = MobConfPlayerOBJ[MOB_CONF_PLAYER_ID_VIT];
 	MobConfPlayerOBJSorted[MobConfPlayerOBJSorted.length] = MobConfPlayerOBJ[MOB_CONF_PLAYER_ID_INT];
 	MobConfPlayerOBJSorted[MobConfPlayerOBJSorted.length] = MobConfPlayerOBJ[MOB_CONF_PLAYER_ID_DEX];
@@ -702,6 +735,11 @@ function InitMobConfPlayerData() {
 	MobConfPlayerOBJSorted[MobConfPlayerOBJSorted.length] = MobConfPlayerOBJ[MOB_CONF_PLAYER_ID_DEF_MINUS];
 	MobConfPlayerOBJSorted[MobConfPlayerOBJSorted.length] = MobConfPlayerOBJ[MOB_CONF_PLAYER_ID_MDEF_DIV];
 	MobConfPlayerOBJSorted[MobConfPlayerOBJSorted.length] = MobConfPlayerOBJ[MOB_CONF_PLAYER_ID_MDEF_MINUS];
+/*
+	RES, MRESの表示位置
+*/
+	MobConfPlayerOBJSorted[MobConfPlayerOBJSorted.length] = MobConfPlayerOBJ[MOB_CONF_PLAYER_ID_RES];
+	MobConfPlayerOBJSorted[MobConfPlayerOBJSorted.length] = MobConfPlayerOBJ[MOB_CONF_PLAYER_ID_MRES];
 	MobConfPlayerOBJSorted[MobConfPlayerOBJSorted.length] = MobConfPlayerOBJ[MOB_CONF_PLAYER_ID_FLEE];
 	MobConfPlayerOBJSorted[MobConfPlayerOBJSorted.length] = MobConfPlayerOBJ[MOB_CONF_PLAYER_ID_LUCKY];
 	MobConfPlayerOBJSorted[MobConfPlayerOBJSorted.length] = MobConfPlayerOBJ[MOB_CONF_PLAYER_ID_ZOKUSEI];
