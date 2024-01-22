@@ -4344,8 +4344,10 @@ g_bDefinedDamageIntervals = true;
 				ToDo: にゃん友未習得時の実測値が未確認
 			*/
 
-			// TODO: 詠唱時間等未実測スキル
-			g_bUnknownCasts = true;
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 
 			// 遠距離属性
 			n_Enekyori = 1;
@@ -4385,8 +4387,10 @@ g_bDefinedDamageIntervals = true;
 				ToDo: にゃん友未習得時の実測値が未確認
 			*/
 
-			// TODO: 詠唱時間等未実測スキル
-			g_bUnknownCasts = true;
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 
 			// 遠距離属性
 			n_Enekyori = 1;
@@ -4424,8 +4428,10 @@ g_bDefinedDamageIntervals = true;
 				ToDo: にゃん友未習得時の実測値が未確認
 			*/
 
-			// TODO: 詠唱時間等未実測スキル
-			g_bUnknownCasts = true;
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 
 			// 遠距離属性
 			n_Enekyori = 1;
