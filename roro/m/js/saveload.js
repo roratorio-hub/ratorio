@@ -838,7 +838,7 @@ function SaveSystem(funcSaveDataModify = null){
 				valueWork = CSaveDataConverter.ConvertSignedToUnsigned(valueWork, saveDataMappingArray[1881 + idx]);
 			}
 
-			SaveData[1881 + idx] = 0;
+			SaveData[1881 + idx] = valueWork;
 		}
 
 
