@@ -3662,9 +3662,14 @@ g_bUnknownCasts = true;
 			break;
 
 		case SKILL_ID_BAKKA_SHINDAN:
+			/*
+				油なしのダメージが実測値と合うことを確認
+				油ありのダメージはYEサーバーで+-1残っている
+				本鯖に戻った時に20倍になることを考慮すると許容範囲とは言い難い
+			*/
 
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
+			// TODO: 詠唱時間等未実測スキル
+			g_bUnknownCasts = true;
 
 			// 距離属性
 			n_Enekyori = 1;
@@ -3672,13 +3677,17 @@ g_bUnknownCasts = true;
 			// 基本倍率
 			wbairitu = 2600 + (200 * n_A_ActiveSkillLV);
 
-			// TODO: 「聖油洗礼」状態未対応
+			// 油補正
+			if (seiyuLv = n_B_IJYOU[MOB_CONF_DEBUF_ID_SEIYU_SENREI_DEBUFF]) {
+				wbairitu += 310;
+			}
 
 			// POW補正
 			wbairitu += 12 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 
 			// ベースレベル補正
 			wbairitu *= n_A_BaseLV / 100;
+
 			break;
 
 		case SKILL_ID_ENKA_METSUMA_SHINDAN:
