@@ -1211,7 +1211,7 @@ CSaveDataMappingManager.__GetMappingArrayMobConfPlayer2 = function (version) {
 	// 拡張容量域を確保
 	else {
 		mappingArray = [
-			3, 2, 2, 2, 2, 2, 2, 1, 2, 2,
+			5, 2, 2, 2, 2, 2, 2, 1, 2, 2,
 			2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
 			2, 2, 2, 2, 2, 2, 1, 2, 2, 2,
 			2, 2, 2, 2, 2, 2, 3, 3, 2, 2,
