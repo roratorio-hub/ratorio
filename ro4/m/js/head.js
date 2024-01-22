@@ -4352,9 +4352,6 @@ g_bDefinedDamageIntervals = true;
 			// 遠距離属性
 			n_Enekyori = 1;
 
-			// スキル説明にないが2Hitスキル
-			wHITsuu = 2;
-
 			if (UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0 || UsedSkillSearch(SKILL_ID_NYANTOMO_TEKKO) > 0) {
 				// 基礎倍率
 				wbairitu = 4350 + (450 * n_A_ActiveSkillLV);
@@ -4372,8 +4369,8 @@ g_bDefinedDamageIntervals = true;
 			wbairitu *= n_A_BaseLV / 100;
 			wbairitu = ROUNDDOWN(wbairitu);
 
-			// 2分割ダメージ
-			wbairitu /= 2;
+			// スキル説明にないが2分割スキル
+			wActiveHitNum = 2;
 
 			break;
 
@@ -4395,9 +4392,6 @@ g_bDefinedDamageIntervals = true;
 			// 遠距離属性
 			n_Enekyori = 1;
 
-			// スキル説明にないが3Hitスキル
-			wHITsuu = 3;
-
 			if (UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0 || UsedSkillSearch(SKILL_ID_NYANTOMO_TEKKO) > 0) {
 				// 基礎倍率
 				wbairitu = 3400 + (300 * n_A_ActiveSkillLV);
@@ -4413,8 +4407,8 @@ g_bDefinedDamageIntervals = true;
 			wbairitu *= n_A_BaseLV / 100;
 			wbairitu = ROUNDDOWN(wbairitu);
 
-			// 3分割ダメージ
-			wbairitu /= 3;
+			// スキル説明にないが3分割スキル
+			wActiveHitNum = 3;
 
 			break;
 
