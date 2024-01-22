@@ -2927,6 +2927,10 @@ g_bUnknownCasts = true;
 
 			case ITEM_KIND_BOW:
 
+				// ディレイ、クールタイム
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+					
 				// 補助スキルレベル取得
 				var sklLvSub = UsedSkillSearch(SKILL_ID_SHIZEN_SHINWA);
 
@@ -3891,17 +3895,8 @@ g_bDefinedDamageIntervals = true;
 			wbairitu *= n_A_BaseLV / 100;
 			break;
 
-			
+		// 「天帝」スキル「天陽」
 		case SKILL_ID_TENYO:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-
-			// 距離属性
-			n_Enekyori = 0;
-
-			// 基本倍率
-			wbairitu = 750 + (100 * n_A_ActiveSkillLV);
 			// 正午、日没、天気の身状態でのみ使用可能
 			if (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 2) {
 			}
@@ -3914,179 +3909,214 @@ g_bUnknownCasts = true;
 				n_Buki_Muri = 1;
 				break;
 			}
-
+			// 距離属性
+			n_Enekyori = 0;
+			// 詠唱時間など
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// 基本倍率
+			wbairitu = 750 + (100 * n_A_ActiveSkillLV);
 			// POW補正
-			wbairitu += 4 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
+			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+			// 天気修練 補正
+			wbairitu += 5 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_TENKI_SHUREN);
 			// ベースレベル補正
 			wbairitu *= n_A_BaseLV / 100;
 			break;
 
+		// 「天帝」スキル「天地一月」
 		case SKILL_ID_TENCHI_ICHIGETSU:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
+			// 実測値と比較して+3程度の誤差があるが許容範囲と判断
 
 			// 距離属性
 			n_Enekyori = 0;
-
+			// 詠唱時間など
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 基本倍率
 			wbairitu = 175 + (25 * n_A_ActiveSkillLV);
-
 			// POW補正
-			wbairitu += 1 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
+			wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+			// 天気修練 補正
+			wbairitu += 5 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_TENKI_SHUREN);
 			// ベースレベル補正
 			wbairitu *= n_A_BaseLV / 100;
 			break;
 
+		// 「天帝」スキル「太天一月」
 		case SKILL_ID_TAITEN_ICHIGETSU:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-
-			// 距離属性
-			n_Enekyori = 0;
-
-			// 基本倍率
-			wbairitu = 750 + (100 * n_A_ActiveSkillLV);
 			// 月出、正子、天気の身状態でのみ使用可能
-			// 正子、天気の身状態なら、倍率２倍
-			if (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 4) {
-			}
-			else if (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 5) {
-				wbairitu *= 2;
-			}
-			else if (UsedSkillSearch(SKILL_ID_TENKINO_MI) >= 1) {
-				wbairitu *= 2;
-			}
-			else {
+			state_tukidashi = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 4);
+			state_shougo = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 5);
+			state_tenki_no_mi = (UsedSkillSearch(SKILL_ID_TENKINO_MI) >= 1);
+			if (!state_tukidashi && !state_shougo && !state_tenki_no_mi) {
 				wbairitu = 0;
 				n_Buki_Muri = 1;
 				break;
 			}
-
-			// POW補正
-			wbairitu += 4 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
-			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
-			break;
-
-		case SKILL_ID_TENGETSU:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-
 			// 距離属性
 			n_Enekyori = 0;
-
+			// 詠唱時間など
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 基本倍率
 			wbairitu = 750 + (100 * n_A_ActiveSkillLV);
-			// 正子、月没、天気の身状態でのみ使用可能
-			// 月没or天気の身状態なら、倍率２倍
-			if (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 5) {
-			}
-			else if (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 6) {
+			// 正子、天気の身状態なら、倍率２倍
+			if (state_shougo || state_tenki_no_mi) {
 				wbairitu *= 2;
 			}
-			else if (UsedSkillSearch(SKILL_ID_TENKINO_MI) >= 1) {
-				wbairitu *= 2;
-			}
-			else {
-				wbairitu = 0;
-				n_Buki_Muri = 1;
-				break;
-			}
-
 			// POW補正
-			wbairitu += 4 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
+			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+			// 天気修練 補正
+			wbairitu += 5 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_TENKI_SHUREN);
 			// ベースレベル補正
 			wbairitu *= n_A_BaseLV / 100;
 			break;
 
-		case SKILL_ID_TENCHI_BANSE:
+		// 「天帝」スキル「天月」
+		case SKILL_ID_TENGETSU:
+			// 正子、月没、天気の身状態でのみ使用可能
+			state_shougo = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 5);
+			state_tukibotsu = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 6);
+			state_tenki_no_mi = (UsedSkillSearch(SKILL_ID_TENKINO_MI) >= 1);
+			if (!state_tukibotsu && !state_shougo && !state_tenki_no_mi) {
+				wbairitu = 0;
+				n_Buki_Muri = 1;
+				break;
+			}
+			// 距離属性
+			n_Enekyori = 0;
+			// 詠唱時間など
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// 基本倍率
+			wbairitu = 750 + (100 * n_A_ActiveSkillLV);
+			// 月没or天気の身状態なら、倍率２倍
+			if (state_tukibotsu || state_tenki_no_mi) {
+				wbairitu *= 2;
+			}
+			// POW補正
+			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+			// 天気修練 補正
+			wbairitu += 5 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_TENKI_SHUREN);
+			// ベースレベル補正
+			wbairitu *= n_A_BaseLV / 100;
+			break;
 
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
+		// 「天帝」スキル「天地万星」
+		case SKILL_ID_TENCHI_BANSE:
+			// ダメージ誤差が+4程度あるが許容範囲と判断
 
 			// 距離属性
 			n_Enekyori = 0;
-
+			// 詠唱時間など
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// 設置スキル
+			g_bDefinedDamageIntervals = true;
+			// ダメージ間隔
+			n_Delay[5] = 300;
+			// オブジェクト存続時間
+			n_Delay[6] = 3000;
 			// 基本倍率
 			wbairitu = 250 + (100 * n_A_ActiveSkillLV);
-
 			// POW補正
-			wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
+			wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+			// 天気修練 補正
+			wbairitu += 3 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_TENKI_SHUREN);
 			// ベースレベル補正
 			wbairitu *= n_A_BaseLV / 100;
 			break;
 
+		// 「天帝」スキル「天命落星」
 		case SKILL_ID_TENME_RAKUSE:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
+			// ダメージ誤差が+2程度あるが許容範囲と判断
 
 			// 距離属性
 			n_Enekyori = 0;
-
+			// 詠唱時間など
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// 設置スキル
+			g_bDefinedDamageIntervals = true;
+			// ダメージ間隔
+			n_Delay[5] = 300;
+			// オブジェクト存続時間
+			n_Delay[6] = 3000;
 			// 基本倍率
 			wbairitu = 150 + (100 * n_A_ActiveSkillLV);
-
 			// POW補正
-			wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
+			wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+			// 天気修練 補正
+			wbairitu += 5 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_TENKI_SHUREN);
 			// ベースレベル補正
 			wbairitu *= n_A_BaseLV / 100;
 			break;
 
+		// 「天帝」スキル「天星」
 		case SKILL_ID_TENSE:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
+			// ダメージ誤差が+2程度あるが許容範囲と判断
 
 			// 距離属性
 			n_Enekyori = 0;
-
+			// 詠唱時間など
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// 設置スキル
+			g_bDefinedDamageIntervals = true;
+			// ダメージ間隔
+			n_Delay[5] = 300;
+			// オブジェクト存続時間
+			n_Delay[6] = 3000;
 			// 基本倍率
 			wbairitu = 750 + (100 * n_A_ActiveSkillLV);
-
+			// 天気修練 補正
+			wbairitu += 5 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_TENKI_SHUREN);
 			// POW補正
-			wbairitu += 4 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
+			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 			// ベースレベル補正
 			wbairitu *= n_A_BaseLV / 100;
 			break;
 
+		// 「天帝」スキル「天羅万象」
 		case SKILL_ID_TENRA_BANSHO:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
 
 			// 距離属性
 			n_Enekyori = 0;
-
+			// 詠唱時間など
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 基本倍率
-			wbairitu = 0 + (300 * n_A_ActiveSkillLV);
-
+			wbairitu = 300 * n_A_ActiveSkillLV;
 			// POW補正
 			wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
 			// 悪魔・人間(プレイヤーを除く)形では、３回ヒット
 			wHITsuu = 1;
 			switch (parseInt(mobData[MONSTER_DATA_INDEX_RACE], 10)) {
-			case RACE_ID_HUMAN:
-				if (mobData[MONSTER_DATA_INDEX_ID] == MONSTER_ID_PLAYER) {
+				case RACE_ID_HUMAN:
+					if (mobData[MONSTER_DATA_INDEX_ID] == MONSTER_ID_PLAYER) {
+						break;
+					}
+				case RACE_ID_DEMON:
+					wHITsuu = 3;
 					break;
-				}
-				// breakしない
-			case RACE_ID_DEMON:
-				wHITsuu = 3;
-				break;
 			}
-
 			// ベースレベル補正
 			wbairitu *= n_A_BaseLV / 100;
 			break;

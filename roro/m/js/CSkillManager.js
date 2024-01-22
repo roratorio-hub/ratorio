@@ -35133,13 +35133,27 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(×)天陽";
+			this.name = "天陽";
 			this.kana = "テンヨウ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
-
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 230;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return 500;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 2000;
+			}
 			this.CriActRate = (skillLv, charaData, specData, mobData) => {
 
 				// 日没、天気の身状態の場合のみ
@@ -35180,12 +35194,27 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(×)天地一月";
+			this.name = "天地一月";
 			this.kana = "テンチイチケツ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 270;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return 2000;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return 500;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 200;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -35199,12 +35228,27 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(×)太天一月";
+			this.name = "太天一月";
 			this.kana = "タイテンイチケツ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 230;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return 1000;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {
+				return 1000;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return 500;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 2000;
+			}			
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -35218,12 +35262,27 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(×)天月";
+			this.name = "天月";
 			this.kana = "テンケツ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 230;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return 1000;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {
+				return 1000;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return 500;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 2000;
+			}			
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -35237,12 +35296,27 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(×)天地万星";
+			this.name = "天地万星";
 			this.kana = "テンチバンセイ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 270;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return 5500 + 800 * skillLv;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {
+				return 500 + 200 * skillLv;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return 1000 * skillLv;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 3250 - 250 * skillLv;
+			}			
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -35256,12 +35330,27 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(×)天命落星";
+			this.name = "天命落星";
 			this.kana = "テンメイラクセイ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 270;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return 1000 * skillLv;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 500;
+			}						
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -35275,12 +35364,27 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(×)天星";
+			this.name = "天星";
 			this.kana = "テンセイ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 270;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return 1000 * skillLv;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 500;
+			}						
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -35294,17 +35398,30 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(×)天羅万象";
+			this.name = "天羅万象";
 			this.kana = "テンラハンシヨウ";
-			this.maxLv = 5;
+			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
-
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 230;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return 3000;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 5000;
+			}						
 			this.CriActRate = (skillLv, charaData, specData, mobData) => {
 				return this._CriActRate100(skillLv, charaData, specData, mobData);
 			}
-
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}

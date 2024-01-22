@@ -2,6 +2,28 @@ import os
 import jinja2
 
 
+def store_card_name(cards, terms):
+    if terms[0] in cards:
+        if terms[1] == "堕落した生命のカード":
+            # 特殊
+            # 画面表示は  「堕落した生命」
+            cards["堕落した生命"] = cards[terms[0]]
+        if terms[1] == "バフォメットジュニアカード":
+            # 特殊
+            # 画面表示は  「バフォメット.Jr」
+            cards["バフォメット.Jr"] = cards[terms[0]]
+        elif terms[1][-4] == "の":
+            # アルカナ正位置  画面表示はカード名
+            cards[terms[1]] = cards[terms[0]]
+        elif terms[1].endswith("(逆位置)"):
+            # アルカナ逆位置  画面表示はカード名
+            cards[terms[1]] = cards[terms[0]]
+        else:
+            # 通常　画面表示は"カード"を取り除いたもの
+            cards[terms[1][:-3]] = cards[terms[0]]
+        del cards[terms[0]]
+
+
 def load_card_names(cards: dict):
     name_file = os.path.join(
         os.path.dirname(__file__), "data/idnum2itemdisplaynametable.txt"
@@ -18,12 +40,13 @@ def load_card_names(cards: dict):
             if terms[0] in cards:
                 del cards[terms[0]]
             continue
-        if terms[0] in cards:
-            if terms[1][-4] == "の" or terms[1].endswith("(逆位置)"):
-                cards[terms[1]] = cards[terms[0]]
-            else:
-                cards[terms[1][:-3]] = cards[terms[0]]
-            del cards[terms[0]]
+        store_card_name(cards, terms)
+        # if terms[0] in cards:
+        #     if terms[1][-4] == "の" or terms[1].endswith("(逆位置)"):
+        #         cards[terms[1]] = cards[terms[0]]
+        #     else:
+        #         cards[terms[1][:-3]] = cards[terms[0]]
+        #     del cards[terms[0]]
     return cards
 
 
