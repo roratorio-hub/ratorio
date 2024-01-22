@@ -526,7 +526,7 @@ function SaveSystem(funcSaveDataModify = null){
 
 			if (BIAS_TARGET_INDEX_ARRAY_CONF_PLAYER_500.indexOf(idx) >= 0) {
 				valueWork = CSaveDataConverter.ConvertSignedToUnsigned(valueWork, saveDataMappingArray[850 + idx]);
-			}*/
+			}
 
 			SaveData[850 + idx] = valueWork;*/
 			SaveData[850 + idx] = 0;
