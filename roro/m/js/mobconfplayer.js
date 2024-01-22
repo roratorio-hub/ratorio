@@ -2,7 +2,7 @@
 
 // 対プレイヤー設定の限界値
 // この数を超える場合は、セーブデータの拡張が必要
-MOB_CONF_PLAYER_LIMIT = 52;
+MOB_CONF_PLAYER_LIMIT = 54;
 
 
 
@@ -78,7 +78,7 @@ function InitMobConfPlayerData() {
 		MobConfPlayerControlType(CONTROL_TYPE_TEXTBOX_NUMBER),
 		MobConfPlayerDefaultValue(0),
 		MobConfPlayerMinValue(0),
-		MobConfPlayerMaxValue(125000)
+		MobConfPlayerMaxValue(4000000)
 	];
 	MobConfPlayerOBJ[MobConfPlayerId] = MobConfPlayerData;
 	MobConfPlayerId++;
@@ -484,7 +484,7 @@ function InitMobConfPlayerData() {
 		MobConfPlayerControlType(CONTROL_TYPE_SELECTBOX_NUMBER),
 		MobConfPlayerDefaultValue(0),
 		MobConfPlayerMinValue(0),
-		MobConfPlayerMaxValue(200)
+		MobConfPlayerMaxValue(250)
 	];
 	MobConfPlayerOBJ[MobConfPlayerId] = MobConfPlayerData;
 	MobConfPlayerId++;
@@ -661,6 +661,34 @@ function InitMobConfPlayerData() {
 
 
 
+	MOB_CONF_PLAYER_ID_RES = MobConfPlayerId;
+	MobConfPlayerData = [
+		MobConfPlayerId,
+		MobConfPlayerText("RES"),
+		MobConfPlayerControlType(CONTROL_TYPE_SELECTBOX_NUMBER),
+		MobConfPlayerDefaultValue(0),
+		MobConfPlayerMinValue(0),
+		MobConfPlayerMaxValue(500)
+	];
+	MobConfPlayerOBJ[MobConfPlayerId] = MobConfPlayerData;
+	MobConfPlayerId++;
+
+
+
+	MOB_CONF_PLAYER_ID_MRES = MobConfPlayerId;
+	MobConfPlayerData = [
+		MobConfPlayerId,
+		MobConfPlayerText("MRES"),
+		MobConfPlayerControlType(CONTROL_TYPE_SELECTBOX_NUMBER),
+		MobConfPlayerDefaultValue(0),
+		MobConfPlayerMinValue(0),
+		MobConfPlayerMaxValue(500)
+	];
+	MobConfPlayerOBJ[MobConfPlayerId] = MobConfPlayerData;
+	MobConfPlayerId++;
+
+
+
 	//----------------------------------------------------------------
 	// データ定義数チェック
 	//----------------------------------------------------------------
@@ -702,6 +730,8 @@ function InitMobConfPlayerData() {
 	MobConfPlayerOBJSorted[MobConfPlayerOBJSorted.length] = MobConfPlayerOBJ[MOB_CONF_PLAYER_ID_DEF_MINUS];
 	MobConfPlayerOBJSorted[MobConfPlayerOBJSorted.length] = MobConfPlayerOBJ[MOB_CONF_PLAYER_ID_MDEF_DIV];
 	MobConfPlayerOBJSorted[MobConfPlayerOBJSorted.length] = MobConfPlayerOBJ[MOB_CONF_PLAYER_ID_MDEF_MINUS];
+	MobConfPlayerOBJSorted[MobConfPlayerOBJSorted.length] = MobConfPlayerOBJ[MOB_CONF_PLAYER_ID_RES];
+	MobConfPlayerOBJSorted[MobConfPlayerOBJSorted.length] = MobConfPlayerOBJ[MOB_CONF_PLAYER_ID_MRES];
 	MobConfPlayerOBJSorted[MobConfPlayerOBJSorted.length] = MobConfPlayerOBJ[MOB_CONF_PLAYER_ID_FLEE];
 	MobConfPlayerOBJSorted[MobConfPlayerOBJSorted.length] = MobConfPlayerOBJ[MOB_CONF_PLAYER_ID_LUCKY];
 	MobConfPlayerOBJSorted[MobConfPlayerOBJSorted.length] = MobConfPlayerOBJ[MOB_CONF_PLAYER_ID_ZOKUSEI];

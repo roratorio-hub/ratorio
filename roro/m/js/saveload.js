@@ -47,7 +47,8 @@
 // CURRENT_VERSION = 50;	// 四次職支援対応
 // CURRENT_VERSION = 51;	// ウルフオーブエンチャント定義対応
 // CURRENT_VERSION = 52;	// Lv240解放
-CURRENT_VERSION = 53;	// 特性ステータスセーブ対応
+// CURRENT_VERSION = 53;	// 特性ステータスセーブ対応
+CURRENT_VERSION = 54;	// 対人データの拡張対応
 // 旧データ構造は、最大でバージョン 99 まで
 
 
@@ -518,24 +519,25 @@ function SaveSystem(funcSaveDataModify = null){
 
 
 		//----------------------------------------------------------------
-		// [0850 - 0902] 対プレイヤー設定
+		// [0850 - 0904] 対プレイヤー設定
 		//----------------------------------------------------------------
 		for (idx = 0; idx < n_B_TAISEI.length; idx++) {
-			valueWork = n_B_TAISEI[idx];
+/*			valueWork = n_B_TAISEI[idx];
 
 			if (BIAS_TARGET_INDEX_ARRAY_CONF_PLAYER_500.indexOf(idx) >= 0) {
 				valueWork = CSaveDataConverter.ConvertSignedToUnsigned(valueWork, saveDataMappingArray[850 + idx]);
 			}
 
-			SaveData[850 + idx] = valueWork;
+			SaveData[850 + idx] = valueWork;*/
+			SaveData[850 + idx] = 0;
 		}
 
 
 		//----------------------------------------------------------------
-		// [0903 - 0942] 旧　支援スキル９（性能カスタマイズ１）　現在未使用
+		// [0905 - 0942] 旧　支援スキル９（性能カスタマイズ１）　現在未使用
 		//----------------------------------------------------------------
-		for (idx = 0; idx < 40; idx++) {
-			SaveData[903 + idx] = 0;
+		for (idx = 0; idx < 38; idx++) {
+			SaveData[905 + idx] = 0;
 		}
 
 
@@ -822,6 +824,22 @@ function SaveSystem(funcSaveDataModify = null){
 			SaveData[1861 + idx] = CSaveDataConverter.ConvertSignedToUnsigned(g_confDataCustomSpecStatus[idx], saveDataMappingArray[1861 + idx]);
 		}
 
+		//----------------------------------------------------------------
+		// [1881 - 1935] 対プレイヤー設定
+		//----------------------------------------------------------------
+		for (idx = 0; idx < n_B_TAISEI.length; idx++) {
+			valueWork = n_B_TAISEI[idx];
+
+			if (idx == 0) {
+				SaveData[1881 + idx] = valueWork;
+				continue;
+			}
+			else if (BIAS_TARGET_INDEX_ARRAY_CONF_PLAYER_500.indexOf(idx) >= 0) {
+				valueWork = CSaveDataConverter.ConvertSignedToUnsigned(valueWork, saveDataMappingArray[1881 + idx]);
+			}
+
+			SaveData[1881 + idx] = valueWork;
+		}
 
 
 	}
