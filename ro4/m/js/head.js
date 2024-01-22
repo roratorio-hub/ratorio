@@ -1689,23 +1689,55 @@ else {
 			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 150);
 			break;
 
+		// 「ロイヤルガード」スキル「キャノンスピア」
 		case SKILL_ID_CANNON_SPEAR:
 			n_Enekyori = 1;
 			n_Delay[7] = 2000;
 			wbairitu = (50 + n_A_STR) * n_A_ActiveSkillLV;
+			/*
+			グランドジャッジメント状態スキル倍率 
+			https://rrenewal-ro.daa.jp/skill_rd_royalguard.html#CannonSpear より
+			実測確認ができてから有効化します
+
+			if (UsedSkillSearch(SKILL_ID_GRAND_JUDGEMENT_STATE) > 0) {
+				wbairitu = (200 + n_A_STR) * n_A_ActiveSkillLV;
+			}
+			*/
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
+		// 「ロイヤルガード」スキル「バニシングポイント」
 		case SKILL_ID_BANISHING_POINT:
 			n_Enekyori = 1;
-			var w_BN = 30 * attackMethodConfArray[0].GetOptionValue(0);
+			// バッシュ習得Lv補正
+			var w_BN = 30 * attackMethodConfArray[0].GetOptionValue(0);	
+			// 基本倍率
 			wbairitu = 50 * n_A_ActiveSkillLV + w_BN;
+			/*
+			グランドジャッジメント状態スキル倍率 
+			https://rrenewal-ro.daa.jp/skill_rd_royalguard.html#BanishingPoint より
+			実測確認ができてから有効化します
+
+			if (UsedSkillSearch(SKILL_ID_GRAND_JUDGEMENT_STATE) > 0) {
+				wbairitu *= 2;
+			}
+			*/
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
 		case SKILL_ID_SHIELD_PRESS:
 			n_Delay[7] = 2000;
-			wbairitu = 200 * n_A_ActiveSkillLV + n_A_STR + ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][ITEM_DATA_INDEX_WEIGHT];
+			wbairitu = 200 * n_A_ActiveSkillLV
+			/*
+			シールドシューティング状態スキル倍率 
+			https://rrenewal-ro.daa.jp/skill_rd_royalguard.html#ShieldPress より
+			実測確認ができてから有効化します
+
+			if (UsedSkillSearch(SKILL_ID_SHIELD_SHOOTING_STATE) > 0) {
+				wbairitu = 300 * n_A_ActiveSkillLV;
+			}
+			*/
+			wbairitu += n_A_STR + ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][ITEM_DATA_INDEX_WEIGHT];
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
@@ -1727,16 +1759,25 @@ else {
 			break;
 
 		case SKILL_ID_EARTH_DRIVE:
-if (_APPLY_UPDATE_LV200) {
-			wActiveHitNum = 1;
-}
-else {
-			wActiveHitNum = 5;
-}
+			if (_APPLY_UPDATE_LV200) {
+				wActiveHitNum = 1;
+			}
+			else {
+				wActiveHitNum = 5;
+			}
 			wCast = 1000;
 			n_Delay[2] = 1000;
 			n_Delay[7] = 8000 - 1000 * n_A_ActiveSkillLV;
 			wbairitu = 100 + 100 * n_A_ActiveSkillLV;
+			/*
+			シールドシューティング状態スキル倍率 
+			https://rrenewal-ro.daa.jp/skill_rd_royalguard.html#EarthDrive より
+			実測確認ができてから有効化します
+
+			if (UsedSkillSearch(SKILL_ID_SHIELD_SHOOTING_STATE) > 0) {
+				wbairitu = 300 + 100 * n_A_ActiveSkillLV;
+			}
+			*/
 			wbairitu = ROUNDDOWN(wbairitu * ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][ITEM_DATA_INDEX_WEIGHT] / 100);
 			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
 			break;
@@ -5363,7 +5404,17 @@ g_bDefinedDamageIntervals = true;
 			wCast = 1000;
 			n_Delay[2] = 1000;
 			var w_Weight = ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][ITEM_DATA_INDEX_WEIGHT];
+			// 通常スキル倍率
 			var SdCBAI = [0,130,160,190,220,250];
+			/*
+				シールドシューティング状態スキル倍率 
+				https://rrenewal-ro.daa.jp/skill_rc_paladin.html#ShieldChain より
+				実測確認ができてから有効化します
+
+				if (UsedSkillSearch(SKILL_ID_SHIELD_SHOOTING_STATE) > 0) {
+					sdCBAI = [0,360,420,480,540,600];
+				}
+			*/
 			for(var i=0;i<=2;i++){
 				w_DMG[i] = n_A_DMG[i] + w_Weight + n_A_SHIELD_DEF_PLUS * 4;
 				w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);

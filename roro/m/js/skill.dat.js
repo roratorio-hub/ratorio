@@ -1244,6 +1244,8 @@
 	SKILL_ID_DRAGONIC_BREATH = 1241;
 	SKILL_ID_MIGHTY_SMASH = 1242;
 	SKILL_ID_AXE_STOMP_STATUS = 1243;
+	SKILL_ID_SHIELD_SHOOTING_STATE = 1244;
+	SKILL_ID_GRAND_JUDGEMENT_STATE = 1245;
 
 	SkillObjNew = [
 		[0,1,"通常攻撃"],
@@ -2490,7 +2492,8 @@
 		[1241,10,"(×)ドラゴニックブレス"],
 		[1242,10,"マイティスマッシュ"],
 		[1243,1,"アックスストンプ状態"],
-
+		[1244,1,"(×)シールドシューティング状態"],
+		[1245,1,"(×)グランドジャッジメント状態"],
 	];
 
 })();
