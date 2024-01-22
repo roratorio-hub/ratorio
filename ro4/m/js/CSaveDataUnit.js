@@ -6900,7 +6900,8 @@ class CSaveDataUnitParse extends CSaveDataUnitBase {
 				0,
 				((1n << 78n) - 1n),
 
-				signValueArray[0][1],
+				...(Array(78).fill(0)),
+/*				signValueArray[0][1],
 				signValueArray[1][1],
 				signValueArray[2][1],
 				signValueArray[3][1],
@@ -6923,7 +6924,7 @@ class CSaveDataUnitParse extends CSaveDataUnitBase {
 				signValueArray[41][1],
 				...(Array(1).fill(0)),
 				signValueArray[42][1],
-				...(Array(8).fill(0)),
+				...(Array(8).fill(0)),*/
 			);
 		}
 
@@ -7094,11 +7095,16 @@ class CSaveDataUnitParse extends CSaveDataUnitBase {
 			const signValueArray = [];
 			for (idx = 0; idx < n_B_TAISEI.length; idx++) {
 
-				let converted = saveDataArrayOld[850 + idx];
-				if (BIAS_TARGET_INDEX_ARRAY_CONF_PLAYER_500.indexOf(idx) >= 0) {
-					converted = CSaveDataConverter.ConvertUnsignedToSigned(converted, saveDataMappingArrayCurrent[850 + idx]);
+				let converted = saveDataArrayOld[1881 + idx];
+				if (idx == 0) {
+					signValueArray.push([0, converted]);
 				}
-				signValueArray.push([((converted < 0) ? 1 : 0), Math.abs(converted)]);
+				else {
+					if (BIAS_TARGET_INDEX_ARRAY_CONF_PLAYER_500.indexOf(idx) >= 0) {
+						converted = CSaveDataConverter.ConvertUnsignedToSigned(converted, saveDataMappingArrayCurrent[850 + idx]);
+					}
+					signValueArray.push([((converted < 0) ? 1 : 0), Math.abs(converted)]);
+				}
 			}
 
 			saveDataUnit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_MOB_CONF_PLAYER2))();
