@@ -1,4 +1,4 @@
-const last_updated = "2024/01/22 09:00";
+const last_updated = "2024/01/23 09:00";
 
 // 背景色切替
 g_BGColorSwitch = false;
@@ -34,8 +34,9 @@ templ = `
         <ul>
 		  <li class="menu-header"><span>Main</span></li>
 		  <li class="menu-item"><span class="menu-title"><a href="../../ro4/m/calcx.html">計算機</a></span></li>
-		  <li class="menu-item"><span class="menu-title"><a href="../../roro/other/cardlist.html">カード一覧</a></span></li>
 		  <li class="menu-item"><span class="menu-title"><a href="../../roro/other/itemlist.html">アイテム一覧</a></span></li>
+		  <li class="menu-item"><span class="menu-title"><a href="../../roro/other/cardlist.html">カード一覧</a></span></li>
+		  <li class="menu-item"><span class="menu-title"><a href="../../roro/other/monsterlist.html">モンスター一覧</a></span></li>
 		  <li class="menu-item"><span class="menu-title"><a href="../../roro/other/exp.html">経験値テーブル</a></span></li>
 
 		  <li class="menu-header"><span>Information</span></li>
@@ -44,7 +45,6 @@ templ = `
           <li class="menu-item"><span class="menu-title"><a href="../../information/history/index.html" class="local">更新履歴</a></span></li>
           <!--<li class="menu-item"><span class="menu-title"><a href="../../information/alert/index.html" class="local">不具合のお知らせ</a></span></li>-->
           <li class="menu-item"><span class="menu-title"><a href="../../information/wanted/index.html" class="local">[募集] スキル情報</a></span></li>
-		      <!--<li class="menu-item"><span class="menu-title"><a href="../../information/wanted/forgvg.html" class="local">[募集] GvG情報</a></span></li>-->
 
 		  <li class="menu-header" style="padding-top: 10px"><span>Contact Us</span></li>
           <li class="menu-item"><span class="menu-title"><a href="../../information/response/index.html" class="local">Q&amp;A</a></span></li>
