@@ -36,6 +36,7 @@ templ = `
 		  <li class="menu-item"><span class="menu-title"><a href="../../ro4/m/calcx.html">計算機</a></span></li>
 		  <li class="menu-item"><span class="menu-title"><a href="../../roro/other/cardlist.html">カード一覧</a></span></li>
 		  <li class="menu-item"><span class="menu-title"><a href="../../roro/other/itemlist.html">アイテム一覧</a></span></li>
+		  <li class="menu-item"><span class="menu-title"><a href="../../roro/other/exp.html">経験値テーブル</a></span></li>
 
 		  <li class="menu-header"><span>Information</span></li>
           <li class="menu-item"><span class="menu-title"><a href="../../information/index.html" class="local">このサイトについて</a></span></li>

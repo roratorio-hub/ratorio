@@ -1,0 +1,149 @@
+
+<html>
+
+<head>
+
+	<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+
+	<title>RO 経験値表</title>
+
+	<link rel="stylesheet" href="../common.css" type="text/css">
+	<link rel="stylesheet" href="../m/calcx.css" type="text/css">
+	<link rel="stylesheet" href="../../ro4/m/calcx.css" type="text/css">
+
+	<script type="text/javascript" src="../common/js/util.js"></script>
+
+	<script type="text/javascript" src="../../ro4/DEBUG.js"></script>
+
+	<script type="text/javascript" src="../m/js/CGlobalConstManager.js"></script>
+	<script type="text/javascript" src="../m/js/CNameKana.js"></script>
+	<script type="text/javascript" src="../m/js/common.js"></script>
+	<script type="text/javascript" src="../m/js/etc.js"></script>
+
+	<!-- [MIG] データ定義系 javascript ファイル -->
+	<script type="text/javascript" src="../../ro4/m/js/data/mig.job.h.js"></script>
+	<script type="text/javascript" src="../m/js/data/mig.itemsp.h.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigJobData.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigStateData.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigEquipableSpTag.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigEquipableStaticData.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigEquipableSpData.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigEquipableData.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigConstDataManagerSubBase.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigConstDataManagerSubJob.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigConstDataManagerSubState.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigConstDataManagerSubBuff.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigConstDataManagerSubMonster.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigConstDataManagerSubArrow.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigConstDataManagerSubItem.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigConstDataManagerSubCard.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigConstDataManagerSubEnchList.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigConstDataManagerSubRndOpt.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigConstDataManager.js"></script>
+	<script type="text/javascript" src="../m/js/skill.h.js"></script>
+	<script type="text/javascript" src="../m/js/skill.dat.js"></script>
+	<script type="text/javascript" src="../m/js/usableskill.h.js"></script>
+	<script type="text/javascript" src="../m/js/usableskill.dat.js"></script>
+	<script type="text/javascript" src="../m/js/autospell.h.js"></script>
+	<script type="text/javascript" src="../m/js/autospell.dat.js"></script>
+	<script type="text/javascript" src="../m/js/CSkillManager.js"></script>
+
+	<!-- グローバル変数定義 javascript ファイル（others 用） -->
+	<script type="text/javascript" src="../../ro4/m/js/global.js"></script>
+
+	<!-- [MIG] dat ファイル -->
+	<script type="text/javascript" src="../../ro4/m/js/data/mig.job.dat.js"></script>
+
+	<!-- 処理系 -->
+	<script type="text/javascript" src="../m/js/chara.dat.js"></script>
+	<script type="text/javascript" src="../m/js/monster.h.js"></script>
+	<script type="text/javascript" src="../m/js/monster.dat.js"></script>
+	<script type="text/javascript" src="../m/js/monstergroup.dat.js"></script>
+
+	<script type="text/javascript" src="js/hmexptable.js"></script>
+	<script type="text/javascript" src="../../jquery/jquery.min.js"></script>
+
+</head>
+
+<body onload="OnLoadExpTable()" style="overflow-y:auto">
+	<div class="wrapper">
+		<div class="side">
+			<span id="ID_FRAME"></span>
+		</div>
+		<div class="content">
+			<div style="padding: 20px 34px">
+                <div>
+
+                    <form>
+
+                        見たい職業のJob経験値表、またはBase表をメニューから選んでください。<br>
+
+                        <table style="font-size : small;">
+                            <tbody>
+                                <tr>
+
+                                    <td>
+                                        選択
+                                    </td>
+                                    <td>
+                                        <select id="OBJID_SELECT_TABLE_KIND" onChange="RefreshExpTable()">
+                                        </select>
+                                    </td>
+
+                                    <td>
+                                        累計モンスターの選択
+                                    </td>
+                                    <td>
+                                        <select id="OBJID_SELECT_MONSTER" onChange="RefreshExpTable()">
+                                        </select>
+                                    </td>
+
+                                    <td>
+                                        経験値倍率
+                                    </td>
+                                    <td>
+                                        <input type="text" id="OBJID_INPUT_EXP_RATE" value="100" size="4" onChange="RefreshExpTable()" style="text-align : right;">%
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
+
+                </div>
+
+
+
+                <div id="OBJID_DIV_MONSTER_DATA">
+                </div>
+
+
+
+                <div id="OBJID_DIV_EXP_RESULT">
+                </div>
+
+
+
+                <div>
+                    備考：テコンは一次職、ソウルリンカーは二次職と一緒です。<br>
+                    　　限界突破スーパーノービス、影狼、朧などLv100を超えた職業は基本的に三次職と同じ経験値テーブルです。<br>
+                    　　経験値率には教範や経験値増加装備ぶんの％を足して入力してください。<br>
+                    　　教範とネットカフェと装備品の増加分は加算。(公式HPのスペシャルアイテムのF&amp;Qに詳しく書いてあります)→<a href="https://ragnarokonline.gungho.jp/gameguide/item/special-item/expup.html" target="_blank">【RO公式】</a><br>
+                    　　ニヨルドと共闘と拳聖の祝福はそれぞれ乗算。<br>
+                    メモ：共闘ボーナス(1人につき25%)、ニヨルド(Lv5 80%)、戦闘教範25/50/75/100(25%/50%/75%/100%)、Job教範50(Jobのみ50%)、ネットカフェ(50%)<br>
+                    　　ＰＴボーナスは+1人ごとに特殊。共闘とＰＴボーナスについて詳しくは<a href="https://ragnarokonline.gungho.jp/news/play/2013/kue8e6000000x5rn.html" target="_blank">【RO公式】</a><br>
+                    　　二人ＰＴで共闘ボーナス入れつつ公平狩りなら63%<br>
+                    　　戦闘教範50とネットカフェなら200%<br>
+                    　　ニヨルドと戦闘教範50とネットカフェなら360%<br>
+                    注意：必要討伐数と累計必要討伐数には前Lvの余剰経験値と、一匹倒した時に2LV同時には上昇しないという仕様を考慮にいれてあります。<br>
+                    　　経験値テーブルは公式HPにも掲載されています。<a href="https://ragnarokonline.gungho.jp/gameguide/character/exp-table.html" target="_blank">【RO公式】</a><br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+<script type="text/javascript" src="../frame.js"></script>
+
+</html>
