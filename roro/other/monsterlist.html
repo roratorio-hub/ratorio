@@ -1,0 +1,187 @@
+<html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+
+	<title>RO モンスターデータ一覧</title>
+
+	<link rel="stylesheet" href="../common.css" type="text/css">
+	<link rel="stylesheet" href="../m/calcx.css" type="text/css">
+	<link rel="stylesheet" href="../../ro4/m/calcx.css" type="text/css">
+
+	<script type="text/javascript" src="../common/js/util.js"></script>
+
+	<script type="text/javascript" src="../DEBUG.js"></script>
+
+	<script type="text/javascript" src="../m/js/CGlobalConstManager.js"></script>
+	<script type="text/javascript" src="../m/js/CNameKana.js"></script>
+
+	<script type="text/javascript" src="../m/js/CCustomSelectBase.js"></script>
+	<script type="text/javascript" src="../m/js/CCustomSelectMapBase.js"></script>
+	<script type="text/javascript" src="../m/js/CCustomSelectMapCategory.js"></script>
+	<script type="text/javascript" src="../m/js/CCustomSelectMapMap.js"></script>
+	<script type="text/javascript" src="../m/js/common.js"></script>
+
+	<!-- [MIG] データ定義系 javascript ファイル -->
+	<script type="text/javascript" src="../m/js/data/mig.job.h.js"></script>
+	<script type="text/javascript" src="../m/js/data/mig.itemsp.h.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigJobData.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigStateData.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigEquipableSpTag.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigEquipableStaticData.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigEquipableSpData.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigEquipableData.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigConstDataManagerSubBase.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigConstDataManagerSubJob.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigConstDataManagerSubState.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigConstDataManagerSubBuff.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigConstDataManagerSubMonster.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigConstDataManagerSubArrow.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigConstDataManagerSubItem.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigConstDataManagerSubCard.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigConstDataManagerSubEnchList.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigConstDataManagerSubRndOpt.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigConstDataManager.js"></script>
+
+	<!-- グローバル変数定義 javascript ファイル（others 用） -->
+	<script type="text/javascript" src="js/global.js"></script>
+
+	<!-- [MIG] dat ファイル -->
+	<script type="text/javascript" src="../m/js/data/mig.job.dat.js"></script>
+
+	<!-- 処理系 -->
+	<script type="text/javascript" src="../m/js/alias.h.js"></script>
+	<script type="text/javascript" src="../m/js/alias.dat.js"></script>
+	<script type="text/javascript" src="../m/js/monster.h.js"></script>
+	<script type="text/javascript" src="../m/js/monster.dat.js"></script>
+	<script type="text/javascript" src="../m/js/monstermap.h.js"></script>
+	<script type="text/javascript" src="../m/js/monstermap.dat.js"></script>
+
+	<script type="text/javascript" src="../../jquery/jquery.min.js"></script>
+	<link href="../../jquery/select2/select2.min.css" rel="stylesheet" />
+	<link href="../../jquery/select2/select2.custom.css" rel="stylesheet" />
+	<script src="../../jquery/select2/select2.min.js"></script>
+	<script type="text/javascript" src="js/hmmonsterlist.js"></script>
+
+	<style>
+		<!--
+			#OBJID_TD_MONSTER_MAP_CATEGORY select, #OBJID_TD_MONSTER_MAP_MAP select {
+				width: 20rem;
+			}
+			#OBJID_TD_MONSTER_MAP_CATEGORY input, #OBJID_TD_MONSTER_MAP_MAP input {
+				display:none;
+			}
+			td.CSSCLS_OPTION_AREA_MAP {
+				background-color : #ccffcc;
+			}
+
+			td.CSSCLS_OPTION_AREA_DISP {
+				background-color : #ffffcc;
+			}
+
+			td.CSSCLS_OPTION_AREA_COND {
+				background-color : #ffcccc;
+			}
+
+			td.CSSCLS_OPTION_AREA_STATE {
+				background-color : #ffccff;
+			}
+
+		-->
+	</style>
+</head>
+<body onLoad="InitMonsterListSelectArea()">
+
+	<div class="wrapper">
+		<div class="side">
+			<span id="ID_FRAME"></span>
+		</div>
+		<div class="content">
+			<div style="padding: 20px 34px">
+				<table border="1" style="font-size : smaller;">
+					<tbody>
+						<tr>
+							<td class="CSSCLS_OPTION_AREA_MAP">
+								地域指定
+							</td>
+							<td class="CSSCLS_OPTION_AREA_MAP" id="OBJID_TD_MONSTER_MAP_CATEGORY">
+							</td>
+							<td class="CSSCLS_OPTION_AREA_DISP">
+								一覧並べ替え
+							</td>
+							<td class="CSSCLS_OPTION_AREA_DISP">
+								<select id="OBJID_SELECT_SORT_KEY" onChange="RefreshMonsterList()">
+								</select>
+							</td>
+							<td class="CSSCLS_OPTION_AREA_DISP">
+								<label for="OBJID_INPUT_DIGIT3">３桁区切り</label>
+							</td>
+							<td class="CSSCLS_OPTION_AREA_DISP">
+								<input type="checkbox" id="OBJID_INPUT_DIGIT3" onChange="RefreshMonsterList()">
+							</td>
+							<td class="CSSCLS_OPTION_AREA_DISP">
+								<label for="OBJID_INPUT_DESC">降順表示</label>
+							</td>
+							<td class="CSSCLS_OPTION_AREA_DISP">
+								<input type="checkbox" id="OBJID_INPUT_DESC" onChange="RefreshMonsterList()">
+							</td>
+							<td class="CSSCLS_OPTION_AREA_STATE">
+								クァグマイア
+							</td>
+							<td class="CSSCLS_OPTION_AREA_STATE">
+								<select id="OBJID_SELECT_QM" onChange="RefreshMonsterList()">
+								</select>
+							</td>
+							<td class="CSSCLS_OPTION_AREA_STATE">
+								<label for="OBJID_INPUT_DARKNESS">暗闇</label>
+							</td>
+							<td class="CSSCLS_OPTION_AREA_STATE">
+								<input type="checkbox" id="OBJID_INPUT_DARKNESS" onChange="RefreshMonsterList()">
+							</td>
+							<td class="CSSCLS_OPTION_AREA_STATE">
+								<label for="OBJID_INPUT_ANTI_BLESS">闇ブレス</label>
+							</td>
+							<td class="CSSCLS_OPTION_AREA_STATE">
+								<input type="checkbox" id="OBJID_INPUT_ANTI_BLESS" onChange="RefreshMonsterList()">
+							</td>
+						</tr>
+						<tr>
+							<td class="CSSCLS_OPTION_AREA_MAP">
+								マップ指定
+							</td>
+							<td class="CSSCLS_OPTION_AREA_MAP" id="OBJID_TD_MONSTER_MAP_MAP">
+							</td>
+							<td class="CSSCLS_OPTION_AREA_COND">
+								種族抽出
+							</td>
+							<td class="CSSCLS_OPTION_AREA_COND">
+								<select id="OBJID_SELECT_RACE" onChange="RefreshMonsterList()">
+								</select>
+							</td>
+							<td class="CSSCLS_OPTION_AREA_COND">
+								属性抽出
+							</td>
+							<td class="CSSCLS_OPTION_AREA_COND">
+								<select id="OBJID_SELECT_ELEMENT" onChange="RefreshMonsterList()">
+								</select>
+							</td>
+							<td class="CSSCLS_OPTION_AREA_COND">
+								サイズ抽出
+							</td>
+							<td class="CSSCLS_OPTION_AREA_COND">
+								<select id="OBJID_SELECT_SIZE" onChange="RefreshMonsterList()">
+								</select>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<hr>
+				<table id="OBJID_TABLE_RESULT" border="1" style="font-size:small">
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+
+<script type="text/javascript" src="../frame.js"></script>
+
+</html>
