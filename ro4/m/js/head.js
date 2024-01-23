@@ -4344,14 +4344,13 @@ g_bDefinedDamageIntervals = true;
 				ToDo: にゃん友未習得時の実測値が未確認
 			*/
 
-			// TODO: 詠唱時間等未実測スキル
-			g_bUnknownCasts = true;
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 
 			// 遠距離属性
 			n_Enekyori = 1;
-
-			// スキル説明にないが2Hitスキル
-			wHITsuu = 2;
 
 			if (UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0 || UsedSkillSearch(SKILL_ID_NYANTOMO_TEKKO) > 0) {
 				// 基礎倍率
@@ -4370,8 +4369,8 @@ g_bDefinedDamageIntervals = true;
 			wbairitu *= n_A_BaseLV / 100;
 			wbairitu = ROUNDDOWN(wbairitu);
 
-			// 2分割ダメージ
-			wbairitu /= 2;
+			// スキル説明にないが2分割スキル
+			wActiveHitNum = 2;
 
 			break;
 
@@ -4385,14 +4384,13 @@ g_bDefinedDamageIntervals = true;
 				ToDo: にゃん友未習得時の実測値が未確認
 			*/
 
-			// TODO: 詠唱時間等未実測スキル
-			g_bUnknownCasts = true;
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 
 			// 遠距離属性
 			n_Enekyori = 1;
-
-			// スキル説明にないが3Hitスキル
-			wHITsuu = 3;
 
 			if (UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0 || UsedSkillSearch(SKILL_ID_NYANTOMO_TEKKO) > 0) {
 				// 基礎倍率
@@ -4409,8 +4407,8 @@ g_bDefinedDamageIntervals = true;
 			wbairitu *= n_A_BaseLV / 100;
 			wbairitu = ROUNDDOWN(wbairitu);
 
-			// 3分割ダメージ
-			wbairitu /= 3;
+			// スキル説明にないが3分割スキル
+			wActiveHitNum = 3;
 
 			break;
 
@@ -4424,8 +4422,10 @@ g_bDefinedDamageIntervals = true;
 				ToDo: にゃん友未習得時の実測値が未確認
 			*/
 
-			// TODO: 詠唱時間等未実測スキル
-			g_bUnknownCasts = true;
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 
 			// 遠距離属性
 			n_Enekyori = 1;

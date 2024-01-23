@@ -36158,6 +36158,21 @@ function CSkillManager() {
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 100;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {
+				return 500;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return 2000;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return 2000 + (skillLv-1)*500;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 500;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -36177,6 +36192,21 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 200;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {
+				return 500;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return 800 + (skillLv-1)*200;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return 2000 + (skillLv-1)*500;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 500;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -36201,6 +36231,21 @@ function CSkillManager() {
 			}
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
+			}
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 170;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {
+				return 500;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return 800 + (skillLv-1)*200;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return 2000 + (skillLv-1)*500;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 500;
 			}
 		};
 		this.dataArray[skillId] = skillData;

@@ -193,6 +193,11 @@ class CSaveDataManager {
 			// 処理方式が異なるので空マップ
 			new Map()
 		],
+		[
+			SAVE_DATA_UNIT_TYPE_MOB_CONF_PLAYER2,
+			// 処理方式が異なるので空マップ
+			new Map()
+		],
 	]);
 
 
@@ -607,6 +612,9 @@ class CSaveDataManager {
 		const funcCallApplyMobConfPlayer = (thisF, unitTypeF, dataArrayF) => {
 			thisF.#applyDataToControlsMobConfPlayer(unitTypeF, idxMap.get(unitTypeF), dataArrayF);
 		};
+		const funcCallApplyMobConfPlayer2 = (thisF, unitTypeF, dataArrayF) => {
+			thisF.#applyDataToControlsMobConfPlayer2(unitTypeF, idxMap.get(unitTypeF), dataArrayF);
+		};
 		const funcCallApplyMobConfInput = (thisF, unitTypeF) => {
 			thisF.#applyDataToControlsMobConfInput(unitTypeF, idxMap.get(unitTypeF));
 		};
@@ -659,6 +667,7 @@ class CSaveDataManager {
 		funcCallApplyConfig(this, SAVE_DATA_UNIT_TYPE_CHARA_CONF_SPEC_BASIC, g_confDataCustomSpecStatusMIG);
 		funcCallApplyMob(this, SAVE_DATA_UNIT_TYPE_MOB);
 		funcCallApplyMobConfPlayer(this, SAVE_DATA_UNIT_TYPE_MOB_CONF_PLAYER, n_B_TAISEI);
+		funcCallApplyMobConfPlayer2(this, SAVE_DATA_UNIT_TYPE_MOB_CONF_PLAYER2, n_B_TAISEI);
 		funcCallApplyMobConfInput(this, SAVE_DATA_UNIT_TYPE_MOB_CONF_INPUT);
 		funcCallApplyBuffLv(this, SAVE_DATA_UNIT_TYPE_MOB_BUFF, n_B_KYOUKA);
 		funcCallApplyBuffLv(this, SAVE_DATA_UNIT_TYPE_MOB_DEBUFF, n_B_IJYOU);
@@ -1565,6 +1574,83 @@ class CSaveDataManager {
 	 * @param {int|undefined} idxUnit データユニットの配列インデックス
 	 */
 	#applyDataToControlsMobConfPlayer (unitType, idxUnit, dataArrayF) {
+
+		// データユニットが存在しない場合は、処理しない
+		if ((idxUnit === undefined) || (idxUnit < 0) || (idxUnit >= this.#saveDataUnitArray.length)) {
+			return;
+		}
+
+		// オブジェクトIDマップが存在しない場合は、処理しない
+		const objIDMap = this.constructor.objectIDMapMap.get(unitType);
+		if (!objIDMap) {
+			return;
+		}
+
+		// データユニットを取得
+		const saveDataUnit = this.#saveDataUnitArray[idxUnit];
+
+		// 処理対象のプロパティを列挙
+		const propNames = saveDataUnit.constructor.propNames.slice();
+
+		// 一連の処理で共通の配列インデックスを使うため、ここで宣言
+		let idx = 0;
+
+		// パース制御フラグを取得
+		let ctrlFlag = undefined;
+		for (idx = 0; idx < propNames.length; idx++) {
+			const propName = propNames[idx];
+			if (propName == CSaveDataConst.propNameParseCtrlFlag) {
+				ctrlFlag = saveDataUnit.getProp(propName);
+				idx++;
+				break;
+			}
+		}
+
+		// パース制御フラグ以降のすべてのプロパティを走査し、必要なプロパティのみ処理
+		let sign = undefined;
+		const dataArrayRead = [];
+		for (; idx < propNames.length; idx++) {
+
+			// 必要な情報を収集
+			const propName = propNames[idx];
+
+
+			// 符号プロパティの場合
+			if (propName.slice(-4) == "Sign") {
+				if (ctrlFlag & 1n) {
+					// 負論理なので注意
+					sign = (saveDataUnit.getProp(propName) == 1n) ? -1 : 1;
+				}
+				else {
+					sign = undefined;
+				}
+			}
+
+			// 上記以外の場合
+			else {
+				let propValue = (ctrlFlag & 1n) ? floorBigInt32(saveDataUnit.getProp(propName)) : 0;
+				if (sign !== undefined) {
+					propValue *= sign;
+				}
+				dataArrayRead.push(propValue);
+				sign = undefined;
+			}
+
+			ctrlFlag >>= 1n;
+		}
+
+		// 読み取ったデータ値をグローバル配列に設定する
+		if (Array.isArray(dataArrayF)) {
+			dataArrayF.fill(0).splice(0, dataArrayRead.length, ...dataArrayRead);
+		}
+	}
+
+	/**
+	 * 保持しているデータを画面部品に適用する（対プレイヤー設定2）.
+	 * @param {int} unitType ユニットのタイプ値
+	 * @param {int|undefined} idxUnit データユニットの配列インデックス
+	 */
+	#applyDataToControlsMobConfPlayer2 (unitType, idxUnit, dataArrayF) {
 
 		// データユニットが存在しない場合は、処理しない
 		if ((idxUnit === undefined) || (idxUnit < 0) || (idxUnit >= this.#saveDataUnitArray.length)) {
