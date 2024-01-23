@@ -9409,25 +9409,21 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "シールドチェーン";
+			this.name = "(△)シールドチェーン";
 			this.kana = "シイルトチエエン";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_FORCE_VANITY;
-
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 25 + 3 * skillLv;
 			}
-
 			this.Power = function(skillLv, charaDataManger) {
 				return -1;
 			}
-
 			this.CastTimeVary = function(skillLv, charaDataManger) {
 				return 1000;
 			}
-
 			this.DelayTimeCommon = function(skillLv, charaDataManger) {
 				return 1000;
 			}
@@ -33092,7 +33088,7 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(×)グランドジャッジメント";
+			this.name = "グランドジャッジメント";
 			this.kana = "クラントシヤツシメント";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -33130,7 +33126,7 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(×)シールドシューティング";
+			this.name = "(△)シールドシューティング";
 			this.kana = "シイルトシユウテインク";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;

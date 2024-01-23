@@ -1696,13 +1696,12 @@ else {
 			wbairitu = (50 + n_A_STR) * n_A_ActiveSkillLV;
 			/*
 			グランドジャッジメント状態スキル倍率 
-			https://rrenewal-ro.daa.jp/skill_rd_royalguard.html#CannonSpear より
-			実測確認ができてから有効化します
-
+			実測値との一致を確認済み
+			*/
 			if (UsedSkillSearch(SKILL_ID_GRAND_JUDGEMENT_STATE) > 0) {
 				wbairitu = (200 + n_A_STR) * n_A_ActiveSkillLV;
 			}
-			*/
+
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
@@ -1715,13 +1714,12 @@ else {
 			wbairitu = 50 * n_A_ActiveSkillLV + w_BN;
 			/*
 			グランドジャッジメント状態スキル倍率 
-			https://rrenewal-ro.daa.jp/skill_rd_royalguard.html#BanishingPoint より
-			実測確認ができてから有効化します
-
+			実測値との一致を確認済み
+			*/
 			if (UsedSkillSearch(SKILL_ID_GRAND_JUDGEMENT_STATE) > 0) {
 				wbairitu *= 2;
 			}
-			*/
+
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
@@ -1730,13 +1728,12 @@ else {
 			wbairitu = 200 * n_A_ActiveSkillLV
 			/*
 			シールドシューティング状態スキル倍率 
-			https://rrenewal-ro.daa.jp/skill_rd_royalguard.html#ShieldPress より
-			実測確認ができてから有効化します
-
+			実測値との一致を確認済み
+			*/
 			if (UsedSkillSearch(SKILL_ID_SHIELD_SHOOTING_STATE) > 0) {
 				wbairitu = 300 * n_A_ActiveSkillLV;
 			}
-			*/
+
 			wbairitu += n_A_STR + ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][ITEM_DATA_INDEX_WEIGHT];
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
@@ -1771,13 +1768,12 @@ else {
 			wbairitu = 100 + 100 * n_A_ActiveSkillLV;
 			/*
 			シールドシューティング状態スキル倍率 
-			https://rrenewal-ro.daa.jp/skill_rd_royalguard.html#EarthDrive より
-			実測確認ができてから有効化します
-
+			実測値との一致を確認済み
+			*/
 			if (UsedSkillSearch(SKILL_ID_SHIELD_SHOOTING_STATE) > 0) {
 				wbairitu = 300 + 100 * n_A_ActiveSkillLV;
 			}
-			*/
+
 			wbairitu = ROUNDDOWN(wbairitu * ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][ITEM_DATA_INDEX_WEIGHT] / 100);
 			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
 			break;
@@ -5406,8 +5402,13 @@ g_bDefinedDamageIntervals = true;
 			break;
 
 
-
+		// 「パラディン」スキル「シールドチェーン」
 		case SKILL_ID_SHIELD_CHAIN:
+			/**
+			 *  2024/01/23 時点のゲーム内結果と全くダメージが合わない (YE鯖にて)
+			 *  式の中で減算Defが効きすぎている模様
+			 *  シールドシューティングの検証以前の話なので実装先送り
+			 */
 			n_PerfectHIT_DMG = 0;
 			n_Enekyori=1;
 			n_A_Weapon_zokusei = 0;
@@ -5416,15 +5417,11 @@ g_bDefinedDamageIntervals = true;
 			var w_Weight = ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][ITEM_DATA_INDEX_WEIGHT];
 			// 通常スキル倍率
 			var SdCBAI = [0,130,160,190,220,250];
-			/*
-				シールドシューティング状態スキル倍率 
-				https://rrenewal-ro.daa.jp/skill_rc_paladin.html#ShieldChain より
-				実測確認ができてから有効化します
 
-				if (UsedSkillSearch(SKILL_ID_SHIELD_SHOOTING_STATE) > 0) {
-					sdCBAI = [0,360,420,480,540,600];
-				}
-			*/
+			if (UsedSkillSearch(SKILL_ID_SHIELD_SHOOTING_STATE) > 0) {
+				sdCBAI = [0,360,420,480,540,600];
+			}
+
 			for(var i=0;i<=2;i++){
 				w_DMG[i] = n_A_DMG[i] + w_Weight + n_A_SHIELD_DEF_PLUS * 4;
 				w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
