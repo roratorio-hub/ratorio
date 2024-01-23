@@ -1,0 +1,102 @@
+
+<html>
+
+<head>
+
+	<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+
+	<title>RO Jobボーナス表</title>
+	<link rel="stylesheet" href="../common.css" type="text/css">
+	<link rel="stylesheet" href="../m/calcx.css" type="text/css">
+	<link rel="stylesheet" href="../../ro4/m/calcx.css" type="text/css">
+
+	<script type="text/javascript" src="../common/js/util.js"></script>
+
+	<script type="text/javascript" src="../../ro4/DEBUG.js"></script>
+
+	<script type="text/javascript" src="../m/js/CGlobalConstManager.js"></script>
+	<script type="text/javascript" src="../m/js/CNameKana.js"></script>
+	<script type="text/javascript" src="../m/js/common.js"></script>
+	<script type="text/javascript" src="../m/js/etc.js"></script>
+
+	<!-- [MIG] データ定義系 javascript ファイル -->
+	<script type="text/javascript" src="../../ro4/m/js/data/mig.job.h.js"></script>
+	<script type="text/javascript" src="../m/js/data/mig.itemsp.h.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigJobData.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigStateData.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigEquipableSpTag.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigEquipableStaticData.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigEquipableSpData.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigEquipableData.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigConstDataManagerSubBase.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigConstDataManagerSubJob.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigConstDataManagerSubState.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigConstDataManagerSubBuff.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigConstDataManagerSubMonster.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigConstDataManagerSubArrow.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigConstDataManagerSubItem.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigConstDataManagerSubCard.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigConstDataManagerSubEnchList.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigConstDataManagerSubRndOpt.js"></script>
+	<script type="text/javascript" src="../m/js/data/CMigConstDataManager.js"></script>
+	<script type="text/javascript" src="../m/js/skill.h.js"></script>
+	<script type="text/javascript" src="../m/js/skill.dat.js"></script>
+	<script type="text/javascript" src="../m/js/usableskill.h.js"></script>
+	<script type="text/javascript" src="../m/js/usableskill.dat.js"></script>
+	<script type="text/javascript" src="../m/js/autospell.h.js"></script>
+	<script type="text/javascript" src="../m/js/autospell.dat.js"></script>
+	<script type="text/javascript" src="../m/js/CSkillManager.js"></script>
+
+	<!-- グローバル変数定義 javascript ファイル（others 用） -->
+	<script type="text/javascript" src="../../ro4/m/js/global.js"></script>
+
+	<!-- [MIG] dat ファイル -->
+	<script type="text/javascript" src="../../ro4/m/js/data/mig.job.dat.js"></script>
+
+	<!-- 処理系 -->
+	<script type="text/javascript" src="../m/js/chara.dat.js"></script>
+
+	<script type="text/javascript" src="js/jobb.js"></script>
+	<script type="text/javascript" src="../../jquery/jquery.min.js"></script>
+
+</head>
+
+<body onload="OnLoadJobBonusTable()" style="overflow-y:auto">
+	<div class="wrapper">
+		<div class="side">
+			<span id="ID_FRAME"></span>
+		</div>
+		<div class="content">
+			<div style="padding: 20px 34px">
+                <div>
+					<div style="margin: 1em;">
+
+						<p style="font-size : smaller;">
+							ジョブLvによるステータスのボーナス表です。<br>
+							見たい職業をメニューから選んでください。<br>
+							※四次職の特性ステータスは未登録です。今しばらくお待ちください。<br>
+						</p>
+
+						<div style="font-size : smaller;">
+							<label for="OBJID_SELECT_JOB">職業：</label>
+							<select id="OBJID_SELECT_JOB" onChange="RefreshJobBonusTable()"></select>
+						</div>
+
+						<div id="OBJID_JOB_BONUS_TABLE_WRAPPER" style="margin-top: 1em; display: flex; column-gap: 1em; align-items: start;">
+						</div>
+
+						<p style="margin-top: 1em; font-size : smaller;">
+							備考：一次職と転生一次職(～ハイ)のジョブボーナスは同じです。<br>
+						</p>
+
+					</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+<script type="text/javascript" src="../frame.js"></script>
+
+</html>
