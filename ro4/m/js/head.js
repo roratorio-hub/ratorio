@@ -5417,11 +5417,13 @@ g_bDefinedDamageIntervals = true;
 			var w_Weight = ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][ITEM_DATA_INDEX_WEIGHT];
 			// 通常スキル倍率
 			var SdCBAI = [0,130,160,190,220,250];
+			/*
+			実測確認出来るまでコメントアウト
 
 			if (UsedSkillSearch(SKILL_ID_SHIELD_SHOOTING_STATE) > 0) {
-				sdCBAI = [0,360,420,480,540,600];
+				SdCBAI = [0,360,420,480,540,600];
 			}
-
+			 */
 			for(var i=0;i<=2;i++){
 				w_DMG[i] = n_A_DMG[i] + w_Weight + n_A_SHIELD_DEF_PLUS * 4;
 				w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
