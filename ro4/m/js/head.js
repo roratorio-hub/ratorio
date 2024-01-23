@@ -1689,23 +1689,52 @@ else {
 			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 150);
 			break;
 
+		// 「ロイヤルガード」スキル「キャノンスピア」
 		case SKILL_ID_CANNON_SPEAR:
 			n_Enekyori = 1;
 			n_Delay[7] = 2000;
 			wbairitu = (50 + n_A_STR) * n_A_ActiveSkillLV;
+			/*
+			グランドジャッジメント状態スキル倍率 
+			実測値との一致を確認済み
+			*/
+			if (UsedSkillSearch(SKILL_ID_GRAND_JUDGEMENT_STATE) > 0) {
+				wbairitu = (200 + n_A_STR) * n_A_ActiveSkillLV;
+			}
+
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
+		// 「ロイヤルガード」スキル「バニシングポイント」
 		case SKILL_ID_BANISHING_POINT:
 			n_Enekyori = 1;
-			var w_BN = 30 * attackMethodConfArray[0].GetOptionValue(0);
+			// バッシュ習得Lv補正
+			var w_BN = 30 * attackMethodConfArray[0].GetOptionValue(0);	
+			// 基本倍率
 			wbairitu = 50 * n_A_ActiveSkillLV + w_BN;
+			/*
+			グランドジャッジメント状態スキル倍率 
+			実測値との一致を確認済み
+			*/
+			if (UsedSkillSearch(SKILL_ID_GRAND_JUDGEMENT_STATE) > 0) {
+				wbairitu *= 2;
+			}
+
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
 		case SKILL_ID_SHIELD_PRESS:
 			n_Delay[7] = 2000;
-			wbairitu = 200 * n_A_ActiveSkillLV + n_A_STR + ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][ITEM_DATA_INDEX_WEIGHT];
+			wbairitu = 200 * n_A_ActiveSkillLV
+			/*
+			シールドシューティング状態スキル倍率 
+			実測値との一致を確認済み
+			*/
+			if (UsedSkillSearch(SKILL_ID_SHIELD_SHOOTING_STATE) > 0) {
+				wbairitu = 300 * n_A_ActiveSkillLV;
+			}
+
+			wbairitu += n_A_STR + ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][ITEM_DATA_INDEX_WEIGHT];
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
@@ -1727,16 +1756,24 @@ else {
 			break;
 
 		case SKILL_ID_EARTH_DRIVE:
-if (_APPLY_UPDATE_LV200) {
-			wActiveHitNum = 1;
-}
-else {
-			wActiveHitNum = 5;
-}
+			if (_APPLY_UPDATE_LV200) {
+				wActiveHitNum = 1;
+			}
+			else {
+				wActiveHitNum = 5;
+			}
 			wCast = 1000;
 			n_Delay[2] = 1000;
 			n_Delay[7] = 8000 - 1000 * n_A_ActiveSkillLV;
 			wbairitu = 100 + 100 * n_A_ActiveSkillLV;
+			/*
+			シールドシューティング状態スキル倍率 
+			実測値との一致を確認済み
+			*/
+			if (UsedSkillSearch(SKILL_ID_SHIELD_SHOOTING_STATE) > 0) {
+				wbairitu = 300 + 100 * n_A_ActiveSkillLV;
+			}
+
 			wbairitu = ROUNDDOWN(wbairitu * ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][ITEM_DATA_INDEX_WEIGHT] / 100);
 			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
 			break;
@@ -3621,9 +3658,15 @@ g_bUnknownCasts = true;
 			break;
 
 		case SKILL_ID_BAKKA_SHINDAN:
+			/*
+				YE鯖で油なしのダメージが実測値と合うことを確認ずみ
+				油ありのダメージは公式だと300%増加だが実測誤差が生じる
+				310%増加なら誤差は減るが完全には一致しない
+				変に310%増加にするよりは他の部分で誤差が生じていると判断して公式通りの倍率で△リリースする
+			*/
 
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
+			// TODO: 詠唱時間等未実測スキル
+			g_bUnknownCasts = true;
 
 			// 距離属性
 			n_Enekyori = 1;
@@ -3631,13 +3674,17 @@ g_bUnknownCasts = true;
 			// 基本倍率
 			wbairitu = 2600 + (200 * n_A_ActiveSkillLV);
 
-			// TODO: 「聖油洗礼」状態未対応
+			// 聖油補正
+			if (seiyuLv = n_B_IJYOU[MOB_CONF_DEBUF_ID_SEIYU_SENREI_DEBUFF]) {
+				wbairitu += 300; 
+			}
 
 			// POW補正
 			wbairitu += 12 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 
 			// ベースレベル補正
 			wbairitu *= n_A_BaseLV / 100;
+
 			break;
 
 		case SKILL_ID_ENKA_METSUMA_SHINDAN:
@@ -5355,15 +5402,28 @@ g_bDefinedDamageIntervals = true;
 			break;
 
 
-
+		// 「パラディン」スキル「シールドチェーン」
 		case SKILL_ID_SHIELD_CHAIN:
+			/**
+			 *  2024/01/23 時点のゲーム内結果と全くダメージが合わない (YE鯖にて)
+			 *  式の中で減算Defが効きすぎている模様
+			 *  シールドシューティングの検証以前の話なので実装先送り
+			 */
 			n_PerfectHIT_DMG = 0;
 			n_Enekyori=1;
 			n_A_Weapon_zokusei = 0;
 			wCast = 1000;
 			n_Delay[2] = 1000;
 			var w_Weight = ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][ITEM_DATA_INDEX_WEIGHT];
+			// 通常スキル倍率
 			var SdCBAI = [0,130,160,190,220,250];
+			/*
+			実測確認出来るまでコメントアウト
+
+			if (UsedSkillSearch(SKILL_ID_SHIELD_SHOOTING_STATE) > 0) {
+				SdCBAI = [0,360,420,480,540,600];
+			}
+			 */
 			for(var i=0;i<=2;i++){
 				w_DMG[i] = n_A_DMG[i] + w_Weight + n_A_SHIELD_DEF_PLUS * 4;
 				w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
