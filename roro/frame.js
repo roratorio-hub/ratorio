@@ -38,6 +38,8 @@ templ = `
 		  <li class="menu-item"><span class="menu-title"><a href="../../roro/other/cardlist.html">カード一覧</a></span></li>
 		  <li class="menu-item"><span class="menu-title"><a href="../../roro/other/monsterlist.html">モンスター一覧</a></span></li>
 		  <li class="menu-item"><span class="menu-title"><a href="../../roro/other/exp.html">経験値テーブル</a></span></li>
+		  <li class="menu-item"><span class="menu-title"><a href="../../roro/other/jobb.html">JOBボーナス表</a></span></li>
+		  <li class="menu-item"><span class="menu-title"><a href="../../roro/other/element.html">属性表</a></span></li>
 
 		  <li class="menu-header"><span>Information</span></li>
           <li class="menu-item"><span class="menu-title"><a href="../../information/index.html" class="local">このサイトについて</a></span></li>
