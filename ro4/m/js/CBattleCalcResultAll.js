@@ -328,7 +328,7 @@ function CBattleCalcResultAll () {
 			cooltime = resultWork.coolTime * 1000;
 			delay = resultWork.delaySkill * 1000;
 
-			console.log('In GetOverLifeTime : lifetime=%f, cooltime=%f, delay=%f', lifetime, cooltime, delay);
+			//console.log('In GetOverLifeTime : lifetime=%f, cooltime=%f, delay=%f', lifetime, cooltime, delay);
 			if (cooltime > delay) {
 				overtime = (cooltime > lifetime) ? cooltime - lifetime : 0;
 			} else {
