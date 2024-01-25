@@ -10333,16 +10333,17 @@ g_bUnknownCasts = true;
 			if (UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0 || UsedSkillSearch(SKILL_ID_NYANTOMO_KENROKU) > 0) {
 				// 基礎倍率
 				wbairitu = 4800 + (600 * n_A_ActiveSkillLV);
+				// スピリットマスタリー補正
+				wbairitu += 250 * UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY);
 			} else {
 				// 基礎倍率
 				wbairitu = 2400 + (300 * n_A_ActiveSkillLV);
+				// スピリットマスタリー補正
+				wbairitu += 125 * UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY);
 			}
 
 			// SPL補正
 			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-
-			// スピリットマスタリー補正
-			wbairitu += 250 * UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY);
 
 			// ベースレベル補正
 			wbairitu *= n_A_BaseLV / 100;
@@ -10358,7 +10359,7 @@ g_bUnknownCasts = true;
 				ToDo: にゃん友未習得時の実測値が未確認
 			*/
 
-g_bDefinedDamageIntervals = true;
+			g_bDefinedDamageIntervals = true;
 
 			// 詠唱時間等
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
@@ -10393,14 +10394,12 @@ g_bDefinedDamageIntervals = true;
 			}
 
 			// SPL補正
-			//wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 
 			// ベースレベル補正
 			wbairitu *= n_A_BaseLV / 100;
 			wbairitu = ROUNDDOWN(wbairitu);
 
-			//wHITsuu = 10;
 			break;
 /*
 		case SKILL_ID_DUMMY:
