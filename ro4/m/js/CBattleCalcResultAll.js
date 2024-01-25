@@ -280,7 +280,6 @@ function CBattleCalcResultAll () {
 		// アクティブ系列があればそれを採用
 		if (this.activeResultArray.length > 0) {
 			resultWork = this.activeResultArray[0];
-			console.log('In GetSkillCount : objectLifeTime=%f, attackInterval=%f', resultWork.objectLifeTime, resultWork.attackInterval);
 			return Math.ceil(atkcnt / (resultWork.objectLifeTime / (resultWork.attackInterval * 1000)));
 		}
 
@@ -301,7 +300,6 @@ function CBattleCalcResultAll () {
 		// アクティブ系列があればそれを採用
 		if (this.activeResultArray.length > 0) {
 			resultWork = this.activeResultArray[0];
-			console.log('In GetCastTime : castVary=%f, castFixed=%f', resultWork.castVary, resultWork.castFixed);
 			return (resultWork.castVary + resultWork.castFixed);
 		}
 
@@ -339,16 +337,12 @@ function CBattleCalcResultAll () {
 			cooltime = resultWork.coolTime * 1000;
 			delay = resultWork.delaySkill * 1000;
 			intvl = resultWork.attackInterval * 1000;
-			console.log('In GetDoubleHitCount : skillId=%d, cooltime=%f, delay=%f, lifetime=%f', resultWork.skillId, cooltime, delay, lifetime);
 			if ((cooltime < lifetime) && (delay < lifetime)) {
-				console.log(' cooltime or delay < lifetime');
 				wholetime = (cooltime > delay) ? cooltime : delay;//発動開始から次の発動が可能になるまでの時間
 				wholetime += casttime;//次の発動に必要な詠唱時間を加える
 				doubletime = lifetime - wholetime;//持続時間から wholetime をひいた値がポジティブなら重複発動する
-				console.log('  wholetime=%f, doubletime=%f', wholetime, doubletime);
 				if (doubletime > 0) {
 					doublecount = Math.floor(doubletime / intvl); //重複発動する回数
-					console.log('In GetDoubleHitCount : doublecount=%d', doublecount);
 					return doublecount;
 				}
 			}
@@ -714,7 +708,6 @@ function CBattleCalcResultAll () {
 			skillcnt = this.GetSkillCount(atkcnt);//スキルを何回発動するか
 			casttime = this.GetCastTime();//固定詠唱＋変動詠唱にかかる時間
 			dblcnt = this.GetDoubleHitCount(atkcnt);
-			console.log('In GetAttackSecondSummaryMin : intvl=%f, atkcnt=%f, skillcnt=%f, casttime=%f, dblcnt=%d, reduce=%f', intvl, atkcnt, skillcnt, casttime, dblcnt, (dblcnt * skillcnt * intvl));
 	
 			return (atkcnt * intvl) + (skillcnt * casttime) - (dblcnt * skillcnt * intvl);	
 		}
@@ -744,7 +737,6 @@ function CBattleCalcResultAll () {
 			skillcnt = this.GetSkillCount(atkcnt);//スキルを何回発動するか
 			casttime = this.GetCastTime();
 			dblcnt = this.GetDoubleHitCount(atkcnt);
-			console.log('In GetAttackSecondSummaryMin : intvl=%f, atkcnt=%f, skillcnt=%f, casttime=%f, dblcnt=%d, reduce=%f', intvl, atkcnt, skillcnt, casttime, dblcnt, (dblcnt * skillcnt * intvl));
 	
 			return (atkcnt * intvl) + (skillcnt * casttime) - (dblcnt * skillcnt * intvl);
 		}
@@ -774,7 +766,6 @@ function CBattleCalcResultAll () {
 			skillcnt = this.GetSkillCount(atkcnt);//スキルを何回発動するか
 			casttime = this.GetCastTime();
 			dblcnt = this.GetDoubleHitCount(atkcnt);
-			console.log('In GetAttackSecondSummaryMin : intvl=%f, atkcnt=%f, skillcnt=%f, casttime=%f, dblcnt=%d, reduce=%f', intvl, atkcnt, skillcnt, casttime, dblcnt, (dblcnt * skillcnt * intvl));
 	
 			return (atkcnt * intvl) + (skillcnt * casttime) - (dblcnt * skillcnt * intvl);
 		}
