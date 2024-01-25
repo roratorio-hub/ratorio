@@ -250,6 +250,117 @@ function CBattleCalcResultAll () {
 
 
 	/**
+	 * １HITごとの攻撃間隔の取得.
+	 * @return 概算攻撃間隔
+	 */
+	this.GetHitInterval = function () {
+
+		var resultWork = null;
+
+		// アクティブ系列があればそれを採用
+		if (this.activeResultArray.length > 0) {
+			resultWork = this.activeResultArray[0];
+			return (resultWork.attackInterval);
+		}
+
+		// エラーの場合
+		return 0;
+	};
+
+
+
+	/**
+	 * スキル１回分のHIT回数の取得.
+	 * @return HIT回数
+	 */
+	this.GetSkillCount = function (atkcnt) {
+
+		var resultWork = null;
+
+		// アクティブ系列があればそれを採用
+		if (this.activeResultArray.length > 0) {
+			resultWork = this.activeResultArray[0];
+			console.log('In GetSkillCount : objectLifeTime=%f, attackInterval=%f', resultWork.objectLifeTime, resultWork.attackInterval);
+			return Math.ceil(atkcnt / (resultWork.objectLifeTime / (resultWork.attackInterval * 1000)));
+		}
+
+		// エラーの場合
+		return 0;
+	};
+
+
+
+	/**
+	 * 変動＋固定詠唱時間の取得.
+	 * @return 概算攻撃間隔
+	 */
+	this.GetCastTime = function () {
+
+		var resultWork = null;
+
+		// アクティブ系列があればそれを採用
+		if (this.activeResultArray.length > 0) {
+			resultWork = this.activeResultArray[0];
+			console.log('In GetCastTime : castVary=%f, castFixed=%f', resultWork.castVary, resultWork.castFixed);
+			return (resultWork.castVary + resultWork.castFixed);
+		}
+
+
+		// 上記以外は、欠損値処理
+		return 0;
+	};
+
+
+
+	/**
+	 * オブジェクト維持時間の重複がある場合、重複１箇所で２重にHITする回数の取得.
+	 * @return HIT回数
+	 */
+	this.GetDoubleHitCount = function (atkcnt) {
+
+		var resultWork = null;
+		var sklcnt = 0;
+		var lifetime = 0;
+		var wholetime = 0;
+		var cooltime = 0;
+		var delay = 0;
+		var casttime = 0;
+		var doubletime = 0;
+		var intvl = 0;
+		var doublecount = 0;
+
+
+		// アクティブ系列があればそれを採用
+		if (this.activeResultArray.length > 0) {
+			resultWork = this.activeResultArray[0];
+			sklcnt = this.GetSkillCount(atkcnt);//スキルを発動する回数
+			lifetime = resultWork.objectLifeTime;//スキルの持続時間
+			casttime = this.GetCastTime() * 1000;
+			cooltime = resultWork.coolTime * 1000;
+			delay = resultWork.delaySkill * 1000;
+			intvl = resultWork.attackInterval * 1000;
+			console.log('In GetDoubleHitCount : skillId=%d, cooltime=%f, delay=%f, lifetime=%f', resultWork.skillId, cooltime, delay, lifetime);
+			if ((cooltime < lifetime) && (delay < lifetime)) {
+				console.log(' cooltime or delay < lifetime');
+				wholetime = (cooltime > delay) ? cooltime : delay;//発動開始から次の発動が可能になるまでの時間
+				wholetime += casttime;//次の発動に必要な詠唱時間を加える
+				doubletime = lifetime - wholetime;//持続時間から wholetime をひいた値がポジティブなら重複発動する
+				console.log('  wholetime=%f, doubletime=%f', wholetime, doubletime);
+				if (doubletime > 0) {
+					doublecount = Math.floor(doubletime / intvl); //重複発動する回数
+					console.log('In GetDoubleHitCount : doublecount=%d', doublecount);
+					return doublecount;
+				}
+			}
+		}
+
+		// エラーの場合
+		return 0;
+	};
+
+
+
+	/**
 	 * 概算ダメージ（一撃最小）の取得.
 	 * @return 概算ダメージ（最小）
 	 */
@@ -576,6 +687,97 @@ function CBattleCalcResultAll () {
 		}
 
 		return Math.ceil(this.mobData[MONSTER_DATA_INDEX_HP] / dmg) * this.GetAttackInterval();
+	};
+
+
+	/**
+	 * 概算攻撃秒数（最小）の取得（オブジェクト維持時間とHITインターバルのあるスキル用）.
+	 * @return 概算攻撃秒数（最小）
+	 */
+	this.GetAttackSecondSummaryMinInterval = function () {
+		var dmg = this.GetDamageSummaryMaxPerAtk();
+
+		if (dmg <= 0) {
+			return "（計測不能）";
+		}
+		if (this.GetHitInterval == 0) {
+			return Math.ceil(this.mobData[MONSTER_DATA_INDEX_HP] / dmg) * this.GetAttackInterval();
+		} else {
+			var intvl = 0;
+			var atkcnt = 0;
+			var skillcnt = 0;
+			var casttime = 0;
+			var dblcnt = 0;
+
+			intvl = this.GetHitInterval();
+			atkcnt = Math.ceil(this.mobData[MONSTER_DATA_INDEX_HP] / dmg);//必要攻撃回数
+			skillcnt = this.GetSkillCount(atkcnt);//スキルを何回発動するか
+			casttime = this.GetCastTime();//固定詠唱＋変動詠唱にかかる時間
+			dblcnt = this.GetDoubleHitCount(atkcnt);
+			console.log('In GetAttackSecondSummaryMin : intvl=%f, atkcnt=%f, skillcnt=%f, casttime=%f, dblcnt=%d, reduce=%f', intvl, atkcnt, skillcnt, casttime, dblcnt, (dblcnt * skillcnt * intvl));
+	
+			return (atkcnt * intvl) + (skillcnt * casttime) - (dblcnt * skillcnt * intvl);	
+		}
+	};
+
+	/**
+	 * 概算攻撃秒数（平均）の取得（オブジェクト維持時間とHITインターバルのあるスキル用）.
+	 * @return 概算攻撃秒数（平均）
+	 */
+	this.GetAttackSecondSummaryAveInterval = function () {
+		var dmg = this.GetDamageSummaryAvePerAtk();
+
+		if (dmg <= 0) {
+			return "（計測不能）";
+		}
+		if (this.GetHitInterval == 0) {
+			return Math.ceil(this.mobData[MONSTER_DATA_INDEX_HP] / dmg) * this.GetAttackInterval();
+		} else {
+			var intvl = 0;
+			var atkcnt = 0;
+			var skillcnt = 0;
+			var casttime = 0;
+			var dblcnt = 0;
+
+			intvl = this.GetHitInterval();
+			atkcnt = Math.ceil(this.mobData[MONSTER_DATA_INDEX_HP] / dmg);//必要攻撃回数
+			skillcnt = this.GetSkillCount(atkcnt);//スキルを何回発動するか
+			casttime = this.GetCastTime();
+			dblcnt = this.GetDoubleHitCount(atkcnt);
+			console.log('In GetAttackSecondSummaryMin : intvl=%f, atkcnt=%f, skillcnt=%f, casttime=%f, dblcnt=%d, reduce=%f', intvl, atkcnt, skillcnt, casttime, dblcnt, (dblcnt * skillcnt * intvl));
+	
+			return (atkcnt * intvl) + (skillcnt * casttime) - (dblcnt * skillcnt * intvl);
+		}
+	};
+
+	/**
+	 * 概算攻撃秒数（最大）の取得（オブジェクト維持時間とHITインターバルのあるスキル用）.
+	 * @return 概算攻撃秒数（最大）
+	 */
+	this.GetAttackSecondSummaryMaxInterval = function () {
+		var dmg = this.GetDamageSummaryMinPerAtk();
+
+		if (dmg <= 0) {
+			return "（計測不能）";
+		}
+		if (this.GetHitInterval == 0) {
+			return Math.ceil(this.mobData[MONSTER_DATA_INDEX_HP] / dmg) * this.GetAttackInterval();
+		} else {
+			var intvl = 0;
+			var atkcnt = 0;
+			var skillcnt = 0;
+			var casttime = 0;
+			var dblcnt = 0;
+
+			intvl = this.GetHitInterval();
+			atkcnt = Math.ceil(this.mobData[MONSTER_DATA_INDEX_HP] / dmg);//必要攻撃回数
+			skillcnt = this.GetSkillCount(atkcnt);//スキルを何回発動するか
+			casttime = this.GetCastTime();
+			dblcnt = this.GetDoubleHitCount(atkcnt);
+			console.log('In GetAttackSecondSummaryMin : intvl=%f, atkcnt=%f, skillcnt=%f, casttime=%f, dblcnt=%d, reduce=%f', intvl, atkcnt, skillcnt, casttime, dblcnt, (dblcnt * skillcnt * intvl));
+	
+			return (atkcnt * intvl) + (skillcnt * casttime) - (dblcnt * skillcnt * intvl);
+		}
 	};
 
 
