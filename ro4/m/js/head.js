@@ -676,6 +676,8 @@ function BattleCalc999Body(battleCalcInfo, charaData, specData, mobData, attackM
 	battleCalcResult.criRate = battleCalcInfo.criRate;
 	battleCalcResult.parentSkillId = battleCalcInfo.parentSkillId;
 	battleCalcResult.bAutoSpell = battleCalcInfo.bAutoSpell;
+	battleCalcResult.coolTime = battleCalcInfo.coolTime;
+	battleCalcResult.delaySkill = battleCalcInfo.delaySkill;
 
 
 
@@ -13649,7 +13651,11 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 	}
 	else {
 		// 秒数
-		valueWork = battleCalcResultAll.GetAttackSecondSummaryMin();
+		if (g_bDefinedDamageIntervals == true) {
+			valueWork = battleCalcResultAll.GetAttackSecondSummaryMinInterval();
+		} else {
+			valueWork = battleCalcResultAll.GetAttackSecondSummaryMin();
+		}
 		objCell = HtmlCreateElement("div", objGridDmg);
 		objCell.classList.add("BTLRSLT_TAB_RESULT");
 		objCell.classList.add(partIdStr);
@@ -13683,7 +13689,11 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 	}
 	else {
 		// 秒数
-		valueWork = battleCalcResultAll.GetAttackSecondSummaryAve();
+		if (g_bDefinedDamageIntervals == true) {
+			valueWork = battleCalcResultAll.GetAttackSecondSummaryAveInterval();
+		} else {
+			valueWork = battleCalcResultAll.GetAttackSecondSummaryAve();
+		}
 		objCell = HtmlCreateElement("div", objGridDmg);
 		objCell.classList.add("BTLRSLT_TAB_RESULT");
 		objCell.classList.add(partIdStr);
@@ -13715,7 +13725,11 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 	}
 	else {
 		// 秒数
-		valueWork = battleCalcResultAll.GetAttackSecondSummaryMax();
+		if (g_bDefinedDamageIntervals == true) {
+			valueWork = battleCalcResultAll.GetAttackSecondSummaryMaxInterval();
+		} else {
+			valueWork = battleCalcResultAll.GetAttackSecondSummaryMax();
+		}
 		objCell = HtmlCreateElement("div", objGridDmg);
 		objCell.classList.add("BTLRSLT_TAB_RESULT");
 		objCell.classList.add(partIdStr);
