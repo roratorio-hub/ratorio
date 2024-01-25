@@ -37051,20 +37051,6 @@ function CSkillManager() {
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_SPECIAL;
 
-			this.Power = function(skillLv, charaDataManger) {
-				var pow = 0;
-
-				// 基本式
-				pow = 300 * skillLv;
-
-				// ベースレベル補正
-				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 100);
-
-				// ベースレベル補正がかからない威力
-				pow += 1300;
-
-				return pow;
-			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 200;
 			}
