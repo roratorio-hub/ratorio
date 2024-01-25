@@ -1249,6 +1249,10 @@
 	SKILL_ID_NYANTOMO_KENROKU = 1246;
 	SKILL_ID_DEER_CANON = 1247;
 	SKILL_ID_DEER_BREEZE = 1248;
+	SKILL_ID_BASIC_GRENADE = 1249;
+	SKILL_ID_HASTY_FIRE_IN_THE_HOLE = 1250;
+	SKILL_ID_GRENADES_DROPPING = 1251;
+	SKILL_ID_MISSION_BOMBARD = 1252;
 
 	SkillObjNew = [
 		[0,1,"通常攻撃"],
@@ -2500,6 +2504,10 @@
 		[1246,1,"にゃん友 -賢鹿-"],
 		[1247,7,"(×)ディアーキャノン"],
 		[1248,7,"(×)ディアーブリーズ"],
+		[1249,5,"ベーシックグレネード"],
+		[1250,5,"ヘイスティファイアインザホール"],
+		[1251,5,"グレネーズドロッピング"],
+		[1252,10,"ミッションボンバード"],
 	];
 
 })();
