@@ -10305,6 +10305,103 @@ g_bUnknownCasts = true;
 			wbairitu *= n_A_BaseLV / 100;										// BaseLv補正
 			break;
 
+		/*
+			「スピリットハンドラー」スキル「ディアーキャノン」
+		*/
+		case SKILL_ID_DEER_CANON:
+			/*
+				にゃん友習得時の実測値との誤差 -1 以内を確認ずみ
+				ToDo: にゃん友未習得時の実測値が未確認
+			*/
+
+			// TODO: 詠唱時間等未実測スキル
+			//g_bUnknownCasts = true;
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+
+			// スピリットハンドラーのレインボーホーン追加に伴い任意の属性を取れるように変更
+			if (attackMethodConfArray[0].optionValueArray.length == 0) {
+				// 属性未定義の場合
+				n_A_Weapon_zokusei = ELM_ID_VANITY;
+			} else {
+				n_A_Weapon_zokusei = attackMethodConfArray[0].GetOptionValue(0); 
+			};
+
+			if (UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0 || UsedSkillSearch(SKILL_ID_NYANTOMO_KENROKU) > 0) {
+				// 基礎倍率
+				wbairitu = 4800 + (600 * n_A_ActiveSkillLV);
+			} else {
+				// 基礎倍率
+				wbairitu = 2400 + (300 * n_A_ActiveSkillLV);
+			}
+
+			// SPL補正
+			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+
+			// スピリットマスタリー補正
+			wbairitu += 250 * UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY);
+
+			// ベースレベル補正
+			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = ROUNDDOWN(wbairitu);
+
+			break;
+
+		/*
+			「スピリットハンドラー」スキル「ディアーブリーズ」
+		*/
+		case SKILL_ID_DEER_BREEZE:
+			/*
+				ToDo: にゃん友未習得時の実測値が未確認
+			*/
+
+g_bDefinedDamageIntervals = true;
+
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+
+			// ダメージ間隔
+			n_Delay[5] = 300;
+
+			// オブジェクト存続時間
+			n_Delay[6] = 3000;
+
+			// スピリットハンドラーのレインボーホーン追加に伴い任意の属性を取れるように変更
+			if (attackMethodConfArray[0].optionValueArray.length == 0) {
+				// 属性未定義の場合
+				n_A_Weapon_zokusei = ELM_ID_VANITY;
+			} else {
+				n_A_Weapon_zokusei = attackMethodConfArray[0].GetOptionValue(0); 
+			};
+
+			if (UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0 || UsedSkillSearch(SKILL_ID_NYANTOMO_KENROKU) > 0) {
+				// 基礎倍率
+				wbairitu = 1600 + 200 * n_A_ActiveSkillLV;
+				// スピリットマスタリー補正
+				wbairitu += 40 * UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY);
+			} else {
+				// 基礎倍率
+				wbairitu = 800 + 100 * n_A_ActiveSkillLV;
+				// スピリットマスタリー補正
+				wbairitu += 20 * UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY);
+			}
+
+			// SPL補正
+			//wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+
+			// ベースレベル補正
+			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = ROUNDDOWN(wbairitu);
+
+			//wHITsuu = 10;
+			break;
 /*
 		case SKILL_ID_DUMMY:
 			// 使用武器制限
