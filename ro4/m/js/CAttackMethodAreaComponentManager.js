@@ -3713,6 +3713,80 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 			);
 			break;
 
+		//----------------------------------------------------------------
+		// スピリットハンドラー：ディアーキャノン
+		//----------------------------------------------------------------
+		case SKILL_ID_DEER_CANON:
+
+			// オプションリストを生成、追加
+			// スピリットハンドラーではない場合、レインボーホーンを選択させない
+			if (!IsSameJobClass(MIG_JOB_ID_SPIRIT_HANDLER)) {
+				break;
+			}
+			// オプションリストを生成、追加
+			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+				"レインボーホーン",
+				[
+					[ELM_ID_VANITY,	"なし"],		// 属性は common.js で EnumElmId として定義されている
+					[ELM_ID_WATER,	"Lv1:水属性"],  // ELM_ID_VANITY = 0 から
+					[ELM_ID_WIND,	"Lv2:風属性"],
+					[ELM_ID_EARTH,	"Lv3:地属性"],
+					[ELM_ID_FIRE,	"Lv4:火属性"],
+					[ELM_ID_DARK,	"Lv5:闇属性"],
+					[ELM_ID_HOLY,	"Lv6:聖属性"],
+				],
+				0
+			);
+			break;
+
+		//----------------------------------------------------------------
+		// スピリットハンドラー：ディアーブリーズ
+		//----------------------------------------------------------------
+		case SKILL_ID_DEER_BREEZE:
+
+			// オプションリストを生成、追加
+			// スピリットハンドラーではない場合、レインボーホーンを選択させない
+			if (!IsSameJobClass(MIG_JOB_ID_SPIRIT_HANDLER)) {
+				break;
+			}
+			// オプションリストを生成、追加
+			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+				"レインボーホーン",
+				[
+					[ELM_ID_VANITY,	"なし"],		// 属性は common.js で EnumElmId として定義されている
+					[ELM_ID_WATER,	"Lv1:水属性"],  // ELM_ID_VANITY = 0 から
+					[ELM_ID_WIND,	"Lv2:風属性"],
+					[ELM_ID_EARTH,	"Lv3:地属性"],
+					[ELM_ID_FIRE,	"Lv4:火属性"],
+					[ELM_ID_DARK,	"Lv5:闇属性"],
+					[ELM_ID_HOLY,	"Lv6:聖属性"],
+				],
+				0
+			);
+			break;
+
+		//----------------------------------------------------------------
+		// ナイトウォッチ：グレネードフラグメント
+		//----------------------------------------------------------------
+		case SKILL_ID_BASIC_GRENADE :
+		case SKILL_ID_HASTY_FIRE_IN_THE_HOLE :
+		case SKILL_ID_GRENADES_DROPPING :
+		case SKILL_ID_MISSION_BOMBARD :
+			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+				"グレネードフラグメント",
+				[
+					[ELM_ID_VANITY,	"なし"],		// 属性は common.js で EnumElmId として定義されている
+					[ELM_ID_WATER,	"Lv1:水属性"],  // ELM_ID_VANITY = 0 から
+					[ELM_ID_WIND,	"Lv2:風属性"],
+					[ELM_ID_EARTH,	"Lv3:地属性"],
+					[ELM_ID_FIRE,	"Lv4:火属性"],
+					[ELM_ID_DARK,	"Lv5:闇属性"],
+					[ELM_ID_HOLY,	"Lv6:聖属性"],
+				],
+				0
+			);
+			break;
+
 		}
 
 	}
