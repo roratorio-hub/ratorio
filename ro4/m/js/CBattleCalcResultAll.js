@@ -753,7 +753,7 @@ function CBattleCalcResultAll () {
 
 			intvl = this.GetHitInterval();//HITごとのインターバル時間
 			atkcnt = Math.ceil(this.mobData[MONSTER_DATA_INDEX_HP] / dmg);//必要攻撃回数
-			skillcnt = this.GetSkillCount(atkcnt);//スキルを何回発動するか
+			skillcnt = this.GetSkillCount(atkcnt);//スキルを何回発動するか。１スキル分全てHITしない分の回数も含む。
 			casttime = this.GetCastTime();//固定詠唱＋変動詠唱にかかる時間
 			overtime = this.GetOverLifeTime();
 			lifetime = this.GetLifeTime();
@@ -761,9 +761,14 @@ function CBattleCalcResultAll () {
 			fullcnt = Math.floor(atkcnt / hitcnt);//１スキル分全部HITするスキル使用回数
 			amarihit = atkcnt - fullcnt * hitcnt;//最後のスキル使用分で１スキル分全部HITしないHIT回数
 			reduce = this.GetUnderLifeTime();//オブジェクト維持時間よりディレイ・CT時間が短い場合その時間
+			console.log('In GetAttackSecondSummaryMinInterval : intvl=%f, atkcnt=%f, skillcnt=%f, hitcnt=%f, fullcnt=%f, casttime=%f, amarihit=%f, overtime=%f, reduce=%f', intvl, atkcnt, skillcnt, hitcnt, fullcnt, casttime, amarihit, overtime, reduce);
 			//スキル１回で倒した場合
 			if (skillcnt <= 1) {
 				return casttime + (amarihit * intvl);
+			}
+			//スキルn回でちょうど倒した場合
+			if (skillcnt == fullcnt) {
+				return casttime * (fullcnt - 1) + (lifetime + overtime) * fullcnt;
 			}
 			//（詠唱時間＋１スキル分HIT時間＋オブジェクト維持時間を超えるディレイまたはクールタイム）×（HITフル使用のスキル使用回数）
 			ret = (casttime + lifetime + overtime) * fullcnt;
@@ -775,11 +780,13 @@ function CBattleCalcResultAll () {
 			//オブジェクト維持時間が完了する前に次の詠唱が始まる場合
 			if (reduce < casttime) {
 				// reduce 時間より詠唱時間が長い場合
-				ret += (casttime + (amarihit * intvl)) - reduce * ((skillcnt > 1) ? (skillcnt - 1) : 0);
+				ret -= reduce * ((skillcnt > 1) ? (skillcnt - 1) : 0);
+				ret += ((casttime - reduce) + (amarihit * intvl));
 			} else {
 				// reduce 時間が詠唱時間より長い場合
 				// reduce 時間が（詠唱時間＋（HITフルでないHIT回数×インターバル））より長ければ、最後に発動したスキルの分は加えない（前に発動したスキルより先に終わるため）。
 				// reduce 時間が（詠唱時間＋（HITフルでないHIT回数×インターバル））より短ければ、（詠唱時間＋（HITフルでないHIT回数×インターバル））- reduce 時間分だけ加える。
+				ret -= reduce * ((skillcnt > 2) ? (skillcnt - 2) : 0);
 				ret += (((casttime + (amarihit * intvl)) - reduce) > 0) ? ((casttime + (amarihit * intvl)) - reduce) : 0;
 			}
 			return ret;
@@ -813,7 +820,7 @@ function CBattleCalcResultAll () {
 
 			intvl = this.GetHitInterval();
 			atkcnt = Math.ceil(this.mobData[MONSTER_DATA_INDEX_HP] / dmg);//必要攻撃回数
-			skillcnt = this.GetSkillCount(atkcnt);//スキルを何回発動するか
+			skillcnt = this.GetSkillCount(atkcnt);//スキルを何回発動するか。１スキル分全てHITしない分の回数も含む。
 			casttime = this.GetCastTime();
 			overtime = this.GetOverLifeTime();
 			lifetime = this.GetLifeTime();
@@ -825,8 +832,13 @@ function CBattleCalcResultAll () {
 			if (skillcnt <= 1) {
 				return casttime + (amarihit * intvl);
 			}
+			//スキルn回でちょうど倒した場合
+			if (skillcnt == fullcnt) {
+				return casttime * (fullcnt - 1) + (lifetime + overtime) * fullcnt;
+			}
 			//（詠唱時間＋１スキル分HIT時間＋オブジェクト維持時間を超えるディレイまたはクールタイム）×（HITフル使用のスキル使用回数）
 			ret = (casttime + lifetime + overtime) * fullcnt;
+			console.log(' (casttime + lifetime + overtime) * fullcnt=%f', ret);
 			//オブジェクト維持時間が完了してから次の詠唱が始まる場合
 			if (overtime > 0) {
 				ret += (casttime + (amarihit * intvl));
@@ -835,11 +847,13 @@ function CBattleCalcResultAll () {
 			//オブジェクト維持時間が完了する前に次の詠唱が始まる場合
 			if (reduce < casttime) {
 				// reduce 時間より詠唱時間が長い場合
-				ret += (casttime + (amarihit * intvl)) - reduce * ((skillcnt > 1) ? (skillcnt - 1) : 0);
+				ret -= reduce * ((skillcnt > 1) ? (skillcnt - 1) : 0);
+				ret += ((casttime - reduce) + (amarihit * intvl));
 			} else {
 				// reduce 時間が詠唱時間より長い場合
 				// reduce 時間が（詠唱時間＋（HITフルでないHIT回数×インターバル））より長ければ、最後に発動したスキルの分は加えない（前に発動したスキルより先に終わるため）。
 				// reduce 時間が（詠唱時間＋（HITフルでないHIT回数×インターバル））より短ければ、（詠唱時間＋（HITフルでないHIT回数×インターバル））- reduce 時間分だけ加える。
+				ret -= reduce * ((skillcnt > 2) ? (skillcnt - 2) : 0);
 				ret += (((casttime + (amarihit * intvl)) - reduce) > 0) ? ((casttime + (amarihit * intvl)) - reduce) : 0;
 			}
 			return ret;
@@ -873,7 +887,7 @@ function CBattleCalcResultAll () {
 
 			intvl = this.GetHitInterval();
 			atkcnt = Math.ceil(this.mobData[MONSTER_DATA_INDEX_HP] / dmg);//必要攻撃回数
-			skillcnt = this.GetSkillCount(atkcnt);//スキルを何回発動するか
+			skillcnt = this.GetSkillCount(atkcnt);//スキルを何回発動するか。１スキル分全てHITしない分の回数も含む。
 			casttime = this.GetCastTime();
 			overtime = this.GetOverLifeTime();
 			lifetime = this.GetLifeTime();
@@ -885,21 +899,28 @@ function CBattleCalcResultAll () {
 			if (skillcnt <= 1) {
 				return casttime + (amarihit * intvl);
 			}
+			//スキルn回でちょうど倒した場合
+			if (skillcnt == fullcnt) {
+				return casttime * (fullcnt - 1) + (lifetime + overtime) * fullcnt;
+			}
 			//（詠唱時間＋１スキル分HIT時間＋オブジェクト維持時間を超えるディレイまたはクールタイム）×（HITフル使用のスキル使用回数）
 			ret = (casttime + lifetime + overtime) * fullcnt;
 			//オブジェクト維持時間が完了してから次の詠唱が始まる場合
 			if (overtime > 0) {
 				ret += (casttime + (amarihit * intvl));
+				console.log(' (casttime + (amarihit * intvl))=%f', (casttime + (amarihit * intvl)));
 				return ret;
 			}
 			//オブジェクト維持時間が完了する前に次の詠唱が始まる場合
 			if (reduce < casttime) {
 				// reduce 時間より詠唱時間が長い場合
-				ret += (casttime + (amarihit * intvl)) - reduce * ((skillcnt > 1) ? (skillcnt - 1) : 0);
+				ret -= reduce * ((skillcnt > 1) ? (skillcnt - 1) : 0);
+				ret += ((casttime - reduce) + (amarihit * intvl));
 			} else {
 				// reduce 時間が詠唱時間より長い場合
 				// reduce 時間が（詠唱時間＋（HITフルでないHIT回数×インターバル））より長ければ、最後に発動したスキルの分は加えない（前に発動したスキルより先に終わるため）。
 				// reduce 時間が（詠唱時間＋（HITフルでないHIT回数×インターバル））より短ければ、（詠唱時間＋（HITフルでないHIT回数×インターバル））- reduce 時間分だけ加える。
+				ret -= reduce * ((skillcnt > 2) ? (skillcnt - 2) : 0);
 				ret += (((casttime + (amarihit * intvl)) - reduce) > 0) ? ((casttime + (amarihit * intvl)) - reduce) : 0;
 			}
 			return ret;
