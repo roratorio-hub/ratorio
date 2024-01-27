@@ -311,6 +311,38 @@ function CBattleCalcResultAll () {
 
 
 	/**
+	 * ディレイまたはクールタイムがオブジェクト維持時間より小さい場合に、その時間を返す.
+	 * @return 概算攻撃間隔
+	 */
+	this.GetUnderLifeTime = function () {
+		var resultWork = null;
+		var lifetime = 0;
+		var cooltime = 0;
+		var delay = 0;
+		var undertime = 0;
+
+		// アクティブ系列があればそれを採用
+		if (this.activeResultArray.length > 0) {
+			resultWork = this.activeResultArray[0];
+			lifetime = resultWork.objectLifeTime;//スキルの持続時間
+			cooltime = resultWork.coolTime * 1000;
+			delay = resultWork.delaySkill * 1000;
+
+			if (cooltime > delay) {
+				undertime = (cooltime < lifetime) ? lifetime - cooltime : 0;
+			} else {
+				undertime = (delay < lifetime) ? lifetime - delay : 0;
+			}
+			return (undertime / 1000);
+		}
+
+		// エラーの場合
+		return 0;
+	};
+
+
+
+	/**
 	 * ディレイまたはクールタイムがオブジェクト維持時間より大きい場合に、その時間を返す.
 	 * @return 概算攻撃間隔
 	 */
@@ -328,7 +360,6 @@ function CBattleCalcResultAll () {
 			cooltime = resultWork.coolTime * 1000;
 			delay = resultWork.delaySkill * 1000;
 
-			//console.log('In GetOverLifeTime : lifetime=%f, cooltime=%f, delay=%f', lifetime, cooltime, delay);
 			if (cooltime > delay) {
 				overtime = (cooltime > lifetime) ? cooltime - lifetime : 0;
 			} else {
@@ -337,50 +368,6 @@ function CBattleCalcResultAll () {
 			return (overtime / 1000);
 		}
 
-
-		// 上記以外は、欠損値処理
-		return 0;
-	};
-
-
-
-	/**
-	 * オブジェクト維持時間の重複がある場合、重複１箇所で２重にHITする回数の取得.
-	 * @return HIT回数
-	 */
-	this.GetDoubleHitCount = function (atkcnt) {
-
-		var resultWork = null;
-		var sklcnt = 0;
-		var lifetime = 0;
-		var wholetime = 0;
-		var cooltime = 0;
-		var delay = 0;
-		var casttime = 0;
-		var doubletime = 0;
-		var intvl = 0;
-		var doublecount = 0;
-
-
-		// アクティブ系列があればそれを採用
-		if (this.activeResultArray.length > 0) {
-			resultWork = this.activeResultArray[0];
-			sklcnt = this.GetSkillCount(atkcnt);//スキルを発動する回数
-			lifetime = resultWork.objectLifeTime;//スキルの持続時間
-			casttime = this.GetCastTime() * 1000;
-			cooltime = resultWork.coolTime * 1000;
-			delay = resultWork.delaySkill * 1000;
-			intvl = resultWork.attackInterval * 1000;
-			if ((cooltime < lifetime) && (delay < lifetime)) {
-				wholetime = (cooltime > delay) ? cooltime : delay;//発動開始から次の発動が可能になるまでの時間
-				wholetime += casttime;//次の発動に必要な詠唱時間を加える
-				doubletime = lifetime - wholetime;//持続時間から wholetime をひいた値がポジティブなら重複発動する
-				if (doubletime > 0) {
-					doublecount = Math.floor(doubletime / intvl); //重複発動する回数
-					return doublecount;
-				}
-			}
-		}
 
 		// エラーの場合
 		return 0;
@@ -717,7 +704,6 @@ function CBattleCalcResultAll () {
 		return Math.ceil(this.mobData[MONSTER_DATA_INDEX_HP] / dmg) * this.GetAttackInterval();
 	};
 
-
 	/**
 	 * 概算攻撃秒数（最小）の取得（オブジェクト維持時間とHITインターバルのあるスキル用）.
 	 * @return 概算攻撃秒数（最小）
@@ -735,17 +721,26 @@ function CBattleCalcResultAll () {
 			var atkcnt = 0;
 			var skillcnt = 0;
 			var casttime = 0;
-			var dblcnt = 0;
 			var overtime = 0;
+			var lifetime = 0;
+			var hitcnt = 0;
+			var fullcnt = 0;
+			var amarihit = 0;
+			var reduce = 0;
 
-			intvl = this.GetHitInterval();
+			intvl = this.GetHitInterval();//HITごとのインターバル時間
 			atkcnt = Math.ceil(this.mobData[MONSTER_DATA_INDEX_HP] / dmg);//必要攻撃回数
 			skillcnt = this.GetSkillCount(atkcnt);//スキルを何回発動するか
 			casttime = this.GetCastTime();//固定詠唱＋変動詠唱にかかる時間
-			dblcnt = this.GetDoubleHitCount(atkcnt);
 			overtime = this.GetOverLifeTime();
-	
-			return (atkcnt * intvl) + (skillcnt * casttime) + ((skillcnt > 1) ? (skillcnt - 1) * overtime : 0) - (dblcnt * skillcnt * intvl);	
+			lifetime = this.GetLifeTime();
+			hitcnt = Math.ceil(lifetime / intvl);//１スキル分のHIT回数
+			fullcnt = Math.floor(atkcnt / hitcnt);//１スキル分全部HITするスキル使用回数
+			amarihit = atkcnt - fullcnt * hitcnt;//最後のスキル使用分で１スキル分全部HITしないHIT回数
+			reduce = this.GetUnderLifeTime();//オブジェクト維持時間よりディレイ・CT時間が短い場合その時間
+
+			//（詠唱時間＋１スキル分HIT時間＋オブジェクト維持時間を超えるディレイまたはクールタイム）×（HITフル使用のスキル回数）＋（HITフルでないHIT回数×インターバル）－オブジェクト維持時間よりディレイ・CT時間が短い場合その時間×（スキル回数－１）
+			return (casttime + lifetime + overtime) * fullcnt + (amarihit * intvl) - reduce * ((skillcnt > 1) ? (skillcnt - 1) : 0);
 		}
 	};
 
@@ -766,17 +761,27 @@ function CBattleCalcResultAll () {
 			var atkcnt = 0;
 			var skillcnt = 0;
 			var casttime = 0;
-			var dblcnt = 0;
 			var overtime = 0;
+			var lifetime = 0;
+			var hitcnt = 0;
+			var fullcnt = 0;
+			var amarihit = 0;
+			var reduce = 0;
+
 
 			intvl = this.GetHitInterval();
 			atkcnt = Math.ceil(this.mobData[MONSTER_DATA_INDEX_HP] / dmg);//必要攻撃回数
 			skillcnt = this.GetSkillCount(atkcnt);//スキルを何回発動するか
 			casttime = this.GetCastTime();
-			dblcnt = this.GetDoubleHitCount(atkcnt);
 			overtime = this.GetOverLifeTime();
-	
-			return (atkcnt * intvl) + (skillcnt * casttime) + ((skillcnt > 1) ? (skillcnt - 1) * overtime : 0) - (dblcnt * skillcnt * intvl);	
+			lifetime = this.GetLifeTime();
+			hitcnt = Math.ceil(lifetime / intvl);//１スキル分のHIT回数
+			fullcnt = Math.floor(atkcnt / hitcnt);//１スキル分全部HITするスキル使用回数
+			amarihit = atkcnt - fullcnt * hitcnt;//最後のスキル使用分で１スキル分全部HITしないHIT回数
+			reduce = this.GetUnderLifeTime();//オブジェクト維持時間よりディレイ・CT時間が短い場合その時間
+
+			//（詠唱時間＋１スキル分HIT時間＋オブジェクト維持時間を超えるディレイまたはクールタイム）×（HITフル使用のスキル回数）＋（HITフルでないHIT回数×インターバル）－オブジェクト維持時間よりディレイ・CT時間が短い場合その時間×（スキル回数－１）
+			return (casttime + lifetime + overtime) * fullcnt + (amarihit * intvl) - reduce * ((skillcnt > 1) ? (skillcnt - 1) : 0);
 		}
 	};
 
@@ -797,17 +802,26 @@ function CBattleCalcResultAll () {
 			var atkcnt = 0;
 			var skillcnt = 0;
 			var casttime = 0;
-			var dblcnt = 0;
 			var overtime = 0;
+			var lifetime = 0;
+			var hitcnt = 0;
+			var fullcnt = 0;
+			var amarihit = 0;
+			var reduce = 0;
 
 			intvl = this.GetHitInterval();
 			atkcnt = Math.ceil(this.mobData[MONSTER_DATA_INDEX_HP] / dmg);//必要攻撃回数
 			skillcnt = this.GetSkillCount(atkcnt);//スキルを何回発動するか
 			casttime = this.GetCastTime();
-			dblcnt = this.GetDoubleHitCount(atkcnt);
 			overtime = this.GetOverLifeTime();
-	
-			return (atkcnt * intvl) + (skillcnt * casttime) + ((skillcnt > 1) ? (skillcnt - 1) * overtime : 0) - (dblcnt * skillcnt * intvl);	
+			lifetime = this.GetLifeTime();
+			hitcnt = Math.ceil(lifetime / intvl);//１スキル分のHIT回数
+			fullcnt = Math.floor(atkcnt / hitcnt);//１スキル分全部HITするスキル使用回数
+			amarihit = atkcnt - fullcnt * hitcnt;//最後のスキル使用分で１スキル分全部HITしないHIT回数
+			reduce = this.GetUnderLifeTime();//オブジェクト維持時間よりディレイ・CT時間が短い場合その時間
+
+			//（詠唱時間＋１スキル分HIT時間＋オブジェクト維持時間を超えるディレイまたはクールタイム）×（HITフル使用のスキル回数）＋（HITフルでないHIT回数×インターバル）－オブジェクト維持時間よりディレイ・CT時間が短い場合その時間×（スキル回数－１）
+			return (casttime + lifetime + overtime) * fullcnt + (amarihit * intvl) - reduce * ((skillcnt > 1) ? (skillcnt - 1) : 0);
 		}
 	};
 
