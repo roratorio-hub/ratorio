@@ -20967,22 +20967,22 @@ function CSkillManager() {
 				return 40 + 8 * skillLv;
 			}
 
-			this.Power = function(skillLv, charaDataManger) {
-				var pow = 0;
-				var seirei = 0;
+			//this.Power = function(skillLv, charaDataManger) {
+			//	var pow = 0;
+			//	var seirei = 0;
 
 				// 基本式
-				pow = 70 * skillLv + 3 * charaDataManger.GetCharaInt();
+			//	pow = 70 * skillLv + 3 * charaDataManger.GetCharaInt();
 
 				// ベースレベル補正
-				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 100);
+			//	pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 100);
 
-				return pow;
-			}
+			//	return pow;
+			//}
 
-			this.hitCount = function(skillLv, charaDataManger) {
-				return 2 + skillLv;
-			}
+			//this.hitCount = function(skillLv, charaDataManger) {
+			//	return 2 + skillLv;
+			//}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {
 				return 2750 + 1250 * skillLv;
