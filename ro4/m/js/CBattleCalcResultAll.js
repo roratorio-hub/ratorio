@@ -311,6 +311,28 @@ function CBattleCalcResultAll () {
 
 
 	/**
+	 * オブジェクト維持時間を返す.
+	 * @return 概算攻撃間隔
+	 */
+	this.GetLifeTime = function () {
+		var resultWork = null;
+		var lifetime = 0;
+
+		// アクティブ系列があればそれを採用
+		if (this.activeResultArray.length > 0) {
+			resultWork = this.activeResultArray[0];
+			lifetime = resultWork.objectLifeTime;//スキルの持続時間
+
+			return (lifetime / 1000);
+		}
+
+		// エラーの場合
+		return 0;
+	};
+
+
+	
+	/**
 	 * ディレイまたはクールタイムがオブジェクト維持時間より小さい場合に、その時間を返す.
 	 * @return 概算攻撃間隔
 	 */
