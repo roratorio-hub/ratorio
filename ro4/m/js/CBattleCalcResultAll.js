@@ -761,17 +761,18 @@ function CBattleCalcResultAll () {
 			fullcnt = Math.floor(atkcnt / hitcnt);//１スキル分全部HITするスキル使用回数
 			amarihit = atkcnt - fullcnt * hitcnt;//最後のスキル使用分で１スキル分全部HITしないHIT回数
 			reduce = this.GetUnderLifeTime();//オブジェクト維持時間よりディレイ・CT時間が短い場合その時間
-			console.log('In GetAttackSecondSummaryMinInterval : intvl=%f, atkcnt=%f, skillcnt=%f, hitcnt=%f, fullcnt=%f, casttime=%f, amarihit=%f, overtime=%f, reduce=%f', intvl, atkcnt, skillcnt, hitcnt, fullcnt, casttime, amarihit, overtime, reduce);
 			//スキル１回で倒した場合
 			if (skillcnt <= 1) {
 				return casttime + (amarihit * intvl);
 			}
-			//スキルn回でちょうど倒した場合
-			if (skillcnt == fullcnt) {
-				return casttime * (fullcnt - 1) + (lifetime + overtime) * fullcnt;
-			}
 			//（詠唱時間＋１スキル分HIT時間＋オブジェクト維持時間を超えるディレイまたはクールタイム）×（HITフル使用のスキル使用回数）
-			ret = (casttime + lifetime + overtime) * fullcnt;
+			//スキルn回でちょうど倒した場合は、fullcnt を１回分減らし、 amarihit を hitcnt と同じ（全部HIT）にする
+			if (skillcnt == fullcnt) {
+				ret = (casttime + lifetime + overtime) * (fullcnt - 1);
+				amarihit = hitcnt;
+			} else {
+				ret = (casttime + lifetime + overtime) * fullcnt;
+			}
 			//オブジェクト維持時間が完了してから次の詠唱が始まる場合
 			if (overtime > 0) {
 				ret += (casttime + (amarihit * intvl));
@@ -832,13 +833,14 @@ function CBattleCalcResultAll () {
 			if (skillcnt <= 1) {
 				return casttime + (amarihit * intvl);
 			}
-			//スキルn回でちょうど倒した場合
-			if (skillcnt == fullcnt) {
-				return casttime * (fullcnt - 1) + (lifetime + overtime) * fullcnt;
-			}
 			//（詠唱時間＋１スキル分HIT時間＋オブジェクト維持時間を超えるディレイまたはクールタイム）×（HITフル使用のスキル使用回数）
-			ret = (casttime + lifetime + overtime) * fullcnt;
-			console.log(' (casttime + lifetime + overtime) * fullcnt=%f', ret);
+			//スキルn回でちょうど倒した場合は、fullcnt を１回分減らし、 amarihit を hitcnt と同じ（全部HIT）にする
+			if (skillcnt == fullcnt) {
+				ret = (casttime + lifetime + overtime) * (fullcnt - 1);
+				amarihit = hitcnt;
+			} else {
+				ret = (casttime + lifetime + overtime) * fullcnt;
+			}
 			//オブジェクト維持時間が完了してから次の詠唱が始まる場合
 			if (overtime > 0) {
 				ret += (casttime + (amarihit * intvl));
@@ -899,16 +901,17 @@ function CBattleCalcResultAll () {
 			if (skillcnt <= 1) {
 				return casttime + (amarihit * intvl);
 			}
-			//スキルn回でちょうど倒した場合
-			if (skillcnt == fullcnt) {
-				return casttime * (fullcnt - 1) + (lifetime + overtime) * fullcnt;
-			}
 			//（詠唱時間＋１スキル分HIT時間＋オブジェクト維持時間を超えるディレイまたはクールタイム）×（HITフル使用のスキル使用回数）
-			ret = (casttime + lifetime + overtime) * fullcnt;
+			//スキルn回でちょうど倒した場合は、fullcnt を１回分減らし、 amarihit を hitcnt と同じ（全部HIT）にする
+			if (skillcnt == fullcnt) {
+				ret = (casttime + lifetime + overtime) * (fullcnt - 1);
+				amarihit = hitcnt;
+			} else {
+				ret = (casttime + lifetime + overtime) * fullcnt;
+			}
 			//オブジェクト維持時間が完了してから次の詠唱が始まる場合
 			if (overtime > 0) {
 				ret += (casttime + (amarihit * intvl));
-				console.log(' (casttime + (amarihit * intvl))=%f', (casttime + (amarihit * intvl)));
 				return ret;
 			}
 			//オブジェクト維持時間が完了する前に次の詠唱が始まる場合
