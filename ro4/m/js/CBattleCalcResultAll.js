@@ -770,6 +770,7 @@ function CBattleCalcResultAll () {
 			//オブジェクト維持時間が完了してから次の詠唱が始まる場合
 			if (overtime > 0) {
 				ret += (casttime + (amarihit * intvl));
+				return ret;
 			}
 			//オブジェクト維持時間が完了する前に次の詠唱が始まる場合
 			if (reduce < casttime) {
@@ -829,6 +830,7 @@ function CBattleCalcResultAll () {
 			//オブジェクト維持時間が完了してから次の詠唱が始まる場合
 			if (overtime > 0) {
 				ret += (casttime + (amarihit * intvl));
+				return ret;
 			}
 			//オブジェクト維持時間が完了する前に次の詠唱が始まる場合
 			if (reduce < casttime) {
@@ -888,6 +890,7 @@ function CBattleCalcResultAll () {
 			//オブジェクト維持時間が完了してから次の詠唱が始まる場合
 			if (overtime > 0) {
 				ret += (casttime + (amarihit * intvl));
+				return ret;
 			}
 			//オブジェクト維持時間が完了する前に次の詠唱が始まる場合
 			if (reduce < casttime) {
