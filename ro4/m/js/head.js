@@ -12769,7 +12769,7 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 	};
 
 	var funcDIG3PXCount = function (valueF, pointCountF) {
-		return funcDIG3PX(valueF, pointCountF, " 回");
+		return funcDIG3PX(valueF, pointCountF, " Hit(s)");
 	};
 
 	var funcPerMill = function (valueF) {
@@ -12897,6 +12897,38 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 			);
 		};
 
+		
+		// 合計ダメージ表示を取得する
+		var funcGetJoinDmgText2 = function (arrayFF, funcDigFF, funcDigParamFF, counts) {
+			return arrayFF.reduce(
+				(accFFF, curFFF) => {
+
+					var valFFF = "";
+
+					if (accFFF.length > 0) {
+						valFFF = " + ";
+					}
+					if (!counts){
+						counts = 1;
+					}
+
+					valFFF += funcDigFF(curFFF[0] * counts, funcDigParamFF);
+
+					if (curFFF[1] > 1) {
+						valFFF = funcDigFF(curFFF[0] * counts * curFFF[1], funcDigParamFF);
+					}
+
+					if (curFFF[2] > 1) {
+						valFFF = funcDigFF(curFFF[0] * counts * curFFF[2], funcDigParamFF);
+					}
+
+					return (accFFF + valFFF);
+				},
+				""
+			);
+		};
+
+
 
 
 		// クリティカル率を取得
@@ -12966,6 +12998,14 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 			HtmlCreateTextNode(funcGetJoinDmgText(battleCalcResultF.GetDamageSummaryCriMin(true), funcDIG3PX, 0), funcCreateCellF(false));
 			HtmlCreateTextNode(funcGetSumDmgText(battleCalcResultF.GetDamageSummaryCriMin(true), funcDIG3PX, 0), funcCreateCellF(true));
 		}
+		// 1サイクルダメージ
+		HtmlCreateTextNode(funcGetJoinDmgText2(battleCalcResultF.GetDamageSummaryMin(true), funcDIG3PX, 0, n_Delay[6]/n_Delay[5]), funcCreateCellF(false));
+		HtmlCreateTextNode(funcGetSumDmgText(battleCalcResultF.GetDamageSummaryMin(true), funcDIG3PX, 0), funcCreateCellF(true));
+		// クリティカル
+		if (criRateF > 0) {
+			HtmlCreateTextNode(funcGetJoinDmgText2(battleCalcResultF.GetDamageSummaryCriMin(true), funcDIG3PX, 0, 1), funcCreateCellF(false));
+			HtmlCreateTextNode(funcGetSumDmgText(battleCalcResultF.GetDamageSummaryCriMin(true), funcDIG3PX, 0), funcCreateCellF(true));
+		}
 
 
 		//----------------
@@ -12987,6 +13027,14 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 			HtmlCreateTextNode(funcGetJoinDmgText(battleCalcResultF.GetDamageSummaryCriAve(true), funcDIG3PX, 0), funcCreateCellF(false));
 			HtmlCreateTextNode(funcGetSumDmgText(battleCalcResultF.GetDamageSummaryCriAve(true), funcDIG3PX, 0), funcCreateCellF(true));
 		}
+		// 1サイクルダメージ
+		HtmlCreateTextNode(funcGetJoinDmgText2(battleCalcResultF.GetDamageSummaryAve(true), funcDIG3PX, 0, n_Delay[6]/n_Delay[5]), funcCreateCellF(false));
+		HtmlCreateTextNode(funcGetSumDmgText(battleCalcResultF.GetDamageSummaryAve(true), funcDIG3PX, 0), funcCreateCellF(true));
+		// クリティカル
+		if (criRateF > 0) {
+			HtmlCreateTextNode(funcGetJoinDmgText2(battleCalcResultF.GetDamageSummaryCriAve(true), funcDIG3PX, 0, 1), funcCreateCellF(false));
+			HtmlCreateTextNode(funcGetSumDmgText(battleCalcResultF.GetDamageSummaryCriAve(true), funcDIG3PX, 0), funcCreateCellF(true));
+		}
 
 
 		//----------------
@@ -13006,6 +13054,14 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 		// クリティカル
 		if (criRateF > 0) {
 			HtmlCreateTextNode(funcGetJoinDmgText(battleCalcResultF.GetDamageSummaryCriMax(true), funcDIG3PX, 0), funcCreateCellF(false));
+			HtmlCreateTextNode(funcGetSumDmgText(battleCalcResultF.GetDamageSummaryCriMax(true), funcDIG3PX, 0), funcCreateCellF(true));
+		}
+		// 1サイクルダメージ
+		HtmlCreateTextNode(funcGetJoinDmgText2(battleCalcResultF.GetDamageSummaryMax(true), funcDIG3PX, 0, n_Delay[6]/n_Delay[5]), funcCreateCellF(false));
+		HtmlCreateTextNode(funcGetSumDmgText(battleCalcResultF.GetDamageSummaryMax(true), funcDIG3PX, 0), funcCreateCellF(true));
+		// クリティカル
+		if (criRateF > 0) {
+			HtmlCreateTextNode(funcGetJoinDmgText2(battleCalcResultF.GetDamageSummaryCriMax(true), funcDIG3PX, 0, 1), funcCreateCellF(false));
 			HtmlCreateTextNode(funcGetSumDmgText(battleCalcResultF.GetDamageSummaryCriMax(true), funcDIG3PX, 0), funcCreateCellF(true));
 		}
 	};
@@ -13435,6 +13491,19 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 		objCell.classList.add("CSSCLS_BTLRSLT_CENTERING");
 		HtmlCreateTextNode("クリティカル", objCell);
 	}
+	objCell = HtmlCreateElement("div", objGridDmg);
+	objCell.classList.add("BTLRSLT_TAB_DAMAGE");
+	objCell.classList.add(partIdStr);
+	objCell.classList.add("CSSCLS_BTLRSLT_CENTERING");
+	HtmlCreateTextNode("1サイクルダメ", objCell);
+	// クリティカル
+	if (criRate > 0) {
+		objCell = HtmlCreateElement("div", objGridDmg);
+		objCell.classList.add("BTLRSLT_TAB_DAMAGE");
+		objCell.classList.add(partIdStr);
+		objCell.classList.add("CSSCLS_BTLRSLT_CENTERING");
+		HtmlCreateTextNode("1サイクル(クリダメ)", objCell);
+	}
 
 
 	//----------------
@@ -13495,14 +13564,14 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 	objCell.classList.add("BTLRSLT_TAB_DAMAGE");
 	objCell.classList.add(partIdStr);
 	objCell.classList.add("CSSCLS_BTLRSLT_CENTERING");
-	HtmlCreateTextNode("一撃", objCell);
+	HtmlCreateTextNode("1Hit", objCell);
 
 	// 秒間
 	objCell = HtmlCreateElement("div", objGridDmg);
 	objCell.classList.add("BTLRSLT_TAB_DAMAGE");
 	objCell.classList.add(partIdStr);
 	objCell.classList.add("CSSCLS_BTLRSLT_CENTERING");
-	HtmlCreateTextNode("秒間", objCell);
+	HtmlCreateTextNode("DPS", objCell);
 
 	//----------------
 	// 最小ダメージ
