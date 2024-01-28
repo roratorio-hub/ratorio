@@ -768,7 +768,6 @@ function CBattleCalcResultAll () {
 				return casttime + (((amarihit > 0) ? amarihit : hitcnt) * intvl);
 			}
 			//（詠唱時間＋１スキル分HIT時間＋オブジェクト維持時間を超えるディレイまたはクールタイム）×（HITフル使用のスキル使用回数）
-			//スキルn回でちょうど倒した場合は、fullcnt を１回分減らし、 amarihit を hitcnt と同じ（全部HIT）にする
 			ret = (casttime + lifetime + ((overtime >= 0) ? overtime : 0)) * fullcnt;
 			if (skillcnt == fullcnt) {
 				bJust = true;
@@ -834,7 +833,6 @@ function CBattleCalcResultAll () {
 				return casttime + (((amarihit > 0) ? amarihit : hitcnt) * intvl);
 			}
 			//（詠唱時間＋１スキル分HIT時間＋オブジェクト維持時間を超えるディレイまたはクールタイム）×（HITフル使用のスキル使用回数）
-			//スキルn回でちょうど倒した場合は、fullcnt を１回分減らし、 amarihit を hitcnt と同じ（全部HIT）にする
 			ret = (casttime + lifetime + ((overtime >= 0) ? overtime : 0)) * fullcnt;
 			if (skillcnt == fullcnt) {
 				bJust = true;
@@ -900,7 +898,6 @@ function CBattleCalcResultAll () {
 				return casttime + (((amarihit > 0) ? amarihit : hitcnt) * intvl);
 				}
 				//（詠唱時間＋１スキル分HIT時間＋オブジェクト維持時間を超えるディレイまたはクールタイム）×（HITフル使用のスキル使用回数）
-				//スキルn回でちょうど倒した場合は、fullcnt を１回分減らし、 amarihit を hitcnt と同じ（全部HIT）にする
 				ret = (casttime + lifetime + ((overtime >= 0) ? overtime : 0)) * fullcnt;
 				if (skillcnt == fullcnt) {
 					bJust = true;
