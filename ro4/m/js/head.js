@@ -8619,15 +8619,30 @@ else {
 			break;
 
 		case SKILL_ID_PSYCHIC_WAVE:
+
+g_bDefinedDamageIntervals = true;
+	
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);//2750 + 1250 * n_A_ActiveSkillLV;
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);//2250 - 250 * n_A_ActiveSkillLV;
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);//1000
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);//5000
+	
+			// ダメージ間隔
+			n_Delay[5] = 500;
+	
+			// オブジェクト存続時間
+			n_Delay[6] = 1000 + (n_A_ActiveSkillLV * 500);
+	
+			// 属性の設定
 			if(n_AS_MODE == 0) n_A_Weapon_zokusei = attackMethodConfArray[0].GetOptionValue(0);
 			else n_A_Weapon_zokusei = 0;
-			wHITsuu = 2 + n_A_ActiveSkillLV;
-			wCast = 2750 + 1250 * n_A_ActiveSkillLV;
-			n_KoteiCast = 2250 - 250 * n_A_ActiveSkillLV;
-			n_Delay[2] = 1000;
-			n_Delay[7] = 5000;
+	
 			wbairitu = 70 * n_A_ActiveSkillLV + 3 * n_A_INT;
-			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
+	
+			// ベースレベル補正
+			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = ROUNDDOWN(wbairitu);
 			break;
 
 		case SKILL_ID_CLOUD_KILL:
