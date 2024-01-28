@@ -765,7 +765,7 @@ function CBattleCalcResultAll () {
 			reduce = this.GetUnderLifeTime();//オブジェクト維持時間よりディレイ・CT時間が短い場合その時間
 			//スキル１回で倒した場合
 			if (skillcnt <= 1) {
-				return casttime + (amarihit * intvl);
+				return casttime + (((amarihit > 0) ? amarihit : hitcnt) * intvl);
 			}
 			//（詠唱時間＋１スキル分HIT時間＋オブジェクト維持時間を超えるディレイまたはクールタイム）×（HITフル使用のスキル使用回数）
 			//スキルn回でちょうど倒した場合は、fullcnt を１回分減らし、 amarihit を hitcnt と同じ（全部HIT）にする
@@ -831,7 +831,7 @@ function CBattleCalcResultAll () {
 			reduce = this.GetUnderLifeTime();//オブジェクト維持時間よりディレイ・CT時間が短い場合その時間
 			//スキル１回で倒した場合
 			if (skillcnt <= 1) {
-				return casttime + (amarihit * intvl);
+				return casttime + (((amarihit > 0) ? amarihit : hitcnt) * intvl);
 			}
 			//（詠唱時間＋１スキル分HIT時間＋オブジェクト維持時間を超えるディレイまたはクールタイム）×（HITフル使用のスキル使用回数）
 			//スキルn回でちょうど倒した場合は、fullcnt を１回分減らし、 amarihit を hitcnt と同じ（全部HIT）にする
@@ -897,7 +897,7 @@ function CBattleCalcResultAll () {
 			reduce = this.GetUnderLifeTime();//オブジェクト維持時間よりディレイ・CT時間が短い場合その時間
 				//スキル１回で倒した場合
 				if (skillcnt <= 1) {
-					return casttime + (amarihit * intvl);
+				return casttime + (((amarihit > 0) ? amarihit : hitcnt) * intvl);
 				}
 				//（詠唱時間＋１スキル分HIT時間＋オブジェクト維持時間を超えるディレイまたはクールタイム）×（HITフル使用のスキル使用回数）
 				//スキルn回でちょうど倒した場合は、fullcnt を１回分減らし、 amarihit を hitcnt と同じ（全部HIT）にする
