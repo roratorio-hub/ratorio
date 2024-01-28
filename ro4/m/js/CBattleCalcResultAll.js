@@ -775,8 +775,8 @@ function CBattleCalcResultAll () {
 			//オブジェクト維持時間が完了してから次の詠唱が始まる場合
 			if (overtime >= 0) {
 				//最後の発動分の、詠唱時間＋端数のHIT時間を加える
-				//bJust == true の場合は、過剰に引いた casttime １回分を戻す
-				ret += (bJust == true) ? casttime : (casttime + (amarihit * intvl));
+				//bJust == true の場合は、過剰に加えた overtime １回分を戻す
+				ret += (bJust == true) ? -overtime : (casttime + (amarihit * intvl));
 				return ret;
 			}
 
@@ -840,8 +840,8 @@ function CBattleCalcResultAll () {
 			//オブジェクト維持時間が完了してから次の詠唱が始まる場合
 			if (overtime >= 0) {
 				//最後の発動分の、詠唱時間＋端数のHIT時間を加える
-				//bJust == true の場合は、過剰に引いた casttime １回分を戻す
-				ret += (bJust == true) ? casttime : (casttime + (amarihit * intvl));
+				//bJust == true の場合は、過剰に加えた overtime １回分を戻す
+				ret += (bJust == true) ? -overtime : (casttime + (amarihit * intvl));
 				return ret;
 			}
 
@@ -905,8 +905,8 @@ function CBattleCalcResultAll () {
 				//オブジェクト維持時間が完了してから次の詠唱が始まる場合
 				if (overtime >= 0) {
 					//最後の発動分の、詠唱時間＋端数のHIT時間を加える
-					//bJust == true の場合は、過剰に引いた casttime １回分を戻す
-					ret += (bJust == true) ? casttime : (casttime + (amarihit * intvl));
+					//bJust == true の場合は、過剰に加えた overtime １回分を戻す
+					ret += (bJust == true) ? -overtime : (casttime + (amarihit * intvl));
 					return ret;
 				}
 	
