@@ -12784,7 +12784,7 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 	};
 
 	var funcDIG3PXCount = function (valueF, pointCountF) {
-		return funcDIG3PX(valueF, pointCountF, " Hit(s)");
+		return funcDIG3PX(valueF, pointCountF, (valueF == 1) ? " Hit" : " Hits");
 	};
 
 	var funcPerMill = function (valueF) {
