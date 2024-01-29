@@ -11741,6 +11741,16 @@ function ApplyMagicalSpecializeMonsterMod20211014SubSpecializeMap(charaData, spe
 		}
 	}
 
+	//--------------------------------
+	// アルデバラン時計塔地下 未知の空間特化
+	//--------------------------------
+	if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_TOKEITO_MICHI_NO_KUUKAN]) == 1){
+		if ((cardCount = CardNumSearch(CARD_ID_GENERAL_ORK)) > 0) {
+			wX += 30 * cardCount;
+		}
+	}
+
+	
 
 
 	//--------------------------------
@@ -22039,6 +22049,15 @@ function ApplyPhysicalSpecializeMonster(charaData, specData, mobData, dmg) {
 	//--------------------------------
 	if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_HEBIGAMINO_NUKUMORI]) == 1){
 		if ((cardCount = CardNumSearch(CARD_ID_SAIKAKYU_RGAN)) > 0) {
+			w += 30 * cardCount;
+		}
+	}
+
+	//--------------------------------
+	// アルデバラン時計塔地下 未知の空間特化
+	//--------------------------------
+	if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_TOKEITO_MICHI_NO_KUUKAN]) == 1){
+		if ((cardCount = CardNumSearch(CARD_ID_GENERAL_ORK)) > 0) {
 			w += 30 * cardCount;
 		}
 	}
