@@ -496,6 +496,7 @@ function CBattleCalcResult () {
 
 		var dmg = 0;
 		var dmgArray = null;
+		var actInterval = 0;
 
 //		var actInterval = castVary + castFixed + attackInterval;
 		if (g_bDefinedDamageIntervals){
@@ -503,7 +504,7 @@ function CBattleCalcResult () {
 		}
 		else {
 			if (this.coolTime && this.hitCountArray[0][1]) {
-				var actInterval = this.coolTime;
+				actInterval = this.coolTime;
 			}
 			else {
 				actInterval = attackInterval;
@@ -559,6 +560,7 @@ function CBattleCalcResult () {
 
 		var dmg = 0;
 		var dmgArray = null;
+		var actInterval = 0;
 
 //		var actInterval = castVary + castFixed + attackInterval;
 		if (g_bDefinedDamageIntervals){
@@ -566,7 +568,7 @@ function CBattleCalcResult () {
 		}
 		else {
 			if (this.coolTime && this.hitCountArray[0][1]) {
-				var actInterval = this.coolTime;
+				actInterval = this.coolTime;
 			}
 			else {
 				actInterval = attackInterval;
@@ -609,6 +611,7 @@ function CBattleCalcResult () {
 
 		var dmg = 0;
 		var dmgArray = null;
+		var actInterval = 0;
 
 //		var actInterval = castVary + castFixed + attackInterval;
 		if (g_bDefinedDamageIntervals){
@@ -616,7 +619,7 @@ function CBattleCalcResult () {
 		}
 		else {
 			if (this.coolTime && this.hitCountArray[0][1]) {
-				var actInterval = this.coolTime;
+				actInterval = this.coolTime;
 			}
 			else {
 				actInterval = attackInterval;
