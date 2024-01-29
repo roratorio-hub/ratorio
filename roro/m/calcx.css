@@ -321,7 +321,7 @@ td.CSSCLS_EXTRA_INFO_DISP_TABLE_SKILL_CARD_NG {
 
 :is(#BATTLE_RESULT_BASIC, #BATTLE_RESULT_DAMAGE) {
 	display: grid;
-	grid-template-columns: repeat(5, minmax(7em, max-content));
+	grid-template-columns: repeat(minmax(3, 5), minmax(7em, max-content));
 	gap: 2px;
 	padding: 2px;
 	border: 1px solid black;

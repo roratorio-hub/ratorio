@@ -496,8 +496,21 @@ function CBattleCalcResult () {
 
 		var dmg = 0;
 		var dmgArray = null;
+		var actInterval = 0;
 
-		var actInterval = castVary + castFixed + attackInterval;
+//		var actInterval = castVary + castFixed + attackInterval;
+		if (g_bDefinedDamageIntervals){
+			actInterval = attackInterval;
+		}
+		else {
+			if (this.coolTime && this.hitCountArray[0][1]) {
+				actInterval = this.coolTime;
+			}
+			else {
+				actInterval = attackInterval;
+			}
+		}
+
 
 
 		// 発生率が 100% 未満の場合、未発生（0 ダメージ）が最小
@@ -547,8 +560,21 @@ function CBattleCalcResult () {
 
 		var dmg = 0;
 		var dmgArray = null;
+		var actInterval = 0;
 
-		var actInterval = castVary + castFixed + attackInterval;
+//		var actInterval = castVary + castFixed + attackInterval;
+		if (g_bDefinedDamageIntervals){
+			actInterval = attackInterval;
+		}
+		else {
+			if (this.coolTime && this.hitCountArray[0][1]) {
+				actInterval = this.coolTime;
+			}
+			else {
+				actInterval = attackInterval;
+			}
+		}
+
 
 
 
@@ -585,8 +611,21 @@ function CBattleCalcResult () {
 
 		var dmg = 0;
 		var dmgArray = null;
+		var actInterval = 0;
 
-		var actInterval = castVary + castFixed + attackInterval;
+//		var actInterval = castVary + castFixed + attackInterval;
+		if (g_bDefinedDamageIntervals){
+			actInterval = attackInterval;
+		}
+		else {
+			if (this.coolTime && this.hitCountArray[0][1]) {
+				actInterval = this.coolTime;
+			}
+			else {
+				actInterval = attackInterval;
+			}
+		}
+
 
 
 

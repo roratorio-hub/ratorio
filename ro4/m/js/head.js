@@ -12956,7 +12956,7 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 		//----------------
 		objCellF = HtmlCreateElement("div", objGridF);
 		objCellF.style.gridColumnStart = "1";
-		objCellF.style.gridColumnEnd = "-1";
+		objCellF.style.gridColumnEnd = "6";
 		objCellF.classList.add("BTLRSLT_TAB_DAMAGE");
 		objCellF.classList.add(partIdStr);
 		// ラベルCSS変更
@@ -12973,7 +12973,7 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 		if (n_Buki_Muri) {
 			objCellF = HtmlCreateElement("div", objGridF);
 			objCellF.style.gridColumnStart = "1";
-			objCellF.style.gridColumnEnd = "-1";
+			objCellF.style.gridColumnEnd = "6";
 			objCellF.classList.add("BTLRSLT_TAB_DAMAGE");
 			objCellF.classList.add(partIdStr);
 			objCellF.classList.add("CSSCLS_BTLRSLT_DISUSABLE");
@@ -12985,7 +12985,7 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 		if (g_bSkillNoDamage) {
 			objCellF = HtmlCreateElement("div", objGridF);
 			objCellF.style.gridColumnStart = "1";
-			objCellF.style.gridColumnEnd = "-1";
+			objCellF.style.gridColumnEnd = "6";
 			objCellF.classList.add("BTLRSLT_TAB_DAMAGE");
 			objCellF.classList.add(partIdStr);
 			objCellF.classList.add("CSSCLS_BTLRSLT_DISUSABLE");
@@ -13468,7 +13468,12 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 	objCell = HtmlCreateElement("div", objGridDmg);
 	objCell.style.position = "relative";
 	objCell.style.gridColumnStart = "1";
-	objCell.style.gridColumnEnd = "-1";
+	if (criRate > 0) {
+		objCell.style.gridColumnEnd = "6";
+	}
+	else {
+		objCell.style.gridColumnEnd = "4";
+	}
 	objCell.classList.add("BTLRSLT_TAB_DAMAGE");
 	objCell.classList.add("CSSCLS_BTLRSLT_HEADER");
 
@@ -13558,7 +13563,12 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 	//----------------
 	objCell = HtmlCreateElement("div", objGridDmg);
 	objCell.style.gridColumnStart = "1";
-	objCell.style.gridColumnEnd = "-1";
+	if (criRate > 0) {
+		objCell.style.gridColumnEnd = "6";
+	}
+	else {
+		objCell.style.gridColumnEnd = "4";
+	}
 	objCell.classList.add("BTLRSLT_TAB_DAMAGE");
 	objCell.classList.add(partIdStr);
 	objCell.classList.add("CSSCLS_BTLRSLT_PERSEC_LABEL");
@@ -13706,7 +13716,12 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 	//----------------
 	objCell = HtmlCreateElement("div", objGridDmg);
 	objCell.style.gridColumnStart = "1";
-	objCell.style.gridColumnEnd = "-1";
+	if (criRate > 0) {
+		objCell.style.gridColumnEnd = "6";
+	}
+	else {
+		objCell.style.gridColumnEnd = "4";
+	}
 	objCell.classList.add("BTLRSLT_TAB_RESULT");
 	objCell.classList.add("CSSCLS_BTLRSLT_HEADER");
 	funcAppendCheckbox(objCell, partIdStr, "攻撃回数", uncheckedMap.get(partIdStr), funcOnChangeChkPart);
@@ -13836,7 +13851,12 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 	//----------------
 	objCell = HtmlCreateElement("div", objGridDmg);
 	objCell.style.gridColumnStart = "1";
-	objCell.style.gridColumnEnd = "-1";
+	if (criRate > 0) {
+		objCell.style.gridColumnEnd = "6";
+	}
+	else {
+		objCell.style.gridColumnEnd = "4";
+	}
 	objCell.classList.add("BTLRSLT_TAB_RESULT");
 	objCell.classList.add("CSSCLS_BTLRSLT_HEADER");
 	funcAppendCheckbox(objCell, partIdStr, "経験値効率", uncheckedMap.get(partIdStr), funcOnChangeChkPart);
@@ -13935,7 +13955,12 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 	//----------------
 	objCell = HtmlCreateElement("div", objGridDmg);
 	objCell.style.gridColumnStart = "1";
-	objCell.style.gridColumnEnd = "-1";
+	if (criRate > 0) {
+		objCell.style.gridColumnEnd = "6";
+	}
+	else {
+		objCell.style.gridColumnEnd = "4";
+	}
 	objCell.classList.add("BTLRSLT_TAB_RESULT");
 	objCell.classList.add("CSSCLS_BTLRSLT_HEADER");
 	funcAppendCheckbox(objCell, partIdStr, "被ダメージ（仮）", uncheckedMap.get(partIdStr), funcOnChangeChkPart);
