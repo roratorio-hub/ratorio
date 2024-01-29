@@ -503,11 +503,11 @@ function CBattleCalcResult () {
 			actInterval = attackInterval;
 		}
 		else {
-			if (this.coolTime && this.hitCountArray[0][1]) {
+			if (this.coolTime && (this.hitCountArray[0][1] > 1)) {
 				actInterval = this.coolTime;
 			}
 			else {
-				actInterval = attackInterval;
+				actInterval = castVary + castFixed + attackInterval;
 			}
 		}
 
@@ -567,11 +567,11 @@ function CBattleCalcResult () {
 			actInterval = attackInterval;
 		}
 		else {
-			if (this.coolTime && this.hitCountArray[0][1]) {
+			if (this.coolTime && (this.hitCountArray[0][1] > 1)) {
 				actInterval = this.coolTime;
 			}
 			else {
-				actInterval = attackInterval;
+				actInterval = castVary + castFixed + attackInterval;
 			}
 		}
 
@@ -618,11 +618,11 @@ function CBattleCalcResult () {
 			actInterval = attackInterval;
 		}
 		else {
-			if (this.coolTime && this.hitCountArray[0][1]) {
+			if (this.coolTime && (this.hitCountArray[0][1] > 1)) {
 				actInterval = this.coolTime;
 			}
 			else {
-				actInterval = attackInterval;
+				actInterval = castVary + castFixed + attackInterval;
 			}
 		}
 
