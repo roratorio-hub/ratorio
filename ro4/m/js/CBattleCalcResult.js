@@ -507,7 +507,7 @@ function CBattleCalcResult () {
 				actInterval = this.coolTime;
 			}
 			else {
-				actInterval = attackInterval;
+				actInterval = castVary + castFixed + attackInterval;
 			}
 		}
 
@@ -571,7 +571,7 @@ function CBattleCalcResult () {
 				actInterval = this.coolTime;
 			}
 			else {
-				actInterval = attackInterval;
+				actInterval = castVary + castFixed + attackInterval;
 			}
 		}
 
@@ -622,7 +622,7 @@ function CBattleCalcResult () {
 				actInterval = this.coolTime;
 			}
 			else {
-				actInterval = attackInterval;
+				actInterval = castVary + castFixed + attackInterval;
 			}
 		}
 
