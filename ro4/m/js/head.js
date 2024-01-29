@@ -12926,6 +12926,9 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 					if (!counts){
 						counts = 1;
 					}
+					else if (counts === Infinity) {
+						counts = 1;
+					}
 
 					valFFF += funcDigFF(curFFF[0] * counts, funcDigParamFF);
 
