@@ -25,6 +25,8 @@ capabilities:
     code: 29
   - name: 動物型への物理ダメージ増加  
     code: 32
+  - name: 無属性耐性
+    code: 60
   - name: 水属性耐性
     code: 61
   - name: 土属性耐性
