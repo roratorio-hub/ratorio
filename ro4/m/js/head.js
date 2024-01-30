@@ -12926,6 +12926,9 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 					if (!counts){
 						counts = 1;
 					}
+					else if (counts === Infinity) {
+						counts = 1;
+					}
 
 					valFFF += funcDigFF(curFFF[0] * counts, funcDigParamFF);
 
@@ -13589,7 +13592,12 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 	objCell.classList.add("BTLRSLT_TAB_DAMAGE");
 	objCell.classList.add(partIdStr);
 	objCell.classList.add("CSSCLS_BTLRSLT_CENTERING");
-	HtmlCreateTextNode("1Hit", objCell);
+	if (g_bDefinedDamageIntervals) {
+		HtmlCreateTextNode("1Hit", objCell);
+	}
+	else {
+		HtmlCreateTextNode("1Shot", objCell);
+	}
 
 	// 秒間
 	objCell = HtmlCreateElement("div", objGridDmg);
