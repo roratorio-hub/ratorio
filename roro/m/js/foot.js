@@ -3601,7 +3601,7 @@ if (_APPLY_UPDATE_LV200) {
 		//----------------------------------------------------------------
 		// 遠距離物理攻撃限定の効果
 		//----------------------------------------------------------------
-		if (IsLongRange(n_A_Equip[EQUIP_REGION_ID_ARMS]) || UsedSkillSearch(SKILL_ID_SOUL_ATTACK)) {
+		if (n_Enekyori === 1 ||	IsLongRange(n_A_Equip[EQUIP_REGION_ID_ARMS]) || UsedSkillSearch(SKILL_ID_SOUL_ATTACK)) {
 			w += n_tok[ITEM_SP_LONGRANGE_CRI_PLUS];
 		}
 
