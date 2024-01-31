@@ -340,7 +340,7 @@ function CBattleCalcResultAll () {
 
 	/**
 	 * １HITごとの攻撃間隔の取得.
-	 * @return 概算攻撃間隔
+	 * @return １HITごとの攻撃間隔（秒）
 	 */
 	this.GetHitInterval = function () {
 
@@ -380,7 +380,7 @@ function CBattleCalcResultAll () {
 
 	/**
 	 * 変動＋固定詠唱時間の取得.
-	 * @return 概算攻撃間隔
+	 * @return 変動＋固定詠唱時間（秒）
 	 */
 	this.GetCastTime = function () {
 
@@ -401,7 +401,7 @@ function CBattleCalcResultAll () {
 
 	/**
 	 * オブジェクト維持時間を返す.
-	 * @return 概算攻撃間隔
+	 * @return オブジェクト維持時間（秒）
 	 */
 	this.GetLifeTime = function () {
 		var resultWork = null;
@@ -423,7 +423,7 @@ function CBattleCalcResultAll () {
 	
 	/**
 	 * ディレイまたはクールタイムがオブジェクト維持時間より小さい場合に、その時間を返す.
-	 * @return 概算攻撃間隔
+	 * @return ディレイまたはクールタイムがオブジェクト維持時間より小さい場合の時間（秒）
 	 */
 	this.GetUnderLifeTime = function () {
 		var resultWork = null;
@@ -455,7 +455,7 @@ function CBattleCalcResultAll () {
 
 	/**
 	 * ディレイまたはクールタイムがオブジェクト維持時間より大きい場合に、その時間を返す.
-	 * @return 概算攻撃間隔
+	 * @return ディレイまたはクールタイムがオブジェクト維持時間より大きい場合の時間（秒）
 	 */
 	this.GetOverLifeTime = function () {
 		var resultWork = null;
@@ -870,20 +870,6 @@ function CBattleCalcResultAll () {
 	 */
 	this.GetAttackSecondSummaryMinInterval = function () {
 		var dmg = this.GetDamageSummaryMaxPerAtk();
-		//var instobjlist = [];
-
-		//InstObjArray = new Array();
-		//var foo1 = new fooclass();
-		//foo1.init(1,3,5);
-		//foo1.setZ = 30;
-		//console.log('<<<<< foo1.getZ=%f, mul=%f >>>>>', foo1.getZ, foo1.multiply(5));
-
-		//InstObjFinalTime = 0.0;
-		//var instobj1 = new instobject();
-		//instobj1.init(0, 12, 0.0, 0.0, 0.0, 1.0, 3.5, 0.5);
-		//InstObjArray.push(instobj1);
-		//InstObjArray[0].exec();
-		//console.log('[[[[[ InstObjFinalTime=%f ]]]]]', InstObjFinalTime);
 
 		if (dmg <= 0) {
 			return "（計測不能）";
