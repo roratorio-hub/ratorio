@@ -1,4 +1,93 @@
 /**
+ * 設置スキル計算用クラス
+ */
+const instobject = class {
+	constructor() {
+		this.depth = 0;
+		this.maxcount = 0;
+		this.starttime = 0.0;
+		this.now = 0.0;
+		this.endtime = 0.0;
+		this.casttime = 0.0;
+		this.delay = 0.0;
+		this.cooltime = 0.0;
+		this.lifetime = 0.0;
+		this.interval = 0.0;
+		this.maxhit = 0;//スキル１回分のhit回数
+		this.skillinterval = 0.0;
+		this.undertime = 0.0;
+		this.child = null;
+	}
+
+	init(depth, maxcount, starttime, casttime, delay, cooltime, lifetime, interval) {
+		this.depth = depth;
+		this.maxcount = maxcount;
+		this.starttime = this.now = starttime;
+		this.casttime = casttime;
+		this.delay = delay;
+		this.cooltime = cooltime;
+		this.lifetime = lifetime;
+		this.interval = interval;
+		//
+		this.maxhit = this.lifetime / this.interval;
+		this.undertime = this.lifetime - ((this.delay > this.cooltime) ? this.delay : this.cooltime);//undertime が正数なら、削られる時間。負数なら、増える時間。
+		this.skillinterval = this.casttime + (this.lifetime - this.undertime);
+	}
+
+	getHitCount(now) {
+		var t;
+		t = now - (this.starttime + this.casttime);//オブジェクト設置開始時刻
+		if (t < 0) return 0;
+		return ((Math.floor(t / this.interval)+1) <= this.maxhit) ? (Math.floor(t / this.interval)+1) : this.maxhit;
+	}
+
+	getTotalCount() {
+		var tc = 0;
+		var cur = 0;
+		for (i = InstObjArray.length - 1; i >= 0; i--) {
+			cur = InstObjArray[i].getHitCount(this.now);
+			if (cur == this.maxhit) {
+				InstObjArray.splice(i, 1);//これ以上Hitの増えない要素を削除する
+				InstObjReleasedCount += this.maxhit;
+			} else {
+				tc += cur;
+			}
+		}
+		tc += InstObjReleasedCount;
+		return tc;
+	}
+
+	exec() {
+		var i;
+		var t0;
+
+		for (i = 0; i < this.maxhit; i++) {
+			t0 = this.starttime + this.casttime + (this.interval * i);
+			this.now = t0;
+			if (this.getTotalCount() >= this.maxcount) {//gettotalcount()では、このインスタンスの分も計算される
+					InstObjFinalTime = t0;
+				return true;//終了
+			}
+			//インターバル１個増やしたら、次のオブジェクトができる時間に届いたか超えた
+			if ((this.starttime + this.skillinterval) <= t0) {
+				this.child = new instobject();
+				InstObjArray.push(this.child);
+				InstObjArray[InstObjArray.length-1].init(this.depth+1, this.maxcount, this.starttime + this.skillinterval, this.casttime, this.delay, this.cooltime, this.lifetime, this.interval);
+				if (InstObjArray[InstObjArray.length-1].exec() == true) {
+					return true;//終了
+				}
+			}
+		}
+		return false;//まだおわらない
+	}
+}
+
+InstObjArray;//設置スキル計算オブジェクトの配列
+InstObjFinalTime;//設置スキルオブジェクトによる計算の結果
+InstObjReleasedCount;//設置スキルオブジェクトの計算中に解放されたインスタンスの分のHitカウントの総数
+
+
+/**
  * 戦闘結果クラス（全体）.
  */
 function CBattleCalcResultAll () {
@@ -397,6 +486,54 @@ function CBattleCalcResultAll () {
 
 
 	/**
+	 * ディレイを返す.
+	 * @return ディレイ（秒）
+	 */
+	this.GetDelayTime = function () {
+		var resultWork = null;
+		var lifetime = 0;
+		var cooltime = 0;
+		var delay = 0;
+		var overtime = 0;
+
+		// アクティブ系列があればそれを採用
+		if (this.activeResultArray.length > 0) {
+			resultWork = this.activeResultArray[0];
+			delay = resultWork.delaySkill;
+			return delay;
+		}
+
+		// エラーの場合
+		return 0;
+	};
+
+
+
+	/**
+	 * クールタイムを返す.
+	 * @return クールタイム（秒）
+	 */
+	this.GetCoolTime = function () {
+		var resultWork = null;
+		var lifetime = 0;
+		var cooltime = 0;
+		var delay = 0;
+		var overtime = 0;
+
+		// アクティブ系列があればそれを採用
+		if (this.activeResultArray.length > 0) {
+			resultWork = this.activeResultArray[0];
+			cooltime = resultWork.coolTime;
+			return cooltime;
+		}
+
+		// エラーの場合
+		return 0;
+	};
+
+
+
+	/**
 	 * 概算ダメージ（一撃最小）の取得.
 	 * @return 概算ダメージ（最小）
 	 */
@@ -733,6 +870,20 @@ function CBattleCalcResultAll () {
 	 */
 	this.GetAttackSecondSummaryMinInterval = function () {
 		var dmg = this.GetDamageSummaryMaxPerAtk();
+		//var instobjlist = [];
+
+		//InstObjArray = new Array();
+		//var foo1 = new fooclass();
+		//foo1.init(1,3,5);
+		//foo1.setZ = 30;
+		//console.log('<<<<< foo1.getZ=%f, mul=%f >>>>>', foo1.getZ, foo1.multiply(5));
+
+		//InstObjFinalTime = 0.0;
+		//var instobj1 = new instobject();
+		//instobj1.init(0, 12, 0.0, 0.0, 0.0, 1.0, 3.5, 0.5);
+		//InstObjArray.push(instobj1);
+		//InstObjArray[0].exec();
+		//console.log('[[[[[ InstObjFinalTime=%f ]]]]]', InstObjFinalTime);
 
 		if (dmg <= 0) {
 			return "（計測不能）";
@@ -778,8 +929,17 @@ function CBattleCalcResultAll () {
 				//bJust == true の場合は、過剰に加えた overtime １回分を戻す
 				ret += (bJust == true) ? -overtime : (casttime + (amarihit * intvl));
 				return ret;
+			} else {
+				//オブジェクト維持時間が完了する前に次の詠唱が始まる場合
+				var instobj1 = new instobject();
+				InstObjFinalTime = 0.0;
+				InstObjReleasedCount = 0;
+				InstObjArray = new Array();
+				instobj1.init(0, atkcnt, 0.0, casttime, this.GetDelayTime(), this.GetCoolTime(), lifetime, intvl);
+				InstObjArray.push(instobj1);
+				InstObjArray[0].exec();
+				return InstObjFinalTime;
 			}
-
 			//オブジェクト維持時間が完了する前に次の詠唱が始まる場合
 			if (bJust == true) {
 				ret -= reduce * ((skillcnt > 1) ? (skillcnt - 1) : 0);
@@ -843,8 +1003,17 @@ function CBattleCalcResultAll () {
 				//bJust == true の場合は、過剰に加えた overtime １回分を戻す
 				ret += (bJust == true) ? -overtime : (casttime + (amarihit * intvl));
 				return ret;
+			} else {
+				//オブジェクト維持時間が完了する前に次の詠唱が始まる場合
+				var instobj1 = new instobject();
+				InstObjFinalTime = 0.0;
+				InstObjReleasedCount = 0;
+				InstObjArray = new Array();
+				instobj1.init(0, atkcnt, 0.0, casttime, this.GetDelayTime(), this.GetCoolTime(), lifetime, intvl);
+				InstObjArray.push(instobj1);
+				InstObjArray[0].exec();
+				return InstObjFinalTime;
 			}
-
 			//オブジェクト維持時間が完了する前に次の詠唱が始まる場合
 			if (bJust == true) {
 				ret -= reduce * ((skillcnt > 1) ? (skillcnt - 1) : 0);
@@ -908,8 +1077,17 @@ function CBattleCalcResultAll () {
 					//bJust == true の場合は、過剰に加えた overtime １回分を戻す
 					ret += (bJust == true) ? -overtime : (casttime + (amarihit * intvl));
 					return ret;
+				} else {
+					//オブジェクト維持時間が完了する前に次の詠唱が始まる場合
+					var instobj1 = new instobject();
+					InstObjFinalTime = 0.0;
+					InstObjReleasedCount = 0;
+					InstObjArray = new Array();
+					instobj1.init(0, atkcnt, 0.0, casttime, this.GetDelayTime(), this.GetCoolTime(), lifetime, intvl);
+					InstObjArray.push(instobj1);
+					InstObjArray[0].exec();
+					return InstObjFinalTime;
 				}
-	
 				//オブジェクト維持時間が完了する前に次の詠唱が始まる場合
 				if (bJust == true) {
 					ret -= reduce * ((skillcnt > 1) ? (skillcnt - 1) : 0);
