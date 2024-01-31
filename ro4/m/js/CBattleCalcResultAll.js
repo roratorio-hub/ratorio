@@ -16,7 +16,6 @@ const instobject = class {
 		this.maxhit = 0;//スキル１回分のhit回数
 		this.skillinterval = 0.0;
 		this.undertime = 0.0;
-		this.child = null;
 	}
 
 	init(depth, maxcount, starttime, casttime, delay, cooltime, lifetime, interval) {
@@ -70,8 +69,7 @@ const instobject = class {
 			}
 			//インターバル１個増やしたら、次のオブジェクトができる時間に届いたか超えた
 			if ((this.starttime + this.skillinterval) <= t0) {
-				this.child = new instobject();
-				InstObjArray.push(this.child);
+				InstObjArray.push(new instobject());
 				InstObjArray[InstObjArray.length-1].init(this.depth+1, this.maxcount, this.starttime + this.skillinterval, this.casttime, this.delay, this.cooltime, this.lifetime, this.interval);
 				if (InstObjArray[InstObjArray.length-1].exec() == true) {
 					return true;//終了
