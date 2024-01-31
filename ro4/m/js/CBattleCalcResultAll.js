@@ -60,6 +60,13 @@ const instobject = class {
 		var i;
 		var t0;
 
+		//コールスタック安全装置
+		if (this.depth == 4000) {
+			InstObjIsApproximate = true;
+			InstObjFinalTime = this.starttime;
+			InstObjFinalCount = this.getTotalCount();
+			return true;
+		}
 		for (i = 0; i < this.maxhit; i++) {
 			t0 = this.starttime + this.casttime + (this.interval * i);
 			this.now = t0;
@@ -83,6 +90,9 @@ const instobject = class {
 InstObjArray;//設置スキル計算オブジェクトの配列
 InstObjFinalTime;//設置スキルオブジェクトによる計算の結果
 InstObjReleasedCount;//設置スキルオブジェクトの計算中に解放されたインスタンスの分のHitカウントの総数
+InstObjIsApproximate;//概算モードフラグ（コールスタック安全のために、再帰階層が限界値を超えた場合に真になる）
+InstObjFinalCount;//概算モードの際に用いる、処理中段時点までのHITの総数
+
 
 
 /**
@@ -917,11 +927,19 @@ function CBattleCalcResultAll () {
 				//オブジェクト維持時間が完了する前に次の詠唱が始まる場合
 				var instobj1 = new instobject();
 				InstObjFinalTime = 0.0;
+				InstObjFinalCount = 0;
 				InstObjReleasedCount = 0;
+				InstObjIsApproximate = false;
 				InstObjArray = new Array();
+				//init(depth, maxcount, starttime, casttime, delay, cooltime, lifetime, interval) 
 				instobj1.init(0, atkcnt, 0.0, casttime, this.GetDelayTime(), this.GetCoolTime(), lifetime, intvl);
 				InstObjArray.push(instobj1);
 				InstObjArray[0].exec();
+				//再帰階層が限界値を超えた場合はそこまでで処理を中断し、概算で計算する
+				if (InstObjIsApproximate == true) {
+					//概算で所要時間を返す
+					return InstObjFinalTime * atkcnt / InstObjFinalCount;
+				}
 				return InstObjFinalTime;
 			}
 			//オブジェクト維持時間が完了する前に次の詠唱が始まる場合
@@ -991,11 +1009,19 @@ function CBattleCalcResultAll () {
 				//オブジェクト維持時間が完了する前に次の詠唱が始まる場合
 				var instobj1 = new instobject();
 				InstObjFinalTime = 0.0;
+				InstObjFinalCount = 0;
 				InstObjReleasedCount = 0;
+				InstObjIsApproximate = false;
 				InstObjArray = new Array();
+				//init(depth, maxcount, starttime, casttime, delay, cooltime, lifetime, interval) 
 				instobj1.init(0, atkcnt, 0.0, casttime, this.GetDelayTime(), this.GetCoolTime(), lifetime, intvl);
 				InstObjArray.push(instobj1);
 				InstObjArray[0].exec();
+				//再帰階層が限界値を超えた場合はそこまでで処理を中断し、概算で計算する
+				if (InstObjIsApproximate == true) {
+					//概算で所要時間を返す
+					return InstObjFinalTime * atkcnt / InstObjFinalCount;
+				}
 				return InstObjFinalTime;
 			}
 			//オブジェクト維持時間が完了する前に次の詠唱が始まる場合
@@ -1046,41 +1072,49 @@ function CBattleCalcResultAll () {
 			fullcnt = Math.floor(atkcnt / hitcnt);//１スキル分全部HITするスキル使用回数
 			amarihit = atkcnt - fullcnt * hitcnt;//最後のスキル使用分で１スキル分全部HITしないHIT回数
 			reduce = this.GetUnderLifeTime();//オブジェクト維持時間よりディレイ・CT時間が短い場合その時間
-				//スキル１回で倒した場合
-				if (skillcnt <= 1) {
+			//スキル１回で倒した場合
+			if (skillcnt <= 1) {
 				return casttime + (((amarihit > 0) ? amarihit : hitcnt) * intvl);
-				}
-				//（詠唱時間＋１スキル分HIT時間＋オブジェクト維持時間を超えるディレイまたはクールタイム）×（HITフル使用のスキル使用回数）
-				ret = (casttime + lifetime + ((overtime >= 0) ? overtime : 0)) * fullcnt;
-				if (skillcnt == fullcnt) {
-					bJust = true;
-				}
-				//オブジェクト維持時間が完了してから次の詠唱が始まる場合
-				if (overtime >= 0) {
-					//最後の発動分の、詠唱時間＋端数のHIT時間を加える
-					//bJust == true の場合は、過剰に加えた overtime １回分を戻す
-					ret += (bJust == true) ? -overtime : (casttime + (amarihit * intvl));
-					return ret;
-				} else {
-					//オブジェクト維持時間が完了する前に次の詠唱が始まる場合
-					var instobj1 = new instobject();
-					InstObjFinalTime = 0.0;
-					InstObjReleasedCount = 0;
-					InstObjArray = new Array();
-					instobj1.init(0, atkcnt, 0.0, casttime, this.GetDelayTime(), this.GetCoolTime(), lifetime, intvl);
-					InstObjArray.push(instobj1);
-					InstObjArray[0].exec();
-					return InstObjFinalTime;
-				}
-				//オブジェクト維持時間が完了する前に次の詠唱が始まる場合
-				if (bJust == true) {
-					ret -= reduce * ((skillcnt > 1) ? (skillcnt - 1) : 0);
-					return ret;
-				}
-				ret -= reduce * ((skillcnt > 2) ? (skillcnt - 2) : 0);
-				//最後の発動分の、詠唱時間＋端数のHIT時間が、 reduce より大きければ、その分を加える
-				ret += (((casttime + (amarihit * intvl)) - reduce) > 0) ? ((casttime + (amarihit * intvl)) - reduce) : 0;
+			}
+			//（詠唱時間＋１スキル分HIT時間＋オブジェクト維持時間を超えるディレイまたはクールタイム）×（HITフル使用のスキル使用回数）
+			ret = (casttime + lifetime + ((overtime >= 0) ? overtime : 0)) * fullcnt;
+			if (skillcnt == fullcnt) {
+				bJust = true;
+			}
+			//オブジェクト維持時間が完了してから次の詠唱が始まる場合
+			if (overtime >= 0) {
+				//最後の発動分の、詠唱時間＋端数のHIT時間を加える
+				//bJust == true の場合は、過剰に加えた overtime １回分を戻す
+				ret += (bJust == true) ? -overtime : (casttime + (amarihit * intvl));
 				return ret;
+			} else {
+				//オブジェクト維持時間が完了する前に次の詠唱が始まる場合
+				var instobj1 = new instobject();
+				InstObjFinalTime = 0.0;
+				InstObjFinalCount = 0;
+				InstObjReleasedCount = 0;
+				InstObjIsApproximate = false;
+				InstObjArray = new Array();
+				//init(depth, maxcount, starttime, casttime, delay, cooltime, lifetime, interval) 
+				instobj1.init(0, atkcnt, 0.0, casttime, this.GetDelayTime(), this.GetCoolTime(), lifetime, intvl);
+				InstObjArray.push(instobj1);
+				InstObjArray[0].exec();
+				//再帰階層が限界値を超えた場合はそこまでで処理を中断し、概算で計算する
+				if (InstObjIsApproximate == true) {
+					//概算で所要時間を返す
+					return InstObjFinalTime * atkcnt / InstObjFinalCount;
+				}
+				return InstObjFinalTime;
+			}
+			//オブジェクト維持時間が完了する前に次の詠唱が始まる場合
+			if (bJust == true) {
+				ret -= reduce * ((skillcnt > 1) ? (skillcnt - 1) : 0);
+				return ret;
+			}
+			ret -= reduce * ((skillcnt > 2) ? (skillcnt - 2) : 0);
+			//最後の発動分の、詠唱時間＋端数のHIT時間が、 reduce より大きければ、その分を加える
+			ret += (((casttime + (amarihit * intvl)) - reduce) > 0) ? ((casttime + (amarihit * intvl)) - reduce) : 0;
+			return ret;
 		}
 	};
 
