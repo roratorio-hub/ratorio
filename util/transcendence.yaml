@@ -1,0 +1,267 @@
+item_list:
+
+#  - name: 白の騎士団の猫じゃらし
+#    capabilities:
+#      - name: スキルダメージ増加
+#        skill: キャロットビート
+#        per_lv: 5
+#        value: 1
+#      - name: スキルダメージ増加
+#        skill: サベージの魂
+#        per_lv: 5
+#        value: 1
+#      - name: ATK加算
+#        value: 150
+#        at_refine: 10
+#      - name: 念属性耐性
+#        value: 10
+#        at_refine: 10
+#    enchant:
+#      - name: 宮廷魔術師 グループ２
+#        slot_list:
+#          - slot: 4
+#            refine: 9
+#            enchant_list:
+#              - name: 閃光
+#              - name: 強剛
+#              - name: 天弓
+#              - name: 新暦
+#              - name: 剛体
+#              - name: 白雲
+#          - slot: 3
+#            refine: 9
+#            enchant_list:
+#              - name: 強撃3
+#              - name: 増幅3
+#          - slot: 2
+#            refine: 9
+#            enchant_list:
+#              - name: 火属性付与(武器)
+#              - name: 水属性付与(武器)
+#              - name: 風属性付与(武器)
+#              - name: 地属性付与(武器)
+#              - name: 聖属性付与(武器)
+#              - name: 闇属性付与(武器)
+#              - name: 念属性付与(武器)
+#              - name: 毒属性付与(武器)
+#              - name: 大鷲の眼光
+#              - name: 覇王
+#              - name: 暴走した魔力
+
+  - name: ガーディアンナイツクレイモア
+    capabilities:
+      - name: スキルダメージ増加
+        skill: ソニックウェーブ
+        per_lv: 1
+        value: 1
+      - name: ボス耐性
+        value: 40
+      - name: ATK加算
+        value: 250
+        at_refine: 10
+      - name: 念属性耐性
+        value: 25
+        at_refine: 10
+
+  - name: ガーディアンナイツスピア
+    capabilities:
+      - name: スキルダメージ増加
+        skill: アースドライブ
+        per_lv: 3
+        value: 1
+      - name: ATK加算
+        value: 150
+        at_refine: 10
+      - name: 念属性耐性
+        value: 10
+        at_refine: 10
+
+  - name: ガーディアンナイツアックス
+    capabilities:
+      - name: スキルクールタイムミリ秒減少
+        skill: マグマイラプション
+        value: 3000
+      - name: スキルダメージ増加
+        skill: アックスブーメラン
+        per_lv: 2
+        value: 1
+      - name: ATK加算
+        value: 150
+        at_refine: 10
+      - name: 念属性耐性
+        value: 10
+        at_refine: 10
+
+  - name: ロイヤルクレリックスタッフ
+    capabilities:
+      - name: スキル固定詠唱割合減少
+        skill: プラエファティオ
+        value: 100
+      - name: スキル固定詠唱割合減少
+        skill: レノヴァティオ
+        value: 100
+      - name: ヒール系スキル使用時HP回復量増加
+        value: 60
+      - name: MATK加算
+        value: 150
+        at_refine: 10
+      - name: 念属性耐性
+        value: 10
+        at_refine: 10
+
+  - name: ロイヤルマジシャンワンド
+    capabilities:
+      - name: スキルダメージ増加
+        skill: クリムゾンロック
+        per_lv: 5
+        value: 1
+      - name: スキルダメージ増加
+        skill: ソウルエクスパンション
+        per_lv: 5
+        value: 1
+      - name: MATK加算
+        value: 150
+        at_refine: 10
+      - name: 念属性耐性
+        value: 10
+        at_refine: 10
+
+  - name: ロイヤルフォックステイル
+    capabilities:
+      - name: スキルダメージ増加
+        skill: イヌハッカメテオ
+        per_lv: 5
+        value: 1
+      - name: スキルダメージ増加
+        skill: マタタビランス
+        per_lv: 5
+        value: 1
+      - name: MATK加算
+        value: 150
+        at_refine: 10
+      - name: 念属性耐性
+        value: 10
+        at_refine: 10
+
+  - name: ロイヤルカタール
+    capabilities:
+      - name: ボス耐性
+        value: 40
+      - name: スキルダメージ増加
+        skill: ローリングカッター
+        per_lv: 2
+        value: 1
+      - name: ATK加算
+        value: 250
+        at_refine: 10
+      - name: 念属性耐性
+        value: 25
+        at_refine: 10
+
+  - name: ロイヤルマジシャンダガー
+    capabilities:
+      - name: スキルクールタイムミリ秒減少
+        skill: ダーククロー
+        value: 30000
+      - name: ATK加算
+        value: 150
+        at_refine: 10
+      - name: 念属性耐性
+        value: 10
+        at_refine: 10
+
+  - name: ロイヤルナックル
+    capabilities:
+      - name: スキル固定詠唱割合減少
+        skill: 獅子吼
+        value: 100
+      - name: ATK加算
+        value: 150
+        at_refine: 10
+      - name: 念属性耐性
+        value: 10
+        at_refine: 10
+
+  - name: ガーディアンアルケミックスタッフ
+    capabilities:
+      - name: スキルダメージ増加
+        skill: カートキャノン
+        per_lv: 2
+        value: 1
+      - name: スキルダメージ増加
+        skill: スポアエクスプロージョン
+        per_lv: 2
+        value: 1
+      - name: ATK加算
+        value: 150
+        at_refine: 10
+      - name: 念属性耐性
+        value: 10
+        at_refine: 10
+
+  - name: ガーディアンナイツアーチャーボウ
+    capabilities:
+      - name: ボス耐性
+        value: 40
+      - name: スキルダメージ増加
+        skill: アローストーム
+        per_lv: 10
+        value: 1
+      - name: スキルダメージ増加
+        skill: エイムドボルト
+        per_lv: 10
+        value: 1
+      - name: ATK加算
+        value: 250
+        at_refine: 10
+      - name: 念属性耐性
+        value: 25
+        at_refine: 10
+
+  - name: ロイヤルウィップ
+    capabilities:
+      - name: スキルダメージ増加
+        skill: メタリックサウンド
+        per_lv: 3
+        value: 1
+      - name: MATK加算
+        value: 150
+        at_refine: 10
+      - name: 念属性耐性
+        value: 10
+        at_refine: 10
+
+  - name: ロイヤルチェロ
+    capabilities:
+      - name: スキルダメージ増加
+        skill: メタリックサウンド
+        per_lv: 3
+        value: 1
+      - name: MATK加算
+        value: 150
+        at_refine: 10
+      - name: 念属性耐性
+        value: 10
+        at_refine: 10
+
+  - name: ロイヤルセージブック
+    capabilities:
+      - name: スキルダメージ増加
+        skill: ヴェラチュールスピアー
+        per_lv: 3
+        value: 1
+      - name: MATK加算
+        value: 150
+        at_refine: 10
+      - name: 念属性耐性
+        value: 10
+        at_refine: 10
+
+
+
+
+
+
+
+
+
