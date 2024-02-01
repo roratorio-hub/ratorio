@@ -27783,7 +27783,11 @@ function StPlusCalc() {
 	//----------------------------------------------------------------
 	// 「ガーディアンナイツアーチャーボウ」の、スキル習得による効果
 	//----------------------------------------------------------------
-	if ((itemCount = EquipNumSearchMIG(ITEM_ID_GUARDIAN_KNIGHTS_ARCHER_BOW)) > 0) {
+	itemCount = Math.max(
+		EquipNumSearchMIG(ITEM_ID_GUARDIAN_KNIGHTS_ARCHER_BOW),
+		EquipNumSearchMIG(ITEM_ID_GUARDIAN_KNIGHTS_ARCHER_BOW_T1)
+		);
+	if (itemCount > 0) {
 		if (n_A_Weapon_ATKplus >= 9) {
 			wSPC_INT += 3 * LearnedSkillSearch(SKILL_ID_TRAP_KENKYU) * itemCount;
 			wSPC_DEX += 3 * LearnedSkillSearch(SKILL_ID_TRAP_KENKYU) * itemCount;
