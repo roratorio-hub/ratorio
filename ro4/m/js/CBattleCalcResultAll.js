@@ -87,11 +87,11 @@ const instobject = class {
 	}
 }
 
-InstObjArray;//設置スキル計算オブジェクトの配列
-InstObjFinalTime;//設置スキルオブジェクトによる計算の結果
-InstObjReleasedCount;//設置スキルオブジェクトの計算中に解放されたインスタンスの分のHitカウントの総数
-InstObjIsApproximate;//概算モードフラグ（コールスタック安全のために、再帰階層が限界値を超えた場合に真になる）
-InstObjFinalCount;//概算モードの際に用いる、処理中段時点までのHITの総数
+var InstObjArray;//設置スキル計算オブジェクトの配列
+var InstObjFinalTime;//設置スキルオブジェクトによる計算の結果
+var InstObjReleasedCount;//設置スキルオブジェクトの計算中に解放されたインスタンスの分のHitカウントの総数
+var InstObjIsApproximate;//概算モードフラグ（コールスタック安全のために、再帰階層が限界値を超えた場合に真になる）
+var InstObjFinalCount;//概算モードの際に用いる、処理中段時点までのHITの総数
 
 
 

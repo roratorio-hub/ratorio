@@ -8618,9 +8618,10 @@ else {
 			}
 			break;
 
+		// 「ソーサラー」スキル「サイキックウェーブ」
 		case SKILL_ID_PSYCHIC_WAVE:
 
-g_bDefinedDamageIntervals = true;
+			g_bDefinedDamageIntervals = true;
 	
 			// 詠唱時間等
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);//2750 + 1250 * n_A_ActiveSkillLV;
