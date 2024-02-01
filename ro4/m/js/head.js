@@ -26148,7 +26148,7 @@ function UsedSkillSearch(sklId, bOnlyUsed = false) {
 		}
 
 		// 「トートの書」の効果
-		if (EquipNumSearch(ITEM_ID_TOTONO_SHO)) {
+		if (EquipNumSearch(ITEM_ID_TOTONO_SHO) || EquipNumSearch(ITEM_ID_TOTONO_SHO_T1)) {
 			effectivLvArray.push(10);
 		}
 
