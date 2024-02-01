@@ -61,7 +61,7 @@ const instobject = class {
 		var t0;
 
 		//コールスタック安全装置
-		if (this.depth >= 4000) {
+		if (this.depth >= 1000) {
 			InstObjIsApproximate = true;
 			InstObjFinalTime = this.starttime;
 			InstObjFinalCount = this.getTotalCount();
