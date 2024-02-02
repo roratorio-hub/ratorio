@@ -8281,7 +8281,8 @@ else {
 			// 設置スキル設定
 			g_bDefinedDamageIntervals = true;
 			n_Delay[5] = 450;	// ダメージ間隔
-			n_Delay[6] = 4500;	// オブジェクト存続時間
+			// 「3hitで凍った場合のダメージを算出したいニーズ」を切り捨てない苦肉の策でオブジェクト存続時間を調整する
+			n_Delay[6] = 450 * attackMethodConfArray[0].GetOptionValue(0);;	// オブジェクト存続時間
 			// ダメージ倍率
 			wbairitu = 70 + 50 * n_A_ActiveSkillLV;
 			break;
