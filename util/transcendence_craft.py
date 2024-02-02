@@ -75,6 +75,7 @@ if __name__ == "__main__":
         # 超越で追加されたエンチャントを新たに出力する
         if 'enchant' in item_info:
             for enchant in item_info['enchant']:
+                enchant_id += 1
                 record = buildEnchantRecord(item_id, enchant_id, enchant)
                 reverseresolvearrayitemid += f"{enchant_id},"
                 mig_enchlist_dat.append(record)
