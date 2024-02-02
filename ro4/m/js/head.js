@@ -1311,16 +1311,32 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			if(wCast > 1500) wCast = 1500;
 			break;
 
+		// 「拳聖」スキル「＊＊の温もり」
 		case SKILL_ID_NUKUMORI:
-			n_Delay[0] = 1;
-			n_Delay[5] = 50;
-			if(mobData[20]==1) n_Delay[5] = 100;
+		case SKILL_ID_NUKUMORI_KABE:
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// 設置スキル設定
+			g_bDefinedDamageIntervals = true;
+			// ダメージ間隔
+			if (mobData[20] == MONSTER_BOSSTYPE_BOSS) {
+				n_Delay[5] = 100;							
+			} else if (n_A_ActiveSkill == SKILL_ID_NUKUMORI) {
+				n_Delay[5] = 50;							
+			} else {
+				n_Delay[5] = 20;
+			}
+			n_Delay[6] = [0,10,20,60][n_A_ActiveSkillLV] * 1000;	// オブジェクト存続時間
+			n_Delay[3] = n_Delay[6]; 								// 重複設置はできない
+			// 属性
+			n_A_Weapon_zokusei = g_skillManager.GetElement(battleCalcInfo.skillId);
+			// ダメージ倍率
+			wbairitu = 100;
 			break;
 
-		case SKILL_ID_NUKUMORI_KABE:
-			n_Delay[5] = 20;
-			if(mobData[20]==1) n_Delay[5] = 100;
-			break;
 
 		case SKILL_ID_CART_TERMINATION:
 			wbairitu += Math.floor((attackMethodConfArray[0].GetOptionValue(0) / (16 - n_A_ActiveSkillLV) / 100 -1) * 100);
@@ -4845,6 +4861,79 @@ g_bDefinedDamageIntervals = true;
 			wbairitu *= n_A_BaseLV / 100;								// BaseLv補正
 			break;
 
+		// 「ミンストレル＆ワンダラー」スキル「シビアレインストーム」
+		case SKILL_ID_SEVERE_RAINSTORM:
+		case SKILL_ID_SEVERE_RAINSTORM_EX:
+			// 遠距離スキル
+			n_Enekyori=1;
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// 設置スキル設定
+			g_bDefinedDamageIntervals = true;
+			n_Delay[5] = 300;								// ダメージ間隔
+			n_Delay[6] = 2400 + 600 * n_A_ActiveSkillLV;	// オブジェクト存続時間
+			// 属性
+			n_A_Weapon_zokusei = g_skillManager.GetElement(battleCalcInfo.skillId);
+			// ダメージ倍率
+			if (n_A_ActiveSkill == SKILL_ID_SEVERE_RAINSTORM) {
+				wbairitu = (n_A_DEX + n_A_AGI) * n_A_ActiveSkillLV / 5;
+			}
+			else {
+				wbairitu = (attackMethodConfArray[0].GetOptionValue(0) + attackMethodConfArray[0].GetOptionValue(1)) * n_A_ActiveSkillLV / 5;
+			}
+			// 楽器、鞭使用時のダメージ補正
+			if ((n_A_WeaponType == ITEM_KIND_MUSICAL) || (n_A_WeaponType == ITEM_KIND_WHIP)) {
+				wbairitu *= 5 / 3;
+			}
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			break;
+
+		// 「アルケミスト」スキル「デモンストレーション」
+		case SKILL_ID_DEMONSTRATION:
+			// 必中
+			w_HIT = 100;
+			w_HIT_HYOUJI = 100;
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// 設置スキル設定
+			g_bDefinedDamageIntervals = true;
+			n_Delay[5] = 500;								// ダメージ間隔
+			n_Delay[6] = 35000 + 5000 * n_A_ActiveSkillLV;	// オブジェクト存続時間
+			n_Delay[3] = n_Delay[6]; 						// 足元置きができないので重複設置はできない
+			// 属性
+			n_A_Weapon_zokusei = g_skillManager.GetElement(battleCalcInfo.skillId);
+			// ダメージ倍率
+			wbairitu = 100 + 20 * n_A_ActiveSkillLV;
+			break;
+
+		// 「星帝」スキル「創星の書」
+		case SKILL_ID_SOSENO_SHO:
+			n_Enekyori=1;
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// 設置スキル設定
+			g_bDefinedDamageIntervals = true;
+			n_Delay[5] = 500;			// ダメージ間隔
+			n_Delay[6] = 10000;			// オブジェクト存続時間
+			n_Delay[3] = n_Delay[6]; 	// 重複設置はできない
+			// 属性
+			n_A_Weapon_zokusei = g_skillManager.GetElement(battleCalcInfo.skillId);
+			// ダメージ倍率
+			if (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA] == MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM) {
+				wbairitu = 750 + 750 * n_A_ActiveSkillLV;
+			} else {
+				wbairitu = 500 + 500 * n_A_ActiveSkillLV;
+			}
+			break;
 
 /*
 		case SKILL_ID_DUMMY:
@@ -5187,9 +5276,7 @@ g_bDefinedDamageIntervals = true;
 		case SKILL_ID_BEAST_STRAIFING:
 		case SKILL_ID_DEATHPERAD:
 		case SKILL_ID_HESPERUS_SLIT:
-		case SKILL_ID_SEVERE_RAINSTORM:
 		case SKILL_ID_CRAZY_WEED:
-		case SKILL_ID_SEVERE_RAINSTORM_EX:
 		case SKILL_ID_QUICKDRAW_SHOT:
 			if(n_A_ActiveSkill==SKILL_ID_DOUBLE_STRAFING){
 				n_Enekyori=1;
@@ -5261,29 +5348,6 @@ g_bDefinedDamageIntervals = true;
 				}
 
 				wHITsuu = w;
-
-			}else if(n_A_ActiveSkill==SKILL_ID_SEVERE_RAINSTORM || n_A_ActiveSkill==753){
-				n_Enekyori=1;
-				wCast = 1000 + 500 * n_A_ActiveSkillLV;
-				n_KoteiCast = 500;
-
-				var w;
-				if (n_A_ActiveSkill==642) {
-					w = (n_A_DEX + n_A_AGI) * n_A_ActiveSkillLV / 5;
-				}
-				else {
-					w = (attackMethodConfArray[0].GetOptionValue(0) + attackMethodConfArray[0].GetOptionValue(1)) * n_A_ActiveSkillLV / 5;
-				}
-
-				// 楽器、鞭使用時のダメージ補正
-				if ((n_A_WeaponType == ITEM_KIND_MUSICAL) || (n_A_WeaponType == ITEM_KIND_WHIP)) {
-					w *= 5 / 3;
-				}
-
-				wbairitu = Math.floor(w * n_A_BaseLV / 100);
-				n_Delay[2] = 1000;
-				n_Delay[7] = 5000;
-				wHITsuu = 8 + 2 * n_A_ActiveSkillLV;
 
 			}else if(n_A_ActiveSkill==SKILL_ID_CRAZY_WEED){
 				n_A_Weapon_zokusei = 2;
@@ -6128,38 +6192,6 @@ g_bDefinedDamageIntervals = true;
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
-
-
-
-		case SKILL_ID_DEMONSTRATION:
-			n_Enekyori=1;
-			w_HIT = 100;
-			w_HIT_HYOUJI = 100;
-			wCast = 1000;
-			n_Delay[5] = 500;
-			n_A_Weapon_zokusei = 3;
-			wbairitu = 100 + 20 * n_A_ActiveSkillLV;
-			for(var i=0;i<=2;i++){
-				w_MATK[i] = n_A_MATK[i];
-				w_MATK[i] = ApplyMagicalSpecializeMonster(charaData, specData, mobData, w_MATK[i]);
-				w_MATK[i] = ApplyResistElement(mobData, w_MATK[i]);
-			}
-			for(var i=0;i<=2;i++){
-				w_DMG[i] = n_A_DMG[i] + w_MATK[i];
-				w_DMG[i] = ROUNDDOWN(w_DMG[i] * wbairitu / 100);
-				w_DMG[i] -= (B_Total_DEF + B_Total_MDEF);
-				if(w_DMG[i] <0) w_DMG[i] = 1;
-				w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
-				w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
-				w_DMG[i] = ApplyElementRatio(mobData, w_DMG[i],3);
-				if(5 <= mobData[21] && mobData[21] <= 9) w_DMG[i] = 1;
-				Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
-				g_damageTextArray[i].push(Last_DMG_A[i]);
-			}
-			BuildCastAndDelayHtml(mobData);
-			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
-			break;
-
 
 
 		case SKILL_ID_ACID_DEMONSTRATION:
@@ -7974,36 +8006,25 @@ else {
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 
 			break;
-
-
-
+/*
+		// 「星帝」スキル「創星の書」
 		case SKILL_ID_SOSENO_SHO:
-
 			n_Enekyori=1;
-
 			// 特定の戦闘エリアでの補正
 			switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
-
 			case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
 				wbairitu = 750 + 750 * n_A_ActiveSkillLV;
 				break;
-
 			default:
 				wbairitu = 500 + 500 * n_A_ActiveSkillLV;
 				break;
-
 			}
-
 			wCast = 1000 * n_A_ActiveSkillLV;
 			n_Delay[6] = 10;
 			n_Delay[7] = 5000;
-
 			wHITsuu = 20;
-
-
 			// 必中ダメージのみ仮計算（属性倍率未適用）
 			n_PerfectHIT_DMG = GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray);
-
 			for(var i=0;i<=2;i++){
 				w_DMG[i] = n_A_DMG[i];
 				w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
@@ -8019,9 +8040,7 @@ else {
 					w_DMG[i] = Math.floor(w_DMG[i] / wActiveHitNum) * wActiveHitNum;
 				}
 			}
-
 			if(n_AS_MODE == 1) return w_DMG;
-
 			for(var i=0;i<=2;i++){
 
 				// TODO: ダメージ表示方式変更対応
@@ -8030,7 +8049,6 @@ else {
 				g_damageTextArray[i].push(Last_DMG_A[i]);
 				if(wHITsuu > 1) g_damageTextArray[i].push("(", w_DMG[i], "×", wHITsuu, "hit)");
 			}
-
 			// 改めて必中ダメージ計算
 			n_PerfectHIT_DMG = GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray);
 			n_PerfectHIT_DMG = ApplyHitJudgeElementRatio(n_A_ActiveSkill, n_PerfectHIT_DMG, mobData);
@@ -8039,8 +8057,8 @@ else {
 			AS_PLUS();
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
-
 			break;
+*/
 
 		default:
 			bPhysicalFormula = false;
@@ -8324,12 +8342,23 @@ else {
 			if(n_A_ActiveSkill==SKILL_ID_HOLY_LIGHT_TAMASHI) wbairitu += 500;
 			break;
 
+		// 「プリースト」スキル「マグヌスエクソシズム」
 		case SKILL_ID_MAGNUS_EXORCISMUS:
-			n_Delay[0] = 1;
-			n_A_Weapon_zokusei = 6;
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// 設置スキル設定
+			g_bDefinedDamageIntervals = true;
+			n_Delay[5] = 3000;								// ダメージ間隔
+			n_Delay[6] = 4000 + 1000 * n_A_ActiveSkillLV;	// オブジェクト存続時間
+			// 属性
+			n_A_Weapon_zokusei = g_skillManager.GetElement(battleCalcInfo.skillId);
+			// ダメージ倍率
+			wbairitu = 100;
+			// ヒット数
 			wHITsuu = n_A_ActiveSkillLV;
-			wCast = 15000;
-			n_Delay[2] = 4000;
 			break;
 
 		case SKILL_ID_DARK_STRIKE:
@@ -8657,17 +8686,25 @@ else {
 			wbairitu = ROUNDDOWN(wbairitu);
 			break;
 
+		//「ソーサラー」スキル「クラウドキル」
 		case SKILL_ID_CLOUD_KILL:
-			n_A_Weapon_zokusei = 5;
-			wHITsuu = (6 + 2 * n_A_ActiveSkillLV) * 2;
-			wCast = 1000 + 200 * n_A_ActiveSkillLV;
-			n_KoteiCast = 1750 - 250 * n_A_ActiveSkillLV;
-			n_Delay[2] = 1000;
-			n_Delay[6] = 6 + 2 * n_A_ActiveSkillLV;
-			n_Delay[7] = 5000;
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// 設置スキル設定
+			g_bDefinedDamageIntervals = true;
+			n_Delay[5] = 500;								// ダメージ間隔
+			n_Delay[6] = 6000 + 2000 * n_A_ActiveSkillLV;	// オブジェクト存続時間
+			n_Delay[3] = n_Delay[6]; 						// 重複設置はできない
+			// 属性
+			n_A_Weapon_zokusei = g_skillManager.GetElement(battleCalcInfo.skillId);
+			// ダメージ倍率
 			wbairitu = 40 * n_A_ActiveSkillLV;
 			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
-			if(UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 31) wbairitu += n_A_JobLV;
+			// 精霊補正
+			if(UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 31) wbairitu += n_A_JobLV;	// 31:カーズドソイル
 			break;
 
 		case SKILL_ID_POISON_BUSTER:
@@ -8708,15 +8745,24 @@ else {
 			if(UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 13) wbairitu += ROUNDDOWN(n_A_JobLV * 5);
 			break;
 
+		// 「ジェネティック」スキル「デモニックファイアー」
 		case SKILL_ID_DEMONIC_FIRE:
-			n_A_Weapon_zokusei = 3;
-			wHITsuu = 4 + n_A_ActiveSkillLV;
-			wCast = 2500 + 500 * n_A_ActiveSkillLV;
-			n_Delay[2] = 500;
-			n_Delay[7] = 5000;
-			n_Delay[6] = 2 * wHITsuu;
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// 設置スキル設定
+			g_bDefinedDamageIntervals = true;
+			n_Delay[5] = 2000;								// ダメージ間隔
+			n_Delay[6] = 8001 + 2000 * n_A_ActiveSkillLV;	// オブジェクト存続時間 8000 だと発動回数が現実と合わないため 8001
+			n_Delay[3] = n_Delay[6]; 						// 現実的な状況では重複設置はできない
+			// 属性
+			n_A_Weapon_zokusei = g_skillManager.GetElement(battleCalcInfo.skillId);
+			// ダメージ倍率
 			wbairitu = 200 * n_A_ActiveSkillLV;
 			break;
+
 
 		case 742:
 			n_A_Weapon_zokusei = 0;
