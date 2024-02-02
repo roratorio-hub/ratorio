@@ -1,52 +1,52 @@
 item_list:
 
-#  - name: 白の騎士団の猫じゃらし
-#    capabilities:
-#      - name: スキルダメージ増加
-#        skill: キャロットビート
-#        per_lv: 5
-#        value: 1
-#      - name: スキルダメージ増加
-#        skill: サベージの魂
-#        per_lv: 5
-#        value: 1
-#      - name: ATK加算
-#        value: 150
-#        at_refine: 10
-#      - name: 念属性耐性
-#        value: 10
-#        at_refine: 10
-#    enchant:
-#      - name: 宮廷魔術師 グループ２
-#        slot_list:
-#          - slot: 4
-#            refine: 9
-#            enchant_list:
-#              - name: 閃光
-#              - name: 強剛
-#              - name: 天弓
-#              - name: 新暦
-#              - name: 剛体
-#              - name: 白雲
-#          - slot: 3
-#            refine: 9
-#            enchant_list:
-#              - name: 強撃3
-#              - name: 増幅3
-#          - slot: 2
-#            refine: 9
-#            enchant_list:
-#              - name: 火属性付与(武器)
-#              - name: 水属性付与(武器)
-#              - name: 風属性付与(武器)
-#              - name: 地属性付与(武器)
-#              - name: 聖属性付与(武器)
-#              - name: 闇属性付与(武器)
-#              - name: 念属性付与(武器)
-#              - name: 毒属性付与(武器)
-#              - name: 大鷲の眼光
-#              - name: 覇王
-#              - name: 暴走した魔力
+  - name: 白の騎士団の猫じゃらし
+    capabilities:
+      - name: スキルダメージ増加
+        skill: キャロットビート
+        per_lv: 5
+        value: 1
+      - name: スキルダメージ増加
+        skill: サベージの魂
+        per_lv: 5
+        value: 1
+      - name: ATK加算
+        value: 150
+        at_refine: 10
+      - name: 念属性耐性
+        value: 10
+        at_refine: 10
+    enchant:
+      - name: 宮廷魔術師 グループ２
+        slot_list:
+          - slot: 4
+            refine: 9
+            enchant_list:
+              - name: 閃光
+              - name: 強剛
+              - name: 天弓
+              - name: 新暦
+              - name: 剛体
+              - name: 白雲
+          - slot: 3
+            refine: 9
+            enchant_list:
+              - name: 強撃3
+              - name: 増幅3
+          - slot: 2
+            refine: 9
+            enchant_list:
+              - name: 火属性付与(武器)
+              - name: 水属性付与(武器)
+              - name: 風属性付与(武器)
+              - name: 地属性付与(武器)
+              - name: 聖属性付与(武器)
+              - name: 闇属性付与(武器)
+              - name: 念属性付与(武器)
+              - name: 毒属性付与(武器)
+              - name: 大鷲の眼光
+              - name: 覇王
+              - name: 暴走した魔力
 
 #  - name: アンティークガトリングガン
 #    capabilities:
@@ -156,30 +156,30 @@ item_list:
 #        value: 10
 #        at_refine: 10
 
-  - name: アンティークガトリングガン
-    capabilities:
-      - name: ボス耐性
-        value: 40
-      - name: スキルダメージ増加
-        skill: ラウンドトリップ
-        at_status_110: Agi
-        value: 30
-      - name: スキルダメージ増加
-        skill: ラウンドトリップ
-        per_status_10: Agi
-        value: 7
-      - name: スキルダメージ増加
-        skill: ファイアーレイン
-        per_lv: 2
-        value: 1
-      - name: スキルダメージ増加
-        skill: ラウンドトリップ
-        per_lv: 2
-        value: 1
-      - name: ATK加算
-        value: 250
-        at_refine: 10
-      - name: 念属性耐性
-        value: 25
-        at_refine: 10
+#  - name: アンティークガトリングガン
+#    capabilities:
+#      - name: ボス耐性
+#        value: 40
+#      - name: スキルダメージ増加
+#        skill: ラウンドトリップ
+#        at_status_110: Agi
+#        value: 30
+#      - name: スキルダメージ増加
+#        skill: ラウンドトリップ
+#        per_status_10: Agi
+#        value: 7
+#      - name: スキルダメージ増加
+#        skill: ファイアーレイン
+#        per_lv: 2
+#        value: 1
+#      - name: スキルダメージ増加
+#        skill: ラウンドトリップ
+#        per_lv: 2
+#        value: 1
+#      - name: ATK加算
+#        value: 250
+#        at_refine: 10
+#      - name: 念属性耐性
+#        value: 25
+#        at_refine: 10
 

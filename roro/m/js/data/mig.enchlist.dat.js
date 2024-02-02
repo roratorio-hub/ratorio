@@ -762,13 +762,13 @@
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5138] = [317,411];
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5139] = [317,411];	
 	// 超越 宮廷魔術師 グループ2
-	g_constDataManager.enchListDataManager.sourceArray[642] = [642,-1,0,0,[["宮廷魔術師 グループ２","宮廷魔術師 グループ２"]],[],[[[174,[50,[5140,5141,5142,5143,5144,5145,5146,5147]]],,[[[178,[27,[4]]],,[[[187,[59,9],[60,4]],,[[[186,[51,[1641,1643,1645,1647,1649,1651,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,9],[60,4]],,[[[186,[51,[1251,1352,]]],,[]]]]]],[[178,[27,[2]]],,[[[187,[59,9],[60,4]],,[[[186,[51,[2211,2212,2213,2214,2215,2216,2217,2218,1303,1297,888,]]],,[]]]]]],]]],[]];
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5140] = [411,642];
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5141] = [411,642];
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5142] = [411,642];
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5143] = [411,642];
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5144] = [411,642];
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5145] = [411,642];
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5146] = [411,642];
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5147] = [411,642];
+	g_constDataManager.enchListDataManager.sourceArray[643] = [643,-1,0,0,[["宮廷魔術師 グループ２","宮廷魔術師 グループ２"]],[],[[[174,[50,[5140,5141,5142,5143,5144,5145,5146,5147]]],,[[[178,[27,[4]]],,[[[187,[59,9],[60,4]],,[[[186,[51,[1641,1643,1645,1647,1649,1651,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,9],[60,4]],,[[[186,[51,[1251,1352,]]],,[]]]]]],[[178,[27,[2]]],,[[[187,[59,9],[60,4]],,[[[186,[51,[2211,2212,2213,2214,2215,2216,2217,2218,1303,1297,888,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5140] = [411,643];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5141] = [411,643];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5142] = [411,643];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5143] = [411,643];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5144] = [411,643];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5145] = [411,643];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5146] = [411,643];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5147] = [411,643];
 })();
