@@ -177,7 +177,8 @@ function CBattleCalcResult () {
 	this.GetDamageCountSummary = function () {
 
 		if ((this.objectLifeTime > 0) && (this.damageInterval > 0)) {
-			return Math.floor(this.objectLifeTime / this.damageInterval);
+			//return Math.floor(this.objectLifeTime / this.damageInterval);
+			return Math.ceil(this.objectLifeTime / this.damageInterval);
 		}
 
 		return "（計算不能）";

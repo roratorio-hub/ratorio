@@ -2127,20 +2127,6 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 
 
 		//----------------------------------------------------------------
-		// ウィザード：ストームガスト
-		//----------------------------------------------------------------
-		case SKILL_ID_STORM_GUST:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"HIT数",
-				funcCreateNumberDataArrayArray(1, 10, false),
-				3
-			);
-			break;
-
-
-		//----------------------------------------------------------------
 		// ウィザード：メテオストーム
 		//----------------------------------------------------------------
 		case SKILL_ID_METEOR_STORM:

@@ -3870,7 +3870,6 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "ロードオブヴァーミリオン";
 			this.kana = "ロオトオフウアアミリオン";
@@ -3878,40 +3877,24 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_WIND;
-
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 56 + 4 * skillLv;
 			}
-
-			this.Power = function(skillLv, charaDataManger) {
-				var pow = 0;
-
-				pow = 100 + 5 * ((skillLv - 1) * (skillLv) / 2);
-				pow += (skillLv == 10) ? 5 : 0;
-
-				return pow;
-			}
-
-			this.hitCount = function(skillLv, charaDataManger) {
-				return 40;
-			}
-
 			this.CastTimeVary = function(skillLv, charaDataManger) {
 				return 12400 - 400 * skillLv;
 			}
-
+			this.CastTimeFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
 			this.DelayTimeCommon = function(skillLv, charaDataManger) {
 				return 5000;
 			}
-
 			this.DelayTimeSkillObject = function(skillLv, charaDataManger) {
 				return 4000;
-			}
-
+			}			
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 0;
 			}
-
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -4029,7 +4012,6 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "ストームガスト";
 			this.kana = "ストオムカスト";
@@ -4037,35 +4019,21 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_WATER;
-
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 78;
 			}
-
-			this.Power = function(skillLv, charaDataManger) {
-				return 70 + 50 * skillLv;
-			}
-
-			this.hitCount = function(skillLv, charaDataManger) {
-				return -1;
-			}
-
 			this.CastTimeVary = function(skillLv, charaDataManger) {
 				return 4000 + 800 * skillLv;
 			}
-
+			this.CastTimeFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
 			this.DelayTimeCommon = function(skillLv, charaDataManger) {
 				return 5000;
 			}
-
-			this.DelayTimeSkillObject = function(skillLv, charaDataManger) {
-				return 4500;
-			}
-
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 0;
 			}
-
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -9439,7 +9407,6 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "グラビテーションフィールド";
 			this.kana = "クラヒテエシヨンフイイルト";
@@ -9447,31 +9414,21 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_VANITY;
-
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 20 * skillLv;
 			}
-
-			this.Power = function(skillLv, charaDataManger) {
-				return -1;
-			}
-
-			this.hitCount = function(skillLv, charaDataManger) {
-				return 8 + 2 * skillLv;
-			}
-
 			this.CastTimeVary = function(skillLv, charaDataManger) {
 				return 5000;
 			}
-
+			this.CastTimeFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
 			this.DelayTimeCommon = function(skillLv, charaDataManger) {
-				return 2000;
+				return 0;
 			}
-
-			this.DelayTimeSkillObject = function(skillLv, charaDataManger) {
-				return 9000;
-			}
-
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 0;
+			}			
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
