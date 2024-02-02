@@ -8246,6 +8246,8 @@ else {
 			n_Delay[5] = 1000;	// ダメージ間隔
 			n_Delay[6] = 3100;	// オブジェクト存続時間
 			n_Delay[3] = 3100;	// 強制ディレイ（オブジェクト発生中は別のLoVオブジェクトのダメージが発生しないため）
+			// 属性
+			n_A_Weapon_zokusei = g_skillManager.GetElement(battleCalcInfo.skillId);
 			// ダメージ倍率
 			wbairitu = [0,100,105,115,130,150,175,205,240,280,330][n_A_ActiveSkillLV];
 			// 見た目 10 hit * hit数
@@ -8283,6 +8285,8 @@ else {
 			n_Delay[5] = 450;	// ダメージ間隔
 			// 「3hitで凍った場合のダメージを算出したいニーズ」を切り捨てない苦肉の策でオブジェクト存続時間を調整する
 			n_Delay[6] = 450 * attackMethodConfArray[0].GetOptionValue(0);;	// オブジェクト存続時間
+			// 属性
+			n_A_Weapon_zokusei = g_skillManager.GetElement(battleCalcInfo.skillId);
 			// ダメージ倍率
 			wbairitu = 70 + 50 * n_A_ActiveSkillLV;
 			break;
