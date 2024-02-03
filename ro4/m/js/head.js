@@ -8353,6 +8353,7 @@ else {
 			g_bDefinedDamageIntervals = true;
 			n_Delay[5] = 3000;								// ダメージ間隔
 			n_Delay[6] = 4000 + 1000 * n_A_ActiveSkillLV;	// オブジェクト存続時間
+			n_Delay[3] = n_Delay[6];						// 複数展開しても多重Hitしないスキル
 			// 属性
 			n_A_Weapon_zokusei = g_skillManager.GetElement(battleCalcInfo.skillId);
 			// ダメージ倍率
