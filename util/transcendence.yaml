@@ -1,0 +1,185 @@
+item_list:
+
+  - name: 白の騎士団の猫じゃらし
+    capabilities:
+      - name: スキルダメージ増加
+        skill: キャロットビート
+        per_lv: 5
+        value: 1
+      - name: スキルダメージ増加
+        skill: サベージの魂
+        per_lv: 5
+        value: 1
+      - name: ATK加算
+        value: 150
+        at_refine: 10
+      - name: 念属性耐性
+        value: 10
+        at_refine: 10
+    enchant:
+      - name: 宮廷魔術師 グループ２
+        slot_list:
+          - slot: 4
+            refine: 9
+            enchant_list:
+              - name: 閃光
+              - name: 強剛
+              - name: 天弓
+              - name: 新暦
+              - name: 剛体
+              - name: 白雲
+          - slot: 3
+            refine: 9
+            enchant_list:
+              - name: 強撃3
+              - name: 増幅3
+          - slot: 2
+            refine: 9
+            enchant_list:
+              - name: 火属性付与(武器)
+              - name: 水属性付与(武器)
+              - name: 風属性付与(武器)
+              - name: 地属性付与(武器)
+              - name: 聖属性付与(武器)
+              - name: 闇属性付与(武器)
+              - name: 念属性付与(武器)
+              - name: 毒属性付与(武器)
+              - name: 大鷲の眼光
+              - name: 覇王
+              - name: 暴走した魔力
+
+#  - name: アンティークガトリングガン
+#    capabilities:
+#      - name: ボス耐性
+#        value: 40
+#      - name: スキルダメージ増加
+#        skill: ファイアーレイン
+#        per_lv: 2
+#        value: 1
+#      - name: スキルダメージ増加
+#        skill: ラウンドトリップ
+#        per_lv: 2
+#        value: 1
+#      - name: ATK加算
+#        value: 250
+#        at_refine: 10
+#      - name: 念属性耐性
+#        value: 25
+#        at_refine: 10
+#
+#  - name: トートの書
+#    capabilities:
+#      - name: オートスペル発動
+#        skill: ダーククロー
+#        skill_lv: 3
+#      - name: MATK加算
+#        value: 150
+#        at_refine: 10
+#      - name: 念属性耐性
+#        value: 10
+#        at_refine: 10
+#
+#  # 魔法攻撃命中時、3秒間、[レイオブジェネシス]使用時、自分にオートスペル[ハイネスヒール]Lv3発動
+#  - name: 輝く白銀の槍
+#    capabilities:
+#      - name: MATK加算
+#        value: 150
+#        at_refine: 10
+#      - name: 念属性耐性
+#        value: 10
+#        at_refine: 10
+#
+#  # [トライアングルショット]使用時、一定確率で20秒間、[アンリミット]Lv5状態になる 装備解除時、[アンリミット]を解除する（計算機未対応のため三次職支援設定を使って下さい）
+#  - name: トライアングルディザスター
+#    capabilities:
+#      - name: ボス耐性
+#        value: 40
+#      - name: ATK加算
+#        value: 250
+#        at_refine: 10
+#      - name: 念属性耐性
+#        value: 25
+#        at_refine: 10
+#
+#  - name: 朽ちたガーデンナイフ
+#    capabilities:
+#      - name: スキルダメージ増加
+#        skill: エスパ
+#        per_lv: 5
+#        value: 1
+#      - name: スキルダメージ増加
+#        skill: エスフ
+#        per_lv: 5
+#        value: 1
+#      - name: スキルダメージ増加
+#        skill: 死霊爆発
+#        per_lv: 5
+#        value: 1
+#      - name: MATK加算
+#        value: 150
+#        at_refine: 10
+#      - name: 念属性耐性
+#        value: 10
+#        at_refine: 10
+#
+#  - name: 魔導師の記憶
+#    capabilities:
+#      - name: スキルダメージ増加
+#        skill: チェーンライトニング
+#        per_lv: 3
+#        value: 1
+#      - name: MATK加算
+#        value: 150
+#        at_refine: 10
+#      - name: 念属性耐性
+#        value: 10
+#        at_refine: 10
+#
+#  - name: 六韜三略
+#    capabilities:
+#      - name: スキルダメージ増加
+#        skill: 太陽爆発
+#        per_lv: 10
+#        value: 1
+#      - name: スキルダメージ増加
+#        skill: 満月脚
+#        per_lv: 10
+#        value: 1
+#      - name: スキルダメージ増加
+#        skill: 流星落下
+#        per_lv: 10
+#        value: 1
+#      - name: ATK加算
+#        value: 150
+#        at_refine: 10
+#      - name: 念属性耐性
+#        value: 10
+#        at_refine: 10
+
+#  - name: アンティークガトリングガン
+#    capabilities:
+#      - name: ボス耐性
+#        value: 40
+#      - name: スキルダメージ増加
+#        skill: ラウンドトリップ
+#        at_status_110: Agi
+#        value: 30
+#      - name: スキルダメージ増加
+#        skill: ラウンドトリップ
+#        per_status_10: Agi
+#        value: 7
+#      - name: スキルダメージ増加
+#        skill: ファイアーレイン
+#        per_lv: 2
+#        value: 1
+#      - name: スキルダメージ増加
+#        skill: ラウンドトリップ
+#        per_lv: 2
+#        value: 1
+#      - name: ATK加算
+#        value: 250
+#        at_refine: 10
+#      - name: 念属性耐性
+#        value: 25
+#        at_refine: 10
+

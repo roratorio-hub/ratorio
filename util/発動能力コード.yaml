@@ -5,6 +5,10 @@ capabilities:
     code: 11
   - name: ASPD増加
     code: 12
+  - name: MAXHP加算
+    code: 13
+  - name: MAXSP加算
+    code: 14
   - name: MAXHP増加
     code: 15
   - name: MAXSP増加
@@ -25,6 +29,8 @@ capabilities:
     code: 29
   - name: 動物型への物理ダメージ増加  
     code: 32
+  - name: 無属性耐性
+    code: 60
   - name: 水属性耐性
     code: 61
   - name: 土属性耐性

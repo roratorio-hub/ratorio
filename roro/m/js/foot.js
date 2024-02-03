@@ -3601,7 +3601,7 @@ if (_APPLY_UPDATE_LV200) {
 		//----------------------------------------------------------------
 		// 遠距離物理攻撃限定の効果
 		//----------------------------------------------------------------
-		if (IsLongRange(n_A_Equip[EQUIP_REGION_ID_ARMS]) || UsedSkillSearch(SKILL_ID_SOUL_ATTACK)) {
+		if (n_Enekyori === 1 ||	IsLongRange(n_A_Equip[EQUIP_REGION_ID_ARMS]) || UsedSkillSearch(SKILL_ID_SOUL_ATTACK)) {
 			w += n_tok[ITEM_SP_LONGRANGE_CRI_PLUS];
 		}
 
@@ -27783,7 +27783,11 @@ function StPlusCalc() {
 	//----------------------------------------------------------------
 	// 「ガーディアンナイツアーチャーボウ」の、スキル習得による効果
 	//----------------------------------------------------------------
-	if ((itemCount = EquipNumSearchMIG(ITEM_ID_GUARDIAN_KNIGHTS_ARCHER_BOW)) > 0) {
+	itemCount = Math.max(
+		EquipNumSearchMIG(ITEM_ID_GUARDIAN_KNIGHTS_ARCHER_BOW),
+		EquipNumSearchMIG(ITEM_ID_GUARDIAN_KNIGHTS_ARCHER_BOW_T1)
+		);
+	if (itemCount > 0) {
 		if (n_A_Weapon_ATKplus >= 9) {
 			wSPC_INT += 3 * LearnedSkillSearch(SKILL_ID_TRAP_KENKYU) * itemCount;
 			wSPC_DEX += 3 * LearnedSkillSearch(SKILL_ID_TRAP_KENKYU) * itemCount;

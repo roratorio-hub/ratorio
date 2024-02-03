@@ -11814,6 +11814,16 @@ function ApplyMagicalSpecializeMonsterMod20211014SubSpecializeMap(charaData, spe
 		}
 	}
 
+	//--------------------------------
+	// アルデバラン時計塔地下 未知の空間特化
+	//--------------------------------
+	if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_TOKEITO_MICHI_NO_KUUKAN]) == 1){
+		if ((cardCount = CardNumSearch(CARD_ID_GENERAL_ORK)) > 0) {
+			wX += 30 * cardCount;
+		}
+	}
+
+	
 
 
 	//--------------------------------
@@ -22221,6 +22231,15 @@ function ApplyPhysicalSpecializeMonster(charaData, specData, mobData, dmg) {
 		}
 	}
 
+	//--------------------------------
+	// アルデバラン時計塔地下 未知の空間特化
+	//--------------------------------
+	if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_TOKEITO_MICHI_NO_KUUKAN]) == 1){
+		if ((cardCount = CardNumSearch(CARD_ID_GENERAL_ORK)) > 0) {
+			w += 30 * cardCount;
+		}
+	}
+
 
 
 	//--------------------------------
@@ -26307,7 +26326,7 @@ function UsedSkillSearch(sklId, bOnlyUsed = false) {
 		}
 
 		// 「トートの書」の効果
-		if (EquipNumSearch(ITEM_ID_TOTONO_SHO)) {
+		if (EquipNumSearch(ITEM_ID_TOTONO_SHO) || EquipNumSearch(ITEM_ID_TOTONO_SHO_T1)) {
 			effectivLvArray.push(10);
 		}
 
