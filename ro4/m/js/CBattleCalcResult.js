@@ -501,15 +501,17 @@ function CBattleCalcResult () {
 
 //		var actInterval = castVary + castFixed + attackInterval;
 		if (g_bDefinedDamageIntervals){
+			// 設置スキルの場合
 			actInterval = attackInterval;
 		}
 		else {
-			if (this.coolTime && (this.hitCountArray[0][1] > 1)) {
-				actInterval = this.coolTime;
-			}
-			else {
+			// 設置スキルではない場合
+			//if (this.coolTime && (this.hitCountArray[0][1] > 1)) {
+			//	actInterval = this.coolTime;
+			//}
+			//else {
 				actInterval = castVary + castFixed + attackInterval;
-			}
+			//}
 		}
 
 
@@ -565,15 +567,17 @@ function CBattleCalcResult () {
 
 //		var actInterval = castVary + castFixed + attackInterval;
 		if (g_bDefinedDamageIntervals){
+			// 設置スキルの場合
 			actInterval = attackInterval;
 		}
 		else {
-			if (this.coolTime && (this.hitCountArray[0][1] > 1)) {
-				actInterval = this.coolTime;
-			}
-			else {
+			// 設置スキルではない場合
+			// if (this.coolTime && (this.hitCountArray[0][1] > 1)) {
+			// 	actInterval = this.coolTime;
+			// }
+			// else {
 				actInterval = castVary + castFixed + attackInterval;
-			}
+			// }
 		}
 
 
@@ -616,15 +620,17 @@ function CBattleCalcResult () {
 
 //		var actInterval = castVary + castFixed + attackInterval;
 		if (g_bDefinedDamageIntervals){
+			// 設置スキルの場合
 			actInterval = attackInterval;
 		}
 		else {
-			if (this.coolTime && (this.hitCountArray[0][1] > 1)) {
-				actInterval = this.coolTime;
-			}
-			else {
+			// 設置スキルではない場合
+			// if (this.coolTime && (this.hitCountArray[0][1] > 1)) {
+			// 	actInterval = this.coolTime;
+			// }
+			// else {
 				actInterval = castVary + castFixed + attackInterval;
-			}
+			// }
 		}
 
 
