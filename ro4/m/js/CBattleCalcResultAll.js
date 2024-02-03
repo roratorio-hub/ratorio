@@ -477,8 +477,8 @@ function CBattleCalcResultAll () {
 			resultWork = this.activeResultArray[0];
 			lifetime = resultWork.objectLifeTime;//スキルの持続時間
 			cooltime = resultWork.coolTime * 1000;
-			delay = resultWork.delaySkill * 1000;
-
+			delay = Math.max(resultWork.delaySkill * 1000, resultWork.delayForce);
+ 
 			if (cooltime > delay) {
 				overtime = (cooltime >= lifetime) ? ((cooltime - lifetime)/1000) : -1;
 			} else {
