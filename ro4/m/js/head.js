@@ -8976,17 +8976,13 @@ g_bUnknownCasts = true;
 		case SKILL_ID_NUMATIC_PROCERA:
 
 // TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
 g_bDefinedDamageIntervals = true;
 
 			// 詠唱時間等
-			/*
-			// 未実測、3秒間隔ＨＩＴ、１２秒設置
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			*/
 
 			// ダメージ間隔
 			n_Delay[5] = 3000;
