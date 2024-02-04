@@ -431,7 +431,7 @@ CGlobalConstManager.DefineEnum(
 		"ITEM_SP_CRITICAL_DAMAGE_UP",		// 70 クリティカルダメージ増加
 		"ITEM_SP_REFLECT_PHYSICAL_DAMAGE",
 		"ITEM_SP_LONGRANGE_CRI_PLUS",
-		"ITEM_SP_SKILL_CAST_TIME",			// 73 詠唱時間
+		"ITEM_SP_SKILL_CAST_TIME",			// 73 変動詠唱時間
 		"ITEM_SP_SKILL_DELAY_DOWN",			// 74 ディレイ
 		"ITEM_SP_HPR_UP",
 		"ITEM_SP_SPR_UP",
@@ -516,18 +516,18 @@ CGlobalConstManager.DefineEnum(
 		"ITEM_SP_PHYSICAL_RESIST_SIZE_MEDIUM",
 		"ITEM_SP_PHYSICAL_RESIST_SIZE_LARGE",
 
-		"ITEM_SP_RESIST_STATE_POISON",
-		"ITEM_SP_RESIST_STATE_STUN",
-		"ITEM_SP_RESIST_STATE_FROZEN",
-		"ITEM_SP_RESIST_STATE_CURSED",
-		"ITEM_SP_RESIST_STATE_BLIND",
-		"ITEM_SP_RESIST_STATE_SLEEP",
-		"ITEM_SP_RESIST_STATE_SILENCE",
-		"ITEM_SP_RESIST_STATE_CONFUSE",
-		"ITEM_SP_RESIST_STATE_BLEEDING",
-		"ITEM_SP_RESIST_STATE_STONE",
+		"ITEM_SP_RESIST_STATE_POISON",		// 150 
+		"ITEM_SP_RESIST_STATE_STUN",		// 151 スタン耐性
+		"ITEM_SP_RESIST_STATE_FROZEN",		// 152 凍結耐性
+		"ITEM_SP_RESIST_STATE_CURSED",		//
+		"ITEM_SP_RESIST_STATE_BLIND",		//
+		"ITEM_SP_RESIST_STATE_SLEEP",		//
+		"ITEM_SP_RESIST_STATE_SILENCE",		//
+		"ITEM_SP_RESIST_STATE_CONFUSE",		//
+		"ITEM_SP_RESIST_STATE_BLEEDING",	// 
+		"ITEM_SP_RESIST_STATE_STONE",		// 159 石化耐性
 
-		"ITEM_SP_RESIST_STATE_BREAK_WEAPON",
+		"ITEM_SP_RESIST_STATE_BREAK_WEAPON",	// 160
 		"ITEM_SP_RESIST_STATE_BREAK_HELM",
 		"ITEM_SP_RESIST_STATE_BREAK_ARMOR",
 		"ITEM_SP_RESIST_STATE_BREAK_SHIELD",	// 163 
@@ -582,14 +582,14 @@ CGlobalConstManager.DefineEnum(
 		"ITEM_SP_RESERVED_208",				// 未使用（208）
 		"ITEM_SP_RESERVED_209",				// 未使用（209）
 
-		"ITEM_SP_SHORTRANGE_DAMAGE_UP",
-		"ITEM_SP_STR_PLUS_FOR_SET",			// STR		固定値上昇		セット定義用（集中力向上等の基礎値に含まれない）
-		"ITEM_SP_AGI_PLUS_FOR_SET",			// AGI		固定値上昇		セット定義用（集中力向上等の基礎値に含まれない）
-		"ITEM_SP_VIT_PLUS_FOR_SET",			// VIT		固定値上昇		セット定義用（集中力向上等の基礎値に含まれない）
-		"ITEM_SP_INT_PLUS_FOR_SET",			// INT		固定値上昇		セット定義用（集中力向上等の基礎値に含まれない）
-		"ITEM_SP_DEX_PLUS_FOR_SET",			// DEX		固定値上昇		セット定義用（集中力向上等の基礎値に含まれない）
-		"ITEM_SP_LUK_PLUS_FOR_SET",			// LUK		固定値上昇		セット定義用（集中力向上等の基礎値に含まれない）
-		"ITEM_SP_ALLSTATUS_PLUS_FOR_SET",	// 全ステ	固定値上昇		セット定義用（集中力向上等の基礎値に含まれない）
+		"ITEM_SP_SHORTRANGE_DAMAGE_UP",		// 210
+		"ITEM_SP_STR_PLUS_FOR_SET",			// STR		固定値上昇		セット定義用（集中力向上等の基礎値に含まれない）	211
+		"ITEM_SP_AGI_PLUS_FOR_SET",			// AGI		固定値上昇		セット定義用（集中力向上等の基礎値に含まれない）	212
+		"ITEM_SP_VIT_PLUS_FOR_SET",			// VIT		固定値上昇		セット定義用（集中力向上等の基礎値に含まれない）	213
+		"ITEM_SP_INT_PLUS_FOR_SET",			// INT		固定値上昇		セット定義用（集中力向上等の基礎値に含まれない）	214
+		"ITEM_SP_DEX_PLUS_FOR_SET",			// DEX		固定値上昇		セット定義用（集中力向上等の基礎値に含まれない）	215
+		"ITEM_SP_LUK_PLUS_FOR_SET",			// LUK		固定値上昇		セット定義用（集中力向上等の基礎値に含まれない）	216
+		"ITEM_SP_ALLSTATUS_PLUS_FOR_SET",	// 全ステ	固定値上昇		セット定義用（集中力向上等の基礎値に含まれない）	217
 		"ITEM_SP_INVALIDATE_ITEM_SP",		// 指定アイテムの効果無効 218
 		"ITEM_SP_INVALIDATE_CARD_SP",		// 指定カードの効果無効 219
 
@@ -601,7 +601,7 @@ CGlobalConstManager.DefineEnum(
 		"ITEM_SP_AUTO_SPELL_HIDDEN_DETAIL",			// 225 オートスペル発動 詳細表示に表示しない
 		"ITEM_SP_USE_ENCHANT_ELM_CONF",				// 『属性付与で設定』表示　ランダムオプション用　効果は無し
 		"ITEM_SP_NOT_IMPLEMENTED",					// 『未対応』表示　ランダムオプション用　効果は無し
-		"ITEM_SP_SIZE_PERFECTION",
+		"ITEM_SP_SIZE_PERFECTION",					// 228 全サイズ補正100
 		"ITEM_SP_ARMS_ELEMENT",
 
 		"ITEM_SP_POW_PLUS",					// 230

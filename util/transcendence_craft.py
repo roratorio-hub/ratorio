@@ -49,23 +49,26 @@ if __name__ == "__main__":
         # 超越で追加された Item SP を既存のレコードに付加して出力する
         itemobjnew = getItemRecord(item_info['name'])[0]
         itemobjnew = f"ItemObjNew[{item_id}] = [{item_id}{itemobjnew[itemobjnew.find(','):-2]}"
-        for capability in item_info['capabilities']:
-            itemobjnew += buildCapabilityRecord(capability)
+        if 'capabilities' in item_info:
+            for capability in item_info['capabilities']:
+                itemobjnew += buildCapabilityRecord(capability)
         itemobjnew += "0];"
         item_dat.append(itemobjnew)
 
         # --- itemset.dat.js ---
         # 2024/01/31時点では超越により変化するセット効果はないのでそのまま出力する
-        itemidtosetidmap = f"ItemIdToSetIdMap[{item_id}] = ["
-        for itemset in getItemSetRecordArray(origin_item_id):
-            itemset_id += 1
-            itemset = itemset.replace(f',{origin_item_id},',f',{item_id},')
-            itemset = itemset.replace(f',{origin_item_id}]',f',{item_id}]')
-            itemset = f"w_SE[{itemset_id}] = {itemset};"
-            itemidtosetidmap += f"{itemset_id},"
-            itemset_dat.append(itemset)
-        itemidtosetidmap = f"{itemidtosetidmap[:-1]}];"
-        itemset_dat.append(itemidtosetidmap)
+        itemset_list = getItemSetRecordArray(origin_item_id)
+        if len(itemset_list) > 0:
+            itemidtosetidmap = f"ItemIdToSetIdMap[{item_id}] = ["
+            for itemset in itemset_list:
+                itemset_id += 1
+                itemset = itemset.replace(f',{origin_item_id},',f',{item_id},')
+                itemset = itemset.replace(f',{origin_item_id}]',f',{item_id}]')
+                itemset = f"w_SE[{itemset_id}] = {itemset};"
+                itemidtosetidmap += f"{itemset_id},"
+                itemset_dat.append(itemset)
+            itemidtosetidmap = f"{itemidtosetidmap[:-1]}];"
+            itemset_dat.append(itemidtosetidmap)
 
         # --- mig.enchlist.dat.js ---
         reverseresolvearrayitemid = f"g_constDataManager.enchListDataManager.reverseResolveArrayItemId[{item_id}] = ["

@@ -51,6 +51,8 @@ capabilities:
     code: 69
   - name: クリティカルダメージ増加
     code: 70
+  - name: 変動詠唱減少
+    code: 73
   - name: ディレイ減少
     code: 74
   - name: ボス耐性
@@ -77,10 +79,18 @@ capabilities:
     code: 100
   - name: 固定詠唱ミリ秒減少  # スキルに依存しない固定詠唱％減少の定義は存在しないので foot.js で個別対応が必要
     code: 109
+  - name: スタン耐性
+    code: 151
+  - name: 凍結耐性
+    code: 152
+  - name: 石化耐性
+    code: 159
   - name: 壊れない
     code: 194
   - name: スキル習得時効果
     code: 199
+  - name: INT上昇
+    code: 214
   - name: 全ステータス上昇
     code: 217
   - name: アイテムの効果が発動しない
@@ -95,6 +105,8 @@ capabilities:
     code: 224
   - name: オートスペル発動（説明非表示）
     code: 225
+  - name: サイズペナルティ無し
+    code: 228
   - name: Pow上昇
     code: 230
   - name: Sta上昇

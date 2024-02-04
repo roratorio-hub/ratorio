@@ -1,185 +1,705 @@
 item_list:
 
-  - name: 白の騎士団の猫じゃらし
+  - name: ガーデンオブエデン
     capabilities:
-      - name: スキルダメージ増加
-        skill: キャロットビート
-        per_lv: 5
-        value: 1
-      - name: スキルダメージ増加
-        skill: サベージの魂
-        per_lv: 5
-        value: 1
-      - name: ATK加算
-        value: 150
-        at_refine: 10
-      - name: 念属性耐性
-        value: 10
+      # --- 元アイテム定義が古くて個別定義のためSPに置換する---
+      - name: 魔法ダメージ増加
+        at_refine: 7
+        value: 15
+      - name: MDEF無視
+        at_refine: 7
+        value: 30
+      - name: 変動詠唱減少
+        at_refine: 9
+        value: 15
+      - name: MDEF無視
+        at_refine: 9
+        value: 50
+      # --- ここまで ---
+      - name: ディレイ減少
+        per_refine: 1
+        value: 2
+      - name: MDEF加算
+        value: 100
         at_refine: 10
     enchant:
-      - name: 宮廷魔術師 グループ２
+      - name: スペシャルエンチャント（リチャード） グループ２
         slot_list:
           - slot: 4
-            refine: 9
+            refine: 8
             enchant_list:
-              - name: 閃光
-              - name: 強剛
-              - name: 天弓
-              - name: 新暦
-              - name: 剛体
-              - name: 白雲
+              - name: ハイレベル
+              - name: プレイヤー耐性5
+              - name: 消費SP-6%
+              - name: スキルディレイ-6%
+              - name: 詠唱妨害不可
+              - name: 魔力1
+              - name: 魔力2
+              - name: 攻撃速度1
+              - name: 攻撃速度2
+              - name: 完全回避+5
+              - name: MaxHP5
+              - name: 固定詠唱時間-50%
+              - name: ExtraInt
           - slot: 3
             refine: 9
             enchant_list:
-              - name: 強撃3
-              - name: 増幅3
+              - name: ハイレベル
+              - name: プレイヤー耐性5
+              - name: 消費SP-6%
+              - name: スキルディレイ-6%
+              - name: 詠唱妨害不可
+              - name: 魔力1
+              - name: 魔力2
+              - name: 攻撃速度1
+              - name: 攻撃速度2
+              - name: 完全回避+5
+              - name: MaxHP5
+              - name: 固定詠唱時間-50%
+              - name: ExtraInt
           - slot: 2
+            refine: 10
+            enchant_list:
+              - name: 暴走した魔力
+              - name: 真理の解放
+
+  - name: 剛勇無双の紋帽子
+    capabilities:
+      - name: 必中
+        per_refine: 1
+        value: 2
+      - name: 必中
+        value: 30
+        at_refine: 10
+      - name: サイズペナルティ無し
+        value: 1
+        at_refine: 10
+    enchant:
+      - name: スペシャルエンチャント（リチャード） グループ２
+        slot_list:
+          - slot: 4
+            refine: 8
+            enchant_list:
+              - name: ハイレベル
+              - name: プレイヤー耐性5
+              - name: MaxHP5
+              - name: SP+100
+              - name: 先鋭1
+              - name: 鋭利1
+              - name: 闘志1
+              - name: 名弓1
+              - name: 魔力1
+              - name: 先鋭2
+              - name: 鋭利2
+              - name: 闘志2
+              - name: 名弓2
+              - name: 魔力2
+              - name: 消費SP-4%
+              - name: 完全回避+5
+              - name: 固定詠唱時間-50%
+              - name: ExtraDex
+          - slot: 3
             refine: 9
             enchant_list:
-              - name: 火属性付与(武器)
-              - name: 水属性付与(武器)
-              - name: 風属性付与(武器)
-              - name: 地属性付与(武器)
-              - name: 聖属性付与(武器)
-              - name: 闇属性付与(武器)
-              - name: 念属性付与(武器)
-              - name: 毒属性付与(武器)
+              - name: ハイレベル
+              - name: プレイヤー耐性5
+              - name: MaxHP5
+              - name: SP+100
+              - name: 先鋭1
+              - name: 鋭利1
+              - name: 闘志1
+              - name: 名弓1
+              - name: 魔力1
+              - name: 先鋭2
+              - name: 鋭利2
+              - name: 闘志2
+              - name: 名弓2
+              - name: 魔力2
+              - name: 消費SP-4%
+              - name: 完全回避+5
+              - name: 固定詠唱時間-50%
+              - name: ExtraDex
+          - slot: 2
+            refine: 10
+            enchant_list:
               - name: 大鷲の眼光
+              - name: 豪傑
+
+  - name: ファントムオブマスカレード
+    capabilities:
+      - name: 全種族への物理ダメージ増加
+        per_refine: 1
+        value: 2
+      - name: 石化耐性
+        value: 50
+        at_refine: 10
+    enchant:
+      - name: スペシャルエンチャント（リチャード） グループ２
+        slot_list:
+          - slot: 4
+            refine: 8
+            enchant_list:
+              - name: 闘志1
+              - name: 闘志2
+              - name: 先鋭1
+              - name: 先鋭2
+              - name: 名弓1
+              - name: 名弓2
+              - name: 鋭利1
+              - name: 鋭利2
+              - name: 攻撃速度1
+              - name: 攻撃速度2
+              - name: 完全回避+5
+              - name: 消費SP-6%
+              - name: ハイレベル
+              - name: MaxHP5
+              - name: プレイヤー耐性6
+              - name: 固定詠唱時間-50%
+              - name: 詠唱妨害不可
+              - name: Def50%無視
+              - name: 殺意の怨念
+          - slot: 3
+            refine: 9
+            enchant_list:
+              - name: 闘志1
+              - name: 闘志2
+              - name: 先鋭1
+              - name: 先鋭2
+              - name: 名弓1
+              - name: 名弓2
+              - name: 鋭利1
+              - name: 鋭利2
+              - name: 攻撃速度1
+              - name: 攻撃速度2
+              - name: 完全回避+5
+              - name: 消費SP-6%
+              - name: ハイレベル
+              - name: MaxHP5
+              - name: プレイヤー耐性6
+              - name: 固定詠唱時間-50%
+              - name: 詠唱妨害不可
+              - name: Def50%無視
+              - name: 理性と記憶の残滓
+          - slot: 2
+            refine: 10
+            enchant_list:
+              - name: 光速
+              - name: 死の欲動
+
+  # 説明文で対応
+  #    精錬値が1上がる度に追加で攻撃命中時、SP + 1
+  #    精錬値が10の時、追加で物理・魔法攻撃命中時、一定確率で5秒間、スキル使用時の消費SP - 100%
+  # SP が存在しないので foot.js で対応
+  #    精錬値が7以上の時、追加で固定詠唱時間 - 50%<BR>精錬値が9以上の時、追加で固定詠唱時間 - 20%
+  - name: ゲートオブネザーワールド
+    enchant:
+      - name: スペシャルエンチャント（リチャード） グループ２
+        slot_list:
+          - slot: 4
+            refine: 8
+            enchant_list:
+              - name: スキルディレイ-15%
+              - name: 消費SP-15%
+              - name: 詠唱妨害不可
+              - name: ノックバック無効
+              - name: 厄災の魔将
+          - slot: 3
+            refine: 9
+            enchant_list:
+              - name: 潜在解放(ウォーロック)
+              - name: 潜在解放(ギロチンクロス)
+              - name: 潜在解放(ミンストレル)
+              - name: 潜在解放(レンジャー)
+              - name: 潜在解放(ワンダラー)
+              - name: 潜在解放(アークビショップ)
+              - name: 潜在解放(ジェネティック)
+              - name: 潜在解放(シャドウチェイサー)
+              - name: 潜在解放(修羅)
+              - name: 潜在解放(ソーサラー)
+              - name: 潜在解放(メカニック)
+              - name: 潜在解放(ルーンナイト)
+              - name: 潜在解放(ロイヤルガード)
+              - name: 潜在解放(影狼)
+              - name: 潜在解放(朧)
+              - name: 潜在解放(リベリオン)
+              - name: 潜在解放(サモナー)
+              - name: 潜在解放(星帝)
+              - name: 潜在解放(ソウルリーパー)
+              - name: ExtraStr
+              - name: ExtraAgi
+              - name: ExtraVit
+              - name: ExtraInt
+              - name: ExtraDex
+              - name: ExtraLuk
+          - slot: 2
+            refine: 10
+            enchant_list:
+              - name: 豪傑
+              - name: 真理の解放
+              - name: 再誕
+
+  - name: 魔狩りの靴
+    capabilities:
+      - name: 全ステータス上昇
+        per_refine: 1
+        value: 2
+      - name: ディレイ減少
+        at_refine: 10
+        value: 40
+      - name: 物理ダメージ増加
+        at_refine: 10
+        value: 30
+    enchant:
+      - name: スペシャルエンチャント（リチャード） グループ２
+        slot_list:
+          - slot: 4
+            refine: 8
+            enchant_list:
+              - name: バーン
+              - name: ゲイル
+              - name: フラッド
+              - name: クレイ
+              - name: グラッジ
+              - name: ウーア
+              - name: ベノム
+              - name: デスペリア
+              - name: セイクレッド
+              - name: スキルディレイ-15%
+              - name: Def50%無視
+              - name: Mdef50%無視
+              - name: プレイヤー耐性10
+              - name: 必中攻撃+25%
+          - slot: 3
+            refine: 9
+            enchant_list:
+              - name: バーン
+              - name: ゲイル
+              - name: フラッド
+              - name: クレイ
+              - name: グラッジ
+              - name: ウーア
+              - name: ベノム
+              - name: デスペリア
+              - name: セイクレッド
+              - name: スキルディレイ-15%
+              - name: Def50%無視
+              - name: Mdef50%無視
+              - name: アルカナ
+              - name: 攻撃速度+15%
+          - slot: 2
+            refine: 10
+            enchant_list:
               - name: 覇王
+              - name: シンソウの王
+              - name: 極限の魔力
+
+  - name: カーリッツバーグ騎士団の鎧
+    capabilities:
+      # --- アイテムが古くて個別定義されていたのでSPに置換 ---
+      # 精錬値が1上がる度に追加で遠距離物理攻撃で与えるダメージ+2%。
+      - name: 遠距離ダメージ増加
+        value: 2
+        per_refine: 1
+      # --- ここまで ---
+      - name: ASPD増加
+        per_refine: 1
+        value: 1
+      - name: 必中
+        at_refine: 10
+        value: 25
+      - name: 壊れない
+        at_refine: 10
+        value: 1
+    enchant:
+      - name: スペシャルエンチャント（リチャード） グループ２
+        slot_list:
+          - slot: 4
+            refine: 8
+            enchant_list:
+              - name: ハイレベル
+              - name: プレイヤー耐性3
+              - name: MaxHP5
+              - name: SP+100
+              - name: 破壊不可(鎧)
+              - name: 完全回避+1
+              - name: 先鋭1
+              - name: 鋭利1
+              - name: 闘志1
+              - name: 名弓1
+              - name: 魔力1
+              - name: 攻撃速度1
+              - name: スキルディレイ-15%
+              - name: 英雄の凱歌
+              - name: 厄災の魔将
+          - slot: 3
+            refine: 9
+            enchant_list:
+              - name: ハイレベル
+              - name: プレイヤー耐性3
+              - name: MaxHP5
+              - name: SP+100
+              - name: 破壊不可(鎧)
+              - name: 完全回避+1
+              - name: 先鋭1
+              - name: 鋭利1
+              - name: 闘志1
+              - name: 名弓1
+              - name: 魔力1
+              - name: 攻撃速度1
+              - name: バーン
+              - name: ゲイル
+              - name: フラッド
+              - name: クレイ
+              - name: グラッジ
+              - name: ウーア
+              - name: ベノム
+              - name: デスペリア
+              - name: セイクレッド
+              - name: 火属性付与(鎧)
+              - name: 水属性付与(鎧)
+              - name: 風属性付与(鎧)
+              - name: 地属性付与(鎧)
+              - name: 聖属性付与(鎧)
+              - name: 闇属性付与(鎧)
+              - name: 念属性付与(鎧)
+              - name: 毒属性付与(鎧)
+              - name: 不死属性付与(鎧)
+          - slot: 2
+            refine: 10
+            enchant_list:
+              - name: 大鷲の眼光
+              - name: 天弓
+
+  - name: グレータードラクルホーン
+    capabilities:
+      # --- アイテムが古くて個別定義されていたのでSPに置換 ---
+      - name: 遠距離ダメージ増加
+        value: 5
+        at_refine: 7
+      - name: 遠距離ダメージ増加
+        value: 5
+        at_refine: 9
+      # --- ここまで ---
+      - name: MAXHP増加
+        per_refine: 1
+        value: 2
+      - name: 物理ダメージ増加
+        at_refine: 10
+        value: 40
+    enchant:
+      - name: スペシャルエンチャント（リチャード） グループ２
+        slot_list:
+          - slot: 4
+            refine: 8
+            enchant_list:
+              - name: ハイレベル
+              - name: 消費SP-4%
+              - name: スキルディレイ-6%
+              - name: 先鋭2
+              - name: 鋭利2
+              - name: 闘志2
+              - name: 名弓2
+              - name: 魔力2
+              - name: 攻撃速度2
+              - name: 完全回避+5
+              - name: MaxHP5
+              - name: SP+100
+              - name: スキルディレイ-15%
+          - slot: 3
+            refine: 9
+            enchant_list:
+              - name: ハイレベル
+              - name: 消費SP-4%
+              - name: スキルディレイ-6%
+              - name: 先鋭2
+              - name: 鋭利2
+              - name: 闘志2
+              - name: 名弓2
+              - name: 魔力2
+              - name: 攻撃速度2
+              - name: 完全回避+5
+              - name: MaxHP5
+              - name: SP+100
+              - name: ノックバック無効
+          - slot: 2
+            refine: 10
+            enchant_list:
+              - name: 熊の力
+              - name: 覇王
+
+  - name: 白の騎士団の鎧
+    capabilities:
+      - name: DEF加算
+        per_refine: 1
+        value: 30
+      - name: MDEF加算
+        per_refine: 1
+        value: 3
+      - name: 必中
+        at_refine: 10
+        value: 25
+      - name: 凍結耐性
+        at_refine: 10
+        value: 100
+    enchant:
+      - name: スペシャルエンチャント（リチャード） グループ２
+        slot_list:
+          - slot: 4
+            refine: 8
+            enchant_list:
+              - name: ハイレベル
+              - name: プレイヤー耐性3
+              - name: MaxHP5
+              - name: SP+100
+              - name: 完全回避+1
+              - name: 先鋭1
+              - name: 鋭利1
+              - name: 闘志1
+              - name: 名弓1
+              - name: 魔力1
+              - name: 攻撃速度1
+              - name: スキルディレイ-15%
+              - name: 英雄の凱歌
+              - name: 厄災の魔将
+          - slot: 3
+            refine: 9
+            enchant_list:
+              - name: ハイレベル
+              - name: プレイヤー耐性3
+              - name: MaxHP5
+              - name: SP+100
+              - name: 完全回避+1
+              - name: 先鋭1
+              - name: 鋭利1
+              - name: 闘志1
+              - name: 名弓1
+              - name: 魔力1
+              - name: 攻撃速度1
+              - name: バーン
+              - name: ゲイル
+              - name: フラッド
+              - name: クレイ
+              - name: グラッジ
+              - name: ウーア
+              - name: ベノム
+              - name: デスペリア
+              - name: セイクレッド
+              - name: 火属性付与(鎧)
+              - name: 水属性付与(鎧)
+              - name: 風属性付与(鎧)
+              - name: 地属性付与(鎧)
+              - name: 聖属性付与(鎧)
+              - name: 闇属性付与(鎧)
+              - name: 念属性付与(鎧)
+              - name: 毒属性付与(鎧)
+              - name: 不死属性付与(鎧)
+          - slot: 2
+            refine: 10
+            enchant_list:
+              - name: 凍結耐性
+              - name: 強剛
+              - name: 新暦
+
+  - name: パナギアの贈り物
+    capabilities:
+      - name: ヒール系スキル使用時HP回復量増加
+        per_refine: 1
+        value: 4
+      - name: スタン耐性
+        at_refine: 10
+        value: 50
+    enchant:
+      - name: スペシャルエンチャント（リチャード） グループ２
+        slot_list:
+          - slot: 4
+            refine: 8
+            enchant_list:
+              - name: 闘志1
+              - name: 闘志2
+              - name: 先鋭1
+              - name: 先鋭2
+              - name: 名弓1
+              - name: 名弓2
+              - name: 鋭利1
+              - name: 鋭利2
+              - name: 攻撃速度1
+              - name: 攻撃速度2
+              - name: 完全回避+5
+              - name: ハイレベル
+              - name: MaxHP5
+              - name: プレイヤー耐性6
+              - name: 固定詠唱時間-50%
+              - name: 詠唱妨害不可
+              - name: 大司教1
+              - name: 大司教2
+              - name: 大聖堂1
+          - slot: 3
+            refine: 9
+            enchant_list:
+              - name: 闘志1
+              - name: 闘志2
+              - name: 先鋭1
+              - name: 先鋭2
+              - name: 名弓1
+              - name: 名弓2
+              - name: 鋭利1
+              - name: 鋭利2
+              - name: 攻撃速度1
+              - name: 攻撃速度2
+              - name: 完全回避+5
+              - name: ハイレベル
+              - name: MaxHP5
+              - name: プレイヤー耐性6
+              - name: 固定詠唱時間-50%
+              - name: 詠唱妨害不可
+              - name: 大司教1
+              - name: 大司教2
+              - name: 治癒1
+          - slot: 2
+            refine: 10
+            enchant_list:
+              - name: 鋼鎧
+              - name: 魔鉱
+
+  # chara.js での対応が必要
+  # 精錬値が8以上の時、追加で[エナジーコート]Lv1習得時、Def + 300 , Mdef + 15
+  - name: フェアリーオブエデン
+    capabilities:
+      - name: 念属性耐性
+        per_refine: 1
+        value: 2
+      - name: INT上昇
+        at_refine: 10
+        value: 25
+    enchant:
+      - name: スペシャルエンチャント（リチャード） グループ２
+        slot_list:
+          - slot: 4
+            refine: 8
+            enchant_list:
+              - name: 完全回避+25
+              - name: ニヒツ
+              - name: バーン
+              - name: ゲイル
+              - name: フラッド
+              - name: クレイ
+              - name: グラッジ
+              - name: ウーア
+              - name: ベノム
+              - name: デスペリア
+              - name: セイクレッド
+              - name: 魔力4
+              - name: 詠唱妨害不可
+              - name: Mdef50%無視
+              - name: 起源の王
+          - slot: 3
+            refine: 9
+            enchant_list:
               - name: 暴走した魔力
+              - name: 真理の解放
+          - slot: 2
+            refine: 10
+            enchant_list:
+              - name: 凍結耐性
+              - name: 石化耐性
+              - name: 再誕
 
-#  - name: アンティークガトリングガン
-#    capabilities:
-#      - name: ボス耐性
-#        value: 40
-#      - name: スキルダメージ増加
-#        skill: ファイアーレイン
-#        per_lv: 2
-#        value: 1
-#      - name: スキルダメージ増加
-#        skill: ラウンドトリップ
-#        per_lv: 2
-#        value: 1
-#      - name: ATK加算
-#        value: 250
-#        at_refine: 10
-#      - name: 念属性耐性
-#        value: 25
-#        at_refine: 10
-#
-#  - name: トートの書
-#    capabilities:
-#      - name: オートスペル発動
-#        skill: ダーククロー
-#        skill_lv: 3
-#      - name: MATK加算
-#        value: 150
-#        at_refine: 10
-#      - name: 念属性耐性
-#        value: 10
-#        at_refine: 10
-#
-#  # 魔法攻撃命中時、3秒間、[レイオブジェネシス]使用時、自分にオートスペル[ハイネスヒール]Lv3発動
-#  - name: 輝く白銀の槍
-#    capabilities:
-#      - name: MATK加算
-#        value: 150
-#        at_refine: 10
-#      - name: 念属性耐性
-#        value: 10
-#        at_refine: 10
-#
-#  # [トライアングルショット]使用時、一定確率で20秒間、[アンリミット]Lv5状態になる 装備解除時、[アンリミット]を解除する（計算機未対応のため三次職支援設定を使って下さい）
-#  - name: トライアングルディザスター
-#    capabilities:
-#      - name: ボス耐性
-#        value: 40
-#      - name: ATK加算
-#        value: 250
-#        at_refine: 10
-#      - name: 念属性耐性
-#        value: 25
-#        at_refine: 10
-#
-#  - name: 朽ちたガーデンナイフ
-#    capabilities:
-#      - name: スキルダメージ増加
-#        skill: エスパ
-#        per_lv: 5
-#        value: 1
-#      - name: スキルダメージ増加
-#        skill: エスフ
-#        per_lv: 5
-#        value: 1
-#      - name: スキルダメージ増加
-#        skill: 死霊爆発
-#        per_lv: 5
-#        value: 1
-#      - name: MATK加算
-#        value: 150
-#        at_refine: 10
-#      - name: 念属性耐性
-#        value: 10
-#        at_refine: 10
-#
-#  - name: 魔導師の記憶
-#    capabilities:
-#      - name: スキルダメージ増加
-#        skill: チェーンライトニング
-#        per_lv: 3
-#        value: 1
-#      - name: MATK加算
-#        value: 150
-#        at_refine: 10
-#      - name: 念属性耐性
-#        value: 10
-#        at_refine: 10
-#
-#  - name: 六韜三略
-#    capabilities:
-#      - name: スキルダメージ増加
-#        skill: 太陽爆発
-#        per_lv: 10
-#        value: 1
-#      - name: スキルダメージ増加
-#        skill: 満月脚
-#        per_lv: 10
-#        value: 1
-#      - name: スキルダメージ増加
-#        skill: 流星落下
-#        per_lv: 10
-#        value: 1
-#      - name: ATK加算
-#        value: 150
-#        at_refine: 10
-#      - name: 念属性耐性
-#        value: 10
-#        at_refine: 10
+  # 超越ではない
+  - name: マジックコンプレッション
+    enchant:
+      - name: スペシャルエンチャント（リチャード） グループ1
+        slot_list:
+          - slot: 4
+            refine: 10
+            enchant_list:
+              - name: バーン
+              - name: ゲイル
+              - name: フラッド
+              - name: クレイ
+              - name: グラッジ
+              - name: ウーア
+              - name: ベノム
+              - name: デスペリア
+              - name: セイクレッド
+              - name: 詠唱妨害不可
+              - name: ニヒツ
+              - name: レジストファイア
+              - name: レジストウォーター
+              - name: レジストウィンド
+              - name: レジストアース
+              - name: レジストセイント
+              - name: レジストダークネス
+              - name: レジストテレキネシス
+              - name: レジストポイズン
 
-#  - name: アンティークガトリングガン
-#    capabilities:
-#      - name: ボス耐性
-#        value: 40
-#      - name: スキルダメージ増加
-#        skill: ラウンドトリップ
-#        at_status_110: Agi
-#        value: 30
-#      - name: スキルダメージ増加
-#        skill: ラウンドトリップ
-#        per_status_10: Agi
-#        value: 7
-#      - name: スキルダメージ増加
-#        skill: ファイアーレイン
-#        per_lv: 2
-#        value: 1
-#      - name: スキルダメージ増加
-#        skill: ラウンドトリップ
-#        per_lv: 2
-#        value: 1
-#      - name: ATK加算
-#        value: 250
-#        at_refine: 10
-#      - name: 念属性耐性
-#        value: 25
-#        at_refine: 10
+  # 超越ではない
+  - name: 覚醒ホワイトリリーローブ
+    enchant:
+      - name: シーズンエンチャント（雛人形）グループ9
+        slot_list:
+          - slot: 4
+            refine: 10
+            enchant_list:
+              - name: Str+7
+              - name: Agi+7
+              - name: Vit+7
+              - name: Int+7
+              - name: Dex+7
+              - name: Luk+7
+              - name: SpecialStr
+              - name: SpecialAgi
+              - name: SpecialVit
+              - name: SpecialInt
+              - name: SpecialDex
+              - name: SpecialLuk
+              - name: マグニフィカートLv5
+              - name: スキルディレイ-15%
+              - name: プレイヤー耐性7
+          - slot: 3
+            refine: 10
+            enchant_list:
+              - name: Str+3
+              - name: Agi+3
+              - name: Vit+3
+              - name: Int+10
+              - name: Dex+3
+              - name: Luk+3
+              - name: 魔力4
+          - slot: 2
+            refine: 10
+            enchant_list:
+              - name: Str+3
+              - name: Agi+3
+              - name: Vit+3
+              - name: Int+3
+              - name: Dex+3
+              - name: Luk+3
+              - name: 火属性付与(鎧)
+              - name: 水属性付与(鎧)
+              - name: 風属性付与(鎧)
+              - name: 地属性付与(鎧)
+              - name: 聖属性付与(鎧)
+              - name: 闇属性付与(鎧)
+              - name: 念属性付与(鎧)
+              - name: 毒属性付与(鎧)
+              - name: 不死属性付与(鎧)
+              - name: バーン
+              - name: ゲイル
+              - name: フラッド
+              - name: クレイ
+              - name: グラッジ
+              - name: ウーア
+              - name: ベノム
+              - name: デスペリア
+              - name: セイクレッド
+
+  # 超越ではない
+  - name: プラーナブーツ
+    enchant:
+      - name: スペシャルエンチャント（キョウ）
+        slot_list:
+          - slot: 2
+            refine: 10
+            enchant_list:
+              - name: 無属性耐性+5%
 
