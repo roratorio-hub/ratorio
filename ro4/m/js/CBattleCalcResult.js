@@ -177,7 +177,8 @@ function CBattleCalcResult () {
 	this.GetDamageCountSummary = function () {
 
 		if ((this.objectLifeTime > 0) && (this.damageInterval > 0)) {
-			return Math.floor(this.objectLifeTime / this.damageInterval);
+			//return Math.floor(this.objectLifeTime / this.damageInterval);
+			return Math.ceil(this.objectLifeTime / this.damageInterval);
 		}
 
 		return "（計算不能）";
@@ -496,8 +497,23 @@ function CBattleCalcResult () {
 
 		var dmg = 0;
 		var dmgArray = null;
+		var actInterval = 0;
 
-		var actInterval = castVary + castFixed + attackInterval;
+//		var actInterval = castVary + castFixed + attackInterval;
+		if (g_bDefinedDamageIntervals){
+			// 設置スキルの場合
+			actInterval = attackInterval;
+		}
+		else {
+			// 設置スキルではない場合
+			//if (this.coolTime && (this.hitCountArray[0][1] > 1)) {
+			//	actInterval = this.coolTime;
+			//}
+			//else {
+				actInterval = castVary + castFixed + attackInterval;
+			//}
+		}
+
 
 
 		// 発生率が 100% 未満の場合、未発生（0 ダメージ）が最小
@@ -547,8 +563,23 @@ function CBattleCalcResult () {
 
 		var dmg = 0;
 		var dmgArray = null;
+		var actInterval = 0;
 
-		var actInterval = castVary + castFixed + attackInterval;
+//		var actInterval = castVary + castFixed + attackInterval;
+		if (g_bDefinedDamageIntervals){
+			// 設置スキルの場合
+			actInterval = attackInterval;
+		}
+		else {
+			// 設置スキルではない場合
+			// if (this.coolTime && (this.hitCountArray[0][1] > 1)) {
+			// 	actInterval = this.coolTime;
+			// }
+			// else {
+				actInterval = castVary + castFixed + attackInterval;
+			// }
+		}
+
 
 
 
@@ -585,8 +616,23 @@ function CBattleCalcResult () {
 
 		var dmg = 0;
 		var dmgArray = null;
+		var actInterval = 0;
 
-		var actInterval = castVary + castFixed + attackInterval;
+//		var actInterval = castVary + castFixed + attackInterval;
+		if (g_bDefinedDamageIntervals){
+			// 設置スキルの場合
+			actInterval = attackInterval;
+		}
+		else {
+			// 設置スキルではない場合
+			// if (this.coolTime && (this.hitCountArray[0][1] > 1)) {
+			// 	actInterval = this.coolTime;
+			// }
+			// else {
+				actInterval = castVary + castFixed + attackInterval;
+			// }
+		}
+
 
 
 

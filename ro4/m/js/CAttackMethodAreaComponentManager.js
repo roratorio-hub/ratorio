@@ -2125,7 +2125,6 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 			);
 			break;
 
-
 		//----------------------------------------------------------------
 		// ウィザード：ストームガスト
 		//----------------------------------------------------------------

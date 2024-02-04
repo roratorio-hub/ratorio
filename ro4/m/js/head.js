@@ -1311,16 +1311,32 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			if(wCast > 1500) wCast = 1500;
 			break;
 
+		// 「拳聖」スキル「＊＊の温もり」
 		case SKILL_ID_NUKUMORI:
-			n_Delay[0] = 1;
-			n_Delay[5] = 50;
-			if(mobData[20]==1) n_Delay[5] = 100;
+		case SKILL_ID_NUKUMORI_KABE:
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// 設置スキル設定
+			g_bDefinedDamageIntervals = true;
+			// ダメージ間隔
+			if (mobData[20] == MONSTER_BOSSTYPE_BOSS) {
+				n_Delay[5] = 100;							
+			} else if (n_A_ActiveSkill == SKILL_ID_NUKUMORI) {
+				n_Delay[5] = 50;							
+			} else {
+				n_Delay[5] = 20;
+			}
+			n_Delay[6] = [0,10,20,60][n_A_ActiveSkillLV] * 1000;	// オブジェクト存続時間
+			n_Delay[3] = n_Delay[6]; 								// 重複設置はできない
+			// 属性
+			n_A_Weapon_zokusei = g_skillManager.GetElement(battleCalcInfo.skillId);
+			// ダメージ倍率
+			wbairitu = 100;
 			break;
 
-		case SKILL_ID_NUKUMORI_KABE:
-			n_Delay[5] = 20;
-			if(mobData[20]==1) n_Delay[5] = 100;
-			break;
 
 		case SKILL_ID_CART_TERMINATION:
 			wbairitu += Math.floor((attackMethodConfArray[0].GetOptionValue(0) / (16 - n_A_ActiveSkillLV) / 100 -1) * 100);
@@ -4845,6 +4861,79 @@ g_bDefinedDamageIntervals = true;
 			wbairitu *= n_A_BaseLV / 100;								// BaseLv補正
 			break;
 
+		// 「ミンストレル＆ワンダラー」スキル「シビアレインストーム」
+		case SKILL_ID_SEVERE_RAINSTORM:
+		case SKILL_ID_SEVERE_RAINSTORM_EX:
+			// 遠距離スキル
+			n_Enekyori=1;
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// 設置スキル設定
+			g_bDefinedDamageIntervals = true;
+			n_Delay[5] = 300;								// ダメージ間隔
+			n_Delay[6] = 2400 + 600 * n_A_ActiveSkillLV;	// オブジェクト存続時間
+			// 属性
+			n_A_Weapon_zokusei = g_skillManager.GetElement(battleCalcInfo.skillId);
+			// ダメージ倍率
+			if (n_A_ActiveSkill == SKILL_ID_SEVERE_RAINSTORM) {
+				wbairitu = (n_A_DEX + n_A_AGI) * n_A_ActiveSkillLV / 5;
+			}
+			else {
+				wbairitu = (attackMethodConfArray[0].GetOptionValue(0) + attackMethodConfArray[0].GetOptionValue(1)) * n_A_ActiveSkillLV / 5;
+			}
+			// 楽器、鞭使用時のダメージ補正
+			if ((n_A_WeaponType == ITEM_KIND_MUSICAL) || (n_A_WeaponType == ITEM_KIND_WHIP)) {
+				wbairitu *= 5 / 3;
+			}
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			break;
+
+		// 「アルケミスト」スキル「デモンストレーション」
+		case SKILL_ID_DEMONSTRATION:
+			// 必中
+			w_HIT = 100;
+			w_HIT_HYOUJI = 100;
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// 設置スキル設定
+			g_bDefinedDamageIntervals = true;
+			n_Delay[5] = 500;								// ダメージ間隔
+			n_Delay[6] = 35000 + 5000 * n_A_ActiveSkillLV;	// オブジェクト存続時間
+			n_Delay[3] = n_Delay[6]; 						// 足元置きができないので重複設置はできない
+			// 属性
+			n_A_Weapon_zokusei = g_skillManager.GetElement(battleCalcInfo.skillId);
+			// ダメージ倍率
+			wbairitu = 100 + 20 * n_A_ActiveSkillLV;
+			break;
+
+		// 「星帝」スキル「創星の書」
+		case SKILL_ID_SOSENO_SHO:
+			n_Enekyori=1;
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// 設置スキル設定
+			g_bDefinedDamageIntervals = true;
+			n_Delay[5] = 500;			// ダメージ間隔
+			n_Delay[6] = 10000;			// オブジェクト存続時間
+			n_Delay[3] = n_Delay[6]; 	// 重複設置はできない
+			// 属性
+			n_A_Weapon_zokusei = g_skillManager.GetElement(battleCalcInfo.skillId);
+			// ダメージ倍率
+			if (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA] == MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM) {
+				wbairitu = 750 + 750 * n_A_ActiveSkillLV;
+			} else {
+				wbairitu = 500 + 500 * n_A_ActiveSkillLV;
+			}
+			break;
 
 /*
 		case SKILL_ID_DUMMY:
@@ -5187,9 +5276,7 @@ g_bDefinedDamageIntervals = true;
 		case SKILL_ID_BEAST_STRAIFING:
 		case SKILL_ID_DEATHPERAD:
 		case SKILL_ID_HESPERUS_SLIT:
-		case SKILL_ID_SEVERE_RAINSTORM:
 		case SKILL_ID_CRAZY_WEED:
-		case SKILL_ID_SEVERE_RAINSTORM_EX:
 		case SKILL_ID_QUICKDRAW_SHOT:
 			if(n_A_ActiveSkill==SKILL_ID_DOUBLE_STRAFING){
 				n_Enekyori=1;
@@ -5261,29 +5348,6 @@ g_bDefinedDamageIntervals = true;
 				}
 
 				wHITsuu = w;
-
-			}else if(n_A_ActiveSkill==SKILL_ID_SEVERE_RAINSTORM || n_A_ActiveSkill==753){
-				n_Enekyori=1;
-				wCast = 1000 + 500 * n_A_ActiveSkillLV;
-				n_KoteiCast = 500;
-
-				var w;
-				if (n_A_ActiveSkill==642) {
-					w = (n_A_DEX + n_A_AGI) * n_A_ActiveSkillLV / 5;
-				}
-				else {
-					w = (attackMethodConfArray[0].GetOptionValue(0) + attackMethodConfArray[0].GetOptionValue(1)) * n_A_ActiveSkillLV / 5;
-				}
-
-				// 楽器、鞭使用時のダメージ補正
-				if ((n_A_WeaponType == ITEM_KIND_MUSICAL) || (n_A_WeaponType == ITEM_KIND_WHIP)) {
-					w *= 5 / 3;
-				}
-
-				wbairitu = Math.floor(w * n_A_BaseLV / 100);
-				n_Delay[2] = 1000;
-				n_Delay[7] = 5000;
-				wHITsuu = 8 + 2 * n_A_ActiveSkillLV;
 
 			}else if(n_A_ActiveSkill==SKILL_ID_CRAZY_WEED){
 				n_A_Weapon_zokusei = 2;
@@ -6130,38 +6194,6 @@ g_bDefinedDamageIntervals = true;
 			break;
 
 
-
-		case SKILL_ID_DEMONSTRATION:
-			n_Enekyori=1;
-			w_HIT = 100;
-			w_HIT_HYOUJI = 100;
-			wCast = 1000;
-			n_Delay[5] = 500;
-			n_A_Weapon_zokusei = 3;
-			wbairitu = 100 + 20 * n_A_ActiveSkillLV;
-			for(var i=0;i<=2;i++){
-				w_MATK[i] = n_A_MATK[i];
-				w_MATK[i] = ApplyMagicalSpecializeMonster(charaData, specData, mobData, w_MATK[i]);
-				w_MATK[i] = ApplyResistElement(mobData, w_MATK[i]);
-			}
-			for(var i=0;i<=2;i++){
-				w_DMG[i] = n_A_DMG[i] + w_MATK[i];
-				w_DMG[i] = ROUNDDOWN(w_DMG[i] * wbairitu / 100);
-				w_DMG[i] -= (B_Total_DEF + B_Total_MDEF);
-				if(w_DMG[i] <0) w_DMG[i] = 1;
-				w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
-				w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
-				w_DMG[i] = ApplyElementRatio(mobData, w_DMG[i],3);
-				if(5 <= mobData[21] && mobData[21] <= 9) w_DMG[i] = 1;
-				Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
-				g_damageTextArray[i].push(Last_DMG_A[i]);
-			}
-			BuildCastAndDelayHtml(mobData);
-			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
-			break;
-
-
-
 		case SKILL_ID_ACID_DEMONSTRATION:
 		case SKILL_ID_FIRE_EXPANSION:
 			w_HIT = 100;
@@ -6389,40 +6421,31 @@ g_bDefinedDamageIntervals = true;
 
 
 		case SKILL_ID_GRAVITATION_FIELD:
-			w_HIT = 100;
-			w_HIT_HYOUJI = 100;
-			n_PerfectHIT_DMG = 0;
-			n_A_Weapon_zokusei = 0;
-			n_Delay[6] = 9;
-			n_Enekyori=2;
-			wHITsuu = (4 + n_A_ActiveSkillLV) * 2;
-			w_DMG[2] = 500 + 100 * n_A_ActiveSkillLV;
-
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// 設置スキル設定
+			g_bDefinedDamageIntervals = true;
+			n_Delay[5] = 500;								// ダメージ間隔
+			n_Delay[6] = 4000 + (n_A_ActiveSkillLV * 1000);	// オブジェクト存続時間
+			// 固定ダメージ設定
+			w_HIT = 100;									// 命中率 100%
+			w_DMG[2] = 500 + 100 * n_A_ActiveSkillLV;		// 固定ダメージ計算式
+			// 固定ダメージ増加
 			var damup = 0;
 			damup += GetEquippedTotalSPEquip(ITEM_SP_SKILL_DAMAGE_OFFSET + SKILL_ID_GRAVITATION_FIELD);
 			damup += GetEquippedTotalSPCardAndElse(ITEM_SP_SKILL_DAMAGE_OFFSET + SKILL_ID_GRAVITATION_FIELD);
-
 			w_DMG[2] = w_DMG[2] * (100 + damup) / 100;
-
 			w_DMG[2] = Math.floor(w_DMG[2]);
-
-			if(5 <= mobData[21] && mobData[21] <= 9) w_DMG[2] = 1;
-			w_DMG[0] = w_DMG[1] = w_DMG[2];
-			for(var i=0;i<=2;i++){
-
-				// TODO: ダメージ表示方式変更対応
-				// Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i] * wHITsuu;
-				Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
-
-				w_DMG[i] = Last_DMG_A[i]
+			// 草・エンペリウム相手は 1 ダメージ
+			if (5 <= mobData[21] && mobData[21] <= 9) w_DMG[2] = 1;
+			// ダメージ配列作成
+			for (var i=0; i < 3; i++) {
+				Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i] = w_DMG[2];
 			}
-			for(i=0;i<=2;i++) g_damageTextArray[i].push(Last_DMG_A[0], "(", (w_DMG[0] / wHITsuu), "×", wHITsuu, "hit)");
-			wCast = 5000;
-			n_Delay[2] = 2000;
-			BuildCastAndDelayHtml(mobData);
-			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
-
 
 
 		case 423:
@@ -7983,36 +8006,25 @@ else {
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 
 			break;
-
-
-
+/*
+		// 「星帝」スキル「創星の書」
 		case SKILL_ID_SOSENO_SHO:
-
 			n_Enekyori=1;
-
 			// 特定の戦闘エリアでの補正
 			switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
-
 			case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
 				wbairitu = 750 + 750 * n_A_ActiveSkillLV;
 				break;
-
 			default:
 				wbairitu = 500 + 500 * n_A_ActiveSkillLV;
 				break;
-
 			}
-
 			wCast = 1000 * n_A_ActiveSkillLV;
 			n_Delay[6] = 10;
 			n_Delay[7] = 5000;
-
 			wHITsuu = 20;
-
-
 			// 必中ダメージのみ仮計算（属性倍率未適用）
 			n_PerfectHIT_DMG = GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray);
-
 			for(var i=0;i<=2;i++){
 				w_DMG[i] = n_A_DMG[i];
 				w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
@@ -8028,9 +8040,7 @@ else {
 					w_DMG[i] = Math.floor(w_DMG[i] / wActiveHitNum) * wActiveHitNum;
 				}
 			}
-
 			if(n_AS_MODE == 1) return w_DMG;
-
 			for(var i=0;i<=2;i++){
 
 				// TODO: ダメージ表示方式変更対応
@@ -8039,7 +8049,6 @@ else {
 				g_damageTextArray[i].push(Last_DMG_A[i]);
 				if(wHITsuu > 1) g_damageTextArray[i].push("(", w_DMG[i], "×", wHITsuu, "hit)");
 			}
-
 			// 改めて必中ダメージ計算
 			n_PerfectHIT_DMG = GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray);
 			n_PerfectHIT_DMG = ApplyHitJudgeElementRatio(n_A_ActiveSkill, n_PerfectHIT_DMG, mobData);
@@ -8048,8 +8057,8 @@ else {
 			AS_PLUS();
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
-
 			break;
+*/
 
 		default:
 			bPhysicalFormula = false;
@@ -8242,16 +8251,27 @@ else {
 			wCast = 1600 + n_A_ActiveSkillLV * 400;
 			break;
 
+
+		//「ウィザード」スキル「ロードオブヴァーミリオン」
 		case SKILL_ID_LORD_OF_VERMILLION:
-			n_A_Weapon_zokusei = 4;
-			wHITsuu = 40;
-			wCast = 12400 - n_A_ActiveSkillLV * 400;
-			n_Delay[2] = 5000;
-			n_Delay[6] = 4;
-			var w_LOV = [0,100,105,115,130,150,175,205,240,280,330];
-			if(n_A_ActiveSkillLV > 10) wbairitu = 330;
-			else wbairitu = w_LOV[n_A_ActiveSkillLV];
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// 設置スキル設定
+			g_bDefinedDamageIntervals = true;
+			n_Delay[5] = 1000;	// ダメージ間隔
+			n_Delay[6] = 3100;	// オブジェクト存続時間
+			n_Delay[3] = 3100;	// 強制ディレイ（オブジェクト発生中は別のLoVオブジェクトのダメージが発生しないため）
+			// 属性
+			n_A_Weapon_zokusei = g_skillManager.GetElement(battleCalcInfo.skillId);
+			// ダメージ倍率
+			wbairitu = [0,100,105,115,130,150,175,205,240,280,330][n_A_ActiveSkillLV];
+			// 見た目 10 hit * hit数
+			wActiveHitNum = 10;
 			break;
+
 
 		case SKILL_ID_WATER_BALL:
 		case SKILL_ID_WATER_BALL_FOR_CLONE:
@@ -8270,16 +8290,25 @@ else {
 			wCast = 1000;
 			break;
 
+		// 「ウィザード」スキル「ストームガスト」
 		case SKILL_ID_STORM_GUST:
-			n_A_Weapon_zokusei = 1;
-			if(n_AS_MODE == 0) wHITsuu = attackMethodConfArray[0].GetOptionValue(0);
-			if(n_AS_MODE == 1) wHITsuu = 10;
-			SG_Special_HITnum = wHITsuu;
-			wCast = 4000 + 800 * n_A_ActiveSkillLV;
-			n_Delay[2] = 5000;
-			n_Delay[6] = 4.5;
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[3] = 4500 // 強制ディレイ（オブジェクト発生中は別のSGを重ねられないため）
+			// 設置スキル設定
+			g_bDefinedDamageIntervals = true;
+			n_Delay[5] = 450;	// ダメージ間隔
+			// 「3hitで凍った場合のダメージを算出したいニーズ」を切り捨てない苦肉の策でオブジェクト存続時間を調整する
+			n_Delay[6] = 450 * attackMethodConfArray[0].GetOptionValue(0);;	// オブジェクト存続時間
+			// 属性
+			n_A_Weapon_zokusei = g_skillManager.GetElement(battleCalcInfo.skillId);
+			// ダメージ倍率
 			wbairitu = 70 + 50 * n_A_ActiveSkillLV;
 			break;
+
 
 		case SKILL_ID_EARTH_SPIKE:
 		case SKILL_ID_HEAVENS_DRIVE:
@@ -8313,12 +8342,24 @@ else {
 			if(n_A_ActiveSkill==SKILL_ID_HOLY_LIGHT_TAMASHI) wbairitu += 500;
 			break;
 
+		// 「プリースト」スキル「マグヌスエクソシズム」
 		case SKILL_ID_MAGNUS_EXORCISMUS:
-			n_Delay[0] = 1;
-			n_A_Weapon_zokusei = 6;
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// 設置スキル設定
+			g_bDefinedDamageIntervals = true;
+			n_Delay[5] = 3000;								// ダメージ間隔
+			n_Delay[6] = 4000 + 1000 * n_A_ActiveSkillLV;	// オブジェクト存続時間
+			n_Delay[3] = n_Delay[6];						// 複数展開しても多重Hitしないスキル
+			// 属性
+			n_A_Weapon_zokusei = g_skillManager.GetElement(battleCalcInfo.skillId);
+			// ダメージ倍率
+			wbairitu = 100;
+			// ヒット数
 			wHITsuu = n_A_ActiveSkillLV;
-			wCast = 15000;
-			n_Delay[2] = 4000;
 			break;
 
 		case SKILL_ID_DARK_STRIKE:
@@ -8618,29 +8659,53 @@ else {
 			}
 			break;
 
+		// 「ソーサラー」スキル「サイキックウェーブ」
 		case SKILL_ID_PSYCHIC_WAVE:
+
+			g_bDefinedDamageIntervals = true;
+	
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);//2750 + 1250 * n_A_ActiveSkillLV;
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);//2250 - 250 * n_A_ActiveSkillLV;
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);//1000
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);//5000
+	
+			// ダメージ間隔
+			n_Delay[5] = 500;
+	
+			// オブジェクト存続時間
+			n_Delay[6] = 1000 + (n_A_ActiveSkillLV * 500);
+	
+			// 属性の設定
 			if(n_AS_MODE == 0) n_A_Weapon_zokusei = attackMethodConfArray[0].GetOptionValue(0);
 			else n_A_Weapon_zokusei = 0;
-			wHITsuu = 2 + n_A_ActiveSkillLV;
-			wCast = 2750 + 1250 * n_A_ActiveSkillLV;
-			n_KoteiCast = 2250 - 250 * n_A_ActiveSkillLV;
-			n_Delay[2] = 1000;
-			n_Delay[7] = 5000;
+	
 			wbairitu = 70 * n_A_ActiveSkillLV + 3 * n_A_INT;
-			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
+	
+			// ベースレベル補正
+			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = ROUNDDOWN(wbairitu);
 			break;
 
+		//「ソーサラー」スキル「クラウドキル」
 		case SKILL_ID_CLOUD_KILL:
-			n_A_Weapon_zokusei = 5;
-			wHITsuu = (6 + 2 * n_A_ActiveSkillLV) * 2;
-			wCast = 1000 + 200 * n_A_ActiveSkillLV;
-			n_KoteiCast = 1750 - 250 * n_A_ActiveSkillLV;
-			n_Delay[2] = 1000;
-			n_Delay[6] = 6 + 2 * n_A_ActiveSkillLV;
-			n_Delay[7] = 5000;
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// 設置スキル設定
+			g_bDefinedDamageIntervals = true;
+			n_Delay[5] = 500;								// ダメージ間隔
+			n_Delay[6] = 6000 + 2000 * n_A_ActiveSkillLV;	// オブジェクト存続時間
+			n_Delay[3] = n_Delay[6]; 						// 重複設置はできない
+			// 属性
+			n_A_Weapon_zokusei = g_skillManager.GetElement(battleCalcInfo.skillId);
+			// ダメージ倍率
 			wbairitu = 40 * n_A_ActiveSkillLV;
 			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
-			if(UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 31) wbairitu += n_A_JobLV;
+			// 精霊補正
+			if(UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 31) wbairitu += n_A_JobLV;	// 31:カーズドソイル
 			break;
 
 		case SKILL_ID_POISON_BUSTER:
@@ -8681,15 +8746,24 @@ else {
 			if(UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 13) wbairitu += ROUNDDOWN(n_A_JobLV * 5);
 			break;
 
+		// 「ジェネティック」スキル「デモニックファイアー」
 		case SKILL_ID_DEMONIC_FIRE:
-			n_A_Weapon_zokusei = 3;
-			wHITsuu = 4 + n_A_ActiveSkillLV;
-			wCast = 2500 + 500 * n_A_ActiveSkillLV;
-			n_Delay[2] = 500;
-			n_Delay[7] = 5000;
-			n_Delay[6] = 2 * wHITsuu;
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// 設置スキル設定
+			g_bDefinedDamageIntervals = true;
+			n_Delay[5] = 2000;								// ダメージ間隔
+			n_Delay[6] = 8001 + 2000 * n_A_ActiveSkillLV;	// オブジェクト存続時間 8000 だと発動回数が現実と合わないため 8001
+			n_Delay[3] = n_Delay[6]; 						// 現実的な状況では重複設置はできない
+			// 属性
+			n_A_Weapon_zokusei = g_skillManager.GetElement(battleCalcInfo.skillId);
+			// ダメージ倍率
 			wbairitu = 200 * n_A_ActiveSkillLV;
 			break;
+
 
 		case 742:
 			n_A_Weapon_zokusei = 0;
@@ -12779,7 +12853,7 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 	};
 
 	var funcDIG3PXCount = function (valueF, pointCountF) {
-		return funcDIG3PX(valueF, pointCountF, " 回");
+		return funcDIG3PX(valueF, pointCountF, (valueF == 1) ? " Hit" : " Hits");
 	};
 
 	var funcPerMill = function (valueF) {
@@ -12907,6 +12981,41 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 			);
 		};
 
+		
+		// 合計ダメージ表示を取得する
+		var funcGetJoinDmgText2 = function (arrayFF, funcDigFF, funcDigParamFF, counts) {
+			return arrayFF.reduce(
+				(accFFF, curFFF) => {
+
+					var valFFF = "";
+
+					if (accFFF.length > 0) {
+						valFFF = " + ";
+					}
+					if (!counts){
+						counts = 1;
+					}
+					else if (counts === Infinity) {
+						counts = 1;
+					}
+
+					valFFF += funcDigFF(curFFF[0] * counts, funcDigParamFF);
+
+					if (curFFF[1] > 1) {
+						valFFF = funcDigFF(curFFF[0] * counts * curFFF[1], funcDigParamFF);
+					}
+
+					if (curFFF[2] > 1) {
+						valFFF = funcDigFF(curFFF[0] * counts * curFFF[2], funcDigParamFF);
+					}
+
+					return (accFFF + valFFF);
+				},
+				""
+			);
+		};
+
+
 
 
 		// クリティカル率を取得
@@ -12919,7 +13028,7 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 		//----------------
 		objCellF = HtmlCreateElement("div", objGridF);
 		objCellF.style.gridColumnStart = "1";
-		objCellF.style.gridColumnEnd = "-1";
+		objCellF.style.gridColumnEnd = "6";
 		objCellF.classList.add("BTLRSLT_TAB_DAMAGE");
 		objCellF.classList.add(partIdStr);
 		// ラベルCSS変更
@@ -12936,7 +13045,7 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 		if (n_Buki_Muri) {
 			objCellF = HtmlCreateElement("div", objGridF);
 			objCellF.style.gridColumnStart = "1";
-			objCellF.style.gridColumnEnd = "-1";
+			objCellF.style.gridColumnEnd = "6";
 			objCellF.classList.add("BTLRSLT_TAB_DAMAGE");
 			objCellF.classList.add(partIdStr);
 			objCellF.classList.add("CSSCLS_BTLRSLT_DISUSABLE");
@@ -12948,7 +13057,7 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 		if (g_bSkillNoDamage) {
 			objCellF = HtmlCreateElement("div", objGridF);
 			objCellF.style.gridColumnStart = "1";
-			objCellF.style.gridColumnEnd = "-1";
+			objCellF.style.gridColumnEnd = "6";
 			objCellF.classList.add("BTLRSLT_TAB_DAMAGE");
 			objCellF.classList.add(partIdStr);
 			objCellF.classList.add("CSSCLS_BTLRSLT_DISUSABLE");
@@ -12976,6 +13085,15 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 			HtmlCreateTextNode(funcGetJoinDmgText(battleCalcResultF.GetDamageSummaryCriMin(true), funcDIG3PX, 0), funcCreateCellF(false));
 			HtmlCreateTextNode(funcGetSumDmgText(battleCalcResultF.GetDamageSummaryCriMin(true), funcDIG3PX, 0), funcCreateCellF(true));
 		}
+		// 1サイクルダメージ
+		
+		HtmlCreateTextNode(funcGetJoinDmgText2(battleCalcResultF.GetDamageSummaryMin(true), funcDIG3PX, 0, Math.ceil(n_Delay[6]/n_Delay[5])), funcCreateCellF(false));
+		HtmlCreateTextNode(funcGetSumDmgText(battleCalcResultF.GetDamageSummaryMin(true), funcDIG3PX, 0), funcCreateCellF(true));
+		// クリティカル
+		if (criRateF > 0) {
+			HtmlCreateTextNode(funcGetJoinDmgText2(battleCalcResultF.GetDamageSummaryCriMin(true), funcDIG3PX, 0, 1), funcCreateCellF(false));
+			HtmlCreateTextNode(funcGetSumDmgText(battleCalcResultF.GetDamageSummaryCriMin(true), funcDIG3PX, 0), funcCreateCellF(true));
+		}
 
 
 		//----------------
@@ -12997,6 +13115,14 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 			HtmlCreateTextNode(funcGetJoinDmgText(battleCalcResultF.GetDamageSummaryCriAve(true), funcDIG3PX, 0), funcCreateCellF(false));
 			HtmlCreateTextNode(funcGetSumDmgText(battleCalcResultF.GetDamageSummaryCriAve(true), funcDIG3PX, 0), funcCreateCellF(true));
 		}
+		// 1サイクルダメージ
+		HtmlCreateTextNode(funcGetJoinDmgText2(battleCalcResultF.GetDamageSummaryAve(true), funcDIG3PX, 0, Math.ceil(n_Delay[6]/n_Delay[5])), funcCreateCellF(false));
+		HtmlCreateTextNode(funcGetSumDmgText(battleCalcResultF.GetDamageSummaryAve(true), funcDIG3PX, 0), funcCreateCellF(true));
+		// クリティカル
+		if (criRateF > 0) {
+			HtmlCreateTextNode(funcGetJoinDmgText2(battleCalcResultF.GetDamageSummaryCriAve(true), funcDIG3PX, 0, 1), funcCreateCellF(false));
+			HtmlCreateTextNode(funcGetSumDmgText(battleCalcResultF.GetDamageSummaryCriAve(true), funcDIG3PX, 0), funcCreateCellF(true));
+		}
 
 
 		//----------------
@@ -13016,6 +13142,14 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 		// クリティカル
 		if (criRateF > 0) {
 			HtmlCreateTextNode(funcGetJoinDmgText(battleCalcResultF.GetDamageSummaryCriMax(true), funcDIG3PX, 0), funcCreateCellF(false));
+			HtmlCreateTextNode(funcGetSumDmgText(battleCalcResultF.GetDamageSummaryCriMax(true), funcDIG3PX, 0), funcCreateCellF(true));
+		}
+		// 1サイクルダメージ
+		HtmlCreateTextNode(funcGetJoinDmgText2(battleCalcResultF.GetDamageSummaryMax(true), funcDIG3PX, 0, Math.ceil(n_Delay[6]/n_Delay[5])), funcCreateCellF(false));
+		HtmlCreateTextNode(funcGetSumDmgText(battleCalcResultF.GetDamageSummaryMax(true), funcDIG3PX, 0), funcCreateCellF(true));
+		// クリティカル
+		if (criRateF > 0) {
+			HtmlCreateTextNode(funcGetJoinDmgText2(battleCalcResultF.GetDamageSummaryCriMax(true), funcDIG3PX, 0, 1), funcCreateCellF(false));
 			HtmlCreateTextNode(funcGetSumDmgText(battleCalcResultF.GetDamageSummaryCriMax(true), funcDIG3PX, 0), funcCreateCellF(true));
 		}
 	};
@@ -13407,7 +13541,12 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 	objCell = HtmlCreateElement("div", objGridDmg);
 	objCell.style.position = "relative";
 	objCell.style.gridColumnStart = "1";
-	objCell.style.gridColumnEnd = "-1";
+	if (criRate > 0) {
+		objCell.style.gridColumnEnd = "6";
+	}
+	else {
+		objCell.style.gridColumnEnd = "4";
+	}
 	objCell.classList.add("BTLRSLT_TAB_DAMAGE");
 	objCell.classList.add("CSSCLS_BTLRSLT_HEADER");
 
@@ -13435,7 +13574,7 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 	objCell.classList.add("BTLRSLT_TAB_DAMAGE");
 	objCell.classList.add(partIdStr);
 	objCell.classList.add("CSSCLS_BTLRSLT_CENTERING");
-	HtmlCreateTextNode("通常", objCell);
+	HtmlCreateTextNode("通常(1Hit)", objCell);
 
 	// クリティカル
 	if (criRate > 0) {
@@ -13444,6 +13583,19 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 		objCell.classList.add(partIdStr);
 		objCell.classList.add("CSSCLS_BTLRSLT_CENTERING");
 		HtmlCreateTextNode("クリティカル", objCell);
+	}
+	objCell = HtmlCreateElement("div", objGridDmg);
+	objCell.classList.add("BTLRSLT_TAB_DAMAGE");
+	objCell.classList.add(partIdStr);
+	objCell.classList.add("CSSCLS_BTLRSLT_CENTERING");
+	HtmlCreateTextNode("1サイクルダメ", objCell);
+	// クリティカル
+	if (criRate > 0) {
+		objCell = HtmlCreateElement("div", objGridDmg);
+		objCell.classList.add("BTLRSLT_TAB_DAMAGE");
+		objCell.classList.add(partIdStr);
+		objCell.classList.add("CSSCLS_BTLRSLT_CENTERING");
+		HtmlCreateTextNode("1サイクル(クリダメ)", objCell);
 	}
 
 
@@ -13484,7 +13636,12 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 	//----------------
 	objCell = HtmlCreateElement("div", objGridDmg);
 	objCell.style.gridColumnStart = "1";
-	objCell.style.gridColumnEnd = "-1";
+	if (criRate > 0) {
+		objCell.style.gridColumnEnd = "6";
+	}
+	else {
+		objCell.style.gridColumnEnd = "4";
+	}
 	objCell.classList.add("BTLRSLT_TAB_DAMAGE");
 	objCell.classList.add(partIdStr);
 	objCell.classList.add("CSSCLS_BTLRSLT_PERSEC_LABEL");
@@ -13505,14 +13662,19 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 	objCell.classList.add("BTLRSLT_TAB_DAMAGE");
 	objCell.classList.add(partIdStr);
 	objCell.classList.add("CSSCLS_BTLRSLT_CENTERING");
-	HtmlCreateTextNode("一撃", objCell);
+	if (g_bDefinedDamageIntervals) {
+		HtmlCreateTextNode("1Hit", objCell);
+	}
+	else {
+		HtmlCreateTextNode("1Shot", objCell);
+	}
 
 	// 秒間
 	objCell = HtmlCreateElement("div", objGridDmg);
 	objCell.classList.add("BTLRSLT_TAB_DAMAGE");
 	objCell.classList.add(partIdStr);
 	objCell.classList.add("CSSCLS_BTLRSLT_CENTERING");
-	HtmlCreateTextNode("秒間", objCell);
+	HtmlCreateTextNode("DPS", objCell);
 
 	//----------------
 	// 最小ダメージ
@@ -13632,7 +13794,12 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 	//----------------
 	objCell = HtmlCreateElement("div", objGridDmg);
 	objCell.style.gridColumnStart = "1";
-	objCell.style.gridColumnEnd = "-1";
+	if (criRate > 0) {
+		objCell.style.gridColumnEnd = "6";
+	}
+	else {
+		objCell.style.gridColumnEnd = "4";
+	}
 	objCell.classList.add("BTLRSLT_TAB_RESULT");
 	objCell.classList.add("CSSCLS_BTLRSLT_HEADER");
 	funcAppendCheckbox(objCell, partIdStr, "攻撃回数", uncheckedMap.get(partIdStr), funcOnChangeChkPart);
@@ -13762,7 +13929,12 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 	//----------------
 	objCell = HtmlCreateElement("div", objGridDmg);
 	objCell.style.gridColumnStart = "1";
-	objCell.style.gridColumnEnd = "-1";
+	if (criRate > 0) {
+		objCell.style.gridColumnEnd = "6";
+	}
+	else {
+		objCell.style.gridColumnEnd = "4";
+	}
 	objCell.classList.add("BTLRSLT_TAB_RESULT");
 	objCell.classList.add("CSSCLS_BTLRSLT_HEADER");
 	funcAppendCheckbox(objCell, partIdStr, "経験値効率", uncheckedMap.get(partIdStr), funcOnChangeChkPart);
@@ -13861,7 +14033,12 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 	//----------------
 	objCell = HtmlCreateElement("div", objGridDmg);
 	objCell.style.gridColumnStart = "1";
-	objCell.style.gridColumnEnd = "-1";
+	if (criRate > 0) {
+		objCell.style.gridColumnEnd = "6";
+	}
+	else {
+		objCell.style.gridColumnEnd = "4";
+	}
 	objCell.classList.add("BTLRSLT_TAB_RESULT");
 	objCell.classList.add("CSSCLS_BTLRSLT_HEADER");
 	funcAppendCheckbox(objCell, partIdStr, "被ダメージ（仮）", uncheckedMap.get(partIdStr), funcOnChangeChkPart);
@@ -16502,9 +16679,11 @@ function ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData,
 
 
 	// ロードオブヴァーミリオンの多段ＨＩＴ補正（ＭＤＥＦ１０分の１適用？）
+	/*
 	if(n_A_ActiveSkill == 127) {
 		wBMC2 = Math.floor(wBMC2 / 10);
 	}
+	*/
 
 	return wBMC2;
  }
@@ -26774,7 +26953,3 @@ function ApplyReceiveDamageAmplify(mobData, dmg) {
 
 	return dmg;
 }
-
-
-
-
