@@ -9090,7 +9090,11 @@ function GetStatusModifyDefDivPlus() {
 	//----------------------------------------------------------------
 	// 「フェアリーオブエデン」の、スキル習得による効果
 	//----------------------------------------------------------------
-	if ((itemCount = EquipNumSearch(ITEM_ID_FAIRY_OF_EDEN)) > 0) {
+	itemCount = Math.max(
+		EquipNumSearch(ITEM_ID_FAIRY_OF_EDEN),
+		EquipNumSearch(ITEM_ID_FAIRY_OF_EDEN_T1)
+		);
+	if (itemCount > 0) {
 		if (n_A_SHOULDER_DEF_PLUS >= 8) {
 			if (LearnedSkillSearch(SKILL_ID_ENERGY_COAT) >= 1) {
 				val += 300 * itemCount;
@@ -9860,7 +9864,11 @@ function GetStatusModifyMdefDivPlus(bIgnoreBuff) {
 	//----------------------------------------------------------------
 	// 「フェアリーオブエデン」の、スキル習得による効果
 	//----------------------------------------------------------------
-	if ((itemCount = EquipNumSearch(ITEM_ID_FAIRY_OF_EDEN)) > 0) {
+	itemCount = Math.max(
+		EquipNumSearch(ITEM_ID_FAIRY_OF_EDEN),
+		EquipNumSearch(ITEM_ID_FAIRY_OF_EDEN_T1)
+		);
+	if (itemCount > 0) {
 		if (n_A_SHOULDER_DEF_PLUS >= 8) {
 			if (LearnedSkillSearch(SKILL_ID_ENERGY_COAT) >= 1) {
 				val += 15 * itemCount;
