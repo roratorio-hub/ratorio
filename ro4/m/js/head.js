@@ -12285,6 +12285,9 @@ function HealCalc(HealLv,HealType,wMinMax,w_WHO,ptmCount) {
 
 	var wHeal = 0;
 
+	// H.Plus
+	var valHPlus = GetHPlus();
+
 	// 基本ヒール回復量の算出
 	switch (HealType) {
 
@@ -12345,7 +12348,7 @@ function HealCalc(HealLv,HealType,wMinMax,w_WHO,ptmCount) {
 	case HEALTYPE_HEAL:
 	case HEALTYPE_COLUCEO_HEAL:
 	case HEALTYPE_HIGHNESS:
-		wHeal = Math.floor(wHeal * healUp / 100 + wHealMatk);
+		wHeal = Math.floor(wHeal * healUp / 100 + wHealMatk + (((n_A_BaseLV + n_A_INT) / 5) * 3 * HealLv * valHPlus / 100));
 		if (HealType == HEALTYPE_COLUCEO_HEAL) {
 			wHeal = Math.floor(wHeal * (1 + 0.025 * ptmCount));
 		}
