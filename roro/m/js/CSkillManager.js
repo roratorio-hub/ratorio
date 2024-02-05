@@ -31564,6 +31564,22 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_HOLY;
+
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 570;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return 20000;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {
+				return 1000;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return 5000;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 12000;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;

@@ -9240,7 +9240,11 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 		//----------------------------------------------------------------
 		// 「ゲートオブネザーワールド」の、精錬による効果
 		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_GATE_OF_NEZAR_WORLD)) > 0) {
+		itemCount = Math.max(
+			EquipNumSearch(ITEM_ID_GATE_OF_NEZAR_WORLD),
+			EquipNumSearch(ITEM_ID_GATE_OF_NEZAR_WORLD_T1)
+			);
+		if (itemCount > 0) {
 			if (n_A_HEAD_DEF_PLUS >= 9) {
 				chkary.push(70);
 			}
