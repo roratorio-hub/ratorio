@@ -381,6 +381,11 @@ function DisplayReferStatusAll() {
 	valWork = GetMres();
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_MRES");
 	objStatus.innerHTML = "" + valWork;
+
+	// H.Plus
+	valWork = GetHPlus();
+	objStatus = document.getElementById("OBJID_SPAN_STATUS_H_PLUS");
+	objStatus.innerHTML = "" + valWork;
 }
 
 
@@ -839,6 +844,26 @@ function GetMres() {
 	// 装備効果
 	value += n_tok[ITEM_SP_MRES_PLUS];
 	value += GetRndOptTotalValue(ITEM_SP_MRES_PLUS);
+
+
+
+	return value;
+}
+
+
+
+function GetHPlus() {
+
+	var value = 0;
+
+
+
+	// ステータス値
+	value += GetTotalSpecStatus(MIG_PARAM_ID_CRT);
+
+	// 装備効果
+	value += n_tok[ITEM_SP_HPLUS_PLUS];
+	value += GetRndOptTotalValue(ITEM_SP_HPLUS_PLUS);
 
 
 

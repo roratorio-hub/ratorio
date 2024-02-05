@@ -632,7 +632,7 @@ CGlobalConstManager.DefineEnum(
 		"ITEM_SP_C_RATE_PLUS",
 		"ITEM_SP_RES_PLUS",
 		"ITEM_SP_MRES_PLUS",
-		"ITEM_SP_RESERVED_256",				// 未使用（256）
+		"ITEM_SP_HPLUS_PLUS",
 		"ITEM_SP_RESERVED_257",				// 未使用（257）
 		"ITEM_SP_RESERVED_258",				// 未使用（258）
 		"ITEM_SP_RESERVED_259",				// 未使用（259）

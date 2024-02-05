@@ -9040,26 +9040,17 @@ g_bUnknownCasts = true;
 			wbairitu *= n_A_BaseLV / 100;
 			break;
 
+		// 「アークメイジ」スキル「デッドリープロジェクション」
 		case SKILL_ID_DEADLY_PROJECTION:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-
 			// 詠唱時間等
-			/*
-			// 未実測
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			*/
-
 			// 基本倍率
 			wbairitu = 2000 + (500 * n_A_ActiveSkillLV);
-
 			// SPL補正
 			wbairitu += 15 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-
 			// ベースレベル補正
 			wbairitu *= n_A_BaseLV / 100;
 			break;
@@ -9237,29 +9228,19 @@ g_bDefinedDamageIntervals = true;
 			}
 			break;
 
+		// 「アークメイジ」スキル「ソウルバルカンストライク」
 		case SKILL_ID_SOUL_VULKUN_STRIKE:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-
 			// 詠唱時間等
-			/*
-			// 未実測
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			*/
-
 			// 基本倍率
 			wbairitu = 350 + (50 * n_A_ActiveSkillLV);
-
 			// SPL補正
 			wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-
 			// ベースレベル補正
 			wbairitu *= n_A_BaseLV / 100;
-
 			// ヒット数
 			wHITsuu = 2 + n_A_ActiveSkillLV;
 			break;
@@ -9547,85 +9528,57 @@ g_bDefinedDamageIntervals = true;
 
 			break;
 
+		// 「アークメイジ」スキル「ロックダウン」
 		case SKILL_ID_ROCK_DOWN:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-
 			// クライマックス状態のレベルを取得
 			sklLvSub = UsedSkillSearch(SKILL_ID_CLIMAX);
-
 			// 詠唱時間等
-			/*
-			// 未実測
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			*/
-
 			// 基本倍率
 			wbairitu = 2000 + (500 * n_A_ActiveSkillLV);
 			if (sklLvSub > 0) {
 				wbairitu *= 3;
 			}
-
 			// SPL補正
 			wbairitu += 15 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-
 			// ベースレベル補正
 			wbairitu *= n_A_BaseLV / 100;
 			break;
 
+		// 「アークメイジ」スキル「ストームキャノン」
 		case SKILL_ID_STORM_CANNON:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-
 			// クライマックス状態のレベルを取得
 			sklLvSub = UsedSkillSearch(SKILL_ID_CLIMAX);
-
 			// 詠唱時間等
-			/*
-			// 未実測
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			*/
-
 			// 基本倍率
 			wbairitu = 2000 + (500 * n_A_ActiveSkillLV);
 			if (sklLvSub > 0) {
 				wbairitu *= 3;
 			}
-
 			// SPL補正
 			wbairitu += 15 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-
 			// ベースレベル補正
 			wbairitu *= n_A_BaseLV / 100;
 			break;
 
+		//「アークメイジ」スキル「クリムゾンアロー」			
 		case SKILL_ID_CRYMSON_ARROW:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-
 			// クライマックス状態のレベルを取得
 			sklLvSub = UsedSkillSearch(SKILL_ID_CLIMAX);
-
 			// 初段ＨＩＴの場合
 			if (battleCalcInfo.parentSkillId === undefined) {
-
 				// 詠唱時間等
-				/*
-				// 未実測
 				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				*/
 
 				// 基本倍率
 				wbairitu = (100 * n_A_ActiveSkillLV);
@@ -9636,20 +9589,14 @@ g_bUnknownCasts = true;
 				// ベースレベル補正
 				// TODO: 初段には乗らないのではないかと仮定
 			}
-
-
 			// 追撃の場合
 			else {
-
 				// 基本倍率
 				wbairitu = 1500 + (500 * n_A_ActiveSkillLV);
-
 				// SPL補正
 				wbairitu += 15 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-
 				// ベースレベル補正
 				wbairitu *= n_A_BaseLV / 100;
-
 				// 攻撃回数
 				if (sklLvSub > 0) {
 					wHITsuu = 3;
@@ -9657,32 +9604,22 @@ g_bUnknownCasts = true;
 			}
 			break;
 
+		//「アークメイジ」スキル「フローズンスラッシュ」
 		case SKILL_ID_FROZEN_SLASH:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-
 			// クライマックス状態のレベルを取得
 			sklLvSub = UsedSkillSearch(SKILL_ID_CLIMAX);
-
 			// 詠唱時間等
-			/*
-			// 未実測
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			*/
-
 			// 基本倍率
 			wbairitu = 2000 + (500 * n_A_ActiveSkillLV);
 			if (sklLvSub > 0) {
 				wbairitu *= 3;
 			}
-
 			// SPL補正
 			wbairitu += 15 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-
 			// ベースレベル補正
 			wbairitu *= n_A_BaseLV / 100;
 			break;
@@ -10231,6 +10168,7 @@ g_bUnknownCasts = true;
 			wbairitu *= n_A_BaseLV / 100;
 			break;
 
+		// 「ソウルアセティック」スキル「青龍符」
 		case SKILL_ID_SEIRYU_FU:
 
 			// TODO: 詠唱時間等未実測スキル
@@ -12285,6 +12223,9 @@ function HealCalc(HealLv,HealType,wMinMax,w_WHO,ptmCount) {
 
 	var wHeal = 0;
 
+	// H.Plus
+	var valHPlus = GetHPlus();
+
 	// 基本ヒール回復量の算出
 	switch (HealType) {
 
@@ -12345,7 +12286,7 @@ function HealCalc(HealLv,HealType,wMinMax,w_WHO,ptmCount) {
 	case HEALTYPE_HEAL:
 	case HEALTYPE_COLUCEO_HEAL:
 	case HEALTYPE_HIGHNESS:
-		wHeal = Math.floor(wHeal * healUp / 100 + wHealMatk);
+		wHeal = Math.floor(wHeal * healUp / 100 + wHealMatk + (((n_A_BaseLV + n_A_INT) / 5) * 3 * HealLv * valHPlus / 100));
 		if (HealType == HEALTYPE_COLUCEO_HEAL) {
 			wHeal = Math.floor(wHeal * (1 + 0.025 * ptmCount));
 		}
