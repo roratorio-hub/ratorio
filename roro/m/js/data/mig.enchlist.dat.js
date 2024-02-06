@@ -798,4 +798,28 @@
 	// 覚醒ホワイトリリー 追加
 	g_constDataManager.enchListDataManager.sourceArray[655] = [655,-1,0,0,[["シーズンエンチャント（雛人形）グループ9","シーズンエンチャント（雛人形）グループ9"]],[],[[[174,[50,[4283]]],,[[[178,[27,[4]]],,[[[187,[59,10],[60,4]],,[[[186,[51,[665,670,675,680,685,689,659,599,660,661,662,663,1591,1247,1174,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,10],[60,4]],,[[[186,[51,[556,518,563,683,524,572,604,]]],,[]]]]]],[[178,[27,[2]]],,[[[187,[59,10],[60,4]],,[[[186,[51,[556,518,563,521,524,572,1655,1656,1657,1658,1659,1660,1661,1662,1663,1044,1045,1042,1043,1049,1050,1046,1048,1047,]]],,[]]]]]],]]],[]];
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[4283] = [307,308,655];
+	// 2月ラグ缶エンチャント追加
+	g_constDataManager.enchListDataManager.sourceArray[656] = [656,-1,0,0,[["スペシャルエンチャント（リチャード）グループ３","スペシャルエンチャント（リチャード）グループ３"]],[],[[[174,[50,[4835,4951,4788,4917,4981,5093,4907,4861,4982,5031,4918,5030,4836,4908,4989,5089]]],,[[[178,[27,[3]]],,[[[187,[59,10],[60,4]],,[[[186,[51,[668,673,678,683,688,692,1247,1297,888,1303,1348,1245,]]],,[]]]]]],[[178,[27,[2]]],,[[[187,[59,10],[60,4]],,[[[186,[51,[668,673,678,683,688,692,1247,1975,2043,2005,1813,2028,2311,2437,2668,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[4835] = [565,656];	// ドラゴンサークレット
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[4951] = [597,656];	// 紫電一閃
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[4788] = [554,656];	// クロックワイズ
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[4917] = [583,656];	// 天下無敵の紋帽子
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[4981] = [607,656];	// アルタイルハット
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5093] = [640,656];	// イエローキティヘッドフォン
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[4907] = [579,656];	// シックピオニー
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[4861] = [569,656];	// リス耳フード帽(アルビノ)
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[4982] = [606,656];	// ストライプリボンハット
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5031] = [633,656];	// ウォルフライエ
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[4918] = [584,656];	// 白きカーリッツバーグ騎士団のヘルム
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5030] = [632,656];	// 情熱あふれるラビットリボン
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[4836] = [566,656];	// ツートンキャップ
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[4908] = [578,656];	// ヤマネコニット帽(白)
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[4989] = [616,656];	// 異端審問官のヴェール
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5089] = [639,656];	// ぷにぷにあんよのスタンプフード
+
+
+
+
+
+
 })();
