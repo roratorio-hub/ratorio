@@ -3420,7 +3420,10 @@ function GetStatusModifyAtkPlus() {
 	if ((sklLv = UsedSkillSearch(SKILL_ID_INSPIRATION)) > 0) {
 		val += 40 * sklLv + 3 * n_A_JobLV;
 	}
-	else if (TimeItemNumSearch(TIME_ITEM_ID_ZETSUBONO_KAMI_MOROCC_CARD)) {
+	else if (
+		TimeItemNumSearch(TIME_ITEM_ID_ZETSUBONO_KAMI_MOROCC_CARD)
+		|| TimeItemNumSearch(TIME_ITEM_ID_DEMI_FREYA)
+		) {
 		val += 40 * 1 + 3 * n_A_JobLV;
 	}
 
@@ -11786,7 +11789,10 @@ function GetStatusModifyHitPlus() {
 	if ((sklLv = UsedSkillSearch(SKILL_ID_INSPIRATION)) > 0) {
 		val += 5 * sklLv + Math.floor(n_A_JobLV / 2);
 	}
-	else if (TimeItemNumSearch(TIME_ITEM_ID_ZETSUBONO_KAMI_MOROCC_CARD)) {
+	else if (
+		TimeItemNumSearch(TIME_ITEM_ID_ZETSUBONO_KAMI_MOROCC_CARD)
+		|| TimeItemNumSearch(TIME_ITEM_ID_DEMI_FREYA)
+		) {
 		val += 5 * 1 + Math.floor(n_A_JobLV / 2);
 	}
 

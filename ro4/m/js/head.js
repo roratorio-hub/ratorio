@@ -5332,10 +5332,11 @@ g_bDefinedDamageIntervals = true;
 				n_Delay[7] = 2000;
 
 				var w = 1 + UsedSkillSearch(SKILL_ID_COUNT_OF_RG_FOR_BANDING);
-				if(UsedSkillSearch(SKILL_ID_INSPIRATION)){
-					if(UsedSkillSearch(SKILL_ID_COUNT_OF_RG_FOR_BANDING) == 0) w = 3;
-				}
-				else if (TimeItemNumSearch(TIME_ITEM_ID_ZETSUBONO_KAMI_MOROCC_CARD)) {
+				if(
+					UsedSkillSearch(SKILL_ID_INSPIRATION)
+					|| TimeItemNumSearch(TIME_ITEM_ID_ZETSUBONO_KAMI_MOROCC_CARD)
+					|| TimeItemNumSearch(TIME_ITEM_ID_DEMI_FREYA)
+					){
 					if(UsedSkillSearch(SKILL_ID_COUNT_OF_RG_FOR_BANDING) == 0) w = 3;
 				}
 
@@ -21170,10 +21171,11 @@ function SET_ZOKUSEI(mobData, attackMethodConfArray) {
 
 		// ソロでインスピレーション時は、聖属性になる
 		else if (UsedSkillSearch(SKILL_ID_COUNT_OF_RG_FOR_BANDING) == 0) {
-			if (UsedSkillSearch(SKILL_ID_INSPIRATION)) {
-				n_A_Weapon_zokusei = ELM_ID_HOLY;
-			}
-			else if (TimeItemNumSearch(TIME_ITEM_ID_ZETSUBONO_KAMI_MOROCC_CARD)) {
+			if (
+				UsedSkillSearch(SKILL_ID_INSPIRATION)
+				|| TimeItemNumSearch(TIME_ITEM_ID_ZETSUBONO_KAMI_MOROCC_CARD)
+				|| TimeItemNumSearch(TIME_ITEM_ID_DEMI_FREYA)
+				) {
 				n_A_Weapon_zokusei = ELM_ID_HOLY;
 			}
 		}
