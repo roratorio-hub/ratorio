@@ -1,4 +1,6 @@
 capabilities:
+  - name: FLEE加算
+    code: 9
   - name: CRI加算
     code: 10
   - name: 完全回避
@@ -89,9 +91,9 @@ capabilities:
     code: 194
   - name: スキル習得時効果
     code: 199
-  - name: INT上昇
+  - name: INT加算
     code: 214
-  - name: 全ステータス上昇
+  - name: 全ステータス加算
     code: 217
   - name: アイテムの効果が発動しない
     code: 218
