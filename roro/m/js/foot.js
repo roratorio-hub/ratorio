@@ -1522,15 +1522,15 @@ function StAllCalc(){
 
 	// インスピレーションのＶＩＴ補正は、基礎ＨＰ増加量に影響を与えない
 	var vitForCalc = n_A_VIT;
-	if (UsedSkillSearch(SKILL_ID_INSPIRATION)) {
-		vitForCalc -= ROUNDDOWN(n_A_BaseLV / 10 + n_A_JobLV / 5);
-	}
-	else if (TimeItemNumSearch(TIME_ITEM_ID_ZETSUBONO_KAMI_MOROCC_CARD)) {
+	if (UsedSkillSearch(SKILL_ID_INSPIRATION)
+		|| TimeItemNumSearch(TIME_ITEM_ID_ZETSUBONO_KAMI_MOROCC_CARD)
+		|| TimeItemNumSearch(TIME_ITEM_ID_DEMI_FREYA)
+		) {
 		vitForCalc -= ROUNDDOWN(n_A_BaseLV / 10 + n_A_JobLV / 5);
 	}
 	maxHp += ROUNDDOWN(maxHp * vitForCalc / 100);
 
-
+	
 	//----------------------------------------------------------------
 	// 装備、支援等による補正（＋○○）
 	//----------------------------------------------------------------
@@ -1602,7 +1602,10 @@ function StAllCalc(){
 		maxHp += maxHpPlus + vartmp;		// ここで、インスピレーションのＨＰ上昇を適用
 		maxHp += ROUNDDOWN(maxHp * maxHpPerUp / 100);
 	}
-	else if (TimeItemNumSearch(TIME_ITEM_ID_ZETSUBONO_KAMI_MOROCC_CARD)) {
+	else if (
+		TimeItemNumSearch(TIME_ITEM_ID_ZETSUBONO_KAMI_MOROCC_CARD)
+		|| TimeItemNumSearch(TIME_ITEM_ID_DEMI_FREYA)
+		) {
 
 		// インスピレーションの効果が無い状態で、インスピレーションによる上昇量を算出
 		// ここの計算で maxHp の値を使うので、一度に計算できない
@@ -9417,7 +9420,12 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 			} 
 		}
 
-
+		//----------------------------------------------------------------
+		// 「秘密の羽・レイジー」カードの、装備効果
+		//----------------------------------------------------------------
+		if (CardNumSearch(CARD_ID_HIMITSU_NO_HANE_LEIZI)) {
+			chkary.push(70);
+		}
 
 
 		//----------------------------------------------------------------
@@ -16881,7 +16889,14 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 			}
 		}
 
-
+		//----------------------------------------------------------------
+		// 「ルッキー」カードの、スキル習得による効果（ペナルティ）
+		//----------------------------------------------------------------
+		if (CardNumSearch(CARD_ID_LOOKIE)) {
+			if (LearnedSkillSearch(SKILL_ID_FAITH)) {
+				n_tok[ITEM_SP_RESIST_ELM_HOLY] -= 30;
+			}
+		}
 
 
 
@@ -28259,16 +28274,10 @@ function StPlusCalc() {
 		wSPC_STR += 30;
 	}
 
-	if (UsedSkillSearch(SKILL_ID_INSPIRATION)) {
-		var w = ROUNDDOWN(n_A_BaseLV / 10 + n_A_JobLV / 5);
-		wSPC_STR += w;
-		wSPC_AGI += w;
-		wSPC_VIT += w;
-		wSPC_DEX += w;
-		wSPC_INT += w;
-		wSPC_LUK += w;
-	}
-	else if (TimeItemNumSearch(TIME_ITEM_ID_ZETSUBONO_KAMI_MOROCC_CARD)) {
+	if (UsedSkillSearch(SKILL_ID_INSPIRATION)
+		|| TimeItemNumSearch(TIME_ITEM_ID_ZETSUBONO_KAMI_MOROCC_CARD)
+		||TimeItemNumSearch(TIME_ITEM_ID_DEMI_FREYA)
+		) {
 		var w = ROUNDDOWN(n_A_BaseLV / 10 + n_A_JobLV / 5);
 		wSPC_STR += w;
 		wSPC_AGI += w;

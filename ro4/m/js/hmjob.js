@@ -880,29 +880,31 @@ function GetMobRes(mobData) {
 	var bufLv = 0;
 	var ignore = 0;
 
-
-
 	// 基礎値
 	value = mobData[MONSTER_DATA_INDEX_RES];
-
-
 
 	// Res無視効果
 	ignore = 0;
 
 	// アイテム特性による効果（とりあえず全種族だけ対応）
-	ignore += Math.floor(value * n_tok[ITEM_SP_IGNORE_RES_RACE_ALL]);
+	ignore += n_tok[ITEM_SP_IGNORE_RES_RACE_ALL];
 
 	// 四次職支援「アルグトゥステルム」による効果
 	if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_ARUGUTUS_TERUM]) > 0) {
 		ignore += 5 * bufLv;
 	}
 
+	// シャドウクロス「ポテントベナム」による効果
+	if ((bufLv = UsedSkillSearch(SKILL_ID_POTENT_VENOM)) > 0) {
+		ignore += 20 + bufLv;
+	}
+
+	// RES無視効果の上限は５０％
+	ignore = Math.min(50, ignore);
+
 	// 無視効果適用
-	ignore = Math.min(100, ignore);
 	value -= Math.floor(value * ignore / 100);
 	value = Math.max(0, value);
-
 
 	return value;
 }
@@ -913,30 +915,26 @@ function GetMobMres(mobData) {
 	var bufLv = 0;
 	var ignore = 0;
 
-
-
 	// 基礎値
 	value = mobData[MONSTER_DATA_INDEX_MRES];
-
-
 
 	// Mres無視効果
 	ignore = 0;
 
 	// アイテム特性による効果（とりあえず全種族だけ対応）
-	ignore += Math.floor(value * n_tok[ITEM_SP_IGNORE_MRES_RACE_ALL]);
+	ignore += n_tok[ITEM_SP_IGNORE_MRES_RACE_ALL];
 
 	// 四次職支援「アルグトゥスヴィタ」による効果
 	if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_ARUGUTUS_VITA]) > 0) {
 		ignore += 5 * bufLv;
 	}
 
+	// MRES無視効果の上限は５０％
+	ignore = Math.min(50, ignore);
+	
 	// 無視効果適用
-	ignore = Math.min(100, ignore);
 	value -= Math.floor(value * ignore / 100);
 	value = Math.max(0, value);
-
-
 
 	return value;
 }
