@@ -300,6 +300,7 @@ function CCustomSelectBase () {
 		// オブジェクト生成
 		objSelect = HtmlCreateElement("select", null);
 		objSelect.setAttribute("onchange", this.GetHandlerScriptOnChangeSelectData());
+		objSelect.setAttribute("class", "OBJID_" + this.instanceIdName);
 
 		// 構築したコントロールを返す
 		return objSelect;
