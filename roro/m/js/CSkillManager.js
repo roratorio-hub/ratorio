@@ -31211,21 +31211,16 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
-			this.name = "(×)ポテントベナム";
+			this.name = "ポテントベナム";
 			this.kana = "ホテントヘナム";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
-
-
-
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 190;
 			}
-
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 500;
 			}
