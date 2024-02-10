@@ -241,6 +241,7 @@
 	<!-- その他、機能系 javascript ファイル -->
 	<script type="text/javascript" src="js/castsim.js"></script>
 	<script type="text/javascript" src="js/browsermigration.js"></script>
+	<script type="text/javascript" src="../../ro4/m/js/CEnchSearch.js"></script>
 
 	<!-- ここからjQuery -->
 	<script src="../../jquery/jquery.min.js"></script>
@@ -252,6 +253,9 @@
 	<!-- jQuery function 初回実行 -->
 	<script>
 		$(document).ready(function() {
+			// エンチャントサーチのロード
+			new enchSearch();
+			// 検索可能ドロップダウンリストのロード
 			LoadSelect2();
 		});		
 	</script>
