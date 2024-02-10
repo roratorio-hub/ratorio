@@ -1268,8 +1268,12 @@ CCustomSelectBase.OnClickApplyButton = function (instanceIdName) {
 	var objInstance = null;
 
 	objInstance = CCustomSelectBase.instanceMap.get(instanceIdName);
-
 	objInstance.OnClickApplyButton();
+
+	/* select2の見た目を更新するため追加処理 */
+	select_id = objInstance.selectedDataId;
+	select2_obj_class = ".OBJID_" + objInstance.instanceIdName;
+	$(select2_obj_class).val(select_id).trigger('change');	
 };
 
 
