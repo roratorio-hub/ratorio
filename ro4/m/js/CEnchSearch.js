@@ -272,6 +272,13 @@ class enchSearch {
             });
     }
 
+    urlInMigChange(){
+        document.querySelector('#OBJID_BUTTON_URL_IN_MIG').addEventListener('click', ()=>{
+                this.resetEnchSearch('ench_id_reset');
+                this.armsTypeLeftChange();
+        });
+}
+
     quickControlExtractCheckboxChange(){
             document.querySelector('#ID_QUICK_CONTROL input[type="button"]')?.addEventListener('click', ()=>{
                     this.resetEnchSearch('ench_id_reset');
@@ -283,6 +290,7 @@ class enchSearch {
             this.armsTypeRightChange();
             this.selectJobChange();
             this.loadSaveDataMigChange();
+            this.urlInMigChange();
             this.quickControlExtractCheckboxChange();
 
             //クイック設定欄の対応(毎回DOMを再構築しているので監視して対応)
