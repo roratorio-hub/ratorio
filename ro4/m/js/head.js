@@ -16623,7 +16623,7 @@ function ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData,
 	}
 	*/
 
-	return wBMC2;
+	return (wBMC2 >= 0) ? wBMC2 : 0;
  }
 
 /**
