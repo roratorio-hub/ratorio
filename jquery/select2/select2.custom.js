@@ -48,3 +48,8 @@ $(function(){
         LoadSelect2();
     })
 });
+$(document).ready(function() {
+    $('.OBJID_MONSTER_MAP_CATEGORY').select2();
+    $('.OBJID_MONSTER_MAP_MAP').select2();
+    $('.OBJID_MONSTER_MAP_MONSTER').select2();
+});
