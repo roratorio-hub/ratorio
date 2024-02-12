@@ -546,7 +546,7 @@
 	ITEM_SP_TIME_OBJ_SORT.push(267);
 	ITEM_SP_TIME_OBJ_SORT.push(268);
 
-	ITEM_SP_TIME_OBJ[269] = [269,"猪突猛進","アニマル系スキルダメージ増加",[[1,3818]],0];
+	ITEM_SP_TIME_OBJ[269] = [269,"猪突猛進","HPが1000上がる度に アニマル系スキルで与えるダメージ + 1%",[[2,2831],[1,3818],[1,4268],[1,4269],[1,4455]],0];
 	ITEM_SP_TIME_OBJ_SORT.push(269);
 
 })();
