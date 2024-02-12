@@ -25435,7 +25435,21 @@ function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, 
 		}
 	}
 
-
+	//----------------------------------------------------------------
+	// 「猪突猛進」の、「アニマル系スキル」強化
+	//----------------------------------------------------------------
+	if ( (n_A_ActiveSkill == SKILL_ID_PIKKI_TSUKI)
+			|| (n_A_ActiveSkill == SKILL_ID_TAROUNO_KIZU)
+			|| (n_A_ActiveSkill == SKILL_ID_CARROT_BEAT)
+			|| (n_A_ActiveSkill == SKILL_ID_SAVAGENO_TAMASHI)
+	) {
+		if (
+			TimeItemNumSearch(TIME_ITEM_ID_CHOTOTSU_MOUSHIN) > 0
+			&& LearnedSkillSearch(SKILL_ID_SEIMEINO_TAMASHI) > 0
+			) {
+			w1 += Math.min(100, charaData[CHARA_DATA_INDEX_MAXHP] / 1000);
+		}
+	}
 
 
 
