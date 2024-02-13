@@ -1319,7 +1319,7 @@ CItemInfoManager.AppendEfficiencyInfoSub = function (objRoot, dataKind, dataId, 
 			// 設定ボタン
 			objInput = HtmlCreateElement("input", objRoot);
 			objInput.setAttribute("type", "button");
-			objInput.setAttribute("value", "設定する");
+			objInput.setAttribute("value", timeItemData[1] + " を設定する");
 			objInput.setAttribute("onclick", "CItemInfoManager.ApplyTimeItem(" + idx + ")");
 
 			HtmlCreateElement("br", objRoot);
