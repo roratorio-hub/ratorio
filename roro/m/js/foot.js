@@ -6176,38 +6176,39 @@ if (_APPLY_UPDATE_LV200) {
 		if(n_A_Equip[EQUIP_REGION_ID_SHIELD] != 305) {
 			aspd -= jobData.GetWeaponAspd(ITEM_KIND_SHIELD);
 		}
-		var w=0;
 
-		if(n_A_SpeedPOT){
-			if(n_A_SpeedPOT == 1) w += 10;
-			else if(n_A_SpeedPOT == 2) w += 15;
-			else if(n_A_SpeedPOT == 3) w += 20;
-		}else{
-			if(2 <= n_A_PassSkill8[22] && n_A_PassSkill8[22] <= 4){
-				w = 10;
-				if(n_A_BaseLV >= 40){
-					if (IsUsableHSPJob(n_A_JOB)) w = 15;
-				}
-				if(n_A_BaseLV >= 85){
-					if (IsUsableBSPJob(n_A_JOB)) w = 20;
-				}
+		var w = 0;
+		// ジョンダ設定欄
+		if(2 <= n_A_PassSkill8[22] && n_A_PassSkill8[22] <= 4){	// A8_Skill22 OTPボーナス
+			// OTPシルバー以上
+			w = 10;
+			if(n_A_BaseLV >= 40){
+				if (IsUsableHSPJob(n_A_JOB)) w = 15;	// ハイスピードポーションが使える職はHSPを適用
 			}
-			else if(n_A_PassSkill7[35]) w += 10;
+			if(n_A_BaseLV >= 85){
+				if (IsUsableBSPJob(n_A_JOB)) w = 20;	// バーサクポーションが使える職はBSPを適用
+			}
 		}
-		if(0 <n_A_PassSkill7[47] && n_A_PassSkill7[47] <= 50){
-			if(w <n_A_PassSkill7[47]) w = n_A_PassSkill7[47];
+		else if(n_A_PassSkill7[35]) { // A7_Skill35 たぶん未使用
+			w += 10;
+		}
+		// ジョンダとスピードポーションのうち大きい効果を適用
+		w = Math.max(w, [0, 10, 15, 20][n_A_SpeedPOT]);
+
+		if(0 <n_A_PassSkill7[47] && n_A_PassSkill7[47] <= 50){	// A7_Skill47 たぶん未使用
+			if(w < n_A_PassSkill7[47]) w = n_A_PassSkill7[47];
 		}
 
 
 		var ASPDch = 0;
 		var ASPDplusMAX = 0;
 
-		if(n_A_PassSkill3[19] == 4){
+		if(n_A_PassSkill3[19] == 4){	// A3_Skill19 たぶん未使用
 			ASPDch = n_A_PassSkill3[37] * 5 + n_A_PassSkill3[38];
 			ASPDplusMAX = Math.max(ASPDplusMAX, ASPDch);
 		}
 
-		if(n_A_PassSkill3[39] == 6 || n_A_PassSkill3[39] == 7){
+		if(n_A_PassSkill3[39] == 6 || n_A_PassSkill3[39] == 7){	// A3_Skill39 たぶん未使用
 			if(n_A_PassSkill3[41] >= 7) ASPDch = 30;
 			else ASPDch = (5 * n_A_PassSkill3[41]) -5;
 
