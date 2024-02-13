@@ -73,7 +73,7 @@ if __name__ == "__main__":
 
     item_id = getLatestItemId()
     itemset_id = getLatestIdFromItemSet()
-    enchant_id = getLatestId(slotinfo_list)
+    enchant_id = getLatestEnchantId()
     
     with open(f'{script_dir}/item.yaml', 'r', encoding='utf-8') as f:
         config = yaml.safe_load(f)
