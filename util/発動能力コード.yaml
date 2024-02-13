@@ -109,17 +109,17 @@ capabilities:
     code: 225
   - name: サイズペナルティ無し
     code: 228
-  - name: Pow上昇
+  - name: POW加算
     code: 230
-  - name: Sta上昇
+  - name: STA加算
     code: 231
-  - name: Wis上昇
+  - name: WIS加算
     code: 232
-  - name: Spl上昇
+  - name: SPL加算
     code: 233
-  - name: Con上昇
+  - name: CON加算
     code: 234
-  - name: Crt上昇
+  - name: CRT加算
     code: 235
   - name: 全特性ステータス上昇
     code: 236
