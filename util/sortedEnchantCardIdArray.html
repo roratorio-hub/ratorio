@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>sortedEnchantCardIdArray</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+  <base href="../">
+  <link rel="stylesheet" href="roro/common.css" type="text/css">
+	<link rel="stylesheet" href="roro/m/calcx.css" type="text/css">
+	<link rel="stylesheet" href="ro4/m/calcx.css" type="text/css">
+
+	<script type="text/javascript" src="roro/common/js/util.js"></script>
+
+	<script type="text/javascript" src="ro4/DEBUG.js"></script>
+
+	<script type="text/javascript" src="roro/m/js/CGlobalConstManager.js"></script>
+	<script type="text/javascript" src="roro/m/js/CNameKana.js"></script>
+	<script type="text/javascript" src="roro/m/js/common.js"></script>
+
+
+
+	<!-- [MIG] データ定義系 javascript ファイル -->
+	<script type="text/javascript" src="ro4/m/js/data/mig.job.h.js"></script>
+	<script type="text/javascript" src="roro/m/js/data/mig.itemsp.h.js"></script>
+	<script type="text/javascript" src="roro/m/js/data/CMigJobData.js"></script>
+	<script type="text/javascript" src="roro/m/js/data/CMigStateData.js"></script>
+	<script type="text/javascript" src="roro/m/js/data/CMigEquipableSpTag.js"></script>
+	<script type="text/javascript" src="roro/m/js/data/CMigEquipableStaticData.js"></script>
+	<script type="text/javascript" src="roro/m/js/data/CMigEquipableSpData.js"></script>
+	<script type="text/javascript" src="roro/m/js/data/CMigEquipableData.js"></script>
+	<script type="text/javascript" src="roro/m/js/data/CMigConstDataManagerSubBase.js"></script>
+	<script type="text/javascript" src="roro/m/js/data/CMigConstDataManagerSubJob.js"></script>
+	<script type="text/javascript" src="roro/m/js/data/CMigConstDataManagerSubState.js"></script>
+	<script type="text/javascript" src="roro/m/js/data/CMigConstDataManagerSubBuff.js"></script>
+	<script type="text/javascript" src="roro/m/js/data/CMigConstDataManagerSubMonster.js"></script>
+	<script type="text/javascript" src="roro/m/js/data/CMigConstDataManagerSubArrow.js"></script>
+	<script type="text/javascript" src="roro/m/js/data/CMigConstDataManagerSubItem.js"></script>
+	<script type="text/javascript" src="roro/m/js/data/CMigConstDataManagerSubCard.js"></script>
+	<script type="text/javascript" src="roro/m/js/data/CMigConstDataManagerSubEnchList.js"></script>
+	<script type="text/javascript" src="roro/m/js/data/CMigConstDataManagerSubRndOpt.js"></script>
+	<script type="text/javascript" src="roro/m/js/data/CMigConstDataManager.js"></script>
+	<script type="text/javascript" src="roro/m/js/skill.h.js"></script>
+	<script type="text/javascript" src="roro/m/js/skill.dat.js"></script>
+	<script type="text/javascript" src="roro/m/js/usableskill.h.js"></script>
+	<script type="text/javascript" src="roro/m/js/usableskill.dat.js"></script>
+	<script type="text/javascript" src="roro/m/js/autospell.h.js"></script>
+	<script type="text/javascript" src="roro/m/js/autospell.dat.js"></script>
+	<script type="text/javascript" src="roro/m/js/CSkillManager.js"></script>
+	<script type="text/javascript" src="roro/m/js/equip.js"></script>
+
+	<!-- グローバル変数定義 javascript ファイル（others 用） -->
+	<script type="text/javascript" src="ro4/m/js/global.js"></script>
+
+	<!-- [MIG] dat ファイル -->
+	<script type="text/javascript" src="ro4/m/js/data/mig.job.dat.js"></script>
+	<script type="text/javascript" src="roro/m/js/data/mig.enchlist.dat.js"></script>
+
+	<!-- 処理系 -->
+	<script type="text/javascript" src="roro/m/js/monster.h.js"></script>
+	<script type="text/javascript" src="roro/m/js/monster.dat.js"></script>
+	<script type="text/javascript" src="roro/m/js/item.h.js"></script>
+	<script type="text/javascript" src="roro/m/js/item.dat.js"></script>
+	<script type="text/javascript" src="roro/m/js/card.h.js"></script>
+	<script type="text/javascript" src="roro/m/js/card.dat.js"></script>
+	<script type="text/javascript" src="roro/m/js/pet.h.js"></script>
+	<script type="text/javascript" src="roro/m/js/pet.dat.js"></script>
+	<script type="text/javascript" src="roro/m/js/itemset.h.js"></script>
+	<script type="text/javascript" src="roro/m/js/itemset.dat.js"></script>
+	<script type="text/javascript" src="roro/m/js/timeitem.h.js"></script>
+	<script type="text/javascript" src="roro/m/js/timeitem.dat.js"></script>
+
+	<script type="text/javascript" src="roro/m/js/CItemInfoManager.js"></script>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <style>
+    #enchant { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+    #enchant li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
+    #enchant li span { position: absolute; margin-left: -1.3em; }
+    #output {background-color: black; color: white; padding: 1rem;overflow-wrap: break-word;}
+    #notuse { width:55%}
+    #item-add { height: 2rem; width:4%}
+  </style>
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+  <link href="jquery/select2/select2.min.css" rel="stylesheet" />
+  <script src="jquery/select2/select2.min.js"></script>
+</head>
+<body style="overflow:auto">
+  <div style="padding:1rem;">
+    <h2>エンチャント並び順の調整ツール</h2>
+    <pre style="padding:0.5rem;line-height: 140%;">エンチャントの並び順の調整をします。
+順番を変更したいエンチャントをドラッグ＆変更先でドロップしてください。
+
+並び順が未設定のエンチャントは、計算機上の一覧の最後に追加されます(出現順)。
+一塊にしたいエンチャント群は事前に並べておく必要があります。
+並び順を設定したいエンチャントを追加する場合は、画面下部のセレクトから
+該当するエンチャントを選択して＋ボタンをクリックしてください。
+リストに追加されるので、任意の位置にD&Dします。
+
+ページ下部に調整後のコードが出力されています
+コピーして roro/m/js/data/mig.enchlist.dat.js のコードを書き換えてください</pre>
+    <ul id="enchant">
+    </ul>
+    <select id="notuse"></select>
+    <button id="item-add" class="ui-button"><span class="ui-icon ui-icon-circle-plus"></span></button>
+  </div>
+  <hr>
+  <div style="padding:1rem;">
+    <div><button id="clip" class="ui-button">copy</button><span id="copied" style="display:none; margin-left:1rem;">コピーしました</span></div>
+    <div id="output">
+    </div>
+  </div>
+
+  <script>
+    $(() => {
+      $("#notuse > option").remove();
+      CardObjNew.forEach(c=>{
+        if (c[1]==99 && !g_constDataManager.enchListDataManager.sortedEnchantCardIdArray.includes(c[0])){
+          $("#notuse").append($("<option>").html(c[2]).val(c[0]));
+        }
+      });
+      $("#notuse").select2();
+      refresh_output = ()=>{
+        s = []
+        l = $("#enchant").find("li");
+        for (i=0;i<l.length;i++) {
+          s.push($(l[i]).data("card"));
+        }
+        $("#output").text(
+          `g_constDataManager.enchListDataManager.sortedEnchantCardIdArray = [${s.join(",")}];`
+        );
+      }
+      g_constDataManager.enchListDataManager.sortedEnchantCardIdArray.forEach(id =>{
+        $("#enchant").append(`<li class="ui-state-default" data-card="${id}"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>${GetFlagAppendedCardName(id)}</li>`)
+      });
+      $("#enchant").sortable({
+        create: refresh_output,
+        update: refresh_output
+      });
+      $("#clip").click(()=>{
+        navigator.clipboard.writeText($("#output").text());
+        $("#copied").fadeIn("slow",()=>{$("#copied").delay(1000).fadeOut("slow")});
+      });
+      $("#item-add").click(()=>{
+        c = $("#notuse option:selected");
+        c.remove();
+        $("#enchant").append(`<li class="ui-state-default" data-card="${c.val()}"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>${c.text()}</li>`);
+        $("#enchant").sortable('refresh');
+        refresh_output();
+      });
+    });
+    </script>
+</body>
+</html>
