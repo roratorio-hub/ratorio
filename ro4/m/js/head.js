@@ -10112,31 +10112,25 @@ g_bDefinedDamageIntervals = true;
 			}
 			break;
 
+		// 「ソウルアセティック」スキル「霊道符」
 		case SKILL_ID_REIDO_FU:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-
 			// 属性は暖かい風依存
 			n_A_Weapon_zokusei = eval(document.calcForm.A_Weapon_zokusei.value);
-
 			// 詠唱時間等
-			/*
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			*/
-
 			// 基本倍率
 			wbairitu = 2000 + (200 * n_A_ActiveSkillLV);
-
 			// SPL補正
-			wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-
+			wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+			// 修練補正
+			wbairitu += 7 * n_A_ActiveSkillLV * ( UsedSkillSearch(SKILL_ID_GOFU_SHUREN) + UsedSkillSearch(SKILL_ID_REIDOZYUTSU_SHUREN) );
 			// ベースレベル補正
 			wbairitu *= n_A_BaseLV / 100;
 			break;
+
 
 		case SKILL_ID_SHIRYO_ZYOKA:
 
@@ -10171,13 +10165,14 @@ g_bUnknownCasts = true;
 
 		// 「ソウルアセティック」スキル「青龍符」
 		case SKILL_ID_SEIRYU_FU:
-
+			/**
+			 * 素の状態から2桁程度の誤差がでますが五行陣を掛けても誤差は極端に拡大しないため丸め誤差の類だと思われます
+			 * 計算式は信頼できると判断しています
+			 */
 			// TODO: 詠唱時間等未実測スキル
 			g_bUnknownCasts = true;
-
 			// 属性は暖かい風依存
 			n_A_Weapon_zokusei = eval(document.calcForm.A_Weapon_zokusei.value);
-
 			// 詠唱時間等
 			/*
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
@@ -10185,7 +10180,6 @@ g_bUnknownCasts = true;
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			*/
-
 			// 基本倍率
 			if (UsedSkillSearch(SKILL_ID_SHIHO_FU_ZYOTAI) >= 5) {
 				wbairitu = 5500 + (1000 * n_A_ActiveSkillLV);
@@ -10196,19 +10190,21 @@ g_bUnknownCasts = true;
 			// SPL補正
 			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			// 護符修練 補正
-			wbairitu += 5 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_GOFU_SHUREN);
+			wbairitu += 15 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_GOFU_SHUREN);
 			// ベースレベル補正
 			wbairitu *= n_A_BaseLV / 100;
 			break;
 
+		// 「ソウルアセティック」スキル「白虎符」
 		case SKILL_ID_BYAKKO_FU:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-
+			/**
+			 * 素の状態から2桁程度の誤差がでます
+			 * 五行陣を掛けると誤差は3桁に広がるので再考の余地があるかもしれません
+			 */
+			// TODO: 詠唱時間等未実測スキル
+			g_bUnknownCasts = true;
 			// 属性は暖かい風依存
 			n_A_Weapon_zokusei = eval(document.calcForm.A_Weapon_zokusei.value);
-
 			// 詠唱時間等
 			/*
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
@@ -10216,30 +10212,35 @@ g_bUnknownCasts = true;
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			*/
-
 			// 基本倍率
 			if (UsedSkillSearch(SKILL_ID_SHIHO_FU_ZYOTAI) >= 5) {
+				/**
+				 * 五行陣Lv4のときは異なる増加率(4200 + 500 * skillLv)であったとの検証報告を頂いていますが
+				 * Lv1でも3桁の誤差があるため一旦公式のアナウンス通りの倍率で計算しています
+				 */ 
 				wbairitu = 4250 + (500 * n_A_ActiveSkillLV);
 			}
 			else {
 				wbairitu = 1500 + (200 * n_A_ActiveSkillLV);
 			}
-
 			// SPL補正
-			wbairitu += 8 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-
+			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+			// 護符修練
+			wbairitu += 15 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_GOFU_SHUREN);
 			// ベースレベル補正
 			wbairitu *= n_A_BaseLV / 100;
 			break;
 
+		// 「ソウルアセティック」スキル「朱雀符」		
 		case SKILL_ID_SUZAKU_FU:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-
+			/**
+			 * 素の状態から2桁程度の誤差がでますが五行陣を掛けても誤差は極端に拡大しないため丸め誤差の類だと思われます
+			 * 計算式は信頼できると判断しています
+			 */
+			// TODO: 詠唱時間等未実測スキル
+			g_bUnknownCasts = true;
 			// 属性は暖かい風依存
 			n_A_Weapon_zokusei = eval(document.calcForm.A_Weapon_zokusei.value);
-
 			// 詠唱時間等
 			/*
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
@@ -10247,7 +10248,6 @@ g_bUnknownCasts = true;
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			*/
-
 			// 基本倍率
 			if (UsedSkillSearch(SKILL_ID_SHIHO_FU_ZYOTAI) >= 5) {
 				wbairitu = 5500 + (650 * n_A_ActiveSkillLV);
@@ -10255,22 +10255,24 @@ g_bUnknownCasts = true;
 			else {
 				wbairitu = 1500 + (200 * n_A_ActiveSkillLV);
 			}
-
 			// SPL補正
-			wbairitu += 8 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-
+			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+			// 護符修練
+			wbairitu += 15 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_GOFU_SHUREN);
 			// ベースレベル補正
 			wbairitu *= n_A_BaseLV / 100;
 			break;
 
+		// 「ソウルアセティック」スキル「玄武符」
 		case SKILL_ID_GENBU_FU:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-
+			/**
+			 * 素の状態から2桁程度の誤差がでます
+			 * 五行陣を掛けると誤差は3桁に広がるので再考の余地があるかもしれません
+			 */
+			// TODO: 詠唱時間等未実測スキル
+			g_bUnknownCasts = true;
 			// 属性は暖かい風依存
 			n_A_Weapon_zokusei = eval(document.calcForm.A_Weapon_zokusei.value);
-
 			// 詠唱時間等
 			/*
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
@@ -10278,30 +10280,35 @@ g_bUnknownCasts = true;
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			*/
-
 			// 基本倍率
 			if (UsedSkillSearch(SKILL_ID_SHIHO_FU_ZYOTAI) >= 5) {
+				/**
+				 * 五行陣Lv4のときは異なる増加率(4200 + 500 * skillLv)であったとの検証報告を頂いていますが
+				 * Lv1でも3桁の誤差があるため一旦公式のアナウンス通りの倍率で計算しています
+				 */ 
 				wbairitu = 4250 + (500 * n_A_ActiveSkillLV);
 			}
 			else {
 				wbairitu = 1500 + (200 * n_A_ActiveSkillLV);
 			}
-
 			// SPL補正
-			wbairitu += 8 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-
+			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+			// 護符補正
+			wbairitu += 15 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_GOFU_SHUREN);
 			// ベースレベル補正
 			wbairitu *= n_A_BaseLV / 100;
 			break;
 
+		// 「ソウルアセティック」スキル「四方神符」
 		case SKILL_ID_SHIHOZIN_FU:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-
+			/**
+			 * 素の状態から2桁程度の誤差がでますが五行陣を掛けても誤差は極端に拡大しないため丸め誤差の類だと思われます
+			 * 計算式は信頼できると判断しています
+			 */
+			// TODO: 詠唱時間等未実測スキル
+			g_bUnknownCasts = true;
 			// 属性は暖かい風依存
 			n_A_Weapon_zokusei = eval(document.calcForm.A_Weapon_zokusei.value);
-
 			// 詠唱時間等
 			/*
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
@@ -10309,28 +10316,32 @@ g_bUnknownCasts = true;
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			*/
-
 			// 基本倍率
 			wbairitu = 500 + (50 * n_A_ActiveSkillLV);
-
 			// SPL補正
-			wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-
+			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+			// 護符修練
+			wbairitu += 15 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_GOFU_SHUREN);
 			// ベースレベル補正
 			wbairitu *= n_A_BaseLV / 100;
-
 			// HIT数
 			wHITsuu = 1 + Math.min(5, UsedSkillSearch(SKILL_ID_SHIHO_FU_ZYOTAI));
 			break;
 
+		// 「ソウルアセティック」スキル「四方五行陣」
 		case SKILL_ID_SHIHO_GOGYO_ZIN:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-
+			/**
+			 * 2桁～3桁程度の誤差があります
+			 */
+			// TODO: 詠唱時間等未実測スキル
+			g_bUnknownCasts = true;
+			// 使用条件は 玄武符 or 四方五行陣 状態であること
+			if (UsedSkillSearch(SKILL_ID_SHIHO_FU_ZYOTAI) < 4) {
+				n_Buki_Muri = 1;
+				break;
+			}
 			// 属性は暖かい風依存
 			n_A_Weapon_zokusei = eval(document.calcForm.A_Weapon_zokusei.value);
-
 			// 詠唱時間等
 			/*
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
@@ -10338,15 +10349,16 @@ g_bUnknownCasts = true;
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			*/
-
 			// 基本倍率
-			wbairitu = 0 + (300 * n_A_ActiveSkillLV);
-
+			wbairitu = 300 * n_A_ActiveSkillLV;
 			// SPL補正
 			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-
+			// 修練補正
+			wbairitu += 15 * n_A_ActiveSkillLV * (UsedSkillSearch(SKILL_ID_GOFU_SHUREN) +  UsedSkillSearch(SKILL_ID_REIDOZYUTSU_SHUREN))
 			// ベースレベル補正
 			wbairitu *= n_A_BaseLV / 100;
+			// ヒット数
+			wHITsuu = 5;
 			break;
 
 		case SKILL_ID_JUPITER_THUNDER_STORM:
@@ -10411,19 +10423,11 @@ g_bUnknownCasts = true;
 			「スピリットハンドラー」スキル「ディアーキャノン」
 		*/
 		case SKILL_ID_DEER_CANON:
-			/*
-				にゃん友習得時の実測値との誤差 -1 以内を確認ずみ
-				ToDo: にゃん友未習得時の実測値が未確認
-			*/
-
-			// TODO: 詠唱時間等未実測スキル
-			//g_bUnknownCasts = true;
 			// 詠唱時間等
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-
 			// スピリットハンドラーのレインボーホーン追加に伴い任意の属性を取れるように変更
 			if (attackMethodConfArray[0].optionValueArray.length == 0) {
 				// 属性未定義の場合
@@ -10431,7 +10435,6 @@ g_bUnknownCasts = true;
 			} else {
 				n_A_Weapon_zokusei = attackMethodConfArray[0].GetOptionValue(0); 
 			};
-
 			if (UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0 || UsedSkillSearch(SKILL_ID_NYANTOMO_KENROKU) > 0) {
 				// 基礎倍率
 				wbairitu = 4800 + (600 * n_A_ActiveSkillLV);
@@ -10443,38 +10446,27 @@ g_bUnknownCasts = true;
 				// スピリットマスタリー補正
 				wbairitu += 125 * UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY);
 			}
-
 			// SPL補正
 			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-
 			// ベースレベル補正
 			wbairitu *= n_A_BaseLV / 100;
 			wbairitu = ROUNDDOWN(wbairitu);
-
 			break;
 
 		/*
 			「スピリットハンドラー」スキル「ディアーブリーズ」
 		*/
 		case SKILL_ID_DEER_BREEZE:
-			/*
-				ToDo: にゃん友未習得時の実測値が未確認
-			*/
-
 			g_bDefinedDamageIntervals = true;
-
 			// 詠唱時間等
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-
 			// ダメージ間隔
 			n_Delay[5] = 300;
-
 			// オブジェクト存続時間
 			n_Delay[6] = 3000;
-
 			// スピリットハンドラーのレインボーホーン追加に伴い任意の属性を取れるように変更
 			if (attackMethodConfArray[0].optionValueArray.length == 0) {
 				// 属性未定義の場合
@@ -10482,7 +10474,6 @@ g_bUnknownCasts = true;
 			} else {
 				n_A_Weapon_zokusei = attackMethodConfArray[0].GetOptionValue(0); 
 			};
-
 			if (UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0 || UsedSkillSearch(SKILL_ID_NYANTOMO_KENROKU) > 0) {
 				// 基礎倍率
 				wbairitu = 1600 + 200 * n_A_ActiveSkillLV;
@@ -10494,15 +10485,13 @@ g_bUnknownCasts = true;
 				// スピリットマスタリー補正
 				wbairitu += 20 * UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY);
 			}
-
 			// SPL補正
 			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-
 			// ベースレベル補正
 			wbairitu *= n_A_BaseLV / 100;
 			wbairitu = ROUNDDOWN(wbairitu);
-
 			break;
+
 /*
 		case SKILL_ID_DUMMY:
 			// 使用武器制限
