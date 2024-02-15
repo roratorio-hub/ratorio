@@ -10214,11 +10214,8 @@ g_bUnknownCasts = true;
 			*/
 			// 基本倍率
 			if (UsedSkillSearch(SKILL_ID_SHIHO_FU_ZYOTAI) >= 5) {
-				/**
-				 * 五行陣Lv4のときは異なる増加率(4200 + 500 * skillLv)であったとの検証報告を頂いていますが
-				 * Lv1でも3桁の誤差があるため一旦公式のアナウンス通りの倍率で計算しています
-				 */ 
-				wbairitu = 4250 + (500 * n_A_ActiveSkillLV);
+				// 公式発表並びに実測確認の結果によるとLv4だけ倍率が異常なので直値で指定しています
+				wbairitu = [0,4750,5250,5750,6200,6750][n_A_ActiveSkillLV];
 			}
 			else {
 				wbairitu = 1500 + (200 * n_A_ActiveSkillLV);
@@ -10282,11 +10279,8 @@ g_bUnknownCasts = true;
 			*/
 			// 基本倍率
 			if (UsedSkillSearch(SKILL_ID_SHIHO_FU_ZYOTAI) >= 5) {
-				/**
-				 * 五行陣Lv4のときは異なる増加率(4200 + 500 * skillLv)であったとの検証報告を頂いていますが
-				 * Lv1でも3桁の誤差があるため一旦公式のアナウンス通りの倍率で計算しています
-				 */ 
-				wbairitu = 4250 + (500 * n_A_ActiveSkillLV);
+				// 公式発表並びに実測確認の結果によるとLv4だけ倍率が異常なので直値で指定しています
+				wbairitu = [0,4750,5250,5750,6200,6750][n_A_ActiveSkillLV];
 			}
 			else {
 				wbairitu = 1500 + (200 * n_A_ActiveSkillLV);
