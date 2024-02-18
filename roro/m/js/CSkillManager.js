@@ -13047,49 +13047,28 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "(△)ファイアードラゴンブレス";
 			this.kana = "フアイアアトラコンフレス";
 			this.maxLv = 10;
-			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL
-					| CSkillData.TYPE_100HIT;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL | CSkillData.TYPE_100HIT;
 			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_FORCE_FIRE;
-
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 25 + 5 * skillLv;
 			}
-
-			this.Power = function(skillLv, charaDataManger) {
-				return -1;
-			}
-
 			this.CastTimeVary = function(skillLv, charaDataManger) {
-
-				if (skillLv >= 9) {
-					return 2000;
-				} else if (skillLv >= 7) {
-					return 1500;
-				} else if (skillLv >= 4) {
-					return 1000;
-				}
-
-				return 3000;
+				return [0,0,0,0,10,10,10,15,15,20,20][skillLv] * 100;
 			}
-
 			this.CastTimeFixed = function(skillLv, charaDataManger) {
 				return 500;
 			}
-
 			this.DelayTimeCommon = function(skillLv, charaDataManger) {
 				return 1500;
 			}
-
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 500;
 			}
-
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -24575,49 +24554,28 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "(△)ウォータードラゴンブレス";
 			this.kana = "ウオオタアトラコンフレス";
 			this.maxLv = 10;
-			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL
-					| CSkillData.TYPE_100HIT;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL | CSkillData.TYPE_100HIT;
 			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_FORCE_WATER;
-
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 25 + 5 * skillLv;
 			}
-
-			this.Power = function(skillLv, charaDataManger) {
-				return -1;
-			}
-
 			this.CastTimeVary = function(skillLv, charaDataManger) {
-
-				if (skillLv >= 9) {
-					return 2000;
-				} else if (skillLv >= 7) {
-					return 1500;
-				} else if (skillLv >= 4) {
-					return 1000;
-				}
-
-				return 3000;
+				return [0,0,0,0,10,10,10,15,15,20,20][skillLv] * 100;
 			}
-
 			this.CastTimeFixed = function(skillLv, charaDataManger) {
 				return 500;
 			}
-
 			this.DelayTimeCommon = function(skillLv, charaDataManger) {
 				return 1500;
 			}
-
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 500;
 			}
-
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -34899,9 +34857,9 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(△)ドラゴニックオーラ状態";	// TODO: ドラゴンブレスのダメージ増加が未実測
+			this.name = "ドラゴニックオーラ状態";
 			this.kana = "トラコニツクオオラシヨウタイ";
-			this.maxLv = 1;
+			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
@@ -36918,9 +36876,8 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
-			this.name = "(×)ドラゴニックブレス";
+			this.name = "(△)ドラゴニックブレス";
 			this.kana = "トラコニツクフレス";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
