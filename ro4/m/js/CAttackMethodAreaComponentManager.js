@@ -3687,32 +3687,6 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 			break;
 
 		//----------------------------------------------------------------
-		// ドラゴンナイト：ドラゴニックブレス
-		//----------------------------------------------------------------
-		case SKILL_ID_DRAGONIC_BREATH:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionListAsInput(attackMethodOptList,
-				"現在のHP (0の場合MaxHPで計算)",
-				[
-					["type", "number"],
-					["min", 0],
-					["max", 9999999],
-				],
-				0
-			);
-			attackMethodOptList = funcCreateOptionListAsInput(attackMethodOptList,
-				"現在のSP (0の場合MaxSPで計算)",
-				[
-					["type", "number"],
-					["min", 0],
-					["max", 999999],
-				],
-				0
-			);
-			break;
-
-		//----------------------------------------------------------------
 		// スピリットハンドラー：ディアーキャノン
 		//----------------------------------------------------------------
 		case SKILL_ID_DEER_CANON:

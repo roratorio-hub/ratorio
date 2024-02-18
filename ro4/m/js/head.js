@@ -4716,7 +4716,10 @@ g_bDefinedDamageIntervals = true;
 			wbairitu *= n_A_BaseLV / 100;										// BaseLv補正
 			break;
 
+		// 「ドラゴンナイト」スキル「ドラゴニックブレス」
 		case SKILL_ID_DRAGONIC_BREATH:
+			// YE道場(DEF無視100)の環境では誤差無しを確認済み
+			// 通常鯖(DEF無視なし)では3桁程度の誤差が出る
 			if (UsedSkillSearch(SKILL_ID_DRAGON_TRAINING) == 0) {
 				n_Buki_Muri = 1
 				wbairitu = 0;
@@ -4730,24 +4733,14 @@ g_bDefinedDamageIntervals = true;
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			*/
-			if (UsedSkillSearch(SKILL_ID_DRAGONIC_AURA_STATE) > 1) {
-				wbairitu = 2000 + (400 * n_A_ActiveSkillLV);				// 基礎倍率
-			} else {
-				wbairitu = 1000 + (200 * n_A_ActiveSkillLV);				// 基礎倍率
+			wbairitu = 1000 + (200 * n_A_ActiveSkillLV);				// 基礎倍率
+			wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_POW);		// 特性ステータス補正
+			if (UsedSkillSearch(SKILL_ID_DRAGONIC_AURA_STATE) > 1) {	// Dオーラ補正
+				wbairitu *= 2;
 			}
-			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);			// 特性ステータス補正
-
-			w_HP = attackMethodConfArray[0].GetOptionValue(0);				// HP補正
-			if (w_HP == 0) {
-				w_HP = charaData[CHARA_DATA_INDEX_MAXHP];
-			}
-			w_SP = attackMethodConfArray[0].GetOptionValue(1);				// SP補正
-			if (w_SP == 0) {
-				w_SP = charaData[CHARA_DATA_INDEX_MAXSP];
-			}
-			wbairitu += Math.floor(w_HP / 50) + Math.floor(w_SP / 4);
-
-			wbairitu *= n_A_BaseLV / 100;									// BaseLv補正
+			wbairitu += charaData[CHARA_DATA_INDEX_MAXHP] / 500			// HP補正
+			wbairitu += charaData[CHARA_DATA_INDEX_MAXSP] / 20;			// SP補正
+			wbairitu *= n_A_BaseLV / 100;								// BaseLv補正
 			break;
 
 		// 「マイスター」スキル「マイティスマッシュ」
