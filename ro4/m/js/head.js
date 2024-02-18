@@ -4738,7 +4738,7 @@ g_bDefinedDamageIntervals = true;
 			if (UsedSkillSearch(SKILL_ID_DRAGONIC_AURA_STATE) > 1) {	// Dオーラ補正
 				wbairitu *= 2;
 			}
-			wbairitu += charaData[CHARA_DATA_INDEX_MAXHP] / 500			// HP補正
+			wbairitu += charaData[CHARA_DATA_INDEX_MAXHP] / 500;		// HP補正
 			wbairitu += charaData[CHARA_DATA_INDEX_MAXSP] / 20;			// SP補正
 			wbairitu *= n_A_BaseLV / 100;								// BaseLv補正
 			break;
