@@ -162,6 +162,26 @@ CGlobalConstManager.DefineEnum(
 		"STATE_ID_BREAK_SHOULDER",
 		"STATE_ID_BREAK_FOOT",
 		"STATE_ID_BREAK_ACCESSARY",
+		//Rの新状態異常
+		"STATE_R_ID_CHILLED",// 冷凍
+		"STATE_R_ID_ICED",//　氷結
+		"STATE_R_ID_IGNITION",//　発火
+		"STATE_R_ID_FEAR",//　恐怖
+		"STATE_R_ID_DEEPSLEEP",//　深い眠り
+		"STATE_R_ID_CHARMED",//　魅了
+		"STATE_R_ID_FRENZY",//　狂乱
+		//"STATE_R_ID_HEAT",//　過熱
+		//新状態異常
+		"STATE_NEW_ID_LETHARGY",//　無気力
+		"STATE_NEW_ID_JETBLACK",//　漆黒
+		"STATE_NEW_ID_HIGHLYPOISONOUS",//　強毒
+		"STATE_NEW_ID_TORRENT",//　激流
+		"STATE_NEW_ID_MELANCHOLY",//　憂鬱
+		"STATE_NEW_ID_STILLNESS",//　静寂
+		"STATE_NEW_ID_CONFLAGRATION",//　火災
+		"STATE_NEW_ID_RAPIDCOOLING",//　急冷
+		"STATE_NEW_ID_CRYSTALLIZATION",//　結晶化
+		"STATE_NEW_ID_UNHAPPINESS",//　不幸
 
 		"STATE_ID_COUNT",
 	],
@@ -513,6 +533,45 @@ function GetStateText(stateId) {
 
 	case STATE_ID_BREAK_ACCESSARY:
 		return "アクセ破壊";
+
+	//Rの新状態異常
+	case STATE_R_ID_CHILLED:
+		return "冷凍";
+	case STATE_R_ID_ICED:
+		return "氷結";
+	case STATE_R_ID_IGNITION:
+		return "発火";
+	case STATE_R_ID_FEAR:
+		return "恐怖";
+	case STATE_R_ID_DEEPSLEEP:
+		return "深い眠り";
+	case STATE_R_ID_CHARMED:
+		return "魅了";
+	case STATE_R_ID_FRENZY:
+		return "狂乱";
+	//case STATE_R_ID_HEAT:
+		//return "過熱";
+	//新状態異常
+	case STATE_NEW_ID_LETHARGY:
+		return "無気力";
+	case STATE_NEW_ID_JETBLACK:
+		return "漆黒";
+	case STATE_NEW_ID_HIGHLYPOISONOUS:
+		return "強毒";
+	case STATE_NEW_ID_TORRENT:
+		return "激流";
+	case STATE_NEW_ID_MELANCHOLY:
+		return "憂鬱";
+	case STATE_NEW_ID_STILLNESS:
+		return "静寂";
+	case STATE_NEW_ID_CONFLAGRATION:
+		return "火災";
+	case STATE_NEW_ID_RAPIDCOOLING:
+		return "急冷";
+	case STATE_NEW_ID_CRYSTALLIZATION:
+		return "結晶化";
+	case STATE_NEW_ID_UNHAPPINESS:
+		return "不幸";	
 
 	}
 
