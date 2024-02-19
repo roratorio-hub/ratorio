@@ -1323,9 +1323,9 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			g_bDefinedDamageIntervals = true;
 			// ダメージ間隔
 			if (mobData[20] == MONSTER_BOSSTYPE_BOSS) {
-				n_Delay[5] = 100;							
+				n_Delay[5] = 100;
 			} else if (n_A_ActiveSkill == SKILL_ID_NUKUMORI) {
-				n_Delay[5] = 50;							
+				n_Delay[5] = 50;
 			} else {
 				n_Delay[5] = 20;
 			}
@@ -1469,7 +1469,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			n_Delay[2] = 2000;
 			n_Delay[7] = 1000;
 			// ドラゴニックオーラ状態の場合はダメージ倍率が増加する
-			if (UsedSkillSearch(SKILL_ID_DRAGONIC_AURA_STATE)) {
+			if (UsedSkillSearch(SKILL_ID_DRAGONIC_AURA_STATE) > 1) {
 				wbairitu = 700 + 200 * n_A_ActiveSkillLV;
 			}
 			else {
@@ -1728,7 +1728,7 @@ else {
 		case SKILL_ID_BANISHING_POINT:
 			n_Enekyori = 1;
 			// バッシュ習得Lv補正
-			var w_BN = 30 * attackMethodConfArray[0].GetOptionValue(0);	
+			var w_BN = 30 * attackMethodConfArray[0].GetOptionValue(0);
 			// 基本倍率
 			wbairitu = 50 * n_A_ActiveSkillLV + w_BN;
 			/*
@@ -2986,7 +2986,7 @@ g_bUnknownCasts = true;
 				// ディレイ、クールタイム
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-					
+
 				// 補助スキルレベル取得
 				var sklLvSub = UsedSkillSearch(SKILL_ID_SHIZEN_SHINWA);
 
@@ -4716,7 +4716,10 @@ g_bDefinedDamageIntervals = true;
 			wbairitu *= n_A_BaseLV / 100;										// BaseLv補正
 			break;
 
+		// 「ドラゴンナイト」スキル「ドラゴニックブレス」
 		case SKILL_ID_DRAGONIC_BREATH:
+			// YE道場(DEF無視100)の環境では誤差無しを確認済み
+			// 通常鯖(DEF無視なし)では3桁程度の誤差が出る
 			if (UsedSkillSearch(SKILL_ID_DRAGON_TRAINING) == 0) {
 				n_Buki_Muri = 1
 				wbairitu = 0;
@@ -4730,24 +4733,14 @@ g_bDefinedDamageIntervals = true;
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			*/
-			if (UsedSkillSearch(SKILL_ID_DRAGONIC_AURA_STATE) > 0) {
-				wbairitu = 2000 + (400 * n_A_ActiveSkillLV);				// 基礎倍率
-			} else {
-				wbairitu = 1000 + (200 * n_A_ActiveSkillLV);				// 基礎倍率
+			wbairitu = 1000 + (200 * n_A_ActiveSkillLV);				// 基礎倍率
+			wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_POW);		// 特性ステータス補正
+			if (UsedSkillSearch(SKILL_ID_DRAGONIC_AURA_STATE) > 1) {	// Dオーラ補正
+				wbairitu *= 2;
 			}
-			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);			// 特性ステータス補正
-
-			w_HP = attackMethodConfArray[0].GetOptionValue(0);				// HP補正
-			if (w_HP == 0) {
-				w_HP = charaData[CHARA_DATA_INDEX_MAXHP];
-			}
-			w_SP = attackMethodConfArray[0].GetOptionValue(1);				// SP補正
-			if (w_SP == 0) {
-				w_SP = charaData[CHARA_DATA_INDEX_MAXSP];
-			}
-			wbairitu += Math.floor(w_HP / 50) + Math.floor(w_SP / 4);
-
-			wbairitu *= n_A_BaseLV / 100;									// BaseLv補正
+			wbairitu += charaData[CHARA_DATA_INDEX_MAXHP] / 500;		// HP補正
+			wbairitu += charaData[CHARA_DATA_INDEX_MAXSP] / 20;			// SP補正
+			wbairitu *= n_A_BaseLV / 100;								// BaseLv補正
 			break;
 
 		// 「マイスター」スキル「マイティスマッシュ」
@@ -4932,6 +4925,62 @@ g_bDefinedDamageIntervals = true;
 				wbairitu = 750 + 750 * n_A_ActiveSkillLV;
 			} else {
 				wbairitu = 500 + 500 * n_A_ActiveSkillLV;
+			}
+			break;
+
+		// 「ルーンナイト」スキル「ファイアードラゴンブレス」
+		// 「ルーンナイト」スキル「ウォータードラゴンブレス」
+		case SKILL_ID_FIRE_DRAGON_BREATH:
+		case SKILL_ID_WATER_DRAGON_BREATH:
+			// 「ドラゴントレーニング」Lv0の前に騎乗の有無が包含されているためインデックスをずらしている
+			dragon_training_lv = UsedSkillSearch(SKILL_ID_DRAGON_TRAINING) - 1;
+			if (dragon_training_lv == -1) {
+				// 未騎乗の場合
+				n_Buki_Muri = 1;
+				break;
+			}
+			// 遠距離スキル
+			n_Enekyori = 1;
+			// 必中スキル
+			w_HIT = 100;
+			w_HIT_HYOUJI = 100;
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// 属性補正
+			n_A_Weapon_zokusei = g_skillManager.GetElement(battleCalcInfo.skillId);
+			// 現HPとMaxSPから基本ダメージを算出
+			var w_HP = attackMethodConfArray[0].GetOptionValue(0);
+			if(w_HP == 0) {
+				w_HP = charaData[CHARA_DATA_INDEX_MAXHP];
+			}
+			for (i=0; i<3; i++) {
+				dmgUnit[i] = w_HP / 50 + charaData[CHARA_DATA_INDEX_MAXSP] / 4;
+				// ATKではなくHP,SPから基本ダメージを算出しているので、手動で属性相性を適用する
+				dmgUnit[i] = ApplyElementRatio(mobData, dmgUnit[i], n_A_Weapon_zokusei);
+			}
+			// スキルLv補正
+			wbairitu = 100 * n_A_ActiveSkillLV;
+			// ドラゴントレーニング補正
+			wbairitu *= [100,100,105,110,115,120][dragon_training_lv] / 100;
+			// Lv補正
+			wbairitu *= n_A_BaseLV / 100;
+			// ドラゴニックオーラ補正
+			if ((dragonic_aura_lv = UsedSkillSearch(SKILL_ID_DRAGONIC_AURA_STATE)) > 0) {
+				// ドラゴニックオーラ習得Lv
+				if (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA] == MOB_CONF_PLAYER_ID_SENTO_AREA_YE) {
+					// YE鯖だと指数1.0298で誤差1に収まる
+					wbairitu *= 1 + Math.pow(GetTotalSpecStatus(MIG_PARAM_ID_POW) + GetPAtk(), 1.0298) / 100 * 250 / 300;
+				}
+				else{
+					// 通常鯖だと指数1.05555で誤差2桁以内に収まる
+					wbairitu *= 1 + Math.pow(GetTotalSpecStatus(MIG_PARAM_ID_POW) + GetPAtk(), 1.05555) / 100 * 250 / 300;
+				}
+				// ドラゴニックオーラ使用Lv
+				dragonic_aura_lv -= 1;	// 「未習得」の状態を包含しているためインデックスをずらす
+				wbairitu *= (100 + 15 * dragonic_aura_lv) / 100;
 			}
 			break;
 
@@ -6516,61 +6565,6 @@ g_bDefinedDamageIntervals = true;
 				BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			}
 			break;
-
-
-
-		case SKILL_ID_FIRE_DRAGON_BREATH:
-		case SKILL_ID_WATER_DRAGON_BREATH:
-			n_Enekyori = 1;
-			n_A_Weapon_zokusei = 3;
-			if(n_A_ActiveSkill==794) n_A_Weapon_zokusei = 1;
-			w_HIT = 100;
-			w_HIT_HYOUJI = 100;
-			if(n_A_ActiveSkillLV >= 9){
-				wCast = 2000;
-			}else if(n_A_ActiveSkillLV >= 7){
-				wCast = 1500;
-			}else if(n_A_ActiveSkillLV >= 4){
-				wCast = 1000;
-			}else{
-				wCast = 0;
-			}
-			n_KoteiCast = 500;
-			n_Delay[2] = 1500;
-			n_Delay[7] = 500;
-			n_PerfectHIT_DMG = 0;
-			var wt=UsedSkillSearch(SKILL_ID_DRAGON_TRAINING);
-			if(wt >= 1) wt -= 1;
-			var w_HP = attackMethodConfArray[0].GetOptionValue(0);
-			if(w_HP == 0) w_HP = charaData[CHARA_DATA_INDEX_MAXHP];
-			var w = Math.floor(w_HP / 50) + Math.floor(charaData[CHARA_DATA_INDEX_MAXSP] / 4);
-
-if (_APPLY_UPDATE_LV200) {
-			w = w * n_A_ActiveSkillLV * n_A_BaseLV / 100;
-}
-else {
-			w = w * n_A_ActiveSkillLV * n_A_BaseLV / 150;
-}
-
-			w = ROUNDDOWN(w * (95 + 5 * wt) / 100);
-			w = ApplyResistElement(mobData, w);
-			var wX = GetSpiderWebDamageRatio();
-			if(wX != 0) w = ROUNDDOWN(w * (100 + wX) / 100);
-			w -= B_Total_DEF;
-			if(w <0) w = 0;
-			w = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w);
-			w = ApplyElementRatio(mobData, w,n_A_Weapon_zokusei);
-			w = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w);
-			w_DMG[0] = w_DMG[1] = w_DMG[2] = Math.floor(w);
-			for(var i=0;i<=2;i++){
-				Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
-				g_damageTextArray[i].push(Last_DMG_A[i]);
-			}
-			BuildCastAndDelayHtml(mobData);
-			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
-			break;
-
-
 
 		case SKILL_ID_HELL_INFERNO:
 			w_HIT = 100;
@@ -8664,25 +8658,25 @@ else {
 		case SKILL_ID_PSYCHIC_WAVE:
 
 			g_bDefinedDamageIntervals = true;
-	
+
 			// 詠唱時間等
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);//2750 + 1250 * n_A_ActiveSkillLV;
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);//2250 - 250 * n_A_ActiveSkillLV;
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);//1000
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);//5000
-	
+
 			// ダメージ間隔
 			n_Delay[5] = 500;
-	
+
 			// オブジェクト存続時間
 			n_Delay[6] = 1000 + (n_A_ActiveSkillLV * 500);
-	
+
 			// 属性の設定
 			if(n_AS_MODE == 0) n_A_Weapon_zokusei = attackMethodConfArray[0].GetOptionValue(0);
 			else n_A_Weapon_zokusei = 0;
-	
+
 			wbairitu = 70 * n_A_ActiveSkillLV + 3 * n_A_INT;
-	
+
 			// ベースレベル補正
 			wbairitu *= n_A_BaseLV / 100;
 			wbairitu = ROUNDDOWN(wbairitu);
@@ -9569,7 +9563,7 @@ g_bDefinedDamageIntervals = true;
 			wbairitu *= n_A_BaseLV / 100;
 			break;
 
-		//「アークメイジ」スキル「クリムゾンアロー」			
+		//「アークメイジ」スキル「クリムゾンアロー」
 		case SKILL_ID_CRYMSON_ARROW:
 			// クライマックス状態のレベルを取得
 			sklLvSub = UsedSkillSearch(SKILL_ID_CLIMAX);
@@ -10228,7 +10222,7 @@ g_bUnknownCasts = true;
 			wbairitu *= n_A_BaseLV / 100;
 			break;
 
-		// 「ソウルアセティック」スキル「朱雀符」		
+		// 「ソウルアセティック」スキル「朱雀符」
 		case SKILL_ID_SUZAKU_FU:
 			/**
 			 * 素の状態から2桁程度の誤差がでますが五行陣を掛けても誤差は極端に拡大しないため丸め誤差の類だと思われます
@@ -11742,7 +11736,7 @@ function ApplyMagicalSpecializeMonsterMod20211014SubSpecializeMap(charaData, spe
 		}
 	}
 
-	
+
 
 
 	//--------------------------------
@@ -12902,7 +12896,7 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 			);
 		};
 
-		
+
 		// 合計ダメージ表示を取得する
 		var funcGetJoinDmgText2 = function (arrayFF, funcDigFF, funcDigParamFF, counts) {
 			return arrayFF.reduce(
@@ -13007,7 +13001,7 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 			HtmlCreateTextNode(funcGetSumDmgText(battleCalcResultF.GetDamageSummaryCriMin(true), funcDIG3PX, 0), funcCreateCellF(true));
 		}
 		// 1サイクルダメージ
-		
+
 		HtmlCreateTextNode(funcGetJoinDmgText2(battleCalcResultF.GetDamageSummaryMin(true), funcDIG3PX, 0, Math.ceil(n_Delay[6]/n_Delay[5])), funcCreateCellF(false));
 		HtmlCreateTextNode(funcGetSumDmgText(battleCalcResultF.GetDamageSummaryMin(true), funcDIG3PX, 0), funcCreateCellF(true));
 		// クリティカル
@@ -16742,7 +16736,9 @@ function RebuildActiveSkillRatioInfo(battleCalcInfo, charaData, specData, mobDat
 
 
 
-
+/**
+ * パッシブ持続系 チェックボックス生成
+ */
 function Click_PassSkillSW(){
 
 	var idx = 0;
@@ -16820,13 +16816,21 @@ function Click_PassSkillSW(){
 				for(i=1;i<=6;i++) w_name[i] = "Lv" + (i-1);
 				for(i=0;i<=6;i++) wOBJ.options[i] = new Option(w_name[i],i);
 			}
-			var w = NumSearch2(454,passiveSkillIdArray);
+			var w = NumSearch2(SKILL_ID_FIGHTING_SPIRIT,passiveSkillIdArray);
 			if(w != -1){
 				var wOBJ = document.getElementById("A_skill" + w);
 				for(i=10;i>=0;i--) wOBJ.options[i] = null;
 				wOBJ.options[0] = new Option("off",0);
 				wOBJ.options[1] = new Option("on(ソロ)",1);
 				for(i=2;i<=12;i++) wOBJ.options[i] = new Option(i +"人PT",i);
+			}
+			var w = NumSearch2(SKILL_ID_DRAGONIC_AURA_STATE,passiveSkillIdArray);
+			if(w != -1){
+				var wOBJ = document.getElementById("A_skill" + w);
+				for(i=10;i>=0;i--) wOBJ.options[i] = null;
+				wOBJ.options[0] = new Option("未習得",0);
+				wOBJ.options[1] = new Option("未使用",1);
+				for(i=1;i<=10;i++) wOBJ.options[i+1] = new Option("Lv"+i, i+1);
 			}
 			var w = NumSearch2(367,passiveSkillIdArray);
 			if(w != -1){
@@ -21082,7 +21086,7 @@ function SET_ZOKUSEI(mobData, attackMethodConfArray) {
 	case SKILL_ID_SHINSE_BAKUHATSU:
  		n_A_Weapon_zokusei = ELM_ID_VANITY;
 		break;
-	
+
 	// 「ベーシックグレネード」「ヘイスティファイアインザホール」「グレネーズドロッピング」「ミッションボンバード」はグレネードフラグメント属性、指定がなければ弾丸属性
 	case SKILL_ID_BASIC_GRENADE:
 	case SKILL_ID_HASTY_FIRE_IN_THE_HOLE:
@@ -26671,7 +26675,7 @@ function ApplyAttackDamageAmplify(mobData, dmg){
 		 * 以下のエリア設定は殆ど利用されないと思いますが
 		 * 消したときの影響が確認できていないため残しておきます 
 		 * */
-			
+
 		// YE蜃気楼の場合
 		case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_SHINKIRO:
 			switch (n_A_ActiveSkill) {
