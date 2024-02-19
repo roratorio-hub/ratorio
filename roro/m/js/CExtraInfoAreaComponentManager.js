@@ -18,6 +18,7 @@ CGlobalConstManager.DefineEnum(
 		"EXTRA_INFO_ID_RESIST_ELEMENT",
 		"EXTRA_INFO_ID_RESIST_DAMAGE",
 		"EXTRA_INFO_ID_RESIST_STATE",
+		"EXTRA_INFO_ID_RESIST_STATE_R_NEW",
 		"EXTRA_INFO_ID_CAST_AND_DELAY",
 		"EXTRA_INFO_ID_EXP",
 		"EXTRA_INFO_ID_STATUS_SUM",
@@ -94,6 +95,9 @@ function GetExtraInfoText(infoId) {
 
 	case EXTRA_INFO_ID_RESIST_STATE:
 		return "状態異常耐性";
+
+	case EXTRA_INFO_ID_RESIST_STATE_R_NEW:
+		return "新状態異常耐性";
 
 	case EXTRA_INFO_ID_CAST_AND_DELAY:
 		return "詠唱/ディレイ";
@@ -251,6 +255,7 @@ function CExtraInfoAreaComponentManager () {
 			EXTRA_INFO_ID_RESIST_DAMAGE,
 			EXTRA_INFO_ID_PVP_INFO,
 			EXTRA_INFO_ID_RESIST_STATE,
+			EXTRA_INFO_ID_RESIST_STATE_R_NEW,
 			EXTRA_INFO_ID_CAST_AND_DELAY,
 			EXTRA_INFO_ID_EXP,
 			EXTRA_INFO_ID_STATUS_SUM,
@@ -389,6 +394,10 @@ function CExtraInfoAreaComponentManager () {
 			this.RebuildDispAreaResistState();
 			break;
 
+		case EXTRA_INFO_ID_RESIST_STATE_R_NEW:
+			this.RebuildDispAreaResistStateR();
+			break;
+
 		case EXTRA_INFO_ID_CAST_AND_DELAY:
 			this.RebuildDispAreaCastAndDelay();
 			break;
@@ -463,6 +472,10 @@ function CExtraInfoAreaComponentManager () {
 
 		case EXTRA_INFO_ID_RESIST_STATE:
 			this.RefreshDispAreaResistState();
+			break;
+
+		case EXTRA_INFO_ID_RESIST_STATE_R_NEW:
+			this.RefreshDispAreaResistStateR();
 			break;
 
 		case EXTRA_INFO_ID_CAST_AND_DELAY:
@@ -2593,7 +2606,7 @@ function CExtraInfoAreaComponentManager () {
 		paramValueArray = [];
 
 		// 装備効果等による耐性
-		for (idx = 0; idx < STATE_ID_COUNT; idx++) {
+		for (idx = 0; idx <= STATE_ID_STONE; idx++) {
 
 			equipValueArray[idx] = n_tok[ITEM_SP_RESIST_STATE_POISON + idx];
 
@@ -2708,6 +2721,251 @@ function CExtraInfoAreaComponentManager () {
 			}
 
 			HtmlCreateTextSpan(paramValueArray[idx] + "%", objSpan, CExtraInfoAreaComponentManager.fontSizeClassName);
+		}
+	};
+
+
+
+	/**Crabfish
+	 * 拡張情報の表示欄を構築する（新状態異常耐性）.
+	 */
+	this.RebuildDispAreaResistStateR = function () {
+
+		var idx = 0;
+
+		var objRoot = null;
+		var objTable = null;
+		var objTbody = null;
+		var objTr = null;
+		var objTd = null;
+
+
+
+		// 指定の領域をクリア
+		objRoot = document.getElementById("OBJID_TD_EXTRA_INFO_" + this.managerInstanceId);
+		HtmlRemoveAllChild(objRoot);
+
+		// 設定欄テーブルを再構築
+		objTable = HtmlCreateElement("table", objRoot);
+		objTable.setAttribute("style", "width : 100%;");
+		objTbody = HtmlCreateElement("tbody", objTable);
+
+
+
+		// 表示欄
+		objTr = HtmlCreateElement("tr", objTbody);
+		objTd = HtmlCreateElement("td", objTr);
+		objTd.setAttribute("id", "OBJID_TD_EXTRA_INFO_DISP_AREA_" + this.managerInstanceId);
+		objTd.setAttribute("colspan", "2");
+	};
+
+	/**
+	 * 拡張情報の表示欄を更新する（新状態異常耐性）.
+	 */
+	this.RefreshDispAreaResistStateR = function () {
+
+		var idx = 0;
+
+		var lv = 0;
+		var lvMax = 0;
+		var value = 0;
+
+		var typeText = "";
+		var valueText = "";
+		var equipValueArray = null;
+		var paramValueArray = null;
+		var paramTimeArray = null;
+
+		var objRoot = null;
+		var objTable = null;
+		var objTbody = null;
+		var objTr = null;
+		var objTd = null;
+		var objSpan = null;
+
+
+
+		//--------------------------------
+		// 状態異常耐性計算
+		//--------------------------------
+
+		equipValueArray = [];
+		paramValueArray = [];
+		paramTimeArray = [];
+
+		// 装備効果等による耐性 Rの新状態異常、新状態異常に対応
+		for (idx = STATE_R_ID_CHILLED; idx < STATE_ID_COUNT; idx++) {
+
+			equipValueArray[idx] = n_tok[ITEM_SP_RESIST_STATE_R_CHILLED + (idx-STATE_R_ID_CHILLED)];
+
+			switch (idx) {
+
+			case STATE_R_ID_CHILLED:
+				paramValueArray[idx] = 0;
+				//効果の持続時間(３秒)
+				paramTimeArray[idx] = 3;
+				break;
+
+			case STATE_R_ID_IGNITION:
+				paramValueArray[idx] = n_A_AGI;
+				//効果の持続時間(最小１０秒)
+				paramTimeArray[idx] = 22 - (0.04 * (n_A_BaseLV - 1)) - (0.04 * (n_A_AGI - 1));
+				paramTimeArray[idx] = (paramTimeArray[idx] >= 10.0) ? paramTimeArray[idx] : 10.0;
+				paramTimeArray[idx] = Math.floor(paramTimeArray[idx] * 100) / 100;//小数点以下２桁まで残し切り捨て
+				break;
+
+			case STATE_R_ID_ICED:
+				paramValueArray[idx] = n_A_VIT;
+				//効果の持続時間(最小３４秒)
+				paramTimeArray[idx] = 40 - (0.0479 * (n_A_VIT - 1));
+				paramTimeArray[idx] = (paramTimeArray[idx] >= 34.0) ? paramTimeArray[idx] : 34.0;
+				paramTimeArray[idx] = Math.floor(paramTimeArray[idx] * 100) / 100;//小数点以下２桁まで残し切り捨て
+				break;
+
+			case STATE_R_ID_FEAR:
+				paramValueArray[idx] = n_A_INT;
+				paramTimeArray[idx] = 22 - (0.0365 * (n_A_BaseLV - 1)) - (0.0365 * (n_A_INT - 1));
+				paramTimeArray[idx] = Math.floor(paramTimeArray[idx] * 100) / 100;//小数点以下２桁まで残し切り捨て
+				break;
+
+			case STATE_R_ID_DEEPSLEEP:
+				paramValueArray[idx] = n_A_INT;
+				//効果の持続時間()
+				paramTimeArray[idx] = 16 - (0.049 * (n_A_BaseLV - 1)) - (0.0255 * (n_A_INT - 1));
+				paramTimeArray[idx] = (paramTimeArray[idx] >= 1.77) ? paramTimeArray[idx] : 1.77;
+				paramTimeArray[idx] = Math.floor(paramTimeArray[idx] * 100) / 100;//小数点以下２桁まで残し切り捨て
+				break;
+
+			case STATE_NEW_ID_LETHARGY://無気力
+				paramValueArray[idx] = n_A_POW;//特性ステ耐性
+				break;
+
+			case STATE_NEW_ID_JETBLACK://漆黒
+			case STATE_NEW_ID_HIGHLYPOISONOUS://強毒
+				paramValueArray[idx] = n_A_STA;//特性ステ耐性
+				break;
+
+			case STATE_NEW_ID_TORRENT://激流
+			case STATE_NEW_ID_MELANCHOLY://憂鬱
+				paramValueArray[idx] = n_A_WIS;//特性ステ耐性
+				break;
+
+			case STATE_NEW_ID_STILLNESS://静寂
+			case STATE_NEW_ID_CONFLAGRATION://火災
+				paramValueArray[idx] = n_A_SPL;//特性ステ耐性
+				break;
+
+			case STATE_NEW_ID_RAPIDCOOLING://急冷
+			case STATE_NEW_ID_CRYSTALLIZATION://結晶化
+			case STATE_NEW_ID_UNHAPPINESS://不幸
+				paramValueArray[idx] = n_A_CRT;//特性ステ耐性
+				break;
+			
+			default:
+				paramValueArray[idx] = 0;
+				break;
+			}
+			if (equipValueArray[idx] >= 100) {
+				paramTimeArray[idx] = 0;//装備耐性１００％の場合、持続時間０秒にする
+			}
+		}
+
+
+
+		//--------------------------------
+		// HTML組み立て
+		//--------------------------------
+
+		objRoot = document.getElementById("OBJID_TD_EXTRA_INFO_DISP_AREA_" + this.managerInstanceId);
+		HtmlRemoveAllChild(objRoot);
+
+		objTable = HtmlCreateElement("table", objRoot);
+		objTable.setAttribute("class", "CSSCLS_EXTRA_INFO_DISP_TABLE");
+		objTable.setAttribute("style", "width : 100%;");
+		objTbody = HtmlCreateElement("tbody", objTable);
+
+		// ヘッダ行
+		objTr = HtmlCreateElement("tr", objTbody);
+
+		objTd = HtmlCreateElement("td", objTr);
+		objTd.setAttribute("class", "CSSCLS_EXTRA_INFO_DISP_TABLE");
+		HtmlCreateTextSpan("異常", objTd, CExtraInfoAreaComponentManager.fontSizeClassName);
+
+		objTd = HtmlCreateElement("td", objTr);
+		objTd.setAttribute("class", "CSSCLS_EXTRA_INFO_DISP_TABLE");
+		HtmlCreateTextSpan("装備耐性", objTd, CExtraInfoAreaComponentManager.fontSizeClassName);
+
+		objTd = HtmlCreateElement("td", objTr);
+		objTd.setAttribute("class", "CSSCLS_EXTRA_INFO_DISP_TABLE");
+		HtmlCreateTextSpan("ステ耐性", objTd, CExtraInfoAreaComponentManager.fontSizeClassName);
+
+		objTd = HtmlCreateElement("td", objTr);
+		objTd.setAttribute("class", "CSSCLS_EXTRA_INFO_DISP_TABLE");
+		HtmlCreateTextSpan("持続時間", objTd, CExtraInfoAreaComponentManager.fontSizeClassName);
+
+
+		//
+		// 冷凍から不幸まで表示
+		for (idx = STATE_R_ID_CHILLED; idx <= STATE_NEW_ID_UNHAPPINESS; idx++) {
+
+			// 表示組み立て
+			objTr = HtmlCreateElement("tr", objTbody);
+
+			// 状態異常名
+			objTd = HtmlCreateElement("td", objTr);
+			objTd.setAttribute("class", "CSSCLS_EXTRA_INFO_DISP_TABLE_RESIST_ELEMENT");
+			HtmlCreateTextSpan(GetStateText(idx), objTd, CExtraInfoAreaComponentManager.fontSizeClassName);
+
+			// 装備耐性
+			objTd = HtmlCreateElement("td", objTr);
+			objTd.setAttribute("class", "CSSCLS_EXTRA_INFO_DISP_TABLE_RESIST_ELEMENT");
+
+			objSpan = HtmlCreateElement("span", objTd);
+			if (equipValueArray[idx] > 0) {
+				objSpan.setAttribute("class", "CSSCLS_EXTRA_INFO_DISP_TABLE_BLUE");
+			}
+			else if (equipValueArray[idx] < 0) {
+				objSpan.setAttribute("class", "CSSCLS_EXTRA_INFO_DISP_TABLE_RED");
+			}
+
+			HtmlCreateTextSpan(equipValueArray[idx] + "%", objSpan, CExtraInfoAreaComponentManager.fontSizeClassName);
+
+			// ステ耐性
+			objTd = HtmlCreateElement("td", objTr);
+			objTd.setAttribute("class", "CSSCLS_EXTRA_INFO_DISP_TABLE_RESIST_ELEMENT");
+
+			objSpan = HtmlCreateElement("span", objTd);
+			if (paramValueArray[idx] > 0) {
+				objSpan.setAttribute("class", "CSSCLS_EXTRA_INFO_DISP_TABLE_BLUE");
+			}
+			else if (paramValueArray[idx] < 0) {
+				objSpan.setAttribute("class", "CSSCLS_EXTRA_INFO_DISP_TABLE_RED");
+			}
+			HtmlCreateTextSpan(paramValueArray[idx] + "%", objSpan, CExtraInfoAreaComponentManager.fontSizeClassName);
+
+			// 持続時間
+			objTd = HtmlCreateElement("td", objTr);
+			objTd.setAttribute("class", "CSSCLS_EXTRA_INFO_DISP_TABLE_RESIST_ELEMENT");
+
+			objSpan = HtmlCreateElement("span", objTd);
+			if (paramTimeArray[idx] > 0) {
+				objSpan.setAttribute("class", "CSSCLS_EXTRA_INFO_DISP_TABLE_BLUE");
+			}
+			else if (paramTimeArray[idx] < 0) {
+				objSpan.setAttribute("class", "CSSCLS_EXTRA_INFO_DISP_TABLE_RED");
+			}
+
+			switch (idx) {
+			case STATE_R_ID_IGNITION:
+			case STATE_R_ID_CHILLED:
+			case STATE_R_ID_ICED:
+			case STATE_R_ID_FEAR:
+			case STATE_R_ID_DEEPSLEEP:
+					HtmlCreateTextSpan(paramTimeArray[idx] + "秒", objSpan, CExtraInfoAreaComponentManager.fontSizeClassName);
+				break;
+			default:
+				break;
+			}
 		}
 	};
 
