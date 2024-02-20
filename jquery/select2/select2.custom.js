@@ -36,7 +36,7 @@ $.fn.select2.defaults.set("minimumResultsForSearch", "12");
 function LoadSelect2() {
     SEARCHABLE_SELECT_LIST.forEach((select_id) => {
         $(select_id).select2();
-        // アクセの場合、同一スロットがカードとエンチャントに利用される場合があるので、スロットの状態によって検索機能をON/OFFする
+        // 同一スロットがカードとエンチャントに利用される場合があるので、スロットの状態によって検索機能をON/OFFする
         var isEnchant = $(select_id + ' option:contains(エンチャントなし)').length > 0;
         if (isEnchant) {
             $(select_id).select2('destroy');
@@ -44,7 +44,9 @@ function LoadSelect2() {
     });
 };
 $(function(){
-    $("#OBJID_SELECT_JOB, #OBJID_ARMS_RIGHT, #OBJID_ARMS_LEF, #OBJID_HEAD_TOP, #OBJID_ACCESSARY_1, #OBJID_ACCESSARY_2").on("select2:select", ()=>{
+    // 以下のエレメントの状態が変化した時に select2 の UI を更新する
+    // UI に異常がある場合はここで適切なエレメントが指定されているかチェックして下さい
+    $("#OBJID_SELECT_JOB, #OBJID_ARMS_RIGHT, #OBJID_ARMS_LEF, #OBJID_HEAD_TOP, #OBJID_SHOULDER, #OBJID_ACCESSARY_1, #OBJID_ACCESSARY_2").on("select2:select", ()=>{
         LoadSelect2();
     })
 });
