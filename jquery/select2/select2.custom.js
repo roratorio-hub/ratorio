@@ -43,10 +43,24 @@ function LoadSelect2() {
         };
     });
 };
+// 以下のエレメントの状態が変化した時に select2 の UI を更新する
+// UI に異常がある場合はここで適切なエレメントが指定されているかチェックして下さい
+const INIT_TRIGGER_LIST = [
+    '#OBJID_SELECT_JOB',
+    '#OBJID_ARMS_RIGHT',
+    '#OBJID_ARMS_LEFT',
+    '#OBJID_HEAD_TOP',
+    '#OBJID_HEAD_MID',
+    '#OBJID_HEAD_UNDER',
+    '#OBJID_SHIELD',
+    '#OBJID_BODY',
+    '#OBJID_SHOULDER',
+    '#OBJID_SHOES',
+    '#OBJID_ACCESSARY_1',
+    '#OBJID_ACCESSARY_2',
+];
 $(function(){
-    // 以下のエレメントの状態が変化した時に select2 の UI を更新する
-    // UI に異常がある場合はここで適切なエレメントが指定されているかチェックして下さい
-    $("#OBJID_SELECT_JOB, #OBJID_ARMS_RIGHT, #OBJID_ARMS_LEF, #OBJID_HEAD_TOP, #OBJID_SHOULDER, #OBJID_ACCESSARY_1, #OBJID_ACCESSARY_2").on("select2:select", ()=>{
+    $(INIT_TRIGGER_LIST.join(',')).on("select2:select", ()=>{
         LoadSelect2();
     })
 });

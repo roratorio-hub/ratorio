@@ -1304,6 +1304,10 @@ function BuildUpCardSlotsMIG(eqpRgnId, itemId, enchInfoArray, objArySlots) {
 			break;
 
 		}
+		// エンチャからカードに変化した場合に存在しないIDを指定してしまう問題の対応
+		if (!cardSortObjTarget.includes(cardIdSelected)) {
+			cardIdSelected = 0; 
+		}
 
 		for (idx = 0; idx < cardSortObjTarget.length; idx++) {
 			cardId = cardSortObjTarget[idx];
