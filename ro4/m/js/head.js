@@ -6511,9 +6511,6 @@ g_bDefinedDamageIntervals = true;
 			// ドラゴニックオーラ補正
 			if ((dragonic_aura_lv = UsedSkillSearch(SKILL_ID_DRAGONIC_AURA_STATE)) > 0) {
 				// ドラゴニックオーラ習得Lv
-				w *= 1 + Math.pow(GetTotalSpecStatus(MIG_PARAM_ID_POW) + GetPAtk(), 1.0408) / 100 * 250 / 300;
-/* 	この後に続く減衰計算が入れば指数1.0408に１本化できる可能性がある
-	一旦コメントアウト
 				if (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA] == MOB_CONF_PLAYER_ID_SENTO_AREA_YE) {
 					// YE鯖だと指数1.0298で誤差1に収まる
 					w *= 1 + Math.pow(GetTotalSpecStatus(MIG_PARAM_ID_POW) + GetPAtk(), 1.0298) / 100 * 250 / 300;
@@ -6522,7 +6519,6 @@ g_bDefinedDamageIntervals = true;
 					// 通常鯖だと指数1.05555で誤差2桁以内に収まる
 					w *= 1 + Math.pow(GetTotalSpecStatus(MIG_PARAM_ID_POW) + GetPAtk(), 1.05555) / 100 * 250 / 300;
 				}
-*/
 				// ドラゴニックオーラ使用Lv
 				dragonic_aura_lv -= 1;	// 「未習得」の状態を包含しているためインデックスをずらす
 				w *= (100 + 15 * dragonic_aura_lv) / 100;
@@ -20394,23 +20390,14 @@ function _SUB_ApplyMonsterDefence(mobData, dmg){
 
 	var bPenetrate = false;
 
-
-
 	// DEF無視スキルのチェック
-
-	// カウンタースラッシュ
-	if(n_A_ActiveSkill==469) {
-		bPenetrate = true;
-	}
-
-	// ピアーシングショット
-	if(n_A_ActiveSkill==432) {
-		bPenetrate = true;
-	}
-
-	// シャドウスタブ
-	if (n_A_ActiveSkill == SKILL_ID_SHADOW_STAB) {
-		bPenetrate = true;
+	switch(n_A_ActiveSkill) {
+		case SKILL_ID_COUNTER_SLASH:	// カウンタースラッシュ
+		case SKILL_ID_PIERCING_SHOT: 	// ピアーシングショット
+		case SKILL_ID_SHADOW_STAB:		// シャドウスタブ
+		case SKILL_ID_SPARK_BLASTER: 	// スパークブラスター
+		case SKILL_ID_DRAGONIC_BREATH:	// ドラゴニックブレス
+			bPenetrate = true;
 	}
 
 	// ハンドガン装備時のオンリーワンバレット
@@ -20420,11 +20407,6 @@ function _SUB_ApplyMonsterDefence(mobData, dmg){
 
 	// ガトリングガン装備時のビジラントアットナイト
 	if (n_A_ActiveSkill == SKILL_ID_VIGILANT_AT_NIGHT && n_A_WeaponType == ITEM_KIND_GATLINGGUN) {
-		bPenetrate = true;
-	}
-
-	// スパークブラスター
-	if (n_A_ActiveSkill == SKILL_ID_SPARK_BLASTER) {
 		bPenetrate = true;
 	}
 
@@ -20454,24 +20436,14 @@ function _SUB_ApplyMonsterDefence(mobData, dmg){
 		bPenetrate = true;
 	}
 
-
-
 	// 除算DEFの適用
 	if (!bPenetrate) {
 		dmg = Math.floor(dmg * (4000 + mobData[13]) / (4000 + mobData[13] * 10));
 	}
 
-
-
-
-
 	// 特性ステータス対応
 	// RES減衰の適用
 	dmg = ApplyResResist(mobData, dmg);
-
-
-
-
 
 	// 減算DEFの適用
 	if (!bPenetrate) {
