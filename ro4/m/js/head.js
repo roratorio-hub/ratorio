@@ -19117,6 +19117,11 @@ function calc() {
 		w_HIT = 100;
 		g_perfectHitRate = 0;
 	}
+	// 魔法は必中
+	if ((g_skillManager.GetSkillType(n_A_ActiveSkill) & CSkillData.TYPE_MAGICAL) == CSkillData.TYPE_MAGICAL) {
+		w_HIT = 100;
+		g_perfectHitRate = 0;
+	}
 
 	// それ以外は、命中率を計算
 	else {
