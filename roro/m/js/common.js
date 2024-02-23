@@ -640,7 +640,7 @@ CGlobalConstManager.DefinePseudoEnum(
 // カード部位のインデックス
 const_identifier = 0;
 
-CARD_REGION_ID_ARMS_RIGHT_1	 = const_identifier++;
+CARD_REGION_ID_ARMS_RIGHT_1	 = const_identifier++;	// 0
 CARD_REGION_ID_ARMS_RIGHT_2	 = const_identifier++;
 CARD_REGION_ID_ARMS_RIGHT_3	 = const_identifier++;
 CARD_REGION_ID_ARMS_RIGHT_4	 = const_identifier++;
@@ -650,12 +650,13 @@ CARD_REGION_ID_ARMS_LEFT_3	 = const_identifier++;
 CARD_REGION_ID_ARMS_LEFT_4	 = const_identifier++;
 CARD_REGION_ID_HEAD_TOP		 = const_identifier++;
 CARD_REGION_ID_HEAD_MID		 = const_identifier++;
-CARD_REGION_ID_SHIELD		 = const_identifier++;
+CARD_REGION_ID_SHIELD		 = const_identifier++;	// 10
 CARD_REGION_ID_BODY			 = const_identifier++;
 CARD_REGION_ID_SHOULDER		 = const_identifier++;
 CARD_REGION_ID_SHOES		 = const_identifier++;
 CARD_REGION_ID_ACCESSARY_1	 = const_identifier++;
-CARD_REGION_ID_ACCESSARY_2	 = const_identifier++;
+CARD_REGION_ID_ACCESSARY_2	 = const_identifier++;	// 15
+CARD_REGION_ID_HEAD_UNDER	 = const_identifier++;
 
 const_identifier = 26;
 
