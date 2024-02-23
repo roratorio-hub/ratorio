@@ -361,7 +361,7 @@ function SaveSystem(funcSaveDataModify = null){
 
 		// 頭下段情報
 		SaveData[40] = GetStatefullData("DATA_OBJID_HEAD_UNDER", 0);
-		SaveData[41] = n_A_card[32];
+		SaveData[41] = GetStatefullData("DATA_OBJID_HEAD_UNDER_CARD_1", 0);
 		SaveData[42] = GetStatefullData("DATA_OBJID_HEAD_UNDER_CARD_2", 0);
 		SaveData[43] = GetStatefullData("DATA_OBJID_HEAD_UNDER_CARD_3", 0);
 		SaveData[44] = GetStatefullData("DATA_OBJID_HEAD_UNDER_CARD_4", 0);
