@@ -116,6 +116,13 @@ function CalcStatusPoint(bIgnoreAutoCalc) {
 		var stValDEX = eval(A_DEX.value);
 		var stValLUK = eval(A_LUK.value);
 
+		// 特性ステータス値を取得する
+		var stValPOW = eval(A_POW.value);
+		var stValSTA = eval(A_STA.value);
+		var stValWIS = eval(A_WIS.value);
+		var stValSPL = eval(A_SPL.value);
+		var stValCON = eval(A_CON.value);
+		var stValCRT = eval(A_CRT.value);
 	}
 
 	// 消費ステータスポイントを計算する
@@ -126,6 +133,15 @@ function CalcStatusPoint(bIgnoreAutoCalc) {
 	stPointUsed += GetStatusTotalCost(stValINT);
 	stPointUsed += GetStatusTotalCost(stValDEX);
 	stPointUsed += GetStatusTotalCost(stValLUK);
+
+	// 消費特性ステータスポイントを計算する
+	var stTSPointUsed = 0;
+	stTSPointUsed += stValPOW;
+	stTSPointUsed += stValSTA;
+	stTSPointUsed += stValWIS;
+	stTSPointUsed += stValSPL;
+	stTSPointUsed += stValCON;
+	stTSPointUsed += stValCRT;
 
 	// 職業の基本情報を設定する
 	InitJobInfo();
@@ -140,36 +156,43 @@ function CalcStatusPoint(bIgnoreAutoCalc) {
 		stPointEarned = 100;
 	}
 
+	// 初期特性ステータスポイントの決定
+	var stTSPointEarned = 7;
+
 	// レベルの自動計算をしない場合
 	if (bIgnoreAutoCalc) {
 		for (var blv = 1; blv <= blvSelected; blv++) {
 			stPointEarned += GetEarningStatusPoint(blv);
 		}
 	}
-
 	// レベルの自動計算をする場合
 	else {
-
 		// 最低レベルまでは強制的に上げる
 		for (blv = 1; blv <= blvMin; blv++) {
 			stPointEarned += GetEarningStatusPoint(blv);
 		}
-
-		// 獲得ステータスポイントが、消費ステータスポイント未満の間
-		// かつ、最大レベル以下の間、レベルを上げる
-		for (blv; (stPointEarned < stPointUsed) && (blv <= blvMax); blv++) {
-			stPointEarned += GetEarningStatusPoint(blv);
+		// ４次職の場合
+		if (IsYojiJob(jobId)) {
+			// 獲得した特性ステータスポイントが消費ステータスポイント未満の間
+			// かつ、最大レベル以下の間、レベルを上げる
+			for (blv; (stTSPointEarned < stTSPointUsed) && (blv <= blvMax); blv++) {
+				stTSPointEarned = GetEarningTSStatusPoint(blv);
+			}
 		}
-
+		// ４次職ではない場合
+		else {
+			// 獲得ステータスポイントが、消費ステータスポイント未満の間
+			// かつ、最大レベル以下の間、レベルを上げる
+			for (blv; (stPointEarned < stPointUsed) && (blv <= blvMax); blv++) {
+				stPointEarned += GetEarningStatusPoint(blv);
+			}
+		}
 		// ベースレベルの値を設定する
 		document.calcForm.A_BaseLV.value = blv - 1;
 	}
 
 	myInnerHtml("A_STPOINT", stPointEarned - stPointUsed, 0);
-
-
-
-
+	myInnerHtml("OBJID_SPAN_STATUS_T_STATUS_POINT", stTSPointEarned - stTSPointUsed, 0);
 
 	// 特性ステータス仮処理
 	// とりあえず、グローバル空間を汚す
@@ -457,20 +480,24 @@ function GetTotalSpecStatus(paramId) {
 	return value;
 }
 
-function GetTStatusPoint(baseLv) {
-
+/**
+ * 指定のレベルで獲得する特性ステータスポイントを取得する.
+ * @param baseLevel ベースレベル
+ * @return 獲得ステータスポイント
+ */
+function GetEarningTSStatusPoint (baseLv) {
 	var stPoint = 0;
-
 	if (baseLv < 200) {
 		return 0;
 	}
-
-
-
 	// 全所持ポイントを計算
 	stPoint = 3 * (1 + (baseLv - 200));
 	stPoint += 4 * (1 + Math.floor((baseLv - 200) / 5));
+	return stPoint;
+}
 
+function GetTStatusPoint(baseLv) {
+	stPoint = GetEarningTSStatusPoint(baseLv);
 	// 消費ポイントを計算
 	stPoint -= g_pureStatus[MIG_PARAM_ID_POW];
 	stPoint -= g_pureStatus[MIG_PARAM_ID_STA];
@@ -478,8 +505,6 @@ function GetTStatusPoint(baseLv) {
 	stPoint -= g_pureStatus[MIG_PARAM_ID_SPL];
 	stPoint -= g_pureStatus[MIG_PARAM_ID_CON];
 	stPoint -= g_pureStatus[MIG_PARAM_ID_CRT];
-
-
 
 	return stPoint;
 }
