@@ -531,7 +531,7 @@ function __RebuildSlotAsCard(eqpRgnId, objidPrifix) {
 		// カード選択セレクトボックス
 		objSelect = HtmlCreateElement("select", objTd);
 		HtmlSetAttribute(objSelect, "id", objidPrifix + "_CARD_" + idx);
-		HtmlSetAttribute(objSelect, "onChange", "OnChangeCard(this.value)");
+		HtmlSetAttribute(objSelect, "onChange", "OnChangeCard(this.value) | calc()");
 
 		// カード選択セレクトボックスの再構築
 		itemId = GetStatefullData("DATA_" + objidPrifix, 0);
@@ -589,7 +589,7 @@ function __RebuildSlotAsCardShort(eqpRgnId, objidPrifix) {
 	// カード選択セレクトボックス
 	objSelect = HtmlCreateElement("select", objTd);
 	HtmlSetAttribute(objSelect, "id", objidPrifix + "_CARD_SHORT");
-	HtmlSetAttribute(objSelect, "onChange", strOnChange + "| LoadSelect2()");
+	HtmlSetAttribute(objSelect, "onChange", strOnChange + "| calc() | LoadSelect2()");
 	if (bVisible) {
 		objSelect.removeAttribute("disabled");
 		objSelect.setAttribute("style", "visibility : visible");
