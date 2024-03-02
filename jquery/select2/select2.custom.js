@@ -29,6 +29,9 @@ const SEARCHABLE_SELECT_LIST = [
     '#OBJID_ACCESSARY_2',
     '#OBJID_ACCESSARY_2_CARD_1',
     '#OBJID_ACCESSARY_2_CARD_4',
+    '.OBJID_MONSTER_MAP_CATEGORY',
+    '.OBJID_MONSTER_MAP_MAP',
+    '.OBJID_MONSTER_MAP_MONSTER',
 ];
 
 // Select2 オプション設定
@@ -36,7 +39,10 @@ $.fn.select2.defaults.set("dropdownAutoWidth", "true");
 $.fn.select2.defaults.set("width", "auto");
 $.fn.select2.defaults.set("minimumResultsForSearch", "12");
 
-// 指定されたSelect2オブジェクトを上下キーで選択を切り替えられるようにカスタマイズ
+/**
+ * 指定されたSelect2オブジェクトを上下キーで選択を切り替えられるようにカスタマイズする
+ * @param {*} select_id 
+ */
 function CustomizeSelect2Specify(select_id) {
     $('#select2-' + select_id.slice(1) + '-container').parent().on('keydown', function(e) {
         var current_id = $(select_id).prop('selectedIndex');
@@ -60,6 +66,7 @@ function CustomizeSelect2Specify(select_id) {
                     $(select_id).prop('selectedIndex', optionsCount - 1);
                 }
                 $(select_id).trigger('change');
+                // 装備の場合はセットできるカードの選択欄を再生成する
                 if (select_id.indexOf("CARD") == -1) {
                     LoadSelect2Specify(select_id + '_CARD_1');
                     LoadSelect2Specify(select_id + '_CARD_2');
@@ -70,8 +77,10 @@ function CustomizeSelect2Specify(select_id) {
     });
 }
 
-// 指定された特定のオブジェクトをSELECT2に切替
-// 特定のアイテムを切り替えた時に呼ばれる
+/**
+ * 指定した id/class を持つ select タグを select2 にアップデートする
+ * @param {*} select_id 
+ */
 function LoadSelect2Specify(select_id) {
     $(select_id).select2();
     // 同一スロットがカードとエンチャントに利用される場合があるので、スロットの状態によって検索機能をON/OFFする
@@ -79,7 +88,13 @@ function LoadSelect2Specify(select_id) {
     if (isEnchant) {
         $(select_id).select2('destroy');
     }
-    else if (select_id != '#OBJID_SELECT_JOB') {
+    // 装備とカードの場合はイベントハンドラを追加する
+    else if (
+        select_id != '#OBJID_SELECT_JOB'
+        && select_id != '.OBJID_MONSTER_MAP_CATEGORY'
+        && select_id != '.OBJID_MONSTER_MAP_MAP'
+        && select_id != '.OBJID_MONSTER_MAP_MONSTER'
+        ) {
         CustomizeSelect2Specify(select_id);
     }
 };
@@ -115,8 +130,10 @@ $(function(){
 });
 
 // モンスター情報に Select2 を適用
+/*
 $(document).ready(function() {
     $('.OBJID_MONSTER_MAP_CATEGORY').select2();
     $('.OBJID_MONSTER_MAP_MAP').select2();
     $('.OBJID_MONSTER_MAP_MONSTER').select2();
 });
+*/

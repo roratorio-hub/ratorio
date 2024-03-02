@@ -325,31 +325,31 @@
 
 											<tr>
 												<td style="min-width: 4em; text-align:center;">LV</td>
-												<td style="min-width: 7em;"><select id="OBJID_SELECT_BASE_LEVEL" name="A_BaseLV"onChange="CalcStatusPoint(true) | StAllCalc()"></select></td>
+												<td style="min-width: 7em;"><select id="OBJID_SELECT_BASE_LEVEL" name="A_BaseLV"onChange="CalcStatusPoint(true) | StAllCalc() | calc()"></select></td>
 
 												<td style="min-width: 4em; text-align:center;">JobLV</td>
-												<td style="min-width: 7em;"><select id="OBJID_SELECT_JOB_LEVEL" name="A_JobLV"onChange="StAllCalc()"></select></td>
+												<td style="min-width: 7em;"><select id="OBJID_SELECT_JOB_LEVEL" name="A_JobLV"onChange="StAllCalc() | calc()"></select></td>
 
 												<td style="min-width: 4em; text-align:center;">職業</td>
-												<td style="min-width: 7em;"><select id="OBJID_SELECT_JOB" name="A_JOB" onChange="OnChangeJobSelect(this.value) | StAllCalc() | CalcStatusPoint(false) "></select></td>
+												<td style="min-width: 7em;"><select id="OBJID_SELECT_JOB" name="A_JOB" onChange="OnChangeJobSelect(this.value) | StAllCalc() | CalcStatusPoint(false) | calc()"></select></td>
 											</tr>
 
 											<tr>
 												<td style="text-align: center;">Str</td>
 												<td>
-													<select id="OBJID_SELECT_STATUS_STR" name="A_STR" onChange="CalcStatusPoint(false) | StAllCalc()"></select>
+													<select id="OBJID_SELECT_STATUS_STR" name="A_STR" onChange="CalcStatusPoint(false) | StAllCalc() | calc()"></select>
 													<span id="OBJID_SPAN_STATUS_BONUS_STR"></span>
 												</td>
 
 												<td style="text-align: center;">Agi</td>
 												<td>
-													<select id="OBJID_SELECT_STATUS_AGI" name="A_AGI" onChange="CalcStatusPoint(false) | StAllCalc()"></select>
+													<select id="OBJID_SELECT_STATUS_AGI" name="A_AGI" onChange="CalcStatusPoint(false) | StAllCalc() | calc()"></select>
 													<span id="OBJID_SPAN_STATUS_BONUS_AGI"></span>
 												</td>
 
 												<td style="text-align: center;">Vit</td>
 												<td>
-													<select id="OBJID_SELECT_STATUS_VIT" name="A_VIT" onChange="CalcStatusPoint(false) | StAllCalc()"></select>
+													<select id="OBJID_SELECT_STATUS_VIT" name="A_VIT" onChange="CalcStatusPoint(false) | StAllCalc() | calc()"></select>
 													<span id="OBJID_SPAN_STATUS_BONUS_VIT"></span>
 												</td>
 											</tr>
@@ -357,19 +357,19 @@
 											<tr>
 												<td style="text-align: center;">Int</td>
 												<td>
-													<select id="OBJID_SELECT_STATUS_INT" name="A_INT" onChange="CalcStatusPoint(false) | StAllCalc()"></select>
+													<select id="OBJID_SELECT_STATUS_INT" name="A_INT" onChange="CalcStatusPoint(false) | StAllCalc() | calc()"></select>
 													<span id="OBJID_SPAN_STATUS_BONUS_INT"></span>
 												</td>
 
 												<td style="text-align: center;">Dex</td>
 												<td>
-													<select id="OBJID_SELECT_STATUS_DEX" name="A_DEX" onChange="CalcStatusPoint(false) | StAllCalc()"></select>
+													<select id="OBJID_SELECT_STATUS_DEX" name="A_DEX" onChange="CalcStatusPoint(false) | StAllCalc() | calc()"></select>
 													<span id="OBJID_SPAN_STATUS_BONUS_DEX"></span>
 												</td>
 
 												<td style="text-align: center;">Luk</td>
 												<td>
-													<select id="OBJID_SELECT_STATUS_LUK" name="A_LUK" onChange="CalcStatusPoint(false) | StAllCalc()"></select>
+													<select id="OBJID_SELECT_STATUS_LUK" name="A_LUK" onChange="CalcStatusPoint(false) | StAllCalc() | calc()"></select>
 													<span id="OBJID_SPAN_STATUS_BONUS_LUK"></span>
 												</td>
 											</tr>
@@ -395,7 +395,7 @@
 											<tr>
 												<td style="min-width: 4em; text-align:center; background-color: #ddddff;">Pow</td>
 												<td style="min-width: 7em;">
-													<select id="OBJID_SELECT_STATUS_POW" onChange="CalcStatusPoint(false) | StAllCalc()"></select>
+													<select id="OBJID_SELECT_STATUS_POW" name="A_POW" onChange="CalcStatusPoint(false) | StAllCalc() | calc()"></select>
 													<span id="OBJID_SPAN_STATUS_BONUS_POW"></span>
 												</td>
 
@@ -413,7 +413,7 @@
 											<tr>
 												<td style="text-align:center; background-color: #ddddff;">Sta</td>
 												<td>
-													<select id="OBJID_SELECT_STATUS_STA" onChange="CalcStatusPoint(false) | StAllCalc()"></select>
+													<select id="OBJID_SELECT_STATUS_STA" name="A_STA" onChange="CalcStatusPoint(false) | StAllCalc() | calc()"></select>
 													<span id="OBJID_SPAN_STATUS_BONUS_STA"></span>
 												</td>
 
@@ -431,7 +431,7 @@
 											<tr>
 												<td style="text-align:center; background-color: #ddddff;">Wis</td>
 												<td>
-													<select id="OBJID_SELECT_STATUS_WIS" onChange="CalcStatusPoint(false) | StAllCalc()"></select>
+													<select id="OBJID_SELECT_STATUS_WIS" name="A_WIS" onChange="CalcStatusPoint(false) | StAllCalc() | calc()"></select>
 													<span id="OBJID_SPAN_STATUS_BONUS_WIS"></span>
 												</td>
 
@@ -444,7 +444,7 @@
 											<tr>
 												<td style="text-align:center; background-color: #ddddff;">Spl</td>
 												<td>
-													<select id="OBJID_SELECT_STATUS_SPL" onChange="CalcStatusPoint(false) | StAllCalc()"></select>
+													<select id="OBJID_SELECT_STATUS_SPL" name="A_SPL" onChange="CalcStatusPoint(false) | StAllCalc() | calc()"></select>
 													<span id="OBJID_SPAN_STATUS_BONUS_SPL"></span>
 												</td>
 
@@ -457,7 +457,7 @@
 											<tr>
 												<td style="text-align:center; background-color: #ddddff;">Con</td>
 												<td>
-													<select id="OBJID_SELECT_STATUS_CON" onChange="CalcStatusPoint(false) | StAllCalc()"></select>
+													<select id="OBJID_SELECT_STATUS_CON" name="A_CON" onChange="CalcStatusPoint(false) | StAllCalc() | calc()"></select>
 													<span id="OBJID_SPAN_STATUS_BONUS_CON"></span>
 												</td>
 
@@ -470,7 +470,7 @@
 											<tr>
 												<td style="text-align:center; background-color: #ddddff;">Crt</td>
 												<td>
-													<select id="OBJID_SELECT_STATUS_CRT" onChange="CalcStatusPoint(false) | StAllCalc()"></select>
+													<select id="OBJID_SELECT_STATUS_CRT" name="A_CRT" onChange="CalcStatusPoint(false) | StAllCalc() | calc()"></select>
 													<span id="OBJID_SPAN_STATUS_BONUS_CRT"></span>
 												</td>
 											</tr>
@@ -648,13 +648,13 @@
 						<tr>
 							<td>
 								<span id="nm026">スピードポーション：</span>
-								<select id="OBJID_SPEED_POT" name = "A_SpeedPOT" onChange = "StAllCalc()">
+								<select id="OBJID_SPEED_POT" name = "A_SpeedPOT" onChange = "StAllCalc() | calc()">
 								</select>
 
 								<br>
 
 								<span id="nm027">武器タイプ：</span>
-								<select id="OBJID_ARMS_TYPE_RIGHT" name="A_WeaponType" onChange="OnChangeArmsTypeRight(this[this.selectedIndex].value) | StAllCalc()">
+								<select id="OBJID_ARMS_TYPE_RIGHT" name="A_WeaponType" onChange="OnChangeArmsTypeRight(this[this.selectedIndex].value) | StAllCalc() | calc()">
 								</select>
 
 								<span id = "A_SobWeaponName"></span>
@@ -677,7 +677,7 @@
 
 									<tr>
 										<td rowspan="2">
-											<select id="OBJID_ARMS_RIGHT_REFINE" name="A_Weapon_ATKplus" onChange = "OnChangeRefined()">
+											<select id="OBJID_ARMS_RIGHT_REFINE" name="A_Weapon_ATKplus" onChange = "OnChangeRefined() | calc()">
 												<option value="0">+0
 												<option value="1">+1
 												<option value="2">+2
@@ -693,13 +693,13 @@
 										</td>
 
 										<td rowspan="2">
-											<select id="OBJID_ARMS_RIGHT" onChange="OnChangeEquip(EQUIP_REGION_ID_ARMS, parseInt(this.value))">
+											<select id="OBJID_ARMS_RIGHT" onChange="OnChangeEquip(EQUIP_REGION_ID_ARMS, parseInt(this.value)) | calc()">
 											</select>
 										</td>
 
 										<td colspan="2">
 											<span id="ID_A_HUYO_NAME">武器属性付与</span>
-											<select id="OBJID_SELECT_ARMS_ELEMENT" name="A_Weapon_zokusei">
+											<select id="OBJID_SELECT_ARMS_ELEMENT" name="A_Weapon_zokusei" onChange="calc()">
 											</select>
 										</td>
 
@@ -718,7 +718,7 @@
 
 									<tr id="OBJID_ARMS_LEFT_SLOT_ROOT">
 										<td>
-											<select id="OBJID_ARMS_LEFT_REFINE" name="A_Weapon2_ATKplus" onChange = "OnChangeRefined()" disabled>
+											<select id="OBJID_ARMS_LEFT_REFINE" name="A_Weapon2_ATKplus" onChange = "OnChangeRefined() | calc()" disabled>
 												<option value="0">+0
 												<option value="1">+1
 												<option value="2">+2
@@ -734,7 +734,7 @@
 										</td>
 
 										<td>
-											<select id="OBJID_ARMS_LEFT" onChange="OnChangeEquip(EQUIP_REGION_ID_ARMS_LEFT, parseInt(this.value))">
+											<select id="OBJID_ARMS_LEFT" onChange="OnChangeEquip(EQUIP_REGION_ID_ARMS_LEFT, parseInt(this.value)) | calc()">
 											</select>
 										</td>
 
@@ -747,7 +747,7 @@
 
 									<tr id="OBJID_HEAD_TOP_SLOT_ROOT">
 										<td>
-											<select id="OBJID_HEAD_TOP_REFINE" name="A_HEAD_DEF_PLUS" onChange="OnChangeRefined()">
+											<select id="OBJID_HEAD_TOP_REFINE" name="A_HEAD_DEF_PLUS" onChange="OnChangeRefined() | calc()">
 												<option value="0">+0
 												<option value="1">+1
 												<option value="2">+2
@@ -762,7 +762,7 @@
 											</select>
 										</td>
 										<td>
-											<select id="OBJID_HEAD_TOP" name="A_head1" onChange="OnChangeEquip(EQUIP_REGION_ID_HEAD_TOP, parseInt(this.value))"></select>
+											<select id="OBJID_HEAD_TOP" name="A_head1" onChange="OnChangeEquip(EQUIP_REGION_ID_HEAD_TOP, parseInt(this.value)) | calc()"></select>
 										</td>
 									</tr>
 
@@ -778,7 +778,7 @@
 										</td>
 
 										<td>
-											<select id="OBJID_HEAD_MID" name="A_head2" onChange="OnChangeEquip(EQUIP_REGION_ID_HEAD_MID, parseInt(this.value))"></select>
+											<select id="OBJID_HEAD_MID" name="A_head2" onChange="OnChangeEquip(EQUIP_REGION_ID_HEAD_MID, parseInt(this.value)) | calc()"></select>
 										</td>
 									</tr>
 
@@ -791,7 +791,7 @@
 										<td>
 										</td>
 										<td>
-											<select id="OBJID_HEAD_UNDER" name="A_head3" onChange="OnChangeEquip(EQUIP_REGION_ID_HEAD_UNDER, parseInt(this.value))"></select>
+											<select id="OBJID_HEAD_UNDER" name="A_head3" onChange="OnChangeEquip(EQUIP_REGION_ID_HEAD_UNDER, parseInt(this.value)) | calc()"></select>
 										</td>
 									</tr>
 
@@ -802,7 +802,7 @@
 
 									<tr id="OBJID_SHIELD_SLOT_ROOT">
 										<td id="ID_B4">
-											<select id="OBJID_SHIELD_REFINE" name="A_SHIELD_DEF_PLUS"onChange="OnChangeRefined()">
+											<select id="OBJID_SHIELD_REFINE" name="A_SHIELD_DEF_PLUS" onChange="OnChangeRefined() | calc()">
 												<option value="0">+0
 												<option value="1">+1
 												<option value="2">+2
@@ -817,7 +817,7 @@
 											</select>
 										</td>
 										<td>
-											<select id="OBJID_SHIELD" name="A_left" onChange="OnChangeEquip(EQUIP_REGION_ID_SHIELD, parseInt(this.value))"></select>
+											<select id="OBJID_SHIELD" name="A_left" onChange="OnChangeEquip(EQUIP_REGION_ID_SHIELD, parseInt(this.value)) | calc()"></select>
 										</td>
 									</tr>
 
@@ -828,7 +828,7 @@
 
 									<tr id="OBJID_BODY_SLOT_ROOT">
 										<td>
-											<select id="OBJID_BODY_REFINE" name="A_BODY_DEF_PLUS"onChange="OnChangeRefined()">
+											<select id="OBJID_BODY_REFINE" name="A_BODY_DEF_PLUS" onChange="OnChangeRefined() | calc()">
 												<option value="0">+0
 												<option value="1">+1
 												<option value="2">+2
@@ -843,7 +843,7 @@
 											</select>
 										</td>
 										<td>
-											<select id="OBJID_BODY" name="A_body" onChange="OnChangeEquip(EQUIP_REGION_ID_BODY, parseInt(this.value))"></select>
+											<select id="OBJID_BODY" name="A_body" onChange="OnChangeEquip(EQUIP_REGION_ID_BODY, parseInt(this.value)) | calc()"></select>
 										</td>
 									</tr>
 
@@ -854,7 +854,7 @@
 
 									<tr id="OBJID_SHOULDER_SLOT_ROOT">
 										<td>
-											<select id="OBJID_SHOULDER_REFINE" name="A_SHOULDER_DEF_PLUS"onChange="OnChangeRefined()">
+											<select id="OBJID_SHOULDER_REFINE" name="A_SHOULDER_DEF_PLUS" onChange="OnChangeRefined() | calc()">
 												<option value="0">+0
 												<option value="1">+1
 												<option value="2">+2
@@ -869,7 +869,7 @@
 											</select>
 										</td>
 										<td>
-											<select id="OBJID_SHOULDER" name="A_shoulder" onChange="OnChangeEquip(EQUIP_REGION_ID_SHOULDER, parseInt(this.value))"></select>
+											<select id="OBJID_SHOULDER" name="A_shoulder" onChange="OnChangeEquip(EQUIP_REGION_ID_SHOULDER, parseInt(this.value)) | calc()"></select>
 										</td>
 									</tr>
 
@@ -880,7 +880,7 @@
 
 									<tr id="OBJID_SHOES_SLOT_ROOT">
 										<td>
-											<select id="OBJID_SHOES_REFINE" name="A_SHOES_DEF_PLUS"onChange="OnChangeRefined()">
+											<select id="OBJID_SHOES_REFINE" name="A_SHOES_DEF_PLUS" onChange="OnChangeRefined() | calc()">
 												<option value="0">+0
 												<option value="1">+1
 												<option value="2">+2
@@ -895,7 +895,7 @@
 											</select>
 										</td>
 										<td>
-											<select id="OBJID_SHOES" name="A_shoes" onChange="OnChangeEquip(EQUIP_REGION_ID_SHOES, parseInt(this.value))"></select>
+											<select id="OBJID_SHOES" name="A_shoes" onChange="OnChangeEquip(EQUIP_REGION_ID_SHOES, parseInt(this.value)) | calc()"></select>
 										</td>
 									</tr>
 
@@ -908,7 +908,7 @@
 										<td>
 										</td>
 										<td>
-											<select id="OBJID_ACCESSARY_1" name="A_acces1" onChange="OnChangeEquip(EQUIP_REGION_ID_ACCESSARY_1, parseInt(this.value))"></select>
+											<select id="OBJID_ACCESSARY_1" name="A_acces1" onChange="OnChangeEquip(EQUIP_REGION_ID_ACCESSARY_1, parseInt(this.value)) | calc()"></select>
 										</td>
 									</tr>
 
@@ -921,7 +921,7 @@
 										<td>
 										</td>
 										<td>
-											<select id="OBJID_ACCESSARY_2" name="A_acces2" onChange="OnChangeEquip(EQUIP_REGION_ID_ACCESSARY_2, parseInt(this.value))"></select>
+											<select id="OBJID_ACCESSARY_2" name="A_acces2" onChange="OnChangeEquip(EQUIP_REGION_ID_ACCESSARY_2, parseInt(this.value)) | calc()"></select>
 										</td>
 									</tr>
 
@@ -954,8 +954,8 @@
 
 								<input type="checkbox" class="item-ctrl" checked>
 								<div class="item-conf">
-									<select class="item-refined"></select>
-									<select class="item-select"></select>
+									<select class="item-refined" OnChange="calc()"></select>
+									<select class="item-select" OnChange="calc()"></select>
 								</div>
 
 								<input type="checkbox" class="card-ctrl">
@@ -968,16 +968,16 @@
 
 								<input type="checkbox" class="rndopt-ctrl" checked>
 								<div class="rndopt-conf">
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
 								</div>
 
 								<div class="divider-line"></div>
@@ -990,8 +990,8 @@
 
 								<input type="checkbox" class="item-ctrl" checked>
 								<div class="item-conf">
-									<select class="item-refined"></select>
-									<select class="item-select"></select>
+									<select class="item-refined" OnChange="calc()"></select>
+									<select class="item-select" OnChange="calc()"></select>
 								</div>
 
 								<input type="checkbox" class="card-ctrl">
@@ -1004,16 +1004,16 @@
 
 								<input type="checkbox" class="rndopt-ctrl" checked>
 								<div class="rndopt-conf">
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
 								</div>
 
 								<div class="divider-line"></div>
@@ -1026,8 +1026,8 @@
 
 								<input type="checkbox" class="item-ctrl" checked>
 								<div class="item-conf">
-									<select class="item-refined"></select>
-									<select class="item-select"></select>
+									<select class="item-refined" OnChange="calc()"></select>
+									<select class="item-select" OnChange="calc()"></select>
 								</div>
 
 								<input type="checkbox" class="card-ctrl">
@@ -1040,16 +1040,16 @@
 
 								<input type="checkbox" class="rndopt-ctrl" checked>
 								<div class="rndopt-conf">
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
 								</div>
 
 								<div class="divider-line"></div>
@@ -1062,8 +1062,8 @@
 
 								<input type="checkbox" class="item-ctrl" checked>
 								<div class="item-conf">
-									<select class="item-refined"></select>
-									<select class="item-select"></select>
+									<select class="item-refined" OnChange="calc()"></select>
+									<select class="item-select" OnChange="calc()"></select>
 								</div>
 
 								<input type="checkbox" class="card-ctrl">
@@ -1076,16 +1076,16 @@
 
 								<input type="checkbox" class="rndopt-ctrl" checked>
 								<div class="rndopt-conf">
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
 								</div>
 
 								<div class="divider-line"></div>
@@ -1098,8 +1098,8 @@
 
 								<input type="checkbox" class="item-ctrl" checked>
 								<div class="item-conf">
-									<select class="item-refined"></select>
-									<select class="item-select"></select>
+									<select class="item-refined" OnChange="calc()"></select>
+									<select class="item-select" OnChange="calc()"></select>
 								</div>
 
 								<input type="checkbox" class="card-ctrl">
@@ -1112,16 +1112,16 @@
 
 								<input type="checkbox" class="rndopt-ctrl" checked>
 								<div class="rndopt-conf">
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
 								</div>
 
 								<div class="divider-line"></div>
@@ -1134,8 +1134,8 @@
 
 								<input type="checkbox" class="item-ctrl" checked>
 								<div class="item-conf">
-									<select class="item-refined"></select>
-									<select class="item-select"></select>
+									<select class="item-refined" OnChange="calc()"></select>
+									<select class="item-select" OnChange="calc()"></select>
 								</div>
 
 								<input type="checkbox" class="card-ctrl">
@@ -1148,16 +1148,16 @@
 
 								<input type="checkbox" class="rndopt-ctrl" checked>
 								<div class="rndopt-conf">
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
 								</div>
 
 								<div class="divider-line"></div>
@@ -1170,8 +1170,8 @@
 
 								<input type="checkbox" class="item-ctrl" checked>
 								<div class="item-conf">
-									<select class="item-refined"></select>
-									<select class="item-select"></select>
+									<select class="item-refined" OnChange="calc()"></select>
+									<select class="item-select" OnChange="calc()"></select>
 								</div>
 
 								<input type="checkbox" class="card-ctrl">
@@ -1184,16 +1184,16 @@
 
 								<input type="checkbox" class="rndopt-ctrl" checked>
 								<div class="rndopt-conf">
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
 								</div>
 
 								<div class="divider-line"></div>
@@ -1206,8 +1206,8 @@
 
 								<input type="checkbox" class="item-ctrl" checked>
 								<div class="item-conf">
-									<select class="item-refined"></select>
-									<select class="item-select"></select>
+									<select class="item-refined" OnChange="calc()"></select>
+									<select class="item-select" OnChange="calc()"></select>
 								</div>
 
 								<input type="checkbox" class="card-ctrl">
@@ -1220,16 +1220,16 @@
 
 								<input type="checkbox" class="rndopt-ctrl" checked>
 								<div class="rndopt-conf">
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
 								</div>
 
 								<div class="divider-line"></div>
@@ -1242,8 +1242,8 @@
 
 								<input type="checkbox" class="item-ctrl" checked>
 								<div class="item-conf">
-									<select class="item-refined"></select>
-									<select class="item-select"></select>
+									<select class="item-refined" OnChange="calc()"></select>
+									<select class="item-select" OnChange="calc()"></select>
 								</div>
 
 								<input type="checkbox" class="card-ctrl">
@@ -1256,16 +1256,16 @@
 
 								<input type="checkbox" class="rndopt-ctrl" checked>
 								<div class="rndopt-conf">
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
 								</div>
 
 								<div class="divider-line"></div>
@@ -1278,8 +1278,8 @@
 
 								<input type="checkbox" class="item-ctrl" checked>
 								<div class="item-conf">
-									<select class="item-refined"></select>
-									<select class="item-select"></select>
+									<select class="item-refined" OnChange="calc()"></select>
+									<select class="item-select" OnChange="calc()"></select>
 								</div>
 
 								<input type="checkbox" class="card-ctrl">
@@ -1292,16 +1292,16 @@
 
 								<input type="checkbox" class="rndopt-ctrl" checked>
 								<div class="rndopt-conf">
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
 								</div>
 
 								<div class="divider-line"></div>
@@ -1314,8 +1314,8 @@
 
 								<input type="checkbox" class="item-ctrl" checked>
 								<div class="item-conf">
-									<select class="item-refined"></select>
-									<select class="item-select"></select>
+									<select class="item-refined" OnChange="calc()"></select>
+									<select class="item-select" OnChange="calc()"></select>
 								</div>
 
 								<input type="checkbox" class="card-ctrl">
@@ -1328,16 +1328,16 @@
 
 								<input type="checkbox" class="rndopt-ctrl" checked>
 								<div class="rndopt-conf">
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
+									<select class="rndopt-kind-select" OnChange="calc()"></select>
+									<select class="rndopt-value-select" OnChange="calc()"></select>
 								</div>
 
 								<div class="divider-line"></div>
