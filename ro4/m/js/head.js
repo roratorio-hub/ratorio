@@ -17212,10 +17212,14 @@ function Click_PassSkillSW(){
 
 
 
-
+/**
+ * パッシブ持続系の設定変更を反映する
+ * @param {*} n 再計算フラグ（1 = 再計算する, 1以外 = 再計算しない）
+ */
 function Click_A1(n){
 
-	if(n==1) calc();
+	//if(n==1) calc();
+	if(n==1) AutoCalc();
 
 	var sw=0;
 
@@ -17626,12 +17630,14 @@ function Skill3SW_2(){
 		}
 	}}
 
-
-
-
-
+/**
+ * 演奏/踊り系スキルの変更を反映する
+ * @param {*} n 再計算フラグ（n = 1 再計算する）
+ */
 function Click_A3(n){
-	if(n==1) calc();
+	//if(n==1) calc();
+	if(n==1) AutoCalc();
+	
 	var sw=0;
 	for(var i=0;i <n_A_PassSkill3.length;i++){
 		if(n_A_PassSkill3[i] != 0){
@@ -17750,12 +17756,14 @@ function Click_Skill4SW(){
 		Click_A4(0);
 	}}
 
-
-
-
-
+/**
+ * ギルドスキル/ゴスペル/他の変更を反映する
+ * @param {*} n 再計算フラグ（n = 1 再計算する）
+ */
 function Click_A4(n){
-	if(n==1) calc();
+	//if(n==1) calc();
+	if(n==1) AutoCalc();
+	
 	var sw=0;
 	for(var i=0;i <n_A_PassSkill4.length;i++) if(n_A_PassSkill4[i] != 0){
 		sw = 1;
@@ -18186,12 +18194,14 @@ function Click_Food_Off(){
 	}
 }
 
-
-
-
-
+/**
+ * アイテム(食品/他)の変更を反映する
+ * @param {*} n 再計算フラグ（n = 1 再計算する）
+ */
 function Click_A7(n){
-	if(n==1) calc();
+	//if(n==1) calc();
+	if(n==1) AutoCalc();
+	
 	var sw=0;
 	for(var i=0;i <n_A_PassSkill7.length;i++) if(n_A_PassSkill7[i] != 0){
 		sw = 1;
@@ -18429,12 +18439,14 @@ function Click_Skill8SW(){
 	}
 }
 
-
-
-
-
+/**
+ * その他の支援/設定 (暫定追加機能)の変更を反映する
+ * @param {*} n 再計算フラグ（n = 1 再計算する）
+ */
 function Click_A8(n){
-	if(n==1) calc();
+	//if(n==1) calc();
+	if(n==1) AutoCalc();
+
 	var sw=0;
 	for(var i=0;i <n_A_PassSkill8.length;i++) if(n_A_PassSkill8[i] != 0){
 		sw = 1;
@@ -19041,8 +19053,16 @@ function GetIkariPow(mobData) {
 	return pow;
 }
 
-
-
+/**
+ * 各種パラメータ変更時の自動計算機能
+ * 
+ */
+function AutoCalc() {
+	// 自動設定が有効の場合のみ、再計算する
+	if (HtmlGetObjectCheckedById("OBJID_INPUT_ATTACK_METHOD_AUTO_CALC", "checked")) {
+		calc();
+	}
+}
 
 //================================================================================================================================
 //================================================================================================================================
