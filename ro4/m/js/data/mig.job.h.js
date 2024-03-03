@@ -409,6 +409,37 @@ function IsDoramJob(jobID) {
 }
 
 /**
+ * 対象の職業が４次職かを判定する.
+ * @return true: ４次職, false: ４次職ではない
+ */
+function IsYojiJob(jobID) {
+	switch (jobID) {
+		case MIG_JOB_ID_DRAGON_KNIGHT:
+		case MIG_JOB_ID_SHADOW_CROSS:
+		case MIG_JOB_ID_CARDINAL:
+		case MIG_JOB_ID_WIND_HAWK:
+		case MIG_JOB_ID_ARCH_MAGE:
+		case MIG_JOB_ID_MEISTER:
+		case MIG_JOB_ID_IMPERIAL_GUARD:
+		case MIG_JOB_ID_ABYSS_CHASER:
+		case MIG_JOB_ID_INQUISITOR:
+		case MIG_JOB_ID_TROUBADOUR:
+		case MIG_JOB_ID_TROUVERE:
+		case MIG_JOB_ID_ELEMENTAL_MASTER:
+		case MIG_JOB_ID_BIOLO:
+		case MIG_JOB_ID_SKY_EMPEROR:
+		case MIG_JOB_ID_SOUL_ASCETIC:
+		case MIG_JOB_ID_SHINKIROU:
+		case MIG_JOB_ID_SHIRANUI:
+		case MIG_JOB_ID_NIGHT_WATCH:
+		case MIG_JOB_ID_HYPER_NOVICE:
+		case MIG_JOB_ID_SPIRIT_HANDLER:
+			return true;
+	}
+	return false;
+}
+
+/**
  * 対象の職業が二刀流可能かを判定する.
  * @return true : 可能, false : 不可
  */

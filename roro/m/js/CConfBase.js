@@ -636,12 +636,10 @@ function CConfBase(confArray) {
 		}
 	}
 
-
-
-
-
 	/**
 	 * 設定欄の設定値変更イベントハンドラ.
+	 * @param {*} instanceNo 
+	 * @param {*} bCalc  再計算フラグ（true : 再計算する、false : 再計算しない）
 	 */
 	CConfBase.OnChangeValueHandler = function (instanceNo, bCalc) {
 
@@ -675,7 +673,8 @@ function CConfBase(confArray) {
 
 		// 再計算フラグが立っている場合は、再計算を実行
 		if (bCalc) {
-			calc();
+			//calc();
+			AutoCalc();
 		}
 	}
 

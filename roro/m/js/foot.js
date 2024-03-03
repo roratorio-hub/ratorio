@@ -420,6 +420,7 @@ function UpdateEquipCardDataByHtml() {
 	// 各装着部位
 	n_A_card[CARD_REGION_ID_HEAD_TOP]	 = GetStatefullData("DATA_OBJID_HEAD_TOP_CARD_1", 0);
 	n_A_card[CARD_REGION_ID_HEAD_MID]	 = GetStatefullData("DATA_OBJID_HEAD_MID_CARD_1", 0);
+	n_A_card[CARD_REGION_ID_HEAD_UNDER]	 = GetStatefullData("DATA_OBJID_HEAD_UNDER_CARD_1", 0);
 	n_A_card[CARD_REGION_ID_SHIELD]		 = GetStatefullData("DATA_OBJID_SHIELD_CARD_1", 0);
 	n_A_card[CARD_REGION_ID_BODY]		 = GetStatefullData("DATA_OBJID_BODY_CARD_1", 0);
 	n_A_card[CARD_REGION_ID_SHOULDER]	 = GetStatefullData("DATA_OBJID_SHOULDER_CARD_1", 0);

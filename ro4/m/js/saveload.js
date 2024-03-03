@@ -40,6 +40,9 @@ function OnClickLoadSaveData () {
 
 	// 名前入力欄へ適用
 	HtmlSetObjectValueById("OBJID_INPUT_SAVE_NAME_MIG", charaName);
+
+	// アイテム情報の構築
+	CItemInfoManager.OnClickExtractSwitch();
 }
 
 /**
@@ -100,6 +103,8 @@ function OnClickUrlInMIG () {
 	}
 
 	CSaveController.loadFromURL(splitted[1]);
+	// アイテム情報の構築
+	CItemInfoManager.OnClickExtractSwitch();
 
 	document.getElementById("OBJID_INPUT_URL_IN_MIG").focus();
 }

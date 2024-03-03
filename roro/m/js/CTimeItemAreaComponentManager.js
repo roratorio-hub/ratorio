@@ -147,10 +147,11 @@ CTimeItemAreaComponentManager.OnClickExtractSwitch = function () {
 	CTimeItemAreaComponentManager.RebuildControls();
 };
 
-
-
 /**
- * 設定変更イベントハンドラ.
+ * アイテム時限効果の変更を反映する
+ * @param {*} idxConf 
+ * @param {*} dataId 
+ * @returns 
  */
 CTimeItemAreaComponentManager.OnChangeConf = function (idxConf, dataId) {
 
@@ -182,7 +183,8 @@ CTimeItemAreaComponentManager.OnChangeConf = function (idxConf, dataId) {
 	}
 
 	// 再計算
-	calc();
+	//calc();
+	AutoCalc();
 
 	// クイック調整欄の更新
 	CBattleQuickControlAreaComponentManager.RebuildControls();

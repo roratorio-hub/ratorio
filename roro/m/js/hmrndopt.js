@@ -186,7 +186,7 @@ function CreateRndOptKind(objRoot, eqpRgnId, slotIndex) {
 
 	objSelect = HtmlCreateElement("select", objTd);
 	HtmlSetAttribute(objSelect, "id", objIdKind);
-	HtmlSetAttribute(objSelect, "onChange", "OnChangeRndOptKind(" + eqpRgnId + ", " + slotIndex + ")");
+	HtmlSetAttribute(objSelect, "onChange", "OnChangeRndOptKind(" + eqpRgnId + ", " + slotIndex + ") | AutoCalc()");
 
 	return objSelect;
 }
@@ -211,7 +211,7 @@ function CreateRndOptValue(objRoot, eqpRgnId, slotIndex) {
 
 	objSelect = HtmlCreateElement("select", objTd);
 	HtmlSetAttribute(objSelect, "id", objIdValue);
-	HtmlSetAttribute(objSelect, "onChange", "OnChangeRandomEnchant()");
+	HtmlSetAttribute(objSelect, "onChange", "OnChangeRandomEnchant() | AutoCalc()");
 
 	return objSelect;
 }

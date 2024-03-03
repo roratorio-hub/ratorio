@@ -4928,62 +4928,6 @@ g_bDefinedDamageIntervals = true;
 			}
 			break;
 
-		// 「ルーンナイト」スキル「ファイアードラゴンブレス」
-		// 「ルーンナイト」スキル「ウォータードラゴンブレス」
-		case SKILL_ID_FIRE_DRAGON_BREATH:
-		case SKILL_ID_WATER_DRAGON_BREATH:
-			// 「ドラゴントレーニング」Lv0の前に騎乗の有無が包含されているためインデックスをずらしている
-			dragon_training_lv = UsedSkillSearch(SKILL_ID_DRAGON_TRAINING) - 1;
-			if (dragon_training_lv == -1) {
-				// 未騎乗の場合
-				n_Buki_Muri = 1;
-				break;
-			}
-			// 遠距離スキル
-			n_Enekyori = 1;
-			// 必中スキル
-			w_HIT = 100;
-			w_HIT_HYOUJI = 100;
-			// 詠唱時間等
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// 属性補正
-			n_A_Weapon_zokusei = g_skillManager.GetElement(battleCalcInfo.skillId);
-			// 現HPとMaxSPから基本ダメージを算出
-			var w_HP = attackMethodConfArray[0].GetOptionValue(0);
-			if(w_HP == 0) {
-				w_HP = charaData[CHARA_DATA_INDEX_MAXHP];
-			}
-			for (i=0; i<3; i++) {
-				dmgUnit[i] = w_HP / 50 + charaData[CHARA_DATA_INDEX_MAXSP] / 4;
-				// ATKではなくHP,SPから基本ダメージを算出しているので、手動で属性相性を適用する
-				dmgUnit[i] = ApplyElementRatio(mobData, dmgUnit[i], n_A_Weapon_zokusei);
-			}
-			// スキルLv補正
-			wbairitu = 100 * n_A_ActiveSkillLV;
-			// ドラゴントレーニング補正
-			wbairitu *= [100,100,105,110,115,120][dragon_training_lv] / 100;
-			// Lv補正
-			wbairitu *= n_A_BaseLV / 100;
-			// ドラゴニックオーラ補正
-			if ((dragonic_aura_lv = UsedSkillSearch(SKILL_ID_DRAGONIC_AURA_STATE)) > 0) {
-				// ドラゴニックオーラ習得Lv
-				if (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA] == MOB_CONF_PLAYER_ID_SENTO_AREA_YE) {
-					// YE鯖だと指数1.0298で誤差1に収まる
-					wbairitu *= 1 + Math.pow(GetTotalSpecStatus(MIG_PARAM_ID_POW) + GetPAtk(), 1.0298) / 100 * 250 / 300;
-				}
-				else{
-					// 通常鯖だと指数1.05555で誤差2桁以内に収まる
-					wbairitu *= 1 + Math.pow(GetTotalSpecStatus(MIG_PARAM_ID_POW) + GetPAtk(), 1.05555) / 100 * 250 / 300;
-				}
-				// ドラゴニックオーラ使用Lv
-				dragonic_aura_lv -= 1;	// 「未習得」の状態を包含しているためインデックスをずらす
-				wbairitu *= (100 + 15 * dragonic_aura_lv) / 100;
-			}
-			break;
-
 /*
 		case SKILL_ID_DUMMY:
 			// 使用武器制限
@@ -6527,7 +6471,76 @@ g_bDefinedDamageIntervals = true;
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
-
+		// 「ルーンナイト」スキル「ファイアードラゴンブレス」
+		// 「ルーンナイト」スキル「ウォータードラゴンブレス」
+		case SKILL_ID_FIRE_DRAGON_BREATH:
+		case SKILL_ID_WATER_DRAGON_BREATH:
+			// 「ドラゴントレーニング」Lv0の前に騎乗の有無が包含されているためインデックスをずらしている
+			dragon_training_lv = UsedSkillSearch(SKILL_ID_DRAGON_TRAINING) - 1;
+			if (dragon_training_lv == -1) {
+				// 未騎乗の場合
+				n_Buki_Muri = 1;
+				break;
+			}
+			// 遠距離スキル
+			n_Enekyori = 1;
+			// 必中スキル
+			w_HIT = 100;
+			w_HIT_HYOUJI = 100;
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// 属性補正
+			n_A_Weapon_zokusei = g_skillManager.GetElement(battleCalcInfo.skillId);
+			// --------- ダメージ計算開始 ---------
+			n_PerfectHIT_DMG = 0;
+			// 現HPとMaxSPから基本ダメージを算出
+			var w_HP = attackMethodConfArray[0].GetOptionValue(0);
+			if(w_HP == 0) {
+				w_HP = charaData[CHARA_DATA_INDEX_MAXHP];
+			}
+			var w = w_HP / 50 + charaData[CHARA_DATA_INDEX_MAXSP] / 4;
+			// スキルLv補正
+			w *= n_A_ActiveSkillLV;
+			// ドラゴントレーニング補正
+			w *= [100,100,105,110,115,120][dragon_training_lv] / 100;
+			// Lv補正
+			w *= n_A_BaseLV / 100;
+			// ドラゴニックオーラ補正
+			if ((dragonic_aura_lv = UsedSkillSearch(SKILL_ID_DRAGONIC_AURA_STATE)) > 0) {
+				// ドラゴニックオーラ習得Lv
+				if (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA] == MOB_CONF_PLAYER_ID_SENTO_AREA_YE) {
+					// YE鯖だと指数1.0298で誤差1に収まる
+					w *= 1 + Math.pow(GetTotalSpecStatus(MIG_PARAM_ID_POW) + GetPAtk(), 1.0298) / 100 * 250 / 300;
+				}
+				else{
+					// 通常鯖だと指数1.05555で誤差2桁以内に収まる
+					w *= 1 + Math.pow(GetTotalSpecStatus(MIG_PARAM_ID_POW) + GetPAtk(), 1.05555) / 100 * 250 / 300;
+				}
+				// ドラゴニックオーラ使用Lv
+				dragonic_aura_lv -= 1;	// 「未習得」の状態を包含しているためインデックスをずらす
+				w *= (100 + 15 * dragonic_aura_lv) / 100;
+			}
+			// --------- 減衰計算開始 ---------
+			w = ApplyResistElement(mobData, w);
+			var wX = GetSpiderWebDamageRatio();
+			if(wX != 0) w = ROUNDDOWN(w * (100 + wX) / 100);
+			w -= B_Total_DEF;
+			if(w <0) w = 0;
+			w = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w);
+			w = ApplyElementRatio(mobData, w,n_A_Weapon_zokusei);
+			w = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w);
+			w_DMG[0] = w_DMG[1] = w_DMG[2] = Math.floor(w);
+			for(var i=0;i<=2;i++){
+				Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
+				g_damageTextArray[i].push(Last_DMG_A[i]);
+			}
+			BuildCastAndDelayHtml(mobData);
+			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
+			break;
+							
 
 		case SKILL_ID_DEATH_BOUND:
 			if(n_DEATH_BOUND[3] == 0){
@@ -17199,10 +17212,14 @@ function Click_PassSkillSW(){
 
 
 
-
+/**
+ * パッシブ持続系の設定変更を反映する
+ * @param {*} n 再計算フラグ（1 = 再計算する, 1以外 = 再計算しない）
+ */
 function Click_A1(n){
 
-	if(n==1) calc();
+	//if(n==1) calc();
+	if(n==1) AutoCalc();
 
 	var sw=0;
 
@@ -17613,12 +17630,14 @@ function Skill3SW_2(){
 		}
 	}}
 
-
-
-
-
+/**
+ * 演奏/踊り系スキルの変更を反映する
+ * @param {*} n 再計算フラグ（n = 1 再計算する）
+ */
 function Click_A3(n){
-	if(n==1) calc();
+	//if(n==1) calc();
+	if(n==1) AutoCalc();
+	
 	var sw=0;
 	for(var i=0;i <n_A_PassSkill3.length;i++){
 		if(n_A_PassSkill3[i] != 0){
@@ -17737,12 +17756,14 @@ function Click_Skill4SW(){
 		Click_A4(0);
 	}}
 
-
-
-
-
+/**
+ * ギルドスキル/ゴスペル/他の変更を反映する
+ * @param {*} n 再計算フラグ（n = 1 再計算する）
+ */
 function Click_A4(n){
-	if(n==1) calc();
+	//if(n==1) calc();
+	if(n==1) AutoCalc();
+	
 	var sw=0;
 	for(var i=0;i <n_A_PassSkill4.length;i++) if(n_A_PassSkill4[i] != 0){
 		sw = 1;
@@ -18173,12 +18194,14 @@ function Click_Food_Off(){
 	}
 }
 
-
-
-
-
+/**
+ * アイテム(食品/他)の変更を反映する
+ * @param {*} n 再計算フラグ（n = 1 再計算する）
+ */
 function Click_A7(n){
-	if(n==1) calc();
+	//if(n==1) calc();
+	if(n==1) AutoCalc();
+	
 	var sw=0;
 	for(var i=0;i <n_A_PassSkill7.length;i++) if(n_A_PassSkill7[i] != 0){
 		sw = 1;
@@ -18416,12 +18439,14 @@ function Click_Skill8SW(){
 	}
 }
 
-
-
-
-
+/**
+ * その他の支援/設定 (暫定追加機能)の変更を反映する
+ * @param {*} n 再計算フラグ（n = 1 再計算する）
+ */
 function Click_A8(n){
-	if(n==1) calc();
+	//if(n==1) calc();
+	if(n==1) AutoCalc();
+
 	var sw=0;
 	for(var i=0;i <n_A_PassSkill8.length;i++) if(n_A_PassSkill8[i] != 0){
 		sw = 1;
@@ -19028,8 +19053,16 @@ function GetIkariPow(mobData) {
 	return pow;
 }
 
-
-
+/**
+ * 各種パラメータ変更時の自動計算機能
+ * 
+ */
+function AutoCalc() {
+	// 自動設定が有効の場合のみ、再計算する
+	if (HtmlGetObjectCheckedById("OBJID_INPUT_ATTACK_METHOD_AUTO_CALC", "checked")) {
+		calc();
+	}
+}
 
 //================================================================================================================================
 //================================================================================================================================
@@ -19101,6 +19134,11 @@ function calc() {
 
 	// 魔法は必中
 	if (w_MagicSkill.indexOf(n_A_ActiveSkill) >= 0) {
+		w_HIT = 100;
+		g_perfectHitRate = 0;
+	}
+	// 魔法は必中
+	if ((g_skillManager.GetSkillType(n_A_ActiveSkill) & CSkillData.TYPE_MAGICAL) == CSkillData.TYPE_MAGICAL) {
 		w_HIT = 100;
 		g_perfectHitRate = 0;
 	}
@@ -20377,23 +20415,14 @@ function _SUB_ApplyMonsterDefence(mobData, dmg){
 
 	var bPenetrate = false;
 
-
-
 	// DEF無視スキルのチェック
-
-	// カウンタースラッシュ
-	if(n_A_ActiveSkill==469) {
-		bPenetrate = true;
-	}
-
-	// ピアーシングショット
-	if(n_A_ActiveSkill==432) {
-		bPenetrate = true;
-	}
-
-	// シャドウスタブ
-	if (n_A_ActiveSkill == SKILL_ID_SHADOW_STAB) {
-		bPenetrate = true;
+	switch(n_A_ActiveSkill) {
+		case SKILL_ID_COUNTER_SLASH:	// カウンタースラッシュ
+		case SKILL_ID_PIERCING_SHOT: 	// ピアーシングショット
+		case SKILL_ID_SHADOW_STAB:		// シャドウスタブ
+		case SKILL_ID_SPARK_BLASTER: 	// スパークブラスター
+		case SKILL_ID_DRAGONIC_BREATH:	// ドラゴニックブレス
+			bPenetrate = true;
 	}
 
 	// ハンドガン装備時のオンリーワンバレット
@@ -20403,11 +20432,6 @@ function _SUB_ApplyMonsterDefence(mobData, dmg){
 
 	// ガトリングガン装備時のビジラントアットナイト
 	if (n_A_ActiveSkill == SKILL_ID_VIGILANT_AT_NIGHT && n_A_WeaponType == ITEM_KIND_GATLINGGUN) {
-		bPenetrate = true;
-	}
-
-	// スパークブラスター
-	if (n_A_ActiveSkill == SKILL_ID_SPARK_BLASTER) {
 		bPenetrate = true;
 	}
 
@@ -20437,24 +20461,14 @@ function _SUB_ApplyMonsterDefence(mobData, dmg){
 		bPenetrate = true;
 	}
 
-
-
 	// 除算DEFの適用
 	if (!bPenetrate) {
 		dmg = Math.floor(dmg * (4000 + mobData[13]) / (4000 + mobData[13] * 10));
 	}
 
-
-
-
-
 	// 特性ステータス対応
 	// RES減衰の適用
 	dmg = ApplyResResist(mobData, dmg);
-
-
-
-
 
 	// 減算DEFの適用
 	if (!bPenetrate) {

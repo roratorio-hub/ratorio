@@ -7,7 +7,10 @@
 	margin: 0 0 1em;
 }
 
-
+/* フローティングメニュー */
+#OBJID_DIV_FLOATING_MENU {
+	z-index: 5;
+}
 
 /* 展開式設定欄共通（新形式） */
 
