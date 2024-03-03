@@ -1166,6 +1166,9 @@ function CConfBase2(confMngParam) {
 
 	/**
 	 * 設定欄の設定値変更イベントハンドラ.
+	 * @param {*} instanceNo 
+	 * @param {*} dataNo 
+	 * @param {*} bCalc true=再計算する, false=再計算しない
 	 */
 	CConfBase2.OnChangeValueHandler = function (instanceNo, dataNo, bCalc) {
 
