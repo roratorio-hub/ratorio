@@ -170,6 +170,7 @@ CGlobalConstManager.DefineEnum(
 		"STATE_R_ID_DEEPSLEEP",//　深い眠り
 		"STATE_R_ID_CHARMED",//　魅了
 		"STATE_R_ID_FRENZY",//　狂乱
+		"STATE_R_ID_HOWLING", // 精神衝撃
 		//"STATE_R_ID_HEAT",//　過熱
 		//新状態異常
 		"STATE_NEW_ID_LETHARGY",//　無気力
@@ -549,6 +550,8 @@ function GetStateText(stateId) {
 		return "魅了";
 	case STATE_R_ID_FRENZY:
 		return "狂乱";
+	case STATE_R_ID_HOWLING:
+		return "精神衝撃";
 	//case STATE_R_ID_HEAT:
 		//return "過熱";
 	//新状態異常

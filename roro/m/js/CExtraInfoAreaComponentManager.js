@@ -2800,65 +2800,88 @@ function CExtraInfoAreaComponentManager () {
 
 			switch (idx) {
 
-			case STATE_R_ID_CHILLED:
+			case STATE_R_ID_CHILLED: // 冷凍
+				// ステ耐性
 				paramValueArray[idx] = 0;
-				//効果の持続時間(３秒)
-				paramTimeArray[idx] = 3;
+				//効果の持続時間(最大２０秒)
+				paramTimeArray[idx] = 20 - n_A_VIT / 10;
 				break;
 
-			case STATE_R_ID_IGNITION:
-				paramValueArray[idx] = n_A_AGI;
+			case STATE_R_ID_IGNITION: // 発火
+				paramValueArray[idx] = n_A_BaseLV / 600 + n_A_AGI / 500;
 				//効果の持続時間(最小１０秒)
 				paramTimeArray[idx] = 22 - (0.04 * (n_A_BaseLV - 1)) - (0.04 * (n_A_AGI - 1));
 				paramTimeArray[idx] = (paramTimeArray[idx] >= 10.0) ? paramTimeArray[idx] : 10.0;
-				paramTimeArray[idx] = Math.floor(paramTimeArray[idx] * 100) / 100;//小数点以下２桁まで残し切り捨て
 				break;
 
-			case STATE_R_ID_ICED:
+			case STATE_R_ID_ICED: // 氷結
 				paramValueArray[idx] = n_A_VIT;
 				//効果の持続時間(最小３４秒)
 				paramTimeArray[idx] = 40 - (0.0479 * (n_A_VIT - 1));
 				paramTimeArray[idx] = (paramTimeArray[idx] >= 34.0) ? paramTimeArray[idx] : 34.0;
-				paramTimeArray[idx] = Math.floor(paramTimeArray[idx] * 100) / 100;//小数点以下２桁まで残し切り捨て
 				break;
 
-			case STATE_R_ID_FEAR:
-				paramValueArray[idx] = n_A_INT;
+			case STATE_R_ID_FEAR: // 恐怖
+				paramValueArray[idx] = n_A_BaseLV / 5 + n_A_INT / 5;
 				paramTimeArray[idx] = 22 - (0.0365 * (n_A_BaseLV - 1)) - (0.0365 * (n_A_INT - 1));
-				paramTimeArray[idx] = Math.floor(paramTimeArray[idx] * 100) / 100;//小数点以下２桁まで残し切り捨て
 				break;
 
-			case STATE_R_ID_DEEPSLEEP:
-				paramValueArray[idx] = n_A_INT;
+			case STATE_R_ID_DEEPSLEEP: // 深い眠り
+				// ステ耐性
+				paramValueArray[idx] = n_A_INT / 6 + n_A_LUK / 10;
 				//効果の持続時間()
 				paramTimeArray[idx] = 16 - (0.049 * (n_A_BaseLV - 1)) - (0.0255 * (n_A_INT - 1));
 				paramTimeArray[idx] = (paramTimeArray[idx] >= 1.77) ? paramTimeArray[idx] : 1.77;
-				paramTimeArray[idx] = Math.floor(paramTimeArray[idx] * 100) / 100;//小数点以下２桁まで残し切り捨て
 				break;
-
+			
+			case STATE_R_ID_CHARMED: // 魅了
+				paramValueArray[idx] = 0;
+				paramTimeArray[idx] = 27;
+				break;
+			
+			case STATE_R_ID_FRENZY:	// 狂乱
+				paramValueArray[idx] = 0;
+				paramTimeArray[idx] = 30;
+				break;
+			
+			case STATE_R_ID_HOWLING: // 精神衝撃
+				paramValueArray[idx] = (n_A_VIT + n_A_LUK) / 5;
+				paramTimeArray[idx] = 30;
+				break;
+			
 			case STATE_NEW_ID_LETHARGY://無気力
 				paramValueArray[idx] = n_A_POW;//特性ステ耐性
+				paramTimeArray[idx] = 0;
 				break;
 
 			case STATE_NEW_ID_JETBLACK://漆黒
 			case STATE_NEW_ID_HIGHLYPOISONOUS://強毒
 				paramValueArray[idx] = n_A_STA;//特性ステ耐性
+				paramTimeArray[idx] = 0;
 				break;
 
 			case STATE_NEW_ID_TORRENT://激流
 			case STATE_NEW_ID_MELANCHOLY://憂鬱
 				paramValueArray[idx] = n_A_WIS;//特性ステ耐性
+				paramTimeArray[idx] = 0;
 				break;
 
 			case STATE_NEW_ID_STILLNESS://静寂
 			case STATE_NEW_ID_CONFLAGRATION://火災
 				paramValueArray[idx] = n_A_SPL;//特性ステ耐性
+				paramTimeArray[idx] = 0;
 				break;
 
 			case STATE_NEW_ID_RAPIDCOOLING://急冷
 			case STATE_NEW_ID_CRYSTALLIZATION://結晶化
+				paramValueArray[idx] = n_A_CRT;//特性ステ耐性
+				var xxx = g_pureStatus[MIG_PARAM_ID_CRT] + g_bonusStatus[MIG_PARAM_ID_CRT];
+				paramTimeArray[idx] = Math.max(3, 10 - Math.floor(xxx / 10));
+				break;
+
 			case STATE_NEW_ID_UNHAPPINESS://不幸
 				paramValueArray[idx] = n_A_CRT;//特性ステ耐性
+				paramTimeArray[idx] = 0;
 				break;
 			
 			default:
@@ -2868,6 +2891,8 @@ function CExtraInfoAreaComponentManager () {
 			if (equipValueArray[idx] >= 100) {
 				paramTimeArray[idx] = 0;//装備耐性１００％の場合、持続時間０秒にする
 			}
+			paramValueArray[idx] = Math.floor(paramValueArray[idx]);
+			paramTimeArray[idx] = Math.floor(paramTimeArray[idx] * 100) / 100;//小数点以下２桁まで残し切り捨て
 		}
 
 
@@ -2955,17 +2980,8 @@ function CExtraInfoAreaComponentManager () {
 				objSpan.setAttribute("class", "CSSCLS_EXTRA_INFO_DISP_TABLE_RED");
 			}
 
-			switch (idx) {
-			case STATE_R_ID_IGNITION:
-			case STATE_R_ID_CHILLED:
-			case STATE_R_ID_ICED:
-			case STATE_R_ID_FEAR:
-			case STATE_R_ID_DEEPSLEEP:
-					HtmlCreateTextSpan(paramTimeArray[idx] + "秒", objSpan, CExtraInfoAreaComponentManager.fontSizeClassName);
-				break;
-			default:
-				break;
-			}
+			HtmlCreateTextSpan(paramTimeArray[idx] + "秒", objSpan, CExtraInfoAreaComponentManager.fontSizeClassName);
+
 		}
 	};
 
