@@ -309,7 +309,7 @@ $(function () {
     dd = $("#equip dd");
     for(i=0;i<dd.length;i++) {
       $(dd[i]).text($(dd[i]).text().replace(/ *\(\+\d+以上\)/g,""))
-      $(dd[i]).text($(dd[i]).text().replace(/\((カードなし|エンチャントなし)\)/g,"-"))
+      $(dd[i]).text($(dd[i]).text().replace(/\(?(カードなし|エンチャントなし)\)?/g,"-"))
       $(dd[i]).text($(dd[i]).text().replace(/【習】/g,""))
     }
 
