@@ -288,6 +288,7 @@ $(function () {
       <div id="cp">
         <div>© Gravity Co., Ltd. & Lee MyoungJin(studio DTDS). All rights reserved.</div>
         <div>© GungHo Online Entertainment, Inc. All Rights Reserved.</div>
+        <div>当コンテンツの再利用（再転載・配布など）は、禁止しています。</div>
       </div>
       <strong>== 装備一覧 ==</strong> (※ランダムオプションや補助装備を除く)
       <dl>
