@@ -2801,13 +2801,14 @@ function CExtraInfoAreaComponentManager () {
 			switch (idx) {
 
 			case STATE_R_ID_CHILLED: // 冷凍
-				// ステ耐性
+				// ステ耐性 なし
 				paramValueArray[idx] = 0;
 				//効果の持続時間(最大２０秒)
 				paramTimeArray[idx] = 20 - n_A_VIT / 10;
 				break;
 
 			case STATE_R_ID_IGNITION: // 発火
+				// ステ耐性 BaseLv / 600 + Agi / 500
 				paramValueArray[idx] = n_A_BaseLV / 600 + n_A_AGI / 500;
 				//効果の持続時間(最小１０秒)
 				paramTimeArray[idx] = 22 - (0.04 * (n_A_BaseLV - 1)) - (0.04 * (n_A_AGI - 1));
@@ -2815,14 +2816,17 @@ function CExtraInfoAreaComponentManager () {
 				break;
 
 			case STATE_R_ID_ICED: // 氷結
-				paramValueArray[idx] = n_A_VIT;
+				// ステ耐性 なし
+				paramValueArray[idx] = 0;
 				//効果の持続時間(最小３４秒)
 				paramTimeArray[idx] = 40 - (0.0479 * (n_A_VIT - 1));
 				paramTimeArray[idx] = (paramTimeArray[idx] >= 34.0) ? paramTimeArray[idx] : 34.0;
 				break;
 
 			case STATE_R_ID_FEAR: // 恐怖
+				// ステ耐性 BaseLv / 5 + Int / 5
 				paramValueArray[idx] = n_A_BaseLV / 5 + n_A_INT / 5;
+				// 持続時間 ドラゴンハウリング (22 sec) を想定
 				paramTimeArray[idx] = 22 - (0.0365 * (n_A_BaseLV - 1)) - (0.0365 * (n_A_INT - 1));
 				break;
 
@@ -2835,52 +2839,86 @@ function CExtraInfoAreaComponentManager () {
 				break;
 			
 			case STATE_R_ID_CHARMED: // 魅了
+				// ステ耐性 不明
 				paramValueArray[idx] = 0;
-				paramTimeArray[idx] = 27;
+				// 持続時間 セイレーンの声Lv5 (27 sec) を想定
+				paramTimeArray[idx] = 27; // BaseLv と JobLv で時間短縮
 				break;
 			
 			case STATE_R_ID_FRENZY:	// 狂乱
+				// ステ耐性 不明
 				paramValueArray[idx] = 0;
-				paramTimeArray[idx] = 30;
+				// 持続時間 フライデーナイトフィーバーLv5 (30 sec) を想定
+				paramTimeArray[idx] = 30;	// 時間短縮ステータス不明
 				break;
 			
 			case STATE_R_ID_HOWLING: // 精神衝撃
 				paramValueArray[idx] = (n_A_VIT + n_A_LUK) / 5;
-				paramTimeArray[idx] = 30;
+				// 持続時間 HoM Lv5 (30 sec) を想定
+				paramTimeArray[idx] = 30;	// 時間短縮ステータスなし
 				break;
 			
 			case STATE_NEW_ID_LETHARGY://無気力
-				paramValueArray[idx] = n_A_POW;//特性ステ耐性
+				// 耐性は術者とターゲットのBaseLv差による
+				paramValueArray[idx] = 0;
+				// 持続時間はターゲットのPOWにより減少する
 				paramTimeArray[idx] = 0;
 				break;
 
 			case STATE_NEW_ID_JETBLACK://漆黒
-			case STATE_NEW_ID_HIGHLYPOISONOUS://強毒
-				paramValueArray[idx] = n_A_STA;//特性ステ耐性
+				// 耐性は術者とターゲットのBaseLv差による
+				paramValueArray[idx] = 0;
+				// 持続時間はターゲットのSTAにより減少する
 				paramTimeArray[idx] = 0;
 				break;
 
+				case STATE_NEW_ID_HIGHLYPOISONOUS://強毒
+				// 耐性は術者とターゲットのBaseLv差による
+				paramValueArray[idx] = 0;
+				// 持続時間はターゲットのSTAにより2秒まで減少する
+				paramTimeArray[idx] = Math.max(2, 9 - Math.floor(n_A_STA / 10));
+				break;
+
 			case STATE_NEW_ID_TORRENT://激流
+				// 耐性は術者とターゲットのBaseLv差による
+				paramValueArray[idx] = 0;
+				// 持続時間はターゲットのWISにより2秒まで減少する
+				paramTimeArray[idx] = Math.max(2, 9 - Math.floor(n_A_WIS / 10));
+				break;
+
 			case STATE_NEW_ID_MELANCHOLY://憂鬱
-				paramValueArray[idx] = n_A_WIS;//特性ステ耐性
+				// 耐性は術者とターゲットのBaseLv差による
+				paramValueArray[idx] = 0;
+				// 持続時間はターゲットのWISにより減少する
 				paramTimeArray[idx] = 0;
 				break;
 
 			case STATE_NEW_ID_STILLNESS://静寂
-			case STATE_NEW_ID_CONFLAGRATION://火災
-				paramValueArray[idx] = n_A_SPL;//特性ステ耐性
+				// 耐性は術者とターゲットのBaseLv差による
+				paramValueArray[idx] = 0;
+				// 持続時間はターゲットのSPLにより減少する
 				paramTimeArray[idx] = 0;
+				break;
+
+			case STATE_NEW_ID_CONFLAGRATION://火災
+				// 耐性は術者とターゲットのBaseLv差による
+				paramValueArray[idx] = 0;
+				// 持続時間はターゲットのSPLにより2秒まで減少する
+				paramTimeArray[idx] = Math.max(2, 9 - Math.floor(n_A_SPL / 10));
 				break;
 
 			case STATE_NEW_ID_RAPIDCOOLING://急冷
 			case STATE_NEW_ID_CRYSTALLIZATION://結晶化
-				paramValueArray[idx] = n_A_CRT;//特性ステ耐性
-				var xxx = g_pureStatus[MIG_PARAM_ID_CRT] + g_bonusStatus[MIG_PARAM_ID_CRT];
-				paramTimeArray[idx] = Math.max(3, 10 - Math.floor(xxx / 10));
+				// 耐性は術者とターゲットのBaseLv差による
+				paramValueArray[idx] = 0;
+				// 持続時間はターゲットのCRTにより3秒まで減少する
+				paramTimeArray[idx] = Math.max(3, 10 - Math.floor(n_A_CRT / 10));
 				break;
 
 			case STATE_NEW_ID_UNHAPPINESS://不幸
-				paramValueArray[idx] = n_A_CRT;//特性ステ耐性
+				// 耐性は術者とターゲットのBaseLv差による
+				paramValueArray[idx] = 0;
+				// 持続時間はターゲットのCRTにより減少する
 				paramTimeArray[idx] = 0;
 				break;
 			
@@ -2903,6 +2941,8 @@ function CExtraInfoAreaComponentManager () {
 
 		objRoot = document.getElementById("OBJID_TD_EXTRA_INFO_DISP_AREA_" + this.managerInstanceId);
 		HtmlRemoveAllChild(objRoot);
+
+		HtmlCreateTextSpan("開発中のため参考程度に留めて下さい", objRoot, "CSSCLS_GENERAL_COLOR_RED");
 
 		objTable = HtmlCreateElement("table", objRoot);
 		objTable.setAttribute("class", "CSSCLS_EXTRA_INFO_DISP_TABLE");
