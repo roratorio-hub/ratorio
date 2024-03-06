@@ -3884,7 +3884,7 @@ function CSkillManager() {
 			}
 			this.DelayTimeSkillObject = function(skillLv, charaDataManger) {
 				return 4000;
-			}			
+			}
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 0;
 			}
@@ -9416,7 +9416,7 @@ function CSkillManager() {
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 0;
-			}			
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -32121,7 +32121,7 @@ function CSkillManager() {
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 5000;
-			}			
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -32249,7 +32249,7 @@ function CSkillManager() {
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 500;
-			}				
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -32415,7 +32415,7 @@ function CSkillManager() {
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 500;
-			}				
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -32448,7 +32448,7 @@ function CSkillManager() {
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 500;
-			}	
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -32481,7 +32481,7 @@ function CSkillManager() {
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 500;
-			}			
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -32515,7 +32515,7 @@ function CSkillManager() {
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 500;
-			}			
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -35530,7 +35530,7 @@ function CSkillManager() {
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 500;
-			}	
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -35564,7 +35564,7 @@ function CSkillManager() {
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 0;
-			}			
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -35630,7 +35630,7 @@ function CSkillManager() {
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 0;
-			}			
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -35663,7 +35663,7 @@ function CSkillManager() {
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 0;
-			}			
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -35697,7 +35697,7 @@ function CSkillManager() {
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 0;
-			}			
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -35730,7 +35730,7 @@ function CSkillManager() {
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 0;
-			}			
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -35763,7 +35763,7 @@ function CSkillManager() {
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 0;
-			}			
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -35797,7 +35797,7 @@ function CSkillManager() {
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 0;
-			}			
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -37216,6 +37216,209 @@ function CSkillManager() {
 		this.dataArray[skillId] = skillData;
 		skillId++;
 
+		// ----------------------------------------------------------------
+		// 赤炎砲
+		// ----------------------------------------------------------------
+		SKILL_ID_SEKIEN_HOU = skillId;
+		skillData = new function() {
+			this.prototype = new CSkillData();
+			CSkillData.call(this);
+
+			this.id = skillId;
+			this.name = "(×)赤炎砲";
+			this.kana = "セキエンホウ";
+			this.maxLv = 10;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
+			this.range = CSkillData.RANGE_MAGIC;
+			this.element = CSkillData.ELEMENT_FORCE_FIRE;
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 0;
+			}
+		};
+		this.dataArray[skillId] = skillData;
+		skillId++;
+
+		// ----------------------------------------------------------------
+		// 冷血砲
+		// ----------------------------------------------------------------
+		SKILL_ID_REIKETSU_HOU = skillId;
+		skillData = new function() {
+			this.prototype = new CSkillData();
+			CSkillData.call(this);
+
+			this.id = skillId;
+			this.name = "(×)冷血砲";
+			this.kana = "レイケツホウ";
+			this.maxLv = 10;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
+			this.range = CSkillData.RANGE_MAGIC;
+			this.element = CSkillData.ELEMENT_FORCE_WATER;
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 0;
+			}
+		};
+		this.dataArray[skillId] = skillData;
+		skillId++;
+
+		// ----------------------------------------------------------------
+		// 雷電砲
+		// ----------------------------------------------------------------
+		SKILL_ID_RAIDEN_HOU = skillId;
+		skillData = new function() {
+			this.prototype = new CSkillData();
+			CSkillData.call(this);
+
+			this.id = skillId;
+			this.name = "(×)雷電砲";
+			this.kana = "ライテンホウ";
+			this.maxLv = 10;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
+			this.range = CSkillData.RANGE_MAGIC;
+			this.element = CSkillData.ELEMENT_FORCE_WIND;
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 0;
+			}
+		};
+		this.dataArray[skillId] = skillData;
+		skillId++;
+
+		// ----------------------------------------------------------------
+		// 金龍砲
+		// ----------------------------------------------------------------
+		SKILL_ID_KINNRYUU_HOU = skillId;
+		skillData = new function() {
+			this.prototype = new CSkillData();
+			CSkillData.call(this);
+
+			this.id = skillId;
+			this.name = "(×)金龍砲";
+			this.kana = "キンリユウホウ";
+			this.maxLv = 10;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
+			this.range = CSkillData.RANGE_MAGIC;
+			this.element = CSkillData.ELEMENT_FORCE_EARTH;
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 0;
+			}
+		};
+		this.dataArray[skillId] = skillData;
+		skillId++;
+
+		// ----------------------------------------------------------------
+		// 暗転砲
+		// ----------------------------------------------------------------
+		SKILL_ID_ANTEN_HOU = skillId;
+		skillData = new function() {
+			this.prototype = new CSkillData();
+			CSkillData.call(this);
+
+			this.id = skillId;
+			this.name = "(×)暗転砲";
+			this.kana = "アンテンホウ";
+			this.maxLv = 10;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
+			this.range = CSkillData.RANGE_MAGIC;
+			this.element = CSkillData.ELEMENT_FORCE_DARK;
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 0;
+			}
+		};
+		this.dataArray[skillId] = skillData;
+		skillId++;
+
+		// ----------------------------------------------------------------
+		// 幻術 -暗黒龍-
+		// ----------------------------------------------------------------
+		SKILL_ID_GENZYUTSU_ANKOKURYUU = skillId;
+		skillData = new function() {
+			this.prototype = new CSkillData();
+			CSkillData.call(this);
+
+			this.id = skillId;
+			this.name = "(×)幻術 -暗黒龍-";
+			this.kana = "ケンシユツアンコクリユウ";
+			this.maxLv = 1;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
+			this.range = CSkillData.RANGE_MAGIC;
+			this.element = CSkillData.ELEMENT_FORCE_DARK;
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 0;
+			}
+		};
+		this.dataArray[skillId] = skillData;
+		skillId++;
 	}
 
 	// 初期化

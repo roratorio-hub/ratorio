@@ -1253,6 +1253,13 @@
 	SKILL_ID_HASTY_FIRE_IN_THE_HOLE = 1250;
 	SKILL_ID_GRENADES_DROPPING = 1251;
 	SKILL_ID_MISSION_BOMBARD = 1252;
+	SKILL_ID_SEKIEN_HOU = 1253;
+	SKILL_ID_REIKETSU_HOU = 1254;
+	SKILL_ID_RAIDEN_HOU = 1255;
+	SKILL_ID_KINNRYUU_HOU = 1256;
+	SKILL_ID_ANTEN_HOU = 1257;
+	SKILL_ID_GENZYUTSU_ANKOKURYUU = 1258;
+	SKILL_ID_ANTEN_HOU_LEARNED_LEVEL = 1259;
 
 	SkillObjNew = [
 		[0,1,"通常攻撃"],
@@ -2508,6 +2515,13 @@
 		[1250,5,"ヘイスティファイアインザホール"],
 		[1251,5,"グレネーズドロッピング"],
 		[1252,10,"ミッションボンバード"],
+		[1253,10,"(×)赤炎砲"],
+		[1254,10,"(×)冷血砲"],
+		[1255,10,"(×)雷電砲"],
+		[1256,10,"(×)金龍砲"],
+		[1257,10,"(×)暗転砲"],
+		[1258,1,"(×)幻術 -暗黒龍-"],
+		[1259,10,"暗転砲の習得Lv"],
 	];
 
 })();
