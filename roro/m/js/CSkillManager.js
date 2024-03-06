@@ -37419,6 +37419,25 @@ function CSkillManager() {
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
+
+		// ----------------------------------------------------------------
+		// 暗転砲の習得Lv
+		// ----------------------------------------------------------------
+		SKILL_ID_ANTEN_HOU_LEARNED_LEVEL = skillId;
+		skillData = new function() {
+			this.prototype = new CSkillData();
+			CSkillData.call(this);
+			this.id = skillId;
+			this.name = "暗転砲の習得Lv";
+			this.kana = "アンテンホウノシユウトクレヘル";
+			this.maxLv = 10;
+			this.type = CSkillData.TYPE_PASSIVE;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_VOID;
+		};
+		this.dataArray[skillId] = skillData;
+		skillId++;		
+		
 	}
 
 	// 初期化
