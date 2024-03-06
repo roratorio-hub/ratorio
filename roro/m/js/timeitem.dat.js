@@ -545,11 +545,11 @@
 	ITEM_SP_TIME_OBJ_SORT.push(266);
 	ITEM_SP_TIME_OBJ_SORT.push(267);
 	ITEM_SP_TIME_OBJ_SORT.push(268);
-
 	ITEM_SP_TIME_OBJ[269] = [269,"猪突猛進","HPが1000上がる度に アニマル系スキルで与えるダメージ + 1%",[[2,2831],[1,3818],[1,4268],[1,4269],[1,4455]],0];
 	ITEM_SP_TIME_OBJ_SORT.push(269);
-
 	ITEM_SP_TIME_OBJ[270] = [270,"潜在解放(修羅Ⅱ)","完全回避 + 95",[[2,2885]],11,95,0];
 	ITEM_SP_TIME_OBJ_SORT.push(270);
+	ITEM_SP_TIME_OBJ[271] = [271,"鳴り響く小太刀","闇属性魔法攻撃ダメージ + 50%",[[1,5176]],347,50,0],
+	ITEM_SP_TIME_OBJ_SORT.push(271);
 
 })();
