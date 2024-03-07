@@ -655,6 +655,27 @@ function StAllCalc(){
 		n_A_SpeedPOT = eval(A_SpeedPOT.value);
 
 
+
+		//----------------------------------------------------------------
+		// 特性パラメタを取得する
+		//----------------------------------------------------------------
+
+		// 純粋な値
+		SU_POW = eval(A_POW.value);
+		SU_STA = eval(A_STA.value);
+		SU_WIS = eval(A_WIS.value);
+		SU_SPL = eval(A_SPL.value);
+		SU_CON = eval(A_CON.value);
+		SU_CRT = eval(A_CRT.value);
+		
+		// 合計値
+		n_A_POW = GetTotalSpecStatus(MIG_PARAM_ID_POW);
+		n_A_STA = GetTotalSpecStatus(MIG_PARAM_ID_STA);
+		n_A_WIS = GetTotalSpecStatus(MIG_PARAM_ID_WIS);
+		n_A_SPL = GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+		n_A_CON = GetTotalSpecStatus(MIG_PARAM_ID_CON);
+		n_A_CRT = GetTotalSpecStatus(MIG_PARAM_ID_CRT);
+
 		//----------------------------------------------------------------
 		// 装備を取得する
 		//----------------------------------------------------------------

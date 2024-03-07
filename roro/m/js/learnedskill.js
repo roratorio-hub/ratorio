@@ -312,12 +312,17 @@ function UpdateLearnedSkillSettingColoring() {
 }
 
 
-
+/**
+ * 習得スキルの変更を反映する
+ * @param {*} objSelect 
+ * @param {*} changedIdx 
+ * @param {*} newValue 
+ */
 function RefreshSkillColumnHeaderLearned(objSelect, changedIdx, newValue) {
 
 	if (0 <= changedIdx) {
 		n_A_LearnedSkill[changedIdx] = parseInt(newValue);
-		calc();
+		AutoCalc();
 	}
 
 	// 背景設定
@@ -338,8 +343,6 @@ function RefreshSkillColumnHeaderLearned(objSelect, changedIdx, newValue) {
 			break;
 		}
 	}
-
-
 	var objHeader = null;
 	var objUsedText = null;
 	var objText = null;

@@ -1714,7 +1714,7 @@ else {
 			n_Delay[7] = 2000;
 			wbairitu = (50 + n_A_STR) * n_A_ActiveSkillLV;
 			/*
-			グランドジャッジメント状態スキル倍率 
+			グランドジャッジメント状態スキル倍率
 			実測値との一致を確認済み
 			*/
 			if (UsedSkillSearch(SKILL_ID_GRAND_JUDGEMENT_STATE) > 0) {
@@ -1732,7 +1732,7 @@ else {
 			// 基本倍率
 			wbairitu = 50 * n_A_ActiveSkillLV + w_BN;
 			/*
-			グランドジャッジメント状態スキル倍率 
+			グランドジャッジメント状態スキル倍率
 			実測値との一致を確認済み
 			*/
 			if (UsedSkillSearch(SKILL_ID_GRAND_JUDGEMENT_STATE) > 0) {
@@ -1746,7 +1746,7 @@ else {
 			n_Delay[7] = 2000;
 			wbairitu = 200 * n_A_ActiveSkillLV
 			/*
-			シールドシューティング状態スキル倍率 
+			シールドシューティング状態スキル倍率
 			実測値との一致を確認済み
 			*/
 			if (UsedSkillSearch(SKILL_ID_SHIELD_SHOOTING_STATE) > 0) {
@@ -1786,7 +1786,7 @@ else {
 			n_Delay[7] = 8000 - 1000 * n_A_ActiveSkillLV;
 			wbairitu = 100 + 100 * n_A_ActiveSkillLV;
 			/*
-			シールドシューティング状態スキル倍率 
+			シールドシューティング状態スキル倍率
 			実測値との一致を確認済み
 			*/
 			if (UsedSkillSearch(SKILL_ID_SHIELD_SHOOTING_STATE) > 0) {
@@ -3695,7 +3695,7 @@ g_bUnknownCasts = true;
 
 			// 聖油補正
 			if (seiyuLv = n_B_IJYOU[MOB_CONF_DEBUF_ID_SEIYU_SENREI_DEBUFF]) {
-				wbairitu += 300; 
+				wbairitu += 300;
 			}
 
 			// POW補正
@@ -4578,6 +4578,9 @@ g_bDefinedDamageIntervals = true;
 			}
 			break;
 
+		/**
+		 * 「蜃気楼　不知火」スキル「風魔手裏剣 -掌握-」
+		 */
 		case SKILL_ID_FUMASHURIKEN_SHOUAKU:
 			g_bUnknownCasts = true;	// 詠唱時間など未計測フラグ
 			n_Enekyori = 1;			// 遠距離フラグ
@@ -4596,6 +4599,9 @@ g_bDefinedDamageIntervals = true;
 			wbairitu *= n_A_BaseLV / 100;										// BaseLv補正
 			break;
 
+		/**
+		 * 「蜃気楼　不知火」スキル「風魔手裏剣 -構築-」
+		 */
 		case SKILL_ID_FUMASHURIKEN_KOUCHIKU:
 			g_bUnknownCasts = true;	// 詠唱時間など未計測フラグ
 			n_Enekyori = 1;			// 遠距離フラグ
@@ -4784,7 +4790,7 @@ g_bDefinedDamageIntervals = true;
 		case SKILL_ID_HASTY_FIRE_IN_THE_HOLE:
 			/*
 				実際には
-			    指定セルの周辺5x5セルに2hit → 0.3秒後さらに2hit → 0.3秒後さらに2hit 
+			    指定セルの周辺5x5セルに2hit → 0.3秒後さらに2hit → 0.3秒後さらに2hit
 				なのでいまのダメージの表示方法は厳密ではないかもしれない
 			 */
 			n_Enekyori = 1;	// 遠距離フラグ
@@ -6540,7 +6546,7 @@ g_bDefinedDamageIntervals = true;
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
-							
+
 
 		case SKILL_ID_DEATH_BOUND:
 			if(n_DEATH_BOUND[3] == 0){
@@ -8829,7 +8835,7 @@ g_bDefinedDamageIntervals = true;
 				// 属性未定義の場合
 				n_A_Weapon_zokusei = ELM_ID_VANITY;
 			} else {
-				n_A_Weapon_zokusei = attackMethodConfArray[0].GetOptionValue(1); 
+				n_A_Weapon_zokusei = attackMethodConfArray[0].GetOptionValue(1);
 			};
 
 //			wbairitu = 700;		// 旧仕様
@@ -10434,7 +10440,7 @@ g_bUnknownCasts = true;
 				// 属性未定義の場合
 				n_A_Weapon_zokusei = ELM_ID_VANITY;
 			} else {
-				n_A_Weapon_zokusei = attackMethodConfArray[0].GetOptionValue(0); 
+				n_A_Weapon_zokusei = attackMethodConfArray[0].GetOptionValue(0);
 			};
 			if (UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0 || UsedSkillSearch(SKILL_ID_NYANTOMO_KENROKU) > 0) {
 				// 基礎倍率
@@ -10473,7 +10479,7 @@ g_bUnknownCasts = true;
 				// 属性未定義の場合
 				n_A_Weapon_zokusei = ELM_ID_VANITY;
 			} else {
-				n_A_Weapon_zokusei = attackMethodConfArray[0].GetOptionValue(0); 
+				n_A_Weapon_zokusei = attackMethodConfArray[0].GetOptionValue(0);
 			};
 			if (UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0 || UsedSkillSearch(SKILL_ID_NYANTOMO_KENROKU) > 0) {
 				// 基礎倍率
@@ -10491,6 +10497,113 @@ g_bUnknownCasts = true;
 			// ベースレベル補正
 			wbairitu *= n_A_BaseLV / 100;
 			wbairitu = ROUNDDOWN(wbairitu);
+			break;
+
+		/**
+		 * 「蜃気楼　不知火」スキル「赤炎砲」
+		 */
+		case SKILL_ID_SEKIEN_HOU:
+			// CSkillManager.js で定義された詠唱時間などを取得する
+			g_bUnknownCasts = true;	// 詠唱時間など未計測フラグ
+			/*
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			*/
+			wbairitu = 2500 + 200 * n_A_ActiveSkillLV;				// 基本倍率
+			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// spl補正
+			wbairitu += 200 * UsedSkillSearch(SKILL_ID_ANTEN_HOU_LEARNED_LEVEL)	// 習得済みスキル条件
+			wbairitu *= n_A_BaseLV / 100;							// BaseLv補正
+			break;
+
+		/**
+		 * 「蜃気楼　不知火」スキル「冷血砲」
+		 */
+		case SKILL_ID_REIKETSU_HOU:
+			// CSkillManager.js で定義された詠唱時間などを取得する
+			g_bUnknownCasts = true;	// 詠唱時間など未計測フラグ
+			/*
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			*/
+			wbairitu = 2500 + 200 * n_A_ActiveSkillLV;				// 基本倍率
+			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// spl補正
+			wbairitu += 200 * UsedSkillSearch(SKILL_ID_ANTEN_HOU_LEARNED_LEVEL)	// 習得済みスキル条件
+			wbairitu *= n_A_BaseLV / 100;							// BaseLv補正
+			break;
+
+		/**
+		 * 「蜃気楼　不知火」スキル「雷電砲」
+		 */
+		case SKILL_ID_RAIDEN_HOU:
+			// CSkillManager.js で定義された詠唱時間などを取得する
+			g_bUnknownCasts = true;	// 詠唱時間など未計測フラグ
+			/*
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			*/
+			wbairitu = 2500 + 200 * n_A_ActiveSkillLV;				// 基本倍率
+			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// spl補正
+			wbairitu += 200 * UsedSkillSearch(SKILL_ID_ANTEN_HOU_LEARNED_LEVEL)	// 習得済みスキル条件
+			wbairitu *= n_A_BaseLV / 100;							// BaseLv補正
+			break;
+
+		/**
+		 * 「蜃気楼　不知火」スキル「金龍砲」
+		 */
+		case SKILL_ID_KINNRYUU_HOU:
+			// CSkillManager.js で定義された詠唱時間などを取得する
+			g_bUnknownCasts = true;	// 詠唱時間など未計測フラグ
+			/*
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			*/
+			wbairitu = 2500 + 200 * n_A_ActiveSkillLV;				// 基本倍率
+			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// spl補正
+			wbairitu += 200 * UsedSkillSearch(SKILL_ID_ANTEN_HOU_LEARNED_LEVEL)	// 習得済みスキル条件
+			wbairitu *= n_A_BaseLV / 100;							// BaseLv補正
+			break;
+
+		/**
+		 * 「蜃気楼　不知火」スキル「暗転砲」
+		 */
+		case SKILL_ID_ANTEN_HOU:
+			// CSkillManager.js で定義された詠唱時間などを取得する
+			g_bUnknownCasts = true;	// 詠唱時間など未計測フラグ
+			/*
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			*/
+			wbairitu = 4000 + 500 * n_A_ActiveSkillLV;				// 基本倍率
+			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// spl補正
+			wbairitu *= n_A_BaseLV / 100;							// BaseLv補正
+			break;
+
+		/**
+		 * 「蜃気楼　不知火」スキル「幻術 -暗黒龍-」
+		 *  TODO: 闇と火の複合属性なので共通処理ではカバーしきれない。後日、個別処理に移動すること
+		 */
+		case SKILL_ID_GENZYUTSU_ANKOKURYUU:
+			// CSkillManager.js で定義された詠唱時間などを取得する
+			g_bUnknownCasts = true;	// 詠唱時間など未計測フラグ
+			/*
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			*/
+			wbairitu = 11000;										// 基本倍率
+			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// spl補正
+			wbairitu *= n_A_BaseLV / 100;							// BaseLv補正
 			break;
 
 /*
@@ -17637,7 +17750,7 @@ function Skill3SW_2(){
 function Click_A3(n){
 	//if(n==1) calc();
 	if(n==1) AutoCalc();
-	
+
 	var sw=0;
 	for(var i=0;i <n_A_PassSkill3.length;i++){
 		if(n_A_PassSkill3[i] != 0){
@@ -17763,7 +17876,7 @@ function Click_Skill4SW(){
 function Click_A4(n){
 	//if(n==1) calc();
 	if(n==1) AutoCalc();
-	
+
 	var sw=0;
 	for(var i=0;i <n_A_PassSkill4.length;i++) if(n_A_PassSkill4[i] != 0){
 		sw = 1;
@@ -18201,7 +18314,7 @@ function Click_Food_Off(){
 function Click_A7(n){
 	//if(n==1) calc();
 	if(n==1) AutoCalc();
-	
+
 	var sw=0;
 	for(var i=0;i <n_A_PassSkill7.length;i++) if(n_A_PassSkill7[i] != 0){
 		sw = 1;
@@ -19055,7 +19168,7 @@ function GetIkariPow(mobData) {
 
 /**
  * 各種パラメータ変更時の自動計算機能
- * 
+ *
  */
 function AutoCalc() {
 	// 自動設定が有効の場合のみ、再計算する
@@ -26685,9 +26798,9 @@ function ApplyAttackDamageAmplify(mobData, dmg){
 			dmg = Math.floor(dmg / 10);
 			break;
 
-		/** 
+		/**
 		 * 以下のエリア設定は殆ど利用されないと思いますが
-		 * 消したときの影響が確認できていないため残しておきます 
+		 * 消したときの影響が確認できていないため残しておきます
 		 * */
 
 		// YE蜃気楼の場合
@@ -26859,9 +26972,9 @@ function ApplyReceiveDamageAmplify(mobData, dmg) {
 			dmg = Math.floor(dmg / 10);
 			break;
 
-		/** 
+		/**
 		 * 以下のエリア設定は利用する場面が存在しないはずですが
-		 * 消したときの影響が確認できていないため残しておきます 
+		 * 消したときの影響が確認できていないため残しておきます
 		 * */
 
 		// YE蜃気楼の場合

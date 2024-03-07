@@ -435,8 +435,6 @@ function StoreSpecStatusBonusAll(valPOW, valSTA, valWIS, valSPL, valCON, valCRT)
 
 	var value = 0;
 
-
-
 	// とりあえず、グローバル空間を汚す
 	g_bonusStatus = [];
 	g_bonusStatus[MIG_PARAM_ID_POW] = valPOW;
@@ -445,8 +443,6 @@ function StoreSpecStatusBonusAll(valPOW, valSTA, valWIS, valSPL, valCON, valCRT)
 	g_bonusStatus[MIG_PARAM_ID_SPL] = valSPL;
 	g_bonusStatus[MIG_PARAM_ID_CON] = valCON;
 	g_bonusStatus[MIG_PARAM_ID_CRT] = valCRT;
-
-
 
 	return [
 		g_bonusStatus[MIG_PARAM_ID_POW],
@@ -458,11 +454,14 @@ function StoreSpecStatusBonusAll(valPOW, valSTA, valWIS, valSPL, valCON, valCRT)
 	];
 }
 
+/**
+ * 特性ステータスの基本＋ボーナスの合計値を取得する
+ * @param {*} paramId MIG_PARAM_ID_{POW|STA|WIS|SPL|CON|CRT}
+ * @returns 
+ */
 function GetTotalSpecStatus(paramId) {
 
 	var value = 0;
-
-
 
 	// 基礎値
 	switch (paramId) {
@@ -474,8 +473,6 @@ function GetTotalSpecStatus(paramId) {
 	case MIG_PARAM_ID_CRT:
 		value += g_pureStatus[paramId] + g_bonusStatus[paramId];
 	}
-
-
 
 	return value;
 }
