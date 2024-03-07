@@ -153,7 +153,9 @@ $(function () {
     }
 
     #imgdiv div#cp {
-      margin-bottom: 1rem;
+      position: absolute;
+      top: 570px;
+      left:200px;
     }
     </style>
     <div id="imgframe">
@@ -285,11 +287,6 @@ $(function () {
     </div>
 
     <div id="equip">
-      <div id="cp">
-        <div>© Gravity Co., Ltd. & Lee MyoungJin(studio DTDS). All rights reserved.</div>
-        <div>© GungHo Online Entertainment, Inc. All Rights Reserved.</div>
-        <div>当コンテンツの再利用（再転載・配布など）は、禁止しています。</div>
-      </div>
       <strong>== 装備一覧 ==</strong> (※ランダムオプションや補助装備を除く)
       <dl>
         <dt>【兜上段】</dt>
@@ -313,6 +310,13 @@ $(function () {
         <dt>【アクセサリー(2)】</dt>
         <dd class="ench${ench_count("#OBJID_ACCESSARY_2")}">${equip("#OBJID_ACCESSARY_2")}</dd>
       </dl>
+
+      <div id="cp">
+        <div>© Gravity Co., Ltd. & Lee MyoungJin(studio DTDS). All rights reserved.</div>
+        <div>© GungHo Online Entertainment, Inc. All Rights Reserved.</div>
+        <div>当コンテンツの再利用（再転載・配布など）は、禁止しています。</div>
+      </div>
+
     </div>
     `;
     div = $("<div>", {
