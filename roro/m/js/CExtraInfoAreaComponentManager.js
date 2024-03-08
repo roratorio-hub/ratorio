@@ -22,6 +22,7 @@ CGlobalConstManager.DefineEnum(
 		"EXTRA_INFO_ID_CAST_AND_DELAY",
 		"EXTRA_INFO_ID_EXP",
 		"EXTRA_INFO_ID_STATUS_SUM",
+		"EXTRA_INFO_ID_ALCHEMIST",
 		"EXTRA_INFO_ID_PVP_INFO",
 		"EXTRA_INFO_ID_EFFECTIVE_SP",
 	],
@@ -107,6 +108,9 @@ function GetExtraInfoText(infoId) {
 
 	case EXTRA_INFO_ID_STATUS_SUM:
 		return "純粋なステータス合計";
+	
+	case EXTRA_INFO_ID_ALCHEMIST:
+		return "製薬ステータス";
 
 	case EXTRA_INFO_ID_PVP_INFO:
 		return "対人情報";
@@ -259,6 +263,7 @@ function CExtraInfoAreaComponentManager () {
 			EXTRA_INFO_ID_CAST_AND_DELAY,
 			EXTRA_INFO_ID_EXP,
 			EXTRA_INFO_ID_STATUS_SUM,
+			EXTRA_INFO_ID_ALCHEMIST,
 		];
 
 
@@ -409,6 +414,10 @@ function CExtraInfoAreaComponentManager () {
 		case EXTRA_INFO_ID_STATUS_SUM:
 			this.RebuildDispAreaStatusSum();
 			break;
+		
+		case EXTRA_INFO_ID_ALCHEMIST:
+			this.RebuildDispAreaAlchemist();
+			break;
 
 		case EXTRA_INFO_ID_PVP_INFO:
 			this.RebuildDispAreaPvPInfo();
@@ -488,6 +497,10 @@ function CExtraInfoAreaComponentManager () {
 
 		case EXTRA_INFO_ID_STATUS_SUM:
 			this.RefreshDispAreaStatusSum();
+			break;
+		
+		case EXTRA_INFO_ID_ALCHEMIST:
+			this.RefreshDispAreaAlchemist();
 			break;
 
 		case EXTRA_INFO_ID_PVP_INFO:
@@ -5429,11 +5442,52 @@ else {
 	};
 
 
+	/**
+	 * 拡張情報の表示欄を構築する（製薬ステータス）.
+	 */
+	this.RebuildDispAreaAlchemist = function () {
+
+		var idx = 0;
+		var objRoot = null;
+		var objTable = null;
+		var objTbody = null;
+		var objSpan = null;
+		var objTr = null;
+		var objTd = null;
+		var stat = 0;
+
+		// 指定の領域をクリア
+		objRoot = document.getElementById("OBJID_TD_EXTRA_INFO_" + this.managerInstanceId);
+		HtmlRemoveAllChild(objRoot);
+
+		// 共通部分
+		objTable = HtmlCreateElement("table", objRoot);
+		objTable.setAttribute("style", "width : 100%;");
+		objTbody = HtmlCreateElement("tbody", objTable);
+
+		// 製薬ステータス
+		objTr = HtmlCreateElement("tr", objTbody);
+		objTd = HtmlCreateElement("td", objTr);
+		HtmlCreateTextSpan("DEX+LUK+INT/2：", objTd, CExtraInfoAreaComponentManager.fontSizeClassName);
+		objTd = HtmlCreateElement("td", objTr);
+		stat = n_A_DEX + n_A_LUK + n_A_INT / 2;
+		objSpan = HtmlCreateElement("span", objTd);
+		if (stat >= 560) {
+			objSpan.setAttribute("class", "CSSCLS_EXTRA_INFO_DISP_TABLE_BLUE");
+			stat += " (>=560)"
+		} else {
+			stat += " (<560)"
+		}
+		HtmlCreateTextSpan(stat, objSpan, CExtraInfoAreaComponentManager.fontSizeClassName);
+	};
 
 
+	/**
+	 * 拡張情報の表示欄を更新する（製薬ステータス）.
+	 */
+	this.RefreshDispAreaAlchemist = function () {
 
-
-
+	};
 
 	//--------------------------------------------------------------------------------
 	// 各拡張情報ごとの表示欄構築関数ここまで
