@@ -5451,8 +5451,10 @@ else {
 		var objRoot = null;
 		var objTable = null;
 		var objTbody = null;
+		var objSpan = null;
 		var objTr = null;
 		var objTd = null;
+		var stat = 0;
 
 		// 指定の領域をクリア
 		objRoot = document.getElementById("OBJID_TD_EXTRA_INFO_" + this.managerInstanceId);
@@ -5468,9 +5470,15 @@ else {
 		objTd = HtmlCreateElement("td", objTr);
 		HtmlCreateTextSpan("DEX+LUK+INT/2：", objTd, CExtraInfoAreaComponentManager.fontSizeClassName);
 		objTd = HtmlCreateElement("td", objTr);
-		var stat = n_A_DEX + n_A_LUK + n_A_INT / 2;
-		stat = stat >= 650 ? stat + " (≧650)" : stat + " (<650)";
-		HtmlCreateTextSpan(stat, objTd, CExtraInfoAreaComponentManager.fontSizeClassName);
+		stat = n_A_DEX + n_A_LUK + n_A_INT / 2;
+		objSpan = HtmlCreateElement("span", objTd);
+		if (stat >= 560) {
+			objSpan.setAttribute("class", "CSSCLS_EXTRA_INFO_DISP_TABLE_BLUE");
+			stat += " (>=560)"
+		} else {
+			stat += " (<560)"
+		}
+		HtmlCreateTextSpan(stat, objSpan, CExtraInfoAreaComponentManager.fontSizeClassName);
 	};
 
 
