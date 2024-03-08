@@ -64,7 +64,7 @@ RACE_ID = {
 	"悪魔":6,    
 	"人間":7,    
 	"天使":8,    
-	"竜":9,          
+	"竜族":9,          
 }
 SIZE_ID = {
 	"小":0,
@@ -73,7 +73,7 @@ SIZE_ID = {
 }
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
-csv_file_path = f"{script_dir}/clock_01.csv"
+csv_file_path = f"{script_dir}/monster.csv"
 
 ID = getLatestMonsterId()
 kks = kakasi()
