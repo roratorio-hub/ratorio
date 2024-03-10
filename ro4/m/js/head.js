@@ -17339,9 +17339,11 @@ function Click_A1(n){
 
 	var end = passiveSkillIdArray.length;
 
-	for(var i=0;i <end;i++) if(n_A_PassSkill[i] != 0){
-		sw = 1;
-		break;
+	for(var i=0;i <end;i++){
+		if(n_A_PassSkill[i] != 0){
+			sw = 1;
+			break;
+		}
 	}
 	if(sw == 0){
 		document.getElementById('A1TD').style.backgroundColor = "#DDDDFF";
@@ -17487,7 +17489,9 @@ function Click_Skill3SW(){
 
 
 
-
+/**
+ * 演奏/踊り系スキルの変更を変数に反映する
+ */
 function Skill3SW_2(){
 	with(document.calcForm){
 		n_A_PassSkill3[0] = eval(A3_Skill0_1.value);
@@ -17770,7 +17774,9 @@ function Click_A3(n){
 
 
 
-
+/**
+ * ギルドスキル/ゴスペル/他　を構築する
+ */
 function Click_Skill4SW(){
 	with(document.calcForm){
 		n_Skill4SW = A4_SKILLSW.checked;
@@ -17793,18 +17799,18 @@ function Click_Skill4SW(){
 			name_CS4SW_SKILL = ["臨戦体勢","偉大なる指導力","栄光の傷","冷静な心","鋭い視線","ステータスALL+20","HP+100%","SP+100%","ATK+100%","HIT+50＆FLEE+50","被ダメージ半減"];
 			html_CS4SW_SKILL = new Array();
 			for(i=0;i<=10;i++) myInnerHtml("EN4"+i+"_1",name_CS4SW_SKILL[i],0);
-			html_CS4SW_SKILL[0] = '<input type="checkbox" name="A4_Skill0"onClick="Click_A4(1)">';
-			html_CS4SW_SKILL[1] = '<select name="A4_Skill1"onChange="Click_A4(1)"></select>';
-			html_CS4SW_SKILL[2] = '<select name="A4_Skill2"onChange="Click_A4(1)"></select>';
-			html_CS4SW_SKILL[3] = '<select name="A4_Skill3"onChange="Click_A4(1)"></select>';
-			html_CS4SW_SKILL[4] = '<select name="A4_Skill4"onChange="Click_A4(1)"></select>';
-			html_CS4SW_SKILL[5] = '<input type="checkbox" name="A4_Skill5"onClick="Click_A4(1)">';
-			html_CS4SW_SKILL[6] = '<input type="checkbox" name="A4_Skill6"onClick="Click_A4(1)">';
-			html_CS4SW_SKILL[7] = '<input type="checkbox" name="A4_Skill7"onClick="Click_A4(1)">';
-			html_CS4SW_SKILL[8] = '<input type="checkbox" name="A4_Skill8"onClick="Click_A4(1)">';
-			html_CS4SW_SKILL[9] = '<input type="checkbox" name="A4_Skill9"onClick="Click_A4(1)">';
-			html_CS4SW_SKILL[10] = '<input type="checkbox" name="A4_Skill10"onClick="Click_A4(1)">';
-			html_CS4SW_SKILL[11] = '<select name="A4_Skill11"onChange="Click_A4(1)"></select>';
+			html_CS4SW_SKILL[0] = '<input type="checkbox" name="A4_Skill0"onClick="StAllCalc() | Click_A4(1)">';
+			html_CS4SW_SKILL[1] = '<select name="A4_Skill1"onChange="StAllCalc() | Click_A4(1)"></select>';
+			html_CS4SW_SKILL[2] = '<select name="A4_Skill2"onChange="StAllCalc() | Click_A4(1)"></select>';
+			html_CS4SW_SKILL[3] = '<select name="A4_Skill3"onChange="StAllCalc() | Click_A4(1)"></select>';
+			html_CS4SW_SKILL[4] = '<select name="A4_Skill4"onChange="StAllCalc() | Click_A4(1)"></select>';
+			html_CS4SW_SKILL[5] = '<input type="checkbox" name="A4_Skill5"onClick="StAllCalc() | Click_A4(1)">';
+			html_CS4SW_SKILL[6] = '<input type="checkbox" name="A4_Skill6"onClick="StAllCalc() | Click_A4(1)">';
+			html_CS4SW_SKILL[7] = '<input type="checkbox" name="A4_Skill7"onClick="StAllCalc() | Click_A4(1)">';
+			html_CS4SW_SKILL[8] = '<input type="checkbox" name="A4_Skill8"onClick="StAllCalc() | Click_A4(1)">';
+			html_CS4SW_SKILL[9] = '<input type="checkbox" name="A4_Skill9"onClick="StAllCalc() | Click_A4(1)">';
+			html_CS4SW_SKILL[10] = '<input type="checkbox" name="A4_Skill10"onClick="StAllCalc() | Click_A4(1)">';
+			html_CS4SW_SKILL[11] = '<select name="A4_Skill11"onChange="StAllCalc() | Click_A4(1)"></select>';
 			for(i=0;i<=11;i++) myInnerHtml("EN4"+i+"_2",html_CS4SW_SKILL[i],0);
 			myInnerHtml("EN430_1","STR",0);
 			myInnerHtml("EN431_1","AGI",0);
@@ -17812,12 +17818,12 @@ function Click_Skill4SW(){
 			myInnerHtml("EN433_1","INT",0);
 			myInnerHtml("EN434_1","DEX",0);
 			myInnerHtml("EN435_1","LUK",0);
-			html_CS4SW_SKILL[30] = '<select name="A4_Skill30"onChange="Click_A4(1)"></select>';
-			html_CS4SW_SKILL[31] = '<select name="A4_Skill31"onChange="Click_A4(1)"></select>';
-			html_CS4SW_SKILL[32] = '<select name="A4_Skill32"onChange="Click_A4(1)"></select>';
-			html_CS4SW_SKILL[33] = '<select name="A4_Skill33"onChange="Click_A4(1)"></select>';
-			html_CS4SW_SKILL[34] = '<select name="A4_Skill34"onChange="Click_A4(1)"></select>';
-			html_CS4SW_SKILL[35] = '<select name="A4_Skill35"onChange="Click_A4(1)"></select>';
+			html_CS4SW_SKILL[30] = '<select name="A4_Skill30"onChange="StAllCalc() | Click_A4(1)"></select>';
+			html_CS4SW_SKILL[31] = '<select name="A4_Skill31"onChange="StAllCalc() | Click_A4(1)"></select>';
+			html_CS4SW_SKILL[32] = '<select name="A4_Skill32"onChange="StAllCalc() | Click_A4(1)"></select>';
+			html_CS4SW_SKILL[33] = '<select name="A4_Skill33"onChange="StAllCalc() | Click_A4(1)"></select>';
+			html_CS4SW_SKILL[34] = '<select name="A4_Skill34"onChange="StAllCalc() | Click_A4(1)"></select>';
+			html_CS4SW_SKILL[35] = '<select name="A4_Skill35"onChange="StAllCalc() | Click_A4(1)"></select>';
 			for(i=30;i<=35;i++) myInnerHtml("EN4"+i+"_2",html_CS4SW_SKILL[i],0);
 			for(i=0;i<=5;i++){
 				A4_Skill1.options[i] = new Option(i,i);
@@ -17875,9 +17881,11 @@ function Click_A4(n){
 	if(n==1) AutoCalc("Click_A4");
 
 	var sw=0;
-	for(var i=0;i <n_A_PassSkill4.length;i++) if(n_A_PassSkill4[i] != 0){
-		sw = 1;
-		break;
+	for(var i=0;i <n_A_PassSkill4.length;i++) {
+		if(n_A_PassSkill4[i] != 0){
+			sw = 1;
+			break;
+		}
 	}
 	if(sw == 0){
 		document.getElementById('A4TD').style.backgroundColor = "#DDDDFF";
@@ -18056,7 +18064,7 @@ function Click_Skill7SW(){
 
 				objSelect = HtmlCreateElement("select", objTd);
 				objSelect.setAttribute("name", "A7_Skill" + subInfoArray[idxKind][0]);
-				objSelect.setAttribute("onchange", "Click_A7(1)");
+				objSelect.setAttribute("onchange", "StAllCalc() | Click_A7(1)");
 
 				HtmlCreateElementOption(0, subInfoArray[idxKind][1] + "+食品", objSelect);
 				for (idxValue = 1; idxValue <= 10; idxValue++) {
@@ -18072,7 +18080,7 @@ function Click_Skill7SW(){
 			objInput.setAttribute("type", "button");
 			objInput.setAttribute("id", "FOODOFF");
 			objInput.setAttribute("value", "全解除");
-			objInput.setAttribute("onclick", "Click_Food_Off()");
+			objInput.setAttribute("onclick", "Click_Food_Off() | StAllCalc()");
 
 			HtmlCreateTextNode(" ", objTd);
 
@@ -18080,7 +18088,7 @@ function Click_Skill7SW(){
 			objInput.setAttribute("type", "button");
 			objInput.setAttribute("name", "NETCAFE3");
 			objInput.setAttribute("value", "ALL＋10");
-			objInput.setAttribute("onclick", "Click_NetCafe3()");
+			objInput.setAttribute("onclick", "Click_NetCafe3() | StAllCalc()");
 
 			HtmlCreateElement("br", objTd);
 
@@ -18098,7 +18106,7 @@ function Click_Skill7SW(){
 			objInput.setAttribute("type", "checkbox");
 			objInput.setAttribute("id", "OBJID_CHECK_A7_Skill15");
 			objInput.setAttribute("name", "A7_Skill15");
-			objInput.setAttribute("onclick", "Click_A7(1)|CAttackMethodAreaComponentManager.RebuildControls()");
+			objInput.setAttribute("onclick", "StAllCalc() | Click_A7(1) | CAttackMethodAreaComponentManager.RebuildControls()");
 
 			objLabel = HtmlCreateElement("label", objTd);
 			objLabel.setAttribute("for", "OBJID_CHECK_A7_Skill15");
@@ -18129,7 +18137,7 @@ function Click_Skill7SW(){
 				objInput.setAttribute("type", "checkbox");
 				objInput.setAttribute("id", "OBJID_CHECK_A7_Skill" + subInfoArray[idxKind][0]);
 				objInput.setAttribute("name", "A7_Skill" + subInfoArray[idxKind][0]);
-				objInput.setAttribute("onclick", "Click_A7(1)");
+				objInput.setAttribute("onclick", "StAllCalc() | Click_A7(1)");
 
 				objLabel = HtmlCreateElement("label", objTd);
 				objLabel.setAttribute("for", "OBJID_CHECK_A7_Skill" + subInfoArray[idxKind][0]);
@@ -18165,7 +18173,7 @@ function Click_Skill7SW(){
 				objInput.setAttribute("type", "checkbox");
 				objInput.setAttribute("id", "OBJID_CHECK_A7_Skill" + buildInfo[0]);
 				objInput.setAttribute("name", "A7_Skill" + buildInfo[0]);
-				objInput.setAttribute("onclick", "Click_A7(1)");
+				objInput.setAttribute("onclick", "StAllCalc() | Click_A7(1)");
 
 				objLabel = HtmlCreateElement("label", objTd);
 				objLabel.setAttribute("for", "OBJID_CHECK_A7_Skill" + buildInfo[0]);
@@ -18185,7 +18193,7 @@ function Click_Skill7SW(){
 
 				objSelect = HtmlCreateElement("select", objTd);
 				objSelect.setAttribute("name", "A7_Skill" + buildInfo[0]);
-				objSelect.setAttribute("onchange", "Click_A7(1)");
+				objSelect.setAttribute("onchange", "StAllCalc() | Click_A7(1)");
 
 				for (idxValue = 0; idxValue < buildInfo[2].length; idxValue++) {
 					HtmlCreateElementOption(idxValue, buildInfo[2][idxValue], objSelect);
@@ -18209,7 +18217,7 @@ function Click_Skill7SW(){
 
 		objSelect = HtmlCreateElement("select", objTd);
 		objSelect.setAttribute("name", "A7_Skill" + subInfoArray[idxKind][0]);
-		objSelect.setAttribute("onchange", "Click_A7(1)");
+		objSelect.setAttribute("onchange", "StAllCalc() | Click_A7(1)");
 
 		HtmlCreateElementOption(0, "期間限定系[" + subInfoArray[idxKind][1] + "] なし", objSelect);
 		for (idxValue = 1; idxValue <= 50; idxValue++) {
@@ -18312,9 +18320,11 @@ function Click_A7(n){
 	if(n==1) AutoCalc("Click_A7");
 
 	var sw=0;
-	for(var i=0;i <n_A_PassSkill7.length;i++) if(n_A_PassSkill7[i] != 0){
-		sw = 1;
-		break;
+	for(var i=0;i <n_A_PassSkill7.length;i++){
+		if(n_A_PassSkill7[i] != 0){
+			sw = 1;
+			break;
+		}
 	}
 	if(sw == 0){
 		document.getElementById('A7TD').style.backgroundColor = "#DDDDFF";
@@ -18380,7 +18390,7 @@ function Click_Skill8SW(){
 		if(n_Skill8SW){
 			var str;
 			str = '<TABLE Border><TR><TD id="A8TD" Colspan="2" class="title"><input id="OBJID_CHECK_A8_SKILLSW" type="checkbox" name="A8_SKILLSW"onClick="Click_Skill8SW()"><label for="OBJID_CHECK_A8_SKILLSW">その他の支援/設定 (暫定追加機能)</label><SPAN id="A8used"></SPAN></TD></TR>';
-			str += '<TR><TD>ペット：<select id="OBJID_SELECT_PET" name="A8_Skill0" onchange="OnChangePetSelect()"></select></TD><TD>親密度：<select id="OBJID_SELECT_PET_FRIENDLITY" name="A8_Skill17" onChange="Click_A8(1)"></select></TD></TR>';
+			str += '<TR><TD>ペット：<select id="OBJID_SELECT_PET" name="A8_Skill0" onchange="StAllCalc() | OnChangePetSelect()"></select></TD><TD>親密度：<select id="OBJID_SELECT_PET_FRIENDLITY" name="A8_Skill17" onChange="StAllCalc() | Click_A8(1)"></select></TD></TR>';
 			str += '<TR><TD colspan="2"><SPAN id="OBJID_SPAN_PET_EXPLAIN"></SPAN></TD></TR>';
 			str += '<TR><TD id="EN801"></TD><TD id="EN802"></TD></TR>';
 			str += '<TR><TD id="EN803"></TD><TD id="EN804"></TD></TR>';
@@ -18432,82 +18442,82 @@ function Click_Skill8SW(){
 
 
 
-			myInnerHtml("EN801",'戦闘教範系<select name="A8_Skill1" onChange="Click_A8(1)"></select>',0);
+			myInnerHtml("EN801",'戦闘教範系<select name="A8_Skill1" onChange="StAllCalc() | Click_A8(1)"></select>',0);
 			var w_name=["なし","25","50","75","100","(125)","(150)"];
 			for(i=0;i<=6;i++) A8_Skill1.options[i] = new Option(w_name[i],i);
-			myInnerHtml("EN802",'Job教範系<select name="A8_Skill2" onChange="Click_A8(1)"></select>',0);
+			myInnerHtml("EN802",'Job教範系<select name="A8_Skill2" onChange="StAllCalc() | Click_A8(1)"></select>',0);
 			var w_name=["なし","50","(75)","(100)"];
 			for(i=0;i<=3;i++) A8_Skill2.options[i] = new Option(w_name[i],i);
-			myInnerHtml("EN803",'ネットカフェ経験値UP<select name="A8_Skill3" onChange="Click_A8(1)"></select>',0);
+			myInnerHtml("EN803",'ネットカフェ経験値UP<select name="A8_Skill3" onChange="StAllCalc() | Click_A8(1)"></select>',0);
 			A8_Skill3.options[0] = new Option("-",0);
 			for(i=1;i<=2;i++){
 				var wy = 50 * i;
 				var wx = (100 + wy) / 100;
 				A8_Skill3.options[i] = new Option("+"+ wy +"%("+ wx +"倍)",i);
 			}
-			myInnerHtml("EN804",'経験値増加キャンペーン<select name="A8_Skill7" onChange="Click_A8(1)"></select>',0);
+			myInnerHtml("EN804",'経験値増加キャンペーン<select name="A8_Skill7" onChange="StAllCalc() | Click_A8(1)"></select>',0);
 			A8_Skill7.options[0] = new Option("-",0);
 			for(i=1;i<=8;i++){
 				var wy = 25 * i;
 				var wx = (100 + wy) / 100;
 				A8_Skill7.options[i] = new Option(wx+"倍(+"+(25*i)+"%)",i);
 			}
-			myInnerHtml("EN822",'OTP<select name="A8_Skill22" onChange="Click_A8(1)"></select>',0);
+			myInnerHtml("EN822",'OTP<select name="A8_Skill22" onChange="StAllCalc() | Click_A8(1)"></select>',0);
 			A8_Skill22.options[0] = new Option("ログインボーナスなし",0);
 			A8_Skill22.options[1] = new Option("ブロンズ(Exp+5%)",1);
 			A8_Skill22.options[2] = new Option("シルバー(↑＋スピードポーション)",2);
 			A8_Skill22.options[3] = new Option("ゴールド(↑＋Hit+10/Flee+10)",3);
 			A8_Skill22.options[4] = new Option("レインボー(↑＋MaxHP+20%/MaxSP+20%)",4);
 			myInnerHtml("EN823",'←ジョンダパスはOTPレインボーです',0);
-			myInnerHtml("EN805",'公平PT人数<select name="A8_Skill5" onChange="Click_A8(1)"></select>',0);
+			myInnerHtml("EN805",'公平PT人数<select name="A8_Skill5" onChange="StAllCalc() | Click_A8(1)"></select>',0);
 			A8_Skill5.options[0] = new Option("-",0);
 			for(i=1;i<=11;i++) A8_Skill5.options[i] = new Option((i+1)+"人",i);
-			myInnerHtml("EN806",'共闘ボーナス<select name="A8_Skill6" onChange="Click_A8(1)"></select>',0);
+			myInnerHtml("EN806",'共闘ボーナス<select name="A8_Skill6" onChange="StAllCalc() | Click_A8(1)"></select>',0);
 			A8_Skill6.options[0] = new Option("-",0);
 			for(i=1;i<=20;i++) A8_Skill6.options[i] = new Option("+"+ (i*25) +"%",i);
-			myInnerHtml("EN821",'討伐クエストのExpを加算(1匹あたりの値)<select name="A8_Skill21" disabled="disabled" onChange="Click_A8(1)"></select>',0);
+			myInnerHtml("EN821",'討伐クエストのExpを加算(1匹あたりの値)<select name="A8_Skill21" disabled="disabled" onChange="StAllCalc() | Click_A8(1)"></select>',0);
 			A8_Skill21.options[0] = new Option("-",0);
 			A8_Skill21.options[1] = new Option("BaseExpで受け取る",1);
 			A8_Skill21.options[2] = new Option("JobExpで受け取る",2);
-			myInnerHtml("EN807",'<input id="OBJID_CHECK_A8_Skill4" type="checkbox" name="A8_Skill4"onClick="Click_A8(1)"><label for="OBJID_CHECK_A8_Skill4">結婚スパノビステータスALL+1付与</label>',0);
-			myInnerHtml("EN808",'<input id="OBJID_CHECK_A8_Skill13" type="checkbox" name="A8_Skill13"onClick="Click_A8(1)||RebuildStatusSelect()||CalcStatusPoint(true)"><label for="OBJID_CHECK_A8_Skill13">養子状態にする</label>',0);
+			myInnerHtml("EN807",'<input id="OBJID_CHECK_A8_Skill4" type="checkbox" name="A8_Skill4"onClick="StAllCalc() | Click_A8(1)"><label for="OBJID_CHECK_A8_Skill4">結婚スパノビステータスALL+1付与</label>',0);
+			myInnerHtml("EN808",'<input id="OBJID_CHECK_A8_Skill13" type="checkbox" name="A8_Skill13"onClick="StAllCalc() | Click_A8(1)||RebuildStatusSelect()||CalcStatusPoint(true)"><label for="OBJID_CHECK_A8_Skill13">養子状態にする</label>',0);
 
 			myInnerHtml("EN809",'<font size="2" color="red">（時限性補助効果の設定は、「アイテム時限効果」設定欄へ移動しました）</font><input type="button" value="設定欄を表示" onclick="CTimeItemAreaComponentManager.FocusArea(0, true)">',0);
 
-			myInnerHtml("EN810",'囲んでいる敵の数<select name="A8_Skill12" onChange="Click_A8(1)"></select>',0);
+			myInnerHtml("EN810",'囲んでいる敵の数<select name="A8_Skill12" onChange="StAllCalc() | Click_A8(1)"></select>',0);
 			for(i=0;i<=22;i++) A8_Skill12.options[i] = new Option(i + "匹",i);
 			myInnerHtml("EN812",'<Font size=2><B>攻城戦の設定は[対人プレイヤー設定]欄に移動</B></Font>',0);
-			myInnerHtml("EN813",'防衛値<select name="A8_Skill15" onChange="Click_A8(1)"></select><Font size=2>(攻城戦モード時のみ有効)</Font>',0);
+			myInnerHtml("EN813",'防衛値<select name="A8_Skill15" onChange="StAllCalc() | Click_A8(1)"></select><Font size=2>(攻城戦モード時のみ有効)</Font>',0);
 			A8_Skill15.options[0] = new Option("-",0);
 			for(i=1;i<=20;i++) A8_Skill15.options[i] = new Option(i * 5,i);
-			myInnerHtml("EN814",'<input id="OBJID_CHECK_A8_Skill16" type="checkbox" name="A8_Skill16"onClick="Click_A8(1)"><label for="OBJID_CHECK_A8_Skill16">クリティカル率を0にする</label>',0);
-			if(41 <= n_A_JOB && n_A_JOB <=43) myInnerHtml("EN819",'<input id="OBJID_CHECK_A8_Skill19" type="checkbox" name="A8_Skill19"onClick="Click_A8(1)"><label for="OBJID_CHECK_A8_Skill19"><Font size=2>暖かい風欄を他職からの武器属性付与にする<BR>　（素手Atk部分には武器属性付与が適用されない）</Font></label>',0);
-			else myInnerHtml("EN819",'<input id="OBJID_CHECK_A8_Skill19" type="checkbox" name="A8_Skill19"onClick="Click_A8(1)"><label for="OBJID_CHECK_A8_Skill19"><Font size=2>武器属性付与をアカデミーの看板型付与にする<BR>　（素手Atk部分にも武器属性付与が適用される）</Font></label>',0);
+			myInnerHtml("EN814",'<input id="OBJID_CHECK_A8_Skill16" type="checkbox" name="A8_Skill16"onClick="StAllCalc() | Click_A8(1)"><label for="OBJID_CHECK_A8_Skill16">クリティカル率を0にする</label>',0);
+			if(41 <= n_A_JOB && n_A_JOB <=43) myInnerHtml("EN819",'<input id="OBJID_CHECK_A8_Skill19" type="checkbox" name="A8_Skill19"onClick="StAllCalc() | Click_A8(1)"><label for="OBJID_CHECK_A8_Skill19"><Font size=2>暖かい風欄を他職からの武器属性付与にする<BR>　（素手Atk部分には武器属性付与が適用されない）</Font></label>',0);
+			else myInnerHtml("EN819",'<input id="OBJID_CHECK_A8_Skill19" type="checkbox" name="A8_Skill19"onClick="StAllCalc() | Click_A8(1)"><label for="OBJID_CHECK_A8_Skill19"><Font size=2>武器属性付与をアカデミーの看板型付与にする<BR>　（素手Atk部分にも武器属性付与が適用される）</Font></label>',0);
 
-			myInnerHtml("EN830",'クァグマイア<select name="A_IJYOU0" onChange="Click_A8(1)"></select>',0);
+			myInnerHtml("EN830",'クァグマイア<select name="A_IJYOU0" onChange="StAllCalc() | Click_A8(1)"></select>',0);
 			A_IJYOU0.options[0] = new Option("-",0);
 			for(i=1;i<=5;i++) A_IJYOU0.options[i] = new Option("Lv"+i+"(モンスターが使用)",i);
 			for(i=6;i<=10;i++) A_IJYOU0.options[i] = new Option("Lv"+(i-5)+"(プレイヤーが使用)",i);
 
-			myInnerHtml("EN831",'速度減少<select name="A_IJYOU1" onChange="Click_A8(1)"></select>',0);
+			myInnerHtml("EN831",'速度減少<select name="A_IJYOU1" onChange="StAllCalc() | Click_A8(1)"></select>',0);
 			A_IJYOU1.options[0] = new Option("-",0);
 			for(i=1;i<=10;i++) A_IJYOU1.options[i] = new Option("Lv"+i,i);
 			A_IJYOU1.options[11] = new Option("Lv46",46);
 			A_IJYOU1.options[12] = new Option("Lv48",48);
 
-			myInnerHtml("EN832",'<input id="OBJID_CHECK_A_IJYOU2" type="checkbox" name="A_IJYOU2"onClick="Click_A8(1)"><label for="OBJID_CHECK_A_IJYOU2">毒</label>',0);
+			myInnerHtml("EN832",'<input id="OBJID_CHECK_A_IJYOU2" type="checkbox" name="A_IJYOU2"onClick="StAllCalc() | Click_A8(1)"><label for="OBJID_CHECK_A_IJYOU2">毒</label>',0);
 
-			myInnerHtml("EN833",'<input id="OBJID_CHECK_A_IJYOU3" type="checkbox" name="A_IJYOU3"onClick="Click_A8(1)"><label for="OBJID_CHECK_A_IJYOU3">呪い</label>',0);
+			myInnerHtml("EN833",'<input id="OBJID_CHECK_A_IJYOU3" type="checkbox" name="A_IJYOU3"onClick="StAllCalc() | Click_A8(1)"><label for="OBJID_CHECK_A_IJYOU3">呪い</label>',0);
 
-			myInnerHtml("EN834",'スローキャスト<select name="A_IJYOU4" onChange="Click_A8(1)"></select>',0);
+			myInnerHtml("EN834",'スローキャスト<select name="A_IJYOU4" onChange="StAllCalc() | Click_A8(1)"></select>',0);
 			A_IJYOU4.options[0] = new Option("-",0);
 			for(i=1;i<=5;i++) A_IJYOU4.options[i] = new Option("Lv"+i,i);
 
-			myInnerHtml("EN835",'<input id="OBJID_CHECK_A_IJYOU5" type="checkbox" name="A_IJYOU5"onClick="Click_A8(1)"><label for="OBJID_CHECK_A_IJYOU5">氷結<Font size=2>(ASPD-30%/DEF-10%/固定詠唱+50%)</Font></label>',0);
+			myInnerHtml("EN835",'<input id="OBJID_CHECK_A_IJYOU5" type="checkbox" name="A_IJYOU5"onClick="StAllCalc() | Click_A8(1)"><label for="OBJID_CHECK_A_IJYOU5">氷結<Font size=2>(ASPD-30%/DEF-10%/固定詠唱+50%)</Font></label>',0);
 
-			myInnerHtml("EN836",'<input id="OBJID_CHECK_A_IJYOU6" type="checkbox" name="A_IJYOU6"onClick="Click_A8(1)"><label for="OBJID_CHECK_A_IJYOU6">(×)イヌハッカシャワー</label>',0);
+			myInnerHtml("EN836",'<input id="OBJID_CHECK_A_IJYOU6" type="checkbox" name="A_IJYOU6"onClick="StAllCalc() | Click_A8(1)"><label for="OBJID_CHECK_A_IJYOU6">(×)イヌハッカシャワー</label>',0);
 
-			myInnerHtml("EN837",'<input id="OBJID_CHECK_A_IJYOU7" type="checkbox" name="A_IJYOU7"onClick="Click_A8(1)"><label for="OBJID_CHECK_A_IJYOU7">(×)ニャングラス</label>',0);
+			myInnerHtml("EN837",'<input id="OBJID_CHECK_A_IJYOU7" type="checkbox" name="A_IJYOU7"onClick="StAllCalc() | Click_A8(1)"><label for="OBJID_CHECK_A_IJYOU7">(×)ニャングラス</label>',0);
 
 			A8_Skill0.value = n_A_PassSkill8[0];
 			A8_Skill1.value = n_A_PassSkill8[1];
@@ -18556,9 +18566,11 @@ function Click_A8(n){
 	if(n==1) AutoCalc("Click_A8");
 
 	var sw=0;
-	for(var i=0;i <n_A_PassSkill8.length;i++) if(n_A_PassSkill8[i] != 0){
-		sw = 1;
-		break;
+	for(var i=0;i <n_A_PassSkill8.length;i++){
+		if(n_A_PassSkill8[i] != 0){
+			sw = 1;
+			break;
+		}
 	}
 	for(var i=0;i <n_A_IJYOU.length;i++) if(n_A_IJYOU[i] != 0){
 		sw = 1;
