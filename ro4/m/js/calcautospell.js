@@ -1648,8 +1648,7 @@ function BuildUpSettingHtmlAutoSpell(objTbody) {
 function OnChangeSettingAutoSpell(bCalculate){
 
 	// 再計算フラグが指定されている場合は、再計算を行う
-	//if (bCalculate) calc();
-	if (bCalculate) AutoCalc();
+	if (bCalculate) AutoCalc("OnChangeSettingAutoSpell");
 
 	// オートスペル設定が指定されているかをチェック
 	var bSet = false;

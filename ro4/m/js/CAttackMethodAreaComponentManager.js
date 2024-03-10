@@ -423,7 +423,7 @@ CAttackMethodAreaComponentManager.RebuildControls = function () {
 
 
 	// 自動計算フラグを保持しておく
-	checkedAutoCalc = HtmlGetObjectCheckedById("OBJID_INPUT_ATTACK_METHOD_AUTO_CALC", "checked");
+	checkedAutoCalc = HtmlGetObjectValueByIdAsInteger("OBJID_INPUT_ATTACK_METHOD_AUTO_CALC", 0);
 
 
 	// 設定欄を初期化
@@ -1028,11 +1028,11 @@ CAttackMethodAreaComponentManager.RebuildAttackMethodSelectSubOptionSubCreate = 
  */
 CAttackMethodAreaComponentManager.RebuildSettingArea = function () {
 
-	let bAutoCalc = CSaveController.getSettingProp(CSaveDataConst.propNameAttackAutoCalc);
-	HtmlSetObjectCheckedById("OBJID_INPUT_ATTACK_METHOD_AUTO_CALC", bAutoCalc ? "checked" : null);
-
 	let bDigit3 = CSaveController.getSettingProp(CSaveDataConst.propNameResultDigit3);
 	HtmlSetObjectCheckedById("OBJID_CHECK_DIGIT3", bDigit3 ? "checked" : null);
+
+	let autoCalc = CSaveController.getSettingProp(CSaveDataConst.propNameAttackAutoCalc);
+	HtmlSetObjectValueById("OBJID_INPUT_ATTACK_METHOD_AUTO_CALC", autoCalc);
 
 	let attackInterval = CSaveController.getSettingProp(CSaveDataConst.propNameAttackInterval);
 	HtmlSetObjectValueById("OBJID_SELECT_ACTIVE_INTERVAL", attackInterval);
@@ -1055,16 +1055,12 @@ CAttackMethodAreaComponentManager.OnChangeAttackMethod = function () {
 	var attackMethodData = null;
 	var attackMethodOptList = null;
 
-
-
 	// 選択状態を取得し、設定変更により無効になった部分を切り捨てる
 	selectedValueArray = CAttackMethodAreaComponentManager.GetSelectedValueArray();
 	selectedValueArray.splice(1);
 
 	// 選択された攻撃手段データを取得する
 	attackMethodData = CAttackMethodAreaComponentManager.GetAttackMethodData(selectedValueArray[0]);
-
-
 
 	// 攻撃手段オプション選択部品の再構築
 
@@ -1074,17 +1070,11 @@ CAttackMethodAreaComponentManager.OnChangeAttackMethod = function () {
 	// 攻撃手段オプション選択部品の再構築（再起処理される）
 	CAttackMethodAreaComponentManager.RebuildAttackMethodSelectSubOption(1, attackMethodOptList, selectedValueArray);
 
-
-
 	// 選択部品のリフレッシュ
 	CAttackMethodAreaComponentManager.RefreshControls();
 
-
-
 	// 自動設定が有効の場合のみ、再計算する
-	if (HtmlGetObjectCheckedById("OBJID_INPUT_ATTACK_METHOD_AUTO_CALC", "checked")) {
-		calc();
-	}
+	AutoCalc("CAttackMethodAreaComponentManager.OnChangeAttackMethod");
 };
 
 
@@ -1101,8 +1091,6 @@ CAttackMethodAreaComponentManager.OnChangeAttackMethodOption = function (objectI
 	var attackMethodData = null;
 	var attackMethodOptList = null;
 
-
-
 	// 選択状態を取得し、設定変更により無効になった部分を切り捨てる
 	selectedValueArray = CAttackMethodAreaComponentManager.GetSelectedValueArray();
 	// TODO: 要検討項目
@@ -1112,8 +1100,6 @@ CAttackMethodAreaComponentManager.OnChangeAttackMethodOption = function (objectI
 
 	// 選択された攻撃手段データを取得する
 	attackMethodData = CAttackMethodAreaComponentManager.GetAttackMethodData(selectedValueArray[0]);
-
-
 
 	// 攻撃手段オプション選択部品の再構築
 
@@ -1136,7 +1122,6 @@ CAttackMethodAreaComponentManager.OnChangeAttackMethodOption = function (objectI
 			break;
 		}
 
-
 		// 存在しないところまで達した場合は、処理打ち切り
 		if (!attackMethodOptList) {
 			break;
@@ -1146,17 +1131,11 @@ CAttackMethodAreaComponentManager.OnChangeAttackMethodOption = function (objectI
 	// 処理関数呼び出し（再帰処理される）
 	CAttackMethodAreaComponentManager.RebuildAttackMethodSelectSubOption(objectIndex + 1, attackMethodOptList, selectedValueArray);
 
-
-
 	// 選択部品のリフレッシュ
 	CAttackMethodAreaComponentManager.RefreshControls();
 
-
-
 	// 自動設定が有効の場合のみ、再計算する
-	if (HtmlGetObjectCheckedById("OBJID_INPUT_ATTACK_METHOD_AUTO_CALC", "checked")) {
-		calc();
-	}
+	AutoCalc("CAttackMethodAreaComponentManager.OnChangeAttackMethodOption");
 };
 
 
@@ -1167,15 +1146,13 @@ CAttackMethodAreaComponentManager.OnChangeAttackMethodOption = function (objectI
 CAttackMethodAreaComponentManager.OnChangeAutoCalc = function () {
 
 	// 設定値取得
-	const checked = HtmlGetObjectCheckedById("OBJID_INPUT_ATTACK_METHOD_AUTO_CALC", "checked");
+	const value = HtmlGetObjectValueByIdAsInteger("OBJID_INPUT_ATTACK_METHOD_AUTO_CALC", 0);
 
 	// セーブコントローラへ保存
-	CSaveController.setSettingProp(CSaveDataConst.propNameAttackAutoCalc, (checked ? 1 : 0));
+	CSaveController.setSettingProp(CSaveDataConst.propNameAttackAutoCalc, value);
 
 	// 自動計算が有効の場合のみ、再計算する
-	if (checked) {
-		calc();
-	}
+	AutoCalc("CAttackMethodAreaComponentManager.OnChangeAutoCalc");
 };
 
 /**

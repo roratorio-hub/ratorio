@@ -17331,8 +17331,7 @@ function Click_PassSkillSW(){
  */
 function Click_A1(n){
 
-	//if(n==1) calc();
-	if(n==1) AutoCalc();
+	if(n==1) AutoCalc("Click_A1");
 
 	var sw=0;
 
@@ -17748,8 +17747,7 @@ function Skill3SW_2(){
  * @param {*} n 再計算フラグ（n = 1 再計算する）
  */
 function Click_A3(n){
-	//if(n==1) calc();
-	if(n==1) AutoCalc();
+	if(n==1) AutoCalc("Click_A3");
 
 	var sw=0;
 	for(var i=0;i <n_A_PassSkill3.length;i++){
@@ -17874,8 +17872,7 @@ function Click_Skill4SW(){
  * @param {*} n 再計算フラグ（n = 1 再計算する）
  */
 function Click_A4(n){
-	//if(n==1) calc();
-	if(n==1) AutoCalc();
+	if(n==1) AutoCalc("Click_A4");
 
 	var sw=0;
 	for(var i=0;i <n_A_PassSkill4.length;i++) if(n_A_PassSkill4[i] != 0){
@@ -18312,8 +18309,7 @@ function Click_Food_Off(){
  * @param {*} n 再計算フラグ（n = 1 再計算する）
  */
 function Click_A7(n){
-	//if(n==1) calc();
-	if(n==1) AutoCalc();
+	if(n==1) AutoCalc("Click_A7");
 
 	var sw=0;
 	for(var i=0;i <n_A_PassSkill7.length;i++) if(n_A_PassSkill7[i] != 0){
@@ -18557,8 +18553,7 @@ function Click_Skill8SW(){
  * @param {*} n 再計算フラグ（n = 1 再計算する）
  */
 function Click_A8(n){
-	//if(n==1) calc();
-	if(n==1) AutoCalc();
+	if(n==1) AutoCalc("Click_A8");
 
 	var sw=0;
 	for(var i=0;i <n_A_PassSkill8.length;i++) if(n_A_PassSkill8[i] != 0){
@@ -19168,12 +19163,57 @@ function GetIkariPow(mobData) {
 
 /**
  * 各種パラメータ変更時の自動計算機能
- *
+ * @param {*} callFrom 関数呼び出し元
+ * 						undefined									: 基本ステータス、特性ステータス、装備
+ * 						CConfBase.OnChangeValueHandler				: 支援設定、性能カスタマイズ
+ * 						OnChangeMobConfDebuf						: モンスター状態異常設定
+ * 						OnChangeMobConfBuf							: モンスター状態強化設定
+ * 						OnChangeMobConfPlayer						: 対プレイヤー設定
+ * 						OnChangeSettingAutoSpell					: オートスペル設定 (テスト中)
+ * 						CTimeItemAreaComponentManager.OnChangeConf	: アイテム時限効果
+ * 						RefreshSkillColumnHeaderLearned				: 習得スキル（装備効果用）
+ * 						Click_A1									: パッシブ持続系
+ * 						Click_A3									: 演奏/踊り系スキル
+ * 						Click_A4									: ギルドスキル/ゴスペル/他
+ * 						Click_A7									: アイテム(食品/他)
+ * 						Click_A8									: その他の支援/設定 (暫定追加機能)
+ * 				CAttackMethodAreaComponentManager.OnChangeAutoCalc	: 攻撃手段
+ * 		CAttackMethodAreaComponentManager.OnChangeAttackMethodOption: 攻撃手段オプション
+ * 			CAttackMethodAreaComponentManager.OnChangeAttackMethod	: 自動計算のON/OFF
  */
-function AutoCalc() {
+function AutoCalc(callFrom) {
 	// 自動設定が有効の場合のみ、再計算する
-	if (HtmlGetObjectCheckedById("OBJID_INPUT_ATTACK_METHOD_AUTO_CALC", "checked")) {
-		calc();
+	var autoCalcFlag = HtmlGetObjectValueByIdAsInteger("OBJID_INPUT_ATTACK_METHOD_AUTO_CALC", 0);
+	switch (autoCalcFlag) {
+		case 1: // 攻撃方法変更時に自動で再計算する
+			if (callFrom === "CAttackMethodAreaComponentManager.OnChangeAttackMethod"
+				|| callFrom === "CAttackMethodAreaComponentManager.OnChangeAttackMethodOption"
+				|| callFrom === "CAttackMethodAreaComponentManager.OnChangeAutoCalc"
+				) {
+					calc();
+				}
+		case 0: // 攻撃方法変更時に自動で再計算しない
+			if (callFrom === "CConfBase.OnChangeValueHandler"
+				|| callFrom === "OnChangeMobConfDebuf"
+				|| callFrom === "OnChangeMobConfBuf"
+				|| callFrom === "OnChangeMobConfPlayer"
+				|| callFrom === "OnChangeSettingAutoSpell"
+				|| callFrom === "CTimeItemAreaComponentManager.OnChangeConf"
+				|| callFrom === "RefreshSkillColumnHeaderLearned"
+				|| callFrom === "Click_A1"
+				|| callFrom === "Click_A3"
+				|| callFrom === "Click_A4"
+				|| callFrom === "Click_A7"
+				|| callFrom === "Click_A8"
+				) {
+					calc();
+				}
+			break;
+		case 2:	// 全ての項目変更時に自動で再計算しない
+			break;
+		case 3: // 全ての項目変更時に自動で再計算する
+			calc();
+			break;
 	}
 }
 
