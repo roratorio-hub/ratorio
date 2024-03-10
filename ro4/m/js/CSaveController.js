@@ -392,6 +392,7 @@ class CSaveController {
 
 		const rrtstAll = localStorage.getItem(CSaveController.STORAGE_NAME_SETTINGS);
 
+		// ローカルストレージが空の場合は初期化する
 		if (!rrtstAll) {
 			this.#settingDataUnit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_SETTINGS))();
 			this.#settingDataUnit.SetUpAsDefault();
@@ -403,7 +404,17 @@ class CSaveController {
 
 		// パース
 		const parser = new CSaveDataUnitParse();
-		parser.parse(rrtst, 0);
+
+		// バージョン補完
+		if (rrtst.length < 7) {
+			// 旧バージョン
+			parser.parse(rrtst + "0", 0);	// 仮プロパティ0を付与して取り敢えず読み込む
+			parser.saveDataUnitArray[0].parsedMap.set("attackAutoCalc", parser.saveDataUnitArray[0].parsedMap.get("attackAutoCalc_old_1"));	// 旧プロパティを新プロパティに移植する
+		} else {
+			// 最新バージョン
+			parser.parse(rrtst, 0);
+		}
+
 		this.#settingDataUnit = parser.saveDataUnitArray[0];
 	}
 

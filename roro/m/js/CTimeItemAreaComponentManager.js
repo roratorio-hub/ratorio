@@ -183,8 +183,7 @@ CTimeItemAreaComponentManager.OnChangeConf = function (idxConf, dataId) {
 	}
 
 	// 再計算
-	//calc();
-	AutoCalc();
+	AutoCalc("CTimeItemAreaComponentManager.OnChangeConf");
 
 	// クイック調整欄の更新
 	CBattleQuickControlAreaComponentManager.RebuildControls();

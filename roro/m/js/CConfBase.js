@@ -673,8 +673,7 @@ function CConfBase(confArray) {
 
 		// 再計算フラグが立っている場合は、再計算を実行
 		if (bCalc) {
-			//calc();
-			AutoCalc();
+			AutoCalc("CConfBase.OnChangeValueHandler");
 		}
 	}
 

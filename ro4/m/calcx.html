@@ -1425,13 +1425,18 @@
 						<label for="OBJID_SWITCH_ATTACK_SETTING_MIG">動作設定</label>
 						<span class="folding-link-help-MIG"><a href="../other/set.html" target="_blank">説明表示</a></span>
 						<div class="folding-block-body-MIG">
-							<div id="OBJID_ATTACK_SETTING_AUTO_CALC_MIG">
-								<input id="OBJID_INPUT_ATTACK_METHOD_AUTO_CALC" type="checkbox" checked onchange="CAttackMethodAreaComponentManager.OnChangeAutoCalc()">
-								<label for="OBJID_INPUT_ATTACK_METHOD_AUTO_CALC">設定変更時に自動で再計算する</label>
-							</div>
 							<div id="OBJID_ATTACK_SETTING_DIGIT3_MIG">
 								<input id="OBJID_CHECK_DIGIT3" type="checkbox" onchange="CAttackMethodAreaComponentManager.OnChangeDigit3()">
 								<label for="OBJID_CHECK_DIGIT3">3桁区切りで表示する</label>
+							</div>
+							<div id="OBJID_ATTACK_SETTING_AUTO_CALC_MIG">
+								<label for="OBJID_INPUT_ATTACK_METHOD_AUTO_CALC">自動再計算：</label>
+								<select id="OBJID_INPUT_ATTACK_METHOD_AUTO_CALC" onchange="CAttackMethodAreaComponentManager.OnChangeAutoCalc()">
+									<option value="0">攻撃方法変更時に自動で再計算しない</option>
+									<option value="1">攻撃方法変更時に自動で再計算する</option>
+									<option value="2">全ての項目変更時に自動で再計算しない</option>
+									<option value="3">全ての項目変更時に自動で再計算する</option>
+								</select>
 							</div>
 							<div id="OBJID_ATTACK_SETTING_ACTIVE_INTERVAL_MIG">
 								<label for="OBJID_SELECT_ACTIVE_INTERVAL">アクティブスキルの限界攻撃間隔：</label>
