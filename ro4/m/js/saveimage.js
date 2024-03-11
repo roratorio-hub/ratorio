@@ -1,6 +1,6 @@
 // sample
 // https://ragnarokonline.gungho.jp/campaign_event/campaign/baselv220cp-2.html#modal
-// calcx.html?cx1cy1EtMmfo4Owqof.3M4X00cz11003-jkGlEgXaEjrmlefu0cz120032jAp3Vzgvlcz13.4fYl3cz14.4hj1cz15003Ydw7r8m4Inp6cw8cz16003OfJC0xmRjtn5Nacz170032j8nn3dksScz18.4fIm3cz19.32dhop8cz1a003_hcquumkYt6nsQmuaG0cz1b.4hM1cz1c.4hOacA1Z_1127456b89a3cA128c0cB1.sf_V___51d171n5n5nll5dldldl511cC1.ecR1.4S8cU1.cg003cW100Bcl3cZ121
+// calcx.html?cx1cy1EtMmfo4Owqof.3M4X00cz11.32jYJlE0cz120022jAp3VvR1cz13.4fYl3cz14.4hj1cz15002Edw7Bot9w8cz16002yfJC0xiTd62cz170022j8nn3td2cz18.4fIm3cz19.32dhop8cz1a002GhcqRoQmQ6G8cz1b.4hM1cz1c.4hOacz1d00s0hPgX1h_1cz1e00c0jP1to02cz1f00s0jOfup0z0cz1g00c0jP2vq01cz1h00s0jPjsr0utcz1i.4mcA1Z_1127456b89a3cA128c0cA1vgfdejgh2cB1.sf_V___51d171n5n5nll5dldldl511cC1.ecR1.4S8cU1.cg003cW100Bcl3cZ121
 $(function () {
   const v = (selector) => {
     return $(selector).val() || $(selector).text();
@@ -8,20 +8,21 @@ $(function () {
   const t = (selector) => {
     return $(selector).text() || $(selector).val();
   }
-  const e = (selector) => {
+  const e = (selector, none_str = "-") => {
     if (v(selector) == "0") {
-      return "-";
+      return none_str;
     }
     return t(selector);
   }
-  const ench_count = (selector) => {
+  const ench_count = (selector, is_weapon = false) => {
     count = 0;
     for (i = 1; i < 5; i++) {
-      if (i==1){
+      if (i == 1 || is_weapon) {
+        console.log(`${selector}_CARD_${i}`)
         if (CARD_KIND_ENCHANT == CardObjNew[v(`${selector}_CARD_${i}`)][1]) {
           count++;
         }
-      } else if (v(`${selector}_CARD_${i}`) != "0"){
+      } else if (v(`${selector}_CARD_${i}`) != "0") {
         count++;
       }
     }
@@ -40,8 +41,28 @@ $(function () {
       } )`;
     return text;
   }
+  const shadow_exists = (selector) => {
+    return v(selector + " select.item-select") != 0 ? "exists" : "";
+  }
+  const shadow = (selector) => {
+    text = "";
+    if (v(selector + " select.item-refined") != 0) {
+      text += `+${v(selector + " select.item-refined")} `;
+    }
+    text +=
+      `${t(selector + " select.item-select option:selected")
+      } ( ${e(selector + " div.rndopt-conf select:nth-child(1) option:selected") || "-"
+      }${e(selector + " div.rndopt-conf select:nth-child(2) option:selected")
+      } , ${e(selector + " div.rndopt-conf select:nth-child(3) option:selected") || "-"
+      }${e(selector + " div.rndopt-conf select:nth-child(4) option:selected")
+      } )`;
+    return text;
+  }
 
   $("#save_image").click(function () {
+    if ($("#OBJID_EQUIP_REGION_ID_ARMS_RNDOPT_KIND_TD_0").length) {
+      $("#OBJID_SLOT_MODE_BUTTON").click();
+    }
     tpl = `
     <style>
     #imgdiv {
@@ -116,11 +137,37 @@ $(function () {
       font-size: 11px;
     }
 
+    #imgdiv table.etc {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid gray;
+      font-size: 10px;
+    }
+
+    #imgdiv table.etc thead {
+      background-color: rgb(189, 206, 247);
+    }
+
+    #imgdiv table.etc tr {
+      border: 1px solid gray;
+    }
+
+    #imgdiv table.etc th,
+    #imgdiv table.etc td {
+      padding: 3px 0px 3px 6px;
+    }
+
+    #imgdiv table.etc th {
+      font-weight: bold;
+      text-align: left;
+      color: rgb(41, 57, 99);
+    }
+
     #imgdiv div#equip {
       position: relative;
-      top: -365;
-      left: 365;
-      width: 620;
+      top: -490px;
+      left: 365px;
+      width: 620px;
     }
 
     #imgdiv dt {
@@ -152,9 +199,17 @@ $(function () {
       color: rgb(0, 0, 0);
     }
 
+    #imgdiv dd.shadow {
+      display: none;
+    }
+    #imgdiv dd.shadow.exists {
+      color: gray;
+      display: block;
+    }
+
     #imgdiv div#cp {
       position: absolute;
-      top: 570px;
+      top: 580px;
       left:200px;
     }
     </style>
@@ -284,6 +339,34 @@ $(function () {
           </tr>
         </tbody>
       </table>
+      <br />
+      <table class="etc">
+        <thead>
+          <tr>
+            <th colspan="4">Etc</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>必中</th>
+            <td>${g_perfectHitRate} %</td>
+            <th>錐効果</th>
+            <td>${CExtraInfoAreaComponentManager.specData[ITEM_SP_KIRI_EFFECT] > 0 ? "あり" : "なし"}</td>
+          </tr>
+          <tr>
+            <th>Def無視</th>
+            <td>${CExtraInfoAreaComponentManager.specData[ITEM_SP_IGNORE_DEF_ALL]} %</td>
+            <th>Mdef無視</th>
+            <td>${CExtraInfoAreaComponentManager.specData[ITEM_SP_IGNORE_MDEF_ALL]} %</td>
+          </tr>
+          <tr>
+            <th>ディレイ減</th>
+            <td>${delayDownForDisp} %</td>
+            <th>ステ無詠唱</th>
+            <td>${CExtraInfoAreaComponentManager.charaData[CHARA_DATA_INDEX_CAST_PARAM]} (< 265)</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
     <div id="equip">
@@ -297,18 +380,24 @@ $(function () {
         <dd class="ench${ench_count("#OBJID_HEAD_UNDER")}">${equip("#OBJID_HEAD_UNDER")}</dd>
         <dt>【鎧】</dt>
         <dd class="ench${ench_count("#OBJID_BODY")}">${equip("#OBJID_BODY")}</dd>
+        <dd class="shadow ${shadow_exists(".eqprgn-body")}">${shadow(".eqprgn-body")}</dd>
         <dt>【右手】</dt>
-        <dd class="ench${ench_count("#OBJID_ARMS_RIGHT")}">${equip("#OBJID_ARMS_RIGHT")}</dd>
+        <dd class="ench${ench_count("#OBJID_ARMS_RIGHT", true)}">${equip("#OBJID_ARMS_RIGHT")}</dd>
+        <dd class="shadow ${shadow_exists(".eqprgn-arms-right")}">${shadow(".eqprgn-arms-right")}</dd>
         <dt>【左手】</dt>
-        <dd class="ench${ench_count($("#OBJID_ARMS_LEFT_REFINE").css("visibility") == "hidden" ? "#OBJID_SHIELD" : "#OBJID_ARMS_LEFT")}">${equip($("#OBJID_ARMS_LEFT_REFINE").css("visibility") == "hidden" ? "#OBJID_SHIELD" : "#OBJID_ARMS_LEFT")}</dd>
+        <dd class="ench${ench_count($("#OBJID_ARMS_LEFT_REFINE").css("visibility") == "hidden" ? "#OBJID_SHIELD" : "#OBJID_ARMS_LEFT", $("#OBJID_ARMS_LEFT_REFINE").css("visibility") != "hidden")}">${equip($("#OBJID_ARMS_LEFT_REFINE").css("visibility") == "hidden" ? "#OBJID_SHIELD" : "#OBJID_ARMS_LEFT")}</dd>
+        <dd class="shadow ${shadow_exists(".eqprgn-arms-left")}">${shadow(".eqprgn-arms-left")}</dd>
         <dt>【肩にかける物】</dt>
         <dd class="ench${ench_count("#OBJID_SHOULDER")}">${equip("#OBJID_SHOULDER")}</dd>
         <dt>【靴】</dt>
         <dd class="ench${ench_count("#OBJID_SHOES")}">${equip("#OBJID_SHOES")}</dd>
+        <dd class="shadow ${shadow_exists(".eqprgn-foot")}">${shadow(".eqprgn-foot")}</dd>
         <dt>【アクセサリー(1)】</dt>
         <dd class="ench${ench_count("#OBJID_ACCESSARY_1")}">${equip("#OBJID_ACCESSARY_1")}</dd>
+        <dd class="shadow ${shadow_exists(".eqprgn-accessory-1")}">${shadow(".eqprgn-accessory-1")}</dd>
         <dt>【アクセサリー(2)】</dt>
         <dd class="ench${ench_count("#OBJID_ACCESSARY_2")}">${equip("#OBJID_ACCESSARY_2")}</dd>
+        <dd class="shadow ${shadow_exists(".eqprgn-accessory-2")}">${shadow(".eqprgn-accessory-2")}</dd>
       </dl>
 
       <div id="cp">
