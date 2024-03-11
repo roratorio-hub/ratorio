@@ -322,7 +322,7 @@ function RefreshSkillColumnHeaderLearned(objSelect, changedIdx, newValue) {
 
 	if (0 <= changedIdx) {
 		n_A_LearnedSkill[changedIdx] = parseInt(newValue);
-		AutoCalc();
+		AutoCalc("RefreshSkillColumnHeaderLearned");
 	}
 
 	// 背景設定

@@ -1515,7 +1515,7 @@ function BuildUpSettingHtmlAutoSpell(objTbody) {
 		objSelect = document.createElement("select");
 		objTd.appendChild(objSelect);
 		objSelect.setAttribute("id", "OBJID_AS_SKILL_ID_" + (OBJID_OFFSET_AS_SKILL_ID + idx));
-		objSelect.setAttribute("onChange", "OnChangeSettingAutoSpell(true)");
+		objSelect.setAttribute("onChange", "StAllCalc() | OnChangeSettingAutoSpell(true)");
 
 		//----------------------------------------------------------------
 		// オートスペルをソートする
@@ -1599,7 +1599,7 @@ function BuildUpSettingHtmlAutoSpell(objTbody) {
 		objSelect = document.createElement("select");
 		objTd.appendChild(objSelect);
 		objSelect.setAttribute("id", "OBJID_AS_SKILL_LV_" + (OBJID_OFFSET_AS_SKILL_LV + idx));
-		objSelect.setAttribute("onChange", "OnChangeSettingAutoSpell(true)");
+		objSelect.setAttribute("onChange", "StAllCalc() | OnChangeSettingAutoSpell(true)");
 
 		// Lv-, 1, 2, ... , 10 を設定
 		for (var lvidx = 0; lvidx <= 10; lvidx++) {
@@ -1619,7 +1619,7 @@ function BuildUpSettingHtmlAutoSpell(objTbody) {
 		objSelect = document.createElement("select");
 		objTd.appendChild(objSelect);
 		objSelect.setAttribute("id", "OBJID_AS_SKILL_PROB_" + (OBJID_OFFSET_AS_SKILL_PROB + idx));
-		objSelect.setAttribute("onChange", "OnChangeSettingAutoSpell(true)");
+		objSelect.setAttribute("onChange", "StAllCalc() | OnChangeSettingAutoSpell(true)");
 
 		for (var probidx = 0; probidx < AUTO_SPELL_PROB_ARRAY.length; probidx++) {
 			optionText = (AUTO_SPELL_PROB_ARRAY[probidx] / 10) + "%";
@@ -1648,8 +1648,7 @@ function BuildUpSettingHtmlAutoSpell(objTbody) {
 function OnChangeSettingAutoSpell(bCalculate){
 
 	// 再計算フラグが指定されている場合は、再計算を行う
-	//if (bCalculate) calc();
-	if (bCalculate) AutoCalc();
+	if (bCalculate) AutoCalc("OnChangeSettingAutoSpell");
 
 	// オートスペル設定が指定されているかをチェック
 	var bSet = false;

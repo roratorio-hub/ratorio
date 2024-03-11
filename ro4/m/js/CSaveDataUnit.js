@@ -2060,6 +2060,7 @@ class CSaveDataConst {
 	/**
 	 * プロパティ名：攻撃方法変更時自動計算.
 	 */
+	static propNameAttackAutoCalc_old1 = "attackAutoCalc_old_1";
 	static propNameAttackAutoCalc = "attackAutoCalc";
 
 	/**
@@ -6040,10 +6041,11 @@ const SAVE_DATA_UNIT_TYPE_SETTINGS = CSaveDataUnitTypeManager.register(
 		 */
 		static get #propNamesSelf () {
 			return [
-				CSaveDataConst.propNameAttackAutoCalc,
+				CSaveDataConst.propNameAttackAutoCalc_old1,	// ver 1 旧プロパティ 
 				CSaveDataConst.propNameResultDigit3,
 				CSaveDataConst.propNameAttackInterval,
 				CSaveDataConst.propNameCastSimInterval,
+				CSaveDataConst.propNameAttackAutoCalc,
 			];
 		}
 
@@ -6064,11 +6066,11 @@ const SAVE_DATA_UNIT_TYPE_SETTINGS = CSaveDataUnitTypeManager.register(
 
 			// プロパティ定義情報の登録
 			this.registerPropInfo(CSaveDataConst.propNameParseCtrlFlag, 4);
-
-			this.registerPropInfo(CSaveDataConst.propNameAttackAutoCalc, 1);
+			this.registerPropInfo(CSaveDataConst.propNameAttackAutoCalc_old1, 1);	// ver 1 旧プロパティ 
 			this.registerPropInfo(CSaveDataConst.propNameResultDigit3, 1);
 			this.registerPropInfo(CSaveDataConst.propNameAttackInterval, 6);
 			this.registerPropInfo(CSaveDataConst.propNameCastSimInterval, 8);
+			this.registerPropInfo(CSaveDataConst.propNameAttackAutoCalc, 8);	// 4項目(2bit)で足りるが文字列表現の長さがちょうど1増える8bitを確保
 		}
 
 
@@ -6079,11 +6081,11 @@ const SAVE_DATA_UNIT_TYPE_SETTINGS = CSaveDataUnitTypeManager.register(
 		 */
 		SetUpAsDefault() {
 			super.SetUpAsDefault();
-
-			this.setProp(CSaveDataConst.propNameAttackAutoCalc, 1);
+			this.setProp(CSaveDataConst.propNameAttackAutoCalc_old1, 1);	// ver 1 旧プロパティ 
 			this.setProp(CSaveDataConst.propNameResultDigit3, 0);
 			this.setProp(CSaveDataConst.propNameAttackInterval, 14);
 			this.setProp(CSaveDataConst.propNameCastSimInterval, 10);
+			this.setProp(CSaveDataConst.propNameAttackAutoCalc, 0);
 		}
 
 		/**
