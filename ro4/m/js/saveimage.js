@@ -93,8 +93,13 @@ $(function () {
   }
 
   $("#save_image").click(function () {
-    if ($("#OBJID_EQUIP_REGION_ID_ARMS_RNDOPT_KIND_TD_0").length) {
-      $("#OBJID_SLOT_MODE_BUTTON").click();
+    regist_elm_vanity = [];
+    elm_ratio = [];
+    regist_ratio = [];
+    for (idx = 0; idx < ELM_ID_COUNT; idx++) {
+      regist_elm_vanity[idx] = n_tok[ITEM_SP_RESIST_ELM_VANITY + idx];
+      elm_ratio[idx] = zokusei[n_A_BodyZokusei * 10 + 1][idx] + 100;
+      regist_ratio[idx] = Math.floor(elm_ratio[idx] - Math.floor(regist_elm_vanity[idx] * elm_ratio[idx]) / 100);
     }
     tpl = `
     <style>
@@ -137,6 +142,13 @@ $(function () {
       top: 200;
       left: 30;
       width: 290;
+    }
+
+    #imgdiv div#status table {
+      margin-bottom: 0.3em;
+    }
+    #imgdiv div#status table:last-child {
+      margin-bottom: 0;
     }
 
     #imgdiv table.status {
@@ -194,6 +206,65 @@ $(function () {
       font-weight: bold;
       text-align: left;
       color: rgb(41, 57, 99);
+    }
+
+    #imgdiv table.elm {
+      width: 100%;
+      border-collapse: collapse;
+      border: none;
+      font-size: 11px;
+    }
+    #imgdiv table.elm th {
+      font-weight: normal;
+      font-size: 8px;
+      text-align: left;
+    }
+    #imgdiv table.elm td {
+      color:ghostwhite;
+      text-align: center;
+      height: 2em;
+      width: 26px;
+    }
+    #imgdiv table.elm td.u {
+      color: gray;
+      border: 1px solid lightgray;
+      background-color: rgb(255,255,255);
+    }
+    #imgdiv table.elm td.m {
+      border: 1px solid rgb(15,69,252);
+      background-color: rgb(15,69,252);
+    }
+    #imgdiv table.elm td.t {
+      border: 1px solid rgb(4,172,20);
+      background-color: rgb(4,172,20);
+    }
+    #imgdiv table.elm td.h {
+      border: 1px solid rgb(250,12,4);
+      background-color: rgb(250,12,4);
+    }
+    #imgdiv table.elm td.k {
+      border: 1px solid rgb(196,236,20);
+      background-color: rgb(196,236,20);
+    }
+    #imgdiv table.elm td.d {
+      border: 1px solid rgb(158,9,246);
+      background-color: rgb(158,9,246);
+    }
+    #imgdiv table.elm td.s {
+      border: 1px solid rgb(69,212,252);
+      background-color: rgb(69,212,252);
+    }
+    #imgdiv table.elm td.y {
+      border: 1px solid rgb(0,0,0);
+      background-color: rgb(0,0,0);
+    }
+    #imgdiv table.elm td.n {
+      border: 1px solid rgb(142,95,43);
+      background-color: rgb(142,95,43);
+    }
+    #imgdiv table.elm td.f {
+      border: 1px solid rgb(120,9,73);
+      background-color: rgb(120,9,73);
     }
 
     #imgdiv div#equip {
@@ -335,7 +406,6 @@ $(function () {
           </tr>
         </tbody>
       </table>
-      <br />
       <table class="status">
         <thead>
           <tr>
@@ -388,7 +458,6 @@ $(function () {
           </tr>
         </tbody>
       </table>
-      <br />
       <table class="etc">
         <thead>
           <tr>
@@ -413,6 +482,36 @@ $(function () {
             <td>${delayDownForDisp} %</td>
             <th>ステ無詠唱</th>
             <td>${CExtraInfoAreaComponentManager.charaData[CHARA_DATA_INDEX_CAST_PARAM]} (< 265)</td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="elm">
+        <thead>
+          <tr>
+          <th class="u">${GetElementText(0)}</th>
+          <th class="m">${GetElementText(1)}</th>
+          <th class="t">${GetElementText(2)}</th>
+          <th class="h">${GetElementText(3)}</th>
+          <th class="k">${GetElementText(4)}</th>
+          <th class="d">${GetElementText(5)}</th>
+          <th class="s">${GetElementText(6)}</th>
+          <th class="y">${GetElementText(7)}</th>
+          <th class="n">${GetElementText(8)}</th>
+          <th class="f">${GetElementText(9)}</th>
+        </tr>
+      </head>
+      <tbody>
+          <tr>
+            <td class="u">${regist_ratio[0]}</td>
+            <td class="m">${regist_ratio[1]}</td>
+            <td class="t">${regist_ratio[2]}</td>
+            <td class="h">${regist_ratio[3]}</td>
+            <td class="k">${regist_ratio[4]}</td>
+            <td class="d">${regist_ratio[5]}</td>
+            <td class="s">${regist_ratio[6]}</td>
+            <td class="y">${regist_ratio[7]}</td>
+            <td class="n">${regist_ratio[8]}</td>
+            <td class="f">${regist_ratio[9]}</td>
           </tr>
         </tbody>
       </table>
