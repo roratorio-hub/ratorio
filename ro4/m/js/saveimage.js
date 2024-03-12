@@ -208,6 +208,11 @@ $(function () {
       color: rgb(41, 57, 99);
     }
 
+    #imgdiv table.etc .denom {
+      font-size: 7px;
+      font-color: gray;
+    }
+
     #imgdiv table.elm {
       width: 100%;
       border-collapse: collapse;
@@ -481,7 +486,7 @@ $(function () {
             <th>ディレイ減</th>
             <td>${delayDownForDisp} %</td>
             <th>ステ無詠唱</th>
-            <td>${CExtraInfoAreaComponentManager.charaData[CHARA_DATA_INDEX_CAST_PARAM]} (< 265)</td>
+            <td>${CExtraInfoAreaComponentManager.charaData[CHARA_DATA_INDEX_CAST_PARAM]} <span class="denom"> / 265<span></td>
           </tr>
         </tbody>
       </table>
