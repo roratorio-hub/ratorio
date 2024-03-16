@@ -813,9 +813,9 @@ CGlobalConstManager.DefinePseudoEnum(
 		"ITEM_SP_SKILL_FIXED_MINUS_OFFSET", // 13000 特定スキルの固定値-ms
 		"ITEM_SP_RESERVED_15000",			// 未使用（15000）
 		"ITEM_SP_RESERVED_17000",			// 未使用（17000）
-		"ITEM_SP_SKILL_COOL_MINUS_OFFSET",
-		"ITEM_SP_SKILL_COST_SCALING_OFFSET",
-		"ITEM_SP_SKILL_COST_MINUS_OFFSET",
+		"ITEM_SP_SKILL_COOL_MINUS_OFFSET",	// 19000
+		"ITEM_SP_SKILL_COST_SCALING_OFFSET",// 21000
+		"ITEM_SP_SKILL_COST_MINUS_OFFSET",	// 23000
 	],
 	5000,
 	2000
@@ -958,7 +958,7 @@ CGlobalConstManager.DefinePseudoEnum(
 	"EnumItemSpId",
 	[
 		// 職業限定
-		"ITEM_SP_JOB_RESTRICT_RUNE_KNIGHT_OFFSET",
+		"ITEM_SP_JOB_RESTRICT_RUNE_KNIGHT_OFFSET",		// 00
 		"ITEM_SP_JOB_RESTRICT_GUILLOTINE_CROSS_OFFSET",
 		"ITEM_SP_JOB_RESTRICT_ARCBISHOP_OFFSET",
 		"ITEM_SP_JOB_RESTRICT_RANGER_OFFSET",
@@ -967,10 +967,10 @@ CGlobalConstManager.DefinePseudoEnum(
 		"ITEM_SP_JOB_RESTRICT_ROYALGUARD_OFFSET",
 		"ITEM_SP_JOB_RESTRICT_SHADOWCHASER_OFFSET",
 		"ITEM_SP_JOB_RESTRICT_SHURA_OFFSET",
-		"ITEM_SP_JOB_RESTRICT_MINSTREL_OFFSET",
+		"ITEM_SP_JOB_RESTRICT_MINSTREL_OFFSET",			// 09
 		"ITEM_SP_JOB_RESTRICT_WANDERER_OFFSET",
 		"ITEM_SP_JOB_RESTRICT_SORCERER_OFFSET",
-		"ITEM_SP_JOB_RESTRICT_GENETIC_OFFSET",
+		"ITEM_SP_JOB_RESTRICT_GENETIC_OFFSET",			// 20
 	],
 	4700000000000,
 	100000000000
@@ -1040,15 +1040,13 @@ CGlobalConstManager.DefinePseudoEnum(
 		"ITEM_SP_BASE_LV_UNDER_99_OFFSET",			// 3000000000000000
 		"ITEM_SP_BASE_LV_OVER_175_OFFSET",			// 4000000000000000
 
+		"ITEM_SP_BASE_LV_OVER_250_OFFSET",			// 5000000000000000
+		"ITEM_SP_RESERVED_6000000000000000",		// 6
+		"ITEM_SP_RESERVED_7000000000000000", 		// 7
 
 		// もう限界なので
-		"ITEM_SP_PET_FRIENDLY_OVER_HIGH",			// 親しい
-		"ITEM_SP_PET_FRIENDLY_OVER_HIGHEST",		// 極めて親しい
-
-		/* usachoco テスト
-		むりでした
-		"ITEM_SP_BASE_LV_OVER_250_OFFSET",			// 7000000000000000
-		*/
+		"ITEM_SP_PET_FRIENDLY_OVER_HIGH",			// 8000000000000000 親しい
+		"ITEM_SP_PET_FRIENDLY_OVER_HIGHEST",		// 9000000000000000 極めて親しい
 
 	],
 	1000000000000000,
@@ -1733,19 +1731,30 @@ function GetItemExplainText(spId, spValue) {
 	var textWork = "";
 	var textInfoArray = null;
 
-
-
 	// 戻り値用テキスト配列
 	textInfoArray = new Array();
 
+	var friendlyOver = 0;
+	var friendlyOverEffecct = 0;
 
+	// 「親密度が極めて親しい以上のとき」条件
+	friendlyOver = Math.floor(spId / ITEM_SP_PET_FRIENDLY_OVER_HIGHEST);
+	if (friendlyOver > 0) {
+		friendlyOverEffecct = spId % ITEM_SP_PET_FRIENDLY_OVER_HIGHEST;
+		condTextFriendlyOver = "親密度が「極めて親しい」以上の場合、追加で";
+		spId = friendlyOverEffecct;
+	}
 
-	// 『親密度が○○以上の時』条件
-	var friendlyOver = Math.floor(spId / ITEM_SP_PET_FRIENDLY_OVER_HIGH);
-	var friendlyOverEffecct = spId % ITEM_SP_PET_FRIENDLY_OVER_HIGH;
+	// 『親密度が親しい以上の時』条件
+	friendlyOver = Math.floor(spId / ITEM_SP_PET_FRIENDLY_OVER_HIGH);
+	if (friendlyOver > 0) {
+		friendlyOverEffecct = spId % ITEM_SP_PET_FRIENDLY_OVER_HIGH;
+		condTextFriendlyOver = "親密度が「親しい」以上の場合、追加で";
+		spId = friendlyOverEffecct;
+	}
 
+	/*
 	switch (friendlyOver) {
-/*
 	case 1:
 		condTextFriendlyOver = "親密度が「逃亡寸前」以上の場合、追加で";
 		break;
@@ -1758,12 +1767,9 @@ function GetItemExplainText(spId, spValue) {
 	case 4:
 		condTextFriendlyOver = "親密度が「普通」以上の場合、追加で";
 		break;
-*/
 	}
-
 	spId = friendlyOverEffecct;
-
-
+	*/
 
 	// 『BaseLvが○以上の時』条件
 	var baseLvOver = Math.floor(spId / ITEM_SP_BASE_LV_OVER_170_OFFSET);
@@ -1783,17 +1789,8 @@ function GetItemExplainText(spId, spValue) {
 		condTextBaseLvOver = "BaseLvが175以上の時、追加で";
 		break;
 	case 5:
-		condTextFriendlyOver = "親密度が「親しい」以上の場合、追加で";
-		break;
-	case 6:
-		condTextFriendlyOver = "親密度が「極めて親しい」の場合、追加で";
-		break;
-	/* usachoco テスト
-	むりでした
-\	case 7:
 		condTextFriendlyOver = "BaseLvが250以上の時、追加で";
 		break;
-	*/
 	}
 
 	spId = baseLvOverEffecct;

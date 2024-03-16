@@ -3522,7 +3522,7 @@ function CExtraInfoAreaComponentManager () {
 			objSelect = HtmlCreateElement("select", objTd);
 			objSelect.setAttribute("id", "OBJID_SELECT_EXTRA_INFO_JOB_LV_FOCUS_" + this.managerInstanceId);
 			objSelect.setAttribute("onChange", "CExtraInfoAreaComponentManager.RefreshDispArea(" + this.managerInstanceId + ")");
-			for (idx = n_A_JobLV + 1; idx < lvMax; idx++) {
+			for (idx = n_A_JobLV + 1; idx <= lvMax; idx++) {
 				HtmlCreateElementOption(idx, "Lv" + idx, objSelect);
 			}
 			this.RestoreSelectedValue("OBJID_SELECT_EXTRA_INFO_JOB_LV_FOCUS_" + this.managerInstanceId, n_A_JobLV + 1);
@@ -3685,7 +3685,7 @@ function CExtraInfoAreaComponentManager () {
 
 			// 経験値情報を取得
 			expNow = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_EXTRA_INFO_JOB_EXP_GAUGE_" + this.managerInstanceId, 0);
-			expNow = Math.floor(wkRefExpTable[n_A_JobLV] * expNow / 100);
+			expNow = Math.floor(wkRefExpTable[n_A_JobLV] * expNow / 1000);
 
 			expToNextJob = wkRefExpTable[n_A_JobLV] - expNow;
 

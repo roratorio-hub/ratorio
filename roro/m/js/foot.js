@@ -30087,28 +30087,36 @@ function IsMatchSpDefId(itemSpId, targetSpId) {
 
 /**
  * アイテムに設定されたフラグ付きＳＰ定義ＩＤが、親密度条件に適合するかを検査する.
+ * @param {*} spDefRemain 
+ * @returns 残りのItemSP(適合する場合), -1(適合しない場合)
  */
 function CheckSpDefFriendlyOver(spDefRemain) {
 
-	var friendlity = 0;
+	var friendlity = n_A_PassSkill8[17];	// 0=未設定(親しい), 1=逃亡寸前, 2=疎疎しい, 3=気まずい, 4=普通, 5=親しい, 6=きわめて親しい
 
-	var spDefCondition = 0;
-	var spDefBase = ITEM_SP_PET_FRIENDLY_OVER_HIGH;
-
-	// 条件を取得
-	spDefCondition = Math.floor(spDefRemain / spDefBase);
-
-	// 条件を検査し、満たさない場合は -1 を返す
-	friendlity = n_A_PassSkill8[17];
 	if (friendlity == 0) {
+		// 「未設定」の場合は「親しい」で上書き
 		friendlity = 5;
 	}
-	if (friendlity < spDefCondition) {
-		return -1;
+	if (Math.floor(spDefRemain / ITEM_SP_PET_FRIENDLY_OVER_HIGHEST) > 0) {
+		// Item SP が「きわめて親しい以上」
+		if (friendlity < 6) {
+			// 親密度が「きわめて親しい」より低い
+			return -1;
+		}
+		return spDefRemain % ITEM_SP_PET_FRIENDLY_OVER_HIGHEST;
+	}
+	else if (Math.floor(spDefRemain / ITEM_SP_PET_FRIENDLY_OVER_HIGH) > 0) {
+		// Item SP が「親しい以上」
+		if (friendlity < 5) {
+			// 親密度が「親しい」より低い
+			return -1;
+		}
+		return spDefRemain % ITEM_SP_PET_FRIENDLY_OVER_HIGH;
 	}
 
-	// 条件を満たす場合は、残りのＳＰ定義値を返す
-	return (spDefRemain % spDefBase);
+	// 親密度条件が設定されていない場合はそのまま返す
+	return spDefRemain;
 }
 
 /**
@@ -30144,14 +30152,11 @@ function CheckSpDefBaseLvOver(spDefRemain) {
 			return -1;
 		}
 		break;
-	/* usachoco テスト
-	むりでした
-	case 7:
+	case 5:
 		if (n_A_BaseLV < 250) {
 			return -1;
 		}
 		break;
-	*/
 	}
 
 	// 条件を満たす場合は、残りのＳＰ定義値を返す
