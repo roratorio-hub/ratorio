@@ -39,6 +39,7 @@ AT_BASE_LV_CODE = {
     100: 2,
      99: 3,
     175: 4,
+    250: 5,
 }
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
