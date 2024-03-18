@@ -48,7 +48,9 @@
 // CURRENT_VERSION = 51;	// ウルフオーブエンチャント定義対応
 // CURRENT_VERSION = 52;	// Lv240解放
 // CURRENT_VERSION = 53;	// 特性ステータスセーブ対応
-CURRENT_VERSION = 54;	// 対人データの拡張対応
+// CURRENT_VERSION = 54;	// 対人データの拡張対応
+CURRENT_VERSION = 55;	// 超越装備への対応
+
 // 旧データ構造は、最大でバージョン 99 まで
 
 
@@ -3726,7 +3728,9 @@ function VersionModify(saveDataArray) {
 
 		// セーブデータ補正なし
 
+	case 55:
 
+		// TODO: 超越装備を暫定版から変更する
 
 
 	}

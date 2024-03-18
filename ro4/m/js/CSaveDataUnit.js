@@ -343,6 +343,21 @@ class CSaveDataConst {
 	static propNameRefinedCount = "refinedCount";
 
 	/**
+	 * プロパティ名：超越段階.
+	 */
+	static propNameTranscendenceCountWeapon 	= "transcendenceCountWeapon";
+	static propNameTranscendenceCountWeapon2 	= "transcendenceCountWeapon2";
+	static propNameTranscendenceCountHEAD 		= "transcendenceCountHEAD";
+	static propNameTranscendenceCountSHIELD 	= "transcendenceCountSHIELD";
+	static propNameTranscendenceCountBODY 		= "transcendenceCountBODY";
+	static propNameTranscendenceCountSHOULDER 	= "transcendenceCountSHOULDER";
+	static propNameTranscendenceCountSHOES 		= "transcendenceCountSHOES";
+	static propNameTranscendenceCountACCESSORY1	= "transcendenceCountACCESSORY1";	// 予約：アクセ1
+	static propNameTranscendenceCountACCESSORY2	= "transcendenceCountACCESSORY2";	// 予約：アクセ2
+	static propNameTranscendenceCountMIDDLE 	= "transcendenceCountMIDDLE";	// 予約：中段
+	static propNameTranscendenceCountLOWER 		= "transcendenceCountLOWER";	// 予約：下段
+
+	/**
 	 * プロパティ名：カードカテゴリID（第1スロット）.
 	 */
 	static propNameCardCategoryID1 = "cardCategoryID1";
@@ -6316,6 +6331,89 @@ const SAVE_DATA_UNIT_TYPE_EQUIP_ARROW = CSaveDataUnitTypeManager.register(
 );
 
 
+/**
+ * セーブデータユニットクラス：超越段階.
+ */
+const SAVE_DATA_UNIT_TYPE_EQUIP_TRANSCENDENCE = CSaveDataUnitTypeManager.register(
+	class CSaveDataUnitEquipTranscendence extends CSaveDataUnitBase {
+
+		// タイプ値.
+		static get type () {
+			return 831;
+		}
+
+		// バージョン番号.
+		static get version () {
+			return 1;
+		}
+
+		// 処理順に並んだプロパティ名（自身のプロパティのみ）.
+		static get #propNamesSelf () {
+			return [
+				CSaveDataConst.propNameParseCtrlFlag,
+
+				CSaveDataConst.propNameTranscendenceCountWeapon,
+				CSaveDataConst.propNameTranscendenceCountWeapon2,
+				CSaveDataConst.propNameTranscendenceCountHEAD,
+				CSaveDataConst.propNameTranscendenceCountSHIELD,
+				CSaveDataConst.propNameTranscendenceCountBODY,
+				CSaveDataConst.propNameTranscendenceCountSHOULDER,
+				CSaveDataConst.propNameTranscendenceCountSHOES,
+				CSaveDataConst.propNameTranscendenceCountACCESSORY1,	//予約・未使用
+				CSaveDataConst.propNameTranscendenceCountACCESSORY2,	//予約・未使用
+				CSaveDataConst.propNameTranscendenceCountMIDDLE,	//予約・未使用
+				CSaveDataConst.propNameTranscendenceCountLOWER,		//予約・未使用
+			
+			];
+		}
+
+		// 処理順に並んだプロパティ名（継承プロパティ含む）.
+		static get propNames () {
+			return super.propNames.concat(this.#propNamesSelf);
+		}
+
+		// コンストラクタ.
+		constructor () {
+			super();
+
+			// プロパティ定義情報の登録 (11項目確保)
+			this.registerPropInfo(CSaveDataConst.propNameParseCtrlFlag, 11);
+
+			// 超越段階 各3bit (最低0 ～ 最大4)
+			this.registerPropInfo(CSaveDataConst.propNameTranscendenceCountWeapon,3);
+			this.registerPropInfo(CSaveDataConst.propNameTranscendenceCountWeapon2,3);
+			this.registerPropInfo(CSaveDataConst.propNameTranscendenceCountHEAD,3);
+			this.registerPropInfo(CSaveDataConst.propNameTranscendenceCountSHIELD,3);
+			this.registerPropInfo(CSaveDataConst.propNameTranscendenceCountBODY,3);
+			this.registerPropInfo(CSaveDataConst.propNameTranscendenceCountSHOULDER,3);
+			this.registerPropInfo(CSaveDataConst.propNameTranscendenceCountSHOES,3);
+			this.registerPropInfo(CSaveDataConst.propNameTranscendenceCountACCESSORY1,3);	// 予約・未使用
+			this.registerPropInfo(CSaveDataConst.propNameTranscendenceCountACCESSORY2,3);	// 予約・未使用
+			this.registerPropInfo(CSaveDataConst.propNameTranscendenceCountMIDDLE,3);	// 予約・未使用
+			this.registerPropInfo(CSaveDataConst.propNameTranscendenceCountLOWER,3);	// 予約・未使用
+			
+		}
+
+		/**
+		 * データのコンパクション（不要データの削除）を行う.
+		 * （継承先でオーバーライドして個別の処理を追加する）
+		 */
+		doCompaction () {
+			// 共用のフラグ処理を利用
+			this.doCompaction_ModifyFlagGT0();
+		}
+
+		/**
+		 * ユニットのデータが空であるかを判定する.
+		 * （継承先でオーバーライドして個別の処理を追加する）
+		 * @returns {boolean} true:空である、false:空でない
+		 */
+		isEmptyUnit () {
+			// 共用の判定処理を利用
+			return this.isEmptyUnit_CtrlFlag0();
+		}
+	}
+);
 
 
 

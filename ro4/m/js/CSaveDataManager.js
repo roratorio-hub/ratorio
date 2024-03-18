@@ -198,6 +198,18 @@ class CSaveDataManager {
 			// 処理方式が異なるので空マップ
 			new Map()
 		],
+		[
+			SAVE_DATA_UNIT_TYPE_EQUIP_TRANSCENDENCE,
+			new Map([
+				[CSaveDataConst.propNameTranscendenceCountWeapon, "OBJID_ARMS_RIGHT_TRANSCENDENCE"],
+				[CSaveDataConst.propNameTranscendenceCountWeapon2, "OBJID_ARMS_LEFT_TRANSCENDENCE"],
+				[CSaveDataConst.propNameTranscendenceCountHEAD, "OBJID_HEAD_TOP_TRANSCENDENCE"],
+				[CSaveDataConst.propNameTranscendenceCountSHIELD, "OBJID_SHIELD_TRANSCENDENCE"],
+				[CSaveDataConst.propNameTranscendenceCountBODY, "OBJID_BODY_TRANSCENDENCE"],
+				[CSaveDataConst.propNameTranscendenceCountSHOULDER, "OBJID_SHOULDER_TRANSCENDENCE"],
+				[CSaveDataConst.propNameTranscendenceCountSHOES, "OBJID_SHOES_TRANSCENDENCE"],
+			])
+		],
 	]);
 
 
@@ -236,6 +248,7 @@ class CSaveDataManager {
 
 		// 次世代版限定データの追加
 		this.#collectDataShadowEquips();
+		this.#collectDataTranscendence();
 
 		// コンパクション
 		this.doCompaction();
@@ -374,6 +387,41 @@ class CSaveDataManager {
 			this.#saveDataUnitArray.push(saveDataUnit);
 		}
 	}
+
+
+	/**
+	 * 超越段階のデータを収集する.
+	 */
+	#collectDataTranscendence () {
+
+		// データユニット生成
+		const saveDataUnit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_EQUIP_TRANSCENDENCE))();
+		saveDataUnit.SetUpAsDefault();
+
+		// 超越段階データのセット
+		saveDataUnit.setProp(CSaveDataConst.propNameTranscendenceCountWeapon, n_A_Weapon_Transcendence);
+		saveDataUnit.setProp(CSaveDataConst.propNameTranscendenceCountWeapon2, n_A_Weapon2_Transcendence);
+		saveDataUnit.setProp(CSaveDataConst.propNameTranscendenceCountHEAD, n_A_HEAD_DEF_Transcendence);
+		saveDataUnit.setProp(CSaveDataConst.propNameTranscendenceCountSHIELD, n_A_SHIELD_DEF_Transcendence);
+		saveDataUnit.setProp(CSaveDataConst.propNameTranscendenceCountBODY, n_A_BODY_DEF_Transcendence);
+		saveDataUnit.setProp(CSaveDataConst.propNameTranscendenceCountSHOULDER, n_A_SHOULDER_DEF_Transcendence);
+		saveDataUnit.setProp(CSaveDataConst.propNameTranscendenceCountSHOES, n_A_SHOES_DEF_Transcendence);
+		saveDataUnit.setProp(CSaveDataConst.propNameTranscendenceCountACCESSORY1, 0);	//予約・未使用
+		saveDataUnit.setProp(CSaveDataConst.propNameTranscendenceCountACCESSORY2, 0);	//予約・未使用
+		saveDataUnit.setProp(CSaveDataConst.propNameTranscendenceCountMIDDLE, 0);		//予約・未使用
+		saveDataUnit.setProp(CSaveDataConst.propNameTranscendenceCountLOWER, 0);		//予約・未使用
+
+		// コンパクション実行
+		saveDataUnit.doCompaction();
+
+		// データが空でない場合
+		if (!saveDataUnit.isEmptyUnit()) {
+			// データユニットをメンバ変数の配列へ追加
+			this.#saveDataUnitArray.push(saveDataUnit);
+		}
+
+	}
+
 
 	/**
 	 * 未使用、かつ、最小の装備定義IDを取得する.
@@ -621,6 +669,11 @@ class CSaveDataManager {
 		const funcCallApplyAttackConf = (thisF, unitTypeF) => {
 			thisF.#applyDataToControlsAttackConf(unitTypeF, idxMap.get(unitTypeF));
 		};
+		const funcCallApplyTranscendence = (thisF, unitTypeF) => {
+			thisF.#applyDataToControlsTranscendence(unitTypeF, idxMap.get(unitTypeF));
+		};
+
+		
 
 		// TODO: 構造変更後、撤去予定
 		// 矢の調整
@@ -671,8 +724,7 @@ class CSaveDataManager {
 		funcCallApplyMobConfInput(this, SAVE_DATA_UNIT_TYPE_MOB_CONF_INPUT);
 		funcCallApplyBuffLv(this, SAVE_DATA_UNIT_TYPE_MOB_BUFF, n_B_KYOUKA);
 		funcCallApplyBuffLv(this, SAVE_DATA_UNIT_TYPE_MOB_DEBUFF, n_B_IJYOU);
-
-
+		funcCallApplyTranscendence(this, SAVE_DATA_UNIT_TYPE_EQUIP_TRANSCENDENCE);
 
 		// TODO: 構造変更後、撤去予定
 
@@ -1822,6 +1874,53 @@ class CSaveDataManager {
 		CAttackMethodAreaComponentManager.SetAttackMethodConf(attackMethodConf);
 	}
 
+	/**
+	 * 保持しているデータを画面部品に適用する（超越段階）.
+	 * @param {int} unitType ユニットのタイプ値
+	 * @param {int|undefined} idxUnit データユニットの配列インデックス
+	 */
+	#applyDataToControlsTranscendence (unitType, idxUnit) {
+
+		// データユニットが存在しない場合は、処理しない
+		if ((idxUnit === undefined) || (idxUnit < 0) || (idxUnit >= this.#saveDataUnitArray.length)) {
+			return;
+		}
+
+		// オブジェクトIDマップが存在しない場合は、処理しない
+		const objIDMap = this.constructor.objectIDMapMap.get(unitType);
+		if (!objIDMap) {
+			return;
+		}
+
+		// データユニットを取得
+		const saveDataUnit = this.#saveDataUnitArray[idxUnit];
+
+		// 処理対象のプロパティを列挙
+		const propNames = saveDataUnit.constructor.propNames.slice();
+
+		// すべてのプロパティを走査し、必要なプロパティのみ処理
+		for (let idx=0; idx < propNames.length; idx++) {
+
+			// 必要な情報を収集
+			const propName = propNames[idx];
+			const propValue = floorBigInt32(saveDataUnit.getProp(propName));
+			const objID = objIDMap.get(propName);
+
+			// 超越段階のセット
+			switch (propName) {
+				case CSaveDataConst.propNameTranscendenceCountWeapon:
+				case CSaveDataConst.propNameTranscendenceCountWeapon2:
+				case CSaveDataConst.propNameTranscendenceCountHEAD:
+				case CSaveDataConst.propNameTranscendenceCountSHIELD:
+				case CSaveDataConst.propNameTranscendenceCountBODY:
+				case CSaveDataConst.propNameTranscendenceCountSHOULDER:
+				case CSaveDataConst.propNameTranscendenceCountSHOES:
+					HtmlSetObjectValueById(objID, propValue);
+					break;
+			}
+		}
+
+	}	
 
 }
 
