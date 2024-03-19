@@ -852,10 +852,23 @@ CGlobalConstManager.DefinePseudoEnum(
 		"ITEM_SP_REFINE_OVER_7_OFFSET",
 		"ITEM_SP_REFINE_OVER_8_OFFSET",
 		"ITEM_SP_REFINE_OVER_9_OFFSET",
-		"ITEM_SP_REFINE_OVER_10_OFFSET",
+		"ITEM_SP_REFINE_OVER_10_OFFSET",	// 10000000
 	],
 	1000000,
 	1000000
+);
+
+CGlobalConstManager.DefinePseudoEnum(
+	"EnumItemSpId",
+	[
+		// 超越段階が◯以上のとき
+		"ITEM_SP_TRANSCENDENCE_1",			// 91000000
+		"ITEM_SP_TRANSCENDENCE_2",			// 92000000
+		"ITEM_SP_TRANSCENDENCE_3",			// 93000000
+		"ITEM_SP_TRANSCENDENCE_4",			// 94000000
+	],
+	91000000,
+	 1000000
 );
 
 CGlobalConstManager.DefinePseudoEnum(
@@ -1051,27 +1064,9 @@ CGlobalConstManager.DefinePseudoEnum(
 	],
 	1000000000000000,
 	1000000000000000
+
+	// 16桁に収めないとItemSP IDが壊れるのでこれ以上大きい数は定義できません
 );
-
-// TODO: 条件判定はペットの箇所のみ実装済み
-// TODO: 数値の限界に来ているので、これ以上の追加は無理
-CGlobalConstManager.DefinePseudoEnum(
-	"EnumItemSpId",
-	[
-		// 親密度が○○以上
-		// "ITEM_SP_PET_FRIENDLY_OVER_AUTO",		// 自動（親しい扱い）		// 自動以上は定義しない
-		// "ITEM_SP_PET_FRIENDLY_OVER_RUNAWAY",		// 逃亡寸前
-		// "ITEM_SP_PET_FRIENDLY_OVER_LOWEST",			// 疎々しい
-		// "ITEM_SP_PET_FRIENDLY_OVER_LOW",			// 気まずい
-		// "ITEM_SP_PET_FRIENDLY_OVER_NORMAL",			// 普通
-		//"ITEM_SP_PET_FRIENDLY_OVER_HIGH",			// 親しい
-		//"ITEM_SP_PET_FRIENDLY_OVER_HIGHEST",		// 極めて親しい
-	],
-	10000000000000000,
-	10000000000000000
-);
-
-
 
 
 /**
@@ -1714,6 +1709,7 @@ function GetItemSP(itemId, spid) {
  */
 function GetItemExplainText(spId, spValue) {
 
+	let condTextTranscendence = "";
 	var condTextFriendlyOver = "";
 	var condTextBaseLvOver = "";
 	var condTextBaseLvBy = "";
@@ -1752,24 +1748,6 @@ function GetItemExplainText(spId, spValue) {
 		condTextFriendlyOver = "親密度が「親しい」以上の場合、追加で";
 		spId = friendlyOverEffecct;
 	}
-
-	/*
-	switch (friendlyOver) {
-	case 1:
-		condTextFriendlyOver = "親密度が「逃亡寸前」以上の場合、追加で";
-		break;
-	case 2:
-		condTextFriendlyOver = "親密度が「疎々しい」以上の場合、追加で";
-		break;
-	case 3:
-		condTextFriendlyOver = "親密度が「気まずい」以上の場合、追加で";
-		break;
-	case 4:
-		condTextFriendlyOver = "親密度が「普通」以上の場合、追加で";
-		break;
-	}
-	spId = friendlyOverEffecct;
-	*/
 
 	// 『BaseLvが○以上の時』条件
 	var baseLvOver = Math.floor(spId / ITEM_SP_BASE_LV_OVER_170_OFFSET);
@@ -1859,7 +1837,6 @@ function GetItemExplainText(spId, spValue) {
 	// 『純粋な○○が△△上がる度に』条件
 	var pureStatusBy = Math.floor(spId / ITEM_SP_PURE_STR_BY_10_OFFSET);
 	var pureStatusByEffect = spId % ITEM_SP_PURE_STR_BY_10_OFFSET;
-
 	if (1 <= pureStatusBy && pureStatusBy <= 6) {
 		condTextPureStatus += "純粋な" + statusName[pureStatusBy - 1] +  "が10上がる度に、";
 	}
@@ -1869,9 +1846,25 @@ function GetItemExplainText(spId, spValue) {
 	else if (8 == pureStatusBy) {
 		condTextPureStatus += "純粋な" + statusName[PARAM_VIT] +  "が1上がる度に、";
 	}
-
 	spId = pureStatusByEffect;
 
+	// 『超越段階が◯以上のとき』条件
+	if (Math.floor(spId / ITEM_SP_TRANSCENDENCE_4) > 0) {
+		condTextTranscendence = "超越段階が4以上の時、";
+		spId = spId % ITEM_SP_TRANSCENDENCE_4;
+	}
+	else if (Math.floor(spId / ITEM_SP_TRANSCENDENCE_3) > 0) {
+		condTextTranscendence = "超越段階が3以上の時、";
+		spId = spId % ITEM_SP_TRANSCENDENCE_3;
+	}
+	else if (Math.floor(spId / ITEM_SP_TRANSCENDENCE_2) > 0) {
+		condTextTranscendence = "超越段階が2以上の時、";
+		spId = spId % ITEM_SP_TRANSCENDENCE_2;
+	}
+	else if (Math.floor(spId / ITEM_SP_TRANSCENDENCE_1) > 0) {
+		condTextTranscendence = "超越段階が1以上の時、";
+		spId = spId % ITEM_SP_TRANSCENDENCE_1;
+	}
 
 
 	// 『精錬値が○以上の時』条件
@@ -1899,8 +1892,10 @@ function GetItemExplainText(spId, spValue) {
 
 
 	// 条件文字列の組み立て
-	textInfoArray.push(["", condTextFriendlyOver + condTextJobRestrict + condTextBaseLvOver + condTextRefineOver + condTextPureStatus + condTextRefineBy + condTextBaseLvBy]);
-
+	textInfoArray.push([
+		"",
+		condTextTranscendence + condTextFriendlyOver + condTextJobRestrict + condTextBaseLvOver + condTextRefineOver + condTextPureStatus + condTextRefineBy + condTextBaseLvBy
+	]);
 
 
 	sign = (spValue < 0) ? " " : " + ";
