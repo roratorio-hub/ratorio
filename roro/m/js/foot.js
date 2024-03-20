@@ -8855,6 +8855,9 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 		var chkary = new Array();
 		var castcut = 0;
 
+		// ペット効果用
+		const petId = n_A_PassSkill8[0];
+
 		//----------------------------------------------------------------
 		// 「ウォーロック　ラディウス」の効果
 		//----------------------------------------------------------------
@@ -9435,9 +9438,9 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 		}
 
 		//----------------------------------------------------------------
-		// 「ミストレス＋ワンダーエッグバスケットセット」の効果
+		// 「ミストレスの卵」の、装備効果
 		//----------------------------------------------------------------
-		if (EquipNumSearchMIG(ITEM_ID_WANDER_EGG_BASKET_MISTRESS_SET)) {
+		if (petId === PET_ID_MISTRESS) {
 			if (n_A_BaseLV >= 100) {
 				chkary.push(70);
 			} 
