@@ -61,13 +61,14 @@ $(function () {
           }
         },
         onClick: (e) => {
-          console.log(e);
           const canvasPosition = Chart.helpers.getRelativePosition(e, chart);
           const dataX = chart.scales.x.getValueForPixel(canvasPosition.x);
-          url = chart.data.datasets[0].metadata[Math.abs(dataX)];
-          CSaveController.loadFromURL(url);
-          CItemInfoManager.OnClickExtractSwitch();
-          LoadSelect2();
+          if (chart.data.datasets[0].data.length > dataX) {
+            url = chart.data.datasets[0].metadata[Math.abs(dataX)];
+            CSaveController.loadFromURL(url);
+            CItemInfoManager.OnClickExtractSwitch();
+            LoadSelect2();
+          }
         }
       }
     });
@@ -81,10 +82,10 @@ $(function () {
         target = $(".OBJID_MONSTER_MAP_MONSTER").val();
       }
       chart.data.labels.push(chart.data.labels.length + 1);
-      const dps = parseFloat($("#BTLRSLT_PART_ATKCNT").parent().prev().prev().prev().prev().text())
+      const dps = parseFloat($("#BTLRSLT_PART_ATKCNT").parent().prev().prev().prev().prev().text().replace(",",""))
       chart.data.datasets[0].data.push(isNaN(dps) ? 0 : dps);
       chart.data.datasets[0].metadata.push(CSaveController.encodeToURL())
-      const cnt = parseInt($("#BTLRSLT_PART_EXP").parent().prev().prev().text())
+      const cnt = parseInt($("#BTLRSLT_PART_EXP").parent().prev().prev().text().replace(",",""))
       chart.data.datasets[1].data.push(isNaN(cnt) ? 0 : cnt);
       chart.update();
     });
