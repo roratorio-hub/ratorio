@@ -3732,10 +3732,11 @@ g_bUnknownCasts = true;
 			wbairitu *= n_A_BaseLV / 100;
 			break;
 
+		// ロゼブロッサム
 		case SKILL_ID_ROSE_BLOSSOM:
 
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
+			// TODO: 詠唱時間等未実測スキル
+			g_bUnknownCasts = true;
 
 			// 弓・楽器・鞭装備状態のみ発動可能
 			switch (n_A_WeaponType) {
@@ -3762,10 +3763,10 @@ g_bUnknownCasts = true;
 					// 基本倍率
 					wbairitu = 50 + (50 * n_A_ActiveSkillLV);
 
-					// TODO: 敵がサウンドブレンド状態補正未対応
-					// if () {
-					//	wbairitu += 100;
-					//}
+					// サウンドブレンド補正
+					if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SOUND_BLEND]) {
+						wbairitu += 100;
+					}
 
 					// CON補正
 					wbairitu += 1 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
@@ -3780,10 +3781,10 @@ g_bUnknownCasts = true;
 					// 基本倍率
 					wbairitu = 2000 + (200 * n_A_ActiveSkillLV);
 
-					// TODO: 敵がサウンドブレンド状態補正未対応
-					// if () {
-					//	wbairitu += 1000;
-					//}
+					// サウンドブレンド補正
+					if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SOUND_BLEND]) {
+						wbairitu += 1000;
+					}
 
 					// CON補正
 					wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
@@ -3800,6 +3801,7 @@ g_bUnknownCasts = true;
 			}
 			break;
 
+		// リズムシューティング
 		case SKILL_ID_RHYTHM_SHOOTING:
 
 // TODO: 詠唱時間等未実測スキル
@@ -3827,10 +3829,10 @@ g_bUnknownCasts = true;
 				// 基本倍率
 				wbairitu = 1000 + (100 * n_A_ActiveSkillLV);
 
-				// TODO: 敵がサウンドブレンド状態補正未対応
-				// if () {
-				//	wbairitu += 500 + (100 * n_A_ActiveSkillLV);
-				//}
+				// サウンドブレンド補正
+				if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SOUND_BLEND]) {
+					wbairitu += 500 + (100 * n_A_ActiveSkillLV);
+				}
 
 				// CON補正
 				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
@@ -8644,15 +8646,32 @@ g_bDefinedDamageIntervals = true;
 			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
 			break;
 
+		// メタリックサウンド
 		case SKILL_ID_METALIC_SOUND:
 			n_A_Weapon_zokusei = 0;
 			n_bunkatuHIT = 1;
-			wHITsuu = Math.min(4, 1 + Math.floor((1 + n_A_ActiveSkillLV) / 2));
 			wCast = Math.min(3000, 500 + 500 * n_A_ActiveSkillLV);
 			n_Delay[7] = 200;
-			wbairitu = 120 * n_A_ActiveSkillLV + 60 * UsedSkillSearch(SKILL_ID_LESSON);
+
+			// 基本倍率
+			wbairitu = 120 * n_A_ActiveSkillLV
+
+			// サウンドブレンド補正
+			if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SOUND_BLEND] > 0) {
+				wbairitu *= 2;
+			}
+			
+			// レッスン補正
+			wbairitu += 60 * UsedSkillSearch(SKILL_ID_LESSON);
+
+			// BaseLv補正
 			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
-			if(n_B_IJYOU[8]) wbairitu = ROUNDDOWN(wbairitu * 150 / 100);
+
+			// 睡眠補正
+			if(n_B_IJYOU[MOB_CONF_DEBUF_ID_SUIMIN]) {
+				wbairitu = ROUNDDOWN(wbairitu * 150 / 100);
+			} 
+
 			break;
 
 		case SKILL_ID_FIRE_WALK:
@@ -9798,10 +9817,11 @@ g_bDefinedDamageIntervals = true;
 			}
 			break;
 
+		// メタリックフューリー
 		case SKILL_ID_METALIC_FURY:
 
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
+			// TODO: 詠唱時間等未実測スキル
+			g_bUnknownCasts = true;
 
 			// 楽器・鞭装備状態のみ発動可能
 			switch (n_A_WeaponType) {
