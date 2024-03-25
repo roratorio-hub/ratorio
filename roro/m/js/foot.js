@@ -30329,7 +30329,7 @@ function CheckSpDefTransendenceOver(spDefRemain, eqpTranscendence) {
 				return -1;
 			}
 			else {								// アイテムの超越段階がアイテムSPフラグの条件を満たす
-				return spDefRemain % spDefBase;
+				return spDefRemain % spDefBase[i];
 			}
 		}
 	}
