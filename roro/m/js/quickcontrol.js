@@ -324,6 +324,11 @@ function OnClickQuickControlSetItemPack() {
 	// 全解除系は特殊処理
 	switch (itemPackId) {
 
+	case ITEM_PACK_ID_CLEAR_SHADOW_ALL:
+		OnClickQuickControlSetItemPackSubForClearShadowEquipAll();
+		StAllCalc();
+		return;
+
 	case ITEM_PACK_ID_CLEAR_EQUIP_ALL:
 		OnClickQuickControlSetItemPackSubForClearEquipAll();
 		StAllCalc();
@@ -596,6 +601,26 @@ function OnClickQuickControlSetItemPackSubForCard(cardId) {
 	// 装備変更
 	HtmlSetObjectValueById(targetObjIdCard, cardId);
 	OnChangeCard(cardId);
+}
+
+/**
+ * シャドウ装備を全てクリアする
+ */
+function OnClickQuickControlSetItemPackSubForClearShadowEquipAll() {
+	const target = [
+		'OBJID_SHADOW_WEAPON',
+		'OBJID_SHADOW_SHIELD',
+		'OBJID_SHADOW_BODY',
+		'OBJID_SHADOW_SHOESE',
+		'OBJID_SHADOW_ACCESSORY1',
+		'OBJID_SHADOW_ACCESSORY2',
+	];
+	const e = new Event('change', {bubbles: true});
+	for (let i = 0; i < target.length; i++) {
+		HtmlSetObjectValueById(target[i] + '_REFINE', 0);
+		HtmlSetObjectValueById(target[i], 0);
+		document.getElementById(target[i]).dispatchEvent(e);
+	}
 }
 
 function OnClickQuickControlSetItemPackSubForClearEquipAll() {
