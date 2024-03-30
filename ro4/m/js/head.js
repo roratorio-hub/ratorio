@@ -3851,63 +3851,59 @@ g_bUnknownCasts = true;
 			}
 			break;
 
+		// 「バイオロ」スキル「アシディファイドゾーン」
 		case SKILL_ID_ACIDIFIED_ZONE_MIZU:
 		case SKILL_ID_ACIDIFIED_ZONE_CHI:
 		case SKILL_ID_ACIDIFIED_ZONE_HI:
 		case SKILL_ID_ACIDIFIED_ZONE_KAZE:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
+			// TODO 計算式は仮のものであり実測値と合ってないことを確認済み
+			// サンプルデータ不足
 
 			// 初段ダメージの場合
 			if (attackMethodConfArray[0].GetOptionValue(0) == 0) {
-
-				// 距離属性
-				n_Enekyori = 1;
-
 				// 詠唱時間等
-				/*
-				// 未実測、0.3秒後追撃未実装
 				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				*/
-
+				// 距離属性
+				n_Enekyori = 1;
 				// 基本倍率
 				wbairitu = 2000 + (200 * n_A_ActiveSkillLV);
-
+				// リサーチレポート補正
+				if (UsedSkillSearch(SKILL_ID_RESEARCH_REPORT) > 0) {
+					let tmp_bairitu = 900 + 50 * n_A_ActiveSkillLV;
+					switch (mobData[MONSTER_DATA_INDEX_RACE]) {
+						case RACE_ID_SOLID: // 無形
+						case RACE_ID_PLANT:	// 植物形
+							tmp_bairitu *= 2;
+							break;
+					}
+					wbairitu += tmp_bairitu;
+				}
+				// バイオニックファーマシー補正
+				wbairitu += 2 * UsedSkillSearch(SKILL_ID_BIONIC_PHARMACY) * n_A_ActiveSkillLV;
 				// POW補正
-				wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
+				wbairitu += 6 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// ベースレベル補正
 				wbairitu *= n_A_BaseLV / 100;
-
 				// ヒット数
 				wHITsuu = 3;
 			}
-
 			// 設置ダメージの場合
 			else {
-
-g_bDefinedDamageIntervals = true;
-
+				g_bDefinedDamageIntervals = true;
 				// ダメージ間隔
 				n_Delay[5] = 1000;
-
 				// オブジェクト存続時間
 				n_Delay[6] = 10000;
-
 				// 距離属性
 				n_Enekyori = 0;
-
 				// 基本倍率
 				wbairitu = Math.floor(62.5 * n_A_ActiveSkillLV);
-
 				// POW補正
 				// TODO: 無いと想定
 				// wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
-
 				// ベースレベル補正
 				wbairitu *= n_A_BaseLV / 100;
 			}
