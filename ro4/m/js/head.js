@@ -4713,21 +4713,25 @@ g_bUnknownCasts = true;
 			wbairitu *= n_A_BaseLV / 100;
 			break;
 
+		// 「バイオロ」スキル「メイヘミックソーンズ」
 		case SKILL_ID_MEYHEMIC_THORNS:
-			g_bUnknownCasts = true;	// 詠唱時間など未計測フラグ
-			n_Enekyori = 1;	// 遠距離フラグ
-			/*
+			// 未強化・強化両方のダメージが実測値に対して誤差なしであることを確認済み
+
+			// 詠唱時間など
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			*/
+			// 遠距離フラグ
+			n_Enekyori = 1;
+			// 基礎倍率
 			if (UsedSkillSearch(SKILL_ID_RESEARCH_REPORT) > 0) {
-				wbairitu = 2500 + (200 * n_A_ActiveSkillLV);						// 基礎倍率
+				// 実測によれば 3235, 3435, 3635, ... 5035
+				wbairitu = 3030 + (200 * n_A_ActiveSkillLV);
 			} else {
-				wbairitu = 2000 + (100 * n_A_ActiveSkillLV);						// 基礎倍率
+				wbairitu = 2000 + (100 * n_A_ActiveSkillLV);
 			}
-			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);				// 特性ステータス補正
+			wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_POW);				// 特性ステータス補正
 			wbairitu *= n_A_BaseLV / 100;										// BaseLv補正
 			break;
 

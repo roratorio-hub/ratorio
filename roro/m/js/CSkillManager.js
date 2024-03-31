@@ -36879,7 +36879,7 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(×)メイヘミックソーンズ";
+			this.name = "メイヘミックソーンズ";
 			this.kana = "メイヘミツクソオンス";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
