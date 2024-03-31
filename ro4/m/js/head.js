@@ -3856,8 +3856,9 @@ g_bUnknownCasts = true;
 		case SKILL_ID_ACIDIFIED_ZONE_CHI:
 		case SKILL_ID_ACIDIFIED_ZONE_HI:
 		case SKILL_ID_ACIDIFIED_ZONE_KAZE:
-			// TODO 計算式は仮のものであり実測値と合ってないことを確認済み
-			// サンプルデータ不足
+			// サンプルデータ不足につき計算式は仮のもの
+			// 強化無しのダメージが実測値に対して誤差なしであることを確認済み
+			// 強化有りのダメージが実測値に対して3桁誤差であることを確認済み
 
 			// 初段ダメージの場合
 			if (attackMethodConfArray[0].GetOptionValue(0) == 0) {
@@ -3872,7 +3873,9 @@ g_bUnknownCasts = true;
 				wbairitu = 2000 + (200 * n_A_ActiveSkillLV);
 				// リサーチレポート補正
 				if (UsedSkillSearch(SKILL_ID_RESEARCH_REPORT) > 0) {
-					let tmp_bairitu = 900 + 50 * n_A_ActiveSkillLV;
+					// 実測によれば 1767, 1867, 1967, 2067, 2168
+					// 植物・無への特攻をx2と仮定して 880, 930, 980, 1030, 1080
+					let tmp_bairitu = 830 + 50 * n_A_ActiveSkillLV;
 					switch (mobData[MONSTER_DATA_INDEX_RACE]) {
 						case RACE_ID_SOLID: // 無形
 						case RACE_ID_PLANT:	// 植物形
@@ -3882,9 +3885,10 @@ g_bUnknownCasts = true;
 					wbairitu += tmp_bairitu;
 				}
 				// バイオニックファーマシー補正
-				wbairitu += 2 * UsedSkillSearch(SKILL_ID_BIONIC_PHARMACY) * n_A_ActiveSkillLV;
+				// 実測によればバイオニックファーマシーの係数＝０で誤差無しになる
+				//wbairitu += 0 * UsedSkillSearch(SKILL_ID_BIONIC_PHARMACY);
 				// POW補正
-				wbairitu += 6 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// ベースレベル補正
 				wbairitu *= n_A_BaseLV / 100;
 				// ヒット数
