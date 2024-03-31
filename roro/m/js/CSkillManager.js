@@ -36848,7 +36848,7 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(×)エクスプロッシブパウダー";
+			this.name = "エクスプロッシブパウダー";
 			this.kana = "エクスフロツシフハウタア";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;

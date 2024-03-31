@@ -4685,21 +4685,28 @@ g_bUnknownCasts = true;
 			wbairitu *= n_A_BaseLV / 100;										// BaseLv補正
 			break;
 
+		// 「バイオロ」スキル「エクスプロッシブパウダー」
 		case SKILL_ID_EXPLOSIVE_POWDER:
-			g_bUnknownCasts = true;	// 詠唱時間など未計測フラグ
-			/*
+			// 強化有り・無しの両方で実測値との誤差なしを確認済み
+
+			// 詠唱時間など
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			*/
+			// 基礎倍率
 			if (UsedSkillSearch(SKILL_ID_RESEARCH_REPORT) > 0) {
-				wbairitu = 3000 + (600 * n_A_ActiveSkillLV);						// 基礎倍率
+				// 公称では 3600, 4200, 4800, 5400, 6000
+				// wbairitu = 3000 + (600 * n_A_ActiveSkillLV);
+				// ポリン相手の実測値より 4347, 4948, 5548, 6149, 6750
+				wbairitu = 3742 + 600 * n_A_ActiveSkillLV;
 			} else {
-				wbairitu = 1900 + (400 * n_A_ActiveSkillLV);						// 基礎倍率
+				wbairitu = 1900 + 400 * n_A_ActiveSkillLV;
 			}
-			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);				// 特性ステータス補正
-			wbairitu *= n_A_BaseLV / 100;										// BaseLv補正
+			// 特性ステータス補正
+			wbairitu += 13 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+			// BaseLv補正
+			wbairitu *= n_A_BaseLV / 100;
 			break;
 
 		case SKILL_ID_MEYHEMIC_THORNS:
@@ -8656,7 +8663,7 @@ g_bUnknownCasts = true;
 			if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SOUND_BLEND] > 0) {
 				wbairitu *= 2;
 			}
-			
+
 			// レッスン補正
 			wbairitu += 60 * UsedSkillSearch(SKILL_ID_LESSON);
 
