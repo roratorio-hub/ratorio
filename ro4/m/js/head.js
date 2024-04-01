@@ -3851,63 +3851,63 @@ g_bUnknownCasts = true;
 			}
 			break;
 
+		// 「バイオロ」スキル「アシディファイドゾーン」
 		case SKILL_ID_ACIDIFIED_ZONE_MIZU:
 		case SKILL_ID_ACIDIFIED_ZONE_CHI:
 		case SKILL_ID_ACIDIFIED_ZONE_HI:
 		case SKILL_ID_ACIDIFIED_ZONE_KAZE:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
+			// サンプルデータ不足につき計算式は仮のもの
+			// 強化無しのダメージが実測値に対して誤差なしであることを確認済み
+			// 強化有りのダメージが実測値に対して3桁誤差であることを確認済み
 
 			// 初段ダメージの場合
 			if (attackMethodConfArray[0].GetOptionValue(0) == 0) {
-
-				// 距離属性
-				n_Enekyori = 1;
-
 				// 詠唱時間等
-				/*
-				// 未実測、0.3秒後追撃未実装
 				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				*/
-
+				// 距離属性
+				n_Enekyori = 1;
 				// 基本倍率
 				wbairitu = 2000 + (200 * n_A_ActiveSkillLV);
-
+				// リサーチレポート補正
+				if (UsedSkillSearch(SKILL_ID_RESEARCH_REPORT) > 0) {
+					// 実測によれば 1767, 1867, 1967, 2067, 2168
+					// 植物・無への特攻をx2と仮定して 880, 930, 980, 1030, 1080
+					let tmp_bairitu = 830 + 50 * n_A_ActiveSkillLV;
+					switch (mobData[MONSTER_DATA_INDEX_RACE]) {
+						case RACE_ID_SOLID: // 無形
+						case RACE_ID_PLANT:	// 植物形
+							tmp_bairitu *= 2;
+							break;
+					}
+					wbairitu += tmp_bairitu;
+				}
+				// バイオニックファーマシー補正
+				// 実測によればバイオニックファーマシーの係数＝０で誤差無しになる
+				//wbairitu += 0 * UsedSkillSearch(SKILL_ID_BIONIC_PHARMACY);
 				// POW補正
-				wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
+				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// ベースレベル補正
 				wbairitu *= n_A_BaseLV / 100;
-
 				// ヒット数
 				wHITsuu = 3;
 			}
-
 			// 設置ダメージの場合
 			else {
-
-g_bDefinedDamageIntervals = true;
-
+				g_bDefinedDamageIntervals = true;
 				// ダメージ間隔
 				n_Delay[5] = 1000;
-
 				// オブジェクト存続時間
 				n_Delay[6] = 10000;
-
 				// 距離属性
 				n_Enekyori = 0;
-
 				// 基本倍率
 				wbairitu = Math.floor(62.5 * n_A_ActiveSkillLV);
-
 				// POW補正
 				// TODO: 無いと想定
 				// wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
-
 				// ベースレベル補正
 				wbairitu *= n_A_BaseLV / 100;
 			}
@@ -4689,38 +4689,49 @@ g_bDefinedDamageIntervals = true;
 			wbairitu *= n_A_BaseLV / 100;										// BaseLv補正
 			break;
 
+		// 「バイオロ」スキル「エクスプロッシブパウダー」
 		case SKILL_ID_EXPLOSIVE_POWDER:
-			g_bUnknownCasts = true;	// 詠唱時間など未計測フラグ
-			/*
+			// 強化有り・無しの両方で実測値との誤差なしを確認済み
+
+			// 詠唱時間など
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			*/
+			// 基礎倍率
 			if (UsedSkillSearch(SKILL_ID_RESEARCH_REPORT) > 0) {
-				wbairitu = 3000 + (600 * n_A_ActiveSkillLV);						// 基礎倍率
+				// 公称では 3600, 4200, 4800, 5400, 6000
+				// wbairitu = 3000 + (600 * n_A_ActiveSkillLV);
+				// ポリン相手の実測値より 4347, 4948, 5548, 6149, 6750
+				wbairitu = 3742 + 600 * n_A_ActiveSkillLV;
 			} else {
-				wbairitu = 1900 + (400 * n_A_ActiveSkillLV);						// 基礎倍率
+				wbairitu = 1900 + 400 * n_A_ActiveSkillLV;
 			}
-			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);				// 特性ステータス補正
-			wbairitu *= n_A_BaseLV / 100;										// BaseLv補正
+			// 特性ステータス補正
+			wbairitu += 13 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+			// BaseLv補正
+			wbairitu *= n_A_BaseLV / 100;
 			break;
 
+		// 「バイオロ」スキル「メイヘミックソーンズ」
 		case SKILL_ID_MEYHEMIC_THORNS:
-			g_bUnknownCasts = true;	// 詠唱時間など未計測フラグ
-			n_Enekyori = 1;	// 遠距離フラグ
-			/*
+			// 未強化・強化両方のダメージが実測値に対して誤差なしであることを確認済み
+
+			// 詠唱時間など
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			*/
+			// 遠距離フラグ
+			n_Enekyori = 1;
+			// 基礎倍率
 			if (UsedSkillSearch(SKILL_ID_RESEARCH_REPORT) > 0) {
-				wbairitu = 2500 + (200 * n_A_ActiveSkillLV);						// 基礎倍率
+				// 実測によれば 3235, 3435, 3635, ... 5035
+				wbairitu = 3030 + (200 * n_A_ActiveSkillLV);
 			} else {
-				wbairitu = 2000 + (100 * n_A_ActiveSkillLV);						// 基礎倍率
+				wbairitu = 2000 + (100 * n_A_ActiveSkillLV);
 			}
-			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);				// 特性ステータス補正
+			wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_POW);				// 特性ステータス補正
 			wbairitu *= n_A_BaseLV / 100;										// BaseLv補正
 			break;
 
@@ -8660,7 +8671,7 @@ g_bDefinedDamageIntervals = true;
 			if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SOUND_BLEND] > 0) {
 				wbairitu *= 2;
 			}
-			
+
 			// レッスン補正
 			wbairitu += 60 * UsedSkillSearch(SKILL_ID_LESSON);
 
