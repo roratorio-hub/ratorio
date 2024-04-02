@@ -9668,10 +9668,12 @@ g_bDefinedDamageIntervals = true;
 			wbairitu *= n_A_BaseLV / 100;
 			break;
 
+		// 「インペリアルガード」スキル「ジャッジメントクロス」
 		case SKILL_ID_JUDGEMENT_CROSS:
+			// 実測値に対して1hitあたり2桁のダメージ誤差があることを確認済み
 
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
+			// TODO: 詠唱時間等未実測スキル
+			g_bUnknownCasts = true;
 
 			// 詠唱時間等
 			/*
@@ -9684,7 +9686,6 @@ g_bUnknownCasts = true;
 
 			// 基本倍率
 			wbairitu = 3000 + (1500 * n_A_ActiveSkillLV);
-
 			// SPL補正
 			wbairitu += 60 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 
@@ -9698,9 +9699,13 @@ g_bUnknownCasts = true;
 
 			// ベースレベル補正
 			wbairitu *= n_A_BaseLV / 100;
+			// 見た目10hit
+			wActiveHitNum = 10;
 			break;
 
+		// 「インペリアルガード」スキル「クロスレイン」
 		case SKILL_ID_CROSS_RAIN:
+			// 実測値に対して２桁の誤差があることを確認済み
 
 // TODO: 詠唱時間等未実測スキル
 g_bUnknownCasts = true;
@@ -9721,16 +9726,24 @@ g_bDefinedDamageIntervals = true;
 			// オブジェクト存続時間
 			n_Delay[6] = 3000;
 
-			// 基本倍率
+			// ホーリーシールド有り
 			if (UsedSkillSearch(SKILL_ID_HOLY_SHIELD) > 0) {
-				wbairitu = (150 * n_A_ActiveSkillLV);
+				// 基本倍率
+				wbairitu = 150 * n_A_ActiveSkillLV;
+				// SPL補正
+				wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				// 槍＆片手剣修練
+				wbairitu += 15 * UsedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN);
 			}
+			// 無し
 			else {
+				// 基本倍率
 				wbairitu = (100 * n_A_ActiveSkillLV);
+				// SPL補正
+				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				// 槍＆片手剣修練
+				wbairitu += 5 * UsedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN);
 			}
-
-			// SPL補正
-			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 
 			// ベースレベル補正
 			wbairitu *= n_A_BaseLV / 100;
