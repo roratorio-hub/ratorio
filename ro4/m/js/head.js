@@ -8966,10 +8966,13 @@ g_bUnknownCasts = true;
 		//
 		//----------------------------------------------------------------
 
+		// 「カーディナル」スキル「アルビトリウム」
 		case SKILL_ID_ARBITRIUM:
+			// 計算式はragna-promenade様から引用させて頂きました
+			// 実測値に対して3桁のダメージ誤差があることを確認済みです
 
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
+			// TODO: 詠唱時間等未実測スキル
+			g_bUnknownCasts = true;
 
 			// 初段ＨＩＴの場合
 			if (battleCalcInfo.parentSkillId === undefined) {
@@ -8984,16 +8987,12 @@ g_bUnknownCasts = true;
 				*/
 
 				// 基本倍率
-				wbairitu = (50 * n_A_ActiveSkillLV);
-
+				wbairitu = 50 * n_A_ActiveSkillLV;
+				// フィドスアニムス補正
+				wbairitu += 4 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS);
 				// SPL補正
-				// TODO: 初段には乗らないのではないかという仮説
-				// wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-
-				// ベースレベル補正
-				wbairitu *= n_A_BaseLV / 100;
+				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			}
-
 			// 追撃として呼ばれている場合
 			else {
 
@@ -9008,19 +9007,22 @@ g_bUnknownCasts = true;
 
 				// 基本倍率
 				wbairitu = (450 * n_A_ActiveSkillLV);
-
+				// フィドスアニムス補正
+				wbairitu += 30 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS);
 				// SPL補正
-				wbairitu += 15 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-
-				// ベースレベル補正
-				wbairitu *= n_A_BaseLV / 100;
+				wbairitu += 25 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			}
+			// ベースレベル補正
+			wbairitu *= n_A_BaseLV / 100;
 			break;
 
+		// 「カーディナル」スキル「ニューマティックプロセラ」
 		case SKILL_ID_NUMATIC_PROCERA:
+			// 計算式はragna-promenade様から引用させて頂きました
+			// 実測値に対して3桁のダメージ誤差があることを確認済みです
 
-// TODO: 詠唱時間等未実測スキル
-g_bDefinedDamageIntervals = true;
+			// TODO: 詠唱時間等未実測スキル
+			g_bDefinedDamageIntervals = true;
 
 			// 詠唱時間等
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
@@ -9034,28 +9036,43 @@ g_bDefinedDamageIntervals = true;
 			// オブジェクト存続時間
 			n_Delay[6] = 12000;
 
-			// 基本倍率
-			wbairitu = 3000 + (1500 * n_A_ActiveSkillLV);
-
-			// SPL補正
-			wbairitu += 60 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-
-			// 不死・悪魔形はダメージ倍率＋３０００％
-			switch (mobData[MONSTER_DATA_INDEX_RACE]) {
-			case RACE_ID_UNDEAD:
-			case RACE_ID_DEMON:
-				wbairitu += 3000;
-				break;
+			// 不死・悪魔の場合
+			if (mobData[MONSTER_DATA_INDEX_RACE] == RACE_ID_UNDEAD || mobData[MONSTER_DATA_INDEX_RACE] == RACE_ID_DEMON) {
+				// 基本倍率
+				wbairitu = 6000 + 1500 * n_A_ActiveSkillLV;
+				// フィドスアニムス補正
+				wbairitu += 5 * UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS);
+				// SPL補正
+				wbairitu += 45 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			}
-
+			// それ以外の場合
+			else {
+				// 基本倍率
+				wbairitu = 3000 + 1500 * n_A_ActiveSkillLV;
+				// フィドスアニムス補正
+				wbairitu += 3 * UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS);
+				// SPL補正
+				wbairitu += 35 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+			}
+			// skillLv 6以上のときSPL係数増加
+			if (n_A_ActiveSkillLV > 5) {
+				wbairitu += 25 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+			}
 			// ベースレベル補正
 			wbairitu *= n_A_BaseLV / 100;
+			// 見た目10hitで最大40hit
+			wActiveHitNum = 10;
 			break;
 
+		// 「カーディナル」スキル「フレーメン」
 		case SKILL_ID_PHREMEN:
+			// 計算式はragna-promenade様から引用させて頂きました
+			// アークワンド装備時に実測値に対してダメージの誤差が無いことを確認済みです
+			// ただしロッド装備時には3桁の誤差があります
+			// スキルの問題というよりは魔法ダメージ算出の計算式そのものに問題があるように思われます
 
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
+			// TODO: 詠唱時間等未実測スキル
+			g_bUnknownCasts = true;
 
 			// 詠唱時間等
 			/*
@@ -9066,20 +9083,24 @@ g_bUnknownCasts = true;
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			*/
 
-			// 基本倍率
-			wbairitu = (600 * n_A_ActiveSkillLV);
-
-			// SPL補正
-			wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-
-			// 不死・悪魔形はダメージ１．５倍
-			switch (mobData[MONSTER_DATA_INDEX_RACE]) {
-			case RACE_ID_UNDEAD:
-			case RACE_ID_DEMON:
-				wbairitu *= 1.5;
-				break;
+			// 不死・悪魔の場合
+			if (mobData[MONSTER_DATA_INDEX_RACE] == RACE_ID_UNDEAD || mobData[MONSTER_DATA_INDEX_RACE] == RACE_ID_DEMON) {
+				// 基本倍率
+				wbairitu = (900 * n_A_ActiveSkillLV);
+				// フィドスアニムス補正
+				wbairitu += 60 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS);
+				// SPL補正
+				wbairitu += 50 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			}
-
+			// それ以外の場合
+			else {
+				// 基本倍率
+				wbairitu = (600 * n_A_ActiveSkillLV);
+				// フィドスアニムス補正
+				wbairitu += 30 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS);
+				// SPL補正
+				wbairitu += 30 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+			}
 			// ベースレベル補正
 			wbairitu *= n_A_BaseLV / 100;
 			break;

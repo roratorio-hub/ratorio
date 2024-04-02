@@ -31406,7 +31406,7 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(×)アルビトリウム";
+			this.name = "(△)アルビトリウム";
 			this.kana = "アルヒトリウム";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
@@ -31511,7 +31511,7 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(×)ニューマティックプロセラ";
+			this.name = "(△)ニューマティックプロセラ";
 			this.kana = "ニユウマテイツクフロセラ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
@@ -31651,7 +31651,7 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(×)フレーメン";
+			this.name = "(△)フレーメン";
 			this.kana = "フレエメン";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
