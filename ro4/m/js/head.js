@@ -2905,34 +2905,34 @@ g_bUnknownCasts = true;
 			}
 			break;
 
+		// 「カーディナル」スキル「ペティティオ」
 		case SKILL_ID_PETITIO:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-
 			// 鈍器、本のみ発動可能
 			switch (n_A_WeaponType) {
+				case ITEM_KIND_CLUB:
+				case ITEM_KIND_BOOK:
+					// 詠唱時間等
+					wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+					n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+					n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+					n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 
-			case ITEM_KIND_CLUB:
-			case ITEM_KIND_BOOK:
+					// 武器種別による距離属性変化
+					n_Enekyori = (n_A_WeaponType == ITEM_KIND_BOOK) ? 0 :1;
 
-				// 武器種別による距離属性変化
-				n_Enekyori = (n_A_WeaponType == ITEM_KIND_BOOK) ? 0 :1;
+					// 基本倍率
+					wbairitu = (250 * n_A_ActiveSkillLV);
 
-				// 基本倍率
-				wbairitu = (250 * n_A_ActiveSkillLV);
+					// POW補正
+					wbairitu += 8 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 
-				// POW補正
-				wbairitu += 8 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
-				// ベースレベル補正
-				wbairitu *= n_A_BaseLV / 100;
-				break;
-
-			default:
-				wbairitu = 0;
-				n_Buki_Muri = 1;
-				break;
+					// ベースレベル補正
+					wbairitu *= n_A_BaseLV / 100;
+					break;
+				default:
+					wbairitu = 0;
+					n_Buki_Muri = 1;
+					break;
 			}
 			break;
 
