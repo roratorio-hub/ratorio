@@ -2905,34 +2905,34 @@ g_bUnknownCasts = true;
 			}
 			break;
 
+		// 「カーディナル」スキル「ペティティオ」
 		case SKILL_ID_PETITIO:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-
 			// 鈍器、本のみ発動可能
 			switch (n_A_WeaponType) {
+				case ITEM_KIND_CLUB:
+				case ITEM_KIND_BOOK:
+					// 詠唱時間等
+					wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+					n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+					n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+					n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 
-			case ITEM_KIND_CLUB:
-			case ITEM_KIND_BOOK:
+					// 武器種別による距離属性変化
+					n_Enekyori = (n_A_WeaponType == ITEM_KIND_BOOK) ? 0 :1;
 
-				// 武器種別による距離属性変化
-				n_Enekyori = (n_A_WeaponType == ITEM_KIND_BOOK) ? 0 :1;
+					// 基本倍率
+					wbairitu = (250 * n_A_ActiveSkillLV);
 
-				// 基本倍率
-				wbairitu = (250 * n_A_ActiveSkillLV);
+					// POW補正
+					wbairitu += 8 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 
-				// POW補正
-				wbairitu += 8 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
-				// ベースレベル補正
-				wbairitu *= n_A_BaseLV / 100;
-				break;
-
-			default:
-				wbairitu = 0;
-				n_Buki_Muri = 1;
-				break;
+					// ベースレベル補正
+					wbairitu *= n_A_BaseLV / 100;
+					break;
+				default:
+					wbairitu = 0;
+					n_Buki_Muri = 1;
+					break;
 			}
 			break;
 
@@ -8966,10 +8966,13 @@ g_bUnknownCasts = true;
 		//
 		//----------------------------------------------------------------
 
+		// 「カーディナル」スキル「アルビトリウム」
 		case SKILL_ID_ARBITRIUM:
+			// 計算式はragna-promenade様から引用させて頂きました
+			// 実測値に対して3桁のダメージ誤差があることを確認済みです
 
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
+			// TODO: 詠唱時間等未実測スキル
+			g_bUnknownCasts = true;
 
 			// 初段ＨＩＴの場合
 			if (battleCalcInfo.parentSkillId === undefined) {
@@ -8984,16 +8987,12 @@ g_bUnknownCasts = true;
 				*/
 
 				// 基本倍率
-				wbairitu = (50 * n_A_ActiveSkillLV);
-
+				wbairitu = 50 * n_A_ActiveSkillLV;
+				// フィドスアニムス補正
+				wbairitu += 4 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS);
 				// SPL補正
-				// TODO: 初段には乗らないのではないかという仮説
-				// wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-
-				// ベースレベル補正
-				wbairitu *= n_A_BaseLV / 100;
+				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			}
-
 			// 追撃として呼ばれている場合
 			else {
 
@@ -9008,19 +9007,22 @@ g_bUnknownCasts = true;
 
 				// 基本倍率
 				wbairitu = (450 * n_A_ActiveSkillLV);
-
+				// フィドスアニムス補正
+				wbairitu += 30 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS);
 				// SPL補正
-				wbairitu += 15 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-
-				// ベースレベル補正
-				wbairitu *= n_A_BaseLV / 100;
+				wbairitu += 25 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			}
+			// ベースレベル補正
+			wbairitu *= n_A_BaseLV / 100;
 			break;
 
+		// 「カーディナル」スキル「ニューマティックプロセラ」
 		case SKILL_ID_NUMATIC_PROCERA:
+			// 計算式はragna-promenade様から引用させて頂きました
+			// 実測値に対して3桁のダメージ誤差があることを確認済みです
 
-// TODO: 詠唱時間等未実測スキル
-g_bDefinedDamageIntervals = true;
+			// TODO: 詠唱時間等未実測スキル
+			g_bDefinedDamageIntervals = true;
 
 			// 詠唱時間等
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
@@ -9034,28 +9036,43 @@ g_bDefinedDamageIntervals = true;
 			// オブジェクト存続時間
 			n_Delay[6] = 12000;
 
-			// 基本倍率
-			wbairitu = 3000 + (1500 * n_A_ActiveSkillLV);
-
-			// SPL補正
-			wbairitu += 60 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-
-			// 不死・悪魔形はダメージ倍率＋３０００％
-			switch (mobData[MONSTER_DATA_INDEX_RACE]) {
-			case RACE_ID_UNDEAD:
-			case RACE_ID_DEMON:
-				wbairitu += 3000;
-				break;
+			// 不死・悪魔の場合
+			if (mobData[MONSTER_DATA_INDEX_RACE] == RACE_ID_UNDEAD || mobData[MONSTER_DATA_INDEX_RACE] == RACE_ID_DEMON) {
+				// 基本倍率
+				wbairitu = 6000 + 1500 * n_A_ActiveSkillLV;
+				// フィドスアニムス補正
+				wbairitu += 5 * UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS);
+				// SPL補正
+				wbairitu += 45 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			}
-
+			// それ以外の場合
+			else {
+				// 基本倍率
+				wbairitu = 3000 + 1500 * n_A_ActiveSkillLV;
+				// フィドスアニムス補正
+				wbairitu += 3 * UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS);
+				// SPL補正
+				wbairitu += 35 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+			}
+			// skillLv 6以上のときSPL係数増加
+			if (n_A_ActiveSkillLV > 5) {
+				wbairitu += 25 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+			}
 			// ベースレベル補正
 			wbairitu *= n_A_BaseLV / 100;
+			// 見た目10hitで最大40hit
+			wActiveHitNum = 10;
 			break;
 
+		// 「カーディナル」スキル「フレーメン」
 		case SKILL_ID_PHREMEN:
+			// 計算式はragna-promenade様から引用させて頂きました
+			// アークワンド装備時に実測値に対してダメージの誤差が無いことを確認済みです
+			// ただしロッド装備時には3桁の誤差があります
+			// スキルの問題というよりは魔法ダメージ算出の計算式そのものに問題があるように思われます
 
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
+			// TODO: 詠唱時間等未実測スキル
+			g_bUnknownCasts = true;
 
 			// 詠唱時間等
 			/*
@@ -9066,20 +9083,24 @@ g_bUnknownCasts = true;
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			*/
 
-			// 基本倍率
-			wbairitu = (600 * n_A_ActiveSkillLV);
-
-			// SPL補正
-			wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-
-			// 不死・悪魔形はダメージ１．５倍
-			switch (mobData[MONSTER_DATA_INDEX_RACE]) {
-			case RACE_ID_UNDEAD:
-			case RACE_ID_DEMON:
-				wbairitu *= 1.5;
-				break;
+			// 不死・悪魔の場合
+			if (mobData[MONSTER_DATA_INDEX_RACE] == RACE_ID_UNDEAD || mobData[MONSTER_DATA_INDEX_RACE] == RACE_ID_DEMON) {
+				// 基本倍率
+				wbairitu = (900 * n_A_ActiveSkillLV);
+				// フィドスアニムス補正
+				wbairitu += 60 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS);
+				// SPL補正
+				wbairitu += 50 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			}
-
+			// それ以外の場合
+			else {
+				// 基本倍率
+				wbairitu = (600 * n_A_ActiveSkillLV);
+				// フィドスアニムス補正
+				wbairitu += 30 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS);
+				// SPL補正
+				wbairitu += 30 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+			}
 			// ベースレベル補正
 			wbairitu *= n_A_BaseLV / 100;
 			break;
@@ -9668,10 +9689,12 @@ g_bDefinedDamageIntervals = true;
 			wbairitu *= n_A_BaseLV / 100;
 			break;
 
+		// 「インペリアルガード」スキル「ジャッジメントクロス」
 		case SKILL_ID_JUDGEMENT_CROSS:
+			// 実測値に対して1hitあたり2桁のダメージ誤差があることを確認済み
 
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
+			// TODO: 詠唱時間等未実測スキル
+			g_bUnknownCasts = true;
 
 			// 詠唱時間等
 			/*
@@ -9684,7 +9707,6 @@ g_bUnknownCasts = true;
 
 			// 基本倍率
 			wbairitu = 3000 + (1500 * n_A_ActiveSkillLV);
-
 			// SPL補正
 			wbairitu += 60 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 
@@ -9698,9 +9720,13 @@ g_bUnknownCasts = true;
 
 			// ベースレベル補正
 			wbairitu *= n_A_BaseLV / 100;
+			// 見た目10hit
+			wActiveHitNum = 10;
 			break;
 
+		// 「インペリアルガード」スキル「クロスレイン」
 		case SKILL_ID_CROSS_RAIN:
+			// 実測値に対して２桁の誤差があることを確認済み
 
 // TODO: 詠唱時間等未実測スキル
 g_bUnknownCasts = true;
@@ -9721,16 +9747,24 @@ g_bDefinedDamageIntervals = true;
 			// オブジェクト存続時間
 			n_Delay[6] = 3000;
 
-			// 基本倍率
+			// ホーリーシールド有り
 			if (UsedSkillSearch(SKILL_ID_HOLY_SHIELD) > 0) {
-				wbairitu = (150 * n_A_ActiveSkillLV);
+				// 基本倍率
+				wbairitu = 150 * n_A_ActiveSkillLV;
+				// SPL補正
+				wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				// 槍＆片手剣修練
+				wbairitu += 15 * UsedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN);
 			}
+			// 無し
 			else {
+				// 基本倍率
 				wbairitu = (100 * n_A_ActiveSkillLV);
+				// SPL補正
+				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				// 槍＆片手剣修練
+				wbairitu += 5 * UsedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN);
 			}
-
-			// SPL補正
-			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 
 			// ベースレベル補正
 			wbairitu *= n_A_BaseLV / 100;

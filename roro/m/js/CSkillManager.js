@@ -31406,7 +31406,7 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(×)アルビトリウム";
+			this.name = "(△)アルビトリウム";
 			this.kana = "アルヒトリウム";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
@@ -31511,7 +31511,7 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(×)ニューマティックプロセラ";
+			this.name = "(△)ニューマティックプロセラ";
 			this.kana = "ニユウマテイツクフロセラ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
@@ -31609,13 +31609,21 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
-
-
-
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return 500 * skillLv;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 500;
+			}
 			this.CriActRate = (skillLv, charaData, specData, mobData) => {
 				return this._CriActRate100(skillLv, charaData, specData, mobData);
 			}
-
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
@@ -31651,7 +31659,7 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(×)フレーメン";
+			this.name = "(△)フレーメン";
 			this.kana = "フレエメン";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
@@ -32956,7 +32964,7 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(×)ホーリーシールド";
+			this.name = "ホーリーシールド";
 			this.kana = "ホオリイシイルト";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE;
@@ -32994,7 +33002,7 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(×)ジャッジメントクロス";
+			this.name = "(△)ジャッジメントクロス";
 			this.kana = "シヤツシメントクロス";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
@@ -33051,7 +33059,7 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(×)クロスレイン";
+			this.name = "(△)クロスレイン";
 			this.kana = "クロスレイン";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
