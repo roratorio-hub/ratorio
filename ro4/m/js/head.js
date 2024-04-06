@@ -3676,35 +3676,36 @@ g_bUnknownCasts = true;
 			wbairitu *= n_A_BaseLV / 100;
 			break;
 
+		// 「インクイジター」スキル「爆火神弾」
 		case SKILL_ID_BAKKA_SHINDAN:
-			/*
-				YE鯖で油なしのダメージが実測値と合うことを確認ずみ
-				油ありのダメージは公式だと300%増加だが実測誤差が生じる
-				310%増加なら誤差は減るが完全には一致しない
-				変に310%増加にするよりは他の部分で誤差が生じていると判断して公式通りの倍率で△リリースする
-			*/
+			// 未強化状態のダメージに誤差がないことを確認済み
+			// 精油状態ではYE鯖レートで1ダメージの誤差があることを確認済み
 
-			// TODO: 詠唱時間等未実測スキル
-			g_bUnknownCasts = true;
-
+			// 詠唱など
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 距離属性
 			n_Enekyori = 1;
-
-			// 基本倍率
-			wbairitu = 2600 + (200 * n_A_ActiveSkillLV);
-
 			// 聖油補正
 			if (seiyuLv = n_B_IJYOU[MOB_CONF_DEBUF_ID_SEIYU_SENREI_DEBUFF]) {
-				wbairitu += 300;
+				// 基本倍率
+				wbairitu = 2900 + (200 * n_A_ActiveSkillLV);
+				// POW補正
+				wbairitu += 13 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 			}
-
-			// POW補正
-			wbairitu += 12 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
+			// 未強化
+			else {
+				// 基本倍率
+				wbairitu = 2600 + (200 * n_A_ActiveSkillLV);
+				// POW補正
+				wbairitu += 12 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+			}
 			// ベースレベル補正
 			wbairitu *= n_A_BaseLV / 100;
-
 			break;
+
 
 		case SKILL_ID_ENKA_METSUMA_SHINDAN:
 

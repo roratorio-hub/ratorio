@@ -33612,6 +33612,18 @@ function CSkillManager() {
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return 1000 + 200 * skillLv;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return 1000 * skillLv;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 300;
+			}			
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
