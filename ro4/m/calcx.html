@@ -262,6 +262,10 @@
 			if (navigator.userAgent.match(/iPhone/)) {
 				$(".wrapper .content").css("overflow","initial");
 			}
+			else if (navigator.userAgent.match(/Android/)) {
+				$(".wrapper").css("overflow","scroll");
+				$(".content").css("overflow","visible");
+			}
 			// エンチャントサーチのロード
 			new enchSearch();
 			// 検索可能ドロップダウンリストのロード
