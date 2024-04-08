@@ -3676,35 +3676,36 @@ g_bUnknownCasts = true;
 			wbairitu *= n_A_BaseLV / 100;
 			break;
 
+		// 「インクイジター」スキル「爆火神弾」
 		case SKILL_ID_BAKKA_SHINDAN:
-			/*
-				YE鯖で油なしのダメージが実測値と合うことを確認ずみ
-				油ありのダメージは公式だと300%増加だが実測誤差が生じる
-				310%増加なら誤差は減るが完全には一致しない
-				変に310%増加にするよりは他の部分で誤差が生じていると判断して公式通りの倍率で△リリースする
-			*/
+			// 未強化状態のダメージに誤差がないことを確認済み
+			// 精油状態ではYE鯖レートで1ダメージの誤差があることを確認済み
 
-			// TODO: 詠唱時間等未実測スキル
-			g_bUnknownCasts = true;
-
+			// 詠唱など
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 距離属性
 			n_Enekyori = 1;
-
-			// 基本倍率
-			wbairitu = 2600 + (200 * n_A_ActiveSkillLV);
-
 			// 聖油補正
 			if (seiyuLv = n_B_IJYOU[MOB_CONF_DEBUF_ID_SEIYU_SENREI_DEBUFF]) {
-				wbairitu += 300;
+				// 基本倍率
+				wbairitu = 2900 + (200 * n_A_ActiveSkillLV);
+				// POW補正
+				wbairitu += 13 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 			}
-
-			// POW補正
-			wbairitu += 12 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
+			// 未強化
+			else {
+				// 基本倍率
+				wbairitu = 2600 + (200 * n_A_ActiveSkillLV);
+				// POW補正
+				wbairitu += 12 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+			}
 			// ベースレベル補正
 			wbairitu *= n_A_BaseLV / 100;
-
 			break;
+
 
 		case SKILL_ID_ENKA_METSUMA_SHINDAN:
 
@@ -10565,71 +10566,18 @@ g_bUnknownCasts = true;
 			break;
 
 		/**
-		 * 「蜃気楼　不知火」スキル「赤炎砲」
+		 * 「蜃気楼　不知火」スキル「赤炎砲」「冷血砲」「雷電砲」「金龍砲」
 		 */
 		case SKILL_ID_SEKIEN_HOU:
-			// CSkillManager.js で定義された詠唱時間などを取得する
-			g_bUnknownCasts = true;	// 詠唱時間など未計測フラグ
-			/*
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			*/
-			wbairitu = 2500 + 200 * n_A_ActiveSkillLV;				// 基本倍率
-			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// spl補正
-			wbairitu += 200 * UsedSkillSearch(SKILL_ID_ANTEN_HOU_LEARNED_LEVEL)	// 習得済みスキル条件
-			wbairitu *= n_A_BaseLV / 100;							// BaseLv補正
-			break;
-
-		/**
-		 * 「蜃気楼　不知火」スキル「冷血砲」
-		 */
 		case SKILL_ID_REIKETSU_HOU:
-			// CSkillManager.js で定義された詠唱時間などを取得する
-			g_bUnknownCasts = true;	// 詠唱時間など未計測フラグ
-			/*
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			*/
-			wbairitu = 2500 + 200 * n_A_ActiveSkillLV;				// 基本倍率
-			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// spl補正
-			wbairitu += 200 * UsedSkillSearch(SKILL_ID_ANTEN_HOU_LEARNED_LEVEL)	// 習得済みスキル条件
-			wbairitu *= n_A_BaseLV / 100;							// BaseLv補正
-			break;
-
-		/**
-		 * 「蜃気楼　不知火」スキル「雷電砲」
-		 */
 		case SKILL_ID_RAIDEN_HOU:
-			// CSkillManager.js で定義された詠唱時間などを取得する
-			g_bUnknownCasts = true;	// 詠唱時間など未計測フラグ
-			/*
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			*/
-			wbairitu = 2500 + 200 * n_A_ActiveSkillLV;				// 基本倍率
-			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// spl補正
-			wbairitu += 200 * UsedSkillSearch(SKILL_ID_ANTEN_HOU_LEARNED_LEVEL)	// 習得済みスキル条件
-			wbairitu *= n_A_BaseLV / 100;							// BaseLv補正
-			break;
-
-		/**
-		 * 「蜃気楼　不知火」スキル「金龍砲」
-		 */
 		case SKILL_ID_KINNRYUU_HOU:
-			// CSkillManager.js で定義された詠唱時間などを取得する
-			g_bUnknownCasts = true;	// 詠唱時間など未計測フラグ
-			/*
+			// 詠唱時間など
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			*/
+
 			wbairitu = 2500 + 200 * n_A_ActiveSkillLV;				// 基本倍率
 			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// spl補正
 			wbairitu += 200 * UsedSkillSearch(SKILL_ID_ANTEN_HOU_LEARNED_LEVEL)	// 習得済みスキル条件
@@ -10640,14 +10588,12 @@ g_bUnknownCasts = true;
 		 * 「蜃気楼　不知火」スキル「暗転砲」
 		 */
 		case SKILL_ID_ANTEN_HOU:
-			// CSkillManager.js で定義された詠唱時間などを取得する
-			g_bUnknownCasts = true;	// 詠唱時間など未計測フラグ
-			/*
+			// 詠唱時間など
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			*/
+
 			wbairitu = 4000 + 500 * n_A_ActiveSkillLV;				// 基本倍率
 			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// spl補正
 			wbairitu *= n_A_BaseLV / 100;							// BaseLv補正
@@ -10658,14 +10604,12 @@ g_bUnknownCasts = true;
 		 *  TODO: 闇と火の複合属性なので共通処理ではカバーしきれない。後日、個別処理に移動すること
 		 */
 		case SKILL_ID_GENZYUTSU_ANKOKURYUU:
-			// CSkillManager.js で定義された詠唱時間などを取得する
-			g_bUnknownCasts = true;	// 詠唱時間など未計測フラグ
-			/*
+			// 詠唱時間など
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			*/
+
 			wbairitu = 11000;										// 基本倍率
 			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// spl補正
 			wbairitu *= n_A_BaseLV / 100;							// BaseLv補正
