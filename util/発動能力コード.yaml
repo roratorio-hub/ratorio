@@ -91,6 +91,8 @@ capabilities:
     code: 194
   - name: スキル習得時効果
     code: 199
+  - name: 近接ダメージ増加
+    code: 210
   - name: INT加算
     code: 214
   - name: 全ステータス加算

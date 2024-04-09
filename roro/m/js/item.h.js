@@ -582,7 +582,7 @@ CGlobalConstManager.DefineEnum(
 		"ITEM_SP_RESERVED_208",				// 未使用（208）
 		"ITEM_SP_RESERVED_209",				// 未使用（209）
 
-		"ITEM_SP_SHORTRANGE_DAMAGE_UP",		// 210
+		"ITEM_SP_SHORTRANGE_DAMAGE_UP",		// 210		近接ダメージUp
 		"ITEM_SP_STR_PLUS_FOR_SET",			// STR		固定値上昇		セット定義用（集中力向上等の基礎値に含まれない）	211
 		"ITEM_SP_AGI_PLUS_FOR_SET",			// AGI		固定値上昇		セット定義用（集中力向上等の基礎値に含まれない）	212
 		"ITEM_SP_VIT_PLUS_FOR_SET",			// VIT		固定値上昇		セット定義用（集中力向上等の基礎値に含まれない）	213

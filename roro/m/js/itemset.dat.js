@@ -5181,4 +5181,12 @@
 	CardIdToSetIdMap[2437] = CardIdToSetIdMap[2437].concat([2644]);
 	CardIdToSetIdMap[2658] = CardIdToSetIdMap[2658].concat([2607, 2610, 2612, 2615, 2618, 2621, 2624, 2627, 2630, 2633, 2635, 2637, 2640]);
 	CardIdToSetIdMap[2662] = CardIdToSetIdMap[2662].concat([2460, 2468, 2470, 2474, 2476, 2504, 2506, 2543, 2544, 2545, 2546, 2547, 2548, 2549, 2550, 2551, 2552, 2553, 2554, 2555, 2556, 2557, 2558, 2559, 2560, 2561]);
+	// --- 2024/04/09 生体アップデート ---
+	w_SE[2648] = [-2985,-2984,-1813,];	// 無名のソードマン + 殺意の怨念
+	CardIdToSetIdMap[2984] = [2648,];
+	CardIdToSetIdMap[1813] = CardIdToSetIdMap[1813].concat([2648]);
+	w_SE[2649] = [5186,5185,-2658,];	// 思念のオーラ + 増幅された怨望
+	ItemIdToSetIdMap[5185] = [2649,];
+	ItemIdToSetIdMap[2658] = ItemIdToSetIdMap[2658].concat([2649]);
+	
 })();
