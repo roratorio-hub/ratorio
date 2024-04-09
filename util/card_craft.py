@@ -265,11 +265,12 @@ if __name__ == "__main__":
         card_dat_js.append(record)
         
         # カード配列の設定
-        if card_type < 8:
-            # 武器カード(1)だけは全部位カード配列(0)に入れないとなぜか表示されないので暫定処理
-            card_type = 0 if card_type == 1 else card_type
-            record = f"CardSortOBJ[{card_type}].push({card_id});"
-            card_dat_js.append(record)
+        # js側で配列をメンテすることになったのでコメントアウト
+        # if card_type < 8:
+        #     # 武器カード(1)だけは全部位カード配列(0)に入れないとなぜか表示されないので暫定処理
+        #     card_type = 0 if card_type == 1 else card_type
+        #     record = f"CardSortOBJ[{card_type}].push({card_id});"
+        #     card_dat_js.append(record)
 
         # card.dat.js に記述すべきセット効果の出力
         if 'set_list' in enchant_info:
