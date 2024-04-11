@@ -49,7 +49,7 @@ class CSaveController {
 	 * キャラクターデータの名前の文字列長.
 	 */
 	static get CHARA_DATA_NAME_LENGTH () {
-		return 20;
+		return 40;
 	}
 
 	/**
