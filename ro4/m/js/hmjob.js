@@ -884,8 +884,8 @@ function GetHPlus() {
 	value += GetTotalSpecStatus(MIG_PARAM_ID_CRT);
 
 	// 装備効果
-	value += n_tok[ITEM_SP_HPLUS_PLUS];
-	value += GetRndOptTotalValue(ITEM_SP_HPLUS_PLUS);
+	value += n_tok[ITEM_SP_H_PLUS_PLUS];
+	value += GetRndOptTotalValue(ITEM_SP_H_PLUS_PLUS);
 
 
 
