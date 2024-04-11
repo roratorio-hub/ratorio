@@ -628,11 +628,15 @@ CGlobalConstManager.DefineEnum(
 
 		"ITEM_SP_P_ATK_PLUS",
 		"ITEM_SP_S_MATK_PLUS",
-		"ITEM_SP_H_PLUS_PLUS",
+		"ITEM_SP_H_PLUS_PLUS",				// 252 H.Plus 加算
 		"ITEM_SP_C_RATE_PLUS",
 		"ITEM_SP_RES_PLUS",
 		"ITEM_SP_MRES_PLUS",
-		"ITEM_SP_HPLUS_PLUS",
+		// 未使用と思われますがコードを追いきれないのでエラー炙り出すために名前を置き換えます
+		// ITEM_SP_HPLUS_PLUS → ITEM_SP_RESERVED_256 
+		// ITEM_SP_HPLUS_PLUS が見つからない旨のエラーが出力されないか、しばらく注視してください
+		// 2024.04.11 usachoco
+		"ITEM_SP_RESERVED_256",				
 		"ITEM_SP_RESERVED_257",				// 未使用（257）
 		"ITEM_SP_RESERVED_258",				// 未使用（258）
 		"ITEM_SP_RESERVED_259",				// 未使用（259）
