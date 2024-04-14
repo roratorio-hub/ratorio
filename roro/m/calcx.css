@@ -361,6 +361,17 @@ td.CSSCLS_EXTRA_INFO_DISP_TABLE_SKILL_CARD_NG {
 	color: #dd0000;
 	text-align: center;
 }
+.CSSCLS_BATTLE_TINY_LABEL {
+	background-color : #ddddff;
+	padding-right: 0.2em;
+}
+.CSSCLS_BATTLE_TINY_VALUE {
+	text-align: left;
+	padding-right: 0.6em;
+}
+#OBJID_DIV_BATTLE_RESULT_TINY {
+	white-space: nowrap;
+}
 
 /* タブ制御 */
 /*
