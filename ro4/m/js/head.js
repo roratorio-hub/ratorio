@@ -139,6 +139,7 @@ n_A_Arrow = 0;
 CAST_PARAM_BORDER = 265;
 
 delayDownForDisp = 0;
+aspdRaw = 0;
 
 // ダメージ表示部のテキスト配列（最小、平均、最大）
 // 旧 InnStr での組み立てから、３桁区切り対応で部分改造
@@ -12866,6 +12867,7 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 	var objGridDmg = null;
 	var objCell = null;
 	var objCellSub = null;
+	var objGridTiny = null;
 
 	// 数値の整形
 	var funcDIG3PX = function (valueF, pointCountF, unitText = "") {
@@ -12900,6 +12902,10 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 
 	var funcDIG3PXSecond = function (valueF, pointCountF) {
 		return funcDIG3PX(valueF, pointCountF, " 秒");
+	};
+
+	var funcDIG3PXSecondCompact = function (valueF, pointCountF) {
+		return funcDIG3PX(valueF, pointCountF, "秒").replace(/\.?0+秒$/, '秒');
 	};
 
 	var funcDIG3PXCount = function (valueF, pointCountF) {
@@ -13204,7 +13210,18 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 		}
 	};
 
+	// 簡易戦闘結果
+	var funcRenderResultTinyHtml = function (objRoot, labelText, valueText) {
+		var objCell = null;
 
+		objCell = HtmlCreateElement("span", objRoot);
+		objCell.classList.add("CSSCLS_BATTLE_TINY_LABEL");
+		HtmlCreateTextNode(labelText, objCell);
+
+		objCell = HtmlCreateElement("span", objRoot);
+		objCell.classList.add("CSSCLS_BATTLE_TINY_VALUE");
+		HtmlCreateTextNode(valueText, objCell);
+	};
 
 
 
@@ -13240,8 +13257,8 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 	objGridBasic.innerHTML = "";
 	objGridDmg = document.getElementById("BATTLE_RESULT_DAMAGE");
 	objGridDmg.innerHTML = "";
-
-
+	objGridTiny = document.getElementById("OBJID_DIV_BATTLE_RESULT_TINY");
+	objGridTiny.innerHTML = "";
 
 
 
@@ -13299,6 +13316,8 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 		objCell.classList.add(partIdStr);
 		objCell.classList.add("CSSCLS_BTLRSLT_VALUE");
 		HtmlCreateTextNode(funcDIG3PXPercent(battleCalcResult.perfectRate, 2), objCell);
+
+		funcRenderResultTinyHtml(objGridTiny, "必中", funcDIG3PX(battleCalcResult.perfectRate, 0, "%"));
 	}
 
 	//----------------
@@ -13333,7 +13352,7 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 	objCell.classList.add("CSSCLS_BTLRSLT_VALUE");
 	HtmlCreateTextNode(funcDIG3PXPercent(criRate, 2), objCell);
 
-
+	funcRenderResultTinyHtml(objGridTiny, "クリ", funcDIG3PX(criRate, 0, "%"));
 
 	//----------------------------------------------------------------
 	//
@@ -13431,6 +13450,11 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 		objCell.classList.add("CSSCLS_BTLRSLT_VALUE");
 		HtmlCreateTextNode(funcDIG3PXSecond(battleCalcResult.castVary, 2), objCell);
 
+		// 簡易戦闘結果: "0秒(276)" or "0.03秒(256.5)"
+		var castText = funcDIG3PXSecondCompact(battleCalcResult.castVary, 2);
+		castText += `(${CExtraInfoAreaComponentManager.charaData[CHARA_DATA_INDEX_CAST_PARAM]})`;
+		funcRenderResultTinyHtml(objGridTiny, "詠唱", castText);
+
 		// 固定詠唱時間のみ
 		objCell = HtmlCreateElement("div", objGridBasic);
 		objCell.style.gridColumnStart = "1";
@@ -13444,6 +13468,8 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 		objCell.classList.add(partIdStr);
 		objCell.classList.add("CSSCLS_BTLRSLT_VALUE");
 		HtmlCreateTextNode(funcDIG3PXSecond(battleCalcResult.castFixed, 2), objCell);
+
+		funcRenderResultTinyHtml(objGridTiny, "固定", funcDIG3PXSecondCompact(battleCalcResult.castFixed, 2));
 
 		//----------------
 		// ディレイ
@@ -13460,6 +13486,12 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 		objCell.classList.add("CSSCLS_BTLRSLT_VALUE");
 		HtmlCreateTextNode(funcDIG3PXSecond(battleCalcResult.delaySkill, 2), objCell);
 
+		// 簡易戦闘結果: "0.1秒(5%)" or "0秒(-15%)"
+		var delayText = funcDIG3PXSecondCompact(battleCalcResult.delaySkill, 2);
+		const overValue = Math.round((100 - delayDownForDisp) * 100) / 100;
+		delayText += `(${overValue}%)`
+		funcRenderResultTinyHtml(objGridTiny, "ディレイ", delayText);
+
 		//----------------
 		// クールタイム
 		//----------------
@@ -13474,6 +13506,8 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 		objCell.classList.add(partIdStr);
 		objCell.classList.add("CSSCLS_BTLRSLT_VALUE");
 		HtmlCreateTextNode(funcDIG3PXSecond(battleCalcResult.coolTime, 2), objCell);
+
+		funcRenderResultTinyHtml(objGridTiny, "CT", funcDIG3PXSecondCompact(battleCalcResult.coolTime, 2));
 	}
 
 	// 上記以外
@@ -13484,6 +13518,14 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 	//----------------
 	// 攻撃間隔
 	//----------------
+	// 簡易戦闘結果: "189.1" or "193(193.3)"
+	const aspdValue = Math.floor(charaData[CHARA_DATA_INDEX_ASPD] * 10) / 10;
+	const aspdRawValue = Math.floor(aspdRaw * 10)/10;
+	var aspdText = "" + aspdValue;
+	if (aspdRawValue > aspdValue) {
+		aspdText += `(${aspdRawValue})`
+	}
+	funcRenderResultTinyHtml(objGridTiny, "ASPD", aspdText);
 
 	//----------------
 	// 設置系
@@ -13510,6 +13552,8 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 		objCell.classList.add(partIdStr);
 		objCell.classList.add("CSSCLS_BTLRSLT_VALUE");
 		HtmlCreateTextNode(funcDIG3PXSecond(battleCalcResult.attackInterval, 2), objCell);
+
+		funcRenderResultTinyHtml(objGridTiny, "攻撃間隔", funcDIG3PXSecondCompact(battleCalcResult.attackInterval, 2));
 
 		// オブジェクト持続時間
 		if (battleCalcResult.objectLifeTime > 0) {
@@ -13573,6 +13617,8 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 		objCell.classList.add(partIdStr);
 		objCell.classList.add("CSSCLS_BTLRSLT_VALUE");
 		HtmlCreateTextNode(funcDIG3PXSecond(battleCalcResult.castVary + battleCalcResult.castFixed + battleCalcResult.attackInterval, 2), objCell);
+
+		funcRenderResultTinyHtml(objGridTiny, "攻撃間隔", funcDIG3PXSecondCompact(battleCalcResult.castVary + battleCalcResult.castFixed + battleCalcResult.attackInterval, 2));
 	}
 
 
@@ -13777,6 +13823,8 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 	objCell.classList.add("CSSCLS_BTLRSLT_VALUE");
 	HtmlCreateTextNode(funcDIG3PX(battleCalcResultAll.GetDamageSummaryAvePerAtk(), 0), objCell);
 
+	funcRenderResultTinyHtml(objGridTiny, "平均", funcDIG3PX(battleCalcResultAll.GetDamageSummaryAvePerAtk(), 0));
+
 	// TODO: 詠唱時間等未実測スキル対応
 	if (g_bUnknownCasts) {
 		objCell = HtmlCreateElement("div", objGridDmg);
@@ -13784,6 +13832,8 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 		objCell.classList.add(partIdStr);
 		objCell.classList.add("CSSCLS_BTLRSLT_CENTERING");
 		HtmlCreateTextNode("（計算不能）", objCell);
+
+		funcRenderResultTinyHtml(objGridTiny, "DPS", "（計算不能）");
 	}
 	else {
 		// ダメージ
@@ -13792,6 +13842,8 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 		objCell.classList.add(partIdStr);
 		objCell.classList.add("CSSCLS_BTLRSLT_VALUE");
 		HtmlCreateTextNode(funcDIG3PX(battleCalcResultAll.GetDamageSummaryAvePerSec(), 0), objCell);
+
+		funcRenderResultTinyHtml(objGridTiny, "DPS", funcDIG3PX(battleCalcResultAll.GetDamageSummaryAvePerSec(), 0));
 	}
 
 	//----------------
