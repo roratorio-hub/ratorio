@@ -7922,6 +7922,7 @@ g_ITEM_SP_ASPD_UP_value_forCalcData = w;
 
 
 		// 範囲外補正
+		aspdRaw = aspd;
 		if(n_A_BaseLV >= 100){
 			if(aspd > 193) aspd = 193;
 		}else{
