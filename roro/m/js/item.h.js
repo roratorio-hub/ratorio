@@ -861,19 +861,6 @@ CGlobalConstManager.DefinePseudoEnum(
 CGlobalConstManager.DefinePseudoEnum(
 	"EnumItemSpId",
 	[
-		// 超越段階が◯以上のとき
-		"ITEM_SP_TRANSCENDENCE_1",			// 91000000
-		"ITEM_SP_TRANSCENDENCE_2",			// 92000000
-		"ITEM_SP_TRANSCENDENCE_3",			// 93000000
-		"ITEM_SP_TRANSCENDENCE_4",			// 94000000
-	],
-	91000000,
-	 1000000
-);
-
-CGlobalConstManager.DefinePseudoEnum(
-	"EnumItemSpId",
-	[
 		// 純粋な○○が△△上がる度に
 
 		// TODO: 装備、カード以外未対応（衣装等）
@@ -1064,8 +1051,25 @@ CGlobalConstManager.DefinePseudoEnum(
 	],
 	1000000000000000,
 	1000000000000000
+);
 
-	// 16桁に収めないとItemSP IDが壊れるのでこれ以上大きい数は定義できません
+/**
+ * 安全に扱える number 型の上限は Number.MAX_SAFE_INTEGER = 9007199254740991 (16桁) なので
+ * 17桁以上のItemSPコードは計算途中で変質してしまう可能性があります
+ * 17桁以上のItemSPコードは BigInt 型で定義してください
+ */
+
+CGlobalConstManager.DefinePseudoEnum(
+	"EnumItemSpId",
+	[
+		// 超越段階が◯以上のとき
+		"ITEM_SP_TRANSCENDENCE_1",			// 1 * 10^17
+		"ITEM_SP_TRANSCENDENCE_2",			// 2 * 10^17
+		"ITEM_SP_TRANSCENDENCE_3",			// 3 * 10^17
+		"ITEM_SP_TRANSCENDENCE_4",			// 4 * 10^17
+	],
+	10000000000000000n,
+	10000000000000000n,
 );
 
 
@@ -1703,7 +1707,7 @@ function GetItemSP(itemId, spid) {
 
 /**
  * アイテム説明テキストを取得する.
- * @param spId SPID
+ * @param spId SPID (BigInt の場合と Int の場合がある)
  * @param spValue SP値
  * @return 説明テキスト
  */
@@ -1730,9 +1734,22 @@ function GetItemExplainText(spId, spValue) {
 	// 戻り値用テキスト配列
 	textInfoArray = new Array();
 
+
+	// 『超越段階が◯以上のとき』条件
+	let transcendenceOver = 0;
+	let baseFlag = BigInt(ITEM_SP_TRANSCENDENCE_1);
+	if (spId >= baseFlag) {
+		// BigInt の場合、小数点以下は自動的に切り捨てられる
+		transcendenceOver = spId / baseFlag;
+		// BigInt と str はそのまま結合できる
+		condTextTranscendence = "超越段階が" + transcendenceOver + "以上の時、";
+		spId = parseInt(spId % baseFlag);
+	}
+
+	// ----------- ここから下は int 型 ---------------
+
 	var friendlyOver = 0;
 	var friendlyOverEffecct = 0;
-
 	// 「親密度が極めて親しい以上のとき」条件
 	friendlyOver = Math.floor(spId / ITEM_SP_PET_FRIENDLY_OVER_HIGHEST);
 	if (friendlyOver > 0) {
@@ -1740,7 +1757,6 @@ function GetItemExplainText(spId, spValue) {
 		condTextFriendlyOver = "親密度が「極めて親しい」以上の場合、追加で";
 		spId = friendlyOverEffecct;
 	}
-
 	// 『親密度が親しい以上の時』条件
 	friendlyOver = Math.floor(spId / ITEM_SP_PET_FRIENDLY_OVER_HIGH);
 	if (friendlyOver > 0) {
@@ -1752,7 +1768,6 @@ function GetItemExplainText(spId, spValue) {
 	// 『BaseLvが○以上の時』条件
 	var baseLvOver = Math.floor(spId / ITEM_SP_BASE_LV_OVER_170_OFFSET);
 	var baseLvOverEffecct = spId % ITEM_SP_BASE_LV_OVER_170_OFFSET;
-
 	switch (baseLvOver) {
 	case 1:
 		condTextBaseLvOver = "BaseLvが170以上の時、追加で";
@@ -1770,41 +1785,31 @@ function GetItemExplainText(spId, spValue) {
 		condTextFriendlyOver = "BaseLvが250以上の時、追加で";
 		break;
 	}
-
 	spId = baseLvOverEffecct;
-
 
 
 	// 『BaseLvが○上がる度に』条件
 	var baseLvBy = Math.floor(spId / ITEM_SP_BASE_LV_BY_1_OFFSET);
 	var baseLvByEffecct = spId % ITEM_SP_BASE_LV_BY_1_OFFSET;
-
 	if (baseLvBy > 0) {
 		condTextBaseLvBy = "BaseLvが" + baseLvBy + "上がる度に追加で";
 	}
-
 	spId = baseLvByEffecct;
-
 
 
 	// 職業限定
 	var jobRestrict = Math.floor(spId / ITEM_SP_JOB_RESTRICT_NOVICE_OFFSET) - 1;
-
 	if (jobRestrict >= 0) {
 		condTextJobRestrict += GetJobName(jobRestrict) + "が装備時、";
 	}
-
 	spId = spId % ITEM_SP_JOB_RESTRICT_NOVICE_OFFSET;
-
 
 
 	// 『純粋な○○が△△以上の時』条件
 	var statusName = ["Str", "Agi", "Vit", "Int", "Dex", "Luk",];
 	var spStatusName = ["Pow", "Sta", "Wis", "Spl", "Con", "Crt"];
-
 	var pureStatus = Math.floor(spId / ITEM_SP_PURE_STR_90_OFFSET);
 	var pureStatusEffect = spId % ITEM_SP_PURE_STR_90_OFFSET;
-
 	if (1 <= pureStatus && pureStatus <= 6) {
 		condTextPureStatus += "純粋な" + statusName[pureStatus - 1] +  "が90以上の時、";
 	}
@@ -1829,7 +1834,6 @@ function GetItemExplainText(spId, spValue) {
 	else if (43 <= pureStatus && pureStatus <= 48) {
 		condTextPureStatus += "純粋な" + spStatusName[pureStatus - 43] +  "が100以上の時、";
 	}
-	
 	spId = pureStatusEffect;
 
 
@@ -1848,45 +1852,22 @@ function GetItemExplainText(spId, spValue) {
 	}
 	spId = pureStatusByEffect;
 
-	// 『超越段階が◯以上のとき』条件
-	if (Math.floor(spId / ITEM_SP_TRANSCENDENCE_4) > 0) {
-		condTextTranscendence = "超越段階が4以上の時、";
-		spId = spId % ITEM_SP_TRANSCENDENCE_4;
-	}
-	else if (Math.floor(spId / ITEM_SP_TRANSCENDENCE_3) > 0) {
-		condTextTranscendence = "超越段階が3以上の時、";
-		spId = spId % ITEM_SP_TRANSCENDENCE_3;
-	}
-	else if (Math.floor(spId / ITEM_SP_TRANSCENDENCE_2) > 0) {
-		condTextTranscendence = "超越段階が2以上の時、";
-		spId = spId % ITEM_SP_TRANSCENDENCE_2;
-	}
-	else if (Math.floor(spId / ITEM_SP_TRANSCENDENCE_1) > 0) {
-		condTextTranscendence = "超越段階が1以上の時、";
-		spId = spId % ITEM_SP_TRANSCENDENCE_1;
-	}
-
 
 	// 『精錬値が○以上の時』条件
 	var refineOver = Math.floor(spId / ITEM_SP_REFINE_OVER_1_OFFSET);
 	var refineOverEffect = spId % ITEM_SP_REFINE_OVER_1_OFFSET;
-
 	if (refineOver > 0) {
 		condTextRefineOver = "精錬値が" + refineOver + "以上の時、";
 	}
-
 	spId = refineOverEffect;
-
 
 
 	// 『精錬値が○上がる度に』条件
 	var refineBy = Math.floor(spId / ITEM_SP_REFINE_BY_1_OFFSET);
 	var refineByEffecct = spId % ITEM_SP_REFINE_BY_1_OFFSET;
-
 	if (refineBy > 0) {
 		condTextRefineBy = "精錬値が" + refineBy + "上がる度に追加で";
 	}
-
 	spId = refineByEffecct;
 
 

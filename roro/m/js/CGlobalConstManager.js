@@ -446,7 +446,13 @@ CGlobalConstManager.DefineEnumSubCommon = function (mode, enumName, nameArray, f
 		// 初期値が指定されている場合は、ここで定数値を計算して渡す
 		if (firstValue != undefined) {
 			// 増加値が未指定の場合は、0 とみなす
-			value = firstValue + ((stepValue != undefined) ? stepValue : 0) * idx;
+			// BigIntが渡される可能性があるので条件判定
+			if (typeof firstValue === "bigint") {
+				value = firstValue + ((stepValue != undefined) ? stepValue : 0n) * BigInt(idx);
+			}
+			else {
+				value = firstValue + ((stepValue != undefined) ? stepValue : 0) * idx;
+			}
 			funcDefine.apply(enumDataManager, [name, value]);
 		}
 

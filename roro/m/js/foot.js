@@ -28933,8 +28933,16 @@ function GetEquippedSPSubEquip(spid, invalidItemIdArray, bListUp, bExact) {
 		for (spDefIdx = 0; itemData[ ITEM_DATA_INDEX_SPBEGIN + spDefIdx ] != ITEM_SP_END; spDefIdx += 2) {
 
 			// ＳＰの定義を取得
+			// spDefRemain は int の場合と BigInt の場合がある
 			spDefRemain = itemData[ ITEM_DATA_INDEX_SPBEGIN + spDefIdx ];
 			spDefValue = itemData[ ITEM_DATA_INDEX_SPBEGIN + spDefIdx + 1 ];
+
+			// 超越段階を満たさない場合は、次へ
+			spDefRemain = CheckSpDefTransendenceOver(spDefRemain, eqpTranscendence);
+			if (spDefRemain < 0) {
+				continue;
+			}			
+			// --- ここから下の spDefRemain は必ず Int 型 ---
 
 			// 完全一致条件が指定されている場合
 			if (bExact) {
@@ -28989,12 +28997,6 @@ function GetEquippedSPSubEquip(spid, invalidItemIdArray, bListUp, bExact) {
 			}
 			spDefRemain = spDefRemain % ITEM_SP_PURE_STR_BY_10_OFFSET;
 
-
-			// 超越段階を満たさない場合は、次へ
-			spDefRemain = CheckSpDefTransendenceOver(spDefRemain, eqpTranscendence);
-			if (spDefRemain < 0) {
-				continue;
-			}
 
 			// 精錬値以上条件を満たさない場合は、次へ
 			spDefRemain = CheckSpDefRefineOver(spDefRemain, eqpRefined);
@@ -29460,8 +29462,16 @@ function GetEquippedSPSubSPCardAndElse(spid, invalidCardIdArray, bListUp) {
 		for(spDefIdx = 0; cardData[CARD_DATA_INDEX_SPBEGIN + spDefIdx] != 0; spDefIdx += 2) {
 
 			// ＳＰの定義を取得
+			// spDefRemain は int の場合と BigInt の場合がある
 			spDefRemain = cardData[ CARD_DATA_INDEX_SPBEGIN + spDefIdx ];
 			spDefValue = cardData[ CARD_DATA_INDEX_SPBEGIN + spDefIdx + 1 ];
+
+			// 超越段階を満たさない場合は、次へ
+			spDefRemain = CheckSpDefTransendenceOver(spDefRemain, eqpTranscendence);
+			if (spDefRemain < 0) {
+				continue;
+			}
+			// --- ここから下の spDefRemain は必ず Int 型 ---
 
 			// ＳＰ定義ＩＤが一致しない場合は、次へ
 			if (!IsMatchSpDefId(spDefRemain, spid)) {
@@ -29509,12 +29519,6 @@ function GetEquippedSPSubSPCardAndElse(spid, invalidCardIdArray, bListUp) {
 			}
 			spDefRemain = spDefRemain % ITEM_SP_PURE_STR_BY_10_OFFSET;
 
-
-			// 超越段階を満たさない場合は、次へ
-			spDefRemain = CheckSpDefTransendenceOver(spDefRemain, eqpTranscendence);
-			if (spDefRemain < 0) {
-				continue;
-			}
 
 			// 精錬値以上条件を満たさない場合は、次へ
 			spDefRemain = CheckSpDefRefineOver(spDefRemain, eqpRefined);
@@ -29607,8 +29611,16 @@ function GetEquippedSPSubSPCardAndElse(spid, invalidCardIdArray, bListUp) {
 		for(spDefIdx = 0; timeObj[TIME_ITEM_DATA_INDEX_SPBEGIN + spDefIdx] != 0; spDefIdx += 2) {
 
 			// ＳＰの定義を取得
+			// spDefRemain は int の場合と BigInt の場合がある
 			spDefRemain = timeObj[ TIME_ITEM_DATA_INDEX_SPBEGIN + spDefIdx ];
 			spDefValue = timeObj[ TIME_ITEM_DATA_INDEX_SPBEGIN + spDefIdx + 1 ];
+
+			// 超越段階を満たさない場合は、次へ
+			spDefRemain = CheckSpDefTransendenceOver(spDefRemain, eqpTranscendence);
+			if (spDefRemain < 0) {
+				continue;
+			}
+			// --- ここから下の spDefRemain は必ず Int 型 ---
 
 			// ＳＰ定義ＩＤが一致しない場合は、次へ
 			if (!IsMatchSpDefId(spDefRemain, spid)) {
@@ -29656,12 +29668,6 @@ function GetEquippedSPSubSPCardAndElse(spid, invalidCardIdArray, bListUp) {
 			}
 			spDefRemain = spDefRemain % ITEM_SP_PURE_STR_BY_10_OFFSET;
 
-
-			// 超越段階を満たさない場合は、次へ
-			spDefRemain = CheckSpDefTransendenceOver(spDefRemain, eqpTranscendence);
-			if (spDefRemain < 0) {
-				continue;
-			}
 
 			// 精錬値以上条件を満たさない場合は、次へ
 			spDefRemain = CheckSpDefRefineOver(spDefRemain, eqpRefined);
@@ -30310,35 +30316,26 @@ function CheckSpDefRefineOver(spDefRemain, eqpRefined) {
 
 /**
  * アイテムの超越段階が「超越段階が◯以上のとき」を満たしているか検査する
- * @param {*} spDefRemain フラグ付きアイテムSP
+ * @param {*} spDefRemain フラグ付きアイテムSP（BitInt の場合と Int の場合がある）
  * @param {0, 1, 2, 3, 4} eqpTranscendence 超越段階
  * @returns 
  */
 function CheckSpDefTransendenceOver(spDefRemain, eqpTranscendence) {
-
-	const spDefBase = [
-		ITEM_SP_TRANSCENDENCE_4,	// 94000000
-		ITEM_SP_TRANSCENDENCE_3,	// 93000000
-		ITEM_SP_TRANSCENDENCE_2,	// 92000000
-		ITEM_SP_TRANSCENDENCE_1,	// 91000000
-	]
-
-	for (let i=0; i < spDefBase.length; i++) {
-		if (spDefRemain >= spDefBase[i]) {		// フラグ付きアイテムSPに「超越段階が◯以上のとき」が設定されている
-			if (eqpTranscendence < (4 - i)) {	// アイテムの超越段階が◯未満
-				return -1;
-			}
-			else {								// アイテムの超越段階がアイテムSPフラグの条件を満たす
-				return spDefRemain % spDefBase[i];
-			}
+	// 超越条件が指定されている場合
+	baseFlag = BigInt(ITEM_SP_TRANSCENDENCE_1);
+	if (spDefRemain >= baseFlag) {
+		// BigInt の場合、小数点以下が自動的に切り捨てられる
+		requireTranscendence = parseInt(spDefRemain / baseFlag);
+		// 超越条件を満たす場合
+		if (eqpTranscendence >= requireTranscendence) {
+			return parseInt(spDefRemain % baseFlag);
 		}
+		// 超越条件を満たさない場合
+		return -1;
 	}
-	// フラグ付きアイテムSPに「超越段階が◯以上のとき」が設定されていない
+	// 超越条件が指定されていない場合
 	return spDefRemain;
 }
-
-
-
 
 
 /**
