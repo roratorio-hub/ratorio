@@ -6003,6 +6003,13 @@ function GetStatusModifyMaxHpUp() {
 	}
 
 	//----------------------------------------------------------------
+	// 「ツインヘッド・ドラゴンブーツ」の、スキル習得による効果
+	//----------------------------------------------------------------
+	if ((itemCount = EquipNumSearch(ITEM_ID_TWIN_HEAD_DRAGON_BOOTS)) > 0) {
+		val += 4 * LearnedSkillSearch(SKILL_ID_WATER_DRAGON_BREATH) * itemCount;
+	}
+	
+	//----------------------------------------------------------------
 	// 「鬼神の盟友」の、スキル習得による効果
 	//----------------------------------------------------------------
 	if ((itemCount = EquipNumSearch(ITEM_ID_KISHINNO_MEIYU)) > 0) {
@@ -8352,6 +8359,13 @@ function GetStatusModifyMaxSpUp() {
 	// 「ツインヘッド・ドラゴンメイル」の、スキル習得による効果
 	//----------------------------------------------------------------
 	if ((itemCount = EquipNumSearch(ITEM_ID_TWIN_HEAD_DRAGON_MAIL)) > 0) {
+		val += 4 * LearnedSkillSearch(SKILL_ID_WATER_DRAGON_BREATH) * itemCount;
+	}
+
+	//----------------------------------------------------------------
+	// 「ツインヘッド・ドラゴンブーツ」の、スキル習得による効果
+	//----------------------------------------------------------------
+	if ((itemCount = EquipNumSearch(ITEM_ID_TWIN_HEAD_DRAGON_BOOTS)) > 0) {
 		val += 4 * LearnedSkillSearch(SKILL_ID_WATER_DRAGON_BREATH) * itemCount;
 	}
 

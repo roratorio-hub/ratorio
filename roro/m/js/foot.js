@@ -12355,6 +12355,13 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 		}
 
 		//----------------------------------------------------------------
+		// 「ツインヘッド・ドラゴンブーツ」の、スキル習得による効果
+		//----------------------------------------------------------------
+		if ((itemCount = EquipNumSearch(ITEM_ID_TWIN_HEAD_DRAGON_BOOTS)) > 0) {
+			n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += 4 * LearnedSkillSearch(SKILL_ID_FIRE_DRAGON_BREATH) * itemCount;
+		}
+
+		//----------------------------------------------------------------
 		// 「ゾディアック　天秤宮のダイアデム」セットの、職業による効果
 		//----------------------------------------------------------------
 		if (CardNumSearch(CARD_SET_ID_ENCHANT_ZODIAC_TENBINKYUNO_DIADEM)) {
