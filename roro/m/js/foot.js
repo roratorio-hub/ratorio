@@ -25393,6 +25393,29 @@ function GetCoolFixOfSkill(skillId) {
 		}
 	}
 
+	//----------------------------------------------------------------
+	// 「真理の解放＋潜在覚醒(サイキックウェーブII)」の「サイキックウェーブ」延長（ペナルティ）
+	//----------------------------------------------------------------
+	if (skillId == SKILL_ID_PSYCHIC_WAVE) {
+		if (CardNumSearch(CARD_SET_ID_ENCHANT_SHINRINO_KAIHO_SENZAI_KAKUSEI_PSYCHIC_WAVE_2) > 0) {
+			// 知覚増幅リング
+			if (EquipNumSearch(ITEM_ID_CHIKAKU_ZOFUKU_RING) > 0) {
+				coolfix += 2000;
+			}
+			// ブリリアントアクアマリンネックレス
+			else if (EquipNumSearch(ITEM_ID_BRILLIANT_AQUAMARINE_NECKLACE) > 0) {
+				coolfix += 2000;
+			}
+			// [グレースサイキックローブ]と[ノブレスオブリージュ]のセット効果発動
+			else if (EquipNumSearch(ITEM_SET_ID_NOBLESSE_OBLIGE_GRACE_PSYCHIC_ROBE) > 0) {
+				coolfix += 2000;
+			}
+			// [双魚宮のリング]と[ゾディアック]のセット効果発動
+			else if (CardNumSearch(CARD_SET_ID_ENCHANT_ZODIAC_SOGYOKYUNO_RING) > 0) {
+				coolfix += 2000;
+			}
+		}
+	}
 
 	//----------------------------------------------------------------
 	// 「性能カスタマイズ」の、効果
