@@ -25382,6 +25382,16 @@ function GetCoolFixOfSkill(skillId) {
 		}
 	}
 
+	//----------------------------------------------------------------
+	// <反逆者>による「豪傑＋潜在覚醒(スラッグショットI)」の「スラッグショット」延長（ペナルティ）
+	//----------------------------------------------------------------
+	if (skillId == SKILL_ID_SLUG_SHOT) {
+		if (CardNumSearch(CARD_SET_ID_ENCHANT_GOKETSU_SENZAI_KAKUSEI_SLUGSHOT) > 0) {
+			if (CardNumSearch(CARD_ID_ENCHANT_HANGYAKUSHA) > 0) {
+				coolfix += 10000;
+			}
+		}
+	}
 
 
 	//----------------------------------------------------------------
