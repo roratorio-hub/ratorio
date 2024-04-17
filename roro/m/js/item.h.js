@@ -1560,7 +1560,7 @@ function GetJobRestrictText(eqpflg) {
 	case ITEM_EQPFLG_BIOLO:
 		return "バイオロ";
 	case ITEM_EQPFLG_SKY_EMPEROR:
-		return "星帝";
+		return "天帝";
 	case ITEM_EQPFLG_SOUL_ASCETIC:
 		return "ソウルアセティック";
 	case ITEM_EQPFLG_NIGHT_WATCH:
