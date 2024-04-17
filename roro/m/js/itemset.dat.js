@@ -5141,7 +5141,7 @@
 	CardIdToSetIdMap[2977] = [2646,];
 	w_SE[2647] = [-2980,-2979,-1348,];
 	CardIdToSetIdMap[2979] = [2647,];	
-	// --- 説明文修正 ---
+	// --- 逆参照のメンテナンス ---
 	ItemIdToSetIdMap[3120] = ItemIdToSetIdMap[3120].concat([2600]);
 	ItemIdToSetIdMap[3976] = ItemIdToSetIdMap[3976].concat([2588]);
 	ItemIdToSetIdMap[4039] = ItemIdToSetIdMap[4039].concat([2625]);
@@ -5286,5 +5286,10 @@
 	w_SE[2697] = [-3081,-3080,-1245,];
 	CardIdToSetIdMap[3080] = [2697,];
 	w_SE[2698] = [5191,5190,-2500,];
-	ItemIdToSetIdMap[5190] = [2698,];	
+	ItemIdToSetIdMap[5190] = [2698,];
+	// 逆参照のメンテナンス
+	CardIdToSetIdMap[1245] = CardIdToSetIdMap[1245].concat([2652,2657,2658,2663,2664,2665,2671,2672,2673,2674,2676,2685,2686,2690,2694,2697]);
+	CardIdToSetIdMap[1348] = CardIdToSetIdMap[1348].concat([2650,2651,2653,2654,2655,2656,2659,2660,2661,2662,2666,2667,2668,2669,2670,2675,2677,2678,2679,2680,2681,2682,2683,2684,2687,2688,2689,2691,2692,288,2689,2691,2692,2693,2695,2696]);
+	CardIdToSetIdMap[2500] = [2698,];	// 限界突破
+	CardIdToSetIdMap[2658] = CardIdToSetIdMap[2658].concat([2649]);
 })();
