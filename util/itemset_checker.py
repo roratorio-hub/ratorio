@@ -13,20 +13,44 @@ with open(f'{script_dir}/../roro/m/js/itemset.dat.js', 'r', encoding='utf-8') as
     js_code = file.read()
 
 # アイテム変換マップの取得
-pattern = r'ItemIdToSetIdMap\[(\d+)] = \[(.+)\];'
-matches = re.findall(pattern, js_code)
 ItemIdtoSetIdMap = {}
+pattern = r'ItemIdToSetIdMap\[(\d+)\] = \[(.+)\];'
+matches = re.findall(pattern, js_code)
 for item_id, set_id_list in matches:
     item_id = int(item_id)
     ItemIdtoSetIdMap[item_id] = [int(set_id) for set_id in set_id_list.split(",") if set_id != ""]
+pattern = r'ItemIdToSetIdMap\[(\d+)\] = ItemIdToSetIdMap\[\d+\].concat\(\[(.+)\]\);'
+matches = re.findall(pattern, js_code)
+for item_id, set_id_list in matches:
+    item_id = int(item_id)
+    data = [int(set_id) for set_id in set_id_list.split(",") if set_id != ""]
+    if item_id not in ItemIdtoSetIdMap.keys():
+         # dict が存在しない場合は新規作成
+         ItemIdtoSetIdMap[item_id] = data
+    else:
+         # 存在する場合は追記
+         ItemIdtoSetIdMap[item_id].extend(data)
+
 
 # カード変換マップの取得
-pattern = r'CardIdToSetIdMap\[(\d+)] = \[(.+)\];'
-matches = re.findall(pattern, js_code)
 CardIdtoSetIdMap = {}
+pattern = r'CardIdToSetIdMap\[(\d+)\] = \[(.+)\];'
+matches = re.findall(pattern, js_code)
 for card_id, set_id_list in matches:
     card_id = int(card_id)
     CardIdtoSetIdMap[card_id] = [int(set_id) for set_id in set_id_list.split(",") if set_id != ""]
+pattern = r'CardIdToSetIdMap\[(\d+)\] = CardIdToSetIdMap\[\d+\].concat\(\[(.+)\]\);'
+matches = re.findall(pattern, js_code)
+for card_id, set_id_list in matches:
+    card_id = int(card_id)
+    data = [int(set_id) for set_id in set_id_list.split(",") if set_id != ""]
+    if card_id not in CardIdtoSetIdMap.keys():
+         # dict が存在しない場合
+         CardIdtoSetIdMap[card_id] = data
+    else:
+         # 存在する場合
+         CardIdtoSetIdMap[card_id].extend(data)
+
 
 # セット効果のサーチ
 result_item = {}

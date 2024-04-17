@@ -25472,26 +25472,32 @@ function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, 
 
 
 	//----------------------------------------------------------------
-	// 「ツインヘッド・ドラゴンメイル」の、「ウォータードラゴンブレス」強化
+	// 「ツインヘッド・ドラゴンメイル」「ツインヘッド・ドラゴンブーツ」の、「ウォータードラゴンブレス」強化
 	//----------------------------------------------------------------
 	if (n_A_ActiveSkill == SKILL_ID_WATER_DRAGON_BREATH) {
 		itemCount = EquipNumSearch(ITEM_ID_TWIN_HEAD_DRAGON_MAIL);
 		if (itemCount > 0) {
 			w1 += 10 * LearnedSkillSearch(SKILL_ID_WATER_DRAGON_BREATH) * itemCount;
 		}
+		itemCount = EquipNumSearch(ITEM_ID_TWIN_HEAD_DRAGON_BOOTS);
+		if (itemCount > 0) {
+			w1 += 10 * LearnedSkillSearch(SKILL_ID_WATER_DRAGON_BREATH) * itemCount;
+		}
 	}
 
 	//----------------------------------------------------------------
-	// 「ツインヘッド・ドラゴンメイル」の、「ファイアードラゴンブレス」強化
+	// 「ツインヘッド・ドラゴンメイル」「ツインヘッド・ドラゴンブーツ」の、「ファイアードラゴンブレス」強化
 	//----------------------------------------------------------------
 	if (n_A_ActiveSkill == SKILL_ID_FIRE_DRAGON_BREATH) {
 		itemCount = EquipNumSearch(ITEM_ID_TWIN_HEAD_DRAGON_MAIL);
 		if (itemCount > 0) {
 			w1 += 10 * LearnedSkillSearch(SKILL_ID_FIRE_DRAGON_BREATH) * itemCount;
 		}
+		itemCount = EquipNumSearch(ITEM_ID_TWIN_HEAD_DRAGON_BOOTS);
+		if (itemCount > 0) {
+			w1 += 10 * LearnedSkillSearch(SKILL_ID_FIRE_DRAGON_BREATH) * itemCount;
+		}
 	}
-
-
 
 	//----------------------------------------------------------------
 	// 「ゾディアック　巨蟹宮のマント」セットの、職業による効果

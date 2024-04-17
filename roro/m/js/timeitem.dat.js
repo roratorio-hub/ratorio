@@ -553,5 +553,7 @@
 	ITEM_SP_TIME_OBJ_SORT.push(271);
 	ITEM_SP_TIME_OBJ[272] = [272,"潜在覚醒(クロスリッパースラッシャーI)","ローリングカッターのダメージ + 150%",[[2,2828]],5474,150,0];
 	ITEM_SP_TIME_OBJ_SORT.push(272);
+	ITEM_SP_TIME_OBJ[273] = [273,"潜在解放(天帝IV)","[天命落星]で与えるダメージ + 100%",[[2,3071]],6182,100,0];
+	ITEM_SP_TIME_OBJ_SORT.push(273);
 
 })();
