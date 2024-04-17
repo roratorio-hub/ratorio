@@ -315,6 +315,7 @@ CGlobalConstManager.DefineEnum(
 		"ITEM_EQPFLG_MINSTREL_WANDERER",	// 191 ミンストレル系 ワンダラー系
 		"ITEM_EQPFLG_4TH",					// 192 4次職 拡張4次職
 		"ITEM_EQPFLG_MAJO_NO_HOUKI",		// 193 ハイパーノービス 4次職マジシャン系 4次職アコライト系 ソウルアセティック
+		"ITEM_EQPFLG_TROUBADOUR_TROUVERE",	// 194 トルバドゥール&トルヴェール
 	],
 	191,
 	1
@@ -1559,7 +1560,7 @@ function GetJobRestrictText(eqpflg) {
 	case ITEM_EQPFLG_BIOLO:
 		return "バイオロ";
 	case ITEM_EQPFLG_SKY_EMPEROR:
-		return "星帝";
+		return "天帝";
 	case ITEM_EQPFLG_SOUL_ASCETIC:
 		return "ソウルアセティック";
 	case ITEM_EQPFLG_NIGHT_WATCH:
@@ -1574,9 +1575,9 @@ function GetJobRestrictText(eqpflg) {
 		return "ハイパーノービス";
 	case ITEM_EQPFLG_MAJO_NO_HOUKI:
 		return "ハイパーノービス 4次職マジシャン系 4次職アコライト系 ソウルアセティック";
-
+	case ITEM_EQPFLG_TROUBADOUR_TROUVERE:
+		return "トルバドゥール トルヴェール"
 	}
-
 	return "不明";
 }
 
