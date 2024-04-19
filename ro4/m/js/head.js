@@ -6531,7 +6531,6 @@ g_bUnknownCasts = true;
 			w *= n_A_BaseLV / 100;
 			// ドラゴニックオーラ補正
 			if ((dragonic_aura_lv = UsedSkillSearch(SKILL_ID_DRAGONIC_AURA_STATE)) > 0) {
-				// ドラゴニックオーラ習得Lv
 				if (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA] == MOB_CONF_PLAYER_ID_SENTO_AREA_YE) {
 					// YE鯖だと指数1.0298で誤差1に収まる
 					w *= 1 + Math.pow(GetTotalSpecStatus(MIG_PARAM_ID_POW) + GetPAtk(), 1.0298) / 100 * 250 / 300;
@@ -6540,9 +6539,6 @@ g_bUnknownCasts = true;
 					// 通常鯖だと指数1.05555で誤差2桁以内に収まる
 					w *= 1 + Math.pow(GetTotalSpecStatus(MIG_PARAM_ID_POW) + GetPAtk(), 1.05555) / 100 * 250 / 300;
 				}
-				// ドラゴニックオーラ使用Lv
-				dragonic_aura_lv -= 1;	// 「未習得」の状態を包含しているためインデックスをずらす
-				w *= (100 + 15 * dragonic_aura_lv) / 100;
 			}
 			// --------- 減衰計算開始 ---------
 			w = ApplyResistElement(mobData, w);
@@ -25469,7 +25465,12 @@ function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, 
 		}
 	}
 
-
+	//----------------------------------------------------------------
+	// 「ドラゴニックオーラ」の「ウォータードラゴンブレス」「ファイアードラゴンブレス」強化
+	//----------------------------------------------------------------
+	if (n_A_ActiveSkill == SKILL_ID_WATER_DRAGON_BREATH || n_A_ActiveSkill == SKILL_ID_FIRE_DRAGON_BREATH) {
+		w1 += 15 * (dragonic_aura_lv - 1)
+	}
 
 	//----------------------------------------------------------------
 	// 「ツインヘッド・ドラゴンメイル」「ツインヘッド・ドラゴンブーツ」の、「ウォータードラゴンブレス」強化
