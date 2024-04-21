@@ -371,9 +371,11 @@ td.CSSCLS_EXTRA_INFO_DISP_TABLE_SKILL_CARD_NG {
 }
 #OBJID_DIV_BATTLE_RESULT_TINY {
 	white-space: nowrap;
+	display: none;
 }
 #OBJID_DIV_RESIST_ELEMENT_TINY {
 	white-space: nowrap;
+	display: none;
 }
 #OBJID_DIV_RESIST_ELEMENT_TINY .label {
 	font-size: small;
@@ -484,10 +486,15 @@ td.CSSCLS_EXTRA_INFO_DISP_TABLE_SKILL_CARD_NG {
 	display: none;
 }
 
-
-
-
-
-
-
-
+a.BUTTON {
+	display: inline-block;
+	border-style: solid;
+	color: black;
+	background-color: rgb(240, 240, 240);
+	border-width:1px;
+	border-color: black;
+	text-decoration: none;
+	font-size: 14px;
+	text-align: center;
+	width: 154px;
+}

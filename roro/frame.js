@@ -63,7 +63,8 @@ templ = `
         </ul>
       </nav>
     </div>
-		<input type="button" value="背景色切替" onclick="SwitchBGColor()" style="margin-top: 3em;">
+    <span class="menu-title"><a href="../../ro4/m/config.html" class="BUTTON local" style="margin-top: 2em;">オプション</a></span>
+    <input type="button" value="背景色切替" onclick="SwitchBGColor()" style="margin-top: 5px;">
 		</div>
 </aside>
 <div class="modal-container">
