@@ -20044,6 +20044,15 @@ function calc() {
 
 
 
+	//--------------------------------
+	// calc()をトリガーにするその他の処理
+	//--------------------------------
+	BuildResistElementTinyHtml();
+
+
+
+
+
 	//----------------------------------------------------------------
 	//
 	// 計算ボタン付近の注意事項表示
@@ -26871,6 +26880,67 @@ g_wCastFixedTemp ??= wCastFixed / 1000;
 
 
 g_attackIntervalTemp ??= n_Delay[w];
+}
+
+
+
+
+
+/**
+ * 属性倍率の簡易表示HTMLを描画する.
+ */
+function BuildResistElementTinyHtml(){
+	// 聖  95%[過 3%]  100%  5%
+	resistValueArray = [];      // 属性耐性  95
+	bodyElmRatioArray = [];     // 属性倍率  100
+	finalRatioArray = [];       // 最終倍率  5
+	resistValueArrayOver = [];  // (超過値)  3
+	for (idx = 0; idx < ELM_ID_COUNT; idx++) {
+		resistValueArray[idx] = n_tok[ITEM_SP_RESIST_ELM_VANITY + idx];
+		resistValueArrayOver[idx] = Math.max(0, n_tok_no_limit[ITEM_SP_RESIST_ELM_VANITY + idx] - n_tok[ITEM_SP_RESIST_ELM_VANITY + idx]);
+		bodyElmRatioArray[idx] = zokusei[n_A_BodyZokusei * 10 + 1][idx] + 100;
+		finalRatioArray[idx] = bodyElmRatioArray[idx] - Math.floor(resistValueArray[idx] * bodyElmRatioArray[idx]) / 100;
+	}
+
+	// 描画: "(属性被ダメ) 無80% 火118% 水95% ..."
+	const objRoot = document.getElementById("OBJID_DIV_RESIST_ELEMENT_TINY");
+	objRoot.innerHTML = "";
+
+	const lead = HtmlCreateElement("span", objRoot);
+	lead.textContent = '(属性被ダメ)';
+	lead.classList.add('label');
+
+	// GetElementTextで定義されている属性の順序
+	const originalOrder = ['u', 'm', 't', 'h', 'k', 'd', 's', 'y', 'n', 'f'];
+	// 描画は一般的な「火水風地」の順序にする
+	const displayOrder = ['u', 'h', 'm', 'k', 't', 'd', 's', 'y', 'n', 'f'];
+
+	displayOrder.forEach((initial) => {
+		const index = originalOrder.indexOf(initial);
+		const ratio = finalRatioArray[index];
+
+		const label = HtmlCreateElement("span", objRoot);  // 聖
+		const value = HtmlCreateElement("span", objRoot);  // 5%
+		const over = resistValueArrayOver[index];          // 3
+
+		label.classList.add(initial, 'label', initial);
+		label.textContent = GetElementText(index);
+
+		value.classList.add('value');
+		const grade = (ratio > 100) ? 'weak' : ((ratio < 0) ? 'absorb' : 'resist');
+		value.classList.add(`value-${grade}`);
+		value.textContent = `${Math.ceil(ratio)}%`;
+		// 最終ダメージが5%以下なら太字
+		if (ratio <= 5) {
+			value.style.fontWeight = 'bold';
+		}
+		// 過剰分: (+3%)
+		if (over > 0) {
+			const valueOver = HtmlCreateElement("span", objRoot);
+			valueOver.textContent = `(-${Math.ceil(over)}%)`;
+			valueOver.classList.add('value-over');
+		}
+	});
 }
 
 
