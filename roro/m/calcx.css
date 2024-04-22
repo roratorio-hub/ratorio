@@ -372,6 +372,76 @@ td.CSSCLS_EXTRA_INFO_DISP_TABLE_SKILL_CARD_NG {
 #OBJID_DIV_BATTLE_RESULT_TINY {
 	white-space: nowrap;
 }
+#OBJID_DIV_RESIST_ELEMENT_TINY {
+	white-space: nowrap;
+}
+#OBJID_DIV_RESIST_ELEMENT_TINY .label {
+	font-size: small;
+	font-weight: bold;
+	padding: 0 0.2em;
+	margin-left: 0.5em;
+}
+#OBJID_DIV_RESIST_ELEMENT_TINY .value {
+	text-align: left;
+	padding: 0 0.1em;
+}
+#OBJID_DIV_RESIST_ELEMENT_TINY .value-weak {
+	font-weight: bold;
+	color: #f00;
+}
+#OBJID_DIV_RESIST_ELEMENT_TINY .value-resist {
+	color: black;
+}
+#OBJID_DIV_RESIST_ELEMENT_TINY .value-absorb {
+	color: white;
+	background-color: green;
+}
+#OBJID_DIV_RESIST_ELEMENT_TINY .value-over {
+	font-size: small;
+	font-weight: bold;
+	color: #f00;
+}
+#OBJID_DIV_RESIST_ELEMENT_TINY .u {
+	border: 1px solid #888;
+	background-color: #fff;
+}
+#OBJID_DIV_RESIST_ELEMENT_TINY .h {
+	border: 1px solid #f00;
+	background-color: #fcc;
+}
+#OBJID_DIV_RESIST_ELEMENT_TINY .m {
+	border: 1px solid #00f;
+	background-color: #ccf;
+}
+#OBJID_DIV_RESIST_ELEMENT_TINY .k {
+	border: 1px solid #0f0;
+	background-color: #cfc;
+}
+#OBJID_DIV_RESIST_ELEMENT_TINY .t {
+	border: 1px solid #7b4d28;
+	background-color: #cab7a9;
+}
+#OBJID_DIV_RESIST_ELEMENT_TINY .d {
+	border: 1px solid #f0f;
+	background-color: #fcf;
+}
+#OBJID_DIV_RESIST_ELEMENT_TINY .s {
+	border: 1px solid #f4cf0f;
+	background-color: #ebeb4b;
+}
+#OBJID_DIV_RESIST_ELEMENT_TINY .y {
+	border: 1px solid #000;
+	background-color: #ccc;
+}
+#OBJID_DIV_RESIST_ELEMENT_TINY .n {
+	border: 1px solid #888;
+	background-color: #eee;
+}
+#OBJID_DIV_RESIST_ELEMENT_TINY .f {
+	border: 1px solid #6d1447;
+	background-color: #e07eb7;
+}
+
 
 /* タブ制御 */
 /*
