@@ -32149,6 +32149,22 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_WIND;
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return 2500 + 1400 * skillLv;
+				// ragna-promenadeとは異なる結果が出たので実測値を優先しています
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {
+				return 300 * skillLv;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return 5000;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 6000;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -32187,6 +32203,22 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_WATER;
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			// ragna-promenadeとは異なる変動詠唱,固定詠唱の値が採取されたので実測値を優先しています
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return 2500 + 1400 * skillLv;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {
+				return 500 + 200 * skillLv;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return 5000;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 4000;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -32206,6 +32238,22 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_DARK;
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			// ragna-promenadeとは異なる変動詠唱,固定詠唱の値が採取されたので実測値を優先しています
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return 2500 + 1400 * skillLv;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {
+				return 500 + 200 * skillLv;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return 5000;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 4000;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -32225,6 +32273,22 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_EARTH;
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return 2500 + 1400 * skillLv;
+				// ragna-promenadeとは異なる結果が出たので実測値を優先しています
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {
+				return 300 * skillLv;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return 5000;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 6000;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -32277,6 +32341,22 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_EARTH;
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			// ragna-promenadeとは異なる変動詠唱,固定詠唱の値が採取されたので実測値を優先しています
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return 2500 + 1400 * skillLv;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {
+				return 500 + 200 * skillLv;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return 5000;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 4000;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -32296,6 +32376,22 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_FIRE;
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return 2500 + 1400 * skillLv;
+				// ragna-promenadeとは異なる結果が出たので実測値を優先しています
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {
+				return 300 * skillLv;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return 5000;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 6000;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -32315,6 +32411,22 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_WATER;
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return 2500 + 1400 * skillLv;
+				// ragna-promenadeとは異なる結果が出たので実測値を優先しています
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {
+				return 300 * skillLv;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return 5000;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 6000;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -32334,6 +32446,22 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_WIND;
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			// ragna-promenadeとは異なる変動詠唱,固定詠唱の値が採取されたので実測値を優先しています
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return 2500 + 1400 * skillLv;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {
+				return 500 + 200 * skillLv;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return 5000;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 3000;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -32353,6 +32481,22 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_FIRE;
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			// ragna-promenadeとは異なる変動詠唱,固定詠唱の値が採取されたので実測値を優先しています
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return 2500 + 1400 * skillLv;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {
+				return 500 + 200 * skillLv;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return 5000;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 4000;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -32391,6 +32535,21 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_VANITY;
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return 16000;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {
+				return 2000;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return 5000;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 5000 + 1000 * skillLv;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -33623,7 +33782,7 @@ function CSkillManager() {
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 300;
-			}			
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -34781,7 +34940,7 @@ function CSkillManager() {
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 500;
-			}			
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -34812,7 +34971,7 @@ function CSkillManager() {
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 500;
-			}			
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -37494,8 +37653,8 @@ function CSkillManager() {
 			this.element = CSkillData.ELEMENT_VOID;
 		};
 		this.dataArray[skillId] = skillData;
-		skillId++;		
-		
+		skillId++;
+
 	}
 
 	// 初期化
