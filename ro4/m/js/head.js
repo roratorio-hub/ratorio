@@ -12878,9 +12878,6 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 
 					var valFFF = "";
 
-					if (accFFF.length > 0) {
-						valFFF = " + ";
-					}
 					if (!counts){
 						counts = 1;
 					}
@@ -12888,14 +12885,21 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 						counts = 1;
 					}
 
-					valFFF += funcDigFF(curFFF[0] * counts, funcDigParamFF);
+					valFFF = funcDigFF(curFFF[0] * counts, funcDigParamFF);
 
 					if (curFFF[1] > 1) {
 						valFFF = funcDigFF(curFFF[0] * counts * curFFF[1], funcDigParamFF);
 					}
 
+					// クライマックスクリムゾンアローのような 単発 + 複数Hit スキルの場合は
+					// curFFF[2]に複数Hit数が入っているので計算する
 					if (curFFF[2] > 1) {
 						valFFF = funcDigFF(curFFF[0] * counts * curFFF[2], funcDigParamFF);
+					}
+
+					// accFFFが空でない場合（追撃の場合）は初撃と追撃を + で結合表示する
+					if (accFFF.length > 0) {
+						valFFF = " + " + valFFF;
 					}
 
 					return (accFFF + valFFF);
