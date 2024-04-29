@@ -10078,23 +10078,15 @@ g_bDefinedDamageIntervals = true;
 			wbairitu *= n_A_BaseLV / 100;
 			break;
 
-
+		// 「ソウルアセティック」スキル「死霊浄化」
 		case SKILL_ID_SHIRYO_ZYOKA:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-
 			// 属性は暖かい風依存
 			n_A_Weapon_zokusei = eval(document.calcForm.A_Weapon_zokusei.value);
-
 			// 詠唱時間等
-			/*
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			*/
-
 			// 基本倍率、SPL補正
 			if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SHIRYO_HYOI]) {
 				wbairitu = 400 + (100 * n_A_ActiveSkillLV);
@@ -10102,10 +10094,8 @@ g_bUnknownCasts = true;
 			else {
 				wbairitu = 350 + (50 * n_A_ActiveSkillLV);
 			}
-
 			// SPL補正
 			wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-
 			// ベースレベル補正
 			wbairitu *= n_A_BaseLV / 100;
 			break;
@@ -10116,17 +10106,13 @@ g_bUnknownCasts = true;
 			 * 素の状態から2桁程度の誤差がでますが五行陣を掛けても誤差は極端に拡大しないため丸め誤差の類だと思われます
 			 * 計算式は信頼できると判断しています
 			 */
-			// TODO: 詠唱時間等未実測スキル
-			g_bUnknownCasts = true;
 			// 属性は暖かい風依存
 			n_A_Weapon_zokusei = eval(document.calcForm.A_Weapon_zokusei.value);
 			// 詠唱時間等
-			/*
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			*/
 			// 基本倍率
 			if (UsedSkillSearch(SKILL_ID_SHIHO_FU_ZYOTAI) >= 5) {
 				wbairitu = 5500 + (1000 * n_A_ActiveSkillLV);
@@ -10148,17 +10134,13 @@ g_bUnknownCasts = true;
 			 * 素の状態から2桁程度の誤差がでます
 			 * 五行陣を掛けると誤差は3桁に広がるので再考の余地があるかもしれません
 			 */
-			// TODO: 詠唱時間等未実測スキル
-			g_bUnknownCasts = true;
 			// 属性は暖かい風依存
 			n_A_Weapon_zokusei = eval(document.calcForm.A_Weapon_zokusei.value);
 			// 詠唱時間等
-			/*
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			*/
 			// 基本倍率
 			if (UsedSkillSearch(SKILL_ID_SHIHO_FU_ZYOTAI) >= 5) {
 				// 公式発表並びに実測確認の結果によるとLv4だけ倍率が異常なので直値で指定しています
@@ -10181,17 +10163,13 @@ g_bUnknownCasts = true;
 			 * 素の状態から2桁程度の誤差がでますが五行陣を掛けても誤差は極端に拡大しないため丸め誤差の類だと思われます
 			 * 計算式は信頼できると判断しています
 			 */
-			// TODO: 詠唱時間等未実測スキル
-			g_bUnknownCasts = true;
 			// 属性は暖かい風依存
 			n_A_Weapon_zokusei = eval(document.calcForm.A_Weapon_zokusei.value);
 			// 詠唱時間等
-			/*
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			*/
 			// 基本倍率
 			if (UsedSkillSearch(SKILL_ID_SHIHO_FU_ZYOTAI) >= 5) {
 				wbairitu = 5500 + (650 * n_A_ActiveSkillLV);
@@ -10213,17 +10191,13 @@ g_bUnknownCasts = true;
 			 * 素の状態から2桁程度の誤差がでます
 			 * 五行陣を掛けると誤差は3桁に広がるので再考の余地があるかもしれません
 			 */
-			// TODO: 詠唱時間等未実測スキル
-			g_bUnknownCasts = true;
 			// 属性は暖かい風依存
 			n_A_Weapon_zokusei = eval(document.calcForm.A_Weapon_zokusei.value);
 			// 詠唱時間等
-			/*
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			*/
 			// 基本倍率
 			if (UsedSkillSearch(SKILL_ID_SHIHO_FU_ZYOTAI) >= 5) {
 				// 公式発表並びに実測確認の結果によるとLv4だけ倍率が異常なので直値で指定しています
@@ -10246,17 +10220,13 @@ g_bUnknownCasts = true;
 			 * 素の状態から2桁程度の誤差がでますが五行陣を掛けても誤差は極端に拡大しないため丸め誤差の類だと思われます
 			 * 計算式は信頼できると判断しています
 			 */
-			// TODO: 詠唱時間等未実測スキル
-			g_bUnknownCasts = true;
 			// 属性は暖かい風依存
 			n_A_Weapon_zokusei = eval(document.calcForm.A_Weapon_zokusei.value);
 			// 詠唱時間等
-			/*
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			*/
 			// 基本倍率
 			wbairitu = 500 + (50 * n_A_ActiveSkillLV);
 			// SPL補正
@@ -10274,8 +10244,11 @@ g_bUnknownCasts = true;
 			/**
 			 * 2桁～3桁程度の誤差があります
 			 */
-			// TODO: 詠唱時間等未実測スキル
-			g_bUnknownCasts = true;
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 使用条件は 玄武符 or 四方五行陣 状態であること
 			if (UsedSkillSearch(SKILL_ID_SHIHO_FU_ZYOTAI) < 4) {
 				n_Buki_Muri = 1;
@@ -10283,13 +10256,6 @@ g_bUnknownCasts = true;
 			}
 			// 属性は暖かい風依存
 			n_A_Weapon_zokusei = eval(document.calcForm.A_Weapon_zokusei.value);
-			// 詠唱時間等
-			/*
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			*/
 			// 基本倍率
 			wbairitu = 300 * n_A_ActiveSkillLV;
 			// SPL補正
