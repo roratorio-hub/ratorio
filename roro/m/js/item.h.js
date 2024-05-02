@@ -455,7 +455,7 @@ CGlobalConstManager.DefineEnum(
 		"ITEM_SP_HEAL_UP_USING",			// 91 ヒール系スキル使用時HP回復量増加
 		"ITEM_SP_HEAL_UP_USED",				// 92 ヒール系スキルを受けた時HP回復量増加
 		"ITEM_SP_HEAL_DAMAGE_UP",
-		"ITEM_SP_HEAL_UP_USING_ONLY_HEAL",
+		"ITEM_SP_HEAL_UP_USING_ONLY_HEAL",	// 94 ヒール使用時HP回復量増加
 		"ITEM_SP_HEAL_UP_USING_ONLY_HEAL_SERIES",
 		"ITEM_SP_MAGICAL_DAMAGE_UP_BOSS",
 		"ITEM_SP_MAGICAL_DAMAGE_UP_SIZE_SMALL",		// 97 小型への魔法ダメージ増加 
