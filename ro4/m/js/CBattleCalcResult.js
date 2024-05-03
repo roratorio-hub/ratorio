@@ -488,6 +488,7 @@ function CBattleCalcResult () {
 	/**
 	 * 概算ダメージ（秒間最小）の取得.
 	 * @param bIgnoreActRate 発生率を無視して計算するフラグ
+	 * @param bCollectChild 子要素を持つ場合 true 
 	 * @return 概算ダメージ（最小）
 	 */
 	this.GetDamageSummaryMinPerSec = function (castVary, castFixed, attackInterval, bCollectChild, bIgnoreActRate) {
@@ -499,22 +500,15 @@ function CBattleCalcResult () {
 		var dmgArray = null;
 		var actInterval = 0;
 
-//		var actInterval = castVary + castFixed + attackInterval;
-		if (g_bDefinedDamageIntervals){
-			// 設置スキルの場合
+		if (g_bDefinedDamageIntervals && !bCollectChild){
+			// 子要素を持たない設置スキルの場合
 			actInterval = attackInterval;
 		}
 		else {
-			// 設置スキルではない場合
-			//if (this.coolTime && (this.hitCountArray[0][1] > 1)) {
-			//	actInterval = this.coolTime;
-			//}
-			//else {
-				actInterval = castVary + castFixed + attackInterval;
-			//}
+			// 子要素を持つ設置スキル（アストラルストライクの初撃など）の場合
+			// または設置スキルではない場合
+			actInterval = castVary + castFixed + attackInterval;
 		}
-
-
 
 		// 発生率が 100% 未満の場合、未発生（0 ダメージ）が最小
 		if ((!bIgnoreActRate) && (this.actRate < 100)) {
@@ -538,13 +532,16 @@ function CBattleCalcResult () {
 			dmg = Math.floor(this.dmgUnitArray[0][0] * Math.max(1, this.hitCountArray[0][0]) / actInterval);
 		}
 
-
-
 		// 子要素の、最小ダメージを取得し、加算する
 		if (bCollectChild) {
+
 			for (idx = 0; idx < this.childResultArray.length; idx++) {
+				if (this.childResultArray.length - 1 == idx) {
+					// これ以上の子要素が無い場合
+					bCollectChild = false
+				}
 				// 子要素は発生率を考慮する
-				ret = this.childResultArray[idx].GetDamageSummaryMinPerSec(bCollectChild, false);
+				ret = this.childResultArray[idx].GetDamageSummaryMinPerSec(castVary, castFixed, attackInterval, bCollectChild, false);
 				dmg += GetArrayMin(ret);
 			}
 		}
@@ -565,23 +562,15 @@ function CBattleCalcResult () {
 		var dmgArray = null;
 		var actInterval = 0;
 
-//		var actInterval = castVary + castFixed + attackInterval;
-		if (g_bDefinedDamageIntervals){
-			// 設置スキルの場合
+		if (g_bDefinedDamageIntervals && !bCollectChild){
+			// 子要素を持たない設置スキルの場合
 			actInterval = attackInterval;
 		}
 		else {
-			// 設置スキルではない場合
-			// if (this.coolTime && (this.hitCountArray[0][1] > 1)) {
-			// 	actInterval = this.coolTime;
-			// }
-			// else {
-				actInterval = castVary + castFixed + attackInterval;
-			// }
+			// 子要素を持つ設置スキル（アストラルストライクの初撃など）の場合
+			// または設置スキルではない場合
+			actInterval = castVary + castFixed + attackInterval;
 		}
-
-
-
 
 		// 通常ダメージ
 		dmg += Math.floor((this.dmgUnitArray[0][1] * Math.max(1, this.hitCountArray[0][1]) / actInterval) * (100 - this.criRate) / 100 * this.hitRate / 100);
@@ -592,12 +581,14 @@ function CBattleCalcResult () {
 		// 配列に格納
 		dmgArray = [dmg];
 
-
-
 		// 子要素
 		if (bCollectChild) {
 			for (idx = 0; idx < this.childResultArray.length; idx++) {
-				ret = this.childResultArray[idx].GetDamageSummaryAvePerSec(bCollectChild);
+				if (this.childResultArray.length - 1 == idx) {
+					// これ以上の子要素が無い場合
+					bCollectChild = false
+				}
+				ret = this.childResultArray[idx].GetDamageSummaryAvePerSec(castVary, castFixed, attackInterval, bCollectChild);
 				dmgArray = dmgArray.concat(ret);
 			}
 		}
@@ -618,23 +609,15 @@ function CBattleCalcResult () {
 		var dmgArray = null;
 		var actInterval = 0;
 
-//		var actInterval = castVary + castFixed + attackInterval;
-		if (g_bDefinedDamageIntervals){
-			// 設置スキルの場合
+		if (g_bDefinedDamageIntervals && !bCollectChild){
+			// 子要素を持たない設置スキルの場合
 			actInterval = attackInterval;
 		}
 		else {
-			// 設置スキルではない場合
-			// if (this.coolTime && (this.hitCountArray[0][1] > 1)) {
-			// 	actInterval = this.coolTime;
-			// }
-			// else {
-				actInterval = castVary + castFixed + attackInterval;
-			// }
+			// 子要素を持つ設置スキル（アストラルストライクの初撃など）の場合
+			// または設置スキルではない場合
+			actInterval = castVary + castFixed + attackInterval;
 		}
-
-
-
 
 		// 全最大ダメージを取得
 		dmgArray = [];
@@ -648,12 +631,14 @@ function CBattleCalcResult () {
 		// その中でも最大のダメージを採用する
 		dmg = GetArrayMax(dmgArray);
 
-
-
 		// 子要素の、最大ダメージを取得し、加算する
 		if (bCollectChild) {
 			for (idx = 0; idx < this.childResultArray.length; idx++) {
-				ret = this.childResultArray[idx].GetDamageSummaryMaxPerSec(bCollectChild);
+				if (this.childResultArray.length - 1 == idx) {
+					// これ以上の子要素が無い場合
+					bCollectChild = false
+				}
+				ret = this.childResultArray[idx].GetDamageSummaryMaxPerSec(castVary, castFixed, attackInterval, bCollectChild);
 				dmg += GetArrayMax(ret);
 			}
 		}
