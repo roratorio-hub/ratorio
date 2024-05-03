@@ -156,7 +156,7 @@ function CCharaConfCustomSpecStatus(confArray) {
 
 
 
-		CCharaConfCustomSpecStatus.CONF_ID_PATK_PLUS = confId;
+		CCharaConfCustomSpecStatus.CONF_ID_P_ATK_PLUS = confId;
 		confData = [
 			confId,
 			CConfBase.ConfText("P.Atk+"),
@@ -170,7 +170,7 @@ function CCharaConfCustomSpecStatus(confArray) {
 
 
 
-		CCharaConfCustomSpecStatus.CONF_ID_SMATK_PLUS = confId;
+		CCharaConfCustomSpecStatus.CONF_ID_S_MATK_PLUS = confId;
 		confData = [
 			confId,
 			CConfBase.ConfText("S.Matk+"),
@@ -184,7 +184,7 @@ function CCharaConfCustomSpecStatus(confArray) {
 
 
 
-		CCharaConfCustomSpecStatus.CONF_ID_HPLUS_PLUS = confId;
+		CCharaConfCustomSpecStatus.CONF_ID_H_PLUS_PLUS = confId;
 		confData = [
 			confId,
 			CConfBase.ConfText("H.Plus+"),
@@ -198,7 +198,7 @@ function CCharaConfCustomSpecStatus(confArray) {
 
 
 
-		CCharaConfCustomSpecStatus.CONF_ID_CRATE_PLUS = confId;
+		CCharaConfCustomSpecStatus.CONF_ID_C_RATE_PLUS = confId;
 		confData = [
 			confId,
 			CConfBase.ConfText("C.Rate+"),
@@ -301,10 +301,10 @@ function CCharaConfCustomSpecStatus(confArray) {
 		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfCustomSpecStatus.CONF_ID_CON_PLUS];
 		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfCustomSpecStatus.CONF_ID_CRT_PLUS];
 		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfCustomSpecStatus.CONF_ID_BLANK];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfCustomSpecStatus.CONF_ID_PATK_PLUS];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfCustomSpecStatus.CONF_ID_SMATK_PLUS];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfCustomSpecStatus.CONF_ID_HPLUS_PLUS];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfCustomSpecStatus.CONF_ID_CRATE_PLUS];
+		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfCustomSpecStatus.CONF_ID_P_ATK_PLUS];
+		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfCustomSpecStatus.CONF_ID_S_MATK_PLUS];
+		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfCustomSpecStatus.CONF_ID_H_PLUS_PLUS];
+		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfCustomSpecStatus.CONF_ID_C_RATE_PLUS];
 		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfCustomSpecStatus.CONF_ID_RES_PLUS];
 		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfCustomSpecStatus.CONF_ID_MRES_PLUS];
 		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfCustomSpecStatus.CONF_ID_BLANK];
