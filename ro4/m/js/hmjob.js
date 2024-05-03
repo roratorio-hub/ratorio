@@ -534,8 +534,6 @@ function GetPAtk() {
 	var bufLv = 0;
 	var valWork = 0;
 
-
-
 	// ステータス値
 	value += Math.floor(GetTotalSpecStatus(MIG_PARAM_ID_POW) / 3);
 	value += Math.floor(GetTotalSpecStatus(MIG_PARAM_ID_CON) / 5);
@@ -546,7 +544,8 @@ function GetPAtk() {
 	value += GetEquippedTotalSPCardAndElse(ITEM_SP_P_ATK_PLUS);
 	value += GetRndOptTotalValue(ITEM_SP_P_ATK_PLUS);
 
-
+	// 性能カスタマイズ
+	value += g_objCharaConfCustomSpecStatus.GetConf(CCharaConfCustomSpecStatus.CONF_ID_P_ATK_PLUS)
 
 	// 「インペリアルガード」スキル「アタックスタンス」による効果
 	if ((sklLv = UsedSkillSearch(SKILL_ID_ATTACK_STANCE)) > 0) {
@@ -652,8 +651,6 @@ function GetSMatk() {
 	var bufLv = 0;
 	var valWork = 0;
 
-
-
 	// ステータス値
 	value += Math.floor(GetTotalSpecStatus(MIG_PARAM_ID_SPL) / 3);
 	value += Math.floor(GetTotalSpecStatus(MIG_PARAM_ID_CON) / 5);
@@ -664,7 +661,8 @@ function GetSMatk() {
 	value += GetEquippedTotalSPCardAndElse(ITEM_SP_S_MATK_PLUS);
 	value += GetRndOptTotalValue(ITEM_SP_S_MATK_PLUS);
 
-
+	// 性能カスタマイズ
+	value += g_objCharaConfCustomSpecStatus.GetConf(CCharaConfCustomSpecStatus.CONF_ID_S_MATK_PLUS)
 
 	// アークメイジスキル「両手杖修練」
 	if ((sklLv = UsedSkillSearch(SKILL_ID_RYOTETUSE_SHUREN)) > 0) {
@@ -790,7 +788,8 @@ function GetCRate() {
 	value += GetEquippedTotalSPCardAndElse(ITEM_SP_C_RATE_PLUS);
 	value += GetRndOptTotalValue(ITEM_SP_C_RATE_PLUS);
 
-
+	// 性能カスタマイズ
+	value += g_objCharaConfCustomSpecStatus.GetConf(CCharaConfCustomSpecStatus.CONF_ID_C_RATE_PLUS)
 
 	// 四次職支援「プレセンスアキエース」による効果
 	if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_PRESENSE_AKYACE]) > 0) {
@@ -819,7 +818,8 @@ function GetRes() {
 	value += n_tok[ITEM_SP_RES_PLUS];
 	value += GetRndOptTotalValue(ITEM_SP_RES_PLUS);
 
-
+	// 性能カスタマイズ
+	value += g_objCharaConfCustomSpecStatus.GetConf(CCharaConfCustomSpecStatus.CONF_ID_RES_PLUS)
 
 	// 「インペリアルガード」スキル「盾修練」による効果
 	if ((sklLv = UsedSkillSearch(SKILL_ID_TATE_SHUREN)) > 0) {
@@ -867,6 +867,8 @@ function GetMres() {
 	value += n_tok[ITEM_SP_MRES_PLUS];
 	value += GetRndOptTotalValue(ITEM_SP_MRES_PLUS);
 
+	// 性能カスタマイズ
+	value += g_objCharaConfCustomSpecStatus.GetConf(CCharaConfCustomSpecStatus.CONF_ID_MRES_PLUS)
 
 
 	return value;
@@ -887,7 +889,8 @@ function GetHPlus() {
 	value += n_tok[ITEM_SP_H_PLUS_PLUS];
 	value += GetRndOptTotalValue(ITEM_SP_H_PLUS_PLUS);
 
-
+	// 性能カスタマイズ
+	value += g_objCharaConfCustomSpecStatus.GetConf(CCharaConfCustomSpecStatus.CONF_ID_H_PLUS_PLUS)
 
 	return value;
 }

@@ -5187,7 +5187,7 @@
 	CardIdToSetIdMap[1813] = CardIdToSetIdMap[1813].concat([2648]);
 	w_SE[2649] = [5186,5185,-2658,];	// 思念のオーラ + 増幅された怨望
 	ItemIdToSetIdMap[5185] = [2649,];
-	ItemIdToSetIdMap[2658] = ItemIdToSetIdMap[2658].concat([2649]);
+	CardIdToSetIdMap[2658] = CardIdToSetIdMap[2658].concat([2649]);
 	// --- 2024/04/16 ラグ缶 + GHCアップデート ---
 	w_SE[2650] = [-2987,-2986,-1348,];
 	CardIdToSetIdMap[2986] = [2650,];
@@ -5291,5 +5291,4 @@
 	CardIdToSetIdMap[1245] = CardIdToSetIdMap[1245].concat([2652,2657,2658,2663,2664,2665,2671,2672,2673,2674,2676,2685,2686,2690,2694,2697]);
 	CardIdToSetIdMap[1348] = CardIdToSetIdMap[1348].concat([2650,2651,2653,2654,2655,2656,2659,2660,2661,2662,2666,2667,2668,2669,2670,2675,2677,2678,2679,2680,2681,2682,2683,2684,2687,2688,2689,2691,2692,2693,2695,2696]);
 	CardIdToSetIdMap[2500] = [2698,];	// 限界突破
-	CardIdToSetIdMap[2658] = CardIdToSetIdMap[2658].concat([2649]);
 })();
