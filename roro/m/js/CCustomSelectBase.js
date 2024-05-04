@@ -208,7 +208,8 @@ function CCustomSelectBase () {
 			}
 
 			// それ以外の場合は、先頭要素に処理をリセットする
-			candidateId = parseInt(options[idx].value, 10);
+			// candidateId = parseInt(options[idx].value, 10);
+			candidateId = parseInt(options[0].value, 10);
 		}
 
 		// データIDを選択
