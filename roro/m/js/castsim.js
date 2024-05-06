@@ -837,7 +837,7 @@ function OnClickCastSimSimulateStart(rowidx, castTime, delayTime) {
 
 
 	// 更新間隔設定の取得
-	objSelect = document.getElementById("OBJID_SELECT_CAST_TIME_SIMULATER_INTERVAL");
+	objSelect = document.getElementById("OBJID_SELECT_CASTSIM_INTERVAL");
 	g_castsimProgressIntervalArray[rowidx] = parseInt(objSelect.value);
 
 
