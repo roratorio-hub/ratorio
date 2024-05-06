@@ -5001,9 +5001,21 @@ const SAVE_DATA_UNIT_TYPE_MOB = CSaveDataUnitTypeManager.register(
 		 * バージョン番号.
 		 */
 		static get version () {
-			return 1;
+			return 2;
 		}
 
+		// オーバーライドされた parse 関数
+		parse (dataText, bitOffset) {
+			let nextOffset = super.parse(dataText, bitOffset);
+			if (this.getProp("version") == 1n) {
+				this.propInfoMap.delete(CSaveDataConst.propNameMonsterID);
+				const prop = new CSaveDataPropInfo(CSaveDataConst.propNameMonsterID, 11);
+				this.propInfoMap.set(CSaveDataConst.propNameMonsterID, prop);
+				this.parsedMap.clear();
+				nextOffset = super.parse(dataText, bitOffset);
+			}
+			return nextOffset;
+		}
 
 
 		/**
@@ -5037,7 +5049,8 @@ const SAVE_DATA_UNIT_TYPE_MOB = CSaveDataUnitTypeManager.register(
 			this.registerPropInfo(CSaveDataConst.propNameOptCode, 6);
 			this.registerPropInfo(CSaveDataConst.propNameMonsterMapCategoryID, 8);
 			this.registerPropInfo(CSaveDataConst.propNameMonsterMapID, 10);
-			this.registerPropInfo(CSaveDataConst.propNameMonsterID, 11);
+			//this.registerPropInfo(CSaveDataConst.propNameMonsterID, 11);	version 1
+			this.registerPropInfo(CSaveDataConst.propNameMonsterID, 16);
 		}
 
 
