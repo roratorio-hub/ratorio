@@ -30859,7 +30859,7 @@ function OnClickSimulateCastTimeStart(castTime, delayTime) {
 	var countUpFunction = null;
 
 	// 更新間隔設定の取得
-	objSelect = document.getElementById("OBJID_SELECT_CAST_TIME_SIMULATER_INTERVAL");
+	objSelect = document.getElementById("OBJID_SELECT_CASTSIM_INTERVAL");
 	g_castProgressInterval = parseInt(objSelect.value);
 
 	objInput = document.getElementById("OBJID_BUTTON_SIMULATE_CAST_TIME");
