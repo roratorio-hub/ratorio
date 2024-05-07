@@ -1,0 +1,185 @@
+<mxfile host="65bd71144e">
+    <diagram id="_zu418tIHUh316QJVrEr" name="Page-1">
+        <mxGraphModel dx="1185" dy="971" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="33" value="parse( URL文字列 )" style="html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0;" edge="1" parent="1" target="30">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="660" y="490" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="26" value="new()" style="html=1;verticalAlign=bottom;endArrow=block;" edge="1" parent="1">
+                    <mxGeometry width="80" relative="1" as="geometry">
+                        <mxPoint x="470" y="372" as="sourcePoint"/>
+                        <mxPoint x="589" y="371" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="23" value="parseDataText( URL文字列 )" style="html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0;" edge="1" target="22" parent="1" source="11">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="795" y="410" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="19" value="ExtractDataTextMIG( URL文字列 )" style="html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0;" edge="1" target="18" parent="1" source="11">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="550" y="300" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="13" value="loadFromUrl( URL文字列 )" style="html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0;" edge="1" target="12" parent="1" source="4">
+                    <mxGeometry x="0.0034" relative="1" as="geometry">
+                        <mxPoint x="375" y="220" as="sourcePoint"/>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="9" value="OnClickUrlInMig()" style="html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0;" edge="1" target="8" parent="1" source="2">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="225" y="190" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="2" value="ro4/m/js/&lt;br&gt;calcx.html" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" vertex="1" parent="1">
+                    <mxGeometry x="110" y="80" width="100" height="922" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;" vertex="1" parent="2">
+                    <mxGeometry x="45" y="80" width="10" height="56" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="" style="shape=umlLifeline;participant=umlActor;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;verticalAlign=top;spacingTop=36;outlineConnect=0;" vertex="1" parent="1">
+                    <mxGeometry x="30" y="80" width="20" height="921" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="ro4/m/js/&lt;br&gt;saveload.js" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" vertex="1" parent="1">
+                    <mxGeometry x="250" y="80" width="100" height="920" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;" vertex="1" parent="4">
+                    <mxGeometry x="45" y="110" width="10" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="URL入力" style="html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0;" edge="1" target="5" parent="1" source="3">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="85" y="160" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="11" value="ro4/m/js/&lt;br&gt;CSaveController.js" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" vertex="1" parent="1">
+                    <mxGeometry x="410" y="80" width="120" height="925" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;" vertex="1" parent="11">
+                    <mxGeometry x="55" y="140" width="10" height="762" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;" vertex="1" parent="11">
+                    <mxGeometry x="60" y="170" width="10" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="sanitizeDataText( URL文字列 )" style="edgeStyle=orthogonalEdgeStyle;html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;entryX=1;entryY=0;" edge="1" target="15" parent="11">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="65" y="150" as="sourcePoint"/>
+                        <Array as="points">
+                            <mxPoint x="95" y="150"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="44" value="doCompaction()" style="html=1;verticalAlign=bottom;endArrow=block;" edge="1" parent="11">
+                    <mxGeometry width="80" relative="1" as="geometry">
+                        <mxPoint x="65" y="680" as="sourcePoint"/>
+                        <mxPoint x="249.5" y="679.9999999999998" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="45" value="applyDataToControls()" style="html=1;verticalAlign=bottom;endArrow=block;" edge="1" parent="11">
+                    <mxGeometry width="80" relative="1" as="geometry">
+                        <mxPoint x="63" y="746" as="sourcePoint"/>
+                        <mxPoint x="249.5" y="746" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="46" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;" vertex="1" parent="11">
+                    <mxGeometry x="60" y="845" width="10" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="47" value="処理済みの CSaveDataManager インスタンスを&lt;br&gt;saveDataManagerCur にセットする" style="edgeStyle=orthogonalEdgeStyle;html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;entryX=1;entryY=0;" edge="1" target="46" parent="11">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="65" y="825" as="sourcePoint"/>
+                        <Array as="points">
+                            <mxPoint x="95" y="825"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="17" value="roro/m/js/&lt;br&gt;CSaveDataConverter.js" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" vertex="1" parent="1">
+                    <mxGeometry x="938" y="80" width="150" height="280" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;" vertex="1" parent="17">
+                    <mxGeometry x="70" y="220" width="10" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="20" value="URL文字列" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;exitX=0;exitY=0.95;" edge="1" source="18" parent="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="480" y="330" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="21" value="ro4/m/js/&lt;br&gt;CSaveDataManager.js" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" vertex="1" parent="1">
+                    <mxGeometry x="590" y="350" width="140" height="533" as="geometry"/>
+                </mxCell>
+                <mxCell id="22" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;" vertex="1" parent="21">
+                    <mxGeometry x="65" y="70" width="10" height="448" as="geometry"/>
+                </mxCell>
+                <mxCell id="24" value="" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;exitX=0.066;exitY=0.994;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" source="22" parent="1" target="12">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="480" y="729" as="targetPoint"/>
+                        <mxPoint x="799.5" y="729" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="27" value="new()" style="html=1;verticalAlign=bottom;endArrow=block;" edge="1" parent="1">
+                    <mxGeometry x="-0.0588" width="80" relative="1" as="geometry">
+                        <mxPoint x="665" y="440" as="sourcePoint"/>
+                        <mxPoint x="780" y="440" as="targetPoint"/>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="28" value="parse( URL文字列 )&lt;br&gt;// ユニット毎に定義されたメソッドを呼び出す" style="html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0;align=left;" edge="1" parent="1" target="36">
+                    <mxGeometry x="-0.8431" relative="1" as="geometry">
+                        <mxPoint x="855" y="640" as="sourcePoint"/>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="29" value="new()" style="html=1;verticalAlign=bottom;endArrow=block;" edge="1" parent="1">
+                    <mxGeometry width="80" relative="1" as="geometry">
+                        <mxPoint x="855" y="580" as="sourcePoint"/>
+                        <mxPoint x="1045" y="580" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="30" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;gradientColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="850" y="490" width="10" height="240" as="geometry"/>
+                </mxCell>
+                <mxCell id="31" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;gradientColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="855" y="525" width="10" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="32" value="translateFromOldFormat( URL文字列 )&lt;br&gt;&amp;nbsp;// 文字列表現が ba*** から cx*** の形式に変換される" style="edgeStyle=orthogonalEdgeStyle;html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;entryX=1;entryY=0;" edge="1" parent="1" target="31">
+                    <mxGeometry x="0.0133" relative="1" as="geometry">
+                        <mxPoint x="860" y="505" as="sourcePoint"/>
+                        <Array as="points">
+                            <mxPoint x="890" y="505"/>
+                        </Array>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="34" value="saveDataUnitArray&lt;br&gt;// URL文字列 から変換された&lt;br&gt;// 全ての unitInstance の配列" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;exitX=0;exitY=0.95;align=left;" edge="1" parent="1" source="30">
+                    <mxGeometry x="0.8148" relative="1" as="geometry">
+                        <mxPoint x="665" y="717.4999999999995" as="targetPoint"/>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="35" value="ro4/m/js&lt;br&gt;CSaveDataUnit.js&lt;br&gt;&amp;lt;CSaveDataUnitVersion&amp;gt;" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;gradientColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="1045" y="560" width="160" height="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="36" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;gradientColor=none;" vertex="1" parent="35">
+                    <mxGeometry x="75" y="80" width="10" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="37" value="unitInstance" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;exitX=0;exitY=0.95;" edge="1" parent="1" source="36">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="859.5" y="687.5" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="38" value="ro4/m/js/&lt;br&gt;CSaveDataUnit.js&lt;br&gt;&amp;lt;CSaveDataUnitParse&amp;gt;" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" vertex="1" parent="1">
+                    <mxGeometry x="780" y="420" width="150" height="340" as="geometry"/>
+                </mxCell>
+                <mxCell id="39" value="parse( dataText )&lt;br&gt;// ユニット毎に定義されたメソッドを呼び出す" style="html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0;align=left;" edge="1" parent="38">
+                    <mxGeometry x="-0.8431" relative="1" as="geometry">
+                        <mxPoint x="70" y="220" as="sourcePoint"/>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
