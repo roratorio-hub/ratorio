@@ -135,7 +135,10 @@ if __name__ == "__main__":
         if 'enchant' in item_info:
             for enchant in item_info['enchant']:
                 enchant_id += 1
-                record = buildEnchantRecord(base_id, enchant_id, enchant)
+                try:
+                    record = buildEnchantRecord(base_id, enchant_id, enchant)
+                except:
+                    print(f"{item_info['name']} のエンチャント定義に問題があります")
                 mig_enchlist_dat_js.append(record)
                 record = f'g_constDataManager.enchListDataManager.reverseResolveArrayItemId[{base_id}] = [{enchant_id}];'
                 mig_enchlist_dat_js.append(record)
