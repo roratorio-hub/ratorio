@@ -1,7 +1,7 @@
 # 各コードは item.h.js の EnumEquipFlag に定義されている
 # これらの値を mig.job.dat.js の各職定義に追加することで装備選択欄に出てくる
 equipable_list:
-  - name: 制限なし
+  - name: 全ての職業
     code: 0
   - name: ソードマン系 マジシャン系 アーチャー系 マーチャント系 シーフ系 ソウルリンカー系 忍者系
     code: 1
