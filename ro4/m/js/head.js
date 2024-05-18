@@ -4508,8 +4508,6 @@ g_bUnknownCasts = true;
 			} else {
 				// 基礎倍率
 				wbairitu = 400 + (100 * n_A_ActiveSkillLV);
-				// クリティカル無し
-				bCri = false;
 			}
 
 			// POW補正
