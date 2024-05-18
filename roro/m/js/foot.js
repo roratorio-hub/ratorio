@@ -13147,6 +13147,11 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 			}
 		}
 
+		// TODO: 四次対応
+		for (idx = ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_ELM_VANITY; idx <= ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_ELM_UNDEAD; idx++) {
+			n_tok[idx] = ApplySpecModify(idx, n_tok[idx]);
+		}		
+
 
 
 
