@@ -2687,7 +2687,14 @@ g_ITEM_SP_FLEE_PLUS_value_forCalcData = flee;
 		// 「拳聖　月の安楽」の、効果
 		//----------------------------------------------------------------
 		if ((sklLv = UsedSkillSearch(SKILL_ID_TSUKINO_ANRAKU)) > 0) {
-			flee += Math.floor((n_A_BaseLV + n_A_LUK + n_A_DEX) / 10);
+			switch (UsedSkillSearch(SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_HI)) {
+				case 1:	// 今日の日付
+					let today = (new Date()).getDate();
+					if (today % 2 == 0)	break; // 月の日ではない（偶数）
+				case 0:	// 無条件発動
+				case 3: // 月の日
+					flee += Math.floor((n_A_BaseLV + n_A_LUK + n_A_DEX) / 10);
+			}
 		}
 
 		//----------------------------------------------------------------
@@ -6322,7 +6329,14 @@ if (_APPLY_UPDATE_LV200) {
 		//----------------------------------------------------------------
 		ASPDch = 0;
 		if (UsedSkillSearch(SKILL_ID_HOSHINO_ANRAKU)) {
-			ASPDch += Math.floor((n_A_BaseLV + n_A_LUK + n_A_DEX) / 10);
+			switch (UsedSkillSearch(SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_HI)) {
+				case 1:	// 今日の日付
+					let today = (new Date()).getDate();
+					if (today % 5 == 1)	break; // 星の日ではない
+				case 0:	// 無条件発動
+				case 4: // 星の日
+					ASPDch += Math.floor((n_A_BaseLV + n_A_LUK + n_A_DEX) / 10);
+			}
 		}
 		if (UsedSkillSearch(SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_AKUMA)) {
 			switch (n_A_JOB) {
@@ -26261,28 +26275,63 @@ function StPlusCalc() {
 	}
 
 	//----------------------------------------------------------------
-	// 「太陽の祝福」の、＋効果
+	// 「太陽・月・星の祝福」の、＋効果
 	//----------------------------------------------------------------
-	wSPC_STR += 2 * UsedSkillSearch(SKILL_ID_TAIYONO_SHUKUFUKU);
-	wSPC_VIT += 2 * UsedSkillSearch(SKILL_ID_TAIYONO_SHUKUFUKU);
-	wSPC_DEX += 2 * UsedSkillSearch(SKILL_ID_TAIYONO_SHUKUFUKU);
-
-	//----------------------------------------------------------------
-	// 「月の祝福」の、＋効果
-	//----------------------------------------------------------------
-	wSPC_AGI += 2 * UsedSkillSearch(SKILL_ID_TSUKUNO_SHUKUFUKU);
-	wSPC_INT += 2 * UsedSkillSearch(SKILL_ID_TSUKUNO_SHUKUFUKU);
-	wSPC_LUK += 2 * UsedSkillSearch(SKILL_ID_TSUKUNO_SHUKUFUKU);
-
-	//----------------------------------------------------------------
-	// 「星の祝福」の、＋効果
-	//----------------------------------------------------------------
-	wSPC_STR += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
-	wSPC_AGI += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
-	wSPC_VIT += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
-	wSPC_INT += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
-	wSPC_DEX += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
-	wSPC_LUK += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
+	switch (UsedSkillSearch(SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_HI)) {
+		case 0:	// 無条件で発動
+			wSPC_STR += 2 * UsedSkillSearch(SKILL_ID_TAIYONO_SHUKUFUKU);
+			wSPC_VIT += 2 * UsedSkillSearch(SKILL_ID_TAIYONO_SHUKUFUKU);
+			wSPC_DEX += 2 * UsedSkillSearch(SKILL_ID_TAIYONO_SHUKUFUKU);
+			wSPC_AGI += 2 * UsedSkillSearch(SKILL_ID_TSUKUNO_SHUKUFUKU);
+			wSPC_INT += 2 * UsedSkillSearch(SKILL_ID_TSUKUNO_SHUKUFUKU);
+			wSPC_LUK += 2 * UsedSkillSearch(SKILL_ID_TSUKUNO_SHUKUFUKU);
+			wSPC_STR += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
+			wSPC_AGI += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
+			wSPC_VIT += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
+			wSPC_INT += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
+			wSPC_DEX += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
+			wSPC_LUK += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
+			break;
+		case 1:	// 今日の日付で発動
+			let today = (new Date()).getDate();
+			if (today % 5 == 0 && UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU) > 0) { // 5の倍数 ∧ 星を習得済み
+				wSPC_STR += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
+				wSPC_AGI += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
+				wSPC_VIT += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
+				wSPC_INT += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
+				wSPC_DEX += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
+				wSPC_LUK += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
+			} else
+			if (today % 2 == 0) {	// ( 5の倍数ではない ∨ 5の倍数だが星を未習得 ) ∧ 偶数
+				wSPC_STR += 2 * UsedSkillSearch(SKILL_ID_TAIYONO_SHUKUFUKU);
+				wSPC_VIT += 2 * UsedSkillSearch(SKILL_ID_TAIYONO_SHUKUFUKU);
+				wSPC_DEX += 2 * UsedSkillSearch(SKILL_ID_TAIYONO_SHUKUFUKU);
+			} else
+			if (today % 2 == 1) {	// ( 5の倍数ではない ∨ 5の倍数だが星を未習得 ) ∧ 奇数
+				wSPC_AGI += 2 * UsedSkillSearch(SKILL_ID_TSUKUNO_SHUKUFUKU);
+				wSPC_INT += 2 * UsedSkillSearch(SKILL_ID_TSUKUNO_SHUKUFUKU);
+				wSPC_LUK += 2 * UsedSkillSearch(SKILL_ID_TSUKUNO_SHUKUFUKU);
+			}
+			break;
+		case 2:	// 太陽の日
+			wSPC_STR += 2 * UsedSkillSearch(SKILL_ID_TAIYONO_SHUKUFUKU);
+			wSPC_VIT += 2 * UsedSkillSearch(SKILL_ID_TAIYONO_SHUKUFUKU);
+			wSPC_DEX += 2 * UsedSkillSearch(SKILL_ID_TAIYONO_SHUKUFUKU);
+			break;
+		case 3:	// 月の日
+			wSPC_AGI += 2 * UsedSkillSearch(SKILL_ID_TSUKUNO_SHUKUFUKU);
+			wSPC_INT += 2 * UsedSkillSearch(SKILL_ID_TSUKUNO_SHUKUFUKU);
+			wSPC_LUK += 2 * UsedSkillSearch(SKILL_ID_TSUKUNO_SHUKUFUKU);
+			break;
+		case 4:	// 星の日
+			wSPC_STR += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
+			wSPC_AGI += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
+			wSPC_VIT += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
+			wSPC_INT += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
+			wSPC_DEX += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
+			wSPC_LUK += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
+			break;
+	}
 
 	//----------------------------------------------------------------
 	// 「宇宙の構え」の、＋効果

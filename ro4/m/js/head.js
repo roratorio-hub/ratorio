@@ -14991,10 +14991,16 @@ function BattleHiDam(charaData, specData, mobData, attackMethodConfArray, objCel
 	// 「拳聖　太陽の安楽」の効果
 	//--------------------------------
 	if (UsedSkillSearch(SKILL_ID_TAIYONO_ANRAKU)) {
-		wBHD = Math.floor((n_A_BaseLV + n_A_LUK + n_A_DEX) / 2);
-
-		for (i = 0; i <= 6; i++) {
-			w_HiDam[i] -= wBHD;
+		switch (UsedSkillSearch(SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_HI)) {
+			case 1:	// 今日の日付
+				let today = (new Date()).getDate();
+				if (today % 2 == 1)	break; // 太陽の日ではない（奇数）
+			case 0:	// 無条件発動
+			case 2: // 太陽の日
+				wBHD = Math.floor((n_A_BaseLV + n_A_LUK + n_A_DEX) / 2);
+				for (i = 0; i <= 6; i++) {
+					w_HiDam[i] -= wBHD;
+				}
 		}
 	}
 
@@ -17165,6 +17171,23 @@ function Click_PassSkillSW(){
 				HtmlCreateElementOption(4, "月出", objSelect);
 				HtmlCreateElementOption(5, "正子", objSelect);
 				HtmlCreateElementOption(6, "月没", objSelect);
+			}
+
+			//----------------------------------------------------------------
+			// 拳聖・星帝・天帝：太陽と月と星の日
+			//----------------------------------------------------------------
+			var sklIdx = NumSearch2(SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_HI, passiveSkillIdArray);
+			if (sklIdx != -1) {
+				// 一度、選択肢を全削除
+				var objSelect = document.getElementById("A_skill" + sklIdx);
+				HtmlRemoveOptionAll(objSelect);
+
+				// 選択肢を追加
+				HtmlCreateElementOption(0, "全て発動させる", objSelect);
+				HtmlCreateElementOption(1, "今日の日付", objSelect);
+				HtmlCreateElementOption(2, "太陽の日(偶数)", objSelect);
+				HtmlCreateElementOption(3, "月の日(奇数)", objSelect);
+				HtmlCreateElementOption(4, "星の日(5の倍数)", objSelect);
 			}
 
 			//----------------------------------------------------------------

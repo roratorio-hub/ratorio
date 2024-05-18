@@ -1260,6 +1260,7 @@
 	SKILL_ID_ANTEN_HOU = 1257;
 	SKILL_ID_GENZYUTSU_ANKOKURYUU = 1258;
 	SKILL_ID_ANTEN_HOU_LEARNED_LEVEL = 1259;
+	SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_HI = 1260;	// 今日の日付（太陽の日、月の日、星の日の判定用）
 
 	SkillObjNew = [
 		[0,1,"通常攻撃"],
@@ -2522,6 +2523,7 @@
 		[1257,10,"(×)暗転砲"],
 		[1258,1,"(×)幻術 -暗黒龍-"],
 		[1259,10,"暗転砲の習得Lv"],
+		[1260,4,"太陽と月と星の日"],	//（太陽の日、月の日、星の日の判定用）
 	];
 
 })();
