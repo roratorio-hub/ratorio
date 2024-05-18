@@ -1671,12 +1671,14 @@ else {
 			wbairitu += ROUNDDOWN((n_A_STR + n_A_DEX) * n_A_BaseLV / 100);
 			break;
 
+		// 「メカニック」スキル「ブーストナックル」
 		case SKILL_ID_BOOST_KNUCKLE:
 			n_Enekyori = 1;
 			wCast = 500 * n_A_ActiveSkillLV - 500;
+			n_Delay[1] = n_Delay[1] / 2;
+			if(UsedSkillSearch(SKILL_ID_ABR_DUAL_CANNON)) wHITsuu = 2;
 			wbairitu = 200 + 100 * n_A_ActiveSkillLV + n_A_DEX;
 			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 120);
-			n_Delay[1] = n_Delay[1] / 2;
 			break;
 
 		case SKILL_ID_PILE_BUNKER:
@@ -1686,9 +1688,11 @@ else {
 			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
 			break;
 
+		// 「メカニック」スキル「バルカンアーム」
 		case SKILL_ID_VULCAN_ARM:
 			n_Enekyori = 1;
 			wCast = 1000 * n_A_ActiveSkillLV - 1000;
+			if(UsedSkillSearch(SKILL_ID_ABR_DUAL_CANNON)) wHITsuu = 2;
 			wbairitu = 70 * n_A_ActiveSkillLV + n_A_DEX;
 			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 120);
 			break;
@@ -6836,20 +6840,16 @@ g_bUnknownCasts = true;
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
-
-
+		// 「メカニック」スキル「アームズキャノン」
 		case SKILL_ID_ARMS_CANNON:
-		case SKILL_ID_CART_CANNON:
 			n_PerfectHIT_DMG = 0;
 			w_HIT_HYOUJI = 100;
 			w_HIT = 100;
 			var wMADO = 0;
-			if(n_A_ActiveSkill==SKILL_ID_ARMS_CANNON){
-				n_Enekyori=1;
-				wCast = Math.min(2000, 500 + 500 * n_A_ActiveSkillLV);
-				n_Delay[2] = Math.max(500, 2000 - 500 * n_A_ActiveSkillLV);
-
-				switch (mobData[17]) {
+			n_Enekyori=1;
+			wCast = Math.min(2000, 500 + 500 * n_A_ActiveSkillLV);
+			n_Delay[2] = Math.max(500, 2000 - 500 * n_A_ActiveSkillLV);
+			switch (mobData[17]) {
 				case SIZE_ID_SMALL:
 					wbairitu = 300 + 400 * n_A_ActiveSkillLV;
 					break;
@@ -6859,25 +6859,14 @@ g_bUnknownCasts = true;
 				case SIZE_ID_LARGE:
 					wbairitu = 300 + 300 * n_A_ActiveSkillLV;
 					break;
-				}
-
-				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 120);
-				wMADO += 2 * UsedSkillSearch(SKILL_ID_BUKI_KENKYU);
-				if(n_A_WeaponType == 6 || n_A_WeaponType == 7) wMADO += 5 * UsedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC);
-				if(n_A_WeaponType == 8) wMADO += 4 * UsedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC);
-				if((20 <= mobData[18] && mobData[18] <= 29) || (30 <= mobData[18] && mobData[18] <= 39)) wMADO += 10 * UsedSkillSearch(SKILL_ID_HITO_DAICHINO_KENKYU);
-				if(UsedSkillSearch(SKILL_ID_MADOGEAR)) wMADO += 20 * UsedSkillSearch(SKILL_ID_MADOGEAR_LICENSE);
 			}
-			if(n_A_ActiveSkill==SKILL_ID_CART_CANNON){
-				n_Enekyori = 1;
-				wCast = 500 + 500 * n_A_ActiveSkillLV;
-				n_Delay[2] = 500;
-				wbairitu = 60 * n_A_ActiveSkillLV + ROUNDDOWN((UsedSkillSearch(SKILL_ID_CART_KAIZO) * 50) * (n_A_INT / 40));
-				if(n_A_WeaponType == 6 || n_A_WeaponType == 7) wMADO += 3 *UsedSkillSearch(SKILL_ID_ONO_SHUREN);
-				if(n_A_WeaponType == 2) wMADO += 3 * UsedSkillSearch(SKILL_ID_ONO_SHUREN);
-				if(n_A_WeaponType == 1 || n_A_WeaponType == 2) wMADO += 10 * UsedSkillSearch(SKILL_ID_KEN_SHUREN_GENETIC);
-				wMADO += 10 * UsedSkillSearch(SKILL_ID_CART_BOOST_GENETIC);
-			}
+			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 120);
+			wMADO += 2 * UsedSkillSearch(SKILL_ID_BUKI_KENKYU);
+			if(n_A_WeaponType == 6 || n_A_WeaponType == 7) wMADO += 5 * UsedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC);
+			if(n_A_WeaponType == 8) wMADO += 4 * UsedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC);
+			if((20 <= mobData[18] && mobData[18] <= 29) || (30 <= mobData[18] && mobData[18] <= 39)) wMADO += 10 * UsedSkillSearch(SKILL_ID_HITO_DAICHINO_KENKYU);
+			if(UsedSkillSearch(SKILL_ID_MADOGEAR)) wMADO += 20 * UsedSkillSearch(SKILL_ID_MADOGEAR_LICENSE);
+			if(UsedSkillSearch(SKILL_ID_ABR_DUAL_CANNON)) wHITsuu = 2;
 			wMADO += ApplyElementRatio(mobData, CanonOBJ[attackMethodConfArray[0].GetOptionValue(0)][0],CanonOBJ[attackMethodConfArray[0].GetOptionValue(0)][1]);
 			for(var i=0;i<=2;i++){
 				w_DMG[i] = n_A_DMG[i] + wMADO;
@@ -6894,7 +6883,35 @@ g_bUnknownCasts = true;
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
-
+		// 「ジェネティック」スキル「カートキャノン」
+		case SKILL_ID_CART_CANNON:
+			n_PerfectHIT_DMG = 0;
+			w_HIT_HYOUJI = 100;
+			w_HIT = 100;
+			var wMADO = 0;
+			n_Enekyori = 1;
+			wCast = 500 + 500 * n_A_ActiveSkillLV;
+			n_Delay[2] = 500;
+			wbairitu = 60 * n_A_ActiveSkillLV + ROUNDDOWN((UsedSkillSearch(SKILL_ID_CART_KAIZO) * 50) * (n_A_INT / 40));
+			if(n_A_WeaponType == 6 || n_A_WeaponType == 7) wMADO += 3 *UsedSkillSearch(SKILL_ID_ONO_SHUREN);
+			if(n_A_WeaponType == 2) wMADO += 3 * UsedSkillSearch(SKILL_ID_ONO_SHUREN);
+			if(n_A_WeaponType == 1 || n_A_WeaponType == 2) wMADO += 10 * UsedSkillSearch(SKILL_ID_KEN_SHUREN_GENETIC);
+			wMADO += 10 * UsedSkillSearch(SKILL_ID_CART_BOOST_GENETIC);
+			wMADO += ApplyElementRatio(mobData, CanonOBJ[attackMethodConfArray[0].GetOptionValue(0)][0],CanonOBJ[attackMethodConfArray[0].GetOptionValue(0)][1]);
+			for(var i=0;i<=2;i++){
+				w_DMG[i] = n_A_DMG[i] + wMADO;
+				w_DMG[i] = Math.floor(w_DMG[i] * wbairitu / 100);
+				w_DMG[i] -= B_Total_DEF;
+				if(w_DMG[i] <0) w_DMG[i] = 0;
+				w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
+				w_DMG[i] += GetFixedAppendAtk(n_A_ActiveSkill, charaData, specData, mobData, w_DMG[i],i,-1);
+				w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
+				Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
+				g_damageTextArray[i].push(Last_DMG_A[i]);
+			}
+			BuildCastAndDelayHtml(mobData);
+			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
+			break;
 
 		case SKILL_ID_SELF_DESTRUCTION:
 		case SKILL_ID_SELF_DESTRUCTION_MAX:
@@ -16891,6 +16908,13 @@ function Click_PassSkillSW(){
 				wOBJ.options[1] = new Option("FB3",1);
 				wOBJ.options[2] = new Option("CB3",2);
 				wOBJ.options[3] = new Option("LB3",3);
+			}
+			var w = NumSearch2(SKILL_ID_ABR_DUAL_CANNON,passiveSkillIdArray);
+			if(w != -1){
+				var wOBJ = document.getElementById("A_skill" + w);
+				for(i=10;i>=0;i--) wOBJ.options[i] = null;
+				wOBJ.options[0] = new Option("未召喚",0);
+				wOBJ.options[1] = new Option("召喚中",1);
 			}
 
 			// シールドスペル(ATK+)

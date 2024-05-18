@@ -32929,7 +32929,7 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(×)ABR デュアルキャノン";
+			this.name = "ABR デュアルキャノン";
 			this.kana = "エイヒイアアル　テユアルキヤノン";
 			this.maxLv = 4;
 			this.type = CSkillData.TYPE_ACTIVE;
