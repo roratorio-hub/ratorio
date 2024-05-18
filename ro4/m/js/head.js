@@ -7773,23 +7773,17 @@ g_bUnknownCasts = true;
 
 		// 紅焔脚（修羅身弾から流用）
 		case SKILL_ID_KOEN_KYAKU:
-
 			var hitMode = attackMethodConfArray[0].GetOptionValue(0);
-
 			wCast = 50 + 80 * n_A_ActiveSkillLV + 40 * Math.floor(n_A_ActiveSkillLV / 2);
-
-			for (idx = 0; idx <= 2; idx++) {
+			for (let idx = 0; idx <= 2; idx++) {
 				w_DMG[idx] = 0;
 			}
-
 			// 攻撃対象のダメージ計算
 			if ((hitMode & 1) == 1) {
-
 				wbairitu = 650 + 50 * n_A_ActiveSkillLV;
 				wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
 				wbairitu = ATKbaiJYOUSAN(wbairitu);
-
-				for (idx = 0; idx <= 2; idx++) {
+				for (let idx = 0; idx <= 2; idx++) {
 					w_DMG[idx] = n_A_DMG[idx];
 					w_DMG[idx] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[idx]);
 					w_DMG[idx] = Math.floor(w_DMG[idx] * wbairitu / 100);
@@ -7797,66 +7791,44 @@ g_bUnknownCasts = true;
 					w_DMG[idx] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[idx]);
 				}
 			}
-
 			var w2hit = [0,0,0];
-
 			wLAch=1;
-
 			// 追加ダメージの計算
 			if ((hitMode & 2) == 2) {
-
-				for (idx = 0; idx <= 2; idx++) {
-
+				for (let idx = 0; idx <= 2; idx++) {
 					var w = 650 + 50 * n_A_ActiveSkillLV;
-
 					w += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
 					w = ATKbaiJYOUSAN(w);
-
 					w = Math.floor(n_A_DMG[idx] * w / 100);
 					w = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w);
 					w = ApplyMonsterDefence(mobData, w, 0);
-
 					if (idx == 0 && w_HIT <100) {
 						w = 0;
 					}
-
 					if (idx == 1) {
 						w = w * w_HIT / 100;
 					}
-
 					w2hit[idx] += w;
-
 					w2hit[idx] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w2hit[idx]);
-
 					w_DMG[idx] += w2hit[idx]
 				}
 			}
-
 			if (n_AS_MODE == 1) {
 				return w_DMG;
 			}
-
 			// 表示の調整
-			for (idx = 0; idx <= 2; idx++) {
-
+			for (let idx = 0; idx <= 2; idx++) {
 				Last_DMG_A[idx] = Last_DMG_B[idx] = w_DMG[idx];
-
 				g_damageTextArray[idx].push(Last_DMG_A[idx]);
-
 				if ((hitMode & 3) == 3) {
-
 					var w = w2hit[idx];
-
 					if (w == 0) {
 						w = "Miss";
 					}
-
 					g_damageTextArray[idx].push(" (", (w_DMG[idx] - w2hit[idx]), " + ", w, ")");
 				}
 			}
-
 			w_DMG[1] = (w_DMG[1] * w_HIT + ApplyHitJudgeElementRatio(n_A_ActiveSkill, GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray), mobData) *(100-w_HIT))/100;
-
 			AS_PLUS();
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
