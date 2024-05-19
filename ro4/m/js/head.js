@@ -7802,12 +7802,14 @@ g_bUnknownCasts = true;
 					w = Math.floor(n_A_DMG[idx] * w / 100);
 					w = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w);
 					w = ApplyMonsterDefence(mobData, w, 0);
-					if (idx == 0 && w_HIT <100) {
+					/*
+					if (idx == 0 && w_HIT <100) {	// 命中率が 100% 未満の場合、最低ダメージを 0 にする
 						w = 0;
 					}
-					if (idx == 1) {
+					if (idx == 1) {	// 命中率を考慮した平均ダメージにする
 						w = w * w_HIT / 100;
 					}
+					*/
 					w2hit[idx] += w;
 					w2hit[idx] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w2hit[idx]);
 					w_DMG[idx] += w2hit[idx]
@@ -7828,7 +7830,7 @@ g_bUnknownCasts = true;
 					g_damageTextArray[idx].push(" (", (w_DMG[idx] - w2hit[idx]), " + ", w, ")");
 				}
 			}
-			w_DMG[1] = (w_DMG[1] * w_HIT + ApplyHitJudgeElementRatio(n_A_ActiveSkill, GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray), mobData) *(100-w_HIT))/100;
+			//w_DMG[1] = (w_DMG[1] * w_HIT + ApplyHitJudgeElementRatio(n_A_ActiveSkill, GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray), mobData) *(100-w_HIT))/100;
 			AS_PLUS();
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
