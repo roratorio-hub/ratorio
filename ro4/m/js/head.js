@@ -13293,7 +13293,9 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 		objCell.classList.add("CSSCLS_BTLRSLT_VALUE");
 		HtmlCreateTextNode(funcDIG3PXSecond(battleCalcResult.castFixed, 2), objCell);
 
-		funcRenderResultTinyHtml(objGridTiny, "固定", funcDIG3PXSecondCompact(battleCalcResult.castFixed, 2));
+		let castFixedText = funcDIG3PXSecondCompact(battleCalcResult.castFixed, 2);
+		castFixedText += `(${100 - n_A_Kotei_Cast_Keigen}%)`;
+		funcRenderResultTinyHtml(objGridTiny, "固定", castFixedText);
 
 		//----------------
 		// ディレイ
