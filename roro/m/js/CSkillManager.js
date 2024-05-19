@@ -32929,7 +32929,7 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(×)ABR デュアルキャノン";
+			this.name = "ABR デュアルキャノン";
 			this.kana = "エイヒイアアル　テユアルキヤノン";
 			this.maxLv = 4;
 			this.type = CSkillData.TYPE_ACTIVE;
@@ -37655,6 +37655,24 @@ function CSkillManager() {
 		this.dataArray[skillId] = skillData;
 		skillId++;
 
+		// ----------------------------------------------------------------
+		// 太陽と月と星の日 判定用
+		// ----------------------------------------------------------------
+		SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_HI = skillId;
+		skillData = new function() {
+			this.prototype = new CSkillData();
+			CSkillData.call(this);
+
+			this.id = skillId;
+			this.name = "太陽と月と星の日";
+			this.kana = "タイヨウトツキトホシノヒ";
+			this.maxLv = 4;
+			this.type = CSkillData.TYPE_PASSIVE;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_VOID;
+		};
+		this.dataArray[skillId] = skillData;
+		skillId++;		
 	}
 
 	// 初期化
