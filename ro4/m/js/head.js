@@ -13294,7 +13294,7 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 		HtmlCreateTextNode(funcDIG3PXSecond(battleCalcResult.castFixed, 2), objCell);
 
 		let castFixedText = funcDIG3PXSecondCompact(battleCalcResult.castFixed, 2);
-		castFixedText += `(${100 - n_A_Kotei_Cast_Keigen}%)`;
+		castFixedText += `(${(100 - GetCastScalingOfSkillForCastTimeFixed(n_A_ActiveSkill)) > (100 - n_A_Kotei_Cast_Keigen) ? (100 - GetCastScalingOfSkillForCastTimeFixed(n_A_ActiveSkill)) : (100 - n_A_Kotei_Cast_Keigen)}%)`;
 		funcRenderResultTinyHtml(objGridTiny, "固定", castFixedText);
 
 		//----------------
