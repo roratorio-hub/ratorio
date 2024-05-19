@@ -597,7 +597,7 @@ function GetPAtk() {
 		}
 	}
 
-	// 四次職支援「法師符」による効果
+	// 四次職支援「武士符」による効果
 	if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_BUSHI_FU]) > 0) {
 		value += 2 * bufLv;
 	}
@@ -1710,10 +1710,8 @@ function ApplySpecModify(spid, spVal) {
 	case ITEM_SP_MAGICAL_DAMAGE_UP_MONSTER_ELM_DARK:
 	case ITEM_SP_MAGICAL_DAMAGE_UP_MONSTER_ELM_PSYCO:
 	case ITEM_SP_MAGICAL_DAMAGE_UP_MONSTER_ELM_UNDEAD:
-
-		// 四次職支援「法師符」による効果
+		// 四次職支援「五行符」による効果
 		if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_GOGYO_FU]) > 0) {
-
 			arrayWork = [
 				ITEM_SP_MAGICAL_DAMAGE_UP_MONSTER_ELM_FIRE,
 				ITEM_SP_MAGICAL_DAMAGE_UP_MONSTER_ELM_WATER,
@@ -1721,17 +1719,40 @@ function ApplySpecModify(spid, spVal) {
 				ITEM_SP_MAGICAL_DAMAGE_UP_MONSTER_ELM_EARTH,
 				ITEM_SP_MAGICAL_DAMAGE_UP_MONSTER_ELM_VANITY,
 			];
-
 			// 火・水・風・地・無属性モンスター
 			if (arrayWork.indexOf(spid) >= 0) {
 				spVal += 2 * bufLv;
 			}
 		}
-
 		break;
-
+	
+	// 属性モンスターへの物理ダメージ増加
+	case ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_ELM_VANITY:
+	case ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_ELM_WATER:
+	case ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_ELM_EARTH:
+	case ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_ELM_FIRE:
+	case ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_ELM_WIND:
+	case ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_ELM_POISON:
+	case ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_ELM_HOLY:
+	case ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_ELM_DARK:
+	case ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_ELM_PSYCO:
+	case ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_ELM_UNDEAD:
+		// 四次職支援「五行符」による効果
+		if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_GOGYO_FU]) > 0) {
+			arrayWork = [
+				ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_ELM_VANITY,
+				ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_ELM_WATER,
+				ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_ELM_EARTH,
+				ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_ELM_FIRE,
+				ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_ELM_WIND,
+			];
+			// 火・水・風・地・無属性モンスター
+			if (arrayWork.indexOf(spid) >= 0) {
+				spVal += 2 * bufLv;
+			}
+		}
+		break;
 	}
-
 
 	return spVal;
 }
