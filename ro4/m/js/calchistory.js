@@ -82,10 +82,10 @@ $(function () {
         target = $(".OBJID_MONSTER_MAP_MONSTER").val();
       }
       chart.data.labels.push(chart.data.labels.length + 1);
-      const dps = parseFloat($("#BTLRSLT_PART_ATKCNT").parent().prev().prev().prev().prev().text().replace(",",""))
+      const dps = parseFloat($("#BTLRSLT_PART_ATKCNT").parent().prev().prev().prev().prev().text().replaceAll(",",""))
       chart.data.datasets[0].data.push(isNaN(dps) ? 0 : dps);
       chart.data.datasets[0].metadata.push(CSaveController.encodeToURL())
-      const cnt = parseInt($("#BTLRSLT_PART_EXP").parent().prev().prev().text().replace(",",""))
+      const cnt = parseInt($("#BTLRSLT_PART_EXP").parent().prev().prev().text().replaceAll(",",""))
       chart.data.datasets[1].data.push(isNaN(cnt) ? 0 : cnt);
       chart.update();
     });
