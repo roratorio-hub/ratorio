@@ -291,7 +291,10 @@ if __name__ == "__main__":
                 itemset_id += 1
                 record = f"w_SE[{itemset_id}] = [{card_id * -1},{base_id * -1},"
                 for entity in set_info['entity_list']:
-                    set_entity_id = ITEM_CODE.get(entity['item_name']) if 'item_name' in entity else CARD_OR_ENCH_CODE.get(entity['card_name']) * -1
+                    try:
+                        set_entity_id = ITEM_CODE.get(entity['item_name']) if 'item_name' in entity else CARD_OR_ENCH_CODE.get(entity['card_name']) * -1
+                    except:
+                        print(f"{entity} の処理に失敗しました")
                     record += f"{set_entity_id},"
                 # EOF
                 record += "];"
