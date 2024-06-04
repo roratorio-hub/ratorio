@@ -31,6 +31,26 @@ capabilities:
     code: 29
   - name: 動物型への物理ダメージ増加  
     code: 32
+  - name: 無形モンスター耐性
+    code: 50
+  - name: 不死形モンスター耐性
+    code: 51
+  - name: 動物形モンスター耐性
+    code: 52
+  - name: 植物形モンスター耐性
+    code: 53
+  - name: 昆虫形モンスター耐性
+    code: 54
+  - name: 魚貝形モンスター耐性
+    code: 55
+  - name: 悪魔形モンスター耐性
+    code: 56
+  - name: 人間形モンスター耐性
+    code: 57
+  - name: 天使形モンスター耐性
+    code: 58
+  - name: 竜族形モンスター耐性
+    code: 59
   - name: 無属性耐性
     code: 60
   - name: 水属性耐性
@@ -127,10 +147,14 @@ capabilities:
     code: 236
   - name: プレイヤー耐性
     code: 243
+  - name: 全サイズへの物理ダメージ増加
+    code: 260
   - name: 全種族への物理ダメージ増加
     code: 261
   - name: 全属性への物理ダメージ増加
     code: 262
+  - name: 全サイズへの魔法ダメージ増加
+    code: 265
   - name: 全種族への魔法ダメージ増加
     code: 266
   - name: 全属性への魔法ダメージ増加
@@ -159,6 +183,20 @@ capabilities:
     code: 348
   - name: 不死属性魔法ダメージ増加
     code: 349
+  - name: 冷凍耐性
+    code: 360
+  - name: 氷結耐性
+    code: 361
+  - name: 発火耐性
+    code: 362
+  - name: 恐怖耐性
+    code: 363
+  - name: 深い睡眠耐性
+    code: 364
+  - name: 魅了耐性
+    code: 365
+  - name: 狂乱耐性
+    code: 366
   - name: スキルダメージ増加
     code: 5000
   - name: スキル変動詠唱割合減少

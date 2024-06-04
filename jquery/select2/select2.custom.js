@@ -66,12 +66,14 @@ function CustomizeSelect2Specify(select_id) {
                     $(select_id).prop('selectedIndex', optionsCount - 1);
                 }
                 $(select_id).trigger('change');
-                // 装備の場合はセットできるカードの選択欄を再生成する
+                // 装備が操作された場合はセットできるカードの選択欄をselect2化する
                 if (select_id.indexOf("CARD") == -1) {
-                    LoadSelect2Specify(select_id + '_CARD_1');
-                    LoadSelect2Specify(select_id + '_CARD_2');
-                    LoadSelect2Specify(select_id + '_CARD_3');
-                    LoadSelect2Specify(select_id + '_CARD_4');
+                    for (let i = 1; i <= 4; i++) {
+                        let target_id = select_id + '_CARD_' + i;
+                        if (SEARCHABLE_SELECT_LIST.indexOf(target_id) != -1) {
+                            LoadSelect2Specify(target_id);
+                        }
+                    }
                 }
         }
     });
@@ -86,6 +88,7 @@ function LoadSelect2Specify(select_id) {
     // 同一スロットがカードとエンチャントに利用される場合があるので、スロットの状態によって検索機能をON/OFFする
     var isEnchant = $(select_id + ' option:contains(エンチャントなし)').length > 0;
     if (isEnchant) {
+        // select2化されている場合とされていない場合があるので、両方に対応するために一旦select2化してからdestroyする
         $(select_id).select2('destroy');
     }
     // 装備とカードの場合はイベントハンドラを追加する
