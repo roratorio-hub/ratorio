@@ -27,6 +27,7 @@ $(function () {
 .col {
   width: 7rem;
   text-align: right;
+  padding-right: 1rem;
 }
 .col.no {
   width: 3rem;
