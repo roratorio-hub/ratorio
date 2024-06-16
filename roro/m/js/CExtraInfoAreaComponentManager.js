@@ -2739,7 +2739,7 @@ function CExtraInfoAreaComponentManager () {
 
 
 
-	/**Crabfish
+	/**
 	 * 拡張情報の表示欄を構築する（新状態異常耐性）.
 	 */
 	this.RebuildDispAreaResistStateR = function () {
