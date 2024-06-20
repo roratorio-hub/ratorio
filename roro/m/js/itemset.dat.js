@@ -5388,6 +5388,13 @@
 	CardIdToSetIdMap[10091] = [2496];
 	CardIdToSetIdMap[10092] = [2497];
 	CardIdToSetIdMap[10093] = [2498];
+	// --- 2024/06/18 ラグ缶追加 ---
+	w_SE[2739] = [-3109,-3108,-1245,];	// 潜在解放 スピハン7
+	CardIdToSetIdMap[3108] = [2739,];
+	w_SE[2740] = [-3111,-3110,-1348,];	// 潜在解放 ハイノビ7
+	CardIdToSetIdMap[3110] = [2740,];
+	CardIdToSetIdMap[1245] = CardIdToSetIdMap[1245].concat([2739]);
+	CardIdToSetIdMap[1348] = CardIdToSetIdMap[1348].concat([2740]);
 
 	// itemset はセーブデータに書き出されないので
 	// 現実的な範囲において itemsetID の上限値を気にする必要はありません
