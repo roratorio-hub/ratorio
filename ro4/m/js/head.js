@@ -26979,6 +26979,10 @@ function ApplyAttackDamageAmplify(mobData, dmg){
 	if (n_B_KYOUKA[MOB_CONF_BUF_ID_DAMAGE_DIVIDE] != 0) {
 		dmg = Math.floor(dmg / dmgDivArray[n_B_KYOUKA[MOB_CONF_BUF_ID_DAMAGE_DIVIDE]]);
 	}
+	// モンスター状態強化欄のマックスペインがONの場合、与ダメを半減
+	if (n_B_KYOUKA[MOB_CONF_BUF_ID_MAX_PAIN] != 0) {
+		dmg = Math.floor(dmg / 2);
+	}
 
 	return Math.floor(dmg);
 }
