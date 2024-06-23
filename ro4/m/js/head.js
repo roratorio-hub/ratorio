@@ -15328,6 +15328,14 @@ function BattleHiDam(charaData, specData, mobData, attackMethodConfArray, objCel
 		}
 	}
 
+	//--------------------------------
+	// 服の属性によるダメージ軽減効果
+	//--------------------------------
+	if (n_A_BodyZokusei == ELM_ID_PSYCO) {
+		for (i = 0; i <= 6; i++) {
+			w_HiDam[i] -= Math.floor(w_HiDam[i] * 75 /100);
+		}
+	}
 
 
 	//--------------------------------
