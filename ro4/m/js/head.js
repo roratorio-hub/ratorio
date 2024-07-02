@@ -18442,6 +18442,9 @@ function OnChangePetSelect() {
 	// ペット説明更新
 	RefreshPetExplain();
 
+	// 攻撃方法更新
+	CAttackMethodAreaComponentManager.RebuildControls();
+
 	// 共通処理へ合流
 	Click_A8(1);
 }
