@@ -13987,7 +13987,11 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 	objCell.classList.add("BTLRSLT_TAB_RESULT");
 	objCell.classList.add(partIdStr);
 	objCell.classList.add("CSSCLS_BTLRSLT_VALUE");
-	BattleHiDam(charaData, specData, mobData, attackMethodConfArray, objCell);
+	if (n_B_KYOUKA[MOB_CONF_BUF_ID_MAX_PAIN] == 0) {
+		BattleHiDam(charaData, specData, mobData, attackMethodConfArray, objCell);
+	} else {
+		BattleHiDamMaxPain(charaData, specData, mobData, attackMethodConfArray, battleCalcResultAll.GetDamageSummaryAvePerAtk(), objCell);
+	}
 
 
 
@@ -15202,6 +15206,183 @@ function BattleHiDam(charaData, specData, mobData, attackMethodConfArray, objCel
 	return wBHD;
  }
 
+
+
+ function BattleHiDamMaxPain(charaData, specData, mobData, attackMethodConfArray, painATK, objCell = null){
+
+	var idx = 0;
+
+	w_HiDam = new Array();
+	for(var i=0;i<=6;i++) w_HiDam[i] = painATK;
+
+	var wBHD;
+	wBHD = GetEquippedTotalSPCardAndElse(3000+mobData[0]);
+	wBHD += GetEquippedTotalSPEquip(3000+mobData[0]);
+
+	// TODO: データ移行過渡処理
+	// 計算したSP効果を、移行前のデータ形式に変換して、加算する
+	if (IsEnableMigrationBlockTransit()) {
+
+		var idxMap = 0;
+
+		var candidateMapIdArray = null;
+
+		var spTag = null;
+
+		// 当該モンスターの出現するマップIDを収集
+		candidateMapIdArray = [];
+
+		for (idxMap = 0; idxMap < g_MonsterMapDataArray.length; idxMap++) {
+			if (g_MonsterMapDataArray[idxMap][MONSTER_MAP_DATA_INDEX_DATA_ARRAY].indexOf(mobData[0]) >= 0) {
+				candidateMapIdArray.push(g_MonsterMapDataArray[idxMap][MONSTER_MAP_DATA_INDEX_ID]);
+			}
+		}
+
+		// すべての出現マップをループ
+		for (idxMap = 0; idxMap < candidateMapIdArray.length; idxMap++) {
+
+			spTag = new CMigEquipableSpTag()
+				.SetSpId(MIG_EQUIPABLE_SP_EFFECT_ID_RECEIVE_DAMAGE)
+				.AddAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_MAP_MONSTER, candidateMapIdArray[idxMap])
+				.SetAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_VALUE_UNIT, MIG_VALUE_UNIT_ID_PERCENT);
+
+			wBHD += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
+			wBHD += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
+
+			spTag = new CMigEquipableSpTag()
+				.SetSpId(MIG_EQUIPABLE_SP_EFFECT_ID_RECEIVE_DAMAGE_OLD)
+				.AddAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_MAP_MONSTER, candidateMapIdArray[idxMap])
+				.SetAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_VALUE_UNIT, MIG_VALUE_UNIT_ID_PERCENT);
+
+			wBHD += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
+			wBHD += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
+		}
+	}
+	// 移行前データでの処理（移行完了まで必要）
+	else {
+
+	}
+
+	// Lv200解放アップデートでの、上限値新設への対応
+	if (_APPLY_UPDATE_LV200) {
+		wBHD = Math.min(95, wBHD);
+	}
+
+	for (idx = 0; idx < w_HiDam.length; idx++) {
+		w_HiDam[idx] -= Math.floor(w_HiDam[idx] * wBHD /100);
+	}
+
+
+	//--------------------------------
+	// 「マジシャン　エナジーコート」の効果
+	//--------------------------------
+	if (UsedSkillSearch(SKILL_ID_ENERGY_COAT)){
+		wBHD = 6 * UsedSkillSearch(SKILL_ID_ENERGY_COAT);
+
+		for (i = 0; i <= 6; i++) {
+			w_HiDam[i] -= Math.floor(w_HiDam[i] * wBHD /100);
+		}
+	}
+	else if (n_A_PassSkill7[50]){
+		wBHD = 6 * n_A_PassSkill7[50];
+
+		for (i = 0; i <= 6; i++) {
+			w_HiDam[i] -= Math.floor(w_HiDam[i] * wBHD /100);
+		}
+	}
+
+
+	//--------------------------------
+	// ストーンスキンのダメージ軽減効果
+	//--------------------------------
+	if (TimeItemNumSearch(TIME_ITEM_ID_WOLF_HEZIN)) {
+		for (i = 0; i <= 6; i++) {
+			w_HiDam[i] -= Math.floor(w_HiDam[i] * 20 /100);
+		}
+	}
+
+	//--------------------------------
+	// 金剛のダメージ軽減効果
+	//--------------------------------
+	if (UsedSkillSearch(SKILL_ID_KONGO)) {
+		for(i=0;i<=6;i++) w_HiDam[i] -= Math.floor(w_HiDam[i] * 90 / 100);
+	}
+
+	//--------------------------------
+	// 「サモナー　うずくまる」のダメージ軽減効果
+	//--------------------------------
+	if (UsedSkillSearch(SKILL_ID_UZUKUMARU)) {
+
+		// 特定の戦闘エリアでの補正
+		var rateWork = 80;
+		switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
+
+		case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
+			rateWork = 50;
+			break;
+
+		}
+
+		for (i = 0; i <= 6; i++) {
+			w_HiDam[i] -= Math.floor(w_HiDam[i] * rateWork / 100);
+		}
+	}
+
+	//--------------------------------
+	// 服の属性によるダメージ軽減効果
+	//--------------------------------
+	if (n_A_BodyZokusei == ELM_ID_PSYCO) {
+		for (i = 0; i <= 6; i++) {
+			w_HiDam[i] -= Math.floor(w_HiDam[i] * 75 /100);
+		}
+	}
+
+
+	//--------------------------------
+	// 被ダメージ増幅／軽減効果を適用
+	//--------------------------------
+	for (i = 0; i <= 6; i++) {
+		w_HiDam[i] = ApplyReceiveDamageAmplify(mobData, w_HiDam[i]);
+	}
+
+
+
+	for(i=0;i<=6;i++){
+		if(w_HiDam[i] <1) w_HiDam[i]=1;
+	}
+	if(mobData[12] >= 4){
+		if(UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 26){
+			for(i=0;i<=6;i++) w_HiDam[i] = 0;
+		}
+	}
+	if(n_A_PassSkill4[10]) for(i=0;i<=6;i++) w_HiDam[i] = Math.floor(w_HiDam[i] / 2);
+	w_HiDam[0] = Math.floor(w_HiDam[0]);
+	w_HiDam[6] = Math.floor(w_HiDam[6]);
+	wBHD=0;
+	for(i=0;i<=6;i++) wBHD += w_HiDam[i];
+	wBHD = Math.round(wBHD / 7);
+	var name64 = "平均被ダメージ(仮)";
+	var wRefStr = "";
+	wRef1 = new Array();
+	wRef2 = new Array();
+	wRef3 = new Array();
+
+
+
+	var w_sp_rs=1;
+	if(UsedSkillSearch(SKILL_ID_KONGO)) w_sp_rs = 10;
+	if(UsedSkillSearch(SKILL_ID_UZUKUMARU)) w_sp_rs = 20;
+	//var w_MaxHP = Math.floor(charaData[CHARA_DATA_INDEX_MAXHP] * n_A_BaseLV / 100);
+	if (objCell) {
+		HtmlCreateTextNode(__DIG3(Math.floor(wBHD)), objCell);
+	}
+	else {
+		myInnerHtml("B_AveAtk", __DIG3(wBHD) + "<BR>" + " (" + __DIG3(w_HiDam[0]) + "～" + __DIG3(w_HiDam[6]) + ")" + wRefStr, 0);
+	}
+	g_receiveDamageAverage = wBHD;
+
+	return wBHD;
+ }
 
 
 
@@ -18260,6 +18441,9 @@ function OnChangePetSelect() {
 
 	// ペット説明更新
 	RefreshPetExplain();
+
+	// 攻撃方法更新
+	CAttackMethodAreaComponentManager.RebuildControls();
 
 	// 共通処理へ合流
 	Click_A8(1);
@@ -26978,6 +27162,10 @@ function ApplyAttackDamageAmplify(mobData, dmg){
 	];
 	if (n_B_KYOUKA[MOB_CONF_BUF_ID_DAMAGE_DIVIDE] != 0) {
 		dmg = Math.floor(dmg / dmgDivArray[n_B_KYOUKA[MOB_CONF_BUF_ID_DAMAGE_DIVIDE]]);
+	}
+	// モンスター状態強化欄のマックスペインがONの場合、与ダメを半減
+	if (n_B_KYOUKA[MOB_CONF_BUF_ID_MAX_PAIN] != 0) {
+		dmg = Math.floor(dmg / 2);
 	}
 
 	return Math.floor(dmg);

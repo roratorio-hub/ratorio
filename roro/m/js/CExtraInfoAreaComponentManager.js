@@ -1702,7 +1702,18 @@ function CExtraInfoAreaComponentManager () {
 			]
 		);
 
-		loopDataArray.push(["防御無視", 0, 4, 1, specArray]);
+		loopDataArray.push(["防御無視", 0, 3, 1, specArray]);
+
+		// その他欄
+		specArray = [];
+		specArray.push(
+			[
+				["必中"],
+				CExtraInfoAreaComponentManager.specData[ITEM_SP_PERFECT_ATTACK_UP],
+				"\\%",
+			]
+		);		
+		loopDataArray.push(["その他", 3, 1, 1, specArray]);
 
 
 

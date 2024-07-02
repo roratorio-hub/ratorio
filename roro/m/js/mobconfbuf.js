@@ -253,6 +253,19 @@ function InitMobConfBufData() {
 
 
 
+	MOB_CONF_BUF_ID_MAX_PAIN = MobConfBufId;
+	MobConfBufData = [
+		MobConfBufId,
+		MobConfBufText("マックスペイン"),
+		MobConfBufControlType(CONTROL_TYPE_CHECKBOX),
+		MobConfBufDefaultValue(0),
+		MobConfBufMinValue(0),
+		MobConfBufMaxValue(1)
+	];
+	MobConfBufOBJ[MobConfBufId] = MobConfBufData;
+	MobConfBufId++;
+
+
 	//----------------------------------------------------------------
 	// データ定義数チェック
 	//----------------------------------------------------------------
@@ -293,6 +306,7 @@ function InitMobConfBufData() {
 	MobConfBufOBJSorted[MobConfBufOBJSorted.length] = MobConfBufOBJ[MOB_CONF_BUF_ID_DEFENDER];
 	MobConfBufOBJSorted[MobConfBufOBJSorted.length] = MobConfBufOBJ[MOB_CONF_BUF_ID_REBIRTH];
 	MobConfBufOBJSorted[MobConfBufOBJSorted.length] = MobConfBufOBJ[MOB_CONF_BUF_ID_DAMAGE_DIVIDE];
+	MobConfBufOBJSorted[MobConfBufOBJSorted.length] = MobConfBufOBJ[MOB_CONF_BUF_ID_MAX_PAIN];
 	MobConfBufOBJ = MobConfBufOBJSorted;
 
 }
