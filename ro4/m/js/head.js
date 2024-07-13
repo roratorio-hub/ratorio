@@ -7465,6 +7465,7 @@ g_bUnknownCasts = true;
 
 
 
+		// 「アースクエイク」
 		case SKILL_ID_EARTH_QUAKE:
 			var QuakeBairitu = [0,300,500,600,800,1000,1200,1300,1500,1600,1800];
 			wbairitu = QuakeBairitu[n_A_ActiveSkillLV];
@@ -7489,6 +7490,11 @@ g_bUnknownCasts = true;
 				w_DMG[2] = w_DMG[2] * 3;
 				return w_DMG;
 			}
+			// GvG補正
+			for(var i=0;i<=2;i++){
+				w_DMG[i] = ApplyAttackDamageAmplify(mobData, w_DMG[i]);
+			}
+			//
 			for(var i=0;i<=2;i++){
 				Last_DMG_B[i] = w_DMG[i];
 				Last_DMG_A[i] = w_DMG[i] * 3;
