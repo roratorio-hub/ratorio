@@ -5399,7 +5399,13 @@
 	w_SE[2741] = [4236,4235,-10094];	// Atk+200, Matk+200, AllStatus+10 (4236) = ワンダーエッグ(4235) + バフォメット(94)
 	PetIdToSetIdMap[94] = [2741];
 	ItemIdToSetIdMap[4235] = ItemIdToSetIdMap[4235].concat([2741]);
-
+	CardIdToSetIdMap[10094] = [2741];		// ペットバフォ
+	// --- 2024/07/16 ラグ缶追加 ---
+	w_SE[2742] = [-3113,-3112,-1348,];
+	CardIdToSetIdMap[3112] = [2742,];
+	w_SE[2743] = [-3115,-3114,-1348,];
+	CardIdToSetIdMap[3114] = [2743,];	
+	CardIdToSetIdMap[1348] = CardIdToSetIdMap[1348].concat([2742, 2743]);	// 豪傑の逆参照
 
 	// itemset はセーブデータに書き出されないので
 	// 現実的な範囲において itemsetID の上限値を気にする必要はありません
