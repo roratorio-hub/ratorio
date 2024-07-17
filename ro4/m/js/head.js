@@ -7478,7 +7478,7 @@ g_bUnknownCasts = true;
 				if(wBunsan >= 2) wbairitu = ROUNDDOWN(wbairitu / wBunsan);
 			}
 			for(var i=0;i<=2;i++){
-				w_DMG[i] = n_A_DMG_GX[i];
+				w_DMG[i] = n_A_DMG_GX[i] * wCSize;	// 基礎攻撃力 n_A_DMG_GX[i] にサイズ補正 wCSize をかける
 				w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
 				w_DMG[i] = Math.floor(w_DMG[i] * wbairitu / 100);
 				w_DMG[i] = ApplyElementRatio(mobData, w_DMG[i],0);
