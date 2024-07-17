@@ -7577,8 +7577,56 @@ g_bUnknownCasts = true;
 			break;
 
 
-
+		//「メイジ」スキル「ナパームビート」
 		case SKILL_ID_NAPALM_BEAT:
+			n_PerfectHIT_DMG = 0;
+			n_Enekyori=2;
+			n_MagicCalcType=1;
+			wbairitu = 100;
+			n_bunkatuHIT = 0;
+			n_A_Weapon_zokusei = 8;
+			for(var i=0;i<=2;i++){
+				w_MATK[i] = n_Heal_MATK[i];
+				w_MATK[i] = Math.floor(w_MATK[i] * (70 + 10 * n_A_ActiveSkillLV) / 100);
+				w_MATK[i] += n_tok[100];
+				w_MATK[i] = ApplyMagicalSpecializeMonster(charaData, specData, mobData, w_MATK[i]);
+				w_MATK[i] = ApplyResistElement(mobData, w_MATK[i]);
+				w_MATK[i] = ApplyRegistPVPNormal(mobData, w_MATK[i]);
+			}
+			wHITsuu = 1;
+			wCast = 500;
+			if(n_A_ActiveSkillLV==10) n_Delay[2] = 500;
+			else if(n_A_ActiveSkillLV==9) n_Delay[2] = 600;
+			else if(n_A_ActiveSkillLV==8) n_Delay[2] = 700;
+			else if(n_A_ActiveSkillLV>=6) n_Delay[2] = 800;
+			else if(n_A_ActiveSkillLV>=4) n_Delay[2] = 900;
+			else n_Delay[2] = 1000;
+			wbairitu = 100;
+			wbairitu += GetBattlerMatkPercentUp();
+			var wBunsan = 1;
+			if(n_AS_MODE == 0) wBunsan = attackMethodConfArray[0].GetOptionValue(0);
+			if(wBunsan >= 2){
+				for(var i=0;i<=2;i++) w_MATK[i] = ROUNDDOWN(w_MATK[i] / wBunsan);
+			}
+			for(var b=0;b<=2;b++){
+				w_DMG[b] = ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, w_MATK[b] * wbairitu / 100);
+				Last_DMG_B[b] = w_DMG[b];
+
+				// TODO: ダメージ表示方式変更対応
+				Last_DMG_A[b] = w_DMG[b] * wHITsuu;
+
+				if(n_AS_MODE == 0) g_damageTextArray[b].push(Last_DMG_A[b], "(", Last_DMG_B[b], SubName[8], wHITsuu, "hit)");
+				w_DMG[b] = Last_DMG_A[b];
+			}
+			if(n_AS_MODE == 1) return w_DMG;
+			w_HIT_HYOUJI = 100;
+			AS_PLUS();
+			BuildCastAndDelayHtml(mobData);
+			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
+			break;
+
+
+		// 「ハイウィザード」スキル「ナパームバルカン」
 		case SKILL_ID_NAPALM_VULKAN:
 			n_PerfectHIT_DMG = 0;
 			n_Enekyori=2;
@@ -7594,23 +7642,10 @@ g_bUnknownCasts = true;
 				w_MATK[i] = ApplyResistElement(mobData, w_MATK[i]);
 				w_MATK[i] = ApplyRegistPVPNormal(mobData, w_MATK[i]);
 			}
-			if(n_A_ActiveSkill==SKILL_ID_NAPALM_BEAT){
-				wHITsuu = 1;
-				wCast = 500;
-				if(n_A_ActiveSkillLV==10) n_Delay[2] = 500;
-				else if(n_A_ActiveSkillLV==9) n_Delay[2] = 600;
-				else if(n_A_ActiveSkillLV==8) n_Delay[2] = 700;
-				else if(n_A_ActiveSkillLV>=6) n_Delay[2] = 800;
-				else if(n_A_ActiveSkillLV>=4) n_Delay[2] = 900;
-				else n_Delay[2] = 1000;
-				wbairitu = 100;
-			}
-			else if(n_A_ActiveSkill==SKILL_ID_NAPALM_VULKAN){
-				wHITsuu = n_A_ActiveSkillLV;
-				wCast = 1000;
-				n_Delay[2] = 1000;
-				wbairitu = 100;
-			}
+			wHITsuu = n_A_ActiveSkillLV;
+			wCast = 1000;
+			n_Delay[2] = 1000;
+			wbairitu = 100;
 			wbairitu += GetBattlerMatkPercentUp();
 			var wBunsan = 1;
 			if(n_AS_MODE == 0) wBunsan = attackMethodConfArray[0].GetOptionValue(0);
@@ -7619,11 +7654,11 @@ g_bUnknownCasts = true;
 			}
 			for(var b=0;b<=2;b++){
 				w_DMG[b] = ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, w_MATK[b] * wbairitu / 100);
-				Last_DMG_B[b] = w_DMG[b];
-
+				// 単発ダメージ Last_DMG_B
+				Last_DMG_B[b] = Math.floor(w_DMG[b] / wHITsuu);
+				// 最終ダメージ Last_DMG_A
 				// TODO: ダメージ表示方式変更対応
-				Last_DMG_A[b] = w_DMG[b] * wHITsuu;
-
+				Last_DMG_A[b] = w_DMG[b];
 				if(n_AS_MODE == 0) g_damageTextArray[b].push(Last_DMG_A[b], "(", Last_DMG_B[b], SubName[8], wHITsuu, "hit)");
 				w_DMG[b] = Last_DMG_A[b];
 			}
