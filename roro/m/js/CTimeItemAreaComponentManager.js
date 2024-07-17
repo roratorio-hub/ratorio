@@ -193,6 +193,15 @@ CTimeItemAreaComponentManager.OnChangeConf = function (idxConf, dataId) {
 
 	// コントロール更新
 	CTimeItemAreaComponentManager.RefreshControlCSS();
+
+	/*
+	マウス操作時にスクロール不能になる問題があるため解決までコメントアウト
+
+	// キーボード操作対応：要素が一旦破棄されてフォーカスが外れるのでフォーカスし直す
+	// $('#OBJID_SELECT_TIME_ITEM_' + idxConf).focus();
+
+	*/
+	
 };
 
 
@@ -255,6 +264,22 @@ CTimeItemAreaComponentManager.RefreshControlCSS = function () {
 				objSelect.removeAttribute("class");
 			}
 		}
+
+		/*
+
+		マウス操作時にスクロール不能になる問題があるため解決までコメントアウト
+
+		// select2 対応
+		if ($('#OBJID_SELECT_TIME_ITEM_' + idx).hasClass('select2-hidden-accessible')) {
+			// 親要素が削除→再生成されるためselect2も作り直す
+			$('#OBJID_SELECT_TIME_ITEM_' + idx).select2('destroy');
+		}
+		$('#OBJID_SELECT_TIME_ITEM_' + idx).select2();
+		// キーボード操作のイベントハンドラ設定
+		CustomizeSelect2Specify('#OBJID_SELECT_TIME_ITEM_' + idx);
+
+		*/
+		
 	}
 };
 
