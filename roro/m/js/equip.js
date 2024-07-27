@@ -1928,3 +1928,27 @@ function IsLongRange(itemId) {
 	// ここまで来たら、遠距離でない
 	return false;
 }
+
+function copyAccs(from, to){
+	// ランダムオプション入力中はelementがないので処理できない
+	// 中途半端になるので何もしないようにする
+	if (GetSlotMode() != SLOTPAGER_MODE_CARD) {
+		return;
+	}
+
+	const id_from = "#OBJID_ACCESSARY_"+from;
+	const id_to = "#OBJID_ACCESSARY_"+to;
+	const accs_from = $(id_from).val();
+
+	if ($(`${id_to} option[value=${accs_from}]`).length>0) {
+		$(id_to).val(accs_from).change().trigger("select2:select");
+		[1,2,3,4].forEach((i)=>{
+			$(`${id_to}_CARD_${i}`).prop("selectedIndex", $(`${id_from}_CARD_${i}`).prop("selectedIndex")).change();
+		})
+	} else {
+		$(id_to).prop("selectedIndex", 0).change();
+		[1,2,3,4].forEach((i)=>{
+			$(`${id_to}_CARD_${i}`).prop("selectedIndex", 0).change();
+		})
+	}
+}
