@@ -16911,10 +16911,12 @@ function RebuildActiveSkillRatioInfo(battleCalcInfo, charaData, specData, mobDat
 	// 魔法スキル
 	ratioMagical = GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData);
 
-	ratio = ratioPhysical != 0? ratioMagical:ratioMagical;
+	const ratio = ratioPhysical != 0? ratioMagical:ratioMagical;
+	let html = ""
 	if (ratio != 0){
-		$("#OBJID_SPAN_ACTIVE_SKILL_RATIO_CHANGE_PHYSICAL").html(`スキル強化：<span class="CSSCLS_SKILL_RATIO_${ratio>0?"PLUS":"MINUS"}">${ratio}%</span>`);
+		html = `スキル強化：<span class="CSSCLS_SKILL_RATIO_${ratio>0?"PLUS":"MINUS"}">${ratio}%</span>`;
 	}
+	$("#OBJID_SPAN_ACTIVE_SKILL_RATIO_CHANGE_PHYSICAL").html(html);
 }
 
 
