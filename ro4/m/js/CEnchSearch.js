@@ -130,6 +130,7 @@ class enchSearch {
                                     if(resSelect.value && select.value !== resSelect.value){
                                             select.value = resSelect.value;
                                             select.dispatchEvent(new Event('change'));
+                                            select.dispatchEvent(new Event('select2:select'));
                                     }
                             });
                             select.parentNode.setAttribute('style', 'position:relative; padding-top:30px;');
