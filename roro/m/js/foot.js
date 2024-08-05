@@ -22399,13 +22399,6 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 
 
 
-		// スキルダメージ倍率強化表示欄の再構築
-		if (_DEBUG) {
-			RebuildActiveSkillRatioInfo(null, charaData, n_tok, mobData);
-		}
-
-
-
 		// データ収集
 
 		// ここまでで収集されていないデータの追加
