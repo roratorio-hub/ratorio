@@ -11631,6 +11631,9 @@ function ApplyMagicalSpecializeMonsterMod20211014SubSpecializeMap(charaData, spe
 	// 廃棄実験体遊技場ルドゥス4階特化
 	//--------------------------------
 	if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_HAIKI_ZIKKENTAI_YUGIZYO_RUDUS_4F]) == 1){
+		if (EquipNumSearch(ITEM_ID_DISCARDED_CAPE) > 0) {
+			wX += 30;
+		}
 		if ((cardCount = CardNumSearch(CARD_ID_VENEDI)) > 0) {
 			wX += 30 * cardCount;
 		}
@@ -14750,6 +14753,14 @@ function BattleHiDam(charaData, specData, mobData, attackMethodConfArray, objCel
 		}
 	}
 
+	//--------------------------------
+	// 廃棄実験体遊技場ルドゥス4階耐性
+	//--------------------------------
+	if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_HAIKI_ZIKKENTAI_YUGIZYO_RUDUS_4F]) == 1){
+		if (EquipNumSearch(ITEM_ID_DISCARDED_CAPE) > 0) {
+			wBHD += 60;
+		}
+	}	
 
 
 	//--------------------------------
@@ -22350,6 +22361,9 @@ function ApplyPhysicalSpecializeMonster(charaData, specData, mobData, dmg) {
 	// 廃棄実験体遊技場ルドゥス4階特化
 	//--------------------------------
 	if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_HAIKI_ZIKKENTAI_YUGIZYO_RUDUS_4F]) == 1){
+		if (EquipNumSearch(ITEM_ID_DISCARDED_CAPE) > 0) {
+			w += 30;
+		}
 		if ((cardCount = CardNumSearch(CARD_ID_VENEDI)) > 0) {
 			w += 30 * cardCount;
 		}
