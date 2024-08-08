@@ -11631,6 +11631,9 @@ function ApplyMagicalSpecializeMonsterMod20211014SubSpecializeMap(charaData, spe
 	// 廃棄実験体遊技場ルドゥス4階特化
 	//--------------------------------
 	if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_HAIKI_ZIKKENTAI_YUGIZYO_RUDUS_4F]) == 1){
+		if (EquipNumSearch(ITEM_ID_DISCARDED_CAPE) > 0) {
+			wX += 30;
+		}
 		if ((cardCount = CardNumSearch(CARD_ID_VENEDI)) > 0) {
 			wX += 30 * cardCount;
 		}
@@ -14750,6 +14753,14 @@ function BattleHiDam(charaData, specData, mobData, attackMethodConfArray, objCel
 		}
 	}
 
+	//--------------------------------
+	// 廃棄実験体遊技場ルドゥス4階耐性
+	//--------------------------------
+	if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_HAIKI_ZIKKENTAI_YUGIZYO_RUDUS_4F]) == 1){
+		if (EquipNumSearch(ITEM_ID_DISCARDED_CAPE) > 0) {
+			wBHD += 60;
+		}
+	}	
 
 
 	//--------------------------------
@@ -16899,72 +16910,27 @@ function RebuildActiveSkillRatioInfo(battleCalcInfo, charaData, specData, mobDat
 	var ratioPhysical = 0;
 	var ratioMagical = 0;
 
-	var objSpan = null;
-	var objSpanFont = null;
-
-
-
-	// 現状、ちゃんと実装できていないので、デバッグ環境限定
-	if (!_DEBUG) {
-		return;
-	}
 	if (!battleCalcInfo) {
 		battleCalcInfo = new CBattleCalcInfo();
 		battleCalcInfo.skillId = n_A_ActiveSkill;
 		battleCalcInfo.skillLv = n_A_ActiveSkillLV;
 	}
 
-
-
-	// 物理
-	ratioPhysical = GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData);
-
-	objSpan = document.getElementById("OBJID_SPAN_ACTIVE_SKILL_RATIO_CHANGE_PHYSICAL");
-	HtmlRemoveAllChild(objSpan);
-
-	if (ratioPhysical > 0) {
-
-		HtmlCreateTextNode("物理ダメージ強化：", objSpan);
-
-		objSpanFont = HtmlCreateElement("span", objSpan);
-		objSpanFont.setAttribute("class", "CSSCLS_SKILL_RATIO_PLUS");
-
-		HtmlCreateTextNode("+" + ratioPhysical + "%", objSpanFont);
-	}
-	else if (ratioPhysical < 0) {
-
-		HtmlCreateTextNode("物理ダメージ強化：", objSpan);
-
-		objSpanFont = HtmlCreateElement("span", objSpan);
-		objSpanFont.setAttribute("class", "CSSCLS_SKILL_RATIO_MINUS");
-
-		HtmlCreateTextNode(ratioPhysical + "%", objSpanFont);
+	try{
+		// 物理スキル
+		ratioPhysical = GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData);
+		// 魔法スキル
+		ratioMagical = GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData);
+	}catch(e){
+		console.log(e);
 	}
 
-	// 魔法
-	ratioMagical = GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData);
-
-	objSpan = document.getElementById("OBJID_SPAN_ACTIVE_SKILL_RATIO_CHANGE_MAGICAL");
-	HtmlRemoveAllChild(objSpan);
-
-	if (ratioMagical > 0) {
-
-		HtmlCreateTextNode("魔法ダメージ強化：", objSpan);
-
-		objSpanFont = HtmlCreateElement("span", objSpan);
-		objSpanFont.setAttribute("class", "CSSCLS_SKILL_RATIO_PLUS");
-
-		HtmlCreateTextNode("+" + ratioMagical + "%", objSpanFont);
+	const ratio = ratioPhysical != 0? ratioPhysical:ratioMagical;
+	let html = ""
+	if (ratio != 0){
+		html = `スキル強化：<span class="CSSCLS_SKILL_RATIO_${ratio>0?"PLUS":"MINUS"}">${ratio}%</span>`;
 	}
-	else if (ratioMagical < 0) {
-
-		HtmlCreateTextNode("魔法ダメージ強化：", objSpan);
-
-		objSpanFont = HtmlCreateElement("span", objSpan);
-		objSpanFont.setAttribute("class", "CSSCLS_SKILL_RATIO_MINUS");
-
-		HtmlCreateTextNode(ratioMagical + "%", objSpanFont);
-	}
+	$("#OBJID_SPAN_ACTIVE_SKILL_RATIO_CHANGE_PHYSICAL").html(html);
 }
 
 
@@ -20135,7 +20101,7 @@ function calc() {
 	// calc()をトリガーにするその他の処理
 	//--------------------------------
 	BuildResistElementTinyHtml();
-
+	RebuildActiveSkillRatioInfo(null, charaData, n_tok, mobData);
 
 
 
@@ -22395,6 +22361,9 @@ function ApplyPhysicalSpecializeMonster(charaData, specData, mobData, dmg) {
 	// 廃棄実験体遊技場ルドゥス4階特化
 	//--------------------------------
 	if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_HAIKI_ZIKKENTAI_YUGIZYO_RUDUS_4F]) == 1){
+		if (EquipNumSearch(ITEM_ID_DISCARDED_CAPE) > 0) {
+			w += 30;
+		}
 		if ((cardCount = CardNumSearch(CARD_ID_VENEDI)) > 0) {
 			w += 30 * cardCount;
 		}
