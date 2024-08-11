@@ -159,6 +159,8 @@ capabilities:
     code: 266
   - name: 全属性への魔法ダメージ増加
     code: 269
+  - name: 全属性魔法のダメージ増加
+    code: 270
   - name: DEF無視
     code: 293
   - name: MDEF無視
