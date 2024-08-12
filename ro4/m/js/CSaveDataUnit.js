@@ -343,6 +343,11 @@ class CSaveDataConst {
 	static propNameRefinedCount = "refinedCount";
 
 	/**
+	 * プロパティ名：超越段階.
+	 */
+	static propNameTranscendenceCount = "transcendenceCount";
+	
+	/**
 	 * プロパティ名：カードカテゴリID（第1スロット）.
 	 */
 	static propNameCardCategoryID1 = "cardCategoryID1";
@@ -2985,10 +2990,32 @@ const SAVE_DATA_UNIT_TYPE_EQUIPABLE = CSaveDataUnitTypeManager.register(
 		 * バージョン番号.
 		 */
 		static get version () {
-			return 1;
+			return 2;
 		}
 
+		// オーバーライドされた parse 関数
+		parse (dataText, bitOffset) {
+			let nextOffset = super.parse(dataText, bitOffset);	// version を識別するために一旦 parse する
+			if (this.getProp("version") == 1n) {	// version 1 のセーブデータを version 2 以上のプロパティ定義で読み込むとデータが壊れるので差分修正する
+				this.propInfoMap.delete(CSaveDataConst.propNameParseCtrlFlag);	// version 1 → version 2 で parse するプロパティ数が 1 増えているので parse 処理対象数 (ParseCtrlFlag) を一旦消す
+				let prop = new CSaveDataPropInfo(CSaveDataConst.propNameParseCtrlFlag, 20); // 処理対象数を 21 → 20 に減らしてから...
+				this.propInfoMap.set(CSaveDataConst.propNameParseCtrlFlag, prop);	// ...セットし直す
+				this.parsedMap.clear();	// ここまでに parse された結果を破棄する
+				nextOffset = super.parse(dataText, bitOffset);	// 処理対象数が 1 減った状態で parse し直せば、プロパティ末尾に追加された propNameTranscendenceCount を無視して parse 処理が正常に終了する
+			}
+			return nextOffset;
+		}
 
+		// オーバーライドされた convertFromOldFormat 関数
+		convertFromOldFormat (dataTextWork, bitOffset, ...args) {
+			return super.convertFromOldFormat(
+				dataTextWork,
+				bitOffset,
+				...args,
+				0 // version 2 : propNameTranscendenceCount を追加して length が +1 された分を args 末尾に足す
+			);
+			// 追加されたプロパティは OldFormat セーブデータに含まれないので付け足す値は 0 で構わない
+		}
 
 		/**
 		 * 処理順に並んだプロパティ名（自身のプロパティのみ）.
@@ -3019,6 +3046,7 @@ const SAVE_DATA_UNIT_TYPE_EQUIPABLE = CSaveDataUnitTypeManager.register(
 				CSaveDataConst.propNameRndOptValue4,
 				CSaveDataConst.propNameRndOptID5,
 				CSaveDataConst.propNameRndOptValue5,
+				CSaveDataConst.propNameTranscendenceCount,	// version 2 で追加
 			];
 		}
 
@@ -3040,7 +3068,8 @@ const SAVE_DATA_UNIT_TYPE_EQUIPABLE = CSaveDataUnitTypeManager.register(
 			// プロパティ定義情報の登録
 			this.registerPropInfo(CSaveDataConst.propNameEquipItemDefID, 6);
 			this.registerPropInfo(CSaveDataConst.propNameOptCode, 6);
-			this.registerPropInfo(CSaveDataConst.propNameParseCtrlFlag, 20);
+			this.registerPropInfo(CSaveDataConst.propNameParseCtrlFlag, 21);
+			//this.registerPropInfo(CSaveDataConst.propNameParseCtrlFlag, 20);	// version 1
 
 			this.registerPropInfo(CSaveDataConst.propNameItemID, 14);
 			this.registerPropInfo(CSaveDataConst.propNameRefinedCount, 4);
@@ -3062,6 +3091,7 @@ const SAVE_DATA_UNIT_TYPE_EQUIPABLE = CSaveDataUnitTypeManager.register(
 			this.registerPropInfo(CSaveDataConst.propNameRndOptValue4, 9);
 			this.registerPropInfo(CSaveDataConst.propNameRndOptID5, 9);
 			this.registerPropInfo(CSaveDataConst.propNameRndOptValue5, 9);
+			this.registerPropInfo(CSaveDataConst.propNameTranscendenceCount, 3);	// version 2 で追加
 		}
 
 
