@@ -497,10 +497,12 @@ function OnChangeArmsTypeLeft(itemKind){
 	var idx = 0;
 
 	var objSelectLeft = null;
-	var objSelectLeftRefine = null;
+	let objSelectLeftRefine = null;
+	var objSelectLeftTranscendence = null;
 	var objSelectLeftCardShort = null;
 	var objSelectShiled = null;
 	var objSelectShiledRefine = null;
+	let objSelectShiledTranscendence = null;
 
 	var objArrayToVisible = new Array();
 	var objArrayToHidden = new Array();
@@ -516,10 +518,12 @@ function OnChangeArmsTypeLeft(itemKind){
 
 	// 対象セレクトボックスの取得
 	objSelectLeft = document.getElementById("OBJID_ARMS_LEFT");
+	objSelectLeftTranscendence = document.getElementById("OBJID_ARMS_LEFT_TRANSCENDENCE");
 	objSelectLeftRefine = document.getElementById("OBJID_ARMS_LEFT_REFINE");
 	objSelectLeftCardShort = document.getElementById("OBJID_ARMS_LEFT_CARD_SHORT");
 	objSelectShiled = document.getElementById("OBJID_SHIELD");
 	objSelectShiledRefine = document.getElementById("OBJID_SHIELD_REFINE");
+	objSelectShiledTranscendence = document.getElementById("OBJID_SHIELD_TRANSCENDENCE");
 
 	// 職業情報の更新
 	InitJobInfo();
@@ -541,11 +545,13 @@ function OnChangeArmsTypeLeft(itemKind){
 		objArrayToVisible.push(objSelectLeft);
 		objArrayToVisible.push(objSelectLeftRefine);
 		objArrayToVisible.push(objSelectLeftCardShort);
+		objArrayToVisible.push(objSelectLeftTranscendence);
 
 		// 盾欄を無効化する
 		HtmlSetObjectValueById("OBJID_SHIELD_REFINE", 0);
 		objArrayToHidden.push(objSelectShiled);
 		objArrayToHidden.push(objSelectShiledRefine);
+		objArrayToHidden.push(objSelectShiledTranscendence);
 
 		n_Nitou = 1;
 	}
@@ -557,15 +563,18 @@ function OnChangeArmsTypeLeft(itemKind){
 		ClearCardSlot(EQUIP_REGION_ID_ARMS_LEFT);
 
 		// 左手武器欄を無効化する
+		HtmlSetObjectValueById("OBJID_ARMS_LEFT_TRANSCENDENCE", 0);
 		HtmlSetObjectValueById("OBJID_ARMS_LEFT_REFINE", 0);
 		HtmlSetObjectValueById("OBJID_ARMS_LEFT_CARD_SHORT", 0);
 		objArrayToHidden.push(objSelectLeft);
+		objArrayToHidden.push(objSelectLeftTranscendence);
 		objArrayToHidden.push(objSelectLeftRefine);
 		objArrayToHidden.push(objSelectLeftCardShort);
 
 		// 盾欄を有効化する
 		objArrayToVisible.push(objSelectShiled);
 		objArrayToVisible.push(objSelectShiledRefine);
+		objArrayToVisible.push(objSelectShiledTranscendence);
 
 		n_Nitou = 0;
 	}
@@ -1130,12 +1139,14 @@ function OnClickSwapArms() {
 	var armsTypeRight = 0;
 	var itemIdRight = 0;
 	var refinedRight = 0;
+	let transcendenceRight = 0;
 	var cardIdArrayRight = null;
 	var rndoptDataArrayRight = null;
 
 	var armsTypeLeft = 0;
 	var itemIdLeft = 0;
 	var refinedLeft = 0;
+	let transcendenceLeft = 0;
 	var cardIdArrayLeft = null;
 	var rndoptDataArrayLeft = null;
 
@@ -1152,6 +1163,7 @@ function OnClickSwapArms() {
 	armsTypeRight = n_A_WeaponType;
 	itemIdRight = n_A_Equip[EQUIP_REGION_ID_ARMS];
 	refinedRight = n_A_Weapon_ATKplus;
+	transcendenceRight = n_A_Weapon_Transcendence;
 	cardIdArrayRight = [
 		n_A_card[CARD_REGION_ID_ARMS_RIGHT_1],
 		n_A_card[CARD_REGION_ID_ARMS_RIGHT_2],
@@ -1172,6 +1184,7 @@ function OnClickSwapArms() {
 	armsTypeLeft = n_A_Weapon2Type;
 	itemIdLeft = n_A_Equip[EQUIP_REGION_ID_ARMS_LEFT];
 	refinedLeft = n_A_Weapon2_ATKplus;
+	transcendenceLeft = n_A_Weapon2_Transcendence;
 	cardIdArrayLeft = [
 		n_A_card[CARD_REGION_ID_ARMS_LEFT_1],
 		n_A_card[CARD_REGION_ID_ARMS_LEFT_2],
@@ -1212,7 +1225,10 @@ function OnClickSwapArms() {
 	HtmlSetObjectValueById("OBJID_ARMS_RIGHT_REFINE", refinedLeft);
 	HtmlSetObjectValueById("OBJID_ARMS_LEFT_REFINE", refinedRight);
 
-
+	// 超越段階の入れ替え
+	HtmlSetObjectValueById("OBJID_ARMS_RIGHT_TRANSCENDENCE", transcendenceLeft);
+	HtmlSetObjectValueById("OBJID_ARMS_LEFT_TRANSCENDENCE", transcendenceRight);
+	
 	// カードの入れ替え
 	for (idx = 0; idx < cardIdArrayRight.length; idx++) {
 		HtmlSetObjectValueById("OBJID_ARMS_RIGHT_CARD_" + (idx + 1), cardIdArrayLeft[idx]);

@@ -682,6 +682,14 @@ function StAllCalc(){
 
 		UpdateEquipItemDataByHtml();
 
+		// 超越段階
+		n_A_Weapon_Transcendence = eval(A_Weapon_Transcendence.value);
+		n_A_Weapon2_Transcendence = eval(A_Weapon2_Transcendence.value);
+		n_A_HEAD_DEF_Transcendence = eval(A_HEAD_DEF_Transcendence.value);
+		n_A_SHIELD_DEF_Transcendence = eval(A_SHIELD_DEF_Transcendence.value);
+		n_A_BODY_DEF_Transcendence = eval(A_BODY_DEF_Transcendence.value);
+		n_A_SHOULDER_DEF_Transcendence = eval(A_SHOULDER_DEF_Transcendence.value);
+		n_A_SHOES_DEF_Transcendence = eval(A_SHOES_DEF_Transcendence.value);
 
 		//----------------------------------------------------------------
 		// 攻撃手段を取得する
