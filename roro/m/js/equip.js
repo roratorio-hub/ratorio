@@ -597,7 +597,7 @@ function OnChangeArmsTypeLeft(itemKind){
 		objInput = HtmlCreateElement("input", objSpan);
 		objInput.setAttribute("type", "button");
 		objInput.setAttribute("value", "左右武器入れ替え");
-		objInput.setAttribute("onclick", "OnClickSwapArms()");
+		objInput.setAttribute("onclick", "OnClickSwapArms() | LoadSelect2()");
 	}
 
 	// 左手武器選択欄の再構築
