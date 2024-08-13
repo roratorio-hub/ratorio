@@ -5413,6 +5413,13 @@
 	w_SE[2745] = [4238,4235,-10096];	// Atk+200, Matk+200, Def+150, Mdef+15 (4238) = ワンダーエッグ(4235) + エンジェゴルトブルー(96)
 	PetIdToSetIdMap[96] = [2745];
 	ItemIdToSetIdMap[4235] = ItemIdToSetIdMap[4235].concat([2745]);
+	// --- 2024/08/13 ---
+	w_SE[2746] = [-3118,-3117,-1245,];	// セット(3118) = 潜在解放(アークメイジV) + 真理の解放 (1245)
+	CardIdToSetIdMap[3117] = [2746,];
+	CardIdToSetIdMap[1245] = CardIdToSetIdMap[1245].concat([2746]);
+	w_SE[2747] = [-3120,-3119,-1348,];	// セット(3120) = 潜在解放(カーディナルVII) + 豪傑 (1348)
+	CardIdToSetIdMap[3119] = [2747,];
+	CardIdToSetIdMap[1348] = CardIdToSetIdMap[1348].concat([2747]);
 
 	// itemset はセーブデータに書き出されないので
 	// 現実的な範囲において itemsetID の上限値を気にする必要はありません
