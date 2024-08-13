@@ -5420,6 +5420,11 @@
 	w_SE[2747] = [-3120,-3119,-1348,];	// セット(3120) = 潜在解放(カーディナルVII) + 豪傑 (1348)
 	CardIdToSetIdMap[3119] = [2747,];
 	CardIdToSetIdMap[1348] = CardIdToSetIdMap[1348].concat([2747]);
+	w_SE[2748] = [-3122,-3121,-2028,];	// セット(3122) = 教皇の夏休み(3121) + 豊穣の女神(2028)
+	w_SE[2749] = [-3123,-3121,-2662,];	// セット(3123) = 教皇の夏休み(3121) + 祈りの晩鐘(2662)
+	CardIdToSetIdMap[3121] = [2748,2749,];
+	CardIdToSetIdMap[2028] = CardIdToSetIdMap[2028].concat([2748]);
+	CardIdToSetIdMap[2662] = CardIdToSetIdMap[2662].concat([2749]);
 
 	// itemset はセーブデータに書き出されないので
 	// 現実的な範囲において itemsetID の上限値を気にする必要はありません
