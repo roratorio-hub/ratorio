@@ -31,6 +31,26 @@ capabilities:
     code: 29
   - name: 動物型への物理ダメージ増加  
     code: 32
+  - name: 無属性への物理ダメージ増加
+    code: 40
+  - name: 水属性への物理ダメージ増加
+    code: 41
+  - name: 地属性への物理ダメージ増加
+    code: 42
+  - name: 火属性への物理ダメージ増加
+    code: 43
+  - name: 風属性への物理ダメージ増加
+    code: 44
+  - name: 毒属性への物理ダメージ増加
+    code: 45
+  - name: 聖属性への物理ダメージ増加
+    code: 46
+  - name: 闇属性への物理ダメージ増加
+    code: 47
+  - name: 念属性への物理ダメージ増加
+    code: 48
+  - name: 不死属性への物理ダメージ増加
+    code: 49
   - name: 無形モンスター耐性
     code: 50
   - name: 不死形モンスター耐性
@@ -185,6 +205,26 @@ capabilities:
     code: 348
   - name: 不死属性魔法ダメージ増加
     code: 349
+  - name: 無属性への魔法ダメージ増加
+    code: 350
+  - name: 水属性への魔法ダメージ増加
+    code: 351
+  - name: 地属性への魔法ダメージ増加
+    code: 352
+  - name: 火属性への魔法ダメージ増加
+    code: 353
+  - name: 風属性への魔法ダメージ増加
+    code: 354
+  - name: 毒属性への魔法ダメージ増加
+    code: 355
+  - name: 聖属性への魔法ダメージ増加
+    code: 356
+  - name: 闇属性への魔法ダメージ増加
+    code: 357
+  - name: 念属性への魔法ダメージ増加
+    code: 358
+  - name: 不死属性への魔法ダメージ増加
+    code: 359
   - name: 冷凍耐性
     code: 360
   - name: 氷結耐性

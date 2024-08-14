@@ -2871,42 +2871,39 @@ g_bUnknownCasts = true;
 			}
 			break;
 
+		//「カーディナル」スキル「エフィリゴ」
 		case SKILL_ID_EFIRIGO:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 鈍器、本のみ発動可能
 			switch (n_A_WeaponType) {
-
-			case ITEM_KIND_CLUB:
-			case ITEM_KIND_BOOK:
-
-				// 距離属性
-				n_Enekyori = 0;
-
-				// 基本倍率
-				wbairitu = 2000 + (250 * n_A_ActiveSkillLV);
-
-				// POW補正
-				wbairitu += 15 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
-				// 不死・悪魔形はダメージ倍率２倍
-				switch (mobData[MONSTER_DATA_INDEX_RACE]) {
-				case RACE_ID_UNDEAD:
-				case RACE_ID_DEMON:
-					wbairitu *= 2;
+				case ITEM_KIND_CLUB:
+				case ITEM_KIND_BOOK:
+					// 距離属性
+					n_Enekyori = 0;
+					// 基本倍率
+					wbairitu = 2000 + (250 * n_A_ActiveSkillLV);
+					// 鈍器＆本修練 補正
+					wbairitu += (200 + 25 * UsedSkillSearch(SKILL_ID_DONKI_HON_SHUREN));
+					// POW補正
+					wbairitu += 30 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+					// 不死・悪魔形はダメージ倍率２倍
+					switch (mobData[MONSTER_DATA_INDEX_RACE]) {
+						case RACE_ID_UNDEAD:
+						case RACE_ID_DEMON:
+							wbairitu *= 2;
+							break;
+					}
+					// ベースレベル補正
+					wbairitu *= n_A_BaseLV / 100;
 					break;
-				}
-
-				// ベースレベル補正
-				wbairitu *= n_A_BaseLV / 100;
-				break;
-
-			default:
-				wbairitu = 0;
-				n_Buki_Muri = 1;
-				break;
+				default:
+					wbairitu = 0;
+					n_Buki_Muri = 1;
+					break;
 			}
 			break;
 
