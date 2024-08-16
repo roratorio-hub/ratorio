@@ -22471,7 +22471,7 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 
 
 	//----------------------------------------------------------------
-	// 「グロリアスフィスト」の「阿修羅覇王拳」短縮
+	// 「グロリアスフィスト」の「阿修羅覇凰拳」短縮
 	//----------------------------------------------------------------
 	if ( (skillId == SKILL_ID_ASHURA_HAOKEN) || (skillId == SKILL_ID_ASHURA_HAOKEN_SPKOTEI) ) {
 		if (n_A_Weapon_ATKplus >= 9 && EquipNumSearch(ITEM_ID_GLORIOUS_FIST)) {
