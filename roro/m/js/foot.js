@@ -682,6 +682,14 @@ function StAllCalc(){
 
 		UpdateEquipItemDataByHtml();
 
+		// 超越段階
+		n_A_Weapon_Transcendence = eval(A_Weapon_Transcendence.value);
+		n_A_Weapon2_Transcendence = eval(A_Weapon2_Transcendence.value);
+		n_A_HEAD_DEF_Transcendence = eval(A_HEAD_DEF_Transcendence.value);
+		n_A_SHIELD_DEF_Transcendence = eval(A_SHIELD_DEF_Transcendence.value);
+		n_A_BODY_DEF_Transcendence = eval(A_BODY_DEF_Transcendence.value);
+		n_A_SHOULDER_DEF_Transcendence = eval(A_SHOULDER_DEF_Transcendence.value);
+		n_A_SHOES_DEF_Transcendence = eval(A_SHOES_DEF_Transcendence.value);
 
 		//----------------------------------------------------------------
 		// 攻撃手段を取得する
@@ -22463,7 +22471,7 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 
 
 	//----------------------------------------------------------------
-	// 「グロリアスフィスト」の「阿修羅覇王拳」短縮
+	// 「グロリアスフィスト」の「阿修羅覇凰拳」短縮
 	//----------------------------------------------------------------
 	if ( (skillId == SKILL_ID_ASHURA_HAOKEN) || (skillId == SKILL_ID_ASHURA_HAOKEN_SPKOTEI) ) {
 		if (n_A_Weapon_ATKplus >= 9 && EquipNumSearch(ITEM_ID_GLORIOUS_FIST)) {
@@ -28939,6 +28947,7 @@ function GetEquippedSPSubEquip(spid, invalidItemIdArray, bListUp, bExact) {
 	var eqpRegionId = 0;
 	var spDefIdx = 0;
 
+	let eqpTranscendence = 0;
 	var eqpRefined = 0;
 
 	var spDefIdMod = 0;			// 特殊条件を取り除いたＳＰのＩＤ
@@ -28982,34 +28991,42 @@ function GetEquippedSPSubEquip(spid, invalidItemIdArray, bListUp, bExact) {
 		switch (eqpRegionId) {
 
 		case EQUIP_REGION_ID_ARMS:
+			eqpTranscendence = typeof n_A_Weapon_Transcendence != "undefined" ? n_A_Weapon_Transcendence: 0;			
 			eqpRefined = n_A_Weapon_ATKplus;
 			break;
 
 		case EQUIP_REGION_ID_ARMS_LEFT:
+			eqpTranscendence = typeof n_A_Weapon2_Transcendence != "undefined" ? n_A_Weapon2_Transcendence: 0;
 			eqpRefined = n_A_Weapon2_ATKplus;
 			break;
 
 		case EQUIP_REGION_ID_HEAD_TOP:
+			eqpTranscendence = typeof n_A_HEAD_DEF_Transcendence != "undefined" ? n_A_HEAD_DEF_Transcendence: 0;
 			eqpRefined = n_A_HEAD_DEF_PLUS;
 			break;
 
 		case EQUIP_REGION_ID_SHIELD:
+			eqpTranscendence = typeof n_A_SHIELD_DEF_Transcendence != "undefined" ? n_A_SHIELD_DEF_Transcendence: 0;
 			eqpRefined = n_A_SHIELD_DEF_PLUS;
 			break;
 
 		case EQUIP_REGION_ID_BODY:
+			eqpTranscendence = typeof n_A_BODY_DEF_Transcendence != "undefined" ? n_A_BODY_DEF_Transcendence: 0;
 			eqpRefined = n_A_BODY_DEF_PLUS;
 			break;
 
 		case EQUIP_REGION_ID_SHOULDER:
+			eqpTranscendence = typeof n_A_SHOULDER_DEF_Transcendence != "undefined" ? n_A_SHOULDER_DEF_Transcendence: 0;
 			eqpRefined = n_A_SHOULDER_DEF_PLUS;
 			break;
 
 		case EQUIP_REGION_ID_SHOES:
+			eqpTranscendence = typeof n_A_SHOES_DEF_Transcendence != "undefined" ? n_A_SHOES_DEF_Transcendence: 0;
 			eqpRefined = n_A_SHOES_DEF_PLUS;
 			break;
 
 		default:
+			eqpTranscendence = 0;
 			eqpRefined = 0;
 
 		}
@@ -29018,8 +29035,16 @@ function GetEquippedSPSubEquip(spid, invalidItemIdArray, bListUp, bExact) {
 		for (spDefIdx = 0; itemData[ ITEM_DATA_INDEX_SPBEGIN + spDefIdx ] != ITEM_SP_END; spDefIdx += 2) {
 
 			// ＳＰの定義を取得
+			// spDefRemain は int の場合と BigInt の場合がある
 			spDefRemain = itemData[ ITEM_DATA_INDEX_SPBEGIN + spDefIdx ];
 			spDefValue = itemData[ ITEM_DATA_INDEX_SPBEGIN + spDefIdx + 1 ];
+
+			// 超越段階を満たさない場合は、次へ
+			spDefRemain = CheckSpDefTransendenceOver(spDefRemain, eqpTranscendence);
+			if (spDefRemain < 0) {
+				continue;
+			}			
+			// --- ここから下の spDefRemain は必ず Int 型 ---
 
 			// 完全一致条件が指定されている場合
 			if (bExact) {
@@ -29432,6 +29457,7 @@ function GetEquippedSPSubSPCardAndElse(spid, invalidCardIdArray, bListUp) {
 
 	var spDefIdx = 0;
 
+	let eqpTranscendence = 0;
 	var eqpRefined = 0;
 
 	var spDefIdMod = 0;			// 特殊条件を取り除いたＳＰのＩＤ
@@ -29477,6 +29503,7 @@ function GetEquippedSPSubSPCardAndElse(spid, invalidCardIdArray, bListUp) {
 		case CARD_REGION_ID_ARMS_RIGHT_3:
 		case CARD_REGION_ID_ARMS_RIGHT_4:
 			eqpRefined = n_A_Weapon_ATKplus;
+			eqpTranscendence = typeof n_A_Weapon_Transcendence != "undefined" ? n_A_Weapon_Transcendence: 0;
 			break;
 
 		case CARD_REGION_ID_ARMS_LEFT_1:
@@ -29484,6 +29511,7 @@ function GetEquippedSPSubSPCardAndElse(spid, invalidCardIdArray, bListUp) {
 		case CARD_REGION_ID_ARMS_LEFT_3:
 		case CARD_REGION_ID_ARMS_LEFT_4:
 			eqpRefined = n_A_Weapon2_ATKplus;
+			eqpTranscendence = typeof n_A_Weapon2_Transcendence != "undefined" ? n_A_Weapon2_Transcendence: 0;
 			break;
 
 		case CARD_REGION_ID_HEAD_TOP:
@@ -29491,6 +29519,7 @@ function GetEquippedSPSubSPCardAndElse(spid, invalidCardIdArray, bListUp) {
 		case CARD_REGION_ID_ENCHANT_HEAD_TOP_2:
 		case CARD_REGION_ID_ENCHANT_HEAD_TOP_3:
 			eqpRefined = n_A_HEAD_DEF_PLUS;
+			eqpTranscendence = typeof n_A_HEAD_DEF_Transcendence != "undefined" ? n_A_HEAD_DEF_Transcendence: 0;
 			break;
 
 		case CARD_REGION_ID_SHIELD:
@@ -29498,6 +29527,7 @@ function GetEquippedSPSubSPCardAndElse(spid, invalidCardIdArray, bListUp) {
 		case CARD_REGION_ID_ENCHANT_SHIELD_2:
 		case CARD_REGION_ID_ENCHANT_SHIELD_3:
 			eqpRefined = n_A_SHIELD_DEF_PLUS;
+			eqpTranscendence = typeof n_A_SHIELD_DEF_Transcendence != "undefined" ? n_A_SHIELD_DEF_Transcendence: 0;
 			break;
 
 		case CARD_REGION_ID_BODY:
@@ -29505,6 +29535,7 @@ function GetEquippedSPSubSPCardAndElse(spid, invalidCardIdArray, bListUp) {
 		case CARD_REGION_ID_ENCHANT_BODY_2:
 		case CARD_REGION_ID_ENCHANT_BODY_3:
 			eqpRefined = n_A_BODY_DEF_PLUS;
+			eqpTranscendence = typeof n_A_BODY_DEF_Transcendence != "undefined" ? n_A_BODY_DEF_Transcendence: 0;
 			break;
 
 		case CARD_REGION_ID_SHOULDER:
@@ -29512,6 +29543,7 @@ function GetEquippedSPSubSPCardAndElse(spid, invalidCardIdArray, bListUp) {
 		case CARD_REGION_ID_ENCHANT_SHOULDER_2:
 		case CARD_REGION_ID_ENCHANT_SHOULDER_3:
 			eqpRefined = n_A_SHOULDER_DEF_PLUS;
+			eqpTranscendence = typeof n_A_SHOULDER_DEF_Transcendence != "undefined" ? n_A_SHOULDER_DEF_Transcendence: 0;
 			break;
 
 		case CARD_REGION_ID_SHOES:
@@ -29519,18 +29551,28 @@ function GetEquippedSPSubSPCardAndElse(spid, invalidCardIdArray, bListUp) {
 		case CARD_REGION_ID_ENCHANT_SHOES_2:
 		case CARD_REGION_ID_ENCHANT_SHOES_3:
 			eqpRefined = n_A_SHOES_DEF_PLUS;
+			eqpTranscendence = typeof n_A_SHOES_DEF_Transcendence != "undefined" ? n_A_SHOES_DEF_Transcendence: 0;
 			break;
 
 		default:
 			eqpRefined = 0;
+			eqpTranscendence = 0;
 		}
 
 		// カードのＳＰ定義をループ検索
 		for(spDefIdx = 0; cardData[CARD_DATA_INDEX_SPBEGIN + spDefIdx] != 0; spDefIdx += 2) {
 
 			// ＳＰの定義を取得
+			// spDefRemain は int の場合と BigInt の場合がある
 			spDefRemain = cardData[ CARD_DATA_INDEX_SPBEGIN + spDefIdx ];
 			spDefValue = cardData[ CARD_DATA_INDEX_SPBEGIN + spDefIdx + 1 ];
+
+			// 超越段階を満たさない場合は、次へ
+			spDefRemain = CheckSpDefTransendenceOver(spDefRemain, eqpTranscendence);
+			if (spDefRemain < 0) {
+				continue;
+			}
+			// --- ここから下の spDefRemain は必ず Int 型 ---
 
 			// ＳＰ定義ＩＤが一致しない場合は、次へ
 			if (!IsMatchSpDefId(spDefRemain, spid)) {
@@ -29669,8 +29711,16 @@ function GetEquippedSPSubSPCardAndElse(spid, invalidCardIdArray, bListUp) {
 		for(spDefIdx = 0; timeObj[TIME_ITEM_DATA_INDEX_SPBEGIN + spDefIdx] != 0; spDefIdx += 2) {
 
 			// ＳＰの定義を取得
+			// spDefRemain は int の場合と BigInt の場合がある
 			spDefRemain = timeObj[ TIME_ITEM_DATA_INDEX_SPBEGIN + spDefIdx ];
 			spDefValue = timeObj[ TIME_ITEM_DATA_INDEX_SPBEGIN + spDefIdx + 1 ];
+
+			// 超越段階を満たさない場合は、次へ
+			spDefRemain = CheckSpDefTransendenceOver(spDefRemain, eqpTranscendence);
+			if (spDefRemain < 0) {
+				continue;
+			}
+			// --- ここから下の spDefRemain は必ず Int 型 ---
 
 			// ＳＰ定義ＩＤが一致しない場合は、次へ
 			if (!IsMatchSpDefId(spDefRemain, spid)) {
@@ -30360,9 +30410,28 @@ function CheckSpDefRefineOver(spDefRemain, eqpRefined) {
 }
 
 
-
-
-
+/**
+ * アイテムの超越段階が「超越段階が◯以上のとき」を満たしているか検査する
+ * @param {*} spDefRemain フラグ付きアイテムSP（BitInt の場合と Int の場合がある）
+ * @param {0, 1, 2, 3, 4} eqpTranscendence 超越段階
+ * @returns 
+ */
+function CheckSpDefTransendenceOver(spDefRemain, eqpTranscendence) {
+	// 超越条件が指定されている場合
+	baseFlag = BigInt(ITEM_SP_TRANSCENDENCE_1);
+	if (spDefRemain >= baseFlag) {
+		// BigInt の場合、小数点以下が自動的に切り捨てられる
+		requireTranscendence = parseInt(spDefRemain / baseFlag);
+		// 超越条件を満たす場合
+		if (eqpTranscendence >= requireTranscendence) {
+			return parseInt(spDefRemain % baseFlag);
+		}
+		// 超越条件を満たさない場合
+		return -1;
+	}
+	// 超越条件が指定されていない場合
+	return spDefRemain;	
+}
 
 
 /**
