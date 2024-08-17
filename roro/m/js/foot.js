@@ -13842,21 +13842,6 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 			}
 		}
 
-		//----------------------------------------------------------------
-		// 「グレータードラクルホーン」の、精錬による強化
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_GREATER_DRACLE_HORN)) > 0) {
-			vartmp = 0;
-
-			if (n_A_HEAD_DEF_PLUS >= 7) {
-				vartmp += 5;
-			}
-			if (n_A_HEAD_DEF_PLUS >= 9) {
-				vartmp += 5;
-			}
-
-			n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP] += vartmp * itemCount;
-		}
 
 		//----------------------------------------------------------------
 		// 「ニーヴバレッタ　ニーヴ武器セット」の、素ＳＴＲによる効果
