@@ -8286,13 +8286,6 @@ g_ITEM_SP_ASPD_UP_value_forCalcData = w;
 		}
 
 		//----------------------------------------------------------------
-		// 「ガーデンオブエデン」の、過剰精錬による強化
-		//----------------------------------------------------------------
-		if (EquipNumSearch(ITEM_ID_GARDEN_OF_EDEN)) {
-			if (n_A_HEAD_DEF_PLUS >= 9) w -= 15;
-		}
-
-		//----------------------------------------------------------------
 		// 「降霊術士の外套」の、過剰精錬による強化
 		//----------------------------------------------------------------
 		if (EquipNumSearch(ITEM_ID_KOREIZYUTSUSHINO_GAITO)) {
@@ -19155,14 +19148,6 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 		}
 
 		//----------------------------------------------------------------
-		// 「ガーデンオブエデン」の、過剰精錬による強化
-		//----------------------------------------------------------------
-		if (EquipNumSearch(ITEM_ID_GARDEN_OF_EDEN)) {
-			if (n_A_HEAD_DEF_PLUS >= 7) n_tok[295] += 30;
-			if (n_A_HEAD_DEF_PLUS >= 9) n_tok[295] += 50;
-		}
-
-		//----------------------------------------------------------------
 		// 「炎雷魔女の大杖」の、精錬による効果
 		//----------------------------------------------------------------
 		if ((itemCount = EquipNumSearch(ITEM_ID_ENRAIMAZYONO_OTSUE)) > 0) {
@@ -19590,13 +19575,6 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 		if (EquipNumSearch(ITEM_SET_ID_AKUMASUHAISHANO_KUTSU_DATENSHISAINO_ANKOGAITO_KODAIZYUNO_TSUE)) {
 			n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_ELM_FIRE] += 4 * LearnedSkillSearch(SKILL_ID_FIRE_PILLAR);
 			n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_ELM_VANITY] += 6 * LearnedSkillSearch(SKILL_ID_GRAVITATION_FIELD);
-		}
-
-		//----------------------------------------------------------------
-		// 「ガーデンオブエデン」の、過剰精錬による強化
-		//----------------------------------------------------------------
-		if (EquipNumSearch(ITEM_ID_GARDEN_OF_EDEN)) {
-			if (n_A_HEAD_DEF_PLUS >= 7) n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_ELM_ALL] += 15;
 		}
 
 		//----------------------------------------------------------------
