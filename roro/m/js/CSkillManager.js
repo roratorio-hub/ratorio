@@ -5821,7 +5821,7 @@ function CSkillManager() {
 		skillId++;
 
 		// ----------------------------------------------------------------
-		// 阿修羅覇王拳(SP調整可)
+		// 阿修羅覇凰拳(SP調整可)
 		// ----------------------------------------------------------------
 		SKILL_ID_ASHURA_HAOKEN = skillId;
 		skillData = new function() {
@@ -5829,7 +5829,7 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "阿修羅覇王拳(SP調整可)";
+			this.name = "阿修羅覇凰拳(SP調整可)";
 			this.kana = "アシユラハオウケン";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL
@@ -9271,7 +9271,7 @@ function CSkillManager() {
 		skillId++;
 
 		// ----------------------------------------------------------------
-		// 阿修羅覇王拳(MaxSP-1固定)
+		// 阿修羅覇凰拳(MaxSP-1固定)
 		// ----------------------------------------------------------------
 		SKILL_ID_ASHURA_HAOKEN_SPKOTEI = skillId;
 		skillData = new function() {
@@ -9280,7 +9280,7 @@ function CSkillManager() {
 
 			this.id = skillId;
 			this.refId = SKILL_ID_ASHURA_HAOKEN;
-			this.name = "阿修羅覇王拳(MaxSP-1固定)";
+			this.name = "阿修羅覇凰拳(MaxSP-1固定)";
 			this.kana = "アシユラハオウケンスヒリチユアルホイントコテイ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL

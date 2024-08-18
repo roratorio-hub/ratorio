@@ -236,6 +236,7 @@ class CSaveDataManager {
 
 		// 次世代版限定データの追加
 		this.#collectDataShadowEquips();
+		this.#collectDataTranscendence();
 
 		// コンパクション
 		this.doCompaction();
@@ -248,6 +249,66 @@ class CSaveDataManager {
 		}
 
 		return dataTextWork;
+	}
+
+	/**
+	 * セーブ時、超越段階のデータをセーブデータユニットに追加する
+	 */
+	#collectDataTranscendence() {
+		// 装備箇所 判定用 データユニット 用意（すでに存在する可能性がある）
+		let saveDataUnitEqpRgn = null;
+		for (let idx = 0; idx < this.#saveDataUnitArray.length; idx++) {
+			const saveDataUnit = this.#saveDataUnitArray[idx];
+			// 装備用装備箇所データユニットでなければ、次へ
+			if (saveDataUnit.constructor.type != SAVE_DATA_UNIT_TYPE_EQUIP_REGIONS) {
+				continue;
+			}
+			if (floorBigInt32(saveDataUnit.getProp(CSaveDataConst.propNameDataKind)) != CSaveDataConst.eqpRgnKindItem) {
+				continue;
+			}
+			// ここまで来れば、目的のデータユニット
+			saveDataUnitEqpRgn = saveDataUnit;
+			break;
+		}
+		// メンバ変数の配列に存在しなかった場合は、新規に作成
+		if (!saveDataUnitEqpRgn) {
+			saveDataUnitEqpRgn = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_EQUIP_REGIONS))();
+			saveDataUnitEqpRgn.SetUpAsDefault();
+			saveDataUnitEqpRgn.setProp(CSaveDataConst.propNameDataKind, CSaveDataConst.eqpRgnKindItem);
+			this.#saveDataUnitArray.push(saveDataUnitEqpRgn);
+		}
+		// 全ての装備を走査
+		for (let idx = 0; idx < this.#saveDataUnitArray.length; idx++) {
+			let saveDataUnit = this.#saveDataUnitArray[idx];
+			// 装備データユニットでなければ、次へ
+			if (saveDataUnit.constructor.type != SAVE_DATA_UNIT_TYPE_EQUIPABLE) {
+				continue;
+			}
+			// 装備部位ごとに超越段階をセット（参照渡しなので #saveDataUnitArray にセットできる）
+			switch (saveDataUnit.getProp(CSaveDataConst.propNameEquipItemDefID)) {	// saveDataUnit の部位 (propNameEquipItemDefID) が...
+				case saveDataUnitEqpRgn.getProp(CSaveDataConst.propNameEqpRgnArmsRight):	// 右手 (propNameEqpRgnArmsRight) のとき...
+					saveDataUnit.setProp(CSaveDataConst.propNameTranscendenceCount, n_A_Weapon_Transcendence);	// 右手の超越段階 (n_A_Weapon_Transcendence) を saveDataUnit に追加
+					break;
+				case saveDataUnitEqpRgn.getProp(CSaveDataConst.propNameEqpRgnArmsLeft):
+					saveDataUnit.setProp(CSaveDataConst.propNameTranscendenceCount, n_A_Weapon2_Transcendence);
+					break;
+				case saveDataUnitEqpRgn.getProp(CSaveDataConst.propNameEqpRgnShield):
+					saveDataUnit.setProp(CSaveDataConst.propNameTranscendenceCount, n_A_SHIELD_DEF_Transcendence);
+					break;
+				case saveDataUnitEqpRgn.getProp(CSaveDataConst.propNameEqpRgnHeadTop):
+					saveDataUnit.setProp(CSaveDataConst.propNameTranscendenceCount, n_A_HEAD_DEF_Transcendence);
+					break;
+				case saveDataUnitEqpRgn.getProp(CSaveDataConst.propNameEqpRgnBody):
+					saveDataUnit.setProp(CSaveDataConst.propNameTranscendenceCount, n_A_BODY_DEF_Transcendence);
+					break;
+				case saveDataUnitEqpRgn.getProp(CSaveDataConst.propNameEqpRgnShoulder):
+					saveDataUnit.setProp(CSaveDataConst.propNameTranscendenceCount, n_A_SHOULDER_DEF_Transcendence);
+					break;
+				case saveDataUnitEqpRgn.getProp(CSaveDataConst.propNameEqpRgnFoot):
+					saveDataUnit.setProp(CSaveDataConst.propNameTranscendenceCount, n_A_SHOES_DEF_Transcendence);
+					break;
+			}
+		}
 	}
 
 	/**
@@ -913,6 +974,22 @@ class CSaveDataManager {
 			],
 		]);
 
+		// 超越段階オブジェクトIDのマップ
+		const objIDTranscendenceMapMap = new Map([
+			[
+				CSaveDataConst.eqpRgnKindItem,
+				new Map([
+					[CSaveDataConst.propNameEqpRgnArmsRight, "OBJID_ARMS_RIGHT_TRANSCENDENCE"],
+					[CSaveDataConst.propNameEqpRgnArmsLeft, "OBJID_ARMS_LEFT_TRANSCENDENCE"],
+					[CSaveDataConst.propNameEqpRgnShield, "OBJID_SHIELD_TRANSCENDENCE"],
+					[CSaveDataConst.propNameEqpRgnHeadTop, "OBJID_HEAD_TOP_TRANSCENDENCE"],
+					[CSaveDataConst.propNameEqpRgnBody, "OBJID_BODY_TRANSCENDENCE"],
+					[CSaveDataConst.propNameEqpRgnShoulder, "OBJID_SHOULDER_TRANSCENDENCE"],
+					[CSaveDataConst.propNameEqpRgnFoot, "OBJID_SHOES_TRANSCENDENCE"],
+				])
+			],
+		]);
+
 		// カード設定用関数（旧処理の移植）
 		const funcLoadAndSetCard = (objIdPrifixF, slotNoF, enchListIdF, cardIdF) => {
 
@@ -982,8 +1059,7 @@ class CSaveDataManager {
 			return;
 		}
 		const objIDRefinedMap = objIDRefinedMapMap.get(equipRegionKind);
-
-	
+		const objIDTranscendenceMap = objIDTranscendenceMapMap.get(equipRegionKind);
 
 		// 装備領域データユニットを取得
 		const saveDataUnitEqpRgn = this.#saveDataUnitArray[idxUnitEqpRgn];
@@ -1005,6 +1081,7 @@ class CSaveDataManager {
 			}
 			const saveDataUnitItemDef = this.#saveDataUnitArray[idxItemDef];
 			const itemID = saveDataUnitItemDef.getProp(CSaveDataConst.propNameItemID);
+			// 精錬値のセット
 			const refined = floorBigInt32(saveDataUnitItemDef.getProp(CSaveDataConst.propNameRefinedCount));
 			if (objIDRefinedMap !== undefined) {
 				const objIDRefined = objIDRefinedMap.get(propName);
@@ -1012,6 +1089,15 @@ class CSaveDataManager {
 					HtmlSetObjectValueById(objIDRefined, refined);
 				}
 			}
+			// 超越段階のセット
+			const transcendenceCount = floorBigInt32(saveDataUnitItemDef.getProp(CSaveDataConst.propNameTranscendenceCount));
+			if (objIDTranscendenceMap !== undefined) {
+				const objIDTranscendence = objIDTranscendenceMap.get(propName);
+				if (objIDTranscendence !== undefined) {
+					HtmlSetObjectValueById(objIDTranscendence, transcendenceCount);
+				}
+			}
+
 
 			// 画面側のオブジェクトに関する情報を取得
 			const objID = objIDMap.get(propName);

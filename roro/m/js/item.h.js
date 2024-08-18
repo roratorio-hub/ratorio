@@ -1058,26 +1058,23 @@ CGlobalConstManager.DefinePseudoEnum(
 	1000000000000000
 );
 
-// TODO: 条件判定はペットの箇所のみ実装済み
-// TODO: 数値の限界に来ているので、これ以上の追加は無理
+/**
+ * 安全に扱える number 型の上限は Number.MAX_SAFE_INTEGER = 9007199254740991 (16桁) なので
+ * 17桁以上のItemSPコードは計算途中で変質してしまう可能性があります
+ * 17桁以上のItemSPコードは BigInt 型で定義してください
+ */
 CGlobalConstManager.DefinePseudoEnum(
 	"EnumItemSpId",
 	[
-		// 親密度が○○以上
-		// "ITEM_SP_PET_FRIENDLY_OVER_AUTO",		// 自動（親しい扱い）		// 自動以上は定義しない
-		// "ITEM_SP_PET_FRIENDLY_OVER_RUNAWAY",		// 逃亡寸前
-		// "ITEM_SP_PET_FRIENDLY_OVER_LOWEST",			// 疎々しい
-		// "ITEM_SP_PET_FRIENDLY_OVER_LOW",			// 気まずい
-		// "ITEM_SP_PET_FRIENDLY_OVER_NORMAL",			// 普通
-		//"ITEM_SP_PET_FRIENDLY_OVER_HIGH",			// 親しい
-		//"ITEM_SP_PET_FRIENDLY_OVER_HIGHEST",		// 極めて親しい
+		// 超越段階が◯以上のとき
+		"ITEM_SP_TRANSCENDENCE_1",			// 1 * 10^17
+		"ITEM_SP_TRANSCENDENCE_2",			// 2 * 10^17
+		"ITEM_SP_TRANSCENDENCE_3",			// 3 * 10^17
+		"ITEM_SP_TRANSCENDENCE_4",			// 4 * 10^17
 	],
-	10000000000000000,
-	10000000000000000
+	10000000000000000n,
+	10000000000000000n,
 );
-
-
-
 
 /**
  * アイテムの種別名を取得する.
@@ -1713,12 +1710,13 @@ function GetItemSP(itemId, spid) {
 
 /**
  * アイテム説明テキストを取得する.
- * @param spId SPID
+ * @param spId SPID (BigInt の場合と Int の場合がある)
  * @param spValue SP値
  * @return 説明テキスト
  */
 function GetItemExplainText(spId, spValue) {
 
+	let condTextTranscendence = "";
 	var condTextFriendlyOver = "";
 	var condTextBaseLvOver = "";
 	var condTextBaseLvBy = "";
@@ -1739,6 +1737,18 @@ function GetItemExplainText(spId, spValue) {
 	// 戻り値用テキスト配列
 	textInfoArray = new Array();
 
+	// 『超越段階が◯以上のとき』条件
+	let transcendenceOver = 0;
+	let baseFlag = BigInt(ITEM_SP_TRANSCENDENCE_1);
+	if (spId >= baseFlag) {
+		// BigInt の場合、小数点以下は自動的に切り捨てられる
+		transcendenceOver = spId / baseFlag;
+		// BigInt と str はそのまま結合できる
+		condTextTranscendence = "超越段階が" + transcendenceOver + "以上の時、";
+		spId = parseInt(spId % baseFlag);
+	}
+
+	// ----------- ここから下は int 型 ---------------
 	var friendlyOver = 0;
 	var friendlyOverEffecct = 0;
 
@@ -1904,9 +1914,10 @@ function GetItemExplainText(spId, spValue) {
 
 
 	// 条件文字列の組み立て
-	textInfoArray.push(["", condTextFriendlyOver + condTextJobRestrict + condTextBaseLvOver + condTextRefineOver + condTextPureStatus + condTextRefineBy + condTextBaseLvBy]);
-
-
+	textInfoArray.push([
+		"",
+		condTextTranscendence + condTextFriendlyOver + condTextJobRestrict + condTextBaseLvOver + condTextRefineOver + condTextPureStatus + condTextRefineBy + condTextBaseLvBy
+	]);
 
 	sign = (spValue < 0) ? " " : " + ";
 

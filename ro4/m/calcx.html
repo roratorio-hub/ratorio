@@ -682,7 +682,7 @@
 								<table border="1">
 
 									<tr>
-										<td ColSpan="2" Bgcolor="#DDDDFF">武器＆防具/カード</td>
+										<td ColSpan="3" Bgcolor="#DDDDFF">武器＆防具/カード</td>
 										<td ColSpan="10" Bgcolor="#DDDDFF">
 											<input type="button" id="OBJID_SLOT_MODE_BUTTON" value="入力欄切替" onclick="OnClickSlotModeButton() | LoadSelect2()">
 											カードの入力とランダムオプションの入力を切り替えます
@@ -705,7 +705,15 @@
 												<option value="10">+10
 											</select>
 										</td>
-
+										<td rowspan="2">
+											<select id="OBJID_ARMS_RIGHT_TRANSCENDENCE" name="A_Weapon_Transcendence" onChange = "StAllCalc() | AutoCalc()">
+												<option value="0">-
+												<option value="1">★1
+												<option value="2">★2
+												<option value="3">★3
+												<option value="4">★4
+											</select>
+										</td>										
 										<td rowspan="2">
 											<select id="OBJID_ARMS_RIGHT" onChange="OnChangeEquip(EQUIP_REGION_ID_ARMS, parseInt(this.value)) | AutoCalc()">
 											</select>
@@ -746,7 +754,15 @@
 												<option value="10">+10
 											</select>
 										</td>
-
+										<td>
+											<select id="OBJID_ARMS_LEFT_TRANSCENDENCE" name="A_Weapon2_Transcendence" onChange = "StAllCalc() | AutoCalc()" disabled>
+												<option value="0">-
+												<option value="1">★1
+												<option value="2">★2
+												<option value="3">★3
+												<option value="4">★4
+											</select>
+										</td>
 										<td>
 											<select id="OBJID_ARMS_LEFT" onChange="OnChangeEquip(EQUIP_REGION_ID_ARMS_LEFT, parseInt(this.value)) | AutoCalc()">
 											</select>
@@ -776,10 +792,18 @@
 											</select>
 										</td>
 										<td>
+											<select id="OBJID_HEAD_TOP_TRANSCENDENCE" name="A_HEAD_DEF_Transcendence" onChange = "StAllCalc() | AutoCalc()">
+												<option value="0">-
+												<option value="1">★1
+												<option value="2">★2
+												<option value="3">★3
+												<option value="4">★4
+											</select>
+										</td>										
+										<td>
 											<select id="OBJID_HEAD_TOP" name="A_head1" onChange="OnChangeEquip(EQUIP_REGION_ID_HEAD_TOP, parseInt(this.value)) | AutoCalc()"></select>
 										</td>
 									</tr>
-
 
 									<tr>
 										<td colspan="12">
@@ -787,10 +811,10 @@
 									</tr>
 
 									<tr id="OBJID_HEAD_MID_SLOT_ROOT">
-
 										<td>
 										</td>
-
+										<td>
+										</td>
 										<td>
 											<select id="OBJID_HEAD_MID" name="A_head2" onChange="OnChangeEquip(EQUIP_REGION_ID_HEAD_MID, parseInt(this.value)) | AutoCalc()"></select>
 										</td>
@@ -802,6 +826,8 @@
 									</tr>
 
 									<tr id="OBJID_HEAD_UNDER_SLOT_ROOT">
+										<td>
+										</td>
 										<td>
 										</td>
 										<td>
@@ -831,6 +857,15 @@
 											</select>
 										</td>
 										<td>
+											<select id="OBJID_SHIELD_TRANSCENDENCE" name="A_SHIELD_DEF_Transcendence" onChange = "StAllCalc() | AutoCalc()">
+												<option value="0">-
+												<option value="1">★1
+												<option value="2">★2
+												<option value="3">★3
+												<option value="4">★4
+											</select>
+										</td>										
+										<td>
 											<select id="OBJID_SHIELD" name="A_left" onChange="OnChangeEquip(EQUIP_REGION_ID_SHIELD, parseInt(this.value)) | AutoCalc()"></select>
 										</td>
 									</tr>
@@ -856,6 +891,15 @@
 												<option value="10">+10
 											</select>
 										</td>
+										<td>
+											<select id="OBJID_BODY_TRANSCENDENCE" name="A_BODY_DEF_Transcendence" onChange = "StAllCalc() | AutoCalc()">
+												<option value="0">-
+												<option value="1">★1
+												<option value="2">★2
+												<option value="3">★3
+												<option value="4">★4
+											</select>
+										</td>										
 										<td>
 											<select id="OBJID_BODY" name="A_body" onChange="OnChangeEquip(EQUIP_REGION_ID_BODY, parseInt(this.value)) | AutoCalc()"></select>
 										</td>
@@ -883,6 +927,15 @@
 											</select>
 										</td>
 										<td>
+											<select id="OBJID_SHOULDER_TRANSCENDENCE" name="A_SHOULDER_DEF_Transcendence" onChange = "StAllCalc() | AutoCalc()">
+												<option value="0">-
+												<option value="1">★1
+												<option value="2">★2
+												<option value="3">★3
+												<option value="4">★4
+											</select>
+										</td>										
+										<td>
 											<select id="OBJID_SHOULDER" name="A_shoulder" onChange="OnChangeEquip(EQUIP_REGION_ID_SHOULDER, parseInt(this.value)) | AutoCalc()"></select>
 										</td>
 									</tr>
@@ -909,6 +962,15 @@
 											</select>
 										</td>
 										<td>
+											<select id="OBJID_SHOES_TRANSCENDENCE" name="A_SHOES_DEF_Transcendence" onChange = "StAllCalc() | AutoCalc()">
+												<option value="0">-
+												<option value="1">★1
+												<option value="2">★2
+												<option value="3">★3
+												<option value="4">★4
+											</select>
+										</td>										
+										<td>
 											<select id="OBJID_SHOES" name="A_shoes" onChange="OnChangeEquip(EQUIP_REGION_ID_SHOES, parseInt(this.value)) | AutoCalc()"></select>
 										</td>
 									</tr>
@@ -919,6 +981,8 @@
 									</tr>
 
 									<tr id="OBJID_ACCESSARY_1_SLOT_ROOT">
+										<td>
+										</td>										
 										<td style="text-align:right">
 											<button type="button" id="OBJID_ACCESSARY_1_COPY" onclick="copyAccs(1, 2) | LoadSelect2()">↓</button>
 										</td>
@@ -933,6 +997,8 @@
 									</tr>
 
 									<tr id="OBJID_ACCESSARY_2_SLOT_ROOT">
+										<td>
+										</td>										
 										<td style="text-align:right">
 											<button type="button" id="OBJID_ACCESSARY_2_COPY" onclick="copyAccs(2, 1) | LoadSelect2()">↑</button>
 										</td>

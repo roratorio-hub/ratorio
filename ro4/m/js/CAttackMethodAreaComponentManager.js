@@ -2131,7 +2131,7 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 
 
 		//----------------------------------------------------------------
-		// モンク：阿修羅覇王拳
+		// モンク：阿修羅覇凰拳
 		//----------------------------------------------------------------
 		case SKILL_ID_ASHURA_HAOKEN:
 
