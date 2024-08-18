@@ -3098,10 +3098,12 @@ const SAVE_DATA_UNIT_TYPE_EQUIPABLE = CSaveDataUnitTypeManager.register(
 					);
 				}
 				let oldItemID = this.parsedMap.get(CSaveDataConst.propNameItemID);
-				let newItemID = BigInt(CSaveDataUnitEquipable.deprecatedItemIdChangeArray[oldItemID]);
-				if (newItemID != 0n) {
-					this.parsedMap.set(CSaveDataConst.propNameItemID, newItemID);		// 廃止された超越アイテムを置き換え
-					this.parsedMap.set(CSaveDataConst.propNameTranscendenceCount, 1);	// 超越段階を 0 → 1 へ変更
+				if (oldItemID <= 5170) {
+					let newItemID = BigInt(CSaveDataUnitEquipable.deprecatedItemIdChangeArray[oldItemID]);
+					if (newItemID != 0n) {
+						this.parsedMap.set(CSaveDataConst.propNameItemID, newItemID);		// 廃止された超越アイテムを置き換え
+						this.parsedMap.set(CSaveDataConst.propNameTranscendenceCount, 1);	// 超越段階を 0 → 1 へ変更
+					}
 				}
 			} // --- ↑ 廃止アイテムデータの置換処理 ↑ ---
 			return nextOffset;
