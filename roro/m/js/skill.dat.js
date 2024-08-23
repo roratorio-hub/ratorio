@@ -1261,6 +1261,18 @@
 	SKILL_ID_GENZYUTSU_ANKOKURYUU = 1258;
 	SKILL_ID_ANTEN_HOU_LEARNED_LEVEL = 1259;
 	SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_HI = 1260;	// 今日の日付（太陽の日、月の日、星の日の判定用）
+	SKILL_ID_KAGEMOGURI = 1261
+	SKILL_ID_KAGETOKI = 1262
+	SKILL_ID_KUNAI_WAIKYOKU = 1263
+	SKILL_ID_KUNAI_KAITEN = 1264
+	SKILL_ID_KUNAI_KUSSETSU = 1265
+	SKILL_ID_GENJUTSU_KUNAI = 1266
+	SKILL_ID_SHIELD_CHAIN_RUSH = 1267
+	SKILL_ID_SPIRAL_PIERCE_MAX = 1268
+	SKILL_ID_JACK_FROST_NOVA = 1269
+	SKILL_ID_GROUND_GRAVITATION = 1270
+	SKILL_ID_BREAKING_LIMIT = 1271
+	SKILL_ID_RULE_BREAK = 1272
 
 	SkillObjNew = [
 		[0,1,"通常攻撃"],
@@ -2524,6 +2536,19 @@
 		[1258,1,"(×)幻術 -暗黒龍-"],
 		[1259,10,"暗転砲の習得Lv"],
 		[1260,4,"太陽と月と星の日"],	//（太陽の日、月の日、星の日の判定用）
+		[1261,5,"(×)影潜り"],
+		[1262,5,"(×)影溶き"],
+		[1263,10,"(×)苦無 -歪曲-"],
+		[1264,5,"(×)苦無 -回転-"],
+		[1265,10,"(×)苦無 -屈折-"],
+		[1266,1,"(×)幻術 -苦無-"],
+		[1267,10,"(×)シールドチェーンラッシュ"],
+		[1268,10,"(×)スパイラルピアースマックス"],
+		[1269,10,"(×)ジャックフロストノヴァ"],
+		[1270,10,"(×)グラウンドグラビテーション"],
+		[1271,1,"ブレイキングリミット状態"],
+		[1271,1,"ルールブレイク状態"],
+		
 	];
 
 })();

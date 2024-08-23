@@ -37680,7 +37680,386 @@ function CSkillManager() {
 			this.element = CSkillData.ELEMENT_VOID;
 		};
 		this.dataArray[skillId] = skillData;
+		skillId++;
+
+		// ----------------------------------------------------------------
+		// 影潜り
+		// ----------------------------------------------------------------
+		SKILL_ID_KAGEMOGURI = skillId;
+		skillData = new function() {
+			this.prototype = new CSkillData();
+			CSkillData.call(this);
+
+			this.id = skillId;
+			this.name = "(×)影潜り";
+			this.kana = "カケモクリ";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_VOID;
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return 0 * skillLv;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return 0 * skillLv;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 0;
+			}
+		};
+		this.dataArray[skillId] = skillData;
+		skillId++;
+
+		// ----------------------------------------------------------------
+		// 影溶き
+		// ----------------------------------------------------------------
+		SKILL_ID_KAGETOKI = skillId;
+		skillData = new function() {
+			this.prototype = new CSkillData();
+			CSkillData.call(this);
+
+			this.id = skillId;
+			this.name = "(×)影溶き";
+			this.kana = "カケトキ";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
+			this.range = CSkillData.RANGE_MAGIC;
+			this.element = CSkillData.ELEMENT_FORCE_DARK;
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return 0 * skillLv;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return 0 * skillLv;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 0;
+			}
+		};
+		this.dataArray[skillId] = skillData;
+		skillId++;
+
+		// ----------------------------------------------------------------
+		// 苦無 -歪曲-
+		// ----------------------------------------------------------------
+		SKILL_ID_KUNAI_WAIKYOKU = skillId;
+		skillData = new function() {
+			this.prototype = new CSkillData();
+			CSkillData.call(this);
+
+			this.id = skillId;
+			this.name = "(×)苦無 -歪曲-";
+			this.kana = "クナイワイキヨク";
+			this.maxLv = 10;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
+			this.range = CSkillData.RANGE_LONG;
+			this.element = CSkillData.ELEMENT_VOID;
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return 0 * skillLv;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return 0 * skillLv;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 0;
+			}
+		};
+		this.dataArray[skillId] = skillData;
+		skillId++;
+
+		// ----------------------------------------------------------------
+		// 苦無 -回転-
+		// ----------------------------------------------------------------
+		SKILL_ID_KUNAI_KAITEN = skillId;
+		skillData = new function() {
+			this.prototype = new CSkillData();
+			CSkillData.call(this);
+
+			this.id = skillId;
+			this.name = "(×)苦無 -回転-";
+			this.kana = "クナイカイテン";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
+			this.range = CSkillData.RANGE_LONG;
+			this.element = CSkillData.ELEMENT_VOID;
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return 0 * skillLv;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return 0 * skillLv;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 0;
+			}
+		};
+		this.dataArray[skillId] = skillData;
+		skillId++;
+
+		// ----------------------------------------------------------------
+		// 苦無 -屈折-
+		// ----------------------------------------------------------------
+		SKILL_ID_KUNAI_KUSSETSU = skillId;
+		skillData = new function() {
+			this.prototype = new CSkillData();
+			CSkillData.call(this);
+
+			this.id = skillId;
+			this.name = "(×)苦無 -屈折-";
+			this.kana = "クナイクツセツ";
+			this.maxLv = 10;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
+			this.range = CSkillData.RANGE_LONG;
+			this.element = CSkillData.ELEMENT_VOID;
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return 0 * skillLv;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return 0 * skillLv;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 0;
+			}
+		};
+		this.dataArray[skillId] = skillData;
+		skillId++;
+
+		// ----------------------------------------------------------------
+		// 幻術 -苦無-
+		// ----------------------------------------------------------------
+		SKILL_ID_GENJUTSU_KUNAI = skillId;
+		skillData = new function() {
+			this.prototype = new CSkillData();
+			CSkillData.call(this);
+
+			this.id = skillId;
+			this.name = "(×)幻術 -苦無-";
+			this.kana = "ケンシユツクナイ";
+			this.maxLv = 1;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
+			this.range = CSkillData.RANGE_LONG;
+			this.element = CSkillData.ELEMENT_VOID;
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return 0 * skillLv;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return 0 * skillLv;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 0;
+			}
+		};
+		this.dataArray[skillId] = skillData;
+		skillId++;
+		
+		// ----------------------------------------------------------------
+		// シールドチェーンラッシュ
+		// ----------------------------------------------------------------
+		SKILL_ID_SHIELD_CHAIN_RUSH = skillId;
+		skillData = new function() {
+			this.prototype = new CSkillData();
+			CSkillData.call(this);
+
+			this.id = skillId;
+			this.name = "(×)シールドチェーンラッシュ";
+			this.kana = "シイルトチエエンラツシユ";
+			this.maxLv = 10;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
+			this.range = CSkillData.RANGE_LONG;
+			this.element = CSkillData.ELEMENT_VOID;
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return 0 * skillLv;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return 0 * skillLv;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 0;
+			}
+		};
+		this.dataArray[skillId] = skillData;
+		skillId++;
+
+		// ----------------------------------------------------------------
+		// スパイラルピアースマックス
+		// ----------------------------------------------------------------
+		SKILL_ID_SPIRAL_PIERCE_MAX = skillId;
+		skillData = new function() {
+			this.prototype = new CSkillData();
+			CSkillData.call(this);
+
+			this.id = skillId;
+			this.name = "(×)スパイラルピアースマックス";
+			this.kana = "スハイラルヒアアスマツクス";
+			this.maxLv = 10;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
+			this.range = CSkillData.RANGE_LONG;
+			this.element = CSkillData.ELEMENT_VOID;
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return 0 * skillLv;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return 0 * skillLv;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 0;
+			}
+		};
+		this.dataArray[skillId] = skillData;
+		skillId++;
+
+		// ----------------------------------------------------------------
+		// ジャックフロストノヴァ
+		// ----------------------------------------------------------------
+		SKILL_ID_JACK_FROST_NOVA = skillId;
+		skillData = new function() {
+			this.prototype = new CSkillData();
+			CSkillData.call(this);
+
+			this.id = skillId;
+			this.name = "(×)ジャックフロストノヴァ";
+			this.kana = "シヤツクフロストノウア";
+			this.maxLv = 10;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
+			this.range = CSkillData.RANGE_MAGIC;
+			this.element = CSkillData.ELEMENT_FORCE_WATER;
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return 0 * skillLv;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return 0 * skillLv;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 0;
+			}
+		};
+		this.dataArray[skillId] = skillData;
+		skillId++;
+
+		// ----------------------------------------------------------------
+		// グラウンドグラビテーション
+		// ----------------------------------------------------------------
+		SKILL_ID_GROUND_GRAVITATION = skillId;
+		skillData = new function() {
+			this.prototype = new CSkillData();
+			CSkillData.call(this);
+
+			this.id = skillId;
+			this.name = "(×)グラウンドグラビテーション";
+			this.kana = "クラウントクラヒテエシヨン";
+			this.maxLv = 10;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
+			this.range = CSkillData.RANGE_MAGIC;
+			this.element = CSkillData.ELEMENT_FORCE_VANITY;
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return 0 * skillLv;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return 0 * skillLv;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 0;
+			}
+		};
+		this.dataArray[skillId] = skillData;
+		skillId++;
+
+		// ----------------------------------------------------------------
+		// ブレイキングリミット状態
+		// ----------------------------------------------------------------
+		SKILL_ID_BREAKING_LIMIT = skillId;
+		skillData = new function() {
+			this.prototype = new CSkillData();
+			CSkillData.call(this);
+
+			this.id = skillId;
+			this.name = "(×)ブレイキングリミット状態";
+			this.kana = "フレイキンクリミツト";
+			this.maxLv = 1;
+			this.type = CSkillData.TYPE_ACTIVE;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_VOID;
+		};
+		this.dataArray[skillId] = skillData;
+		skillId++;
+
+		// ----------------------------------------------------------------
+		// ルールブレイク状態
+		// ----------------------------------------------------------------
+		SKILL_ID_RULE_BREAK = skillId;
+		skillData = new function() {
+			this.prototype = new CSkillData();
+			CSkillData.call(this);
+
+			this.id = skillId;
+			this.name = "(×)ルールブレイク状態";
+			this.kana = "ルウルフレイク";
+			this.maxLv = 1;
+			this.type = CSkillData.TYPE_ACTIVE;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_VOID;
+		};
+		this.dataArray[skillId] = skillData;
 		skillId++;		
+
 	}
 
 	// 初期化
