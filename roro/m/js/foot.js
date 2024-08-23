@@ -30911,7 +30911,7 @@ function Init(){
 	catch (err) {
 	}
 
-	OnClickBrowserMigrationSwitch();
+//	OnClickBrowserMigrationSwitch();
 
 	CItemInfoManager.RebuildControls();
 

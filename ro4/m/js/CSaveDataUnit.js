@@ -2646,7 +2646,14 @@ class CSaveDataUnitBase {
 		const argsMerged = [this.constructor.type, this.constructor.version].concat(args);
 
 		// 処理するプロパティの配列を取得
-		const propNames = this.constructor.propNames;
+		let propNames = this.constructor.propNames;
+
+		// 装備可能アイテムの場合
+		if (this.constructor.type == SAVE_DATA_UNIT_TYPE_EQUIPABLE) {
+			// 旧形式で存在していた上位 20 個 (タイプ値、バージョン番号、ヘッダで +5個) のプロパティを取り出す
+			// これにより 21 個目以降に追加されるプロパティは切り捨てられ後方互換性が保たれる
+			propNames = propNames.slice(0, 25);
+		}
 
 		// エラーチェック
 		// （データ形式の移行では全指定される想定）
@@ -2660,8 +2667,20 @@ class CSaveDataUnitBase {
 			// 情報取得
 			const propName = propNames[idx];
 			const propInfo = this.propInfoMap.get(propName);
-			const propBits = propInfo.bits;
+			let propBits = propInfo.bits;
 			let propValue = argsMerged[idx];
+
+			// 装備可能アイテムの場合
+			if (this.constructor.type == SAVE_DATA_UNIT_TYPE_EQUIPABLE) {
+				// 旧形式のセーブデータは必ず version 1 未満なので 1 に揃える
+				if (propName == CSaveDataConst.propNameVersion) {
+					propValue = 1;
+				}
+				// 旧形式のセーブデータのプロパティ数は 20 なので揃える
+				if (propName == CSaveDataConst.propNameParseCtrlFlag) {
+					propBits = 20;
+				}
+			}
 
 			// クエリ文字列に追記する
 			dataTextWork = this.#appendToDataText(dataTextWork, bitOffset, propValue, propBits);
@@ -3109,19 +3128,6 @@ const SAVE_DATA_UNIT_TYPE_EQUIPABLE = CSaveDataUnitTypeManager.register(
 			return nextOffset;
 		}
 
-		// オーバーライドされた convertFromOldFormat 関数
-		convertFromOldFormat (dataTextWork, bitOffset, ...args) {
-			return super.convertFromOldFormat(
-				dataTextWork,
-				bitOffset,
-				...args,
-				0 // version 2 : propNameTranscendenceCount を追加して length が +1 された分を args 末尾に足す
-			);
-			// 追加されたプロパティは OldFormat セーブデータに含まれないので付け足す値は 0 で構わない
-			// 継承元の関数のエラーを防ぐことだけが目的の意味の無い引数追加なので
-			// できればもっとスマートな方法を見出したい
-			// @usa
-		}
 
 		/**
 		 * 処理順に並んだプロパティ名（自身のプロパティのみ）.
