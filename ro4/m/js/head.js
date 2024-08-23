@@ -4623,6 +4623,7 @@ g_bUnknownCasts = true;
 			wbairitu *= n_A_BaseLV / 100;										// BaseLv補正
 			break;
 
+		// 「ハイパーノービス」スキル「ダブルボウリングバッシュ」
 		case SKILL_ID_DOUBLE_BOWLING_BASH:
 			g_bUnknownCasts = true;	// 詠唱時間など未計測フラグ
 			/*
@@ -4631,14 +4632,17 @@ g_bUnknownCasts = true;
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			*/
-			option_count = attackMethodConfArray[0].GetOptionValue(0);			// 巻き込み数補正
+			option_count = attackMethodConfArray[0].GetOptionValue(0);								// 巻き込み数補正
 			wHITsuu = [3,4,5][option_count];
-			wbairitu = 400 + (50 * n_A_ActiveSkillLV);							// 基礎倍率
-			wbairitu += 50 * UsedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU);		// 習得済みスキル条件
-			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);				// 特性ステータス補正
-			wbairitu *= n_A_BaseLV / 100;										// BaseLv補正
+			wbairitu = 400;																			// 基礎倍率
+			wbairitu += 3 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU);		// 習得済みスキル条件
+			wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_POW);									// 特性ステータス補正
+			wbairitu *= n_A_BaseLV / 100;															// BaseLv補正
+			wbairitu *= [100, 101, 103, 105, 107, 109, 111, 113, 115, 120, 125][UsedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU)] / 100;	// 独学補正
+			wbairitu *= [100, 150][UsedSkillSearch(SKILL_ID_BREAKING_LIMIT)] / 100;														// ブレイキングリミット補正
 			break;
 
+		// 「ハイパーノービス」スキル「メガソニックブロー」
 		case SKILL_ID_MEGA_SONIC_BLOW:
 			g_bUnknownCasts = true;	// 詠唱時間など未計測フラグ
 			/*
@@ -4647,10 +4651,14 @@ g_bUnknownCasts = true;
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			*/
-			wbairitu = 1550 + (150 * n_A_ActiveSkillLV);						// 基礎倍率
-			wbairitu += 50 * UsedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU);		// 習得済みスキル条件
-			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);				// 特性ステータス補正
-			wbairitu *= n_A_BaseLV / 100;										// BaseLv補正
+			// 分割ヒット数
+			wActiveHitNum = 8;
+			wbairitu = 1650 + (50 * n_A_ActiveSkillLV);												// 基礎倍率
+			wbairitu += 5 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU);		// 習得済みスキル条件
+			wbairitu += 4 * GetTotalSpecStatus(MIG_PARAM_ID_POW);									// 特性ステータス補正
+			wbairitu *= n_A_BaseLV / 100;															// BaseLv補正
+			wbairitu *= [100, 101, 103, 105, 107, 109, 111, 113, 115, 120, 125][UsedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU)] / 100;	// 独学補正
+			wbairitu *= [100, 150][UsedSkillSearch(SKILL_ID_BREAKING_LIMIT)] / 100;														// ブレイキングリミット補正
 			break;
 
 		// 「マイスター」スキル「スパークブラスター」
@@ -4948,6 +4956,188 @@ g_bUnknownCasts = true;
 			}
 			break;
 
+		// 「蜃気楼　不知火」スキル「影潜り」
+		case SKILL_ID_KAGEMOGURI:
+			// 詠唱時間等
+			g_bUnknownCasts = true;	// 詠唱時間など未計測フラグ
+			/*
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			*/
+			// 属性
+			n_A_Weapon_zokusei = g_skillManager.GetElement(battleCalcInfo.skillId);
+			// ダメージ倍率
+			wbairitu = 2500 + 500 * n_A_ActiveSkillLV;
+			// 特性ステータス補正
+			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+			// BaseLv補正
+			wbairitu *= n_A_BaseLV / 100;
+			break;
+
+		// 「蜃気楼　不知火」スキル「苦無 -歪曲-」
+		case SKILL_ID_KUNAI_WAIKYOKU:
+			// 遠距離フラグ
+			n_Enekyori = 1;
+			// 詠唱時間等
+			g_bUnknownCasts = true;	// 詠唱時間など未計測フラグ
+			/*
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			*/
+			// 属性
+			n_A_Weapon_zokusei = g_skillManager.GetElement(battleCalcInfo.skillId);
+			// ダメージ倍率
+			wbairitu = 1500 + 100 * n_A_ActiveSkillLV;
+			// 特性ステータス補正
+			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+			// TODO: 屈折の習得レベル補正
+			// xxx
+			// BaseLv補正
+			wbairitu *= n_A_BaseLV / 100;
+			break;
+
+		// 「蜃気楼　不知火」スキル「苦無 -回転-」
+		case SKILL_ID_KUNAI_KAITEN:
+			// 遠距離フラグ
+			n_Enekyori = 1;
+			// 詠唱時間等
+			g_bUnknownCasts = true;	// 詠唱時間など未計測フラグ
+			/*
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			*/
+			// 設置型
+			g_bDefinedDamageIntervals = true;
+			n_Delay[5] = 500;	// ダメージ間隔
+			n_Delay[6] = 2000;	// オブジェクト存続時間
+			// 属性
+			n_A_Weapon_zokusei = g_skillManager.GetElement(battleCalcInfo.skillId);
+			// ダメージ倍率
+			wbairitu = 1500 + 200 * n_A_ActiveSkillLV;
+			// 特性ステータス補正
+			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+			// TODO: 歪曲の習得レベル補正
+			// xxx
+			// BaseLv補正
+			wbairitu *= n_A_BaseLV / 100;
+			break;
+
+		// 「蜃気楼　不知火」スキル「苦無 -屈折-」
+		case SKILL_ID_KUNAI_KUSSETSU:
+			// 遠距離フラグ
+			n_Enekyori = 1;
+			// 詠唱時間等
+			g_bUnknownCasts = true;	// 詠唱時間など未計測フラグ
+			/*
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			*/
+			// 設置型
+			g_bDefinedDamageIntervals = true;
+			n_Delay[5] = 250;	// ダメージ間隔
+			n_Delay[6] = 2000;	// オブジェクト存続時間
+			// 属性
+			n_A_Weapon_zokusei = g_skillManager.GetElement(battleCalcInfo.skillId);
+			// ダメージ倍率
+			wbairitu = 50 * n_A_ActiveSkillLV;
+			// 特性ステータス補正
+			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+			// TODO: 回転の習得レベル補正
+			// xxx
+			// BaseLv補正
+			wbairitu *= n_A_BaseLV / 100;
+			break;
+
+		// 「蜃気楼　不知火」スキル「幻術 -苦無-」
+		case SKILL_ID_GENJUTSU_KUNAI:
+			// 遠距離フラグ
+			n_Enekyori = 1;
+			// 詠唱時間等
+			g_bUnknownCasts = true;	// 詠唱時間など未計測フラグ
+			/*
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			*/
+			// 属性
+			n_A_Weapon_zokusei = g_skillManager.GetElement(battleCalcInfo.skillId);
+			// ダメージ倍率
+			wbairitu = 13000;
+			// 特性ステータス補正
+			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+			// TODO: デバフ「悪夢」補正
+			// xxx
+			// BaseLv補正
+			wbairitu *= n_A_BaseLV / 100;
+			break;
+
+		// 「ハイパーノービス」スキル「シールドチェーンラッシュ」
+		case SKILL_ID_SHIELD_CHAIN_RUSH:
+			// 遠距離フラグ
+			n_Enekyori = 1;
+			// 分割ヒット数
+			wActiveHitNum = 5
+			// 詠唱時間等
+			g_bUnknownCasts = true;	// 詠唱時間など未計測フラグ
+			/*
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			*/
+			// 属性
+			n_A_Weapon_zokusei = g_skillManager.GetElement(battleCalcInfo.skillId);
+			wbairitu = 2150 + (150 * n_A_ActiveSkillLV);																				// 基礎倍率
+			wbairitu += 3 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU);											// 習得済みスキル条件
+			wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);																		// 特性ステータス補正
+			wbairitu *= n_A_BaseLV / 100;																								// BaseLv補正
+			wbairitu *= [100, 101, 103, 105, 107, 109, 111, 113, 115, 120, 125][UsedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU)] / 100;	// 独学補正
+			wbairitu *= [100, 150][UsedSkillSearch(SKILL_ID_BREAKING_LIMIT)] / 100;														// ブレイキングリミット補正
+			break;
+
+		// 「ハイパーノービス」スキル「スパイラルピアースマックス」
+		case SKILL_ID_SPIRAL_PIERCE_MAX:
+			// 遠距離フラグ
+			n_Enekyori = 1;
+			// 分割ヒット数
+			wActiveHitNum = 5			
+			// 詠唱時間等
+			g_bUnknownCasts = true;	// 詠唱時間など未計測フラグ
+			/*
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			*/
+			// 属性
+			n_A_Weapon_zokusei = g_skillManager.GetElement(battleCalcInfo.skillId);
+			wbairitu = 2900 + (150 * n_A_ActiveSkillLV);											// 基礎倍率
+			wbairitu += 3 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU);		// 習得済みスキル条件
+			switch (mobData[MONSTER_DATA_INDEX_SIZE]) {												// サイズ補正 (POWには掛からない)
+				case SIZE_ID_LARGE:
+					wbairitu *= 120;
+					break;
+				case SIZE_ID_MEDIUM:
+					wbairitu *= 130;
+					break;
+				case SIZE_ID_SMALL:
+					wbairitu *= 150;
+					break;
+			}
+			wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);																		// 特性ステータス補正
+			wbairitu *= n_A_BaseLV / 100;																								// BaseLv補正
+			wbairitu *= [100, 101, 103, 105, 107, 109, 111, 113, 115, 120, 125][UsedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU)] / 100;	// 独学補正
+			wbairitu *= [100, 150][UsedSkillSearch(SKILL_ID_BREAKING_LIMIT)] / 100;														// ブレイキングリミット補正
+			break;
 /*
 		case SKILL_ID_DUMMY:
 			// 使用武器制限
@@ -10295,6 +10485,7 @@ g_bDefinedDamageIntervals = true;
 			wHITsuu = 5;
 			break;
 
+		// 「ハイパーノービス」スキル「ユピテルサンダーストーム」
 		case SKILL_ID_JUPITER_THUNDER_STORM:
 			g_bUnknownCasts = true;	// 詠唱時間など未計測フラグ
 			/*
@@ -10304,11 +10495,14 @@ g_bDefinedDamageIntervals = true;
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			*/
 			wbairitu = 2700 + (150 * n_A_ActiveSkillLV);						// 基礎倍率
-			wbairitu += 50 * UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU);		// 習得済みスキル条件
+			wbairitu += 5 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU);		// 習得済みスキル条件
 			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);				// 特性ステータス補正
 			wbairitu *= n_A_BaseLV / 100;										// BaseLv補正
+			wbairitu *= [100,101,103,105,107,109,111,113,115,120,125][UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU)] / 100;	// 独学補正
+			wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK)] / 100;												// ルールブレイク補正
 			break;
 
+		// 「ハイパーノービス」スキル「ヘルズドライブ」
 		case SKILL_ID_HELLS_DRIVE:
 			g_bUnknownCasts = true;	// 詠唱時間など未計測フラグ
 			/*
@@ -10318,11 +10512,14 @@ g_bDefinedDamageIntervals = true;
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			*/
 			wbairitu = 2600 + (150 * n_A_ActiveSkillLV);						// 基礎倍率
-			wbairitu += 50 * UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU);		// 習得済みスキル条件
+			wbairitu += 5 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU);		// 習得済みスキル条件
 			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);				// 特性ステータス補正
 			wbairitu *= n_A_BaseLV / 100;										// BaseLv補正
+			wbairitu *= [100,101,103,105,107,109,111,113,115,120,125][UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU)] / 100;	// 独学補正
+			wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK)] / 100;												// ルールブレイク補正
 			break;
 
+		// 「ハイパーノービス」スキル「ナパームバルカンストライク」
 		case SKILL_ID_NAPALM_VULKAN_STRIKE:
 			g_bUnknownCasts = true;	// 詠唱時間など未計測フラグ
 			/*
@@ -10332,11 +10529,14 @@ g_bDefinedDamageIntervals = true;
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			*/
 			wbairitu = 2600 + (150 * n_A_ActiveSkillLV);						// 基礎倍率
-			wbairitu += 50 * UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU);		// 習得済みスキル条件
+			wbairitu += 5 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU);		// 習得済みスキル条件
 			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);				// 特性ステータス補正
 			wbairitu *= n_A_BaseLV / 100;										// BaseLv補正
+			wbairitu *= [100,101,103,105,107,109,111,113,115,120,125][UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU)] / 100;	// 独学補正
+			wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK)] / 100;												// ルールブレイク補正
 			break;
 
+		// 「ハイパーノービス」スキル「メテオストームバスター」
 		case SKILL_ID_METEOR_STORM_BUSTER:
 			g_bUnknownCasts = true;	// 詠唱時間など未計測フラグ
 			/*
@@ -10345,12 +10545,14 @@ g_bDefinedDamageIntervals = true;
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			*/
-			wHITsuu = [0,3,4,4,5,5,6,6,7,7,8][n_A_ActiveSkillLV];				// 多段ヒット数
-			wbairitu = 600;														// 基礎倍率
-			wbairitu += 600;													// 追撃ダメージ
-			wbairitu += 50 * UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU);		// 習得済みスキル条件
-			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);				// 特性ステータス補正
-			wbairitu *= n_A_BaseLV / 100;										// BaseLv補正
+			wHITsuu = [0,3,4,4,5,5,6,6,7,7,8][n_A_ActiveSkillLV];					// 多段ヒット数
+			wbairitu = 600;															// 基礎倍率
+			wbairitu += 600;														// 追撃ダメージ
+			wbairitu += 5 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU);			// 習得済みスキル条件
+			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);					// 特性ステータス補正
+			wbairitu *= n_A_BaseLV / 100;											// BaseLv補正
+			wbairitu *= [100,101,103,105,107,109,111,113,115,120,125][UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU)] / 100;	// 独学補正
+			wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK)] / 100;												// ルールブレイク補正
 			break;
 
 		/*
@@ -10474,6 +10676,67 @@ g_bDefinedDamageIntervals = true;
 			wbairitu = 11000;										// 基本倍率
 			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// spl補正
 			wbairitu *= n_A_BaseLV / 100;							// BaseLv補正
+			break;
+
+		// 「蜃気楼　不知火」スキル「影溶き」
+		case SKILL_ID_KAGETOKI:
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// ダメージ倍率
+			wbairitu = 3200 + 500 * n_A_ActiveSkillLV;
+			// 特性ステータス補正
+			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+			// BaseLv補正
+			wbairitu *= n_A_BaseLV / 100;
+			break;
+
+		// 「ハイパーノービス」スキル「ジャックフロストノヴァ」
+		case SKILL_ID_JACK_FROST_NOVA:
+			// 詠唱時間等
+			g_bUnknownCasts = true;	// 詠唱時間など未計測フラグ
+			/*
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			*/
+			// 設置型の場合
+			g_bDefinedDamageIntervals = true;
+			n_Delay[5] = 500;	// ダメージ間隔
+			n_Delay[6] = 3000;	// オブジェクト存続時間
+			//
+			wbairitu = 650 + (25 * n_A_ActiveSkillLV);							// 基礎倍率
+			wbairitu += 5 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU);		// 習得済みスキル条件
+			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);				// 特性ステータス補正
+			wbairitu *= n_A_BaseLV / 100;										// BaseLv補正
+			wbairitu *= [100,101,103,105,107,109,111,113,115,120,125][UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU)] / 100;	// 独学補正
+			wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK)] / 100;												// ルールブレイク補正
+			break;
+
+		// 「ハイパーノービス」スキル「グラウンドグラビテーション」
+		case SKILL_ID_GROUND_GRAVITATION:
+			// 詠唱時間等
+			g_bUnknownCasts = true;	// 詠唱時間など未計測フラグ
+			/*
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			*/
+			// 設置型の場合
+			g_bDefinedDamageIntervals = true;
+			n_Delay[5] = 500;	// ダメージ間隔
+			n_Delay[6] = 5000;	// オブジェクト存続時間
+			//
+			wbairitu = 300 + (10 * n_A_ActiveSkillLV);							// 基礎倍率
+			wbairitu += 5 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU);		// 習得済みスキル条件
+			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);				// 特性ステータス補正
+			wbairitu *= n_A_BaseLV / 100;										// BaseLv補正
+			wbairitu *= [100,101,103,105,107,109,111,113,115,120,125][UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU)] / 100;	// 独学補正
+			wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK)] / 100;												// ルールブレイク補正
 			break;
 
 /*
