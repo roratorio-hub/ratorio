@@ -2674,11 +2674,15 @@ class CSaveDataUnitBase {
 			if (this.constructor.type == SAVE_DATA_UNIT_TYPE_EQUIPABLE) {
 				// 旧形式のセーブデータは必ず version 1 未満なので 1 に揃える
 				if (propName == CSaveDataConst.propNameVersion) {
-					propValue = 1;
+					// バグのため一時コメントアウト
+					// 旧データのロード時だけでなく、最新データのセーブ時にもここを踏んでいる
+					// propValue = 1;
 				}
 				// 旧形式のセーブデータのプロパティ数は 20 なので揃える
 				if (propName == CSaveDataConst.propNameParseCtrlFlag) {
-					propBits = 20;
+					// バグのため一時コメントアウト
+					// セーブ時にここが 20 bit になってしまうと末尾に追加した TranscendenceCount が切り捨てられてしまう
+					// propBits = 20;
 				}
 			}
 
