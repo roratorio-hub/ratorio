@@ -3726,20 +3726,16 @@ function VersionModify(saveDataArray) {
 
 		// セーブデータ補正なし
 
-
-
-
 	}
-
-
 
 	return saveDataArray;
 }
 
 
-
-
-
+/**
+ * 避難所の安定版に存在した「ロード」ボタンから呼び出される関数
+ * もう使うことはない
+ */
 function LoadButton(){
 
 	with(document.calcForm){
@@ -3756,10 +3752,12 @@ function LoadButton(){
 }
 
 
-
-
-
-
+/**
+ * 旧バージョンのロード処理
+ * もう使うことは無い
+ * @param {} strUrl 
+ * @returns 
+ */
 function URLIN(strUrl){
 
 	var splittedArray = null;
@@ -3830,6 +3828,8 @@ function AdaptSaveDataStrSize(saveDataStrExtracted) {
 
 /**
  * ＵＲＬ文字列からデータを復元する.
+ * 旧バージョンのロード処理で使われていた関数
+ * もう使われることはない
  */
 function DecodeUrl(loadDataUrl){
 
@@ -5539,7 +5539,11 @@ function StoN2(n){
 
 
 
-
+/**
+ * 旧バージョンのロード処理
+ * もう使うことは無い
+ * @usa
+ */
 function OnClickUrlIn() {
 
 // 今後の仕様変更用に、検証処理自体は残しておく
@@ -5549,14 +5553,9 @@ if (_MAGIC_CALC_INSPECTION) {
 	return;
 }
 */
-
-
-
 	var strUrl = "";
 	strUrl = HtmlGetObjectValueById("OBJID_URL_IN", "");
-
 	URLIN(strUrl);
-
 }
 
 

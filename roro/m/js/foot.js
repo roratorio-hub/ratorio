@@ -30586,16 +30586,6 @@ if (true) {
 }
 
 
-
-
-
-
-
-CalcStatusPoint(true);
-calc();
-
-
-
 function LoadSaveDataToCalculator () {
 
 	var idx = 0;
@@ -30620,7 +30610,7 @@ function LoadSaveDataToCalculator () {
 if (document.getElementById("OBJID_SAVE_BLOCK_MIG")) {
 	CSaveController.LoadFromLocalStorageMIG();
 
-	// セーブ選択セレクトボックスの初期化
+	// 画面上部セーブ選択セレクトボックスの初期化
 	const objSelect = document.getElementById("OBJID_SELECT_SAVE_DATA_MIG");
 	HtmlRemoveAllChild(objSelect)
 	for (let idx = 0; idx < CSaveController.CHARA_DATA_COUNT; idx++) {
@@ -30632,15 +30622,25 @@ else {
 	LoadSaveDataToCalculator();
 }
 
+// 旧形式のロード処理はコメントアウト
+//URLIN(location.href);
 
-URLIN(location.href);
+/**
+ * 新形式を前提としたロード処理
+ * 初代の a 形式
+ * 避難所の b 形式
+ * Hub の c 形式
+ * どれも読み込めることを確認
+ */
+let splittedArray = location.href.split("?");
+if (splittedArray.length == 2) {
+	CSaveController.loadFromURL(splittedArray[1]);
+	CItemInfoManager.OnClickExtractSwitch();
+}
 
-
-
-
-
-
-
+// 再計算
+CalcStatusPoint(true);
+calc();
 
 function Init(){
 
@@ -31014,12 +31014,3 @@ function OnClickSimulateCastTimeStop(castTime, delayTime) {
 	objInput.setAttribute("value", "詠唱!!");
 	objInput.setAttribute("onClick", "OnClickSimulateCastTimeStart(" + castTime + ", " + delayTime + ")");
 }
-
-
-
-
-
-
-
-
-
