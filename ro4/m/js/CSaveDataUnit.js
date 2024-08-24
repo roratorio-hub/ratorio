@@ -2491,6 +2491,8 @@ class CSaveDataUnitBase {
 	 * @throws {Error} 変換中に異常が検出された場合
 	 */
 	encodeToURL (dataTextWork, bitOffset) {
+		// この関数はセーブ時のみ呼ばれる
+		// ロード時には呼ばれない
 
 		// データユニットのコンパクションを実行
 		this.doCompaction();
@@ -2555,7 +2557,7 @@ class CSaveDataUnitBase {
 			propNameCountMap.set(propName, propNameReadCount + 1);
 
 			// クエリ文字列に追記する
-			dataTextWork = this.#appendToDataText(dataTextWork, bitOffset, propValue, propBits);
+			dataTextWork = this.appendToDataText(dataTextWork, bitOffset, propValue, propBits);
 
 			// ビットオフセットを更新
 			bitOffset += propBits;
@@ -2575,7 +2577,7 @@ class CSaveDataUnitBase {
 	 * @param {int} propBits プロパティのビット数
 	 * @returns {string} 処理後の dataTextWork
 	 */
-	#appendToDataText (dataTextWork, bitOffset, propValue, propBits) {
+	appendToDataText (dataTextWork, bitOffset, propValue, propBits) {
 
 		// BitIntにキャストしておく
 		propValue = BigInt(propValue);
@@ -2641,61 +2643,29 @@ class CSaveDataUnitBase {
 	 * @param {...any} args 可変長の旧形式のデータ引数（残余引数）
 	 */
 	convertFromOldFormat (dataTextWork, bitOffset, ...args) {
-
 		// 受け取った残余引数の前に、タイプ値とバージョン番号を追加する
 		const argsMerged = [this.constructor.type, this.constructor.version].concat(args);
-
 		// 処理するプロパティの配列を取得
-		let propNames = this.constructor.propNames;
-
-		// 装備可能アイテムの場合
-		if (this.constructor.type == SAVE_DATA_UNIT_TYPE_EQUIPABLE) {
-			// 旧形式で存在していた上位 20 個 (タイプ値、バージョン番号、ヘッダで +5個) のプロパティを取り出す
-			// これにより 21 個目以降に追加されるプロパティは切り捨てられ後方互換性が保たれる
-			propNames = propNames.slice(0, 25);
-		}
-
+		const propNames = this.constructor.propNames;
 		// エラーチェック
 		// （データ形式の移行では全指定される想定）
 		if (propNames.length != argsMerged.length) {
 			throw new Error("Count of arguments is not equal to count of properties.");
 		}
-
 		// すべてのプロパティを処理する
 		for (let idx = 0; idx < propNames.length; idx++) {
-
 			// 情報取得
 			const propName = propNames[idx];
 			const propInfo = this.propInfoMap.get(propName);
-			let propBits = propInfo.bits;
-			let propValue = argsMerged[idx];
-
-			// 装備可能アイテムの場合
-			if (this.constructor.type == SAVE_DATA_UNIT_TYPE_EQUIPABLE) {
-				// 旧形式のセーブデータは必ず version 1 未満なので 1 に揃える
-				if (propName == CSaveDataConst.propNameVersion) {
-					// バグのため一時コメントアウト
-					// 旧データのロード時だけでなく、最新データのセーブ時にもここを踏んでいる
-					// propValue = 1;
-				}
-				// 旧形式のセーブデータのプロパティ数は 20 なので揃える
-				if (propName == CSaveDataConst.propNameParseCtrlFlag) {
-					// バグのため一時コメントアウト
-					// セーブ時にここが 20 bit になってしまうと末尾に追加した TranscendenceCount が切り捨てられてしまう
-					// propBits = 20;
-				}
-			}
-
+			const propBits = propInfo.bits;
+			const propValue = argsMerged[idx];
 			// クエリ文字列に追記する
-			dataTextWork = this.#appendToDataText(dataTextWork, bitOffset, propValue, propBits);
-
+			dataTextWork = this.appendToDataText(dataTextWork, bitOffset, propValue, propBits);
 			// ビットオフセットを更新
 			bitOffset += propBits;
 		}
-
 		// データユニットが中途半端なところで終わらないようパディングする
 		bitOffset = Math.ceil(bitOffset / this.letterBits) * this.letterBits;
-
 		return [dataTextWork, bitOffset];
 	}
 
@@ -3132,7 +3102,6 @@ const SAVE_DATA_UNIT_TYPE_EQUIPABLE = CSaveDataUnitTypeManager.register(
 			return nextOffset;
 		}
 
-
 		/**
 		 * 処理順に並んだプロパティ名（自身のプロパティのみ）.
 		 */
@@ -3173,8 +3142,6 @@ const SAVE_DATA_UNIT_TYPE_EQUIPABLE = CSaveDataUnitTypeManager.register(
 			return super.propNames.concat(this.#propNamesSelf);
 		}
 
-
-
 		/**
 		 * コンストラクタ.
 		 */
@@ -3210,8 +3177,6 @@ const SAVE_DATA_UNIT_TYPE_EQUIPABLE = CSaveDataUnitTypeManager.register(
 			this.registerPropInfo(CSaveDataConst.propNameTranscendenceCount, 3);	// version 2 で追加
 		}
 
-
-
 		/**
 		 * データのコンパクション（不要データの削除）を行う.
 		 * （継承先でオーバーライドして個別の処理を追加する）
@@ -3230,6 +3195,65 @@ const SAVE_DATA_UNIT_TYPE_EQUIPABLE = CSaveDataUnitTypeManager.register(
 			// 共用の判定処理を利用
 			return this.isEmptyUnit_CtrlFlag0();
 		}
+
+		/**
+		 * オーバーライドされたメソッド
+		 * 旧形式のデータとして与えられる args を当ユニットのプロパティに合わせて
+		 * 新形式の文字列表現セーブデータ(dataTextWork)として出力する
+		 * このメソッドは「新形式セーブ時」と「旧形式ロード時」のそれぞれから呼び出される
+		 */
+		convertFromOldFormat (dataTextWork, bitOffset, ...args) {
+			// 受け取った残余引数の前に、タイプ値とバージョン番号を追加する
+			const argsMerged = [this.constructor.type, this.constructor.version].concat(args);
+			// 処理するプロパティの配列を取得
+			const propNames = this.constructor.propNames;
+			// すべてのプロパティを処理する
+			for (let idx = 0; idx < propNames.length; idx++) {
+				// 情報取得
+				const propName = propNames[idx];
+				const propInfo = this.propInfoMap.get(propName);
+				let propBits = propInfo.bits;
+				let propValue = argsMerged[idx];
+
+				/**
+				 * 後方互換性確保
+				 */
+				if (idx == 25) {
+					break;	// version 1 時点で存在した上位 25 個の処理が完了したら終了する
+				}
+				if (propName == CSaveDataConst.propNameVersion) {
+					propValue = 1;	// 旧形式のセーブデータは必ず version 1 未満なので 1 に揃える
+				}
+				if (propName == CSaveDataConst.propNameParseCtrlFlag) {
+					propBits = 20;	// 旧形式のセーブデータのプロパティ数は 20 なので揃える
+				}
+
+				// クエリ文字列に追記する
+				dataTextWork = this.appendToDataText(dataTextWork, bitOffset, propValue, propBits);
+				// ビットオフセットを更新
+				bitOffset += propBits;
+			}
+			// データユニットが中途半端なところで終わらないようパディングする
+			bitOffset = Math.ceil(bitOffset / this.letterBits) * this.letterBits;
+			return [dataTextWork, bitOffset];
+		}
+
+		/**
+		 * オーバーライドされたメソッド
+		 * インスタンスを新形式のセーブデータ文字列に変換する
+		 * このメソッドはセーブ時のみ呼び出される
+		 */
+		encodeToURL (dataTextWork, bitOffset) {
+			// バージョンを修正
+			this.parsedMap.set(CSaveDataConst.propNameVersion, this.constructor.version);
+			// コントロールフラグを修正
+			const prop = new CSaveDataPropInfo(CSaveDataConst.propNameParseCtrlFlag, this.propInfoMap.size - 5);	// ヘッダ長 5
+			this.propInfoMap.delete(CSaveDataConst.propNameParseCtrlFlag);
+			this.propInfoMap.set(CSaveDataConst.propNameParseCtrlFlag, prop);
+
+			return super.encodeToURL(dataTextWork, bitOffset);
+		}
+		
 	}
 );
 
