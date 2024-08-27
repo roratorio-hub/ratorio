@@ -35,12 +35,28 @@ $(function () {
 .col.memo {
   width: unset;
   text-align: left;
-  padding-left: 1rem;
+  padding: unset;
+}
+.col.action {
+  width: 4.5rem;
+  padding-right: unset;
+}
+.clip_memo {
+  width: 100%;
+}
+div.clip_memo {
+  cursor: pointer;
+  min-height: 1.5rem;
 }
 </style>
 <div id="clip_modal" class="modal">
   <table id="clip_modal_table">
-    <thead><tr><th class="col no">No.</th><th class="col">DPS</th><th class="col">確殺</th><th class="col memo">メモ</th></thead>
+    <thead><tr>
+        <th class="col no">No.</th><th class="col">DPS</th>
+        <th class="col">確殺</th>
+        <th class="col memo">メモ</th>
+        <th class="col action"></th>
+    </tr></thead>
     <tbody></tbody>
   </table>
 </div>
@@ -147,13 +163,76 @@ $(function () {
       chart.update();
     });
     $("#history_list").click(e => {
+      $("#history_graph").insertBefore("#clip_modal_table");
+      reload_history_table();
+      $("#clip_modal").modal();
+    });
+    const flip_clip = (i, j) => {
+      [data.datasets[0].data[i], data.datasets[0].data[j]] =
+        [data.datasets[0].data[j], data.datasets[0].data[i]];
+      [data.datasets[0].metadata[i], data.datasets[0].metadata[j]] =
+        [data.datasets[0].metadata[j], data.datasets[0].metadata[i]];
+      [data.datasets[1].data[i], data.datasets[1].data[j]] =
+        [data.datasets[1].data[j], data.datasets[1].data[i]];
+    }
+    const reload_history_table = () => {
       $("#clip_modal_table tbody *").remove();
       body = ""
-      for (i=0; i<data.labels.length; i++) {
-        body += `<tr><td class="col no">${data.labels[i].toLocaleString()}</td><td class="col">${data.datasets[0].data[i].toLocaleString()}</td><td class="col">${data.datasets[1].data[i].toLocaleString()}</td><td class="col memo">${data.datasets[0].metadata[i].memo}</td></tr>`;
+      for (i = 0; i < data.labels.length; i++) {
+        body += `<tr>
+                  <td class="col no">${data.labels[i].toLocaleString()}</td>
+                  <td class="col">${data.datasets[0].data[i].toLocaleString()}</td>
+                  <td class="col">${data.datasets[1].data[i].toLocaleString()}</td>
+                  <td class="col memo"><div class="clip_memo">${data.datasets[0].metadata[i].memo}</div><input type="text" class="clip_memo" style="display:none;" value="${data.datasets[0].metadata[i].memo}"></td>
+                  <td class="col action"><button class="up_clip" ${i==0?"disabled":""}>↑</button><button class="down_clip"${i==data.labels.length-1?"disabled":""}>↓</button><button class="remove_clip">×</button></td>
+                </tr>`;
       }
       $("#clip_modal_table tbody").append(body);
-      $("#clip_modal").modal();
+    }
+    $(document).on("click", "div.clip_memo", (e) => {
+      $(e.target).toggle();
+      $(e.target).next("input").toggle().focus();
+    });
+    $(document).on("change", "input.clip_memo", (e) => {
+      const index = e.target.closest("tr").rowIndex - 1;
+      data.datasets[0].metadata[index]["memo"] = e.target.value;
+      chart.update();
+      reload_history_table();
+    });
+    $(document).on("blur", "input.clip_memo", (e) => {
+      $(e.target).toggle();
+      $(e.target).prev("div").toggle();
+    });
+    $(document).on("click", ".up_clip", (e) => {
+      const row = e.target.closest("tr");
+      if (row.previousElementSibling) {
+        const index = row.rowIndex - 1;
+        flip_clip(index, index - 1);
+        chart.update();
+        reload_history_table();
+      }
+    });
+    $(document).on("click", ".down_clip", (e) => {
+      const row = e.target.closest("tr");
+      if (row.nextElementSibling) {
+        const index = row.rowIndex - 1;
+        flip_clip(index, index + 1);
+        chart.update();
+        reload_history_table();
+      }
+    });
+    $(document).on("click", ".remove_clip", (e) => {
+      const row = e.target.closest("tr");
+      const index = row.rowIndex - 1;
+      data.labels.pop();
+      data.datasets[0].data.splice(index, 1);
+      data.datasets[0].metadata.splice(index, 1);
+      data.datasets[1].data.splice(index, 1);
+      chart.update();
+      reload_history_table();
+    });
+    $("#clip_modal").on("modal:before-close", () => {
+      $("#history_graph").appendTo("#history_container");
     });
   };
   buildForm();
