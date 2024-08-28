@@ -265,6 +265,7 @@
 	TIME_ITEM_ID_ENCHANT_GOKETSU_SENZAI_KAIHO_INQUISITOR_2 = 262;
 	TIME_ITEM_ID_CHOTOTSU_MOUSHIN = 269;
 	TIME_ITEM_ID_TRIANGLE_DISASTER = 275;
+	TIME_ITEM_ID_FLUSH_DETECT_STAFF = 276;
 
 	ITEM_SP_TIME_OBJ = [
 		[0,"装備/カードの時限性補助効果+NPC支援+期間限定","なし",[[0,0]],0],
@@ -560,5 +561,7 @@
 	ITEM_SP_TIME_OBJ_SORT.push(274);
 	ITEM_SP_TIME_OBJ[275] = [275,"トライアングルディザスター","アンリミット状態",[[1,4654]],0];
 	ITEM_SP_TIME_OBJ_SORT.push(275);
+	ITEM_SP_TIME_OBJ[276] = [276,"フラッシュディテクトスタッフ","地属性魔法攻撃で与えるダメージ + 50%",[[1,5264]],342,50,0];
+	ITEM_SP_TIME_OBJ_SORT.push(276);
 
 })();
