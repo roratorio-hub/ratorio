@@ -3092,7 +3092,7 @@ g_bDefinedDamageIntervals = true;
 			n_Enekyori = 0;
 
 			// 基本倍率
-			wbairitu = 650 + (50 * n_A_ActiveSkillLV);
+			wbairitu = 1500 + (300 * n_A_ActiveSkillLV);
 
 			// CON補正
 			wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
