@@ -23,6 +23,8 @@ capabilities:
     code: 19
   - name: 遠距離ダメージ増加
     code: 25
+  - name: 近距離ダメージ増加
+    code: 210
   - name: 小型への物理ダメージ増加
     code: 27
   - name: 中型への物理ダメージ増加
