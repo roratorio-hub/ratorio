@@ -103,4 +103,13 @@ $(function(){
       $('.modal-container').removeClass('active');
     }
   });
+  if (CSaveController.isAvailableBrowserStorage(CSaveController.STORAGE_TYPE_LOCALSTORAGE)) {
+    const save_updated = localStorage.getItem("last_updated") || "";
+    if (save_updated < last_updated) {
+      const information = `../../information/history/${last_updated.replaceAll("/","").split(" ")[0]}.html`;
+      $('.modal-container iframe').attr("src", information);
+      $('.modal-container').toggleClass("active");
+    }
+    localStorage.setItem("last_updated", last_updated);
+  }
 })
