@@ -4425,7 +4425,7 @@ g_bUnknownCasts = true;
 
 			if (UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0 || UsedSkillSearch(SKILL_ID_NYANTOMO_TEKKO) > 0) {
 				// 基礎倍率
-				wbairitu = 4350 + (450 * n_A_ActiveSkillLV);
+				wbairitu = 3000 + (500 * n_A_ActiveSkillLV);
 			} else {
 				// 基礎倍率
 				wbairitu = 3050 + (350 * n_A_ActiveSkillLV);
@@ -10573,7 +10573,7 @@ g_bDefinedDamageIntervals = true;
 			};
 			if (UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0 || UsedSkillSearch(SKILL_ID_NYANTOMO_KENROKU) > 0) {
 				// 基礎倍率
-				wbairitu = 4800 + (600 * n_A_ActiveSkillLV);
+				wbairitu = 5200 + (800 * n_A_ActiveSkillLV);
 				// スピリットマスタリー補正
 				wbairitu += 250 * UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY);
 			} else {
