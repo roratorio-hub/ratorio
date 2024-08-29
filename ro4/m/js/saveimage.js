@@ -34,10 +34,14 @@ $(function () {
     const equip_id = t("#DATA_" + selector);
     const equip_name = equip_id == 0 ? "-" : ItemObjNew[equip_id][8];
     const refined = v(`#${selector}_REFINE`);
+    const transcendence = v(`#${selector}_TRANSCENDENCE`);
 
     let text = "";
     if (refined != 0) {
       text += `+${refined} `;
+    }
+    if (transcendence != 0) {
+      text += `[★${transcendence}] `;
     }
     text += equip_name + " ( ";
     enchants = [];
@@ -92,7 +96,7 @@ $(function () {
     return text;
   }
 
-  $("#save_image").click(function () {
+  $("#OBJID_BUTTON_IMAGE_SAVE_DATA_MIG").click(function () {
     regist_elm_vanity = [];
     elm_ratio = [];
     regist_ratio = [];
