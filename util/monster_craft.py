@@ -74,6 +74,8 @@ SIZE_ID = {
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
 csv_file_path = f"{script_dir}/monster.csv"
+out_file_path = f"{script_dir}/output_monster.js"
+result_array = []
 
 ID = getLatestMonsterId()
 kks = kakasi()
@@ -126,5 +128,9 @@ with open(csv_file_path, 'r', encoding='utf-8', newline='') as file:
         result += f","                                      # 40: MDEF_DIV_IGNORE_BUFF
         result += "],"
 
-        print(result)
+        result_array.append(result)
 
+with open(out_file_path, "w", encoding="UTF-8") as f:
+    for result in result_array:
+        f.write(result)
+        f.write("\n")
