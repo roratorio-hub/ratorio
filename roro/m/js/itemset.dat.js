@@ -4860,24 +4860,6 @@
 	w_SE[2490] = [4966,-2311,5083];
 	w_SE[2491] = [4966,-2311,5084];
 	w_SE[2492] = [4966,-2311,5085];
-	/* アイテム ID 5070 - 5085 廃止につきコメントアウト　
-	ItemIdToSetIdMap[5070] = [2477];
-	ItemIdToSetIdMap[5071] = [2478];
-	ItemIdToSetIdMap[5072] = [2479];
-	ItemIdToSetIdMap[5073] = [2480];
-	ItemIdToSetIdMap[5074] = [2481];
-	ItemIdToSetIdMap[5075] = [2482];
-	ItemIdToSetIdMap[5076] = [2483];
-	ItemIdToSetIdMap[5077] = [2484];
-	ItemIdToSetIdMap[5078] = [2485];
-	ItemIdToSetIdMap[5079] = [2486];
-	ItemIdToSetIdMap[5080] = [2487];
-	ItemIdToSetIdMap[5081] = [2488];
-	ItemIdToSetIdMap[5082] = [2489];
-	ItemIdToSetIdMap[5083] = [2490];
-	ItemIdToSetIdMap[5084] = [2491];
-	ItemIdToSetIdMap[5085] = [2492];
-	*/
 	// --- 2024/01/16追加品 ---
 	w_SE[2493] = [-2905,-2904,-1348,];	// 潜在解放(スピリットハンドラーII)
 	CardIdToSetIdMap[2904] = [2493,];
@@ -4983,27 +4965,6 @@
 	w_SE[2559] = [5057, 5123,-2662];
 	w_SE[2560] = [5097, 5124,-2662];
 	w_SE[2561] = [5100, 5125,-2662];
-	/* アイテム ID 5107 - 5125 廃止につきコメントアウト
-	ItemIdToSetIdMap[5107] = [2524,2543];
-	ItemIdToSetIdMap[5108] = [2525,2544];
-	ItemIdToSetIdMap[5109] = [2526,2545];
-	ItemIdToSetIdMap[5110] = [2527,2546];
-	ItemIdToSetIdMap[5111] = [2528,2547];
-	ItemIdToSetIdMap[5112] = [2529,2548];
-	ItemIdToSetIdMap[5113] = [2530,2549];
-	ItemIdToSetIdMap[5114] = [2531,2550];
-	ItemIdToSetIdMap[5115] = [2532,2551];
-	ItemIdToSetIdMap[5116] = [2533,2552];
-	ItemIdToSetIdMap[5117] = [2534,2553];
-	ItemIdToSetIdMap[5118] = [2535,2554];
-	ItemIdToSetIdMap[5119] = [2536,2555];
-	ItemIdToSetIdMap[5120] = [2537,2556];
-	ItemIdToSetIdMap[5121] = [2538,2557];
-	ItemIdToSetIdMap[5122] = [2539,2558];
-	ItemIdToSetIdMap[5123] = [2540,2559];
-	ItemIdToSetIdMap[5124] = [2541,2560];
-	ItemIdToSetIdMap[5125] = [2542,2561];
-	*/
 	// 超越ロイヤル 廃止済みですが w_SE がブランクになるとエラーになるので欠番として残してあります
 	w_SE[2563] = [-1913,-1911,5126];
 	w_SE[2564] = [-1912,-1911,5127];
@@ -5019,22 +4980,6 @@
 	w_SE[2574] = [-1912,-1911,5137];
 	w_SE[2575] = [-1912,-1911,5138];
 	w_SE[2576] = [-1912,-1911,5139];
-	/* アイテムID 5126 - 5139 廃止につき逆引きテーブルをコメントアウト
-	ItemIdToSetIdMap[5126] = [2563];
-	ItemIdToSetIdMap[5127] = [2564];
-	ItemIdToSetIdMap[5128] = [2565];
-	ItemIdToSetIdMap[5129] = [2566];
-	ItemIdToSetIdMap[5130] = [2567];
-	ItemIdToSetIdMap[5131] = [2568];
-	ItemIdToSetIdMap[5132] = [2569];
-	ItemIdToSetIdMap[5133] = [2570];
-	ItemIdToSetIdMap[5134] = [2571];
-	ItemIdToSetIdMap[5135] = [2572];
-	ItemIdToSetIdMap[5136] = [2573];
-	ItemIdToSetIdMap[5137] = [2574];
-	ItemIdToSetIdMap[5138] = [2575];
-	ItemIdToSetIdMap[5139] = [2576];
-	*/
 	// 宮廷魔術師 グループ2 対象アイテム 廃止済みですが w_SE がブランクになるとエラーになるので欠番として残してあります
 	w_SE[2577] = [-1912,-1911,5140];
 	w_SE[2578] = [-1913,-1911,5141];
@@ -5044,16 +4989,6 @@
 	w_SE[2582] = [-1912,-1911,5145];
 	w_SE[2583] = [-1912,-1911,5146];
 	w_SE[2584] = [-1912,-1911,5147];
-	/* アイテムID 5140 - 5147 廃止につき逆引きテーブルをコメントアウト
-	ItemIdToSetIdMap[5140] = [2577];
-	ItemIdToSetIdMap[5141] = [2578];
-	ItemIdToSetIdMap[5142] = [2579];
-	ItemIdToSetIdMap[5143] = [2580];
-	ItemIdToSetIdMap[5144] = [2581];
-	ItemIdToSetIdMap[5145] = [2582];
-	ItemIdToSetIdMap[5146] = [2583];
-	ItemIdToSetIdMap[5147] = [2584];
-	*/
 	// 旧パッケ超越第一弾 廃止済みですが w_SE がブランクになるとエラーになるので欠番として残してあります
 	w_SE[2585] = [3121,5148,-424];
 	w_SE[2586] = [4232,4231,5148];
@@ -5075,15 +5010,6 @@
 	w_SE[2602] = [4234,5157,-1361];
 	w_SE[2603] = [4683,4681,5157];
 	w_SE[2604] = [4232,5157,5148];
-	/* アイテムID 5148 - 5157 廃止につき逆引きテーブルをコメントアウト
-	ItemIdToSetIdMap[5148] = [2585,2586,2587,2604];
-	ItemIdToSetIdMap[5149] = [2588,2589,2590,2591];
-	ItemIdToSetIdMap[5150] = [2592,2593];
-	ItemIdToSetIdMap[5151] = [2594];
-	ItemIdToSetIdMap[5154] = [2595];
-	ItemIdToSetIdMap[5156] = [2596,2597,2598,2599];
-	ItemIdToSetIdMap[5157] = [2600,2601,2602,2603,2604];
-	*/
 	// --- 超越・思念体武器 廃止済みですが w_SE がブランクになるとエラーになるので欠番として残してあります ---
 	w_SE[2605] = [4081,4080,5158];
 	w_SE[2606] = [-2089,-2088,5158];
@@ -5121,21 +5047,6 @@
 	w_SE[2638] = [4050,4049,5170];
 	w_SE[2639] = [-2089,-2088,5170];
 	w_SE[2640] = [-2659,-2658,5170];
-	/* アイテムID 5158 - 5170 廃止につき逆引きテーブルをコメントアウト
-	ItemIdToSetIdMap[5158] = [2605,2606,2607];
-	ItemIdToSetIdMap[5159] = [2608,2609,2610];
-	ItemIdToSetIdMap[5160] = [2611,2612];
-	ItemIdToSetIdMap[5161] = [2613,2614,2615];
-	ItemIdToSetIdMap[5162] = [2616,2617,2618];
-	ItemIdToSetIdMap[5163] = [2619,2620,2621];
-	ItemIdToSetIdMap[5164] = [2622,2623,2624];
-	ItemIdToSetIdMap[5165] = [2625,2626,2627];
-	ItemIdToSetIdMap[5166] = [2628,2629,2630];
-	ItemIdToSetIdMap[5167] = [2631,2632,2633];
-	ItemIdToSetIdMap[5168] = [2634,2635];
-	ItemIdToSetIdMap[5169] = [2636,2637];
-	ItemIdToSetIdMap[5170] = [2638,2639,2640];
-	*/
 	// --- 2024/2/13 ラグ缶 ---
 	w_SE[2641] = [-2970,-2969,-1348,];
 	CardIdToSetIdMap[2969] = [2641,];
@@ -5153,57 +5064,18 @@
 	w_SE[2647] = [-2980,-2979,-1348,];
 	CardIdToSetIdMap[2979] = [2647,];
 	// --- 逆参照のメンテナンス ---
-	/* 超越アイテムセット w_SE 2524 - 2561, 2563 - 2640 の廃止に伴いコメントアウト 
-	ItemIdToSetIdMap[3120] = ItemIdToSetIdMap[3120].concat([2600]);
-	ItemIdToSetIdMap[3976] = ItemIdToSetIdMap[3976].concat([2588]);
-	ItemIdToSetIdMap[4039] = ItemIdToSetIdMap[4039].concat([2625]);
-	ItemIdToSetIdMap[4049] = ItemIdToSetIdMap[4049].concat([2638]);
-	ItemIdToSetIdMap[4072] = ItemIdToSetIdMap[4072].concat([2628, 2631]);      
-	ItemIdToSetIdMap[4080] = ItemIdToSetIdMap[4080].concat([2605, 2622]);      
-	ItemIdToSetIdMap[4106] = ItemIdToSetIdMap[4106].concat([2589]);
-	ItemIdToSetIdMap[4124] = ItemIdToSetIdMap[4124].concat([2616]);
-	ItemIdToSetIdMap[4231] = ItemIdToSetIdMap[4231].concat([2586]);
-	*/
 	ItemIdToSetIdMap[4235] = ItemIdToSetIdMap[4235].concat([2496, 2497, 2498]);
-	/*
-	ItemIdToSetIdMap[4253] = ItemIdToSetIdMap[4253].concat([2608, 2619]);      
-	ItemIdToSetIdMap[4259] = ItemIdToSetIdMap[4259].concat([2613]);
-	ItemIdToSetIdMap[4359] = ItemIdToSetIdMap[4359].concat([2590]);
-	ItemIdToSetIdMap[4681] = ItemIdToSetIdMap[4681].concat([2587, 2603]);      
-	*/
 	ItemIdToSetIdMap[4877] = [2457];
-	/*
-	ItemIdToSetIdMap[4936] = ItemIdToSetIdMap[4936].concat([2591]);
-	CardIdToSetIdMap[46] = CardIdToSetIdMap[46].concat([2595]);
-	CardIdToSetIdMap[166] = CardIdToSetIdMap[166].concat([2592]);
-	CardIdToSetIdMap[424] = CardIdToSetIdMap[424].concat([2585]);
-	CardIdToSetIdMap[609] = CardIdToSetIdMap[609].concat([2596]);
-	CardIdToSetIdMap[610] = CardIdToSetIdMap[610].concat([2597]);
-	CardIdToSetIdMap[611] = CardIdToSetIdMap[611].concat([2599]);
-	CardIdToSetIdMap[612] = CardIdToSetIdMap[612].concat([2598]);
-	CardIdToSetIdMap[750] = CardIdToSetIdMap[750].concat([2594]);
-	*/
-	CardIdToSetIdMap[1245] = CardIdToSetIdMap[1245].concat([2391, 2393, 2396, 2397, 2402, 2404, 2405, 2406, 2414, 2419, 2424, 2425, 2429, 2430, 2434, 2441, 2442, 2443, 2447, 2451, 2452, 2494, 2500, 2501, 2508, 2509, 2511, 2514, 2562, /*2601,*/ 2645]);
+	CardIdToSetIdMap[1245] = CardIdToSetIdMap[1245].concat([2391, 2393, 2396, 2397, 2402, 2404, 2405, 2406, 2414, 2419, 2424, 2425, 2429, 2430, 2434, 2441, 2442, 2443, 2447, 2451, 2452, 2494, 2500, 2501, 2508, 2509, 2511, 2514, 2562, 2645]);
 	CardIdToSetIdMap[1348] = CardIdToSetIdMap[1348].concat([2392, 2394, 2395, 2398, 2399, 2400, 2401, 2403, 2407, 2408, 2409, 2410, 2411, 2412, 2413, 2415, 2416, 2417, 2418, 2420, 2421, 2422, 2423, 2426, 2427, 2428, 2431, 2432, 2433, 2435, 2436, 2437, 2438, 2439, 2440, 2444, 2445, 2446, 2448, 2449, 2450, 2453, 2454, 2455, 2456, 2471, 2472, 2493, 2499, 2502, 2507, 2510, 2512, 2513, 2515, 2516, 2517, 2518, 2519, 2520, 2521, 2522, 2523, 2641, 2642, 2643, 2646, 2647]);
-	/*
-	CardIdToSetIdMap[1361] = CardIdToSetIdMap[1361].concat([2602]);
-	CardIdToSetIdMap[1911] = CardIdToSetIdMap[1911].concat([2563, 2564, 2565, 2566, 2567, 2568, 2569, 2570, 2571, 2572, 2573, 2574, 2575, 2576, 2577, 2578, 2579, 2580, 2581, 2582, 2583, 2584]);
-	CardIdToSetIdMap[1948] = CardIdToSetIdMap[1948].concat([2593]);
-	*/
-	CardIdToSetIdMap[2028] = CardIdToSetIdMap[2028].concat([2467, 2469, 2473, 2475, 2503, 2505, /*2524, 2525, 2526, 2527, 2528, 2529, 2530, 2531, 2532, 2533, 2534, 2535, 2536, 2537, 2538, 2539, 2540, 2541, 2542*/]);
+	CardIdToSetIdMap[2028] = CardIdToSetIdMap[2028].concat([2467, 2469, 2473, 2475, 2503, 2505,]);
 	CardIdToSetIdMap[2043] = CardIdToSetIdMap[2043].concat([2458, 2495]);
-	/*
-	CardIdToSetIdMap[2088] = CardIdToSetIdMap[2088].concat([2606, 2609, 2611, 2614, 2617, 2620, 2623, 2626, 2629, 2632, 2634, 2636, 2639]);
-	*/
 	CardIdToSetIdMap[2220] = [2462];
 	CardIdToSetIdMap[2222] = CardIdToSetIdMap[2222].concat([2461]);
-	CardIdToSetIdMap[2311] = CardIdToSetIdMap[2311].concat([2463, 2464, 2465, 2466, /*2477, 2478, 2479, 2480, 2481, 2482, 2483, 2484, 2485, 2486, 2487, 2488, 2489, 2490, 2491, 2492*/]);
+	CardIdToSetIdMap[2311] = CardIdToSetIdMap[2311].concat([2463, 2464, 2465, 2466,]);
 	CardIdToSetIdMap[2417] = CardIdToSetIdMap[2417].concat([2459]);
 	CardIdToSetIdMap[2437] = CardIdToSetIdMap[2437].concat([2644]);
-	/*
-	CardIdToSetIdMap[2658] = CardIdToSetIdMap[2658].concat([2607, 2610, 2612, 2615, 2618, 2621, 2624, 2627, 2630, 2633, 2635, 2637, 2640]);
-	*/
-	CardIdToSetIdMap[2662] = CardIdToSetIdMap[2662].concat([2460, 2468, 2470, 2474, 2476, 2504, 2506, /*2543, 2544, 2545, 2546, 2547, 2548, 2549, 2550, 2551, 2552, 2553, 2554, 2555, 2556, 2557, 2558, 2559, 2560, 2561*/]);
+	CardIdToSetIdMap[2662] = CardIdToSetIdMap[2662].concat([2460, 2468, 2470, 2474, 2476, 2504, 2506,]);
 	// --- 2024/04/09 生体アップデート ---
 	w_SE[2648] = [-2985,-2984,-1813,];	// 無名のソードマン + 殺意の怨念
 	CardIdToSetIdMap[2984] = [2648,];
@@ -5448,6 +5320,16 @@
 	CardIdToSetIdMap[3121] = [2748,2749,];
 	CardIdToSetIdMap[2028] = CardIdToSetIdMap[2028].concat([2748]);
 	CardIdToSetIdMap[2662] = CardIdToSetIdMap[2662].concat([2749]);
+	// --- 2024/08/30 ---
+	w_SE[2750] = [-3128,-3127,4876,];	// 4876 錆びた矢
+	CardIdToSetIdMap[3127] = [2750,];
+	ItemIdToSetIdMap[4876] = [2750];
+	w_SE[2751] = [-3130,-3129,-2028,];	// 2028 豊穣の女神
+	CardIdToSetIdMap[3129] = [2751,];
+	CardIdToSetIdMap[2028] = CardIdToSetIdMap[2028].concat([2751]);
+	w_SE[2752] = [-3136,-3135,-2311,];	// 2311 異境
+	CardIdToSetIdMap[3135] = [2752,];
+	CardIdToSetIdMap[2311] = CardIdToSetIdMap[2311].concat([2752]);
 
 	// itemset はセーブデータに書き出されないので
 	// 現実的な範囲において itemsetID の上限値を気にする必要はありません
