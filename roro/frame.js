@@ -90,7 +90,7 @@ $(function(){
       $btn.text("<")
     }
   })
-  $(".sidebar a.local").on("click", (event)=>{
+  $(document).on("click", ".sidebar a.local, .update-toast a.local", (event)=>{
     $('.modal-container iframe').attr("src",$(event.target).attr("href"));
     $('.modal-container').toggleClass("active");
     return false;
@@ -103,4 +103,21 @@ $(function(){
       $('.modal-container').removeClass('active');
     }
   });
+  if (CSaveController.isAvailableBrowserStorage(CSaveController.STORAGE_TYPE_LOCALSTORAGE)) {
+    const save_updated = localStorage.getItem("last_updated");
+    if (save_updated < last_updated) {
+      $.toast({
+        heading: "前回アクセス以降に更新があります",
+        text: '<span class="update-toast"><a href="../../information/history/index.html" class="local">更新履歴</a> から詳細を確認してください</span>',
+        icon: "info",
+        hideAfter: 5000,
+        position: 'bottom-center',
+        showHideTransition: 'slide',
+        bgColor: "#00d1b2",
+        textColor: "#000",
+        loader: false,
+      });
+    }
+    localStorage.setItem("last_updated", last_updated);
+  }
 })
