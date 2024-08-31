@@ -1,4 +1,4 @@
-const last_updated = "2024/08/29 22:30";
+const last_updated = "2024/08/31 17:00";
 
 // 背景色切替
 g_BGColorSwitch = false;
@@ -103,21 +103,23 @@ $(function(){
       $('.modal-container').removeClass('active');
     }
   });
-  if (CSaveController.isAvailableBrowserStorage(CSaveController.STORAGE_TYPE_LOCALSTORAGE)) {
-    const save_updated = localStorage.getItem("last_updated");
-    if (save_updated < last_updated) {
-      $.toast({
-        heading: "前回アクセス以降に更新があります",
-        text: '<span class="update-toast"><a href="../../information/history/index.html" class="local">更新履歴</a> から詳細を確認してください</span>',
-        icon: "info",
-        hideAfter: 5000,
-        position: 'bottom-center',
-        showHideTransition: 'slide',
-        bgColor: "#00d1b2",
-        textColor: "#000",
-        loader: false,
-      });
+  if (typeof CSaveController !== "undefined") {
+    if (CSaveController.isAvailableBrowserStorage(CSaveController.STORAGE_TYPE_LOCALSTORAGE)) {
+      const save_updated = localStorage.getItem("last_updated");
+      if (save_updated < last_updated) {
+        $.toast({
+          heading: "前回アクセス以降に更新があります",
+          text: '<span class="update-toast"><a href="../../information/history/index.html" class="local">更新履歴</a> から詳細を確認してください</span>',
+          icon: "info",
+          hideAfter: 5000,
+          position: 'bottom-center',
+          showHideTransition: 'slide',
+          bgColor: "#00d1b2",
+          textColor: "#000",
+          loader: false,
+        });
+      }
+      localStorage.setItem("last_updated", last_updated);
     }
-    localStorage.setItem("last_updated", last_updated);
   }
 })
