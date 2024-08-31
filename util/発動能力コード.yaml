@@ -31,8 +31,26 @@ capabilities:
     code: 28
   - name: 大型への物理ダメージ増加
     code: 29
-  - name: 動物型への物理ダメージ増加  
+  - name: 無形への物理ダメージ増加 
+    code: 30
+  - name: 不死形への物理ダメージ増加 
+    code: 31
+  - name: 動物形への物理ダメージ増加 
     code: 32
+  - name: 植物形への物理ダメージ増加
+    code: 33
+  - name: 昆虫形への物理ダメージ増加
+    code: 34
+  - name: 魚貝形への物理ダメージ増加
+    code: 35
+  - name: 悪魔形への物理ダメージ増加
+    code: 36
+  - name: 人間形への物理ダメージ増加
+    code: 37
+  - name: 天使形への物理ダメージ増加
+    code: 38
+  - name: 竜形への物理ダメージ増加
+    code: 39
   - name: 無属性への物理ダメージ増加
     code: 40
   - name: 水属性への物理ダメージ増加
@@ -129,6 +147,28 @@ capabilities:
     code: 152
   - name: 石化耐性
     code: 159
+
+  - name: 無形への魔法ダメージ増加 
+    code: 170
+  - name: 不死形への魔法ダメージ増加 
+    code: 171
+  - name: 動物形への魔法ダメージ増加 
+    code: 172
+  - name: 植物形への魔法ダメージ増加
+    code: 173
+  - name: 昆虫形への魔法ダメージ増加
+    code: 174
+  - name: 魚貝形への魔法ダメージ増加
+    code: 175
+  - name: 悪魔形への魔法ダメージ増加
+    code: 176
+  - name: 人間形への魔法ダメージ増加
+    code: 177
+  - name: 天使形への魔法ダメージ増加
+    code: 178
+  - name: 竜形への魔法ダメージ増加
+    code: 179
+
   - name: 壊れない
     code: 194
   - name: スキル習得時効果
@@ -141,7 +181,7 @@ capabilities:
     code: 217
   - name: アイテムの効果が発動しない
     code: 218
-  - name: カードの効果が発動しない    
+  - name: カードの効果が発動しない 
     code: 219 
   - name: スキル使用可能
     code: 220

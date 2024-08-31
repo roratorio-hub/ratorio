@@ -11998,6 +11998,23 @@ function ApplyMagicalSpecializeMonsterMod20211014SubSpecializeMap(charaData, spe
 		}
 	}
 
+	//--------------------------------
+	// 魔力が歪んだ平原 特化
+	//--------------------------------
+	if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_PLAINS_DISTORTED_BY_MAGIC]) == 1){
+		if ((cardCount = CardNumSearch(CARD_ID_HARD_ROCK_TITAN)) > 0) {
+			wX += 30 * cardCount;
+		}
+	}
+
+	//--------------------------------
+	// ミョルニール地下洞窟 特化
+	//--------------------------------
+	if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_MIOLNIR_UNDERGROUND_CAVE]) == 1){
+		if ((cardCount = CardNumSearch(CARD_ID_PUNCH_BUG)) > 0) {
+			wX += 30 * cardCount;
+		}
+	}
 
 
 
@@ -22728,7 +22745,23 @@ function ApplyPhysicalSpecializeMonster(charaData, specData, mobData, dmg) {
 		}
 	}
 
+	//--------------------------------
+	// 魔力が歪んだ平原 特化
+	//--------------------------------
+	if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_PLAINS_DISTORTED_BY_MAGIC]) == 1){
+		if ((cardCount = CardNumSearch(CARD_ID_HARD_ROCK_TITAN)) > 0) {
+			w += 30 * cardCount;
+		}
+	}
 
+	//--------------------------------
+	// ミョルニール地下洞窟 特化
+	//--------------------------------
+	if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_MIOLNIR_UNDERGROUND_CAVE]) == 1){
+		if ((cardCount = CardNumSearch(CARD_ID_PUNCH_BUG)) > 0) {
+			w += 30 * cardCount;
+		}
+	}
 
 	//--------------------------------
 	// その他の装備によるモンスター特化
