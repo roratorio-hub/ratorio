@@ -482,9 +482,9 @@ $(function () {
           </tr>
           <tr>
             <th>Def無視</th>
-            <td>${CExtraInfoAreaComponentManager.specData[ITEM_SP_IGNORE_DEF_ALL]} %</td>
+            <td>${CExtraInfoAreaComponentManager.specData[ITEM_SP_IGNORE_DEF_RACE_ALL] + CExtraInfoAreaComponentManager.specData[ITEM_SP_IGNORE_DEF_ALL]} %</td>
             <th>Mdef無視</th>
-            <td>${CExtraInfoAreaComponentManager.specData[ITEM_SP_IGNORE_MDEF_ALL]} %</td>
+            <td>${CExtraInfoAreaComponentManager.specData[ITEM_SP_IGNORE_MDEF_RACE_ALL] + CExtraInfoAreaComponentManager.specData[ITEM_SP_IGNORE_MDEF_ALL]} %</td>
           </tr>
           <tr>
             <th>ディレイ減</th>
