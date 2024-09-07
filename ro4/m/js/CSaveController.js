@@ -530,5 +530,11 @@ class CSaveController {
 	}
 
 
+	static getSaveDataManagerCur() {
+		return this.#saveDataManagerCur;
+	}
 
+	static setSaveDataManagerCur(manager) {
+		this.#saveDataManagerCur = manager;
+	}
 }
