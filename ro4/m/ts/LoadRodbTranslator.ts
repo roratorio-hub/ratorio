@@ -1,6 +1,7 @@
 declare function AutoCalc(): void;
 declare function CalcStatusPoint(flag: boolean): void;
 declare function OnChangeJobSelect(job_id_num: number): void;
+declare function OnClickSkillSWLearned(): void;
 declare function StAllCalc(): void;
 
 // Base64デコード関数（URLセーフに対応）
@@ -33,8 +34,8 @@ function zlibDecompress(compressed: Uint8Array): string | null {
 }
 
 // Decode => 解凍 => JSON復元
-function decodeProcess(encodedData: string): RodbTranslatorJsonFormatV1 | null {
-    let jsonObject: RodbTranslatorJsonFormatV1 | null = null;
+function decodeProcess(encodedData: string): RodbTranslatorJsonFormat | null {
+    let jsonObject: RodbTranslatorJsonFormat | null = null;
     try {
         // デコード => 圧縮データ
         const compressedData = base64ToUint8Array(encodedData);
@@ -54,7 +55,37 @@ function decodeProcess(encodedData: string): RodbTranslatorJsonFormatV1 | null {
     return jsonObject;
 }
 
-function loadRodbTranslator(fragment: string): void {
+async function fetchSeachSkill(seachUrls: string[]): Promise<string[]> {
+    let noMatchSkill: string[] = [];
+    try {
+        // URLごとにリクエストを作成
+        const requests = seachUrls.map(url => fetch(url));
+        // すべてのリクエストが完了するまで待機
+        const responses = await Promise.all(requests);
+
+        // 各レスポンスごとに処理を実行
+        const data = await Promise.all(responses.map(async (response, idx) => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const jsonData = await response.json();
+
+            // URLごとに異なる処理を追加する場合はここに追加
+            //console.debug(`Data from URL ${idx}:`, jsonData);
+            if (jsonData.success == false) {
+                noMatchSkill[jsonData.ratorio_skill_num] = jsonData.word;
+            } else {
+                const skillLvElement: HTMLSelectElement = document.getElementById("OBJID_SELECT_LEARNED_SKILL_LEVEL_" + jsonData.ratorio_skill_num) as HTMLSelectElement;
+                skillLvElement.setAttribute("data-skill-name", jsonData.skill_name);
+            }
+        }));
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+    return noMatchSkill;
+}
+
+async function loadRodbTranslator(fragment: string): Promise<void> {
     const prefixCheck = /^#rtx(\d+):(.+)$/;
     const matches = prefixCheck.exec(fragment);
     if (!matches) {
@@ -71,7 +102,7 @@ function loadRodbTranslator(fragment: string): void {
     const decodedData = decodeURIComponent(matches[2]);
 
     // 中身のデコード、zlib解凍を行う
-    const jsonObject: RodbTranslatorJsonFormatV1 | null = decodeProcess(decodedData)
+    const jsonObject: RodbTranslatorJsonFormat | null = decodeProcess(decodedData)
     if (!jsonObject) {
         alert("URLからのデータロードに失敗しました");
         return;
@@ -95,17 +126,64 @@ function loadRodbTranslator(fragment: string): void {
     jobLvElement.value = String(jsonObject.status.job_lv);
 
     // Set status
-    let statusElement: HTMLInputElement;
     const keys: (keyof JobStatus)[] = [
         "str", "agi", "vit", "int", "dex", "luk",
         "pow", "sta", "wis", "spl", "con", "crt"
     ];
 
     for (const key of keys) {
-        statusElement = document.getElementById("OBJID_SELECT_STATUS_" + key.toUpperCase()) as HTMLInputElement;
+        const statusElement: HTMLInputElement = document.getElementById("OBJID_SELECT_STATUS_" + key.toUpperCase()) as HTMLInputElement;
         let value = jsonObject.status[key];
         statusElement.value = String(value);
     }
+
+    // Set Skill Lv
+    const skillColumnCheckbox: HTMLInputElement = document.getElementById("OBJID_SKILL_COLUMN_EXTRACT_CHECKBOX") as HTMLInputElement;
+    skillColumnCheckbox.checked = true;
+    OnClickSkillSWLearned();
+
+    let seachUrls = [];
+    const urlPrefix = "https://rodb.aws.0nyx.net/translator";
+    let idx = 0;
+    while (true) {
+        const skillNameElement: HTMLTableCellElement = document.getElementById("OBJID_TD_LEARNED_SKILL_NAME_" + idx) as HTMLTableCellElement;
+        if (!skillNameElement) {
+            break;
+        }
+
+        const skillName = skillNameElement.textContent?.trim();
+        if (skillName) {
+            seachUrls.push(`${urlPrefix}/search/skill?word=${encodeURIComponent(skillName)}&ratorio_skill_num=${idx}`);
+        }
+
+        idx++;
+    }
+    // スキルのSelectBoxにdata-skill-name属性を付与
+    let noMatchSkill: string[] = await fetchSeachSkill(seachUrls);
+    if (noMatchSkill.length > 0) {
+        seachUrls = []; //initialize
+        // 一致しないスキルがあった場合は再度トライ(近似判定)
+        const noMatchSkillLength = noMatchSkill.length;
+        for (let idx = 0; idx < noMatchSkillLength; idx++) {
+            if (noMatchSkill[idx]) {
+                seachUrls.push(`${urlPrefix}/approximate_search/skill?word=${encodeURIComponent(noMatchSkill[idx])}&ratorio_skill_num=${idx}`);
+            }
+        }
+        if (seachUrls.length > 0) {
+            await fetchSeachSkill(seachUrls)
+        }
+    }
+
+    Object.entries(jsonObject.skills).forEach(([skillName, skill]) => {
+        const skillLvElement: HTMLSelectElement = document.querySelector(`select[data-skill-name=${skillName}]`) as HTMLSelectElement;
+        console.debug(`${skillName}`);
+        if (skillLvElement) {
+            skillLvElement.value = String(skill.lv);
+            console.debug(`${skillName} : ${skillLvElement.value}`)
+            const event = new Event('change', { bubbles: true });
+            skillLvElement.dispatchEvent(event);
+        }
+    });
 
     // 計算
     CalcStatusPoint(true);
@@ -148,7 +226,7 @@ interface AdditionalInfo {
     world_name: string;
 }
 
-interface RodbTranslatorJsonFormatV1 {
+interface RodbTranslatorJsonFormat {
     format_version: number;
     overwrite: boolean;
     status: JobStatus;
