@@ -4585,17 +4585,14 @@ g_bUnknownCasts = true;
 		 * 「蜃気楼　不知火」スキル「風魔手裏剣 -掌握-」
 		 */
 		case SKILL_ID_FUMASHURIKEN_SHOUAKU:
-			g_bUnknownCasts = true;	// 詠唱時間など未計測フラグ
 			n_Enekyori = 1;			// 遠距離フラグ
 			g_bDefinedDamageIntervals = true;
 			n_Delay[5] = 250;		// ダメージ間隔
 			n_Delay[6] = 5000;		// オブジェクト存続時間
-			/*
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			*/
 			wbairitu = 50 * n_A_ActiveSkillLV;									// 基礎倍率
 			wbairitu += 50 * UsedSkillSearch(SKILL_ID_FUMASHURIKEN_KOUCHIKU);	// 習得済みスキル条件
 			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);				// 特性ステータス補正
@@ -4606,17 +4603,14 @@ g_bUnknownCasts = true;
 		 * 「蜃気楼　不知火」スキル「風魔手裏剣 -構築-」
 		 */
 		case SKILL_ID_FUMASHURIKEN_KOUCHIKU:
-			g_bUnknownCasts = true;	// 詠唱時間など未計測フラグ
 			n_Enekyori = 1;			// 遠距離フラグ
-			/*
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			*/
-			wbairitu = 1500 + (100 * n_A_ActiveSkillLV);						// 基礎倍率
+			wbairitu = 3800 + (100 * n_A_ActiveSkillLV);						// 基礎倍率
 			if (attackMethodConfArray[0].GetOptionValue(0) == 1) {				// 風魔手裏剣トラップ補正
-				wbairitu += 9000 + (250 * n_A_ActiveSkillLV);
+				wbairitu += 10500 + (200 * n_A_ActiveSkillLV);
 			}
 			wbairitu += 50 * UsedSkillSearch(SKILL_ID_FUMASHURIKEN_SHOUAKU);	// 習得済みスキル条件
 			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);				// 特性ステータス補正
