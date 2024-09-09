@@ -1,0 +1,20 @@
+name: Discord Notify
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  myjob:
+    runs-on: ubuntu-latest
+    steps:
+        
+      - name: Discord Notice
+        uses: sarisia/actions-status-discord@v1.15.0
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          title: 本番環境の更新作業が開始されました
+          nofail: true
+          noprefix: true
+          notimestamp: true

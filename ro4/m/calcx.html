@@ -184,7 +184,7 @@
 	<script type="text/javascript" src="js/migration/debug/test/CMigTestCase.js"></script>
 	<script type="text/javascript" src="js/migration/debug/test/CMigItemDataTest.js"></script>
 	-->
-	
+
 	<!-- 機能処理系 javascript ファイル -->
 	<script type="text/javascript" src="../../ro4/m/js/calcautospell.js"></script>
 	<script type="text/javascript" src="js/rndench.js"></script>
@@ -242,7 +242,7 @@
 	<script type="text/javascript" src="js/castsim.js"></script>
 <!--
 	<script type="text/javascript" src="js/browsermigration.js"></script>
--->	
+-->
 	<script type="text/javascript" src="../../ro4/m/js/CEnchSearch.js"></script>
 
 	<!-- ここからjQuery -->
@@ -276,7 +276,10 @@
 			new enchSearch();
 			// 検索可能ドロップダウンリストのロード
 			LoadSelect2();
-		});		
+
+            // RODB Translatorからのデータロード
+            loadRodbTranslator(window.location.hash);
+		});
 	</script>
 </head>
 
@@ -337,7 +340,7 @@
 											<tr>
 												<td colSpan="6" bgcolor="#DDDDFF">
 													<span>基本ステータス</span>
-													
+
 													<input id="OBJID_CHECK_AUTO_BASE_LEVEL" type="checkbox" name="BLVauto" checked="checked">
 													<label for="OBJID_CHECK_AUTO_BASE_LEVEL">BaseLVを自動調節する</label>
 												</td>
@@ -717,7 +720,7 @@
 												<option value="3">★3
 												<option value="4">★4
 											</select>
-										</td>										
+										</td>
 										<td rowspan="2">
 											<select id="OBJID_ARMS_RIGHT" onChange="OnChangeEquip(EQUIP_REGION_ID_ARMS, parseInt(this.value)) | AutoCalc()">
 											</select>
@@ -803,7 +806,7 @@
 												<option value="3">★3
 												<option value="4">★4
 											</select>
-										</td>										
+										</td>
 										<td>
 											<select id="OBJID_HEAD_TOP" name="A_head1" onChange="OnChangeEquip(EQUIP_REGION_ID_HEAD_TOP, parseInt(this.value)) | AutoCalc()"></select>
 										</td>
@@ -868,7 +871,7 @@
 												<option value="3">★3
 												<option value="4">★4
 											</select>
-										</td>										
+										</td>
 										<td>
 											<select id="OBJID_SHIELD" name="A_left" onChange="OnChangeEquip(EQUIP_REGION_ID_SHIELD, parseInt(this.value)) | AutoCalc()"></select>
 										</td>
@@ -903,7 +906,7 @@
 												<option value="3">★3
 												<option value="4">★4
 											</select>
-										</td>										
+										</td>
 										<td>
 											<select id="OBJID_BODY" name="A_body" onChange="OnChangeEquip(EQUIP_REGION_ID_BODY, parseInt(this.value)) | AutoCalc()"></select>
 										</td>
@@ -938,7 +941,7 @@
 												<option value="3">★3
 												<option value="4">★4
 											</select>
-										</td>										
+										</td>
 										<td>
 											<select id="OBJID_SHOULDER" name="A_shoulder" onChange="OnChangeEquip(EQUIP_REGION_ID_SHOULDER, parseInt(this.value)) | AutoCalc()"></select>
 										</td>
@@ -973,7 +976,7 @@
 												<option value="3">★3
 												<option value="4">★4
 											</select>
-										</td>										
+										</td>
 										<td>
 											<select id="OBJID_SHOES" name="A_shoes" onChange="OnChangeEquip(EQUIP_REGION_ID_SHOES, parseInt(this.value)) | AutoCalc()"></select>
 										</td>
@@ -986,7 +989,7 @@
 
 									<tr id="OBJID_ACCESSARY_1_SLOT_ROOT">
 										<td>
-										</td>										
+										</td>
 										<td style="text-align:right">
 											<button type="button" id="OBJID_ACCESSARY_1_COPY" onclick="copyAccs(1, 2) | LoadSelect2()">↓</button>
 										</td>
@@ -1002,7 +1005,7 @@
 
 									<tr id="OBJID_ACCESSARY_2_SLOT_ROOT">
 										<td>
-										</td>										
+										</td>
 										<td style="text-align:right">
 											<button type="button" id="OBJID_ACCESSARY_2_COPY" onclick="copyAccs(2, 1) | LoadSelect2()">↑</button>
 										</td>
@@ -2124,6 +2127,10 @@
 
 <!-- 左メニュー用 javascript ファイル -->
 <script type="text/javascript" src="../frame.js"></script>
+
+<!-- load RODB Translator -->
+<script type="text/javascript" src="../../ro4/m/ts/LoadRodbTranslator.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/pako@2/dist/pako.min.js" integrity="sha256-7eJpOkpqUSa501ZpBis1jsq2rnubhqHPMC/rRahRSQc=" crossorigin="anonymous"></script>
 
 <!-- デバッグ系、データ移行系 javascript ファイル -->
 <!-- 非デバッグ環境では読み込まない。リリース時にはコメントアウトすること -->

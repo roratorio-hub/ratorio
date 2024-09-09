@@ -1,4 +1,5 @@
 name: Discord Message Notify
+# 古いワークフローです。新ワークフローが確認でき次第削除します。
 
 on:
   push:
