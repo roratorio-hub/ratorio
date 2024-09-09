@@ -55,8 +55,7 @@ function decodeProcess(encodedData: string): RodbTranslatorJsonFormat | null {
     return jsonObject;
 }
 
-async function fetchSeachSkill(seachUrls: string[]): Promise<string[]> {
-    let noMatchSkill: string[] = [];
+async function fetchSeachSkill(seachUrls: string[]): Promise<void> {
     try {
         // URLごとにリクエストを作成
         const requests = seachUrls.map(url => fetch(url));
@@ -72,17 +71,12 @@ async function fetchSeachSkill(seachUrls: string[]): Promise<string[]> {
 
             // URLごとに異なる処理を追加する場合はここに追加
             //console.debug(`Data from URL ${idx}:`, jsonData);
-            if (jsonData.success == false) {
-                noMatchSkill[jsonData.ratorio_skill_num] = jsonData.word;
-            } else {
-                const skillLvElement: HTMLSelectElement = document.getElementById("OBJID_SELECT_LEARNED_SKILL_LEVEL_" + jsonData.ratorio_skill_num) as HTMLSelectElement;
-                skillLvElement.setAttribute("data-skill-name", jsonData.skill_name);
-            }
+            const skillLvElement: HTMLSelectElement = document.getElementById("OBJID_SELECT_LEARNED_SKILL_LEVEL_" + jsonData.ratorio_skill_num) as HTMLSelectElement;
+            skillLvElement.setAttribute("data-skill-name", jsonData.skill_name);
         }));
     } catch (error) {
         console.error('Error fetching data:', error);
     }
-    return noMatchSkill;
 }
 
 async function loadRodbTranslator(fragment: string): Promise<void> {
@@ -143,7 +137,7 @@ async function loadRodbTranslator(fragment: string): Promise<void> {
     OnClickSkillSWLearned();
 
     let seachUrls = [];
-    const urlPrefix = "https://rodb.aws.0nyx.net/translator";
+    const urlPrefix = "https://rodb.aws.0nyx.net/translator/approximate_search/skill";
     let idx = 0;
     while (true) {
         const skillNameElement: HTMLTableCellElement = document.getElementById("OBJID_TD_LEARNED_SKILL_NAME_" + idx) as HTMLTableCellElement;
@@ -153,26 +147,13 @@ async function loadRodbTranslator(fragment: string): Promise<void> {
 
         const skillName = skillNameElement.textContent?.trim();
         if (skillName) {
-            seachUrls.push(`${urlPrefix}/search/skill?word=${encodeURIComponent(skillName)}&ratorio_skill_num=${idx}`);
+            seachUrls.push(`${urlPrefix}?word=${encodeURIComponent(skillName)}&ratorio_skill_num=${idx}`);
         }
 
         idx++;
     }
     // スキルのSelectBoxにdata-skill-name属性を付与
-    let noMatchSkill: string[] = await fetchSeachSkill(seachUrls);
-    if (noMatchSkill.length > 0) {
-        seachUrls = []; //initialize
-        // 一致しないスキルがあった場合は再度トライ(近似判定)
-        const noMatchSkillLength = noMatchSkill.length;
-        for (let idx = 0; idx < noMatchSkillLength; idx++) {
-            if (noMatchSkill[idx]) {
-                seachUrls.push(`${urlPrefix}/approximate_search/skill?word=${encodeURIComponent(noMatchSkill[idx])}&ratorio_skill_num=${idx}`);
-            }
-        }
-        if (seachUrls.length > 0) {
-            await fetchSeachSkill(seachUrls)
-        }
-    }
+    await fetchSeachSkill(seachUrls);
 
     Object.entries(jsonObject.skills).forEach(([skillName, skill]) => {
         const skillLvElement: HTMLSelectElement = document.querySelector(`select[data-skill-name=${skillName}]`) as HTMLSelectElement;
