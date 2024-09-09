@@ -1,0 +1,23 @@
+name: Discord Notify
+
+# ベースリポジトリからの PR では pull_request トリガーが引かれる
+on:
+  pull_request:
+    branches:
+      - dev
+
+jobs:
+  myjob:
+    # PR の送信元リポジトリ名 == このリポジトリ名（つまりベースリポジトリ内の操作）
+    if: ${{ github.event.pull_request.head.repo.full_name ==  github.repository }}    
+    runs-on: ubuntu-latest
+    steps:
+        
+      - name: Discord Notice
+        uses: sarisia/actions-status-discord@v1.15.0
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          title: 新しいコードを追加する予定です
+          nofail: true
+          noprefix: true
+          notimestamp: true

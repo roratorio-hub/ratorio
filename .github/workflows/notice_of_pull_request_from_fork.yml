@@ -1,0 +1,22 @@
+name: Discord Notify
+
+# Fork からの PR を見逃さないため全てのブランチを検査する
+# Fork からの PR は pull_request ではなく pull_request_target トリガーが引かれる
+on:
+  pull_request_target:
+
+jobs:
+  myjob:
+    # PR の送信元リポジトリ名 != このリポジトリ名（つまり Fork から PR されている場合）
+    if: ${{ github.event.pull_request.head.repo.full_name !=  github.repository }}    
+    runs-on: ubuntu-latest
+    steps:
+        
+      - name: Discord Notice
+        uses: sarisia/actions-status-discord@v1.15.0
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          title: Contributor から PR を頂きました
+          nofail: true
+          noprefix: true
+          notimestamp: true
