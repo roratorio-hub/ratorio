@@ -1,0 +1,38 @@
+name: Transpiling TypeScript
+
+on:
+  push:
+    branches:
+      - master  # master ブランチに push されたとき
+
+jobs:
+  build:
+    if: ${{ github.repository == 'roratorio-hub/ratorio' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      # リポジトリのコードを取得
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Node.js のセットアップ
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # 依存関係のインストール
+      - name: Install dependencies
+        run: npm install
+
+      # TypeScript のコンパイル
+      - name: Compile TypeScript
+        run: npx tsc
+
+      # `dist` ディレクトリの内容を GitHub Pages にデプロイ
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./  # ルートディレクトリをコピーする
+          exclude_assets: '.github,node_modules,ro4/m/ts/**.ts,.gitignore,package.json,package-lock.json,tsconfig.json,解析メモ,util'
