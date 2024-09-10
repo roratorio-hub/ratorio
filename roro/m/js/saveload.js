@@ -221,10 +221,8 @@ function GetExpireDateStringSub(dtBase, daysToExpire) {
 }
 
 
-
-
-
-
+// 旧セーブ処理
+/*
 function URLOUT(){
 	calc();
 	var w = location.href.split("?");
@@ -233,10 +231,7 @@ function URLOUT(){
 		URL_TEXT.value = w[0] +"?"+ SaveSystem();
 	}
 }
-
-
-
-
+*/
 
 
 /**

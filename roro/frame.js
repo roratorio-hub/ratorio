@@ -1,4 +1,4 @@
-const last_updated = "2024/09/10 09:00";
+const last_updated = "2024/09/11 09:00";
 
 // 背景色切替
 g_BGColorSwitch = false;
@@ -21,7 +21,6 @@ function SwitchBGColor() {
 
 templ = `
 <aside id="sidebar" class="sidebar">
-  <a id="btn-collapse" class="sidebar-collapser">&lt;</a>
   <div class="sidebar-layout">
     <div class="sidebar-header">
       <div class="sidebar-logo">
@@ -45,7 +44,7 @@ templ = `
           <li class="menu-item"><span class="menu-title"><a href="../../information/index.html" class="local">このサイトについて</a></span></li>
           <li class="menu-item"><span class="menu-title"><a href="../../information/todo.html" class="local">今後の予定</a></span></li>
           <li class="menu-item"><span class="menu-title"><a href="../../information/history/index.html" class="local">更新履歴</a></span></li>
-          <li class="menu-item"><span class="menu-title"><a href="../../information/alert/index.html" class="local">不具合のお知らせ</a></span></li>
+          <!--<li class="menu-item"><span class="menu-title"><a href="../../information/alert/index.html" class="local">不具合のお知らせ</a></span></li>-->
           <li class="menu-item"><span class="menu-title"><a href="../../information/wanted/index.html" class="local">[募集] スキル情報</a></span></li>
 
 		  <li class="menu-header" style="padding-top: 10px"><span>Contact Us</span></li>
@@ -78,18 +77,6 @@ templ = `
 
 $(function(){
   $("#ID_FRAME").append(templ);
-  $(".sidebar-collapser").on("click", ()=>{
-    $btn = $(".sidebar-collapser")
-    $btn.toggleClass("collapsed");
-    $(".side").toggleClass("collapsed");
-    if ($btn.hasClass("collapsed")) {
-      $(".sidebar-layout").hide()
-      $btn.text(">")
-    }else{
-      $(".sidebar-layout").show()
-      $btn.text("<")
-    }
-  })
   $(document).on("click", ".sidebar a.local, .update-toast a.local", (event)=>{
     $('.modal-container iframe').attr("src",$(event.target).attr("href"));
     $('.modal-container').toggleClass("active");
