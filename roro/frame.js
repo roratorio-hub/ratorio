@@ -21,7 +21,6 @@ function SwitchBGColor() {
 
 templ = `
 <aside id="sidebar" class="sidebar">
-  <a id="btn-collapse" class="sidebar-collapser">&lt;</a>
   <div class="sidebar-layout">
     <div class="sidebar-header">
       <div class="sidebar-logo">
@@ -78,18 +77,6 @@ templ = `
 
 $(function(){
   $("#ID_FRAME").append(templ);
-  $(".sidebar-collapser").on("click", ()=>{
-    $btn = $(".sidebar-collapser")
-    $btn.toggleClass("collapsed");
-    $(".side").toggleClass("collapsed");
-    if ($btn.hasClass("collapsed")) {
-      $(".sidebar-layout").hide()
-      $btn.text(">")
-    }else{
-      $(".sidebar-layout").show()
-      $btn.text("<")
-    }
-  })
   $(document).on("click", ".sidebar a.local, .update-toast a.local", (event)=>{
     $('.modal-container iframe').attr("src",$(event.target).attr("href"));
     $('.modal-container').toggleClass("active");
