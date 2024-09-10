@@ -75,7 +75,11 @@ function OnClickUrlOutMIG () {
 	const dataURL = CSaveController.encodeToURL();
 
 	// サイトのベースURLを取得
-	const locationBase = (location.href.split("?"))[0];
+	let locationBase = (location.href.split("?"))[0];
+
+	// アンカーをクリックした後に呼び出される場合があるので不要なURLフラグメントを削除する
+	locationBase = locationBase.replace('#OBJID_SAVE_BLOCK_MIG','');
+	locationBase = locationBase.replace('#OBJID_ATTACK_SETTING_BLOCK_MIG','');
 
 	// 最終的なURLを合成
 	const urlText = locationBase + "?" + dataURL;
