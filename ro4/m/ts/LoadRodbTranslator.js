@@ -47,7 +47,7 @@ function decodeProcess(encodedData) {
     }
     return jsonObject;
 }
-async function fetchSeachSkill(seachUrls) {
+async function fetchSearchSkill(seachUrls) {
     try {
         // URLごとにリクエストを作成
         const requests = seachUrls.map(url => fetch(url));
@@ -131,7 +131,7 @@ async function loadRodbTranslator(fragment) {
         idx++;
     }
     // スキルのSelectBoxにdata-skill-name属性を付与
-    await fetchSeachSkill(seachUrls);
+    await fetchSearchSkill(seachUrls);
     Object.entries(jsonObject.skills).forEach(([skillName, skill]) => {
         const skillLvElement = document.querySelector(`select[data-skill-name=${skillName}]`);
         console.debug(`${skillName}`);
