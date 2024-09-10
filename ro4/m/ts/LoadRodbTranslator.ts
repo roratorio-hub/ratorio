@@ -55,7 +55,7 @@ function decodeProcess(encodedData: string): RodbTranslatorJsonFormat | null {
     return jsonObject;
 }
 
-async function fetchSeachSkill(seachUrls: string[]): Promise<void> {
+async function fetchSearchSkill(seachUrls: string[]): Promise<void> {
     try {
         // URLごとにリクエストを作成
         const requests = seachUrls.map(url => fetch(url));
@@ -153,7 +153,7 @@ async function loadRodbTranslator(fragment: string): Promise<void> {
         idx++;
     }
     // スキルのSelectBoxにdata-skill-name属性を付与
-    await fetchSeachSkill(seachUrls);
+    await fetchSearchSkill(seachUrls);
 
     Object.entries(jsonObject.skills).forEach(([skillName, skill]) => {
         const skillLvElement: HTMLSelectElement = document.querySelector(`select[data-skill-name=${skillName}]`) as HTMLSelectElement;
