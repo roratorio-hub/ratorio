@@ -266,6 +266,7 @@
 	TIME_ITEM_ID_CHOTOTSU_MOUSHIN = 269;
 	TIME_ITEM_ID_TRIANGLE_DISASTER = 275;
 	TIME_ITEM_ID_FLUSH_DETECT_STAFF = 276;
+	TIME_ITEM_ID_ENCHANT_GOKETSU_SENZAI_KAIHO_SHADOW_CHASER_2 = 277;
 
 	ITEM_SP_TIME_OBJ = [
 		[0,"装備/カードの時限性補助効果+NPC支援+期間限定","なし",[[0,0]],0],
@@ -563,5 +564,11 @@
 	ITEM_SP_TIME_OBJ_SORT.push(275);
 	ITEM_SP_TIME_OBJ[276] = [276,"フラッシュディテクトスタッフ","地属性魔法攻撃で与えるダメージ + 50%",[[1,5264]],342,50,0];
 	ITEM_SP_TIME_OBJ_SORT.push(276);
+	ITEM_SP_TIME_OBJ[277] = [277,"潜在解放(シャドウチェイサーII)+豪傑","アンリミット状態",[[2,2881]],0];
+	ITEM_SP_TIME_OBJ_SORT.push(277);
+	ITEM_SP_TIME_OBJ[278] = [278,"潜在解放(ジェネティックII)+豪傑","[カートトルネード]使用時3秒間、必中攻撃 + 100%",[[2,2879]],86,100,0];
+	ITEM_SP_TIME_OBJ_SORT.push(278);
+	ITEM_SP_TIME_OBJ[279] = [279,"潜在解放(アビスチェイサーIV)+豪傑","[チェーンリアクションショット]の消費SP - 169、[フレンジショット]の消費SP - 109",[[2,2918]],24102,169,24109,109,0];
+	ITEM_SP_TIME_OBJ_SORT.push(279);
 
 })();
