@@ -1,0 +1,185 @@
+
+<HTML>
+    <HEAD>
+    <meta http-equiv="Content-type"
+          content="text/html; charset=UTF-8">
+    <TITLE>RO 属性表</TITLE>
+    <link rel="stylesheet" href="../common.css" type="text/css">
+	<link rel="stylesheet" href="../m/calcx.css" type="text/css">
+	<link rel="stylesheet" href="../../ro4/m/calcx.css" type="text/css">
+	<script type="text/javascript" src="../../jquery/jquery.min.js"></script>
+    <style type="text/css">
+    td{white-space:nowrap;text-align:right;}
+    </style>
+    
+    </HEAD>
+    <BODY>
+        <div class="wrapper">
+            <div class="side">
+                <span id="ID_FRAME"></span>
+            </div>
+            <div class="content">
+                <div style="padding: 20px 34px">
+                <Font size=2>属性表の見方。<BR>
+                まず敵の防御属性のLvを調べます。例としてポリンなら[水1]でLv1の属性表を見ます。[水3]や[地3]と書いてあったらLv3の表です。<BR>
+                表は縦に並んでいる属性が自分の攻撃属性、横が敵の防御属性なので、自分の武器が風属性なら、水と交差する175(%)がダメージ倍率になります。<BR>
+                </Font>
+                <Form name="ElementForm">
+                <TABLE>
+                <TR valign="top"><TD id="a1"></TD><TD id="a2"></TD></TR>
+                <TR><TD id="a3"></TD><TD id="a4"></TD></TR>
+                </TABLE>
+                <BR>
+                <HR>
+                <Font size=2>属性がよくわからない初心者のかたへ。以下が要点です。<BR>
+                火属性のモンスターは水属性武器で殴る。<BR>
+                水属性のモンスターは風属性武器で殴る。<BR>
+                風属性のモンスターは地属性武器で殴る。<BR>
+                地属性のモンスターは火属性武器で殴る。<BR>
+                死属性のモンスターは聖か火属性武器で殴る。<BR>
+                闇属性のモンスターは聖属性武器で殴る。<BR>
+                と、ダメージが多いです。<BR>
+                <HR>
+                以下、基礎知識＆豆知識<BR>
+                不死種族と不死属性が紛らわしいので、当サイトでは不死属性を死属性と表記することがあります。<BR>
+                <BR>
+                <B>攻撃属性の優先順位</B><BR>
+                攻撃属性の優先順位は<BR>
+                アクティブスキルの攻撃属性＞属性付与(アスペルシオなど)＞矢や弾の属性＞武器の属性<BR>
+                です。つまり、無属性のアーバレストで水属性の水矢装備して聖属性付与のアスペルシオを貰っても<BR>
+                火属性のマグナムブレイク(マリンスフィアーカード)で攻撃したら、攻撃属性は火です。<BR>
+                <BR>
+                <B>プレイヤーの防御属性</B><BR>
+                無1です。なので念属性攻撃をくらっても25%しかダメージを受けません。<BR>
+                防御属性のある属性鎧や防御属性を変える体カードを装備すると、それぞれに対応した属性のLv1になります。<BR>
+                イビルドルイドカード挿しの服なら死1になります。<BR>
+                <BR>
+                <B>防御属性が死属性の時の特殊効果</B><BR>
+                ・状態異常[凍結/石化]にかからない<BR>
+                ・ヒールでダメージを受ける<BR>
+                ・リカバリーで暗闇になる<BR>
+                ・ファイアーウォールでノックバックしない<BR>
+                ・ブレッシングを受けるとDexとIntが半減する(対人では効果がない)<BR>
+                などがあります。<BR>
+                これら効果は死属性に依存するため、人間種族で死属性のアヌビスなどにも効果があります。<BR>
+                <BR>
+                <B>過去の退避情報</B><BR>
+                ※RR化以前、インジャスティスは不死種族＆闇属性でしたが、その場合、アヌビスとは逆に死属性特有の仕様はありませんでした。<BR>
+                ※イビルドルイドカードによって鎧属性を死属性にした場合、<BR>
+                ※属性倍率上、闇と死属性攻撃を無効化するため、昔はモンスターの闇属性攻撃や呪い攻撃・出血攻撃を防ぐ効果もありました(過去形)<BR>
+                ※R化で呪い攻撃(出血攻撃)のダメージを無効化しても状態異常の呪い(出血)は受けるようになったらしいです。<BR>
+                <BR>
+                </Font>
+                </Form>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script language="JavaScript" src="../frame.js"></script>
+    <script language="JavaScript"><!--
+    function myInnerHtml(wIH1,wIH2,wIH3)
+    {
+        if(wIH3 == 0){
+            wIHOB = document.getElementById(wIH1);
+            while(wIHOB.hasChildNodes()){
+                wIHOB.removeChild(wIHOB.firstChild);
+            }
+            wIHOB.innerHTML = wIH2;
+        }else{
+            wIHOB = document.getElementById(wIH1);
+            wIHOB.insertAdjacentHTML('BeforeEnd',wIH2);
+        }
+    }
+    
+    zokusei = new Array();
+    //無
+    zokusei[1] = new Array(1,1,1,1,1,1,1,1,0.25,1);
+    zokusei[2] = new Array(1,1,1,1,1,1,1,1,0,1);
+    zokusei[3] = new Array(1,1,1,1,1,1,1,1,0,1);
+    zokusei[4] = new Array(1,1,1,1,1,1,1,1,0,1);
+    //水
+    zokusei[11] = new Array(1,0.25,1,0.5,1.75,1,1,1,1,1);
+    zokusei[12] = new Array(1,0,1,0.25,1.75,0.75,1,1,0.75,0.75);
+    zokusei[13] = new Array(1,-0.25,1,0,2,0.5,1,1,0.5,0.5);
+    zokusei[14] = new Array(1,-0.5,1,0,2,0.25,0.75,0.75,0.25,0.25);
+    //地
+    zokusei[21] = new Array(1,1,0.25,1.5,0.5,1.25,1,1,1,1);
+    zokusei[22] = new Array(1,1,0,1.75,0.25,1.25,1,1,0.75,0.75);
+    zokusei[23] = new Array(1,1,-0.25,2,0,1,1,1,0.5,0.5);
+    zokusei[24] = new Array(1,1,-0.5,2,0,0.75,0.75,0.75,0.25,0.25);
+    //火
+    zokusei[31] = new Array(1,1.5,0.5,0.25,1,1.25,1,1,1,1);
+    zokusei[32] = new Array(1,1.75,0.25,0,1,1.25,1,1,0.75,0.75);
+    zokusei[33] = new Array(1,2,0,-0.25,1,1,1,1,0.5,0.5);
+    zokusei[34] = new Array(1,2,0,-0.5,1,0.75,0.75,0.75,0.25,0.25);
+    //風
+    zokusei[41] = new Array(1,0.5,1.5,1,0.25,1.25,1,1,1,1);
+    zokusei[42] = new Array(1,0.25,1.75,1,0,1.25,1,1,0.75,0.75);
+    zokusei[43] = new Array(1,0,2,1,-0.25,1,1,1,0.5,0.5);
+    zokusei[44] = new Array(1,0,2,1,-0.5,0.75,0.75,0.75,0.25,0.25);
+    //毒
+    zokusei[51] = new Array(1,1,1,1,1,0,1,0.5,1,0.5);
+    zokusei[52] = new Array(1,1,1,1,1,0,1,0.25,0.75,0.25);
+    zokusei[53] = new Array(1,1,1,1,1,0,1.25,0,0.5,0);
+    zokusei[54] = new Array(1,0.75,0.75,0.75,0.75,0,1.25,-0.25,0.25,-0.25);
+    //聖
+    zokusei[61] = new Array(1,0.75,0.75,0.75,0.75,0.75,0,1.25,0.75,1);
+    zokusei[62] = new Array(1,0.5,0.5,0.5,0.5,0.5,-0.25,1.5,0.5,1.25);
+    zokusei[63] = new Array(1,0.25,0.25,0.25,0.25,0.25,-0.5,1.75,0.25,1.5);
+    zokusei[64] = new Array(1,0,0,0,0,0,-1,2,0,1.75);
+    //闇
+    zokusei[71] = new Array(1,1,1,1,1,0.5,1.25,0,0.75,0);
+    zokusei[72] = new Array(1,0.75,0.75,0.75,0.75,0.25,1.5,-0.25,0.5,0);
+    zokusei[73] = new Array(1,0.5,0.5,0.5,0.5,0,1.75,-0.5,0.25,0);
+    zokusei[74] = new Array(1,0.25,0.25,0.25,0.25,-0.25,2,-1,0,0);
+    //念
+    zokusei[81] = new Array(0.25,1,1,1,1,1,1,1,1.25,1);
+    zokusei[82] = new Array(0.25,1,1,1,1,0.75,1,1,1.50,1);
+    zokusei[83] = new Array(0,1,1,1,1,0.5,1,1,1.75,1);
+    zokusei[84] = new Array(0,1,1,1,1,0.25,1,1,2,1);
+    //不死
+    zokusei[91] = new Array(1,1,1,1.25,1,-0.25,1.5,-0.25,1,0);
+    zokusei[92] = new Array(1,1,1,1.5,1,-0.5,1.75,-0.5,1.25,0);
+    zokusei[93] = new Array(1,0.75,0.75,1.75,1,-0.75,2,-0.75,1.5,0);
+    zokusei[94] = new Array(1,0.5,0.5,2,1,-1,2,-1,1.75,0);
+    
+    for(var j=1;j<=4;j++){
+        for(var i=0;i<=9;i++){
+            for(var k=0;k<=9;k++){
+                zokusei[i*10+j][k] = zokusei[i*10+j][k] * 100;
+                if(zokusei[i*10+j][k] > 100)
+                    zokusei[i*10+j][k] = "<Font color='#0000FF'><B>" + zokusei[i*10+j][k] +"</B></Font>";
+                if(zokusei[i*10+j][k] < 100)
+                    zokusei[i*10+j][k] = "<Font color='#FF0000'>" + zokusei[i*10+j][k] +"</Font>";
+            }
+        }
+    }
+    
+    var k=0;
+    for(var j=1;j<=4;j++){
+        var CBIstr = "<B>防御属性Lv</B>"+ j +"<TABLE border=1>";
+        var nameA = ["無","水","地","火","風","毒","聖","闇","念","死"];
+        CBIstr += "<TR bgcolor='#AAAAFF'>";
+        CBIstr += "<TD><BR></TD>";
+        for(var m=0;m<=9;m++)
+            CBIstr += "<TD><Font size=2>" + nameA[m] +"</Font></TD>";
+        CBIstr += "</TR>"
+        for(var i=0;i <= 9;i++){
+            if(k % 2 == 0)
+                CBIstr += "<TR bgcolor='#DDDDFF'>";
+            else
+                CBIstr += "<TR>";
+            CBIstr += "<TD><Font size=2>" + nameA[i] +"</Font></TD>";
+            for(m=0;m<=9;m++)
+                CBIstr += "<TD><Font size=2>" + zokusei[m * 10 + j][i] + "</Font></TD>";
+            CBIstr += "</TR>"
+            k++;
+        }
+        CBIstr += "</TABLE>";
+        myInnerHtml("a"+j,CBIstr,0);
+        k=0;
+    }
+    
+    // --></script>
+    </HTML>
+    

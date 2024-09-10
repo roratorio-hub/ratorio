@@ -1,0 +1,28 @@
+.select2 {
+    font-size: 13px;
+}
+.select2-results__option {
+    font-size: 13px;
+}
+.select2-container--default .select2-selection__rendered .select2-selection--single {
+    line-height: 1.4 !important;
+    padding: 2px 4px;
+}
+
+.select2-selection__rendered {
+    line-height: 24px !important;
+}
+.select2-container .select2-selection--single {
+    height: 24px !important;
+}
+.select2-selection__arrow {
+    height: 24px !important;
+}
+
+.select2-container--disabled {
+    display: none;
+}
+/* ドロップダウンリストが狭すぎたのでサイズ拡大 */
+.select2-results__options {
+    max-height: 390px !important; 
+}
