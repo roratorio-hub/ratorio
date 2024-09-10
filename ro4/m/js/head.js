@@ -26762,6 +26762,9 @@ function UsedSkillSearch(sklId, bOnlyUsed = false) {
 		else if (TimeItemNumSearch(TIME_ITEM_ID_TRIANGLE_DISASTER) > 0) {
 			effectivLvArray.push(5);
 		}
+		else if (TimeItemNumSearch(TIME_ITEM_ID_ENCHANT_GOKETSU_SENZAI_KAIHO_SHADOW_CHASER_2) > 0) {
+			effectivLvArray.push(5);
+		}		
 		break;
 
 	// テレキネシスインテンス
