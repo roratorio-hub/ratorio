@@ -618,6 +618,10 @@ function BattleCalc999(battleCalcInfo, charaData, specData, mobData, attackMetho
 	// 別の場所（通常の呼び出しフロー直前）で、特定処理実施済み（AS_Calc()）
 	// グローバル変数 n_AS_SKILL に、多次元配列データが入っているので、ここから計算処理を呼び出す
 	//----------------------------------------------------------------
+	if (n_AS_SKILL.length > 0) {
+		// オートスペルフラグ ON
+		n_AS_MODE = 1;
+	}
 	for (idxAS = 0; idxAS < n_AS_SKILL.length; idxAS++) {
 
 		// 発動率不明は除外
@@ -635,8 +639,8 @@ function BattleCalc999(battleCalcInfo, charaData, specData, mobData, attackMetho
 		// 確率追撃配列に追加する
 		battleCalcResultAll.AddAppendResult(undefined, BattleCalc999Body(cloned, charaData, specData, mobData, attackMethodConfArray, false));
 	}
-
-
+	// オートスペルフラグ OFF
+	n_AS_MODE = 0;
 
 	return battleCalcResultAll;
 }
@@ -1026,10 +1030,10 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 
 	// 修練が乗らないスキルには、錐効果が適用されない
 	if ((NumSearch(n_A_ActiveSkill, n_SP_SKILL) != 0) && (n_A_ActiveSkill != SKILL_ID_HAKKEI)) {
+		if ((n_AS_MODE == 0) && (n_A_QUAKE_KIRI != 0)) {
+			alert("想定外の錐効果演算。\nお手数ですが、投稿フォームから、URL出力のURLを添えて、お知らせください。");
+		}
 		for (var i = 0; i <= 2; i++) {
-			if ((n_AS_MODE == 0) && (n_A_QUAKE_KIRI != 0)) {
-				alert("想定外の錐効果演算。\nお手数ですが、投稿フォームから、URL出力のURLを添えて、お知らせください。");
-			}
 			n_A_DMG[i] -= n_A_QUAKE_KIRI;
 		}
 	}
