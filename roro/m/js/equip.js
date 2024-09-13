@@ -1962,7 +1962,7 @@ function copyAccs(from, to){
 			$(`${id_to}_CARD_${i}`).prop("selectedIndex", $(`${id_from}_CARD_${i}`).prop("selectedIndex")).change();
 		})
 	} else {
-		$(id_to).prop("selectedIndex", 0).change();
+		$(id_to).prop("selectedIndex", 0).change().trigger("select2:select");
 		[1,2,3,4].forEach((i)=>{
 			$(`${id_to}_CARD_${i}`).prop("selectedIndex", 0).change();
 		})

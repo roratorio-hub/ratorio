@@ -122,7 +122,7 @@ CTimeItemAreaComponentManager.RebuildControls = function () {
 		objSelect.value = g_timeItemConf[idxRow];
 
 		// select2 対応
-		console.log(`${'#OBJID_SELECT_TIME_ITEM_' + idxRow}.select2-hidden-accessible=${$('#OBJID_SELECT_TIME_ITEM_' + idxRow).hasClass('select2-hidden-accessible')}`);
+		//console.log(`${'#OBJID_SELECT_TIME_ITEM_' + idxRow}.select2-hidden-accessible=${$('#OBJID_SELECT_TIME_ITEM_' + idxRow).hasClass('select2-hidden-accessible')}`);
 		if ($('#OBJID_SELECT_TIME_ITEM_' + idxRow).hasClass('select2-hidden-accessible')) {
 			// 親要素が削除→再生成されるためselect2も作り直す
 			$('#OBJID_SELECT_TIME_ITEM_' + idxRow).select2('destroy');
