@@ -10112,7 +10112,7 @@ g_bDefinedDamageIntervals = true;
 			n_Delay[5] = 300;	// ダメージ間隔
 			n_Delay[6] = 3000;	// オブジェクト存続時間
 			// ダメージ倍率
-			if (UsedSkillSearch(SKILL_ID_SERE == 15)) {	// 15: 風 プロセラ
+			if (UsedSkillSearch(SKILL_ID_SERE) == 15) {	// 15: 風 プロセラ
 				// 四次精霊あり
 				wbairitu = [0,1400,1800,2200,2600,3000][n_A_ActiveSkillLV];
 				wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
@@ -10138,7 +10138,7 @@ g_bDefinedDamageIntervals = true;
 			n_Delay[5] = 300;	// ダメージ間隔
 			n_Delay[6] = 3000;	// オブジェクト存続時間
 			// ダメージ倍率
-			if (UsedSkillSearch(SKILL_ID_SERE == 13)) {	// 13: 火 アルドール
+			if (UsedSkillSearch(SKILL_ID_SERE) == 13) {	// 13: 火 アルドール
 				// 四次精霊あり
 				wbairitu = [0,1400,1800,2200,2600,3000][n_A_ActiveSkillLV];
 				wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
@@ -10164,7 +10164,7 @@ g_bDefinedDamageIntervals = true;
 			n_Delay[5] = 300;	// ダメージ間隔
 			n_Delay[6] = 3000;	// オブジェクト存続時間
 			// ダメージ倍率
-			if (UsedSkillSearch(SKILL_ID_SERE == 17)) {	// 17: 毒 サーペンス
+			if (UsedSkillSearch(SKILL_ID_SERE) == 17) {	// 17: 毒 サーペンス
 				// 四次精霊あり
 				wbairitu = [0,1400,1800,2200,2600,3000][n_A_ActiveSkillLV];
 				wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
