@@ -10054,8 +10054,29 @@ g_bDefinedDamageIntervals = true;
 			break;
 
 		// 「エレメンタルマスター」スキル「ダイヤモンドストーム」
-		// 「エレメンタルマスター」スキル「テラドライブ」
 		case SKILL_ID_DIAMOND_STORM:
+			// 2024/08/27 実測
+			// 1～3程度の誤差が残りますが本計算式の問題ではなく後続の共通計算式の丸め誤差と考えています
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// ダメージ倍率
+			if (UsedSkillSearch(SKILL_ID_SERE) == 14) { // 14: 水 ディルビオ
+				// 四次精霊あり
+				wbairitu = [0,4500,6300,8400,10800,13500][n_A_ActiveSkillLV];
+				wbairitu += 45 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+			} else {
+				// 四次精霊なし
+				wbairitu = [0,4500,5250,6000,6750,7500][n_A_ActiveSkillLV];
+				wbairitu += 25 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+			}
+			// ベースレベル補正
+			wbairitu *= n_A_BaseLV / 100;
+			break;
+
+		// 「エレメンタルマスター」スキル「テラドライブ」
 		case SKILL_ID_TERA_DRIVE:
 			// 2024/08/27 実測
 			// 1～3程度の誤差が残りますが本計算式の問題ではなく後続の共通計算式の丸め誤差と考えています
@@ -10065,27 +10086,72 @@ g_bDefinedDamageIntervals = true;
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// ダメージ倍率
-			switch (UsedSkillSearch(SKILL_ID_SERE)) {
-				case 14:	// 水 ディルビオ
-				case 16:	// 地 テレモトゥス
-					// 四次精霊あり
-					wbairitu = [0,4500,6300,8400,10800,13500][n_A_ActiveSkillLV];
-					wbairitu += 45 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-					break;
-				default:
-					// 四次精霊なし
-					wbairitu = [0,4500,5250,6000,6750,7500][n_A_ActiveSkillLV];
-					wbairitu += 25 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+			if (UsedSkillSearch(SKILL_ID_SERE) == 16) {	// 16: 地 テレモトゥス
+				// 四次精霊あり
+				wbairitu = [0,4500,6300,8400,10800,13500][n_A_ActiveSkillLV];
+				wbairitu += 45 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+			} else {
+				// 四次精霊なし
+				wbairitu = [0,4500,5250,6000,6750,7500][n_A_ActiveSkillLV];
+				wbairitu += 25 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			}
 			// ベースレベル補正
 			wbairitu *= n_A_BaseLV / 100;
 			break;
-		
+			
 		//「エレメンタルマスター」スキル「ライトニングランド」
-		//「エレメンタルマスター」スキル「コンフラグレーション」
-		//「エレメンタルマスター」スキル「ベナムスワンプ」
 		case SKILL_ID_LIGHTNING_LAND:
+			// 2024/08/27 実測
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// 設置スキル
+			g_bDefinedDamageIntervals = true;
+			n_Delay[5] = 300;	// ダメージ間隔
+			n_Delay[6] = 3000;	// オブジェクト存続時間
+			// ダメージ倍率
+			if (UsedSkillSearch(SKILL_ID_SERE) == 15) {	// 15: 風 プロセラ
+				// 四次精霊あり
+				wbairitu = [0,1400,1800,2200,2600,3000][n_A_ActiveSkillLV];
+				wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+			} else {
+				// 四次精霊なし
+				wbairitu = [0,1200,1500,1800,2100,2400][n_A_ActiveSkillLV];
+				wbairitu += 8 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+			}
+			// ベースレベル補正
+			wbairitu *= n_A_BaseLV / 100;
+			break;
+			
+		//「エレメンタルマスター」スキル「コンフラグレーション」
 		case SKILL_ID_CONFLAGRATION:
+			// 2024/08/27 実測
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// 設置スキル
+			g_bDefinedDamageIntervals = true;
+			n_Delay[5] = 300;	// ダメージ間隔
+			n_Delay[6] = 3000;	// オブジェクト存続時間
+			// ダメージ倍率
+			if (UsedSkillSearch(SKILL_ID_SERE) == 13) {	// 13: 火 アルドール
+				// 四次精霊あり
+				wbairitu = [0,1400,1800,2200,2600,3000][n_A_ActiveSkillLV];
+				wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+			} else {
+				// 四次精霊なし
+				wbairitu = [0,1200,1500,1800,2100,2400][n_A_ActiveSkillLV];
+				wbairitu += 8 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+			}
+			// ベースレベル補正
+			wbairitu *= n_A_BaseLV / 100;
+			break;
+			
+		//「エレメンタルマスター」スキル「ベナムスワンプ」
 		case SKILL_ID_VENOM_SWAMP:
 			// 2024/08/27 実測
 			// 詠唱時間等
@@ -10098,23 +10164,19 @@ g_bDefinedDamageIntervals = true;
 			n_Delay[5] = 300;	// ダメージ間隔
 			n_Delay[6] = 3000;	// オブジェクト存続時間
 			// ダメージ倍率
-			switch (UsedSkillSearch(SKILL_ID_SERE)) {
-				case 13:	// 火 アルドール
-				case 15:	// 風 プロセラ
-				case 17:	// 毒 サーペンス
-					// 四次精霊あり
-					wbairitu = [0,1400,1800,2200,2600,3000][n_A_ActiveSkillLV];
-					wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-					break;
-				default:
-					// 四次精霊なし
-					wbairitu = [0,1200,1500,1800,2100,2400][n_A_ActiveSkillLV];
-					wbairitu += 8 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+			if (UsedSkillSearch(SKILL_ID_SERE) == 17) {	// 17: 毒 サーペンス
+				// 四次精霊あり
+				wbairitu = [0,1400,1800,2200,2600,3000][n_A_ActiveSkillLV];
+				wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+			} else {
+				// 四次精霊なし
+				wbairitu = [0,1200,1500,1800,2100,2400][n_A_ActiveSkillLV];
+				wbairitu += 8 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			}
 			// ベースレベル補正
 			wbairitu *= n_A_BaseLV / 100;
 			break;
-		
+
 		//「エレメンタルマスター」スキル「エレメンタルバスター」
 		case SKILL_ID_ELEMENTAL_BASTER:
 			bMatchCond = false;
