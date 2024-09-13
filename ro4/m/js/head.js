@@ -10053,220 +10053,108 @@ g_bDefinedDamageIntervals = true;
 			}
 			break;
 
+		// 「エレメンタルマスター」スキル「ダイヤモンドストーム」
+		// 「エレメンタルマスター」スキル「テラドライブ」
 		case SKILL_ID_DIAMOND_STORM:
-
-			// 詠唱時間等
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-
-			// 基本倍率
-			wbairitu = 2000 + (500 * n_A_ActiveSkillLV);
-
-			// 召喚中補正
-			if (UsedSkillSearch(SKILL_ID_SERE) == 14) {
-				wbairitu *= [0, 1.8, 2.1, 2.4, 2.7, 3][n_A_ActiveSkillLV];
-			}
-
-			// SPL補正
-			ampWork = 15;
-			// 召喚中補正
-			if (UsedSkillSearch(SKILL_ID_SERE) == 14) {
-				ampWork *= 3;
-			}
-			wbairitu += ampWork * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-
-			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
-			break;
-
-		case SKILL_ID_LIGHTNING_LAND:
-
-g_bDefinedDamageIntervals = true;
-
-			// 詠唱時間等
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-
-			// ダメージ間隔
-			n_Delay[5] = 300;
-
-			// オブジェクト存続時間
-			n_Delay[6] = 3000;
-
-			// 基本倍率、SPL補正
-			// 召喚中
-			if (UsedSkillSearch(SKILL_ID_SERE) == 15) {
-				wbairitu = 1000 + (400 * n_A_ActiveSkillLV);
-				wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			}
-			// 非召喚状態
-			else {
-				wbairitu = 1050 + (150 * n_A_ActiveSkillLV);
-				wbairitu += 6 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			}
-
-			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
-			break;
-
-		case SKILL_ID_VENOM_SWAMP:
-
-g_bDefinedDamageIntervals = true;
-
-			// 詠唱時間等
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-
-			// ダメージ間隔
-			n_Delay[5] = 300;
-
-			// オブジェクト存続時間
-			n_Delay[6] = 3000;
-
-			// 基本倍率、SPL補正
-			// 召喚中
-			if (UsedSkillSearch(SKILL_ID_SERE) == 17) {
-				wbairitu = 1000 + (400 * n_A_ActiveSkillLV);
-				wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			}
-			// 非召喚状態
-			else {
-				wbairitu = 1050 + (150 * n_A_ActiveSkillLV);
-				wbairitu += 6 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			}
-
-			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
-			break;
-
-		case SKILL_ID_CONFLAGRATION:
-
-g_bDefinedDamageIntervals = true;
-
-			// 詠唱時間等
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-
-			// ダメージ間隔
-			n_Delay[5] = 300;
-
-			// オブジェクト存続時間
-			n_Delay[6] = 3000;
-
-			// 基本倍率、SPL補正
-			// 召喚中
-			if (UsedSkillSearch(SKILL_ID_SERE) == 13) {
-				wbairitu = 1000 + (400 * n_A_ActiveSkillLV);
-				wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			}
-			// 非召喚状態
-			else {
-				wbairitu = 1050 + (150 * n_A_ActiveSkillLV);
-				wbairitu += 6 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			}
-
-			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
-			break;
-
 		case SKILL_ID_TERA_DRIVE:
-
+			// 2024/08/27 実測
+			// 1～3程度の誤差が残りますが本計算式の問題ではなく後続の共通計算式の丸め誤差と考えています
 			// 詠唱時間等
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-
-			// 基本倍率
-			wbairitu = 2000 + (500 * n_A_ActiveSkillLV);
-
-			// 召喚中補正
-			if (UsedSkillSearch(SKILL_ID_SERE) == 16) {
-				wbairitu *= [0, 1.8, 2.1, 2.4, 2.7, 3][n_A_ActiveSkillLV];
+			// ダメージ倍率
+			switch (UsedSkillSearch(SKILL_ID_SERE)) {
+				case 14:	// 水 ディルビオ
+				case 16:	// 地 テレモトゥス
+					// 四次精霊あり
+					wbairitu = [0,4500,6300,8400,10800,13500][n_A_ActiveSkillLV];
+					wbairitu += 45 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+					break;
+				default:
+					// 四次精霊なし
+					wbairitu = [0,4500,5250,6000,6750,7500][n_A_ActiveSkillLV];
+					wbairitu += 25 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			}
-
-			// SPL補正
-			ampWork = 15;
-			// 召喚中補正
-			if (UsedSkillSearch(SKILL_ID_SERE) == 16) {
-				ampWork *= 3;
-			}
-			wbairitu += ampWork * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-
 			// ベースレベル補正
 			wbairitu *= n_A_BaseLV / 100;
 			break;
-
+		
+		//「エレメンタルマスター」スキル「ライトニングランド」
+		//「エレメンタルマスター」スキル「コンフラグレーション」
+		//「エレメンタルマスター」スキル「ベナムスワンプ」
+		case SKILL_ID_LIGHTNING_LAND:
+		case SKILL_ID_CONFLAGRATION:
+		case SKILL_ID_VENOM_SWAMP:
+			// 2024/08/27 実測
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// 設置スキル
+			g_bDefinedDamageIntervals = true;
+			n_Delay[5] = 300;	// ダメージ間隔
+			n_Delay[6] = 3000;	// オブジェクト存続時間
+			// ダメージ倍率
+			switch (UsedSkillSearch(SKILL_ID_SERE)) {
+				case 13:	// 火 アルドール
+				case 15:	// 風 プロセラ
+				case 17:	// 毒 サーペンス
+					// 四次精霊あり
+					wbairitu = [0,1400,1800,2200,2600,3000][n_A_ActiveSkillLV];
+					wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+					break;
+				default:
+					// 四次精霊なし
+					wbairitu = [0,1200,1500,1800,2100,2400][n_A_ActiveSkillLV];
+					wbairitu += 8 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+			}
+			// ベースレベル補正
+			wbairitu *= n_A_BaseLV / 100;
+			break;
+		
+		//「エレメンタルマスター」スキル「エレメンタルバスター」
 		case SKILL_ID_ELEMENTAL_BASTER:
-
 			bMatchCond = false;
-
 			// 属性設定
 			switch (UsedSkillSearch(SKILL_ID_SERE)) {
-
-			case 13:
-				n_A_Weapon_zokusei = ELM_ID_FIRE;
-				bMatchCond = true;
-				break;
-
-			case 14:
-				n_A_Weapon_zokusei = ELM_ID_WATER;
-				bMatchCond = true;
-				break;
-
-			case 15:
-				n_A_Weapon_zokusei = ELM_ID_WIND;
-				bMatchCond = true;
-				break;
-
-			case 16:
-				n_A_Weapon_zokusei = ELM_ID_EARTH;
-				bMatchCond = true;
-				break;
-
-			case 17:
-				n_A_Weapon_zokusei = ELM_ID_POISON;
-				bMatchCond = true;
-				break;
-
+				case 13:
+					n_A_Weapon_zokusei = ELM_ID_FIRE;
+					bMatchCond = true;
+					break;
+				case 14:
+					n_A_Weapon_zokusei = ELM_ID_WATER;
+					bMatchCond = true;
+					break;
+				case 15:
+					n_A_Weapon_zokusei = ELM_ID_WIND;
+					bMatchCond = true;
+					break;
+				case 16:
+					n_A_Weapon_zokusei = ELM_ID_EARTH;
+					bMatchCond = true;
+					break;
+				case 17:
+					n_A_Weapon_zokusei = ELM_ID_POISON;
+					bMatchCond = true;
+					break;
 			}
-
-
 			// 使用可否判定
 			if (bMatchCond) {
-
 				// 詠唱時間等
 				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-
 				// 基本倍率
-				wbairitu = 1500 + (750 * n_A_ActiveSkillLV);
-
+				wbairitu = 10500 + (3000 * n_A_ActiveSkillLV);
 				// SPL補正
-				wbairitu += 30 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-
-				// 無・竜形はダメージ倍率２倍
-				switch (mobData[MONSTER_DATA_INDEX_RACE]) {
-				case RACE_ID_SOLID:
-				case RACE_ID_DRAGON:
-					wbairitu *= 2;
-					break;
-				}
-
+				wbairitu += 135 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 				// ベースレベル補正
 				wbairitu *= n_A_BaseLV / 100;
 			}
-
 			// 使用不可
 			else {
 				wbairitu = 0;
@@ -17476,7 +17364,7 @@ function Click_PassSkillSW(){
 
 				if (passiveSkillIdArray.indexOf(SKILL_ID_ELEMENTAL_SPIRIT_MASTERY) >= 0) {
 					w_name = w_name.concat([
-						"(×)火四次", "(×)水四次", "(×)風四次", "(×)地四次", "(×)毒四次",
+						"火四次", "水四次", "風四次", "地四次", "毒四次",
 					]);
 				}
 
