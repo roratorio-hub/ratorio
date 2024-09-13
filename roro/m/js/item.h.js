@@ -1954,7 +1954,7 @@ function GetItemExplainText(spId, spValue) {
 		break;
 
 	case ITEM_SP_ALLSTATUS_PLUS:
-		textInfoArray.push(["", "すべてのステータス" + sign + spValue]);
+		textInfoArray.push(["", "全ての基本ステータス" + sign + spValue]);
 		break;
 
 	case ITEM_SP_HIT_PLUS:
@@ -2441,7 +2441,7 @@ function GetItemExplainText(spId, spValue) {
 		break;
 
 	case ITEM_SP_ALLSTATUS_PLUS_FOR_SET:
-		textInfoArray.push(["", "すべてのステータス" + sign + spValue]);
+		textInfoArray.push(["", "全ての基本ステータス" + sign + spValue]);
 		break;
 
 	case ITEM_SP_INVALIDATE_ITEM_SP:
