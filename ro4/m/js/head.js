@@ -4623,40 +4623,44 @@ g_bUnknownCasts = true;
 
 		// 「ハイパーノービス」スキル「ダブルボウリングバッシュ」
 		case SKILL_ID_DOUBLE_BOWLING_BASH:
-			g_bUnknownCasts = true;	// 詠唱時間など未計測フラグ
-			/*
+			// 詠唱など
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			*/
+			// ヒット数
 			option_count = attackMethodConfArray[0].GetOptionValue(0);								// 巻き込み数補正
 			wHITsuu = [3,4,5][option_count];
-			wbairitu = 400;																			// 基礎倍率
+			// 基本倍率
+			wbairitu = 850;																			// 基礎倍率
 			wbairitu += 3 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU);		// 習得済みスキル条件
 			wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_POW);									// 特性ステータス補正
 			wbairitu *= n_A_BaseLV / 100;															// BaseLv補正
+			// 最終倍率
 			wbairitu *= [100, 101, 103, 105, 107, 109, 111, 113, 115, 120, 125][UsedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU)] / 100;	// 独学補正
 			wbairitu *= [100, 150][UsedSkillSearch(SKILL_ID_BREAKING_LIMIT)] / 100;														// ブレイキングリミット補正
 			break;
 
 		// 「ハイパーノービス」スキル「メガソニックブロー」
 		case SKILL_ID_MEGA_SONIC_BLOW:
-			g_bUnknownCasts = true;	// 詠唱時間など未計測フラグ
-			/*
+			// 詠唱など
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			*/
 			// 分割ヒット数
 			wActiveHitNum = 8;
+			// 基本倍率
 			wbairitu = 1650 + (50 * n_A_ActiveSkillLV);												// 基礎倍率
 			wbairitu += 5 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU);		// 習得済みスキル条件
 			wbairitu += 4 * GetTotalSpecStatus(MIG_PARAM_ID_POW);									// 特性ステータス補正
 			wbairitu *= n_A_BaseLV / 100;															// BaseLv補正
+			// 最終倍率
 			wbairitu *= [100, 101, 103, 105, 107, 109, 111, 113, 115, 120, 125][UsedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU)] / 100;	// 独学補正
 			wbairitu *= [100, 150][UsedSkillSearch(SKILL_ID_BREAKING_LIMIT)] / 100;														// ブレイキングリミット補正
+			// 敵のHPが50%未満の場合ダメージ2倍
+			option_count = attackMethodConfArray[0].GetOptionValue(0);								// 敵の残りHP
+			wbairitu *= [100, 200][option_count] / 100;
 			break;
 
 		// 「マイスター」スキル「スパークブラスター」
@@ -5085,19 +5089,16 @@ g_bUnknownCasts = true;
 			// 分割ヒット数
 			wActiveHitNum = 5
 			// 詠唱時間等
-			g_bUnknownCasts = true;	// 詠唱時間など未計測フラグ
-			/*
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			*/
-			// 属性
-			n_A_Weapon_zokusei = g_skillManager.GetElement(battleCalcInfo.skillId);
-			wbairitu = 2150 + (150 * n_A_ActiveSkillLV);																				// 基礎倍率
+			// 基本倍率
+			wbairitu = 3050 + (175 * n_A_ActiveSkillLV);																				// 基礎倍率
 			wbairitu += 3 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU);											// 習得済みスキル条件
 			wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);																		// 特性ステータス補正
 			wbairitu *= n_A_BaseLV / 100;																								// BaseLv補正
+			// 最終倍率
 			wbairitu *= [100, 101, 103, 105, 107, 109, 111, 113, 115, 120, 125][UsedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU)] / 100;	// 独学補正
 			wbairitu *= [100, 150][UsedSkillSearch(SKILL_ID_BREAKING_LIMIT)] / 100;														// ブレイキングリミット補正
 			break;
@@ -5109,33 +5110,31 @@ g_bUnknownCasts = true;
 			// 分割ヒット数
 			wActiveHitNum = 5			
 			// 詠唱時間等
-			g_bUnknownCasts = true;	// 詠唱時間など未計測フラグ
-			/*
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			*/
-			// 属性
-			n_A_Weapon_zokusei = g_skillManager.GetElement(battleCalcInfo.skillId);
-			wbairitu = 2900 + (150 * n_A_ActiveSkillLV);											// 基礎倍率
+			// 基本倍率
+			wbairitu = 4475 + (125 * n_A_ActiveSkillLV);											// 基礎倍率
 			wbairitu += 3 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU);		// 習得済みスキル条件
 			switch (mobData[MONSTER_DATA_INDEX_SIZE]) {												// サイズ補正 (POWには掛からない)
 				case SIZE_ID_LARGE:
-					wbairitu *= 120;
+					wbairitu *= 1.2;
 					break;
 				case SIZE_ID_MEDIUM:
-					wbairitu *= 130;
+					wbairitu *= 1.3;
 					break;
 				case SIZE_ID_SMALL:
-					wbairitu *= 150;
+					wbairitu *= 1.5;
 					break;
 			}
 			wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);																		// 特性ステータス補正
 			wbairitu *= n_A_BaseLV / 100;																								// BaseLv補正
+			// 最終倍率
 			wbairitu *= [100, 101, 103, 105, 107, 109, 111, 113, 115, 120, 125][UsedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU)] / 100;	// 独学補正
 			wbairitu *= [100, 150][UsedSkillSearch(SKILL_ID_BREAKING_LIMIT)] / 100;														// ブレイキングリミット補正
 			break;
+			
 /*
 		case SKILL_ID_DUMMY:
 			// 使用武器制限

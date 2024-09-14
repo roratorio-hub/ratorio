@@ -3664,6 +3664,22 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 			break;
 
 		//----------------------------------------------------------------
+		// ハイパーノービス：メガソニックブローの敵HP残量
+		//----------------------------------------------------------------
+		case SKILL_ID_MEGA_SONIC_BLOW:
+
+			// オプションリストを生成、追加
+			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+				"敵の残りHP",
+				[
+					[0, "50%以上"],
+					[1, "50%未満"],
+				],
+				0
+			);
+			break;
+
+		//----------------------------------------------------------------
 		// スピリットハンドラー：ディアーキャノン
 		//----------------------------------------------------------------
 		case SKILL_ID_DEER_CANON:
