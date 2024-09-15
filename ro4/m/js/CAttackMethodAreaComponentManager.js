@@ -3567,13 +3567,43 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 
 
 		//----------------------------------------------------------------
-		// バイオロ：アシディファイドゾーン(水)
+		// バイオロ：アシディファイドゾーン
 		//----------------------------------------------------------------
 		case SKILL_ID_ACIDIFIED_ZONE_MIZU:
 		case SKILL_ID_ACIDIFIED_ZONE_CHI:
 		case SKILL_ID_ACIDIFIED_ZONE_HI:
 		case SKILL_ID_ACIDIFIED_ZONE_KAZE:
 
+			// オプションリストを生成、追加
+			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+				"ダメージ表示",
+				[
+					[0, "使用時ダメージ"],
+					[1, "追加持続ダメージ"],
+				],
+				0
+			);
+			break;
+		
+		//----------------------------------------------------------------
+		// ハイパーノービス：ジャックフロストノヴァ
+		//----------------------------------------------------------------
+		case SKILL_ID_JACK_FROST_NOVA:
+			// オプションリストを生成、追加
+			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+				"ダメージ表示",
+				[
+					[0, "使用時ダメージ"],
+					[1, "追加持続ダメージ"],
+				],
+				0
+			);
+			break;
+
+		//----------------------------------------------------------------
+		// ハイパーノービス：グラウンドグラビテーション
+		//----------------------------------------------------------------
+		case SKILL_ID_GROUND_GRAVITATION:
 			// オプションリストを生成、追加
 			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
 				"ダメージ表示",

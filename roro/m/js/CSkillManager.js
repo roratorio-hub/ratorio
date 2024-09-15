@@ -36736,23 +36736,21 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_WIND;
-			/*
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 0;
 			}
 			this.CastTimeVary = function(skillLv, charaDataManger) {
-				return 0;
+				return -500 + 700 * skillLv;
 			}
 			this.CastTimeFixed = function(skillLv, charaDataManger) {
-				return (0 * skillLv);
+				return 500;
 			}
 			this.DelayTimeCommon = function(skillLv, charaDataManger) {
-				return 0;
+				return 400 * skillLv;
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {
-				return 0;
+				return 500;
 			}
-			*/
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -36772,23 +36770,21 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_EARTH;
-			/*
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 0;
 			}
 			this.CastTimeVary = function(skillLv, charaDataManger) {
-				return 0;
+				return -500 + 700 * skillLv;
 			}
 			this.CastTimeFixed = function(skillLv, charaDataManger) {
-				return (0 * skillLv);
+				return 500;
 			}
 			this.DelayTimeCommon = function(skillLv, charaDataManger) {
-				return 0;
+				return 400 * skillLv;
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {
-				return 0;
+				return 500;
 			}
-			*/
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -36808,23 +36804,21 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_PSYCO;
-			/*
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 0;
 			}
 			this.CastTimeVary = function(skillLv, charaDataManger) {
-				return 0;
+				return -500 + 700 * skillLv;
 			}
 			this.CastTimeFixed = function(skillLv, charaDataManger) {
-				return (0 * skillLv);
+				return 500;
 			}
 			this.DelayTimeCommon = function(skillLv, charaDataManger) {
-				return 0;
+				return 400 * skillLv;
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {
-				return 0;
+				return 500;
 			}
-			*/
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -37958,16 +37952,16 @@ function CSkillManager() {
 				return 0;
 			}
 			this.CastTimeVary = function(skillLv, charaDataManger) {
-				return 0 * skillLv;
+				return 2500 + 700 * skillLv;
 			}
 			this.CastTimeFixed = function(skillLv, charaDataManger) {
-				return 0;
+				return 150 * skillLv;
 			}
 			this.DelayTimeCommon = function(skillLv, charaDataManger) {
-				return 0 * skillLv;
+				return 5000 * skillLv;
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {
-				return 0;
+				return 3000;
 			}
 		};
 		this.dataArray[skillId] = skillData;
@@ -37992,16 +37986,16 @@ function CSkillManager() {
 				return 0;
 			}
 			this.CastTimeVary = function(skillLv, charaDataManger) {
-				return 0 * skillLv;
+				return 2500 + 700 * skillLv;
 			}
 			this.CastTimeFixed = function(skillLv, charaDataManger) {
-				return 0;
+				return 150 * skillLv;
 			}
 			this.DelayTimeCommon = function(skillLv, charaDataManger) {
-				return 0 * skillLv;
+				return 5000;
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {
-				return 0;
+				return 5000;
 			}
 		};
 		this.dataArray[skillId] = skillData;

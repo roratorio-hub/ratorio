@@ -1687,7 +1687,6 @@ function ApplySpecModify(spid, spVal) {
 
 		// 四次職支援「クライマックスインパクト」による効果
 		if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_CLIMAX_IMPACT]) > 0) {
-
 			// 水属性魔法
 			if ([ITEM_SP_MAGICAL_DAMAGE_UP_ELM_WATER].indexOf(spid) >= 0) {
 				spVal += 25;
@@ -1698,6 +1697,14 @@ function ApplySpecModify(spid, spVal) {
 		if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_TENCHI_SHINRE]) > 0) {
 			spVal += 10 + bufLv;
 		}
+
+		// 「ハイパーノービス」スキル「ジャックフロストノヴァ」によるデバフ効果
+		if (n_B_IJYOU[MOB_CONF_DEBUF_ID_JACK_FROST_NOVA]) {
+			if ([ITEM_SP_MAGICAL_DAMAGE_UP_ELM_WATER].indexOf(spid) >= 0) {
+				spVal += 15;
+			}
+		}
+		
 		break;
 
 	case ITEM_SP_MAGICAL_DAMAGE_UP_MONSTER_ELM_VANITY:
@@ -1725,7 +1732,29 @@ function ApplySpecModify(spid, spVal) {
 			}
 		}
 		break;
-	
+
+	// 属性攻撃ダメージ増加
+	case ITEM_SP_PHYSICAL_DAMAGE_UP_ELM_VANITY:
+	case ITEM_SP_PHYSICAL_DAMAGE_UP_ELM_WATER:
+	case ITEM_SP_PHYSICAL_DAMAGE_UP_ELM_EARTH:
+	case ITEM_SP_PHYSICAL_DAMAGE_UP_ELM_FIRE:
+	case ITEM_SP_PHYSICAL_DAMAGE_UP_ELM_WIND:
+	case ITEM_SP_PHYSICAL_DAMAGE_UP_ELM_POISON:
+	case ITEM_SP_PHYSICAL_DAMAGE_UP_ELM_HOLY:
+	case ITEM_SP_PHYSICAL_DAMAGE_UP_ELM_DARK:
+	case ITEM_SP_PHYSICAL_DAMAGE_UP_ELM_PSYCO:
+	case ITEM_SP_PHYSICAL_DAMAGE_UP_ELM_UNDEAD:
+
+		// 「ハイパーノービス」スキル「ジャックフロストノヴァ」によるデバフ効果
+		if (n_B_IJYOU[MOB_CONF_DEBUF_ID_JACK_FROST_NOVA]) {
+			if ([ITEM_SP_PHYSICAL_DAMAGE_UP_ELM_WATER].indexOf(spid) >= 0) {
+				spVal += 15;
+			}
+		}
+
+		break;
+
+
 	// 属性モンスターへの物理ダメージ増加
 	case ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_ELM_VANITY:
 	case ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_ELM_WATER:
