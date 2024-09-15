@@ -569,24 +569,21 @@ function BattleCalc999(battleCalcInfo, charaData, specData, mobData, attackMetho
 
 		// 単発追撃系
 		switch (skillId) {
-
-		case SKILL_ID_ARBITRIUM:
-		case SKILL_ID_CRYSTAL_IMPACT:
-		case SKILL_ID_ASTRAL_STRIKE:
-		case SKILL_ID_CRYMSON_ARROW:
-		case SKILL_ID_ROSE_BLOSSOM:
-		case SKILL_ID_MISSION_BOMBARD:
-			bCommonAppend = true;
-			break;
-
-		case SKILL_ID_DESTRACTIVE_HURRICANE:
-			bCommonAppend = (UsedSkillSearch(SKILL_ID_CLIMAX) == 1);
-			break;
-
-		case SKILL_ID_ALL_BLOOM:
-			bCommonAppend = (UsedSkillSearch(SKILL_ID_CLIMAX) == 5);
-			break;
-
+			case SKILL_ID_METEOR_STORM_BUSTER:
+			case SKILL_ID_ARBITRIUM:
+			case SKILL_ID_CRYSTAL_IMPACT:
+			case SKILL_ID_ASTRAL_STRIKE:
+			case SKILL_ID_CRYMSON_ARROW:
+			case SKILL_ID_ROSE_BLOSSOM:
+			case SKILL_ID_MISSION_BOMBARD:
+				bCommonAppend = true;
+				break;
+			case SKILL_ID_DESTRACTIVE_HURRICANE:
+				bCommonAppend = (UsedSkillSearch(SKILL_ID_CLIMAX) == 1);
+				break;
+			case SKILL_ID_ALL_BLOOM:
+				bCommonAppend = (UsedSkillSearch(SKILL_ID_CLIMAX) == 5);
+				break;
 		}
 
 		// 追撃フラグが立っていれば、汎用追撃構造を構築
@@ -10485,21 +10482,35 @@ g_bDefinedDamageIntervals = true;
 
 		// 「ハイパーノービス」スキル「メテオストームバスター」
 		case SKILL_ID_METEOR_STORM_BUSTER:
-			g_bUnknownCasts = true;	// 詠唱時間など未計測フラグ
-			/*
+			// 詠唱時間など
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			*/
-			wHITsuu = [0,3,4,4,5,5,6,6,7,7,8][n_A_ActiveSkillLV];					// 多段ヒット数
-			wbairitu = 600;															// 基礎倍率
-			wbairitu += 600;														// 追撃ダメージ
-			wbairitu += 5 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU);			// 習得済みスキル条件
-			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);					// 特性ステータス補正
-			wbairitu *= n_A_BaseLV / 100;											// BaseLv補正
-			wbairitu *= [100,101,103,105,107,109,111,113,115,120,125][UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU)] / 100;	// 独学補正
-			wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK)] / 100;												// ルールブレイク補正
+			// 設置スキル
+			g_bDefinedDamageIntervals = true;
+			n_Delay[5] = 500; // ダメージ発生間隔
+			n_Delay[6] = [0,1500,2000,2000,2500,2500,3000,3000,3500,3500,4000][n_A_ActiveSkillLV];	// オブジェクト生存期間
+			// 隕石
+			if (battleCalcInfo.parentSkillId === undefined) {
+				wActiveHitNum = 3;	// 隕石 1 つあたり見た目 3 Hit
+				wbairitu = 1750 + 50 * n_A_ActiveSkillLV;													// 基礎倍率
+				wbairitu += 5 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU);			// 習得済みスキル条件
+				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);										// 特性ステータス補正
+				// 最終倍率
+				wbairitu *= n_A_BaseLV / 100;																					// BaseLv補正
+				wbairitu *= [100,101,103,105,107,109,111,113,115,120,125][UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU)] / 100;	// 独学補正
+				wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK)] / 100;												// ルールブレイク補正
+			}
+			// 爆発
+			else {
+				wbairitu = 1175 + 25 * n_A_ActiveSkillLV;													// 基礎倍率
+				wbairitu += 5 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU);			// 習得済みスキル条件
+				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);										// 特性ステータス補正
+				// 最終倍率 (爆発には独学補正が掛からない)
+				wbairitu *= n_A_BaseLV / 100;											// BaseLv補正
+				wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK)] / 100;		// ルールブレイク補正
+			}
 			break;
 
 		/*
