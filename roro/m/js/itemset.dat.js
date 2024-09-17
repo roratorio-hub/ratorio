@@ -5330,6 +5330,16 @@
 	w_SE[2752] = [-3136,-3135,-2311,];	// 2311 異境
 	CardIdToSetIdMap[3135] = [2752,];
 	CardIdToSetIdMap[2311] = CardIdToSetIdMap[2311].concat([2752]);
+	// --- 2024/09/17 ---
+	w_SE[2753] = [-3138,-3137,-1245,];
+	CardIdToSetIdMap[3137] = [2753,];
+	CardIdToSetIdMap[1245] = CardIdToSetIdMap[1245].concat([2753]);
+	w_SE[2754] = [-3140,-3139,-1348,];
+	CardIdToSetIdMap[3139] = [2754,];
+	CardIdToSetIdMap[1348] = CardIdToSetIdMap[1348].concat([2754]);
+	w_SE[2755] = [-3142,-3141,-1348,];
+	CardIdToSetIdMap[3141] = [2755,]	
+	CardIdToSetIdMap[1348] = CardIdToSetIdMap[1348].concat([2755]);
 
 	// itemset はセーブデータに書き出されないので
 	// 現実的な範囲において itemsetID の上限値を気にする必要はありません
