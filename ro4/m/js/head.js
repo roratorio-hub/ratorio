@@ -1647,17 +1647,29 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			wbairitu = 300;
 			break;
 
+		// 「メカニック」スキル「アックストルネード」
 		case SKILL_ID_AXE_TORNADE:
+			// 2024/09/18 実測値との誤差無しを確認済み
 			wActiveHitNum = 6;
 			n_Delay[2] = 500;
 			n_Delay[7] = 4500 - 500 * n_A_ActiveSkillLV;
-			wbairitu = 200 + 180 * n_A_ActiveSkillLV + n_A_VIT;
-if (_APPLY_UPDATE_LV200) {
-}
-else {
-			if(attackMethodConfArray[0].GetOptionValue(0)) wbairitu = wbairitu * 3 / 4;
-			if(BK_Weapon_zokusei == 4) wbairitu = wbairitu * 125 / 100;
-}
+			// 基本倍率
+			if (UsedSkillSearch(SKILL_ID_AXE_STOMP_STATUS) == 1) {
+				// アックスストンプ状態の場合
+				wbairitu = 230 + 230 * n_A_ActiveSkillLV;
+				wbairitu += n_A_VIT * 2;
+			} else {
+				wbairitu = 200 + 180 * n_A_ActiveSkillLV;
+				wbairitu += n_A_VIT;
+			}
+			// TODO 削除して良いかもしれない部分
+			if (_APPLY_UPDATE_LV200) {
+			}
+			else {
+				if(attackMethodConfArray[0].GetOptionValue(0)) wbairitu = wbairitu * 3 / 4;
+				if(BK_Weapon_zokusei == 4) wbairitu = wbairitu * 125 / 100;
+			}
+			// 最終倍率
 			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
 			break;
 
