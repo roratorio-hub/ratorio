@@ -11191,16 +11191,10 @@ if (_MAGIC_CALC_INSPECTION) {
 }
 */
 
-
-
-	// 特性ステータス対応
-	dmg = ApplySMatkAmplify(dmg);
-
-
-
-
 	// 2021/11/17 に特定した順序で計算する
-	return ApplyMagicalSpecializeMonster20211117(charaData, specData, mobData, dmg);
+	dmg = ApplyMagicalSpecializeMonster20211117(charaData, specData, mobData, dmg);
+	// 特性ステータス対応
+	return ApplySMatkAmplify(dmg);
 }
 
 /**
