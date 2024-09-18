@@ -17153,16 +17153,18 @@ function RebuildActiveSkillRatioInfo(battleCalcInfo, charaData, specData, mobDat
 		battleCalcInfo.skillLv = n_A_ActiveSkillLV;
 	}
 
+	let ratio = 0;
 	try{
-		// 物理スキル
-		ratioPhysical = GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData);
-		// 魔法スキル
-		ratioMagical = GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData);
+		if((g_skillManager.GetSkillType(battleCalcInfo.skillId) & CSkillData.TYPE_PHYSICAL) == CSkillData.TYPE_PHYSICAL) {
+			// 物理スキル
+			ratio = GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData);
+		} else {
+			// 魔法スキル
+			ratio = GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData);
+		}
 	}catch(e){
 		console.log(e);
 	}
-
-	const ratio = ratioPhysical != 0? ratioPhysical:ratioMagical;
 	let html = ""
 	if (ratio != 0){
 		html = `スキル強化：<span class="CSSCLS_SKILL_RATIO_${ratio>0?"PLUS":"MINUS"}">${ratio}%</span>`;

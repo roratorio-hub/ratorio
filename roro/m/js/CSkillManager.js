@@ -194,6 +194,13 @@ function CSkillManager() {
 		return this.dataArray[skillId].maxLv;
 	}
 
+	/**
+	 * スキル毎に設定された合成タイプ値を返す関数。
+	 * 合成タイプ値は複数のタイプ値の合算値でありビット論理積により分離して利用する。
+	 * 例： 138 = 2:TYPE_ACTIVE + 8:TYPE_MAGICAL + 128:TYPE_DIVHIT_FORMULA
+	 * @param {*} skillId 
+	 * @returns 
+	 */
 	this.GetSkillType = function(skillId) {
 		return this.dataArray[skillId].type;
 	}
