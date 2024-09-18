@@ -998,16 +998,14 @@ function ApplySMatkAmplify(dmg) {
 	var smatk = 0;
 	var amped = 0;
 
-
 	// 最終 S.Matk を取得する
 	smatk = GetSMatk();
-
-
 
 	// 増幅後のダメージを計算
 	amped = (dmg * (100 + smatk)) / 100;
 
-
+	// 小数点切り捨て
+	amped = Math.floor(amped);
 
 	return amped;
 }
