@@ -36730,7 +36730,7 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(×)ユピテルサンダーストーム";
+			this.name = "ユピテルサンダーストーム";
 			this.kana = "ユヒテルサンタアストオム";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
@@ -36764,7 +36764,7 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(×)ヘルズドライブ";
+			this.name = "ヘルズドライブ";
 			this.kana = "ヘルストライフ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
@@ -36798,7 +36798,7 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(×)ナパームバルカンストライク";
+			this.name = "ナパームバルカンストライク";
 			this.kana = "ナハアムハルカンストライク";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
@@ -36832,7 +36832,7 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(×)メテオストームバスター";
+			this.name = "(△)メテオストームバスター";
 			this.kana = "メテオストオムハスタア";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
@@ -37942,7 +37942,7 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(×)ジャックフロストノヴァ";
+			this.name = "ジャックフロストノヴァ";
 			this.kana = "シヤツクフロストノウア";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
@@ -37976,7 +37976,7 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(×)グラウンドグラビテーション";
+			this.name = "グラウンドグラビテーション";
 			this.kana = "クラウントクラヒテエシヨン";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
