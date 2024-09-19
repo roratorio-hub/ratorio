@@ -19355,9 +19355,12 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 			}
 		}
 
-
-
-
+		//----------------------------------------------------------------
+		// アイテム、バフ、デバフによる個別の効果を呼び出し
+		//----------------------------------------------------------------
+		for (let idx = ITEM_SP_PHYSICAL_DAMAGE_UP_ELM_VANITY; idx <= ITEM_SP_PHYSICAL_DAMAGE_UP_ELM_UNDEAD; idx++) {
+			n_tok[idx] = ApplySpecModify(idx, n_tok[idx]);
+		}
 
 		//----------------------------------------------------------------
 		// 全属性の設定適用
