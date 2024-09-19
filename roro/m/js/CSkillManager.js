@@ -16381,7 +16381,7 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(△)アックストルネード";
+			this.name = "アックストルネード";
 			this.kana = "アツクストルネエト";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -32734,33 +32734,27 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(×)アックスストンプ";
+			this.name = "アックスストンプ";
 			this.kana = "アツクスストンフ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
-
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 300;
 			}
-
 			this.Power = function(skillLv, charaDataManger) {
 				return -1;
 			}
-
 			this.CastTimeVary = function(skillLv, charaDataManger) {
 				return 0;
 			}
-
 			this.CastTimeFixed = function(skillLv, charaDataManger) {
 				return 0;
 			}
-
 			this.DelayTimeCommon = function(skillLv, charaDataManger) {
 				return 500 * skillLv;
 			}
-
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 500;
 			}

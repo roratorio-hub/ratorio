@@ -3185,44 +3185,37 @@ g_bDefinedDamageIntervals = true;
 			}
 			break;
 
+		// 「マイスター」スキル「アックスストンプ」
 		case SKILL_ID_AXE_STOMP:
-
 			// 片手斧・両手斧のみ発動可能
 			switch (n_A_WeaponType) {
-
-			case ITEM_KIND_AXE:
-			case ITEM_KIND_AXE_2HAND:
-
-				// 詠唱時間等
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-
-				// 距離属性
-				n_Enekyori = 0;
-
-				// 基本倍率
-				wbairitu = 2000 + (200 * n_A_ActiveSkillLV);
-
-				// POW補正
-				wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
-				// ベースレベル補正
-				wbairitu *= n_A_BaseLV / 100;
-
-				// 両手斧装備時、２回攻撃（２ＨＩＴ）
-				if (n_A_WeaponType == ITEM_KIND_AXE_2HAND) {
-					wHITsuu = 2;
-				}
-				break;
-
-			default:
-				wbairitu = 0;
-				n_Buki_Muri = 1;
-				break;
+				// 2024/09/19 通常鯖のお試し道場で誤差無しを確認
+				case ITEM_KIND_AXE:
+				case ITEM_KIND_AXE_2HAND:
+					// 詠唱時間等
+					wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+					n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+					n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+					n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+					// 基本倍率
+					wbairitu = 3150 + (750 * n_A_ActiveSkillLV);
+					// POW補正
+					wbairitu += 23 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+					// ベースレベル補正
+					wbairitu *= n_A_BaseLV / 100;
+					wbairitu = Math.floor(wbairitu);
+					// 両手斧装備時、２回攻撃（２ＨＩＴ）
+					if (n_A_WeaponType == ITEM_KIND_AXE_2HAND) {
+						wHITsuu = 2;
+					}
+					break;
+				default:
+					wbairitu = 0;
+					n_Buki_Muri = 1;
+					break;
 			}
 			break;
+
 
 		case SKILL_ID_RUSH_QUAKE:
 			// 距離属性
