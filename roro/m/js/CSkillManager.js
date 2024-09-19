@@ -36832,7 +36832,7 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(△)メテオストームバスター";
+			this.name = "メテオストームバスター";
 			this.kana = "メテオストオムハスタア";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
