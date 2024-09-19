@@ -808,6 +808,17 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
+	MOB_CONF_DEBUF_ID_JACK_FROST_NOVA = MobConfDebufId;
+	MobConfDebufData = [
+		MobConfDebufId,
+		MobConfDebufText("ジャックフロストノヴァ状態"),
+		MobConfDebufControlType(CONTROL_TYPE_CHECKBOX),
+		MobConfDebufDefaultValue(0),
+		MobConfDebufMinValue(0),
+		MobConfDebufMaxValue(1)
+	];
+	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
+	MobConfDebufId++;
 
 	//----------------------------------------------------------------
 	// データ定義数チェック
@@ -846,7 +857,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJSorted[MobConfDebufOBJSorted.length] = MobConfDebufOBJ[MOB_CONF_DEBUF_ID_LEX_AETERNA];
 	MobConfDebufOBJSorted[MobConfDebufOBJSorted.length] = MobConfDebufOBJ[MOB_CONF_DEBUF_ID_STUN];
 	MobConfDebufOBJSorted[MobConfDebufOBJSorted.length] = MobConfDebufOBJ[MOB_CONF_DEBUF_ID_SUIMIN];
-	MobConfDebufOBJSorted[MobConfDebufOBJSorted.length] = MobConfDebufOBJ[MOB_CONF_DEBUF_ID_SEKIKA];
+	MobConfDebufOBJSorted[MobConfDebufOBJSorted.length] = MobConfDebufOBJ[MOB_CONF_DEBUF_ID_SEKIKA];		// 10
 
 	MobConfDebufOBJSorted[MobConfDebufOBJSorted.length] = MobConfDebufOBJ[MOB_CONF_DEBUF_ID_NOROI];
 	MobConfDebufOBJSorted[MobConfDebufOBJSorted.length] = MobConfDebufOBJ[MOB_CONF_DEBUF_ID_SOKUDO_GENSHO];
@@ -857,7 +868,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJSorted[MobConfDebufOBJSorted.length] = MobConfDebufOBJ[MOB_CONF_DEBUF_ID_STRIP_HELM];
 	MobConfDebufOBJSorted[MobConfDebufOBJSorted.length] = MobConfDebufOBJ[MOB_CONF_DEBUF_ID_STRIP_ACCESSARY];
 	MobConfDebufOBJSorted[MobConfDebufOBJSorted.length] = MobConfDebufOBJ[MOB_CONF_DEBUF_ID_SPIDER_WEB];
-	MobConfDebufOBJSorted[MobConfDebufOBJSorted.length] = MobConfDebufOBJ[MOB_CONF_DEBUF_ID_MIND_BREAKER];
+	MobConfDebufOBJSorted[MobConfDebufOBJSorted.length] = MobConfDebufOBJ[MOB_CONF_DEBUF_ID_MIND_BREAKER];	// 20
 
 	MobConfDebufOBJSorted[MobConfDebufOBJSorted.length] = MobConfDebufOBJ[MOB_CONF_DEBUF_ID_WATASHIWO_WASURENAIDE];
 	MobConfDebufOBJSorted[MobConfDebufOBJSorted.length] = MobConfDebufOBJ[MOB_CONF_DEBUF_ID_EIENNNO_KONTON];
@@ -868,7 +879,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJSorted[MobConfDebufOBJSorted.length] = MobConfDebufOBJ[MOB_CONF_DEBUF_ID_VENOM_IMPRESS];
 	MobConfDebufOBJSorted[MobConfDebufOBJSorted.length] = MobConfDebufOBJ[MOB_CONF_DEBUF_ID_ENERVATION];
 	MobConfDebufOBJSorted[MobConfDebufOBJSorted.length] = MobConfDebufOBJ[MOB_CONF_DEBUF_ID_GROOMY];
-	MobConfDebufOBJSorted[MobConfDebufOBJSorted.length] = MobConfDebufOBJ[MOB_CONF_DEBUF_ID_ORATIO];
+	MobConfDebufOBJSorted[MobConfDebufOBJSorted.length] = MobConfDebufOBJ[MOB_CONF_DEBUF_ID_ORATIO];		// 30
 
 	MobConfDebufOBJSorted[MobConfDebufOBJSorted.length] = MobConfDebufOBJ[MOB_CONF_DEBUF_ID_HAKKA];
 	MobConfDebufOBJSorted[MobConfDebufOBJSorted.length] = MobConfDebufOBJ[MOB_CONF_DEBUF_ID_SURPRISE_ATTACK_EFFECT];
@@ -879,7 +890,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJSorted[MobConfDebufOBJSorted.length] = MobConfDebufOBJ[MOB_CONF_DEBUF_ID_WATER_BARRIER];
 	MobConfDebufOBJSorted[MobConfDebufOBJSorted.length] = MobConfDebufOBJ[MOB_CONF_DEBUF_ID_MAHI];
 	MobConfDebufOBJSorted[MobConfDebufOBJSorted.length] = MobConfDebufOBJ[MOB_CONF_DEBUF_ID_RAKUIN_ZYOTAI];
-	MobConfDebufOBJSorted[MobConfDebufOBJSorted.length] = MobConfDebufOBJ[MOB_CONF_DEBUF_ID_INUHAKKA_SHOWER];
+	MobConfDebufOBJSorted[MobConfDebufOBJSorted.length] = MobConfDebufOBJ[MOB_CONF_DEBUF_ID_INUHAKKA_SHOWER];	// 40
 
 	MobConfDebufOBJSorted[MobConfDebufOBJSorted.length] = MobConfDebufOBJ[MOB_CONF_DEBUF_ID_NYAN_GRASS];
 	MobConfDebufOBJSorted[MobConfDebufOBJSorted.length] = MobConfDebufOBJ[MOB_CONF_DEBUF_ID_TARONO_KIZU];
@@ -890,7 +901,11 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJSorted[MobConfDebufOBJSorted.length] = MobConfDebufOBJ[MOB_CONF_DEBUF_ID_EARTH_DRIVE_DEBUFF];
 	MobConfDebufOBJSorted[MobConfDebufOBJSorted.length] = MobConfDebufOBJ[MOB_CONF_DEBUF_ID_QUAKE_DEBUFF];
 	MobConfDebufOBJSorted[MobConfDebufOBJSorted.length] = MobConfDebufOBJ[MOB_CONF_DEBUF_ID_SEIYU_SENREI_DEBUFF];
-	MobConfDebufOBJSorted[MobConfDebufOBJSorted.length] = MobConfDebufOBJ[MOB_CONF_DEBUF_ID_SOUND_BLEND];
+	MobConfDebufOBJSorted[MobConfDebufOBJSorted.length] = MobConfDebufOBJ[MOB_CONF_DEBUF_ID_SOUND_BLEND];	// 50
+
+	MobConfDebufOBJSorted[MobConfDebufOBJSorted.length] = MobConfDebufOBJ[MOB_CONF_DEBUF_ID_JACK_FROST_NOVA];
+
+	// 最大 80 個まで
 
 	MobConfDebufOBJ = MobConfDebufOBJSorted;
 
