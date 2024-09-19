@@ -2636,23 +2636,6 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 
 
 		//----------------------------------------------------------------
-		// メカニック：アックストルネード
-		//----------------------------------------------------------------
-		case SKILL_ID_AXE_TORNADE:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"",
-				[
-					[0, "内周(100%)"],
-					[1, "外周(75%)"],
-				],
-				0
-			);
-			break;
-
-
-		//----------------------------------------------------------------
 		// メカニック：パワースイング
 		//----------------------------------------------------------------
 		case SKILL_ID_POWER_SWING:
