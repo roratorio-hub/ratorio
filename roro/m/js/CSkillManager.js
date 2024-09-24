@@ -30656,7 +30656,7 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(△)サーヴァントウェポン";
+			this.name = "(△)サーヴァントウェポン";	// 公式サイトでは「武器体攻撃」と表記
 			this.kana = "サアウアントウエホン";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -33364,7 +33364,7 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(×)フロムジアビス";
+			this.name = "(×)フロムジアビス";	// 公式サイトでは「アビス球体攻撃」と表記される
 			this.kana = "フロムシアヒス";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
