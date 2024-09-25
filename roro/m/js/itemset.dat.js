@@ -4819,13 +4819,13 @@
 	ItemIdToSetIdMap[4999] = [2461,];
 	w_SE[2462] = [5002,5001,-2220,];
 	ItemIdToSetIdMap[5001] = [2462,];
-	w_SE[2463] = [5011,5010,-2311,];
+	w_SE[2463] = [4966,-2311,5010,];	// グレイシア風魔手裏剣 + 異境
 	ItemIdToSetIdMap[5010] = [2463,];
-	w_SE[2464] = [5013,5012,-2311,];
+	w_SE[2464] = [4966,-2311,5012,];	// グレイシアハンドガン + 異境
 	ItemIdToSetIdMap[5012] = [2464,];
-	w_SE[2465] = [5015,5014,-2311,];
+	w_SE[2465] = [4966,-2311,5014,];	// グレイシアベーシックソード + 異境
 	ItemIdToSetIdMap[5014] = [2465,];
-	w_SE[2466] = [5017,5016,-2311,];
+	w_SE[2466] = [4966,-2311,5016,];	// グレイシアフォックステイル + 異境
 	ItemIdToSetIdMap[5016] = [2466,];
 	w_SE[2467] = [5025,5024,-2028,];
 	w_SE[2468] = [5026,5024,-2662,];
@@ -4867,7 +4867,7 @@
 	CardIdToSetIdMap[2906] = [2494,];
 	w_SE[2495] = [5088,5087,-2043,];	// 剣禅一如
 	ItemIdToSetIdMap[5087] = [2495,];
-	w_SE[2496] = [4237,4235,-10091];	// Atk+200, Matk+200, 全サイズ物理+10, 全サイズ魔法+10 (4237) = ワンダーエッグ(4235) + レッドピタヤ(91) 
+	w_SE[2496] = [4237,4235,-10091];	// Atk+200, Matk+200, 全サイズ物理+10, 全サイズ魔法+10 (4237) = ワンダーエッグ(4235) + レッドピタヤ(91)
 	PetIdToSetIdMap[91] = [2496];
 	w_SE[2497] = [4236,4235,-10092];	// ワンダーエッグ(4235) + ミストレス(92)
 	PetIdToSetIdMap[92] = [2497];
@@ -5290,7 +5290,7 @@
 	CardIdToSetIdMap[3110] = [2740,];
 	CardIdToSetIdMap[1245] = CardIdToSetIdMap[1245].concat([2739]);
 	CardIdToSetIdMap[1348] = CardIdToSetIdMap[1348].concat([2740]);
-	// --- 
+	// ---
 	w_SE[2741] = [4236,4235,-10094];	// Atk+200, Matk+200, AllStatus+10 (4236) = ワンダーエッグ(4235) + バフォメット(94)
 	PetIdToSetIdMap[94] = [2741];
 	ItemIdToSetIdMap[4235] = ItemIdToSetIdMap[4235].concat([2741]);
@@ -5299,7 +5299,7 @@
 	w_SE[2742] = [-3113,-3112,-1348,];
 	CardIdToSetIdMap[3112] = [2742,];
 	w_SE[2743] = [-3115,-3114,-1348,];
-	CardIdToSetIdMap[3114] = [2743,];	
+	CardIdToSetIdMap[3114] = [2743,];
 	CardIdToSetIdMap[1348] = CardIdToSetIdMap[1348].concat([2742, 2743]);	// 豪傑の逆参照
 	// --- 2024/08/13 ---
 	w_SE[2744] = [4236,4235,-10095];	// Atk+200, Matk+200, AllStatus+10 (4236) = ワンダーエッグ(4235) + ランドグリス(95)
@@ -5338,9 +5338,90 @@
 	CardIdToSetIdMap[3139] = [2754,];
 	CardIdToSetIdMap[1348] = CardIdToSetIdMap[1348].concat([2754]);
 	w_SE[2755] = [-3142,-3141,-1348,];
-	CardIdToSetIdMap[3141] = [2755,]	
+	CardIdToSetIdMap[3141] = [2755,]
 	CardIdToSetIdMap[1348] = CardIdToSetIdMap[1348].concat([2755]);
+	// --- 2024/09/24 ---
+	w_SE[2756] = [5291,5290,-2311,];	// 5290 グレイシアアーマー + 2311 異境
+	ItemIdToSetIdMap[5290] = [2756,];
+	w_SE[2757] = [5293,5292,-2311,];	// 5292 グレイシアマント + 2311 異境
+	ItemIdToSetIdMap[5292] = [2757,];
+	w_SE[2758] = [5295,5294,-2311,];	// 5294 グレイシアブーツ + 2311 異境
+	ItemIdToSetIdMap[5294] = [2758,];
+	CardIdToSetIdMap[2311] = CardIdToSetIdMap[2311].concat([2756,2757,2758]);
+		// ↓ 追加されたグレイシア武器
+	w_SE[2759] = [4966,-2311,5281];
+	w_SE[2760] = [4966,-2311,5282];
+	w_SE[2761] = [4966,-2311,5283];
+	w_SE[2762] = [4966,-2311,5284];
+	w_SE[2763] = [4966,-2311,5285];
+	w_SE[2764] = [4966,-2311,5286];
+	w_SE[2765] = [4966,-2311,5287];
+	w_SE[2766] = [4966,-2311,5288];
+	w_SE[2767] = [4966,-2311,5289];
+	ItemIdToSetIdMap[5281] = [2759];
+	ItemIdToSetIdMap[5282] = [2760];
+	ItemIdToSetIdMap[5283] = [2761];
+	ItemIdToSetIdMap[5284] = [2762];
+	ItemIdToSetIdMap[5285] = [2763];
+	ItemIdToSetIdMap[5286] = [2764];
+	ItemIdToSetIdMap[5287] = [2765];
+	ItemIdToSetIdMap[5288] = [2766];
+	ItemIdToSetIdMap[5289] = [2767];
+	CardIdToSetIdMap[2311] = CardIdToSetIdMap[2311].concat([2759,2760,2761,2762,2763,2764,2765,2766,2767]);
+		// ↓ ディムグレイシア
+	w_SE[2768] = [4966,-2311,5296];
+	w_SE[2769] = [4966,-2311,5297];
+	w_SE[2770] = [4966,-2311,5298];
+	w_SE[2771] = [4966,-2311,5299];
+	w_SE[2772] = [4966,-2311,5300];
+	w_SE[2773] = [4966,-2311,5301];
+	w_SE[2774] = [4966,-2311,5302];
+	w_SE[2775] = [4966,-2311,5303];
+	w_SE[2776] = [4966,-2311,5304];
+	w_SE[2777] = [4966,-2311,5305];
+	w_SE[2778] = [4966,-2311,5306];
+	w_SE[2779] = [4966,-2311,5307];
+	w_SE[2780] = [4966,-2311,5308];
+	w_SE[2781] = [4966,-2311,5309];
+	w_SE[2782] = [4966,-2311,5310];
+	w_SE[2783] = [4966,-2311,5311];
+	w_SE[2784] = [4966,-2311,5312];
+	w_SE[2785] = [4966,-2311,5313];
+	w_SE[2786] = [4966,-2311,5314];
+	w_SE[2787] = [4966,-2311,5315];
+	w_SE[2788] = [4966,-2311,5316];
+	w_SE[2789] = [4966,-2311,5317];
+	w_SE[2790] = [4966,-2311,5318];
+	w_SE[2791] = [4966,-2311,5319];
+	w_SE[2792] = [4966,-2311,5320];
+	ItemIdToSetIdMap[5296] = [2768];
+	ItemIdToSetIdMap[5297] = [2769];
+	ItemIdToSetIdMap[5298] = [2770];
+	ItemIdToSetIdMap[5299] = [2771];
+	ItemIdToSetIdMap[5300] = [2772];
+	ItemIdToSetIdMap[5301] = [2773];
+	ItemIdToSetIdMap[5302] = [2774];
+	ItemIdToSetIdMap[5303] = [2775];
+	ItemIdToSetIdMap[5304] = [2776];
+	ItemIdToSetIdMap[5305] = [2777];
+	ItemIdToSetIdMap[5306] = [2778];
+	ItemIdToSetIdMap[5307] = [2779];
+	ItemIdToSetIdMap[5308] = [2780];
+	ItemIdToSetIdMap[5309] = [2781];
+	ItemIdToSetIdMap[5310] = [2782];
+	ItemIdToSetIdMap[5311] = [2783];
+	ItemIdToSetIdMap[5312] = [2784];
+	ItemIdToSetIdMap[5313] = [2785];
+	ItemIdToSetIdMap[5314] = [2786];
+	ItemIdToSetIdMap[5315] = [2787];
+	ItemIdToSetIdMap[5316] = [2788];
+	ItemIdToSetIdMap[5317] = [2789];
+	ItemIdToSetIdMap[5318] = [2790];
+	ItemIdToSetIdMap[5319] = [2791];
+	ItemIdToSetIdMap[5320] = [2792];
+	CardIdToSetIdMap[2311] = CardIdToSetIdMap[2311].concat([2768,2769,2770,2771,2772,2773,2774,2775,2776,2777,2778,2779,2780,2781,2782,2783,2784,2785,2786,2787,2788,2789,2790,2791,2792]);
 
 	// itemset はセーブデータに書き出されないので
 	// 現実的な範囲において itemsetID の上限値を気にする必要はありません
 })();
+
