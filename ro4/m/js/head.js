@@ -18517,7 +18517,7 @@ function Click_Skill7SW(){
 			objLabel = HtmlCreateElement("label", objTd);
 			objLabel.setAttribute("for", "OBJID_CHECK_A7_Skill15");
 
-			HtmlCreateTextNode("攻撃魔法スクロールとイグドラシルの葉(対不死リザLv1)を攻撃方法欄に追加", objLabel);
+			HtmlCreateTextNode("攻撃方法を追加する（魔女のスキルカード・攻撃魔法スクロール・イグドラシルの葉）", objLabel);
 
 			if (n_A_PassSkill7[15]) {
 				objInput.checked = "checked";

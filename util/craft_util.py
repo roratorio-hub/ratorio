@@ -215,6 +215,7 @@ def buildCapabilityRecord(capability):
     capability_code = int(CAPABILITY_DICT.get(capability['name']))
 
     # 条件コード取得
+    at_transcendence = int(capability['at_transcendence']) if 'at_transcendence' in capability else 0
     per_refine = int(capability['per_refine']) if 'per_refine' in capability else 0
     at_refine = int(capability['at_refine']) if 'at_refine' in capability else 0
     per_baselv = int(capability['per_lv']) if 'per_lv' in capability else 0
@@ -248,15 +249,20 @@ def buildCapabilityRecord(capability):
             # スキル性能が変化する能力の場合
             capability_code += SKILL_CODE.get(capability['skill'])
 
-    code  = f"{at_baselv}"                      # ベースLvが n 以上のときに（Lv99は "以下" で判定）
+    code = f"{at_transcendence:01d}"            # 超越段階が n 以上の時に発動する
+    code += f"{at_baselv:01d}"                  # ベースLvが n 以上のときに（Lv99は "以下" で判定）
     code += f"{per_baselv:02d}"                 # ベースLvが n 上がる度に発動する
-    code += f"00"                               # 不明コード
+    code += f"00"                               # 特定の職業の場合に発動する（新規アイテムでは未だ登場しないためパース処理未実装）
     code += f"{at_status:02d}"                  # 純粋なステータス x が n 以上の時に発動する
     code += f"{per_status_10:01d}"              # 純粋なステータス x が10増加する度に発動する {x : 1=Str, 2=Agi, 3=Vit, 4=Int, 5=Dex, 6=Luk}
     code += f"{at_refine:02d}"                  # 精錬値が n 以上の時に発動する
     code += f"{per_refine:01d}"                 # 精錬値が n 上がる度に発動する
     code += f"{capability_code:05d}"            # 発動する効果ID
-    return f"{int(code)},{value},"
+    code = int(code)
+    # 超越段階が n 以上の時に発動する（BigIntフラグ付与）
+    code = f"{code}n" if at_transcendence > 0 else code
+
+    return f"{code},{value},"
 
 
 def buildEnchantRecord(item_id, enchant_id, enchant):
