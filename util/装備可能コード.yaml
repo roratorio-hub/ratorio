@@ -81,7 +81,7 @@ equipable_list:
     code: 93
   - name: アークビショップ系 ソーサラー系 星帝系
     code: 95
-  - name: シーフ ローグ系
+  - name: シーフ ローグ系 # シーフ・シーフハイ と表記される
     code: 102
   - name: アサシン系
     code: 108
@@ -193,5 +193,7 @@ equipable_list:
     code: 193
   - name: トルバドゥール トルヴェール
     code: 194
+  - name: 4次職シーフ系
+    code: 195
   - name: サモナー系
     code: 201
