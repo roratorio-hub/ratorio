@@ -201,6 +201,7 @@ function AS_Calc(charaData, specData, mobData, attackMethodConfArray, battleCalc
 
 	//----------------------------------------------------------------
 	// 通常攻撃時の、サーヴァントウェポン追撃効果
+	// 公式サイトでは「武器体攻撃」と表記
 	//----------------------------------------------------------------
 	skillLv = UsedSkillSearch(SKILL_ID_SERVANT_WEAPON);
 
@@ -221,6 +222,7 @@ function AS_Calc(charaData, specData, mobData, attackMethodConfArray, battleCalc
 
 	//----------------------------------------------------------------
 	// 通常攻撃時の、フロムジアビス追撃効果
+	// 公式サイトでは「アビス球体攻撃」と表記される
 	//----------------------------------------------------------------
 	skillLv = UsedSkillSearch(SKILL_ID_FROM_THE_ABYSS);
 

@@ -177,7 +177,7 @@ CGlobalConstManager.DefineEnum(
 
 		"ITEM_EQPFLG_RESERVED_60",						// 60 は欠番
 		"ITEM_EQPFLG_SERIES_UPPER_OF_SWORDMAN",			// 61 ナイト系 クルセイダー系
-		"ITEM_EQPFLG_SERIES_UPPER_OF_THIEF",			// 62
+		"ITEM_EQPFLG_SERIES_UPPER_OF_THIEF",			// 62 シーフ系
 		"ITEM_EQPFLG_SERIES_UPPER_OF_ACOLYTE",			// プリースト系 モンク系
 		"ITEM_EQPFLG_SERIES_UPPER_OF_ARCHER",			// ハンター系 バード系 ダンサー系
 		"ITEM_EQPFLG_SERIES_UPPER_OF_MAGICIAN_LINKER",	// ウィザード系 セージ系 ソウルリンカー系
@@ -316,6 +316,7 @@ CGlobalConstManager.DefineEnum(
 		"ITEM_EQPFLG_4TH",					// 192 4次職 拡張4次職
 		"ITEM_EQPFLG_MAJO_NO_HOUKI",		// 193 ハイパーノービス 4次職マジシャン系 4次職アコライト系 ソウルアセティック
 		"ITEM_EQPFLG_TROUBADOUR_TROUVERE",	// 194 トルバドゥール&トルヴェール
+		"ITEM_EQPFLG_4TH_THIEF",			// 195 4次職シーフ系
 	],
 	191,
 	1
@@ -566,7 +567,7 @@ CGlobalConstManager.DefineEnum(
 		"ITEM_SP_RESIST_SIZE_LARGE",
 		"ITEM_SP_UNREFINABLE",
 		"ITEM_SP_UNBREAKABLE",				// 194 壊れない
-		"ITEM_SP_STUFF2HAND",
+		"ITEM_SP_STUFF2HAND",				// 195 両手杖
 		"ITEM_SP_RESIST_MAGIC",
 		"ITEM_SP_SPECIAL_RANGE",
 		"ITEM_SP_BODY_ELEMENT",				// 198 鎧属性付与
@@ -1532,6 +1533,8 @@ function GetJobRestrictText(eqpflg) {
 
 	case ITEM_EQPFLG_4TH:
 		return "4次職 拡張4次職";
+	case ITEM_EQPFLG_4TH_THIEF:
+		return "4次職シーフ系";
 	case ITEM_EQPFLG_DRAGON_KNIGHT:
 		return "ドラゴンナイト";
 	case ITEM_EQPFLG_SHADOW_CROSS:
