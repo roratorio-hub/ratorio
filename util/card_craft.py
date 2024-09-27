@@ -122,58 +122,17 @@ def loadAutoSpellDict() -> dict:
     with open(f'{script_dir}/../roro/m/js/autospell.dat.js', 'r', encoding='utf-8') as file:
         js_code = file.read()
     return { (int(m[1]), int(m[2])): int(m[0]) for m in re.findall(pattern, js_code) }
-AUTO_SPELL_CODE = loadAutoSpellDict()
 
-
-PER_STATUS_10_CODE = {
-    'Str': 1,
-    'Agi': 2,
-    'Vit': 3,
-    'Int': 4,
-    'Dex': 5,
-    'Luk': 6,
-}
-AT_STATUS_110_CODE = {
-    'Str': 25,
-    'Agi': 26,
-    'Vit': 27,
-    'Int': 28,
-    'Dex': 29,
-    'Luk': 30,
-}
-AT_STATUS_130_CODE = {
-    'Str': 37,
-    'Agi': 38,
-    'Vit': 39,
-    'Int': 40,
-    'Dex': 41,
-    'Luk': 42,
-}
-AT_SP_STATUS_100_CODE = {
-    'Pow': 43,
-    'Sta': 44,
-    'Wis': 45,
-    'Spl': 46,
-    'Con': 47,
-    'Crt': 48,
-}
-AT_BASE_LV_CODE = {
-    170: 1,
-    100: 2,
-     99: 3,
-    175: 4,
-}
-
-SKILL_CODE = loadSkillDict()
-USABLE_SKILL_CODE = loadUsableSkillDict()
-CARD_OR_ENCH_CODE = loadCardDict()
 ITEM_CODE = loadItemDict()
 CARD_TYPE_CODE = loadCardTypeDict()
 
 def getCapabilityRecord(capability):
 
     # 能力コード取得
-    capability_code = int(capability_dict.get(capability['name']))
+    try: 
+        capability_code = int(capability_dict.get(capability['name']))
+    except:
+        print(f"capability name = {capability['name']}")
 
     # 条件コード取得
     per_refine = int(capability['per_refine']) if 'per_refine' in capability else 0

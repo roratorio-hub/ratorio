@@ -6098,6 +6098,19 @@ if (_APPLY_UPDATE_LV200) {
 			}
 		}
 
+		//----------------------------------------------------------------
+		// 「ヨルムンガンド教団主教」の効果
+		//----------------------------------------------------------------
+		if ((itemCount = CardNumSearch(CARD_ID_ELITE_RGAN_HEALER)) > 0) {
+			if (n_tok[ITEM_SP_STUFF2HAND] === 1) {
+				// 両手杖のときカード１枚ごとに2%増加
+				w += 2 * itemCount;
+				if (n_A_Weapon_ATKplus === 10) {
+					// 両手杖かつ精錬値10のときカード１枚ごとに4%増加
+					w += 4 * itemCount;
+				}
+			}
+		}
 
 
 
@@ -16929,6 +16942,16 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 			// 「錆びた矢」と同時装備
 			if (n_A_Arrow == ARROW_ID_SABITA_YA) {
 				n_tok[ITEM_SP_RESIST_ELM_POISON] += 50;
+			}
+		}
+
+		//----------------------------------------------------------------
+		// 「クマムシ」カードの、矢との同時装備による効果
+		//----------------------------------------------------------------
+		if ((cardCount = CardNumSearch(CARD_ID_ICEBEAR)) > 0) {
+			// 「岩石の矢」と同時装備
+			if (n_A_Arrow == ARROW_ID_GANSEKINO_YA) {
+				n_tok[ITEM_SP_RESIST_ELM_EARTH] += 50;
 			}
 		}
 
