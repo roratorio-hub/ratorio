@@ -95,7 +95,7 @@ capabilities:
     code: 60
   - name: 水属性耐性
     code: 61
-  - name: 土属性耐性
+  - name: 地属性耐性
     code: 62
   - name: 火属性耐性
     code: 63
@@ -141,13 +141,26 @@ capabilities:
     code: 100
   - name: 固定詠唱ミリ秒減少  # スキルに依存しない固定詠唱％減少の定義は存在しないので foot.js で個別対応が必要
     code: 109
+  - name: 毒耐性
+    code: 150
   - name: スタン耐性
     code: 151
   - name: 凍結耐性
     code: 152
+  - name: 呪い耐性
+    code: 153
+  - name: 暗闇耐性
+    code: 154
+  - name: 睡眠耐性
+    code: 155
+  - name: 沈黙耐性
+    code: 156
+  - name: 混乱耐性
+    code: 157
+  - name: 出血耐性
+    code: 158
   - name: 石化耐性
     code: 159
-
   - name: 無形への魔法ダメージ増加 
     code: 170
   - name: 不死形への魔法ダメージ増加 
@@ -177,8 +190,18 @@ capabilities:
     code: 199
   - name: 近接ダメージ増加
     code: 210
+  - name: STR加算
+    code: 211
+  - name: AGI加算
+    code: 212
+  - name: VIT加算
+    code: 213
   - name: INT加算
     code: 214
+  - name: DEX加算
+    code: 215
+  - name: LUK加算
+    code: 216
   - name: 全基本ステータス加算
     code: 217
   - name: アイテムの効果が発動しない
@@ -225,6 +248,26 @@ capabilities:
     code: 269
   - name: 全属性魔法のダメージ増加
     code: 270
+  - name: 無属性物理ダメージ増加
+    code: 280
+  - name: 水属性物理ダメージ増加
+    code: 281
+  - name: 地属性物理ダメージ増加
+    code: 282
+  - name: 火属性物理ダメージ増加
+    code: 283
+  - name: 風属性物理ダメージ増加
+    code: 284
+  - name: 毒属性物理ダメージ増加
+    code: 285
+  - name: 聖属性物理ダメージ増加
+    code: 286
+  - name: 闇属性物理ダメージ増加
+    code: 287
+  - name: 念属性物理ダメージ増加
+    code: 288
+  - name: 不死属性物理ダメージ増加
+    code: 289
   - name: DEF無視
     code: 293
   - name: MDEF無視

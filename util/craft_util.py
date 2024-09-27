@@ -3,36 +3,36 @@ import re
 import yaml
 
 PER_STATUS_10_CODE = {
-    'Str': 1,
-    'Agi': 2,
-    'Vit': 3,
-    'Int': 4,
-    'Dex': 5,
-    'Luk': 6,
+    'STR': 1,
+    'AGI': 2,
+    'VIT': 3,
+    'INT': 4,
+    'DEX': 5,
+    'LUK': 6,
 }
 AT_STATUS_110_CODE = {
-    'Str': 25,
-    'Agi': 26,
-    'Vit': 27,
-    'Int': 28,
-    'Dex': 29,
-    'Luk': 30,
+    'STR': 25,
+    'AGI': 26,
+    'VIT': 27,
+    'INT': 28,
+    'DEX': 29,
+    'LUK': 30,
 }
 AT_STATUS_130_CODE = {
-    'Str': 37,
-    'Agi': 38,
-    'Vit': 39,
-    'Int': 40,
-    'Dex': 41,
-    'Luk': 42,
+    'STR': 37,
+    'AGI': 38,
+    'VIT': 39,
+    'INT': 40,
+    'DEX': 41,
+    'LUK': 42,
 }
 AT_SP_STATUS_100_CODE = {
-    'Pow': 43,
-    'Sta': 44,
-    'Wis': 45,
-    'Spl': 46,
-    'Con': 47,
-    'Crt': 48,
+    'POW': 43,
+    'STA': 44,
+    'WIS': 45,
+    'SPL': 46,
+    'CON': 47,
+    'CRT': 48,
 }
 AT_BASE_LV_CODE = {
     170: 1,
