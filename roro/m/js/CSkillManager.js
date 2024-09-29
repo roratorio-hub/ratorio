@@ -82,6 +82,9 @@ function CSkillData() {
 	this.CoolTime = function(skillLv, charaDataManger) {
 		return 0;
 	}
+	this.LifeTime = function(skillLv, charaDataManger) {
+		return 0;
+	}
 
 	// クリティカル発生率を取得（0:発生しない、100:等倍、etc...）
 	this.CriActRate = function(skillLv, charaData, specData, mobData) {
@@ -247,6 +250,10 @@ function CSkillManager() {
 
 	this.GetCoolTime = function(skillId, skillLv, charaDataManger) {
 		return this.dataArray[skillId].CoolTime(skillLv, charaDataManger);
+	}
+
+	this.GetLifeTime = function(skillId, skillLv, charaDataManger) {
+		return this.dataArray[skillId].LifeTime(skillLv, charaDataManger);
 	}
 
 	this.IsEnableCritical = function(skillId, skillLv, charaData, specData, mobData) {
@@ -24632,6 +24639,10 @@ function CSkillManager() {
 				return 300000;
 			}
 
+			this.LifeTime = function(skillLv, charaDataManger) {
+				return 60000;
+			}
+
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -31837,6 +31848,9 @@ function CSkillManager() {
 			}
 			this.CostAP = function(skillLv, charaDataManger) {
 				return 50;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {
+				return 60000;
 			}
 		};
 		this.dataArray[skillId] = skillData;
