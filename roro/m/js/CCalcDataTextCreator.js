@@ -188,6 +188,7 @@ CCalcDataTextCreator.CreateCalcDataText = function (testLabel) {
 		textResult += "OBJID_CONTROL_CAST_SIM_SKILL_SELECT_" + idx + " = " + HtmlGetObjectValueByIdAsInteger("OBJID_CONTROL_CAST_SIM_SKILL_SELECT_" + idx, undefined) + ";\r\n";
 		textResult += "OBJID_CONTROL_CAST_SIM_LEVEL_SELECT_" + idx + " = " + HtmlGetObjectValueByIdAsInteger("OBJID_CONTROL_CAST_SIM_LEVEL_SELECT_" + idx, undefined) + ";\r\n";
 		textResult += "OBJID_TD_CAST_SIM_COST_" + idx + " = " + funcGetChildText("OBJID_TD_CAST_SIM_COST_" + idx, undefined) + ";\r\n";
+		textResult += "OBJID_TD_CAST_SIM_COSTAP_" + idx + " = " + funcGetChildText("OBJID_TD_CAST_SIM_COSTAP_" + idx, undefined) + ";\r\n";
 		textResult += "OBJID_TD_CAST_SIM_CAST_TIME_VARY_" + idx + " = " + funcGetChildText("OBJID_TD_CAST_SIM_CAST_TIME_VARY_" + idx, undefined) + ";\r\n";
 		textResult += "OBJID_TD_CAST_SIM_CAST_TIME_FIXED_" + idx + " = " + funcGetChildText("OBJID_TD_CAST_SIM_CAST_TIME_FIXED_" + idx, undefined) + ";\r\n";
 		textResult += "OBJID_TD_CAST_SIM_CAST_TIME_FORCE_" + idx + " = " + funcGetChildText("OBJID_TD_CAST_SIM_CAST_TIME_FORCE_" + idx, undefined) + ";\r\n";
