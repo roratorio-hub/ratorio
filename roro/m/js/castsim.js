@@ -127,7 +127,16 @@ function BuildUpCastSimSimulateArea(objRoot, bAsExpand) {
 	objTd = document.createElement("td");
 	objTd.setAttribute("rowspan", 2);
 	objTr.appendChild(objTd);
-	objText = document.createTextNode("消費");
+	objText = document.createTextNode("消費SP");
+	objTd.appendChild(objText);
+
+
+
+	// 消費ＡＰの欄を生成
+	objTd = document.createElement("td");
+	objTd.setAttribute("rowspan", 2);
+	objTr.appendChild(objTd);
+	objText = document.createTextNode("消費AP");
 	objTd.appendChild(objText);
 
 
@@ -625,6 +634,7 @@ function RefreshCastSimSimulateArea(bRefreshLevelSelect) {
 	var maxLv = 0;
 	var skillLv = 0;
 	var costVal = 0;
+	var costAPVal = 0;
 	var timeVal = 0;
 	var timeStr = "";
 	var paramStr = "";
@@ -669,6 +679,7 @@ function RefreshCastSimSimulateArea(bRefreshLevelSelect) {
 
 
 		costVal = 0;
+		costAPVal = 0;
 		castTime = 0;
 		delayTime = 0;
 
@@ -683,6 +694,15 @@ function RefreshCastSimSimulateArea(bRefreshLevelSelect) {
 		costVal = Math.max(1, Math.ceil(costVal * GetCostScalingOfSkill(skillId)) / 100);	// %増減
 		costVal = Math.max(1, Math.ceil(costVal * n_tok[ITEM_SP_COST_DOWN] / 100));		// 端数は切り上げ
 		objText = document.createTextNode(costVal);
+		objTd.appendChild(objText);
+
+
+
+		// 消費ＡＰの欄を生成
+		objTd = document.getElementById("OBJID_TD_CAST_SIM_COSTAP_" + rowidx);
+		HtmlRemoveAllChild(objTd);
+		costAPVal = g_skillManager.GetCostAP(skillId, skillLv, null);
+		objText = document.createTextNode(costAPVal);
 		objTd.appendChild(objText);
 
 
