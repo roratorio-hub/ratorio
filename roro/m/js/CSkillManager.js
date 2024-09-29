@@ -31906,7 +31906,7 @@ function CSkillManager() {
 			this.element = CSkillData.ELEMENT_VOID;
 
 			this.CostFixed = function(skillLv, charaDataManger) {
-				return 120;
+				return 170;
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {
