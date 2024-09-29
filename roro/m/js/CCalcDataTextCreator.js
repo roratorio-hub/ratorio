@@ -194,6 +194,7 @@ CCalcDataTextCreator.CreateCalcDataText = function (testLabel) {
 		textResult += "OBJID_TD_CAST_SIM_CAST_TIME_FORCE_" + idx + " = " + funcGetChildText("OBJID_TD_CAST_SIM_CAST_TIME_FORCE_" + idx, undefined) + ";\r\n";
 		textResult += "OBJID_TD_CAST_SIM_DELAY_TIME_" + idx + " = " + funcGetChildText("OBJID_TD_CAST_SIM_DELAY_TIME_" + idx, undefined) + ";\r\n";
 		textResult += "OBJID_TD_CAST_SIM_COOL_TIME_" + idx + " = " + funcGetChildText("OBJID_TD_CAST_SIM_COOL_TIME_" + idx, undefined) + ";\r\n";
+		textResult += "OBJID_TD_CAST_SIM_LIFETIME_" + idx + " = " + funcGetChildText("OBJID_TD_CAST_SIM_LIFETIME_" + idx, undefined) + ";\r\n";
 	}
 
 	textResult += ("\r\n").repeat(3);
