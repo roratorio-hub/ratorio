@@ -225,6 +225,10 @@ function CSkillManager() {
 		return this.dataArray[skillId].CostFixed(skillLv, charaDataManger);
 	}
 
+	this.GetCostAP = function(skillId, skillLv, charaDataManger) {
+		return this.dataArray[skillId].CostAP(skillLv, charaDataManger);
+	}
+
 	this.GetCastTimeVary = function(skillId, skillLv, charaDataManger) {
 		return this.dataArray[skillId].CastTimeVary(skillLv, charaDataManger);
 	}
@@ -31828,6 +31832,12 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 350;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {
+				return 50;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
