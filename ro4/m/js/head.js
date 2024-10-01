@@ -12036,6 +12036,24 @@ function ApplyMagicalSpecializeMonsterMod20211014SubSpecializeMap(charaData, spe
 		}
 	}
 
+	//--------------------------------
+	// イスガルド北部（凍て付いた鱗の海辺、古代の氷の峡谷 東部、古代の氷の峡谷 西部） 特化
+	//--------------------------------
+	if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_ISGARD_NORTH_FIELD]) == 1){
+		if ((cardCount = CardNumSearch(CARD_ID_FAKE_IWIN_SOLDIERS)) > 0) {
+			wX += 30 * cardCount;
+		}
+	}
+
+	//--------------------------------
+	// 蛇神の根源 特化
+	//--------------------------------
+	if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_JOR_ROOT]) == 1){
+		if ((cardCount = CardNumSearch(CARD_ID_JOR_MUNGANDR_GUARDIAN)) > 0) {
+			wX += 30 * cardCount;
+		}
+	}
+
 
 
 	//--------------------------------
@@ -22781,6 +22799,24 @@ function ApplyPhysicalSpecializeMonster(charaData, specData, mobData, dmg) {
 	//--------------------------------
 	if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_MIOLNIR_UNDERGROUND_CAVE]) == 1){
 		if ((cardCount = CardNumSearch(CARD_ID_PUNCH_BUG)) > 0) {
+			w += 30 * cardCount;
+		}
+	}
+
+	//--------------------------------
+	// イスガルド北部（凍て付いた鱗の海辺、古代の氷の峡谷 東部、古代の氷の峡谷 西部） 特化
+	//--------------------------------
+	if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_ISGARD_NORTH_FIELD]) == 1){
+		if ((cardCount = CardNumSearch(CARD_ID_FAKE_IWIN_SOLDIERS)) > 0) {
+			w += 30 * cardCount;
+		}
+	}
+
+	//--------------------------------
+	// 蛇神の根源 特化
+	//--------------------------------
+	if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_JOR_ROOT]) == 1){
+		if ((cardCount = CardNumSearch(CARD_ID_JOR_MUNGANDR_GUARDIAN)) > 0) {
 			w += 30 * cardCount;
 		}
 	}
