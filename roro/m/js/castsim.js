@@ -59,7 +59,7 @@ function BuildUpCastSimSimulateArea(objRoot, bAsExpand) {
 
 	objTd = document.createElement("td");
 	objTd.setAttribute("id", "OBJID_CONTROL_CASTSIM_HEADER");
-	objTd.setAttribute("colspan", 10);
+	objTd.setAttribute("colspan", 12);
 	objTd.setAttribute("bgcolor", COLOR_CODE_TABLE_HEADER_IS_NOT_SET);
 	objTr.appendChild(objTd);
 
@@ -103,16 +103,12 @@ function BuildUpCastSimSimulateArea(objRoot, bAsExpand) {
 	objTr = document.createElement("tr");
 	objTbody.appendChild(objTr);
 
-
-
 	// 表示名の欄を生成
 	objTd = document.createElement("td");
 	objTd.setAttribute("rowspan", 2);
 	objTr.appendChild(objTd);
 	objText = document.createTextNode("スキル名");
 	objTd.appendChild(objText);
-
-
 
 	// レベル選択の欄を生成
 	objTd = document.createElement("td");
@@ -121,8 +117,6 @@ function BuildUpCastSimSimulateArea(objRoot, bAsExpand) {
 	objText = document.createTextNode("レベル");
 	objTd.appendChild(objText);
 
-
-
 	// 消費ＳＰの欄を生成
 	objTd = document.createElement("td");
 	objTd.setAttribute("rowspan", 2);
@@ -130,16 +124,12 @@ function BuildUpCastSimSimulateArea(objRoot, bAsExpand) {
 	objText = document.createTextNode("消費SP");
 	objTd.appendChild(objText);
 
-
-
 	// 消費ＡＰの欄を生成
 	objTd = document.createElement("td");
 	objTd.setAttribute("rowspan", 2);
 	objTr.appendChild(objTd);
 	objText = document.createTextNode("消費AP");
 	objTd.appendChild(objText);
-
-
 
 	// 詠唱時間の欄を生成
 	objTd = document.createElement("td");
@@ -149,17 +139,19 @@ function BuildUpCastSimSimulateArea(objRoot, bAsExpand) {
 	objText = document.createTextNode("詠唱時間");
 	objTd.appendChild(objText);
 
-
-
-	// ディレイ時間の欄を生成
+	// ディレイの欄を生成
 	objTd = document.createElement("td");
-	objTd.setAttribute("colspan", 2);
-	objTd.setAttribute("align", "center");
+	objTd.setAttribute("rowspan", 2);
 	objTr.appendChild(objTd);
-	objText = document.createTextNode("ディレイ時間");
+	objText = document.createTextNode("ディレイ");
 	objTd.appendChild(objText);
 
-
+	// クールタイムの欄を生成
+	objTd = document.createElement("td");
+	objTd.setAttribute("rowspan", 2);
+	objTr.appendChild(objTd);
+	objText = document.createTextNode("クールタイム");
+	objTd.appendChild(objText);
 
 	// 持続時間の欄を生成
 	objTd = document.createElement("td");
@@ -167,8 +159,6 @@ function BuildUpCastSimSimulateArea(objRoot, bAsExpand) {
 	objTr.appendChild(objTd);
 	objText = document.createTextNode("持続時間");
 	objTd.appendChild(objText);
-
-
 
 	// シミュレートの欄を生成
 	objTd = document.createElement("td");
@@ -178,13 +168,9 @@ function BuildUpCastSimSimulateArea(objRoot, bAsExpand) {
 	objText = document.createTextNode("シミュレート");
 	objTd.appendChild(objText);
 
-
-
 	// 行を生成
 	objTr = document.createElement("tr");
 	objTbody.appendChild(objTr);
-
-
 
 	// 変動詠唱の欄を生成
 	objTd = document.createElement("td");
@@ -192,15 +178,11 @@ function BuildUpCastSimSimulateArea(objRoot, bAsExpand) {
 	objText = document.createTextNode("変動");
 	objTd.appendChild(objText);
 
-
-
 	// 固定詠唱の欄を生成
 	objTd = document.createElement("td");
 	objTr.appendChild(objTd);
 	objText = document.createTextNode("固定");
 	objTd.appendChild(objText);
-
-
 
 	// 強制詠唱の欄を生成
 	objTd = document.createElement("td");
@@ -208,31 +190,11 @@ function BuildUpCastSimSimulateArea(objRoot, bAsExpand) {
 	objText = document.createTextNode("強制");
 	objTd.appendChild(objText);
 
-
-
-	// 共通ディレイの欄を生成
-	objTd = document.createElement("td");
-	objTr.appendChild(objTd);
-	objText = document.createTextNode("共通");
-	objTd.appendChild(objText);
-
-
-
-	// クールタイムの欄を生成
-	objTd = document.createElement("td");
-	objTr.appendChild(objTd);
-	objText = document.createTextNode("クール");
-	objTd.appendChild(objText);
-
-
-
 	for (rowidx = 0; rowidx < 10; rowidx++) {
 
 		// 行を生成
 		objTr = document.createElement("tr");
 		objTbody.appendChild(objTr);
-
-
 
 		// 表示名の欄を生成
 		objTd = document.createElement("td");
@@ -433,8 +395,6 @@ function BuildUpCastSimSimulateArea(objRoot, bAsExpand) {
 		skillId = parseInt(objSelect.value);
 		maxLv = g_skillManager.GetMaxLv(skillId);
 
-
-
 		// レベル選択の欄を生成
 		objTd = document.createElement("td");
 		objTr.appendChild(objTd);
@@ -451,15 +411,17 @@ function BuildUpCastSimSimulateArea(objRoot, bAsExpand) {
 		skillLv = maxLv;
 		objSelect.value = skillLv;
 
-
-
 		// 消費ＳＰの欄を生成
 		objTd = document.createElement("td");
 		objTd.setAttribute("id", "OBJID_TD_CAST_SIM_COST_" + rowidx);
 		objTd.setAttribute("align", "right");
 		objTr.appendChild(objTd);
 
-
+		// 消費AＰの欄を生成
+		objTd = document.createElement("td");
+		objTd.setAttribute("id", "OBJID_TD_CAST_SIM_COSTAP_" + rowidx);
+		objTd.setAttribute("align", "right");
+		objTr.appendChild(objTd);
 
 		// 変動詠唱の欄を生成
 		objTd = document.createElement("td");
@@ -467,15 +429,11 @@ function BuildUpCastSimSimulateArea(objRoot, bAsExpand) {
 		objTd.setAttribute("align", "right");
 		objTr.appendChild(objTd);
 
-
-
 		// 固定詠唱の欄を生成
 		objTd = document.createElement("td");
 		objTd.setAttribute("id", "OBJID_TD_CAST_SIM_CAST_TIME_FIXED_" + rowidx);
 		objTd.setAttribute("align", "right");
 		objTr.appendChild(objTd);
-
-
 
 		// 強制詠唱の欄を生成
 		objTd = document.createElement("td");
@@ -483,31 +441,23 @@ function BuildUpCastSimSimulateArea(objRoot, bAsExpand) {
 		objTd.setAttribute("align", "right");
 		objTr.appendChild(objTd);
 
-
-
 		// ディレイの欄を生成
 		objTd = document.createElement("td");
 		objTd.setAttribute("id", "OBJID_TD_CAST_SIM_DELAY_TIME_" + rowidx);
 		objTd.setAttribute("align", "right");
 		objTr.appendChild(objTd);
 
-
-
 		// クールタイムの欄を生成
 		objTd = document.createElement("td");
 		objTd.setAttribute("id", "OBJID_TD_CAST_SIM_COOL_TIME_" + rowidx);
 		objTd.setAttribute("align", "right");
 		objTr.appendChild(objTd);
-
-		
 		
 		// 持続時間の欄を生成
 		objTd = document.createElement("td");
 		objTd.setAttribute("id", "OBJID_TD_CAST_SIM_LIFETIME_" + rowidx);
 		objTd.setAttribute("align", "right");
 		objTr.appendChild(objTd);
-
-
 
 		// シミュレートの欄を生成
 		objTd = document.createElement("td");
