@@ -82,6 +82,9 @@ function CSkillData() {
 	this.CoolTime = function(skillLv, charaDataManger) {
 		return 0;
 	}
+	this.LifeTime = function(skillLv, charaDataManger) {
+		return 0;
+	}
 
 	// クリティカル発生率を取得（0:発生しない、100:等倍、etc...）
 	this.CriActRate = function(skillLv, charaData, specData, mobData) {
@@ -225,6 +228,10 @@ function CSkillManager() {
 		return this.dataArray[skillId].CostFixed(skillLv, charaDataManger);
 	}
 
+	this.GetCostAP = function(skillId, skillLv, charaDataManger) {
+		return this.dataArray[skillId].CostAP(skillLv, charaDataManger);
+	}
+
 	this.GetCastTimeVary = function(skillId, skillLv, charaDataManger) {
 		return this.dataArray[skillId].CastTimeVary(skillLv, charaDataManger);
 	}
@@ -243,6 +250,10 @@ function CSkillManager() {
 
 	this.GetCoolTime = function(skillId, skillLv, charaDataManger) {
 		return this.dataArray[skillId].CoolTime(skillLv, charaDataManger);
+	}
+
+	this.GetLifeTime = function(skillId, skillLv, charaDataManger) {
+		return this.dataArray[skillId].LifeTime(skillLv, charaDataManger);
 	}
 
 	this.IsEnableCritical = function(skillId, skillLv, charaData, specData, mobData) {
@@ -24628,6 +24639,10 @@ function CSkillManager() {
 				return 300000;
 			}
 
+			this.LifeTime = function(skillLv, charaDataManger) {
+				return 60000;
+			}
+
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -31828,6 +31843,15 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 350;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {
+				return 50;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {
+				return 60000;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -31896,7 +31920,7 @@ function CSkillManager() {
 			this.element = CSkillData.ELEMENT_VOID;
 
 			this.CostFixed = function(skillLv, charaDataManger) {
-				return 120;
+				return 170;
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {
