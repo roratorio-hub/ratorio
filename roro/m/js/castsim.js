@@ -127,7 +127,16 @@ function BuildUpCastSimSimulateArea(objRoot, bAsExpand) {
 	objTd = document.createElement("td");
 	objTd.setAttribute("rowspan", 2);
 	objTr.appendChild(objTd);
-	objText = document.createTextNode("消費");
+	objText = document.createTextNode("消費SP");
+	objTd.appendChild(objText);
+
+
+
+	// 消費ＡＰの欄を生成
+	objTd = document.createElement("td");
+	objTd.setAttribute("rowspan", 2);
+	objTr.appendChild(objTd);
+	objText = document.createTextNode("消費AP");
 	objTd.appendChild(objText);
 
 
@@ -148,6 +157,15 @@ function BuildUpCastSimSimulateArea(objRoot, bAsExpand) {
 	objTd.setAttribute("align", "center");
 	objTr.appendChild(objTd);
 	objText = document.createTextNode("ディレイ時間");
+	objTd.appendChild(objText);
+
+
+
+	// 持続時間の欄を生成
+	objTd = document.createElement("td");
+	objTd.setAttribute("rowspan", 2);
+	objTr.appendChild(objTd);
+	objText = document.createTextNode("持続時間");
 	objTd.appendChild(objText);
 
 
@@ -481,6 +499,14 @@ function BuildUpCastSimSimulateArea(objRoot, bAsExpand) {
 		objTd.setAttribute("align", "right");
 		objTr.appendChild(objTd);
 
+		
+		
+		// 持続時間の欄を生成
+		objTd = document.createElement("td");
+		objTd.setAttribute("id", "OBJID_TD_CAST_SIM_LIFETIME_" + rowidx);
+		objTd.setAttribute("align", "right");
+		objTr.appendChild(objTd);
+
 
 
 		// シミュレートの欄を生成
@@ -625,12 +651,15 @@ function RefreshCastSimSimulateArea(bRefreshLevelSelect) {
 	var maxLv = 0;
 	var skillLv = 0;
 	var costVal = 0;
+	var costAPVal = 0;
 	var timeVal = 0;
 	var timeStr = "";
 	var paramStr = "";
 
 	var castTime = 0;
 	var delayTime = 0;
+
+	var lifeTimeVal = 0;
 
 	var objTd = null;
 	var objText = null;
@@ -669,9 +698,11 @@ function RefreshCastSimSimulateArea(bRefreshLevelSelect) {
 
 
 		costVal = 0;
+		costAPVal = 0;
 		castTime = 0;
 		delayTime = 0;
-
+		lifeTimeVal = 0;
+		
 
 
 		// 消費ＳＰの欄を生成
@@ -683,6 +714,15 @@ function RefreshCastSimSimulateArea(bRefreshLevelSelect) {
 		costVal = Math.max(1, Math.ceil(costVal * GetCostScalingOfSkill(skillId)) / 100);	// %増減
 		costVal = Math.max(1, Math.ceil(costVal * n_tok[ITEM_SP_COST_DOWN] / 100));		// 端数は切り上げ
 		objText = document.createTextNode(costVal);
+		objTd.appendChild(objText);
+
+
+
+		// 消費ＡＰの欄を生成
+		objTd = document.getElementById("OBJID_TD_CAST_SIM_COSTAP_" + rowidx);
+		HtmlRemoveAllChild(objTd);
+		costAPVal = g_skillManager.GetCostAP(skillId, skillLv, null);
+		objText = document.createTextNode(costAPVal);
 		objTd.appendChild(objText);
 
 
@@ -791,6 +831,21 @@ function RefreshCastSimSimulateArea(bRefreshLevelSelect) {
 			timeStr = "不明";
 		}
 
+		objText = document.createTextNode(timeStr);
+		objTd.appendChild(objText);
+
+		
+		
+		// 持続時間の欄を生成
+		objTd = document.getElementById("OBJID_TD_CAST_SIM_LIFETIME_" + rowidx);
+		HtmlRemoveAllChild(objTd);
+		lifeTimeVal = g_skillManager.GetLifeTime(skillId, skillLv, null);
+		if (lifeTimeVal >= 0) {
+			timeStr = SprintfTimeStrCastSim(lifeTimeVal);
+		}
+		else {
+			timeStr = "不明";
+		}
 		objText = document.createTextNode(timeStr);
 		objTd.appendChild(objText);
 
