@@ -26983,6 +26983,8 @@ function UsedSkillSearch(sklId, bOnlyUsed = false) {
 		}
 	);
 }
+window.globalFunction = {};
+window.globalFunction.UsedSkillSearch = UsedSkillSearch;
 
 function UsedSkillSearchSubUsedOnly(sklId) {
 
