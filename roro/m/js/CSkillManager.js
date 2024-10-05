@@ -1371,6 +1371,10 @@ function CSkillManager() {
 				return 20 + 5 * skillLv;
 			}
 
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = ([0, 60000, 80000, 100000, 120000, 140000, 160000, 180000, 200000, 220000, 240000])[skillLv];
+				return nLifeTime;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -3284,6 +3288,10 @@ function CSkillManager() {
 				return 10;
 			}
 
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = ([0, 300000, 240000, 180000, 120000, 60000])[skillLv];
+				return nLifeTime;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -3314,6 +3322,10 @@ function CSkillManager() {
 				return -1;
 			}
 
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = ([0, 200000, 160000, 120000, 80000, 40000])[skillLv];
+				return nLifeTime;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -3338,6 +3350,10 @@ function CSkillManager() {
 				return 12;
 			}
 
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = ([0, 250000, 200000, 150000, 100000, 50000])[skillLv];
+				return nLifeTime;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -3362,6 +3378,10 @@ function CSkillManager() {
 				return 12;
 			}
 
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = ([0, 150000, 120000, 90000, 60000, 30000])[skillLv];
+				return nLifeTime;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -3386,6 +3406,10 @@ function CSkillManager() {
 				return 45;
 			}
 
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = ([0, 200000, 160000, 120000, 80000, 40000])[skillLv];
+				return nLifeTime;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -3410,6 +3434,10 @@ function CSkillManager() {
 				return 12;
 			}
 
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = ([0, 150000, 120000, 90000, 60000, 30000])[skillLv];
+				return nLifeTime;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -3439,6 +3467,10 @@ function CSkillManager() {
 				return 100;
 			}
 
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = ([0, 150000, 120000, 90000, 60000, 30000])[skillLv];
+				return nLifeTime;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -3469,6 +3501,10 @@ function CSkillManager() {
 				return -1;
 			}
 
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = ([0, 25000, 20000, 15000, 10000, 5000])[skillLv];
+				return nLifeTime;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -3499,6 +3535,10 @@ function CSkillManager() {
 				return -1;
 			}
 
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = ([0, 20000, 40000, 60000, 80000, 100000])[skillLv];
+				return nLifeTime;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -7822,6 +7862,10 @@ function CSkillManager() {
 				return 20 + 5 * Math.floor((skillLv - 1) / 2);
 			}
 
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = 30000;
+				return nLifeTime;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -7934,6 +7978,10 @@ function CSkillManager() {
 				return 2000;
 			}
 
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = ([0, 130000, 160000, 190000, 220000, 250000, 280000, 310000, 340000, 370000, 400000])[skillLv];
+				return nLifeTime;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -14876,6 +14924,11 @@ function CSkillManager() {
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData);
 			}
+
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = ([0, 60000, 90000, 120000, 150000, 180000])[skillLv];
+				return nLifeTime;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -15035,6 +15088,10 @@ function CSkillManager() {
 				return 200 + 100 * skillLv;
 			}
 
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = 15000;
+				return nLifeTime;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -15087,6 +15144,10 @@ function CSkillManager() {
 				return 100;
 			}
 
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = 15000;
+				return nLifeTime;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -15115,6 +15176,10 @@ function CSkillManager() {
 				return 100;
 			}
 
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = 15000;
+				return nLifeTime;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -15139,6 +15204,10 @@ function CSkillManager() {
 				return 35;
 			}
 
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = 15000;
+				return nLifeTime;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -27762,6 +27831,10 @@ function CSkillManager() {
 				return -2;
 			}
 
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = 40000;
+				return nLifeTime;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -31986,6 +32059,16 @@ function CSkillManager() {
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return [0, 60000, 30700, 15100, 8500, 6100][skillLv];
 			}
+
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = ([0, 57000, 27700, 12100, 5500, 3100])[skillLv];
+				// 補助スキルレベル取得
+				var sklLvSub = UsedSkillSearch(SKILL_ID_ADVANCED_TRAP);
+				if (sklLvSub > 0) {
+					nLifeTime += 500 + (500 * sklLvSub);
+				}
+				return nLifeTime;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -32019,6 +32102,16 @@ function CSkillManager() {
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return [0, 60000, 30700, 15100, 8500, 6100][skillLv];
 			}
+
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = ([0, 57000, 27700, 12100, 5500, 3100])[skillLv];
+				// 補助スキルレベル取得
+				var sklLvSub = UsedSkillSearch(SKILL_ID_ADVANCED_TRAP);
+				if (sklLvSub > 0) {
+					nLifeTime += 500 + (500 * sklLvSub);
+				}
+				return nLifeTime;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -32051,6 +32144,16 @@ function CSkillManager() {
 
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return [0, 60000, 30700, 15100, 8500, 6100][skillLv];
+			}
+
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = ([0, 57000, 27700, 12100, 5500, 3100])[skillLv];
+				// 補助スキルレベル取得
+				var sklLvSub = UsedSkillSearch(SKILL_ID_ADVANCED_TRAP);
+				if (sklLvSub > 0) {
+					nLifeTime += 500 + (500 * sklLvSub);
+				}
+				return nLifeTime;
 			}
 		};
 		this.dataArray[skillId] = skillData;
@@ -32135,6 +32238,16 @@ function CSkillManager() {
 
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return [0, 60000, 30700, 15100, 8500, 6100][skillLv];
+			}
+
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = ([0, 57000, 27700, 12100, 5500, 3100])[skillLv];
+				// 補助スキルレベル取得
+				var sklLvSub = UsedSkillSearch(SKILL_ID_ADVANCED_TRAP);
+				if (sklLvSub > 0) {
+					nLifeTime += 500 + (500 * sklLvSub);
+				}
+				return nLifeTime;
 			}
 		};
 		this.dataArray[skillId] = skillData;
