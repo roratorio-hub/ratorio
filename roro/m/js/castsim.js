@@ -744,6 +744,8 @@ function RefreshCastSimSimulateArea(bRefreshLevelSelect) {
 		objTd.appendChild(objText);
 
 
+		//ディレイ、クールタイムより先に求めておく
+		lifeTimeVal = g_skillManager.GetLifeTime(skillId, skillLv, null);
 
 		// ディレイの欄を生成
 		objTd = document.getElementById("OBJID_TD_CAST_SIM_DELAY_TIME_" + rowidx);
@@ -761,6 +763,7 @@ function RefreshCastSimSimulateArea(bRefreshLevelSelect) {
 
 		objText = document.createTextNode(timeStr);
 		objTd.appendChild(objText);
+		objTd.style.color = (delayTime > lifeTimeVal) ? "red" : "black";
 
 
 
@@ -774,7 +777,7 @@ function RefreshCastSimSimulateArea(bRefreshLevelSelect) {
 			if (timeVal < 0) {
 				timeVal = 0;
 			}
-			delayTime = Math.max(delayTime, timeVal);
+			delayTime = Math.max(delayTime, timeVal);//ディレイタイムとクールタイムを比較し、大きい方を delayTime に保存
 			timeStr = SprintfTimeStrCastSim(timeVal);
 		}
 		else {
@@ -783,13 +786,13 @@ function RefreshCastSimSimulateArea(bRefreshLevelSelect) {
 
 		objText = document.createTextNode(timeStr);
 		objTd.appendChild(objText);
+		objTd.style.color = (timeVal > lifeTimeVal) ? "red" : "black";
 
 		
 		
 		// 持続時間の欄を生成
 		objTd = document.getElementById("OBJID_TD_CAST_SIM_LIFETIME_" + rowidx);
 		HtmlRemoveAllChild(objTd);
-		lifeTimeVal = g_skillManager.GetLifeTime(skillId, skillLv, null);
 		if (lifeTimeVal >= 0) {
 			timeStr = SprintfTimeStrCastSim(lifeTimeVal);
 		}
