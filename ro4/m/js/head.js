@@ -7683,9 +7683,10 @@ g_bUnknownCasts = true;
 				if(n_B_KYOUKA[7] && n_Enekyori == 2) w_DMG[i] += Math.floor(w_DMG[i] * (20 * n_B_KYOUKA[7]) / 100);
 			}
 			if(n_AS_MODE == 1){
-				w_DMG[0] = w_DMG[0] * 3;
-				w_DMG[1] = w_DMG[1] * 3;
-				w_DMG[2] = w_DMG[2] * 3;
+				// 最小、平均、最大の 1 hitあたりダメージ
+				w_DMG[0] = w_DMG[0];
+				w_DMG[1] = w_DMG[1];
+				w_DMG[2] = w_DMG[2];
 				return w_DMG;
 			}
 			// GvG補正
@@ -7694,8 +7695,8 @@ g_bUnknownCasts = true;
 			}
 			//
 			for(var i=0;i<=2;i++){
-				Last_DMG_B[i] = w_DMG[i];
-				Last_DMG_A[i] = w_DMG[i] * 3;
+				Last_DMG_B[i] = Math.floor(w_DMG[i] / 3);		// B = 1 hitあたりダメージ
+				Last_DMG_A[i] = w_DMG[i];						// A = 3 hit合計ダメージ
 				g_damageTextArray[i].push(Last_DMG_A[i]);
 				g_damageTextArray[i].push("(", w_DMG[i], "×3Hit)");
 				w_DMG[i] = Last_DMG_A[i];
