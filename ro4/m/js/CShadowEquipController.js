@@ -321,6 +321,7 @@ class CShadowEquipController {
 
 		// 再計算
 		StAllCalc();
+		AutoCalc();
 	}
 
 	/**
