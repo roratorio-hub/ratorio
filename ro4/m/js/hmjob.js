@@ -1413,24 +1413,6 @@ function ApplySpecModify(spid, spVal) {
 			}
 		}
 
-		// 「トルバドゥール／トルヴェール」スキル「ミスティックシンフォニー」習得による効果
-		if ((sklLv = UsedSkillSearch(SKILL_ID_MYSTIC_SYMPHONY)) > 0) {
-
-			// 弓・楽器・鞭装備装備時限定
-			switch (n_A_WeaponType) {
-			case ITEM_KIND_BOW:
-			case ITEM_KIND_MUSICAL:
-			case ITEM_KIND_WHIP:
-
-				// 魚貝・人間(プレイヤーを除く)形
-				if ([ITEM_SP_PHYSICAL_DAMAGE_UP_RACE_FISH, ITEM_SP_PHYSICAL_DAMAGE_UP_RACE_HUMAN_NOT_PLAYER].indexOf(spid) >= 0) {
-					spVal += 20;
-				}
-				break;
-			}
-		}
-		break;
-
 	case ITEM_SP_RESIST_ELM_WATER:
 
 		// 四次職支援「クライマックスインパクト」による効果
@@ -1585,25 +1567,6 @@ function ApplySpecModify(spid, spVal) {
 	case ITEM_SP_MAGICAL_DAMAGE_UP_RACE_ANGEL:
 	case ITEM_SP_MAGICAL_DAMAGE_UP_RACE_DRAGON:
 	case ITEM_SP_MAGICAL_DAMAGE_UP_RACE_HUMAN_NOT_PLAYER:
-
-		// 「トルバドゥール／トルヴェール」スキル「ミスティックシンフォニー」習得による効果
-		if ((sklLv = UsedSkillSearch(SKILL_ID_MYSTIC_SYMPHONY)) > 0) {
-
-			// 弓・楽器・鞭装備装備時限定
-			switch (n_A_WeaponType) {
-			case ITEM_KIND_BOW:
-			case ITEM_KIND_MUSICAL:
-			case ITEM_KIND_WHIP:
-
-				// 魚貝・人間(プレイヤーを除く)形
-				if ([ITEM_SP_MAGICAL_DAMAGE_UP_RACE_FISH, ITEM_SP_MAGICAL_DAMAGE_UP_RACE_HUMAN_NOT_PLAYER].indexOf(spid) >= 0) {
-					spVal += 20;
-				}
-				break;
-			}
-		}
-		break;
-
 	case ITEM_SP_MAGICAL_DAMAGE_UP_ELM_VANITY:
 	case ITEM_SP_MAGICAL_DAMAGE_UP_ELM_WATER:
 	case ITEM_SP_MAGICAL_DAMAGE_UP_ELM_EARTH:
