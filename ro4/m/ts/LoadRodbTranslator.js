@@ -88,6 +88,12 @@ async function loadRodbTranslator(fragment) {
         alert("URLからのデータロードに失敗しました");
         return;
     }
+    // 不具合の暫定対処
+    // https://github.com/ragnarok-online-japan/translator/issues/1 
+    if (!jsonObject.status.ratorio_job_id_num && jsonObject.status.job_class_localization == "インクイジター") {
+        jsonObject.status.ratorio_job_id_num = 74;
+        jsonObject.status.job_class = "inquisitor";
+    }
     // Set Job
     const jobElement = document.getElementById("OBJID_SELECT_JOB");
     jobElement.value = String(jsonObject.status.ratorio_job_id_num);
