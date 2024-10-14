@@ -3753,8 +3753,6 @@ g_bUnknownCasts = true;
 			}
 			// 距離属性
 			n_Enekyori = 1;
-			// 矢の属性を適用
-			bApplyArrowElement = true;
 			// 初段ＨＩＴの場合
 			if (battleCalcInfo.parentSkillId === undefined) {
 				// 詠唱時間等
@@ -3806,8 +3804,6 @@ g_bUnknownCasts = true;
 			}
 			// 距離属性
 			n_Enekyori = 1;
-			// 矢の属性を適用
-			bApplyArrowElement = true;
 			// 詠唱時間等
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
@@ -21522,25 +21518,26 @@ function SET_ZOKUSEI(mobData, attackMethodConfArray) {
 		bApplyArrowElement = false;
 
 		switch (n_A_WeaponType) {
-		case ITEM_KIND_BOW:
-		case ITEM_KIND_HANDGUN:
-		case ITEM_KIND_RIFLE:
-		case ITEM_KIND_SHOTGUN:
-		case ITEM_KIND_GATLINGGUN:
-		case ITEM_KIND_GRENADEGUN:
-			bApplyArrowElement = true;
-			break;
-
-		default:
-			switch (n_A_ActiveSkill) {
-			case SKILL_ID_MUSICAL_STRIKE:
-			case SKILL_ID_YAUCHI:
-			case SKILL_ID_ARRAW_VULKAN:
-			case SKILL_ID_SEVERE_RAINSTORM:
-			case SKILL_ID_SEVERE_RAINSTORM_EX:
+			case ITEM_KIND_BOW:
+			case ITEM_KIND_HANDGUN:
+			case ITEM_KIND_RIFLE:
+			case ITEM_KIND_SHOTGUN:
+			case ITEM_KIND_GATLINGGUN:
+			case ITEM_KIND_GRENADEGUN:
 				bApplyArrowElement = true;
 				break;
-			}
+			default:
+				switch (n_A_ActiveSkill) {
+					case SKILL_ID_MUSICAL_STRIKE:
+					case SKILL_ID_YAUCHI:
+					case SKILL_ID_ARRAW_VULKAN:
+					case SKILL_ID_SEVERE_RAINSTORM:
+					case SKILL_ID_SEVERE_RAINSTORM_EX:
+					case SKILL_ID_ROSE_BLOSSOM:
+					case SKILL_ID_RHYTHM_SHOOTING:
+						bApplyArrowElement = true;
+						break;
+				}
 		}
 
 		if (bApplyArrowElement) {
