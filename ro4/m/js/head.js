@@ -8324,85 +8324,91 @@ g_bUnknownCasts = true;
 
 		switch (n_A_ActiveSkill) {
 
+		// 「マジシャン」スキル「ファイアーボルト」
 		case SKILL_ID_FIRE_BOLT:
 			n_A_Weapon_zokusei = 3;
-
 			// スペルフィストの中身として呼ばれている場合
 			if (battleCalcInfo.parentSkillId == SKILL_ID_SPELL_FIST) {
-
 				// 倍率計算の中の処理を正しく分岐させるために、遠距離判定フラグを調整
 				n_Enekyori = 0;
-
 				// ヒット数を 1 に補正
 				wHITsuu = 1;
-
 				// 詠唱とディレイを 0 にしておく
 				wCast = 0;
 				n_Delay[2] = 0;
 			}
-
 			// 上記以外の場合
 			else {
 				wHITsuu = n_A_ActiveSkillLV;
 				wCast = 560 * n_A_ActiveSkillLV;
 				n_Delay[2] = 800 + n_A_ActiveSkillLV * 200;
 			}
-
-			if(UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 1) wbairitu += ROUNDDOWN(n_A_JobLV / 3);
+			switch (UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL)) {
+				case SERE_SUPPORT_SKILL_ID_PYRO_TECHNIC: 
+					wbairitu += ROUNDDOWN(n_A_JobLV / 3);
+					break;
+				case SERE_SUPPORT_SKILL_ID_FLAME_TECHNIQUE:
+					wbairitu += 75;
+					break;
+			}
 			break;
 
+		// 「マジシャン」スキル「コールドボルト」
 		case SKILL_ID_COLD_BOLT:
 			n_A_Weapon_zokusei = 1;
-
 			// スペルフィストの中身として呼ばれている場合
 			if (battleCalcInfo.parentSkillId == SKILL_ID_SPELL_FIST) {
-
 				// 倍率計算の中の処理を正しく分岐させるために、遠距離判定フラグを調整
 				n_Enekyori = 0;
-
 				// ヒット数を 1 に補正
 				wHITsuu = 1;
-
 				// 詠唱とディレイを 0 にしておく
 				wCast = 0;
 				n_Delay[2] = 0;
 			}
-
 			// 上記以外の場合
 			else {
 				wHITsuu = n_A_ActiveSkillLV;
 				wCast = 560 * n_A_ActiveSkillLV;
 				n_Delay[2] = 800 + n_A_ActiveSkillLV * 200;
 			}
-
-			if(UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 10) wbairitu += ROUNDDOWN(n_A_JobLV / 3);
+			switch (UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL)) {
+				case SERE_SUPPORT_SKILL_ID_AQUA_PLAY:
+					wbairitu += ROUNDDOWN(n_A_JobLV / 3);
+					break;
+				case SERE_SUPPORT_SKILL_ID_COLD_FORCE:
+					wbairitu += 75;
+					break;
+			}
 			break;
 
+		// 「マジシャン」スキル「ライトニングボルト」
 		case SKILL_ID_LIGHTNING_BOLT:
 			n_A_Weapon_zokusei = 4;
-
 			// スペルフィストの中身として呼ばれている場合
 			if (battleCalcInfo.parentSkillId == SKILL_ID_SPELL_FIST) {
-
 				// 倍率計算の中の処理を正しく分岐させるために、遠距離判定フラグを調整
 				n_Enekyori = 0;
-
 				// ヒット数を 1 に補正
 				wHITsuu = 1;
-
 				// 詠唱とディレイを 0 にしておく
 				wCast = 0;
 				n_Delay[2] = 0;
 			}
-
 			// 上記以外の場合
 			else {
 				wHITsuu = n_A_ActiveSkillLV;
 				wCast = 560 * n_A_ActiveSkillLV;
 				n_Delay[2] = 800 + n_A_ActiveSkillLV * 200;
 			}
-
-			if(UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 19) wbairitu += ROUNDDOWN(n_A_JobLV / 3);
+			switch (UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL)) {
+				case SERE_SUPPORT_SKILL_ID_GUST:
+					wbairitu += ROUNDDOWN(n_A_JobLV / 3);
+					break;
+				case SERE_SUPPORT_SKILL_ID_GRACE_BREEZE:
+					wbairitu += 75;
+					break;
+			}
 			break;
 
 		case SKILL_ID_FIRE_BALL:
@@ -8532,22 +8538,33 @@ g_bUnknownCasts = true;
 			wbairitu = 70 + 50 * n_A_ActiveSkillLV;
 			break;
 
-
+		// 「ウィザード」スキル「アーススパイク」
 		case SKILL_ID_EARTH_SPIKE:
+			n_A_Weapon_zokusei = 2;
+			wHITsuu = n_A_ActiveSkillLV;
+			wCast = 560 * n_A_ActiveSkillLV;
+			n_Delay[2] = 800 + 200 * n_A_ActiveSkillLV;
+			switch (UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL)) {
+				case SERE_SUPPORT_SKILL_ID_PETROLOGY:
+					wbairitu += ROUNDDOWN(n_A_JobLV / 3);
+					break;
+				case SERE_SUPPORT_SKILL_ID_EARTH_CARE:
+					wbairitu += 75;
+					break;
+			}
+			break;
+
+		// 「ウィザード」スキル「ヘヴンズドライブ」			
 		case SKILL_ID_HEAVENS_DRIVE:
 		case SKILL_ID_HEAVENS_DRIVE_FOR_CLONE:
 			n_A_Weapon_zokusei = 2;
 			wHITsuu = n_A_ActiveSkillLV;
-			if(n_A_ActiveSkill==SKILL_ID_EARTH_SPIKE){
-				wCast = 560 * n_A_ActiveSkillLV;
-				n_Delay[2] = 800 + 200 * n_A_ActiveSkillLV;
+			wbairitu = 125;
+			wCast = 1000 * n_A_ActiveSkillLV;
+			n_Delay[2] = 1000;
+			if(UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == SERE_SUPPORT_SKILL_ID_PETROLOGY) {
+				wbairitu += ROUNDDOWN(n_A_JobLV / 3);
 			}
-			else{
-				wbairitu = 125;
-				wCast = 1000 * n_A_ActiveSkillLV;
-				n_Delay[2] = 1000;
-			}
-			if(UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 28) wbairitu += ROUNDDOWN(n_A_JobLV / 3);
 			break;
 
 		case SKILL_ID_RUWACH:
@@ -8945,7 +8962,14 @@ g_bUnknownCasts = true;
 			wbairitu = 40 * n_A_ActiveSkillLV;
 			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
 			// 精霊補正
-			if(UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 31) wbairitu += n_A_JobLV;	// 31:カーズドソイル
+			switch (UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL)) {
+				case SERE_SUPPORT_SKILL_ID_CURSED_SOIL:
+					wbairitu += n_A_JobLV;
+					break;
+				case SERE_SUPPORT_SKILL_ID_DEEP_POISONING:
+					wbairitu += 200;
+					break;
+			}				
 			break;
 
 		case SKILL_ID_POISON_BUSTER:
@@ -17436,10 +17460,9 @@ function Click_PassSkillSW(){
 
 
 			//----------------------------------------------------------------
-			// ソーサラー：精霊
-			// エレメンタルマスター：上位精霊
+			// エレメンタルマスター系列　召喚中の精霊
 			//----------------------------------------------------------------
-			var sklIdx = NumSearch2(812,passiveSkillIdArray);
+			var sklIdx = NumSearch2(SKILL_ID_SERE, passiveSkillIdArray);
 			if(sklIdx != -1){
 
 				// 一度、選択肢を全削除
@@ -17447,16 +17470,16 @@ function Click_PassSkillSW(){
 				HtmlRemoveOptionAll(objSelect);
 
 				var w_name = [
-					"off",
-					"火Lv1","火Lv2","火Lv3",
-					"水Lv1","水Lv2","水Lv3",
-					"風Lv1","風Lv2","風Lv3",
-					"地Lv1","地Lv2","地Lv3",
+					"off",					// 0
+					"火Lv1","火Lv2","火Lv3",	// 1 - 3 
+					"水Lv1","水Lv2","水Lv3",	// 4 - 6
+					"風Lv1","風Lv2","風Lv3",	// 7 - 9
+					"地Lv1","地Lv2","地Lv3",	// 10 - 12
 				];
 
 				if (passiveSkillIdArray.indexOf(SKILL_ID_ELEMENTAL_SPIRIT_MASTERY) >= 0) {
 					w_name = w_name.concat([
-						"火四次", "水四次", "風四次", "地四次", "毒四次",
+						"火四次", "水四次", "風四次", "地四次", "毒四次",	// 13 - 17
 					]);
 				}
 
@@ -17465,33 +17488,68 @@ function Click_PassSkillSW(){
 				}
 			}
 
-
-			var w = NumSearch2(813,passiveSkillIdArray);
+			// -------------------------------------------------------
+			// エレメンタルマスター系列　精霊のモード
+			// -------------------------------------------------------
+			var w = NumSearch2(SKILL_ID_SERE_MODE, passiveSkillIdArray);
 			if(w != -1){
 				var wOBJ = document.getElementById("A_skill" + w);
 				for(i=10;i>=0;i--) wOBJ.options[i] = null;
 				var w_name = ["off","passive","defensive","ofensive"];
 				for(i=0;i<=3;i++) wOBJ.options[i] = new Option(w_name[i],i);
 			}
-			var w = NumSearch2(814,passiveSkillIdArray);
+
+			// -------------------------------------------------------
+			// エレメンタルマスター系列　精霊のスキル
+			// -------------------------------------------------------
+			var w = NumSearch2(SKILL_ID_SERE_SUPPORT_SKILL, passiveSkillIdArray);
 			if(w != -1){
+				// i に設定可能な最大値は 64 (=6bit)
+				// 旧バージョンのセーブ処理に含まれており拡張が容易ではない
+				// 拡張するぐらいなら別項目で作り直す方が良いと思います
 				var wOBJ = document.getElementById("A_skill" + w);
-				for(i=10;i>=0;i--) wOBJ.options[i] = null;
-				var w_name = ["off","(火1P)ﾊﾟｲﾛﾃｸﾆｯｸ",0,0,"(火2P)ﾋｰﾀｰ","(火2D)ﾌｧｲｱｰｸﾛｰｸ",0,0,0,0,"(水1P)ｱｸｱﾌﾟﾚｲ",0,0,"(水2P)ｸｰﾗｰ","(水2D)ｳｫｰﾀｰﾄﾞﾛｯﾌﾟ",0,0,"(水3D)ｳｫｰﾀｰﾊﾞﾘｱ",0,"(風1P)ｶﾞｽﾄ","(風1D)ｳｨﾝﾄﾞｽﾃｯﾌﾟ",0,"(風2P)ﾌﾞﾗｽﾄ","(風2D)ｳｨﾝﾄﾞｶｰﾃﾝ",0,0,"(風3D)ｾﾞﾌｧｰ",0,"(地1P)ﾍﾟﾄﾛﾛｼﾞｰ","(地1D)ｿﾘｯﾄﾞｽｷﾝ",0,"(地2P)ｶｰｽﾞﾄﾞｿｲﾙ","(地2D)ｽﾄｰﾝｼｰﾙﾄﾞ",0,0,"(地3D)ﾊﾟﾜｰｵﾌﾞｶﾞｲｱ",0];
-				var j=0;
-				for(i=0;i<=36;i++){
+				for(let i=10 ;i>=0; i--) wOBJ.options[i] = null;
+				// --- w_name ---
+				//      Passive, Defence, Attack →
+				// Lv1
+				// Lv2
+				// Lv3
+				// ↓
+				var w_name = [
+					"off",
+					"(火1P)ﾊﾟｲﾛﾃｸﾆｯｸ",0,0,
+					"(火2P)ﾋｰﾀｰ","(火2D)ﾌｧｲｱｰｸﾛｰｸ",0,
+					0,0,0,
+					"(水1P)ｱｸｱﾌﾟﾚｲ",0,0,
+					"(水2P)ｸｰﾗｰ","(水2D)ｳｫｰﾀｰﾄﾞﾛｯﾌﾟ",0,
+					0,"(水3D)ｳｫｰﾀｰﾊﾞﾘｱ",0,
+					"(風1P)ｶﾞｽﾄ","(風1D)ｳｨﾝﾄﾞｽﾃｯﾌﾟ",0,
+					"(風2P)ﾌﾞﾗｽﾄ","(風2D)ｳｨﾝﾄﾞｶｰﾃﾝ",0,
+					0,"(風3D)ｾﾞﾌｧｰ",0,
+					"(地1P)ﾍﾟﾄﾛﾛｼﾞｰ","(地1D)ｿﾘｯﾄﾞｽｷﾝ",0,
+					"(地2P)ｶｰｽﾞﾄﾞｿｲﾙ","(地2D)ｽﾄｰﾝｼｰﾙﾄﾞ",0,
+					0,"(地3D)ﾊﾟﾜｰｵﾌﾞｶﾞｲｱ",0,
+					"(火4P)ﾌﾚｲﾑﾃｸﾆｯｸ", "(火4D)ﾌﾚｲﾑｱｰﾏｰ", 0,
+					"(水4P)ｺｰﾙﾄﾞﾌｫｰｽ", "(水4D)ｸﾘｽﾀﾙｱｰﾏｰ", 0,
+					"(風4P)ｸﾞﾚｲｽﾌﾞﾘｰｽﾞ", "(風4D)ｱｲｽﾞｵﾌﾞｽﾄｰﾑ", 0,
+					"(地4P)ｱｰｽｹｱ", "(地4D)ｽﾄﾛﾝｸﾞﾌﾟﾛﾃｸｼｮﾝ", 0,
+					"(毒4P)ﾃﾞｨｰﾌﾟﾎﾟｲｽﾞﾆﾝｸﾞ", "(毒4D)ﾎﾟｲｽﾞﾝｼｰﾙﾄﾞ", 0,
+				];
+				var sere_skill_index=0;
+				for(let i=0; i<=51; i++){
 					if(w_name[i] != 0){
-						wOBJ.options[j] = new Option(w_name[i],i);
-						j++;
+						wOBJ.options[sere_skill_index] = new Option(w_name[i],i);
+						sere_skill_index++;
 					}
 				}
 			}
-			var w = NumSearch2(815,passiveSkillIdArray);
+
+			var w = NumSearch2(SKILL_ID_HOMLV_FOR_PYROCLASTIC, passiveSkillIdArray);
 			if(w != -1){
 				var wOBJ = document.getElementById("A_skill" + w);
-				for(i=10;i>=0;i--) wOBJ.options[i] = null;
+				for(i=10; i>=0; i--) wOBJ.options[i] = null;
 				wOBJ.options[0] = new Option("-",0);
-				for(i=1;i<=29;i++) wOBJ.options[i] = new Option(i+121,i);
+				for(i=1; i<=29; i++) wOBJ.options[i] = new Option(i+121, i);
 			}
 
 			//----------------------------------------------------------------

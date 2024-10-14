@@ -871,6 +871,22 @@ function GetStatusModifyBodyElement() {
 	var itemCount = 0;
 
 	//----------------------------------------------------------------
+	// 「四次精霊　ディフェンスモード」の効果
+	//----------------------------------------------------------------
+	switch (UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL)) {
+		case SERE_SUPPORT_SKILL_ID_FLAME_ARMOR:
+			return ELM_ID_FIRE;
+		case SERE_SUPPORT_SKILL_ID_CRYSTAL_ARMOR:
+			return ELM_ID_WATER;
+		case SERE_SUPPORT_SKILL_ID_EYES_OF_STORM:
+			return ELM_ID_WIND;
+		case SERE_SUPPORT_SKILL_ID_STRONG_PROTECTION:
+			return ELM_ID_EARTH;
+		case SERE_SUPPORT_SKILL_ID_POISON_SHIELD:
+			return ELM_ID_POISON;
+	}
+
+	//----------------------------------------------------------------
 	// スキル「シェイプシフト」の、効果
 	//----------------------------------------------------------------
 	switch (UsedSkillSearch(SKILL_ID_SHAPE_SHIFT)) {

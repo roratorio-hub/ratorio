@@ -17012,48 +17012,71 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 		// 「ソーサラー　精霊支援スキル」の効果
 		//----------------------------------------------------------------
 		switch (UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL)) {
-		case 5:
-			n_tok[ITEM_SP_RESIST_ELM_FIRE] += 100;
-			n_tok[ITEM_SP_RESIST_ELM_WATER] -= 100;
-			break;
-		case 14:
-			n_tok[ITEM_SP_RESIST_ELM_WATER] += 100;
-			n_tok[ITEM_SP_RESIST_ELM_WIND] -= 100;
-			break;
-		case 23:
-			n_tok[ITEM_SP_RESIST_ELM_WIND] += 100;
-			n_tok[ITEM_SP_RESIST_ELM_EARTH] -= 100;
-			break;
-		case 32:
-			n_tok[ITEM_SP_RESIST_ELM_EARTH] += 100;
-			n_tok[ITEM_SP_RESIST_ELM_FIRE] -= 100;
-			break;
+			case SERE_SUPPORT_SKILL_ID_FIRE_CLOAK:
+				n_tok[ITEM_SP_RESIST_ELM_FIRE] += 100;
+				n_tok[ITEM_SP_RESIST_ELM_WATER] -= 100;
+				break;
+			case SERE_SUPPORT_SKILL_ID_WATER_DROP:
+				n_tok[ITEM_SP_RESIST_ELM_WATER] += 100;
+				n_tok[ITEM_SP_RESIST_ELM_WIND] -= 100;
+				break;
+			case SERE_SUPPORT_SKILL_ID_WIND_CURTAIN:
+				n_tok[ITEM_SP_RESIST_ELM_WIND] += 100;
+				n_tok[ITEM_SP_RESIST_ELM_EARTH] -= 100;
+				break;
+			case SERE_SUPPORT_SKILL_ID_STONE_SHIELD:
+				n_tok[ITEM_SP_RESIST_ELM_EARTH] += 100;
+				n_tok[ITEM_SP_RESIST_ELM_FIRE] -= 100;
+				break;
 		}
 
-		if(n_A_PassSkill3[7]){
+		//----------------------------------------------------------------
+		// 「四次精霊　ディフェンスモード」の効果
+		//----------------------------------------------------------------
+		switch (UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL)) {
+			case SERE_SUPPORT_SKILL_ID_FLAME_ARMOR:
+				n_tok[ITEM_SP_RESIST_ELM_FIRE] += 95;
+				break;
+			case SERE_SUPPORT_SKILL_ID_CRYSTAL_ARMOR:
+				n_tok[ITEM_SP_RESIST_ELM_WATER] += 95;
+				break;
+			case SERE_SUPPORT_SKILL_ID_EYES_OF_STORM:
+				n_tok[ITEM_SP_RESIST_ELM_WIND] += 95;
+				break;
+			case SERE_SUPPORT_SKILL_ID_STRONG_PROTECTION:
+				n_tok[ITEM_SP_RESIST_ELM_EARTH] += 95;
+				break;
+			case SERE_SUPPORT_SKILL_ID_POISON_SHIELD:
+				n_tok[ITEM_SP_RESIST_ELM_POISON] += 95;
+				break;
+		}
+
+		if(n_A_PassSkill3[7]){	// A3_Skill7 : 不死身のジークフリード
 			for(i=61;i<=69;i++) n_tok[i] += 55 + 5 * n_A_PassSkill3[7];
 			for(i=150;i<=159;i++) n_tok[i] += 10 * n_A_PassSkill3[7];
 		}
-		if(n_A_PassSkill7[11]){
+		if(n_A_PassSkill7[11]){	// A7_Skill11 : レジストコールドポーション
 			n_tok[61] += 20;
 			n_tok[64] -= 15;
 		}
-		if(n_A_PassSkill7[12]){
+		if(n_A_PassSkill7[12]){	// A7_Skill12 : レジストアースポーション
 			n_tok[62] += 20;
 			n_tok[63] -= 15;
 		}
-		if(n_A_PassSkill7[13]){
+		if(n_A_PassSkill7[13]){	// A7_Skill13 : レジストファイアーポーション
 			n_tok[63] += 20;
 			n_tok[61] -= 15;
 		}
-		if(n_A_PassSkill7[14]){
+		if(n_A_PassSkill7[14]){	// A7_Skill14 : レジストウィンドポーション
 			n_tok[64] += 20;
 			n_tok[62] -= 15;
 		}
-		if(n_tok[264] != 0){
-			for(var i=60;i<=69;i++) n_tok[i] += n_tok[264];
+		if(n_tok[ITEM_SP_RESIST_ELM_ALL] != 0){
+			for(var i=ITEM_SP_RESIST_ELM_VANITY; i<=ITEM_SP_RESIST_ELM_UNDEAD; i++) n_tok[i] += n_tok[ITEM_SP_RESIST_ELM_ALL];
 		}
-		if(EquipNumSearch(1324)) for(var i=60;i<=69;i++) n_tok[i] += 5;
+		if(EquipNumSearch(ITEM_SET_ID_STRONG_SHIELD_JUSOHOHEI_NO_KABUTO)) {
+			for(var i=ITEM_SP_RESIST_ELM_VANITY; i<=ITEM_SP_RESIST_ELM_UNDEAD; i++) n_tok[i] += 5;
+		}
 
 
 
