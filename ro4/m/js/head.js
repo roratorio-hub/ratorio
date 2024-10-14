@@ -15718,6 +15718,7 @@ function BattleHiDam(charaData, specData, mobData, attackMethodConfArray, objCel
 
 /**
  * 魔法判定攻撃に対するスキル倍率の増減を取得する.
+ * MDEFなどの計算後に処理される
  * @param wBMC ダメージ
  * @return 適用後のダメージ
  */
