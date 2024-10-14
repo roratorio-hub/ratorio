@@ -34268,7 +34268,7 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "ロゼブロッサム";
+			this.name = "(△)ロゼブロッサム";
 			this.kana = "ロセフロツサム";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -34316,7 +34316,7 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "リズムシューティング";
+			this.name = "(△)リズムシューティング";
 			this.kana = "リスムシユウテインク";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -34365,7 +34365,7 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "メタリックフューリー";
+			this.name = "(△)メタリックフューリー";
 			this.kana = "メタリツクフユウリイ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
@@ -34413,7 +34413,7 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "サウンドブレンド";
+			this.name = "(△)サウンドブレンド";
 			this.kana = "サウントフレント";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;

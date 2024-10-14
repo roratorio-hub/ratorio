@@ -3742,6 +3742,8 @@ g_bUnknownCasts = true;
 			break;
 
 		// 「トルバドゥール・トルヴェール」スキル「ロゼブロッサム」
+		// 「ステージマナー」の習得レベルが5の時はこの計算式で誤差無しになります
+		// それ以外の場合は誤差があるので修正が必要です
 		case SKILL_ID_ROSE_BLOSSOM:
 			// 弓・楽器・鞭装備状態のみ発動可能
 			if (![ITEM_KIND_BOW, ITEM_KIND_MUSICAL, ITEM_KIND_WHIP].includes(n_A_WeaponType)) {
@@ -3793,6 +3795,8 @@ g_bUnknownCasts = true;
 			break;
 
 		// 「トルバドゥール・トルヴェール」スキル「リズムシューティング」
+		// 「ステージマナー」の習得レベルが5の時はこの計算式で誤差無しになります
+		// それ以外の場合は誤差があるので修正が必要です
 		case SKILL_ID_RHYTHM_SHOOTING:
 			// 弓・楽器・鞭装備状態のみ発動可能
 			if (![ITEM_KIND_BOW, ITEM_KIND_MUSICAL, ITEM_KIND_WHIP].includes(n_A_WeaponType)) {
@@ -9926,6 +9930,8 @@ g_bDefinedDamageIntervals = true;
 			break;
 
 		// 「トルバドゥール・トルヴェール」スキル「メタリックフューリー」
+		// 「ステージマナー」の習得レベルが5の時はこの計算式で誤差無しになります
+		// それ以外の場合は誤差があるので修正が必要です
 		case SKILL_ID_METALIC_FURY:
 			// 楽器・鞭装備状態のみ発動可能
 			if (![ITEM_KIND_MUSICAL, ITEM_KIND_WHIP].includes(n_A_WeaponType)) {
@@ -9961,6 +9967,8 @@ g_bDefinedDamageIntervals = true;
 			break;
 
 		// 「トルバドゥール・トルヴェール」スキル「サウンドブレンド」
+		// 「ステージマナー」の習得レベルが5の時はこの計算式で誤差無しになります
+		// それ以外の場合は誤差があるので修正が必要です
 		case SKILL_ID_SOUND_BLEND:
 			// 楽器・鞭装備状態のみ発動可能
 			if (![ITEM_KIND_MUSICAL, ITEM_KIND_WHIP].includes(n_A_WeaponType)) {
