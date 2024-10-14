@@ -3741,123 +3741,92 @@ g_bUnknownCasts = true;
 			wbairitu *= n_A_BaseLV / 100;
 			break;
 
-		// ロゼブロッサム
+		// 「トルバドゥール・トルヴェール」スキル「ロゼブロッサム」
+		// 「ステージマナー」の習得レベルが5の時はこの計算式で誤差無しになります
+		// それ以外の場合は誤差があるので修正が必要です
 		case SKILL_ID_ROSE_BLOSSOM:
-
-			// TODO: 詠唱時間等未実測スキル
-			g_bUnknownCasts = true;
-
 			// 弓・楽器・鞭装備状態のみ発動可能
-			switch (n_A_WeaponType) {
-
-			case ITEM_KIND_BOW:
-			case ITEM_KIND_MUSICAL:
-			case ITEM_KIND_WHIP:
-
-				// 距離属性
-				n_Enekyori = 1;
-
-				// 初段ＨＩＴの場合
-				if (battleCalcInfo.parentSkillId === undefined) {
-
-					// 詠唱時間等
-					/*
-					// 未実測、0.3秒後追撃未実装
-					wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-					n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-					n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-					n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-					*/
-
-					// 基本倍率
-					wbairitu = 50 + (50 * n_A_ActiveSkillLV);
-
-					// サウンドブレンド補正
-					if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SOUND_BLEND]) {
-						wbairitu += 100;
-					}
-
-					// CON補正
-					wbairitu += 1 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
-
-					// ベースレベル補正
-					wbairitu *= n_A_BaseLV / 100;
-				}
-
-				// 追撃の場合
-				else {
-
-					// 基本倍率
-					wbairitu = 2000 + (200 * n_A_ActiveSkillLV);
-
-					// サウンドブレンド補正
-					if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SOUND_BLEND]) {
-						wbairitu += 1000;
-					}
-
-					// CON補正
-					wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
-
-					// ベースレベル補正
-					wbairitu *= n_A_BaseLV / 100;
-				}
-				break;
-
-			default:
+			if (![ITEM_KIND_BOW, ITEM_KIND_MUSICAL, ITEM_KIND_WHIP].includes(n_A_WeaponType)) {
 				wbairitu = 0;
 				n_Buki_Muri = 1;
 				break;
 			}
-			break;
-
-		// リズムシューティング
-		case SKILL_ID_RHYTHM_SHOOTING:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-
-			// 弓・楽器・鞭装備状態のみ発動可能
-			switch (n_A_WeaponType) {
-
-			case ITEM_KIND_BOW:
-			case ITEM_KIND_MUSICAL:
-			case ITEM_KIND_WHIP:
-
-				// 距離属性
-				n_Enekyori = 1;
-
+			// 距離属性
+			n_Enekyori = 1;
+			// 矢の属性を適用
+			bApplyArrowElement = true;
+			// 初段ＨＩＴの場合
+			if (battleCalcInfo.parentSkillId === undefined) {
 				// 詠唱時間等
-				/*
-				// 未実測、0.3秒後追撃未実装
 				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				*/
-
 				// 基本倍率
-				wbairitu = 1000 + (100 * n_A_ActiveSkillLV);
-
-				// サウンドブレンド補正
-				if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SOUND_BLEND]) {
-					wbairitu += 500 + (100 * n_A_ActiveSkillLV);
-				}
-
+				wbairitu = 750 + (150 * n_A_ActiveSkillLV);
 				// CON補正
 				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
-
+				// サウンドブレンド補正
+				if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SOUND_BLEND]) {
+					wbairitu += 500 + (200 * n_A_ActiveSkillLV);
+					// CON補正
+					wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+				}
 				// ベースレベル補正
-				wbairitu *= n_A_BaseLV / 100;
+				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+				// 分割HIT数
+				wActiveHitNum = 2;
+			}
+			// 追撃の場合
+			else {
+				// 基本倍率
+				wbairitu = 1250 + (350 * n_A_ActiveSkillLV);
+				// CON補正
+				wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+				// サウンドブレンド補正
+				if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SOUND_BLEND]) {
+					wbairitu += 1250 + (350 * n_A_ActiveSkillLV);
+					// CON補正
+					wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+				}
+				// ベースレベル補正
+				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			}
+			break;
 
-				// ヒット数
-				wHITsuu = 3;
-				break;
-
-			default:
+		// 「トルバドゥール・トルヴェール」スキル「リズムシューティング」
+		// 「ステージマナー」の習得レベルが5の時はこの計算式で誤差無しになります
+		// それ以外の場合は誤差があるので修正が必要です
+		case SKILL_ID_RHYTHM_SHOOTING:
+			// 弓・楽器・鞭装備状態のみ発動可能
+			if (![ITEM_KIND_BOW, ITEM_KIND_MUSICAL, ITEM_KIND_WHIP].includes(n_A_WeaponType)) {
 				wbairitu = 0;
 				n_Buki_Muri = 1;
 				break;
 			}
+			// 距離属性
+			n_Enekyori = 1;
+			// 矢の属性を適用
+			bApplyArrowElement = true;
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// 基本倍率
+			wbairitu = 750 + (150 * n_A_ActiveSkillLV);
+			// CON補正
+			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+			// サウンドブレンド補正
+			if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SOUND_BLEND]) {
+				wbairitu += 500 + (200 * n_A_ActiveSkillLV);
+				// CON補正
+				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+			}
+			// ベースレベル補正
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			// ヒット数
+			wHITsuu = 3;
 			break;
 
 		// 「バイオロ」スキル「アシディファイドゾーン」
@@ -9984,112 +9953,80 @@ g_bDefinedDamageIntervals = true;
 			}
 			break;
 
-		// メタリックフューリー
+		// 「トルバドゥール・トルヴェール」スキル「メタリックフューリー」
+		// 「ステージマナー」の習得レベルが5の時はこの計算式で誤差無しになります
+		// それ以外の場合は誤差があるので修正が必要です
 		case SKILL_ID_METALIC_FURY:
-
-			// TODO: 詠唱時間等未実測スキル
-			g_bUnknownCasts = true;
-
 			// 楽器・鞭装備状態のみ発動可能
-			switch (n_A_WeaponType) {
-
-			case ITEM_KIND_MUSICAL:
-			case ITEM_KIND_WHIP:
-
-				// 属性設定
-				// 属性自動矢
-				if(n_A_Arrow == ARROW_ID_ZOKUSE_ZIDO_YA_ATK30){
-					n_A_Weapon_zokusei = mostEffectiveElmIdArray[ Math.floor(mobData[MONSTER_DATA_INDEX_ELEMENT] / 10) ];
-				}
-				// 通常の矢
-				else {
-					n_A_Weapon_zokusei = GetEquippedTotalSPArrow(ITEM_SP_ELEMENTAL);
-				}
-
-				// 詠唱時間等
-				/*
-				// 未実測、0.3秒ごと
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				*/
-
-				// 基本倍率
-				wbairitu = (900 * n_A_ActiveSkillLV);
-
-				// SPL補正
-				wbairitu += 15 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-
-				// サウンドブレンド状態の敵の数によるダメージ倍率補正
-				if (attackMethodConfArray[0].GetOptionValue(0) >= 1) {
-					wbairitu += 1350 * Math.min(5, attackMethodConfArray[0].GetOptionValue(0));
-				}
-
-				// ベースレベル補正
-				wbairitu *= n_A_BaseLV / 100;
-				break;
-
-			default:
+			if (![ITEM_KIND_MUSICAL, ITEM_KIND_WHIP].includes(n_A_WeaponType)) {
 				wbairitu = 0;
 				n_Buki_Muri = 1;
 				break;
 			}
+			// 属性自動矢
+			if(n_A_Arrow == ARROW_ID_ZOKUSE_ZIDO_YA_ATK30){
+				n_A_Weapon_zokusei = mostEffectiveElmIdArray[ Math.floor(mobData[MONSTER_DATA_INDEX_ELEMENT] / 10) ];
+			}
+			// 通常の矢
+			else {
+				n_A_Weapon_zokusei = GetEquippedTotalSPArrow(ITEM_SP_ELEMENTAL);
+			}
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// 基本倍率
+			wbairitu = 1250 + (350 * n_A_ActiveSkillLV);
+			// SPL補正
+			wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+			// サウンドブレンド補正
+			if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SOUND_BLEND]) {
+				wbairitu += 2750 + (650 * n_A_ActiveSkillLV);
+				// SPL補正
+				wbairitu += 20 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+			}
+			// ベースレベル補正
+			wbairitu =  Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
+		// 「トルバドゥール・トルヴェール」スキル「サウンドブレンド」
+		// 「ステージマナー」の習得レベルが5の時はこの計算式で誤差無しになります
+		// それ以外の場合は誤差があるので修正が必要です
 		case SKILL_ID_SOUND_BLEND:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-g_bDefinedDamageIntervals = true;
-
 			// 楽器・鞭装備状態のみ発動可能
-			switch (n_A_WeaponType) {
-
-			case ITEM_KIND_MUSICAL:
-			case ITEM_KIND_WHIP:
-
-				// 属性設定
-				// 属性自動矢
-				if(n_A_Arrow == ARROW_ID_ZOKUSE_ZIDO_YA_ATK30){
-					n_A_Weapon_zokusei = mostEffectiveElmIdArray[ Math.floor(mobData[MONSTER_DATA_INDEX_ELEMENT] / 10) ];
-				}
-				// 通常の矢
-				else {
-					n_A_Weapon_zokusei = GetEquippedTotalSPArrow(ITEM_SP_ELEMENTAL);
-				}
-
-				// ダメージ間隔
-				n_Delay[5] = [0, 1000, 3000, 8000, 15000, 30000][battleCalcInfo.skillLv] - 200;
-
-				// オブジェクト存続時間
-				n_Delay[6] = n_Delay[5] + 200;
-
-				// 詠唱時間等
-				/*
-				// 未実測、0.3秒ごと
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				*/
-
-				// 基本倍率
-				wbairitu = 2000 + (500 * n_A_ActiveSkillLV);
-
-				// SPL補正
-				wbairitu += 15 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-
-				// ベースレベル補正
-				wbairitu *= n_A_BaseLV / 100;
-				break;
-
-			default:
+			if (![ITEM_KIND_MUSICAL, ITEM_KIND_WHIP].includes(n_A_WeaponType)) {
 				wbairitu = 0;
 				n_Buki_Muri = 1;
 				break;
 			}
+			// 属性自動矢
+			if(n_A_Arrow == ARROW_ID_ZOKUSE_ZIDO_YA_ATK30){
+				n_A_Weapon_zokusei = mostEffectiveElmIdArray[ Math.floor(mobData[MONSTER_DATA_INDEX_ELEMENT] / 10) ];
+			}
+			// 通常の矢
+			else {
+				n_A_Weapon_zokusei = GetEquippedTotalSPArrow(ITEM_SP_ELEMENTAL);
+			}
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// 持続時間が終了した時点でダメージが発生するので擬似的に設置スキルとして扱う
+			g_bDefinedDamageIntervals = true;
+			// 持続時間
+			n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// ダメージ発生間隔
+			n_Delay[5] = n_Delay[6] - 200;
+			// 基本倍率
+			wbairitu = 2000 + (500 * n_A_ActiveSkillLV);
+			// SPL補正
+			wbairitu += 15 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+			// ベースレベル補正
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
+
 
 		// 「エレメンタルマスター」スキル「ダイヤモンドストーム」
 		case SKILL_ID_DIAMOND_STORM:
@@ -16977,7 +16914,7 @@ function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, m
 	//----------------------------------------------------------------
 	if (n_A_ActiveSkill == SKILL_ID_SOUND_BLEND) {
 		if (UsedSkillSearch(SKILL_ID_MYSTIC_SYMPHONY) > 0) {
-			wX += 25;
+			wX += 50;
 		}
 	}
 
@@ -26293,7 +26230,7 @@ function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, 
 	//----------------------------------------------------------------
 	if (n_A_ActiveSkill == SKILL_ID_ROSE_BLOSSOM) {
 		if (UsedSkillSearch(SKILL_ID_MYSTIC_SYMPHONY) > 0) {
-			w1 += 25;
+			w1 += 50;
 		}
 	}
 
@@ -26302,7 +26239,7 @@ function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, 
 	//----------------------------------------------------------------
 	if (n_A_ActiveSkill == SKILL_ID_RHYTHM_SHOOTING) {
 		if (UsedSkillSearch(SKILL_ID_MYSTIC_SYMPHONY) > 0) {
-			w1 += 25;
+			w1 += 50;
 		}
 	}
 

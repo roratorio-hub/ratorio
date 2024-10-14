@@ -1576,6 +1576,10 @@ function CSkillManager() {
 				return 4400 - 400 * skillLv;
 			}
 
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = ([0, 5000, 10000, 15000, 20000, 25000, 30000, 35000, 40000, 45000, 50000])[skillLv];
+				return nLifeTime;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -1628,6 +1632,10 @@ function CSkillManager() {
 				return 10;
 			}
 
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = 10000;
+				return nLifeTime;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -1768,6 +1776,10 @@ function CSkillManager() {
 				return 100;
 			}
 
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = ([0, 5000, 6000, 7000, 8000, 9000, 10000, 11000, 12000, 13000, 14000])[skillLv];
+				return nLifeTime;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -2000,6 +2012,10 @@ function CSkillManager() {
 				return 5000;
 			}
 
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = 300000;
+				return nLifeTime;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -6620,6 +6636,10 @@ function CSkillManager() {
 				return 1000;
 			}
 
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = ([0, 400, 600, 800, 1000, 1200])[skillLv];
+				return nLifeTime;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -6695,6 +6715,10 @@ function CSkillManager() {
 				return 3000;
 			}
 
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = ([0, 120000, 150000, 180000, 210000, 240000, 270000, 300000, 330000, 360000, 390000])[skillLv];
+				return nLifeTime;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -6723,6 +6747,10 @@ function CSkillManager() {
 				return 3000;
 			}
 
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = ([0, 1200000, 1200000, 1200000, 1200000, 1800000])[skillLv];
+				return nLifeTime;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -6751,6 +6779,10 @@ function CSkillManager() {
 				return 3000;
 			}
 
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = ([0, 1200000, 1200000, 1200000, 1200000, 1800000])[skillLv];
+				return nLifeTime;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -6779,6 +6811,10 @@ function CSkillManager() {
 				return 3000;
 			}
 
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = ([0, 1200000, 1200000, 1200000, 1200000, 1800000])[skillLv];
+				return nLifeTime;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -6807,6 +6843,10 @@ function CSkillManager() {
 				return 3000;
 			}
 
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = ([0, 1200000, 1200000, 1200000, 1200000, 1800000])[skillLv];
+				return nLifeTime;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -6854,6 +6894,10 @@ function CSkillManager() {
 				return 5000;
 			}
 
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = ([0, 60000, 120000, 180000, 240000, 300000])[skillLv];
+				return nLifeTime;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -6882,6 +6926,10 @@ function CSkillManager() {
 				return 5000;
 			}
 
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = ([0, 60000, 120000, 180000, 240000, 300000])[skillLv];
+				return nLifeTime;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -6910,6 +6958,10 @@ function CSkillManager() {
 				return 5000;
 			}
 
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = ([0, 60000, 120000, 180000, 240000, 300000])[skillLv];
+				return nLifeTime;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -6938,6 +6990,10 @@ function CSkillManager() {
 				return 5000;
 			}
 
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = ([0, 120000, 165000, 210000, 255000, 300000])[skillLv];
+				return nLifeTime;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -20894,6 +20950,10 @@ function CSkillManager() {
 				return 1000;
 			}
 
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = ([0, 20000, 25000, 30000, 35000, 40000, 45000, 50000, 55000, 60000, 65000])[skillLv];
+				return nLifeTime;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -20930,6 +20990,10 @@ function CSkillManager() {
 				return 5000;
 			}
 
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = ([0, 4000, 6000, 8000, 10000, 12000])[skillLv];
+				return nLifeTime;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -20987,6 +21051,10 @@ function CSkillManager() {
 				return 5000;
 			}
 
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = ([0, 1500, 2000, 2500, 3000, 3500])[skillLv];
+				return nLifeTime;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -21019,6 +21087,11 @@ function CSkillManager() {
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 5000;
+			}
+
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = ([0, 8000, 10000, 12000, 14000, 16000])[skillLv];
+				return nLifeTime;
 			}
 		};
 		this.dataArray[skillId] = skillData;
@@ -21115,6 +21188,10 @@ function CSkillManager() {
 				return 2000;
 			}
 
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = 60000;
+				return nLifeTime;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -21164,6 +21241,10 @@ function CSkillManager() {
 				return 5000;
 			}
 
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = ([0, 8000, 11000, 14000, 17000, 20000])[skillLv];
+				return nLifeTime;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -21213,6 +21294,10 @@ function CSkillManager() {
 				return 5000;
 			}
 
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = ([0, 12000, 14000, 16000, 18000, 20000])[skillLv];
+				return nLifeTime;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -21253,6 +21338,10 @@ function CSkillManager() {
 				return 30000 + 5000 * skillLv;
 			}
 
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = ([0, 20000, 30000, 40000, 50000, 60000])[skillLv];
+				return nLifeTime;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -21298,6 +21387,10 @@ function CSkillManager() {
 				return 2000;
 			}
 
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = ([0, 2200, 2400, 2600, 2800, 3000, 3200, 3400, 3600, 3800, 4000])[skillLv];
+				return nLifeTime;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -21334,6 +21427,10 @@ function CSkillManager() {
 				return 4000 + 1000 * skillLv;
 			}
 
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = ([0, 8000, 10000, 12000, 14000, 16000])[skillLv];
+				return nLifeTime;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -21370,6 +21467,10 @@ function CSkillManager() {
 				return 30000 * skillLv;
 			}
 
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = ([0, 300000, 600000, 900000])[skillLv];
+				return nLifeTime;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -21406,6 +21507,10 @@ function CSkillManager() {
 				return 30000 * skillLv;
 			}
 
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = ([0, 300000, 600000, 900000])[skillLv];
+				return nLifeTime;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -21442,6 +21547,10 @@ function CSkillManager() {
 				return 30000 * skillLv;
 			}
 
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = ([0, 300000, 600000, 900000])[skillLv];
+				return nLifeTime;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -21478,6 +21587,10 @@ function CSkillManager() {
 				return 30000 * skillLv;
 			}
 
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = ([0, 300000, 600000, 900000])[skillLv];
+				return nLifeTime;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -23440,6 +23553,10 @@ function CSkillManager() {
 				return 2000;
 			}
 
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = 90000;
+				return nLifeTime;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -26974,6 +27091,10 @@ function CSkillManager() {
 				return 25;
 			}
 
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = 20000;//デリュージ上では４０秒になるが、デリュージ上の場合は対応しない。
+				return nLifeTime;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -34051,12 +34172,41 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(×)ミスティックシンフォニー";
+			this.name = "ミスティックシンフォニー";
 			this.kana = "ミステイツクシンフオニイ";
 			this.maxLv = 1;
 			this.type = CSkillData.TYPE_ACTIVE;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 390;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 50;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 0;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 1000;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 500;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 60000;
+			}
+			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
+				// return this._CriActRate100(skillLv, charaData, specData, mobData);
+				return 0;
+			}
+			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
+				// return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
+				return 0;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -34076,6 +34226,35 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 330;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 50;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 0;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 1000;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 500;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 60000;
+			}
+			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
+				// return this._CriActRate100(skillLv, charaData, specData, mobData);
+				return 0;
+			}
+			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
+				// return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
+				return 0;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -34089,12 +34268,41 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(×)ロゼブロッサム";
+			this.name = "(△)ロゼブロッサム";
 			this.kana = "ロセフロツサム";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 230;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 500 + 500 * skillLv;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 500;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 1000 * skillLv;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 0;
+			}
+			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
+				// return this._CriActRate100(skillLv, charaData, specData, mobData);
+				return 0;
+			}
+			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
+				// return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
+				return 0;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -34108,13 +34316,43 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(×)リズムシューティング";
+			this.name = "(△)リズムシューティング";
 			this.kana = "リスムシユウテインク";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.CostFixed = function(skillLv, charaDataManger) {    // 消費SP
+				return 110;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {      // 消費AP
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {  // 変動詠唱
+				return 500 + 300 * skillLv;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {  // 固定詠唱
+				return 500;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {  // ディレイ
+				return 1000 * skillLv;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {    // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {	// 持続時間
+				return 0;
+			}
+			this.CriActRate = (skillLv, charaData, specData, mobData) => {  // クリティカル発生率
+				// return this._CriActRate100(skillLv, charaData, specData, mobData);
+				return 0;
+			}
+			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {  // クリティカルダメージ倍率
+				// return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
+				return 0;
+			}
 		};
+		
 		this.dataArray[skillId] = skillData;
 		skillId++;
 
@@ -34127,12 +34365,41 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(×)メタリックフューリー";
+			this.name = "(△)メタリックフューリー";
 			this.kana = "メタリツクフユウリイ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 130;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 500 + 500 * skillLv;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 0;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 1000 * skillLv;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 0;
+			}
+			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
+				// return this._CriActRate100(skillLv, charaData, specData, mobData);
+				return 0;
+			}
+			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
+				// return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
+				return 0;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -34146,12 +34413,41 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(×)サウンドブレンド";
+			this.name = "(△)サウンドブレンド";
 			this.kana = "サウントフレント";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 55;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 0;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 0;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 1000;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return [0, 1, 3, 8, 15, 30][skillLv] * 1000;
+			}
+			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
+				// return this._CriActRate100(skillLv, charaData, specData, mobData);
+				return 0;
+			}
+			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
+				// return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
+				return 0;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -34171,6 +34467,35 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 190;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 1000;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 1000;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 2000;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 5000;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 30000;
+			}
+			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
+				// return this._CriActRate100(skillLv, charaData, specData, mobData);
+				return 0;
+			}
+			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
+				// return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
+				return 0;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -34190,6 +34515,35 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 230;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 1500 + 500 * skillLv;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 1000;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 1000 * skillLv;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 5000;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 0;
+			}
+			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
+				// return this._CriActRate100(skillLv, charaData, specData, mobData);
+				return 0;
+			}
+			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
+				// return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
+				return 0;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -34209,6 +34563,35 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 190;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 1000;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 1000;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 2000;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 5000;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 30000;
+			}
+			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
+				// return this._CriActRate100(skillLv, charaData, specData, mobData);
+				return 0;
+			}
+			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
+				// return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
+				return 0;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -34266,6 +34649,35 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 230;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 1500 + 500 * skillLv;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 1000;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 1000 * skillLv;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 5000;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 0;
+			}
+			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
+				// return this._CriActRate100(skillLv, charaData, specData, mobData);
+				return 0;
+			}
+			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
+				// return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
+				return 0;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -34340,6 +34752,11 @@ function CSkillManager() {
 
 			this.DelayTimeCommon = function(skillLv, charaDataManger) {
 				return 1000;
+			}
+
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = 90000;
+				return nLifeTime;
 			}
 		};
 		this.dataArray[skillId] = skillData;
@@ -34509,8 +34926,10 @@ function CSkillManager() {
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 3000;
 			}
+
 			this.LifeTime = function(skillLv, charaDataManger) {
-				return 3000;
+				var nLifeTime = 3000;
+				return nLifeTime;
 			}
 		};
 		this.dataArray[skillId] = skillData;
@@ -34547,8 +34966,10 @@ function CSkillManager() {
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 3000;
 			}
+
 			this.LifeTime = function(skillLv, charaDataManger) {
-				return 3000;
+				var nLifeTime = 3000;
+				return nLifeTime;
 			}
 		};
 		this.dataArray[skillId] = skillData;
@@ -34583,8 +35004,10 @@ function CSkillManager() {
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 3000;
 			}
+
 			this.LifeTime = function(skillLv, charaDataManger) {
-				return 3000;
+				var nLifeTime = 3000;
+				return nLifeTime;
 			}
 		};
 		this.dataArray[skillId] = skillData;
@@ -34677,16 +35100,10 @@ function CSkillManager() {
 			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
 				return 500;
 			}
-			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
-				return 20 * 60 * 1000;
-			}
-			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
-				// return this._CriActRate100(skillLv, charaData, specData, mobData);
-				return 0;
-			}
-			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
-				// return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
-				return 0;
+
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = 1200000;
+				return nLifeTime;
 			}
 		};
 		this.dataArray[skillId] = skillData;
@@ -34725,16 +35142,10 @@ function CSkillManager() {
 			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
 				return 500;
 			}
-			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
-				return 20 * 60 * 1000;
-			}
-			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
-				// return this._CriActRate100(skillLv, charaData, specData, mobData);
-				return 0;
-			}
-			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
-				// return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
-				return 0;
+
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = 1200000;
+				return nLifeTime;
 			}
 		};
 		this.dataArray[skillId] = skillData;
@@ -34773,16 +35184,10 @@ function CSkillManager() {
 			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
 				return 500;
 			}
-			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
-				return 20 * 60 * 1000;
-			}
-			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
-				// return this._CriActRate100(skillLv, charaData, specData, mobData);
-				return 0;
-			}
-			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
-				// return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
-				return 0;
+
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = 1200000;
+				return nLifeTime;
 			}
 		};
 		this.dataArray[skillId] = skillData;
@@ -34821,16 +35226,10 @@ function CSkillManager() {
 			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
 				return 500;
 			}
-			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
-				return 20 * 60 * 1000;
-			}
-			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
-				// return this._CriActRate100(skillLv, charaData, specData, mobData);
-				return 0;
-			}
-			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
-				// return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
-				return 0;
+
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = 1200000;
+				return nLifeTime;
 			}
 		};
 		this.dataArray[skillId] = skillData;
@@ -34869,16 +35268,10 @@ function CSkillManager() {
 			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
 				return 500;
 			}
-			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
-				return 20 * 60 * 1000;
-			}
-			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
-				// return this._CriActRate100(skillLv, charaData, specData, mobData);
-				return 0;
-			}
-			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
-				// return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
-				return 0;
+
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = 1200000;
+				return nLifeTime;
 			}
 		};
 		this.dataArray[skillId] = skillData;
@@ -34955,16 +35348,10 @@ function CSkillManager() {
 			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
 				return 10000;
 			}
-			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
-				return [0, 60, 90, 120, 180, 300][skillLv] * 1000;
-			}
-			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
-				// return this._CriActRate100(skillLv, charaData, specData, mobData);
-				return 0;
-			}
-			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
-				// return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
-				return 0;
+
+			this.LifeTime = function(skillLv, charaDataManger) {
+				var nLifeTime = ([0, 60000, 90000, 120000, 180000, 300000])[skillLv];
+				return nLifeTime;
 			}
 		};
 		this.dataArray[skillId] = skillData;
