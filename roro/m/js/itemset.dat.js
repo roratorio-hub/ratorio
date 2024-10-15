@@ -5437,6 +5437,22 @@
 	ItemIdToSetIdMap[4235] = ItemIdToSetIdMap[4235].concat([2798,2799]);
 	PetIdToSetIdMap[97] = [2798];
 	PetIdToSetIdMap[98] = [2799];
+	// --- 2024/10/15 ---
+	w_SE[2800] = [-3231,-3230,-1348,];	// 潜在解放(シャドウクロスVI) + 1348 豪傑
+	CardIdToSetIdMap[3230] = [2800,];
+	w_SE[2801] = [-3233,-3232,-1245,];	// 潜在解放(エレメンタルマスターVI) + 1245 真理
+	CardIdToSetIdMap[3232] = [2801,];
+	w_SE[2802] = [-3235,-3234,-1245,];	// 潜在解放(蜃気楼&不知火IV) + 1245 真理
+	CardIdToSetIdMap[3234] = [2802,];
+	w_SE[2803] = [-3237,-3236,-1348,];	// 潜在解放(バイオロV) + 1348 豪傑
+	CardIdToSetIdMap[3236] = [2803,];
+	CardIdToSetIdMap[1245] = CardIdToSetIdMap[1245].concat([2801,2802]);
+	CardIdToSetIdMap[1348] = CardIdToSetIdMap[1348].concat([2800,2803]);
+	w_SE[2804] = [4238,4235,-10100];	// Atk+200, Matk+200, Def+150, Mdef+15 (4238) = ワンダーエッグ(4235) + 時計塔管理者(100)
+	PetIdToSetIdMap[100] = [2804];
+	w_SE[2805] = [4236,4235,-10099];	// Atk+200, Matk+200, AllStatus+10 (4236) = ワンダーエッグ(4235) + タイムホルダー(99)
+	PetIdToSetIdMap[99] = [2805];
+	ItemIdToSetIdMap[4235] = ItemIdToSetIdMap[4235].concat([2804,2805]);
 
 	// itemset はセーブデータに書き出されないので
 	// 現実的な範囲において itemsetID の上限値を気にする必要はありません
