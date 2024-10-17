@@ -3529,22 +3529,24 @@ g_bUnknownCasts = true;
 			}
 			break;
 
+		// 「インクイジター」スキル「聖油洗礼」
+		// Lv260のSkillLv3,4,5で+13の誤差あり
+		// Lv251では誤差無し
+		// 提供データの採取ミス、または前段・後続の計算処理の問題と判断
 		case SKILL_ID_SEYU_SENRE:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 距離属性
 			n_Enekyori = 1;
-
 			// 基本倍率
-			wbairitu = 2300 + (200 * n_A_ActiveSkillLV);
-
+			wbairitu = 2000 + 500 * n_A_ActiveSkillLV;
 			// POW補正
-			wbairitu += 11 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
+			wbairitu += 15 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
 		case SKILL_ID_DAIICHIGEKI_RAKUIN:
@@ -3685,10 +3687,10 @@ g_bUnknownCasts = true;
 			break;
 
 		// 「インクイジター」スキル「爆火神弾」
+		// Lv260でSkillLv3以上に+13の誤差あり
+		// Lv251の提供データとLv216のusa実測には誤差無し
+		// 提供データの採取ミス、あるいは前段か後続の計算部分の問題と判断
 		case SKILL_ID_BAKKA_SHINDAN:
-			// 未強化状態のダメージに誤差がないことを確認済み
-			// 精油状態ではYE鯖レートで1ダメージの誤差があることを確認済み
-
 			// 詠唱など
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
@@ -3696,49 +3698,32 @@ g_bUnknownCasts = true;
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 距離属性
 			n_Enekyori = 1;
-			// 聖油補正
-			if (seiyuLv = n_B_IJYOU[MOB_CONF_DEBUF_ID_SEIYU_SENREI_DEBUFF]) {
-				// 基本倍率
-				wbairitu = 2900 + (200 * n_A_ActiveSkillLV);
-				// POW補正
-				wbairitu += 13 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-			}
-			// 未強化
-			else {
-				// 基本倍率
-				wbairitu = 2600 + (200 * n_A_ActiveSkillLV);
-				// POW補正
-				wbairitu += 12 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-			}
+			// 基本倍率
+			wbairitu = 2000 + 500 * n_A_ActiveSkillLV;
+			// 特性ステータス補正
+			wbairitu += 15 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
-
+		// 「インクイジター」スキル「炎火滅魔神弾」
+		// Lv260のSkillLv2,3,4で+14の誤差あり
+		// Lv251では誤差無し
+		// 提供データの採取ミス、あるいは前段か後続の計算部分の問題と判断
 		case SKILL_ID_ENKA_METSUMA_SHINDAN:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-
+			// 詠唱など
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 距離属性
 			n_Enekyori = 1;
-
 			// 基本倍率
-			wbairitu = (800 * n_A_ActiveSkillLV);
-
+			wbairitu = 3500 + 1000 * n_A_ActiveSkillLV;
 			// POW補正
-			wbairitu += 27 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
-			// 動物・悪魔形はダメージ倍率２倍
-			switch (mobData[MONSTER_DATA_INDEX_RACE]) {
-			case RACE_ID_ANIMAL:
-			case RACE_ID_DEMON:
-				wbairitu *= 2;
-				break;
-			}
-
+			wbairitu += 45 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
 		// 「トルバドゥール・トルヴェール」スキル「ロゼブロッサム」
