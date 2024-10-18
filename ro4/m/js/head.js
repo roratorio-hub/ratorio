@@ -572,7 +572,6 @@ function BattleCalc999(battleCalcInfo, charaData, specData, mobData, attackMetho
 			case SKILL_ID_METEOR_STORM_BUSTER:
 			case SKILL_ID_ARBITRIUM:
 			case SKILL_ID_CRYSTAL_IMPACT:
-			case SKILL_ID_ASTRAL_STRIKE:
 			case SKILL_ID_CRYMSON_ARROW:
 			case SKILL_ID_ROSE_BLOSSOM:
 			case SKILL_ID_MISSION_BOMBARD:
@@ -9315,11 +9314,11 @@ g_bUnknownCasts = true;
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 基本倍率
-			wbairitu = 2000 + (500 * n_A_ActiveSkillLV);
+			wbairitu = 2000 + 500 * n_A_ActiveSkillLV;
 			// SPL補正
 			wbairitu += 15 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
 		// 「アークメイジ」スキル「ディストラクティブハリケーン」
@@ -9373,19 +9372,17 @@ g_bUnknownCasts = true;
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-
 			g_bDefinedDamageIntervals = true;
+			// オブジェクト存続時間
+			n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// ダメージ間隔
 			n_Delay[5] = 500;
-			// オブジェクト存続時間
-			n_Delay[6] = 4000;
-
 			// 基本倍率
-			wbairitu = 2000 + (200 * n_A_ActiveSkillLV);
+			wbairitu = 2000 + 200 * n_A_ActiveSkillLV;
 			// SPL補正
 			wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
 		// 「アークメイジ」スキル「ミステリーイリュージョン」
@@ -9395,19 +9392,17 @@ g_bUnknownCasts = true;
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-
 			g_bDefinedDamageIntervals = true;
+			// オブジェクト存続時間
+			n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// ダメージ間隔
 			n_Delay[5] = 300;
-			// オブジェクト存続時間
-			n_Delay[6] = 4000;
-
 			// 基本倍率
-			wbairitu = 1050 + (150 * n_A_ActiveSkillLV);
+			wbairitu = 900 + 300 * n_A_ActiveSkillLV;
 			// SPL補正
-			wbairitu += 6 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+			wbairitu += 8 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
 		// 「アークメイジ」スキル「バイオレントクエイク」
@@ -9455,11 +9450,11 @@ g_bUnknownCasts = true;
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 基本倍率
-			wbairitu = 350 + (50 * n_A_ActiveSkillLV);
+			wbairitu = 350 + 50 * n_A_ActiveSkillLV;
 			// SPL補正
 			wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			// ヒット数
 			wHITsuu = 2 + n_A_ActiveSkillLV;
 			break;
@@ -9587,19 +9582,17 @@ g_bUnknownCasts = true;
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-
 			g_bDefinedDamageIntervals = true;
+			// オブジェクト存続時間
+			n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// ダメージ間隔
 			n_Delay[5] = 300;
-			// オブジェクト存続時間
-			n_Delay[6] = 3000;
-
 			// 基本倍率
-			wbairitu = 1050 + (150 * n_A_ActiveSkillLV);
+			wbairitu = 900 + 300 * n_A_ActiveSkillLV;
 			// SPL補正
-			wbairitu += 6 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+			wbairitu += 8 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
 		// 「アークメイジ」スキル「フローラルフレアロード」
@@ -9609,61 +9602,51 @@ g_bUnknownCasts = true;
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-
 			g_bDefinedDamageIntervals = true;
-			// ダメージ間隔
-			n_Delay[5] = 500;
 			// オブジェクト存続時間
-			n_Delay[6] = 5000;
-
+			n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// ダメージ間隔
+			n_Delay[5] = 300;
 			// 基本倍率
-			wbairitu = 2000 + (200 * n_A_ActiveSkillLV);
+			wbairitu = 900 + 300 * n_A_ActiveSkillLV;
 			// SPL補正
-			wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+			wbairitu += 8 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
 		// 「アークメイジ」スキル「アストラルストライク」
 		case SKILL_ID_ASTRAL_STRIKE:
-			g_bDefinedDamageIntervals = true;
-			// 初段ＨＩＴの場合
-			if (battleCalcInfo.parentSkillId === undefined) {
-				// 詠唱時間等
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-
-				// TODO: 厳密には追撃に設定すべき
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// 初段ダメージの場合
+			if (attackMethodConfArray[0].GetOptionValue(0) == 0) {
+				// 基本倍率
+				wbairitu = 7000 + 2000 * n_A_ActiveSkillLV;
+				// SPL補正
+				wbairitu += 90 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+			}
+			// 設置持続ダメージの場合
+			else {
+				g_bDefinedDamageIntervals = true;
+				// オブジェクト存続時間
+				n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				// ダメージ間隔
 				n_Delay[5] = 300;
-				// オブジェクト存続時間
-				n_Delay[6] = 5000 + (1000 * n_A_ActiveSkillLV);
-
 				// 基本倍率
-				wbairitu = 1500 + (750 * n_A_ActiveSkillLV);
+				wbairitu = 1500 + 150 * n_A_ActiveSkillLV;
 				// SPL補正
-				wbairitu += 30 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				// 不死・竜形はダメージ２倍
-				switch (mobData[MONSTER_DATA_INDEX_RACE]) {
-				case RACE_ID_UNDEAD:
-				case RACE_ID_DRAGON:
-					wbairitu *= 2;
-					break;
+				if (n_A_ActiveSkillLV <= 5) {
+					wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				} else {
+					wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 				}
-				// ベースレベル補正
-				wbairitu *= n_A_BaseLV / 100;
 			}
-			// 追撃の場合
-			else {
-				// 基本倍率
-				wbairitu = 1000 + (200 * n_A_ActiveSkillLV);
-				// SPL補正
-				wbairitu += 30 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				// ベースレベル補正
-				wbairitu *= n_A_BaseLV / 100;
-			}
+			// ベースレベル補正
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
 		// 「アークメイジ」スキル「ロックダウン」
@@ -9744,22 +9727,26 @@ g_bUnknownCasts = true;
 
 		//「アークメイジ」スキル「フローズンスラッシュ」
 		case SKILL_ID_FROZEN_SLASH:
-			// クライマックス状態のレベルを取得
-			sklLvSub = UsedSkillSearch(SKILL_ID_CLIMAX);
 			// 詠唱時間等
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// 基本倍率
-			wbairitu = 2000 + (500 * n_A_ActiveSkillLV);
-			if (sklLvSub > 0) {
-				wbairitu *= 3;
+			// クライマックス時
+			if (UsedSkillSearch(SKILL_ID_CLIMAX) > 0) {
+				// 基本倍率
+				wbairitu = 6000 + 1500 * n_A_ActiveSkillLV;
+				// SPL補正
+				wbairitu += 45 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+			// 通常時
+			} else {
+				// 基本倍率
+				wbairitu = 4250 + 1250 * n_A_ActiveSkillLV;
+				// SPL補正
+				wbairitu += 35 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			}
-			// SPL補正
-			wbairitu += 15 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
 		// 「インペリアルガード」スキル「ジャッジメントクロス」

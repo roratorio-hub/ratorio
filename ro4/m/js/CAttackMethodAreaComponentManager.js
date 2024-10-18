@@ -3745,6 +3745,20 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 			);
 			break;
 
+		//----------------------------------------------------------------
+		// アークメイジ：アストラルストライク
+		//----------------------------------------------------------------
+		case SKILL_ID_ASTRAL_STRIKE :
+			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+				"ダメージ表示",
+				[
+					[0, "使用時ダメージ"],
+					[1, "追加持続ダメージ"],
+				],
+				0
+			);
+			break;
+
 		}
 
 	}
