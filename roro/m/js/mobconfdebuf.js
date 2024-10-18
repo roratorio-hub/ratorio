@@ -820,6 +820,18 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
+	MOB_CONF_DEBUF_ID_CLIMAX_QUAKE = MobConfDebufId;
+	MobConfDebufData = [
+		MobConfDebufId,
+		MobConfDebufText("クライマックスクエイク状態"),
+		MobConfDebufControlType(CONTROL_TYPE_CHECKBOX),
+		MobConfDebufDefaultValue(0),
+		MobConfDebufMinValue(0),
+		MobConfDebufMaxValue(1)
+	];
+	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
+	MobConfDebufId++;
+
 	//----------------------------------------------------------------
 	// データ定義数チェック
 	//----------------------------------------------------------------
@@ -904,6 +916,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJSorted[MobConfDebufOBJSorted.length] = MobConfDebufOBJ[MOB_CONF_DEBUF_ID_SOUND_BLEND];	// 50
 
 	MobConfDebufOBJSorted[MobConfDebufOBJSorted.length] = MobConfDebufOBJ[MOB_CONF_DEBUF_ID_JACK_FROST_NOVA];
+	MobConfDebufOBJSorted[MobConfDebufOBJSorted.length] = MobConfDebufOBJ[MOB_CONF_DEBUF_ID_CLIMAX_QUAKE];
 
 	// 最大 80 個まで
 
