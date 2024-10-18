@@ -580,9 +580,6 @@ function BattleCalc999(battleCalcInfo, charaData, specData, mobData, attackMetho
 			case SKILL_ID_DESTRACTIVE_HURRICANE:
 				bCommonAppend = (UsedSkillSearch(SKILL_ID_CLIMAX) == 1);
 				break;
-			case SKILL_ID_ALL_BLOOM:
-				bCommonAppend = (UsedSkillSearch(SKILL_ID_CLIMAX) == 5);
-				break;
 		}
 
 		// 追撃フラグが立っていれば、汎用追撃構造を構築
@@ -9323,8 +9320,6 @@ g_bUnknownCasts = true;
 
 		// 「アークメイジ」スキル「ディストラクティブハリケーン」
 		case SKILL_ID_DESTRACTIVE_HURRICANE:
-			// クライマックス状態のレベルを取得
-			sklLvSub = UsedSkillSearch(SKILL_ID_CLIMAX);
 			// 初段ＨＩＴの場合
 			if (battleCalcInfo.parentSkillId === undefined) {
 				// 詠唱時間等
@@ -9332,36 +9327,28 @@ g_bUnknownCasts = true;
 				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-
 				// 基本倍率
-				wbairitu = 4000 + (1000 * n_A_ActiveSkillLV);
+				wbairitu = 8500 + 2500 * n_A_ActiveSkillLV;
 				// SPL補正
-				wbairitu += 30 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				wbairitu += 70 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 				// ベースレベル補正
-				wbairitu *= n_A_BaseLV / 100;
+				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			}
 			// 追撃の場合
 			else {
-				// 基本倍率
+				// SPL補正とベースレベル補正は乗らない
 				wbairitu = 5000;
-				// TODO: 一応、追撃でもSPL補正等は乗ると仮定
-				// SPL補正
-				wbairitu += 30 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				// ベースレベル補正
-				wbairitu *= n_A_BaseLV / 100;
 			}
 			// ダメージ増幅
-			switch (sklLvSub) {
-			case 3:
-				battleCalcInfo.dmgAmpRate += 100;
-				break;
-			case 5:
-				battleCalcInfo.dmgAmpRate += 50;
-				break;
-			}
-			// ダメージが発生しなくなるケース
-			if (sklLvSub == 4) {
-				g_bSkillNoDamage = true;
+			switch (UsedSkillSearch(SKILL_ID_CLIMAX)) {
+				case 3:
+					battleCalcInfo.dmgAmpRate += 100;
+					break;
+				case 5:
+					battleCalcInfo.dmgAmpRate += 50;
+					break;
+				case 4:
+					g_bSkillNoDamage = true;
 			}
 			break;
 
@@ -9407,39 +9394,33 @@ g_bUnknownCasts = true;
 
 		// 「アークメイジ」スキル「バイオレントクエイク」
 		case SKILL_ID_VIOLENT_QUAKE:
-			// クライマックス状態のレベルを取得
-			sklLvSub = UsedSkillSearch(SKILL_ID_CLIMAX);
 			// 詠唱時間等
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-
-			g_bDefinedDamageIntervals = true;
+			// オブジェクト存続時間
+			n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// ダメージ間隔
 			n_Delay[5] = 300;
-			// オブジェクト存続時間
-			n_Delay[6] = n_Delay[5] * (10 + (2 * n_A_ActiveSkillLV)) / ((sklLvSub == 1) ? 2 : 1);
-
+			g_bDefinedDamageIntervals = true;
 			// 基本倍率
-			wbairitu = 1100 + (200 * n_A_ActiveSkillLV);
+			wbairitu = 2000 + 200 * n_A_ActiveSkillLV;
 			// SPL補正
-			wbairitu += 7 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+			wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			// ダメージ増幅
-			switch (sklLvSub) {
+			switch (UsedSkillSearch(SKILL_ID_CLIMAX)) {
 				case 1:
 					battleCalcInfo.dmgAmpRate -= 50;
 					break;
 				case 3:
 					battleCalcInfo.dmgAmpRate += 50;
 					break;
-			}
-			// ダメージが発生しなくなるケース
-			if (sklLvSub == 4) {
-				g_bSkillNoDamage = true;
-			}
+				case 4:
+					g_bSkillNoDamage = true;
+				}
 			break;
 
 		// 「アークメイジ」スキル「ソウルバルカンストライク」
@@ -9466,70 +9447,63 @@ g_bUnknownCasts = true;
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-
-			g_bDefinedDamageIntervals = true;
-			// ダメージ間隔
-			n_Delay[5] = 400;
 			// オブジェクト存続時間
-			n_Delay[6] = 4000;
-
+			n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// ダメージ間隔
+			n_Delay[5] = 300;
+			g_bDefinedDamageIntervals = true;
 			// 基本倍率
-			wbairitu = 1400 + (200 * n_A_ActiveSkillLV);
+			wbairitu = 900 + 300 * n_A_ActiveSkillLV;
 			// SPL補正
 			wbairitu += 8 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			// 分割Hit数
+			wActiveHitNum = 2;
 			break;
 
 		// 「アークメイジ」スキル「オールブルーム」
 		case SKILL_ID_ALL_BLOOM:
-			g_bDefinedDamageIntervals = true;
-			// クライマックス状態のレベルを取得
-			sklLvSub = UsedSkillSearch(SKILL_ID_CLIMAX);
-			// 初段ＨＩＴの場合
-			if (battleCalcInfo.parentSkillId === undefined) {
-				// 詠唱時間等
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-
-				// ダメージ間隔
-				n_Delay[5] = 300;
-				if (sklLvSub == 1) {
-					n_Delay[5] /= 2;
-				}
-				// オブジェクト存続時間
-				n_Delay[6] = n_Delay[5] * (10 + (2 * n_A_ActiveSkillLV)) / ((sklLvSub == 2) ? 2 : 1);
-
+			// クライマックスLv
+			const climaxLv = UsedSkillSearch(SKILL_ID_CLIMAX);
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// 追撃ダメージを確認する場合
+			if (climaxLv == 5 && attackMethodConfArray[0].GetOptionValue(0) == 1) {
 				// 基本倍率
-				wbairitu = 1100 + (200 * n_A_ActiveSkillLV);
-				// SPL補正
-				wbairitu += 7 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				// ベースレベル補正
-				wbairitu *= n_A_BaseLV / 100;
+				wbairitu = 25000 + 5000 * n_A_ActiveSkillLV;
 			}
-			// 追撃の場合
+			// 設置ダメージを確認する場合
 			else {
+				g_bDefinedDamageIntervals = true;
+				// オブジェクト存続時間
+				n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				// ダメージ間隔
+				if (climaxLv == 1) {
+					n_Delay[5] = 150;
+				} else {
+					n_Delay[5] = 300;
+				}
 				// 基本倍率
-				wbairitu = 25000 + (5000 * n_A_ActiveSkillLV);
+				wbairitu = 2000 + 200 * n_A_ActiveSkillLV;
 				// SPL補正
-				wbairitu += 7 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 				// ベースレベル補正
-				wbairitu *= n_A_BaseLV / 100;
-			}
-			// ダメージ増幅
-			switch (sklLvSub) {
-			case 2:
-				battleCalcInfo.dmgAmpRate -= 50;
-				break;
-			case 3:
-				battleCalcInfo.dmgAmpRate += 50;
-				break;
-			}
-			// ダメージが発生しなくなるケース
-			if (sklLvSub == 4) {
-				g_bSkillNoDamage = true;
+				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+				// ダメージ増幅
+				switch (climaxLv) {
+					case 2:
+						battleCalcInfo.dmgAmpRate -= 50;
+						break;
+					case 3:
+						battleCalcInfo.dmgAmpRate += 50;
+						break;
+					case 4:
+						g_bSkillNoDamage = true;
+				}
 			}
 			break;
 
@@ -9537,7 +9511,7 @@ g_bUnknownCasts = true;
 		case SKILL_ID_CRYSTAL_IMPACT:
 			// クライマックス状態のレベルを取得
 			sklLvSub = UsedSkillSearch(SKILL_ID_CLIMAX);
-			// 初段ＨＩＴの場合
+			// 初撃の場合
 			if (battleCalcInfo.parentSkillId === undefined) {
 				// 詠唱時間等
 				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
@@ -9545,34 +9519,34 @@ g_bUnknownCasts = true;
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				// 基本倍率
-				wbairitu = 4000 + (1000 * n_A_ActiveSkillLV);
+				wbairitu = 8500 + 2500 * n_A_ActiveSkillLV;
 				// SPL補正
-				wbairitu += 30 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				// ベースレベル補正
-				wbairitu *= n_A_BaseLV / 100;
+				wbairitu += 70 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				// クライマックス効果 Lv2, 3 は追撃部分に掛からない
+				switch (sklLvSub) {
+					case 2:
+						// ヒット数増加
+						wHITsuu = 2;
+						break;
+					case 3:
+						// ダメージ増幅
+						battleCalcInfo.dmgAmpRate += 50;
+						break;
+					}
 			}
 			// 追撃の場合
 			else {
 				// 基本倍率
 				wbairitu = 100;
-				if (sklLvSub == 4) {
-					wbairitu += 5000;
-				}
 				// SPL補正
-				wbairitu += 30 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				// ベースレベル補正
-				wbairitu *= n_A_BaseLV / 100;
+				wbairitu += 1 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				// クライマックス効果 Lv4 は初撃部分に掛からない
+				if (sklLvSub == 4) {
+					battleCalcInfo.dmgAmpRate += 5000;
+				}
 			}
-			// 攻撃回数
-			if (sklLvSub == 2) {
-				wHITsuu = 2;
-			}
-			// ダメージ増幅
-			switch (sklLvSub) {
-			case 3:
-				battleCalcInfo.dmgAmpRate += 50;
-				break;
-			}
+			// ベースレベル補正
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
 		// 「アークメイジ」スキル「トルネードストーム」
@@ -9651,48 +9625,58 @@ g_bUnknownCasts = true;
 
 		// 「アークメイジ」スキル「ロックダウン」
 		case SKILL_ID_ROCK_DOWN:
-			// クライマックス状態のレベルを取得
-			sklLvSub = UsedSkillSearch(SKILL_ID_CLIMAX);
 			// 詠唱時間等
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// 基本倍率
-			wbairitu = 2000 + (500 * n_A_ActiveSkillLV);
-			if (sklLvSub > 0) {
-				wbairitu *= 3;
+			// クライマックス時
+			if (UsedSkillSearch(SKILL_ID_CLIMAX) > 0) {
+				// 基本倍率
+				wbairitu = 6000 + 1500 * n_A_ActiveSkillLV;
+				// SPL補正
+				wbairitu += 45 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			}
-			// SPL補正
-			wbairitu += 15 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+			// 通常時
+			else {
+				// 基本倍率
+				wbairitu = 4250 + 1250 * n_A_ActiveSkillLV;
+				// SPL補正
+				wbairitu += 35 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+			}
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			// 分割Hit
+			wActiveHitNum = 5;
 			break;
 
 		// 「アークメイジ」スキル「ストームキャノン」
 		case SKILL_ID_STORM_CANNON:
-			// クライマックス状態のレベルを取得
-			sklLvSub = UsedSkillSearch(SKILL_ID_CLIMAX);
 			// 詠唱時間等
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// 基本倍率
-			wbairitu = 2000 + (500 * n_A_ActiveSkillLV);
-			if (sklLvSub > 0) {
-				wbairitu *= 3;
+			// クライマックス時
+			if (UsedSkillSearch(SKILL_ID_CLIMAX) > 0) {
+				// 基本倍率
+				wbairitu = 6000 + 1500 * n_A_ActiveSkillLV;
+				// SPL補正
+				wbairitu += 45 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			}
-			// SPL補正
-			wbairitu += 15 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+			// 通常時
+			else {
+				// 基本倍率
+				wbairitu = 4250 + 1250 * n_A_ActiveSkillLV;
+				// SPL補正
+				wbairitu += 35 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+			}
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
 		//「アークメイジ」スキル「クリムゾンアロー」
 		case SKILL_ID_CRYMSON_ARROW:
-			// クライマックス状態のレベルを取得
-			sklLvSub = UsedSkillSearch(SKILL_ID_CLIMAX);
 			// 初段ＨＩＴの場合
 			if (battleCalcInfo.parentSkillId === undefined) {
 				// 詠唱時間等
@@ -9700,29 +9684,26 @@ g_bUnknownCasts = true;
 				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-
 				// 基本倍率
-				wbairitu = (100 * n_A_ActiveSkillLV);
-
+				wbairitu = 100 * n_A_ActiveSkillLV;
 				// SPL補正
-				// TODO: 初段には乗らないのではないかと仮定
-
-				// ベースレベル補正
-				// TODO: 初段には乗らないのではないかと仮定
+				wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			}
 			// 追撃の場合
 			else {
 				// 基本倍率
-				wbairitu = 1500 + (500 * n_A_ActiveSkillLV);
+				wbairitu = 1500 + 500 * n_A_ActiveSkillLV;
 				// SPL補正
 				wbairitu += 15 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				// ベースレベル補正
-				wbairitu *= n_A_BaseLV / 100;
 				// 攻撃回数
-				if (sklLvSub > 0) {
+				if (UsedSkillSearch(SKILL_ID_CLIMAX) > 0) {
 					wHITsuu = 3;
+				} else {
+					wHITsuu = 2;
 				}
 			}
+			// ベースレベル補正
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
 		//「アークメイジ」スキル「フローズンスラッシュ」
@@ -12147,6 +12128,12 @@ function ApplyResistElement(mobData, dmg) {
 			else {
 				wX -= 100;
 			}
+		}
+	}
+	// 地属性武器、かつ、クライマックスクエイク状態の場合（判定順序は意図的に変えてある）
+	if ((bufLv = n_B_IJYOU[MOB_CONF_DEBUF_ID_CLIMAX_QUAKE]) > 0) {
+		if (n_A_Weapon_zokusei == ELM_ID_EARTH) {
+			wX -= 50;
 		}
 	}
 	// 敵が対プレイヤーの場合、対プレイヤー設定欄の属性耐性を適用

@@ -3759,10 +3759,23 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 			);
 			break;
 
+		//----------------------------------------------------------------
+		// アークメイジ：オールブルーム
+		//----------------------------------------------------------------
+		case SKILL_ID_ALL_BLOOM :
+			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+				"クライマックスLv5の場合",
+				[
+					[0, "設置ダメージ"],
+					[1, "追撃ダメージ"],
+				],
+				0
+			);
+			break;
+
+
 		}
-
 	}
-
 };
 
 
