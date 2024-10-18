@@ -3529,77 +3529,79 @@ g_bUnknownCasts = true;
 			}
 			break;
 
+		// 「インクイジター」スキル「聖油洗礼」
+		// Lv260のSkillLv3,4,5で+13の誤差あり
+		// Lv251では誤差無し
+		// 提供データの採取ミス、または前段・後続の計算処理の問題と判断
 		case SKILL_ID_SEYU_SENRE:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 距離属性
 			n_Enekyori = 1;
-
 			// 基本倍率
-			wbairitu = 2300 + (200 * n_A_ActiveSkillLV);
-
+			wbairitu = 2000 + 500 * n_A_ActiveSkillLV;
 			// POW補正
-			wbairitu += 11 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
+			wbairitu += 15 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
+		// 「インクイジター」スキル「第一撃：烙印」
 		case SKILL_ID_DAIICHIGEKI_RAKUIN:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 距離属性
 			n_Enekyori = 0;
-
 			// 基本倍率
-			wbairitu = 500 + (500 * n_A_ActiveSkillLV);
-
+			wbairitu = 2000 + 500 * n_A_ActiveSkillLV;
 			// POW補正
-			wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
+			wbairitu += 15 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
+		// 「インクイジター」スキル「第三撃：断罪」
+		// YE道場の実測に対して最大で+1の誤差あり
 		case SKILL_ID_DAISANGEKI_DANZAI:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 距離属性
 			n_Enekyori = 0;
-
 			// 基本倍率
-			wbairitu = 7000 + (1000 * n_A_ActiveSkillLV);
-
+			wbairitu = 7000 + 1000 * n_A_ActiveSkillLV;
 			// POW補正
 			wbairitu += 40 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
+		// 「インクイジター」スキル「第三撃：滅火撃」
+		// YE道場の実測値に対して誤差無し
 		case SKILL_ID_DAISANGEKI_MEKKAGEKI:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 距離属性
 			n_Enekyori = 0;
-
 			// 基本倍率
-			wbairitu = 7000 + (1000 * n_A_ActiveSkillLV);
-
+			wbairitu = 7000 + 1000 * n_A_ActiveSkillLV;
 			// POW補正
 			wbairitu += 40 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
+			// MaxHP補正
+			wbairitu += charaData[CHARA_DATA_INDEX_MAXHP] / 100;
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
-
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			// ヒット数
 			if (UsedSkillSearch(SKILL_ID_KIKO) >= 11) {
 				wHITsuu = 3;
@@ -3609,86 +3611,87 @@ g_bUnknownCasts = true;
 			}
 			break;
 
+		// 「インクイジター」スキル「第三撃：浄化」
 		case SKILL_ID_DAISANGEKI_ZYOKA:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 距離属性
 			n_Enekyori = 0;
-
 			// 基本倍率
-			wbairitu = 7000 + (1000 * n_A_ActiveSkillLV);
-
+			wbairitu = 7000 + 1000 * n_A_ActiveSkillLV;
 			// POW補正
 			wbairitu += 40 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
-
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			// ヒット数
 			wHITsuu = 2;
 			break;
 
+		// 「インクイジター」スキル「第二撃：滅魔の火」
+		// YE道場の実測に対して誤差無し
 		case SKILL_ID_DAINIGEKI_METSUMANO_HI:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 距離属性
 			n_Enekyori = 0;
-
 			// 基本倍率
-			wbairitu = 3500 + (200 * n_A_ActiveSkillLV);
-
+			wbairitu = 3600 + 900 * n_A_ActiveSkillLV;
 			// POW補正
-			wbairitu += 15 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
+			wbairitu += 27 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
+		// 「インクイジター」スキル「第二撃：信念」	
+		// YE道場の実測値に対して誤差無し
 		case SKILL_ID_DAINIGEKI_SHINNEN:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 距離属性
 			n_Enekyori = 0;
-
 			// 基本倍率
-			wbairitu = 2900 + (200 * n_A_ActiveSkillLV);
-
+			wbairitu = 3150 + 750 * n_A_ActiveSkillLV;
 			// POW補正
-			wbairitu += 13 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
+			wbairitu += 23 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			// 分割ヒット
+			wActiveHitNum = 2;
 			break;
 
+		// 「インクイジター」スキル「第二撃：審判」
 		case SKILL_ID_DAINIGEKI_SHINPAN:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 距離属性
 			n_Enekyori = 0;
-
 			// 基本倍率
-			wbairitu = 3200 + (200 * n_A_ActiveSkillLV);
-
+			wbairitu = 3375 + 825 * n_A_ActiveSkillLV;
 			// POW補正
-			wbairitu += 14 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
+			wbairitu += 25 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			// 分割ヒット
+			wActiveHitNum = 3;
 			break;
 
 		// 「インクイジター」スキル「爆火神弾」
+		// Lv260でSkillLv3以上に+13の誤差あり
+		// Lv251の提供データとLv216のusa実測には誤差無し
+		// 提供データの採取ミス、あるいは前段か後続の計算部分の問題と判断
 		case SKILL_ID_BAKKA_SHINDAN:
-			// 未強化状態のダメージに誤差がないことを確認済み
-			// 精油状態ではYE鯖レートで1ダメージの誤差があることを確認済み
-
 			// 詠唱など
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
@@ -3696,49 +3699,32 @@ g_bUnknownCasts = true;
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 距離属性
 			n_Enekyori = 1;
-			// 聖油補正
-			if (seiyuLv = n_B_IJYOU[MOB_CONF_DEBUF_ID_SEIYU_SENREI_DEBUFF]) {
-				// 基本倍率
-				wbairitu = 2900 + (200 * n_A_ActiveSkillLV);
-				// POW補正
-				wbairitu += 13 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-			}
-			// 未強化
-			else {
-				// 基本倍率
-				wbairitu = 2600 + (200 * n_A_ActiveSkillLV);
-				// POW補正
-				wbairitu += 12 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-			}
+			// 基本倍率
+			wbairitu = 2000 + 500 * n_A_ActiveSkillLV;
+			// 特性ステータス補正
+			wbairitu += 15 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
-
+		// 「インクイジター」スキル「炎火滅魔神弾」
+		// Lv260のSkillLv2,3,4で+14の誤差あり
+		// Lv251では誤差無し
+		// 提供データの採取ミス、あるいは前段か後続の計算部分の問題と判断
 		case SKILL_ID_ENKA_METSUMA_SHINDAN:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-
+			// 詠唱など
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 距離属性
 			n_Enekyori = 1;
-
 			// 基本倍率
-			wbairitu = (800 * n_A_ActiveSkillLV);
-
+			wbairitu = 3500 + 1000 * n_A_ActiveSkillLV;
 			// POW補正
-			wbairitu += 27 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
-			// 動物・悪魔形はダメージ倍率２倍
-			switch (mobData[MONSTER_DATA_INDEX_RACE]) {
-			case RACE_ID_ANIMAL:
-			case RACE_ID_DEMON:
-				wbairitu *= 2;
-				break;
-			}
-
+			wbairitu += 45 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
 		// 「トルバドゥール・トルヴェール」スキル「ロゼブロッサム」
@@ -10772,33 +10758,21 @@ g_bDefinedDamageIntervals = true;
 /* --------------------------------------------------
 ↑ 魔法攻撃スキル追加位置
 -------------------------------------------------- */
-
 		}
-
-
 
 		if (g_bSkillNoDamage) {
 			return [0, 0, 0];
 		}
-
-
-
 		for(var i = 0; i <= 2; i++){
 			// 各ＭＡＴＫを取得
 			w_MATK[i] = n_A_MATK[i];
-
 			// モンスター特化を適用
 			w_MATK[i] = ApplyMagicalSpecializeMonster(charaData, specData, mobData, w_MATK[i]);
-
 			// 属性耐性を適用
 			w_MATK[i] = ApplyResistElement(mobData, w_MATK[i]);
-
 			// 対プレイヤー一般耐性を適用
 			w_MATK[i] = ApplyRegistPVPNormal(mobData, w_MATK[i]);
 		}
-
-
-
 		// マグヌスエクソシズム、かつ、モンスターが対象外の場合、ＭＡＴＫを０で計算する
 		if(n_A_ActiveSkill==104){
 			if(mobData[19] != 6 && mobData[18] <90){
@@ -10807,42 +10781,30 @@ g_bDefinedDamageIntervals = true;
 				w_MATK[2]=0;
 			}
 		}
-
 		// ＭＡＴＫ％強化倍率を取得
 		wbairitu += GetBattlerMatkPercentUp();
-
 		// 単発スキルの場合
 		if(n_bunkatuHIT == 0){
-
 			for(var b = 0; b <= 2; b++){
-
 				w_DMG[b] = ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, w_MATK[b] * wbairitu / 100);
-
 				if(SG_Special_HITnum != 0){
 					SG_Special_DMG[b] = w_DMG[b];
 				}
-
 				Last_DMG_B[b] = w_DMG[b];
-
 				if(n_A_ActiveSkill==658 || n_A_ActiveSkill==659){
 					if(b==1) wHITsuu = 2 * attackMethodConfArray[0].GetOptionValue(0);
 					if(b==2) wHITsuu = 3 * attackMethodConfArray[0].GetOptionValue(0);
 				}
-
 				Last_DMG_A[b] = ROUNDDOWN(w_DMG[b] * wHITsuu);
-
 				if(n_AS_MODE == 0) g_damageTextArray[b].push(Last_DMG_A[b], "(", Last_DMG_B[b], SubName[8], wHITsuu, "hit)");
-
-// TODO: 四次データ形式変更対応
-//				w_DMG[b] = Last_DMG_A[b];
+				// TODO: 四次データ形式変更対応
+				// w_DMG[b] = Last_DMG_A[b];
 			}
 
 		}
-
 		// 分割ＨＩＴの場合
 		else{
 			var subnumvalue = attackMethodConfArray[0].GetOptionValue(0);
-
 			if(n_A_ActiveSkill==518 && subnumvalue >= 1 && mobData[20] == 0){
 				for(var b=0;b<=2;b++){
 					w_DMG[b] = Math.floor(ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, w_MATK[b] * wbairitu / 100) / wHITsuu);
@@ -10850,27 +10812,21 @@ g_bDefinedDamageIntervals = true;
 					KoteiDMG = KoteiDMG * ROUNDDOWN((100 + 40 * UsedSkillSearch(SKILL_ID_TELECHINESIS_INSTENCE)) / 100);
 					Last_DMG_A[b] = Last_DMG_B[b] = w_DMG[b] * wHITsuu + KoteiDMG;
 					if(n_AS_MODE == 0) g_damageTextArray[b].push(Last_DMG_A[b], "(", w_DMG[b], SubName[8], wHITsuu, "hit + ", KoteiDMG, ")");
-
-// TODO: 四次データ形式変更対応
-//					w_DMG[b] *= wHITsuu;
+					// TODO: 四次データ形式変更対応
+					// w_DMG[b] *= wHITsuu;
 				}
 			}else{
 				for(var b=0;b<=2;b++){
 					// TODO: 2020年スキル修正に伴う変更（元からこの計算式だったかは不明）
-//					w_DMG[b] = Math.floor(ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, w_MATK[b] * wbairitu / 100) / wHITsuu);
+					// w_DMG[b] = Math.floor(ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, w_MATK[b] * wbairitu / 100) / wHITsuu);
 					w_DMG[b] = Math.floor(ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, w_MATK[b] * Math.floor(wbairitu / wHITsuu) * wHITsuu / 100) / wHITsuu);
 					Last_DMG_A[b] = Last_DMG_B[b] = w_DMG[b] * wHITsuu;
 					if(n_AS_MODE == 0) g_damageTextArray[b].push(Last_DMG_A[b], "(", w_DMG[b], SubName[8], wHITsuu, "hit)");
-
-// TODO: 四次データ形式変更対応
-//					w_DMG[b] *= wHITsuu;
+					// TODO: 四次データ形式変更対応
+					// w_DMG[b] *= wHITsuu;
 				}
 			}
-
 		}
-
-
-
 		if(n_AS_MODE == 1){
 			SG_Special_HITnum = 0;
 			return w_DMG;
@@ -10887,22 +10843,31 @@ g_bDefinedDamageIntervals = true;
 		AS_PLUS();
 		BuildCastAndDelayHtml(mobData);
 		BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
-
-
-
 		return w_DMG;
 	}
 }
 
+
+/**
+ * 物理ダメージを計算する
+ * @param {*} battleCalcInfo 
+ * @param {*} charaData 
+ * @param {*} specData 
+ * @param {*} mobData 
+ * @param {*} attackMethodConfArray 
+ * @param {*} skillId 
+ * @param {*} dmgUnit 
+ * @param {*} dmgAmp 
+ * @param {*} hitCountArrat 
+ * @param {*} dividedHitCount 
+ * @param {*} bCri 
+ * @param {*} bLeft 
+ * @returns 
+ */
 function BattleCalcSubDamagePhysicalCommon(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, skillId, dmgUnit, dmgAmp, hitCountArrat, dividedHitCount, bCri, bLeft) {
-
 	var idx = 0;
-
 	var dmgUnitResult = null;
 	var dmgPerfect = 0;
-
-
-
 	// TODO: これ消したい
 	// 二刀流計算フラグ
 	if (bLeft) {
@@ -10911,102 +10876,65 @@ function BattleCalcSubDamagePhysicalCommon(battleCalcInfo, charaData, specData, 
 	else {
 		n_NitouCalc = 0;
 	}
-
-
-
 	// 結果用ダメージユニット用意
 	dmgUnitResult = [];
-
-
 	// スキルダメージの必中部分のみ仮計算（属性倍率未適用）
 	// （属性倍率まで先に計算すると、ダメージ本体に加算後、二重にかけることになり計算を誤る）
 	if (!bLeft) {
 		dmgPerfect = GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray);
 	}
-
-
 	// 各ダメージ（最小、平均、最大）を計算
 	for (idx = 0; idx < dmgUnit.length; idx++) {
-
 		// ダメージの初期値に攻撃力を設定
 		dmgUnitResult[idx] = dmgUnit[idx];
-
 		// 物理判定攻撃のダメージ増幅を適用（距離特化、クリティカル）
 		if (!bLeft) {
 			dmgUnitResult[idx] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, dmgUnitResult[idx], bCri);
 		}
-
 		// スキルダメージ倍率を適用
 		dmgUnitResult[idx] = Math.floor(dmgUnitResult[idx] * dmgAmp / 100);
-
 		// モンスターの防御力を適用
 		// TODO: なぜか二刀流の片手修練がここで適用されている
 		dmgUnitResult[idx] = ApplyMonsterDefence(mobData, dmgUnitResult[idx], bLeft);
-
 		// 固定追加ＡＴＫ効果の追加（オーラブレイド、エンチャントブレイド等）
 		if (!bLeft) {
 			dmgUnitResult[idx] += GetFixedAppendAtk(battleCalcInfo.skillId, charaData, specData, mobData, dmgUnitResult[idx], idx, -1);
 		}
-
 		// スキル必中ダメージの追加
 		if (!bLeft) {
 			dmgUnitResult[idx] += dmgPerfect;
 		}
-
-
-
 		// 四次特性左手ペナルティの適用
 		if (bLeft) {
 			dmgUnitResult[idx] = ApplyPAtkLeftHandPenalty(charaData, specData, mobData, dmgUnitResult[idx]);
 		}
-
-
-
 		// 判定属性による属性倍率の適用
 		dmgUnitResult[idx] = ApplyHitJudgeElementRatio(skillId, dmgUnitResult[idx], mobData);
-
 		// スキルダメージ増幅効果、その他ダメージ計算の適用
 		dmgUnitResult[idx] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, dmgUnitResult[idx], idx, bCri, bLeft);
-
 		// TODO: ここのヒット数を加味した計算、誤差出るかも
 		// 分割ヒットスキルの場合、端数の丸め処理を適用
 		if (dividedHitCount > 1) {
 			dmgUnitResult[idx] = Math.floor(Math.floor(dmgUnitResult[idx] * hitCountArrat[idx] / dividedHitCount) * dividedHitCount / hitCountArrat[idx]);
 		}
 	}
-
-
-
 	//--------------------------------
 	// 必中ダメージ計算本体
 	//--------------------------------
-
 	if (!bLeft) {
-
 		// 改めて、スキルダメージの必中部分を計算
 		dmgPerfect = GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray);
-
 		// 判定属性による属性倍率の適用
 		dmgPerfect = ApplyHitJudgeElementRatio(skillId, dmgPerfect, mobData);
-
 		// スキルダメージ増幅効果、その他ダメージ計算の適用
 		dmgPerfect = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, dmgPerfect, idx, bCri);
-
 		// 分割ヒットスキルの場合、端数の丸め処理を適用
 		if (dividedHitCount > 1) {
 			dmgPerfect = Math.floor(dmgPerfect / dividedHitCount) * dividedHitCount;
 		}
 	}
-
-
-
 	return [dmgUnitResult.slice(), dmgPerfect];
 }
-
-
-
-
-
 
 
 /**
@@ -11014,27 +10942,21 @@ function BattleCalcSubDamagePhysicalCommon(battleCalcInfo, charaData, specData, 
  * @return 上昇倍率（０～）
  */
 function GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray) {
-
 	var sklLv = 0;
 	var w = 0;
-
 	// オートバーサーク系（排他）
 	// オートバーサーク
 	if (UsedSkillSearch(SKILL_ID_AUTO_BERSERK)) {
 		w += 32;
 	}
-
 	// 「一次職支援　支援プロボック」
 	else if (g_confDataIchizi[CCharaConfIchizi.CONF_ID_SHIEN_PROVOKE]) {
 		w += 2 + 3 * g_confDataIchizi[CCharaConfIchizi.CONF_ID_SHIEN_PROVOKE];
 	}
-
 	// アロエベラ
 	else if (n_A_PassSkill7[37]) {
 		w += 5;
 	}
-
-
 
 	// コンセントレイション
 	if(UsedSkillSearch(SKILL_ID_CONCENTRATION)) {
@@ -11079,20 +11001,16 @@ function GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfAr
 
 	// 魔道ギアに搭乗していない場合（Lv200解放アップデートで制限解除）
 	if ((_APPLY_UPDATE_LV200) || (UsedSkillSearch(SKILL_ID_MADOGEAR) == 0)) {
-
 		// オーバートラストマックス
 		if (UsedSkillSearch(SKILL_ID_OVER_TRUST_MAX)){
 			w += 20 * UsedSkillSearch(SKILL_ID_OVER_TRUST_MAX);
 		}
-
 		// オーバートラストマックス状態以外
 		else{
-
 			// オーバートラスト
 			if(UsedSkillSearch(SKILL_ID_OVER_TRUST)) {
 				w += UsedSkillSearch(SKILL_ID_OVER_TRUST) * 5;
 			}
-
 			// オーバートラスト（ＰＴ）
 			else if (g_confDataNizi[CCharaConfNizi.CONF_ID_OVER_TRUST]) {
 				w += g_confDataNizi[CCharaConfNizi.CONF_ID_OVER_TRUST] * 5 / 5;
@@ -11120,13 +11038,10 @@ function GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfAr
 
 	// ヴィゴール（通常近接物理攻撃のみ）
 	if ((n_A_ActiveSkill == SKILL_ID_TUZYO_KOGEKI_CALC_RIGHT) && (n_Enekyori == 0)) {
-
 		sklLv = UsedSkillSearch(SKILL_ID_VIGOR);
 		if (sklLv > 0) {
-
 			// 基本倍率
 			let ampWork = 100 + (10 * sklLv);
-
 			// 人間(プレイヤーを除く)・天使形では、追加倍率
 			switch (parseInt(mobData[MONSTER_DATA_INDEX_RACE], 10)) {
 			case RACE_ID_HUMAN:
@@ -11138,7 +11053,6 @@ function GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfAr
 				ampWork *= 2;
 				break;
 			}
-
 			w += ampWork;
 		}
 	}
@@ -11147,38 +11061,30 @@ function GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfAr
 }
 
 
-
 /**
- *  物理ダメージ増加
+ * バフやデバフによるダメージ増加効果を適用する。
+ * 物理ダメージのみに適用する事を意図した関数のようだが、処理の内容的には物理依存ではない。
+ * @param {*} wJ 適用前のダメージ倍率
+ * @returns 適用後のダメージ倍率
  */
-
 function ATKbaiJYOUSAN(wJ) {
-
 	var w = 100;
-
 	if(n_A_WeaponType == 11 && UsedSkillSearch(SKILL_ID_KATAR_KENKYU)) {
 		w += 10 + 2 * UsedSkillSearch(SKILL_ID_KATAR_KENKYU);
 	}
-
 	// デバフ「クエイク状態」による効果
 	if (n_B_IJYOU[MOB_CONF_DEBUF_ID_QUAKE_DEBUFF] > 0) {
 		w += 15;
 	}
-
 	// 「モンスター状態異常　カイト」
 	if (n_B_IJYOU[MOB_CONF_DEBUF_ID_KAITO]) {
 		if (n_A_ActiveSkill != SKILL_ID_TUZYO_KOGEKI) {
 			w += 400;
 		}
 	}
-
 	if(w != 100) wJ = Math.floor(wJ * w /100);
-
 	return wJ;
  }
-
-
-
 
 
 /**
@@ -11186,19 +11092,13 @@ function ATKbaiJYOUSAN(wJ) {
  * @return 上昇倍率（０～）
  */
 function GetBattlerMatkPercentUp() {
-
 	var w = 0;
-
 	// 支援マインドブレイカー
 	if(g_confDataNizi[CCharaConfNizi.CONF_ID_SHIEN_MIND_BREAKER]) {
 		w += 20 * g_confDataNizi[CCharaConfNizi.CONF_ID_SHIEN_MIND_BREAKER];
 	}
-
 	return w;
  }
-
-
-
 
 
 /**
@@ -11207,62 +11107,48 @@ function GetBattlerMatkPercentUp() {
  * @return 適用後のダメージ
  */
 function ApplyMagicalSpecializeMonster(charaData, specData, mobData, dmg) {
-
 // 今後の仕様変更用に、検証処理自体は残しておく
 /*
 if (_MAGIC_CALC_INSPECTION) {
 	return ApplyMagicalSpecializeMonsterMod20211014(charaData, specData, mobData, dmg);
 }
 */
-
 	// 2021/11/17 に特定した順序で計算する
 	dmg = ApplyMagicalSpecializeMonster20211117(charaData, specData, mobData, dmg);
 	// 特性ステータス対応
 	return ApplySMatkAmplify(dmg);
 }
 
+
 /**
  * モンスター特化（魔法）を適用する（2021/10/14検証用）.
- * @param dmg ダメージ
- * @return 適用後のダメージ
  */
+/*
 function ApplyMagicalSpecializeMonsterMod20211014(charaData, specData, mobData, dmg) {
-
 	var idx = 0;
 	var idxChar = 0;
-
 	var dmgResult = 0;
 	var dmgResultOldFomula = 0;
-
 	var patternStr = "";
 	var patternArray = [];
-
 	var patternListBase = [
 		"0", "1", "2", "3", "4", "5", "6", "7",
 	];
-
 	var funcCreatePattern = function (patternArrayF, patternStrF, patternListF) {
-
 		var idxF = 0;
 		var patternListNextF = null;
-
 		if (patternListF.length == 1) {
 			patternArrayF.push(patternStrF + patternListF[0]);
 			return;
 		}
-
 		for (idxF = 0; idxF < patternListF.length; idxF++) {
 			patternListNextF = patternListF.slice();
 			patternListNextF.splice(idxF, 1);
 			funcCreatePattern(patternArrayF, patternStrF + patternListF[idxF], patternListNextF);
 		}
 	};
-
-
-
 	// 検証用パターン生成
 	funcCreatePattern(patternArray, "", patternListBase);
-
 	// パターン格納用配列初期化
 	g_matchPatternArray = [];
 	g_matchResultArray = [];
@@ -11270,66 +11156,49 @@ function ApplyMagicalSpecializeMonsterMod20211014(charaData, specData, mobData, 
 	g_missMatchResultArray = [];
 	g_missMatchPatternNotExpectedArray = [];
 	g_missMatchResultNotExpectedArray = [];
-
-
-
 	for (idx = 0; idx < patternArray.length; idx++) {
-
 		dmgResult = dmg;
 		patternStr = patternArray[idx];
-
 		for (idxChar = 0; idxChar < patternStr.length; idxChar++) {
-
 			switch (patternStr.charAt(idxChar)) {
-
-			case "0":
-				// 魔法攻撃で与えるダメージ＋○○％
-				dmgResult = ApplyMagicalSpecializeMonsterMod20211014SubMagicalDamageUp(charaData, specData, mobData, dmgResult);
-				break;
-
-			case "1":
-				// スパイダーウェブ状態系のダメージ強化倍率の適用
-				dmgResult = ApplyMagicalSpecializeMonsterMod20211014SubSpiderWebModify(charaData, specData, mobData, dmgResult);
-				break;
-
-			case "2":
-				// 地域特化
-				dmgResult = ApplyMagicalSpecializeMonsterMod20211014SubSpecializeMap(charaData, specData, mobData, dmgResult);
-				break;
-
-			case "3":
-				// 種族特化
-				dmgResult = ApplyMagicalSpecializeMonsterMod20211014SubSpecializeRace(charaData, specData, mobData, dmgResult);
-				break;
-
-			case "4":
-				// サイズ特化
-				dmgResult = ApplyMagicalSpecializeMonsterMod20211014SubSpecializeSize(charaData, specData, mobData, dmgResult);
-				break;
-
-			case "5":
-				// 属性特化
-				dmgResult = ApplyMagicalSpecializeMonsterMod20211014SubSpecializeMonsterElement(charaData, specData, mobData, dmgResult);
-				break;
-
-			case "6":
-				// 属性魔法特化
-				dmgResult = ApplyMagicalSpecializeMonsterMod20211014SubSpecializeMagicElement(charaData, specData, mobData, dmgResult);
-				break;
-
-			case "7":
-				// ボス／一般特化
-				dmgResult = ApplyMagicalSpecializeMonsterMod20211014SubSpecializeBossType(charaData, specData, mobData, dmgResult);
-				break;
-
+				case "0":
+					// 魔法攻撃で与えるダメージ＋○○％
+					dmgResult = ApplyMagicalSpecializeMonsterMod20211014SubMagicalDamageUp(charaData, specData, mobData, dmgResult);
+					break;
+				case "1":
+					// スパイダーウェブ状態系のダメージ強化倍率の適用
+					dmgResult = ApplyMagicalSpecializeMonsterMod20211014SubSpiderWebModify(charaData, specData, mobData, dmgResult);
+					break;
+				case "2":
+					// 地域特化
+					dmgResult = ApplyMagicalSpecializeMonsterMod20211014SubSpecializeMap(charaData, specData, mobData, dmgResult);
+					break;
+				case "3":
+					// 種族特化
+					dmgResult = ApplyMagicalSpecializeMonsterMod20211014SubSpecializeRace(charaData, specData, mobData, dmgResult);
+					break;
+				case "4":
+					// サイズ特化
+					dmgResult = ApplyMagicalSpecializeMonsterMod20211014SubSpecializeSize(charaData, specData, mobData, dmgResult);
+					break;
+				case "5":
+					// 属性特化
+					dmgResult = ApplyMagicalSpecializeMonsterMod20211014SubSpecializeMonsterElement(charaData, specData, mobData, dmgResult);
+					break;
+				case "6":
+					// 属性魔法特化
+					dmgResult = ApplyMagicalSpecializeMonsterMod20211014SubSpecializeMagicElement(charaData, specData, mobData, dmgResult);
+					break;
+				case "7":
+					// ボス／一般特化
+					dmgResult = ApplyMagicalSpecializeMonsterMod20211014SubSpecializeBossType(charaData, specData, mobData, dmgResult);
+					break;
 			}
 		}
-
 		if (idx == 0) {
 			dmgResultOldFomula = dmgResult;
 		}
 		else {
-
 			// 期待されるダメージ計算結果が指定されていない場合
 			if (g_expectedDmgResult === undefined) {
 				if (dmgResult != dmgResultOldFomula) {
@@ -11341,7 +11210,6 @@ function ApplyMagicalSpecializeMonsterMod20211014(charaData, specData, mobData, 
 					g_matchResultArray.push([patternStr, dmgResult]);
 				}
 			}
-
 			// 期待されるダメージ計算結果が指定されている場合
 			else {
 				if (dmgResult != dmgResultOldFomula) {
@@ -11363,11 +11231,9 @@ function ApplyMagicalSpecializeMonsterMod20211014(charaData, specData, mobData, 
 
 		}
 	}
-
-
-
 	return dmgResultOldFomula;
 }
+*/
 
 /**
  * モンスター特化（魔法）を適用する（2021/11/17特定版）.
@@ -11375,93 +11241,96 @@ function ApplyMagicalSpecializeMonsterMod20211014(charaData, specData, mobData, 
  * @return 適用後のダメージ
  */
 function ApplyMagicalSpecializeMonster20211117(charaData, specData, mobData, dmg) {
-
 	var idxChar = 0;
-
 	var dmgResult = 0;
 	var patternStr = "";
-
-
-
 	// 特定したパターン "04251637" でのみ計算する
 	dmgResult = dmg;
 	patternStr = "04251637";
-
 	for (idxChar = 0; idxChar < patternStr.length; idxChar++) {
-
 		switch (patternStr.charAt(idxChar)) {
-
-		case "0":
-			// 魔法攻撃で与えるダメージ＋○○％
-			dmgResult = ApplyMagicalSpecializeMonsterMod20211014SubMagicalDamageUp(charaData, specData, mobData, dmgResult);
-			break;
-
-		case "1":
-			// スパイダーウェブ状態系のダメージ強化倍率の適用
-			dmgResult = ApplyMagicalSpecializeMonsterMod20211014SubSpiderWebModify(charaData, specData, mobData, dmgResult);
-			break;
-
-		case "2":
-			// 地域特化
-			dmgResult = ApplyMagicalSpecializeMonsterMod20211014SubSpecializeMap(charaData, specData, mobData, dmgResult);
-			break;
-
-		case "3":
-			// 種族特化
-			dmgResult = ApplyMagicalSpecializeMonsterMod20211014SubSpecializeRace(charaData, specData, mobData, dmgResult);
-			break;
-
-		case "4":
-			// サイズ特化
-			dmgResult = ApplyMagicalSpecializeMonsterMod20211014SubSpecializeSize(charaData, specData, mobData, dmgResult);
-			break;
-
-		case "5":
-			// 属性特化
-			dmgResult = ApplyMagicalSpecializeMonsterMod20211014SubSpecializeMonsterElement(charaData, specData, mobData, dmgResult);
-			break;
-
-		case "6":
-			// 属性魔法特化
-			dmgResult = ApplyMagicalSpecializeMonsterMod20211014SubSpecializeMagicElement(charaData, specData, mobData, dmgResult);
-			break;
-
-		case "7":
-			// ボス／一般特化
-			dmgResult = ApplyMagicalSpecializeMonsterMod20211014SubSpecializeBossType(charaData, specData, mobData, dmgResult);
-			break;
-
+			case "0":
+				// 魔法攻撃で与えるダメージ＋○○％
+				dmgResult = ApplyMagicalSpecializeMonsterMod20211014SubMagicalDamageUp(charaData, specData, mobData, dmgResult);
+				break;
+			case "1":
+				// スパイダーウェブ状態系のダメージ強化倍率の適用
+				dmgResult = ApplyMagicalSpecializeMonsterMod20211014SubSpiderWebModify(charaData, specData, mobData, dmgResult);
+				break;
+			case "2":
+				// 地域特化
+				dmgResult = ApplyMagicalSpecializeMonsterMod20211014SubSpecializeMap(charaData, specData, mobData, dmgResult);
+				break;
+			case "3":
+				// 種族特化
+				dmgResult = ApplyMagicalSpecializeMonsterMod20211014SubSpecializeRace(charaData, specData, mobData, dmgResult);
+				break;
+			case "4":
+				// サイズ特化
+				dmgResult = ApplyMagicalSpecializeMonsterMod20211014SubSpecializeSize(charaData, specData, mobData, dmgResult);
+				break;
+			case "5":
+				// 属性特化
+				dmgResult = ApplyMagicalSpecializeMonsterMod20211014SubSpecializeMonsterElement(charaData, specData, mobData, dmgResult);
+				break;
+			case "6":
+				// 属性魔法特化
+				dmgResult = ApplyMagicalSpecializeMonsterMod20211014SubSpecializeMagicElement(charaData, specData, mobData, dmgResult);
+				break;
+			case "7":
+				// ボス／一般特化
+				dmgResult = ApplyMagicalSpecializeMonsterMod20211014SubSpecializeBossType(charaData, specData, mobData, dmgResult);
+				break;
 		}
 	}
-
 	return dmgResult;
 }
 
+
+/**
+ * 魔法ダメージ増加の効果をダメージに適用する
+ * @param {*} charaData 未使用の引数
+ * @param {*} specData 未使用の引数
+ * @param {*} mobData 未使用の引数
+ * @param {*} dmg 
+ * @returns 
+ */
 function ApplyMagicalSpecializeMonsterMod20211014SubMagicalDamageUp(charaData, specData, mobData, dmg) {
-
-	if (n_tok[89]) {
-		dmg = Math.floor(dmg * (100 + n_tok[89]) / 100);
+	if (n_tok[ITEM_SP_MAGICAL_DAMAGE_UP]) {
+		dmg = Math.floor(dmg * (100 + n_tok[ITEM_SP_MAGICAL_DAMAGE_UP]) / 100);
 	}
-
 	return dmg;
 }
 
+
+/**
+ * スパイダーウェブの有無による倍率をダメージに適用する
+ * @param {*} charaData 未使用の引数
+ * @param {*} specData 未使用の引数
+ * @param {*} mobData 
+ * @param {*} dmg 
+ * @returns 
+ */
 function ApplyMagicalSpecializeMonsterMod20211014SubSpiderWebModify(charaData, specData, mobData, dmg) {
-
 	var wX = GetSpiderWebDamageRatio();
-
 	if (wX != 0) {
 		dmg = Math.floor(dmg * (100 + wX) / 100);
 	}
-
 	return dmg;
 }
 
+
+/**
+ * 特定のモンスターグループに対する特攻をダメージに適用する。
+ * 魔法ダメージ計算専用を意図して作られたようだが内部的には魔法に依存した処理ではない。
+ * @param {*} charaData 未使用の引数
+ * @param {*} specData 未使用の引数
+ * @param {*} mobData 
+ * @param {*} dmg 
+ * @returns 
+ */
 function ApplyMagicalSpecializeMonsterMod20211014SubSpecializeMap(charaData, specData, mobData, dmg) {
-
 	var wX = 0;
-
-
 	//--------------------------------
 	// マヌク特化
 	//--------------------------------
@@ -12012,8 +11881,6 @@ function ApplyMagicalSpecializeMonsterMod20211014SubSpecializeMap(charaData, spe
 		}
 	}
 
-
-
 	//--------------------------------
 	// 英雄の痕跡支援
 	//--------------------------------
@@ -12035,49 +11902,37 @@ function ApplyMagicalSpecializeMonsterMod20211014SubSpecializeMap(charaData, spe
 		wX += confval;
 	}
 
-
-
 	// TODO: データ移行過渡処理
 	// 計算したSP効果を、移行前のデータ形式に変換して、加算する
 	if (IsEnableMigrationBlockTransit()) {
-
 		var idxMap = 0;
-
 		var candidateMapIdArray = null;
-
 		var spTag = null;
-
 		// 当該モンスターの出現するマップIDを収集
 		candidateMapIdArray = [];
-
 		for (idxMap = 0; idxMap < g_MonsterMapDataArray.length; idxMap++) {
-			if (g_MonsterMapDataArray[idxMap][MONSTER_MAP_DATA_INDEX_DATA_ARRAY].indexOf(mobData[0]) >= 0) {
+			if (g_MonsterMapDataArray[idxMap][MONSTER_MAP_DATA_INDEX_DATA_ARRAY].indexOf(mobData[MONSTER_DATA_INDEX_ID]) >= 0) {
 				candidateMapIdArray.push(g_MonsterMapDataArray[idxMap][MONSTER_MAP_DATA_INDEX_ID]);
 			}
 		}
-
 		// すべての出現マップをループ
 		for (idxMap = 0; idxMap < candidateMapIdArray.length; idxMap++) {
-
 			spTag = new CMigEquipableSpTag()
 				.SetSpId(MIG_EQUIPABLE_SP_EFFECT_ID_ATTACK_DAMAGE)
 				.AddAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_METHOD, MIG_METHOD_ID_MAGICAL)
 				.AddAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_TIMING, MIG_TIMING_ID_BY_ATTACK)
 				.AddAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_MAP_MONSTER, candidateMapIdArray[idxMap])
 				.SetAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_VALUE_UNIT, MIG_VALUE_UNIT_ID_PERCENT);
-
 			wX += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
 			wX += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
 		}
 	}
-
 	// 移行前データでの処理（移行完了まで必要）
 	else {
-
 		//--------------------------------
 		// グラストヘイムアビス特化
 		//--------------------------------
-		if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_GLASTHEIM_ABYSS]) == 1){
+		if(NumSearch(mobData[MONSTER_DATA_INDEX_ID], MonsterGroupObj[MONSTER_GROUP_ID_GLASTHEIM_ABYSS]) == 1){
 			if (EquipNumSearch(ITEM_ID_SHIROKISHINO_MANT) > 0) {
 				wX += 10;
 				if (n_A_SHOULDER_DEF_PLUS >= 5) {
@@ -12089,134 +11944,139 @@ function ApplyMagicalSpecializeMonsterMod20211014SubSpecializeMap(charaData, spe
 			}
 		}
 	}
-
 	if(wX != 0) {
 		dmg = Math.floor(dmg * (100 + wX) / 100);
 	}
-
 	return dmg;
 }
 
+/**
+ * 魔法使用時に、種族特攻をダメージに適用する
+ * @param {*} charaData 未使用の引数
+ * @param {*} specData 未使用の引数
+ * @param {*} mobData 
+ * @param {*} dmg 
+ * @returns 
+ */
 function ApplyMagicalSpecializeMonsterMod20211014SubSpecializeRace(charaData, specData, mobData, dmg) {
-
 	var wX = 0;
-
 	// 対プレイヤーでない場合
-	if (mobData[0] != MONSTER_ID_PLAYER) {
-
+	if (mobData[MONSTER_DATA_INDEX_ID] != MONSTER_ID_PLAYER) {
 		// 種族特化をそのまま適用
-		wX += n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_RACE_SOLID + mobData[19]];
-
+		wX += n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_RACE_SOLID + mobData[MONSTER_DATA_INDEX_RACE]];
 		// 人間形（プレイヤー除く）の適用
-		if (mobData[19] == RACE_ID_HUMAN) {
+		if (mobData[MONSTER_DATA_INDEX_RACE] == RACE_ID_HUMAN) {
 			wX += n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_RACE_HUMAN_NOT_PLAYER];
 		}
 	}
-
 	// 対プレイヤーの場合
 	else {
-
 		// 対プレイヤー特化の適用
 		wX += n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_PLAYER_ALL];
-
 		// 対プレイヤー設定の種族に基づき、参照値を変更
 		switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SHUZOKU]) {
-
 		// 種族が人間に設定されている場合は、人間特化を適用
 		case MOB_CONF_PLAYER_ID_SHUZOKU_HUMAN:
 			wX += n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_RACE_HUMAN];
 			wX += n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_PLAYER_HUMAN];
 			break;
-
 		// 種族がドラムに設定されている場合は、ドラム特化を適用
 		case MOB_CONF_PLAYER_ID_SHUZOKU_DORAM:
 			wX += n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_PLAYER_DORAM];
 			break;
-
 		}
 	}
-
 	if(wX != 0) {
 		dmg = Math.floor(dmg * (100 + wX) / 100);
 	}
-
 	return dmg;
 }
 
+/**
+ * 魔法使用時に、サイズ特攻をダメージに適用する
+ * @param {*} charaData 未使用の引数
+ * @param {*} specData 未使用の引数
+ * @param {*} mobData 
+ * @param {*} dmg 
+ * @returns 
+ */
 function ApplyMagicalSpecializeMonsterMod20211014SubSpecializeSize(charaData, specData, mobData, dmg) {
-
 	var wX = 0;
-
 	// 対プレイヤーでない場合
-	if (mobData[0] != MONSTER_ID_PLAYER) {
-
+	if (mobData[MONSTER_DATA_INDEX_ID] != MONSTER_ID_PLAYER) {
 		// モンスターのサイズ定義に従い、そのまま適用
-		wX += n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_SIZE_SMALL + mobData[17]];
+		wX += n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_SIZE_SMALL + mobData[MONSTER_DATA_INDEX_SIZE]];
 	}
-
 	// 対プレイヤーの場合
 	else {
-
 		// 対プレイヤー設定の種族に基づき、参照値を変更
 		switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SHUZOKU]) {
-
-		// 種族が人間に設定されている場合は、中型特化を適用
-		case MOB_CONF_PLAYER_ID_SHUZOKU_HUMAN:
-			wX += n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_SIZE_MEDIUM];
-			break;
-
-		// 種族がドラムに設定されている場合は、小型特化を適用
-		case MOB_CONF_PLAYER_ID_SHUZOKU_DORAM:
-			wX += n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_SIZE_SMALL];
-			break;
-
+			// 種族が人間に設定されている場合は、中型特化を適用
+			case MOB_CONF_PLAYER_ID_SHUZOKU_HUMAN:
+				wX += n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_SIZE_MEDIUM];
+				break;
+			// 種族がドラムに設定されている場合は、小型特化を適用
+			case MOB_CONF_PLAYER_ID_SHUZOKU_DORAM:
+				wX += n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_SIZE_SMALL];
+				break;
 		}
 	}
-
 	if(wX != 0) {
 		dmg = Math.floor(dmg * (100 + wX) / 100);
 	}
-
 	return dmg;
 }
 
+/**
+ * 魔法使用時に、モンスターの属性特攻をダメージに適用する
+ * @param {*} charaData 未使用の引数
+ * @param {*} specData 未使用の引数
+ * @param {*} mobData 
+ * @param {*} dmg 
+ * @returns 
+ */
 function ApplyMagicalSpecializeMonsterMod20211014SubSpecializeMonsterElement(charaData, specData, mobData, dmg) {
-
 	var wX = 0;
-
-	wX = n_tok[350 + Math.floor(mobData[18] / 10)];
-
+	wX = n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_MONSTER_ELM_VANITY + Math.floor(mobData[MONSTER_DATA_INDEX_ELEMENT] / 10)];
 	if(wX != 0) {
 		dmg = Math.floor(dmg * (100 + wX) / 100);
 	}
-
 	return dmg;
 }
 
+/**
+ * 属性魔法ダメージ増加を適用する
+ * @param {*} charaData 未使用の引数
+ * @param {*} specData 未使用の引数
+ * @param {*} mobData 未使用の引数
+ * @param {*} dmg 
+ * @returns 
+ */
 function ApplyMagicalSpecializeMonsterMod20211014SubSpecializeMagicElement(charaData, specData, mobData, dmg) {
-
 	var wX = 0;
-
+	// 魔法スキルの場合、処理の途中で武器属性がスキルによって上書きされる
 	if(n_A_Weapon_zokusei >= 0){
 		wX = n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_ELM_VANITY + n_A_Weapon_zokusei];
 	}
-
 	if(wX != 0) {
 		dmg = Math.floor(dmg * (100 + wX) / 100);
 	}
-
 	return dmg;
 }
 
+/**
+ * 魔法使用時に、ボス特攻・一般特攻をダメージに適用する
+ * @param {*} charaData 未使用の引数
+ * @param {*} specData 未使用の引数
+ * @param {*} mobData 
+ * @param {*} dmg 
+ * @returns 
+ */
 function ApplyMagicalSpecializeMonsterMod20211014SubSpecializeBossType(charaData, specData, mobData, dmg) {
-
 	var wX = 0;
-
 	// ボス特化
-	if(mobData[20] == 1){
-
+	if(mobData[MONSTER_DATA_INDEX_BOSS_TYPE] == 1){
 		wX = n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_BOSS];
-
 		// マジカルブースター＆サザンクロスセットによるＢＯＳＳ特化
 		if(EquipNumSearch(1627)){
 			wX += 2;
@@ -12224,21 +12084,15 @@ function ApplyMagicalSpecializeMonsterMod20211014SubSpecializeBossType(charaData
 			if(n_A_HEAD_DEF_PLUS >= 7) wX += 4;
 		}
 	}
-
 	// 一般特化
 	else {
 		wX = n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_NOTBOSS];
 	}
-
 	if(wX != 0) {
 		dmg = Math.floor(dmg * (100 + wX) / 100);
 	}
-
 	return dmg;
 }
-
-
-
 
 
 /**
@@ -12247,10 +12101,8 @@ function ApplyMagicalSpecializeMonsterMod20211014SubSpecializeBossType(charaData
  * @return 適用後のダメージ
  */
 function ApplyResistElement(mobData, dmg) {
-
 	var wX = 0;
 	var bufLv = 0;
-
 	// 敵が対プレイヤーの場合、対プレイヤー設定欄のサイズ耐性を適用
 	if(mobData[0] == MONSTER_ID_PLAYER) {
 		// ドラム族は小型なので注意
@@ -12263,8 +12115,6 @@ function ApplyResistElement(mobData, dmg) {
 	}
 	dmg -= ROUNDDOWN(dmg * wX / 100);
 
-
-
 	wX = 0;
 	// 敵が対プレイヤーの場合、対プレイヤー設定欄の一般モンスター耐性を適用
 	if(mobData[0] == MONSTER_ID_PLAYER) {
@@ -12272,47 +12122,35 @@ function ApplyResistElement(mobData, dmg) {
 	}
 	dmg -= ROUNDDOWN(dmg * wX / 100);
 
-
-
 	wX = 0;
 	// 毒属性武器、かつ、べナムインプレス状態の場合（判定順序は意図的に変えてある）
 	if ((bufLv = n_B_IJYOU[MOB_CONF_DEBUF_ID_VENOM_IMPRESS]) > 0) {
 		if (n_A_Weapon_zokusei == ELM_ID_POISON) {
-
 			// 特定の戦闘エリアでの補正
 			switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
-
-			case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
-				wX -= 75 + 5 * bufLv;
-				break;
-
-			default:
-				wX -= 10 * bufLv;
-				break;
-
+				case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
+					wX -= 75 + 5 * bufLv;
+					break;
+				default:
+					wX -= 10 * bufLv;
+					break;
 			}
 		}
 	}
-
 	// 聖属性武器、かつ、オラティオ状態の場合（判定順序は意図的に変えてある）
 	if ((bufLv = n_B_IJYOU[MOB_CONF_DEBUF_ID_ORATIO]) > 0) {
 		if (n_A_Weapon_zokusei == ELM_ID_HOLY) {
-
 			// 特定の戦闘エリアでの補正
 			switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
-
-			case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
-				wX -= 40 + 5 * bufLv + 5 * Math.max(0, (bufLv - 8));
-				break;
-
-			default:
-				wX -= 5 * bufLv;
-				break;
-
+				case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
+					wX -= 40 + 5 * bufLv + 5 * Math.max(0, (bufLv - 8));
+					break;
+				default:
+					wX -= 5 * bufLv;
+					break;
 			}
 		}
 	}
-
 	// 闇属性武器、かつ、死霊憑依状態の場合（判定順序は意図的に変えてある）
 	if ((bufLv = n_B_IJYOU[MOB_CONF_DEBUF_ID_SHIRYO_HYOI]) > 0) {
 		if (n_A_Weapon_zokusei == ELM_ID_DARK) {
@@ -12324,20 +12162,15 @@ function ApplyResistElement(mobData, dmg) {
 			}
 		}
 	}
-
 	// 敵が対プレイヤーの場合、対プレイヤー設定欄の属性耐性を適用
 	if(mobData[0] == MONSTER_ID_PLAYER){
-
 		wX += n_B_TAISEI[MOB_CONF_PLAYER_ID_MU_ZOKUSEI_TAISEI + n_A_Weapon_zokusei];
-
 		// さらに、物理耐性も適用
 		if(n_Enekyori == 0 || n_Enekyori == 1) {
 			wX += n_B_TAISEI[MOB_CONF_PLAYER_ID_BUTSURI_TAISEI];
 		}
 	}
 	dmg -= ROUNDDOWN(dmg * wX / 100);
-
-
 
 	wX = 0;
 	// 敵が対プレイヤーの場合、対プレイヤー設定欄の属性モンスター耐性を適用
@@ -12349,25 +12182,23 @@ function ApplyResistElement(mobData, dmg) {
 	return dmg;
 }
 
-
-
-
-
+/**
+ * アースクエイク、グランドクロス専用の耐性計算処理
+ * @param {*} w_Tai_DMG 
+ * @returns 
+ */
 function BaiTaisei_A_SP(w_Tai_DMG) {
-	var wX = n_tok[191];
-	if(n_A_PassSkill8[13] == 1) wX = n_tok[190];
+	var wX = n_tok[ITEM_SP_RESIST_SIZE_MEDIUM];
+	if(n_A_PassSkill8[13] == 1) wX = n_tok[ITEM_SP_RESIST_SIZE_SMALL];
 	w_Tai_DMG -= ROUNDDOWN(w_Tai_DMG * wX / 100);
-	wX = n_tok[79];
+	wX = n_tok[ITEM_SP_RESIST_NOTBOSS];
 	w_Tai_DMG -= ROUNDDOWN(w_Tai_DMG * wX / 100);
-	wX = n_tok[60 + n_A_Weapon_zokusei];
+	wX = n_tok[ITEM_SP_RESIST_ELM_VANITY + n_A_Weapon_zokusei];
 	w_Tai_DMG -= ROUNDDOWN(w_Tai_DMG * wX / 100);
-	wX = n_tok[330 + n_A_BodyZokusei];
+	wX = n_tok[ITEM_SP_RESIST_MONSTER_ELM_VANITY + n_A_BodyZokusei];
 	w_Tai_DMG -= ROUNDDOWN(w_Tai_DMG * wX / 100);
 	return w_Tai_DMG;
  }
-
-
-
 
 
 /**
@@ -12376,46 +12207,37 @@ function BaiTaisei_A_SP(w_Tai_DMG) {
  * @return 適用後のダメージ
  */
 function ApplyRegistPVPNormal(mobData, dmg) {
-
 	var wX = 0;
-
 	// 敵が対プレイヤーの場合、対プレイヤー設定欄の人間orドラム形耐性を適用
 	if(mobData[0] == MONSTER_ID_PLAYER) {
-
 		if (IsDoramJob(n_A_JOB)) {
 			wX = n_B_TAISEI[MOB_CONF_PLAYER_ID_DORAM_KEI_TAISEI];
 		}
 		else {
 			wX = n_B_TAISEI[MOB_CONF_PLAYER_ID_NINGEN_KEI_TAISEI];
 		}
-
 		dmg -= ROUNDDOWN(dmg * wX / 100);
-
-
 		// 遠距離攻撃の場合、遠距離耐性も適用
 		if(n_Enekyori == 1){
-
 			wX = n_B_TAISEI[MOB_CONF_PLAYER_ID_ENKYORI_BUTSURI_TAISEI];
-
 			dmg -= ROUNDDOWN(dmg * wX / 100);
 		}
 	}
-
 	return dmg;
  }
 
-
-
-
-
+/**
+ * ソウルブレイカー専用の人間耐性処理
+ * @param {*} mobData 
+ * @param {*} w_Tai_DMG 
+ * @returns 
+ */
 function BaiTaisei_C(mobData, w_Tai_DMG) {
 	var wX = 0;
-	if(mobData[0] == 787) wX += n_B_TAISEI[8];
+	if(mobData[0] == MONSTER_ID_PLAYER) wX += n_B_TAISEI[MOB_CONF_PLAYER_ID_NINGEN_KEI_TAISEI];
 	w_Tai_DMG -= ROUNDDOWN(w_Tai_DMG * wX / 100);
 	return w_Tai_DMG;
  }
-
-
 
 
 /**
@@ -12425,32 +12247,29 @@ function BaiTaisei_C(mobData, w_Tai_DMG) {
  */
 function ApplyRegistPVPEnergyCoat(mobData, dmg) {
 	var wX = 0;
-
 	// 敵が対プレイヤーの場合、対プレイヤー設定欄のエナジーコート効果を適用
 	if(mobData[0] == MONSTER_ID_PLAYER) {
 		wX += 6 * n_B_TAISEI[MOB_CONF_PLAYER_ID_ENERGY_COAT];
 		dmg -= ROUNDDOWN(dmg * wX / 100);
 	}
-
 	return dmg;
  }
 
-
-
-
-
+/**
+ * グランドクロス専用の遠距離耐性処理
+ * @param {*} mobData 
+ * @param {*} w_Tai_DMG 
+ * @returns 
+ */
 function BaiTaisei_E(mobData, w_Tai_DMG) {
 	var wX = 0;
 	if(n_Enekyori == 1){
 		wX = 0;
-		if(mobData[0] == 787) wX += n_B_TAISEI[10];
+		if(mobData[0] == MONSTER_ID_PLAYER) wX += n_B_TAISEI[MOB_CONF_PLAYER_ID_ENKYORI_BUTSURI_TAISEI];
 		w_Tai_DMG -= ROUNDDOWN(w_Tai_DMG * wX / 100);
 	}
 	return w_Tai_DMG;
  }
-
-
-
 
 
 HEALTYPE_HEAL = 0;
@@ -21029,14 +20848,16 @@ function _SUB_ApplyMonsterDefence(mobData, dmg){
 		bPenetrate = true;
 	}
 
-	// TODO : 謎処理
-	if(n_tok[180+mobData[19]] >= 1) {
+	if(n_tok[ITEM_SP_PENETRATE_DEF_RACE_SOLID + mobData[MONSTER_DATA_INDEX_RACE]] >= 1) {
 		bPenetrate = true;
 	}
-	if(n_tok[22] >= 1 && mobData[20] == 0) {
+	// ITEM_SP_PENETRATE_DEF は代入されている値によって適用範囲が変化する
+	// 一般モンスターのみ有効
+	if(n_tok[ITEM_SP_PENETRATE_DEF] >= 1 && mobData[MONSTER_DATA_INDEX_BOSS_TYPE] == 0) {
 		bPenetrate = true;
 	}
-	if(n_tok[22] >= 10) {
+	// BOSSを含むすべてのモンスターに有効
+	if(n_tok[ITEM_SP_PENETRATE_DEF] >= 10) {
 		bPenetrate = true;
 	}
 
@@ -21046,12 +20867,12 @@ function _SUB_ApplyMonsterDefence(mobData, dmg){
 	}
 
 	// ＋１０ギロチンブレードの人間種族防御無視
-	if(n_A_Weapon_ATKplus >= 10 && mobData[19] == 7 && EquipNumSearch(2457)) {
+	if(n_A_Weapon_ATKplus >= 10 && mobData[MONSTER_DATA_INDEX_RACE] == RACE_ID_HUMAN && EquipNumSearch(2457)) {
 		bPenetrate = true;
 	}
 
 	// 錐効果
-	if (n_tok[23] != 0) {
+	if (n_tok[ITEM_SP_KIRI_EFFECT] != 0) {
 		bPenetrate = true;
 	}
 
