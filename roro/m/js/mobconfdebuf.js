@@ -782,11 +782,11 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-
+	 
 	MOB_CONF_DEBUF_ID_SEIYU_SENREI_DEBUFF = MobConfDebufId;
 	MobConfDebufData = [
 		MobConfDebufId,
-		MobConfDebufText("聖油洗礼状態"),
+		MobConfDebufText("(廃止)聖油洗礼状態"),
 		MobConfDebufControlType(CONTROL_TYPE_SELECTBOX_NUMBER),
 		MobConfDebufDefaultValue(0),
 		MobConfDebufMinValue(0),

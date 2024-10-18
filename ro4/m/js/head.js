@@ -3549,59 +3549,59 @@ g_bUnknownCasts = true;
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
+		// 「インクイジター」スキル「第一撃：烙印」
 		case SKILL_ID_DAIICHIGEKI_RAKUIN:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 距離属性
 			n_Enekyori = 0;
-
 			// 基本倍率
-			wbairitu = 500 + (500 * n_A_ActiveSkillLV);
-
+			wbairitu = 2000 + 500 * n_A_ActiveSkillLV;
 			// POW補正
-			wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
+			wbairitu += 15 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
+		// 「インクイジター」スキル「第三撃：断罪」
+		// YE道場の実測に対して最大で+1の誤差あり
 		case SKILL_ID_DAISANGEKI_DANZAI:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 距離属性
 			n_Enekyori = 0;
-
 			// 基本倍率
-			wbairitu = 7000 + (1000 * n_A_ActiveSkillLV);
-
+			wbairitu = 7000 + 1000 * n_A_ActiveSkillLV;
 			// POW補正
 			wbairitu += 40 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
+		// 「インクイジター」スキル「第三撃：滅火撃」
+		// YE道場の実測値に対して誤差無し
 		case SKILL_ID_DAISANGEKI_MEKKAGEKI:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 距離属性
 			n_Enekyori = 0;
-
 			// 基本倍率
-			wbairitu = 7000 + (1000 * n_A_ActiveSkillLV);
-
+			wbairitu = 7000 + 1000 * n_A_ActiveSkillLV;
 			// POW補正
 			wbairitu += 40 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
+			// MaxHP補正
+			wbairitu += charaData[CHARA_DATA_INDEX_MAXHP] / 100;
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
-
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			// ヒット数
 			if (UsedSkillSearch(SKILL_ID_KIKO) >= 11) {
 				wHITsuu = 3;
@@ -3611,79 +3611,80 @@ g_bUnknownCasts = true;
 			}
 			break;
 
+		// 「インクイジター」スキル「第三撃：浄化」
 		case SKILL_ID_DAISANGEKI_ZYOKA:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 距離属性
 			n_Enekyori = 0;
-
 			// 基本倍率
-			wbairitu = 7000 + (1000 * n_A_ActiveSkillLV);
-
+			wbairitu = 7000 + 1000 * n_A_ActiveSkillLV;
 			// POW補正
 			wbairitu += 40 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
-
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			// ヒット数
 			wHITsuu = 2;
 			break;
 
+		// 「インクイジター」スキル「第二撃：滅魔の火」
+		// YE道場の実測に対して誤差無し
 		case SKILL_ID_DAINIGEKI_METSUMANO_HI:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 距離属性
 			n_Enekyori = 0;
-
 			// 基本倍率
-			wbairitu = 3500 + (200 * n_A_ActiveSkillLV);
-
+			wbairitu = 3600 + 900 * n_A_ActiveSkillLV;
 			// POW補正
-			wbairitu += 15 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
+			wbairitu += 27 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
+		// 「インクイジター」スキル「第二撃：信念」	
+		// YE道場の実測値に対して誤差無し
 		case SKILL_ID_DAINIGEKI_SHINNEN:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 距離属性
 			n_Enekyori = 0;
-
 			// 基本倍率
-			wbairitu = 2900 + (200 * n_A_ActiveSkillLV);
-
+			wbairitu = 3150 + 750 * n_A_ActiveSkillLV;
 			// POW補正
-			wbairitu += 13 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
+			wbairitu += 23 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			// 分割ヒット
+			wActiveHitNum = 2;
 			break;
 
+		// 「インクイジター」スキル「第二撃：審判」
 		case SKILL_ID_DAINIGEKI_SHINPAN:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 距離属性
 			n_Enekyori = 0;
-
 			// 基本倍率
-			wbairitu = 3200 + (200 * n_A_ActiveSkillLV);
-
+			wbairitu = 3375 + 825 * n_A_ActiveSkillLV;
 			// POW補正
-			wbairitu += 14 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
+			wbairitu += 25 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			// 分割ヒット
+			wActiveHitNum = 3;
 			break;
 
 		// 「インクイジター」スキル「爆火神弾」

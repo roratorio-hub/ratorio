@@ -1295,11 +1295,6 @@ function ApplySpecModify(spid, spVal) {
 
 	case ITEM_SP_LONGRANGE_DAMAGE_UP:
 
-		// 「インクイジター」スキル「聖油洗礼状態」による効果
-		if ((sklLv = n_B_IJYOU[MOB_CONF_DEBUF_ID_SEIYU_SENREI_DEBUFF]) > 0) {
-			spVal += 3 * sklLv;
-		}
-
 		// 「マイスター」スキル「ラッシュ状態」による効果
 		if ((sklLv = UsedSkillSearch(SKILL_ID_RUSH_STATE)) > 0) {
 			spVal += 2 * sklLv;
