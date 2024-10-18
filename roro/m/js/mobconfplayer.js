@@ -169,7 +169,7 @@ function InitMobConfPlayerData() {
 
 
 
-	MOB_CONF_PLAYER_ID_ZOKUSEI = MobConfPlayerId;
+	MOB_CONF_PLAYER_ID_ZOKUSEI = MobConfPlayerId;	// 7
 	MobConfPlayerData = [
 		MobConfPlayerId,
 		MobConfPlayerText("属性"),
@@ -183,7 +183,7 @@ function InitMobConfPlayerData() {
 
 
 
-	MOB_CONF_PLAYER_ID_NINGEN_KEI_TAISEI = MobConfPlayerId;
+	MOB_CONF_PLAYER_ID_NINGEN_KEI_TAISEI = MobConfPlayerId;	// 8
 	MobConfPlayerData = [
 		MobConfPlayerId,
 		MobConfPlayerText("人間形耐性"),
@@ -197,7 +197,7 @@ function InitMobConfPlayerData() {
 
 
 
-	MOB_CONF_PLAYER_ID_CHUGATA_TAISEI = MobConfPlayerId;
+	MOB_CONF_PLAYER_ID_CHUGATA_TAISEI = MobConfPlayerId;	// 9
 	MobConfPlayerData = [
 		MobConfPlayerId,
 		MobConfPlayerText("中型耐性"),
@@ -211,7 +211,7 @@ function InitMobConfPlayerData() {
 
 
 
-	MOB_CONF_PLAYER_ID_ENKYORI_BUTSURI_TAISEI = MobConfPlayerId;
+	MOB_CONF_PLAYER_ID_ENKYORI_BUTSURI_TAISEI = MobConfPlayerId;	// 10
 	MobConfPlayerData = [
 		MobConfPlayerId,
 		MobConfPlayerText("遠距離物理耐性"),
