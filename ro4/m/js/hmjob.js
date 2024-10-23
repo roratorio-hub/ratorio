@@ -585,6 +585,7 @@ function GetPAtk() {
 	}
 
 	// 四次職支援「コンペテンティア」による効果
+	// SKILL_ID_CONPETENTIA
 	if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_CONPETENTIA]) > 0) {
 		value += 20 + 2 * bufLv;
 	}
@@ -726,6 +727,7 @@ function GetSMatk() {
 	}
 
 	// 四次職支援「コンペテンティア」による効果
+	// SKILL_ID_CONPETENTIA
 	if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_CONPETENTIA]) > 0) {
 		value += 20 + 2 * bufLv;
 	}
@@ -792,6 +794,7 @@ function GetCRate() {
 	value += g_objCharaConfCustomSpecStatus.GetConf(CCharaConfCustomSpecStatus.CONF_ID_C_RATE_PLUS)
 
 	// 四次職支援「プレセンスアキエース」による効果
+	// SKILL_ID_PRESENSE_AKYACE
 	if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_PRESENSE_AKYACE]) > 0) {
 		value += 5 * bufLv;
 	}
@@ -915,6 +918,7 @@ function GetMobRes(mobData) {
 	ignore += n_tok[ITEM_SP_IGNORE_RES_RACE_ALL];
 
 	// 四次職支援「アルグトゥステルム」による効果
+	// SKILL_ID_ARUGUTUS_TERUM
 	if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_ARUGUTUS_TERUM]) > 0) {
 		ignore += 5 * bufLv;
 	}
@@ -950,6 +954,7 @@ function GetMobMres(mobData) {
 	ignore += n_tok[ITEM_SP_IGNORE_MRES_RACE_ALL];
 
 	// 四次職支援「アルグトゥスヴィタ」による効果
+	// SKILL_ID_ARUGUTUS_VITA
 	if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_ARUGUTUS_VITA]) > 0) {
 		ignore += 5 * bufLv;
 	}
@@ -1328,22 +1333,11 @@ function ApplySpecModify(spid, spVal) {
 
 			// 鈍器、本装備時限定
 			switch (n_A_WeaponType) {
-			case ITEM_KIND_CLUB:
-			case ITEM_KIND_BOOK:
-
-				valWork = 1 * sklLv;
-				if (sklLv >= 6) {
-					valWork += 1 * (sklLv - 5);
-				}
-				if (sklLv >= 9) {
-					valWork += 2 * (sklLv - 8);
-				}
-				if (sklLv >= 10) {
-					valWork += 1 * (sklLv - 9);
-				}
-
-				spVal += valWork;
-				break;
+				case ITEM_KIND_CLUB:
+				case ITEM_KIND_BOOK:
+					valWork = [0, 1, 2, 3, 4, 5, 7, 9, 11, 15, 20][sklLv];
+					spVal += valWork;
+					break;
 			}
 		}
 
