@@ -9756,6 +9756,9 @@ g_bDefinedDamageIntervals = true;
 			break;
 
 		// 「アビスチェイサー」スキル「フロムジアビス」
+		// 2024/10/24 提供データとのほぼ誤差無しを確認
+		// 誤差無し、無し、無し、+3誤差、無し、無し、無し、+2誤差、・・・という感じで最大 +4 までズレてくる
+		// 誤差が拡大する方向ではなく通常鯖での1桁以内の誤差なのでスキル計算式そのものは合っていると判断
 		case SKILL_ID_FROM_THE_ABYSS:
 			// 詠唱時間等
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
@@ -9770,68 +9773,48 @@ g_bDefinedDamageIntervals = true;
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
+		// 「アビスチェイサー」スキル「オメガアビスストライク」
+		// 2024/10/24 提供データとのほぼ誤差無しを確認済み
+		// 誤差無し、無し、無し、+3誤差、無し、無し、無し、+2誤差、・・・という感じで最大 +4 までズレてくる
+		// 誤差が拡大する方向ではなく通常鯖での1桁以内の誤差なのでスキル計算式そのものは合っていると判断
 		case SKILL_ID_OMEGA_ABYSS_STRIKE:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-
 			// 詠唱時間等
-			/*
-			// 未実測
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			*/
-
 			// 基本倍率
-			wbairitu = 1500 + (750 * n_A_ActiveSkillLV);
-
+			wbairitu = 7000 + 2000 * n_A_ActiveSkillLV;
 			// SPL補正
-			wbairitu += 30 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-
-			// 悪魔・天使形はダメージ倍率２倍
-			switch (mobData[MONSTER_DATA_INDEX_RACE]) {
-			case RACE_ID_DEMON:
-			case RACE_ID_ANGEL:
-				wbairitu *= 2;
-				break;
-			}
-
+			wbairitu += 90 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
+		// 「アビスチェイサー」スキル「アビススクエア」
+		// 2024/10/24 提供データとのほぼ誤差無しを確認済み
+		// 誤差無し、無し、無し、+3誤差、無し、無し、無し、+2誤差、・・・という感じで最大 +4 までズレてくる
+		// 誤差が拡大する方向ではなく通常鯖での1桁以内の誤差なのでスキル計算式そのものは合っていると判断
+		// 参考: ragna-promenade様
 		case SKILL_ID_ABYSS_SQUARE:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-g_bDefinedDamageIntervals = true;
-
 			// 詠唱時間等
-			/*
-			// 未実測
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			*/
-
+			// オブジェクト存続時間
+			n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// ダメージ間隔
 			n_Delay[5] = 300;
-
-			// オブジェクト存続時間
-			n_Delay[6] = 3000;
-
+			g_bDefinedDamageIntervals = true;
 			// 基本倍率
-			wbairitu = (150 * n_A_ActiveSkillLV);
-
+			wbairitu = 150 * n_A_ActiveSkillLV;
 			// SPL補正
-			wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-
+			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+			// 魔法剣修練補正
+			wbairitu += 15 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_MAHOKEN_SHUREN);
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
-
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			// 攻撃回数
 			if (attackMethodConfArray[0].GetOptionValue(0) >= 1) {
 				wHITsuu = 2;
