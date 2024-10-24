@@ -3417,52 +3417,46 @@ g_bUnknownCasts = true;
 			wActiveHitNum = 2;
 			break;
 
+		// 「アビスチェイサー」スキル「アンラッキーラッシュ」
+		// 2024/10/24 誤差無しを確認（ただしスキルLv1のみ）
 		case SKILL_ID_UNLUCKY_RUSH:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 距離属性
 			n_Enekyori = 0;
-
 			// 基本倍率
-			wbairitu = 2000 + (500 * n_A_ActiveSkillLV);
-
+			wbairitu = 2100 + 600 * n_A_ActiveSkillLV;
 			// POW補正
-			wbairitu += 15 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
+			wbairitu += 17 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
+		// 「アビスチェイサー」スキル「チェーンリアクション」
+		// 2024/10/24 実測値に対して +1 の誤差が生じる場合があります
+		// 計算前後の丸め誤差によるものと判断しています
 		case SKILL_ID_CHAIN_REACTION_SHOT:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-
-			// 弓装備状態のみ発動可能
-			switch (n_A_WeaponType) {
-
-			case ITEM_KIND_BOW:
-
-				// 距離属性
-				n_Enekyori = 1;
-
-				// 基本倍率
-				wbairitu = 2200 + (400 * n_A_ActiveSkillLV);
-
-				// CON補正
-				wbairitu += 14 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
-
-				// ベースレベル補正
-				wbairitu *= n_A_BaseLV / 100;
-				break;
-
-			default:
+			if (![ITEM_KIND_BOW].includes(n_A_WeaponType)) {
 				wbairitu = 0;
 				n_Buki_Muri = 1;
 				break;
 			}
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// 距離属性
+			n_Enekyori = 1;
+			// 基本倍率
+			wbairitu = 2350 + 550 * n_A_ActiveSkillLV;
+			// CON補正
+			wbairitu += 17 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+			// ベースレベル補正
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
 		// 「アビスチェイサー」スキル「デフトスタブ」
@@ -3485,40 +3479,33 @@ g_bUnknownCasts = true;
 			wActiveHitNum = 2
 			break;
 
+		// 「アビスチェイサー」スキル「フレンジショット」
+		// 2024/12/24 誤差無しを確認（ただしスキルLv1のみ）
 		case SKILL_ID_FLANGE_SHOT:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-
-			// 弓装備状態のみ発動可能
-			switch (n_A_WeaponType) {
-
-			case ITEM_KIND_BOW:
-
-				// 距離属性
-				n_Enekyori = 1;
-
-				// 基本倍率
-				wbairitu = 1100 + (100 * n_A_ActiveSkillLV);
-
-				// CON補正
-				wbairitu += 7 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
-
-				// ベースレベル補正
-				wbairitu *= n_A_BaseLV / 100;
-
-				// ヒット数
-				hitCountArray = [];
-				hitCountArray[0] = 1;
-				hitCountArray[1] = ((100 - (5 * n_A_ActiveSkillLV)) * 1 + (5 * n_A_ActiveSkillLV) * 3) / 100;
-				hitCountArray[2] = 3;
-				break;
-
-			default:
+			if (![ITEM_KIND_BOW].includes(n_A_WeaponType)) {
 				wbairitu = 0;
 				n_Buki_Muri = 1;
 				break;
 			}
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// 距離属性
+			n_Enekyori = 1;
+			// 基本倍率
+			wbairitu = 1100 + 100 * n_A_ActiveSkillLV;
+			// CON補正
+			wbairitu += 7 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+			// ベースレベル補正
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			// ヒット数
+			// 通常は 1 hit だが 5 * skillLv の確率で 3 hit になる
+			hitCountArray = [];
+			hitCountArray[0] = 1;
+			hitCountArray[1] = ((100 - (5 * n_A_ActiveSkillLV)) * 1 + (5 * n_A_ActiveSkillLV) * 3) / 100;
+			hitCountArray[2] = 3;
 			break;
 
 		// 「インクイジター」スキル「聖油洗礼」
@@ -9768,28 +9755,19 @@ g_bDefinedDamageIntervals = true;
 			wbairitu *= n_A_BaseLV / 100;
 			break;
 
+		// 「アビスチェイサー」スキル「フロムジアビス」
 		case SKILL_ID_FROM_THE_ABYSS:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-
 			// 詠唱時間等
-			/*
-			// 未実測
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			*/
-
 			// 基本倍率
-			wbairitu = 3500 + (500 * n_A_ActiveSkillLV);
-
+			wbairitu = 1500 + 1500 * n_A_ActiveSkillLV;
 			// SPL補正
-			wbairitu += 20 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-
+			wbairitu += 30 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
 		case SKILL_ID_OMEGA_ABYSS_STRIKE:

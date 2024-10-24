@@ -225,14 +225,12 @@ function AS_Calc(charaData, specData, mobData, attackMethodConfArray, battleCalc
 	// 公式サイトでは「アビス球体攻撃」と表記される
 	//----------------------------------------------------------------
 	skillLv = UsedSkillSearch(SKILL_ID_FROM_THE_ABYSS);
-
 	if ((n_A_ActiveSkill == SKILL_ID_TUZYO_KOGEKI) && (skillLv > 0)) {
-
 		// オートスペルに、フロムジアビスを設定
 		funcAddAS();
 		n_AS_SKILL[idx][0] = SKILL_ID_FROM_THE_ABYSS;
 		n_AS_SKILL[idx][1] = skillLv;
-		n_AS_SKILL[idx][2] = 5 * skillLv * 10;
+		n_AS_SKILL[idx][2] = 10 * skillLv * 10;	// 千分率なので * 10 してる
 		if(wAS_3dan > 0) {
 			// ＡＳ三段掌が設定されている場合は、発動率を補正
 			n_AS_SKILL[idx][2] = n_AS_SKILL[idx][2] * (100 - wAS_3dan) / 100;
@@ -241,9 +239,7 @@ function AS_Calc(charaData, specData, mobData, attackMethodConfArray, battleCalc
 
 		// アビススクエア習得時、習得レベルで発動
 		skillLvSub = UsedSkillSearch(SKILL_ID_ABYSS_SQUARE_LEARNED_LEVEL);
-
 		if (skillLvSub > 0) {
-
 			// オートスペルに、アビススクエアを設定
 			funcAddAS();
 			n_AS_SKILL[idx][0] = SKILL_ID_ABYSS_SQUARE;
