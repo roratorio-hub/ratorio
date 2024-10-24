@@ -28831,6 +28831,8 @@ function StPlusCalc() {
 	}
 
 	// 四次職支援「レリギオ」による効果
+	// 術者側の H.Plus +100 あたり効果量 +2 加算は未実装
+	// SKILL_ID_RERIGIO
 	if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_RERIGIO]) > 0) {
 
 		value = 2 * bufLv;
@@ -28841,6 +28843,8 @@ function StPlusCalc() {
 	}
 
 	// 四次職支援「ベネディクトゥム」による効果
+	// 術者側の H.Plus +100 あたり効果量 +2 加算は未実装
+	// SKILL_ID_BENEDICTUM
 	if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_BENEDICTUM]) > 0) {
 
 		value = 2 * bufLv;
