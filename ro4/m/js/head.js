@@ -1831,17 +1831,21 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 
 			break;
 
+		// 「シャドウチェイサー」スキル「フェイタルメナス」
 		case SKILL_ID_FATAL_MENUS:
-			wActiveHitNum = 1;
-			wbairitu = (n_A_ActiveSkillLV + 1) * 100 * n_A_BaseLV / 100;
-
-			if (n_A_WeaponType == ITEM_KIND_KNIFE) {
-				wbairitu *= 2;
-				wActiveHitNum = 2;
-			}
-
-			wbairitu = ROUNDDOWN(wbairitu);
 			n_Delay[2] = 500;
+			// 基本倍率
+			wbairitu = (n_A_ActiveSkillLV + 1) * 100;
+			// アビスダガー状態補正
+			if (UsedSkillSearch(SKILL_ID_ABYSS_DAGGER_STATE) == 1) {
+				wbairitu *= 1.2;
+			}
+			// BaseLv補正
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			// ヒット数
+			if (n_A_WeaponType == ITEM_KIND_KNIFE) {
+				wHITsuu = 2;
+			}
 			break;
 
 		case SKILL_ID_TRIANGLE_SHOT:
@@ -3387,38 +3391,30 @@ g_bUnknownCasts = true;
 			}
 			break;
 
+		// 「アビスチェイサー」スキル「アビスダガー」
+		// 2024/10/23 提供データとの誤差無し
 		case SKILL_ID_ABYSS_DAGGER:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-
 			// 短剣・片手剣装備状態のみ発動可能
-			switch (n_A_WeaponType) {
-
-			case ITEM_KIND_KNIFE:
-			case ITEM_KIND_SWORD:
-
-				// 距離属性
-				n_Enekyori = 0;
-
-				// 基本倍率
-				wbairitu = 1400 + (200 * n_A_ActiveSkillLV);
-
-				// POW補正
-				wbairitu += 8 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
-				// ベースレベル補正
-				wbairitu *= n_A_BaseLV / 100;
-
-				// ヒット数
-				wHITsuu = 2;
-				break;
-
-			default:
+			if (![ITEM_KIND_KNIFE, ITEM_KIND_SWORD].includes(n_A_WeaponType)) {
 				wbairitu = 0;
 				n_Buki_Muri = 1;
 				break;
 			}
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// 距離属性
+			n_Enekyori = 0;
+			// 基本倍率
+			wbairitu = 3150 + 750 * n_A_ActiveSkillLV;
+			// POW補正
+			wbairitu += 23 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+			// ベースレベル補正
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			// 分割ヒット数
+			wActiveHitNum = 2;
 			break;
 
 		case SKILL_ID_UNLUCKY_RUSH:
@@ -3469,22 +3465,24 @@ g_bUnknownCasts = true;
 			}
 			break;
 
+		// 「アビスチェイサー」スキル「デフトスタブ」
+		// 2024/10/23 提供データとの誤差無し
 		case SKILL_ID_DEFT_STAB:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 距離属性
 			n_Enekyori = 0;
-
 			// 基本倍率
-			wbairitu = 1000 + (200 * n_A_ActiveSkillLV);
-
+			wbairitu = 3400 + 350 * n_A_ActiveSkillLV;
 			// POW補正
-			wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
+			wbairitu += 23 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			// 分割ヒット
+			wActiveHitNum = 2
 			break;
 
 		case SKILL_ID_FLANGE_SHOT:
@@ -25300,8 +25298,6 @@ function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, 
 			w1 += 20 * LearnedSkillSearch(SKILL_ID_DRAGON_HOWLING) * itemCount;
 		}
 	}
-
-
 
 	//----------------------------------------------------------------
 	// 「追撃者のリング」の、「フェイタルメナス」強化

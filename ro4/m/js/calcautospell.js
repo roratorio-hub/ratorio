@@ -312,18 +312,6 @@ function AS_Calc(charaData, specData, mobData, attackMethodConfArray, battleCalc
 
 
 	//----------------------------------------------------------------
-	// デフトスタブ時の、デフトスタブ追撃効果
-	//----------------------------------------------------------------
-	if (n_A_ActiveSkill == SKILL_ID_DEFT_STAB) {
-		funcAddAS();
-		n_AS_SKILL[idx][0] = SKILL_ID_DEFT_STAB;
-		n_AS_SKILL[idx][1] = n_A_ActiveSkillLV;
-		n_AS_SKILL[idx][2] = 5 * n_A_ActiveSkillLV * 10;
-		n_AS_SKILL[idx][3] = 0;
-	}
-
-
-	//----------------------------------------------------------------
 	// 通常攻撃時の、ウォーグストライク追撃効果
 	// 通常攻撃時の、ブリッツビート追撃効果
 	// （※二者択一。どちらかしか発動させられない）
