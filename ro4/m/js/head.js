@@ -4362,13 +4362,14 @@ g_bUnknownCasts = true;
 			if (UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0 || UsedSkillSearch(SKILL_ID_NYANTOMO_TEKKO) > 0) {
 				// 基礎倍率
 				wbairitu = 3000 + (500 * n_A_ActiveSkillLV);
+				wbairitu += 150 * UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY);
 			} else {
 				// 基礎倍率
-				wbairitu = 3050 + (350 * n_A_ActiveSkillLV);
+				wbairitu = 2050 + (350 * n_A_ActiveSkillLV);
+				wbairitu += 100 * UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY);
 				// クリティカル無し
 				bCri = false;
 			}
-
 			// POW補正
 			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 
@@ -10402,17 +10403,18 @@ g_bDefinedDamageIntervals = true;
 				wbairitu = 5200 + (800 * n_A_ActiveSkillLV);
 				// スピリットマスタリー補正
 				wbairitu += 250 * UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY);
+				// SPL補正
+				wbairitu += 30 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			} else {
 				// 基礎倍率
 				wbairitu = 2400 + (300 * n_A_ActiveSkillLV);
 				// スピリットマスタリー補正
 				wbairitu += 125 * UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY);
+				// SPL補正
+				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			}
-			// SPL補正
-			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
-			wbairitu = ROUNDDOWN(wbairitu);
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
 		/*
