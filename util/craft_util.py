@@ -232,7 +232,10 @@ def buildCapabilityRecord(capability):
         at_baselv = AT_BASE_LV_CODE[capability['at_lv']]
 
     # 能力値取得
-    value = int(capability['value']) if 'value' in capability else None
+    try:
+        value = int(capability['value']) if 'value' in capability else None
+    except:
+        print(f"エラー箇所：{capability}")
     if 'skill' in capability:
         skill_code = SKILL_CODE.get(capability['skill'])
         # スキル習得時に発動する効果の場合
