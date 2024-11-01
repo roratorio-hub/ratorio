@@ -5480,6 +5480,7 @@ g_bUnknownCasts = true;
 					UsedSkillSearch(SKILL_ID_INSPIRATION)
 					|| TimeItemNumSearch(TIME_ITEM_ID_ZETSUBONO_KAMI_MOROCC_CARD)
 					|| TimeItemNumSearch(TIME_ITEM_ID_DEMI_FREYA)
+					|| TimeItemNumSearch(TIME_ITEM_ID_MAKENSHI_SAKRAY_CARD)
 					){
 					if(UsedSkillSearch(SKILL_ID_COUNT_OF_RG_FOR_BANDING) == 0) w = 3;
 				}
@@ -21484,6 +21485,7 @@ function SET_ZOKUSEI(mobData, attackMethodConfArray) {
 				UsedSkillSearch(SKILL_ID_INSPIRATION)
 				|| TimeItemNumSearch(TIME_ITEM_ID_ZETSUBONO_KAMI_MOROCC_CARD)
 				|| TimeItemNumSearch(TIME_ITEM_ID_DEMI_FREYA)
+				|| TimeItemNumSearch(TIME_ITEM_ID_MAKENSHI_SAKRAY_CARD)
 				) {
 				n_A_Weapon_zokusei = ELM_ID_HOLY;
 			}
