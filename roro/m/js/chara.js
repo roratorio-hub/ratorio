@@ -3439,6 +3439,7 @@ function GetStatusModifyAtkPlus() {
 	else if (
 		TimeItemNumSearch(TIME_ITEM_ID_ZETSUBONO_KAMI_MOROCC_CARD)
 		|| TimeItemNumSearch(TIME_ITEM_ID_DEMI_FREYA)
+		|| TimeItemNumSearch(TIME_ITEM_ID_MAKENSHI_SAKRAY_CARD)
 		) {
 		val += 40 * 1 + 3 * n_A_JobLV;
 	}
@@ -11822,6 +11823,7 @@ function GetStatusModifyHitPlus() {
 	else if (
 		TimeItemNumSearch(TIME_ITEM_ID_ZETSUBONO_KAMI_MOROCC_CARD)
 		|| TimeItemNumSearch(TIME_ITEM_ID_DEMI_FREYA)
+		|| TimeItemNumSearch(TIME_ITEM_ID_MAKENSHI_SAKRAY_CARD)
 		) {
 		val += 5 * 1 + Math.floor(n_A_JobLV / 2);
 	}
