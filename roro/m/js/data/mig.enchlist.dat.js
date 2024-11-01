@@ -977,7 +977,29 @@
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5323] = [703];	// ヘイトレッドダークネス
 	g_constDataManager.enchListDataManager.sourceArray[704] = [704,-1,0,0,[["スペシャルエンチャント（オーブ）","スペシャルエンチャント（オーブ）"]],[],[[[174,[50,[5324]]],,[[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[3232,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,8],[60,4]],,[[[186,[51,[1655,1656,1657,1658,1659,1660,1661,1662,1663,]]],,[]]]]]],[[178,[27,[2]]],,[[[187,[59,9],[60,4]],,[[[186,[51,[1247,1625,1179,2043,]]],,[]]]]]],]]],[]];
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5324] = [704];	// ティルナノーグ
-
+	// --- 2024/10/30 ---
+	g_constDataManager.enchListDataManager.sourceArray[705] = [705,-1,0,0,[["ポエニテンティア武器","ポエニテンティア武器"]],[],[[[174,[50,[5325,5327,5329,5331,5333,5335,5337,5339,5341,5343,5345,5347,5349,5351,5353,5355,5357,5359,5361]]],,[[[178,[27,[4]]],,[[[187,[59,8],[60,4]],,[[[186,[51,[665,670,675,680,685,689,659,661,662,599,660,663,2211,2212,2213,2214,2215,2216,2217,2218,1975,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,9],[60,4]],,[[[186,[51,[665,670,675,680,685,689,659,661,662,599,660,663,3238,3242,3246,3250,3254,3258,3262,3266,3270,3274,3278,3282,3286,3290,3294,3298,3302,3306,]]],,[]]]]]],[[178,[27,[2]]],,[[[187,[59,10],[60,4]],,[[[186,[51,[665,670,675,680,685,689,659,661,662,599,660,663,1859,1860,1861,1862,1863,1864,1297,888,1303,1348,1245,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.sourceArray[706] = [706,-1,0,0,[["ポエニテンティア武器(超越)","ポエニテンティア武器(超越)"]],[],[[[174,[50,[5325,5327,5329,5331,5333,5335,5337,5339,5341,5343,5345,5347,5349,5351,5353,5355,5357,5359,5361]]],,[[[178,[27,[4]]],,[[[187,[59,9],[60,4]],,[[[186,[51,[3240,3244,3248,3252,3256,3260,3264,3268,3272,3276,3280,3284,3288,3292,3296,3300,3304,3308,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5325] = [705,706];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5327] = [705,706];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5329] = [705,706];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5331] = [705,706];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5333] = [705,706];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5335] = [705,706];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5337] = [705,706];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5339] = [705,706];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5341] = [705,706];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5343] = [705,706];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5345] = [705,706];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5347] = [705,706];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5349] = [705,706];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5351] = [705,706];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5353] = [705,706];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5355] = [705,706];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5357] = [705,706];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5359] = [705,706];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5361] = [705,706];
+	
 	// enchant はセーブデータに書き出されないので
 	// 現実的な範囲において enchantID の上限値を気にする必要はありません
 

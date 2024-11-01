@@ -1555,6 +1555,7 @@ function StAllCalc(){
 	if (UsedSkillSearch(SKILL_ID_INSPIRATION)
 		|| TimeItemNumSearch(TIME_ITEM_ID_ZETSUBONO_KAMI_MOROCC_CARD)
 		|| TimeItemNumSearch(TIME_ITEM_ID_DEMI_FREYA)
+		|| TimeItemNumSearch(TIME_ITEM_ID_MAKENSHI_SAKRAY_CARD)
 		) {
 		vitForCalc -= ROUNDDOWN(n_A_BaseLV / 10 + n_A_JobLV / 5);
 	}
@@ -1635,6 +1636,7 @@ function StAllCalc(){
 	else if (
 		TimeItemNumSearch(TIME_ITEM_ID_ZETSUBONO_KAMI_MOROCC_CARD)
 		|| TimeItemNumSearch(TIME_ITEM_ID_DEMI_FREYA)
+		|| TimeItemNumSearch(TIME_ITEM_ID_MAKENSHI_SAKRAY_CARD)
 		) {
 
 		// インスピレーションの効果が無い状態で、インスピレーションによる上昇量を算出
@@ -28453,7 +28455,8 @@ function StPlusCalc() {
 
 	if (UsedSkillSearch(SKILL_ID_INSPIRATION)
 		|| TimeItemNumSearch(TIME_ITEM_ID_ZETSUBONO_KAMI_MOROCC_CARD)
-		||TimeItemNumSearch(TIME_ITEM_ID_DEMI_FREYA)
+		|| TimeItemNumSearch(TIME_ITEM_ID_DEMI_FREYA)
+		|| TimeItemNumSearch(TIME_ITEM_ID_MAKENSHI_SAKRAY_CARD)
 		) {
 		var w = ROUNDDOWN(n_A_BaseLV / 10 + n_A_JobLV / 5);
 		wSPC_STR += w;
