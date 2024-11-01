@@ -11,6 +11,7 @@ CGlobalConstManager.DefineEnum(
 	[
 		"JOB_ID_NOVICE",
 
+		// １次職
 		"JOB_ID_SWORDMAN",	//  1
 		"JOB_ID_THIEF",
 		"JOB_ID_ACOLYTE",
@@ -18,6 +19,7 @@ CGlobalConstManager.DefineEnum(
 		"JOB_ID_MAGICIAN",
 		"JOB_ID_MARCHANT",	//  6
 
+		// ２次職
 		"JOB_ID_KNIGHT",	//  7
 		"JOB_ID_ASSASIN",
 		"JOB_ID_PRIEST",
@@ -34,6 +36,7 @@ CGlobalConstManager.DefineEnum(
 
 		"JOB_ID_SUPERNOVICE",	// 20
 
+		// 転生２次職
 		"JOB_ID_LORDKNIGHT",	// 21
 		"JOB_ID_ASSASINCROSS",
 		"JOB_ID_HIGHPRIEST",
@@ -50,6 +53,7 @@ CGlobalConstManager.DefineEnum(
 
 		"JOB_ID_HI_NOVICE",	// 34
 
+		// 転生１次職
 		"JOB_ID_HI_SWORDMAN",	// 35
 		"JOB_ID_HI_THIEF",
 		"JOB_ID_HI_ACOLYTE",
@@ -57,38 +61,38 @@ CGlobalConstManager.DefineEnum(
 		"JOB_ID_HI_MAGICIAN",
 		"JOB_ID_HI_MARCHANT",	// 40
 
+		// 特殊２次職相当
 		"JOB_ID_TAEGWON",	// 41
 		"JOB_ID_STARGRADIATOR",
 		"JOB_ID_SOULLINKER",
 		"JOB_ID_NINJA",
 		"JOB_ID_GUNSLINGER",	// 45
 
+		// ３次職
 		"JOB_ID_RUNEKNIGHT",	// 46
-		"JOB_ID_GILOTINCROSS",
-		"JOB_ID_ARCBISHOP",
-		"JOB_ID_RANGER",
-		"JOB_ID_WARLOCK",	// 50
-		"JOB_ID_MECHANIC",
-		"JOB_ID_ROYALGUARD",
-		"JOB_ID_SHADOWCHASER",
-		"JOB_ID_SHURA",
-		"JOB_ID_MINSTREL",	// 55
-		"JOB_ID_WANDERER",
-		"JOB_ID_SORCERER",
-		"JOB_ID_GENETIC",	// 58
+		"JOB_ID_GILOTINCROSS",	// 47
+		"JOB_ID_ARCBISHOP",		// 48
+		"JOB_ID_RANGER",		// 49
+		"JOB_ID_WARLOCK",		// 50
+		"JOB_ID_MECHANIC",		// 51
+		"JOB_ID_ROYALGUARD",	// 52
+		"JOB_ID_SHADOWCHASER",	// 53
+		"JOB_ID_SHURA",			// 54
+		"JOB_ID_MINSTREL",		// 55
+		"JOB_ID_WANDERER",		// 56
+		"JOB_ID_SORCERER",		// 57
+		"JOB_ID_GENETIC",		// 58
 
-		"JOB_ID_KAGERO",	// 59
-		"JOB_ID_OBORO",	// 60
-
+		// 特殊３次職相当
+		"JOB_ID_KAGERO",			// 59
+		"JOB_ID_OBORO",				// 60
 		"JOB_ID_SUPERNOVICE_PLUS",	// 61
+		"JOB_ID_REBELLION",			// 62
+		"JOB_ID_SUMMONER",			// 63
+		"JOB_ID_STAR_EMPEROR",		// 64
+		"JOB_ID_SOUL_REAPER",		// 65
 
-		"JOB_ID_REBELLION",	// 62
-
-		"JOB_ID_SUMMONER",	// 63
-
-		"JOB_ID_STAR_EMPEROR",	// 64
-		"JOB_ID_SOUL_REAPER",	// 65
-
+		// ４次職
 		"JOB_ID_DRAGON_KNIGHT", 	// 66
 		"JOB_ID_SHADOW_CROSS",  	// 67
 		"JOB_ID_CARDINAL",  		// 68
