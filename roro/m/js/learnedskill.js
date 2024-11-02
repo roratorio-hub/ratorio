@@ -150,6 +150,7 @@ function OnClickSkillSWLearned(){
 		return;
 	}
 
+	// 公式スキルツリーから出力されたURLを読み込む機能 
 	$(objTbody).append(`
 		<tr><td colspan="6" style="padding: 3px">
 			<div style="display:flex">
@@ -169,16 +170,20 @@ function OnClickSkillSWLearned(){
 		let	url = location.href;
 		try{
 			url = new URL($("#ID_SKILL_LEARNED_URL").val()||location.href);
-			$("#ID_SKILL_LEARNED select").each(function(idx,elm) {
-				const id_skill_name = $(elm).attr("id").replace("SELECT","TD").replace("LEVEL","NAME");
-				const skill_name = $("#"+id_skill_name).text();
-				const skill = SkillObjNew.filter((d) => d[SKILL_DATA_INDEX_NAME].replace(/\([^)]*\)/g, "").replace(/\<[^>]*\>/g, "")==skill_name)[0];
-				var skill_level = 0
-				if (skill) {
-					skill_level = url.searchParams.get(skill[SKILL_DATA_INDEX_REFID])||0;
-				}
-				$(this).val(skill_level).change();
-			});
+			showLoadingIndicator();
+			setTimeout(() => {
+				$("#ID_SKILL_LEARNED select").each(function(idx,elm) {
+					const id_skill_name = $(elm).attr("id").replace("SELECT","TD").replace("LEVEL","NAME");
+					const skill_name = $("#"+id_skill_name).text();
+					const skill = SkillObjNew.filter((d) => d[SKILL_DATA_INDEX_NAME].replace(/\([^)]*\)/g, "").replace(/\<[^>]*\>/g, "")==skill_name)[0];
+					var skill_level = 0
+					if (skill) {
+						skill_level = url.searchParams.get(skill[SKILL_DATA_INDEX_REFID])||0;
+					}
+					$(this).val(skill_level).change();
+				});
+				hideLoadingIndicator();
+			},0); // ローディングインジケータ表示のために 0 ms後の非同期処理に送る
 		} catch(e) {}
 	});
 
