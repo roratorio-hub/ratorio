@@ -308,7 +308,7 @@
 									<input id="OBJID_INPUT_SAVE_NAME_MIG" type="textbox" size="24" placeholder="名前入力可能（40文字まで）">
 									<button id="OBJID_BUTTON_IMAGE_SAVE_DATA_MIG" type="button">画像保存</button>
 
-									<button id="OBJID_BUTTON_LOAD_SAVE_DATA_MIG" type="button" onclick="OnClickLoadSaveData() | LoadSelect2()">ロード</button>
+									<button id="OBJID_BUTTON_LOAD_SAVE_DATA_MIG" type="button" onclick="OnClickLoadSaveData()">ロード</button>
 									<button id="OBJID_BUTTON_SAVE_SAVE_DATA_MIG" type="button" onclick="OnClickSaveSaveData()">セーブ</button>
 									<button id="OBJID_BUTTON_DELETE_SAVE_DATA_MIG" type="button" onclick="OnClickDeleteSaveData()">削除</button>
 
@@ -316,7 +316,7 @@
 									<input id="OBJID_INPUT_URL_OUT_MIG" type="textbox" size="24">
 									<button id="OBJID_BUTTON_COPY_URL_OUT_MIG" type="button" onclick="HtmlCopyToClipboardById('OBJID_INPUT_URL_OUT_MIG')">コピー</button>
 
-									<button id="OBJID_BUTTON_URL_IN_MIG" type="button" onclick="OnClickUrlInMIG() | LoadSelect2()">URL入力</button>
+									<button id="OBJID_BUTTON_URL_IN_MIG" type="button" onclick="OnClickUrlInMIG()">URL入力</button>
 									<input id="OBJID_INPUT_URL_IN_MIG" type="textbox" size="24">
 									<button id="OBJID_BUTTON_CLEAR_URL_IN_MIG" type="button" onclick="HtmlSetObjectValueById('OBJID_INPUT_URL_IN_MIG', '')">クリア</button>
 								</div>
@@ -531,7 +531,7 @@
 											</p>
 											<hr>
 											<div>
-												<input type="button" onclick="UpgradeJobTo4th() | LoadSelect2()" value="四次職へ変更">
+												<input type="button" onclick="UpgradeJobTo4th()" value="四次職へ変更">
 												<span id="OBJID_SPAN_UPGRADE_JOB_STATUS" style="margin-left: 2em;"></span>
 											</div>
 										</div>
@@ -693,7 +693,7 @@
 									<tr>
 										<td ColSpan="3" Bgcolor="#DDDDFF">武器＆防具/カード</td>
 										<td ColSpan="10" Bgcolor="#DDDDFF">
-											<input type="button" id="OBJID_SLOT_MODE_BUTTON" value="入力欄切替" onclick="OnClickSlotModeButton() | LoadSelect2()">
+											<input type="button" id="OBJID_SLOT_MODE_BUTTON" value="入力欄切替" onclick="OnClickSlotModeButton()">
 											カードの入力とランダムオプションの入力を切り替えます
 										</td>
 									</tr>

@@ -2777,134 +2777,108 @@ function UpgradeJobTo4th() {
 	var dataURL = "";
 
 	var funcModifySaveData = function (saveDataArrayF) {
-
 		// 職業ID、ベースレベル、ジョブレベル修正
 		saveDataArrayF[1] = jobId4th;
 		saveDataArrayF[2] = GetBaseLevelMin(jobId4th);
 		saveDataArrayF[3] = 1;
-
 		// 自動レベル調整は強制OFF
 		saveDataArrayF[11] = 0;
-
 		return saveDataArrayF;
 	};
 
-
-
 	switch (n_A_JOB) {
-
-	case JOB_ID_RUNEKNIGHT:
-		jobId4th = MIG_JOB_ID_DRAGON_KNIGHT;
-		break;
-
-	case JOB_ID_GILOTINCROSS:
-		jobId4th = MIG_JOB_ID_SHADOW_CROSS;
-		break;
-
-	case JOB_ID_ARCBISHOP:
-		jobId4th = MIG_JOB_ID_CARDINAL;
-		break;
-
-	case JOB_ID_RANGER:
-		jobId4th = MIG_JOB_ID_WIND_HAWK;
-		break;
-
-	case JOB_ID_WARLOCK:
-		jobId4th = MIG_JOB_ID_ARCH_MAGE;
-		break;
-
-	case JOB_ID_MECHANIC:
-		jobId4th = MIG_JOB_ID_MEISTER;
-		break;
-
-	case JOB_ID_ROYALGUARD:
-		jobId4th = MIG_JOB_ID_IMPERIAL_GUARD;
-		break;
-
-	case JOB_ID_SHADOWCHASER:
-		jobId4th = MIG_JOB_ID_ABYSS_CHASER;
-		break;
-
-	case JOB_ID_SHURA:
-		jobId4th = MIG_JOB_ID_INQUISITOR;
-		break;
-
-	case JOB_ID_MINSTREL:
-		jobId4th = MIG_JOB_ID_TROUBADOUR;
-		break;
-
-	case JOB_ID_WANDERER:
-		jobId4th = MIG_JOB_ID_TROUVERE;
-		break;
-
-	case JOB_ID_SORCERER:
-		jobId4th = MIG_JOB_ID_ELEMENTAL_MASTER;
-		break;
-
-	case JOB_ID_GENETIC:
-		jobId4th = MIG_JOB_ID_BIOLO;
-		break;
-
-	case JOB_ID_STAR_EMPEROR:
-		jobId4th = MIG_JOB_ID_SKY_EMPEROR;
-		break;
-
-	case JOB_ID_SOUL_REAPER:
-		jobId4th = MIG_JOB_ID_SOUL_ASCETIC;
-		break;
-
-	case MIG_JOB_ID_KAGERO:
-		jobId4th = MIG_JOB_ID_SHINKIROU;
-		break;
-
-	case MIG_JOB_ID_OBORO:
-		jobId4th = MIG_JOB_ID_SHIRANUI;
-		break;
-
-	case MIG_JOB_ID_REBELLION:
-		jobId4th = MIG_JOB_ID_NIGHT_WATCH;
-		break;
-
-	case MIG_JOB_ID_SUPERNOVICE_PLUS:
-		jobId4th = MIG_JOB_ID_HYPER_NOVICE;
-		break;
-
-	case MIG_JOB_ID_SUMMONER:
-		jobId4th = MIG_JOB_ID_SPIRIT_HANDLER;
-		break;
-			
-	default:
-		msg = "変更対象外の職業です。";
-		alert(msg);
-
-		return;
+		case JOB_ID_RUNEKNIGHT:
+			jobId4th = MIG_JOB_ID_DRAGON_KNIGHT;
+			break;
+		case JOB_ID_GILOTINCROSS:
+			jobId4th = MIG_JOB_ID_SHADOW_CROSS;
+			break;
+		case JOB_ID_ARCBISHOP:
+			jobId4th = MIG_JOB_ID_CARDINAL;
+			break;
+		case JOB_ID_RANGER:
+			jobId4th = MIG_JOB_ID_WIND_HAWK;
+			break;
+		case JOB_ID_WARLOCK:
+			jobId4th = MIG_JOB_ID_ARCH_MAGE;
+			break;
+		case JOB_ID_MECHANIC:
+			jobId4th = MIG_JOB_ID_MEISTER;
+			break;
+		case JOB_ID_ROYALGUARD:
+			jobId4th = MIG_JOB_ID_IMPERIAL_GUARD;
+			break;
+		case JOB_ID_SHADOWCHASER:
+			jobId4th = MIG_JOB_ID_ABYSS_CHASER;
+			break;
+		case JOB_ID_SHURA:
+			jobId4th = MIG_JOB_ID_INQUISITOR;
+			break;
+		case JOB_ID_MINSTREL:
+			jobId4th = MIG_JOB_ID_TROUBADOUR;
+			break;
+		case JOB_ID_WANDERER:
+			jobId4th = MIG_JOB_ID_TROUVERE;
+			break;
+		case JOB_ID_SORCERER:
+			jobId4th = MIG_JOB_ID_ELEMENTAL_MASTER;
+			break;
+		case JOB_ID_GENETIC:
+			jobId4th = MIG_JOB_ID_BIOLO;
+			break;
+		case JOB_ID_STAR_EMPEROR:
+			jobId4th = MIG_JOB_ID_SKY_EMPEROR;
+			break;
+		case JOB_ID_SOUL_REAPER:
+			jobId4th = MIG_JOB_ID_SOUL_ASCETIC;
+			break;
+		case MIG_JOB_ID_KAGERO:
+			jobId4th = MIG_JOB_ID_SHINKIROU;
+			break;
+		case MIG_JOB_ID_OBORO:
+			jobId4th = MIG_JOB_ID_SHIRANUI;
+			break;
+		case MIG_JOB_ID_REBELLION:
+			jobId4th = MIG_JOB_ID_NIGHT_WATCH;
+			break;
+		case MIG_JOB_ID_SUPERNOVICE_PLUS:
+			jobId4th = MIG_JOB_ID_HYPER_NOVICE;
+			break;
+		case MIG_JOB_ID_SUMMONER:
+			jobId4th = MIG_JOB_ID_SPIRIT_HANDLER;
+			break;
+		default:
+			msg = "変更対象外の職業です。";
+			alert(msg);
+			return;
 	}
-
-
 
 	// 養子不可
 	if (n_A_PassSkill8[13]) {
 		msg = "養子キャラのデータは対象外です。";
 		alert(msg);
-
 		return;
 	}
 
+	// インジケーター表示
+	showLoadingIndicator();
+	setTimeout(() => {
+		// URL出力の中身を実行＆データ加工
+		// 再計算
+		calc();
+		// TODO: 暫定対処　旧形式の保存処理呼び出し
+		dataURL = SaveSystem(funcModifySaveData);
+		// URL入力を実行
+		CSaveController.loadFromURL(dataURL);
+		// 検索可能リスト更新
+		LoadSelect2();
+		// インジケーター非表示
+		hideLoadingIndicator();
+		setTimeout(() => {
+			// レンダリング完了後にメッセージ表示
+			msg = "四次職への変更が完了しました。";
+			alert(msg);
+		}, 0);
+	}, 0);
 
-
-	// URL出力の中身を実行＆データ加工
-
-	// 再計算
-	calc();
-
-	// TODO: 暫定対処　旧形式の保存処理呼び出し
-	dataURL = SaveSystem(funcModifySaveData);
-
-	// URL入力を実行
-	CSaveController.loadFromURL(dataURL);
-
-
-	// 完了メッセージ
-	msg = "四次職への変更が完了しました。";
-	alert(msg);
 }
