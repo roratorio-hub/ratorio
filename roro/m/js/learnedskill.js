@@ -150,7 +150,37 @@ function OnClickSkillSWLearned(){
 		return;
 	}
 
-
+	$(objTbody).append(`
+		<tr><td colspan="6" style="padding: 3px">
+			<div style="display:flex">
+				<div style="width:100px;margin:0 0.5em"><button type="button" id="ID_SKILL_LEARNED_LOAD" style="width:100%">URL入力</button></div>
+				<div style="width:100%"><input type="text" style="width:100%;height:100%" id="ID_SKILL_LEARNED_URL"></div>
+				<div style="width:100px;margin:0 0.5em"><button type="button" id="ID_SKILL_LEARNED_URL_CLEAR" style="width:100%" >クリア</button></div>
+			</div>
+		</td></tr>
+	`);
+	$(document).off("click","#ID_SKILL_LEARNED_URL_CLEAR");
+	$(document).on("click","#ID_SKILL_LEARNED_URL_CLEAR", (e)=>{
+		$("#ID_SKILL_LEARNED_URL").val("");
+		$("#ID_SKILL_LEARNED_LOAD").click();
+	});
+	$(document).off("click","#ID_SKILL_LEARNED_LOAD");
+	$(document).on("click","#ID_SKILL_LEARNED_LOAD", (e)=>{
+		let	url = location.href;
+		try{
+			url = new URL($("#ID_SKILL_LEARNED_URL").val()||location.href);
+			$("#ID_SKILL_LEARNED select").each(function(idx,elm) {
+				const id_skill_name = $(elm).attr("id").replace("SELECT","TD").replace("LEVEL","NAME");
+				const skill_name = $("#"+id_skill_name).text();
+				const skill = SkillObjNew.filter((d) => d[SKILL_DATA_INDEX_NAME].replace(/\([^)]*\)/g, "").replace(/\<[^>]*\>/g, "")==skill_name)[0];
+				var skill_level = 0
+				if (skill) {
+					skill_level = url.searchParams.get(skill[SKILL_DATA_INDEX_REFID])||0;
+				}
+				$(this).val(skill_level).change();
+			});
+		} catch(e) {}
+	});
 
 	// 設定欄内のスキルテーブルを構築
 	var learnSkillIdArray = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, n_A_JOB).GetLearnSkillIdArray();

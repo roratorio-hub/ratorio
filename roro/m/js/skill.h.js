@@ -8,6 +8,7 @@ CGlobalConstManager.DefineEnum(
 		"SKILL_DATA_INDEX_ID",
 		"SKILL_DATA_INDEX_MAXLV",
 		"SKILL_DATA_INDEX_NAME",
+		"SKILL_DATA_INDEX_REFID",
 	],
 	0,
 	1
