@@ -3230,7 +3230,7 @@ CSkillDataMaker.OverrideData = function () {
 	skillData = [
 		skillId,
 		CSkillDataMaker.SkillMaxLevel(5),
-		CSkillDataMaker.SkillName("猛虎硬派山"),
+		CSkillDataMaker.SkillName("猛虎硬爬山"),
 	];
 	SkillObjNew[skillId] = skillData;
 	skillId++;
@@ -6088,7 +6088,7 @@ else {
 	skillData = [
 		skillId,
 		CSkillDataMaker.SkillMaxLevel(1),
-		CSkillDataMaker.SkillName("FAW解除"),
+		CSkillDataMaker.SkillName("FAW 解体"),
 	];
 	SkillObjNew[skillId] = skillData;
 	skillId++;

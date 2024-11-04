@@ -120,6 +120,9 @@ function OnClickSlotModeButton() {
 		// モードのフラグを更新
 		SetStatefullData("DATA_OBJID_SLOT_MODE_BUTTON", 0);
 	}
+
+	// 検索可能リスト更新
+	LoadSelect2();
 }
 
 
@@ -589,7 +592,7 @@ function __RebuildSlotAsCardShort(eqpRgnId, objidPrifix) {
 	// カード選択セレクトボックス
 	objSelect = HtmlCreateElement("select", objTd);
 	HtmlSetAttribute(objSelect, "id", objidPrifix + "_CARD_SHORT");
-	HtmlSetAttribute(objSelect, "onChange", strOnChange + "| AutoCalc() | LoadSelect2()");
+	HtmlSetAttribute(objSelect, "onChange", strOnChange + "| AutoCalc()");
 	if (bVisible) {
 		objSelect.removeAttribute("disabled");
 		objSelect.setAttribute("style", "visibility : visible");
