@@ -128,7 +128,7 @@ function OnClickQuickControlSW(){
 	objInput = document.createElement("input");
 	objInput.setAttribute("type", "button");
 	objInput.setAttribute("value", "適用");
-	objInput.setAttribute("onClick", "OnClickQuickControlSetItemPack() | LoadSelect2()");
+	objInput.setAttribute("onClick", "OnClickQuickControlSetItemPack()");
 	objTd.appendChild(objInput);
 
 	objTr = document.createElement("tr");
@@ -294,7 +294,10 @@ function OnInputQuickControlItemPack() {
 }
 
 
-
+/**
+ * 職パッケなどの装備セットを入力する便利機能
+ * @returns 
+ */
 function OnClickQuickControlSetItemPack() {
 
 	var idx = 0;
@@ -305,13 +308,8 @@ function OnClickQuickControlSetItemPack() {
 	var itemId = 0;
 	var itemRefine = 0;
 
-
-
-
 	// 職業情報の更新
 	InitJobInfo();
-
-
 
 	// 選択されたアイテムパックの ID を取得
 	itemPackId = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_QUICK_CONTROL_ITEMPACK", 0);
@@ -372,6 +370,9 @@ function OnClickQuickControlSetItemPack() {
 
 	// ステータス再計算
 	StAllCalc();
+
+	// 検索可能リスト更新
+	LoadSelect2();
 }
 
 function OnClickQuickControlSetItemPackSubForItem(itemId, itemRefine) {
