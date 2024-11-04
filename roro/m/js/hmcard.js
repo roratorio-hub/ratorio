@@ -1472,8 +1472,6 @@ function ApplyCardShort(eqpRgnId, objidPrifix) {
 	var objSelect = null;
 	var objOption = null;
 
-
-
 	// 変更後のカードショートカットのインデックスを取得
 	cardSCIdx = HtmlGetObjectValueById(objidPrifix + "_CARD_SHORT", 0);
 
@@ -1526,4 +1524,7 @@ function ApplyCardShort(eqpRgnId, objidPrifix) {
 
 	// 攻撃手段の更新
 	CAttackMethodAreaComponentManager.RebuildControls();
+
+	// 検索可能リスト更新
+	LoadSelect2();
 }

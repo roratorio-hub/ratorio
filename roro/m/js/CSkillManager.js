@@ -8428,7 +8428,7 @@ function CSkillManager() {
 		skillId++;
 
 		// ----------------------------------------------------------------
-		// 猛虎硬派山
+		// 猛虎硬爬山
 		// ----------------------------------------------------------------
 		SKILL_ID_MOKOKOHAZAN = skillId;
 		skillData = new function() {
@@ -8436,7 +8436,7 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "猛虎硬派山";
+			this.name = "猛虎硬爬山";
 			this.kana = "モウココウハサン";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -16699,7 +16699,7 @@ function CSkillManager() {
 		skillId++;
 
 		// ----------------------------------------------------------------
-		// FAW解除
+		// FAW 解体
 		// ----------------------------------------------------------------
 		SKILL_ID_FAW_KAIZYO = skillId;
 		skillData = new function() {
@@ -16707,8 +16707,8 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "FAW解除";
-			this.kana = "エフエエタフリユウカイシヨ";
+			this.name = "FAW解体";
+			this.kana = "エフエエタフリユウカイタイ";
 			this.maxLv = 1;
 			this.type = CSkillData.TYPE_ACTIVE;
 			this.range = CSkillData.RANGE_SHORT;

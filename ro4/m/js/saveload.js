@@ -27,22 +27,26 @@ function OnClickSaveSaveData () {
  * ロードボタン押下イベントハンドラ.
  */
 function OnClickLoadSaveData () {
-
-	// 必要情報の取得
-	const dataIndex = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_SAVE_DATA_MIG", 0);
-
-	// データをロード
-	const charaName = CSaveController.loadCharaData(dataIndex);
-	if (charaName.length == 0) {
-		alert("データがありません。");
-		return;
-	}
-
-	// 名前入力欄へ適用
-	HtmlSetObjectValueById("OBJID_INPUT_SAVE_NAME_MIG", charaName);
-
-	// アイテム情報の構築
-	CItemInfoManager.OnClickExtractSwitch();
+	// インジケーター表示
+	showLoadingIndicator();
+	setTimeout(() => {
+		// 必要情報の取得
+		const dataIndex = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_SAVE_DATA_MIG", 0);
+		// データをロード
+		const charaName = CSaveController.loadCharaData(dataIndex);
+		if (charaName.length == 0) {
+			alert("データがありません。");
+			return;
+		}
+		// 名前入力欄へ適用
+		HtmlSetObjectValueById("OBJID_INPUT_SAVE_NAME_MIG", charaName);
+		// アイテム情報の構築
+		CItemInfoManager.OnClickExtractSwitch();
+		// 検索可能リスト更新
+		LoadSelect2();
+		// インジケーター非表示
+		hideLoadingIndicator();
+	},0);
 }
 
 /**
@@ -93,25 +97,27 @@ function OnClickUrlOutMIG () {
  * URL入力ボタン押下イベントハンドラ.
  */
 function OnClickUrlInMIG () {
-
-	// 入力欄のURLを取得
-	const urlText = HtmlGetObjectValueById("OBJID_INPUT_URL_IN_MIG", "");
-
-	// ＵＲＬからパラメタ部分を切り出す
-	const splitted = urlText.split("?");
-
-	// エラーチェック
-	if (splitted.length != 2) {
-		return;
-	}
-
-	CSaveController.loadFromURL(splitted[1]);
-	// アイテム情報の構築
-	CItemInfoManager.OnClickExtractSwitch();
-
-	document.getElementById("OBJID_INPUT_URL_IN_MIG").focus();
+	// インジケーター表示
+	showLoadingIndicator();
+	setTimeout(() => {
+		// 入力欄のURLを取得
+		const urlText = HtmlGetObjectValueById("OBJID_INPUT_URL_IN_MIG", "");
+		// ＵＲＬからパラメタ部分を切り出す
+		const splitted = urlText.split("?");
+		// エラーチェック
+		if (splitted.length != 2) {
+			return;
+		}
+		CSaveController.loadFromURL(splitted[1]);
+		// アイテム情報の構築
+		CItemInfoManager.OnClickExtractSwitch();
+		document.getElementById("OBJID_INPUT_URL_IN_MIG").focus();
+		// 検索可能リスト更新
+		LoadSelect2();
+		// インジケーター非表示
+		hideLoadingIndicator();
+	}, 0);
 }
-
 
 
 /**

@@ -606,7 +606,7 @@ function OnChangeArmsTypeLeft(itemKind){
 		objInput = HtmlCreateElement("input", objSpan);
 		objInput.setAttribute("type", "button");
 		objInput.setAttribute("value", "左右武器入れ替え");
-		objInput.setAttribute("onclick", "OnClickSwapArms() | LoadSelect2()");
+		objInput.setAttribute("onclick", "OnClickSwapArms()");
 	}
 
 	// 左手武器選択欄の再構築
@@ -1155,8 +1155,6 @@ function OnClickSwapArms() {
 	var objIdValue = "";
 	var objValue = null;
 
-
-
 	// 現在の情報を取得
 
 	// 右手武器
@@ -1201,15 +1199,11 @@ function OnClickSwapArms() {
 		);
 	}
 
-
-
 	// ランダムエンチャント画面の場合は、カード画面にする
 	slotPageModeOld = GetSlotMode();
 	if (slotPageModeOld == SLOTPAGER_MODE_RNDENCH) {
 		OnClickSlotModeButton();
 	}
-
-
 
 	// アイテムの入れ替え
 	OnChangeArmsTypeRight(armsTypeLeft);
@@ -1219,7 +1213,6 @@ function OnClickSwapArms() {
 	OnChangeArmsTypeLeft(armsTypeRight);
 	HtmlSetObjectValueById("OBJID_ARMS_LEFT", itemIdRight);
 	OnChangeEquip(EQUIP_REGION_ID_ARMS_LEFT, itemIdRight);
-
 
 	// 精錬値の入れ替え
 	HtmlSetObjectValueById("OBJID_ARMS_RIGHT_REFINE", refinedLeft);
@@ -1236,7 +1229,6 @@ function OnClickSwapArms() {
 	}
 	SaveSlotStateCard(EQUIP_REGION_ID_ARMS);
 	SaveSlotStateCard(EQUIP_REGION_ID_ARMS_LEFT);
-
 
 	// ランダムエンチャントの入れ替え
 	OnClickSlotModeButton();
@@ -1261,17 +1253,16 @@ function OnClickSwapArms() {
 	SaveSlotStateRndEnch(EQUIP_REGION_ID_ARMS);
 	SaveSlotStateRndEnch(EQUIP_REGION_ID_ARMS_LEFT);
 
-
-
 	// 入力画面を戻す
 	if (slotPageModeOld != GetSlotMode()) {
 		OnClickSlotModeButton();
 	}
 
-
-
 	// 再計算
 	calc();
+
+	// 検索可能リスト更新
+	LoadSelect2();
 }
 
 
