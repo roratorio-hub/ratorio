@@ -155,7 +155,7 @@ function OnClickSkillSWLearned(){
 		<tr><td colspan="6" style="padding: 3px">
 			<div style="display:flex">
 				<div style="width:100px;margin:0 0.5em"><button type="button" id="ID_SKILL_LEARNED_LOAD" style="width:100%">URL入力</button></div>
-				<div style="width:100%"><input type="text" style="width:100%;height:100%" id="ID_SKILL_LEARNED_URL"></div>
+				<div style="width:100%"><input type="text" style="width:100%;height:100%" id="ID_SKILL_LEARNED_URL" placeholder="RO公式ツール「スキルツリー」から出力したURLを貼り付けてください"></div>
 				<div style="width:100px;margin:0 0.5em"><button type="button" id="ID_SKILL_LEARNED_URL_CLEAR" style="width:100%" >クリア</button></div>
 			</div>
 		</td></tr>
