@@ -9011,6 +9011,7 @@ g_bUnknownCasts = true;
 			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
 			break;
 
+		// 「サモナー」スキル「マタタビランス」
 		case SKILL_ID_MATATABI_LANCE:
 			// レベルによって属性が変化する
 			n_A_Weapon_zokusei = ELM_ID_PSYCO;
@@ -10384,6 +10385,11 @@ g_bDefinedDamageIntervals = true;
 
 		/*
 			「スピリットハンドラー」スキル「ディアーキャノン」
+			2024/11/09 実測済み
+			SPL合計が奇数のときは誤差無しだが偶数のときに誤差が生じる
+			にゃん友習得時+5以上の誤差を確認
+			にゃん友未習得時+1以上の誤差を確認
+			このためスキル計算式自体は合っていてこの後の特性ステータス処理に誤りがあると判断しています
 		*/
 		case SKILL_ID_DEER_CANON:
 			// 詠唱時間等
@@ -10400,19 +10406,17 @@ g_bDefinedDamageIntervals = true;
 			};
 			if (UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0 || UsedSkillSearch(SKILL_ID_NYANTOMO_KENROKU) > 0) {
 				// 基礎倍率
-				wbairitu = 5200 + (800 * n_A_ActiveSkillLV);
+				wbairitu = 5200 + 800 * n_A_ActiveSkillLV;
 				// スピリットマスタリー補正
-				wbairitu += 250 * UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY);
-				// SPL補正
-				wbairitu += 30 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				wbairitu += 300 * UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY);
 			} else {
 				// 基礎倍率
-				wbairitu = 2400 + (300 * n_A_ActiveSkillLV);
+				wbairitu = 2400 + 300 * n_A_ActiveSkillLV;
 				// スピリットマスタリー補正
 				wbairitu += 125 * UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY);
-				// SPL補正
-				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			}
+			// SPL補正
+			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			// ベースレベル補正
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
