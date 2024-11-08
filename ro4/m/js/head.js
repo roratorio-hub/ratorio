@@ -4344,41 +4344,33 @@ g_bUnknownCasts = true;
 
 		/*
 			「スピリットハンドラー」スキル「タイガースラッシュ」
+			2024/11/08 誤差なしを確認済み
 		*/
 		case SKILL_ID_TIGER_SLASH:
-			/*
-				にゃん友習得時の実測値との誤差 -1 以内を確認ずみ
-				ToDo: にゃん友未習得時の実測値が未確認
-			*/
-
+			// 詠唱など
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-
 			// 遠距離属性
 			n_Enekyori = 1;
-
 			if (UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0 || UsedSkillSearch(SKILL_ID_NYANTOMO_TEKKO) > 0) {
 				// 基礎倍率
-				wbairitu = 3000 + (500 * n_A_ActiveSkillLV);
+				wbairitu = 3000 + 500 * n_A_ActiveSkillLV;
+				wbairitu += 150 * UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY);
 			} else {
 				// 基礎倍率
-				wbairitu = 3050 + (350 * n_A_ActiveSkillLV);
+				wbairitu = 2050 + 350 * n_A_ActiveSkillLV;
+				wbairitu += 100 * UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY);
 				// クリティカル無し
 				bCri = false;
 			}
-
 			// POW補正
 			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
-			wbairitu = ROUNDDOWN(wbairitu);
-
-			// スキル説明にないが2分割スキル
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			// 分割ヒット
 			wActiveHitNum = 2;
-
 			break;
 
 
@@ -4386,37 +4378,28 @@ g_bUnknownCasts = true;
 			「スピリットハンドラー」スキル「タイガーハウリング」
 		*/
 		case SKILL_ID_TIGER_HOWLING:
-			/*
-				にゃん友習得時の実測値との誤差 -2 以内を確認ずみ
-				ToDo: にゃん友未習得時の実測値が未確認
-			*/
-
+			// 詠唱など
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-
 			// 遠距離属性
 			n_Enekyori = 1;
-
 			if (UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0 || UsedSkillSearch(SKILL_ID_NYANTOMO_TEKKO) > 0) {
 				// 基礎倍率
-				wbairitu = 3400 + (300 * n_A_ActiveSkillLV);
+				wbairitu = 2400 + 300 * n_A_ActiveSkillLV;
+				wbairitu += 100 * UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY);
 			} else {
 				// 基礎倍率
-				wbairitu = 2100 + (200 * n_A_ActiveSkillLV);
+				wbairitu = 1600 + 200 * n_A_ActiveSkillLV;
+				wbairitu += 50 * UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY);
 			}
-
 			// POW補正
 			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
-			wbairitu = ROUNDDOWN(wbairitu);
-
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			// スキル説明にないが3分割スキル
 			wActiveHitNum = 3;
-
 			break;
 
 
@@ -4424,36 +4407,28 @@ g_bUnknownCasts = true;
 			「スピリットハンドラー」スキル「タイガーストライク」
 		*/
 		case SKILL_ID_TIGER_STRIKE:
-			/*
-				にゃん友習得時の実測値との誤差なしを確認ずみ
-				ToDo: にゃん友未習得時の実測値が未確認
-			*/
-
+			// 詠唱など
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-
 			// 遠距離属性
 			n_Enekyori = 1;
-
+			// ３ヒット
 			wHITsuu = 3;
-
 			if (UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0 || UsedSkillSearch(SKILL_ID_NYANTOMO_TEKKO) > 0) {
 				// 基礎倍率
-				wbairitu = 650 + (150 * n_A_ActiveSkillLV);
+				wbairitu = 450 + (150 * n_A_ActiveSkillLV);
+				wbairitu += 20 * UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY);
 			} else {
 				// 基礎倍率
-				wbairitu = 400 + (100 * n_A_ActiveSkillLV);
+				wbairitu = 300 + (100 * n_A_ActiveSkillLV);
+				wbairitu += 10 * UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY);
 			}
-
 			// POW補正
 			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
-			wbairitu = ROUNDDOWN(wbairitu);
-
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
 		case SKILL_ID_KAGE_NO_MAI:
@@ -9011,6 +8986,7 @@ g_bUnknownCasts = true;
 			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
 			break;
 
+		// 「サモナー」スキル「マタタビランス」
 		case SKILL_ID_MATATABI_LANCE:
 			// レベルによって属性が変化する
 			n_A_Weapon_zokusei = ELM_ID_PSYCO;
@@ -10384,6 +10360,11 @@ g_bDefinedDamageIntervals = true;
 
 		/*
 			「スピリットハンドラー」スキル「ディアーキャノン」
+			2024/11/09 実測済み
+			SPL合計が奇数のときは誤差無しだが偶数のときに誤差が生じる
+			にゃん友習得時+5以上の誤差を確認
+			にゃん友未習得時+1以上の誤差を確認
+			このためスキル計算式自体は合っていてこの後の特性ステータス処理に誤りがあると判断しています
 		*/
 		case SKILL_ID_DEER_CANON:
 			// 詠唱時間等
@@ -10400,36 +10381,35 @@ g_bDefinedDamageIntervals = true;
 			};
 			if (UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0 || UsedSkillSearch(SKILL_ID_NYANTOMO_KENROKU) > 0) {
 				// 基礎倍率
-				wbairitu = 5200 + (800 * n_A_ActiveSkillLV);
+				wbairitu = 5200 + 800 * n_A_ActiveSkillLV;
 				// スピリットマスタリー補正
-				wbairitu += 250 * UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY);
+				wbairitu += 300 * UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY);
 			} else {
 				// 基礎倍率
-				wbairitu = 2400 + (300 * n_A_ActiveSkillLV);
+				wbairitu = 2400 + 300 * n_A_ActiveSkillLV;
 				// スピリットマスタリー補正
 				wbairitu += 125 * UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY);
 			}
 			// SPL補正
 			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
-			wbairitu = ROUNDDOWN(wbairitu);
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
 		/*
 			「スピリットハンドラー」スキル「ディアーブリーズ」
 		*/
 		case SKILL_ID_DEER_BREEZE:
-			g_bDefinedDamageIntervals = true;
 			// 詠唱時間等
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// オブジェクト存続時間
+			n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// ダメージ間隔
 			n_Delay[5] = 300;
-			// オブジェクト存続時間
-			n_Delay[6] = 3000;
+			g_bDefinedDamageIntervals = true;
 			// スピリットハンドラーのレインボーホーン追加に伴い任意の属性を取れるように変更
 			if (attackMethodConfArray[0].optionValueArray.length == 0) {
 				// 属性未定義の場合
@@ -10451,8 +10431,7 @@ g_bDefinedDamageIntervals = true;
 			// SPL補正
 			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
-			wbairitu = ROUNDDOWN(wbairitu);
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
 		/**
