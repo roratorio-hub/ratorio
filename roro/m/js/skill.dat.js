@@ -2594,6 +2594,19 @@
 		[1275,7,"タートルスプリンクラー","SH_KI_SUL_WATER_SPRAYING"],
 		[1276,7,"タートルランページ","SH_KI_SUL_RAMPAGE"],
 		[1277,1,"にゃん友 -亀設-","SH_COMMUNE_WITH_KI_SUL"],
+		[1278,1,"蜃気楼分身","SS_SHINKIROU"],
+		[1279,1,"悪夢消し","SS_AKUMUKESU"],
+
+
+	/*
+	データ破損せず扱える SkillID の最大値は 11bit = 2048 です
+	これを拡張したい場合は ro4/m/js/CSaveDataUnit.js の
+	CSaveDataUnitAttackConf クラスの propNameAttackSkillID と
+	CSaveDataUnitCharaConfSkill クラスの propNameSkillID の両方で
+	該当プロパティの bit 数を更新した上で
+	parse 関数をオーバーライドして後方互換性を確保してください
+	オーバーライドされた parse の処理は CSaveDataUnitMob クラスを参考にしてください
+	*/
 
 	];
 
