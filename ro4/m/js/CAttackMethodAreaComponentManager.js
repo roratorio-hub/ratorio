@@ -3610,6 +3610,8 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 		// 蜃気楼・不知火：悪夢
 		//----------------------------------------------------------------
 		case SKILL_ID_GENJUTSU_KAGE_NUI:
+		case SKILL_ID_GENJUTSU_KUNAI:
+		case SKILL_ID_GENZYUTSU_ANKOKURYUU:
 
 			// オプションリストを生成、追加
 			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
