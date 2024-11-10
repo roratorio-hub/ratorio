@@ -101,6 +101,7 @@ function BuildUpCastSimSimulateArea(objRoot, bAsExpand) {
 
 	// 行を生成
 	objTr = document.createElement("tr");
+	objTr.style.whiteSpace = "nowrap";
 	objTbody.appendChild(objTr);
 
 	// 表示名の欄を生成

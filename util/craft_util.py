@@ -85,7 +85,7 @@ def loadEnchantList():
 
 def loadSkillDict() -> dict:
     """key = str スキル名, value = int スキルID"""
-    pattern = r'\[(\d+),\d+,"(\(.+\))*(.+)"(\(.+\))*\],'
+    pattern = r'\[(\d+),\d+,"(\(.+\))*([^"]+)"(,.+)*\],'
     with open(f'{script_dir}/../roro/m/js/skill.dat.js', 'r', encoding='utf-8') as file:
         js_code = file.read()
     return { m[2]: int(m[0]) for m in re.findall(pattern, js_code) }

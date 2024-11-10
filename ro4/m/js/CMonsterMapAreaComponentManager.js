@@ -244,6 +244,7 @@ CMonsterMapAreaComponentManager.RebuildControls = function () {
 	HtmlCreateTextNode("ATK", objTd);
 
 	objTd = HtmlCreateElement("td", objTr);
+	objTd.style.whiteSpace = "nowrap";
 	objSpan = HtmlCreateElement("span", objTd);
 	objSpan.setAttribute("id", "OBJID_SPAN_MONSTER_ATK_MIN");
 	HtmlCreateTextNode("～", objTd);
@@ -281,6 +282,7 @@ CMonsterMapAreaComponentManager.RebuildControls = function () {
 	HtmlCreateTextNode("MATK", objTd);
 
 	objTd = HtmlCreateElement("td", objTr);
+	objTd.style.whiteSpace = "nowrap";
 	objSpan = HtmlCreateElement("span", objTd);
 	objSpan.setAttribute("id", "OBJID_SPAN_MONSTER_MATK_MIN");
 	HtmlCreateTextNode("～", objTd);

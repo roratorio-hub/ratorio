@@ -54,6 +54,7 @@ CTimeItemAreaComponentManager.RebuildControls = function () {
 	// 設定欄テーブルを再構築
 	objTable = document.createElement("table");
 	objTable.setAttribute("border", 1);
+	objTable.style.whiteSpace = "nowrap";
 	objRoot.appendChild(objTable);
 
 	objTbody = document.createElement("tbody");

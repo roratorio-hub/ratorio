@@ -728,14 +728,14 @@
 											</select>
 										</td>
 
-										<td colspan="2">
+										<td colspan="2" style="white-space: nowrap;">
 											<span id="ID_A_HUYO_NAME">武器属性付与</span>
 											<select id="OBJID_SELECT_ARMS_ELEMENT" name="A_Weapon_zokusei" onChange="AutoCalc()">
 											</select>
 										</td>
 
 										<td colspan="8">
-											<span style="font-size: smaller;">※攻撃属性の優先度は状況次第なので、確実に設定するには左の付与欄で指定してください。（無属性は、全ての属性設定を解除）</span>
+											<span style="font-size: smaller; white-space: nowrap;">※攻撃属性の優先度は状況次第なので、確実に設定するには左の付与欄で指定してください。（無属性は、全ての属性設定を解除）</span>
 										</td>
 									</tr>
 
@@ -1511,7 +1511,7 @@
 					<div id="ID_ATTACK_METHOD_AREA">
 					</div>
 
-					<div id="OBJID_ATTACK_SETTING_BLOCK_MIG" class="folding-block-MIG">
+					<div id="OBJID_ATTACK_SETTING_BLOCK_MIG" class="folding-block-MIG" style="white-space: nowrap;">
 						<input type="checkbox" id="OBJID_SWITCH_ATTACK_SETTING_MIG" class="folding-switch-MIG">
 						<label for="OBJID_SWITCH_ATTACK_SETTING_MIG">動作設定</label>
 						<span class="folding-link-help-MIG"><a href="../other/set.html" target="_blank">説明表示</a></span>
@@ -1888,20 +1888,21 @@
 					</tbody>
 				</table>
 
-				<hr>
-
-				<p>
-					アクティブスキルの限界攻撃間隔の設定等は、<br>
-					攻撃方法欄の横にある「動作設定」欄に移動しました。<br>
-					<a href="../../ro4/m/calcx.html#OBJID_ATTACK_SETTING_BLOCK_MIG">動作設定欄は、こちらです。</a>
-				</p>
-
-				<hr>
-
-				<p style="font-weight: bold;">
-					旧バージョンのセーブ・ロード機能は撤去しました<br>
-					今後は<a href="../../ro4/m/calcx.html#OBJID_SAVE_BLOCK_MIG">最新版のセーブ・ロード機能</a>をご利用下さい
-				</p>
+				<div style="white-space:nowrap;">
+					<hr>
+					<p>
+						アクティブスキルの限界攻撃間隔の設定等は、<br>
+						攻撃方法欄の横にある「動作設定」欄に移動しました。<br>
+						<a href="../../ro4/m/calcx.html#OBJID_ATTACK_SETTING_BLOCK_MIG">動作設定欄は、こちらです。</a>
+					</p>
+	
+					<hr>
+	
+					<p style="font-weight: bold;">
+						旧バージョンのセーブ・ロード機能は撤去しました<br>
+						今後は<a href="../../ro4/m/calcx.html#OBJID_SAVE_BLOCK_MIG">最新版のセーブ・ロード機能</a>をご利用下さい
+					</p>
+				</div>
 				<!--
 				<table>
 					<tr>

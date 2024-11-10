@@ -275,6 +275,7 @@ function CConfBase(confArray) {
 
 			// 表示名の欄を生成
 			objTd = document.createElement("td");
+			objTd.style.whiteSpace = "nowrap";
 			objTr.appendChild(objTd);
 
 			confText = this.confDataObj[idx][CConfBase.CONF_DATA_INDEX_TEXT];
