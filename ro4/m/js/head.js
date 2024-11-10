@@ -13010,6 +13010,7 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 		objCellF = HtmlCreateElement("div", objGridF);
 		objCellF.style.gridColumnStart = "1";
 		objCellF.style.textAlign = "right";
+		objCellF.style.whiteSpace = "nowrap";
 		objCellF.classList.add("BTLRSLT_TAB_DAMAGE");
 		objCellF.classList.add(partIdStr);
 		HtmlCreateTextNode("最小", objCellF);
@@ -13222,9 +13223,10 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 	//----------------
 	objCell = HtmlCreateElement("div", objGridBasic);
 	objCell.style.gridColumnStart = "1";
+	objCell.style.whiteSpace = "nowrap";
 	objCell.classList.add("BTLRSLT_TAB_BASIC");
 	objCell.classList.add(partIdStr);
-	HtmlCreateTextNode("クリティカル率", objCell);
+	HtmlCreateTextNode("ｸﾘﾃｨｶﾙ率", objCell);
 
 	// 後ほど参照するので、クリティカル率を保持しておく
 	criRate = GetActRateCritical(battleCalcResult.skillId, mobData);
@@ -13562,20 +13564,22 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 		objCell.classList.add("BTLRSLT_TAB_DAMAGE");
 		objCell.classList.add(partIdStr);
 		objCell.classList.add("CSSCLS_BTLRSLT_CENTERING");
-		HtmlCreateTextNode("クリティカル", objCell);
+		HtmlCreateTextNode("ｸﾘﾃｨｶﾙ", objCell);
 	}
 	objCell = HtmlCreateElement("div", objGridDmg);
+	objCell.style.whiteSpace = "nowrap";
 	objCell.classList.add("BTLRSLT_TAB_DAMAGE");
 	objCell.classList.add(partIdStr);
 	objCell.classList.add("CSSCLS_BTLRSLT_CENTERING");
-	HtmlCreateTextNode("1サイクルダメ", objCell);
+	HtmlCreateTextNode("1ｻｲｸﾙﾀﾞﾒ", objCell);
 	// クリティカル
 	if (criRate > 0) {
 		objCell = HtmlCreateElement("div", objGridDmg);
+		objCell.style.whiteSpace = "nowrap";
 		objCell.classList.add("BTLRSLT_TAB_DAMAGE");
 		objCell.classList.add(partIdStr);
 		objCell.classList.add("CSSCLS_BTLRSLT_CENTERING");
-		HtmlCreateTextNode("1サイクル(クリダメ)", objCell);
+		HtmlCreateTextNode("1ｻｲｸﾙ(ｸﾘﾀﾞﾒ)", objCell);
 	}
 
 
@@ -13662,6 +13666,7 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 	objCell = HtmlCreateElement("div", objGridDmg);
 	objCell.style.gridColumnStart = "1";
 	objCell.style.textAlign = "right";
+	objCell.style.whiteSpace = "nowrap";
 	objCell.classList.add("BTLRSLT_TAB_DAMAGE");
 	objCell.classList.add(partIdStr);
 	HtmlCreateTextNode("最小", objCell);
@@ -13796,6 +13801,7 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 	objCell = HtmlCreateElement("div", objGridDmg);
 	objCell.style.textAlign = "right";
 	objCell.style.gridColumnStart = "1";
+	objCell.style.whiteSpace = "nowrap";
 	objCell.classList.add("BTLRSLT_TAB_RESULT");
 	objCell.classList.add(partIdStr);
 	HtmlCreateTextNode("最小", objCell);
@@ -13803,6 +13809,7 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 	// 攻撃回数
 	valueWork = battleCalcResultAll.GetAttackCountSummaryMin();
 	objCell = HtmlCreateElement("div", objGridDmg);
+	objCell.style.whiteSpace = "nowrap";
 	objCell.classList.add("BTLRSLT_TAB_RESULT");
 	objCell.classList.add(partIdStr);
 	objCell.classList.add("CSSCLS_BTLRSLT_VALUE");
@@ -13820,6 +13827,7 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 			valueWork = battleCalcResultAll.GetAttackSecondSummaryMin();
 		}
 		objCell = HtmlCreateElement("div", objGridDmg);
+		objCell.style.whiteSpace = "nowrap";		
 		objCell.classList.add("BTLRSLT_TAB_RESULT");
 		objCell.classList.add(partIdStr);
 		objCell.classList.add("CSSCLS_BTLRSLT_VALUE");
@@ -13841,6 +13849,7 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 	// 経験値効率計算用に保持
 	attackCountAve = valueWork;
 	objCell = HtmlCreateElement("div", objGridDmg);
+	objCell.style.whiteSpace = "nowrap";
 	objCell.classList.add("BTLRSLT_TAB_RESULT");
 	objCell.classList.add(partIdStr);
 	objCell.classList.add("CSSCLS_BTLRSLT_VALUE");
@@ -13877,6 +13886,7 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 	// 攻撃回数
 	valueWork = battleCalcResultAll.GetAttackCountSummaryMax();
 	objCell = HtmlCreateElement("div", objGridDmg);
+	objCell.style.whiteSpace = "nowrap";
 	objCell.classList.add("BTLRSLT_TAB_RESULT");
 	objCell.classList.add(partIdStr);
 	objCell.classList.add("CSSCLS_BTLRSLT_VALUE");
@@ -13952,6 +13962,7 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 	//----------------
 	objCell = HtmlCreateElement("div", objGridDmg);
 	objCell.style.gridColumnStart = "1";
+	objCell.style.whiteSpace = "nowrap";
 	objCell.classList.add("BTLRSLT_TAB_RESULT");
 	objCell.classList.add(partIdStr);
 	HtmlCreateTextNode("一撃平均", objCell);
@@ -17525,7 +17536,7 @@ function Click_Skill3SW(){
 		n_Skill3SW = A3_SKILLSW.checked;
 		if(n_Skill3SW){
 			var str;
-			str = '<TABLE Border><TR><TD id="A3TD" ColSpan="6" class="title"><input id="OBJID_CHECK_A3_SKILLSW" type="checkbox" name="A3_SKILLSW"onClick="Click_Skill3SW()">';
+			str = '<TABLE Border style="white-space:nowrap;"><TR><TD id="A3TD" ColSpan="6" class="title"><input id="OBJID_CHECK_A3_SKILLSW" type="checkbox" name="A3_SKILLSW"onClick="Click_Skill3SW()">';
 			str += '<label for="OBJID_CHECK_A3_SKILLSW">演奏/踊り系スキル</label>';
 			str += '<span id="A3used"></span></TD></TR>';
 			str += '<TR><TD id="EN0_1"></TD><TD id="EN0_2"></TD><TD id="EN0_3"></TD><TD id="EN0_4"></TD><TD id="EN0_5"></TD><TD id="EN0_6"></TD></TR>';
@@ -17938,7 +17949,7 @@ function Click_Skill4SW(){
 		n_Skill4SW = A4_SKILLSW.checked;
 		if(n_Skill4SW){
 			var str;
-			str = '<TABLE Border><TR><TD id="A4TD" ColSpan="10" class="title"><input id="OBJID_CHECK_A4_SKILLSW" type="checkbox" name="A4_SKILLSW"onClick="Click_Skill4SW()"><label for="OBJID_CHECK_A4_SKILLSW">ギルドスキル/ゴスペル/他</label><span id="A4used"></span></TD></TR>';
+			str = '<TABLE Border style="white-space:nowrap;"><TR><TD id="A4TD" ColSpan="10" class="title"><input id="OBJID_CHECK_A4_SKILLSW" type="checkbox" name="A4_SKILLSW"onClick="Click_Skill4SW()"><label for="OBJID_CHECK_A4_SKILLSW">ギルドスキル/ゴスペル/他</label><span id="A4used"></span></TD></TR>';
 			str += '<TR><TD ColSpan="10">ギルドスキル</TD></TR>';
 			str += '<TR><TD id="EN40_1"></TD><TD id="EN40_2"></TD><TD id="EN41_1"></TD><TD id="EN41_2"></TD><TD id="EN42_1"></TD><TD id="EN42_2"></TD></TR>';
 			str += '<TR><TD id="EN43_1"></TD><TD id="EN43_2"></TD><TD id="EN44_1"></TD><TD id="EN44_2"></TD></TR>';
@@ -18094,6 +18105,7 @@ function Click_Skill7SW(){
 	// テーブル生成
 	objTable = HtmlCreateElement("table", objRoot);
 	objTable.setAttribute("border", "1");
+	objTable.style.whiteSpace = "nowrap";
 	objTbody = HtmlCreateElement("tbody", objTable);
 
 	// ヘッダ部分構築
@@ -18548,7 +18560,7 @@ function Click_Skill8SW(){
 		n_Skill8SW = A8_SKILLSW.checked;
 		if(n_Skill8SW){
 			var str;
-			str = '<TABLE Border><TR><TD id="A8TD" Colspan="2" class="title"><input id="OBJID_CHECK_A8_SKILLSW" type="checkbox" name="A8_SKILLSW"onClick="Click_Skill8SW()"><label for="OBJID_CHECK_A8_SKILLSW">その他の支援/設定 (暫定追加機能)</label><SPAN id="A8used"></SPAN></TD></TR>';
+			str = '<TABLE Border style="white-space:nowrap;"><TR><TD id="A8TD" Colspan="2" class="title"><input id="OBJID_CHECK_A8_SKILLSW" type="checkbox" name="A8_SKILLSW"onClick="Click_Skill8SW()"><label for="OBJID_CHECK_A8_SKILLSW">その他の支援/設定 (暫定追加機能)</label><SPAN id="A8used"></SPAN></TD></TR>';
 			str += '<TR><TD>ペット：<select id="OBJID_SELECT_PET" name="A8_Skill0" onchange="StAllCalc() | OnChangePetSelect()"></select></TD><TD>親密度：<select id="OBJID_SELECT_PET_FRIENDLITY" name="A8_Skill17" onChange="StAllCalc() | Click_A8(1)"></select></TD></TR>';
 			str += '<TR><TD colspan="2"><SPAN id="OBJID_SPAN_PET_EXPLAIN"></SPAN></TD></TR>';
 			str += '<TR><TD id="EN801"></TD><TD id="EN802"></TD></TR>';

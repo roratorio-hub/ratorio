@@ -125,6 +125,7 @@ function OnClickSkillSWLearned(){
 	objTbody.appendChild(objTr);
 
 	objTd = document.createElement("td");
+	objTd.style.whiteSpace = "nowrap";
 	objTd.setAttribute("colspan", 6);
 	objTr.appendChild(objTd);
 

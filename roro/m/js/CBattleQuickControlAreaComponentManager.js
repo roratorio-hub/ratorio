@@ -85,6 +85,7 @@ CBattleQuickControlAreaComponentManager.RebuildControls = function () {
 		// 部品を再構築しているので、チェック状態の再設定が必要
 		objInput.setAttribute("checked", "checked");
 	}
+	objTd.style.whiteSpace = "nowrap";
 	objTd.appendChild(objInput);
 
 	objLabel = HtmlCreateElement("label", objTd);
@@ -114,6 +115,7 @@ CBattleQuickControlAreaComponentManager.RebuildControls = function () {
 	objTr = HtmlCreateElement("tr", objTbody);
 
 	objTd = HtmlCreateElement("td", objTr);
+	objTd.style.whiteSpace = "nowrap";
 	HtmlCreateTextNode("アイテム時限効果調整", objTd);
 
 	objTd = HtmlCreateElement("td", objTr);
