@@ -171,6 +171,9 @@ function OnClickSkillSWLearned(){
 		try{
 			url = new URL($("#ID_SKILL_LEARNED_URL").val()||location.href);
 			showLoadingIndicator();
+			// 自動再計算を ON にしていると項目変更のたびに計算されて待ち時間がかさむ事があります
+			// 待機中を示すスピナーもあるため深刻な問題ではないと認識していますが
+			// 問題が表面化した場合には自動再計算の例外処理などを検討してください
 			setTimeout(() => {
 				$("#ID_SKILL_LEARNED select").each(function(idx,elm) {
 					const id_skill_name = $(elm).attr("id").replace("SELECT","TD").replace("LEVEL","NAME");

@@ -10444,6 +10444,8 @@ g_bDefinedDamageIntervals = true;
 
 		/**
 		 * 「蜃気楼　不知火」スキル「赤炎砲」「冷血砲」「雷電砲」「金龍砲」
+		 * 2024/10/23 提供データとの誤差+1以下を確認しています
+		 * 計算前後の丸め誤差によるものと判断
 		 */
 		case SKILL_ID_SEKIEN_HOU:
 		case SKILL_ID_REIKETSU_HOU:
@@ -10457,10 +10459,10 @@ g_bDefinedDamageIntervals = true;
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				
-				wbairitu = 4000 + 300 * n_A_ActiveSkillLV;							// 基本倍率
-				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);				// spl補正
-				wbairitu += 200 * UsedSkillSearch(SKILL_ID_ANTEN_HOU_LEARNED_LEVEL)	// 習得済みスキル条件
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);					// BaseLv補正
+				wbairitu = 4000 + 300 * n_A_ActiveSkillLV;												// 基本倍率
+				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);									// spl補正
+				wbairitu += 70 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_ANTEN_HOU_LEARNED_LEVEL)	// 習得済みスキル条件
+				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);										// BaseLv補正
 			} else {
 			// 分身の追撃			
 				// 暗転砲
@@ -10479,6 +10481,7 @@ g_bDefinedDamageIntervals = true;
 
 		/**
 		 * 「蜃気楼　不知火」スキル「暗転砲」
+		 * 2024/10/23 提供データとの誤差無しを確認
 		 */
 		case SKILL_ID_ANTEN_HOU:
 			if (battleCalcInfo.parentSkillId === undefined) {
@@ -10504,6 +10507,8 @@ g_bDefinedDamageIntervals = true;
 					wbairitu *= attackMethodConfArray[0].GetOptionValue(0);						// 分身の数
 				}
 			}
+			// 分割ヒット
+			wActiveHitNum = 2;
 			break;
 
 		/**
