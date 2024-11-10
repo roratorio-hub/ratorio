@@ -2239,7 +2239,7 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 					[3, KunaiOBJ[3][2]],
 					[4, KunaiOBJ[4][2]],
 					[5, KunaiOBJ[5][2]],
-					[6, KunaiOBJ[5][2]],
+					[6, KunaiOBJ[6][2]],
 				],
 				0
 			);
@@ -3610,6 +3610,8 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 		// 蜃気楼・不知火：悪夢
 		//----------------------------------------------------------------
 		case SKILL_ID_GENJUTSU_KAGE_NUI:
+		case SKILL_ID_GENJUTSU_KUNAI:
+		case SKILL_ID_GENZYUTSU_ANKOKURYUU:
 
 			// オプションリストを生成、追加
 			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
@@ -3773,6 +3775,27 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 			);
 			break;
 
+		//----------------------------------------------------------------
+		// 蜃気楼＆不知火：蜃気楼分身
+		//----------------------------------------------------------------
+		case SKILL_ID_SEKIEN_HOU:
+		case SKILL_ID_REIKETSU_HOU:
+		case SKILL_ID_RAIDEN_HOU:
+		case SKILL_ID_KINNRYUU_HOU:
+		case SKILL_ID_ANTEN_HOU:
+		case SKILL_ID_KAGE_NO_MAI:
+		case SKILL_ID_KUNAI_WAIKYOKU:
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+				"蜃気楼分身の状態",
+				[
+					[0, "本体のみ"],
+					[1, "本体 + 分身1体"],
+					[2, "本体 + 分身2体"],
+					[3, "本体 + 分身3体"],
+				],
+				0
+			);
+			break;
 
 		}
 	}

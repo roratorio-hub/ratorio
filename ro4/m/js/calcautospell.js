@@ -1385,6 +1385,7 @@ function OnClickExtractSettingAutoSpell(){
 	objTable = document.createElement("table");
 	objRoot.appendChild(objTable);
 	objTable.setAttribute("border", "1");
+	objTable.style.whiteSpace = "nowrap";
 
 	objTbody = document.createElement("tbody");
 	objTable.appendChild(objTbody);

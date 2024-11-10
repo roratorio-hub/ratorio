@@ -27,7 +27,21 @@
 	SERE_SUPPORT_SKILL_ID_STRONG_PROTECTION = 47;
 	SERE_SUPPORT_SKILL_ID_DEEP_POISONING 	= 49;
 	SERE_SUPPORT_SKILL_ID_POISON_SHIELD 	= 50;
-	
+
+	SKILL_ID_TEIOAPUCHAGI = 339;
+	SKILL_ID_RASETSU_HAOGEKI = 617;
+
+/*
+	上の２つは例外ですが
+	他のスキルは全て skill.dat.js でスキル ID 定数を定義したとしても
+	最終的に CSkillManager.js で定数が上書きされてしまうので
+	ここで定数定義する意味が無いように見えます
+
+	TODO:
+	影響範囲の見極めが必要なので今は削除を見送りますが
+	削除可能性について検討したいと思います
+*/
+
 	SKILL_ID_TUZYO_KOGEKI = 0;
 	SKILL_ID_OKYU_TEATE = 1;
 	SKILL_ID_SHINDAFURI = 2;
@@ -367,7 +381,6 @@
 	SKILL_ID_APUCHAORURIGINO_KAMAE = 336;
 	SKILL_ID_APUCHAORURIGI = 337;
 	SKILL_ID_RAKHO = 338;
-	SKILL_ID_TEIOAPUCHAGI = 339;
 	SKILL_ID_ODAYAKANA_KYUSOKU = 340;
 	SKILL_ID_TANOSHI_KYUSOKU = 341;
 	SKILL_ID_FIGHT = 342;
@@ -645,7 +658,6 @@
 	SKILL_ID_DAITENHOSUI = 614;
 	SKILL_ID_GOHO = 615;
 	SKILL_ID_RASETSU_HAOGEKI_MAX = 616;
-	SKILL_ID_RASETSU_HAOGEKI = 617;
 	SKILL_ID_SENPUTAI = 618;
 	SKILL_ID_ZYUBAKUZIN = 619;
 	SKILL_ID_SENDENPO = 620;
@@ -2578,6 +2590,24 @@
 		[1271,1,"ブレイキングリミット状態"],
 		[1272,1,"ルールブレイク状態"],
 		[1273,1,"アビスダガー状態"],
+		[1274,7,"レインボーホーン","SH_COLORS_OF_HYUN_ROK"],
+		[1275,7,"タートルスプリンクラー","SH_KI_SUL_WATER_SPRAYING"],
+		[1276,7,"タートルランページ","SH_KI_SUL_RAMPAGE"],
+		[1277,1,"にゃん友 -亀設-","SH_COMMUNE_WITH_KI_SUL"],
+		[1278,1,"蜃気楼分身","SS_SHINKIROU"],
+		[1279,1,"悪夢消し","SS_AKUMUKESU"],
+
+
+	/*
+	データ破損せず扱える SkillID の最大値は 11bit = 2048 です
+	これを拡張したい場合は ro4/m/js/CSaveDataUnit.js の
+	CSaveDataUnitAttackConf クラスの propNameAttackSkillID と
+	CSaveDataUnitCharaConfSkill クラスの propNameSkillID の両方で
+	該当プロパティの bit 数を更新した上で
+	parse 関数をオーバーライドして後方互換性を確保してください
+	オーバーライドされた parse の処理は CSaveDataUnitMob クラスを参考にしてください
+	*/
+
 	];
 
 })();
