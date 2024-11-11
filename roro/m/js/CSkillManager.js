@@ -36852,7 +36852,6 @@ function CSkillManager() {
 				return 2000;
 			}
 			this.CriActRate = (skillLv, charaData, specData, mobData) => {
-
 				// 正午、天気の身状態の場合のみ
 				if (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 2) {
 				}
@@ -36861,11 +36860,9 @@ function CSkillManager() {
 				else {
 					return 0;
 				}
-
 				return this._CriActRate100(skillLv, charaData, specData, mobData);
 			}
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {
-
 				// 正午、天気の身状態の場合のみ
 				if (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 2) {
 				}
@@ -36874,7 +36871,6 @@ function CSkillManager() {
 				else {
 					return 0;
 				}
-
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
 		};

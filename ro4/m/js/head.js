@@ -3886,15 +3886,14 @@ g_bUnknownCasts = true;
 			break;
 
 		// 「天帝」スキル「太天一陽」
+		// 2024/11/11 もなこさん提供データに対して誤差＋１以内を確認
+		// 前後の丸め誤差によるものと判断
 		case SKILL_ID_TAITEN_ICHIYO:
 			// 日出、正午、天気の身状態でのみ使用可能
-			if (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 1) {
-			}
-			else if (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 2) {
-			}
-			else if (UsedSkillSearch(SKILL_ID_TENKINO_MI) >= 1) {
-			}
-			else {
+			state_hinode = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 1);
+			state_shougo = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 2);
+			state_tenki_no_mi = (UsedSkillSearch(SKILL_ID_TENKINO_MI) >= 1);
+			if (!state_hinode && !state_shougo && !state_tenki_no_mi) {
 				wbairitu = 0;
 				n_Buki_Muri = 1;
 				break;
@@ -3907,25 +3906,27 @@ g_bUnknownCasts = true;
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 基本倍率
-			wbairitu = 750 + (100 * n_A_ActiveSkillLV);
+			wbairitu = 1125 + 175 * n_A_ActiveSkillLV;
 			// POW補正
 			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 			// 天気修練 補正
 			wbairitu += 5 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_TENKI_SHUREN);
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			// 正午 or 天気の身 のときだけクリが乗る仕様は CSkillManager.js 側で対処済み
+			// 分割ヒット
+			wActiveHitNum = 2;
 			break;
 
 		// 「天帝」スキル「天陽」
+		// 2024/11/11 もなこさん提供データに対して誤差＋１以内を確認
+		// 前後の丸め誤差によるものと判断
 		case SKILL_ID_TENYO:
 			// 正午、日没、天気の身状態でのみ使用可能
-			if (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 2) {
-			}
-			else if (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 3) {
-			}
-			else if (UsedSkillSearch(SKILL_ID_TENKINO_MI) >= 1) {
-			}
-			else {
+			state_shougo = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 2);
+			state_nichibotsu = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 3);
+			state_tenki_no_mi = (UsedSkillSearch(SKILL_ID_TENKINO_MI) >= 1)
+			if (!state_shougo && !state_nichibotsu && !state_tenki_no_mi) {
 				wbairitu = 0;
 				n_Buki_Muri = 1;
 				break;
@@ -3938,13 +3939,16 @@ g_bUnknownCasts = true;
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 基本倍率
-			wbairitu = 750 + (100 * n_A_ActiveSkillLV);
+			wbairitu = 1575 + 225 * n_A_ActiveSkillLV;
 			// POW補正
 			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 			// 天気修練 補正
 			wbairitu += 5 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_TENKI_SHUREN);
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			// 日没 or 天気の身 のときだけクリが乗る仕様は CSkillManager.js 側で対処済み
+			// 分割ヒット
+			wActiveHitNum = 2;
 			break;
 
 		// 「天帝」スキル「天地一月」
@@ -4001,6 +4005,8 @@ g_bUnknownCasts = true;
 			break;
 
 		// 「天帝」スキル「天月」
+		// 2024/11/11 もなこさん提供データに対して誤差＋１以内を確認
+		// 前後の丸め誤差によるものと判断
 		case SKILL_ID_TENGETSU:
 			// 正子、月没、天気の身状態でのみ使用可能
 			state_shougo = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 5);
@@ -4019,17 +4025,20 @@ g_bUnknownCasts = true;
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 基本倍率
-			wbairitu = 750 + (100 * n_A_ActiveSkillLV);
-			// 月没or天気の身状態なら、倍率２倍
 			if (state_tukibotsu || state_tenki_no_mi) {
-				wbairitu *= 2;
+				// 月没or天気の身状態なら、倍率２倍
+				wbairitu = 1750 + 300 * n_A_ActiveSkillLV;
+			} else {
+				wbairitu = 875 + 150 * n_A_ActiveSkillLV;
 			}
 			// POW補正
 			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 			// 天気修練 補正
 			wbairitu += 5 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_TENKI_SHUREN);
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			// 分割ヒット
+			wActiveHitNum = 2;
 			break;
 
 		// 「天帝」スキル「天地万星」
