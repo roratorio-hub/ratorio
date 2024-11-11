@@ -4574,7 +4574,7 @@ g_bUnknownCasts = true;
 			// 最終倍率
 			wbairitu *= [100, 101, 103, 105, 107, 109, 111, 113, 115, 120, 125][UsedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU)] / 100;	// 独学補正
 			wbairitu = Math.floor(wbairitu);
-			wbairitu *= [100, 150][UsedSkillSearch(SKILL_ID_BREAKING_LIMIT)] / 100;														// ブレイキングリミット補正
+			wbairitu *= [100, 150][UsedSkillSearch(SKILL_ID_BREAKING_LIMIT_STATE)] / 100;												// ブレイキングリミット補正
 			wbairitu = Math.floor(wbairitu);
 			break;
 
@@ -4596,7 +4596,7 @@ g_bUnknownCasts = true;
 			// 最終倍率
 			wbairitu *= [100, 101, 103, 105, 107, 109, 111, 113, 115, 120, 125][UsedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU)] / 100;	// 独学補正
 			wbairitu = Math.floor(wbairitu);
-			wbairitu *= [100, 150][UsedSkillSearch(SKILL_ID_BREAKING_LIMIT)] / 100;														// ブレイキングリミット補正
+			wbairitu *= [100, 150][UsedSkillSearch(SKILL_ID_BREAKING_LIMIT_STATE)] / 100;												// ブレイキングリミット補正
 			wbairitu = Math.floor(wbairitu);
 			// 敵のHPが50%未満の場合ダメージ2倍
 			option_count = attackMethodConfArray[0].GetOptionValue(0);								// 敵の残りHP
@@ -5031,7 +5031,7 @@ g_bUnknownCasts = true;
 			// 最終倍率
 			wbairitu *= [100, 101, 103, 105, 107, 109, 111, 113, 115, 120, 125][UsedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU)] / 100;	// 独学補正
 			wbairitu = Math.floor(wbairitu);
-			wbairitu *= [100, 150][UsedSkillSearch(SKILL_ID_BREAKING_LIMIT)] / 100;														// ブレイキングリミット補正
+			wbairitu *= [100, 150][UsedSkillSearch(SKILL_ID_BREAKING_LIMIT_STATE)] / 100;												// ブレイキングリミット補正
 			wbairitu = Math.floor(wbairitu);
 			break;
 
@@ -5066,7 +5066,7 @@ g_bUnknownCasts = true;
 			// 最終倍率
 			wbairitu *= [100, 101, 103, 105, 107, 109, 111, 113, 115, 120, 125][UsedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU)] / 100;	// 独学補正
 			wbairitu = Math.floor(wbairitu);
-			wbairitu *= [100, 150][UsedSkillSearch(SKILL_ID_BREAKING_LIMIT)] / 100;														// ブレイキングリミット補正
+			wbairitu *= [100, 150][UsedSkillSearch(SKILL_ID_BREAKING_LIMIT_STATE)] / 100;												// ブレイキングリミット補正
 			wbairitu = Math.floor(wbairitu);
 			break;
 			
@@ -10286,7 +10286,7 @@ g_bDefinedDamageIntervals = true;
 			wbairitu = Math.floor(wbairitu);
 			wbairitu *= [100,101,103,105,107,109,111,113,115,120,125][UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU)] / 100;	// 独学補正
 			wbairitu = Math.floor(wbairitu);
-			wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK)] / 100;												// ルールブレイク補正
+			wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK_STATE)] / 100;										// ルールブレイク補正
 			wbairitu = Math.floor(wbairitu);
 			break;
 
@@ -10309,7 +10309,7 @@ g_bDefinedDamageIntervals = true;
 			wbairitu = Math.floor(wbairitu);
 			wbairitu *= [100,101,103,105,107,109,111,113,115,120,125][UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU)] / 100;	// 独学補正
 			wbairitu = Math.floor(wbairitu);
-			wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK)] / 100;												// ルールブレイク補正
+			wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK_STATE)] / 100;										// ルールブレイク補正
 			wbairitu = Math.floor(wbairitu);
 			break;
 
@@ -10333,7 +10333,7 @@ g_bDefinedDamageIntervals = true;
 			wbairitu = Math.floor(wbairitu);
 			wbairitu *= [100,101,103,105,107,109,111,113,115,120,125][UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU)] / 100;	// 独学補正
 			wbairitu = Math.floor(wbairitu);
-			wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK)] / 100;												// ルールブレイク補正
+			wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK_STATE)] / 100;										// ルールブレイク補正
 			wbairitu = Math.floor(wbairitu);
 			break;
 
@@ -10359,7 +10359,7 @@ g_bDefinedDamageIntervals = true;
 				wbairitu = Math.floor(wbairitu);
 				wbairitu *= [100,101,103,105,107,109,111,113,115,120,125][UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU)] / 100;	// 独学補正
 				wbairitu = Math.floor(wbairitu);
-				wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK)] / 100;												// ルールブレイク補正
+				wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK_STATE)] / 100;										// ルールブレイク補正
 			}
 			// 爆発
 			else {
@@ -10367,9 +10367,9 @@ g_bDefinedDamageIntervals = true;
 				wbairitu += 5 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU);			// 習得済みスキル条件
 				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);										// 特性ステータス補正
 				// 最終倍率 (爆発には独学補正が掛からない)
-				wbairitu *= n_A_BaseLV / 100;											// BaseLv補正
+				wbairitu *= n_A_BaseLV / 100;													// BaseLv補正
 				wbairitu = Math.floor(wbairitu);
-				wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK)] / 100;		// ルールブレイク補正
+				wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK_STATE)] / 100;		// ルールブレイク補正
 			}
 			wbairitu = Math.floor(wbairitu);
 			break;
@@ -10572,7 +10572,7 @@ g_bDefinedDamageIntervals = true;
 				wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);								// 特性ステータス補正
 				wbairitu *= n_A_BaseLV / 100;														// BaseLv補正
 				wbairitu = Math.floor(wbairitu);
-				wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK)] / 100;					// ルールブレイク補正
+				wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK_STATE)] / 100;			// ルールブレイク補正
 			} else {
 				// 設置ダメージ計算が指定された場合
 				g_bDefinedDamageIntervals = true;
@@ -10588,7 +10588,7 @@ g_bDefinedDamageIntervals = true;
 				wbairitu = Math.floor(wbairitu);
 				wbairitu *= [100,101,103,105,107,109,111,113,115,120,125][UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU)] / 100;	// 独学補正
 				wbairitu = Math.floor(wbairitu);
-				wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK)] / 100;												// ルールブレイク補正
+				wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK_STATE)] / 100;										// ルールブレイク補正
 			}
 			wbairitu = Math.floor(wbairitu);
 			break;
@@ -10610,7 +10610,7 @@ g_bDefinedDamageIntervals = true;
 				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);								// 特性ステータス補正
 				wbairitu *= n_A_BaseLV / 100;														// BaseLv補正
 				wbairitu = Math.floor(wbairitu);
-				wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK)] / 100;					// ルールブレイク補正
+				wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK_STATE)] / 100;			// ルールブレイク補正
 				// 分割Hit数
 				wActiveHitNum = 2;
 			} else {
@@ -10626,7 +10626,7 @@ g_bDefinedDamageIntervals = true;
 				wbairitu = Math.floor(wbairitu);
 				wbairitu *= [100,101,103,105,107,109,111,113,115,120,125][UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU)] / 100;	// 独学補正
 				wbairitu = Math.floor(wbairitu);
-				wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK)] / 100;												// ルールブレイク補正
+				wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK_STATE)] / 100;										// ルールブレイク補正
 			}
 			wbairitu = Math.floor(wbairitu);
 			break;

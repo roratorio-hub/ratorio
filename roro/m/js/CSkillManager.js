@@ -39843,7 +39843,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ブレイキングリミット状態
 		// ----------------------------------------------------------------
-		SKILL_ID_BREAKING_LIMIT = skillId;
+		SKILL_ID_BREAKING_LIMIT_STATE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -39862,7 +39862,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ルールブレイク状態
 		// ----------------------------------------------------------------
-		SKILL_ID_RULE_BREAK = skillId;
+		SKILL_ID_RULE_BREAK_STATE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -40107,6 +40107,85 @@ function CSkillManager() {
 			}
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
+			}
+		};
+		this.dataArray[skillId] = skillData;
+		skillId++;		
+
+		// ----------------------------------------------------------------
+		// ブレイキングリミット
+		// ----------------------------------------------------------------
+		SKILL_ID_BREAKING_LIMIT = skillId;
+		skillData = new function() {
+			this.prototype = new CSkillData();
+			CSkillData.call(this);
+			this.id = skillId;
+			this.name = "ブレイキングリミット";
+			this.kana = "フレイキンクリミツト";
+			this.maxLv = 1;
+			this.type = CSkillData.TYPE_ACTIVE;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_VOID;
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 140;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 50;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 0;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 1000;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 500;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 60 * 1000;
+			}
+		};
+		this.dataArray[skillId] = skillData;
+		skillId++;
+
+
+		// ----------------------------------------------------------------
+		// ルールブレイク
+		// ----------------------------------------------------------------
+		SKILL_ID_RULE_BREAK = skillId;
+		skillData = new function() {
+			this.prototype = new CSkillData();
+			CSkillData.call(this);
+			this.id = skillId;
+			this.name = "ルールブレイク";
+			this.kana = "ルウルフレイク";
+			this.maxLv = 1;
+			this.type = CSkillData.TYPE_ACTIVE;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_VOID;
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 140;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 50;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 0;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 1000;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 500;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 60 * 1000;
 			}
 		};
 		this.dataArray[skillId] = skillData;
