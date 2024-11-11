@@ -3882,12 +3882,13 @@ g_bUnknownCasts = true;
 			// 天気修練 補正
 			wbairitu += 5 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_TENKI_SHUREN);
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			// 分割ヒット
+			wActiveHitNum = 2;
 			break;
 
 		// 「天帝」スキル「太天一陽」
-		// 2024/11/11 もなこさん提供データに対して誤差＋１以内を確認
-		// 前後の丸め誤差によるものと判断
+		// 2024/11/11 もなこさん提供データに対して誤差なしを確認
 		case SKILL_ID_TAITEN_ICHIYO:
 			// 日出、正午、天気の身状態でのみ使用可能
 			state_hinode = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 1);
@@ -3919,8 +3920,7 @@ g_bUnknownCasts = true;
 			break;
 
 		// 「天帝」スキル「天陽」
-		// 2024/11/11 もなこさん提供データに対して誤差＋１以内を確認
-		// 前後の丸め誤差によるものと判断
+		// 2024/11/11 もなこさん提供データに対して誤差なしを確認
 		case SKILL_ID_TENYO:
 			// 正午、日没、天気の身状態でのみ使用可能
 			state_shougo = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 2);
@@ -3953,8 +3953,6 @@ g_bUnknownCasts = true;
 
 		// 「天帝」スキル「天地一月」
 		case SKILL_ID_TENCHI_ICHIGETSU:
-			// 実測値と比較して+3程度の誤差があるが許容範囲と判断
-
 			// 距離属性
 			n_Enekyori = 0;
 			// 詠唱時間など
@@ -3969,7 +3967,9 @@ g_bUnknownCasts = true;
 			// 天気修練 補正
 			wbairitu += 5 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_TENKI_SHUREN);
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			// 分割ヒット
+			wActiveHitNum = 2;
 			break;
 
 		// 「天帝」スキル「太天一月」
@@ -4001,12 +4001,13 @@ g_bUnknownCasts = true;
 			// 天気修練 補正
 			wbairitu += 5 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_TENKI_SHUREN);
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			// 分割ヒット
+			wActiveHitNum = 2;
 			break;
 
 		// 「天帝」スキル「天月」
-		// 2024/11/11 もなこさん提供データに対して誤差＋１以内を確認
-		// 前後の丸め誤差によるものと判断
+		// 2024/11/11 もなこさん提供データに対して誤差なしを確認
 		case SKILL_ID_TENGETSU:
 			// 正子、月没、天気の身状態でのみ使用可能
 			state_shougo = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 5);
@@ -4043,8 +4044,6 @@ g_bUnknownCasts = true;
 
 		// 「天帝」スキル「天地万星」
 		case SKILL_ID_TENCHI_BANSE:
-			// ダメージ誤差が+4程度あるが許容範囲と判断
-
 			// 距離属性
 			n_Enekyori = 0;
 			// 詠唱時間など
@@ -4054,10 +4053,9 @@ g_bUnknownCasts = true;
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 設置スキル
 			g_bDefinedDamageIntervals = true;
+			n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// ダメージ間隔
 			n_Delay[5] = 300;
-			// オブジェクト存続時間
-			n_Delay[6] = 3000;
 			// 基本倍率
 			wbairitu = 250 + (100 * n_A_ActiveSkillLV);
 			// POW補正
@@ -4065,13 +4063,13 @@ g_bUnknownCasts = true;
 			// 天気修練 補正
 			wbairitu += 3 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_TENKI_SHUREN);
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			// 分割ヒット
+			wActiveHitNum = 3;
 			break;
 
 		// 「天帝」スキル「天命落星」
 		case SKILL_ID_TENME_RAKUSE:
-			// ダメージ誤差が+2程度あるが許容範囲と判断
-
 			// 距離属性
 			n_Enekyori = 0;
 			// 詠唱時間など
@@ -4092,13 +4090,13 @@ g_bUnknownCasts = true;
 			// 天気修練 補正
 			wbairitu += 5 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_TENKI_SHUREN);
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			// 分割ヒット
+			wActiveHitNum = 2;
 			break;
 
 		// 「天帝」スキル「天星」
 		case SKILL_ID_TENSE:
-			// ダメージ誤差が+2程度あるが許容範囲と判断
-
 			// 距離属性
 			n_Enekyori = 0;
 			// 詠唱時間など
@@ -4111,7 +4109,7 @@ g_bUnknownCasts = true;
 			// ダメージ間隔
 			n_Delay[5] = 300;
 			// オブジェクト存続時間
-			n_Delay[6] = 3000;
+			n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);;
 			// 基本倍率
 			wbairitu = 750 + (100 * n_A_ActiveSkillLV);
 			// 天気修練 補正
@@ -4119,12 +4117,13 @@ g_bUnknownCasts = true;
 			// POW補正
 			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			// 分割ヒット
+			wActiveHitNum = 3;
 			break;
 
 		// 「天帝」スキル「天羅万象」
 		case SKILL_ID_TENRA_BANSHO:
-
 			// 距離属性
 			n_Enekyori = 0;
 			// 詠唱時間など
@@ -4136,6 +4135,8 @@ g_bUnknownCasts = true;
 			wbairitu = 300 * n_A_ActiveSkillLV;
 			// POW補正
 			wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+			// ベースレベル補正
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			// 悪魔・人間(プレイヤーを除く)形では、３回ヒット
 			wHITsuu = 1;
 			switch (parseInt(mobData[MONSTER_DATA_INDEX_RACE], 10)) {
@@ -4147,8 +4148,6 @@ g_bUnknownCasts = true;
 					wHITsuu = 3;
 					break;
 			}
-			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
 			break;
 
 		/*
