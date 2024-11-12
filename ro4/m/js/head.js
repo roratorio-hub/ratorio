@@ -3882,19 +3882,19 @@ g_bUnknownCasts = true;
 			// 天気修練 補正
 			wbairitu += 5 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_TENKI_SHUREN);
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			// 分割ヒット
+			wActiveHitNum = 2;
 			break;
 
 		// 「天帝」スキル「太天一陽」
+		// 2024/11/11 もなこさん提供データに対して誤差なしを確認
 		case SKILL_ID_TAITEN_ICHIYO:
 			// 日出、正午、天気の身状態でのみ使用可能
-			if (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 1) {
-			}
-			else if (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 2) {
-			}
-			else if (UsedSkillSearch(SKILL_ID_TENKINO_MI) >= 1) {
-			}
-			else {
+			state_hinode = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 1);
+			state_shougo = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 2);
+			state_tenki_no_mi = (UsedSkillSearch(SKILL_ID_TENKINO_MI) >= 1);
+			if (!state_hinode && !state_shougo && !state_tenki_no_mi) {
 				wbairitu = 0;
 				n_Buki_Muri = 1;
 				break;
@@ -3907,25 +3907,26 @@ g_bUnknownCasts = true;
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 基本倍率
-			wbairitu = 750 + (100 * n_A_ActiveSkillLV);
+			wbairitu = 1125 + 175 * n_A_ActiveSkillLV;
 			// POW補正
 			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 			// 天気修練 補正
 			wbairitu += 5 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_TENKI_SHUREN);
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			// 正午 or 天気の身 のときだけクリが乗る仕様は CSkillManager.js 側で対処済み
+			// 分割ヒット
+			wActiveHitNum = 2;
 			break;
 
 		// 「天帝」スキル「天陽」
+		// 2024/11/11 もなこさん提供データに対して誤差なしを確認
 		case SKILL_ID_TENYO:
 			// 正午、日没、天気の身状態でのみ使用可能
-			if (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 2) {
-			}
-			else if (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 3) {
-			}
-			else if (UsedSkillSearch(SKILL_ID_TENKINO_MI) >= 1) {
-			}
-			else {
+			state_shougo = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 2);
+			state_nichibotsu = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 3);
+			state_tenki_no_mi = (UsedSkillSearch(SKILL_ID_TENKINO_MI) >= 1)
+			if (!state_shougo && !state_nichibotsu && !state_tenki_no_mi) {
 				wbairitu = 0;
 				n_Buki_Muri = 1;
 				break;
@@ -3938,19 +3939,20 @@ g_bUnknownCasts = true;
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 基本倍率
-			wbairitu = 750 + (100 * n_A_ActiveSkillLV);
+			wbairitu = 1575 + 225 * n_A_ActiveSkillLV;
 			// POW補正
 			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 			// 天気修練 補正
 			wbairitu += 5 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_TENKI_SHUREN);
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			// 日没 or 天気の身 のときだけクリが乗る仕様は CSkillManager.js 側で対処済み
+			// 分割ヒット
+			wActiveHitNum = 2;
 			break;
 
 		// 「天帝」スキル「天地一月」
 		case SKILL_ID_TENCHI_ICHIGETSU:
-			// 実測値と比較して+3程度の誤差があるが許容範囲と判断
-
 			// 距離属性
 			n_Enekyori = 0;
 			// 詠唱時間など
@@ -3965,7 +3967,9 @@ g_bUnknownCasts = true;
 			// 天気修練 補正
 			wbairitu += 5 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_TENKI_SHUREN);
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			// 分割ヒット
+			wActiveHitNum = 2;
 			break;
 
 		// 「天帝」スキル「太天一月」
@@ -3997,10 +4001,13 @@ g_bUnknownCasts = true;
 			// 天気修練 補正
 			wbairitu += 5 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_TENKI_SHUREN);
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			// 分割ヒット
+			wActiveHitNum = 2;
 			break;
 
 		// 「天帝」スキル「天月」
+		// 2024/11/11 もなこさん提供データに対して誤差なしを確認
 		case SKILL_ID_TENGETSU:
 			// 正子、月没、天気の身状態でのみ使用可能
 			state_shougo = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 5);
@@ -4019,23 +4026,24 @@ g_bUnknownCasts = true;
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 基本倍率
-			wbairitu = 750 + (100 * n_A_ActiveSkillLV);
-			// 月没or天気の身状態なら、倍率２倍
 			if (state_tukibotsu || state_tenki_no_mi) {
-				wbairitu *= 2;
+				// 月没or天気の身状態なら、倍率２倍
+				wbairitu = 1750 + 300 * n_A_ActiveSkillLV;
+			} else {
+				wbairitu = 875 + 150 * n_A_ActiveSkillLV;
 			}
 			// POW補正
 			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 			// 天気修練 補正
 			wbairitu += 5 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_TENKI_SHUREN);
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			// 分割ヒット
+			wActiveHitNum = 2;
 			break;
 
 		// 「天帝」スキル「天地万星」
 		case SKILL_ID_TENCHI_BANSE:
-			// ダメージ誤差が+4程度あるが許容範囲と判断
-
 			// 距離属性
 			n_Enekyori = 0;
 			// 詠唱時間など
@@ -4045,10 +4053,9 @@ g_bUnknownCasts = true;
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 設置スキル
 			g_bDefinedDamageIntervals = true;
+			n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// ダメージ間隔
 			n_Delay[5] = 300;
-			// オブジェクト存続時間
-			n_Delay[6] = 3000;
 			// 基本倍率
 			wbairitu = 250 + (100 * n_A_ActiveSkillLV);
 			// POW補正
@@ -4056,13 +4063,13 @@ g_bUnknownCasts = true;
 			// 天気修練 補正
 			wbairitu += 3 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_TENKI_SHUREN);
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			// 分割ヒット
+			wActiveHitNum = 3;
 			break;
 
 		// 「天帝」スキル「天命落星」
 		case SKILL_ID_TENME_RAKUSE:
-			// ダメージ誤差が+2程度あるが許容範囲と判断
-
 			// 距離属性
 			n_Enekyori = 0;
 			// 詠唱時間など
@@ -4083,13 +4090,13 @@ g_bUnknownCasts = true;
 			// 天気修練 補正
 			wbairitu += 5 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_TENKI_SHUREN);
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			// 分割ヒット
+			wActiveHitNum = 2;
 			break;
 
 		// 「天帝」スキル「天星」
 		case SKILL_ID_TENSE:
-			// ダメージ誤差が+2程度あるが許容範囲と判断
-
 			// 距離属性
 			n_Enekyori = 0;
 			// 詠唱時間など
@@ -4102,7 +4109,7 @@ g_bUnknownCasts = true;
 			// ダメージ間隔
 			n_Delay[5] = 300;
 			// オブジェクト存続時間
-			n_Delay[6] = 3000;
+			n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);;
 			// 基本倍率
 			wbairitu = 750 + (100 * n_A_ActiveSkillLV);
 			// 天気修練 補正
@@ -4110,12 +4117,13 @@ g_bUnknownCasts = true;
 			// POW補正
 			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			// 分割ヒット
+			wActiveHitNum = 3;
 			break;
 
 		// 「天帝」スキル「天羅万象」
 		case SKILL_ID_TENRA_BANSHO:
-
 			// 距離属性
 			n_Enekyori = 0;
 			// 詠唱時間など
@@ -4127,6 +4135,8 @@ g_bUnknownCasts = true;
 			wbairitu = 300 * n_A_ActiveSkillLV;
 			// POW補正
 			wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+			// ベースレベル補正
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			// 悪魔・人間(プレイヤーを除く)形では、３回ヒット
 			wHITsuu = 1;
 			switch (parseInt(mobData[MONSTER_DATA_INDEX_RACE], 10)) {
@@ -4138,8 +4148,6 @@ g_bUnknownCasts = true;
 					wHITsuu = 3;
 					break;
 			}
-			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
 			break;
 
 		/*
@@ -4566,7 +4574,7 @@ g_bUnknownCasts = true;
 			// 最終倍率
 			wbairitu *= [100, 101, 103, 105, 107, 109, 111, 113, 115, 120, 125][UsedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU)] / 100;	// 独学補正
 			wbairitu = Math.floor(wbairitu);
-			wbairitu *= [100, 150][UsedSkillSearch(SKILL_ID_BREAKING_LIMIT)] / 100;														// ブレイキングリミット補正
+			wbairitu *= [100, 150][UsedSkillSearch(SKILL_ID_BREAKING_LIMIT_STATE)] / 100;												// ブレイキングリミット補正
 			wbairitu = Math.floor(wbairitu);
 			break;
 
@@ -4588,7 +4596,7 @@ g_bUnknownCasts = true;
 			// 最終倍率
 			wbairitu *= [100, 101, 103, 105, 107, 109, 111, 113, 115, 120, 125][UsedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU)] / 100;	// 独学補正
 			wbairitu = Math.floor(wbairitu);
-			wbairitu *= [100, 150][UsedSkillSearch(SKILL_ID_BREAKING_LIMIT)] / 100;														// ブレイキングリミット補正
+			wbairitu *= [100, 150][UsedSkillSearch(SKILL_ID_BREAKING_LIMIT_STATE)] / 100;												// ブレイキングリミット補正
 			wbairitu = Math.floor(wbairitu);
 			// 敵のHPが50%未満の場合ダメージ2倍
 			option_count = attackMethodConfArray[0].GetOptionValue(0);								// 敵の残りHP
@@ -5023,7 +5031,7 @@ g_bUnknownCasts = true;
 			// 最終倍率
 			wbairitu *= [100, 101, 103, 105, 107, 109, 111, 113, 115, 120, 125][UsedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU)] / 100;	// 独学補正
 			wbairitu = Math.floor(wbairitu);
-			wbairitu *= [100, 150][UsedSkillSearch(SKILL_ID_BREAKING_LIMIT)] / 100;														// ブレイキングリミット補正
+			wbairitu *= [100, 150][UsedSkillSearch(SKILL_ID_BREAKING_LIMIT_STATE)] / 100;												// ブレイキングリミット補正
 			wbairitu = Math.floor(wbairitu);
 			break;
 
@@ -5058,7 +5066,7 @@ g_bUnknownCasts = true;
 			// 最終倍率
 			wbairitu *= [100, 101, 103, 105, 107, 109, 111, 113, 115, 120, 125][UsedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU)] / 100;	// 独学補正
 			wbairitu = Math.floor(wbairitu);
-			wbairitu *= [100, 150][UsedSkillSearch(SKILL_ID_BREAKING_LIMIT)] / 100;														// ブレイキングリミット補正
+			wbairitu *= [100, 150][UsedSkillSearch(SKILL_ID_BREAKING_LIMIT_STATE)] / 100;												// ブレイキングリミット補正
 			wbairitu = Math.floor(wbairitu);
 			break;
 			
@@ -10278,7 +10286,7 @@ g_bDefinedDamageIntervals = true;
 			wbairitu = Math.floor(wbairitu);
 			wbairitu *= [100,101,103,105,107,109,111,113,115,120,125][UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU)] / 100;	// 独学補正
 			wbairitu = Math.floor(wbairitu);
-			wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK)] / 100;												// ルールブレイク補正
+			wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK_STATE)] / 100;										// ルールブレイク補正
 			wbairitu = Math.floor(wbairitu);
 			break;
 
@@ -10301,7 +10309,7 @@ g_bDefinedDamageIntervals = true;
 			wbairitu = Math.floor(wbairitu);
 			wbairitu *= [100,101,103,105,107,109,111,113,115,120,125][UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU)] / 100;	// 独学補正
 			wbairitu = Math.floor(wbairitu);
-			wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK)] / 100;												// ルールブレイク補正
+			wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK_STATE)] / 100;										// ルールブレイク補正
 			wbairitu = Math.floor(wbairitu);
 			break;
 
@@ -10325,7 +10333,7 @@ g_bDefinedDamageIntervals = true;
 			wbairitu = Math.floor(wbairitu);
 			wbairitu *= [100,101,103,105,107,109,111,113,115,120,125][UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU)] / 100;	// 独学補正
 			wbairitu = Math.floor(wbairitu);
-			wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK)] / 100;												// ルールブレイク補正
+			wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK_STATE)] / 100;										// ルールブレイク補正
 			wbairitu = Math.floor(wbairitu);
 			break;
 
@@ -10351,7 +10359,7 @@ g_bDefinedDamageIntervals = true;
 				wbairitu = Math.floor(wbairitu);
 				wbairitu *= [100,101,103,105,107,109,111,113,115,120,125][UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU)] / 100;	// 独学補正
 				wbairitu = Math.floor(wbairitu);
-				wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK)] / 100;												// ルールブレイク補正
+				wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK_STATE)] / 100;										// ルールブレイク補正
 			}
 			// 爆発
 			else {
@@ -10359,9 +10367,9 @@ g_bDefinedDamageIntervals = true;
 				wbairitu += 5 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU);			// 習得済みスキル条件
 				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);										// 特性ステータス補正
 				// 最終倍率 (爆発には独学補正が掛からない)
-				wbairitu *= n_A_BaseLV / 100;											// BaseLv補正
+				wbairitu *= n_A_BaseLV / 100;													// BaseLv補正
 				wbairitu = Math.floor(wbairitu);
-				wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK)] / 100;		// ルールブレイク補正
+				wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK_STATE)] / 100;		// ルールブレイク補正
 			}
 			wbairitu = Math.floor(wbairitu);
 			break;
@@ -10564,7 +10572,7 @@ g_bDefinedDamageIntervals = true;
 				wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);								// 特性ステータス補正
 				wbairitu *= n_A_BaseLV / 100;														// BaseLv補正
 				wbairitu = Math.floor(wbairitu);
-				wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK)] / 100;					// ルールブレイク補正
+				wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK_STATE)] / 100;			// ルールブレイク補正
 			} else {
 				// 設置ダメージ計算が指定された場合
 				g_bDefinedDamageIntervals = true;
@@ -10580,7 +10588,7 @@ g_bDefinedDamageIntervals = true;
 				wbairitu = Math.floor(wbairitu);
 				wbairitu *= [100,101,103,105,107,109,111,113,115,120,125][UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU)] / 100;	// 独学補正
 				wbairitu = Math.floor(wbairitu);
-				wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK)] / 100;												// ルールブレイク補正
+				wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK_STATE)] / 100;										// ルールブレイク補正
 			}
 			wbairitu = Math.floor(wbairitu);
 			break;
@@ -10602,7 +10610,7 @@ g_bDefinedDamageIntervals = true;
 				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);								// 特性ステータス補正
 				wbairitu *= n_A_BaseLV / 100;														// BaseLv補正
 				wbairitu = Math.floor(wbairitu);
-				wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK)] / 100;					// ルールブレイク補正
+				wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK_STATE)] / 100;			// ルールブレイク補正
 				// 分割Hit数
 				wActiveHitNum = 2;
 			} else {
@@ -10618,7 +10626,7 @@ g_bDefinedDamageIntervals = true;
 				wbairitu = Math.floor(wbairitu);
 				wbairitu *= [100,101,103,105,107,109,111,113,115,120,125][UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU)] / 100;	// 独学補正
 				wbairitu = Math.floor(wbairitu);
-				wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK)] / 100;												// ルールブレイク補正
+				wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK_STATE)] / 100;										// ルールブレイク補正
 			}
 			wbairitu = Math.floor(wbairitu);
 			break;
