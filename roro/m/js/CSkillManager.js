@@ -32396,29 +32396,22 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
-			this.name = "(×)ディープブラインドトラップ";
+			this.name = "ディープブラインドトラップ";
 			this.kana = "テイイフフライントトラツフ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_FORCE_DARK;
-
-
-
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 250;
 			}
-
 			this.CastTimeFixed = function(skillLv, charaDataManger) {
 				return (300 * skillLv);
 			}
-
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return [0, 60000, 30700, 15100, 8500, 6100][skillLv];
 			}
-
 			this.LifeTime = function(skillLv, charaDataManger) {
 				var nLifeTime = ([0, 57000, 27700, 12100, 5500, 3100])[skillLv];
 				// 補助スキルレベル取得
@@ -32439,29 +32432,22 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
-			this.name = "(×)ソリッドトラップ";
+			this.name = "ソリッドトラップ";
 			this.kana = "ソリツトトラツフ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_FORCE_EARTH;
-
-
-
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 180;
 			}
-
 			this.CastTimeFixed = function(skillLv, charaDataManger) {
 				return (300 * skillLv);
 			}
-
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return [0, 60000, 30700, 15100, 8500, 6100][skillLv];
 			}
-
 			this.LifeTime = function(skillLv, charaDataManger) {
 				var nLifeTime = ([0, 57000, 27700, 12100, 5500, 3100])[skillLv];
 				// 補助スキルレベル取得
@@ -32482,29 +32468,22 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
-			this.name = "(×)スイフトトラップ";
+			this.name = "スイフトトラップ";
 			this.kana = "スイフトトラツフ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_FORCE_WIND;
-
-
-
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 210;
 			}
-
 			this.CastTimeFixed = function(skillLv, charaDataManger) {
 				return (300 * skillLv);
 			}
-
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return [0, 60000, 30700, 15100, 8500, 6100][skillLv];
 			}
-
 			this.LifeTime = function(skillLv, charaDataManger) {
 				var nLifeTime = ([0, 57000, 27700, 12100, 5500, 3100])[skillLv];
 				// 補助スキルレベル取得
@@ -32576,29 +32555,22 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
-			this.name = "(×)フレイムトラップ";
+			this.name = "フレイムトラップ";
 			this.kana = "フレイムトラツフ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_FORCE_FIRE;
-
-
-
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 210;
 			}
-
 			this.CastTimeFixed = function(skillLv, charaDataManger) {
 				return (300 * skillLv);
 			}
-
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return [0, 60000, 30700, 15100, 8500, 6100][skillLv];
 			}
-
 			this.LifeTime = function(skillLv, charaDataManger) {
 				var nLifeTime = ([0, 57000, 27700, 12100, 5500, 3100])[skillLv];
 				// 補助スキルレベル取得

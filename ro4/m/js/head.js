@@ -3094,43 +3094,39 @@ g_bUnknownCasts = true;
 			}
 			break;
 
+		// 「ウィンドホーク」スキル「ディープブラインドトラップ」
+		// 「ウィンドホーク」スキル「ソリッドトラップ」
+		// 「ウィンドホーク」スキル「スイフトトラップ」
+		// 「ウィンドホーク」スキル「フレイムトラップ」
+		// 2024/11/14 実測誤差が 0 ～ +1 であることを確認済み
 		case SKILL_ID_DEEP_BLIND_TRAP:
 		case SKILL_ID_SOLID_TRAP:
 		case SKILL_ID_SWIFT_TRAP:
 		case SKILL_ID_FLAME_TRAP:
-
-g_bDefinedDamageIntervals = true;
-
-			// 補助スキルレベル取得
-			var sklLvSub = UsedSkillSearch(SKILL_ID_ADVANCED_TRAP);
-
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// 設置スキル
+			g_bDefinedDamageIntervals = true;
+			// オブジェクト存続時間
+			n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// ダメージ間隔
 			n_Delay[5] = ([0, 1300, 900, 600, 400, 300])[n_A_ActiveSkillLV];
-
-			// オブジェクト存続時間
-			n_Delay[6] = ([0, 57000, 27700, 12100, 5500, 3100])[n_A_ActiveSkillLV];
-			if (sklLvSub > 0) {
-				n_Delay[6] += 500 + (500 * sklLvSub);
-			}
-
 			// 距離属性
 			n_Enekyori = 0;
-
 			// 基本倍率
-			wbairitu = 1500 + (300 * n_A_ActiveSkillLV);
-
+			wbairitu = 1500 + 300 * n_A_ActiveSkillLV;
+			// トラップ研究は射程が伸びるだけでダメージには寄与しない
 			// CON補正
-			wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
-
+			wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
 			// ベースレベル補正
-			// TODO: バグかどうか不明だが、素手だとベースレベル補正が乗らない
-			if (n_A_WeaponType != ITEM_KIND_NONE) {
-				wbairitu *= n_A_BaseLV / 100;
-			}
-
-			// ダメージ増幅
-			battleCalcInfo.dmgAmpRate += 20 * sklLvSub;
-
+			// 後続計算にさらなる倍率補正があるのでこの時点で小数点を切り捨ててはダメ
+			wbairitu = wbairitu * n_A_BaseLV / 100;
+			// アドバンスドトラップ研究補正
+			// 後続のダメージ倍率補正処理の中で小数点切り捨てされる模様
+			battleCalcInfo.dmgAmpRate += 20 * UsedSkillSearch(SKILL_ID_ADVANCED_TRAP);
 			break;
 
 		// 「ウィンドホーク」スキル「クレッシブボルト」
