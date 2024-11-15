@@ -2981,6 +2981,7 @@ g_bUnknownCasts = true;
 			wActiveHitNum = 2;
 			// 基本倍率
 			wbairitu = 1000 + (100 * n_A_ActiveSkillLV);
+			// ワシの目の習得レベルは射程が伸びるだけでダメージ倍率に寄与しない
 			// CON補正
 			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
 			// 自然親和補正
@@ -3005,6 +3006,7 @@ g_bUnknownCasts = true;
 			n_Enekyori = 1;
 			// 基本倍率
 			wbairitu = 1000 + (100 * n_A_ActiveSkillLV);
+			// ワシの目の習得レベルは射程が伸びるだけでダメージ倍率に寄与しない
 			// CON補正
 			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
 			// 自然親和補正
