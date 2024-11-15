@@ -2963,134 +2963,95 @@ g_bUnknownCasts = true;
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
+		// 「ウィンドホーク」スキル「ホークラッシュ」
+		// 2024/11/15 誤差無しを確認
 		case SKILL_ID_HAWK_RUSH:
-
 			// 弓のみ発動可能
-			switch (n_A_WeaponType) {
-
-			case ITEM_KIND_BOW:
-
-				// ディレイ、クールタイム
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-
-				// 補助スキルレベル取得
-				var sklLvSub = UsedSkillSearch(SKILL_ID_SHIZEN_SHINWA);
-
-				// 距離属性
-				n_Enekyori = 1;
-
-				// 分割HIT数（スキル説明文には記載なし）
-				wActiveHitNum = 2;
-
-				// 基本倍率
-				wbairitu = 1000 + (100 * n_A_ActiveSkillLV);
-
-				// CON補正
-				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
-
-				// 補助スキル補正
-				wbairitu *= (1 + 0.2 * sklLvSub);
-
-				// ベースレベル補正
-				wbairitu *= n_A_BaseLV / 100;
-				break;
-
-			default:
+			if (n_A_WeaponType != ITEM_KIND_BOW) {
 				wbairitu = 0;
 				n_Buki_Muri = 1;
 				break;
 			}
+			// ディレイ、クールタイム
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// 距離属性
+			n_Enekyori = 1;
+			// 分割HIT数（スキル説明文には記載なし）
+			wActiveHitNum = 2;
+			// 基本倍率
+			wbairitu = 1000 + (100 * n_A_ActiveSkillLV);
+			// CON補正
+			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+			// 自然親和補正
+			wbairitu *= (1 + 0.2 * UsedSkillSearch(SKILL_ID_SHIZEN_SHINWA));
+			// ベースレベル補正
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
+		// 「ウィンドホーク」スキル「ホークブーメラン」
+		// 2024/11/15 誤差無しを確認
 		case SKILL_ID_HAWK_BOOMERANG:
-
 			// 弓のみ発動可能
-			switch (n_A_WeaponType) {
-
-			case ITEM_KIND_BOW:
-
-				// ディレイ、クールタイム
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-
-				// 補助スキルレベル取得
-				var sklLvSub = UsedSkillSearch(SKILL_ID_SHIZEN_SHINWA);
-
-				// 距離属性
-				n_Enekyori = 1;
-
-				// 基本倍率
-				wbairitu = 1000 + (100 * n_A_ActiveSkillLV);
-
-				// CON補正
-				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
-
-				// 補助スキル補正
-				wbairitu *= (1 + 0.2 * sklLvSub);
-
-				// ベースレベル補正
-				wbairitu *= n_A_BaseLV / 100;
-
-				// 動物・魚貝形はダメージ倍率２倍
-				// （スキル説明文ではダメージ２倍だが、実測では倍率２倍が正しそう）
-				switch (mobData[MONSTER_DATA_INDEX_RACE]) {
-				case RACE_ID_ANIMAL:
-				case RACE_ID_FISH:
-					wbairitu *= 2;
-					break;
-				}
-				break;
-
-			default:
+			if (n_A_WeaponType != ITEM_KIND_BOW) {
 				wbairitu = 0;
 				n_Buki_Muri = 1;
 				break;
+			}
+			// ディレイ、クールタイム
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// 距離属性
+			n_Enekyori = 1;
+			// 基本倍率
+			wbairitu = 1000 + (100 * n_A_ActiveSkillLV);
+			// CON補正
+			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+			// 自然親和補正
+			wbairitu *= (1 + 0.2 * UsedSkillSearch(SKILL_ID_SHIZEN_SHINWA));
+			// ベースレベル補正
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);	
+			// 種族特攻は小数点以下に掛からない
+			// 動物・魚貝形はダメージ倍率２倍
+			switch (mobData[MONSTER_DATA_INDEX_RACE]) {
+				case RACE_ID_ANIMAL:
+				case RACE_ID_FISH:
+					wbairitu = Math.floor(wbairitu * 2);	
+					break;
 			}
 			break;
 
 		// 「ウィンドホーク」スキル「ゲイルストーム」
+		// 2024/11/15 誤差なしを確認
 		case SKILL_ID_GALE_STORM:
-			// ダメージ実測値に基づき誤差が+4程度あるが許容範囲と判断
-			// ただしワシの目のスキルLv補正が計算されていないので不安は残る
-
 			// 弓のみ発動可能
-			switch (n_A_WeaponType) {
-
-			case ITEM_KIND_BOW:
-
-				// 詠唱時間等
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-
-				// 距離属性
-				n_Enekyori = 1;
-
-				// 基本倍率
-				wbairitu = 1000 + (200 * n_A_ActiveSkillLV);
-
-				// CON補正
-				wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
-
-				// ベースレベル補正
-				wbairitu *= n_A_BaseLV / 100;
-				// カラミティゲイル状態で Mob の種族が動物・魚介の場合ダメージ２倍
-				if (UsedSkillSearch(SKILL_ID_CALAMITY_GALE) > 0) {
-					switch (mobData[MONSTER_DATA_INDEX_RACE]) {
-					case RACE_ID_FISH:
-					case RACE_ID_ANIMAL:
-						wbairitu *= 2;
-						break;
-					}
-				}
-				break;
-
-			default:
+			if (n_A_WeaponType != ITEM_KIND_BOW) {
 				wbairitu = 0;
 				n_Buki_Muri = 1;
 				break;
+			}
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// 分割ヒット
+			wActiveHitNum = 5;
+			// 距離属性
+			n_Enekyori = 1;
+			// 基本倍率
+			wbairitu = 1000 + 200 * n_A_ActiveSkillLV;
+			// ワシの目の習得レベルは射程が伸びるだけでダメージ倍率に寄与しない
+			// CON補正
+			wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+			// ベースレベル補正
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			// カラミティゲイル状態は小数点以下に掛からない
+			// カラミティゲイル状態で Mob の種族が動物・魚介の場合ダメージ２倍
+			if (UsedSkillSearch(SKILL_ID_CALAMITY_GALE) > 0) {
+				if ([RACE_ID_FISH, RACE_ID_ANIMAL].includes(mobData[MONSTER_DATA_INDEX_RACE])) {
+					wbairitu = Math.floor(wbairitu * 2.00);
+				}
 			}
 			break;
 
@@ -3122,74 +3083,46 @@ g_bUnknownCasts = true;
 			// CON補正
 			wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
 			// ベースレベル補正
-			// 後続計算にさらなる倍率補正があるのでこの時点で小数点を切り捨ててはダメ
 			wbairitu = wbairitu * n_A_BaseLV / 100;
+			// アドバンスドトラップ研究は小数点以下にも掛かる
 			// アドバンスドトラップ研究補正
-			// 後続のダメージ倍率補正処理の中で小数点切り捨てされる模様
-			battleCalcInfo.dmgAmpRate += 20 * UsedSkillSearch(SKILL_ID_ADVANCED_TRAP);
+			wbairitu = Math.floor(wbairitu * (1 + 0.2 * UsedSkillSearch(SKILL_ID_ADVANCED_TRAP)));
 			break;
 
 		// 「ウィンドホーク」スキル「クレッシブボルト」
+		// 2024/11/15 誤差なしを確認
 		case SKILL_ID_CRESSIVE_VOLT:
-			// TODO:
-			// 実測値と計算結果の間に最大3桁程度の誤差あり
-			// ワシの目のスキルLv補正が乗っていないのでそこから見直し必要
-
 			// 弓のみ発動可能
-			switch (n_A_WeaponType) {
-
-			case ITEM_KIND_BOW:
-
-				// 詠唱時間等
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-
-				// 距離属性
-				n_Enekyori = 1;
-
-				// 基本倍率
-				wbairitu = 1000 + (200 * n_A_ActiveSkillLV);
-
-				// CON補正
-				wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
-
-				// ベースレベル補正
-				wbairitu *= n_A_BaseLV / 100;
-
-				// ダメージ増幅
-				switch ("" + attackMethodConfArray[0].GetOptionValue(0)) {
-				case "1":
-					battleCalcInfo.dmgAmpRate += 10;
-					break;
-				case "2":
-					battleCalcInfo.dmgAmpRate += 25;
-					break;
-				case "3":
-					battleCalcInfo.dmgAmpRate += 50;
-					break;
-				}
-
-				// カラミティゲイル状態で Mob の種族が魚介または動物の場合ダメージ２倍、他種族の場合 1.25 倍
-				if (UsedSkillSearch(SKILL_ID_CALAMITY_GALE) > 0) {
-					switch (mobData[MONSTER_DATA_INDEX_RACE]) {
-					case RACE_ID_FISH:
-					case RACE_ID_ANIMAL:
-						wbairitu *= 1.25;
-						wbairitu *= 2;
-						break;
-					default:
-						wbairitu *= 1.25;
-						break;
-					}
-				}
-				break;
-
-			default:
+			if (n_A_WeaponType != ITEM_KIND_BOW) {
 				wbairitu = 0;
 				n_Buki_Muri = 1;
 				break;
+			}
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// 距離属性
+			n_Enekyori = 1;
+			// 基本倍率
+			wbairitu = 1000 + 200 * n_A_ActiveSkillLV;
+			// ワシの目の習得レベルは射程が伸びるだけでダメージ倍率に寄与しない
+			// CON補正
+			wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+			// ベースレベル補正
+			wbairitu *= n_A_BaseLV / 100;
+			// クレッシブボルト状態は小数点以下にも掛かる
+			// クレッシブボルト状態による増幅 (1.00, 1.10, 1.25, 1.50)
+			wbairitu = Math.floor(wbairitu * [1.00, 1.10, 1.25, 1.50][attackMethodConfArray[0].GetOptionValue(0)]);
+			// カラミティゲイル状態は小数点以下に掛からない
+			// カラミティゲイル状態で 1.25 倍
+			if (UsedSkillSearch(SKILL_ID_CALAMITY_GALE) > 0) {
+				wbairitu = Math.floor(wbairitu * 1.25);
+				// Mob の種族が魚介または動物の場合さらに 2.00 倍
+				if ([RACE_ID_FISH, RACE_ID_ANIMAL].includes(mobData[MONSTER_DATA_INDEX_RACE])) {
+					wbairitu = Math.floor(wbairitu * 2.00);
+				}
 			}
 			break;
 
