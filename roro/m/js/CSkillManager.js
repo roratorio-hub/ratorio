@@ -36496,12 +36496,15 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(△)アシディファイドゾーン(水)";
+			this.name = "アシディファイドゾーン(水)";
 			this.kana = "アシテイフアイトソオン　ミス";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SPECIAL;
 			this.element = CSkillData.ELEMENT_FORCE_WATER;
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 480;
+			}
 			this.CastTimeVary = function(skillLv, charaDataManger) {
 				return 3500;
 			}
@@ -36527,12 +36530,15 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(△)アシディファイドゾーン(地)";
+			this.name = "アシディファイドゾーン(地)";
 			this.kana = "アシテイフアイトソオン　チ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SPECIAL;
 			this.element = CSkillData.ELEMENT_FORCE_EARTH;
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 480;
+			}
 			this.CastTimeVary = function(skillLv, charaDataManger) {
 				return 3500;
 			}
@@ -36558,12 +36564,15 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(△)アシディファイドゾーン(火)";
+			this.name = "アシディファイドゾーン(火)";
 			this.kana = "アシテイフアイトソオン　ヒ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SPECIAL;
 			this.element = CSkillData.ELEMENT_FORCE_FIRE;
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 540;
+			}
 			this.CastTimeVary = function(skillLv, charaDataManger) {
 				return 3500;
 			}
@@ -36587,14 +36596,16 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
-			this.name = "(△)アシディファイドゾーン(風)";
+			this.name = "アシディファイドゾーン(風)";
 			this.kana = "アシテイフアイトソオン　カセ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SPECIAL;
 			this.element = CSkillData.ELEMENT_FORCE_WIND;
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 540;
+			}
 			this.CastTimeVary = function(skillLv, charaDataManger) {
 				return 3500;
 			}

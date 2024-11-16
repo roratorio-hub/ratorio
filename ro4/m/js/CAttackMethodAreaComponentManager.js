@@ -3612,7 +3612,7 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 				"ダメージ表示",
 				[
 					[0, "使用時ダメージ"],
-					[1, "追加持続ダメージ"],
+					[1, "設置ダメージ(未調整)"],
 				],
 				0
 			);
