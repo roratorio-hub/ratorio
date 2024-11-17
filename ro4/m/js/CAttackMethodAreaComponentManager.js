@@ -458,7 +458,6 @@ CAttackMethodAreaComponentManager.RebuildControls = function () {
 	objTd.setAttribute("id", "OBJID_TD_ATTACK_METHOD_ROOT");
 
 
-
 	//--------------------------------
 	// 補足説明欄部分を生成（行のみ生成）
 	//--------------------------------
@@ -605,6 +604,7 @@ CAttackMethodAreaComponentManager.RefreshControls = function () {
 		// 生成されていれば、ラベルも追加
 		if (CAttackMethodAreaComponentManager.labelObjectArray[idx]) {
 			objTd = HtmlCreateElement("td", objTr);
+			objTd.style.whiteSpace = "nowrap";
 			objTd.appendChild(CAttackMethodAreaComponentManager.labelObjectArray[idx]);
 
 			colspan = 1;
@@ -2081,15 +2081,11 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 		//----------------------------------------------------------------
 		// マーチャント：カートレボリューション
 		// ホワイトスミス：カートターミネーション
-		// ジェネティック：カートトルネード
 		//----------------------------------------------------------------
 		case SKILL_ID_CART_REVOLUTION:
 		case SKILL_ID_CART_TERMINATION:
-		case SKILL_ID_CART_TORNADO:
-
 			// カート積載可能量を計算
 			valueWork = 8000 + 500 * UsedSkillSearch(SKILL_ID_CART_KAIZO);
-
 			// オプションリストを生成、追加
 			attackMethodOptList = funcCreateOptionListAsInput(attackMethodOptList,
 				"カート重量",
@@ -2099,6 +2095,54 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 					["max", valueWork],
 				],
 				valueWork
+			);
+			break;
+
+		//----------------------------------------------------------------
+		// ジェネティック：カートトルネード
+		//----------------------------------------------------------------
+		case SKILL_ID_CART_TORNADO:
+			// カート積載可能量を計算
+			valueWork = 8000 + 500 * UsedSkillSearch(SKILL_ID_CART_KAIZO);
+			// オプションリストを生成、追加
+			attackMethodOptList = funcCreateOptionListAsInput(attackMethodOptList,
+				"カート重量",
+				[
+					["type", "number"],
+					["min", 0],
+					["max", valueWork],
+				],
+				valueWork
+			);
+			// バイオロではない場合は選択させない
+			if (!IsSameJobClass(MIG_JOB_ID_BIOLO)) {
+				break;
+			}
+			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+				"ｳﾄﾞｩﾝｳｫﾘｱｰ",
+				[
+					[0, "無し"],
+					[1, "召喚中"],
+				],
+				0
+			);
+			break;
+
+		//----------------------------------------------------------------
+		// ジェネティック：スポアエクスプロージョン
+		//----------------------------------------------------------------
+		case SKILL_ID_SPORE_EXPLOSION:
+			// バイオロではない場合は選択させない
+			if (!IsSameJobClass(MIG_JOB_ID_BIOLO)) {
+				break;
+			}
+			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+				"ｳﾄﾞｩﾝﾌｪｱﾘｰ",
+				[
+					[0, "無し"],
+					[1, "召喚中"],
+				],
+				0
 			);
 			break;
 
@@ -2647,10 +2691,8 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 
 		//----------------------------------------------------------------
 		// メカニック：アームズキャノン
-		// ジェネティック：カートキャノン
 		//----------------------------------------------------------------
 		case SKILL_ID_ARMS_CANNON:
-		case SKILL_ID_CART_CANNON:
 
 			// オプションリストを生成、追加
 			arrayWork = [];
@@ -2660,6 +2702,35 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 			attackMethodOptList = funcCreateOptionList(attackMethodOptList, "", arrayWork, 1);
 			break;
 
+
+		//----------------------------------------------------------------
+		// ジェネティック：カートキャノン
+		//----------------------------------------------------------------
+		case SKILL_ID_CART_CANNON:
+
+			// オプションリストを生成、追加
+			arrayWork = [];
+			for (idxOpt = 0; idxOpt < CanonOBJ.length; idxOpt++) {
+				arrayWork.push([idxOpt, CanonOBJ[idxOpt][2]])
+			}
+			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+				"ｷｬﾉﾝﾎﾞｰﾙ",
+				arrayWork,
+				1
+			);
+			// バイオロではない場合は選択させない
+			if (!IsSameJobClass(MIG_JOB_ID_BIOLO)) {
+				break;
+			}
+			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+				"ｳﾄﾞｩﾝｳｫﾘｱｰ",
+				[
+					[0, "無し"],
+					[1, "召喚中"],
+				],
+				0
+			);
+			break;			
 
 		//----------------------------------------------------------------
 		// メカニック：セルフディストラクション
@@ -3541,7 +3612,7 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 				"ダメージ表示",
 				[
 					[0, "使用時ダメージ"],
-					[1, "追加持続ダメージ"],
+					[1, "設置ダメージ(未調整)"],
 				],
 				0
 			);
