@@ -5658,7 +5658,7 @@
 	w_SE[2910] = [-3326,-3323,5306];
 	w_SE[2889] = [-3326,-3323,5307];
 	// パーマフロストオブリビオン セット
-	w_SE[2872] = [-3327,-3323,16,];
+	w_SE[2872] = [-3327,-3323,5367,];
 	CardIdToSetIdMap[3323] = [2869,2870,2871,2872,2890,2891,2892,2893,2894,2895,2896,2897,2898,2899,2900,2901,2902,2903,2904,2905,2906,2907,2908,2909,2910,2889];	
 	ItemIdToSetIdMap[5308] = ItemIdToSetIdMap[5308].concat([2869]);
 	ItemIdToSetIdMap[5309] = ItemIdToSetIdMap[5309].concat([2890]);
@@ -5685,6 +5685,34 @@
 	ItemIdToSetIdMap[5305] = ItemIdToSetIdMap[5305].concat([2909]);
 	ItemIdToSetIdMap[5306] = ItemIdToSetIdMap[5306].concat([2910]);
 	ItemIdToSetIdMap[5307] = ItemIdToSetIdMap[5307].concat([2889]);
+	// --- 2024/11/27 ---
+	ItemIdToSetIdMap[5367] = [2872];	// パーマフロストオブリビオン + 永久の氷河
+	w_SE[2911] = [5369,5368,-1975,];	// アトクウェ・ポエニテンティア + 英雄の凱歌
+	ItemIdToSetIdMap[5368] = [2911,];	
+	CardIdToSetIdMap[1975] = CardIdToSetIdMap[1975].concat([2911]);
+	w_SE[2912] = [5371,5370,-2043,];	// 心外無刀 + 厄災の魔将
+	ItemIdToSetIdMap[5370] = [2912,];
+	CardIdToSetIdMap[2043] = CardIdToSetIdMap[2043].concat([2912]);
+	w_SE[2913] = [5373,5372,5222,];		// ステラ・グラーティア + デイブレイク・スターゲイザー
+	w_SE[2914] = [5374,5372,5003,];		// ステラ・グラーティア + 星座の印章
+	w_SE[2916] = [5374,5372,5004,];		// ステラ・グラーティア + 星座の印章(力)
+	w_SE[2917] = [5374,5372,5005,];		// ステラ・グラーティア + 星座の印章(体力)
+	w_SE[2918] = [5374,5372,5006,];		// ステラ・グラーティア + 星座の印章(創造)
+	w_SE[2919] = [5374,5372,5007,];		// ステラ・グラーティア + 星座の印章(魔力)
+	w_SE[2920] = [5374,5372,5008,];		// ステラ・グラーティア + 星座の印章(聡明)
+	w_SE[2921] = [5374,5372,5009,];		// ステラ・グラーティア + 星座の印章(集中)
+	ItemIdToSetIdMap[5372] = [2913,2914,2916,2917,2918,2919,2920,2921];
+	ItemIdToSetIdMap[5003] = ItemIdToSetIdMap[5003].concat([2914]);
+	ItemIdToSetIdMap[5004] = ItemIdToSetIdMap[5004].concat([2916]);
+	ItemIdToSetIdMap[5005] = ItemIdToSetIdMap[5005].concat([2917]);
+	ItemIdToSetIdMap[5006] = ItemIdToSetIdMap[5006].concat([2918]);
+	ItemIdToSetIdMap[5007] = ItemIdToSetIdMap[5007].concat([2919]);
+	ItemIdToSetIdMap[5008] = ItemIdToSetIdMap[5008].concat([2920]);
+	ItemIdToSetIdMap[5009] = ItemIdToSetIdMap[5009].concat([2921]);
+	ItemIdToSetIdMap[5222] = ItemIdToSetIdMap[5222].concat([2914]);
+	w_SE[2915] = [5376,5375,-2220,];	// ホロウアグレッサー + 黒翼の使徒
+	ItemIdToSetIdMap[5375] = [2915,];	
+	CardIdToSetIdMap[2220] = CardIdToSetIdMap[2220].concat([2915]);
 
 	// itemset はセーブデータに書き出されないので
 	// 現実的な範囲において itemsetID の上限値を気にする必要はありません
