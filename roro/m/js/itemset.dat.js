@@ -5693,7 +5693,7 @@
 	w_SE[2912] = [5371,5370,-2043,];	// 心外無刀 + 厄災の魔将
 	ItemIdToSetIdMap[5370] = [2912,];
 	CardIdToSetIdMap[2043] = CardIdToSetIdMap[2043].concat([2912]);
-	w_SE[2913] = [5373,5372,5222,];		// ステラ・グラーティア + デイブレイク・スターゲイザー
+	w_SE[2913] = [5373,5372,5222,];		// ステラ・グラーティア + デイブレイク・スターゲイザー	
 	w_SE[2914] = [5374,5372,5003,];		// ステラ・グラーティア + 星座の印章
 	w_SE[2916] = [5374,5372,5004,];		// ステラ・グラーティア + 星座の印章(力)
 	w_SE[2917] = [5374,5372,5005,];		// ステラ・グラーティア + 星座の印章(体力)
@@ -5709,7 +5709,7 @@
 	ItemIdToSetIdMap[5007] = ItemIdToSetIdMap[5007].concat([2919]);
 	ItemIdToSetIdMap[5008] = ItemIdToSetIdMap[5008].concat([2920]);
 	ItemIdToSetIdMap[5009] = ItemIdToSetIdMap[5009].concat([2921]);
-	ItemIdToSetIdMap[5222] = ItemIdToSetIdMap[5222].concat([2914]);
+	ItemIdToSetIdMap[5222] = ItemIdToSetIdMap[5222].concat([2913]);
 	w_SE[2915] = [5376,5375,-2220,];	// ホロウアグレッサー + 黒翼の使徒
 	ItemIdToSetIdMap[5375] = [2915,];	
 	CardIdToSetIdMap[2220] = CardIdToSetIdMap[2220].concat([2915]);

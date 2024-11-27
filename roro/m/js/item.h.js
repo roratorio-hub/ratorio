@@ -2136,7 +2136,7 @@ function GetItemExplainText(spId, spValue) {
 		break;
 
 	case ITEM_SP_RESIST_BOSS:
-		textInfoArray.push(["", "ボスモンスターに対する耐性" + sign + spValue + "%"]);
+		textInfoArray.push(["", `ボスモンスターから受けるダメージ ${spValue}% ${sign === " + " ? "減少": "増加"}`]);
 		break;
 
 	case ITEM_SP_RESIST_LONGRANGE:
@@ -2144,7 +2144,7 @@ function GetItemExplainText(spId, spValue) {
 		break;
 
 	case ITEM_SP_RESIST_NOTBOSS:
-		textInfoArray.push(["", "一般モンスターに対する耐性" + sign + spValue + "%"]);
+		textInfoArray.push(["", `一般モンスターから受けるダメージ ${spValue}% ${sign === " + " ? "減少": "増加"}`]);
 		break;
 
 	case ITEM_SP_PHYSICAL_DAMAGE_UP:
