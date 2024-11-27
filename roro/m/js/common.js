@@ -536,7 +536,7 @@ function GetStateText(stateId) {
 		return "アクセ破壊";
 
 	//Rの新状態異常
-	case STATE_R_ID_CHILLED:
+	case STATE_R_ID_CHILLED:	// 17
 		return "冷凍";
 	case STATE_R_ID_ICED:
 		return "氷結";

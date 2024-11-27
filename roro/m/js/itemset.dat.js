@@ -5583,6 +5583,136 @@
 	w_SE[2864] = [-3317,-3316,-1348,];
 	CardIdToSetIdMap[3316] = [2864,];
 	CardIdToSetIdMap[1348] = CardIdToSetIdMap[1348].concat([2863,2864]);
+	// --- 2024/11/27 ---
+	// 3318 悲哀の王宮セット1 複数候補あり
+	w_SE[2865] = [-3319,-3318,5329];	
+	w_SE[2873] = [-3319,-3318,5331];
+	w_SE[2874] = [-3319,-3318,5335];
+	w_SE[2875] = [-3319,-3318,5337];
+	w_SE[2876] = [-3319,-3318,5341];
+	w_SE[2877] = [-3319,-3318,5343];
+	w_SE[2878] = [-3319,-3318,5347];
+	w_SE[2879] = [-3319,-3318,5349];
+	w_SE[2880] = [-3319,-3318,5351];
+	w_SE[2881] = [-3319,-3318,5353];
+	w_SE[2882] = [-3319,-3318,5355];
+	w_SE[2883] = [-3319,-3318,5333];
+	w_SE[2884] = [-3319,-3318,5339];
+	w_SE[2885] = [-3319,-3318,5345];
+	w_SE[2886] = [-3319,-3318,5357];
+	// 3318 悲哀の王宮セット2 単品
+	w_SE[2866] = [-3320,-3318,5359,];
+	// 3318 悲哀の王宮セット3 複数候補あり
+	w_SE[2867] = [-3321,-3318,5325,];
+	w_SE[2887] = [-3321,-3318,5327];
+	w_SE[2888] = [-3321,-3318,5361];
+	// サクライセット
+	w_SE[2868] = [-3322,-3318,-3310,];
+	CardIdToSetIdMap[3318] = [2865,2866,2867,2868,2873,2874,2875,2876,2877,2878,2879,2880,2881,2882,2883,2884,2885,2886,2887,2888];
+	ItemIdToSetIdMap[5329] = ItemIdToSetIdMap[5329].concat([2865]);
+	ItemIdToSetIdMap[5331] = ItemIdToSetIdMap[5331].concat([2873]);
+	ItemIdToSetIdMap[5335] = ItemIdToSetIdMap[5335].concat([2874]);
+	ItemIdToSetIdMap[5337] = ItemIdToSetIdMap[5337].concat([2875]);
+	ItemIdToSetIdMap[5341] = ItemIdToSetIdMap[5341].concat([2876]);
+	ItemIdToSetIdMap[5343] = ItemIdToSetIdMap[5343].concat([2877]);
+	ItemIdToSetIdMap[5347] = ItemIdToSetIdMap[5347].concat([2878]);
+	ItemIdToSetIdMap[5349] = ItemIdToSetIdMap[5349].concat([2879]);
+	ItemIdToSetIdMap[5351] = ItemIdToSetIdMap[5351].concat([2880]);
+	ItemIdToSetIdMap[5353] = ItemIdToSetIdMap[5353].concat([2881]);
+	ItemIdToSetIdMap[5355] = ItemIdToSetIdMap[5355].concat([2882]);
+	ItemIdToSetIdMap[5333] = ItemIdToSetIdMap[5333].concat([2883]);
+	ItemIdToSetIdMap[5339] = ItemIdToSetIdMap[5339].concat([2884]);
+	ItemIdToSetIdMap[5345] = ItemIdToSetIdMap[5345].concat([2885]);
+	ItemIdToSetIdMap[5357] = ItemIdToSetIdMap[5357].concat([2886]);
+	ItemIdToSetIdMap[5359] = ItemIdToSetIdMap[5359].concat([2866]);
+	ItemIdToSetIdMap[5325] = ItemIdToSetIdMap[5325].concat([2867]);
+	ItemIdToSetIdMap[5327] = ItemIdToSetIdMap[5327].concat([2887]);
+	ItemIdToSetIdMap[5361] = ItemIdToSetIdMap[5361].concat([2888]);
+	CardIdToSetIdMap[3310] = CardIdToSetIdMap[3310].concat([2868]);
+	// 3323 永久の氷河セット1 
+	w_SE[2869] = [-3324,-3323,5308,];
+	w_SE[2890] = [-3324,-3323,5309];
+	w_SE[2891] = [-3324,-3323,5310];
+	w_SE[2892] = [-3324,-3323,5311];
+	w_SE[2893] = [-3324,-3323,5312];
+	w_SE[2894] = [-3324,-3323,5313];
+	w_SE[2895] = [-3324,-3323,5314];
+	w_SE[2896] = [-3324,-3323,5315];
+	w_SE[2897] = [-3324,-3323,5317];
+	w_SE[2898] = [-3324,-3323,5318];
+	w_SE[2899] = [-3324,-3323,5319];
+	w_SE[2900] = [-3324,-3323,5320];
+	// 3323 永久の氷河セット2 
+	w_SE[2870] = [-3325,-3323,5316,];
+	// 3323 永久の氷河セット3 
+	w_SE[2871] = [-3326,-3323,5296,];
+	w_SE[2901] = [-3326,-3323,5297];
+	w_SE[2902] = [-3326,-3323,5298];
+	w_SE[2903] = [-3326,-3323,5299];
+	w_SE[2904] = [-3326,-3323,5300];
+	w_SE[2905] = [-3326,-3323,5301];
+	w_SE[2906] = [-3326,-3323,5302];
+	w_SE[2907] = [-3326,-3323,5303];
+	w_SE[2908] = [-3326,-3323,5304];
+	w_SE[2909] = [-3326,-3323,5305];
+	w_SE[2910] = [-3326,-3323,5306];
+	w_SE[2889] = [-3326,-3323,5307];
+	// パーマフロストオブリビオン セット
+	w_SE[2872] = [-3327,-3323,5367,];
+	CardIdToSetIdMap[3323] = [2869,2870,2871,2872,2890,2891,2892,2893,2894,2895,2896,2897,2898,2899,2900,2901,2902,2903,2904,2905,2906,2907,2908,2909,2910,2889];	
+	ItemIdToSetIdMap[5308] = ItemIdToSetIdMap[5308].concat([2869]);
+	ItemIdToSetIdMap[5309] = ItemIdToSetIdMap[5309].concat([2890]);
+	ItemIdToSetIdMap[5310] = ItemIdToSetIdMap[5310].concat([2891]);
+	ItemIdToSetIdMap[5311] = ItemIdToSetIdMap[5311].concat([2892]);
+	ItemIdToSetIdMap[5312] = ItemIdToSetIdMap[5312].concat([2893]);
+	ItemIdToSetIdMap[5313] = ItemIdToSetIdMap[5313].concat([2894]);
+	ItemIdToSetIdMap[5314] = ItemIdToSetIdMap[5314].concat([2895]);
+	ItemIdToSetIdMap[5315] = ItemIdToSetIdMap[5315].concat([2896]);
+	ItemIdToSetIdMap[5317] = ItemIdToSetIdMap[5317].concat([2897]);
+	ItemIdToSetIdMap[5318] = ItemIdToSetIdMap[5318].concat([2898]);
+	ItemIdToSetIdMap[5319] = ItemIdToSetIdMap[5319].concat([2899]);
+	ItemIdToSetIdMap[5320] = ItemIdToSetIdMap[5320].concat([2900]);
+	ItemIdToSetIdMap[5316] = ItemIdToSetIdMap[5316].concat([2870]);
+	ItemIdToSetIdMap[5296] = ItemIdToSetIdMap[5296].concat([2871]);
+	ItemIdToSetIdMap[5297] = ItemIdToSetIdMap[5297].concat([2901]);
+	ItemIdToSetIdMap[5298] = ItemIdToSetIdMap[5298].concat([2902]);
+	ItemIdToSetIdMap[5299] = ItemIdToSetIdMap[5299].concat([2903]);
+	ItemIdToSetIdMap[5300] = ItemIdToSetIdMap[5300].concat([2904]);
+	ItemIdToSetIdMap[5301] = ItemIdToSetIdMap[5301].concat([2905]);
+	ItemIdToSetIdMap[5302] = ItemIdToSetIdMap[5302].concat([2906]);
+	ItemIdToSetIdMap[5303] = ItemIdToSetIdMap[5303].concat([2907]);
+	ItemIdToSetIdMap[5304] = ItemIdToSetIdMap[5304].concat([2908]);
+	ItemIdToSetIdMap[5305] = ItemIdToSetIdMap[5305].concat([2909]);
+	ItemIdToSetIdMap[5306] = ItemIdToSetIdMap[5306].concat([2910]);
+	ItemIdToSetIdMap[5307] = ItemIdToSetIdMap[5307].concat([2889]);
+	// --- 2024/11/27 ---
+	ItemIdToSetIdMap[5367] = [2872];	// パーマフロストオブリビオン + 永久の氷河
+	w_SE[2911] = [5369,5368,-1975,];	// アトクウェ・ポエニテンティア + 英雄の凱歌
+	ItemIdToSetIdMap[5368] = [2911,];	
+	CardIdToSetIdMap[1975] = CardIdToSetIdMap[1975].concat([2911]);
+	w_SE[2912] = [5371,5370,-2043,];	// 心外無刀 + 厄災の魔将
+	ItemIdToSetIdMap[5370] = [2912,];
+	CardIdToSetIdMap[2043] = CardIdToSetIdMap[2043].concat([2912]);
+	w_SE[2913] = [5373,5372,5222,];		// ステラ・グラーティア + デイブレイク・スターゲイザー	
+	w_SE[2914] = [5374,5372,5003,];		// ステラ・グラーティア + 星座の印章
+	w_SE[2916] = [5374,5372,5004,];		// ステラ・グラーティア + 星座の印章(力)
+	w_SE[2917] = [5374,5372,5005,];		// ステラ・グラーティア + 星座の印章(体力)
+	w_SE[2918] = [5374,5372,5006,];		// ステラ・グラーティア + 星座の印章(創造)
+	w_SE[2919] = [5374,5372,5007,];		// ステラ・グラーティア + 星座の印章(魔力)
+	w_SE[2920] = [5374,5372,5008,];		// ステラ・グラーティア + 星座の印章(聡明)
+	w_SE[2921] = [5374,5372,5009,];		// ステラ・グラーティア + 星座の印章(集中)
+	ItemIdToSetIdMap[5372] = [2913,2914,2916,2917,2918,2919,2920,2921];
+	ItemIdToSetIdMap[5003] = ItemIdToSetIdMap[5003].concat([2914]);
+	ItemIdToSetIdMap[5004] = ItemIdToSetIdMap[5004].concat([2916]);
+	ItemIdToSetIdMap[5005] = ItemIdToSetIdMap[5005].concat([2917]);
+	ItemIdToSetIdMap[5006] = ItemIdToSetIdMap[5006].concat([2918]);
+	ItemIdToSetIdMap[5007] = ItemIdToSetIdMap[5007].concat([2919]);
+	ItemIdToSetIdMap[5008] = ItemIdToSetIdMap[5008].concat([2920]);
+	ItemIdToSetIdMap[5009] = ItemIdToSetIdMap[5009].concat([2921]);
+	ItemIdToSetIdMap[5222] = ItemIdToSetIdMap[5222].concat([2913]);
+	w_SE[2915] = [5376,5375,-2220,];	// ホロウアグレッサー + 黒翼の使徒
+	ItemIdToSetIdMap[5375] = [2915,];	
+	CardIdToSetIdMap[2220] = CardIdToSetIdMap[2220].concat([2915]);
 
 	// itemset はセーブデータに書き出されないので
 	// 現実的な範囲において itemsetID の上限値を気にする必要はありません
