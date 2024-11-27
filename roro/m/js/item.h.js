@@ -2136,7 +2136,7 @@ function GetItemExplainText(spId, spValue) {
 		break;
 
 	case ITEM_SP_RESIST_BOSS:
-		textInfoArray.push(["", "ボスモンスターに対する耐性" + sign + spValue + "%"]);
+		textInfoArray.push(["", `ボスモンスターから受けるダメージ ${spValue}% ${sign === " + " ? "減少": "増加"}`]);
 		break;
 
 	case ITEM_SP_RESIST_LONGRANGE:
@@ -2144,7 +2144,7 @@ function GetItemExplainText(spId, spValue) {
 		break;
 
 	case ITEM_SP_RESIST_NOTBOSS:
-		textInfoArray.push(["", "一般モンスターに対する耐性" + sign + spValue + "%"]);
+		textInfoArray.push(["", `一般モンスターから受けるダメージ ${spValue}% ${sign === " + " ? "減少": "増加"}`]);
 		break;
 
 	case ITEM_SP_PHYSICAL_DAMAGE_UP:
@@ -2340,6 +2340,26 @@ function GetItemExplainText(spId, spValue) {
 	case ITEM_SP_RESIST_STATE_BREAK_SHOES:
 	case ITEM_SP_RESIST_STATE_BREAK_ACCESSARY:
 		textInfoArray.push(["", "状態異常 " + GetStateText(spId - ITEM_SP_RESIST_STATE_POISON) + " に対する耐性 + " + spValue + "%"]);
+		break;
+	
+	case ITEM_SP_RESIST_STATE_R_CHILLED:
+	case ITEM_SP_RESIST_STATE_R_ICED:
+	case ITEM_SP_RESIST_STATE_R_IGNITION:
+	case ITEM_SP_RESIST_STATE_R_FEAR:
+	case ITEM_SP_RESIST_STATE_R_DEEPSLEEP:
+	case ITEM_SP_RESIST_STATE_R_CHARMED:
+	case ITEM_SP_RESIST_STATE_R_FRENZY:
+	case ITEM_SP_RESIST_STATE_NEW_LETHARGY:
+	case ITEM_SP_RESIST_STATE_NEW_JETBLACK:
+	case ITEM_SP_RESIST_STATE_NEW_HIGHLYPOISONOUS:
+	case ITEM_SP_RESIST_STATE_NEW_TORRENT:
+	case ITEM_SP_RESIST_STATE_NEW_MELANCHOLY:
+	case ITEM_SP_RESIST_STATE_NEW_STILLNESS:
+	case ITEM_SP_RESIST_STATE_NEW_CONFLAGRATION:
+	case ITEM_SP_RESIST_STATE_NEW_RAPIDCOOLING:
+	case ITEM_SP_RESIST_STATE_NEW_CRYSTALLIZATION:
+	case ITEM_SP_RESIST_STATE_NEW_UNHAPPINESS:
+		textInfoArray.push(["", "状態異常 " + GetStateText(spId - ITEM_SP_RESIST_STATE_R_CHILLED + STATE_R_ID_CHILLED) + " に対する耐性 + " + spValue + "%"]);
 		break;
 
 	case ITEM_SP_MAGICAL_DAMAGE_UP_RACE_SOLID:
