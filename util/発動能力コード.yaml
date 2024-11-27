@@ -21,6 +21,8 @@ capabilities:
     code: 18
   - name: MDEF加算
     code: 19
+  - name: 錐
+    code: 23
   - name: 遠距離ダメージ増加
     code: 25
   - name: 近距離ダメージ増加
