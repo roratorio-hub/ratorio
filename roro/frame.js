@@ -19,13 +19,21 @@ function SwitchBGColor() {
 	}
 }
 
+// オリジナル版とFork版の判定
+let sitename = "ROラトリオHub"
+let formurl = "https://docs.google.com/forms/d/e/1FAIpQLSfP7hZkIInuBIvlDKf3L66fQ4DGzP3DUAbGPeTwTc3B-y7AKg/viewform"
+if (window.location.hostname !== "roratorio-hub.github.io") {
+  sitename += "<br>- 開発デモ版 -"
+  formurl += `?entry.1590472346=ラトリオHUB以外から遷移しています`
+}
+
 templ = `
 <aside id="sidebar" class="sidebar">
   <div class="sidebar-layout">
     <div class="sidebar-header">
       <div class="sidebar-logo">
         <div>RH</div>
-        <h5>ROラトリオHub</h5>
+        <h5>${sitename}</h5>
       </div>
     </div>
     <div class="sidebar-content">
@@ -49,7 +57,7 @@ templ = `
 
 		  <li class="menu-header" style="padding-top: 10px"><span>Contact Us</span></li>
           <li class="menu-item"><span class="menu-title"><a href="../../information/response/index.html" class="local">Q&amp;A</a></span></li>
-		  <li class="menu-item"><span class="menu-title"><a href="https://forms.gle/Ai6ghaDT2tV89AVW8"">Googleフォーム</a></span></li>
+		  <li class="menu-item"><span class="menu-title"><a href="${formurl}">Googleフォーム</a></span></li>
           <li class="menu-item"><span class="menu-title"><a href="https://discord.gg/wcKE7PkQ9x">Discord</a></span></li>
           <li class="menu-item"><span class="menu-title"><a href="https://github.com/roratorio-hub/ratorio">Github</a></span></li>
 
