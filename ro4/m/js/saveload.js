@@ -24,10 +24,48 @@ function OnClickSaveSaveData () {
 }
 
 /**
+ * Cookieに保存されているセーブデータをクリップボードにコピーする関数
+ * 不具合報告用に
+ */
+function OnClickClipboardSaveData() {
+	const dataIndex = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_SAVE_DATA_MIG", 0);
+	const savedata = CSaveController.getSaveData(dataIndex);
+	if (savedata[1].length == 0) {
+		alert("そのセーブスロットは空です。不具合が発生するセーブデータを選択した状態でボタンを押してください。")
+		return;
+	}
+	navigator.clipboard.writeText(`${location.href}?${savedata[1]}`);
+	ModalWindow.createModal({
+		title: `セーブデータをクリップボードにコピーしました`,
+		message: `セーブデータ名：${savedata[0]} \n問い合わせフォームに貼り付けて報告してください。\n\n${location.href}?${savedata[1]}`,
+		buttons: [
+			{ label: "閉じる", value: "close", color: "#dc3545" },
+		],
+	});
+}
+
+
+/**
  * ロードボタン押下イベントハンドラ.
  */
 function OnClickLoadSaveData () {
+	// 必要情報の取得
+	const dataIndex = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_SAVE_DATA_MIG", 0);
+	// データをロード
+	const charaName = CSaveController.loadCharaData(dataIndex);
+	if (charaName.length > 0) {
+		// 名前入力欄へ適用
+		HtmlSetObjectValueById("OBJID_INPUT_SAVE_NAME_MIG", charaName);
+		// アイテム情報の構築
+		CItemInfoManager.OnClickExtractSwitch();
+		// 検索可能リスト更新
+		LoadSelect2();
+	} else {
+		alert("データがありません。");
+	}
+
 	// インジケーター表示
+	/* https://github.com/roratorio-hub/ratorio/issues/720 のため一時コメントアウト
 	showLoadingIndicator();
 	setTimeout(() => {
 		// 必要情報の取得
@@ -47,6 +85,7 @@ function OnClickLoadSaveData () {
 		// インジケーター非表示
 		hideLoadingIndicator();
 	},0);
+	*/
 }
 
 /**

@@ -93,6 +93,10 @@ body[class="CLS_BODY_ALTERNATIVE"] .folding-block-body-MIG {
 	grid-row: 2;
 	grid-column: 3;
 }
+#OBJID_BUTTON_DEBUG_SAVE_DATA_MIG {
+	grid-row: 2;
+	grid-column: 4 / span 2;
+}
 #OBJID_BUTTON_DELETE_SAVE_DATA_MIG {
 	grid-row: 1;
 	grid-column: 5;

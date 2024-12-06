@@ -246,6 +246,25 @@ class CSaveController {
 	}
 
 	/**
+	 * Cookie からセーブデータ文字列を取得する
+	 * saveload.js@OnClickClipboardSaveData() から呼び出されるデバッグ関数
+	 * @param {*} index 
+	 * @returns {string[2]} [セーブデータ名, セーブデータ文字列]
+	 */
+	static getSaveData (index) {
+		// ストレージデータ配列の範囲外の場合は、処理不可
+		if ((index < 0) || (index >= this.#charaDataArray.length)) {
+			return "";
+		}
+		// 名前と計算機データを取得
+		const charaData = this.#charaDataArray[index];
+		const nameDecoded = this.decodeSaveName(charaData[0]);
+		const dataURL = charaData[1];
+		return [nameDecoded, dataURL];
+	}
+
+
+	/**
 	 * 指定のインデックスからロードする.
 	 * @param {int} index ロードするインデックス（０オリジン）
 	 * @returns {string} キャラクター名
