@@ -19,13 +19,19 @@ function SwitchBGColor() {
 	}
 }
 
+// オリジナル版とFork版の判定
+let sitename = "ROラトリオHub"
+if (window.location.hostname !== "roratorio-hub.github.io") {
+  sitename = "ROラトリオHub<br>- 開発デモ版 -"
+}
+
 templ = `
 <aside id="sidebar" class="sidebar">
   <div class="sidebar-layout">
     <div class="sidebar-header">
       <div class="sidebar-logo">
         <div>RH</div>
-        <h5>ROラトリオHub</h5>
+        <h5>${sitename}</h5>
       </div>
     </div>
     <div class="sidebar-content">
