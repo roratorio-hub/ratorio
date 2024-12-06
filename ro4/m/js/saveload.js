@@ -34,10 +34,10 @@ function OnClickClipboardSaveData() {
 		alert("そのセーブスロットは空です。不具合が発生するセーブデータを選択した状態でボタンを押してください。")
 		return;
 	}
-	navigator.clipboard.writeText(savedata[1]);
+	navigator.clipboard.writeText(`${location.href}?${savedata[1]}`);
 	ModalWindow.createModal({
 		title: `セーブデータをクリップボードにコピーしました`,
-		message: `セーブデータ名：${savedata[0]} \n問い合わせフォームに貼り付けて報告してください。\n\n${savedata[1]}`,
+		message: `セーブデータ名：${savedata[0]} \n問い合わせフォームに貼り付けて報告してください。\n\n${location.href}?${savedata[1]}`,
 		buttons: [
 			{ label: "閉じる", value: "close", color: "#dc3545" },
 		],
