@@ -68,13 +68,24 @@ div.clip_memo {
       datasets: [{
         label: "DPS",
         data: [],
-        borderColor: "blue",
+        borderColor: "#005AFF",
         yAxisID: "y",
       }, {
         label: "確殺",
         data: [],
-        borderColor: "red",
+        borderColor: "#FF4B00",
         yAxisID: "y1",
+      }, {
+        label: "通常",
+        data: [],
+        borderColor: "#4DC4FF",
+        yAxisID: "y",
+      }, {
+        label: "1ｻｲｸﾙﾀﾞﾒ",
+        data: [],
+        borderColor: "#03AF7A",
+        yAxisID: "y",
+        hidden: true,
       }]
     }
     const footer = (items) => {
@@ -139,6 +150,8 @@ div.clip_memo {
         chart.data.datasets[0].data = [];
         chart.data.datasets[0].metadata = [];
         chart.data.datasets[1].data = [];
+        chart.data.datasets[2].data = [];
+        chart.data.datasets[3].data = [];
         target = $(".OBJID_MONSTER_MAP_MONSTER").val();
       }
       const metadata = { "memo": "", "url": CSaveController.encodeToURL() };
@@ -152,6 +165,14 @@ div.clip_memo {
       chart.data.datasets[0].metadata.push(metadata);
       const cnt = parseInt($("#BTLRSLT_PART_EXP").parent().prev().prev().text().replaceAll(",", ""));
       chart.data.datasets[1].data.push(isNaN(cnt) ? 0 : cnt);
+      const btlrslt_damage_totals = $("#BATTLE_RESULT_DAMAGE").children(".BTLRSLT_DAMAGE_TOTAL");
+      const btlrslt_damage_details = $("#BATTLE_RESULT_DAMAGE").children(".BTLRSLT_DAMAGE_DETAIL");
+      const dmg_index = btlrslt_damage_totals.length/3;
+      const dmg = parseFloat($(btlrslt_damage_totals.get(dmg_index)).text().replaceAll(",", ""));
+      const cycle_index = dmg_index + btlrslt_damage_totals.length/3/2;
+      chart.data.datasets[2].data.push(isNaN(dmg) ? 0 : dmg);
+      const cycle = parseFloat($(btlrslt_damage_details.get(cycle_index)).text().replaceAll(",", ""));
+      chart.data.datasets[3].data.push(isNaN(cycle) ? 0 : cycle);
       chart.update();
     });
     $("#history_reset").click(e => {
@@ -159,6 +180,8 @@ div.clip_memo {
       chart.data.datasets[0].data = [];
       chart.data.datasets[0].metadata = [];
       chart.data.datasets[1].data = [];
+      chart.data.datasets[2].data = [];
+      chart.data.datasets[3].data = [];
       target = 0;
       chart.update();
     });
@@ -174,6 +197,10 @@ div.clip_memo {
         [data.datasets[0].metadata[j], data.datasets[0].metadata[i]];
       [data.datasets[1].data[i], data.datasets[1].data[j]] =
         [data.datasets[1].data[j], data.datasets[1].data[i]];
+      [data.datasets[2].data[i], data.datasets[2].data[j]] =
+        [data.datasets[2].data[j], data.datasets[2].data[i]];
+      [data.datasets[3].data[i], data.datasets[3].data[j]] =
+        [data.datasets[3].data[j], data.datasets[3].data[i]];
     }
     const reload_history_table = () => {
       $("#clip_modal_table tbody *").remove();
@@ -228,6 +255,8 @@ div.clip_memo {
       data.datasets[0].data.splice(index, 1);
       data.datasets[0].metadata.splice(index, 1);
       data.datasets[1].data.splice(index, 1);
+      data.datasets[2].data.splice(index, 1);
+      data.datasets[3].data.splice(index, 1);
       chart.update();
       reload_history_table();
     });

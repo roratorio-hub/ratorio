@@ -1,4 +1,4 @@
-const last_updated = "2024/12/06 20:00";
+const last_updated = "2024/12/13 09:00";
 
 // 背景色切替
 g_BGColorSwitch = false;
@@ -52,7 +52,7 @@ templ = `
           <li class="menu-item"><span class="menu-title"><a href="../../information/index.html" class="local">このサイトについて</a></span></li>
           <li class="menu-item"><span class="menu-title"><a href="../../information/todo.html" class="local">今後の予定</a></span></li>
           <li class="menu-item"><span class="menu-title"><a href="../../information/history/index.html" class="local">更新履歴</a></span></li>
-          <!--<li class="menu-item"><span class="menu-title"><a href="../../information/alert/index.html" class="local">不具合のお知らせ</a></span></li>-->
+          <li class="menu-item"><span class="menu-title"><a href="../../information/alert/index.html" class="local">不具合のお知らせ</a></span></li>
           <li class="menu-item"><span class="menu-title"><a href="../../information/wanted/index.html" class="local">[募集] スキル情報</a></span></li>
 
 		  <li class="menu-header" style="padding-top: 10px"><span>Contact Us</span></li>
