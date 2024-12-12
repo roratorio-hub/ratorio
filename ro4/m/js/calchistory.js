@@ -68,22 +68,22 @@ div.clip_memo {
       datasets: [{
         label: "DPS",
         data: [],
-        borderColor: "blue",
+        borderColor: "#005AFF",
         yAxisID: "y",
       }, {
         label: "確殺",
         data: [],
-        borderColor: "red",
+        borderColor: "#FF4B00",
         yAxisID: "y1",
       }, {
         label: "通常",
         data: [],
-        borderColor: "lemonchiffon",
+        borderColor: "#4DC4FF",
         yAxisID: "y",
       }, {
         label: "1ｻｲｸﾙﾀﾞﾒ",
         data: [],
-        borderColor: "green",
+        borderColor: "#03AF7A",
         yAxisID: "y",
         hidden: true,
       }]
