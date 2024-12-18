@@ -49,23 +49,7 @@ function OnClickClipboardSaveData() {
  * ロードボタン押下イベントハンドラ.
  */
 function OnClickLoadSaveData () {
-	// 必要情報の取得
-	const dataIndex = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_SAVE_DATA_MIG", 0);
-	// データをロード
-	const charaName = CSaveController.loadCharaData(dataIndex);
-	if (charaName.length > 0) {
-		// 名前入力欄へ適用
-		HtmlSetObjectValueById("OBJID_INPUT_SAVE_NAME_MIG", charaName);
-		// アイテム情報の構築
-		CItemInfoManager.OnClickExtractSwitch();
-		// 検索可能リスト更新
-		LoadSelect2();
-	} else {
-		alert("データがありません。");
-	}
-
 	// インジケーター表示
-	/* https://github.com/roratorio-hub/ratorio/issues/720 のため一時コメントアウト
 	showLoadingIndicator();
 	setTimeout(() => {
 		// 必要情報の取得
@@ -85,7 +69,6 @@ function OnClickLoadSaveData () {
 		// インジケーター非表示
 		hideLoadingIndicator();
 	},0);
-	*/
 }
 
 /**
