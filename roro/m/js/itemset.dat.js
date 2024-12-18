@@ -5713,6 +5713,15 @@
 	w_SE[2915] = [5376,5375,-2220,];	// ホロウアグレッサー + 黒翼の使徒
 	ItemIdToSetIdMap[5375] = [2915,];	
 	CardIdToSetIdMap[2220] = CardIdToSetIdMap[2220].concat([2915]);
+	// --- 2024/12/18 ---
+	w_SE[2922] = [-3329,-3328,-1245,];
+	CardIdToSetIdMap[3328] = [2922,];
+	w_SE[2923] = [-3331,-3330,-1245,];
+	CardIdToSetIdMap[3330] = [2923,];
+	w_SE[2924] = [-3333,-3332,-1348,];
+	CardIdToSetIdMap[3332] = [2924,];	
+	CardIdToSetIdMap[1245] = CardIdToSetIdMap[1245].concat([2922,2923]);	// 真理
+	CardIdToSetIdMap[1348] = CardIdToSetIdMap[1348].concat([2924]);			// 豪傑
 
 	// itemset はセーブデータに書き出されないので
 	// 現実的な範囲において itemsetID の上限値を気にする必要はありません
