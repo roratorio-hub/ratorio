@@ -30215,7 +30215,7 @@ function GetEquippedTotalSPArrow(spid) {
 			continue;
 		}
 
-		// BaseLv以上条件を満たさない場合は、次へz
+		// BaseLv以上条件を満たさない場合は、次へ
 		spDefRemain = CheckSpDefBaseLvOver(spDefRemain);
 		if (spDefRemain < 0) {
 			continue;
