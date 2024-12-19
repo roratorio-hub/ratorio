@@ -29025,7 +29025,7 @@ function GetEquippedSPSubEquip(spid, invalidItemIdArray, bListUp, bExact) {
 
 
 	// 全ての装備箇所をループ
-	for(eqpRegionId = 0; eqpRegionId <= 40; eqpRegionId++) {
+	for(eqpRegionId = 0; eqpRegionId <= 50; eqpRegionId++) {	// セットが増えたらこの上限が増える可能性がある
 
 		// 装備データからアイテムデータを取得
 		itemId = n_A_Equip[eqpRegionId];
@@ -30773,8 +30773,8 @@ function Init(){
 	n_A_SHOULDER_DEF_PLUS = 0;
 	n_A_SHOES_DEF_PLUS = 0;
 
-	n_A_Equip = new Array();
-	for(i=0;i<=40;i++) n_A_Equip[i] = 0;
+	n_A_Equip = new Array();	// セットが増えたらこの上限が増える可能性がある
+	for(i=0;i<=50;i++) n_A_Equip[i] = 0;
 
 	n_A_card = new Array();
 	for(i=0;i<=100;i++) n_A_card[i] = 0;
