@@ -210,7 +210,7 @@ function CheckAndApplyItemSetEquipping() {
 
 	// 領域の空きを埋める
 	// TODO: 根拠のないマジックナンバー直接指定
-	while (modifiedItemIdArray.length < 41) {
+	while (modifiedItemIdArray.length < 51) {	// セットが増えたらこの上限が増える可能性がある
 		modifiedItemIdArray.push(ITEM_ID_NOEQUIP_SET);
 	}
 	while (modifiedCardIdArray.length < 100) {
