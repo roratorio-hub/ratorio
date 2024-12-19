@@ -29025,7 +29025,7 @@ function GetEquippedSPSubEquip(spid, invalidItemIdArray, bListUp, bExact) {
 
 
 	// 全ての装備箇所をループ
-	for(eqpRegionId = 0; eqpRegionId <= 40; eqpRegionId++) {
+	for(eqpRegionId = 0; eqpRegionId <= n_A_EquipMax; eqpRegionId++) {	// セットが増えたらこの上限が増える可能性がある
 
 		// 装備データからアイテムデータを取得
 		itemId = n_A_Equip[eqpRegionId];
@@ -30215,7 +30215,7 @@ function GetEquippedTotalSPArrow(spid) {
 			continue;
 		}
 
-		// BaseLv以上条件を満たさない場合は、次へ
+		// BaseLv以上条件を満たさない場合は、次へz
 		spDefRemain = CheckSpDefBaseLvOver(spDefRemain);
 		if (spDefRemain < 0) {
 			continue;
@@ -30774,7 +30774,8 @@ function Init(){
 	n_A_SHOES_DEF_PLUS = 0;
 
 	n_A_Equip = new Array();
-	for(i=0;i<=40;i++) n_A_Equip[i] = 0;
+	n_A_EquipMax = 50;
+	for(i=0;i<=n_A_EquipMax;i++) n_A_Equip[i] = 0;	// セットが増えたらこの上限が増える可能性がある
 
 	n_A_card = new Array();
 	for(i=0;i<=100;i++) n_A_card[i] = 0;
