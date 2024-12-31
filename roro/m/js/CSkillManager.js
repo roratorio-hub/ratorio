@@ -23239,7 +23239,7 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "デュプレライト(物理)";
+			this.name = "デュプレライト物理";
 			this.kana = "テユフレライトフツリ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -23259,7 +23259,7 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "デュプレライト(魔法)";
+			this.name = "デュプレライト魔法";
 			this.kana = "テユフレライトマホウ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -29609,7 +29609,6 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "流星落下";
 			this.kana = "リユウセイラツカ";
@@ -29617,15 +29616,15 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
-
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 120;
 			}
-
 			this.CastTimeFixed = function(skillLv, charaDataManger) {
 				return 4000 - 1000 * ((skillLv - 1) % 5);
 			}
-
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return (skillLv > 5) ? 120000 : 240000;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -40263,7 +40262,25 @@ function CSkillManager() {
 			}
 		};
 		this.dataArray[skillId] = skillData;
-		skillId++;		
+		skillId++;
+
+		// ----------------------------------------------------------------
+		// 流星落下(周辺追撃)
+		// ----------------------------------------------------------------
+		SKILL_ID_RYUSE_RAKKA_TSUIGEKI = skillId;
+		skillData = new function() {
+			this.prototype = new CSkillData();
+			CSkillData.call(this);
+			this.id = skillId;
+			this.name = "流星落下 周辺追撃";
+			this.kana = "リユウセイラツカ";
+			this.maxLv = 10;
+			this.type = CSkillData.TYPE_ACTIVE;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_VOID;
+		};
+		this.dataArray[skillId] = skillData;
+		skillId++;
 
 	}
 

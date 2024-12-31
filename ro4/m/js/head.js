@@ -551,22 +551,15 @@ function BattleCalc999(battleCalcInfo, charaData, specData, mobData, attackMetho
 	// アクティブスキル系
 	//
 	//--------------------------------------------------------------------------------------------------------------------------------
-
 	else {
-
 		// 発生率を 100% に補正
 		battleCalcInfo.actRate = 100;
-
 		// 戦闘情報配列を用意
 		battleCalcInfoArray = [battleCalcInfo];
-
-
-
 		// 追撃があるスキルなど、戦闘情報配列を加工（追加）
 		// 倍率などの細かい制御は、各スキルのダメージ計算処理部で実装
 		bCommonAppend = false;
 		skillId = parseInt(battleCalcInfo.skillId, 10);
-
 		// 単発追撃系
 		switch (skillId) {
 			case SKILL_ID_METEOR_STORM_BUSTER:
@@ -575,6 +568,7 @@ function BattleCalc999(battleCalcInfo, charaData, specData, mobData, attackMetho
 			case SKILL_ID_CRYMSON_ARROW:
 			case SKILL_ID_ROSE_BLOSSOM:
 			case SKILL_ID_MISSION_BOMBARD:
+			case SKILL_ID_RYUSE_RAKKA:
 				bCommonAppend = true;
 				break;
 			case SKILL_ID_DESTRACTIVE_HURRICANE:
@@ -595,28 +589,19 @@ function BattleCalc999(battleCalcInfo, charaData, specData, mobData, attackMetho
 				bCommonAppend = (attackMethodConfArray[0].GetOptionValue(0) == 1);
 				break;
 		}
-
 		// 追撃フラグが立っていれば、汎用追撃構造を構築
 		if (bCommonAppend) {
-
 			// 戦闘情報をクローン
 			cloned = battleCalcInfo.Clone();
 			cloned.parentSkillId = battleCalcInfo.skillId;
-
 			// 配列追加
 			battleCalcInfoArray.push(cloned);
 		}
-
-
-
 		// 順に呼び出し
 		for (idx = 0; idx < battleCalcInfoArray.length; idx++) {
 			battleCalcResultAll.AddActiveResult(((idx == 0) ? undefined : battleCalcInfoArray[idx].parentSkillId), BattleCalc999Body(battleCalcInfoArray[idx], charaData, specData, mobData, attackMethodConfArray, false));
 		}
-
 	}
-
-
 
 	//----------------------------------------------------------------
 	// オートスペル計算
@@ -630,19 +615,15 @@ function BattleCalc999(battleCalcInfo, charaData, specData, mobData, attackMetho
 		n_AS_MODE = 1;
 	}
 	for (idxAS = 0; idxAS < n_AS_SKILL.length; idxAS++) {
-
 		// 発動率不明は除外
 		if (n_AS_SKILL[idxAS][2] <= 0) {
 			continue;
 		}
-
 		cloned = battleCalcInfo.Clone();
 		cloned.bAutoSpell = true;
-
 		cloned.skillId = n_AS_SKILL[idxAS][0];
 		cloned.skillLv = n_AS_SKILL[idxAS][1];
 		cloned.actRate = n_AS_SKILL[idxAS][2] / 10;		// 千分率単位から百分率単位へ
-
 		// 確率追撃配列に追加する
 		battleCalcResultAll.AddAppendResult(undefined, BattleCalc999Body(cloned, charaData, specData, mobData, attackMethodConfArray, false));
 	}
@@ -5023,6 +5004,25 @@ g_bUnknownCasts = true;
 			wbairitu *= [100, 150][UsedSkillSearch(SKILL_ID_BREAKING_LIMIT_STATE)] / 100;												// ブレイキングリミット補正
 			wbairitu = Math.floor(wbairitu);
 			break;
+		
+			// 「星帝」スキル「流星落下」
+			/**
+			 *  オートスペルですが何故かアクティブスキルとして登録されています
+			 *  いずれアクティブスキル配列から削除したいと考えています
+			 */
+			case SKILL_ID_RYUSE_RAKKA:
+			case SKILL_ID_RYUSE_RAKKA_TSUIGEKI:
+				// 基礎倍率
+				wbairitu = 100 + 100 * n_A_ActiveSkillLV;
+				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+				// 分割ヒット数
+				if (n_A_ActiveSkill == SKILL_ID_RYUSE_RAKKA && battleCalcInfo.parentSkillId === undefined) {
+					wActiveHitNum = 2;
+				} else {
+					wActiveHitNum = 3;
+				}
+				break;
+
 			
 /*
 		case SKILL_ID_DUMMY:
@@ -7972,124 +7972,6 @@ g_bUnknownCasts = true;
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
-
-
-
-		// 流星落下（修羅身弾から流用）
-		case SKILL_ID_RYUSE_RAKKA:
-
-			var hitMode = 0;
-
-			hitMode = UsedSkillSearch(SKILL_ID_RYUSE_RAKKA_MODE);
-			if (hitMode == 0) {
-				hitMode = 3;
-			}
-
-			var hikariLv = 0;
-			var hikariBairitsu = 0;
-	/*
-			hikariLv = UsedSkillSearch(SKILL_ID_HOSHINO_HIKARI);
-
-			if (hikariLv > 0) {
-				hikariBairitsu = 25 + 5 * hikariLv;
-			}
-	*/
-			for (idx = 0; idx <= 2; idx++) {
-				w_DMG[idx] = 0;
-			}
-
-			// 攻撃対象のダメージ計算
-			if ((hitMode & 1) == 1) {
-
-				wbairitu = 100 + 100 * n_A_ActiveSkillLV;
-				wbairitu = Math.floor(wbairitu * (100 + hikariBairitsu) / 100);
-				wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
-				wbairitu = ATKbaiJYOUSAN(wbairitu);
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
-
-				wActiveHitNum = 3;
-
-				for (idx = 0; idx <= 2; idx++) {
-					w_DMG[idx] = n_A_DMG[idx];
-					w_DMG[idx] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[idx]);
-					w_DMG[idx] = Math.floor(w_DMG[idx] * wbairitu / 100);
-					w_DMG[idx] = ApplyMonsterDefence(mobData, w_DMG[idx], 0);
-					w_DMG[idx] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[idx]);
-					w_DMG[idx] = Math.floor(w_DMG[idx] / wActiveHitNum) * wActiveHitNum;
-				}
-			}
-
-			var w2hit = [0,0,0];
-
-			wLAch=1;
-
-			// 追加ダメージの計算
-			if ((hitMode & 2) == 2) {
-
-				for (idx = 0; idx <= 2; idx++) {
-
-					var w = 100 + 100 * n_A_ActiveSkillLV;
-					w = Math.floor(w * (100 + hikariBairitsu) / 100);
-
-					w += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
-					w = ATKbaiJYOUSAN(w);
-					w = Math.floor(w * n_A_BaseLV / 100);
-
-					wActiveHitNum = 2;
-
-					w = Math.floor(n_A_DMG[idx] * w / 100);
-					w = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w);
-					w = ApplyMonsterDefence(mobData, w, 0);
-
-					if (idx == 0 && w_HIT <100) {
-						w = 0;
-					}
-
-					if (idx == 1) {
-						w = w * w_HIT / 100;
-					}
-
-					w2hit[idx] += w;
-
-					w2hit[idx] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w2hit[idx]);
-
-					w2hit[idx] = Math.floor(w2hit[idx] / wActiveHitNum) * wActiveHitNum;
-
-					w_DMG[idx] += w2hit[idx]
-				}
-			}
-
-			if (n_AS_MODE == 1) {
-				return w_DMG;
-			}
-
-			// 表示の調整
-			for (idx = 0; idx <= 2; idx++) {
-
-				Last_DMG_A[idx] = Last_DMG_B[idx] = w_DMG[idx];
-
-				g_damageTextArray[idx].push(Last_DMG_A[idx]);
-
-				if ((hitMode & 3) == 3) {
-
-					var w = w2hit[idx];
-
-					if (w == 0) {
-						w = "Miss";
-					}
-
-					g_damageTextArray[idx].push(" (", (w_DMG[idx] - w2hit[idx]), " + ", w, ")");
-				}
-			}
-
-			w_DMG[1] = (w_DMG[1] * w_HIT + ApplyHitJudgeElementRatio(n_A_ActiveSkill, GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray), mobData) *(100-w_HIT))/100;
-
-			AS_PLUS();
-			BuildCastAndDelayHtml(mobData);
-			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
-			break;
-
-
 
 
 		case SKILL_ID_ZYURYOKU_CHOSE:
@@ -26663,6 +26545,11 @@ function UsedSkillSearch(sklId, bOnlyUsed = false) {
 
 		// 「トートの書」の効果
 		if (EquipNumSearch(ITEM_ID_TOTONO_SHO) || EquipNumSearch(ITEM_ID_TOTONO_SHO_T1)) {
+			effectivLvArray.push(10);
+		}
+
+		// 「潜在覚醒(スペルフィストI)」の効果
+		if (CardNumSearch(CARD_SET_ID_ENCHANT_SHINRINO_KAIHO_SENZAI_SPELL_FIST_1) > 0) {
 			effectivLvArray.push(10);
 		}
 
