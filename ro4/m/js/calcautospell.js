@@ -473,39 +473,58 @@ function AS_Calc(charaData, specData, mobData, attackMethodConfArray, battleCalc
 	// 通常攻撃時の、流星落下追撃効果
 	//----------------------------------------------------------------
 	var skillLvRyuseRakka = UsedSkillSearch(SKILL_ID_RYUSE_RAKKA);
-
 	if ((n_A_ActiveSkill == SKILL_ID_TUZYO_KOGEKI) && (skillLvRyuseRakka > 0)) {
-
+		// 流星落下の初撃を設定
 		funcAddAS();
-
 		// 適用スキルの設定
 		n_AS_SKILL[idx][0] = SKILL_ID_RYUSE_RAKKA;
-
 		// 適用レベルの設定
 		n_AS_SKILL[idx][1] = skillLvRyuseRakka;
-
-		// 発動率の設定
-
-		// 特定の戦闘エリアでの補正
+		// 発動率の設定 千分率
 		switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
-
-		case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
-			n_AS_SKILL[idx][2] = 80 * 10;
-			if (skillLvRyuseRakka >= 6) {
-				n_AS_SKILL[idx][2] += 20 * 10;
-			}
-			break;
-
-		default:
-			n_AS_SKILL[idx][2] = 20 * 10;
-			if (skillLvRyuseRakka >= 6) {
-				n_AS_SKILL[idx][2] += 5 * 10;
-			}
-			break;
+			case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
+				// 特定の戦闘エリアでの補正
+				n_AS_SKILL[idx][2] = 80 * 10;
+				if (skillLvRyuseRakka >= 6) {
+					n_AS_SKILL[idx][2] += 20 * 10;
+				}
+				break;
+			default:
+				// 通常サーバー
+				n_AS_SKILL[idx][2] = 20 * 10;
+				if (skillLvRyuseRakka >= 6) {
+					n_AS_SKILL[idx][2] += 5 * 10;
+				}
+				break;
 		}
-
 		// 表示組立部フラグの設定（通常は０）
 		n_AS_SKILL[idx][3] = 0;
+
+		// 流星落下の周辺追撃を設定
+		funcAddAS();
+		// 適用スキルの設定
+		n_AS_SKILL[idx][0] = SKILL_ID_RYUSE_RAKKA_TSUIGEKI;
+		// 適用レベルの設定
+		n_AS_SKILL[idx][1] = skillLvRyuseRakka;
+		// 発動率の設定 千分率
+		switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
+			case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
+				// 特定の戦闘エリアでの補正
+				n_AS_SKILL[idx][2] = 80 * 10;
+				if (skillLvRyuseRakka >= 6) {
+					n_AS_SKILL[idx][2] += 20 * 10;
+				}
+				break;
+			default:
+				// 通常サーバー
+				n_AS_SKILL[idx][2] = 20 * 10;
+				if (skillLvRyuseRakka >= 6) {
+					n_AS_SKILL[idx][2] += 5 * 10;
+				}
+				break;
+		}
+		// 表示組立部フラグの設定（通常は０）
+		n_AS_SKILL[idx][3] = 0;		
 	}
 
 
