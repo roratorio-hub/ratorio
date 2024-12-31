@@ -551,22 +551,15 @@ function BattleCalc999(battleCalcInfo, charaData, specData, mobData, attackMetho
 	// アクティブスキル系
 	//
 	//--------------------------------------------------------------------------------------------------------------------------------
-
 	else {
-
 		// 発生率を 100% に補正
 		battleCalcInfo.actRate = 100;
-
 		// 戦闘情報配列を用意
 		battleCalcInfoArray = [battleCalcInfo];
-
-
-
 		// 追撃があるスキルなど、戦闘情報配列を加工（追加）
 		// 倍率などの細かい制御は、各スキルのダメージ計算処理部で実装
 		bCommonAppend = false;
 		skillId = parseInt(battleCalcInfo.skillId, 10);
-
 		// 単発追撃系
 		switch (skillId) {
 			case SKILL_ID_METEOR_STORM_BUSTER:
@@ -596,28 +589,19 @@ function BattleCalc999(battleCalcInfo, charaData, specData, mobData, attackMetho
 				bCommonAppend = (attackMethodConfArray[0].GetOptionValue(0) == 1);
 				break;
 		}
-
 		// 追撃フラグが立っていれば、汎用追撃構造を構築
 		if (bCommonAppend) {
-
 			// 戦闘情報をクローン
 			cloned = battleCalcInfo.Clone();
 			cloned.parentSkillId = battleCalcInfo.skillId;
-
 			// 配列追加
 			battleCalcInfoArray.push(cloned);
 		}
-
-
-
 		// 順に呼び出し
 		for (idx = 0; idx < battleCalcInfoArray.length; idx++) {
 			battleCalcResultAll.AddActiveResult(((idx == 0) ? undefined : battleCalcInfoArray[idx].parentSkillId), BattleCalc999Body(battleCalcInfoArray[idx], charaData, specData, mobData, attackMethodConfArray, false));
 		}
-
 	}
-
-
 
 	//----------------------------------------------------------------
 	// オートスペル計算
@@ -631,19 +615,15 @@ function BattleCalc999(battleCalcInfo, charaData, specData, mobData, attackMetho
 		n_AS_MODE = 1;
 	}
 	for (idxAS = 0; idxAS < n_AS_SKILL.length; idxAS++) {
-
 		// 発動率不明は除外
 		if (n_AS_SKILL[idxAS][2] <= 0) {
 			continue;
 		}
-
 		cloned = battleCalcInfo.Clone();
 		cloned.bAutoSpell = true;
-
 		cloned.skillId = n_AS_SKILL[idxAS][0];
 		cloned.skillLv = n_AS_SKILL[idxAS][1];
 		cloned.actRate = n_AS_SKILL[idxAS][2] / 10;		// 千分率単位から百分率単位へ
-
 		// 確率追撃配列に追加する
 		battleCalcResultAll.AddAppendResult(undefined, BattleCalc999Body(cloned, charaData, specData, mobData, attackMethodConfArray, false));
 	}
@@ -5033,6 +5013,7 @@ g_bUnknownCasts = true;
 			 * さらに 0.3秒後、その対象と周辺 3 x 3セルの敵に近接物理ダメージを与える。
 			 */
 			case SKILL_ID_RYUSE_RAKKA:
+			case SKILL_ID_RYUSE_RAKKA_TSUIGEKI:
 				// 詠唱時間等
 				// オートスペルなので詠唱時間などの影響を受けてはならない
 				// wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
@@ -5043,11 +5024,11 @@ g_bUnknownCasts = true;
 				wbairitu = 100 + 100 * n_A_ActiveSkillLV;
 				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 				// 分割ヒット数
-				if (battleCalcInfo.parentSkillId === undefined) {
+				if (n_A_ActiveSkill == SKILL_ID_RYUSE_RAKKA && battleCalcInfo.parentSkillId === undefined) {
 					wActiveHitNum = 2;
 				} else {
 					wActiveHitNum = 3;
-				}				
+				}
 				// 発動率
 				// TODO: 本来の流星落下はオートスペルとして確率計算すべき
 				// 現状はアクティブスキル扱いで置き換え工数が大きめなので後回しタスクとします
