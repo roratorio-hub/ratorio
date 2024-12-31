@@ -3696,11 +3696,9 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 			break;
 
 		//----------------------------------------------------------------
-		// 蜃気楼・不知火：風魔手裏剣トラップ
+		// 蜃気楼・不知火：風魔手裏剣-構築-
 		//----------------------------------------------------------------
 		case SKILL_ID_FUMASHURIKEN_KOUCHIKU:
-
-			// オプションリストを生成、追加
 			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
 				"風魔手裏剣トラップ",
 				[
@@ -3708,6 +3706,18 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 					[1, "有り"],
 				],
 				0
+			);
+			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+				"風魔手裏剣-掌握-の習得Lv",
+				[
+					[5, "Lv5"],
+					[6, "Lv6"],
+					[7, "Lv7"],
+					[8, "Lv8"],
+					[9, "Lv9"],
+					[10,"Lv10"],
+				],
+				5
 			);
 			break;
 
@@ -3847,16 +3857,14 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 			break;
 
 		//----------------------------------------------------------------
-		// 蜃気楼＆不知火：蜃気楼分身
+		// 蜃気楼＆不知火：属性砲
 		//----------------------------------------------------------------
 		case SKILL_ID_SEKIEN_HOU:
 		case SKILL_ID_REIKETSU_HOU:
 		case SKILL_ID_RAIDEN_HOU:
 		case SKILL_ID_KINNRYUU_HOU:
 		case SKILL_ID_ANTEN_HOU:
-		case SKILL_ID_KAGE_NO_MAI:
-		case SKILL_ID_KUNAI_WAIKYOKU:
-				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
 				"蜃気楼分身の状態",
 				[
 					[0, "本体のみ"],
@@ -3868,6 +3876,154 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 			);
 			break;
 
+		//----------------------------------------------------------------
+		// 蜃気楼＆不知火：影の舞
+		//----------------------------------------------------------------
+		case SKILL_ID_KAGE_NO_MAI:
+			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+				"蜃気楼分身の状態",
+				[
+					[0, "本体のみ"],
+					[1, "本体 + 分身1体"],
+					[2, "本体 + 分身2体"],
+					[3, "本体 + 分身3体"],
+				],
+				0
+			);
+			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+				"影狩りの習得Lv",
+				[
+					[3, "Lv3"],
+					[4, "Lv4"],
+					[5, "Lv5"],
+					[6, "Lv6"],
+					[7, "Lv7"],
+					[8, "Lv8"],
+					[9, "Lv9"],
+					[10,"Lv10"],
+				],
+				3
+			);
+			break;
+
+		//----------------------------------------------------------------
+		// 蜃気楼＆不知火：歪曲
+		//----------------------------------------------------------------
+		case SKILL_ID_KUNAI_WAIKYOKU:
+			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+				"蜃気楼分身の状態",
+				[
+					[0, "本体のみ"],
+					[1, "本体 + 分身1体"],
+					[2, "本体 + 分身2体"],
+					[3, "本体 + 分身3体"],
+				],
+				0
+			);
+			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+				"苦無-屈折-の習得Lv",
+				[
+					[0, "未習得"],
+					[1, "Lv1"],
+					[2, "Lv2"],
+					[3, "Lv3"],
+					[4, "Lv4"],
+					[5, "Lv5"],
+					[6, "Lv6"],
+					[7, "Lv7"],
+					[8, "Lv8"],
+					[9, "Lv9"],
+					[10,"Lv10"],
+				],
+				0
+			);
+			break;
+
+		//----------------------------------------------------------------
+		// 蜃気楼＆不知火：回転
+		//----------------------------------------------------------------
+		case SKILL_ID_KUNAI_KAITEN:
+			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+				"苦無-歪曲-の習得Lv",
+				[
+					[3, "Lv3"],
+					[4, "Lv4"],
+					[5, "Lv5"],
+					[6, "Lv6"],
+					[7, "Lv7"],
+					[8, "Lv8"],
+					[9, "Lv9"],
+					[10,"Lv10"],
+				],
+				3
+			);
+			break;
+
+		//----------------------------------------------------------------
+		// 蜃気楼＆不知火：掌握
+		//----------------------------------------------------------------
+		case SKILL_ID_FUMASHURIKEN_SHOUAKU:
+			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+				"風魔手裏剣-構築-の習得Lv",
+				[
+					[0, "未習得"],
+					[1, "Lv1"],
+					[2, "Lv2"],
+					[3, "Lv3"],
+					[4, "Lv4"],
+					[5, "Lv5"],
+					[6, "Lv6"],
+					[7, "Lv7"],
+					[8, "Lv8"],
+					[9, "Lv9"],
+					[10,"Lv10"],
+				],
+				0
+			);
+			break;
+
+		//----------------------------------------------------------------
+		// 蜃気楼＆不知火：影狩り
+		//----------------------------------------------------------------
+		case SKILL_ID_KAGE_GARI:
+			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+				"影一閃の習得Lv",
+				[
+					[0, "未習得"],
+					[1, "Lv1"],
+					[2, "Lv2"],
+					[3, "Lv3"],
+					[4, "Lv4"],
+					[5, "Lv5"],
+					[6, "Lv6"],
+					[7, "Lv7"],
+					[8, "Lv8"],
+					[9, "Lv9"],
+					[10,"Lv10"],
+				],
+				0
+			);
+			break;
+
+		//----------------------------------------------------------------
+		// 蜃気楼＆不知火：影一閃
+		//----------------------------------------------------------------
+		case SKILL_ID_KAGE_ISSEN:
+			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+				"影の舞の習得Lv",
+				[
+					[5, "Lv5"],
+					[6, "Lv6"],
+					[7, "Lv7"],
+					[8, "Lv8"],
+					[9, "Lv9"],
+					[10,"Lv10"],
+				],
+				5
+			);
+			break;
+
+						
 		}
 	}
 };
