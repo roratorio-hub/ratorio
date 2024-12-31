@@ -29609,7 +29609,6 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "流星落下";
 			this.kana = "リユウセイラツカ";
@@ -29617,11 +29616,9 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
-
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 120;
 			}
-
 			this.CastTimeFixed = function(skillLv, charaDataManger) {
 				return 4000 - 1000 * ((skillLv - 1) % 5);
 			}
