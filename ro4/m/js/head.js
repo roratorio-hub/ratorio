@@ -5007,19 +5007,11 @@ g_bUnknownCasts = true;
 		
 			// 「星帝」スキル「流星落下」
 			/**
-			 * 自身を一定時間、「流星落下」状態にする。
-			 * 「流星落下」状態 : 
-			 * 通常近接物理攻撃時、一定確率で自身の周辺 5 x 5セルの「星の印」状態の敵に近接物理ダメージを与える。
-			 * さらに 0.3秒後、その対象と周辺 3 x 3セルの敵に近接物理ダメージを与える。
+			 *  オートスペルですが何故かアクティブスキルとして登録されています
+			 *  いずれアクティブスキル配列から削除したいと考えています
 			 */
 			case SKILL_ID_RYUSE_RAKKA:
 			case SKILL_ID_RYUSE_RAKKA_TSUIGEKI:
-				// 詠唱時間等
-				// オートスペルなので詠唱時間などの影響を受けてはならない
-				// wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				// 基礎倍率
 				wbairitu = 100 + 100 * n_A_ActiveSkillLV;
 				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
@@ -5029,10 +5021,6 @@ g_bUnknownCasts = true;
 				} else {
 					wActiveHitNum = 3;
 				}
-				// 発動率
-				// TODO: 本来の流星落下はオートスペルとして確率計算すべき
-				// 現状はアクティブスキル扱いで置き換え工数が大きめなので後回しタスクとします
-				// battleCalcInfo.actRate = (n_A_ActiveSkillLV > 5) ? 25 : 20;
 				break;
 
 			
