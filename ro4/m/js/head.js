@@ -26578,6 +26578,11 @@ function UsedSkillSearch(sklId, bOnlyUsed = false) {
 			effectivLvArray.push(10);
 		}
 
+		// 「潜在覚醒(スペルフィストI)」の効果
+		if (CardNumSearch(CARD_SET_ID_ENCHANT_SHINRINO_KAIHO_SENZAI_SPELL_FIST_1) > 0) {
+			effectivLvArray.push(10);
+		}
+
 		// 「分身」スキルの効果
 		if (g_confDataSanzi[CCharaConfSanzi.CONF_ID_BUNSHIN] > 0) {
 			effectivLvArray.push(2 * g_confDataSanzi[CCharaConfSanzi.CONF_ID_BUNSHIN]);
