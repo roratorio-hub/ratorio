@@ -1744,7 +1744,7 @@ function GetItemExplainText(spId, spValue) {
 
 	// 『超越段階が◯以上のとき』条件
 	let transcendenceOver = 0;
-	let baseFlag = BigInt(ITEM_SP_TRANSCENDENCE_1);
+	let baseFlag = toSafeBigInt(ITEM_SP_TRANSCENDENCE_1);
 	if (spId >= baseFlag) {
 		// BigInt の場合、小数点以下は自動的に切り捨てられる
 		transcendenceOver = spId / baseFlag;
