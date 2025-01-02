@@ -48,9 +48,9 @@ CSaveDataConverter.ConvertNtoS = function (value, convlen) {
 
 	var lengthDiff = 0;
 
-	digitUnit = BigInt(CSaveDataConverter.LetterMappingArray.length);
+	digitUnit = toSafeBigInt(CSaveDataConverter.LetterMappingArray.length);
 
-	valueWork = BigInt(value);
+	valueWork = toSafeBigInt(value);
 
 	while (valueWork > 0n) {
 
@@ -78,9 +78,9 @@ CSaveDataConverter.ConvertNtoS = function (value, convlen) {
  */
 CSaveDataConverter.ConvertNtoSMIG = function (value, convlen) {
 
-	const digitUnit = BigInt(CSaveDataConverter.LetterMappingArrayMIG.length);
+	const digitUnit = toSafeBigInt(CSaveDataConverter.LetterMappingArrayMIG.length);
 
-	let valueWork = BigInt(value);
+	let valueWork = toSafeBigInt(value);
 	let converted = "";
 
 	while (valueWork > 0n) {
@@ -142,7 +142,7 @@ CSaveDataConverter.ConvertStoN = function (str) {
 CSaveDataConverter.ConvertStoNMIG = function (str) {
 
 	const strWork = "" + str;
-	const digitUnit = BigInt(CSaveDataConverter.LetterMappingArrayMIG.length);
+	const digitUnit = toSafeBigInt(CSaveDataConverter.LetterMappingArrayMIG.length);
 
 	let converted = 0n;
 
@@ -153,7 +153,7 @@ CSaveDataConverter.ConvertStoNMIG = function (str) {
 			continue;
 		}
 
-		converted += (digitUnit ** BigInt(strWork.length - 1 - pos)) * BigInt(valueDigit);
+		converted += (digitUnit ** toSafeBigInt(strWork.length - 1 - pos)) * toSafeBigInt(valueDigit);
 	}
 
 	return converted;

@@ -30469,7 +30469,7 @@ function CheckSpDefRefineOver(spDefRemain, eqpRefined) {
  */
 function CheckSpDefTransendenceOver(spDefRemain, eqpTranscendence) {
 	// 超越条件が指定されている場合
-	baseFlag = BigInt(ITEM_SP_TRANSCENDENCE_1);
+	baseFlag = toSafeBigInt(ITEM_SP_TRANSCENDENCE_1);
 	if (spDefRemain >= baseFlag) {
 		// BigInt の場合、小数点以下が自動的に切り捨てられる
 		requireTranscendence = parseInt(spDefRemain / baseFlag);

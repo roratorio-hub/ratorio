@@ -1181,7 +1181,7 @@ function floorBigInt32 (value) {
 		// 処理なし
 	}
 
-	return parseInt(BigInt.asUintN(32, BigInt(value)), 10);
+	return parseInt(BigInt.asUintN(32, toSafeBigInt(value)), 10);
 }
 
 /**
@@ -1209,5 +1209,32 @@ function floorBigInt40 (value) {
 		// 処理なし
 	}
 
-	return parseInt(BigInt.asUintN(40, BigInt(value)), 10);
+	return parseInt(BigInt.asUintN(40, toSafeBigInt(value)), 10);
 }
+
+/**
+ * ネイティブの BigInt() をラップしただけのガード関数
+ * FireFox 133.0 系で発現した BigInt() の値変換バグへの対応として追加
+ * 実質的に何もしていませんが BigInt() を呼ぶ前にブレークポイントでワンテンポ待つと事象が抑えられるため
+ * 本関数が同様の効果を発揮して状況が緩和される可能性があります
+ * 問題が再現する場合は例外処理でカバーする方針です
+ * @param {*} value 
+ * @returns 
+ */
+function toSafeBigInt(value) {
+	try {
+	  // 入力値を BigInt に変換
+	  const result = BigInt(value);
+	  
+	  // 入力値と結果の一致を確認（文字列化して比較）
+	  if (value.toString() !== result.toString()) {
+		console.error(`値が一致しません: 入力(${value}) -> 変換後(${result})`);
+	  }
+	  
+	  return result;
+	} catch (error) {
+	  // 例外処理（エラー発生時のログや代替処理）
+	  console.error(`BigInt変換エラー: ${error.message}`);
+	  return null; // 必要に応じて別の値を返す
+	}
+  }
