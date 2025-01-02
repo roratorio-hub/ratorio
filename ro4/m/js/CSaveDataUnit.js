@@ -2347,7 +2347,7 @@ class CSaveDataUnitBase {
 
 		// すべてのプロパティを処理する
 		const propNames = this.constructor.propNames;
-		let readFlag = (1n << BigInt(propNames.length)) - 1n;
+		let readFlag = (1n << toSafeBigInt(propNames.length)) - 1n;
 		for (let idx = 0; idx < propNames.length; readFlag >>= 1n, idx++) {
 
 			// 処理プロパティ名を取得
@@ -2419,7 +2419,7 @@ class CSaveDataUnitBase {
 			const prevNum = CSaveDataConverter.ConvertStoNMIG(prevChar);
 
 			// 残り部分のみ取得
-			prevValue = (prevNum >> BigInt(bitOffset % this.letterBits)) & ((1n << BigInt(spliceBits)) - 1n);
+			prevValue = (prevNum >> toSafeBigInt(bitOffset % this.letterBits)) & ((1n << toSafeBigInt(spliceBits)) - 1n);
 		}
 
 		// コア部分
@@ -2443,12 +2443,12 @@ class CSaveDataUnitBase {
 			const extraNum = CSaveDataConverter.ConvertStoNMIG(extraChar);
 
 			// はみ出し部分のみ取得
-			extraValue = extraNum & ((1n << BigInt(extraBits)) - 1n);
+			extraValue = extraNum & ((1n << toSafeBigInt(extraBits)) - 1n);
 		}
 
 
 		// 最終的な値を合成
-		const propValue = extraValue + (coreValue << BigInt(extraBits)) + (prevValue << BigInt(extraBits + coreBits));
+		const propValue = extraValue + (coreValue << toSafeBigInt(extraBits)) + (prevValue << toSafeBigInt(extraBits + coreBits));
 
 		// マップへ保存
 		this.parsedMap.add(propName, propValue);
@@ -2478,7 +2478,7 @@ class CSaveDataUnitBase {
 	 * @param {int} value プロパティの値
 	 */
 	setProp (propName, value) {
-		this.parsedMap.set(propName, BigInt(value));
+		this.parsedMap.set(propName, toSafeBigInt(value));
 	}
 
 
@@ -2506,7 +2506,7 @@ class CSaveDataUnitBase {
 		const propNames = this.constructor.propNames;
 
 		// すべてのプロパティを処理する
-		let ctrlFlag = (1n << BigInt(propNames.length)) - 1n;
+		let ctrlFlag = (1n << toSafeBigInt(propNames.length)) - 1n;
 		const propNameCountMap = new Map();		// propName ごとの読み取り回数マップ
 		for (let idx = 0; idx < propNames.length; ctrlFlag >>= 1n, idx++) {
 
@@ -2580,7 +2580,7 @@ class CSaveDataUnitBase {
 	appendToDataText (dataTextWork, bitOffset, propValue, propBits) {
 
 		// BitIntにキャストしておく
-		propValue = BigInt(propValue);
+		propValue = toSafeBigInt(propValue);
 
 		// 前側の残り領域、前側切り出し領域、コア領域、後ろ側のはみ出し領域の大きさを計算
 		const prevBits = (this.letterBits - (bitOffset % this.letterBits)) % this.letterBits;
@@ -2597,7 +2597,7 @@ class CSaveDataUnitBase {
 
 			// 入れ込む値を計算
 			const shiftBits = propBits - spliceBits;
-			const shiftedNum = floorBigInt32(propValue >> BigInt(shiftBits));
+			const shiftedNum = floorBigInt32(propValue >> toSafeBigInt(shiftBits));
 
 			// 前側の値を合成し文字表現へ変換
 			const mixedNum = prevNum + (shiftedNum << (this.letterBits - prevBits));
@@ -2611,7 +2611,7 @@ class CSaveDataUnitBase {
 		if (coreBits != 0) {
 
 			// 該当部分の数値を文字列へ変換
-			const coreValue = (propValue >> BigInt(extraBits)) & ((1n << BigInt(coreBits)) - 1n);
+			const coreValue = (propValue >> toSafeBigInt(extraBits)) & ((1n << toSafeBigInt(coreBits)) - 1n);
 			const coreCharCount = coreBits / this.letterBits;
 			const coreText = CSaveDataConverter.ConvertNtoSMIG(coreValue, coreCharCount);
 
@@ -2623,7 +2623,7 @@ class CSaveDataUnitBase {
 		if (extraBits != 0) {
 
 			// 該当部分の数値を文字列へ変換
-			const extraValue = propValue & ((1n << BigInt(extraBits)) - 1n);
+			const extraValue = propValue & ((1n << toSafeBigInt(extraBits)) - 1n);
 			const extraText = CSaveDataConverter.ConvertNtoSMIG(extraValue, 1);
 
 			// クエリ文字列へ追記
@@ -2754,7 +2754,7 @@ class CSaveDataUnitBase {
 
 					// 値が 0 より大きければ有効とみなす
 					if (propValue[idxVal] > 0n) {
-						ctrlFlag |= (1n << BigInt(idxCompaction));
+						ctrlFlag |= (1n << toSafeBigInt(idxCompaction));
 					}
 
 					idxCompaction++;
@@ -2775,9 +2775,9 @@ class CSaveDataUnitBase {
 		if (asDataArray[0].length > 0) {
 			ctrlFlag = 0n;
 			for (let idx = 0; idx < asDataArray[0].length; idx++) {
-				ctrlFlag |= (asDataArray[0][idx] > 0n) ? (1n << BigInt(3 * idx)) : 0n;
-				ctrlFlag |= (asDataArray[1][idx] > 0n) ? (2n << BigInt(3 * idx)) : 0n;
-				ctrlFlag |= (asDataArray[2][idx] > 0n) ? (4n << BigInt(3 * idx)) : 0n;
+				ctrlFlag |= (asDataArray[0][idx] > 0n) ? (1n << toSafeBigInt(3 * idx)) : 0n;
+				ctrlFlag |= (asDataArray[1][idx] > 0n) ? (2n << toSafeBigInt(3 * idx)) : 0n;
+				ctrlFlag |= (asDataArray[2][idx] > 0n) ? (4n << toSafeBigInt(3 * idx)) : 0n;
 			}
 		}
 
@@ -3092,7 +3092,7 @@ const SAVE_DATA_UNIT_TYPE_EQUIPABLE = CSaveDataUnitTypeManager.register(
 				}
 				let oldItemID = this.parsedMap.get(CSaveDataConst.propNameItemID);
 				if (oldItemID <= 5170) {
-					let newItemID = BigInt(CSaveDataUnitEquipable.deprecatedItemIdChangeArray[oldItemID]);
+					let newItemID = toSafeBigInt(CSaveDataUnitEquipable.deprecatedItemIdChangeArray[oldItemID]);
 					if (newItemID != 0n) {
 						this.parsedMap.set(CSaveDataConst.propNameItemID, newItemID);		// 廃止された超越アイテムを置き換え
 						this.parsedMap.set(CSaveDataConst.propNameTranscendenceCount, 1);	// 超越段階を 0 → 1 へ変更

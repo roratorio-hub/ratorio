@@ -448,7 +448,7 @@ CGlobalConstManager.DefineEnumSubCommon = function (mode, enumName, nameArray, f
 			// 増加値が未指定の場合は、0 とみなす
 			// BigIntが渡される可能性があるので条件判定
 			if (typeof firstValue === "bigint") {
-				value = firstValue + ((stepValue != undefined) ? stepValue : 0n) * BigInt(idx);
+				value = firstValue + ((stepValue != undefined) ? stepValue : 0n) * toSafeBigInt(idx);
 			}
 			else {
 				value = firstValue + ((stepValue != undefined) ? stepValue : 0) * idx;
