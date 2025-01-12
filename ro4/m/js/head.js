@@ -3149,51 +3149,28 @@ g_bDefinedDamageIntervals = true;
 			wbairitu *= n_A_BaseLV / 100;
 			break;
 
+		// 「インペリアルガード」スキル「グランドジャッジメント」
 		case SKILL_ID_GRAND_JUDGEMENT:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-
-			bMatchCond = false;
-
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 片手槍・両手槍装備、「アタックスタンス」状態のみ発動可能
-			switch (n_A_WeaponType) {
-
-			case ITEM_KIND_SPEAR:
-			case ITEM_KIND_SPEAR_2HAND:
-				if (UsedSkillSearch(SKILL_ID_ATTACK_STANCE) > 0) {
-					bMatchCond = true;
-				}
-				break;
-			}
-
-			if (bMatchCond) {
-
-				// 距離属性
-				n_Enekyori = 1;
-
-				// 基本倍率
-				wbairitu = 500 + (1000 * n_A_ActiveSkillLV);
-
-				// POW補正
-				wbairitu += 35 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
-				// 植物・昆虫形はダメージ倍率２倍
-				switch (mobData[MONSTER_DATA_INDEX_RACE]) {
-				case RACE_ID_PLANT:
-				case RACE_ID_INSECT:
-					wbairitu *= 2;
-					break;
-				}
-
-				// ベースレベル補正
-				wbairitu *= n_A_BaseLV / 100;
-			}
-
-			else {
+			let state_attack_stance = (UsedSkillSearch(SKILL_ID_ATTACK_STANCE) > 0);
+			if (![ITEM_KIND_SPEAR,ITEM_KIND_SPEAR_2HAND].includes(n_A_WeaponType) || !state_attack_stance) {
 				wbairitu = 0;
 				n_Buki_Muri = 1;
+				break;
 			}
+			// 距離属性
+			n_Enekyori = 1;
+			// 基本倍率
+			wbairitu = 7000 + 2000 * n_A_ActiveSkillLV;
+			// POW補正 (2025/01/12 未確認)
+			wbairitu += 35 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+			// ベースレベル補正
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
 		case SKILL_ID_SHIELD_SHOOTING:
@@ -3231,49 +3208,38 @@ g_bUnknownCasts = true;
 			}
 			break;
 
+		// 「インペリアルガード」スキル「オーバースラッシュ」
 		case SKILL_ID_OVER_SLASH:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-
-			bMatchCond = false;
-
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 「アタックスタンス」状態のみ発動可能
-			if (UsedSkillSearch(SKILL_ID_ATTACK_STANCE) > 0) {
-				bMatchCond = true;
-			}
-
-			if (bMatchCond) {
-
-				// 距離属性
-				n_Enekyori = 0;
-
-				// 基本倍率
-				wbairitu = (40 * n_A_ActiveSkillLV);
-
-				// POW補正
-				wbairitu += 4 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
-				// ベースレベル補正
-				wbairitu *= n_A_BaseLV / 100;
-
-				// ヒット数
-				switch ("" + attackMethodConfArray[0].GetOptionValue(0)) {
-				case "1":
-					wHITsuu = 3;
-					break;
-				case "2":
-					wHITsuu = 5;
-					break;
-				case "4":
-					wHITsuu = 7;
-					break;
-				}
-			}
-
-			else {
+			if (UsedSkillSearch(SKILL_ID_ATTACK_STANCE) === 0) {
 				wbairitu = 0;
 				n_Buki_Muri = 1;
+				break;
+			}
+			// 距離属性
+			n_Enekyori = 0;
+			// 基本倍率
+			wbairitu = 70 * n_A_ActiveSkillLV;
+			// POW補正 (2025/01/12 未確認)
+			wbairitu += 4 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+			// ベースレベル補正
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			// ヒット数
+			switch(attackMethodConfArray[0].GetOptionValue(0)) {
+				case 1:
+					wHITsuu = 3;
+					break;
+				case 2:
+					wHITsuu = 5;
+					break;
+				case 4:
+					wHITsuu = 7;
+					break;
 			}
 			break;
 
@@ -9492,83 +9458,49 @@ g_bUnknownCasts = true;
 
 		// 「インペリアルガード」スキル「ジャッジメントクロス」
 		case SKILL_ID_JUDGEMENT_CROSS:
-			// 実測値に対して1hitあたり2桁のダメージ誤差があることを確認済み
-
-			// TODO: 詠唱時間等未実測スキル
-			g_bUnknownCasts = true;
-
 			// 詠唱時間等
-			/*
-			// 未実測
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			*/
-
 			// 基本倍率
-			wbairitu = 3000 + (1500 * n_A_ActiveSkillLV);
-			// SPL補正
+			wbairitu = 7000 + 2000 * n_A_ActiveSkillLV;
+			// SPL補正 (2025/01/12 未確認)
 			wbairitu += 60 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-
-			// 植物・昆虫形はダメージ倍率２倍
-			switch (mobData[MONSTER_DATA_INDEX_RACE]) {
-			case RACE_ID_PLANT:
-			case RACE_ID_INSECT:
-				wbairitu *= 2;
-				break;
-			}
-
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			// 見た目10hit
 			wActiveHitNum = 10;
 			break;
 
 		// 「インペリアルガード」スキル「クロスレイン」
 		case SKILL_ID_CROSS_RAIN:
-			// 実測値に対して２桁の誤差があることを確認済み
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-g_bDefinedDamageIntervals = true;
-
 			// 詠唱時間等
-			/*
-			// 未実測
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			*/
-
+			// 設置スキル
+			g_bDefinedDamageIntervals = true;
 			// ダメージ間隔
 			n_Delay[5] = 300;
-
 			// オブジェクト存続時間
-			n_Delay[6] = 3000;
-
-			// ホーリーシールド有り
+			n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// スキル倍率
 			if (UsedSkillSearch(SKILL_ID_HOLY_SHIELD) > 0) {
-				// 基本倍率
+				// ホーリーシールド有り
 				wbairitu = 150 * n_A_ActiveSkillLV;
-				// SPL補正
 				wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				// 槍＆片手剣修練
 				wbairitu += 15 * UsedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN);
 			}
-			// 無し
 			else {
-				// 基本倍率
-				wbairitu = (100 * n_A_ActiveSkillLV);
-				// SPL補正
-				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				// 槍＆片手剣修練
+				// 通常時 (2025/01/12 未確認)
+				wbairitu = 120 * n_A_ActiveSkillLV;
+				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	
 				wbairitu += 5 * UsedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN);
 			}
-
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
 		// 「アビスチェイサー」スキル「フロムジアビス」
