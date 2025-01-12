@@ -2558,114 +2558,73 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			wHITsuu = attackMethodConfArray[0].GetOptionValue(0);
 			break;
 
+		// 「ドラゴンナイト」スキル「ハックアンドスラッシャー」
 		case SKILL_ID_HACK_AND_SLASHER:
-
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 両手剣、両手槍のみ発動可能
-			switch (n_A_WeaponType) {
-
-			case ITEM_KIND_SWORD_2HAND:
-			case ITEM_KIND_SPEAR_2HAND:
-
-				// 詠唱時間等
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-
-				// 武器種別による距離属性変化
-				n_Enekyori = (n_A_WeaponType == ITEM_KIND_SWORD_2HAND) ? 0 :1;
-
-				// 基本倍率
-				wbairitu = 2000 + (100 * n_A_ActiveSkillLV);
-
-				// POW補正
-				wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
-				// ベースレベル補正
-				wbairitu *= n_A_BaseLV / 100;
-
-				// HIT数
-				wHITsuu = 2;
-				break;
-
-			default:
+			if (![ITEM_KIND_SWORD_2HAND, ITEM_KIND_SPEAR_2HAND].includes(n_A_WeaponType)) {
 				wbairitu = 0;
 				n_Buki_Muri = 1;
 				break;
 			}
-
+			// 武器種別による距離属性変化
+			n_Enekyori = (n_A_WeaponType == ITEM_KIND_SWORD_2HAND) ? 0 :1;
+			// 基本倍率
+			wbairitu = 1400 + 100 * n_A_ActiveSkillLV;
+			// POW補正 (2025/01/12 未確認)
+			wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+			// ベースレベル補正
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			// HIT数
+			wHITsuu = 2;
 			break;
 
+		// 「ドラゴンナイト」スキル「ドラゴニックオーラ」
 		case SKILL_ID_DRAGONIC_AURA:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 距離属性
 			n_Enekyori = 1;
-
 			// 基本倍率
-			wbairitu = 2000 + (1000 * n_A_ActiveSkillLV);
-
-			// POW補正
+			wbairitu = 7000 + 2000 * n_A_ActiveSkillLV;
+			// POW補正 (2025/01/12 未確認)
 			wbairitu += 40 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
-			// 人間形（プレイヤーを除く）、天使形はダメージ倍率２倍
-			switch (mobData[MONSTER_DATA_INDEX_RACE]) {
-			case RACE_ID_HUMAN:
-				if (mobData[MONSTER_DATA_INDEX_ID] == MONSTER_ID_PLAYER) {
-					break;
-				}
-				// break しない
-			case RACE_ID_ANGEL:
-				wbairitu *= 2;
-				break;
-			}
-
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
+		// 「ドラゴンナイト」スキル「マッドネスクラッシャー」
 		case SKILL_ID_MADNESS_CRUSHER:
-
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 両手剣、両手槍のみ発動可能
-			switch (n_A_WeaponType) {
-
-			case ITEM_KIND_SWORD_2HAND:
-			case ITEM_KIND_SPEAR_2HAND:
-
-
-				// 詠唱時間等
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-
-				// 距離属性
-				n_Enekyori = 1;
-
-				// 基本倍率
-				wbairitu = 3750 + (150 * n_A_ActiveSkillLV);
-
-				// 重量補正
-				wpnLv = ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS]][ITEM_DATA_INDEX_WPNLV] % 10;
-				weight = ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS]][ITEM_DATA_INDEX_WEIGHT];
-				wbairitu += weight * wpnLv;
-
-				// POW補正
-				wbairitu += 15 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
-				// ベースレベル補正
-				wbairitu *= n_A_BaseLV / 100;
-
-				break;
-
-			default:
+			if (![ITEM_KIND_SWORD_2HAND, ITEM_KIND_SPEAR_2HAND].includes(n_A_WeaponType)) {
 				wbairitu = 0;
 				n_Buki_Muri = 1;
 				break;
 			}
-
+			// 距離属性
+			n_Enekyori = 1;
+			// 基本倍率
+			wbairitu = 3000 + 900 * n_A_ActiveSkillLV;
+			// 重量補正 (2025/01/12 未確認)
+			wpnLv = ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS]][ITEM_DATA_INDEX_WPNLV] % 10;
+			weight = ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS]][ITEM_DATA_INDEX_WEIGHT];
+			wbairitu += weight * wpnLv;
+			// POW補正 (2025/01/12 未確認)
+			wbairitu += 15 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+			// ベースレベル補正
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
 		case SKILL_ID_STORM_SLASH:
@@ -4623,29 +4582,30 @@ g_bUnknownCasts = true;
 
 		// 「ドラゴンナイト」スキル「ドラゴニックブレス」
 		case SKILL_ID_DRAGONIC_BREATH:
-			// YE道場(DEF無視100)の環境では誤差無しを確認済み
-			// 通常鯖(DEF無視なし)では3桁程度の誤差が出る
 			if (UsedSkillSearch(SKILL_ID_DRAGON_TRAINING) == 0) {
 				n_Buki_Muri = 1
 				wbairitu = 0;
 				break;
 			}
-			g_bUnknownCasts = true;	// 詠唱時間など未計測フラグ
-			n_Enekyori = 1;	// 遠距離フラグ
-			/*
+			// 詠唱時間など
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			*/
-			wbairitu = 1000 + (200 * n_A_ActiveSkillLV);				// 基礎倍率
-			wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_POW);		// 特性ステータス補正
-			if (UsedSkillSearch(SKILL_ID_DRAGONIC_AURA_STATE) > 1) {	// Dオーラ補正
-				wbairitu *= 2;
+			// 遠距離フラグ
+			n_Enekyori = 1;	
+			// スキル倍率
+			if (UsedSkillSearch(SKILL_ID_DRAGONIC_AURA_STATE) > 1) {
+				// Dオーラ状態
+				wbairitu = 3500 + 400 * n_A_ActiveSkillLV;					// 基礎倍率
+			} else {
+				// 通常状態
+				wbairitu = 2750 + 325 * n_A_ActiveSkillLV;					// 基礎倍率
 			}
-			wbairitu += charaData[CHARA_DATA_INDEX_MAXHP] / 500;		// HP補正
-			wbairitu += charaData[CHARA_DATA_INDEX_MAXSP] / 20;			// SP補正
-			wbairitu *= n_A_BaseLV / 100;								// BaseLv補正
+			wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_POW);		// 特性ステータス補正 (2025/01/12 未確認)
+			wbairitu += charaData[CHARA_DATA_INDEX_MAXHP] / 500;		// MaxHP補正 (2025/01/12 未確認)
+			wbairitu += charaData[CHARA_DATA_INDEX_MAXSP] / 20;			// MaxSP補正 (2025/01/12 未確認)
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);			// BaseLv補正
 			break;
 
 		// 「マイスター」スキル「マイティスマッシュ」
@@ -10830,18 +10790,7 @@ function GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfAr
 		sklLv = UsedSkillSearch(SKILL_ID_VIGOR);
 		if (sklLv > 0) {
 			// 基本倍率
-			let ampWork = 100 + (10 * sklLv);
-			// 人間(プレイヤーを除く)・天使形では、追加倍率
-			switch (parseInt(mobData[MONSTER_DATA_INDEX_RACE], 10)) {
-			case RACE_ID_HUMAN:
-				if (mobData[MONSTER_DATA_INDEX_ID] == MONSTER_ID_PLAYER) {
-					break;
-				}
-				// breakしない
-			case RACE_ID_ANGEL:
-				ampWork *= 2;
-				break;
-			}
+			let ampWork = 100 * sklLv;
 			w += ampWork;
 		}
 	}
