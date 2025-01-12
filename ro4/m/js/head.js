@@ -3107,7 +3107,7 @@ g_bUnknownCasts = true;
 			}
 			break;
 
-
+		// 「マイスター」スキル「ラッシュクエイク」
 		case SKILL_ID_RUSH_QUAKE:
 			// 距離属性
 			n_Enekyori = 0;
@@ -3117,18 +3117,11 @@ g_bUnknownCasts = true;
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 基本倍率
-			wbairitu = (800 * n_A_ActiveSkillLV);
-			// POW補正
+			wbairitu = 2700 * n_A_ActiveSkillLV;
+			// POW補正 (2025/01/12 未確認)
 			wbairitu += 20 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-			// 無・昆虫形はダメージ倍率２倍
-			switch (mobData[MONSTER_DATA_INDEX_RACE]) {
-			case RACE_ID_SOLID:
-			case RACE_ID_INSECT:
-				wbairitu *= 2;
-				break;
-			}
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
 		case SKILL_ID_KOGEKI_SOCHI_YUKOKA:
@@ -4502,14 +4495,17 @@ g_bUnknownCasts = true;
 				wbairitu = 0;
 				break;
 			}
-			n_Enekyori = 1;	// 遠距離フラグ
+			// 詠唱時間など
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			wbairitu = 3000 + (300 * n_A_ActiveSkillLV);						// 基礎倍率
-			wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_POW);				// 特性ステータス補正
-			wbairitu *= n_A_BaseLV / 100;										// BaseLv補正
+			// 遠距離フラグ
+			n_Enekyori = 1;
+			// スキル倍率
+			wbairitu = 3750 + 375 * n_A_ActiveSkillLV;							// 基礎倍率
+			wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_POW);				// 特性ステータス補正 (2025/01/12 未確認)
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);					// BaseLv補正
 			break;
 
 		// 「マイスター」スキル「トリプルレーザー」
@@ -4616,17 +4612,21 @@ g_bUnknownCasts = true;
 				wbairitu = 0;
 				break;
 			}
+			// 詠唱時間など
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// アックスストンプ状態の場合 2 hit
+			// 基本倍率
 			if (UsedSkillSearch(SKILL_ID_AXE_STOMP_STATUS) > 0) {
-				wHITsuu = 2;
+				// アックスストンプ状態の場合
+				wbairitu = 4700 + 400 * n_A_ActiveSkillLV;				// 基礎倍率
+			} else {
+				// 通常時
+				wbairitu = 3400 + 350 * n_A_ActiveSkillLV;				// 基礎倍率
 			}
-			wbairitu = 1500 + (150 * n_A_ActiveSkillLV);						// 基礎倍率
-			wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_POW);				// 特性ステータス補正
-			wbairitu *= n_A_BaseLV / 100;										// BaseLv補正
+			wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_POW);		// 特性ステータス補正 (2025/01/12 未確認)
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);			// BaseLv補正
 			break;
 
 		// 「ナイトウォッチ」スキル「ベーシックグレネード」
