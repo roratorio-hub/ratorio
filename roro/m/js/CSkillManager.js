@@ -31420,7 +31420,6 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "(×)フェイタルシャドウクロー";
 			this.kana = "フエイタルシヤトウクロオ";
@@ -31428,14 +31427,31 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
-
-
-
-			this.CriActRate = (skillLv, charaData, specData, mobData) => {
-				return 10000;
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 310;
 			}
-
-			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 15 + skillLv;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 0;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 0;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 3000;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 3000;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 10;
+			}
+			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
+				return 10000;	// 100%
+			}
+			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
 		};
@@ -31449,7 +31465,6 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "(×)シャドウスタブ";
 			this.kana = "シヤトウスタフ";
@@ -31457,7 +31472,27 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
-
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 100;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 0;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 0;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 1000 * skillLv;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500 * skillLv;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 0;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;

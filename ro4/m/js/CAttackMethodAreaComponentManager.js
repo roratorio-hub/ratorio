@@ -3509,11 +3509,10 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 
 			// オプションリストを生成、追加
 			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"クローキング",
+				"クローキングエクシード",
 				[
 					[0, "なし"],
 					[1, "あり"],
-					[2, "あり（エクシード）"],
 				],
 				0
 			);
