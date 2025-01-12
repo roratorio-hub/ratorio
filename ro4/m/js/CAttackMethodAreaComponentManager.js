@@ -4022,6 +4022,30 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 			);
 			break;
 
+		//----------------------------------------------------------------
+		// ソウルアセティック：青龍符 白虎符 朱雀符 玄武符 四方神符 四方五行陣
+		//----------------------------------------------------------------
+		case SKILL_ID_SEIRYU_FU:
+		case SKILL_ID_BYAKKO_FU:
+		case SKILL_ID_SUZAKU_FU:
+		case SKILL_ID_GENBU_FU:
+		case SKILL_ID_SHIHOZIN_FU:
+		case SKILL_ID_SHIHO_GOGYO_ZIN:
+			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+				"暖かい風",
+				[
+					[0,"無し"],		// 本計算機の属性定数をセットしています
+					[2,"Lv1 地"],
+					[4,"Lv2 風"],
+					[1,"Lv3 水"],
+					[3,"Lv4 火"],
+					[8,"Lv5 念"],
+					[7,"Lv6 闇"],
+					[6,"Lv7 聖"],
+				],
+				0
+			);
+			break;
 						
 		}
 	}

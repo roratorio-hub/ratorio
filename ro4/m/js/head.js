@@ -9858,12 +9858,8 @@ g_bUnknownCasts = true;
 
 		// 「ソウルアセティック」スキル「青龍符」
 		case SKILL_ID_SEIRYU_FU:
-			/**
-			 * 素の状態から2桁程度の誤差がでますが五行陣を掛けても誤差は極端に拡大しないため丸め誤差の類だと思われます
-			 * 計算式は信頼できると判断しています
-			 */
 			// 属性は暖かい風依存
-			n_A_Weapon_zokusei = eval(document.calcForm.A_Weapon_zokusei.value);
+			n_A_Weapon_zokusei = attackMethodConfArray[0].GetOptionValue(0);
 			// 詠唱時間等
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
@@ -9871,27 +9867,24 @@ g_bUnknownCasts = true;
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 基本倍率
 			if (UsedSkillSearch(SKILL_ID_SHIHO_FU_ZYOTAI) >= 5) {
-				wbairitu = 5500 + (1000 * n_A_ActiveSkillLV);
+				// 四方五行陣 状態
+				wbairitu = 5500 + 1000 * n_A_ActiveSkillLV;
+			} else {
+				// 通常時
+				wbairitu = 4250 + 750 * n_A_ActiveSkillLV;
 			}
-			else {
-				wbairitu = 1500 + (200 * n_A_ActiveSkillLV);
-			}
-			// SPL補正
+			// SPL補正 (2025/01/12 未確認)
 			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			// 護符修練 補正
+			// 護符修練 補正 (2025/01/12 未確認)
 			wbairitu += 15 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_GOFU_SHUREN);
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
 		// 「ソウルアセティック」スキル「白虎符」
 		case SKILL_ID_BYAKKO_FU:
-			/**
-			 * 素の状態から2桁程度の誤差がでます
-			 * 五行陣を掛けると誤差は3桁に広がるので再考の余地があるかもしれません
-			 */
 			// 属性は暖かい風依存
-			n_A_Weapon_zokusei = eval(document.calcForm.A_Weapon_zokusei.value);
+			n_A_Weapon_zokusei = attackMethodConfArray[0].GetOptionValue(0);
 			// 詠唱時間等
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
@@ -9899,28 +9892,25 @@ g_bUnknownCasts = true;
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 基本倍率
 			if (UsedSkillSearch(SKILL_ID_SHIHO_FU_ZYOTAI) >= 5) {
+				// 四方五行陣 状態
 				// 公式発表並びに実測確認の結果によるとLv4だけ倍率が異常なので直値で指定しています
 				wbairitu = [0,4750,5250,5750,6200,6750][n_A_ActiveSkillLV];
+			} else {
+				// 通常時
+				wbairitu = 3000 + 400 * n_A_ActiveSkillLV;
 			}
-			else {
-				wbairitu = 1500 + (200 * n_A_ActiveSkillLV);
-			}
-			// SPL補正
+			// SPL補正 (2025/01/12 未確認)
 			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			// 護符修練
+			// 護符修練 (2025/01/12 未確認)
 			wbairitu += 15 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_GOFU_SHUREN);
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
 		// 「ソウルアセティック」スキル「朱雀符」
 		case SKILL_ID_SUZAKU_FU:
-			/**
-			 * 素の状態から2桁程度の誤差がでますが五行陣を掛けても誤差は極端に拡大しないため丸め誤差の類だと思われます
-			 * 計算式は信頼できると判断しています
-			 */
 			// 属性は暖かい風依存
-			n_A_Weapon_zokusei = eval(document.calcForm.A_Weapon_zokusei.value);
+			n_A_Weapon_zokusei = attackMethodConfArray[0].GetOptionValue(0);
 			// 詠唱時間等
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
@@ -9928,27 +9918,24 @@ g_bUnknownCasts = true;
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 基本倍率
 			if (UsedSkillSearch(SKILL_ID_SHIHO_FU_ZYOTAI) >= 5) {
-				wbairitu = 5500 + (650 * n_A_ActiveSkillLV);
+				// 四方五行陣 状態
+				wbairitu = 5500 + 650 * n_A_ActiveSkillLV;
+			} else {
+				// 通常時
+				wbairitu = 4250 + 500 * n_A_ActiveSkillLV;
 			}
-			else {
-				wbairitu = 1500 + (200 * n_A_ActiveSkillLV);
-			}
-			// SPL補正
+			// SPL補正 (2025/01/12 未確認)
 			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			// 護符修練
+			// 護符修練 (2025/01/12 未確認)
 			wbairitu += 15 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_GOFU_SHUREN);
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
 		// 「ソウルアセティック」スキル「玄武符」
 		case SKILL_ID_GENBU_FU:
-			/**
-			 * 素の状態から2桁程度の誤差がでます
-			 * 五行陣を掛けると誤差は3桁に広がるので再考の余地があるかもしれません
-			 */
 			// 属性は暖かい風依存
-			n_A_Weapon_zokusei = eval(document.calcForm.A_Weapon_zokusei.value);
+			n_A_Weapon_zokusei = attackMethodConfArray[0].GetOptionValue(0);
 			// 詠唱時間等
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
@@ -9956,18 +9943,19 @@ g_bUnknownCasts = true;
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 基本倍率
 			if (UsedSkillSearch(SKILL_ID_SHIHO_FU_ZYOTAI) >= 5) {
+				// 四方五行陣 状態
 				// 公式発表並びに実測確認の結果によるとLv4だけ倍率が異常なので直値で指定しています
 				wbairitu = [0,4750,5250,5750,6200,6750][n_A_ActiveSkillLV];
+			} else {
+				// 通常時
+				wbairitu = 3000 + 400 * n_A_ActiveSkillLV;
 			}
-			else {
-				wbairitu = 1500 + (200 * n_A_ActiveSkillLV);
-			}
-			// SPL補正
+			// SPL補正 (2025/01/12 未確認)
 			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			// 護符補正
+			// 護符補正 (2025/01/12 未確認)
 			wbairitu += 15 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_GOFU_SHUREN);
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
 		// 「ソウルアセティック」スキル「四方神符」
@@ -9977,7 +9965,7 @@ g_bUnknownCasts = true;
 			 * 計算式は信頼できると判断しています
 			 */
 			// 属性は暖かい風依存
-			n_A_Weapon_zokusei = eval(document.calcForm.A_Weapon_zokusei.value);
+			n_A_Weapon_zokusei = attackMethodConfArray[0].GetOptionValue(0);
 			// 詠唱時間等
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
@@ -9997,9 +9985,6 @@ g_bUnknownCasts = true;
 
 		// 「ソウルアセティック」スキル「四方五行陣」
 		case SKILL_ID_SHIHO_GOGYO_ZIN:
-			/**
-			 * 2桁～3桁程度の誤差があります
-			 */
 			// 詠唱時間等
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
@@ -10011,15 +9996,15 @@ g_bUnknownCasts = true;
 				break;
 			}
 			// 属性は暖かい風依存
-			n_A_Weapon_zokusei = eval(document.calcForm.A_Weapon_zokusei.value);
+			n_A_Weapon_zokusei = attackMethodConfArray[0].GetOptionValue(0);
 			// 基本倍率
-			wbairitu = 300 * n_A_ActiveSkillLV;
-			// SPL補正
+			wbairitu = 2200 + 600 * n_A_ActiveSkillLV;
+			// SPL補正 (2025/01/12 未確認)
 			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			// 修練補正
+			// 修練補正 (2025/01/12 未確認)
 			wbairitu += 15 * n_A_ActiveSkillLV * (UsedSkillSearch(SKILL_ID_GOFU_SHUREN) +  UsedSkillSearch(SKILL_ID_REIDOZYUTSU_SHUREN))
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			// ヒット数
 			wHITsuu = 5;
 			break;
