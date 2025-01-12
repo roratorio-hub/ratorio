@@ -3509,11 +3509,10 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 
 			// オプションリストを生成、追加
 			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"クローキング",
+				"クローキングエクシード",
 				[
 					[0, "なし"],
 					[1, "あり"],
-					[2, "あり（エクシード）"],
 				],
 				0
 			);
@@ -3807,12 +3806,11 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 			break;
 
 		//----------------------------------------------------------------
-		// ナイトウォッチ：グレネードフラグメント
+		// ナイトウォッチ：ベーシックグレネード ヘイスティファイアインザホール グレネーズドロッピング
 		//----------------------------------------------------------------
 		case SKILL_ID_BASIC_GRENADE :
 		case SKILL_ID_HASTY_FIRE_IN_THE_HOLE :
 		case SKILL_ID_GRENADES_DROPPING :
-		case SKILL_ID_MISSION_BOMBARD :
 			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
 				"グレネードフラグメント",
 				[
@@ -3827,6 +3825,33 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 				0
 			);
 			break;
+
+		//----------------------------------------------------------------
+		// ナイトウォッチ：ミッションボンバード
+		//----------------------------------------------------------------
+		case SKILL_ID_MISSION_BOMBARD :
+			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+				"グレネードフラグメント",
+				[
+					[ELM_ID_VANITY,	"なし"],		// 属性は common.js で EnumElmId として定義されている
+					[ELM_ID_WATER,	"Lv1:水属性"],  // ELM_ID_VANITY = 0 から
+					[ELM_ID_WIND,	"Lv2:風属性"],
+					[ELM_ID_EARTH,	"Lv3:地属性"],
+					[ELM_ID_FIRE,	"Lv4:火属性"],
+					[ELM_ID_DARK,	"Lv5:闇属性"],
+					[ELM_ID_HOLY,	"Lv6:聖属性"],
+				],
+				0
+			);
+			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+				"ダメージ表示",
+				[
+					[0, "使用時ダメージ"],
+					[1, "追加持続ダメージ"],
+				],
+				0
+			);
+			break;		
 
 		//----------------------------------------------------------------
 		// アークメイジ：アストラルストライク
@@ -4023,11 +4048,34 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 			);
 			break;
 
+		//----------------------------------------------------------------
+		// ソウルアセティック：青龍符 白虎符 朱雀符 玄武符 四方神符 四方五行陣
+		//----------------------------------------------------------------
+		case SKILL_ID_SEIRYU_FU:
+		case SKILL_ID_BYAKKO_FU:
+		case SKILL_ID_SUZAKU_FU:
+		case SKILL_ID_GENBU_FU:
+		case SKILL_ID_SHIHOZIN_FU:
+		case SKILL_ID_SHIHO_GOGYO_ZIN:
+			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+				"暖かい風",
+				[
+					[ELM_ID_VANITY	,"無し"		],
+					[ELM_ID_EARTH	,"Lv1 地"	],
+					[ELM_ID_WIND	,"Lv2 風"	],
+					[ELM_ID_WATER	,"Lv3 水"	],
+					[ELM_ID_FIRE	,"Lv4 火"	],
+					[ELM_ID_PSYCO	,"Lv5 念"	],
+					[ELM_ID_DARK	,"Lv6 闇"	],
+					[ELM_ID_HOLY	,"Lv7 聖"	],
+				],
+				0
+			);
+			break;
 						
 		}
 	}
 };
-
 
 
 /**
