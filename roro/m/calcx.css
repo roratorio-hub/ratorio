@@ -112,6 +112,18 @@ span.CSSCLS_SKILL_RATIO_MINUS {
 
 
 
+span.CSSCLS_SIZE_MODIFY_PLUS {
+	font-weight : bold;
+	color : #0000ff;
+}
+
+span.CSSCLS_SIZE_MODIFY_MINUS {
+	font-weight : bold;
+	color : #ff0000;
+}
+
+
+
 label.CSSCLS_CONF_USING_MESSAGE_USING {
 	font-weight : bold;
 }
