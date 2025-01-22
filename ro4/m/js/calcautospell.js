@@ -211,7 +211,7 @@ function AS_Calc(charaData, specData, mobData, attackMethodConfArray, battleCalc
 		funcAddAS();
 		n_AS_SKILL[idx][0] = SKILL_ID_SERVANT_WEAPON;
 		n_AS_SKILL[idx][1] = skillLv;
-		n_AS_SKILL[idx][2] = 5 * skillLv * 10;
+		n_AS_SKILL[idx][2] = 10 * skillLv * 10;
 		if(wAS_3dan > 0) {
 			// ＡＳ三段掌が設定されている場合は、発動率を補正
 			n_AS_SKILL[idx][2] = n_AS_SKILL[idx][2] * (100 - wAS_3dan) / 100;
