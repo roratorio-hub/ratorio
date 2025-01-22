@@ -27916,7 +27916,6 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "フルスロットル";
 			this.kana = "フルスロツトル";
@@ -27924,30 +27923,26 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
-
-			this.CostFixed = function(skillLv, charaDataManger) {
-				return -2;
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 1;
 			}
-
-			this.CastTimeVary = function(skillLv, charaDataManger) {
-				return -2;
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 0;
 			}
-
-			this.CastTimeFixed = function(skillLv, charaDataManger) {
-				return -2;
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 0;
 			}
-
-			this.DelayTimeCommon = function(skillLv, charaDataManger) {
-				return -2;
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 0;
 			}
-
-			this.CoolTime = function(skillLv, charaDataManger) {
-				return -2;
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 0;
 			}
-
-			this.LifeTime = function(skillLv, charaDataManger) {
-				var nLifeTime = 40000;
-				return nLifeTime;
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 600 * 1000;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 40 * 1000;
 			}
 		};
 		this.dataArray[skillId] = skillData;
