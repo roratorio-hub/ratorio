@@ -16657,6 +16657,30 @@ function RebuildActiveSkillRatioInfo(battleCalcInfo, charaData, specData, mobDat
 
 
 
+/**
+ * 物理攻撃・物理スキルに対するサイズ倍率補正値表示欄の再構築.
+ */
+function RebuildSizeModifyRatioInfo(battleCalcInfo, charaData, specData, mobData, wRatio) {
+	if (!battleCalcInfo) {
+		battleCalcInfo = new CBattleCalcInfo();
+		battleCalcInfo.skillId = n_A_ActiveSkill;
+		battleCalcInfo.skillLv = n_A_ActiveSkillLV;
+	}
+	let bFlag = ((g_skillManager.GetSkillType(battleCalcInfo.skillId) & CSkillData.TYPE_PHYSICAL) == CSkillData.TYPE_PHYSICAL);
+	let html = "";
+	if(bFlag) {
+		let wWeaponRatio = weaponsize[n_A_WeaponType][mobData[17]];
+
+		html = `　サイズ補正： <span class="CSSCLS_SIZE_MODIFY_${wRatio>=1?"PLUS":"MINUS"}">${wRatio*100}%</span> (武器倍率<span class="CSSCLS_SIZE_MODIFY_${wWeaponRatio>=1?"PLUS":"MINUS"}">${wWeaponRatio*100}%</span>)`;
+	}
+	$("#OBJID_SPAN_SIZE_MODIFY").html(html);
+}
+
+
+
+
+
+
  n_SieldSp = ["off","on",20,35,40,50,60,75,80,85,90,95,98,105,110,120,130,150,100,140,170];
  n_SieldSpNum = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12, 18, 13, 14, 15, 16, 19, 17, 20];
  n_SieldSpDum = ["off","on",20,35,40,50,60,75,80,85,90,95,98,100,105,110,120,130,140,150,170];
@@ -19856,7 +19880,7 @@ function calc() {
 	//--------------------------------
 	BuildResistElementTinyHtml();
 	RebuildActiveSkillRatioInfo(null, charaData, n_tok, mobData);
-
+	RebuildSizeModifyRatioInfo(null, charaData, n_tok, mobData, wCSize);
 
 
 
