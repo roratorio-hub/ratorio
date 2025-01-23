@@ -23239,8 +23239,8 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "デュプレライト物理";
-			this.kana = "テユフレライトフツリ";
+			this.name = "グレイアムライト";
+			this.kana = "クレイアムライト";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
@@ -23259,8 +23259,8 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "デュプレライト魔法";
-			this.kana = "テユフレライトマホウ";
+			this.name = "ミリアムライト";
+			this.kana = "ミリアムライト";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
