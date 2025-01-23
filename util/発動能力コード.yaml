@@ -338,7 +338,7 @@ capabilities:
     code: 11000
   - name: スキル固定詠唱ミリ秒減少
     code: 13000
-  - name: スキルクールタイムミリ秒減少
+  - name: 再使用待機時間減少
     code: 19000
   - name: スキル消費SP割合増加
     code: 21000

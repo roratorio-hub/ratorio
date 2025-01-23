@@ -55,7 +55,7 @@ for card_id, set_id_list in matches:
 # セット効果のサーチ
 result_item = {}
 result_card = {}
-pattern = r'w_SE\[(\d+)] = \[(.+)\];'
+pattern = r'w_SE\[(\d+)] = \[(.+)\];\n'
 matches = re.findall(pattern, js_code)
 for set_id, member_list in matches:
     set_id = int(set_id)
