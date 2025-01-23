@@ -24049,7 +24049,15 @@ function GetCoolFixOfSkill(skillId) {
 		coolfix -= GetEquippedTotalSPCardAndElse(ITEM_SP_SKILL_COOL_MINUS_OFFSET + skillId);
 	}
 
-
+	//----------------------------------------------------------------
+	// 「潜在覚醒(ダーククローI)」の「ダーククロー」CT短縮効果の打ち消し
+	//----------------------------------------------------------------
+	if (skillId == SKILL_ID_DARK_CRAW) {
+		if (CardNumSearch(CARD_SET_ID_ENCHANT_SENZAI_KAKUSEI_DARK_CLAW) > 1) {
+			// 豪傑、真理の両方がセットされている場合は片方の効果を削除する
+			coolfix += 30 * 1000;
+		}
+	}
 
 	//----------------------------------------------------------------
 	// 「アルティメットモードチェンジャー　クリムゾンアーティファクトセット」の「メテオストーム」延長（ペナルティ）
