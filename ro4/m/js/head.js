@@ -1673,10 +1673,13 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
 			break;
 
+		// 「メカニック」スキル「パワースイング」
 		case SKILL_ID_POWER_SWING:
 			wCast = Math.max(0, 1000 - 200 * n_A_ActiveSkillLV);
 			wbairitu = 300 + 100 * n_A_ActiveSkillLV;
 			wbairitu += ROUNDDOWN((n_A_STR + n_A_DEX) * n_A_BaseLV / 100);
+			// ABRバトルウォリアー状態の場合
+			
 			break;
 
 		// 「メカニック」スキル「ブーストナックル」
@@ -3107,6 +3110,7 @@ g_bUnknownCasts = true;
 			break;
 
 		// 「マイスター」スキル「ラッシュクエイク」
+		// 2025/01/18 ふみ。さん提供データに一致
 		case SKILL_ID_RUSH_QUAKE:
 			// 距離属性
 			n_Enekyori = 0;
@@ -3117,35 +3121,34 @@ g_bUnknownCasts = true;
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 基本倍率
 			wbairitu = 2700 * n_A_ActiveSkillLV;
-			// POW補正 (2025/01/12 未確認)
-			wbairitu += 20 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+			// POW補正
+			wbairitu += 90 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 			// ベースレベル補正
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
+		// 「マイスター」スキル「攻撃装置有効化」
+		// 2025/01/18 ふみ。さん提供データに一致
 		case SKILL_ID_KOGEKI_SOCHI_YUKOKA:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-g_bDefinedDamageIntervals = true;
-
+			// 詠唱時間等 (自分中心に継続ダメージが発生するバフのため詠唱などは無し)
+			wCast = 0;
+			n_KoteiCast = 0;
+			n_Delay[2] = 0;
+			n_Delay[7] = 0;
+			// 設置スキル
+			g_bDefinedDamageIntervals = true;
 			// ダメージ間隔
 			n_Delay[5] = 1000;
-
 			// オブジェクト存続時間
-			n_Delay[6] = [0, 240000, 180000, 120000, 90000, 60000][n_A_ActiveSkillLV];
-
+			n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 距離属性
 			n_Enekyori = 0;
-
 			// 基本倍率
 			wbairitu = (300 * n_A_ActiveSkillLV);
-
-			// POW補正
-			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
-			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			// POW補正（バフの術者であるマイスターのPOWを参照する）
+			wbairitu += 5 * attackMethodConfArray[0].GetOptionValue(0);
+			// ベースレベル補正（バフの被術者である自分のベースレベルを参照する）
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
 		// 「インペリアルガード」スキル「グランドジャッジメント」
@@ -4402,9 +4405,8 @@ g_bUnknownCasts = true;
 			break;
 
 		// 「マイスター」スキル「スパークブラスター」
+		// 2025/01/18 ふみ。さん提供データに一致
 		case SKILL_ID_SPARK_BLASTER:
-			// 錐効果がついた時にダメージ実測値との誤差があるので(△)スキル
-			// DEF無視スキルのため錐周りの計算がうまく出来ていないと思われる
 			if (UsedSkillSearch(SKILL_ID_MADOGEAR) == 0) {
 				n_Buki_Muri = 1
 				wbairitu = 0;
@@ -4419,8 +4421,10 @@ g_bUnknownCasts = true;
 			n_Enekyori = 1;
 			// スキル倍率
 			wbairitu = 3750 + 375 * n_A_ActiveSkillLV;							// 基礎倍率
-			wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_POW);				// 特性ステータス補正 (2025/01/12 未確認)
+			wbairitu += 25 * GetTotalSpecStatus(MIG_PARAM_ID_POW);				// 特性ステータス補正
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);					// BaseLv補正
+			// 分割ヒット
+			wActiveHitNum = 2;
 			break;
 
 		// 「マイスター」スキル「トリプルレーザー」
@@ -4520,6 +4524,7 @@ g_bUnknownCasts = true;
 			break;
 
 		// 「マイスター」スキル「マイティスマッシュ」
+		// 2025/01/18 ふみ。さん提供データに一致
 		case SKILL_ID_MIGHTY_SMASH:
 			// 使用武器制限
 			if (n_A_WeaponType != ITEM_KIND_AXE && n_A_WeaponType != ITEM_KIND_AXE_2HAND) {
@@ -4536,12 +4541,15 @@ g_bUnknownCasts = true;
 			if (UsedSkillSearch(SKILL_ID_AXE_STOMP_STATUS) > 0) {
 				// アックスストンプ状態の場合
 				wbairitu = 4700 + 400 * n_A_ActiveSkillLV;				// 基礎倍率
+				wbairitu += 29 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// 特性ステータス補正
 			} else {
 				// 通常時
 				wbairitu = 3400 + 350 * n_A_ActiveSkillLV;				// 基礎倍率
+				wbairitu += 23 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// 特性ステータス補正
 			}
-			wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_POW);		// 特性ステータス補正 (2025/01/12 未確認)
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);			// BaseLv補正
+			// 分割ヒット
+			wActiveHitNum = 2;
 			break;
 
 		// 「ナイトウォッチ」スキル「ベーシックグレネード」

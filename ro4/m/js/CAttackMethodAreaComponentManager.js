@@ -4072,7 +4072,23 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 				0
 			);
 			break;
-						
+
+		//----------------------------------------------------------------
+		// マイスター：攻撃装置有効化
+		//----------------------------------------------------------------
+		case SKILL_ID_KOGEKI_SOCHI_YUKOKA:
+			// オプションリストを生成、追加
+			attackMethodOptList = funcCreateOptionListAsInput(attackMethodOptList,
+				"マイスターのPOW",
+				[
+					["type", "number"],
+					["min", 0],
+					["max", 500],
+				],
+				0
+			);
+			break;
+
 		}
 	}
 };
