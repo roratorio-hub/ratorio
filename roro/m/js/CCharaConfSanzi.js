@@ -243,7 +243,7 @@ function CCharaConfSanzi(confArray) {
 		CCharaConfSanzi.CONF_ID_PAIN_KILLER = confId;
 		confData = [
 			confId,
-			CConfBase.ConfText("ペインイキラー(Sホム)"),
+			CConfBase.ConfText("ペインキラー(Sホム)"),
 			CConfBase.ConfControlType(CONTROL_TYPE_SELECTBOX_NUMBER),
 			CConfBase.ConfDefaultValue(0),
 			CConfBase.ConfMinValue(0),
@@ -257,7 +257,7 @@ function CCharaConfSanzi(confArray) {
 		CCharaConfSanzi.CONF_ID_PAIN_KILLER_BASE_LEVEL = confId;
 		confData = [
 			confId,
-			CConfBase.ConfText("ペインイキラー用SホムのBaseLv"),
+			CConfBase.ConfText("ペインキラー用SホムのBaseLv"),
 			CConfBase.ConfControlType(CONTROL_TYPE_SELECTBOX_SPECIAL),
 			CConfBase.ConfDefaultValue(0),
 			CConfBase.ConfMinValue(0),
@@ -586,7 +586,7 @@ function CCharaConfSanzi(confArray) {
 
 			break;
 
-		// ペインイキラー用SホムのBaseLv
+		// ペインキラー用SホムのBaseLv
 		case CCharaConfSanzi.CONF_ID_PAIN_KILLER_BASE_LEVEL:
 
 			// 選択セレクトボックスを生成
