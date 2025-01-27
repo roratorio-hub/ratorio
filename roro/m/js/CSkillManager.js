@@ -40864,6 +40864,24 @@ function CSkillManager() {
 		this.dataArray[skillId] = skillData;
 		skillId++;
 
+		// ----------------------------------------------------------------
+		// グレネードフラグメント
+		// ----------------------------------------------------------------
+		SKILL_ID_GRENADE_FRAGMENT = skillId;
+		skillData = new function() {
+			this.prototype = new CSkillData();
+			CSkillData.call(this);
+			this.id = skillId;
+			this.name = "グレネードフラグメント";
+			this.kana = "クレネエトフラクメント";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_PASSIVE;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_VOID;
+		};
+		this.dataArray[skillId] = skillData;
+		skillId++;
+
 	}
 
 	// 初期化
