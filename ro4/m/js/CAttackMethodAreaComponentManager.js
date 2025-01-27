@@ -2685,7 +2685,20 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 		case SKILL_ID_POWER_SWING:
 
 			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionListAsLearnLvSelect(attackMethodOptList, SKILL_ID_AXE_BOOMERANG, ((GetHigherJobSeriesID(n_A_JOB) == JOB_SERIES_ID_ROGUE) ? 0 : 3));
+			attackMethodOptList = funcCreateOptionListAsLearnLvSelect(attackMethodOptList, 
+				SKILL_ID_AXE_BOOMERANG,
+				((GetHigherJobSeriesID(n_A_JOB) == JOB_SERIES_ID_ROGUE) ? 0 : 3)
+			);
+			if (n_A_JOB === MIG_JOB_ID_MEISTER) {
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"ABRバトルウォリアー",
+					[
+						[0, "無し"],
+						[1, "召喚中"],
+					],
+					0
+				);			
+			}
 			break;
 
 
@@ -4072,7 +4085,23 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 				0
 			);
 			break;
-						
+
+		//----------------------------------------------------------------
+		// マイスター：攻撃装置有効化
+		//----------------------------------------------------------------
+		case SKILL_ID_KOGEKI_SOCHI_YUKOKA:
+			// オプションリストを生成、追加
+			attackMethodOptList = funcCreateOptionListAsInput(attackMethodOptList,
+				"マイスターのPOW",
+				[
+					["type", "number"],
+					["min", 0],
+					["max", 500],
+				],
+				0
+			);
+			break;
+
 		}
 	}
 };

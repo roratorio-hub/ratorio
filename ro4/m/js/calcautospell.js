@@ -253,6 +253,52 @@ function AS_Calc(charaData, specData, mobData, attackMethodConfArray, battleCalc
 		}
 	}
 
+	//----------------------------------------------------------------
+	// 通常攻撃時の、オートファイアリングランチャー追撃効果
+	//----------------------------------------------------------------
+	skillLv = UsedSkillSearch(SKILL_ID_AUTO_FIRING_LAUNCHER);
+	if ((n_A_ActiveSkill == SKILL_ID_TUZYO_KOGEKI) && (skillLv > 0)) {
+		// オートスペルに、ベーシックグレネードを設定
+		skillLvSub = UsedSkillSearch(SKILL_ID_BASIC_GRENADE_LEARNED_LEVEL);
+		if (skillLvSub > 0) {
+			funcAddAS();
+			n_AS_SKILL[idx][0] = SKILL_ID_BASIC_GRENADE;
+			n_AS_SKILL[idx][1] = skillLvSub;
+			n_AS_SKILL[idx][2] = 45 + 5 * skillLv;	// 千分率で 5.0%～
+			if(wAS_3dan > 0) {
+				// ＡＳ三段掌（混沌のサイドワインダー）が設定されている場合は、発動率を補正
+				n_AS_SKILL[idx][2] = n_AS_SKILL[idx][2] * (100 - wAS_3dan) / 100;
+			}
+			n_AS_SKILL[idx][3] = 0;
+		}
+		// オートスペルに、ヘイスティファイアインザホールを設定
+		skillLvSub = UsedSkillSearch(SKILL_ID_HASTY_FIRE_IN_THE_HOLE_LEARNED_LEVEL);
+		if (skillLvSub > 0) {
+			funcAddAS();
+			n_AS_SKILL[idx][0] = SKILL_ID_HASTY_FIRE_IN_THE_HOLE;
+			n_AS_SKILL[idx][1] = skillLvSub;
+			n_AS_SKILL[idx][2] = 20 + 5 * skillLv;	// 千分率で 2.5%～
+			if(wAS_3dan > 0) {
+				// ＡＳ三段掌（混沌のサイドワインダー）が設定されている場合は、発動率を補正
+				n_AS_SKILL[idx][2] = n_AS_SKILL[idx][2] * (100 - wAS_3dan) / 100;
+			}
+			n_AS_SKILL[idx][3] = 0;
+		}
+		// オートスペルに、グレネーズドロッピングを設定
+		skillLvSub = UsedSkillSearch(SKILL_ID_GRENADES_DROPPING_LEARNED_LEVEL);
+		if (skillLvSub > 0) {
+			funcAddAS();
+			n_AS_SKILL[idx][0] = SKILL_ID_GRENADES_DROPPING;
+			n_AS_SKILL[idx][1] = skillLvSub;
+			n_AS_SKILL[idx][2] = 10 + 5 * skillLv;	// 千分率で 1.5%～
+			if(wAS_3dan > 0) {
+				// ＡＳ三段掌（混沌のサイドワインダー）が設定されている場合は、発動率を補正
+				n_AS_SKILL[idx][2] = n_AS_SKILL[idx][2] * (100 - wAS_3dan) / 100;
+			}
+			n_AS_SKILL[idx][3] = 0;
+		}
+
+	}	
 
 	//----------------------------------------------------------------
 	// ビーストストレイフィング時の、ダブルストレイフィング追撃あり時の効果

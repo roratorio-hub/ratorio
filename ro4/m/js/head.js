@@ -1673,9 +1673,18 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
 			break;
 
+		// 「メカニック」スキル「パワースイング」
+		// 2025/01/27 実測値との誤差無しを確認済み
 		case SKILL_ID_POWER_SWING:
 			wCast = Math.max(0, 1000 - 200 * n_A_ActiveSkillLV);
-			wbairitu = 300 + 100 * n_A_ActiveSkillLV;
+			if (attackMethodConfArray[0].GetOptionValue(1) == 1) {
+				// ABRバトルウォリアー状態の場合
+				wActiveHitNum = 2;
+				wbairitu = 500 + 150 * n_A_ActiveSkillLV;
+			} else {
+				// 通常時
+				wbairitu = 300 + 100 * n_A_ActiveSkillLV;
+			}
 			wbairitu += ROUNDDOWN((n_A_STR + n_A_DEX) * n_A_BaseLV / 100);
 			break;
 
@@ -3107,6 +3116,7 @@ g_bUnknownCasts = true;
 			break;
 
 		// 「マイスター」スキル「ラッシュクエイク」
+		// 2025/01/18 ふみ。さん提供データに一致
 		case SKILL_ID_RUSH_QUAKE:
 			// 距離属性
 			n_Enekyori = 0;
@@ -3117,35 +3127,34 @@ g_bUnknownCasts = true;
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 基本倍率
 			wbairitu = 2700 * n_A_ActiveSkillLV;
-			// POW補正 (2025/01/12 未確認)
-			wbairitu += 20 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+			// POW補正
+			wbairitu += 90 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 			// ベースレベル補正
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
+		// 「マイスター」スキル「攻撃装置有効化」
+		// 2025/01/18 ふみ。さん提供データに一致
 		case SKILL_ID_KOGEKI_SOCHI_YUKOKA:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-g_bDefinedDamageIntervals = true;
-
+			// 詠唱時間等 (自分中心に継続ダメージが発生するバフのため詠唱などは無し)
+			wCast = 0;
+			n_KoteiCast = 0;
+			n_Delay[2] = 0;
+			n_Delay[7] = 0;
+			// 設置スキル
+			g_bDefinedDamageIntervals = true;
 			// ダメージ間隔
 			n_Delay[5] = 1000;
-
 			// オブジェクト存続時間
-			n_Delay[6] = [0, 240000, 180000, 120000, 90000, 60000][n_A_ActiveSkillLV];
-
+			n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 距離属性
 			n_Enekyori = 0;
-
 			// 基本倍率
 			wbairitu = (300 * n_A_ActiveSkillLV);
-
-			// POW補正
-			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
-			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			// POW補正（バフの術者であるマイスターのPOWを参照する）
+			wbairitu += 5 * attackMethodConfArray[0].GetOptionValue(0);
+			// ベースレベル補正（バフの被術者である自分のベースレベルを参照する）
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
 		// 「インペリアルガード」スキル「グランドジャッジメント」
@@ -3985,6 +3994,7 @@ g_bUnknownCasts = true;
 			break;
 
 		//「ナイトウォッチ」スキル「オンリーワンバレット」
+		// 2025/01/25 もなこさん提供データに対して誤差なしを確認
 		case SKILL_ID_ONLY_ONE_BULLET:
 			// 詠唱時間など
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
@@ -4006,16 +4016,17 @@ g_bUnknownCasts = true;
 			else if (n_A_WeaponType == ITEM_KIND_RIFLE) {
 				wbairitu = 2800 + 500 * n_A_ActiveSkillLV;
 			}
-			// CON補正 (2025/01/12 未確認)
+			// CON補正
 			wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
-			// 照準カウンター補正  (2025/01/12 未確認)
+			// 照準カウンター補正
 			option_count = attackMethodConfArray[0].GetOptionValue(0);
-			wbairitu += option_count * (950 + (150 * n_A_ActiveSkillLV));
+			wbairitu += option_count * (950 + 150 * n_A_ActiveSkillLV);
 			// ベースレベル補正
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
 		// 「ナイトウォッチ」スキル「スパイラルシューティング」
+		// 2025/01/25 もなこさん提供データに対して誤差なしを確認
 		case SKILL_ID_SPIRAL_SHOOTING:
 			// 詠唱時間など
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
@@ -4038,16 +4049,17 @@ g_bUnknownCasts = true;
 			else if (n_A_WeaponType == ITEM_KIND_RIFLE) {
 				wbairitu = 1950 + 350 * n_A_ActiveSkillLV;
 			}
-			// CON補正 (2025/01/12 未確認)
+			// CON補正
 			wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
 			// 照準カウンター補正
 			option_count = attackMethodConfArray[0].GetOptionValue(0);
-			wbairitu += option_count * (550 + (100 * n_A_ActiveSkillLV));
+			wbairitu += option_count * (550 + 100 * n_A_ActiveSkillLV);
 			// ベースレベル補正
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
 		// 「ナイトウォッチ」スキル「マガジンフォーワン」
+		// 2025/01/25 もなこさん提供データに対して誤差なしを確認
 		case SKILL_ID_MAGAZIN_FOR_ONE:
 			// 詠唱時間など
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
@@ -4071,16 +4083,17 @@ g_bUnknownCasts = true;
 				wbairitu = 500 + 50 * n_A_ActiveSkillLV;
 				wHITsuu = 6;	// 6ヒットする
 			}
-			// CON補正 (2025/01/12 未確認)
+			// CON補正
 			wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
 			// 照準カウンター補正
 			option_count = attackMethodConfArray[0].GetOptionValue(0);
-			wbairitu += option_count * (125 + (25 * n_A_ActiveSkillLV));
+			wbairitu += option_count * (125 + 25 * n_A_ActiveSkillLV);
 			// ベースレベル補正
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
 		//「ナイトウォッチ」スキル「ビジラントアットナイト」
+		// 2025/01/25 もなこさん提供データに対して誤差なしを確認
 		case SKILL_ID_VIGILANT_AT_NIGHT:
 			// 使用武器制限
 			if (n_A_WeaponType != ITEM_KIND_SHOTGUN && n_A_WeaponType != ITEM_KIND_GATLINGGUN) {
@@ -4102,8 +4115,8 @@ g_bUnknownCasts = true;
 				// 基本倍率
 				wbairitu = 375 + 85 * n_A_ActiveSkillLV;
 				// 照準カウンター補正
-				wbairitu += option_count * (125 + (25 * n_A_ActiveSkillLV));
-				// CON補正 (2025/01/12 未確認)
+				wbairitu += option_count * (125 + 25 * n_A_ActiveSkillLV);
+				// CON補正
 				wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
 			}
 			else if (n_A_WeaponType == ITEM_KIND_SHOTGUN) {
@@ -4111,8 +4124,8 @@ g_bUnknownCasts = true;
 				// 基本倍率
 				wbairitu = 700 + 150 * n_A_ActiveSkillLV;
 				// 照準カウンター補正
-				wbairitu += option_count * (250 + (50 * n_A_ActiveSkillLV));
-				// CON補正 (2025/01/12 未確認)
+				wbairitu += option_count * (250 + 50 * n_A_ActiveSkillLV);
+				// CON補正
 				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
 			}
 			// ベースレベル補正
@@ -4120,6 +4133,7 @@ g_bUnknownCasts = true;
 			break;
 
 		//「ナイトウォッチ」スキル「ワイルドファイア」
+		// 2025/01/25 もなこさん提供データに対して誤差なしを確認
 		case SKILL_ID_WILD_FIRE:
 			// 詠唱時間など
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
@@ -4136,11 +4150,11 @@ g_bUnknownCasts = true;
 			n_Enekyori = 1;
 			// 基礎倍率
 			wbairitu = 3700 + 600 * n_A_ActiveSkillLV;
-			// CON補正 (2025/01/12 未確認)
+			// CON補正
 			wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
 			// 照準カウンター補正
 			option_count = attackMethodConfArray[0].GetOptionValue(0);
-			wbairitu += option_count * (950 + (150 * n_A_ActiveSkillLV));
+			wbairitu += option_count * (950 + 150 * n_A_ActiveSkillLV);
 			// ベースレベル補正
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			// 分割3ヒット
@@ -4402,9 +4416,8 @@ g_bUnknownCasts = true;
 			break;
 
 		// 「マイスター」スキル「スパークブラスター」
+		// 2025/01/18 ふみ。さん提供データに一致
 		case SKILL_ID_SPARK_BLASTER:
-			// 錐効果がついた時にダメージ実測値との誤差があるので(△)スキル
-			// DEF無視スキルのため錐周りの計算がうまく出来ていないと思われる
 			if (UsedSkillSearch(SKILL_ID_MADOGEAR) == 0) {
 				n_Buki_Muri = 1
 				wbairitu = 0;
@@ -4419,8 +4432,10 @@ g_bUnknownCasts = true;
 			n_Enekyori = 1;
 			// スキル倍率
 			wbairitu = 3750 + 375 * n_A_ActiveSkillLV;							// 基礎倍率
-			wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_POW);				// 特性ステータス補正 (2025/01/12 未確認)
+			wbairitu += 25 * GetTotalSpecStatus(MIG_PARAM_ID_POW);				// 特性ステータス補正
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);					// BaseLv補正
+			// 分割ヒット
+			wActiveHitNum = 2;
 			break;
 
 		// 「マイスター」スキル「トリプルレーザー」
@@ -4520,6 +4535,7 @@ g_bUnknownCasts = true;
 			break;
 
 		// 「マイスター」スキル「マイティスマッシュ」
+		// 2025/01/18 ふみ。さん提供データに一致
 		case SKILL_ID_MIGHTY_SMASH:
 			// 使用武器制限
 			if (n_A_WeaponType != ITEM_KIND_AXE && n_A_WeaponType != ITEM_KIND_AXE_2HAND) {
@@ -4536,15 +4552,19 @@ g_bUnknownCasts = true;
 			if (UsedSkillSearch(SKILL_ID_AXE_STOMP_STATUS) > 0) {
 				// アックスストンプ状態の場合
 				wbairitu = 4700 + 400 * n_A_ActiveSkillLV;				// 基礎倍率
+				wbairitu += 29 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// 特性ステータス補正
 			} else {
 				// 通常時
 				wbairitu = 3400 + 350 * n_A_ActiveSkillLV;				// 基礎倍率
+				wbairitu += 23 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// 特性ステータス補正
 			}
-			wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_POW);		// 特性ステータス補正 (2025/01/12 未確認)
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);			// BaseLv補正
+			// 分割ヒット
+			wActiveHitNum = 2;
 			break;
 
 		// 「ナイトウォッチ」スキル「ベーシックグレネード」
+		// 2025/01/25 もなこさん検証データとの誤差無しを確認ずみ
 		case SKILL_ID_BASIC_GRENADE:
 			n_Enekyori = 1;	// 遠距離フラグ
 			wActiveHitNum = 2;	// 見た目2hit
@@ -4555,12 +4575,13 @@ g_bUnknownCasts = true;
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// ダメージ倍率
 			wbairitu = 3000 + 600 * n_A_ActiveSkillLV;					// 基本
-			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_CON);		// 特性ステータス補正 (2025/01/12 未確認)
-			wbairitu += 50 * UsedSkillSearch(SKILL_ID_GRENADE_MASTERY) 	// グレネードマスタリー補正 (2025/01/12 未確認)
+			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_CON);		// 特性ステータス補正
+			wbairitu += 50 * UsedSkillSearch(SKILL_ID_GRENADE_MASTERY) 	// グレネードマスタリー補正
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);			// BaseLv補正
 			break;
 
 		// 「ナイトウォッチ」スキル「ヘイスティファイアインザホール」
+		// 2025/01/25 もなこさん検証データとの誤差無しを確認ずみ
 		case SKILL_ID_HASTY_FIRE_IN_THE_HOLE:
 			/*
 				実際には
@@ -4577,12 +4598,13 @@ g_bUnknownCasts = true;
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// ダメージ倍率
 			wbairitu = 3000 + 600 * n_A_ActiveSkillLV;					// 基本
-			wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);		// 特性ステータス補正 (2025/01/12 未確認)
-			wbairitu += 20 * UsedSkillSearch(SKILL_ID_GRENADE_MASTERY) 	// グレネードマスタリー補正	(2025/01/12 未確認)
+			wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);		// 特性ステータス補正
+			wbairitu += 20 * UsedSkillSearch(SKILL_ID_GRENADE_MASTERY) 	// グレネードマスタリー補正
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);			// BaseLv補正
 			break;
 
 		// 「ナイトウォッチ」スキル「グレネーズドロッピング」
+		// 2025/01/25 もなこさん検証データとの誤差無しを確認ずみ
 		case SKILL_ID_GRENADES_DROPPING:
 			/*
 				ダメージセルがランダムに発生するので実際はこれよりも総ダメージが少なくなる
@@ -4601,12 +4623,13 @@ g_bUnknownCasts = true;
 			n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData); // オブジェクト存続時間
 			// ダメージ倍率
 			wbairitu = 1350 + 300 * n_A_ActiveSkillLV;					// 基本
-			wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);		// 特性ステータス補正 (2025/01/12 未確認)
-			wbairitu += 30 * UsedSkillSearch(SKILL_ID_GRENADE_MASTERY) 	// グレネードマスタリー補正 (2025/01/12 未確認)
+			wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);		// 特性ステータス補正
+			wbairitu += 30 * UsedSkillSearch(SKILL_ID_GRENADE_MASTERY) 	// グレネードマスタリー補正
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);			// BaseLv補正
 			break;
 
 		// 「ナイトウォッチ」スキル「ミッションボンバード」
+		// 2025/01/25 もなこさん検証データとの誤差無しを確認ずみ
 		case SKILL_ID_MISSION_BOMBARD:
 			// 詠唱時間など
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
@@ -4630,8 +4653,8 @@ g_bUnknownCasts = true;
 				n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);		// オブジェクト存続時間
 				// ダメージ倍率
 				wbairitu = 5000 + 1000 * n_A_ActiveSkillLV;					// 基本
-				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_CON);		// 特性ステータス補正 (2025/01/12 未確認)
-				wbairitu += 30 * UsedSkillSearch(SKILL_ID_GRENADE_MASTERY) 	// グレネードマスタリー補正 (2025/01/12 未確認)
+				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_CON);		// 特性ステータス補正
+				wbairitu += 30 * UsedSkillSearch(SKILL_ID_GRENADE_MASTERY) 	// グレネードマスタリー補正
 			}
 			// BaseLv補正
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
@@ -16707,7 +16730,7 @@ function Click_PassSkillSW(){
 			str = '<TABLE Border>';
 			str += '<TR><TD ColSpan="4" id="A1TD" Bgcolor="#DDDDFF" class="title">';
 			str += '<input id="OBJID_CHECK_A1_SKILL_SW" type="checkbox" name="A1_SKILLSW"onClick="Click_PassSkillSW()">';
-			str += '<label for="OBJID_CHECK_A1_SKILL_SW">パッシブ持続系</label>';
+			str += `<label for="OBJID_CHECK_A1_SKILL_SW">${GetJobName(n_A_JOB)}固有自己支援・パッシブ持続系</label>`;
 			str += '<span id="A1used"></span>';
 			str += '</TD></TR>';
 			for(var i=0;i<=end;i+=2) str += '<TR><TD id="P_Skill'+ i +'"></TD><TD id="P_Skill'+ i +'s"></TD><TD id="P_Skill'+ (i+1) +'"></TD><TD id="P_Skill'+ (i+1) +'s"></TD></TR>';
@@ -17195,7 +17218,7 @@ function Click_PassSkillSW(){
 			str = '<TABLE Border>';
 			str += '<TR><TD ColSpan="4" id="A1TD" Bgcolor="#DDDDFF" class="title">';
 			str += '<input id="OBJID_CHECK_A1_SKILL_SW" type="checkbox" name="A1_SKILLSW"onClick="Click_PassSkillSW()">';
-			str += '<label for="OBJID_CHECK_A1_SKILL_SW">パッシブ持続系</label>';
+			str += `<label for="OBJID_CHECK_A1_SKILL_SW">${GetJobName(n_A_JOB)}固有自己支援・パッシブ持続系</label>`;
 			str += '<span id="A1used"></span>';
 			str += '</TD></TR>';
 			str += '</TABLE>';
