@@ -40771,6 +40771,99 @@ function CSkillManager() {
 		this.dataArray[skillId] = skillData;
 		skillId++;
 
+		// ----------------------------------------------------------------
+		// オートファイアリングランチャー
+		// ----------------------------------------------------------------
+		SKILL_ID_AUTO_FIRING_LAUNCHER = skillId;
+		skillData = new function() {
+			this.prototype = new CSkillData();
+			CSkillData.call(this);
+			this.id = skillId;
+			this.name = "オートファイアリングランチャー";
+			this.kana = "オオトフアイアリンクランチヤア";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_ACTIVE;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_VOID;
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 200;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 2000;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 0;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 0;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return [0,240,180,120,90,60][skillLv] * 1000;
+			}
+		};
+		this.dataArray[skillId] = skillData;
+		skillId++;
+
+		// ----------------------------------------------------------------
+		// ベーシックグレネード 習得レベル
+		// ----------------------------------------------------------------
+		SKILL_ID_BASIC_GRENADE_LEARNED_LEVEL = skillId;
+		skillData = new function() {
+			this.prototype = new CSkillData();
+			CSkillData.call(this);
+			this.id = skillId;
+			this.name = "ベーシックグレネード習得レベル";
+			this.kana = "ヘエシツククレネエト";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_PASSIVE;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_VOID;
+		};
+		this.dataArray[skillId] = skillData;
+		skillId++;
+
+		// ----------------------------------------------------------------
+		// ヘイスティファイアインザホール 習得レベル
+		// ----------------------------------------------------------------
+		SKILL_ID_HASTY_FIRE_IN_THE_HOLE_LEARNED_LEVEL = skillId;
+		skillData = new function() {
+			this.prototype = new CSkillData();
+			CSkillData.call(this);
+			this.id = skillId;
+			this.name = "ヘイスティファイアインザホール習得レベル";
+			this.kana = "ヘイステイフアイアインサホオル";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_PASSIVE;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_VOID;
+		};
+		this.dataArray[skillId] = skillData;
+		skillId++;
+
+		// ----------------------------------------------------------------
+		// グレネーズドロッピング 習得レベル
+		// ----------------------------------------------------------------
+		SKILL_ID_GRENADES_DROPPING_LEARNED_LEVEL = skillId;
+		skillData = new function() {
+			this.prototype = new CSkillData();
+			CSkillData.call(this);
+			this.id = skillId;
+			this.name = "グレネーズドロッピング習得レベル";
+			this.kana = "クレネエストロツヒンク";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_PASSIVE;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_VOID;
+		};
+		this.dataArray[skillId] = skillData;
+		skillId++;
+
 	}
 
 	// 初期化
