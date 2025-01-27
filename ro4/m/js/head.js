@@ -1674,12 +1674,18 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			break;
 
 		// 「メカニック」スキル「パワースイング」
+		// 2025/01/27 実測値との誤差無しを確認済み
 		case SKILL_ID_POWER_SWING:
 			wCast = Math.max(0, 1000 - 200 * n_A_ActiveSkillLV);
-			wbairitu = 300 + 100 * n_A_ActiveSkillLV;
+			if (attackMethodConfArray[0].GetOptionValue(1) == 1) {
+				// ABRバトルウォリアー状態の場合
+				wActiveHitNum = 2;
+				wbairitu = 500 + 150 * n_A_ActiveSkillLV;
+			} else {
+				// 通常時
+				wbairitu = 300 + 100 * n_A_ActiveSkillLV;
+			}
 			wbairitu += ROUNDDOWN((n_A_STR + n_A_DEX) * n_A_BaseLV / 100);
-			// ABRバトルウォリアー状態の場合
-			
 			break;
 
 		// 「メカニック」スキル「ブーストナックル」
