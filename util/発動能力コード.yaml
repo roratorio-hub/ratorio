@@ -133,7 +133,7 @@ capabilities:
     code: 89
   - name: ヒール系スキル使用時HP回復量増加
     code: 91
-  - name: ヒール系スキルを受けた時HP回復量増加
+  - name: ヒール系スキルを受けた時のHP回復量増加
     code: 92
   - name: 小型への魔法ダメージ増加
     code: 97
