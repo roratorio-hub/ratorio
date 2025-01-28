@@ -119,7 +119,7 @@ capabilities:
     code: 70
   - name: 変動詠唱減少
     code: 73
-  - name: ディレイ減少
+  - name: スキルディレイ減少
     code: 74
   - name: ボス耐性
     code: 77

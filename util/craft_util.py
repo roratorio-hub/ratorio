@@ -220,7 +220,10 @@ CARD_OR_ENCH_CODE = loadCardDict()
 def buildCapabilityRecord(capability):
 
     # 能力コード取得
-    capability_code = int(CAPABILITY_DICT.get(capability['name']))
+    try:
+        capability_code = int(CAPABILITY_DICT.get(capability['name']))
+    except:
+        print(f"能力コード「{capability['name']}」は未定義です")
 
     # 条件コード取得
     at_transcendence = int(capability['at_transcendence']) if 'at_transcendence' in capability else 0

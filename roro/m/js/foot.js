@@ -30433,12 +30433,16 @@ function CheckSpDefPureStatus(spDefRemain) {
 	const spDefBase = ITEM_SP_PURE_STR_90_OFFSET;
 	// アイテムSP条件取得
 	let spDefCondition = Math.floor(spDefRemain / spDefBase);
+	if (spDefCondition === 0) {
+		// 条件が設定されていない場合はそのまま返す
+		return spDefRemain;
+	}
 	// 純粋なステータスを取得
 	const pureStatusValue = [SU_STR, SU_AGI, SU_VIT, SU_INT, SU_DEX, SU_LUK];	// 基本ステータス [SU_STR, SU_AGI, SU_VIT, SU_INT, SU_DEX, SU_LUK]
 	const pureSpStatusValue = g_pureStatus.slice(6, 12);						// 特性ステータス [SU_POW, SU_STA, SU_WIS, SU_SPL, SU_CON, SU_CRT]
 	const idxStatus = (spDefCondition - 1) % 6;									// ステータス識別用の添字 0 ～ 5 を得る
 	// 条件を満たす場合 true
-	let boolResult = false;	
+	let boolResult = false;
 	if (spDefCondition >= 49) {
 		// 純粋なステータスが100以上の場合 (49 - 54)
 		boolResult = pureStatusValue[idxStatus] >= 100;

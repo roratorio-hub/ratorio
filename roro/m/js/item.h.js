@@ -608,8 +608,8 @@ CGlobalConstManager.DefineEnum(
 
 		"ITEM_SP_POW_PLUS",					// 230
 		"ITEM_SP_STA_PLUS",					// 231
-		"ITEM_SP_WIS_PLUS",
-		"ITEM_SP_SPL_PLUS",
+		"ITEM_SP_WIS_PLUS",					// 232
+		"ITEM_SP_SPL_PLUS",					// 233
 		"ITEM_SP_CON_PLUS",
 		"ITEM_SP_CRT_PLUS",
 		"ITEM_SP_ALL_SPECS_PLUS",			// 236 全特性ステータス増加
@@ -951,7 +951,7 @@ CGlobalConstManager.DefinePseudoEnum(
 		"ITEM_SP_PURE_VIT_100_OFFSET",	// 51,000,000,000
 		"ITEM_SP_PURE_INT_100_OFFSET",	// 52,000,000,000
 		"ITEM_SP_PURE_DEX_100_OFFSET",	// 53,000,000,000
-		"ITEM_SP_PURE_LUK_100_OFFSET",	// 54,000,000,000
+		"ITEM_SP_PURE_LUK_100_OFFSET",	// 54,000,000,000	54 * 10^9
 
 
 	],
@@ -963,7 +963,7 @@ CGlobalConstManager.DefinePseudoEnum(
 	"EnumItemSpId",
 	[
 		// 職業限定
-		"ITEM_SP_JOB_RESTRICT_NOVICE_OFFSET",
+		"ITEM_SP_JOB_RESTRICT_NOVICE_OFFSET",	// 10 * 10^10
 	],
 	100000000000,
 	100000000000
