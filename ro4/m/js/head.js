@@ -22526,6 +22526,13 @@ function ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, 
 	// 近接物理、遠距離攻撃ダメージ上昇効果の適用
 	var rangeUp = 0;
 
+	// 弓装備時、遠距離攻撃の場合
+	if (n_Enekyori == 1 && n_A_WeaponType == ITEM_KIND_BOW) {
+		if(TyouEnkakuSousa3dan != -1){
+			rangeUp = n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP_ONLY_BOW];
+		}
+	}	
+
 	// 遠距離攻撃の場合
 	if (n_Enekyori == 1) {
 		if(TyouEnkakuSousa3dan != -1){

@@ -375,12 +375,12 @@ CGlobalConstManager.DefineEnum(
 		"ITEM_SP_DEF_PLUS",				// 18 DEF		固定値上昇
 		"ITEM_SP_MDEF_PLUS",			// 19 MDEF		固定値上昇
 
-		"ITEM_SP_ELEMENTAL",			// 属性武器	[param : 水=1,地,火,風,毒=5,聖,闇,念,死 ]
-		"ITEM_SP_RESERVED_21",			// 未使用（21）
-		"ITEM_SP_PENETRATE_DEF",		// 22
-		"ITEM_SP_KIRI_EFFECT",			// 23
-		"ITEM_SP_DEF_DIVIDE_PENARTY",	// 24
-		"ITEM_SP_LONGRANGE_DAMAGE_UP",	// 25 遠距離ダメージUp
+		"ITEM_SP_ELEMENTAL",					// 属性武器	[param : 水=1,地,火,風,毒=5,聖,闇,念,死 ]
+		"ITEM_SP_LONGRANGE_DAMAGE_UP_ONLY_BOW",	// 21 弓装備時、遠距離ダメージUp
+		"ITEM_SP_PENETRATE_DEF",				// 22 DEF無視?
+		"ITEM_SP_KIRI_EFFECT",					// 23 錐効果
+		"ITEM_SP_DEF_DIVIDE_PENARTY",			// 24 
+		"ITEM_SP_LONGRANGE_DAMAGE_UP",			// 25 遠距離ダメージUp
 		"ITEM_SP_PHYSICAL_DAMAGE_UP_BOSS",
 		"ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_SMALL",	// 27 小型への物理ダメージ増加
 		"ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_MEDIUM",	// 28 中型
@@ -890,7 +890,7 @@ CGlobalConstManager.DefinePseudoEnum(
 	"EnumItemSpId",
 	[
 		// 純粋な○○が△△以上の時
-		"ITEM_SP_PURE_STR_90_OFFSET",	//  1000000000
+		"ITEM_SP_PURE_STR_90_OFFSET",	//  1,000,000,000
 		"ITEM_SP_PURE_AGI_90_OFFSET",	//  2000000000
 		"ITEM_SP_PURE_VIT_90_OFFSET",
 		"ITEM_SP_PURE_INT_90_OFFSET",
@@ -944,7 +944,16 @@ CGlobalConstManager.DefinePseudoEnum(
 		"ITEM_SP_PURE_WIS_100_OFFSET",	// 45000000000
 		"ITEM_SP_PURE_SPL_100_OFFSET",	// 46000000000
 		"ITEM_SP_PURE_CON_100_OFFSET",	// 47000000000
-		"ITEM_SP_PURE_CRT_100_OFFSET",	// 48000000000
+		"ITEM_SP_PURE_CRT_100_OFFSET",	// 48,000,000,000
+
+		"ITEM_SP_PURE_STR_100_OFFSET",	// 49,000,000,000
+		"ITEM_SP_PURE_AGI_100_OFFSET",	// 50,000,000,000
+		"ITEM_SP_PURE_VIT_100_OFFSET",	// 51,000,000,000
+		"ITEM_SP_PURE_INT_100_OFFSET",	// 52,000,000,000
+		"ITEM_SP_PURE_DEX_100_OFFSET",	// 53,000,000,000
+		"ITEM_SP_PURE_LUK_100_OFFSET",	// 54,000,000,000
+
+
 	],
 	1000000000,
 	1000000000
@@ -1850,6 +1859,9 @@ function GetItemExplainText(spId, spValue) {
 	if (1 <= pureStatus && pureStatus <= 6) {
 		condTextPureStatus += "純粋な" + statusName[pureStatus - 1] +  "が90以上の時、";
 	}
+	else if (49 <= pureStatus && pureStatus <= 54) {
+		condTextPureStatus += "純粋な" + statusName[pureStatus - 49] +  "が100以上の時、";
+	}
 	else if (7 <= pureStatus && pureStatus <= 12) {
 		condTextPureStatus += "純粋な" + statusName[pureStatus - 7] +  "が108以上の時、";
 	}
@@ -2029,6 +2041,10 @@ function GetItemExplainText(spId, spValue) {
 
 	case ITEM_SP_DEF_DIVIDE_PENARTY:
 		textInfoArray.push(["", "自キャラクターの防御力1/"+ spValue + ""]);
+		break;
+
+	case ITEM_SP_LONGRANGE_DAMAGE_UP_ONLY_BOW:
+		textInfoArray.push(["", "弓装備時、遠距離物理攻撃で与えるダメージ"+ sign + spValue +"%"]);
 		break;
 
 	case ITEM_SP_LONGRANGE_DAMAGE_UP:
