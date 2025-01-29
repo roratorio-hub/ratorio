@@ -1298,10 +1298,6 @@ function ApplySpecModify(spid, spVal) {
 		}
 		break;
 	
-	case ITEM_SP_LONGRANGE_DAMAGE_UP_ONLY_BOW:
-		
-		break;
-
 	case ITEM_SP_LONGRANGE_DAMAGE_UP:
 
 		// 「マイスター」スキル「ラッシュ状態」による効果
