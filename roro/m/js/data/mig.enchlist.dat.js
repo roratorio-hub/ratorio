@@ -1052,7 +1052,7 @@
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5398] = [731];
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5399] = [731];
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5400] = [731];
-	g_constDataManager.enchListDataManager.sourceArray[732] = [732,-1,0,0,[["生命の殿堂エンチャント","生命の殿堂エンチャント"]],[],[[[174,[50,[5408]]],,[[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[3405,3406,3417,3407,3408,3418,3409,3410,3419,3411,3412,3420,3413,3414,3421,3415,3416,3422,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.sourceArray[732] = [732,-1,0,0,[["生命の殿堂エンチャント","生命の殿堂エンチャント"]],[],[[[174,[50,[5003,5004,5005,5006,5007,5008,5009]]],,[[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[3405,3406,3417,3407,3408,3418,3409,3410,3419,3411,3412,3420,3413,3414,3421,3415,3416,3422,]]],,[]]]]]],]]],[]];
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5003] = [631,732]; // 星座の印象アップグレード
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5004] = [631,732];
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5005] = [631,732];
@@ -1065,4 +1065,3 @@
 	// 現実的な範囲において enchantID の上限値を気にする必要はありません
 
 })();
-
