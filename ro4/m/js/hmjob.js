@@ -1297,6 +1297,10 @@ function ApplySpecModify(spid, spVal) {
 			spVal += 50;
 		}
 		break;
+	
+	case ITEM_SP_LONGRANGE_DAMAGE_UP_ONLY_BOW:
+		
+		break;
 
 	case ITEM_SP_LONGRANGE_DAMAGE_UP:
 

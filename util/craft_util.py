@@ -10,6 +10,14 @@ PER_STATUS_10_CODE = {
     'DEX': 5,
     'LUK': 6,
 }
+AT_STATUS_100_CODE = {
+    'STR': 49,
+    'AGI': 50,
+    'VIT': 51,
+    'INT': 52,
+    'DEX': 53,
+    'LUK': 54,
+}
 AT_STATUS_110_CODE = {
     'STR': 25,
     'AGI': 26,
@@ -212,7 +220,10 @@ CARD_OR_ENCH_CODE = loadCardDict()
 def buildCapabilityRecord(capability):
 
     # 能力コード取得
-    capability_code = int(CAPABILITY_DICT.get(capability['name']))
+    try:
+        capability_code = int(CAPABILITY_DICT.get(capability['name']))
+    except:
+        print(f"能力コード「{capability['name']}」は未定義です")
 
     # 条件コード取得
     at_transcendence = int(capability['at_transcendence']) if 'at_transcendence' in capability else 0
@@ -221,6 +232,8 @@ def buildCapabilityRecord(capability):
     per_baselv = int(capability['per_lv']) if 'per_lv' in capability else 0
     per_status_10 = PER_STATUS_10_CODE[capability['per_status_10']] if 'per_status_10' in capability else 0
     at_status = 0
+    if 'at_status_100' in capability:
+        at_status = AT_STATUS_100_CODE[capability['at_status_100']]
     if 'at_status_110' in capability:
         at_status = AT_STATUS_110_CODE[capability['at_status_110']]
     elif 'at_status_130' in capability:

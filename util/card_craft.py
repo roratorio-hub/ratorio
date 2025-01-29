@@ -126,58 +126,6 @@ def loadAutoSpellDict() -> dict:
 ITEM_CODE = loadItemDict()
 CARD_TYPE_CODE = loadCardTypeDict()
 
-def getCapabilityRecord(capability):
-
-    # 能力コード取得
-    try: 
-        capability_code = int(capability_dict.get(capability['name']))
-    except:
-        print(f"capability name = {capability['name']}")
-
-    # 条件コード取得
-    per_refine = int(capability['per_refine']) if 'per_refine' in capability else 0
-    at_refine = int(capability['at_refine']) if 'at_refine' in capability else 0
-    per_baselv = int(capability['per_lv']) if 'per_lv' in capability else 0
-    per_status_10 = PER_STATUS_10_CODE[capability['per_status_10']] if 'per_status_10' in capability else 0
-    at_status = 0
-    if 'at_status_110' in capability:
-        at_status = AT_STATUS_110_CODE[capability['at_status_110']]
-    elif 'at_status_130' in capability:
-        at_status = AT_STATUS_130_CODE[capability['at_status_130']]
-    elif 'at_sp_status_100' in capability:
-        at_status = AT_SP_STATUS_100_CODE[capability['at_sp_status_100']]
-    at_baselv = 0
-    if 'at_lv' in capability:
-        at_baselv = AT_BASE_LV_CODE[capability['at_lv']]
-
-    # 能力値取得
-    value = int(capability['value']) if 'value' in capability else None
-    if 'skill' in capability:
-        skill_code = SKILL_CODE.get(capability['skill'])
-        # スキル習得時に発動する効果の場合
-        if capability_code in [199]:
-            value = skill_code
-        elif 'skill_lv' in capability:
-            # スキル使用可能になる能力の場合
-            if capability_code in [220, 222, 224]:
-                value = USABLE_SKILL_CODE.get((skill_code, int(capability['skill_lv'])))
-            # オートスペルの場合
-            if capability_code in [221, 223, 225]:
-                value = AUTO_SPELL_CODE.get((skill_code, int(capability['skill_lv'])))
-        else:
-            # スキル性能が変化する能力の場合
-            capability_code += SKILL_CODE.get(capability['skill'])
-
-    code  = f"{at_baselv}"                      # ベースLvが n 以上のときに（Lv99は "以下" で判定）
-    code += f"{per_baselv:02d}"                 # ベースLvが n 上がる度に発動する
-    code += f"00"                               # 不明コード
-    code += f"{at_status:02d}"                  # 純粋なステータス x が n 以上の時に発動する
-    code += f"{per_status_10:01d}"              # 純粋なステータス x が10増加する度に発動する {x : 1=Str, 2=Agi, 3=Vit, 4=Int, 5=Dex, 6=Luk}
-    code += f"{at_refine:02d}"                  # 精錬値が n 以上の時に発動する
-    code += f"{per_refine:01d}"                 # 精錬値が n 上がる度に発動する
-    code += f"{capability_code:05d}"            # 発動する効果ID
-    return f"{int(code)},{value},"
- 
 # -----------------------------------
 # 初期化
 # -----------------------------------
@@ -218,7 +166,7 @@ if __name__ == "__main__":
         record  = f'CardObjNew[{card_id}] = [{card_id},{card_type},"{enchant_info["name"]}","{yomi}","{description}",'
         if 'capabilities' in enchant_info:
             for capability in enchant_info['capabilities']:
-                record += getCapabilityRecord(capability)
+                record += buildCapabilityRecord(capability)
         record += "0];"
         card_dat_js.append(record)
         if 'None' in record:
@@ -231,7 +179,7 @@ if __name__ == "__main__":
                 card_id += 1
                 record  = f'CardObjNew[{card_id}] = [{card_id},100,0,"","",'
                 for capability in set_info['capabilities']:
-                    record += getCapabilityRecord(capability)
+                    record += buildCapabilityRecord(capability)
                 record += "0];"
                 card_dat_js.append(record)
                 if 'None' in record:
