@@ -658,13 +658,6 @@
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5001] = [630]; // スクリーミングゴーストパーティ
 	// 星座の塔
 	g_constDataManager.enchListDataManager.sourceArray[631] = [631,-1,0,0,[["星座の塔エンチャント","C3y4C2h1I3A4J5D2h1J5D5B2h3A9"]],[],[[[174,[50,[5003]]],,[[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[668,673,678,683,688,692,1179,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[1975,2043,2005,1813,2028,2311,2437,2668,]]],,[]]]]]],[[178,[27,[2]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[2886,2887,2888,2889,2890,2891,]]],,[]]]]]],]]],[]];
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5003] = [631];
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5004] = [631];
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5005] = [631];
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5006] = [631];
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5007] = [631];
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5008] = [631];
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5009] = [631];
 	// グレイシア　拡張四次
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5010] = [600,601];
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5012] = [600,601];
@@ -1049,9 +1042,26 @@
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5324] = [704,730]; // ティルナノーグ
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5278] = [694,730]; // ブーゲンビリア
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5227] = [682,730]; // ふかふかフォーンローブ
+	// --- 2025/01/28 ---
+	g_constDataManager.enchListDataManager.sourceArray[731] = [731,-1,0,0,[["生命の殿堂エンチャント","生命の殿堂エンチャント"]],[],[[[174,[50,[5393,5394,5395,5396,5397,5398,5399,5400]]],,[[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[659,599,660,661,662,663,668,673,678,683,688,692,1843,1625,1846,1179,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[659,599,660,661,662,663,1303,1297,888,1975,2005,1813,2028,2043,2311,2437,2668,]]],,[]]]]]],[[178,[27,[2]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[659,599,660,661,662,663,2084,2086,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5393] = [731];	// 生命の殿堂シリーズ
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5394] = [731];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5395] = [731];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5396] = [731];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5397] = [731];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5398] = [731];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5399] = [731];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5400] = [731];
+	g_constDataManager.enchListDataManager.sourceArray[732] = [732,-1,0,0,[["生命の殿堂エンチャント","生命の殿堂エンチャント"]],[],[[[174,[50,[5003,5004,5005,5006,5007,5008,5009]]],,[[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[3405,3406,3417,3407,3408,3418,3409,3410,3419,3411,3412,3420,3413,3414,3421,3415,3416,3422,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5003] = [631,732]; // 星座の印象アップグレード
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5004] = [631,732];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5005] = [631,732];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5006] = [631,732];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5007] = [631,732];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5008] = [631,732];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5009] = [631,732];
 
 	// enchant はセーブデータに書き出されないので
 	// 現実的な範囲において enchantID の上限値を気にする必要はありません
 
 })();
-

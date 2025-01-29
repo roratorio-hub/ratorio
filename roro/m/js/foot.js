@@ -12015,25 +12015,31 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 			// n_tok[idx] += GetRndEnchValue(idx);
 		}
 
+		// 弓装備時、遠距離物理攻撃で与えるダメージ増加
+		if (n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP_ONLY_BOW] > 0) {
+			if (n_A_WeaponType == ITEM_KIND_BOW) {
+				n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP_ONLY_BOW];
+			}
+		}
 
-		if(EquipNumSearch(628) && n_A_Arrow == ARROW_ID_GANSEKINO_YA) n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += 25;
-		if(EquipNumSearch(626) && n_A_Arrow == ARROW_ID_HONOONO_YA) n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += 25;
-		if(EquipNumSearch(627) && n_A_Arrow == ARROW_ID_SUISHONO_YA) n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += 25;
-		if(EquipNumSearch(629) && n_A_Arrow == ARROW_ID_KAZENO_YA) n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += 25;
-		if(EquipNumSearch(630) && n_A_Arrow == ARROW_ID_KOTETSUNO_YA) n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += 50;
-		if(EquipNumSearch(1217)) n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += n_A_HEAD_DEF_PLUS;
-		if(SU_AGI >= 120 && EquipNumSearch(1311)) n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += 4;
-		if(EquipNumSearch(101) && n_A_Arrow == ARROW_ID_KARYUDONO_YA) n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += 50;
-		if(EquipNumSearch(1327) && n_A_Arrow == ARROW_ID_ELFNO_YA) n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += 50;
-		if(EquipNumSearch(104) && n_A_Arrow == ARROW_ID_ORIDEOKONNO_YA) n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += 50;
-		if(SU_DEX >= 100 && EquipNumSearch(1527)){
-			var wx = EquipNumSearch(1527);
+		if(EquipNumSearch(ITEM_ID_DAICHINO_YUMI) && n_A_Arrow == ARROW_ID_GANSEKINO_YA) n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += 25;
+		if(EquipNumSearch(ITEM_ID_MOERU_YUMI) && n_A_Arrow == ARROW_ID_HONOONO_YA) n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += 25;
+		if(EquipNumSearch(ITEM_ID_HYOTENNO_YUMI) && n_A_Arrow == ARROW_ID_SUISHONO_YA) n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += 25;
+		if(EquipNumSearch(ITEM_ID_HAYATENO_YUMI) && n_A_Arrow == ARROW_ID_KAZENO_YA) n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += 25;
+		if(EquipNumSearch(ITEM_ID_ORC_ARCHER_YUMI) && n_A_Arrow == ARROW_ID_KOTETSUNO_YA) n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += 50;
+		if(EquipNumSearch(ITEM_SET_ID_SENCHO_BOUSHI_AND_PIPE)) n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += n_A_HEAD_DEF_PLUS;
+		if(EquipNumSearch(ITEM_ID_SNIPER_GOGGLE) && SU_AGI >= 120) n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += 4;
+		if(EquipNumSearch(ITEM_ID_HUNTER_BOW) && n_A_Arrow == ARROW_ID_KARYUDONO_YA) n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += 50;
+		if(EquipNumSearch(ITEM_ID_ELVEN_BOW) && n_A_Arrow == ARROW_ID_ELFNO_YA) n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += 50;
+		if(EquipNumSearch(ITEM_ID_RUDRANO_YUMI) && n_A_Arrow == ARROW_ID_ORIDEOKONNO_YA) n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += 50;
+		if(EquipNumSearch(ITEM_ID_HYPPATSUHYAKUCHUNO_OMAMORI) && SU_DEX >= 100){
+			var wx = EquipNumSearch(ITEM_ID_HYPPATSUHYAKUCHUNO_OMAMORI);
 			n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += 1 * wx;
 			if(SU_DEX >= 120) n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += 2 * wx;
 		}
-		if(EquipNumSearch(1600)) n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += n_A_BODY_DEF_PLUS * 2;
-		if(n_A_BODY_DEF_PLUS >= 7 && n_A_SHOULDER_DEF_PLUS >= 7 && n_A_SHOES_DEF_PLUS >= 7 && EquipNumSearch(1601)) n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += 15;
-		if(n_A_BODY_DEF_PLUS >= 7 && n_A_SHOULDER_DEF_PLUS >= 7 && n_A_SHOES_DEF_PLUS >= 7 && EquipNumSearch(1606)) n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] -= 10;
+		if(EquipNumSearch(ITEM_ID_SHIRAHANO_SUIT)) n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += n_A_BODY_DEF_PLUS * 2;
+		if(n_A_BODY_DEF_PLUS >= 7 && n_A_SHOULDER_DEF_PLUS >= 7 && n_A_SHOES_DEF_PLUS >= 7 && EquipNumSearch(ITEM_SET_ID_SHIRAHANO_SUIT_ARTIFACT)) n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += 15;
+		if(n_A_BODY_DEF_PLUS >= 7 && n_A_SHOULDER_DEF_PLUS >= 7 && n_A_SHOES_DEF_PLUS >= 7 && EquipNumSearch(ITEM_SET_ID_KUROHANO_SUIT_ARTIFACT)) n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] -= 10;
 		if(n_A_HEAD_DEF_PLUS >= 5 && EquipNumSearch(1634)){
 			n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += 3;
 			if(n_A_HEAD_DEF_PLUS >= 7) n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += 5;
@@ -30424,52 +30430,55 @@ function CheckSpDefJobRestrict(spDefRemain) {
  * アイテムに設定されたフラグ付きＳＰ定義ＩＤが、純粋なステータス条件に適合するかを検査する.
  */
 function CheckSpDefPureStatus(spDefRemain) {
-
-	var spDefCondition = 0;
-	var spDefBase = ITEM_SP_PURE_STR_90_OFFSET;
-
-	var pureStatusValue = [SU_STR, SU_AGI, SU_VIT, SU_INT, SU_DEX, SU_LUK];
-	var pureStatusCondition = [90, 108, 120, 125, 110, 80, 130];
-	var idxValue = 0;
-	var idxCondition = 0;
-
-	// 条件を取得
-	spDefCondition = Math.floor(spDefRemain / spDefBase);
-
-	// 特性ステータス対応
-	const SU_POW = g_pureStatus[6];
-	const SU_STA = g_pureStatus[7];
-	const SU_WIS = g_pureStatus[8];
-	const SU_SPL = g_pureStatus[9];
-	const SU_CON = g_pureStatus[10];
-	const SU_CRT = g_pureStatus[11];
-	var pureSpStatusValue = [SU_POW, SU_STA, SU_WIS, SU_SPL, SU_CON, SU_CRT];
-
-	if (spDefCondition >= Math.floor(ITEM_SP_PURE_POW_100_OFFSET/spDefBase) 
-		&& spDefCondition <= Math.floor(ITEM_SP_PURE_CRT_100_OFFSET/spDefBase)) {
-		// 特性ステータスの場合
-
-		// 条件を検査し、満たさない場合は -1 を返す
-		idxValue = (spDefCondition - 1) % 6
-		if (pureSpStatusValue[idxValue] < 100) {
-			return -1;
-		}
-
-	} else {
-		// 基本ステータスの場合
-
-		// 条件から検査配列の添え字を計算
-		idxValue = (spDefCondition - 1) % 6;
-		idxCondition = Math.floor((spDefCondition - 1) / 6);
-
-		// 条件を検査し、満たさない場合は -1 を返す
-		if (pureStatusValue[idxValue] < pureStatusCondition[idxCondition]) {
-			return -1;
-		}
+	const spDefBase = ITEM_SP_PURE_STR_90_OFFSET;
+	// アイテムSP条件取得
+	let spDefCondition = Math.floor(spDefRemain / spDefBase);
+	if (spDefCondition === 0) {
+		// 条件が設定されていない場合はそのまま返す
+		return spDefRemain;
 	}
-
-	// 条件を満たす場合は、残りのＳＰ定義値を返す
-	return (spDefRemain % spDefBase);
+	// 純粋なステータスを取得
+	const pureStatusValue = [SU_STR, SU_AGI, SU_VIT, SU_INT, SU_DEX, SU_LUK];	// 基本ステータス [SU_STR, SU_AGI, SU_VIT, SU_INT, SU_DEX, SU_LUK]
+	const pureSpStatusValue = g_pureStatus.slice(6, 12);						// 特性ステータス [SU_POW, SU_STA, SU_WIS, SU_SPL, SU_CON, SU_CRT]
+	const idxStatus = (spDefCondition - 1) % 6;									// ステータス識別用の添字 0 ～ 5 を得る
+	// 条件を満たす場合 true
+	let boolResult = false;
+	if (spDefCondition >= 49) {
+		// 純粋なステータスが100以上の場合 (49 - 54)
+		boolResult = pureStatusValue[idxStatus] >= 100;
+	} else if (spDefCondition >= 43) {
+		// 純粋な特性ステータスが100以上の場合 (43 - 48)
+		boolResult = pureSpStatusValue[idxStatus] >= 100;
+	} else if (spDefCondition >= 37) {
+		// 純粋なステータスが130以上の場合 (37 - 42)
+		boolResult = pureStatusValue[idxStatus] >= 130;
+	} else if (spDefCondition >= 31) {
+		// 純粋なステータスが80以上の場合 (31 - 36)
+		boolResult = pureStatusValue[idxStatus] >= 80;		
+	} else if (spDefCondition >= 25) {
+		// 純粋なステータスが110以上の場合 (25 - 30)
+		boolResult = pureStatusValue[idxStatus] >= 110;
+	} else if (spDefCondition >= 19) {
+		// 純粋なステータスが125以上の場合 (19 - 24)
+		boolResult = pureStatusValue[idxStatus] >= 125;
+	} else if (spDefCondition >= 13) {
+		// 純粋なステータスが120以上の場合 (13 - 18)
+		boolResult = pureStatusValue[idxStatus] >= 120;
+	} else if (spDefCondition >= 7) {
+		// 純粋なステータスが108以上の場合 (7 - 12)
+		boolResult = pureStatusValue[idxStatus] >= 108;
+	} else if (spDefCondition >= 1) {
+		// 純粋なステータスが90以上の場合 (1 - 6)
+		boolResult = pureStatusValue[idxStatus] >= 90;
+	}
+	// 判定結果
+	if (boolResult) {
+		// 指定ステータスが条件を満たす場合は残りの値を返す
+		return (spDefRemain % spDefBase);
+	} else {
+		// 条件を満たさない場合
+		return -1;
+	}
 }
 
 /**
