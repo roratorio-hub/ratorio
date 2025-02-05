@@ -1060,6 +1060,25 @@
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5007] = [631,732];
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5008] = [631,732];
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5009] = [631,732];
+	// --- 2025/02/05 ---
+	g_constDataManager.enchListDataManager.sourceArray[733] = [733,-1,0,0,[["スペシャルエンチャント(リチャード)","スペシャルエンチャント(リチャード)"]],[],[[[174,[50,[4679]]],,[[[178,[27,[4]]],,[[[187,[59,8],[60,4]],,[[[186,[51,[1425,1428,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,9],[60,4]],,[[[186,[51,[1425,1428,]]],,[]]]]]],[[178,[27,[2]]],,[[[187,[59,10],[60,4]],,[[[186,[51,[1348,1245,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[4679] = [518,733]; // ブラックミスリルガード
+	g_constDataManager.enchListDataManager.sourceArray[734] = [734,-1,0,0,[["スペシャルエンチャント(リチャード)","スペシャルエンチャント(リチャード)"]],[],[[[174,[50,[4599]]],,[[[178,[27,[2]]],,[[[187,[59,10],[60,4]],,[[[186,[51,[1975,2043,2005,1813,2028,2437,2668,1297,888,1303,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[4599] = [490,552,734]; // 覚醒支配者のローブ
+	g_constDataManager.enchListDataManager.sourceArray[735] = [735,-1,0,0,[["スペシャルエンチャント(リチャード)","スペシャルエンチャント(リチャード)"]],[],[[[174,[50,[4359]]],,[[[178,[27,[4]]],,[[[187,[59,8],[60,4]],,[[[186,[51,[1425,1975,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,9],[60,4]],,[[[186,[51,[1297,1303,]]],,[]]]]]],[[178,[27,[2]]],,[[[187,[59,10],[60,4]],,[[[186,[51,[1812,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[4359] = [218,735]; // 剛勇無双の神輿
+	g_constDataManager.enchListDataManager.sourceArray[736] = [736,-1,0,0,[["スペシャルエンチャント(リチャード)","スペシャルエンチャント(リチャード)"]],[],[[[174,[50,[4221]]],,[[[178,[27,[4]]],,[[[187,[59,8],[60,4]],,[[[186,[51,[2005,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,9],[60,4]],,[[[186,[51,[2145,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[4221] = [176,736]; // ハルワタート
+	g_constDataManager.enchListDataManager.sourceArray[737] = [737,-1,0,0,[["スペシャルエンチャント(リチャード)","スペシャルエンチャント(リチャード)"]],[],[[[174,[50,[4693]]],,[[[178,[27,[4]]],,[[[187,[59,8],[60,4]],,[[[186,[51,[1425,1428,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,9],[60,4]],,[[[186,[51,[1348,1245,]]],,[]]]]]],[[178,[27,[2]]],,[[[187,[59,10],[60,4]],,[[[186,[51,[2084,2085,2086,2083,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[4693] = [530,737]; // ミステリーウィング
+	g_constDataManager.enchListDataManager.sourceArray[738] = [738,-1,0,0,[["スペシャルエンチャント(リチャード)","スペシャルエンチャント(リチャード)"]],[],[[[174,[50,[3915]]],,[[[178,[27,[4]]],,[[[187,[59,8],[60,4]],,[[[186,[51,[1247,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,9],[60,4]],,[[[186,[51,[2170,]]],,[]]]]]],[[178,[27,[2]]],,[[[187,[59,10],[60,4]],,[[[186,[51,[2098,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[3915] = [158,738]; // ガーディアンオブソウル
+	g_constDataManager.enchListDataManager.sourceArray[739] = [739,-1,0,0,[["スペシャルエンチャント(リチャード)","スペシャルエンチャント(リチャード)"]],[],[[[174,[50,[4454]]],,[[[178,[27,[4]]],,[[[187,[59,8],[60,4]],,[[[186,[51,[2005,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,9],[60,4]],,[[[186,[51,[2738,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[4454] = [198,739]; // スプンタマンユ
+	g_constDataManager.enchListDataManager.sourceArray[740] = [740,-1,0,0,[["スペシャルエンチャント(リチャード)","スペシャルエンチャント(リチャード)"]],[],[[[174,[50,[4992,4589,4574]]],,[[[178,[27,[3]]],,[[[187,[59,9],[60,4]],,[[[186,[51,[1975,2005,1813,2028,2043,2311,2437,2668,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[4992] = [617,740]; // セトの恩寵
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[4589] = [488,740]; // レクイエスカトインパーケ
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[4574] = [136,740]; // アラマズドの天恵	
 
 	// enchant はセーブデータに書き出されないので
 	// 現実的な範囲において enchantID の上限値を気にする必要はありません
