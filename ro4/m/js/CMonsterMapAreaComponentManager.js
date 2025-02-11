@@ -503,6 +503,34 @@ CMonsterMapAreaComponentManager.RebuildControls = function () {
 
 	CMonsterMapAreaComponentManager.RefreshtDispObject("OBJID_SPAN_MONSTER_95FLEE");
 
+	//----------------------------------------------------------------
+	// Blank / 100%要求CRI
+	//----------------------------------------------------------------
+	objTr = HtmlCreateElement("tr", objTbody);
+	
+	//--------------------------------
+	// Blank
+	//--------------------------------
+	objTd = HtmlCreateElement("td", objTr);
+	objTd.setAttribute("class", "CSSCLS_INFO_HEADER");
+	HtmlCreateTextNode("", objTd);
+
+	objTd = HtmlCreateElement("td", objTr);
+	objSpan = HtmlCreateElement("span", objTd);
+
+	//--------------------------------
+	// 100%要求CRI
+	//--------------------------------
+	objTd = HtmlCreateElement("td", objTr);
+	objTd.setAttribute("class", "CSSCLS_INFO_HEADER");
+	HtmlCreateTextNode("100%要求CRI", objTd);
+
+	objTd = HtmlCreateElement("td", objTr);
+	objSpan = HtmlCreateElement("span", objTd);
+	objSpan.setAttribute("id", "OBJID_SPAN_MONSTER_100CRI");
+
+	CMonsterMapAreaComponentManager.RefreshtDispObject("OBJID_SPAN_MONSTER_100CRI");
+
 };
 
 

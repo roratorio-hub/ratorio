@@ -35,7 +35,7 @@ CGlobalConstManager.DefineEnum(
 		"MONSTER_DATA_INDEX_MRES",
 
 		// TODO: 本来は定義したくないが、容易に外せない参照箇所があったため定義
-		"MONSTER_DATA_INDEX_COUNT",
+		"MONSTER_DATA_INDEX_COUNT",			// 26
 	],
 	0,
 	1
@@ -65,6 +65,8 @@ CGlobalConstManager.DefineEnum(
 		"MONSTER_DATA_EXTRA_INDEX_MATK_MAX",
 		"MONSTER_DATA_INDEX_DEF_DIV_IGNORE_BUFF",
 		"MONSTER_DATA_INDEX_MDEF_DIV_IGNORE_BUFF",		// 40
+		// 2025/02 リクエスト対応
+		"MONSTER_DATA_EXTRA_INDEX_100CRI",
 	],
 	30,
 	1
