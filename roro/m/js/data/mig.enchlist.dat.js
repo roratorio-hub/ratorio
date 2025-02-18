@@ -1029,7 +1029,7 @@
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5189] = [669,728];	// ツインヘッド・ドラゴンブーツ
 	g_constDataManager.enchListDataManager.sourceArray[729] = [729,-1,0,0,[["スペシャルエンチャント(キョウ)","スペシャルエンチャント(キョウ)"]],[],[[[174,[50,[5232]]],,[[[178,[27,[2]]],,[[[187,[59,10],[60,4]],,[[[186,[51,[1348,1245,]]],,[]]]]]],]]],[]];
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5232] = [690,729];	// メサルティム
-	g_constDataManager.enchListDataManager.sourceArray[730] = [730,-1,0,0,[["スペシャルエンチャント(リチャード)","スペシャルエンチャント(リチャード)"]],[],[[[174,[50,[5212,5236,5323,5231,5363,5364,5385,5392,5235,5324,5278,5227,5403]]],,[[[178,[27,[2]]],,[[[187,[59,10],[60,4]],,[[[186,[51,[1247,1625,1179,1975,2043,2005,1813,2028,2311,2437,2668,1859,1860,1861,1862,1863,1864,1297,888,1303,1348,1245,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.sourceArray[730] = [730,-1,0,0,[["スペシャルエンチャント(リチャード)","スペシャルエンチャント(リチャード)グループ5"]],[],[[[174,[50,[5212,5236,5323,5231,5363,5364,5385,5392,5235,5324,5278,5227,5403]]],,[[[178,[27,[2]]],,[[[187,[59,10],[60,4]],,[[[186,[51,[1247,1625,1179,1975,2043,2005,1813,2028,2311,2437,2668,1859,1860,1861,1862,1863,1864,1297,888,1303,1348,1245,]]],,[]]]]]],]]],[]];
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5212] = [675,730];	// がおがおタイガーパジャマ
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5236] = [693,730]; // 着ぐるみペタル(アルビノ)
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5323] = [703,730]; // ヘイトレッドダークネス
