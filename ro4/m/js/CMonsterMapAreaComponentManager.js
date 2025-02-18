@@ -523,7 +523,7 @@ CMonsterMapAreaComponentManager.RebuildControls = function () {
 	//--------------------------------
 	objTd = HtmlCreateElement("td", objTr);
 	objTd.setAttribute("class", "CSSCLS_INFO_HEADER");
-	HtmlCreateTextNode("100%要求CRI", objTd);
+	HtmlCreateTextNode("100%ｸﾘﾃｨｶﾙCRI", objTd);
 
 	objTd = HtmlCreateElement("td", objTr);
 	objSpan = HtmlCreateElement("span", objTd);
