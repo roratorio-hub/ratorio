@@ -77,7 +77,10 @@ function UpdateMobDataHtml(monsterId, mobData) {
 	// サイズ
 	mobDataOriginal[MONSTER_DATA_INDEX_SIZE]
 		= MonsterObjNew[monsterId][MONSTER_DATA_INDEX_SIZE];
-
+	
+	// １００％ＣＲＩ
+	mobDataOriginal[MONSTER_DATA_EXTRA_INDEX_100CRI]
+		= 100 + Math.ceil(MonsterObjNew[monsterId][MONSTER_DATA_INDEX_LEVEL] / 150 + MonsterObjNew[monsterId][MONSTER_DATA_INDEX_LUK] / 5);
 
 
 //================================================================================================
@@ -101,17 +104,16 @@ function UpdateMobDataHtml(monsterId, mobData) {
 		, [MONSTER_DATA_INDEX_DEF_DIV, "OBJID_SPAN_MONSTER_DEF_DIV", false]
 		, [MONSTER_DATA_INDEX_MDEF_DIV, "OBJID_SPAN_MONSTER_MDEF_DIV", false]
 		, [MONSTER_DATA_EXTRA_INDEX_DEF_MINUS_MIN, "OBJID_SPAN_MONSTER_DEF_MINUS_MIN", false]
-// 現在の仕様では、減算ＤＥＦに振れ幅はないと思われる。
-//		, [MONSTER_DATA_EXTRA_INDEX_DEF_MINUS_MAX, "OBJID_SPAN_MONSTER_DEF_MINUS_MAX", false]
+		// 現在の仕様では、減算ＤＥＦに振れ幅はないと思われる。
+		//, [MONSTER_DATA_EXTRA_INDEX_DEF_MINUS_MAX, "OBJID_SPAN_MONSTER_DEF_MINUS_MAX", false]
 		, [MONSTER_DATA_EXTRA_INDEX_MDEF_MINUS, "OBJID_SPAN_MONSTER_MDEF_MINUS", false]
 		, [MONSTER_DATA_INDEX_BASE_EXP, "OBJID_SPAN_MONSTER_BASE_EXP", true]
 		, [MONSTER_DATA_INDEX_JOB_EXP, "OBJID_SPAN_MONSTER_JOB_EXP", true]
-
-
-
 		// 特性ステータス対応
 		, [MONSTER_DATA_INDEX_RES, "OBJID_SPAN_MONSTER_RES", false]
 		, [MONSTER_DATA_INDEX_MRES, "OBJID_SPAN_MONSTER_MRES", false]
+		// 2025/02 リクエスト対応
+		, [MONSTER_DATA_EXTRA_INDEX_100CRI, "OBJID_SPAN_MONSTER_100CRI", false]
 	];
 
 	var valCur = 0;
@@ -128,32 +130,36 @@ function UpdateMobDataHtml(monsterId, mobData) {
 
 
 
-		// 特性ステータス対応
 		switch (paramId) {
+			// 特性ステータス対応
+			case MONSTER_DATA_INDEX_RES:
+				if (mobData[MONSTER_DATA_INDEX_RES] === undefined) {
+					continue;
+				}
+				valCur = GetMobRes(mobData);
+				valOrg = mobData[paramId];
+				break;
 
-		case MONSTER_DATA_INDEX_RES:
-			if (mobData[MONSTER_DATA_INDEX_RES] === undefined) {
-				continue;
-			}
-			valCur = GetMobRes(mobData);
-			valOrg = mobData[paramId];
-			break;
+			// 特性ステータス対応
+			case MONSTER_DATA_INDEX_MRES:
+				if (mobData[MONSTER_DATA_INDEX_MRES] === undefined) {
+					continue;
+				}
+				valCur = GetMobMres(mobData);
+				valOrg = mobData[paramId];
+				break;
 
-		case MONSTER_DATA_INDEX_MRES:
-			if (mobData[MONSTER_DATA_INDEX_MRES] === undefined) {
-				continue;
-			}
-			valCur = GetMobMres(mobData);
-			valOrg = mobData[paramId];
-			break;
+			// 2025/02 リクエスト対応
+			case MONSTER_DATA_EXTRA_INDEX_100CRI:
+				valCur = mobDataOriginal[paramId];	// 100%Cri は mobData に存在しないので
+				valOrg = mobDataOriginal[paramId];
+				break;
 
-		default:
-			valCur = mobData[paramId];
-			valOrg = mobDataOriginal[paramId];
-			break;
+			default:
+				valCur = mobData[paramId];
+				valOrg = mobDataOriginal[paramId];
+				break;
 		}
-
-
 
 		// 能力値の変化に応じて着色
 		if (valCur > valOrg) {
@@ -176,8 +182,6 @@ function UpdateMobDataHtml(monsterId, mobData) {
 			objSpan.removeAttribute("class");
 		}
 
-
-
 		// 能力値の値をテキストとして追加
 		objText = document.createTextNode(__DIG3(valCur));
 		objSpan.appendChild(objText);
@@ -185,40 +189,36 @@ function UpdateMobDataHtml(monsterId, mobData) {
 		// 追加テキストの追加
 		switch (paramId) {
 
-		case MONSTER_DATA_INDEX_DEF_DIV:
-			// 除算ＤＥＦの欄の場合、軽減率を追加表示
-			val = ROUNDDOWN(1000 - ((4000 + mobData[MONSTER_DATA_INDEX_DEF_DIV]) / (4000 + mobData[MONSTER_DATA_INDEX_DEF_DIV] * 10) * 1000)) / 10;
-			objText = document.createTextNode(" [" + val + "%]");
-			objSpan.appendChild(objText);
-			break;
+			case MONSTER_DATA_INDEX_DEF_DIV:
+				// 除算ＤＥＦの欄の場合、軽減率を追加表示
+				val = ROUNDDOWN(1000 - ((4000 + mobData[MONSTER_DATA_INDEX_DEF_DIV]) / (4000 + mobData[MONSTER_DATA_INDEX_DEF_DIV] * 10) * 1000)) / 10;
+				objText = document.createTextNode(" [" + val + "%]");
+				objSpan.appendChild(objText);
+				break;
 
-		case MONSTER_DATA_INDEX_MDEF_DIV:
-			// 除算ＭＤＥＦの欄の場合、軽減率を追加表示
-			val = ROUNDDOWN(1000 - ((4000 + mobData[MONSTER_DATA_INDEX_MDEF_DIV] * 4) / (4000 + mobData[MONSTER_DATA_INDEX_MDEF_DIV] * 40) * 1000)) / 10;
-			objText = document.createTextNode(" [" + val + "%]");
-			objSpan.appendChild(objText);
-			break;
+			case MONSTER_DATA_INDEX_MDEF_DIV:
+				// 除算ＭＤＥＦの欄の場合、軽減率を追加表示
+				val = ROUNDDOWN(1000 - ((4000 + mobData[MONSTER_DATA_INDEX_MDEF_DIV] * 4) / (4000 + mobData[MONSTER_DATA_INDEX_MDEF_DIV] * 40) * 1000)) / 10;
+				objText = document.createTextNode(" [" + val + "%]");
+				objSpan.appendChild(objText);
+				break;
 
+			// 特性ステータス対応
+			case MONSTER_DATA_INDEX_RES:
+				// 軽減率を追加表示
+				val = GetMobRes(mobData);
+				val = ROUNDDOWN(1000 - ((2000 + val) / (2000 + 5 * val) * 1000)) / 10;
+				objText = document.createTextNode(" [" + val + "%]");
+				objSpan.appendChild(objText);
+				break;
 
-
-		// 特性ステータス対応
-
-		case MONSTER_DATA_INDEX_RES:
-			// 軽減率を追加表示
-			val = GetMobRes(mobData);
-			val = ROUNDDOWN(1000 - ((2000 + val) / (2000 + 5 * val) * 1000)) / 10;
-			objText = document.createTextNode(" [" + val + "%]");
-			objSpan.appendChild(objText);
-			break;
-
-		case MONSTER_DATA_INDEX_MRES:
-			// 軽減率を追加表示
-			val = GetMobMres(mobData);
-			val = ROUNDDOWN(1000 - ((2000 + val) / (2000 + 5 * val) * 1000)) / 10;
-			objText = document.createTextNode(" [" + val + "%]");
-			objSpan.appendChild(objText);
-			break;
-
+			case MONSTER_DATA_INDEX_MRES:
+				// 軽減率を追加表示
+				val = GetMobMres(mobData);
+				val = ROUNDDOWN(1000 - ((2000 + val) / (2000 + 5 * val) * 1000)) / 10;
+				objText = document.createTextNode(" [" + val + "%]");
+				objSpan.appendChild(objText);
+				break;
 		}
 
 		// 管理クラスに設定
@@ -238,15 +238,15 @@ function UpdateMobDataHtml(monsterId, mobData) {
 		// 対プレイヤーの場合は、対プレイヤー設定欄の設定に従って表示
 		// （ここでは表示のみ加工する。実際の計算は、各所で別計算）
 		switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SHUZOKU]) {
-		case MOB_CONF_PLAYER_ID_SHUZOKU_HUMAN:
-			objText = document.createTextNode("人間");
-			objSpan.appendChild(objText);
-			break;
+			case MOB_CONF_PLAYER_ID_SHUZOKU_HUMAN:
+				objText = document.createTextNode("人間");
+				objSpan.appendChild(objText);
+				break;
 
-		case MOB_CONF_PLAYER_ID_SHUZOKU_DORAM:
-			objText = document.createTextNode("ドラム");
-			objSpan.appendChild(objText);
-			break;
+			case MOB_CONF_PLAYER_ID_SHUZOKU_DORAM:
+				objText = document.createTextNode("ドラム");
+				objSpan.appendChild(objText);
+				break;
 		}
 	}
 	else {
