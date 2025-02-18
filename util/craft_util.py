@@ -290,6 +290,8 @@ def buildEnchantRecord(item_id, enchant_id, enchant):
     for slot_info in enchant['slot_list']:
         record += f'[[178,[27,[{slot_info["slot"]}]]],,[[[187,[59,{slot_info["refine"]}],[60,4]],,[[[186,[51,['
         for enchant in slot_info['enchant_list']:
+            if not enchant["name"] in CARD_OR_ENCH_CODE:
+                print(f"アイテムID[{item_id}]に不明なエンチャント[{enchant['name']}]が指定されています")
             record += f'{CARD_OR_ENCH_CODE.get(enchant["name"])},'
         record += f']]],,[]]]]]],'
     record += f']]],[]];'
