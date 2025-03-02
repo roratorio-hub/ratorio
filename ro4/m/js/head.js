@@ -3158,6 +3158,7 @@ g_bUnknownCasts = true;
 			break;
 
 		// 「インペリアルガード」スキル「グランドジャッジメント」
+		// 2025/03/02 もなこさんから連携して頂いた情報に合わせてあります
 		case SKILL_ID_GRAND_JUDGEMENT:
 			// 詠唱時間等
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
@@ -3175,48 +3176,44 @@ g_bUnknownCasts = true;
 			n_Enekyori = 1;
 			// 基本倍率
 			wbairitu = 7000 + 2000 * n_A_ActiveSkillLV;
-			// POW補正 (2025/01/12 未確認)
-			wbairitu += 35 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+			// POW補正
+			wbairitu += 90 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 			// ベースレベル補正
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
+		// 「インペリアルガード」スキル「シールドシューティング」
+		// 2025/03/02 もなこさんから連携して頂いた情報に合わせてあります
 		case SKILL_ID_SHIELD_SHOOTING:
-
-// TODO: 詠唱時間等未実測スキル
-g_bUnknownCasts = true;
-
-			bMatchCond = false;
-
-			// 盾装備、「アタックスタンス」状態のみ発動可能
-			if (n_A_Equip[EQUIP_REGION_ID_SHIELD] != ITEM_ID_NOEQUIP_SHIELD) {
-				if (UsedSkillSearch(SKILL_ID_ATTACK_STANCE) > 0) {
-					bMatchCond = true;
-				}
-			}
-
-			if (bMatchCond) {
-
-				// 距離属性
-				n_Enekyori = 1;
-
-				// 基本倍率
-				wbairitu = 600 + (800 * n_A_ActiveSkillLV);
-
-				// POW補正
-				wbairitu += 15 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
-				// ベースレベル補正
-				wbairitu *= n_A_BaseLV / 100;
-			}
-
-			else {
+			// 詠唱時間等
+			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// 「盾装備」かつ「アタックスタンス状態」のみ発動可能
+			if (n_A_Equip[EQUIP_REGION_ID_SHIELD] == ITEM_ID_NOEQUIP_SHIELD || UsedSkillSearch(SKILL_ID_ATTACK_STANCE) == 0) {
 				wbairitu = 0;
 				n_Buki_Muri = 1;
+				break;
 			}
+			// 距離属性
+			n_Enekyori = 1;
+			// 基本倍率
+			wbairitu = 600 + 800 * n_A_ActiveSkillLV;
+			// 修練補正
+			wbairitu += 40 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_TATE_SHUREN);
+			// 盾の精錬値・重量補正
+			wbairitu += n_A_SHIELD_DEF_PLUS * 200 + ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][ITEM_DATA_INDEX_WEIGHT];
+			// POW補正
+			wbairitu += 30 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+			// ベースレベル補正
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			// 分割ヒット
+			wActiveHitNum = 7;
 			break;
 
 		// 「インペリアルガード」スキル「オーバースラッシュ」
+		// 2025/03/02 もなこさんから連携して頂いた情報に合わせてあります
 		case SKILL_ID_OVER_SLASH:
 			// 詠唱時間等
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
@@ -3233,22 +3230,14 @@ g_bUnknownCasts = true;
 			n_Enekyori = 0;
 			// 基本倍率
 			wbairitu = 70 * n_A_ActiveSkillLV;
-			// POW補正 (2025/01/12 未確認)
-			wbairitu += 4 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+			// 修練補正
+			wbairitu += 8 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN);
+			// POW補正 
+			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 			// ベースレベル補正
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			// ヒット数
-			switch(attackMethodConfArray[0].GetOptionValue(0)) {
-				case 1:
-					wHITsuu = 3;
-					break;
-				case 2:
-					wHITsuu = 5;
-					break;
-				case 4:
-					wHITsuu = 7;
-					break;
-			}
+			wHITsuu = [3,5,7][attackMethodConfArray[0].GetOptionValue(0)];
 			break;
 
 		// 「アビスチェイサー」スキル「アビスダガー」
@@ -9432,6 +9421,7 @@ g_bUnknownCasts = true;
 			break;
 
 		// 「インペリアルガード」スキル「ジャッジメントクロス」
+		// 2025/03/02 もなこさんから連携して頂いた情報に合わせてあります
 		case SKILL_ID_JUDGEMENT_CROSS:
 			// 詠唱時間等
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
@@ -9440,8 +9430,8 @@ g_bUnknownCasts = true;
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 基本倍率
 			wbairitu = 7000 + 2000 * n_A_ActiveSkillLV;
-			// SPL補正 (2025/01/12 未確認)
-			wbairitu += 60 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+			// SPL補正
+			wbairitu += 90 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			// ベースレベル補正
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			// 見た目10hit
@@ -9449,6 +9439,7 @@ g_bUnknownCasts = true;
 			break;
 
 		// 「インペリアルガード」スキル「クロスレイン」
+		// 2025/03/02 もなこさんから連携して頂いた情報に合わせてあります
 		case SKILL_ID_CROSS_RAIN:
 			// 詠唱時間等
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
@@ -9465,14 +9456,14 @@ g_bUnknownCasts = true;
 			if (UsedSkillSearch(SKILL_ID_HOLY_SHIELD) > 0) {
 				// ホーリーシールド有り
 				wbairitu = 150 * n_A_ActiveSkillLV;
+				wbairitu += 15 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN);
 				wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				wbairitu += 15 * UsedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN);
 			}
 			else {
-				// 通常時 (2025/01/12 未確認)
+				// 通常時
 				wbairitu = 120 * n_A_ActiveSkillLV;
-				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	
-				wbairitu += 5 * UsedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN);
+				wbairitu += 12 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN);
+				wbairitu += 8 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	
 			}
 			// ベースレベル補正
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);

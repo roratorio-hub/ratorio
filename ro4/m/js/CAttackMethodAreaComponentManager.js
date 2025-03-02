@@ -3585,11 +3585,11 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
 				"範囲内の敵数",
 				[
-					[1, "1 体"],
-					[2, "2～3 体"],
-					[4, "4 体以上"],
+					[0, "1 体"],
+					[1, "2～3 体"],
+					[2, "4 体以上"],
 				],
-				1
+				0
 			);
 			break;
 
