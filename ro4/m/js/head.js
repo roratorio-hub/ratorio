@@ -16546,11 +16546,11 @@ function ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData,
 	// テレキネシスインテンス状態での、特定スキルのダメージ増加の適用
 	if(UsedSkillSearch(SKILL_ID_TELECHINESIS_INSTENCE)) {
 		switch (n_A_ActiveSkill) {
-		case SKILL_ID_NAPALM_BEAT:
-		case SKILL_ID_SOUL_STRIKE:
-		case SKILL_ID_NAPALM_VULKAN:
-		case SKILL_ID_SOUL_EXPANSION:
-		case SKILL_ID_SOUL_VULKUN_STRIKE:
+		case SKILL_ID_NAPALM_BEAT: // ナパームビート
+		case SKILL_ID_SOUL_STRIKE: // ソウルストライク
+		case SKILL_ID_NAPALM_VULKAN: // ナパームバルカン
+		case SKILL_ID_SOUL_EXPANSION: // ソウルエクスパンション
+		case SKILL_ID_SOUL_VULKUN_STRIKE: // ソウルバルカンストライク
 			wBMC2 = ROUNDDOWN(wBMC2 * (100 + 40 * UsedSkillSearch(SKILL_ID_TELECHINESIS_INSTENCE)) / 100);
 			break;
 		}
