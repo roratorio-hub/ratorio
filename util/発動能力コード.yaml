@@ -51,6 +51,8 @@ capabilities:
     code: 36
   - name: 人間形への物理ダメージ増加
     code: 37
+  - name: 人間形への物理ダメージ増加（プレイヤー除外）
+    code: 106
   - name: 天使形への物理ダメージ増加
     code: 38
   - name: 竜形への物理ダメージ増加
@@ -91,6 +93,8 @@ capabilities:
     code: 56
   - name: 人間形モンスター耐性
     code: 57
+  - name: 人間形モンスター耐性（プレイヤー除外）
+    code: 108
   - name: 天使形モンスター耐性
     code: 58
   - name: 竜族形モンスター耐性
@@ -181,11 +185,12 @@ capabilities:
     code: 176
   - name: 人間形への魔法ダメージ増加
     code: 177
+  - name: 人間形への魔法ダメージ増加（プレイヤー除外）
+    code: 107
   - name: 天使形への魔法ダメージ増加
     code: 178
   - name: 竜形への魔法ダメージ増加
     code: 179
-
   - name: 壊れない
     code: 194
   - name: 両手杖
