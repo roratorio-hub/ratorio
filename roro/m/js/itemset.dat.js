@@ -5870,8 +5870,8 @@
 	ItemIdToSetIdMap[5006] = ItemIdToSetIdMap[5006].concat([2970, 2977, 2984, 2991, 2998, 3005]);
 	ItemIdToSetIdMap[5007] = ItemIdToSetIdMap[5007].concat([2968, 2975, 2982, 2989, 2996, 3003]);
 	ItemIdToSetIdMap[5008] = ItemIdToSetIdMap[5008].concat([2967, 2974, 2981, 2988, 2995, 3002]);
-	ItemIdToSetIdMap[5009] = ItemIdToSetIdMap[5009].concat([2969, 2976, 2983, 2990, 2997, 3004]);	
-	// 
+	ItemIdToSetIdMap[5009] = ItemIdToSetIdMap[5009].concat([2969, 2976, 2983, 2990, 2997, 3004]);
+	//
 	w_SE[3007] = [5401,5393,5003,];
 	w_SE[3008] = [5401,5393,5004,];
 	w_SE[3009] = [5401,5393,5005,];
@@ -5942,7 +5942,7 @@
 	ItemIdToSetIdMap[5006] = ItemIdToSetIdMap[5006].concat([3010, 3017, 3024, 3031, 3038, 3045, 3052, 3059]);
 	ItemIdToSetIdMap[5007] = ItemIdToSetIdMap[5007].concat([3011, 3018, 3025, 3032, 3039, 3046, 3053, 3060]);
 	ItemIdToSetIdMap[5008] = ItemIdToSetIdMap[5008].concat([3012, 3019, 3026, 3033, 3040, 3047, 3054, 3061]);
-	ItemIdToSetIdMap[5009] = ItemIdToSetIdMap[5009].concat([3013, 3020, 3027, 3034, 3041, 3048, 3055, 3062]);	
+	ItemIdToSetIdMap[5009] = ItemIdToSetIdMap[5009].concat([3013, 3020, 3027, 3034, 3041, 3048, 3055, 3062]);
 	// --- 2025/02/18 ---
 	w_SE[3063] = [-3434,-3433,-1348,];
 	CardIdToSetIdMap[3433] = [3063,];
@@ -5954,7 +5954,14 @@
 	CardIdToSetIdMap[3439] = [3066,];
 	CardIdToSetIdMap[1245] = CardIdToSetIdMap[1245].concat([3066]);
 	CardIdToSetIdMap[1348] = CardIdToSetIdMap[1348].concat([3063, 3064, 3065]);
-	
+	// --- 2025/03/11 ---
+	w_SE[3067] = [-3442,-3441,-1348,];
+	CardIdToSetIdMap[3441] = [3067,];
+	w_SE[3068] = [-3444,-3443,-1245,];
+	CardIdToSetIdMap[3443] = [3068,];
+	CardIdToSetIdMap[1245] = CardIdToSetIdMap[1245].concat([3068]);
+	CardIdToSetIdMap[1348] = CardIdToSetIdMap[1348].concat([3067]);
+
 	// itemset はセーブデータに書き出されないので
 	// 現実的な範囲において itemsetID の上限値を気にする必要はありません
 })();
