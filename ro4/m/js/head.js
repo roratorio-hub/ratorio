@@ -19092,7 +19092,7 @@ function GetIkariPow(mobData) {
  * 						OnChangeMobConfPlayer						: 対プレイヤー設定
  * 						OnChangeSettingAutoSpell					: オートスペル設定 (テスト中)
  * 						CTimeItemAreaComponentManager.OnChangeConf	: アイテム時限効果
- * 						RefreshSkillColumnHeaderLearned				: 習得スキル（装備効果用）
+ * 						RefreshSkillColumnHeaderLearned				: 習得スキル
  * 						Click_A1									: パッシブ持続系
  * 						Click_A3									: 演奏/踊り系スキル
  * 						Click_A4									: ギルドスキル/ゴスペル/他
