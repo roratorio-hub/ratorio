@@ -42,7 +42,7 @@ class CSaveController {
 	 * キャラクターデータの数.
 	 */
 	static get CHARA_DATA_COUNT () {
-		return 100;
+		return 500;
 	}
 
 	/**
@@ -556,4 +556,54 @@ class CSaveController {
 	static setSaveDataManagerCur(manager) {
 		this.#saveDataManagerCur = manager;
 	}
+
+	/**
+	 * ローカルストレージに保存されている全セーブデータをテキストファイルにエクスポートする
+	 * @returns 
+	 */
+	static exportAllCharaData() {
+		// ローカルストレージが使用不可の場合、処理しない
+		if (!this.isAvailableBrowserStorage(CSaveController.STORAGE_TYPE_LOCALSTORAGE)) {
+			return;
+		}		
+		const dataText = localStorage.getItem(CSaveController.STORAGE_NAME_CHARA_DATA);	// 全セーブデータが結合された文字列
+		if(dataText){
+			const saveData = new Blob([`#ratoriohub-savedata#\n${dataText}`], {type:"text/plain"});
+			let a = document.createElement("a");
+			a.href = URL.createObjectURL(saveData);
+			a.download = "ratoriohub.txt";
+			a.click();
+		}
+	}
+
+	/**
+	 * テキストファイルに保存された全セーブデータをローカルストレージにインポートする
+	 * @returns 
+	 */
+	static importAllCharaData() {
+		// ローカルストレージが使用不可の場合、処理しない
+		if (!this.isAvailableBrowserStorage(CSaveController.STORAGE_TYPE_LOCALSTORAGE)) {
+			return;
+		}
+		let input = document.createElement("input");
+		input.type = "file";
+		input.onchange = function(e){
+			const file = e.target.files[0]
+			let reader = new FileReader();
+			reader.onload = function(ev){
+				const saveData = ev.target.result.split("\n");
+				if (saveData[0] === "#ratoriohub-savedata#") {
+					if (confirm("【重要】ブラウザに保存されているROラトリオHUBの全てのセーブデータが、選択したファイルの内容で上書きされます。\n\nこの操作は元に戻すことができません。本当に読み込みますか？")) {
+						localStorage.setItem(CSaveController.STORAGE_NAME_CHARA_DATA, saveData[1]);
+						location.reload();
+					}
+				} else {
+					alert("指定されたセーブデータファイルが不正です。読み込めません。");
+				}
+			};
+			reader.readAsText(file);
+		};
+		input.click();
+	}
+
 }
