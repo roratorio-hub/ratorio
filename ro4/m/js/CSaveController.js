@@ -593,7 +593,7 @@ class CSaveController {
 			reader.onload = function(ev){
 				const saveData = ev.target.result.split("\n");
 				if (saveData[0] === "#ratoriohub-savedata#") {
-					if (confirm("全てのセーブデータが上書きされます。\n本当に読み込みますか？")) {
+					if (confirm("【重要】ブラウザに保存されているROラトリオHUBの全てのセーブデータが、選択したファイルの内容で上書きされます。\n\nこの操作は元に戻すことができません。本当に読み込みますか？")) {
 						localStorage.setItem(CSaveController.STORAGE_NAME_CHARA_DATA, saveData[1]);
 						location.reload();
 					}
