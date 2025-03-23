@@ -42,7 +42,7 @@ class CSaveController {
 	 * キャラクターデータの数.
 	 */
 	static get CHARA_DATA_COUNT () {
-		return 100;
+		return 500;
 	}
 
 	/**
