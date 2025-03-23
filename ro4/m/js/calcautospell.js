@@ -219,6 +219,33 @@ function AS_Calc(charaData, specData, mobData, attackMethodConfArray, battleCalc
 		n_AS_SKILL[idx][3] = 0;
 	}
 
+	//----------------------------------------------------------------
+	// 四次精霊パッシブモード召喚中
+	// 通常攻撃時の、属性ボルト効果
+	//----------------------------------------------------------------
+	skillKind = UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL)
+	const SERE_SUPPORT_SKILL_TO_BOLT_SKILL = new Map([
+		[SERE_SUPPORT_SKILL_ID_FLAME_TECHNIQUE, SKILL_ID_FIRE_BOLT],
+		[SERE_SUPPORT_SKILL_ID_COLD_FORCE, SKILL_ID_COLD_BOLT],
+		[SERE_SUPPORT_SKILL_ID_GRACE_BREEZE, SKILL_ID_LIGHTNING_BOLT],
+		[SERE_SUPPORT_SKILL_ID_EARTH_CARE, SKILL_ID_EARTH_SPIKE],
+		[SERE_SUPPORT_SKILL_ID_DEEP_POISONING, SKILL_ID_POISON_BUSTER],
+	  ]);
+	let boltSkillId = SERE_SUPPORT_SKILL_TO_BOLT_SKILL.get(skillKind);
+	if (boltSkillId && n_A_ActiveSkill == SKILL_ID_TUZYO_KOGEKI) {
+		skillLvSub = LearnedSkillSearch(boltSkillId);
+		if (skillLvSub > 0) {
+			funcAddAS();
+			n_AS_SKILL[idx][0] = boltSkillId;
+			n_AS_SKILL[idx][1] = skillLvSub;
+			n_AS_SKILL[idx][2] = 25 * 10; // 属性ボルトの発動率（千分率）
+			if(wAS_3dan > 0) {
+				// ＡＳ三段掌が設定されている場合は、発動率を補正
+				n_AS_SKILL[idx][2] = n_AS_SKILL[idx][2] * (100 - wAS_3dan) / 100;
+			}
+			n_AS_SKILL[idx][3] = 0;
+		}
+	}
 
 	//----------------------------------------------------------------
 	// 通常攻撃時の、フロムジアビス追撃効果
@@ -298,7 +325,7 @@ function AS_Calc(charaData, specData, mobData, attackMethodConfArray, battleCalc
 			n_AS_SKILL[idx][3] = 0;
 		}
 
-	}	
+	}
 
 	//----------------------------------------------------------------
 	// ビーストストレイフィング時の、ダブルストレイフィング追撃あり時の効果
@@ -570,7 +597,7 @@ function AS_Calc(charaData, specData, mobData, attackMethodConfArray, battleCalc
 				break;
 		}
 		// 表示組立部フラグの設定（通常は０）
-		n_AS_SKILL[idx][3] = 0;		
+		n_AS_SKILL[idx][3] = 0;
 	}
 
 
