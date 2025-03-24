@@ -6730,7 +6730,7 @@ class CSaveDataUnitParse extends CSaveDataUnitBase {
 		);
 
 		//--------------------------------
-		// 習得スキル（旧：習得スキル（装備効果用））
+		// 習得スキル（旧：習得スキル）
 		//--------------------------------
 		saveDataUnit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_LEARNED_SKILLS))();
 		[dataTextWork, bitOffset] = saveDataUnit.convertFromOldFormat(dataTextWork, bitOffset,

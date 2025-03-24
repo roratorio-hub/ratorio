@@ -102,7 +102,7 @@ function OnClickSkillSWLearned(){
 
 	objLabel = HtmlCreateElement("label", objTd);
 	objLabel.setAttribute("for", "OBJID_SKILL_COLUMN_EXTRACT_CHECKBOX");
-	HtmlCreateTextNode("習得スキル（装備効果用）", objLabel);
+	HtmlCreateTextNode("習得スキル", objLabel);
 
 	objSpan = document.createElement("span");
 	objSpan.setAttribute("id", "OBJID_SKILL_COLUMN_USEDTEXT_LEARNED");
