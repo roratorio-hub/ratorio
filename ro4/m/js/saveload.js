@@ -4,18 +4,23 @@
  * セーブボタン押下イベントハンドラ.
  */
 function OnClickSaveSaveData () {
-
 	// 必要情報の取得
 	const inputtedName = HtmlGetObjectValueById("OBJID_INPUT_SAVE_NAME_MIG", "");
 	const dataIndex = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_SAVE_DATA_MIG", 0);
-
+	const savedName = CSaveController.getDisplayName(dataIndex);
+	// 上書き確認
+	const noDataRegex = /^No\.\d+:No Data$/;
+	if (!noDataRegex.test(savedName)) {
+		if (!confirm(`${savedName}\nを上書きしてよろしいですか？`)) {
+			return;
+		}
+	}
 	// データを保存
 	const dispName = CSaveController.saveCharaData(dataIndex, inputtedName);
 	if (dispName.length == 0) {
 		alert("データのセーブに失敗しました。\nローカルストレージの使用が許可されているか確認してください。");
 		return;
 	}
-
 	// セレクトボックスの更新
 	const objSelect = document.getElementById("OBJID_SELECT_SAVE_DATA_MIG");
 	if (objSelect) {
@@ -44,16 +49,19 @@ function OnClickClipboardSaveData() {
 	});
 }
 
-
 /**
  * ロードボタン押下イベントハンドラ.
  */
 function OnClickLoadSaveData () {
+	// 必要情報の取得
+	const dataIndex = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_SAVE_DATA_MIG", 0);
+	const saveName = CSaveController.getDisplayName(dataIndex);
+	if (!confirm(`入力中の情報は破棄されます。\n${saveName}\nをロードしてよろしいですか？`)) {
+		return;
+	}
 	// インジケーター表示
 	showLoadingIndicator();
 	setTimeout(() => {
-		// 必要情報の取得
-		const dataIndex = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_SAVE_DATA_MIG", 0);
 		// データをロード
 		const charaName = CSaveController.loadCharaData(dataIndex);
 		if (charaName.length > 0) {
@@ -75,19 +83,19 @@ function OnClickLoadSaveData () {
  * 削除ボタン押下イベントハンドラ.
  */
 function OnClickDeleteSaveData () {
-
 	// 必要情報の取得
 	const dataIndex = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_SAVE_DATA_MIG", 0);
-
+	const saveName = CSaveController.getDisplayName(dataIndex);
+	if (!confirm(`${saveName}\nを削除してもよろしいですか？`)) {
+		return;
+	}
 	// データを削除
 	const dispName = CSaveController.deleteCharaData(dataIndex);
-
 	// セレクトボックスの更新
 	const objSelect = document.getElementById("OBJID_SELECT_SAVE_DATA_MIG");
 	if (objSelect) {
 		objSelect.options[dataIndex].text = dispName;
 	}
-
 	// 名前入力欄のクリア
 	HtmlSetObjectValueById("OBJID_INPUT_SAVE_NAME_MIG", "");
 }
