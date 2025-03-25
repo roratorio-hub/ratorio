@@ -6226,6 +6226,7 @@ const SAVE_DATA_UNIT_TYPE_SETTINGS = CSaveDataUnitTypeManager.register(
 			// バージョニングできていない古いデータ形式の互換性確保
 			if (dataText.length < 7) {
 				let nextOffset = super.parse(dataText + "0", bitOffset);
+				// 古いバージョンで AttackAutoCalc として使われていたデータを、現行バージョンでは ConfirmDialogSwitch として扱う
 				const attach_auto_calc_old = this.parsedMap.get(CSaveDataConst.propNameConfirmDialogSwitch);
 				this.parsedMap.set(CSaveDataConst.propNameAttackAutoCalc, attach_auto_calc_old);
 				return nextOffset;
