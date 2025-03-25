@@ -10,7 +10,7 @@ function OnClickSaveSaveData () {
 	const savedName = CSaveController.getDisplayName(dataIndex);
 	// 上書き確認
 	const noDataRegex = /^No\.\d+:No Data$/;
-	if (!noDataRegex.test(savedName)) {
+	if ($("#OBJID_SWITCH_CONFIRM_DIALOG").prop("checked") && !noDataRegex.test(savedName)) {
 		if (!confirm(`${savedName}\nを上書きしてよろしいですか？`)) {
 			return;
 		}
@@ -56,7 +56,7 @@ function OnClickLoadSaveData () {
 	// 必要情報の取得
 	const dataIndex = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_SAVE_DATA_MIG", 0);
 	const saveName = CSaveController.getDisplayName(dataIndex);
-	if (!confirm(`入力中の情報は破棄されます。\n${saveName}\nをロードしてよろしいですか？`)) {
+	if ($("#OBJID_SWITCH_CONFIRM_DIALOG").prop("checked") && !confirm(`入力中の情報は破棄されます。\n${saveName}\nをロードしてよろしいですか？`)) {
 		return;
 	}
 	// インジケーター表示
@@ -86,7 +86,7 @@ function OnClickDeleteSaveData () {
 	// 必要情報の取得
 	const dataIndex = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_SAVE_DATA_MIG", 0);
 	const saveName = CSaveController.getDisplayName(dataIndex);
-	if (!confirm(`${saveName}\nを削除してもよろしいですか？`)) {
+	if ($("#OBJID_SWITCH_CONFIRM_DIALOG").prop("checked") && !confirm(`${saveName}\nを削除してもよろしいですか？`)) {
 		return;
 	}
 	// データを削除
@@ -350,4 +350,12 @@ function SaveDataChangeMIG (wstr) {
 	} while (true);
 
 	return wstr;
+}
+
+/**
+ * 確認ダイアログの表示・非表示状態を変更する
+ */
+function OnClickConfirmDialogSwitch() {
+	const status = $("#OBJID_SWITCH_CONFIRM_DIALOG").prop("checked") ? 1 : 0;
+	CSaveController.setSettingProp(CSaveDataConst.propNameConfirmDialogSwitch, status);
 }

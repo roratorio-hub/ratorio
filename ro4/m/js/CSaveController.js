@@ -423,16 +423,7 @@ class CSaveController {
 
 		// パース
 		const parser = new CSaveDataUnitParse();
-
-		// バージョン補完
-		if (rrtst.length < 7) {
-			// 旧バージョン
-			parser.parse(rrtst + "0", 0);	// 仮プロパティ0を付与して取り敢えず読み込む
-			parser.saveDataUnitArray[0].parsedMap.set("attackAutoCalc", parser.saveDataUnitArray[0].parsedMap.get("attackAutoCalc_old_1"));	// 旧プロパティを新プロパティに移植する
-		} else {
-			// 最新バージョン
-			parser.parse(rrtst, 0);
-		}
+		parser.parse(rrtst, 0);
 
 		this.#settingDataUnit = parser.saveDataUnitArray[0];
 	}
