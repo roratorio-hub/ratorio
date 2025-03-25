@@ -116,4 +116,30 @@ $(function () {
     bake_item_info();
   });
 
+  /** 
+   * ----------------------------------------
+   * セーブ・ロードのダイアログスイッチ
+   * ----------------------------------------
+   */
+  const dialog_switch_id = "#OBJID_SWITCH_CONFIRM_DIALOG";
+  let dialog_switch_status = 0;
+  // ダイアログ表示の有無をCookieにセーブする関数
+  const bake_dialog_switch = () => {
+    $.cookie("dialog_switch", dialog_switch_status, { expires: 365 });
+  }
+  // Cookieから状態をロードする
+  if ($.cookie("dialog_switch")) {
+    dialog_switch_status = ~~$.cookie("dialog_switch");
+    // ロードされた状態 と 現在の状態 が一致しない場合、クリックする
+    let current_status = $(dialog_switch_id).prop("checked")?1:0;
+    if (dialog_switch_status !== current_status) {
+      $(dialog_switch_id).click();
+    }
+  }
+  // チェックボックスにイベントリスナーを追加する
+  $(document).on("click", "#OBJID_SWITCH_CONFIRM_DIALOG", (e) => {
+    dialog_switch_status = $(e.target).prop("checked")?1:0;
+    bake_dialog_switch();
+  });
+
 });
