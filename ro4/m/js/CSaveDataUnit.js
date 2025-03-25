@@ -2065,8 +2065,12 @@ class CSaveDataConst {
 	/**
 	 * プロパティ名：攻撃方法変更時自動計算.
 	 */
-	static propNameAttackAutoCalc_old1 = "attackAutoCalc_old_1";
 	static propNameAttackAutoCalc = "attackAutoCalc";
+
+	/**
+	 * プロパティ名：確認ダイアログ有効化スイッチ
+	 */
+	static propNameConfirmDialogSwitch = "confirmDialogSwitch";
 
 	/**
 	 * プロパティ名：戦闘結果3桁区切り.
@@ -6214,17 +6218,33 @@ const SAVE_DATA_UNIT_TYPE_SETTINGS = CSaveDataUnitTypeManager.register(
 		 * バージョン番号.
 		 */
 		static get version () {
-			return 1;
+			return 2;
 		}
 
-
+		// オーバーライドされた parse 関数
+		parse (dataText, bitOffset) {
+			// バージョニングできていない古いデータ形式の互換性確保
+			if (dataText.length < 7) {
+				let nextOffset = super.parse(dataText + "0", bitOffset);
+				const attach_auto_calc_old = this.parsedMap.get(CSaveDataConst.propNameConfirmDialogSwitch);
+				this.parsedMap.set(CSaveDataConst.propNameAttackAutoCalc, attach_auto_calc_old);
+				return nextOffset;
+			}
+			// 以降、通常の互換性確保
+			let nextOffset = super.parse(dataText, bitOffset);
+			if (this.getProp(CSaveDataConst.propNameVersion) == 1n) {
+			}
+			// バージョン更新
+			this.setProp(CSaveDataConst.propNameVersion, this.constructor.version);
+			return nextOffset;
+		}
 
 		/**
 		 * 処理順に並んだプロパティ名（自身のプロパティのみ）.
 		 */
 		static get #propNamesSelf () {
 			return [
-				CSaveDataConst.propNameAttackAutoCalc_old1,	// ver 1 旧プロパティ 
+				CSaveDataConst.propNameConfirmDialogSwitch, 
 				CSaveDataConst.propNameResultDigit3,
 				CSaveDataConst.propNameAttackInterval,
 				CSaveDataConst.propNameCastSimInterval,
@@ -6239,24 +6259,19 @@ const SAVE_DATA_UNIT_TYPE_SETTINGS = CSaveDataUnitTypeManager.register(
 			return super.propNames.concat(this.#propNamesSelf);
 		}
 
-
-
 		/**
 		 * コンストラクタ.
 		 */
 		constructor () {
 			super();
-
 			// プロパティ定義情報の登録
-			this.registerPropInfo(CSaveDataConst.propNameParseCtrlFlag, 4);
-			this.registerPropInfo(CSaveDataConst.propNameAttackAutoCalc_old1, 1);	// ver 1 旧プロパティ 
+			this.registerPropInfo(CSaveDataConst.propNameParseCtrlFlag, 5);
+			this.registerPropInfo(CSaveDataConst.propNameConfirmDialogSwitch, 1);
 			this.registerPropInfo(CSaveDataConst.propNameResultDigit3, 1);
 			this.registerPropInfo(CSaveDataConst.propNameAttackInterval, 6);
 			this.registerPropInfo(CSaveDataConst.propNameCastSimInterval, 8);
-			this.registerPropInfo(CSaveDataConst.propNameAttackAutoCalc, 8);	// 4項目(2bit)で足りるが文字列表現の長さがちょうど1増える8bitを確保
+			this.registerPropInfo(CSaveDataConst.propNameAttackAutoCalc, 8);
 		}
-
-
 
 		/**
 		 * データのデフォルト値を設定する.
@@ -6264,7 +6279,7 @@ const SAVE_DATA_UNIT_TYPE_SETTINGS = CSaveDataUnitTypeManager.register(
 		 */
 		SetUpAsDefault() {
 			super.SetUpAsDefault();
-			this.setProp(CSaveDataConst.propNameAttackAutoCalc_old1, 1);	// ver 1 旧プロパティ 
+			this.setProp(CSaveDataConst.propNameConfirmDialogSwitch, 0);
 			this.setProp(CSaveDataConst.propNameResultDigit3, 0);
 			this.setProp(CSaveDataConst.propNameAttackInterval, 14);
 			this.setProp(CSaveDataConst.propNameCastSimInterval, 10);
