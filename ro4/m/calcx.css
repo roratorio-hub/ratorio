@@ -137,6 +137,12 @@ body[class="CLS_BODY_ALTERNATIVE"] .folding-block-body-MIG {
 	grid-row: 4;
 	grid-column: 6;
 }
+/* 確認ダイアログ */
+#OBJID_SWITCH_CONFIRM_DIALOG_BLOCK {
+	grid-row: 1;
+	grid-column: 6;
+	padding-left: 0.6em;
+}
 
 /* =======================================================
 装備ブロック

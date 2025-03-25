@@ -30768,13 +30768,16 @@ function LoadSaveDataToCalculator () {
 
 if (document.getElementById("OBJID_SAVE_BLOCK_MIG")) {
 	CSaveController.LoadFromLocalStorageMIG();
-
 	// 画面上部セーブ選択セレクトボックスの初期化
 	const objSelect = document.getElementById("OBJID_SELECT_SAVE_DATA_MIG");
 	HtmlRemoveAllChild(objSelect)
 	for (let idx = 0; idx < CSaveController.CHARA_DATA_COUNT; idx++) {
 		const optText = CSaveController.getDisplayName(idx);
 		HtmlCreateElementOption(idx, optText, objSelect);
+	}
+	// 確認ダイアログの有効化スイッチを初期化
+	if (CSaveController.getSettingProp(CSaveDataConst.propNameConfirmDialogSwitch) == 1) {
+		$("#OBJID_SWITCH_CONFIRM_DIALOG").click();
 	}
 }
 else {
