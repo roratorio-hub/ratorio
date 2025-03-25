@@ -351,3 +351,11 @@ function SaveDataChangeMIG (wstr) {
 
 	return wstr;
 }
+
+/**
+ * 確認ダイアログの表示・非表示状態を変更する
+ */
+function OnClickConfirmDialogSwitch() {
+	const status = $("#OBJID_SWITCH_CONFIRM_DIALOG").prop("checked") ? 1 : 0;
+	CSaveController.setSettingProp(CSaveDataConst.propNameConfirmDialogSwitch, status);
+}
