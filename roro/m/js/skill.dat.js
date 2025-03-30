@@ -2349,7 +2349,7 @@
 		[1030,10,"(△)フィドスアニムス","CD_FIDUS_ANIMUS"],
 		[1031,10,"エフィリゴ","CD_EFFLIGO"],
 		[1032,5,"コンペテンティア","CD_COMPETENTIA"],
-		[1033,10,"(△)ニューマティックプロセラ","CD_PNEUMATICUS_PROCELLA"],
+		[1033,10,"ニューマティックプロセラ","CD_PNEUMATICUS_PROCELLA"],
 		[1034,5,"(×)ディレクティオヒール","CD_DILECTIO_HEAL"],
 		[1035,5,"(×)レリギオ","CD_RELIGIO"],
 		[1036,5,"(×)ベネディクトゥム","CD_BENEDICTUM"],

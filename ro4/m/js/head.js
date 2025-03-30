@@ -8915,38 +8915,29 @@ g_bUnknownCasts = true;
 			break;
 
 		// 「カーディナル」スキル「ニューマティックプロセラ」
-		// 2024/10/23 YE鯖で無形に対する誤差+1を確認
-		// 分散hit計算周りの丸め誤差と判断しています
-		// 不死・悪魔は未確認なので確認次第 △ → ◯ へ
+		// 2025-01-17 もなこさんから連携して頂いた情報との一致を確認
 		case SKILL_ID_NUMATIC_PROCERA:
-			// TODO: 詠唱時間等未実測スキル
-			g_bDefinedDamageIntervals = true;
 			// 詠唱時間等
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// オブジェクト存続時間
+			g_bDefinedDamageIntervals = true;
 			n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// ダメージ間隔
 			n_Delay[5] = 3000;
 			// 不死・悪魔の場合
 			if (mobData[MONSTER_DATA_INDEX_RACE] == RACE_ID_UNDEAD || mobData[MONSTER_DATA_INDEX_RACE] == RACE_ID_DEMON) {
-				// 基本倍率
-				wbairitu = 6000 + 1500 * n_A_ActiveSkillLV;
-				// フィドスアニムス補正
-				wbairitu += 5 * UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS);
-				// SPL補正
-				wbairitu += 70 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				wbairitu = 6000 + 1500 * n_A_ActiveSkillLV;				// 基本倍率
+				wbairitu += 5 * UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS);	// フィドスアニムス補正
+				wbairitu += 70 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// SPL補正
 			}
 			// それ以外の場合
 			else {
-				// 基本倍率
-				wbairitu = 5500 + 1250 * n_A_ActiveSkillLV;
-				// フィドスアニムス補正
-				wbairitu += 3 * UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS);
-				// SPL補正
-				wbairitu += 60 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				wbairitu = 5500 + 1250 * n_A_ActiveSkillLV;				// 基本倍率
+				wbairitu += 3 * UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS);	// フィドスアニムス補正
+				wbairitu += 60 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// SPL補正
 			}
 			// ベースレベル補正
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
