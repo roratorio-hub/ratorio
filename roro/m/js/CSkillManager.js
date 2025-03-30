@@ -31652,9 +31652,8 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
-			this.name = "(△)鈍器＆本修練";
+			this.name = "鈍器＆本修練";
 			this.kana = "トンキホンシユウレン";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_PASSIVE;
@@ -31827,9 +31826,8 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
-			this.name = "(△)フィドスアニムス";
+			this.name = "フィドスアニムス";
 			this.kana = "フイトスアニムス";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_PASSIVE;
