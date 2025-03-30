@@ -1074,7 +1074,7 @@
 	SKILL_ID_EFIRIGO = 1031;
 	SKILL_ID_CONPETENTIA = 1032;
 	SKILL_ID_NUMATIC_PROCERA = 1033;
-	SKILL_ID_DIRECTIO_HEAL = 1034;
+	SKILL_ID_DILECTIO_HEAL = 1034;
 	SKILL_ID_RERIGIO = 1035;
 	SKILL_ID_BENEDICTUM = 1036;
 	SKILL_ID_PETITIO = 1037;
@@ -2340,7 +2340,7 @@
 		[1021,5,"(×)シャドウスタブ","SHC_SHADOW_STAB"],
 		[1022,5,"インパクトクレーター","SHC_IMPACT_CRATER"],
 		[1023,5,"レパラティオ","CD_REPARATIO"],
-		[1024,5,"(×)メディアリボトゥム","CD_MEDIALE_VOTUM"],
+		[1024,5,"メディアリボトゥム","CD_MEDIALE_VOTUM"],
 		[1025,10,"(△)鈍器＆本修練","CD_MACE_BOOK_M"],
 		[1026,5,"アルグトゥスヴィタ","CD_ARGUTUS_VITA"],
 		[1027,5,"アルグトゥステルム","CD_ARGUTUS_TELUM"],
@@ -2350,7 +2350,7 @@
 		[1031,10,"エフィリゴ","CD_EFFLIGO"],
 		[1032,5,"コンペテンティア","CD_COMPETENTIA"],
 		[1033,10,"ニューマティックプロセラ","CD_PNEUMATICUS_PROCELLA"],
-		[1034,5,"(×)ディレクティオヒール","CD_DILECTIO_HEAL"],
+		[1034,5,"ディレクティオヒール","CD_DILECTIO_HEAL"],
 		[1035,5,"(△)レリギオ","CD_RELIGIO"],
 		[1036,5,"(△)ベネディクトゥム","CD_BENEDICTUM"],
 		[1037,10,"ペティティオ","CD_PETITIO"],

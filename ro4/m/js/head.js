@@ -11893,6 +11893,7 @@ HEALTYPE_SANCTUARY = 2;
 HEALTYPE_SHINSENNA_EBI = 3;
 HEALTYPE_EBI_ZANMAI = 4;
 HEALTYPE_COLUCEO_HEAL = 5;
+HEALTYPE_DILECTIO_HEAL = 6;
 
 HEAL_TARGETTYPE_SELF = 0;
 HEAL_TARGETTYPE_PLAYER = 1;
@@ -11907,142 +11908,114 @@ HEAL_TARGETTYPE_ENEMY = 2;
  * @param ptmCount PT人数
  */
 function HealCalc(HealLv,HealType,wMinMax,w_WHO,ptmCount) {
-
+	const learnedHealLv = Math.max(1, LearnedSkillSearch(SKILL_ID_HEAL));
 	var wHeal = 0;
-
 	// H.Plus
 	var valHPlus = GetHPlus();
-
 	// 基本ヒール回復量の算出
 	switch (HealType) {
-
-	case HEALTYPE_HEAL:
-	case HEALTYPE_COLUCEO_HEAL:
-		wHeal = Math.floor((n_A_BaseLV + n_A_INT) / 5) * 3 * HealLv;
-		break;
-
-	case HEALTYPE_HIGHNESS:
-		wHeal = Math.floor((n_A_BaseLV + n_A_INT) / 5) * 3 * 10;
-		break;
-
-	case HEALTYPE_SHINSENNA_EBI:
-		wHeal = Math.floor((n_A_BaseLV + n_A_INT) / 5) * 7.5;
-		break;
-
-	case HEALTYPE_EBI_ZANMAI:
-		wHeal = Math.floor((n_A_BaseLV + n_A_INT) / 5) * 7.5;
-		break;
-
+		case HEALTYPE_HEAL:
+		case HEALTYPE_COLUCEO_HEAL:
+			wHeal = Math.floor((n_A_BaseLV + n_A_INT) / 5) * 3 * HealLv;
+			break;
+		case HEALTYPE_HIGHNESS:
+			wHeal = Math.floor((n_A_BaseLV + n_A_INT) / 5) * 3 * 10;
+			break;
+		case HEALTYPE_DILECTIO_HEAL:
+			wHeal = Math.floor((n_A_BaseLV + n_A_INT) / 5) * 3 * learnedHealLv;
+			break;
+		case HEALTYPE_SHINSENNA_EBI:
+			wHeal = Math.floor((n_A_BaseLV + n_A_INT) / 5) * 7.5;
+			break;
+		case HEALTYPE_EBI_ZANMAI:
+			wHeal = Math.floor((n_A_BaseLV + n_A_INT) / 5) * 7.5;
+			break;
 	}
-
-
-
 	// 回復量増強効果の算出
 	var healUp = 100 + n_tok[ITEM_SP_HEAL_UP_USING];
 	if (w_WHO == HEAL_TARGETTYPE_ENEMY && HealType == HEALTYPE_HEAL) {
 		healUp += n_tok[93];
 	}
-
-
-
 	// ＭＡＴＫ分の回復量の算出
 	var wHealMatk = 0;
 	var wMin = Math.max(0, n_Heal_MATK[0]);
 	var wMax = Math.max(0, n_Heal_MATK[2]);
-
 	if (wMin > wMax) {
 		wMin = wMax;
 	}
-
 	switch (wMinMax) {
-	case 0:
-		wHealMatk += wMin;
-		break;
-	case 1:
-		wHealMatk += Math.floor((wMin + wMax) / 2);
-		break;
-	case 2:
-		wHealMatk += wMax;
-		break;
+		case 0:
+			wHealMatk += wMin;
+			break;
+		case 1:
+			wHealMatk += Math.floor((wMin + wMax) / 2);
+			break;
+		case 2:
+			wHealMatk += wMax;
+			break;
 	}
-
-
-
 	// 最終回復量の計算
 	switch (HealType) {
-	case HEALTYPE_HEAL:
-	case HEALTYPE_COLUCEO_HEAL:
-	case HEALTYPE_HIGHNESS:
-		wHeal = Math.floor(wHeal * healUp / 100 + wHealMatk + (((n_A_BaseLV + n_A_INT) / 5) * 3 * HealLv * valHPlus / 100));
-		if (HealType == HEALTYPE_COLUCEO_HEAL) {
-			wHeal = Math.floor(wHeal * (1 + 0.025 * ptmCount));
-		}
-		break;
-
-	case HEALTYPE_SHINSENNA_EBI:
-		wHeal = wHeal * healUp / 100 + wHealMatk / 2;
-
-		// 海の魂習得による増強効果
-		if (UsedSkillSearch(SKILL_ID_UMINO_TAMASHI) > 0) {
-			// なぜか１．６倍の効果がある
-			wHeal = wHeal * 1.6;
-		}
-
-		wHeal = Math.floor(wHeal);
-
-		break;
-
-	case HEALTYPE_EBI_ZANMAI:
-		var healRatio = [1, 2, 4, 7, 8];
-		wHeal = wHeal * healUp / 100 + wHealMatk / 4;
-		wHeal = Math.floor(wHeal * healRatio[HealLv - 1]);
-		break;
+		case HEALTYPE_HEAL:
+		case HEALTYPE_COLUCEO_HEAL:
+		case HEALTYPE_HIGHNESS:
+			wHeal = Math.floor(wHeal * healUp / 100 + wHealMatk + (((n_A_BaseLV + n_A_INT) / 5) * 3 * HealLv * valHPlus / 100));
+			if (HealType == HEALTYPE_COLUCEO_HEAL) {
+				wHeal = Math.floor(wHeal * (1 + 0.025 * ptmCount));
+			}
+			break;
+		case HEALTYPE_DILECTIO_HEAL:
+			wHeal = Math.floor(wHeal * healUp / 100 + wHealMatk + (((n_A_BaseLV + n_A_INT) / 5) * 3 * learnedHealLv * valHPlus / 100));
+			wHeal = Math.floor(wHeal * ((600 + 25 * HealLv) / 100) + valHPlus * HealLv);
+			break;
+		case HEALTYPE_SHINSENNA_EBI:
+			wHeal = wHeal * healUp / 100 + wHealMatk / 2;
+			// 海の魂習得による増強効果
+			if (UsedSkillSearch(SKILL_ID_UMINO_TAMASHI) > 0) {
+				// なぜか１．６倍の効果がある
+				wHeal = wHeal * 1.6;
+			}
+			wHeal = Math.floor(wHeal);
+			break;
+		case HEALTYPE_EBI_ZANMAI:
+			var healRatio = [1, 2, 4, 7, 8];
+			wHeal = wHeal * healUp / 100 + wHealMatk / 4;
+			wHeal = Math.floor(wHeal * healRatio[HealLv - 1]);
+			break;
 	}
-
-
-
 	// ハイネスヒールの場合のレベル倍率適用
 	if (HealType == HEALTYPE_HIGHNESS) {
-
 		// 特定の戦闘エリアでの補正
 		switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
-
-		case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
-			wHeal = Math.floor(wHeal * (510 + 90 * HealLv) / 100);
-			break;
-
-		default:
-			wHeal = Math.floor(wHeal * (170 + 30 * HealLv) / 100);
-			break;
-
+			case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
+				wHeal = Math.floor(wHeal * (510 + 90 * HealLv) / 100);
+				break;
+			default:
+				wHeal = Math.floor(wHeal * (170 + 30 * HealLv) / 100);
+				break;
 		}
 	}
-
 	// 自分に使用した場合の増強効果適用
 	if (w_WHO == HEAL_TARGETTYPE_SELF) {
 		switch (HealType) {
-		case HEALTYPE_SHINSENNA_EBI:
-			// なぜか1.25倍の効果がある
-			wHeal = Math.floor(wHeal * (100 + n_tok[ITEM_SP_HEAL_UP_USED] * 1.25) / 100);
-			break;
-
-		case HEALTYPE_EBI_ZANMAI:
-			// なぜか効果率が変動する
-			var usedRatio = [4, 2, 1, 0.5725, 0.5];
-			wHeal = Math.floor(wHeal * (100 + n_tok[ITEM_SP_HEAL_UP_USED] * usedRatio[HealLv - 1]) / 100);
-			break;
-
-		default:
-			wHeal = Math.floor(wHeal * (100 + n_tok[ITEM_SP_HEAL_UP_USED]) / 100);
-			break;
+			case HEALTYPE_SHINSENNA_EBI:
+				// なぜか1.25倍の効果がある
+				wHeal = Math.floor(wHeal * (100 + n_tok[ITEM_SP_HEAL_UP_USED] * 1.25) / 100);
+				break;
+			case HEALTYPE_EBI_ZANMAI:
+				// なぜか効果率が変動する
+				var usedRatio = [4, 2, 1, 0.5725, 0.5];
+				wHeal = Math.floor(wHeal * (100 + n_tok[ITEM_SP_HEAL_UP_USED] * usedRatio[HealLv - 1]) / 100);
+				break;
+			default:
+				wHeal = Math.floor(wHeal * (100 + n_tok[ITEM_SP_HEAL_UP_USED]) / 100);
+				break;
 		}
 	}
-
 	// 敵に使用した場合のストーンスキン効果を適用
 	if(w_WHO == HEAL_TARGETTYPE_ENEMY && n_B_KYOUKA[7]) {
 		wHeal += Math.floor(wHeal * (20 * n_B_KYOUKA[7]) / 100);
 	}
-
 	return wHeal;
  }
 

@@ -31613,9 +31613,8 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
-			this.name = "(×)メディアリボトゥム";
+			this.name = "メディアリボトゥム";
 			this.kana = "メテイアリホトウム";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
@@ -31966,13 +31965,12 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ディレクティオヒール
 		// ----------------------------------------------------------------
-		SKILL_ID_DIRECTIO_HEAL = skillId;
+		SKILL_ID_DILECTIO_HEAL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
-			this.name = "(×)ディレクティオヒール";
+			this.name = "ディレクティオヒール";
 			this.kana = "テイレクテイオヒイル";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
