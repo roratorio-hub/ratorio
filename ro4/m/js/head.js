@@ -2855,11 +2855,8 @@ g_bUnknownCasts = true;
 			break;
 
 		//「カーディナル」スキル「エフィリゴ」
-		/**
-		 * 2024/10/22 YE鯖の実測に対して許容が難しい誤差あり
-		 * 分割ヒット周りで丸め誤差が生じている可能性もあります
-		 * 不死・悪魔の倍率実測も済んでないので追試必須
-		 */
+		// 2025-03-30 基本的に誤差無しを確認
+		// 値によっては+7の誤差が生じるケースがありますが分割ヒット計算に伴う丸め誤差と判断しています
 		case SKILL_ID_EFIRIGO:
 			// 鈍器、本のみ発動可能
 			if (![ITEM_KIND_CLUB, ITEM_KIND_BOOK].includes(n_A_WeaponType)) {
@@ -2874,21 +2871,17 @@ g_bUnknownCasts = true;
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 距離属性
 			n_Enekyori = 0;
-			// 基本倍率
 			if ([RACE_ID_UNDEAD, RACE_ID_DEMON].includes(mobData[MONSTER_DATA_INDEX_RACE])) {
-				// 不死・悪魔形の場合
-				wbairitu = 4000 + 500 * n_A_ActiveSkillLV;
+				wbairitu = 4000 + 500 * n_A_ActiveSkillLV;													// 基本倍率
+				wbairitu += 60 * GetTotalSpecStatus(MIG_PARAM_ID_POW);										// POW補正
+				wbairitu += (400 + 50 * n_A_ActiveSkillLV) * UsedSkillSearch(SKILL_ID_DONKI_HON_SHUREN);	// 鈍器＆本修練 補正
 			} else {
-				// それ以外
-				wbairitu = 3000 + 375 * n_A_ActiveSkillLV;
+				wbairitu = 3000 + 375 * n_A_ActiveSkillLV;													// 基本倍率
+				wbairitu += 45 * GetTotalSpecStatus(MIG_PARAM_ID_POW);										// POW補正
+				wbairitu += (275 + 40 * n_A_ActiveSkillLV) * UsedSkillSearch(SKILL_ID_DONKI_HON_SHUREN);	// 鈍器＆本修練 補正
 			}
-			// POW補正
-			wbairitu += 40 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-			// 鈍器＆本修練 補正
-			wbairitu += 475 + 68 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_DONKI_HON_SHUREN);
 			// ベースレベル補正
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
-			
 			// 分割ヒット
 			wActiveHitNum = 7;
 			break;

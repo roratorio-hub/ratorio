@@ -2347,7 +2347,7 @@
 		[1028,10,"アルビトリウム","CD_ARBITRIUM"],
 		[1029,5,"プレセンスアキエース","CD_PRESENS_ACIES"],
 		[1030,10,"(△)フィドスアニムス","CD_FIDUS_ANIMUS"],
-		[1031,10,"(△)エフィリゴ","CD_EFFLIGO"],
+		[1031,10,"エフィリゴ","CD_EFFLIGO"],
 		[1032,5,"コンペテンティア","CD_COMPETENTIA"],
 		[1033,10,"(△)ニューマティックプロセラ","CD_PNEUMATICUS_PROCELLA"],
 		[1034,5,"(×)ディレクティオヒール","CD_DILECTIO_HEAL"],
