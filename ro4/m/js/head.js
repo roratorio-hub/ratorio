@@ -8955,9 +8955,7 @@ g_bUnknownCasts = true;
 			break;
 
 		// 「カーディナル」スキル「フレーメン」
-		// 2024/10/23 無形に対するダメージ誤差無しを確認
-		// 不死・悪魔の実測が済み次第 △ → ◯ へ
-		// 参考: ragna-promenade 様
+		// 2025-01-27 もなこさんから連携して頂いた情報との一致を確認
 		case SKILL_ID_PHREMEN:
 			// 詠唱時間等
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
