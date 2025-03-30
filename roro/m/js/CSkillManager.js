@@ -32011,7 +32011,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)レリギオ";
+			this.name = "(△)レリギオ";
 			this.kana = "レリキオ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
@@ -32051,7 +32051,7 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "ベネディクトゥム";
+			this.name = "(△)ベネディクトゥム";
 			this.kana = "ヘネテイクトウム";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
