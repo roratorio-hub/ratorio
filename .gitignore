@@ -7,3 +7,5 @@ util/*monster.csv
 node_modules
 ro4/m/ts/*.js
 .clineignore
+.clinerules
+memory-bank
