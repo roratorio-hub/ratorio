@@ -2855,11 +2855,8 @@ g_bUnknownCasts = true;
 			break;
 
 		//「カーディナル」スキル「エフィリゴ」
-		/**
-		 * 2024/10/22 YE鯖の実測に対して許容が難しい誤差あり
-		 * 分割ヒット周りで丸め誤差が生じている可能性もあります
-		 * 不死・悪魔の倍率実測も済んでないので追試必須
-		 */
+		// 2025-03-30 基本的に誤差無しを確認
+		// 値によっては+7の誤差が生じるケースがありますが分割ヒット計算に伴う丸め誤差と判断しています
 		case SKILL_ID_EFIRIGO:
 			// 鈍器、本のみ発動可能
 			if (![ITEM_KIND_CLUB, ITEM_KIND_BOOK].includes(n_A_WeaponType)) {
@@ -2874,21 +2871,17 @@ g_bUnknownCasts = true;
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 距離属性
 			n_Enekyori = 0;
-			// 基本倍率
 			if ([RACE_ID_UNDEAD, RACE_ID_DEMON].includes(mobData[MONSTER_DATA_INDEX_RACE])) {
-				// 不死・悪魔形の場合
-				wbairitu = 4000 + 500 * n_A_ActiveSkillLV;
+				wbairitu = 4000 + 500 * n_A_ActiveSkillLV;													// 基本倍率
+				wbairitu += 60 * GetTotalSpecStatus(MIG_PARAM_ID_POW);										// POW補正
+				wbairitu += (400 + 50 * n_A_ActiveSkillLV) * UsedSkillSearch(SKILL_ID_DONKI_HON_SHUREN);	// 鈍器＆本修練 補正
 			} else {
-				// それ以外
-				wbairitu = 3000 + 375 * n_A_ActiveSkillLV;
+				wbairitu = 3000 + 375 * n_A_ActiveSkillLV;													// 基本倍率
+				wbairitu += 45 * GetTotalSpecStatus(MIG_PARAM_ID_POW);										// POW補正
+				wbairitu += (275 + 40 * n_A_ActiveSkillLV) * UsedSkillSearch(SKILL_ID_DONKI_HON_SHUREN);	// 鈍器＆本修練 補正
 			}
-			// POW補正
-			wbairitu += 40 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-			// 鈍器＆本修練 補正
-			wbairitu += 475 + 68 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_DONKI_HON_SHUREN);
 			// ベースレベル補正
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
-			
 			// 分割ヒット
 			wActiveHitNum = 7;
 			break;
@@ -8922,38 +8915,29 @@ g_bUnknownCasts = true;
 			break;
 
 		// 「カーディナル」スキル「ニューマティックプロセラ」
-		// 2024/10/23 YE鯖で無形に対する誤差+1を確認
-		// 分散hit計算周りの丸め誤差と判断しています
-		// 不死・悪魔は未確認なので確認次第 △ → ◯ へ
+		// 2025-01-17 もなこさんから連携して頂いた情報との一致を確認
 		case SKILL_ID_NUMATIC_PROCERA:
-			// TODO: 詠唱時間等未実測スキル
-			g_bDefinedDamageIntervals = true;
 			// 詠唱時間等
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// オブジェクト存続時間
+			g_bDefinedDamageIntervals = true;
 			n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// ダメージ間隔
 			n_Delay[5] = 3000;
 			// 不死・悪魔の場合
 			if (mobData[MONSTER_DATA_INDEX_RACE] == RACE_ID_UNDEAD || mobData[MONSTER_DATA_INDEX_RACE] == RACE_ID_DEMON) {
-				// 基本倍率
-				wbairitu = 6000 + 1500 * n_A_ActiveSkillLV;
-				// フィドスアニムス補正
-				wbairitu += 5 * UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS);
-				// SPL補正
-				wbairitu += 70 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				wbairitu = 6000 + 1500 * n_A_ActiveSkillLV;				// 基本倍率
+				wbairitu += 5 * UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS);	// フィドスアニムス補正
+				wbairitu += 70 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// SPL補正
 			}
 			// それ以外の場合
 			else {
-				// 基本倍率
-				wbairitu = 5500 + 1250 * n_A_ActiveSkillLV;
-				// フィドスアニムス補正
-				wbairitu += 3 * UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS);
-				// SPL補正
-				wbairitu += 60 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				wbairitu = 5500 + 1250 * n_A_ActiveSkillLV;				// 基本倍率
+				wbairitu += 3 * UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS);	// フィドスアニムス補正
+				wbairitu += 60 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// SPL補正
 			}
 			// ベースレベル補正
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
@@ -8962,9 +8946,7 @@ g_bUnknownCasts = true;
 			break;
 
 		// 「カーディナル」スキル「フレーメン」
-		// 2024/10/23 無形に対するダメージ誤差無しを確認
-		// 不死・悪魔の実測が済み次第 △ → ◯ へ
-		// 参考: ragna-promenade 様
+		// 2025-01-27 もなこさんから連携して頂いた情報との一致を確認
 		case SKILL_ID_PHREMEN:
 			// 詠唱時間等
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
@@ -11911,6 +11893,7 @@ HEALTYPE_SANCTUARY = 2;
 HEALTYPE_SHINSENNA_EBI = 3;
 HEALTYPE_EBI_ZANMAI = 4;
 HEALTYPE_COLUCEO_HEAL = 5;
+HEALTYPE_DILECTIO_HEAL = 6;
 
 HEAL_TARGETTYPE_SELF = 0;
 HEAL_TARGETTYPE_PLAYER = 1;
@@ -11925,142 +11908,114 @@ HEAL_TARGETTYPE_ENEMY = 2;
  * @param ptmCount PT人数
  */
 function HealCalc(HealLv,HealType,wMinMax,w_WHO,ptmCount) {
-
+	const learnedHealLv = Math.max(1, LearnedSkillSearch(SKILL_ID_HEAL));
 	var wHeal = 0;
-
 	// H.Plus
 	var valHPlus = GetHPlus();
-
 	// 基本ヒール回復量の算出
 	switch (HealType) {
-
-	case HEALTYPE_HEAL:
-	case HEALTYPE_COLUCEO_HEAL:
-		wHeal = Math.floor((n_A_BaseLV + n_A_INT) / 5) * 3 * HealLv;
-		break;
-
-	case HEALTYPE_HIGHNESS:
-		wHeal = Math.floor((n_A_BaseLV + n_A_INT) / 5) * 3 * 10;
-		break;
-
-	case HEALTYPE_SHINSENNA_EBI:
-		wHeal = Math.floor((n_A_BaseLV + n_A_INT) / 5) * 7.5;
-		break;
-
-	case HEALTYPE_EBI_ZANMAI:
-		wHeal = Math.floor((n_A_BaseLV + n_A_INT) / 5) * 7.5;
-		break;
-
+		case HEALTYPE_HEAL:
+		case HEALTYPE_COLUCEO_HEAL:
+			wHeal = Math.floor((n_A_BaseLV + n_A_INT) / 5) * 3 * HealLv;
+			break;
+		case HEALTYPE_HIGHNESS:
+			wHeal = Math.floor((n_A_BaseLV + n_A_INT) / 5) * 3 * 10;
+			break;
+		case HEALTYPE_DILECTIO_HEAL:
+			wHeal = Math.floor((n_A_BaseLV + n_A_INT) / 5) * 3 * learnedHealLv;
+			break;
+		case HEALTYPE_SHINSENNA_EBI:
+			wHeal = Math.floor((n_A_BaseLV + n_A_INT) / 5) * 7.5;
+			break;
+		case HEALTYPE_EBI_ZANMAI:
+			wHeal = Math.floor((n_A_BaseLV + n_A_INT) / 5) * 7.5;
+			break;
 	}
-
-
-
 	// 回復量増強効果の算出
 	var healUp = 100 + n_tok[ITEM_SP_HEAL_UP_USING];
 	if (w_WHO == HEAL_TARGETTYPE_ENEMY && HealType == HEALTYPE_HEAL) {
 		healUp += n_tok[93];
 	}
-
-
-
 	// ＭＡＴＫ分の回復量の算出
 	var wHealMatk = 0;
 	var wMin = Math.max(0, n_Heal_MATK[0]);
 	var wMax = Math.max(0, n_Heal_MATK[2]);
-
 	if (wMin > wMax) {
 		wMin = wMax;
 	}
-
 	switch (wMinMax) {
-	case 0:
-		wHealMatk += wMin;
-		break;
-	case 1:
-		wHealMatk += Math.floor((wMin + wMax) / 2);
-		break;
-	case 2:
-		wHealMatk += wMax;
-		break;
+		case 0:
+			wHealMatk += wMin;
+			break;
+		case 1:
+			wHealMatk += Math.floor((wMin + wMax) / 2);
+			break;
+		case 2:
+			wHealMatk += wMax;
+			break;
 	}
-
-
-
 	// 最終回復量の計算
 	switch (HealType) {
-	case HEALTYPE_HEAL:
-	case HEALTYPE_COLUCEO_HEAL:
-	case HEALTYPE_HIGHNESS:
-		wHeal = Math.floor(wHeal * healUp / 100 + wHealMatk + (((n_A_BaseLV + n_A_INT) / 5) * 3 * HealLv * valHPlus / 100));
-		if (HealType == HEALTYPE_COLUCEO_HEAL) {
-			wHeal = Math.floor(wHeal * (1 + 0.025 * ptmCount));
-		}
-		break;
-
-	case HEALTYPE_SHINSENNA_EBI:
-		wHeal = wHeal * healUp / 100 + wHealMatk / 2;
-
-		// 海の魂習得による増強効果
-		if (UsedSkillSearch(SKILL_ID_UMINO_TAMASHI) > 0) {
-			// なぜか１．６倍の効果がある
-			wHeal = wHeal * 1.6;
-		}
-
-		wHeal = Math.floor(wHeal);
-
-		break;
-
-	case HEALTYPE_EBI_ZANMAI:
-		var healRatio = [1, 2, 4, 7, 8];
-		wHeal = wHeal * healUp / 100 + wHealMatk / 4;
-		wHeal = Math.floor(wHeal * healRatio[HealLv - 1]);
-		break;
+		case HEALTYPE_HEAL:
+		case HEALTYPE_COLUCEO_HEAL:
+		case HEALTYPE_HIGHNESS:
+			wHeal = Math.floor(wHeal * healUp / 100 + wHealMatk + (((n_A_BaseLV + n_A_INT) / 5) * 3 * HealLv * valHPlus / 100));
+			if (HealType == HEALTYPE_COLUCEO_HEAL) {
+				wHeal = Math.floor(wHeal * (1 + 0.025 * ptmCount));
+			}
+			break;
+		case HEALTYPE_DILECTIO_HEAL:
+			wHeal = Math.floor(wHeal * healUp / 100 + wHealMatk + (((n_A_BaseLV + n_A_INT) / 5) * 3 * learnedHealLv * valHPlus / 100));
+			wHeal = Math.floor(wHeal * ((600 + 25 * HealLv) / 100) + valHPlus * HealLv);
+			break;
+		case HEALTYPE_SHINSENNA_EBI:
+			wHeal = wHeal * healUp / 100 + wHealMatk / 2;
+			// 海の魂習得による増強効果
+			if (UsedSkillSearch(SKILL_ID_UMINO_TAMASHI) > 0) {
+				// なぜか１．６倍の効果がある
+				wHeal = wHeal * 1.6;
+			}
+			wHeal = Math.floor(wHeal);
+			break;
+		case HEALTYPE_EBI_ZANMAI:
+			var healRatio = [1, 2, 4, 7, 8];
+			wHeal = wHeal * healUp / 100 + wHealMatk / 4;
+			wHeal = Math.floor(wHeal * healRatio[HealLv - 1]);
+			break;
 	}
-
-
-
 	// ハイネスヒールの場合のレベル倍率適用
 	if (HealType == HEALTYPE_HIGHNESS) {
-
 		// 特定の戦闘エリアでの補正
 		switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
-
-		case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
-			wHeal = Math.floor(wHeal * (510 + 90 * HealLv) / 100);
-			break;
-
-		default:
-			wHeal = Math.floor(wHeal * (170 + 30 * HealLv) / 100);
-			break;
-
+			case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
+				wHeal = Math.floor(wHeal * (510 + 90 * HealLv) / 100);
+				break;
+			default:
+				wHeal = Math.floor(wHeal * (170 + 30 * HealLv) / 100);
+				break;
 		}
 	}
-
 	// 自分に使用した場合の増強効果適用
 	if (w_WHO == HEAL_TARGETTYPE_SELF) {
 		switch (HealType) {
-		case HEALTYPE_SHINSENNA_EBI:
-			// なぜか1.25倍の効果がある
-			wHeal = Math.floor(wHeal * (100 + n_tok[ITEM_SP_HEAL_UP_USED] * 1.25) / 100);
-			break;
-
-		case HEALTYPE_EBI_ZANMAI:
-			// なぜか効果率が変動する
-			var usedRatio = [4, 2, 1, 0.5725, 0.5];
-			wHeal = Math.floor(wHeal * (100 + n_tok[ITEM_SP_HEAL_UP_USED] * usedRatio[HealLv - 1]) / 100);
-			break;
-
-		default:
-			wHeal = Math.floor(wHeal * (100 + n_tok[ITEM_SP_HEAL_UP_USED]) / 100);
-			break;
+			case HEALTYPE_SHINSENNA_EBI:
+				// なぜか1.25倍の効果がある
+				wHeal = Math.floor(wHeal * (100 + n_tok[ITEM_SP_HEAL_UP_USED] * 1.25) / 100);
+				break;
+			case HEALTYPE_EBI_ZANMAI:
+				// なぜか効果率が変動する
+				var usedRatio = [4, 2, 1, 0.5725, 0.5];
+				wHeal = Math.floor(wHeal * (100 + n_tok[ITEM_SP_HEAL_UP_USED] * usedRatio[HealLv - 1]) / 100);
+				break;
+			default:
+				wHeal = Math.floor(wHeal * (100 + n_tok[ITEM_SP_HEAL_UP_USED]) / 100);
+				break;
 		}
 	}
-
 	// 敵に使用した場合のストーンスキン効果を適用
 	if(w_WHO == HEAL_TARGETTYPE_ENEMY && n_B_KYOUKA[7]) {
 		wHeal += Math.floor(wHeal * (20 * n_B_KYOUKA[7]) / 100);
 	}
-
 	return wHeal;
  }
 

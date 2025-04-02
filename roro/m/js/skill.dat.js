@@ -1074,7 +1074,7 @@
 	SKILL_ID_EFIRIGO = 1031;
 	SKILL_ID_CONPETENTIA = 1032;
 	SKILL_ID_NUMATIC_PROCERA = 1033;
-	SKILL_ID_DIRECTIO_HEAL = 1034;
+	SKILL_ID_DILECTIO_HEAL = 1034;
 	SKILL_ID_RERIGIO = 1035;
 	SKILL_ID_BENEDICTUM = 1036;
 	SKILL_ID_PETITIO = 1037;
@@ -2340,22 +2340,22 @@
 		[1021,5,"(×)シャドウスタブ","SHC_SHADOW_STAB"],
 		[1022,5,"インパクトクレーター","SHC_IMPACT_CRATER"],
 		[1023,5,"レパラティオ","CD_REPARATIO"],
-		[1024,5,"(×)メディアリボトゥム","CD_MEDIALE_VOTUM"],
-		[1025,10,"(△)鈍器＆本修練","CD_MACE_BOOK_M"],
+		[1024,5,"メディアリボトゥム","CD_MEDIALE_VOTUM"],
+		[1025,10,"鈍器＆本修練","CD_MACE_BOOK_M"],
 		[1026,5,"アルグトゥスヴィタ","CD_ARGUTUS_VITA"],
 		[1027,5,"アルグトゥステルム","CD_ARGUTUS_TELUM"],
 		[1028,10,"アルビトリウム","CD_ARBITRIUM"],
 		[1029,5,"プレセンスアキエース","CD_PRESENS_ACIES"],
-		[1030,10,"(△)フィドスアニムス","CD_FIDUS_ANIMUS"],
-		[1031,10,"(△)エフィリゴ","CD_EFFLIGO"],
+		[1030,10,"フィドスアニムス","CD_FIDUS_ANIMUS"],
+		[1031,10,"エフィリゴ","CD_EFFLIGO"],
 		[1032,5,"コンペテンティア","CD_COMPETENTIA"],
-		[1033,10,"(△)ニューマティックプロセラ","CD_PNEUMATICUS_PROCELLA"],
-		[1034,5,"(×)ディレクティオヒール","CD_DILECTIO_HEAL"],
-		[1035,5,"(×)レリギオ","CD_RELIGIO"],
-		[1036,5,"(×)ベネディクトゥム","CD_BENEDICTUM"],
+		[1033,10,"ニューマティックプロセラ","CD_PNEUMATICUS_PROCELLA"],
+		[1034,5,"ディレクティオヒール","CD_DILECTIO_HEAL"],
+		[1035,5,"(△)レリギオ","CD_RELIGIO"],	// H.Plus +100 ごとの効果量 Up が未実装
+		[1036,5,"(△)ベネディクトゥム","CD_BENEDICTUM"],	// H.Plus +100 ごとの効果量 Up が未実装
 		[1037,10,"ペティティオ","CD_PETITIO"],
-		[1038,10,"(×)ペティティオ習得レベル"],
-		[1039,5,"(△)フレーメン","CD_FRAMEN"],
+		[1038,10,"ペティティオ習得レベル"],
+		[1039,5,"フレーメン","CD_FRAMEN"],
 		[1040,5,"アドバンスドトラップ","WH_ADVANCED_TRAP"],
 		[1041,5,"(×)ウィンドサイン","WH_WIND_SIGN"],
 		[1042,5,"(×)自然親和","WH_NATUREFRIENDLY"],
