@@ -1,7 +1,3 @@
-
-
-
-
 //----------------------------------------------------------------
 // 拡張情報の種類
 //----------------------------------------------------------------
@@ -551,60 +547,48 @@ function CExtraInfoAreaComponentManager () {
 	 * 拡張情報の表示欄を構築する（ヒール回復力）.
 	 */
 	this.RebuildDispAreaHealing = function () {
-
 		var idx = 0;
-
 		var healTypeArray = null;
 		var healTargetArray = null;
-
 		var objRoot = null;
 		var objTable = null;
 		var objTbody = null;
 		var objTr = null;
 		var objTd = null;
-
 		var objSelect = null;
-
-
 
 		// 選択できるヒール種別をリストアップ
 		healTypeArray = [];
-
 		// ヒール
 		healTypeArray.push([HEALTYPE_HEAL, SKILL_ID_HEAL]);
-
 		// コルセオヒール
 		if (IsSameJobClass(JOB_ID_ARCBISHOP)) {
 			healTypeArray.push([HEALTYPE_COLUCEO_HEAL, SKILL_ID_COLUCEO_HEAL]);
 		}
-
 		// ハイネスヒール
 		if (IsSameJobClass(JOB_ID_ARCBISHOP) || IsSameJobClass(JOB_ID_SHADOWCHASER)) {
 			healTypeArray.push([HEALTYPE_HIGHNESS, SKILL_ID_HIGHNESS_HEAL]);
 		}
-
 		// サンクチュアリ（使用可能になる装備アリ）
 		healTypeArray.push([HEALTYPE_SANCTUARY, SKILL_ID_SANCTUARY]);
-
+		// ディレクティオヒール
+		if (IsSameJobClass(JOB_ID_CARDINAL)) {
+			healTypeArray.push([HEALTYPE_DILECTIO_HEAL, SKILL_ID_DILECTIO_HEAL]);
+		}
 		// 新鮮なエビ
 		if (IsSameJobClass(JOB_ID_SUMMONER)) {
 			healTypeArray.push([HEALTYPE_SHINSENNA_EBI, SKILL_ID_SHINSENNA_EBI]);
 		}
-
 		// エビ三昧
 		if (IsSameJobClass(JOB_ID_SUMMONER)) {
 			healTypeArray.push([HEALTYPE_EBI_ZANMAI, SKILL_ID_EBI_ZANMAI]);
 		}
-
-
 
 		// 選択できる使用対象をリストアップ
 		healTargetArray = [
 			[HEAL_TARGETTYPE_SELF, "自分"],
 			[HEAL_TARGETTYPE_PLAYER, "他人"],
 		];
-
-
 
 		// 指定の領域をクリア
 		objRoot = document.getElementById("OBJID_TD_EXTRA_INFO_" + this.managerInstanceId);
@@ -615,13 +599,10 @@ function CExtraInfoAreaComponentManager () {
 		objTable.setAttribute("style", "width : 100%;");
 		objTbody = HtmlCreateElement("tbody", objTable);
 
-
-
 		// セレクトボックスを構築
 
 		// ヒール種別
 		objTr = HtmlCreateElement("tr", objTbody);
-
 		objTd = HtmlCreateElement("td", objTr);
 		HtmlCreateTextSpan("スキル", objTd, CExtraInfoAreaComponentManager.fontSizeClassName);
 
@@ -666,8 +647,6 @@ function CExtraInfoAreaComponentManager () {
 		}
 		this.RestoreSelectedValue("OBJID_SELECT_EXTRA_INFO_HEAL_TARGET_" + this.managerInstanceId, 0);
 
-
-
 		// 表示欄
 		objTr = HtmlCreateElement("tr", objTbody);
 		objTd = HtmlCreateElement("td", objTr);
@@ -679,28 +658,20 @@ function CExtraInfoAreaComponentManager () {
 	 * 拡張情報の表示欄を更新する（ヒール回復力）.
 	 */
 	this.RefreshDispAreaHealing = function () {
-
 		var lv = 0;
 		var lvMax = 0;
-
 		var healType = 0;
 		var healTarget = 0;
-
 		var valueMinArray = [];
 		var valueMaxArray = [];
-
 		var valueText = "";
-
 		var objIdActive = "";
-
 		var objRoot = null;
 		var objTable = null;
 		var objTbody = null;
 		var objTr = null;
 		var objTd = null;
 		var objActive = null;
-
-
 
 		//--------------------------------
 		// 個別領域の選択値を保管
@@ -709,8 +680,6 @@ function CExtraInfoAreaComponentManager () {
 		this.StoreSelectedValue("OBJID_SELECT_EXTRA_INFO_HEAL_TYPE_" + this.managerInstanceId);
 		this.StoreSelectedValue("OBJID_SELECT_EXTRA_INFO_HEAL_TARGET_" + this.managerInstanceId);
 		this.StoreSelectedValue("OBJID_SELECT_EXTRA_INFO_HEAL_PTM_COUNT_" + this.managerInstanceId);
-
-
 
 		//--------------------------------
 		// コントロール再構築
@@ -729,8 +698,6 @@ function CExtraInfoAreaComponentManager () {
 			objActive.focus();
 		}
 
-
-
 		//--------------------------------
 		// ヒール種別、使用対象を取得する
 		//--------------------------------
@@ -739,27 +706,21 @@ function CExtraInfoAreaComponentManager () {
 		healTarget = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_EXTRA_INFO_HEAL_TARGET_" + this.managerInstanceId, 0);
 		ptmCount = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_EXTRA_INFO_HEAL_PTM_COUNT_" + this.managerInstanceId, 0);
 
-
-
 		//--------------------------------
 		// 回復量計算
 		//--------------------------------
-
-		// サンクチュアリの場合
 		if (healType == HEALTYPE_SANCTUARY) {
+			// サンクチュアリの場合
 			lvMax = 10;
-
 			// 未整理
 			for (i = 0; i<= 6; i++) {
 				valueMinArray[i] = 100 * i;
 			}
 			valueMinArray[7] = valueMinArray[8] = valueMinArray[9] = valueMinArray[10] = 777;
-
 			var w_BAI = 100 + n_tok[91];
 			if (UsedSkillSearch(SKILL_ID_MEDITATIO)) {
 				w_BAI -= UsedSkillSearch(SKILL_ID_MEDITATIO) * 2;
 			}
-
 			for (i = 0; i <= 10; i++) {
 				valueMinArray[i] = Math.floor(valueMinArray[i] * w_BAI / 100);
 				if(healTarget == 0) {
@@ -767,39 +728,26 @@ function CExtraInfoAreaComponentManager () {
 				}
 				valueMaxArray[i] = valueMinArray[i];
 			}
-		}
-
-		else {
-
+		} else {
 			// 最大レベルを取得
 			switch (healType) {
-
-			case HEALTYPE_HEAL:
-			case HEALTYPE_COLUCEO_HEAL:
-				lvMax = 10;
-				break;
-
-			case HEALTYPE_HIGHNESS:
-				lvMax = 5;
-				break;
-
-			case HEALTYPE_SHINSENNA_EBI:
-				lvMax = 5;
-				break;
-
-			case HEALTYPE_EBI_ZANMAI:
-				lvMax = 5;
-				break;
-
+				case HEALTYPE_HEAL:
+				case HEALTYPE_COLUCEO_HEAL:
+					lvMax = 10;
+					break;
+				case HEALTYPE_DILECTIO_HEAL:
+				case HEALTYPE_HIGHNESS:
+				case HEALTYPE_SHINSENNA_EBI:
+				case HEALTYPE_EBI_ZANMAI:
+					lvMax = 5;
+					break;
 			}
-
 			for (lv = 0; lv <= lvMax; lv++) {
+				// HealCalc()関数は ro4/m/js/head.js で定義されています
 				valueMinArray[lv] = HealCalc(lv, healType, 0, healTarget, ptmCount);
 				valueMaxArray[lv] = HealCalc(lv, healType, 2, healTarget, ptmCount);
 			}
 		}
-
-
 
 		//--------------------------------
 		// HTML組み立て
