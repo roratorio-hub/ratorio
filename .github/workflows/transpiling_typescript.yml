@@ -39,4 +39,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./  # ルートディレクトリをコピーする
-          exclude_assets: '.github,.gemini,memory-bank,node_modules,ro4/m/ts/**.ts,.gitignore,package.json,package-lock.json,tsconfig.json,解析メモ,util'
+          exclude_assets: '.github,.gemini,node_modules,ro4/m/ts/**.ts,.gitignore,package.json,package-lock.json,tsconfig.json,解析メモ,util'
