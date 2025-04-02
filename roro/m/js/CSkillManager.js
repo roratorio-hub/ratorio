@@ -32132,7 +32132,7 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(×)ペティティオ習得レベル";
+			this.name = "ペティティオ習得レベル";
 			this.kana = "ヘテイテイオシユウトクレヘル";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_PASSIVE;
