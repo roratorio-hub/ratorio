@@ -8630,6 +8630,7 @@ g_bUnknownCasts = true;
 			if(n_AS_MODE == 0) n_A_Weapon_zokusei = attackMethodConfArray[0].GetOptionValue(0);
 			else n_A_Weapon_zokusei = 0;
 
+			// 2025-03-29 SIAさんの検証により n_A_INT による倍率補正が実態と異なる可能性が示唆されている
 			wbairitu = 70 * n_A_ActiveSkillLV + 3 * n_A_INT;
 
 			// ベースレベル補正
