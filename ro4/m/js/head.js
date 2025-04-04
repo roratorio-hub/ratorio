@@ -8630,6 +8630,7 @@ g_bUnknownCasts = true;
 			if(n_AS_MODE == 0) n_A_Weapon_zokusei = attackMethodConfArray[0].GetOptionValue(0);
 			else n_A_Weapon_zokusei = 0;
 
+			// 2025-03-29 SIAさんの検証により n_A_INT による倍率補正が実態と異なる可能性が示唆されている
 			wbairitu = 70 * n_A_ActiveSkillLV + 3 * n_A_INT;
 
 			// ベースレベル補正
@@ -10390,7 +10391,7 @@ g_bUnknownCasts = true;
 			}
 		}
 		// ＭＡＴＫ％強化倍率を取得
-		wbairitu += GetBattlerMatkPercentUp();
+		wbairitu += GetBattlerMatkPercentUp(mobData);
 		// 単発スキルの場合
 		if(n_bunkatuHIT == 0){
 			for(var b = 0; b <= 2; b++){
@@ -10686,13 +10687,21 @@ function ATKbaiJYOUSAN(wJ) {
 
 /**
  * ＭＡＴＫ上昇倍率を取得する.
- * @return 上昇倍率（０～）
+ * @param {*} mobData 対象に応じて倍率を返す場合のパラメータ。無作為に処理する場合は null / undefined でも良い。
+ * @returns 加算されるスキル倍率（１００分率）
  */
-function GetBattlerMatkPercentUp() {
+function GetBattlerMatkPercentUp(mobData) {
 	var w = 0;
 	// 支援マインドブレイカー
 	if(g_confDataNizi[CCharaConfNizi.CONF_ID_SHIEN_MIND_BREAKER]) {
 		w += 20 * g_confDataNizi[CCharaConfNizi.CONF_ID_SHIEN_MIND_BREAKER];
+	}
+	if (mobData) {
+		// 「ドラゴノロジー」による「竜形モンスターへの追加魔法攻撃力UP」
+		// 2025-03-29 SIAさんの検証を鑑みて移動しました
+		if (mobData[MONSTER_DATA_INDEX_RACE] == RACE_ID_DRAGON) {
+			w += UsedSkillSearch(SKILL_ID_DRAGONOLOGY) * 2;
+		}
 	}
 	return w;
  }
