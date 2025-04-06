@@ -1094,107 +1094,84 @@ CGlobalConstManager.DefinePseudoEnum(
  * @return 種別名
  */
 function GetItemKindNameText(kindId) {
-
 	switch (kindId) {
-
-	case ITEM_KIND_NONE:
-		return "素手";
-
-	case ITEM_KIND_KNIFE:
-		return "短剣";
-
-	case ITEM_KIND_SWORD:
-		return "片手剣";
-
-	case ITEM_KIND_SWORD_2HAND:
-		return "両手剣";
-
-	case ITEM_KIND_SPEAR:
-		return "片手槍";
-
-	case ITEM_KIND_SPEAR_2HAND:
-		return "両手槍";
-
-	case ITEM_KIND_AXE:
-		return "片手斧";
-
-	case ITEM_KIND_AXE_2HAND:
-		return "両手斧";
-
-	case ITEM_KIND_CLUB:
-		return "鈍器";
-
-	case ITEM_KIND_STUFF:
-		return "杖";
-
-	case ITEM_KIND_BOW:
-		return "弓";
-
-	case ITEM_KIND_KATAR:
-		return "カタール";
-
-	case ITEM_KIND_BOOK:
-		return "本";
-
-	case ITEM_KIND_FIST:
-		return "ナックル";
-
-	case ITEM_KIND_MUSICAL:
-		return "楽器";
-
-	case ITEM_KIND_WHIP:
-		return "鞭";
-
-	case ITEM_KIND_FUMA:
-		return "風魔手裏剣";
-
-	case ITEM_KIND_HANDGUN:
-		return "ハンドガン";
-
-	case ITEM_KIND_RIFLE:
-		return "ライフル";
-
-	case ITEM_KIND_SHOTGUN:
-		return "ショットガン";
-
-	case ITEM_KIND_GATLINGGUN:
-		return "ガトリングガン";
-
-	case ITEM_KIND_GRENADEGUN:
-		return "グレネードガン";
-
-	case ITEM_KIND_HEAD_TOP:
-		return "頭上段";
-
-	case ITEM_KIND_HEAD_MID:
-		return "頭中段";
-
-	case ITEM_KIND_HEAD_UNDER:
-		return "頭下段";
-
-	case ITEM_KIND_BODY:
-		return "鎧";
-
-	case ITEM_KIND_SHIELD:
-		return "盾";
-
-	case ITEM_KIND_SHOULDER:
-		return "肩にかける物";
-
-	case ITEM_KIND_FOOT:
-		return "靴";
-
-	case ITEM_KIND_ACCESSARY:
-		return "アクセサリ";
-
-	case ITEM_KIND_ACCESSARY_ON1:
-		return "アクセサリ(1)";
-
-	case ITEM_KIND_ACCESSARY_ON2:
-		return "アクセサリ(2)";
-
+		case ITEM_KIND_NONE:
+			return "素手";
+		case ITEM_KIND_KNIFE:
+			return "短剣";
+		case ITEM_KIND_SWORD:
+			return "片手剣";
+		case ITEM_KIND_SWORD_2HAND:
+			return "両手剣";
+		case ITEM_KIND_SPEAR:
+			return "片手槍";
+		case ITEM_KIND_SPEAR_2HAND:
+			return "両手槍";
+		case ITEM_KIND_AXE:
+			return "片手斧";
+		case ITEM_KIND_AXE_2HAND:
+			return "両手斧";
+		case ITEM_KIND_CLUB:
+			return "鈍器";
+		case ITEM_KIND_STUFF:
+			return "杖";
+		case ITEM_KIND_BOW:
+			return "弓";
+		case ITEM_KIND_KATAR:
+			return "カタール";
+		case ITEM_KIND_BOOK:
+			return "本";
+		case ITEM_KIND_FIST:
+			return "ナックル";
+		case ITEM_KIND_MUSICAL:
+			return "楽器";
+		case ITEM_KIND_WHIP:
+			return "鞭";
+		case ITEM_KIND_FUMA:
+			return "風魔手裏剣";
+		case ITEM_KIND_HANDGUN:
+			return "ハンドガン";
+		case ITEM_KIND_RIFLE:
+			return "ライフル";
+		case ITEM_KIND_SHOTGUN:
+			return "ショットガン";
+		case ITEM_KIND_GATLINGGUN:
+			return "ガトリングガン";
+		case ITEM_KIND_GRENADEGUN:
+			return "グレネードガン";
+		case ITEM_KIND_HEAD_TOP:
+			return "頭上段";
+		case ITEM_KIND_HEAD_MID:
+			return "頭中段";
+		case ITEM_KIND_HEAD_UNDER:
+			return "頭下段";
+		case ITEM_KIND_BODY:
+			return "鎧";
+		case ITEM_KIND_SHIELD:
+			return "盾";
+		case ITEM_KIND_SHOULDER:
+			return "肩にかける物";
+		case ITEM_KIND_FOOT:
+			return "靴";
+		case ITEM_KIND_ACCESSARY:
+			return "アクセサリ";
+		case ITEM_KIND_ACCESSARY_ON1:
+			return "アクセサリ(1)";
+		case ITEM_KIND_ACCESSARY_ON2:
+			return "アクセサリ(2)";
+		case ITEM_KIND_SHADOW_ARMS_RIGHT:
+			return "シャドウウェポン";
+		case ITEM_KIND_SHADOW_ARMS_LEFT:
+			return "シャドウシールド";
+		case ITEM_KIND_SHADOW_BODY:
+			return "シャドウアーマー";
+		case ITEM_KIND_SHADOW_FOOT:
+			return "シャドウシューズ";
+		case ITEM_KIND_SHADOW_ACCESSARY_ON1:
+			return "シャドウアクセサリ(1)";
+		case ITEM_KIND_SHADOW_ACCESSARY_ON2:
+			return "シャドウアクセサリ(2)";
 	}
-
 	return "不明";
 }
 
