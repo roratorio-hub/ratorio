@@ -296,7 +296,7 @@
 		<div style="padding: 20px 34px">
 
 			<form name="calcForm">
-
+				<!-- セーブ・ロード、基本ステータス、フローティングメニュー -->
 				<div style="width: 100%;">
 					<!-- ヘッダ部 -->
 					<div id="OBJID_CALCULAATOR_HEADER">
@@ -345,8 +345,9 @@
 					</div>
 					<!-- ボディ部 -->
 					<div style="display: grid; grid-template-columns: max-content auto; column-gap: 3%;">
+						<!-- 基本ステータス -->
 						<div>
-							<!-- 基本ステータス設定部 -->
+							<!-- 設定部 -->
 							<table>
 									<tr>
 										<td valign="top">
@@ -555,7 +556,7 @@
 
 									</tr>
 							</table>
-							<!-- 基本ステータス算出部 -->
+							<!-- 算出部 -->
 							<table>
 									<tbody>
 										<tr>
@@ -635,59 +636,55 @@
 										</tr>
 									</tbody>
 							</table>
-							<br>
-							<!-- クイック設定部 -->
-							<table>
-									<tbody>
-										<tr>
-											<td>
-												<span id="ID_QUICK_CONTROL">
-													<input type="checkbox" id="OBJID_QUICK_CONTROL_EXTRACT_CHECKBOX" onclick="OnClickQuickControlSW()">
-												</span>
-											</td>
-										</tr>
-									</tbody>
-							</table>
 						</div>
 						<!-- フローティングメニュー -->
 						<div>
-								<input type="checkbox" id="OBJID_CHK_DISABLE_FLOATING" style="display: none;">
-								<div id="OBJID_DIV_FLOATING_MENU" class="CSSCLS_DIV_FLOATING_MENU">
-									<table>
-										<tbody>
-											<tr>
-												<td id="ID_FLOATING_INFO_AREA">
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
+							<!-- チェックボックスの状態に応じて CSS で埋め込み・フローティングを切り替える -->
+							<input type="checkbox" id="OBJID_CHK_DISABLE_FLOATING" style="display: none;">
+							<div id="OBJID_DIV_FLOATING_MENU" class="CSSCLS_DIV_FLOATING_MENU">
+								<table>
+									<tbody>
+										<tr>
+											<td id="ID_FLOATING_INFO_AREA">
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
 						</div>
 					</div>
 				</div>
-
+				<!-- 基本装備 -->
 				<table>
 					<tbody>
+						<!-- クイック設定 -->
+						<tr>
+							<td>
+								<span id="ID_QUICK_CONTROL">
+									<input type="checkbox" id="OBJID_QUICK_CONTROL_EXTRACT_CHECKBOX" onclick="OnClickQuickControlSW()">
+								</span>
+							</td>
+						</tr>
+						<!-- オプション -->
 						<tr>
 							<td>
 								<span id="nm026">スピードポーション：</span>
 								<select id="OBJID_SPEED_POT" name = "A_SpeedPOT" onChange = "StAllCalc() | AutoCalc()">
 								</select>
-
 								<br>
-
 								<span id="nm027">武器タイプ：</span>
 								<select id="OBJID_ARMS_TYPE_RIGHT" name="A_WeaponType" onChange="OnChangeArmsTypeRight(this[this.selectedIndex].value) | StAllCalc() | AutoCalc()">
 								</select>
-
 								<span id = "A_SobWeaponName"></span>
-
 								<span id = "OBJID_SPAN_SELECT_ARROW"></span>
-
 								<span id = "OBJID_SPAN_SWAP_ARMS"></span>
-
+							</td>
+						</tr>
+						<!-- 装備設定 -->
+						<tr>
+							<td>
 								<table border="1">
-
+									<!-- ヘッダ -->
 									<tr>
 										<td ColSpan="3" Bgcolor="#DDDDFF">武器＆防具/カード</td>
 										<td ColSpan="10" Bgcolor="#DDDDFF">
@@ -695,7 +692,7 @@
 											カードの入力とランダムオプションの入力を切り替えます
 										</td>
 									</tr>
-
+									<!-- 右手装備 -->
 									<tr>
 										<td rowspan="2">
 											<select id="OBJID_ARMS_RIGHT_REFINE" name="A_Weapon_ATKplus" onChange = "OnChangeRefined() | AutoCalc()">
@@ -725,26 +722,23 @@
 											<select id="OBJID_ARMS_RIGHT" onChange="OnChangeEquip(EQUIP_REGION_ID_ARMS, parseInt(this.value)) | AutoCalc()">
 											</select>
 										</td>
-
 										<td colspan="2" style="white-space: nowrap;">
 											<span id="ID_A_HUYO_NAME">武器属性付与</span>
 											<select id="OBJID_SELECT_ARMS_ELEMENT" name="A_Weapon_zokusei" onChange="AutoCalc()">
 											</select>
 										</td>
-
 										<td colspan="8">
 											<span style="font-size: smaller; white-space: nowrap;">※攻撃属性の優先度は状況次第なので、確実に設定するには左の付与欄で指定してください。（無属性は、全ての属性設定を解除）</span>
 										</td>
 									</tr>
-
 									<tr id="OBJID_ARMS_RIGHT_SLOT_ROOT">
 									</tr>
-
+									<!-- パディング -->
 									<tr>
 										<td colspan="12">
 										</td>
 									</tr>
-
+									<!-- 左手装備 -->
 									<tr id="OBJID_ARMS_LEFT_SLOT_ROOT">
 										<td>
 											<select id="OBJID_ARMS_LEFT_REFINE" name="A_Weapon2_ATKplus" onChange = "OnChangeRefined() | AutoCalc()" disabled>
@@ -774,14 +768,13 @@
 											<select id="OBJID_ARMS_LEFT" onChange="OnChangeEquip(EQUIP_REGION_ID_ARMS_LEFT, parseInt(this.value)) | AutoCalc()">
 											</select>
 										</td>
-
 									</tr>
-
+									<!-- パディング -->
 									<tr>
 										<td colspan="12">
 										</td>
 									</tr>
-
+									<!-- 頭上段装備 -->
 									<tr id="OBJID_HEAD_TOP_SLOT_ROOT">
 										<td>
 											<select id="OBJID_HEAD_TOP_REFINE" name="A_HEAD_DEF_PLUS" onChange="OnChangeRefined() | AutoCalc()">
@@ -811,12 +804,12 @@
 											<select id="OBJID_HEAD_TOP" name="A_head1" onChange="OnChangeEquip(EQUIP_REGION_ID_HEAD_TOP, parseInt(this.value)) | AutoCalc()"></select>
 										</td>
 									</tr>
-
+									<!-- パディング -->
 									<tr>
 										<td colspan="12">
 										</td>
 									</tr>
-
+									<!-- 頭中段装備 -->
 									<tr id="OBJID_HEAD_MID_SLOT_ROOT">
 										<td>
 										</td>
@@ -826,12 +819,12 @@
 											<select id="OBJID_HEAD_MID" name="A_head2" onChange="OnChangeEquip(EQUIP_REGION_ID_HEAD_MID, parseInt(this.value)) | AutoCalc()"></select>
 										</td>
 									</tr>
-
+									<!-- パディング -->
 									<tr>
 										<td colspan="12">
 										</td>
 									</tr>
-
+									<!-- 頭下段装備 -->
 									<tr id="OBJID_HEAD_UNDER_SLOT_ROOT">
 										<td>
 										</td>
@@ -841,12 +834,12 @@
 											<select id="OBJID_HEAD_UNDER" name="A_head3" onChange="OnChangeEquip(EQUIP_REGION_ID_HEAD_UNDER, parseInt(this.value)) | AutoCalc()"></select>
 										</td>
 									</tr>
-
+									<!-- パディング -->
 									<tr>
 										<td colspan="12">
 										</td>
 									</tr>
-
+									<!-- 盾装備 -->
 									<tr id="OBJID_SHIELD_SLOT_ROOT">
 										<td id="ID_B4">
 											<select id="OBJID_SHIELD_REFINE" name="A_SHIELD_DEF_PLUS" onChange="OnChangeRefined() | AutoCalc()">
@@ -876,12 +869,12 @@
 											<select id="OBJID_SHIELD" name="A_left" onChange="OnChangeEquip(EQUIP_REGION_ID_SHIELD, parseInt(this.value)) | AutoCalc()"></select>
 										</td>
 									</tr>
-
+									<!-- パディング -->
 									<tr>
 										<td colspan="12">
 										</td>
 									</tr>
-
+									<!-- 鎧装備 -->
 									<tr id="OBJID_BODY_SLOT_ROOT">
 										<td>
 											<select id="OBJID_BODY_REFINE" name="A_BODY_DEF_PLUS" onChange="OnChangeRefined() | AutoCalc()">
@@ -911,12 +904,12 @@
 											<select id="OBJID_BODY" name="A_body" onChange="OnChangeEquip(EQUIP_REGION_ID_BODY, parseInt(this.value)) | AutoCalc()"></select>
 										</td>
 									</tr>
-
+									<!-- パディング -->
 									<tr>
 										<td colspan="12">
 										</td>
 									</tr>
-
+									<!-- 肩装備 -->
 									<tr id="OBJID_SHOULDER_SLOT_ROOT">
 										<td>
 											<select id="OBJID_SHOULDER_REFINE" name="A_SHOULDER_DEF_PLUS" onChange="OnChangeRefined() | AutoCalc()">
@@ -946,12 +939,12 @@
 											<select id="OBJID_SHOULDER" name="A_shoulder" onChange="OnChangeEquip(EQUIP_REGION_ID_SHOULDER, parseInt(this.value)) | AutoCalc()"></select>
 										</td>
 									</tr>
-
+									<!-- パディング -->
 									<tr>
 										<td colspan="12">
 										</td>
 									</tr>
-
+									<!-- 靴装備 -->
 									<tr id="OBJID_SHOES_SLOT_ROOT">
 										<td>
 											<select id="OBJID_SHOES_REFINE" name="A_SHOES_DEF_PLUS" onChange="OnChangeRefined() | AutoCalc()">
@@ -981,12 +974,12 @@
 											<select id="OBJID_SHOES" name="A_shoes" onChange="OnChangeEquip(EQUIP_REGION_ID_SHOES, parseInt(this.value)) | AutoCalc()"></select>
 										</td>
 									</tr>
-
+									<!-- パディング -->
 									<tr>
 										<td colspan="12">
 										</td>
 									</tr>
-
+									<!-- アクセサリ1装備 -->
 									<tr id="OBJID_ACCESSARY_1_SLOT_ROOT">
 										<td>
 										</td>
@@ -997,12 +990,12 @@
 											<select id="OBJID_ACCESSARY_1" name="A_acces1" onChange="OnChangeEquip(EQUIP_REGION_ID_ACCESSARY_1, parseInt(this.value)) | AutoCalc()"></select>
 										</td>
 									</tr>
-
+									<!-- パディング -->
 									<tr>
 										<td colspan="12">
 										</td>
 									</tr>
-
+									<!-- アクセサリ2装備 -->
 									<tr id="OBJID_ACCESSARY_2_SLOT_ROOT">
 										<td>
 										</td>
@@ -1013,17 +1006,15 @@
 											<select id="OBJID_ACCESSARY_2" name="A_acces2" onChange="OnChangeEquip(EQUIP_REGION_ID_ACCESSARY_2, parseInt(this.value)) | AutoCalc()"></select>
 										</td>
 									</tr>
-
-
 								</table>
 							</td>
 						</tr>
 					</tbody>
 				</table>
-
+				<!-- 簡易表示 -->
 				<div id = "OBJID_DIV_BATTLE_RESULT_TINY"></div>
 				<div id = "OBJID_DIV_RESIST_ELEMENT_TINY"></div>
-
+				<!-- アイテム情報 -->
 				<table>
 					<tbody>
 						<tr>
@@ -1032,9 +1023,7 @@
 						</tr>
 					</tbody>
 				</table>
-
-
-
+				<!-- シャドウ装備 -->
 				<div id="OBJID_SHADOW_EQUIPS_MIG" class="folding-block-MIG">
 					<input type="checkbox" id="OBJID_SWITCH_SHADOW_EQUIPS_CTRL_MIG" class="folding-switch-MIG" checked>
 					<label for="OBJID_SWITCH_SHADOW_EQUIPS_CTRL_MIG">シャドウ装備</label>
@@ -1438,9 +1427,7 @@
 
 					</div>
 				</div>
-
-
-
+				<!-- 習得スキル -->
 				<table>
 					<tbody>
 						<tr>
@@ -1449,7 +1436,7 @@
 						</tr>
 					</tbody>
 				</table>
-
+				<!-- 職固有支援 -->
 				<table>
 					<tbody>
 						<tr>
@@ -1459,7 +1446,7 @@
 						</tr>
 					</tbody>
 				</table>
-
+				<!-- １次職支援 -->
 				<table>
 					<tbody>
 						<tr>
@@ -1468,7 +1455,7 @@
 						</tr>
 					</tbody>
 				</table>
-
+				<!-- ２次職支援 -->
 				<table>
 					<tbody>
 						<tr>
@@ -1477,7 +1464,7 @@
 						</tr>
 					</tbody>
 				</table>
-
+				<!-- ３次職支援 -->
 				<table>
 					<tbody>
 						<tr>
@@ -1486,7 +1473,7 @@
 						</tr>
 					</tbody>
 				</table>
-
+				<!-- ４次職支援 -->
 				<table>
 					<tbody>
 						<tr>
@@ -1495,20 +1482,13 @@
 						</tr>
 					</tbody>
 				</table>
-
-
-
-
 				<br>
-
-
-
-
-
+				<!-- 攻撃設定部 -->
 				<div id="OBJID_ATTACK_BLOCK_MIG">
+					<!-- 攻撃方法 -->
 					<div id="ID_ATTACK_METHOD_AREA">
 					</div>
-
+					<!-- 動作設定 -->
 					<div id="OBJID_ATTACK_SETTING_BLOCK_MIG" class="folding-block-MIG" style="white-space: nowrap;">
 						<input type="checkbox" id="OBJID_SWITCH_ATTACK_SETTING_MIG" class="folding-switch-MIG">
 						<label for="OBJID_SWITCH_ATTACK_SETTING_MIG">動作設定</label>
@@ -1557,10 +1537,7 @@
 						</div>
 					</div>
 				</div>
-
-
-
-				<!-- 暫定移動措置 -->
+				<!-- スキル倍率補正・サイズ補正 表示部 -->
 				<table>
 					<tbody>
 						<tr>
@@ -1576,59 +1553,42 @@
 						</tr>
 					</tbody>
 				</table>
-
-
-
+				<!-- ダメージ計算部 -->
 				<table>
 					<tr valign="top">
+						<!-- モンスター設定 -->
 						<td>
 							<table>
+								<!-- マップ指定 -->
 								<tr>
 									<td id="OBJID_TD_MONSTER_MAP_AREA">
 									</td>
 								</tr>
-
+								<!-- 状態異常設定 -->
 								<tr>
 									<td id="OBJID_TD_MOB_CONF_DEBUF">
 									</td>
 								</tr>
-
+								<!-- 強化設定 -->
 								<tr>
 									<td id="OBJID_TD_MOB_CONF_BUF">
 									</td>
 								</tr>
-
+								<!-- 対プレイヤー設定 -->
 								<tr>
 									<td id="OBJID_TD_MOB_CONF_PLAYER">
 									</td>
 								</tr>
-
+								<!-- 手動入力 -->
 								<tr>
 									<td id="OBJID_TD_MOB_CONF_INPUT_NEW">
 									</td>
 								</tr>
-
-								<tr>
-									<td id="OBJID_TD_MOB_CONF_INPUT">
-									</td>
-								</tr>
 							</table>
 						</td>
-
-
-
-
+						<!-- 基本情報 -->
 						<td>
-<!--
-							<div id="BATTLE_RESULT_HEADER" style="display: flex; column-gap: 4px; margin-top: 3px;">
-								<div style="flex: 1 1 25%; border: 1px solid black; text-align: center; padding: 0.25em 0 0.125em; background-color: #ccffcc; cursor: pointer; font-weight: bold;" onclick="OnClickTabBTLRSLT(0)">全表示</div>
-								<div style="flex: 1 1 25%; border: 1px solid black; text-align: center; padding: 0.25em 0 0.125em; background-color: #ffffcc; cursor: pointer; opacity: 0.5;" onclick="OnClickTabBTLRSLT(1)">基本情報</div>
-								<div style="flex: 1 1 25%; border: 1px solid black; text-align: center; padding: 0.25em 0 0.125em; background-color: #ffcccc; cursor: pointer; opacity: 0.5;" onclick="OnClickTabBTLRSLT(2)">ダメージ</div>
-								<div style="flex: 1 1 25%; border: 1px solid black; text-align: center; padding: 0.25em 0 0.125em; background-color: #ffccff; cursor: pointer; opacity: 0.5;" onclick="OnClickTabBTLRSLT(3)">効率情報</div>
-							</div>
--->
 							<div id="BATTLE_RESULT_BASIC"></div>
-
 							<table style="display: none;">
 								<tbody>
 									<tr>
@@ -1742,31 +1702,19 @@
 								</tbody>
 							</table>
 						</td>
-
-
-
+						<!-- ダメージ表示 -->
 						<td>
 							<div id="BATTLE_RESULT_DAMAGE"></div>
 						</td>
-
+						<!-- 時限効果クイック調整 -->
 						<td>
 							<div id="ID_BATTLE_QUICK_CONTROL_AREA" style="margin-top: 3px;"></div>
 						</td>
-
 					</tr>
 				</table>
-
-
-
-
-
 				<br clear="left">
 				<hr>
-
-
-
-
-
+				<!-- 演奏・踊り系スキル -->
 				<table>
 					<tbody>
 						<tr>
@@ -1776,7 +1724,7 @@
 						</tr>
 					</tbody>
 				</table>
-
+				<!-- ギルドスキル・ゴスペル他 -->
 				<table>
 					<tbody>
 						<tr>
@@ -1786,7 +1734,7 @@
 						</tr>
 					</tbody>
 				</table>
-
+				<!-- オートスペル -->
 				<table>
 					<tbody>
 						<tr>
@@ -1795,7 +1743,7 @@
 						</tr>
 					</tbody>
 				</table>
-
+				<!-- アイテム・食品他 -->
 				<table>
 					<tbody>
 						<tr>
@@ -1805,7 +1753,7 @@
 						</tr>
 					</tbody>
 				</table>
-
+				<!-- アイテム時限効果 -->
 				<table>
 					<tbody>
 						<tr>
@@ -1814,7 +1762,7 @@
 						</tr>
 					</tbody>
 				</table>
-
+				<!-- その他支援 -->
 				<table>
 					<tbody>
 						<tr>
@@ -1824,7 +1772,7 @@
 						</tr>
 					</tbody>
 				</table>
-
+				<!-- 性能カスタマイズ ステータス関連 -->
 				<table>
 					<tbody>
 						<tr>
@@ -1833,7 +1781,7 @@
 						</tr>
 					</tbody>
 				</table>
-
+				<!-- 性能カスタマイズ 攻撃関連 -->
 				<table>
 					<tbody>
 						<tr>
@@ -1842,7 +1790,7 @@
 						</tr>
 					</tbody>
 				</table>
-
+				<!-- 性能カスタマイズ 防御関連 -->
 				<table>
 					<tbody>
 						<tr>
@@ -1851,7 +1799,7 @@
 						</tr>
 					</tbody>
 				</table>
-
+				<!-- 性能カスタマイズ スキル関連 -->
 				<table>
 					<tbody>
 						<tr>
@@ -1860,7 +1808,7 @@
 						</tr>
 					</tbody>
 				</table>
-
+				<!--- 性能カスタマイズ 特性ステータス関連 -->
 				<table>
 					<tbody>
 						<tr>
@@ -1869,17 +1817,8 @@
 						</tr>
 					</tbody>
 				</table>
-
-
-
-
-
 				<hr>
-
-
-
-
-
+				<!-- 詠唱シミュレーター -->
 				<table>
 					<tbody>
 						<tr>
@@ -1888,7 +1827,7 @@
 						</tr>
 					</tbody>
 				</table>
-
+				<!-- フッター -->
 				<div style="white-space:nowrap;">
 					<hr>
 					<p>
@@ -1904,55 +1843,6 @@
 						今後は<a href="../../ro4/m/calcx.html#OBJID_SAVE_BLOCK_MIG">最新版のセーブ・ロード機能</a>をご利用下さい
 					</p>
 				</div>
-				<!--
-				<table>
-					<tr>
-						<td>
-							<input type="button" id="OBJID_BUTTON_URL_OUT" value="URL出力" onclick="URLOUT()">
-						</td>
-						<td>
-							<input type="text" id="OBJID_URL_OUT" name="URL_TEXT" value="" size=130>
-						</td>
-						<td>
-							<input type="button" value="コピー" onclick="HtmlCopyToClipboardById('OBJID_URL_OUT')">
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2">
-							※ボタンを押すと、データ保存用の URL を出力します。コピーしてお使いください。
-						</td>
-					</tr>
-				</table>
-				<br>
-				<table>
-					<tr>
-						<td>
-							<input type="button" id="OBJID_BUTTON_URL_IN" value="URL入力" onclick="OnClickUrlIn() | LoadSelect2()">
-						</td>
-						<td>
-							<input type="text" id="OBJID_URL_IN" value="" size=130>
-						</td>
-						<td>
-							<input type="button" value="クリア" onclick="HtmlSetObjectValueById('OBJID_URL_IN', '')">
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2">
-							※URL を入力してボタンを押すと、解析してデータを表示します。
-						</td>
-					</tr>
-				</table>
-				<hr>
-				<table>
-					<tbody>
-						<tr>
-							<td id="ID_BROWSER_MIGRATION">
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				-->
-
 				<table>
 					<tbody>
 						<tr>
@@ -1961,7 +1851,6 @@
 						</tr>
 					</tbody>
 				</table>
-
 				<table>
 					<tbody>
 						<tr>
@@ -1980,7 +1869,6 @@
 				</table>
 				<div id="OBJID_RRTGET_ROOT"></div>
 			</form>
-
 			<table border="1" style="display: none;">
 				<tbody>
 					<tr>
@@ -2087,9 +1975,6 @@
 					</tr>
 				</tbody>
 			</table>
-
-
-
 		</div>
 	</div>
 	</div>
@@ -2101,9 +1986,6 @@
 <script type="text/javascript" src="js/CExtraInfoAreaComponentManager.js"></script>
 <script type="text/javascript" src="js/CFloatingInfoAreaComponentManager.js"></script>
 <script type="text/javascript" src="js/CCalcDataTextCreator.js"></script>
-<!-- ニュースエリアを停止 usachoco
-	<script type="text/javascript" src="js/CNewsAreaComponentManager.js"></script>
--->
 
 <!-- [MIG] 操作処理系 javascript ファイル -->
 <script type="text/javascript" src="../../ro4/m/js/CShadowEquipController.js"></script>

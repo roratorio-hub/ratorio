@@ -11,10 +11,9 @@
 	font-weight : bold;
 }
 
-
-
-
-
+/** ------------------------
+フローティングメニュー
+------------------------- */
 #OBJID_CHK_DISABLE_FLOATING:not(:checked) ~ div.CSSCLS_DIV_FLOATING_MENU {
 	position : fixed;
 	top : 2%;
@@ -25,6 +24,7 @@
 #OBJID_CHK_DISABLE_FLOATING:checked ~ div.CSSCLS_DIV_FLOATING_MENU .CSSCLS_FLOATING_INFO_AREA_INTO_BODY {
 	display: none;
 }
+
 #OBJID_CHK_DISABLE_FLOATING:not(:checked) ~ div.CSSCLS_DIV_FLOATING_MENU .CSSCLS_FLOATING_INFO_AREA_GOTO_FLOAT {
 	display: none;
 }
