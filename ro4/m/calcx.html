@@ -297,10 +297,9 @@
 
 			<form name="calcForm">
 
-				<div style="width: 100%; display: grid; grid-template-columns: max-content auto; column-gap: 3%;">
-					<div>
-						<!-- ヘッダ部 -->
-						<div id="OBJID_CALCULAATOR_HEADER">
+				<div style="width: 100%;">
+					<!-- ヘッダ部 -->
+					<div id="OBJID_CALCULAATOR_HEADER">
 							<div id="OBJID_SAVE_BLOCK_MIG" class="folding-block-MIG">
 								<input type="checkbox" id="OBJID_SWITCH_SAVE_CTRL_MIG" class="folding-switch-MIG">
 								<label for="OBJID_SWITCH_SAVE_CTRL_MIG">セーブ／ロード</label>
@@ -343,322 +342,326 @@
 									URL出力にてデータを取得し、こちらのURL入力から入力いただくことでデータ移行が可能です<br>
 								</strong>
 							</div>
-						</div>
-						<!-- 基本ステータス設定部 -->
-						<table>
-							<tr>
-								<td valign="top">
-									<div style="display: inline-block;">
-
-										<table border="1">
-											<tr>
-												<td colSpan="6" bgcolor="#DDDDFF">
-													<span>基本ステータス</span>
-
-													<input id="OBJID_CHECK_AUTO_BASE_LEVEL" type="checkbox" name="BLVauto" checked="checked">
-													<label for="OBJID_CHECK_AUTO_BASE_LEVEL">BaseLVを自動調節する</label>
-												</td>
-											</tr>
-
-											<tr>
-												<td style="min-width: 4em; text-align:center;">LV</td>
-												<td style="min-width: 7em;"><select id="OBJID_SELECT_BASE_LEVEL" name="A_BaseLV"onChange="CalcStatusPoint(true) | StAllCalc() | CAttackMethodAreaComponentManager.RebuildControls() | AutoCalc()"></select></td>
-
-												<td style="min-width: 4em; text-align:center;">JobLV</td>
-												<td style="min-width: 7em;"><select id="OBJID_SELECT_JOB_LEVEL" name="A_JobLV"onChange="StAllCalc() | AutoCalc()"></select></td>
-
-												<td style="min-width: 4em; text-align:center;">職業</td>
-												<td style="min-width: 7em;"><select id="OBJID_SELECT_JOB" name="A_JOB" onChange="OnChangeJobSelect(this.value) | StAllCalc() | CalcStatusPoint(false) | AutoCalc()"></select></td>
-											</tr>
-
-											<tr>
-												<td style="text-align: center;">Str</td>
-												<td>
-													<select id="OBJID_SELECT_STATUS_STR" name="A_STR" onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()"></select>
-													<span id="OBJID_SPAN_STATUS_BONUS_STR"></span>
-												</td>
-
-												<td style="text-align: center;">Agi</td>
-												<td>
-													<select id="OBJID_SELECT_STATUS_AGI" name="A_AGI" onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()"></select>
-													<span id="OBJID_SPAN_STATUS_BONUS_AGI"></span>
-												</td>
-
-												<td style="text-align: center;">Vit</td>
-												<td>
-													<select id="OBJID_SELECT_STATUS_VIT" name="A_VIT" onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()"></select>
-													<span id="OBJID_SPAN_STATUS_BONUS_VIT"></span>
-												</td>
-											</tr>
-
-											<tr>
-												<td style="text-align: center;">Int</td>
-												<td>
-													<select id="OBJID_SELECT_STATUS_INT" name="A_INT" onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()"></select>
-													<span id="OBJID_SPAN_STATUS_BONUS_INT"></span>
-												</td>
-
-												<td style="text-align: center;">Dex</td>
-												<td>
-													<select id="OBJID_SELECT_STATUS_DEX" name="A_DEX" onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()"></select>
-													<span id="OBJID_SPAN_STATUS_BONUS_DEX"></span>
-												</td>
-
-												<td style="text-align: center;">Luk</td>
-												<td>
-													<select id="OBJID_SELECT_STATUS_LUK" name="A_LUK" onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()"></select>
-													<span id="OBJID_SPAN_STATUS_BONUS_LUK"></span>
-												</td>
-											</tr>
-										</table>
-
-										<div id="OBJID_DIV_STATUS_NOTICE">
-										</div>
-
-										<table border="1">
-											<tr>
-												<td><span>基本ステータスポイント　残り</span></td>
-												<td style="min-width: 4em; text-align: right; padding-right: 0.5em;"><span id = "A_STPOINT">0000</span></td>
-											</tr>
-										</table>
-
-										<table id="OBJID_TABLE_SPEC_STATUS" border="1" style="margin-top: 1em;">
-											<tr>
-												<td colSpan="6" bgcolor="#DDDDFF">
-													<span>特性ステータス</span>
-												</td>
-											</tr>
-
-											<tr>
-												<td style="min-width: 4em; text-align:center; background-color: #ddddff;">Pow</td>
-												<td style="min-width: 7em;">
-													<select id="OBJID_SELECT_STATUS_POW" name="A_POW" onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()"></select>
-													<span id="OBJID_SPAN_STATUS_BONUS_POW"></span>
-												</td>
-
-												<td style="min-width: 5em; text-align:center; background-color: #ddddff;">P.Atk</td>
-												<td style="min-width: 7em; text-align:center;">
-													<span id="OBJID_SPAN_STATUS_P_ATK"></span>
-												</td>
-
-												<td style="min-width: 5em; text-align:center; background-color: #ddddff;">Res</td>
-												<td style="min-width: 7em; text-align:center;">
-													<span id="OBJID_SPAN_STATUS_RES"></span>
-												</td>
-											</tr>
-
-											<tr>
-												<td style="text-align:center; background-color: #ddddff;">Sta</td>
-												<td>
-													<select id="OBJID_SELECT_STATUS_STA" name="A_STA" onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()"></select>
-													<span id="OBJID_SPAN_STATUS_BONUS_STA"></span>
-												</td>
-
-												<td style="text-align:center; background-color: #ddddff;">S.Matk</td>
-												<td style="text-align:center;">
-													<span id="OBJID_SPAN_STATUS_S_MATK"></span>
-												</td>
-
-												<td style="text-align:center; background-color: #ddddff;">Mres</td>
-												<td style="text-align:center;">
-													<span id="OBJID_SPAN_STATUS_MRES"></span>
-												</td>
-											</tr>
-
-											<tr>
-												<td style="text-align:center; background-color: #ddddff;">Wis</td>
-												<td>
-													<select id="OBJID_SELECT_STATUS_WIS" name="A_WIS" onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()"></select>
-													<span id="OBJID_SPAN_STATUS_BONUS_WIS"></span>
-												</td>
-
-												<td style="text-align:center; background-color: #ddddff;">H.Plus</td>
-												<td style="text-align:center;">
-													<span id="OBJID_SPAN_STATUS_H_PLUS"></span>
-												</td>
-											</tr>
-
-											<tr>
-												<td style="text-align:center; background-color: #ddddff;">Spl</td>
-												<td>
-													<select id="OBJID_SELECT_STATUS_SPL" name="A_SPL" onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()"></select>
-													<span id="OBJID_SPAN_STATUS_BONUS_SPL"></span>
-												</td>
-
-												<td style="text-align:center; background-color: #ddddff;">C.Rate</td>
-												<td style="text-align:center;">
-													<span id="OBJID_SPAN_STATUS_C_RATE"></span>
-												</td>
-											</tr>
-
-											<tr>
-												<td style="text-align:center; background-color: #ddddff;">Con</td>
-												<td>
-													<select id="OBJID_SELECT_STATUS_CON" name="A_CON" onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()"></select>
-													<span id="OBJID_SPAN_STATUS_BONUS_CON"></span>
-												</td>
-
-												<td colspan="2" style="text-align:center; background-color: #ddddff;">T.Status Point</td>
-												<td colspan="2" style="text-align:center;">
-													<span id="OBJID_SPAN_STATUS_T_STATUS_POINT"></span>
-												</td>
-											</tr>
-
-											<tr>
-												<td style="text-align:center; background-color: #ddddff;">Crt</td>
-												<td>
-													<select id="OBJID_SELECT_STATUS_CRT" name="A_CRT" onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()"></select>
-													<span id="OBJID_SPAN_STATUS_BONUS_CRT"></span>
-												</td>
-											</tr>
-
-										</table>
-
-									</div>
-
-									<div style="display: inline-block; margin-left: 2em; padding: 0.5em; border: 1px solid black; vertical-align: top;">
-
-										<style>
-											#OBJID_CHK_UPGRADE_JOB_EXPLAIN:checked ~ .OBJCLS_EXPLAIN {
-												display: block !important;
-											}
-										</style>
-
-										<div>
-											<span>臨時機能</span>
-											<span style="display: inline-block; width: 2em;"></span>
-											<input type="checkbox" id="OBJID_CHK_UPGRADE_JOB_EXPLAIN">
-											<label for="OBJID_CHK_UPGRADE_JOB_EXPLAIN">説明表示</label>
-											<hr class="OBJCLS_EXPLAIN" style="display: none;">
-											<p class="OBJCLS_EXPLAIN" style="display: none;">
-												三次職のデータを読み込んでいる状態で「四次職へ変更」ボタンを押すと、<br>
-												ステータスや装備などをそのままの状態で、四次職に変更できます。<br>
-												ただし、以下の制限があるのでご注意ください。<br>
-												・ベースレベルは200になります。<br>
-												・ジョブレベルは1になります。<br>
-												・『BaseLVを自動調節する』オプションは強制的にOFFになります。<br>
-												・処理に多少時間がかかります。処理終了時にはメッセージが表示されます。<br>
-												なお、実験段階なので、バグがあるかもしれません。<br>
-												ご利用前には、三次職のデータをセーブ、あるいはURL出力しておいて下さい。<br>
-											</p>
-											<hr>
-											<div>
-												<input type="button" onclick="UpgradeJobTo4th()" value="四次職へ変更">
-												<span id="OBJID_SPAN_UPGRADE_JOB_STATUS" style="margin-left: 2em;"></span>
-											</div>
-										</div>
-									</div>
-
-								</td>
-
-							</tr>
-						</table>
-						<!-- 基本ステータス算出部 -->
-						<table>
-							<tbody>
-								<tr>
-									<td>
-										<table border="1">
-											<tr Bgcolor="#DDDDFF">
-												<td>最大HP</td>
-												<td>最大SP</td>
-												<td>ATK</td>
-												<td>DEF</td>
-												<td>MDEF</td>
-												<td>HIT</td>
-												<td>FLEE</td>
-												<td>完全回避</td>
-												<td>クリティカル</td>
-												<td>MATK</td>
-												<td>ASPD</td>
-												<td>HP回復力</td>
-												<td>SP回復力</td>
-											</tr>
-											<tr>
-												<td Align="right">
-													<span id="OBJID_SPAN_CHARA_MAXHP">
-													</span>
-												</td>
-												<td Align="right">
-													<span id="OBJID_SPAN_CHARA_MAXSP">
-													</span>
-												</td>
-												<td Align="right">
-													<span id="OBJID_SPAN_CHARA_ATK">
-													</span>
-												</td>
-												<td Align="right">
-													<span id="OBJID_SPAN_CHARA_DEF">
-													</span>
-												</td>
-												<td Align="right">
-													<span id="OBJID_SPAN_CHARA_MDEF">
-													</span>
-												</td>
-												<td Align="right">
-													<span id="OBJID_SPAN_CHARA_HIT">
-													</span>
-												</td>
-												<td Align="right">
-													<span id="OBJID_SPAN_CHARA_FLEE">
-													</span>
-												</td>
-												<td Align="right">
-													<span id="OBJID_SPAN_CHARA_LUCKY">
-													</span>
-												</td>
-												<td Align="right">
-													<span id="OBJID_SPAN_CHARA_CRI">
-													</span>
-												</td>
-												<td Align="right">
-													<span id="OBJID_SPAN_CHARA_MATK">
-													</span>
-												</td>
-												<td Align="right">
-													<span id="OBJID_SPAN_CHARA_ASPD">
-													</span>
-												</td>
-												<td Align="right" id="A_HPR">
-													<span id="OBJID_SPAN_CHARA_HPR">
-													</span>
-												</td>
-												<td Align="right" id="A_SPR">
-													<span id="OBJID_SPAN_CHARA_SPR">
-													</span>
-												</td>
-											</tr>
-										</table>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-						<br>
-						<!-- クイック設定部 -->
-						<table>
-							<tbody>
-								<tr>
-									<td>
-										<span id="ID_QUICK_CONTROL">
-											<input type="checkbox" id="OBJID_QUICK_CONTROL_EXTRACT_CHECKBOX" onclick="OnClickQuickControlSW()">
-										</span>
-									</td>
-								</tr>
-							</tbody>
-						</table>
 					</div>
-					<!-- フローティングメニュー -->
-					<div>
-						<input type="checkbox" id="OBJID_CHK_DISABLE_FLOATING" style="display: none;">
-						<div id="OBJID_DIV_FLOATING_MENU" class="CSSCLS_DIV_FLOATING_MENU">
+					<!-- ボディ部 -->
+					<div style="display: grid; grid-template-columns: max-content auto; column-gap: 3%;">
+						<div>
+							<!-- 基本ステータス設定部 -->
 							<table>
-								<tbody>
 									<tr>
-										<td id="ID_FLOATING_INFO_AREA">
+										<td valign="top">
+											<div style="display: inline-block;">
+
+												<table border="1">
+													<tr>
+														<td colSpan="6" bgcolor="#DDDDFF">
+															<span>基本ステータス</span>
+
+															<input id="OBJID_CHECK_AUTO_BASE_LEVEL" type="checkbox" name="BLVauto" checked="checked">
+															<label for="OBJID_CHECK_AUTO_BASE_LEVEL">BaseLVを自動調節する</label>
+														</td>
+													</tr>
+
+													<tr>
+														<td style="min-width: 4em; text-align:center;">LV</td>
+														<td style="min-width: 7em;"><select id="OBJID_SELECT_BASE_LEVEL" name="A_BaseLV"onChange="CalcStatusPoint(true) | StAllCalc() | CAttackMethodAreaComponentManager.RebuildControls() | AutoCalc()"></select></td>
+
+														<td style="min-width: 4em; text-align:center;">JobLV</td>
+														<td style="min-width: 7em;"><select id="OBJID_SELECT_JOB_LEVEL" name="A_JobLV"onChange="StAllCalc() | AutoCalc()"></select></td>
+
+														<td style="min-width: 4em; text-align:center;">職業</td>
+														<td style="min-width: 7em;"><select id="OBJID_SELECT_JOB" name="A_JOB" onChange="OnChangeJobSelect(this.value) | StAllCalc() | CalcStatusPoint(false) | AutoCalc()"></select></td>
+													</tr>
+
+													<tr>
+														<td style="text-align: center;">Str</td>
+														<td>
+															<select id="OBJID_SELECT_STATUS_STR" name="A_STR" onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()"></select>
+															<span id="OBJID_SPAN_STATUS_BONUS_STR"></span>
+														</td>
+
+														<td style="text-align: center;">Agi</td>
+														<td>
+															<select id="OBJID_SELECT_STATUS_AGI" name="A_AGI" onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()"></select>
+															<span id="OBJID_SPAN_STATUS_BONUS_AGI"></span>
+														</td>
+
+														<td style="text-align: center;">Vit</td>
+														<td>
+															<select id="OBJID_SELECT_STATUS_VIT" name="A_VIT" onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()"></select>
+															<span id="OBJID_SPAN_STATUS_BONUS_VIT"></span>
+														</td>
+													</tr>
+
+													<tr>
+														<td style="text-align: center;">Int</td>
+														<td>
+															<select id="OBJID_SELECT_STATUS_INT" name="A_INT" onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()"></select>
+															<span id="OBJID_SPAN_STATUS_BONUS_INT"></span>
+														</td>
+
+														<td style="text-align: center;">Dex</td>
+														<td>
+															<select id="OBJID_SELECT_STATUS_DEX" name="A_DEX" onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()"></select>
+															<span id="OBJID_SPAN_STATUS_BONUS_DEX"></span>
+														</td>
+
+														<td style="text-align: center;">Luk</td>
+														<td>
+															<select id="OBJID_SELECT_STATUS_LUK" name="A_LUK" onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()"></select>
+															<span id="OBJID_SPAN_STATUS_BONUS_LUK"></span>
+														</td>
+													</tr>
+												</table>
+
+												<div id="OBJID_DIV_STATUS_NOTICE">
+												</div>
+
+												<table border="1">
+													<tr>
+														<td><span>基本ステータスポイント　残り</span></td>
+														<td style="min-width: 4em; text-align: right; padding-right: 0.5em;"><span id = "A_STPOINT">0000</span></td>
+													</tr>
+												</table>
+
+												<table id="OBJID_TABLE_SPEC_STATUS" border="1" style="margin-top: 1em;">
+													<tr>
+														<td colSpan="6" bgcolor="#DDDDFF">
+															<span>特性ステータス</span>
+														</td>
+													</tr>
+
+													<tr>
+														<td style="min-width: 4em; text-align:center; background-color: #ddddff;">Pow</td>
+														<td style="min-width: 7em;">
+															<select id="OBJID_SELECT_STATUS_POW" name="A_POW" onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()"></select>
+															<span id="OBJID_SPAN_STATUS_BONUS_POW"></span>
+														</td>
+
+														<td style="min-width: 5em; text-align:center; background-color: #ddddff;">P.Atk</td>
+														<td style="min-width: 7em; text-align:center;">
+															<span id="OBJID_SPAN_STATUS_P_ATK"></span>
+														</td>
+
+														<td style="min-width: 5em; text-align:center; background-color: #ddddff;">Res</td>
+														<td style="min-width: 7em; text-align:center;">
+															<span id="OBJID_SPAN_STATUS_RES"></span>
+														</td>
+													</tr>
+
+													<tr>
+														<td style="text-align:center; background-color: #ddddff;">Sta</td>
+														<td>
+															<select id="OBJID_SELECT_STATUS_STA" name="A_STA" onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()"></select>
+															<span id="OBJID_SPAN_STATUS_BONUS_STA"></span>
+														</td>
+
+														<td style="text-align:center; background-color: #ddddff;">S.Matk</td>
+														<td style="text-align:center;">
+															<span id="OBJID_SPAN_STATUS_S_MATK"></span>
+														</td>
+
+														<td style="text-align:center; background-color: #ddddff;">Mres</td>
+														<td style="text-align:center;">
+															<span id="OBJID_SPAN_STATUS_MRES"></span>
+														</td>
+													</tr>
+
+													<tr>
+														<td style="text-align:center; background-color: #ddddff;">Wis</td>
+														<td>
+															<select id="OBJID_SELECT_STATUS_WIS" name="A_WIS" onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()"></select>
+															<span id="OBJID_SPAN_STATUS_BONUS_WIS"></span>
+														</td>
+
+														<td style="text-align:center; background-color: #ddddff;">H.Plus</td>
+														<td style="text-align:center;">
+															<span id="OBJID_SPAN_STATUS_H_PLUS"></span>
+														</td>
+													</tr>
+
+													<tr>
+														<td style="text-align:center; background-color: #ddddff;">Spl</td>
+														<td>
+															<select id="OBJID_SELECT_STATUS_SPL" name="A_SPL" onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()"></select>
+															<span id="OBJID_SPAN_STATUS_BONUS_SPL"></span>
+														</td>
+
+														<td style="text-align:center; background-color: #ddddff;">C.Rate</td>
+														<td style="text-align:center;">
+															<span id="OBJID_SPAN_STATUS_C_RATE"></span>
+														</td>
+													</tr>
+
+													<tr>
+														<td style="text-align:center; background-color: #ddddff;">Con</td>
+														<td>
+															<select id="OBJID_SELECT_STATUS_CON" name="A_CON" onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()"></select>
+															<span id="OBJID_SPAN_STATUS_BONUS_CON"></span>
+														</td>
+
+														<td colspan="2" style="text-align:center; background-color: #ddddff;">T.Status Point</td>
+														<td colspan="2" style="text-align:center;">
+															<span id="OBJID_SPAN_STATUS_T_STATUS_POINT"></span>
+														</td>
+													</tr>
+
+													<tr>
+														<td style="text-align:center; background-color: #ddddff;">Crt</td>
+														<td>
+															<select id="OBJID_SELECT_STATUS_CRT" name="A_CRT" onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()"></select>
+															<span id="OBJID_SPAN_STATUS_BONUS_CRT"></span>
+														</td>
+													</tr>
+
+												</table>
+
+											</div>
+
+											<div style="display: inline-block; margin-left: 2em; padding: 0.5em; border: 1px solid black; vertical-align: top;">
+
+												<style>
+													#OBJID_CHK_UPGRADE_JOB_EXPLAIN:checked ~ .OBJCLS_EXPLAIN {
+														display: block !important;
+													}
+												</style>
+
+												<div>
+													<span>臨時機能</span>
+													<span style="display: inline-block; width: 2em;"></span>
+													<input type="checkbox" id="OBJID_CHK_UPGRADE_JOB_EXPLAIN">
+													<label for="OBJID_CHK_UPGRADE_JOB_EXPLAIN">説明表示</label>
+													<hr class="OBJCLS_EXPLAIN" style="display: none;">
+													<p class="OBJCLS_EXPLAIN" style="display: none;">
+														三次職のデータを読み込んでいる状態で「四次職へ変更」ボタンを押すと、<br>
+														ステータスや装備などをそのままの状態で、四次職に変更できます。<br>
+														ただし、以下の制限があるのでご注意ください。<br>
+														・ベースレベルは200になります。<br>
+														・ジョブレベルは1になります。<br>
+														・『BaseLVを自動調節する』オプションは強制的にOFFになります。<br>
+														・処理に多少時間がかかります。処理終了時にはメッセージが表示されます。<br>
+														なお、実験段階なので、バグがあるかもしれません。<br>
+														ご利用前には、三次職のデータをセーブ、あるいはURL出力しておいて下さい。<br>
+													</p>
+													<hr>
+													<div>
+														<input type="button" onclick="UpgradeJobTo4th()" value="四次職へ変更">
+														<span id="OBJID_SPAN_UPGRADE_JOB_STATUS" style="margin-left: 2em;"></span>
+													</div>
+												</div>
+											</div>
+
 										</td>
+
 									</tr>
-								</tbody>
 							</table>
+							<!-- 基本ステータス算出部 -->
+							<table>
+									<tbody>
+										<tr>
+											<td>
+												<table border="1">
+													<tr Bgcolor="#DDDDFF">
+														<td>最大HP</td>
+														<td>最大SP</td>
+														<td>ATK</td>
+														<td>DEF</td>
+														<td>MDEF</td>
+														<td>HIT</td>
+														<td>FLEE</td>
+														<td>完全回避</td>
+														<td>クリティカル</td>
+														<td>MATK</td>
+														<td>ASPD</td>
+														<td>HP回復力</td>
+														<td>SP回復力</td>
+													</tr>
+													<tr>
+														<td Align="right">
+															<span id="OBJID_SPAN_CHARA_MAXHP">
+															</span>
+														</td>
+														<td Align="right">
+															<span id="OBJID_SPAN_CHARA_MAXSP">
+															</span>
+														</td>
+														<td Align="right">
+															<span id="OBJID_SPAN_CHARA_ATK">
+															</span>
+														</td>
+														<td Align="right">
+															<span id="OBJID_SPAN_CHARA_DEF">
+															</span>
+														</td>
+														<td Align="right">
+															<span id="OBJID_SPAN_CHARA_MDEF">
+															</span>
+														</td>
+														<td Align="right">
+															<span id="OBJID_SPAN_CHARA_HIT">
+															</span>
+														</td>
+														<td Align="right">
+															<span id="OBJID_SPAN_CHARA_FLEE">
+															</span>
+														</td>
+														<td Align="right">
+															<span id="OBJID_SPAN_CHARA_LUCKY">
+															</span>
+														</td>
+														<td Align="right">
+															<span id="OBJID_SPAN_CHARA_CRI">
+															</span>
+														</td>
+														<td Align="right">
+															<span id="OBJID_SPAN_CHARA_MATK">
+															</span>
+														</td>
+														<td Align="right">
+															<span id="OBJID_SPAN_CHARA_ASPD">
+															</span>
+														</td>
+														<td Align="right" id="A_HPR">
+															<span id="OBJID_SPAN_CHARA_HPR">
+															</span>
+														</td>
+														<td Align="right" id="A_SPR">
+															<span id="OBJID_SPAN_CHARA_SPR">
+															</span>
+														</td>
+													</tr>
+												</table>
+											</td>
+										</tr>
+									</tbody>
+							</table>
+							<br>
+							<!-- クイック設定部 -->
+							<table>
+									<tbody>
+										<tr>
+											<td>
+												<span id="ID_QUICK_CONTROL">
+													<input type="checkbox" id="OBJID_QUICK_CONTROL_EXTRACT_CHECKBOX" onclick="OnClickQuickControlSW()">
+												</span>
+											</td>
+										</tr>
+									</tbody>
+							</table>
+						</div>
+						<!-- フローティングメニュー -->
+						<div>
+								<input type="checkbox" id="OBJID_CHK_DISABLE_FLOATING" style="display: none;">
+								<div id="OBJID_DIV_FLOATING_MENU" class="CSSCLS_DIV_FLOATING_MENU">
+									<table>
+										<tbody>
+											<tr>
+												<td id="ID_FLOATING_INFO_AREA">
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
 						</div>
 					</div>
 				</div>
