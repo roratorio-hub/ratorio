@@ -227,11 +227,14 @@ input.CSSCLS_INPUTTED_CONF {
 	background-color : #ffcccc;
 }
 
-
+/** -----------------------------------
+カスタム表示ウィンド
+-------------------------------------*/
 
 table.CSSCLS_EXTRA_INFO_DISP_TABLE {
 	border : thin solid;
 	width : 100%;
+	white-space: nowrap;
 }
 
 td.CSSCLS_EXTRA_INFO_DISP_TABLE {
@@ -495,11 +498,3 @@ td.CSSCLS_EXTRA_INFO_DISP_TABLE_SKILL_CARD_NG {
 #BATTLE_RESULT_DAMAGE:not(.CSSFLG_BTLRSLT_DAMAGE_DETAIL) .BTLRSLT_DAMAGE_DETAIL {
 	display: none;
 }
-
-
-
-
-
-
-
-
