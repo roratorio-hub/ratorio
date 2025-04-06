@@ -125,6 +125,10 @@ capabilities:
     code: 73
   - name: スキルディレイ減少
     code: 74
+  - name: HP回復力向上
+    code: 75
+  - name: SP回復力向上
+    code: 76
   - name: ボス耐性
     code: 77
   - name: 一般耐性

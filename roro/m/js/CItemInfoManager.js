@@ -400,239 +400,218 @@ CItemInfoManager.ResetState = function () {
  * @param optionIdNew 新たに選択する選択項目ID
  */
 CItemInfoManager.RefreshItemSelectBox = function (optionIdNew) {
-
 	var idx = 0;
-
 	var selectedValue = "";
-
 	var itemId = 0;
 	var itemData = null;
 	var cardId = 0;
 	var cardData = null;
 	var costumeId = 0;
 	var costumeData = null;
-
 	var optionId = "";
 	var optionIdArray = null;
-
 	var objSelect = null;
-
-
-
 	// select オブジェクト取得
 	objSelect = document.getElementById("OBJID_SELECT_ITEM_INFO_ITEM");
-
 	// 選択状態を取得
 	selectedValue = HtmlGetObjectValueById("OBJID_SELECT_ITEM_INFO_ITEM", CItemInfoManager.OptionIdLast);
-
 	// 自動設定が on の場合は、引数のパラメータを採用
 	if (CItemInfoManager.AutoFlag) {
 		selectedValue = optionIdNew;
 	}
-
-
-
 	// 選択項目全削除
 	HtmlRemoveOptionAll(objSelect);
-
 	// 選択項目のID配列を生成（重複検査用）
 	optionIdArray = new Array();
-
 	// アイテム項目の追加
 	for (idx = 0; idx < n_A_Equip.length; idx++) {
-
 		// 該当箇所のアイテムIDを取得
 		itemId = n_A_Equip[idx];
-
 		// アイテムデータ取得
 		itemData = ItemObjNew[itemId];
-
 		// 表示対象外の種別はスキップ
 		switch (itemData[ITEM_DATA_INDEX_KIND]) {
-		case ITEM_KIND_KNIFE:
-		case ITEM_KIND_SWORD:
-		case ITEM_KIND_SWORD_2HAND:
-		case ITEM_KIND_SPEAR:
-		case ITEM_KIND_SPEAR_2HAND:
-		case ITEM_KIND_AXE:
-		case ITEM_KIND_AXE_2HAND:
-		case ITEM_KIND_CLUB:
-		case ITEM_KIND_STUFF:
-		case ITEM_KIND_BOW:
-		case ITEM_KIND_KATAR:
-		case ITEM_KIND_BOOK:
-		case ITEM_KIND_FIST:
-		case ITEM_KIND_MUSICAL:
-		case ITEM_KIND_WHIP:
-		case ITEM_KIND_FUMA:
-		case ITEM_KIND_HANDGUN:
-		case ITEM_KIND_RIFLE:
-		case ITEM_KIND_SHOTGUN:
-		case ITEM_KIND_GATLINGGUN:
-		case ITEM_KIND_GRENADEGUN:
-		case ITEM_KIND_STUFF2HAND:
-		case ITEM_KIND_HEAD_TOP:
-		case ITEM_KIND_HEAD_MID:
-		case ITEM_KIND_HEAD_UNDER:
-		case ITEM_KIND_BODY:
-		case ITEM_KIND_SHIELD:
-		case ITEM_KIND_SHOULDER:
-		case ITEM_KIND_FOOT:
-		case ITEM_KIND_ACCESSARY:
-		case ITEM_KIND_ACCESSARY_ON1:
-		case ITEM_KIND_ACCESSARY_ON2:
-			break;
-
-		default:
-			continue;
+			case ITEM_KIND_KNIFE:
+			case ITEM_KIND_SWORD:
+			case ITEM_KIND_SWORD_2HAND:
+			case ITEM_KIND_SPEAR:
+			case ITEM_KIND_SPEAR_2HAND:
+			case ITEM_KIND_AXE:
+			case ITEM_KIND_AXE_2HAND:
+			case ITEM_KIND_CLUB:
+			case ITEM_KIND_STUFF:
+			case ITEM_KIND_BOW:
+			case ITEM_KIND_KATAR:
+			case ITEM_KIND_BOOK:
+			case ITEM_KIND_FIST:
+			case ITEM_KIND_MUSICAL:
+			case ITEM_KIND_WHIP:
+			case ITEM_KIND_FUMA:
+			case ITEM_KIND_HANDGUN:
+			case ITEM_KIND_RIFLE:
+			case ITEM_KIND_SHOTGUN:
+			case ITEM_KIND_GATLINGGUN:
+			case ITEM_KIND_GRENADEGUN:
+			case ITEM_KIND_STUFF2HAND:
+			case ITEM_KIND_HEAD_TOP:
+			case ITEM_KIND_HEAD_MID:
+			case ITEM_KIND_HEAD_UNDER:
+			case ITEM_KIND_BODY:
+			case ITEM_KIND_SHIELD:
+			case ITEM_KIND_SHOULDER:
+			case ITEM_KIND_FOOT:
+			case ITEM_KIND_ACCESSARY:
+			case ITEM_KIND_ACCESSARY_ON1:
+			case ITEM_KIND_ACCESSARY_ON2:
+				break;
+			default:
+				continue;
 		}
-
 		// 表示対象外のアイテムIDはスキップ
 		switch (itemId) {
-		case ITEM_ID_SUDE:
-		case ITEM_ID_NOEQUIP_HEAD_TOP:
-		case ITEM_ID_NOEQUIP_HEAD_MID:
-		case ITEM_ID_NOEQUIP_HEAD_UNDER:
-		case ITEM_ID_NOEQUIP_BODY:
-		case ITEM_ID_NOEQUIP_SHIELD:
-		case ITEM_ID_NOEQUIP_SHOULDER:
-		case ITEM_ID_NOEQUIP_SHOES:
-		case ITEM_ID_NOEQUIP_ACCESSARY:
-		case ITEM_ID_NOEQUIP_SET:
-			continue;
+			case ITEM_ID_SUDE:
+			case ITEM_ID_NOEQUIP_HEAD_TOP:
+			case ITEM_ID_NOEQUIP_HEAD_MID:
+			case ITEM_ID_NOEQUIP_HEAD_UNDER:
+			case ITEM_ID_NOEQUIP_BODY:
+			case ITEM_ID_NOEQUIP_SHIELD:
+			case ITEM_ID_NOEQUIP_SHOULDER:
+			case ITEM_ID_NOEQUIP_SHOES:
+			case ITEM_ID_NOEQUIP_ACCESSARY:
+			case ITEM_ID_NOEQUIP_SET:
+				continue;
 		}
-
 		// 選択項目のIDを生成
 		optionId = CItemInfoManager.CreateOptionId(CONST_DATA_KIND_ITEM, itemId);
-
 		// 同一項目は複数追加しない
 		if (optionIdArray.indexOf(optionId) >= 0) {
 			continue;
 		}
-
 		// 選択項目のIDを記録
 		optionIdArray.push(optionId);
-
 		// 選択項目追加
 		HtmlCreateElementOption(optionId, GetFlagAppendedItemName(itemId), objSelect);
 	}
-
 	// カード項目の追加
 	for (idx = 0; idx < n_A_card.length; idx++) {
-
 		// 該当箇所のカードIDを取得
 		cardId = n_A_card[idx];
-
 		// カードデータ取得
 		cardData = CardObjNew[cardId];
-
 		// 表示対象外の種別はスキップ
 		switch (cardData[CARD_DATA_INDEX_KIND]) {
-		case CARD_KIND_ARMS:
-		case CARD_KIND_HEAD:
-		case CARD_KIND_SHIELD:
-		case CARD_KIND_BODY:
-		case CARD_KIND_SHOULDER:
-		case CARD_KIND_FOOT:
-		case CARD_KIND_ACCESSARY:
-		case CARD_KIND_ENCHANT:
-		case CARD_KIND_ANY:
-			break;
-
-		default:
-			continue;
+			case CARD_KIND_ARMS:
+			case CARD_KIND_HEAD:
+			case CARD_KIND_SHIELD:
+			case CARD_KIND_BODY:
+			case CARD_KIND_SHOULDER:
+			case CARD_KIND_FOOT:
+			case CARD_KIND_ACCESSARY:
+			case CARD_KIND_ENCHANT:
+			case CARD_KIND_ANY:
+				break;
+			default:
+				continue;
 		}
-
 		// 選択項目のIDを生成
 		optionId = CItemInfoManager.CreateOptionId(CONST_DATA_KIND_CARD, cardId);
-
 		// 同一項目は複数追加しない
 		if (optionIdArray.indexOf(optionId) >= 0) {
 			continue;
 		}
-
 		// 選択項目のIDを記録
 		optionIdArray.push(optionId);
-
 		// 選択項目追加
 		HtmlCreateElementOption(optionId, GetFlagAppendedCardName(cardId), objSelect);
 	}
-
-	// 衣装項目の追加
-	for (idx = 0; idx < n_A_costume.length; idx++) {
-
-		// 該当箇所の衣装IDを取得
-		costumeId = n_A_costume[idx];
-
-		// 衣装データ取得
-		costumeData = CostumeOBJ[costumeId];
-
-		// 表示対象外の種別はスキップ
-		switch (costumeData[COSTUME_DATA_INDEX_KIND]) {
-		case COSTUME_KIND_ARMS:
-		case COSTUME_KIND_HEAD_TOP:
-		case COSTUME_KIND_HEAD_MID:
-		case COSTUME_KIND_HEAD_UNDER:
-		case COSTUME_KIND_SHIELD:
-		case COSTUME_KIND_BODY:
-		case COSTUME_KIND_SHOULDER:
-		case COSTUME_KIND_FOOT:
-		case COSTUME_KIND_ACCESSARY:
-			break;
-
-		default:
+	// シャドウ装備の追加
+	const eqprgnIDs = [
+		EQUIP_REGION_ID_SHADOW_ARMS_RIGHT,
+		EQUIP_REGION_ID_SHADOW_ARMS_LEFT,
+		EQUIP_REGION_ID_SHADOW_BODY,
+		EQUIP_REGION_ID_SHADOW_FOOT,
+		EQUIP_REGION_ID_SHADOW_ACCESSARY_1,
+		EQUIP_REGION_ID_SHADOW_ACCESSARY_2,
+	]
+	for (let idx = 0; idx < eqprgnIDs.length; idx++) {
+		const eqpRegionId = eqprgnIDs[idx];
+		// 装備IDを取得
+		const itemId = g_itemIdArray[eqpRegionId];
+		if (!itemId) {
 			continue;
 		}
-
-		// 表示対象外の衣装IDはスキップ
-		switch (costumeId) {
-		case COSTUME_ID_HEAD_UNDER_NONE:
-			continue;
-		}
-
 		// 選択項目のIDを生成
-		optionId = CItemInfoManager.CreateOptionId(CONST_DATA_KIND_COSTUME, costumeId);
-
+		optionId = CItemInfoManager.CreateOptionId(CONST_DATA_KIND_ITEM, itemId);
 		// 同一項目は複数追加しない
 		if (optionIdArray.indexOf(optionId) >= 0) {
 			continue;
 		}
-
 		// 選択項目のIDを記録
 		optionIdArray.push(optionId);
-
+		// 選択項目追加
+		HtmlCreateElementOption(optionId, GetFlagAppendedItemName(itemId), objSelect);
+	}
+	// 衣装項目の追加
+	for (idx = 0; idx < n_A_costume.length; idx++) {
+		// 該当箇所の衣装IDを取得
+		costumeId = n_A_costume[idx];
+		// 衣装データ取得
+		costumeData = CostumeOBJ[costumeId];
+		// 表示対象外の種別はスキップ
+		switch (costumeData[COSTUME_DATA_INDEX_KIND]) {
+			case COSTUME_KIND_ARMS:
+			case COSTUME_KIND_HEAD_TOP:
+			case COSTUME_KIND_HEAD_MID:
+			case COSTUME_KIND_HEAD_UNDER:
+			case COSTUME_KIND_SHIELD:
+			case COSTUME_KIND_BODY:
+			case COSTUME_KIND_SHOULDER:
+			case COSTUME_KIND_FOOT:
+			case COSTUME_KIND_ACCESSARY:
+				break;
+			default:
+				continue;
+		}
+		// 表示対象外の衣装IDはスキップ
+		switch (costumeId) {
+			case COSTUME_ID_HEAD_UNDER_NONE:
+				continue;
+		}
+		// 選択項目のIDを生成
+		optionId = CItemInfoManager.CreateOptionId(CONST_DATA_KIND_COSTUME, costumeId);
+		// 同一項目は複数追加しない
+		if (optionIdArray.indexOf(optionId) >= 0) {
+			continue;
+		}
+		// 選択項目のIDを記録
+		optionIdArray.push(optionId);
 		// 選択項目追加
 		HtmlCreateElementOption(optionId, costumeData[COSTUME_DATA_INDEX_NAME], objSelect);
 	}
-
 	// 選択値の復元
 	if (optionIdArray.indexOf(selectedValue) >= 0) {
 		HtmlSetObjectValueById("OBJID_SELECT_ITEM_INFO_ITEM", selectedValue);
 		objSelect.removeAttribute("disabled");
 		CItemInfoManager.OnChangeSelectItem();
 	}
-
 	// 復元できない場合は、新規に選択した選択値
 	else if (optionIdArray.indexOf(optionIdNew) >= 0) {
 		HtmlSetObjectValueById("OBJID_SELECT_ITEM_INFO_ITEM", optionIdNew);
 		objSelect.removeAttribute("disabled");
 		CItemInfoManager.OnChangeSelectItem();
 	}
-
 	// 新規に選択した選択値も復元できない場合は、最後にイベントハンドラが呼ばれた選択値
 	else if (optionIdArray.indexOf(CItemInfoManager.OptionIdLastHandling) >= 0) {
 		HtmlSetObjectValueById("OBJID_SELECT_ITEM_INFO_ITEM", CItemInfoManager.OptionIdLastHandling);
 		objSelect.removeAttribute("disabled");
 		CItemInfoManager.OnChangeSelectItem();
 	}
-
 	// 最後にイベントハンドラが呼ばれた選択値も復元できない場合は、先頭要素
 	else if (optionIdArray.length > 0) {
 		HtmlSetObjectValueById("OBJID_SELECT_ITEM_INFO_ITEM", optionIdArray[0]);
 		objSelect.removeAttribute("disabled");
 		CItemInfoManager.OnChangeSelectItem();
 	}
-
 	// そもそも、選択項目がない場合は、ダミー要素を追加して、使用不可にする
 	else {
 		HtmlCreateElementOption(CItemInfoManager.OptionIdDummy, "なし", objSelect);
@@ -641,7 +620,6 @@ CItemInfoManager.RefreshItemSelectBox = function (optionIdNew) {
 		CItemInfoManager.OnChangeSelectItem();
 	}
 };
-
 
 
 /**

@@ -1340,73 +1340,62 @@ function SetCardSlotEnabilityAll() {
 	SetCardSlotEnability(EQUIP_REGION_ID_ACCESSARY_2);
 }
 
+/**
+ * 変更された装備欄に紐づくカードスロットを初期化する。シャドウ装備の場合は何もしない。
+ * @param {*} eqpRgnId 
+ * @returns 
+ */
 function SetCardSlotEnability(eqpRgnId) {
-
 	var strObjIdPrifix = "";
-
 	var idx = 0;
 	var strObjId = "";
 	var objSelect = null;
 	var usable = false;
-
 	// サブ関数をコール
 	switch (eqpRgnId) {
-	case EQUIP_REGION_ID_ARMS:
-		strObjIdPrifix = "OBJID_ARMS_RIGHT";
-		break;
-
-	case EQUIP_REGION_ID_ARMS_LEFT:
-		strObjIdPrifix = "OBJID_ARMS_LEFT";
-		break;
-
-	case EQUIP_REGION_ID_HEAD_TOP:
-		strObjIdPrifix = "OBJID_HEAD_TOP";
-		break;
-
-	case EQUIP_REGION_ID_HEAD_MID:
-		strObjIdPrifix = "OBJID_HEAD_MID";
-		break;
-
-	case EQUIP_REGION_ID_HEAD_UNDER:
-		strObjIdPrifix = "OBJID_HEAD_UNDER";
-		break;
-
-	case EQUIP_REGION_ID_SHIELD:
-		strObjIdPrifix = "OBJID_SHIELD";
-		break;
-
-	case EQUIP_REGION_ID_BODY:
-		strObjIdPrifix = "OBJID_BODY";
-		break;
-
-	case EQUIP_REGION_ID_SHOULDER:
-		strObjIdPrifix = "OBJID_SHOULDER";
-		break;
-
-	case EQUIP_REGION_ID_SHOES:
-		strObjIdPrifix = "OBJID_SHOES";
-		break;
-
-	case EQUIP_REGION_ID_ACCESSARY_1:
-		strObjIdPrifix = "OBJID_ACCESSARY_1";
-		break;
-
-	case EQUIP_REGION_ID_ACCESSARY_2:
-		strObjIdPrifix = "OBJID_ACCESSARY_2";
-		break;
+		case EQUIP_REGION_ID_ARMS:
+			strObjIdPrifix = "OBJID_ARMS_RIGHT";
+			break;
+		case EQUIP_REGION_ID_ARMS_LEFT:
+			strObjIdPrifix = "OBJID_ARMS_LEFT";
+			break;
+		case EQUIP_REGION_ID_HEAD_TOP:
+			strObjIdPrifix = "OBJID_HEAD_TOP";
+			break;
+		case EQUIP_REGION_ID_HEAD_MID:
+			strObjIdPrifix = "OBJID_HEAD_MID";
+			break;
+		case EQUIP_REGION_ID_HEAD_UNDER:
+			strObjIdPrifix = "OBJID_HEAD_UNDER";
+			break;
+		case EQUIP_REGION_ID_SHIELD:
+			strObjIdPrifix = "OBJID_SHIELD";
+			break;
+		case EQUIP_REGION_ID_BODY:
+			strObjIdPrifix = "OBJID_BODY";
+			break;
+		case EQUIP_REGION_ID_SHOULDER:
+			strObjIdPrifix = "OBJID_SHOULDER";
+			break;
+		case EQUIP_REGION_ID_SHOES:
+			strObjIdPrifix = "OBJID_SHOES";
+			break;
+		case EQUIP_REGION_ID_ACCESSARY_1:
+			strObjIdPrifix = "OBJID_ACCESSARY_1";
+			break;
+		case EQUIP_REGION_ID_ACCESSARY_2:
+			strObjIdPrifix = "OBJID_ACCESSARY_2";
+			break;
+		default:
+			return;
 	}
-
-
 	// 当該プリフィックスを持つ全要素に対して実行
 	for (idx = SLOT_INDEX_CARD_MIN; idx <= SLOT_INDEX_CARD_MAX; idx++) {
-
 		// 対象オブジェクトを特定
 		strObjId = strObjIdPrifix + "_CARD_" + idx;
 		objSelect = HtmlGetElementById(strObjId);
-
 		// 選択項目がひとつ（カードなし／エンチャントなし）しかない場合、操作不可にする
 		usable = objSelect.options.length > 1;
-
 		// 強制条件
 		// 左手は二刀流の場合のみ利用可能
 		if (eqpRgnId == EQUIP_REGION_ID_ARMS_LEFT) {
@@ -1416,12 +1405,9 @@ function SetCardSlotEnability(eqpRgnId) {
 		if (eqpRgnId == EQUIP_REGION_ID_SHIELD) {
 			usable = ((usable) & (!n_Nitou));
 		}
-
 		// サブ関数をコール
 		__SetCardSlotEnability(objSelect, usable);
 	}
-
-
 }
 
 function __SetCardSlotEnability(objTarget, enabled) {
