@@ -872,7 +872,6 @@ function CMobConfInputAreaComponentManager(confMngParam) {
 			// マッピングされた値を取得
 			value = confData.GetData(mappedIndex);
 			// 変換
-			// index 1 の真偽値を数値に変換するため ConvertNtoS 関数の内部で呼ばれる toSafeBigInt 関数でエラーメッセージが表示されます。
 			converted = CSaveDataConverter.ConvertNtoS(value, this.convertTargetIdArray[idx][1]);
 			// 連結
 			convertedAll += converted;
