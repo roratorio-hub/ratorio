@@ -591,6 +591,7 @@ function GetPAtk() {
 	}
 
 	// 四次職支援「プロンテラマーチ」による効果
+	// 「自身の周辺31 x 31セルにトルバドゥールかトルヴェールの異性のパーティーメンバーがいる場合、P.Atk増加量が 1.5倍になる」効果は未実装
 	if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_PRONTERA_MARCH]) > 0) {
 		const values = [0, 1, 3, 5, 8, 12];
 		if (bufLv < values.length) {
@@ -738,6 +739,7 @@ function GetSMatk() {
 	}
 
 	// 四次職支援「夕焼けのセレナーデ」による効果
+	// 「自身の周辺31 x 31セルにトルバドゥールかトルヴェールの異性のパーティーメンバーがいる場合、S.Matk増加量が 1.5倍になる」効果は未実装
 	if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_YUYAKENO_SERENADE]) > 0) {
 		const values = [0, 1, 3, 5, 8, 12];
 		if (bufLv < values.length) {
@@ -844,6 +846,7 @@ function GetRes() {
 	}
 
 	// 四次職支援「ミュージカルインタールード」による効果
+	// 「自身の周辺31 x 31セルにトルバドゥールかトルヴェールの異性のパーティーメンバーがいる場合、Res増加量が 1.5倍になる」効果は未実装
 	if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_MUSICAL_INTERLUDE]) > 0) {
 		const values = [0, 20, 30, 40, 60, 100];
 		if (bufLv < values.length) {

@@ -3549,8 +3549,7 @@ g_bUnknownCasts = true;
 			break;
 
 		// 「トルバドゥール・トルヴェール」スキル「ロゼブロッサム」
-		// 「ステージマナー」の習得レベルが5の時はこの計算式で誤差無しになります
-		// それ以外の場合は誤差があるので修正が必要です
+		// 2025-04-03 実測確認済み
 		case SKILL_ID_ROSE_BLOSSOM:
 			// 弓・楽器・鞭装備状態のみ発動可能
 			if (![ITEM_KIND_BOW, ITEM_KIND_MUSICAL, ITEM_KIND_WHIP].includes(n_A_WeaponType)) {
@@ -3568,40 +3567,37 @@ g_bUnknownCasts = true;
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				// 基本倍率
-				wbairitu = 750 + (150 * n_A_ActiveSkillLV);
-				// CON補正
-				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
-				// サウンドブレンド補正
 				if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SOUND_BLEND]) {
-					wbairitu += 500 + (200 * n_A_ActiveSkillLV);
-					// CON補正
-					wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+					// サウンドブレンド 有り
+					wbairitu = 1250 + 350 * n_A_ActiveSkillLV;
+					wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_CON) * UsedSkillSearch(SKILL_ID_STAGE_MANNER);
+				} else {
+					// サウンドブレンド 無し
+					wbairitu = 750 + 150 * n_A_ActiveSkillLV;
+					wbairitu += 1 * GetTotalSpecStatus(MIG_PARAM_ID_CON) * UsedSkillSearch(SKILL_ID_STAGE_MANNER);
 				}
-				// ベースレベル補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 				// 分割HIT数
 				wActiveHitNum = 2;
 			}
 			// 追撃の場合
 			else {
 				// 基本倍率
-				wbairitu = 1250 + (350 * n_A_ActiveSkillLV);
-				// CON補正
-				wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
-				// サウンドブレンド補正
 				if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SOUND_BLEND]) {
-					wbairitu += 1250 + (350 * n_A_ActiveSkillLV);
-					// CON補正
-					wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+					// サウンドブレンド 有り
+					wbairitu = 2500 + 700 * n_A_ActiveSkillLV;
+					wbairitu += 4 * GetTotalSpecStatus(MIG_PARAM_ID_CON) * UsedSkillSearch(SKILL_ID_STAGE_MANNER);
+				} else {
+					// サウンドブレンド 無し
+					wbairitu = 1250 + 350 * n_A_ActiveSkillLV;
+					wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_CON) * UsedSkillSearch(SKILL_ID_STAGE_MANNER);
 				}
-				// ベースレベル補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			}
+			// ベースレベル補正
+			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
 		// 「トルバドゥール・トルヴェール」スキル「リズムシューティング」
-		// 「ステージマナー」の習得レベルが5の時はこの計算式で誤差無しになります
-		// それ以外の場合は誤差があるので修正が必要です
+		// 2025-04-03 実測確認済み
 		case SKILL_ID_RHYTHM_SHOOTING:
 			// 弓・楽器・鞭装備状態のみ発動可能
 			if (![ITEM_KIND_BOW, ITEM_KIND_MUSICAL, ITEM_KIND_WHIP].includes(n_A_WeaponType)) {
@@ -3617,14 +3613,14 @@ g_bUnknownCasts = true;
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 基本倍率
-			wbairitu = 750 + (150 * n_A_ActiveSkillLV);
-			// CON補正
-			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
-			// サウンドブレンド補正
 			if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SOUND_BLEND]) {
-				wbairitu += 500 + (200 * n_A_ActiveSkillLV);
-				// CON補正
-				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+				// サウンドブレンド 有り
+				wbairitu = 1250 + 350 * n_A_ActiveSkillLV;
+				wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_CON) * UsedSkillSearch(SKILL_ID_STAGE_MANNER);
+			} else {
+				// サウンドブレンド 無し
+				wbairitu = 750 + 150 * n_A_ActiveSkillLV;
+				wbairitu += 1 * GetTotalSpecStatus(MIG_PARAM_ID_CON) * UsedSkillSearch(SKILL_ID_STAGE_MANNER);
 			}
 			// ベースレベル補正
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
@@ -8634,6 +8630,7 @@ g_bUnknownCasts = true;
 			if(n_AS_MODE == 0) n_A_Weapon_zokusei = attackMethodConfArray[0].GetOptionValue(0);
 			else n_A_Weapon_zokusei = 0;
 
+			// 2025-03-29 SIAさんの検証により n_A_INT による倍率補正が実態と異なる可能性が示唆されている
 			wbairitu = 70 * n_A_ActiveSkillLV + 3 * n_A_INT;
 
 			// ベースレベル補正
@@ -9518,8 +9515,7 @@ g_bUnknownCasts = true;
 			break;
 
 		// 「トルバドゥール・トルヴェール」スキル「メタリックフューリー」
-		// 「ステージマナー」の習得レベルが5の時はこの計算式で誤差無しになります
-		// それ以外の場合は誤差があるので修正が必要です
+		// 2025-04-03 実測確認済み
 		case SKILL_ID_METALIC_FURY:
 			// 楽器・鞭装備状態のみ発動可能
 			if (![ITEM_KIND_MUSICAL, ITEM_KIND_WHIP].includes(n_A_WeaponType)) {
@@ -9541,22 +9537,21 @@ g_bUnknownCasts = true;
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 基本倍率
-			wbairitu = 1250 + (350 * n_A_ActiveSkillLV);
-			// SPL補正
-			wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			// サウンドブレンド補正
 			if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SOUND_BLEND]) {
-				wbairitu += 2750 + (650 * n_A_ActiveSkillLV);
-				// SPL補正
-				wbairitu += 20 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				// サウンドブレンド 有り
+				wbairitu = 4000 + 1000 * n_A_ActiveSkillLV;
+				wbairitu += 6 * GetTotalSpecStatus(MIG_PARAM_ID_SPL) * UsedSkillSearch(SKILL_ID_STAGE_MANNER);
+			} else {
+				// サウンドブレンド 無し
+				wbairitu = 1250 + 350 * n_A_ActiveSkillLV;
+				wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_SPL) * UsedSkillSearch(SKILL_ID_STAGE_MANNER);
 			}
 			// ベースレベル補正
 			wbairitu =  Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
 		// 「トルバドゥール・トルヴェール」スキル「サウンドブレンド」
-		// 「ステージマナー」の習得レベルが5の時はこの計算式で誤差無しになります
-		// それ以外の場合は誤差があるので修正が必要です
+		// 2025-04-03 実測確認済み
 		case SKILL_ID_SOUND_BLEND:
 			// 楽器・鞭装備状態のみ発動可能
 			if (![ITEM_KIND_MUSICAL, ITEM_KIND_WHIP].includes(n_A_WeaponType)) {
@@ -9584,9 +9579,9 @@ g_bUnknownCasts = true;
 			// ダメージ発生間隔
 			n_Delay[5] = n_Delay[6] - 200;
 			// 基本倍率
-			wbairitu = 2000 + (500 * n_A_ActiveSkillLV);
+			wbairitu = 2000 + 500 * n_A_ActiveSkillLV;
 			// SPL補正
-			wbairitu += 15 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+			wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL) * UsedSkillSearch(SKILL_ID_STAGE_MANNER);
 			// ベースレベル補正
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
@@ -10396,7 +10391,7 @@ g_bUnknownCasts = true;
 			}
 		}
 		// ＭＡＴＫ％強化倍率を取得
-		wbairitu += GetBattlerMatkPercentUp();
+		wbairitu += GetBattlerMatkPercentUp(mobData);
 		// 単発スキルの場合
 		if(n_bunkatuHIT == 0){
 			for(var b = 0; b <= 2; b++){
@@ -10692,13 +10687,21 @@ function ATKbaiJYOUSAN(wJ) {
 
 /**
  * ＭＡＴＫ上昇倍率を取得する.
- * @return 上昇倍率（０～）
+ * @param {*} mobData 対象に応じて倍率を返す場合のパラメータ。無作為に処理する場合は null / undefined でも良い。
+ * @returns 加算されるスキル倍率（１００分率）
  */
-function GetBattlerMatkPercentUp() {
+function GetBattlerMatkPercentUp(mobData) {
 	var w = 0;
 	// 支援マインドブレイカー
 	if(g_confDataNizi[CCharaConfNizi.CONF_ID_SHIEN_MIND_BREAKER]) {
 		w += 20 * g_confDataNizi[CCharaConfNizi.CONF_ID_SHIEN_MIND_BREAKER];
+	}
+	if (mobData) {
+		// 「ドラゴノロジー」による「竜形モンスターへの追加魔法攻撃力UP」
+		// 2025-03-29 SIAさんの検証を鑑みて移動しました
+		if (mobData[MONSTER_DATA_INDEX_RACE] == RACE_ID_DRAGON) {
+			w += UsedSkillSearch(SKILL_ID_DRAGONOLOGY) * 2;
+		}
 	}
 	return w;
  }

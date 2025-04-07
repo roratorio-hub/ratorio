@@ -12,7 +12,7 @@ CGlobalConstManager.DefineEnum(
 		"MOB_CONF_INPUT_DATA_INDEX_VIT",
 		"MOB_CONF_INPUT_DATA_INDEX_DEX",
 		"MOB_CONF_INPUT_DATA_INDEX_AGI",
-		"MOB_CONF_INPUT_DATA_INDEX_LUK",
+		"MOB_CONF_INPUT_DATA_INDEX_LUK",		// 10
 		"MOB_CONF_INPUT_DATA_INDEX_ATK",
 		"MOB_CONF_INPUT_DATA_INDEX_MATK",
 		"MOB_CONF_INPUT_DATA_INDEX_RANGE",
@@ -22,9 +22,11 @@ CGlobalConstManager.DefineEnum(
 		"MOB_CONF_INPUT_DATA_INDEX_JOB_EXP",
 		"MOB_CONF_INPUT_DATA_INDEX_SIZE",
 		"MOB_CONF_INPUT_DATA_INDEX_ELEMENT",
-		"MOB_CONF_INPUT_DATA_INDEX_RACE",
+		"MOB_CONF_INPUT_DATA_INDEX_RACE",		// 20
 		"MOB_CONF_INPUT_DATA_INDEX_BOSS_TYPE",
 		"MOB_CONF_INPUT_DATA_INDEX_GRASS_TYPE",
+		"MOB_CONF_INPUT_DATA_INDEX_RES",
+		"MOB_CONF_INPUT_DATA_INDEX_MRES",
 	],
 	0,
 	1
@@ -34,8 +36,6 @@ function CMobConfInputData() {
 
 	/** データ配列. */
 	this.dataArray = new Array();
-
-
 
 	/**
 	 * 初期化処理.
@@ -71,12 +71,13 @@ function CMobConfInputData() {
 		this.dataArray[MOB_CONF_INPUT_DATA_INDEX_RACE] = RACE_ID_SOLID;
 		this.dataArray[MOB_CONF_INPUT_DATA_INDEX_BOSS_TYPE] = MONSTER_BOSSTYPE_NONE;
 		this.dataArray[MOB_CONF_INPUT_DATA_INDEX_GRASS_TYPE] = MONSTER_GRASSTYPE_NONE;
+
+		this.dataArray[MOB_CONF_INPUT_DATA_INDEX_RES] = 0;
+		this.dataArray[MOB_CONF_INPUT_DATA_INDEX_MRES] = 0;
 	};
 
 	// 初期化処理実行
 	this.Init();
-
-
 
 	/**
 	 * データを設定する.
@@ -217,32 +218,17 @@ function SetActiveIndexMobConfInput(activeIndex) {
 
 
 function CMobConfInputAreaComponentManager(confMngParam) {
-
 	// 継承定義
 	CMobConfInputAreaComponentManager.prototype = new CConfBase2();
-
-
-
 	// 基底クラスのコンストラクタ呼び出し
 	CConfBase2.call(this, confMngParam);
-
-
-
 	// 設定の限界値
 	// この数を超える場合は、セーブデータの拡張が必要
 	this.confCountLimit = 29;
-
 	// 設定欄の横方向項目数
 	this.itemInRow = 1;
-
-
-
 	// 設定欄のラベル
 	this.confLabel = "モンスター手入力設定";
-
-
-
-
 
 	//********************************************************************************************************************************
 	//********************************************************************************************************************************
@@ -303,12 +289,8 @@ function CMobConfInputAreaComponentManager(confMngParam) {
 			regArray[regparam.data.id] = regparam.data;
 		};
 
-
-
 		// 基底クラスのセットアップ処理を実行
 		CMobConfInputAreaComponentManager.prototype.InitData.call(this);
-
-
 
 		//----------------------------------------------------------------
 		// データ定義　ここから
@@ -632,7 +614,31 @@ function CMobConfInputAreaComponentManager(confMngParam) {
 		funcRegister(new CConfBaseRegisterParam().SetEnumName(enumName).SetData(confData));
 		confId++;
 
+		enumName = "MOB_CONF_INPUT_CONTROL_ID_RES";
+		confData = new CConfBaseConfData()
+			.SetId(confId)
+			.SetMappedIndex(MOB_CONF_INPUT_DATA_INDEX_RES)
+			.SetText("RES(暫定対応)")
+			.SetControlType(CONTROL_TYPE_NUMBER)
+			.SetMinValue(0)
+			.SetMaxValue(maxValue10G)
+			.SetDefaultValue(0)
+		;
+		funcRegister(new CConfBaseRegisterParam().SetEnumName(enumName).SetData(confData));
+		confId++;
 
+		enumName = "MOB_CONF_INPUT_CONTROL_ID_MRES";
+		confData = new CConfBaseConfData()
+			.SetId(confId)
+			.SetMappedIndex(MOB_CONF_INPUT_DATA_INDEX_MRES)
+			.SetText("MRES(暫定対応)")
+			.SetControlType(CONTROL_TYPE_NUMBER)
+			.SetMinValue(0)
+			.SetMaxValue(maxValue10G)
+			.SetDefaultValue(0)
+		;
+		funcRegister(new CConfBaseRegisterParam().SetEnumName(enumName).SetData(confData));
+		confId++;
 
 		enumName = "MOB_CONF_INPUT_CONTROL_ID_DUMMY";
 		confData = new CConfBaseConfData()
@@ -643,8 +649,6 @@ function CMobConfInputAreaComponentManager(confMngParam) {
 		funcRegister(new CConfBaseRegisterParam().SetEnumName(enumName).SetData(confData));
 		confId++;
 
-
-
 		//----------------------------------------------------------------
 		// データ定義数チェック
 		//----------------------------------------------------------------
@@ -652,8 +656,6 @@ function CMobConfInputAreaComponentManager(confMngParam) {
 			alert("モンスター手入力設定　定義数超過");
 			return;
 		}
-
-
 
 		//----------------------------------------------------------------
 		// 表示順序に従い、モンスター手入力設定データ定義を再配列
@@ -675,6 +677,8 @@ function CMobConfInputAreaComponentManager(confMngParam) {
 		confDataOBJSorted.push(this.confDataObj[MOB_CONF_INPUT_CONTROL_ID_RANGE]);
 		confDataOBJSorted.push(this.confDataObj[MOB_CONF_INPUT_CONTROL_ID_DEF]);
 		confDataOBJSorted.push(this.confDataObj[MOB_CONF_INPUT_CONTROL_ID_MDEF]);
+		confDataOBJSorted.push(this.confDataObj[MOB_CONF_INPUT_CONTROL_ID_RES]);
+		confDataOBJSorted.push(this.confDataObj[MOB_CONF_INPUT_CONTROL_ID_MRES]);
 		confDataOBJSorted.push(this.confDataObj[MOB_CONF_INPUT_CONTROL_ID_BASE_EXP]);
 		confDataOBJSorted.push(this.confDataObj[MOB_CONF_INPUT_CONTROL_ID_JOB_EXP]);
 		confDataOBJSorted.push(this.confDataObj[MOB_CONF_INPUT_CONTROL_ID_SIZE]);
@@ -704,6 +708,10 @@ function CMobConfInputAreaComponentManager(confMngParam) {
 			[MOB_CONF_INPUT_CONTROL_ID_RANGE, 1],
 			[MOB_CONF_INPUT_CONTROL_ID_DEF, 6],
 			[MOB_CONF_INPUT_CONTROL_ID_MDEF, 6],
+			/** 新規データを追加するにはセーブデータの後方互換性確保が必要
+			[MOB_CONF_INPUT_CONTROL_ID_RES, 6],
+			[MOB_CONF_INPUT_CONTROL_ID_MRES, 6],
+			*/
 			[MOB_CONF_INPUT_CONTROL_ID_BASE_EXP, 6],
 			[MOB_CONF_INPUT_CONTROL_ID_JOB_EXP, 6],
 			[MOB_CONF_INPUT_CONTROL_ID_SIZE, 1],
@@ -714,7 +722,6 @@ function CMobConfInputAreaComponentManager(confMngParam) {
 		];
 
 	};
-
 
 
 	/**
@@ -842,48 +849,33 @@ function CMobConfInputAreaComponentManager(confMngParam) {
 	 * @return エンコードされた文字列
 	 */
 	this.EncodeData = function (confData) {
-
 		var idx = 0;
-
 		var converted = "";
 		var convertedAll = "";
-
 		var lengthText = "";
-
 		var confId = 0;
 		var confIndex = 0;
 		var mappedIndex = 0;
-
-
-
 		// 名称変換
 		converted = encodeURI(confData.GetData(MOB_CONF_INPUT_DATA_INDEX_NAME));
 		lengthText = "000" + converted.length;
 		lengthText = lengthText.substring(lengthText.length - 3)
 		convertedAll += lengthText + converted;
-
 		// それ以外変換
 		for (idx = 0; idx < this.convertTargetIdArray.length; idx++) {
-
 			// 設定ＩＤを取得
 			confId = this.convertTargetIdArray[idx][0];
-
 			// 設定インデックスを取得
 			confIndex = this.GetSortedConfIndex(confId);
-
 			// マッピングされたインデックスを取得
 			mappedIndex = this.confDataObj[confIndex].mappedIndex;
-
 			// マッピングされた値を取得
 			value = confData.GetData(mappedIndex);
-
 			// 変換
 			converted = CSaveDataConverter.ConvertNtoS(value, this.convertTargetIdArray[idx][1]);
-
 			// 連結
 			convertedAll += converted;
 		}
-
 		return convertedAll;
 	};
 
@@ -906,8 +898,6 @@ function CMobConfInputAreaComponentManager(confMngParam) {
 
 		var confIndex = 0;
 		var mappedIndex = 0;
-
-
 
 		// 未入力の場合は処理打ち切り
 		if (codeInputted.length == 0) {
@@ -984,8 +974,6 @@ function CMobConfInputAreaComponentManager(confMngParam) {
 		var infoText = "";
 		var objInfo = null;
 
-
-
 		// クラスインスタンスを取得
 		objClass = CConfBase2.targetArray[instanceNo].objThis;
 
@@ -1025,8 +1013,6 @@ function CMobConfInputAreaComponentManager(confMngParam) {
 
 		var infoText = "";
 		var objInfo = null;
-
-
 
 		// クラスインスタンスを取得
 		objClass = CConfBase2.targetArray[instanceNo].objThis;
@@ -1077,7 +1063,6 @@ function CMobConfInputAreaComponentManager(confMngParam) {
 		var activateDataNo = 0;
 
 		var objCtrl = null;
-
 
 		// クラスインスタンスを取得
 		objClass = CConfBase2.targetArray[instanceNo].objThis;

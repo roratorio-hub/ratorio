@@ -1218,6 +1218,8 @@ function floorBigInt40 (value) {
  * 実質的に何もしていませんが BigInt() を呼ぶ前にブレークポイントでワンテンポ待つと事象が抑えられるため
  * 本関数が同様の効果を発揮して状況が緩和される可能性があります
  * 問題が再現する場合は例外処理でカバーする方針です
+ * 
+ * TODO: この関数を真偽値から数値への変換に使っている場合は Number() への置き換えを検討してください。
  * @param {*} value 
  * @returns 
  */
@@ -1227,7 +1229,7 @@ function toSafeBigInt(value) {
 	  const result = BigInt(value);
 	  
 	  // 入力値と結果の一致を確認（文字列化して比較）
-	  if (value.toString() !== result.toString()) {
+	  if (typeof value !== "boolean" && value.toString() !== result.toString()) {
 		console.error(`値が一致しません: 入力(${value}) -> 変換後(${result})`);
 	  }
 	  

@@ -35434,10 +35434,6 @@ function CSkillManager() {
 		this.dataArray[skillId] = skillData;
 		skillId++;
 
-
-
-
-
 		// ----------------------------------------------------------------
 		// ステージマナー
 		// ----------------------------------------------------------------
@@ -35445,7 +35441,6 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "ステージマナー";
 			this.kana = "ステエシマナア";
@@ -35464,7 +35459,6 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "回想";
 			this.kana = "カイソウ";
@@ -35560,7 +35554,6 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "ソナタオブクヴァシル";
 			this.kana = "ソナタオフクウアシル";
@@ -35608,9 +35601,8 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
-			this.name = "(△)ロゼブロッサム";
+			this.name = "ロゼブロッサム";
 			this.kana = "ロセフロツサム";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -35656,9 +35648,8 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
-			this.name = "(△)リズムシューティング";
+			this.name = "リズムシューティング";
 			this.kana = "リスムシユウテインク";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -35705,9 +35696,8 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
-			this.name = "(△)メタリックフューリー";
+			this.name = "メタリックフューリー";
 			this.kana = "メタリツクフユウリイ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
@@ -35753,9 +35743,8 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
-			this.name = "(△)サウンドブレンド";
+			this.name = "サウンドブレンド";
 			this.kana = "サウントフレント";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
@@ -35801,7 +35790,6 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "(×)ゲフェニアノクターン";
 			this.kana = "ケフエニアノクタアン";
@@ -35849,7 +35837,6 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "(×)ロキの気まぐれ";
 			this.kana = "ロキノキマクレ";
@@ -35897,7 +35884,6 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "(×)鉱員のラプソディ";
 			this.kana = "コウインノラフソテイ";
@@ -35945,9 +35931,8 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
-			this.name = "(×)ミュージカルインタールード";
+			this.name = "(△)ミュージカルインタールード";
 			this.kana = "ミユウシカルインタアルウト";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE;
@@ -35993,9 +35978,8 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
-			this.name = "(×)夕焼けのセレナーデ";
+			this.name = "(△)夕焼けのセレナーデ";
 			this.kana = "ユウヤケノセレナアテ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE;
@@ -36041,7 +36025,6 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "(×)死者たちへのレクイエム";
 			this.kana = "シシヤタチヘノレクイエム";
@@ -36089,9 +36072,8 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
-			this.name = "(×)プロンテラマーチ";
+			this.name = "(△)プロンテラマーチ";
 			this.kana = "フロンテラマアチ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE;
