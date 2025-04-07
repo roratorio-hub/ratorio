@@ -36,37 +36,24 @@ CSaveDataConverter.letterBitsMIG = 6;
  * @return 変換された文字列
  */
 CSaveDataConverter.ConvertNtoS = function (value, convlen) {
-
 	var idx = 0;
-
 	var digitUnit = 0;
-
 	var valueWork = 0n;
 	var valueDigit = 0;
-
 	var converted = "";
-
 	var lengthDiff = 0;
-
+	// TODO: 真偽値を数値に変換するために BigInt（toSafeBigInt） を使っているが Number で十分なのでは？
 	digitUnit = toSafeBigInt(CSaveDataConverter.LetterMappingArray.length);
-
 	valueWork = toSafeBigInt(value);
-
 	while (valueWork > 0n) {
-
 		valueDigit = valueWork % digitUnit;
-
 		converted = CSaveDataConverter.LetterMappingArray[valueDigit] + converted;
-
 		valueWork = (valueWork - valueDigit) / digitUnit
 	}
-
 	lengthDiff = convlen - converted.length;
-
 	for (idx = 0; idx < lengthDiff; idx++) {
 		converted = CSaveDataConverter.LetterMappingArray[0] + converted;
 	}
-
 	return converted;
 };
 

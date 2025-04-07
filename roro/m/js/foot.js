@@ -11094,6 +11094,8 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 			n_tok[36] += 5;
 		}
 
+		// 「ドラゴノロジー」による「竜形モンスターへの物理攻撃力UP」
+		// 2025-03-29 SIAさんによる実測確認済み
 		n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP_RACE_DRAGON] += UsedSkillSearch(SKILL_ID_DRAGONOLOGY) * 4;
 
 		switch (n_A_Equip[EQUIP_REGION_ID_ARMS_LEFT]) {
@@ -15502,17 +15504,9 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 			n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_RACE_ALL] += 14 * LearnedSkillSearch(SKILL_ID_CLEARANCE) * itemCount;
 		}
 
-
-
-
-
 		if(CardNumSearch(895)){
 			n_tok[177] -= 50;
 			n_tok[178] -= 50;
-		}
-
-		if (mobData[MONSTER_DATA_INDEX_RACE] == RACE_ID_DRAGON) {
-			n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_RACE_DRAGON] += UsedSkillSearch(SKILL_ID_DRAGONOLOGY) * 2;
 		}
 
 		if(n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_RACE_ALL] != 0){
@@ -15824,6 +15818,7 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 			n_tok[56] += g_confDataNizi[CCharaConfNizi.CONF_ID_PROVIDENCE] * 5;
 		}
 
+		// 「ドラゴノロジー」による「竜形モンスターから受けるダメージ耐性UP」
 		n_tok[ITEM_SP_RESIST_RACE_DRAGON] += UsedSkillSearch(SKILL_ID_DRAGONOLOGY) * 4;
 
 		for(var i=971;i<=977;i++){

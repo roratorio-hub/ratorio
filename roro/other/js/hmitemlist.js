@@ -1,66 +1,57 @@
 function OnLoadItemList() {
 	SetUpSelects();
-
 	BuildUpItemList();
 }
 
-
-
 function SetUpSelects() {
-
 	var kind = 0;
 	var objSelect = null;
-
-
 	//----------------------------------------------------------------
 	// 装備種別選択セレクトボックスの初期化
 	//----------------------------------------------------------------
-
 	// 一度、全選択肢を削除
 	objSelect = document.getElementById("OBJID_SELECT_ITEM_KIND");
 	HtmlRemoveOptionAll(objSelect);
-
 	// 武器項目の追加
 	for (kind = ITEM_KIND_KNIFE; kind <= ITEM_KIND_GRENADEGUN; kind++) {
 		HtmlCreateElementOption(kind, GetItemKindNameText(kind), objSelect);
 	}
-
 	// 頭防具項目の追加
 	for (kind = ITEM_KIND_HEAD_TOP; kind <= ITEM_KIND_HEAD_UNDER; kind++) {
 		HtmlCreateElementOption(kind, GetItemKindNameText(kind), objSelect);
 	}
-
 	// その他防具項目の追加
 	for (kind = ITEM_KIND_BODY; kind <= ITEM_KIND_ACCESSARY_ON2; kind++) {
 		HtmlCreateElementOption(kind, GetItemKindNameText(kind), objSelect);
 	}
-
 	// 武器すべて、防具すべての追加
 	HtmlCreateElementOption(-999, "すべての武器", objSelect);
 	HtmlCreateElementOption(-9999, "すべての防具", objSelect);
-
-
+	// シャドウの追加
+	const kind_list = [
+		ITEM_KIND_SHADOW_ARMS_RIGHT,
+		ITEM_KIND_SHADOW_ARMS_LEFT,
+		ITEM_KIND_SHADOW_BODY,
+		ITEM_KIND_SHADOW_FOOT,
+		ITEM_KIND_SHADOW_ACCESSARY_ON1,
+		ITEM_KIND_SHADOW_ACCESSARY_ON2,
+		];
+	for (const kind of kind_list) {
+		HtmlCreateElementOption(kind, GetItemKindNameText(kind), objSelect);
+	}
 	//----------------------------------------------------------------
 	// 職業選択セレクトボックスの初期化
 	//----------------------------------------------------------------
-
 	// 一度、全選択肢を削除
 	objSelect = document.getElementById("OBJID_SELECT_JOB_RESTRICT");
 	HtmlRemoveOptionAll(objSelect);
-
 	// 「全て表示」の追加
 	HtmlCreateElementOption(-1, "全て表示", objSelect);
-
 	// 職業の追加
 	for (kind = JOB_ID_NOVICE; kind < EnumJobId.Count; kind++) {
 		HtmlCreateElementOption(kind, GetJobName(kind), objSelect);
 	}
-
 }
-
-
-
-
 
 function BuildUpItemList() {
 
