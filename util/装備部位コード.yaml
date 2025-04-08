@@ -63,6 +63,18 @@ equipment:
     code: 65
   - name: アクセサリー(2)
     code: 66
+  - name: シャドウウェポン
+    code: 72
+  - name: シャドウシールド
+    code: 73
+  - name: シャドウアーマー
+    code: 77
+  - name: シャドウシューズ
+    code: 80
+  - name: シャドウアクセサリー(1)
+    code: 82
+  - name: シャドウアクセサリー(2)
+    code: 83
   - name: エンチャント
     code: 99
   - name: セット
