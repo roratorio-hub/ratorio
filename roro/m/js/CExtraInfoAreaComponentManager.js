@@ -326,29 +326,22 @@ function CExtraInfoAreaComponentManager () {
 	};
 
 
-
-
-
 	/**
 	 * 拡張情報ＩＤ変更イベントハンドラ.
 	 */
 	this.OnChangeInfo = function () {
-
 		var infoId = 0;
-
 		// 設定値の保持
 		this.StoreSelectedValueAll();
-
 		// 拡張情報ＩＤを取得
 		infoId = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_EXTRA_INFO_" + this.managerInstanceId, 0);
-
 		// 選択中のＩＤを更新
 		this.selectedInfoId = infoId;
-
+		// セーブデータ更新
+		CSaveController.setSettingProp(`floatingInfo${this.managerInstanceId}InfoName`, infoId);
 		// 再構築処理呼び出し
 		this.RebuildDispArea();
 	};
-
 
 
 	/**

@@ -30739,7 +30739,9 @@ if (true) {
 	UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_ACCESSARY_2);
 }
 
-
+/**
+ *  もう使われていない関数である可能性
+ */
 function LoadSaveDataToCalculator () {
 
 	var idx = 0;
@@ -30798,6 +30800,17 @@ if (splittedArray.length == 2) {
 // 再計算
 CalcStatusPoint(true);
 calc();
+
+/**
+ * カスタム表示の状態を復元する
+ * 装備・ステータスに依存するカスタム表示欄があるので再計算後に実施する
+ */
+if (CSaveController.getSettingProp(CSaveDataConst.propNameFloatingInfoAreaSwitch) == 1) {
+	// カスタム表示を開く
+	$("#OBJID_FLOATING_INFO_AREA_EXTRACT_CHECKBOX").click()
+	// 中身を復元する
+	CFloatingInfoAreaComponentManager.LoadFromLocalStorage();
+}
 
 function Init(){
 
@@ -31074,16 +31087,6 @@ function Init(){
 
 	BuildUpCastSimSimulateArea(document.getElementById("OBJID_TD_CASTSIM"), false);
 }
-
-
-
-
-
-
-
-
-
-
 
 g_intervalFunctionSimulateCastTime = null;
 g_castProgressInterval = 10;
