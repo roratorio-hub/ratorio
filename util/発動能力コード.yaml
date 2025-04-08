@@ -247,6 +247,10 @@ capabilities:
     code: 236
   - name: プレイヤー耐性
     code: 243
+  - name: RES加算
+    code: 254
+  - name: MRES加算
+    code: 255
   - name: 全サイズへの物理ダメージ増加
     code: 260
   - name: 全種族への物理ダメージ増加
