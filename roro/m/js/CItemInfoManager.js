@@ -281,6 +281,7 @@ CItemInfoManager.OnClickExtractSwitch = function () {
 	CSaveController.setSettingProp(CSaveDataConst.propNameItemInfoSwitch, status);
 	// 再構築する
 	CItemInfoManager.RebuildControls();
+	CItemInfoManager.LoadFromLocalStorage();
 };
 
 
@@ -1315,7 +1316,17 @@ CItemInfoManager.ApplyTimeItem = function (timeItemId) {
 	}
 };
 
-
+/**
+ * ローカルストレージに保存された状態を復元する
+ */
+CItemInfoManager.LoadFromLocalStorage = function () {
+	// 自動表示の状態を設定する
+	let status = Number(CSaveController.getSettingProp(CSaveDataConst.propNameItemInfoAutoSwitch)) == 1n;
+	$("#OBJID_CHECK_ITEM_INFO_AUTO_FLAG").prop("checked", status);
+	// 時限効果フォーカスの状態を設定する
+	status = Number(CSaveController.getSettingProp(CSaveDataConst.propNameItemInfoTimeEffectSwitch)) == 1n;
+	$("#OBJID_CHECK_ITEM_INFO_APPLY_AUTO_FOCUS_FLAG").prop("checked", status);
+}
 
 /**
  * セット情報を追記する.

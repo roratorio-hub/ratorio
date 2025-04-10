@@ -30811,6 +30811,16 @@ if (CSaveController.getSettingProp(CSaveDataConst.propNameFloatingInfoAreaSwitch
 	// 中身を復元する
 	CFloatingInfoAreaComponentManager.LoadFromLocalStorage();
 }
+/**
+ * アイテム情報の状態を復元する
+ */
+if (CSaveController.getSettingProp(CSaveDataConst.propNameItemInfoSwitch) == 1) {
+	// カスタム表示を開く
+	$("#OBJID_ITEM_INFO_EXTRACT_CHECKBOX").click()
+	// 中身を復元する
+	CItemInfoManager.LoadFromLocalStorage();
+}
+
 
 function Init(){
 

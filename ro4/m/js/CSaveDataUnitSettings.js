@@ -30,7 +30,7 @@ class CSaveDataUnitSettings extends CSaveDataUnitBase {
         } else if (dataText.length < 8) {
             // version 2 → 3 の後方互換性確保
             // データ長 10 文字延長
-            nextOffset = super.parse(dataText + "iA0000000g", bitOffset);
+            nextOffset = super.parse(dataText + "iA0000000w", bitOffset);
             return nextOffset;
         }
         nextOffset = super.parse(dataText, bitOffset);
@@ -129,7 +129,7 @@ class CSaveDataUnitSettings extends CSaveDataUnitBase {
         this.setProp(CSaveDataConst.propNameFloatingInfo5CategoryName, 0);
         this.setProp(CSaveDataConst.propNameFloatingInfo5InfoName, 0);
         this.setProp(CSaveDataConst.propNameItemInfoSwitch, 0);
-        this.setProp(CSaveDataConst.propNameItemInfoAutoSwitch, 1);
+        this.setProp(CSaveDataConst.propNameItemInfoAutoSwitch, 0);
         this.setProp(CSaveDataConst.propNameItemInfoTimeEffectSwitch, 0);
     }
     /**
