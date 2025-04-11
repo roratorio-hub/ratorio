@@ -69,8 +69,10 @@ SaveNameAll = new Array();
 for(var i=0;i<=500;i++) SaveNameAll[i] = "ZZZZ";
 n_Nitou=0;
 n_Ses=0;
-/** 遠距離フラグ. 0=近距離, 1=遠距離 */
-let n_Enekyori=0;
+/** BaseLv */
+let n_A_BaseLV=1;
+/** 遠距離フラグ. CSkillData.RANGE_SHORT | CSkillData.RANGE_LONG | CSkillData.RANGE_MAGIC | CSkillData.RANGE_SPECIAL */
+let n_Enekyori = 0;
 n_Skill1SW=0;
 n_Skill2SW=0;
 n_Skill3SW=0;
@@ -106,6 +108,8 @@ let n_KoteiCast = 0;
 let wCast = 0;
 /** スキル倍率％ */
 let wbairitu = 100;
+/** スキルID */
+let n_A_ActiveSkill = null;
 /** スキルLv */
 let n_A_ActiveSkillLV = null;
 n_tok = new Array();
