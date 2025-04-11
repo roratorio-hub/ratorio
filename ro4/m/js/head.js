@@ -69,7 +69,8 @@ SaveNameAll = new Array();
 for(var i=0;i<=500;i++) SaveNameAll[i] = "ZZZZ";
 n_Nitou=0;
 n_Ses=0;
-n_Enekyori=0;
+/** 遠距離フラグ. 0=近距離, 1=遠距離 */
+let n_Enekyori=0;
 n_Skill1SW=0;
 n_Skill2SW=0;
 n_Skill3SW=0;
@@ -88,9 +89,25 @@ str_bSUB = "";
 cast_kotei = 0;
 b = 0;
 n_PerfectHIT_DMG = 0;
-n_Delay = [0,0,0,0,0,0,0,0];
+/**
+ * n_Delay[0]=攻撃間隔判定不能フラグ
+ * n_Delay[1]=モーションディレイ
+ * n_Delay[2]=ディレイ
+ * n_Delay[3]=強制ディレイ（ストームガストなど）
+ * n_Delay[4]=入力限界
+ * n_Delay[5]=設置ダメージ発生間隔
+ * n_Delay[6]=持続時間
+ * n_Delay[7]=クールタイム */
+let n_Delay = [0,0,0,0,0,0,0,0];
 wDelay = 0;
-n_KoteiCast = 0;
+/** 固定詠唱 */
+let n_KoteiCast = 0;
+/** 変動詠唱 */
+let wCast = 0;
+/** スキル倍率％ */
+let wbairitu = 100;
+/** スキルLv */
+let n_A_ActiveSkillLV = null;
 n_tok = new Array();
 n_tok_no_limit = new Array();
 for(var i=0;i<=450;i++) {
