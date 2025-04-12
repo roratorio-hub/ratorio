@@ -1,3 +1,5 @@
+//"use strict";
+
 // データ収集用
 // バトルデータインデックス
 CGlobalConstManager.DefineEnum(
@@ -67,10 +69,6 @@ for(var i=0;i<=19;i++) SaveDataAll[i] = "ZZZZ";
 /** セーブデータ名配列. 既に使われていない可能性有り */
 let SaveNameAll = new Array();
 for(var i=0;i<=500;i++) SaveNameAll[i] = "ZZZZ";
-/** 二刀流フラグ */
-let n_Nitou = false;
-/** 二刀流フラグ */
-let n_NitouCalc = false;
 /** シーズモードフラグ */
 let n_SiegeMode = false;
 /** BaseLv */
@@ -16395,27 +16393,23 @@ function RebuildSizeModifyRatioInfo(battleCalcInfo, charaData, specData, mobData
  */
 function Click_PassSkillSW(){
 
-	var idx = 0;
+	let idx = 0;
+	let passiveSkillIdArray = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, n_A_JOB).GetPassiveSkillIdArray();
 
-	var passiveSkillIdArray = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, n_A_JOB).GetPassiveSkillIdArray();
-
-
-
-	with(document.calcForm){
-		n_Skill1SW = A1_SKILLSW.checked;
-		if(n_Skill1SW){
+	n_Skill1SW = document.calcForm.A1_SKILLSW.checked;
+	if(n_Skill1SW){
 			var end = passiveSkillIdArray.length -1;
 			var str;
 			str = '<TABLE Border>';
 			str += '<TR><TD ColSpan="4" id="A1TD" Bgcolor="#DDDDFF" class="title">';
-			str += '<input id="OBJID_CHECK_A1_SKILL_SW" type="checkbox" name="A1_SKILLSW"onClick="Click_PassSkillSW()">';
+			str += '<input id="OBJID_CHECK_A1_SKILL_SW" type="checkbox" name="A1_SKILLSW" onClick="Click_PassSkillSW()">';
 			str += `<label for="OBJID_CHECK_A1_SKILL_SW">${GetJobName(n_A_JOB)}固有自己支援・パッシブ持続系</label>`;
 			str += '<span id="A1used"></span>';
 			str += '</TD></TR>';
 			for(var i=0;i<=end;i+=2) str += '<TR><TD id="P_Skill'+ i +'"></TD><TD id="P_Skill'+ i +'s"></TD><TD id="P_Skill'+ (i+1) +'"></TD><TD id="P_Skill'+ (i+1) +'s"></TD></TR>';
 			str += '</TABLE>';
 			myInnerHtml("ID_PASS_SKILL",str,0);
-			A1_SKILLSW.checked = 1;
+			document.calcForm.A1_SKILLSW.checked = true;
 
 			for(var i=0;i<=end;i++){
 				if (passiveSkillIdArray[i] == SKILL_ID_SHUCHURYOKU_KOZYO) {
@@ -16623,7 +16617,6 @@ function Click_PassSkillSW(){
 				wOBJ.options[2] = new Option("奇偶",2);
 				wOBJ.options[3] = new Option("奇奇",3);
 			}
-
 
 			//----------------------------------------------------------------
 			// エレメンタルマスター系列　召喚中の精霊
@@ -16883,29 +16876,24 @@ function Click_PassSkillSW(){
 				HtmlCreateElementOption(9, "四方五行陣Lv5", objSelect);
 			}
 
-
-
-
-
 			for (var i = 0; i < passiveSkillIdArray.length; i++) {
 				var wOBJ = document.getElementById("A_skill" + i);
 				wOBJ.value = n_A_PassSkill[i];
 			}
-		}
-		else{
+	}
+	else{
 			var str;
 			str = '<TABLE Border>';
 			str += '<TR><TD ColSpan="4" id="A1TD" Bgcolor="#DDDDFF" class="title">';
-			str += '<input id="OBJID_CHECK_A1_SKILL_SW" type="checkbox" name="A1_SKILLSW"onClick="Click_PassSkillSW()">';
+			str += '<input id="OBJID_CHECK_A1_SKILL_SW" type="checkbox" name="A1_SKILLSW" onClick="Click_PassSkillSW()">';
 			str += `<label for="OBJID_CHECK_A1_SKILL_SW">${GetJobName(n_A_JOB)}固有自己支援・パッシブ持続系</label>`;
 			str += '<span id="A1used"></span>';
 			str += '</TD></TR>';
 			str += '</TABLE>';
 			myInnerHtml("ID_PASS_SKILL",str,0);
-			A1_SKILLSW.checked = 0;
-		}
-		Click_A1(0);
+			document.calcForm.A1_SKILLSW.checked = false;
 	}
+	Click_A1(0);
 }
 
 /**
