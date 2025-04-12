@@ -318,7 +318,7 @@ function SaveSystem(funcSaveDataModify = null){
 		SaveData[20] = GetStatefullData("DATA_OBJID_ARMS_RIGHT_CARD_4", 0);
 
 		// 左手武器情報（二刀流時のみ）
-		if(n_Nitou){
+		if (n_Nitou) {
 			SaveData[21] = eval(A_Weapon2_ATKplus.value);
 			SaveData[22] = GetStatefullData("DATA_OBJID_ARMS_LEFT", 0);
 			SaveData[23] = GetStatefullData("DATA_OBJID_ARMS_LEFT_CARD_1", 0);
