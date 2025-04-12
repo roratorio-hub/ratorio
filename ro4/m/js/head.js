@@ -17843,30 +17843,26 @@ function Click_Skill7SW(){
  * アイテム・食品他 > ALL+10 ボタンのクリックイベント
  */
 function Click_NetCafe3(){
-	with(document.calcForm){
-		A7_Skill3.value = 10;
-		A7_Skill4.value = 10;
-		A7_Skill5.value = 10;
-		A7_Skill6.value = 10;
-		A7_Skill7.value = 10;
-		A7_Skill8.value = 10;
-		Click_A7(1);
-	}
+	document.calcForm.A7_Skill3.value = 10;
+	document.calcForm.A7_Skill4.value = 10;
+	document.calcForm.A7_Skill5.value = 10;
+	document.calcForm.A7_Skill6.value = 10;
+	document.calcForm.A7_Skill7.value = 10;
+	document.calcForm.A7_Skill8.value = 10;
+	Click_A7(1);
 }
 
 /**
  * アイテム・食品他 > 全解除 ボタンのクリックイベント
  */
 function Click_Food_Off(){
-	with(document.calcForm){
-		A7_Skill3.value = 0;
-		A7_Skill4.value = 0;
-		A7_Skill5.value = 0;
-		A7_Skill6.value = 0;
-		A7_Skill7.value = 0;
-		A7_Skill8.value = 0;
-		Click_A7(1);
-	}
+	document.calcForm.A7_Skill3.value = 0;
+	document.calcForm.A7_Skill4.value = 0;
+	document.calcForm.A7_Skill5.value = 0;
+	document.calcForm.A7_Skill6.value = 0;
+	document.calcForm.A7_Skill7.value = 0;
+	document.calcForm.A7_Skill8.value = 0;
+	Click_A7(1);
 }
 
 /**
