@@ -17339,10 +17339,9 @@ function Click_A3(n){
  * ギルドスキル/ゴスペル/他　を構築する
  */
 function Click_Skill4SW(){
-	with(document.calcForm){
-		n_Skill4SW = A4_SKILLSW.checked;
-		if(n_Skill4SW){
-			var str;
+	n_Skill4SW = document.calcForm.A4_SKILLSW.checked;
+	if(n_Skill4SW){
+			let str;
 			str = '<TABLE Border style="white-space:nowrap;"><TR><TD id="A4TD" ColSpan="10" class="title"><input id="OBJID_CHECK_A4_SKILLSW" type="checkbox" name="A4_SKILLSW"onClick="Click_Skill4SW()"><label for="OBJID_CHECK_A4_SKILLSW">ギルドスキル/ゴスペル/他</label><span id="A4used"></span></TD></TR>';
 			str += '<TR><TD ColSpan="10">ギルドスキル</TD></TR>';
 			str += '<TR><TD id="EN40_1"></TD><TD id="EN40_2"></TD><TD id="EN41_1"></TD><TD id="EN41_2"></TD><TD id="EN42_1"></TD><TD id="EN42_2"></TD></TR>';
@@ -17356,10 +17355,10 @@ function Click_Skill4SW(){
 			str += '<TR><TD id="EN433_1"></TD><TD id="EN433_2"></TD><TD id="EN434_1"></TD><TD id="EN434_2"></TD><TD id="EN435_1"></TD><TD id="EN435_2"></TD></TR>';
 			str += '</TABLE>';
 			myInnerHtml("SP_SIEN02",str,0);
-			A4_SKILLSW.checked = 1;
-			name_CS4SW_SKILL = ["臨戦体勢","偉大なる指導力","栄光の傷","冷静な心","鋭い視線","ステータスALL+20","HP+100%","SP+100%","ATK+100%","HIT+50＆FLEE+50","被ダメージ半減"];
-			html_CS4SW_SKILL = new Array();
-			for(i=0;i<=10;i++) myInnerHtml("EN4"+i+"_1",name_CS4SW_SKILL[i],0);
+			document.calcForm.A4_SKILLSW.checked = true;
+			const name_CS4SW_SKILL = ["臨戦体勢","偉大なる指導力","栄光の傷","冷静な心","鋭い視線","ステータスALL+20","HP+100%","SP+100%","ATK+100%","HIT+50＆FLEE+50","被ダメージ半減"];
+			let html_CS4SW_SKILL = new Array();
+			for(let i = 0; i <= 10; i++) myInnerHtml("EN4"+i+"_1",name_CS4SW_SKILL[i],0);
 			html_CS4SW_SKILL[0] = '<input type="checkbox" name="A4_Skill0"onClick="StAllCalc() | Click_A4(1)">';
 			html_CS4SW_SKILL[1] = '<select name="A4_Skill1"onChange="StAllCalc() | Click_A4(1)"></select>';
 			html_CS4SW_SKILL[2] = '<select name="A4_Skill2"onChange="StAllCalc() | Click_A4(1)"></select>';
@@ -17372,7 +17371,7 @@ function Click_Skill4SW(){
 			html_CS4SW_SKILL[9] = '<input type="checkbox" name="A4_Skill9"onClick="StAllCalc() | Click_A4(1)">';
 			html_CS4SW_SKILL[10] = '<input type="checkbox" name="A4_Skill10"onClick="StAllCalc() | Click_A4(1)">';
 			html_CS4SW_SKILL[11] = '<select name="A4_Skill11"onChange="StAllCalc() | Click_A4(1)"></select>';
-			for(i=0;i<=11;i++) myInnerHtml("EN4"+i+"_2",html_CS4SW_SKILL[i],0);
+			for(let i = 0; i <= 11; i++) myInnerHtml("EN4"+i+"_2",html_CS4SW_SKILL[i],0);
 			myInnerHtml("EN430_1","STR",0);
 			myInnerHtml("EN431_1","AGI",0);
 			myInnerHtml("EN432_1","VIT",0);
@@ -17385,54 +17384,59 @@ function Click_Skill4SW(){
 			html_CS4SW_SKILL[33] = '<select name="A4_Skill33"onChange="StAllCalc() | Click_A4(1)"></select>';
 			html_CS4SW_SKILL[34] = '<select name="A4_Skill34"onChange="StAllCalc() | Click_A4(1)"></select>';
 			html_CS4SW_SKILL[35] = '<select name="A4_Skill35"onChange="StAllCalc() | Click_A4(1)"></select>';
-			for(i=30;i<=35;i++) myInnerHtml("EN4"+i+"_2",html_CS4SW_SKILL[i],0);
-			for(i=0;i<=5;i++){
-				A4_Skill1.options[i] = new Option(i,i);
-				A4_Skill2.options[i] = new Option(i,i);
-				A4_Skill3.options[i] = new Option(i,i);
-				A4_Skill4.options[i] = new Option(i,i);
+			for(let i = 30; i <= 35; i++) myInnerHtml("EN4"+i+"_2",html_CS4SW_SKILL[i],0);
+			for(let i = 0; i <= 5; i++){
+				document.calcForm.A4_Skill1.options[i] = new Option(i,i);
+				document.calcForm.A4_Skill2.options[i] = new Option(i,i);
+				document.calcForm.A4_Skill3.options[i] = new Option(i,i);
+				document.calcForm.A4_Skill4.options[i] = new Option(i,i);
 			}
-			A4_Skill11.options[0] = new Option("■選択してください",0);
-			A4_Skill11.options[1] = new Option(SkillObjNew[439][SKILL_DATA_INDEX_NAME] +"(Int)",1);
-			A4_Skill11.options[2] = new Option(SkillObjNew[627][SKILL_DATA_INDEX_NAME] +"(Str&Dex&Int)",2);
-			A4_Skill11.options[3] = new Option(SkillObjNew[628][SKILL_DATA_INDEX_NAME] +"(Vit)",3);
-			for(i=0;i<=300;i++){
-				A4_Skill31.options[i] = new Option(i,i);
-				A4_Skill32.options[i] = new Option(i,i);
+			document.calcForm.A4_Skill11.options[0] = new Option("■選択してください",0);
+			document.calcForm.A4_Skill11.options[1] = new Option(SkillObjNew[439][SKILL_DATA_INDEX_NAME] +"(Int)",1);
+			document.calcForm.A4_Skill11.options[2] = new Option(SkillObjNew[627][SKILL_DATA_INDEX_NAME] +"(Str&Dex&Int)",2);
+			document.calcForm.A4_Skill11.options[3] = new Option(SkillObjNew[628][SKILL_DATA_INDEX_NAME] +"(Vit)",3);
+			let selectBox1 = document.calcForm.A4_Skill31;
+			let selectBox2 = document.calcForm.A4_Skill32;
+			for(let i = 0; i <= 300; i++){
+				selectBox1.options[i] = new Option(i,i);
+				selectBox2.options[i] = new Option(i,i);
 			}
-			for(i=0;i<=600;i++){
-				A4_Skill30.options[i] = new Option(i,i);
-				A4_Skill33.options[i] = new Option(i,i);
-				A4_Skill34.options[i] = new Option(i,i);
-				A4_Skill35.options[i] = new Option(i,i);
+			let selectBox3 = document.calcForm.A4_Skill30;
+			let selectBox4 = document.calcForm.A4_Skill33;
+			let selectBox5 = document.calcForm.A4_Skill34;
+			let selectBox6 = document.calcForm.A4_Skill35;
+			for(let i = 0; i <= 600; i++){
+				selectBox3.options[i] = new Option(i,i);
+				selectBox4.options[i] = new Option(i,i);
+				selectBox5.options[i] = new Option(i,i);
+				selectBox6.options[i] = new Option(i,i);
 			}
-			A4_Skill0.checked = n_A_PassSkill4[0];
-			A4_Skill1.value = n_A_PassSkill4[1];
-			A4_Skill2.value = n_A_PassSkill4[2];
-			A4_Skill3.value = n_A_PassSkill4[3];
-			A4_Skill4.value = n_A_PassSkill4[4];
-			A4_Skill5.checked = n_A_PassSkill4[5];
-			A4_Skill6.checked = n_A_PassSkill4[6];
-			A4_Skill7.checked = n_A_PassSkill4[7];
-			A4_Skill8.checked = n_A_PassSkill4[8];
-			A4_Skill9.checked = n_A_PassSkill4[9];
-			A4_Skill10.checked = n_A_PassSkill4[10];
-			A4_Skill11.value = n_A_PassSkill4[11];
-			A4_Skill30.value = n_A_PassSkill4[30];
-			A4_Skill31.value = n_A_PassSkill4[31];
-			A4_Skill32.value = n_A_PassSkill4[32];
-			A4_Skill33.value = n_A_PassSkill4[33];
-			A4_Skill34.value = n_A_PassSkill4[34];
-			A4_Skill35.value = n_A_PassSkill4[35];
-		}
-		else{
+			document.calcForm.A4_Skill0.checked = n_A_PassSkill4[0];
+			document.calcForm.A4_Skill1.value = n_A_PassSkill4[1];
+			document.calcForm.A4_Skill2.value = n_A_PassSkill4[2];
+			document.calcForm.A4_Skill3.value = n_A_PassSkill4[3];
+			document.calcForm.A4_Skill4.value = n_A_PassSkill4[4];
+			document.calcForm.A4_Skill5.checked = n_A_PassSkill4[5];
+			document.calcForm.A4_Skill6.checked = n_A_PassSkill4[6];
+			document.calcForm.A4_Skill7.checked = n_A_PassSkill4[7];
+			document.calcForm.A4_Skill8.checked = n_A_PassSkill4[8];
+			document.calcForm.A4_Skill9.checked = n_A_PassSkill4[9];
+			document.calcForm.A4_Skill10.checked = n_A_PassSkill4[10];
+			document.calcForm.A4_Skill11.value = n_A_PassSkill4[11];
+			document.calcForm.A4_Skill30.value = n_A_PassSkill4[30];
+			document.calcForm.A4_Skill31.value = n_A_PassSkill4[31];
+			document.calcForm.A4_Skill32.value = n_A_PassSkill4[32];
+			document.calcForm.A4_Skill33.value = n_A_PassSkill4[33];
+			document.calcForm.A4_Skill34.value = n_A_PassSkill4[34];
+			document.calcForm.A4_Skill35.value = n_A_PassSkill4[35];
+	}
+	else{
 			var str;
 			str = '<TABLE Border><TR><TD id="A4TD" class="title"><input id="OBJID_CHECK_A4_SKILLSW" type="checkbox" name="A4_SKILLSW"onClick="Click_Skill4SW()"><label for="OBJID_CHECK_A4_SKILLSW">ギルドスキル/ゴスペル/他</label><span id="A4used"></span></TD></TR></TABLE>';
 			myInnerHtml("SP_SIEN02",str,0);
-			A4_SKILLSW.checked = 0;
-		}
-		Click_A4(0);
+			document.calcForm.A4_SKILLSW.checked = 0;
 	}
+	Click_A4(0);
 }
 
 /**
