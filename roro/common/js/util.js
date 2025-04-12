@@ -1,14 +1,7 @@
-
-
 CONSOLE_LOG_LEVEL_NONE	= 0;
 CONSOLE_LOG_LEVEL_DEBUG	= 1;
-
 g_bStoreConsoleLog = false;
 g_storedConsoleLogArray = null;
-
-
-
-
 
 /************************************************************************************************
  *
@@ -23,8 +16,6 @@ function HtmlGetElementById(elementId) {
 
 	return document.getElementById(elementId);
 }
-
-
 
 /************************************************************************************************
  *
@@ -49,8 +40,6 @@ function HtmlCreateElement(elementType, objRoot) {
 	return objElement;
 }
 
-
-
 /************************************************************************************************
 *
 * ＨＴＭＬテキストノードを生成する.
@@ -74,8 +63,6 @@ function HtmlCreateTextNode(textValue, objRoot) {
 	return objElement;
 }
 
-
-
 /************************************************************************************************
 *
 * ＨＴＭＬテキストノードを追加する（複数行）.
@@ -98,8 +85,6 @@ function HtmlAppendTextNodeMulti(textArray, objRoot) {
 		HtmlCreateTextNode(textArray[idx], objRoot);
 	}
 }
-
-
 
 /************************************************************************************************
 *
@@ -135,8 +120,6 @@ function HtmlCreateTextSpan(textValue, objRoot, className) {
 	return objSpan;
 }
 
-
-
 /************************************************************************************************
 *
 * ＨＴＭＬエレメントのアトリビュートを設定する.
@@ -157,8 +140,6 @@ function HtmlSetAttribute(objElement, attrName, attrValue) {
 	return objElement;
 }
 
-
-
 /************************************************************************************************
  *
  * すべての OPTION エレメントを削除する.
@@ -177,8 +158,6 @@ function HtmlRemoveOptionAll(objSelect) {
 		objSelect.options.remove(0);
 	}
 }
-
-
 
 /************************************************************************************************
  *
@@ -215,8 +194,6 @@ function HtmlCreateElementOption(optionValue, optionText, objSelect) {
 	return objOption;
 }
 
-
-
 /************************************************************************************************
  *
  * ＨＴＭＬオブジェクトの子要素を全て削除する.
@@ -237,8 +214,6 @@ function HtmlRemoveAllChild(objParent) {
 		objParent.removeChild(objChild);
 	}
 }
-
-
 
 /************************************************************************************************
  *
@@ -263,8 +238,6 @@ function HtmlRemoveFromParent(objChild) {
 
 	return objParent.removeChild(objChild);
 }
-
-
 
 /************************************************************************************************
 *
@@ -562,11 +535,6 @@ function HtmlCallFunction(objID, funcName, argsArray) {
 	return objFunc.apply(objTarget, argsArray);
 }
 
-
-
-
-
-
 /************************************************************************************************
  *
  * コンソールログの出力内容を取得する.
@@ -598,13 +566,14 @@ function GetLogText(logText) {
 	return logTextResult;
 }
 
+/**
+ * desc
+ *  
+ * @param {*} msg 
+ */
 function WriteConsoleLog(msg) {
 	console.log(GetLogText(msg));
 }
-
-
-
-
 
 function ValueRangeModify(value, min, max) {
 
@@ -622,10 +591,6 @@ function ValueRangeModify(value, min, max) {
 
 	return value;
 }
-
-
-
-
 
 function SetStatefullData(dataid, datavalue) {
 
@@ -662,8 +627,6 @@ function GetStatefullData(dataid, valueWhenNull) {
 	return parseInt(objData.firstChild.nodeValue);
 }
 
-
-
 /**
  * 配列を生成して初期化する.
  * @param size 配列長
@@ -689,8 +652,6 @@ function MallocArray(size, initValue) {
 	return ary;
 }
 
-
-
 /**
  * 配列をディープコピーする.
  * @param arrayTarget 配列
@@ -713,8 +674,6 @@ function DeepCopyArray(arrayTarget) {
 	return arrayCopied;
 }
 
-
-
 /**
  * 配列に指定の要素がない場合にだけ push する.
  * @param arrayTarget 配列
@@ -728,8 +687,6 @@ function ArrayPushIfExists(arrayTarget, value) {
 
 	return arrayTarget.length;
 }
-
-
 
 /**
  * ２つの配列の要素が、一致するかを判定する.
@@ -824,8 +781,6 @@ function IsEqualArrayItems(arrayA, arrayB, bOrderExact, bTypeExact) {
 	return true;
 }
 
-
-
 /**
  * 指定の名称を持つ変数の値を取得する.
  * @param varName 変数名
@@ -836,9 +791,6 @@ function GetVarValue(varName) {
 		"return " + "((typeof " + varName + ") != (typeof undefined))" + " ? " + varName + " : " + "undefined" + ";"
 	)();
 }
-
-
-
 
 /**
  * 文字列を解析して、数値を 3 桁区切りにする.
@@ -904,9 +856,6 @@ function DivideDigits3(textOrg) {
 	return textWorkResult;
 }
 
-
-
-
 /**
  * 文字列がデータURLの書式に適合しているかを判定する.
  * @param dataURL 対象となる文字列
@@ -954,8 +903,6 @@ function IsValidDataUrl(dataURL) {
 	// ここまで来れば、適合している
 	return true;
 }
-
-
 
 /**
  * 配列データをテキストデータに展開する.
@@ -1021,8 +968,6 @@ function ExtractDataArray(dataArray, indentCount, bReadableMode) {
 	return extractedText;
 }
 
-
-
 /**
  * 画面から入力された文字をエスケープする.
  * @param inputtedText 入力されたテキスト
@@ -1073,8 +1018,6 @@ function EscapeInputtedText (inputtedText) {
 
 	return escapedText;
 };
-
-
 
 /**
  * 配列の和を取得する.
@@ -1239,4 +1182,52 @@ function toSafeBigInt(value) {
 	  console.error(`BigInt変換エラー: ${error.message}`);
 	  return null; // 必要に応じて別の値を返す
 	}
-  }
+}
+
+/**
+ * HTML要素の子要素を更新するユーティリティ関数
+ * @param {string} elementID 更新する要素のID
+ * @param {string} htmlString 子要素となるHTML文字列
+ * @param {number} appendMode 0 のとき既存の子要素を消して新しい要素で置き換える. 0 以外のとき既存の子要素の末尾に新しい要素を追加する.
+ * @returns 
+ */
+function myInnerHtml(elementID,htmlString,appendMode) {
+	let element = document.getElementById(elementID);
+	if(appendMode == 0){
+		while(element.hasChildNodes()) {
+			element.removeChild(element.firstChild);
+		}
+		element.innerHTML = htmlString;
+	} else {
+		element.insertAdjacentHTML('BeforeEnd',htmlString);
+	}
+}
+
+/**
+ * 数値選択肢を構築する.
+ * @param {object} objSelect 選択肢を追加する Select エレメント
+ * @param {number} nMin 開始する値
+ * @param {number} nMax 終了する値
+ */
+function BuildUpNumberSelect(objSelect, nMin, nMax) {
+	var idx = 0;
+	var n = 0;
+	for (idx = 0, n = nMin; n <= nMax; idx++, n++) {
+		objSelect.options[idx] = new Option(n, n);
+	}
+}
+
+/**
+ * 数値選択肢を構築する（ただし 0 を文字列 OFF に置き換える）.
+ * @param {object} objSelect 選択肢を追加する Select エレメント
+ * @param {number} nMin 開始する値
+ * @param {number} nMax 終了する値
+ */
+function BuildUpNumberSelectWithZeroOff(objSelect, nMin, nMax) {
+	var idx = 0;
+	var n = 0;
+	objSelect.options[0] = new Option("off", 0);
+	for (idx = 1, n = nMin; n <= nMax; idx++, n++) {
+		objSelect.options[idx] = new Option(n, n);
+	}
+}
