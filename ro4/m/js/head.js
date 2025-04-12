@@ -1,4 +1,4 @@
-//"use strict";
+"use strict";
 
 // データ収集用
 // バトルデータインデックス
@@ -131,6 +131,10 @@ for(var i=0;i<=450;i++) {
 }
 /** equip.js の古い関数内部で使われていた変数. 削除候補 */
 let first_check = 0;
+/** 必中ダメージ */
+let str_PerfectHIT_DMG = 0;
+/** ダメージ配列 */
+let w_DMG = [0,0,0];
 /** ダメージ配列 */
 let Last_DMG_A = [0,0,0];
 /** ダメージ配列 */
@@ -163,20 +167,32 @@ let B_Total_DEF = 0;
 let B_Total_MDEF = 0;
 /** オートスペルに関連して所要攻撃回数を計算するための中間変数. */
 let w_DMG_AS_OverHP = 0;
+/** ダメージ配列 */
+let n_A_DMG = [0,0,0];
 /** ダメージ配列. 変数名と裏腹にアースクエイク計算で使われている */
 let n_A_DMG_GX = [0,0,0];
 /** ダメージ配列. アースクエイク専用 */
 let n_A_DMG_QUAKE = [0,0,0];
+/** ダメージ配列. ウォーグ専用 */
+let BK_n_A_DMG_Wolf = [0,0,0];
+/** ダメージ配列 オートスペル専用 */
+let BK_n_A_DMG2 = [0,0,0];
 /** 錐効果の値 */
 let n_A_QUAKE_KIRI = 0;
 /** グランドクロスの反動ダメージ計算フラグ */
 let n_A_GX_HANDO = false;
 /** ヒット数 特殊計算用 */
 let SG_Special_HITnum = 0;
+/** ヒット数 */
+let wHITsuu = 0;
+/** 分割ヒット数 */
+let wActiveHitNum = 0;
 /** ダメージ配列 特殊計算用 */
 let SG_Special_DMG = [0,0,0];
 /** セットされている矢の種類. 種類定数は arrow.dat.js で定義されている*/
 let n_A_Arrow = 0;
+/** セットされているカードの数 */
+let cardCount = 0;
 /** ディレイ減少値 */
 let delayDownForDisp = 0;
 /** ASPD 小数点第ニ位を切り捨てる前の値 */
@@ -191,6 +207,57 @@ let g_perfectHitRate = 0;
 let g_bUnknownCasts = false;
 /** 設置スキルフラグ */
 let g_bDefinedDamageIntervals = false;
+/** 命中率 */
+let w_HIT = 0;
+/** 命中率　表示文字列 */
+let w_HIT_HYOUJI = 0;
+/** クリティカル率 */
+let w_Cri = 0;
+/** 回避率 */
+let w_FLEE = 0;
+/** 装備しているアイテム数　右手 */
+let itemCountRight = 0;
+/** 装備しているアイテム数　左手 */
+let itemCountLeft = 0;
+/** サイズ補正値 */
+let wCSize = 0;
+/** 武器種に応じて参照されるステータス STR or DEX */
+let w_STRDEX = 0;
+/** クリティカル発生時のATK */
+let n_A_CriATK = 0;
+/** 追加ダメージ計算フラグ */
+let g_appliedAppendDamage = false;
+/** 変動詠唱 計算用一時変数 */
+let g_wCastTemp = null;
+/** 固定詠唱 計算用一時変数 */
+let g_wCastFixedTemp = null;
+/** 攻撃間隔 計算用一時変数 */
+let g_attackIntervalTemp = null;
+/** 攻撃回数 */
+let g_AttackCount = [0,0,0];
+/** DPS */
+let g_dps = 0;
+/** 被ダメージ */
+let w_HiDam = [];
+/** 被ダメージ */
+let wRef1 = [];
+/** 被ダメージ */
+let wRef2 = [];
+/** 被ダメージ */
+let wRef3 = [];
+/** 被ダメージ　平均値 */
+let g_receiveDamageAverage = 0;
+/** 被ダメージ　回避率などを考慮した値 */
+let g_receiveDamageAvoids = 0;
+/// ---------------------------------------------------
+/** 属性耐性　上限95 */
+let resistValueArray = [];
+/** 属性耐性　上限95を超えて格納出来る配列 */
+let resistValueArrayOver = 0;
+/** 属性倍率 */
+let bodyElmRatioArray = 0;
+/** 属性倍率　耐性を考慮した最終的な値 */
+let finalRatioArray = 0;
 
 /** 変動詠唱 0 を達成するために必要な DEX */
 const CAST_PARAM_BORDER = 265;
@@ -877,7 +944,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 	var w_MATK = [0,0,0];
 		cast_kotei = false;
 	str_PerfectHIT_DMG = 0;
-	SG_Special_ch = 0;
+	//SG_Special_ch = 0;
 	wActiveHitNum = 1;
 	for(var i=0;i<=2;i++){
 		Last_DMG_A[i] = 0;
@@ -7295,7 +7362,8 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				if(wBunsan >= 2) wbairitu = ROUNDDOWN(wbairitu / wBunsan);
 			}
 			for(var i=0;i<=2;i++){
-				w_DMG[i] = n_A_DMG_GX[i] * wCSize;	// 基礎攻撃力 n_A_DMG_GX[i] にサイズ補正 wCSize をかける
+				// 基礎攻撃力 n_A_DMG_GX[i] にサイズ補正 wCSize をかける
+				w_DMG[i] = n_A_DMG_GX[i] * wCSize;	
 				w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
 				w_DMG[i] = Math.floor(w_DMG[i] * wbairitu / 100);
 				w_DMG[i] = ApplyElementRatio(mobData, w_DMG[i],0);
@@ -12062,7 +12130,7 @@ function BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArr
 
 		if(g_AttackCount[1]<10000){
 			myInnerHtml("AveATKnum",__DIG3(g_AttackCount[1]),0);
-			n_AveATKnum = g_AttackCount[1];
+			const n_AveATKnum = g_AttackCount[1];
 			var w2 = (wCast + wDelay) * n_AveATKnum;
 			w2 = Math.floor(w2 * 100) / 100;
 			if(n_Delay[0]) myInnerHtml("BattleTime","特殊",0);
@@ -13792,7 +13860,7 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 
 		if(g_AttackCount[1]<10000){
 			myInnerHtml("AveATKnum",__DIG3(g_AttackCount[1]),0);
-			n_AveATKnum = g_AttackCount[1];
+			const n_AveATKnum = g_AttackCount[1];
 			var w2 = (wCast + wDelay) * n_AveATKnum;
 			w2 = Math.floor(w2 * 100) / 100;
 			if(n_Delay[0]) myInnerHtml("BattleTime","特殊",0);
@@ -16097,7 +16165,7 @@ function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, m
 	//----------------------------------------------------------------
 	// 「性能カスタマイズ欄」の、「○○スキルで攻撃時ダメージ上昇」強化
 	//----------------------------------------------------------------
-	confBaseLvBy = g_objCharaConfCustomSkill.GetConf(CCharaConfCustomSkill.CONF_ID_SKILL_DAMAGE_UP_BASE_LEVEL_BY);
+	const confBaseLvBy = g_objCharaConfCustomSkill.GetConf(CCharaConfCustomSkill.CONF_ID_SKILL_DAMAGE_UP_BASE_LEVEL_BY);
 	confval = g_objCharaConfCustomSkill.GetConf(CCharaConfCustomSkill.CONF_ID_SKILL_DAMAGE_UP);
 	if (n_A_ActiveSkill != 0) {
 		if (confval != 0) {
@@ -20410,7 +20478,7 @@ function SET_ZOKUSEI(mobData, attackMethodConfArray) {
 	var bApplyArrowElement = false;
 	// 属性付与状態を取得
 	n_A_Weapon_zokusei = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_ARMS_ELEMENT", ELM_ID_VANITY);
-	n_A_Weapon2_zokusei = n_A_Weapon_zokusei;
+	//n_A_Weapon2_zokusei = n_A_Weapon_zokusei;
 	BK_Weapon_zokusei = n_A_Weapon_zokusei;
 	// 属性付与が指定されていない場合のみ、装備の属性を確認
 	if (n_A_Weapon_zokusei == ELM_ID_VANITY) {
@@ -20435,7 +20503,7 @@ function SET_ZOKUSEI(mobData, attackMethodConfArray) {
 			CARD_REGION_ID_ARMS_LEFT_3,
 			CARD_REGION_ID_ARMS_LEFT_4,
 		];
-		n_A_Weapon2_zokusei = GetArmsElementBySPData(itemRegionIdArray, cardRegionIdArray, n_A_Weapon_zokusei);
+		//n_A_Weapon2_zokusei = GetArmsElementBySPData(itemRegionIdArray, cardRegionIdArray, n_A_Weapon_zokusei);
 		// 一部のスキルでは、付与属性がダメージに影響するので、保持しておく
 		if (n_A_ActiveSkill == SKILL_ID_IGNITION_BREAK || n_A_ActiveSkill == SKILL_ID_AXE_TORNADE) {
 			BK_Weapon_zokusei = n_A_Weapon_zokusei;
@@ -25132,7 +25200,7 @@ function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, 
 	//----------------------------------------------------------------
 	// 「性能カスタマイズ欄」の、「○○スキルで攻撃時ダメージ上昇」強化
 	//----------------------------------------------------------------
-	confBaseLvBy = g_objCharaConfCustomSkill.GetConf(CCharaConfCustomSkill.CONF_ID_SKILL_DAMAGE_UP_BASE_LEVEL_BY);
+	const confBaseLvBy = g_objCharaConfCustomSkill.GetConf(CCharaConfCustomSkill.CONF_ID_SKILL_DAMAGE_UP_BASE_LEVEL_BY);
 	confval = g_objCharaConfCustomSkill.GetConf(CCharaConfCustomSkill.CONF_ID_SKILL_DAMAGE_UP);
 	if (n_A_ActiveSkill != 0) {
 		if (confval != 0) {
@@ -25979,6 +26047,7 @@ function BuildCastAndDelayHtmlMIG(mobData){
 
 	var scaling = 0;
 	var spTag = null;
+	let wCastFixed = 0;
 
 	//----------------------------------------------------------------
 	// 変動詠唱時間の算出
