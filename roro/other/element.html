@@ -76,20 +76,8 @@
         </div>
     </body>
     <script language="JavaScript" src="../frame.js"></script>
+    <script language="JavaScript" src="../common/js/util.js"></script>
     <script language="JavaScript"><!--
-    function myInnerHtml(wIH1,wIH2,wIH3)
-    {
-        if(wIH3 == 0){
-            wIHOB = document.getElementById(wIH1);
-            while(wIHOB.hasChildNodes()){
-                wIHOB.removeChild(wIHOB.firstChild);
-            }
-            wIHOB.innerHTML = wIH2;
-        }else{
-            wIHOB = document.getElementById(wIH1);
-            wIHOB.insertAdjacentHTML('BeforeEnd',wIH2);
-        }
-    }
     
     zokusei = new Array();
     //無

@@ -166,58 +166,6 @@ g_perfectHitRate = 0;
 g_bUnknownCasts = false;
 g_bDefinedDamageIntervals = false;
 
-/**
- * 数値選択肢を構築する.
- * @param {*} objSelect 選択肢を追加する Select エレメント
- * @param {*} nMin 開始する値
- * @param {*} nMax 終了する値
- */
-function BuildUpNumberSelect(objSelect, nMin, nMax) {
-	var idx = 0;
-	var n = 0;
-	for (idx = 0, n = nMin; n <= nMax; idx++, n++) {
-		objSelect.options[idx] = new Option(n, n);
-	}
-}
-
-/**
- * 数値選択肢を構築する（ただし 0 を文字列 OFF に置き換える）.
- * @param {*} objSelect 選択肢を追加する Select エレメント
- * @param {*} nMin 開始する値
- * @param {*} nMax 終了する値
- */
-function BuildUpNumberSelectWithZeroOff(objSelect, nMin, nMax) {
-	var idx = 0;
-	var n = 0;
-	objSelect.options[0] = new Option("off", 0);
-	for (idx = 1, n = nMin; n <= nMax; idx++, n++) {
-		objSelect.options[idx] = new Option(n, n);
-	}
-}
-
-/**
- * InnerHTML を設定する（ただし、SPモードの場合は何もしない）.
- * @param {*} wIH1 
- * @param {*} wIH2 
- * @param {*} wIH3 
- * @returns 
- */
-function myInnerHtml(wIH1,wIH2,wIH3) {
-	if(g_SPMODE_FLAG == 1) return;
-	if(wIH3 == 0){
-		wIHOB = document.getElementById(wIH1);
-		if (wIHOB == null) {
-			var i = 10;
-		}
-		while(wIHOB.hasChildNodes()) {
-			wIHOB.removeChild(wIHOB.firstChild);
-		}
-		wIHOB.innerHTML = wIH2;
-	} else {
-		wIHOB = document.getElementById(wIH1);
-		wIHOB.insertAdjacentHTML('BeforeEnd',wIH2);
-	}
-}
 w_AG=[100,95,90,86,82,79,76,74,72,71,70];
 
 mostEffectiveElmIdArray = [
@@ -11864,7 +11812,6 @@ function HealCalc(HealLv,HealType,wMinMax,w_WHO,ptmCount) {
  * @returns 
  */
 function BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray) {
-
 	// 命中率が１００％未満の場合、必中ダメージがあれば追加表示
 	if(n_PerfectHIT_DMG > 0 && w_HIT_HYOUJI <100){
 		str_bSUBname += "<Font size=2>Miss時の必中ダメージ</Font>";
@@ -11876,24 +11823,16 @@ function BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArr
 			else str_bSUB += __DIG3(n_PerfectHIT_DMG);
 		}else str_bSUB += str_PerfectHIT_DMG;
 	}
-
-
 	myInnerHtml("bSUBname",str_bSUBname,0);
 	myInnerHtml("bSUB",str_bSUB,0);
 	myInnerHtml("BattleHIT",w_HIT_HYOUJI,0);
 	myInnerHtml("BattlePerfectHIT",n_tok[ITEM_SP_PERFECT_ATTACK_UP],0);
 //	myInnerHtml("nm067","％",0);
-
-
-
 	// 二刀流の通常攻撃時の表示部分
 	if(n_Nitou && n_A_ActiveSkill == 0){
 		myInnerHtml("BattleHIT",w_HIT_HYOUJI +"％(左手"+ w_HIT +"％)",0);
 //		myInnerHtml("nm067","",0);
 	}
-
-
-
 	// TODO : 謎処理　通常攻撃とグラビテーションフィールド以外
 	if(mobData[21]==6 && n_A_ActiveSkill != 0 && n_A_ActiveSkill != 325){
 		for(var i=0;i<=2;i++){
@@ -11910,9 +11849,6 @@ function BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArr
 
 		return;
 	}
-
-
-
 	// スキル使用不可武器の場合の表示部分
 	if(n_Buki_Muri == 1){
 		for(var i=0;i<=2;i++) w_DMG[i] = 0;
@@ -11929,11 +11865,7 @@ function BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArr
 
 		return;
 	}
-
-
-
 	g_AttackCount = [-1, -1, -1];
-
 	// 最小攻撃回数表示部の組み立て
 	if(w_DMG[2] > 0){
 
@@ -11952,9 +11884,6 @@ function BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArr
 	}else{
 		myInnerHtml("MinATKnum","<Font size=2>計算不能<BR>(0ダメージなので)</Font>",0);
 	}
-
-
-
 	// 多段ＨＩＴスキルで１殺の場合、１殺できる確率を表示する
 	var w;
 	if(SG_Special_HITnum != 0){
@@ -11995,9 +11924,6 @@ function BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArr
 
 		SG_Special_HITnum = 0;
 	}
-
-
-
 	//----------------------------------------------------------------
 	// 経験値効率計算モード（SPMODE）の場合
 	//----------------------------------------------------------------
@@ -12005,7 +11931,6 @@ function BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArr
 	var battleTimeAve = 0;
 	var perexpBaseAve = 0;
 	var perexpJobAve = 0;
-
 	// 経験値効率計算モードの場合、かつ、確殺モードの場合
 	if(g_SPMODE_FLAG == 1 && g_SPMODE_KAKUSATSU_MODE == 1){
 
@@ -12022,7 +11947,6 @@ function BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArr
 		// 処理終了
 		return;
 	}
-
 	// 経験値効率計算モードの場合、かつ、確殺モードでない場合
 	else if(g_SPMODE_FLAG == 1){
 
@@ -12063,9 +11987,6 @@ function BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArr
 		// 処理終了
 		return;
 	}
-
-
-
 	// 最大攻撃回数表示部の組み立て
 	// 命中率が１００％未満の場合は、特殊表示
 	if(w_HIT_HYOUJI <100 && n_PerfectHIT_DMG == 0){
@@ -12083,9 +12004,6 @@ function BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArr
 			myInnerHtml("MaxATKnum","<Font size=2>計算不能<BR>(0ダメージなので)</Font>",0);
 		}
 	}
-
-
-
 	// 平均攻撃回数表示部の組み立て
 	// TODO : 詳細未解析
 	g_dps = 0;
@@ -12136,40 +12054,30 @@ function BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArr
 		myInnerHtml("AveATKnum","<Font size=2>計算不能<BR>(0ダメージなので)</Font>",0);
 		myInnerHtml("BattleTime","<Font size=2>計算不能</Font>",0);
 	}
-
-
-
 	w = BattleHiDam(charaData, specData, mobData, attackMethodConfArray);
 	w = Math.round(w *(100-charaData[CHARA_DATA_INDEX_LUCKY]))/100;
 	w = Math.round(w *(100-w_FLEE))/100;
-
 	var agLv = Math.max(
 		0,
 		UsedSkillSearch(SKILL_ID_AUTO_GUARD),
 		g_confDataNizi[CCharaConfNizi.CONF_ID_AUTO_GUARD],
 		TimeItemNumSearch(70)
 	);
-
 	if (agLv > 0) {
 		w = Math.round(w * w_AG[agLv]) / 100;
 	}
-
 	if(n_A_WeaponType==3 && UsedSkillSearch(SKILL_ID_PARIYING)){
 		w = Math.round(w * (80- UsedSkillSearch(SKILL_ID_PARIYING) *3))/100;
 	}
 	if(UsedSkillSearch(SKILL_ID_REJECT_SWORD)){
 		w = Math.round(w * (100- UsedSkillSearch(SKILL_ID_REJECT_SWORD) *7.5))/100;
 	}
-
 	myInnerHtml("B_Ave2Atk",__DIG3(w)+"ダメージ",0);
-
 	g_receiveDamageAvoids = w;
-
 	if(n_A_ActiveSkill==441) {
 		myInnerHtml("B_Ave2Atk","-",0);
 	}
-
- }
+}
 
 /*
 function OnClickTabBTLRSLT(tabIndex) {
