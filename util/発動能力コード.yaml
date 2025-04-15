@@ -29,6 +29,8 @@ capabilities:
     code: 25
   - name: 近距離ダメージ増加
     code: 210
+  - name: ボスへの物理ダメージ増加
+    code: 26
   - name: 小型への物理ダメージ増加
     code: 27
   - name: 中型への物理ダメージ増加
@@ -143,6 +145,8 @@ capabilities:
     code: 91
   - name: ヒール系スキルを受けた時のHP回復量増加
     code: 92
+  - name: ボスへの魔法ダメージ増加
+    code: 96
   - name: 小型への魔法ダメージ増加
     code: 97
   - name: 中型への魔法ダメージ増加
@@ -261,6 +265,10 @@ capabilities:
     code: 265
   - name: 全種族への魔法ダメージ増加
     code: 266
+  - name: 一般への物理ダメージ増加
+    code: 267
+  - name: 一般への魔法ダメージ増加
+    code: 268
   - name: 全属性への魔法ダメージ増加
     code: 269
   - name: 全属性魔法のダメージ増加

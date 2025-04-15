@@ -1,0 +1,227 @@
+card_list:
+  - name: Def100%無視
+    yomi: def100pasento mushi
+    type: エンチャント
+    capabilities:
+      - name: DEF無視
+        value: 100
+  - name: 潜在覚醒(キャロットビートII)
+    yomi: センザイカクセイキャロットビートツー
+    type: エンチャント
+    capabilities:
+      - name: スキルダメージ増加
+        skill: キャロットビート
+        per_lv: 5
+        value: 1
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: 再使用待機時間減少
+            skill: キャロットビート
+            value: 100
+  - name: 潜在覚醒(ダーククローII)
+    yomi: センザイカクセイダーククローツー
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: 再使用待機時間減少
+            skill: ダーククロー
+            value: 30000
+      - set:
+        entity_list:
+          - card_name: 真理の解放
+        capabilities:
+          - name: 再使用待機時間減少
+            skill: ダーククロー
+            value: 30000
+  - name: 潜在覚醒(ハンドレッドスピアII)
+    yomi: センザイカクセイハンドレッドスピアツー
+    type: エンチャント
+    capabilities:
+      - name: スキルダメージ増加
+        skill: ハンドレッドスピア
+        per_lv: 3
+        value: 1
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: 再使用待機時間減少
+            skill: ハンドレッドスピア
+            value: 1000
+  - name: 潜在覚醒(ピンポイントアタックII)
+    yomi: センザイカクセイピンポイントアタックツー
+    type: エンチャント
+    capabilities:
+      - name: スキルダメージ増加
+        skill: ピンポイントアタック
+        per_lv: 3
+        value: 1
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: 再使用待機時間減少
+            skill: ピンポイントアタック
+            value: 5000
+  - name: 潜在覚醒(修羅身弾II)
+    yomi: センザイカクセイシュラミダンツー
+    type: エンチャント
+    capabilities:
+      - name: スキルダメージ増加
+        skill: 修羅身弾
+        per_lv: 2
+        value: 1
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: 再使用待機時間減少
+            skill: 修羅身弾
+            value: 200
+  - name: 潜在覚醒(創星の書I)
+    yomi: センザイカクセイソウセイノショイチ
+    type: エンチャント
+    capabilities:
+      - name: スキルダメージ増加
+        skill: 創星の書
+        per_lv: 10
+        value: 1
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: 再使用待機時間減少
+            skill: 創星の書
+            value: 2000
+  - name: 潜在覚醒(爆裂苦無II)
+    yomi: センザイカクセイバクレツクナイツー
+    type: エンチャント
+    capabilities:
+      - name: スキルダメージ増加
+        skill: 爆裂苦無
+        per_lv: 5
+        value: 1
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: 再使用待機時間減少
+            skill: 爆裂苦無
+            value: 1000
+  - name: 潜在解放(インクイジターX)
+    yomi: センサイカイホウインクイジターテン
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: スキルダメージ増加
+            skill: 第二撃：信念
+            value: 100
+          - name: スキルダメージ増加
+            skill: 第三撃：断罪
+            value: 100
+          - name: スキルダメージ増加
+            skill: 第二撃：審判
+            value: 100
+          - name: スキルダメージ増加
+            skill: 第三撃：浄化
+            value: 100
+          - name: スキルダメージ増加
+            skill: 第二撃：滅魔の火
+            value: 100
+          - name: スキルダメージ増加
+            skill: 第三撃：滅火撃
+            value: 100
+  - name: 潜在解放(ウィンドホークXII)
+    yomi: センサイカイホウウィンドホークジュウニ
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: 再使用待機時間減少
+            skill: ディープブラインドトラップ
+            value: 2000
+  - name: 潜在解放(エレメンタルマスターX)
+    yomi: センサイカイホウエレメンタルマスターテン
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 真理の解放
+        capabilities:
+          - name: 再使用待機時間減少
+            skill: ベナムスワンプ
+            value: 1000
+  - name: 潜在解放(トルバドゥール&トルヴェールVIII)
+    yomi: センサイカイホウトルバドゥールトルヴェールハチ
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 真理の解放
+        capabilities:
+          - name: スキルダメージ増加
+            skill: メタリックフューリー
+            value: 100
+  - name: 潜在解放(ナイトウォッチX)
+    yomi: センサイカイホウナイトウォッチテン
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: 再使用待機時間減少
+            skill: オンリーワンバレット
+            value: 300
+  - name: 潜在解放(バイオロXII)
+    yomi: センサイカイホウバイオロジュウニ
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: 再使用待機時間減少
+            skill: メイヘミックソーンズ
+            value: 100
+  - name: 潜在解放(ハイパーノービスXIII)
+    yomi: センサイカイホウハイパーノービスジュウサン
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: 再使用待機時間減少
+            skill: スパイラルピアースマックス
+            value: 200
+  - name: 潜在解放(天帝IX)
+    yomi: センサイカイホウテンテイキュウ
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: 再使用待機時間減少
+            skill: 太天一月
+            value: 500
+          - name: 再使用待機時間減少
+            skill: 天月
+            value: 500
