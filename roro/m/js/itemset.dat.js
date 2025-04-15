@@ -5961,7 +5961,39 @@
 	CardIdToSetIdMap[3443] = [3068,];
 	CardIdToSetIdMap[1245] = CardIdToSetIdMap[1245].concat([3068]);
 	CardIdToSetIdMap[1348] = CardIdToSetIdMap[1348].concat([3067]);
-
+	// --- 2025-04-15 ---
+	w_SE[3069] = [-3447,-3446,-1348,];
+	CardIdToSetIdMap[3446] = [3069,];
+	w_SE[3070] = [-3449,-3448,-1348,];
+	w_SE[3071] = [-3449,-3448,-1245,];
+	CardIdToSetIdMap[3448] = [3070,3071,];
+	w_SE[3072] = [-3452,-3451,-1348,];
+	CardIdToSetIdMap[3451] = [3072,];
+	w_SE[3073] = [-3454,-3453,-1348,];
+	CardIdToSetIdMap[3453] = [3073,];
+	w_SE[3074] = [-3456,-3455,-1348,];
+	CardIdToSetIdMap[3455] = [3074,];
+	w_SE[3075] = [-3458,-3457,-1348,];
+	CardIdToSetIdMap[3457] = [3075,];
+	w_SE[3076] = [-3460,-3459,-1348,];
+	CardIdToSetIdMap[3459] = [3076,];
+	w_SE[3077] = [-3462,-3461,-1348,];
+	CardIdToSetIdMap[3461] = [3077,];
+	w_SE[3078] = [-3464,-3463,-1348,];
+	CardIdToSetIdMap[3463] = [3078,];
+	w_SE[3079] = [-3466,-3465,-1245,];
+	CardIdToSetIdMap[3465] = [3079,];
+	w_SE[3080] = [-3468,-3467,-1245,];
+	CardIdToSetIdMap[3467] = [3080,];
+	w_SE[3081] = [-3470,-3469,-1348,];
+	CardIdToSetIdMap[3469] = [3081,];
+	w_SE[3082] = [-3472,-3471,-1348,];
+	CardIdToSetIdMap[3471] = [3082,];
+	w_SE[3083] = [-3474,-3473,-1348,];
+	CardIdToSetIdMap[3473] = [3083,];
+	w_SE[3084] = [-3476,-3475,-1348,];
+	CardIdToSetIdMap[3475] = [3084,];
+	
 	// itemset はセーブデータに書き出されないので
 	// 現実的な範囲において itemsetID の上限値を気にする必要はありません
 })();
