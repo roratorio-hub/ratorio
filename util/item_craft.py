@@ -75,7 +75,7 @@ if __name__ == "__main__":
     itemset_id = getLatestIdFromItemSet()
     enchant_id = getLatestEnchantId()
     
-    with open(f'{script_dir}/item.yaml', 'r', encoding='utf-8') as f:
+    with open(f'{script_dir}/アイテム.yaml', 'r', encoding='utf-8') as f:
         config = yaml.safe_load(f)
 
     for item_info in config['item_list']:

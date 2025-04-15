@@ -1,0 +1,490 @@
+item_list:
+  - name: ヴァンパイアストール
+    yomi: ヴァンパイアストール
+    type: 下段
+    slot: 0
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 10
+    required_lv: 100
+    required_job: 全ての職業
+    capabilities:
+      - name: プレイヤー耐性
+        value: 3
+      - name: 全サイズへの物理ダメージ増加
+        value: 1
+        per_lv: 10
+      - name: 全サイズへの魔法ダメージ増加
+        value: 1
+        per_lv: 10
+    enchant: #
+      - name: スペシャルエンチャント(キョウ)
+        slot_list: #
+          - slot: 4
+            refine: 0
+            enchant_list: #
+              - name: 大鷲の眼光
+              - name: 覇王
+              - name: SpecialStr
+              - name: SpecialAgi
+              - name: SpecialVit
+              - name: SpecialInt
+              - name: SpecialDex
+              - name: SpecialLuk
+          - slot: 3
+            refine: 0
+            enchant_list: #
+              - name: スキルディレイ-15%
+              - name: Def100%無視
+              - name: SpecialStr
+              - name: SpecialAgi
+              - name: SpecialVit
+              - name: SpecialInt
+              - name: SpecialDex
+              - name: SpecialLuk
+          - slot: 2
+            refine: 0
+            enchant_list: #
+              - name: Str+10
+              - name: Agi+10
+              - name: Vit+10
+              - name: Int+10
+              - name: Dex+10
+              - name: Luk+10
+              - name: 詠唱妨害不可
+
+  - name: オーバードライブランページエコーズ
+    yomi: オーバードライブランページエコーズ
+    desc: "物理・魔法攻撃命中時、一定確率で自分に発生している[リバウンド]状態を解除する"
+    type: アクセサリー(2)
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 10
+    required_lv: 200
+    required_job: 4次職 拡張4次職
+    capabilities:
+      - name: ASPD増加
+        value: 15
+      - name: プレイヤー耐性
+        value: 3
+      - name: 全サイズへの物理ダメージ増加
+        value: 15
+      - name: 全サイズへの魔法ダメージ増加
+        value: 15
+      - name: ATK加算
+        value: 1
+        per_lv: 1
+      - name: MATK加算
+        value: 1
+        per_lv: 1
+      - name: MAXHP加算
+        value: 50
+        per_lv: 1
+      - name: MAXSP加算
+        value: 5
+        per_lv: 1
+      - name: 物理ダメージ増加
+        value: 1
+        per_lv: 5
+      - name: 魔法ダメージ増加
+        value: 1
+        per_lv: 5
+    enchant: #
+      - name: スペシャルエンチャント(キョウ)
+        slot_list: #
+          - slot: 4
+            refine: 0
+            enchant_list: #
+              - name: Cri+25
+              - name: 必中攻撃+25%
+              - name: スキルディレイ-15%
+              - name: 潜在覚醒(アースグレイヴI)
+              - name: 潜在覚醒(アースストレインI)
+              - name: 潜在覚醒(アームズキャノンII)
+              - name: 潜在覚醒(アックストルネードII)
+              - name: 潜在覚醒(アックスブーメランII)
+              - name: 潜在覚醒(アドラムスI)
+              - name: 潜在覚醒(アローストームIII)
+              - name: 潜在覚醒(アンチマテリアルブラストI)
+              - name: 潜在覚醒(イグニッションブレイクIII)
+              - name: 潜在覚醒(イヌハッカメテオI)
+              - name: 潜在覚醒(ヴェラチュールスピアーII)
+              - name: 潜在覚醒(エイムドボルトII)
+              - name: 潜在覚醒(エスパII)
+              - name: 潜在覚醒(エスフI)
+              - name: 潜在覚醒(カートキャノンI)
+              - name: 潜在覚醒(カートトルネードI)
+              - name: 潜在覚醒(カウンタースラッシュI)
+              - name: 潜在覚醒(キャノンスピアI)
+              - name: 潜在覚醒(クリムゾンロックII)
+              - name: 潜在覚醒(クロスリッパースラッシャーI)
+              - name: 潜在覚醒(サイキックウェーブII)
+              - name: 潜在覚醒(シールドプレスII)
+              - name: 潜在覚醒(シビアレインストームIII)
+              - name: 潜在覚醒(ジャックフロストII)
+              - name: 潜在覚醒(ジュデックスII)
+              - name: 潜在覚醒(スポアエクスプロージョンI)
+              - name: 潜在覚醒(スラッグショットI)
+              - name: 潜在覚醒(ソウルエクスパンションII)
+              - name: 潜在覚醒(ソニックウェーブI)
+              - name: 潜在覚醒(ダイヤモンドダストI)
+              - name: 潜在覚醒(デュプレライトI)
+              - name: 潜在覚醒(トライアングルショットII)
+              - name: 潜在覚醒(バニシングポイントI)
+              - name: 潜在覚醒(パワースイングI)
+              - name: 潜在覚醒(ハンマーオブゴッドI)
+              - name: 潜在覚醒(ファイアーレインII)
+              - name: 潜在覚醒(フェイタルメナスI)
+              - name: 潜在覚醒(ヘルインフェルノI)
+              - name: 潜在覚醒(マタタビランスI)
+              - name: 潜在覚醒(メタリックサウンドI)
+              - name: 潜在覚醒(ラウンドトリップII)
+              - name: 潜在覚醒(レイオブジェネシスII)
+              - name: 潜在覚醒(ローリングカッターII)
+              - name: 潜在覚醒(獅子吼III)
+              - name: 潜在覚醒(十文字斬りII)
+              - name: 潜在覚醒(死霊爆発II)
+              - name: 潜在覚醒(太陽爆発I)
+              - name: 潜在覚醒(天羅地網II)
+              - name: 潜在覚醒(風魔手裏剣 -乱華-II)
+              - name: 潜在覚醒(満月脚II)
+              - name: 潜在覚醒(流星落下I)
+              - name: 潜在覚醒(ダーククローII)
+              - name: 潜在覚醒(キャロットビートII)
+              - name: 潜在覚醒(ハンドレッドスピアII)
+              - name: 潜在覚醒(ピンポイントアタックII)
+              - name: 潜在覚醒(爆裂苦無II)
+              - name: 潜在覚醒(修羅身弾II)
+              - name: 潜在覚醒(創星の書I)
+          - slot: 3
+            refine: 0
+            enchant_list: #
+              - name: Cri+25
+              - name: 必中攻撃+25%
+              - name: スキルディレイ-15%
+              - name: 潜在覚醒(アースグレイヴI)
+              - name: 潜在覚醒(アースストレインI)
+              - name: 潜在覚醒(アームズキャノンII)
+              - name: 潜在覚醒(アックストルネードII)
+              - name: 潜在覚醒(アックスブーメランII)
+              - name: 潜在覚醒(アドラムスI)
+              - name: 潜在覚醒(アローストームIII)
+              - name: 潜在覚醒(アンチマテリアルブラストI)
+              - name: 潜在覚醒(イグニッションブレイクIII)
+              - name: 潜在覚醒(イヌハッカメテオI)
+              - name: 潜在覚醒(ヴェラチュールスピアーII)
+              - name: 潜在覚醒(エイムドボルトII)
+              - name: 潜在覚醒(エスパII)
+              - name: 潜在覚醒(エスフI)
+              - name: 潜在覚醒(カートキャノンI)
+              - name: 潜在覚醒(カートトルネードI)
+              - name: 潜在覚醒(カウンタースラッシュI)
+              - name: 潜在覚醒(キャノンスピアI)
+              - name: 潜在覚醒(クリムゾンロックII)
+              - name: 潜在覚醒(クロスリッパースラッシャーI)
+              - name: 潜在覚醒(サイキックウェーブII)
+              - name: 潜在覚醒(シールドプレスII)
+              - name: 潜在覚醒(シビアレインストームIII)
+              - name: 潜在覚醒(ジャックフロストII)
+              - name: 潜在覚醒(ジュデックスII)
+              - name: 潜在覚醒(スポアエクスプロージョンI)
+              - name: 潜在覚醒(スラッグショットI)
+              - name: 潜在覚醒(ソウルエクスパンションII)
+              - name: 潜在覚醒(ソニックウェーブI)
+              - name: 潜在覚醒(ダイヤモンドダストI)
+              - name: 潜在覚醒(デュプレライトI)
+              - name: 潜在覚醒(トライアングルショットII)
+              - name: 潜在覚醒(バニシングポイントI)
+              - name: 潜在覚醒(パワースイングI)
+              - name: 潜在覚醒(ハンマーオブゴッドI)
+              - name: 潜在覚醒(ファイアーレインII)
+              - name: 潜在覚醒(フェイタルメナスI)
+              - name: 潜在覚醒(ヘルインフェルノI)
+              - name: 潜在覚醒(マタタビランスI)
+              - name: 潜在覚醒(メタリックサウンドI)
+              - name: 潜在覚醒(ラウンドトリップII)
+              - name: 潜在覚醒(レイオブジェネシスII)
+              - name: 潜在覚醒(ローリングカッターII)
+              - name: 潜在覚醒(獅子吼III)
+              - name: 潜在覚醒(十文字斬りII)
+              - name: 潜在覚醒(死霊爆発II)
+              - name: 潜在覚醒(太陽爆発I)
+              - name: 潜在覚醒(天羅地網II)
+              - name: 潜在覚醒(風魔手裏剣 -乱華-II)
+              - name: 潜在覚醒(満月脚II)
+              - name: 潜在覚醒(流星落下I)
+              - name: 潜在解放(アークメイジIII)
+              - name: 潜在解放(アビスチェイサーV)
+              - name: 潜在解放(アビスチェイサーVII)
+              - name: 潜在解放(インクイジターII)
+              - name: 潜在解放(インペリアルガードV)
+              - name: 潜在解放(インペリアルガードVI)
+              - name: 潜在解放(ウィンドホークIV)
+              - name: 潜在解放(エレメンタルマスターII)
+              - name: 潜在解放(エレメンタルマスターIII)
+              - name: 潜在解放(カーディナルII)
+              - name: 潜在解放(カーディナルV)
+              - name: 潜在解放(シャドウクロスIV)
+              - name: 潜在解放(シャドウクロスV)
+              - name: 潜在解放(スピリットハンドラーV)
+              - name: 潜在解放(ソウルアセティックII)
+              - name: 潜在解放(ドラゴンナイトV)
+              - name: 潜在解放(トルバドゥール&トルヴェールIII)
+              - name: 潜在解放(ナイトウォッチIV)
+              - name: 潜在解放(バイオロIII)
+              - name: 潜在解放(ハイパーノービスIV)
+              - name: 潜在解放(ハイパーノービスV)
+              - name: 潜在解放(マイスターIV)
+              - name: 潜在解放(天帝III)
+              - name: 潜在覚醒(ダーククローII)
+              - name: 潜在覚醒(キャロットビートII)
+              - name: 潜在覚醒(ハンドレッドスピアII)
+              - name: 潜在覚醒(ピンポイントアタックII)
+              - name: 潜在覚醒(爆裂苦無II)
+              - name: 潜在覚醒(修羅身弾II)
+              - name: 潜在覚醒(創星の書I)
+              - name: 潜在解放(ドラゴンナイトXI)
+              - name: 潜在解放(アークメイジX)
+              - name: 潜在解放(エレメンタルマスターX)
+              - name: 潜在解放(ウィンドホークXII)
+              - name: 潜在解放(トルバドゥール&トルヴェールVIII)
+              - name: 潜在解放(マイスターVI)
+              - name: 潜在解放(バイオロXII)
+              - name: 潜在解放(アビスチェイサーIII)
+              - name: 潜在解放(インクイジターX)
+              - name: 潜在解放(天帝IX)
+              - name: 潜在解放(ハイパーノービスXIII)
+              - name: 潜在解放(スピリットハンドラーXII)
+          - slot: 2
+            refine: 0
+            enchant_list: #
+              - name: 死の欲動
+              - name: 豪傑
+              - name: 真理の解放
+              - name: 限界突破
+
+  - name: コンセクレイト・フィデス・モニーレ
+    yomi: コンセクレイト・フィデス・モニーレ
+    desc: "物理・魔法攻撃命中時、一定確率で自分に発生している[狂乱]状態を解除する"
+    type: アクセサリー(2)
+    slot: 0
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 10
+    required_lv: 200
+    required_job: 4次職 拡張4次職
+    capabilities:
+      - name: ASPD増加
+        value: 15
+      - name: プレイヤー耐性
+        value: 3
+      - name: ATK加算
+        value: 1
+        per_lv: 1
+      - name: MATK加算
+        value: 1
+        per_lv: 1
+      - name: MAXHP加算
+        value: 50
+        per_lv: 1
+      - name: MAXSP加算
+        value: 5
+        per_lv: 1
+      - name: 物理ダメージ増加
+        value: 1
+        per_lv: 5
+      - name: 魔法ダメージ増加
+        value: 1
+        per_lv: 5
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豊穣の女神
+        capabilities:
+          - name: スキルディレイ減少
+            value: 15
+    enchant: #
+      - name: スペシャルエンチャント(キョウ/ジュウべえ)
+        slot_list: #
+          - slot: 4
+            refine: 0
+            enchant_list: #
+              - name: Def50%無視
+              - name: Mdef50%無視
+              - name: 潜在解放(アークメイジIII)
+              - name: 潜在解放(アビスチェイサーV)
+              - name: 潜在解放(インクイジターII)
+              - name: 潜在解放(インペリアルガードV)
+              - name: 潜在解放(ウィンドホークIV)
+              - name: 潜在解放(エレメンタルマスターII)
+              - name: 潜在解放(エレメンタルマスターIII)
+              - name: 潜在解放(カーディナルII)
+              - name: 潜在解放(シャドウクロスV)
+              - name: 潜在解放(スピリットハンドラーXII)
+              - name: 潜在解放(ソウルアセティックII)
+              - name: 潜在解放(ドラゴンナイトV)
+              - name: 潜在解放(トルバドゥール&トルヴェールIII)
+              - name: 潜在解放(ナイトウォッチX)
+              - name: 潜在解放(バイオロIII)
+              - name: 潜在解放(ハイパーノービスIV)
+              - name: 潜在解放(マイスターVI)
+              - name: 潜在解放(天帝III)
+              - name: 潜在解放(蜃気楼&不知火XI)
+          - slot: 3
+            refine: 0
+            enchant_list: #
+              - name: 豊穣の女神
+              - name: 祈りの晩鐘
+          - slot: 2
+            refine: 0
+            enchant_list: #
+              - name: 豊穣の女神
+              - name: 再生の炎
+
+  - name: ぱかぱかにゃんこのぽかぽかソックス
+    yomi: ぱかぱかにゃんこのぽかぽかソックス
+    type: アクセサリー
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 10
+    required_lv: 200
+    required_job: 4次職 拡張4次職
+    capabilities:
+      - name: SPL加算
+        value: 3
+      - name: 魔法ダメージ増加
+        value: 40
+      - name: プレイヤー耐性
+        value: 3
+      - name: スキル使用可能
+        value: 1
+        skill: ファイアーウォール
+        skill_lv: 10
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 5
+        skill: イヌハッカメテオ
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 5
+        skill: マタタビランス
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: ディアーキャノン
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: ディアーブリーズ
+    enchant: #
+      - name: スペシャルエンチャント(モチモチ)
+        slot_list: #
+          - slot: 4
+            refine: 0
+            enchant_list: #
+              - name: Str+7
+              - name: Agi+7
+              - name: Vit+7
+              - name: Int+7
+              - name: Dex+7
+              - name: Luk+7
+              - name: SpecialStr
+              - name: SpecialAgi
+              - name: SpecialVit
+              - name: SpecialInt
+              - name: SpecialDex
+              - name: SpecialLuk
+              - name: 攻撃速度+15%
+              - name: スキルディレイ-15%
+          - slot: 3
+            refine: 0
+            enchant_list: #
+              - name: Str+7
+              - name: Agi+7
+              - name: Vit+7
+              - name: Int+7
+              - name: Dex+7
+              - name: Luk+7
+              - name: SpecialStr
+              - name: SpecialAgi
+              - name: SpecialVit
+              - name: SpecialInt
+              - name: SpecialDex
+              - name: SpecialLuk
+              - name: MaxHP+15%
+              - name: 潜在解放(スピリットハンドラーV)
+          - slot: 2
+            refine: 0
+            enchant_list: #
+              - name: Str+7
+              - name: Agi+7
+              - name: Vit+7
+              - name: Int+7
+              - name: Dex+7
+              - name: Luk+7
+              - name: SpecialStr
+              - name: SpecialAgi
+              - name: SpecialVit
+              - name: SpecialInt
+              - name: SpecialDex
+              - name: SpecialLuk
+              - name: 暴走した魔力
+
+  - name: イルシオンシールドIII
+    yomi: イルシオンシールドIII
+    type: 盾
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 80
+    weight: 80
+    required_lv: 100
+    required_job: 全ての職業
+    capabilities:
+      - name: MAXHP増加
+        value: 10
+      - name: MAXSP増加
+        value: 10
+      - name: 無属性耐性
+        value: 5
+        at_lv: 170
+      - name: MAXHP加算
+        value: 500
+        per_refine: 3
+      - name: MAXSP加算
+        value: 50
+        per_refine: 3
+
+  - name: オートマティックシールドIII
+    yomi: オートマティックシールドIII
+    type: 盾
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 80
+    weight: 80
+    required_lv: 100
+    required_job: 全ての職業
+    capabilities:
+      - name: MAXHP増加
+        value: 15
+      - name: MAXSP増加
+        value: 15
+      - name: MAXHP増加
+        value: 15
+        at_lv: 175
+      - name: MAXSP増加
+        value: 15
+        at_lv: 175
+      - name: ボスへの物理ダメージ増加
+        value: 1
+        per_refine: 1
+      - name: 一般への物理ダメージ増加
+        value: 1
+        per_refine: 1
+      - name: ボスへの魔法ダメージ増加
+        value: 1
+        per_refine: 1
+      - name: 一般への魔法ダメージ増加
+        value: 1
+        per_refine: 1
