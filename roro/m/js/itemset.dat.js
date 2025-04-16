@@ -6031,7 +6031,15 @@
 	w_SE[3099] = [5423,5422,5428,];
 	ItemIdToSetIdMap[5422] = [3099,];
 	ItemIdToSetIdMap[5428] = [3099,];
-	
+	//
+	w_SE[3100] = [-3506,-3505,-2311,];
+	CardIdToSetIdMap[3505] = [3100,];
+	w_SE[3101] = [-3510,-3509,-2311,];
+	CardIdToSetIdMap[3509] = [3101,];
+	w_SE[3102] = [-3513,-3512,-3516,];
+	CardIdToSetIdMap[3512] = [3102,];
+	CardIdToSetIdMap[3516] = [3102,];
+	CardIdToSetIdMap[2311] = CardIdToSetIdMap[2311].concat([3100, 3101]);
 	// itemset はセーブデータに書き出されないので
 	// 現実的な範囲において itemsetID の上限値を気にする必要はありません
 })();
