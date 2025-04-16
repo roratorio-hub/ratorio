@@ -24081,6 +24081,33 @@ function GetCoolFixOfSkill(skillId) {
 		coolfix -= GetEquippedTotalSPCardAndElse(ITEM_SP_SKILL_COOL_MINUS_OFFSET + skillId);
 	}
 
+	//「暴食のクラウン(ハイパーノービス)」の「天使さま助けて」CT短縮効果の打ち消し
+	if (skillId === SKILL_ID_TENSHISAMA_TASUKETE) {
+		if (EquipNumSearch(ITEM_ID_IMPERIAL_ARTIS_SUIT) != 0 || EquipNumSearch(ITEM_ID_GRACE_ARTIS_SUIT) != 0) {
+			if (EquipNumSearch(ITEM_ID_GLUTTONY_CROWN_HYPER_NOVICE) != 0) {
+				coolfix += 240 * 1000;
+			}
+		}
+	}
+
+	//「暴食のクラウン(バイオロ)」の「クレイジーウィード」CT短縮効果の打ち消し
+	if (skillId === SKILL_ID_CRAZY_WEED) {
+		if (EquipNumSearch(ITEM_ID_GRACE_CULTIVATION_COAT) != 0 || CardNumSearch(CARD_SET_ID_ENCHANT_GOKETSU_SENZAI_KAKUSEI_CRAZY_WEED) != 0) {
+			if (EquipNumSearch(ITEM_ID_GLUTTONY_CROWN_BIOLO) != 0) {
+				coolfix += 4.5 * 1000;
+			}
+		}
+	}
+
+	//「暴食のクラウン(インクイジター)」の「潜龍昇天」CT短縮効果の打ち消し
+	if (skillId === SKILL_ID_SENRYU_SHOTEN) {
+		if (EquipNumSearch(ITEM_SET_ID_NOBLESSE_OBLIGE_GRACE_TENCHI_SUIT) != 0) {
+			if (EquipNumSearch(ITEM_ID_GLUTTONY_CROWN_INQUISITOR) != 0) {
+				coolfix += 25 * 1000;
+			}
+		}
+	}
+
 	//----------------------------------------------------------------
 	// 「潜在覚醒(ダーククローI)」の「ダーククロー」CT短縮効果の打ち消し
 	//----------------------------------------------------------------
