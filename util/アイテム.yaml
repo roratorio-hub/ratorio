@@ -1,490 +1,1098 @@
 item_list:
-  - name: ヴァンパイアストール
-    yomi: ヴァンパイアストール
-    type: 下段
-    slot: 0
-    weapon_lv: 0
-    atk_or_def: 0
-    weight: 10
-    required_lv: 100
-    required_job: 全ての職業
-    capabilities:
-      - name: プレイヤー耐性
-        value: 3
-      - name: 全サイズへの物理ダメージ増加
-        value: 1
-        per_lv: 10
-      - name: 全サイズへの魔法ダメージ増加
-        value: 1
-        per_lv: 10
-    enchant: #
-      - name: スペシャルエンチャント(キョウ)
-        slot_list: #
-          - slot: 4
-            refine: 0
-            enchant_list: #
-              - name: 大鷲の眼光
-              - name: 覇王
-              - name: SpecialStr
-              - name: SpecialAgi
-              - name: SpecialVit
-              - name: SpecialInt
-              - name: SpecialDex
-              - name: SpecialLuk
-          - slot: 3
-            refine: 0
-            enchant_list: #
-              - name: スキルディレイ-15%
-              - name: Def100%無視
-              - name: SpecialStr
-              - name: SpecialAgi
-              - name: SpecialVit
-              - name: SpecialInt
-              - name: SpecialDex
-              - name: SpecialLuk
-          - slot: 2
-            refine: 0
-            enchant_list: #
-              - name: Str+10
-              - name: Agi+10
-              - name: Vit+10
-              - name: Int+10
-              - name: Dex+10
-              - name: Luk+10
-              - name: 詠唱妨害不可
-
-  - name: オーバードライブランページエコーズ
-    yomi: オーバードライブランページエコーズ
-    desc: "物理・魔法攻撃命中時、一定確率で自分に発生している[リバウンド]状態を解除する"
-    type: アクセサリー(2)
+  - name: 暴食のクラウン(アークメイジ)
+    yomi: ボウショクノクラウンアークメイジ
+    desc: "装備解除時、[テレキネシスインテンス]を解除する"
+    type: 上段
     slot: 1
     weapon_lv: 0
-    atk_or_def: 0
-    weight: 10
+    atk_or_def: 10
+    weight: 50
     required_lv: 200
-    required_job: 4次職 拡張4次職
+    required_job: アークメイジ
     capabilities:
-      - name: ASPD増加
-        value: 15
+      - name: 壊れない
+        value: 1
+      - name: 一般耐性
+        value: 20
+      - name: ボス耐性
+        value: 20
       - name: プレイヤー耐性
-        value: 3
-      - name: 全サイズへの物理ダメージ増加
-        value: 15
-      - name: 全サイズへの魔法ダメージ増加
-        value: 15
-      - name: ATK加算
+        value: 13
+      - name: 全属性への物理ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: MAXHP増加
+        value: 10
+        at_refine: 7
+      - name: MAXSP増加
+        value: 10
+        at_refine: 7
+      - name: スキル固定詠唱割合減少
+        value: 100
+        at_refine: 7
+        skill: テレキネシスインテンス
+      - name: 再使用待機時間減少
+        value: 185000
+        at_refine: 7
+        skill: テレキネシスインテンス
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 9
+      - name: スキルダメージ増加
         value: 1
-        per_lv: 1
-      - name: MATK加算
+        per_lv: 10
+        skill: ソウルバルカンストライク
+      - name: スキルダメージ増加
         value: 1
-        per_lv: 1
-      - name: MAXHP加算
-        value: 50
-        per_lv: 1
-      - name: MAXSP加算
-        value: 5
-        per_lv: 1
-      - name: 物理ダメージ増加
+        per_lv: 10
+        skill: ミステリーイリュージョン
+      - name: スキルダメージ増加
         value: 1
-        per_lv: 5
-      - name: 魔法ダメージ増加
+        per_lv: 10
+        skill: デッドリープロジェクション
+      - name: スキルダメージ増加
         value: 1
-        per_lv: 5
+        per_lv: 10
+        skill: アストラルストライク
     enchant: #
-      - name: スペシャルエンチャント(キョウ)
+      - name: 暴食エンチャント(ムニン)
         slot_list: #
           - slot: 4
             refine: 0
             enchant_list: #
-              - name: Cri+25
-              - name: 必中攻撃+25%
-              - name: スキルディレイ-15%
-              - name: 潜在覚醒(アースグレイヴI)
+              - name: Str+7
+              - name: Agi+7
+              - name: Vit+7
+              - name: Int+7
+              - name: Dex+7
+              - name: Luk+7
+              - name: SpecialStr
+              - name: SpecialInt
+              - name: SpecialDex
+              - name: SpecialAgi
+              - name: SpecialVit
+              - name: SpecialLuk
               - name: 潜在覚醒(アースストレインI)
-              - name: 潜在覚醒(アームズキャノンII)
-              - name: 潜在覚醒(アックストルネードII)
-              - name: 潜在覚醒(アックスブーメランII)
+              - name: 潜在覚醒(アックストルネードI)
+              - name: 潜在覚醒(アックスブーメランI)
               - name: 潜在覚醒(アドラムスI)
-              - name: 潜在覚醒(アローストームIII)
-              - name: 潜在覚醒(アンチマテリアルブラストI)
-              - name: 潜在覚醒(イグニッションブレイクIII)
-              - name: 潜在覚醒(イヌハッカメテオI)
-              - name: 潜在覚醒(ヴェラチュールスピアーII)
-              - name: 潜在覚醒(エイムドボルトII)
-              - name: 潜在覚醒(エスパII)
-              - name: 潜在覚醒(エスフI)
-              - name: 潜在覚醒(カートキャノンI)
-              - name: 潜在覚醒(カートトルネードI)
-              - name: 潜在覚醒(カウンタースラッシュI)
-              - name: 潜在覚醒(キャノンスピアI)
-              - name: 潜在覚醒(クリムゾンロックII)
+              - name: 潜在覚醒(アローストームII)
+              - name: 潜在覚醒(イグニッションブレイクII)
+              - name: 潜在覚醒(インスピレーションI)
+              - name: 潜在覚醒(ヴェラチュールスピアーI)
+              - name: 潜在覚醒(エイムドボルトI)
+              - name: 潜在覚醒(エスパI)
+              - name: 潜在覚醒(キャロットビートI)
+              - name: 潜在覚醒(クリムゾンロックI)
               - name: 潜在覚醒(クロスリッパースラッシャーI)
-              - name: 潜在覚醒(サイキックウェーブII)
-              - name: 潜在覚醒(シールドプレスII)
-              - name: 潜在覚醒(シビアレインストームIII)
+              - name: 潜在覚醒(サイキックウェーブI)
+              - name: 潜在覚醒(サベージの魂II)
               - name: 潜在覚醒(ジャックフロストII)
               - name: 潜在覚醒(ジュデックスII)
+              - name: 潜在覚醒(スペルフィストI)
               - name: 潜在覚醒(スポアエクスプロージョンI)
-              - name: 潜在覚醒(スラッグショットI)
-              - name: 潜在覚醒(ソウルエクスパンションII)
+              - name: 潜在覚醒(ソウルエクスパンションI)
               - name: 潜在覚醒(ソニックウェーブI)
-              - name: 潜在覚醒(ダイヤモンドダストI)
-              - name: 潜在覚醒(デュプレライトI)
-              - name: 潜在覚醒(トライアングルショットII)
-              - name: 潜在覚醒(バニシングポイントI)
               - name: 潜在覚醒(パワースイングI)
-              - name: 潜在覚醒(ハンマーオブゴッドI)
-              - name: 潜在覚醒(ファイアーレインII)
-              - name: 潜在覚醒(フェイタルメナスI)
+              - name: 潜在覚醒(ファイアーレインI)
               - name: 潜在覚醒(ヘルインフェルノI)
-              - name: 潜在覚醒(マタタビランスI)
               - name: 潜在覚醒(メタリックサウンドI)
-              - name: 潜在覚醒(ラウンドトリップII)
-              - name: 潜在覚醒(レイオブジェネシスII)
-              - name: 潜在覚醒(ローリングカッターII)
-              - name: 潜在覚醒(獅子吼III)
-              - name: 潜在覚醒(十文字斬りII)
-              - name: 潜在覚醒(死霊爆発II)
+              - name: 潜在覚醒(ラウンドトリップI)
+              - name: 潜在覚醒(レイオブジェネシスI)
+              - name: 潜在覚醒(ローリングカッターI)
+              - name: 潜在覚醒(獅子吼II)
+              - name: 潜在覚醒(十文字斬りI)
+              - name: 潜在覚醒(死霊爆発I)
               - name: 潜在覚醒(太陽爆発I)
-              - name: 潜在覚醒(天羅地網II)
-              - name: 潜在覚醒(風魔手裏剣 -乱華-II)
+              - name: 潜在覚醒(天羅地網I)
+              - name: 潜在覚醒(爆気散弾I)
+              - name: 潜在覚醒(風魔手裏剣 -乱華-I)
               - name: 潜在覚醒(満月脚II)
+              - name: 潜在覚醒(雷光弾I)
               - name: 潜在覚醒(流星落下I)
-              - name: 潜在覚醒(ダーククローII)
-              - name: 潜在覚醒(キャロットビートII)
-              - name: 潜在覚醒(ハンドレッドスピアII)
-              - name: 潜在覚醒(ピンポイントアタックII)
-              - name: 潜在覚醒(爆裂苦無II)
-              - name: 潜在覚醒(修羅身弾II)
-              - name: 潜在覚醒(創星の書I)
           - slot: 3
             refine: 0
             enchant_list: #
-              - name: Cri+25
-              - name: 必中攻撃+25%
-              - name: スキルディレイ-15%
-              - name: 潜在覚醒(アースグレイヴI)
-              - name: 潜在覚醒(アースストレインI)
-              - name: 潜在覚醒(アームズキャノンII)
-              - name: 潜在覚醒(アックストルネードII)
-              - name: 潜在覚醒(アックスブーメランII)
-              - name: 潜在覚醒(アドラムスI)
-              - name: 潜在覚醒(アローストームIII)
-              - name: 潜在覚醒(アンチマテリアルブラストI)
-              - name: 潜在覚醒(イグニッションブレイクIII)
-              - name: 潜在覚醒(イヌハッカメテオI)
-              - name: 潜在覚醒(ヴェラチュールスピアーII)
-              - name: 潜在覚醒(エイムドボルトII)
-              - name: 潜在覚醒(エスパII)
-              - name: 潜在覚醒(エスフI)
-              - name: 潜在覚醒(カートキャノンI)
-              - name: 潜在覚醒(カートトルネードI)
-              - name: 潜在覚醒(カウンタースラッシュI)
-              - name: 潜在覚醒(キャノンスピアI)
-              - name: 潜在覚醒(クリムゾンロックII)
-              - name: 潜在覚醒(クロスリッパースラッシャーI)
-              - name: 潜在覚醒(サイキックウェーブII)
-              - name: 潜在覚醒(シールドプレスII)
-              - name: 潜在覚醒(シビアレインストームIII)
-              - name: 潜在覚醒(ジャックフロストII)
-              - name: 潜在覚醒(ジュデックスII)
-              - name: 潜在覚醒(スポアエクスプロージョンI)
-              - name: 潜在覚醒(スラッグショットI)
-              - name: 潜在覚醒(ソウルエクスパンションII)
-              - name: 潜在覚醒(ソニックウェーブI)
-              - name: 潜在覚醒(ダイヤモンドダストI)
-              - name: 潜在覚醒(デュプレライトI)
-              - name: 潜在覚醒(トライアングルショットII)
-              - name: 潜在覚醒(バニシングポイントI)
-              - name: 潜在覚醒(パワースイングI)
-              - name: 潜在覚醒(ハンマーオブゴッドI)
-              - name: 潜在覚醒(ファイアーレインII)
-              - name: 潜在覚醒(フェイタルメナスI)
-              - name: 潜在覚醒(ヘルインフェルノI)
-              - name: 潜在覚醒(マタタビランスI)
-              - name: 潜在覚醒(メタリックサウンドI)
-              - name: 潜在覚醒(ラウンドトリップII)
-              - name: 潜在覚醒(レイオブジェネシスII)
-              - name: 潜在覚醒(ローリングカッターII)
-              - name: 潜在覚醒(獅子吼III)
-              - name: 潜在覚醒(十文字斬りII)
-              - name: 潜在覚醒(死霊爆発II)
-              - name: 潜在覚醒(太陽爆発I)
-              - name: 潜在覚醒(天羅地網II)
-              - name: 潜在覚醒(風魔手裏剣 -乱華-II)
-              - name: 潜在覚醒(満月脚II)
-              - name: 潜在覚醒(流星落下I)
-              - name: 潜在解放(アークメイジIII)
-              - name: 潜在解放(アビスチェイサーV)
-              - name: 潜在解放(アビスチェイサーVII)
-              - name: 潜在解放(インクイジターII)
-              - name: 潜在解放(インペリアルガードV)
-              - name: 潜在解放(インペリアルガードVI)
-              - name: 潜在解放(ウィンドホークIV)
-              - name: 潜在解放(エレメンタルマスターII)
-              - name: 潜在解放(エレメンタルマスターIII)
-              - name: 潜在解放(カーディナルII)
-              - name: 潜在解放(カーディナルV)
-              - name: 潜在解放(シャドウクロスIV)
-              - name: 潜在解放(シャドウクロスV)
-              - name: 潜在解放(スピリットハンドラーV)
-              - name: 潜在解放(ソウルアセティックII)
-              - name: 潜在解放(ドラゴンナイトV)
-              - name: 潜在解放(トルバドゥール&トルヴェールIII)
-              - name: 潜在解放(ナイトウォッチIV)
-              - name: 潜在解放(バイオロIII)
-              - name: 潜在解放(ハイパーノービスIV)
-              - name: 潜在解放(ハイパーノービスV)
-              - name: 潜在解放(マイスターIV)
-              - name: 潜在解放(天帝III)
-              - name: 潜在覚醒(ダーククローII)
-              - name: 潜在覚醒(キャロットビートII)
-              - name: 潜在覚醒(ハンドレッドスピアII)
-              - name: 潜在覚醒(ピンポイントアタックII)
-              - name: 潜在覚醒(爆裂苦無II)
-              - name: 潜在覚醒(修羅身弾II)
-              - name: 潜在覚醒(創星の書I)
-              - name: 潜在解放(ドラゴンナイトXI)
-              - name: 潜在解放(アークメイジX)
-              - name: 潜在解放(エレメンタルマスターX)
-              - name: 潜在解放(ウィンドホークXII)
-              - name: 潜在解放(トルバドゥール&トルヴェールVIII)
-              - name: 潜在解放(マイスターVI)
-              - name: 潜在解放(バイオロXII)
-              - name: 潜在解放(アビスチェイサーIII)
-              - name: 潜在解放(インクイジターX)
-              - name: 潜在解放(天帝IX)
-              - name: 潜在解放(ハイパーノービスXIII)
-              - name: 潜在解放(スピリットハンドラーXII)
+              - name: Str+7
+              - name: Agi+7
+              - name: Vit+7
+              - name: Int+7
+              - name: Dex+7
+              - name: Luk+7
+              - name: SpecialStr
+              - name: SpecialInt
+              - name: SpecialDex
+              - name: SpecialAgi
+              - name: SpecialVit
+              - name: SpecialLuk
+              - name: 潜在解放(ドラゴンナイトXII)
+              - name: 潜在解放(インペリアルガードII)
+              - name: 潜在解放(マイスターV)
+              - name: 潜在解放(バイオロXIII)
+              - name: 潜在解放(シャドウクロスVI)
+              - name: 潜在解放(アビスチェイサーXIII)
+              - name: 潜在解放(カーディナルIII)
+              - name: 潜在解放(インクイジターXI)
+              - name: 潜在解放(アークメイジXI)
+              - name: 潜在解放(エレメンタルマスターXI)
+              - name: 潜在解放(ウィンドホークXIII)
+              - name: 潜在解放(トルバドゥール&トルヴェールIX)
+              - name: 潜在解放(天帝X)
+              - name: 潜在解放(ソウルアセティックXI)
+              - name: 潜在解放(ナイトウォッチIX)
+              - name: 潜在解放(蜃気楼&不知火IV)
+              - name: 潜在解放(ハイパーノービスVII)
+              - name: 潜在解放(スピリットハンドラーII)
           - slot: 2
             refine: 0
             enchant_list: #
-              - name: 死の欲動
+              - name: Str+7
+              - name: Agi+7
+              - name: Vit+7
+              - name: Int+7
+              - name: Dex+7
+              - name: Luk+7
+              - name: SpecialStr
+              - name: SpecialInt
+              - name: SpecialDex
+              - name: SpecialAgi
+              - name: SpecialVit
+              - name: SpecialLuk
+              - name: 覇王
+              - name: 暴走した魔力
+              - name: 大鷲の眼光
               - name: 豪傑
               - name: 真理の解放
-              - name: 限界突破
+              - name: 死の欲動
+              - name: 無念無想
 
-  - name: コンセクレイト・フィデス・モニーレ
-    yomi: コンセクレイト・フィデス・モニーレ
-    desc: "物理・魔法攻撃命中時、一定確率で自分に発生している[狂乱]状態を解除する"
-    type: アクセサリー(2)
-    slot: 0
-    weapon_lv: 0
-    atk_or_def: 0
-    weight: 10
-    required_lv: 200
-    required_job: 4次職 拡張4次職
-    capabilities:
-      - name: ASPD増加
-        value: 15
-      - name: プレイヤー耐性
-        value: 3
-      - name: ATK加算
-        value: 1
-        per_lv: 1
-      - name: MATK加算
-        value: 1
-        per_lv: 1
-      - name: MAXHP加算
-        value: 50
-        per_lv: 1
-      - name: MAXSP加算
-        value: 5
-        per_lv: 1
-      - name: 物理ダメージ増加
-        value: 1
-        per_lv: 5
-      - name: 魔法ダメージ増加
-        value: 1
-        per_lv: 5
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 豊穣の女神
-        capabilities:
-          - name: スキルディレイ減少
-            value: 15
-    enchant: #
-      - name: スペシャルエンチャント(キョウ/ジュウべえ)
-        slot_list: #
-          - slot: 4
-            refine: 0
-            enchant_list: #
-              - name: Def50%無視
-              - name: Mdef50%無視
-              - name: 潜在解放(アークメイジIII)
-              - name: 潜在解放(アビスチェイサーV)
-              - name: 潜在解放(インクイジターII)
-              - name: 潜在解放(インペリアルガードV)
-              - name: 潜在解放(ウィンドホークIV)
-              - name: 潜在解放(エレメンタルマスターII)
-              - name: 潜在解放(エレメンタルマスターIII)
-              - name: 潜在解放(カーディナルII)
-              - name: 潜在解放(シャドウクロスV)
-              - name: 潜在解放(スピリットハンドラーXII)
-              - name: 潜在解放(ソウルアセティックII)
-              - name: 潜在解放(ドラゴンナイトV)
-              - name: 潜在解放(トルバドゥール&トルヴェールIII)
-              - name: 潜在解放(ナイトウォッチX)
-              - name: 潜在解放(バイオロIII)
-              - name: 潜在解放(ハイパーノービスIV)
-              - name: 潜在解放(マイスターVI)
-              - name: 潜在解放(天帝III)
-              - name: 潜在解放(蜃気楼&不知火XI)
-          - slot: 3
-            refine: 0
-            enchant_list: #
-              - name: 豊穣の女神
-              - name: 祈りの晩鐘
-          - slot: 2
-            refine: 0
-            enchant_list: #
-              - name: 豊穣の女神
-              - name: 再生の炎
-
-  - name: ぱかぱかにゃんこのぽかぽかソックス
-    yomi: ぱかぱかにゃんこのぽかぽかソックス
-    type: アクセサリー
+  - name: 暴食のクラウン(アビスチェイサー)
+    yomi: ボウショクノクラウンアビスチェイサー
+    type: 上段
     slot: 1
     weapon_lv: 0
-    atk_or_def: 0
-    weight: 10
+    atk_or_def: 10
+    weight: 50
     required_lv: 200
-    required_job: 4次職 拡張4次職
+    required_job: アビスチェイサー
     capabilities:
-      - name: SPL加算
-        value: 3
-      - name: 魔法ダメージ増加
-        value: 40
+      - name: 壊れない
+        value: 1
+      - name: 一般耐性
+        value: 20
+      - name: ボス耐性
+        value: 20
       - name: プレイヤー耐性
-        value: 3
-      - name: スキル使用可能
-        value: 1
-        skill: ファイアーウォール
-        skill_lv: 10
-      - name: スキルダメージ増加
-        value: 1
-        per_lv: 5
-        skill: イヌハッカメテオ
-      - name: スキルダメージ増加
-        value: 1
-        per_lv: 5
-        skill: マタタビランス
+        value: 13
+      - name: 全属性への物理ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: MAXHP増加
+        value: 10
+        at_refine: 7
+      - name: MAXSP増加
+        value: 10
+        at_refine: 7
+      - name: スキル固定詠唱割合減少
+        value: 100
+        at_refine: 7
+        skill: オートシャドウスペル
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 9
       - name: スキルダメージ増加
         value: 1
         per_lv: 10
-        skill: ディアーキャノン
+        skill: フロムジアビス
       - name: スキルダメージ増加
         value: 1
         per_lv: 10
-        skill: ディアーブリーズ
-    enchant: #
-      - name: スペシャルエンチャント(モチモチ)
-        slot_list: #
-          - slot: 4
-            refine: 0
-            enchant_list: #
-              - name: Str+7
-              - name: Agi+7
-              - name: Vit+7
-              - name: Int+7
-              - name: Dex+7
-              - name: Luk+7
-              - name: SpecialStr
-              - name: SpecialAgi
-              - name: SpecialVit
-              - name: SpecialInt
-              - name: SpecialDex
-              - name: SpecialLuk
-              - name: 攻撃速度+15%
-              - name: スキルディレイ-15%
-          - slot: 3
-            refine: 0
-            enchant_list: #
-              - name: Str+7
-              - name: Agi+7
-              - name: Vit+7
-              - name: Int+7
-              - name: Dex+7
-              - name: Luk+7
-              - name: SpecialStr
-              - name: SpecialAgi
-              - name: SpecialVit
-              - name: SpecialInt
-              - name: SpecialDex
-              - name: SpecialLuk
-              - name: MaxHP+15%
-              - name: 潜在解放(スピリットハンドラーV)
-          - slot: 2
-            refine: 0
-            enchant_list: #
-              - name: Str+7
-              - name: Agi+7
-              - name: Vit+7
-              - name: Int+7
-              - name: Dex+7
-              - name: Luk+7
-              - name: SpecialStr
-              - name: SpecialAgi
-              - name: SpecialVit
-              - name: SpecialInt
-              - name: SpecialDex
-              - name: SpecialLuk
-              - name: 暴走した魔力
+        skill: アビススクエア
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: オメガアビスストライク
 
-  - name: イルシオンシールドIII
-    yomi: イルシオンシールドIII
-    type: 盾
+  - name: 暴食のクラウン(インクイジター)
+    yomi: ボウショクノクラウンインクイジター
+    desc: "[グレース天地スーツ]と[ノブレスオブリージュ]のセット効果発動時、[潜龍昇天]の再使用待機時間減少効果が発動しない"
+    type: 上段
     slot: 1
     weapon_lv: 0
-    atk_or_def: 80
-    weight: 80
-    required_lv: 100
-    required_job: 全ての職業
+    atk_or_def: 10
+    weight: 50
+    required_lv: 200
+    required_job: インクイジター
     capabilities:
+      - name: 壊れない
+        value: 1
+      - name: 一般耐性
+        value: 20
+      - name: ボス耐性
+        value: 20
+      - name: プレイヤー耐性
+        value: 13
+      - name: 全属性への物理ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 4
+        per_refine: 1
       - name: MAXHP増加
         value: 10
+        at_refine: 7
       - name: MAXSP増加
         value: 10
-      - name: 無属性耐性
-        value: 5
-        at_lv: 170
-      - name: MAXHP加算
-        value: 500
-        per_refine: 3
-      - name: MAXSP加算
-        value: 50
-        per_refine: 3
+        at_refine: 7
+      - name: 再使用待機時間減少
+        value: 25000
+        skill: 潜龍昇天
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 9
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: 第二撃：信念
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: 第三撃：断罪
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: 第二撃：審判
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: 第三撃：浄化
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: 第二撃：滅魔の火
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: 第三撃：滅火撃
 
-  - name: オートマティックシールドIII
-    yomi: オートマティックシールドIII
-    type: 盾
+  - name: 暴食のクラウン(インペリアルガード)
+    yomi: ボウショクノクラウンインペリアルガード
+    type: 上段
     slot: 1
     weapon_lv: 0
-    atk_or_def: 80
-    weight: 80
-    required_lv: 100
-    required_job: 全ての職業
+    atk_or_def: 10
+    weight: 50
+    required_lv: 200
+    required_job: インペリアルガード
     capabilities:
+      - name: 壊れない
+        value: 1
+      - name: 一般耐性
+        value: 20
+      - name: ボス耐性
+        value: 20
+      - name: プレイヤー耐性
+        value: 13
+      - name: 全属性への物理ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 4
+        per_refine: 1
       - name: MAXHP増加
-        value: 15
+        value: 10
+        at_refine: 7
       - name: MAXSP増加
-        value: 15
+        value: 10
+        at_refine: 7
+      - name: スキル固定詠唱割合減少
+        value: 100
+        at_refine: 7
+        skill: インスピレーション
+      - name: スキル固定詠唱割合減少
+        value: 100
+        at_refine: 7
+        skill: プレスティージ
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 9
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: クロスレイン
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: ジャッジメントクロス
+
+  - name: 暴食のクラウン(ウィンドホーク)
+    yomi: ボウショクノクラウンウィンドホーク
+    type: 上段
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 10
+    weight: 50
+    required_lv: 200
+    required_job: ウィンドホーク
+    capabilities:
+      - name: 壊れない
+        value: 1
+      - name: 一般耐性
+        value: 20
+      - name: ボス耐性
+        value: 20
+      - name: プレイヤー耐性
+        value: 13
+      - name: 全属性への物理ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 4
+        per_refine: 1
       - name: MAXHP増加
-        value: 15
-        at_lv: 175
+        value: 10
+        at_refine: 7
       - name: MAXSP増加
-        value: 15
-        at_lv: 175
-      - name: ボスへの物理ダメージ増加
+        value: 10
+        at_refine: 7
+      - name: 再使用待機時間減少
+        value: 2000
+        skill: マゼンタトラップ
+      - name: 再使用待機時間減少
+        value: 2000
+        skill: コバルトトラップ
+      - name: 再使用待機時間減少
+        value: 2000
+        skill: メイズトラップ
+      - name: 再使用待機時間減少
+        value: 2000
+        skill: ヴェルデュールトラップ
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 9
+      - name: スキルダメージ増加
         value: 1
-        per_refine: 1
-      - name: 一般への物理ダメージ増加
+        per_lv: 10
+        skill: フレイムトラップ
+      - name: スキルダメージ増加
         value: 1
-        per_refine: 1
-      - name: ボスへの魔法ダメージ増加
+        per_lv: 10
+        skill: スイフトトラップ
+      - name: スキルダメージ増加
         value: 1
-        per_refine: 1
-      - name: 一般への魔法ダメージ増加
+        per_lv: 10
+        skill: ソリッドトラップ
+      - name: スキルダメージ増加
         value: 1
+        per_lv: 10
+        skill: ディープブラインドトラップ
+
+  - name: 暴食のクラウン(エレメンタルマスター)
+    yomi: ボウショクノクラウンエレメンタルマスター
+    type: 上段
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 10
+    weight: 50
+    required_lv: 200
+    required_job: エレメンタルマスター
+    capabilities:
+      - name: 壊れない
+        value: 1
+      - name: 一般耐性
+        value: 20
+      - name: ボス耐性
+        value: 20
+      - name: プレイヤー耐性
+        value: 13
+      - name: 全属性への物理ダメージ増加
+        value: 4
         per_refine: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: MAXHP増加
+        value: 10
+        at_refine: 7
+      - name: MAXSP増加
+        value: 10
+        at_refine: 7
+      - name: スキル固定詠唱割合減少
+        value: 100
+        at_refine: 7
+        skill: サモンアグニ
+      - name: スキル固定詠唱割合減少
+        value: 100
+        at_refine: 7
+        skill: サモンアクア
+      - name: スキル固定詠唱割合減少
+        value: 100
+        at_refine: 7
+        skill: サモンベントス
+      - name: スキル固定詠唱割合減少
+        value: 100
+        at_refine: 7
+        skill: サモンテラ
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 9
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: コンフラグレーション
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: ダイヤモンドストーム
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: ライトニングランド
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: テラドライブ
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: ベナムスワンプ
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: エレメンタルバスター
+
+  - name: 暴食のクラウン(カーディナル)
+    yomi: ボウショクノクラウンカーディナル
+    type: 上段
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 10
+    weight: 50
+    required_lv: 200
+    required_job: カーディナル
+    capabilities:
+      - name: 壊れない
+        value: 1
+      - name: 一般耐性
+        value: 20
+      - name: ボス耐性
+        value: 20
+      - name: プレイヤー耐性
+        value: 13
+      - name: 全属性への物理ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: MAXHP増加
+        value: 10
+        at_refine: 7
+      - name: MAXSP増加
+        value: 10
+        at_refine: 7
+      - name: 再使用待機時間減少
+        value: 1500
+        skill: オラティオ
+      - name: スキル固定詠唱割合減少
+        value: 100
+        at_refine: 7
+        skill: オラティオ
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 9
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: ペティティオ
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: エフィリゴ
+
+  - name: 暴食のクラウン(シャドウクロス)
+    yomi: ボウショクノクラウンシャドウクロス
+    type: 上段
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 10
+    weight: 50
+    required_lv: 200
+    required_job: シャドウクロス
+    capabilities:
+      - name: 壊れない
+        value: 1
+      - name: 一般耐性
+        value: 20
+      - name: ボス耐性
+        value: 20
+      - name: プレイヤー耐性
+        value: 13
+      - name: 全属性への物理ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: MAXHP増加
+        value: 10
+        at_refine: 7
+      - name: MAXSP増加
+        value: 10
+        at_refine: 7
+      - name: 再使用待機時間減少
+        value: 2000
+        skill: ダークイリュージョン
+      - name: 再使用待機時間減少
+        value: 60000
+        skill: ダーククロー
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 9
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: インパクトクレーター
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: サベージインパクト
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: フェイタルシャドウクロー
+
+  - name: 暴食のクラウン(スピリットハンドラー)
+    yomi: ボウショクノクラウンスピリットハンドラー
+    type: 上段
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 10
+    weight: 50
+    required_lv: 200
+    required_job: スピリットハンドラー
+    capabilities:
+      - name: 壊れない
+        value: 1
+      - name: 一般耐性
+        value: 20
+      - name: ボス耐性
+        value: 20
+      - name: プレイヤー耐性
+        value: 13
+      - name: 全属性への物理ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: MAXHP増加
+        value: 10
+        at_refine: 7
+      - name: MAXSP増加
+        value: 10
+        at_refine: 7
+      - name: スキル固定詠唱割合減少
+        value: 100
+        at_refine: 7
+        skill: タロウの傷
+      - name: スキル固定詠唱割合減少
+        value: 100
+        at_refine: 7
+        skill: 群れの力
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 9
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: タイガースラッシュ
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: タイガーハウリング
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: タイガーストライク
+
+  - name: 暴食のクラウン(ソウルアセティック)
+    yomi: ボウショクノクラウンソウルアセティック
+    type: 上段
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 10
+    weight: 50
+    required_lv: 200
+    required_job: ソウルアセティック
+    capabilities:
+      - name: 壊れない
+        value: 1
+      - name: 一般耐性
+        value: 20
+      - name: ボス耐性
+        value: 20
+      - name: プレイヤー耐性
+        value: 13
+      - name: 全属性への物理ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: MAXHP増加
+        value: 10
+        at_refine: 7
+      - name: MAXSP増加
+        value: 10
+        at_refine: 7
+      - name: スキル固定詠唱割合減少
+        value: 100
+        at_refine: 7
+        skill: ゴーレムの魂
+      - name: スキル固定詠唱割合減少
+        value: 100
+        at_refine: 7
+        skill: 影の魂
+      - name: スキル固定詠唱割合減少
+        value: 100
+        at_refine: 7
+        skill: 鷹の魂
+      - name: スキル固定詠唱割合減少
+        value: 100
+        at_refine: 7
+        skill: 妖精の魂
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 9
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: 霊道符
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: 死霊浄化
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: 四方五行陣
+
+  - name: 暴食のクラウン(ドラゴンナイト)
+    yomi: ボウショクノクラウンドラゴンナイト
+    type: 上段
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 10
+    weight: 50
+    required_lv: 200
+    required_job: ドラゴンナイト
+    capabilities:
+      - name: 壊れない
+        value: 1
+      - name: 一般耐性
+        value: 20
+      - name: ボス耐性
+        value: 20
+      - name: プレイヤー耐性
+        value: 13
+      - name: 全属性への物理ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: MAXHP増加
+        value: 10
+        at_refine: 7
+      - name: MAXSP増加
+        value: 10
+        at_refine: 7
+      - name: スキル固定詠唱割合減少
+        value: 100
+        at_refine: 7
+        skill: ストーンハードスキン
+      - name: スキル固定詠唱割合減少
+        value: 100
+        at_refine: 7
+        skill: リフレッシュ
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 9
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: ハックアンドスラッシャー
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: ストームスラッシュ
+
+  - name: 暴食のクラウン(トルバドゥール&トルヴェール)
+    yomi: ボウショクノクラウントルバドゥールトルヴェール
+    desc: "[楽器の練習]習得時、[ダンスの練習]が習得Lvで発動<br>[ダンスの練習]習得時、[楽器の練習]が習得Lvで発動<br>[ブラギの詩]習得時、楽器・鞭装備時、[幸運のキス]が習得Lvで使用可能<br>[幸運のキス]習得時、楽器・鞭装備時、[ブラギの詩]が習得Lvで使用可能"
+    type: 上段
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 10
+    weight: 50
+    required_lv: 200
+    required_job: トルバドゥール トルヴェール
+    capabilities:
+      - name: 壊れない
+        value: 1
+      - name: 一般耐性
+        value: 20
+      - name: ボス耐性
+        value: 20
+      - name: プレイヤー耐性
+        value: 13
+      - name: 全属性への物理ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: MAXHP増加
+        value: 10
+        at_refine: 7
+      - name: MAXSP増加
+        value: 10
+        at_refine: 7
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 9
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: サウンドブレンド
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: メタリックフューリー
+
+  - name: 暴食のクラウン(ナイトウォッチ)
+    yomi: ボウショクノクラウンナイトウォッチ
+    type: 上段
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 10
+    weight: 50
+    required_lv: 200
+    required_job: ナイトウォッチ
+    capabilities:
+      - name: 壊れない
+        value: 1
+      - name: 一般耐性
+        value: 20
+      - name: ボス耐性
+        value: 20
+      - name: プレイヤー耐性
+        value: 13
+      - name: 全属性への物理ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: MAXHP増加
+        value: 10
+        at_refine: 7
+      - name: MAXSP増加
+        value: 10
+        at_refine: 7
+      - name: 再使用待機時間減少
+        value: 80000
+        skill: ヒートバレル
+      - name: 再使用待機時間減少
+        value: 3000
+        skill: リッチズコイン
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 9
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: マガジンフォーワン
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: ビジラントアットナイト
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: ワイルドファイア
+
+  - name: 暴食のクラウン(バイオロ)
+    yomi: ボウショクノクラウンバイオロ
+    desc: "[グレースカルティベイションコート]装備時、<br>または[潜在覚醒(クレイジーウィードII)]と[豪傑]のセット効果発動、<br>[クレイジーウィード]の再使用待機時間減少効果が発動しない"
+    type: 上段
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 10
+    weight: 50
+    required_lv: 200
+    required_job: バイオロ
+    capabilities:
+      - name: 壊れない
+        value: 1
+      - name: 一般耐性
+        value: 20
+      - name: ボス耐性
+        value: 20
+      - name: プレイヤー耐性
+        value: 13
+      - name: 全属性への物理ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: MAXHP増加
+        value: 10
+        at_refine: 7
+      - name: MAXSP増加
+        value: 10
+        at_refine: 7
+      - name: 再使用待機時間減少
+        value: 4500
+        skill: クレイジーウィード
+      - name: 再使用待機時間減少
+        value: 5000
+        skill: デモニックファイアー
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 9
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: メイヘミックソーンズ
+
+  - name: 暴食のクラウン(ハイパーノービス)
+    yomi: ボウショクノクラウンハイパーノービス
+    desc: "[インペリアルアーティススーツ]または[グレースアーティススーツ]装備時、<br>[天使さま助けて]の再使用待機時間減少効果が発動しない"
+    type: 上段
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 10
+    weight: 50
+    required_lv: 200
+    required_job: ハイパーノービス
+    capabilities:
+      - name: 壊れない
+        value: 1
+      - name: 一般耐性
+        value: 20
+      - name: ボス耐性
+        value: 20
+      - name: プレイヤー耐性
+        value: 13
+      - name: 全属性への物理ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: MAXHP増加
+        value: 10
+        at_refine: 7
+      - name: MAXSP増加
+        value: 10
+        at_refine: 7
+      - name: 再使用待機時間減少
+        value: 240000
+        skill: 天使さま助けて
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 9
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: ダブルボウリングバッシュ
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: メガソニックブロー
+
+  - name: 暴食のクラウン(マイスター)
+    yomi: ボウショクノクラウンマイスター
+    type: 上段
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 10
+    weight: 50
+    required_lv: 200
+    required_job: マイスター
+    capabilities:
+      - name: 壊れない
+        value: 1
+      - name: 一般耐性
+        value: 20
+      - name: ボス耐性
+        value: 20
+      - name: プレイヤー耐性
+        value: 13
+      - name: 全属性への物理ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: MAXHP増加
+        value: 10
+        at_refine: 7
+      - name: MAXSP増加
+        value: 10
+        at_refine: 7
+      - name: 再使用待機時間減少
+        value: 2000
+        skill: アックストルネード
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 9
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: アックスストンプ
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: マイティスマッシュ
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: ラッシュクエイク
+
+  - name: 暴食のクラウン(天帝)
+    yomi: ボウショクノクラウンテンテイ
+    type: 上段
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 10
+    weight: 50
+    required_lv: 200
+    required_job: 天帝
+    capabilities:
+      - name: 壊れない
+        value: 1
+      - name: 一般耐性
+        value: 20
+      - name: ボス耐性
+        value: 20
+      - name: プレイヤー耐性
+        value: 13
+      - name: 全属性への物理ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: MAXHP増加
+        value: 10
+        at_refine: 7
+      - name: MAXSP増加
+        value: 10
+        at_refine: 7
+      - name: スキルダメージ増加
+        value: 300
+        skill: 温もり
+      - name: スキルダメージ増加
+        value: 300
+        skill: 温もり(壁押付)
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 9
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: 天地一陽
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: 太天一陽
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: 天陽
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: 天地一月
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: 太天一月
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: 天月
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: 天羅万象
+
+  - name: 暴食のクラウン(蜃気楼&不知火)
+    yomi: ボウショクノクラウンシンキロウシラヌイ
+    type: 上段
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 10
+    weight: 50
+    required_lv: 200
+    required_job: 蜃気楼 不知火
+    capabilities:
+      - name: 壊れない
+        value: 1
+      - name: 一般耐性
+        value: 20
+      - name: ボス耐性
+        value: 20
+      - name: プレイヤー耐性
+        value: 13
+      - name: 全属性への物理ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: MAXHP増加
+        value: 10
+        at_refine: 7
+      - name: MAXSP増加
+        value: 10
+        at_refine: 7
+      - name: 再使用待機時間減少
+        value: 30000
+        skill: 十六夜
+      - name: 全基本ステータス加算
+        value: 10
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: 赤炎砲
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: 冷血砲
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: 雷電砲
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: 金龍砲
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: 暗転砲
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: "幻術 -暗黒龍-"
