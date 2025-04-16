@@ -19,6 +19,8 @@ equipment:
     code: 8
   - name: 杖
     code: 9
+  - name: 両手杖
+    code: 9
   - name: 弓
     code: 10
   - name: カタール  
@@ -53,7 +55,7 @@ equipment:
     code: 60
   - name: 盾
     code: 61
-  - name: 肩
+  - name: 肩にかける物
     code: 62
   - name: 靴
     code: 63

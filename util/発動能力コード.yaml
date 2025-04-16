@@ -153,8 +153,8 @@ capabilities:
     code: 98
   - name: 大型への魔法ダメージ増加
     code: 99
-  - name: MATK加算
-    code: 100
+  - name: MATK加算  # 杖型 = 固定値加算とのこと
+    code: 88
   - name: 固定詠唱ミリ秒減少  # スキルに依存しない固定詠唱％減少の定義は存在しないので foot.js で個別対応が必要
     code: 109
   - name: 毒耐性
