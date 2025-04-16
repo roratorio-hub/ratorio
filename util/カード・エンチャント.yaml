@@ -1,227 +1,146 @@
 card_list:
-  - name: Def100%無視
-    yomi: def100pasento mushi
-    type: エンチャント
+
+  - name: 暴食のネクロマンサー
+    yomi: ボウショクノネクロマンサー
+    type: 兜
     capabilities:
-      - name: DEF無視
-        value: 100
-  - name: 潜在覚醒(キャロットビートII)
-    yomi: センザイカクセイキャロットビートツー
-    type: エンチャント
+      - name: MDEF無視
+        value: 10
+      - name: MDEF無視
+        value: 15
+        at_refine: 7
+      - name: MDEF無視
+        value: 25
+        at_refine: 9
+
+  - name: 暴食の魔王ヴェルゼブブ
+    yomi: ボウショクノマオウヴェルゼブブ
+    type: 鎧
+    capabilities:
+      - name: 悪魔形への魔法ダメージ増加
+        value: 50
+      - name: 天使形への魔法ダメージ増加
+        value: 50
+      - name: 聖属性への魔法ダメージ増加
+        value: 50
+      - name: 闇属性への魔法ダメージ増加
+        value: 50
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 異境の統轄者
+        capabilities:
+          - name: 壊れない
+            value: 1
+
+  - name: 暴食のヘルフライ
+    yomi: ボウショクノヘルフライ
+    desc: "精錬値が7以上の時、追加で鎧に不死属性を付与する"
+    type: 鎧
+    capabilities:
+      - name: 魔法ダメージ増加
+        value: 5
+      - name: 魔法ダメージ増加
+        value: 1
+        per_refine: 1
+
+  - name: 暴食のグール
+    yomi: ボウショクノグール
+    type: 肩にかける物
+    capabilities:
+      - name: 無属性耐性
+        value: 15
+      - name: 毒属性魔法ダメージ増加
+        value: 3
+        per_refine: 1
+
+  - name: 暴食の堕ちた大神官
+    yomi: ボウショクノオチタダイシングウ
+    type: 靴
+    capabilities:
+      - name: 魔法ダメージ増加
+        value: 10
+      - name: 人間形への魔法ダメージ増加
+        value: 50
+      - name: 天使形への魔法ダメージ増加
+        value: 50
+      - name: ドラム形への魔法ダメージ増加
+        value: 50
+      - name: MAXSP増加
+        value: -50
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 異境の統轄者
+        capabilities:
+          - name: 魔法ダメージ増加
+            value: 10
+          - name: スキル使用可能
+            skill: クリムゾンロック
+            skill_lv: 5
+
+  - name: 暴食のバンシー
+    yomi: ボウショクノバンシー
+    type: 靴
     capabilities:
       - name: スキルダメージ増加
-        skill: キャロットビート
-        per_lv: 5
-        value: 1
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 豪傑
-        capabilities:
-          - name: 再使用待機時間減少
-            skill: キャロットビート
-            value: 100
-  - name: 潜在覚醒(ダーククローII)
-    yomi: センザイカクセイダーククローツー
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 豪傑
-        capabilities:
-          - name: 再使用待機時間減少
-            skill: ダーククロー
-            value: 30000
-      - set:
-        entity_list:
-          - card_name: 真理の解放
-        capabilities:
-          - name: 再使用待機時間減少
-            skill: ダーククロー
-            value: 30000
-  - name: 潜在覚醒(ハンドレッドスピアII)
-    yomi: センザイカクセイハンドレッドスピアツー
-    type: エンチャント
-    capabilities:
+        skill: ソウルエクスパンション
+        value: 10
       - name: スキルダメージ増加
-        skill: ハンドレッドスピア
-        per_lv: 3
-        value: 1
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 豪傑
-        capabilities:
-          - name: 再使用待機時間減少
-            skill: ハンドレッドスピア
-            value: 1000
-  - name: 潜在覚醒(ピンポイントアタックII)
-    yomi: センザイカクセイピンポイントアタックツー
-    type: エンチャント
-    capabilities:
+        skill: ソウルエクスパンション
+        value: 15
+        at_refine: 7
       - name: スキルダメージ増加
-        skill: ピンポイントアタック
-        per_lv: 3
-        value: 1
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 豪傑
-        capabilities:
-          - name: 再使用待機時間減少
-            skill: ピンポイントアタック
-            value: 5000
-  - name: 潜在覚醒(修羅身弾II)
-    yomi: センザイカクセイシュラミダンツー
-    type: エンチャント
+        skill: ソウルエクスパンション
+        value: 25
+        at_refine: 9
+
+  - name: 暴食のゾンビスローター
+    yomi: ボウショクノゾンビスローター
+    desc: "物理攻撃でモンスターを倒した時、HP + 200"
+    type: アクセサリー
     capabilities:
-      - name: スキルダメージ増加
-        skill: 修羅身弾
-        per_lv: 2
-        value: 1
+      - name: クリティカルダメージ増加
+        value: 3
     set_list:
       - set:
         entity_list:
           - card_name: 豪傑
         capabilities:
-          - name: 再使用待機時間減少
-            skill: 修羅身弾
-            value: 200
-  - name: 潜在覚醒(創星の書I)
-    yomi: センザイカクセイソウセイノショイチ
-    type: エンチャント
+          - name: CRI加算
+            value: 25
+          - name: クリティカルダメージ増加
+            value: 10
+
+  - name: 暴食のフレームスカル
+    yomi: ボウショクノフレームスカル
+    desc: "物理攻撃を受けた時、一定確率で敵を暗黒・スタン・石化・呪い状態にする"
+    type: アクセサリー
     capabilities:
-      - name: スキルダメージ増加
-        skill: 創星の書
-        per_lv: 10
+      - name: 壊れない
         value: 1
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 豪傑
-        capabilities:
-          - name: 再使用待機時間減少
-            skill: 創星の書
-            value: 2000
-  - name: 潜在覚醒(爆裂苦無II)
-    yomi: センザイカクセイバクレツクナイツー
-    type: エンチャント
+
+  - name: 暴食のヘルプードル
+    yomi: ボウショクノヘルプードル
+    desc: "一部の回復アイテムによるHP回復量 + 10%"
+    type: アクセサリー
     capabilities:
-      - name: スキルダメージ増加
-        skill: 爆裂苦無
-        per_lv: 5
-        value: 1
+      - name: ヒール系スキルを受けた時のHP回復量増加
+        value: 10
+
+  - name: 暴食のラギッドゾンビ
+    yomi: ボウショクノラギッドゾンビ
+    desc: "物理攻撃でモンスターを倒した時、SP + 10"
+    type: アクセサリー
+    capabilities:
+      - name: クリティカルダメージ増加
+        value: 3
     set_list:
       - set:
         entity_list:
           - card_name: 豪傑
         capabilities:
-          - name: 再使用待機時間減少
-            skill: 爆裂苦無
-            value: 1000
-  - name: 潜在解放(インクイジターX)
-    yomi: センサイカイホウインクイジターテン
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 豪傑
-        capabilities:
-          - name: スキルダメージ増加
-            skill: 第二撃：信念
-            value: 100
-          - name: スキルダメージ増加
-            skill: 第三撃：断罪
-            value: 100
-          - name: スキルダメージ増加
-            skill: 第二撃：審判
-            value: 100
-          - name: スキルダメージ増加
-            skill: 第三撃：浄化
-            value: 100
-          - name: スキルダメージ増加
-            skill: 第二撃：滅魔の火
-            value: 100
-          - name: スキルダメージ増加
-            skill: 第三撃：滅火撃
-            value: 100
-  - name: 潜在解放(ウィンドホークXII)
-    yomi: センサイカイホウウィンドホークジュウニ
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 豪傑
-        capabilities:
-          - name: 再使用待機時間減少
-            skill: ディープブラインドトラップ
-            value: 2000
-  - name: 潜在解放(エレメンタルマスターX)
-    yomi: センサイカイホウエレメンタルマスターテン
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 真理の解放
-        capabilities:
-          - name: 再使用待機時間減少
-            skill: ベナムスワンプ
-            value: 1000
-  - name: 潜在解放(トルバドゥール&トルヴェールVIII)
-    yomi: センサイカイホウトルバドゥールトルヴェールハチ
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 真理の解放
-        capabilities:
-          - name: スキルダメージ増加
-            skill: メタリックフューリー
-            value: 100
-  - name: 潜在解放(ナイトウォッチX)
-    yomi: センサイカイホウナイトウォッチテン
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 豪傑
-        capabilities:
-          - name: 再使用待機時間減少
-            skill: オンリーワンバレット
-            value: 300
-  - name: 潜在解放(バイオロXII)
-    yomi: センサイカイホウバイオロジュウニ
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 豪傑
-        capabilities:
-          - name: 再使用待機時間減少
-            skill: メイヘミックソーンズ
-            value: 100
-  - name: 潜在解放(ハイパーノービスXIII)
-    yomi: センサイカイホウハイパーノービスジュウサン
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 豪傑
-        capabilities:
-          - name: 再使用待機時間減少
-            skill: スパイラルピアースマックス
-            value: 200
-  - name: 潜在解放(天帝IX)
-    yomi: センサイカイホウテンテイキュウ
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 豪傑
-        capabilities:
-          - name: 再使用待機時間減少
-            skill: 太天一月
-            value: 500
-          - name: 再使用待機時間減少
-            skill: 天月
-            value: 500
+          - name: CRI加算
+            value: 25
+          - name: クリティカルダメージ増加
+            value: 10

@@ -153,8 +153,8 @@ capabilities:
     code: 98
   - name: 大型への魔法ダメージ増加
     code: 99
-  - name: MATK加算
-    code: 100
+  - name: MATK加算  # 杖型 = 固定値加算とのこと
+    code: 88
   - name: 固定詠唱ミリ秒減少  # スキルに依存しない固定詠唱％減少の定義は存在しないので foot.js で個別対応が必要
     code: 109
   - name: 毒耐性
@@ -203,6 +203,8 @@ capabilities:
     code: 194
   - name: 両手杖
     code: 195
+  - name: 鎧に属性付与
+    code: 198
   - name: スキル習得時効果
     code: 199
   - name: 近接ダメージ増加
@@ -273,6 +275,10 @@ capabilities:
     code: 269
   - name: 全属性魔法のダメージ増加
     code: 270
+  - name: ドラム形への物理ダメージ増加
+    code: 272
+  - name: ドラム形への魔法ダメージ増加
+    code: 273
   - name: 無属性物理ダメージ増加
     code: 280
   - name: 水属性物理ダメージ増加
