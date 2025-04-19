@@ -144,7 +144,7 @@ let g_bSkillNoDamage = false;
 /** ヒールを攻撃スキルとして使用する場合の MATK */
 let n_Heal_MATK = [0,0,0];
 /** MDEF計算モードフラグ. 一部の魔法では除算MDEFが除算として機能しない */
-let n_DirectDifferenceMdef = false;
+let directSubtractionMdef = false;
 /** オートスペルフラグ */
 let n_AS_MODE = false;
 /** 命中率. オートスペル計算用 */
@@ -6402,7 +6402,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			wLAch = true;
 			n_PerfectHIT_DMG = 0;
 			n_Enekyori=2;
-			n_DirectDifferenceMdef = false;
+			directSubtractionMdef = false;
 			wbairitu = 100;
 			n_bunkatuHIT = 0;
 			var wBai = new Array();
@@ -7407,7 +7407,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 		case SKILL_ID_NAPALM_BEAT:
 			n_PerfectHIT_DMG = 0;
 			n_Enekyori=2;
-			n_DirectDifferenceMdef = true;
+			directSubtractionMdef = true;
 			wbairitu = 100;
 			n_bunkatuHIT = 0;
 			n_A_Weapon_zokusei = 8;
@@ -7456,7 +7456,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 		case SKILL_ID_NAPALM_VULKAN:
 			n_PerfectHIT_DMG = 0;
 			n_Enekyori=2;
-			n_DirectDifferenceMdef = true;
+			directSubtractionMdef = true;
 			wbairitu = 100;
 			n_bunkatuHIT = 0;
 			n_A_Weapon_zokusei = 8;
@@ -7501,7 +7501,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			n_PerfectHIT_DMG = 0;
 			n_Enekyori=2;
 			wbairitu = 100;
-			n_DirectDifferenceMdef = true;
+			directSubtractionMdef = true;
 			n_bunkatuHIT = 1;
 			n_A_Weapon_zokusei = 3;
 			wHITsuu = (n_A_ActiveSkillLV +2);
@@ -7843,7 +7843,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 
 		n_PerfectHIT_DMG = 0;
 		n_Enekyori=2;
-		n_DirectDifferenceMdef = false;
+		directSubtractionMdef = false;
 		wbairitu = 100;
 		n_bunkatuHIT = 0;
 
@@ -16160,7 +16160,7 @@ function ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData,
 	// MRES減衰の適用
 	wBMC2 = ApplyMresResist(mobData, wBMC2);
 	// モンスターのＭＤＥＦを適用
-	if(n_DirectDifferenceMdef) {
+	if(directSubtractionMdef) {
 		wBMC2 = Math.floor(wBMC2 - B_Total_MDEF);
 	}
 	else{
