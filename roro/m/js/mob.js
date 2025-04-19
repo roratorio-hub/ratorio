@@ -1361,7 +1361,7 @@ function GetMobDataParameters(monsterId, mobData){
 	//----------------------------------------------------------------
 	// TODO: シーズ補正？
 	//----------------------------------------------------------------
-	if (n_Ses == 1) {
+	if (n_SiegeMode) {
 
 		switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
 

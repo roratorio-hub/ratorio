@@ -410,7 +410,7 @@ function UpdateEquipCardDataByHtml() {
 	n_A_card[CARD_REGION_ID_ARMS_RIGHT_4] = GetStatefullData("DATA_OBJID_ARMS_RIGHT_CARD_4", 0);
 
 	// 左手武器
-	if(n_Nitou){
+	if (n_Nitou) {
 		n_A_card[CARD_REGION_ID_ARMS_LEFT_1] = GetStatefullData("DATA_OBJID_ARMS_LEFT_CARD_1", 0);
 		n_A_card[CARD_REGION_ID_ARMS_LEFT_2] = GetStatefullData("DATA_OBJID_ARMS_LEFT_CARD_2", 0);
 		n_A_card[CARD_REGION_ID_ARMS_LEFT_3] = GetStatefullData("DATA_OBJID_ARMS_LEFT_CARD_3", 0);
@@ -749,7 +749,7 @@ function StAllCalc(){
 		}
 
 		n_A_Weapon2_ATKplus = 0;
-		if(n_Nitou){
+		if (n_Nitou) {
 			n_A_Weapon2LV = Math.floor(ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS_LEFT]][ITEM_DATA_INDEX_WPNLV] % 10);
 
 			// TODO: データ移行過渡処理
@@ -1074,11 +1074,11 @@ function StAllCalc(){
 		case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
 		case MOB_CONF_PLAYER_ID_SENTO_AREA_MH:
 		case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_SHINKIRO:
-			n_Ses = 1;
+			n_SiegeMode = true;
 			break;
 
 		default:
-			n_Ses = 0;
+			n_SiegeMode = false;
 		}
 
 	}
@@ -4957,7 +4957,7 @@ if (_APPLY_UPDATE_LV200) {
 //		statusMatk = n_A_INT + Math.floor((w * w + n_A_LUK) / 3 + n_A_DEX / 5);
 		statusMatk = n_A_INT + Math.floor((w * w * 5 + n_A_DEX * 3 + n_A_LUK * 5) / 15);
 		var wLEFT = 0;
-		if(n_Nitou) wLEFT = n_A_Weapon2LV_seirenATK;
+		if (n_Nitou) wLEFT = n_A_Weapon2LV_seirenATK;
 		var weaponMatk = n_tok[88] + n_A_WeaponLV_seirenATK + wLEFT;
 
 
@@ -6236,7 +6236,7 @@ if (_APPLY_UPDATE_LV200) {
 		}
 		if(n_A_WeaponType == 10 || n_A_WeaponType == 14 || n_A_WeaponType == 15 || (17 <= n_A_WeaponType && n_A_WeaponType <= 21)) aspd += Math.sqrt(wAGI * (10 - 1 / 400) + wDEX * 9 / 49) * (1 - w);
 		else aspd += Math.sqrt(wAGI * (10 + 10 / 111) + wDEX * 9 / 49) * (1 - w);
-		if(n_Nitou){
+		if (n_Nitou) {
 			var w = jobData.GetWeaponAspd(n_A_WeaponType) + (jobData.GetWeaponAspd(n_A_Weapon2Type) - 194) / 4;
 			aspd = w + Math.sqrt(wAGI * (10 - 1 / 400) + wDEX * 9 / 49) * 1.05;
 		}
@@ -30947,21 +30947,12 @@ function Init(){
 	InitEquipDefaultAll();
 	ClearEquipAll();
 
-
-
-	n_Skill1SW=0;
-	n_Skill2SW=0;
-	n_Skill3SW=0;
-	n_Skill4SW=0;
-	n_Skill5SW=0;
-	n_Skill6SW=0;
-	n_Skill7SW=0;
-	n_Skill8SW=0;
-	n_Skill9SW=0;
-	n_Skill10SW=0;
+	n_Skill1SW = false;
+	n_Skill3SW = false;
+	n_Skill4SW = false;
+	n_Skill7SW = false;
+	n_Skill8SW = false;
 	document.calcForm.A1_SKILLSW.checked = 0;
-
-
 
 	//--------------------------------
 	// 一次職支援設定欄の初期化
