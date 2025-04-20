@@ -1,6 +1,6 @@
 
 //----------------------------------------------------------------
-// データの要素番号
+// EnumItemDataIndex データの要素番号
 //----------------------------------------------------------------
 CGlobalConstManager.DefineEnum(
 	"EnumItemDataIndex",
@@ -22,10 +22,8 @@ CGlobalConstManager.DefineEnum(
 	1
 );
 
-
-
 //----------------------------------------------------------------
-// アイテムの種類
+// EnumItemKind アイテムの種類（武器）
 //----------------------------------------------------------------
 CGlobalConstManager.DefineEnum(
 	"EnumItemKind",
@@ -69,6 +67,9 @@ CGlobalConstManager.DefineEnum(
 	1
 );
 
+/**
+ * EnumItemKind アイテムの種類（頭装備）
+ */
 CGlobalConstManager.DefineEnum(
 	"EnumItemKind",
 	[
@@ -80,6 +81,9 @@ CGlobalConstManager.DefineEnum(
 	1
 );
 
+/**
+ * EnumItemKind アイテムの種類（防具）
+ */
 CGlobalConstManager.DefineEnum(
 	"EnumItemKind",
 	[
@@ -95,6 +99,9 @@ CGlobalConstManager.DefineEnum(
 	1
 );
 
+/**
+ * EnumItemKind アイテムの種類（シャドウ装備）
+ */
 CGlobalConstManager.DefineEnum(
 	"EnumItemKind",
 	[
@@ -117,6 +124,9 @@ CGlobalConstManager.DefineEnum(
 	1
 );
 
+/**
+ * EnumItemKind アイテムの種類（コスチューム・矢・弾丸）
+ */
 CGlobalConstManager.DefineEnum(
 	"EnumItemKind",
 	[
@@ -128,6 +138,9 @@ CGlobalConstManager.DefineEnum(
 	1
 );
 
+/**
+ * EnumItemKind アイテムの種類（セット効果）
+ */
 CGlobalConstManager.DefineEnum(
 	"EnumItemKind",
 	[
@@ -137,6 +150,9 @@ CGlobalConstManager.DefineEnum(
 	1
 );
 
+/**
+ * EnumItemKind アイテムの種類（不明）
+ */
 CGlobalConstManager.DefineEnum(
 	"EnumItemKind",
 	[
@@ -146,10 +162,8 @@ CGlobalConstManager.DefineEnum(
 	1
 );
 
-
-
 //----------------------------------------------------------------
-// アイテムの装備フラグ
+// EnumEquipFlag アイテムの装備フラグ
 //----------------------------------------------------------------
 CGlobalConstManager.DefineEnum(
 	"EnumEquipFlag",
@@ -161,6 +175,9 @@ CGlobalConstManager.DefineEnum(
 	1
 );
 
+/**
+ * EnumEquipFlag 装備可能職業（1次職・2次職）
+ */
 CGlobalConstManager.DefineEnum(
 	"EnumEquipFlag",
 	[
@@ -261,6 +278,9 @@ CGlobalConstManager.DefineEnum(
 	1
 );
 
+/**
+ * EnumEquipFlag 装備可能職業（3次職・4次職）
+ */
 CGlobalConstManager.DefineEnum(
 	"EnumEquipFlag",
 	[
@@ -309,6 +329,9 @@ CGlobalConstManager.DefineEnum(
 	1
 );
 
+/**
+ * EnumEquipFlag 装備可能職業（3次職・4次職）
+ */
 CGlobalConstManager.DefineEnum(
 	"EnumEquipFlag",
 	[
@@ -322,6 +345,9 @@ CGlobalConstManager.DefineEnum(
 	1
 );
 
+/**
+ * EnumEquipFlag 装備可能職業（サモナー）
+ */
 CGlobalConstManager.DefineEnum(
 	"EnumEquipFlag",
 	[
@@ -331,6 +357,9 @@ CGlobalConstManager.DefineEnum(
 	1
 );
 
+/**
+ * EnumEquipFlag 装備可能職業（EOF）
+ */
 CGlobalConstManager.DefineEnum(
 	"EnumEquipFlag",
 	[
@@ -340,13 +369,8 @@ CGlobalConstManager.DefineEnum(
 	1
 );
 
-
-
-
-
-
 //----------------------------------------------------------------
-// 特殊効果定義
+// EnumItemSpId 特殊効果定義
 // （**_PLUS は固定値、**_UP はパーセント）
 //----------------------------------------------------------------
 CGlobalConstManager.DefineEnum(
@@ -780,6 +804,9 @@ CGlobalConstManager.DefineEnum(
 	1
 );
 
+/**
+ * EnumItemSpId 特殊効果定義 ダミー
+ */
 CGlobalConstManager.DefinePseudoEnum(
 	"EnumItemSpId",
 	[
@@ -789,6 +816,9 @@ CGlobalConstManager.DefinePseudoEnum(
 	0
 );
 
+/**
+ * EnumItemSpId 特殊効果定義 EOF
+ */
 CGlobalConstManager.DefinePseudoEnum(
 	"EnumItemSpId",
 	[
@@ -798,7 +828,10 @@ CGlobalConstManager.DefinePseudoEnum(
 	0
 );
 
-// TODO: データ定義方式移行時に要調整
+/**
+ * EnumItemSpId 特殊効果定義
+ * TODO: データ定義方式移行時に要調整
+ */
 CGlobalConstManager.DefinePseudoEnum(
 	"EnumItemSpId",
 	[
@@ -809,6 +842,9 @@ CGlobalConstManager.DefinePseudoEnum(
 	1000
 );
 
+/**
+ * EnumItemSpId 特殊効果定義オフセット（スキル性能変化）
+ */
 CGlobalConstManager.DefinePseudoEnum(
 	"EnumItemSpId",
 	[
@@ -827,6 +863,9 @@ CGlobalConstManager.DefinePseudoEnum(
 	2000
 );
 
+/**
+ * EnumItemSpId 特殊効果定義オフセット（精錬値の条件）
+ */
 CGlobalConstManager.DefinePseudoEnum(
 	"EnumItemSpId",
 	[
@@ -845,6 +884,9 @@ CGlobalConstManager.DefinePseudoEnum(
 	100000
 );
 
+/**
+ * EnumItemSpId 特殊効果定義オフセット（精錬値の条件）
+ */
 CGlobalConstManager.DefinePseudoEnum(
 	"EnumItemSpId",
 	[
@@ -864,6 +906,9 @@ CGlobalConstManager.DefinePseudoEnum(
 	1000000
 );
 
+/**
+ * EnumItemSpId 特殊効果定義オフセット（ステータスの条件）
+ */
 CGlobalConstManager.DefinePseudoEnum(
 	"EnumItemSpId",
 	[
@@ -886,6 +931,9 @@ CGlobalConstManager.DefinePseudoEnum(
 	100000000
 );
 
+/**
+ * EnumItemSpId 特殊効果定義オフセット（ステータスの条件）
+ */
 CGlobalConstManager.DefinePseudoEnum(
 	"EnumItemSpId",
 	[
@@ -959,6 +1007,9 @@ CGlobalConstManager.DefinePseudoEnum(
 	1000000000
 );
 
+/**
+ * EnumItemSpId 特殊効果定義オフセット（職業制約）
+ */
 CGlobalConstManager.DefinePseudoEnum(
 	"EnumItemSpId",
 	[
@@ -969,7 +1020,10 @@ CGlobalConstManager.DefinePseudoEnum(
 	100000000000
 );
 
-// 職業制約は mig.job.h.js に定義された ID と紐づいているので任意の数を割り当てられません
+/**
+ * EnumItemSpId 特殊効果定義オフセット（職業制約）
+ * 職業制約は mig.job.h.js に定義された ID と紐づいているので任意の数を割り当てられません
+ */
 CGlobalConstManager.DefinePseudoEnum(
 	"EnumItemSpId",
 	[
@@ -992,7 +1046,10 @@ CGlobalConstManager.DefinePseudoEnum(
 	100000000000
 );
 
-// 職業制約は mig.job.h.js に定義された ID と紐づいているので任意の数を割り当てられません
+/**
+ * EnumItemSpId 特殊効果定義オフセット（職業制約）
+ * 職業制約は mig.job.h.js に定義された ID と紐づいているので任意の数を割り当てられません
+ */
 CGlobalConstManager.DefinePseudoEnum(
 	"EnumItemSpId",
 	[
@@ -1009,6 +1066,9 @@ CGlobalConstManager.DefinePseudoEnum(
 	100000000000
 );
 
+/**
+ * EnumItemSpId 特殊効果定義オフセット（BaseLv制約）
+ */
 CGlobalConstManager.DefinePseudoEnum(
 	"EnumItemSpId",
 	[
@@ -1028,6 +1088,9 @@ CGlobalConstManager.DefinePseudoEnum(
 	10000000000000
 );
 
+/**
+ * EnumItemSpId 特殊効果定義オフセット（BaseLv制約）
+ */
 CGlobalConstManager.DefinePseudoEnum(
 	"EnumItemSpId",
 	[
@@ -1038,6 +1101,9 @@ CGlobalConstManager.DefinePseudoEnum(
 	10000000000000
 );
 
+/**
+ * EnumItemSpId 特殊効果定義オフセット（BaseLv制約）
+ */
 CGlobalConstManager.DefinePseudoEnum(
 	"EnumItemSpId",
 	[
@@ -1048,6 +1114,9 @@ CGlobalConstManager.DefinePseudoEnum(
 	10000000000000
 );
 
+/**
+ * EnumItemSpId 特殊効果定義オフセット（BaseLv制約）
+ */
 CGlobalConstManager.DefinePseudoEnum(
 	"EnumItemSpId",
 	[
@@ -1071,6 +1140,7 @@ CGlobalConstManager.DefinePseudoEnum(
 );
 
 /**
+ * EnumItemSpId 特殊効果定義オフセット（超越段階の制約）
  * 安全に扱える number 型の上限は Number.MAX_SAFE_INTEGER = 9007199254740991 (16桁) なので
  * 17桁以上のItemSPコードは計算途中で変質してしまう可能性があります
  * 17桁以上のItemSPコードは BigInt 型で定義してください
@@ -1175,8 +1245,6 @@ function GetItemKindNameText(kindId) {
 	return "不明";
 }
 
-
-
 /*
  * DEXベース武器かを判定する.
  * @param itemKind アイテム種別
@@ -1250,8 +1318,6 @@ function IsGunSeriesArms (itemKind) {
 
 	return false;
 }
-
-
 
 /**
  * 職業制限テキストを取得する.
@@ -1569,8 +1635,6 @@ function GetJobRestrictText(eqpflg) {
 	return "不明";
 }
 
-
-
 /**
  * STRペナルティ回避STRを取得する.
  * @param atk 武器ATK
@@ -1585,8 +1649,6 @@ function GetStrPenaltyAvoidStr(atk, wpnlv) {
 	return needStr;
 }
 
-
-
 /**
  * エンチャントタイプIDを取得する.
  * @param wpnlv 武器レベル（当該データに合成しているので）
@@ -1596,8 +1658,6 @@ function GetEnchantTypeId(wpnlv) {
 	return Math.floor(wpnlv / 10) % 10000;
 }
 
-
-
 /**
  * ランダムオプションタイプIDを取得する.
  * @param wpnlv 武器レベル（当該データに合成しているので）
@@ -1606,8 +1666,6 @@ function GetEnchantTypeId(wpnlv) {
 function GetRndOptTypeId(wpnlv) {
 	return Math.floor(wpnlv / 10 / 10000);
 }
-
-
 
 /**
  * スロット数テキストを取得する.
@@ -1645,8 +1703,6 @@ function GetSlotText(slotValue) {
 	return slotText;
 }
 
-
-
 /**
  * 最大スロット数を取得する.
  * @param slotValue スロット定義値
@@ -1677,8 +1733,6 @@ function GetMaxSlot(slotValue) {
 	return slotMax;
 }
 
-
-
 // TODO: 削除予定
 function GetItemSP(itemId, spid) {
 
@@ -1696,8 +1750,6 @@ function GetItemSP(itemId, spid) {
 
 	return 0;
 }
-
-
 
 /**
  * アイテム説明テキストを取得する.

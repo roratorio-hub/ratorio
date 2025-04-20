@@ -1,3 +1,8 @@
+/**
+ * 各スキルの実質的な抽象クラスとして用いられるコンストラクタ関数.
+ * CSkillManager.dataArray にインスタンスが格納され
+ * CSkillManager.GetXXX( ) から各スキルのパラメータを取得出来る.
+ */
 function CSkillData() {
 
 	CSkillData.TYPE_PASSIVE = 1;
@@ -129,8 +134,11 @@ function CSkillData() {
 	};
 }
 
-
-
+/**
+ * 各スキルの情報を一元管理するマネージャークラス.
+ * メンバメソッドの GetXXX( ) を通じて
+ * 各スキルのパラメータを取得できる.
+ */
 function CSkillManager() {
 
 	this.dataArray = new Array();
@@ -208,6 +216,11 @@ function CSkillManager() {
 		return this.dataArray[skillId].type;
 	}
 
+	/**
+	 * スキルの有効射程カテゴリを取得する
+	 * @param {*} skillId 
+	 * @returns 	[ CSkillData.RANGE_SHORT | CSkillData.RANGE_LONG | CSkillData.RANGE_MAGIC | CSkillData.RANGE_SPECIAL ]
+	 */
 	this.GetSkillRange = function(skillId) {
 		return this.dataArray[skillId].range;
 	}
