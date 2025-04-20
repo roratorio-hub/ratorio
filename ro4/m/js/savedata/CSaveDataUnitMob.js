@@ -1,3 +1,6 @@
+/**
+ * 「モンスター」情報クラス
+ */
 class CSaveDataUnitMob extends CSaveDataUnitBase {
 
     /**
@@ -27,7 +30,6 @@ class CSaveDataUnitMob extends CSaveDataUnitBase {
         return nextOffset;
     }
 
-
     /**
      * 処理順に並んだプロパティ名（自身のプロパティのみ）.
      */
@@ -47,14 +49,11 @@ class CSaveDataUnitMob extends CSaveDataUnitBase {
         return super.propNames.concat(this.#propNamesSelf);
     }
 
-
-
     /**
      * コンストラクタ.
      */
     constructor () {
         super();
-
         // プロパティ定義情報の登録
         this.registerPropInfo(CSaveDataConst.propNameOptCode, 6);
         this.registerPropInfo(CSaveDataConst.propNameMonsterMapCategoryID, 8);
@@ -62,8 +61,6 @@ class CSaveDataUnitMob extends CSaveDataUnitBase {
         //this.registerPropInfo(CSaveDataConst.propNameMonsterID, 11);	version 1
         this.registerPropInfo(CSaveDataConst.propNameMonsterID, 16);
     }
-
-
 
     /**
      * ユニットのデータが空であるかを判定する.

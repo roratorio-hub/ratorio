@@ -14,13 +14,11 @@ class CSaveDataUnitTypeManager {
 	 * @returns {int} クラス定義の中のタイプ値
 	 */
 	static register (unitClass) {
-
 		// 既に同一のクラスが定義されている場合は、登録しない
 		const registered = this.#mapper.get(unitClass.type);
 		if (registered == unitClass) {
 			return unitClass.type;
 		}
-
 		// 登録試行
 		try {
 			return this.#mapper.set(unitClass.type, unitClass);

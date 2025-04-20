@@ -1,3 +1,6 @@
+/**
+ * 「モンスター手入力設定」情報クラス
+ */
 class CSaveDataUnitMobConfInput extends CSaveDataUnitBase {
 
     /**
@@ -14,8 +17,6 @@ class CSaveDataUnitMobConfInput extends CSaveDataUnitBase {
         return 1;
     }
 
-
-
     /**
      * 処理順に並んだプロパティ名（自身のプロパティのみ）.
      */
@@ -23,7 +24,6 @@ class CSaveDataUnitMobConfInput extends CSaveDataUnitBase {
         return [
             CSaveDataConst.propNameOptCode,
             CSaveDataConst.propNameParseCtrlFlag,
-
             CSaveDataConst.propNameMobLv,
             CSaveDataConst.propNameMobHP,
             CSaveDataConst.propNameStStr,
@@ -44,7 +44,6 @@ class CSaveDataUnitMobConfInput extends CSaveDataUnitBase {
             CSaveDataConst.propNameMobRace,
             CSaveDataConst.propNameMobBossType,
             CSaveDataConst.propNameMobGrassType,
-
             CSaveDataConst.propNameStPow,
             CSaveDataConst.propNameStSta,
             CSaveDataConst.propNameStWis,
@@ -67,19 +66,15 @@ class CSaveDataUnitMobConfInput extends CSaveDataUnitBase {
         return super.propNames.concat(this.#propNamesSelf);
     }
 
-
-
     /**
      * コンストラクタ.
      */
     constructor () {
         super();
-
         // プロパティ定義情報の登録
         this.registerPropInfo(CSaveDataConst.propNameOptCode, 1);
         // （旧形式の領域的には52個用意されていたが末尾は使用していなかったので切り捨て）
         this.registerPropInfo(CSaveDataConst.propNameParseCtrlFlag, 32);
-
         this.registerPropInfo(CSaveDataConst.propNameMobLv, CSaveDataConst.propBitsMaxAbs1k);
         this.registerPropInfo(CSaveDataConst.propNameMobHP, CSaveDataConst.propBitsMaxAbs10G);
         this.registerPropInfo(CSaveDataConst.propNameStStr, CSaveDataConst.propBitsMaxAbs10G);
@@ -100,7 +95,6 @@ class CSaveDataUnitMobConfInput extends CSaveDataUnitBase {
         this.registerPropInfo(CSaveDataConst.propNameMobRace, 6);
         this.registerPropInfo(CSaveDataConst.propNameMobBossType, 6);
         this.registerPropInfo(CSaveDataConst.propNameMobGrassType, 6);
-
         this.registerPropInfo(CSaveDataConst.propNameStPow, 14);
         this.registerPropInfo(CSaveDataConst.propNameStSta, 14);
         this.registerPropInfo(CSaveDataConst.propNameStWis, 14);
@@ -114,8 +108,6 @@ class CSaveDataUnitMobConfInput extends CSaveDataUnitBase {
         this.registerPropInfo(CSaveDataConst.propNameStRes, 14);
         this.registerPropInfo(CSaveDataConst.propNameStMres, 14);
     }
-
-
 
     /**
      * データのコンパクション（不要データの削除）を行う.
@@ -132,20 +124,15 @@ class CSaveDataUnitMobConfInput extends CSaveDataUnitBase {
      * @returns {boolean} true:空である、false:空でない
      */
     isEmptyUnit () {
-
         const defaultValues = [0n, 1n];
         const propNames = this.constructor.#propNamesSelf.slice();
-
         // すべてのプロパティがデフォルト値であるかを検査する
         for (let idx = 0; idx < propNames.length; idx++) {
-
             const propName = propNames[idx];
-
             /// そもそもパースされたデータがない場合は、デフォルトとみなす
             if (this.getProp(propName) === undefined) {
                 continue;
             }
-
             // デフォルト値であるかの検査
             switch (propName) {
                 case CSaveDataConst.propNameOptCode:
@@ -199,11 +186,9 @@ class CSaveDataUnitMobConfInput extends CSaveDataUnitBase {
                 default:
                     continue;
             }
-
             // ここに来るならばデフォルトでない値がある
             return false;
         }
-
         // ここに来るならば、すべての設定がデフォルトのまま
         return true;
     }

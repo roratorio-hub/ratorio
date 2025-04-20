@@ -1,3 +1,6 @@
+/**
+ * 「計算機の設定」情報クラス
+ */
 class CSaveDataUnitSettings extends CSaveDataUnitBase {
 
     /**

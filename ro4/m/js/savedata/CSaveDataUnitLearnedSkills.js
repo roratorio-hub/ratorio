@@ -1,3 +1,6 @@
+/**
+ * 「習得スキル」情報クラス
+ */
 class CSaveDataUnitLearnedSkills extends CSaveDataUnitBase {
 
     /**
@@ -14,8 +17,6 @@ class CSaveDataUnitLearnedSkills extends CSaveDataUnitBase {
         return 1;
     }
 
-
-
     /**
      * 処理順に並んだプロパティ名（自身のプロパティのみ）.
      */
@@ -23,7 +24,6 @@ class CSaveDataUnitLearnedSkills extends CSaveDataUnitBase {
         return [
             CSaveDataConst.propNameOptCode,
             CSaveDataConst.propNameParseCtrlFlag,
-
             // データは、初期バージョンでは、200個
             ...(Array(200).fill(CSaveDataConst.propNameSkillLv)),
         ];
@@ -36,21 +36,16 @@ class CSaveDataUnitLearnedSkills extends CSaveDataUnitBase {
         return super.propNames.concat(this.#propNamesSelf);
     }
 
-
-
     /**
      * コンストラクタ.
      */
     constructor () {
         super();
-
         // プロパティ定義情報の登録
         this.registerPropInfo(CSaveDataConst.propNameOptCode, 6);
         this.registerPropInfo(CSaveDataConst.propNameParseCtrlFlag, 200);
         this.registerPropInfo(CSaveDataConst.propNameSkillLv, 4);
     }
-
-
 
     /**
      * データのコンパクション（不要データの削除）を行う.

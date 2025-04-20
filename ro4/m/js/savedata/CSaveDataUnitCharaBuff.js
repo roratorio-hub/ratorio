@@ -1,3 +1,7 @@
+/**
+ * 「武器属性付与」「その他の支援/設定」情報クラス
+ *  TODO: 単純なBUFFレベルではなく、もっと複雑なデータ構造をしているが未対応
+ */
 class CSaveDataUnitCharaBuff extends CSaveDataUnitBase {
 
     /**
@@ -14,10 +18,6 @@ class CSaveDataUnitCharaBuff extends CSaveDataUnitBase {
         return 1;
     }
 
-
-
-    // TODO: 単純なBUFFレベルではなく、もっと複雑なデータ構造をしているが未対応
-
     /**
      * 処理順に並んだプロパティ名（自身のプロパティのみ）.
      */
@@ -26,7 +26,6 @@ class CSaveDataUnitCharaBuff extends CSaveDataUnitBase {
             CSaveDataConst.propNameOptCode,
             CSaveDataConst.propNameArmsElement,
             CSaveDataConst.propNameParseCtrlFlag,
-
             // データは、初期バージョンでは、70個
             ...(Array(70).fill(CSaveDataConst.propNameBuffLv)),
 
@@ -40,22 +39,17 @@ class CSaveDataUnitCharaBuff extends CSaveDataUnitBase {
         return super.propNames.concat(this.#propNamesSelf);
     }
 
-
-
     /**
      * コンストラクタ.
      */
     constructor () {
         super();
-
         // プロパティ定義情報の登録
         this.registerPropInfo(CSaveDataConst.propNameOptCode, 6);
         this.registerPropInfo(CSaveDataConst.propNameArmsElement, 4);
         this.registerPropInfo(CSaveDataConst.propNameParseCtrlFlag, 70);
         this.registerPropInfo(CSaveDataConst.propNameBuffLv, 8);
     }
-
-
 
     /**
      * データのコンパクション（不要データの削除）を行う.
@@ -72,12 +66,10 @@ class CSaveDataUnitCharaBuff extends CSaveDataUnitBase {
      * @returns {boolean} true:空である、false:空でない
      */
     isEmptyUnit () {
-
         // 属性付与が設定されている場合は空でない
         if (this.getProp(CSaveDataConst.propNameArmsElement) !== undefined) {
             return false;
         }
-
         // それ以外は、共用の判定処理を利用
         return this.isEmptyUnit_CtrlFlag0();
     }

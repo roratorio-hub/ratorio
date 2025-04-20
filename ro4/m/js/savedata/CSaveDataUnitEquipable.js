@@ -1,3 +1,6 @@
+/**
+ * 「武器＆防具/カード」情報クラス
+ */
 class CSaveDataUnitEquipable extends CSaveDataUnitBase {
 
     /**
@@ -138,7 +141,6 @@ class CSaveDataUnitEquipable extends CSaveDataUnitBase {
             CSaveDataConst.propNameEquipItemDefID,
             CSaveDataConst.propNameOptCode,
             CSaveDataConst.propNameParseCtrlFlag,
-
             CSaveDataConst.propNameItemID,
             CSaveDataConst.propNameRefinedCount,
             CSaveDataConst.propNameCardCategoryID1,
@@ -175,13 +177,11 @@ class CSaveDataUnitEquipable extends CSaveDataUnitBase {
      */
     constructor () {
         super();
-
         // プロパティ定義情報の登録
         this.registerPropInfo(CSaveDataConst.propNameEquipItemDefID, 6);
         this.registerPropInfo(CSaveDataConst.propNameOptCode, 6);
         this.registerPropInfo(CSaveDataConst.propNameParseCtrlFlag, 21);
         //this.registerPropInfo(CSaveDataConst.propNameParseCtrlFlag, 20);	// version 1
-
         this.registerPropInfo(CSaveDataConst.propNameItemID, 14);
         this.registerPropInfo(CSaveDataConst.propNameRefinedCount, 4);
         this.registerPropInfo(CSaveDataConst.propNameCardCategoryID1, 10);
@@ -242,7 +242,6 @@ class CSaveDataUnitEquipable extends CSaveDataUnitBase {
             const propInfo = this.propInfoMap.get(propName);
             let propBits = propInfo.bits;
             let propValue = argsMerged[idx];
-
             /**
              * 後方互換性確保
              */
@@ -255,7 +254,6 @@ class CSaveDataUnitEquipable extends CSaveDataUnitBase {
             if (propName == CSaveDataConst.propNameParseCtrlFlag) {
                 propBits = 20;	// 旧形式のセーブデータのプロパティ数は 20 なので揃える
             }
-
             // クエリ文字列に追記する
             dataTextWork = this.appendToDataText(dataTextWork, bitOffset, propValue, propBits);
             // ビットオフセットを更新
@@ -278,7 +276,6 @@ class CSaveDataUnitEquipable extends CSaveDataUnitBase {
         const prop = new CSaveDataPropInfo(CSaveDataConst.propNameParseCtrlFlag, this.propInfoMap.size - 5);	// ヘッダ長 5
         this.propInfoMap.delete(CSaveDataConst.propNameParseCtrlFlag);
         this.propInfoMap.set(CSaveDataConst.propNameParseCtrlFlag, prop);
-
         return super.encodeToURL(dataTextWork, bitOffset);
     }
     

@@ -10,8 +10,6 @@ class CSingletonMapper extends SKeyMap {
 		super();
 	}
 
-
-
 	/**
 	 * シングルトンを登録する.
 	 * @param {string} key 登録するキー
@@ -20,15 +18,12 @@ class CSingletonMapper extends SKeyMap {
 	 * @throws {Error} 指定のキーが既に登録済みの場合
 	 */
 	set (key, value) {
-
 		// 二重登録チェック
 		if (this.get(key) !== undefined) {
 			throw new Error("Duplicated key.");
 		}
-
 		// 登録処理
 		super.set(key, value);
-
 		return key;
 	}
 }

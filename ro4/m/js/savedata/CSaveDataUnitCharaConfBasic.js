@@ -1,3 +1,12 @@
+/**
+ * 「性能カスタマイズ（ステータス関連）」
+ * 「性能カスタマイズ（攻撃関連）」
+ * 「性能カスタマイズ（防御関連）」
+ * 「性能カスタマイズ（スキル関連）」
+ * 「性能カスタマイズ（特性ステータス関連）」
+ * 情報クラス
+ * TODO: CSaveDataUnitCharaConfSpecBasic と役割重複している可能性あり確認が必要
+ */
 class CSaveDataUnitCharaConfBasic extends CSaveDataUnitBase {
 
     /**
@@ -14,8 +23,6 @@ class CSaveDataUnitCharaConfBasic extends CSaveDataUnitBase {
         return 1;
     }
 
-
-
     /**
      * 処理順に並んだプロパティ名（自身のプロパティのみ）.
      */
@@ -23,7 +30,6 @@ class CSaveDataUnitCharaConfBasic extends CSaveDataUnitBase {
         return [
             CSaveDataConst.propNameSubInvalidateSettings,
             CSaveDataConst.propNameParseCtrlFlag,
-
             CSaveDataConst.propNameStMaxHPUpSign,
             CSaveDataConst.propNameStMaxHPUp,
             CSaveDataConst.propNameStMaxHPPlusSign,
@@ -121,18 +127,14 @@ class CSaveDataUnitCharaConfBasic extends CSaveDataUnitBase {
         return super.propNames.concat(this.#propNamesSelf);
     }
 
-
-
     /**
      * コンストラクタ.
      */
     constructor () {
         super();
-
         // プロパティ定義情報の登録
         this.registerPropInfo(CSaveDataConst.propNameSubInvalidateSettings, 1);
         this.registerPropInfo(CSaveDataConst.propNameParseCtrlFlag, 87);
-
         this.registerPropInfo(CSaveDataConst.propNameStMaxHPUpSign, 1);
         this.registerPropInfo(CSaveDataConst.propNameStMaxHPUp, CSaveDataConst.propBitsMaxAbs200);
         this.registerPropInfo(CSaveDataConst.propNameStMaxHPPlusSign, 1);
@@ -221,8 +223,6 @@ class CSaveDataUnitCharaConfBasic extends CSaveDataUnitBase {
         this.registerPropInfo(CSaveDataConst.propNameStMresPlusSign, 1);
         this.registerPropInfo(CSaveDataConst.propNameStMresPlus, CSaveDataConst.propBitsMaxAbs1k);
     }
-
-
 
     /**
      * データのコンパクション（不要データの削除）を行う.

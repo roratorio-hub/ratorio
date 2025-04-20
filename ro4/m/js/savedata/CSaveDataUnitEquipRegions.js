@@ -1,3 +1,7 @@
+/**
+ * 「装備箇所」情報クラス
+ * シャドウ装備は管理対象外
+ */
 class CSaveDataUnitEquipRegions extends CSaveDataUnitBase {
 
     /**
@@ -14,8 +18,6 @@ class CSaveDataUnitEquipRegions extends CSaveDataUnitBase {
         return 1;
     }
 
-
-
     /**
      * 処理順に並んだプロパティ名（自身のプロパティのみ）.
      */
@@ -23,7 +25,6 @@ class CSaveDataUnitEquipRegions extends CSaveDataUnitBase {
         return [
             CSaveDataConst.propNameDataKind,
             CSaveDataConst.propNameParseCtrlFlag,
-
             CSaveDataConst.propNameEqpRgnArmsRight,
             CSaveDataConst.propNameEqpRgnArmsLeft,
             CSaveDataConst.propNameEqpRgnShield,
@@ -46,18 +47,14 @@ class CSaveDataUnitEquipRegions extends CSaveDataUnitBase {
         return super.propNames.concat(this.#propNamesSelf);
     }
 
-
-
     /**
      * コンストラクタ.
      */
     constructor () {
         super();
-
         // プロパティ定義情報の登録
         this.registerPropInfo(CSaveDataConst.propNameDataKind, 2);
         this.registerPropInfo(CSaveDataConst.propNameParseCtrlFlag, 12);
-
         this.registerPropInfo(CSaveDataConst.propNameEqpRgnArmsRight, 6);
         this.registerPropInfo(CSaveDataConst.propNameEqpRgnArmsLeft, 6);
         this.registerPropInfo(CSaveDataConst.propNameEqpRgnShield, 6);

@@ -1,3 +1,6 @@
+/**
+ * 「オートスペル設定」情報クラス
+ */
 class CSaveDataUnitAutoSpells extends CSaveDataUnitBase {
 
     /**
@@ -14,13 +17,10 @@ class CSaveDataUnitAutoSpells extends CSaveDataUnitBase {
         return 1;
     }
 
-
-
     /**
      * 処理順に並んだプロパティ名（自身のプロパティのみ）.
      */
     static get #propNamesSelf () {
-
         // TODO: マジックナンバー
         const unitArray = [];
         for (let idx = 0; idx < 20; idx++) {
@@ -28,7 +28,6 @@ class CSaveDataUnitAutoSpells extends CSaveDataUnitBase {
             unitArray.push(CSaveDataConst.propNameAutoSpellLv);
             unitArray.push(CSaveDataConst.propNameAutoSpellProb);
         }
-
         return [
             CSaveDataConst.propNameOptCode,
             CSaveDataConst.propNameParseCtrlFlag,
@@ -44,23 +43,18 @@ class CSaveDataUnitAutoSpells extends CSaveDataUnitBase {
         return super.propNames.concat(this.#propNamesSelf);
     }
 
-
-
     /**
      * コンストラクタ.
      */
     constructor () {
         super();
-
         // プロパティ定義情報の登録
         this.registerPropInfo(CSaveDataConst.propNameOptCode, 6);
-        this.registerPropInfo(CSaveDataConst.propNameParseCtrlFlag, 60);
+        this.registerPropInfo(CSaveDataConst.propNameParseCtrlFlag, 60);    // プロパティは3種類。だけどpropNamesSelfを見ればわかるように3*20=60個のプロパティを持つ。
         this.registerPropInfo(CSaveDataConst.propNameAutoSpellID, 9);
         this.registerPropInfo(CSaveDataConst.propNameAutoSpellLv, 4);
         this.registerPropInfo(CSaveDataConst.propNameAutoSpellProb, 7);
     }
-
-
 
     /**
      * データのコンパクション（不要データの削除）を行う.

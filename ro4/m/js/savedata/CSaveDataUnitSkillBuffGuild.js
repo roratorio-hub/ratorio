@@ -1,3 +1,7 @@
+/**
+ * 「ギルドスキル/ゴスペル/他」情報クラス
+ * TODO: 単純なBUFFレベルではなく、もっと複雑なデータ構造をしているが未対応
+ */
 class CSaveDataUnitSkillBuffGuild extends CSaveDataUnitBase {
 
     /**
@@ -14,10 +18,6 @@ class CSaveDataUnitSkillBuffGuild extends CSaveDataUnitBase {
         return 1;
     }
 
-
-
-    // TODO: 単純なBUFFレベルではなく、もっと複雑なデータ構造をしているが未対応
-
     /**
      * 処理順に並んだプロパティ名（自身のプロパティのみ）.
      */
@@ -25,7 +25,6 @@ class CSaveDataUnitSkillBuffGuild extends CSaveDataUnitBase {
         return [
             CSaveDataConst.propNameOptCode,
             CSaveDataConst.propNameParseCtrlFlag,
-
             // データは、初期バージョンでは、60個
             ...(Array(60).fill(CSaveDataConst.propNameBuffLv)),
         ];
@@ -38,21 +37,16 @@ class CSaveDataUnitSkillBuffGuild extends CSaveDataUnitBase {
         return super.propNames.concat(this.#propNamesSelf);
     }
 
-
-
     /**
      * コンストラクタ.
      */
     constructor () {
         super();
-
         // プロパティ定義情報の登録
         this.registerPropInfo(CSaveDataConst.propNameOptCode, 6);
         this.registerPropInfo(CSaveDataConst.propNameParseCtrlFlag, 60);
         this.registerPropInfo(CSaveDataConst.propNameBuffLv, 10);
     }
-
-
 
     /**
      * データのコンパクション（不要データの削除）を行う.

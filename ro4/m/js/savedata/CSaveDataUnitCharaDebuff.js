@@ -1,3 +1,6 @@
+/**
+ * 「その他の支援/設定」の「自キャラクターがかけられた状態異常」情報クラス
+ */
 class CSaveDataUnitCharaDebuff extends CSaveDataUnitBase {
 
     /**
@@ -14,8 +17,6 @@ class CSaveDataUnitCharaDebuff extends CSaveDataUnitBase {
         return 1;
     }
 
-
-
     /**
      * 処理順に並んだプロパティ名（自身のプロパティのみ）.
      */
@@ -23,7 +24,6 @@ class CSaveDataUnitCharaDebuff extends CSaveDataUnitBase {
         return [
             CSaveDataConst.propNameOptCode,
             CSaveDataConst.propNameParseCtrlFlag,
-
             // データは、初期バージョンでは、50個
             ...(Array(50).fill(CSaveDataConst.propNameBuffLv)),
         ];
@@ -36,21 +36,16 @@ class CSaveDataUnitCharaDebuff extends CSaveDataUnitBase {
         return super.propNames.concat(this.#propNamesSelf);
     }
 
-
-
     /**
      * コンストラクタ.
      */
     constructor () {
         super();
-
         // プロパティ定義情報の登録
         this.registerPropInfo(CSaveDataConst.propNameOptCode, 6);
         this.registerPropInfo(CSaveDataConst.propNameParseCtrlFlag, 50);
         this.registerPropInfo(CSaveDataConst.propNameBuffLv, 6);
     }
-
-
 
     /**
      * データのコンパクション（不要データの削除）を行う.

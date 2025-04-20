@@ -1,3 +1,7 @@
+/**
+ * 「演奏/踊り系スキル」情報クラス
+ * TODO: 単純なBUFFレベルではなく、もっと複雑なデータ構造をしているが未対応
+ */
 class CSaveDataUnitSkillBuffMusic extends CSaveDataUnitBase {
 
     /**
@@ -14,10 +18,6 @@ class CSaveDataUnitSkillBuffMusic extends CSaveDataUnitBase {
         return 1;
     }
 
-
-
-    // TODO: 単純なBUFFレベルではなく、もっと複雑なデータ構造をしているが未対応
-
     /**
      * 処理順に並んだプロパティ名（自身のプロパティのみ）.
      */
@@ -25,7 +25,6 @@ class CSaveDataUnitSkillBuffMusic extends CSaveDataUnitBase {
         return [
             CSaveDataConst.propNameOptCode,
             CSaveDataConst.propNameParseCtrlFlag,
-
             // データは、初期バージョンでは、60個
             // （領域的には61個用意されていたが末尾は使用していなかったので切り捨て）
             ...(Array(60).fill(CSaveDataConst.propNameBuffLv)),
@@ -39,21 +38,16 @@ class CSaveDataUnitSkillBuffMusic extends CSaveDataUnitBase {
         return super.propNames.concat(this.#propNamesSelf);
     }
 
-
-
     /**
      * コンストラクタ.
      */
     constructor () {
         super();
-
         // プロパティ定義情報の登録
         this.registerPropInfo(CSaveDataConst.propNameOptCode, 6);
         this.registerPropInfo(CSaveDataConst.propNameParseCtrlFlag, 60);
         this.registerPropInfo(CSaveDataConst.propNameBuffLv, 8);
     }
-
-
 
     /**
      * データのコンパクション（不要データの削除）を行う.

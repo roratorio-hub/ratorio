@@ -1,3 +1,6 @@
+/**
+ * 「一次職支援設定」情報クラス
+ */
 class CSaveDataUnitSkillBuff1st extends CSaveDataUnitBase {
 
     /**
@@ -14,8 +17,6 @@ class CSaveDataUnitSkillBuff1st extends CSaveDataUnitBase {
         return 1;
     }
 
-
-
     /**
      * 処理順に並んだプロパティ名（自身のプロパティのみ）.
      */
@@ -23,7 +24,6 @@ class CSaveDataUnitSkillBuff1st extends CSaveDataUnitBase {
         return [
             CSaveDataConst.propNameOptCode,
             CSaveDataConst.propNameParseCtrlFlag,
-
             // データは、初期バージョンでは、100個
             ...(Array(100).fill(CSaveDataConst.propNameBuffLv)),
         ];
@@ -36,21 +36,16 @@ class CSaveDataUnitSkillBuff1st extends CSaveDataUnitBase {
         return super.propNames.concat(this.#propNamesSelf);
     }
 
-
-
     /**
      * コンストラクタ.
      */
     constructor () {
         super();
-
         // プロパティ定義情報の登録
         this.registerPropInfo(CSaveDataConst.propNameOptCode, 6);
         this.registerPropInfo(CSaveDataConst.propNameParseCtrlFlag, 100);
         this.registerPropInfo(CSaveDataConst.propNameBuffLv, 4);
     }
-
-
 
     /**
      * データのコンパクション（不要データの削除）を行う.

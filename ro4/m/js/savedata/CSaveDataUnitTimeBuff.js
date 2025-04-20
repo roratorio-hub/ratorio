@@ -1,3 +1,6 @@
+/**
+ * 「アイテム時限効果」情報クラス
+ */
 class CSaveDataUnitTimeBuff extends CSaveDataUnitBase {
 
     /**
@@ -14,8 +17,6 @@ class CSaveDataUnitTimeBuff extends CSaveDataUnitBase {
         return 1;
     }
 
-
-
     /**
      * 処理順に並んだプロパティ名（自身のプロパティのみ）.
      */
@@ -23,7 +24,6 @@ class CSaveDataUnitTimeBuff extends CSaveDataUnitBase {
         return [
             CSaveDataConst.propNameOptCode,
             CSaveDataConst.propNameParseCtrlFlag,
-
             // データは、初期バージョンでは、20個
             ...(Array(20).fill(CSaveDataConst.propNameTimeBuffID)),
         ];
@@ -36,21 +36,16 @@ class CSaveDataUnitTimeBuff extends CSaveDataUnitBase {
         return super.propNames.concat(this.#propNamesSelf);
     }
 
-
-
     /**
      * コンストラクタ.
      */
     constructor () {
         super();
-
         // プロパティ定義情報の登録
         this.registerPropInfo(CSaveDataConst.propNameOptCode, 20);
         this.registerPropInfo(CSaveDataConst.propNameParseCtrlFlag, 20);
         this.registerPropInfo(CSaveDataConst.propNameTimeBuffID, 9);
     }
-
-
 
     /**
      * データのコンパクション（不要データの削除）を行う.

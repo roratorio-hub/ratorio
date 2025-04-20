@@ -1,3 +1,6 @@
+/**
+ * 「セーブデータユニットのバージョン」を表現するクラス
+ */
 class CSaveDataUnitVersion extends CSaveDataUnitBase {
 
     /**
@@ -14,16 +17,12 @@ class CSaveDataUnitVersion extends CSaveDataUnitBase {
         return 1;
     }
 
-
-
     /**
      * コンストラクタ.
      */
     constructor () {
         super();
     }
-
-
 
     /**
      * ユニットのデータが空であるかを判定する.

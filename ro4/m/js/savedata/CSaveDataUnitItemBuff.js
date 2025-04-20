@@ -1,3 +1,6 @@
+/**
+ * 「アイテム(食品/他)」情報クラス
+ */
 class CSaveDataUnitItemBuff extends CSaveDataUnitBase {
 
     /**
@@ -14,8 +17,6 @@ class CSaveDataUnitItemBuff extends CSaveDataUnitBase {
         return 1;
     }
 
-
-
     /**
      * 処理順に並んだプロパティ名（自身のプロパティのみ）.
      */
@@ -24,7 +25,6 @@ class CSaveDataUnitItemBuff extends CSaveDataUnitBase {
             CSaveDataConst.propNameOptCode,
             CSaveDataConst.propNameSubSpeedPot,
             CSaveDataConst.propNameParseCtrlFlag,
-
             // データは、初期バージョンでは、70個
             // （領域的には71個用意されていたが末尾は使用していなかったので切り捨て）
             ...(Array(70).fill(CSaveDataConst.propNameBuffLv)),
@@ -38,22 +38,17 @@ class CSaveDataUnitItemBuff extends CSaveDataUnitBase {
         return super.propNames.concat(this.#propNamesSelf);
     }
 
-
-
     /**
      * コンストラクタ.
      */
     constructor () {
         super();
-
         // プロパティ定義情報の登録
         this.registerPropInfo(CSaveDataConst.propNameOptCode, 6);
         this.registerPropInfo(CSaveDataConst.propNameSubSpeedPot, 2);
         this.registerPropInfo(CSaveDataConst.propNameParseCtrlFlag, 70);
         this.registerPropInfo(CSaveDataConst.propNameBuffLv, 6);
     }
-
-
 
     /**
      * データのコンパクション（不要データの削除）を行う.
@@ -70,19 +65,14 @@ class CSaveDataUnitItemBuff extends CSaveDataUnitBase {
      * @returns {boolean} true:空である、false:空でない
      */
     isEmptyUnit () {
-
         const propNames = this.constructor.#propNamesSelf.slice();
-
         // すべてのプロパティがデフォルト値であるかを検査する
         for (let idx = 0; idx < propNames.length; idx++) {
-
             const propName = propNames[idx];
-
             /// そもそもパースされたデータがない場合は、デフォルトとみなす
             if (this.getProp(propName) === undefined) {
                 continue;
             }
-
             // デフォルト値であるかの検査
             switch (propName) {
                 case CSaveDataConst.propNameOptCode:
@@ -97,11 +87,9 @@ class CSaveDataUnitItemBuff extends CSaveDataUnitBase {
                 default:
                     continue;
             }
-
             // ここに来るならばデフォルトでない値がある
             return false;
         }
-
         // 共用の判定処理を利用
         return this.isEmptyUnit_CtrlFlag0();
     }

@@ -1,3 +1,7 @@
+/**
+ * 「対プレイヤー設定」情報クラス
+ * 旧セーブデータから変換する時だけ使われている
+ */
 class CSaveDataUnitMobConfPlayer extends CSaveDataUnitBase {
 
     /**
@@ -14,8 +18,6 @@ class CSaveDataUnitMobConfPlayer extends CSaveDataUnitBase {
         return 1;
     }
 
-
-
     /**
      * 処理順に並んだプロパティ名（自身のプロパティのみ）.
      */
@@ -23,7 +25,6 @@ class CSaveDataUnitMobConfPlayer extends CSaveDataUnitBase {
         return [
             CSaveDataConst.propNameOptCode,
             CSaveDataConst.propNameParseCtrlFlag,
-
             CSaveDataConst.propNameStMaxHP,
             CSaveDataConst.propNameStDefDiv,
             CSaveDataConst.propNameStDefMinus,
@@ -90,12 +91,10 @@ class CSaveDataUnitMobConfPlayer extends CSaveDataUnitBase {
             CSaveDataConst.propNameStResistSizeSmallSign,
             CSaveDataConst.propNameStResistSizeSmall,
             CSaveDataConst.propNameStRace,
-
             CSaveDataConst.propNameStResPlusSign,
             CSaveDataConst.propNameStResPlus,
             CSaveDataConst.propNameStMresPlusSign,
             CSaveDataConst.propNameStMresPlus,
-
             CSaveDataConst.propNameStPowSign,
             CSaveDataConst.propNameStPow,
             CSaveDataConst.propNameStStaSign,
@@ -118,19 +117,15 @@ class CSaveDataUnitMobConfPlayer extends CSaveDataUnitBase {
         return super.propNames.concat(this.#propNamesSelf);
     }
 
-
-
     /**
      * コンストラクタ.
      */
     constructor () {
         super();
-
         // プロパティ定義情報の登録
         this.registerPropInfo(CSaveDataConst.propNameOptCode, 6);
         // （旧形式の領域的には52個用意されていたが末尾は使用していなかったので切り捨て）
         this.registerPropInfo(CSaveDataConst.propNameParseCtrlFlag, 78);
-
         this.registerPropInfo(CSaveDataConst.propNameStMaxHP, CSaveDataConst.propBitsMaxAbs4M);
         this.registerPropInfo(CSaveDataConst.propNameStDefDiv, CSaveDataConst.propBitsMaxAbs10k);
         this.registerPropInfo(CSaveDataConst.propNameStDefMinus, CSaveDataConst.propBitsMaxAbs1k);
@@ -214,8 +209,6 @@ class CSaveDataUnitMobConfPlayer extends CSaveDataUnitBase {
         this.registerPropInfo(CSaveDataConst.propNameStCrtSign, 1);
         this.registerPropInfo(CSaveDataConst.propNameStCrt, CSaveDataConst.propBitsMaxAbs1k);*/
     }
-
-
 
     /**
      * データのコンパクション（不要データの削除）を行う.

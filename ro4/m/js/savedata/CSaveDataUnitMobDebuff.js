@@ -1,3 +1,6 @@
+/**
+ * 「モンスター状態異常設定」情報クラス
+ */
 class CSaveDataUnitMobDebuff extends CSaveDataUnitBase {
 
     /**
@@ -14,8 +17,6 @@ class CSaveDataUnitMobDebuff extends CSaveDataUnitBase {
         return 1;
     }
 
-
-
     /**
      * 処理順に並んだプロパティ名（自身のプロパティのみ）.
      */
@@ -23,7 +24,6 @@ class CSaveDataUnitMobDebuff extends CSaveDataUnitBase {
         return [
             CSaveDataConst.propNameOptCode,
             CSaveDataConst.propNameParseCtrlFlag,
-
             // データは、初期バージョンでは、80個
             // （領域的には81個用意されていたが末尾は使用していなかったので切り捨て）
             ...(Array(80).fill(CSaveDataConst.propNameBuffLv)),
@@ -37,21 +37,16 @@ class CSaveDataUnitMobDebuff extends CSaveDataUnitBase {
         return super.propNames.concat(this.#propNamesSelf);
     }
 
-
-
     /**
      * コンストラクタ.
      */
     constructor () {
         super();
-
         // プロパティ定義情報の登録
         this.registerPropInfo(CSaveDataConst.propNameOptCode, 6);
         this.registerPropInfo(CSaveDataConst.propNameParseCtrlFlag, 80);
         this.registerPropInfo(CSaveDataConst.propNameBuffLv, 8);
     }
-
-
 
     /**
      * データのコンパクション（不要データの削除）を行う.

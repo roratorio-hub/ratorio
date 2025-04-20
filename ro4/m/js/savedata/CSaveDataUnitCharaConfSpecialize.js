@@ -1,3 +1,7 @@
+/**
+ * 「性能カスタマイズ（特化）」情報クラス
+ *  TODO: 今は存在しない設定欄なので使われているのか確認が必要
+ */
 class CSaveDataUnitCharaConfSpecialize extends CSaveDataUnitBase {
 
     /**
@@ -14,8 +18,6 @@ class CSaveDataUnitCharaConfSpecialize extends CSaveDataUnitBase {
         return 1;
     }
 
-
-
     /**
      * 処理順に並んだプロパティ名（自身のプロパティのみ）.
      */
@@ -24,14 +26,12 @@ class CSaveDataUnitCharaConfSpecialize extends CSaveDataUnitBase {
             CSaveDataConst.instanceKind,
             CSaveDataConst.propNameSubInvalidateSettings,
             CSaveDataConst.propNameParseCtrlFlag,
-
             CSaveDataConst.propNameSpecDamageSign,
             CSaveDataConst.propNameSpecDamage,
             CSaveDataConst.propNameSpecCriticalDamageSign,
             CSaveDataConst.propNameSpecCriticalDamage,
             CSaveDataConst.propNameSpecMapSign,
             CSaveDataConst.propNameSpecMap,
-
             CSaveDataConst.propNameSpecRaceSolidSign,
             CSaveDataConst.propNameSpecRaceSolid,
             CSaveDataConst.propNameSpecRaceUndeadSign,
@@ -58,7 +58,6 @@ class CSaveDataUnitCharaConfSpecialize extends CSaveDataUnitBase {
             CSaveDataConst.propNameSpecRaceAll,
             CSaveDataConst.propNameSpecRaceHumanNotPlayerSign,
             CSaveDataConst.propNameSpecRaceHumanNotPlayer,
-
             CSaveDataConst.propNameSpecAttackElementVanitySign,
             CSaveDataConst.propNameSpecAttackElementVanity,
             CSaveDataConst.propNameSpecAttackElementWaterSign,
@@ -81,7 +80,6 @@ class CSaveDataUnitCharaConfSpecialize extends CSaveDataUnitBase {
             CSaveDataConst.propNameSpecAttackElementUndead,
             CSaveDataConst.propNameSpecAttackElementAllSign,
             CSaveDataConst.propNameSpecAttackElementAll,
-
             CSaveDataConst.propNameSpecMobElementVanitySign,
             CSaveDataConst.propNameSpecMobElementVanity,
             CSaveDataConst.propNameSpecMobElementWaterSign,
@@ -104,7 +102,6 @@ class CSaveDataUnitCharaConfSpecialize extends CSaveDataUnitBase {
             CSaveDataConst.propNameSpecMobElementUndead,
             CSaveDataConst.propNameSpecMobElementAllSign,
             CSaveDataConst.propNameSpecMobElementAll,
-
             CSaveDataConst.propNameSpecSizeSmallSign,
             CSaveDataConst.propNameSpecSizeSmall,
             CSaveDataConst.propNameSpecSizeMediumSign,
@@ -113,28 +110,24 @@ class CSaveDataUnitCharaConfSpecialize extends CSaveDataUnitBase {
             CSaveDataConst.propNameSpecSizeLarge,
             CSaveDataConst.propNameSpecSizeAllSign,
             CSaveDataConst.propNameSpecSizeAll,
-
             CSaveDataConst.propNameSpecBossTypeBossSign,
             CSaveDataConst.propNameSpecBossTypeBoss,
             CSaveDataConst.propNameSpecBossTypeNormalSign,
             CSaveDataConst.propNameSpecBossTypeNormal,
             CSaveDataConst.propNameSpecBossTypeAllSign,
             CSaveDataConst.propNameSpecBossTypeAll,
-
             CSaveDataConst.propNameSpecRangeShortSign,
             CSaveDataConst.propNameSpecRangeShort,
             CSaveDataConst.propNameSpecRangeLongSign,
             CSaveDataConst.propNameSpecRangeLong,
             CSaveDataConst.propNameSpecRangeAllSign,
             CSaveDataConst.propNameSpecRangeAll,
-
             CSaveDataConst.propNameSpecPlayerHumanSign,
             CSaveDataConst.propNameSpecPlayerHuman,
             CSaveDataConst.propNameSpecPlayerDoramSign,
             CSaveDataConst.propNameSpecPlayerDoram,
             CSaveDataConst.propNameSpecPlayerAllSign,
             CSaveDataConst.propNameSpecPlayerAll,
-
             CSaveDataConst.propNameIgnoreDefenceRaceAll,
             CSaveDataConst.propNameKiriEffect,
         ];
@@ -147,26 +140,21 @@ class CSaveDataUnitCharaConfSpecialize extends CSaveDataUnitBase {
         return super.propNames.concat(this.#propNamesSelf);
     }
 
-
-
     /**
      * コンストラクタ.
      */
     constructor () {
         super();
-
         // プロパティ定義情報の登録
         this.registerPropInfo(CSaveDataConst.instanceKind, 6);
         this.registerPropInfo(CSaveDataConst.propNameSubInvalidateSettings, 1);
         this.registerPropInfo(CSaveDataConst.propNameParseCtrlFlag, 104);
-
         this.registerPropInfo(CSaveDataConst.propNameSpecDamageSign, 1);
         this.registerPropInfo(CSaveDataConst.propNameSpecDamage, CSaveDataConst.propBitsMaxAbs500);
         this.registerPropInfo(CSaveDataConst.propNameSpecCriticalDamageSign, 1);
         this.registerPropInfo(CSaveDataConst.propNameSpecCriticalDamage, CSaveDataConst.propBitsMaxAbs1k);
         this.registerPropInfo(CSaveDataConst.propNameSpecMapSign, 1);
         this.registerPropInfo(CSaveDataConst.propNameSpecMap, CSaveDataConst.propBitsMaxAbs500);
-
         this.registerPropInfo(CSaveDataConst.propNameSpecRaceSolidSign, 1);
         this.registerPropInfo(CSaveDataConst.propNameSpecRaceSolid, CSaveDataConst.propBitsMaxAbs500);
         this.registerPropInfo(CSaveDataConst.propNameSpecRaceUndeadSign, 1);
@@ -193,7 +181,6 @@ class CSaveDataUnitCharaConfSpecialize extends CSaveDataUnitBase {
         this.registerPropInfo(CSaveDataConst.propNameSpecRaceAll, CSaveDataConst.propBitsMaxAbs500);
         this.registerPropInfo(CSaveDataConst.propNameSpecRaceHumanNotPlayerSign, 1);
         this.registerPropInfo(CSaveDataConst.propNameSpecRaceHumanNotPlayer, CSaveDataConst.propBitsMaxAbs500);
-
         this.registerPropInfo(CSaveDataConst.propNameSpecAttackElementVanitySign, 1);
         this.registerPropInfo(CSaveDataConst.propNameSpecAttackElementVanity, CSaveDataConst.propBitsMaxAbs500);
         this.registerPropInfo(CSaveDataConst.propNameSpecAttackElementWaterSign, 1);
@@ -216,7 +203,6 @@ class CSaveDataUnitCharaConfSpecialize extends CSaveDataUnitBase {
         this.registerPropInfo(CSaveDataConst.propNameSpecAttackElementUndead, CSaveDataConst.propBitsMaxAbs500);
         this.registerPropInfo(CSaveDataConst.propNameSpecAttackElementAllSign, 1);
         this.registerPropInfo(CSaveDataConst.propNameSpecAttackElementAll, CSaveDataConst.propBitsMaxAbs500);
-
         this.registerPropInfo(CSaveDataConst.propNameSpecMobElementVanitySign, 1);
         this.registerPropInfo(CSaveDataConst.propNameSpecMobElementVanity, CSaveDataConst.propBitsMaxAbs500);
         this.registerPropInfo(CSaveDataConst.propNameSpecMobElementWaterSign, 1);
@@ -239,7 +225,6 @@ class CSaveDataUnitCharaConfSpecialize extends CSaveDataUnitBase {
         this.registerPropInfo(CSaveDataConst.propNameSpecMobElementUndead, CSaveDataConst.propBitsMaxAbs500);
         this.registerPropInfo(CSaveDataConst.propNameSpecMobElementAllSign, 1);
         this.registerPropInfo(CSaveDataConst.propNameSpecMobElementAll, CSaveDataConst.propBitsMaxAbs500);
-
         this.registerPropInfo(CSaveDataConst.propNameSpecSizeSmallSign, 1);
         this.registerPropInfo(CSaveDataConst.propNameSpecSizeSmall, CSaveDataConst.propBitsMaxAbs500);
         this.registerPropInfo(CSaveDataConst.propNameSpecSizeMediumSign, 1);
@@ -248,33 +233,27 @@ class CSaveDataUnitCharaConfSpecialize extends CSaveDataUnitBase {
         this.registerPropInfo(CSaveDataConst.propNameSpecSizeLarge, CSaveDataConst.propBitsMaxAbs500);
         this.registerPropInfo(CSaveDataConst.propNameSpecSizeAllSign, 1);
         this.registerPropInfo(CSaveDataConst.propNameSpecSizeAll, CSaveDataConst.propBitsMaxAbs500);
-
         this.registerPropInfo(CSaveDataConst.propNameSpecBossTypeBossSign, 1);
         this.registerPropInfo(CSaveDataConst.propNameSpecBossTypeBoss, CSaveDataConst.propBitsMaxAbs500);
         this.registerPropInfo(CSaveDataConst.propNameSpecBossTypeNormalSign, 1);
         this.registerPropInfo(CSaveDataConst.propNameSpecBossTypeNormal, CSaveDataConst.propBitsMaxAbs500);
         this.registerPropInfo(CSaveDataConst.propNameSpecBossTypeAllSign, 1);
         this.registerPropInfo(CSaveDataConst.propNameSpecBossTypeAll, CSaveDataConst.propBitsMaxAbs500);
-
         this.registerPropInfo(CSaveDataConst.propNameSpecRangeShortSign, 1);
         this.registerPropInfo(CSaveDataConst.propNameSpecRangeShort, CSaveDataConst.propBitsMaxAbs500);
         this.registerPropInfo(CSaveDataConst.propNameSpecRangeLongSign, 1);
         this.registerPropInfo(CSaveDataConst.propNameSpecRangeLong, CSaveDataConst.propBitsMaxAbs500);
         this.registerPropInfo(CSaveDataConst.propNameSpecRangeAllSign, 1);
         this.registerPropInfo(CSaveDataConst.propNameSpecRangeAll, CSaveDataConst.propBitsMaxAbs500);
-
         this.registerPropInfo(CSaveDataConst.propNameSpecPlayerHumanSign, 1);
         this.registerPropInfo(CSaveDataConst.propNameSpecPlayerHuman, CSaveDataConst.propBitsMaxAbs500);
         this.registerPropInfo(CSaveDataConst.propNameSpecPlayerDoramSign, 1);
         this.registerPropInfo(CSaveDataConst.propNameSpecPlayerDoram, CSaveDataConst.propBitsMaxAbs500);
         this.registerPropInfo(CSaveDataConst.propNameSpecPlayerAllSign, 1);
         this.registerPropInfo(CSaveDataConst.propNameSpecPlayerAll, CSaveDataConst.propBitsMaxAbs500);
-
         this.registerPropInfo(CSaveDataConst.propNameIgnoreDefenceRaceAll, CSaveDataConst.propBitsMaxAbs100);
         this.registerPropInfo(CSaveDataConst.propNameKiriEffect, 1);
     }
-
-
 
     /**
      * データのコンパクション（不要データの削除）を行う.

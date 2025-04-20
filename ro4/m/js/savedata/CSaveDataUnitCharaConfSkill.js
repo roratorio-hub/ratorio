@@ -1,3 +1,6 @@
+/**
+ * 「性能カスタマイズ（スキル関連）」情報クラス
+ */
 class CSaveDataUnitCharaConfSkill extends CSaveDataUnitBase {
 
     /**
@@ -14,8 +17,6 @@ class CSaveDataUnitCharaConfSkill extends CSaveDataUnitBase {
         return 1;
     }
 
-
-
     /**
      * 処理順に並んだプロパティ名（自身のプロパティのみ）.
      */
@@ -23,7 +24,6 @@ class CSaveDataUnitCharaConfSkill extends CSaveDataUnitBase {
         return [
             CSaveDataConst.propNameSubInvalidateSettings,
             CSaveDataConst.propNameParseCtrlFlag,
-
             CSaveDataConst.propNameSkillID,
             CSaveDataConst.propNameSpecDamageUpConditionType,
             CSaveDataConst.propNameSpecDamageUpConditionValue,
@@ -55,8 +55,6 @@ class CSaveDataUnitCharaConfSkill extends CSaveDataUnitBase {
         return super.propNames.concat(this.#propNamesSelf);
     }
 
-
-
     /**
      * コンストラクタ.
      */
@@ -66,7 +64,6 @@ class CSaveDataUnitCharaConfSkill extends CSaveDataUnitBase {
         // プロパティ定義情報の登録
         this.registerPropInfo(CSaveDataConst.propNameSubInvalidateSettings, 1);
         this.registerPropInfo(CSaveDataConst.propNameParseCtrlFlag, 21);
-
         this.registerPropInfo(CSaveDataConst.propNameSkillID, 11);
         this.registerPropInfo(CSaveDataConst.propNameSpecDamageUpConditionType, 4);
         this.registerPropInfo(CSaveDataConst.propNameSpecDamageUpConditionValue, CSaveDataConst.propBitsMaxAbs500);
@@ -89,8 +86,6 @@ class CSaveDataUnitCharaConfSkill extends CSaveDataUnitBase {
         this.registerPropInfo(CSaveDataConst.propNameSpecCoolTimeDownSign, 1);
         this.registerPropInfo(CSaveDataConst.propNameSpecCoolTimeDown, CSaveDataConst.propBitsMaxAbs100);
     }
-
-
 
     /**
      * データのコンパクション（不要データの削除）を行う.

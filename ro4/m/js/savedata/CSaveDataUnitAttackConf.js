@@ -1,3 +1,6 @@
+/**
+ * 「攻撃方法」情報クラス
+ */
 class CSaveDataUnitAttackConf extends CSaveDataUnitBase {
 
     /**
@@ -14,8 +17,6 @@ class CSaveDataUnitAttackConf extends CSaveDataUnitBase {
         return 1;
     }
 
-
-
     /**
      * 処理順に並んだプロパティ名（自身のプロパティのみ）.
      */
@@ -23,7 +24,6 @@ class CSaveDataUnitAttackConf extends CSaveDataUnitBase {
         return [
             CSaveDataConst.propNameOptCode,
             CSaveDataConst.propNameParseCtrlFlag,
-
             CSaveDataConst.propNameAttackSkillID,
             CSaveDataConst.propNameSourceTypeID,
             CSaveDataConst.propNameAttackSkillLv,
@@ -38,8 +38,6 @@ class CSaveDataUnitAttackConf extends CSaveDataUnitBase {
         return super.propNames.concat(this.#propNamesSelf);
     }
 
-
-
     /**
      * コンストラクタ.
      */
@@ -49,14 +47,11 @@ class CSaveDataUnitAttackConf extends CSaveDataUnitBase {
         // プロパティ定義情報の登録
         this.registerPropInfo(CSaveDataConst.propNameOptCode, 6);
         this.registerPropInfo(CSaveDataConst.propNameParseCtrlFlag, 11);
-
         this.registerPropInfo(CSaveDataConst.propNameAttackSkillID, 11);
         this.registerPropInfo(CSaveDataConst.propNameSourceTypeID, 6);
         this.registerPropInfo(CSaveDataConst.propNameAttackSkillLv, 4);
         this.registerPropInfo(CSaveDataConst.propNameAttackSkillOption, 18);
     }
-
-
 
     /**
      * データのコンパクション（不要データの削除）を行う.

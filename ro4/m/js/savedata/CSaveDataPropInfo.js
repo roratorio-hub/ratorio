@@ -13,20 +13,16 @@ class CSaveDataPropInfo {
 	 */
 	#propBits;
 
-
 	/**
 	 * コンストラクタ.
 	 * @param {string} propName プロパティの名称
 	 * @param {int} propBits プロパティのビット長
 	 */
 	constructor (propName, propBits) {
-
 		// メンバ変数の初期化
 		this.#propName = propName;
 		this.#propBits = propBits;
 	}
-
-
 
 	/**
 	 * プロパティの名称.
