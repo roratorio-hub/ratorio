@@ -6040,6 +6040,11 @@
 	CardIdToSetIdMap[3512] = [3102,];
 	CardIdToSetIdMap[3516] = [3102,];
 	CardIdToSetIdMap[2311] = CardIdToSetIdMap[2311].concat([3100, 3101]);
+	// --- 2025-04-20 ---
+	w_SE[3103] = [4238,4235,-10103];	// Atk+200, Matk+200, Def+150, Mdef+15 (4238) = ワンダーエッグ(4235) + 混沌のバフォメット.Jr(103)
+	PetIdToSetIdMap[103] = [3103];
+	ItemIdToSetIdMap[4235] = ItemIdToSetIdMap[4235].concat([3103]);
+
 	// itemset はセーブデータに書き出されないので
 	// 現実的な範囲において itemsetID の上限値を気にする必要はありません
 })();
