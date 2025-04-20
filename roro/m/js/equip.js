@@ -87,8 +87,8 @@ function OnChangeJobSelect(jobId){
 
 
 		// 二刀流状態の解除
-		if (n_Nitou == 1) {
-			n_Nitou = 0;
+		if (n_Nitou) {
+			n_Nitou = false;
 		}
 		OnChangeArmsTypeLeft(ITEM_KIND_NONE);
 
@@ -109,7 +109,7 @@ function OnChangeJobSelect(jobId){
 			}
 
 			if (jobData.GetWeaponAspd(i) !== undefined) {
-				A_WeaponType.options[j] = new Option(WeaponName[i],i);
+				A_WeaponType.options[j] = new Option(GetItemKindNameText(i),i);
 				j++;
 			}
 		}
@@ -274,12 +274,12 @@ function OnChangeArmsTypeRight(itemKind){
 		RebuildArmsRightSelect();
 
 		if(GetHigherJobSeriesID(n_A_JOB) == 8 && itemKind != ITEM_KIND_KATAR){
-			if(n_Nitou == 0) {
+			if (!n_Nitou) {
 				myInnerHtml("A_SobWeaponName","　左手："+'<select id="OBJID_ARMS_TYPE_LEFT" name="A_Weapon2Type" onChange = "OnChangeArmsTypeLeft(this[this.selectedIndex].value) | StAllCalc() | AutoCalc()"> <option value="0">素手or盾<option value="1">短剣<option value="2">片手剣<option value="6">片手斧</select>',0);
 			}
 		}
 		else if((IsSameJobClass(JOB_ID_KAGERO) || IsSameJobClass(JOB_ID_OBORO)) && (itemKind != ITEM_KIND_FUMA)){
-			if(n_Nitou == 0) {
+			if (!n_Nitou) {
 				myInnerHtml("A_SobWeaponName","　左手："+'<select id="OBJID_ARMS_TYPE_LEFT" name="A_Weapon2Type" onChange = "OnChangeArmsTypeLeft(this[this.selectedIndex].value) | StAllCalc() | AutoCalc()"> <option value=0>素手or盾<option value=1>短剣</select>',0);
 			}
 		}
@@ -295,7 +295,7 @@ function OnChangeArmsTypeRight(itemKind){
 				OnChangeArmsTypeLeft(ITEM_KIND_NONE);
 			}
 
-			n_Nitou = 0;
+			n_Nitou = false;
 
 			// 左手武器欄を無効化する
 			A_Weapon2_ATKplus.disabled = true;
@@ -553,7 +553,7 @@ function OnChangeArmsTypeLeft(itemKind){
 		objArrayToHidden.push(objSelectShiledRefine);
 		objArrayToHidden.push(objSelectShiledTranscendence);
 
-		n_Nitou = 1;
+		n_Nitou = true;
 	}
 
 	// 二刀流解除の場合
@@ -576,7 +576,7 @@ function OnChangeArmsTypeLeft(itemKind){
 		objArrayToVisible.push(objSelectShiledRefine);
 		objArrayToVisible.push(objSelectShiledTranscendence);
 
-		n_Nitou = 0;
+		n_Nitou = false;
 	}
 
 	for (idx = 0; idx < objArrayToVisible.length; idx++) {
@@ -1503,7 +1503,10 @@ function RebuildArmorsSelect() {
 
 
 
-
+/**
+ * もう使われていない可能性がある
+ * @returns 
+ */
 function WeaponSet2(){
 	with(document.calcForm){
 		InitJobInfo();

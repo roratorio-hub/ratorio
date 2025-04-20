@@ -582,7 +582,7 @@ function __RebuildSlotAsCardShort(eqpRgnId, objidPrifix) {
 		break;
 
 	case EQUIP_REGION_ID_ARMS_LEFT:
-		bVisible = (n_Nitou != 0);
+		bVisible = n_Nitou;
 		break;
 
 	default:

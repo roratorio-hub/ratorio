@@ -1134,7 +1134,7 @@ function AS_Calc(charaData, specData, mobData, attackMethodConfArray, battleCalc
 
 	n_AS_SKILL[idx][0] = -1;
 	if(n_AS_SKILL[0][0] == -1) return;
-	n_AS_MODE = 1;
+	n_AS_MODE = true;
 
 	//----------------------------------------------------------------
 	// 表示ＨＴＭＬ組み立て（未解析）
@@ -1349,7 +1349,7 @@ function AS_Calc(charaData, specData, mobData, attackMethodConfArray, battleCalc
 	n_A_Weapon_zokusei = BK_ZOKUSEI;
 	n_Enekyori = BK_ENKYORI;
 	for(var i=0;i<=7;i++) n_Delay[i] = BK_DELAY[i];
-	n_AS_MODE = 0;
+	n_AS_MODE = false;
 	if(n_A_ActiveSkill == 0 && n_AS_SKILL[0][0] != 0 && (UsedSkillSearch(SKILL_ID_SANDANSHO) || GetActRateDA(n_A_ActiveSkill, mobData))){
 		str_bSUBname += "<B><Font size=2>通常</Font></B><BR>";
 		str_bSUB += "<BR>";
@@ -1364,7 +1364,7 @@ function AS_PLUS(){
 
 	w_DMG_AS_OverHP = w_DMG[1];
 
-	if(n_AS_check_3dan == 0){
+	if(!n_AS_check_3dan){
 
 		for(var j = 0; j < n_AS_DMG.length; j++){
 

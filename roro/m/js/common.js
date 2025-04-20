@@ -208,14 +208,6 @@ CGlobalConstManager.DefineEnum(
 	1
 );
 
-
-
-
-
-
-
-
-
 /**
  * 定義済みデータ種別のテキストを取得する.
  * @param kindId 定義済みデータ種別ID
@@ -322,8 +314,6 @@ function GetConstDataKindText(kindId) {
 	return "不明";
 }
 
-
-
 /**
  * パラメータ名のテキストを取得する.
  * @param paramId パラメータID
@@ -353,8 +343,6 @@ function GetParamText(paramId) {
 
 	return "エラー";
 }
-
-
 
 /**
  * 種族名のテキストを取得する.
@@ -396,8 +384,6 @@ function GetRaceText(raceId) {
 
 	return "エラー";
 }
-
-
 
 /**
  * 属性名のテキストを取得する.
@@ -452,8 +438,6 @@ function GetMonsterElementText(monsterElmId) {
 	return GetElementText(elmId) + elmLv;
 }
 
-
-
 /**
  * サイズ名のテキストを取得する.
  * @param sizeId サイズID
@@ -474,8 +458,6 @@ function GetSizeText(sizeId) {
 
 	return "エラー";
 }
-
-
 
 /**
  * 状態異常名のテキストを取得する.
@@ -580,8 +562,6 @@ function GetStateText(stateId) {
 
 	return "エラー";
 }
-
-
 
 /**
  * 親密度のテキストを取得する.
