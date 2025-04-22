@@ -1,20 +1,27 @@
 item_list:
-  - name: ディストーテッドマジックフード
-    yomi: テイストオテツトマシツクフウト
-    desc: "物理・魔法攻撃時、[魔力が歪んだ平原]に出現するモンスターに与えるダメージ + 30%<br>[魔力が歪んだ平原]に出現するモンスターから受けるダメージ - 60%"
+  - name: オートマティックウィングIII
+    yomi: オオトマテイツクウインクスリー
     type: 肩にかける物
     slot: 0
     weapon_lv: 0
     atk_or_def: 50
-    weight: 40
-    required_lv: 100
+    weight: 65
+    required_lv: 150
     required_job: 全ての職業
     capabilities:
-      - name: 壊れない
-        value: 1
-      - name: MDEF加算
-        value: 5
-      - name: 火属性耐性
-        value: 50
-      - name: 毒属性耐性
-        value: 50
+      - name: MAXHP増加
+        value: 15
+      - name: MAXSP増加
+        value: 15
+      - name: MAXHP増加
+        value: 15
+        at_lv: 175
+      - name: MAXSP増加
+        value: 15
+        at_lv: 175
+      - name: 全属性への物理ダメージ増加
+        value: 3
+        per_refine: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 3
+        per_refine: 1
