@@ -2773,7 +2773,7 @@
 	CARD_SET_ID_ENCHANT_GOKETSU_SENZAI_KAKUSEI_DRAGON_TAIL = 3402;
 	CARD_SET_ID_ENCHANT_GOKETSU_SENZAI_KAKUSEI_TAROU_NO_KIZU = 3404;
 	CARD_ID_COTNESS = 3428;
-	CARD_ID_MAX = 3428 + 1;
+	CARD_ID_MAX = 3428 + 1;	// この値である必然性はありません。定義位置と合わせて変更も視野に入ります。詳細は hmcard.js 参照。
 
 	CardObjNew = [
 		[0,0,"(カードなし)","0","0",0],
