@@ -11288,6 +11288,9 @@ function ApplyMagicalSpecializeMonsterMod20211014SubSpecializeMap(charaData, spe
 		if ((cardCount = CardNumSearch(CARD_ID_HARD_ROCK_TITAN)) > 0) {
 			wX += 30 * cardCount;
 		}
+		if (EquipNumSearch(ITEM_ID_DISTORTED_MAGIC_HOOD) > 0) {
+			wX += 30;
+		}
 	}
 
 	//--------------------------------
@@ -14235,8 +14238,16 @@ function BattleHiDam(charaData, specData, mobData, attackMethodConfArray, objCel
 		if (EquipNumSearch(ITEM_ID_DISCARDED_CAPE) > 0) {
 			wBHD += 60;
 		}
-	}	
+	}
 
+	//--------------------------------
+	// 魔力が歪んだ平原 耐性
+	//--------------------------------
+	if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_PLAINS_DISTORTED_BY_MAGIC]) == 1){
+		if (EquipNumSearch(ITEM_ID_DISTORTED_MAGIC_HOOD) > 0) {
+			wBHD += 60;
+		}
+	}
 
 	//--------------------------------
 	// 英雄の痕跡支援
@@ -21667,6 +21678,9 @@ function ApplyPhysicalSpecializeMonster(charaData, specData, mobData, dmg) {
 	if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_PLAINS_DISTORTED_BY_MAGIC]) == 1){
 		if ((cardCount = CardNumSearch(CARD_ID_HARD_ROCK_TITAN)) > 0) {
 			w += 30 * cardCount;
+		}
+		if (EquipNumSearch(ITEM_ID_DISTORTED_MAGIC_HOOD) > 0) {
+			w += 30;
 		}
 	}
 

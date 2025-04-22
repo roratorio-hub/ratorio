@@ -19,6 +19,30 @@ CardShortObj =[
 	 ],
 
 	 [
+	 	"1枚目をコピー 2枚",
+	 	CARD_ID_MAX,
+	 	CARD_ID_MAX,
+	 	CARD_ID_NONE,
+	 	CARD_ID_NONE
+	 ],
+
+	 [
+	 	"1枚目をコピー 3枚",
+	 	CARD_ID_MAX,
+	 	CARD_ID_MAX,
+	 	CARD_ID_MAX,
+	 	CARD_ID_NONE
+	 ],
+
+	 [
+	 	"1枚目をコピー 4枚",
+	 	CARD_ID_MAX,
+	 	CARD_ID_MAX,
+	 	CARD_ID_MAX,
+	 	CARD_ID_MAX
+	 ],
+
+	 [
 	 	"物理　種族20%　2枚",
 	 	CARD_ID_PHYSICAL_RACE_ALL_20UP,
 	 	CARD_ID_PHYSICAL_RACE_ALL_20UP,
@@ -1483,9 +1507,18 @@ function ApplyCardShort(eqpRgnId, objidPrifix) {
 		if (!objSelect) {
 			continue;
 		}
+		// 1枚目のSelectオブジェクトを控える
+		if (idx == 1) {
+			objSelect1 = objSelect;
+		}
 
 		// 設定するＩＤを取得
 		cardIdToSet = CardShortObj[cardSCIdx][idx];
+
+		// MAX値を設定している場合は、1枚目からカードIDをコピーする
+		if (cardIdToSet == CARD_ID_MAX) {
+			cardIdToSet = objSelect1.value;
+		}
 
 		// 選択可能であることを確認してからセットする
 		for (idxOption = 0; idxOption < objSelect.options.length; idxOption++) {
