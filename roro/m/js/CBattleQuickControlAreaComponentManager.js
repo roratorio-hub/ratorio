@@ -41,7 +41,7 @@ CBattleQuickControlAreaComponentManager.RebuildControls = function () {
 
 
 
-//	colspan = 2;	// ALL ON/OFF 対応で不要になりました
+	colspan = 2;
 
 
 
@@ -113,16 +113,28 @@ CBattleQuickControlAreaComponentManager.RebuildControls = function () {
 	// アイテム時限効果調整
 	//----------------------------------------------------------------
 	objTr = HtmlCreateElement("tr", objTbody);
-
 	objTd = HtmlCreateElement("td", objTr);
 	objTd.style.whiteSpace = "nowrap";
 	HtmlCreateTextNode("アイテム時限効果調整", objTd);
-
 	objTd = HtmlCreateElement("td", objTr);
 	objInput = HtmlCreateElement("input", objTd);
 	objInput.setAttribute("type", "button");
 	objInput.setAttribute("value", "設定欄を表示");
 	objInput.setAttribute("onclick", "CBattleQuickControlAreaComponentManager.OnClickFocusTimeItemArea()");
+
+	// 設定済みの時限効果が１つ以上存在する場合
+	if (g_timeItemConf.filter((value) => value > 0).length > 0) {
+		// ALL ON/OFF用スイッチ を表示する
+		objTr = HtmlCreateElement("tr", objTbody);
+		objTd = HtmlCreateElement("td", objTr);
+		HtmlCreateTextNode("一斉変更", objTd);
+		objTd = HtmlCreateElement("td", objTr);
+		objSelect = HtmlCreateElement("select", objTd);
+		objSelect.setAttribute("id", "OBJID_SELECT_BATTLE_QUICK_CONTROL_TIME_ITEM_ALL");
+		objSelect.setAttribute("onchange", "CBattleQuickControlAreaComponentManager.AllSet(parseInt(this.value))");
+		HtmlCreateElementOption(1, "ON", objSelect);
+		HtmlCreateElementOption(0, "OFF", objSelect);
+	}
 
 	for (idxRow = 0; idxRow < g_timeItemConf.length; idxRow++) {
 
@@ -160,7 +172,6 @@ CBattleQuickControlAreaComponentManager.RebuildControls = function () {
 	// CSS 更新
 	CBattleQuickControlAreaComponentManager.RefreshControlCSS();
 
-
 	//----------------------------------------------------------------
 	// 注意書き
 	//----------------------------------------------------------------
@@ -170,15 +181,6 @@ CBattleQuickControlAreaComponentManager.RebuildControls = function () {
 	objSpan = HtmlCreateElement("span", objTd);
 	objSpan.setAttribute("style", "font-size : smaller");
 	HtmlCreateTextNode("セーブ未対応です。", objSpan);
-
-	// ALL ON/OFF用スイッチ
-	objTd = HtmlCreateElement("td", objTr);
-	objSelect = HtmlCreateElement("select", objTd);
-	objSelect.setAttribute("id", "OBJID_SELECT_BATTLE_QUICK_CONTROL_TIME_ITEM_ALL");
-	objSelect.setAttribute("onchange", "CBattleQuickControlAreaComponentManager.AllSet(parseInt(this.value))");
-	HtmlCreateElementOption(1, "ON", objSelect);
-	HtmlCreateElementOption(0, "OFF", objSelect);
-	HtmlCreateTextNode("一斉変更", objTd);
 
 };
 
@@ -239,7 +241,6 @@ CBattleQuickControlAreaComponentManager.OnChangeTimeItemEffective = function (id
  * ヘッダ部品を再設定する.
  */
 CBattleQuickControlAreaComponentManager.RefreshBattleQuickControlAreaHeader = function () {
-
 	var idx = 0;
 
 	var confChanged = false;
@@ -303,26 +304,16 @@ CBattleQuickControlAreaComponentManager.RefreshControlCSS = function () {
  * コントロール部品の 設定値をすべてON/OFFする.
  */
 CBattleQuickControlAreaComponentManager.AllSet = function (flg) {
-
-	var idx = 0;
-
-	var confChanged = false;
-
-	var objSelect = null;
-
-	if(flg == ""){
+	let objSelect = null;
+	// flg を正規化する (1 or 0)
+	if (flg != 1) {
 		flg = 0;
 	}
-	else if (flg != 1){
-		flg = 0;
-	}
-
-	for (idx = 0; idx < g_timeItemConf.length; idx++) {
-
+	for (let idx = 0; idx < g_timeItemConf.length; idx++) {
 		objSelect = document.getElementById("OBJID_SELECT_BATTLE_QUICK_CONTROL_TIME_ITEM_" + idx);
-
 		if (objSelect) {
 			objSelect.value = flg;
+			objSelect.dispatchEvent(new Event('change'));
 		}
 	}
 };
