@@ -1,3 +1,5 @@
+"use strict";
+
 // データ収集用
 // バトルデータインデックス
 CGlobalConstManager.DefineEnum(
@@ -67,10 +69,6 @@ for(var i=0;i<=19;i++) SaveDataAll[i] = "ZZZZ";
 /** セーブデータ名配列. 既に使われていない可能性有り */
 let SaveNameAll = new Array();
 for(var i=0;i<=500;i++) SaveNameAll[i] = "ZZZZ";
-/** 二刀流フラグ */
-let n_Nitou = false;
-/** 二刀流フラグ */
-let n_NitouCalc = false;
 /** シーズモードフラグ */
 let n_SiegeMode = false;
 /** BaseLv */
@@ -133,6 +131,10 @@ for(var i=0;i<=450;i++) {
 }
 /** equip.js の古い関数内部で使われていた変数. 削除候補 */
 let first_check = 0;
+/** 必中ダメージ */
+let str_PerfectHIT_DMG = 0;
+/** ダメージ配列 */
+let w_DMG = [0,0,0];
 /** ダメージ配列 */
 let Last_DMG_A = [0,0,0];
 /** ダメージ配列 */
@@ -165,20 +167,32 @@ let B_Total_DEF = 0;
 let B_Total_MDEF = 0;
 /** オートスペルに関連して所要攻撃回数を計算するための中間変数. */
 let w_DMG_AS_OverHP = 0;
+/** ダメージ配列 */
+let n_A_DMG = [0,0,0];
 /** ダメージ配列. 変数名と裏腹にアースクエイク計算で使われている */
 let n_A_DMG_GX = [0,0,0];
 /** ダメージ配列. アースクエイク専用 */
 let n_A_DMG_QUAKE = [0,0,0];
+/** ダメージ配列. ウォーグ専用 */
+let BK_n_A_DMG_Wolf = [0,0,0];
+/** ダメージ配列 オートスペル専用 */
+let BK_n_A_DMG2 = [0,0,0];
 /** 錐効果の値 */
 let n_A_QUAKE_KIRI = 0;
 /** グランドクロスの反動ダメージ計算フラグ */
 let n_A_GX_HANDO = false;
 /** ヒット数 特殊計算用 */
 let SG_Special_HITnum = 0;
+/** ヒット数 */
+let wHITsuu = 0;
+/** 分割ヒット数 */
+let wActiveHitNum = 0;
 /** ダメージ配列 特殊計算用 */
 let SG_Special_DMG = [0,0,0];
 /** セットされている矢の種類. 種類定数は arrow.dat.js で定義されている*/
 let n_A_Arrow = 0;
+/** セットされているカードの数 */
+let cardCount = 0;
 /** ディレイ減少値 */
 let delayDownForDisp = 0;
 /** ASPD 小数点第ニ位を切り捨てる前の値 */
@@ -193,6 +207,57 @@ let g_perfectHitRate = 0;
 let g_bUnknownCasts = false;
 /** 設置スキルフラグ */
 let g_bDefinedDamageIntervals = false;
+/** 命中率 */
+let w_HIT = 0;
+/** 命中率　表示文字列 */
+let w_HIT_HYOUJI = 0;
+/** クリティカル率 */
+let w_Cri = 0;
+/** 回避率 */
+let w_FLEE = 0;
+/** 装備しているアイテム数　右手 */
+let itemCountRight = 0;
+/** 装備しているアイテム数　左手 */
+let itemCountLeft = 0;
+/** サイズ補正値 */
+let wCSize = 0;
+/** 武器種に応じて参照されるステータス STR or DEX */
+let w_STRDEX = 0;
+/** クリティカル発生時のATK */
+let n_A_CriATK = 0;
+/** 追加ダメージ計算フラグ */
+let g_appliedAppendDamage = false;
+/** 変動詠唱 計算用一時変数 */
+let g_wCastTemp = null;
+/** 固定詠唱 計算用一時変数 */
+let g_wCastFixedTemp = null;
+/** 攻撃間隔 計算用一時変数 */
+let g_attackIntervalTemp = null;
+/** 攻撃回数 */
+let g_AttackCount = [0,0,0];
+/** DPS */
+let g_dps = 0;
+/** 被ダメージ */
+let w_HiDam = [];
+/** 被ダメージ */
+let wRef1 = [];
+/** 被ダメージ */
+let wRef2 = [];
+/** 被ダメージ */
+let wRef3 = [];
+/** 被ダメージ　平均値 */
+let g_receiveDamageAverage = 0;
+/** 被ダメージ　回避率などを考慮した値 */
+let g_receiveDamageAvoids = 0;
+/// ---------------------------------------------------
+/** 属性耐性　上限95 */
+let resistValueArray = [];
+/** 属性耐性　上限95を超えて格納出来る配列 */
+let resistValueArrayOver = 0;
+/** 属性倍率 */
+let bodyElmRatioArray = 0;
+/** 属性倍率　耐性を考慮した最終的な値 */
+let finalRatioArray = 0;
 
 /** 変動詠唱 0 を達成するために必要な DEX */
 const CAST_PARAM_BORDER = 265;
@@ -879,7 +944,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 	var w_MATK = [0,0,0];
 		cast_kotei = false;
 	str_PerfectHIT_DMG = 0;
-	SG_Special_ch = 0;
+	//SG_Special_ch = 0;
 	wActiveHitNum = 1;
 	for(var i=0;i<=2;i++){
 		Last_DMG_A[i] = 0;
@@ -7297,7 +7362,8 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				if(wBunsan >= 2) wbairitu = ROUNDDOWN(wbairitu / wBunsan);
 			}
 			for(var i=0;i<=2;i++){
-				w_DMG[i] = n_A_DMG_GX[i] * wCSize;	// 基礎攻撃力 n_A_DMG_GX[i] にサイズ補正 wCSize をかける
+				// 基礎攻撃力 n_A_DMG_GX[i] にサイズ補正 wCSize をかける
+				w_DMG[i] = n_A_DMG_GX[i] * wCSize;	
 				w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
 				w_DMG[i] = Math.floor(w_DMG[i] * wbairitu / 100);
 				w_DMG[i] = ApplyElementRatio(mobData, w_DMG[i],0);
@@ -12064,7 +12130,7 @@ function BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArr
 
 		if(g_AttackCount[1]<10000){
 			myInnerHtml("AveATKnum",__DIG3(g_AttackCount[1]),0);
-			n_AveATKnum = g_AttackCount[1];
+			const n_AveATKnum = g_AttackCount[1];
 			var w2 = (wCast + wDelay) * n_AveATKnum;
 			w2 = Math.floor(w2 * 100) / 100;
 			if(n_Delay[0]) myInnerHtml("BattleTime","特殊",0);
@@ -13794,7 +13860,7 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 
 		if(g_AttackCount[1]<10000){
 			myInnerHtml("AveATKnum",__DIG3(g_AttackCount[1]),0);
-			n_AveATKnum = g_AttackCount[1];
+			const n_AveATKnum = g_AttackCount[1];
 			var w2 = (wCast + wDelay) * n_AveATKnum;
 			w2 = Math.floor(w2 * 100) / 100;
 			if(n_Delay[0]) myInnerHtml("BattleTime","特殊",0);
@@ -16099,7 +16165,7 @@ function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, m
 	//----------------------------------------------------------------
 	// 「性能カスタマイズ欄」の、「○○スキルで攻撃時ダメージ上昇」強化
 	//----------------------------------------------------------------
-	confBaseLvBy = g_objCharaConfCustomSkill.GetConf(CCharaConfCustomSkill.CONF_ID_SKILL_DAMAGE_UP_BASE_LEVEL_BY);
+	const confBaseLvBy = g_objCharaConfCustomSkill.GetConf(CCharaConfCustomSkill.CONF_ID_SKILL_DAMAGE_UP_BASE_LEVEL_BY);
 	confval = g_objCharaConfCustomSkill.GetConf(CCharaConfCustomSkill.CONF_ID_SKILL_DAMAGE_UP);
 	if (n_A_ActiveSkill != 0) {
 		if (confval != 0) {
@@ -16395,27 +16461,23 @@ function RebuildSizeModifyRatioInfo(battleCalcInfo, charaData, specData, mobData
  */
 function Click_PassSkillSW(){
 
-	var idx = 0;
+	let idx = 0;
+	let passiveSkillIdArray = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, n_A_JOB).GetPassiveSkillIdArray();
 
-	var passiveSkillIdArray = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, n_A_JOB).GetPassiveSkillIdArray();
-
-
-
-	with(document.calcForm){
-		n_Skill1SW = A1_SKILLSW.checked;
-		if(n_Skill1SW){
+	n_Skill1SW = document.calcForm.A1_SKILLSW.checked;
+	if(n_Skill1SW){
 			var end = passiveSkillIdArray.length -1;
 			var str;
 			str = '<TABLE Border>';
 			str += '<TR><TD ColSpan="4" id="A1TD" Bgcolor="#DDDDFF" class="title">';
-			str += '<input id="OBJID_CHECK_A1_SKILL_SW" type="checkbox" name="A1_SKILLSW"onClick="Click_PassSkillSW()">';
+			str += '<input id="OBJID_CHECK_A1_SKILL_SW" type="checkbox" name="A1_SKILLSW" onClick="Click_PassSkillSW()">';
 			str += `<label for="OBJID_CHECK_A1_SKILL_SW">${GetJobName(n_A_JOB)}固有自己支援・パッシブ持続系</label>`;
 			str += '<span id="A1used"></span>';
 			str += '</TD></TR>';
 			for(var i=0;i<=end;i+=2) str += '<TR><TD id="P_Skill'+ i +'"></TD><TD id="P_Skill'+ i +'s"></TD><TD id="P_Skill'+ (i+1) +'"></TD><TD id="P_Skill'+ (i+1) +'s"></TD></TR>';
 			str += '</TABLE>';
 			myInnerHtml("ID_PASS_SKILL",str,0);
-			A1_SKILLSW.checked = 1;
+			document.calcForm.A1_SKILLSW.checked = true;
 
 			for(var i=0;i<=end;i++){
 				if (passiveSkillIdArray[i] == SKILL_ID_SHUCHURYOKU_KOZYO) {
@@ -16623,7 +16685,6 @@ function Click_PassSkillSW(){
 				wOBJ.options[2] = new Option("奇偶",2);
 				wOBJ.options[3] = new Option("奇奇",3);
 			}
-
 
 			//----------------------------------------------------------------
 			// エレメンタルマスター系列　召喚中の精霊
@@ -16883,29 +16944,24 @@ function Click_PassSkillSW(){
 				HtmlCreateElementOption(9, "四方五行陣Lv5", objSelect);
 			}
 
-
-
-
-
 			for (var i = 0; i < passiveSkillIdArray.length; i++) {
 				var wOBJ = document.getElementById("A_skill" + i);
 				wOBJ.value = n_A_PassSkill[i];
 			}
-		}
-		else{
+	}
+	else{
 			var str;
 			str = '<TABLE Border>';
 			str += '<TR><TD ColSpan="4" id="A1TD" Bgcolor="#DDDDFF" class="title">';
-			str += '<input id="OBJID_CHECK_A1_SKILL_SW" type="checkbox" name="A1_SKILLSW"onClick="Click_PassSkillSW()">';
+			str += '<input id="OBJID_CHECK_A1_SKILL_SW" type="checkbox" name="A1_SKILLSW" onClick="Click_PassSkillSW()">';
 			str += `<label for="OBJID_CHECK_A1_SKILL_SW">${GetJobName(n_A_JOB)}固有自己支援・パッシブ持続系</label>`;
 			str += '<span id="A1used"></span>';
 			str += '</TD></TR>';
 			str += '</TABLE>';
 			myInnerHtml("ID_PASS_SKILL",str,0);
-			A1_SKILLSW.checked = 0;
-		}
-		Click_A1(0);
+			document.calcForm.A1_SKILLSW.checked = false;
 	}
+	Click_A1(0);
 }
 
 /**
@@ -16941,10 +16997,9 @@ function Click_A1(n){
  * 演奏・踊り系スキル を構築する
  */
 function Click_Skill3SW(){
-	with(document.calcForm){
-		n_Skill3SW = A3_SKILLSW.checked;
-		if(n_Skill3SW){
-			var str;
+	n_Skill3SW = document.calcForm.A3_SKILLSW.checked;
+	if(n_Skill3SW){
+			let str;
 			str = '<TABLE Border style="white-space:nowrap;"><TR><TD id="A3TD" ColSpan="6" class="title"><input id="OBJID_CHECK_A3_SKILLSW" type="checkbox" name="A3_SKILLSW"onClick="Click_Skill3SW()">';
 			str += '<label for="OBJID_CHECK_A3_SKILLSW">演奏/踊り系スキル</label>';
 			str += '<span id="A3used"></span></TD></TR>';
@@ -16963,9 +17018,9 @@ function Click_Skill3SW(){
 			str += '<TR><TD id="EN20_1"></TD><TD id="EN20_2"></TD><TD id="EN21_1"></TD><TD id="EN21_2"></TD></TR>';
 			str += '<TR><TD colspan=4><span id="EN11_1"></span><span id="EN11_2"></span><span id="EN11_1a"></span></TD></TR></TABLE>';
 			myInnerHtml("SP_SIEN01",str,0);
-			A3_SKILLSW.checked = 1;
-			name_CS3SW_SKILL = ["口笛","夕陽のアサシンクロス","ブラギの詩","イドゥンの林檎","ハミング","幸運のキス","サービスフォーユー","不死身ジークフリード","ニヨルドの宴","戦太鼓の響き","ニーベルングの指輪"];
-			html_CS3SW_SKILL = new Array();
+			document.calcForm.A3_SKILLSW.checked = true;
+			const name_CS3SW_SKILL = ["口笛","夕陽のアサシンクロス","ブラギの詩","イドゥンの林檎","ハミング","幸運のキス","サービスフォーユー","不死身ジークフリード","ニヨルドの宴","戦太鼓の響き","ニーベルングの指輪"];
+			let html_CS3SW_SKILL = new Array();
 			for(i=0;i<=10;i++) myInnerHtml("EN"+i+"_1",name_CS3SW_SKILL[i],0);
 			html_CS3SW_SKILL[0] = '<select name="A3_Skill0_1"onChange="Skill3SW_2()|Click_A3(1)"></select>';
 			html_CS3SW_SKILL[1] = '<select name="A3_Skill1_1"onChange="Skill3SW_2()|Click_A3(1)"></select>';
@@ -16981,147 +17036,157 @@ function Click_Skill3SW(){
 			for(i=0;i<=10;i++) myInnerHtml("EN"+i+"_2",html_CS3SW_SKILL[i],0);
 
 			// フリッグの歌は仕様変更により、三次職支援へ移動
-			var uta_name = ["◆三次職歌スキル off","風車に向かって突撃","エコーの歌","式不明(ハーモナイズ)","スイングダンス","(×)恋人たちの為のシンフォニー","月明かりのセレナーデ"];
+			const uta_name = ["◆三次職歌スキル off","風車に向かって突撃","エコーの歌","式不明(ハーモナイズ)","スイングダンス","(×)恋人たちの為のシンフォニー","月明かりのセレナーデ"];
 			myInnerHtml("EN12_1",'<select name="A3_Skill12_0"onChange="Skill3SW_2()|Click_A3(1)"></select>',0);
 			for(var i= 0; i < uta_name.length; i++) {
-				A3_Skill12_0.options[i] = new Option(uta_name[i],i);
+				document.calcForm.A3_Skill12_0.options[i] = new Option(uta_name[i],i);
 			}
 
-			var gassou_name = ["◆三次職合奏スキル off","(仮)フライデーナイトフィーバー","エンドレスハミングボイス","(仮)レーラズの露","(?)ﾋﾞﾖﾝﾄﾞｵﾌﾞｳｫｰｸﾗｲ(敵から)","(?)ﾒﾛﾃﾞｨｰｵﾌﾞｼﾝｸ(敵から)","(?)ﾀﾞﾝｽｳｨｽﾞｳｫｰｸﾞ(ﾚﾝｼﾞｬｰ有)","(?)ﾀﾞﾝｽｳｨｽﾞｳｫｰｸﾞ(ﾚﾝｼﾞｬｰ無)"];
+			const gassou_name = ["◆三次職合奏スキル off","(仮)フライデーナイトフィーバー","エンドレスハミングボイス","(仮)レーラズの露","(?)ﾋﾞﾖﾝﾄﾞｵﾌﾞｳｫｰｸﾗｲ(敵から)","(?)ﾒﾛﾃﾞｨｰｵﾌﾞｼﾝｸ(敵から)","(?)ﾀﾞﾝｽｳｨｽﾞｳｫｰｸﾞ(ﾚﾝｼﾞｬｰ有)","(?)ﾀﾞﾝｽｳｨｽﾞｳｫｰｸﾞ(ﾚﾝｼﾞｬｰ無)"];
 			myInnerHtml("EN13_1",'<select name="A3_Skill13_0"onChange="Skill3SW_2()|Click_A3(1)"></select>',0);
-			for(var i=0;i<=7;i++) A3_Skill13_0.options[i] = new Option(gassou_name[i],i);
+			for(var i=0;i<=7;i++) document.calcForm.A3_Skill13_0.options[i] = new Option(gassou_name[i],i);
 			myInnerHtml("EN20_1","<Font size=2>メランコリーLv<BR>(こちらの欄はFleeとASPD低下用)</Font>",0);
 			myInnerHtml("EN20_2",'<select name="A3_Skill20"onChange="Skill3SW_2()|Click_A3(1)"></select>',0);
-			for(i=0;i<=5;i++) A3_Skill20.options[i] = new Option(i,i);
+			for(i=0;i<=5;i++) document.calcForm.A3_Skill20.options[i] = new Option(i,i);
 			myInnerHtml("EN21_1","<Font size=2>(仮)メランコリーでの威力増加(15%は確殺用<BR>55%か60%がLv5+レッスン10の期待値位)</Font>",0);
 			myInnerHtml("EN21_2",'<select name="A3_Skill42"onChange="Skill3SW_2()|Click_A3(1)"></select>',0);
-			A3_Skill42.options[0] = new Option("off",0);
-			for(i=3;i<=20;i++) A3_Skill42.options[i-2] = new Option("+"+(i * 5)+"%",i);
+			document.calcForm.A3_Skill42.options[0] = new Option("off",0);
+			for(i=3;i<=20;i++) document.calcForm.A3_Skill42.options[i-2] = new Option("+"+(i * 5)+"%",i);
 			myInnerHtml("EN11_1","マリオネットコントロール",0);
 			myInnerHtml("EN11_2", "<br>術者のステ："+ '<select name="A3_Skill11_STR"onChange="Click_A3(1)"></select>'+ '<select name="A3_Skill11_AGI"onChange="Click_A3(1)"></select>'+ '<select name="A3_Skill11_VIT"onChange="Click_A3(1)"></select>'+ '<select name="A3_Skill11_INT"onChange="Click_A3(1)"></select>'+ '<select name="A3_Skill11_DEX"onChange="Click_A3(1)"></select>'+ '<select name="A3_Skill11_LUK"onChange="Click_A3(1)"></select>'+ "<BR>"+'<input id="OBJID_CHECK_A3_Skill11a" type="checkbox" name="A3_Skill11a"onClick="Click_A3(1)">'+'<Font size=2><label for="OBJID_CHECK_A3_Skill11a">ステータスをそのまま補正に＋する(憑神や装備解除調整用/人力計算)</label></Font>',0);
-			A3_Skill11_STR.options[0] = new Option("STR",0);
-			A3_Skill11_AGI.options[0] = new Option("AGI",0);
-			A3_Skill11_VIT.options[0] = new Option("VIT",0);
-			A3_Skill11_INT.options[0] = new Option("INT",0);
-			A3_Skill11_DEX.options[0] = new Option("DEX",0);
-			A3_Skill11_LUK.options[0] = new Option("LUK",0);
-			for(i=1;i<=130;i++){
-				A3_Skill11_STR.options[i] = new Option(i,i);
-				A3_Skill11_AGI.options[i] = new Option(i,i);
-				A3_Skill11_VIT.options[i] = new Option(i,i);
-				A3_Skill11_INT.options[i] = new Option(i,i);
-				A3_Skill11_DEX.options[i] = new Option(i,i);
-				A3_Skill11_LUK.options[i] = new Option(i,i);
+			// エレメント毎に 130 回の DOM 評価が発生すると重さが実感できてしまうので一旦取り出しています
+			let selectBoxStr = document.calcForm.A3_Skill11_STR;
+			let selectBoxAgi = document.calcForm.A3_Skill11_AGI;
+			let selectBoxVit = document.calcForm.A3_Skill11_VIT;
+			let selectBoxInt = document.calcForm.A3_Skill11_INT;
+			let selectBoxDex = document.calcForm.A3_Skill11_DEX;
+			let selectBoxLuk = document.calcForm.A3_Skill11_LUK;
+			selectBoxStr.options[0] = new Option("STR",0);
+			selectBoxAgi.options[0] = new Option("AGI",0);
+			selectBoxVit.options[0] = new Option("VIT",0);
+			selectBoxInt.options[0] = new Option("INT",0);
+			selectBoxDex.options[0] = new Option("DEX",0);
+			selectBoxLuk.options[0] = new Option("LUK",0);
+			for(let i = 1; i <= 130; i++){
+				selectBoxStr.options[i] = new Option(i,i);
+				selectBoxAgi.options[i] = new Option(i,i);
+				selectBoxVit.options[i] = new Option(i,i);
+				selectBoxInt.options[i] = new Option(i,i);
+				selectBoxDex.options[i] = new Option(i,i);
+				selectBoxLuk.options[i] = new Option(i,i);
 			}
-			A3_Skill11_STR.value = n_A_PassSkill3[12];
-			A3_Skill11_AGI.value = n_A_PassSkill3[13];
-			A3_Skill11_VIT.value = n_A_PassSkill3[14];
-			A3_Skill11_INT.value = n_A_PassSkill3[15];
-			A3_Skill11_DEX.value = n_A_PassSkill3[16];
-			A3_Skill11_LUK.value = n_A_PassSkill3[17];
-			A3_Skill11a.checked = n_A_PassSkill3[18];
-			for(i=0;i<=10;i++){
-				A3_Skill0_1.options[i] = new Option(i,i);
-				A3_Skill1_1.options[i] = new Option(i,i);
-				A3_Skill2_1.options[i] = new Option(i,i);
-				A3_Skill3_1.options[i] = new Option(i,i);
-				A3_Skill4_1.options[i] = new Option(i,i);
-				A3_Skill5_1.options[i] = new Option(i,i);
-				A3_Skill6_1.options[i] = new Option(i,i);
+			selectBoxStr.value = n_A_PassSkill3[12];
+			selectBoxAgi.value = n_A_PassSkill3[13];
+			selectBoxVit.value = n_A_PassSkill3[14];
+			selectBoxInt.value = n_A_PassSkill3[15];
+			selectBoxDex.value = n_A_PassSkill3[16];
+			selectBoxLuk.value = n_A_PassSkill3[17];
+			document.calcForm.A3_Skill11a.checked = n_A_PassSkill3[18];
+			for(let i = 0; i <= 10; i++){
+				document.calcForm.A3_Skill0_1.options[i] = new Option(i,i);
+				document.calcForm.A3_Skill1_1.options[i] = new Option(i,i);
+				document.calcForm.A3_Skill2_1.options[i] = new Option(i,i);
+				document.calcForm.A3_Skill3_1.options[i] = new Option(i,i);
+				document.calcForm.A3_Skill4_1.options[i] = new Option(i,i);
+				document.calcForm.A3_Skill5_1.options[i] = new Option(i,i);
+				document.calcForm.A3_Skill6_1.options[i] = new Option(i,i);
 			}
-			for(i=0;i<=5;i++){
-				A3_Skill7.options[i] = new Option(i,i);
-				A3_Skill8.options[i] = new Option(i,i);
-				A3_Skill9.options[i] = new Option(i,i);
-				A3_Skill10.options[i] = new Option(i,i);
+			for(let i = 0; i <= 5; i++){
+				document.calcForm.A3_Skill7.options[i] = new Option(i,i);
+				document.calcForm.A3_Skill8.options[i] = new Option(i,i);
+				document.calcForm.A3_Skill9.options[i] = new Option(i,i);
+				document.calcForm.A3_Skill10.options[i] = new Option(i,i);
 			}
-			A3_Skill0_1.value = n_A_PassSkill3[0];
-			A3_Skill1_1.value = n_A_PassSkill3[1];
-			A3_Skill2_1.value = n_A_PassSkill3[2];
-			A3_Skill3_1.value = n_A_PassSkill3[3];
-			A3_Skill4_1.value = n_A_PassSkill3[4];
-			A3_Skill5_1.value = n_A_PassSkill3[5];
-			A3_Skill6_1.value = n_A_PassSkill3[6];
-			A3_Skill7.value = n_A_PassSkill3[7];
-			A3_Skill8.value = n_A_PassSkill3[8];
-			A3_Skill9.value = n_A_PassSkill3[9];
-			A3_Skill10.value = n_A_PassSkill3[10];
-			A3_Skill12_0.value = n_A_PassSkill3[19];
-			A3_Skill13_0.value = n_A_PassSkill3[39];
-			A3_Skill20.value = n_A_PassSkill3[11];
-			A3_Skill42.value = n_A_PassSkill3[42];
+			document.calcForm.A3_Skill0_1.value = n_A_PassSkill3[0];
+			document.calcForm.A3_Skill1_1.value = n_A_PassSkill3[1];
+			document.calcForm.A3_Skill2_1.value = n_A_PassSkill3[2];
+			document.calcForm.A3_Skill3_1.value = n_A_PassSkill3[3];
+			document.calcForm.A3_Skill4_1.value = n_A_PassSkill3[4];
+			document.calcForm.A3_Skill5_1.value = n_A_PassSkill3[5];
+			document.calcForm.A3_Skill6_1.value = n_A_PassSkill3[6];
+			document.calcForm.A3_Skill7.value = n_A_PassSkill3[7];
+			document.calcForm.A3_Skill8.value = n_A_PassSkill3[8];
+			document.calcForm.A3_Skill9.value = n_A_PassSkill3[9];
+			document.calcForm.A3_Skill10.value = n_A_PassSkill3[10];
+			document.calcForm.A3_Skill12_0.value = n_A_PassSkill3[19];
+			document.calcForm.A3_Skill13_0.value = n_A_PassSkill3[39];
+			document.calcForm.A3_Skill20.value = n_A_PassSkill3[11];
+			document.calcForm.A3_Skill42.value = n_A_PassSkill3[42];
 			Skill3SW_2();
-		}
-		else{
-			var str;
+	}
+	else{
+			let str;
 			str = '<TABLE Border><TR><TD id="A3TD" class="title"><input id="OBJID_CHECK_A3_SKILLSW" type="checkbox" name="A3_SKILLSW"onClick="Click_Skill3SW()"><label for="OBJID_CHECK_A3_SKILLSW">演奏/踊り系スキル</label><span id="A3used"></span></TD></TR></TABLE>';
 			myInnerHtml("SP_SIEN01",str,0);
-			A3_SKILLSW.checked = 0;
+			document.calcForm.A3_SKILLSW.checked = false;
 			for(i=0;i<=11;i++) SWs3sw[i]=0;
-		}
-		Click_A3(0);
 	}
+	Click_A3(0);
 }
 
 /**
  * 演奏/踊り系スキルの変更を変数に反映する
  */
 function Skill3SW_2(){
-	with(document.calcForm){
-		n_A_PassSkill3[0] = eval(A3_Skill0_1.value);
-		n_A_PassSkill3[1] = eval(A3_Skill1_1.value);
-		n_A_PassSkill3[2] = eval(A3_Skill2_1.value);
-		n_A_PassSkill3[3] = eval(A3_Skill3_1.value);
-		n_A_PassSkill3[4] = eval(A3_Skill4_1.value);
-		n_A_PassSkill3[5] = eval(A3_Skill5_1.value);
-		n_A_PassSkill3[6] = eval(A3_Skill6_1.value);
-		n_A_PassSkill3[19] = eval(A3_Skill12_0.value);
-		n_A_PassSkill3[39] = eval(A3_Skill13_0.value);
-		if(n_A_PassSkill3[0] != 0){
+	n_A_PassSkill3[0] =  eval(document.calcForm.A3_Skill0_1.value);
+	n_A_PassSkill3[1] =  eval(document.calcForm.A3_Skill1_1.value);
+	n_A_PassSkill3[2] =  eval(document.calcForm.A3_Skill2_1.value);
+	n_A_PassSkill3[3] =  eval(document.calcForm.A3_Skill3_1.value);
+	n_A_PassSkill3[4] =  eval(document.calcForm.A3_Skill4_1.value);
+	n_A_PassSkill3[5] =  eval(document.calcForm.A3_Skill5_1.value);
+	n_A_PassSkill3[6] =  eval(document.calcForm.A3_Skill6_1.value);
+	n_A_PassSkill3[19] = eval(document.calcForm.A3_Skill12_0.value);
+	n_A_PassSkill3[39] = eval(document.calcForm.A3_Skill13_0.value);
+	if(n_A_PassSkill3[0] != 0){
 			if(SWs3sw[0] == 0){
 				if(n_A_PassSkill3[30] == 0) n_A_PassSkill3[30] = 10;
 				myInnerHtml("EN0_3","バードのAGI<BR>バードのLUK",0);
 				myInnerHtml("EN0_4",'<select name="A3_Skill0_2"onChange="Click_A3(1)"></select><BR><select name="A3_Skill0_4"onChange="Click_A3(1)"></select>',0);
 				myInnerHtml("EN0_5","楽器の練習",0);
 				myInnerHtml("EN0_6",'<select name="A3_Skill0_3"onChange="Click_A3(1)"></select>',0);
-				for(i=0;i<=40;i++) A3_Skill0_2.options[i] = new Option((i * 15) +"～"+ ((i * 15)+14),i);
-				for(i=0;i<=20;i++) A3_Skill0_4.options[i] = new Option((i * 30) +"～"+ ((i * 30)+29),i);
-				for(i=1;i<=10;i++) A3_Skill0_3.options[i-1] = new Option(i,i);
+				let selectBox1 = document.calcForm.A3_Skill0_2;
+				let selectBox2 = document.calcForm.A3_Skill0_3;
+				let selectBox3 = document.calcForm.A3_Skill0_4;
+				for(let i = 0; i <= 40; i++) selectBox1.options[i] = new Option((i * 15) +"～"+ ((i * 15)+14),i);
+				for(let i = 1; i <= 10; i++) selectBox2.options[i-1] = new Option(i,i);
+				for(let i = 0; i <= 20; i++) selectBox3.options[i] = new Option((i * 30) +"～"+ ((i * 30)+29),i);
 				SWs3sw[0] = 1;
-				A3_Skill0_2.value = n_A_PassSkill3[20];
-				A3_Skill0_4.value = n_A_PassSkill3[28];
-				A3_Skill0_3.value = n_A_PassSkill3[30];
+				selectBox1.value = n_A_PassSkill3[20];
+				selectBox2.value = n_A_PassSkill3[30];
+				selectBox3.value = n_A_PassSkill3[28];
 			}
-		}else{
+	}else{
 			SWs3sw[0] = 0;
 			if(n_A_PassSkill3[30]==10) n_A_PassSkill3[30] = 0;
 			myInnerHtml("EN0_3","-",0);
 			myInnerHtml("EN0_4","-",0);
 			myInnerHtml("EN0_5","",0);
 			myInnerHtml("EN0_6","",0);
-		}
-		if(n_A_PassSkill3[1] != 0){
+	}
+	if(n_A_PassSkill3[1] != 0){
 			if(SWs3sw[1] == 0){
 				if(n_A_PassSkill3[31]==0) n_A_PassSkill3[31] = 10;
 				myInnerHtml("EN1_3","バードのAGI",0);
 				myInnerHtml("EN1_4",'<select name="A3_Skill1_2"onChange="Click_A3(1)"></select>',0);
 				myInnerHtml("EN1_5","楽器の練習",0);
 				myInnerHtml("EN1_6",'<select name="A3_Skill1_3"onChange="Click_A3(1)"></select>',0);
-				for(i=0;i<=30;i++) A3_Skill1_2.options[i] = new Option((i * 20) +"～"+ ((i * 20)+19),i);
-				for(i=1;i<=10;i++) A3_Skill1_3.options[i-1] = new Option(i,i);
+				let selectBox1 = document.calcForm.A3_Skill1_2;
+				let selectBox2 = document.calcForm.A3_Skill1_3;				
+				for(let i = 0; i <= 30; i++) selectBox1.options[i] = new Option((i * 20) +"～"+ ((i * 20)+19),i);
+				for(let i = 1; i <= 10; i++) selectBox2.options[i-1] = new Option(i,i);
 				SWs3sw[1] = 1;
-				A3_Skill1_2.value = n_A_PassSkill3[21];
-				A3_Skill1_3.value = n_A_PassSkill3[31];
+				selectBox1.value = n_A_PassSkill3[21];
+				selectBox2.value = n_A_PassSkill3[31];
 			}
-		}else{
+	}else{
 			SWs3sw[1] = 0;
 			if(n_A_PassSkill3[31]==10) n_A_PassSkill3[31] = 0;
 			myInnerHtml("EN1_3","-",0);
 			myInnerHtml("EN1_4","-",0);
 			myInnerHtml("EN1_5","",0);
 			myInnerHtml("EN1_6","",0);
-		}
-		if(n_A_PassSkill3[2] != 0){
+	}
+	if(n_A_PassSkill3[2] != 0){
 			if(SWs3sw[2] == 0){
 				if(n_A_PassSkill3[32]==0) n_A_PassSkill3[32] = 10;
 				myInnerHtml("EN2_3","バードのDEX",0);
@@ -17130,15 +17195,18 @@ function Skill3SW_2(){
 				myInnerHtml("EN2_6",'<select name="A3_Skill2_3"onChange="Click_A3(1)"></select>',0);
 				myInnerHtml("EN2_7","楽器の練習",0);
 				myInnerHtml("EN2_8",'<select name="A3_Skill2_4"onChange="Click_A3(1)"></select>',0);
-				for(i=0;i<=60;i++) A3_Skill2_2.options[i] = new Option((i * 10) +"～"+ ((i * 10)+9),i);
-				for(i=0;i<=90;i++) A3_Skill2_3.options[i] = new Option((i * 5) +"～"+ ((i * 5)+4),i);
-				for(i=1;i<=10;i++) A3_Skill2_4.options[i-1] = new Option(i,i);
+				let selectBox1 = document.calcForm.A3_Skill2_2;
+				let selectBox2 = document.calcForm.A3_Skill2_3;
+				let selectBox3 = document.calcForm.A3_Skill2_4;
+				for(let i = 0; i <= 60; i++) selectBox1.options[i] = new Option((i * 10) +"～"+ ((i * 10)+9),i);
+				for(let i = 0; i <= 90; i++) selectBox2.options[i] = new Option((i * 5) +"～"+ ((i * 5)+4),i);
+				for(let i = 1; i <= 10; i++) selectBox3.options[i-1] = new Option(i,i);
 				SWs3sw[2] = 1;
-				A3_Skill2_2.value = n_A_PassSkill3[22];
-				A3_Skill2_3.value = n_A_PassSkill3[29];
-				A3_Skill2_4.value = n_A_PassSkill3[32];
+				selectBox1.value = n_A_PassSkill3[22];
+				selectBox2.value = n_A_PassSkill3[29];
+				selectBox3.value = n_A_PassSkill3[32];
 			}
-		}else{
+	}else{
 			SWs3sw[2] = 0;
 			if(n_A_PassSkill3[32]==10) n_A_PassSkill3[32] = 0;
 			myInnerHtml("EN2_3","-",0);
@@ -17147,113 +17215,100 @@ function Skill3SW_2(){
 			myInnerHtml("EN2_6","",0);
 			myInnerHtml("EN2_7","",0);
 			myInnerHtml("EN2_8","",0);
-		}
-		if(n_A_PassSkill3[3] != 0){
+	}
+	if(n_A_PassSkill3[3] != 0){
 			if(SWs3sw[3] == 0){
 				if(n_A_PassSkill3[33]==0) n_A_PassSkill3[33] = 10;
 				myInnerHtml("EN3_3","バードのVIT",0);
 				myInnerHtml("EN3_4",'<select name="A3_Skill3_2"onChange="Click_A3(1)"></select>',0);
 				myInnerHtml("EN3_5","楽器の練習",0);
 				myInnerHtml("EN3_6",'<select name="A3_Skill3_3"onChange="Click_A3(1)"></select>',0);
-				for(i=0;i<=60;i++) A3_Skill3_2.options[i] = new Option((i * 10) +"～"+ ((i * 10)+9),i);
-				for(i=1;i<=10;i++) A3_Skill3_3.options[i-1] = new Option(i,i);
+				let selectBox1 = document.calcForm.A3_Skill3_2;
+				let selectBox2 = document.calcForm.A3_Skill3_3;
+				for(let i = 0; i <= 60; i++) selectBox1.options[i] = new Option((i * 10) +"～"+ ((i * 10)+9),i);
+				for(let i = 1; i <= 10; i++) selectBox2.options[i-1] = new Option(i,i);
 				SWs3sw[3] = 1;
-				A3_Skill3_2.value = n_A_PassSkill3[23];
-				A3_Skill3_3.value = n_A_PassSkill3[33];
+				selectBox1.value = n_A_PassSkill3[23];
+				selectBox2.value = n_A_PassSkill3[33];
 			}
-		}else{
+	}else{
 			SWs3sw[3] = 0;
 			if(n_A_PassSkill3[33]==10) n_A_PassSkill3[33] = 0;
 			myInnerHtml("EN3_3","-",0);
 			myInnerHtml("EN3_4","-",0);
 			myInnerHtml("EN3_5","",0);
 			myInnerHtml("EN3_6","",0);
-		}
-		if(n_A_PassSkill3[4] != 0){
+	}
+	if(n_A_PassSkill3[4] != 0){
 			if(SWs3sw[4] == 0){
 				if(n_A_PassSkill3[34]==0) n_A_PassSkill3[34] = 10;
 				myInnerHtml("EN4_3","ダンサーのDEX",0);
 				myInnerHtml("EN4_4",'<select name="A3_Skill4_2"onChange="Click_A3(1)"></select>',0);
 				myInnerHtml("EN4_5","ダンスの練習",0);
 				myInnerHtml("EN4_6",'<select name="A3_Skill4_3"onChange="Click_A3(1)"></select>',0);
-				for(i=0;i<=40;i++) A3_Skill4_2.options[i] = new Option((i * 15) +"～"+ ((i * 15)+14),i);
-				for(i=1;i<=10;i++) A3_Skill4_3.options[i-1] = new Option(i,i);
+				let selectBox1 = document.calcForm.A3_Skill4_2;
+				let selectBox2 = document.calcForm.A3_Skill4_3;
+				for(let i = 0; i <= 40; i++) selectBox1.options[i] = new Option((i * 15) +"～"+ ((i * 15)+14),i);
+				for(let i = 1; i <= 10; i++) selectBox2.options[i-1] = new Option(i,i);
 				SWs3sw[4] = 1;
-				A3_Skill4_2.value = n_A_PassSkill3[24];
-				A3_Skill4_3.value = n_A_PassSkill3[34];
+				selectBox1.value = n_A_PassSkill3[24];
+				selectBox2.value = n_A_PassSkill3[34];
 			}
-		}else{
+	}else{
 			SWs3sw[4] = 0;
 			if(n_A_PassSkill3[34]==10) n_A_PassSkill3[34] = 0;
 			myInnerHtml("EN4_3","-",0);
 			myInnerHtml("EN4_4","-",0);
 			myInnerHtml("EN4_5","",0);
 			myInnerHtml("EN4_6","",0);
-		}
-		if(n_A_PassSkill3[5] != 0){
+	}
+	if(n_A_PassSkill3[5] != 0){
 			if(SWs3sw[5] == 0){
 				if(n_A_PassSkill3[35]==0) n_A_PassSkill3[35] = 10;
 				myInnerHtml("EN5_3","ダンサーのLUK",0);
 				myInnerHtml("EN5_4",'<select name="A3_Skill5_2"onChange="Click_A3(1)"></select>',0);
 				myInnerHtml("EN5_5","ダンスの練習",0);
 				myInnerHtml("EN5_6",'<select name="A3_Skill5_3"onChange="Click_A3(1)"></select>',0);
-				for(i=0;i<=60;i++) A3_Skill5_2.options[i] = new Option((i * 10) +"～"+ ((i * 10)+9),i);
-				for(i=1;i<=10;i++) A3_Skill5_3.options[i-1] = new Option(i,i);
+				let selectBox1 = document.calcForm.A3_Skill5_2;
+				let selectBox2 = document.calcForm.A3_Skill5_3;
+				for(let i = 0; i <= 60; i++) selectBox1.options[i] = new Option((i * 10) +"～"+ ((i * 10)+9),i);
+				for(let i = 1; i <= 10; i++) selectBox2.options[i-1] = new Option(i,i);
 				SWs3sw[5] = 1;
-				A3_Skill5_2.value = n_A_PassSkill3[25];
-				A3_Skill5_3.value = n_A_PassSkill3[35];
+				selectBox1.value = n_A_PassSkill3[25];
+				selectBox2.value = n_A_PassSkill3[35];
 			}
-		}else{
+	}else{
 			SWs3sw[5] = 0;
 			if(n_A_PassSkill3[35]==10) n_A_PassSkill3[35] = 0;
 			myInnerHtml("EN5_3","-",0);
 			myInnerHtml("EN5_4","-",0);
 			myInnerHtml("EN5_5","",0);
 			myInnerHtml("EN5_6","",0);
-		}
-		if(n_A_PassSkill3[6] != 0){
+	}
+	if(n_A_PassSkill3[6] != 0){
 			if(SWs3sw[6] == 0){
 				if(n_A_PassSkill3[36]==0) n_A_PassSkill3[36] = 10;
 				myInnerHtml("EN6_3","ダンサーのINT",0);
 				myInnerHtml("EN6_4",'<select name="A3_Skill6_2"onChange="Click_A3(1)"></select>',0);
 				myInnerHtml("EN6_5","ダンスの練習",0);
 				myInnerHtml("EN6_6",'<select name="A3_Skill6_3"onChange="Click_A3(1)"></select>',0);
-				for(i=0;i<=60;i++) A3_Skill6_2.options[i] = new Option((i * 10) +"～"+ ((i * 10)+9),i);
-				for(i=1;i<=10;i++) A3_Skill6_3.options[i-1] = new Option(i,i);
+				let selectBox1 = document.calcForm.A3_Skill6_2;
+				let selectBox2 = document.calcForm.A3_Skill6_3;
+				for(let i = 0; i <= 60; i++) selectBox1.options[i] = new Option((i * 10) +"～"+ ((i * 10)+9),i);
+				for(let i = 1; i <= 10; i++) selectBox2.options[i-1] = new Option(i,i);
 				SWs3sw[6] = 1;
-				A3_Skill6_2.value = n_A_PassSkill3[26];
-				A3_Skill6_3.value = n_A_PassSkill3[36];
+				selectBox1.value = n_A_PassSkill3[26];
+				selectBox2.value = n_A_PassSkill3[36];
 			}
-		}else{
+	}else{
 			SWs3sw[6] = 0;
 			if(n_A_PassSkill3[36]==10) n_A_PassSkill3[36] = 0;
 			myInnerHtml("EN6_3","-",0);
 			myInnerHtml("EN6_4","-",0);
 			myInnerHtml("EN6_5","",0);
 			myInnerHtml("EN6_6","",0);
-		}
-
-// フリッグの歌は仕様変更により、三次職支援へ移動
-/*
-		if(n_A_PassSkill3[19] == 7){
-			if(SWs3sw[7] != 1){
-				n_A_PassSkill3[46] = 0;
-				n_A_PassSkill3[38] = 0;
-				myInnerHtml("EN12_2","",0);
-				myInnerHtml("EN12_3","-",0);
-				myInnerHtml("EN12_4","-",0);
-				myInnerHtml("EN12_5","",0);
-				myInnerHtml("EN12_6","",0);
-				n_A_PassSkill3[37] = 5;
-				myInnerHtml("EN12_2",'<select name="A3_Skill12_1"onChange="Click_A3(1)"></select>',0);
-				for(i=1;i<=5;i++) A3_Skill12_1.options[i-1] = new Option(i,i);
-				A3_Skill12_1.value = n_A_PassSkill3[37];
-				SWs3sw[7] = 1;
-			}
-		}else if(n_A_PassSkill3[19] != 0){
-*/
-
-		if(n_A_PassSkill3[19] != 0){
+	}
+	if(n_A_PassSkill3[19] != 0){
 			if(SWs3sw[7] != 2){
 				if(n_A_PassSkill3[46]==0){
 					n_A_PassSkill3[37] = 5;
@@ -17265,16 +17320,19 @@ function Skill3SW_2(){
 				myInnerHtml("EN12_4",'<select name="A3_Skill12_2"onChange="Click_A3(1)"></select>',0);
 				myInnerHtml("EN12_5","レッスン",0);
 				myInnerHtml("EN12_6",'<select name="A3_Skill12_3"onChange="Click_A3(1)"></select>',0);
-				for(i=1;i<=5;i++) A3_Skill12_1.options[i-1] = new Option(i,i);
-				for(i=1;i<=60;i++) A3_Skill12_2.options[i-1] = new Option(i,i);
-				for(i=0;i<=10;i++) A3_Skill12_3.options[i] = new Option(i,i);
+				let selectBox1 = document.calcForm.A3_Skill12_1;
+				let selectBox2 = document.calcForm.A3_Skill12_2;
+				let selectBox3 = document.calcForm.A3_Skill12_3;
+				for(let i = 1; i <= 5; i++) selectBox1.options[i-1] = new Option(i,i);
+				for(let i = 1; i <= 60; i++) selectBox2.options[i-1] = new Option(i,i);
+				for(let i = 0; i <= 10; i++) selectBox3.options[i] = new Option(i,i);
 				if(n_A_PassSkill3[37] > 5) n_A_PassSkill3[37] = 5;
-				A3_Skill12_1.value = n_A_PassSkill3[37];
-				A3_Skill12_2.value = n_A_PassSkill3[46];
-				A3_Skill12_3.value = n_A_PassSkill3[38];
+				selectBox1.value = n_A_PassSkill3[37];
+				selectBox2.value = n_A_PassSkill3[46];
+				selectBox3.value = n_A_PassSkill3[38];
 				SWs3sw[7] = 2;
 			}
-		}else{
+	}else{
 			SWs3sw[7] = 0;
 			n_A_PassSkill3[37] = 0;
 			n_A_PassSkill3[46] = 0;
@@ -17284,40 +17342,39 @@ function Skill3SW_2(){
 			myInnerHtml("EN12_4","",0);
 			myInnerHtml("EN12_5","",0);
 			myInnerHtml("EN12_6","",0);
-		}
-		if(n_A_PassSkill3[39] != 0){
+	}
+	if(n_A_PassSkill3[39] != 0){
 			if(SWs3sw[8] == 0){
 				if(n_A_PassSkill3[41]==0){
 					n_A_PassSkill3[40] = 5;
 					n_A_PassSkill3[41] = 2;
 				}
 				myInnerHtml("EN13_2",'<select name="A3_Skill13_1"onChange="Click_A3(1)"></select>',0);
-				for(i=1;i<=5;i++) A3_Skill13_1.options[i-1] = new Option(i,i);
-				A3_Skill13_1.value = n_A_PassSkill3[40];
+				for(let i = 1; i <= 5; i++) document.calcForm.A3_Skill13_1.options[i-1] = new Option(i,i);
+				document.calcForm.A3_Skill13_1.value = n_A_PassSkill3[40];
 				if(n_A_PassSkill3[39] != 1){
 					myInnerHtml("EN13_3","ミン/ワンの人数",0);
 					myInnerHtml("EN13_4",'<select name="A3_Skill13_2"onChange="Click_A3(1)"></select>',0);
-					for(i=2;i<=12;i++) A3_Skill13_2.options[i-2] = new Option(i,i);
+					for(i=2;i<=12;i++) document.calcForm.A3_Skill13_2.options[i-2] = new Option(i,i);
 					if(n_A_PassSkill3[41] <2) n_A_PassSkill3[41] = 2;
-					A3_Skill13_2.value = n_A_PassSkill3[41];
+					document.calcForm.A3_Skill13_2.value = n_A_PassSkill3[41];
 				}else{
 					myInnerHtml("EN13_3","ATK増加のタイプ(検証用)",0);
 					myInnerHtml("EN13_4",'<select name="A3_Skill13_2"onChange="Click_A3(1)"></select>',0);
-					A3_Skill13_2.options[0] = new Option("アンドレC型(ほぼ確定)",3);
-					A3_Skill13_2.options[1] = new Option("アンドレC型(ほぼ確定)",1);
-					A3_Skill13_2.options[2] = new Option("アンドレC型(ほぼ確定)",2);
-					A3_Skill13_2.value = n_A_PassSkill3[41];
+					document.calcForm.A3_Skill13_2.options[0] = new Option("アンドレC型(ほぼ確定)",3);
+					document.calcForm.A3_Skill13_2.options[1] = new Option("アンドレC型(ほぼ確定)",1);
+					document.calcForm.A3_Skill13_2.options[2] = new Option("アンドレC型(ほぼ確定)",2);
+					document.calcForm.A3_Skill13_2.value = n_A_PassSkill3[41];
 				}
 				SWs3sw[8] = 0;
 			}
-		}else{
+	}else{
 			SWs3sw[8] = 0;
 			n_A_PassSkill3[40] = 0;
 			n_A_PassSkill3[41] = 0;
 			myInnerHtml("EN13_2","",0);
 			myInnerHtml("EN13_3","",0);
 			myInnerHtml("EN13_4","",0);
-		}
 	}
 }
 
@@ -17350,10 +17407,9 @@ function Click_A3(n){
  * ギルドスキル/ゴスペル/他　を構築する
  */
 function Click_Skill4SW(){
-	with(document.calcForm){
-		n_Skill4SW = A4_SKILLSW.checked;
-		if(n_Skill4SW){
-			var str;
+	n_Skill4SW = document.calcForm.A4_SKILLSW.checked;
+	if(n_Skill4SW){
+			let str;
 			str = '<TABLE Border style="white-space:nowrap;"><TR><TD id="A4TD" ColSpan="10" class="title"><input id="OBJID_CHECK_A4_SKILLSW" type="checkbox" name="A4_SKILLSW"onClick="Click_Skill4SW()"><label for="OBJID_CHECK_A4_SKILLSW">ギルドスキル/ゴスペル/他</label><span id="A4used"></span></TD></TR>';
 			str += '<TR><TD ColSpan="10">ギルドスキル</TD></TR>';
 			str += '<TR><TD id="EN40_1"></TD><TD id="EN40_2"></TD><TD id="EN41_1"></TD><TD id="EN41_2"></TD><TD id="EN42_1"></TD><TD id="EN42_2"></TD></TR>';
@@ -17367,10 +17423,10 @@ function Click_Skill4SW(){
 			str += '<TR><TD id="EN433_1"></TD><TD id="EN433_2"></TD><TD id="EN434_1"></TD><TD id="EN434_2"></TD><TD id="EN435_1"></TD><TD id="EN435_2"></TD></TR>';
 			str += '</TABLE>';
 			myInnerHtml("SP_SIEN02",str,0);
-			A4_SKILLSW.checked = 1;
-			name_CS4SW_SKILL = ["臨戦体勢","偉大なる指導力","栄光の傷","冷静な心","鋭い視線","ステータスALL+20","HP+100%","SP+100%","ATK+100%","HIT+50＆FLEE+50","被ダメージ半減"];
-			html_CS4SW_SKILL = new Array();
-			for(i=0;i<=10;i++) myInnerHtml("EN4"+i+"_1",name_CS4SW_SKILL[i],0);
+			document.calcForm.A4_SKILLSW.checked = true;
+			const name_CS4SW_SKILL = ["臨戦体勢","偉大なる指導力","栄光の傷","冷静な心","鋭い視線","ステータスALL+20","HP+100%","SP+100%","ATK+100%","HIT+50＆FLEE+50","被ダメージ半減"];
+			let html_CS4SW_SKILL = new Array();
+			for(let i = 0; i <= 10; i++) myInnerHtml("EN4"+i+"_1",name_CS4SW_SKILL[i],0);
 			html_CS4SW_SKILL[0] = '<input type="checkbox" name="A4_Skill0"onClick="StAllCalc() | Click_A4(1)">';
 			html_CS4SW_SKILL[1] = '<select name="A4_Skill1"onChange="StAllCalc() | Click_A4(1)"></select>';
 			html_CS4SW_SKILL[2] = '<select name="A4_Skill2"onChange="StAllCalc() | Click_A4(1)"></select>';
@@ -17383,7 +17439,7 @@ function Click_Skill4SW(){
 			html_CS4SW_SKILL[9] = '<input type="checkbox" name="A4_Skill9"onClick="StAllCalc() | Click_A4(1)">';
 			html_CS4SW_SKILL[10] = '<input type="checkbox" name="A4_Skill10"onClick="StAllCalc() | Click_A4(1)">';
 			html_CS4SW_SKILL[11] = '<select name="A4_Skill11"onChange="StAllCalc() | Click_A4(1)"></select>';
-			for(i=0;i<=11;i++) myInnerHtml("EN4"+i+"_2",html_CS4SW_SKILL[i],0);
+			for(let i = 0; i <= 11; i++) myInnerHtml("EN4"+i+"_2",html_CS4SW_SKILL[i],0);
 			myInnerHtml("EN430_1","STR",0);
 			myInnerHtml("EN431_1","AGI",0);
 			myInnerHtml("EN432_1","VIT",0);
@@ -17396,54 +17452,59 @@ function Click_Skill4SW(){
 			html_CS4SW_SKILL[33] = '<select name="A4_Skill33"onChange="StAllCalc() | Click_A4(1)"></select>';
 			html_CS4SW_SKILL[34] = '<select name="A4_Skill34"onChange="StAllCalc() | Click_A4(1)"></select>';
 			html_CS4SW_SKILL[35] = '<select name="A4_Skill35"onChange="StAllCalc() | Click_A4(1)"></select>';
-			for(i=30;i<=35;i++) myInnerHtml("EN4"+i+"_2",html_CS4SW_SKILL[i],0);
-			for(i=0;i<=5;i++){
-				A4_Skill1.options[i] = new Option(i,i);
-				A4_Skill2.options[i] = new Option(i,i);
-				A4_Skill3.options[i] = new Option(i,i);
-				A4_Skill4.options[i] = new Option(i,i);
+			for(let i = 30; i <= 35; i++) myInnerHtml("EN4"+i+"_2",html_CS4SW_SKILL[i],0);
+			for(let i = 0; i <= 5; i++){
+				document.calcForm.A4_Skill1.options[i] = new Option(i,i);
+				document.calcForm.A4_Skill2.options[i] = new Option(i,i);
+				document.calcForm.A4_Skill3.options[i] = new Option(i,i);
+				document.calcForm.A4_Skill4.options[i] = new Option(i,i);
 			}
-			A4_Skill11.options[0] = new Option("■選択してください",0);
-			A4_Skill11.options[1] = new Option(SkillObjNew[439][SKILL_DATA_INDEX_NAME] +"(Int)",1);
-			A4_Skill11.options[2] = new Option(SkillObjNew[627][SKILL_DATA_INDEX_NAME] +"(Str&Dex&Int)",2);
-			A4_Skill11.options[3] = new Option(SkillObjNew[628][SKILL_DATA_INDEX_NAME] +"(Vit)",3);
-			for(i=0;i<=300;i++){
-				A4_Skill31.options[i] = new Option(i,i);
-				A4_Skill32.options[i] = new Option(i,i);
+			document.calcForm.A4_Skill11.options[0] = new Option("■選択してください",0);
+			document.calcForm.A4_Skill11.options[1] = new Option(SkillObjNew[439][SKILL_DATA_INDEX_NAME] +"(Int)",1);
+			document.calcForm.A4_Skill11.options[2] = new Option(SkillObjNew[627][SKILL_DATA_INDEX_NAME] +"(Str&Dex&Int)",2);
+			document.calcForm.A4_Skill11.options[3] = new Option(SkillObjNew[628][SKILL_DATA_INDEX_NAME] +"(Vit)",3);
+			let selectBox1 = document.calcForm.A4_Skill31;
+			let selectBox2 = document.calcForm.A4_Skill32;
+			for(let i = 0; i <= 300; i++){
+				selectBox1.options[i] = new Option(i,i);
+				selectBox2.options[i] = new Option(i,i);
 			}
-			for(i=0;i<=600;i++){
-				A4_Skill30.options[i] = new Option(i,i);
-				A4_Skill33.options[i] = new Option(i,i);
-				A4_Skill34.options[i] = new Option(i,i);
-				A4_Skill35.options[i] = new Option(i,i);
+			let selectBox3 = document.calcForm.A4_Skill30;
+			let selectBox4 = document.calcForm.A4_Skill33;
+			let selectBox5 = document.calcForm.A4_Skill34;
+			let selectBox6 = document.calcForm.A4_Skill35;
+			for(let i = 0; i <= 600; i++){
+				selectBox3.options[i] = new Option(i,i);
+				selectBox4.options[i] = new Option(i,i);
+				selectBox5.options[i] = new Option(i,i);
+				selectBox6.options[i] = new Option(i,i);
 			}
-			A4_Skill0.checked = n_A_PassSkill4[0];
-			A4_Skill1.value = n_A_PassSkill4[1];
-			A4_Skill2.value = n_A_PassSkill4[2];
-			A4_Skill3.value = n_A_PassSkill4[3];
-			A4_Skill4.value = n_A_PassSkill4[4];
-			A4_Skill5.checked = n_A_PassSkill4[5];
-			A4_Skill6.checked = n_A_PassSkill4[6];
-			A4_Skill7.checked = n_A_PassSkill4[7];
-			A4_Skill8.checked = n_A_PassSkill4[8];
-			A4_Skill9.checked = n_A_PassSkill4[9];
-			A4_Skill10.checked = n_A_PassSkill4[10];
-			A4_Skill11.value = n_A_PassSkill4[11];
-			A4_Skill30.value = n_A_PassSkill4[30];
-			A4_Skill31.value = n_A_PassSkill4[31];
-			A4_Skill32.value = n_A_PassSkill4[32];
-			A4_Skill33.value = n_A_PassSkill4[33];
-			A4_Skill34.value = n_A_PassSkill4[34];
-			A4_Skill35.value = n_A_PassSkill4[35];
-		}
-		else{
+			document.calcForm.A4_Skill0.checked = n_A_PassSkill4[0];
+			document.calcForm.A4_Skill1.value = n_A_PassSkill4[1];
+			document.calcForm.A4_Skill2.value = n_A_PassSkill4[2];
+			document.calcForm.A4_Skill3.value = n_A_PassSkill4[3];
+			document.calcForm.A4_Skill4.value = n_A_PassSkill4[4];
+			document.calcForm.A4_Skill5.checked = n_A_PassSkill4[5];
+			document.calcForm.A4_Skill6.checked = n_A_PassSkill4[6];
+			document.calcForm.A4_Skill7.checked = n_A_PassSkill4[7];
+			document.calcForm.A4_Skill8.checked = n_A_PassSkill4[8];
+			document.calcForm.A4_Skill9.checked = n_A_PassSkill4[9];
+			document.calcForm.A4_Skill10.checked = n_A_PassSkill4[10];
+			document.calcForm.A4_Skill11.value = n_A_PassSkill4[11];
+			document.calcForm.A4_Skill30.value = n_A_PassSkill4[30];
+			document.calcForm.A4_Skill31.value = n_A_PassSkill4[31];
+			document.calcForm.A4_Skill32.value = n_A_PassSkill4[32];
+			document.calcForm.A4_Skill33.value = n_A_PassSkill4[33];
+			document.calcForm.A4_Skill34.value = n_A_PassSkill4[34];
+			document.calcForm.A4_Skill35.value = n_A_PassSkill4[35];
+	}
+	else{
 			var str;
 			str = '<TABLE Border><TR><TD id="A4TD" class="title"><input id="OBJID_CHECK_A4_SKILLSW" type="checkbox" name="A4_SKILLSW"onClick="Click_Skill4SW()"><label for="OBJID_CHECK_A4_SKILLSW">ギルドスキル/ゴスペル/他</label><span id="A4used"></span></TD></TR></TABLE>';
 			myInnerHtml("SP_SIEN02",str,0);
-			A4_SKILLSW.checked = 0;
-		}
-		Click_A4(0);
+			document.calcForm.A4_SKILLSW.checked = 0;
 	}
+	Click_A4(0);
 }
 
 /**
@@ -17854,30 +17915,26 @@ function Click_Skill7SW(){
  * アイテム・食品他 > ALL+10 ボタンのクリックイベント
  */
 function Click_NetCafe3(){
-	with(document.calcForm){
-		A7_Skill3.value = 10;
-		A7_Skill4.value = 10;
-		A7_Skill5.value = 10;
-		A7_Skill6.value = 10;
-		A7_Skill7.value = 10;
-		A7_Skill8.value = 10;
-		Click_A7(1);
-	}
+	document.calcForm.A7_Skill3.value = 10;
+	document.calcForm.A7_Skill4.value = 10;
+	document.calcForm.A7_Skill5.value = 10;
+	document.calcForm.A7_Skill6.value = 10;
+	document.calcForm.A7_Skill7.value = 10;
+	document.calcForm.A7_Skill8.value = 10;
+	Click_A7(1);
 }
 
 /**
  * アイテム・食品他 > 全解除 ボタンのクリックイベント
  */
 function Click_Food_Off(){
-	with(document.calcForm){
-		A7_Skill3.value = 0;
-		A7_Skill4.value = 0;
-		A7_Skill5.value = 0;
-		A7_Skill6.value = 0;
-		A7_Skill7.value = 0;
-		A7_Skill8.value = 0;
-		Click_A7(1);
-	}
+	document.calcForm.A7_Skill3.value = 0;
+	document.calcForm.A7_Skill4.value = 0;
+	document.calcForm.A7_Skill5.value = 0;
+	document.calcForm.A7_Skill6.value = 0;
+	document.calcForm.A7_Skill7.value = 0;
+	document.calcForm.A7_Skill8.value = 0;
+	Click_A7(1);
 }
 
 /**
@@ -17943,14 +18000,13 @@ function RefreshPetExplain() {
  * その他の支援/設定 を構築する
  */
 function Click_Skill8SW(){
-	var idx = 0;
-	var petId = 0;
-	var petDataArrayWork = null;
-	var objSelect = null;
-	with(document.calcForm){
-		n_Skill8SW = A8_SKILLSW.checked;
-		if(n_Skill8SW){
-			var str;
+	let idx = 0;
+	let petId = 0;
+	let petDataArrayWork = null;
+	let objSelect = null;
+	n_Skill8SW = document.calcForm.A8_SKILLSW.checked;
+	if(n_Skill8SW){
+			let str;
 			str = '<TABLE Border style="white-space:nowrap;"><TR><TD id="A8TD" Colspan="2" class="title"><input id="OBJID_CHECK_A8_SKILLSW" type="checkbox" name="A8_SKILLSW"onClick="Click_Skill8SW()"><label for="OBJID_CHECK_A8_SKILLSW">その他の支援/設定 (暫定追加機能)</label><SPAN id="A8used"></SPAN></TD></TR>';
 			str += '<TR><TD>ペット：<select id="OBJID_SELECT_PET" name="A8_Skill0" onchange="StAllCalc() | OnChangePetSelect()"></select></TD><TD>親密度：<select id="OBJID_SELECT_PET_FRIENDLITY" name="A8_Skill17" onChange="StAllCalc() | Click_A8(1)"></select></TD></TR>';
 			str += '<TR><TD colspan="2"><SPAN id="OBJID_SPAN_PET_EXPLAIN"></SPAN></TD></TR>';
@@ -17972,7 +18028,7 @@ function Click_Skill8SW(){
 			str += '<TR><TD id="EN836"></TD><TD id="EN837"></TD></TR>';
 			str += '</TABLE>';
 			myInnerHtml("ID_ETC",str,0);
-			A8_SKILLSW.checked = 1;
+			document.calcForm.A8_SKILLSW.checked = true;
 			// ペットのセレクトボックスを構築
 			// ペットのデータを複製して読み仮名ソート
 			petDataArrayWork = PET_OBJ.slice();
@@ -17995,73 +18051,73 @@ function Click_Skill8SW(){
 				HtmlCreateElementOption(idx, GetFriendlityText(idx), objSelect);
 			}
 			myInnerHtml("EN801",'戦闘教範系<select name="A8_Skill1" onChange="StAllCalc() | Click_A8(1)"></select>',0);
-			var w_name=["なし","25","50","75","100","(125)","(150)"];
-			for(i=0;i<=6;i++) A8_Skill1.options[i] = new Option(w_name[i],i);
+			let w_name = ["なし","25","50","75","100","(125)","(150)"];
+			for (let i = 0; i <= 6; i++) document.calcForm.A8_Skill1.options[i] = new Option(w_name[i],i);
 			myInnerHtml("EN802",'Job教範系<select name="A8_Skill2" onChange="StAllCalc() | Click_A8(1)"></select>',0);
-			var w_name=["なし","50","(75)","(100)"];
-			for(i=0;i<=3;i++) A8_Skill2.options[i] = new Option(w_name[i],i);
+			w_name = ["なし","50","(75)","(100)"];
+			for (let i = 0; i <= 3; i++) document.calcForm.A8_Skill2.options[i] = new Option(w_name[i],i);
 			myInnerHtml("EN803",'ネットカフェ経験値UP<select name="A8_Skill3" onChange="StAllCalc() | Click_A8(1)"></select>',0);
-			A8_Skill3.options[0] = new Option("-",0);
-			for(i=1;i<=2;i++){
+			document.calcForm.A8_Skill3.options[0] = new Option("-",0);
+			for (let i = 1; i <= 2; i++) {
 				var wy = 50 * i;
 				var wx = (100 + wy) / 100;
-				A8_Skill3.options[i] = new Option("+"+ wy +"%("+ wx +"倍)",i);
+				document.calcForm.A8_Skill3.options[i] = new Option("+"+ wy +"%("+ wx +"倍)",i);
 			}
 			myInnerHtml("EN804",'経験値増加キャンペーン<select name="A8_Skill7" onChange="StAllCalc() | Click_A8(1)"></select>',0);
-			A8_Skill7.options[0] = new Option("-",0);
-			for(i=1;i<=8;i++){
+			document.calcForm.A8_Skill7.options[0] = new Option("-",0);
+			for (let i = 1; i <= 8; i++){
 				var wy = 25 * i;
 				var wx = (100 + wy) / 100;
-				A8_Skill7.options[i] = new Option(wx+"倍(+"+(25*i)+"%)",i);
+				document.calcForm.A8_Skill7.options[i] = new Option(wx+"倍(+"+(25*i)+"%)",i);
 			}
 			myInnerHtml("EN822",'OTP<select name="A8_Skill22" onChange="StAllCalc() | Click_A8(1)"></select>',0);
-			A8_Skill22.options[0] = new Option("ログインボーナスなし",0);
-			A8_Skill22.options[1] = new Option("ブロンズ(Exp+5%)",1);
-			A8_Skill22.options[2] = new Option("シルバー(↑＋スピードポーション)",2);
-			A8_Skill22.options[3] = new Option("ゴールド(↑＋Hit+10/Flee+10)",3);
-			A8_Skill22.options[4] = new Option("レインボー(↑＋MaxHP+20%/MaxSP+20%)",4);
+			document.calcForm.A8_Skill22.options[0] = new Option("ログインボーナスなし",0);
+			document.calcForm.A8_Skill22.options[1] = new Option("ブロンズ(Exp+5%)",1);
+			document.calcForm.A8_Skill22.options[2] = new Option("シルバー(↑＋スピードポーション)",2);
+			document.calcForm.A8_Skill22.options[3] = new Option("ゴールド(↑＋Hit+10/Flee+10)",3);
+			document.calcForm.A8_Skill22.options[4] = new Option("レインボー(↑＋MaxHP+20%/MaxSP+20%)",4);
 			myInnerHtml("EN823",'←ジョンダパスはOTPレインボーです',0);
 			myInnerHtml("EN805",'公平PT人数<select name="A8_Skill5" onChange="StAllCalc() | Click_A8(1)"></select>',0);
-			A8_Skill5.options[0] = new Option("-",0);
-			for(i=1;i<=11;i++) A8_Skill5.options[i] = new Option((i+1)+"人",i);
+			document.calcForm.A8_Skill5.options[0] = new Option("-",0);
+			for (let i = 1; i <= 11; i++) document.calcForm.A8_Skill5.options[i] = new Option((i+1)+"人",i);
 			myInnerHtml("EN806",'共闘ボーナス<select name="A8_Skill6" onChange="StAllCalc() | Click_A8(1)"></select>',0);
-			A8_Skill6.options[0] = new Option("-",0);
-			for(i=1;i<=20;i++) A8_Skill6.options[i] = new Option("+"+ (i*25) +"%",i);
+			document.calcForm.A8_Skill6.options[0] = new Option("-",0);
+			for (let i=1; i <= 20; i++) document.calcForm.A8_Skill6.options[i] = new Option("+"+ (i*25) +"%",i);
 			myInnerHtml("EN821",'討伐クエストのExpを加算(1匹あたりの値)<select name="A8_Skill21" disabled="disabled" onChange="StAllCalc() | Click_A8(1)"></select>',0);
-			A8_Skill21.options[0] = new Option("-",0);
-			A8_Skill21.options[1] = new Option("BaseExpで受け取る",1);
-			A8_Skill21.options[2] = new Option("JobExpで受け取る",2);
+			document.calcForm.A8_Skill21.options[0] = new Option("-",0);
+			document.calcForm.A8_Skill21.options[1] = new Option("BaseExpで受け取る",1);
+			document.calcForm.A8_Skill21.options[2] = new Option("JobExpで受け取る",2);
 			myInnerHtml("EN807",'<input id="OBJID_CHECK_A8_Skill4" type="checkbox" name="A8_Skill4"onClick="StAllCalc() | Click_A8(1)"><label for="OBJID_CHECK_A8_Skill4">結婚スパノビステータスALL+1付与</label>',0);
 			myInnerHtml("EN808",'<input id="OBJID_CHECK_A8_Skill13" type="checkbox" name="A8_Skill13"onClick="StAllCalc() | Click_A8(1)||RebuildStatusSelect()||CalcStatusPoint(true)"><label for="OBJID_CHECK_A8_Skill13">養子状態にする</label>',0);
 			myInnerHtml("EN809",'<font size="2" color="red">（時限性補助効果の設定は、「アイテム時限効果」設定欄へ移動しました）</font><input type="button" value="設定欄を表示" onclick="CTimeItemAreaComponentManager.FocusArea(0, true)">',0);
 			myInnerHtml("EN810",'囲んでいる敵の数<select name="A8_Skill12" onChange="StAllCalc() | Click_A8(1)"></select>',0);
-			for(i=0;i<=22;i++) A8_Skill12.options[i] = new Option(i + "匹",i);
+			for (let i = 0; i <= 22; i++) document.calcForm.A8_Skill12.options[i] = new Option(i + "匹",i);
 			myInnerHtml("EN812",'<Font size=2><B>攻城戦の設定は[対人プレイヤー設定]欄に移動</B></Font>',0);
 			myInnerHtml("EN813",'防衛値<select name="A8_Skill15" onChange="StAllCalc() | Click_A8(1)"></select><Font size=2>(攻城戦モード時のみ有効)</Font>',0);
-			A8_Skill15.options[0] = new Option("-",0);
-			for(i=1;i<=20;i++) A8_Skill15.options[i] = new Option(i * 5,i);
+			document.calcForm.A8_Skill15.options[0] = new Option("-",0);
+			for (let i = 1; i <= 20; i++) document.calcForm.A8_Skill15.options[i] = new Option(i * 5,i);
 			myInnerHtml("EN814",'<input id="OBJID_CHECK_A8_Skill16" type="checkbox" name="A8_Skill16"onClick="StAllCalc() | Click_A8(1)"><label for="OBJID_CHECK_A8_Skill16">クリティカル率を0にする</label>',0);
-			if(41 <= n_A_JOB && n_A_JOB <=43) myInnerHtml("EN819",'<input id="OBJID_CHECK_A8_Skill19" type="checkbox" name="A8_Skill19"onClick="StAllCalc() | Click_A8(1)"><label for="OBJID_CHECK_A8_Skill19"><Font size=2>暖かい風欄を他職からの武器属性付与にする<BR>　（素手Atk部分には武器属性付与が適用されない）</Font></label>',0);
+			if (41 <= n_A_JOB && n_A_JOB <= 43) myInnerHtml("EN819",'<input id="OBJID_CHECK_A8_Skill19" type="checkbox" name="A8_Skill19"onClick="StAllCalc() | Click_A8(1)"><label for="OBJID_CHECK_A8_Skill19"><Font size=2>暖かい風欄を他職からの武器属性付与にする<BR>　（素手Atk部分には武器属性付与が適用されない）</Font></label>',0);
 			else myInnerHtml("EN819",'<input id="OBJID_CHECK_A8_Skill19" type="checkbox" name="A8_Skill19"onClick="StAllCalc() | Click_A8(1)"><label for="OBJID_CHECK_A8_Skill19"><Font size=2>武器属性付与をアカデミーの看板型付与にする<BR>　（素手Atk部分にも武器属性付与が適用される）</Font></label>',0);
 
 			myInnerHtml("EN830",'クァグマイア<select name="A_IJYOU0" onChange="StAllCalc() | Click_A8(1)"></select>',0);
-			A_IJYOU0.options[0] = new Option("-",0);
-			for(i=1;i<=5;i++) A_IJYOU0.options[i] = new Option("Lv"+i+"(モンスターが使用)",i);
-			for(i=6;i<=10;i++) A_IJYOU0.options[i] = new Option("Lv"+(i-5)+"(プレイヤーが使用)",i);
+			document.calcForm.A_IJYOU0.options[0] = new Option("-",0);
+			for (let i = 1; i <= 5; i++) document.calcForm.A_IJYOU0.options[i] = new Option("Lv"+i+"(モンスターが使用)",i);
+			for (let i = 6; i <= 10; i++) document.calcForm.A_IJYOU0.options[i] = new Option("Lv"+(i-5)+"(プレイヤーが使用)",i);
 
 			myInnerHtml("EN831",'速度減少<select name="A_IJYOU1" onChange="StAllCalc() | Click_A8(1)"></select>',0);
-			A_IJYOU1.options[0] = new Option("-",0);
-			for(i=1;i<=10;i++) A_IJYOU1.options[i] = new Option("Lv"+i,i);
-			A_IJYOU1.options[11] = new Option("Lv46",46);
-			A_IJYOU1.options[12] = new Option("Lv48",48);
+			document.calcForm.A_IJYOU1.options[0] = new Option("-",0);
+			for (let i = 1; i <= 10; i++) document.calcForm.A_IJYOU1.options[i] = new Option("Lv"+i,i);
+			document.calcForm.A_IJYOU1.options[11] = new Option("Lv46",46);
+			document.calcForm.A_IJYOU1.options[12] = new Option("Lv48",48);
 
 			myInnerHtml("EN832",'<input id="OBJID_CHECK_A_IJYOU2" type="checkbox" name="A_IJYOU2"onClick="StAllCalc() | Click_A8(1)"><label for="OBJID_CHECK_A_IJYOU2">毒</label>',0);
 
 			myInnerHtml("EN833",'<input id="OBJID_CHECK_A_IJYOU3" type="checkbox" name="A_IJYOU3"onClick="StAllCalc() | Click_A8(1)"><label for="OBJID_CHECK_A_IJYOU3">呪い</label>',0);
 
 			myInnerHtml("EN834",'スローキャスト<select name="A_IJYOU4" onChange="StAllCalc() | Click_A8(1)"></select>',0);
-			A_IJYOU4.options[0] = new Option("-",0);
-			for(i=1;i<=5;i++) A_IJYOU4.options[i] = new Option("Lv"+i,i);
+			document.calcForm.A_IJYOU4.options[0] = new Option("-",0);
+			for (let i = 1; i <= 5; i++) document.calcForm.A_IJYOU4.options[i] = new Option("Lv"+i,i);
 
 			myInnerHtml("EN835",'<input id="OBJID_CHECK_A_IJYOU5" type="checkbox" name="A_IJYOU5"onClick="StAllCalc() | Click_A8(1)"><label for="OBJID_CHECK_A_IJYOU5">氷結<Font size=2>(ASPD-30%/DEF-10%/固定詠唱+50%)</Font></label>',0);
 
@@ -18069,41 +18125,40 @@ function Click_Skill8SW(){
 
 			myInnerHtml("EN837",'<input id="OBJID_CHECK_A_IJYOU7" type="checkbox" name="A_IJYOU7"onClick="StAllCalc() | Click_A8(1)"><label for="OBJID_CHECK_A_IJYOU7">(×)ニャングラス</label>',0);
 
-			A8_Skill0.value = n_A_PassSkill8[0];
-			A8_Skill1.value = n_A_PassSkill8[1];
-			A8_Skill2.value = n_A_PassSkill8[2];
-			A8_Skill3.value = n_A_PassSkill8[3];
-			A8_Skill4.checked = n_A_PassSkill8[4];
-			A8_Skill5.value = n_A_PassSkill8[5];
-			A8_Skill6.value = n_A_PassSkill8[6];
-			A8_Skill7.value = n_A_PassSkill8[7];
-			A8_Skill12.value = n_A_PassSkill8[12];
-			A8_Skill13.checked = n_A_PassSkill8[13];
-			A8_Skill15.value = n_A_PassSkill8[15];
-			A8_Skill16.checked = n_A_PassSkill8[16];
-			A8_Skill17.value = n_A_PassSkill8[17];
-			A8_Skill19.checked = n_A_PassSkill8[19];
-			A8_Skill21.value = n_A_PassSkill8[21];
-			A8_Skill22.value = n_A_PassSkill8[22];
-			A_IJYOU0.value = n_A_IJYOU[0];
-			A_IJYOU1.value = n_A_IJYOU[1];
-			A_IJYOU2.checked = n_A_IJYOU[2];
-			A_IJYOU3.checked = n_A_IJYOU[3];
-			A_IJYOU4.value = n_A_IJYOU[4];
-			A_IJYOU5.checked = n_A_IJYOU[5];
-			A_IJYOU6.checked = n_A_IJYOU[6];
-			A_IJYOU7.checked = n_A_IJYOU[7];
+			document.calcForm.A8_Skill0.value = n_A_PassSkill8[0];
+			document.calcForm.A8_Skill1.value = n_A_PassSkill8[1];
+			document.calcForm.A8_Skill2.value = n_A_PassSkill8[2];
+			document.calcForm.A8_Skill3.value = n_A_PassSkill8[3];
+			document.calcForm.A8_Skill4.checked = n_A_PassSkill8[4];
+			document.calcForm.A8_Skill5.value = n_A_PassSkill8[5];
+			document.calcForm.A8_Skill6.value = n_A_PassSkill8[6];
+			document.calcForm.A8_Skill7.value = n_A_PassSkill8[7];
+			document.calcForm.A8_Skill12.value = n_A_PassSkill8[12];
+			document.calcForm.A8_Skill13.checked = n_A_PassSkill8[13];
+			document.calcForm.A8_Skill15.value = n_A_PassSkill8[15];
+			document.calcForm.A8_Skill16.checked = n_A_PassSkill8[16];
+			document.calcForm.A8_Skill17.value = n_A_PassSkill8[17];
+			document.calcForm.A8_Skill19.checked = n_A_PassSkill8[19];
+			document.calcForm.A8_Skill21.value = n_A_PassSkill8[21];
+			document.calcForm.A8_Skill22.value = n_A_PassSkill8[22];
+			document.calcForm.A_IJYOU0.value = n_A_IJYOU[0];
+			document.calcForm.A_IJYOU1.value = n_A_IJYOU[1];
+			document.calcForm.A_IJYOU2.checked = n_A_IJYOU[2];
+			document.calcForm.A_IJYOU3.checked = n_A_IJYOU[3];
+			document.calcForm.A_IJYOU4.value = n_A_IJYOU[4];
+			document.calcForm.A_IJYOU5.checked = n_A_IJYOU[5];
+			document.calcForm.A_IJYOU6.checked = n_A_IJYOU[6];
+			document.calcForm.A_IJYOU7.checked = n_A_IJYOU[7];
 			// ペット説明更新
 			RefreshPetExplain();
-		}else{
-			var str;
+	}else{
+			let str;
 			str = '<TABLE Border><TR><TD id="A8TD" class="title"><input id="OBJID_CHECK_A8_SKILLSW" type="checkbox" name="A8_SKILLSW"onClick="Click_Skill8SW()"><label for="OBJID_CHECK_A8_SKILLSW">その他の支援/設定 (暫定追加機能)</label><SPAN id="A8used"></SPAN></TD></TR></TABLE>';
 			str += '';
 			myInnerHtml("ID_ETC",str,0);
-			A8_SKILLSW.checked = 0;
-		}
-		Click_A8(0);
+			document.calcForm.A8_SKILLSW.checked = false;
 	}
+	Click_A8(0);
 }
 
 /**
@@ -20423,7 +20478,7 @@ function SET_ZOKUSEI(mobData, attackMethodConfArray) {
 	var bApplyArrowElement = false;
 	// 属性付与状態を取得
 	n_A_Weapon_zokusei = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_ARMS_ELEMENT", ELM_ID_VANITY);
-	n_A_Weapon2_zokusei = n_A_Weapon_zokusei;
+	//n_A_Weapon2_zokusei = n_A_Weapon_zokusei;
 	BK_Weapon_zokusei = n_A_Weapon_zokusei;
 	// 属性付与が指定されていない場合のみ、装備の属性を確認
 	if (n_A_Weapon_zokusei == ELM_ID_VANITY) {
@@ -20448,7 +20503,7 @@ function SET_ZOKUSEI(mobData, attackMethodConfArray) {
 			CARD_REGION_ID_ARMS_LEFT_3,
 			CARD_REGION_ID_ARMS_LEFT_4,
 		];
-		n_A_Weapon2_zokusei = GetArmsElementBySPData(itemRegionIdArray, cardRegionIdArray, n_A_Weapon_zokusei);
+		//n_A_Weapon2_zokusei = GetArmsElementBySPData(itemRegionIdArray, cardRegionIdArray, n_A_Weapon_zokusei);
 		// 一部のスキルでは、付与属性がダメージに影響するので、保持しておく
 		if (n_A_ActiveSkill == SKILL_ID_IGNITION_BREAK || n_A_ActiveSkill == SKILL_ID_AXE_TORNADE) {
 			BK_Weapon_zokusei = n_A_Weapon_zokusei;
@@ -25145,7 +25200,7 @@ function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, 
 	//----------------------------------------------------------------
 	// 「性能カスタマイズ欄」の、「○○スキルで攻撃時ダメージ上昇」強化
 	//----------------------------------------------------------------
-	confBaseLvBy = g_objCharaConfCustomSkill.GetConf(CCharaConfCustomSkill.CONF_ID_SKILL_DAMAGE_UP_BASE_LEVEL_BY);
+	const confBaseLvBy = g_objCharaConfCustomSkill.GetConf(CCharaConfCustomSkill.CONF_ID_SKILL_DAMAGE_UP_BASE_LEVEL_BY);
 	confval = g_objCharaConfCustomSkill.GetConf(CCharaConfCustomSkill.CONF_ID_SKILL_DAMAGE_UP);
 	if (n_A_ActiveSkill != 0) {
 		if (confval != 0) {
@@ -25992,6 +26047,7 @@ function BuildCastAndDelayHtmlMIG(mobData){
 
 	var scaling = 0;
 	var spTag = null;
+	let wCastFixed = 0;
 
 	//----------------------------------------------------------------
 	// 変動詠唱時間の算出
