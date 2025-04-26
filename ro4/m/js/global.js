@@ -33,6 +33,9 @@ let g_timeItemConf = MallocArray(TIME_ITEM_CONF_COUNT, 0);
 /** 時限効果設定　有効フラグ配列 */
 let g_timeItemConfEffective = MallocArray(TIME_ITEM_CONF_COUNT, true);
 
+/** 時限効果設定　一斉変更ボタンの状態 */
+let g_timeItemConfAllEffective = 1;
+
 /** スキルマネージャ */
 let g_skillManager = new CSkillManager();
 

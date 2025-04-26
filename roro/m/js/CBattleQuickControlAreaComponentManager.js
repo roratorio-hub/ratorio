@@ -134,6 +134,7 @@ CBattleQuickControlAreaComponentManager.RebuildControls = function () {
 		objSelect.setAttribute("onchange", "CBattleQuickControlAreaComponentManager.AllSet(parseInt(this.value))");
 		HtmlCreateElementOption(1, "ON", objSelect);
 		HtmlCreateElementOption(0, "OFF", objSelect);
+		objSelect.value = g_timeItemConfAllEffective;
 	}
 
 	for (idxRow = 0; idxRow < g_timeItemConf.length; idxRow++) {
@@ -309,6 +310,9 @@ CBattleQuickControlAreaComponentManager.AllSet = function (flg) {
 	if (flg != 1) {
 		flg = 0;
 	}
+	// 一斉変更ボタンの状態を保存する
+	g_timeItemConfAllEffective = flg;
+	// 時限効果の状態を個別に変更する
 	for (let idx = 0; idx < g_timeItemConf.length; idx++) {
 		objSelect = document.getElementById("OBJID_SELECT_BATTLE_QUICK_CONTROL_TIME_ITEM_" + idx);
 		if (objSelect) {
