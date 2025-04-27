@@ -187,6 +187,8 @@ let SG_Special_HITnum = 0;
 let wHITsuu = 0;
 /** 分割ヒット数 */
 let wActiveHitNum = 0;
+/** 分割ヒットフラグ */
+let n_bunkatuHIT = 0;
 /** ダメージ配列 特殊計算用 */
 let SG_Special_DMG = [0,0,0];
 /** セットされている矢の種類. 種類定数は arrow.dat.js で定義されている*/
