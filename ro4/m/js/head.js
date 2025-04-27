@@ -6364,7 +6364,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 		case SKILL_ID_FIRE_DRAGON_BREATH:
 		case SKILL_ID_WATER_DRAGON_BREATH:
 			// 「ドラゴントレーニング」Lv0の前に騎乗の有無が包含されているためインデックスをずらしている
-			dragon_training_lv = UsedSkillSearch(SKILL_ID_DRAGON_TRAINING) - 1;
+			let dragon_training_lv = UsedSkillSearch(SKILL_ID_DRAGON_TRAINING) - 1;
 			if (dragon_training_lv == -1) {
 				// 未騎乗の場合
 				n_Buki_Muri = true;
