@@ -6364,7 +6364,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 		case SKILL_ID_FIRE_DRAGON_BREATH:
 		case SKILL_ID_WATER_DRAGON_BREATH:
 			// 「ドラゴントレーニング」Lv0の前に騎乗の有無が包含されているためインデックスをずらしている
-			dragon_training_lv = UsedSkillSearch(SKILL_ID_DRAGON_TRAINING) - 1;
+			let dragon_training_lv = UsedSkillSearch(SKILL_ID_DRAGON_TRAINING) - 1;
 			if (dragon_training_lv == -1) {
 				// 未騎乗の場合
 				n_Buki_Muri = true;
@@ -6397,7 +6397,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			// Lv補正
 			w *= n_A_BaseLV / 100;
 			// ドラゴニックオーラ補正
-			if ((dragonic_aura_lv = UsedSkillSearch(SKILL_ID_DRAGONIC_AURA_STATE)) > 0) {
+			if (UsedSkillSearch(SKILL_ID_DRAGONIC_AURA_STATE) > 0) {
 				if (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA] == MOB_CONF_PLAYER_ID_SENTO_AREA_YE) {
 					// YE鯖だと指数1.0298で誤差1に収まる
 					w *= 1 + Math.pow(GetTotalSpecStatus(MIG_PARAM_ID_POW) + GetPAtk(), 1.0298) / 100 * 250 / 300;
@@ -24833,7 +24833,8 @@ function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, 
 	// 「ドラゴニックオーラ」の「ウォータードラゴンブレス」「ファイアードラゴンブレス」強化
 	//----------------------------------------------------------------
 	if (n_A_ActiveSkill == SKILL_ID_WATER_DRAGON_BREATH || n_A_ActiveSkill == SKILL_ID_FIRE_DRAGON_BREATH) {
-		w1 += 15 * (dragonic_aura_lv - 1)
+		// 0 = 未習得, 1 = 未使用, 2 = Lv1使用, ... なので - 1 が必要
+		w1 += 15 * Math.max(0, (UsedSkillSearch(SKILL_ID_DRAGONIC_AURA_STATE) - 1));
 	}
 
 	//----------------------------------------------------------------
