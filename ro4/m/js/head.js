@@ -6222,7 +6222,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			n_Enekyori=2;
 			if(n_A_ActiveSkillLV <= 6) w_DMG[2] = 100 * n_A_ActiveSkillLV;
 			else w_DMG[2] = 777;
-			w_HEAL_BAI = 100 + n_tok[91];
+			let w_HEAL_BAI = 100 + n_tok[91];
 			w_HEAL_BAI -= 2 * UsedSkillSearch(SKILL_ID_MEDITATIO);
 			w_DMG[2] = Math.floor(w_DMG[2] * w_HEAL_BAI / 100);
 			w_DMG[2] = ApplyElementRatio(mobData, Math.floor(w_DMG[2] / 2),6);
