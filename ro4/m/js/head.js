@@ -75,6 +75,12 @@ let n_SiegeMode = false;
 let n_A_BaseLV=1;
 /** 遠距離フラグ. CSkillData.RANGE_SHORT | CSkillData.RANGE_LONG | CSkillData.RANGE_MAGIC | CSkillData.RANGE_SPECIAL */
 let n_Enekyori = false;
+/** 天帝 天気の状態 正午 */
+let state_shougo = 0;
+/** 天帝 天気の状態 月出 */
+let state_tukidashi = 0;
+/** 天帝 天気の状態 日出 */
+let state_hinode = 0;
 /** パッシブ持続系 ウィンドウ可視状態 */
 let n_Skill1SW = false;
 /** 演奏・踊り系スキル ウィンドウ可視状態 */
@@ -153,6 +159,8 @@ let n_AS_MODE = false;
 let n_AS_HIT = 0;
 /** 武器属性 */
 let BK_Weapon_zokusei = 0;
+/** 攻撃手段のオプション値 */
+let option_count = 0;
 /** 三段掌の使用フラグ. オートスペル計算用. true がセットされる場面が無いので削除候補 */
 let n_AS_check_3dan = false;
 /** 固定詠唱減少値 */
@@ -251,7 +259,6 @@ let wRef3 = [];
 let g_receiveDamageAverage = 0;
 /** 被ダメージ　回避率などを考慮した値 */
 let g_receiveDamageAvoids = 0;
-/// ---------------------------------------------------
 /** 属性耐性　上限95 */
 let resistValueArray = [];
 /** 属性耐性　上限95を超えて格納出来る配列 */
@@ -3925,7 +3932,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				// CON補正
 				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
 				// 照準カウンター補正
-				option_count = attackMethodConfArray[0].GetOptionValue(0);
+				let option_count = attackMethodConfArray[0].GetOptionValue(0);
 				wbairitu += option_count * (950 + 150 * n_A_ActiveSkillLV);
 				// ベースレベル補正
 				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
@@ -9086,7 +9093,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 		// 「アークメイジ」スキル「クリスタルインパクト」
 		case SKILL_ID_CRYSTAL_IMPACT:
 			// クライマックス状態のレベルを取得
-			sklLvSub = UsedSkillSearch(SKILL_ID_CLIMAX);
+			let sklLvSub = UsedSkillSearch(SKILL_ID_CLIMAX);
 			// 初撃の場合
 			if (battleCalcInfo.parentSkillId === undefined) {
 				// 詠唱時間等
@@ -15579,7 +15586,7 @@ function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, m
 	// 「サラの幻影カード」の、「ヘルインフェルノ」強化
 	//----------------------------------------------------------------
 	if(n_A_ActiveSkill == SKILL_ID_HELL_INFERNO) {
-		cardCountHeadTop = CardNumSearch(CARD_ID_SARANO_GENEI, CARD_REGION_ID_HEAD_TOP_ANY);
+		let cardCountHeadTop = CardNumSearch(CARD_ID_SARANO_GENEI, CARD_REGION_ID_HEAD_TOP_ANY);
 		if (cardCountHeadTop > 0) {
 			wX += 10 * n_A_HEAD_DEF_PLUS * cardCountHeadTop;
 		}
@@ -16367,16 +16374,16 @@ function ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData,
 function ApplyMagicalSkillDamageRatioChangeSubArcanaCard(cardid) {
 	var vartmp = 0;
 
-	cardCountArmsRight	 = CardNumSearch(cardid, CARD_REGION_ID_ARMS_RIGHT_ANY);
-	cardCountArmsLeft	 = CardNumSearch(cardid, CARD_REGION_ID_ARMS_LEFT_ANY);
-	cardCountHeadTop	 = CardNumSearch(cardid, CARD_REGION_ID_HEAD_TOP_ANY);
-	cardCountHeadMid	 = CardNumSearch(cardid, CARD_REGION_ID_HEAD_MID_ANY);
-	cardCountShield		 = CardNumSearch(cardid, CARD_REGION_ID_SHIELD_ANY);
-	cardCountBody		 = CardNumSearch(cardid, CARD_REGION_ID_BODY_ANY);
-	cardCountShoulder	 = CardNumSearch(cardid, CARD_REGION_ID_SHOULDER_ANY);
-	cardCountShoes		 = CardNumSearch(cardid, CARD_REGION_ID_SHOES_ANY);
-	cardCountAccessary1	 = CardNumSearch(cardid, CARD_REGION_ID_ACCESSARY_1_ANY);
-	cardCountAccessary2	 = CardNumSearch(cardid, CARD_REGION_ID_ACCESSARY_2_ANY);
+	let cardCountArmsRight	 = CardNumSearch(cardid, CARD_REGION_ID_ARMS_RIGHT_ANY);
+	let cardCountArmsLeft	 = CardNumSearch(cardid, CARD_REGION_ID_ARMS_LEFT_ANY);
+	let cardCountHeadTop	 = CardNumSearch(cardid, CARD_REGION_ID_HEAD_TOP_ANY);
+	let cardCountHeadMid	 = CardNumSearch(cardid, CARD_REGION_ID_HEAD_MID_ANY);
+	let cardCountShield		 = CardNumSearch(cardid, CARD_REGION_ID_SHIELD_ANY);
+	let cardCountBody		 = CardNumSearch(cardid, CARD_REGION_ID_BODY_ANY);
+	let cardCountShoulder	 = CardNumSearch(cardid, CARD_REGION_ID_SHOULDER_ANY);
+	let cardCountShoes		 = CardNumSearch(cardid, CARD_REGION_ID_SHOES_ANY);
+	let cardCountAccessary1	 = CardNumSearch(cardid, CARD_REGION_ID_ACCESSARY_1_ANY);
+	let cardCountAccessary2	 = CardNumSearch(cardid, CARD_REGION_ID_ACCESSARY_2_ANY);
 
 	vartmp += 1 * n_A_Weapon_ATKplus * cardCountArmsRight;
 	vartmp += 1 * n_A_Weapon2_ATKplus * cardCountArmsLeft;
@@ -20683,7 +20690,8 @@ function SET_ZOKUSEI(mobData, attackMethodConfArray) {
 		case SKILL_ID_GRENADES_DROPPING:
 		case SKILL_ID_MISSION_BOMBARD:
 			// グレネードフラグメント属性
-			if ((grenade_flagment = attackMethodConfArray[0].GetOptionValue(0)) > 0) {
+			let grenade_flagment = attackMethodConfArray[0].GetOptionValue(0);
+			if (grenade_flagment > 0) {
 				n_A_Weapon_zokusei = grenade_flagment;
 			}
 			break;
@@ -25549,16 +25557,16 @@ function ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData
 function ApplyPhysicalSkillDamageRatioChangeSubArcanaCard(cardid) {
 	var vartmp = 0;
 
-	cardCountArmsRight	 = CardNumSearch(cardid, CARD_REGION_ID_ARMS_RIGHT_ANY);
-	cardCountArmsLeft	 = CardNumSearch(cardid, CARD_REGION_ID_ARMS_LEFT_ANY);
-	cardCountHeadTop	 = CardNumSearch(cardid, CARD_REGION_ID_HEAD_TOP_ANY);
-	cardCountHeadMid	 = CardNumSearch(cardid, CARD_REGION_ID_HEAD_MID_ANY);
-	cardCountShield		 = CardNumSearch(cardid, CARD_REGION_ID_SHIELD_ANY);
-	cardCountBody		 = CardNumSearch(cardid, CARD_REGION_ID_BODY_ANY);
-	cardCountShoulder	 = CardNumSearch(cardid, CARD_REGION_ID_SHOULDER_ANY);
-	cardCountShoes		 = CardNumSearch(cardid, CARD_REGION_ID_SHOES_ANY);
-	cardCountAccessary1	 = CardNumSearch(cardid, CARD_REGION_ID_ACCESSARY_1_ANY);
-	cardCountAccessary2	 = CardNumSearch(cardid, CARD_REGION_ID_ACCESSARY_2_ANY);
+	let cardCountArmsRight	 = CardNumSearch(cardid, CARD_REGION_ID_ARMS_RIGHT_ANY);
+	let cardCountArmsLeft	 = CardNumSearch(cardid, CARD_REGION_ID_ARMS_LEFT_ANY);
+	let cardCountHeadTop	 = CardNumSearch(cardid, CARD_REGION_ID_HEAD_TOP_ANY);
+	let cardCountHeadMid	 = CardNumSearch(cardid, CARD_REGION_ID_HEAD_MID_ANY);
+	let cardCountShield		 = CardNumSearch(cardid, CARD_REGION_ID_SHIELD_ANY);
+	let cardCountBody		 = CardNumSearch(cardid, CARD_REGION_ID_BODY_ANY);
+	let cardCountShoulder	 = CardNumSearch(cardid, CARD_REGION_ID_SHOULDER_ANY);
+	let cardCountShoes		 = CardNumSearch(cardid, CARD_REGION_ID_SHOES_ANY);
+	let cardCountAccessary1	 = CardNumSearch(cardid, CARD_REGION_ID_ACCESSARY_1_ANY);
+	let cardCountAccessary2	 = CardNumSearch(cardid, CARD_REGION_ID_ACCESSARY_2_ANY);
 
 	vartmp += 1 * n_A_Weapon_ATKplus * cardCountArmsRight;
 	vartmp += 1 * n_A_Weapon2_ATKplus * cardCountArmsLeft;
