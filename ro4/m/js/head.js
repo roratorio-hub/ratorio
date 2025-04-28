@@ -14728,21 +14728,21 @@ function BattleHiDam(charaData, specData, mobData, attackMethodConfArray, objCel
 		name64 += "<BR><Font color=Blue><B>反射ダメージ</B></Font>";
 	}
 
-	if(n_A_ActiveSkill==441){
-		if(n_DEATH_BOUND[3]==0){
+	// 「デスバウンド」、「破砕柱」専用の情報オブジェクト
+	let battleCalcInfo = new CBattleCalcInfo();
+	battleCalcInfo.skillId = n_A_ActiveSkill;
+	battleCalcInfo.skillLv = n_A_ActiveSkillLV;	
 
+	if(n_A_ActiveSkill == SKILL_ID_DEATH_BOUND){
+		if(n_DEATH_BOUND[3]==0){
 			var wRef_DB;
 			wRef_DB = (500 + 100 * n_A_ActiveSkillLV) * w_sp_rs;
-
 			// 特定の戦闘エリアでの補正
 			switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
-
-			case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
-				wRef_DB = (75 + 5 * n_A_ActiveSkillLV) * w_sp_rs;
-				break;
-
+				case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
+					wRef_DB = (75 + 5 * n_A_ActiveSkillLV) * w_sp_rs;
+					break;
 			}
-
 			var wRef4 = new Array();
 			n_DEATH_BOUND[0] = Math.floor((w_HiDam[0] * 0.7) * wRef_DB / 100);
 			n_DEATH_BOUND[1] = Math.floor((wBHD * 0.7) * wRef_DB / 100);
@@ -14755,7 +14755,7 @@ function BattleHiDam(charaData, specData, mobData, attackMethodConfArray, objCel
 			w_HiDam[6] = Math.floor((w_HiDam[6] * 0.3) * wRef_DB / 100);
 		}
 	}
-	if(n_A_ActiveSkill==630){
+	if(n_A_ActiveSkill == SKILL_ID_HASAICHU){
 		if(n_DEATH_BOUND[3]==0){
 			var wRef_DB;
 			wRef_DB = (100 + 20 * n_A_ActiveSkillLV) * w_sp_rs;
