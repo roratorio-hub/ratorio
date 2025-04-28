@@ -1839,11 +1839,21 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				n_Delay[7] = 200;
 				wActiveHitNum = 3;
 				if(!n_AS_MODE){
-					if(attackMethodConfArray[0].GetOptionValue(0) == 0) wbairitu = 80 * n_A_ActiveSkillLV + n_A_AGI;
-					else wbairitu = 100 * n_A_ActiveSkillLV + n_A_AGI + 150;
-				}else{
-					if(attackMethodConfArray[1].GetSkillId() == 799) wbairitu = 80 * n_A_ActiveSkillLV + n_A_AGI;
-					else wbairitu = 100 * n_A_ActiveSkillLV + n_A_AGI + 150;
+					if(attackMethodConfArray[0].GetOptionValue(0) == 0) {
+						// 単発の場合
+						wbairitu = 80 * n_A_ActiveSkillLV + n_A_AGI;
+					} else {
+						// コンボの場合
+						wbairitu = 100 * n_A_ActiveSkillLV + n_A_AGI + 150;
+					}
+				} else {
+					if(attackMethodConfArray[0].GetSkillId() == SKILL_ID_SENKO_RENGEKI){
+						// 閃光連撃から呼ばれた場合
+						wbairitu = 80 * n_A_ActiveSkillLV + n_A_AGI;
+					} else {
+						// それ以外
+						wbairitu = 100 * n_A_ActiveSkillLV + n_A_AGI + 150;
+					}
 				}
 				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
 				break;
@@ -1897,11 +1907,18 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				var w2 = ROUNDDOWN(charaData[CHARA_DATA_INDEX_MAXSP] * (5 + n_A_ActiveSkillLV) / 100);
 				wbairitu = (w1 + w2) / 4;
 				if(!n_AS_MODE){
-					if(attackMethodConfArray[0].GetOptionValue(0) == 0) wCast = 1000 + 100 * n_A_ActiveSkillLV;
-					else n_Delay[0] = 1;
-					if(attackMethodConfArray[0].GetOptionValue(0) == 1) wbairitu = wbairitu * 2;
-				}else{
-					if(attackMethodConfArray[1].GetSkillId() == 802) wbairitu = wbairitu * 2;
+					if(attackMethodConfArray[0].GetOptionValue(0) == 0) {
+						wCast = 1000 + 100 * n_A_ActiveSkillLV;
+					} else {
+						n_Delay[0] = 1;
+					}
+					if(attackMethodConfArray[0].GetOptionValue(0) == 1) {
+						wbairitu = wbairitu * 2;
+					}
+				} else {
+					if(attackMethodConfArray[0].GetSkillId() == SKILL_ID_COMBO_SORYUKYAKU) {
+						wbairitu = wbairitu * 2;
+					}
 				}
 				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
 				break;
@@ -20922,29 +20939,22 @@ function GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray
 			break;
 		// 號砲
 		case SKILL_ID_GOHO:
-
-			// オートスペルの計算中でない場合
 			if(!n_AS_MODE){
-
-				// コンボ時のフラグを見て、威力倍率を調整
+				// オートスペルの計算中でない場合
 				if(attackMethodConfArray[0].GetOptionValue(0) == 0) {
+					// コンボ時のフラグを見て、威力倍率を調整
 					w999 += 40 * mobData[2] + 240 * n_A_ActiveSkillLV;
 				}
 				else {
 					w999 += 40 * mobData[2] + 500 * n_A_ActiveSkillLV;
 				}
-			}
-
-			// オートスペルの計算中の場合
-			else{
-
-				// 攻撃手段が「閃光連撃時の連撃」の場合
-				if(attackMethodConfArray[1].GetSkillId() == SKILL_ID_SENKO_RENGEKI) {
+			} else {
+				// オートスペルの場合
+				if(attackMethodConfArray[0].GetSkillId() == SKILL_ID_SENKO_RENGEKI) {
+					// 攻撃手段が「閃光連撃時の連撃」の場合
 					w999 += 40 * mobData[2] + 240 * n_A_ActiveSkillLV;
-				}
-
-				// 攻撃手段がそれ以外（「双龍コンボ時の連撃」）の場合
-				else {
+				} else {
+					// 攻撃手段がそれ以外（「双龍コンボ時の連撃」）の場合
 					w999 += 40 * mobData[2] + 500 * n_A_ActiveSkillLV;
 				}
 			}
