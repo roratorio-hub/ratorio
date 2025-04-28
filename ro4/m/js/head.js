@@ -3932,7 +3932,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				// CON補正
 				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
 				// 照準カウンター補正
-				let option_count = attackMethodConfArray[0].GetOptionValue(0);
+				option_count = attackMethodConfArray[0].GetOptionValue(0);
 				wbairitu += option_count * (950 + 150 * n_A_ActiveSkillLV);
 				// ベースレベル補正
 				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
