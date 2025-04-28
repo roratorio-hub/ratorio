@@ -81,6 +81,12 @@ let state_shougo = 0;
 let state_tukidashi = 0;
 /** 天帝 天気の状態 日出 */
 let state_hinode = 0;
+/** 天帝 天気の状態 月星 */
+let state_tukibotsu = 0;
+/** 天帝 天気の状態 日没 */
+let state_nichibotsu = 0;
+/** 天帝 天気の状態 天気の身 */
+let state_tenki_no_mi = 0;
 /** パッシブ持続系 ウィンドウ可視状態 */
 let n_Skill1SW = false;
 /** 演奏・踊り系スキル ウィンドウ可視状態 */
