@@ -75,6 +75,18 @@ let n_SiegeMode = false;
 let n_A_BaseLV=1;
 /** 遠距離フラグ. CSkillData.RANGE_SHORT | CSkillData.RANGE_LONG | CSkillData.RANGE_MAGIC | CSkillData.RANGE_SPECIAL */
 let n_Enekyori = false;
+/** 天帝 天気の状態 正午 */
+let state_shougo = 0;
+/** 天帝 天気の状態 月出 */
+let state_tukidashi = 0;
+/** 天帝 天気の状態 日出 */
+let state_hinode = 0;
+/** 天帝 天気の状態 月星 */
+let state_tukibotsu = 0;
+/** 天帝 天気の状態 日没 */
+let state_nichibotsu = 0;
+/** 天帝 天気の状態 天気の身 */
+let state_tenki_no_mi = 0;
 /** パッシブ持続系 ウィンドウ可視状態 */
 let n_Skill1SW = false;
 /** 演奏・踊り系スキル ウィンドウ可視状態 */
@@ -153,6 +165,8 @@ let n_AS_MODE = false;
 let n_AS_HIT = 0;
 /** 武器属性 */
 let BK_Weapon_zokusei = 0;
+/** 攻撃手段のオプション値 */
+let option_count = 0;
 /** 三段掌の使用フラグ. オートスペル計算用. true がセットされる場面が無いので削除候補 */
 let n_AS_check_3dan = false;
 /** 固定詠唱減少値 */
@@ -251,7 +265,6 @@ let wRef3 = [];
 let g_receiveDamageAverage = 0;
 /** 被ダメージ　回避率などを考慮した値 */
 let g_receiveDamageAvoids = 0;
-/// ---------------------------------------------------
 /** 属性耐性　上限95 */
 let resistValueArray = [];
 /** 属性耐性　上限95を超えて格納出来る配列 */
@@ -1826,11 +1839,21 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				n_Delay[7] = 200;
 				wActiveHitNum = 3;
 				if(!n_AS_MODE){
-					if(attackMethodConfArray[0].GetOptionValue(0) == 0) wbairitu = 80 * n_A_ActiveSkillLV + n_A_AGI;
-					else wbairitu = 100 * n_A_ActiveSkillLV + n_A_AGI + 150;
-				}else{
-					if(attackMethodConfArray[1].GetSkillId() == 799) wbairitu = 80 * n_A_ActiveSkillLV + n_A_AGI;
-					else wbairitu = 100 * n_A_ActiveSkillLV + n_A_AGI + 150;
+					if(attackMethodConfArray[0].GetOptionValue(0) == 0) {
+						// 単発の場合
+						wbairitu = 80 * n_A_ActiveSkillLV + n_A_AGI;
+					} else {
+						// コンボの場合
+						wbairitu = 100 * n_A_ActiveSkillLV + n_A_AGI + 150;
+					}
+				} else {
+					if(attackMethodConfArray[0].GetSkillId() == SKILL_ID_SENKO_RENGEKI){
+						// 閃光連撃から呼ばれた場合
+						wbairitu = 80 * n_A_ActiveSkillLV + n_A_AGI;
+					} else {
+						// それ以外
+						wbairitu = 100 * n_A_ActiveSkillLV + n_A_AGI + 150;
+					}
 				}
 				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
 				break;
@@ -1884,11 +1907,18 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				var w2 = ROUNDDOWN(charaData[CHARA_DATA_INDEX_MAXSP] * (5 + n_A_ActiveSkillLV) / 100);
 				wbairitu = (w1 + w2) / 4;
 				if(!n_AS_MODE){
-					if(attackMethodConfArray[0].GetOptionValue(0) == 0) wCast = 1000 + 100 * n_A_ActiveSkillLV;
-					else n_Delay[0] = 1;
-					if(attackMethodConfArray[0].GetOptionValue(0) == 1) wbairitu = wbairitu * 2;
-				}else{
-					if(attackMethodConfArray[1].GetSkillId() == 802) wbairitu = wbairitu * 2;
+					if(attackMethodConfArray[0].GetOptionValue(0) == 0) {
+						wCast = 1000 + 100 * n_A_ActiveSkillLV;
+					} else {
+						n_Delay[0] = 1;
+					}
+					if(attackMethodConfArray[0].GetOptionValue(0) == 1) {
+						wbairitu = wbairitu * 2;
+					}
+				} else {
+					if(attackMethodConfArray[0].GetSkillId() == SKILL_ID_COMBO_SORYUKYAKU) {
+						wbairitu = wbairitu * 2;
+					}
 				}
 				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
 				break;
@@ -6209,7 +6239,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			n_Enekyori=2;
 			if(n_A_ActiveSkillLV <= 6) w_DMG[2] = 100 * n_A_ActiveSkillLV;
 			else w_DMG[2] = 777;
-			w_HEAL_BAI = 100 + n_tok[91];
+			let w_HEAL_BAI = 100 + n_tok[91];
 			w_HEAL_BAI -= 2 * UsedSkillSearch(SKILL_ID_MEDITATIO);
 			w_DMG[2] = Math.floor(w_DMG[2] * w_HEAL_BAI / 100);
 			w_DMG[2] = ApplyElementRatio(mobData, Math.floor(w_DMG[2] / 2),6);
@@ -9086,7 +9116,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 		// 「アークメイジ」スキル「クリスタルインパクト」
 		case SKILL_ID_CRYSTAL_IMPACT:
 			// クライマックス状態のレベルを取得
-			sklLvSub = UsedSkillSearch(SKILL_ID_CLIMAX);
+			let sklLvSub = UsedSkillSearch(SKILL_ID_CLIMAX);
 			// 初撃の場合
 			if (battleCalcInfo.parentSkillId === undefined) {
 				// 詠唱時間等
@@ -14715,21 +14745,21 @@ function BattleHiDam(charaData, specData, mobData, attackMethodConfArray, objCel
 		name64 += "<BR><Font color=Blue><B>反射ダメージ</B></Font>";
 	}
 
-	if(n_A_ActiveSkill==441){
-		if(n_DEATH_BOUND[3]==0){
+	// 「デスバウンド」、「破砕柱」専用の情報オブジェクト
+	let battleCalcInfo = new CBattleCalcInfo();
+	battleCalcInfo.skillId = n_A_ActiveSkill;
+	battleCalcInfo.skillLv = n_A_ActiveSkillLV;	
 
+	if(n_A_ActiveSkill == SKILL_ID_DEATH_BOUND){
+		if(n_DEATH_BOUND[3]==0){
 			var wRef_DB;
 			wRef_DB = (500 + 100 * n_A_ActiveSkillLV) * w_sp_rs;
-
 			// 特定の戦闘エリアでの補正
 			switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
-
-			case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
-				wRef_DB = (75 + 5 * n_A_ActiveSkillLV) * w_sp_rs;
-				break;
-
+				case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
+					wRef_DB = (75 + 5 * n_A_ActiveSkillLV) * w_sp_rs;
+					break;
 			}
-
 			var wRef4 = new Array();
 			n_DEATH_BOUND[0] = Math.floor((w_HiDam[0] * 0.7) * wRef_DB / 100);
 			n_DEATH_BOUND[1] = Math.floor((wBHD * 0.7) * wRef_DB / 100);
@@ -14742,7 +14772,7 @@ function BattleHiDam(charaData, specData, mobData, attackMethodConfArray, objCel
 			w_HiDam[6] = Math.floor((w_HiDam[6] * 0.3) * wRef_DB / 100);
 		}
 	}
-	if(n_A_ActiveSkill==630){
+	if(n_A_ActiveSkill == SKILL_ID_HASAICHU){
 		if(n_DEATH_BOUND[3]==0){
 			var wRef_DB;
 			wRef_DB = (100 + 20 * n_A_ActiveSkillLV) * w_sp_rs;
@@ -15579,7 +15609,7 @@ function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, m
 	// 「サラの幻影カード」の、「ヘルインフェルノ」強化
 	//----------------------------------------------------------------
 	if(n_A_ActiveSkill == SKILL_ID_HELL_INFERNO) {
-		cardCountHeadTop = CardNumSearch(CARD_ID_SARANO_GENEI, CARD_REGION_ID_HEAD_TOP_ANY);
+		let cardCountHeadTop = CardNumSearch(CARD_ID_SARANO_GENEI, CARD_REGION_ID_HEAD_TOP_ANY);
 		if (cardCountHeadTop > 0) {
 			wX += 10 * n_A_HEAD_DEF_PLUS * cardCountHeadTop;
 		}
@@ -16367,16 +16397,16 @@ function ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData,
 function ApplyMagicalSkillDamageRatioChangeSubArcanaCard(cardid) {
 	var vartmp = 0;
 
-	cardCountArmsRight	 = CardNumSearch(cardid, CARD_REGION_ID_ARMS_RIGHT_ANY);
-	cardCountArmsLeft	 = CardNumSearch(cardid, CARD_REGION_ID_ARMS_LEFT_ANY);
-	cardCountHeadTop	 = CardNumSearch(cardid, CARD_REGION_ID_HEAD_TOP_ANY);
-	cardCountHeadMid	 = CardNumSearch(cardid, CARD_REGION_ID_HEAD_MID_ANY);
-	cardCountShield		 = CardNumSearch(cardid, CARD_REGION_ID_SHIELD_ANY);
-	cardCountBody		 = CardNumSearch(cardid, CARD_REGION_ID_BODY_ANY);
-	cardCountShoulder	 = CardNumSearch(cardid, CARD_REGION_ID_SHOULDER_ANY);
-	cardCountShoes		 = CardNumSearch(cardid, CARD_REGION_ID_SHOES_ANY);
-	cardCountAccessary1	 = CardNumSearch(cardid, CARD_REGION_ID_ACCESSARY_1_ANY);
-	cardCountAccessary2	 = CardNumSearch(cardid, CARD_REGION_ID_ACCESSARY_2_ANY);
+	let cardCountArmsRight	 = CardNumSearch(cardid, CARD_REGION_ID_ARMS_RIGHT_ANY);
+	let cardCountArmsLeft	 = CardNumSearch(cardid, CARD_REGION_ID_ARMS_LEFT_ANY);
+	let cardCountHeadTop	 = CardNumSearch(cardid, CARD_REGION_ID_HEAD_TOP_ANY);
+	let cardCountHeadMid	 = CardNumSearch(cardid, CARD_REGION_ID_HEAD_MID_ANY);
+	let cardCountShield		 = CardNumSearch(cardid, CARD_REGION_ID_SHIELD_ANY);
+	let cardCountBody		 = CardNumSearch(cardid, CARD_REGION_ID_BODY_ANY);
+	let cardCountShoulder	 = CardNumSearch(cardid, CARD_REGION_ID_SHOULDER_ANY);
+	let cardCountShoes		 = CardNumSearch(cardid, CARD_REGION_ID_SHOES_ANY);
+	let cardCountAccessary1	 = CardNumSearch(cardid, CARD_REGION_ID_ACCESSARY_1_ANY);
+	let cardCountAccessary2	 = CardNumSearch(cardid, CARD_REGION_ID_ACCESSARY_2_ANY);
 
 	vartmp += 1 * n_A_Weapon_ATKplus * cardCountArmsRight;
 	vartmp += 1 * n_A_Weapon2_ATKplus * cardCountArmsLeft;
@@ -20683,7 +20713,8 @@ function SET_ZOKUSEI(mobData, attackMethodConfArray) {
 		case SKILL_ID_GRENADES_DROPPING:
 		case SKILL_ID_MISSION_BOMBARD:
 			// グレネードフラグメント属性
-			if ((grenade_flagment = attackMethodConfArray[0].GetOptionValue(0)) > 0) {
+			let grenade_flagment = attackMethodConfArray[0].GetOptionValue(0);
+			if (grenade_flagment > 0) {
 				n_A_Weapon_zokusei = grenade_flagment;
 			}
 			break;
@@ -20908,29 +20939,22 @@ function GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray
 			break;
 		// 號砲
 		case SKILL_ID_GOHO:
-
-			// オートスペルの計算中でない場合
 			if(!n_AS_MODE){
-
-				// コンボ時のフラグを見て、威力倍率を調整
+				// オートスペルの計算中でない場合
 				if(attackMethodConfArray[0].GetOptionValue(0) == 0) {
+					// コンボ時のフラグを見て、威力倍率を調整
 					w999 += 40 * mobData[2] + 240 * n_A_ActiveSkillLV;
 				}
 				else {
 					w999 += 40 * mobData[2] + 500 * n_A_ActiveSkillLV;
 				}
-			}
-
-			// オートスペルの計算中の場合
-			else{
-
-				// 攻撃手段が「閃光連撃時の連撃」の場合
-				if(attackMethodConfArray[1].GetSkillId() == SKILL_ID_SENKO_RENGEKI) {
+			} else {
+				// オートスペルの場合
+				if(attackMethodConfArray[0].GetSkillId() == SKILL_ID_SENKO_RENGEKI) {
+					// 攻撃手段が「閃光連撃時の連撃」の場合
 					w999 += 40 * mobData[2] + 240 * n_A_ActiveSkillLV;
-				}
-
-				// 攻撃手段がそれ以外（「双龍コンボ時の連撃」）の場合
-				else {
+				} else {
+					// 攻撃手段がそれ以外（「双龍コンボ時の連撃」）の場合
 					w999 += 40 * mobData[2] + 500 * n_A_ActiveSkillLV;
 				}
 			}
@@ -25549,16 +25573,16 @@ function ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData
 function ApplyPhysicalSkillDamageRatioChangeSubArcanaCard(cardid) {
 	var vartmp = 0;
 
-	cardCountArmsRight	 = CardNumSearch(cardid, CARD_REGION_ID_ARMS_RIGHT_ANY);
-	cardCountArmsLeft	 = CardNumSearch(cardid, CARD_REGION_ID_ARMS_LEFT_ANY);
-	cardCountHeadTop	 = CardNumSearch(cardid, CARD_REGION_ID_HEAD_TOP_ANY);
-	cardCountHeadMid	 = CardNumSearch(cardid, CARD_REGION_ID_HEAD_MID_ANY);
-	cardCountShield		 = CardNumSearch(cardid, CARD_REGION_ID_SHIELD_ANY);
-	cardCountBody		 = CardNumSearch(cardid, CARD_REGION_ID_BODY_ANY);
-	cardCountShoulder	 = CardNumSearch(cardid, CARD_REGION_ID_SHOULDER_ANY);
-	cardCountShoes		 = CardNumSearch(cardid, CARD_REGION_ID_SHOES_ANY);
-	cardCountAccessary1	 = CardNumSearch(cardid, CARD_REGION_ID_ACCESSARY_1_ANY);
-	cardCountAccessary2	 = CardNumSearch(cardid, CARD_REGION_ID_ACCESSARY_2_ANY);
+	let cardCountArmsRight	 = CardNumSearch(cardid, CARD_REGION_ID_ARMS_RIGHT_ANY);
+	let cardCountArmsLeft	 = CardNumSearch(cardid, CARD_REGION_ID_ARMS_LEFT_ANY);
+	let cardCountHeadTop	 = CardNumSearch(cardid, CARD_REGION_ID_HEAD_TOP_ANY);
+	let cardCountHeadMid	 = CardNumSearch(cardid, CARD_REGION_ID_HEAD_MID_ANY);
+	let cardCountShield		 = CardNumSearch(cardid, CARD_REGION_ID_SHIELD_ANY);
+	let cardCountBody		 = CardNumSearch(cardid, CARD_REGION_ID_BODY_ANY);
+	let cardCountShoulder	 = CardNumSearch(cardid, CARD_REGION_ID_SHOULDER_ANY);
+	let cardCountShoes		 = CardNumSearch(cardid, CARD_REGION_ID_SHOES_ANY);
+	let cardCountAccessary1	 = CardNumSearch(cardid, CARD_REGION_ID_ACCESSARY_1_ANY);
+	let cardCountAccessary2	 = CardNumSearch(cardid, CARD_REGION_ID_ACCESSARY_2_ANY);
 
 	vartmp += 1 * n_A_Weapon_ATKplus * cardCountArmsRight;
 	vartmp += 1 * n_A_Weapon2_ATKplus * cardCountArmsLeft;
