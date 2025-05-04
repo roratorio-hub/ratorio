@@ -23979,15 +23979,6 @@ function GetCoolFixOfSkill(skillId) {
 		coolfix -= GetEquippedTotalSPCardAndElse(ITEM_SP_SKILL_COOL_MINUS_OFFSET + skillId);
 	}
 
-	//「暴食のクラウン(ハイパーノービス)」の「天使さま助けて」CT短縮効果の打ち消し
-	if (skillId === SKILL_ID_TENSHISAMA_TASUKETE) {
-		if (EquipNumSearch(ITEM_ID_IMPERIAL_ARTIS_SUIT) != 0 || EquipNumSearch(ITEM_ID_GRACE_ARTIS_SUIT) != 0) {
-			if (EquipNumSearch(ITEM_ID_GLUTTONY_CROWN_HYPER_NOVICE) != 0) {
-				coolfix += 240 * 1000;
-			}
-		}
-	}
-
 	//「暴食のクラウン(バイオロ)」の「クレイジーウィード」CT短縮効果の打ち消し
 	if (skillId === SKILL_ID_CRAZY_WEED) {
 		if (EquipNumSearch(ITEM_ID_GRACE_CULTIVATION_COAT) != 0 || CardNumSearch(CARD_SET_ID_ENCHANT_GOKETSU_SENZAI_KAKUSEI_CRAZY_WEED) != 0) {
@@ -23997,11 +23988,16 @@ function GetCoolFixOfSkill(skillId) {
 		}
 	}
 
-	//「暴食のクラウン(インクイジター)」の「潜龍昇天」CT短縮効果の打ち消し
+	//「潜龍昇天」CT短縮効果の打ち消し
 	if (skillId === SKILL_ID_SENRYU_SHOTEN) {
+		// グレース天地スーツ + ノブレスオブリージュを装備しているときに
 		if (EquipNumSearch(ITEM_SET_ID_NOBLESSE_OBLIGE_GRACE_TENCHI_SUIT) != 0) {
-			if (EquipNumSearch(ITEM_ID_GLUTTONY_CROWN_INQUISITOR) != 0) {
-				coolfix += 25 * 1000;
+			// 暴食のクラウン(インクイジター) か 時間のサークレット(インクイジター) を装備していて
+			if (EquipNumSearch(ITEM_ID_GLUTTONY_CROWN_INQUISITOR) != 0 || EquipNumSearch(ITEM_ID_CIRCLET_OF_TIME_INQUISITOR) != 0) {
+				// 上段装備の精錬値が7以上のとき
+				if (n_A_HEAD_DEF_PLUS >= 7) {
+					coolfix += 25 * 1000;
+				}
 			}
 		}
 	}
@@ -24753,6 +24749,15 @@ function GetCoolFixOfSkill(skillId) {
 		if (eqpnum > 0) {
 			if (LearnedSkillSearch(SKILL_ID_BREAK_THROUGH) >= 5) {
 				coolfix -= 180000 * eqpnum;
+			}
+		}
+	}
+
+	//「暴食のクラウン(ハイパーノービス)」の「天使さま助けて」CT短縮効果の打ち消し
+	if (skillId === SKILL_ID_TENSHISAMA_TASUKETE) {
+		if (EquipNumSearch(ITEM_ID_IMPERIAL_ARTIS_SUIT) != 0 || EquipNumSearch(ITEM_ID_GRACE_ARTIS_SUIT) != 0) {
+			if (EquipNumSearch(ITEM_ID_GLUTTONY_CROWN_HYPER_NOVICE) != 0) {
+				coolfix += 240 * 1000;
 			}
 		}
 	}
