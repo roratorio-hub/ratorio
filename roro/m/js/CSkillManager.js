@@ -31199,17 +31199,28 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// マッドネスクラッシャー
 		// ----------------------------------------------------------------
+		// TODO ハルバード使用時にスキルLv5で+17のダメージ誤差が生じるので計算式に疑いが残る
 		SKILL_ID_MADNESS_CRUSHER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)マッドネスクラッシャー";
+			this.name = "(△)マッドネスクラッシャー";
 			this.kana = "マツトネスクラツシヤア";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.Power = function(skillLv, charaData) {					// スキル倍率
+				let ratio = 0;
+				const wpnLv = ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS]][ITEM_DATA_INDEX_WPNLV] % 10;
+				const weight = ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS]][ITEM_DATA_INDEX_WEIGHT];
+				ratio += 3000 + 900 * skillLv;
+				ratio += weight * wpnLv;
+				ratio += [0, 15, 18, 19, 22, 25][skillLv] * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				ratio = Math.floor(ratio * n_A_BaseLV / 100);
+				return ratio;
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 190;
 			}
