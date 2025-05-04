@@ -24711,35 +24711,29 @@ function GetCoolFixOfSkill(skillId) {
 		}
 	}
 
-	//----------------------------------------------------------------
-	// 「インペリアルアーティススーツ」の「天使さま助けて」短縮
-	//----------------------------------------------------------------
+	// 「天使さま助けて」のCT減少
 	if (skillId == SKILL_ID_TENSHISAMA_TASUKETE) {
-		eqpnum = EquipNumSearchMIG(ITEM_ID_IMPERIAL_ARTIS_SUIT);
-		if (eqpnum > 0) {
-			if (LearnedSkillSearch(SKILL_ID_BREAK_THROUGH) >= 5) {
-				coolfix -= 60000 * eqpnum;
+		// スキル習得時の効果
+		if (LearnedSkillSearch(SKILL_ID_BREAK_THROUGH) >= 5) {
+			// ブレイクスルーLv5習得時
+			if (EquipNumSearchMIG(ITEM_ID_IMPERIAL_ARTIS_SUIT) > 0) {
+				// インペリアルアーティススーツ装備時
+				coolfix -= 60 * 1000;
+			}
+			if (EquipNumSearchMIG(ITEM_ID_GRACE_ARTIS_SUIT) > 0) {
+				// グレースアーティススーツ装備時
+				coolfix -= 180 * 1000;
 			}
 		}
-	}
-
-	//----------------------------------------------------------------
-	// 「グレースアーティススーツ」の「天使さま助けて」短縮
-	//----------------------------------------------------------------
-	if (skillId == SKILL_ID_TENSHISAMA_TASUKETE) {
-		eqpnum = EquipNumSearchMIG(ITEM_ID_GRACE_ARTIS_SUIT);
-		if (eqpnum > 0) {
-			if (LearnedSkillSearch(SKILL_ID_BREAK_THROUGH) >= 5) {
-				coolfix -= 180000 * eqpnum;
-			}
-		}
-	}
-
-	//「暴食のクラウン(ハイパーノービス)」の「天使さま助けて」CT短縮効果の打ち消し
-	if (skillId === SKILL_ID_TENSHISAMA_TASUKETE) {
+		// 競合する効果の打ち消し
 		if (EquipNumSearch(ITEM_ID_IMPERIAL_ARTIS_SUIT) != 0 || EquipNumSearch(ITEM_ID_GRACE_ARTIS_SUIT) != 0) {
-			if (EquipNumSearch(ITEM_ID_GLUTTONY_CROWN_HYPER_NOVICE) != 0) {
-				coolfix += 240 * 1000;
+			// 「インペリアルアーティススーツ」または「グレースアーティススーツ」を装備時
+			if (EquipNumSearch(ITEM_ID_CIRCLET_OF_TIME_HYPERNOVICE) != 0 || EquipNumSearch(ITEM_ID_GLUTTONY_CROWN_HYPER_NOVICE) != 0) {
+				// 「時間のサークレット(ハイパーノービス)」または「暴食のクラウン(ハイパーノービス)」を装備時
+				if (n_A_HEAD_DEF_PLUS >= 7) {
+					// 精錬値が7以上のCT減少効果を打ち消し
+					coolfix += 240 * 1000;
+				}
 			}
 		}
 	}
