@@ -1,3 +1,11 @@
+/**
+ * 主にキャラクタステータスに作用する関数がまとめられたファイル
+ * ただし
+ * roro が避難所安定版で運用されていたファイル群
+ * ro4 が避難所次世代版でリファクタリングされたファイル群
+ * なので厳密には様々な処理が入り混じっている
+ */
+
 function RefreshSuperNoviceFullWeapon(bFull) {
 
 	var idx = 0;
@@ -269,8 +277,6 @@ function RefreshSuperNoviceFullWeapon(bFull) {
 
 }
 
-
-
 function UpdateEquipItemDataByHtml() {
 
 	var charaDataManager = null;
@@ -387,8 +393,6 @@ function UpdateEquipItemDataByHtml() {
 	}
 
 }
-
-
 
 function UpdateEquipCardDataByHtml() {
 
@@ -550,8 +554,6 @@ function UpdateEquipCardDataByHtml() {
 	}
 }
 
-
-
 function UpdateEquipCostumeDataByHtml() {
 
 	var itemId = 0;
@@ -566,9 +568,6 @@ function UpdateEquipCostumeDataByHtml() {
 	// 各装着部位
 	n_A_costume[COSTUME_REGION_ID_HEAD_UNDER]	 = GetStatefullData("DATA_OBJID_HEAD_UNDER_COSTUME", 0);
 }
-
-
-
 
 function StAllCalc(){
 
@@ -22505,10 +22504,6 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 	return [charaData, n_tok, mobData, attackMethodConfArray];
 }
 
-
-
-
-
 //================================================================================================================================
 //================================================================================================================================
 //====
@@ -23288,10 +23283,6 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 	return scaling;
 }
 
-
-
-
-
 //================================================================================================================================
 //================================================================================================================================
 //====
@@ -23512,10 +23503,6 @@ function GetCastFixOfSkillForCastTimeVary(skillId) {
 
 	return castfix;
 }
-
-
-
-
 
 //================================================================================================================================
 //================================================================================================================================
@@ -23806,10 +23793,6 @@ function GetCastScalingOfSkillForCastTimeFixed(skillId) {
 	return scaling;
 }
 
-
-
-
-
 //================================================================================================================================
 //================================================================================================================================
 //====
@@ -23929,10 +23912,6 @@ function GetCastFixOfSkillForCastTimeFixed(skillId) {
 	return castfix;
 }
 
-
-
-
-
 //================================================================================================================================
 //================================================================================================================================
 //====
@@ -24030,10 +24009,6 @@ function GetCastScalingOfSkillForCastTimeForce(skillId) {
 	return scaling;
 }
 
-
-
-
-
 //================================================================================================================================
 //================================================================================================================================
 //====
@@ -24050,10 +24025,6 @@ function GetCastFixOfSkillForCastTimeForce(skillId) {
 
 	return castfix;
 }
-
-
-
-
 
 //================================================================================================================================
 //================================================================================================================================
@@ -25622,10 +25593,6 @@ function GetCoolFixOfSkill(skillId) {
 	return coolfix;
 }
 
-
-
-
-
 //================================================================================================================================
 //================================================================================================================================
 //====
@@ -25681,10 +25648,6 @@ function GetCostScalingOfSkill(skillId) {
 
 	return scaling;
 }
-
-
-
-
 
 //================================================================================================================================
 //================================================================================================================================
@@ -26133,14 +26096,6 @@ function GetCostFixOfSkill(skillId) {
 
 	return costfix;
 }
-
-
-
-
-
-
-
-
 
 function StPlusCalc() {
 
@@ -28996,10 +28951,6 @@ function StPlusCalc() {
 	// 画面出力
 }
 
-
-
-
-
 /**
  * 装備中のＳＰの合計値を取得する（装備のみ）.
  * @param spid ＳＰのＩＤ
@@ -29510,10 +29461,6 @@ function GetEquippedSPSubShadow(spid, invalidItemIdArray, bListUp, bExact) {
 	}
 }
 
-
-
-
-
 /**
  * 装備中のＳＰの合計値を取得する（装備以外）.
  * @param spid ＳＰのＩＤ
@@ -29965,8 +29912,6 @@ function GetEquippedSPSubSPCardAndElse(spid, invalidCardIdArray, bListUp) {
 	}
 }
 
-
-
 /**
  * 装備中のＳＰの合計値を取得する（ペットのみ）.
  * @param spid ＳＰのＩＤ
@@ -30136,8 +30081,6 @@ function GetEquippedSPSubSPPet(spid, invalidPetIdArray, bListUp) {
 	}
 }
 
-
-
 /**
  * 装備中のＳＰの合計値を取得する（衣装のみ）.
  * @param spid ＳＰのＩＤ
@@ -30258,9 +30201,6 @@ function GetEquippedTotalSPCostume(spid) {
 
 	return spVal;
 }
-
-
-
 
 /**
  * 装備中のＳＰの合計値を取得する（矢のみ）.
@@ -30554,7 +30494,6 @@ function CheckSpDefRefineOver(spDefRemain, eqpRefined) {
 	return (spDefRemain % spDefBase);
 }
 
-
 /**
  * アイテムの超越段階が「超越段階が◯以上のとき」を満たしているか検査する
  * @param {*} spDefRemain フラグ付きアイテムSP（BitInt の場合と Int の場合がある）
@@ -30578,7 +30517,6 @@ function CheckSpDefTransendenceOver(spDefRemain, eqpTranscendence) {
 	return spDefRemain;	
 }
 
-
 /**
  * 職業の基本条件を設定する
  */
@@ -30594,8 +30532,6 @@ function InitJobInfo() {
 	}
 }
 
-
-
 function NumSearch(NS1,NS2){
 	var end = NS2.length-1;
 
@@ -30605,6 +30541,7 @@ function NumSearch(NS1,NS2){
 
 	return 0;
 }
+
 function NumSearch2(NS1,NS2){
 	var end = NS2.length-1;
 
@@ -30614,10 +30551,6 @@ function NumSearch2(NS1,NS2){
 
 	return -1;
 }
-
-
-
-
 
 /**
  * 古びた頭装備の装備数を取得する.
@@ -30669,10 +30602,6 @@ function EquipNumSearchFurubitaSet() {
 	return 0;
 }
 
-
-
-
-
 function ROUNDDOWN(num){
 	if(num >= 0){
 		num = Math.floor(num) }else{
@@ -30691,14 +30620,10 @@ function ROUNDUP(num){
 	return num;
 }
 
-
-
-
 // 計算機設定の読み込み
 if (document.getElementById("OBJID_SAVE_BLOCK_MIG")) {
 	CSaveController.LoadSettingFromLocalStorageMIG();
 }
-
 
 // 職業選択セレクトボックスの構築
 (function () {
@@ -30716,22 +30641,14 @@ if (document.getElementById("OBJID_SAVE_BLOCK_MIG")) {
 
 })();
 
-
-
 SpeedPotName = ["なし","スピードアップポーション","ハイスピードポーション","バーサークポーション"];
 document.calcForm.A_SpeedPOT.options[0] = new Option(SpeedPotName[0],0);
 document.calcForm.A_SpeedPOT.options[1] = new Option(SpeedPotName[1],1);
-
-
 
 EnName =["なし","水","地","火","風","毒","聖","闇","念","死"];
 for (i=0;i<=9;i++) {
 	document.calcForm.A_Weapon_zokusei.options[i] = new Option(EnName[i],i);
 }
-
-
-
-
 
 /*
 InitMonsterMpaSelect();
@@ -30740,21 +30657,15 @@ RefreshMonsteMapSortKey();
 */
 CMonsterMapAreaComponentManager.RebuildControls();
 
-
-
 //--------------------------------
 // モンスター手入力設定欄の初期化
 //--------------------------------
 g_objMobConfInput = new CMobConfInputAreaComponentManager(g_dataManagerMobConfInput);
 g_objMobConfInput.BuildUpSelectArea(document.getElementById("OBJID_TD_MOB_CONF_INPUT_NEW"), false);
 
-
-
 n_A_JOB = 0;
 document.calcForm.A_JOB.value = 0;
 OnChangeJobSelect(0);
-
-
 
 if (true) {
 	//--------------------------------
@@ -30772,7 +30683,6 @@ if (true) {
 	UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_ACCESSARY_1);
 	UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_ACCESSARY_2);
 }
-
 
 function LoadSaveDataToCalculator () {
 
@@ -30793,7 +30703,6 @@ function LoadSaveDataToCalculator () {
 		}
 	}
 }
-
 
 if (document.getElementById("OBJID_SAVE_BLOCK_MIG")) {
 	CSaveController.LoadFromLocalStorageMIG();
@@ -31099,16 +31008,6 @@ function Init(){
 
 	BuildUpCastSimSimulateArea(document.getElementById("OBJID_TD_CASTSIM"), false);
 }
-
-
-
-
-
-
-
-
-
-
 
 g_intervalFunctionSimulateCastTime = null;
 g_castProgressInterval = 10;
