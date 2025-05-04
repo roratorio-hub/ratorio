@@ -2526,11 +2526,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 
 			// 「ドラゴンナイト」スキル「ハックアンドスラッシャー」
 			case SKILL_ID_HACK_AND_SLASHER:
-				// 詠唱時間等
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				// 両手剣、両手槍のみ発動可能
 				if (![ITEM_KIND_SWORD_2HAND, ITEM_KIND_SPEAR_2HAND].includes(n_A_WeaponType)) {
 					wbairitu = 0;
@@ -2538,15 +2533,14 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 					break;
 				}
 				// 武器種別による距離属性変化
-				n_Enekyori = (n_A_WeaponType == ITEM_KIND_SWORD_2HAND) ? 0 :1;
-				// 基本倍率
-				wbairitu = 1400 + 100 * n_A_ActiveSkillLV;
-				// POW補正 (2025/01/12 未確認)
-				wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-				// ベースレベル補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
-				// HIT数
-				wHITsuu = 2;
+				n_Enekyori = (n_A_WeaponType == ITEM_KIND_SWORD_2HAND) ?CSkillData.RANGE_SHORT :CSkillData.RANGE_LONG;
+				// 詠唱時間等
+				wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV);
 				break;
 
 			// 「ドラゴンナイト」スキル「ドラゴニックオーラ」

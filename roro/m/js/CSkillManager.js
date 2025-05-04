@@ -10,10 +10,8 @@ function CSkillData() {
 	CSkillData.TYPE_PHYSICAL = 4;
 	CSkillData.TYPE_MAGICAL = 8;
 	CSkillData.TYPE_100HIT = 16;
-	CSkillData.TYPE_IRREGULAR_BATTLE_TIME = 32; // 戦闘時間が特殊になるフラグ。n_Delay[0] = 1
-												// に対応
-	CSkillData.TYPE_UNKNOWN_DELAY_TIME = 64; // ディレイorクールタイム不明フラグ。n_Delay[0]
-												// = 2 に対応
+	CSkillData.TYPE_IRREGULAR_BATTLE_TIME = 32; // 戦闘時間が特殊になるフラグ。n_Delay[0] = 1 に対応
+	CSkillData.TYPE_UNKNOWN_DELAY_TIME = 64; // ディレイorクールタイム不明フラグ。n_Delay[0] = 2 に対応
 	CSkillData.TYPE_DIVHIT_FORMULA = 128; // 分割ヒット計算フラグ。n_bunkatuHIT == 1 に対応
 
 	CSkillData.RANGE_SHORT = 0;
@@ -43,8 +41,6 @@ function CSkillData() {
 	this.range = 0;
 	this.element = 0;
 
-
-
 	this.CostVary = function(skillLv, charaDataManger) {
 		return 0;
 	}
@@ -57,9 +53,11 @@ function CSkillData() {
 	this.Power = function(skillLv, charaDataManger) {
 		return 0;
 	}
+	/** ヒット数 */
 	this.hitCount = function(skillLv, charaDataManger) {
 		return 1;
 	}
+	/** 分割ヒット数 */
 	this.dispHitCount = function(skillLv, charaDataManger) {
 		return 0;
 	}
@@ -143,6 +141,11 @@ function CSkillManager() {
 
 	this.dataArray = new Array();
 
+	/**
+	 * 呼び出し元である親スキルのIDを取得する。呼び出し元が存在しない場合は自分自身のスキルIDを返す。
+	 * @param {Number} skillId 
+	 * @returns {Number} スキルID
+	 */
 	this.GetBaseSkillId = function(skillId) {
 		if (this.dataArray[skillId].refId >= 0) {
 			return this.dataArray[skillId].refId;
@@ -229,8 +232,35 @@ function CSkillManager() {
 		return this.dataArray[skillId].element;
 	}
 
+	/**
+	 * スキル倍率を取得する
+	 * @param {Number} skillId 
+	 * @param {Number} skillLv 
+	 * @param {Array} charaDataManger 
+	 * @returns {Number} スキル倍率％
+	 */
 	this.GetPower = function(skillId, skillLv, charaDataManger) {
 		return this.dataArray[skillId].Power(skillLv, charaDataManger);
+	}
+
+	/**
+	 * スキルのヒット数を取得する
+	 * @param {Number} skillId 
+	 * @param {*} skillLv 
+	 * @returns 
+	 */
+	this.GetHitCount = function(skillId, skillLv) {
+		return this.dataArray[skillId].hitCount(skillLv);
+	}
+
+	/**
+	 * スキルの分割ヒット数を取得する
+	 * @param {Number} skillId 
+	 * @param {*} skillLv 
+	 * @returns 
+	 */
+	this.GetDividedHitCount = function(skillId, skillLv) {
+		return this.dataArray[skillId].dispHitCount(skillLv);
 	}
 
 	this.GetCostVary = function(skillId, skillLv, charaDataManger) {
@@ -269,6 +299,15 @@ function CSkillManager() {
 		return this.dataArray[skillId].LifeTime(skillLv, charaDataManger);
 	}
 
+	/**
+	 * クリティカルするスキルの場合、trueを返す
+	 * @param {Number} skillId 
+	 * @param {Number} skillLv 
+	 * @param {*} charaData 
+	 * @param {*} specData 
+	 * @param {*} mobData 
+	 * @returns {Boolean} 
+	 */
 	this.IsEnableCritical = function(skillId, skillLv, charaData, specData, mobData) {
 		return (this.dataArray[skillId].CriActRate(skillLv, charaData, specData, mobData) > 0);
 	}
@@ -31064,12 +31103,22 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)ハックアンドスラッシャー";
+			this.name = "ハックアンドスラッシャー";
 			this.kana = "ハツクアントスラツシヤア";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SPECIAL;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.hitCount = function(skillLv) {							// ヒット数
+				return 2;
+			}
+			this.Power = function(skillLv, charaData) {					// スキル倍率
+				let ratio = 0;
+				ratio = 1400 + 100 * skillLv;
+				ratio += 8 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				ratio = Math.floor(ratio * n_A_BaseLV / 100);
+				return ratio;
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 190;
 			}
