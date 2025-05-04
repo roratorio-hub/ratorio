@@ -39515,12 +39515,26 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)ドラゴニックブレス";
+			this.name = "ドラゴニックブレス";
 			this.kana = "トラコニツクフレス";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.Power = function(skillLv, charaData) {					// スキル倍率
+				let ratio = 0;
+				if (UsedSkillSearch(SKILL_ID_DRAGONIC_AURA_STATE) > 1) {
+					ratio = 3500 + 400 * skillLv;
+					ratio += 25 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				} else {
+					ratio = 2750 + 325 * skillLv;
+					ratio += 20 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				}
+				ratio += charaData[CHARA_DATA_INDEX_MAXHP] / 500;
+				ratio += charaData[CHARA_DATA_INDEX_MAXSP] / 20;
+				ratio = Math.floor(ratio * n_A_BaseLV / 100);
+				return ratio;
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 230;
 			}
