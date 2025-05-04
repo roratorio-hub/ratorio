@@ -31109,12 +31109,19 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)ドラゴニックオーラ";
+			this.name = "ドラゴニックオーラ";
 			this.kana = "トラコニツクオオラ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.Power = function(skillLv, charaData) {					// スキル倍率
+				let ratio = 0;
+				ratio = 7000 + 2000 * skillLv;
+				ratio += 90 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				ratio = Math.floor(ratio * n_A_BaseLV / 100);
+				return ratio;
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 190;
 			}

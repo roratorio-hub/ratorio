@@ -2551,19 +2551,12 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 
 			// 「ドラゴンナイト」スキル「ドラゴニックオーラ」
 			case SKILL_ID_DRAGONIC_AURA:
-				// 詠唱時間等
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// 距離属性
-				n_Enekyori = 1;
-				// 基本倍率
-				wbairitu = 7000 + 2000 * n_A_ActiveSkillLV;
-				// POW補正 (2025/01/12 未確認)
-				wbairitu += 40 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-				// ベースレベル補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+				wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				break;
 
 			// 「ドラゴンナイト」スキル「マッドネスクラッシャー」
