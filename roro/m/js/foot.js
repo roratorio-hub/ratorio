@@ -23979,15 +23979,6 @@ function GetCoolFixOfSkill(skillId) {
 		coolfix -= GetEquippedTotalSPCardAndElse(ITEM_SP_SKILL_COOL_MINUS_OFFSET + skillId);
 	}
 
-	//「暴食のクラウン(バイオロ)」の「クレイジーウィード」CT短縮効果の打ち消し
-	if (skillId === SKILL_ID_CRAZY_WEED) {
-		if (EquipNumSearch(ITEM_ID_GRACE_CULTIVATION_COAT) != 0 || CardNumSearch(CARD_SET_ID_ENCHANT_GOKETSU_SENZAI_KAKUSEI_CRAZY_WEED) != 0) {
-			if (EquipNumSearch(ITEM_ID_GLUTTONY_CROWN_BIOLO) != 0) {
-				coolfix += 4.5 * 1000;
-			}
-		}
-	}
-
 	//「潜龍昇天」CT短縮効果の打ち消し
 	if (skillId === SKILL_ID_SENRYU_SHOTEN) {
 		// グレース天地スーツ + ノブレスオブリージュを装備しているときに
@@ -24393,32 +24384,23 @@ function GetCoolFixOfSkill(skillId) {
 		}
 	}
 
-	//----------------------------------------------------------------
-	// 「ジェジェキャップ」の、「クレイジーウィード」短縮
-	//----------------------------------------------------------------
+	// クレイジーウィード CT 減少
 	if (skillId == SKILL_ID_CRAZY_WEED) {
-		eqpnum = EquipNumSearch(ITEM_ID_JEJECAP, EQUIP_REGION_ID_HEAD_TOP);
-		if (eqpnum > 0) {
-
-			// 特定セット成立時は発動しないので、それを除外
-			if (
-				(
-					(EquipNumSearch(ITEM_SET_ID_GRACE_CULTIVATION_COAT_JEJECAP) > 0)
-					&&
-					(LearnedSkillSearch(SKILL_ID_HOWLING_OF_MANDRAGORA) >= 5)
-				)
-			) {
+		// スキル習得時の効果
+		if (LearnedSkillSearch(SKILL_ID_HOWLING_OF_MANDRAGORA) >= 5) {
+			// ハウリングマンドラゴラLv5習得時
+			if (EquipNumSearch(ITEM_ID_JEJECAP) > 0 || EquipNumSearch(ITEM_ID_GRACE_CULTIVATION_COAT) > 0) {
+				// 「ジェジェキャップ」または「グレースカルティベイションコート」装備時
+				coolfix -= 4.5  * 1000;
 			}
-
-			// このケースのみ発動
-			else {
-
-				if (LearnedSkillSearch(SKILL_ID_HOWLING_OF_MANDRAGORA) >= 5) {
-					coolfix -= 4500  * eqpnum;
-				}
+		}
+		// 競合する効果の打消し
+		if (EquipNumSearch(ITEM_ID_GLUTTONY_CROWN_BIOLO) > 0 && n_A_HEAD_DEF_PLUS >= 7) {
+			// 精錬値7以上の暴食のクラウン(バイオロ)を装備時
+			if (EquipNumSearch(ITEM_ID_GRACE_CULTIVATION_COAT) > 0 || CardNumSearch(CARD_SET_ID_ENCHANT_GOKETSU_SENZAI_KAKUSEI_CRAZY_WEED) > 0) {
+				// 「グレースカルティベイションコート」または「潜在覚醒(クレイジーウィード) 」を装備時
+				coolfix += 4.5  * 1000;
 			}
-
-
 		}
 	}
 
@@ -24932,17 +24914,6 @@ function GetCoolFixOfSkill(skillId) {
 		if ((eqpnum = EquipNumSearch(ITEM_ID_GRACE_CULTIVATION_COAT)) > 0) {
 			if (LearnedSkillSearch(SKILL_ID_CRAZY_WEED) >= 10) {
 				coolfix -= 12000  * eqpnum;
-			}
-		}
-	}
-
-	//----------------------------------------------------------------
-	// 「グレースカルティベイションコート」の、「クレイジーウィード」短縮
-	//----------------------------------------------------------------
-	if (skillId == SKILL_ID_CRAZY_WEED) {
-		if ((eqpnum = EquipNumSearch(ITEM_ID_GRACE_CULTIVATION_COAT)) > 0) {
-			if (LearnedSkillSearch(SKILL_ID_HOWLING_OF_MANDRAGORA) >= 5) {
-				coolfix -= 4500  * eqpnum;
 			}
 		}
 	}
