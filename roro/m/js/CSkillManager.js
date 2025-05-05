@@ -30897,7 +30897,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(△)サーヴァントウェポン";	// 公式サイトでは「武器体攻撃」と表記
+			this.name = "サーヴァントウェポン";	// 公式サイトでは「武器体攻撃」と表記
 			this.kana = "サアウアントウエホン";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -30994,7 +30994,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(△)サーヴァントウェポン：ファントム";
+			this.name = "サーヴァントウェポン：ファントム";
 			this.kana = "サアウアントウエホンファントム";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -31046,7 +31046,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)サーヴァントウェポン：デモリッション";
+			this.name = "サーヴァントウェポン：デモリッション";
 			this.kana = "サアウアントウエホンテモリツシヨン";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -31098,7 +31098,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)チャージングピアース";
+			this.name = "チャージングピアース";
 			this.kana = "チヤアシンクヒアアス";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -31308,7 +31308,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)ヴィゴール";
+			this.name = "ヴィゴール";
 			this.kana = "ウイコオル";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE;
