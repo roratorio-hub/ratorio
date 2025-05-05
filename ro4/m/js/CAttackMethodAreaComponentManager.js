@@ -2396,14 +2396,57 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 		// ルーンナイト：ハンドレッドスピア
 		//----------------------------------------------------------------
 		case SKILL_ID_HANDRED_SPEAR:
-
-			// オプションリストを生成、追加
 			attackMethodOptList = funcCreateOptionListAsLearnLvSelect(attackMethodOptList, SKILL_ID_SPIRAL_PIERCE, -1);
-
-			// オプションリストを生成、追加
 			attackMethodOptList = funcCreateOptionListAsLearnLvSelect(attackMethodOptList, SKILL_ID_SPEAR_BOOMERANG, 0);
+			if (n_A_JOB == MIG_JOB_ID_DRAGON_KNIGHT) {
+				// ドラゴンナイトの場合
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"チャージングピアースLv",
+					[
+						[0, "off"],
+						[1, "1"],
+						[2, "2"],
+						[3, "3"],
+						[4, "4"],
+						[5, "5"],
+						[6, "6"],
+						[7, "7"],
+						[8, "8"],
+						[9, "9"],
+						[10, "10"],
+					],
+					0
+				);			
+			}
 			break;
 
+		// ピアース
+		// スパイラルピアース
+		// マッドネスクラッシャー
+		case SKILL_ID_PIERCE:
+		case SKILL_ID_SPIRAL_PIERCE:
+		case SKILL_ID_MADNESS_CRUSHER:
+			if (n_A_JOB == MIG_JOB_ID_DRAGON_KNIGHT) {
+				// ドラゴンナイトの場合
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"チャージングピアース",
+					[
+						[0, "off"],
+						[1, "1"],
+						[2, "2"],
+						[3, "3"],
+						[4, "4"],
+						[5, "5"],
+						[6, "6"],
+						[7, "7"],
+						[8, "8"],
+						[9, "9"],
+						[10, "10"],
+					],
+					0
+				);			
+			}
+			break;
 
 		//----------------------------------------------------------------
 		// ルーンナイト：イグニッションブレイク

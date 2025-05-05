@@ -2020,7 +2020,7 @@ function GetItemExplainText(spId, spValue) {
 		break;
 
 	case ITEM_SP_ASPD_UP:
-		textInfoArray.push(["", "ASPD" + sign + spValue +"%"]);
+		textInfoArray.push(["", "攻撃速度" + sign + spValue +"%"]);
 		break;
 
 	case ITEM_SP_MAXHP_PLUS:
