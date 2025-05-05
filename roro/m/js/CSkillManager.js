@@ -237,10 +237,11 @@ function CSkillManager() {
 	 * @param {Number} skillId 
 	 * @param {Number} skillLv 
 	 * @param {Array} charaDataManger 
+	 * @param {CAttackMethodConf} option 
 	 * @returns {Number} スキル倍率％
 	 */
-	this.GetPower = function(skillId, skillLv, charaDataManger) {
-		return this.dataArray[skillId].Power(skillLv, charaDataManger);
+	this.GetPower = function(skillId, skillLv, charaDataManger, option) {
+		return this.dataArray[skillId].Power(skillLv, charaDataManger, option);
 	}
 
 	/**
@@ -2326,7 +2327,6 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "ピアース";
 			this.kana = "ヒアアス";
@@ -2334,19 +2334,15 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
-
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 7;
 			}
-
-			this.Power = function(skillLv, charaDataManger) {
-				return 100 + 10 * skillLv;
+			this.Power = function(skillLv, charaDataManger, option) {
+				let ratio = 100 + 10 * skillLv;
+				// チャージングピアースがONの時、与えるダメージ + 150% x スキルレベル
+				ratio *= 1 + 1.5 * option.GetOptionValue(0);
+				return ratio;
 			}
-
-			this.hitCount = function(skillLv, charaDataManger) {
-				return 1 + 1 * charaDataManger.GetMonsterSize();
-			}
-
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -7606,7 +7602,6 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "スパイラルピアース";
 			this.kana = "スハイラルヒアアス";
@@ -7614,31 +7609,28 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_VOID;
-
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 15 + 3 * skillLv;
 			}
-
-			this.Power = function(skillLv, charaDataManger) {
-				return 100 + 50 * skillLv;
+			this.Power = function(skillLv, charaDataManger, option) {
+				let ratio = 0;
+				ratio += 100 + 50 * skillLv;
+				// チャージングピアースがONの時、与えるダメージ + 100% x スキルレベル
+				ratio = ratio * (1 + option.GetOptionValue(0));
+				return ratio;
 			}
-
 			this.hitCount = function(skillLv, charaDataManger) {
 				return 5;
 			}
-
 			this.CastTimeVary = function(skillLv, charaDataManger) {
 				return (skillLv == 5) ? (1000) : (100 + 200 * skillLv);
 			}
-
 			this.DelayTimeCommon = function(skillLv, charaDataManger) {
 				return 1000 + 200 * skillLv;
 			}
-
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 0;
 			}
-
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -13041,7 +13033,6 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "ハンドレッドスピア";
 			this.kana = "ハントレツトスヒア";
@@ -13049,31 +13040,39 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_VOID;
-
+			this.Power = function(skillLv, charaData, option) {
+				let ratio = 0;
+				if (UsedSkillSearch(SKILL_ID_DRAGONIC_AURA_STATE) > 1) {
+					// ドラゴニックオーラ状態の場合はダメージ倍率が増加する
+					ratio = 700 + 200 * skillLv;
+				}
+				else {
+					ratio = 600 + 80 * skillLv;
+				}
+				if(ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS]][ITEM_DATA_INDEX_WEIGHT] < 1000) {
+					ratio += (1000 - ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS]][ITEM_DATA_INDEX_WEIGHT]);
+				}
+				ratio = Math.floor(ratio * (1 + (n_A_BaseLV - 100) / 200));
+				ratio += 50 * option.GetOptionValue(0);
+				// チャージングピアースがONの時、与えるダメージ + 50% x スキルレベル
+				ratio = ratio * (1 + 0.5 * option.GetOptionValue(2));
+				return ratio;
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 60;
 			}
-
-			this.Power = function(skillLv, charaDataManger) {
-				return -1;
-			}
-
 			this.dispHitCount = function(skillLv, charaDataManger) {
 				return 5;
 			}
-
 			this.CastTimeVary = function(skillLv, charaDataManger) {
 				return 200 * skillLv;
 			}
-
 			this.DelayTimeCommon = function(skillLv, charaDataManger) {
 				return 2000;
 			}
-
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 1000;
 			}
-
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -31098,7 +31097,6 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "(×)チャージングピアース";
 			this.kana = "チヤアシンクヒアアス";
@@ -31106,6 +31104,27 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 210;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 200 * skillLv;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 0;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 200 * skillLv;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 60 * 1000;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return (250 - 10 * skillLv) * 1000;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -31117,7 +31136,6 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "(△)ツーハンドディフェンディング";
 			this.kana = "ツウハントテイフエンテインク";
@@ -31245,7 +31263,7 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_VOID;
-			this.Power = function(skillLv, charaData) {					// スキル倍率
+			this.Power = function(skillLv, charaData, option) {					// スキル倍率
 				let ratio = 0;
 				const wpnLv = ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS]][ITEM_DATA_INDEX_WPNLV] % 10;
 				const weight = ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS]][ITEM_DATA_INDEX_WEIGHT];
@@ -31253,6 +31271,8 @@ function CSkillManager() {
 				ratio += weight * wpnLv;
 				ratio += [0, 15, 18, 19, 22, 25][skillLv] * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
+				// チャージングピアースがONの時、与えるダメージ + 10% x スキルレベル
+				ratio = ratio * (1 + 0.1 * option.GetOptionValue(0));
 				return ratio;
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP

@@ -1400,22 +1400,14 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 				break;
 
-			case SKILL_ID_HANDRED_SPEAR:
-				n_Enekyori=1;
-				wCast = 200 * n_A_ActiveSkillLV;
-				wActiveHitNum = 5;
-				n_Delay[2] = 2000;
-				n_Delay[7] = 1000;
-				// ドラゴニックオーラ状態の場合はダメージ倍率が増加する
-				if (UsedSkillSearch(SKILL_ID_DRAGONIC_AURA_STATE) > 1) {
-					wbairitu = 700 + 200 * n_A_ActiveSkillLV;
-				}
-				else {
-					wbairitu = 600 + 80 * n_A_ActiveSkillLV;
-				}
-				if(ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS]][ITEM_DATA_INDEX_WEIGHT] <1000) wbairitu += (1000 - ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS]][ITEM_DATA_INDEX_WEIGHT]);
-				wbairitu = ROUNDDOWN(wbairitu * (1 + (n_A_BaseLV - 100) / 200));
-				wbairitu += 50 * attackMethodConfArray[0].GetOptionValue(0);
+			case SKILL_ID_HANDRED_SPEAR:	// ハンドレッドスピア
+				wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+				wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				break;
 
 			case SKILL_ID_WIND_CUTTER:
@@ -2490,7 +2482,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 				wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				break;
@@ -2500,7 +2492,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 				wHITsuu = attackMethodConfArray[0].GetOptionValue(0);
 				break;
 			case SKILL_ID_HACK_AND_SLASHER:	// ハックアンドスラッシャー
@@ -2514,7 +2506,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 				n_Enekyori = (n_A_WeaponType == ITEM_KIND_SWORD_2HAND) ? CSkillData.RANGE_SHORT : CSkillData.RANGE_LONG;
 				wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV);
 				break;
@@ -2530,7 +2522,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 				break;
 			case SKILL_ID_STORM_SLASH:	// ストームスラッシュ
 				if (![ITEM_KIND_SWORD_2HAND, ITEM_KIND_AXE_2HAND].includes(n_A_WeaponType)) {
@@ -2544,7 +2536,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 				wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				break;
 
@@ -5098,7 +5090,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				wbairitu += 10 * n_A_ActiveSkillLV - 10;
 				wHITsuu = 2;
 			}else if(n_A_ActiveSkill==SKILL_ID_PIERCE){
-				wbairitu += 10 * n_A_ActiveSkillLV;
+				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 				wHITsuu = mobData[17]+1;
 			}else if(n_A_ActiveSkill==SKILL_ID_BOWLING_BASH){
 				wbairitu += 40 * n_A_ActiveSkillLV;
@@ -5425,12 +5417,14 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 
 
 
-		case SKILL_ID_SPIRAL_PIERCE:
-			n_Enekyori=1;
-			if(n_A_ActiveSkillLV == 5) wCast = 1000;
-			else wCast = (100 + 200 * n_A_ActiveSkillLV);
-			n_Delay[2] = 1000 + 200 * n_A_ActiveSkillLV;
-			wbairitu = 100 + 50 * n_A_ActiveSkillLV + GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
+		case SKILL_ID_SPIRAL_PIERCE:	// スパイラルピアース
+			wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+			wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
 			wbairitu = ATKbaiJYOUSAN(wbairitu);
 			var wSYUUREN = TYPE_SYUUREN(mobData, attackMethodConfArray, false);
 			for(var i=0;i<=2;i++){
@@ -10386,12 +10380,17 @@ function BattleCalcSubDamagePhysicalCommon(battleCalcInfo, charaData, specData, 
 }
 
 /**
- * ＡＴＫ上昇倍率を取得する.
- * @return 上昇倍率（０～）
+ * 「追加物理攻撃力」と表現される加算型のダメージ倍率を取得する
+ * @param {*} charaData 
+ * @param {*} specData 
+ * @param {*} mobData 
+ * @param {*} attackMethodConfArray 
+ * @returns {Number} 加算される倍率％
  */
 function GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray) {
-	var sklLv = 0;
-	var w = 0;
+	let sklLv = 0;
+	/** 最終的に加算される倍率％ */
+	let w = 0;
 	// オートバーサーク系（排他）
 	// オートバーサーク
 	if (UsedSkillSearch(SKILL_ID_AUTO_BERSERK)) {
@@ -10485,7 +10484,7 @@ function GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfAr
 	}
 
 	// ヴィゴール（通常近接物理攻撃のみ）
-	if ((n_A_ActiveSkill == SKILL_ID_TUZYO_KOGEKI_CALC_RIGHT) && (n_Enekyori == 0)) {
+	if ((n_A_ActiveSkill == SKILL_ID_TUZYO_KOGEKI_CALC_RIGHT) && (n_Enekyori == CSkillData.RANGE_SHORT)) {
 		sklLv = UsedSkillSearch(SKILL_ID_VIGOR);
 		if (sklLv > 0) {
 			// 基本倍率
@@ -10523,7 +10522,7 @@ function ATKbaiJYOUSAN(wJ) {
  }
 
 /**
- * ＭＡＴＫ上昇倍率を取得する.
+ * 「追加魔法攻撃力」と表現される加算型のＭＡＴＫ上昇倍率を取得する.
  * @param {*} mobData 対象に応じて倍率を返す場合のパラメータ。無作為に処理する場合は null / undefined でも良い。
  * @returns 加算されるスキル倍率（１００分率）
  */
