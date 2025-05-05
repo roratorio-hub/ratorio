@@ -2327,7 +2327,7 @@
 		[1008,10,"ハックアンドスラッシャー","DK_HACKANDSLASHER"],
 		[1009,10,"ドラゴニックオーラ","DK_DRAGONIC_AURA"],
 		[1010,5,"マッドネスクラッシャー","DK_MADNESS_CRUSHER"],
-		[1011,10,"ヴィゴール","DK_VIGOR"],
+		[1011,10,"(×)ヴィゴール","DK_VIGOR"],
 		[1012,5,"ストームスラッシュ","DK_STORMSLASH"],
 		[1013,5,"(×)ダンシングナイフ","SHC_DANCING_KNIFE"],
 		[1014,10,"サベージインパクト","SHC_SAVAGE_IMPACT"],
