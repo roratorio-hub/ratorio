@@ -204,7 +204,7 @@ def getEnchantIdArray(item_id):
 
 def getTimeItemRecordArray(item_id):
     """ ITEM_SP_TIME_OBJ から item_id が含まれるレコードを取得する """
-    pattern = r'(\[\d+,[^,]+,[^,]+,\[.*\[1,' + item_id + '\].+)[,;]'
+    pattern = r'(\[\d+,[^,]+,[^,]+,\[.*\[1,' + item_id + '].+)[,;]'
     with open(f'{script_dir}/../roro/m/js/timeitem.dat.js', 'r', encoding='utf-8') as file:
         js_code = file.read()
     matches = re.findall(pattern, js_code)
