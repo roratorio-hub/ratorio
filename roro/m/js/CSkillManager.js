@@ -38067,12 +38067,24 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)青龍符";
+			this.name = "青龍符";
 			this.kana = "セイリユウフ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.Power = function(skillLv, charaData, option) {			// スキル倍率
+				let ratio = 0;
+				if (UsedSkillSearch(SKILL_ID_SHIHO_FU_ZYOTAI) >= 5) {
+					ratio = 5500 + 1000 * skillLv;
+				} else {
+					ratio = 4250 + 750 * skillLv;
+				}
+				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				ratio += 15 * skillLv * UsedSkillSearch(SKILL_ID_GOFU_SHUREN);
+				ratio = Math.floor(ratio * n_A_BaseLV / 100);
+				return ratio;
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 200;
 			}
