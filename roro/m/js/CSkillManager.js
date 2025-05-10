@@ -38032,14 +38032,29 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
-			this.name = "(×)死霊浄化";
+			this.name = "死霊浄化";
 			this.kana = "シリヨウシヨウカ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.dispHitCount = function(skillLv) {
+				return 5;
+			}
+			this.Power = function(skillLv, charaData, option) {       // スキル倍率
+				let ratio = 0;
+				if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SHIRYO_HYOI]) {
+					ratio = 400 + 100 * skillLv;
+				} else {
+					ratio = 350 + 50 * skillLv;
+				}
+				ratio += GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				ratio += 2 * UsedSkillSearch(SKILL_ID_REIDOZYUTSU_SHUREN);
+				ratio = ratio * UsedSkillSearch(SKILL_ID_COUNT_OF_SOUL_ENERGY);
+				ratio = Math.floor(ratio * n_A_BaseLV / 100);
+				return ratio;
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 0;
 			}
@@ -38321,6 +38336,18 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.hitCount = function(skillLv) {
+				return 5;
+			}
+			this.Power = function(skillLv, charaData, option) {       // スキル倍率
+				let ratio = 0;
+				ratio = 2200 + 600 * skillLv;
+				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				ratio += 30 * skillLv * UsedSkillSearch(SKILL_ID_GOFU_SHUREN);
+				ratio += 25 * skillLv * UsedSkillSearch(SKILL_ID_REIDOZYUTSU_SHUREN);
+				ratio = Math.floor(ratio * n_A_BaseLV / 100);
+				return ratio;
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 360;
 			}
