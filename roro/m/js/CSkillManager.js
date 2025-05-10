@@ -38330,7 +38330,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)四方五行陣";
+			this.name = "四方五行陣";
 			this.kana = "シホウコキヨウシン";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
@@ -38343,8 +38343,7 @@ function CSkillManager() {
 				let ratio = 0;
 				ratio = 2200 + 600 * skillLv;
 				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				ratio += 30 * skillLv * UsedSkillSearch(SKILL_ID_GOFU_SHUREN);
-				ratio += 25 * skillLv * UsedSkillSearch(SKILL_ID_REIDOZYUTSU_SHUREN);
+				ratio += 15 * skillLv * (UsedSkillSearch(SKILL_ID_GOFU_SHUREN) + UsedSkillSearch(SKILL_ID_REIDOZYUTSU_SHUREN));
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
 			}
