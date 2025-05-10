@@ -38297,12 +38297,23 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(△)四方神符";
+			this.name = "四方神符";
 			this.kana = "シホウシンフ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.hitCount = function(skillLv) {
+				return 1 + Math.min(5, UsedSkillSearch(SKILL_ID_SHIHO_FU_ZYOTAI));
+			}
+			this.Power = function(skillLv, charaData, option) {       // スキル倍率
+				let ratio = 0;
+				ratio = 500 + 50 * skillLv;
+				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				ratio += 15 * skillLv * UsedSkillSearch(SKILL_ID_GOFU_SHUREN);
+				ratio = Math.floor(ratio * n_A_BaseLV / 100);
+				return ratio;
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 0;
 			}

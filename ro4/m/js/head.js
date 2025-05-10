@@ -9618,12 +9618,14 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 		case SKILL_ID_SUZAKU_FU:	// 朱雀符
 		case SKILL_ID_GENBU_FU:		// 玄武符
 		case SKILL_ID_SHIRYO_ZYOKA:	// 死霊浄化
+		case SKILL_ID_SHIHOZIN_FU:	// 四方神符
 			wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 			wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
+			wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
 			n_A_Weapon_zokusei = attackMethodConfArray[0].GetOptionValue(0);
 			break;
 
@@ -9642,31 +9644,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
 			wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
 			n_A_Weapon_zokusei = attackMethodConfArray[0].GetOptionValue(0);
-			break;
-
-		// 「ソウルアセティック」スキル「四方神符」
-		case SKILL_ID_SHIHOZIN_FU:
-			/**
-			 * 素の状態から2桁程度の誤差がでますが五行陣を掛けても誤差は極端に拡大しないため丸め誤差の類だと思われます
-			 * 計算式は信頼できると判断しています
-			 */
-			// 属性は暖かい風依存
-			n_A_Weapon_zokusei = attackMethodConfArray[0].GetOptionValue(0);
-			// 詠唱時間等
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// 基本倍率
-			wbairitu = 500 + (50 * n_A_ActiveSkillLV);
-			// SPL補正
-			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			// 護符修練
-			wbairitu += 15 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_GOFU_SHUREN);
-			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
-			// HIT数
-			wHITsuu = 1 + Math.min(5, UsedSkillSearch(SKILL_ID_SHIHO_FU_ZYOTAI));
 			break;
 
 		// 「ハイパーノービス」スキル「ユピテルサンダーストーム」
