@@ -38227,12 +38227,28 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)玄武符";
+			this.name = "玄武符";
 			this.kana = "ケンフフ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.dispHitCount = function(skillLv) {
+				return 3;
+			}
+			this.Power = function(skillLv, charaData, option) {       // スキル倍率
+				let ratio = 0;
+				if (UsedSkillSearch(SKILL_ID_SHIHO_FU_ZYOTAI) >= 5) {
+					// 公式発表並びに実測確認の結果によるとLv4だけ倍率が異常なので直値で指定しています
+					ratio = [0,4750,5250,5750,6200,6750][skillLv];
+				} else {
+					ratio = 3000 + 400 * skillLv;
+				}
+				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				ratio += 15 * skillLv * UsedSkillSearch(SKILL_ID_GOFU_SHUREN);
+				ratio = Math.floor(ratio * n_A_BaseLV / 100);
+				return ratio;
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 360;
 			}
