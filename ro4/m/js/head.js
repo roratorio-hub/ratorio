@@ -9593,25 +9593,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			}
 			break;
 
-		// 「ソウルアセティック」スキル「霊道符」
-		case SKILL_ID_REIDO_FU:
-			// 属性は暖かい風依存
-			n_A_Weapon_zokusei = eval(document.calcForm.A_Weapon_zokusei.value);
-			// 詠唱時間等
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// 基本倍率
-			wbairitu = 2000 + (200 * n_A_ActiveSkillLV);
-			// SPL補正
-			wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			// 修練補正
-			wbairitu += 7 * n_A_ActiveSkillLV * ( UsedSkillSearch(SKILL_ID_GOFU_SHUREN) + UsedSkillSearch(SKILL_ID_REIDOZYUTSU_SHUREN) );
-			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
-			break;
-
 		// ソウルアセティック
 		case SKILL_ID_SEIRYU_FU:	// 青龍符
 		case SKILL_ID_BYAKKO_FU:	// 白虎符
@@ -9619,6 +9600,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 		case SKILL_ID_GENBU_FU:		// 玄武符
 		case SKILL_ID_SHIRYO_ZYOKA:	// 死霊浄化
 		case SKILL_ID_SHIHOZIN_FU:	// 四方神符
+		case SKILL_ID_REIDO_FU:		// 霊道符
 			wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
