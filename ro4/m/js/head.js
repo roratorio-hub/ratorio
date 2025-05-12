@@ -15323,7 +15323,7 @@ function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, m
 	//----------------------------------------------------------------
 	if(n_A_ActiveSkill == SKILL_ID_HELL_INFERNO) {
 		if ((itemCount = EquipNumSearch(ITEM_SET_ID_AKUMASUHAISHANO_KUTSU_DATENSHISAINO_ANKOGAITO_KODAIZYUNO_TSUE)) > 0) {
-			vartmp = 0;
+			let vartmp = 0;
 
 			if (n_A_Weapon_ATKplus >= 7) vartmp += 100;
 			if (n_A_Weapon_ATKplus >= 9) vartmp += 100;
@@ -15937,7 +15937,7 @@ function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, m
 		itemCount = EquipNumSearch(ITEM_ID_POKAPOKA_TANPOPO_CAPE);
 		if (itemCount > 0) {
 			if (LearnedSkillSearch(SKILL_ID_DAICHINO_TAMASHI) >= 1) {
-				vartmp = 0;
+				let vartmp = 0;
 				vartmp += LearnedSkillSearch(SKILL_ID_MATATABI_LANCE);
 				vartmp += LearnedSkillSearch(SKILL_ID_MATATABINO_NEKKO);
 				vartmp += LearnedSkillSearch(SKILL_ID_INUHAKKA_METEOR);
@@ -16298,7 +16298,7 @@ function ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData,
  * @return 倍率
  */
 function ApplyMagicalSkillDamageRatioChangeSubArcanaCard(cardid) {
-	var vartmp = 0;
+	let vartmp = 0;
 
 	let cardCountArmsRight	 = CardNumSearch(cardid, CARD_REGION_ID_ARMS_RIGHT_ANY);
 	let cardCountArmsLeft	 = CardNumSearch(cardid, CARD_REGION_ID_ARMS_LEFT_ANY);
@@ -23648,7 +23648,7 @@ function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, 
 	//----------------------------------------------------------------
 	if(n_A_ActiveSkill == SKILL_ID_ROLLING_CUTTER) {
 		if ((itemCount = EquipNumSearchMIG(ITEM_SET_ID_SCARABA_HIGHHEEL_DULLGER)) > 0) {
-			vartmp = 0;
+			let vartmp = 0;
 
 			if (n_A_Weapon_ATKplus >= 7)  vartmp += 8;
 			if (n_A_Weapon_ATKplus >= 9)  vartmp += 12;
@@ -25474,7 +25474,7 @@ function ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData
  * @returns 倍率
  */
 function ApplyPhysicalSkillDamageRatioChangeSubArcanaCard(cardid) {
-	var vartmp = 0;
+	let vartmp = 0;
 
 	let cardCountArmsRight	 = CardNumSearch(cardid, CARD_REGION_ID_ARMS_RIGHT_ANY);
 	let cardCountArmsLeft	 = CardNumSearch(cardid, CARD_REGION_ID_ARMS_LEFT_ANY);
