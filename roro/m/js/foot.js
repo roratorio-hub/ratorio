@@ -4914,9 +4914,10 @@ if (_APPLY_UPDATE_LV200) {
 		//----------------------------------------------------------------
 		// 「ソウルリーパー　ソウルエナジーの個数」の、効果
 		//----------------------------------------------------------------
-		w += 3 * UsedSkillSearch(SKILL_ID_COUNT_OF_SOUL_ENERGY);
-
-
+		if (n_A_ActiveSkill != SKILL_ID_SHIRYO_ZYOKA) {
+			// 死霊浄化はソウルエナジー全消費後のMATKを基準にダメージ計算する必要があるため除外する
+			w += 3 * UsedSkillSearch(SKILL_ID_COUNT_OF_SOUL_ENERGY);
+		}
 
 		if(TimeItemNumSearch(59)) w += 5 * Math.floor(n_A_SHOULDER_DEF_PLUS / 3);
 		if(TimeItemNumSearch(85)) w += 7 * n_A_BODY_DEF_PLUS;

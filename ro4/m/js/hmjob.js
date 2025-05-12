@@ -723,8 +723,13 @@ function GetSMatk() {
 	}
 
 	// 「ソウルアセティック」スキル「四方五行陣状態」による効果
-	if ((sklLv = UsedSkillSearch(SKILL_ID_SHIHO_FU_ZYOTAI)) >= 5) {
-		value += 2 * (sklLv - 4);
+	if ((sklLv = UsedSkillSearch(SKILL_ID_SHIHO_FU_ZYOTAI)) >= 4) {
+		if (n_A_ActiveSkill === SKILL_ID_SHIHO_GOGYO_ZIN) {
+			// 「四方五行陣」のダメージはS.Matkのバフが付与された後に計算されるため、個別処理しています
+			value += 2 * n_A_ActiveSkillLV;
+		} else {
+			value += 2 * (sklLv - 4);
+		}
 	}
 
 	// 四次職支援「コンペテンティア」による効果

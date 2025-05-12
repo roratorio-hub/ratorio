@@ -4105,7 +4105,7 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 			break;
 
 		//----------------------------------------------------------------
-		// ソウルアセティック：青龍符 白虎符 朱雀符 玄武符 四方神符 四方五行陣
+		// ソウルアセティック：青龍符 白虎符 朱雀符 玄武符 霊道符 死霊浄化 四方神符 四方五行陣
 		//----------------------------------------------------------------
 		case SKILL_ID_SEIRYU_FU:
 		case SKILL_ID_BYAKKO_FU:
@@ -4113,6 +4113,8 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 		case SKILL_ID_GENBU_FU:
 		case SKILL_ID_SHIHOZIN_FU:
 		case SKILL_ID_SHIHO_GOGYO_ZIN:
+		case SKILL_ID_REIDO_FU:
+		case SKILL_ID_SHIRYO_ZYOKA:
 			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
 				"暖かい風",
 				[
