@@ -1,27 +1,220 @@
 item_list:
-  - name: オートマティックウィングIII
-    yomi: オオトマテイツクウインクスリー
-    type: 肩にかける物
+  - name: 濃紺のイビルドルイド帽
+    yomi: ノウコンノイビルドルイドボウ
+    type: 上段
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 10
+    weight: 50
+    required_lv: 200
+    required_job: 4次職 拡張4次職
+    capabilities:
+      - name: SPL加算
+        value: 3
+      - name: プレイヤー耐性
+        value: 13
+      - name: 一般耐性
+        value: 20
+      - name: ボス耐性
+        value: 20
+      - name: 魔法ダメージ増加
+        value: 40
+      - name: スキルダメージ増加
+        value: 1
+        skill: フロムジアビス
+        per_lv: 10
+      - name: スキルダメージ増加
+        value: 1
+        skill: アビススクエア
+        per_lv: 10
+      - name: スキルダメージ増加
+        value: 1
+        skill: オメガアビスストライク
+        per_lv: 10
+      - name: SPL加算
+        value: 1
+        per_refine: 1
+      - name: スキルディレイ減少
+        value: 20
+        at_refine: 10
+      - name: MDEF無視
+        value: 50
+        at_refine: 10
+    enchant: #
+      - name: オーブ
+        slot_list: #
+          - slot: 4
+            refine: 0
+            enchant_list: #
+              - name: 潜在解放(アビスチェイサーXIII)
+          - slot: 3
+            refine: 8
+            enchant_list: #
+              - name: Str+10
+              - name: Agi+10
+              - name: Vit+10
+              - name: Int+10
+              - name: Dex+10
+              - name: Luk+10
+              - name: スキルディレイ-15%
+              - name: 暴走した魔力
+          - slot: 2
+            refine: 9
+            enchant_list: #
+              - name: Str+10
+              - name: Agi+10
+              - name: Vit+10
+              - name: Int+10
+              - name: Dex+10
+              - name: Luk+10
+              - name: スキルディレイ-15%
+              - name: 厄災の魔将
+
+    # リチャード（あるタイルとおなじ）
+
+  - name: エクリプスマフラー
+    yomi: エクリプスマフラー
+    type: 下段
     slot: 0
     weapon_lv: 0
-    atk_or_def: 50
-    weight: 65
-    required_lv: 150
-    required_job: 全ての職業
+    atk_or_def: 0
+    weight: 10
+    required_lv: 200
+    required_job: ウィンドホーク
     capabilities:
-      - name: MAXHP増加
-        value: 15
-      - name: MAXSP増加
-        value: 15
-      - name: MAXHP増加
-        value: 15
-        at_lv: 175
-      - name: MAXSP増加
-        value: 15
-        at_lv: 175
-      - name: 全属性への物理ダメージ増加
+      - name: プレイヤー耐性
         value: 3
-        per_refine: 1
-      - name: 全属性への魔法ダメージ増加
+      - name: 全サイズへの物理ダメージ増加
+        value: 1
+        per_lv: 10
+      - name: 全サイズへの魔法ダメージ増加
+        value: 1
+        per_lv: 10
+    enchant: #
+      - name: ミオン
+        slot_list: #
+          - slot: 4
+            refine: 0
+            enchant_list: #
+              - name: 潜在解放(ウィンドホークXIV)
+          - slot: 3
+            refine: 0
+            enchant_list: #
+              - name: SpecialStr
+              - name: SpecialAgi
+              - name: SpecialVit
+              - name: SpecialInt
+              - name: SpecialDex
+              - name: SpecialLuk
+              - name: 固定詠唱時間-70%
+              - name: 氷結耐性
+              - name: 冷凍耐性
+              - name: 深い睡眠耐性
+              - name: 新毒耐性
+          - slot: 2
+            refine: 0
+            enchant_list: #
+              - name: Str+10
+              - name: Agi+10
+              - name: Vit+10
+              - name: Int+10
+              - name: Dex+10
+              - name: Luk+10
+              - name: 詠唱妨害不可
+              - name: 英雄の凱歌
+              - name: 起源の王
+              - name: 殺意の怨念
+              - name: 豊穣の女神
+              - name: 厄災の魔将
+              - name: 異境の統轄者
+              - name: 知識の探求者
+              - name: 最果ての支配者
+
+  - name: 白きカーリッツバーグ騎士団の籠手
+    yomi: シロキカアリッツバーグキシダンノコテ
+    type: アクセサリー
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 10
+    required_lv: 200
+    required_job: 4次職 拡張4次職
+    capabilities:
+      - name: SPL加算
         value: 3
-        per_refine: 1
+      - name: 魔法ダメージ増加
+        value: 40
+      - name: プレイヤー耐性
+        value: 3
+      - name: スキル使用可能
+        skill: ファイアーウォール
+        skill_lv: 10
+      - name: スキルダメージ増加
+        value: 1
+        skill: レイオブジェネシス
+        per_lv: 3
+      - name: スキルダメージ増加
+        value: 1
+        skill: クロスレイン
+        per_lv: 10
+      - name: スキルダメージ増加
+        value: 1
+        skill: ジャッジメントクロス
+        per_lv: 10
+    enchant: #
+      - name: モチモチ
+        slot_list: #
+          - slot: 4
+            refine: 0
+            enchant_list: #
+              - name: Str+7
+              - name: Agi+7
+              - name: Vit+7
+              - name: Int+7
+              - name: Dex+7
+              - name: Luk+7
+              - name: SpecialStr
+              - name: SpecialAgi
+              - name: SpecialVit
+              - name: SpecialInt
+              - name: SpecialDex
+              - name: SpecialLuk
+              - name: 攻撃速度+15%
+              - name: スキルディレイ-15%
+          - slot: 3
+            refine: 0
+            enchant_list: #
+              - name: Str+7
+              - name: Agi+7
+              - name: Vit+7
+              - name: Int+7
+              - name: Dex+7
+              - name: Luk+7
+              - name: SpecialStr
+              - name: SpecialAgi
+              - name: SpecialVit
+              - name: SpecialInt
+              - name: SpecialDex
+              - name: SpecialLuk
+              - name: MaxHP+15%
+              - name: 潜在解放(インペリアルガードVI)
+          - slot: 2
+            refine: 0
+            enchant_list: #
+              - name: Str+7
+              - name: Agi+7
+              - name: Vit+7
+              - name: Int+7
+              - name: Dex+7
+              - name: Luk+7
+              - name: SpecialStr
+              - name: SpecialAgi
+              - name: SpecialVit
+              - name: SpecialInt
+              - name: SpecialDex
+              - name: SpecialLuk
+              - name: 暴走した魔力
+
+#リチャード（あるタイルとおなじ）
+
+#ファロス１６
