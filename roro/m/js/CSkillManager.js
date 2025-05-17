@@ -31482,7 +31482,6 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "シャドウセンス";
 			this.kana = "シヤトウセンス";
@@ -31501,21 +31500,41 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
-			this.name = "(×)エターナルスラッシュ";
+			this.name = "エターナルスラッシュ";
 			this.kana = "エタアナルスラツシユ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
-
-
-
+			this.Power = function(skillLv, charaData, option) {       	// スキル倍率
+				// Lv1 と Lv3 のとき +4 の誤差がありますがスキル倍率以外の計算に起因するものだと判断しています
+				let ratio = 0;
+				ratio = 50 + 50 * skillLv;
+				ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				if (UsedSkillSearch(SKILL_ID_SHADOW_EXCEED) > 0) {
+					// シャドウエクシード状態時、倍率２倍
+					ratio *= 2;
+				}
+				ratio = Math.floor(ratio * n_A_BaseLV / 100);
+				return ratio;
+			}
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 120;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 2000;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				// エターナルカウンターの持続時間 3秒
+				return 3000;
+			}
 			this.CriActRate = (skillLv, charaData, specData, mobData) => {
 				return this._CriActRate100(skillLv, charaData, specData, mobData) / 2;
 			}
-
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
@@ -31530,7 +31549,6 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "(×)エンチャンティングシャドウ";
 			this.kana = "エンチヤンテインクシヤトウ";
@@ -31538,19 +31556,14 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
-
-
-
-			this.CostFixed = function(skillLv, charaDataManger) {
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 190;
 			}
-
-			this.CastTimeFixed = function(skillLv, charaDataManger) {
-				return (500 * (skillLv - 1));
-			}
-
-			this.CoolTime = function(skillLv, charaDataManger) {
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
 				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 120 * 1000;
 			}
 		};
 		this.dataArray[skillId] = skillData;
@@ -31576,6 +31589,9 @@ function CSkillManager() {
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 500;
 			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return (25 + 5 * skillLv) 1000;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -31587,14 +31603,31 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
-			this.name = "(×)シャドウエクシード";
+			this.name = "シャドウエクシード";
 			this.kana = "シヤトウエクシイト";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 290;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 53 - 3 * skillLv;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 1000;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 500 * skillLv;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return (50 + 10 * skillLv) * 1000;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;

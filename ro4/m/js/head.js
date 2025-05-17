@@ -2540,8 +2540,10 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				break;
 
-			// 「シャドウクロス」スキル「サベージインパクト」
-			case SKILL_ID_SAVAGE_IMPACT:
+			/**
+			 * シャドウクロス
+			 */
+			case SKILL_ID_SAVAGE_IMPACT:	// サベージインパクト
 				if (n_A_WeaponType !== ITEM_KIND_KATAR) {
 					// カタールのみ発動可能
 					wbairitu = 0;
@@ -2557,35 +2559,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
 				wHITsuu = attackMethodConfArray[0].GetOptionValue(0) + 1;
 				break;
-
-			case SKILL_ID_ETERNAL_SLASH:
-
-	// TODO: 詠唱時間等未実測スキル
-	g_bUnknownCasts = true;
-
-				// 距離属性
-				n_Enekyori = 0;
-
-				// 基本倍率
-				wbairitu = 50 + (50 * n_A_ActiveSkillLV);
-
-				// POW補正
-				wbairitu += 1 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
-				// シャドウエクシード状態時、倍率２倍
-				if (UsedSkillSearch(SKILL_ID_SHADOW_EXCEED) > 0) {
-					wbairitu *= 2;
-				}
-
-				// ベースレベル補正
-				wbairitu *= n_A_BaseLV / 100;
-
-				// エターナルカウンター分の連続攻撃になる
-				wHITsuu = Math.max(1, parseInt(attackMethodConfArray[0].GetOptionValue(0), 10));
-				break;
-
-			// 「シャドウクロス」スキル「フェイタルシャドウクロー」
-			case SKILL_ID_FATAL_SHADOW_CRAW:
+			case SKILL_ID_FATAL_SHADOW_CRAW:	// フェイタルシャドウクロー
 				wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
@@ -2595,9 +2569,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
 				wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
 				break;
-
-			// 「シャドウクロス」スキル「シャドウスタブ」
-			case SKILL_ID_SHADOW_STAB:
+			case SKILL_ID_SHADOW_STAB:	// シャドウスタブ
 				// 右手短剣のみ発動可能
 				if (n_A_WeaponType != ITEM_KIND_KNIFE) {
 					wbairitu = 0;
@@ -2613,9 +2585,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
 				wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
 				break;
-
-			// 「シャドウクロス」スキル「ダンシングナイフ」
-			case SKILL_ID_DANCING_KNIFE:
+			case SKILL_ID_DANCING_KNIFE:	// ダンシングナイフ
 				// 右手短剣のみ発動可能
 				if (n_A_WeaponType != ITEM_KIND_KNIFE) {
 					wbairitu = 0;
@@ -2635,9 +2605,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				n_Delay[5] = 300;
 				n_Delay[6] = g_skillManager.GetLifeTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				break;
-
-			// 「シャドウクロス」スキル「インパクトクレーター」
-			case SKILL_ID_IMPACT_CRATER:
+			case SKILL_ID_IMPACT_CRATER:	// インパクトクレーター
 				if (n_A_WeaponType !== ITEM_KIND_KATAR) {
 					// カタールのみ発動可能
 					wbairitu = 0;
@@ -2653,7 +2621,18 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
 				wHITsuu = attackMethodConfArray[0].GetOptionValue(0);
 				break;
-
+			case SKILL_ID_ETERNAL_SLASH:	// エターナルスラッシュ
+				wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill);
+				wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
+				// エターナルカウンター分の連続攻撃になる
+				wHITsuu = Math.max(1, parseInt(attackMethodConfArray[0].GetOptionValue(0), 10));
+				break;
+				
 			//「カーディナル」スキル「エフィリゴ」
 			// 2025-03-30 基本的に誤差無しを確認
 			// 値によっては+7の誤差が生じるケースがありますが分割ヒット計算に伴う丸め誤差と判断しています
