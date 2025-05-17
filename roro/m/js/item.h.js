@@ -1016,9 +1016,22 @@ CGlobalConstManager.DefinePseudoEnum(
 	"EnumItemSpId",
 	[
 		// 職業限定
-		"ITEM_SP_JOB_RESTRICT_NOVICE_OFFSET",	// 10 * 10^10
+		"ITEM_SP_JOB_RESTRICT_NOVICE_OFFSET",	// 1 * 10^11
 	],
 	100000000000,
+	100000000000
+);
+
+/**
+ * EnumItemSpId 特殊効果定義オフセット（職業制約）
+ */
+CGlobalConstManager.DefinePseudoEnum(
+	"EnumItemSpId",
+	[
+		// 職業限定
+		"ITEM_SP_JOB_RESTRICT_MONK_OFFSET",	// 16 * 10^11
+	],
+	1600000000000,
 	100000000000
 );
 
@@ -1038,7 +1051,7 @@ CGlobalConstManager.DefinePseudoEnum(
 		"ITEM_SP_JOB_RESTRICT_MECHANIC_OFFSET",			// 52
 		"ITEM_SP_JOB_RESTRICT_ROYALGUARD_OFFSET",		// 53
 		"ITEM_SP_JOB_RESTRICT_SHADOWCHASER_OFFSET",		// 54
-		"ITEM_SP_JOB_RESTRICT_SHURA_OFFSET",			// 55
+		"ITEM_SP_JOB_RESTRICT_SHURA_OFFSET",			// 5500000000000
 		"ITEM_SP_JOB_RESTRICT_MINSTREL_OFFSET",			// 56
 		"ITEM_SP_JOB_RESTRICT_WANDERER_OFFSET",			// 57
 		"ITEM_SP_JOB_RESTRICT_SORCERER_OFFSET",			// 58
@@ -1069,12 +1082,11 @@ CGlobalConstManager.DefinePseudoEnum(
 );
 
 /**
- * EnumItemSpId 特殊効果定義オフセット（BaseLv制約）
+ * EnumItemSpId 特殊効果定義オフセット（BaseLvが○上がる度に）
  */
 CGlobalConstManager.DefinePseudoEnum(
 	"EnumItemSpId",
 	[
-		// BaseLvが○上がる度に
 		"ITEM_SP_BASE_LV_BY_1_OFFSET",
 		"ITEM_SP_BASE_LV_BY_2_OFFSET",
 		"ITEM_SP_BASE_LV_BY_3_OFFSET",
@@ -1091,12 +1103,11 @@ CGlobalConstManager.DefinePseudoEnum(
 );
 
 /**
- * EnumItemSpId 特殊効果定義オフセット（BaseLv制約）
+ * EnumItemSpId 特殊効果定義オフセット（BaseLvが○上がる度に）
  */
 CGlobalConstManager.DefinePseudoEnum(
 	"EnumItemSpId",
 	[
-		// BaseLvが○上がる度に
 		"ITEM_SP_BASE_LV_BY_20_OFFSET",
 	],
 	200000000000000,
@@ -1104,12 +1115,11 @@ CGlobalConstManager.DefinePseudoEnum(
 );
 
 /**
- * EnumItemSpId 特殊効果定義オフセット（BaseLv制約）
+ * EnumItemSpId 特殊効果定義オフセット（BaseLvが○上がる度に）
  */
 CGlobalConstManager.DefinePseudoEnum(
 	"EnumItemSpId",
 	[
-		// BaseLvが○上がる度に
 		"ITEM_SP_BASE_LV_BY_99_OFFSET",
 	],
 	990000000000000,
@@ -1117,7 +1127,7 @@ CGlobalConstManager.DefinePseudoEnum(
 );
 
 /**
- * EnumItemSpId 特殊効果定義オフセット（BaseLv制約）
+ * EnumItemSpId 特殊効果定義オフセット（BaseLvが○以上の時、BaseLvが○以下の時）
  */
 CGlobalConstManager.DefinePseudoEnum(
 	"EnumItemSpId",
