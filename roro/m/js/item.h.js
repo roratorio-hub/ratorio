@@ -2928,7 +2928,7 @@ function GetItemExplainText(spId, spValue) {
 			textInfoArray.push(["","詠唱が中断されない"]);
 			break;
 		case ITEM_SP_NEVER_KNOCK_BACK:
-			textInfoArray.push(["","ノックバックしない"]);
+			textInfoArray.push(["","絶対にノックバックしない"]);
 			break;			
 		default:
 
