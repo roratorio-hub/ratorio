@@ -31674,7 +31674,7 @@ function CSkillManager() {
 				return 3000;
 			}
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
-				return 10;
+				return 10 * 1000;
 			}
 			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
 				return 10000;	// 100%
