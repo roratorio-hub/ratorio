@@ -2680,40 +2680,22 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 				break;
 
+			// 「シャドウクロス」スキル「インパクトクレーター」
 			case SKILL_ID_IMPACT_CRATER:
-
-				// 詠唱時間等
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-
-				// カタールのみ発動可能
-				switch (n_A_WeaponType) {
-
-				case ITEM_KIND_KATAR:
-
-					// 距離属性
-					n_Enekyori = 0;
-
-					// 基本倍率
-					wbairitu = 50 + (50 * n_A_ActiveSkillLV);
-
-					// POW補正
-					wbairitu += 1 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
-					// ベースレベル補正
-					wbairitu *= n_A_BaseLV / 100;
-
-					// 回転カウンター分の連続攻撃になる
-					wHITsuu = Math.max(1, parseInt(attackMethodConfArray[0].GetOptionValue(0), 10));
-					break;
-
-				default:
+				if (n_A_WeaponType !== ITEM_KIND_KATAR) {
+					// カタールのみ発動可能
 					wbairitu = 0;
 					n_Buki_Muri = true;
 					break;
 				}
+				wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill);
+				wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
+				wHITsuu = attackMethodConfArray[0].GetOptionValue(0);
 				break;
 
 			//「カーディナル」スキル「エフィリゴ」

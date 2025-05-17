@@ -31680,7 +31680,6 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "インパクトクレーター";
 			this.kana = "インハクトクレエタア";
@@ -31688,27 +31687,30 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
-
-
-
+			this.Power = function(skillLv, charaData, option) {			// スキル倍率
+				// Lv1 と Lv3 に +15 程度の誤差がありますが計算式に変更はないので改めて△表示はしません
+				let ratio = 0;
+				ratio = 50 + 50 * skillLv;
+				ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				ratio = Math.floor(ratio * n_A_BaseLV / 100);
+				return ratio;
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 210;
 			}
-
 			this.DelayTimeCommon = function(skillLv, charaDataManger) {
-				return (1000 * skillLv);
+				return 1000 * skillLv;
 			}
-
 			this.CoolTime = function(skillLv, charaDataManger) {
-				return (500 * skillLv);
+				return 500 * skillLv;
 			}
-
-
-
+			this.LifeTime = function(skillLv, charaDataManger) {
+				// 自身を 10秒間、「カウンタースラッシュ」状態にする
+				return 10 * 1000;
+			}
 			this.CriActRate = (skillLv, charaData, specData, mobData) => {
 				return this._CriActRate100(skillLv, charaData, specData, mobData) / 2;
 			}
-
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
