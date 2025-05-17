@@ -31420,7 +31420,6 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "サベージインパクト";
 			this.kana = "サヘエシインハクト";
@@ -31428,27 +31427,28 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
-
-
-
+			this.Power = function(skillLv, charaData, option) {			// スキル倍率
+				let ratio = 0;
+				ratio = 500 + 100 * skillLv;
+				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				if (UsedSkillSearch(SKILL_ID_SHADOW_EXCEED) > 0) {
+					ratio *= 2;
+				}
+				ratio = Math.floor(ratio * n_A_BaseLV / 100);
+				return ratio;
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 210;
 			}
-
 			this.DelayTimeCommon = function(skillLv, charaDataManger) {
-				return (500 * skillLv);
+				return 500 * skillLv;
 			}
-
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 500;
 			}
-
-
-
 			this.CriActRate = (skillLv, charaData, specData, mobData) => {
 				return this._CriActRate100(skillLv, charaData, specData, mobData) / 2;
 			}
-
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
