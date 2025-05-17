@@ -31590,7 +31590,7 @@ function CSkillManager() {
 				return 500;
 			}
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
-				return (25 + 5 * skillLv) 1000;
+				return (25 + 5 * skillLv) * 1000;
 			}
 		};
 		this.dataArray[skillId] = skillData;
