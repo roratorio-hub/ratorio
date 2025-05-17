@@ -2540,187 +2540,99 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				break;
 
-			case SKILL_ID_DANCING_KNIFE:
-
-	// TODO: 詠唱時間等未実測スキル
-	g_bUnknownCasts = true;
-
-				// 距離属性
-				n_Enekyori = 0;
-
-				// 右手短剣のみ発動可能
-				switch (n_A_WeaponType) {
-
-				case ITEM_KIND_KNIFE:
-
-					// 基本倍率
-					wbairitu = 100 + (100 * n_A_ActiveSkillLV);
-
-					// POW補正
-					wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
-					// ベースレベル補正
-					wbairitu *= n_A_BaseLV / 100;
-					break;
-
-				default:
+			/**
+			 * シャドウクロス
+			 */
+			case SKILL_ID_SAVAGE_IMPACT:	// サベージインパクト
+				if (n_A_WeaponType !== ITEM_KIND_KATAR) {
+					// カタールのみ発動可能
 					wbairitu = 0;
 					n_Buki_Muri = true;
 					break;
 				}
+				wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill);
+				wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
+				wHITsuu = attackMethodConfArray[0].GetOptionValue(0) + 1;
 				break;
-
-			case SKILL_ID_SAVAGE_IMPACT:
-
-				// 詠唱時間等
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-
-				// 距離属性
-				n_Enekyori = 0;
-
-				// カタールのみ発動可能
-				switch (n_A_WeaponType) {
-
-				case ITEM_KIND_KATAR:
-
-					// 基本倍率
-					wbairitu = 500 + (100 * n_A_ActiveSkillLV);
-
-					// POW補正
-					wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
-					// シャドウエクシード状態時、倍率２倍
-					if (UsedSkillSearch(SKILL_ID_SHADOW_EXCEED) > 0) {
-						wbairitu *= 2;
-					}
-
-					// ベースレベル補正
-					wbairitu *= n_A_BaseLV / 100;
-
-					// クローキングエクシード時、２回攻撃（２ＨＩＴ）
-					if (attackMethodConfArray[0].GetOptionValue(0) == 1) {
-						wHITsuu = 2;
-					}
-					break;
-
-				default:
-					wbairitu = 0;
-					n_Buki_Muri = true;
-					break;
-				}
+			case SKILL_ID_FATAL_SHADOW_CRAW:	// フェイタルシャドウクロー
+				wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill);
+				wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
+				wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
 				break;
-
-			case SKILL_ID_ETERNAL_SLASH:
-
-	// TODO: 詠唱時間等未実測スキル
-	g_bUnknownCasts = true;
-
-				// 距離属性
-				n_Enekyori = 0;
-
-				// 基本倍率
-				wbairitu = 50 + (50 * n_A_ActiveSkillLV);
-
-				// POW補正
-				wbairitu += 1 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
-				// シャドウエクシード状態時、倍率２倍
-				if (UsedSkillSearch(SKILL_ID_SHADOW_EXCEED) > 0) {
-					wbairitu *= 2;
-				}
-
-				// ベースレベル補正
-				wbairitu *= n_A_BaseLV / 100;
-
-				// エターナルカウンター分の連続攻撃になる
-				wHITsuu = Math.max(1, parseInt(attackMethodConfArray[0].GetOptionValue(0), 10));
-				break;
-
-			// 「シャドウクロス」スキル「フェイタルシャドウクロー」
-			case SKILL_ID_FATAL_SHADOW_CRAW:
-				// 詠唱時間等
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// 距離属性
-				n_Enekyori = 0;
-				// 基本倍率
-				wbairitu = 600 + 150 * n_A_ActiveSkillLV;
-				// POW補正 (2025/01/12 未確認)
-				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-				// ベースレベル補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
-				break;
-
-			// 「シャドウクロス」スキル「シャドウスタブ」
-			case SKILL_ID_SHADOW_STAB:
-				// 詠唱時間等
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			case SKILL_ID_SHADOW_STAB:	// シャドウスタブ
 				// 右手短剣のみ発動可能
 				if (n_A_WeaponType != ITEM_KIND_KNIFE) {
 					wbairitu = 0;
 					n_Buki_Muri = true;
 					break;
 				}
-				// 距離属性
-				n_Enekyori = 0;
-				// 基本倍率
-				if (attackMethodConfArray[0].GetOptionValue(0) == 1) {
-					// クローキングエクシード状態
-					wbairitu = 1250 + 1250 * n_A_ActiveSkillLV;
-				} else {
-					// 通常状態
-					wbairitu = 500 + 500 * n_A_ActiveSkillLV;
-				}
-				// POW補正 (2025/01/12 未確認)
-				wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-				// ベースレベル補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+				wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill);
+				wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
+				wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
 				break;
-
-			case SKILL_ID_IMPACT_CRATER:
-
-				// 詠唱時間等
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-
-				// カタールのみ発動可能
-				switch (n_A_WeaponType) {
-
-				case ITEM_KIND_KATAR:
-
-					// 距離属性
-					n_Enekyori = 0;
-
-					// 基本倍率
-					wbairitu = 50 + (50 * n_A_ActiveSkillLV);
-
-					// POW補正
-					wbairitu += 1 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-
-					// ベースレベル補正
-					wbairitu *= n_A_BaseLV / 100;
-
-					// 回転カウンター分の連続攻撃になる
-					wHITsuu = Math.max(1, parseInt(attackMethodConfArray[0].GetOptionValue(0), 10));
-					break;
-
-				default:
+			case SKILL_ID_DANCING_KNIFE:	// ダンシングナイフ
+				// 右手短剣のみ発動可能
+				if (n_A_WeaponType != ITEM_KIND_KNIFE) {
 					wbairitu = 0;
 					n_Buki_Muri = true;
 					break;
 				}
+				wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill);
+				wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
+				wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
+				// 自分を中心にした設置スキル
+				g_bDefinedDamageIntervals = true;
+				n_Delay[5] = 300;
+				n_Delay[6] = g_skillManager.GetLifeTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				break;
-
+			case SKILL_ID_IMPACT_CRATER:	// インパクトクレーター
+				if (n_A_WeaponType !== ITEM_KIND_KATAR) {
+					// カタールのみ発動可能
+					wbairitu = 0;
+					n_Buki_Muri = true;
+					break;
+				}
+				wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill);
+				wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
+				wHITsuu = attackMethodConfArray[0].GetOptionValue(0);
+				break;
+			case SKILL_ID_ETERNAL_SLASH:	// エターナルスラッシュ
+				wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill);
+				wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
+				// エターナルカウンター分の連続攻撃になる
+				wHITsuu = Math.max(1, parseInt(attackMethodConfArray[0].GetOptionValue(0), 10));
+				break;
+				
 			//「カーディナル」スキル「エフィリゴ」
 			// 2025-03-30 基本的に誤差無しを確認
 			// 値によっては+7の誤差が生じるケースがありますが分割ヒット計算に伴う丸め誤差と判断しています
@@ -26168,22 +26080,21 @@ function ApplyAttackDamageAmplify(mobData, dmg){
 
 	// ダーククロー後の状態における、ダメージ増加の適用
 	// （二刀左手は適用除外）
-	if (n_B_IJYOU[MOB_CONF_DEBUF_ID_DARK_CRAW_EFFECT] && n_Enekyori == 0) {
+	if (n_A_ActiveSkill === SKILL_ID_FATAL_SHADOW_CRAW) {
+		// フェイタルシャドウクローの個別処理
+		// 習得Lvのダーククロー適用後にダメージ計算される
+		dmg += Math.floor(dmg * 30 * LearnedSkillSearch(SKILL_ID_DARK_CRAW) / 100);
+	} else if (n_B_IJYOU[MOB_CONF_DEBUF_ID_DARK_CRAW_EFFECT] && n_Enekyori == 0) {
 		if (!n_NitouCalc) {
-
 			// 特定の戦闘エリアでの補正
 			switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
-
-			case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
-				dmgAmp = 20 * n_B_IJYOU[MOB_CONF_DEBUF_ID_DARK_CRAW_EFFECT];
-				break;
-
-			default:
-				dmgAmp = 30 * n_B_IJYOU[MOB_CONF_DEBUF_ID_DARK_CRAW_EFFECT];
-				break;
-
+				case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
+					dmgAmp = 20 * n_B_IJYOU[MOB_CONF_DEBUF_ID_DARK_CRAW_EFFECT];
+					break;
+				default:
+					dmgAmp = 30 * n_B_IJYOU[MOB_CONF_DEBUF_ID_DARK_CRAW_EFFECT];
+					break;
 			}
-
 			dmg += Math.floor(dmg * dmgAmp / 100);
 		}
 	}
