@@ -2641,19 +2641,14 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 
 			// 「シャドウクロス」スキル「フェイタルシャドウクロー」
 			case SKILL_ID_FATAL_SHADOW_CRAW:
-				// 詠唱時間等
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// 距離属性
-				n_Enekyori = 0;
-				// 基本倍率
-				wbairitu = 600 + 150 * n_A_ActiveSkillLV;
-				// POW補正 (2025/01/12 未確認)
-				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-				// ベースレベル補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+				wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill);
+				wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
+				wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
 				break;
 
 			// 「シャドウクロス」スキル「シャドウスタブ」
@@ -26168,22 +26163,21 @@ function ApplyAttackDamageAmplify(mobData, dmg){
 
 	// ダーククロー後の状態における、ダメージ増加の適用
 	// （二刀左手は適用除外）
-	if (n_B_IJYOU[MOB_CONF_DEBUF_ID_DARK_CRAW_EFFECT] && n_Enekyori == 0) {
+	if (n_A_ActiveSkill === SKILL_ID_FATAL_SHADOW_CRAW) {
+		// フェイタルシャドウクローの個別処理
+		// 習得Lvのダーククロー適用後にダメージ計算される
+		dmg += Math.floor(dmg * 30 * LearnedSkillSearch(SKILL_ID_DARK_CRAW) / 100);
+	} else if (n_B_IJYOU[MOB_CONF_DEBUF_ID_DARK_CRAW_EFFECT] && n_Enekyori == 0) {
 		if (!n_NitouCalc) {
-
 			// 特定の戦闘エリアでの補正
 			switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
-
-			case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
-				dmgAmp = 20 * n_B_IJYOU[MOB_CONF_DEBUF_ID_DARK_CRAW_EFFECT];
-				break;
-
-			default:
-				dmgAmp = 30 * n_B_IJYOU[MOB_CONF_DEBUF_ID_DARK_CRAW_EFFECT];
-				break;
-
+				case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
+					dmgAmp = 20 * n_B_IJYOU[MOB_CONF_DEBUF_ID_DARK_CRAW_EFFECT];
+					break;
+				default:
+					dmgAmp = 30 * n_B_IJYOU[MOB_CONF_DEBUF_ID_DARK_CRAW_EFFECT];
+					break;
 			}
-
 			dmg += Math.floor(dmg * dmgAmp / 100);
 		}
 	}

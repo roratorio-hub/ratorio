@@ -31588,12 +31588,21 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)フェイタルシャドウクロー";
+			this.name = "(△)フェイタルシャドウクロー";
 			this.kana = "フエイタルシヤトウクロオ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.Power = function(skillLv, charaData, option) {			// スキル倍率
+				// Lv1 で +35 の誤差があるが Lv2 は誤差ゼロ
+				// スキル倍率とは異なる根本的な計算部分で誤差が生じている可能性がある
+				let ratio = 0;
+				ratio = 600 + 150 * skillLv;
+				ratio += 7 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				ratio = Math.floor(ratio * n_A_BaseLV / 100);
+				return ratio;
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 310;
 			}
