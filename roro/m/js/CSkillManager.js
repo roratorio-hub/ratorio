@@ -31642,32 +31642,32 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)シャドウスタブ";
+			this.name = "(△)シャドウスタブ";
 			this.kana = "シヤトウスタフ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.Power = function(skillLv, charaData, option) {			// スキル倍率
+				// 「エクシードの有無によらず」+6程度の誤差があるためスキル計算式以外の場所に問題があると考えられます
+				let ratio = 0;
+				ratio = 500 + 500 * skillLv;
+				ratio += 10 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				if (option.GetOptionValue(0) == 1) {
+					// クローキングエクシード状態の場合
+					ratio *= 2.5;
+				}
+				ratio = Math.floor(ratio * n_A_BaseLV / 100);
+				return ratio;
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 100;
-			}
-			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
-				return 0;
-			}
-			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
-				return 0;
-			}
-			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
-				return 0;
 			}
 			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
 				return 1000 * skillLv;
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
 				return 500 * skillLv;
-			}
-			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
-				return 0;
 			}
 		};
 		this.dataArray[skillId] = skillData;

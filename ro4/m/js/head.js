@@ -2628,31 +2628,20 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 
 			// 「シャドウクロス」スキル「シャドウスタブ」
 			case SKILL_ID_SHADOW_STAB:
-				// 詠唱時間等
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				// 右手短剣のみ発動可能
 				if (n_A_WeaponType != ITEM_KIND_KNIFE) {
 					wbairitu = 0;
 					n_Buki_Muri = true;
 					break;
 				}
-				// 距離属性
-				n_Enekyori = 0;
-				// 基本倍率
-				if (attackMethodConfArray[0].GetOptionValue(0) == 1) {
-					// クローキングエクシード状態
-					wbairitu = 1250 + 1250 * n_A_ActiveSkillLV;
-				} else {
-					// 通常状態
-					wbairitu = 500 + 500 * n_A_ActiveSkillLV;
-				}
-				// POW補正 (2025/01/12 未確認)
-				wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-				// ベースレベル補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+				wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill);
+				wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
+				wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
 				break;
 
 			// 「シャドウクロス」スキル「インパクトクレーター」
