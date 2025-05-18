@@ -583,6 +583,14 @@ function CExtraInfoAreaComponentManager () {
 		if (IsSameJobClass(JOB_ID_SUMMONER)) {
 			healTypeArray.push([HEALTYPE_EBI_ZANMAI, SKILL_ID_EBI_ZANMAI]);
 		}
+		// 守護符
+		if (IsSameJobClass(MIG_JOB_ID_SOUL_ASCETIC)) {
+			healTypeArray.push([HEALTYPE_SHUGO_FU, SKILL_ID_SHUGO_FU]);
+		}
+		// 城隍堂
+		if (IsSameJobClass(MIG_JOB_ID_SOUL_ASCETIC)) {
+			healTypeArray.push([HEALTYPE_ZYOKODO, SKILL_ID_ZYOKODO]);
+		}
 		// タートルスプリンクラー
 		if (IsSameJobClass(MIG_JOB_ID_SPIRIT_HANDLER)) {
 			healTypeArray.push([HEALTYPE_TURTLE_SPRINKLER, SKILL_ID_TURTLE_SPRINKLER]);
@@ -743,6 +751,8 @@ function CExtraInfoAreaComponentManager () {
 				case HEALTYPE_HIGHNESS:
 				case HEALTYPE_SHINSENNA_EBI:
 				case HEALTYPE_EBI_ZANMAI:
+				case HEALTYPE_SHUGO_FU:
+				case HEALTYPE_ZYOKODO:
 					lvMax = 5;
 					break;
 				case HEALTYPE_TURTLE_SPRINKLER:
