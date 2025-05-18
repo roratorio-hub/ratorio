@@ -583,6 +583,10 @@ function CExtraInfoAreaComponentManager () {
 		if (IsSameJobClass(JOB_ID_SUMMONER)) {
 			healTypeArray.push([HEALTYPE_EBI_ZANMAI, SKILL_ID_EBI_ZANMAI]);
 		}
+		// タートルスプリンクラー
+		if (IsSameJobClass(MIG_JOB_ID_SPIRIT_HANDLER)) {
+			healTypeArray.push([HEALTYPE_TURTLE_SPRINKLER, SKILL_ID_TURTLE_SPRINKLER]);
+		}
 
 		// 選択できる使用対象をリストアップ
 		healTargetArray = [
@@ -740,6 +744,9 @@ function CExtraInfoAreaComponentManager () {
 				case HEALTYPE_SHINSENNA_EBI:
 				case HEALTYPE_EBI_ZANMAI:
 					lvMax = 5;
+					break;
+				case HEALTYPE_TURTLE_SPRINKLER:
+					lvMax = 7;
 					break;
 			}
 			for (lv = 0; lv <= lvMax; lv++) {

@@ -40993,7 +40993,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// タートルスプリンクラー
 		// ----------------------------------------------------------------
-		SKILL_ID_RURTLE_SPRINKLER = skillId;
+		SKILL_ID_TURTLE_SPRINKLER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
