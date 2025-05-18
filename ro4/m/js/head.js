@@ -11574,7 +11574,7 @@ function HealCalc(HealLv,HealType,wMinMax,w_WHO,ptmCount) {
 		case HEALTYPE_TURTLE_SPRINKLER:
 			// TODO これは暫定計算式であって誤差が解消できていません
 			wHeal = wHeal * (healUp + valHPlus) / 100 + wHealMatk;	// 基礎回復量
-			wHeal += 15 * LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY) * GetTotalSpecStatus(MIG_PARAM_ID_CRT);	// 修練と特性ステータスの補正
+			wHeal += 19 * LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY) * GetTotalSpecStatus(MIG_PARAM_ID_CRT);	// 修練と特性ステータスの補正
 			// 固定値に対するBaseLv補正
 			if (UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0 || LearnedSkillSearch(SKILL_ID_NYANTOMO_KAMESETSU) > 0) {
 				// 強化状態
@@ -11585,17 +11585,17 @@ function HealCalc(HealLv,HealType,wMinMax,w_WHO,ptmCount) {
 			wHeal = Math.floor(wHeal);
 			break;
 		case HEALTYPE_SHUGO_FU:
-			// TODO これは暫定計算式であって誤差が解消できていません
+			// TODO これは暫定計算式であって実測できていません
 			wHeal = wHeal * (healUp + valHPlus) / 100 + wHealMatk;	// 基礎回復量
-			wHeal += 15 * LearnedSkillSearch(SKILL_ID_GOFU_SHUREN) * GetTotalSpecStatus(MIG_PARAM_ID_CRT);	// 修練と特性ステータスの補正
+			wHeal += 19 * LearnedSkillSearch(SKILL_ID_GOFU_SHUREN) * GetTotalSpecStatus(MIG_PARAM_ID_CRT);	// 修練と特性ステータスの補正
 			// 固定値に対するBaseLv補正
 			wHeal += (1000 + 500 * HealLv) * n_A_BaseLV / 100;
 			wHeal = Math.floor(wHeal);
 			break;
 		case HEALTYPE_ZYOKODO:
-			// TODO これは暫定計算式であって誤差が解消できていません
+			// TODO これは暫定計算式であって実測できていません
 			wHeal = wHeal * (healUp + valHPlus) / 100 + wHealMatk;	// 基礎回復量
-			wHeal += 15 * LearnedSkillSearch(SKILL_ID_GOFU_SHUREN) * GetTotalSpecStatus(MIG_PARAM_ID_CRT);	// 修練と特性ステータスの補正
+			wHeal += 19 * LearnedSkillSearch(SKILL_ID_GOFU_SHUREN) * GetTotalSpecStatus(MIG_PARAM_ID_CRT);	// 修練と特性ステータスの補正
 			// 固定値に対するBaseLv補正
 			wHeal += [0, 5500, 9000, 13000, 17000, 21000][HealLv] * n_A_BaseLV / 100;
 			wHeal = Math.floor(wHeal);
