@@ -2102,16 +2102,12 @@ function CExtraInfoAreaComponentManager () {
 	 * 拡張情報の表示欄を構築する（ダメージ耐性）.
 	 */
 	this.RebuildDispAreaResistDamage = function () {
-
 		var idx = 0;
-
 		var objRoot = null;
 		var objTable = null;
 		var objTbody = null;
 		var objTr = null;
 		var objTd = null;
-
-
 
 		// 指定の領域をクリア
 		objRoot = document.getElementById("OBJID_TD_EXTRA_INFO_" + this.managerInstanceId);
@@ -2121,8 +2117,6 @@ function CExtraInfoAreaComponentManager () {
 		objTable = HtmlCreateElement("table", objRoot);
 		objTable.setAttribute("style", "width : 100%;");
 		objTbody = HtmlCreateElement("tbody", objTable);
-
-
 
 		// 表示欄
 		objTr = HtmlCreateElement("tr", objTbody);
@@ -2135,29 +2129,24 @@ function CExtraInfoAreaComponentManager () {
 	 * 拡張情報の表示欄を更新する（ダメージ耐性）.
 	 */
 	this.RefreshDispAreaResistDamage = function () {
-
 		var idx = 0;
 		var idxRow = 0;
 		var idxLoop = 0;
 		var idxLabel = 0;
 		var idxSpec = 0;
-
 		var lv = 0;
 		var lvMax = 0;
 		var value = 0;
-
 		var typeText = "";
 		var valueText = "";
 		var resistValueArray = null;
 		var bodyElmRatioArray = null;
 		var finalRatioArray = null;
-
 		var loopData = null;
 		var specArray = null;
 		var loopDataArray = null;
 		var createdCount = 0;
 		var spanClassName = "";
-
 		var objRoot = null;
 		var objTable = null;
 		var objTbody = null;
@@ -2169,18 +2158,13 @@ function CExtraInfoAreaComponentManager () {
 		var objTdChild = null;
 		var objSpan = null;
 
-
-
 		//--------------------------------
 		// ループ処理用データ作成
 		//--------------------------------
-
 		loopDataArray = [];		// 各要素は、[ラベル, 生成すべき行インデックス, rowspan, 色付けモード, specArray] で構成される
-
 
 		// 種族欄
 		specArray = [];
-
 		for (idx = 0; idx < RACE_ID_COUNT; idx++) {
 			specArray.push(
 				[
@@ -2212,13 +2196,10 @@ function CExtraInfoAreaComponentManager () {
 				);
 			}
 		}
-
 		loopDataArray.push(["種族", 0, 4, 1, specArray]);
-
 
 		// 敵属性欄
 		specArray = [];
-
 		for (idx = 0; idx < ELM_ID_COUNT; idx++) {
 			specArray.push(
 				[
@@ -2240,13 +2221,10 @@ function CExtraInfoAreaComponentManager () {
 				);
 			}
 		}
-
 		loopDataArray.push(["敵属性", 0, 4, 1, specArray]);
-
 
 		// サイズ欄
 		specArray = [];
-
 		for (idx = 0; idx < SIZE_ID_COUNT; idx++) {
 			specArray.push(
 				[
@@ -2268,16 +2246,13 @@ function CExtraInfoAreaComponentManager () {
 				);
 			}
 		}
-
 		loopDataArray.push(["サイズ", 0, 1, 1, specArray]);
-
 
 		// ボス欄
 		specArray = [];
 		specArray.push(
 			[["ボス"], CExtraInfoAreaComponentManager.specData[ITEM_SP_RESIST_BOSS], "\\%"]
 		);
-
 		// 超過分
 		value = n_tok_no_limit[ITEM_SP_RESIST_BOSS] - n_tok[ITEM_SP_RESIST_BOSS];
 		if (value > 0) {
@@ -2289,11 +2264,9 @@ function CExtraInfoAreaComponentManager () {
 				]
 			);
 		}
-
 		specArray.push(
 			[["一般"], CExtraInfoAreaComponentManager.specData[ITEM_SP_RESIST_NOTBOSS], "\\%"]
 		);
-
 		// 超過分
 		value = n_tok_no_limit[ITEM_SP_RESIST_BOSS] - n_tok[ITEM_SP_RESIST_BOSS];
 		if (value > 0) {
@@ -2305,15 +2278,13 @@ function CExtraInfoAreaComponentManager () {
 				]
 			);
 		}
-
 		loopDataArray.push(["ボス", 1, 1, 1, specArray]);
-
 
 		// 特殊欄
 		specArray = [
 			[["遠距離"], CExtraInfoAreaComponentManager.specData[ITEM_SP_RESIST_LONGRANGE], "\\%"],
+			[["ﾉｯｸﾊﾞｯｸ"], CExtraInfoAreaComponentManager.specData[ITEM_SP_NEVER_KNOCK_BACK],(CExtraInfoAreaComponentManager.specData[ITEM_SP_NEVER_KNOCK_BACK] > 0 ? "無効" : "する")],
 		];
-
 		// 超過分
 		value = n_tok_no_limit[ITEM_SP_RESIST_LONGRANGE] - n_tok[ITEM_SP_RESIST_LONGRANGE];
 		if (value > 0) {
@@ -2325,17 +2296,13 @@ function CExtraInfoAreaComponentManager () {
 				]
 			);
 		}
-
 		loopDataArray.push(["特殊", 2, 1, 1, specArray]);
-
 
 		// 対PC欄
 		specArray = [];
-
 		specArray.push(
 			[["すべて"], CExtraInfoAreaComponentManager.specData[ITEM_SP_RESIST_PLAYER_ALL], "\\%"]
 		);
-
 		// 超過分
 		value = n_tok_no_limit[ITEM_SP_RESIST_PLAYER_ALL] - n_tok[ITEM_SP_RESIST_PLAYER_ALL];
 		if (value > 0) {
@@ -2347,11 +2314,9 @@ function CExtraInfoAreaComponentManager () {
 				]
 			);
 		}
-
 		specArray.push(
 			[["人間"], CExtraInfoAreaComponentManager.specData[ITEM_SP_RESIST_PLAYER_HUMAN], "\\%"]
 		);
-
 		// 超過分
 		value = n_tok_no_limit[ITEM_SP_RESIST_PLAYER_HUMAN] - n_tok[ITEM_SP_RESIST_PLAYER_HUMAN];
 		if (value > 0) {
@@ -2363,11 +2328,9 @@ function CExtraInfoAreaComponentManager () {
 				]
 			);
 		}
-
 		specArray.push(
 			[["ドラム"], CExtraInfoAreaComponentManager.specData[ITEM_SP_RESIST_PLAYER_DORAM], "\\%"]
 		);
-
 		// 超過分
 		value = n_tok_no_limit[ITEM_SP_RESIST_PLAYER_DORAM] - n_tok[ITEM_SP_RESIST_PLAYER_DORAM];
 		if (value > 0) {
@@ -2379,28 +2342,18 @@ function CExtraInfoAreaComponentManager () {
 				]
 			);
 		}
-
 		loopDataArray.push(["対PC", 3, 1, 1, specArray]);
-
-
-
-
 
 		//--------------------------------
 		// HTML組み立て
 		//--------------------------------
-
 		objRoot = document.getElementById("OBJID_TD_EXTRA_INFO_DISP_AREA_" + this.managerInstanceId);
 		HtmlRemoveAllChild(objRoot);
-
 		objTable = HtmlCreateElement("table", objRoot);
 		objTable.setAttribute("style", "width : 100%;");
 		objTbody = HtmlCreateElement("tbody", objTable);
-
-
 		// 行ごとにループ処理で生成
 		createdCount = 0;
-
 		for (idxRow = 0; createdCount < loopDataArray.length; idxRow++) {
 
 			if (idxRow > 0) {
@@ -3188,6 +3141,20 @@ function CExtraInfoAreaComponentManager () {
 			]
 		);
 
+		// 詠唱妨害
+		valueText = "される";
+		spanClassName = "";
+		if (CExtraInfoAreaComponentManager.specData[ITEM_SP_NEVER_CAST_CANCEL] > 0) {
+			valueText = "されない";
+			spanClassName = "CSSCLS_EXTRA_INFO_DISP_TABLE_BLUE";
+		}
+		loopDataArrayGeneral.push(
+			[
+				["", "詠唱中断"],
+				["", ":"],
+				[spanClassName, valueText],
+			]
+		);
 
 		//----------------
 		// 選択中のスキル
