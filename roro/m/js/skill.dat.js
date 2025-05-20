@@ -2591,7 +2591,7 @@
 		[1272,1,"ルールブレイク状態"],
 		[1273,1,"アビスダガー状態"],
 		[1274,7,"レインボーホーン","SH_COLORS_OF_HYUN_ROK"],
-		[1275,7,"タートルスプリンクラー","SH_KI_SUL_WATER_SPRAYING"],
+		[1275,7,"(△)タートルスプリンクラー","SH_KI_SUL_WATER_SPRAYING"],
 		[1276,7,"タートルランページ","SH_KI_SUL_RAMPAGE"],
 		[1277,1,"にゃん友 -亀設-","SH_COMMUNE_WITH_KI_SUL"],
 		[1278,1,"蜃気楼分身","SS_SHINKIROU"],

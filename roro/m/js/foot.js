@@ -1998,11 +1998,11 @@ function StAllCalc(){
 
 
 
-
-
-//================================================================================================
-// 除算Ｍｄｅｆ算出
-//================================================================================================
+/**
+ * ==================================================================
+ * 除算Mdef算出
+ * ================================================================== 
+ */
 
 	var mdefDiv = 0;
 	var mdefDivIgnoreBuff = 0;
@@ -2103,11 +2103,11 @@ function StAllCalc(){
 	charaData[CHARA_DATA_INDEX_MDEF_DIV] = mdefDiv;
 	charaData[CHARA_DATA_INDEX_MDEF_DIV_IGNORE_BUFF] = mdefDivIgnoreBuff;
 
-
-
-//================================================================================================
-// 減算Ｍｄｅｆ算出
-//================================================================================================
+/**
+ * ==================================================================
+ * 減算Mdef算出
+ * ================================================================== 
+ */
 
 	//----------------------------------------------------------------
 	// 基本減算Ｍｄｅｆ
@@ -2162,10 +2162,11 @@ function StAllCalc(){
 
 
 
-//================================================================================================
-// ＨＩＴ算出
-//================================================================================================
-
+/**
+ * ==================================================================
+ * HIT 算出
+ * ================================================================== 
+ */
 	var hit = 0;
 
 	//----------------------------------------------------------------
@@ -2200,14 +2201,11 @@ function StAllCalc(){
 
 	with(document.calcForm){
 
-
-//================================================================================================================================
-//================================================================================================================================
-//====
-//==== ＦＬＥＥ　ここから
-//====
-//================================================================================================================================
-//================================================================================================================================
+/**
+ * ==================================================================
+ * FLEE 加算
+ * ================================================================== 
+ */
 
 		var flee = 0;
 
@@ -22141,6 +22139,60 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 		}
 
 
+/**
+ * ===========================================================================================
+ * 絶対にノックバックしない
+ * ===========================================================================================
+ */
+		if (EquipNumSearch(ITEM_ID_MOKOMOKO_OSAKANA_SHOES) !== 0){
+			// もこもこお魚シューズ を装備していて
+			if (LearnedSkillSearch(SKILL_ID_GROOMING) === 5) {
+				// グルーミング Lv5 を習得している場合
+				n_tok[ITEM_SP_NEVER_KNOCK_BACK] += 1;
+			}
+		}
+		if (EquipNumSearch(ITEM_ID_POWERED_WING) !== 0) {
+			// パワードウィング を装備していて
+			if (LearnedSkillSearch(SKILL_ID_HITO_DAICHINO_KENKYU) === 5) {
+				// 火と大地の研究 Lv5 を習得している場合
+				n_tok[ITEM_SP_NEVER_KNOCK_BACK] += 1;
+			}
+		}
+		if (EquipNumSearch(ITEM_ID_IMPERIAL_GATLING_SUIT) !== 0 || EquipNumSearch(ITEM_ID_GRACE_GATLING_SUIT) !== 0) {
+			// インペリアルガトリングスーツ　か　グレースガトリングスーツ を装備していて
+			if (LearnedSkillSearch(SKILL_ID_ETERNAL_CHAIN) === 10) {
+				// エターナルチェーン Lv10 を習得している場合
+				n_tok[ITEM_SP_NEVER_KNOCK_BACK] += 1;
+			}
+		}
+		if (EquipNumSearch(ITEM_ID_IMPERIAL_TENCHI_SUIT) !== 0 || EquipNumSearch(ITEM_ID_GRACE_TENCHI_SUIT) !== 0) {
+			// インペリアル天地スーツ　か　グレース天地スーツ を装備していて
+			if (LearnedSkillSearch(SKILL_ID_SENRYU_SHOTEN) === 10) {
+				// 潜龍昇天 Lv10 を習得している場合
+				n_tok[ITEM_SP_NEVER_KNOCK_BACK] += 1;
+			}
+		}
+		if (EquipNumSearch(ITEM_ID_IMPERIAL_HOLY_ROBE) !== 0 || EquipNumSearch(ITEM_ID_GRACE_HOLY_ROBE) !== 0) {
+			// インペリアルホーリーローブ　か　グレースホーリーローブ を装備していて
+			if (LearnedSkillSearch(SKILL_ID_SECRAMENT) === 5) {
+				// サクラメント Lv5 を習得している場合
+				n_tok[ITEM_SP_NEVER_KNOCK_BACK] += 1;
+			}
+		}
+
+/**
+ * ===========================================================================================
+ * 詠唱が中断されない
+ * ===========================================================================================
+ */
+		if (EquipNumSearch(ITEM_ID_YUSHANO_MAGIC_COAT) !== 0) {
+			// 勇者のマジックコート を装備していて
+			if (n_A_BODY_DEF_PLUS % 2 === 1) {
+				// 精錬値が奇数の場合
+				n_tok[ITEM_SP_NEVER_CAST_CANCEL] += 1;
+			}
+		}
+
 
 //================================================================================================================================
 //================================================================================================================================
@@ -22170,34 +22222,10 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 		}
 */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 		//----------------------------------------------------------------
 		// 四次特性ステータス対応用
 		//----------------------------------------------------------------
 		ApplySpecStatusModifications(charaData, n_tok);
-
-
-
-
-
-
 
 		//----------------------------------------------------------------
 		// キャラクターデータ画面表示更新
@@ -22205,10 +22233,6 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 		if (g_SPMODE_FLAG == 0) {
 			UpdateCharaDataHtml(charaData, n_tok);
 		}
-
-
-
-
 
 		//----------------------------------------------------------------
 		// モンスターパラメータ取得
@@ -22223,10 +22247,6 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 			UpdateCharaDataHtml(charaData, n_tok);
 		}
 
-
-
-
-
 //================================================================================================
 // グローバル変数の準備
 //================================================================================================
@@ -22238,11 +22258,6 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 	n_B_MDEF2 = mobData[MONSTER_DATA_EXTRA_INDEX_MDEF_MINUS];
 	n_B_HIT = mobData[MONSTER_DATA_EXTRA_INDEX_HIT];
 	n_B_FLEE = mobData[MONSTER_DATA_EXTRA_INDEX_FLEE];
-
-
-
-
-
 
 		// 錐効果の計算
 		n_A_QUAKE_KIRI = 0;
@@ -22289,8 +22304,6 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 			n_tok[23] = 1;
 		}
 
-
-
 		// TODO: データ移行過渡処理
 		// 計算したSP効果を、移行前のデータ形式に変換して、加算する
 		if (IsEnableMigrationBlockTransit()) {
@@ -22307,8 +22320,6 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 				n_tok[23] = 1;
 			}
 		}
-
-
 
 		if((n_tok[23] >= 1 && NumSearch(n_A_ActiveSkill,n_SP_SKILL) == 0)
 			|| n_A_ActiveSkill == 193) {
@@ -22369,20 +22380,12 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 			}
 		}
 
-
-
-
-
 		// TODO: 四次対応
 		for (idx = ITEM_SP_P_ATK_PLUS; idx <= ITEM_SP_MRES_PLUS; idx++) {
 			n_tok[idx] = ApplySpecModify(idx, n_tok[idx]);
 		}
 
 		DisplayReferStatusAll();
-
-
-
-
 
 		// Lv200解放アップデートでの、上限値新設への対応
 		var funcIsLimitSpIDUpTo95 = function (spidF) {
@@ -22452,8 +22455,6 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 			}
 		}
 
-
-
 		// TODO: 攻撃手段更新、ここにいれられないか
 
 
@@ -22474,8 +22475,6 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 			HtmlCreateTextNode("の注意事項をご確認ください。", objP);
 		}
 
-
-
 		// データ収集
 
 		// ここまでで収集されていないデータの追加
@@ -22494,8 +22493,6 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 		CCalcDataTextCreator.refSpecData = n_tok;
 		CCalcDataTextCreator.refMobData = mobData;
 
-
-
 		// 拡張表示を更新
 		CFloatingInfoAreaComponentManager.setReferData(charaData, n_tok, mobData);
 		CFloatingInfoAreaComponentManager.RefreshDispAreaAll();
@@ -22505,22 +22502,15 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 	return [charaData, n_tok, mobData, attackMethodConfArray];
 }
 
-//================================================================================================================================
-//================================================================================================================================
-//====
-//==== 特定スキルの　詠唱時間－○○％　ここから
-//====
-//================================================================================================================================
-//================================================================================================================================
-
+/**
+ * 特定スキルの変動詠唱時間を％で取得する。短縮効果が付与されていない場合は100が返される。
+ * @param {*} skillId 
+ * @returns 
+ */
 function GetCastScalingOfSkillForCastTimeVary(skillId) {
-
 	var itemCount = 0;
 	var eqpnum = 0;
-
 	var scaling = 100;
-
-
 
 	// 装備品の短縮効果
 	if (GetEquippedTotalSPEquip(ITEM_SP_SKILL_CAST_TIME_OFFSET + skillId) != 0) {
@@ -23284,19 +23274,13 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 	return scaling;
 }
 
-//================================================================================================================================
-//================================================================================================================================
-//====
-//==== 特定スキルの　詠唱時間－○○秒　ここから
-//====
-//================================================================================================================================
-//================================================================================================================================
-
+/**
+ * 特定スキルの変動詠唱が短縮される時間をミリ秒で取得する。短縮効果が付与されていない場合は0が返される。
+ * @param {*} skillId 
+ * @returns 
+ */
 function GetCastFixOfSkillForCastTimeVary(skillId) {
-
 	var castfix = 0;
-
-
 
 	// 装備品の短縮効果
 	if (GetEquippedTotalSPEquip(ITEM_SP_SKILL_CAST_MINUS_OFFSET + skillId) != 0) {
@@ -23307,10 +23291,6 @@ function GetCastFixOfSkillForCastTimeVary(skillId) {
 		castfix -= GetEquippedTotalSPCardAndElse(ITEM_SP_SKILL_CAST_MINUS_OFFSET + skillId);
 	}
 
-
-
-
-
 	//----------------------------------------------------------------
 	// 「アイオーンスタッフ」の「リーディングスペルブック」短縮
 	//----------------------------------------------------------------
@@ -23320,8 +23300,6 @@ function GetCastFixOfSkillForCastTimeVary(skillId) {
 			castfix -= 1000 * LearnedSkillSearch(SKILL_ID_FREEZING_SPELL) * eqpnum;
 		}
 	}
-
-
 
 	//----------------------------------------------------------------
 	// 「アイオーンスタッフ」の「サモンファイアーボール」短縮
@@ -23335,8 +23313,6 @@ function GetCastFixOfSkillForCastTimeVary(skillId) {
 		}
 	}
 
-
-
 	//----------------------------------------------------------------
 	// 「アイオーンスタッフ」の「サモンウォーターボール」短縮
 	//----------------------------------------------------------------
@@ -23348,8 +23324,6 @@ function GetCastFixOfSkillForCastTimeVary(skillId) {
 			}
 		}
 	}
-
-
 
 	//----------------------------------------------------------------
 	// 「アイオーンスタッフ」の「サモンボールライトニング」短縮
@@ -23363,8 +23337,6 @@ function GetCastFixOfSkillForCastTimeVary(skillId) {
 		}
 	}
 
-
-
 	//----------------------------------------------------------------
 	// 「アイオーンスタッフ」の「サモンストーン」短縮
 	//----------------------------------------------------------------
@@ -23376,8 +23348,6 @@ function GetCastFixOfSkillForCastTimeVary(skillId) {
 			}
 		}
 	}
-
-
 
 	//----------------------------------------------------------------
 	// 「不死鳥の冠」の「インスピレーション」短縮
@@ -23391,8 +23361,6 @@ function GetCastFixOfSkillForCastTimeVary(skillId) {
 		}
 	}
 
-
-
 	//----------------------------------------------------------------
 	// 「不死鳥の冠」の「オーバーブランド」短縮
 	//----------------------------------------------------------------
@@ -23404,8 +23372,6 @@ function GetCastFixOfSkillForCastTimeVary(skillId) {
 			}
 		}
 	}
-
-
 
 	//----------------------------------------------------------------
 	// 「精霊のローブ」の「サイキックウェーブ」短縮
@@ -23425,8 +23391,6 @@ function GetCastFixOfSkillForCastTimeVary(skillId) {
 		}
 	}
 
-
-
 	//----------------------------------------------------------------
 	// 「スナイピングベール」の「マススパイラル」短縮
 	//----------------------------------------------------------------
@@ -23438,8 +23402,6 @@ function GetCastFixOfSkillForCastTimeVary(skillId) {
 			}
 		}
 	}
-
-
 
 	//----------------------------------------------------------------
 	// 「アルティメットモードチェンジャー　ナブのクロースセット」の「ポイズンスモーク」短縮
@@ -23453,8 +23415,6 @@ function GetCastFixOfSkillForCastTimeVary(skillId) {
 		}
 	}
 
-
-
 	//----------------------------------------------------------------
 	// 「シールドリング」の「アースドライブ」短縮
 	//----------------------------------------------------------------
@@ -23467,11 +23427,6 @@ function GetCastFixOfSkillForCastTimeVary(skillId) {
 		}
 	}
 
-
-
-
-
-
 	//----------------------------------------------------------------
 	// 「性能カスタマイズ」の、効果
 	//----------------------------------------------------------------
@@ -23479,10 +23434,6 @@ function GetCastFixOfSkillForCastTimeVary(skillId) {
 	if (confval != 0) {
 		castfix -= 100 * confval;
 	}
-
-
-
-
 
 	// TODO: データ移行過渡処理
 	// 計算したSP効果を、移行前のデータ形式に変換して、加算する
@@ -23497,10 +23448,6 @@ function GetCastFixOfSkillForCastTimeVary(skillId) {
 		castfix += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
 		castfix += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
 	}
-
-
-
-
 
 	return castfix;
 }
