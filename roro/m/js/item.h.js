@@ -369,10 +369,10 @@ CGlobalConstManager.DefineEnum(
 	1
 );
 
-//----------------------------------------------------------------
-// EnumItemSpId 特殊効果定義
-// （**_PLUS は固定値、**_UP はパーセント）
-//----------------------------------------------------------------
+/**
+ * EnumItemSpId 特殊効果定義
+ * （**_PLUS は固定値、**_UP はパーセント）
+ */
 CGlobalConstManager.DefineEnum(
 	"EnumItemSpId",
 	[
@@ -479,7 +479,7 @@ CGlobalConstManager.DefineEnum(
 		"ITEM_SP_SET_DEFINITION",			// 90 セットの定義。通常は直接指定しない。
 		"ITEM_SP_HEAL_UP_USING",			// 91 ヒール系スキル使用時HP回復量増加
 		"ITEM_SP_HEAL_UP_USED",				// 92 ヒール系スキルを受けた時HP回復量増加
-		"ITEM_SP_HEAL_DAMAGE_UP",
+		"ITEM_SP_HEAL_DAMAGE_UP",			// 93 ヒール系スキルによるダメージ増加
 		"ITEM_SP_HEAL_UP_USING_ONLY_HEAL",	// 94 ヒール使用時HP回復量増加
 		"ITEM_SP_HEAL_UP_USING_ONLY_HEAL_SERIES",
 		"ITEM_SP_MAGICAL_DAMAGE_UP_BOSS",			// 96 ボスへの魔法ダメージ増加
@@ -799,6 +799,8 @@ CGlobalConstManager.DefineEnum(
 		"ITEM_SP_RESIST_STATE_NEW_RAPIDCOOLING",// 377 急冷
 		"ITEM_SP_RESIST_STATE_NEW_CRYSTALLIZATION",// 378 結晶化
 		"ITEM_SP_RESIST_STATE_NEW_UNHAPPINESS",// 379 不幸
+		"ITEM_SP_NEVER_CAST_CANCEL", // 380 詠唱が中断されない
+		"ITEM_SP_NEVER_KNOCK_BACK", // 381 ノックバックしない
 	],
 	0,
 	1
@@ -1014,9 +1016,22 @@ CGlobalConstManager.DefinePseudoEnum(
 	"EnumItemSpId",
 	[
 		// 職業限定
-		"ITEM_SP_JOB_RESTRICT_NOVICE_OFFSET",	// 10 * 10^10
+		"ITEM_SP_JOB_RESTRICT_NOVICE_OFFSET",	// 1 * 10^11
 	],
 	100000000000,
+	100000000000
+);
+
+/**
+ * EnumItemSpId 特殊効果定義オフセット（職業制約）
+ */
+CGlobalConstManager.DefinePseudoEnum(
+	"EnumItemSpId",
+	[
+		// 職業限定
+		"ITEM_SP_JOB_RESTRICT_MONK_OFFSET",	// 16 * 10^11
+	],
+	1600000000000,
 	100000000000
 );
 
@@ -1036,7 +1051,7 @@ CGlobalConstManager.DefinePseudoEnum(
 		"ITEM_SP_JOB_RESTRICT_MECHANIC_OFFSET",			// 52
 		"ITEM_SP_JOB_RESTRICT_ROYALGUARD_OFFSET",		// 53
 		"ITEM_SP_JOB_RESTRICT_SHADOWCHASER_OFFSET",		// 54
-		"ITEM_SP_JOB_RESTRICT_SHURA_OFFSET",			// 55
+		"ITEM_SP_JOB_RESTRICT_SHURA_OFFSET",			// 5500000000000
 		"ITEM_SP_JOB_RESTRICT_MINSTREL_OFFSET",			// 56
 		"ITEM_SP_JOB_RESTRICT_WANDERER_OFFSET",			// 57
 		"ITEM_SP_JOB_RESTRICT_SORCERER_OFFSET",			// 58
@@ -1067,12 +1082,11 @@ CGlobalConstManager.DefinePseudoEnum(
 );
 
 /**
- * EnumItemSpId 特殊効果定義オフセット（BaseLv制約）
+ * EnumItemSpId 特殊効果定義オフセット（BaseLvが○上がる度に）
  */
 CGlobalConstManager.DefinePseudoEnum(
 	"EnumItemSpId",
 	[
-		// BaseLvが○上がる度に
 		"ITEM_SP_BASE_LV_BY_1_OFFSET",
 		"ITEM_SP_BASE_LV_BY_2_OFFSET",
 		"ITEM_SP_BASE_LV_BY_3_OFFSET",
@@ -1089,12 +1103,11 @@ CGlobalConstManager.DefinePseudoEnum(
 );
 
 /**
- * EnumItemSpId 特殊効果定義オフセット（BaseLv制約）
+ * EnumItemSpId 特殊効果定義オフセット（BaseLvが○上がる度に）
  */
 CGlobalConstManager.DefinePseudoEnum(
 	"EnumItemSpId",
 	[
-		// BaseLvが○上がる度に
 		"ITEM_SP_BASE_LV_BY_20_OFFSET",
 	],
 	200000000000000,
@@ -1102,12 +1115,11 @@ CGlobalConstManager.DefinePseudoEnum(
 );
 
 /**
- * EnumItemSpId 特殊効果定義オフセット（BaseLv制約）
+ * EnumItemSpId 特殊効果定義オフセット（BaseLvが○上がる度に）
  */
 CGlobalConstManager.DefinePseudoEnum(
 	"EnumItemSpId",
 	[
-		// BaseLvが○上がる度に
 		"ITEM_SP_BASE_LV_BY_99_OFFSET",
 	],
 	990000000000000,
@@ -1115,7 +1127,7 @@ CGlobalConstManager.DefinePseudoEnum(
 );
 
 /**
- * EnumItemSpId 特殊効果定義オフセット（BaseLv制約）
+ * EnumItemSpId 特殊効果定義オフセット（BaseLvが○以上の時、BaseLvが○以下の時）
  */
 CGlobalConstManager.DefinePseudoEnum(
 	"EnumItemSpId",
@@ -1853,8 +1865,6 @@ function GetItemExplainText(spId, spValue) {
 
 	spId = baseLvOverEffecct;
 
-
-
 	// 『BaseLvが○上がる度に』条件
 	var baseLvBy = Math.floor(spId / ITEM_SP_BASE_LV_BY_1_OFFSET);
 	var baseLvByEffecct = spId % ITEM_SP_BASE_LV_BY_1_OFFSET;
@@ -1865,8 +1875,6 @@ function GetItemExplainText(spId, spValue) {
 
 	spId = baseLvByEffecct;
 
-
-
 	// 職業限定
 	var jobRestrict = Math.floor(spId / ITEM_SP_JOB_RESTRICT_NOVICE_OFFSET) - 1;
 
@@ -1875,8 +1883,6 @@ function GetItemExplainText(spId, spValue) {
 	}
 
 	spId = spId % ITEM_SP_JOB_RESTRICT_NOVICE_OFFSET;
-
-
 
 	// 『純粋な○○が△△以上の時』条件
 	var statusName = ["Str", "Agi", "Vit", "Int", "Dex", "Luk",];
@@ -1915,8 +1921,6 @@ function GetItemExplainText(spId, spValue) {
 	
 	spId = pureStatusEffect;
 
-
-
 	// 『純粋な○○が△△上がる度に』条件
 	var pureStatusBy = Math.floor(spId / ITEM_SP_PURE_STR_BY_10_OFFSET);
 	var pureStatusByEffect = spId % ITEM_SP_PURE_STR_BY_10_OFFSET;
@@ -1933,8 +1937,6 @@ function GetItemExplainText(spId, spValue) {
 
 	spId = pureStatusByEffect;
 
-
-
 	// 『精錬値が○以上の時』条件
 	var refineOver = Math.floor(spId / ITEM_SP_REFINE_OVER_1_OFFSET);
 	var refineOverEffect = spId % ITEM_SP_REFINE_OVER_1_OFFSET;
@@ -1944,8 +1946,6 @@ function GetItemExplainText(spId, spValue) {
 	}
 
 	spId = refineOverEffect;
-
-
 
 	// 『精錬値が○上がる度に』条件
 	var refineBy = Math.floor(spId / ITEM_SP_REFINE_BY_1_OFFSET);
@@ -1957,8 +1957,6 @@ function GetItemExplainText(spId, spValue) {
 
 	spId = refineByEffecct;
 
-
-
 	// 条件文字列の組み立て
 	textInfoArray.push([
 		"",
@@ -1967,1048 +1965,1053 @@ function GetItemExplainText(spId, spValue) {
 
 	sign = (spValue < 0) ? " " : " + ";
 
-
-
+	// アイテムSPの説明
 	switch (spId) {
 
-	case ITEM_SP_DMY:
-		textInfoArray.push(["", ""]);
-		break;
-
-	case ITEM_SP_STR_PLUS:
-		textInfoArray.push(["", "STR" + sign + spValue]);
-		break;
-
-	case ITEM_SP_AGI_PLUS:
-		textInfoArray.push(["", "AGI" + sign + spValue]);
-		break;
-
-	case ITEM_SP_VIT_PLUS:
-		textInfoArray.push(["", "VIT" + sign + spValue]);
-		break;
-
-	case ITEM_SP_INT_PLUS:
-		textInfoArray.push(["", "INT" + sign + spValue]);
-		break;
-
-	case ITEM_SP_DEX_PLUS:
-		textInfoArray.push(["", "DEX" + sign + spValue]);
-		break;
-
-	case ITEM_SP_LUK_PLUS:
-		textInfoArray.push(["", "LUK" + sign + spValue]);
-		break;
-
-	case ITEM_SP_ALLSTATUS_PLUS:
-		textInfoArray.push(["", "全ての基本ステータス" + sign + spValue]);
-		break;
-
-	case ITEM_SP_HIT_PLUS:
-		textInfoArray.push(["", "Hit" + sign + spValue]);
-		break;
-
-	case ITEM_SP_FLEE_PLUS:
-		textInfoArray.push(["", "Flee" + sign + spValue]);
-		break;
-
-	case ITEM_SP_CRI_PLUS:
-		textInfoArray.push(["", "Cri" + sign + spValue]);
-		break;
-
-	case ITEM_SP_LUCKY_PLUS:
-		textInfoArray.push(["", "完全回避" + sign + spValue]);
-		break;
-
-	case ITEM_SP_ASPD_UP:
-		textInfoArray.push(["", "攻撃速度" + sign + spValue +"%"]);
-		break;
-
-	case ITEM_SP_MAXHP_PLUS:
-		textInfoArray.push(["", "MaxHP" + sign + spValue]);
-		break;
-
-	case ITEM_SP_MAXSP_PLUS:
-		textInfoArray.push(["", "MaxSP" + sign + spValue]);
-		break;
-
-	case ITEM_SP_MAXHP_UP:
-		textInfoArray.push(["", "MaxHP" + sign + spValue +"%"]);
-		break;
-
-	case ITEM_SP_MAXSP_UP:
-		textInfoArray.push(["", "MaxSP" + sign + spValue +"%"]);
-		break;
-
-	case ITEM_SP_ATK_PLUS:
-		textInfoArray.push(["", "ATK" + sign + spValue]);
-		break;
-
-	case ITEM_SP_DEF_PLUS:
-		textInfoArray.push(["", "DEF" + sign + spValue]);
-		break;
-
-	case ITEM_SP_MDEF_PLUS:
-		textInfoArray.push(["", "MDEF" + sign + spValue]);
-		break;
-
-	case ITEM_SP_ELEMENTAL:
-		textInfoArray.push(["", GetElementText(spValue) +"属性武器"]);
-		break;
-
-	case ITEM_SP_PENETRATE_DEF:
-		if(spValue == 1) {
-			textInfoArray.push(["", "敵の防御力を無視する(Boss属性は無視できない)"]);
-		}
-		else {
-			textInfoArray.push(["", "敵の防御力を無視する(Boss属性の防御力も無視できる)"]);
-		}
-		break;
-
-	case ITEM_SP_KIRI_EFFECT:
-		textInfoArray.push(["", "敵のDEFとVITが高いほど高ダメージを与える"]);
-		break;
-
-	case ITEM_SP_DEF_DIVIDE_PENARTY:
-		textInfoArray.push(["", "自キャラクターの防御力1/"+ spValue + ""]);
-		break;
-
-	case ITEM_SP_LONGRANGE_DAMAGE_UP_ONLY_BOW:
-		textInfoArray.push(["", "弓装備時、遠距離物理攻撃で与えるダメージ"+ sign + spValue +"%"]);
-		break;
-
-	case ITEM_SP_LONGRANGE_DAMAGE_UP:
-		textInfoArray.push(["", "遠距離物理攻撃で与えるダメージ"+ sign + spValue +"%"]);
-		break;
-
-	case ITEM_SP_PHYSICAL_DAMAGE_UP_BOSS:
-		textInfoArray.push(["", "BOSS属性モンスターに与える物理ダメージ"+ spValue +"%"]);
-		break;
-
-	case ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_SMALL:
-	case ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_MEDIUM:
-	case ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_LARGE:
-		textInfoArray.push(["", GetSizeText(spId - ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_SMALL) + "のモンスターに与える物理ダメージ" + sign + spValue + "%"]);
-		break;
-
-	case ITEM_SP_PHYSICAL_DAMAGE_UP_RACE_SOLID:
-	case ITEM_SP_PHYSICAL_DAMAGE_UP_RACE_UNDEAD:
-	case ITEM_SP_PHYSICAL_DAMAGE_UP_RACE_ANIMAL:
-	case ITEM_SP_PHYSICAL_DAMAGE_UP_RACE_PLANT:
-	case ITEM_SP_PHYSICAL_DAMAGE_UP_RACE_INSECT:
-	case ITEM_SP_PHYSICAL_DAMAGE_UP_RACE_FISH:
-	case ITEM_SP_PHYSICAL_DAMAGE_UP_RACE_DEMON:
-	case ITEM_SP_PHYSICAL_DAMAGE_UP_RACE_HUMAN:
-	case ITEM_SP_PHYSICAL_DAMAGE_UP_RACE_ANGEL:
-	case ITEM_SP_PHYSICAL_DAMAGE_UP_RACE_DRAGON:
-		textInfoArray.push(["", GetRaceText(spId - ITEM_SP_PHYSICAL_DAMAGE_UP_RACE_SOLID) + "形のモンスターに与える物理ダメージ" + sign + spValue + "%"]);
-		break;
-
-	case ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_ELM_VANITY:
-	case ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_ELM_WATER:
-	case ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_ELM_EARTH:
-	case ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_ELM_FIRE:
-	case ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_ELM_WIND:
-	case ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_ELM_POISON:
-	case ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_ELM_HOLY:
-	case ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_ELM_DARK:
-	case ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_ELM_PSYCO:
-	case ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_ELM_UNDEAD:
-		textInfoArray.push(["", GetElementText(spId - ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_ELM_VANITY) + "属性モンスターに与える物理ダメージ" + sign + spValue + "%"]);
-		break;
-
-	case ITEM_SP_RESIST_RACE_SOLID:
-	case ITEM_SP_RESIST_RACE_UNDEAD:
-	case ITEM_SP_RESIST_RACE_ANIMAL:
-	case ITEM_SP_RESIST_RACE_PLANT:
-	case ITEM_SP_RESIST_RACE_INSECT:
-	case ITEM_SP_RESIST_RACE_FISH:
-	case ITEM_SP_RESIST_RACE_DEMON:
-	case ITEM_SP_RESIST_RACE_HUMAN:
-	case ITEM_SP_RESIST_RACE_ANGEL:
-	case ITEM_SP_RESIST_RACE_DRAGON:
-		if (spValue > 0) {
-			textInfoArray.push(["", GetRaceText(spId - ITEM_SP_RESIST_RACE_SOLID) + "形モンスターから受けるダメージ" + spValue + "%減少"]);
-		}
-		else {
-			textInfoArray.push(["", GetRaceText(spId - ITEM_SP_RESIST_RACE_SOLID) + "形モンスターから受けるダメージ" + (-1 * spValue) + "%増加"]);
-		}
-		break;
-
-	case ITEM_SP_RESIST_ELM_VANITY:
-	case ITEM_SP_RESIST_ELM_WATER:
-	case ITEM_SP_RESIST_ELM_EARTH:
-	case ITEM_SP_RESIST_ELM_FIRE:
-	case ITEM_SP_RESIST_ELM_WIND:
-	case ITEM_SP_RESIST_ELM_POISON:
-	case ITEM_SP_RESIST_ELM_HOLY:
-	case ITEM_SP_RESIST_ELM_DARK:
-	case ITEM_SP_RESIST_ELM_PSYCO:
-	case ITEM_SP_RESIST_ELM_UNDEAD:
-		textInfoArray.push(["", GetElementText(spId - ITEM_SP_RESIST_ELM_VANITY) + "属性攻撃に対する耐性" + sign + spValue + "%"]);
-		break;
-
-	case ITEM_SP_CRITICAL_DAMAGE_UP:
-		textInfoArray.push(["", "クリティカル攻撃で与えるダメージ" + sign + spValue + "%"]);
-		break;
-
-	case ITEM_SP_REFLECT_PHYSICAL_DAMAGE:
-		textInfoArray.push(["", "敵の近距離物理攻撃を" + spValue + "%反射"]);
-		break;
-
-	case ITEM_SP_LONGRANGE_CRI_PLUS:
-		textInfoArray.push(["", "遠距離物理攻撃時、Cri + " + spValue + ""]);
-		break;
-
-	case ITEM_SP_SKILL_CAST_TIME:
-		textInfoArray.push(["", "詠唱時間" + sign + spValue + "%"]);
-		break;
-
-	case ITEM_SP_SKILL_DELAY_DOWN:
-		if (spValue > 0) {
-			textInfoArray.push(["", "スキル後のディレイ" + spValue + "%減少"]);
-		}
-		else {
-			textInfoArray.push(["", "スキル後のディレイ" + (spValue * -1) + "%増加"]);
-		}
-		break;
-
-	case ITEM_SP_HPR_UP:
-		textInfoArray.push(["", "HP自然回復力" + sign + spValue + "%"]);
-		break;
-
-	case ITEM_SP_SPR_UP:
-		textInfoArray.push(["", "SP自然回復力" + sign + spValue + "%"]);
-		break;
-
-	case ITEM_SP_RESIST_BOSS:
-		textInfoArray.push(["", `ボスモンスターから受けるダメージ ${spValue}% ${sign === " + " ? "減少": "増加"}`]);
-		break;
-
-	case ITEM_SP_RESIST_LONGRANGE:
-		textInfoArray.push(["", "遠距離攻撃に対する耐性" + sign + spValue + "%"]);
-		break;
-
-	case ITEM_SP_RESIST_NOTBOSS:
-		textInfoArray.push(["", `一般モンスターから受けるダメージ ${spValue}% ${sign === " + " ? "減少": "増加"}`]);
-		break;
-
-	case ITEM_SP_PHYSICAL_DAMAGE_UP:
-		textInfoArray.push(["", "物理攻撃で与えるダメージ" + sign + spValue + "%"]);
-		break;
-
-	case ITEM_SP_DAMAGE_UP_GROUP_GOBLIN:
-		textInfoArray.push(["", "ゴブリン系に対するダメージ" + sign + spValue + "%"]);
-		break;
-
-	case ITEM_SP_DAMAGE_UP_GROUP_COBOLD:
-		textInfoArray.push(["", "コボルド系に対するダメージ" + sign + spValue + "%"]);
-		break;
-
-	case ITEM_SP_DAMAGE_UP_GROUP_ORC:
-		textInfoArray.push(["", "オーク系に対するダメージ" + sign + spValue + "%"]);
-		break;
-
-	case ITEM_SP_DAMAGE_UP_GROUP_GOLEM:
-		textInfoArray.push(["", "ゴーレム系に対するダメージ" + sign + spValue + "%"]);
-		break;
-
-	case ITEM_SP_WEAPON_ATK_UP:
-		textInfoArray.push(["", "武器攻撃力" + sign + spValue + "%"]);
-		break;
-
-	case ITEM_SP_PERFECT_ATTACK_UP:
-		textInfoArray.push(["", spValue + "% の確率で攻撃が必中になる"]);
-		break;
-
-	case ITEM_SP_ATK_UP:
-		textInfoArray.push(["", "ATK" + sign + spValue + "%"]);
-		break;
-
-	case ITEM_SP_MATK_PLUS:
-		textInfoArray.push(["", "MATK" + sign + spValue + "(杖型)"]);
-		break;
-
-	case ITEM_SP_MAGICAL_DAMAGE_UP:
-		textInfoArray.push(["", "魔法攻撃で与えるダメージ" + sign + spValue + "%"]);
-		break;
-
-	case ITEM_SP_SET_DEFINITION:
-		break;
-
-	case ITEM_SP_HEAL_UP_USING:
-		textInfoArray.push(["", "ヒール系スキルを使用した時の回復量" + sign + spValue + "%"]);
-		break;
-
-	case ITEM_SP_HEAL_UP_USED:
-		textInfoArray.push(["", "ヒール系スキルを受けた時の回復量" + sign + spValue + "%"]);
-		break;
-
-	case ITEM_SP_HEAL_DAMAGE_UP:
-		textInfoArray.push(["", "不死へのヒールダメージ" + sign + spValue + "%(ハイネスとサンクに効果なし)"]);
-		break;
-
-	case ITEM_SP_HEAL_UP_USING_ONLY_HEAL:
-		textInfoArray.push(["", "[ヒール]を使用した時の回復量" + sign + spValue + "%"]);
-		break;
-
-	case ITEM_SP_HEAL_UP_USING_ONLY_HEAL_SERIES:
-		textInfoArray.push(["", "[ヒール][ハイネスヒール][コルセオヒール][サンクチュアリ]を使用した時の回復量" + sign + spValue + "%"]);
-		break;
-
-	case ITEM_SP_MAGICAL_DAMAGE_UP_BOSS:
-		textInfoArray.push(["", "BOSS属性モンスターに与える魔法ダメージ" + spValue + "%"]);
-		break;
-
-	case ITEM_SP_MAGICAL_DAMAGE_UP_SIZE_SMALL:
-	case ITEM_SP_MAGICAL_DAMAGE_UP_SIZE_MEDIUM:
-	case ITEM_SP_MAGICAL_DAMAGE_UP_SIZE_LARGE:
-		textInfoArray.push(["", GetSizeText(spId - ITEM_SP_MAGICAL_DAMAGE_UP_SIZE_SMALL) + "のモンスターに与える魔法ダメージ" + sign + spValue + "%"]);
-		break;
-
-	case ITEM_SP_MATK_PLUS_TYPE_NOTSTUFF:
-		textInfoArray.push(["", "Matk" + sign + spValue + ""]);
-		break;
-
-	case ITEM_SP_ASPD_PLUS:
-		textInfoArray.push(["", "ASPD" + sign + spValue + ""]);
-		break;
-
-	case ITEM_SP_COST_DOWN:
-		if (spValue > 0) {
-			textInfoArray.push(["", "スキル使用時の消費SP -" + spValue + "%"]);
-		}
-		else {
-			textInfoArray.push(["red", "スキル使用時の消費SP + "+ (-1 * spValue) + "%"]);
-		}
-		break;
-
-	case ITEM_SP_EXP_UP_ALL:
-		textInfoArray.push(["", "全てのモンスターを倒した時に獲得する経験値" + sign + spValue + "%"]);
-		break;
-
-	case ITEM_SP_DEF_UP:
-		textInfoArray.push(["", "自キャラクターのDef " + sign + spValue + "%"]);
-		break;
-
-	case ITEM_SP_MDEF_UP:
-		textInfoArray.push(["", "自キャラクターのMdef " + sign + spValue + "%"]);
-		break;
-
-	case ITEM_SP_PHYSICAL_DAMAGE_UP_RACE_HUMAN_NOT_PLAYER:
-		textInfoArray.push(["", GetRaceText(RACE_ID_HUMAN) + "形のモンスターに与える物理ダメージ" + sign + spValue + "%（プレイヤーを除く）"]);
-		break;
-
-	case ITEM_SP_MAGICAL_DAMAGE_UP_RACE_HUMAN_NOT_PLAYER:
-		textInfoArray.push(["", GetRaceText(RACE_ID_HUMAN) + "形のモンスターに与える魔法ダメージ" + sign + spValue + "%（プレイヤーを除く）"]);
-		break;
-
-	case ITEM_SP_RESIST_RACE_HUMAN_NOT_PLAYER:
-		if (spValue > 0) {
-			textInfoArray.push(["", GetRaceText(RACE_ID_HUMAN) + "形モンスターから受けるダメージ" + spValue + "%減少（プレイヤーを除く）"]);
-		}
-		else {
-			textInfoArray.push(["", GetRaceText(RACE_ID_HUMAN) + "形モンスターから受けるダメージ" + (-1 * spValue) + "%増加（プレイヤーを除く）"]);
-		}
-		break;
-
-	case ITEM_SP_SKILL_FIXED_MINUS:
-		if(spValue > 0) {
-			textInfoArray.push(["", "固定詠唱時間 " + (spValue / 1000) + "秒減少"]);
-		}
-		else {
-			textInfoArray.push(["", "固定詠唱時間 " + (-1 * spValue / 1000) + "秒増加"]);
-		}
-		break;
-
-	case ITEM_SP_CRITICAL_UP_RACE_SOLID:
-	case ITEM_SP_CRITICAL_UP_RACE_UNDEAD:
-	case ITEM_SP_CRITICAL_UP_RACE_ANIMAL:
-	case ITEM_SP_CRITICAL_UP_RACE_PLANT:
-	case ITEM_SP_CRITICAL_UP_RACE_INSECT:
-	case ITEM_SP_CRITICAL_UP_RACE_FISH:
-	case ITEM_SP_CRITICAL_UP_RACE_DEMON:
-	case ITEM_SP_CRITICAL_UP_RACE_HUMAN:
-	case ITEM_SP_CRITICAL_UP_RACE_ANGEL:
-	case ITEM_SP_CRITICAL_UP_RACE_DRAGON:
-		textInfoArray.push(["", GetRaceText(spId - ITEM_SP_CRITICAL_UP_RACE_SOLID) + "形に対してクリティカル" + sign + spValue + ""]);
-		break;
-
-	case ITEM_SP_EXP_UP_RACE_SOLID:
-	case ITEM_SP_EXP_UP_RACE_UNDEAD:
-	case ITEM_SP_EXP_UP_RACE_ANIMAL:
-	case ITEM_SP_EXP_UP_RACE_PLANT:
-	case ITEM_SP_EXP_UP_RACE_INSECT:
-	case ITEM_SP_EXP_UP_RACE_FISH:
-	case ITEM_SP_EXP_UP_RACE_DEMON:
-	case ITEM_SP_EXP_UP_RACE_HUMAN:
-	case ITEM_SP_EXP_UP_RACE_ANGEL:
-	case ITEM_SP_EXP_UP_RACE_DRAGON:
-		textInfoArray.push(["", GetRaceText(spId - ITEM_SP_EXP_UP_RACE_SOLID) + "形のモンスターを倒した時に獲得する経験値" + sign + spValue + "%"]);
-		break;
-
-	case ITEM_SP_APPEND_STATE_POISON:
-	case ITEM_SP_APPEND_STATE_STUN:
-	case ITEM_SP_APPEND_STATE_FROZEN:
-	case ITEM_SP_APPEND_STATE_CURSED:
-	case ITEM_SP_APPEND_STATE_BLIND:
-	case ITEM_SP_APPEND_STATE_SLEEP:
-	case ITEM_SP_APPEND_STATE_SILENCE:
-	case ITEM_SP_APPEND_STATE_CONFUSE:
-	case ITEM_SP_APPEND_STATE_BLEEDING:
-	case ITEM_SP_APPEND_STATE_STONE:
-	case ITEM_SP_APPEND_STATE_BREAK_WEAPON:
-	case ITEM_SP_APPEND_STATE_BREAK_HELM:
-	case ITEM_SP_APPEND_STATE_BREAK_ARMOR:
-	case ITEM_SP_APPEND_STATE_BREAK_SHIELD:
-	case ITEM_SP_APPEND_STATE_BREAK_SHOULDER:
-	case ITEM_SP_APPEND_STATE_BREAK_SHOES:
-	case ITEM_SP_APPEND_STATE_BREAK_ACCESSARY:
-		textInfoArray.push(["", "物理攻撃時、" + spValue + "%の確率で敵を" + GetStateText(spId - ITEM_SP_APPEND_STATE_POISON) + "にする"]);
-		break;
-
-
-	case ITEM_SP_RESIST_STATE_POISON:
-	case ITEM_SP_RESIST_STATE_STUN:
-	case ITEM_SP_RESIST_STATE_FROZEN:
-	case ITEM_SP_RESIST_STATE_CURSED:
-	case ITEM_SP_RESIST_STATE_BLIND:
-	case ITEM_SP_RESIST_STATE_SLEEP:
-	case ITEM_SP_RESIST_STATE_SILENCE:
-	case ITEM_SP_RESIST_STATE_CONFUSE:
-	case ITEM_SP_RESIST_STATE_BLEEDING:
-	case ITEM_SP_RESIST_STATE_STONE:
-	case ITEM_SP_RESIST_STATE_BREAK_WEAPON:
-	case ITEM_SP_RESIST_STATE_BREAK_HELM:
-	case ITEM_SP_RESIST_STATE_BREAK_ARMOR:
-	case ITEM_SP_RESIST_STATE_BREAK_SHIELD:
-	case ITEM_SP_RESIST_STATE_BREAK_SHOULDER:
-	case ITEM_SP_RESIST_STATE_BREAK_SHOES:
-	case ITEM_SP_RESIST_STATE_BREAK_ACCESSARY:
-		textInfoArray.push(["", "状態異常 " + GetStateText(spId - ITEM_SP_RESIST_STATE_POISON) + " に対する耐性 + " + spValue + "%"]);
-		break;
-	
-	case ITEM_SP_RESIST_STATE_R_CHILLED:
-	case ITEM_SP_RESIST_STATE_R_ICED:
-	case ITEM_SP_RESIST_STATE_R_IGNITION:
-	case ITEM_SP_RESIST_STATE_R_FEAR:
-	case ITEM_SP_RESIST_STATE_R_DEEPSLEEP:
-	case ITEM_SP_RESIST_STATE_R_CHARMED:
-	case ITEM_SP_RESIST_STATE_R_FRENZY:
-	case ITEM_SP_RESIST_STATE_NEW_LETHARGY:
-	case ITEM_SP_RESIST_STATE_NEW_JETBLACK:
-	case ITEM_SP_RESIST_STATE_NEW_HIGHLYPOISONOUS:
-	case ITEM_SP_RESIST_STATE_NEW_TORRENT:
-	case ITEM_SP_RESIST_STATE_NEW_MELANCHOLY:
-	case ITEM_SP_RESIST_STATE_NEW_STILLNESS:
-	case ITEM_SP_RESIST_STATE_NEW_CONFLAGRATION:
-	case ITEM_SP_RESIST_STATE_NEW_RAPIDCOOLING:
-	case ITEM_SP_RESIST_STATE_NEW_CRYSTALLIZATION:
-	case ITEM_SP_RESIST_STATE_NEW_UNHAPPINESS:
-		textInfoArray.push(["", "状態異常 " + GetStateText(spId - ITEM_SP_RESIST_STATE_R_CHILLED + STATE_R_ID_CHILLED) + " に対する耐性 + " + spValue + "%"]);
-		break;
-
-	case ITEM_SP_MAGICAL_DAMAGE_UP_RACE_SOLID:
-	case ITEM_SP_MAGICAL_DAMAGE_UP_RACE_UNDEAD:
-	case ITEM_SP_MAGICAL_DAMAGE_UP_RACE_ANIMAL:
-	case ITEM_SP_MAGICAL_DAMAGE_UP_RACE_PLANT:
-	case ITEM_SP_MAGICAL_DAMAGE_UP_RACE_INSECT:
-	case ITEM_SP_MAGICAL_DAMAGE_UP_RACE_FISH:
-	case ITEM_SP_MAGICAL_DAMAGE_UP_RACE_DEMON:
-	case ITEM_SP_MAGICAL_DAMAGE_UP_RACE_HUMAN:
-	case ITEM_SP_MAGICAL_DAMAGE_UP_RACE_ANGEL:
-	case ITEM_SP_MAGICAL_DAMAGE_UP_RACE_DRAGON:
-		textInfoArray.push(["", "魔法攻撃で、" + GetRaceText(spId - ITEM_SP_MAGICAL_DAMAGE_UP_RACE_SOLID) + "形モンスターに与えるダメージ" + sign + spValue + "%"]);
-		break;
-
-	case ITEM_SP_PENETRATE_DEF_RACE_SOLID:
-	case ITEM_SP_PENETRATE_DEF_RACE_UNDEAD:
-	case ITEM_SP_PENETRATE_DEF_RACE_ANIMAL:
-	case ITEM_SP_PENETRATE_DEF_RACE_PLANT:
-	case ITEM_SP_PENETRATE_DEF_RACE_INSECT:
-	case ITEM_SP_PENETRATE_DEF_RACE_FISH:
-	case ITEM_SP_PENETRATE_DEF_RACE_DEMON:
-	case ITEM_SP_PENETRATE_DEF_RACE_HUMAN:
-	case ITEM_SP_PENETRATE_DEF_RACE_ANGEL:
-	case ITEM_SP_PENETRATE_DEF_RACE_DRAGON:
-		textInfoArray.push(["", GetRaceText(spId - ITEM_SP_PENETRATE_DEF_RACE_SOLID) + "形のモンスターの物理防御力無視"]);
-		break;
-
-	case ITEM_SP_RESIST_SIZE_SMALL:
-	case ITEM_SP_RESIST_SIZE_MEDIUM:
-	case ITEM_SP_RESIST_SIZE_LARGE:
-		if (spValue > 0) {
-			textInfoArray.push(["", GetSizeText(spId - ITEM_SP_RESIST_SIZE_SMALL) + "モンスターから受けるダメージ" + spValue + "%減少"]);
-		}
-		else {
-			textInfoArray.push(["", GetSizeText(spId - 190) + "モンスターから受けるダメージ" + (-1 * spValue) + "%増加"]);
-		}
-		break;
-
-	case ITEM_SP_UNREFINABLE:
-		textInfoArray.push(["red", "精錬不可能"]);
-		break;
-
-	case ITEM_SP_UNBREAKABLE:
-		textInfoArray.push(["", "絶対に損傷しない"]);
-		break;
-
-	case ITEM_SP_STUFF2HAND:
-		textInfoArray.push(["", "両手杖"]);
-		break;
-
-	case ITEM_SP_RESIST_MAGIC:
-		if(spValue > 0) {
-			textInfoArray.push(["", "魔法攻撃で受けるダメージ" + "-" + spValue + "%"]);
-		}
-		else {
-			textInfoArray.push(["", "魔法攻撃で受けるダメージ" + "+" + (0 - spValue) + "%"]);
-		}
-		break;
-
-	case ITEM_SP_SPECIAL_RANGE:
-		textInfoArray.push(["", "射程距離 " + spValue + ""]);
-		break;
-
-	case ITEM_SP_BODY_ELEMENT:
-		textInfoArray.push(["", "自キャラの防御属性が" + GetElementText(spValue) + "属性になる"]);
-		break;
-
-	case ITEM_SP_LEARNED_SKILL_EFFECT:
-		skillName = SkillObjNew[spValue][SKILL_DATA_INDEX_NAME];
-		skillName = skillName.replace(/\([^)]*\)/g, "");
-		skillName = skillName.replace(/\<[^>]*\>/g, "");
-		textInfoArray.push(["green", "【習得スキル設定対象】"]);
-		textInfoArray.push(["green", "（" + skillName + "）"]);
-		textInfoArray.push(["", ""]);
-		break;
-
-	case ITEM_SP_SHORTRANGE_DAMAGE_UP:
-		textInfoArray.push(["", "近接物理攻撃で与えるダメージ"+ sign + spValue +"%"]);
-		break;
-
-	case ITEM_SP_STR_PLUS_FOR_SET:
-		textInfoArray.push(["", "STR" + sign + spValue]);
-		break;
-
-	case ITEM_SP_AGI_PLUS_FOR_SET:
-		textInfoArray.push(["", "AGI" + sign + spValue]);
-		break;
-
-	case ITEM_SP_VIT_PLUS_FOR_SET:
-		textInfoArray.push(["", "VIT" + sign + spValue]);
-		break;
-
-	case ITEM_SP_INT_PLUS_FOR_SET:
-		textInfoArray.push(["", "INT" + sign + spValue]);
-		break;
-
-	case ITEM_SP_DEX_PLUS_FOR_SET:
-		textInfoArray.push(["", "DEX" + sign + spValue]);
-		break;
-
-	case ITEM_SP_LUK_PLUS_FOR_SET:
-		textInfoArray.push(["", "LUK" + sign + spValue]);
-		break;
-
-	case ITEM_SP_ALLSTATUS_PLUS_FOR_SET:
-		textInfoArray.push(["", "全ての基本ステータス" + sign + spValue]);
-		break;
-
-	case ITEM_SP_INVALIDATE_ITEM_SP:
-		if (ItemObjNew[spValue][ITEM_DATA_INDEX_KIND] == ITEM_KIND_SET) {
-
-			idArrayWork = new Array();
-
-			for (idx = 0; idx < w_SE.length; idx++) {
-				if (w_SE[idx][0] == spValue) {
-					idArrayWork.push(idx);
+		case ITEM_SP_DMY:
+			textInfoArray.push(["", ""]);
+			break;
+
+		case ITEM_SP_STR_PLUS:
+			textInfoArray.push(["", "STR" + sign + spValue]);
+			break;
+
+		case ITEM_SP_AGI_PLUS:
+			textInfoArray.push(["", "AGI" + sign + spValue]);
+			break;
+
+		case ITEM_SP_VIT_PLUS:
+			textInfoArray.push(["", "VIT" + sign + spValue]);
+			break;
+
+		case ITEM_SP_INT_PLUS:
+			textInfoArray.push(["", "INT" + sign + spValue]);
+			break;
+
+		case ITEM_SP_DEX_PLUS:
+			textInfoArray.push(["", "DEX" + sign + spValue]);
+			break;
+
+		case ITEM_SP_LUK_PLUS:
+			textInfoArray.push(["", "LUK" + sign + spValue]);
+			break;
+
+		case ITEM_SP_ALLSTATUS_PLUS:
+			textInfoArray.push(["", "全ての基本ステータス" + sign + spValue]);
+			break;
+
+		case ITEM_SP_HIT_PLUS:
+			textInfoArray.push(["", "Hit" + sign + spValue]);
+			break;
+
+		case ITEM_SP_FLEE_PLUS:
+			textInfoArray.push(["", "Flee" + sign + spValue]);
+			break;
+
+		case ITEM_SP_CRI_PLUS:
+			textInfoArray.push(["", "Cri" + sign + spValue]);
+			break;
+
+		case ITEM_SP_LUCKY_PLUS:
+			textInfoArray.push(["", "完全回避" + sign + spValue]);
+			break;
+
+		case ITEM_SP_ASPD_UP:
+			textInfoArray.push(["", "攻撃速度" + sign + spValue +"%"]);
+			break;
+
+		case ITEM_SP_MAXHP_PLUS:
+			textInfoArray.push(["", "MaxHP" + sign + spValue]);
+			break;
+
+		case ITEM_SP_MAXSP_PLUS:
+			textInfoArray.push(["", "MaxSP" + sign + spValue]);
+			break;
+
+		case ITEM_SP_MAXHP_UP:
+			textInfoArray.push(["", "MaxHP" + sign + spValue +"%"]);
+			break;
+
+		case ITEM_SP_MAXSP_UP:
+			textInfoArray.push(["", "MaxSP" + sign + spValue +"%"]);
+			break;
+
+		case ITEM_SP_ATK_PLUS:
+			textInfoArray.push(["", "ATK" + sign + spValue]);
+			break;
+
+		case ITEM_SP_DEF_PLUS:
+			textInfoArray.push(["", "DEF" + sign + spValue]);
+			break;
+
+		case ITEM_SP_MDEF_PLUS:
+			textInfoArray.push(["", "MDEF" + sign + spValue]);
+			break;
+
+		case ITEM_SP_ELEMENTAL:
+			textInfoArray.push(["", GetElementText(spValue) +"属性武器"]);
+			break;
+
+		case ITEM_SP_PENETRATE_DEF:
+			if(spValue == 1) {
+				textInfoArray.push(["", "敵の防御力を無視する(Boss属性は無視できない)"]);
+			}
+			else {
+				textInfoArray.push(["", "敵の防御力を無視する(Boss属性の防御力も無視できる)"]);
+			}
+			break;
+
+		case ITEM_SP_KIRI_EFFECT:
+			textInfoArray.push(["", "敵のDEFとVITが高いほど高ダメージを与える"]);
+			break;
+
+		case ITEM_SP_DEF_DIVIDE_PENARTY:
+			textInfoArray.push(["", "自キャラクターの防御力1/"+ spValue + ""]);
+			break;
+
+		case ITEM_SP_LONGRANGE_DAMAGE_UP_ONLY_BOW:
+			textInfoArray.push(["", "弓装備時、遠距離物理攻撃で与えるダメージ"+ sign + spValue +"%"]);
+			break;
+
+		case ITEM_SP_LONGRANGE_DAMAGE_UP:
+			textInfoArray.push(["", "遠距離物理攻撃で与えるダメージ"+ sign + spValue +"%"]);
+			break;
+
+		case ITEM_SP_PHYSICAL_DAMAGE_UP_BOSS:
+			textInfoArray.push(["", "BOSS属性モンスターに与える物理ダメージ"+ spValue +"%"]);
+			break;
+
+		case ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_SMALL:
+		case ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_MEDIUM:
+		case ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_LARGE:
+			textInfoArray.push(["", GetSizeText(spId - ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_SMALL) + "のモンスターに与える物理ダメージ" + sign + spValue + "%"]);
+			break;
+
+		case ITEM_SP_PHYSICAL_DAMAGE_UP_RACE_SOLID:
+		case ITEM_SP_PHYSICAL_DAMAGE_UP_RACE_UNDEAD:
+		case ITEM_SP_PHYSICAL_DAMAGE_UP_RACE_ANIMAL:
+		case ITEM_SP_PHYSICAL_DAMAGE_UP_RACE_PLANT:
+		case ITEM_SP_PHYSICAL_DAMAGE_UP_RACE_INSECT:
+		case ITEM_SP_PHYSICAL_DAMAGE_UP_RACE_FISH:
+		case ITEM_SP_PHYSICAL_DAMAGE_UP_RACE_DEMON:
+		case ITEM_SP_PHYSICAL_DAMAGE_UP_RACE_HUMAN:
+		case ITEM_SP_PHYSICAL_DAMAGE_UP_RACE_ANGEL:
+		case ITEM_SP_PHYSICAL_DAMAGE_UP_RACE_DRAGON:
+			textInfoArray.push(["", GetRaceText(spId - ITEM_SP_PHYSICAL_DAMAGE_UP_RACE_SOLID) + "形のモンスターに与える物理ダメージ" + sign + spValue + "%"]);
+			break;
+
+		case ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_ELM_VANITY:
+		case ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_ELM_WATER:
+		case ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_ELM_EARTH:
+		case ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_ELM_FIRE:
+		case ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_ELM_WIND:
+		case ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_ELM_POISON:
+		case ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_ELM_HOLY:
+		case ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_ELM_DARK:
+		case ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_ELM_PSYCO:
+		case ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_ELM_UNDEAD:
+			textInfoArray.push(["", GetElementText(spId - ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_ELM_VANITY) + "属性モンスターに与える物理ダメージ" + sign + spValue + "%"]);
+			break;
+
+		case ITEM_SP_RESIST_RACE_SOLID:
+		case ITEM_SP_RESIST_RACE_UNDEAD:
+		case ITEM_SP_RESIST_RACE_ANIMAL:
+		case ITEM_SP_RESIST_RACE_PLANT:
+		case ITEM_SP_RESIST_RACE_INSECT:
+		case ITEM_SP_RESIST_RACE_FISH:
+		case ITEM_SP_RESIST_RACE_DEMON:
+		case ITEM_SP_RESIST_RACE_HUMAN:
+		case ITEM_SP_RESIST_RACE_ANGEL:
+		case ITEM_SP_RESIST_RACE_DRAGON:
+			if (spValue > 0) {
+				textInfoArray.push(["", GetRaceText(spId - ITEM_SP_RESIST_RACE_SOLID) + "形モンスターから受けるダメージ" + spValue + "%減少"]);
+			}
+			else {
+				textInfoArray.push(["", GetRaceText(spId - ITEM_SP_RESIST_RACE_SOLID) + "形モンスターから受けるダメージ" + (-1 * spValue) + "%増加"]);
+			}
+			break;
+
+		case ITEM_SP_RESIST_ELM_VANITY:
+		case ITEM_SP_RESIST_ELM_WATER:
+		case ITEM_SP_RESIST_ELM_EARTH:
+		case ITEM_SP_RESIST_ELM_FIRE:
+		case ITEM_SP_RESIST_ELM_WIND:
+		case ITEM_SP_RESIST_ELM_POISON:
+		case ITEM_SP_RESIST_ELM_HOLY:
+		case ITEM_SP_RESIST_ELM_DARK:
+		case ITEM_SP_RESIST_ELM_PSYCO:
+		case ITEM_SP_RESIST_ELM_UNDEAD:
+			textInfoArray.push(["", GetElementText(spId - ITEM_SP_RESIST_ELM_VANITY) + "属性攻撃に対する耐性" + sign + spValue + "%"]);
+			break;
+
+		case ITEM_SP_CRITICAL_DAMAGE_UP:
+			textInfoArray.push(["", "クリティカル攻撃で与えるダメージ" + sign + spValue + "%"]);
+			break;
+
+		case ITEM_SP_REFLECT_PHYSICAL_DAMAGE:
+			textInfoArray.push(["", "敵の近距離物理攻撃を" + spValue + "%反射"]);
+			break;
+
+		case ITEM_SP_LONGRANGE_CRI_PLUS:
+			textInfoArray.push(["", "遠距離物理攻撃時、Cri + " + spValue + ""]);
+			break;
+
+		case ITEM_SP_SKILL_CAST_TIME:
+			textInfoArray.push(["", "詠唱時間" + sign + spValue + "%"]);
+			break;
+
+		case ITEM_SP_SKILL_DELAY_DOWN:
+			if (spValue > 0) {
+				textInfoArray.push(["", "スキル後のディレイ" + spValue + "%減少"]);
+			}
+			else {
+				textInfoArray.push(["", "スキル後のディレイ" + (spValue * -1) + "%増加"]);
+			}
+			break;
+
+		case ITEM_SP_HPR_UP:
+			textInfoArray.push(["", "HP自然回復力" + sign + spValue + "%"]);
+			break;
+
+		case ITEM_SP_SPR_UP:
+			textInfoArray.push(["", "SP自然回復力" + sign + spValue + "%"]);
+			break;
+
+		case ITEM_SP_RESIST_BOSS:
+			textInfoArray.push(["", `ボスモンスターから受けるダメージ ${spValue}% ${sign === " + " ? "減少": "増加"}`]);
+			break;
+
+		case ITEM_SP_RESIST_LONGRANGE:
+			textInfoArray.push(["", "遠距離攻撃に対する耐性" + sign + spValue + "%"]);
+			break;
+
+		case ITEM_SP_RESIST_NOTBOSS:
+			textInfoArray.push(["", `一般モンスターから受けるダメージ ${spValue}% ${sign === " + " ? "減少": "増加"}`]);
+			break;
+
+		case ITEM_SP_PHYSICAL_DAMAGE_UP:
+			textInfoArray.push(["", "物理攻撃で与えるダメージ" + sign + spValue + "%"]);
+			break;
+
+		case ITEM_SP_DAMAGE_UP_GROUP_GOBLIN:
+			textInfoArray.push(["", "ゴブリン系に対するダメージ" + sign + spValue + "%"]);
+			break;
+
+		case ITEM_SP_DAMAGE_UP_GROUP_COBOLD:
+			textInfoArray.push(["", "コボルド系に対するダメージ" + sign + spValue + "%"]);
+			break;
+
+		case ITEM_SP_DAMAGE_UP_GROUP_ORC:
+			textInfoArray.push(["", "オーク系に対するダメージ" + sign + spValue + "%"]);
+			break;
+
+		case ITEM_SP_DAMAGE_UP_GROUP_GOLEM:
+			textInfoArray.push(["", "ゴーレム系に対するダメージ" + sign + spValue + "%"]);
+			break;
+
+		case ITEM_SP_WEAPON_ATK_UP:
+			textInfoArray.push(["", "武器攻撃力" + sign + spValue + "%"]);
+			break;
+
+		case ITEM_SP_PERFECT_ATTACK_UP:
+			textInfoArray.push(["", spValue + "% の確率で攻撃が必中になる"]);
+			break;
+
+		case ITEM_SP_ATK_UP:
+			textInfoArray.push(["", "ATK" + sign + spValue + "%"]);
+			break;
+
+		case ITEM_SP_MATK_PLUS:
+			textInfoArray.push(["", "MATK" + sign + spValue + "(杖型)"]);
+			break;
+
+		case ITEM_SP_MAGICAL_DAMAGE_UP:
+			textInfoArray.push(["", "魔法攻撃で与えるダメージ" + sign + spValue + "%"]);
+			break;
+
+		case ITEM_SP_SET_DEFINITION:
+			break;
+
+		case ITEM_SP_HEAL_UP_USING:
+			textInfoArray.push(["", "ヒール系スキルを使用した時の回復量" + sign + spValue + "%"]);
+			break;
+
+		case ITEM_SP_HEAL_UP_USED:
+			textInfoArray.push(["", "ヒール系スキルを受けた時の回復量" + sign + spValue + "%"]);
+			break;
+
+		case ITEM_SP_HEAL_DAMAGE_UP:
+			textInfoArray.push(["", "不死へのヒールダメージ" + sign + spValue + "%(ハイネスとサンクに効果なし)"]);
+			break;
+
+		case ITEM_SP_HEAL_UP_USING_ONLY_HEAL:
+			textInfoArray.push(["", "[ヒール]を使用した時の回復量" + sign + spValue + "%"]);
+			break;
+
+		case ITEM_SP_HEAL_UP_USING_ONLY_HEAL_SERIES:
+			textInfoArray.push(["", "[ヒール][ハイネスヒール][コルセオヒール][サンクチュアリ]を使用した時の回復量" + sign + spValue + "%"]);
+			break;
+
+		case ITEM_SP_MAGICAL_DAMAGE_UP_BOSS:
+			textInfoArray.push(["", "BOSS属性モンスターに与える魔法ダメージ" + spValue + "%"]);
+			break;
+
+		case ITEM_SP_MAGICAL_DAMAGE_UP_SIZE_SMALL:
+		case ITEM_SP_MAGICAL_DAMAGE_UP_SIZE_MEDIUM:
+		case ITEM_SP_MAGICAL_DAMAGE_UP_SIZE_LARGE:
+			textInfoArray.push(["", GetSizeText(spId - ITEM_SP_MAGICAL_DAMAGE_UP_SIZE_SMALL) + "のモンスターに与える魔法ダメージ" + sign + spValue + "%"]);
+			break;
+
+		case ITEM_SP_MATK_PLUS_TYPE_NOTSTUFF:
+			textInfoArray.push(["", "Matk" + sign + spValue + ""]);
+			break;
+
+		case ITEM_SP_ASPD_PLUS:
+			textInfoArray.push(["", "ASPD" + sign + spValue + ""]);
+			break;
+
+		case ITEM_SP_COST_DOWN:
+			if (spValue > 0) {
+				textInfoArray.push(["", "スキル使用時の消費SP -" + spValue + "%"]);
+			}
+			else {
+				textInfoArray.push(["red", "スキル使用時の消費SP + "+ (-1 * spValue) + "%"]);
+			}
+			break;
+
+		case ITEM_SP_EXP_UP_ALL:
+			textInfoArray.push(["", "全てのモンスターを倒した時に獲得する経験値" + sign + spValue + "%"]);
+			break;
+
+		case ITEM_SP_DEF_UP:
+			textInfoArray.push(["", "自キャラクターのDef " + sign + spValue + "%"]);
+			break;
+
+		case ITEM_SP_MDEF_UP:
+			textInfoArray.push(["", "自キャラクターのMdef " + sign + spValue + "%"]);
+			break;
+
+		case ITEM_SP_PHYSICAL_DAMAGE_UP_RACE_HUMAN_NOT_PLAYER:
+			textInfoArray.push(["", GetRaceText(RACE_ID_HUMAN) + "形のモンスターに与える物理ダメージ" + sign + spValue + "%（プレイヤーを除く）"]);
+			break;
+
+		case ITEM_SP_MAGICAL_DAMAGE_UP_RACE_HUMAN_NOT_PLAYER:
+			textInfoArray.push(["", GetRaceText(RACE_ID_HUMAN) + "形のモンスターに与える魔法ダメージ" + sign + spValue + "%（プレイヤーを除く）"]);
+			break;
+
+		case ITEM_SP_RESIST_RACE_HUMAN_NOT_PLAYER:
+			if (spValue > 0) {
+				textInfoArray.push(["", GetRaceText(RACE_ID_HUMAN) + "形モンスターから受けるダメージ" + spValue + "%減少（プレイヤーを除く）"]);
+			}
+			else {
+				textInfoArray.push(["", GetRaceText(RACE_ID_HUMAN) + "形モンスターから受けるダメージ" + (-1 * spValue) + "%増加（プレイヤーを除く）"]);
+			}
+			break;
+
+		case ITEM_SP_SKILL_FIXED_MINUS:
+			if(spValue > 0) {
+				textInfoArray.push(["", "固定詠唱時間 " + (spValue / 1000) + "秒減少"]);
+			}
+			else {
+				textInfoArray.push(["", "固定詠唱時間 " + (-1 * spValue / 1000) + "秒増加"]);
+			}
+			break;
+
+		case ITEM_SP_CRITICAL_UP_RACE_SOLID:
+		case ITEM_SP_CRITICAL_UP_RACE_UNDEAD:
+		case ITEM_SP_CRITICAL_UP_RACE_ANIMAL:
+		case ITEM_SP_CRITICAL_UP_RACE_PLANT:
+		case ITEM_SP_CRITICAL_UP_RACE_INSECT:
+		case ITEM_SP_CRITICAL_UP_RACE_FISH:
+		case ITEM_SP_CRITICAL_UP_RACE_DEMON:
+		case ITEM_SP_CRITICAL_UP_RACE_HUMAN:
+		case ITEM_SP_CRITICAL_UP_RACE_ANGEL:
+		case ITEM_SP_CRITICAL_UP_RACE_DRAGON:
+			textInfoArray.push(["", GetRaceText(spId - ITEM_SP_CRITICAL_UP_RACE_SOLID) + "形に対してクリティカル" + sign + spValue + ""]);
+			break;
+
+		case ITEM_SP_EXP_UP_RACE_SOLID:
+		case ITEM_SP_EXP_UP_RACE_UNDEAD:
+		case ITEM_SP_EXP_UP_RACE_ANIMAL:
+		case ITEM_SP_EXP_UP_RACE_PLANT:
+		case ITEM_SP_EXP_UP_RACE_INSECT:
+		case ITEM_SP_EXP_UP_RACE_FISH:
+		case ITEM_SP_EXP_UP_RACE_DEMON:
+		case ITEM_SP_EXP_UP_RACE_HUMAN:
+		case ITEM_SP_EXP_UP_RACE_ANGEL:
+		case ITEM_SP_EXP_UP_RACE_DRAGON:
+			textInfoArray.push(["", GetRaceText(spId - ITEM_SP_EXP_UP_RACE_SOLID) + "形のモンスターを倒した時に獲得する経験値" + sign + spValue + "%"]);
+			break;
+
+		case ITEM_SP_APPEND_STATE_POISON:
+		case ITEM_SP_APPEND_STATE_STUN:
+		case ITEM_SP_APPEND_STATE_FROZEN:
+		case ITEM_SP_APPEND_STATE_CURSED:
+		case ITEM_SP_APPEND_STATE_BLIND:
+		case ITEM_SP_APPEND_STATE_SLEEP:
+		case ITEM_SP_APPEND_STATE_SILENCE:
+		case ITEM_SP_APPEND_STATE_CONFUSE:
+		case ITEM_SP_APPEND_STATE_BLEEDING:
+		case ITEM_SP_APPEND_STATE_STONE:
+		case ITEM_SP_APPEND_STATE_BREAK_WEAPON:
+		case ITEM_SP_APPEND_STATE_BREAK_HELM:
+		case ITEM_SP_APPEND_STATE_BREAK_ARMOR:
+		case ITEM_SP_APPEND_STATE_BREAK_SHIELD:
+		case ITEM_SP_APPEND_STATE_BREAK_SHOULDER:
+		case ITEM_SP_APPEND_STATE_BREAK_SHOES:
+		case ITEM_SP_APPEND_STATE_BREAK_ACCESSARY:
+			textInfoArray.push(["", "物理攻撃時、" + spValue + "%の確率で敵を" + GetStateText(spId - ITEM_SP_APPEND_STATE_POISON) + "にする"]);
+			break;
+
+
+		case ITEM_SP_RESIST_STATE_POISON:
+		case ITEM_SP_RESIST_STATE_STUN:
+		case ITEM_SP_RESIST_STATE_FROZEN:
+		case ITEM_SP_RESIST_STATE_CURSED:
+		case ITEM_SP_RESIST_STATE_BLIND:
+		case ITEM_SP_RESIST_STATE_SLEEP:
+		case ITEM_SP_RESIST_STATE_SILENCE:
+		case ITEM_SP_RESIST_STATE_CONFUSE:
+		case ITEM_SP_RESIST_STATE_BLEEDING:
+		case ITEM_SP_RESIST_STATE_STONE:
+		case ITEM_SP_RESIST_STATE_BREAK_WEAPON:
+		case ITEM_SP_RESIST_STATE_BREAK_HELM:
+		case ITEM_SP_RESIST_STATE_BREAK_ARMOR:
+		case ITEM_SP_RESIST_STATE_BREAK_SHIELD:
+		case ITEM_SP_RESIST_STATE_BREAK_SHOULDER:
+		case ITEM_SP_RESIST_STATE_BREAK_SHOES:
+		case ITEM_SP_RESIST_STATE_BREAK_ACCESSARY:
+			textInfoArray.push(["", "状態異常 " + GetStateText(spId - ITEM_SP_RESIST_STATE_POISON) + " に対する耐性 + " + spValue + "%"]);
+			break;
+		
+		case ITEM_SP_RESIST_STATE_R_CHILLED:
+		case ITEM_SP_RESIST_STATE_R_ICED:
+		case ITEM_SP_RESIST_STATE_R_IGNITION:
+		case ITEM_SP_RESIST_STATE_R_FEAR:
+		case ITEM_SP_RESIST_STATE_R_DEEPSLEEP:
+		case ITEM_SP_RESIST_STATE_R_CHARMED:
+		case ITEM_SP_RESIST_STATE_R_FRENZY:
+		case ITEM_SP_RESIST_STATE_NEW_LETHARGY:
+		case ITEM_SP_RESIST_STATE_NEW_JETBLACK:
+		case ITEM_SP_RESIST_STATE_NEW_HIGHLYPOISONOUS:
+		case ITEM_SP_RESIST_STATE_NEW_TORRENT:
+		case ITEM_SP_RESIST_STATE_NEW_MELANCHOLY:
+		case ITEM_SP_RESIST_STATE_NEW_STILLNESS:
+		case ITEM_SP_RESIST_STATE_NEW_CONFLAGRATION:
+		case ITEM_SP_RESIST_STATE_NEW_RAPIDCOOLING:
+		case ITEM_SP_RESIST_STATE_NEW_CRYSTALLIZATION:
+		case ITEM_SP_RESIST_STATE_NEW_UNHAPPINESS:
+			textInfoArray.push(["", "状態異常 " + GetStateText(spId - ITEM_SP_RESIST_STATE_R_CHILLED + STATE_R_ID_CHILLED) + " に対する耐性 + " + spValue + "%"]);
+			break;
+
+		case ITEM_SP_MAGICAL_DAMAGE_UP_RACE_SOLID:
+		case ITEM_SP_MAGICAL_DAMAGE_UP_RACE_UNDEAD:
+		case ITEM_SP_MAGICAL_DAMAGE_UP_RACE_ANIMAL:
+		case ITEM_SP_MAGICAL_DAMAGE_UP_RACE_PLANT:
+		case ITEM_SP_MAGICAL_DAMAGE_UP_RACE_INSECT:
+		case ITEM_SP_MAGICAL_DAMAGE_UP_RACE_FISH:
+		case ITEM_SP_MAGICAL_DAMAGE_UP_RACE_DEMON:
+		case ITEM_SP_MAGICAL_DAMAGE_UP_RACE_HUMAN:
+		case ITEM_SP_MAGICAL_DAMAGE_UP_RACE_ANGEL:
+		case ITEM_SP_MAGICAL_DAMAGE_UP_RACE_DRAGON:
+			textInfoArray.push(["", "魔法攻撃で、" + GetRaceText(spId - ITEM_SP_MAGICAL_DAMAGE_UP_RACE_SOLID) + "形モンスターに与えるダメージ" + sign + spValue + "%"]);
+			break;
+
+		case ITEM_SP_PENETRATE_DEF_RACE_SOLID:
+		case ITEM_SP_PENETRATE_DEF_RACE_UNDEAD:
+		case ITEM_SP_PENETRATE_DEF_RACE_ANIMAL:
+		case ITEM_SP_PENETRATE_DEF_RACE_PLANT:
+		case ITEM_SP_PENETRATE_DEF_RACE_INSECT:
+		case ITEM_SP_PENETRATE_DEF_RACE_FISH:
+		case ITEM_SP_PENETRATE_DEF_RACE_DEMON:
+		case ITEM_SP_PENETRATE_DEF_RACE_HUMAN:
+		case ITEM_SP_PENETRATE_DEF_RACE_ANGEL:
+		case ITEM_SP_PENETRATE_DEF_RACE_DRAGON:
+			textInfoArray.push(["", GetRaceText(spId - ITEM_SP_PENETRATE_DEF_RACE_SOLID) + "形のモンスターの物理防御力無視"]);
+			break;
+
+		case ITEM_SP_RESIST_SIZE_SMALL:
+		case ITEM_SP_RESIST_SIZE_MEDIUM:
+		case ITEM_SP_RESIST_SIZE_LARGE:
+			if (spValue > 0) {
+				textInfoArray.push(["", GetSizeText(spId - ITEM_SP_RESIST_SIZE_SMALL) + "モンスターから受けるダメージ" + spValue + "%減少"]);
+			}
+			else {
+				textInfoArray.push(["", GetSizeText(spId - 190) + "モンスターから受けるダメージ" + (-1 * spValue) + "%増加"]);
+			}
+			break;
+
+		case ITEM_SP_UNREFINABLE:
+			textInfoArray.push(["red", "精錬不可能"]);
+			break;
+
+		case ITEM_SP_UNBREAKABLE:
+			textInfoArray.push(["", "絶対に損傷しない"]);
+			break;
+
+		case ITEM_SP_STUFF2HAND:
+			textInfoArray.push(["", "両手杖"]);
+			break;
+
+		case ITEM_SP_RESIST_MAGIC:
+			if(spValue > 0) {
+				textInfoArray.push(["", "魔法攻撃で受けるダメージ" + "-" + spValue + "%"]);
+			}
+			else {
+				textInfoArray.push(["", "魔法攻撃で受けるダメージ" + "+" + (0 - spValue) + "%"]);
+			}
+			break;
+
+		case ITEM_SP_SPECIAL_RANGE:
+			textInfoArray.push(["", "射程距離 " + spValue + ""]);
+			break;
+
+		case ITEM_SP_BODY_ELEMENT:
+			textInfoArray.push(["", "自キャラの防御属性が" + GetElementText(spValue) + "属性になる"]);
+			break;
+
+		case ITEM_SP_LEARNED_SKILL_EFFECT:
+			skillName = SkillObjNew[spValue][SKILL_DATA_INDEX_NAME];
+			skillName = skillName.replace(/\([^)]*\)/g, "");
+			skillName = skillName.replace(/\<[^>]*\>/g, "");
+			textInfoArray.push(["green", "【習得スキル設定対象】"]);
+			textInfoArray.push(["green", "（" + skillName + "）"]);
+			textInfoArray.push(["", ""]);
+			break;
+
+		case ITEM_SP_SHORTRANGE_DAMAGE_UP:
+			textInfoArray.push(["", "近接物理攻撃で与えるダメージ"+ sign + spValue +"%"]);
+			break;
+
+		case ITEM_SP_STR_PLUS_FOR_SET:
+			textInfoArray.push(["", "STR" + sign + spValue]);
+			break;
+
+		case ITEM_SP_AGI_PLUS_FOR_SET:
+			textInfoArray.push(["", "AGI" + sign + spValue]);
+			break;
+
+		case ITEM_SP_VIT_PLUS_FOR_SET:
+			textInfoArray.push(["", "VIT" + sign + spValue]);
+			break;
+
+		case ITEM_SP_INT_PLUS_FOR_SET:
+			textInfoArray.push(["", "INT" + sign + spValue]);
+			break;
+
+		case ITEM_SP_DEX_PLUS_FOR_SET:
+			textInfoArray.push(["", "DEX" + sign + spValue]);
+			break;
+
+		case ITEM_SP_LUK_PLUS_FOR_SET:
+			textInfoArray.push(["", "LUK" + sign + spValue]);
+			break;
+
+		case ITEM_SP_ALLSTATUS_PLUS_FOR_SET:
+			textInfoArray.push(["", "全ての基本ステータス" + sign + spValue]);
+			break;
+
+		case ITEM_SP_INVALIDATE_ITEM_SP:
+			if (ItemObjNew[spValue][ITEM_DATA_INDEX_KIND] == ITEM_KIND_SET) {
+
+				idArrayWork = new Array();
+
+				for (idx = 0; idx < w_SE.length; idx++) {
+					if (w_SE[idx][0] == spValue) {
+						idArrayWork.push(idx);
+					}
+				}
+
+				textWork = "[" + GetItemSetMemberText(idArrayWork[0]) + "]セット";
+				for (idx = 1; idx < idArrayWork.length; idx++) {
+					textWork += "および";
+					textInfoArray.push(["", textWork]);
+
+					textWork = "[" + GetItemSetMemberText(idArrayWork[idx]) + "]セット";
+				}
+				textWork += " の効果が発動しない";
+
+				textInfoArray.push(["", textWork]);
+			}
+			else {
+				textInfoArray.push(["", "[" + ItemObjNew[spValue][ITEM_DATA_INDEX_NAME] + "]" + " の効果が発動しない"]);
+			}
+			break;
+
+		case ITEM_SP_INVALIDATE_CARD_SP:
+			if (CardObjNew[spValue][CARD_DATA_INDEX_KIND] == CARD_KIND_SET) {
+
+				idArrayWork = new Array();
+
+				for (idx = 0; idx < w_SE.length; idx++) {
+					if (w_SE[idx][0] == (0 - spValue)) {
+						idArrayWork.push(idx);
+					}
+				}
+
+				textWork = "[" + GetItemSetMemberText(idArrayWork[0]) + "]セット";
+				for (idx = 1; idx < idArrayWork.length; idx++) {
+					textWork += "および";
+					textInfoArray.push(["", textWork]);
+
+					textWork = "[" + GetItemSetMemberText(idArrayWork[idx]) + "]セット";
+				}
+				textWork += " の効果が発動しない";
+
+				textInfoArray.push(["", textWork]);
+			}
+			else {
+				textInfoArray.push(["", "[" + CardObjNew[spValue][CARD_DATA_INDEX_NAME] + "]カード" + " の効果が発動しない"]);
+			}
+			break;
+
+		case ITEM_SP_LEARN_SKILL:
+			textInfoArray.push(["", "スキル[" + SkillObjNew[InsertSkill[spValue][USABLE_SKILL_DATA_INDEX_SKILL_ID]][SKILL_DATA_INDEX_NAME] + "]Lv " + InsertSkill[spValue][USABLE_SKILL_DATA_INDEX_SKILL_LEVEL] + " 使用可能"]);
+			break;
+
+		case ITEM_SP_AUTO_SPELL:
+
+			if (AutoSpellSkill[spValue][AUTO_SPELL_DATA_INDEX_PROBABLY] == 0) {
+				textWork = "一定";
+			}
+			else {
+				textWork = AutoSpellSkill[spValue][AUTO_SPELL_DATA_INDEX_PROBABLY] + "%の";
+			}
+
+			textInfoArray.push(["", GetAutoSpellTriggerText(AutoSpellSkill[spValue][AUTO_SPELL_DATA_INDEX_TRIGGER]) + "、"
+				+ textWork + "確率でオートスペル[" + SkillObjNew[AutoSpellSkill[spValue][AUTO_SPELL_DATA_INDEX_SKILL_ID]][SKILL_DATA_INDEX_NAME] + "]Lv " + AutoSpellSkill[spValue][AUTO_SPELL_DATA_INDEX_SKILL_LEVEL] + "発動"]);
+
+			break;
+
+		case ITEM_SP_LEARN_SKILL_LEVEL_UNSPECIFIED:
+			textInfoArray.push(["", "スキル[" + SkillObjNew[InsertSkill[spValue][USABLE_SKILL_DATA_INDEX_SKILL_ID]][SKILL_DATA_INDEX_NAME] + "] 使用可能（装備品の条件により使用可能Lvは変わります）"]);
+			break;
+
+		case ITEM_SP_AUTO_SPELL_LEVEL_UNSPECIFIED:
+
+			if (AutoSpellSkill[spValue][AUTO_SPELL_DATA_INDEX_PROBABLY] == 0) {
+				textWork = "一定";
+			}
+			else {
+				textWork = AutoSpellSkill[spValue][AUTO_SPELL_DATA_INDEX_PROBABLY] + "%の";
+			}
+
+			textInfoArray.push(["", GetAutoSpellTriggerText(AutoSpellSkill[spValue][AUTO_SPELL_DATA_INDEX_TRIGGER]) + "、"
+				+ textWork + "確率でオートスペル[" + SkillObjNew[AutoSpellSkill[spValue][AUTO_SPELL_DATA_INDEX_SKILL_ID]][SKILL_DATA_INDEX_NAME] + "] 発動（装備品の条件により発動Lvは変わります）"]);
+
+			break;
+
+		case ITEM_SP_SIZE_PERFECTION:
+			textInfoArray.push(["", "全てのモンスターに対し、サイズによる武器ダメージのペナルティが発生しない"]);
+			break;
+
+		case ITEM_SP_ARMS_ELEMENT:
+			textInfoArray.push(["", "180分間、武器に" + GetElementText(spValue) + "属性を付与"]);
+			break;
+
+		case ITEM_SP_POW_PLUS:
+			textInfoArray.push(["", "Pow" + sign + spValue]);
+			break;
+		case ITEM_SP_STA_PLUS:
+			textInfoArray.push(["", "Sta" + sign + spValue]);
+			break;
+		case ITEM_SP_WIS_PLUS:
+			textInfoArray.push(["", "Wis" + sign + spValue]);
+			break;
+		case ITEM_SP_SPL_PLUS:
+			textInfoArray.push(["", "Spl" + sign + spValue]);
+			break;
+		case ITEM_SP_CON_PLUS:
+			textInfoArray.push(["", "Con" + sign + spValue]);
+			break;
+		case ITEM_SP_CRT_PLUS:
+			textInfoArray.push(["", "Crt" + sign + spValue]);
+			break;
+		case ITEM_SP_ALL_SPECS_PLUS:
+			textInfoArray.push(["", "全ての特性ステータス" + sign + spValue]);
+			break;
+
+		case ITEM_SP_KOZYOSEN_TE_RENTAL_ITEM:
+			textInfoArray.push(["", "------------------"]);
+			textInfoArray.push(["green", "攻城戦TE専用のレンタルアイテム。レンタル後、24時間で自動消滅する。"]);
+			textInfoArray.push(["green", "攻城戦TEの砦内で以下の効果が追加される。"]);
+			textInfoArray.push(["green", "※計算機ではプレイヤーに対する効果はヒドラCやタラCと倍率加算しています。"]);
+			textInfoArray.push(["green", "※計算機ではモンスター選択欄一番下の[プレイヤー]を選択すると効果があります。"]);
+			textInfoArray.push(["green", "※計算機でもモンスターに対しては効果ありません。"]);
+			textInfoArray.push(["", "------------------"]);
+			break;
+
+		case ITEM_SP_PHYSICAL_DAMAGE_UP_PLAYER_ALL:
+			textInfoArray.push(["", "物理攻撃時、プレイヤーに与えるダメージ" + sign + spValue + "%。"]);
+			break;
+
+		case ITEM_SP_MAGICAL_DAMAGE_UP_PLAYER_ALL:
+			textInfoArray.push(["", "魔法攻撃時、プレイヤーに与えるダメージ" + sign + spValue + "%。"]);
+			break;
+
+		case ITEM_SP_RESIST_PLAYER_ALL:
+			if (spValue > 0) {
+				textInfoArray.push(["", "プレイヤーから受けるダメージ " + spValue + "%減少"]);
+			}
+			else {
+				textInfoArray.push(["", "プレイヤーから受けるダメージ " + (-1 * spValue) + "%増加"]);
+			}
+			break;
+
+		case ITEM_SP_ATK_PLUS_GVGTE:
+			textInfoArray.push(["", "ATK" + sign + spValue + "。"]);
+			break;
+
+		case ITEM_SP_MATK_PLUS_GVGTE:
+			textInfoArray.push(["", "MATK" + sign + spValue + "。"]);
+			break;
+
+		case ITEM_SP_MAXHP_PLUS_GVGTE:
+			textInfoArray.push(["", "MaxHP" + sign + spValue + "。"]);
+			break;
+
+		case ITEM_SP_MAXSP_PLUS_GVGTE:
+			textInfoArray.push(["", "MaxSP" + sign + spValue + "。"]);
+			break;
+
+		case ITEM_SP_HEAL_UP_USING_GVGTE:
+			textInfoArray.push(["", "[ヒール][ハイネスヒール][コルセオヒール][サンクチュアリ][ポーションピッチャー]を使用した時の回復量" + sign + spValue + "%"]);
+			break;
+
+		case ITEM_SP_RESIST_FROZEN_GVGTE:
+			textInfoArray.push(["", "状態異常 凍結 に対する耐性 +" + spValue + "%"]);
+			break;
+
+		case ITEM_SP_P_ATK_PLUS:
+			textInfoArray.push(["", "P.Atk" + sign + spValue]);
+			break;
+		case ITEM_SP_S_MATK_PLUS:
+			textInfoArray.push(["", "S.Matk" + sign + spValue]);
+			break;
+		case ITEM_SP_H_PLUS_PLUS:
+			textInfoArray.push(["", "H.Plus" + sign + spValue]);
+			break;
+		case ITEM_SP_C_RATE_PLUS:
+			textInfoArray.push(["", "C.Rate" + sign + spValue]);
+			break;
+		case ITEM_SP_RES_PLUS:
+			textInfoArray.push(["", "Res" + sign + spValue]);
+			break;
+		case ITEM_SP_MRES_PLUS:
+			textInfoArray.push(["", "Mres" + sign + spValue]);
+			break;
+
+		case ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_ALL:
+			textInfoArray.push(["", "物理攻撃時、全てのサイズのモンスターに与えるダメージ" + sign + spValue + "%。"]);
+			break;
+
+		case ITEM_SP_PHYSICAL_DAMAGE_UP_RACE_ALL:
+			textInfoArray.push(["", "物理攻撃時、全ての種族のモンスターに与えるダメージ" + sign + spValue + "%。"]);
+			break;
+
+		case ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_ELM_ALL:
+			textInfoArray.push(["", "物理攻撃時、全ての属性のモンスターに与えるダメージ" + sign + spValue + "%。"]);
+			break;
+
+		case ITEM_SP_RESIST_RACE_ALL:
+			if (spValue > 0) {
+				textInfoArray.push(["", "全ての種族のモンスターから受けるダメージ " + spValue + "%減少"]);
+			}
+			else {
+				textInfoArray.push(["", "全ての種族のモンスターから受けるダメージ " + (-1 * spValue) + "%増加"]);
+			}
+			break;
+
+		case ITEM_SP_RESIST_ELM_ALL:
+			if (spValue > 0) {
+				textInfoArray.push(["", "全ての属性攻撃で受けるダメージ " + spValue + "%減少"]);
+			}
+			else {
+				textInfoArray.push(["", "全ての属性攻撃で受けるダメージ " + (-1 * spValue) + "%増加"]);
+			}
+			break;
+
+		case ITEM_SP_MAGICAL_DAMAGE_UP_SIZE_ALL:
+			textInfoArray.push(["", "魔法攻撃時、全てのサイズのモンスターに与えるダメージ" + sign + spValue + "%。"]);
+			break;
+
+		case ITEM_SP_MAGICAL_DAMAGE_UP_RACE_ALL:
+			textInfoArray.push(["", "魔法攻撃時、全ての種族のモンスターに与えるダメージ" + sign + spValue + "%。"]);
+			break;
+
+		case ITEM_SP_PHYSICAL_DAMAGE_UP_NOTBOSS:
+			textInfoArray.push(["", "物理攻撃時、一般モンスターに与えるダメージ" + sign + spValue + "%。"]);
+			break;
+
+		case ITEM_SP_MAGICAL_DAMAGE_UP_NOTBOSS:
+			textInfoArray.push(["", "魔法攻撃時、一般モンスターに与えるダメージ" + sign + spValue + "%。"]);
+			break;
+
+		case ITEM_SP_MAGICAL_DAMAGE_UP_MONSTER_ELM_ALL:
+			textInfoArray.push(["", "魔法攻撃時、全ての属性のモンスターに与えるダメージ" + sign + spValue + "%。"]);
+			break;
+
+		case ITEM_SP_MAGICAL_DAMAGE_UP_ELM_ALL:
+			textInfoArray.push(["", "全ての属性魔法攻撃で与えるダメージ" + sign + spValue + "%。"]);
+			break;
+
+		case ITEM_SP_RESIST_MONSTER_ELM_ALL:
+			if (spValue > 0) {
+				textInfoArray.push(["", "全ての属性モンスターから受けるダメージ " + spValue + "%減少"]);
+			}
+			else {
+				textInfoArray.push(["", "全ての属性モンスターから受けるダメージ " + (-1 * spValue) + "%増加"]);
+			}
+			break;
+
+		case ITEM_SP_PHYSICAL_DAMAGE_UP_PLAYER_DORAM:
+			textInfoArray.push(["", "物理攻撃時、ドラム形プレイヤーに与えるダメージ" + sign + spValue + "%。"]);
+			break;
+
+		case ITEM_SP_MAGICAL_DAMAGE_UP_PLAYER_DORAM:
+			textInfoArray.push(["", "魔法攻撃時、ドラム形プレイヤーに与えるダメージ" + sign + spValue + "%。"]);
+			break;
+
+		case ITEM_SP_RESIST_PLAYER_DORAM:
+			if (spValue > 0) {
+				textInfoArray.push(["", "ドラム形プレイヤーから受けるダメージ " + spValue + "%減少"]);
+			}
+			else {
+				textInfoArray.push(["", "ドラム形プレイヤーから受けるダメージ " + (-1 * spValue) + "%増加"]);
+			}
+			break;
+
+		case ITEM_SP_PHYSICAL_DAMAGE_UP_PLAYER_HUMAN:
+			textInfoArray.push(["", "物理攻撃時、人間形プレイヤーに与えるダメージ" + sign + spValue + "%。"]);
+			break;
+
+		case ITEM_SP_MAGICAL_DAMAGE_UP_PLAYER_HUMAN:
+			textInfoArray.push(["", "魔法攻撃時、人間形プレイヤーに与えるダメージ" + sign + spValue + "%。"]);
+			break;
+
+		case ITEM_SP_RESIST_PLAYER_HUMAN:
+			if (spValue > 0) {
+				textInfoArray.push(["", "人間形プレイヤーから受けるダメージ " + spValue + "%減少"]);
+			}
+			else {
+				textInfoArray.push(["", "人間形プレイヤーから受けるダメージ " + (-1 * spValue) + "%増加"]);
+			}
+			break;
+
+		case ITEM_SP_PHYSICAL_DAMAGE_UP_ELM_VANITY:
+		case ITEM_SP_PHYSICAL_DAMAGE_UP_ELM_WATER:
+		case ITEM_SP_PHYSICAL_DAMAGE_UP_ELM_EARTH:
+		case ITEM_SP_PHYSICAL_DAMAGE_UP_ELM_FIRE:
+		case ITEM_SP_PHYSICAL_DAMAGE_UP_ELM_WIND:
+		case ITEM_SP_PHYSICAL_DAMAGE_UP_ELM_POISON:
+		case ITEM_SP_PHYSICAL_DAMAGE_UP_ELM_HOLY:
+		case ITEM_SP_PHYSICAL_DAMAGE_UP_ELM_DARK:
+		case ITEM_SP_PHYSICAL_DAMAGE_UP_ELM_PSYCO:
+		case ITEM_SP_PHYSICAL_DAMAGE_UP_ELM_UNDEAD:
+			textInfoArray.push(["", GetElementText(spId - ITEM_SP_PHYSICAL_DAMAGE_UP_ELM_VANITY) + "属性物理攻撃で与えるダメージ" + sign + spValue + "%"]);
+			break;
+
+		case ITEM_SP_IGNORE_DEF_ALL:
+			textInfoArray.push(["", "モンスターのDEFを " + sign + spValue + "% 無視"]);
+			break;
+
+		case ITEM_SP_IGNORE_DEF_NOTBOSS:
+			textInfoArray.push(["", "一般モンスターのDEFを " + sign + spValue + "% 無視"]);
+			break;
+
+		case ITEM_SP_IGNORE_DEF_BOSS:
+			textInfoArray.push(["", "ボスモンスターのDEFを " + sign + spValue + "% 無視"]);
+			break;
+
+		case ITEM_SP_IGNORE_DEF_RACE_ALL:
+			textInfoArray.push(["", "全ての種族のDEFを " + sign + spValue + "% 無視"]);
+			break;
+
+		case ITEM_SP_IGNORE_RES_RACE_ALL:
+			textInfoArray.push(["", "全ての種族のResを " + sign + spValue + "% 無視"]);
+			break;
+
+		case ITEM_SP_IGNORE_MDEF_ALL:
+			textInfoArray.push(["", "モンスターのMDEFを " + sign + spValue + "% 無視"]);
+			break;
+
+		case ITEM_SP_IGNORE_MDEF_NOTBOSS:
+			textInfoArray.push(["", "一般モンスターのMDEFを " + sign + spValue + "% 無視"]);
+			break;
+
+		case ITEM_SP_IGNORE_MDEF_BOSS:
+			textInfoArray.push(["", "ボスモンスターのMDEFを " + sign + spValue + "% 無視"]);
+			break;
+
+		case ITEM_SP_IGNORE_MDEF_RACE_ALL:
+			textInfoArray.push(["", "全ての種族のMDEFを " + sign + spValue + "% 無視"]);
+			break;
+
+		case ITEM_SP_IGNORE_MRES_RACE_ALL:
+			textInfoArray.push(["", "全ての種族のMresを " + sign + spValue + "% 無視"]);
+			break;
+
+		case ITEM_SP_IGNORE_DEF_RACE_SOLID:
+		case ITEM_SP_IGNORE_DEF_RACE_UNDEAD:
+		case ITEM_SP_IGNORE_DEF_RACE_ANIMAL:
+		case ITEM_SP_IGNORE_DEF_RACE_PLANT:
+		case ITEM_SP_IGNORE_DEF_RACE_INSECT:
+		case ITEM_SP_IGNORE_DEF_RACE_FISH:
+		case ITEM_SP_IGNORE_DEF_RACE_DEMON:
+		case ITEM_SP_IGNORE_DEF_RACE_HUMAN:
+		case ITEM_SP_IGNORE_DEF_RACE_ANGEL:
+		case ITEM_SP_IGNORE_DEF_RACE_DRAGON:
+			textInfoArray.push(["", GetRaceText(spId - ITEM_SP_IGNORE_DEF_RACE_SOLID) + "形のDEFを " + spValue + "% 無視"]);
+			break;
+
+		case ITEM_SP_IGNORE_MDEF_RACE_SOLID:
+		case ITEM_SP_IGNORE_MDEF_RACE_UNDEAD:
+		case ITEM_SP_IGNORE_MDEF_RACE_ANIMAL:
+		case ITEM_SP_IGNORE_MDEF_RACE_PLANT:
+		case ITEM_SP_IGNORE_MDEF_RACE_INSECT:
+		case ITEM_SP_IGNORE_MDEF_RACE_FISH:
+		case ITEM_SP_IGNORE_MDEF_RACE_DEMON:
+		case ITEM_SP_IGNORE_MDEF_RACE_HUMAN:
+		case ITEM_SP_IGNORE_MDEF_RACE_ANGEL:
+		case ITEM_SP_IGNORE_MDEF_RACE_DRAGON:
+			textInfoArray.push(["", GetRaceText(spId - ITEM_SP_IGNORE_MDEF_RACE_SOLID) + "形のMDEFを " + spValue + "% 無視"]);
+			break;
+
+		case ITEM_SP_CRITICAL_DAMAGE_UP_RACE_SOLID:
+		case ITEM_SP_CRITICAL_DAMAGE_UP_RACE_UNDEAD:
+		case ITEM_SP_CRITICAL_DAMAGE_UP_RACE_ANIMAL:
+		case ITEM_SP_CRITICAL_DAMAGE_UP_RACE_PLANT:
+		case ITEM_SP_CRITICAL_DAMAGE_UP_RACE_INSECT:
+		case ITEM_SP_CRITICAL_DAMAGE_UP_RACE_FISH:
+		case ITEM_SP_CRITICAL_DAMAGE_UP_RACE_DEMON:
+		case ITEM_SP_CRITICAL_DAMAGE_UP_RACE_HUMAN:
+		case ITEM_SP_CRITICAL_DAMAGE_UP_RACE_ANGEL:
+		case ITEM_SP_CRITICAL_DAMAGE_UP_RACE_DRAGON:
+			textInfoArray.push(["", GetRaceText(spId - ITEM_SP_CRITICAL_DAMAGE_UP_RACE_SOLID) + "形へのクリティカルダメージ +" + spValue + "%"]);
+			break;
+
+		case ITEM_SP_RESIST_MONSTER_ELM_VANITY:
+		case ITEM_SP_RESIST_MONSTER_ELM_WATER:
+		case ITEM_SP_RESIST_MONSTER_ELM_EARTH:
+		case ITEM_SP_RESIST_MONSTER_ELM_FIRE:
+		case ITEM_SP_RESIST_MONSTER_ELM_WIND:
+		case ITEM_SP_RESIST_MONSTER_ELM_POISON:
+		case ITEM_SP_RESIST_MONSTER_ELM_HOLY:
+		case ITEM_SP_RESIST_MONSTER_ELM_DARK:
+		case ITEM_SP_RESIST_MONSTER_ELM_PSYCO:
+		case ITEM_SP_RESIST_MONSTER_ELM_UNDEAD:
+			if (spValue > 0) {
+				textInfoArray.push(["", GetElementText(spId - ITEM_SP_RESIST_MONSTER_ELM_VANITY) + "属性モンスターから受けるダメージ" + spValue + "%減少"]);
+			}
+			else {
+				textInfoArray.push(["", GetElementText(spId - ITEM_SP_RESIST_MONSTER_ELM_VANITY) + "属性モンスターから受けるダメージ" + (-1 * spValue) + "%増加"]);
+			}
+			break;
+
+		case ITEM_SP_MAGICAL_DAMAGE_UP_ELM_VANITY:
+		case ITEM_SP_MAGICAL_DAMAGE_UP_ELM_WATER:
+		case ITEM_SP_MAGICAL_DAMAGE_UP_ELM_EARTH:
+		case ITEM_SP_MAGICAL_DAMAGE_UP_ELM_FIRE:
+		case ITEM_SP_MAGICAL_DAMAGE_UP_ELM_WIND:
+		case ITEM_SP_MAGICAL_DAMAGE_UP_ELM_POISON:
+		case ITEM_SP_MAGICAL_DAMAGE_UP_ELM_HOLY:
+		case ITEM_SP_MAGICAL_DAMAGE_UP_ELM_DARK:
+		case ITEM_SP_MAGICAL_DAMAGE_UP_ELM_PSYCO:
+		case ITEM_SP_MAGICAL_DAMAGE_UP_ELM_UNDEAD:
+			textInfoArray.push(["", GetElementText(spId - ITEM_SP_MAGICAL_DAMAGE_UP_ELM_VANITY) + "属性魔法攻撃で与えるダメージ" + sign + spValue + "%"]);
+			break;
+
+		case ITEM_SP_MAGICAL_DAMAGE_UP_MONSTER_ELM_VANITY:
+		case ITEM_SP_MAGICAL_DAMAGE_UP_MONSTER_ELM_WATER:
+		case ITEM_SP_MAGICAL_DAMAGE_UP_MONSTER_ELM_EARTH:
+		case ITEM_SP_MAGICAL_DAMAGE_UP_MONSTER_ELM_FIRE:
+		case ITEM_SP_MAGICAL_DAMAGE_UP_MONSTER_ELM_WIND:
+		case ITEM_SP_MAGICAL_DAMAGE_UP_MONSTER_ELM_POISON:
+		case ITEM_SP_MAGICAL_DAMAGE_UP_MONSTER_ELM_HOLY:
+		case ITEM_SP_MAGICAL_DAMAGE_UP_MONSTER_ELM_DARK:
+		case ITEM_SP_MAGICAL_DAMAGE_UP_MONSTER_ELM_PSYCO:
+		case ITEM_SP_MAGICAL_DAMAGE_UP_MONSTER_ELM_UNDEAD:
+			textInfoArray.push(["", GetElementText(spId - ITEM_SP_MAGICAL_DAMAGE_UP_MONSTER_ELM_VANITY) + "属性モンスターに与える魔法ダメージ" + sign + spValue + "%"]);
+			break;
+
+		case ITEM_SP_NEVER_CAST_CANCEL:
+			textInfoArray.push(["","詠唱が中断されない"]);
+			break;
+		case ITEM_SP_NEVER_KNOCK_BACK:
+			textInfoArray.push(["","絶対にノックバックしない"]);
+			break;			
+		default:
+
+			if (ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_OFFSET <= spId && spId < ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_OFFSET + 1000) {
+				textInfoArray.push(["", "物理攻撃時、["+ MonsterObjNew[spId - ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_OFFSET][MONSTER_DATA_INDEX_NAME] + "]に与えるダメージ " + sign + spValue + "%"]);
+			}
+
+			else if (ITEM_SP_SKILL_DAMAGE_OFFSET <= spId && spId < ITEM_SP_SKILL_DAMAGE_OFFSET + 2000) {
+				textInfoArray.push(["", "["+ SkillObjNew[spId - ITEM_SP_SKILL_DAMAGE_OFFSET][SKILL_DATA_INDEX_NAME] + "]で与えるダメージ" + sign + spValue + "%"]);
+			}
+
+			else if (ITEM_SP_SKILL_CAST_TIME_OFFSET <= spId && spId < ITEM_SP_SKILL_CAST_TIME_OFFSET + 2000){
+				if(spValue > 0) {
+					textInfoArray.push(["", "["+ SkillObjNew[spId - ITEM_SP_SKILL_CAST_TIME_OFFSET][SKILL_DATA_INDEX_NAME] + "]の詠唱時間 " + spValue + "%減少"]);
+				}
+				else {
+					textInfoArray.push(["", "["+ SkillObjNew[spId - ITEM_SP_SKILL_CAST_TIME_OFFSET][SKILL_DATA_INDEX_NAME] + "]の詠唱時間 " + (-1 * spValue) + "%増加"]);
 				}
 			}
 
-			textWork = "[" + GetItemSetMemberText(idArrayWork[0]) + "]セット";
-			for (idx = 1; idx < idArrayWork.length; idx++) {
-				textWork += "および";
-				textInfoArray.push(["", textWork]);
-
-				textWork = "[" + GetItemSetMemberText(idArrayWork[idx]) + "]セット";
-			}
-			textWork += " の効果が発動しない";
-
-			textInfoArray.push(["", textWork]);
-		}
-		else {
-			textInfoArray.push(["", "[" + ItemObjNew[spValue][ITEM_DATA_INDEX_NAME] + "]" + " の効果が発動しない"]);
-		}
-		break;
-
-	case ITEM_SP_INVALIDATE_CARD_SP:
-		if (CardObjNew[spValue][CARD_DATA_INDEX_KIND] == CARD_KIND_SET) {
-
-			idArrayWork = new Array();
-
-			for (idx = 0; idx < w_SE.length; idx++) {
-				if (w_SE[idx][0] == (0 - spValue)) {
-					idArrayWork.push(idx);
+			else if (ITEM_SP_SKILL_CAST_MINUS_OFFSET <= spId && spId < ITEM_SP_SKILL_CAST_MINUS_OFFSET + 2000){
+				if(spValue > 0) {
+					textInfoArray.push(["", "["+ SkillObjNew[spId - ITEM_SP_SKILL_CAST_MINUS_OFFSET][SKILL_DATA_INDEX_NAME] + "]の詠唱時間 " + (spValue / 1000) + "秒減少"]);
+				}
+				else {
+					textInfoArray.push(["", "["+ SkillObjNew[spId - ITEM_SP_SKILL_CAST_MINUS_OFFSET][SKILL_DATA_INDEX_NAME] + "]の詠唱時間 " + (-1 * spValue / 1000) + "秒増加"]);
 				}
 			}
 
-			textWork = "[" + GetItemSetMemberText(idArrayWork[0]) + "]セット";
-			for (idx = 1; idx < idArrayWork.length; idx++) {
-				textWork += "および";
-				textInfoArray.push(["", textWork]);
-
-				textWork = "[" + GetItemSetMemberText(idArrayWork[idx]) + "]セット";
+			else if (ITEM_SP_SKILL_FIXED_TIME_OFFSET <= spId && spId < ITEM_SP_SKILL_FIXED_TIME_OFFSET + 2000){
+				if(spValue > 0) {
+					textInfoArray.push(["", "["+ SkillObjNew[spId - ITEM_SP_SKILL_FIXED_TIME_OFFSET][SKILL_DATA_INDEX_NAME] + "]の固定詠唱時間 " + spValue + "%減少"]);
+				}
+				else {
+					textInfoArray.push(["", "["+ SkillObjNew[spId - ITEM_SP_SKILL_FIXED_TIME_OFFSET][SKILL_DATA_INDEX_NAME] + "]の固定詠唱時間 " + (-1 * spValue) + "%増加"]);
+				}
 			}
-			textWork += " の効果が発動しない";
 
-			textInfoArray.push(["", textWork]);
-		}
-		else {
-			textInfoArray.push(["", "[" + CardObjNew[spValue][CARD_DATA_INDEX_NAME] + "]カード" + " の効果が発動しない"]);
-		}
-		break;
-
-	case ITEM_SP_LEARN_SKILL:
-		textInfoArray.push(["", "スキル[" + SkillObjNew[InsertSkill[spValue][USABLE_SKILL_DATA_INDEX_SKILL_ID]][SKILL_DATA_INDEX_NAME] + "]Lv " + InsertSkill[spValue][USABLE_SKILL_DATA_INDEX_SKILL_LEVEL] + " 使用可能"]);
-		break;
-
-	case ITEM_SP_AUTO_SPELL:
-
-		if (AutoSpellSkill[spValue][AUTO_SPELL_DATA_INDEX_PROBABLY] == 0) {
-			textWork = "一定";
-		}
-		else {
-			textWork = AutoSpellSkill[spValue][AUTO_SPELL_DATA_INDEX_PROBABLY] + "%の";
-		}
-
-		textInfoArray.push(["", GetAutoSpellTriggerText(AutoSpellSkill[spValue][AUTO_SPELL_DATA_INDEX_TRIGGER]) + "、"
-			+ textWork + "確率でオートスペル[" + SkillObjNew[AutoSpellSkill[spValue][AUTO_SPELL_DATA_INDEX_SKILL_ID]][SKILL_DATA_INDEX_NAME] + "]Lv " + AutoSpellSkill[spValue][AUTO_SPELL_DATA_INDEX_SKILL_LEVEL] + "発動"]);
-
-		break;
-
-	case ITEM_SP_LEARN_SKILL_LEVEL_UNSPECIFIED:
-		textInfoArray.push(["", "スキル[" + SkillObjNew[InsertSkill[spValue][USABLE_SKILL_DATA_INDEX_SKILL_ID]][SKILL_DATA_INDEX_NAME] + "] 使用可能（装備品の条件により使用可能Lvは変わります）"]);
-		break;
-
-	case ITEM_SP_AUTO_SPELL_LEVEL_UNSPECIFIED:
-
-		if (AutoSpellSkill[spValue][AUTO_SPELL_DATA_INDEX_PROBABLY] == 0) {
-			textWork = "一定";
-		}
-		else {
-			textWork = AutoSpellSkill[spValue][AUTO_SPELL_DATA_INDEX_PROBABLY] + "%の";
-		}
-
-		textInfoArray.push(["", GetAutoSpellTriggerText(AutoSpellSkill[spValue][AUTO_SPELL_DATA_INDEX_TRIGGER]) + "、"
-			+ textWork + "確率でオートスペル[" + SkillObjNew[AutoSpellSkill[spValue][AUTO_SPELL_DATA_INDEX_SKILL_ID]][SKILL_DATA_INDEX_NAME] + "] 発動（装備品の条件により発動Lvは変わります）"]);
-
-		break;
-
-	case ITEM_SP_SIZE_PERFECTION:
-		textInfoArray.push(["", "全てのモンスターに対し、サイズによる武器ダメージのペナルティが発生しない"]);
-		break;
-
-	case ITEM_SP_ARMS_ELEMENT:
-		textInfoArray.push(["", "180分間、武器に" + GetElementText(spValue) + "属性を付与"]);
-		break;
-
-	case ITEM_SP_POW_PLUS:
-		textInfoArray.push(["", "Pow" + sign + spValue]);
-		break;
-	case ITEM_SP_STA_PLUS:
-		textInfoArray.push(["", "Sta" + sign + spValue]);
-		break;
-	case ITEM_SP_WIS_PLUS:
-		textInfoArray.push(["", "Wis" + sign + spValue]);
-		break;
-	case ITEM_SP_SPL_PLUS:
-		textInfoArray.push(["", "Spl" + sign + spValue]);
-		break;
-	case ITEM_SP_CON_PLUS:
-		textInfoArray.push(["", "Con" + sign + spValue]);
-		break;
-	case ITEM_SP_CRT_PLUS:
-		textInfoArray.push(["", "Crt" + sign + spValue]);
-		break;
-	case ITEM_SP_ALL_SPECS_PLUS:
-		textInfoArray.push(["", "全ての特性ステータス" + sign + spValue]);
-		break;
-
-	case ITEM_SP_KOZYOSEN_TE_RENTAL_ITEM:
-		textInfoArray.push(["", "------------------"]);
-		textInfoArray.push(["green", "攻城戦TE専用のレンタルアイテム。レンタル後、24時間で自動消滅する。"]);
-		textInfoArray.push(["green", "攻城戦TEの砦内で以下の効果が追加される。"]);
-		textInfoArray.push(["green", "※計算機ではプレイヤーに対する効果はヒドラCやタラCと倍率加算しています。"]);
-		textInfoArray.push(["green", "※計算機ではモンスター選択欄一番下の[プレイヤー]を選択すると効果があります。"]);
-		textInfoArray.push(["green", "※計算機でもモンスターに対しては効果ありません。"]);
-		textInfoArray.push(["", "------------------"]);
-		break;
-
-	case ITEM_SP_PHYSICAL_DAMAGE_UP_PLAYER_ALL:
-		textInfoArray.push(["", "物理攻撃時、プレイヤーに与えるダメージ" + sign + spValue + "%。"]);
-		break;
-
-	case ITEM_SP_MAGICAL_DAMAGE_UP_PLAYER_ALL:
-		textInfoArray.push(["", "魔法攻撃時、プレイヤーに与えるダメージ" + sign + spValue + "%。"]);
-		break;
-
-	case ITEM_SP_RESIST_PLAYER_ALL:
-		if (spValue > 0) {
-			textInfoArray.push(["", "プレイヤーから受けるダメージ " + spValue + "%減少"]);
-		}
-		else {
-			textInfoArray.push(["", "プレイヤーから受けるダメージ " + (-1 * spValue) + "%増加"]);
-		}
-		break;
-
-	case ITEM_SP_ATK_PLUS_GVGTE:
-		textInfoArray.push(["", "ATK" + sign + spValue + "。"]);
-		break;
-
-	case ITEM_SP_MATK_PLUS_GVGTE:
-		textInfoArray.push(["", "MATK" + sign + spValue + "。"]);
-		break;
-
-	case ITEM_SP_MAXHP_PLUS_GVGTE:
-		textInfoArray.push(["", "MaxHP" + sign + spValue + "。"]);
-		break;
-
-	case ITEM_SP_MAXSP_PLUS_GVGTE:
-		textInfoArray.push(["", "MaxSP" + sign + spValue + "。"]);
-		break;
-
-	case ITEM_SP_HEAL_UP_USING_GVGTE:
-		textInfoArray.push(["", "[ヒール][ハイネスヒール][コルセオヒール][サンクチュアリ][ポーションピッチャー]を使用した時の回復量" + sign + spValue + "%"]);
-		break;
-
-	case ITEM_SP_RESIST_FROZEN_GVGTE:
-		textInfoArray.push(["", "状態異常 凍結 に対する耐性 +" + spValue + "%"]);
-		break;
-
-	case ITEM_SP_P_ATK_PLUS:
-		textInfoArray.push(["", "P.Atk" + sign + spValue]);
-		break;
-	case ITEM_SP_S_MATK_PLUS:
-		textInfoArray.push(["", "S.Matk" + sign + spValue]);
-		break;
-	case ITEM_SP_H_PLUS_PLUS:
-		textInfoArray.push(["", "H.Plus" + sign + spValue]);
-		break;
-	case ITEM_SP_C_RATE_PLUS:
-		textInfoArray.push(["", "C.Rate" + sign + spValue]);
-		break;
-	case ITEM_SP_RES_PLUS:
-		textInfoArray.push(["", "Res" + sign + spValue]);
-		break;
-	case ITEM_SP_MRES_PLUS:
-		textInfoArray.push(["", "Mres" + sign + spValue]);
-		break;
-
-	case ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_ALL:
-		textInfoArray.push(["", "物理攻撃時、全てのサイズのモンスターに与えるダメージ" + sign + spValue + "%。"]);
-		break;
-
-	case ITEM_SP_PHYSICAL_DAMAGE_UP_RACE_ALL:
-		textInfoArray.push(["", "物理攻撃時、全ての種族のモンスターに与えるダメージ" + sign + spValue + "%。"]);
-		break;
-
-	case ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_ELM_ALL:
-		textInfoArray.push(["", "物理攻撃時、全ての属性のモンスターに与えるダメージ" + sign + spValue + "%。"]);
-		break;
-
-	case ITEM_SP_RESIST_RACE_ALL:
-		if (spValue > 0) {
-			textInfoArray.push(["", "全ての種族のモンスターから受けるダメージ " + spValue + "%減少"]);
-		}
-		else {
-			textInfoArray.push(["", "全ての種族のモンスターから受けるダメージ " + (-1 * spValue) + "%増加"]);
-		}
-		break;
-
-	case ITEM_SP_RESIST_ELM_ALL:
-		if (spValue > 0) {
-			textInfoArray.push(["", "全ての属性攻撃で受けるダメージ " + spValue + "%減少"]);
-		}
-		else {
-			textInfoArray.push(["", "全ての属性攻撃で受けるダメージ " + (-1 * spValue) + "%増加"]);
-		}
-		break;
-
-	case ITEM_SP_MAGICAL_DAMAGE_UP_SIZE_ALL:
-		textInfoArray.push(["", "魔法攻撃時、全てのサイズのモンスターに与えるダメージ" + sign + spValue + "%。"]);
-		break;
-
-	case ITEM_SP_MAGICAL_DAMAGE_UP_RACE_ALL:
-		textInfoArray.push(["", "魔法攻撃時、全ての種族のモンスターに与えるダメージ" + sign + spValue + "%。"]);
-		break;
-
-	case ITEM_SP_PHYSICAL_DAMAGE_UP_NOTBOSS:
-		textInfoArray.push(["", "物理攻撃時、一般モンスターに与えるダメージ" + sign + spValue + "%。"]);
-		break;
-
-	case ITEM_SP_MAGICAL_DAMAGE_UP_NOTBOSS:
-		textInfoArray.push(["", "魔法攻撃時、一般モンスターに与えるダメージ" + sign + spValue + "%。"]);
-		break;
-
-	case ITEM_SP_MAGICAL_DAMAGE_UP_MONSTER_ELM_ALL:
-		textInfoArray.push(["", "魔法攻撃時、全ての属性のモンスターに与えるダメージ" + sign + spValue + "%。"]);
-		break;
-
-	case ITEM_SP_MAGICAL_DAMAGE_UP_ELM_ALL:
-		textInfoArray.push(["", "全ての属性魔法攻撃で与えるダメージ" + sign + spValue + "%。"]);
-		break;
-
-	case ITEM_SP_RESIST_MONSTER_ELM_ALL:
-		if (spValue > 0) {
-			textInfoArray.push(["", "全ての属性モンスターから受けるダメージ " + spValue + "%減少"]);
-		}
-		else {
-			textInfoArray.push(["", "全ての属性モンスターから受けるダメージ " + (-1 * spValue) + "%増加"]);
-		}
-		break;
-
-	case ITEM_SP_PHYSICAL_DAMAGE_UP_PLAYER_DORAM:
-		textInfoArray.push(["", "物理攻撃時、ドラム形プレイヤーに与えるダメージ" + sign + spValue + "%。"]);
-		break;
-
-	case ITEM_SP_MAGICAL_DAMAGE_UP_PLAYER_DORAM:
-		textInfoArray.push(["", "魔法攻撃時、ドラム形プレイヤーに与えるダメージ" + sign + spValue + "%。"]);
-		break;
-
-	case ITEM_SP_RESIST_PLAYER_DORAM:
-		if (spValue > 0) {
-			textInfoArray.push(["", "ドラム形プレイヤーから受けるダメージ " + spValue + "%減少"]);
-		}
-		else {
-			textInfoArray.push(["", "ドラム形プレイヤーから受けるダメージ " + (-1 * spValue) + "%増加"]);
-		}
-		break;
-
-	case ITEM_SP_PHYSICAL_DAMAGE_UP_PLAYER_HUMAN:
-		textInfoArray.push(["", "物理攻撃時、人間形プレイヤーに与えるダメージ" + sign + spValue + "%。"]);
-		break;
-
-	case ITEM_SP_MAGICAL_DAMAGE_UP_PLAYER_HUMAN:
-		textInfoArray.push(["", "魔法攻撃時、人間形プレイヤーに与えるダメージ" + sign + spValue + "%。"]);
-		break;
-
-	case ITEM_SP_RESIST_PLAYER_HUMAN:
-		if (spValue > 0) {
-			textInfoArray.push(["", "人間形プレイヤーから受けるダメージ " + spValue + "%減少"]);
-		}
-		else {
-			textInfoArray.push(["", "人間形プレイヤーから受けるダメージ " + (-1 * spValue) + "%増加"]);
-		}
-		break;
-
-	case ITEM_SP_PHYSICAL_DAMAGE_UP_ELM_VANITY:
-	case ITEM_SP_PHYSICAL_DAMAGE_UP_ELM_WATER:
-	case ITEM_SP_PHYSICAL_DAMAGE_UP_ELM_EARTH:
-	case ITEM_SP_PHYSICAL_DAMAGE_UP_ELM_FIRE:
-	case ITEM_SP_PHYSICAL_DAMAGE_UP_ELM_WIND:
-	case ITEM_SP_PHYSICAL_DAMAGE_UP_ELM_POISON:
-	case ITEM_SP_PHYSICAL_DAMAGE_UP_ELM_HOLY:
-	case ITEM_SP_PHYSICAL_DAMAGE_UP_ELM_DARK:
-	case ITEM_SP_PHYSICAL_DAMAGE_UP_ELM_PSYCO:
-	case ITEM_SP_PHYSICAL_DAMAGE_UP_ELM_UNDEAD:
-		textInfoArray.push(["", GetElementText(spId - ITEM_SP_PHYSICAL_DAMAGE_UP_ELM_VANITY) + "属性物理攻撃で与えるダメージ" + sign + spValue + "%"]);
-		break;
-
-	case ITEM_SP_IGNORE_DEF_ALL:
-		textInfoArray.push(["", "モンスターのDEFを " + sign + spValue + "% 無視"]);
-		break;
-
-	case ITEM_SP_IGNORE_DEF_NOTBOSS:
-		textInfoArray.push(["", "一般モンスターのDEFを " + sign + spValue + "% 無視"]);
-		break;
-
-	case ITEM_SP_IGNORE_DEF_BOSS:
-		textInfoArray.push(["", "ボスモンスターのDEFを " + sign + spValue + "% 無視"]);
-		break;
-
-	case ITEM_SP_IGNORE_DEF_RACE_ALL:
-		textInfoArray.push(["", "全ての種族のDEFを " + sign + spValue + "% 無視"]);
-		break;
-
-	case ITEM_SP_IGNORE_RES_RACE_ALL:
-		textInfoArray.push(["", "全ての種族のResを " + sign + spValue + "% 無視"]);
-		break;
-
-	case ITEM_SP_IGNORE_MDEF_ALL:
-		textInfoArray.push(["", "モンスターのMDEFを " + sign + spValue + "% 無視"]);
-		break;
-
-	case ITEM_SP_IGNORE_MDEF_NOTBOSS:
-		textInfoArray.push(["", "一般モンスターのMDEFを " + sign + spValue + "% 無視"]);
-		break;
-
-	case ITEM_SP_IGNORE_MDEF_BOSS:
-		textInfoArray.push(["", "ボスモンスターのMDEFを " + sign + spValue + "% 無視"]);
-		break;
-
-	case ITEM_SP_IGNORE_MDEF_RACE_ALL:
-		textInfoArray.push(["", "全ての種族のMDEFを " + sign + spValue + "% 無視"]);
-		break;
-
-	case ITEM_SP_IGNORE_MRES_RACE_ALL:
-		textInfoArray.push(["", "全ての種族のMresを " + sign + spValue + "% 無視"]);
-		break;
-
-	case ITEM_SP_IGNORE_DEF_RACE_SOLID:
-	case ITEM_SP_IGNORE_DEF_RACE_UNDEAD:
-	case ITEM_SP_IGNORE_DEF_RACE_ANIMAL:
-	case ITEM_SP_IGNORE_DEF_RACE_PLANT:
-	case ITEM_SP_IGNORE_DEF_RACE_INSECT:
-	case ITEM_SP_IGNORE_DEF_RACE_FISH:
-	case ITEM_SP_IGNORE_DEF_RACE_DEMON:
-	case ITEM_SP_IGNORE_DEF_RACE_HUMAN:
-	case ITEM_SP_IGNORE_DEF_RACE_ANGEL:
-	case ITEM_SP_IGNORE_DEF_RACE_DRAGON:
-		textInfoArray.push(["", GetRaceText(spId - ITEM_SP_IGNORE_DEF_RACE_SOLID) + "形のDEFを " + spValue + "% 無視"]);
-		break;
-
-	case ITEM_SP_IGNORE_MDEF_RACE_SOLID:
-	case ITEM_SP_IGNORE_MDEF_RACE_UNDEAD:
-	case ITEM_SP_IGNORE_MDEF_RACE_ANIMAL:
-	case ITEM_SP_IGNORE_MDEF_RACE_PLANT:
-	case ITEM_SP_IGNORE_MDEF_RACE_INSECT:
-	case ITEM_SP_IGNORE_MDEF_RACE_FISH:
-	case ITEM_SP_IGNORE_MDEF_RACE_DEMON:
-	case ITEM_SP_IGNORE_MDEF_RACE_HUMAN:
-	case ITEM_SP_IGNORE_MDEF_RACE_ANGEL:
-	case ITEM_SP_IGNORE_MDEF_RACE_DRAGON:
-		textInfoArray.push(["", GetRaceText(spId - ITEM_SP_IGNORE_MDEF_RACE_SOLID) + "形のMDEFを " + spValue + "% 無視"]);
-		break;
-
-	case ITEM_SP_CRITICAL_DAMAGE_UP_RACE_SOLID:
-	case ITEM_SP_CRITICAL_DAMAGE_UP_RACE_UNDEAD:
-	case ITEM_SP_CRITICAL_DAMAGE_UP_RACE_ANIMAL:
-	case ITEM_SP_CRITICAL_DAMAGE_UP_RACE_PLANT:
-	case ITEM_SP_CRITICAL_DAMAGE_UP_RACE_INSECT:
-	case ITEM_SP_CRITICAL_DAMAGE_UP_RACE_FISH:
-	case ITEM_SP_CRITICAL_DAMAGE_UP_RACE_DEMON:
-	case ITEM_SP_CRITICAL_DAMAGE_UP_RACE_HUMAN:
-	case ITEM_SP_CRITICAL_DAMAGE_UP_RACE_ANGEL:
-	case ITEM_SP_CRITICAL_DAMAGE_UP_RACE_DRAGON:
-		textInfoArray.push(["", GetRaceText(spId - ITEM_SP_CRITICAL_DAMAGE_UP_RACE_SOLID) + "形へのクリティカルダメージ +" + spValue + "%"]);
-		break;
-
-	case ITEM_SP_RESIST_MONSTER_ELM_VANITY:
-	case ITEM_SP_RESIST_MONSTER_ELM_WATER:
-	case ITEM_SP_RESIST_MONSTER_ELM_EARTH:
-	case ITEM_SP_RESIST_MONSTER_ELM_FIRE:
-	case ITEM_SP_RESIST_MONSTER_ELM_WIND:
-	case ITEM_SP_RESIST_MONSTER_ELM_POISON:
-	case ITEM_SP_RESIST_MONSTER_ELM_HOLY:
-	case ITEM_SP_RESIST_MONSTER_ELM_DARK:
-	case ITEM_SP_RESIST_MONSTER_ELM_PSYCO:
-	case ITEM_SP_RESIST_MONSTER_ELM_UNDEAD:
-		if (spValue > 0) {
-			textInfoArray.push(["", GetElementText(spId - ITEM_SP_RESIST_MONSTER_ELM_VANITY) + "属性モンスターから受けるダメージ" + spValue + "%減少"]);
-		}
-		else {
-			textInfoArray.push(["", GetElementText(spId - ITEM_SP_RESIST_MONSTER_ELM_VANITY) + "属性モンスターから受けるダメージ" + (-1 * spValue) + "%増加"]);
-		}
-		break;
-
-	case ITEM_SP_MAGICAL_DAMAGE_UP_ELM_VANITY:
-	case ITEM_SP_MAGICAL_DAMAGE_UP_ELM_WATER:
-	case ITEM_SP_MAGICAL_DAMAGE_UP_ELM_EARTH:
-	case ITEM_SP_MAGICAL_DAMAGE_UP_ELM_FIRE:
-	case ITEM_SP_MAGICAL_DAMAGE_UP_ELM_WIND:
-	case ITEM_SP_MAGICAL_DAMAGE_UP_ELM_POISON:
-	case ITEM_SP_MAGICAL_DAMAGE_UP_ELM_HOLY:
-	case ITEM_SP_MAGICAL_DAMAGE_UP_ELM_DARK:
-	case ITEM_SP_MAGICAL_DAMAGE_UP_ELM_PSYCO:
-	case ITEM_SP_MAGICAL_DAMAGE_UP_ELM_UNDEAD:
-		textInfoArray.push(["", GetElementText(spId - ITEM_SP_MAGICAL_DAMAGE_UP_ELM_VANITY) + "属性魔法攻撃で与えるダメージ" + sign + spValue + "%"]);
-		break;
-
-	case ITEM_SP_MAGICAL_DAMAGE_UP_MONSTER_ELM_VANITY:
-	case ITEM_SP_MAGICAL_DAMAGE_UP_MONSTER_ELM_WATER:
-	case ITEM_SP_MAGICAL_DAMAGE_UP_MONSTER_ELM_EARTH:
-	case ITEM_SP_MAGICAL_DAMAGE_UP_MONSTER_ELM_FIRE:
-	case ITEM_SP_MAGICAL_DAMAGE_UP_MONSTER_ELM_WIND:
-	case ITEM_SP_MAGICAL_DAMAGE_UP_MONSTER_ELM_POISON:
-	case ITEM_SP_MAGICAL_DAMAGE_UP_MONSTER_ELM_HOLY:
-	case ITEM_SP_MAGICAL_DAMAGE_UP_MONSTER_ELM_DARK:
-	case ITEM_SP_MAGICAL_DAMAGE_UP_MONSTER_ELM_PSYCO:
-	case ITEM_SP_MAGICAL_DAMAGE_UP_MONSTER_ELM_UNDEAD:
-		textInfoArray.push(["", GetElementText(spId - ITEM_SP_MAGICAL_DAMAGE_UP_MONSTER_ELM_VANITY) + "属性モンスターに与える魔法ダメージ" + sign + spValue + "%"]);
-		break;
-
-	default:
-
-		if (ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_OFFSET <= spId && spId < ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_OFFSET + 1000) {
-			textInfoArray.push(["", "物理攻撃時、["+ MonsterObjNew[spId - ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_OFFSET][MONSTER_DATA_INDEX_NAME] + "]に与えるダメージ " + sign + spValue + "%"]);
-		}
-
-		else if (ITEM_SP_SKILL_DAMAGE_OFFSET <= spId && spId < ITEM_SP_SKILL_DAMAGE_OFFSET + 2000) {
-			textInfoArray.push(["", "["+ SkillObjNew[spId - ITEM_SP_SKILL_DAMAGE_OFFSET][SKILL_DATA_INDEX_NAME] + "]で与えるダメージ" + sign + spValue + "%"]);
-		}
-
-		else if (ITEM_SP_SKILL_CAST_TIME_OFFSET <= spId && spId < ITEM_SP_SKILL_CAST_TIME_OFFSET + 2000){
-			if(spValue > 0) {
-				textInfoArray.push(["", "["+ SkillObjNew[spId - ITEM_SP_SKILL_CAST_TIME_OFFSET][SKILL_DATA_INDEX_NAME] + "]の詠唱時間 " + spValue + "%減少"]);
+			else if (ITEM_SP_SKILL_FIXED_MINUS_OFFSET <= spId && spId < ITEM_SP_SKILL_FIXED_MINUS_OFFSET + 2000){
+				if(spValue > 0) {
+					textInfoArray.push(["", "["+ SkillObjNew[spId - ITEM_SP_SKILL_FIXED_MINUS_OFFSET][SKILL_DATA_INDEX_NAME] + "]の固定詠唱時間 " + (spValue / 1000) + "秒減少"]);
+				}
+				else {
+					textInfoArray.push(["", "["+ SkillObjNew[spId - ITEM_SP_SKILL_FIXED_MINUS_OFFSET][SKILL_DATA_INDEX_NAME] + "]の固定詠唱時間 " + (-1 * spValue / 1000) + "秒増加"]);
+				}
 			}
-			else {
-				textInfoArray.push(["", "["+ SkillObjNew[spId - ITEM_SP_SKILL_CAST_TIME_OFFSET][SKILL_DATA_INDEX_NAME] + "]の詠唱時間 " + (-1 * spValue) + "%増加"]);
-			}
-		}
 
-		else if (ITEM_SP_SKILL_CAST_MINUS_OFFSET <= spId && spId < ITEM_SP_SKILL_CAST_MINUS_OFFSET + 2000){
-			if(spValue > 0) {
-				textInfoArray.push(["", "["+ SkillObjNew[spId - ITEM_SP_SKILL_CAST_MINUS_OFFSET][SKILL_DATA_INDEX_NAME] + "]の詠唱時間 " + (spValue / 1000) + "秒減少"]);
+			else if (ITEM_SP_SKILL_COOL_MINUS_OFFSET <= spId && spId < ITEM_SP_SKILL_COOL_MINUS_OFFSET + 2000){
+				if(spValue > 0) {
+					textInfoArray.push(["", "["+ SkillObjNew[spId - ITEM_SP_SKILL_COOL_MINUS_OFFSET][SKILL_DATA_INDEX_NAME] + "]のクールタイム " + (spValue / 1000) + "秒減少"]);
+				}
+				else {
+					textInfoArray.push(["", "["+ SkillObjNew[spId - ITEM_SP_SKILL_COOL_MINUS_OFFSET][SKILL_DATA_INDEX_NAME] + "]のクールタイム " + (-1 * spValue / 1000) + "秒増加"]);
+				}
 			}
-			else {
-				textInfoArray.push(["", "["+ SkillObjNew[spId - ITEM_SP_SKILL_CAST_MINUS_OFFSET][SKILL_DATA_INDEX_NAME] + "]の詠唱時間 " + (-1 * spValue / 1000) + "秒増加"]);
-			}
-		}
 
-		else if (ITEM_SP_SKILL_FIXED_TIME_OFFSET <= spId && spId < ITEM_SP_SKILL_FIXED_TIME_OFFSET + 2000){
-			if(spValue > 0) {
-				textInfoArray.push(["", "["+ SkillObjNew[spId - ITEM_SP_SKILL_FIXED_TIME_OFFSET][SKILL_DATA_INDEX_NAME] + "]の固定詠唱時間 " + spValue + "%減少"]);
+			else if (ITEM_SP_SKILL_COST_SCALING_OFFSET <= spId && spId < ITEM_SP_SKILL_COST_SCALING_OFFSET + 2000){
+				if(spValue > 0) {
+					textInfoArray.push(["", "["+ SkillObjNew[spId - ITEM_SP_SKILL_COST_SCALING_OFFSET][SKILL_DATA_INDEX_NAME] + "]の消費SP " + spValue + "%増加"]);
+				}
+				else {
+					textInfoArray.push(["", "["+ SkillObjNew[spId - ITEM_SP_SKILL_COST_SCALING_OFFSET][SKILL_DATA_INDEX_NAME] + "]の消費SP " + (-1 * spValue) + "%減少"]);
+				}
 			}
-			else {
-				textInfoArray.push(["", "["+ SkillObjNew[spId - ITEM_SP_SKILL_FIXED_TIME_OFFSET][SKILL_DATA_INDEX_NAME] + "]の固定詠唱時間 " + (-1 * spValue) + "%増加"]);
-			}
-		}
 
-		else if (ITEM_SP_SKILL_FIXED_MINUS_OFFSET <= spId && spId < ITEM_SP_SKILL_FIXED_MINUS_OFFSET + 2000){
-			if(spValue > 0) {
-				textInfoArray.push(["", "["+ SkillObjNew[spId - ITEM_SP_SKILL_FIXED_MINUS_OFFSET][SKILL_DATA_INDEX_NAME] + "]の固定詠唱時間 " + (spValue / 1000) + "秒減少"]);
+			else if (ITEM_SP_SKILL_COST_MINUS_OFFSET <= spId && spId < ITEM_SP_SKILL_COST_MINUS_OFFSET + 2000){
+				if(spValue > 0) {
+					textInfoArray.push(["", "["+ SkillObjNew[spId - ITEM_SP_SKILL_COST_MINUS_OFFSET][SKILL_DATA_INDEX_NAME] + "]の消費SP " + spValue + "減少"]);
+				}
+				else {
+					textInfoArray.push(["", "["+ SkillObjNew[spId - ITEM_SP_SKILL_COST_MINUS_OFFSET][SKILL_DATA_INDEX_NAME] + "]の消費SP " + (-1 * spValue) + "増加"]);
+				}
 			}
-			else {
-				textInfoArray.push(["", "["+ SkillObjNew[spId - ITEM_SP_SKILL_FIXED_MINUS_OFFSET][SKILL_DATA_INDEX_NAME] + "]の固定詠唱時間 " + (-1 * spValue / 1000) + "秒増加"]);
-			}
-		}
-
-		else if (ITEM_SP_SKILL_COOL_MINUS_OFFSET <= spId && spId < ITEM_SP_SKILL_COOL_MINUS_OFFSET + 2000){
-			if(spValue > 0) {
-				textInfoArray.push(["", "["+ SkillObjNew[spId - ITEM_SP_SKILL_COOL_MINUS_OFFSET][SKILL_DATA_INDEX_NAME] + "]のクールタイム " + (spValue / 1000) + "秒減少"]);
-			}
-			else {
-				textInfoArray.push(["", "["+ SkillObjNew[spId - ITEM_SP_SKILL_COOL_MINUS_OFFSET][SKILL_DATA_INDEX_NAME] + "]のクールタイム " + (-1 * spValue / 1000) + "秒増加"]);
-			}
-		}
-
-		else if (ITEM_SP_SKILL_COST_SCALING_OFFSET <= spId && spId < ITEM_SP_SKILL_COST_SCALING_OFFSET + 2000){
-			if(spValue > 0) {
-				textInfoArray.push(["", "["+ SkillObjNew[spId - ITEM_SP_SKILL_COST_SCALING_OFFSET][SKILL_DATA_INDEX_NAME] + "]の消費SP " + spValue + "%増加"]);
-			}
-			else {
-				textInfoArray.push(["", "["+ SkillObjNew[spId - ITEM_SP_SKILL_COST_SCALING_OFFSET][SKILL_DATA_INDEX_NAME] + "]の消費SP " + (-1 * spValue) + "%減少"]);
-			}
-		}
-
-		else if (ITEM_SP_SKILL_COST_MINUS_OFFSET <= spId && spId < ITEM_SP_SKILL_COST_MINUS_OFFSET + 2000){
-			if(spValue > 0) {
-				textInfoArray.push(["", "["+ SkillObjNew[spId - ITEM_SP_SKILL_COST_MINUS_OFFSET][SKILL_DATA_INDEX_NAME] + "]の消費SP " + spValue + "減少"]);
-			}
-			else {
-				textInfoArray.push(["", "["+ SkillObjNew[spId - ITEM_SP_SKILL_COST_MINUS_OFFSET][SKILL_DATA_INDEX_NAME] + "]の消費SP " + (-1 * spValue) + "増加"]);
-			}
-		}
 	}
 
 

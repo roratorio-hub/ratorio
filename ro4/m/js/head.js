@@ -321,6 +321,12 @@ const HEALTYPE_EBI_ZANMAI = 4;
 const HEALTYPE_COLUCEO_HEAL = 5;
 /** 回復スキル種類：ディレクティオヒール */
 const HEALTYPE_DILECTIO_HEAL = 6;
+/** 回復スキル種類：タートルスプリンクラー */
+const HEALTYPE_TURTLE_SPRINKLER = 7;
+/** 回復スキル種類：守護符 */
+const HEALTYPE_SHUGO_FU = 8;
+/** 回復スキル種類：城隍堂 */
+const HEALTYPE_ZYOKODO = 9;
 /** 回復スキル対象：自分 */
 const HEAL_TARGETTYPE_SELF = 0;
 /** 回復スキル対象：他人 */
@@ -11504,11 +11510,20 @@ function HealCalc(HealLv,HealType,wMinMax,w_WHO,ptmCount) {
 		case HEALTYPE_EBI_ZANMAI:
 			wHeal = Math.floor((n_A_BaseLV + n_A_INT) / 5) * 7.5;
 			break;
+		case HEALTYPE_TURTLE_SPRINKLER:
+			wHeal = Math.floor((n_A_BaseLV + n_A_INT) / 5) * 3 * Math.max(1, LearnedSkillSearch(SKILL_ID_TURTLE_SPRINKLER));
+			break;
+		case HEALTYPE_SHUGO_FU:
+			wHeal = Math.floor((n_A_BaseLV + n_A_INT) / 5) * 3 * Math.max(1, LearnedSkillSearch(SKILL_ID_SHUGO_FU));
+			break;
+		case HEALTYPE_ZYOKODO:
+			wHeal = Math.floor((n_A_BaseLV + n_A_INT) / 5) * 3 * Math.max(1, LearnedSkillSearch(SKILL_ID_ZYOKODO));
+			break;
 	}
-	// 回復量増強効果の算出
+	// 他者へ使用したときの回復量増強効果の算出
 	var healUp = 100 + n_tok[ITEM_SP_HEAL_UP_USING];
 	if (w_WHO == HEAL_TARGETTYPE_ENEMY && HealType == HEALTYPE_HEAL) {
-		healUp += n_tok[93];
+		healUp += n_tok[ITEM_SP_HEAL_DAMAGE_UP];
 	}
 	// ＭＡＴＫ分の回復量の算出
 	var wHealMatk = 0;
@@ -11556,6 +11571,35 @@ function HealCalc(HealLv,HealType,wMinMax,w_WHO,ptmCount) {
 			wHeal = wHeal * healUp / 100 + wHealMatk / 4;
 			wHeal = Math.floor(wHeal * healRatio[HealLv - 1]);
 			break;
+		case HEALTYPE_TURTLE_SPRINKLER:
+			// TODO これは暫定計算式であって誤差が解消できていません
+			wHeal = wHeal * (healUp + valHPlus) / 100 + wHealMatk;	// 基礎回復量
+			wHeal += 19 * LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY) * GetTotalSpecStatus(MIG_PARAM_ID_CRT);	// 修練と特性ステータスの補正
+			// 固定値に対するBaseLv補正
+			if (UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0 || LearnedSkillSearch(SKILL_ID_NYANTOMO_KAMESETSU) > 0) {
+				// 強化状態
+				wHeal += (4500 + 1500 * HealLv) * n_A_BaseLV / 100;
+			} else {
+				wHeal += (3000 + 1000 * HealLv) * n_A_BaseLV / 100;
+			}
+			wHeal = Math.floor(wHeal);
+			break;
+		case HEALTYPE_SHUGO_FU:
+			// TODO これは暫定計算式であって実測できていません
+			wHeal = wHeal * (healUp + valHPlus) / 100 + wHealMatk;	// 基礎回復量
+			wHeal += 19 * LearnedSkillSearch(SKILL_ID_GOFU_SHUREN) * GetTotalSpecStatus(MIG_PARAM_ID_CRT);	// 修練と特性ステータスの補正
+			// 固定値に対するBaseLv補正
+			wHeal += (1000 + 500 * HealLv) * n_A_BaseLV / 100;
+			wHeal = Math.floor(wHeal);
+			break;
+		case HEALTYPE_ZYOKODO:
+			// TODO これは暫定計算式であって実測できていません
+			wHeal = wHeal * (healUp + valHPlus) / 100 + wHealMatk;	// 基礎回復量
+			wHeal += 19 * LearnedSkillSearch(SKILL_ID_GOFU_SHUREN) * GetTotalSpecStatus(MIG_PARAM_ID_CRT);	// 修練と特性ステータスの補正
+			// 固定値に対するBaseLv補正
+			wHeal += [0, 5500, 9000, 13000, 17000, 21000][HealLv] * n_A_BaseLV / 100;
+			wHeal = Math.floor(wHeal);
+			break;
 	}
 	// ハイネスヒールの場合のレベル倍率適用
 	if (HealType == HEALTYPE_HIGHNESS) {
@@ -11580,6 +11624,11 @@ function HealCalc(HealLv,HealType,wMinMax,w_WHO,ptmCount) {
 				// なぜか効果率が変動する
 				var usedRatio = [4, 2, 1, 0.5725, 0.5];
 				wHeal = Math.floor(wHeal * (100 + n_tok[ITEM_SP_HEAL_UP_USED] * usedRatio[HealLv - 1]) / 100);
+				break;
+			case HEALTYPE_TURTLE_SPRINKLER:
+			case HEALTYPE_SHUGO_FU:
+			case HEALTYPE_ZYOKODO:
+				// 「ヒール系スキルを受けた時のHP回復量増減」の影響を受けない
 				break;
 			default:
 				wHeal = Math.floor(wHeal * (100 + n_tok[ITEM_SP_HEAL_UP_USED]) / 100);
