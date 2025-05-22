@@ -150,12 +150,6 @@ JOB_SERIES_ID_GUNSLINGER	= 45;
 
 JOB_SERIES_ID_SUMMONER		= 51;
 
-
-
-
-
-
-
 /**
  * ジョブ名を取得する.
  * @param jobId ジョブＩＤ
@@ -163,8 +157,6 @@ JOB_SERIES_ID_SUMMONER		= 51;
 function GetJobName(jobId) {
 	return g_constDataManager.GetName(CONST_DATA_KIND_JOB, jobId);
 }
-
-
 
 /**
  * 一次職業系統を取得する.
@@ -571,10 +563,6 @@ function IsSameJobClass(jobIdTarget, jobIdCheck = n_A_JOB) {
 	return (jobIdArrayCheck.indexOf(jobIdTarget) >= 0);
 }
 
-
-
-
-
 /**
  * ベースレベルの最小値を取得する.
  * @param jobId ジョブＩＤ
@@ -811,8 +799,6 @@ function GetJobLevelMax(jobId) {
 	return 1;
 }
 
-
-
 /**
  * ステータスの最大値を取得する.
  * @param jobId ジョブＩＤ
@@ -933,9 +919,6 @@ function GetStatusMax(jobId, bChild) {
 	return 99;
 }
 
-
-
-
 /**
  * 転生フラグを取得する.
  * @param jobId ジョブＩＤ
@@ -1001,8 +984,6 @@ function IsReincarnatedJob(jobId) {
 	return false;
 }
 
-
-
 /**
  * ハイスピードポーションが使用できる職業かを判定する.
  * @param jobId ジョブＩＤ
@@ -1059,11 +1040,6 @@ function IsUsableBSPJob(jobId) {
 	return false;
 }
 
-
-
-
-
-
 /**
  * ジョブボーナスを取得する.
  * @param jobId ジョブＩＤ
@@ -1073,9 +1049,6 @@ function IsUsableBSPJob(jobId) {
 function GetJobBonus(jobId, jobLv) {
 	return g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, jobId).GetJobBonus(jobLv);
 }
-
-
-
 
 /**
  * ＨＰの基礎値を取得する.
@@ -1106,8 +1079,6 @@ function GetHPBase(jobId, baseLv, bChild) {
 	return maxhp;
 }
 
-
-
 /**
  * ＳＰの基礎値を取得する.
  * @param jobId ジョブＩＤ
@@ -1136,9 +1107,6 @@ function GetSPBase(jobId, baseLv, bChild) {
 
 	return maxsp;
 }
-
-
-
 
 
 //================================================================================================
@@ -1174,8 +1142,6 @@ CGlobalConstManager.DefineEnum(
 		"JOB_EXP_TABLE_ID_4TH",
 	]
 );
-
-
 
 /**
  * ベース経験値テーブルを取得する.
@@ -1618,8 +1584,6 @@ function GetBaseExpTable(tableId) {
 
 	return expTable;
 }
-
-
 
 /**
  * ジョブ経験値テーブルを取得する.
@@ -2449,7 +2413,6 @@ function GetJobExpTable(tableId) {
 	return expTable;
 }
 
-
 /**
  * 各職業ごとの MaxHP/MaxSP が未実測である BaseLv を設定する
  * 実測確認出来た BaseLv は取り除いてください
@@ -2633,42 +2596,13 @@ function GetUnconfirmedHPSPArray() {
 	return g_unconfirmedHPSPArray;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // TODO: 本来はここにあるべきではない
 
 /**
  * 指定のアイテムが、職業制限に適合しているかを検査する.
  * @param itemId アイテムＩＤ
  * @param jobId 検査対象の職業ＩＤ
- * @return 適合検査結果
+ * @return 適合検査結果 true / false
  */
 function IsMatchJobRestrict(itemId, jobId) {
 
@@ -2755,23 +2689,11 @@ function IsMatchJobRestrict(itemId, jobId) {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
 /**
  * 四次職へ変更する.
  * @remarks 本来ここにあるべきではない。お試し。
  */
 function UpgradeJobTo4th() {
-
 	var msg = "";
 	var jobId4th = 0;
 	var dataURL = "";
@@ -2880,5 +2802,4 @@ function UpgradeJobTo4th() {
 			alert(msg);
 		}, 0);
 	}, 0);
-
 }

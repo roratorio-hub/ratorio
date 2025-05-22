@@ -30343,7 +30343,7 @@ g_objMobConfInput.BuildUpSelectArea(document.getElementById("OBJID_TD_MOB_CONF_I
 
 n_A_JOB = 0;
 document.calcForm.A_JOB.value = 0;
-OnChangeJobSelect(0);
+changeJobSettings(0);
 
 if (true) {
 	//--------------------------------

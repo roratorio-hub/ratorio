@@ -371,7 +371,7 @@
 														<td style="min-width: 7em;"><select id="OBJID_SELECT_JOB_LEVEL" name="A_JobLV"onChange="StAllCalc() | AutoCalc()"></select></td>
 
 														<td style="min-width: 4em; text-align:center;">職業</td>
-														<td style="min-width: 7em;"><select id="OBJID_SELECT_JOB" name="A_JOB" onChange="OnChangeJobSelect(this.value) | StAllCalc() | CalcStatusPoint(false) | AutoCalc()"></select></td>
+														<td style="min-width: 7em;"><select id="OBJID_SELECT_JOB" name="A_JOB" onChange="OnChangeJob(this.value)"></select></td>
 													</tr>
 
 													<tr>
@@ -528,6 +528,9 @@
 												</style>
 
 												<div>
+													<input type="checkbox" id="OBJID_CHK_MIGRATE_SETTING">
+													<label for="OBJID_CHK_MIGRATE_SETTING">職業変更時に装備等を維持する</label>
+													<!--
 													<span>臨時機能</span>
 													<span style="display: inline-block; width: 2em;"></span>
 													<input type="checkbox" id="OBJID_CHK_UPGRADE_JOB_EXPLAIN">
@@ -549,6 +552,7 @@
 														<input type="button" onclick="UpgradeJobTo4th()" value="四次職へ変更">
 														<span id="OBJID_SPAN_UPGRADE_JOB_STATUS" style="margin-left: 2em;"></span>
 													</div>
+													-->
 												</div>
 											</div>
 

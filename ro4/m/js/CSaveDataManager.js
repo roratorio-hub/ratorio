@@ -871,42 +871,52 @@ class CSaveDataManager {
 
 			// プロパティに関する情報を取得
 			const propName = propNames[idx];
-			const propValue = floorBigInt32(saveDataUnit.getProp(propName));
+			let propValue = floorBigInt32(saveDataUnit.getProp(propName));
 			const objID = objIDMap.get(propName);
 
 			// プロパティ名で処理分岐
 			switch (propName) {
-
 				// 職業IDは専用処理
 				case CSaveDataConst.propNameJobID: {
 					this.#applyToControlsCharaJobID(saveDataUnit, objID, propValue);
 					break;
 				}
-
 				// ベースレベル自動調整チェックボックス
 				case CSaveDataConst.propNameSubAutoAdjustBaseLv: {
 					HtmlSetObjectCheckedById(objID, ((propValue > 0) ? true : false));
 					break;
 				}
-
-				// 上記以外は共通処理
+				// BaseLv
 				case CSaveDataConst.propNameBaseLv:
+					// 範囲外の値がロードされた場合は丸める
+					propValue = GetBaseLevelMin(n_A_JOB) > propValue ? GetBaseLevelMin(n_A_JOB) : propValue;
+					propValue = GetBaseLevelMax(n_A_JOB) < propValue ? GetBaseLevelMax(n_A_JOB) : propValue;
+					HtmlSetObjectValueById(objID, propValue);
+					break;
+				// JobLv
 				case CSaveDataConst.propNameJobLv:
+					// 上限を超える値がロードされた場合は上限値に丸める
+					HtmlSetObjectValueById(objID, Math.min(GetJobLevelMax(n_A_JOB),propValue));
+					break;
+				// 基本ステータス
 				case CSaveDataConst.propNameStStr:
 				case CSaveDataConst.propNameStAgi:
 				case CSaveDataConst.propNameStVit:
 				case CSaveDataConst.propNameStInt:
 				case CSaveDataConst.propNameStDex:
 				case CSaveDataConst.propNameStLuk:
+					// 上限を超える値がロードされた場合は上限値に丸める
+					HtmlSetObjectValueById(objID, Math.min(GetStatusMax(n_A_JOB),propValue));
+					break;
+				// 特性ステータス
 				case CSaveDataConst.propNameStPow:
 				case CSaveDataConst.propNameStSta:
 				case CSaveDataConst.propNameStWis:
 				case CSaveDataConst.propNameStSpl:
 				case CSaveDataConst.propNameStCon:
-				case CSaveDataConst.propNameStCrt: {
+				case CSaveDataConst.propNameStCrt:
 					HtmlSetObjectValueById(objID, propValue);
 					break;
-				}
 			}
 		}
 	}
@@ -921,7 +931,7 @@ class CSaveDataManager {
 
 		// 職業選択セレクトボックスの設定
 		HtmlSetObjectValueById(objID, propValue);
-		OnChangeJobSelect(propValue);
+		changeJobSettings(propValue);
 
 		// スパノビ　全武器チェック
 		if (IsSameJobClass(JOB_ID_SUPERNOVICE) || IsSameJobClass(JOB_ID_SUPERNOVICE_PLUS)) {
@@ -1040,8 +1050,6 @@ class CSaveDataManager {
 			SetStatefullData("DATA_" + objIdPrifixF + "_CARD_" + slotNoF, cardIdF);
 		};
 
-
-
 		// データユニットが存在しない場合は、処理しない
 		if ((idxUnitEqpRgn === undefined) || (idxUnitEqpRgn < 0) || (idxUnitEqpRgn >= this.#saveDataUnitArray.length)) {
 			return;
@@ -1081,6 +1089,11 @@ class CSaveDataManager {
 			}
 			const saveDataUnitItemDef = this.#saveDataUnitArray[idxItemDef];
 			const itemID = saveDataUnitItemDef.getProp(CSaveDataConst.propNameItemID);
+			if (!IsMatchJobRestrict(itemID, n_A_JOB)){
+				// 装備不可能なアイテムが指定されている場合はスキップする
+				continue;
+			}
+			
 			// 精錬値のセット
 			const refined = floorBigInt32(saveDataUnitItemDef.getProp(CSaveDataConst.propNameRefinedCount));
 			if (objIDRefinedMap !== undefined) {
@@ -1097,7 +1110,6 @@ class CSaveDataManager {
 					HtmlSetObjectValueById(objIDTranscendence, transcendenceCount);
 				}
 			}
-
 
 			// 画面側のオブジェクトに関する情報を取得
 			const objID = objIDMap.get(propName);

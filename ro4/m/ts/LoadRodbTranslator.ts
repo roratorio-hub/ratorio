@@ -1,6 +1,6 @@
 declare function AutoCalc(): void;
 declare function CalcStatusPoint(flag: boolean): void;
-declare function OnChangeJobSelect(job_id_num: number): void;
+declare function changeJobSettings(job_id_num: number): void;
 declare function OnClickSkillSWLearned(): void;
 declare function StAllCalc(): void;
 
@@ -116,7 +116,7 @@ async function loadRodbTranslator(fragment: string): Promise<void> {
     if (jobContainer) {
         jobContainer.textContent = jsonObject.status.job_class_localization;
     }
-    OnChangeJobSelect(jsonObject.status.ratorio_job_id_num);
+    changeJobSettings(jsonObject.status.ratorio_job_id_num);
 
     // Set Base Lv
     const baseLvElement = document.getElementById("OBJID_SELECT_BASE_LEVEL") as HTMLSelectElement;
