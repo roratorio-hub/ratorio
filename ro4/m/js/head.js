@@ -12044,7 +12044,11 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 	};
 
 	var funcDIG3PXSecondCompact = function (valueF, pointCountF) {
-		return funcDIG3PX(valueF, pointCountF, "秒").replace(/\.?0+秒$/, '秒');
+		let value = funcDIG3PX(valueF, pointCountF, "秒");
+		if (!isNaN(value)) {
+			value = value.replace(/\.?0+秒$/, '秒');
+		}
+		return value;
 	};
 
 	var funcDIG3PXCount = function (valueF, pointCountF) {

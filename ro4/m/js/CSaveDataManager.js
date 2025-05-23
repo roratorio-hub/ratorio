@@ -807,7 +807,8 @@ class CSaveDataManager {
 		else{
 			n_A_Arrow = (arrowArray[0] - 1);
 		}
-		HtmlSetObjectValueById("OBJID_SELECT_ARROW", n_A_Arrow);
+		const obj_select_arrow = document.getElementById("OBJID_SELECT_ARROW")
+		HtmlSelectObjectValueAsInteger(obj_select_arrow, n_A_Arrow);
 		Click_A8(false);	// BuffChara（旧：支援スキル８（その他の支援/設定））
 		Click_A1(false);	// BuffSelf
 		g_objCharaConfIchizi.OnSaveDataLoaded();
