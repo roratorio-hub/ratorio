@@ -1701,30 +1701,41 @@ function ApplySpecModify(spid, spVal) {
 
 /**
  * ステータス、装備、その他の設定を維持したまま任意の職に変更する
- * @param {Number} jobId 
+ * @param {Number} latest_job 
  */
-function migrateOtherJob(jobId) {
+function migrateOtherJob(latest_job) {
+	const recent_job = n_A_JOB;
 	let dataURL = "";
 	let funcModifySaveData = function (saveDataArrayF) {
 		// 職業ID
-		saveDataArrayF[1] = jobId;
+		saveDataArrayF[1] = latest_job;
 		// 自動レベル調整は強制OFF
 		saveDataArrayF[11] = 0;
 		return saveDataArrayF;
 	};
-
 	// インジケーター表示
 	showLoadingIndicator();
 	setTimeout(() => {
 		// 変更後の職業の二刀流可能性に合わせる
-		n_Nitou = IsDualArmsJob(jobId);
-		// URL出力の中身を実行＆データ加工
-		// 再計算
-		calc();
+		n_Nitou = IsDualArmsJob(latest_job);
 		// TODO: 暫定対処　旧形式の保存処理呼び出し
 		dataURL = SaveSystem(funcModifySaveData);
 		// URL入力を実行
 		CSaveController.loadFromURL(dataURL);
+		// 異なる職業系列へ変更する場合
+		if (!IsSameJobGroup(latest_job, recent_job)) {
+			// 習得スキルの初期化
+			n_A_LearnedSkill = new Array();
+			for (let dmyidx = 0; dmyidx < LEARNED_SKILL_MAX_COUNT; dmyidx++) {
+				n_A_LearnedSkill[dmyidx] = 0;
+			}
+			OnClickSkillSWLearned();
+			// 職固有自己支援・パッシブ持続系の初期化
+			n_A_PassSkill.fill(0);
+			$("#OBJID_CHECK_A1_SKILL_SW").prop("checked", true).trigger("click");
+		}
+		// 再計算
+		calc();
 		// 検索可能リスト更新
 		LoadSelect2();
 		// インジケーター非表示
