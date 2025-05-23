@@ -1,7 +1,6 @@
-
 /**
  * ステータスや装備などを初期化して職業変更する
- * @param n職業ID
+ * @param {Number} jobId 
  */
 function changeJobSettings(jobId){
 	var i = 0

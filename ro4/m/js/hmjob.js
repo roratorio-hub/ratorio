@@ -1699,10 +1699,9 @@ function ApplySpecModify(spid, spVal) {
 	return spVal;
 }
 
-
 /**
  * ステータス、装備、その他の設定を維持したまま任意の職に変更する
- * @returns 
+ * @param {Number} jobId 
  */
 function migrateOtherJob(jobId) {
 	let dataURL = "";
@@ -1717,6 +1716,8 @@ function migrateOtherJob(jobId) {
 	// インジケーター表示
 	showLoadingIndicator();
 	setTimeout(() => {
+		// 変更後の職業の二刀流可能性に合わせる
+		n_Nitou = IsDualArmsJob(jobId);
 		// URL出力の中身を実行＆データ加工
 		// 再計算
 		calc();
@@ -1740,7 +1741,7 @@ function migrateOtherJob(jobId) {
  */
 function OnChangeJob(jobId) {
 	if (document.getElementById("OBJID_CHK_MIGRATE_SETTING").checked) {
-		migrateOtherJob(jobId);
+		migrateOtherJob(Number(jobId));
 	} else {
 		changeJobSettings(jobId);
 		StAllCalc();
