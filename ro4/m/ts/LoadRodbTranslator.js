@@ -101,7 +101,7 @@ async function loadRodbTranslator(fragment) {
     if (jobContainer) {
         jobContainer.textContent = jsonObject.status.job_class_localization;
     }
-    OnChangeJobSelect(jsonObject.status.ratorio_job_id_num);
+    changeJobSettings(jsonObject.status.ratorio_job_id_num);
     // Set Base Lv
     const baseLvElement = document.getElementById("OBJID_SELECT_BASE_LEVEL");
     baseLvElement.value = String(jsonObject.status.base_lv);

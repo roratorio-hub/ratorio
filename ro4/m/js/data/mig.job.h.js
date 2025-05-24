@@ -150,12 +150,6 @@ JOB_SERIES_ID_GUNSLINGER	= 45;
 
 JOB_SERIES_ID_SUMMONER		= 51;
 
-
-
-
-
-
-
 /**
  * ジョブ名を取得する.
  * @param jobId ジョブＩＤ
@@ -163,8 +157,6 @@ JOB_SERIES_ID_SUMMONER		= 51;
 function GetJobName(jobId) {
 	return g_constDataManager.GetName(CONST_DATA_KIND_JOB, jobId);
 }
-
-
 
 /**
  * 一次職業系統を取得する.
@@ -469,7 +461,7 @@ function IsDualArmsJob(jobID) {
  * @param jobIdTarget 対象職業ID
  * @param jobIdCheck 判定する職業ID
  * @return true : 同一, false : 同一でない
- * @remarks 現状、三次職IDを渡して、四次職IDを含めた一致判定をするために用いる
+ * @remarks 現状、三次職IDを渡して、四次職IDを含めた一致判定をするために用いる。
  */
 function IsSameJobClass(jobIdTarget, jobIdCheck = n_A_JOB) {
 
@@ -571,9 +563,42 @@ function IsSameJobClass(jobIdTarget, jobIdCheck = n_A_JOB) {
 	return (jobIdArrayCheck.indexOf(jobIdTarget) >= 0);
 }
 
-
-
-
+/**
+ * １次職から４次職までの範囲で同一系統職業であるか判定する
+ * @param {Number} target_job 
+ * @param {Number} current_job 
+ * @returns true / false
+ */
+function IsSameJobGroup(target_job, current_job = n_A_JOB) {
+	const job_series = [
+		[MIG_JOB_ID_SWORDMAN, MIG_JOB_ID_HI_SWORDMAN, MIG_JOB_ID_KNIGHT, MIG_JOB_ID_LORDKNIGHT, MIG_JOB_ID_RUNEKNIGHT, MIG_JOB_ID_DRAGON_KNIGHT],
+		[MIG_JOB_ID_SWORDMAN, MIG_JOB_ID_HI_SWORDMAN, MIG_JOB_ID_CRUSADER, MIG_JOB_ID_PALADIN, MIG_JOB_ID_ROYALGUARD, MIG_JOB_ID_IMPERIAL_GUARD],
+		[MIG_JOB_ID_MAGICIAN, MIG_JOB_ID_HI_MAGICIAN, MIG_JOB_ID_SAGE, MIG_JOB_ID_PROFESSOR, MIG_JOB_ID_SORCERER, MIG_JOB_ID_ELEMENTAL_MASTER],
+		[MIG_JOB_ID_MAGICIAN, MIG_JOB_ID_HI_MAGICIAN, MIG_JOB_ID_WIZARD, MIG_JOB_ID_HIGHWIZARD, MIG_JOB_ID_WARLOCK, MIG_JOB_ID_ARCH_MAGE],
+		[MIG_JOB_ID_ARCHER, MIG_JOB_ID_HI_ARCHER, MIG_JOB_ID_HUNTER, MIG_JOB_ID_SNIPER, MIG_JOB_ID_RANGER, MIG_JOB_ID_WIND_HAWK],
+		[MIG_JOB_ID_ARCHER, MIG_JOB_ID_HI_ARCHER, MIG_JOB_ID_BARD, MIG_JOB_ID_CROWN, MIG_JOB_ID_MINSTREL, MIG_JOB_ID_TROUBADOUR],
+		[MIG_JOB_ID_ARCHER, MIG_JOB_ID_HI_ARCHER, MIG_JOB_ID_DANCER, MIG_JOB_ID_ZYPSY, MIG_JOB_ID_WANDERER, MIG_JOB_ID_TROUVERE],
+		[MIG_JOB_ID_MARCHANT, MIG_JOB_ID_HI_MARCHANT, MIG_JOB_ID_BLACKSMITH, MIG_JOB_ID_WHITESMITH, MIG_JOB_ID_MECHANIC, MIG_JOB_ID_MEISTER],
+		[MIG_JOB_ID_MARCHANT, MIG_JOB_ID_HI_MARCHANT, MIG_JOB_ID_ALCHEMIST, MIG_JOB_ID_CREATOR, MIG_JOB_ID_GENETIC, MIG_JOB_ID_BIOLO],
+		[MIG_JOB_ID_THIEF, MIG_JOB_ID_HI_THIEF, MIG_JOB_ID_ASSASIN, MIG_JOB_ID_ASSASINCROSS, MIG_JOB_ID_GILOTINCROSS, MIG_JOB_ID_SHADOW_CROSS],
+		[MIG_JOB_ID_THIEF, MIG_JOB_ID_HI_THIEF, MIG_JOB_ID_ROGUE, MIG_JOB_ID_CHASER, MIG_JOB_ID_SHADOWCHASER, MIG_JOB_ID_ABYSS_CHASER],
+		[MIG_JOB_ID_ACOLYTE, MIG_JOB_ID_HI_ACOLYTE, MIG_JOB_ID_PRIEST, MIG_JOB_ID_HIGHPRIEST, MIG_JOB_ID_ARCBISHOP, MIG_JOB_ID_CARDINAL],
+		[MIG_JOB_ID_ACOLYTE, MIG_JOB_ID_HI_ACOLYTE, MIG_JOB_ID_MONK, MIG_JOB_ID_CHAMPION, MIG_JOB_ID_SHURA, MIG_JOB_ID_INQUISITOR],
+		[MIG_JOB_ID_TAEGWON, MIG_JOB_ID_STARGRADIATOR, MIG_JOB_ID_STAR_EMPEROR, MIG_JOB_ID_SKY_EMPEROR],
+		[MIG_JOB_ID_TAEGWON, MIG_JOB_ID_SOULLINKER, MIG_JOB_ID_SOUL_REAPER, MIG_JOB_ID_SOUL_ASCETIC],
+		[MIG_JOB_ID_NINJA, MIG_JOB_ID_KAGERO, MIG_JOB_ID_SHINKIROU],
+		[MIG_JOB_ID_NINJA, MIG_JOB_ID_OBORO, MIG_JOB_ID_SHIRANUI],
+		[MIG_JOB_ID_GUNSLINGER, MIG_JOB_ID_REBELLION, MIG_JOB_ID_NIGHT_WATCH],
+		[MIG_JOB_ID_SUPERNOVICE, MIG_JOB_ID_SUPERNOVICE_PLUS, MIG_JOB_ID_HYPER_NOVICE],
+		[MIG_JOB_ID_SUMMONER, MIG_JOB_ID_SPIRIT_HANDLER],
+	];
+	for (let i = 0; i < job_series.length; i++) {
+		if (job_series[i].includes(current_job) && job_series[i].includes(target_job)) {
+			return true;
+		}
+	}
+	return false;
+}
 
 /**
  * ベースレベルの最小値を取得する.
@@ -811,8 +836,6 @@ function GetJobLevelMax(jobId) {
 	return 1;
 }
 
-
-
 /**
  * ステータスの最大値を取得する.
  * @param jobId ジョブＩＤ
@@ -933,9 +956,6 @@ function GetStatusMax(jobId, bChild) {
 	return 99;
 }
 
-
-
-
 /**
  * 転生フラグを取得する.
  * @param jobId ジョブＩＤ
@@ -1001,8 +1021,6 @@ function IsReincarnatedJob(jobId) {
 	return false;
 }
 
-
-
 /**
  * ハイスピードポーションが使用できる職業かを判定する.
  * @param jobId ジョブＩＤ
@@ -1059,11 +1077,6 @@ function IsUsableBSPJob(jobId) {
 	return false;
 }
 
-
-
-
-
-
 /**
  * ジョブボーナスを取得する.
  * @param jobId ジョブＩＤ
@@ -1073,9 +1086,6 @@ function IsUsableBSPJob(jobId) {
 function GetJobBonus(jobId, jobLv) {
 	return g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, jobId).GetJobBonus(jobLv);
 }
-
-
-
 
 /**
  * ＨＰの基礎値を取得する.
@@ -1106,8 +1116,6 @@ function GetHPBase(jobId, baseLv, bChild) {
 	return maxhp;
 }
 
-
-
 /**
  * ＳＰの基礎値を取得する.
  * @param jobId ジョブＩＤ
@@ -1136,9 +1144,6 @@ function GetSPBase(jobId, baseLv, bChild) {
 
 	return maxsp;
 }
-
-
-
 
 
 //================================================================================================
@@ -1174,8 +1179,6 @@ CGlobalConstManager.DefineEnum(
 		"JOB_EXP_TABLE_ID_4TH",
 	]
 );
-
-
 
 /**
  * ベース経験値テーブルを取得する.
@@ -1618,8 +1621,6 @@ function GetBaseExpTable(tableId) {
 
 	return expTable;
 }
-
-
 
 /**
  * ジョブ経験値テーブルを取得する.
@@ -2449,7 +2450,6 @@ function GetJobExpTable(tableId) {
 	return expTable;
 }
 
-
 /**
  * 各職業ごとの MaxHP/MaxSP が未実測である BaseLv を設定する
  * 実測確認出来た BaseLv は取り除いてください
@@ -2633,42 +2633,13 @@ function GetUnconfirmedHPSPArray() {
 	return g_unconfirmedHPSPArray;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // TODO: 本来はここにあるべきではない
 
 /**
  * 指定のアイテムが、職業制限に適合しているかを検査する.
  * @param itemId アイテムＩＤ
  * @param jobId 検査対象の職業ＩＤ
- * @return 適合検査結果
+ * @return 適合検査結果 true / false
  */
 function IsMatchJobRestrict(itemId, jobId) {
 
@@ -2755,23 +2726,11 @@ function IsMatchJobRestrict(itemId, jobId) {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
 /**
  * 四次職へ変更する.
  * @remarks 本来ここにあるべきではない。お試し。
  */
 function UpgradeJobTo4th() {
-
 	var msg = "";
 	var jobId4th = 0;
 	var dataURL = "";
@@ -2880,5 +2839,4 @@ function UpgradeJobTo4th() {
 			alert(msg);
 		}, 0);
 	}, 0);
-
 }

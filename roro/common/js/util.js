@@ -386,22 +386,17 @@ function HtmlGetObjectValueByIdAsInteger(objID, valueWhenNull) {
 	return (isNaN(value) ? value : parseInt(value, 10));
 }
 
-/************************************************************************************************
- *
- * ＨＴＭＬオブジェクトの value 値を設定する.
- *
- *-----------------------------------------------------------------------------------------------
- * @param objID 対象となるオブジェクトの ID
- * @param valutToSet 設定する値
- ************************************************************************************************/
+/**
+ * ＨＴＭＬオブジェクトの value 値を設定する. valueがnullの場合は何もしない. 
+ * @param {*} objID 対象となるオブジェクトの ID
+ * @param {*} valutToSet 設定する値
+ * @returns void
+ */
 function HtmlSetObjectValueById(objID, valutToSet) {
-
-	var objTarget = document.getElementById(objID);
-
+	let objTarget = document.getElementById(objID);
 	if (objTarget == null) {
 		return;
 	}
-
 	// value プロパティと value 属性の値は異なる場合があるので、setAttribute はできない
 	objTarget.value = valutToSet;
 }
@@ -445,16 +440,13 @@ function HtmlModifyObjectValueIntoRange(objTarget, valueMin, valueMax) {
 	}
 }
 
-/************************************************************************************************
- *
+/**
  * ＨＴＭＬオブジェクトの value 値を設定する（<select>用、値チェックあり）.
- *
- *-----------------------------------------------------------------------------------------------
- * @param objID 対象となるオブジェクトの ID
- * @param valutToSet 設定する値
- * @return 変更前の値、または、undefined
- ************************************************************************************************/
- function HtmlSelectObjectValueAsInteger(objTarget, valutToSelect) {
+ * @param {*} objTarget 対象となるHTMLオブジェクト
+ * @param {*} valutToSelect 設定する値
+ * @returns 変更前の値、または、undefined
+ */
+function HtmlSelectObjectValueAsInteger(objTarget, valutToSelect) {
 
 	if (objTarget == null) {
 		return undefined;

@@ -4029,7 +4029,7 @@ function DecodeUrl(loadDataUrl){
 		// 職業の読み込み
 		//----------------------------------------------------------------
 		A_JOB.value = SaveData[1];
-		OnChangeJobSelect(SaveData[1]);
+		changeJobSettings(SaveData[1]);
 
 		// レベル補正（旧データ対応？）
 		if (SaveData[1] == 20 && SaveData[2] <45) {

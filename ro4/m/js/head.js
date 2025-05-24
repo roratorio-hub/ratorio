@@ -12044,7 +12044,11 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 	};
 
 	var funcDIG3PXSecondCompact = function (valueF, pointCountF) {
-		return funcDIG3PX(valueF, pointCountF, "秒").replace(/\.?0+秒$/, '秒');
+		let value = funcDIG3PX(valueF, pointCountF, "秒");
+		if (!isNaN(value)) {
+			value = value.replace(/\.?0+秒$/, '秒');
+		}
+		return value;
 	};
 
 	var funcDIG3PXCount = function (valueF, pointCountF) {
@@ -16234,10 +16238,13 @@ function Click_PassSkillSW(){
 					wOBJ.options[1] = new Option("on",1);
 				}
 				else{
-					for(var i=10;i>=0;i--) wOBJ.options[i] = null;
-					for(var i=0;i<=SkillObjNew[passiveSkillIdArray[j]][SKILL_DATA_INDEX_MAXLV];i++) wOBJ.options[i] = new Option(i,i);
+					for(let i = 10; i >= 0; i--) {
+						wOBJ.options[i] = null;
+					}
+					for(let i = 0; i <= SkillObjNew[passiveSkillIdArray[j]][SKILL_DATA_INDEX_MAXLV]; i++) {
+						wOBJ.options[i] = new Option(i,i);
+					}
 				}
-
 				// スパノビの魂専用処理
 				if (w == SKILL_ID_SUPER_NOVICENO_TAMASHI) {
 					wOBJ.setAttribute("onClick", "RefreshSuperNoviceFullWeapon(parseInt(this.value) == 1)");
@@ -16681,8 +16688,8 @@ function Click_PassSkillSW(){
 				HtmlCreateElementOption(9, "四方五行陣Lv5", objSelect);
 			}
 
-			for (var i = 0; i < passiveSkillIdArray.length; i++) {
-				var wOBJ = document.getElementById("A_skill" + i);
+			for (let i = 0; i < passiveSkillIdArray.length; i++) {
+				let wOBJ = document.getElementById("A_skill" + i);
 				wOBJ.value = n_A_PassSkill[i];
 			}
 	}
