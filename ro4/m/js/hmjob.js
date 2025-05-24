@@ -1,9 +1,6 @@
 g_pureStatus = [];
 g_bonusStatus = [];
 
-
-
-
 function RebuildStatusSelect(jobId) {
 
 	var objStr = null;
@@ -87,8 +84,6 @@ function RebuildStatusSelect(jobId) {
 	document.getElementById("OBJID_TABLE_SPEC_STATUS").style.display = dispStyle;
 
 }
-
-
 
 /**
  * ステータスポイントを計算する
@@ -205,8 +200,6 @@ function CalcStatusPoint(bIgnoreAutoCalc) {
 	g_pureStatus[MIG_PARAM_ID_CRT] = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_STATUS_CRT", 0);
 }
 
-
-
 /**
  * 指定のステータス値に上げるために必要なコストを取得する.
  * @param statusValue ステータス値
@@ -294,8 +287,6 @@ function GetEarningStatusPoint(baseLevel) {
 
 }
 
-
-
 /**
  * ステータス補正を画面出力する.
  */
@@ -367,8 +358,6 @@ function DisplayStatusBonusAll(baseLv, valSTR, valAGI, valVIT, valINT, valDEX, v
 	objStatus.innerHTML = "" + valWork;
 }
 
-
-
 /**
  * 導出ステータスを画面出力する.
  */
@@ -411,8 +400,6 @@ function DisplayReferStatusAll() {
 	objStatus.innerHTML = "" + valWork;
 }
 
-
-
 /**
  * 純粋な基本ステータスの全合計を取得する.
  * @reutnr 純粋な基本ステータスの全合計
@@ -420,10 +407,6 @@ function DisplayReferStatusAll() {
 function GetTotalPureBasicStatus() {
 	return (SU_STR + SU_AGI + SU_VIT + SU_DEX + SU_INT + SU_LUK);
 }
-
-
-
-
 
 //================================================================================================================================
 //
@@ -506,8 +489,6 @@ function GetTStatusPoint(baseLv) {
 	return stPoint;
 }
 
-
-
 /**
  * 四次特性ステータス適用関数.
  */
@@ -522,10 +503,6 @@ function ApplySpecStatusModifications(charaData, n_tok) {
 function ApplySpecStatusModifyMATK(charaData, n_tok) {
 	charaData[CHARA_DATA_INDEX_STATUS_MATK] += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 }
-
-
-
-
 
 function GetPAtk() {
 
@@ -885,8 +862,6 @@ function GetMres() {
 	return value;
 }
 
-
-
 function GetHPlus() {
 
 	var value = 0;
@@ -905,10 +880,6 @@ function GetHPlus() {
 
 	return value;
 }
-
-
-
-
 
 function GetMobRes(mobData) {
 
@@ -977,10 +948,6 @@ function GetMobMres(mobData) {
 	return value;
 }
 
-
-
-
-
 /**
  * 導出特性ステータス P.Atk による物理ダメージ増幅効果の適用.
  */
@@ -1001,8 +968,6 @@ function ApplyPAtkAmplify(dmg) {
 	return amped;
 }
 
-
-
 /**
  * 導出特性ステータス S.Matk による魔法ダメージ増幅効果の適用.
  */
@@ -1022,8 +987,6 @@ function ApplySMatkAmplify(dmg) {
 
 	return amped;
 }
-
-
 
 /**
  * 導出特性ステータス C.Rate によるクリティカルダメージ増幅効果の適用.
@@ -1046,8 +1009,6 @@ function ApplyCRateAmplify(criDmgRate) {
 
 	return amped;
 }
-
-
 
 /**
  * 導出特性ステータス Res によるダメージ減衰効果の適用.
@@ -1077,8 +1038,6 @@ function ApplyResResist(mobData, dmg) {
 	return (dmg - resisted);
 }
 
-
-
 /**
  * 導出特性ステータス Mres によるダメージ減衰効果の適用.
  */
@@ -1107,8 +1066,6 @@ function ApplyMresResist(mobData, dmg) {
 	return (dmg - resisted);
 }
 
-
-
 /**
  * 左手ステータスATKのP.Atkペナルティ
  */
@@ -1129,8 +1086,6 @@ function ApplyPAtkLeftHandPenalty(charaData, specData, mobData, dmg) {
 
 	return Math.max(0, (dmg - powAtk));
 }
-
-
 
 /**
  * 特性データの補正を適用する.
@@ -1744,17 +1699,65 @@ function ApplySpecModify(spid, spVal) {
 	return spVal;
 }
 
+/**
+ * ステータス、装備、その他の設定を維持したまま任意の職に変更する
+ * @param {Number} latest_job 
+ */
+function migrateOtherJob(latest_job) {
+	const recent_job = n_A_JOB;
+	let dataURL = "";
+	let funcModifySaveData = function (saveDataArrayF) {
+		// 職業ID
+		saveDataArrayF[1] = latest_job;
+		// 自動レベル調整は強制OFF
+		saveDataArrayF[11] = 0;
+		return saveDataArrayF;
+	};
+	// インジケーター表示
+	showLoadingIndicator();
+	setTimeout(() => {
+		// 変更後の職業の二刀流可能性に合わせる
+		n_Nitou = IsDualArmsJob(latest_job);
+		// TODO: 暫定対処　旧形式の保存処理呼び出し
+		dataURL = SaveSystem(funcModifySaveData);
+		// URL入力を実行
+		CSaveController.loadFromURL(dataURL);
+		// 異なる職業系列へ変更する場合
+		if (!IsSameJobGroup(latest_job, recent_job)) {
+			// 習得スキルの初期化
+			n_A_LearnedSkill = new Array();
+			for (let dmyidx = 0; dmyidx < LEARNED_SKILL_MAX_COUNT; dmyidx++) {
+				n_A_LearnedSkill[dmyidx] = 0;
+			}
+			OnClickSkillSWLearned();
+			// 職固有自己支援・パッシブ持続系の初期化
+			n_A_PassSkill.fill(0);
+			$("#OBJID_CHECK_A1_SKILL_SW").prop("checked", true).trigger("click");
+		}
+		// 再計算
+		calc();
+		// 検索可能リスト更新
+		LoadSelect2();
+		// インジケーター非表示
+		hideLoadingIndicator();
+		setTimeout(() => {
+			// 完了後に処理を挟みたい場合はここに書く
+		}, 0);
+	}, 0);
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
+/**
+ * OBJID_SELECT_JOB の状態が変更された時に呼び出されるエントリ関数
+ * @param {*} jobId 
+ */
+function OnChangeJob(jobId) {
+	if (document.getElementById("OBJID_CHK_MIGRATE_SETTING").checked) {
+		migrateOtherJob(Number(jobId));
+	} else {
+		changeJobSettings(jobId);
+		StAllCalc();
+		CalcStatusPoint(false);
+		AutoCalc();
+	}
+}
 
