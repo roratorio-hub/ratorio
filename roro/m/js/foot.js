@@ -815,9 +815,11 @@ function StAllCalc(){
 		var passiveSkillIdArray = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, n_A_JOB).GetPassiveSkillIdArray();
 
 		if(n_Skill1SW){
-			for(var i=0;i <passiveSkillIdArray.length;i++){
-				var wOBJ = document.getElementById("A_skill"+i);
-				n_A_PassSkill[i] = eval(wOBJ.value);
+			for(let i = 0; i < passiveSkillIdArray.length; i++){
+				let wOBJ = document.getElementById("A_skill"+i);
+				if (wOBJ !== null) {
+					n_A_PassSkill[i] = eval(wOBJ.value);
+				}
 			}
 		}
 
@@ -30343,7 +30345,7 @@ g_objMobConfInput.BuildUpSelectArea(document.getElementById("OBJID_TD_MOB_CONF_I
 
 n_A_JOB = 0;
 document.calcForm.A_JOB.value = 0;
-OnChangeJobSelect(0);
+changeJobSettings(0);
 
 if (true) {
 	//--------------------------------
