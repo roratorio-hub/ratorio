@@ -6575,7 +6575,9 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			wMADO += 2 * Math.max(LearnedSkillSearch(SKILL_ID_BUKI_KENKYU), UsedSkillSearch(SKILL_ID_BUKI_KENKYU));
 			if(n_A_WeaponType == 6 || n_A_WeaponType == 7) wMADO += 5 * Math.max(LearnedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC), UsedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC));
 			if(n_A_WeaponType == 8) wMADO += 4 * Math.max(LearnedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC), UsedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC));
-			if((20 <= mobData[18] && mobData[18] <= 29) || (30 <= mobData[18] && mobData[18] <= 39)) wMADO += 10 * UsedSkillSearch(SKILL_ID_HITO_DAICHINO_KENKYU);
+			if((20 <= mobData[18] && mobData[18] <= 29) || (30 <= mobData[18] && mobData[18] <= 39)) {
+				wMADO += 10 * Math.max(LearnedSkillSearch(SKILL_ID_HITO_DAICHINO_KENKYU), UsedSkillSearch(SKILL_ID_HITO_DAICHINO_KENKYU));
+			}
 			if(UsedSkillSearch(SKILL_ID_MADOGEAR)) wMADO += 20 * UsedSkillSearch(SKILL_ID_MADOGEAR_LICENSE);
 			if(UsedSkillSearch(SKILL_ID_ABR_DUAL_CANNON)) wHITsuu = 2;
 			wMADO += ApplyElementRatio(mobData, CanonOBJ[attackMethodConfArray[0].GetOptionValue(0)][0],CanonOBJ[attackMethodConfArray[0].GetOptionValue(0)][1]);
@@ -14303,7 +14305,7 @@ function BattleHiDam(charaData, specData, mobData, attackMethodConfArray, objCel
 		|| (GetMonseterElmBasicType(mobData[MONSTER_DATA_INDEX_ELEMENT]) == ELM_ID_FIRE)) {
 
 		for (i = 0; i <= 6; i++) {
-			w_HiDam[i] -= 10 * UsedSkillSearch(SKILL_ID_HITO_DAICHINO_KENKYU);
+			w_HiDam[i] -= 10 * Math.max(LearnedSkillSearch(SKILL_ID_HITO_DAICHINO_KENKYU), UsedSkillSearch(SKILL_ID_HITO_DAICHINO_KENKYU));
 		}
 
 	}
@@ -19996,7 +19998,7 @@ function TYPE_SYUUREN(mobData, attackMethodConfArray, bArmsLeft){
 	//----------------------------------------------------------------
 	if ((GetMonseterElmBasicType(mobData[MONSTER_DATA_INDEX_ELEMENT]) == ELM_ID_EARTH)
 		|| (GetMonseterElmBasicType(mobData[MONSTER_DATA_INDEX_ELEMENT]) == ELM_ID_FIRE)) {
-		w += 10 * UsedSkillSearch(SKILL_ID_HITO_DAICHINO_KENKYU);
+		w += 10 * Math.max(LearnedSkillSearch(SKILL_ID_HITO_DAICHINO_KENKYU), UsedSkillSearch(SKILL_ID_HITO_DAICHINO_KENKYU));
 	}
 
 	//----------------------------------------------------------------
