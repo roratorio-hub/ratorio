@@ -6573,13 +6573,21 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			}
 			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 120);
 			wMADO += 2 * Math.max(LearnedSkillSearch(SKILL_ID_BUKI_KENKYU), UsedSkillSearch(SKILL_ID_BUKI_KENKYU));
-			if(n_A_WeaponType == 6 || n_A_WeaponType == 7) wMADO += 5 * Math.max(LearnedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC), UsedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC));
-			if(n_A_WeaponType == 8) wMADO += 4 * Math.max(LearnedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC), UsedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC));
+			if(n_A_WeaponType == 6 || n_A_WeaponType == 7) {
+				wMADO += 5 * Math.max(LearnedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC), UsedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC));
+			}
+			if(n_A_WeaponType == 8) {
+				wMADO += 4 * Math.max(LearnedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC), UsedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC));
+			}
 			if((20 <= mobData[18] && mobData[18] <= 29) || (30 <= mobData[18] && mobData[18] <= 39)) {
 				wMADO += 10 * Math.max(LearnedSkillSearch(SKILL_ID_HITO_DAICHINO_KENKYU), UsedSkillSearch(SKILL_ID_HITO_DAICHINO_KENKYU));
 			}
-			if(UsedSkillSearch(SKILL_ID_MADOGEAR)) wMADO += 20 * UsedSkillSearch(SKILL_ID_MADOGEAR_LICENSE);
-			if(UsedSkillSearch(SKILL_ID_ABR_DUAL_CANNON)) wHITsuu = 2;
+			if(UsedSkillSearch(SKILL_ID_MADOGEAR)) {
+				wMADO += 20 * Math.max(LearnedSkillSearch(SKILL_ID_MADOGEAR_LICENSE), UsedSkillSearch(SKILL_ID_MADOGEAR_LICENSE));
+			}
+			if(UsedSkillSearch(SKILL_ID_ABR_DUAL_CANNON)) {
+				wHITsuu = 2;
+			}
 			wMADO += ApplyElementRatio(mobData, CanonOBJ[attackMethodConfArray[0].GetOptionValue(0)][0],CanonOBJ[attackMethodConfArray[0].GetOptionValue(0)][1]);
 			for(var i=0;i<=2;i++){
 				w_DMG[i] = n_A_DMG[i] + wMADO;
@@ -20005,7 +20013,7 @@ function TYPE_SYUUREN(mobData, attackMethodConfArray, bArmsLeft){
 	// 「メカニック　魔導ギアライセンス」の効果
 	//----------------------------------------------------------------
 	if (UsedSkillSearch(SKILL_ID_MADOGEAR) > 0) {
-		w += 20 * UsedSkillSearch(SKILL_ID_MADOGEAR_LICENSE);
+		w += 20 * Math.max(LearnedSkillSearch(SKILL_ID_MADOGEAR_LICENSE), UsedSkillSearch(SKILL_ID_MADOGEAR_LICENSE));
 	}
 
 	//----------------------------------------------------------------
