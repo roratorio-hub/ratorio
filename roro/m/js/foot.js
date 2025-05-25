@@ -17009,13 +17009,11 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 			}
 		}
 
-
-
 		//----------------------------------------------------------------
 		// 「ブラックスミス　スキンテンパリング」の効果
 		//----------------------------------------------------------------
-		n_tok[ITEM_SP_RESIST_ELM_VANITY] += UsedSkillSearch(SKILL_ID_SKIN_TEMPERING);
-		n_tok[ITEM_SP_RESIST_ELM_FIRE] += 4 * UsedSkillSearch(SKILL_ID_SKIN_TEMPERING);
+		n_tok[ITEM_SP_RESIST_ELM_VANITY] += Math.max(LearnedSkillSearch(SKILL_ID_SKIN_TEMPERING), UsedSkillSearch(SKILL_ID_SKIN_TEMPERING));
+		n_tok[ITEM_SP_RESIST_ELM_FIRE] += 4 * Math.max(LearnedSkillSearch(SKILL_ID_SKIN_TEMPERING), UsedSkillSearch(SKILL_ID_SKIN_TEMPERING));
 
 		//----------------------------------------------------------------
 		// 「クルセイダー　フェイス」の効果
