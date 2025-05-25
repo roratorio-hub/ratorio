@@ -19987,7 +19987,7 @@ function TYPE_SYUUREN(mobData, attackMethodConfArray, bArmsLeft){
 	//----------------------------------------------------------------
 	// 「ブラックスミス　ヒルトバインディング」の効果
 	//----------------------------------------------------------------
-	if (UsedSkillSearch(SKILL_ID_HILT_BINDING)) {
+	if (Math.max(LearnedSkillSearch(SKILL_ID_HILT_BINDING), UsedSkillSearch(SKILL_ID_HILT_BINDING)) > 0) {
 		w += 4;
 	}
 

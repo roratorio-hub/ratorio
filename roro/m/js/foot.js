@@ -25938,7 +25938,8 @@ function StPlusCalc() {
 	//----------------------------------------------------------------
 	// 「ヒルトバインディング」の、ＳＴＲ＋効果
 	//----------------------------------------------------------------
-	wSPC_STR += UsedSkillSearch(SKILL_ID_HILT_BINDING);
+
+	wSPC_STR += Math.max(LearnedSkillSearch(SKILL_ID_HILT_BINDING), UsedSkillSearch(SKILL_ID_HILT_BINDING));
 
 	//----------------------------------------------------------------
 	// 「念」の、ＳＴＲ＋、ＩＮＴ＋効果
