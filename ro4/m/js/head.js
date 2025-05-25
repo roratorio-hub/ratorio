@@ -6573,8 +6573,8 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			}
 			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 120);
 			wMADO += 2 * Math.max(LearnedSkillSearch(SKILL_ID_BUKI_KENKYU), UsedSkillSearch(SKILL_ID_BUKI_KENKYU));
-			if(n_A_WeaponType == 6 || n_A_WeaponType == 7) wMADO += 5 * UsedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC);
-			if(n_A_WeaponType == 8) wMADO += 4 * UsedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC);
+			if(n_A_WeaponType == 6 || n_A_WeaponType == 7) wMADO += 5 * Math.max(LearnedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC), UsedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC));
+			if(n_A_WeaponType == 8) wMADO += 4 * Math.max(LearnedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC), UsedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC));
 			if((20 <= mobData[18] && mobData[18] <= 29) || (30 <= mobData[18] && mobData[18] <= 39)) wMADO += 10 * UsedSkillSearch(SKILL_ID_HITO_DAICHINO_KENKYU);
 			if(UsedSkillSearch(SKILL_ID_MADOGEAR)) wMADO += 20 * UsedSkillSearch(SKILL_ID_MADOGEAR_LICENSE);
 			if(UsedSkillSearch(SKILL_ID_ABR_DUAL_CANNON)) wHITsuu = 2;
@@ -19945,12 +19945,12 @@ function TYPE_SYUUREN(mobData, attackMethodConfArray, bArmsLeft){
 		case ITEM_KIND_AXE:
 		case ITEM_KIND_AXE_2HAND:
 			w += 3 * UsedSkillSearch(SKILL_ID_ONO_SHUREN);
-			w += 5 * UsedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC);
+			w += 5 * Math.max(LearnedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC), UsedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC));
 			break;
 
 		case ITEM_KIND_CLUB:
 			w += 3 * UsedSkillSearch(SKILL_ID_MACE_SHUREN);
-			w += 4 * UsedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC);
+			w += 4 * Math.max(LearnedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC), UsedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC));
 
 		case ITEM_KIND_KATAR:
 			w += 3 * UsedSkillSearch(SKILL_ID_KATAR_SHUREN);
