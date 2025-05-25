@@ -6688,7 +6688,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				w_HP = charaData[CHARA_DATA_INDEX_MAXHP];
 				w_SP = charaData[CHARA_DATA_INDEX_MAXSP];
 			}
-			var mainF = UsedSkillSearch(SKILL_ID_MAINFRAME_KAIZO);
+			var mainF = Math.max(LearnedSkillSearch(SKILL_ID_MAINFRAME_KAIZO), UsedSkillSearch(SKILL_ID_MAINFRAME_KAIZO));
 			if(mainF <2) mainF = 2;
 			n_A_Weapon_zokusei = 0;
 			var w = (n_A_ActiveSkillLV + 1) * (mainF + 8) * (w_SP + n_A_VIT);
