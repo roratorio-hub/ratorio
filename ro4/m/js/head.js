@@ -6572,7 +6572,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 					break;
 			}
 			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 120);
-			wMADO += 2 * UsedSkillSearch(SKILL_ID_BUKI_KENKYU);
+			wMADO += 2 * Math.max(LearnedSkillSearch(SKILL_ID_BUKI_KENKYU), UsedSkillSearch(SKILL_ID_BUKI_KENKYU));
 			if(n_A_WeaponType == 6 || n_A_WeaponType == 7) wMADO += 5 * UsedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC);
 			if(n_A_WeaponType == 8) wMADO += 4 * UsedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC);
 			if((20 <= mobData[18] && mobData[18] <= 29) || (30 <= mobData[18] && mobData[18] <= 39)) wMADO += 10 * UsedSkillSearch(SKILL_ID_HITO_DAICHINO_KENKYU);
@@ -19982,7 +19982,7 @@ function TYPE_SYUUREN(mobData, attackMethodConfArray, bArmsLeft){
 	//----------------------------------------------------------------
 	// 「ブラックスミス　武器研究」の効果
 	//----------------------------------------------------------------
-	w += 2 * UsedSkillSearch(SKILL_ID_BUKI_KENKYU);
+	w += 2 * Math.max(LearnedSkillSearch(SKILL_ID_BUKI_KENKYU), UsedSkillSearch(SKILL_ID_BUKI_KENKYU));
 
 	//----------------------------------------------------------------
 	// 「ブラックスミス　ヒルトバインディング」の効果
@@ -20543,7 +20543,7 @@ function GetHitModify(){
 
 
 	// 武器研究の効果
-	value += 2 * UsedSkillSearch(SKILL_ID_BUKI_KENKYU);
+	value += 2 * Math.max(LearnedSkillSearch(SKILL_ID_BUKI_KENKYU), UsedSkillSearch(SKILL_ID_BUKI_KENKYU));
 
 
 
