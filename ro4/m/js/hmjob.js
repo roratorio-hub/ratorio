@@ -1099,8 +1099,6 @@ function ApplySpecModify(spid, spVal) {
 	var valWork = 0;
 	var arrayWork = null;
 
-
-
 	switch (spid) {
 
 	case ITEM_SP_HIT_PLUS:
@@ -1430,7 +1428,6 @@ function ApplySpecModify(spid, spVal) {
 
 		// 「ドラゴンナイト」スキル「ツーハンドディフェンディング」習得による効果
 		if ((sklLv = UsedSkillSearch(SKILL_ID_TWOHAND_DEFENDING)) > 0) {
-
 			// 両手武器装備時限定
 			switch (n_A_WeaponType) {
 			case ITEM_KIND_SWORD_2HAND:
@@ -1442,8 +1439,7 @@ function ApplySpecModify(spid, spVal) {
 		}
 
 		// 「マイスター」スキル「ツーアックスディフェンディング」習得による効果
-		if ((sklLv = UsedSkillSearch(SKILL_ID_TWO_AXE_DEFENDING)) > 0) {
-
+		if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_TWO_AXE_DEFENDING), UsedSkillSearch(SKILL_ID_TWO_AXE_DEFENDING))) > 0) {
 			// 両手斧装備時限定
 			switch (n_A_WeaponType) {
 			case ITEM_KIND_AXE_2HAND:

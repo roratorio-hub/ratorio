@@ -9319,7 +9319,7 @@ function GetStatusModifyDefDivPlus() {
 	//----------------------------------------------------------------
 	// 「メカニック　メインフレーム改造」の、効果
 	//----------------------------------------------------------------
-	if ((sklLv = UsedSkillSearch(SKILL_ID_MAINFRAME_KAIZO)) > 0) {
+	if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_MAINFRAME_KAIZO), UsedSkillSearch(SKILL_ID_MAINFRAME_KAIZO))) > 0) {
 		val += 20 + 20 * sklLv;
 	}
 
@@ -11843,7 +11843,7 @@ function GetStatusModifyHitPlus() {
 	//----------------------------------------------------------------
 	// 「メカニック　斧鍛錬（メカニック）」の、効果
 	//----------------------------------------------------------------
-	if ((sklLv = UsedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC)) > 0) {
+	if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC), UsedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC))) > 0) {
 		vartmp = 0;
 
 		switch (n_A_WeaponType) {
