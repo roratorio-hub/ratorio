@@ -6572,12 +6572,22 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 					break;
 			}
 			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 120);
-			wMADO += 2 * UsedSkillSearch(SKILL_ID_BUKI_KENKYU);
-			if(n_A_WeaponType == 6 || n_A_WeaponType == 7) wMADO += 5 * UsedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC);
-			if(n_A_WeaponType == 8) wMADO += 4 * UsedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC);
-			if((20 <= mobData[18] && mobData[18] <= 29) || (30 <= mobData[18] && mobData[18] <= 39)) wMADO += 10 * UsedSkillSearch(SKILL_ID_HITO_DAICHINO_KENKYU);
-			if(UsedSkillSearch(SKILL_ID_MADOGEAR)) wMADO += 20 * UsedSkillSearch(SKILL_ID_MADOGEAR_LICENSE);
-			if(UsedSkillSearch(SKILL_ID_ABR_DUAL_CANNON)) wHITsuu = 2;
+			wMADO += 2 * Math.max(LearnedSkillSearch(SKILL_ID_BUKI_KENKYU), UsedSkillSearch(SKILL_ID_BUKI_KENKYU));
+			if(n_A_WeaponType == 6 || n_A_WeaponType == 7) {
+				wMADO += 5 * Math.max(LearnedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC), UsedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC));
+			}
+			if(n_A_WeaponType == 8) {
+				wMADO += 4 * Math.max(LearnedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC), UsedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC));
+			}
+			if((20 <= mobData[18] && mobData[18] <= 29) || (30 <= mobData[18] && mobData[18] <= 39)) {
+				wMADO += 10 * Math.max(LearnedSkillSearch(SKILL_ID_HITO_DAICHINO_KENKYU), UsedSkillSearch(SKILL_ID_HITO_DAICHINO_KENKYU));
+			}
+			if(UsedSkillSearch(SKILL_ID_MADOGEAR)) {
+				wMADO += 20 * Math.max(LearnedSkillSearch(SKILL_ID_MADOGEAR_LICENSE), UsedSkillSearch(SKILL_ID_MADOGEAR_LICENSE));
+			}
+			if(UsedSkillSearch(SKILL_ID_ABR_DUAL_CANNON)) {
+				wHITsuu = 2;
+			}
 			wMADO += ApplyElementRatio(mobData, CanonOBJ[attackMethodConfArray[0].GetOptionValue(0)][0],CanonOBJ[attackMethodConfArray[0].GetOptionValue(0)][1]);
 			for(var i=0;i<=2;i++){
 				w_DMG[i] = n_A_DMG[i] + wMADO;
@@ -6678,7 +6688,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				w_HP = charaData[CHARA_DATA_INDEX_MAXHP];
 				w_SP = charaData[CHARA_DATA_INDEX_MAXSP];
 			}
-			var mainF = UsedSkillSearch(SKILL_ID_MAINFRAME_KAIZO);
+			var mainF = Math.max(LearnedSkillSearch(SKILL_ID_MAINFRAME_KAIZO), UsedSkillSearch(SKILL_ID_MAINFRAME_KAIZO));
 			if(mainF <2) mainF = 2;
 			n_A_Weapon_zokusei = 0;
 			var w = (n_A_ActiveSkillLV + 1) * (mainF + 8) * (w_SP + n_A_VIT);
@@ -14303,7 +14313,7 @@ function BattleHiDam(charaData, specData, mobData, attackMethodConfArray, objCel
 		|| (GetMonseterElmBasicType(mobData[MONSTER_DATA_INDEX_ELEMENT]) == ELM_ID_FIRE)) {
 
 		for (i = 0; i <= 6; i++) {
-			w_HiDam[i] -= 10 * UsedSkillSearch(SKILL_ID_HITO_DAICHINO_KENKYU);
+			w_HiDam[i] -= 10 * Math.max(LearnedSkillSearch(SKILL_ID_HITO_DAICHINO_KENKYU), UsedSkillSearch(SKILL_ID_HITO_DAICHINO_KENKYU));
 		}
 
 	}
@@ -19945,12 +19955,12 @@ function TYPE_SYUUREN(mobData, attackMethodConfArray, bArmsLeft){
 		case ITEM_KIND_AXE:
 		case ITEM_KIND_AXE_2HAND:
 			w += 3 * UsedSkillSearch(SKILL_ID_ONO_SHUREN);
-			w += 5 * UsedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC);
+			w += 5 * Math.max(LearnedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC), UsedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC));
 			break;
 
 		case ITEM_KIND_CLUB:
 			w += 3 * UsedSkillSearch(SKILL_ID_MACE_SHUREN);
-			w += 4 * UsedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC);
+			w += 4 * Math.max(LearnedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC), UsedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC));
 
 		case ITEM_KIND_KATAR:
 			w += 3 * UsedSkillSearch(SKILL_ID_KATAR_SHUREN);
@@ -19982,12 +19992,12 @@ function TYPE_SYUUREN(mobData, attackMethodConfArray, bArmsLeft){
 	//----------------------------------------------------------------
 	// 「ブラックスミス　武器研究」の効果
 	//----------------------------------------------------------------
-	w += 2 * UsedSkillSearch(SKILL_ID_BUKI_KENKYU);
+	w += 2 * Math.max(LearnedSkillSearch(SKILL_ID_BUKI_KENKYU), UsedSkillSearch(SKILL_ID_BUKI_KENKYU));
 
 	//----------------------------------------------------------------
 	// 「ブラックスミス　ヒルトバインディング」の効果
 	//----------------------------------------------------------------
-	if (UsedSkillSearch(SKILL_ID_HILT_BINDING)) {
+	if (Math.max(LearnedSkillSearch(SKILL_ID_HILT_BINDING), UsedSkillSearch(SKILL_ID_HILT_BINDING)) > 0) {
 		w += 4;
 	}
 
@@ -19996,14 +20006,14 @@ function TYPE_SYUUREN(mobData, attackMethodConfArray, bArmsLeft){
 	//----------------------------------------------------------------
 	if ((GetMonseterElmBasicType(mobData[MONSTER_DATA_INDEX_ELEMENT]) == ELM_ID_EARTH)
 		|| (GetMonseterElmBasicType(mobData[MONSTER_DATA_INDEX_ELEMENT]) == ELM_ID_FIRE)) {
-		w += 10 * UsedSkillSearch(SKILL_ID_HITO_DAICHINO_KENKYU);
+		w += 10 * Math.max(LearnedSkillSearch(SKILL_ID_HITO_DAICHINO_KENKYU), UsedSkillSearch(SKILL_ID_HITO_DAICHINO_KENKYU));
 	}
 
 	//----------------------------------------------------------------
 	// 「メカニック　魔導ギアライセンス」の効果
 	//----------------------------------------------------------------
 	if (UsedSkillSearch(SKILL_ID_MADOGEAR) > 0) {
-		w += 20 * UsedSkillSearch(SKILL_ID_MADOGEAR_LICENSE);
+		w += 20 * Math.max(LearnedSkillSearch(SKILL_ID_MADOGEAR_LICENSE), UsedSkillSearch(SKILL_ID_MADOGEAR_LICENSE));
 	}
 
 	//----------------------------------------------------------------
@@ -20543,7 +20553,7 @@ function GetHitModify(){
 
 
 	// 武器研究の効果
-	value += 2 * UsedSkillSearch(SKILL_ID_BUKI_KENKYU);
+	value += 2 * Math.max(LearnedSkillSearch(SKILL_ID_BUKI_KENKYU), UsedSkillSearch(SKILL_ID_BUKI_KENKYU));
 
 
 
