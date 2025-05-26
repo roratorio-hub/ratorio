@@ -129,19 +129,24 @@ function OnClickSkillSWLearned(){
 	objTd.setAttribute("colspan", 6);
 	objTr.appendChild(objTd);
 
-	objText = document.createTextNode("この欄の対象装備は、アイテムデータ欄などで確認してください");
+	objText = document.createTextNode("この設定欄は一部の装備が持つ「スキル習得時に発動する効果」のトリガーとして使われています");
 	objTd.appendChild(objText);
 	objTd.appendChild(document.createElement("br"));
-	objText = document.createTextNode("（装備名に【習】がついている装備、アイテムデータで【習得スキル設定対象】と書かれているものが対象です）");
+	objText = document.createTextNode("パッシブスキルの効果計算や攻撃スキルのダメージ計算には使われていないので");
 	objTd.appendChild(objText);
 	objTd.appendChild(document.createElement("br"));
-	objText = document.createTextNode("（該当のアイテムを装備したうえで、この設定欄を開き、対象のスキルの習得レベルを設定してください）");
+	objText = document.createTextNode("それを計算したいときは代わりに「職固有自己支援・パッシブ持続系」を設定してください");
 	objTd.appendChild(objText);
 	objTd.appendChild(document.createElement("br"));
-	objText = document.createTextNode("（書かれていないものは、「パッシブ持続系」などから設定してください）");
+	objText = document.createTextNode("この仕様は ");
 	objTd.appendChild(objText);
-
-
+	objText = document.createElement("a");
+	objText.setAttribute("href", "https://github.com/roratorio-hub/ratorio/issues/805");
+	objText.setAttribute("target", "_blank");
+	objText.appendChild(document.createTextNode("将来的に変更する予定"));
+	objTd.appendChild(objText);
+	objText = document.createTextNode(" があります");
+	objTd.appendChild(objText);
 
 	// 設定欄のヘッダ部分をリフレッシュ（着色処理等）
 	RefreshSkillColumnHeaderLearned(null, -1, 0);
