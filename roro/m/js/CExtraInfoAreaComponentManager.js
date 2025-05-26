@@ -2243,22 +2243,33 @@ function CExtraInfoAreaComponentManager () {
 		// サイズ欄
 		specArray = [];
 		for (idx = 0; idx < SIZE_ID_COUNT; idx++) {
+			// 物理・魔法共通耐性
+			let size_ratio = n_tok[ITEM_SP_RESIST_SIZE_SMALL + idx];
+			let over_size_ratio = n_tok_no_limit[ITEM_SP_RESIST_SIZE_SMALL + idx] - n_tok[ITEM_SP_RESIST_SIZE_SMALL + idx];			
 			specArray.push(
 				[
 					[GetSizeText(idx)],
-					CExtraInfoAreaComponentManager.specData[ITEM_SP_RESIST_SIZE_SMALL + idx],
+					size_ratio,
 					"\\%",
 				]
 			);
-
-			// 超過分
-			value = n_tok_no_limit[ITEM_SP_RESIST_SIZE_SMALL + idx] - n_tok[ITEM_SP_RESIST_SIZE_SMALL + idx];
-			if (value > 0) {
+			if (over_size_ratio > 0) {
 				specArray.push(
 					[
 						["[過 "],
-						value,
+						over_size_ratio,
 						"+\\%]",
+					]
+				);
+			}
+			// 物理攻撃だけに効くサイズ耐性
+			if (n_tok[ITEM_SP_PHYSICAL_RESIST_SIZE_SMALL + idx] > 0) {
+				size_ratio += n_tok[ITEM_SP_PHYSICAL_RESIST_SIZE_SMALL + idx];
+				specArray.push(
+					[
+						["> 物理のみ"],
+						size_ratio,
+						"\\%",
 					]
 				);
 			}
