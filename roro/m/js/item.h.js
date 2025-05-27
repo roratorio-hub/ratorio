@@ -493,7 +493,7 @@ CGlobalConstManager.DefineEnum(
 		"ITEM_SP_WEAPON_ATK_UP",			// 武器攻撃力＋○○％
 		"ITEM_SP_PERFECT_ATTACK_UP",		// ○○％の確率で必中攻撃
 		"ITEM_SP_ATK_UP",
-		"ITEM_SP_MATK_PLUS",				// 88 MATK		固定値上昇
+		"ITEM_SP_MATK_PLUS",				// 88 MATK		固定値上昇　基本的に使われてなさそう
 		"ITEM_SP_MAGICAL_DAMAGE_UP",		// 89 魔法ダメージ％UP
 
 		"ITEM_SP_SET_DEFINITION",			// 90 セットの定義。通常は直接指定しない。
@@ -507,7 +507,7 @@ CGlobalConstManager.DefineEnum(
 		"ITEM_SP_MAGICAL_DAMAGE_UP_SIZE_MEDIUM",	// 98 中型
 		"ITEM_SP_MAGICAL_DAMAGE_UP_SIZE_LARGE",		// 99 大型
 
-		"ITEM_SP_MATK_PLUS_TYPE_NOTSTUFF",	// 100 MATK上昇 (杖型ではない)
+		"ITEM_SP_MATK_PLUS_TYPE_NOTSTUFF",	// 100 MATK上昇 (杖型ではない)　こちらが常用されてそう
 		"ITEM_SP_ASPD_PLUS",				// 101 ASPD 加算
 		"ITEM_SP_COST_DOWN",				// 102	消費SP減少
 		"ITEM_SP_EXP_UP_ALL",				// 103
