@@ -335,11 +335,16 @@ CGlobalConstManager.DefineEnum(
 CGlobalConstManager.DefineEnum(
 	"EnumEquipFlag",
 	[
-		"ITEM_EQPFLG_MINSTREL_WANDERER",	// 191 ミンストレル系 ワンダラー系
-		"ITEM_EQPFLG_4TH",					// 192 4次職 拡張4次職
-		"ITEM_EQPFLG_MAJO_NO_HOUKI",		// 193 ハイパーノービス 4次職マジシャン系 4次職アコライト系 ソウルアセティック
-		"ITEM_EQPFLG_TROUBADOUR_TROUVERE",	// 194 トルバドゥール&トルヴェール
-		"ITEM_EQPFLG_4TH_THIEF",			// 195 4次職シーフ系
+		"ITEM_EQPFLG_MINSTREL_WANDERER",		// 191 ミンストレル系 ワンダラー系
+		"ITEM_EQPFLG_4TH",						// 192 4次職 拡張4次職
+		"ITEM_EQPFLG_MAJO_NO_HOUKI",			// 193 ハイパーノービス 4次職マジシャン系 4次職アコライト系 ソウルアセティック
+		"ITEM_EQPFLG_TROUBADOUR_TROUVERE",		// 194 トルバドゥール&トルヴェール
+		"ITEM_EQPFLG_4TH_THIEF",				// 195 4次職シーフ系
+		"ITEM_EQPFLG_4TH_EXCLUDE_CAT", 			// 196 4次職 天帝 ソウルアセティック 蜃気楼 不知火 ナイトウォッチ ハイパーノービス
+		"ITEM_EQPFLG_4TH_SWORDMAN_MERCHANT",	// 197 4次職ソードマン系 4次職マーチャント系
+		"ITEM_EQPFLG_4TH_BLADE_USER", 			// 198 ハイパーノービス 4次職ソードマン系 4次職マジシャン系 4次職アーチャー系 4次職シーフ系 4次職マーチャント系 ソウルアセティック 蜃気楼 不知火
+		"ITEM_EQPFLG_4TH_SWORDMAN", 			// 199 4次職ソードマン系
+		"ITEM_EQPFLG_4TH_BOOK_USER", 			// 200 カーディナル エレメンタルマスター 天帝
 	],
 	191,
 	1
@@ -354,6 +359,21 @@ CGlobalConstManager.DefineEnum(
 		"ITEM_EQPFLG_SERIES_SUMMONER",		// サモナー系
 	],
 	201,
+	1
+);
+
+/**
+ * EnumEquipFlag 装備可能職業（4次職）
+ */
+CGlobalConstManager.DefineEnum(
+	"EnumEquipFlag",
+	[
+		"ITEM_EQPFLG_4TH_ROD_USER_EXCLUDE_NOVICE",		// 202 4次職マジシャン系 4次職アコライト系 ソウルアセティック
+		"ITEM_EQPFLG_4TH_ACOLYTE",						// 203 4次職アコライト系
+		"ITEM_EQPFLG_4TH_HAMMER_USER",					// 204 ハイパーノービス 4次職ソードマン系 4次職アコライト系 4次職マーチャント系
+		"ITEM_EQPFLG_4TH_BOW_USER",						// 205 4次職アーチャー系 アビスチェイサー
+	],
+	202,
 	1
 );
 
@@ -1339,310 +1359,330 @@ function IsGunSeriesArms (itemKind) {
 function GetJobRestrictText(eqpflg) {
 
 	switch (eqpflg) {
-	case ITEM_EQPFLG_NONE:
-		return "すべての職業";
+		case ITEM_EQPFLG_NONE:
+			return "すべての職業";
 
-	case ITEM_EQPFLG_IGNORE_NOVICE_SERIES:
-		return "ノービスを除く、すべての職業";
+		case ITEM_EQPFLG_IGNORE_NOVICE_SERIES:
+			return "ノービスを除く、すべての職業";
 
-	case ITEM_EQPFLG_SERIES_NOVICE:
-		return "ノービス系";
-	case ITEM_EQPFLG_SERIES_SWORDMAN:
-		return "ソードマン系";
-	case ITEM_EQPFLG_SERIES_THIEF_NINJA:
-		return "シーフ・忍者系";
-	case ITEM_EQPFLG_SERIES_ACOLYTE:
-		return "アコライト系";
-	case ITEM_EQPFLG_SERIES_ARCHER:
-		return "アーチャー系";
-	case ITEM_EQPFLG_SERIES_MAGICIAN_LINKER:
-		return "マジシャン・ソウルリンカー系";
-	case ITEM_EQPFLG_SERIES_MARCHANT:
-		return "マーチャント系";
-// 57 は欠番
-	case ITEM_EQPFLG_SERIES_NINJA:
-		return "忍者系";
-	case ITEM_EQPFLG_SERIES_GUNSLINGER:
-		return "ガンスリンガー系";
+		case ITEM_EQPFLG_SERIES_NOVICE:
+			return "ノービス系";
+		case ITEM_EQPFLG_SERIES_SWORDMAN:
+			return "ソードマン系";
+		case ITEM_EQPFLG_SERIES_THIEF_NINJA:
+			return "シーフ・忍者系";
+		case ITEM_EQPFLG_SERIES_ACOLYTE:
+			return "アコライト系";
+		case ITEM_EQPFLG_SERIES_ARCHER:
+			return "アーチャー系";
+		case ITEM_EQPFLG_SERIES_MAGICIAN_LINKER:
+			return "マジシャン・ソウルリンカー系";
+		case ITEM_EQPFLG_SERIES_MARCHANT:
+			return "マーチャント系";
+	// 57 は欠番
+		case ITEM_EQPFLG_SERIES_NINJA:
+			return "忍者系";
+		case ITEM_EQPFLG_SERIES_GUNSLINGER:
+			return "ガンスリンガー系";
 
-	case ITEM_EQPFLG_SERIES_UPPER_OF_SWORDMAN:
-		return "ソードマン系の二次職、転生二次職、三次職";
-	case ITEM_EQPFLG_SERIES_UPPER_OF_THIEF:
-		return "シーフ系の二次職、転生二次職、三次職";
-	case ITEM_EQPFLG_SERIES_UPPER_OF_ACOLYTE:
-		return "アコライト系の二次職、転生二次職、三次職";
-	case ITEM_EQPFLG_SERIES_UPPER_OF_ARCHER:
-		return "アーチャー系の二次職、転生二次職、三次職";
-	case ITEM_EQPFLG_SERIES_UPPER_OF_MAGICIAN_LINKER:
-		return "マジシャン・ソウルリンカー系の二次職、転生二次職、三次職";
-	case ITEM_EQPFLG_SERIES_UPPER_OF_MARCHANT:
-		return "マーチャント系の二次職、転生二次職、三次職";
-// 67 は欠番
-	case ITEM_EQPFLG_SERIES_UPPER_OF_NINJA:
-		return "影狼・朧";
-	case ITEM_EQPFLG_SERIES_UPPER_OF_GUNSLINGER:
-		return "リベリオン";
+		case ITEM_EQPFLG_SERIES_UPPER_OF_SWORDMAN:
+			return "ソードマン系の二次職、転生二次職、三次職";
+		case ITEM_EQPFLG_SERIES_UPPER_OF_THIEF:
+			return "シーフ系の二次職、転生二次職、三次職";
+		case ITEM_EQPFLG_SERIES_UPPER_OF_ACOLYTE:
+			return "アコライト系の二次職、転生二次職、三次職";
+		case ITEM_EQPFLG_SERIES_UPPER_OF_ARCHER:
+			return "アーチャー系の二次職、転生二次職、三次職";
+		case ITEM_EQPFLG_SERIES_UPPER_OF_MAGICIAN_LINKER:
+			return "マジシャン・ソウルリンカー系の二次職、転生二次職、三次職";
+		case ITEM_EQPFLG_SERIES_UPPER_OF_MARCHANT:
+			return "マーチャント系の二次職、転生二次職、三次職";
+	// 67 は欠番
+		case ITEM_EQPFLG_SERIES_UPPER_OF_NINJA:
+			return "影狼・朧";
+		case ITEM_EQPFLG_SERIES_UPPER_OF_GUNSLINGER:
+			return "リベリオン";
 
-	case ITEM_EQPFLG_SERIES_SWORDMAN_MARCHANT:
-		return "ソードマン・マーチャント系";
-	case ITEM_EQPFLG_TYPE_SILKROBE:
-		return "ソードマン・アコライト・マジシャン・マーチャント系";
-	case ITEM_EQPFLG_SERIES_SWORDMAN_THIEF_MARCHANT:
-		return "ソードマン・シーフ・マーチャント系";
-	case ITEM_EQPFLG_SERIES_ACOLYTE_MARCHANT:
-		return "アコライト・マーチャント系";
-	case ITEM_EQPFLG_TYPE_BACKLER:
-		return "ソードマン・シーフ・アコライト・マーチャント・バード・ダンサー系";
-	case ITEM_EQPFLG_TYPE_GOOGLE:
-		return "ソードマン・シーフ・アーチャー・マーチャント系";
-	case ITEM_EQPFLG_SERIES_ARCHER_ROGUE:
-		return "アーチャー・ローグ系";
-	case ITEM_EQPFLG_SERIES_ACOLYTE_MAGICIAN_LINKER:
-		return "アコライト・マジシャン・ソウルリンカー系";
-	case ITEM_EQPFLG_TYPE_KOZAN_HELMET:
-		return "ソードマン・シーフ・アコライト・マーチャント系";
-	case ITEM_EQPFLG_SERIES_UPPER_OF_ANY:
-		return "二次職、転生二次職、三次職、拡張二次職";
-	case ITEM_EQPFLG_TYPE_RENDO:
-		return "シーフのみ・ハンター・ローグ系";
-	case ITEM_EQPFLG_SERIES_ASSASIN_PRIEST:
-		return "アサシン・プリースト系";
-	case ITEM_EQPFLG_SERIES_REINCARNATED_OF_ANY:
-		return "転生二次職、三次職（転生）";
-	case ITEM_EQPFLG_TYPE_BOOTS:
-		return "ソードマン・シーフ・アーチャー・マーチャント・テコンのみ・拳聖のみ・ガンスリンガー系";
-	case ITEM_EQPFLG_TYPE_MANT:
-		return "ソードマン・シーフ・マーチャント・テコンのみ・拳聖のみ系";
-	case ITEM_EQPFLG_TYPE_SHARP_HEAD_GEAR:
-		return "ソードマン・シーフ・アコライト・マーチャント・テコンのみ・拳聖のみ系";
-	case ITEM_EQPFLG_TYPE_MAJESTIC_GOAT:
-		return "ソードマン・マーチャント・テコンのみ・拳聖のみ系";
-	case ITEM_EQPFLG_TYPE_MIRROR_SHIELD:
-		return "ソードマン・テコンのみ・拳聖のみ系";
-	case ITEM_EQPFLG_SERIES_HUNTER_ROGUE:
-		return "ハンター・ローグ系";
-	case ITEM_EQPFLG_SERIES_ACOLYTE_ARCHER_MAGICIAN_LINKER:
-		return "アコライト・アーチャー・マジシャン・ソウルリンカー系";
-	case ITEM_EQPFLG_TYPE_ONEHAND_AXE:
-		return "ノービス・ソードマン・マーチャント・アサシン系";
-	case ITEM_EQPFLG_TYPE_SENTO_GREEVE:
-		return "ソードマン・シーフ・マーチャント・拳聖・忍者系";
-	case ITEM_EQPFLG_TYPE_DOFRENO_ONO:
-		return "ソードマン・マーチャント・ギロチンクロス・スーパーノービス＋系";
-	case ITEM_EQPFLG_SERIES_3RD_EX2ND:
-		return "三次職、拡張二次職系";
-	case ITEM_EQPFLG_TYPE_KOJOSEN_TE_MAGIC:
-		return "ノービス・アコライト・マジシャン・ソウルリンカー系";
-	case ITEM_EQPFLG_TYPE_BOOK:
-		return "プリースト・セージ・拳聖系";
-	case ITEM_EQPFLG_TYPE_BEGINNER:
-		return "ノービスのみ・非転生一次職・非転生二次職系";
+		case ITEM_EQPFLG_SERIES_SWORDMAN_MARCHANT:
+			return "ソードマン・マーチャント系";
+		case ITEM_EQPFLG_TYPE_SILKROBE:
+			return "ソードマン・アコライト・マジシャン・マーチャント系";
+		case ITEM_EQPFLG_SERIES_SWORDMAN_THIEF_MARCHANT:
+			return "ソードマン・シーフ・マーチャント系";
+		case ITEM_EQPFLG_SERIES_ACOLYTE_MARCHANT:
+			return "アコライト・マーチャント系";
+		case ITEM_EQPFLG_TYPE_BACKLER:
+			return "ソードマン・シーフ・アコライト・マーチャント・バード・ダンサー系";
+		case ITEM_EQPFLG_TYPE_GOOGLE:
+			return "ソードマン・シーフ・アーチャー・マーチャント系";
+		case ITEM_EQPFLG_SERIES_ARCHER_ROGUE:
+			return "アーチャー・ローグ系";
+		case ITEM_EQPFLG_SERIES_ACOLYTE_MAGICIAN_LINKER:
+			return "アコライト・マジシャン・ソウルリンカー系";
+		case ITEM_EQPFLG_TYPE_KOZAN_HELMET:
+			return "ソードマン・シーフ・アコライト・マーチャント系";
+		case ITEM_EQPFLG_SERIES_UPPER_OF_ANY:
+			return "二次職、転生二次職、三次職、拡張二次職";
+		case ITEM_EQPFLG_TYPE_RENDO:
+			return "シーフのみ・ハンター・ローグ系";
+		case ITEM_EQPFLG_SERIES_ASSASIN_PRIEST:
+			return "アサシン・プリースト系";
+		case ITEM_EQPFLG_SERIES_REINCARNATED_OF_ANY:
+			return "転生二次職、三次職（転生）";
+		case ITEM_EQPFLG_TYPE_BOOTS:
+			return "ソードマン・シーフ・アーチャー・マーチャント・テコンのみ・拳聖のみ・ガンスリンガー系";
+		case ITEM_EQPFLG_TYPE_MANT:
+			return "ソードマン・シーフ・マーチャント・テコンのみ・拳聖のみ系";
+		case ITEM_EQPFLG_TYPE_SHARP_HEAD_GEAR:
+			return "ソードマン・シーフ・アコライト・マーチャント・テコンのみ・拳聖のみ系";
+		case ITEM_EQPFLG_TYPE_MAJESTIC_GOAT:
+			return "ソードマン・マーチャント・テコンのみ・拳聖のみ系";
+		case ITEM_EQPFLG_TYPE_MIRROR_SHIELD:
+			return "ソードマン・テコンのみ・拳聖のみ系";
+		case ITEM_EQPFLG_SERIES_HUNTER_ROGUE:
+			return "ハンター・ローグ系";
+		case ITEM_EQPFLG_SERIES_ACOLYTE_ARCHER_MAGICIAN_LINKER:
+			return "アコライト・アーチャー・マジシャン・ソウルリンカー系";
+		case ITEM_EQPFLG_TYPE_ONEHAND_AXE:
+			return "ノービス・ソードマン・マーチャント・アサシン系";
+		case ITEM_EQPFLG_TYPE_SENTO_GREEVE:
+			return "ソードマン・シーフ・マーチャント・拳聖・忍者系";
+		case ITEM_EQPFLG_TYPE_DOFRENO_ONO:
+			return "ソードマン・マーチャント・ギロチンクロス・スーパーノービス＋系";
+		case ITEM_EQPFLG_SERIES_3RD_EX2ND:
+			return "三次職、拡張二次職系";
+		case ITEM_EQPFLG_TYPE_KOJOSEN_TE_MAGIC:
+			return "ノービス・アコライト・マジシャン・ソウルリンカー系";
+		case ITEM_EQPFLG_TYPE_BOOK:
+			return "プリースト・セージ・拳聖系";
+		case ITEM_EQPFLG_TYPE_BEGINNER:
+			return "ノービスのみ・非転生一次職・非転生二次職系";
 
-	case ITEM_EQPFLG_SERIES_LOWER_OF_NOVICE:
-		return "ノービス・ノービスハイ";
-	case ITEM_EQPFLG_SERIES_LOWER_OF_SWORDMAN:
-		return "ソードマン・ソードマンハイ";
-	case ITEM_EQPFLG_SERIES_LOWER_OF_THIEF:
-		return "シーフ・シーフハイ";
-	case ITEM_EQPFLG_SERIES_LOWER_OF_ACOLYTE:
-		return "アコライト・アコライトハイ";
-	case ITEM_EQPFLG_SERIES_LOWER_OF_ARCHER:
-		return "アーチャー・アーチャーハイ";
-	case ITEM_EQPFLG_SERIES_LOWER_OF_MAGICIAN_LINKER:
-		return "マジシャン・マジシャンハイ";
-	case ITEM_EQPFLG_SERIES_LOWER_OF_MARCHANT:
-		return "マーチャント・マーチャントハイ";
-	case ITEM_EQPFLG_SERIES_KNIGHT:
-		return "ナイト系";
-	case ITEM_EQPFLG_SERIES_ASSASIN:
-		return "アサシン系";
-	case ITEM_EQPFLG_SERIES_PRIEST:
-		return "プリースト系";
-	case ITEM_EQPFLG_SERIES_HUNTER:
-		return "ハンター系";
-	case ITEM_EQPFLG_SERIES_WIZARD_LINKER:
-		return "ウィザード・ソウルリンカー系";
-	case ITEM_EQPFLG_SERIES_BLACKSMITH:
-		return "ブラックスミス系";
-	case ITEM_EQPFLG_SERIES_CRUSADER:
-		return "クルセイダー系";
-	case ITEM_EQPFLG_SERIES_ROGUE:
-		return "ローグ系";
-	case ITEM_EQPFLG_SERIES_MONK:
-		return "モンク系";
-	case ITEM_EQPFLG_SERIES_BARD:
-		return "バード系";
-	case ITEM_EQPFLG_SERIES_DANCER:
-		return "ダンサー系";
-	case ITEM_EQPFLG_SERIES_SAGE:
-		return "セージ系";
-	case ITEM_EQPFLG_SERIES_ALCHEMIST:
-		return "アルケミスト系";
-	case ITEM_EQPFLG_SERIES_SUPER_NOVICE:
-		return "スーパーノービス系";
-	case ITEM_EQPFLG_SERIES_LOAR_KNIGHT:
-		return "ロードナイト系";
-	case ITEM_EQPFLG_SERIES_ASSASIN_CROSS:
-		return "アサシンクロス系";
-	case ITEM_EQPFLG_SERIES_HIGH_PRIEST:
-		return "ハイプリースト系";
-	case ITEM_EQPFLG_SERIES_SNIPER:
-		return "スナイパー系";
-	case ITEM_EQPFLG_SERIES_HIGH_WIZARD:
-		return "ハイウィザード系";
-	case ITEM_EQPFLG_SERIES_WHITESMITH:
-		return "ホワイトスミス系";
-	case ITEM_EQPFLG_SERIES_PALADIN:
-		return "パラディン系";
-	case ITEM_EQPFLG_SERIES_CHASER:
-		return "チェイサー系";
-	case ITEM_EQPFLG_SERIES_CHAMPION:
-		return "チャンピオン系";
-	case ITEM_EQPFLG_SERIES_CROWN:
-		return "クラウン系";
-	case ITEM_EQPFLG_SERIES_ZYPSY:
-		return "ジプシー系";
-	case ITEM_EQPFLG_SERIES_PROFESSOR:
-		return "プロフェッサー系";
-	case ITEM_EQPFLG_SERIES_CREATOR:
-		return "クリエイター系";
+		case ITEM_EQPFLG_SERIES_LOWER_OF_NOVICE:
+			return "ノービス・ノービスハイ";
+		case ITEM_EQPFLG_SERIES_LOWER_OF_SWORDMAN:
+			return "ソードマン・ソードマンハイ";
+		case ITEM_EQPFLG_SERIES_LOWER_OF_THIEF:
+			return "シーフ・シーフハイ";
+		case ITEM_EQPFLG_SERIES_LOWER_OF_ACOLYTE:
+			return "アコライト・アコライトハイ";
+		case ITEM_EQPFLG_SERIES_LOWER_OF_ARCHER:
+			return "アーチャー・アーチャーハイ";
+		case ITEM_EQPFLG_SERIES_LOWER_OF_MAGICIAN_LINKER:
+			return "マジシャン・マジシャンハイ";
+		case ITEM_EQPFLG_SERIES_LOWER_OF_MARCHANT:
+			return "マーチャント・マーチャントハイ";
+		case ITEM_EQPFLG_SERIES_KNIGHT:
+			return "ナイト系";
+		case ITEM_EQPFLG_SERIES_ASSASIN:
+			return "アサシン系";
+		case ITEM_EQPFLG_SERIES_PRIEST:
+			return "プリースト系";
+		case ITEM_EQPFLG_SERIES_HUNTER:
+			return "ハンター系";
+		case ITEM_EQPFLG_SERIES_WIZARD_LINKER:
+			return "ウィザード・ソウルリンカー系";
+		case ITEM_EQPFLG_SERIES_BLACKSMITH:
+			return "ブラックスミス系";
+		case ITEM_EQPFLG_SERIES_CRUSADER:
+			return "クルセイダー系";
+		case ITEM_EQPFLG_SERIES_ROGUE:
+			return "ローグ系";
+		case ITEM_EQPFLG_SERIES_MONK:
+			return "モンク系";
+		case ITEM_EQPFLG_SERIES_BARD:
+			return "バード系";
+		case ITEM_EQPFLG_SERIES_DANCER:
+			return "ダンサー系";
+		case ITEM_EQPFLG_SERIES_SAGE:
+			return "セージ系";
+		case ITEM_EQPFLG_SERIES_ALCHEMIST:
+			return "アルケミスト系";
+		case ITEM_EQPFLG_SERIES_SUPER_NOVICE:
+			return "スーパーノービス系";
+		case ITEM_EQPFLG_SERIES_LOAR_KNIGHT:
+			return "ロードナイト系";
+		case ITEM_EQPFLG_SERIES_ASSASIN_CROSS:
+			return "アサシンクロス系";
+		case ITEM_EQPFLG_SERIES_HIGH_PRIEST:
+			return "ハイプリースト系";
+		case ITEM_EQPFLG_SERIES_SNIPER:
+			return "スナイパー系";
+		case ITEM_EQPFLG_SERIES_HIGH_WIZARD:
+			return "ハイウィザード系";
+		case ITEM_EQPFLG_SERIES_WHITESMITH:
+			return "ホワイトスミス系";
+		case ITEM_EQPFLG_SERIES_PALADIN:
+			return "パラディン系";
+		case ITEM_EQPFLG_SERIES_CHASER:
+			return "チェイサー系";
+		case ITEM_EQPFLG_SERIES_CHAMPION:
+			return "チャンピオン系";
+		case ITEM_EQPFLG_SERIES_CROWN:
+			return "クラウン系";
+		case ITEM_EQPFLG_SERIES_ZYPSY:
+			return "ジプシー系";
+		case ITEM_EQPFLG_SERIES_PROFESSOR:
+			return "プロフェッサー系";
+		case ITEM_EQPFLG_SERIES_CREATOR:
+			return "クリエイター系";
 
-	case ITEM_EQPFLG_TAEGWON:
-		return "テコンキッド";
-	case ITEM_EQPFLG_SERIES_KENSEI:
-		return "拳聖";
-	case ITEM_EQPFLG_SERIES_SOUL_LINKER:
-		return "ソウルリンカー";
-// 144 は欠番（58を使用）
-// 145 は欠番（59を使用）
+		case ITEM_EQPFLG_TAEGWON:
+			return "テコンキッド";
+		case ITEM_EQPFLG_SERIES_KENSEI:
+			return "拳聖";
+		case ITEM_EQPFLG_SERIES_SOUL_LINKER:
+			return "ソウルリンカー";
+	// 144 は欠番（58を使用）
+	// 145 は欠番（59を使用）
 
-	case ITEM_EQPFLG_RUNEKNIGHT:
-		return "ルーンナイト";
-	case ITEM_EQPFLG_GLTCROSS:
-		return "ギロチンクロス";
-	case ITEM_EQPFLG_ARCBISHOP:
-		return "アークビショップ";
-	case ITEM_EQPFLG_RANGER:
-		return "レンジャー";
-	case ITEM_EQPFLG_WARLOCK:
-		return "ウォーロック";
-	case ITEM_EQPFLG_MECHANIC:
-		return "メカニック";
-	case ITEM_EQPFLG_ROYALGUARD:
-		return "ロイヤルガード";
-	case ITEM_EQPFLG_SHADOWCHASER:
-		return "シャドウチェイサー";
-	case ITEM_EQPFLG_SHURA:
-		return "修羅";
-	case ITEM_EQPFLG_MINSTREL:
-		return "ミンストレル";
-	case ITEM_EQPFLG_WANDERER:
-		return "ワンダラー";
-	case ITEM_EQPFLG_SOURCERER:
-		return "ソーサラー";
-	case ITEM_EQPFLG_GENETIC:
-		return "ジェネティック";
+		case ITEM_EQPFLG_RUNEKNIGHT:
+			return "ルーンナイト";
+		case ITEM_EQPFLG_GLTCROSS:
+			return "ギロチンクロス";
+		case ITEM_EQPFLG_ARCBISHOP:
+			return "アークビショップ";
+		case ITEM_EQPFLG_RANGER:
+			return "レンジャー";
+		case ITEM_EQPFLG_WARLOCK:
+			return "ウォーロック";
+		case ITEM_EQPFLG_MECHANIC:
+			return "メカニック";
+		case ITEM_EQPFLG_ROYALGUARD:
+			return "ロイヤルガード";
+		case ITEM_EQPFLG_SHADOWCHASER:
+			return "シャドウチェイサー";
+		case ITEM_EQPFLG_SHURA:
+			return "修羅";
+		case ITEM_EQPFLG_MINSTREL:
+			return "ミンストレル";
+		case ITEM_EQPFLG_WANDERER:
+			return "ワンダラー";
+		case ITEM_EQPFLG_SOURCERER:
+			return "ソーサラー";
+		case ITEM_EQPFLG_GENETIC:
+			return "ジェネティック";
 
-	case ITEM_EQPFLG_MINSTREL_WANDERER:
-		return "ミンストレル・ワンダラー";
+		case ITEM_EQPFLG_MINSTREL_WANDERER:
+			return "ミンストレル・ワンダラー";
 
-	case ITEM_EQPFLG_SERIES_SUMMONER:
-		return "サモナー";
+		case ITEM_EQPFLG_SERIES_SUMMONER:
+			return "サモナー";
 
-	case 1000 + ITEM_EQPFLG_NONE:
-		return "転生職";
-	case 1000 + ITEM_EQPFLG_IGNORE_NOVICE_SERIES:
-		return "転生ソードマン系 転生マーチャント系 転生シーフ系 転生アーチャー系 転生マジシャン系";
-	case 1000 + ITEM_EQPFLG_SERIES_SWORDMAN:
-		return "転生ソードマン系";
-	case 1000 + ITEM_EQPFLG_SERIES_THIEF_NINJA:
-		return "転生シーフ系";
-	case 1000 + ITEM_EQPFLG_SERIES_ACOLYTE:
-		return "転生アコライト系";
-	case 1000 + ITEM_EQPFLG_SERIES_ARCHER:
-		return "転生アーチャー系";
-	case 1000 + ITEM_EQPFLG_SERIES_MAGICIAN_LINKER:
-		return "転生マジシャン系";
-	case 1000 + ITEM_EQPFLG_SERIES_MARCHANT:
-		return "転生マーチャント系";
-	case 1000 + ITEM_EQPFLG_SERIES_ACOLYTE_ARCHER_MAGICIAN_LINKER:
-		return "転生マジシャン系 転生アーチャー系 転生アコライト系";
-	case 1000 + ITEM_EQPFLG_SERIES_SWORDMAN_MARCHANT:
-		return "転生ソードマン系 転生マーチャント系";
-	case 1000 + ITEM_EQPFLG_SERIES_SWORDMAN_THIEF_MARCHANT:
-		return "転生ソードマン系 転生マーチャント系 転生シーフ系";
-	case 1000 + ITEM_EQPFLG_SERIES_UPPER_OF_ANY:
-		return "上位2次職 3次職 4次職";
+		case 1000 + ITEM_EQPFLG_NONE:
+			return "転生職";
+		case 1000 + ITEM_EQPFLG_IGNORE_NOVICE_SERIES:
+			return "転生ソードマン系 転生マーチャント系 転生シーフ系 転生アーチャー系 転生マジシャン系";
+		case 1000 + ITEM_EQPFLG_SERIES_SWORDMAN:
+			return "転生ソードマン系";
+		case 1000 + ITEM_EQPFLG_SERIES_THIEF_NINJA:
+			return "転生シーフ系";
+		case 1000 + ITEM_EQPFLG_SERIES_ACOLYTE:
+			return "転生アコライト系";
+		case 1000 + ITEM_EQPFLG_SERIES_ARCHER:
+			return "転生アーチャー系";
+		case 1000 + ITEM_EQPFLG_SERIES_MAGICIAN_LINKER:
+			return "転生マジシャン系";
+		case 1000 + ITEM_EQPFLG_SERIES_MARCHANT:
+			return "転生マーチャント系";
+		case 1000 + ITEM_EQPFLG_SERIES_ACOLYTE_ARCHER_MAGICIAN_LINKER:
+			return "転生マジシャン系 転生アーチャー系 転生アコライト系";
+		case 1000 + ITEM_EQPFLG_SERIES_SWORDMAN_MARCHANT:
+			return "転生ソードマン系 転生マーチャント系";
+		case 1000 + ITEM_EQPFLG_SERIES_SWORDMAN_THIEF_MARCHANT:
+			return "転生ソードマン系 転生マーチャント系 転生シーフ系";
+		case 1000 + ITEM_EQPFLG_SERIES_UPPER_OF_ANY:
+			return "上位2次職 3次職 4次職";
 
-	case 2000 + ITEM_EQPFLG_SERIES_SWORDMAN_MARCHANT:
-		return "3次職ソードマン系 3次職マーチャント系";
-	case 2000 + ITEM_EQPFLG_IGNORE_NOVICE_SERIES:
-		return "3次職ソードマン系 3次職アコライト系 3次職マーチャント系";
-	case 2000 + ITEM_EQPFLG_SERIES_SWORDMAN:
-		return "3次職ソードマン系";
-	case 2000 + ITEM_EQPFLG_SERIES_THIEF_NINJA:
-		return "3次職シーフ系";
-	case 2000 + ITEM_EQPFLG_SERIES_ACOLYTE:
-		return "3次職アコライト系";
-	case 2000 + ITEM_EQPFLG_SERIES_ARCHER:
-		return "3次職アーチャー系";
-	case 2000 + ITEM_EQPFLG_SERIES_MAGICIAN_LINKER:
-		return "3次職マジシャン系";
-	case 2000 + ITEM_EQPFLG_SERIES_MARCHANT:
-		return "3次職マーチャント系";
-	case 2000 + ITEM_EQPFLG_SERIES_SWORDMAN_THIEF_MARCHANT:
-		return "3次職ソードマン系 3次職マーチャント系 3次職シーフ系";
-	case 2000 + ITEM_EQPFLG_SERIES_ARCHER_ROGUE:
-		return "3次職アーチャー系 3次職シャドウチェイサー系";
-	case 2000 + ITEM_EQPFLG_NONE:
-		return "3次職 4次職";
+		case 2000 + ITEM_EQPFLG_SERIES_SWORDMAN_MARCHANT:
+			return "3次職ソードマン系 3次職マーチャント系";
+		case 2000 + ITEM_EQPFLG_IGNORE_NOVICE_SERIES:
+			return "3次職ソードマン系 3次職アコライト系 3次職マーチャント系";
+		case 2000 + ITEM_EQPFLG_SERIES_SWORDMAN:
+			return "3次職ソードマン系";
+		case 2000 + ITEM_EQPFLG_SERIES_THIEF_NINJA:
+			return "3次職シーフ系";
+		case 2000 + ITEM_EQPFLG_SERIES_ACOLYTE:
+			return "3次職アコライト系";
+		case 2000 + ITEM_EQPFLG_SERIES_ARCHER:
+			return "3次職アーチャー系";
+		case 2000 + ITEM_EQPFLG_SERIES_MAGICIAN_LINKER:
+			return "3次職マジシャン系";
+		case 2000 + ITEM_EQPFLG_SERIES_MARCHANT:
+			return "3次職マーチャント系";
+		case 2000 + ITEM_EQPFLG_SERIES_SWORDMAN_THIEF_MARCHANT:
+			return "3次職ソードマン系 3次職マーチャント系 3次職シーフ系";
+		case 2000 + ITEM_EQPFLG_SERIES_ARCHER_ROGUE:
+			return "3次職アーチャー系 3次職シャドウチェイサー系";
+		case 2000 + ITEM_EQPFLG_NONE:
+			return "3次職 4次職";
 
-	case ITEM_EQPFLG_4TH:
-		return "4次職 拡張4次職";
-	case ITEM_EQPFLG_4TH_THIEF:
-		return "4次職シーフ系";
-	case ITEM_EQPFLG_DRAGON_KNIGHT:
-		return "ドラゴンナイト";
-	case ITEM_EQPFLG_SHADOW_CROSS:
-		return "シャドウクロス";
-	case ITEM_EQPFLG_CARDINAL:
-		return "カーディナル";
-	case ITEM_EQPFLG_WIND_HAWK:
-		return "ウィンドホーク";
-	case ITEM_EQPFLG_ARCH_MAGE:
-		return "アークメイジ";
-	case ITEM_EQPFLG_MEISTER:
-		return "マイスター";
-	case ITEM_EQPFLG_IMPERIAL_GUARD:
-		return "インペリアルガード";
-	case ITEM_EQPFLG_INQUISITOR:
-		return "インクイジター";
-	case ITEM_EQPFLG_TROUBADOUR:
-		return "トルバドゥール";
-	case ITEM_EQPFLG_TROUVERE:
-		return "トルヴェール";
-	case ITEM_EQPFLG_ELEMENTAL_MASTER:
-		return "エレメンタルマスター";
-	case ITEM_EQPFLG_BIOLO:
-		return "バイオロ";
-	case ITEM_EQPFLG_SKY_EMPEROR:
-		return "天帝";
-	case ITEM_EQPFLG_SOUL_ASCETIC:
-		return "ソウルアセティック";
-	case ITEM_EQPFLG_NIGHT_WATCH:
-		return "ナイトウォッチ";
-	case ITEM_EQPFLG_SPIRIT_HANDLER:
-		return "スピリットハンドラー";
-	case ITEM_EQPFLG_ABYSS_CHASER:
-		return "アビスチェイサー";
-	case ITEM_EQPFLG_SHINKIRO_SHIRANUI:
-		return "蜃気楼 不知火";
-	case ITEM_EQPFLG_HYPER_NOVICE:
-		return "ハイパーノービス";
-	case ITEM_EQPFLG_MAJO_NO_HOUKI:
-		return "ハイパーノービス 4次職マジシャン系 4次職アコライト系 ソウルアセティック";
-	case ITEM_EQPFLG_TROUBADOUR_TROUVERE:
-		return "トルバドゥール トルヴェール"
+		case ITEM_EQPFLG_4TH:
+			return "4次職 拡張4次職";
+		case ITEM_EQPFLG_4TH_THIEF:
+			return "4次職シーフ系";
+		case ITEM_EQPFLG_DRAGON_KNIGHT:
+			return "ドラゴンナイト";
+		case ITEM_EQPFLG_SHADOW_CROSS:
+			return "シャドウクロス";
+		case ITEM_EQPFLG_CARDINAL:
+			return "カーディナル";
+		case ITEM_EQPFLG_WIND_HAWK:
+			return "ウィンドホーク";
+		case ITEM_EQPFLG_ARCH_MAGE:
+			return "アークメイジ";
+		case ITEM_EQPFLG_MEISTER:
+			return "マイスター";
+		case ITEM_EQPFLG_IMPERIAL_GUARD:
+			return "インペリアルガード";
+		case ITEM_EQPFLG_INQUISITOR:
+			return "インクイジター";
+		case ITEM_EQPFLG_TROUBADOUR:
+			return "トルバドゥール";
+		case ITEM_EQPFLG_TROUVERE:
+			return "トルヴェール";
+		case ITEM_EQPFLG_ELEMENTAL_MASTER:
+			return "エレメンタルマスター";
+		case ITEM_EQPFLG_BIOLO:
+			return "バイオロ";
+		case ITEM_EQPFLG_SKY_EMPEROR:
+			return "天帝";
+		case ITEM_EQPFLG_SOUL_ASCETIC:
+			return "ソウルアセティック";
+		case ITEM_EQPFLG_NIGHT_WATCH:
+			return "ナイトウォッチ";
+		case ITEM_EQPFLG_SPIRIT_HANDLER:
+			return "スピリットハンドラー";
+		case ITEM_EQPFLG_ABYSS_CHASER:
+			return "アビスチェイサー";
+		case ITEM_EQPFLG_SHINKIRO_SHIRANUI:
+			return "蜃気楼 不知火";
+		case ITEM_EQPFLG_HYPER_NOVICE:
+			return "ハイパーノービス";
+		case ITEM_EQPFLG_MAJO_NO_HOUKI:
+			return "ハイパーノービス 4次職マジシャン系 4次職アコライト系 ソウルアセティック";
+		case ITEM_EQPFLG_TROUBADOUR_TROUVERE:
+			return "トルバドゥール トルヴェール"
+		case ITEM_EQPFLG_4TH_THIEF:
+			return "4次職シーフ系";
+		case ITEM_EQPFLG_4TH_EXCLUDE_CAT:
+			return "4次職 天帝 ソウルアセティック 蜃気楼 不知火 ナイトウォッチ ハイパーノービス";
+		case ITEM_EQPFLG_4TH_SWORDMAN_MERCHANT:
+			return "4次職ソードマン系 4次職マーチャント系";
+		case ITEM_EQPFLG_4TH_BLADE_USER:
+			return "ハイパーノービス 4次職ソードマン系 4次職マジシャン系 4次職アーチャー系 4次職シーフ系 4次職マーチャント系 ソウルアセティック 蜃気楼 不知火";
+		case ITEM_EQPFLG_4TH_SWORDMAN:
+			return "4次職ソードマン系";
+		case ITEM_EQPFLG_4TH_BOOK_USER:
+			return "カーディナル エレメンタルマスター 天帝";
+		case ITEM_EQPFLG_4TH_ROD_USER_EXCLUDE_NOVICE:
+			return "4次職マジシャン系 4次職アコライト系 ソウルアセティック";
+		case ITEM_EQPFLG_4TH_ACOLYTE:
+			return "4次職アコライト系";
+		case ITEM_EQPFLG_4TH_HAMMER_USER:
+			return "ハイパーノービス 4次職ソードマン系 4次職アコライト系 4次職マーチャント系";
+		case ITEM_EQPFLG_4TH_BOW_USER:
+			return "4次職アーチャー系 アビスチェイサー";
 	}
 	return "不明";
 }
