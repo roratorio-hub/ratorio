@@ -1,1 +1,956 @@
 item_list:
+  - name: セレスティアルダイアデム
+    yomi: セレスティアルダイアデム
+    type: 上段
+    slot: 0
+    weapon_lv: 0
+    atk_or_def: 10
+    weight: 50
+    required_lv: 200
+    required_job: 4次職 拡張4次職
+    capabilities:
+      - name: 壊れない
+        value: 1
+      - name: MAXHP増加
+        value: 15
+      - name: スキルディレイ減少
+        value: 15
+      - name: スキル固定詠唱割合減少
+        value: 50
+      - name: 一般耐性
+        value: 20
+      - name: ボス耐性
+        value: 20
+      - name: プレイヤー耐性
+        value: 13
+      - name: 物理ダメージ増加
+        value: 1
+        per_refine: 1
+      - name: 魔法ダメージ増加
+        value: 1
+        per_refine: 1
+      - name: 物理ダメージ増加
+        value: 10
+        at_refine: 7
+      - name: 魔法ダメージ増加
+        value: 10
+        at_refine: 7
+      - name: 物理ダメージ増加
+        value: 10
+        at_refine: 9
+      - name: 魔法ダメージ増加
+        value: 10
+        at_refine: 9
+      - name: MAXHP増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXSP増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: 物理ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: 魔法ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 10
+        at_transcendence: 1
+  - name: セレスティアルアーマー
+    yomi: セレスティアルアーマー
+    type: 鎧
+    slot: 0
+    weapon_lv: 0
+    atk_or_def: 100
+    weight: 100
+    required_lv: 200
+    required_job: 4次職 天帝 ソウルアセティック 蜃気楼 不知火 ナイトウォッチ ハイパーノービス
+    capabilities:
+      - name: 壊れない
+        value: 1
+      - name: CRI加算
+        value: 25
+      - name: MAXHP増加
+        value: 50
+      - name: 必中
+        value: 25
+      - name: 一般耐性
+        value: 5
+      - name: ボス耐性
+        value: 5
+      - name: プレイヤー耐性
+        value: 7
+      - name: 全種族への物理ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: 全種族への魔法ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: ATK加算
+        value: 100
+        at_refine: 7
+      - name: MATK加算
+        value: 100
+        at_refine: 7
+      - name: ASPD増加
+        value: 10
+        at_refine: 7
+      - name: ATK加算
+        value: 100
+        at_refine: 9
+      - name: MATK加算
+        value: 100
+        at_refine: 9
+      - name: FLEE加算
+        value: 50
+        at_refine: 9
+      - name: ATK加算
+        value: 10
+        per_refine: 1
+        at_transcendence: 1
+      - name: MATK加算
+        value: 10
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全種族への物理ダメージ増加
+        value: 3
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全種族への魔法ダメージ増加
+        value: 3
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 10
+        at_transcendence: 1
+  - name: セレスティアルスーツ
+    yomi: セレスティアルスーツ
+    type: 鎧
+    slot: 0
+    weapon_lv: 0
+    atk_or_def: 100
+    weight: 100
+    required_lv: 200
+    required_job: スピリットハンドラー
+    capabilities:
+      - name: 壊れない
+        value: 1
+      - name: CRI加算
+        value: 25
+      - name: MAXHP増加
+        value: 50
+      - name: 必中
+        value: 25
+      - name: プレイヤー耐性
+        value: 7
+      - name: ノックバックしない
+        value: 1
+      - name: 全種族への物理ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: 全種族への魔法ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: ATK加算
+        value: 100
+        at_refine: 7
+      - name: MATK加算
+        value: 100
+        at_refine: 7
+      - name: ASPD増加
+        value: 10
+        at_refine: 7
+      - name: ATK加算
+        value: 100
+        at_refine: 9
+      - name: MATK加算
+        value: 100
+        at_refine: 9
+      - name: FLEE加算
+        value: 50
+        at_refine: 9
+      - name: ATK加算
+        value: 10
+        per_refine: 1
+        at_transcendence: 1
+      - name: MATK加算
+        value: 10
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全種族への物理ダメージ増加
+        value: 3
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全種族への魔法ダメージ増加
+        value: 3
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 10
+        at_transcendence: 1
+  - name: セレスティアルブーツ
+    yomi: セレスティアルブーツ
+    type: 靴
+    slot: 0
+    weapon_lv: 0
+    atk_or_def: 20
+    weight: 60
+    required_lv: 200
+    required_job: 4次職 拡張4次職
+    capabilities:
+      - name: 壊れない
+        value: 1
+      - name: MDEF加算
+        value: 15
+      - name: CRI加算
+        value: 25
+      - name: MAXHP増加
+        value: 15
+      - name: スキルディレイ減少
+        value: 40
+      - name: 必中
+        value: 25
+      - name: 一般耐性
+        value: 5
+      - name: ボス耐性
+        value: 5
+      - name: プレイヤー耐性
+        value: 10
+      - name: 物理ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: 魔法ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 7
+      - name: MAXHP増加
+        value: 15
+        at_refine: 7
+      - name: FLEE加算
+        value: 50
+        at_refine: 9
+      - name: MAXHP増加
+        value: 25
+        at_refine: 9
+      - name: 全基本ステータス加算
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: 物理ダメージ増加
+        value: 3
+        per_refine: 1
+        at_transcendence: 1
+      - name: 魔法ダメージ増加
+        value: 3
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 10
+        at_transcendence: 1
+  - name: セレスティアルマント
+    yomi: セレスティアルマント
+    type: 肩にかける物
+    slot: 0
+    weapon_lv: 0
+    atk_or_def: 38
+    weight: 40
+    required_lv: 200
+    required_job: 4次職 拡張4次職
+    capabilities:
+      - name: 壊れない
+        value: 1
+      - name: CRI加算
+        value: 25
+      - name: MAXHP増加
+        value: 15
+      - name: スキルディレイ減少
+        value: 25
+      - name: 必中
+        value: 25
+      - name: 一般耐性
+        value: 5
+      - name: ボス耐性
+        value: 5
+      - name: プレイヤー耐性
+        value: 5
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_refine: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_refine: 1
+      - name: ASPD増加
+        value: 10
+        at_refine: 7
+      - name: MAXHP増加
+        value: 10
+        at_refine: 7
+      - name: MAXSP増加
+        value: 10
+        at_refine: 7
+      - name: FLEE加算
+        value: 50
+        at_refine: 9
+      - name: ASPD増加
+        value: 10
+        at_refine: 9
+      - name: MAXHP増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXSP増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 10
+        at_transcendence: 1
+  - name: セレスティアルリング
+    yomi: セレスティアルリング
+    type: アクセサリー
+    slot: 0
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 10
+    required_lv: 200
+    required_job: 4次職 拡張4次職
+    capabilities:
+      - name: CRI加算
+        value: 25
+      - name: ASPD増加
+        value: 15
+      - name: MAXHP増加
+        value: 15
+      - name: スキルディレイ減少
+        value: 15
+      - name: 物理ダメージ増加
+        value: 10
+      - name: 魔法ダメージ増加
+        value: 10
+      - name: プレイヤー耐性
+        value: 3
+  - name: セレスティアルソード
+    yomi: セレスティアルソード
+    type: 片手剣
+    slot: 0
+    weapon_lv: 4
+    atk_or_def: 150
+    weight: 120
+    required_lv: 200
+    required_job: 4次職ソードマン系 4次職マーチャント系
+    capabilities:
+      - name: 壊れない
+        value: 1
+      - name: MATK加算
+        value: 130
+      - name: スキル変動詠唱割合減少
+        value: 100
+      - name: プレイヤー耐性
+        value: 10
+      - name: 全種族への物理ダメージ増加
+        value: 6
+        per_refine: 1
+      - name: 全種族への魔法ダメージ増加
+        value: 3
+        per_refine: 1
+      - name: 全種族への物理ダメージ増加
+        value: 7
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全種族への魔法ダメージ増加
+        value: 7
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 10
+        at_transcendence: 1
+  - name: セレスティアルナイフ
+    yomi: セレスティアルナイフ
+    type: 短剣
+    slot: 0
+    weapon_lv: 4
+    atk_or_def: 120
+    weight: 60
+    required_lv: 200
+    required_job: ハイパーノービス 4次職ソードマン系 4次職マジシャン系 4次職アーチャー系 4次職シーフ系 4次職マーチャント系 ソウルアセティック 蜃気楼 不知火
+    capabilities:
+      - name: 壊れない
+        value: 1
+      - name: MATK加算
+        value: 120
+      - name: スキル変動詠唱割合減少
+        value: 100
+      - name: プレイヤー耐性
+        value: 10
+      - name: 全種族への物理ダメージ増加
+        value: 6
+        per_refine: 1
+      - name: 全種族への魔法ダメージ増加
+        value: 3
+        per_refine: 1
+      - name: 全種族への物理ダメージ増加
+        value: 7
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全種族への魔法ダメージ増加
+        value: 7
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 10
+        at_transcendence: 1
+  - name: セレスティアルスピア
+    yomi: セレスティアルスピア
+    type: 片手槍
+    slot: 0
+    weapon_lv: 4
+    atk_or_def: 150
+    weight: 180
+    required_lv: 200
+    required_job: 4次職ソードマン系
+    capabilities:
+      - name: 壊れない
+        value: 1
+      - name: MATK加算
+        value: 110
+      - name: スキル変動詠唱割合減少
+        value: 100
+      - name: プレイヤー耐性
+        value: 10
+      - name: 全種族への物理ダメージ増加
+        value: 6
+        per_refine: 1
+      - name: 全種族への魔法ダメージ増加
+        value: 3
+        per_refine: 1
+      - name: 全種族への物理ダメージ増加
+        value: 7
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全種族への魔法ダメージ増加
+        value: 7
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 10
+        at_transcendence: 1
+  - name: セレスティアルブック
+    yomi: セレスティアルブック
+    type: 本
+    slot: 0
+    weapon_lv: 4
+    atk_or_def: 120
+    weight: 80
+    required_lv: 200
+    required_job: カーディナル エレメンタルマスター 天帝
+    capabilities:
+      - name: 壊れない
+        value: 1
+      - name: MATK加算
+        value: 140
+      - name: スキル変動詠唱割合減少
+        value: 100
+      - name: プレイヤー耐性
+        value: 10
+      - name: 全種族への物理ダメージ増加
+        value: 6
+        per_refine: 1
+      - name: 全種族への魔法ダメージ増加
+        value: 3
+        per_refine: 1
+      - name: 全種族への物理ダメージ増加
+        value: 7
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全種族への魔法ダメージ増加
+        value: 7
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 10
+        at_transcendence: 1
+  - name: セレスティアルワンド
+    yomi: セレスティアルワンド
+    type: 杖
+    slot: 0
+    weapon_lv: 4
+    atk_or_def: 60
+    weight: 30
+    required_lv: 200
+    required_job: 4次職マジシャン系 4次職アコライト系 ソウルアセティック
+    capabilities:
+      - name: 壊れない
+        value: 1
+      - name: MATK加算
+        value: 180
+      - name: スキル変動詠唱割合減少
+        value: 100
+      - name: プレイヤー耐性
+        value: 10
+      - name: 全種族への物理ダメージ増加
+        value: 6
+        per_refine: 1
+      - name: 全種族への魔法ダメージ増加
+        value: 3
+        per_refine: 1
+      - name: 全種族への物理ダメージ増加
+        value: 7
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全種族への魔法ダメージ増加
+        value: 7
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 10
+        at_transcendence: 1
+  - name: セレスティアルフォックステイル
+    yomi: セレスティアルフォックステイル
+    type: 杖
+    slot: 0
+    weapon_lv: 4
+    atk_or_def: 150
+    weight: 40
+    required_lv: 200
+    required_job: スピリットハンドラー
+    capabilities:
+      - name: 壊れない
+        value: 1
+      - name: MATK加算
+        value: 180
+      - name: スキル変動詠唱割合減少
+        value: 100
+      - name: プレイヤー耐性
+        value: 10
+      - name: 全種族への物理ダメージ増加
+        value: 6
+        per_refine: 1
+      - name: 全種族への魔法ダメージ増加
+        value: 3
+        per_refine: 1
+      - name: 全種族への物理ダメージ増加
+        value: 7
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全種族への魔法ダメージ増加
+        value: 7
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 10
+        at_transcendence: 1
+  - name: セレスティアルナックル
+    yomi: セレスティアルナックル
+    type: 爪
+    slot: 0
+    weapon_lv: 4
+    atk_or_def: 140
+    weight: 40
+    required_lv: 200
+    required_job: 4次職アコライト系
+    capabilities:
+      - name: 壊れない
+        value: 1
+      - name: MATK加算
+        value: 100
+      - name: スキル変動詠唱割合減少
+        value: 100
+      - name: プレイヤー耐性
+        value: 10
+      - name: 全種族への物理ダメージ増加
+        value: 6
+        per_refine: 1
+      - name: 全種族への魔法ダメージ増加
+        value: 3
+        per_refine: 1
+      - name: 全種族への物理ダメージ増加
+        value: 7
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全種族への魔法ダメージ増加
+        value: 7
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 10
+        at_transcendence: 1
+  - name: セレスティアルバイオリン
+    yomi: セレスティアルバイオリン
+    type: 楽器
+    slot: 0
+    weapon_lv: 4
+    atk_or_def: 180
+    weight: 25
+    required_lv: 200
+    required_job: トルバドゥール
+    capabilities:
+      - name: 壊れない
+        value: 1
+      - name: MATK加算
+        value: 120
+      - name: スキル変動詠唱割合減少
+        value: 100
+      - name: プレイヤー耐性
+        value: 10
+      - name: 全種族への物理ダメージ増加
+        value: 6
+        per_refine: 1
+      - name: 全種族への魔法ダメージ増加
+        value: 3
+        per_refine: 1
+      - name: 全種族への物理ダメージ増加
+        value: 7
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全種族への魔法ダメージ増加
+        value: 7
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 10
+        at_transcendence: 1
+  - name: セレスティアルウィップ
+    yomi: セレスティアルウィップ
+    type: 鞭
+    slot: 0
+    weapon_lv: 4
+    atk_or_def: 150
+    weight: 50
+    required_lv: 200
+    required_job: トルヴェール
+    capabilities:
+      - name: 壊れない
+        value: 1
+      - name: MATK加算
+        value: 120
+      - name: スキル変動詠唱割合減少
+        value: 100
+      - name: プレイヤー耐性
+        value: 10
+      - name: 全種族への物理ダメージ増加
+        value: 6
+        per_refine: 1
+      - name: 全種族への魔法ダメージ増加
+        value: 3
+        per_refine: 1
+      - name: 全種族への物理ダメージ増加
+        value: 7
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全種族への魔法ダメージ増加
+        value: 7
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 10
+        at_transcendence: 1
+  - name: セレスティアルメイス
+    yomi: セレスティアルメイス
+    type: 鈍器
+    slot: 0
+    weapon_lv: 4
+    atk_or_def: 150
+    weight: 150
+    required_lv: 200
+    required_job: ハイパーノービス 4次職ソードマン系 4次職アコライト系 4次職マーチャント系
+    capabilities:
+      - name: 壊れない
+        value: 1
+      - name: MATK加算
+        value: 110
+      - name: スキル変動詠唱割合減少
+        value: 100
+      - name: プレイヤー耐性
+        value: 10
+      - name: 全種族への物理ダメージ増加
+        value: 6
+        per_refine: 1
+      - name: 全種族への魔法ダメージ増加
+        value: 3
+        per_refine: 1
+      - name: 全種族への物理ダメージ増加
+        value: 7
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全種族への魔法ダメージ増加
+        value: 7
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 10
+        at_transcendence: 1
+  - name: セレスティアルカタール
+    yomi: セレスティアルカタール
+    type: カタール
+    slot: 0
+    weapon_lv: 4
+    atk_or_def: 150
+    weight: 280
+    required_lv: 200
+    required_job: シャドウクロス
+    capabilities:
+      - name: 壊れない
+        value: 1
+      - name: MATK加算
+        value: 250
+      - name: スキル変動詠唱割合減少
+        value: 100
+      - name: ボス耐性
+        value: 40
+      - name: プレイヤー耐性
+        value: 45
+      - name: 全種族への物理ダメージ増加
+        value: 6
+        per_refine: 1
+      - name: 全種族への魔法ダメージ増加
+        value: 3
+        per_refine: 1
+      - name: 一般耐性
+        value: 40
+        at_transcendence: 1
+      - name: 全種族への物理ダメージ増加
+        value: 7
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全種族への魔法ダメージ増加
+        value: 7
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 10
+        at_transcendence: 1
+  - name: セレスティアルツーハンドアックス
+    yomi: セレスティアルツーハンドアックス
+    type: 両手斧
+    slot: 0
+    weapon_lv: 4
+    atk_or_def: 320
+    weight: 400
+    required_lv: 200
+    required_job: 4次職ソードマン系 4次職マーチャント系
+    capabilities:
+      - name: 壊れない
+        value: 1
+      - name: MATK加算
+        value: 200
+      - name: スキル変動詠唱割合減少
+        value: 100
+      - name: ボス耐性
+        value: 40
+      - name: プレイヤー耐性
+        value: 45
+      - name: 全種族への物理ダメージ増加
+        value: 6
+        per_refine: 1
+      - name: 全種族への魔法ダメージ増加
+        value: 3
+        per_refine: 1
+      - name: 一般耐性
+        value: 40
+        at_transcendence: 1
+      - name: 全種族への物理ダメージ増加
+        value: 7
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全種族への魔法ダメージ増加
+        value: 7
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 10
+        at_transcendence: 1
+  - name: セレスティアルランス
+    yomi: セレスティアルランス
+    type: 両手槍
+    slot: 0
+    weapon_lv: 4
+    atk_or_def: 200
+    weight: 2000
+    required_lv: 200
+    required_job: 4次職ソードマン系
+    capabilities:
+      - name: 壊れない
+        value: 1
+      - name: MATK加算
+        value: 230
+      - name: スキル変動詠唱割合減少
+        value: 100
+      - name: ボス耐性
+        value: 40
+      - name: プレイヤー耐性
+        value: 45
+      - name: 全種族への物理ダメージ増加
+        value: 6
+        per_refine: 1
+      - name: 全種族への魔法ダメージ増加
+        value: 3
+        per_refine: 1
+      - name: 一般耐性
+        value: 40
+        at_transcendence: 1
+      - name: 全種族への物理ダメージ増加
+        value: 7
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全種族への魔法ダメージ増加
+        value: 7
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 10
+        at_transcendence: 1
+  - name: セレスティアルスタッフ
+    yomi: セレスティアルスタッフ
+    type: 杖
+    slot: 0
+    weapon_lv: 4
+    atk_or_def: 120
+    weight: 240
+    required_lv: 200
+    required_job: ハイパーノービス 4次職マジシャン系 4次職アコライト系 ソウルアセティック
+    capabilities:
+      - name: 両手杖
+        value: 1
+      - name: 壊れない
+        value: 1
+      - name: MATK加算
+        value: 270
+      - name: スキル変動詠唱割合減少
+        value: 100
+      - name: ボス耐性
+        value: 40
+      - name: プレイヤー耐性
+        value: 45
+      - name: 全種族への物理ダメージ増加
+        value: 6
+        per_refine: 1
+      - name: 全種族への魔法ダメージ増加
+        value: 3
+        per_refine: 1
+      - name: 一般耐性
+        value: 40
+        at_transcendence: 1
+      - name: 全種族への物理ダメージ増加
+        value: 7
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全種族への魔法ダメージ増加
+        value: 7
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 10
+        at_transcendence: 1
+  - name: セレスティアルボウ
+    yomi: セレスティアルボウ
+    type: 弓
+    slot: 0
+    weapon_lv: 4
+    atk_or_def: 160
+    weight: 90
+    required_lv: 200
+    required_job: 4次職アーチャー系 アビスチェイサー
+    capabilities:
+      - name: 壊れない
+        value: 1
+      - name: MATK加算
+        value: 170
+      - name: スキル変動詠唱割合減少
+        value: 100
+      - name: ボス耐性
+        value: 40
+      - name: プレイヤー耐性
+        value: 45
+      - name: 全種族への物理ダメージ増加
+        value: 6
+        per_refine: 1
+      - name: 全種族への魔法ダメージ増加
+        value: 3
+        per_refine: 1
+      - name: 一般耐性
+        value: 40
+        at_transcendence: 1
+      - name: 全種族への物理ダメージ増加
+        value: 7
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全種族への魔法ダメージ増加
+        value: 7
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 10
+        at_transcendence: 1
+  - name: セレスティアルライフル
+    yomi: セレスティアルライフル
+    type: ライフル
+    slot: 0
+    weapon_lv: 4
+    atk_or_def: 170
+    weight: 85
+    required_lv: 200
+    required_job: ナイトウォッチ
+    capabilities:
+      - name: 壊れない
+        value: 1
+      - name: スキル変動詠唱割合減少
+        value: 100
+      - name: ボス耐性
+        value: 40
+      - name: プレイヤー耐性
+        value: 45
+      - name: 全種族への物理ダメージ増加
+        value: 6
+        per_refine: 1
+      - name: 全種族への魔法ダメージ増加
+        value: 3
+        per_refine: 1
+      - name: 一般耐性
+        value: 40
+        at_transcendence: 1
+      - name: 全種族への物理ダメージ増加
+        value: 7
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全種族への魔法ダメージ増加
+        value: 7
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 10
+        at_transcendence: 1

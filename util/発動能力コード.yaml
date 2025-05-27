@@ -357,6 +357,10 @@ capabilities:
     code: 365
   - name: 狂乱耐性
     code: 366
+  - name: 詠唱が中断されない
+    code: 380
+  - name: ノックバックしない
+    code: 381
   - name: スキルダメージ増加
     code: 5000
   - name: スキル変動詠唱割合減少
