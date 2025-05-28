@@ -139,6 +139,8 @@ capabilities:
     code: 80
   - name: 必中
     code: 86
+  - name: 武器のMATK
+    code: 88
   - name: 魔法ダメージ増加
     code: 89
   - name: ヒール系スキル使用時HP回復量増加
