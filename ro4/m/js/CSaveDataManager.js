@@ -1026,9 +1026,12 @@ class CSaveDataManager {
 					break;
 				}
 
-				// option を取得
+				// エンチャントを取得
 				const objOption = objOptgroup.querySelector(":scope > option[value=\"" + cardIdF + "\"]");
 				if (!objOption) {
+					// エンチャントが一覧に存在しない場合は「無し」に変更する
+					cardIdF = 0;
+					$(`#${objIdPrifixF}_CARD_${slotNoF}`).val("0").trigger("change");
 					break;
 				}
 

@@ -299,14 +299,12 @@ function OnInputQuickControlItemPack() {
  * @returns 
  */
 function OnClickQuickControlSetItemPack() {
-
-	var idx = 0;
-
-	var itemPackId = 0;
-	var itemPackItems = null;
-	var itemPackItemsKind = 0;
-	var itemId = 0;
-	var itemRefine = 0;
+	let idx = 0;
+	let itemPackId = 0;
+	let itemPackItems = null;
+	let itemPackItemsKind = 0;
+	let itemId = 0;
+	let itemRefine = 0;
 
 	// 職業情報の更新
 	InitJobInfo();
@@ -321,26 +319,26 @@ function OnClickQuickControlSetItemPack() {
 
 	// 全解除系は特殊処理
 	switch (itemPackId) {
-
-	case ITEM_PACK_ID_CLEAR_SHADOW_ALL:
-		OnClickQuickControlSetItemPackSubForClearShadowEquipAll();
-		StAllCalc();
-		return;
-
-	case ITEM_PACK_ID_CLEAR_EQUIP_ALL:
-		OnClickQuickControlSetItemPackSubForClearEquipAll();
-		StAllCalc();
-		return;
-
-	case ITEM_PACK_ID_CLEAR_REFINE_ALL:
-		OnClickQuickControlSetItemPackSubForClearRefineAll();
-		StAllCalc();
-		return;
-
-	case ITEM_PACK_ID_CLEAR_CARD_ALL:
-		OnClickQuickControlSetItemPackSubForClearCardAll();
-		StAllCalc();
-		return;
+		case ITEM_PACK_ID_CLEAR_SHADOW_ALL:
+			OnClickQuickControlSetItemPackSubForClearShadowEquipAll();
+			StAllCalc();
+			// select2化されていないのでLoadSelect2は不要
+			return;
+		case ITEM_PACK_ID_CLEAR_EQUIP_ALL:
+			OnClickQuickControlSetItemPackSubForClearEquipAll();
+			StAllCalc();
+			LoadSelect2();
+			return;
+		case ITEM_PACK_ID_CLEAR_REFINE_ALL:
+			OnClickQuickControlSetItemPackSubForClearRefineAll();
+			StAllCalc();
+			// select2化されていないのでLoadSelect2は不要
+			return;
+		case ITEM_PACK_ID_CLEAR_CARD_ALL:
+			OnClickQuickControlSetItemPackSubForClearCardAll();
+			StAllCalc();
+			LoadSelect2();
+			return;
 	}
 
 	// アイテムパックの構成要素を取得
