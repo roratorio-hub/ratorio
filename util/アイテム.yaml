@@ -1,220 +1,880 @@
 item_list:
-  - name: 濃紺のイビルドルイド帽
-    yomi: ノウコンノイビルドルイドボウ
+
+  - name: セレスティアル上段
+    yomi: セレスティアル上段
     type: 上段
-    slot: 1
+    slot: 0
     weapon_lv: 0
     atk_or_def: 10
     weight: 50
     required_lv: 200
     required_job: 4次職 拡張4次職
     capabilities:
-      - name: SPL加算
-        value: 3
-      - name: プレイヤー耐性
-        value: 13
-      - name: 一般耐性
-        value: 20
-      - name: ボス耐性
-        value: 20
-      - name: 魔法ダメージ増加
-        value: 40
-      - name: スキルダメージ増加
+      - name: 壊れない
         value: 1
-        skill: フロムジアビス
-        per_lv: 10
-      - name: スキルダメージ増加
-        value: 1
-        skill: アビススクエア
-        per_lv: 10
-      - name: スキルダメージ増加
-        value: 1
-        skill: オメガアビスストライク
-        per_lv: 10
-      - name: SPL加算
-        value: 1
-        per_refine: 1
-      - name: スキルディレイ減少
-        value: 20
-        at_refine: 10
-      - name: MDEF無視
-        value: 50
-        at_refine: 10
     enchant: #
-      - name: オーブ
+      - name: セレスティアルエンチャント
         slot_list: #
+          - slot: 2
+            refine: 0
+            enchant_list: #
+              - name: 覇王
+              - name: 暴走した魔力
+              - name: 大鷲の眼光
+              - name: 豪傑
+              - name: 真理の解放
+          - slot: 3
+            refine: 0
+            enchant_list: #
+              - name: スキルオーブ(ドラゴンナイトI)
+              - name: スキルオーブ(アークメイジI)
+              - name: スキルオーブ(ウィンドホークI)
+              - name: スキルオーブ(マイスターI)
+              - name: スキルオーブ(シャドウクロスI)
+              - name: スキルオーブ(カーディナルI)
+              - name: スキルオーブ(インペリアルガードI)
+              - name: スキルオーブ(エレメンタルマスターI)
+              - name: スキルオーブ(トルバドゥール&トルヴェールI)
+              - name: スキルオーブ(バイオロI)
+              - name: スキルオーブ(アビスチェイサーI)
+              - name: スキルオーブ(インクイジターI)
+              - name: スキルオーブ(ソウルアセティックI)
+              - name: スキルオーブ(ナイトウォッチI)
+              - name: スキルオーブ(蜃気楼&不知火I)
+              - name: スキルオーブ(天帝I)
+              - name: スキルオーブ(スピリットハンドラーI)
+              - name: スキルオーブ(ハイパーノービスI)
           - slot: 4
             refine: 0
             enchant_list: #
-              - name: 潜在解放(アビスチェイサーXIII)
-          - slot: 3
-            refine: 8
-            enchant_list: #
-              - name: Str+10
-              - name: Agi+10
-              - name: Vit+10
-              - name: Int+10
-              - name: Dex+10
-              - name: Luk+10
-              - name: スキルディレイ-15%
-              - name: 暴走した魔力
-          - slot: 2
-            refine: 9
-            enchant_list: #
-              - name: Str+10
-              - name: Agi+10
-              - name: Vit+10
-              - name: Int+10
-              - name: Dex+10
-              - name: Luk+10
-              - name: スキルディレイ-15%
-              - name: 厄災の魔将
+              - name: 潜在解放(ドラゴンナイトII)
+              - name: 潜在解放(アークメイジII)
+              - name: 潜在解放(ウィンドホークII)
+              - name: 潜在解放(マイスターV)
+              - name: 潜在解放(シャドウクロスVI)
+              - name: 潜在解放(カーディナルIV)
+              - name: 潜在解放(インペリアルガードIII)
+              - name: 潜在解放(エレメンタルマスターV)
+              - name: 潜在解放(トルバドゥール&トルヴェールI)
+              - name: 潜在解放(バイオロII)
+              - name: 潜在解放(アビスチェイサーVI)
+              - name: 潜在解放(インクイジターIV)
+              - name: 潜在解放(ソウルアセティックIV)
+              - name: 潜在解放(ナイトウォッチIII)
+              - name: 潜在解放(蜃気楼&不知火III)
+              - name: 潜在解放(天帝IV)
+              - name: 潜在解放(スピリットハンドラーII)
+              - name: 潜在解放(ハイパーノービスVI)
 
-    # リチャード（あるタイルとおなじ）
-
-  - name: エクリプスマフラー
-    yomi: エクリプスマフラー
-    type: 下段
+  - name: セレスティアル鎧
+    yomi: セレスティアル鎧
+    type: 上段
     slot: 0
     weapon_lv: 0
-    atk_or_def: 0
-    weight: 10
-    required_lv: 200
-    required_job: ウィンドホーク
-    capabilities:
-      - name: プレイヤー耐性
-        value: 3
-      - name: 全サイズへの物理ダメージ増加
-        value: 1
-        per_lv: 10
-      - name: 全サイズへの魔法ダメージ増加
-        value: 1
-        per_lv: 10
-    enchant: #
-      - name: ミオン
-        slot_list: #
-          - slot: 4
-            refine: 0
-            enchant_list: #
-              - name: 潜在解放(ウィンドホークXIV)
-          - slot: 3
-            refine: 0
-            enchant_list: #
-              - name: SpecialStr
-              - name: SpecialAgi
-              - name: SpecialVit
-              - name: SpecialInt
-              - name: SpecialDex
-              - name: SpecialLuk
-              - name: 固定詠唱時間-70%
-              - name: 氷結耐性
-              - name: 冷凍耐性
-              - name: 深い睡眠耐性
-              - name: 新毒耐性
-          - slot: 2
-            refine: 0
-            enchant_list: #
-              - name: Str+10
-              - name: Agi+10
-              - name: Vit+10
-              - name: Int+10
-              - name: Dex+10
-              - name: Luk+10
-              - name: 詠唱妨害不可
-              - name: 英雄の凱歌
-              - name: 起源の王
-              - name: 殺意の怨念
-              - name: 豊穣の女神
-              - name: 厄災の魔将
-              - name: 異境の統轄者
-              - name: 知識の探求者
-              - name: 最果ての支配者
-
-  - name: 白きカーリッツバーグ騎士団の籠手
-    yomi: シロキカアリッツバーグキシダンノコテ
-    type: アクセサリー
-    slot: 1
-    weapon_lv: 0
-    atk_or_def: 0
-    weight: 10
+    atk_or_def: 10
+    weight: 50
     required_lv: 200
     required_job: 4次職 拡張4次職
     capabilities:
-      - name: SPL加算
-        value: 3
-      - name: 魔法ダメージ増加
-        value: 40
-      - name: プレイヤー耐性
-        value: 3
-      - name: スキル使用可能
-        skill: ファイアーウォール
-        skill_lv: 10
-      - name: スキルダメージ増加
+      - name: 壊れない
         value: 1
-        skill: レイオブジェネシス
-        per_lv: 3
-      - name: スキルダメージ増加
-        value: 1
-        skill: クロスレイン
-        per_lv: 10
-      - name: スキルダメージ増加
-        value: 1
-        skill: ジャッジメントクロス
-        per_lv: 10
     enchant: #
-      - name: モチモチ
+      - name: セレスティアルエンチャント
         slot_list: #
-          - slot: 4
-            refine: 0
-            enchant_list: #
-              - name: Str+7
-              - name: Agi+7
-              - name: Vit+7
-              - name: Int+7
-              - name: Dex+7
-              - name: Luk+7
-              - name: SpecialStr
-              - name: SpecialAgi
-              - name: SpecialVit
-              - name: SpecialInt
-              - name: SpecialDex
-              - name: SpecialLuk
-              - name: 攻撃速度+15%
-              - name: スキルディレイ-15%
-          - slot: 3
-            refine: 0
-            enchant_list: #
-              - name: Str+7
-              - name: Agi+7
-              - name: Vit+7
-              - name: Int+7
-              - name: Dex+7
-              - name: Luk+7
-              - name: SpecialStr
-              - name: SpecialAgi
-              - name: SpecialVit
-              - name: SpecialInt
-              - name: SpecialDex
-              - name: SpecialLuk
-              - name: MaxHP+15%
-              - name: 潜在解放(インペリアルガードVI)
           - slot: 2
             refine: 0
             enchant_list: #
-              - name: Str+7
-              - name: Agi+7
-              - name: Vit+7
-              - name: Int+7
-              - name: Dex+7
-              - name: Luk+7
+              - name: 火属性付与(鎧)
+              - name: 水属性付与(鎧)
+              - name: 風属性付与(鎧)
+              - name: 地属性付与(鎧)
+              - name: 聖属性付与(鎧)
+              - name: 闇属性付与(鎧)
+              - name: 念属性付与(鎧)
+              - name: 毒属性付与(鎧)
+              - name: 不死属性付与(鎧)
+          - slot: 3
+            refine: 0
+            enchant_list: #
+              - name: スキルオーブ(ドラゴンナイトI)
+              - name: スキルオーブ(アークメイジI)
+              - name: スキルオーブ(ウィンドホークI)
+              - name: スキルオーブ(マイスターI)
+              - name: スキルオーブ(シャドウクロスI)
+              - name: スキルオーブ(カーディナルI)
+              - name: スキルオーブ(インペリアルガードI)
+              - name: スキルオーブ(エレメンタルマスターI)
+              - name: スキルオーブ(トルバドゥール&トルヴェールI)
+              - name: スキルオーブ(バイオロI)
+              - name: スキルオーブ(アビスチェイサーI)
+              - name: スキルオーブ(インクイジターI)
+              - name: スキルオーブ(ソウルアセティックI)
+              - name: スキルオーブ(ナイトウォッチI)
+              - name: スキルオーブ(蜃気楼&不知火I)
+              - name: スキルオーブ(天帝I)
+              - name: スキルオーブ(スピリットハンドラーI)
+              - name: スキルオーブ(ハイパーノービスI)
+
+  - name: セレスティアル肩
+    yomi: セレスティアル肩
+    type: 上段
+    slot: 0
+    weapon_lv: 0
+    atk_or_def: 10
+    weight: 50
+    required_lv: 200
+    required_job: 4次職 拡張4次職
+    capabilities:
+      - name: 壊れない
+        value: 1
+    enchant: #
+      - name: セレスティアルエンチャント
+        slot_list: #
+          - slot: 2
+            refine: 0
+            enchant_list: #
+              - name: ガードセイント
+              - name: ガードダークネス
+              - name: ガードテレキネシス
+              - name: ガードポイズン
+          - slot: 3
+            refine: 0
+            enchant_list: #
+              - name: スキルオーブ(ドラゴンナイトI)
+              - name: スキルオーブ(アークメイジI)
+              - name: スキルオーブ(ウィンドホークI)
+              - name: スキルオーブ(マイスターI)
+              - name: スキルオーブ(シャドウクロスI)
+              - name: スキルオーブ(カーディナルI)
+              - name: スキルオーブ(インペリアルガードI)
+              - name: スキルオーブ(エレメンタルマスターI)
+              - name: スキルオーブ(トルバドゥール&トルヴェールI)
+              - name: スキルオーブ(バイオロI)
+              - name: スキルオーブ(アビスチェイサーI)
+              - name: スキルオーブ(インクイジターI)
+              - name: スキルオーブ(ソウルアセティックI)
+              - name: スキルオーブ(ナイトウォッチI)
+              - name: スキルオーブ(蜃気楼&不知火I)
+              - name: スキルオーブ(天帝I)
+              - name: スキルオーブ(スピリットハンドラーI)
+              - name: スキルオーブ(ハイパーノービスI)
+
+  - name: セレスティアル靴
+    yomi: セレスティアル靴
+    type: 上段
+    slot: 0
+    weapon_lv: 0
+    atk_or_def: 10
+    weight: 50
+    required_lv: 200
+    required_job: 4次職 拡張4次職
+    capabilities:
+      - name: 壊れない
+        value: 1
+    enchant: #
+      - name: セレスティアルエンチャント
+        slot_list: #
+          - slot: 2
+            refine: 0
+            enchant_list: #
+              - name: 覇王
+              - name: 暴走した魔力
+              - name: 大鷲の眼光
+              - name: 豪傑
+              - name: 真理の解放
+          - slot: 3
+            refine: 0
+            enchant_list: #
+              - name: スキルオーブ(ドラゴンナイトI)
+              - name: スキルオーブ(アークメイジI)
+              - name: スキルオーブ(ウィンドホークI)
+              - name: スキルオーブ(マイスターI)
+              - name: スキルオーブ(シャドウクロスI)
+              - name: スキルオーブ(カーディナルI)
+              - name: スキルオーブ(インペリアルガードI)
+              - name: スキルオーブ(エレメンタルマスターI)
+              - name: スキルオーブ(トルバドゥール&トルヴェールI)
+              - name: スキルオーブ(バイオロI)
+              - name: スキルオーブ(アビスチェイサーI)
+              - name: スキルオーブ(インクイジターI)
+              - name: スキルオーブ(ソウルアセティックI)
+              - name: スキルオーブ(ナイトウォッチI)
+              - name: スキルオーブ(蜃気楼&不知火I)
+              - name: スキルオーブ(天帝I)
+              - name: スキルオーブ(スピリットハンドラーI)
+              - name: スキルオーブ(ハイパーノービスI)
+
+  - name: セレスティアルアクセ
+    yomi: セレスティアルアクセ
+    type: 上段
+    slot: 0
+    weapon_lv: 0
+    atk_or_def: 10
+    weight: 50
+    required_lv: 200
+    required_job: 4次職 拡張4次職
+    capabilities:
+      - name: 壊れない
+        value: 1
+    enchant: #
+      - name: セレスティアルエンチャント
+        slot_list: #
+          - slot: 2
+            refine: 0
+            enchant_list: #
+              - name: Cri + 50
+              - name: 必中攻撃+25%
+              - name: Def50%無視
+              - name: Mdef50%無視
+          - slot: 3
+            refine: 0
+            enchant_list: #
+              - name: スキルオーブ(ドラゴンナイトI)
+              - name: スキルオーブ(アークメイジI)
+              - name: スキルオーブ(ウィンドホークI)
+              - name: スキルオーブ(マイスターI)
+              - name: スキルオーブ(シャドウクロスI)
+              - name: スキルオーブ(カーディナルI)
+              - name: スキルオーブ(インペリアルガードI)
+              - name: スキルオーブ(エレメンタルマスターI)
+              - name: スキルオーブ(トルバドゥール&トルヴェールI)
+              - name: スキルオーブ(バイオロI)
+              - name: スキルオーブ(アビスチェイサーI)
+              - name: スキルオーブ(インクイジターI)
+              - name: スキルオーブ(ソウルアセティックI)
+              - name: スキルオーブ(ナイトウォッチI)
+              - name: スキルオーブ(蜃気楼&不知火I)
+              - name: スキルオーブ(天帝I)
+              - name: スキルオーブ(スピリットハンドラーI)
+              - name: スキルオーブ(ハイパーノービスI)
+          - slot: 4
+            refine: 0
+            enchant_list: #
+              - name: 潜在解放(ドラゴンナイトV)
+              - name: 潜在解放(アークメイジIII)
+              - name: 潜在解放(ウィンドホークIV)
+              - name: 潜在解放(マイスターVI)
+              - name: 潜在解放(シャドウクロスV)
+              - name: 潜在解放(カーディナルII)
+              - name: 潜在解放(インペリアルガードV)
+              - name: 潜在解放(エレメンタルマスターIII)
+              - name: 潜在解放(トルバドゥール&トルヴェールIII)
+              - name: 潜在解放(バイオロIII)
+              - name: 潜在解放(アビスチェイサーV)
+              - name: 潜在解放(インクイジターII)
+              - name: 潜在解放(ソウルアセティックII)
+              - name: 潜在解放(ナイトウォッチX)
+              - name: 潜在解放(蜃気楼&不知火XI)
+              - name: 潜在解放(天帝III)
+              - name: 潜在解放(スピリットハンドラーXII)
+              - name: 潜在解放(ハイパーノービスIV)
+
+  - name: セレスティアル武器
+    yomi: セレスティアル武器
+    type: 上段
+    slot: 0
+    weapon_lv: 0
+    atk_or_def: 10
+    weight: 50
+    required_lv: 200
+    required_job: 4次職 拡張4次職
+    capabilities:
+      - name: 壊れない
+        value: 1
+    enchant: #
+      - name: セレスティアルエンチャント
+        slot_list: #
+          - slot: 2
+            refine: 0
+            enchant_list: #
               - name: SpecialStr
               - name: SpecialAgi
               - name: SpecialVit
               - name: SpecialInt
               - name: SpecialDex
               - name: SpecialLuk
-              - name: 暴走した魔力
+              - name: 火属性付与(武器)
+              - name: 水属性付与(武器)
+              - name: 風属性付与(武器)
+              - name: 地属性付与(武器)
+              - name: 聖属性付与(武器)
+              - name: 闇属性付与(武器)
+              - name: 念属性付与(武器)
+              - name: 毒属性付与(武器)
+          - slot: 3
+            refine: 0
+            enchant_list: #
+              - name: スキルオーブ(ドラゴンナイトI)
+              - name: スキルオーブ(アークメイジI)
+              - name: スキルオーブ(ウィンドホークI)
+              - name: スキルオーブ(マイスターI)
+              - name: スキルオーブ(シャドウクロスI)
+              - name: スキルオーブ(カーディナルI)
+              - name: スキルオーブ(インペリアルガードI)
+              - name: スキルオーブ(エレメンタルマスターI)
+              - name: スキルオーブ(トルバドゥール&トルヴェールI)
+              - name: スキルオーブ(バイオロI)
+              - name: スキルオーブ(アビスチェイサーI)
+              - name: スキルオーブ(インクイジターI)
+              - name: スキルオーブ(ソウルアセティックI)
+              - name: スキルオーブ(ナイトウォッチI)
+              - name: スキルオーブ(蜃気楼&不知火I)
+              - name: スキルオーブ(天帝I)
+              - name: スキルオーブ(スピリットハンドラーI)
+              - name: スキルオーブ(ハイパーノービスI)
+          - slot: 4
+            refine: 0
+            enchant_list: #
+              - name: 潜在解放(ドラゴンナイトI)
+              - name: 潜在解放(アークメイジI)
+              - name: 潜在解放(ウィンドホークI)
+              - name: 潜在解放(マイスターI)
+              - name: 潜在解放(シャドウクロスI)
+              - name: 潜在解放(カーディナルI)
+              - name: 潜在解放(インペリアルガードI)
+              - name: 潜在解放(エレメンタルマスターI)
+              - name: 潜在解放(トルバドゥール&トルヴェールI)
+              - name: 潜在解放(バイオロI)
+              - name: 潜在解放(アビスチェイサーI)
+              - name: 潜在解放(インクイジターI)
+              - name: 潜在解放(ソウルアセティックI)
+              - name: 潜在解放(ナイトウォッチI)
+              - name: 潜在解放(蜃気楼&不知火I)
+              - name: 潜在解放(天帝I)
+              - name: 潜在解放(スピリットハンドラーI)
+              - name: 潜在解放(ハイパーノービスI)
 
-#リチャード（あるタイルとおなじ）
+#  - name: セレスティアル武器ドラゴンナイト
+#    yomi: セレスティアル
+#    type: 上段
+#    slot: 0
+#    weapon_lv: 0
+#    atk_or_def: 10
+#    weight: 50
+#    required_lv: 200
+#    required_job: 4次職 拡張4次職
+#    capabilities:
+#      - name: 壊れない
+#        value: 1
+#    enchant: #
+#      - name: セレスティアルエンチャント
+#        slot_list: #
+#          - slot: 3
+#            refine: 0
+#            enchant_list: #
+#              - name: スキルオーブ(ドラゴンナイトI)
+#          - slot: 4
+#            refine: 0
+#            enchant_list: #
+#              - name: 潜在解放(ドラゴンナイトI)
+#
+#  - name: セレスティアル武器アークメイジ
+#    yomi: セレスティアル
+#    type: 上段
+#    slot: 0
+#    weapon_lv: 0
+#    atk_or_def: 10
+#    weight: 50
+#    required_lv: 200
+#    required_job: 4次職 拡張4次職
+#    capabilities:
+#      - name: 壊れない
+#        value: 1
+#    enchant: #
+#      - name: セレスティアルエンチャント
+#        slot_list: #
+#          - slot: 3
+#            refine: 0
+#            enchant_list: #
+#              - name: スキルオーブ(アークメイジI)
+#          - slot: 4
+#            refine: 0
+#            enchant_list: #
+#              - name: 潜在解放(アークメイジI)
+#
+#
+#  - name: セレスティアル武器ウィンドホーク
+#    yomi: セレスティアル
+#    type: 上段
+#    slot: 0
+#    weapon_lv: 0
+#    atk_or_def: 10
+#    weight: 50
+#    required_lv: 200
+#    required_job: 4次職 拡張4次職
+#    capabilities:
+#      - name: 壊れない
+#        value: 1
+#    enchant: #
+#      - name: セレスティアルエンチャント
+#        slot_list: #
+#          - slot: 3
+#            refine: 0
+#            enchant_list: #
+#              - name: スキルオーブ(ウィンドホークI)
+#          - slot: 4
+#            refine: 0
+#            enchant_list: #
+#              - name: 潜在解放(ウィンドホークI)
+#
+#  - name: セレスティアル武器マイスター
+#    yomi: セレスティアル
+#    type: 上段
+#    slot: 0
+#    weapon_lv: 0
+#    atk_or_def: 10
+#    weight: 50
+#    required_lv: 200
+#    required_job: 4次職 拡張4次職
+#    capabilities:
+#      - name: 壊れない
+#        value: 1
+#    enchant: #
+#      - name: セレスティアルエンチャント
+#        slot_list: #
+#          - slot: 3
+#            refine: 0
+#            enchant_list: #
+#              - name: スキルオーブ(マイスターI)
+#          - slot: 4
+#            refine: 0
+#            enchant_list: #
+#              - name: 潜在解放(マイスターI)
+#
+#
+#  - name: セレスティアル武器シャドウクロス
+#    yomi: セレスティアル
+#    type: 上段
+#    slot: 0
+#    weapon_lv: 0
+#    atk_or_def: 10
+#    weight: 50
+#    required_lv: 200
+#    required_job: 4次職 拡張4次職
+#    capabilities:
+#      - name: 壊れない
+#        value: 1
+#    enchant: #
+#      - name: セレスティアルエンチャント
+#        slot_list: #
+#          - slot: 3
+#            refine: 0
+#            enchant_list: #
+#              - name: スキルオーブ(シャドウクロスI)
+#          - slot: 4
+#            refine: 0
+#            enchant_list: #
+#              - name: 潜在解放(シャドウクロスI)
+#
+#  - name: セレスティアル武器カーディナル
+#    yomi: セレスティアル
+#    type: 上段
+#    slot: 0
+#    weapon_lv: 0
+#    atk_or_def: 10
+#    weight: 50
+#    required_lv: 200
+#    required_job: 4次職 拡張4次職
+#    capabilities:
+#      - name: 壊れない
+#        value: 1
+#    enchant: #
+#      - name: セレスティアルエンチャント
+#        slot_list: #
+#          - slot: 3
+#            refine: 0
+#            enchant_list: #
+#              - name: スキルオーブ(カーディナルI)
+#          - slot: 4
+#            refine: 0
+#            enchant_list: #
+#              - name: 潜在解放(カーディナルI)
+#
+#  - name: セレスティアル武器インペリアルガード
+#    yomi: セレスティアル
+#    type: 上段
+#    slot: 0
+#    weapon_lv: 0
+#    atk_or_def: 10
+#    weight: 50
+#    required_lv: 200
+#    required_job: 4次職 拡張4次職
+#    capabilities:
+#      - name: 壊れない
+#        value: 1
+#    enchant: #
+#      - name: セレスティアルエンチャント
+#        slot_list: #
+#          - slot: 3
+#            refine: 0
+#            enchant_list: #
+#              - name: スキルオーブ(インペリアルガードI)
+#          - slot: 4
+#            refine: 0
+#            enchant_list: #
+#              - name: 潜在解放(インペリアルガードI)
+#
+#  - name: セレスティアル武器エレメンタルマスター
+#    yomi: セレスティアル
+#    type: 上段
+#    slot: 0
+#    weapon_lv: 0
+#    atk_or_def: 10
+#    weight: 50
+#    required_lv: 200
+#    required_job: 4次職 拡張4次職
+#    capabilities:
+#      - name: 壊れない
+#        value: 1
+#    enchant: #
+#      - name: セレスティアルエンチャント
+#        slot_list: #
+#          - slot: 3
+#            refine: 0
+#            enchant_list: #
+#              - name: スキルオーブ(エレメンタルマスターI)
+#          - slot: 4
+#            refine: 0
+#            enchant_list: #
+#              - name: 潜在解放(エレメンタルマスターI)
+#
+#  - name: セレスティアル武器トルバドゥール
+#    yomi: セレスティアル
+#    type: 上段
+#    slot: 0
+#    weapon_lv: 0
+#    atk_or_def: 10
+#    weight: 50
+#    required_lv: 200
+#    required_job: 4次職 拡張4次職
+#    capabilities:
+#      - name: 壊れない
+#        value: 1
+#    enchant: #
+#      - name: セレスティアルエンチャント
+#        slot_list: #
+#          - slot: 3
+#            refine: 0
+#            enchant_list: #
+#              - name: スキルオーブ(トルバドゥール&トルヴェールI)
+#          - slot: 4
+#            refine: 0
+#            enchant_list: #
+#              - name: 潜在解放(トルバドゥールI)
+#
+#  - name: セレスティアル武器トルヴェール
+#    yomi: セレスティアル
+#    type: 上段
+#    slot: 0
+#    weapon_lv: 0
+#    atk_or_def: 10
+#    weight: 50
+#    required_lv: 200
+#    required_job: 4次職 拡張4次職
+#    capabilities:
+#      - name: 壊れない
+#        value: 1
+#    enchant: #
+#      - name: セレスティアルエンチャント
+#        slot_list: #
+#          - slot: 3
+#            refine: 0
+#            enchant_list: #
+#              - name: スキルオーブ(トルバドゥール&トルヴェールI)
+#          - slot: 4
+#            refine: 0
+#            enchant_list: #
+#              - name: 潜在解放(トルヴェールI)
+#
+#  - name: セレスティアル武器バイオロ
+#    yomi: セレスティアル
+#    type: 上段
+#    slot: 0
+#    weapon_lv: 0
+#    atk_or_def: 10
+#    weight: 50
+#    required_lv: 200
+#    required_job: 4次職 拡張4次職
+#    capabilities:
+#      - name: 壊れない
+#        value: 1
+#    enchant: #
+#      - name: セレスティアルエンチャント
+#        slot_list: #
+#          - slot: 3
+#            refine: 0
+#            enchant_list: #
+#              - name: スキルオーブ(バイオロI)
+#          - slot: 4
+#            refine: 0
+#            enchant_list: #
+#              - name: 潜在解放(バイオロI)
+#
+#  - name: セレスティアル武器アビスチェイサー
+#    yomi: セレスティアル
+#    type: 上段
+#    slot: 0
+#    weapon_lv: 0
+#    atk_or_def: 10
+#    weight: 50
+#    required_lv: 200
+#    required_job: 4次職 拡張4次職
+#    capabilities:
+#      - name: 壊れない
+#        value: 1
+#    enchant: #
+#      - name: セレスティアルエンチャント
+#        slot_list: #
+#          - slot: 3
+#            refine: 0
+#            enchant_list: #
+#              - name: スキルオーブ(アビスチェイサーI)
+#          - slot: 4
+#            refine: 0
+#            enchant_list: #
+#              - name: 潜在解放(アビスチェイサーI)
+#
+#  - name: セレスティアル武器インクイジター
+#    yomi: セレスティアル
+#    type: 上段
+#    slot: 0
+#    weapon_lv: 0
+#    atk_or_def: 10
+#    weight: 50
+#    required_lv: 200
+#    required_job: 4次職 拡張4次職
+#    capabilities:
+#      - name: 壊れない
+#        value: 1
+#    enchant: #
+#      - name: セレスティアルエンチャント
+#        slot_list: #
+#          - slot: 3
+#            refine: 0
+#            enchant_list: #
+#              - name: スキルオーブ(インクイジターI)
+#          - slot: 4
+#            refine: 0
+#            enchant_list: #
+#              - name: 潜在解放(インクイジターI)
+#
+#  - name: セレスティアル武器ソウルアセティック
+#    yomi: セレスティアル
+#    type: 上段
+#    slot: 0
+#    weapon_lv: 0
+#    atk_or_def: 10
+#    weight: 50
+#    required_lv: 200
+#    required_job: 4次職 拡張4次職
+#    capabilities:
+#      - name: 壊れない
+#        value: 1
+#    enchant: #
+#      - name: セレスティアルエンチャント
+#        slot_list: #
+#          - slot: 3
+#            refine: 0
+#            enchant_list: #
+#              - name: スキルオーブ(ソウルアセティックI)
+#          - slot: 4
+#            refine: 0
+#            enchant_list: #
+#              - name: 潜在解放(ソウルアセティックI)
+#  - name: セレスティアル武器ナイトウォッチ
+#    yomi: セレスティアル
+#    type: 上段
+#    slot: 0
+#    weapon_lv: 0
+#    atk_or_def: 10
+#    weight: 50
+#    required_lv: 200
+#    required_job: 4次職 拡張4次職
+#    capabilities:
+#      - name: 壊れない
+#        value: 1
+#    enchant: #
+#      - name: セレスティアルエンチャント
+#        slot_list: #
+#          - slot: 3
+#            refine: 0
+#            enchant_list: #
+#              - name: スキルオーブ(ナイトウォッチI)
+#          - slot: 4
+#            refine: 0
+#            enchant_list: #
+#              - name: 潜在解放(ナイトウォッチI)
+#  - name: セレスティアル武器蜃気楼&不知火
+#    yomi: セレスティアル
+#    type: 上段
+#    slot: 0
+#    weapon_lv: 0
+#    atk_or_def: 10
+#    weight: 50
+#    required_lv: 200
+#    required_job: 4次職 拡張4次職
+#    capabilities:
+#      - name: 壊れない
+#        value: 1
+#    enchant: #
+#      - name: セレスティアルエンチャント
+#        slot_list: #
+#          - slot: 3
+#            refine: 0
+#            enchant_list: #
+#              - name: スキルオーブ(蜃気楼&不知火I)
+#          - slot: 4
+#            refine: 0
+#            enchant_list: #
+#              - name: 潜在解放(蜃気楼&不知火I)
+#
+#
+#  - name: セレスティアル武器天帝
+#    yomi: セレスティアル
+#    type: 上段
+#    slot: 0
+#    weapon_lv: 0
+#    atk_or_def: 10
+#    weight: 50
+#    required_lv: 200
+#    required_job: 4次職 拡張4次職
+#    capabilities:
+#      - name: 壊れない
+#        value: 1
+#    enchant: #
+#      - name: セレスティアルエンチャント
+#        slot_list: #
+#          - slot: 3
+#            refine: 0
+#            enchant_list: #
+#              - name: スキルオーブ(天帝I)
+#          - slot: 4
+#            refine: 0
+#            enchant_list: #
+#              - name: 潜在解放(天帝I)
+#
+#  - name: セレスティアル武器スピリットハンドラー
+#    yomi: セレスティアル
+#    type: 上段
+#    slot: 0
+#    weapon_lv: 0
+#    atk_or_def: 10
+#    weight: 50
+#    required_lv: 200
+#    required_job: 4次職 拡張4次職
+#    capabilities:
+#      - name: 壊れない
+#        value: 1
+#    enchant: #
+#      - name: セレスティアルエンチャント
+#        slot_list: #
+#          - slot: 3
+#            refine: 0
+#            enchant_list: #
+#              - name: スキルオーブ(スピリットハンドラーI)
+#          - slot: 4
+#            refine: 0
+#            enchant_list: #
+#              - name: 潜在解放(スピリットハンドラーI)
+#
+#  - name: セレスティアル武器ハイパーノービス
+#    yomi: セレスティアル
+#    type: 上段
+#    slot: 0
+#    weapon_lv: 0
+#    atk_or_def: 10
+#    weight: 50
+#    required_lv: 200
+#    required_job: 4次職 拡張4次職
+#    capabilities:
+#      - name: 壊れない
+#        value: 1
+#    enchant: #
+#      - name: セレスティアルエンチャント
+#        slot_list: #
+#          - slot: 3
+#            refine: 0
+#            enchant_list: #
+#              - name: スキルオーブ(ハイパーノービスI)
+#          - slot: 4
+#            refine: 0
+#            enchant_list: #
+#              - name: 潜在解放(ハイパーノービスI)
 
-#ファロス１６
+#              - name: 潜在解放(ドラゴンナイトI)
+#              - name: 潜在解放(アークメイジI)
+#              - name: 潜在解放(ウィンドホークI)
+#              - name: 潜在解放(マイスターI)
+#              - name: 潜在解放(シャドウクロスI)
+#              - name: 潜在解放(カーディナルI)
+#              - name: 潜在解放(インペリアルガードI)
+#              - name: 潜在解放(エレメンタルマスターI)
+#              - name: 潜在解放(トルバドゥール&トルヴェールI)
+#              - name: 潜在解放(バイオロI)
+#              - name: 潜在解放(アビスチェイサーI)
+#              - name: 潜在解放(インクイジターI)
+#              - name: 潜在解放(ソウルアセティックI)
+#              - name: 潜在解放(ナイトウォッチI)
+#              - name: 潜在解放(蜃気楼&不知火I)
+#              - name: 潜在解放(天帝I)
+#              - name: 潜在解放(スピリットハンドラーI)
+#              - name: 潜在解放(ハイパーノービスI)
+#
+#              - name: スキルオーブ(ドラゴンナイトI)
+#              - name: スキルオーブ(アークメイジI)
+#              - name: スキルオーブ(ウィンドホークI)
+#              - name: スキルオーブ(マイスターI)
+#              - name: スキルオーブ(シャドウクロスI)
+#              - name: スキルオーブ(カーディナルI)
+#              - name: スキルオーブ(インペリアルガードI)
+#              - name: スキルオーブ(エレメンタルマスターI)
+#              - name: スキルオーブ(トルバドゥール&トルヴェールI)
+#              - name: スキルオーブ(バイオロI)
+#              - name: スキルオーブ(アビスチェイサーI)
+#              - name: スキルオーブ(インクイジターI)
+#              - name: スキルオーブ(ソウルアセティックI)
+#              - name: スキルオーブ(ナイトウォッチI)
+#              - name: スキルオーブ(蜃気楼&不知火I)
+#              - name: スキルオーブ(天帝I)
+#              - name: スキルオーブ(スピリットハンドラーI)
+#              - name: スキルオーブ(ハイパーノービスI)
+#
+#
+#              - name: 潜在解放(ドラゴンナイトII)
+#              - name: 潜在解放(アークメイジII)
+#              - name: 潜在解放(ウィンドホークII)
+#              - name: 潜在解放(マイスターV)
+#              - name: 潜在解放(シャドウクロスVI)
+#              - name: 潜在解放(カーディナルIV)
+#              - name: 潜在解放(インペリアルガードIII)
+#              - name: 潜在解放(エレメンタルマスターV)
+#              - name: 潜在解放(トルバドゥール&トルヴェールI)
+#              - name: 潜在解放(バイオロII)
+#              - name: 潜在解放(アビスチェイサーVI)
+#              - name: 潜在解放(インクイジターIV)
+#              - name: 潜在解放(ソウルアセティックIV)
+#              - name: 潜在解放(ナイトウォッチIII)
+#              - name: 潜在解放(蜃気楼&不知火III)
+#              - name: 潜在解放(天帝IV)
+#              - name: 潜在解放(スピリットハンドラーII)
+#              - name: 潜在解放(ハイパーノービスVI)
+#
+#
+#              - name: 潜在解放(ドラゴンナイトV)
+#              - name: 潜在解放(アークメイジIII)
+#              - name: 潜在解放(ウィンドホークIV)
+#              - name: 潜在解放(マイスターVI)
+#              - name: 潜在解放(シャドウクロスV)
+#              - name: 潜在解放(カーディナルII)
+#              - name: 潜在解放(インペリアルガードV)
+#              - name: 潜在解放(エレメンタルマスターIII)
+#              - name: 潜在解放(トルバドゥール&トルヴェールIII)
+#              - name: 潜在解放(バイオロIII)
+#              - name: 潜在解放(アビスチェイサーV)
+#              - name: 潜在解放(インクイジターII)
+#              - name: 潜在解放(ソウルアセティックII)
+#              - name: 潜在解放(ナイトウォッチX)
+#              - name: 潜在解放(蜃気楼&不知火XI)
+#              - name: 潜在解放(天帝III)
+#              - name: 潜在解放(スピリットハンドラーXII)
+#              - name: 潜在解放(ハイパーノービスIV)

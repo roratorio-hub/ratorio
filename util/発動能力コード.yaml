@@ -139,6 +139,8 @@ capabilities:
     code: 80
   - name: 必中
     code: 86
+  - name: 武器のMATK
+    code: 88
   - name: 魔法ダメージ増加
     code: 89
   - name: ヒール系スキル使用時HP回復量増加
@@ -153,8 +155,8 @@ capabilities:
     code: 98
   - name: 大型への魔法ダメージ増加
     code: 99
-  - name: MATK加算  # 杖型 = 固定値加算とのこと
-    code: 88
+  - name: MATK加算
+    code: 100
   - name: 固定詠唱ミリ秒減少  # スキルに依存しない固定詠唱％減少の定義は存在しないので foot.js で個別対応が必要
     code: 109
   - name: 毒耐性
@@ -357,6 +359,10 @@ capabilities:
     code: 365
   - name: 狂乱耐性
     code: 366
+  - name: 詠唱が中断されない
+    code: 380
+  - name: ノックバックしない
+    code: 381
   - name: スキルダメージ増加
     code: 5000
   - name: スキル変動詠唱割合減少
