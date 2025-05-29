@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./history.css" type="text/css">
+        <title>更新履歴 2025/05/29</title>
+    </head>
+    <body>
+        <h1>更新履歴 2025/05/29</h1>
+        <font color="RED">
+            近日中に更新履歴の管理を
+            <a href="https://github.com/roratorio-hub/ratorio/issues?q=label%3Arelease+" target="_blank">Github</a>
+            に移行する予定です
+        </font>
+        <br>
+        <a href="./index.html">一覧にもどる</a>
+
+        <div>
+            <span class="lv1">データ追加</span>
+                <span class="lv2">セレスティアルシリーズ</span>
+                    セレスティアル武器・防具とそれに関連するエンチャントを追加しました
+                    「クイック設定 > 装備一括設定」にも登録済みです
+
+                    ただし装備にセット出来るエンチャントがゲーム内の実装より多くなっています
+                    今後ゲーム内でエンチャント対象が拡張される可能性があること
+                    このほうが計算機のメンテナンスが容易であること
+                    が理由です
+
+                    もし利用上の不都合がある場合はゲーム内の実装に合わせますのでお知らせください
+
+                <span class="lv2">エンチャント</span>
+                    どの装備にセット出来るのか不明なエンチャントを追加しました
+                    「カード一覧 > 選択 > エンチャント効果」からデータを見ることが出来ます
+                    対応する装備が発表され次第紐づけを行います
+            
+            <span class="lv1">表記修正</span>
+                <span class="lv2">装備のMatk表記</span>
+                    「武器に標準で設定されているMatk」と「防具やカードで加算されるMatk」はゲーム内で異なる扱いのようで
+                    本計算機では前者を（杖型）と表記していました
+                    現在は杖以外の武器にもMatkが設定されることが当たり前になっているため
+                    混乱を割けるために表記を変更しました
+
+                    修正前：MATK + ◯◯（杖型）
+                    修正後：武器のMatk : ◯◯
+
+        </div>
+
+    </body>
+</html>
