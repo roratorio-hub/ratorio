@@ -4958,7 +4958,7 @@ if (_APPLY_UPDATE_LV200) {
 		statusMatk = n_A_INT + Math.floor((w * w * 5 + n_A_DEX * 3 + n_A_LUK * 5) / 15);
 		var wLEFT = 0;
 		if (n_Nitou) wLEFT = n_A_Weapon2LV_seirenATK;
-		var weaponMatk = n_tok[88] + n_A_WeaponLV_seirenATK + wLEFT;
+		var weaponMatk = n_tok[ITEM_SP_MATK_PLUS_TYPE_WEAPON] + n_A_WeaponLV_seirenATK + wLEFT;
 
 
 		//----------------------------------------------------------------
@@ -5051,10 +5051,10 @@ if (_APPLY_UPDATE_LV200) {
 		n_Heal_MATK[0] = n_A_MATK[0];
 		n_Heal_MATK[2] = n_A_MATK[2];
 		n_Heal_MATK[1] = Math.floor((n_A_MATK[0] + n_A_MATK[2]) / 2);
-		n_A_MATK[0] += n_tok[100];
-		n_A_MATK[2] += n_tok[100];
-		BK_n_A_MATK[0] += n_tok[100];
-		BK_n_A_MATK[2] += n_tok[100];
+		n_A_MATK[0] += n_tok[ITEM_SP_MATK_PLUS_TYPE_NOT_WEAPON];
+		n_A_MATK[2] += n_tok[ITEM_SP_MATK_PLUS_TYPE_NOT_WEAPON];
+		BK_n_A_MATK[0] += n_tok[ITEM_SP_MATK_PLUS_TYPE_NOT_WEAPON];
+		BK_n_A_MATK[2] += n_tok[ITEM_SP_MATK_PLUS_TYPE_NOT_WEAPON];
 		n_A_MATK[1] = Math.floor((n_A_MATK[0] + n_A_MATK[2]) / 2);
 		BK_n_A_MATK[1] = Math.floor((BK_n_A_MATK[0] + BK_n_A_MATK[2]) / 2);
 
