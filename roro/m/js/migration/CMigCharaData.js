@@ -1620,7 +1620,7 @@ function CMigCharaData (refConstDataManagerC) {
 			if (!itemData) {
 				itemData = ItemObjNew[equipId];
 				for (idxSp = ITEM_DATA_INDEX_SPBEGIN; (idxSp + 1) < itemData.length; idxSp += 2) {
-					if (itemData[idxSp] == ITEM_SP_MATK_PLUS) {
+					if (itemData[idxSp] == ITEM_SP_MATK_PLUS_TYPE_WEAPON) {
 						valueSum += itemData[idxSp + 1];
 					}
 				}

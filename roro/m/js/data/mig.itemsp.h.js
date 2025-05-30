@@ -1574,7 +1574,7 @@ function MigGetItemSpTagArrayByOldSpID (spid) {
 			,
 		];
 
-	case ITEM_SP_MATK_PLUS_TYPE_NOTSTUFF:
+	case ITEM_SP_MATK_PLUS_TYPE_NOT_WEAPON:
 		return [
 			new CMigEquipableSpTag()
 			.SetSpId(MIG_EQUIPABLE_SP_EFFECT_ID_PARAM)
@@ -2487,7 +2487,7 @@ function MigGetItemSpTagArrayByOldSpID (spid) {
 	case ITEM_SP_DAMAGE_UP_GROUP_COBOLD:
 	case ITEM_SP_DAMAGE_UP_GROUP_ORC:
 	case ITEM_SP_DAMAGE_UP_GROUP_GOLEM:
-	case ITEM_SP_MATK_PLUS:
+	case ITEM_SP_MATK_PLUS_TYPE_WEAPON:
 	case ITEM_SP_SET_DEFINITION:
 	case ITEM_SP_HEAL_DAMAGE_UP:
 	case ITEM_SP_HEAL_UP_USING_ONLY_HEAL:

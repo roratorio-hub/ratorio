@@ -1347,7 +1347,7 @@ function StAllCalc(){
 	if (IsEnableMigrationBlockTransit()) {
 
 		// 武器固有のMATK（処理の都合上、これだけ上書き）
-		n_tok[ITEM_SP_MATK_PLUS] = g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetEquipMatk();
+		n_tok[ITEM_SP_MATK_PLUS_TYPE_WEAPON] = g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetEquipMatk();
 
 		// 武器固有のMDEF
 		n_tok[ITEM_SP_MDEF_PLUS] += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetEquipMdef();
@@ -3725,8 +3725,8 @@ if (_APPLY_UPDATE_LV200) {
 		//----------------------------------------------------------------
 		// ランダムエンチャント効果
 		//----------------------------------------------------------------
-		w += GetRndOptTotalValue(ITEM_SP_MATK_PLUS_TYPE_NOTSTUFF, null, false);
-		// w += GetRndEnchValue(ITEM_SP_MATK_PLUS_TYPE_NOTSTUFF);
+		w += GetRndOptTotalValue(ITEM_SP_MATK_PLUS_TYPE_NOT_WEAPON, null, false);
+		// w += GetRndEnchValue(ITEM_SP_MATK_PLUS_TYPE_NOT_WEAPON);
 
 		if(SU_STR >= 120 && EquipNumSearch(1308)) w += 5;
 		if(SU_INT >= 120 && EquipNumSearch(1310)) w += 10;
@@ -4940,16 +4940,16 @@ if (_APPLY_UPDATE_LV200) {
 		}
 
 		// TODO: 四次対応
-		for (idx = ITEM_SP_MATK_PLUS_TYPE_NOTSTUFF; idx <= ITEM_SP_MATK_PLUS_TYPE_NOTSTUFF; idx++) {
+		for (idx = ITEM_SP_MATK_PLUS_TYPE_NOT_WEAPON; idx <= ITEM_SP_MATK_PLUS_TYPE_NOT_WEAPON; idx++) {
 			w = ApplySpecModify(idx, w);
 		}
 
 
 
-		n_tok[ITEM_SP_MATK_PLUS_TYPE_NOTSTUFF] += w;
+		n_tok[ITEM_SP_MATK_PLUS_TYPE_NOT_WEAPON] += w;
 
 		// 拡張表示用にデータを保存
-		CExtraInfoAreaComponentManager.dispDataMap.set(ITEM_SP_MATK_PLUS_TYPE_NOTSTUFF, n_tok[ITEM_SP_MATK_PLUS_TYPE_NOTSTUFF]);
+		CExtraInfoAreaComponentManager.dispDataMap.set(ITEM_SP_MATK_PLUS_TYPE_NOT_WEAPON, n_tok[ITEM_SP_MATK_PLUS_TYPE_NOT_WEAPON]);
 
 
 
@@ -4958,7 +4958,7 @@ if (_APPLY_UPDATE_LV200) {
 		statusMatk = n_A_INT + Math.floor((w * w * 5 + n_A_DEX * 3 + n_A_LUK * 5) / 15);
 		var wLEFT = 0;
 		if (n_Nitou) wLEFT = n_A_Weapon2LV_seirenATK;
-		var weaponMatk = n_tok[88] + n_A_WeaponLV_seirenATK + wLEFT;
+		var weaponMatk = n_tok[ITEM_SP_MATK_PLUS_TYPE_WEAPON] + n_A_WeaponLV_seirenATK + wLEFT;
 
 
 		//----------------------------------------------------------------
@@ -5051,10 +5051,10 @@ if (_APPLY_UPDATE_LV200) {
 		n_Heal_MATK[0] = n_A_MATK[0];
 		n_Heal_MATK[2] = n_A_MATK[2];
 		n_Heal_MATK[1] = Math.floor((n_A_MATK[0] + n_A_MATK[2]) / 2);
-		n_A_MATK[0] += n_tok[100];
-		n_A_MATK[2] += n_tok[100];
-		BK_n_A_MATK[0] += n_tok[100];
-		BK_n_A_MATK[2] += n_tok[100];
+		n_A_MATK[0] += n_tok[ITEM_SP_MATK_PLUS_TYPE_NOT_WEAPON];
+		n_A_MATK[2] += n_tok[ITEM_SP_MATK_PLUS_TYPE_NOT_WEAPON];
+		BK_n_A_MATK[0] += n_tok[ITEM_SP_MATK_PLUS_TYPE_NOT_WEAPON];
+		BK_n_A_MATK[2] += n_tok[ITEM_SP_MATK_PLUS_TYPE_NOT_WEAPON];
 		n_A_MATK[1] = Math.floor((n_A_MATK[0] + n_A_MATK[2]) / 2);
 		BK_n_A_MATK[1] = Math.floor((BK_n_A_MATK[0] + BK_n_A_MATK[2]) / 2);
 

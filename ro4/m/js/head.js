@@ -7338,7 +7338,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			for(var i=0;i<=2;i++){
 				w_MATK[i] = n_Heal_MATK[i];
 				w_MATK[i] = Math.floor(w_MATK[i] * (70 + 10 * n_A_ActiveSkillLV) / 100);
-				w_MATK[i] += n_tok[100];
+				w_MATK[i] += n_tok[ITEM_SP_MATK_PLUS_TYPE_NOT_WEAPON];
 				w_MATK[i] = ApplyMagicalSpecializeMonster(charaData, specData, mobData, w_MATK[i]);
 				w_MATK[i] = ApplyResistElement(mobData, w_MATK[i]);
 				w_MATK[i] = ApplyRegistPVPNormal(mobData, w_MATK[i]);
@@ -7387,7 +7387,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			for(var i=0;i<=2;i++){
 				w_MATK[i] = n_Heal_MATK[i];
 				w_MATK[i] = Math.floor(w_MATK[i] * (70 + 10 * n_A_ActiveSkillLV) / 100);
-				w_MATK[i] += n_tok[100];
+				w_MATK[i] += n_tok[ITEM_SP_MATK_PLUS_TYPE_NOT_WEAPON];
 				w_MATK[i] = ApplyMagicalSpecializeMonster(charaData, specData, mobData, w_MATK[i]);
 				w_MATK[i] = ApplyResistElement(mobData, w_MATK[i]);
 				w_MATK[i] = ApplyRegistPVPNormal(mobData, w_MATK[i]);
@@ -7434,7 +7434,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			for(var i=0;i<=2;i++){
 				w_MATK[i] = n_Heal_MATK[i];
 				w_MATK[i] = Math.floor(w_MATK[i] * (40 + 20 * n_A_ActiveSkillLV) / 100) + 100 + 50 * n_A_ActiveSkillLV;
-				w_MATK[i] += n_tok[100];
+				w_MATK[i] += n_tok[ITEM_SP_MATK_PLUS_TYPE_NOT_WEAPON];
 				w_MATK[i] = ApplyMagicalSpecializeMonster(charaData, specData, mobData, w_MATK[i]);
 				w_MATK[i] = ApplyResistElement(mobData, w_MATK[i]);
 				w_MATK[i] = ApplyRegistPVPNormal(mobData, w_MATK[i]);
