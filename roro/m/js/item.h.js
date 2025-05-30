@@ -493,7 +493,7 @@ CGlobalConstManager.DefineEnum(
 		"ITEM_SP_WEAPON_ATK_UP",			// 武器攻撃力＋○○％
 		"ITEM_SP_PERFECT_ATTACK_UP",		// ○○％の確率で必中攻撃
 		"ITEM_SP_ATK_UP",
-		"ITEM_SP_MATK_PLUS",				// 88 武器のMATK
+		"ITEM_SP_MATK_PLUS_TYPE_WEAPON",	// 88 武器のMATK
 		"ITEM_SP_MAGICAL_DAMAGE_UP",		// 89 魔法ダメージ％UP
 
 		"ITEM_SP_SET_DEFINITION",			// 90 セットの定義。通常は直接指定しない。
@@ -2261,7 +2261,7 @@ function GetItemExplainText(spId, spValue) {
 			textInfoArray.push(["", "ATK" + sign + spValue + "%"]);
 			break;
 
-		case ITEM_SP_MATK_PLUS:
+		case ITEM_SP_MATK_PLUS_TYPE_WEAPON:
 			textInfoArray.push(["", `武器のMatk : ${spValue}`]);
 			break;
 

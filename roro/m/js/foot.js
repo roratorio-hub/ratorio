@@ -1347,7 +1347,7 @@ function StAllCalc(){
 	if (IsEnableMigrationBlockTransit()) {
 
 		// 武器固有のMATK（処理の都合上、これだけ上書き）
-		n_tok[ITEM_SP_MATK_PLUS] = g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetEquipMatk();
+		n_tok[ITEM_SP_MATK_PLUS_TYPE_WEAPON] = g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetEquipMatk();
 
 		// 武器固有のMDEF
 		n_tok[ITEM_SP_MDEF_PLUS] += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetEquipMdef();
