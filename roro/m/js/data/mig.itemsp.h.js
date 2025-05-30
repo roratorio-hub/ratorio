@@ -1574,7 +1574,7 @@ function MigGetItemSpTagArrayByOldSpID (spid) {
 			,
 		];
 
-	case ITEM_SP_MATK_PLUS_TYPE_NOTSTUFF:
+	case ITEM_SP_MATK_PLUS_TYPE_NOT_WEAPON:
 		return [
 			new CMigEquipableSpTag()
 			.SetSpId(MIG_EQUIPABLE_SP_EFFECT_ID_PARAM)

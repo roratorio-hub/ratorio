@@ -3725,8 +3725,8 @@ if (_APPLY_UPDATE_LV200) {
 		//----------------------------------------------------------------
 		// ランダムエンチャント効果
 		//----------------------------------------------------------------
-		w += GetRndOptTotalValue(ITEM_SP_MATK_PLUS_TYPE_NOTSTUFF, null, false);
-		// w += GetRndEnchValue(ITEM_SP_MATK_PLUS_TYPE_NOTSTUFF);
+		w += GetRndOptTotalValue(ITEM_SP_MATK_PLUS_TYPE_NOT_WEAPON, null, false);
+		// w += GetRndEnchValue(ITEM_SP_MATK_PLUS_TYPE_NOT_WEAPON);
 
 		if(SU_STR >= 120 && EquipNumSearch(1308)) w += 5;
 		if(SU_INT >= 120 && EquipNumSearch(1310)) w += 10;
@@ -4940,16 +4940,16 @@ if (_APPLY_UPDATE_LV200) {
 		}
 
 		// TODO: 四次対応
-		for (idx = ITEM_SP_MATK_PLUS_TYPE_NOTSTUFF; idx <= ITEM_SP_MATK_PLUS_TYPE_NOTSTUFF; idx++) {
+		for (idx = ITEM_SP_MATK_PLUS_TYPE_NOT_WEAPON; idx <= ITEM_SP_MATK_PLUS_TYPE_NOT_WEAPON; idx++) {
 			w = ApplySpecModify(idx, w);
 		}
 
 
 
-		n_tok[ITEM_SP_MATK_PLUS_TYPE_NOTSTUFF] += w;
+		n_tok[ITEM_SP_MATK_PLUS_TYPE_NOT_WEAPON] += w;
 
 		// 拡張表示用にデータを保存
-		CExtraInfoAreaComponentManager.dispDataMap.set(ITEM_SP_MATK_PLUS_TYPE_NOTSTUFF, n_tok[ITEM_SP_MATK_PLUS_TYPE_NOTSTUFF]);
+		CExtraInfoAreaComponentManager.dispDataMap.set(ITEM_SP_MATK_PLUS_TYPE_NOT_WEAPON, n_tok[ITEM_SP_MATK_PLUS_TYPE_NOT_WEAPON]);
 
 
 

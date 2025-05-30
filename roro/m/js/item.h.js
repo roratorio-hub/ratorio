@@ -507,7 +507,7 @@ CGlobalConstManager.DefineEnum(
 		"ITEM_SP_MAGICAL_DAMAGE_UP_SIZE_MEDIUM",	// 98 中型
 		"ITEM_SP_MAGICAL_DAMAGE_UP_SIZE_LARGE",		// 99 大型
 
-		"ITEM_SP_MATK_PLUS_TYPE_NOTSTUFF",	// 100 MATK加算
+		"ITEM_SP_MATK_PLUS_TYPE_NOT_WEAPON",	// 100 MATK加算
 		"ITEM_SP_ASPD_PLUS",				// 101 ASPD 加算
 		"ITEM_SP_COST_DOWN",				// 102	消費SP減少
 		"ITEM_SP_EXP_UP_ALL",				// 103
@@ -2302,7 +2302,7 @@ function GetItemExplainText(spId, spValue) {
 			textInfoArray.push(["", GetSizeText(spId - ITEM_SP_MAGICAL_DAMAGE_UP_SIZE_SMALL) + "のモンスターに与える魔法ダメージ" + sign + spValue + "%"]);
 			break;
 
-		case ITEM_SP_MATK_PLUS_TYPE_NOTSTUFF:
+		case ITEM_SP_MATK_PLUS_TYPE_NOT_WEAPON:
 			textInfoArray.push(["", "Matk" + sign + spValue + ""]);
 			break;
 
