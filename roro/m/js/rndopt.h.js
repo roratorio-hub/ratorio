@@ -88,7 +88,7 @@ function GetRndOptDispName(spid) {
 
 	case ITEM_SP_ATK_PLUS:
 		return "Atk+";
-	case ITEM_SP_MATK_PLUS_TYPE_NOTSTUFF:
+	case ITEM_SP_MATK_PLUS_TYPE_NOT_WEAPON:
 		return "Matk+";
 	case ITEM_SP_DEF_PLUS:
 		return "Def+";

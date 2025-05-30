@@ -1406,7 +1406,7 @@ function ApplySpecModify(spid, spVal) {
 		}
 		break;
 
-	case ITEM_SP_MATK_PLUS_TYPE_NOTSTUFF:
+	case ITEM_SP_MATK_PLUS_TYPE_NOT_WEAPON:
 
 		// 「アークメイジ」スキル「クライマックスハリケーン状態」による効果
 		if ((sklLv = UsedSkillSearch(SKILL_ID_CLIMAX_HURRICANE_STATE)) > 0) {

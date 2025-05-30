@@ -202,7 +202,7 @@ function UpdateCharaDataHtml(charaData, specData) {
 	totalMatkBase = charaData[CHARA_DATA_INDEX_STATUS_MATK];
 
 	totalMatkAppend = charaData[CHARA_DATA_INDEX_WEAPON_MATK];
-	totalMatkAppend += specData[ITEM_SP_MATK_PLUS_TYPE_NOTSTUFF];
+	totalMatkAppend += specData[ITEM_SP_MATK_PLUS_TYPE_NOT_WEAPON];
 
 	charaData[CHARA_DATA_INDEX_DISP_MATK_LEFT] = totalMatkBase;
 	charaData[CHARA_DATA_INDEX_DISP_MATK_RIGHT] = totalMatkAppend;
