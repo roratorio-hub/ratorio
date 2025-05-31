@@ -2217,7 +2217,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				//----------------------------------------------------------------
 				// 「サモナー　生命の魂効果<BR>(残りHP)」の、「アニマル系スキル」強化
 				//----------------------------------------------------------------
-				if (UsedSkillSearch(SKILL_ID_SEIMEINO_TAMASHI) > 0) {
+				if (Math.max(LearnedSkillSearch(SKILL_ID_SEIMEINO_TAMASHI), UsedSkillSearch(SKILL_ID_SEIMEINO_TAMASHI)) > 0) {
 					switch (UsedSkillSearch(SKILL_ID_SEIMEINO_TAMASHI_KOKA_NOKORI_HP)) {
 					case SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_100:
 						wbairitu = ROUNDDOWN(wbairitu * 2);
@@ -2257,7 +2257,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				//----------------------------------------------------------------
 				// 「サモナー　生命の魂効果<BR>(残りHP)」の、「アニマル系スキル」強化
 				//----------------------------------------------------------------
-				if (UsedSkillSearch(SKILL_ID_SEIMEINO_TAMASHI) > 0) {
+				if (Math.max(LearnedSkillSearch(SKILL_ID_SEIMEINO_TAMASHI), UsedSkillSearch(SKILL_ID_SEIMEINO_TAMASHI)) > 0) {
 					switch (UsedSkillSearch(SKILL_ID_SEIMEINO_TAMASHI_KOKA_NOKORI_HP)) {
 					case SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_100:
 						wbairitu = ROUNDDOWN(wbairitu * 2);
@@ -2311,7 +2311,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				//----------------------------------------------------------------
 				// 「サモナー　生命の魂効果<BR>(残りHP)」の、「アニマル系スキル」強化
 				//----------------------------------------------------------------
-				if (UsedSkillSearch(SKILL_ID_SEIMEINO_TAMASHI) > 0) {
+				if (Math.max(LearnedSkillSearch(SKILL_ID_SEIMEINO_TAMASHI), UsedSkillSearch(SKILL_ID_SEIMEINO_TAMASHI)) > 0) {
 					switch (UsedSkillSearch(SKILL_ID_SEIMEINO_TAMASHI_KOKA_NOKORI_HP)) {
 					case SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_100:
 						wbairitu = ROUNDDOWN(wbairitu * 2);
@@ -2345,7 +2345,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				//----------------------------------------------------------------
 				// 「サモナー　生命の魂効果<BR>(残りHP)」の、「アニマル系スキル」強化
 				//----------------------------------------------------------------
-				if (UsedSkillSearch(SKILL_ID_SEIMEINO_TAMASHI) > 0) {
+				if (Math.max(LearnedSkillSearch(SKILL_ID_SEIMEINO_TAMASHI), UsedSkillSearch(SKILL_ID_SEIMEINO_TAMASHI)) > 0) {
 					switch (UsedSkillSearch(SKILL_ID_SEIMEINO_TAMASHI_KOKA_NOKORI_HP)) {
 					case SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_100:
 						wbairitu = ROUNDDOWN(wbairitu * 2);
@@ -3937,14 +3937,18 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				// 遠距離属性
 				n_Enekyori = 1;
-				if (UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0 || UsedSkillSearch(SKILL_ID_NYANTOMO_TEKKO) > 0) {
+				let spirit_handler_
+				if (   UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0
+					|| UsedSkillSearch(SKILL_ID_NYANTOMO_TEKKO) > 0
+					|| LearnedSkillSearch(SKILL_ID_NYANTOMO_TEKKO) > 0
+					) {
 					// 基礎倍率
 					wbairitu = 3000 + 500 * n_A_ActiveSkillLV;
-					wbairitu += 150 * UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY);
+					wbairitu += 150 * Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
 				} else {
 					// 基礎倍率
 					wbairitu = 2050 + 350 * n_A_ActiveSkillLV;
-					wbairitu += 100 * UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY);
+					wbairitu += 100 * Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
 					// クリティカル無し
 					bCri = false;
 				}
@@ -3968,14 +3972,17 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				// 遠距離属性
 				n_Enekyori = 1;
-				if (UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0 || UsedSkillSearch(SKILL_ID_NYANTOMO_TEKKO) > 0) {
+				if (UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0 
+					|| UsedSkillSearch(SKILL_ID_NYANTOMO_TEKKO) > 0
+					|| LearnedSkillSearch(SKILL_ID_NYANTOMO_TEKKO) > 0
+					) {
 					// 基礎倍率
 					wbairitu = 2400 + 300 * n_A_ActiveSkillLV;
-					wbairitu += 100 * UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY);
+					wbairitu += 100 * Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
 				} else {
 					// 基礎倍率
 					wbairitu = 1600 + 200 * n_A_ActiveSkillLV;
-					wbairitu += 50 * UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY);
+					wbairitu += 50 * Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
 				}
 				// POW補正
 				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
@@ -3999,14 +4006,17 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				n_Enekyori = 1;
 				// ３ヒット
 				wHITsuu = 3;
-				if (UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0 || UsedSkillSearch(SKILL_ID_NYANTOMO_TEKKO) > 0) {
+				if (UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0 
+					|| UsedSkillSearch(SKILL_ID_NYANTOMO_TEKKO) > 0
+					|| LearnedSkillSearch(SKILL_ID_NYANTOMO_TEKKO) > 0
+					) {
 					// 基礎倍率
 					wbairitu = 450 + (150 * n_A_ActiveSkillLV);
-					wbairitu += 20 * UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY);
+					wbairitu += 20 * Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
 				} else {
 					// 基礎倍率
 					wbairitu = 300 + (100 * n_A_ActiveSkillLV);
-					wbairitu += 10 * UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY);
+					wbairitu += 10 * Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
 				}
 				// POW補正
 				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
@@ -9682,16 +9692,19 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			} else {
 				n_A_Weapon_zokusei = attackMethodConfArray[0].GetOptionValue(0);
 			};
-			if (UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0 || UsedSkillSearch(SKILL_ID_NYANTOMO_KENROKU) > 0) {
+			if (UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0 
+				|| UsedSkillSearch(SKILL_ID_NYANTOMO_KENROKU) > 0
+				|| LearnedSkillSearch(SKILL_ID_NYANTOMO_KENROKU) > 0
+				) {
 				// 基礎倍率
 				wbairitu = 5200 + 800 * n_A_ActiveSkillLV;
 				// スピリットマスタリー補正
-				wbairitu += 300 * UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY);
+				wbairitu += 300 * Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
 			} else {
 				// 基礎倍率
 				wbairitu = 2400 + 300 * n_A_ActiveSkillLV;
 				// スピリットマスタリー補正
-				wbairitu += 125 * UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY);
+				wbairitu += 125 * Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
 			}
 			// SPL補正
 			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
@@ -9720,16 +9733,19 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			} else {
 				n_A_Weapon_zokusei = attackMethodConfArray[0].GetOptionValue(0);
 			};
-			if (UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0 || UsedSkillSearch(SKILL_ID_NYANTOMO_KENROKU) > 0) {
+			if (UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0 
+				|| UsedSkillSearch(SKILL_ID_NYANTOMO_KENROKU) > 0
+				|| LearnedSkillSearch(SKILL_ID_NYANTOMO_KENROKU) > 0
+				) {
 				// 基礎倍率
 				wbairitu = 1600 + 200 * n_A_ActiveSkillLV;
 				// スピリットマスタリー補正
-				wbairitu += 40 * UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY);
+				wbairitu += 40 * Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
 			} else {
 				// 基礎倍率
 				wbairitu = 800 + 100 * n_A_ActiveSkillLV;
 				// スピリットマスタリー補正
-				wbairitu += 20 * UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY);
+				wbairitu += 20 * Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
 			}
 			// SPL補正
 			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
@@ -11570,7 +11586,7 @@ function HealCalc(HealLv,HealType,wMinMax,w_WHO,ptmCount) {
 		case HEALTYPE_SHINSENNA_EBI:
 			wHeal = wHeal * healUp / 100 + wHealMatk / 2;
 			// 海の魂習得による増強効果
-			if (UsedSkillSearch(SKILL_ID_UMINO_TAMASHI) > 0) {
+			if (Math.max(LearnedSkillSearch(SKILL_ID_UMINO_TAMASHI), UsedSkillSearch(SKILL_ID_UMINO_TAMASHI)) > 0) {
 				// なぜか１．６倍の効果がある
 				wHeal = wHeal * 1.6;
 			}
@@ -18842,7 +18858,7 @@ function calc() {
 			n_Enekyori = 1;
 		}
 		// サモナースキル　ソウルアタックの効果
-		else if (UsedSkillSearch(SKILL_ID_SOUL_ATTACK)) {
+		else if (Math.max(LearnedSkillSearch(SKILL_ID_SOUL_ATTACK), UsedSkillSearch(SKILL_ID_SOUL_ATTACK)) > 0) {
 			n_Enekyori = 1;
 		}
 	}
@@ -25420,7 +25436,7 @@ function CalcMeanDamageLeftHand(skillId, mobData, dmg) {
 /**
  * 有効化されている支援スキルや時限効果などの設定Lvを取得する
  * @param {*} sklId 確認するスキル
- * @param {*} bOnlyUsed 
+ * @param {*} bOnlyUsed true: 時限アイテム効果等も検索する / false: 職業スキルだけを検索する
  * @returns 設定されているLv
  */
 function UsedSkillSearch(sklId, bOnlyUsed = false) {
