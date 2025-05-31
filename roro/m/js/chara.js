@@ -4562,17 +4562,24 @@ function GetStatusModifyMaxHpPlus() {
 	//----------------------------------------------------------------
 	// 「サモナー　にゃん魂」の、効果
 	//----------------------------------------------------------------
-	if ((sklLv = UsedSkillSearch(SKILL_ID_NYAN_TAMASHI)) > 0) {
+	if (Math.max(LearnedSkillSearch(SKILL_ID_NYAN_TAMASHI), UsedSkillSearch(SKILL_ID_NYAN_TAMASHI)) > 0) {
 		val += 2000;
 	}
 
 	//----------------------------------------------------------------
 	// 「サモナー　海の力」の、効果
 	//----------------------------------------------------------------
-	if ((sklLv = UsedSkillSearch(SKILL_ID_UMINO_CHIKARA)) > 0) {
+	if (Math.max(LearnedSkillSearch(SKILL_ID_UMINO_CHIKARA), UsedSkillSearch(SKILL_ID_UMINO_CHIKARA)) > 0) {
 		val += 1000;
-
-		if (UsedSkillSearch(SKILL_ID_SEAFOOD_KEI_SHUTOKU_LEVEL_GOKEI) >= 20) {
+		let summoner_skill_seafood_sum = 0;
+		summoner_skill_seafood_sum += LearnedSkillSearch(SKILL_ID_SHINSENNA_EBI);
+		summoner_skill_seafood_sum += LearnedSkillSearch(SKILL_ID_EBI_ZANMAI);
+		summoner_skill_seafood_sum += LearnedSkillSearch(SKILL_ID_OTORO);
+		summoner_skill_seafood_sum += LearnedSkillSearch(SKILL_ID_MAGURO_SHIELD);
+		summoner_skill_seafood_sum += LearnedSkillSearch(SKILL_ID_GROOMING);
+		summoner_skill_seafood_sum += LearnedSkillSearch(SKILL_ID_NODOWO_NARASU);
+		summoner_skill_seafood_sum += LearnedSkillSearch(SKILL_ID_EBI_PARTY);
+		if (Math.max(summoner_skill_seafood_sum, UsedSkillSearch(SKILL_ID_SEAFOOD_KEI_SHUTOKU_LEVEL_GOKEI)) >= 20) {
 			val += 3000;
 		}
 	}
@@ -7404,17 +7411,24 @@ function GetStatusModifyMaxSpPlus() {
 	//----------------------------------------------------------------
 	// 「サモナー　にゃん魂」の、効果
 	//----------------------------------------------------------------
-	if ((sklLv = UsedSkillSearch(SKILL_ID_NYAN_TAMASHI)) > 0) {
+	if (Math.max(LearnedSkillSearch(SKILL_ID_NYAN_TAMASHI), UsedSkillSearch(SKILL_ID_NYAN_TAMASHI)) > 0) {
 		val += 200;
 	}
 
 	//----------------------------------------------------------------
 	// 「サモナー　海の力」の、効果
 	//----------------------------------------------------------------
-	if ((sklLv = UsedSkillSearch(SKILL_ID_UMINO_CHIKARA)) > 0) {
+	if (Math.max(LearnedSkillSearch(SKILL_ID_UMINO_CHIKARA), UsedSkillSearch(SKILL_ID_UMINO_CHIKARA)) > 0) {
 		val += 100;
-
-		if (UsedSkillSearch(SKILL_ID_SEAFOOD_KEI_SHUTOKU_LEVEL_GOKEI) >= 20) {
+		let summoner_skill_seafood_sum = 0;
+		summoner_skill_seafood_sum += LearnedSkillSearch(SKILL_ID_SHINSENNA_EBI);
+		summoner_skill_seafood_sum += LearnedSkillSearch(SKILL_ID_EBI_ZANMAI);
+		summoner_skill_seafood_sum += LearnedSkillSearch(SKILL_ID_OTORO);
+		summoner_skill_seafood_sum += LearnedSkillSearch(SKILL_ID_MAGURO_SHIELD);
+		summoner_skill_seafood_sum += LearnedSkillSearch(SKILL_ID_GROOMING);
+		summoner_skill_seafood_sum += LearnedSkillSearch(SKILL_ID_NODOWO_NARASU);
+		summoner_skill_seafood_sum += LearnedSkillSearch(SKILL_ID_EBI_PARTY);
+		if (Math.max(summoner_skill_seafood_sum, UsedSkillSearch(SKILL_ID_SEAFOOD_KEI_SHUTOKU_LEVEL_GOKEI)) >= 20) {
 			val += 300;
 		}
 	}
@@ -11886,7 +11900,7 @@ function GetStatusModifyHitPlus() {
 	//----------------------------------------------------------------
 	// 「サモナー　生命の力」の、効果
 	//----------------------------------------------------------------
-	if ((sklLv = UsedSkillSearch(SKILL_ID_SEIMEINO_CHIKARA)) > 0) {
+	if (Math.max(LearnedSkillSearch(SKILL_ID_SEIMEINO_CHIKARA), UsedSkillSearch(SKILL_ID_SEIMEINO_CHIKARA)) > 0) {
 		val += 50;
 	}
 

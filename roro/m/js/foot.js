@@ -2605,7 +2605,7 @@ g_ITEM_SP_FLEE_PLUS_value_forCalcData = flee;
 		//----------------------------------------------------------------
 		// 「サモナー　生命の力」の、効果
 		//----------------------------------------------------------------
-		if ((sklLv = UsedSkillSearch(SKILL_ID_SEIMEINO_CHIKARA)) > 0) {
+		if (Math.max(LearnedSkillSearch(SKILL_ID_SEIMEINO_CHIKARA), UsedSkillSearch(SKILL_ID_SEIMEINO_CHIKARA)) > 0) {
 			flee += 50;
 		}
 
@@ -3164,7 +3164,7 @@ g_ITEM_SP_FLEE_PLUS_value_forCalcData = flee;
 		//----------------------------------------------------------------
 		// 「サモナー　大地の魂効果(ｲﾇﾊｯｶｼｬﾜｰ使用後の完全回避＋)」の、効果
 		//----------------------------------------------------------------
-		if (UsedSkillSearch(SKILL_ID_DAICHINO_TAMASHI) > 0) {
+		if (Math.max(LearnedSkillSearch(SKILL_ID_DAICHINO_TAMASHI), UsedSkillSearch(SKILL_ID_DAICHINO_TAMASHI)) > 0) {
 			if ((sklLv = UsedSkillSearch(SKILL_ID_DAICHINO_TAMASHI_KOKA_INUHAKKA_SHOWER)) > 0) {
 				lucky += 1 * ROUNDDOWN(n_A_BaseLV / 7);
 			}
@@ -3628,7 +3628,7 @@ if (_APPLY_UPDATE_LV200) {
 		//----------------------------------------------------------------
 		// 「サモナー　生命の力」の、効果
 		//----------------------------------------------------------------
-		if ((sklLv = UsedSkillSearch(SKILL_ID_SEIMEINO_CHIKARA)) > 0) {
+		if (Math.max(LearnedSkillSearch(SKILL_ID_SEIMEINO_CHIKARA), UsedSkillSearch(SKILL_ID_SEIMEINO_CHIKARA)) > 0) {
 			w += 20;
 		}
 
@@ -3654,7 +3654,11 @@ if (_APPLY_UPDATE_LV200) {
 		//----------------------------------------------------------------
 		// 遠距離物理攻撃限定の効果
 		//----------------------------------------------------------------
-		if (n_Enekyori === 1 ||	IsLongRange(n_A_Equip[EQUIP_REGION_ID_ARMS]) || UsedSkillSearch(SKILL_ID_SOUL_ATTACK)) {
+		if (n_Enekyori === 1 
+			|| IsLongRange(n_A_Equip[EQUIP_REGION_ID_ARMS]) 
+			|| UsedSkillSearch(SKILL_ID_SOUL_ATTACK)
+			|| LearnedSkillSearch(SKILL_ID_SOUL_ATTACK)
+			) {
 			w += n_tok[ITEM_SP_LONGRANGE_CRI_PLUS];
 		}
 
@@ -4885,7 +4889,7 @@ if (_APPLY_UPDATE_LV200) {
 		//----------------------------------------------------------------
 		// 「サモナー　大地の魂効果(ﾏﾀﾀﾋﾞの根っこ使用後のMATK＋)」の、効果
 		//----------------------------------------------------------------
-		if (UsedSkillSearch(SKILL_ID_DAICHINO_TAMASHI) > 0) {
+		if (Math.max(LearnedSkillSearch(SKILL_ID_DAICHINO_TAMASHI), UsedSkillSearch(SKILL_ID_DAICHINO_TAMASHI)) > 0) {
 			if ((sklLv = UsedSkillSearch(SKILL_ID_DAICHINO_TAMASHI_KOKA_MATATABINO_NEKKO)) > 0) {
 				w += 1 * n_A_BaseLV;
 			}
@@ -4894,7 +4898,7 @@ if (_APPLY_UPDATE_LV200) {
 		//----------------------------------------------------------------
 		// 「サモナー　大地の魂効果(ニャングラス使用後のMATK＋)」の、効果
 		//----------------------------------------------------------------
-		if (UsedSkillSearch(SKILL_ID_DAICHINO_TAMASHI) > 0) {
+		if (Math.max(LearnedSkillSearch(SKILL_ID_DAICHINO_TAMASHI), UsedSkillSearch(SKILL_ID_DAICHINO_TAMASHI)) > 0) {
 			if ((sklLv = UsedSkillSearch(SKILL_ID_DAICHINO_TAMASHI_KOKA_NYAN_GRASS)) > 0) {
 				w += 1 * n_A_BaseLV;
 			}
@@ -6147,8 +6151,16 @@ if (_APPLY_UPDATE_LV200) {
 		//----------------------------------------------------------------
 		// 「サモナー　大地の力」の、習得スキルレベル合計による効果
 		//----------------------------------------------------------------
-		if (UsedSkillSearch(SKILL_ID_DAICHINO_CHIKARA) > 0) {
-			if (UsedSkillSearch(SKILL_ID_PLANT_KEI_SHUTOKU_LEVEL_GOKEI) >= 20) {
+		if (Math.max(LearnedSkillSearch(SKILL_ID_DAICHINO_CHIKARA), UsedSkillSearch(SKILL_ID_DAICHINO_CHIKARA)) > 0) {
+			let summoner_skill_plant_sum = 0;
+			summoner_skill_plant_sum += LearnedSkillSearch(SKILL_ID_MATATABI_LANCE);
+			summoner_skill_plant_sum += LearnedSkillSearch(SKILL_ID_MATATABINO_NEKKO);
+			summoner_skill_plant_sum += LearnedSkillSearch(SKILL_ID_INUHAKKA_METEOR);
+			summoner_skill_plant_sum += LearnedSkillSearch(SKILL_ID_INUHAKKA_SHOWER);
+			summoner_skill_plant_sum += LearnedSkillSearch(SKILL_ID_CHATTERING);
+			summoner_skill_plant_sum += LearnedSkillSearch(SKILL_ID_MYAUMYAU);
+			summoner_skill_plant_sum += LearnedSkillSearch(SKILL_ID_NYAN_GRASS);
+			if (Math.max(summoner_skill_plant_sum, UsedSkillSearch(SKILL_ID_PLANT_KEI_SHUTOKU_LEVEL_GOKEI)) >= 20) {
 				w += 10;
 			}
 		}
@@ -12540,8 +12552,16 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 		//----------------------------------------------------------------
 		// 「サモナー　生命の力」の、スキル習得数による効果
 		//----------------------------------------------------------------
-		if ((sklLv = UsedSkillSearch(SKILL_ID_SEIMEINO_CHIKARA)) > 0) {
-			if (UsedSkillSearch(SKILL_ID_ANIMAL_KEI_SHUTOKU_LEVEL_GOKEI) >= 20) {
+		if (Math.max(LearnedSkillSearch(SKILL_ID_SEIMEINO_CHIKARA), UsedSkillSearch(SKILL_ID_SEIMEINO_CHIKARA)) > 0) {
+			let summoner_skill_animal_sum = 0;
+			summoner_skill_animal_sum += LearnedSkillSearch(SKILL_ID_CARROT_BEAT);
+			summoner_skill_animal_sum += LearnedSkillSearch(SKILL_ID_TAROUNO_KIZU);
+			summoner_skill_animal_sum += LearnedSkillSearch(SKILL_ID_ARCLOUSE_DASH);
+			summoner_skill_animal_sum += LearnedSkillSearch(SKILL_ID_PIKKI_TSUKI);
+			summoner_skill_animal_sum += LearnedSkillSearch(SKILL_ID_KEIKAI);
+			summoner_skill_animal_sum += LearnedSkillSearch(SKILL_ID_MURENO_CHIKARA);
+			summoner_skill_animal_sum += LearnedSkillSearch(SKILL_ID_SAVAGENO_TAMASHI);
+			if (Math.max(summoner_skill_animal_sum, UsedSkillSearch(SKILL_ID_ANIMAL_KEI_SHUTOKU_LEVEL_GOKEI)) >= 20) {
 				n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += 10;
 			}
 		}
@@ -18395,11 +18415,18 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 		//----------------------------------------------------------------
 		// 「サモナー　海の力」の、効果
 		//----------------------------------------------------------------
-		if ((sklLv = UsedSkillSearch(SKILL_ID_UMINO_CHIKARA)) > 0) {
-			n_tok[91] += 50;
-
-			if (UsedSkillSearch(SKILL_ID_SEAFOOD_KEI_SHUTOKU_LEVEL_GOKEI) >= 20) {
-				n_tok[91] += 100;
+		if (Math.max(LearnedSkillSearch(SKILL_ID_UMINO_CHIKARA), UsedSkillSearch(SKILL_ID_UMINO_CHIKARA)) > 0) {
+			n_tok[ITEM_SP_HEAL_UP_USING] += 50;
+			let summoner_skill_seafood_sum = 0;
+			summoner_skill_seafood_sum += LearnedSkillSearch(SKILL_ID_SHINSENNA_EBI);
+			summoner_skill_seafood_sum += LearnedSkillSearch(SKILL_ID_EBI_ZANMAI);
+			summoner_skill_seafood_sum += LearnedSkillSearch(SKILL_ID_OTORO);
+			summoner_skill_seafood_sum += LearnedSkillSearch(SKILL_ID_MAGURO_SHIELD);
+			summoner_skill_seafood_sum += LearnedSkillSearch(SKILL_ID_GROOMING);
+			summoner_skill_seafood_sum += LearnedSkillSearch(SKILL_ID_NODOWO_NARASU);
+			summoner_skill_seafood_sum += LearnedSkillSearch(SKILL_ID_EBI_PARTY);
+			if (Math.max(summoner_skill_seafood_sum, UsedSkillSearch(SKILL_ID_SEAFOOD_KEI_SHUTOKU_LEVEL_GOKEI)) >= 20) {
+				n_tok[ITEM_SP_HEAL_UP_USING] += 100;
 			}
 		}
 
@@ -25213,7 +25240,7 @@ function GetCoolFixOfSkill(skillId) {
 	// スキル「海の魂」の「大トロ」短縮
 	//----------------------------------------------------------------
 	if (skillId == SKILL_ID_OTORO) {
-		if (UsedSkillSearch(SKILL_ID_UMINO_TAMASHI) >= 1) {
+		if (Math.max(LearnedSkillSearch(SKILL_ID_UMINO_TAMASHI), UsedSkillSearch(SKILL_ID_UMINO_TAMASHI)) >= 1) {
 			coolfix -= 3000;
 		}
 	}
@@ -28126,7 +28153,7 @@ function StPlusCalc() {
 	//----------------------------------------------------------------
 	// 「サモナー　大地の力」による効果
 	//----------------------------------------------------------------
-	if (UsedSkillSearch(SKILL_ID_DAICHINO_CHIKARA) > 0) {
+	if (Math.max(LearnedSkillSearch(SKILL_ID_DAICHINO_CHIKARA), UsedSkillSearch(SKILL_ID_DAICHINO_CHIKARA)) > 0) {
 		wSPC_INT += 7;
 	}
 
@@ -30218,23 +30245,31 @@ function InitJobInfo() {
 	}
 }
 
-function NumSearch(NS1,NS2){
-	var end = NS2.length-1;
-
-	for(var i=0;i<=end;i++){
+/**
+ * indexOf が使えないブラウザ向けに作成された代替関数
+ * @param {*} NS1 検索する値
+ * @param {*} NS2 検索対象の配列
+ * @returns 見つかった場合は 1 / 見つからなかった場合は 0
+ */
+function NumSearch(NS1, NS2){
+	let end = NS2.length - 1;
+	for(let i = 0; i <= end; i++){
 		if(NS1 == NS2[i]) return 1;
 	}
-
 	return 0;
 }
 
-function NumSearch2(NS1,NS2){
-	var end = NS2.length-1;
-
-	for(var i=0;i<=end;i++){
+/**
+ * indexOf が使えないブラウザ向けに作成された代替関数
+ * @param {Object} NS1 検索する値
+ * @param {Array} NS2 検索対象の配列
+ * @returns 最初に要素が見つかった位置 / 見つからなかった場合は -1
+ */
+function NumSearch2(NS1, NS2){
+	let end = NS2.length - 1;
+	for(let i = 0; i <= end; i++){
 		if(NS1 == NS2[i]) return i;
 	}
-
 	return -1;
 }
 
