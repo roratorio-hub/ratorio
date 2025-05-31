@@ -3937,7 +3937,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				// 遠距離属性
 				n_Enekyori = 1;
-				let spirit_handler_
 				if (   UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0
 					|| UsedSkillSearch(SKILL_ID_NYANTOMO_TEKKO) > 0
 					|| LearnedSkillSearch(SKILL_ID_NYANTOMO_TEKKO) > 0
