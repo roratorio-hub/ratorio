@@ -13150,7 +13150,7 @@ function CSkillManager() {
 
 				// 基本式
 				pow = 50 * skillLv;
-				pow += 10 * charaDataManger.UsedSkillSearch(SKILL_ID_YARI_SHUREN);
+				pow += 10 * Math.max(LearnedSkillSearch(SKILL_ID_YARI_SHUREN), UsedSkillSearch(SKILL_ID_YARI_SHUREN));
 
 				// ベースレベル補正
 				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 150);

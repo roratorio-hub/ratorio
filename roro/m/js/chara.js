@@ -4546,7 +4546,7 @@ function GetStatusModifyMaxHpPlus() {
 	//----------------------------------------------------------------
 	// 「クルセイダー　フェイス」の、効果
 	//----------------------------------------------------------------
-	if ((sklLv = UsedSkillSearch(SKILL_ID_FAITH)) > 0) {
+	if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_FAITH), UsedSkillSearch(SKILL_ID_FAITH))) > 0) {
 		val += 200 * sklLv;
 	}
 
@@ -9341,12 +9341,10 @@ function GetStatusModifyDefDivPlus() {
 	// 「ロイヤルガード　プレスティージ」の、効果
 	//----------------------------------------------------------------
 	if ((sklLv = UsedSkillSearch(SKILL_ID_PRESTAGE)) > 0) {
-		var sklLvDefender = UsedSkillSearch(SKILL_ID_SKILL_LV_DEFENDER_FOR_PRESTAGE);
+		let sklLvDefender = Math.max(LearnedSkillSearch(SKILL_ID_DEFENDER), UsedSkillSearch(SKILL_ID_SKILL_LV_DEFENDER_FOR_PRESTAGE));
 		vartmp = 0;
-
 		vartmp += Math.floor(15 * sklLv * n_A_BaseLV / 100);
 		vartmp += Math.floor(sklLvDefender / 5 * n_A_BaseLV / 2);
-
 		val += vartmp;
 	}
 
@@ -11877,7 +11875,7 @@ function GetStatusModifyHitPlus() {
 	//----------------------------------------------------------------
 	// 「ジェネティック　剣鍛錬（ジェネティック）」の、効果
 	//----------------------------------------------------------------
-	if ((sklLv = UsedSkillSearch(SKILL_ID_KEN_SHUREN_GENETIC)) > 0) {
+	if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_KEN_SHUREN_GENETIC), UsedSkillSearch(SKILL_ID_KEN_SHUREN_GENETIC))) > 0) {
 		vartmp = 0;
 
 		switch (n_A_WeaponType) {

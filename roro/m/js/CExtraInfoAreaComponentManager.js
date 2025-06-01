@@ -1228,7 +1228,7 @@ function CExtraInfoAreaComponentManager () {
 		value += 30 * SU_STR;
 
 		// 騎兵修練
-		if (UsedSkillSearch(SKILL_ID_KIHE_SHUREN) > 0) {
+		if (Math.max(LearnedSkillSearch(SKILL_ID_KIHE_SHUREN), UsedSkillSearch(SKILL_ID_KIHE_SHUREN)) > 0) {
 			value += 1000;
 		}
 

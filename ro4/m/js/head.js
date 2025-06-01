@@ -1427,7 +1427,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 
 			case SKILL_ID_PHANTOM_SLAST:
 				n_Enekyori=1;
-				wbairitu = 50 * n_A_ActiveSkillLV + 10 * UsedSkillSearch(SKILL_ID_YARI_SHUREN);
+				wbairitu = 50 * n_A_ActiveSkillLV + 10 * Math.max(LearnedSkillSearch(SKILL_ID_YARI_SHUREN), UsedSkillSearch(SKILL_ID_YARI_SHUREN));
 				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 150);
 				break;
 
@@ -1689,7 +1689,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			case SKILL_ID_BANISHING_POINT:
 				n_Enekyori = 1;
 				// バッシュ習得Lv補正
-				var w_BN = 30 * attackMethodConfArray[0].GetOptionValue(0);
+				let w_BN = 30 * Math.max(LearnedSkillSearch(SKILL_ID_BASH), attackMethodConfArray[0].GetOptionValue(0));
 				// 基本倍率
 				wbairitu = 50 * n_A_ActiveSkillLV + w_BN;
 				/*
@@ -1699,7 +1699,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				if (UsedSkillSearch(SKILL_ID_GRAND_JUDGEMENT_STATE) > 0) {
 					wbairitu *= 2;
 				}
-
 				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 				break;
 
@@ -1728,7 +1727,8 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				break;
 
 			case SKILL_ID_MOON_SLUSHER:
-				var w_OB = 80 * attackMethodConfArray[0].GetOptionValue(0);
+				// オーバーブランドの習得Lv補正
+				var w_OB = 80 * Math.max(LearnedSkillSearch(SKILL_ID_OVER_BLAND), attackMethodConfArray[0].GetOptionValue(0));
 				wCast = 2000;
 				n_Delay[7] = 5500 - 500 * n_A_ActiveSkillLV;
 				wbairitu = 120 * n_A_ActiveSkillLV + w_OB;
@@ -2979,7 +2979,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				// 基本倍率
 				wbairitu = 600 + 800 * n_A_ActiveSkillLV;
 				// 修練補正
-				wbairitu += 40 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_TATE_SHUREN);
+				wbairitu += 40 * n_A_ActiveSkillLV * Math.max(LearnedSkillSearch(SKILL_ID_TATE_SHUREN), UsedSkillSearch(SKILL_ID_TATE_SHUREN));
 				// 盾の精錬値・重量補正
 				wbairitu += n_A_SHIELD_DEF_PLUS * 200 + ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][ITEM_DATA_INDEX_WEIGHT];
 				// POW補正
@@ -3009,7 +3009,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				// 基本倍率
 				wbairitu = 70 * n_A_ActiveSkillLV;
 				// 修練補正
-				wbairitu += 8 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN);
+				wbairitu += 8 * n_A_ActiveSkillLV * Math.max(LearnedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN), UsedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN));
 				// POW補正 
 				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// ベースレベル補正
@@ -6632,16 +6632,16 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			// 基本倍率
 			wbairitu = 60 * n_A_ActiveSkillLV;
 			// カート改造補正
-			wbairitu += Math.floor(UsedSkillSearch(SKILL_ID_CART_KAIZO) * 50 * n_A_INT / 40);
+			wbairitu += Math.floor(Math.max(LearnedSkillSearch(SKILL_ID_CART_KAIZO), UsedSkillSearch(SKILL_ID_CART_KAIZO)) * 50 * n_A_INT / 40);
 			// 倍率補正
 			var wMADO = 0;
 			// 斧修練
 			if ([ITEM_KIND_SWORD, ITEM_KIND_AXE, ITEM_KIND_AXE_2HAND].includes(n_A_WeaponType)) {
-				wMADO += 3 * UsedSkillSearch(SKILL_ID_ONO_SHUREN);
+				wMADO += 3 * Math.max(LearnedSkillSearch(SKILL_ID_ONO_SHUREN), UsedSkillSearch(SKILL_ID_ONO_SHUREN));
 			}
 			// 剣修練
 			if ([ITEM_KIND_KNIFE, ITEM_KIND_SWORD].includes(n_A_WeaponType)) {
-				wMADO += 10 * UsedSkillSearch(SKILL_ID_KEN_SHUREN_GENETIC);
+				wMADO += 10 * Math.max(LearnedSkillSearch(SKILL_ID_KEN_SHUREN_GENETIC), UsedSkillSearch(SKILL_ID_KEN_SHUREN_GENETIC));
 			}
 			// 改造カートブースト補正
 			wMADO += 10 * UsedSkillSearch(SKILL_ID_CART_BOOST_GENETIC);
@@ -6744,12 +6744,11 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
-
-
 		case SKILL_ID_OVER_BLAND:
 			wLAch = true;
 			var w3HIT = attackMethodConfArray[0].GetOptionValue(0);
-			var wSQ = attackMethodConfArray[0].GetOptionValue(1);
+			// スピアクイッケン習得Lv補正
+			var wSQ = Math.max(LearnedSkillSearch(SKILL_ID_SPEAR_QUICKEN), attackMethodConfArray[0].GetOptionValue(1));
 			var wBai = new Array();
 			wBai[0] = n_A_ActiveSkillLV * 400 + 50 * wSQ;
 			wBai[0] = Math.floor(wBai[0] * n_A_BaseLV / 150);
@@ -9207,13 +9206,13 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			if (UsedSkillSearch(SKILL_ID_HOLY_SHIELD) > 0) {
 				// ホーリーシールド有り
 				wbairitu = 150 * n_A_ActiveSkillLV;
-				wbairitu += 15 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN);
+				wbairitu += 15 * n_A_ActiveSkillLV * Math.max(LearnedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN), UsedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN));
 				wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			}
 			else {
 				// 通常時
 				wbairitu = 120 * n_A_ActiveSkillLV;
-				wbairitu += 12 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN);
+				wbairitu += 12 * n_A_ActiveSkillLV * Math.max(LearnedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN), UsedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN));
 				wbairitu += 8 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	
 			}
 			// ベースレベル補正
@@ -14302,7 +14301,7 @@ function BattleHiDam(charaData, specData, mobData, attackMethodConfArray, objCel
 	if ((GetMonseterElmBasicType(mobData[MONSTER_DATA_INDEX_ELEMENT]) == ELM_ID_UNDEAD)
 		|| (mobData[MONSTER_DATA_INDEX_RACE] == RACE_ID_DEMON)) {
 
-		wBHD = Math.round((3 + 4 / 100 * n_A_BaseLV) * UsedSkillSearch(SKILL_ID_DIVINE_PROTECTION));
+		wBHD = Math.round((3 + 4 / 100 * n_A_BaseLV) * Math.max(LearnedSkillSearch(SKILL_ID_DIVINE_PROTECTION), UsedSkillSearch(SKILL_ID_DIVINE_PROTECTION)));
 
 		for (i = 0; i <= 6; i++) {
 			w_HiDam[i] -= wBHD;
@@ -17965,7 +17964,7 @@ function Click_A8(n){
 function GetSizeModify(mobData, wSC_Size) {
 
 	// 騎兵修練習得時の、槍装備による、中型の１００％補正
-	if (UsedSkillSearch(SKILL_ID_KIHE_SHUREN)) {
+	if (Math.max(LearnedSkillSearch(SKILL_ID_KIHE_SHUREN), UsedSkillSearch(SKILL_ID_KIHE_SHUREN)) > 0) {
 		if ((n_A_WeaponType == 4 || n_A_WeaponType == 5) && mobData[17] == 1) {
 			wSC_Size = 1;
 		}
@@ -18006,7 +18005,7 @@ function GetSizeModify(mobData, wSC_Size) {
 	if (n_A_HEAD_DEF_PLUS >= 9 && EquipNumSearch(2512)) wSC_Size = 1;
 
 	// 騎兵修練【未習得】時の、セイヴザキング装備時による、全型１００％補正
-	if (UsedSkillSearch(SKILL_ID_KIHE_SHUREN) == 0) {
+	if (Math.max(LearnedSkillSearch(SKILL_ID_KIHE_SHUREN), UsedSkillSearch(SKILL_ID_KIHE_SHUREN)) == 0) {
 		if (EquipNumSearch(ITEM_ID_SAVE_THE_KING)) wSC_Size = 1;
 	}
 
@@ -19901,36 +19900,36 @@ function TYPE_SYUUREN(mobData, attackMethodConfArray, bArmsLeft){
 			break;
 
 		case ITEM_KIND_KNIFE:
-			w += 4 * UsedSkillSearch(SKILL_ID_KEN_SHUREN);
-			w += 10 * UsedSkillSearch(SKILL_ID_KEN_SHUREN_GENETIC);
+			w += 4 * Math.max(LearnedSkillSearch(SKILL_ID_KEN_SHUREN), UsedSkillSearch(SKILL_ID_KEN_SHUREN));
+			w += 10 * Math.max(LearnedSkillSearch(SKILL_ID_KEN_SHUREN_GENETIC), UsedSkillSearch(SKILL_ID_KEN_SHUREN_GENETIC));
 			break;
 
 		case ITEM_KIND_SWORD:
-			w += 4 * UsedSkillSearch(SKILL_ID_KEN_SHUREN);
-			w += 3 * UsedSkillSearch(SKILL_ID_ONO_SHUREN);
-			w += 10 * UsedSkillSearch(SKILL_ID_KEN_SHUREN_GENETIC);
+			w += 4 * Math.max(LearnedSkillSearch(SKILL_ID_KEN_SHUREN), UsedSkillSearch(SKILL_ID_KEN_SHUREN));
+			w += 3 * Math.max(LearnedSkillSearch(SKILL_ID_ONO_SHUREN), UsedSkillSearch(SKILL_ID_ONO_SHUREN));
+			w += 10 * Math.max(LearnedSkillSearch(SKILL_ID_KEN_SHUREN_GENETIC), UsedSkillSearch(SKILL_ID_KEN_SHUREN_GENETIC));
 			break;
 
 		case ITEM_KIND_SWORD_2HAND:
-			w += 4 * UsedSkillSearch(SKILL_ID_RYOUTKEN_SHUREN);
+			w += 4 * Math.max(LearnedSkillSearch(SKILL_ID_RYOUTKEN_SHUREN), UsedSkillSearch(SKILL_ID_RYOUTKEN_SHUREN));
 			break;
 
 		case ITEM_KIND_SPEAR:
 		case ITEM_KIND_SPEAR_2HAND:
 			if (IsSameJobClass(JOB_ID_RUNEKNIGHT)) {
 				if (UsedSkillSearch(SKILL_ID_DRAGON_TRAINING) == 0) {
-					w += 4 * UsedSkillSearch(SKILL_ID_YARI_SHUREN);
+					w += 4 * Math.max(LearnedSkillSearch(SKILL_ID_YARI_SHUREN), UsedSkillSearch(SKILL_ID_YARI_SHUREN));
 				}
 				else {
-					w += 10 * UsedSkillSearch(SKILL_ID_YARI_SHUREN);
+					w += 10 * Math.max(LearnedSkillSearch(SKILL_ID_YARI_SHUREN), UsedSkillSearch(SKILL_ID_YARI_SHUREN));
 				}
 			}
 			else {
-				if (UsedSkillSearch(SKILL_ID_KIHE_SHUREN) == 0) {
-					w += 4 * UsedSkillSearch(SKILL_ID_YARI_SHUREN);
+				if (Math.max(LearnedSkillSearch(SKILL_ID_KIHE_SHUREN), UsedSkillSearch(SKILL_ID_KIHE_SHUREN)) == 0) {
+					w += 4 * Math.max(LearnedSkillSearch(SKILL_ID_YARI_SHUREN), UsedSkillSearch(SKILL_ID_YARI_SHUREN));
 				}
 				else {
-					w += 5 * UsedSkillSearch(SKILL_ID_YARI_SHUREN);
+					w += 5 * Math.max(LearnedSkillSearch(SKILL_ID_YARI_SHUREN), UsedSkillSearch(SKILL_ID_YARI_SHUREN));
 				}
 			}
 			break;
@@ -20004,7 +20003,7 @@ function TYPE_SYUUREN(mobData, attackMethodConfArray, bArmsLeft){
 	//----------------------------------------------------------------
 	if ((mobData[MONSTER_DATA_INDEX_RACE] == RACE_ID_DEMON)
 		|| (GetMonseterElmBasicType(mobData[MONSTER_DATA_INDEX_ELEMENT]) == ELM_ID_UNDEAD)) {
-		w += Math.floor((3 + 5/100 * n_A_BaseLV) * UsedSkillSearch(SKILL_ID_DEMON_BANE));
+		w += Math.floor((3 + 5/100 * n_A_BaseLV) * Math.max(LearnedSkillSearch(SKILL_ID_DEMON_BANE), UsedSkillSearch(SKILL_ID_DEMON_BANE)));
 	}
 
 	//----------------------------------------------------------------
