@@ -582,7 +582,7 @@ function GetPAtk() {
 	}
 
 	// 「スピリットハンドラー」スキル「スピリットマスタリー」による効果
-	if ((sklLv = UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY)) > 0) {
+	if (( sklLv = Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY)) ) > 0) {
 		value += [0, 1, 2, 3, 4, 5, 6, 7, 9, 12, 15][sklLv];
 	}
 
@@ -735,7 +735,7 @@ function GetSMatk() {
 	}
 
 	// 「スピリットハンドラー」スキル「スピリットマスタリー」による効果
-	if ((sklLv = UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY)) > 0) {
+	if (( sklLv = Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY)) ) > 0) {
 		value += [0, 1, 2, 3, 4, 5, 6, 7, 9, 12, 15][sklLv];
 	}
 
