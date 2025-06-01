@@ -3486,7 +3486,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				// POW補正
 				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// 天気修練 補正
-				wbairitu += 5 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_TENKI_SHUREN);
+				wbairitu += 5 * n_A_ActiveSkillLV * Math.max(LearnedSkillSearch(SKILL_ID_TENKI_SHUREN), UsedSkillSearch(SKILL_ID_TENKI_SHUREN));
 				// ベースレベル補正
 				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 				// 分割ヒット
@@ -3517,7 +3517,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				// POW補正
 				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// 天気修練 補正
-				wbairitu += 5 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_TENKI_SHUREN);
+				wbairitu += 5 * n_A_ActiveSkillLV * Math.max(LearnedSkillSearch(SKILL_ID_TENKI_SHUREN), UsedSkillSearch(SKILL_ID_TENKI_SHUREN));
 				// ベースレベル補正
 				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 				// 正午 or 天気の身 のときだけクリが乗る仕様は CSkillManager.js 側で対処済み
@@ -3549,7 +3549,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				// POW補正
 				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// 天気修練 補正
-				wbairitu += 5 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_TENKI_SHUREN);
+				wbairitu += 5 * n_A_ActiveSkillLV * Math.max(LearnedSkillSearch(SKILL_ID_TENKI_SHUREN), UsedSkillSearch(SKILL_ID_TENKI_SHUREN));
 				// ベースレベル補正
 				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 				// 日没 or 天気の身 のときだけクリが乗る仕様は CSkillManager.js 側で対処済み
@@ -3571,7 +3571,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				// POW補正
 				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// 天気修練 補正
-				wbairitu += 5 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_TENKI_SHUREN);
+				wbairitu += 5 * n_A_ActiveSkillLV * Math.max(LearnedSkillSearch(SKILL_ID_TENKI_SHUREN), UsedSkillSearch(SKILL_ID_TENKI_SHUREN));
 				// ベースレベル補正
 				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 				// 分割ヒット
@@ -3605,7 +3605,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				// POW補正
 				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// 天気修練 補正
-				wbairitu += 5 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_TENKI_SHUREN);
+				wbairitu += 5 * n_A_ActiveSkillLV * Math.max(LearnedSkillSearch(SKILL_ID_TENKI_SHUREN), UsedSkillSearch(SKILL_ID_TENKI_SHUREN));
 				// ベースレベル補正
 				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 				// 分割ヒット
@@ -3641,7 +3641,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				// POW補正
 				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// 天気修練 補正
-				wbairitu += 5 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_TENKI_SHUREN);
+				wbairitu += 5 * n_A_ActiveSkillLV * Math.max(LearnedSkillSearch(SKILL_ID_TENKI_SHUREN), UsedSkillSearch(SKILL_ID_TENKI_SHUREN));
 				// ベースレベル補正
 				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 				// 分割ヒット
@@ -3667,7 +3667,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				// POW補正
 				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// 天気修練 補正
-				wbairitu += 3 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_TENKI_SHUREN);
+				wbairitu += 3 * n_A_ActiveSkillLV * Math.max(LearnedSkillSearch(SKILL_ID_TENKI_SHUREN), UsedSkillSearch(SKILL_ID_TENKI_SHUREN));
 				// ベースレベル補正
 				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 				// 分割ヒット
@@ -3694,7 +3694,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				// POW補正
 				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// 天気修練 補正
-				wbairitu += 5 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_TENKI_SHUREN);
+				wbairitu += 5 * n_A_ActiveSkillLV * Math.max(LearnedSkillSearch(SKILL_ID_TENKI_SHUREN), UsedSkillSearch(SKILL_ID_TENKI_SHUREN));
 				// ベースレベル補正
 				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 				// 分割ヒット
@@ -3719,7 +3719,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				// 基本倍率
 				wbairitu = 750 + (100 * n_A_ActiveSkillLV);
 				// 天気修練 補正
-				wbairitu += 5 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_TENKI_SHUREN);
+				wbairitu += 5 * n_A_ActiveSkillLV * Math.max(LearnedSkillSearch(SKILL_ID_TENKI_SHUREN), UsedSkillSearch(SKILL_ID_TENKI_SHUREN));
 				// POW補正
 				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// ベースレベル補正
@@ -18466,99 +18466,67 @@ function GetActHitRateAll(skillId, mobData) {
 /**
  * ○○の怒り系によるＡＴＫ増加効果を取得する.
  * @param {*} mobData 
- * @returns 
+ * @returns ATK増加率％
  */
 function GetIkariPow(mobData) {
-
 	// ○○の怒り系によるＡＴＫ増加効果
 	var bEffective = false;
 	var pow = 0;
 	var powWork = 0;
 	var lvWork = 0;
 	var effectMax = 0;
-
 	// 複数の怒り系をパッシブで設定できるようにするため、適切な怒りを検索する
 	while (true) {
-
 		// 星の怒り
-		if ((lvWork = UsedSkillSearch(SKILL_ID_HOSHINO_IKARI)) > 0) {
-
+		if ((lvWork = Math.max(LearnedSkillSearch(SKILL_ID_HOSHINO_IKARI), UsedSkillSearch(SKILL_ID_HOSHINO_IKARI))) > 0) {
 			bEffective = true;
-
-			// 太陽と月と星の奇跡発動中は、条件不問
 			if (UsedSkillSearch(SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_KISEKI) > 0) {
-			}
-
-			// 対プレイヤーの場合は、条件不問
-			else if (mobData[MONSTER_DATA_INDEX_ID] == MONSTER_ID_PLAYER) {
-			}
-
-			// 上記以外は、条件チェック
-			else {
+				// 太陽と月と星の奇跡発動中は、条件不問
+			} else if (mobData[MONSTER_DATA_INDEX_ID] !== MONSTER_ID_PLAYER) {
+				// 対プレイヤーではない場合は、サイズ・HP条件チェック
 				bEffective &= (mobData[MONSTER_DATA_INDEX_SIZE] == SIZE_ID_LARGE);
 				bEffective &= (mobData[MONSTER_DATA_INDEX_HP] >= 20000);
 			}
-
-			// 有効な場合は、倍率を設定して、処理用ループを抜ける
 			if (bEffective) {
+				// 有効な場合は、倍率を設定して、処理用ループを抜ける
 				powWork = n_A_BaseLV + n_A_STR + n_A_LUK + n_A_DEX;
 				effectMax = 70 * lvWork;
 				break;
 			}
 		}
-
 		// 月の怒り
-		if ((lvWork = UsedSkillSearch(SKILL_ID_TSUKINO_IKARI)) > 0) {
-
+		if ((lvWork = Math.max(LearnedSkillSearch(SKILL_ID_TSUKINO_IKARI), UsedSkillSearch(SKILL_ID_TSUKINO_IKARI))) > 0) {
 			bEffective = true;
-
-			// 対プレイヤーの場合は、条件不問
-			if (mobData[MONSTER_DATA_INDEX_ID] == MONSTER_ID_PLAYER) {
-			}
-
-			// 上記以外は、条件チェック
-			else {
+			if (mobData[MONSTER_DATA_INDEX_ID] !== MONSTER_ID_PLAYER) {
+				// 対プレイヤーではない場合は、サイズ・HP条件チェック
 				bEffective &= (mobData[MONSTER_DATA_INDEX_SIZE] == SIZE_ID_MEDIUM);
 				bEffective &= (mobData[MONSTER_DATA_INDEX_HP] >= 6000);
 			}
-
-			// 有効な場合は、倍率を設定して、処理用ループを抜ける
 			if (bEffective) {
+				// 有効な場合は、倍率を設定して、処理用ループを抜ける
 				powWork = n_A_BaseLV + n_A_LUK + n_A_DEX;
 				effectMax = 50 * lvWork;
 				break;
 			}
 		}
-
 		// 太陽の怒り
-		if ((lvWork = UsedSkillSearch(SKILL_ID_TAIYONO_IKARI)) > 0) {
-
+		if ((lvWork = Math.max(LearnedSkillSearch(SKILL_ID_TAIYONO_IKARI), UsedSkillSearch(SKILL_ID_TAIYONO_IKARI))) > 0) {
 			bEffective = true;
-
-			// 対プレイヤーの場合は、条件不問
-			if (mobData[MONSTER_DATA_INDEX_ID] == MONSTER_ID_PLAYER) {
-			}
-
-			// 上記以外は、条件チェック
-			else {
+			if (mobData[MONSTER_DATA_INDEX_ID] !== MONSTER_ID_PLAYER) {
+				// 対プレイヤーではない場合は、サイズ条件チェック
 				bEffective &= (mobData[MONSTER_DATA_INDEX_SIZE] == SIZE_ID_SMALL);
 			}
-
-			// 有効な場合は、倍率を設定して、処理用ループを抜ける
 			if (bEffective) {
+				// 有効な場合は、倍率を設定して、処理用ループを抜ける
 				powWork = n_A_BaseLV + n_A_LUK + n_A_DEX;
 				effectMax = 50 * lvWork;
 				break;
 			}
 		}
-
 		bEffective = false;
-
 		break;
 	}
-
 	pow = 100 + Math.min(effectMax, Math.floor(powWork / (12 - lvWork * 3)));
-
 	return pow;
 }
 
@@ -21726,88 +21694,65 @@ function GetElementFieldDamageRatio() {
  * @param {*} specData 
  * @param {*} mobData 
  * @param {*} dmg ダメージ
- * @param {*} bCri 
+ * @param {*} bCri true: クリティカルである / false: クリティカルではない
  * @returns 適用後のダメージ
  */
 function ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, dmg, bCri) {
-
 	var criDmgUp = 0;
-
-
 	// TODO : 謎判定　ウォーグ系スキル
-	if(n_A_ActiveSkill==511 || n_A_ActiveSkill==513 || n_A_ActiveSkill==516) return Math.floor(dmg);
-
-
-
+	if (n_A_ActiveSkill==511 || n_A_ActiveSkill==513 || n_A_ActiveSkill==516) {
+		return Math.floor(dmg);
+	}
 	// 近接物理、遠距離攻撃ダメージ上昇効果の適用
 	var rangeUp = 0;
-
-	// 弓装備時、遠距離攻撃の場合
 	if (n_Enekyori == 1 && n_A_WeaponType == ITEM_KIND_BOW) {
+		// 弓装備時、遠距離攻撃の場合
 		if (TyouEnkakuSousa3dan) {
 			rangeUp = n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP_ONLY_BOW];
 		}
-	}	
-
-	// 遠距離攻撃の場合
+	}
 	if (n_Enekyori == 1) {
+		// 遠距離攻撃の場合
 		if (TyouEnkakuSousa3dan) {
 			rangeUp = n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP];
 		}
-	}
-
-	// グランドクロスの場合（反動除く）
-	else if ((n_A_ActiveSkill == SKILL_ID_GRAND_CROSS) && !n_A_GX_HANDO) {
+	} else if ((n_A_ActiveSkill == SKILL_ID_GRAND_CROSS) && !n_A_GX_HANDO) {
+		// グランドクロスの場合（反動除く）
 		if (TyouEnkakuSousa3dan) {
 			rangeUp = n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP];
 		}
-	}
-
-	// サクリファイスの場合
-	else if (n_A_ActiveSkill == SKILL_ID_SACRIFICE) {
-	}
-
-	// 近接物理攻撃の場合
-	else if ((g_skillManager.GetSkillType(n_A_ActiveSkill) & CSkillData.TYPE_PHYSICAL) == CSkillData.TYPE_PHYSICAL) {
+	} else if (n_A_ActiveSkill == SKILL_ID_SACRIFICE) {
+		// サクリファイスの場合
+	} else if ((g_skillManager.GetSkillType(n_A_ActiveSkill) & CSkillData.TYPE_PHYSICAL) == CSkillData.TYPE_PHYSICAL) {
+		// 近接物理攻撃の場合
 		rangeUp = n_tok[ITEM_SP_SHORTRANGE_DAMAGE_UP];
 	}
-
 	dmg = Math.floor(dmg * (100 + rangeUp) / 100);
-
-
-
-	// エウカリスティカによる、不死／闇属性へのダメージ強化
 	if (UsedSkillSearch(SKILL_ID_EUCHARISTICA)) {
+		// エウカリスティカによる、不死／闇属性へのダメージ強化
 		if (n_A_JOB == JOB_ID_ARCBISHOP) {
 			if((70 <= mobData[18] && mobData[18] <= 79) || (90 <= mobData[18] && mobData[18] <= 99)) {
 				dmg = Math.floor(dmg * (100 + 3 * UsedSkillSearch(SKILL_ID_EUCHARISTICA)) / 100);
 			}
 		}
 	}
-
-	// クリティカルダメージ補正
 	if (bCri) {
-
+		// クリティカルダメージ補正
 		// 一部のスキルにおいて効果に修正が入る
 		criDmgUp = g_skillManager.CriDamageRate(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData, specData, mobData);
-
 		dmg = Math.floor(dmg * (100 + criDmgUp) / 100);
 	}
-
-	// ファイトによる、ダメージ強化
-	if (UsedSkillSearch(SKILL_ID_FIGHT)) {
-		var w = 20 * UsedSkillSearch(SKILL_ID_FIGHT);
+	if (Math.max(LearnedSkillSearch(SKILL_ID_FIGHT), UsedSkillSearch(SKILL_ID_FIGHT)) > 0) {
+		// ファイトによる、ダメージ強化
+		let w = 20 * Math.max(LearnedSkillSearch(SKILL_ID_FIGHT), UsedSkillSearch(SKILL_ID_FIGHT));
 		dmg = Math.floor(dmg * (100 + w) /100);
 	}
-
-	// 非対人戦における、アンチマジックによる、物理ダメージ増加効果
 	if(n_B_KYOUKA[8]) {
+		// 非対人戦における、アンチマジックによる、物理ダメージ増加効果
 		dmg = Math.floor(dmg * (100 + 20 * n_B_KYOUKA[8]) / 100);
 	}
-
 	// 対プレイヤー一般耐性を適用
 	dmg = ApplyRegistPVPNormal(mobData, dmg);
-
 	return Math.floor(dmg);
 }
 
