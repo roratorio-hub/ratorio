@@ -6375,25 +6375,27 @@ if (_APPLY_UPDATE_LV200) {
 		// 「拳聖　太陽と月と星の悪魔」の効果
 		//----------------------------------------------------------------
 		ASPDch = 0;
-		if (UsedSkillSearch(SKILL_ID_HOSHINO_ANRAKU)) {
+		if (UsedSkillSearch(SKILL_ID_HOSHINO_ANRAKU) > 0) {
 			switch (UsedSkillSearch(SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_HI)) {
 				case 1:	// 今日の日付
-					let today = (new Date()).getDate();
+					const today = (new Date()).getDate();
 					if (today % 5 == 1)	break; // 星の日ではない
 				case 0:	// 無条件発動
 				case 4: // 星の日
 					ASPDch += Math.floor((n_A_BaseLV + n_A_LUK + n_A_DEX) / 10);
 			}
 		}
-		if (UsedSkillSearch(SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_AKUMA)) {
+		const taiyoto_tsukito_hoshino_akuma = Math.max(LearnedSkillSearch(SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_AKUMA), UsedSkillSearch(SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_AKUMA));
+		if (taiyoto_tsukito_hoshino_akuma > 0) {
 			switch (n_A_JOB) {
-			case JOB_ID_STARGRADIATOR:
-				// ジョブレベル５０未満では発動しない
-				if (n_A_JobLV < 50) {
-					break;
-				}
-			case JOB_ID_STAR_EMPEROR:
-				ASPDch += 1 + UsedSkillSearch(SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_AKUMA);
+				case JOB_ID_STARGRADIATOR:
+					// 拳聖 ジョブレベル５０未満では発動しない
+					if (n_A_JobLV < 50) {
+						break;
+					}
+				default:
+					// 星帝・天帝は制限なし
+					ASPDch += 1 + taiyoto_tsukito_hoshino_akuma;
 			}
 		}
 		ASPDplusMAX = Math.max(ASPDplusMAX, ASPDch);
@@ -26091,59 +26093,62 @@ function StPlusCalc() {
 	//----------------------------------------------------------------
 	// 「太陽・月・星の祝福」の、＋効果
 	//----------------------------------------------------------------
+	const taiyono_shukufuku = Math.max(LearnedSkillSearch(SKILL_ID_TAIYONO_SHUKUFUKU), UsedSkillSearch(SKILL_ID_TAIYONO_SHUKUFUKU));
+	const tsukino_shukufuku = Math.max(LearnedSkillSearch(SKILL_ID_TSUKUNO_SHUKUFUKU), UsedSkillSearch(SKILL_ID_TSUKUNO_SHUKUFUKU));
+	const hoshino_shukufuku = Math.max(LearnedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU), UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU));
 	switch (UsedSkillSearch(SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_HI)) {
 		case 0:	// 無条件で発動
-			wSPC_STR += 2 * UsedSkillSearch(SKILL_ID_TAIYONO_SHUKUFUKU);
-			wSPC_VIT += 2 * UsedSkillSearch(SKILL_ID_TAIYONO_SHUKUFUKU);
-			wSPC_DEX += 2 * UsedSkillSearch(SKILL_ID_TAIYONO_SHUKUFUKU);
-			wSPC_AGI += 2 * UsedSkillSearch(SKILL_ID_TSUKUNO_SHUKUFUKU);
-			wSPC_INT += 2 * UsedSkillSearch(SKILL_ID_TSUKUNO_SHUKUFUKU);
-			wSPC_LUK += 2 * UsedSkillSearch(SKILL_ID_TSUKUNO_SHUKUFUKU);
-			wSPC_STR += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
-			wSPC_AGI += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
-			wSPC_VIT += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
-			wSPC_INT += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
-			wSPC_DEX += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
-			wSPC_LUK += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
+			wSPC_STR += 2 * taiyono_shukufuku;
+			wSPC_VIT += 2 * taiyono_shukufuku;
+			wSPC_DEX += 2 * taiyono_shukufuku;
+			wSPC_AGI += 2 * tsukino_shukufuku;
+			wSPC_INT += 2 * tsukino_shukufuku;
+			wSPC_LUK += 2 * tsukino_shukufuku;
+			wSPC_STR += 2 * hoshino_shukufuku;
+			wSPC_AGI += 2 * hoshino_shukufuku;
+			wSPC_VIT += 2 * hoshino_shukufuku;
+			wSPC_INT += 2 * hoshino_shukufuku;
+			wSPC_DEX += 2 * hoshino_shukufuku;
+			wSPC_LUK += 2 * hoshino_shukufuku;
 			break;
 		case 1:	// 今日の日付で発動
 			let today = (new Date()).getDate();
-			if (today % 5 == 0 && UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU) > 0) { // 5の倍数 ∧ 星を習得済み
-				wSPC_STR += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
-				wSPC_AGI += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
-				wSPC_VIT += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
-				wSPC_INT += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
-				wSPC_DEX += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
-				wSPC_LUK += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
+			if (today % 5 == 0 && hoshino_shukufuku > 0) { // 5の倍数 ∧ 星を習得済み
+				wSPC_STR += 2 * hoshino_shukufuku;
+				wSPC_AGI += 2 * hoshino_shukufuku;
+				wSPC_VIT += 2 * hoshino_shukufuku;
+				wSPC_INT += 2 * hoshino_shukufuku;
+				wSPC_DEX += 2 * hoshino_shukufuku;
+				wSPC_LUK += 2 * hoshino_shukufuku;
 			} else
 			if (today % 2 == 0) {	// ( 5の倍数ではない ∨ 5の倍数だが星を未習得 ) ∧ 偶数
-				wSPC_STR += 2 * UsedSkillSearch(SKILL_ID_TAIYONO_SHUKUFUKU);
-				wSPC_VIT += 2 * UsedSkillSearch(SKILL_ID_TAIYONO_SHUKUFUKU);
-				wSPC_DEX += 2 * UsedSkillSearch(SKILL_ID_TAIYONO_SHUKUFUKU);
+				wSPC_STR += 2 * taiyono_shukufuku;
+				wSPC_VIT += 2 * taiyono_shukufuku;
+				wSPC_DEX += 2 * taiyono_shukufuku;
 			} else
 			if (today % 2 == 1) {	// ( 5の倍数ではない ∨ 5の倍数だが星を未習得 ) ∧ 奇数
-				wSPC_AGI += 2 * UsedSkillSearch(SKILL_ID_TSUKUNO_SHUKUFUKU);
-				wSPC_INT += 2 * UsedSkillSearch(SKILL_ID_TSUKUNO_SHUKUFUKU);
-				wSPC_LUK += 2 * UsedSkillSearch(SKILL_ID_TSUKUNO_SHUKUFUKU);
+				wSPC_AGI += 2 * tsukino_shukufuku;
+				wSPC_INT += 2 * tsukino_shukufuku;
+				wSPC_LUK += 2 * tsukino_shukufuku;
 			}
 			break;
 		case 2:	// 太陽の日
-			wSPC_STR += 2 * UsedSkillSearch(SKILL_ID_TAIYONO_SHUKUFUKU);
-			wSPC_VIT += 2 * UsedSkillSearch(SKILL_ID_TAIYONO_SHUKUFUKU);
-			wSPC_DEX += 2 * UsedSkillSearch(SKILL_ID_TAIYONO_SHUKUFUKU);
+			wSPC_STR += 2 * taiyono_shukufuku;
+			wSPC_VIT += 2 * taiyono_shukufuku;
+			wSPC_DEX += 2 * taiyono_shukufuku;
 			break;
 		case 3:	// 月の日
-			wSPC_AGI += 2 * UsedSkillSearch(SKILL_ID_TSUKUNO_SHUKUFUKU);
-			wSPC_INT += 2 * UsedSkillSearch(SKILL_ID_TSUKUNO_SHUKUFUKU);
-			wSPC_LUK += 2 * UsedSkillSearch(SKILL_ID_TSUKUNO_SHUKUFUKU);
+			wSPC_AGI += 2 * tsukino_shukufuku;
+			wSPC_INT += 2 * tsukino_shukufuku;
+			wSPC_LUK += 2 * tsukino_shukufuku;
 			break;
 		case 4:	// 星の日
-			wSPC_STR += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
-			wSPC_AGI += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
-			wSPC_VIT += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
-			wSPC_INT += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
-			wSPC_DEX += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
-			wSPC_LUK += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
+			wSPC_STR += 2 * hoshino_shukufuku;
+			wSPC_AGI += 2 * hoshino_shukufuku;
+			wSPC_VIT += 2 * hoshino_shukufuku;
+			wSPC_INT += 2 * hoshino_shukufuku;
+			wSPC_DEX += 2 * hoshino_shukufuku;
+			wSPC_LUK += 2 * hoshino_shukufuku;
 			break;
 	}
 

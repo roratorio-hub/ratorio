@@ -557,7 +557,7 @@ function GetPAtk() {
 	}
 
 	// 「天帝」スキル「兵法修練」による効果
-	if ((sklLv = UsedSkillSearch(SKILL_ID_HYOHO_SHUREN)) > 0) {
+	if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_HYOHO_SHUREN), UsedSkillSearch(SKILL_ID_HYOHO_SHUREN))) > 0) {
 		value += (1 * Math.min(5, sklLv)) + (2 * Math.min(5, Math.max(0, sklLv - 5)));
 	}
 
@@ -1122,7 +1122,7 @@ function ApplySpecModify(spid, spVal) {
 		}
 
 		// 「天帝」スキル「兵法修練」による効果
-		if ((sklLv = UsedSkillSearch(SKILL_ID_HYOHO_SHUREN)) > 0) {
+		if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_HYOHO_SHUREN), UsedSkillSearch(SKILL_ID_HYOHO_SHUREN))) > 0) {
 			spVal += [0, 3, 6, 9, 12, 15, 20, 25, 30, 40, 50][sklLv];
 		}
 
