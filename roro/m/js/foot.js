@@ -6458,9 +6458,9 @@ if (_APPLY_UPDATE_LV200) {
 			aspd += wfsp[UsedSkillSearch(SKILL_ID_RUNE_MASTERY)];
 		}
 
-		if (UsedSkillSearch(SKILL_ID_KIHE_SHUREN) > 0) {
+		if (Math.max(LearnedSkillSearch(SKILL_ID_KIHE_SHUREN), UsedSkillSearch(SKILL_ID_KIHE_SHUREN)) > 0) {
 			if ((n_A_ActiveSkill == SKILL_ID_TUZYO_KOGEKI) || (n_A_ActiveSkill == SKILL_ID_SACRIFICE)) {
-				aspd -= aspd - aspd * (40 + UsedSkillSearch(SKILL_ID_KIHE_SHUREN) * 10) / 100;
+				aspd -= aspd - aspd * (40 + Math.max(LearnedSkillSearch(SKILL_ID_KIHE_SHUREN), UsedSkillSearch(SKILL_ID_KIHE_SHUREN)) * 10) / 100;
 			}
 		}
 
@@ -17047,13 +17047,13 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 		//----------------------------------------------------------------
 		// 「クルセイダー　フェイス」の効果
 		//----------------------------------------------------------------
-		n_tok[ITEM_SP_RESIST_ELM_HOLY] += 5 * UsedSkillSearch(SKILL_ID_FAITH);
+		n_tok[ITEM_SP_RESIST_ELM_HOLY] += 5 * Math.max(LearnedSkillSearch(SKILL_ID_FAITH), UsedSkillSearch(SKILL_ID_FAITH));
 
 		//----------------------------------------------------------------
 		// 「アークビショップ　エウカリスティカ」の効果
 		//----------------------------------------------------------------
-		n_tok[ITEM_SP_RESIST_ELM_DARK] += UsedSkillSearch(SKILL_ID_EUCHARISTICA);
-		n_tok[ITEM_SP_RESIST_ELM_UNDEAD] += UsedSkillSearch(SKILL_ID_EUCHARISTICA);
+		n_tok[ITEM_SP_RESIST_ELM_DARK] += Math.max(LearnedSkillSearch(SKILL_ID_EUCHARISTICA), UsedSkillSearch(SKILL_ID_EUCHARISTICA));
+		n_tok[ITEM_SP_RESIST_ELM_UNDEAD] += Math.max(LearnedSkillSearch(SKILL_ID_EUCHARISTICA), UsedSkillSearch(SKILL_ID_EUCHARISTICA));
 
 		//----------------------------------------------------------------
 		// 「影狼・朧　符」の効果
