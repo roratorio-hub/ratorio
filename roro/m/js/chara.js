@@ -3560,7 +3560,7 @@ function GetStatusModifyAtkPlus() {
 	//----------------------------------------------------------------
 	// 「スーパーノービス＋　ブレイクスルー」の、効果
 	//----------------------------------------------------------------
-	if ((sklLv = UsedSkillSearch(SKILL_ID_BREAK_THROUGH)) > 0) {
+	if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_BREAK_THROUGH), UsedSkillSearch(SKILL_ID_BREAK_THROUGH))) > 0) {
 		val += 15 * sklLv;
 
 		if (sklLv >= 5) {
@@ -4587,7 +4587,7 @@ function GetStatusModifyMaxHpPlus() {
 	//----------------------------------------------------------------
 	// 「スーパーノービス＋　ブレイクスルー」の、効果
 	//----------------------------------------------------------------
-	if ((sklLv = UsedSkillSearch(SKILL_ID_BREAK_THROUGH)) > 0) {
+	if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_BREAK_THROUGH), UsedSkillSearch(SKILL_ID_BREAK_THROUGH))) > 0) {
 		val += 350 * sklLv;
 
 		if (sklLv >= 5) {
@@ -4598,7 +4598,7 @@ function GetStatusModifyMaxHpPlus() {
 	//----------------------------------------------------------------
 	// 「スーパーノービス＋　トランセンデンス」の、効果
 	//----------------------------------------------------------------
-	if ((sklLv = UsedSkillSearch(SKILL_ID_TRANSCENDENCE)) > 0) {
+	if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_TRANSCENDENCE), UsedSkillSearch(SKILL_ID_TRANSCENDENCE))) > 0) {
 		val += 350 * sklLv;
 
 		if (sklLv >= 5) {
@@ -7436,7 +7436,7 @@ function GetStatusModifyMaxSpPlus() {
 	//----------------------------------------------------------------
 	// 「スーパーノービス＋　ブレイクスルー」の、効果
 	//----------------------------------------------------------------
-	if ((sklLv = UsedSkillSearch(SKILL_ID_BREAK_THROUGH)) > 0) {
+	if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_BREAK_THROUGH), UsedSkillSearch(SKILL_ID_BREAK_THROUGH))) > 0) {
 		val += 30 * sklLv;
 
 		if (sklLv >= 5) {
@@ -7447,7 +7447,7 @@ function GetStatusModifyMaxSpPlus() {
 	//----------------------------------------------------------------
 	// 「スーパーノービス＋　トランセンデンス」の、効果
 	//----------------------------------------------------------------
-	if ((sklLv = UsedSkillSearch(SKILL_ID_TRANSCENDENCE)) > 0) {
+	if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_TRANSCENDENCE), UsedSkillSearch(SKILL_ID_TRANSCENDENCE))) > 0) {
 		val += 30 * sklLv;
 
 		if (sklLv >= 5) {
@@ -11780,7 +11780,7 @@ function GetStatusModifyHitPlus() {
 	//----------------------------------------------------------------
 	// 「アーチャー　ワシの目」の、効果
 	//----------------------------------------------------------------
-	if ((sklLv = UsedSkillSearch(SKILL_ID_WASHINO_ME)) > 0) {
+	if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_WASHINO_ME), UsedSkillSearch(SKILL_ID_WASHINO_ME))) > 0) {
 		val += 1 * sklLv;
 	}
 

@@ -597,7 +597,7 @@ function GetPAtk() {
 	}
 
 	// 「ハイパーノービス」スキル「独学 -戦闘学-」による効果
-	if ((sklLv = UsedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU)) > 0) {
+	if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU), UsedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU))) > 0) {
 		value += [0, 1, 2, 3, 4, 5, 6, 7, 9, 12, 15][sklLv];
 	}
 
@@ -750,7 +750,7 @@ function GetSMatk() {
 	}
 
 	// 「ハイパーノービス」スキル「独学 -魔導学-」による効果
-	if ((sklLv = UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU)) > 0) {
+	if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU), UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU))) > 0) {
 		value += [0, 1, 2, 3, 4, 5, 6, 7, 9, 12, 15][sklLv];
 	}
 	
