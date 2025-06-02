@@ -6454,8 +6454,9 @@ if (_APPLY_UPDATE_LV200) {
 		aspd += (200 - aspd) * (w / 100);
 
 		if (UsedSkillSearch(SKILL_ID_FIGHTING_SPIRIT)) {
-			var wfsp = [0,0,0,1,1,2,2,2,3,3,4];
-			aspd += wfsp[UsedSkillSearch(SKILL_ID_RUNE_MASTERY)];
+			const wfsp = [0,0,0,1,1,2,2,2,3,3,4];
+			const sklLvRuneMastery = Math.max(LearnedSkillSearch(SKILL_ID_RUNE_MASTERY), UsedSkillSearch(SKILL_ID_RUNE_MASTERY));
+			aspd += wfsp[sklLvRuneMastery];
 		}
 
 		if (Math.max(LearnedSkillSearch(SKILL_ID_KIHE_SHUREN), UsedSkillSearch(SKILL_ID_KIHE_SHUREN)) > 0) {
@@ -6463,9 +6464,12 @@ if (_APPLY_UPDATE_LV200) {
 				aspd -= aspd - aspd * (40 + Math.max(LearnedSkillSearch(SKILL_ID_KIHE_SHUREN), UsedSkillSearch(SKILL_ID_KIHE_SHUREN)) * 10) / 100;
 			}
 		}
-
+		// トレーニング未習得でもドラゴンに乗れるので LearnedSkillSearch に置き換えられない
 		if (UsedSkillSearch(SKILL_ID_DRAGON_TRAINING) > 0) {
-			aspd -= aspd - aspd * (70 + UsedSkillSearch(SKILL_ID_DRAGON_TRAINING) * 5) / 100;
+			// ドラゴンに搭乗している場合、ドラゴントレーニングの習得Lvに応じてASPDペナルティが課せられる
+			// UsedSkillSearch の方は'Lv0'の前に'未騎乗'が挿入されているのでオフセットを合わせている
+			const dragon_training_lv = Math.max(LearnedSkillSearch(SKILL_ID_DRAGON_TRAINING), UsedSkillSearch(SKILL_ID_DRAGON_TRAINING) - 1);
+			aspd -= aspd - aspd * (70 + (dragon_training_lv + 1) * 5) / 100;
 		}
 
 

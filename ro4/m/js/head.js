@@ -1425,7 +1425,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
 				break;
 
-			case SKILL_ID_PHANTOM_SLAST:
+			case SKILL_ID_PHANTOM_SLAST:	// ファントムスラスト
 				n_Enekyori=1;
 				wbairitu = 50 * n_A_ActiveSkillLV + 10 * Math.max(LearnedSkillSearch(SKILL_ID_YARI_SHUREN), UsedSkillSearch(SKILL_ID_YARI_SHUREN));
 				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 150);
@@ -1442,13 +1442,15 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				if(BK_Weapon_zokusei == 3) wbairitu += 100 * n_A_ActiveSkillLV;
 				break;
 
-			case SKILL_ID_STORM_BLAST:
+			// ストームブラスト
+			case SKILL_ID_STORM_BLAST: {
 				wCast = 1000;
 				n_KoteiCast = 1000;
 				n_Delay[7] = 8000;
-				wbairitu = 100 * UsedSkillSearch(SKILL_ID_RUNE_MASTERY) + ROUNDDOWN(n_A_INT / 8) * 100;
+				const rune_mastery = Math.max(LearnedSkillSearch(SKILL_ID_RUNE_MASTERY), UsedSkillSearch(SKILL_ID_RUNE_MASTERY));
+				wbairitu = 100 * rune_mastery + ROUNDDOWN(n_A_INT / 8) * 100;
 				break;
-
+			}
 			case SKILL_ID_CROSS_IMPACT:
 				wActiveHitNum = 7;
 				n_Delay[0] = 2;
@@ -4281,7 +4283,8 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				break;
 
 			// 「ドラゴンナイト」スキル「ドラゴニックブレス」
-			case SKILL_ID_DRAGONIC_BREATH:
+			case SKILL_ID_DRAGONIC_BREATH: {
+				// トレーニング未習得でもドラゴンに乗れるので LearnedSkillSearch に置き換えられない
 				if (UsedSkillSearch(SKILL_ID_DRAGON_TRAINING) == 0) {
 					n_Buki_Muri = true
 					wbairitu = 0;
@@ -4294,7 +4297,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);	
 				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				break;
-
+			}
 			// 「マイスター」スキル「マイティスマッシュ」
 			// 2025/01/18 ふみ。さん提供データに一致
 			case SKILL_ID_MIGHTY_SMASH:
@@ -6221,11 +6224,9 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 		// 「ルーンナイト」スキル「ファイアードラゴンブレス」
 		// 「ルーンナイト」スキル「ウォータードラゴンブレス」
 		case SKILL_ID_FIRE_DRAGON_BREATH:
-		case SKILL_ID_WATER_DRAGON_BREATH:
-			// 「ドラゴントレーニング」Lv0の前に騎乗の有無が包含されているためインデックスをずらしている
-			let dragon_training_lv = UsedSkillSearch(SKILL_ID_DRAGON_TRAINING) - 1;
-			if (dragon_training_lv == -1) {
-				// 未騎乗の場合
+		case SKILL_ID_WATER_DRAGON_BREATH: {
+			// トレーニング未習得でもドラゴンに乗れるので LearnedSkillSearch に置き換えられない
+			if (UsedSkillSearch(SKILL_ID_DRAGON_TRAINING) == 0) {
 				n_Buki_Muri = true;
 				break;
 			}
@@ -6251,7 +6252,8 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			var w = w_HP / 50 + charaData[CHARA_DATA_INDEX_MAXSP] / 4;
 			// スキルLv補正
 			w *= n_A_ActiveSkillLV;
-			// ドラゴントレーニング補正
+			// ドラゴントレーニング補正. UsedSkillSearch の方は'Lv0'の前に'未騎乗'が挿入されているのでオフセットを合わせている
+			const dragon_training_lv = Math.max(LearnedSkillSearch(SKILL_ID_DRAGON_TRAINING), UsedSkillSearch(SKILL_ID_DRAGON_TRAINING) - 1);
 			w *= [100,100,105,110,115,120][dragon_training_lv] / 100;
 			// Lv補正
 			w *= n_A_BaseLV / 100;
@@ -6283,7 +6285,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
-
+		}
 
 		case SKILL_ID_DEATH_BOUND:
 			if(n_DEATH_BOUND[3] == 0){
@@ -17973,17 +17975,19 @@ function Click_A8(n){
  * @returns 最終サイズ補正倍率
  */
 function GetSizeModify(mobData, wSC_Size) {
-
-	// 騎兵修練習得時の、槍装備による、中型の１００％補正
-	if (Math.max(LearnedSkillSearch(SKILL_ID_KIHE_SHUREN), UsedSkillSearch(SKILL_ID_KIHE_SHUREN)) > 0) {
+	// ペコ・グリフォン搭乗時の、槍装備による、中型の１００％補正
+	// UsedSkillSearch の騎兵修練で搭乗状態をON/OFFしているので LernedSkillSearch に置き換えられない
+	if (UsedSkillSearch(SKILL_ID_KIHE_SHUREN) > 0) {
 		if ((n_A_WeaponType == 4 || n_A_WeaponType == 5) && mobData[17] == 1) {
 			wSC_Size = 1;
 		}
 	}
-
-	// ドラゴントレーニング習得時の、槍装備による、全型１００％補正
-	if (UsedSkillSearch(SKILL_ID_DRAGON_TRAINING)) {
-		if (n_A_WeaponType==4 || n_A_WeaponType==5) wSC_Size = 1;
+	// ドラゴン搭乗時の、槍装備による、全型１００％補正
+	// トレーニング未習得でもドラゴンに乗れるので LearnedSkillSearch に置き換えられない
+	if (UsedSkillSearch(SKILL_ID_DRAGON_TRAINING) > 0) {
+		if (n_A_WeaponType==4 || n_A_WeaponType==5) {
+			wSC_Size = 1;
+		}
 	}
 
 	// 自己ウェポンパーフェクション使用時の、全型１００％補正（魔導ギア搭乗時を除く、Lv200解放アップデートで制限解除）
@@ -19928,18 +19932,17 @@ function TYPE_SYUUREN(mobData, attackMethodConfArray, bArmsLeft){
 		case ITEM_KIND_SPEAR:
 		case ITEM_KIND_SPEAR_2HAND:
 			if (IsSameJobClass(JOB_ID_RUNEKNIGHT)) {
+				// トレーニング未習得でもドラゴンに乗れるので LearnedSkillSearch に置き換えられない
 				if (UsedSkillSearch(SKILL_ID_DRAGON_TRAINING) == 0) {
 					w += 4 * Math.max(LearnedSkillSearch(SKILL_ID_YARI_SHUREN), UsedSkillSearch(SKILL_ID_YARI_SHUREN));
-				}
-				else {
+				} else {
+					// ドラゴン搭乗時に槍修練の効果が増強される
 					w += 10 * Math.max(LearnedSkillSearch(SKILL_ID_YARI_SHUREN), UsedSkillSearch(SKILL_ID_YARI_SHUREN));
 				}
-			}
-			else {
+			} else {
 				if (Math.max(LearnedSkillSearch(SKILL_ID_KIHE_SHUREN), UsedSkillSearch(SKILL_ID_KIHE_SHUREN)) == 0) {
 					w += 4 * Math.max(LearnedSkillSearch(SKILL_ID_YARI_SHUREN), UsedSkillSearch(SKILL_ID_YARI_SHUREN));
-				}
-				else {
+				} else {
 					w += 5 * Math.max(LearnedSkillSearch(SKILL_ID_YARI_SHUREN), UsedSkillSearch(SKILL_ID_YARI_SHUREN));
 				}
 			}
