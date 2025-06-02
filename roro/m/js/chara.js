@@ -9372,7 +9372,7 @@ function GetStatusModifyDefDivPlus() {
 	// 「ルーンナイト　ストーンハードスキン」の、効果
 	//----------------------------------------------------------------
 	if ((sklLv = UsedSkillSearch(SKILL_ID_STONE_HARD_SKIN)) > 0) {
-		var sklLvRuneMastery = UsedSkillSearch(SKILL_ID_RUNE_MASTERY);
+		const sklLvRuneMastery = Math.max(LearnedSkillSearch(SKILL_ID_RUNE_MASTERY), UsedSkillSearch(SKILL_ID_RUNE_MASTERY));
 		val += Math.floor(n_A_JobLV * sklLvRuneMastery / 4);
 	}
 
@@ -10315,7 +10315,8 @@ function GetStatusModifyMdefDivPlus(bIgnoreBuff) {
 		// 「ルーンナイト　ストーンハードスキン」の、効果
 		//----------------------------------------------------------------
 		if ((sklLv = UsedSkillSearch(SKILL_ID_STONE_HARD_SKIN)) > 0) {
-			val += Math.floor(n_A_JobLV * UsedSkillSearch(SKILL_ID_RUNE_MASTERY) / 4);
+			const sklLvRuneMastery = Math.max(LearnedSkillSearch(SKILL_ID_RUNE_MASTERY), UsedSkillSearch(SKILL_ID_RUNE_MASTERY));
+			val += Math.floor(n_A_JobLV * sklLvRuneMastery / 4);
 		}
 
 	}

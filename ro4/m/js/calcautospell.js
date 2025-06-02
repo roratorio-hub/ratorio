@@ -339,12 +339,16 @@ function AS_Calc(charaData, specData, mobData, attackMethodConfArray, battleCalc
 	//----------------------------------------------------------------
 	// ハンドレッドスピア時の、スピアブーメラン追撃効果
 	//----------------------------------------------------------------
-	if ((n_A_ActiveSkill == SKILL_ID_HANDRED_SPEAR) && (attackMethodConfArray[0].GetOptionValue(1)) >= 1){
-		funcAddAS();
-		n_AS_SKILL[idx][0] = SKILL_ID_SPEAR_BOOMERANG;
-		n_AS_SKILL[idx][1] = attackMethodConfArray[0].GetOptionValue(1);
-		n_AS_SKILL[idx][2] = (10 + 3 * n_A_ActiveSkillLV) * 10;
-		n_AS_SKILL[idx][3] = 0;
+	if (n_A_ActiveSkill == SKILL_ID_HANDRED_SPEAR){
+		const spear_boomerang_lv = Math.max(LearnedSkillSearch(SKILL_ID_SPEAR_BOOMERANG), attackMethodConfArray[0].GetOptionValue(1));
+		if (spear_boomerang_lv > 0) {
+			funcAddAS();
+			n_AS_SKILL[idx][0] = SKILL_ID_SPEAR_BOOMERANG;
+			// スピアブーメランが習得Lvで発動する
+			n_AS_SKILL[idx][1] = spear_boomerang_lv;
+			n_AS_SKILL[idx][2] = (10 + 3 * n_A_ActiveSkillLV) * 10;
+			n_AS_SKILL[idx][3] = 0;
+		}
 	}
 
 

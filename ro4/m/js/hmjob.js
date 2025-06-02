@@ -1416,7 +1416,7 @@ function ApplySpecModify(spid, spVal) {
 	case ITEM_SP_PHYSICAL_RESIST_SIZE_LARGE:
 
 		// 「ドラゴンナイト」スキル「ツーハンドディフェンディング」習得による効果
-		if ((sklLv = UsedSkillSearch(SKILL_ID_TWOHAND_DEFENDING)) > 0) {
+		if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_TWOHAND_DEFENDING), UsedSkillSearch(SKILL_ID_TWOHAND_DEFENDING))) > 0) {
 			// 両手武器装備時限定
 			switch (n_A_WeaponType) {
 			case ITEM_KIND_SWORD_2HAND:
