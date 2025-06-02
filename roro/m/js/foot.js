@@ -2613,10 +2613,10 @@ g_ITEM_SP_FLEE_PLUS_value_forCalcData = flee;
 		// 「シーフ　回避率増加」の、効果
 		//----------------------------------------------------------------
 		if ([JOB_SERIES_ID_ASSASIN, JOB_SERIES_ID_ROGUE].indexOf(GetHigherJobSeriesID(n_A_JOB)) >= 0) {
-			flee += 4 * UsedSkillSearch(SKILL_ID_KAIHIRITSU_ZOKA);
+			flee += 4 * Math.max(LearnedSkillSearch(SKILL_ID_KAIHIRITSU_ZOKA), UsedSkillSearch(SKILL_ID_KAIHIRITSU_ZOKA));
 		}
 		else {
-			flee += 3 * UsedSkillSearch(SKILL_ID_KAIHIRITSU_ZOKA);
+			flee += 3 * Math.max(LearnedSkillSearch(SKILL_ID_KAIHIRITSU_ZOKA), UsedSkillSearch(SKILL_ID_KAIHIRITSU_ZOKA));
 		}
 
 		//----------------------------------------------------------------
@@ -4907,7 +4907,7 @@ if (_APPLY_UPDATE_LV200) {
 		//----------------------------------------------------------------
 		// 「スーパーノービス＋　トランセンデンス」の、効果
 		//----------------------------------------------------------------
-		if ((sklLv = UsedSkillSearch(SKILL_ID_TRANSCENDENCE)) > 0) {
+		if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_TRANSCENDENCE), UsedSkillSearch(SKILL_ID_TRANSCENDENCE))) > 0) {
 			w += 15 * sklLv;
 
 			if (sklLv >= 5) {
@@ -18435,14 +18435,14 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 		//----------------------------------------------------------------
 		// 「スーパーノービス＋　ブレイクスルー」の、効果
 		//----------------------------------------------------------------
-		if ((sklLv = UsedSkillSearch(SKILL_ID_BREAK_THROUGH)) > 0) {
+		if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_BREAK_THROUGH), UsedSkillSearch(SKILL_ID_BREAK_THROUGH))) > 0) {
 			n_tok[ITEM_SP_HEAL_UP_USED] += 2 * sklLv;
 		}
 
 		//----------------------------------------------------------------
 		// 「スーパーノービス＋　トランセンデンス」の、効果
 		//----------------------------------------------------------------
-		if ((sklLv = UsedSkillSearch(SKILL_ID_TRANSCENDENCE)) > 0) {
+		if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_TRANSCENDENCE), UsedSkillSearch(SKILL_ID_TRANSCENDENCE))) > 0) {
 			n_tok[ITEM_SP_HEAL_UP_USING] += 3 * sklLv;
 		}
 
@@ -25954,7 +25954,7 @@ function StPlusCalc() {
 	//----------------------------------------------------------------
 	// 「ふくろうの目」の、ＤＥＸ＋効果
 	//----------------------------------------------------------------
-	wSPC_DEX += UsedSkillSearch(SKILL_ID_FUKURONO_ME);
+	wSPC_DEX += Math.max(LearnedSkillSearch(SKILL_ID_FUKURONO_ME), UsedSkillSearch(SKILL_ID_FUKURONO_ME));
 
 	//----------------------------------------------------------------
 	// 「ラウドボイス」の、ＳＴＲ＋効果
