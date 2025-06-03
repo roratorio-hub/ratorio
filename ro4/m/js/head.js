@@ -1967,7 +1967,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 
 			// 「ジェネティック」スキル「カートトルネード」
 			// 2024/11/16 実測誤差無しを確認済み
-			case SKILL_ID_CART_TORNADO:
+			case SKILL_ID_CART_TORNADO: {
 				// 詠唱など
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				// 基本倍率
@@ -1975,12 +1975,14 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				// ウドゥンウォリアー補正
 				wbairitu += 100 * n_A_ActiveSkillLV * attackMethodConfArray[0].GetOptionValue(1);
 				// 修練補正
-				wbairitu += 50 * UsedSkillSearch(SKILL_ID_CART_KAIZO)
+				const cart_kaizo_lv = Math.max(LearnedSkillSearch(SKILL_ID_CART_KAIZO), UsedSkillSearch(SKILL_ID_CART_KAIZO));
+				wbairitu += 50 * cart_kaizo_lv;
 				// カート重量・純粋STR補正
 				wbairitu += Math.floor(attackMethodConfArray[0].GetOptionValue(0) / (150 - SU_STR));;
 				// 分割ヒット
 				wActiveHitNum = 3;
 				break;
+			}
 
 			case SKILL_ID_SLING_ITEM:
 				n_Enekyori=1;
@@ -5542,12 +5544,11 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
-
-
-		case SKILL_ID_CART_REVOLUTION:
+		case SKILL_ID_CART_REVOLUTION: {
 			w_HIT = 100;
 			w_HIT_HYOUJI = 100;
-			var CRbai = attackMethodConfArray[0].GetOptionValue(0) / (8000 + 500 * UsedSkillSearch(SKILL_ID_CART_KAIZO)) * 100;
+			const cart_kaizo_lv = Math.max(LearnedSkillSearch(SKILL_ID_CART_KAIZO), UsedSkillSearch(SKILL_ID_CART_KAIZO));
+			const CRbai = attackMethodConfArray[0].GetOptionValue(0) / (8000 + 500 * cart_kaizo_lv) * 100;
 
 			for(var i=0;i<=2;i++){
 				w_DMG[i] = ROUNDDOWN(n_A_DMG[i] * 150 / 100);
@@ -5565,8 +5566,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
-
-
+		}
 
 		case SKILL_ID_PRESSURE:
 			w_HIT = 100;
@@ -5953,7 +5953,9 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				wCast = 2000;
 				n_Delay[0] = 1;
 				n_Delay[2] = 500;
-				wHITsuu = attackMethodConfArray[0].GetOptionValue(0);
+				// アシッドデモンストレーションの習得Lvに応じたヒット数
+				const acid_demonstration_lv = LearnedSkillSearch(SKILL_ID_ACID_DEMONSTRATION);
+				wHITsuu = Math.max(acid_demonstration_lv, attackMethodConfArray[0].GetOptionValue(0));
 				if(wHITsuu <5) wHITsuu = 5;
 			}
 			var w1 = [0,0,0];
@@ -6621,7 +6623,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 
 		// 「ジェネティック」スキル「カートキャノン」
 		// 2024/11/16 YEサーバー誤差無しを確認済み
-		case SKILL_ID_CART_CANNON:
+		case SKILL_ID_CART_CANNON: {
 			n_PerfectHIT_DMG = 0;
 			// 必中処理
 			w_HIT_HYOUJI = 100;
@@ -6638,7 +6640,8 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			// 基本倍率
 			wbairitu = 60 * n_A_ActiveSkillLV;
 			// カート改造補正
-			wbairitu += Math.floor(Math.max(LearnedSkillSearch(SKILL_ID_CART_KAIZO), UsedSkillSearch(SKILL_ID_CART_KAIZO)) * 50 * n_A_INT / 40);
+			const cart_kaizo_lv = Math.max(LearnedSkillSearch(SKILL_ID_CART_KAIZO), UsedSkillSearch(SKILL_ID_CART_KAIZO));
+			wbairitu += Math.floor(cart_kaizo_lv * 50 * n_A_INT / 40);
 			// 倍率補正
 			var wMADO = 0;
 			// 斧修練
@@ -6669,6 +6672,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
+		}
 
 		case SKILL_ID_SELF_DESTRUCTION:
 		case SKILL_ID_SELF_DESTRUCTION_MAX:
@@ -7077,16 +7081,18 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
-
-
-		case SKILL_ID_HELLS_PLANT:
+		case SKILL_ID_HELLS_PLANT: {	// ヘルズプラント
 			w_HIT = 100;
 			w_HIT_HYOUJI = 100;
 			n_Enekyori = 2;
 			wCast = 2000;
 			n_PerfectHIT_DMG = 0;
 			n_A_Weapon_zokusei = 0;
-			w = n_A_ActiveSkillLV * mobData[2] * 10 + Math.floor(n_A_INT * 7 / 2) * Math.floor(18 + n_A_JobLV / 4) * (5 / (10 - attackMethodConfArray[0].GetOptionValue(0)));
+			w = n_A_ActiveSkillLV * mobData[2] * 10;
+			w += Math.floor(n_A_INT * 7 / 2) * Math.floor(18 + n_A_JobLV / 4);
+			// バイオプラント習得Lv補正
+			const bioplant_lv = LearnedSkillSearch(SKILL_ID_BIOPLANT);
+			w *= (5 / (10 - Math.max(bioplant_lv, attackMethodConfArray[0].GetOptionValue(0))));
 			w = ApplyElementRatio(mobData, w,0);
 			w = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w);
 			if(n_B_KYOUKA[7] && n_Enekyori == 2) w += Math.floor(w * (20 * n_B_KYOUKA[7]) / 100);
@@ -7098,8 +7104,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
-
-
+		}
 
 		case SKILL_ID_ZYUMONZIGIRI:
 			n_Enekyori=1;
