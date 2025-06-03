@@ -1,759 +1,694 @@
 card_list:
-  - name: スキルオーブ(アークメイジI)
-    yomi: スキルオーブアークメイジ1
+  - name: 潜在解放(アビスチェイサーXIV)
+    yomi: センザイカイホウアビスチェイサー14
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 真理の解放
+        capabilities: 
+          - name: 壊れない
+            value: 1
+  - name: 潜在解放(アークメイジXIII)
+    yomi: センザイカイホウアークメイジ13
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 真理の解放
+        capabilities: 
+          - name: 壊れない
+            value: 1
+  - name: 潜在解放(バイオロXIV)
+    yomi: センザイカイホウバイオロ14
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities: 
+          - name: 壊れない
+            value: 1
+  - name: 潜在解放(カーディナルXIV)
+    yomi: センザイカイホウカーディナル14
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities: 
+          - name: 壊れない
+            value: 1
+  - name: 潜在解放(ドラゴンナイトXIII)
+    yomi: センザイカイホウドラゴンナイト13
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities: 
+          - name: 壊れない
+            value: 1
+  - name: 潜在解放(エレメンタルマスターXIII)
+    yomi: センザイカイホウエレメンタルマスター13
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 真理の解放
+        capabilities: 
+          - name: 壊れない
+            value: 1
+  - name: 潜在解放(ハイパーノービスXIV)
+    yomi: センザイカイホウハイパーノービス14
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 真理の解放
+        capabilities: 
+          - name: 壊れない
+            value: 1
+  - name: 潜在解放(インペリアルガードXIII)
+    yomi: センザイカイホウインペリアルガード13
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 真理の解放
+        capabilities: 
+          - name: 壊れない
+            value: 1
+  - name: 潜在解放(インクイジターXII)
+    yomi: センザイカイホウインクイジター12
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities: 
+          - name: 壊れない
+            value: 1
+  - name: 潜在解放(マイスターXIII)
+    yomi: センザイカイホウマイスター13
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities: 
+          - name: 壊れない
+            value: 1
+  - name: 潜在解放(ナイトウォッチXI)
+    yomi: センザイカイホウナイトウォッチ11
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities: 
+          - name: 壊れない
+            value: 1
+  - name: 潜在解放(スピリットハンドラーXIII)
+    yomi: センザイカイホウスピリットハンドラー13
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities: 
+          - name: 壊れない
+            value: 1
+  - name: 潜在解放(シャドウクロスXII)
+    yomi: センザイカイホウシャドウクロス12
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities: 
+          - name: 壊れない
+            value: 1
+  - name: 潜在解放(天帝XI)
+    yomi: センザイカイホウテンテイ11
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities: 
+          - name: 壊れない
+            value: 1
+  - name: 潜在解放(ソウルアセティックXII)
+    yomi: センザイカイホウソウルアセティック12
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 真理の解放
+        capabilities: 
+          - name: 壊れない
+            value: 1
+  - name: 潜在解放(蜃気楼&不知火XII)
+    yomi: センザイカイホウシンキロウアンドシラヌイ12
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities: 
+          - name: 壊れない
+            value: 1
+  - name: 潜在解放(トルバドゥール&トルヴェールX)
+    yomi: センザイカイホウトオルバドゥールアンドトルヴェール10
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities: 
+          - name: 壊れない
+            value: 1
+  - name: 潜在解放(ウィンドホークXV)
+    yomi: センザイカイホウウィンドホーク15
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities: 
+          - name: 壊れない
+            value: 1
+  - name: 魔喰いの顎
+    yomi: マグイノアギト
+    type: エンチャント
+    capabilities: 
+          - name: 壊れない
+            value: 1
+  - name: 悪霊の儀式
+    yomi: アクレイノギシキ
     type: エンチャント
     capabilities:
-      - name: スキルダメージ増加
-        skill: クリムゾンアロー
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: フローズンスラッシュ
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: ストームキャノン
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: ロックダウン
-        per_lv: 10
-        value: 1
-  - name: スキルオーブ(アークメイジII)
-    yomi: スキルオーブアークメイジ2
+      - name: 全サイズへの物理ダメージ増加
+        value: 10
+      - name: 全サイズへの魔法ダメージ増加
+        value: 10
+    set_list:
+      - set:
+        entity_list:
+          - item_name: 暴食のスタッフオブディストラクション
+        capabilities:
+          - name: MAXHP増加
+            value: 15
+          - name: ボス耐性
+            value: 10
+          - name: スキル使用可能
+            skill: サンクチュアリ
+            skill_lv: 5
+      - set:
+        entity_list:
+          - item_name: 暴食のバリアントシューズ
+        capabilities: 
+          - name: 壊れない
+            value: 1
+      - set:
+        entity_list:
+          - card_name: 暴食の魔王ヴェルゼブブ
+        capabilities:
+          - name: MAXHP増加
+            value: 50
+          - name: 闇属性耐性
+            value: 50
+      - set:
+        entity_list:
+          - item_name: 暴食のクラウン(ドラゴンナイト)
+        capabilities:
+          - name: スキルディレイ減少
+            value: 20
+          - name: スキル使用可能
+            skill: ブレッシング
+            skill_lv: 10
+          - name: スキルダメージ増加
+            skill: ハックアンドスラッシャー
+            per_lv: 10
+            value: 1
+          - name: スキルダメージ増加
+            skill: ストームスラッシュ
+            per_lv: 10
+            value: 1
+      - set:
+        entity_list:
+          - item_name: 暴食のクラウン(インペリアルガード)
+        capabilities:
+          - name: スキルディレイ減少
+            value: 20
+          - name: スキル使用可能
+            skill: ブレッシング
+            skill_lv: 10
+          - name: スキルダメージ増加
+            skill: クロスレイン
+            per_lv: 10
+            value: 1
+          - name: スキルダメージ増加
+            skill: ジャッジメントクロス
+            per_lv: 10
+            value: 1
+      - set:
+        entity_list:
+          - item_name: 暴食のクラウン(マイスター)
+        capabilities:
+          - name: スキルディレイ減少
+            value: 20
+          - name: スキル使用可能
+            skill: ブレッシング
+            skill_lv: 10
+          - name: スキルダメージ増加
+            skill: アックスストンプ
+            per_lv: 10
+            value: 1
+          - name: スキルダメージ増加
+            skill: マイティスマッシュ
+            per_lv: 10
+            value: 1
+          - name: スキルダメージ増加
+            skill: ラッシュクエイク
+            per_lv: 10
+            value: 1
+      - set:
+        entity_list:
+          - item_name: 暴食のクラウン(バイオロ)
+        capabilities:
+          - name: スキルディレイ減少
+            value: 20
+          - name: スキル使用可能
+            skill: ブレッシング
+            skill_lv: 10
+          - name: スキルダメージ増加
+            skill: メイヘミックソーンズ
+            per_lv: 10
+            value: 1
+      - set:
+        entity_list:
+          - item_name: 暴食のクラウン(シャドウクロス)
+        capabilities:
+          - name: スキルディレイ減少
+            value: 20
+          - name: スキル使用可能
+            skill: ブレッシング
+            skill_lv: 10
+          - name: スキルダメージ増加
+            skill: インパクトクレーター
+            per_lv: 10
+            value: 1
+          - name: スキルダメージ増加
+            skill: サベージインパクト
+            per_lv: 10
+            value: 1
+          - name: スキルダメージ増加
+            skill: フェイタルシャドウクロー
+            per_lv: 10
+            value: 1
+      - set:
+        entity_list:
+          - item_name: 暴食のクラウン(アビスチェイサー)
+        capabilities:
+          - name: スキルディレイ減少
+            value: 20
+          - name: スキル使用可能
+            skill: ブレッシング
+            skill_lv: 10
+          - name: スキルダメージ増加
+            skill: フロムジアビス
+            per_lv: 10
+            value: 1
+          - name: スキルダメージ増加
+            skill: アビススクエア
+            per_lv: 10
+            value: 1
+          - name: スキルダメージ増加
+            skill: オメガアビスストライク
+            per_lv: 10
+            value: 1
+      - set:
+        entity_list:
+          - item_name: 暴食のクラウン(カーディナル)
+        capabilities:
+          - name: スキルディレイ減少
+            value: 20
+          - name: スキル使用可能
+            skill: ブレッシング
+            skill_lv: 10
+          - name: スキルダメージ増加
+            skill: ペティティオ
+            per_lv: 10
+            value: 1
+          - name: スキルダメージ増加
+            skill: エフィリゴ
+            per_lv: 10
+            value: 1
+      - set:
+        entity_list:
+          - item_name: 暴食のクラウン(インクイジター)
+        capabilities:
+          - name: スキルディレイ減少
+            value: 20
+          - name: スキル使用可能
+            skill: ブレッシング
+            skill_lv: 10
+          - name: スキルダメージ増加
+            skill: 第二撃：信念
+            per_lv: 10
+            value: 1
+          - name: スキルダメージ増加
+            skill: 第三撃：断罪
+            per_lv: 10
+            value: 1
+          - name: スキルダメージ増加
+            skill: 第二撃：審判
+            per_lv: 10
+            value: 1
+          - name: スキルダメージ増加
+            skill: 第三撃：浄化
+            per_lv: 10
+            value: 1
+          - name: スキルダメージ増加
+            skill: 第二撃：滅魔の火
+            per_lv: 10
+            value: 1
+          - name: スキルダメージ増加
+            skill: 第三撃：滅火撃
+            per_lv: 10
+            value: 1
+      - set:
+        entity_list:
+          - item_name: 暴食のクラウン(アークメイジ)
+        capabilities:
+          - name: スキルディレイ減少
+            value: 20
+          - name: スキル使用可能
+            skill: ブレッシング
+            skill_lv: 10
+          - name: スキルダメージ増加
+            skill: ソウルバルカンストライク
+            per_lv: 10
+            value: 1
+          - name: スキルダメージ増加
+            skill: ミステリーイリュージョン
+            per_lv: 10
+            value: 1
+          - name: スキルダメージ増加
+            skill: デッドリープロジェクション
+            per_lv: 10
+            value: 1
+          - name: スキルダメージ増加
+            skill: アストラルストライク
+            per_lv: 10
+            value: 1
+      - set:
+        entity_list:
+          - item_name: 暴食のクラウン(エレメンタルマスター)
+        capabilities:
+          - name: スキルディレイ減少
+            value: 20
+          - name: スキル使用可能
+            skill: ブレッシング
+            skill_lv: 10
+          - name: スキルダメージ増加
+            skill: コンフラグレーション
+            per_lv: 10
+            value: 1
+          - name: スキルダメージ増加
+            skill: ダイヤモンドストーム
+            per_lv: 10
+            value: 1
+          - name: スキルダメージ増加
+            skill: ライトニングランド
+            per_lv: 10
+            value: 1
+          - name: スキルダメージ増加
+            skill: テラドライブ
+            per_lv: 10
+            value: 1
+          - name: スキルダメージ増加
+            skill: ベナムスワンプ
+            per_lv: 10
+            value: 1
+          - name: スキルダメージ増加
+            skill: エレメンタルバスター
+            per_lv: 10
+            value: 1
+      - set:
+        entity_list:
+          - item_name: 暴食のクラウン(ウィンドホーク)
+        capabilities:
+          - name: スキルディレイ減少
+            value: 20
+          - name: スキル使用可能
+            skill: ブレッシング
+            skill_lv: 10
+          - name: スキルダメージ増加
+            skill: フレイムトラップ
+            per_lv: 10
+            value: 1
+          - name: スキルダメージ増加
+            skill: スイフトトラップ
+            per_lv: 10
+            value: 1
+          - name: スキルダメージ増加
+            skill: ソリッドトラップ
+            per_lv: 10
+            value: 1
+          - name: スキルダメージ増加
+            skill: ディープブラインドトラップ
+            per_lv: 10
+            value: 1
+      - set:
+        entity_list:
+          - item_name: 暴食のクラウン(トルバドゥール&トルヴェール)
+        capabilities:
+          - name: スキルディレイ減少
+            value: 20
+          - name: スキル使用可能
+            skill: ブレッシング
+            skill_lv: 10
+          - name: スキルダメージ増加
+            skill: サウンドブレンド
+            per_lv: 10
+            value: 1
+          - name: スキルダメージ増加
+            skill: メタリックフューリー
+            per_lv: 10
+            value: 1
+      - set:
+        entity_list:
+          - item_name: 暴食のクラウン(天帝)
+        capabilities:
+          - name: スキルディレイ減少
+            value: 20
+          - name: スキル使用可能
+            skill: ブレッシング
+            skill_lv: 10
+          - name: スキルダメージ増加
+            skill: 天地一陽
+            per_lv: 10
+            value: 1
+          - name: スキルダメージ増加
+            skill: 太天一陽
+            per_lv: 10
+            value: 1
+          - name: スキルダメージ増加
+            skill: 天陽
+            per_lv: 10
+            value: 1
+          - name: スキルダメージ増加
+            skill: 天地一月
+            per_lv: 10
+            value: 1
+          - name: スキルダメージ増加
+            skill: 太天一月
+            per_lv: 10
+            value: 1
+          - name: スキルダメージ増加
+            skill: 天月
+            per_lv: 10
+            value: 1
+          - name: スキルダメージ増加
+            skill: 天羅万象
+            per_lv: 10
+            value: 1
+      - set:
+        entity_list:
+          - item_name: 暴食のクラウン(ソウルアセティック)
+        capabilities:
+          - name: スキルディレイ減少
+            value: 20
+          - name: スキル使用可能
+            skill: ブレッシング
+            skill_lv: 10
+          - name: スキルダメージ増加
+            skill: 霊道符
+            per_lv: 10
+            value: 1
+          - name: スキルダメージ増加
+            skill: 死霊浄化
+            per_lv: 10
+            value: 1
+          - name: スキルダメージ増加
+            skill: 四方五行陣
+            per_lv: 10
+            value: 1
+      - set:
+        entity_list:
+          - item_name: 暴食のクラウン(ナイトウォッチ)
+        capabilities:
+          - name: スキルディレイ減少
+            value: 20
+          - name: スキル使用可能
+            skill: ブレッシング
+            skill_lv: 10
+          - name: スキルダメージ増加
+            skill: マガジンフォーワン
+            per_lv: 10
+            value: 1
+          - name: スキルダメージ増加
+            skill: ビジラントアットナイト
+            per_lv: 10
+            value: 1
+          - name: スキルダメージ増加
+            skill: ワイルドファイア
+            per_lv: 10
+            value: 1
+      - set:
+        entity_list:
+          - item_name: 暴食のクラウン(蜃気楼&不知火)
+        capabilities:
+          - name: スキルディレイ減少
+            value: 20
+          - name: スキル使用可能
+            skill: ブレッシング
+            skill_lv: 10
+          - name: スキルダメージ増加
+            skill: 赤炎砲
+            per_lv: 10
+            value: 1
+          - name: スキルダメージ増加
+            skill: 冷血砲
+            per_lv: 10
+            value: 1
+          - name: スキルダメージ増加
+            skill: 雷電砲
+            per_lv: 10
+            value: 1
+          - name: スキルダメージ増加
+            skill: 金龍砲
+            per_lv: 10
+            value: 1
+          - name: スキルダメージ増加
+            skill: 暗転砲
+            per_lv: 10
+            value: 1
+          - name: スキルダメージ増加
+            skill: 幻術 -暗黒龍-
+            per_lv: 10
+            value: 1
+      - set:
+        entity_list:
+          - item_name: 暴食のクラウン(ハイパーノービス)
+        capabilities:
+          - name: スキルディレイ減少
+            value: 20
+          - name: スキル使用可能
+            skill: ブレッシング
+            skill_lv: 10
+          - name: スキルダメージ増加
+            skill: ダブルボウリングバッシュ
+            per_lv: 10
+            value: 1
+          - name: スキルダメージ増加
+            skill: メガソニックブロー
+            per_lv: 10
+            value: 1
+      - set:
+        entity_list:
+          - item_name: 暴食のクラウン(スピリットハンドラー)
+        capabilities:
+          - name: スキルディレイ減少
+            value: 20
+          - name: スキル使用可能
+            skill: ブレッシング
+            skill_lv: 10
+          - name: スキルダメージ増加
+            skill: タイガースラッシュ
+            per_lv: 10
+            value: 1
+          - name: スキルダメージ増加
+            skill: タイガーハウリング
+            per_lv: 10
+            value: 1
+          - name: スキルダメージ増加
+            skill: タイガーストライク
+            per_lv: 10
+            value: 1
+  - name: セレスティアルピース
+    yomi: セレスティアルピース
     type: エンチャント
     capabilities:
-      - name: スキルダメージ増加
-        skill: ソウルバルカンストライク
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: ミステリーイリュージョン
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: デッドリープロジェクション
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: アストラルストライク
-        per_lv: 10
-        value: 1
-  - name: スキルオーブ(アビスチェイサーI)
-    yomi: スキルオーブアビスチェイサー1
-    type: エンチャント
-    capabilities:
-      - name: スキルダメージ増加
-        skill: チェーンリアクションショット
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: フレンジショット
-        per_lv: 10
-        value: 1
-  - name: スキルオーブ(アビスチェイサーII)
-    yomi: スキルオーブアビスチェイサー2
-    type: エンチャント
-    capabilities:
-      - name: スキルダメージ増加
-        skill: フロムジアビス
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: アビススクエア
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: オメガアビスストライク
-        per_lv: 10
-        value: 1
-  - name: スキルオーブ(アビスチェイサーIII)
-    yomi: スキルオーブアビスチェイサー3
-    type: エンチャント
-    capabilities:
-      - name: スキルダメージ増加
-        skill: アビスダガー
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: アンラッキーラッシュ
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: デフトスタブ
-        per_lv: 10
-        value: 1
-  - name: スキルオーブ(インクイジターI)
-    yomi: スキルオーブインクイジター1
-    type: エンチャント
-    capabilities:
-      - name: スキルダメージ増加
-        skill: 聖油洗礼
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: 爆火神弾
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: 炎火滅魔神弾
-        per_lv: 10
-        value: 1
-  - name: スキルオーブ(インクイジターII)
-    yomi: スキルオーブインクイジター2
-    type: エンチャント
-    capabilities:
-      - name: スキルダメージ増加
-        skill: 第二撃：信念
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: 第三撃：断罪
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: 第二撃：審判
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: 第三撃：浄化
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: 第二撃：滅魔の火
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: 第三撃：滅火撃
-        per_lv: 10
-        value: 1
-  - name: スキルオーブ(インペリアルガードI)
-    yomi: スキルオーブインペリアルガード1
-    type: エンチャント
-    capabilities:
-      - name: スキルダメージ増加
-        skill: オーバースラッシュ
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: グランドジャッジメント
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: シールドシューティング
-        per_lv: 10
-        value: 1
-  - name: スキルオーブ(インペリアルガードII)
-    yomi: スキルオーブインペリアルガード2
-    type: エンチャント
-    capabilities:
-      - name: スキルダメージ増加
-        skill: クロスレイン
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: ジャッジメントクロス
-        per_lv: 10
-        value: 1
-  - name: スキルオーブ(ウィンドホークI)
-    yomi: スキルオーブウィンドホーク1
-    type: エンチャント
-    capabilities:
-      - name: スキルダメージ増加
-        skill: クレッシブボルト
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: ゲイルストーム
-        per_lv: 10
-        value: 1
-  - name: スキルオーブ(ウィンドホークII)
-    yomi: スキルオーブウィンドホーク2
-    type: エンチャント
-    capabilities:
-      - name: スキルダメージ増加
-        skill: ホークブーメラン
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: ホークラッシュ
-        per_lv: 10
-        value: 1
-  - name: スキルオーブ(ウィンドホークIII)
-    yomi: スキルオーブウィンドホーク3
-    type: エンチャント
-    capabilities:
-      - name: スキルダメージ増加
-        skill: フレイムトラップ
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: スイフトトラップ
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: ソリッドトラップ
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: ディープブラインドトラップ
-        per_lv: 10
-        value: 1
-  - name: スキルオーブ(エレメンタルマスターI)
-    yomi: スキルオーブエレメンタルマスター1
-    type: エンチャント
-    capabilities:
-      - name: スキルダメージ増加
-        skill: コンフラグレーション
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: ダイヤモンドストーム
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: ライトニングランド
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: テラドライブ
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: ベナムスワンプ
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: エレメンタルバスター
-        per_lv: 10
-        value: 1
-  - name: スキルオーブ(カーディナルI)
-    yomi: スキルオーブカーディナル1
-    type: エンチャント
-    capabilities:
-      - name: スキルダメージ増加
-        skill: アルビトリウム
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: ニューマティックプロセラ
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: フレーメン
-        per_lv: 10
-        value: 1
-  - name: スキルオーブ(カーディナルII)
-    yomi: スキルオーブカーディナル2
-    type: エンチャント
-    capabilities:
-      - name: スキルダメージ増加
-        skill: ペティティオ
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: エフィリゴ
-        per_lv: 10
-        value: 1
-  - name: スキルオーブ(シャドウクロスI)
-    yomi: スキルオーブシャドウクロス1
-    type: エンチャント
-    capabilities:
-      - name: スキルダメージ増加
-        skill: インパクトクレーター
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: サベージインパクト
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: フェイタルシャドウクロー
-        per_lv: 10
-        value: 1
-  - name: スキルオーブ(シャドウクロスII)
-    yomi: スキルオーブシャドウクロス2
-    type: エンチャント
-    capabilities:
-      - name: スキルダメージ増加
-        skill: ダンシングナイフ
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: シャドウスタブ
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: エターナルスラッシュ
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: フェイタルシャドウクロー
-        per_lv: 10
-        value: 1
-  - name: スキルオーブ(スピリットハンドラーI)
-    yomi: スキルオーブスピリットハンドラー1
-    type: エンチャント
-    capabilities:
-      - name: スキルダメージ増加
-        skill: タイガースラッシュ
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: タイガーハウリング
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: タイガーストライク
-        per_lv: 10
-        value: 1
-  - name: スキルオーブ(スピリットハンドラーII)
-    yomi: スキルオーブスピリットハンドラー2
-    type: エンチャント
-    capabilities:
-      - name: スキルダメージ増加
-        skill: ディアーキャノン
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: ディアーブリーズ
-        per_lv: 10
-        value: 1
-  - name: スキルオーブ(ソウルアセティックI)
-    yomi: スキルオーブソウルアセティック1
-    type: エンチャント
-    capabilities:
-      - name: スキルダメージ増加
-        skill: 青龍符
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: 白虎符
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: 朱雀符
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: 玄武符
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: 四方神符
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: 四方五行陣
-        per_lv: 10
-        value: 1
-  - name: スキルオーブ(ソウルアセティックII)
-    yomi: スキルオーブソウルアセティック2
-    type: エンチャント
-    capabilities:
-      - name: スキルダメージ増加
-        skill: 霊道符
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: 死霊浄化
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: 四方五行陣
-        per_lv: 10
-        value: 1
-  - name: スキルオーブ(ドラゴンナイトI)
-    yomi: スキルオーブドラゴンナイト1
-    type: エンチャント
-    capabilities:
-      - name: スキルダメージ増加
-        skill: ハックアンドスラッシャー
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: マッドネスクラッシャー
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: ドラゴニックオーラ
-        per_lv: 10
-        value: 1
-  - name: スキルオーブ(ドラゴンナイトII)
-    yomi: スキルオーブドラゴンナイトツー
-    type: エンチャント
-    capabilities:
-      - name: スキルダメージ増加
-        skill: サーヴァントウェポン
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: サーヴァントウェポン：ファントム
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: サーヴァントウェポン：デモリッション
-        per_lv: 10
-        value: 1
-  - name: スキルオーブ(ドラゴンナイトIII)
-    yomi: スキルオーブドラゴンナイト3
-    type: エンチャント
-    capabilities:
-      - name: スキルダメージ増加
-        skill: ドラゴニックブレス
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: ドラゴニックオーラ
-        per_lv: 10
-        value: 1
-  - name: スキルオーブ(トルバドゥール&トルヴェールI)
-    yomi: スキルオーブトルバドゥールアンドトルヴェール1
-    type: エンチャント
-    capabilities:
-      - name: スキルダメージ増加
-        skill: リズムシューティング
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: ロゼブロッサム
-        per_lv: 10
-        value: 1
-  - name: スキルオーブ(トルバドゥール&トルヴェールII)
-    yomi: スキルオーブトルバドゥールアンドトルヴェール2
-    type: エンチャント
-    capabilities:
-      - name: スキルダメージ増加
-        skill: サウンドブレンド
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: メタリックフューリー
-        per_lv: 10
-        value: 1
-  - name: スキルオーブ(ナイトウォッチI)
-    yomi: スキルオーブナイトウォッチ1
-    type: エンチャント
-    capabilities:
-      - name: スキルダメージ増加
-        skill: オンリーワンバレット
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: スパイラルシューティング
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: マガジンフォーワン
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: ビジラントアットナイト
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: ワイルドファイア
-        per_lv: 10
-        value: 1
-  - name: スキルオーブ(ナイトウォッチII)
-    yomi: スキルオーブナイトウォッチ2
-    type: エンチャント
-    capabilities:
-      - name: スキルダメージ増加
-        skill: ベーシックグレネード
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: ヘイスティファイアインザホール
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: グレネーズドロッピング
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: ミッションボンバード
-        per_lv: 10
-        value: 1
-  - name: スキルオーブ(バイオロI)
-    yomi: スキルオーブバイオロ1
-    type: エンチャント
-    capabilities:
-      - name: スキルダメージ増加
-        skill: アシディファイドゾーン(火)
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: アシディファイドゾーン(水)
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: アシディファイドゾーン(風)
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: アシディファイドゾーン(地)
-        per_lv: 10
-        value: 1
-  - name: スキルオーブ(バイオロII)
-    yomi: スキルオーブバイオロ2
-    type: エンチャント
-    capabilities:
-      - name: スキルダメージ増加
-        skill: エクスプロッシブパウダー
-        per_lv: 10
-        value: 1
-  - name: スキルオーブ(バイオロIII)
-    yomi: スキルオーブバイオロ3
-    type: エンチャント
-    capabilities:
-      - name: スキルダメージ増加
-        skill: メイヘミックソーンズ
-        per_lv: 10
-        value: 1
-  - name: スキルオーブ(ハイパーノービスI)
-    yomi: スキルオーブハイパーノービス1
-    type: エンチャント
-    capabilities:
-      - name: スキルダメージ増加
-        skill: ユピテルサンダーストーム
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: ヘルズドライブ
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: ナパームバルカンストライク
-        per_lv: 10
-        value: 1
-  - name: スキルオーブ(ハイパーノービスII)
-    yomi: スキルオーブハイパーノービス2
-    type: エンチャント
-    capabilities:
-      - name: スキルダメージ増加
-        skill: シールドチェーンラッシュ
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: スパイラルピアースマックス
-        per_lv: 10
-        value: 1
-  - name: スキルオーブ(ハイパーノービスIII)
-    yomi: スキルオーブハイパーノービ3
-    type: エンチャント
-    capabilities:
-      - name: スキルダメージ増加
-        skill: ダブルボウリングバッシュ
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: メガソニックブロー
-        per_lv: 10
-        value: 1
-  - name: スキルオーブ(マイスターI)
-    yomi: スキルオーブマイスター1
-    type: エンチャント
-    capabilities:
-      - name: スキルダメージ増加
-        skill: アックスストンプ
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: マイティスマッシュ
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: ラッシュクエイク
-        per_lv: 10
-        value: 1
-  - name: スキルオーブ(マイスターII)
-    yomi: スキルオーブマイスター2
-    type: エンチャント
-    capabilities:
-      - name: スキルダメージ増加
-        skill: スパークブラスター
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: トリプルレーザー
-        per_lv: 10
-        value: 1
-  - name: スキルオーブ(天帝I)
-    yomi: スキルオーブテンテイ1
-    type: エンチャント
-    capabilities:
-      - name: スキルダメージ増加
-        skill: 天地万星
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: 天命落星
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: 天星
-        per_lv: 10
-        value: 1
-  - name: スキルオーブ(天帝II)
-    yomi: スキルオーブテンテイ2
-    type: エンチャント
-    capabilities:
-      - name: スキルダメージ増加
-        skill: 天地一陽
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: 太天一陽
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: 天陽
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: 天地一月
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: 太天一月
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: 天月
-        per_lv: 10
-        value: 1
-  - name: スキルオーブ(蜃気楼&不知火I)
-    yomi: スキルオーブシンキロウアンドシラヌイ1
-    type: エンチャント
-    capabilities:
-      - name: スキルダメージ増加
-        skill: 影狩り
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: 影の舞
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: 影一閃
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: 幻術 -影縫い-
-        per_lv: 10
-        value: 1
-  - name: スキルオーブ(蜃気楼&不知火II)
-    yomi: スキルオーブシンキロウアンドシラヌイ2
-    type: エンチャント
-    capabilities:
-      - name: スキルダメージ増加
-        skill: 苦無 -歪曲-
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: 苦無 -回転-
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: 苦無 -屈折-
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: 幻術 -苦無-
-        per_lv: 10
-        value: 1
-  - name: スキルオーブ(蜃気楼&不知火III)
-    yomi: スキルオーブシンキロウアンドシラヌイ3
-    type: エンチャント
-    capabilities:
-      - name: スキルダメージ増加
-        skill: 赤炎砲
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: 冷血砲
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: 雷電砲
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: 金龍砲
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: 暗転砲
-        per_lv: 10
-        value: 1
-      - name: スキルダメージ増加
-        skill: 幻術 -暗黒龍-
-        per_lv: 10
-        value: 1
-  - name: Cri + 50
-    yomi: クリティカルプラスゴジュウ
-    type: エンチャント
-    capabilities:
-      - name: CRI加算
-        value: 50
-  - name: 水属性耐性 + 5%
-    yomi: ミズゾクセイタイセイプラスゴパーセント
-    type: エンチャント
-    capabilities:
-      - name: 水属性耐性
-        value: 5
-  - name: ガードファイア
-    yomi: ガードファイア
-    type: エンチャント
-    capabilities:
-      - name: 火属性耐性
-        value: 85
-  - name: ガードウォーター
-    yomi: ガードウォーター
-    type: エンチャント
-    capabilities:
-      - name: 水属性耐性
-        value: 85
-  - name: ガードウィンド
-    yomi: ガードウィンド
-    type: エンチャント
-    capabilities:
-      - name: 風属性耐性
-        value: 85
-  - name: ガードアース
-    yomi: ガードアース
-    type: エンチャント
-    capabilities:
-      - name: 地属性耐性
-        value: 85
-  - name: ガードセイント
-    yomi: ガードセイント
-    type: エンチャント
-    capabilities:
-      - name: 聖属性耐性
-        value: 85
-  - name: ガードダークネス
-    yomi: ガードダークネス
-    type: エンチャント
-    capabilities:
-      - name: 闇属性耐性
-        value: 85
-  - name: ガードテレキネシス
-    yomi: ガードテレキネシス
-    type: エンチャント
-    capabilities:
-      - name: 念属性耐性
-        value: 85
-  - name: ガードポイズン
-    yomi: ガードポイズン
-    type: エンチャント
-    capabilities:
-      - name: 毒属性耐性
-        value: 85
-  - name: ガードアンデッド
-    yomi: ガードアンデッド
-    type: エンチャント
-    capabilities:
-      - name: 不死属性耐性
-        value: 85
+      - name: 全サイズへの物理ダメージ増加
+        value: 10
+      - name: 全サイズへの魔法ダメージ増加
+        value: 10
+    set_list:
+      - set:
+        entity_list:
+          - item_name: セレスティアルランス
+        capabilities:
+          - name: MAXHP増加
+            value: 15
+          - name: ボス耐性
+            value: 10
+          - name: スキル使用可能
+            skill: テレポート
+            skill_lv: 1
+      - set:
+        entity_list:
+          - item_name: セレスティアルフォックステイル
+        capabilities:
+          - name: MAXHP増加
+            value: 15
+          - name: CRI加算
+            value: 50
+          - name: スキル使用可能
+            skill: テレポート
+            skill_lv: 1
+      - set:
+        entity_list:
+          - item_name: セレスティアルダイアデム
+        capabilities:
+          - name: 石化耐性
+            value: 100
+      - set:
+        entity_list:
+          - item_name: セレスティアルアーマー
+        capabilities:
+          - name: 凍結耐性
+            value: 100
+      - set:
+        entity_list:
+          - item_name: セレスティアルマント
+        capabilities: 
+          - name: 壊れない
+            value: 1
+      - set:
+        entity_list:
+          - item_name: セレスティアルブーツ
+        capabilities: 
+          - name: 壊れない
+            value: 1
+      - set:
+        entity_list:
+          - item_name: セレスティアルリング
+        capabilities:
+          - name: 物理ダメージ増加
+            value: 30
+          - name: 魔法ダメージ増加
+            value: 30

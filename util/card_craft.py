@@ -217,6 +217,5 @@ if __name__ == "__main__":
             if 'None' in record:
                 print('エラー: 空のデータが挿入されています')
                 print(record)
-                sys.exit(0)
         with open(f"{script_dir}/output_{file_name}", "w", encoding="utf-8") as f:
             f.write("\n".join(data_array))
