@@ -6159,6 +6159,32 @@
 	CardIdToSetIdMap[1245] = CardIdToSetIdMap[1245].concat([3105, 3106, 3110, 3111, 3112, 3119]);
 	CardIdToSetIdMap[1348] = CardIdToSetIdMap[1348].concat([3107, 3108, 3109, 3113, 3114, 3115, 3116, 3117, 3118, 3120, 3121, 3122]);
 	CardIdToSetIdMap[3505] = CardIdToSetIdMap[3505].concat([3125]);
+	//
+	w_SE[3168] = [5480,5479,-3609,];
+	ItemIdToSetIdMap[5479] = [3168,];
+	w_SE[3169] = [5482,5481,-3631,];
+	ItemIdToSetIdMap[5481] = [3169,];
+	w_SE[3170] = [5484,5483,-1381,];
+	w_SE[3171] = [5485,5483,-1678,];
+	w_SE[3172] = [5486,5483,-2098,];
+	w_SE[3173] = [5487,5483,-2643,];
+	ItemIdToSetIdMap[5483] = [3170,3171,3172,3173,];
+	w_SE[3174] = [5489,5488,-2667,];
+	ItemIdToSetIdMap[5488] = [3174,];
+	w_SE[3175] = [5491,5490,-2043,];
+	w_SE[3176] = [5492,5490,-2311,];
+	w_SE[3177] = [5493,5490,-3608,];
+	ItemIdToSetIdMap[5490] = [3175,3176,3177,];
+	CardIdToSetIdMap[1381] = CardIdToSetIdMap[1381].concat([3170]);
+	CardIdToSetIdMap[1678] = CardIdToSetIdMap[1678].concat([3171]);
+	CardIdToSetIdMap[2043] = CardIdToSetIdMap[2043].concat([3175]);
+	CardIdToSetIdMap[2098] = CardIdToSetIdMap[2098].concat([3172]);
+	CardIdToSetIdMap[2311] = CardIdToSetIdMap[2311].concat([3176]);
+	CardIdToSetIdMap[2643] = CardIdToSetIdMap[2643].concat([3173]);
+	CardIdToSetIdMap[3609] = CardIdToSetIdMap[3609].concat([3168]);
+	CardIdToSetIdMap[3631] = CardIdToSetIdMap[3631].concat([3169]);
+	CardIdToSetIdMap[2667] = [3174];	// 再生の炎
+	CardIdToSetIdMap[3608] = [3177];	// 魔喰いの顎
 
 	// itemset はセーブデータに書き出されないので
 	// 現実的な範囲において itemsetID の上限値を気にする必要はありません
