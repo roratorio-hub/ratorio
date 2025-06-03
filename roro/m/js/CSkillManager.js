@@ -22649,7 +22649,7 @@ function CSkillManager() {
 
 				// 基本式
 				pow = 60 * skillLv;
-				powCart = 50 * charaDataManger.UsedSkillSearch(SKILL_ID_CART_KAIZO);
+				powCart = 50 * Math.max(LearnedSkillSearch(SKILL_ID_CART_KAIZO), UsedSkillSearch(SKILL_ID_CART_KAIZO));
 				powInt = charaDataManger.GetCharaInt() / 40;
 				pow += Math.floor(powCard * powInt);
 

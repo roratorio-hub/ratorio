@@ -991,22 +991,17 @@ CAttackMethodAreaComponentManager.RebuildAttackMethodSelectSubOptionSubCreate = 
 		skillLv = (selectedValueArray.length >= 2) ? selectedValueArray[1] : parseInt(CAttackMethodAreaComponentManager.selectObjectArray[0].value, 10);
 
 		switch (skillid) {
-
-		// カートレボリューション
-		case SKILL_ID_CART_REVOLUTION:
-		case SKILL_ID_CART_TERMINATION:
-		case SKILL_ID_CART_TORNADO:
-
-			// カート積載可能量を計算
-			valueWork = 8000 + 500 * UsedSkillSearch(SKILL_ID_CART_KAIZO);
-
-			// オブジェクトの最大値の変更
-			objSelect.setAttribute("max", valueWork);
-
-			// 入力値の補正
-			valueToRestore = Math.min(valueToRestore, valueWork);
-			break;
-
+			// カートレボリューション
+			case SKILL_ID_CART_REVOLUTION:
+			case SKILL_ID_CART_TERMINATION:
+			case SKILL_ID_CART_TORNADO:
+				// カート積載可能量を計算
+				valueWork = 8000 + 500 * Math.max(LearnedSkillSearch(SKILL_ID_CART_KAIZO), UsedSkillSearch(SKILL_ID_CART_KAIZO));
+				// オブジェクトの最大値の変更
+				objSelect.setAttribute("max", valueWork);
+				// 入力値の補正
+				valueToRestore = Math.min(valueToRestore, valueWork);
+				break;
 		}
 
 		// デフォルト値を仮設定
@@ -1875,21 +1870,24 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 	var valueWork = 0;
 	var arrayWork = 0;
 
+	/**
+	 * ドロップダウンリストにセットする値の配列を取得する. なお value = 0 の表記は 'off' とする.
+	 * @param {*} minF 
+	 * @param {*} maxF 
+	 * @param {*} bZeroOffF 
+	 * @returns 
+	 */
 	var funcCreateNumberDataArrayArray = function (minF, maxF, bZeroOffF) {
-
 		var idxF = 0;
 		var arrayF = [];
-
 		// value == 0 で off の表示をする場合
 		if (bZeroOffF) {
 			arrayF.push([0, "off"]);
 		}
-
 		// 最小値から最大値まで追加
 		for (idxF = minF; idxF <= maxF; idxF++) {
 			arrayF.push([idxF, "" + idxF]);
 		}
-
 		// 生成した配列を返す
 		return arrayF;
 	};
@@ -1953,19 +1951,15 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 	};
 
 	var funcCreateOptionListAsSkillLvSelect = function (attackMethodOptListBeforeF, skillIdF, bZeroOff, defaultValueF) {
-
 		var nameF = "";
 		var maxLvF = 0;
-
 		// 必要な情報を取得
 		nameF = g_skillManager.GetSkillName(skillIdF);
 		maxLvF = g_skillManager.GetMaxLv(skillIdF);
-
 		// デフォルト値を補正
 		if (defaultValueF < 0) {
 			defaultValueF = maxLvF;
 		}
-
 		// オプションリストを生成、追加して、そのまま戻り値とする
 		return funcCreateOptionList(attackMethodOptListBeforeF,
 			nameF + "のスキルLv",
@@ -1974,20 +1968,23 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 		);
 	};
 
+	/**
+	 * 習得可能なスキルの名称と最大Lvを入力可能なドロップダウンリストを生成し返す
+	 * @param {*} attackMethodOptListBeforeF 
+	 * @param {*} skillIdF セットするスキルのID
+	 * @param {*} defaultValueF デフォルトで選択される要素のindex. -1 が指定された時は最大Lvが選択される.
+	 * @returns ドロップダウンリスト
+	 */
 	var funcCreateOptionListAsLearnLvSelect = function (attackMethodOptListBeforeF, skillIdF, defaultValueF) {
-
-		var nameF = "";
-		var maxLvF = 0;
-
+		let nameF = "";
+		let maxLvF = 0;
 		// 必要な情報を取得
 		nameF = g_skillManager.GetSkillName(skillIdF);
 		maxLvF = g_skillManager.GetMaxLv(skillIdF);
-
 		// デフォルト値を補正
 		if (defaultValueF < 0) {
 			defaultValueF = maxLvF;
 		}
-
 		// オプションリストを生成、追加して、そのまま戻り値とする
 		return funcCreateOptionList(attackMethodOptListBeforeF,
 			nameF + "の習得Lv",
@@ -1996,24 +1993,24 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 		);
 	};
 
+	/**
+	 * ドロップダウンリストを生成し返す
+	 * @param {*} attackMethodOptListBeforeF 
+	 * @param {*} listLabelF 
+	 * @param {*} htmlAttrArrayArrayF 
+	 * @param {*} defaultValueF 
+	 * @returns ドロップダウンリスト
+	 */
 	var funcCreateOptionListAsInput = function (attackMethodOptListBeforeF, listLabelF, htmlAttrArrayArrayF, defaultValueF) {
-
-		var idxF = 0;
-		var idxOptF = 0;
-
-		var attackMethodOptListF = null;
-		var attackMethodOptDataF = null;
-
+		let attackMethodOptListF = null;
 		// オプションリストを生成
 		attackMethodOptListF = new CAttackMethodOptionList();
 		attackMethodOptListF.SetType(ATTACK_METHOD_OPTION_LIST_TYPE_INPUT);
 		attackMethodOptListF.SetLabel(listLabelF);
 		attackMethodOptListF.SetDefaultOptionDataValue(defaultValueF);
 		attackMethodOptListF.SetHtmlAttrArrayArray(htmlAttrArrayArrayF);
-
 		// 前段のリストに登録
 		funcSetNextOptionList(attackMethodOptListBeforeF, attackMethodOptListF);
-
 		// 生成したオプションリストを返す
 		return attackMethodOptListF;
 	};
@@ -2085,7 +2082,7 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 		case SKILL_ID_CART_REVOLUTION:
 		case SKILL_ID_CART_TERMINATION:
 			// カート積載可能量を計算
-			valueWork = 8000 + 500 * UsedSkillSearch(SKILL_ID_CART_KAIZO);
+			valueWork = 8000 + 500 * Math.max(LearnedSkillSearch(SKILL_ID_CART_KAIZO), UsedSkillSearch(SKILL_ID_CART_KAIZO));
 			// オプションリストを生成、追加
 			attackMethodOptList = funcCreateOptionListAsInput(attackMethodOptList,
 				"カート重量",
@@ -2103,7 +2100,7 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 		//----------------------------------------------------------------
 		case SKILL_ID_CART_TORNADO:
 			// カート積載可能量を計算
-			valueWork = 8000 + 500 * UsedSkillSearch(SKILL_ID_CART_KAIZO);
+			valueWork = 8000 + 500 * Math.max(LearnedSkillSearch(SKILL_ID_CART_KAIZO), UsedSkillSearch(SKILL_ID_CART_KAIZO));
 			// オプションリストを生成、追加
 			attackMethodOptList = funcCreateOptionListAsInput(attackMethodOptList,
 				"カート重量",
