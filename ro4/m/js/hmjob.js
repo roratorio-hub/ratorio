@@ -602,7 +602,7 @@ function GetPAtk() {
 	}
 
 	// 「ナイトウォッチ」スキル「P.F.I」による効果
-	if ((sklLv = UsedSkillSearch(SKILL_ID_PFI)) > 0) {
+	if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_PFI), UsedSkillSearch(SKILL_ID_PFI))) > 0) {
 		// 銃装備時のみ
 		switch (n_A_WeaponType) {
 			case ITEM_KIND_HANDGUN:

@@ -32653,7 +32653,7 @@ function CSkillManager() {
 			this.LifeTime = function(skillLv, charaDataManger) {
 				var nLifeTime = ([0, 57000, 27700, 12100, 5500, 3100])[skillLv];
 				// 補助スキルレベル取得
-				var sklLvSub = UsedSkillSearch(SKILL_ID_ADVANCED_TRAP);
+				var sklLvSub = Math.max(LearnedSkillSearch(SKILL_ID_ADVANCED_TRAP), UsedSkillSearch(SKILL_ID_ADVANCED_TRAP));
 				if (sklLvSub > 0) {
 					nLifeTime += 500 + (500 * sklLvSub);
 				}
@@ -32689,7 +32689,7 @@ function CSkillManager() {
 			this.LifeTime = function(skillLv, charaDataManger) {
 				var nLifeTime = ([0, 57000, 27700, 12100, 5500, 3100])[skillLv];
 				// 補助スキルレベル取得
-				var sklLvSub = UsedSkillSearch(SKILL_ID_ADVANCED_TRAP);
+				var sklLvSub = Math.max(LearnedSkillSearch(SKILL_ID_ADVANCED_TRAP), UsedSkillSearch(SKILL_ID_ADVANCED_TRAP));
 				if (sklLvSub > 0) {
 					nLifeTime += 500 + (500 * sklLvSub);
 				}
@@ -32725,7 +32725,7 @@ function CSkillManager() {
 			this.LifeTime = function(skillLv, charaDataManger) {
 				var nLifeTime = ([0, 57000, 27700, 12100, 5500, 3100])[skillLv];
 				// 補助スキルレベル取得
-				var sklLvSub = UsedSkillSearch(SKILL_ID_ADVANCED_TRAP);
+				var sklLvSub = Math.max(LearnedSkillSearch(SKILL_ID_ADVANCED_TRAP), UsedSkillSearch(SKILL_ID_ADVANCED_TRAP));
 				if (sklLvSub > 0) {
 					nLifeTime += 500 + (500 * sklLvSub);
 				}
@@ -32800,7 +32800,7 @@ function CSkillManager() {
 			this.LifeTime = function(skillLv, charaDataManger) {
 				var nLifeTime = ([0, 57000, 27700, 12100, 5500, 3100])[skillLv];
 				// 補助スキルレベル取得
-				var sklLvSub = UsedSkillSearch(SKILL_ID_ADVANCED_TRAP);
+				var sklLvSub = Math.max(LearnedSkillSearch(SKILL_ID_ADVANCED_TRAP), UsedSkillSearch(SKILL_ID_ADVANCED_TRAP));
 				if (sklLvSub > 0) {
 					nLifeTime += 500 + (500 * sklLvSub);
 				}

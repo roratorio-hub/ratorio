@@ -540,13 +540,13 @@ function BattleCalc999(battleCalcInfo, charaData, specData, mobData, attackMetho
 				// 右手の計算結果をクローン
 				cloned = battleCalcResultAll.GetPassiveResult(0).Clone();
 				// スキル情報の設定
-				if ((n_A_WeaponType == ITEM_KIND_HANDGUN) && (UsedSkillSearch(SKILL_ID_CHAIN_ACTION) > 0)) {
+				// チェーンリアクション習得Lv
+				const chain_action_lv = Math.max(LearnedSkillSearch(SKILL_ID_CHAIN_ACTION), UsedSkillSearch(SKILL_ID_CHAIN_ACTION));
+				if ((n_A_WeaponType == ITEM_KIND_HANDGUN) && (chain_action_lv > 0)) {
 					cloned.skillId = SKILL_ID_CHAIN_ACTION;
-				}
-				else if (IsGunSeriesArms(n_A_WeaponType) && (UsedSkillSearch(SKILL_ID_ETERNAL_CHAIN) > 0)) {
+				} else if (IsGunSeriesArms(n_A_WeaponType) && (UsedSkillSearch(SKILL_ID_ETERNAL_CHAIN) > 0)) {
 					cloned.skillId = SKILL_ID_CHAIN_ACTION;
-				}
-				else {
+				} else {
 					cloned.skillId = SKILL_ID_DOUBLE_ATTACK;
 				}
 				cloned.skillLv = Math.max(LearnedSkillSearch(SKILL_ID_DOUBLE_ATTACK), UsedSkillSearch(SKILL_ID_DOUBLE_ATTACK));
@@ -1526,31 +1526,28 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				wbairitu = 100;
 				break;
 
-			case SKILL_ID_WUG_BITE:
+			case SKILL_ID_WUG_BITE: {	// ウォーグバイト
 				n_Delay[2] = 2000;
-
 				// 特定の戦闘エリアでの補正
 				switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
-
-				case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
-					n_Delay[7] = 2500 + 500 * n_A_ActiveSkillLV;
-					break;
-
-				default:
-					n_Delay[7] = 2000 + 2000 * n_A_ActiveSkillLV;
-					break;
-
+					case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
+						n_Delay[7] = 2500 + 500 * n_A_ActiveSkillLV;
+						break;
+					default:
+						n_Delay[7] = 2000 + 2000 * n_A_ActiveSkillLV;
+						break;
 				}
-
 				wbairitu = 800 + 200 * n_A_ActiveSkillLV;
 				if(!n_AS_MODE){
-					var w = 50 + 10 * n_A_ActiveSkillLV - Math.floor(mobData[8] / 4) + UsedSkillSearch(SKILL_ID_TOOTH_OF_WUG) * 2;
-					if(w <50) w = 50;
+					const tooth_of_wug_lv = Math.max(LearnedSkillSearch(SKILL_ID_TOOTH_OF_WUG), UsedSkillSearch(SKILL_ID_TOOTH_OF_WUG));
+					const w = 50 + 10 * n_A_ActiveSkillLV - Math.floor(mobData[8] / 4) + tooth_of_wug_lv * 2;
+					if(w < 50) w = 50;
 					if(w > 100) w = 100;
 					str_bSUBname += "<Font size=2>命中時の拘束確率(推定)<BR></Font>";
 					str_bSUB += w +"%<BR>";
 				}
 				break;
+			}
 
 			case SKILL_ID_WUG_STRIKE:
 				n_Enekyori=1;
@@ -2108,16 +2105,18 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				n_Delay[7] = 6000 - 1000 * n_A_ActiveSkillLV;
 				break;
 
-			case SKILL_ID_FIRE_DANCE:
+			case SKILL_ID_FIRE_DANCE: {	// ファイヤーダンス
 				wbairitu = 1000 + 100 * n_A_ActiveSkillLV;
-				wbairitu += 20 * attackMethodConfArray[0].GetOptionValue(0);
+				// デスペラード習得Lv補正
+				let deathperad_lv = Math.max(LearnedSkillSearch(SKILL_ID_DEATHPERAD), attackMethodConfArray[0].GetOptionValue(0));
+				wbairitu += 20 * deathperad_lv;
 				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
 				n_Enekyori=1;
 				wCast = 0;
 				n_Delay[2] = 1000;
 				n_Delay[7] = 0;
 				break;
-
+			}
 			case SKILL_ID_BUNISHING_BASTER:
 				wbairitu = 200 * n_A_ActiveSkillLV;
 				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
@@ -2703,7 +2702,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 
 			// 「ウィンドホーク」スキル「ホークラッシュ」
 			// 2024/11/15 誤差無しを確認
-			case SKILL_ID_HAWK_RUSH:
+			case SKILL_ID_HAWK_RUSH: {
 				// 弓のみ発動可能
 				if (n_A_WeaponType != ITEM_KIND_BOW) {
 					wbairitu = 0;
@@ -2723,14 +2722,15 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				// CON補正
 				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
 				// 自然親和補正
-				wbairitu *= (1 + 0.2 * UsedSkillSearch(SKILL_ID_SHIZEN_SHINWA));
+				const shizen_shinwa_lv = Math.max(LearnedSkillSearch(SKILL_ID_SHIZEN_SHINWA), UsedSkillSearch(SKILL_ID_SHIZEN_SHINWA));
+				wbairitu *= (1 + 0.2 * shizen_shinwa_lv);
 				// ベースレベル補正
 				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 				break;
-
+			}
 			// 「ウィンドホーク」スキル「ホークブーメラン」
 			// 2024/11/15 誤差無しを確認
-			case SKILL_ID_HAWK_BOOMERANG:
+			case SKILL_ID_HAWK_BOOMERANG: {
 				// 弓のみ発動可能
 				if (n_A_WeaponType != ITEM_KIND_BOW) {
 					wbairitu = 0;
@@ -2748,7 +2748,8 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				// CON補正
 				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
 				// 自然親和補正
-				wbairitu *= (1 + 0.2 * UsedSkillSearch(SKILL_ID_SHIZEN_SHINWA));
+				const shizen_shinwa_lv = Math.max(LearnedSkillSearch(SKILL_ID_SHIZEN_SHINWA), UsedSkillSearch(SKILL_ID_SHIZEN_SHINWA));
+				wbairitu *= (1 + 0.2 * shizen_shinwa_lv);
 				// ベースレベル補正
 				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);	
 				// 種族特攻は小数点以下に掛からない
@@ -2760,7 +2761,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 						break;
 				}
 				break;
-
+			}
 			// 「ウィンドホーク」スキル「ゲイルストーム」
 			// 2024/11/15 誤差なしを確認
 			case SKILL_ID_GALE_STORM:
@@ -2803,7 +2804,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			case SKILL_ID_DEEP_BLIND_TRAP:
 			case SKILL_ID_SOLID_TRAP:
 			case SKILL_ID_SWIFT_TRAP:
-			case SKILL_ID_FLAME_TRAP:
+			case SKILL_ID_FLAME_TRAP: {
 				// 詠唱時間等
 				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
@@ -2826,9 +2827,10 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				wbairitu = wbairitu * n_A_BaseLV / 100;
 				// アドバンスドトラップ研究は小数点以下にも掛かる
 				// アドバンスドトラップ研究補正
-				wbairitu = Math.floor(wbairitu * (1 + 0.2 * UsedSkillSearch(SKILL_ID_ADVANCED_TRAP)));
+				const advanced_trap_lv = Math.max(LearnedSkillSearch(SKILL_ID_ADVANCED_TRAP), UsedSkillSearch(SKILL_ID_ADVANCED_TRAP));
+				wbairitu = Math.floor(wbairitu * (1 + 0.2 * advanced_trap_lv));
 				break;
-
+			}
 			// 「ウィンドホーク」スキル「クレッシブボルト」
 			// 2024/11/15 誤差なしを確認
 			case SKILL_ID_CRESSIVE_VOLT:
@@ -4331,7 +4333,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 
 			// 「ナイトウォッチ」スキル「ベーシックグレネード」
 			// 2025/01/25 もなこさん検証データとの誤差無しを確認ずみ
-			case SKILL_ID_BASIC_GRENADE:
+			case SKILL_ID_BASIC_GRENADE: {
 				n_Enekyori = 1;	// 遠距離フラグ
 				wActiveHitNum = 2;	// 見た目2hit
 				// 詠唱時間など
@@ -4342,13 +4344,15 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				// ダメージ倍率
 				wbairitu = 3000 + 600 * n_A_ActiveSkillLV;					// 基本
 				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_CON);		// 特性ステータス補正
-				wbairitu += 50 * UsedSkillSearch(SKILL_ID_GRENADE_MASTERY) 	// グレネードマスタリー補正
+				// グレネードマスタリー補正
+				const grenade_mastery_lv = Math.max(LearnedSkillSearch(SKILL_ID_GRENADE_MASTERY), UsedSkillSearch(SKILL_ID_GRENADE_MASTERY));
+				wbairitu += 50 * grenade_mastery_lv;
 				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);			// BaseLv補正
 				break;
-
+			}
 			// 「ナイトウォッチ」スキル「ヘイスティファイアインザホール」
 			// 2025/01/25 もなこさん検証データとの誤差無しを確認ずみ
-			case SKILL_ID_HASTY_FIRE_IN_THE_HOLE:
+			case SKILL_ID_HASTY_FIRE_IN_THE_HOLE: {
 				/*
 					実際には
 					指定セルの周辺5x5セルに2hit → 0.3秒後さらに2hit → 0.3秒後さらに2hit
@@ -4365,13 +4369,15 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				// ダメージ倍率
 				wbairitu = 3000 + 600 * n_A_ActiveSkillLV;					// 基本
 				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);		// 特性ステータス補正
-				wbairitu += 20 * UsedSkillSearch(SKILL_ID_GRENADE_MASTERY) 	// グレネードマスタリー補正
+				// グレネードマスタリー補正
+				const grenade_mastery_lv = Math.max(LearnedSkillSearch(SKILL_ID_GRENADE_MASTERY), UsedSkillSearch(SKILL_ID_GRENADE_MASTERY));
+				wbairitu += 20 * grenade_mastery_lv;					 	// グレネードマスタリー補正
 				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);			// BaseLv補正
 				break;
-
+			}
 			// 「ナイトウォッチ」スキル「グレネーズドロッピング」
 			// 2025/01/25 もなこさん検証データとの誤差無しを確認ずみ
-			case SKILL_ID_GRENADES_DROPPING:
+			case SKILL_ID_GRENADES_DROPPING: {
 				/*
 					ダメージセルがランダムに発生するので実際はこれよりも総ダメージが少なくなる
 					検証によれば平均9～10hitで最大13hitとのこと（試行回数20回）
@@ -4390,13 +4396,15 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				// ダメージ倍率
 				wbairitu = 1350 + 300 * n_A_ActiveSkillLV;					// 基本
 				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);		// 特性ステータス補正
-				wbairitu += 30 * UsedSkillSearch(SKILL_ID_GRENADE_MASTERY) 	// グレネードマスタリー補正
+				// グレネードマスタリー補正
+				const grenade_mastery_lv = Math.max(LearnedSkillSearch(SKILL_ID_GRENADE_MASTERY), UsedSkillSearch(SKILL_ID_GRENADE_MASTERY));
+				wbairitu += 30 * grenade_mastery_lv;					 	// グレネードマスタリー補正
 				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);			// BaseLv補正
 				break;
-
+			}
 			// 「ナイトウォッチ」スキル「ミッションボンバード」
 			// 2025/01/25 もなこさん検証データとの誤差無しを確認ずみ
-			case SKILL_ID_MISSION_BOMBARD:
+			case SKILL_ID_MISSION_BOMBARD: {
 				// 詠唱時間など
 				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
@@ -4404,12 +4412,14 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				// 遠距離フラグ
 				n_Enekyori = 1;
+				// グレネードマスタリー補正
+				const grenade_mastery_lv = Math.max(LearnedSkillSearch(SKILL_ID_GRENADE_MASTERY), UsedSkillSearch(SKILL_ID_GRENADE_MASTERY));
 				if (attackMethodConfArray[0].GetOptionValue(1) === 0) {
 				// 初撃
 					// ダメージ倍率
-					wbairitu = 2500 + 750 * n_A_ActiveSkillLV;						// 基本
-					wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_CON);			// 特性ステータス補正
-					wbairitu += 100 * UsedSkillSearch(SKILL_ID_GRENADE_MASTERY) 	// グレネードマスタリー補正
+					wbairitu = 2500 + 750 * n_A_ActiveSkillLV;					// 基本
+					wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_CON);		// 特性ステータス補正
+					wbairitu += 100 * grenade_mastery_lv;					 	// グレネードマスタリー補正
 
 				} else {
 				// 追撃
@@ -4420,12 +4430,12 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 					// ダメージ倍率
 					wbairitu = 5000 + 1000 * n_A_ActiveSkillLV;					// 基本
 					wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_CON);		// 特性ステータス補正
-					wbairitu += 30 * UsedSkillSearch(SKILL_ID_GRENADE_MASTERY) 	// グレネードマスタリー補正
+					wbairitu += 30 * grenade_mastery_lv;					 	// グレネードマスタリー補正
 				}
 				// BaseLv補正
 				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 				break;
-
+			}
 			// 「ミンストレル＆ワンダラー」スキル「シビアレインストーム」
 			case SKILL_ID_SEVERE_RAINSTORM:
 			case SKILL_ID_SEVERE_RAINSTORM_EX:
@@ -5197,13 +5207,14 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 
 
 		case SKILL_ID_BLITZ_BEAT:
-		case SKILL_ID_FALCON_ASSALT:
+		case SKILL_ID_FALCON_ASSALT: {
 			w_HIT = 100;
 			w_HIT_HYOUJI = 100;
 			n_PerfectHIT_DMG = 0;
 			n_A_Weapon_zokusei = 0;
 			n_Enekyori=1;
-			var wBT = 80 + Math.floor(n_A_DEX /10)*2 + Math.floor(n_A_INT/2)*2 + UsedSkillSearch(SKILL_ID_STEEL_CROW) *6;
+			const steel_crow_lv = Math.max(LearnedSkillSearch(SKILL_ID_STEEL_CROW), UsedSkillSearch(SKILL_ID_STEEL_CROW));
+			let wBT = 80 + Math.floor(n_A_DEX /10)*2 + Math.floor(n_A_INT/2)*2 + steel_crow_lv *6;
 			if(n_A_ActiveSkill==SKILL_ID_FALCON_ASSALT){
 				wBT = Math.floor(wBT * (150 + 70 * n_A_ActiveSkillLV) /100);
 				wBT = ApplyElementRatio(mobData, wBT,0);
@@ -5233,10 +5244,8 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			}
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
-
 			break;
-
-
+		}
 
 		case SKILL_ID_ENVENOM:
 		case SKILL_ID_POISON_REACT:
@@ -5999,7 +6008,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 
 		case SKILL_ID_LAND_MINE:
 		case SKILL_ID_BLAST_MINE:
-		case SKILL_ID_CLAYMORE_TRAP:
+		case SKILL_ID_CLAYMORE_TRAP: {
 			w_HIT = 100;
 			w_HIT_HYOUJI = 100;
 			n_PerfectHIT_DMG = 0;
@@ -6014,7 +6023,10 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			else if(n_A_ActiveSkill==SKILL_ID_CLAYMORE_TRAP){
 				n_A_Weapon_zokusei = 3;
 			}
-			w_DMG[1] = n_A_DEX * (3 + n_A_BaseLV / 100) * (1 + n_A_INT / 35) * n_A_ActiveSkillLV + 40 * UsedSkillSearch(SKILL_ID_TRAP_KENKYU);
+			w_DMG[1] = n_A_DEX * (3 + n_A_BaseLV / 100) * (1 + n_A_INT / 35) * n_A_ActiveSkillLV;
+			// トラップ研究習得Lv補正
+			const trap_kenkyu_lv = Math.max(LearnedSkillSearch(SKILL_ID_TRAP_KENKYU), UsedSkillSearch(SKILL_ID_TRAP_KENKYU));
+			w_DMG[1] += 40 * trap_kenkyu_lv;
 			w_DMG[1] = ApplyElementRatio(mobData, w_DMG[1],n_A_Weapon_zokusei);
 			w_DMG[0] = Math.floor(w_DMG[1] * 90 / 100);
 			w_DMG[2] = Math.floor(w_DMG[1] * 110 / 100);
@@ -6026,8 +6038,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
-
-
+		}
 
 		case SKILL_ID_HEAL:
 		case 489:
@@ -14330,12 +14341,13 @@ function BattleHiDam(charaData, specData, mobData, attackMethodConfArray, objCel
 	// 「レンジャー　レンジャーメイン」の効果
 	//--------------------------------
 	switch (mobData[MONSTER_DATA_INDEX_RACE]) {
-	case RACE_ID_ANIMAL:
-	case RACE_ID_PLANT:
-	case RACE_ID_FISH:
-		for (i = 0; i <= 6; i++) {
-			w_HiDam[i] -= 5 * UsedSkillSearch(SKILL_ID_RANGER_MAIN);
-		}
+		case RACE_ID_ANIMAL:
+		case RACE_ID_PLANT:
+		case RACE_ID_FISH:
+			for (i = 0; i <= 6; i++) {
+				const ranger_main_lv = Math.max(LearnedSkillSearch(SKILL_ID_RANGER_MAIN), UsedSkillSearch(SKILL_ID_RANGER_MAIN));
+				w_HiDam[i] -= 5 * ranger_main_lv;
+			}
 	}
 
 	//--------------------------------
@@ -18961,22 +18973,18 @@ function calc() {
 		// 基礎攻撃力
 		//--------------------------------
 		BK_n_A_DMG_Wolf[idx] = charaData[CHARA_DATA_INDEX_STATUS_ATK] + wBukiAtk[idx] - n_tok[ITEM_SP_ATK_PLUS];
-
 		//--------------------------------
 		// 強制無属性（倍率適用）
 		//--------------------------------
 		BK_n_A_DMG_Wolf[idx] = ApplyElementRatio(mobData, BK_n_A_DMG_Wolf[idx], ELM_ID_VANITY);
-
 		//--------------------------------
 		// 「トゥースオブウォーグ」の攻撃力増加
 		//--------------------------------
-		BK_n_A_DMG_Wolf[idx] += 10 * UsedSkillSearch(SKILL_ID_TOOTH_OF_WUG);
-
+		BK_n_A_DMG_Wolf[idx] += 10 * Math.max(LearnedSkillSearch(SKILL_ID_TOOTH_OF_WUG), UsedSkillSearch(SKILL_ID_TOOTH_OF_WUG));
 		//--------------------------------
 		// 演奏スキル「ダンスウィズウォーグ」の攻撃力増加
 		//--------------------------------
 		if(n_A_PassSkill3[39] == 6){
-
 			// ミンストレルとワンダラーの人数による効果の変化（上限７人）
 			BK_n_A_DMG_Wolf[idx] += (2 * n_A_PassSkill3[40]) * Math.min(7, parseInt("" + n_A_PassSkill3[41], 10));
 		}
@@ -19316,44 +19324,6 @@ function calc() {
 		HtmlCreateTextNode("こちら", objA);
 		HtmlCreateTextNode("の対応状況をご確認ください。", objSpan);
 		HtmlCreateElement("br", objSpan);
-	}
-	if (false) {
-		if (attackMethodConfArray[0].GetSkillId() == SKILL_ID_WUG_BITE) {
-			objSpan = HtmlCreateElement("span", objTd);
-			HtmlCreateTextNode("※拘束に失敗するとゲーム内ではダメージが出ません。", objSpan);
-			HtmlCreateElement("br", objSpan);
-		}
-		if (n_tok[ITEM_SP_SHORTRANGE_DAMAGE_UP] > 0) {
-			objSpan = HtmlCreateElement("span", objTd);
-			objSpan.setAttribute("class", "CSSCLS_GENERAL_COLOR_RED");
-			HtmlCreateTextNode("※『近接物理攻撃で与えるダメージ＋○○％』の効果が設定されています。", objSpan);
-			HtmlCreateElement("br", objSpan);
-			HtmlCreateTextNode("　実際のゲームでのダメージと異なる場合がありますので、", objSpan);
-			HtmlCreateElement("br", objSpan);
-			HtmlCreateTextNode("　", objSpan);
-			objA = HtmlCreateElement("a", objSpan);
-			objA.setAttribute("href", "../kousin/note20210427.html");
-			objA.setAttribute("target", "_blank");
-			HtmlCreateTextNode("こちら", objA);
-			HtmlCreateTextNode("の注意事項をご確認ください。", objSpan);
-			HtmlCreateElement("br", objSpan);
-		}
-		if (EquipNumSearch(ITEM_ID_KAKUSE_FULL_FORCE) > 0) {
-			objSpan = HtmlCreateElement("span", objTd);
-			objSpan.setAttribute("class", "CSSCLS_GENERAL_COLOR_RED");
-			HtmlCreateTextNode("※「覚醒フルフォース」のAtk上昇効果の効果量は、ゲーム内では未確認です。", objSpan);
-			HtmlCreateElement("br", objSpan);
-			HtmlCreateTextNode("　実際のゲームでのダメージと異なる場合がありますので、ご注意ください。", objSpan);
-			HtmlCreateElement("br", objSpan);
-		}
-		if (CardNumSearch(CARD_ID_FUINSARETA_EFREET) > 0) {
-			objSpan = HtmlCreateElement("span", objTd);
-			objSpan.setAttribute("class", "CSSCLS_GENERAL_COLOR_RED");
-			HtmlCreateTextNode("※「封印されたイフリート」のJobLvによる能力上昇効果の効果量は、ゲーム内では未確認です。", objSpan);
-			HtmlCreateElement("br", objSpan);
-			HtmlCreateTextNode("　実際のゲームでのダメージと異なる場合がありますので、ご注意ください。", objSpan);
-			HtmlCreateElement("br", objSpan);
-		}
 	}
 	if (g_appliedAppendDamage) {
 		objSpan = HtmlCreateElement("span", objTd);
@@ -20041,7 +20011,7 @@ function TYPE_SYUUREN(mobData, attackMethodConfArray, bArmsLeft){
 	if (mobData[MONSTER_DATA_INDEX_RACE] == RACE_ID_ANIMAL
 		|| mobData[MONSTER_DATA_INDEX_RACE] == RACE_ID_PLANT
 		|| mobData[MONSTER_DATA_INDEX_RACE] == RACE_ID_FISH) {
-		w += 5 * UsedSkillSearch(SKILL_ID_RANGER_MAIN);
+		w += 5 * Math.max(LearnedSkillSearch(SKILL_ID_RANGER_MAIN), UsedSkillSearch(SKILL_ID_RANGER_MAIN));
 	}
 
 	//----------------------------------------------------------------
@@ -20635,17 +20605,23 @@ function GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray
 	// 必中攻撃力の追加
 	switch (n_A_ActiveSkill) {
 		// クラスターボム
-		case 505:
-			w999 += Math.floor(Math.floor(((n_A_ActiveSkillLV * n_A_DEX) + (n_A_INT * 5)) * (1.5 + n_A_BaseLV / 100)) * (UsedSkillSearch(SKILL_ID_TRAP_KENKYU) * 20 / 50));
-			w999 += 40 * UsedSkillSearch(SKILL_ID_TRAP_KENKYU);
+		case 505: {
+			// トラップ研究習得Lv補正
+			const trap_kenkyu_lv = Math.max(LearnedSkillSearch(SKILL_ID_TRAP_KENKYU), UsedSkillSearch(SKILL_ID_TRAP_KENKYU));
+			w999 += Math.floor(Math.floor(((n_A_ActiveSkillLV * n_A_DEX) + (n_A_INT * 5)) * (1.5 + n_A_BaseLV / 100)) * (trap_kenkyu_lv * 20 / 50));
+			w999 += 40 * trap_kenkyu_lv;
 			break;
+		}
 		// ファイアリングトラップ
 		// アイスバウンドトラップ
 		case 507:
-		case 508:
-			w999 += Math.floor(Math.floor(((n_A_ActiveSkillLV * n_A_DEX) + (n_A_INT * 5)) * (1.5 + n_A_BaseLV / 100)) * (UsedSkillSearch(SKILL_ID_TRAP_KENKYU) * 20 / 100));
-			w999 += 40 * UsedSkillSearch(SKILL_ID_TRAP_KENKYU);
+		case 508: {
+			// トラップ研究習得Lv補正
+			const trap_kenkyu_lv = Math.max(LearnedSkillSearch(SKILL_ID_TRAP_KENKYU), UsedSkillSearch(SKILL_ID_TRAP_KENKYU));
+			w999 += Math.floor(Math.floor(((n_A_ActiveSkillLV * n_A_DEX) + (n_A_INT * 5)) * (1.5 + n_A_BaseLV / 100)) * (trap_kenkyu_lv * 20 / 100));
+			w999 += 40 * trap_kenkyu_lv;
 			break;
+		}
 		// 大纏崩捶
 		case 614:
 			var wsize = [1,3,5];
@@ -25619,7 +25595,7 @@ function UsedSkillSearch(sklId, bOnlyUsed = false) {
 			}
 
 			// 「チェーンアクション」スキルの効果
-			sklLv = UsedSkillSearch(SKILL_ID_CHAIN_ACTION);
+			sklLv = Math.max(LearnedSkillSearch(SKILL_ID_CHAIN_ACTION), UsedSkillSearch(SKILL_ID_CHAIN_ACTION));
 			if ((n_A_WeaponType == ITEM_KIND_HANDGUN) && (sklLv > 0)) {
 				effectivLvArray.push(sklLv);
 			}
