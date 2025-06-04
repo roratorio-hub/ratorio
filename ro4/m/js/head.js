@@ -5214,7 +5214,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			n_A_Weapon_zokusei = 0;
 			n_Enekyori=1;
 			const steel_crow_lv = Math.max(LearnedSkillSearch(SKILL_ID_STEEL_CROW), UsedSkillSearch(SKILL_ID_STEEL_CROW));
-			var wBT = 80 + Math.floor(n_A_DEX /10)*2 + Math.floor(n_A_INT/2)*2 + steel_crow_lv *6;
+			let wBT = 80 + Math.floor(n_A_DEX /10)*2 + Math.floor(n_A_INT/2)*2 + steel_crow_lv *6;
 			if(n_A_ActiveSkill==SKILL_ID_FALCON_ASSALT){
 				wBT = Math.floor(wBT * (150 + 70 * n_A_ActiveSkillLV) /100);
 				wBT = ApplyElementRatio(mobData, wBT,0);
