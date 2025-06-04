@@ -1277,10 +1277,8 @@ function ApplySpecModify(spid, spVal) {
 	case ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_SMALL:
 	case ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_MEDIUM:
 	case ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_LARGE:
-
 		// 「カーディナル」スキル「鈍器＆本修練」習得による効果
 		if ((sklLv = UsedSkillSearch(SKILL_ID_DONKI_HON_SHUREN)) > 0) {
-
 			// 鈍器、本装備時限定
 			switch (n_A_WeaponType) {
 				case ITEM_KIND_CLUB:
@@ -1290,25 +1288,21 @@ function ApplySpecModify(spid, spVal) {
 					break;
 			}
 		}
-
 		// 「アビスチェイサー」スキル「短剣＆弓修練」習得による効果
-		if ((sklLv = UsedSkillSearch(SKILL_ID_TANKEN_YUMI_SHUREN)) > 0) {
-
+		if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_TANKEN_YUMI_SHUREN), UsedSkillSearch(SKILL_ID_TANKEN_YUMI_SHUREN))) > 0) {
 			// 短剣、弓装備時限定
 			switch (n_A_WeaponType) {
-			case ITEM_KIND_KNIFE:
-			case ITEM_KIND_BOW:
-
-				valWork = 1 * sklLv;
-				if (sklLv >= 8) {
-					valWork += 1 * (sklLv - 7);
-				}
-				if (sklLv >= 9) {
-					valWork += 1 * (sklLv - 8);
-				}
-
-				spVal += valWork;
-				break;
+				case ITEM_KIND_KNIFE:
+				case ITEM_KIND_BOW:
+					valWork = 1 * sklLv;
+					if (sklLv >= 8) {
+						valWork += 1 * (sklLv - 7);
+					}
+					if (sklLv >= 9) {
+						valWork += 1 * (sklLv - 8);
+					}
+					spVal += valWork;
+					break;
 			}
 		}
 		break;
@@ -1441,20 +1435,16 @@ function ApplySpecModify(spid, spVal) {
 	case ITEM_SP_MAGICAL_DAMAGE_UP_SIZE_SMALL:
 	case ITEM_SP_MAGICAL_DAMAGE_UP_SIZE_MEDIUM:
 	case ITEM_SP_MAGICAL_DAMAGE_UP_SIZE_LARGE:
-
 		// 「アビスチェイサー」スキル「魔法剣修練」習得による効果
-		if ((sklLv = UsedSkillSearch(SKILL_ID_MAHOKEN_SHUREN)) > 0) {
-
+		if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_MAHOKEN_SHUREN), UsedSkillSearch(SKILL_ID_MAHOKEN_SHUREN))) > 0) {
 			// 短剣、片手剣装備時限定
 			switch (n_A_WeaponType) {
 			case ITEM_KIND_KNIFE:
 			case ITEM_KIND_SWORD:
-
 				valWork = 1 * sklLv;
 				if (sklLv >= 6) {
 					valWork += 1 * (sklLv - 5);
 				}
-
 				spVal += valWork;
 				break;
 			}

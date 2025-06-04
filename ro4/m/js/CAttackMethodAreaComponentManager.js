@@ -3633,12 +3633,10 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 			);
 			break;
 
-
 		//----------------------------------------------------------------
 		// アビスチェイサー：アビススクエア
 		//----------------------------------------------------------------
 		case SKILL_ID_ABYSS_SQUARE:
-
 			// オプションリストを生成、追加
 			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
 				"使用者の位置",
@@ -3649,7 +3647,6 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 				1
 			);
 			break;
-
 
 		//----------------------------------------------------------------
 		// バイオロ：アシディファイドゾーン

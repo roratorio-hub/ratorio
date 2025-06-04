@@ -483,7 +483,7 @@ function BattleCalc999(battleCalcInfo, charaData, specData, mobData, attackMetho
 			if (actRate > 0) {
 				cloned = battleCalcInfo.Clone();
 				cloned.skillId = SKILL_ID_SANDANSHO;
-				cloned.skillLv = UsedSkillSearch(SKILL_ID_SANDANSHO);
+				cloned.skillLv = Math.max(LearnedSkillSearch(SKILL_ID_SANDANSHO), UsedSkillSearch(SKILL_ID_SANDANSHO))
 				cloned.actRate = actRate;
 				battleCalcResultAll.AddPassiveResult(undefined, BattleCalc999Body(cloned, charaData, specData, mobData, attackMethodConfArray, false));
 			}
@@ -9282,7 +9282,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 		// 誤差無し、無し、無し、+3誤差、無し、無し、無し、+2誤差、・・・という感じで最大 +4 までズレてくる
 		// 誤差が拡大する方向ではなく通常鯖での1桁以内の誤差なのでスキル計算式そのものは合っていると判断
 		// 参考: ragna-promenade様
-		case SKILL_ID_ABYSS_SQUARE:
+		case SKILL_ID_ABYSS_SQUARE: {
 			// 詠唱時間等
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
@@ -9298,7 +9298,8 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			// SPL補正
 			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			// 魔法剣修練補正
-			wbairitu += 15 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_MAHOKEN_SHUREN);
+			const mahoken_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_MAHOKEN_SHUREN), UsedSkillSearch(SKILL_ID_MAHOKEN_SHUREN));
+			wbairitu += 15 * n_A_ActiveSkillLV * mahoken_shuren_lv;
 			// ベースレベル補正
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			// 攻撃回数
@@ -9306,7 +9307,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				wHITsuu = 2;
 			}
 			break;
-
+		}
 		// 「トルバドゥール・トルヴェール」スキル「メタリックフューリー」
 		// 2025-04-03 実測確認済み
 		case SKILL_ID_METALIC_FURY:
@@ -18240,16 +18241,12 @@ function GetSizeModify(mobData, wSC_Size) {
  * @returns 
  */
 function GetBaseRateSandansho(mobData) {
-
-	var sklLv = 0;
-	var rate = 0;
-
-	sklLv = UsedSkillSearch(SKILL_ID_SANDANSHO);
-
+	let sklLv = 0;
+	let rate = 0;
+	sklLv = Math.max(LearnedSkillSearch(SKILL_ID_SANDANSHO), UsedSkillSearch(SKILL_ID_SANDANSHO));
 	if (sklLv > 0) {
 		rate = Math.max(rate, 30 - sklLv);
 	}
-
 	return rate;
 }
 

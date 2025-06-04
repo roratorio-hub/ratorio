@@ -260,9 +260,8 @@ function AS_Calc(charaData, specData, mobData, attackMethodConfArray, battleCalc
 			n_AS_SKILL[idx][2] = n_AS_SKILL[idx][2] * (100 - wAS_3dan) / 100;
 		}
 		n_AS_SKILL[idx][3] = 0;
-
 		// アビススクエア習得時、習得レベルで発動
-		skillLvSub = UsedSkillSearch(SKILL_ID_ABYSS_SQUARE_LEARNED_LEVEL);
+		skillLvSub = Math.max(LearnedSkillSearch(SKILL_ID_ABYSS_SQUARE), UsedSkillSearch(SKILL_ID_ABYSS_SQUARE_LEARNED_LEVEL));
 		if (skillLvSub > 0) {
 			// オートスペルに、アビススクエアを設定
 			funcAddAS();
@@ -665,7 +664,7 @@ function AS_Calc(charaData, specData, mobData, attackMethodConfArray, battleCalc
 
 		funcAddAS();
 		n_AS_SKILL[idx][0] = SKILL_ID_SANDANSHO;
-		n_AS_SKILL[idx][1] = UsedSkillSearch(SKILL_ID_SANDANSHO);
+		n_AS_SKILL[idx][1] = Math.max(LearnedSkillSearch(SKILL_ID_SANDANSHO), UsedSkillSearch(SKILL_ID_SANDANSHO));
 		n_AS_SKILL[idx][2] = 1000;
 		n_AS_SKILL[idx][3] = -4;
 
@@ -1118,15 +1117,7 @@ function AS_Calc(charaData, specData, mobData, attackMethodConfArray, battleCalc
 		}
 	}
 
-
-
 	return;
-
-
-
-
-
-
 
 
 	n_AS_SKILL[idx][0] = -1;
