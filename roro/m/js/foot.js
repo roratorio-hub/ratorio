@@ -8037,18 +8037,18 @@ g_ITEM_SP_ASPD_UP_value_forCalcData = w;
 
 		sandanDelay = 0;
 
-		if (UsedSkillSearch(SKILL_ID_SANDANSHO) && n_A_ActiveSkill == 0) {
-			sandanDelay = (1000 - n_A_AGI *4 - n_A_DEX *2) /1000;
-			if (sandanDelay < 0) {
-				sandanDelay = 0;
-			}
-
-			if (sandanDelay < n_Delay[1]) {
-				sandanDelay = n_Delay[1];
-			}
-
-			if (UsedSkillSearch(SKILL_ID_SANDAN_DELAY_ZOKA)) {
-				sandanDelay += 0.3;
+		if (n_A_ActiveSkill === 0) {
+			if (Math.max(LearnedSkillSearch(SKILL_ID_SANDANSHO), UsedSkillSearch(SKILL_ID_SANDANSHO)) > 0) {
+				sandanDelay = (1000 - n_A_AGI *4 - n_A_DEX *2) /1000;
+				if (sandanDelay < 0) {
+					sandanDelay = 0;
+				}
+				if (sandanDelay < n_Delay[1]) {
+					sandanDelay = n_Delay[1];
+				}
+				if (UsedSkillSearch(SKILL_ID_SANDAN_DELAY_ZOKA)) {
+					sandanDelay += 0.3;
+				}
 			}
 		}
 
