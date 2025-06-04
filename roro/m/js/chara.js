@@ -11814,7 +11814,7 @@ function GetStatusModifyHitPlus() {
 	//----------------------------------------------------------------
 	// 「ガンスリンガー　スネークアイ」の、効果
 	//----------------------------------------------------------------
-	if ((sklLv = UsedSkillSearch(SKILL_ID_SNAKE_EYE)) > 0) {
+	if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_SNAKE_EYE), UsedSkillSearch(SKILL_ID_SNAKE_EYE))) > 0) {
 		val += 1 * sklLv;
 	}
 
@@ -11835,7 +11835,7 @@ function GetStatusModifyHitPlus() {
 	//----------------------------------------------------------------
 	// 「ガンスリンガー　シングルアクション」の、効果
 	//----------------------------------------------------------------
-	if ((sklLv = UsedSkillSearch(SKILL_ID_SINGLE_ACTION)) > 0) {
+	if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_SINGLE_ACTION), UsedSkillSearch(SKILL_ID_SINGLE_ACTION))) > 0) {
 		val += 2 * sklLv;
 	}
 

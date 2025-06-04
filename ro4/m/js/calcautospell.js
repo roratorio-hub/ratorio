@@ -283,7 +283,7 @@ function AS_Calc(charaData, specData, mobData, attackMethodConfArray, battleCalc
 	skillLv = UsedSkillSearch(SKILL_ID_AUTO_FIRING_LAUNCHER);
 	if ((n_A_ActiveSkill == SKILL_ID_TUZYO_KOGEKI) && (skillLv > 0)) {
 		// オートスペルに、ベーシックグレネードを設定
-		skillLvSub = UsedSkillSearch(SKILL_ID_BASIC_GRENADE_LEARNED_LEVEL);
+		skillLvSub = Math.max(LearnedSkillSearch(SKILL_ID_BASIC_GRENADE), UsedSkillSearch(SKILL_ID_BASIC_GRENADE_LEARNED_LEVEL));
 		if (skillLvSub > 0) {
 			funcAddAS();
 			n_AS_SKILL[idx][0] = SKILL_ID_BASIC_GRENADE;
@@ -296,7 +296,7 @@ function AS_Calc(charaData, specData, mobData, attackMethodConfArray, battleCalc
 			n_AS_SKILL[idx][3] = 0;
 		}
 		// オートスペルに、ヘイスティファイアインザホールを設定
-		skillLvSub = UsedSkillSearch(SKILL_ID_HASTY_FIRE_IN_THE_HOLE_LEARNED_LEVEL);
+		skillLvSub = Math.max(LearnedSkillSearch(SKILL_ID_HASTY_FIRE_IN_THE_HOLE), UsedSkillSearch(SKILL_ID_HASTY_FIRE_IN_THE_HOLE_LEARNED_LEVEL));
 		if (skillLvSub > 0) {
 			funcAddAS();
 			n_AS_SKILL[idx][0] = SKILL_ID_HASTY_FIRE_IN_THE_HOLE;
@@ -309,7 +309,7 @@ function AS_Calc(charaData, specData, mobData, attackMethodConfArray, battleCalc
 			n_AS_SKILL[idx][3] = 0;
 		}
 		// オートスペルに、グレネーズドロッピングを設定
-		skillLvSub = UsedSkillSearch(SKILL_ID_GRENADES_DROPPING_LEARNED_LEVEL);
+		skillLvSub = Math.max(LearnedSkillSearch(SKILL_ID_GRENADES_DROPPING), UsedSkillSearch(SKILL_ID_GRENADES_DROPPING_LEARNED_LEVEL));
 		if (skillLvSub > 0) {
 			funcAddAS();
 			n_AS_SKILL[idx][0] = SKILL_ID_GRENADES_DROPPING;
@@ -496,7 +496,7 @@ function AS_Calc(charaData, specData, mobData, attackMethodConfArray, battleCalc
 	// 通常攻撃時の、クイックドロー追撃効果
 	//----------------------------------------------------------------
 	skillLvQuickDraw = UsedSkillSearch(SKILL_ID_AS_QUICKDRAW);
-	skillLvChainAction = UsedSkillSearch(SKILL_ID_CHAIN_ACTION);
+	skillLvChainAction = Math.max(LearnedSkillSearch(SKILL_ID_CHAIN_ACTION), UsedSkillSearch(SKILL_ID_CHAIN_ACTION));
 
 	if ((n_A_ActiveSkill == SKILL_ID_TUZYO_KOGEKI) && (skillLvQuickDraw > 0)
 		&& (n_A_WeaponType == ITEM_KIND_HANDGUN) && (skillLvChainAction > 0)) {

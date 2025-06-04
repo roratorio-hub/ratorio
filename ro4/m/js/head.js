@@ -540,13 +540,13 @@ function BattleCalc999(battleCalcInfo, charaData, specData, mobData, attackMetho
 				// 右手の計算結果をクローン
 				cloned = battleCalcResultAll.GetPassiveResult(0).Clone();
 				// スキル情報の設定
-				if ((n_A_WeaponType == ITEM_KIND_HANDGUN) && (UsedSkillSearch(SKILL_ID_CHAIN_ACTION) > 0)) {
+				// チェーンリアクション習得Lv
+				const chain_action_lv = Math.max(LearnedSkillSearch(SKILL_ID_CHAIN_ACTION), UsedSkillSearch(SKILL_ID_CHAIN_ACTION));
+				if ((n_A_WeaponType == ITEM_KIND_HANDGUN) && (chain_action_lv > 0)) {
 					cloned.skillId = SKILL_ID_CHAIN_ACTION;
-				}
-				else if (IsGunSeriesArms(n_A_WeaponType) && (UsedSkillSearch(SKILL_ID_ETERNAL_CHAIN) > 0)) {
+				} else if (IsGunSeriesArms(n_A_WeaponType) && (UsedSkillSearch(SKILL_ID_ETERNAL_CHAIN) > 0)) {
 					cloned.skillId = SKILL_ID_CHAIN_ACTION;
-				}
-				else {
+				} else {
 					cloned.skillId = SKILL_ID_DOUBLE_ATTACK;
 				}
 				cloned.skillLv = Math.max(LearnedSkillSearch(SKILL_ID_DOUBLE_ATTACK), UsedSkillSearch(SKILL_ID_DOUBLE_ATTACK));
@@ -2108,16 +2108,18 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				n_Delay[7] = 6000 - 1000 * n_A_ActiveSkillLV;
 				break;
 
-			case SKILL_ID_FIRE_DANCE:
+			case SKILL_ID_FIRE_DANCE: {	// ファイヤーダンス
 				wbairitu = 1000 + 100 * n_A_ActiveSkillLV;
-				wbairitu += 20 * attackMethodConfArray[0].GetOptionValue(0);
+				// デスペラード習得Lv補正
+				let deathperad_lv = Math.max(LearnedSkillSearch(SKILL_ID_DEATHPERAD), attackMethodConfArray[0].GetOptionValue(0));
+				wbairitu += 20 * deathperad_lv;
 				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
 				n_Enekyori=1;
 				wCast = 0;
 				n_Delay[2] = 1000;
 				n_Delay[7] = 0;
 				break;
-
+			}
 			case SKILL_ID_BUNISHING_BASTER:
 				wbairitu = 200 * n_A_ActiveSkillLV;
 				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
@@ -4331,7 +4333,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 
 			// 「ナイトウォッチ」スキル「ベーシックグレネード」
 			// 2025/01/25 もなこさん検証データとの誤差無しを確認ずみ
-			case SKILL_ID_BASIC_GRENADE:
+			case SKILL_ID_BASIC_GRENADE: {
 				n_Enekyori = 1;	// 遠距離フラグ
 				wActiveHitNum = 2;	// 見た目2hit
 				// 詠唱時間など
@@ -4342,13 +4344,15 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				// ダメージ倍率
 				wbairitu = 3000 + 600 * n_A_ActiveSkillLV;					// 基本
 				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_CON);		// 特性ステータス補正
-				wbairitu += 50 * UsedSkillSearch(SKILL_ID_GRENADE_MASTERY) 	// グレネードマスタリー補正
+				// グレネードマスタリー補正
+				const grenade_mastery_lv = Math.max(LearnedSkillSearch(SKILL_ID_GRENADE_MASTERY), UsedSkillSearch(SKILL_ID_GRENADE_MASTERY));
+				wbairitu += 50 * grenade_mastery_lv;
 				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);			// BaseLv補正
 				break;
-
+			}
 			// 「ナイトウォッチ」スキル「ヘイスティファイアインザホール」
 			// 2025/01/25 もなこさん検証データとの誤差無しを確認ずみ
-			case SKILL_ID_HASTY_FIRE_IN_THE_HOLE:
+			case SKILL_ID_HASTY_FIRE_IN_THE_HOLE: {
 				/*
 					実際には
 					指定セルの周辺5x5セルに2hit → 0.3秒後さらに2hit → 0.3秒後さらに2hit
@@ -4365,13 +4369,15 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				// ダメージ倍率
 				wbairitu = 3000 + 600 * n_A_ActiveSkillLV;					// 基本
 				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);		// 特性ステータス補正
-				wbairitu += 20 * UsedSkillSearch(SKILL_ID_GRENADE_MASTERY) 	// グレネードマスタリー補正
+				// グレネードマスタリー補正
+				const grenade_mastery_lv = Math.max(LearnedSkillSearch(SKILL_ID_GRENADE_MASTERY), UsedSkillSearch(SKILL_ID_GRENADE_MASTERY));
+				wbairitu += 20 * grenade_mastery_lv;					 	// グレネードマスタリー補正
 				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);			// BaseLv補正
 				break;
-
+			}
 			// 「ナイトウォッチ」スキル「グレネーズドロッピング」
 			// 2025/01/25 もなこさん検証データとの誤差無しを確認ずみ
-			case SKILL_ID_GRENADES_DROPPING:
+			case SKILL_ID_GRENADES_DROPPING: {
 				/*
 					ダメージセルがランダムに発生するので実際はこれよりも総ダメージが少なくなる
 					検証によれば平均9～10hitで最大13hitとのこと（試行回数20回）
@@ -4390,13 +4396,15 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				// ダメージ倍率
 				wbairitu = 1350 + 300 * n_A_ActiveSkillLV;					// 基本
 				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);		// 特性ステータス補正
-				wbairitu += 30 * UsedSkillSearch(SKILL_ID_GRENADE_MASTERY) 	// グレネードマスタリー補正
+				// グレネードマスタリー補正
+				const grenade_mastery_lv = Math.max(LearnedSkillSearch(SKILL_ID_GRENADE_MASTERY), UsedSkillSearch(SKILL_ID_GRENADE_MASTERY));
+				wbairitu += 30 * grenade_mastery_lv;					 	// グレネードマスタリー補正
 				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);			// BaseLv補正
 				break;
-
+			}
 			// 「ナイトウォッチ」スキル「ミッションボンバード」
 			// 2025/01/25 もなこさん検証データとの誤差無しを確認ずみ
-			case SKILL_ID_MISSION_BOMBARD:
+			case SKILL_ID_MISSION_BOMBARD: {
 				// 詠唱時間など
 				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
@@ -4404,12 +4412,14 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				// 遠距離フラグ
 				n_Enekyori = 1;
+				// グレネードマスタリー補正
+				const grenade_mastery_lv = Math.max(LearnedSkillSearch(SKILL_ID_GRENADE_MASTERY), UsedSkillSearch(SKILL_ID_GRENADE_MASTERY));
 				if (attackMethodConfArray[0].GetOptionValue(1) === 0) {
 				// 初撃
 					// ダメージ倍率
-					wbairitu = 2500 + 750 * n_A_ActiveSkillLV;						// 基本
-					wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_CON);			// 特性ステータス補正
-					wbairitu += 100 * UsedSkillSearch(SKILL_ID_GRENADE_MASTERY) 	// グレネードマスタリー補正
+					wbairitu = 2500 + 750 * n_A_ActiveSkillLV;					// 基本
+					wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_CON);		// 特性ステータス補正
+					wbairitu += 100 * grenade_mastery_lv;					 	// グレネードマスタリー補正
 
 				} else {
 				// 追撃
@@ -4420,12 +4430,12 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 					// ダメージ倍率
 					wbairitu = 5000 + 1000 * n_A_ActiveSkillLV;					// 基本
 					wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_CON);		// 特性ステータス補正
-					wbairitu += 30 * UsedSkillSearch(SKILL_ID_GRENADE_MASTERY) 	// グレネードマスタリー補正
+					wbairitu += 30 * grenade_mastery_lv;					 	// グレネードマスタリー補正
 				}
 				// BaseLv補正
 				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 				break;
-
+			}
 			// 「ミンストレル＆ワンダラー」スキル「シビアレインストーム」
 			case SKILL_ID_SEVERE_RAINSTORM:
 			case SKILL_ID_SEVERE_RAINSTORM_EX:
@@ -25619,7 +25629,7 @@ function UsedSkillSearch(sklId, bOnlyUsed = false) {
 			}
 
 			// 「チェーンアクション」スキルの効果
-			sklLv = UsedSkillSearch(SKILL_ID_CHAIN_ACTION);
+			sklLv = Math.max(LearnedSkillSearch(SKILL_ID_CHAIN_ACTION), UsedSkillSearch(SKILL_ID_CHAIN_ACTION));
 			if ((n_A_WeaponType == ITEM_KIND_HANDGUN) && (sklLv > 0)) {
 				effectivLvArray.push(sklLv);
 			}

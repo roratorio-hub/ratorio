@@ -6443,9 +6443,9 @@ if (_APPLY_UPDATE_LV200) {
 				ASPDplusMAX = Math.max(ASPDplusMAX, ASPDch);
 			}
 		}
-
 		w += ASPDplusMAX;
-		w += Math.round(UsedSkillSearch(SKILL_ID_SINGLE_ACTION) / 2);
+		// 「ガンスリンガー」スキル「シングルアクション」の効果
+		w += Math.round(Math.max(LearnedSkillSearch(SKILL_ID_SINGLE_ACTION), UsedSkillSearch(SKILL_ID_SINGLE_ACTION)) / 2);
 
 		if (n_A_WeaponType == ITEM_KIND_BOOK) {
 			w += Math.round(UsedSkillSearch(SKILL_ID_ADVANCED_BOOK) / 2);
@@ -28648,7 +28648,7 @@ function StPlusCalc() {
 	}
 
 	// 「ナイトウォッチ」スキル「グレネードマスタリー」による効果
-	if ((sklLv = UsedSkillSearch(SKILL_ID_GRENADE_MASTERY)) > 0) {
+	if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_GRENADE_MASTERY), UsedSkillSearch(SKILL_ID_GRENADE_MASTERY))) > 0) {
 		wSPC_CON += sklLv
 	}
 	
