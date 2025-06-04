@@ -25993,7 +25993,7 @@ function StPlusCalc() {
 	//----------------------------------------------------------------
 	// 「トラップ研究」の、ＩＮＴ＋効果
 	//----------------------------------------------------------------
-	wSPC_INT += UsedSkillSearch(SKILL_ID_TRAP_KENKYU);
+	wSPC_INT += Math.max(LearnedSkillSearch(SKILL_ID_TRAP_KENKYU), UsedSkillSearch(SKILL_ID_TRAP_KENKYU));
 
 	//----------------------------------------------------------------
 	// 「チェイスウォーク」の、ＳＴＲ＋効果

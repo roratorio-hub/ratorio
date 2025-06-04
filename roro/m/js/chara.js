@@ -7397,7 +7397,7 @@ function GetStatusModifyMaxSpPlus() {
 	//----------------------------------------------------------------
 	// 「レンジャー　トラップ研究」の、効果
 	//----------------------------------------------------------------
-	if ((sklLv = UsedSkillSearch(SKILL_ID_TRAP_KENKYU)) > 0) {
+	if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_TRAP_KENKYU), UsedSkillSearch(SKILL_ID_TRAP_KENKYU))) > 0) {
 		val += 200 + 20 * sklLv;
 	}
 

@@ -470,22 +470,15 @@ function AS_Calc(charaData, specData, mobData, attackMethodConfArray, battleCalc
 	//----------------------------------------------------------------
 	skillLvWug = UsedSkillSearch(SKILL_ID_AUTO_WUG);
 	itemCount = EquipNumSearch(ITEM_ID_FURUBITA_MEISAIUSAGI);
-
 	if ((n_A_ActiveSkill == SKILL_ID_TUZYO_KOGEKI) && (skillLvWug > 0)) {
-
 		if ((itemCount > 0) && (n_A_HEAD_DEF_PLUS >= 9)) {
-
 			funcAddAS();
-
 			// 適用スキルの設定
 			n_AS_SKILL[idx][0] = SKILL_ID_WUG_STRIKE;
-
 			// 適用レベルの設定
 			n_AS_SKILL[idx][1] = skillLvWug;
-
 			// 発動率の設定
 			n_AS_SKILL[idx][2] = (50 + Math.min(120, SU_LUK) * 2) * skillLvWug / 5;
-
 			// 表示組立部フラグの設定（通常は０）
 			n_AS_SKILL[idx][3] = 0;
 		}
