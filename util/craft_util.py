@@ -263,7 +263,10 @@ def buildCapabilityRecord(capability):
                 value = AUTO_SPELL_CODE.get((skill_code, int(capability['skill_lv'])))
         else:
             # スキル性能が変化する能力の場合
-            capability_code += SKILL_CODE.get(capability['skill'])
+            try:
+                capability_code += SKILL_CODE.get(capability['skill'])
+            except:
+                print(f"{capability['skill']} が未定義です")
 
     code = f"{at_transcendence:01d}"            # 超越段階が n 以上の時に発動する
     code += f"{at_baselv:01d}"                  # ベースLvが n 以上のときに（Lv99は "以下" で判定）
