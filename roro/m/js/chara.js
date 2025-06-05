@@ -3560,7 +3560,7 @@ function GetStatusModifyAtkPlus() {
 	//----------------------------------------------------------------
 	// 「スーパーノービス＋　ブレイクスルー」の、効果
 	//----------------------------------------------------------------
-	if ((sklLv = UsedSkillSearch(SKILL_ID_BREAK_THROUGH)) > 0) {
+	if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_BREAK_THROUGH), UsedSkillSearch(SKILL_ID_BREAK_THROUGH))) > 0) {
 		val += 15 * sklLv;
 
 		if (sklLv >= 5) {
@@ -4546,7 +4546,7 @@ function GetStatusModifyMaxHpPlus() {
 	//----------------------------------------------------------------
 	// 「クルセイダー　フェイス」の、効果
 	//----------------------------------------------------------------
-	if ((sklLv = UsedSkillSearch(SKILL_ID_FAITH)) > 0) {
+	if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_FAITH), UsedSkillSearch(SKILL_ID_FAITH))) > 0) {
 		val += 200 * sklLv;
 	}
 
@@ -4562,17 +4562,24 @@ function GetStatusModifyMaxHpPlus() {
 	//----------------------------------------------------------------
 	// 「サモナー　にゃん魂」の、効果
 	//----------------------------------------------------------------
-	if ((sklLv = UsedSkillSearch(SKILL_ID_NYAN_TAMASHI)) > 0) {
+	if (Math.max(LearnedSkillSearch(SKILL_ID_NYAN_TAMASHI), UsedSkillSearch(SKILL_ID_NYAN_TAMASHI)) > 0) {
 		val += 2000;
 	}
 
 	//----------------------------------------------------------------
 	// 「サモナー　海の力」の、効果
 	//----------------------------------------------------------------
-	if ((sklLv = UsedSkillSearch(SKILL_ID_UMINO_CHIKARA)) > 0) {
+	if (Math.max(LearnedSkillSearch(SKILL_ID_UMINO_CHIKARA), UsedSkillSearch(SKILL_ID_UMINO_CHIKARA)) > 0) {
 		val += 1000;
-
-		if (UsedSkillSearch(SKILL_ID_SEAFOOD_KEI_SHUTOKU_LEVEL_GOKEI) >= 20) {
+		let summoner_skill_seafood_sum = 0;
+		summoner_skill_seafood_sum += LearnedSkillSearch(SKILL_ID_SHINSENNA_EBI);
+		summoner_skill_seafood_sum += LearnedSkillSearch(SKILL_ID_EBI_ZANMAI);
+		summoner_skill_seafood_sum += LearnedSkillSearch(SKILL_ID_OTORO);
+		summoner_skill_seafood_sum += LearnedSkillSearch(SKILL_ID_MAGURO_SHIELD);
+		summoner_skill_seafood_sum += LearnedSkillSearch(SKILL_ID_GROOMING);
+		summoner_skill_seafood_sum += LearnedSkillSearch(SKILL_ID_NODOWO_NARASU);
+		summoner_skill_seafood_sum += LearnedSkillSearch(SKILL_ID_EBI_PARTY);
+		if (Math.max(summoner_skill_seafood_sum, UsedSkillSearch(SKILL_ID_SEAFOOD_KEI_SHUTOKU_LEVEL_GOKEI)) >= 20) {
 			val += 3000;
 		}
 	}
@@ -4580,7 +4587,7 @@ function GetStatusModifyMaxHpPlus() {
 	//----------------------------------------------------------------
 	// 「スーパーノービス＋　ブレイクスルー」の、効果
 	//----------------------------------------------------------------
-	if ((sklLv = UsedSkillSearch(SKILL_ID_BREAK_THROUGH)) > 0) {
+	if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_BREAK_THROUGH), UsedSkillSearch(SKILL_ID_BREAK_THROUGH))) > 0) {
 		val += 350 * sklLv;
 
 		if (sklLv >= 5) {
@@ -4591,7 +4598,7 @@ function GetStatusModifyMaxHpPlus() {
 	//----------------------------------------------------------------
 	// 「スーパーノービス＋　トランセンデンス」の、効果
 	//----------------------------------------------------------------
-	if ((sklLv = UsedSkillSearch(SKILL_ID_TRANSCENDENCE)) > 0) {
+	if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_TRANSCENDENCE), UsedSkillSearch(SKILL_ID_TRANSCENDENCE))) > 0) {
 		val += 350 * sklLv;
 
 		if (sklLv >= 5) {
@@ -7390,7 +7397,7 @@ function GetStatusModifyMaxSpPlus() {
 	//----------------------------------------------------------------
 	// 「レンジャー　トラップ研究」の、効果
 	//----------------------------------------------------------------
-	if ((sklLv = UsedSkillSearch(SKILL_ID_TRAP_KENKYU)) > 0) {
+	if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_TRAP_KENKYU), UsedSkillSearch(SKILL_ID_TRAP_KENKYU))) > 0) {
 		val += 200 + 20 * sklLv;
 	}
 
@@ -7404,17 +7411,24 @@ function GetStatusModifyMaxSpPlus() {
 	//----------------------------------------------------------------
 	// 「サモナー　にゃん魂」の、効果
 	//----------------------------------------------------------------
-	if ((sklLv = UsedSkillSearch(SKILL_ID_NYAN_TAMASHI)) > 0) {
+	if (Math.max(LearnedSkillSearch(SKILL_ID_NYAN_TAMASHI), UsedSkillSearch(SKILL_ID_NYAN_TAMASHI)) > 0) {
 		val += 200;
 	}
 
 	//----------------------------------------------------------------
 	// 「サモナー　海の力」の、効果
 	//----------------------------------------------------------------
-	if ((sklLv = UsedSkillSearch(SKILL_ID_UMINO_CHIKARA)) > 0) {
+	if (Math.max(LearnedSkillSearch(SKILL_ID_UMINO_CHIKARA), UsedSkillSearch(SKILL_ID_UMINO_CHIKARA)) > 0) {
 		val += 100;
-
-		if (UsedSkillSearch(SKILL_ID_SEAFOOD_KEI_SHUTOKU_LEVEL_GOKEI) >= 20) {
+		let summoner_skill_seafood_sum = 0;
+		summoner_skill_seafood_sum += LearnedSkillSearch(SKILL_ID_SHINSENNA_EBI);
+		summoner_skill_seafood_sum += LearnedSkillSearch(SKILL_ID_EBI_ZANMAI);
+		summoner_skill_seafood_sum += LearnedSkillSearch(SKILL_ID_OTORO);
+		summoner_skill_seafood_sum += LearnedSkillSearch(SKILL_ID_MAGURO_SHIELD);
+		summoner_skill_seafood_sum += LearnedSkillSearch(SKILL_ID_GROOMING);
+		summoner_skill_seafood_sum += LearnedSkillSearch(SKILL_ID_NODOWO_NARASU);
+		summoner_skill_seafood_sum += LearnedSkillSearch(SKILL_ID_EBI_PARTY);
+		if (Math.max(summoner_skill_seafood_sum, UsedSkillSearch(SKILL_ID_SEAFOOD_KEI_SHUTOKU_LEVEL_GOKEI)) >= 20) {
 			val += 300;
 		}
 	}
@@ -7422,7 +7436,7 @@ function GetStatusModifyMaxSpPlus() {
 	//----------------------------------------------------------------
 	// 「スーパーノービス＋　ブレイクスルー」の、効果
 	//----------------------------------------------------------------
-	if ((sklLv = UsedSkillSearch(SKILL_ID_BREAK_THROUGH)) > 0) {
+	if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_BREAK_THROUGH), UsedSkillSearch(SKILL_ID_BREAK_THROUGH))) > 0) {
 		val += 30 * sklLv;
 
 		if (sklLv >= 5) {
@@ -7433,7 +7447,7 @@ function GetStatusModifyMaxSpPlus() {
 	//----------------------------------------------------------------
 	// 「スーパーノービス＋　トランセンデンス」の、効果
 	//----------------------------------------------------------------
-	if ((sklLv = UsedSkillSearch(SKILL_ID_TRANSCENDENCE)) > 0) {
+	if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_TRANSCENDENCE), UsedSkillSearch(SKILL_ID_TRANSCENDENCE))) > 0) {
 		val += 30 * sklLv;
 
 		if (sklLv >= 5) {
@@ -9327,12 +9341,10 @@ function GetStatusModifyDefDivPlus() {
 	// 「ロイヤルガード　プレスティージ」の、効果
 	//----------------------------------------------------------------
 	if ((sklLv = UsedSkillSearch(SKILL_ID_PRESTAGE)) > 0) {
-		var sklLvDefender = UsedSkillSearch(SKILL_ID_SKILL_LV_DEFENDER_FOR_PRESTAGE);
+		let sklLvDefender = Math.max(LearnedSkillSearch(SKILL_ID_DEFENDER), UsedSkillSearch(SKILL_ID_SKILL_LV_DEFENDER_FOR_PRESTAGE));
 		vartmp = 0;
-
 		vartmp += Math.floor(15 * sklLv * n_A_BaseLV / 100);
 		vartmp += Math.floor(sklLvDefender / 5 * n_A_BaseLV / 2);
-
 		val += vartmp;
 	}
 
@@ -9360,7 +9372,7 @@ function GetStatusModifyDefDivPlus() {
 	// 「ルーンナイト　ストーンハードスキン」の、効果
 	//----------------------------------------------------------------
 	if ((sklLv = UsedSkillSearch(SKILL_ID_STONE_HARD_SKIN)) > 0) {
-		var sklLvRuneMastery = UsedSkillSearch(SKILL_ID_RUNE_MASTERY);
+		const sklLvRuneMastery = Math.max(LearnedSkillSearch(SKILL_ID_RUNE_MASTERY), UsedSkillSearch(SKILL_ID_RUNE_MASTERY));
 		val += Math.floor(n_A_JobLV * sklLvRuneMastery / 4);
 	}
 
@@ -10303,7 +10315,8 @@ function GetStatusModifyMdefDivPlus(bIgnoreBuff) {
 		// 「ルーンナイト　ストーンハードスキン」の、効果
 		//----------------------------------------------------------------
 		if ((sklLv = UsedSkillSearch(SKILL_ID_STONE_HARD_SKIN)) > 0) {
-			val += Math.floor(n_A_JobLV * UsedSkillSearch(SKILL_ID_RUNE_MASTERY) / 4);
+			const sklLvRuneMastery = Math.max(LearnedSkillSearch(SKILL_ID_RUNE_MASTERY), UsedSkillSearch(SKILL_ID_RUNE_MASTERY));
+			val += Math.floor(n_A_JobLV * sklLvRuneMastery / 4);
 		}
 
 	}
@@ -11768,7 +11781,7 @@ function GetStatusModifyHitPlus() {
 	//----------------------------------------------------------------
 	// 「アーチャー　ワシの目」の、効果
 	//----------------------------------------------------------------
-	if ((sklLv = UsedSkillSearch(SKILL_ID_WASHINO_ME)) > 0) {
+	if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_WASHINO_ME), UsedSkillSearch(SKILL_ID_WASHINO_ME))) > 0) {
 		val += 1 * sklLv;
 	}
 
@@ -11801,7 +11814,7 @@ function GetStatusModifyHitPlus() {
 	//----------------------------------------------------------------
 	// 「ガンスリンガー　スネークアイ」の、効果
 	//----------------------------------------------------------------
-	if ((sklLv = UsedSkillSearch(SKILL_ID_SNAKE_EYE)) > 0) {
+	if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_SNAKE_EYE), UsedSkillSearch(SKILL_ID_SNAKE_EYE))) > 0) {
 		val += 1 * sklLv;
 	}
 
@@ -11822,7 +11835,7 @@ function GetStatusModifyHitPlus() {
 	//----------------------------------------------------------------
 	// 「ガンスリンガー　シングルアクション」の、効果
 	//----------------------------------------------------------------
-	if ((sklLv = UsedSkillSearch(SKILL_ID_SINGLE_ACTION)) > 0) {
+	if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_SINGLE_ACTION), UsedSkillSearch(SKILL_ID_SINGLE_ACTION))) > 0) {
 		val += 2 * sklLv;
 	}
 
@@ -11863,7 +11876,7 @@ function GetStatusModifyHitPlus() {
 	//----------------------------------------------------------------
 	// 「ジェネティック　剣鍛錬（ジェネティック）」の、効果
 	//----------------------------------------------------------------
-	if ((sklLv = UsedSkillSearch(SKILL_ID_KEN_SHUREN_GENETIC)) > 0) {
+	if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_KEN_SHUREN_GENETIC), UsedSkillSearch(SKILL_ID_KEN_SHUREN_GENETIC))) > 0) {
 		vartmp = 0;
 
 		switch (n_A_WeaponType) {
@@ -11886,7 +11899,7 @@ function GetStatusModifyHitPlus() {
 	//----------------------------------------------------------------
 	// 「サモナー　生命の力」の、効果
 	//----------------------------------------------------------------
-	if ((sklLv = UsedSkillSearch(SKILL_ID_SEIMEINO_CHIKARA)) > 0) {
+	if (Math.max(LearnedSkillSearch(SKILL_ID_SEIMEINO_CHIKARA), UsedSkillSearch(SKILL_ID_SEIMEINO_CHIKARA)) > 0) {
 		val += 50;
 	}
 

@@ -2605,7 +2605,7 @@ g_ITEM_SP_FLEE_PLUS_value_forCalcData = flee;
 		//----------------------------------------------------------------
 		// 「サモナー　生命の力」の、効果
 		//----------------------------------------------------------------
-		if ((sklLv = UsedSkillSearch(SKILL_ID_SEIMEINO_CHIKARA)) > 0) {
+		if (Math.max(LearnedSkillSearch(SKILL_ID_SEIMEINO_CHIKARA), UsedSkillSearch(SKILL_ID_SEIMEINO_CHIKARA)) > 0) {
 			flee += 50;
 		}
 
@@ -2613,10 +2613,10 @@ g_ITEM_SP_FLEE_PLUS_value_forCalcData = flee;
 		// 「シーフ　回避率増加」の、効果
 		//----------------------------------------------------------------
 		if ([JOB_SERIES_ID_ASSASIN, JOB_SERIES_ID_ROGUE].indexOf(GetHigherJobSeriesID(n_A_JOB)) >= 0) {
-			flee += 4 * UsedSkillSearch(SKILL_ID_KAIHIRITSU_ZOKA);
+			flee += 4 * Math.max(LearnedSkillSearch(SKILL_ID_KAIHIRITSU_ZOKA), UsedSkillSearch(SKILL_ID_KAIHIRITSU_ZOKA));
 		}
 		else {
-			flee += 3 * UsedSkillSearch(SKILL_ID_KAIHIRITSU_ZOKA);
+			flee += 3 * Math.max(LearnedSkillSearch(SKILL_ID_KAIHIRITSU_ZOKA), UsedSkillSearch(SKILL_ID_KAIHIRITSU_ZOKA));
 		}
 
 		//----------------------------------------------------------------
@@ -3164,7 +3164,7 @@ g_ITEM_SP_FLEE_PLUS_value_forCalcData = flee;
 		//----------------------------------------------------------------
 		// 「サモナー　大地の魂効果(ｲﾇﾊｯｶｼｬﾜｰ使用後の完全回避＋)」の、効果
 		//----------------------------------------------------------------
-		if (UsedSkillSearch(SKILL_ID_DAICHINO_TAMASHI) > 0) {
+		if (Math.max(LearnedSkillSearch(SKILL_ID_DAICHINO_TAMASHI), UsedSkillSearch(SKILL_ID_DAICHINO_TAMASHI)) > 0) {
 			if ((sklLv = UsedSkillSearch(SKILL_ID_DAICHINO_TAMASHI_KOKA_INUHAKKA_SHOWER)) > 0) {
 				lucky += 1 * ROUNDDOWN(n_A_BaseLV / 7);
 			}
@@ -3628,7 +3628,7 @@ if (_APPLY_UPDATE_LV200) {
 		//----------------------------------------------------------------
 		// 「サモナー　生命の力」の、効果
 		//----------------------------------------------------------------
-		if ((sklLv = UsedSkillSearch(SKILL_ID_SEIMEINO_CHIKARA)) > 0) {
+		if (Math.max(LearnedSkillSearch(SKILL_ID_SEIMEINO_CHIKARA), UsedSkillSearch(SKILL_ID_SEIMEINO_CHIKARA)) > 0) {
 			w += 20;
 		}
 
@@ -3654,7 +3654,11 @@ if (_APPLY_UPDATE_LV200) {
 		//----------------------------------------------------------------
 		// 遠距離物理攻撃限定の効果
 		//----------------------------------------------------------------
-		if (n_Enekyori === 1 ||	IsLongRange(n_A_Equip[EQUIP_REGION_ID_ARMS]) || UsedSkillSearch(SKILL_ID_SOUL_ATTACK)) {
+		if (n_Enekyori === 1 
+			|| IsLongRange(n_A_Equip[EQUIP_REGION_ID_ARMS]) 
+			|| UsedSkillSearch(SKILL_ID_SOUL_ATTACK)
+			|| LearnedSkillSearch(SKILL_ID_SOUL_ATTACK)
+			) {
 			w += n_tok[ITEM_SP_LONGRANGE_CRI_PLUS];
 		}
 
@@ -4885,7 +4889,7 @@ if (_APPLY_UPDATE_LV200) {
 		//----------------------------------------------------------------
 		// 「サモナー　大地の魂効果(ﾏﾀﾀﾋﾞの根っこ使用後のMATK＋)」の、効果
 		//----------------------------------------------------------------
-		if (UsedSkillSearch(SKILL_ID_DAICHINO_TAMASHI) > 0) {
+		if (Math.max(LearnedSkillSearch(SKILL_ID_DAICHINO_TAMASHI), UsedSkillSearch(SKILL_ID_DAICHINO_TAMASHI)) > 0) {
 			if ((sklLv = UsedSkillSearch(SKILL_ID_DAICHINO_TAMASHI_KOKA_MATATABINO_NEKKO)) > 0) {
 				w += 1 * n_A_BaseLV;
 			}
@@ -4894,7 +4898,7 @@ if (_APPLY_UPDATE_LV200) {
 		//----------------------------------------------------------------
 		// 「サモナー　大地の魂効果(ニャングラス使用後のMATK＋)」の、効果
 		//----------------------------------------------------------------
-		if (UsedSkillSearch(SKILL_ID_DAICHINO_TAMASHI) > 0) {
+		if (Math.max(LearnedSkillSearch(SKILL_ID_DAICHINO_TAMASHI), UsedSkillSearch(SKILL_ID_DAICHINO_TAMASHI)) > 0) {
 			if ((sklLv = UsedSkillSearch(SKILL_ID_DAICHINO_TAMASHI_KOKA_NYAN_GRASS)) > 0) {
 				w += 1 * n_A_BaseLV;
 			}
@@ -4903,7 +4907,7 @@ if (_APPLY_UPDATE_LV200) {
 		//----------------------------------------------------------------
 		// 「スーパーノービス＋　トランセンデンス」の、効果
 		//----------------------------------------------------------------
-		if ((sklLv = UsedSkillSearch(SKILL_ID_TRANSCENDENCE)) > 0) {
+		if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_TRANSCENDENCE), UsedSkillSearch(SKILL_ID_TRANSCENDENCE))) > 0) {
 			w += 15 * sklLv;
 
 			if (sklLv >= 5) {
@@ -6147,8 +6151,16 @@ if (_APPLY_UPDATE_LV200) {
 		//----------------------------------------------------------------
 		// 「サモナー　大地の力」の、習得スキルレベル合計による効果
 		//----------------------------------------------------------------
-		if (UsedSkillSearch(SKILL_ID_DAICHINO_CHIKARA) > 0) {
-			if (UsedSkillSearch(SKILL_ID_PLANT_KEI_SHUTOKU_LEVEL_GOKEI) >= 20) {
+		if (Math.max(LearnedSkillSearch(SKILL_ID_DAICHINO_CHIKARA), UsedSkillSearch(SKILL_ID_DAICHINO_CHIKARA)) > 0) {
+			let summoner_skill_plant_sum = 0;
+			summoner_skill_plant_sum += LearnedSkillSearch(SKILL_ID_MATATABI_LANCE);
+			summoner_skill_plant_sum += LearnedSkillSearch(SKILL_ID_MATATABINO_NEKKO);
+			summoner_skill_plant_sum += LearnedSkillSearch(SKILL_ID_INUHAKKA_METEOR);
+			summoner_skill_plant_sum += LearnedSkillSearch(SKILL_ID_INUHAKKA_SHOWER);
+			summoner_skill_plant_sum += LearnedSkillSearch(SKILL_ID_CHATTERING);
+			summoner_skill_plant_sum += LearnedSkillSearch(SKILL_ID_MYAUMYAU);
+			summoner_skill_plant_sum += LearnedSkillSearch(SKILL_ID_NYAN_GRASS);
+			if (Math.max(summoner_skill_plant_sum, UsedSkillSearch(SKILL_ID_PLANT_KEI_SHUTOKU_LEVEL_GOKEI)) >= 20) {
 				w += 10;
 			}
 		}
@@ -6363,25 +6375,27 @@ if (_APPLY_UPDATE_LV200) {
 		// 「拳聖　太陽と月と星の悪魔」の効果
 		//----------------------------------------------------------------
 		ASPDch = 0;
-		if (UsedSkillSearch(SKILL_ID_HOSHINO_ANRAKU)) {
+		if (UsedSkillSearch(SKILL_ID_HOSHINO_ANRAKU) > 0) {
 			switch (UsedSkillSearch(SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_HI)) {
 				case 1:	// 今日の日付
-					let today = (new Date()).getDate();
+					const today = (new Date()).getDate();
 					if (today % 5 == 1)	break; // 星の日ではない
 				case 0:	// 無条件発動
 				case 4: // 星の日
 					ASPDch += Math.floor((n_A_BaseLV + n_A_LUK + n_A_DEX) / 10);
 			}
 		}
-		if (UsedSkillSearch(SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_AKUMA)) {
+		const taiyoto_tsukito_hoshino_akuma = Math.max(LearnedSkillSearch(SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_AKUMA), UsedSkillSearch(SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_AKUMA));
+		if (taiyoto_tsukito_hoshino_akuma > 0) {
 			switch (n_A_JOB) {
-			case JOB_ID_STARGRADIATOR:
-				// ジョブレベル５０未満では発動しない
-				if (n_A_JobLV < 50) {
-					break;
-				}
-			case JOB_ID_STAR_EMPEROR:
-				ASPDch += 1 + UsedSkillSearch(SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_AKUMA);
+				case JOB_ID_STARGRADIATOR:
+					// 拳聖 ジョブレベル５０未満では発動しない
+					if (n_A_JobLV < 50) {
+						break;
+					}
+				default:
+					// 星帝・天帝は制限なし
+					ASPDch += 1 + taiyoto_tsukito_hoshino_akuma;
 			}
 		}
 		ASPDplusMAX = Math.max(ASPDplusMAX, ASPDch);
@@ -6429,9 +6443,9 @@ if (_APPLY_UPDATE_LV200) {
 				ASPDplusMAX = Math.max(ASPDplusMAX, ASPDch);
 			}
 		}
-
 		w += ASPDplusMAX;
-		w += Math.round(UsedSkillSearch(SKILL_ID_SINGLE_ACTION) / 2);
+		// 「ガンスリンガー」スキル「シングルアクション」の効果
+		w += Math.round(Math.max(LearnedSkillSearch(SKILL_ID_SINGLE_ACTION), UsedSkillSearch(SKILL_ID_SINGLE_ACTION)) / 2);
 
 		if (n_A_WeaponType == ITEM_KIND_BOOK) {
 			w += Math.round(UsedSkillSearch(SKILL_ID_ADVANCED_BOOK) / 2);
@@ -6440,18 +6454,22 @@ if (_APPLY_UPDATE_LV200) {
 		aspd += (200 - aspd) * (w / 100);
 
 		if (UsedSkillSearch(SKILL_ID_FIGHTING_SPIRIT)) {
-			var wfsp = [0,0,0,1,1,2,2,2,3,3,4];
-			aspd += wfsp[UsedSkillSearch(SKILL_ID_RUNE_MASTERY)];
+			const wfsp = [0,0,0,1,1,2,2,2,3,3,4];
+			const sklLvRuneMastery = Math.max(LearnedSkillSearch(SKILL_ID_RUNE_MASTERY), UsedSkillSearch(SKILL_ID_RUNE_MASTERY));
+			aspd += wfsp[sklLvRuneMastery];
 		}
 
-		if (UsedSkillSearch(SKILL_ID_KIHE_SHUREN) > 0) {
+		if (Math.max(LearnedSkillSearch(SKILL_ID_KIHE_SHUREN), UsedSkillSearch(SKILL_ID_KIHE_SHUREN)) > 0) {
 			if ((n_A_ActiveSkill == SKILL_ID_TUZYO_KOGEKI) || (n_A_ActiveSkill == SKILL_ID_SACRIFICE)) {
-				aspd -= aspd - aspd * (40 + UsedSkillSearch(SKILL_ID_KIHE_SHUREN) * 10) / 100;
+				aspd -= aspd - aspd * (40 + Math.max(LearnedSkillSearch(SKILL_ID_KIHE_SHUREN), UsedSkillSearch(SKILL_ID_KIHE_SHUREN)) * 10) / 100;
 			}
 		}
-
+		// トレーニング未習得でもドラゴンに乗れるので LearnedSkillSearch に置き換えられない
 		if (UsedSkillSearch(SKILL_ID_DRAGON_TRAINING) > 0) {
-			aspd -= aspd - aspd * (70 + UsedSkillSearch(SKILL_ID_DRAGON_TRAINING) * 5) / 100;
+			// ドラゴンに搭乗している場合、ドラゴントレーニングの習得Lvに応じてASPDペナルティが課せられる
+			// UsedSkillSearch の方は'Lv0'の前に'未騎乗'が挿入されているのでオフセットを合わせている
+			const dragon_training_lv = Math.max(LearnedSkillSearch(SKILL_ID_DRAGON_TRAINING), UsedSkillSearch(SKILL_ID_DRAGON_TRAINING) - 1);
+			aspd -= aspd - aspd * (70 + (dragon_training_lv + 1) * 5) / 100;
 		}
 
 
@@ -8019,18 +8037,18 @@ g_ITEM_SP_ASPD_UP_value_forCalcData = w;
 
 		sandanDelay = 0;
 
-		if (UsedSkillSearch(SKILL_ID_SANDANSHO) && n_A_ActiveSkill == 0) {
-			sandanDelay = (1000 - n_A_AGI *4 - n_A_DEX *2) /1000;
-			if (sandanDelay < 0) {
-				sandanDelay = 0;
-			}
-
-			if (sandanDelay < n_Delay[1]) {
-				sandanDelay = n_Delay[1];
-			}
-
-			if (UsedSkillSearch(SKILL_ID_SANDAN_DELAY_ZOKA)) {
-				sandanDelay += 0.3;
+		if (n_A_ActiveSkill === 0) {
+			if (Math.max(LearnedSkillSearch(SKILL_ID_SANDANSHO), UsedSkillSearch(SKILL_ID_SANDANSHO)) > 0) {
+				sandanDelay = (1000 - n_A_AGI *4 - n_A_DEX *2) /1000;
+				if (sandanDelay < 0) {
+					sandanDelay = 0;
+				}
+				if (sandanDelay < n_Delay[1]) {
+					sandanDelay = n_Delay[1];
+				}
+				if (UsedSkillSearch(SKILL_ID_SANDAN_DELAY_ZOKA)) {
+					sandanDelay += 0.3;
+				}
 			}
 		}
 
@@ -8908,6 +8926,14 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 		if (EquipNumSearch(5425)) {
 			if (n_A_BODY_DEF_PLUS >= 9) {
 				chkary.push(70);
+			}
+		}
+
+		if (EquipNumSearch(ITEM_ID_MAGIA_VITA)) {
+			// マギアヴィタを装備している時
+			if (n_A_SHOES_DEF_PLUS === 10) {
+				// 精錬値が10の時
+				chkary.push(80);
 			}
 		}
 
@@ -12540,8 +12566,16 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 		//----------------------------------------------------------------
 		// 「サモナー　生命の力」の、スキル習得数による効果
 		//----------------------------------------------------------------
-		if ((sklLv = UsedSkillSearch(SKILL_ID_SEIMEINO_CHIKARA)) > 0) {
-			if (UsedSkillSearch(SKILL_ID_ANIMAL_KEI_SHUTOKU_LEVEL_GOKEI) >= 20) {
+		if (Math.max(LearnedSkillSearch(SKILL_ID_SEIMEINO_CHIKARA), UsedSkillSearch(SKILL_ID_SEIMEINO_CHIKARA)) > 0) {
+			let summoner_skill_animal_sum = 0;
+			summoner_skill_animal_sum += LearnedSkillSearch(SKILL_ID_CARROT_BEAT);
+			summoner_skill_animal_sum += LearnedSkillSearch(SKILL_ID_TAROUNO_KIZU);
+			summoner_skill_animal_sum += LearnedSkillSearch(SKILL_ID_ARCLOUSE_DASH);
+			summoner_skill_animal_sum += LearnedSkillSearch(SKILL_ID_PIKKI_TSUKI);
+			summoner_skill_animal_sum += LearnedSkillSearch(SKILL_ID_KEIKAI);
+			summoner_skill_animal_sum += LearnedSkillSearch(SKILL_ID_MURENO_CHIKARA);
+			summoner_skill_animal_sum += LearnedSkillSearch(SKILL_ID_SAVAGENO_TAMASHI);
+			if (Math.max(summoner_skill_animal_sum, UsedSkillSearch(SKILL_ID_ANIMAL_KEI_SHUTOKU_LEVEL_GOKEI)) >= 20) {
 				n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += 10;
 			}
 		}
@@ -17025,13 +17059,13 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 		//----------------------------------------------------------------
 		// 「クルセイダー　フェイス」の効果
 		//----------------------------------------------------------------
-		n_tok[ITEM_SP_RESIST_ELM_HOLY] += 5 * UsedSkillSearch(SKILL_ID_FAITH);
+		n_tok[ITEM_SP_RESIST_ELM_HOLY] += 5 * Math.max(LearnedSkillSearch(SKILL_ID_FAITH), UsedSkillSearch(SKILL_ID_FAITH));
 
 		//----------------------------------------------------------------
 		// 「アークビショップ　エウカリスティカ」の効果
 		//----------------------------------------------------------------
-		n_tok[ITEM_SP_RESIST_ELM_DARK] += UsedSkillSearch(SKILL_ID_EUCHARISTICA);
-		n_tok[ITEM_SP_RESIST_ELM_UNDEAD] += UsedSkillSearch(SKILL_ID_EUCHARISTICA);
+		n_tok[ITEM_SP_RESIST_ELM_DARK] += Math.max(LearnedSkillSearch(SKILL_ID_EUCHARISTICA), UsedSkillSearch(SKILL_ID_EUCHARISTICA));
+		n_tok[ITEM_SP_RESIST_ELM_UNDEAD] += Math.max(LearnedSkillSearch(SKILL_ID_EUCHARISTICA), UsedSkillSearch(SKILL_ID_EUCHARISTICA));
 
 		//----------------------------------------------------------------
 		// 「影狼・朧　符」の効果
@@ -18395,25 +18429,32 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 		//----------------------------------------------------------------
 		// 「サモナー　海の力」の、効果
 		//----------------------------------------------------------------
-		if ((sklLv = UsedSkillSearch(SKILL_ID_UMINO_CHIKARA)) > 0) {
-			n_tok[91] += 50;
-
-			if (UsedSkillSearch(SKILL_ID_SEAFOOD_KEI_SHUTOKU_LEVEL_GOKEI) >= 20) {
-				n_tok[91] += 100;
+		if (Math.max(LearnedSkillSearch(SKILL_ID_UMINO_CHIKARA), UsedSkillSearch(SKILL_ID_UMINO_CHIKARA)) > 0) {
+			n_tok[ITEM_SP_HEAL_UP_USING] += 50;
+			let summoner_skill_seafood_sum = 0;
+			summoner_skill_seafood_sum += LearnedSkillSearch(SKILL_ID_SHINSENNA_EBI);
+			summoner_skill_seafood_sum += LearnedSkillSearch(SKILL_ID_EBI_ZANMAI);
+			summoner_skill_seafood_sum += LearnedSkillSearch(SKILL_ID_OTORO);
+			summoner_skill_seafood_sum += LearnedSkillSearch(SKILL_ID_MAGURO_SHIELD);
+			summoner_skill_seafood_sum += LearnedSkillSearch(SKILL_ID_GROOMING);
+			summoner_skill_seafood_sum += LearnedSkillSearch(SKILL_ID_NODOWO_NARASU);
+			summoner_skill_seafood_sum += LearnedSkillSearch(SKILL_ID_EBI_PARTY);
+			if (Math.max(summoner_skill_seafood_sum, UsedSkillSearch(SKILL_ID_SEAFOOD_KEI_SHUTOKU_LEVEL_GOKEI)) >= 20) {
+				n_tok[ITEM_SP_HEAL_UP_USING] += 100;
 			}
 		}
 
 		//----------------------------------------------------------------
 		// 「スーパーノービス＋　ブレイクスルー」の、効果
 		//----------------------------------------------------------------
-		if ((sklLv = UsedSkillSearch(SKILL_ID_BREAK_THROUGH)) > 0) {
+		if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_BREAK_THROUGH), UsedSkillSearch(SKILL_ID_BREAK_THROUGH))) > 0) {
 			n_tok[ITEM_SP_HEAL_UP_USED] += 2 * sklLv;
 		}
 
 		//----------------------------------------------------------------
 		// 「スーパーノービス＋　トランセンデンス」の、効果
 		//----------------------------------------------------------------
-		if ((sklLv = UsedSkillSearch(SKILL_ID_TRANSCENDENCE)) > 0) {
+		if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_TRANSCENDENCE), UsedSkillSearch(SKILL_ID_TRANSCENDENCE))) > 0) {
 			n_tok[ITEM_SP_HEAL_UP_USING] += 3 * sklLv;
 		}
 
@@ -25213,7 +25254,7 @@ function GetCoolFixOfSkill(skillId) {
 	// スキル「海の魂」の「大トロ」短縮
 	//----------------------------------------------------------------
 	if (skillId == SKILL_ID_OTORO) {
-		if (UsedSkillSearch(SKILL_ID_UMINO_TAMASHI) >= 1) {
+		if (Math.max(LearnedSkillSearch(SKILL_ID_UMINO_TAMASHI), UsedSkillSearch(SKILL_ID_UMINO_TAMASHI)) >= 1) {
 			coolfix -= 3000;
 		}
 	}
@@ -25925,7 +25966,7 @@ function StPlusCalc() {
 	//----------------------------------------------------------------
 	// 「ふくろうの目」の、ＤＥＸ＋効果
 	//----------------------------------------------------------------
-	wSPC_DEX += UsedSkillSearch(SKILL_ID_FUKURONO_ME);
+	wSPC_DEX += Math.max(LearnedSkillSearch(SKILL_ID_FUKURONO_ME), UsedSkillSearch(SKILL_ID_FUKURONO_ME));
 
 	//----------------------------------------------------------------
 	// 「ラウドボイス」の、ＳＴＲ＋効果
@@ -25960,7 +26001,7 @@ function StPlusCalc() {
 	//----------------------------------------------------------------
 	// 「トラップ研究」の、ＩＮＴ＋効果
 	//----------------------------------------------------------------
-	wSPC_INT += UsedSkillSearch(SKILL_ID_TRAP_KENKYU);
+	wSPC_INT += Math.max(LearnedSkillSearch(SKILL_ID_TRAP_KENKYU), UsedSkillSearch(SKILL_ID_TRAP_KENKYU));
 
 	//----------------------------------------------------------------
 	// 「チェイスウォーク」の、ＳＴＲ＋効果
@@ -26064,59 +26105,62 @@ function StPlusCalc() {
 	//----------------------------------------------------------------
 	// 「太陽・月・星の祝福」の、＋効果
 	//----------------------------------------------------------------
+	const taiyono_shukufuku = Math.max(LearnedSkillSearch(SKILL_ID_TAIYONO_SHUKUFUKU), UsedSkillSearch(SKILL_ID_TAIYONO_SHUKUFUKU));
+	const tsukino_shukufuku = Math.max(LearnedSkillSearch(SKILL_ID_TSUKUNO_SHUKUFUKU), UsedSkillSearch(SKILL_ID_TSUKUNO_SHUKUFUKU));
+	const hoshino_shukufuku = Math.max(LearnedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU), UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU));
 	switch (UsedSkillSearch(SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_HI)) {
 		case 0:	// 無条件で発動
-			wSPC_STR += 2 * UsedSkillSearch(SKILL_ID_TAIYONO_SHUKUFUKU);
-			wSPC_VIT += 2 * UsedSkillSearch(SKILL_ID_TAIYONO_SHUKUFUKU);
-			wSPC_DEX += 2 * UsedSkillSearch(SKILL_ID_TAIYONO_SHUKUFUKU);
-			wSPC_AGI += 2 * UsedSkillSearch(SKILL_ID_TSUKUNO_SHUKUFUKU);
-			wSPC_INT += 2 * UsedSkillSearch(SKILL_ID_TSUKUNO_SHUKUFUKU);
-			wSPC_LUK += 2 * UsedSkillSearch(SKILL_ID_TSUKUNO_SHUKUFUKU);
-			wSPC_STR += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
-			wSPC_AGI += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
-			wSPC_VIT += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
-			wSPC_INT += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
-			wSPC_DEX += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
-			wSPC_LUK += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
+			wSPC_STR += 2 * taiyono_shukufuku;
+			wSPC_VIT += 2 * taiyono_shukufuku;
+			wSPC_DEX += 2 * taiyono_shukufuku;
+			wSPC_AGI += 2 * tsukino_shukufuku;
+			wSPC_INT += 2 * tsukino_shukufuku;
+			wSPC_LUK += 2 * tsukino_shukufuku;
+			wSPC_STR += 2 * hoshino_shukufuku;
+			wSPC_AGI += 2 * hoshino_shukufuku;
+			wSPC_VIT += 2 * hoshino_shukufuku;
+			wSPC_INT += 2 * hoshino_shukufuku;
+			wSPC_DEX += 2 * hoshino_shukufuku;
+			wSPC_LUK += 2 * hoshino_shukufuku;
 			break;
 		case 1:	// 今日の日付で発動
 			let today = (new Date()).getDate();
-			if (today % 5 == 0 && UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU) > 0) { // 5の倍数 ∧ 星を習得済み
-				wSPC_STR += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
-				wSPC_AGI += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
-				wSPC_VIT += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
-				wSPC_INT += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
-				wSPC_DEX += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
-				wSPC_LUK += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
+			if (today % 5 == 0 && hoshino_shukufuku > 0) { // 5の倍数 ∧ 星を習得済み
+				wSPC_STR += 2 * hoshino_shukufuku;
+				wSPC_AGI += 2 * hoshino_shukufuku;
+				wSPC_VIT += 2 * hoshino_shukufuku;
+				wSPC_INT += 2 * hoshino_shukufuku;
+				wSPC_DEX += 2 * hoshino_shukufuku;
+				wSPC_LUK += 2 * hoshino_shukufuku;
 			} else
 			if (today % 2 == 0) {	// ( 5の倍数ではない ∨ 5の倍数だが星を未習得 ) ∧ 偶数
-				wSPC_STR += 2 * UsedSkillSearch(SKILL_ID_TAIYONO_SHUKUFUKU);
-				wSPC_VIT += 2 * UsedSkillSearch(SKILL_ID_TAIYONO_SHUKUFUKU);
-				wSPC_DEX += 2 * UsedSkillSearch(SKILL_ID_TAIYONO_SHUKUFUKU);
+				wSPC_STR += 2 * taiyono_shukufuku;
+				wSPC_VIT += 2 * taiyono_shukufuku;
+				wSPC_DEX += 2 * taiyono_shukufuku;
 			} else
 			if (today % 2 == 1) {	// ( 5の倍数ではない ∨ 5の倍数だが星を未習得 ) ∧ 奇数
-				wSPC_AGI += 2 * UsedSkillSearch(SKILL_ID_TSUKUNO_SHUKUFUKU);
-				wSPC_INT += 2 * UsedSkillSearch(SKILL_ID_TSUKUNO_SHUKUFUKU);
-				wSPC_LUK += 2 * UsedSkillSearch(SKILL_ID_TSUKUNO_SHUKUFUKU);
+				wSPC_AGI += 2 * tsukino_shukufuku;
+				wSPC_INT += 2 * tsukino_shukufuku;
+				wSPC_LUK += 2 * tsukino_shukufuku;
 			}
 			break;
 		case 2:	// 太陽の日
-			wSPC_STR += 2 * UsedSkillSearch(SKILL_ID_TAIYONO_SHUKUFUKU);
-			wSPC_VIT += 2 * UsedSkillSearch(SKILL_ID_TAIYONO_SHUKUFUKU);
-			wSPC_DEX += 2 * UsedSkillSearch(SKILL_ID_TAIYONO_SHUKUFUKU);
+			wSPC_STR += 2 * taiyono_shukufuku;
+			wSPC_VIT += 2 * taiyono_shukufuku;
+			wSPC_DEX += 2 * taiyono_shukufuku;
 			break;
 		case 3:	// 月の日
-			wSPC_AGI += 2 * UsedSkillSearch(SKILL_ID_TSUKUNO_SHUKUFUKU);
-			wSPC_INT += 2 * UsedSkillSearch(SKILL_ID_TSUKUNO_SHUKUFUKU);
-			wSPC_LUK += 2 * UsedSkillSearch(SKILL_ID_TSUKUNO_SHUKUFUKU);
+			wSPC_AGI += 2 * tsukino_shukufuku;
+			wSPC_INT += 2 * tsukino_shukufuku;
+			wSPC_LUK += 2 * tsukino_shukufuku;
 			break;
 		case 4:	// 星の日
-			wSPC_STR += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
-			wSPC_AGI += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
-			wSPC_VIT += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
-			wSPC_INT += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
-			wSPC_DEX += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
-			wSPC_LUK += 2 * UsedSkillSearch(SKILL_ID_HOSHINO_SHUKUFUKU);
+			wSPC_STR += 2 * hoshino_shukufuku;
+			wSPC_AGI += 2 * hoshino_shukufuku;
+			wSPC_VIT += 2 * hoshino_shukufuku;
+			wSPC_INT += 2 * hoshino_shukufuku;
+			wSPC_DEX += 2 * hoshino_shukufuku;
+			wSPC_LUK += 2 * hoshino_shukufuku;
 			break;
 	}
 
@@ -28126,7 +28170,7 @@ function StPlusCalc() {
 	//----------------------------------------------------------------
 	// 「サモナー　大地の力」による効果
 	//----------------------------------------------------------------
-	if (UsedSkillSearch(SKILL_ID_DAICHINO_CHIKARA) > 0) {
+	if (Math.max(LearnedSkillSearch(SKILL_ID_DAICHINO_CHIKARA), UsedSkillSearch(SKILL_ID_DAICHINO_CHIKARA)) > 0) {
 		wSPC_INT += 7;
 	}
 
@@ -28612,7 +28656,7 @@ function StPlusCalc() {
 	}
 
 	// 「ナイトウォッチ」スキル「グレネードマスタリー」による効果
-	if ((sklLv = UsedSkillSearch(SKILL_ID_GRENADE_MASTERY)) > 0) {
+	if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_GRENADE_MASTERY), UsedSkillSearch(SKILL_ID_GRENADE_MASTERY))) > 0) {
 		wSPC_CON += sklLv
 	}
 	
@@ -30218,23 +30262,31 @@ function InitJobInfo() {
 	}
 }
 
-function NumSearch(NS1,NS2){
-	var end = NS2.length-1;
-
-	for(var i=0;i<=end;i++){
+/**
+ * indexOf が使えないブラウザ向けに作成された代替関数
+ * @param {*} NS1 検索する値
+ * @param {*} NS2 検索対象の配列
+ * @returns 見つかった場合は 1 / 見つからなかった場合は 0
+ */
+function NumSearch(NS1, NS2){
+	let end = NS2.length - 1;
+	for(let i = 0; i <= end; i++){
 		if(NS1 == NS2[i]) return 1;
 	}
-
 	return 0;
 }
 
-function NumSearch2(NS1,NS2){
-	var end = NS2.length-1;
-
-	for(var i=0;i<=end;i++){
+/**
+ * indexOf が使えないブラウザ向けに作成された代替関数
+ * @param {Object} NS1 検索する値
+ * @param {Array} NS2 検索対象の配列
+ * @returns 最初に要素が見つかった位置 / 見つからなかった場合は -1
+ */
+function NumSearch2(NS1, NS2){
+	let end = NS2.length - 1;
+	for(let i = 0; i <= end; i++){
 		if(NS1 == NS2[i]) return i;
 	}
-
 	return -1;
 }
 

@@ -13053,7 +13053,8 @@ function CSkillManager() {
 					ratio += (1000 - ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS]][ITEM_DATA_INDEX_WEIGHT]);
 				}
 				ratio = Math.floor(ratio * (1 + (n_A_BaseLV - 100) / 200));
-				ratio += 50 * option.GetOptionValue(0);
+				// スパイラルピアース習得Lv補正
+				ratio += 50 * Math.max(LearnedSkillSearch(SKILL_ID_SPIRAL_PIERCE), option.GetOptionValue(0));
 				// チャージングピアースがONの時、与えるダメージ + 50% x スキルレベル
 				ratio = ratio * (1 + 0.5 * option.GetOptionValue(2));
 				return ratio;
@@ -13150,7 +13151,7 @@ function CSkillManager() {
 
 				// 基本式
 				pow = 50 * skillLv;
-				pow += 10 * charaDataManger.UsedSkillSearch(SKILL_ID_YARI_SHUREN);
+				pow += 10 * Math.max(LearnedSkillSearch(SKILL_ID_YARI_SHUREN), UsedSkillSearch(SKILL_ID_YARI_SHUREN));
 
 				// ベースレベル補正
 				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 150);
@@ -13372,33 +13373,26 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
-
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 0;
 			}
-
 			this.Power = function(skillLv, charaDataManger) {
-				var pow = 0;
-
+				let pow = 0;
 				// 基本式
-				pow += 100 * charaDataManger.UsedSkillSearch(SKILL_ID_RUNE_MASTERY);
+				const sklLvRuneMastery = Math.max(LearnedSkillSearch(SKILL_ID_RUNE_MASTERY), UsedSkillSearch(SKILL_ID_RUNE_MASTERY));
+				pow += 100 * sklLvRuneMastery;
 				pow += 100 * Math.floor(charaDataManger.GetCharaInt() / 8);
-
 				return pow;
 			}
-
 			this.CastTimeVary = function(skillLv, charaDataManger) {
 				return 1000;
 			}
-
 			this.CastTimeFixed = function(skillLv, charaDataManger) {
 				return 1000;
 			}
-
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 8000;
 			}
-
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -22655,7 +22649,7 @@ function CSkillManager() {
 
 				// 基本式
 				pow = 60 * skillLv;
-				powCart = 50 * charaDataManger.UsedSkillSearch(SKILL_ID_CART_KAIZO);
+				powCart = 50 * Math.max(LearnedSkillSearch(SKILL_ID_CART_KAIZO), UsedSkillSearch(SKILL_ID_CART_KAIZO));
 				powInt = charaDataManger.GetCharaInt() / 40;
 				pow += Math.floor(powCard * powInt);
 
@@ -32659,7 +32653,7 @@ function CSkillManager() {
 			this.LifeTime = function(skillLv, charaDataManger) {
 				var nLifeTime = ([0, 57000, 27700, 12100, 5500, 3100])[skillLv];
 				// 補助スキルレベル取得
-				var sklLvSub = UsedSkillSearch(SKILL_ID_ADVANCED_TRAP);
+				var sklLvSub = Math.max(LearnedSkillSearch(SKILL_ID_ADVANCED_TRAP), UsedSkillSearch(SKILL_ID_ADVANCED_TRAP));
 				if (sklLvSub > 0) {
 					nLifeTime += 500 + (500 * sklLvSub);
 				}
@@ -32695,7 +32689,7 @@ function CSkillManager() {
 			this.LifeTime = function(skillLv, charaDataManger) {
 				var nLifeTime = ([0, 57000, 27700, 12100, 5500, 3100])[skillLv];
 				// 補助スキルレベル取得
-				var sklLvSub = UsedSkillSearch(SKILL_ID_ADVANCED_TRAP);
+				var sklLvSub = Math.max(LearnedSkillSearch(SKILL_ID_ADVANCED_TRAP), UsedSkillSearch(SKILL_ID_ADVANCED_TRAP));
 				if (sklLvSub > 0) {
 					nLifeTime += 500 + (500 * sklLvSub);
 				}
@@ -32731,7 +32725,7 @@ function CSkillManager() {
 			this.LifeTime = function(skillLv, charaDataManger) {
 				var nLifeTime = ([0, 57000, 27700, 12100, 5500, 3100])[skillLv];
 				// 補助スキルレベル取得
-				var sklLvSub = UsedSkillSearch(SKILL_ID_ADVANCED_TRAP);
+				var sklLvSub = Math.max(LearnedSkillSearch(SKILL_ID_ADVANCED_TRAP), UsedSkillSearch(SKILL_ID_ADVANCED_TRAP));
 				if (sklLvSub > 0) {
 					nLifeTime += 500 + (500 * sklLvSub);
 				}
@@ -32806,7 +32800,7 @@ function CSkillManager() {
 			this.LifeTime = function(skillLv, charaDataManger) {
 				var nLifeTime = ([0, 57000, 27700, 12100, 5500, 3100])[skillLv];
 				// 補助スキルレベル取得
-				var sklLvSub = UsedSkillSearch(SKILL_ID_ADVANCED_TRAP);
+				var sklLvSub = Math.max(LearnedSkillSearch(SKILL_ID_ADVANCED_TRAP), UsedSkillSearch(SKILL_ID_ADVANCED_TRAP));
 				if (sklLvSub > 0) {
 					nLifeTime += 500 + (500 * sklLvSub);
 				}

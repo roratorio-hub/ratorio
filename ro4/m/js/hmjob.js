@@ -557,7 +557,7 @@ function GetPAtk() {
 	}
 
 	// 「天帝」スキル「兵法修練」による効果
-	if ((sklLv = UsedSkillSearch(SKILL_ID_HYOHO_SHUREN)) > 0) {
+	if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_HYOHO_SHUREN), UsedSkillSearch(SKILL_ID_HYOHO_SHUREN))) > 0) {
 		value += (1 * Math.min(5, sklLv)) + (2 * Math.min(5, Math.max(0, sklLv - 5)));
 	}
 
@@ -582,7 +582,7 @@ function GetPAtk() {
 	}
 
 	// 「スピリットハンドラー」スキル「スピリットマスタリー」による効果
-	if ((sklLv = UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY)) > 0) {
+	if (( sklLv = Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY)) ) > 0) {
 		value += [0, 1, 2, 3, 4, 5, 6, 7, 9, 12, 15][sklLv];
 	}
 
@@ -597,12 +597,12 @@ function GetPAtk() {
 	}
 
 	// 「ハイパーノービス」スキル「独学 -戦闘学-」による効果
-	if ((sklLv = UsedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU)) > 0) {
+	if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU), UsedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU))) > 0) {
 		value += [0, 1, 2, 3, 4, 5, 6, 7, 9, 12, 15][sklLv];
 	}
 
 	// 「ナイトウォッチ」スキル「P.F.I」による効果
-	if ((sklLv = UsedSkillSearch(SKILL_ID_PFI)) > 0) {
+	if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_PFI), UsedSkillSearch(SKILL_ID_PFI))) > 0) {
 		// 銃装備時のみ
 		switch (n_A_WeaponType) {
 			case ITEM_KIND_HANDGUN:
@@ -735,7 +735,7 @@ function GetSMatk() {
 	}
 
 	// 「スピリットハンドラー」スキル「スピリットマスタリー」による効果
-	if ((sklLv = UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY)) > 0) {
+	if (( sklLv = Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY)) ) > 0) {
 		value += [0, 1, 2, 3, 4, 5, 6, 7, 9, 12, 15][sklLv];
 	}
 
@@ -750,7 +750,7 @@ function GetSMatk() {
 	}
 
 	// 「ハイパーノービス」スキル「独学 -魔導学-」による効果
-	if ((sklLv = UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU)) > 0) {
+	if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU), UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU))) > 0) {
 		value += [0, 1, 2, 3, 4, 5, 6, 7, 9, 12, 15][sklLv];
 	}
 	
@@ -788,45 +788,37 @@ function GetCRate() {
 	return value;
 }
 
+/**
+ * 特性ステータス、装備、スキルを考慮した最終RESを取得する
+ * @returns RESの値
+ */
 function GetRes() {
-
-	var value = 0;
-	var sklLv = 0;
-	var bufLv = 0;
-	var valWork = 0;
-
-
-
+	let value = 0;
+	let sklLv = 0;
+	let bufLv = 0;
 	// ステータス値
 	value += GetTotalSpecStatus(MIG_PARAM_ID_STA);
 	value += 5 * Math.floor(GetTotalSpecStatus(MIG_PARAM_ID_STA) / 3);
-
 	// 装備効果
 	value += n_tok[ITEM_SP_RES_PLUS];
 	value += GetRndOptTotalValue(ITEM_SP_RES_PLUS);
-
 	// 性能カスタマイズ
 	value += g_objCharaConfCustomSpecStatus.GetConf(CCharaConfCustomSpecStatus.CONF_ID_RES_PLUS)
-
 	// 「インペリアルガード」スキル「盾修練」による効果
-	if ((sklLv = UsedSkillSearch(SKILL_ID_TATE_SHUREN)) > 0) {
-
+	if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_TATE_SHUREN), UsedSkillSearch(SKILL_ID_TATE_SHUREN))) > 0) {
 		// 盾装備時限定
 		if (n_A_Equip[EQUIP_REGION_ID_SHIELD] != ITEM_ID_NOEQUIP_SHIELD) {
 			value += 10 * sklLv;
 		}
 	}
-
 	// 「インクイジター」スキル「堅固な信念」による効果
 	if ((sklLv = UsedSkillSearch(SKILL_ID_KENKONA_SHINNEN)) > 0) {
 		value += [0, 10, 20, 40, 70, 100][sklLv];
 	}
-
 	// 四次職支援「防御装置有効化」による効果
 	if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_BOGYO_SOCHI_YUKOKA]) > 0) {
 		value += [0, 20, 30, 40, 60, 100][bufLv];
 	}
-
 	// 四次職支援「ミュージカルインタールード」による効果
 	// 「自身の周辺31 x 31セルにトルバドゥールかトルヴェールの異性のパーティーメンバーがいる場合、Res増加量が 1.5倍になる」効果は未実装
 	if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_MUSICAL_INTERLUDE]) > 0) {
@@ -835,9 +827,6 @@ function GetRes() {
 			value += values[bufLv];
 		}
 	}
-
-
-
 	return value;
 }
 
@@ -1104,7 +1093,7 @@ function ApplySpecModify(spid, spVal) {
 	case ITEM_SP_HIT_PLUS:
 
 		// 「インペリアルガード」スキル「槍＆片手剣修練」習得による効果
-		if ((sklLv = UsedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN)) > 0) {
+		if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN), UsedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN))) > 0) {
 
 			// 片手剣・片手槍・両手槍装備時限定
 			switch (n_A_WeaponType) {
@@ -1122,7 +1111,7 @@ function ApplySpecModify(spid, spVal) {
 		}
 
 		// 「天帝」スキル「兵法修練」による効果
-		if ((sklLv = UsedSkillSearch(SKILL_ID_HYOHO_SHUREN)) > 0) {
+		if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_HYOHO_SHUREN), UsedSkillSearch(SKILL_ID_HYOHO_SHUREN))) > 0) {
 			spVal += [0, 3, 6, 9, 12, 15, 20, 25, 30, 40, 50][sklLv];
 		}
 
@@ -1288,10 +1277,8 @@ function ApplySpecModify(spid, spVal) {
 	case ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_SMALL:
 	case ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_MEDIUM:
 	case ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_LARGE:
-
 		// 「カーディナル」スキル「鈍器＆本修練」習得による効果
 		if ((sklLv = UsedSkillSearch(SKILL_ID_DONKI_HON_SHUREN)) > 0) {
-
 			// 鈍器、本装備時限定
 			switch (n_A_WeaponType) {
 				case ITEM_KIND_CLUB:
@@ -1301,25 +1288,21 @@ function ApplySpecModify(spid, spVal) {
 					break;
 			}
 		}
-
 		// 「アビスチェイサー」スキル「短剣＆弓修練」習得による効果
-		if ((sklLv = UsedSkillSearch(SKILL_ID_TANKEN_YUMI_SHUREN)) > 0) {
-
+		if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_TANKEN_YUMI_SHUREN), UsedSkillSearch(SKILL_ID_TANKEN_YUMI_SHUREN))) > 0) {
 			// 短剣、弓装備時限定
 			switch (n_A_WeaponType) {
-			case ITEM_KIND_KNIFE:
-			case ITEM_KIND_BOW:
-
-				valWork = 1 * sklLv;
-				if (sklLv >= 8) {
-					valWork += 1 * (sklLv - 7);
-				}
-				if (sklLv >= 9) {
-					valWork += 1 * (sklLv - 8);
-				}
-
-				spVal += valWork;
-				break;
+				case ITEM_KIND_KNIFE:
+				case ITEM_KIND_BOW:
+					valWork = 1 * sklLv;
+					if (sklLv >= 8) {
+						valWork += 1 * (sklLv - 7);
+					}
+					if (sklLv >= 9) {
+						valWork += 1 * (sklLv - 8);
+					}
+					spVal += valWork;
+					break;
 			}
 		}
 		break;
@@ -1427,7 +1410,7 @@ function ApplySpecModify(spid, spVal) {
 	case ITEM_SP_PHYSICAL_RESIST_SIZE_LARGE:
 
 		// 「ドラゴンナイト」スキル「ツーハンドディフェンディング」習得による効果
-		if ((sklLv = UsedSkillSearch(SKILL_ID_TWOHAND_DEFENDING)) > 0) {
+		if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_TWOHAND_DEFENDING), UsedSkillSearch(SKILL_ID_TWOHAND_DEFENDING))) > 0) {
 			// 両手武器装備時限定
 			switch (n_A_WeaponType) {
 			case ITEM_KIND_SWORD_2HAND:
@@ -1452,20 +1435,16 @@ function ApplySpecModify(spid, spVal) {
 	case ITEM_SP_MAGICAL_DAMAGE_UP_SIZE_SMALL:
 	case ITEM_SP_MAGICAL_DAMAGE_UP_SIZE_MEDIUM:
 	case ITEM_SP_MAGICAL_DAMAGE_UP_SIZE_LARGE:
-
 		// 「アビスチェイサー」スキル「魔法剣修練」習得による効果
-		if ((sklLv = UsedSkillSearch(SKILL_ID_MAHOKEN_SHUREN)) > 0) {
-
+		if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_MAHOKEN_SHUREN), UsedSkillSearch(SKILL_ID_MAHOKEN_SHUREN))) > 0) {
 			// 短剣、片手剣装備時限定
 			switch (n_A_WeaponType) {
 			case ITEM_KIND_KNIFE:
 			case ITEM_KIND_SWORD:
-
 				valWork = 1 * sklLv;
 				if (sklLv >= 6) {
 					valWork += 1 * (sklLv - 5);
 				}
-
 				spVal += valWork;
 				break;
 			}
