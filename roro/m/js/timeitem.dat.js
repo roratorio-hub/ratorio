@@ -625,9 +625,9 @@
 	ITEM_SP_TIME_OBJ_SORT.push(302);
 	ITEM_SP_TIME_OBJ[303] = [303,"潜在解放(インペリアルガードXII)","CT短縮(4次物理系列スキル)",[[2,3487]],20095,300,20092,300,20094,300,0];
 	ITEM_SP_TIME_OBJ_SORT.push(303);
-	ITEM_SP_TIME_OBJ[304] = [304,"P.Atk増加","P.Atk + x",[[2,3577],[2,3591],[2,3605],[2,3607]],0];
+	ITEM_SP_TIME_OBJ[304] = [304,"P.Atk増加","効果未実装",[[2,3577],[2,3591],[2,3605],[2,3607]],0];
 	ITEM_SP_TIME_OBJ_SORT.push(304);
-	ITEM_SP_TIME_OBJ[305] = [305,"S.Matk増加","S.Matk + x",[[2,3585]],0];
+	ITEM_SP_TIME_OBJ[305] = [305,"S.Matk増加","効果未実装",[[2,3585]],0];
 	ITEM_SP_TIME_OBJ_SORT.push(305);
 	ITEM_SP_TIME_OBJ[306] = [306,"魔喰いの顎","詠唱時間とスキル使用時の消費SPを-100%",[[2,3608]],73,-100,102,100,0];
 	ITEM_SP_TIME_OBJ_SORT.push(306);

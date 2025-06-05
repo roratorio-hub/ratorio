@@ -672,10 +672,10 @@ CGlobalConstManager.DefineEnum(
 		"ITEM_SP_HEAL_UP_USING_GVGTE",
 		"ITEM_SP_RESIST_FROZEN_GVGTE",
 
-		"ITEM_SP_P_ATK_PLUS",
-		"ITEM_SP_S_MATK_PLUS",
+		"ITEM_SP_P_ATK_PLUS",				// 250 P.Atk 加算
+		"ITEM_SP_S_MATK_PLUS",				// 251 S.Matk 加算
 		"ITEM_SP_H_PLUS_PLUS",				// 252 H.Plus 加算
-		"ITEM_SP_C_RATE_PLUS",
+		"ITEM_SP_C_RATE_PLUS",				// 253 C.Rate 加算
 		"ITEM_SP_RES_PLUS",					// 254 RES加算
 		"ITEM_SP_MRES_PLUS",				// 255 MRES加算
 		// 未使用と思われますがコードを追いきれないのでエラー炙り出すために名前を置き換えます
