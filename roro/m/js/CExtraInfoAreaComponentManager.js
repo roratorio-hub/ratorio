@@ -1189,116 +1189,81 @@ function CExtraInfoAreaComponentManager () {
 	 * 拡張情報の表示欄を更新する（所持限界量）.
 	 */
 	this.RefreshDispAreaCapacity = function () {
-
 		var idx = 0;
-
 		var lv = 0;
-
 		var value = 0;
 		var weightEquiped = 0;
-
 		var objRoot = null;
 		var objTable = null;
 		var objTbody = null;
 		var objTr = null;
 		var objTd = null;
-
-
-
 		//--------------------------------
 		// 個別領域の選択値を保管
 		//--------------------------------
-
 		this.StoreSelectedValue("OBJID_SELECT_EXTRA_INFO_CAPACITY_UP_LV_" + this.managerInstanceId);
 		this.StoreSelectedValue("OBJID_SELECT_EXTRA_INFO_CAPACITY_UP_R_LV_" + this.managerInstanceId);
-
-
-
 		//--------------------------------
 		// 所持限界量計算
 		//--------------------------------
-
 		value = 2000;
-
 		// 職業によるボーナス
 		var jobData = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, n_A_JOB);
 		value += jobData.GetWeightBonus();
-
 		// 素ＳＴＲによるボーナス
 		value += 30 * SU_STR;
 
-		// 騎兵修練
 		if (UsedSkillSearch(SKILL_ID_KIHE_SHUREN) > 0) {
+			// ペコ・グリフォンに搭乗時
 			value += 1000;
-		}
-
-		// ドラゴントレーニング
-		// （実際のレベル－１の値が設定されるので、実際はレベル１以上の判定）
-		if (UsedSkillSearch(SKILL_ID_DRAGON_TRAINING) >= 2) {
-			value += 500 + 200 * (UsedSkillSearch(SKILL_ID_DRAGON_TRAINING) - 1);
+		} else if (UsedSkillSearch(SKILL_ID_DRAGON_TRAINING) > 0) {
+			// ドラゴンに搭乗時
+			// ドラゴントレーニング習得Lv補正. UsedSkillSearch の方は'Lv0'の前に'未騎乗'が挿入されているのでオフセットを合わせている
+			const dragon_training_lv = Math.max(LearnedSkillSearch(SKILL_ID_DRAGON_TRAINING), UsedSkillSearch(SKILL_ID_DRAGON_TRAINING) - 1);
+			if (dragon_training_lv > 0) {
+				value += 500 + 200 * dragon_training_lv;
+			}
 		}
 
 		// 所持限界量増加
 		lv = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_EXTRA_INFO_CAPACITY_UP_LV_" + this.managerInstanceId, 0);
 		value += 200 * lv;
-
 		// 所持限界量増加Ｒ
 		lv = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_EXTRA_INFO_CAPACITY_UP_R_LV_" + this.managerInstanceId, 0);
 		value += 200 * lv;
-
-
-
 		//--------------------------------
 		// 装備品重量合計計算
 		//--------------------------------
-
 		weightEquiped = 0;
-
 		for (idx = 0; idx < EQUIP_REGION_ID_COUNT; idx++) {
 			weightEquiped += ItemObjNew[n_A_Equip[idx]][ITEM_DATA_INDEX_WEIGHT];
 		}
-
-
 		//--------------------------------
 		// HTML組み立て
 		//--------------------------------
-
 		objRoot = document.getElementById("OBJID_TD_EXTRA_INFO_DISP_AREA_" + this.managerInstanceId);
 		HtmlRemoveAllChild(objRoot);
-
 		HtmlCreateElement("hr", objRoot);
-
 		objTable = HtmlCreateElement("table", objRoot);
 		objTable.setAttribute("class", "CSSCLS_EXTRA_INFO_DISP_TABLE");
 		objTable.setAttribute("style", "width : 100%;");
 		objTbody = HtmlCreateElement("tbody", objTable);
-
-
-
 		// 所持限界量
 		objTr = HtmlCreateElement("tr", objTbody);
-
 		objTd = HtmlCreateElement("td", objTr);
 		objTd.setAttribute("class", "CSSCLS_EXTRA_INFO_DISP_TABLE");
 		HtmlCreateTextSpan("所持限界量", objTd, CExtraInfoAreaComponentManager.fontSizeClassName);
-
 		objTd = HtmlCreateElement("td", objTr);
 		objTd.setAttribute("class", "CSSCLS_EXTRA_INFO_DISP_TABLE");
 		HtmlCreateTextSpan(value, objTd, CExtraInfoAreaComponentManager.fontSizeClassName);
-
-
-
 		// 装備品重量合計
 		objTr = HtmlCreateElement("tr", objTbody);
-
 		objTd = HtmlCreateElement("td", objTr);
 		objTd.setAttribute("class", "CSSCLS_EXTRA_INFO_DISP_TABLE");
 		HtmlCreateTextSpan("装備品重量合計", objTd, CExtraInfoAreaComponentManager.fontSizeClassName);
-
 		objTd = HtmlCreateElement("td", objTr);
 		objTd.setAttribute("class", "CSSCLS_EXTRA_INFO_DISP_TABLE");
 		HtmlCreateTextSpan(weightEquiped, objTd, CExtraInfoAreaComponentManager.fontSizeClassName);
-
 	};
 
 
