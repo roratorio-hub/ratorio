@@ -516,7 +516,6 @@ function GetPAtk() {
 	value += Math.floor(GetTotalSpecStatus(MIG_PARAM_ID_CON) / 5);
 
 	// 装備効果
-	value += n_tok[ITEM_SP_P_ATK_PLUS];
 	value += GetEquippedTotalSPEquip(ITEM_SP_P_ATK_PLUS);
 	value += GetEquippedTotalSPCardAndElse(ITEM_SP_P_ATK_PLUS);
 	value += GetRndOptTotalValue(ITEM_SP_P_ATK_PLUS);
@@ -635,7 +634,6 @@ function GetSMatk() {
 	value += Math.floor(GetTotalSpecStatus(MIG_PARAM_ID_CON) / 5);
 
 	// 装備効果
-	value += n_tok[ITEM_SP_S_MATK_PLUS];
 	value += GetEquippedTotalSPEquip(ITEM_SP_S_MATK_PLUS);
 	value += GetEquippedTotalSPCardAndElse(ITEM_SP_S_MATK_PLUS);
 	value += GetRndOptTotalValue(ITEM_SP_S_MATK_PLUS);
@@ -1464,24 +1462,8 @@ function ApplySpecModify(spid, spVal) {
 		break;		
 
 	case ITEM_SP_P_ATK_PLUS:
-
-		// 「未知なる力のブーツ」の純粋なステータスによる効果
-		if ((itemCount = EquipNumSearch(ITEM_ID_MICHINARU_CHIKARANO_BOOTS)) > 0) {
-			if (g_pureStatus[MIG_PARAM_ID_POW] >= 100) {
-				spVal += 5 * itemCount;
-			}
-		}
-		break;
-
 	case ITEM_SP_S_MATK_PLUS:
-
-		// 「未知なる魔力のブーツ」の純粋なステータスによる効果
-		if ((itemCount = EquipNumSearch(ITEM_ID_MICHINARU_MARYOKUNO_BOOTS)) > 0) {
-			if (g_pureStatus[MIG_PARAM_ID_SPL] >= 100) {
-				spVal += 5 * itemCount;
-			}
-		}
-		break;
+		// GetSMatk(), GetPAtk()中の処理と重複するのでここで加算する場合は既存のコードを変更すること
 
 	case ITEM_SP_MAGICAL_DAMAGE_UP_RACE_SOLID:
 	case ITEM_SP_MAGICAL_DAMAGE_UP_RACE_UNDEAD:

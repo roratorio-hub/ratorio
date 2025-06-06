@@ -29192,7 +29192,7 @@ function GetEquippedSPSubShadow(spid, invalidItemIdArray, bListUp, bExact) {
 }
 
 /**
- * 装備中のＳＰの合計値を取得する（装備以外）.
+ * カード・ペット・時限効果のＳＰ値のリストを取得する.
  * @param spid ＳＰのＩＤ
  * @return 当該ＳＰのパラメタ合計値
  */
@@ -29220,7 +29220,7 @@ function GetEquippedTotalSPCardAndElse(spid) {
 }
 
 /**
- * 装備中のＳＰのリストを取得する（装備以外）.
+ * カード・ペット・時限効果のＳＰ値のリストを取得する.
  * @param spid ＳＰのＩＤ
  * @return 当該ＳＰのパラメタ合計値
  */
@@ -29248,7 +29248,7 @@ function GetEquippedSPListCardAndElse(spid) {
 }
 
 /**
- * 装備中のＳＰ値のリストを取得する（装備以外）.
+ * カード・ペット・時限効果のＳＰ値のリストを取得する.
  * @param spid ＳＰのＩＤ
  * @return 当該ＳＰのパラメタ合計値
  */
@@ -29257,28 +29257,22 @@ function GetEquippedSPValueArrayCardAndElse(spid) {
 }
 
 /**
- * 装備中のＳＰの合計値を取得する（装備以外）.
+ * カード・ペット・時限効果のＳＰの合計値を取得する.
  * @param spid ＳＰのＩＤ
  * @param invalidCardIdArray 効果無効のアイテムＩＤ配列
  * @param bListUp リストアップするかのフラグ
  * @return 当該ＳＰのパラメタ合計値
  */
 function GetEquippedSPSubSPCardAndElse(spid, invalidCardIdArray, bListUp) {
-
 	var i = 0;
 	var j = 0;
-
 	var spVal = 0;
-
 	var cardRegionId = 0;
 	var cardId = 0;
 	var cardData = 0;
-
 	var spDefIdx = 0;
-
 	let eqpTranscendence = 0;
 	var eqpRefined = 0;
-
 	var spDefIdMod = 0;			// 特殊条件を取り除いたＳＰのＩＤ
 	var spDefRemain = 0;		// 計算途中のＳＰＩＤ値
 	var spDefBaseLvOver = 0;	// BaseLv以上条件
@@ -29288,94 +29282,84 @@ function GetEquippedSPSubSPCardAndElse(spid, invalidCardIdArray, bListUp) {
 	var spDefPureStatusBy = 0;	// 純粋なステータスが上がる度に条件
 	var spDefRefineOver = 0;	// 精錬値以上条件
 	var spDefRefineBy = 0;		// 精錬値が上がる度に条件
-
 	var pureStatusValue = [SU_STR, SU_AGI, SU_VIT, SU_INT, SU_DEX, SU_LUK];
-
 	var spValPureStatus = 0;	// 純粋なステータスによる上昇量
-
 	var spValToCorrect = 0;
 	var listUpArray = new Array();
-
 	var petFuncReturn = null;
-
-
 
 	// 装備中のカードのＳＰの合計値を取得
 	for(cardRegionId = 0; cardRegionId < n_A_card.length; cardRegionId++) {
-
 		// 装備中のカードデータから、カードデータを取得
 		cardId = n_A_card[cardRegionId];
 		cardData = CardObjNew[cardId];
-
 		// 効果が無効の装備でないかを検査
 		if (invalidCardIdArray) {
 			if (invalidCardIdArray.indexOf(cardId) >= 0) {
 				continue;
 			}
 		}
-
 		// カード装備箇所ごとに、精錬値を特定する
 		switch (cardRegionId) {
+			case CARD_REGION_ID_ARMS_RIGHT_1:
+			case CARD_REGION_ID_ARMS_RIGHT_2:
+			case CARD_REGION_ID_ARMS_RIGHT_3:
+			case CARD_REGION_ID_ARMS_RIGHT_4:
+				eqpRefined = n_A_Weapon_ATKplus;
+				eqpTranscendence = typeof n_A_Weapon_Transcendence != "undefined" ? n_A_Weapon_Transcendence: 0;
+				break;
 
-		case CARD_REGION_ID_ARMS_RIGHT_1:
-		case CARD_REGION_ID_ARMS_RIGHT_2:
-		case CARD_REGION_ID_ARMS_RIGHT_3:
-		case CARD_REGION_ID_ARMS_RIGHT_4:
-			eqpRefined = n_A_Weapon_ATKplus;
-			eqpTranscendence = typeof n_A_Weapon_Transcendence != "undefined" ? n_A_Weapon_Transcendence: 0;
-			break;
+			case CARD_REGION_ID_ARMS_LEFT_1:
+			case CARD_REGION_ID_ARMS_LEFT_2:
+			case CARD_REGION_ID_ARMS_LEFT_3:
+			case CARD_REGION_ID_ARMS_LEFT_4:
+				eqpRefined = n_A_Weapon2_ATKplus;
+				eqpTranscendence = typeof n_A_Weapon2_Transcendence != "undefined" ? n_A_Weapon2_Transcendence: 0;
+				break;
 
-		case CARD_REGION_ID_ARMS_LEFT_1:
-		case CARD_REGION_ID_ARMS_LEFT_2:
-		case CARD_REGION_ID_ARMS_LEFT_3:
-		case CARD_REGION_ID_ARMS_LEFT_4:
-			eqpRefined = n_A_Weapon2_ATKplus;
-			eqpTranscendence = typeof n_A_Weapon2_Transcendence != "undefined" ? n_A_Weapon2_Transcendence: 0;
-			break;
+			case CARD_REGION_ID_HEAD_TOP:
+			case CARD_REGION_ID_ENCHANT_HEAD_TOP_1:
+			case CARD_REGION_ID_ENCHANT_HEAD_TOP_2:
+			case CARD_REGION_ID_ENCHANT_HEAD_TOP_3:
+				eqpRefined = n_A_HEAD_DEF_PLUS;
+				eqpTranscendence = typeof n_A_HEAD_DEF_Transcendence != "undefined" ? n_A_HEAD_DEF_Transcendence: 0;
+				break;
 
-		case CARD_REGION_ID_HEAD_TOP:
-		case CARD_REGION_ID_ENCHANT_HEAD_TOP_1:
-		case CARD_REGION_ID_ENCHANT_HEAD_TOP_2:
-		case CARD_REGION_ID_ENCHANT_HEAD_TOP_3:
-			eqpRefined = n_A_HEAD_DEF_PLUS;
-			eqpTranscendence = typeof n_A_HEAD_DEF_Transcendence != "undefined" ? n_A_HEAD_DEF_Transcendence: 0;
-			break;
+			case CARD_REGION_ID_SHIELD:
+			case CARD_REGION_ID_ENCHANT_SHIELD_1:
+			case CARD_REGION_ID_ENCHANT_SHIELD_2:
+			case CARD_REGION_ID_ENCHANT_SHIELD_3:
+				eqpRefined = n_A_SHIELD_DEF_PLUS;
+				eqpTranscendence = typeof n_A_SHIELD_DEF_Transcendence != "undefined" ? n_A_SHIELD_DEF_Transcendence: 0;
+				break;
 
-		case CARD_REGION_ID_SHIELD:
-		case CARD_REGION_ID_ENCHANT_SHIELD_1:
-		case CARD_REGION_ID_ENCHANT_SHIELD_2:
-		case CARD_REGION_ID_ENCHANT_SHIELD_3:
-			eqpRefined = n_A_SHIELD_DEF_PLUS;
-			eqpTranscendence = typeof n_A_SHIELD_DEF_Transcendence != "undefined" ? n_A_SHIELD_DEF_Transcendence: 0;
-			break;
+			case CARD_REGION_ID_BODY:
+			case CARD_REGION_ID_ENCHANT_BODY_1:
+			case CARD_REGION_ID_ENCHANT_BODY_2:
+			case CARD_REGION_ID_ENCHANT_BODY_3:
+				eqpRefined = n_A_BODY_DEF_PLUS;
+				eqpTranscendence = typeof n_A_BODY_DEF_Transcendence != "undefined" ? n_A_BODY_DEF_Transcendence: 0;
+				break;
 
-		case CARD_REGION_ID_BODY:
-		case CARD_REGION_ID_ENCHANT_BODY_1:
-		case CARD_REGION_ID_ENCHANT_BODY_2:
-		case CARD_REGION_ID_ENCHANT_BODY_3:
-			eqpRefined = n_A_BODY_DEF_PLUS;
-			eqpTranscendence = typeof n_A_BODY_DEF_Transcendence != "undefined" ? n_A_BODY_DEF_Transcendence: 0;
-			break;
+			case CARD_REGION_ID_SHOULDER:
+			case CARD_REGION_ID_ENCHANT_SHOULDER_1:
+			case CARD_REGION_ID_ENCHANT_SHOULDER_2:
+			case CARD_REGION_ID_ENCHANT_SHOULDER_3:
+				eqpRefined = n_A_SHOULDER_DEF_PLUS;
+				eqpTranscendence = typeof n_A_SHOULDER_DEF_Transcendence != "undefined" ? n_A_SHOULDER_DEF_Transcendence: 0;
+				break;
 
-		case CARD_REGION_ID_SHOULDER:
-		case CARD_REGION_ID_ENCHANT_SHOULDER_1:
-		case CARD_REGION_ID_ENCHANT_SHOULDER_2:
-		case CARD_REGION_ID_ENCHANT_SHOULDER_3:
-			eqpRefined = n_A_SHOULDER_DEF_PLUS;
-			eqpTranscendence = typeof n_A_SHOULDER_DEF_Transcendence != "undefined" ? n_A_SHOULDER_DEF_Transcendence: 0;
-			break;
+			case CARD_REGION_ID_SHOES:
+			case CARD_REGION_ID_ENCHANT_SHOES_1:
+			case CARD_REGION_ID_ENCHANT_SHOES_2:
+			case CARD_REGION_ID_ENCHANT_SHOES_3:
+				eqpRefined = n_A_SHOES_DEF_PLUS;
+				eqpTranscendence = typeof n_A_SHOES_DEF_Transcendence != "undefined" ? n_A_SHOES_DEF_Transcendence: 0;
+				break;
 
-		case CARD_REGION_ID_SHOES:
-		case CARD_REGION_ID_ENCHANT_SHOES_1:
-		case CARD_REGION_ID_ENCHANT_SHOES_2:
-		case CARD_REGION_ID_ENCHANT_SHOES_3:
-			eqpRefined = n_A_SHOES_DEF_PLUS;
-			eqpTranscendence = typeof n_A_SHOES_DEF_Transcendence != "undefined" ? n_A_SHOES_DEF_Transcendence: 0;
-			break;
-
-		default:
-			eqpRefined = 0;
-			eqpTranscendence = 0;
+			default:
+				eqpRefined = 0;
+				eqpTranscendence = 0;
 		}
 
 		// カードのＳＰ定義をループ検索
@@ -29482,8 +29466,6 @@ function GetEquippedSPSubSPCardAndElse(spid, invalidCardIdArray, bListUp) {
 		}
 	}
 
-
-
 	// ペット効果
 	// TODO: 無効ペットＩＤは未対応
 	petFuncReturn = GetEquippedSPSubSPPet(spid, null, bListUp);
@@ -29498,12 +29480,9 @@ function GetEquippedSPSubSPCardAndElse(spid, invalidCardIdArray, bListUp) {
 		spVal += petFuncReturn;
 	}
 
-
-
 	// 追加発動効果の合計値を加算する
 	var timeObj = 0;
 	var w_num = new Array();
-
 	// 追加発動効果の指定状況を取得
 	for (idx = 0; idx < g_timeItemConf.length; idx++) {
 		if (g_timeItemConfEffective[idx]) {
@@ -29513,15 +29492,13 @@ function GetEquippedSPSubSPCardAndElse(spid, invalidCardIdArray, bListUp) {
 			w_num[idx] = 0;
 		}
 	}
-
 	// 追加発動効果の重複をチェック
 	for(i = 0; i < w_num.length; i++) {
 		for(j = i + 1; j < w_num.length; j++) {
 			if(w_num[i] == w_num[j]) w_num[j] = 0;
 		}
 	}
-
-	// データを検索して加算
+	// 発動中の時限効果を検索して加算
 	for(i = 0; i < w_num.length; i++) {
 
 		timeObj = ITEM_SP_TIME_OBJ[w_num[i]];
@@ -29629,7 +29606,6 @@ function GetEquippedSPSubSPCardAndElse(spid, invalidCardIdArray, bListUp) {
 			}
 		}
 	}
-
 
 
 	// 結果を戻す
