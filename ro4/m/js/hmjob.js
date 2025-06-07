@@ -1123,7 +1123,7 @@ function ApplySpecModify(spid, spVal) {
 	case ITEM_SP_FLEE_PLUS:
 
 		// 「シャドウクロス」スキル「シャドウセンス」習得による効果
-		if ((sklLv = UsedSkillSearch(SKILL_ID_SHADOW_SENSE)) > 0) {
+		if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_SHADOW_SENSE), UsedSkillSearch(SKILL_ID_SHADOW_SENSE))) > 0) {
 
 			spVal += 10 * sklLv;
 			if (sklLv >= 8) {
@@ -1138,7 +1138,7 @@ function ApplySpecModify(spid, spVal) {
 	case ITEM_SP_CRI_PLUS:
 
 		// 「シャドウクロス」スキル「シャドウセンス」習得による効果
-		if ((sklLv = UsedSkillSearch(SKILL_ID_SHADOW_SENSE)) > 0) {
+		if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_SHADOW_SENSE), UsedSkillSearch(SKILL_ID_SHADOW_SENSE))) > 0) {
 
 			// 右手短剣、カタール装備時限定
 			switch (n_A_WeaponType) {

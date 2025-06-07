@@ -10317,8 +10317,9 @@ function GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfAr
  */
 function ATKbaiJYOUSAN(wJ) {
 	var w = 100;
-	if(n_A_WeaponType == 11 && UsedSkillSearch(SKILL_ID_KATAR_KENKYU)) {
-		w += 10 + 2 * UsedSkillSearch(SKILL_ID_KATAR_KENKYU);
+	const katar_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_KATAR_KENKYU), UsedSkillSearch(SKILL_ID_KATAR_KENKYU));
+	if(n_A_WeaponType == 11 && katar_shuren_lv) {
+		w += 10 + 2 * katar_shuren_lv;
 	}
 	// デバフ「クエイク状態」による効果
 	if (n_B_IJYOU[MOB_CONF_DEBUF_ID_QUAKE_DEBUFF] > 0) {
@@ -19836,7 +19837,7 @@ function ApplyMonsterDefence(mobData, dmg, lefthand) {
 	if(dmg < 1) dmg = 0;
 
 	// 二刀左手の場合、修練効果を適用し、終了
-	if (lefthand != 0) {
+	if (lefthand != 0 && n_A_ActiveSkill == SKILL_ID_TUZYO_KOGEKI_CALC_LEFT) {
 
 		// 影狼／朧の場合
 		if (IsSameJobClass(JOB_ID_KAGERO) || IsSameJobClass(JOB_ID_OBORO)) {
@@ -19844,14 +19845,15 @@ function ApplyMonsterDefence(mobData, dmg, lefthand) {
 		}
 		// それ以外（アサ系）の場合
 		else {
-			dmg = Math.floor(dmg * (3 + UsedSkillSearch(SKILL_ID_HIDARITE_SHUREN)) / 10);
+			const hidarite_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_HIDARITE_SHUREN), UsedSkillSearch(SKILL_ID_HIDARITE_SHUREN));
+			dmg = Math.floor(dmg * (3 + hidarite_shuren_lv) / 10);
 		}
 
 		return dmg;
 	}
 
 	// 二刀流での通常攻撃の場合、かつ、素手でない場合、右手修練を適用
-	if (n_Nitou && n_A_ActiveSkill==0) {
+	if (n_Nitou && n_A_ActiveSkill == SKILL_ID_TUZYO_KOGEKI_CALC_RIGHT) {
 		if(n_A_WeaponType != 0){
 			// 影狼／朧の場合
 			if (IsSameJobClass(JOB_ID_KAGERO) || IsSameJobClass(JOB_ID_OBORO)) {
@@ -19859,7 +19861,8 @@ function ApplyMonsterDefence(mobData, dmg, lefthand) {
 			}
 			// それ以外（アサシン系）の場合
 			else {
-				dmg = Math.floor(dmg * (50 + UsedSkillSearch(SKILL_ID_MIGITE_SHUREN) * 10) /100);
+				const migite_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_MIGITE_SHUREN), UsedSkillSearch(SKILL_ID_MIGITE_SHUREN));
+				dmg = Math.floor(dmg * (50 + migite_shuren_lv * 10) /100);
 			}
 		}
 	}
@@ -19931,7 +19934,7 @@ function TYPE_SYUUREN(mobData, attackMethodConfArray, bArmsLeft){
 			w += 4 * Math.max(LearnedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC), UsedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC));
 
 		case ITEM_KIND_KATAR:
-			w += 3 * UsedSkillSearch(SKILL_ID_KATAR_SHUREN);
+			w += 3 * Math.max(LearnedSkillSearch(SKILL_ID_KATAR_SHUREN), UsedSkillSearch(SKILL_ID_KATAR_SHUREN));
 			break;
 
 		case ITEM_KIND_BOOK:
@@ -20535,7 +20538,7 @@ function GetHitModify(){
 
 	case SKILL_ID_SONIC_BLOW:
 	case SKILL_ID_SONIC_BLOW_TAMASHI:
-		if (UsedSkillSearch(SKILL_ID_SONIC_ACCELERATION) > 0) {
+		if (Math.max(LearnedSkillSearch(SKILL_ID_SONIC_ACCELERATION), UsedSkillSearch(SKILL_ID_SONIC_ACCELERATION)) > 0) {
 			value += 50;
 		}
 		break;
@@ -22075,7 +22078,8 @@ function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, 
 	//----------------------------------------------------------------
 	// 「ソニックアクセラレーション」の、「ソニックブロー」強化
 	//----------------------------------------------------------------
-	if((n_A_ActiveSkill==83 || n_A_ActiveSkill==388) && UsedSkillSearch(SKILL_ID_SONIC_ACCELERATION)) {
+	if((n_A_ActiveSkill==83 || n_A_ActiveSkill==388) 
+		&& Math.max(LearnedSkillSearch(SKILL_ID_SONIC_ACCELERATION), UsedSkillSearch(SKILL_ID_SONIC_ACCELERATION)) > 0) {
 		w1 += 10;
 	}
 
