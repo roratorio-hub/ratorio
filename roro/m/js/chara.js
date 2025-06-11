@@ -8758,7 +8758,7 @@ function GetStatusModifyMaxSpUp() {
 	//----------------------------------------------------------------
 	// 「ハイウィザード　ソウルドレイン」の、効果
 	//----------------------------------------------------------------
-	if ((sklLv = UsedSkillSearch(SKILL_ID_SOUL_DRAIN)) > 0) {
+	if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_SOUL_DRAIN), UsedSkillSearch(SKILL_ID_SOUL_DRAIN))) > 0) {
 		val += 2 * sklLv;
 	}
 

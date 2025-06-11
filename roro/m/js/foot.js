@@ -8940,7 +8940,7 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 		//----------------------------------------------------------------
 		// 「ウォーロック　ラディウス」の効果
 		//----------------------------------------------------------------
-		if (UsedSkillSearch(SKILL_ID_RADIUS) > 0) {
+		if ((bufLv = Math.max(LearnedSkillSearch(SKILL_ID_RADIUS), UsedSkillSearch(SKILL_ID_RADIUS))) > 0) {
 			switch (attackMethodConf.skillId) {
 				case SKILL_ID_SOUL_EXPANSION:
 				case SKILL_ID_FROST_MISTY:
@@ -8956,7 +8956,7 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 				case SKILL_ID_SUMMON_WATER_BALL:
 				case SKILL_ID_SUMMON_LIGHTNING_BALL:
 				case SKILL_ID_SUMMON_STONE:
-					chkary.push(5 + 5 * UsedSkillSearch(SKILL_ID_RADIUS));
+					chkary.push(5 + 5 * bufLv);
 			}
 		}
 
