@@ -15858,7 +15858,6 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "ラディウス";
 			this.kana = "ラテイウス";
@@ -16521,7 +16520,6 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "フリージングスペル";
 			this.kana = "フリイシンクスヘル";
@@ -33493,7 +33491,6 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "両手杖修練";
 			this.kana = "リヨウテツエシユウレン";
@@ -33504,10 +33501,6 @@ function CSkillManager() {
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
-
-
-
-
 
 		// ----------------------------------------------------------------
 		// アックスストンプ

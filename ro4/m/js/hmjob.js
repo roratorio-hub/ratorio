@@ -641,15 +641,12 @@ function GetSMatk() {
 	// 性能カスタマイズ
 	value += g_objCharaConfCustomSpecStatus.GetConf(CCharaConfCustomSpecStatus.CONF_ID_S_MATK_PLUS)
 
-	// アークメイジスキル「両手杖修練」
-	if ((sklLv = UsedSkillSearch(SKILL_ID_RYOTETUSE_SHUREN)) > 0) {
-
+	// 「アークメイジ」スキル「両手杖修練」によるS.Matk加算効果
+	if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_RYOTETUSE_SHUREN), UsedSkillSearch(SKILL_ID_RYOTETUSE_SHUREN))) > 0) {
 		// 両手杖時限定
 		if (n_A_WeaponType == ITEM_KIND_STUFF) {
 			if (n_tok[ITEM_SP_STUFF2HAND]) {
-
 				valWork = 2 * sklLv - 1;
-
 				if (sklLv >= 4) {
 					valWork += 1 * (sklLv - 3);
 				}
@@ -659,7 +656,6 @@ function GetSMatk() {
 				if (sklLv >= 10) {
 					valWork += 1 * (sklLv - 9);
 				}
-
 				value += valWork;
 			}
 		}
