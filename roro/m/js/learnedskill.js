@@ -16,20 +16,25 @@ for (var dmyidx = 0; dmyidx < LEARNED_SKILL_MAX_COUNT; dmyidx++) {
 	n_A_LearnedSkill[dmyidx] = 0;
 }
 
+/**
+ * 任意の習得スキルに設定されているスキルLvを取得する
+ * @param {Number} skillId 取得したいスキルのID
+ * @returns {Number} スキルLv
+ */
 function LearnedSkillSearch(skillId) {
-
-	var idx = 0;
-	var learnSkillIdArray = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, n_A_JOB).GetLearnSkillIdArray();
-
-
-	for (idx = 0; idx < learnSkillIdArray.length; idx++) {
+	// 設定可能な全ての習得スキルを取得する
+	const learnSkillIdArray = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, n_A_JOB).GetLearnSkillIdArray();
+	for (let idx = 0; idx < learnSkillIdArray.length; idx++) {
 		if (learnSkillIdArray[idx] == skillId) {
-			return n_A_LearnedSkill[idx];
+			// 指定されたスキルIDが見つかったとき
+			if (n_A_LearnedSkill[idx] !== undefined && !isNaN(n_A_LearnedSkill[idx])) {
+				// 該当のスキルLvがundefinedでもNaNでもなければ習得済みLvを返す
+				return n_A_LearnedSkill[idx];
+			}
 		}
 	}
-
+	// スキルIDが見つからなかったり想定外の値が設定されている場合は0を返す
 	return 0;
-
 }
 
 function OnClickSkillSWLearned(){

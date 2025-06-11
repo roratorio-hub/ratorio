@@ -7390,7 +7390,7 @@ function GetStatusModifyMaxSpPlus() {
 	//----------------------------------------------------------------
 	// 「ソウルリンカー　カイナ」の、効果
 	//----------------------------------------------------------------
-	if ((sklLv = UsedSkillSearch(SKILL_ID_KAINA)) > 0) {
+	if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_KAINA), UsedSkillSearch(SKILL_ID_KAINA))) > 0) {
 		val += 30 * sklLv;
 	}
 
