@@ -6435,8 +6435,6 @@ if (_APPLY_UPDATE_LV200) {
 			}
 		}
 
-
-
 		if(n_A_PassSkill3[1]){
 			if(n_A_WeaponType != 10 && !(17 <= n_A_WeaponType && n_A_WeaponType <= 21)){
 				ASPDch = n_A_PassSkill3[1] + Math.floor(n_A_PassSkill3[31] /2) + n_A_PassSkill3[21];
@@ -6444,11 +6442,13 @@ if (_APPLY_UPDATE_LV200) {
 			}
 		}
 		w += ASPDplusMAX;
-		// 「ガンスリンガー」スキル「シングルアクション」の効果
+		// 「ガンスリンガー」スキル「シングルアクション」のASPD増加効果
 		w += Math.round(Math.max(LearnedSkillSearch(SKILL_ID_SINGLE_ACTION), UsedSkillSearch(SKILL_ID_SINGLE_ACTION)) / 2);
 
+		// 「プロフェッサー」スキル「アドバンスドブック」のASPD増加効果
 		if (n_A_WeaponType == ITEM_KIND_BOOK) {
-			w += Math.round(UsedSkillSearch(SKILL_ID_ADVANCED_BOOK) / 2);
+			const advanced_book_lv = Math.max(LearnedSkillSearch(SKILL_ID_ADVANCED_BOOK), UsedSkillSearch(SKILL_ID_ADVANCED_BOOK));
+			w += Math.round(advanced_book_lv / 2);
 		}
 
 		aspd += (200 - aspd) * (w / 100);
@@ -11136,7 +11136,7 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 
 		// 「ドラゴノロジー」による「竜形モンスターへの物理攻撃力UP」
 		// 2025-03-29 SIAさんによる実測確認済み
-		n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP_RACE_DRAGON] += UsedSkillSearch(SKILL_ID_DRAGONOLOGY) * 4;
+		n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP_RACE_DRAGON] += Math.max(LearnedSkillSearch(SKILL_ID_DRAGONOLOGY), UsedSkillSearch(SKILL_ID_DRAGONOLOGY)) * 4;
 
 		switch (n_A_Equip[EQUIP_REGION_ID_ARMS_LEFT]) {
 		case 1076:
@@ -15867,7 +15867,7 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 		}
 
 		// 「ドラゴノロジー」による「竜形モンスターから受けるダメージ耐性UP」
-		n_tok[ITEM_SP_RESIST_RACE_DRAGON] += UsedSkillSearch(SKILL_ID_DRAGONOLOGY) * 4;
+		n_tok[ITEM_SP_RESIST_RACE_DRAGON] += Math.max(LearnedSkillSearch(SKILL_ID_DRAGONOLOGY), UsedSkillSearch(SKILL_ID_DRAGONOLOGY)) * 4;
 
 		for(var i=971;i<=977;i++){
 			if(EquipNumSearch(i)){
@@ -25996,7 +25996,7 @@ function StPlusCalc() {
 	//----------------------------------------------------------------
 	// 「ドラゴノロジー」の、ＩＮＴ＋効果
 	//----------------------------------------------------------------
-	wSPC_INT += Math.round(UsedSkillSearch(SKILL_ID_DRAGONOLOGY) / 2);
+	wSPC_INT += Math.round(Math.max(LearnedSkillSearch(SKILL_ID_DRAGONOLOGY), UsedSkillSearch(SKILL_ID_DRAGONOLOGY)) / 2);
 
 	//----------------------------------------------------------------
 	// 「トラップ研究」の、ＩＮＴ＋効果

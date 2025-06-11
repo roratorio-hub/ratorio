@@ -10350,7 +10350,7 @@ function GetBattlerMatkPercentUp(mobData) {
 		// 「ドラゴノロジー」による「竜形モンスターへの追加魔法攻撃力UP」
 		// 2025-03-29 SIAさんの検証を鑑みて移動しました
 		if (mobData[MONSTER_DATA_INDEX_RACE] == RACE_ID_DRAGON) {
-			w += UsedSkillSearch(SKILL_ID_DRAGONOLOGY) * 2;
+			w += Math.max(LearnedSkillSearch(SKILL_ID_DRAGONOLOGY), UsedSkillSearch(SKILL_ID_DRAGONOLOGY)) * 2;
 		}
 	}
 	return w;
@@ -19938,7 +19938,7 @@ function TYPE_SYUUREN(mobData, attackMethodConfArray, bArmsLeft){
 			break;
 
 		case ITEM_KIND_BOOK:
-			w += 3 * UsedSkillSearch(SKILL_ID_ADVANCED_BOOK);
+			w += 3 * Math.max(LearnedSkillSearch(SKILL_ID_ADVANCED_BOOK), UsedSkillSearch(SKILL_ID_ADVANCED_BOOK));
 			break;
 
 		case ITEM_KIND_FIST:
