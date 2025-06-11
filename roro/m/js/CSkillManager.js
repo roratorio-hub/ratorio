@@ -5986,7 +5986,6 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "楽器の練習";
 			this.kana = "カツキノレンシユウ";
@@ -6185,7 +6184,6 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "ダンスの練習";
 			this.kana = "タンスノレンシユウ";
@@ -20205,21 +20203,16 @@ function CSkillManager() {
 
 			this.Power = function(skillLv, charaDataManger) {
 				var pow = 0;
-
 				// 基本式
 				pow = 120 * skillLv;
-
 				// 「ミンストレル・ワンダラー レッスン」の習得レベルによる補正
-				pow += 60 * charaDataManger.UsedSkillSearch(SKILL_ID_LESSON);
-
+				pow += 60 * Math.max(LearnedSkillSearch(SKILL_ID_LESSON), UsedSkillSearch(SKILL_ID_LESSON));
 				// ベースレベル補正
 				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 100);
-
 				// 「モンスター状態異常 睡眠」による補正
 				if (charaDataManger.GetMobDebuf(MOB_CONF_DEBUF_ID_SUIMIN)) {
 					pow = Math.floor(pow * 150 / 100);
 				}
-
 				return pow;
 			}
 
@@ -26989,7 +26982,6 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "私を縛らないで";
 			this.kana = "ワタシヲシハラナイテ";
@@ -26997,11 +26989,9 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
-
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 15;
 			}
-
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;

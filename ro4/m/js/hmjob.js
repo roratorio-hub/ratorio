@@ -543,7 +543,7 @@ function GetPAtk() {
 	}
 
 	// 「トルバドゥール／トルヴェール」スキル「ステージマナー」による効果
-	if ((sklLv = UsedSkillSearch(SKILL_ID_STAGE_MANNER)) > 0) {
+	if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_STAGE_MANNER), UsedSkillSearch(SKILL_ID_STAGE_MANNER))) > 0) {
 
 		// 弓・楽器・鞭装備時装備時限定
 		switch (n_A_WeaponType) {
@@ -666,7 +666,7 @@ function GetSMatk() {
 	}
 
 	// 「トルバドゥール／トルヴェール」スキル「ステージマナー」による効果
-	if ((sklLv = UsedSkillSearch(SKILL_ID_STAGE_MANNER)) > 0) {
+	if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_STAGE_MANNER), UsedSkillSearch(SKILL_ID_STAGE_MANNER))) > 0) {
 
 		// 弓・楽器・鞭装備時装備時限定
 		switch (n_A_WeaponType) {
