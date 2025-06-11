@@ -2047,24 +2047,26 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				wbairitu = 100 * n_A_ActiveSkillLV;
 				break;
 
-			case SKILL_ID_YOMIGAESHI:
+			case SKILL_ID_YOMIGAESHI:	// 黄泉返し
 				n_Enekyori=1;
 				n_Delay[7] = 3500 - 500 * n_A_ActiveSkillLV;
 				wbairitu = (100 + 20 * attackMethodConfArray[0].GetOptionValue(0)) * n_A_ActiveSkillLV;
 				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
 				break;
 
-			case SKILL_ID_FUMASHURIKEN_RANKA:
+			case SKILL_ID_FUMASHURIKEN_RANKA: {	// 風魔手裏剣 -乱華-
 				n_Enekyori=1;
 				wActiveHitNum = 5;
 				wCast = Math.max(1200, 2200 - 200 * n_A_ActiveSkillLV);
 				n_KoteiCast = Math.min(1800, 800 + 200 * n_A_ActiveSkillLV);
 				n_Delay[7] = 500;
-				wbairitu = 150 * n_A_ActiveSkillLV + n_A_STR + 100 * attackMethodConfArray[0].GetOptionValue(0);
+				// 風魔手裏剣投げの習得Lv
+				const fumashuriken_nage_lv = Math.max(LearnedSkillSearch(SKILL_ID_FUMASHURIKEN_NAGE), attackMethodConfArray[0].GetOptionValue(0));
+				wbairitu = 150 * n_A_ActiveSkillLV + n_A_STR + 100 * fumashuriken_nage_lv;
 				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
 				if(!n_AS_MODE && n_A_WeaponType != 16) n_Buki_Muri = true;
 				break;
-
+			}
 			case SKILL_ID_DARK_CRAW:
 				wActiveHitNum = 3;
 				n_Delay[7] = 60000;
@@ -4035,17 +4037,19 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 
 			// 「蜃気楼　不知火」スキル「影の舞」
 			// 2024/12/25 もなこさん検証データとの誤差無しを確認ずみ
-			case SKILL_ID_KAGE_NO_MAI:
+			case SKILL_ID_KAGE_NO_MAI: {
 				// 詠唱など
 				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				// 影狩りの習得Lv
+				const kage_gari_lv = Math.max(LearnedSkillSearch(SKILL_ID_KAGE_GARI), attackMethodConfArray[0].GetOptionValue(1));
 				// ダメージ倍率
-				wbairitu = 3500 + 100 * n_A_ActiveSkillLV;											// 基礎倍率
-				wbairitu += 45 * n_A_ActiveSkillLV * attackMethodConfArray[0].GetOptionValue(1);	// 習得済みスキル条件
-				wbairitu += 4 * GetTotalSpecStatus(MIG_PARAM_ID_POW);								// 特性ステータス補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);									// BaseLv補正
+				wbairitu = 3500 + 100 * n_A_ActiveSkillLV;				// 基礎倍率
+				wbairitu += 45 * n_A_ActiveSkillLV * kage_gari_lv;		// 習得済みスキル条件
+				wbairitu += 4 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// 特性ステータス補正
+				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);		// BaseLv補正
 				if (battleCalcInfo.parentSkillId === undefined) {
 					// 本体の攻撃
 					wActiveHitNum = 5;
@@ -4056,39 +4060,43 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 					wActiveHitNum = 8;
 				}
 				break;
-
+			}
 			// 「蜃気楼　不知火」スキル「影一閃」
 			// 2024/12/25 もなこさん検証データとの誤差無しを確認ずみ
-			case SKILL_ID_KAGE_ISSEN:
+			case SKILL_ID_KAGE_ISSEN: {
 				// 詠唱時間など
 				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				// 影の舞の習得Lv
+				const kage_no_mai_lv = Math.max(LearnedSkillSearch(SKILL_ID_KAGE_NO_MAI), attackMethodConfArray[0].GetOptionValue(0));
 				// ダメージ倍率
-				wbairitu = 2000 + 100 * n_A_ActiveSkillLV;											// 基礎倍率
-				wbairitu += 30 * n_A_ActiveSkillLV * attackMethodConfArray[0].GetOptionValue(0);	// 習得済みスキル条件
-				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);								// 特性ステータス補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);									// BaseLv補正
+				wbairitu = 2000 + 100 * n_A_ActiveSkillLV;				// 基礎倍率
+				wbairitu += 30 * n_A_ActiveSkillLV * kage_no_mai_lv;	// 習得済みスキル条件
+				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// 特性ステータス補正
+				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);		// BaseLv補正
 				// 分割ヒット
 				wActiveHitNum = 2;
 				break;
-
+			}
 			// 「蜃気楼　不知火」スキル「影狩り」
 			// 2024/12/25 もなこさん検証データとの誤差無しを確認ずみ
-			case SKILL_ID_KAGE_GARI:
+			case SKILL_ID_KAGE_GARI: {
 				// 詠唱など
 				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				// ダメージ倍率
-				wbairitu = 3500 + 100 * n_A_ActiveSkillLV;											// 基礎倍率
-				wbairitu += 45 * n_A_ActiveSkillLV * attackMethodConfArray[0].GetOptionValue(0);	// 習得済みスキル条件
-				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);								// 特性ステータス補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);									// BaseLv補正
+				wbairitu = 3500 + 100 * n_A_ActiveSkillLV;					// 基礎倍率
+				// 影一閃の習得Lv
+				const kage_issen_lv = Math.max(LearnedSkillSearch(SKILL_ID_KAGE_ISSEN), attackMethodConfArray[0].GetOptionValue(0));
+				wbairitu += 45 * n_A_ActiveSkillLV * kage_issen_lv;			// 習得済みスキル条件
+				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);		// 特性ステータス補正
+				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);			// BaseLv補正
 				break;
-
+			}
 			// 「蜃気楼　不知火」スキル「幻術 -影縫い-」
 			// 2024/12/25 もなこさん検証データとの誤差無しを確認ずみ
 			case SKILL_ID_GENJUTSU_KAGE_NUI:
@@ -4111,7 +4119,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 
 			// 「蜃気楼　不知火」スキル「風魔手裏剣 -掌握-」
 			// 2024/12/25 もなこさん検証データとの誤差無しを確認ずみ
-			case SKILL_ID_FUMASHURIKEN_SHOUAKU:
+			case SKILL_ID_FUMASHURIKEN_SHOUAKU: {
 				n_Enekyori = 1;			// 遠距離フラグ
 				// 詠唱など
 				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
@@ -4122,33 +4130,37 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				g_bDefinedDamageIntervals = true;
 				n_Delay[5] = 250;		// ダメージ間隔
 				n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);		// オブジェクト存続時間
+				// 風魔手裏剣 -構築-の習得Lv
+				const fumashuriken_kouchiku_lv = Math.max(LearnedSkillSearch(SKILL_ID_FUMASHURIKEN_KOUCHIKU), attackMethodConfArray[0].GetOptionValue(0));
 				// ダメージ倍率
-				wbairitu = 50 * n_A_ActiveSkillLV;														// 基礎倍率
-				wbairitu += 5 * n_A_ActiveSkillLV * attackMethodConfArray[0].GetOptionValue(0);			// 習得済みスキル条件
-				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);									// 特性ステータス補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);										// BaseLv補正
+				wbairitu = 50 * n_A_ActiveSkillLV;										// 基礎倍率
+				wbairitu += 5 * n_A_ActiveSkillLV * fumashuriken_kouchiku_lv;			// 習得済みスキル条件
+				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);					// 特性ステータス補正
+				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);						// BaseLv補正
 				break;
-
+			}
 			//「蜃気楼　不知火」スキル「風魔手裏剣 -構築-」
 			// 2024/12/25 もなこさん検証データとの誤差無しを確認ずみ
-			case SKILL_ID_FUMASHURIKEN_KOUCHIKU:
+			case SKILL_ID_FUMASHURIKEN_KOUCHIKU: {
 				n_Enekyori = 1;			// 遠距離フラグ
 				// 詠唱など
 				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				// 風魔手裏剣 -掌握-の習得Lv
+				const fumashuriken_shouaku_lv = Math.max(LearnedSkillSearch(SKILL_ID_FUMASHURIKEN_SHOUAKU), attackMethodConfArray[0].GetOptionValue(1));
 				// 基礎倍率
 				if (battleCalcInfo.parentSkillId === undefined) {
-					wbairitu = 3800 + 100 * n_A_ActiveSkillLV;											// 初撃 ダメージ倍率
+					wbairitu = 3800 + 100 * n_A_ActiveSkillLV;						// 初撃 ダメージ倍率
 				} else {
-					wbairitu = 10500 + 200 * n_A_ActiveSkillLV;											// 追撃 ダメージ倍率
+					wbairitu = 10500 + 200 * n_A_ActiveSkillLV;						// 追撃 ダメージ倍率
 				}
-				wbairitu += 48 * n_A_ActiveSkillLV * attackMethodConfArray[0].GetOptionValue(1);		// 習得済みスキル条件
-				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);									// 特性ステータス補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);										// BaseLv補正
+				wbairitu += 48 * n_A_ActiveSkillLV * fumashuriken_shouaku_lv;		// 習得済みスキル条件
+				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);				// 特性ステータス補正
+				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);					// BaseLv補正
 				break;
-
+			}
 			// 「ハイパーノービス」スキル「ダブルボウリングバッシュ」
 			case SKILL_ID_DOUBLE_BOWLING_BASH: {
 				// 詠唱など
@@ -4534,14 +4546,16 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 
 			// 「蜃気楼　不知火」スキル「苦無 -歪曲-」
 			// 2024/12/25 もなこさん検証データとの誤差無しを確認ずみ
-			case SKILL_ID_KUNAI_WAIKYOKU:
+			case SKILL_ID_KUNAI_WAIKYOKU: {
 				// 遠距離フラグ
 				n_Enekyori = 1;
+				// 苦無 -屈折-の習得Lv
+				const kunai_kussetsu_lv = Math.max(LearnedSkillSearch(SKILL_ID_KUNAI_KUSSETSU), attackMethodConfArray[0].GetOptionValue(1));
 				// ダメージ倍率
-				wbairitu = 3900 + 100 * n_A_ActiveSkillLV;											// 基本倍率
-				wbairitu += 49 * n_A_ActiveSkillLV * attackMethodConfArray[0].GetOptionValue(1);	// 参照スキル習得Lv補正
-				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);								// 特性ステータス補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);									// BaseLv補正
+				wbairitu = 3900 + 100 * n_A_ActiveSkillLV;				// 基本倍率
+				wbairitu += 49 * n_A_ActiveSkillLV * kunai_kussetsu_lv;	// 参照スキル習得Lv補正
+				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// 特性ステータス補正
+				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);		// BaseLv補正
 				if (battleCalcInfo.parentSkillId === undefined) {
 				// 本体の攻撃
 					wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
@@ -4558,10 +4572,10 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 					wActiveHitNum = 3;
 				}
 				break;
-
+			}
 			// 「蜃気楼　不知火」スキル「苦無 -回転-」
 			// 2024/12/25 もなこさん検証データとの誤差無しを確認ずみ
-			case SKILL_ID_KUNAI_KAITEN:
+			case SKILL_ID_KUNAI_KAITEN: {
 				// 遠距離フラグ
 				n_Enekyori = 1;
 				// 詠唱時間等
@@ -4575,18 +4589,20 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				n_Delay[5] = 500;	// ダメージ間隔
 				// 属性
 				n_A_Weapon_zokusei = g_skillManager.GetElement(battleCalcInfo.skillId);
+				// 苦無 -歪曲-の習得Lv
+				const kunai_waikyoku_lv = Math.max(LearnedSkillSearch(SKILL_ID_KUNAI_WAIKYOKU), attackMethodConfArray[0].GetOptionValue(0));
 				// ダメージ倍率
-				wbairitu = 1500 + 200 * n_A_ActiveSkillLV;											// 基本倍率
-				wbairitu += 50 * n_A_ActiveSkillLV * attackMethodConfArray[0].GetOptionValue(0);	// 参照スキル習得Lv補正
-				wbairitu += 4 * GetTotalSpecStatus(MIG_PARAM_ID_POW);								// 特性ステータス補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);									// BaseLv補正
+				wbairitu = 1500 + 200 * n_A_ActiveSkillLV;					// 基本倍率
+				wbairitu += 50 * n_A_ActiveSkillLV * kunai_waikyoku_lv;		// 参照スキル習得Lv補正
+				wbairitu += 4 * GetTotalSpecStatus(MIG_PARAM_ID_POW);		// 特性ステータス補正
+				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);			// BaseLv補正
 				// 分割ヒット数
 				wActiveHitNum = 3;
 				break;
-
+			}
 			// 「蜃気楼　不知火」スキル「苦無 -屈折-」
 			// 2024/12/25 もなこさん検証データとの誤差無しを確認ずみ
-			case SKILL_ID_KUNAI_KUSSETSU:
+			case SKILL_ID_KUNAI_KUSSETSU: {
 				// 遠距離フラグ
 				n_Enekyori = 1;
 				// 詠唱時間等
@@ -4606,10 +4622,10 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);								// 特性ステータス補正
 				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);									// BaseLv補正
 				break;
-
+			}
 			// 「蜃気楼　不知火」スキル「幻術 -苦無-」
 			// 2024/12/25 もなこさん検証データとの誤差無しを確認ずみ
-			case SKILL_ID_GENJUTSU_KUNAI:
+			case SKILL_ID_GENJUTSU_KUNAI: {
 				// 遠距離フラグ
 				n_Enekyori = 1;
 				// 詠唱時間等
@@ -4632,7 +4648,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				// 分割ヒット数
 				wActiveHitNum = 8;
 				break;
-
+			}
 			// 「ハイパーノービス」スキル「シールドチェーンラッシュ」
 			case SKILL_ID_SHIELD_CHAIN_RUSH: {
 				// 遠距離フラグ
@@ -5705,12 +5721,14 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 
 
 
-		case SKILL_ID_SHURIKEN_NAGE:
+		case SKILL_ID_SHURIKEN_NAGE: {	// 手裏剣投げ
 			n_Enekyori=1;
 						n_PerfectHIT_DMG = 0;
 			wbairitu = 100 + 5 * n_A_ActiveSkillLV;
-			for(var i=0;i<=2;i++){
-				w_DMG[i] = n_A_DMG[i] + SyurikenOBJ[attackMethodConfArray[0].GetOptionValue(0)][0] + 3 * UsedSkillSearch(SKILL_ID_TOKAKU_SHUREN) + 4 * n_A_ActiveSkillLV;
+			// 投擲修練Lv
+			const toteki_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_TOTEKI_SHUREN), UsedSkillSearch(SKILL_ID_TOTEKI_SHUREN));
+			for(let i = 0; i <= 2; i++){
+				w_DMG[i] = n_A_DMG[i] + SyurikenOBJ[attackMethodConfArray[0].GetOptionValue(0)][0] + 3 * toteki_shuren_lv + 4 * n_A_ActiveSkillLV;
 				w_DMG[i] = ROUNDDOWN(w_DMG[i] * wbairitu / 100);
 				w_DMG[i] -= B_Total_DEF;
 				if(w_DMG[i] <0) w_DMG[i] = 0;
@@ -5724,8 +5742,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
-
-
+		}
 
 		case SKILL_ID_KUNAI_NAGE:
 		case SKILL_ID_HAPPO_KUNAI:
@@ -5765,9 +5782,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
-
-
-		case SKILL_ID_BAKURETSU_KUNAI:
+		case SKILL_ID_BAKURETSU_KUNAI: {	// 爆裂苦無
 			n_PerfectHIT_DMG = 0;
 			w_HIT_HYOUJI = 100;
 			w_HIT = 100;
@@ -5776,7 +5791,9 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			n_Delay[7] = 1000;
 			wCast = 800 * n_A_ActiveSkillLV - 800;
 			n_KoteiCast = 800;
-			wbairitu = n_A_ActiveSkillLV * (50 + Math.floor(n_A_DEX / 4)) * UsedSkillSearch(SKILL_ID_TOKAKU_SHUREN) * 0.4 * n_A_BaseLV / 100 + 10 * n_A_JobLV;
+			// 投擲修練Lv
+			const toteki_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_TOTEKI_SHUREN), UsedSkillSearch(SKILL_ID_TOTEKI_SHUREN));
+			wbairitu = n_A_ActiveSkillLV * (50 + Math.floor(n_A_DEX / 4)) * toteki_shuren_lv * 0.4 * n_A_BaseLV / 100 + 10 * n_A_JobLV;
 			var wKUNAI = 0;
 			for(var i=0;i<=2;i++){
 				w_DMG[i] = n_A_DMG[i] + wKUNAI;
@@ -5795,8 +5812,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
-
-
+		}
 
 		case SKILL_ID_FUMASHURIKEN_NAGE:
 			wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
@@ -9789,40 +9805,42 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 		case SKILL_ID_SEKIEN_HOU:
 		case SKILL_ID_REIKETSU_HOU:
 		case SKILL_ID_RAIDEN_HOU:
-		case SKILL_ID_KINNRYUU_HOU:
+		case SKILL_ID_KINNRYUU_HOU:{
 			// 詠唱時間など
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// 暗転砲の習得Lv
+			const anten_hou_lv = Math.max(LearnedSkillSearch(SKILL_ID_ANTEN_HOU), UsedSkillSearch(SKILL_ID_ANTEN_HOU_LEARNED_LEVEL));
 			if (battleCalcInfo.parentSkillId === undefined) {
 				// 本体の攻撃
-				wbairitu = 4000 + 300 * n_A_ActiveSkillLV;												// 基本倍率
-				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);									// spl補正
-				wbairitu += 70 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_ANTEN_HOU_LEARNED_LEVEL)	// 習得済みスキル条件
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);										// BaseLv補正
+				wbairitu = 4000 + 300 * n_A_ActiveSkillLV;					// 基本倍率
+				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);		// spl補正
+				wbairitu += 70 * n_A_ActiveSkillLV * anten_hou_lv;			// 習得済みスキル条件
+				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);			// BaseLv補正
 			} else {
 				// 分身の追撃 暗転砲
-				n_A_Weapon_zokusei = ELM_ID_DARK;												// 属性は闇固定
-				if (UsedSkillSearch(SKILL_ID_ANTEN_HOU_LEARNED_LEVEL) == 0) {
+				n_A_Weapon_zokusei = ELM_ID_DARK;							// 属性は闇固定
+				if (anten_hou_lv == 0) {
 					wbairitu = 0;
 				} else {
-					wbairitu = 5750 + 350 * UsedSkillSearch(SKILL_ID_ANTEN_HOU_LEARNED_LEVEL);	// 基本倍率
-					wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);						// spl補正
-					wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);							// BaseLv補正
-					wbairitu = Math.floor(wbairitu * 30 / 100);									// 分身の威力は30%
-					wbairitu *= attackMethodConfArray[0].GetOptionValue(0);						// 分身の数
+					wbairitu = 5750 + 350 * anten_hou_lv;					// 基本倍率
+					wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// spl補正
+					wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);		// BaseLv補正
+					wbairitu = Math.floor(wbairitu * 30 / 100);				// 分身の威力は30%
+					wbairitu *= attackMethodConfArray[0].GetOptionValue(0);	// 分身の数
 					// 分割ヒット
 					wActiveHitNum = 4;
 				}
 			}
 			break;
-
+		}
 		/**
 		 * 「蜃気楼　不知火」スキル「暗転砲」
 		 * 2024/10/23 提供データとの誤差無しを確認
 		 */
-		case SKILL_ID_ANTEN_HOU:
+		case SKILL_ID_ANTEN_HOU:{
 			// 詠唱時間など
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
@@ -9836,21 +9854,23 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				// 分割ヒット
 				wActiveHitNum = 2;
 			} else {
+				// 暗転砲の習得Lv
+				const anten_hou_lv = Math.max(LearnedSkillSearch(SKILL_ID_ANTEN_HOU), UsedSkillSearch(SKILL_ID_ANTEN_HOU_LEARNED_LEVEL));
 				// 分身の追撃
-				if (UsedSkillSearch(SKILL_ID_ANTEN_HOU_LEARNED_LEVEL) == 0) {
+				if (anten_hou_lv == 0) {
 					wbairitu = 0;
 				} else {
-					wbairitu = 5750 + 350 * UsedSkillSearch(SKILL_ID_ANTEN_HOU_LEARNED_LEVEL);	// 基本倍率
-					wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);						// spl補正
-					wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);							// BaseLv補正
-					wbairitu = Math.floor(wbairitu * 30 / 100);									// 分身の威力は30%
-					wbairitu *= attackMethodConfArray[0].GetOptionValue(0);						// 分身の数
+					wbairitu = 5750 + 350 * anten_hou_lv;					// 基本倍率
+					wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// spl補正
+					wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);		// BaseLv補正
+					wbairitu = Math.floor(wbairitu * 30 / 100);				// 分身の威力は30%
+					wbairitu *= attackMethodConfArray[0].GetOptionValue(0);	// 分身の数
 					// 分割ヒット
 					wActiveHitNum = 4;
 				}
 			}
 			break;
-
+		}
 		//「蜃気楼　不知火」スキル「幻術 -暗黒龍-」
 		// 2024/12/25 もなこさん提供データに対して誤差+3を確認
 		// 当スキルではなく魔法ダメージ計算の基本部分に誤差があると判断しています
@@ -19833,33 +19853,30 @@ function _SUB_ApplyMonsterDefence(mobData, dmg){
  * @returns 適用後のダメージ
  */
 function ApplyMonsterDefence(mobData, dmg, lefthand) {
-
 	// モンスターの防御力を適用
 	dmg = _SUB_ApplyMonsterDefence(mobData, dmg);
 	if(dmg < 1) dmg = 0;
-
 	// 二刀左手の場合、修練効果を適用し、終了
 	if (lefthand != 0 && n_A_ActiveSkill == SKILL_ID_TUZYO_KOGEKI_CALC_LEFT) {
-
 		// 影狼／朧の場合
 		if (IsSameJobClass(JOB_ID_KAGERO) || IsSameJobClass(JOB_ID_OBORO)) {
-			dmg = Math.floor(dmg * (5 + UsedSkillSearch(SKILL_ID_HIDARITE_TANREN)) / 10);
+			const hidarite_tanren_lv = Math.max(LearnedSkillSearch(SKILL_ID_HIDARITE_TANREN), UsedSkillSearch(SKILL_ID_HIDARITE_TANREN));
+			dmg = Math.floor(dmg * (5 + hidarite_tanren_lv) / 10);
 		}
 		// それ以外（アサ系）の場合
 		else {
 			const hidarite_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_HIDARITE_SHUREN), UsedSkillSearch(SKILL_ID_HIDARITE_SHUREN));
 			dmg = Math.floor(dmg * (3 + hidarite_shuren_lv) / 10);
 		}
-
 		return dmg;
 	}
-
 	// 二刀流での通常攻撃の場合、かつ、素手でない場合、右手修練を適用
 	if (n_Nitou && n_A_ActiveSkill == SKILL_ID_TUZYO_KOGEKI_CALC_RIGHT) {
 		if(n_A_WeaponType != 0){
 			// 影狼／朧の場合
 			if (IsSameJobClass(JOB_ID_KAGERO) || IsSameJobClass(JOB_ID_OBORO)) {
-				dmg = Math.floor(dmg * (70 + UsedSkillSearch(SKILL_ID_MIGITE_TANREN) * 10) /100);
+				const migite_tanren_lv = Math.max(LearnedSkillSearch(SKILL_ID_MIGITE_TANREN), UsedSkillSearch(SKILL_ID_MIGITE_TANREN));
+				dmg = Math.floor(dmg * (70 + migite_tanren_lv * 10) /100);
 			}
 			// それ以外（アサシン系）の場合
 			else {
@@ -19868,7 +19885,6 @@ function ApplyMonsterDefence(mobData, dmg, lefthand) {
 			}
 		}
 	}
-
 	return Math.floor(dmg);
 }
 
