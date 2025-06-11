@@ -1531,12 +1531,10 @@ function ApplySpecModify(spid, spVal) {
 		}
 
 		// 「エレメンタルマスター」スキル「魔法本修練」による効果
-		if ((sklLv = UsedSkillSearch(SKILL_ID_MAHO_HON_SHUREN)) > 0) {
-
+		if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_MAHO_HON_SHUREN), UsedSkillSearch(SKILL_ID_MAHO_HON_SHUREN))) > 0) {
 			// 本装備時限定
 			switch (n_A_WeaponType) {
 			case ITEM_KIND_BOOK:
-
 				arrayWork = [
 					ITEM_SP_MAGICAL_DAMAGE_UP_ELM_FIRE,
 					ITEM_SP_MAGICAL_DAMAGE_UP_ELM_WATER,
@@ -1544,7 +1542,6 @@ function ApplySpecModify(spid, spVal) {
 					ITEM_SP_MAGICAL_DAMAGE_UP_ELM_EARTH,
 					ITEM_SP_MAGICAL_DAMAGE_UP_ELM_POISON,
 				];
-
 				// 火・水・風・地・毒属性魔法
 				if (arrayWork.indexOf(spid) >= 0) {
 					spVal += 1 * sklLv;

@@ -36310,10 +36310,6 @@ function CSkillManager() {
 		this.dataArray[skillId] = skillData;
 		skillId++;
 
-
-
-
-
 		// ----------------------------------------------------------------
 		// 魔法本修練
 		// ----------------------------------------------------------------
@@ -36321,7 +36317,6 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "魔法本修練";
 			this.kana = "マホウホンシユウレン";
@@ -36664,7 +36659,6 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "(×)エレメンタルスピリットマスタリー";
 			this.kana = "エレメンタルスヒリツトマスタリイ";
