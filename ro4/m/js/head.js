@@ -25379,9 +25379,9 @@ function CalcMeanDamageLeftHand(skillId, mobData, dmg) {
  * @returns 設定されているLv
  */
 function UsedSkillSearch(sklId, bOnlyUsed = false) {
-	var sklLv = 0;
-	var effectivLvArray = [0];
-	var bAvoidRecalc = false;
+	let sklLv = 0;
+	let effectivLvArray = [0];
+	let bAvoidRecalc = false;
 	// スキル欄のみの場合
 	if (bOnlyUsed) {
 		return UsedSkillSearchSubUsedOnly(sklId);
@@ -25624,25 +25624,32 @@ function UsedSkillSearch(sklId, bOnlyUsed = false) {
 		effectivLvArray.push(UsedSkillSearchSubUsedOnly(sklId));
 	}
 	// 最大レベルを返す
-	return effectivLvArray.reduce(
+	const result = effectivLvArray.reduce(
 		function(a, b) {
  	   		return Math.max(a, b);
-		}
-	);
+		});
+	// エラーハンドリング
+	if (result === undefined || result === NaN) {
+		result = 0;
+	}
+	return result;
 }
 
 /**
  * 有効化されている支援スキルの設定Lvを取得する
- * @param {*} sklId 確認するスキル
- * @returns 設定されているLv
+ * @param {Number} sklId 確認するスキル
+ * @returns {Number} 設定されているLv
  */
 function UsedSkillSearchSubUsedOnly(sklId) {
-	var idx = 0;
-	// 通常スキル欄
-	var passiveSkillIdArray = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, n_A_JOB).GetPassiveSkillIdArray();
-	for (idx = 0; idx < passiveSkillIdArray.length; idx++) {
+	// 設定可能な全ての職固有自己支援スキルを取得する
+	const passiveSkillIdArray = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, n_A_JOB).GetPassiveSkillIdArray();
+	for (let idx = 0; idx < passiveSkillIdArray.length; idx++) {
 		if(passiveSkillIdArray[idx] == sklId) {
-			return n_A_PassSkill[idx];
+			// 指定されたスキルIDが見つかったとき
+			if (n_A_PassSkill[idx] !== undefined && n_A_PassSkill[idx] !== NaN) {
+				// 該当のスキルLvがundefinedでもNaNでもなければ習得済みLvを返す
+				return n_A_PassSkill[idx];
+			}
 		}
 	}
 	return 0;
