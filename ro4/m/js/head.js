@@ -25624,7 +25624,7 @@ function UsedSkillSearch(sklId, bOnlyUsed = false) {
 		effectivLvArray.push(UsedSkillSearchSubUsedOnly(sklId));
 	}
 	// 最大レベルを返す
-	const result = effectivLvArray.reduce(
+	let result = effectivLvArray.reduce(
 		function(a, b) {
  	   		return Math.max(a, b);
 		});
