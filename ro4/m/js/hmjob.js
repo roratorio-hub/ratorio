@@ -646,17 +646,7 @@ function GetSMatk() {
 		// 両手杖時限定
 		if (n_A_WeaponType == ITEM_KIND_STUFF) {
 			if (n_tok[ITEM_SP_STUFF2HAND]) {
-				valWork = 2 * sklLv - 1;
-				if (sklLv >= 4) {
-					valWork += 1 * (sklLv - 3);
-				}
-				if (sklLv >= 8) {
-					valWork += 1 * (sklLv - 7);
-				}
-				if (sklLv >= 10) {
-					valWork += 1 * (sklLv - 9);
-				}
-				value += valWork;
+				value += [0, 1, 3, 5, 8, 11, 14, 17, 21, 25, 30][sklLv];
 			}
 		}
 	}
