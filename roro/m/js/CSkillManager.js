@@ -10732,7 +10732,6 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "カイナ";
 			this.kana = "カイナ";
@@ -38123,7 +38122,9 @@ function CSkillManager() {
 				let ratio = 0;
 				ratio = 2000 + 200 * skillLv;
 				ratio += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				ratio += 7 * skillLv * ( UsedSkillSearch(SKILL_ID_GOFU_SHUREN) + UsedSkillSearch(SKILL_ID_REIDOZYUTSU_SHUREN) );
+				const gofu_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_GOFU_SHUREN), UsedSkillSearch(SKILL_ID_GOFU_SHUREN));
+				const reidozyutsu_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_REIDOZYUTSU_SHUREN), UsedSkillSearch(SKILL_ID_REIDOZYUTSU_SHUREN));
+				ratio += 7 * skillLv * ( gofu_shuren_lv + reidozyutsu_shuren_lv );
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
 			}
@@ -38168,7 +38169,8 @@ function CSkillManager() {
 					ratio = 350 + 50 * skillLv;
 				}
 				ratio += GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				ratio += 2 * UsedSkillSearch(SKILL_ID_REIDOZYUTSU_SHUREN);
+				const reidozyutsu_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_REIDOZYUTSU_SHUREN), UsedSkillSearch(SKILL_ID_REIDOZYUTSU_SHUREN));
+				ratio += 2 * reidozyutsu_shuren_lv;
 				ratio = ratio * UsedSkillSearch(SKILL_ID_COUNT_OF_SOUL_ENERGY);
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
@@ -38211,7 +38213,7 @@ function CSkillManager() {
 					ratio = 4250 + 750 * skillLv;
 				}
 				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				ratio += 15 * skillLv * UsedSkillSearch(SKILL_ID_GOFU_SHUREN);
+				ratio += 15 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_GOFU_SHUREN), UsedSkillSearch(SKILL_ID_GOFU_SHUREN));
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
 			}
@@ -38263,7 +38265,7 @@ function CSkillManager() {
 					ratio = 3000 + 400 * skillLv;
 				}
 				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				ratio += 15 * skillLv * UsedSkillSearch(SKILL_ID_GOFU_SHUREN);
+				ratio += 15 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_GOFU_SHUREN), UsedSkillSearch(SKILL_ID_GOFU_SHUREN));
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
 			}
@@ -38314,7 +38316,7 @@ function CSkillManager() {
 					ratio = 4250 + 500 * skillLv;
 				}
 				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				ratio += 15 * skillLv * UsedSkillSearch(SKILL_ID_GOFU_SHUREN);
+				ratio += 15 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_GOFU_SHUREN), UsedSkillSearch(SKILL_ID_GOFU_SHUREN));
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
 			}
@@ -38366,7 +38368,7 @@ function CSkillManager() {
 					ratio = 3000 + 400 * skillLv;
 				}
 				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				ratio += 15 * skillLv * UsedSkillSearch(SKILL_ID_GOFU_SHUREN);
+				ratio += 15 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_GOFU_SHUREN), UsedSkillSearch(SKILL_ID_GOFU_SHUREN));
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
 			}
@@ -38413,7 +38415,7 @@ function CSkillManager() {
 				let ratio = 0;
 				ratio = 500 + 50 * skillLv;
 				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				ratio += 15 * skillLv * UsedSkillSearch(SKILL_ID_GOFU_SHUREN);
+				ratio += 15 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_GOFU_SHUREN), UsedSkillSearch(SKILL_ID_GOFU_SHUREN));
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
 			}
@@ -38457,7 +38459,9 @@ function CSkillManager() {
 				let ratio = 0;
 				ratio = 2200 + 600 * skillLv;
 				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				ratio += 15 * skillLv * (UsedSkillSearch(SKILL_ID_GOFU_SHUREN) + UsedSkillSearch(SKILL_ID_REIDOZYUTSU_SHUREN));
+				const gofu_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_GOFU_SHUREN), UsedSkillSearch(SKILL_ID_GOFU_SHUREN));
+				const reidozyutsu_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_REIDOZYUTSU_SHUREN), UsedSkillSearch(SKILL_ID_REIDOZYUTSU_SHUREN));
+				ratio += 15 * skillLv * ( gofu_shuren_lv + reidozyutsu_shuren_lv );
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
 			}

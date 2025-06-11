@@ -679,8 +679,8 @@ function GetSMatk() {
 	}
 
 	// 「ソウルアセティック」スキル「護符修練」による効果
-	if ((sklLv = UsedSkillSearch(SKILL_ID_GOFU_SHUREN)) > 0) {
-		value += 1 * sklLv;
+	if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_GOFU_SHUREN), UsedSkillSearch(SKILL_ID_GOFU_SHUREN))) > 0) {
+		value += sklLv;
 	}
 
 	// 「ソウルアセティック」スキル「四方五行陣状態」による効果
