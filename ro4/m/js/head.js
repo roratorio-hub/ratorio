@@ -25624,15 +25624,10 @@ function UsedSkillSearch(sklId, bOnlyUsed = false) {
 		effectivLvArray.push(UsedSkillSearchSubUsedOnly(sklId));
 	}
 	// 最大レベルを返す
-	let result = effectivLvArray.reduce(
+	return effectivLvArray.reduce(
 		function(a, b) {
  	   		return Math.max(a, b);
 		});
-	// エラーハンドリング
-	if (result === undefined || isNaN(result)) {
-		result = 0;
-	}
-	return result;
 }
 
 /**
