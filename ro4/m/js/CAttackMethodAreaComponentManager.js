@@ -2249,7 +2249,7 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 
 			// オプションリストを生成、追加
 			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"",
+				"手裏剣の種類",
 				[
 					[0, SyurikenOBJ[0][2]],
 					[1, SyurikenOBJ[1][2]],
@@ -2272,7 +2272,7 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 
 			// オプションリストを生成、追加
 			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"",
+				"苦無の種類",
 				[
 					[0, KunaiOBJ[0][2]],
 					[1, KunaiOBJ[1][2]],

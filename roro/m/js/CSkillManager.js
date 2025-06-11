@@ -11363,14 +11363,13 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 投擲修練
 		// ----------------------------------------------------------------
-		SKILL_ID_TOKAKU_SHUREN = skillId;
+		SKILL_ID_TOTEKI_SHUREN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "投擲修練";
-			this.kana = "トウカクシユウレン";
+			this.kana = "トウテキシユウレン";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_PASSIVE;
 			this.range = CSkillData.RANGE_SHORT;
@@ -11760,7 +11759,6 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "忍法修練";
 			this.kana = "ニンホウシユウレン";
@@ -23940,7 +23938,7 @@ function CSkillManager() {
 
 				// 基本式
 				pow = (50 + Math.floor(charaDataManger.GetCharaDex() / 4)) * skillLv;
-				pow *= 0.4 * charaDataManger.UsedSkillSearch(SKILL_ID_TOKAKU_SHUREN);
+				pow *= 0.4 * charaDataManger.UsedSkillSearch(SKILL_ID_TOTEKI_SHUREN);
 
 				// ベースレベル補正
 				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 120);
@@ -40388,7 +40386,6 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "暗転砲";
 			this.kana = "アンテンホウ";
