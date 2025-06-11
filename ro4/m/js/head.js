@@ -25629,7 +25629,7 @@ function UsedSkillSearch(sklId, bOnlyUsed = false) {
  	   		return Math.max(a, b);
 		});
 	// エラーハンドリング
-	if (result === undefined || result === NaN) {
+	if (result === undefined || isNaN(result)) {
 		result = 0;
 	}
 	return result;
@@ -25646,7 +25646,7 @@ function UsedSkillSearchSubUsedOnly(sklId) {
 	for (let idx = 0; idx < passiveSkillIdArray.length; idx++) {
 		if(passiveSkillIdArray[idx] == sklId) {
 			// 指定されたスキルIDが見つかったとき
-			if (n_A_PassSkill[idx] !== undefined && n_A_PassSkill[idx] !== NaN) {
+			if (n_A_PassSkill[idx] !== undefined && !isNaN(n_A_PassSkill[idx])) {
 				// 該当のスキルLvがundefinedでもNaNでもなければ習得済みLvを返す
 				return n_A_PassSkill[idx];
 			}

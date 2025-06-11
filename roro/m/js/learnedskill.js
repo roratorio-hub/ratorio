@@ -27,7 +27,7 @@ function LearnedSkillSearch(skillId) {
 	for (let idx = 0; idx < learnSkillIdArray.length; idx++) {
 		if (learnSkillIdArray[idx] == skillId) {
 			// 指定されたスキルIDが見つかったとき
-			if (n_A_LearnedSkill[idx] !== undefined && n_A_LearnedSkill[idx] !== NaN) {
+			if (n_A_LearnedSkill[idx] !== undefined && !isNaN(n_A_LearnedSkill[idx])) {
 				// 該当のスキルLvがundefinedでもNaNでもなければ習得済みLvを返す
 				return n_A_LearnedSkill[idx];
 			}
