@@ -3341,7 +3341,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 
 			// 「トルバドゥール・トルヴェール」スキル「ロゼブロッサム」
 			// 2025-04-03 実測確認済み
-			case SKILL_ID_ROSE_BLOSSOM:
+			case SKILL_ID_ROSE_BLOSSOM: {
 				// 弓・楽器・鞭装備状態のみ発動可能
 				if (![ITEM_KIND_BOW, ITEM_KIND_MUSICAL, ITEM_KIND_WHIP].includes(n_A_WeaponType)) {
 					wbairitu = 0;
@@ -3350,6 +3350,8 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				}
 				// 距離属性
 				n_Enekyori = 1;
+				// ステージマナー習得Lv
+				const stage_manner_lv = Math.max(LearnedSkillSearch(SKILL_ID_STAGE_MANNER), UsedSkillSearch(SKILL_ID_STAGE_MANNER));
 				// 初段ＨＩＴの場合
 				if (battleCalcInfo.parentSkillId === undefined) {
 					// 詠唱時間等
@@ -3361,11 +3363,11 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 					if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SOUND_BLEND]) {
 						// サウンドブレンド 有り
 						wbairitu = 1250 + 350 * n_A_ActiveSkillLV;
-						wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_CON) * UsedSkillSearch(SKILL_ID_STAGE_MANNER);
+						wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_CON) * stage_manner_lv;
 					} else {
 						// サウンドブレンド 無し
 						wbairitu = 750 + 150 * n_A_ActiveSkillLV;
-						wbairitu += 1 * GetTotalSpecStatus(MIG_PARAM_ID_CON) * UsedSkillSearch(SKILL_ID_STAGE_MANNER);
+						wbairitu += 1 * GetTotalSpecStatus(MIG_PARAM_ID_CON) * stage_manner_lv;
 					}
 					// 分割HIT数
 					wActiveHitNum = 2;
@@ -3376,20 +3378,20 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 					if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SOUND_BLEND]) {
 						// サウンドブレンド 有り
 						wbairitu = 2500 + 700 * n_A_ActiveSkillLV;
-						wbairitu += 4 * GetTotalSpecStatus(MIG_PARAM_ID_CON) * UsedSkillSearch(SKILL_ID_STAGE_MANNER);
+						wbairitu += 4 * GetTotalSpecStatus(MIG_PARAM_ID_CON) * stage_manner_lv;
 					} else {
 						// サウンドブレンド 無し
 						wbairitu = 1250 + 350 * n_A_ActiveSkillLV;
-						wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_CON) * UsedSkillSearch(SKILL_ID_STAGE_MANNER);
+						wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_CON) * stage_manner_lv;
 					}
 				}
 				// ベースレベル補正
 				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 				break;
-
+			}
 			// 「トルバドゥール・トルヴェール」スキル「リズムシューティング」
 			// 2025-04-03 実測確認済み
-			case SKILL_ID_RHYTHM_SHOOTING:
+			case SKILL_ID_RHYTHM_SHOOTING: {
 				// 弓・楽器・鞭装備状態のみ発動可能
 				if (![ITEM_KIND_BOW, ITEM_KIND_MUSICAL, ITEM_KIND_WHIP].includes(n_A_WeaponType)) {
 					wbairitu = 0;
@@ -3403,22 +3405,24 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				// ステージマナー習得Lv
+				const stage_manner_lv = Math.max(LearnedSkillSearch(SKILL_ID_STAGE_MANNER), UsedSkillSearch(SKILL_ID_STAGE_MANNER));
 				// 基本倍率
 				if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SOUND_BLEND]) {
 					// サウンドブレンド 有り
 					wbairitu = 1250 + 350 * n_A_ActiveSkillLV;
-					wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_CON) * UsedSkillSearch(SKILL_ID_STAGE_MANNER);
+					wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_CON) * stage_manner_lv;
 				} else {
 					// サウンドブレンド 無し
 					wbairitu = 750 + 150 * n_A_ActiveSkillLV;
-					wbairitu += 1 * GetTotalSpecStatus(MIG_PARAM_ID_CON) * UsedSkillSearch(SKILL_ID_STAGE_MANNER);
+					wbairitu += 1 * GetTotalSpecStatus(MIG_PARAM_ID_CON) * stage_manner_lv;
 				}
 				// ベースレベル補正
 				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 				// ヒット数
 				wHITsuu = 3;
 				break;
-
+			}
 			// 「バイオロ」スキル「アシディファイドゾーン」
 			// 2024/11/15 初撃のダメージ誤差無しを確認済み
 			// 設置ダメージは全く合わないが実用性が薄いので調査優先度は低いと判断しこのまま静観します
@@ -8362,26 +8366,20 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			n_bunkatuHIT = 1;
 			wCast = Math.min(3000, 500 + 500 * n_A_ActiveSkillLV);
 			n_Delay[7] = 200;
-
 			// 基本倍率
 			wbairitu = 120 * n_A_ActiveSkillLV
-
 			// サウンドブレンド補正
 			if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SOUND_BLEND] > 0) {
 				wbairitu *= 2;
 			}
-
 			// レッスン補正
-			wbairitu += 60 * UsedSkillSearch(SKILL_ID_LESSON);
-
+			wbairitu += 60 * Math.max(LearnedSkillSearch(SKILL_ID_LESSON), UsedSkillSearch(SKILL_ID_LESSON));
 			// BaseLv補正
 			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
-
 			// 睡眠補正
 			if(n_B_IJYOU[MOB_CONF_DEBUF_ID_SUIMIN]) {
 				wbairitu = ROUNDDOWN(wbairitu * 150 / 100);
 			}
-
 			break;
 
 		case SKILL_ID_FIRE_WALK:
@@ -9310,7 +9308,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 		}
 		// 「トルバドゥール・トルヴェール」スキル「メタリックフューリー」
 		// 2025-04-03 実測確認済み
-		case SKILL_ID_METALIC_FURY:
+		case SKILL_ID_METALIC_FURY: {
 			// 楽器・鞭装備状態のみ発動可能
 			if (![ITEM_KIND_MUSICAL, ITEM_KIND_WHIP].includes(n_A_WeaponType)) {
 				wbairitu = 0;
@@ -9330,23 +9328,25 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// ステージマナー習得Lv
+			const stage_manner_lv = Math.max(LearnedSkillSearch(SKILL_ID_STAGE_MANNER), UsedSkillSearch(SKILL_ID_STAGE_MANNER));
 			// 基本倍率
 			if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SOUND_BLEND]) {
 				// サウンドブレンド 有り
 				wbairitu = 4000 + 1000 * n_A_ActiveSkillLV;
-				wbairitu += 6 * GetTotalSpecStatus(MIG_PARAM_ID_SPL) * UsedSkillSearch(SKILL_ID_STAGE_MANNER);
+				wbairitu += 6 * GetTotalSpecStatus(MIG_PARAM_ID_SPL) * stage_manner_lv;
 			} else {
 				// サウンドブレンド 無し
 				wbairitu = 1250 + 350 * n_A_ActiveSkillLV;
-				wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_SPL) * UsedSkillSearch(SKILL_ID_STAGE_MANNER);
+				wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_SPL) * stage_manner_lv;
 			}
 			// ベースレベル補正
 			wbairitu =  Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
-
+		}
 		// 「トルバドゥール・トルヴェール」スキル「サウンドブレンド」
 		// 2025-04-03 実測確認済み
-		case SKILL_ID_SOUND_BLEND:
+		case SKILL_ID_SOUND_BLEND: {
 			// 楽器・鞭装備状態のみ発動可能
 			if (![ITEM_KIND_MUSICAL, ITEM_KIND_WHIP].includes(n_A_WeaponType)) {
 				wbairitu = 0;
@@ -9374,12 +9374,14 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			n_Delay[5] = n_Delay[6] - 200;
 			// 基本倍率
 			wbairitu = 2000 + 500 * n_A_ActiveSkillLV;
+			// ステージマナー習得Lv
+			const stage_manner_lv = Math.max(LearnedSkillSearch(SKILL_ID_STAGE_MANNER), UsedSkillSearch(SKILL_ID_STAGE_MANNER));
 			// SPL補正
-			wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL) * UsedSkillSearch(SKILL_ID_STAGE_MANNER);
+			wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL) * stage_manner_lv;
 			// ベースレベル補正
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
-
+		}
 
 		// 「エレメンタルマスター」スキル「ダイヤモンドストーム」
 		case SKILL_ID_DIAMOND_STORM:
@@ -19946,16 +19948,18 @@ function TYPE_SYUUREN(mobData, attackMethodConfArray, bArmsLeft){
 			break;
 
 		case ITEM_KIND_MUSICAL:
-			w += 3 * UsedSkillSearch(SKILL_ID_GAKKINO_RENSHU);
+			w += 3 * Math.max(LearnedSkillSearch(SKILL_ID_GAKKINO_RENSHU), UsedSkillSearch(SKILL_ID_GAKKINO_RENSHU));
 			break;
 
 		case ITEM_KIND_WHIP:
-			w += 3 * UsedSkillSearch(SKILL_ID_DANCENO_RENSHU);
+			w += 3 * Math.max(LearnedSkillSearch(SKILL_ID_DANCENO_RENSHU), UsedSkillSearch(SKILL_ID_DANCENO_RENSHU));
 			break;
 	}
+	// 「演奏/踊り系スキル」欄の「ニーベルングの指輪」によるATK加算
 	if(n_A_PassSkill3[10]) {
 		w += 75 + 25 * n_A_PassSkill3[10];
 	}
+	// 「演奏/踊り系スキル」欄の「戦太鼓の響き」によるATK加算
 	if(n_A_PassSkill3[9]) {
 		w += (125 + 25 * n_A_PassSkill3[9]);
 	}

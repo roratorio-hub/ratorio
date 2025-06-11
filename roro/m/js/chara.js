@@ -7404,7 +7404,7 @@ function GetStatusModifyMaxSpPlus() {
 	//----------------------------------------------------------------
 	// 「ミンストレル／ワンダラー　レッスン」の、効果
 	//----------------------------------------------------------------
-	if ((sklLv = UsedSkillSearch(SKILL_ID_LESSON)) > 0) {
+	if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_LESSON), UsedSkillSearch(SKILL_ID_LESSON))) > 0) {
 		val += 30 * sklLv;
 	}
 
