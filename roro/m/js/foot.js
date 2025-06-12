@@ -2638,7 +2638,7 @@ g_ITEM_SP_FLEE_PLUS_value_forCalcData = flee;
 		//----------------------------------------------------------------
 		// 「モンク　見切り」の、効果
 		//----------------------------------------------------------------
-		if ((sklLv = UsedSkillSearch(SKILL_ID_MIKIRI)) > 0) {
+		if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_MIKIRI), UsedSkillSearch(SKILL_ID_MIKIRI))) > 0) {
 			flee += Math.floor(1.5 * sklLv);
 		}
 
