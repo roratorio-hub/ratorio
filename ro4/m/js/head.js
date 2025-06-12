@@ -1861,18 +1861,19 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				else wbairitu = ((150 * n_A_ActiveSkillLV) * n_A_BaseLV / 100) + n_A_INT * 3;
 				break;
 
-			case SKILL_ID_BAKKISANDAN:
+			case SKILL_ID_BAKKISANDAN: {	// 爆気散弾
 				n_Enekyori = 1;
 				n_Delay[0] = 1;
 				n_Delay[2] = 1000;
 				n_Delay[7] = 10000;
+				// TODO 爆裂波動の習得Lvがスキル倍率に影響する可能性がある
 				var w = attackMethodConfArray[0].GetOptionValue(0);
 				if (UsedSkillSearch(SKILL_ID_SENRYU_SHOTEN) || UsedSkillSearch(SKILL_ID_BAKURETSU_HADO) || TimeItemNumSearch(34)) {
 					wbairitu = ROUNDDOWN((125 + 25 * n_A_ActiveSkillLV) * n_A_BaseLV / 150 * w);
 				}
 				else wbairitu = ROUNDDOWN(20 * n_A_ActiveSkillLV * n_A_BaseLV / 150 * w);
 				break;
-
+			}
 			case SKILL_ID_DAITENHOSUI:
 				n_Delay[0] = 1;
 				wActiveHitNum = 2;

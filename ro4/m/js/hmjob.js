@@ -1302,31 +1302,14 @@ function ApplySpecModify(spid, spVal) {
 	case ITEM_SP_PHYSICAL_DAMAGE_UP_RACE_ANGEL:
 	case ITEM_SP_PHYSICAL_DAMAGE_UP_RACE_DRAGON:
 	case ITEM_SP_PHYSICAL_DAMAGE_UP_RACE_HUMAN_NOT_PLAYER:
-
 		// 「インクイジター」スキル「信仰の意志」習得による効果
-		if ((sklLv = UsedSkillSearch(SKILL_ID_SHINKONO_ISHI)) > 0) {
-
-			// 爪装備時限定
-			switch (n_A_WeaponType) {
-			case ITEM_KIND_FIST:
-
-				// 不死、悪魔
+		if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_SHINKONO_ISHI), UsedSkillSearch(SKILL_ID_SHINKONO_ISHI))) > 0) {
+			// 爪を装備しているとき
+			if (n_A_WeaponType === ITEM_KIND_FIST) {
+				// 不死種族・悪魔種族に対する物理ダメージが増加する
 				if ([ITEM_SP_PHYSICAL_DAMAGE_UP_RACE_UNDEAD, ITEM_SP_PHYSICAL_DAMAGE_UP_RACE_DEMON].indexOf(spid) >= 0) {
-
-					valWork = 1 * sklLv;
-					if (sklLv >= 6) {
-						valWork += 1 * (sklLv - 5);
-					}
-					if (sklLv >= 9) {
-						valWork += 2 * (sklLv - 8);
-					}
-					if (sklLv >= 10) {
-						valWork += 1 * (sklLv - 9);
-					}
-
-					spVal += valWork;
+					spVal += [0, 1, 2, 3, 4, 5, 7, 9, 11, 15, 20][sklLv];
 				}
-				break;
 			}
 		}
 
