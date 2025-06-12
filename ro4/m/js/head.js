@@ -2648,7 +2648,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			//「カーディナル」スキル「エフィリゴ」
 			// 2025-03-30 基本的に誤差無しを確認
 			// 値によっては+7の誤差が生じるケースがありますが分割ヒット計算に伴う丸め誤差と判断しています
-			case SKILL_ID_EFIRIGO:
+			case SKILL_ID_EFIRIGO: {
 				// 鈍器、本のみ発動可能
 				if (![ITEM_KIND_CLUB, ITEM_KIND_BOOK].includes(n_A_WeaponType)) {
 					wbairitu = 0;
@@ -2660,26 +2660,28 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				// 鈍器＆本修練の補正Lv
+				const donki_hon_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_DONKI_HON_SHUREN), UsedSkillSearch(SKILL_ID_DONKI_HON_SHUREN));
 				// 距離属性
 				n_Enekyori = 0;
 				if ([RACE_ID_UNDEAD, RACE_ID_DEMON].includes(mobData[MONSTER_DATA_INDEX_RACE])) {
-					wbairitu = 4000 + 500 * n_A_ActiveSkillLV;													// 基本倍率
-					wbairitu += 60 * GetTotalSpecStatus(MIG_PARAM_ID_POW);										// POW補正
-					wbairitu += (400 + 50 * n_A_ActiveSkillLV) * UsedSkillSearch(SKILL_ID_DONKI_HON_SHUREN);	// 鈍器＆本修練 補正
+					wbairitu = 4000 + 500 * n_A_ActiveSkillLV;							// 基本倍率
+					wbairitu += 60 * GetTotalSpecStatus(MIG_PARAM_ID_POW);				// POW補正
+					wbairitu += (400 + 50 * n_A_ActiveSkillLV) * donki_hon_shuren_lv;	// 鈍器＆本修練 補正
 				} else {
-					wbairitu = 3000 + 375 * n_A_ActiveSkillLV;													// 基本倍率
-					wbairitu += 45 * GetTotalSpecStatus(MIG_PARAM_ID_POW);										// POW補正
-					wbairitu += (275 + 40 * n_A_ActiveSkillLV) * UsedSkillSearch(SKILL_ID_DONKI_HON_SHUREN);	// 鈍器＆本修練 補正
+					wbairitu = 3000 + 375 * n_A_ActiveSkillLV;							// 基本倍率
+					wbairitu += 45 * GetTotalSpecStatus(MIG_PARAM_ID_POW);				// POW補正
+					wbairitu += (275 + 40 * n_A_ActiveSkillLV) * donki_hon_shuren_lv;	// 鈍器＆本修練 補正
 				}
 				// ベースレベル補正
 				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 				// 分割ヒット
 				wActiveHitNum = 7;
 				break;
-
+			}
 			// 「カーディナル」スキル「ペティティオ」
 			// 2024/10/23 ダメージ誤差無しを確認
-			case SKILL_ID_PETITIO:
+			case SKILL_ID_PETITIO: {
 				// 鈍器、本のみ発動可能
 				if (![ITEM_KIND_CLUB, ITEM_KIND_BOOK].includes(n_A_WeaponType)) {
 					wbairitu = 0;
@@ -2698,11 +2700,12 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				// POW補正
 				wbairitu += 15 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// 鈍器・本修練補正
-				wbairitu += 20 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_DONKI_HON_SHUREN);
+				const donki_hon_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_DONKI_HON_SHUREN), UsedSkillSearch(SKILL_ID_DONKI_HON_SHUREN));
+				wbairitu += 20 * n_A_ActiveSkillLV * donki_hon_shuren_lv;
 				// ベースレベル補正
 				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 				break;
-
+			}
 			// 「ウィンドホーク」スキル「ホークラッシュ」
 			// 2024/11/15 誤差無しを確認
 			case SKILL_ID_HAWK_RUSH: {
@@ -6093,9 +6096,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
-
-
-		case 94:
+		case SKILL_ID_SANCTUARY: {	// サンクチュアリ
 			w_HIT = 100;
 			w_HIT_HYOUJI = 100;
 			n_PerfectHIT_DMG = 0;
@@ -6105,8 +6106,8 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			n_Enekyori=2;
 			if(n_A_ActiveSkillLV <= 6) w_DMG[2] = 100 * n_A_ActiveSkillLV;
 			else w_DMG[2] = 777;
-			let w_HEAL_BAI = 100 + n_tok[91];
-			w_HEAL_BAI -= 2 * UsedSkillSearch(SKILL_ID_MEDITATIO);
+			let w_HEAL_BAI = 100 + n_tok[ITEM_SP_HEAL_UP_USING];
+			w_HEAL_BAI -= 2 * Math.max(LearnedSkillSearch(SKILL_ID_MEDITATIO), UsedSkillSearch(SKILL_ID_MEDITATIO));
 			w_DMG[2] = Math.floor(w_DMG[2] * w_HEAL_BAI / 100);
 			w_DMG[2] = ApplyElementRatio(mobData, Math.floor(w_DMG[2] / 2),6);
 			if(mobData[18] <90 && mobData[19] != 6) w_DMG[2]=0;
@@ -6121,8 +6122,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
-
-
+		}
 
 		case SKILL_ID_TURN_UNDEAD:
 		case SKILL_ID_RESURRECTION:
@@ -8691,7 +8691,9 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 
 		// 「カーディナル」スキル「アルビトリウム」
 		// 2024/10/23 誤差無しを確認
-		case SKILL_ID_ARBITRIUM:
+		case SKILL_ID_ARBITRIUM: {
+			// フィドスアニムス習得Lv
+			const fidos_animus_lv = Math.max(LearnedSkillSearch(SKILL_ID_FIDOS_ANIMUS), UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS));
 			// 初段ＨＩＴの場合
 			if (battleCalcInfo.parentSkillId === undefined) {
 				// 詠唱時間等
@@ -8702,7 +8704,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				// 基本倍率
 				wbairitu = 50 * n_A_ActiveSkillLV;
 				// フィドスアニムス補正
-				wbairitu += 4 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS);
+				wbairitu += 4 * n_A_ActiveSkillLV * fidos_animus_lv;
 				// SPL補正
 				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			}
@@ -8711,17 +8713,17 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				// 基本倍率
 				wbairitu = (450 * n_A_ActiveSkillLV);
 				// フィドスアニムス補正
-				wbairitu += 30 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS);
+				wbairitu += 30 * n_A_ActiveSkillLV * fidos_animus_lv;
 				// SPL補正
 				wbairitu += 25 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			}
 			// ベースレベル補正
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
-
+		}
 		// 「カーディナル」スキル「ニューマティックプロセラ」
 		// 2025-01-17 もなこさんから連携して頂いた情報との一致を確認
-		case SKILL_ID_NUMATIC_PROCERA:
+		case SKILL_ID_NUMATIC_PROCERA: {
 			// 詠唱時間等
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
@@ -8732,16 +8734,18 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// ダメージ間隔
 			n_Delay[5] = 3000;
+			// フィドスアニムス習得Lv
+			const fidos_animus_lv = Math.max(LearnedSkillSearch(SKILL_ID_FIDOS_ANIMUS), UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS));
 			// 不死・悪魔の場合
 			if (mobData[MONSTER_DATA_INDEX_RACE] == RACE_ID_UNDEAD || mobData[MONSTER_DATA_INDEX_RACE] == RACE_ID_DEMON) {
 				wbairitu = 6000 + 1500 * n_A_ActiveSkillLV;				// 基本倍率
-				wbairitu += 5 * UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS);	// フィドスアニムス補正
+				wbairitu += 5 * fidos_animus_lv;						// フィドスアニムス補正
 				wbairitu += 70 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// SPL補正
 			}
 			// それ以外の場合
 			else {
 				wbairitu = 5500 + 1250 * n_A_ActiveSkillLV;				// 基本倍率
-				wbairitu += 3 * UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS);	// フィドスアニムス補正
+				wbairitu += 3 * fidos_animus_lv;						// フィドスアニムス補正
 				wbairitu += 60 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// SPL補正
 			}
 			// ベースレベル補正
@@ -8749,21 +8753,23 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			// 見た目10hitで最大40hit
 			wActiveHitNum = 10;
 			break;
-
+		}
 		// 「カーディナル」スキル「フレーメン」
 		// 2025-01-27 もなこさんから連携して頂いた情報との一致を確認
-		case SKILL_ID_PHREMEN:
+		case SKILL_ID_PHREMEN: {
 			// 詠唱時間等
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// フィドスアニムス習得Lv
+			const fidos_animus_lv = Math.max(LearnedSkillSearch(SKILL_ID_FIDOS_ANIMUS), UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS));
 			// 不死・悪魔の場合
 			if (mobData[MONSTER_DATA_INDEX_RACE] == RACE_ID_UNDEAD || mobData[MONSTER_DATA_INDEX_RACE] == RACE_ID_DEMON) {
 				// 基本倍率
 				wbairitu = (900 * n_A_ActiveSkillLV);
 				// フィドスアニムス補正
-				wbairitu += 60 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS);
+				wbairitu += 60 * n_A_ActiveSkillLV * fidos_animus_lv;
 				// SPL補正
 				wbairitu += 50 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			}
@@ -8772,14 +8778,14 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				// 基本倍率
 				wbairitu = (600 * n_A_ActiveSkillLV);
 				// フィドスアニムス補正
-				wbairitu += 30 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS);
+				wbairitu += 30 * n_A_ActiveSkillLV * fidos_animus_lv;
 				// SPL補正
 				wbairitu += 30 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			}
 			// ベースレベル補正
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
-
+		}
 		// 「アークメイジ」スキル「デッドリープロジェクション」
 		case SKILL_ID_DEADLY_PROJECTION:
 			// 詠唱時間等
@@ -19949,7 +19955,7 @@ function TYPE_SYUUREN(mobData, attackMethodConfArray, bArmsLeft){
 			break;
 
 		case ITEM_KIND_CLUB:
-			w += 3 * UsedSkillSearch(SKILL_ID_MACE_SHUREN);
+			w += 3 * Math.max(LearnedSkillSearch(SKILL_ID_MACE_SHUREN), UsedSkillSearch(SKILL_ID_MACE_SHUREN));
 			w += 4 * Math.max(LearnedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC), UsedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC));
 
 		case ITEM_KIND_KATAR:
@@ -21743,11 +21749,12 @@ function ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, 
 		rangeUp = n_tok[ITEM_SP_SHORTRANGE_DAMAGE_UP];
 	}
 	dmg = Math.floor(dmg * (100 + rangeUp) / 100);
-	if (UsedSkillSearch(SKILL_ID_EUCHARISTICA)) {
+	const eucharistica_lv = Math.max(LearnedSkillSearch(SKILL_ID_EUCHARISTICA), UsedSkillSearch(SKILL_ID_EUCHARISTICA));
+	if (eucharistica_lv > 0) {
 		// エウカリスティカによる、不死／闇属性へのダメージ強化
 		if (n_A_JOB == JOB_ID_ARCBISHOP) {
 			if((70 <= mobData[18] && mobData[18] <= 79) || (90 <= mobData[18] && mobData[18] <= 99)) {
-				dmg = Math.floor(dmg * (100 + 3 * UsedSkillSearch(SKILL_ID_EUCHARISTICA)) / 100);
+				dmg = Math.floor(dmg * (100 + 3 * eucharistica_lv) / 100);
 			}
 		}
 	}

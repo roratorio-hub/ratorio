@@ -125,36 +125,29 @@ CHARA_DATA_INDEX_COMBO_PARAM		= idx++;
 
 /**
  * 指定のアイテムの装備数を取得する.
- * @param itemId アイテムＩＤ
- * @param rgnId  装備箇所ＩＤ（未指定時はすべて）
- * @returns 装備数
+ * @param {Number} itemId アイテムＩＤ
+ * @param {Number} rgnId  装備箇所ＩＤ（未指定時はすべて）
+ * @returns {Number} 装備数
  */
 function EquipNumSearch(itemId, rgnId) {
-//function EquipNumSearch(itemId, rgnId == EQUIP_REGION_ID_ANY) {
-
 	// 仮引数に未対応のブラウザ対策
 	if (rgnId == undefined) {
 		rgnId = EQUIP_REGION_ID_ANY;
 	}
-
-	var itemNum = 0;
-
-	// 全ての装着部位を走査して、指定のアイテムＩＤの数を数える
+	let itemNum = 0;
 	if (rgnId == EQUIP_REGION_ID_ANY) {
-		for (var idx = 0; idx < n_A_Equip.length; idx++) {
+		// 全ての装着部位を走査して、指定のアイテムＩＤの数を数える
+		for (let idx = 0; idx < n_A_Equip.length; idx++) {
 			if (itemId == n_A_Equip[idx]) {
 				itemNum += 1;
 			}
 		}
-	}
-
-	// または、指定の装備部位を走査する
-	else {
+	} else {
+		// または、指定の装備部位を走査する
 		if (itemId == n_A_Equip[rgnId]) {
 			itemNum += 1;
 		}
 	}
-
 	return itemNum;
 }
 
@@ -8751,7 +8744,7 @@ function GetStatusModifyMaxSpUp() {
 	//----------------------------------------------------------------
 	// 「ハイプリースト　メディタティオ」の、効果
 	//----------------------------------------------------------------
-	if ((sklLv = UsedSkillSearch(SKILL_ID_MEDITATIO)) > 0) {
+	if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_MEDITATIO), UsedSkillSearch(SKILL_ID_MEDITATIO))) > 0) {
 		val += 1 * sklLv;
 	}
 

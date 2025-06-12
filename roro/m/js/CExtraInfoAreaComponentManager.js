@@ -729,9 +729,10 @@ function CExtraInfoAreaComponentManager () {
 				valueMinArray[i] = 100 * i;
 			}
 			valueMinArray[7] = valueMinArray[8] = valueMinArray[9] = valueMinArray[10] = 777;
-			var w_BAI = 100 + n_tok[91];
-			if (UsedSkillSearch(SKILL_ID_MEDITATIO)) {
-				w_BAI -= UsedSkillSearch(SKILL_ID_MEDITATIO) * 2;
+			var w_BAI = 100 + n_tok[ITEM_SP_HEAL_UP_USING];
+			const meditatio_lv = Math.max(LearnedSkillSearch(SKILL_ID_MEDITATIO), UsedSkillSearch(SKILL_ID_MEDITATIO));
+			if (meditatio_lv > 0) {
+				w_BAI -= meditatio_lv * 2;
 			}
 			for (i = 0; i <= 10; i++) {
 				valueMinArray[i] = Math.floor(valueMinArray[i] * w_BAI / 100);

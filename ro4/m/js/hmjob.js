@@ -1225,7 +1225,6 @@ function ApplySpecModify(spid, spVal) {
 		break;
 
 	case ITEM_SP_MDEF_PLUS:
-
 		// 四次職支援「クライマックスインパクト」による効果
 		if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_CLIMAX_IMPACT]) > 0) {
 			spVal += 50;
@@ -1233,60 +1232,41 @@ function ApplySpecModify(spid, spVal) {
 		break;
 	
 	case ITEM_SP_LONGRANGE_DAMAGE_UP:
-
 		// 「マイスター」スキル「ラッシュ状態」による効果
 		if ((sklLv = UsedSkillSearch(SKILL_ID_RUSH_STATE)) > 0) {
 			spVal += 2 * sklLv;
 		}
-
 		// 「未知なる集中のブーツ」の純粋なステータスによる効果
 		if ((itemCount = EquipNumSearch(ITEM_ID_MICHINARU_SHUCHUNO_BOOTS)) > 0) {
 			if (g_pureStatus[MIG_PARAM_ID_CON] >= 100) {
 				spVal += 30 * itemCount;
 			}
 		}
-
 		// 四次職支援「天地神霊」による効果
 		if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_TENCHI_SHINRE]) > 0) {
 			spVal += 10 + bufLv;
 		}
-
 		// 「ナイトウォッチ」スキル「ヒドゥンカード」による効果
 		if ((sklLv = UsedSkillSearch(SKILL_ID_HIDDEN_CARD)) > 0) {
 			spVal += 100 + sklLv * 10;
 		}		
-
 		break;
 
 	case ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_SMALL:
 	case ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_MEDIUM:
 	case ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_LARGE:
 		// 「カーディナル」スキル「鈍器＆本修練」習得による効果
-		if ((sklLv = UsedSkillSearch(SKILL_ID_DONKI_HON_SHUREN)) > 0) {
+		if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_DONKI_HON_SHUREN), UsedSkillSearch(SKILL_ID_DONKI_HON_SHUREN))) > 0) {
 			// 鈍器、本装備時限定
-			switch (n_A_WeaponType) {
-				case ITEM_KIND_CLUB:
-				case ITEM_KIND_BOOK:
-					valWork = [0, 1, 2, 3, 4, 5, 7, 9, 11, 15, 20][sklLv];
-					spVal += valWork;
-					break;
+			if ([ITEM_KIND_CLUB, ITEM_KIND_BOOK].indexOf(n_A_WeaponType) >= 0) {
+				spVal += [0, 1, 2, 3, 4, 5, 7, 9, 11, 15, 20][sklLv];
 			}
 		}
 		// 「アビスチェイサー」スキル「短剣＆弓修練」習得による効果
 		if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_TANKEN_YUMI_SHUREN), UsedSkillSearch(SKILL_ID_TANKEN_YUMI_SHUREN))) > 0) {
 			// 短剣、弓装備時限定
-			switch (n_A_WeaponType) {
-				case ITEM_KIND_KNIFE:
-				case ITEM_KIND_BOW:
-					valWork = 1 * sklLv;
-					if (sklLv >= 8) {
-						valWork += 1 * (sklLv - 7);
-					}
-					if (sklLv >= 9) {
-						valWork += 1 * (sklLv - 8);
-					}
-					spVal += valWork;
-					break;
+			if ([ITEM_KIND_KNIFE, ITEM_KIND_BOW].indexOf(n_A_WeaponType) >= 0) {
+				spVal += [0, 1, 2, 3, 4, 5, 6, 7, 9, 12, 15][sklLv];
 			}
 		}
 		break;
@@ -1455,31 +1435,16 @@ function ApplySpecModify(spid, spVal) {
 	case ITEM_SP_MAGICAL_DAMAGE_UP_ELM_DARK:
 	case ITEM_SP_MAGICAL_DAMAGE_UP_ELM_PSYCO:
 	case ITEM_SP_MAGICAL_DAMAGE_UP_ELM_UNDEAD:
-
 		// 「カーディナル」スキル「フィドスアニムス」習得による効果
-		if ((sklLv = UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS)) > 0) {
-
-			// 聖属性魔法
+		if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_FIDOS_ANIMUS), UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS))) > 0) {
+			// 聖属性魔法ダメージが増加する
 			if ([ITEM_SP_MAGICAL_DAMAGE_UP_ELM_HOLY].indexOf(spid) >= 0) {
-
-				valWork = 1 * sklLv;
-				if (sklLv >= 6) {
-					valWork += 1 * (sklLv - 5);
-				}
-				if (sklLv >= 8) {
-					valWork += 1 * (sklLv - 7);
-				}
-				if (sklLv >= 10) {
-					valWork += 2 * (sklLv - 9);
-				}
-
-				spVal += valWork;
+				spVal += [0, 1, 2, 3, 4, 5, 7, 9, 12, 15, 20][sklLv];
 			}
 		}
 
 		// 「アークメイジ」スキル「クライマックスハリケーン状態」による効果
 		if ((sklLv = UsedSkillSearch(SKILL_ID_CLIMAX_HURRICANE_STATE)) > 0) {
-
 			// 風属性魔法
 			if ([ITEM_SP_MAGICAL_DAMAGE_UP_ELM_WIND].indexOf(spid) >= 0) {
 				spVal += 50;
@@ -1488,10 +1453,8 @@ function ApplySpecModify(spid, spVal) {
 
 		// 「インペリアルガード」スキル「ホーリーシールド」による効果
 		if ((sklLv = UsedSkillSearch(SKILL_ID_HOLY_SHIELD)) > 0) {
-
 			// 盾装備時限定
 			if (n_A_Equip[EQUIP_REGION_ID_SHIELD] != ITEM_ID_NOEQUIP_SHIELD) {
-
 				// 聖属性魔法
 				if ([ITEM_SP_MAGICAL_DAMAGE_UP_ELM_HOLY].indexOf(spid) >= 0) {
 					spVal += 5 * sklLv;
