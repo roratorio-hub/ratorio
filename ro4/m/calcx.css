@@ -187,9 +187,13 @@ body[class="CLS_BODY_ALTERNATIVE"] .folding-block-body-MIG {
 	padding: 0 -0.5em;
 }
 
-
-
-
+/* 習得スキル欄 */
+#ID_SKILL_LEARNED * {
+	white-space: nowrap;
+}
+#OBJID_SKILL_COLUMN_HEADER_LEARNED {
+	width: 650px;
+}
 
 /* 攻撃方法部分 */
 #OBJID_ATTACK_BLOCK_MIG {
@@ -368,3 +372,53 @@ body[class="CLS_BODY_ALTERNATIVE"] .folding-block-body-MIG {
 	border: none;
 }
 
+/*
+* ツールチップ 
+*   多用しすぎないように注意
+*/
+.tooltip-target {
+    /* ホバー対象の要素に対する設定 */
+    position: relative; /* 擬似要素（ツールチップ）の基準位置とする */
+    cursor: help; /* カーソルをヘルプアイコンにする */
+    padding-bottom: 2px; /* 下線とテキストの間に少しスペースを空ける */
+    display: inline-block; /* リンクなど、インライン要素でも位置を調整しやすくするため */
+}
+.tooltip-target::before,
+.tooltip-target::after {
+    --tooltip-offset: 10px; /* ツールチップと要素の間の距離 */
+
+    position: absolute;
+    left: 50%; /* 親要素（.tooltip-target）の中央に配置 */
+    transform: translateX(-50%); /* 中央寄せの調整 */
+    opacity: 0; /* 初期状態では非表示 */
+    pointer-events: none; /* ツールチップ自体がマウスイベントを邪魔しないように */
+    transition: opacity 0.1s ease-out, transform 0.1s ease-out; /* フェードイン・アウトと少しの移動アニメーション */
+    z-index: 1000; /* 他の要素より手前に表示 */
+}
+.tooltip-target::before {
+    content: attr(data-tooltip); /* data-tooltip属性の値を取得して表示 */
+    background-color: #333;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 0.85em;
+    white-space: nowrap; /* テキストの折り返しを防ぐ */
+    bottom: calc(100% + var(--tooltip-offset)); /* 親要素の上部に配置 */
+    /* 初期のY軸位置を少しずらしておくことで、フェードイン時に上に動くアニメーション */
+    transform: translateX(-50%) translateY(5px);
+}
+/* ツールチップの小さな矢印 */
+.tooltip-target::after {
+    content: '';
+    border: 6px solid transparent; /* 矢印のサイズと透明な境界 */
+    border-top-color: #333; /* 矢印の色 */
+    bottom: calc(100% + var(--tooltip-offset) - 6px); /* 矢印の位置調整 */
+    /* 初期のY軸位置を少しずらしておく */
+    transform: translateX(-50%) translateY(5px);
+}
+/* ホバー時のスタイル */
+.tooltip-target:hover::before,
+.tooltip-target:hover::after {
+    opacity: 1; /* ホバー時に表示 */
+    transform: translateX(-50%) translateY(0); /* 通常位置に戻す（アニメーション） */
+}

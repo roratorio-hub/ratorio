@@ -129,25 +129,22 @@ function AS_Calc(charaData, specData, mobData, attackMethodConfArray, battleCalc
 		n_AS_SKILL[idx][3] = 0;
 
 		// カーディナルスキル「ペティティオ」を習得している場合、「ペティティオ」も追加
-		skillLvSub = UsedSkillSearch(SKILL_ID_PETITIO_LEARNED);
+		skillLvSub = Math.max(LearnedSkillSearch(SKILL_ID_PETITIO), UsedSkillSearch(SKILL_ID_PETITIO_LEARNED)) ;
 		if (skillLvSub > 0) {
-
 			// 鈍器、本のみ発動可能
 			switch (n_A_WeaponType) {
-
-			case ITEM_KIND_CLUB:
-			case ITEM_KIND_BOOK:
-
-				funcAddAS();
-				n_AS_SKILL[idx][0] = SKILL_ID_PETITIO;
-				n_AS_SKILL[idx][1] = skillLvSub;
-				n_AS_SKILL[idx][2] = 1 * skillLvSub * 10;
-				if(wAS_3dan > 0) {
-					// ＡＳ三段掌が設定されている場合は、発動率を補正
-					n_AS_SKILL[idx][2] = n_AS_SKILL[idx][2] * (100 - wAS_3dan) / 100;
-				}
-				n_AS_SKILL[idx][3] = 0;
-				break;
+				case ITEM_KIND_CLUB:
+				case ITEM_KIND_BOOK:
+					funcAddAS();
+					n_AS_SKILL[idx][0] = SKILL_ID_PETITIO;
+					n_AS_SKILL[idx][1] = skillLvSub;
+					n_AS_SKILL[idx][2] = 1 * skillLvSub * 10;
+					if(wAS_3dan > 0) {
+						// ＡＳ三段掌が設定されている場合は、発動率を補正
+						n_AS_SKILL[idx][2] = n_AS_SKILL[idx][2] * (100 - wAS_3dan) / 100;
+					}
+					n_AS_SKILL[idx][3] = 0;
+					break;
 			}
 		}
 	}
