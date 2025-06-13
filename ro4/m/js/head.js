@@ -1861,18 +1861,19 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				else wbairitu = ((150 * n_A_ActiveSkillLV) * n_A_BaseLV / 100) + n_A_INT * 3;
 				break;
 
-			case SKILL_ID_BAKKISANDAN:
+			case SKILL_ID_BAKKISANDAN: {	// 爆気散弾
 				n_Enekyori = 1;
 				n_Delay[0] = 1;
 				n_Delay[2] = 1000;
 				n_Delay[7] = 10000;
+				// TODO 爆裂波動の習得Lvがスキル倍率に影響する可能性がある
 				var w = attackMethodConfArray[0].GetOptionValue(0);
 				if (UsedSkillSearch(SKILL_ID_SENRYU_SHOTEN) || UsedSkillSearch(SKILL_ID_BAKURETSU_HADO) || TimeItemNumSearch(34)) {
 					wbairitu = ROUNDDOWN((125 + 25 * n_A_ActiveSkillLV) * n_A_BaseLV / 150 * w);
 				}
 				else wbairitu = ROUNDDOWN(20 * n_A_ActiveSkillLV * n_A_BaseLV / 150 * w);
 				break;
-
+			}
 			case SKILL_ID_DAITENHOSUI:
 				n_Delay[0] = 1;
 				wActiveHitNum = 2;
@@ -2047,24 +2048,26 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				wbairitu = 100 * n_A_ActiveSkillLV;
 				break;
 
-			case SKILL_ID_YOMIGAESHI:
+			case SKILL_ID_YOMIGAESHI:	// 黄泉返し
 				n_Enekyori=1;
 				n_Delay[7] = 3500 - 500 * n_A_ActiveSkillLV;
 				wbairitu = (100 + 20 * attackMethodConfArray[0].GetOptionValue(0)) * n_A_ActiveSkillLV;
 				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
 				break;
 
-			case SKILL_ID_FUMASHURIKEN_RANKA:
+			case SKILL_ID_FUMASHURIKEN_RANKA: {	// 風魔手裏剣 -乱華-
 				n_Enekyori=1;
 				wActiveHitNum = 5;
 				wCast = Math.max(1200, 2200 - 200 * n_A_ActiveSkillLV);
 				n_KoteiCast = Math.min(1800, 800 + 200 * n_A_ActiveSkillLV);
 				n_Delay[7] = 500;
-				wbairitu = 150 * n_A_ActiveSkillLV + n_A_STR + 100 * attackMethodConfArray[0].GetOptionValue(0);
+				// 風魔手裏剣投げの習得Lv
+				const fumashuriken_nage_lv = Math.max(LearnedSkillSearch(SKILL_ID_FUMASHURIKEN_NAGE), attackMethodConfArray[0].GetOptionValue(0));
+				wbairitu = 150 * n_A_ActiveSkillLV + n_A_STR + 100 * fumashuriken_nage_lv;
 				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
 				if(!n_AS_MODE && n_A_WeaponType != 16) n_Buki_Muri = true;
 				break;
-
+			}
 			case SKILL_ID_DARK_CRAW:
 				wActiveHitNum = 3;
 				n_Delay[7] = 60000;
@@ -2645,7 +2648,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			//「カーディナル」スキル「エフィリゴ」
 			// 2025-03-30 基本的に誤差無しを確認
 			// 値によっては+7の誤差が生じるケースがありますが分割ヒット計算に伴う丸め誤差と判断しています
-			case SKILL_ID_EFIRIGO:
+			case SKILL_ID_EFIRIGO: {
 				// 鈍器、本のみ発動可能
 				if (![ITEM_KIND_CLUB, ITEM_KIND_BOOK].includes(n_A_WeaponType)) {
 					wbairitu = 0;
@@ -2657,26 +2660,28 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				// 鈍器＆本修練の補正Lv
+				const donki_hon_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_DONKI_HON_SHUREN), UsedSkillSearch(SKILL_ID_DONKI_HON_SHUREN));
 				// 距離属性
 				n_Enekyori = 0;
 				if ([RACE_ID_UNDEAD, RACE_ID_DEMON].includes(mobData[MONSTER_DATA_INDEX_RACE])) {
-					wbairitu = 4000 + 500 * n_A_ActiveSkillLV;													// 基本倍率
-					wbairitu += 60 * GetTotalSpecStatus(MIG_PARAM_ID_POW);										// POW補正
-					wbairitu += (400 + 50 * n_A_ActiveSkillLV) * UsedSkillSearch(SKILL_ID_DONKI_HON_SHUREN);	// 鈍器＆本修練 補正
+					wbairitu = 4000 + 500 * n_A_ActiveSkillLV;							// 基本倍率
+					wbairitu += 60 * GetTotalSpecStatus(MIG_PARAM_ID_POW);				// POW補正
+					wbairitu += (400 + 50 * n_A_ActiveSkillLV) * donki_hon_shuren_lv;	// 鈍器＆本修練 補正
 				} else {
-					wbairitu = 3000 + 375 * n_A_ActiveSkillLV;													// 基本倍率
-					wbairitu += 45 * GetTotalSpecStatus(MIG_PARAM_ID_POW);										// POW補正
-					wbairitu += (275 + 40 * n_A_ActiveSkillLV) * UsedSkillSearch(SKILL_ID_DONKI_HON_SHUREN);	// 鈍器＆本修練 補正
+					wbairitu = 3000 + 375 * n_A_ActiveSkillLV;							// 基本倍率
+					wbairitu += 45 * GetTotalSpecStatus(MIG_PARAM_ID_POW);				// POW補正
+					wbairitu += (275 + 40 * n_A_ActiveSkillLV) * donki_hon_shuren_lv;	// 鈍器＆本修練 補正
 				}
 				// ベースレベル補正
 				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 				// 分割ヒット
 				wActiveHitNum = 7;
 				break;
-
+			}
 			// 「カーディナル」スキル「ペティティオ」
 			// 2024/10/23 ダメージ誤差無しを確認
-			case SKILL_ID_PETITIO:
+			case SKILL_ID_PETITIO: {
 				// 鈍器、本のみ発動可能
 				if (![ITEM_KIND_CLUB, ITEM_KIND_BOOK].includes(n_A_WeaponType)) {
 					wbairitu = 0;
@@ -2695,11 +2700,12 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				// POW補正
 				wbairitu += 15 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// 鈍器・本修練補正
-				wbairitu += 20 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_DONKI_HON_SHUREN);
+				const donki_hon_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_DONKI_HON_SHUREN), UsedSkillSearch(SKILL_ID_DONKI_HON_SHUREN));
+				wbairitu += 20 * n_A_ActiveSkillLV * donki_hon_shuren_lv;
 				// ベースレベル補正
 				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 				break;
-
+			}
 			// 「ウィンドホーク」スキル「ホークラッシュ」
 			// 2024/11/15 誤差無しを確認
 			case SKILL_ID_HAWK_RUSH: {
@@ -3341,7 +3347,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 
 			// 「トルバドゥール・トルヴェール」スキル「ロゼブロッサム」
 			// 2025-04-03 実測確認済み
-			case SKILL_ID_ROSE_BLOSSOM:
+			case SKILL_ID_ROSE_BLOSSOM: {
 				// 弓・楽器・鞭装備状態のみ発動可能
 				if (![ITEM_KIND_BOW, ITEM_KIND_MUSICAL, ITEM_KIND_WHIP].includes(n_A_WeaponType)) {
 					wbairitu = 0;
@@ -3350,6 +3356,8 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				}
 				// 距離属性
 				n_Enekyori = 1;
+				// ステージマナー習得Lv
+				const stage_manner_lv = Math.max(LearnedSkillSearch(SKILL_ID_STAGE_MANNER), UsedSkillSearch(SKILL_ID_STAGE_MANNER));
 				// 初段ＨＩＴの場合
 				if (battleCalcInfo.parentSkillId === undefined) {
 					// 詠唱時間等
@@ -3361,11 +3369,11 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 					if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SOUND_BLEND]) {
 						// サウンドブレンド 有り
 						wbairitu = 1250 + 350 * n_A_ActiveSkillLV;
-						wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_CON) * UsedSkillSearch(SKILL_ID_STAGE_MANNER);
+						wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_CON) * stage_manner_lv;
 					} else {
 						// サウンドブレンド 無し
 						wbairitu = 750 + 150 * n_A_ActiveSkillLV;
-						wbairitu += 1 * GetTotalSpecStatus(MIG_PARAM_ID_CON) * UsedSkillSearch(SKILL_ID_STAGE_MANNER);
+						wbairitu += 1 * GetTotalSpecStatus(MIG_PARAM_ID_CON) * stage_manner_lv;
 					}
 					// 分割HIT数
 					wActiveHitNum = 2;
@@ -3376,20 +3384,20 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 					if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SOUND_BLEND]) {
 						// サウンドブレンド 有り
 						wbairitu = 2500 + 700 * n_A_ActiveSkillLV;
-						wbairitu += 4 * GetTotalSpecStatus(MIG_PARAM_ID_CON) * UsedSkillSearch(SKILL_ID_STAGE_MANNER);
+						wbairitu += 4 * GetTotalSpecStatus(MIG_PARAM_ID_CON) * stage_manner_lv;
 					} else {
 						// サウンドブレンド 無し
 						wbairitu = 1250 + 350 * n_A_ActiveSkillLV;
-						wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_CON) * UsedSkillSearch(SKILL_ID_STAGE_MANNER);
+						wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_CON) * stage_manner_lv;
 					}
 				}
 				// ベースレベル補正
 				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 				break;
-
+			}
 			// 「トルバドゥール・トルヴェール」スキル「リズムシューティング」
 			// 2025-04-03 実測確認済み
-			case SKILL_ID_RHYTHM_SHOOTING:
+			case SKILL_ID_RHYTHM_SHOOTING: {
 				// 弓・楽器・鞭装備状態のみ発動可能
 				if (![ITEM_KIND_BOW, ITEM_KIND_MUSICAL, ITEM_KIND_WHIP].includes(n_A_WeaponType)) {
 					wbairitu = 0;
@@ -3403,22 +3411,24 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				// ステージマナー習得Lv
+				const stage_manner_lv = Math.max(LearnedSkillSearch(SKILL_ID_STAGE_MANNER), UsedSkillSearch(SKILL_ID_STAGE_MANNER));
 				// 基本倍率
 				if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SOUND_BLEND]) {
 					// サウンドブレンド 有り
 					wbairitu = 1250 + 350 * n_A_ActiveSkillLV;
-					wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_CON) * UsedSkillSearch(SKILL_ID_STAGE_MANNER);
+					wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_CON) * stage_manner_lv;
 				} else {
 					// サウンドブレンド 無し
 					wbairitu = 750 + 150 * n_A_ActiveSkillLV;
-					wbairitu += 1 * GetTotalSpecStatus(MIG_PARAM_ID_CON) * UsedSkillSearch(SKILL_ID_STAGE_MANNER);
+					wbairitu += 1 * GetTotalSpecStatus(MIG_PARAM_ID_CON) * stage_manner_lv;
 				}
 				// ベースレベル補正
 				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 				// ヒット数
 				wHITsuu = 3;
 				break;
-
+			}
 			// 「バイオロ」スキル「アシディファイドゾーン」
 			// 2024/11/15 初撃のダメージ誤差無しを確認済み
 			// 設置ダメージは全く合わないが実用性が薄いので調査優先度は低いと判断しこのまま静観します
@@ -4031,17 +4041,19 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 
 			// 「蜃気楼　不知火」スキル「影の舞」
 			// 2024/12/25 もなこさん検証データとの誤差無しを確認ずみ
-			case SKILL_ID_KAGE_NO_MAI:
+			case SKILL_ID_KAGE_NO_MAI: {
 				// 詠唱など
 				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				// 影狩りの習得Lv
+				const kage_gari_lv = Math.max(LearnedSkillSearch(SKILL_ID_KAGE_GARI), attackMethodConfArray[0].GetOptionValue(1));
 				// ダメージ倍率
-				wbairitu = 3500 + 100 * n_A_ActiveSkillLV;											// 基礎倍率
-				wbairitu += 45 * n_A_ActiveSkillLV * attackMethodConfArray[0].GetOptionValue(1);	// 習得済みスキル条件
-				wbairitu += 4 * GetTotalSpecStatus(MIG_PARAM_ID_POW);								// 特性ステータス補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);									// BaseLv補正
+				wbairitu = 3500 + 100 * n_A_ActiveSkillLV;				// 基礎倍率
+				wbairitu += 45 * n_A_ActiveSkillLV * kage_gari_lv;		// 習得済みスキル条件
+				wbairitu += 4 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// 特性ステータス補正
+				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);		// BaseLv補正
 				if (battleCalcInfo.parentSkillId === undefined) {
 					// 本体の攻撃
 					wActiveHitNum = 5;
@@ -4052,39 +4064,43 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 					wActiveHitNum = 8;
 				}
 				break;
-
+			}
 			// 「蜃気楼　不知火」スキル「影一閃」
 			// 2024/12/25 もなこさん検証データとの誤差無しを確認ずみ
-			case SKILL_ID_KAGE_ISSEN:
+			case SKILL_ID_KAGE_ISSEN: {
 				// 詠唱時間など
 				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				// 影の舞の習得Lv
+				const kage_no_mai_lv = Math.max(LearnedSkillSearch(SKILL_ID_KAGE_NO_MAI), attackMethodConfArray[0].GetOptionValue(0));
 				// ダメージ倍率
-				wbairitu = 2000 + 100 * n_A_ActiveSkillLV;											// 基礎倍率
-				wbairitu += 30 * n_A_ActiveSkillLV * attackMethodConfArray[0].GetOptionValue(0);	// 習得済みスキル条件
-				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);								// 特性ステータス補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);									// BaseLv補正
+				wbairitu = 2000 + 100 * n_A_ActiveSkillLV;				// 基礎倍率
+				wbairitu += 30 * n_A_ActiveSkillLV * kage_no_mai_lv;	// 習得済みスキル条件
+				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// 特性ステータス補正
+				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);		// BaseLv補正
 				// 分割ヒット
 				wActiveHitNum = 2;
 				break;
-
+			}
 			// 「蜃気楼　不知火」スキル「影狩り」
 			// 2024/12/25 もなこさん検証データとの誤差無しを確認ずみ
-			case SKILL_ID_KAGE_GARI:
+			case SKILL_ID_KAGE_GARI: {
 				// 詠唱など
 				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				// ダメージ倍率
-				wbairitu = 3500 + 100 * n_A_ActiveSkillLV;											// 基礎倍率
-				wbairitu += 45 * n_A_ActiveSkillLV * attackMethodConfArray[0].GetOptionValue(0);	// 習得済みスキル条件
-				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);								// 特性ステータス補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);									// BaseLv補正
+				wbairitu = 3500 + 100 * n_A_ActiveSkillLV;					// 基礎倍率
+				// 影一閃の習得Lv
+				const kage_issen_lv = Math.max(LearnedSkillSearch(SKILL_ID_KAGE_ISSEN), attackMethodConfArray[0].GetOptionValue(0));
+				wbairitu += 45 * n_A_ActiveSkillLV * kage_issen_lv;			// 習得済みスキル条件
+				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);		// 特性ステータス補正
+				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);			// BaseLv補正
 				break;
-
+			}
 			// 「蜃気楼　不知火」スキル「幻術 -影縫い-」
 			// 2024/12/25 もなこさん検証データとの誤差無しを確認ずみ
 			case SKILL_ID_GENJUTSU_KAGE_NUI:
@@ -4107,7 +4123,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 
 			// 「蜃気楼　不知火」スキル「風魔手裏剣 -掌握-」
 			// 2024/12/25 もなこさん検証データとの誤差無しを確認ずみ
-			case SKILL_ID_FUMASHURIKEN_SHOUAKU:
+			case SKILL_ID_FUMASHURIKEN_SHOUAKU: {
 				n_Enekyori = 1;			// 遠距離フラグ
 				// 詠唱など
 				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
@@ -4118,33 +4134,37 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				g_bDefinedDamageIntervals = true;
 				n_Delay[5] = 250;		// ダメージ間隔
 				n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);		// オブジェクト存続時間
+				// 風魔手裏剣 -構築-の習得Lv
+				const fumashuriken_kouchiku_lv = Math.max(LearnedSkillSearch(SKILL_ID_FUMASHURIKEN_KOUCHIKU), attackMethodConfArray[0].GetOptionValue(0));
 				// ダメージ倍率
-				wbairitu = 50 * n_A_ActiveSkillLV;														// 基礎倍率
-				wbairitu += 5 * n_A_ActiveSkillLV * attackMethodConfArray[0].GetOptionValue(0);			// 習得済みスキル条件
-				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);									// 特性ステータス補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);										// BaseLv補正
+				wbairitu = 50 * n_A_ActiveSkillLV;										// 基礎倍率
+				wbairitu += 5 * n_A_ActiveSkillLV * fumashuriken_kouchiku_lv;			// 習得済みスキル条件
+				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);					// 特性ステータス補正
+				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);						// BaseLv補正
 				break;
-
+			}
 			//「蜃気楼　不知火」スキル「風魔手裏剣 -構築-」
 			// 2024/12/25 もなこさん検証データとの誤差無しを確認ずみ
-			case SKILL_ID_FUMASHURIKEN_KOUCHIKU:
+			case SKILL_ID_FUMASHURIKEN_KOUCHIKU: {
 				n_Enekyori = 1;			// 遠距離フラグ
 				// 詠唱など
 				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				// 風魔手裏剣 -掌握-の習得Lv
+				const fumashuriken_shouaku_lv = Math.max(LearnedSkillSearch(SKILL_ID_FUMASHURIKEN_SHOUAKU), attackMethodConfArray[0].GetOptionValue(1));
 				// 基礎倍率
 				if (battleCalcInfo.parentSkillId === undefined) {
-					wbairitu = 3800 + 100 * n_A_ActiveSkillLV;											// 初撃 ダメージ倍率
+					wbairitu = 3800 + 100 * n_A_ActiveSkillLV;						// 初撃 ダメージ倍率
 				} else {
-					wbairitu = 10500 + 200 * n_A_ActiveSkillLV;											// 追撃 ダメージ倍率
+					wbairitu = 10500 + 200 * n_A_ActiveSkillLV;						// 追撃 ダメージ倍率
 				}
-				wbairitu += 48 * n_A_ActiveSkillLV * attackMethodConfArray[0].GetOptionValue(1);		// 習得済みスキル条件
-				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);									// 特性ステータス補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);										// BaseLv補正
+				wbairitu += 48 * n_A_ActiveSkillLV * fumashuriken_shouaku_lv;		// 習得済みスキル条件
+				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);				// 特性ステータス補正
+				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);					// BaseLv補正
 				break;
-
+			}
 			// 「ハイパーノービス」スキル「ダブルボウリングバッシュ」
 			case SKILL_ID_DOUBLE_BOWLING_BASH: {
 				// 詠唱など
@@ -4530,14 +4550,16 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 
 			// 「蜃気楼　不知火」スキル「苦無 -歪曲-」
 			// 2024/12/25 もなこさん検証データとの誤差無しを確認ずみ
-			case SKILL_ID_KUNAI_WAIKYOKU:
+			case SKILL_ID_KUNAI_WAIKYOKU: {
 				// 遠距離フラグ
 				n_Enekyori = 1;
+				// 苦無 -屈折-の習得Lv
+				const kunai_kussetsu_lv = Math.max(LearnedSkillSearch(SKILL_ID_KUNAI_KUSSETSU), attackMethodConfArray[0].GetOptionValue(1));
 				// ダメージ倍率
-				wbairitu = 3900 + 100 * n_A_ActiveSkillLV;											// 基本倍率
-				wbairitu += 49 * n_A_ActiveSkillLV * attackMethodConfArray[0].GetOptionValue(1);	// 参照スキル習得Lv補正
-				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);								// 特性ステータス補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);									// BaseLv補正
+				wbairitu = 3900 + 100 * n_A_ActiveSkillLV;				// 基本倍率
+				wbairitu += 49 * n_A_ActiveSkillLV * kunai_kussetsu_lv;	// 参照スキル習得Lv補正
+				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// 特性ステータス補正
+				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);		// BaseLv補正
 				if (battleCalcInfo.parentSkillId === undefined) {
 				// 本体の攻撃
 					wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
@@ -4554,10 +4576,10 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 					wActiveHitNum = 3;
 				}
 				break;
-
+			}
 			// 「蜃気楼　不知火」スキル「苦無 -回転-」
 			// 2024/12/25 もなこさん検証データとの誤差無しを確認ずみ
-			case SKILL_ID_KUNAI_KAITEN:
+			case SKILL_ID_KUNAI_KAITEN: {
 				// 遠距離フラグ
 				n_Enekyori = 1;
 				// 詠唱時間等
@@ -4571,18 +4593,20 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				n_Delay[5] = 500;	// ダメージ間隔
 				// 属性
 				n_A_Weapon_zokusei = g_skillManager.GetElement(battleCalcInfo.skillId);
+				// 苦無 -歪曲-の習得Lv
+				const kunai_waikyoku_lv = Math.max(LearnedSkillSearch(SKILL_ID_KUNAI_WAIKYOKU), attackMethodConfArray[0].GetOptionValue(0));
 				// ダメージ倍率
-				wbairitu = 1500 + 200 * n_A_ActiveSkillLV;											// 基本倍率
-				wbairitu += 50 * n_A_ActiveSkillLV * attackMethodConfArray[0].GetOptionValue(0);	// 参照スキル習得Lv補正
-				wbairitu += 4 * GetTotalSpecStatus(MIG_PARAM_ID_POW);								// 特性ステータス補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);									// BaseLv補正
+				wbairitu = 1500 + 200 * n_A_ActiveSkillLV;					// 基本倍率
+				wbairitu += 50 * n_A_ActiveSkillLV * kunai_waikyoku_lv;		// 参照スキル習得Lv補正
+				wbairitu += 4 * GetTotalSpecStatus(MIG_PARAM_ID_POW);		// 特性ステータス補正
+				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);			// BaseLv補正
 				// 分割ヒット数
 				wActiveHitNum = 3;
 				break;
-
+			}
 			// 「蜃気楼　不知火」スキル「苦無 -屈折-」
 			// 2024/12/25 もなこさん検証データとの誤差無しを確認ずみ
-			case SKILL_ID_KUNAI_KUSSETSU:
+			case SKILL_ID_KUNAI_KUSSETSU: {
 				// 遠距離フラグ
 				n_Enekyori = 1;
 				// 詠唱時間等
@@ -4602,10 +4626,10 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);								// 特性ステータス補正
 				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);									// BaseLv補正
 				break;
-
+			}
 			// 「蜃気楼　不知火」スキル「幻術 -苦無-」
 			// 2024/12/25 もなこさん検証データとの誤差無しを確認ずみ
-			case SKILL_ID_GENJUTSU_KUNAI:
+			case SKILL_ID_GENJUTSU_KUNAI: {
 				// 遠距離フラグ
 				n_Enekyori = 1;
 				// 詠唱時間等
@@ -4628,7 +4652,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				// 分割ヒット数
 				wActiveHitNum = 8;
 				break;
-
+			}
 			// 「ハイパーノービス」スキル「シールドチェーンラッシュ」
 			case SKILL_ID_SHIELD_CHAIN_RUSH: {
 				// 遠距離フラグ
@@ -5701,12 +5725,14 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 
 
 
-		case SKILL_ID_SHURIKEN_NAGE:
+		case SKILL_ID_SHURIKEN_NAGE: {	// 手裏剣投げ
 			n_Enekyori=1;
 						n_PerfectHIT_DMG = 0;
 			wbairitu = 100 + 5 * n_A_ActiveSkillLV;
-			for(var i=0;i<=2;i++){
-				w_DMG[i] = n_A_DMG[i] + SyurikenOBJ[attackMethodConfArray[0].GetOptionValue(0)][0] + 3 * UsedSkillSearch(SKILL_ID_TOKAKU_SHUREN) + 4 * n_A_ActiveSkillLV;
+			// 投擲修練Lv
+			const toteki_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_TOTEKI_SHUREN), UsedSkillSearch(SKILL_ID_TOTEKI_SHUREN));
+			for(let i = 0; i <= 2; i++){
+				w_DMG[i] = n_A_DMG[i] + SyurikenOBJ[attackMethodConfArray[0].GetOptionValue(0)][0] + 3 * toteki_shuren_lv + 4 * n_A_ActiveSkillLV;
 				w_DMG[i] = ROUNDDOWN(w_DMG[i] * wbairitu / 100);
 				w_DMG[i] -= B_Total_DEF;
 				if(w_DMG[i] <0) w_DMG[i] = 0;
@@ -5720,8 +5746,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
-
-
+		}
 
 		case SKILL_ID_KUNAI_NAGE:
 		case SKILL_ID_HAPPO_KUNAI:
@@ -5761,9 +5786,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
-
-
-		case SKILL_ID_BAKURETSU_KUNAI:
+		case SKILL_ID_BAKURETSU_KUNAI: {	// 爆裂苦無
 			n_PerfectHIT_DMG = 0;
 			w_HIT_HYOUJI = 100;
 			w_HIT = 100;
@@ -5772,7 +5795,9 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			n_Delay[7] = 1000;
 			wCast = 800 * n_A_ActiveSkillLV - 800;
 			n_KoteiCast = 800;
-			wbairitu = n_A_ActiveSkillLV * (50 + Math.floor(n_A_DEX / 4)) * UsedSkillSearch(SKILL_ID_TOKAKU_SHUREN) * 0.4 * n_A_BaseLV / 100 + 10 * n_A_JobLV;
+			// 投擲修練Lv
+			const toteki_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_TOTEKI_SHUREN), UsedSkillSearch(SKILL_ID_TOTEKI_SHUREN));
+			wbairitu = n_A_ActiveSkillLV * (50 + Math.floor(n_A_DEX / 4)) * toteki_shuren_lv * 0.4 * n_A_BaseLV / 100 + 10 * n_A_JobLV;
 			var wKUNAI = 0;
 			for(var i=0;i<=2;i++){
 				w_DMG[i] = n_A_DMG[i] + wKUNAI;
@@ -5791,8 +5816,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
-
-
+		}
 
 		case SKILL_ID_FUMASHURIKEN_NAGE:
 			wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
@@ -6072,9 +6096,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
-
-
-		case 94:
+		case SKILL_ID_SANCTUARY: {	// サンクチュアリ
 			w_HIT = 100;
 			w_HIT_HYOUJI = 100;
 			n_PerfectHIT_DMG = 0;
@@ -6084,8 +6106,8 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			n_Enekyori=2;
 			if(n_A_ActiveSkillLV <= 6) w_DMG[2] = 100 * n_A_ActiveSkillLV;
 			else w_DMG[2] = 777;
-			let w_HEAL_BAI = 100 + n_tok[91];
-			w_HEAL_BAI -= 2 * UsedSkillSearch(SKILL_ID_MEDITATIO);
+			let w_HEAL_BAI = 100 + n_tok[ITEM_SP_HEAL_UP_USING];
+			w_HEAL_BAI -= 2 * Math.max(LearnedSkillSearch(SKILL_ID_MEDITATIO), UsedSkillSearch(SKILL_ID_MEDITATIO));
 			w_DMG[2] = Math.floor(w_DMG[2] * w_HEAL_BAI / 100);
 			w_DMG[2] = ApplyElementRatio(mobData, Math.floor(w_DMG[2] / 2),6);
 			if(mobData[18] <90 && mobData[19] != 6) w_DMG[2]=0;
@@ -6100,8 +6122,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
-
-
+		}
 
 		case SKILL_ID_TURN_UNDEAD:
 		case SKILL_ID_RESURRECTION:
@@ -8362,26 +8383,20 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			n_bunkatuHIT = 1;
 			wCast = Math.min(3000, 500 + 500 * n_A_ActiveSkillLV);
 			n_Delay[7] = 200;
-
 			// 基本倍率
 			wbairitu = 120 * n_A_ActiveSkillLV
-
 			// サウンドブレンド補正
 			if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SOUND_BLEND] > 0) {
 				wbairitu *= 2;
 			}
-
 			// レッスン補正
-			wbairitu += 60 * UsedSkillSearch(SKILL_ID_LESSON);
-
+			wbairitu += 60 * Math.max(LearnedSkillSearch(SKILL_ID_LESSON), UsedSkillSearch(SKILL_ID_LESSON));
 			// BaseLv補正
 			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
-
 			// 睡眠補正
 			if(n_B_IJYOU[MOB_CONF_DEBUF_ID_SUIMIN]) {
 				wbairitu = ROUNDDOWN(wbairitu * 150 / 100);
 			}
-
 			break;
 
 		case SKILL_ID_FIRE_WALK:
@@ -8676,7 +8691,9 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 
 		// 「カーディナル」スキル「アルビトリウム」
 		// 2024/10/23 誤差無しを確認
-		case SKILL_ID_ARBITRIUM:
+		case SKILL_ID_ARBITRIUM: {
+			// フィドスアニムス習得Lv
+			const fidos_animus_lv = Math.max(LearnedSkillSearch(SKILL_ID_FIDOS_ANIMUS), UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS));
 			// 初段ＨＩＴの場合
 			if (battleCalcInfo.parentSkillId === undefined) {
 				// 詠唱時間等
@@ -8687,7 +8704,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				// 基本倍率
 				wbairitu = 50 * n_A_ActiveSkillLV;
 				// フィドスアニムス補正
-				wbairitu += 4 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS);
+				wbairitu += 4 * n_A_ActiveSkillLV * fidos_animus_lv;
 				// SPL補正
 				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			}
@@ -8696,17 +8713,17 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				// 基本倍率
 				wbairitu = (450 * n_A_ActiveSkillLV);
 				// フィドスアニムス補正
-				wbairitu += 30 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS);
+				wbairitu += 30 * n_A_ActiveSkillLV * fidos_animus_lv;
 				// SPL補正
 				wbairitu += 25 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			}
 			// ベースレベル補正
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
-
+		}
 		// 「カーディナル」スキル「ニューマティックプロセラ」
 		// 2025-01-17 もなこさんから連携して頂いた情報との一致を確認
-		case SKILL_ID_NUMATIC_PROCERA:
+		case SKILL_ID_NUMATIC_PROCERA: {
 			// 詠唱時間等
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
@@ -8717,16 +8734,18 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// ダメージ間隔
 			n_Delay[5] = 3000;
+			// フィドスアニムス習得Lv
+			const fidos_animus_lv = Math.max(LearnedSkillSearch(SKILL_ID_FIDOS_ANIMUS), UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS));
 			// 不死・悪魔の場合
 			if (mobData[MONSTER_DATA_INDEX_RACE] == RACE_ID_UNDEAD || mobData[MONSTER_DATA_INDEX_RACE] == RACE_ID_DEMON) {
 				wbairitu = 6000 + 1500 * n_A_ActiveSkillLV;				// 基本倍率
-				wbairitu += 5 * UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS);	// フィドスアニムス補正
+				wbairitu += 5 * fidos_animus_lv;						// フィドスアニムス補正
 				wbairitu += 70 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// SPL補正
 			}
 			// それ以外の場合
 			else {
 				wbairitu = 5500 + 1250 * n_A_ActiveSkillLV;				// 基本倍率
-				wbairitu += 3 * UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS);	// フィドスアニムス補正
+				wbairitu += 3 * fidos_animus_lv;						// フィドスアニムス補正
 				wbairitu += 60 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// SPL補正
 			}
 			// ベースレベル補正
@@ -8734,21 +8753,23 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			// 見た目10hitで最大40hit
 			wActiveHitNum = 10;
 			break;
-
+		}
 		// 「カーディナル」スキル「フレーメン」
 		// 2025-01-27 もなこさんから連携して頂いた情報との一致を確認
-		case SKILL_ID_PHREMEN:
+		case SKILL_ID_PHREMEN: {
 			// 詠唱時間等
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// フィドスアニムス習得Lv
+			const fidos_animus_lv = Math.max(LearnedSkillSearch(SKILL_ID_FIDOS_ANIMUS), UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS));
 			// 不死・悪魔の場合
 			if (mobData[MONSTER_DATA_INDEX_RACE] == RACE_ID_UNDEAD || mobData[MONSTER_DATA_INDEX_RACE] == RACE_ID_DEMON) {
 				// 基本倍率
 				wbairitu = (900 * n_A_ActiveSkillLV);
 				// フィドスアニムス補正
-				wbairitu += 60 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS);
+				wbairitu += 60 * n_A_ActiveSkillLV * fidos_animus_lv;
 				// SPL補正
 				wbairitu += 50 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			}
@@ -8757,14 +8778,14 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				// 基本倍率
 				wbairitu = (600 * n_A_ActiveSkillLV);
 				// フィドスアニムス補正
-				wbairitu += 30 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS);
+				wbairitu += 30 * n_A_ActiveSkillLV * fidos_animus_lv;
 				// SPL補正
 				wbairitu += 30 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			}
 			// ベースレベル補正
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
-
+		}
 		// 「アークメイジ」スキル「デッドリープロジェクション」
 		case SKILL_ID_DEADLY_PROJECTION:
 			// 詠唱時間等
@@ -9310,7 +9331,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 		}
 		// 「トルバドゥール・トルヴェール」スキル「メタリックフューリー」
 		// 2025-04-03 実測確認済み
-		case SKILL_ID_METALIC_FURY:
+		case SKILL_ID_METALIC_FURY: {
 			// 楽器・鞭装備状態のみ発動可能
 			if (![ITEM_KIND_MUSICAL, ITEM_KIND_WHIP].includes(n_A_WeaponType)) {
 				wbairitu = 0;
@@ -9330,23 +9351,25 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// ステージマナー習得Lv
+			const stage_manner_lv = Math.max(LearnedSkillSearch(SKILL_ID_STAGE_MANNER), UsedSkillSearch(SKILL_ID_STAGE_MANNER));
 			// 基本倍率
 			if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SOUND_BLEND]) {
 				// サウンドブレンド 有り
 				wbairitu = 4000 + 1000 * n_A_ActiveSkillLV;
-				wbairitu += 6 * GetTotalSpecStatus(MIG_PARAM_ID_SPL) * UsedSkillSearch(SKILL_ID_STAGE_MANNER);
+				wbairitu += 6 * GetTotalSpecStatus(MIG_PARAM_ID_SPL) * stage_manner_lv;
 			} else {
 				// サウンドブレンド 無し
 				wbairitu = 1250 + 350 * n_A_ActiveSkillLV;
-				wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_SPL) * UsedSkillSearch(SKILL_ID_STAGE_MANNER);
+				wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_SPL) * stage_manner_lv;
 			}
 			// ベースレベル補正
 			wbairitu =  Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
-
+		}
 		// 「トルバドゥール・トルヴェール」スキル「サウンドブレンド」
 		// 2025-04-03 実測確認済み
-		case SKILL_ID_SOUND_BLEND:
+		case SKILL_ID_SOUND_BLEND: {
 			// 楽器・鞭装備状態のみ発動可能
 			if (![ITEM_KIND_MUSICAL, ITEM_KIND_WHIP].includes(n_A_WeaponType)) {
 				wbairitu = 0;
@@ -9374,12 +9397,14 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			n_Delay[5] = n_Delay[6] - 200;
 			// 基本倍率
 			wbairitu = 2000 + 500 * n_A_ActiveSkillLV;
+			// ステージマナー習得Lv
+			const stage_manner_lv = Math.max(LearnedSkillSearch(SKILL_ID_STAGE_MANNER), UsedSkillSearch(SKILL_ID_STAGE_MANNER));
 			// SPL補正
-			wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL) * UsedSkillSearch(SKILL_ID_STAGE_MANNER);
+			wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL) * stage_manner_lv;
 			// ベースレベル補正
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
-
+		}
 
 		// 「エレメンタルマスター」スキル「ダイヤモンドストーム」
 		case SKILL_ID_DIAMOND_STORM:
@@ -9787,40 +9812,42 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 		case SKILL_ID_SEKIEN_HOU:
 		case SKILL_ID_REIKETSU_HOU:
 		case SKILL_ID_RAIDEN_HOU:
-		case SKILL_ID_KINNRYUU_HOU:
+		case SKILL_ID_KINNRYUU_HOU:{
 			// 詠唱時間など
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// 暗転砲の習得Lv
+			const anten_hou_lv = Math.max(LearnedSkillSearch(SKILL_ID_ANTEN_HOU), UsedSkillSearch(SKILL_ID_ANTEN_HOU_LEARNED_LEVEL));
 			if (battleCalcInfo.parentSkillId === undefined) {
 				// 本体の攻撃
-				wbairitu = 4000 + 300 * n_A_ActiveSkillLV;												// 基本倍率
-				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);									// spl補正
-				wbairitu += 70 * n_A_ActiveSkillLV * UsedSkillSearch(SKILL_ID_ANTEN_HOU_LEARNED_LEVEL)	// 習得済みスキル条件
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);										// BaseLv補正
+				wbairitu = 4000 + 300 * n_A_ActiveSkillLV;					// 基本倍率
+				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);		// spl補正
+				wbairitu += 70 * n_A_ActiveSkillLV * anten_hou_lv;			// 習得済みスキル条件
+				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);			// BaseLv補正
 			} else {
 				// 分身の追撃 暗転砲
-				n_A_Weapon_zokusei = ELM_ID_DARK;												// 属性は闇固定
-				if (UsedSkillSearch(SKILL_ID_ANTEN_HOU_LEARNED_LEVEL) == 0) {
+				n_A_Weapon_zokusei = ELM_ID_DARK;							// 属性は闇固定
+				if (anten_hou_lv == 0) {
 					wbairitu = 0;
 				} else {
-					wbairitu = 5750 + 350 * UsedSkillSearch(SKILL_ID_ANTEN_HOU_LEARNED_LEVEL);	// 基本倍率
-					wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);						// spl補正
-					wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);							// BaseLv補正
-					wbairitu = Math.floor(wbairitu * 30 / 100);									// 分身の威力は30%
-					wbairitu *= attackMethodConfArray[0].GetOptionValue(0);						// 分身の数
+					wbairitu = 5750 + 350 * anten_hou_lv;					// 基本倍率
+					wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// spl補正
+					wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);		// BaseLv補正
+					wbairitu = Math.floor(wbairitu * 30 / 100);				// 分身の威力は30%
+					wbairitu *= attackMethodConfArray[0].GetOptionValue(0);	// 分身の数
 					// 分割ヒット
 					wActiveHitNum = 4;
 				}
 			}
 			break;
-
+		}
 		/**
 		 * 「蜃気楼　不知火」スキル「暗転砲」
 		 * 2024/10/23 提供データとの誤差無しを確認
 		 */
-		case SKILL_ID_ANTEN_HOU:
+		case SKILL_ID_ANTEN_HOU:{
 			// 詠唱時間など
 			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
@@ -9834,21 +9861,23 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				// 分割ヒット
 				wActiveHitNum = 2;
 			} else {
+				// 暗転砲の習得Lv
+				const anten_hou_lv = Math.max(LearnedSkillSearch(SKILL_ID_ANTEN_HOU), UsedSkillSearch(SKILL_ID_ANTEN_HOU_LEARNED_LEVEL));
 				// 分身の追撃
-				if (UsedSkillSearch(SKILL_ID_ANTEN_HOU_LEARNED_LEVEL) == 0) {
+				if (anten_hou_lv == 0) {
 					wbairitu = 0;
 				} else {
-					wbairitu = 5750 + 350 * UsedSkillSearch(SKILL_ID_ANTEN_HOU_LEARNED_LEVEL);	// 基本倍率
-					wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);						// spl補正
-					wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);							// BaseLv補正
-					wbairitu = Math.floor(wbairitu * 30 / 100);									// 分身の威力は30%
-					wbairitu *= attackMethodConfArray[0].GetOptionValue(0);						// 分身の数
+					wbairitu = 5750 + 350 * anten_hou_lv;					// 基本倍率
+					wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// spl補正
+					wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);		// BaseLv補正
+					wbairitu = Math.floor(wbairitu * 30 / 100);				// 分身の威力は30%
+					wbairitu *= attackMethodConfArray[0].GetOptionValue(0);	// 分身の数
 					// 分割ヒット
 					wActiveHitNum = 4;
 				}
 			}
 			break;
-
+		}
 		//「蜃気楼　不知火」スキル「幻術 -暗黒龍-」
 		// 2024/12/25 もなこさん提供データに対して誤差+3を確認
 		// 当スキルではなく魔法ダメージ計算の基本部分に誤差があると判断しています
@@ -10317,8 +10346,9 @@ function GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfAr
  */
 function ATKbaiJYOUSAN(wJ) {
 	var w = 100;
-	if(n_A_WeaponType == 11 && UsedSkillSearch(SKILL_ID_KATAR_KENKYU)) {
-		w += 10 + 2 * UsedSkillSearch(SKILL_ID_KATAR_KENKYU);
+	const katar_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_KATAR_KENKYU), UsedSkillSearch(SKILL_ID_KATAR_KENKYU));
+	if(n_A_WeaponType == 11 && katar_shuren_lv) {
+		w += 10 + 2 * katar_shuren_lv;
 	}
 	// デバフ「クエイク状態」による効果
 	if (n_B_IJYOU[MOB_CONF_DEBUF_ID_QUAKE_DEBUFF] > 0) {
@@ -10349,7 +10379,7 @@ function GetBattlerMatkPercentUp(mobData) {
 		// 「ドラゴノロジー」による「竜形モンスターへの追加魔法攻撃力UP」
 		// 2025-03-29 SIAさんの検証を鑑みて移動しました
 		if (mobData[MONSTER_DATA_INDEX_RACE] == RACE_ID_DRAGON) {
-			w += UsedSkillSearch(SKILL_ID_DRAGONOLOGY) * 2;
+			w += Math.max(LearnedSkillSearch(SKILL_ID_DRAGONOLOGY), UsedSkillSearch(SKILL_ID_DRAGONOLOGY)) * 2;
 		}
 	}
 	return w;
@@ -16259,17 +16289,17 @@ function Click_PassSkillSW(){
 
 	let idx = 0;
 	let passiveSkillIdArray = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, n_A_JOB).GetPassiveSkillIdArray();
+	let table_header = `<TABLE Border class="tooltip-target" data-tooltip="パッシブスキル等は今後削除する予定です。代わりに習得スキル欄を使ってください。">
+		<TR><TD ColSpan="4" id="A1TD" Bgcolor="#DDDDFF" class="title">
+		<input id="OBJID_CHECK_A1_SKILL_SW" type="checkbox" name="A1_SKILLSW" onClick="Click_PassSkillSW()">
+		<label for="OBJID_CHECK_A1_SKILL_SW">${GetJobName(n_A_JOB)}固有自己支援</label>
+		<span id="A1used"></span>
+		</TD></TR>`;
 
 	n_Skill1SW = document.calcForm.A1_SKILLSW.checked;
 	if(n_Skill1SW){
-			var end = passiveSkillIdArray.length -1;
-			var str;
-			str = '<TABLE Border>';
-			str += '<TR><TD ColSpan="4" id="A1TD" Bgcolor="#DDDDFF" class="title">';
-			str += '<input id="OBJID_CHECK_A1_SKILL_SW" type="checkbox" name="A1_SKILLSW" onClick="Click_PassSkillSW()">';
-			str += `<label for="OBJID_CHECK_A1_SKILL_SW">${GetJobName(n_A_JOB)}固有自己支援・パッシブ持続系</label>`;
-			str += '<span id="A1used"></span>';
-			str += '</TD></TR>';
+			let end = passiveSkillIdArray.length -1;
+			let str = table_header;
 			for(var i=0;i<=end;i+=2) str += '<TR><TD id="P_Skill'+ i +'"></TD><TD id="P_Skill'+ i +'s"></TD><TD id="P_Skill'+ (i+1) +'"></TD><TD id="P_Skill'+ (i+1) +'s"></TD></TR>';
 			str += '</TABLE>';
 			myInnerHtml("ID_PASS_SKILL",str,0);
@@ -16749,13 +16779,7 @@ function Click_PassSkillSW(){
 			}
 	}
 	else{
-			var str;
-			str = '<TABLE Border>';
-			str += '<TR><TD ColSpan="4" id="A1TD" Bgcolor="#DDDDFF" class="title">';
-			str += '<input id="OBJID_CHECK_A1_SKILL_SW" type="checkbox" name="A1_SKILLSW" onClick="Click_PassSkillSW()">';
-			str += `<label for="OBJID_CHECK_A1_SKILL_SW">${GetJobName(n_A_JOB)}固有自己支援・パッシブ持続系</label>`;
-			str += '<span id="A1used"></span>';
-			str += '</TD></TR>';
+			let str = table_header;
 			str += '</TABLE>';
 			myInnerHtml("ID_PASS_SKILL",str,0);
 			document.calcForm.A1_SKILLSW.checked = false;
@@ -19830,40 +19854,38 @@ function _SUB_ApplyMonsterDefence(mobData, dmg){
  * @returns 適用後のダメージ
  */
 function ApplyMonsterDefence(mobData, dmg, lefthand) {
-
 	// モンスターの防御力を適用
 	dmg = _SUB_ApplyMonsterDefence(mobData, dmg);
 	if(dmg < 1) dmg = 0;
-
 	// 二刀左手の場合、修練効果を適用し、終了
-	if (lefthand != 0) {
-
+	if (lefthand != 0 && n_A_ActiveSkill == SKILL_ID_TUZYO_KOGEKI_CALC_LEFT) {
 		// 影狼／朧の場合
 		if (IsSameJobClass(JOB_ID_KAGERO) || IsSameJobClass(JOB_ID_OBORO)) {
-			dmg = Math.floor(dmg * (5 + UsedSkillSearch(SKILL_ID_HIDARITE_TANREN)) / 10);
+			const hidarite_tanren_lv = Math.max(LearnedSkillSearch(SKILL_ID_HIDARITE_TANREN), UsedSkillSearch(SKILL_ID_HIDARITE_TANREN));
+			dmg = Math.floor(dmg * (5 + hidarite_tanren_lv) / 10);
 		}
 		// それ以外（アサ系）の場合
 		else {
-			dmg = Math.floor(dmg * (3 + UsedSkillSearch(SKILL_ID_HIDARITE_SHUREN)) / 10);
+			const hidarite_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_HIDARITE_SHUREN), UsedSkillSearch(SKILL_ID_HIDARITE_SHUREN));
+			dmg = Math.floor(dmg * (3 + hidarite_shuren_lv) / 10);
 		}
-
 		return dmg;
 	}
-
 	// 二刀流での通常攻撃の場合、かつ、素手でない場合、右手修練を適用
-	if (n_Nitou && n_A_ActiveSkill==0) {
+	if (n_Nitou && n_A_ActiveSkill == SKILL_ID_TUZYO_KOGEKI_CALC_RIGHT) {
 		if(n_A_WeaponType != 0){
 			// 影狼／朧の場合
 			if (IsSameJobClass(JOB_ID_KAGERO) || IsSameJobClass(JOB_ID_OBORO)) {
-				dmg = Math.floor(dmg * (70 + UsedSkillSearch(SKILL_ID_MIGITE_TANREN) * 10) /100);
+				const migite_tanren_lv = Math.max(LearnedSkillSearch(SKILL_ID_MIGITE_TANREN), UsedSkillSearch(SKILL_ID_MIGITE_TANREN));
+				dmg = Math.floor(dmg * (70 + migite_tanren_lv * 10) /100);
 			}
 			// それ以外（アサシン系）の場合
 			else {
-				dmg = Math.floor(dmg * (50 + UsedSkillSearch(SKILL_ID_MIGITE_SHUREN) * 10) /100);
+				const migite_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_MIGITE_SHUREN), UsedSkillSearch(SKILL_ID_MIGITE_SHUREN));
+				dmg = Math.floor(dmg * (50 + migite_shuren_lv * 10) /100);
 			}
 		}
 	}
-
 	return Math.floor(dmg);
 }
 
@@ -19927,15 +19949,15 @@ function TYPE_SYUUREN(mobData, attackMethodConfArray, bArmsLeft){
 			break;
 
 		case ITEM_KIND_CLUB:
-			w += 3 * UsedSkillSearch(SKILL_ID_MACE_SHUREN);
+			w += 3 * Math.max(LearnedSkillSearch(SKILL_ID_MACE_SHUREN), UsedSkillSearch(SKILL_ID_MACE_SHUREN));
 			w += 4 * Math.max(LearnedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC), UsedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC));
 
 		case ITEM_KIND_KATAR:
-			w += 3 * UsedSkillSearch(SKILL_ID_KATAR_SHUREN);
+			w += 3 * Math.max(LearnedSkillSearch(SKILL_ID_KATAR_SHUREN), UsedSkillSearch(SKILL_ID_KATAR_SHUREN));
 			break;
 
 		case ITEM_KIND_BOOK:
-			w += 3 * UsedSkillSearch(SKILL_ID_ADVANCED_BOOK);
+			w += 3 * Math.max(LearnedSkillSearch(SKILL_ID_ADVANCED_BOOK), UsedSkillSearch(SKILL_ID_ADVANCED_BOOK));
 			break;
 
 		case ITEM_KIND_FIST:
@@ -19943,16 +19965,18 @@ function TYPE_SYUUREN(mobData, attackMethodConfArray, bArmsLeft){
 			break;
 
 		case ITEM_KIND_MUSICAL:
-			w += 3 * UsedSkillSearch(SKILL_ID_GAKKINO_RENSHU);
+			w += 3 * Math.max(LearnedSkillSearch(SKILL_ID_GAKKINO_RENSHU), UsedSkillSearch(SKILL_ID_GAKKINO_RENSHU));
 			break;
 
 		case ITEM_KIND_WHIP:
-			w += 3 * UsedSkillSearch(SKILL_ID_DANCENO_RENSHU);
+			w += 3 * Math.max(LearnedSkillSearch(SKILL_ID_DANCENO_RENSHU), UsedSkillSearch(SKILL_ID_DANCENO_RENSHU));
 			break;
 	}
+	// 「演奏/踊り系スキル」欄の「ニーベルングの指輪」によるATK加算
 	if(n_A_PassSkill3[10]) {
 		w += 75 + 25 * n_A_PassSkill3[10];
 	}
+	// 「演奏/踊り系スキル」欄の「戦太鼓の響き」によるATK加算
 	if(n_A_PassSkill3[9]) {
 		w += (125 + 25 * n_A_PassSkill3[9]);
 	}
@@ -20535,7 +20559,7 @@ function GetHitModify(){
 
 	case SKILL_ID_SONIC_BLOW:
 	case SKILL_ID_SONIC_BLOW_TAMASHI:
-		if (UsedSkillSearch(SKILL_ID_SONIC_ACCELERATION) > 0) {
+		if (Math.max(LearnedSkillSearch(SKILL_ID_SONIC_ACCELERATION), UsedSkillSearch(SKILL_ID_SONIC_ACCELERATION)) > 0) {
 			value += 50;
 		}
 		break;
@@ -21719,11 +21743,12 @@ function ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, 
 		rangeUp = n_tok[ITEM_SP_SHORTRANGE_DAMAGE_UP];
 	}
 	dmg = Math.floor(dmg * (100 + rangeUp) / 100);
-	if (UsedSkillSearch(SKILL_ID_EUCHARISTICA)) {
+	const eucharistica_lv = Math.max(LearnedSkillSearch(SKILL_ID_EUCHARISTICA), UsedSkillSearch(SKILL_ID_EUCHARISTICA));
+	if (eucharistica_lv > 0) {
 		// エウカリスティカによる、不死／闇属性へのダメージ強化
 		if (n_A_JOB == JOB_ID_ARCBISHOP) {
 			if((70 <= mobData[18] && mobData[18] <= 79) || (90 <= mobData[18] && mobData[18] <= 99)) {
-				dmg = Math.floor(dmg * (100 + 3 * UsedSkillSearch(SKILL_ID_EUCHARISTICA)) / 100);
+				dmg = Math.floor(dmg * (100 + 3 * eucharistica_lv) / 100);
 			}
 		}
 	}
@@ -22075,7 +22100,8 @@ function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, 
 	//----------------------------------------------------------------
 	// 「ソニックアクセラレーション」の、「ソニックブロー」強化
 	//----------------------------------------------------------------
-	if((n_A_ActiveSkill==83 || n_A_ActiveSkill==388) && UsedSkillSearch(SKILL_ID_SONIC_ACCELERATION)) {
+	if((n_A_ActiveSkill==83 || n_A_ActiveSkill==388) 
+		&& Math.max(LearnedSkillSearch(SKILL_ID_SONIC_ACCELERATION), UsedSkillSearch(SKILL_ID_SONIC_ACCELERATION)) > 0) {
 		w1 += 10;
 	}
 
@@ -25375,9 +25401,9 @@ function CalcMeanDamageLeftHand(skillId, mobData, dmg) {
  * @returns 設定されているLv
  */
 function UsedSkillSearch(sklId, bOnlyUsed = false) {
-	var sklLv = 0;
-	var effectivLvArray = [0];
-	var bAvoidRecalc = false;
+	let sklLv = 0;
+	let effectivLvArray = [0];
+	let bAvoidRecalc = false;
 	// スキル欄のみの場合
 	if (bOnlyUsed) {
 		return UsedSkillSearchSubUsedOnly(sklId);
@@ -25623,22 +25649,24 @@ function UsedSkillSearch(sklId, bOnlyUsed = false) {
 	return effectivLvArray.reduce(
 		function(a, b) {
  	   		return Math.max(a, b);
-		}
-	);
+		});
 }
 
 /**
  * 有効化されている支援スキルの設定Lvを取得する
- * @param {*} sklId 確認するスキル
- * @returns 設定されているLv
+ * @param {Number} sklId 確認するスキル
+ * @returns {Number} 設定されているLv
  */
 function UsedSkillSearchSubUsedOnly(sklId) {
-	var idx = 0;
-	// 通常スキル欄
-	var passiveSkillIdArray = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, n_A_JOB).GetPassiveSkillIdArray();
-	for (idx = 0; idx < passiveSkillIdArray.length; idx++) {
+	// 設定可能な全ての職固有自己支援スキルを取得する
+	const passiveSkillIdArray = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, n_A_JOB).GetPassiveSkillIdArray();
+	for (let idx = 0; idx < passiveSkillIdArray.length; idx++) {
 		if(passiveSkillIdArray[idx] == sklId) {
-			return n_A_PassSkill[idx];
+			// 指定されたスキルIDが見つかったとき
+			if (n_A_PassSkill[idx] !== undefined && !isNaN(n_A_PassSkill[idx])) {
+				// 該当のスキルLvがundefinedでもNaNでもなければ習得済みLvを返す
+				return n_A_PassSkill[idx];
+			}
 		}
 	}
 	return 0;

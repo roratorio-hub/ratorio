@@ -5986,7 +5986,6 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "楽器の練習";
 			this.kana = "カツキノレンシユウ";
@@ -6185,7 +6184,6 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "ダンスの練習";
 			this.kana = "タンスノレンシユウ";
@@ -10732,7 +10730,6 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "カイナ";
 			this.kana = "カイナ";
@@ -11366,14 +11363,13 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 投擲修練
 		// ----------------------------------------------------------------
-		SKILL_ID_TOKAKU_SHUREN = skillId;
+		SKILL_ID_TOTEKI_SHUREN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "投擲修練";
-			this.kana = "トウカクシユウレン";
+			this.kana = "トウテキシユウレン";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_PASSIVE;
 			this.range = CSkillData.RANGE_SHORT;
@@ -11763,7 +11759,6 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "忍法修練";
 			this.kana = "ニンホウシユウレン";
@@ -15858,7 +15853,6 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "ラディウス";
 			this.kana = "ラテイウス";
@@ -16521,7 +16515,6 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "フリージングスペル";
 			this.kana = "フリイシンクスヘル";
@@ -20208,21 +20201,16 @@ function CSkillManager() {
 
 			this.Power = function(skillLv, charaDataManger) {
 				var pow = 0;
-
 				// 基本式
 				pow = 120 * skillLv;
-
 				// 「ミンストレル・ワンダラー レッスン」の習得レベルによる補正
-				pow += 60 * charaDataManger.UsedSkillSearch(SKILL_ID_LESSON);
-
+				pow += 60 * Math.max(LearnedSkillSearch(SKILL_ID_LESSON), UsedSkillSearch(SKILL_ID_LESSON));
 				// ベースレベル補正
 				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 100);
-
 				// 「モンスター状態異常 睡眠」による補正
 				if (charaDataManger.GetMobDebuf(MOB_CONF_DEBUF_ID_SUIMIN)) {
 					pow = Math.floor(pow * 150 / 100);
 				}
-
 				return pow;
 			}
 
@@ -23950,7 +23938,7 @@ function CSkillManager() {
 
 				// 基本式
 				pow = (50 + Math.floor(charaDataManger.GetCharaDex() / 4)) * skillLv;
-				pow *= 0.4 * charaDataManger.UsedSkillSearch(SKILL_ID_TOKAKU_SHUREN);
+				pow *= 0.4 * charaDataManger.UsedSkillSearch(SKILL_ID_TOTEKI_SHUREN);
 
 				// ベースレベル補正
 				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 120);
@@ -26992,7 +26980,6 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "私を縛らないで";
 			this.kana = "ワタシヲシハラナイテ";
@@ -27000,11 +26987,9 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
-
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 15;
 			}
-
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -33493,7 +33478,6 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "両手杖修練";
 			this.kana = "リヨウテツエシユウレン";
@@ -33504,10 +33488,6 @@ function CSkillManager() {
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
-
-
-
-
 
 		// ----------------------------------------------------------------
 		// アックスストンプ
@@ -36310,10 +36290,6 @@ function CSkillManager() {
 		this.dataArray[skillId] = skillData;
 		skillId++;
 
-
-
-
-
 		// ----------------------------------------------------------------
 		// 魔法本修練
 		// ----------------------------------------------------------------
@@ -36321,7 +36297,6 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "魔法本修練";
 			this.kana = "マホウホンシユウレン";
@@ -36664,7 +36639,6 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "(×)エレメンタルスピリットマスタリー";
 			this.kana = "エレメンタルスヒリツトマスタリイ";
@@ -38136,7 +38110,9 @@ function CSkillManager() {
 				let ratio = 0;
 				ratio = 2000 + 200 * skillLv;
 				ratio += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				ratio += 7 * skillLv * ( UsedSkillSearch(SKILL_ID_GOFU_SHUREN) + UsedSkillSearch(SKILL_ID_REIDOZYUTSU_SHUREN) );
+				const gofu_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_GOFU_SHUREN), UsedSkillSearch(SKILL_ID_GOFU_SHUREN));
+				const reidozyutsu_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_REIDOZYUTSU_SHUREN), UsedSkillSearch(SKILL_ID_REIDOZYUTSU_SHUREN));
+				ratio += 7 * skillLv * ( gofu_shuren_lv + reidozyutsu_shuren_lv );
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
 			}
@@ -38181,7 +38157,8 @@ function CSkillManager() {
 					ratio = 350 + 50 * skillLv;
 				}
 				ratio += GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				ratio += 2 * UsedSkillSearch(SKILL_ID_REIDOZYUTSU_SHUREN);
+				const reidozyutsu_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_REIDOZYUTSU_SHUREN), UsedSkillSearch(SKILL_ID_REIDOZYUTSU_SHUREN));
+				ratio += 2 * reidozyutsu_shuren_lv;
 				ratio = ratio * UsedSkillSearch(SKILL_ID_COUNT_OF_SOUL_ENERGY);
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
@@ -38224,7 +38201,7 @@ function CSkillManager() {
 					ratio = 4250 + 750 * skillLv;
 				}
 				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				ratio += 15 * skillLv * UsedSkillSearch(SKILL_ID_GOFU_SHUREN);
+				ratio += 15 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_GOFU_SHUREN), UsedSkillSearch(SKILL_ID_GOFU_SHUREN));
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
 			}
@@ -38276,7 +38253,7 @@ function CSkillManager() {
 					ratio = 3000 + 400 * skillLv;
 				}
 				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				ratio += 15 * skillLv * UsedSkillSearch(SKILL_ID_GOFU_SHUREN);
+				ratio += 15 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_GOFU_SHUREN), UsedSkillSearch(SKILL_ID_GOFU_SHUREN));
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
 			}
@@ -38327,7 +38304,7 @@ function CSkillManager() {
 					ratio = 4250 + 500 * skillLv;
 				}
 				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				ratio += 15 * skillLv * UsedSkillSearch(SKILL_ID_GOFU_SHUREN);
+				ratio += 15 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_GOFU_SHUREN), UsedSkillSearch(SKILL_ID_GOFU_SHUREN));
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
 			}
@@ -38379,7 +38356,7 @@ function CSkillManager() {
 					ratio = 3000 + 400 * skillLv;
 				}
 				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				ratio += 15 * skillLv * UsedSkillSearch(SKILL_ID_GOFU_SHUREN);
+				ratio += 15 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_GOFU_SHUREN), UsedSkillSearch(SKILL_ID_GOFU_SHUREN));
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
 			}
@@ -38426,7 +38403,7 @@ function CSkillManager() {
 				let ratio = 0;
 				ratio = 500 + 50 * skillLv;
 				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				ratio += 15 * skillLv * UsedSkillSearch(SKILL_ID_GOFU_SHUREN);
+				ratio += 15 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_GOFU_SHUREN), UsedSkillSearch(SKILL_ID_GOFU_SHUREN));
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
 			}
@@ -38470,7 +38447,9 @@ function CSkillManager() {
 				let ratio = 0;
 				ratio = 2200 + 600 * skillLv;
 				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				ratio += 15 * skillLv * (UsedSkillSearch(SKILL_ID_GOFU_SHUREN) + UsedSkillSearch(SKILL_ID_REIDOZYUTSU_SHUREN));
+				const gofu_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_GOFU_SHUREN), UsedSkillSearch(SKILL_ID_GOFU_SHUREN));
+				const reidozyutsu_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_REIDOZYUTSU_SHUREN), UsedSkillSearch(SKILL_ID_REIDOZYUTSU_SHUREN));
+				ratio += 15 * skillLv * ( gofu_shuren_lv + reidozyutsu_shuren_lv );
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
 			}
@@ -40407,7 +40386,6 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "暗転砲";
 			this.kana = "アンテンホウ";

@@ -1,5 +1,5 @@
 
-var n_SkillSWLearned = false;
+let n_SkillSWLearned = false;
 
 LEARNED_SKILL_MAX_COUNT = 200;
 
@@ -12,47 +12,47 @@ LEARNED_SKILL_MAX_COUNT = 200;
 //================================================================================================
 
 n_A_LearnedSkill = new Array();
-for (var dmyidx = 0; dmyidx < LEARNED_SKILL_MAX_COUNT; dmyidx++) {
+for (let dmyidx = 0; dmyidx < LEARNED_SKILL_MAX_COUNT; dmyidx++) {
 	n_A_LearnedSkill[dmyidx] = 0;
 }
 
+/**
+ * 任意の習得スキルに設定されているスキルLvを取得する
+ * @param {Number} skillId 取得したいスキルのID
+ * @returns {Number} スキルLv
+ */
 function LearnedSkillSearch(skillId) {
-
-	var idx = 0;
-	var learnSkillIdArray = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, n_A_JOB).GetLearnSkillIdArray();
-
-
-	for (idx = 0; idx < learnSkillIdArray.length; idx++) {
+	// 設定可能な全ての習得スキルを取得する
+	const learnSkillIdArray = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, n_A_JOB).GetLearnSkillIdArray();
+	for (let idx = 0; idx < learnSkillIdArray.length; idx++) {
 		if (learnSkillIdArray[idx] == skillId) {
-			return n_A_LearnedSkill[idx];
+			// 指定されたスキルIDが見つかったとき
+			if (n_A_LearnedSkill[idx] !== undefined && !isNaN(n_A_LearnedSkill[idx])) {
+				// 該当のスキルLvがundefinedでもNaNでもなければ習得済みLvを返す
+				return n_A_LearnedSkill[idx];
+			}
 		}
 	}
-
+	// スキルIDが見つからなかったり想定外の値が設定されている場合は0を返す
 	return 0;
-
 }
 
 function OnClickSkillSWLearned(){
-
-	var objSW = null;
-
-	var objRoot = null;
-	var objTable = null;
-	var objTbody = null;
-	var objTr = null;
-	var objTd = null;
-	var objInput = null;
-	var objText = null;
-	var objSpan = null;
-	var objA = null;
-	var objLabel = null;
-
-	var skillId = 0;
-	var skillName = "";
-	var objSelect = null;
-	var objOption = null;
-
-
+	let objSW = null;
+	let objRoot = null;
+	let objTable = null;
+	let objTbody = null;
+	let objTr = null;
+	let objTd = null;
+	let objInput = null;
+	let objText = null;
+	let objSpan = null;
+	let objA = null;
+	let objLabel = null;
+	let skillId = 0;
+	let skillName = "";
+	let objSelect = null;
+	let objOption = null;
 
 	// チェックボックスのチェック状態を取得
 	n_SkillSWLearned = false;
@@ -60,8 +60,6 @@ function OnClickSkillSWLearned(){
 	if (objSW) {
 		n_SkillSWLearned = objSW.checked;
 	}
-
-
 
 	// 設定欄を初期化
 	objRoot = document.getElementById("ID_SKILL_LEARNED");
@@ -76,8 +74,6 @@ function OnClickSkillSWLearned(){
 
 	objTbody = document.createElement("tbody");
 	objTable.appendChild(objTbody);
-
-
 
 	// 設定欄のヘッダ部分を構築
 	objTr = document.createElement("tr");
@@ -111,51 +107,19 @@ function OnClickSkillSWLearned(){
 	objText = document.createTextNode("　　");
 	objTd.appendChild(objText);
 
-	// 注意喚起テキスト
+	// 習得済みスキルを発動条件に持つ装備のアノテーション
 	objSpan = document.createElement("span");
 	objSpan.setAttribute("id", "ID_SKILL_LEARNED_NOTICE");
 	objSpan.setAttribute("style", "color : red");
 	objTd.appendChild(objSpan);
-
 	UpdateLearnedSkillNotice();
-
-
-	// 設定欄の注意書き部分を構築
-	objTr = document.createElement("tr");
-	objTbody.appendChild(objTr);
-
-	objTd = document.createElement("td");
-	objTd.style.whiteSpace = "nowrap";
-	objTd.setAttribute("colspan", 6);
-	objTr.appendChild(objTd);
-
-	objText = document.createTextNode("この設定欄は一部の装備が持つ「スキル習得時に発動する効果」のトリガーとして使われています");
-	objTd.appendChild(objText);
-	objTd.appendChild(document.createElement("br"));
-	objText = document.createTextNode("パッシブスキルの効果計算や攻撃スキルのダメージ計算には使われていないので");
-	objTd.appendChild(objText);
-	objTd.appendChild(document.createElement("br"));
-	objText = document.createTextNode("それを計算したいときは代わりに「職固有自己支援・パッシブ持続系」を設定してください");
-	objTd.appendChild(objText);
-	objTd.appendChild(document.createElement("br"));
-	objText = document.createTextNode("この仕様は ");
-	objTd.appendChild(objText);
-	objText = document.createElement("a");
-	objText.setAttribute("href", "https://github.com/roratorio-hub/ratorio/issues/805");
-	objText.setAttribute("target", "_blank");
-	objText.appendChild(document.createTextNode("将来的に変更する予定"));
-	objTd.appendChild(objText);
-	objText = document.createTextNode(" があります");
-	objTd.appendChild(objText);
 
 	// 設定欄のヘッダ部分をリフレッシュ（着色処理等）
 	RefreshSkillColumnHeaderLearned(null, -1, 0);
-
 	// 展開表示しない場合は、ここで処理終了
 	if (!n_SkillSWLearned) {
 		return;
 	}
-
 	// 公式スキルツリーから出力されたURLを読み込む機能 
 	$(objTbody).append(`
 		<tr><td colspan="6" style="padding: 3px">
@@ -195,71 +159,55 @@ function OnClickSkillSWLearned(){
 			},0); // ローディングインジケータ表示のために 0 ms後の非同期処理に送る
 		} catch(e) {}
 	});
-
 	// 設定欄内のスキルテーブルを構築
-	var learnSkillIdArray = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, n_A_JOB).GetLearnSkillIdArray();
-
-	for (var idx = 0; idx < learnSkillIdArray.length; idx++) {
-
+	const learnSkillIdArray = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, n_A_JOB).GetLearnSkillIdArray();
+	for (let idx = 0; idx < learnSkillIdArray.length; idx++) {
 		skillId = learnSkillIdArray[idx];
-
 		// １行あたり３個のスキル表示とする
 		if ((idx % 3) == 0) {
 			objTr = document.createElement("tr");
 			objTbody.appendChild(objTr);
 		}
-
 		// スキル名の表示
 		skillName = SkillObjNew[skillId][SKILL_DATA_INDEX_NAME];
 		skillName = skillName.replace(/\([^)]*\)/g, "");
 		skillName = skillName.replace(/\<[^>]*\>/g, "");
-
 		objTd = document.createElement("td");
 		objTd.setAttribute("id", "OBJID_TD_LEARNED_SKILL_NAME_" + idx);
 		objTr.appendChild(objTd);
-
 		// 習得スキル設定対象でれあば、強調表示クラスに設定
 		if (IsLearnedSkillTarget(skillId)) {
 			objTd.setAttribute("class", "CSSCLS_LEARNED_SKILL_TARGET");
 		}
-
 		objText = document.createTextNode(skillName);
 		objTd.appendChild(objText);
-
 		// スキルレベル選択部品の構築
 		objTd = document.createElement("td");
 		objTd.setAttribute("id", "OBJID_TD_LEARNED_SKILL_LEVEL_" + idx);
 		objTr.appendChild(objTd);
-
 		// 習得スキル設定対象でれあば、強調表示クラスに設定
 		if (IsLearnedSkillTarget(skillId)) {
 			objTd.setAttribute("class", "CSSCLS_LEARNED_SKILL_TARGET");
 		}
-
 		objSelect = document.createElement("select");
 		objSelect.setAttribute("id", "OBJID_SELECT_LEARNED_SKILL_LEVEL_" + idx);
 		objSelect.setAttribute("onChange", "RefreshSkillColumnHeaderLearned(this, " + idx + ", this.value)");
 		objTd.appendChild(objSelect);
-
-		for (var lvIdx = 0; lvIdx <= SkillObjNew[skillId][SKILL_DATA_INDEX_MAXLV]; lvIdx++) {
-
+		for (let lvIdx = 0; lvIdx <= SkillObjNew[skillId][SKILL_DATA_INDEX_MAXLV]; lvIdx++) {
 			objOption = document.createElement("option");
 			objOption.setAttribute("value", lvIdx);
 			if (n_A_LearnedSkill[idx] == lvIdx) {
 				objOption.setAttribute("selected", "selected");
 			}
 			objSelect.appendChild(objOption);
-
 			objText = document.createTextNode(lvIdx);
 			objOption.appendChild(objText);
 		}
-
 		// レベルが 0 でなければ、背景色を設定
 		if (n_A_LearnedSkill[idx] != 0) {
 			objSelect.setAttribute("class", "CSSCLS_SELECTED_LEARNED_SKILL");
 		}
 	}
-
 }
 
 function IsLearnedSkillTarget (skillId) {
