@@ -16289,17 +16289,17 @@ function Click_PassSkillSW(){
 
 	let idx = 0;
 	let passiveSkillIdArray = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, n_A_JOB).GetPassiveSkillIdArray();
+	let table_header = `<TABLE Border class="tooltip-target" data-tooltip="パッシブスキル等は今後削除する予定です。代わりに習得スキル欄を使ってください。">
+		<TR><TD ColSpan="4" id="A1TD" Bgcolor="#DDDDFF" class="title">
+		<input id="OBJID_CHECK_A1_SKILL_SW" type="checkbox" name="A1_SKILLSW" onClick="Click_PassSkillSW()">
+		<label for="OBJID_CHECK_A1_SKILL_SW">${GetJobName(n_A_JOB)}固有自己支援</label>
+		<span id="A1used"></span>
+		</TD></TR>`;
 
 	n_Skill1SW = document.calcForm.A1_SKILLSW.checked;
 	if(n_Skill1SW){
-			var end = passiveSkillIdArray.length -1;
-			var str;
-			str = '<TABLE Border>';
-			str += '<TR><TD ColSpan="4" id="A1TD" Bgcolor="#DDDDFF" class="title">';
-			str += '<input id="OBJID_CHECK_A1_SKILL_SW" type="checkbox" name="A1_SKILLSW" onClick="Click_PassSkillSW()">';
-			str += `<label for="OBJID_CHECK_A1_SKILL_SW">${GetJobName(n_A_JOB)}固有自己支援・パッシブ持続系</label>`;
-			str += '<span id="A1used"></span>';
-			str += '</TD></TR>';
+			let end = passiveSkillIdArray.length -1;
+			let str = table_header;
 			for(var i=0;i<=end;i+=2) str += '<TR><TD id="P_Skill'+ i +'"></TD><TD id="P_Skill'+ i +'s"></TD><TD id="P_Skill'+ (i+1) +'"></TD><TD id="P_Skill'+ (i+1) +'s"></TD></TR>';
 			str += '</TABLE>';
 			myInnerHtml("ID_PASS_SKILL",str,0);
@@ -16779,13 +16779,7 @@ function Click_PassSkillSW(){
 			}
 	}
 	else{
-			var str;
-			str = '<TABLE Border>';
-			str += '<TR><TD ColSpan="4" id="A1TD" Bgcolor="#DDDDFF" class="title">';
-			str += '<input id="OBJID_CHECK_A1_SKILL_SW" type="checkbox" name="A1_SKILLSW" onClick="Click_PassSkillSW()">';
-			str += `<label for="OBJID_CHECK_A1_SKILL_SW">${GetJobName(n_A_JOB)}固有自己支援・パッシブ持続系</label>`;
-			str += '<span id="A1used"></span>';
-			str += '</TD></TR>';
+			let str = table_header;
 			str += '</TABLE>';
 			myInnerHtml("ID_PASS_SKILL",str,0);
 			document.calcForm.A1_SKILLSW.checked = false;

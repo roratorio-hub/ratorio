@@ -985,99 +985,71 @@ function UpdateStatefullDataOnChangeEquip(eqpRgnId) {
 	}
 }
 
+
+/**
+ * 一部の装備の特殊効果を発動させられる習得スキルを保持している場合に
+ * 習得スキル一覧のタイトルバーに注記を表示する 
+ */
 function UpdateLearnedSkillNotice () {
-
-	var idx = 0;
-	var itemId = 0;
-	var spidx = 0;
-	var skillId = 0;
-	var bEquipped = false;
-
-	var objSpan = null;
-
-	var learnSkillIdArray = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, n_A_JOB).GetLearnSkillIdArray();
-
-
+	let itemId = 0;
+	let spidx = 0;
+	let skillId = 0;
+	let bEquipped = false;
+	let objSpan = null;
+	const learnSkillIdArray = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, n_A_JOB).GetLearnSkillIdArray();
 	// 全ての装備を走査し、習得スキル設定対象がないかをチェック
-	for (idx = 0; idx < n_A_Equip.length; idx++) {
-
+	for (let idx = 0; idx < n_A_Equip.length; idx++) {
 		itemId = n_A_Equip[idx];
-
 		spidx = ITEM_DATA_INDEX_SPBEGIN;
-
 		while (ItemObjNew[itemId][spidx] != ITEM_SP_END) {
-
 			if (ItemObjNew[itemId][spidx] == ITEM_SP_LEARNED_SKILL_EFFECT) {
-
 				// さらに、該当スキルが、習得スキル設定の一覧にあるかを検査
-				for (var idxSkill = 0; idxSkill < learnSkillIdArray.length; idxSkill++) {
-
+				for (let idxSkill = 0; idxSkill < learnSkillIdArray.length; idxSkill++) {
 					skillId = learnSkillIdArray[idxSkill];
-
 					if (ItemObjNew[itemId][spidx + 1] == skillId) {
 						bEquipped = true;
 						break;
 					}
 				}
 			}
-
 			if (bEquipped) {
 				break;
 			}
-
 			spidx += 2;
 		}
-
 		if (bEquipped) {
 			break;
 		}
 	}
-
-
-
 	// 全てのカードを走査し、習得スキル設定対象がないかをチェック
 	if (!bEquipped) {
-		for (idx = 0; idx < n_A_card.length; idx++) {
-
+		for (let idx = 0; idx < n_A_card.length; idx++) {
 			cardId = n_A_card[idx];
-
 			spidx = CARD_DATA_INDEX_SPBEGIN;
-
 			while (CardObjNew[cardId][spidx] != ITEM_SP_END) {
-
 				if (CardObjNew[cardId][spidx] == ITEM_SP_LEARNED_SKILL_EFFECT) {
-
 					// さらに、該当スキルが、習得スキル設定の一覧にあるかを検査
-					for (var idxSkill = 0; idxSkill < learnSkillIdArray.length; idxSkill++) {
-
+					for (let idxSkill = 0; idxSkill < learnSkillIdArray.length; idxSkill++) {
 						skillId = learnSkillIdArray[idxSkill];
-
 						if (CardObjNew[cardId][spidx + 1] == skillId) {
 							bEquipped = true;
 							break;
 						}
 					}
 				}
-
 				if (bEquipped) {
 					break;
 				}
-
 				spidx += 2;
 			}
-
 			if (bEquipped) {
 				break;
 			}
 		}
 	}
-
-
-
 	// 走査結果を検証し、テキストを調整
 	objSpan = document.getElementById("ID_SKILL_LEARNED_NOTICE");
 	HtmlRemoveAllChild(objSpan);
-
 	if (bEquipped) {
 		HtmlCreateTextNode("習得スキル設定対象あり", objSpan);
 	}
