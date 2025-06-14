@@ -314,22 +314,21 @@ const HEAL_TARGETTYPE_ENEMY = 2;
  * @return 全戦闘結果情報インスタンス（CBattleCalcResultAll クラスのインスタンス）
  */
 function BattleCalc999(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray) {
-	var idx = 0;
-	var idxChild = 0;
-	var idxAS = 0;
-	var ret = null;
-	var bPoisonReactRevengeNormal = false;
-	var actRate = 0;
-	var skillId = 0;
-	var skillIdOrigin = 0;
-	var cloned = null;
-	var dmgRate = 0;
-	var dmgRateArray = null;
-	var valueWork = 0;
-	var resultWork = null;
-	var bCommonAppend = true;
-	var battleCalcInfoArray = null;
-	var battleCalcResultAll = null;
+	let idx = 0;
+	let idxChild = 0;
+	let idxAS = 0;
+	let bPoisonReactRevengeNormal = false;
+	let actRate = 0;
+	let skillId = 0;
+	let skillIdOrigin = 0;
+	let cloned = null;
+	let dmgRate = 0;
+	let dmgRateArray = null;
+	let valueWork = 0;
+	let resultWork = null;
+	let bCommonAppend = true;
+	let battleCalcInfoArray = null;
+	let battleCalcResultAll = null;
 	// 戻り値用インスタンス用意
 	battleCalcResultAll = new CBattleCalcResultAll();
 	// 基本情報を設定
@@ -644,11 +643,11 @@ function BattleCalc999(battleCalcInfo, charaData, specData, mobData, attackMetho
  * @returns 
  */
 function BattleCalc999Body(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, bLeft) {
-	var idx = 0;
-	var idxUnit = 0;
-	var battleCalcResult = null;
-	var dmgUnitArray = null;
-	var bCri = false;
+	let idx = 0;
+	let idxUnit = 0;
+	let battleCalcResult = null;
+	let dmgUnitArray = null;
+	let bCri = false;
 	// ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
 	//
 	// 呼び出し元から移植
@@ -916,32 +915,25 @@ function BattleCalc999Body(battleCalcInfo, charaData, specData, mobData, attackM
  * @returns 
  */
 function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-	var ret = null;
-	var dmgMin = Number.MAX_VALUE;
-	var dmgMax = 0;
-	var weight = 0;
-	var wpnLv = 0;
-	var hitCountArray = null;
-	var bMatchCond = false;
-	var clonedClacInfo = null;
-	var ampWork = 0;
+	let ret = null;
+	let hitCountArray = null;
+	let bMatchCond = false;
+	let ampWork = 0;
+	let w_MATK = [0,0,0];
 	wbairitu = 100;
 	wCast = 0;
 	n_KoteiCast = 0;
 	wHITsuu = 1;
 	wLAch = false;
 	w_DMG = [0,0,0];
-	var w_MATK = [0,0,0];
-		cast_kotei = false;
+	cast_kotei = false;
 	str_PerfectHIT_DMG = 0;
-	//SG_Special_ch = 0;
 	wActiveHitNum = 1;
 	for(var i=0;i<=2;i++){
 		Last_DMG_A[i] = 0;
 		Last_DMG_B[i] = 0;
 	}
 	n_AS_check_3dan = false;
-
 	g_bUnknownCasts = false;
 	g_bDefinedDamageIntervals = false;
 	n_Buki_Muri = false;
@@ -2444,10 +2436,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 
 				break;
 
-
-
-
-
 			//----------------------------------------------------------------
 			//
 			// 四次ここから
@@ -3909,7 +3897,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				wActiveHitNum = 3;
 				break;
 
-
 			/*
 				「スピリットハンドラー」スキル「タイガースラッシュ」
 				2024/11/08 誤差なしを確認済み
@@ -3944,7 +3931,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				wActiveHitNum = 2;
 				break;
 
-
 			/*
 				「スピリットハンドラー」スキル「タイガーハウリング」
 			*/
@@ -3975,7 +3961,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				// スキル説明にないが3分割スキル
 				wActiveHitNum = 3;
 				break;
-
 
 			/*
 				「スピリットハンドラー」スキル「タイガーストライク」
@@ -4701,53 +4686,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				}
 				break;
 
-				
-	/*
-			case SKILL_ID_DUMMY:
-				// 使用武器制限
-				if (n_A_WeaponType != ITEM_KIND_SHOTGUN) {
-					wbairitu = 0;
-					break;
-				}
-
-				n_Enekyori = 1;	// 遠距離フラグ
-				wHITsuu = 3;	// 多段ヒット数
-
-				// CSkillManager.js で定義された詠唱時間などを取得する
-				g_bUnknownCasts = true;	// 詠唱時間など未計測フラグ
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-
-				// 設置型の場合
-				g_bDefinedDamageIntervals = true;
-				n_Delay[5] = 500;	// ダメージ間隔
-				n_Delay[6] = 5000;	// オブジェクト存続時間
-
-				// CAttackMethodAreaComponentManager.js で定義されたオプションを取得する
-				option_count = attackMethodConfArray[0].GetOptionValue(0);
-				wbairitu += option_count * (950 + (150 * n_A_ActiveSkillLV));
-
-				// 習得済みスキル条件
-				if (UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0) {
-					wbairitu = 650 + (150 * n_A_ActiveSkillLV);
-				} else {
-					wbairitu = 400 + (100 * n_A_ActiveSkillLV);
-					bCri = false;										// クリティカルしない場合
-				}
-				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// 特性ステータス補正
-
-				// 種族特攻
-				switch (parseInt(mobData[MONSTER_DATA_INDEX_RACE], 10)) {
-					case RACE_ID_DEMON:
-						wHITsuu = 3;
-				}
-
-				wbairitu *= n_A_BaseLV / 100;							// BaseLv補正
-				break;
-	*/
-
 	/* --------------------------------------------------
 	↑ 物理攻撃スキル追加位置
 	-------------------------------------------------- */
@@ -5011,8 +4949,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 
 			break;
 
-
-
 		case SKILL_ID_DOUBLE_STRAFING:
 		case SKILL_ID_PIERCE:
 		case SKILL_ID_FREEZING_TRAP:
@@ -5176,8 +5112,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 
 			break;
 
-
-
 		case SKILL_ID_ISHINAGE:
 			w_HIT = 100;
 			w_HIT_HYOUJI = 100;
@@ -5196,8 +5130,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 
 			break;
-
-
 
 		case SKILL_ID_BLITZ_BEAT:
 		case SKILL_ID_FALCON_ASSALT: {
@@ -5274,8 +5206,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
-
-
 		case SKILL_ID_SHIELD_BOOMERANG:
 		case SKILL_ID_SHIELD_BOOMERANG_TAMASHI:
 			n_PerfectHIT_DMG = 0;
@@ -5304,7 +5234,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
-
 
 		// 「パラディン」スキル「シールドチェーン」
 		case SKILL_ID_SHIELD_CHAIN:
@@ -5353,8 +5282,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
-
-
 		case SKILL_ID_SPIRAL_PIERCE:	// スパイラルピアース
 			wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
@@ -5394,8 +5321,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
-
-
 		case SKILL_ID_VENOM_SPLASHER:
 			w_HIT = 100;
 			w_HIT_HYOUJI = 100;
@@ -5422,8 +5347,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
-
-
 
 		case SKILL_ID_SOUL_BREAKER:
 			w_HIT = 100;
@@ -5464,8 +5387,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
-
-
 
 		case SKILL_ID_GRAND_CROSS:
 			w_HIT = 100;
@@ -5588,8 +5509,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
-
-
 		case SKILL_ID_SACRIFICE:
 			w_HIT = 100;
 			w_HIT_HYOUJI = 100;
@@ -5607,8 +5526,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
-
-
 
 		case SKILL_ID_HAKKEI:
 			n_PerfectHIT_DMG = 0;
@@ -5640,8 +5557,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
-
-
 
 		case SKILL_ID_ASHURA_HAOKEN:
 		case SKILL_ID_ASHURA_HAOKEN_SPKOTEI:
@@ -5691,8 +5606,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
-
-
 
 		case SKILL_ID_SHURIKEN_NAGE: {	// 手裏剣投げ
 			n_Enekyori=1;
@@ -5812,8 +5725,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
-
-
 		case SKILL_ID_ZENI_NAGE:
 			w_HIT_HYOUJI = 100;
 			w_HIT = 100;
@@ -5829,8 +5740,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
-
-
 
 		case SKILL_ID_MUCHANAGE:
 			w_HIT = Math.floor((10 - (1 / (n_A_DEX + n_A_LUK)) * 500) * (n_A_ActiveSkillLV / 2 + 5));
@@ -5857,8 +5766,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
-
-
 
 		case SKILL_ID_ISSEN:
 		case SKILL_ID_ISSEN_MAX:
@@ -5903,8 +5810,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
-
-
 		case SKILL_ID_ACID_TERROR:
 			w_HIT = 100;
 			w_HIT_HYOUJI = 100;
@@ -5938,7 +5843,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
-
 
 		case SKILL_ID_ACID_DEMONSTRATION:
 		case SKILL_ID_FIRE_EXPANSION:
@@ -5996,8 +5900,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
-
-
 
 		case SKILL_ID_LAND_MINE:
 		case SKILL_ID_BLAST_MINE:
@@ -6137,8 +6039,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
-
-
 		case 488:
 			w_HIT = 100;
 			w_HIT_HYOUJI = 100;
@@ -6164,8 +6064,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
-
-
 
 		case SKILL_ID_GRAVITATION_FIELD:
 			// 詠唱時間等
@@ -6193,7 +6091,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i] = w_DMG[2];
 			}
 			break;
-
 
 		case 423:
 			w_HIT = 100;
@@ -6389,8 +6286,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
-
-
 		case SKILL_ID_CHAIN_LIGHTNING:
 			w_HIT = 100;
 			w_HIT_HYOUJI = 100;
@@ -6488,8 +6383,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
-
-
 
 		case SKILL_ID_TETRA_BOLTEX:
 			w_HIT = 100;
@@ -6726,8 +6619,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
-
-
 		case SKILL_ID_PINGPOINT_ATTACK:
 			w_HIT = 100;
 			w_HIT_HYOUJI = 100;
@@ -6819,8 +6710,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
-
-
 		case SKILL_ID_SHURASHINDAN:
 			n_Enekyori = 1;
 			n_Delay[7] = Math.max(200, 1200 - 200 * n_A_ActiveSkillLV);
@@ -6869,8 +6758,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
-
-
 
 		case SKILL_ID_HASAICHU:
 			if(n_DEATH_BOUND[3] == 0){
@@ -6964,8 +6851,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			}
 			break;
 
-
-
 		case SKILL_ID_SHINDOZANKYO:
 			n_Enekyori=0;
 			wCast = 1000 + 100 * n_A_ActiveSkillLV;
@@ -7022,8 +6907,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
-
-
 
 		case SKILL_ID_BLOOD_SUCKER:
 		case SKILL_ID_THORN_TRAP:
@@ -7185,8 +7068,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
-
-
 		case SKILL_ID_SENKO_RENGEKI:
 		case SKILL_ID_COMBO_SANDAN_MONK:
 		case SKILL_ID_COMBO_SANDAN_CHAMP:
@@ -7224,8 +7105,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
-
-
 
 		// 「アースクエイク」
 		case SKILL_ID_EARTH_QUAKE:
@@ -7283,8 +7162,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
-
-
 
 		case SKILL_ID_MAGMA_ILLUPTION:
 			wCast = 2000;
@@ -7346,7 +7223,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
-
 		//「メイジ」スキル「ナパームビート」
 		case SKILL_ID_NAPALM_BEAT:
 			n_PerfectHIT_DMG = 0;
@@ -7395,7 +7271,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
-
 		// 「ハイウィザード」スキル「ナパームバルカン」
 		case SKILL_ID_NAPALM_VULKAN:
 			n_PerfectHIT_DMG = 0;
@@ -7439,8 +7314,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
-
-
 		case SKILL_ID_FIRE_PILLAR:
 			n_PerfectHIT_DMG = 0;
 			n_Enekyori=2;
@@ -7475,8 +7348,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
-
-
 
 		// リベリオン－マススパイラル（ハッケイから流用）
 		case SKILL_ID_MASS_SPIRAL:
@@ -7515,8 +7386,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
-
-
 
 		// リベリオン－ラウンドトリップ（修羅身弾から流用）
 		case SKILL_ID_ROUND_TRIP:
@@ -7573,8 +7442,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
-
-
 
 		// 紅焔脚（修羅身弾から流用）
 		case SKILL_ID_KOEN_KYAKU:
@@ -7641,7 +7508,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
-
 		case SKILL_ID_ZYURYOKU_CHOSE:
 
 			wbairitu = 100;
@@ -7707,76 +7573,18 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 
 			break;
-/*
-		// 「星帝」スキル「創星の書」
-		case SKILL_ID_SOSENO_SHO:
-			n_Enekyori=1;
-			// 特定の戦闘エリアでの補正
-			switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
-			case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
-				wbairitu = 750 + 750 * n_A_ActiveSkillLV;
-				break;
-			default:
-				wbairitu = 500 + 500 * n_A_ActiveSkillLV;
-				break;
-			}
-			wCast = 1000 * n_A_ActiveSkillLV;
-			n_Delay[6] = 10;
-			n_Delay[7] = 5000;
-			wHITsuu = 20;
-			// 必中ダメージのみ仮計算（属性倍率未適用）
-			n_PerfectHIT_DMG = GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray);
-			for(var i=0;i<=2;i++){
-				w_DMG[i] = n_A_DMG[i];
-				w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
-				w_DMG[i] = Math.floor(w_DMG[i] * wbairitu / 100);
-				w_DMG[i] = ApplyMonsterDefence(mobData, w_DMG[i], 0);
-				w_DMG[i] += GetFixedAppendAtk(n_A_ActiveSkill, charaData, specData, mobData, w_DMG[i],i,-1);
-				w_DMG[i] += n_PerfectHIT_DMG;
-				w_DMG[i] = GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray);
-				w_DMG[i] = ApplyHitJudgeElementRatio(n_A_ActiveSkill, w_DMG[i], mobData);
-				w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
-
-				if(wActiveHitNum > 1) {
-					w_DMG[i] = Math.floor(w_DMG[i] / wActiveHitNum) * wActiveHitNum;
-				}
-			}
-			if(n_AS_MODE) return w_DMG;
-			for(var i=0;i<=2;i++){
-
-				// TODO: ダメージ表示方式変更対応
-				//Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i] * wHITsuu;
-
-				g_damageTextArray[i].push(Last_DMG_A[i]);
-				if(wHITsuu > 1) g_damageTextArray[i].push("(", w_DMG[i], "×", wHITsuu, "hit)");
-			}
-			// 改めて必中ダメージ計算
-			n_PerfectHIT_DMG = GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray);
-			n_PerfectHIT_DMG = ApplyHitJudgeElementRatio(n_A_ActiveSkill, n_PerfectHIT_DMG, mobData);
-			n_PerfectHIT_DMG = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, n_PerfectHIT_DMG);
-			w_DMG[1] = (w_DMG[1] * w_HIT + n_PerfectHIT_DMG * (100-w_HIT))/100;
-			AS_PLUS();
-			BuildCastAndDelayHtml(mobData);
-			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
-			break;
-*/
 
 		default:
 			bPhysicalFormula = false;
 			break;
 
 		}
-
 		// 物理判定スキルでなければ別処理へ
 		if (!bPhysicalFormula) {
 			break;
 		}
-
 		return w_DMG;
 	}
-
-
-
 
 	//----------------------------------------------------------------
 	//
