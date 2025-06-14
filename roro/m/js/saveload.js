@@ -4938,7 +4938,7 @@ function DecodeUrl(loadDataUrl){
 
 
 	OnClickSkillSWLearned();
-	Click_A1(0);
+	Click_A1(false);
 
 	Click_A3(false);
 	Click_A4(0);
