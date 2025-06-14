@@ -1,20 +1,16 @@
-//================================================================================================
-//
-// 定数定義
-//
-//================================================================================================
-
-// オートスペル設定　最大数
+/* オートスペル設定　最大数 */
 AUTO_SPELL_SETTING_COUNT = 20;
-
-
-// オートスペル系スキル　最大数
+/* オートスペル系スキル　最大数 */
 AUTO_SPELL_SKILL_COUNT_MAX = 40;
+/* オートスペル発動率（千分率） */
+AUTO_SPELL_PROB_ARRAY = [];
+/* オブジェクトＩＤのオフセット（オートスペル　スキルＩＤ） */
+OBJID_OFFSET_AS_SKILL_ID = 100;	
+/* オブジェクトＩＤのオフセット（オートスペル　スキルレベル） */
+OBJID_OFFSET_AS_SKILL_LV = 200;		
+/* オブジェクトＩＤのオフセット（オートスペル　スキル発動率） */
+OBJID_OFFSET_AS_SKILL_PROB = 300;		
 
-
-// オートスペル発動率（千分率）
-AUTO_SPELL_PROB_ARRAY = [
-];
 
 for (idx = 0, inc = 1; idx <= 1000; idx += inc) {
 	AUTO_SPELL_PROB_ARRAY.push(idx);
@@ -27,16 +23,7 @@ for (idx = 0, inc = 1; idx <= 1000; idx += inc) {
 	}
 }
 
-
-
-//================================================================================================
-//
-// グローバル変数定義
-//
-//================================================================================================
-
 n_AS_SKILL = new Array();
-
 n_AS_DMG = new Array();
 n_AS_DMG_OverHP = new Array();
 for (var idx = 0; idx < AUTO_SPELL_SKILL_COUNT_MAX; idx++) {
@@ -44,18 +31,14 @@ for (var idx = 0; idx < AUTO_SPELL_SKILL_COUNT_MAX; idx++) {
 	n_AS_DMG_OverHP[idx] = new Array();
 }
 
-
-
-
-
-//================================================================================================
-//
-// 処理
-//
-//================================================================================================
-
 /**
- * オートスペルの計算.
+ * オートスペルの計算
+ * @param {*} charaData 
+ * @param {*} specData 
+ * @param {*} mobData 
+ * @param {*} attackMethodConfArray 
+ * @param {*} battleCalcInfo 
+ * @returns 
  */
 function AS_Calc(charaData, specData, mobData, attackMethodConfArray, battleCalcInfo){
 
@@ -1000,374 +983,112 @@ function AS_Calc(charaData, specData, mobData, attackMethodConfArray, battleCalc
 			}
 		}
 	}
-
-
 	//----------------------------------------------------------------
 	// ボルト使用時の、ダブルキャスティング効果
 	//----------------------------------------------------------------
 	switch (n_A_ActiveSkill) {
-
-	case SKILL_ID_FIRE_BOLT:
-	case SKILL_ID_COLD_BOLT:
-	case SKILL_ID_LIGHTNING_BOLT:
-
-		skillLvDoubleCasting = UsedSkillSearch(SKILL_ID_DOUBLE_CASTING);
-
-		if (skillLvDoubleCasting > 0) {
-			funcAddAS();
-			n_AS_SKILL[idx][0] = n_A_ActiveSkill;
-			n_AS_SKILL[idx][1] = n_A_ActiveSkillLV;
-			n_AS_SKILL[idx][2] = (30 + 10 * skillLvDoubleCasting) * 10;
-			n_AS_SKILL[idx][3] = 0;
-		}
-
-		// 「バニルミルトの帽子　浮遊する賢者の石セット」のダブルキャスティング効果への対応
-		else if (TimeItemNumSearch(76)) {
-			funcAddAS();
-			n_AS_SKILL[idx][0] = n_A_ActiveSkill;
-			n_AS_SKILL[idx][1] = n_A_ActiveSkillLV;
-			n_AS_SKILL[idx][2] = 40 * 10;
-			n_AS_SKILL[idx][3] = 0;
-		}
+		case SKILL_ID_FIRE_BOLT:
+		case SKILL_ID_COLD_BOLT:
+		case SKILL_ID_LIGHTNING_BOLT:
+			skillLvDoubleCasting = UsedSkillSearch(SKILL_ID_DOUBLE_CASTING);
+			if (skillLvDoubleCasting > 0) {
+				funcAddAS();
+				n_AS_SKILL[idx][0] = n_A_ActiveSkill;
+				n_AS_SKILL[idx][1] = n_A_ActiveSkillLV;
+				n_AS_SKILL[idx][2] = (30 + 10 * skillLvDoubleCasting) * 10;
+				n_AS_SKILL[idx][3] = 0;
+			}
+			// 「バニルミルトの帽子　浮遊する賢者の石セット」のダブルキャスティング効果への対応
+			else if (TimeItemNumSearch(76)) {
+				funcAddAS();
+				n_AS_SKILL[idx][0] = n_A_ActiveSkill;
+				n_AS_SKILL[idx][1] = n_A_ActiveSkillLV;
+				n_AS_SKILL[idx][2] = 40 * 10;
+				n_AS_SKILL[idx][3] = 0;
+			}
 	}
-
-
 	//----------------------------------------------------------------
 	// 通常攻撃、スペルフィストにおける、スキルオートスペル効果
 	//----------------------------------------------------------------
 	skillLv = UsedSkillSearch(SKILL_ID_AUTO_MAGICIAN_SPELL);
 	skillKind = UsedSkillSearch(SKILL_ID_MAGIC_SETTING_FOR_AUTO_SPELL);
-
 	if ((n_A_ActiveSkill == SKILL_ID_TUZYO_KOGEKI) || (n_A_ActiveSkill == SKILL_ID_SPELL_FIST)) {
-
 		if ((skillLv > 0) && (skillKind != 0)) {
-
 			funcAddAS();
-
 			// 発動スキルの設定
 			switch (skillKind) {
-			case 1:
-				n_AS_SKILL[idx][0] = SKILL_ID_FIRE_BOLT;
-				break;
-
-			case 2:
-				n_AS_SKILL[idx][0] = SKILL_ID_COLD_BOLT;
-				break;
-
-			case 3:
-				n_AS_SKILL[idx][0] = SKILL_ID_LIGHTNING_BOLT;
-				break;
-
-			case 4:
-				n_AS_SKILL[idx][0] = SKILL_ID_SOUL_STRIKE;
-				break;
+				case 1:
+					n_AS_SKILL[idx][0] = SKILL_ID_FIRE_BOLT;
+					break;
+				case 2:
+					n_AS_SKILL[idx][0] = SKILL_ID_COLD_BOLT;
+					break;
+				case 3:
+					n_AS_SKILL[idx][0] = SKILL_ID_LIGHTNING_BOLT;
+					break;
+				case 4:
+					n_AS_SKILL[idx][0] = SKILL_ID_SOUL_STRIKE;
+					break;
 			}
-
 			// 発動レベルの設定
 			n_AS_SKILL[idx][1] = 3;
 			skillLvEffectOfSagenoTamashi = UsedSkillSearch(SKILL_ID_SAGENO_TAMASHI_MAHONO_SHUTOKU_LEVEL);
 			if (skillLvEffectOfSagenoTamashi > 0) {
 				n_AS_SKILL[idx][1] = skillLvEffectOfSagenoTamashi;
 			}
-
 			// 発動率の設定
 			n_AS_SKILL[idx][2] = (5 + 2 * skillLv) * 10;
-
 			n_AS_SKILL[idx][3] = -1;
-
-
-
 			// ダブルキャスティングの効果
 			switch (n_AS_SKILL[idx][0]) {
-
-			case SKILL_ID_FIRE_BOLT:
-			case SKILL_ID_COLD_BOLT:
-			case SKILL_ID_LIGHTNING_BOLT:
-
-				skillLvDoubleCasting = UsedSkillSearch(SKILL_ID_DOUBLE_CASTING);
-
-				if (skillLvDoubleCasting > 0) {
-					funcAddAS();
-					n_AS_SKILL[idx][0] = n_AS_SKILL[idx-1][0];
-					n_AS_SKILL[idx][1] = n_AS_SKILL[idx-1][1];
-					n_AS_SKILL[idx][2] = n_AS_SKILL[idx-1][2] / 10 * (30 + 10 * skillLvDoubleCasting) * 10 / 100;
-					n_AS_SKILL[idx][3] = 0;
-				}
-
-				// 「バニルミルトの帽子　浮遊する賢者の石セット」のダブルキャスティング効果への対応
-				else if (TimeItemNumSearch(76)) {
-					funcAddAS();
-					n_AS_SKILL[idx][0] = n_AS_SKILL[idx-1][0];
-					n_AS_SKILL[idx][1] = n_AS_SKILL[idx-1][1];
-					n_AS_SKILL[idx][2] = n_AS_SKILL[idx-1][2] / 10 * 40 * 10 / 100;
-					n_AS_SKILL[idx][3] = 0;
-				}
+				case SKILL_ID_FIRE_BOLT:
+				case SKILL_ID_COLD_BOLT:
+				case SKILL_ID_LIGHTNING_BOLT:
+					skillLvDoubleCasting = UsedSkillSearch(SKILL_ID_DOUBLE_CASTING);
+					if (skillLvDoubleCasting > 0) {
+						funcAddAS();
+						n_AS_SKILL[idx][0] = n_AS_SKILL[idx-1][0];
+						n_AS_SKILL[idx][1] = n_AS_SKILL[idx-1][1];
+						n_AS_SKILL[idx][2] = n_AS_SKILL[idx-1][2] / 10 * (30 + 10 * skillLvDoubleCasting) * 10 / 100;
+						n_AS_SKILL[idx][3] = 0;
+					}
+					// 「バニルミルトの帽子　浮遊する賢者の石セット」のダブルキャスティング効果への対応
+					else if (TimeItemNumSearch(76)) {
+						funcAddAS();
+						n_AS_SKILL[idx][0] = n_AS_SKILL[idx-1][0];
+						n_AS_SKILL[idx][1] = n_AS_SKILL[idx-1][1];
+						n_AS_SKILL[idx][2] = n_AS_SKILL[idx-1][2] / 10 * 40 * 10 / 100;
+						n_AS_SKILL[idx][3] = 0;
+					}
 			}
 		}
 	}
-
-
 	// 発動率の上限（100.0%）補正
 	for (var idxsub = 0; idxsub < n_AS_SKILL.length; idxsub++) {
 		if (n_AS_SKILL[idxsub][2] > 1000) {
 			n_AS_SKILL[idxsub][2] = 1000;
 		}
 	}
-
 	return;
-
-
-	n_AS_SKILL[idx][0] = -1;
-	if(n_AS_SKILL[0][0] == -1) return;
-	n_AS_MODE = true;
-
-	//----------------------------------------------------------------
-	// 表示ＨＴＭＬ組み立て（未解析）
-	//----------------------------------------------------------------
-
-	var BK_SKILL = n_A_ActiveSkill;
-	var BK_SKILL_LV = n_A_ActiveSkillLV;
-	var BK_ZOKUSEI = n_A_Weapon_zokusei;
-	var BK_ENKYORI = n_Enekyori;
-	var BK_DMG0 = n_A_DMG[0];
-	var BK_DMG1 = n_A_DMG[1];
-	var BK_DMG2 = n_A_DMG[2];
-	var BK_HIT = w_HIT_HYOUJI;
-	var BK_DELAY = new Array();
-	for(var i=0;i<=7;i++) BK_DELAY[i] = n_Delay[i];
-	if(!(BK_SKILL == 391 && n_AS_SKILL[1][0] == -1)){
-		if(!(799 <= BK_SKILL && BK_SKILL <= 809)){
-			str_bSUBname += "<Font size=2><B>オートスペル系</B><BR></Font>";
-			str_bSUB += "<Font size=2>与ダメージ(発動率)<BR></Font>";
-		}else{
-			str_bSUBname += "<Font size=2><B>コンボ詳細</B><BR></Font>";
-			str_bSUB += "<Font size=2>与ダメージ<BR></Font>";
-		}
-	}
-	for(var i=0;n_AS_SKILL[i][0] != -1;i++){
-
-		n_A_ActiveSkill = n_AS_SKILL[i][0];
-		n_A_ActiveSkillLV = n_AS_SKILL[i][1];
-
-		// オートスペルのダメージ計算用の攻撃手段設定を生成
-		// （元の配列は加工しないこと）
-		attackMethodConf = new CAttackMethodConf();
-		attackMethodConf.SetSkillId(n_AS_SKILL[i][0]);
-		attackMethodConf.SetSourceType(ATTACK_METHOD_SOURCE_TYPE_AUTO_SPELL);
-		attackMethodConf.SetSkillLv(n_AS_SKILL[i][1]);
-		attackMethodConfArrayAS = [attackMethodConf].concat(attackMethodConfArray);
-
-
-		SET_ZOKUSEI(mobData, attackMethodConfArrayAS);
-		n_Enekyori = 0;
-
-
-		w_HIT = n_AS_HIT;
-		w_HIT = Math.floor(w_HIT * (100 + GetHitModify()) / 100);
-
-		// 確率範囲補正
-		if (w_HIT > 100){
-			w_HIT = 100;
-		}
-		else if (w_HIT < 5){
-			w_HIT = 5;
-		}
-
-		// ○○％の確率で必中　効果の適用
-		var wkHit = n_tok[ITEM_SP_PERFECT_ATTACK_UP];
-		if (wkHit > 0) {
-			w_HIT = w_HIT + (100 - w_HIT) * wkHit / 100;
-		}
-		if (w_HIT > 100) {
-			w_HIT = 100;
-		}
-		else if (w_HIT < 5) {
-			w_HIT = 5;
-		}
-
-		var wSYUUREN = TYPE_SYUUREN(mobData, attackMethodConfArrayAS, false);
-		var wBaiA = GetSpiderWebDamageRatio();
-		var wBaiB = GetElementFieldDamageRatio();
-
-		// ○○の怒り系によるＡＴＫ増加効果
-		var pow = GetIkariPow(mobData);
-
-		for(var j=0;j<=2;j++){
-			n_A_DMG[j] = BK_n_A_DMG2[j];
-			n_A_DMG[j] = ApplyPhysicalSpecializeMonster(charaData, specData, mobData, n_A_DMG[j]);
-			if(wBaiA != 0) n_A_DMG[j] = ROUNDDOWN(n_A_DMG[j] * (100 + wBaiA) / 100);
-			n_A_DMG[j] = ApplyElementRatio(mobData, n_A_DMG[j],n_A_Weapon_zokusei);
-			if(wBaiB != 0) n_A_DMG[j] = ROUNDDOWN(n_A_DMG[j] * (100 + wBaiB) / 100);
-			n_A_DMG[j] = ApplyResistElement(mobData, n_A_DMG[j]);
-			n_A_DMG[j] = charaData[CHARA_DATA_INDEX_STATUS_ATK] + n_A_DMG[j];
-
-			// 修練前に四次特性効果を適用
-			n_A_DMG[j] = ApplyPAtkAmplify(n_A_DMG[j]);
-
-			n_A_DMG[j] += wSYUUREN;
-			n_A_DMG[j] = Math.floor(n_A_DMG[j] * pow / 100);
-		}
-		var wDMG;
-
-		// ダメージ計算
-		clonedCalcInfo = battleCalcInfo.Clone();
-		clonedCalcInfo.skillId = n_A_ActiveSkill;
-		clonedCalcInfo.skillLv = n_A_ActiveSkillLV;
-		battleCalcResultAll = BattleCalc999(clonedCalcInfo, charaData, specData, mobData, attackMethodConfArrayAS);
-
-		// TODO: クリティカル未対応
-		wDMG = battleCalcResultAll.GetPassiveResult(0).dmgUnitArray[0].slice();
-
-		if(n_AS_SKILL[i][3] >= 0){
-			if(n_AS_SKILL[i][2] != 0){
-				if(n_AS_SKILL[i][3] == 11){
-					if(EquipNumSearch(2513)) str_bSUBname += SkillObjNew[n_AS_SKILL[i][0]][SKILL_DATA_INDEX_NAME] +"Lv"+ n_AS_SKILL[i][1] +"(ガラパゴ)<BR>";
-					else str_bSUBname += SkillObjNew[n_AS_SKILL[i][0]][SKILL_DATA_INDEX_NAME] +"Lv"+ n_AS_SKILL[i][1] +"(呼子)<BR>";
-				}
-				else str_bSUBname += SkillObjNew[n_AS_SKILL[i][0]][SKILL_DATA_INDEX_NAME] +"Lv"+ n_AS_SKILL[i][1] +"<BR>";
-				if(n_AS_SKILL[i][3] == 0) str_bSUB += __DIG3(wDMG[0]) +"～"+ __DIG3(wDMG[2]) +"("+ (Math.floor(n_AS_SKILL[i][2]) / 10) +"％)<BR>";
-				else if(n_AS_SKILL[i][3] == 10 || n_AS_SKILL[i][3] == 11) str_bSUB += __DIG3(wDMG[0]) +" ("+ __DIG3(wDMG[0] / n_AS_SKILL[i][1]) +"×"+ n_AS_SKILL[i][1] +")("+ (Math.floor(n_AS_SKILL[i][2]) / 10) +"％)<BR>";
-				n_AS_SKILL[i][2] = n_AS_SKILL[i][2] / 10;
-				if(n_Enekyori==2){
-					if(n_AS_SKILL[i][2] >= 100) n_AS_DMG[i][0] = wDMG[0];
-					else n_AS_DMG[i][0] = 0;
-					n_AS_DMG[i][1] = wDMG[1] * BK_HIT / 100 * n_AS_SKILL[i][2] / 100;
-					n_AS_DMG_OverHP[i][1] = mobData[3] * BK_HIT / 100 * n_AS_SKILL[i][2] / 100;
-					n_AS_DMG[i][2] = wDMG[2];
-				}
-				if(n_Enekyori==0 || n_Enekyori==1){
-					if(n_AS_SKILL[i][2] >= 100 && BK_HIT >= 100 && w_HIT >= 100) n_AS_DMG[i][0] = wDMG[0];
-					else n_AS_DMG[i][0] = 0;
-					n_AS_DMG[i][1] = wDMG[1] * BK_HIT / 100 * w_HIT / 100 * n_AS_SKILL[i][2] / 100;
-					n_AS_DMG_OverHP[i][1] = mobData[3] * BK_HIT / 100 * w_HIT / 100 * n_AS_SKILL[i][2] / 100;
-					n_AS_DMG[i][2] = wDMG[2];
-					if(n_AS_SKILL[i][2] <= 0) n_AS_DMG[i][2] = 0;
-				}
-			}else{
-				str_bSUBname += SkillObjNew[n_AS_SKILL[i][0]][SKILL_DATA_INDEX_NAME] +"Lv"+ n_AS_SKILL[i][1] +"<BR>";
-				str_bSUB += "発動率不明で計算から除外<BR>";
-				n_AS_DMG[i][0] = 0;
-				n_AS_DMG[i][1] = 0;
-				n_AS_DMG[i][2] = 0;
-			}
-		}else if(n_AS_SKILL[i][3] == -1){
-			if(UsedSkillSearch(SKILL_ID_SAGENO_TAMASHI_MAHONO_SHUTOKU_LEVEL) == 0){
-				str_bSUBname += SkillObjNew[n_AS_SKILL[i][0]][SKILL_DATA_INDEX_NAME] +"Lv1-3<BR>";
-				str_bSUB += __DIG3(wDMG[0] / 3) +"～"+ __DIG3(wDMG[2]) +"("+ (Math.floor(n_AS_SKILL[i][2]) / 10) +"％)<BR>";
-				n_AS_SKILL[i][2] = n_AS_SKILL[i][2] / 10;
-				n_AS_DMG[i][0] = 0;
-				n_AS_DMG[i][1] = (wDMG[1] / 3 * 50 + wDMG[1] * 2 / 3 * 35 + wDMG[1] * 15) / 100 * n_AS_SKILL[i][2] / 100;
-				n_AS_DMG_OverHP[i][1] = (mobData[3] / 3 * 50 + mobData[3] * 2 / 3 * 35 + mobData[3] * 15) / 100 * n_AS_SKILL[i][2] / 100;
-				n_AS_DMG[i][2] = wDMG[2];
-			}else{
-				str_bSUBname += SkillObjNew[n_AS_SKILL[i][0]][SKILL_DATA_INDEX_NAME] +"Lv"+ UsedSkillSearch(SKILL_ID_SAGENO_TAMASHI_MAHONO_SHUTOKU_LEVEL) +"<BR>";
-				str_bSUB += __DIG3(wDMG[0]) +"～"+ __DIG3(wDMG[2]) +"("+ (Math.floor(n_AS_SKILL[i][2]) / 10) +"％)<BR>";
-				n_AS_SKILL[i][2] = n_AS_SKILL[i][2] / 10;
-				n_AS_DMG[i][0] = 0;
-				n_AS_DMG[i][1] = wDMG[1] * n_AS_SKILL[i][2] / 100;
-				n_AS_DMG_OverHP[i][1] = mobData[3] * n_AS_SKILL[i][2] / 100;
-				n_AS_DMG[i][2] = wDMG[2];
-			}
-		}else if(n_AS_SKILL[i][3] == -2){
-			g_damageTextArray[0].push("＋");
-			g_damageTextArray[1].push("＋");
-			g_damageTextArray[2].push("＋");
-			if(n_AS_SKILL[i][2] >= 100 && w_HIT >= 100) n_AS_DMG[i][0] = wDMG[0];
-			else n_AS_DMG[i][0] = 0;
-			n_AS_DMG[i][1] = wDMG[1] * w_HIT / 100 * n_AS_SKILL[i][2] / 100;
-			n_AS_DMG_OverHP[i][1] = mobData[3] * w_HIT / 100 * n_AS_SKILL[i][2] / 100;
-			n_AS_DMG[i][2] = wDMG[2];
-			if(n_AS_SKILL[i][2] <= 0) n_AS_DMG[i][2] = 0;
-		}else if(n_AS_SKILL[i][3] == -3){
-
-			var wDMG2;
-			var wDMG3;
-
-			skillLvOld = attackMethodConfArrayAS[0].GetSkillLv();
-
-			n_A_ActiveSkillLV = 3;
-			attackMethodConfArrayAS[0].SetSkillLv(n_A_ActiveSkillLV);
-			clonedCalcInfo = battleCalcInfo.Clone();
-			clonedCalcInfo.skillId = n_A_ActiveSkill;
-			clonedCalcInfo.skillLv = n_A_ActiveSkillLV;
-			battleCalcResultAll = BattleCalc999(clonedCalcInfo, charaData, specData, mobData, attackMethodConfArrayAS);
-
-			// TODO: クリティカル未対応
-			wDMG2 = battleCalcResultAll.GetPassiveResult(0).dmgUnitArray[0].slice();
-
-			n_A_ActiveSkillLV = 5;
-			attackMethodConfArrayAS[0].SetSkillLv(n_A_ActiveSkillLV);
-			clonedCalcInfo = battleCalcInfo.Clone();
-			clonedCalcInfo.skillId = n_A_ActiveSkill;
-			clonedCalcInfo.skillLv = n_A_ActiveSkillLV;
-			battleCalcResultAll = BattleCalc999(clonedCalcInfo, charaData, specData, mobData, attackMethodConfArrayAS);
-
-			// TODO: クリティカル未対応
-			wDMG3 = battleCalcResultAll.GetPassiveResult(0).dmgUnitArray[0].slice();
-
-			attackMethodConfArrayAS[0].SetSkillLv(skillLvOld);
-
-			str_bSUBname += SkillObjNew[n_AS_SKILL[i][0]][SKILL_DATA_INDEX_NAME] +"Lv1～5<BR>";
-			str_bSUB += __DIG3(wDMG[0]) +"～"+ __DIG3(wDMG3[2]) +"("+ n_AS_SKILL[i][2] +"％)<BR>";
-			if(n_AS_SKILL[i][2] >= 100) n_AS_DMG[i][0] = wDMG[0];
-			else n_AS_DMG[i][0] = 0;
-			n_AS_DMG[i][1] = wDMG2[1] * n_AS_SKILL[i][2] / 100;
-			n_AS_DMG_OverHP[i][1] = mobData[3] * n_AS_SKILL[i][2] / 100;
-			n_AS_DMG[i][2] = wDMG3[2];
-		}else if(n_AS_SKILL[i][3] == -4){
-			str_bSUBname += SkillObjNew[n_AS_SKILL[i][0]][SKILL_DATA_INDEX_NAME] +"Lv"+ n_AS_SKILL[i][1] +"<BR>";
-			str_bSUB += __DIG3(wDMG[0]) +"～"+ __DIG3(wDMG[2]) +"<BR>";
-			n_AS_SKILL[i][2] = n_AS_SKILL[i][2] / 10;
-			if(w_HIT >= 100) n_AS_DMG[i][0] = wDMG[0];
-			else n_AS_DMG[i][0] = 0;
-			n_AS_DMG[i][1] = wDMG[1] * w_HIT / 100 * n_AS_SKILL[i][2] / 100;
-			n_AS_DMG_OverHP[i][1] = mobData[3] * w_HIT / 100 * n_AS_SKILL[i][2] / 100;
-			n_AS_DMG[i][2] = wDMG[2];
-		}
-	}
-	w_HIT_HYOUJI = BK_HIT;
-	n_A_DMG[0] = BK_DMG0;
-	n_A_DMG[1] = BK_DMG1;
-	n_A_DMG[2] = BK_DMG2;
-	n_A_ActiveSkill = BK_SKILL;
-	n_A_ActiveSkillLV = BK_SKILL_LV;
-	n_A_Weapon_zokusei = BK_ZOKUSEI;
-	n_Enekyori = BK_ENKYORI;
-	for(var i=0;i<=7;i++) n_Delay[i] = BK_DELAY[i];
-	n_AS_MODE = false;
-	if(n_A_ActiveSkill == 0 && n_AS_SKILL[0][0] != 0 && (UsedSkillSearch(SKILL_ID_SANDANSHO) || GetActRateDA(n_A_ActiveSkill, mobData))){
-		str_bSUBname += "<B><Font size=2>通常</Font></B><BR>";
-		str_bSUB += "<BR>";
-	}
 }
 
-
-
-
-
+/**
+ * 
+ */
 function AS_PLUS(){
-
 	w_DMG_AS_OverHP = w_DMG[1];
-
 	if(!n_AS_check_3dan){
-
 		for(var j = 0; j < n_AS_DMG.length; j++){
-
 			for(var i = 0; i <= 2; i++){
-
 				if(i == 1) {
 					w_DMG_AS_OverHP += n_AS_DMG_OverHP[j][i];
 				}
-
 				w_DMG[i] += n_AS_DMG[j][i];
 			}
 		}
 	}
-
 	else{
-
 		for(var j = 0; j < n_AS_DMG.length; j++){
-
 			for(var i = 0; i <= 1; i++){
 				w_DMG[i] += n_AS_DMG[j][i];
 			}
@@ -1375,58 +1096,10 @@ function AS_PLUS(){
 	}
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//================================================================================================
-//
-// 定数定義
-//
-//================================================================================================
-OBJID_OFFSET_AS_SKILL_ID = 100;			// オブジェクトＩＤのオフセット（オートスペル　スキルＩＤ）
-OBJID_OFFSET_AS_SKILL_LV = 200;			// オブジェクトＩＤのオフセット（オートスペル　スキルレベル）
-OBJID_OFFSET_AS_SKILL_PROB = 300;		// オブジェクトＩＤのオフセット（オートスペル　スキル発動率）
-
-
-
-
-
-//================================================================================================
-//
-// グローバル変数定義
-//
-//================================================================================================
-
-
-
-
-
-//================================================================================================
-//
-// 処理
-//
-//================================================================================================
-
-/************************************************************************************************
- *
+/**
  * オートスペル設定欄の展開（再構築）.
- *
- ************************************************************************************************/
+ */
 function OnClickExtractSettingAutoSpell(){
-
 	var objRoot = null;
 	var objTable = null;
 	var objTbody = null;
@@ -1436,73 +1109,54 @@ function OnClickExtractSettingAutoSpell(){
 	var objSpan = null;
 	var objText = null;
 	var objLabel = null;
-
-
 	// 再構築前の、チェックボックスの指定状況を保持
 	var htmlSwitchAS = 0;
 	objInput = document.getElementById("OBJID_EXTRACT_SETTING_AUTO_SPELL");
 	if (objInput != undefined) {
 		htmlSwitchAS = objInput.checked;
 	}
-
-
-
 	//================================================================
 	// オートスペル設定欄を再構築する
 	//================================================================
-
 	// ルート要素配下を全削除
 	objRoot = document.getElementById("SP_SIEN03");
 	HtmlRemoveAllChild(objRoot);
-
 	// 整形用テーブル生成
 	objTable = document.createElement("table");
 	objRoot.appendChild(objTable);
 	objTable.setAttribute("border", "1");
 	objTable.style.whiteSpace = "nowrap";
-
 	objTbody = document.createElement("tbody");
 	objTable.appendChild(objTbody);
-
-
 	//----------------------------------------------------------------
 	// ヘッダ行
 	//----------------------------------------------------------------
 	objTr = document.createElement("tr");
 	objTbody.appendChild(objTr);
-
 	objTd = document.createElement("td");
 	objTr.appendChild(objTd);
 	objTd.setAttribute("class", "title");
 	objTd.setAttribute("id", "OBJID_TD_AUTO_SPELL_SETTING");
-
 	// 設定欄展開用チェックボックス
 	objInput = document.createElement("input");
 	objTd.appendChild(objInput);
 	objInput.setAttribute("type", "checkbox");
 	objInput.setAttribute("id", "OBJID_EXTRACT_SETTING_AUTO_SPELL");
 	objInput.setAttribute("onClick", "OnClickExtractSettingAutoSpell()");
-
 	// ヘッダ行表示テキスト
 	objLabel = HtmlCreateElement("label", objTd);
 	objLabel.setAttribute("for", "OBJID_EXTRACT_SETTING_AUTO_SPELL");
 	HtmlCreateTextNode("オートスペル設定 (テスト中)", objLabel);
-
 	// 使用中表示マーカー
 	objSpan = document.createElement("span");
 	objTd.appendChild(objSpan);
 	objSpan.setAttribute("id", "OBJID_USED_MARKER_AUTO_SPELL");
-
-
-
 	//----------------------------------------------------------------
 	// 欄が展開表示の場合は、ＨＴＭＬを構築
 	//----------------------------------------------------------------
 	if (htmlSwitchAS) {
 		BuildUpSettingHtmlAutoSpell(objTbody);
 	}
-
-
 	//----------------------------------------------------------------
 	// 部品を再構築したので、再設定が必要
 	//----------------------------------------------------------------
@@ -1510,20 +1164,14 @@ function OnClickExtractSettingAutoSpell(){
 	if (objInput != undefined) {
 		objInput.checked = htmlSwitchAS;
 	}
-
 	// オートスペル設定変更イベントハンドラを実行（再計算はしない）
 	OnChangeSettingAutoSpell(false);
 }
 
-
-
-/************************************************************************************************
- *
+/**
  * オートスペル設定欄の展開構築.
- *
- *-----------------------------------------------------------------------------------------------
- * @param objTbody 構築対象のＴＢＯＤＹ要素
- ************************************************************************************************/
+ * @param {*} objTbody 構築対象のＴＢＯＤＹ要素
+ */
 function BuildUpSettingHtmlAutoSpell(objTbody) {
 	var str = "";
 
@@ -1695,17 +1343,10 @@ function BuildUpSettingHtmlAutoSpell(objTbody) {
 	}
 }
 
-
-
-
-
-/************************************************************************************************
- *
+/**
  * オートスペル設定　設定変更イベントハンドラ.
- *
- *-----------------------------------------------------------------------------------------------
- * @param bCalculate 再計算フラグ
- ************************************************************************************************/
+ * @param {*} bCalculate 再計算フラグ
+ */
 function OnChangeSettingAutoSpell(bCalculate){
 
 	// 再計算フラグが指定されている場合は、再計算を行う
@@ -1733,15 +1374,9 @@ function OnChangeSettingAutoSpell(bCalculate){
 	}
  }
 
-
-
-
-
-/************************************************************************************************
- *
- * オートスペルの簡易設定を行う.
- *
- ************************************************************************************************/
+/**
+ * オートスペルの簡易設定を行う
+ */
 function OnClickEasySetUpAutoSpell(){
 
 	var idx = 0;
