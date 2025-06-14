@@ -4961,7 +4961,7 @@ function DecodeUrl(loadDataUrl){
 	}
 
 	Click_A7(false);
-	Click_A8(0);
+	Click_A8(false);
 
 	CTimeItemAreaComponentManager.CloseArea();
 
