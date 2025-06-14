@@ -4960,7 +4960,7 @@ function DecodeUrl(loadDataUrl){
 	catch (exc) {
 	}
 
-	Click_A7(0);
+	Click_A7(false);
 	Click_A8(0);
 
 	CTimeItemAreaComponentManager.CloseArea();
