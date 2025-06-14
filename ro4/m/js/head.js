@@ -73,18 +73,6 @@ let n_SiegeMode = false;
 let n_A_BaseLV=1;
 /** 遠距離フラグ. CSkillData.RANGE_SHORT | CSkillData.RANGE_LONG | CSkillData.RANGE_MAGIC | CSkillData.RANGE_SPECIAL */
 let n_Enekyori = false;
-/** 天帝 天気の状態 正午 */
-let state_shougo = 0;
-/** 天帝 天気の状態 月出 */
-let state_tukidashi = 0;
-/** 天帝 天気の状態 日出 */
-let state_hinode = 0;
-/** 天帝 天気の状態 月星 */
-let state_tukibotsu = 0;
-/** 天帝 天気の状態 日没 */
-let state_nichibotsu = 0;
-/** 天帝 天気の状態 天気の身 */
-let state_tenki_no_mi = 0;
 /** レックスエーテルナの計算に係るフラグ. 解析不足でロジックが追えてない. */
 let wLAch = false;
 /** 三段掌に遠距離ダメージUPを適用するフラグ */
@@ -255,7 +243,6 @@ let resistValueArrayOver = 0;
 let bodyElmRatioArray = 0;
 /** 属性倍率　耐性を考慮した最終的な値 */
 let finalRatioArray = 0;
-
 /** 変動詠唱 0 を達成するために必要な DEX */
 const CAST_PARAM_BORDER = 265;
 /** オートガードによるダメージ減衰率 */
@@ -3493,11 +3480,11 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 
 			// 「天帝」スキル「太天一陽」
 			// 2024/11/11 もなこさん提供データに対して誤差なしを確認
-			case SKILL_ID_TAITEN_ICHIYO:
+			case SKILL_ID_TAITEN_ICHIYO: {
 				// 日出、正午、天気の身状態でのみ使用可能
-				state_hinode = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 1);
-				state_shougo = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 2);
-				state_tenki_no_mi = (UsedSkillSearch(SKILL_ID_TENKINO_MI) >= 1);
+				const state_hinode = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 1);
+				const state_shougo = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 2);
+				const state_tenki_no_mi = (UsedSkillSearch(SKILL_ID_TENKINO_MI) >= 1);
 				if (!state_hinode && !state_shougo && !state_tenki_no_mi) {
 					wbairitu = 0;
 					n_Buki_Muri = true;
@@ -3522,14 +3509,14 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				// 分割ヒット
 				wActiveHitNum = 2;
 				break;
-
+			}
 			// 「天帝」スキル「天陽」
 			// 2024/11/11 もなこさん提供データに対して誤差なしを確認
-			case SKILL_ID_TENYO:
+			case SKILL_ID_TENYO: {
 				// 正午、日没、天気の身状態でのみ使用可能
-				state_shougo = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 2);
-				state_nichibotsu = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 3);
-				state_tenki_no_mi = (UsedSkillSearch(SKILL_ID_TENKINO_MI) >= 1)
+				const state_shougo = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 2);
+				const state_nichibotsu = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 3);
+				const state_tenki_no_mi = (UsedSkillSearch(SKILL_ID_TENKINO_MI) >= 1)
 				if (!state_shougo && !state_nichibotsu && !state_tenki_no_mi) {
 					wbairitu = 0;
 					n_Buki_Muri = true;
@@ -3554,7 +3541,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				// 分割ヒット
 				wActiveHitNum = 2;
 				break;
-
+			}
 			// 「天帝」スキル「天地一月」
 			case SKILL_ID_TENCHI_ICHIGETSU:
 				// 距離属性
@@ -3577,11 +3564,11 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				break;
 
 			// 「天帝」スキル「太天一月」
-			case SKILL_ID_TAITEN_ICHIGETSU:
+			case SKILL_ID_TAITEN_ICHIGETSU: {
 				// 月出、正子、天気の身状態でのみ使用可能
-				state_tukidashi = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 4);
-				state_shougo = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 5);
-				state_tenki_no_mi = (UsedSkillSearch(SKILL_ID_TENKINO_MI) >= 1);
+				const state_tukidashi = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 4);
+				const state_shougo = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 5);
+				const state_tenki_no_mi = (UsedSkillSearch(SKILL_ID_TENKINO_MI) >= 1);
 				if (!state_tukidashi && !state_shougo && !state_tenki_no_mi) {
 					wbairitu = 0;
 					n_Buki_Muri = true;
@@ -3609,14 +3596,14 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				// 分割ヒット
 				wActiveHitNum = 2;
 				break;
-
+			}
 			// 「天帝」スキル「天月」
 			// 2024/11/11 もなこさん提供データに対して誤差なしを確認
-			case SKILL_ID_TENGETSU:
+			case SKILL_ID_TENGETSU: {
 				// 正子、月没、天気の身状態でのみ使用可能
-				state_shougo = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 5);
-				state_tukibotsu = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 6);
-				state_tenki_no_mi = (UsedSkillSearch(SKILL_ID_TENKINO_MI) >= 1);
+				const state_shougo = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 5);
+				const state_tukibotsu = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 6);
+				const state_tenki_no_mi = (UsedSkillSearch(SKILL_ID_TENKINO_MI) >= 1);
 				if (!state_tukibotsu && !state_shougo && !state_tenki_no_mi) {
 					wbairitu = 0;
 					n_Buki_Muri = true;
@@ -3645,7 +3632,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				// 分割ヒット
 				wActiveHitNum = 2;
 				break;
-
+			}
 			// 「天帝」スキル「天地万星」
 			case SKILL_ID_TENCHI_BANSE:
 				// 距離属性
