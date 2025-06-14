@@ -4941,7 +4941,7 @@ function DecodeUrl(loadDataUrl){
 	Click_A1(false);
 
 	Click_A3(false);
-	Click_A4(0);
+	Click_A4(false);
 	OnChangeSettingAutoSpell(false);
 
 	g_objCharaConfIchizi.RefreshSelectAreaHeader();

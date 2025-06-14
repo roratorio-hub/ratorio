@@ -491,7 +491,7 @@ function Click_PassSkillSW(){
 
 /**
  * パッシブ持続系の設定変更を反映する
- * @param {boolean} recalc 再計算フラグ（1 = 再計算する, 1以外 = 再計算しない）
+ * @param {boolean} recalc true:変数変更後に再計算する / false:しない(default)
  */
 function Click_A1(recalc = false){
 	if (recalc) {
