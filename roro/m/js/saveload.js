@@ -4938,10 +4938,10 @@ function DecodeUrl(loadDataUrl){
 
 
 	OnClickSkillSWLearned();
-	Click_A1(0);
+	Click_A1(false);
 
 	Click_A3(false);
-	Click_A4(0);
+	Click_A4(false);
 	OnChangeSettingAutoSpell(false);
 
 	g_objCharaConfIchizi.RefreshSelectAreaHeader();
@@ -4960,8 +4960,8 @@ function DecodeUrl(loadDataUrl){
 	catch (exc) {
 	}
 
-	Click_A7(0);
-	Click_A8(0);
+	Click_A7(false);
+	Click_A8(false);
 
 	CTimeItemAreaComponentManager.CloseArea();
 
