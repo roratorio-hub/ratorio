@@ -168,7 +168,7 @@ function Click_Skill7SW(){
                 objInput.setAttribute("type", "checkbox");
                 objInput.setAttribute("id", "OBJID_CHECK_A7_Skill15");
                 objInput.setAttribute("name", "A7_Skill15");
-                objInput.setAttribute("onclick", "StAllCalc() | Click_A7(true) | CAttackMethodAreaComponentManager.RebuildControls()");
+                objInput.setAttribute("onclick", "StAllCalc(); Click_A7(true); CAttackMethodAreaComponentManager.RebuildControls();");
                 objLabel = HtmlCreateElement("label", objTd);
                 objLabel.setAttribute("for", "OBJID_CHECK_A7_Skill15");
                 HtmlCreateTextNode("攻撃方法を追加する（魔女のスキルカード・攻撃魔法スクロール・イグドラシルの葉）", objLabel);
@@ -190,7 +190,7 @@ function Click_Skill7SW(){
                     objInput.setAttribute("type", "checkbox");
                     objInput.setAttribute("id", "OBJID_CHECK_A7_Skill" + subInfoArray[idxKind][0]);
                     objInput.setAttribute("name", "A7_Skill" + subInfoArray[idxKind][0]);
-                    objInput.setAttribute("onclick", "StAllCalc() | Click_A7(true)");
+                    objInput.setAttribute("onclick", "StAllCalc(); Click_A7(true);");
                     objLabel = HtmlCreateElement("label", objTd);
                     objLabel.setAttribute("for", "OBJID_CHECK_A7_Skill" + subInfoArray[idxKind][0]);
                     HtmlCreateTextNode(subInfoArray[idxKind][1] + "+20", objLabel);
@@ -213,7 +213,7 @@ function Click_Skill7SW(){
 				objInput.setAttribute("type", "checkbox");
 				objInput.setAttribute("id", "OBJID_CHECK_A7_Skill" + buildInfo[0]);
 				objInput.setAttribute("name", "A7_Skill" + buildInfo[0]);
-				objInput.setAttribute("onclick", "StAllCalc() | Click_A7(true)");
+				objInput.setAttribute("onclick", "StAllCalc(); Click_A7(true);");
 				objLabel = HtmlCreateElement("label", objTd);
 				objLabel.setAttribute("for", "OBJID_CHECK_A7_Skill" + buildInfo[0]);
 				HtmlCreateTextNode(buildInfo[1], objLabel);
@@ -226,7 +226,7 @@ function Click_Skill7SW(){
 				HtmlCreateTextNode("　", objTd);
 				objSelect = HtmlCreateElement("select", objTd);
 				objSelect.setAttribute("name", "A7_Skill" + buildInfo[0]);
-				objSelect.setAttribute("onchange", "StAllCalc() | Click_A7(true)");
+				objSelect.setAttribute("onchange", "StAllCalc(); Click_A7(true);");
 				for (let idxValue = 0; idxValue < buildInfo[2].length; idxValue++) {
 					HtmlCreateElementOption(idxValue, buildInfo[2][idxValue], objSelect);
 				}
@@ -243,7 +243,7 @@ function Click_Skill7SW(){
 	for (let idxKind = 0; idxKind < subInfoArray.length; idxKind++) {
 		objSelect = HtmlCreateElement("select", objTd);
 		objSelect.setAttribute("name", "A7_Skill" + subInfoArray[idxKind][0]);
-		objSelect.setAttribute("onchange", "StAllCalc() | Click_A7(true)");
+		objSelect.setAttribute("onchange", "StAllCalc(); Click_A7(true);");
 		HtmlCreateElementOption(0, "期間限定系[" + subInfoArray[idxKind][1] + "] なし", objSelect);
 		for (let idxValue = 1; idxValue <= 50; idxValue++) {
 			optText = subInfoArray[idxKind][1] + "+" + idxValue;

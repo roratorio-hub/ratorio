@@ -40,9 +40,9 @@ function Click_PassSkillSW(){
 				myInnerHtml("P_Skill"+i+"s","<select name=A_skill"+i+" id=A_skill"+i+" onChange=Click_A1(true)></select>",0);
 		}
 		for (let j = 0; j <= end; j++) {
-				var w = passiveSkillIdArray[j];
-				var w2 = [12,68,74,152,153,155,196,253,258,301,309,310,322,345,364,365,383,379,385,386,389,390,392,420,421,422,450,453,522,750,752];
-				var wOBJ = document.getElementById("A_skill"+j);
+				let w = passiveSkillIdArray[j];
+				const w2 = [12,68,74,152,153,155,196,253,258,301,309,310,322,345,364,365,383,379,385,386,389,390,392,420,421,422,450,453,522,750,752];
+				let wOBJ = document.getElementById("A_skill"+j);
 				if(NumSearch(w,w2)){
 					wOBJ.options[0] = new Option("off",0);
 					wOBJ.options[1] = new Option("on",1);
@@ -572,47 +572,41 @@ function UsedSkillSearch(sklId, bOnlyUsed = false) {
 			}
 			break;
 		// 集中力向上
-		case SKILL_ID_SHUCHURYOKU_KOZYO:
+		case SKILL_ID_SHUCHURYOKU_KOZYO: {
+			let bufLv = g_confDataIchizi[CCharaConfIchizi.CONF_ID_SHUCHURYOKU_KOZYO];
 			if (TimeItemNumSearch(TIME_ITEM_ID_VNDER_CANMER_SHUCHURYOKU_KOZYO) > 0){
 				effectivLvArray.push(5);
-			}
-			else if ((bufLv = g_confDataIchizi[CCharaConfIchizi.CONF_ID_SHUCHURYOKU_KOZYO]) > 0) {
+			} else if (bufLv > 0) {
 				effectivLvArray.push(bufLv);
-			}
-			else if (TimeItemNumSearch(TIME_ITEM_ID_BLUE_RIBBON) > 0) {
+			} else if (TimeItemNumSearch(TIME_ITEM_ID_BLUE_RIBBON) > 0) {
 				effectivLvArray.push(2);
-			}
-			else if (TimeItemNumSearch(4) > 0) {
-				effectivLvArray.push(1);;
+			} else if (TimeItemNumSearch(4) > 0) {
+				effectivLvArray.push(1);
 			}
 			break;
+		}
 		// アンリミット
-		case SKILL_ID_UNLIMIT:
-			if ((bufLv = g_confDataSanzi[CCharaConfSanzi.CONF_ID_UNLIMIT]) > 0) {
+		case SKILL_ID_UNLIMIT: {
+			let bufLv = g_confDataSanzi[CCharaConfSanzi.CONF_ID_UNLIMIT];
+			if (bufLv > 0) {
 				effectivLvArray.push(bufLv);
-			}
-			else if (TimeItemNumSearch(TIME_ITEM_ID_GULARUSION_UNLIMIT) > 0) {
+			} else if (TimeItemNumSearch(TIME_ITEM_ID_GULARUSION_UNLIMIT) > 0) {
 				effectivLvArray.push(5);
-			}
-			else if (TimeItemNumSearch(TIME_ITEM_ID_TRAVELER_RING_GOKETSU) > 0) {
+			} else if (TimeItemNumSearch(TIME_ITEM_ID_TRAVELER_RING_GOKETSU) > 0) {
 				effectivLvArray.push(5);
-			}
-			else if (TimeItemNumSearch(TIME_ITEM_ID_DARK_TRIAD) > 0) {
+			} else if (TimeItemNumSearch(TIME_ITEM_ID_DARK_TRIAD) > 0) {
 				effectivLvArray.push(5);
-			}
-			else if (TimeItemNumSearch(TIME_ITEM_ID_URUNO_KAGO) > 0) {
+			} else if (TimeItemNumSearch(TIME_ITEM_ID_URUNO_KAGO) > 0) {
 				effectivLvArray.push(5);
-			}
-			else if (TimeItemNumSearch(TIME_ITEM_ID_ENCHANT_GOKETSU_SENZAI_KAIHO_WIND_HAWK_3) > 0) {
+			} else if (TimeItemNumSearch(TIME_ITEM_ID_ENCHANT_GOKETSU_SENZAI_KAIHO_WIND_HAWK_3) > 0) {
 				effectivLvArray.push(5);
-			}
-			else if (TimeItemNumSearch(TIME_ITEM_ID_TRIANGLE_DISASTER) > 0) {
+			} else if (TimeItemNumSearch(TIME_ITEM_ID_TRIANGLE_DISASTER) > 0) {
 				effectivLvArray.push(5);
-			}
-			else if (TimeItemNumSearch(TIME_ITEM_ID_ENCHANT_GOKETSU_SENZAI_KAIHO_SHADOW_CHASER_2) > 0) {
+			} else if (TimeItemNumSearch(TIME_ITEM_ID_ENCHANT_GOKETSU_SENZAI_KAIHO_SHADOW_CHASER_2) > 0) {
 				effectivLvArray.push(5);
 			}		
 			break;
+		}
 		// テレキネシスインテンス
 		case SKILL_ID_TELECHINESIS_INSTENCE:
 			if (TimeItemNumSearch(TIME_ITEM_ID_ILLUSION_ANCIENT_DUGGER_TELECHINESIS_INSTENCE) > 0) {
