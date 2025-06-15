@@ -1407,7 +1407,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_WeaponType);
 				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 				wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				break;
@@ -2471,86 +2471,32 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 
 				break;
 
-
-
-
-
 			//----------------------------------------------------------------
-			//
 			// 四次ここから
-			//
+			// 計算式を CSkillManager.js へ移動させ head.js をスリム化する対応を進めています
 			//----------------------------------------------------------------
 
-			/**
-			 * ドラゴンナイト
-			 */
+			/* ドラゴンナイト */
 			case SKILL_ID_SERVANT_WEAPON:	// サーヴァントウェポン
-			case SKILL_ID_DRAGONIC_AURA:	// ドラゴニックオーラ
-				wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
-				wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				break;
-			case SKILL_ID_SERVANT_WEAPON_PHANTOM:	// サーヴァントウェポン：ファントム
-			case SKILL_ID_SERVANT_WEAPON_DEMOLISION:	// サーヴァントウェポン：デモリッション
-				wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
-				wHITsuu = attackMethodConfArray[0].GetOptionValue(0);
-				break;
 			case SKILL_ID_HACK_AND_SLASHER:	// ハックアンドスラッシャー
-				if (![ITEM_KIND_SWORD_2HAND, ITEM_KIND_SPEAR_2HAND].includes(n_A_WeaponType)) {
-					// 両手剣、両手槍のみ発動可能
-					wbairitu = 0;
-					n_Buki_Muri = true;
-					break;
-				}
-				wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
-				n_Enekyori = (n_A_WeaponType == ITEM_KIND_SWORD_2HAND) ? CSkillData.RANGE_SHORT : CSkillData.RANGE_LONG;
-				wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV);
-				break;
-			case SKILL_ID_MADNESS_CRUSHER:	// マッドネスクラッシャー
-				if (![ITEM_KIND_SWORD_2HAND, ITEM_KIND_SPEAR_2HAND].includes(n_A_WeaponType)) {
-					// 両手剣、両手槍のみ発動可能
-					wbairitu = 0;
-					n_Buki_Muri = true;
-					break;
-				}
-				wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
-				break;
+			case SKILL_ID_DRAGONIC_BREATH: // ドラゴニックブレス
+			case SKILL_ID_SERVANT_WEAPON_PHANTOM:	// サーヴァントウェポン：ファントム
 			case SKILL_ID_STORM_SLASH:	// ストームスラッシュ
-				if (![ITEM_KIND_SWORD_2HAND, ITEM_KIND_AXE_2HAND].includes(n_A_WeaponType)) {
-					// 両手剣、両手斧のみ発動可能
-					wbairitu = 0;
-					n_Buki_Muri = true;
-					break;
-				}
+			case SKILL_ID_MADNESS_CRUSHER:	// マッドネスクラッシャー
+			case SKILL_ID_SERVANT_WEAPON_DEMOLISION:	// サーヴァントウェポン：デモリッション
+			case SKILL_ID_DRAGONIC_AURA:	// ドラゴニックオーラ
+				n_Buki_Muri = !g_skillManager.MatchWeaponCondition(n_A_ActiveSkill, n_A_WeaponType);
 				wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
-				wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0]);
+				wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
+				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_WeaponType);
 				break;
 
-			/**
-			 * シャドウクロス
-			 */
+			/* シャドウクロス */
 			case SKILL_ID_SAVAGE_IMPACT:	// サベージインパクト
 				if (n_A_WeaponType !== ITEM_KIND_KATAR) {
 					// カタールのみ発動可能
@@ -2563,7 +2509,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
-				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill);
+				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_WeaponType);
 				wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
 				wHITsuu = attackMethodConfArray[0].GetOptionValue(0) + 1;
 				break;
@@ -2573,9 +2519,9 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
-				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill);
+				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_WeaponType);
 				wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
-				wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
+				wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV, attackMethodConfArray[0]);
 				break;
 			case SKILL_ID_SHADOW_STAB:	// シャドウスタブ
 				// 右手短剣のみ発動可能
@@ -2589,9 +2535,9 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
-				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill);
+				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_WeaponType);
 				wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
-				wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
+				wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV, attackMethodConfArray[0]);
 				break;
 			case SKILL_ID_DANCING_KNIFE:	// ダンシングナイフ
 				// 右手短剣のみ発動可能
@@ -2605,9 +2551,9 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
-				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill);
+				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_WeaponType);
 				wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
-				wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
+				wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV, attackMethodConfArray[0]);
 				// 自分を中心にした設置スキル
 				g_bDefinedDamageIntervals = true;
 				n_Delay[5] = 300;
@@ -2625,7 +2571,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
-				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill);
+				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_WeaponType);
 				wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
 				wHITsuu = attackMethodConfArray[0].GetOptionValue(0);
 				break;
@@ -2635,7 +2581,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
-				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill);
+				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_WeaponType);
 				wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
 				// エターナルカウンター分の連続攻撃になる
 				wHITsuu = Math.max(1, parseInt(attackMethodConfArray[0].GetOptionValue(0), 10));
@@ -4301,23 +4247,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				// 分割ヒット
 				wActiveHitNum = 2;
 				break;
-
-			// 「ドラゴンナイト」スキル「ドラゴニックブレス」
-			case SKILL_ID_DRAGONIC_BREATH: {
-				// トレーニング未習得でもドラゴンに乗れるので LearnedSkillSearch に置き換えられない
-				if (UsedSkillSearch(SKILL_ID_DRAGON_TRAINING) == 0) {
-					n_Buki_Muri = true
-					wbairitu = 0;
-					break;
-				}
-				wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);	
-				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				break;
-			}
 			// 「マイスター」スキル「マイティスマッシュ」
 			// 2025/01/18 ふみ。さん提供データに一致
 			case SKILL_ID_MIGHTY_SMASH:
@@ -5387,7 +5316,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-			n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_WeaponType);
 			wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 			wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
 			wbairitu = ATKbaiJYOUSAN(wbairitu);
@@ -9587,7 +9516,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 			wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
-			wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
+			wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV, attackMethodConfArray[0]);
 			n_A_Weapon_zokusei = attackMethodConfArray[0].GetOptionValue(0);
 			break;
 
@@ -9604,7 +9533,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 			wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
-			wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
+			wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV, attackMethodConfArray[0]);
 			n_A_Weapon_zokusei = attackMethodConfArray[0].GetOptionValue(0);
 			break;
 
