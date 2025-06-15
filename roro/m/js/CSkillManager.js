@@ -39,6 +39,8 @@ function CSkillData() {
 	this.maxLv = 0;
 	this.type = 0;
 	this.element = 0;
+	/** 地面設置スキルフラグ */
+	this.ground_installation = false;
 
 	/**
 	 * スキルの距離属性値を取得する. オーバーライドされていない場合は CSkillData.RANGE_SHORT (近接物理タイプ) が返される.
@@ -149,6 +151,14 @@ function CSkillData() {
 	 * @returns {Number}
 	 */
 	this.LifeTime = function(skillLv, charaDataManger) {
+		return 0;
+	}
+	/**
+	 * 地面設置スキルのダメージ発生感覚をミリ秒で取得する.  オーバーライドされていない場合は 0 が返される.
+	 * @param {*} skillLv 
+	 * @returns 
+	 */
+	this.damageInterval = function(skillLv) {
 		return 0;
 	}
 	// クリティカル発生率を取得（0:発生しない、100:等倍、etc...）
@@ -283,7 +293,6 @@ function CSkillManager() {
 	 * @returns 	[ CSkillData.RANGE_SHORT (default) | CSkillData.RANGE_LONG | CSkillData.RANGE_MAGIC | CSkillData.RANGE_SPECIAL ]
 	 */
 	this.GetSkillRange = function(skillId, weapon) {
-//		return this.dataArray[skillId].range;
 		return this.dataArray[skillId].range(weapon);
 	}
 
@@ -369,6 +378,15 @@ function CSkillManager() {
 	this.GetLifeTime = function(skillId, skillLv, charaDataManger) {
 		return this.dataArray[skillId].LifeTime(skillLv, charaDataManger);
 	}
+	/**
+	 * 地面設置スキルのダメージ発生間隔をミリ秒で取得する.
+	 * @param {Number} skillId 
+	 * @param {Number} skillLv 
+	 * @returns 
+	 */
+	this.GetDamageInterval = function(skillId, skillLv) {
+		return this.dataArray[skillId].damageInterval(skillLv);
+	}
 
 	/**
 	 * クリティカルするスキルの場合、trueを返す
@@ -389,6 +407,15 @@ function CSkillManager() {
 
 	this.CriDamageRate = function(skillId, skillLv, charaData, specData, mobData) {
 		return this.dataArray[skillId].CriDamageRate(skillLv, charaData, specData, mobData);
+	}
+
+	/**
+	 * 地面設置スキルか否かを判定する. オーバーライドされない場合は false を返す.
+	 * @param {Number} skillId 
+	 * @returns {boolean}
+	 */
+	this.IsGroundInstallation = function(skillId) {
+		return this.dataArray[skillId].ground_installation;
 	}
 
 	this.GetDataCount = function() {
@@ -31487,8 +31514,12 @@ function CSkillManager() {
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.ground_installation = true;	// 自キャラを中心にした地面設置スキルとして計算する
 			this.range = function(weapon) {
 				return CSkillData.RANGE_SHORT;
+			}
+			this.WeaponCondition = function(weapon) {
+				return (weapon === ITEM_KIND_KNIFE);
 			}
 			this.Power = function(skillLv, charaData, option) {       	// スキル倍率
 				// Lv1 と Lv3 で +6 程度の誤差がありますが計算式に問題はないと判断しています
@@ -31510,6 +31541,9 @@ function CSkillManager() {
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return [0, 240, 180, 120, 90, 60][skillLv] * 1000;
 			}
+			this.damageInterval = function(skillLv) {
+				return 300;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -31529,6 +31563,12 @@ function CSkillManager() {
 			this.element = CSkillData.ELEMENT_VOID;
 			this.range = function(weapon) {
 				return CSkillData.RANGE_SHORT;
+			}
+			this.WeaponCondition = function(weapon) {
+				return (weapon === ITEM_KIND_KATAR);
+			}
+			this.hitCount = function(skillLv, option) {
+				return option.GetOptionValue(0) + 1;
 			}
 			this.Power = function(skillLv, charaData, option) {			// スキル倍率
 				let ratio = 0;
@@ -31592,6 +31632,9 @@ function CSkillManager() {
 			this.element = CSkillData.ELEMENT_VOID;
 			this.range = function(weapon) {
 				return CSkillData.RANGE_SHORT;
+			}
+			this.hitCount = function(skillLv, option) {
+				return option.GetOptionValue(0);
 			}
 			this.Power = function(skillLv, charaData, option) {       	// スキル倍率
 				// Lv1 と Lv3 のとき +4 の誤差がありますがスキル倍率以外の計算に起因するものだと判断しています
@@ -31790,6 +31833,9 @@ function CSkillManager() {
 			this.range = function(weapon) {
 				return CSkillData.RANGE_SHORT;
 			}
+			this.WeaponCondition = function(weapon) {
+				return (weapon === ITEM_KIND_KNIFE);
+			}
 			this.Power = function(skillLv, charaData, option) {			// スキル倍率
 				// 「エクシードの有無によらず」+6程度の誤差があるためスキル計算式以外の場所に問題があると考えられます
 				let ratio = 0;
@@ -31830,6 +31876,12 @@ function CSkillManager() {
 			this.element = CSkillData.ELEMENT_VOID;
 			this.range = function(weapon) {
 				return CSkillData.RANGE_SHORT;
+			}
+			this.WeaponCondition = function(weapon) {
+				return (weapon === ITEM_KIND_KATAR);
+			}
+			this.hitCount = function(skillLv, option) {
+				return option.GetOptionValue(0);
 			}
 			this.Power = function(skillLv, charaData, option) {			// スキル倍率
 				// Lv1 と Lv3 に +15 程度の誤差がありますが計算式に変更はないので改めて△表示はしません
