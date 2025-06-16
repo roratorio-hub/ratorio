@@ -32905,7 +32905,7 @@ function CSkillManager() {
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.element = CSkillData.ELEMENT_FORCE_DARK;
-			this.IsGroundInstallation = true;
+			this.ground_installation = true;
 			this.damageInterval = function(skillLv) {
 				return [0, 1300, 900, 600, 400, 300][skillLv];
 			}
@@ -32962,7 +32962,7 @@ function CSkillManager() {
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.element = CSkillData.ELEMENT_FORCE_EARTH;
-			this.IsGroundInstallation = true;
+			this.ground_installation = true;
 			this.damageInterval = function(skillLv) {
 				return [0, 1300, 900, 600, 400, 300][skillLv];
 			}
@@ -33019,7 +33019,7 @@ function CSkillManager() {
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.element = CSkillData.ELEMENT_FORCE_WIND;
-			this.IsGroundInstallation = true;
+			this.ground_installation = true;
 			this.damageInterval = function(skillLv) {
 				return [0, 1300, 900, 600, 400, 300][skillLv];
 			}
@@ -33143,7 +33143,7 @@ function CSkillManager() {
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.element = CSkillData.ELEMENT_FORCE_FIRE;
-			this.IsGroundInstallation = true;
+			this.ground_installation = true;
 			this.damageInterval = function(skillLv) {
 				return [0, 1300, 900, 600, 400, 300][skillLv];
 			}
