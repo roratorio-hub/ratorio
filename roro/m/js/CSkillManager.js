@@ -33092,9 +33092,9 @@ function CSkillManager() {
 				// ベースレベル補正
 				// クレッシブボルト状態は小数点以下にも掛かるのでここではfloorしない
 				ratio *= n_A_BaseLV / 100;
-				// クレッシブボルト状態による増幅 (1.00, 1.10, 1.25, 1.50)
+				// クレッシブボルト状態による増幅をかけてからfloorする
 				ratio = Math.floor(ratio * [1.00, 1.10, 1.25, 1.50][option.GetOptionValue(0)]);
-				// カラミティゲイル状態は小数点以下に掛からない
+				// カラミティゲイル状態は小数点以下に掛からないのでfloorのあとに計算する
 				// カラミティゲイル状態で 1.25 倍
 				if (UsedSkillSearch(SKILL_ID_CALAMITY_GALE) > 0) {
 					ratio = Math.floor(ratio * 1.25);
