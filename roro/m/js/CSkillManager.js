@@ -315,10 +315,11 @@ function CSkillManager() {
 	 * @param {Number} skillLv 
 	 * @param {Array} charaDataManger 
 	 * @param {CAttackMethodConf} option 
+	 * @param {Array} mobData
 	 * @returns {Number} スキル倍率％
 	 */
-	this.GetPower = function(skillId, skillLv, charaDataManger, option) {
-		return this.dataArray[skillId].Power(skillLv, charaDataManger, option);
+	this.GetPower = function(skillId, skillLv, charaDataManger, option, mobData) {
+		return this.dataArray[skillId].Power(skillLv, charaDataManger, option, mobData);
 	}
 
 	/**
@@ -32197,8 +32198,32 @@ function CSkillManager() {
 			this.kana = "エフイリコ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.range = function(weapon) {
+				return CSkillData.RANGE_SHORT;
+			}
+			this.WeaponCondition = function(weapon) {
+				return [ITEM_KIND_CLUB, ITEM_KIND_BOOK].includes(weapon);
+			}
+			this.Power = function(skillLv, charaData, option, mobData) {			// スキル倍率
+				let ratio = 0;
+				// 鈍器＆本修練の補正Lv
+				const donki_hon_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_DONKI_HON_SHUREN), UsedSkillSearch(SKILL_ID_DONKI_HON_SHUREN));
+				if ([RACE_ID_UNDEAD, RACE_ID_DEMON].includes(mobData[MONSTER_DATA_INDEX_RACE])) {
+					ratio = 4000 + 500 * skillLv;							// 基本倍率
+					ratio += 60 * GetTotalSpecStatus(MIG_PARAM_ID_POW);				// POW補正
+					ratio += (400 + 50 * skillLv) * donki_hon_shuren_lv;	// 鈍器＆本修練 補正
+				} else {
+					ratio = 3000 + 375 * skillLv;							// 基本倍率
+					ratio += 45 * GetTotalSpecStatus(MIG_PARAM_ID_POW);				// POW補正
+					ratio += (275 + 40 * skillLv) * donki_hon_shuren_lv;	// 鈍器＆本修練 補正
+				}
+				// ベースレベル補正
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.dispHitCount = function(skillLv) {
+				return 7;
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 310;
 			}
@@ -32438,8 +32463,25 @@ function CSkillManager() {
 			this.kana = "ヘテイテイオ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.WeaponCondition = function(weapon) {
+				return [ITEM_KIND_CLUB, ITEM_KIND_BOOK].includes(n_A_WeaponType);
+			}
+			this.range = function(weapon) {
+				return (n_A_WeaponType === ITEM_KIND_BOOK) ? CSkillData.RANGE_SHORT : CSkillData.RANGE_LONG;
+			}
+			this.Power = function(skillLv, charaData, option, mobData) {			// スキル倍率
+				let ratio = 0;
+				// 基本倍率
+				ratio = 250 * skillLv;
+				// POW補正
+				ratio += 15 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				// 鈍器・本修練補正
+				const donki_hon_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_DONKI_HON_SHUREN), UsedSkillSearch(SKILL_ID_DONKI_HON_SHUREN));
+				ratio += 20 * skillLv * donki_hon_shuren_lv;
+				// ベースレベル補正
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 210;
 			}
@@ -32613,8 +32655,29 @@ function CSkillManager() {
 			this.kana = "ホオクラツシユ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_FORCE_VANITY;
+			this.WeaponCondition = function(weapon) {
+				return (weapon === ITEM_KIND_BOW);
+			}
+			this.range = function(weapon) {
+				return CSkillData.RANGE_LONG;
+			}
+			this.dispHitCount = function(skillLv) {
+				return 2;
+			}
+			this.Power = function(skillLv, charaData, option, mobData) {
+				// ワシの目の習得レベルは射程が伸びるだけでダメージ倍率に寄与しない
+				let ratio = 0;
+				// 基本倍率
+				ratio = 1000 + 100 * skillLv;
+				// CON補正
+				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+				// 自然親和補正
+				const shizen_shinwa_lv = Math.max(LearnedSkillSearch(SKILL_ID_SHIZEN_SHINWA), UsedSkillSearch(SKILL_ID_SHIZEN_SHINWA));
+				ratio *= (1 + 0.2 * shizen_shinwa_lv);
+				// ベースレベル補正
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 120;
 			}
@@ -32706,8 +32769,34 @@ function CSkillManager() {
 			this.kana = "ホオクフウメラン";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_FORCE_VANITY;
+			this.range = function(weapon) {
+				return CSkillData.RANGE_LONG;
+			}
+			this.WeaponCondition = function(weapon) {
+				return (weapon === ITEM_KIND_BOW);
+			}
+			this.Power = function(skillLv, charaData, option, mobData) {
+				// ワシの目の習得レベルは射程が伸びるだけでダメージ倍率に寄与しない
+				let ratio = 0;
+				// 基本倍率
+				ratio = 1000 + (100 * skillLv);
+				// CON補正
+				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+				// 自然親和補正
+				const shizen_shinwa_lv = Math.max(LearnedSkillSearch(SKILL_ID_SHIZEN_SHINWA), UsedSkillSearch(SKILL_ID_SHIZEN_SHINWA));
+				ratio *= (1 + 0.2 * shizen_shinwa_lv);
+				// ベースレベル補正
+				ratio = Math.floor(ratio * n_A_BaseLV / 100);	
+				// 種族特攻は小数点以下に掛からない
+				// 動物・魚貝形はダメージ倍率２倍
+				switch (mobData[MONSTER_DATA_INDEX_RACE]) {
+					case RACE_ID_ANIMAL:
+					case RACE_ID_FISH:
+						ratio = Math.floor(ratio * 2);	
+				}
+				return ratio;
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 170;
 			}
@@ -32742,8 +32831,34 @@ function CSkillManager() {
 			this.kana = "ケイルストオム";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.range = function(weapon) {
+				return CSkillData.RANGE_LONG;
+			}
+			this.WeaponCondition = function(weapon) {
+				return (weapon === ITEM_KIND_BOW);
+			}
+			this.dispHitCount = function(skillLv) {
+				return 5;
+			}
+			this.Power = function(skillLv, charaData, option, mobData) {
+				let ratio = 0;
+				// 基本倍率
+				ratio = 1000 + 200 * skillLv;
+				// ワシの目の習得レベルは射程が伸びるだけでダメージ倍率に寄与しない
+				// CON補正
+				ratio += 10 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+				// ベースレベル補正
+				ratio = Math.floor(ratio * n_A_BaseLV / 100);
+				// カラミティゲイル状態は小数点以下に掛からない
+				// カラミティゲイル状態で Mob の種族が動物・魚介の場合ダメージ２倍
+				if (UsedSkillSearch(SKILL_ID_CALAMITY_GALE) > 0) {
+					if ([RACE_ID_FISH, RACE_ID_ANIMAL].includes(mobData[MONSTER_DATA_INDEX_RACE])) {
+						ratio = Math.floor(ratio * 2.00);
+					}
+				}
+				return ratio;
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 170;
 			}
@@ -32789,8 +32904,29 @@ function CSkillManager() {
 			this.kana = "テイイフフライントトラツフ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_FORCE_DARK;
+			this.IsGroundInstallation = true;
+			this.damageInterval = function(skillLv) {
+				return [0, 1300, 900, 600, 400, 300][skillLv];
+			}
+			this.range = function(weapon) {
+				return CSkillData.RANGE_SHORT;
+			}
+			this.Power = function(skillLv, charaData, option, mobData) {
+				let ratio = 0;
+				// 基本倍率
+				ratio = 1500 + 300 * skillLv;
+				// トラップ研究は射程が伸びるだけでダメージには寄与しない
+				// CON補正
+				ratio += 10 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+				// ベースレベル補正
+				ratio = ratio * n_A_BaseLV / 100;
+				// アドバンスドトラップ研究は小数点以下にも掛かる
+				// アドバンスドトラップ研究補正
+				const advanced_trap_lv = Math.max(LearnedSkillSearch(SKILL_ID_ADVANCED_TRAP), UsedSkillSearch(SKILL_ID_ADVANCED_TRAP));
+				ratio = Math.floor(ratio * (1 + 0.2 * advanced_trap_lv));
+				return ratio;
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 250;
 			}
@@ -32825,8 +32961,29 @@ function CSkillManager() {
 			this.kana = "ソリツトトラツフ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_FORCE_EARTH;
+			this.IsGroundInstallation = true;
+			this.damageInterval = function(skillLv) {
+				return [0, 1300, 900, 600, 400, 300][skillLv];
+			}
+			this.range = function(weapon) {
+				return CSkillData.RANGE_SHORT;
+			}
+			this.Power = function(skillLv, charaData, option, mobData) {
+				let ratio = 0;
+				// 基本倍率
+				ratio = 1500 + 300 * skillLv;
+				// トラップ研究は射程が伸びるだけでダメージには寄与しない
+				// CON補正
+				ratio += 10 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+				// ベースレベル補正
+				ratio = ratio * n_A_BaseLV / 100;
+				// アドバンスドトラップ研究は小数点以下にも掛かる
+				// アドバンスドトラップ研究補正
+				const advanced_trap_lv = Math.max(LearnedSkillSearch(SKILL_ID_ADVANCED_TRAP), UsedSkillSearch(SKILL_ID_ADVANCED_TRAP));
+				ratio = Math.floor(ratio * (1 + 0.2 * advanced_trap_lv));
+				return ratio;
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 180;
 			}
@@ -32861,8 +33018,29 @@ function CSkillManager() {
 			this.kana = "スイフトトラツフ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_FORCE_WIND;
+			this.IsGroundInstallation = true;
+			this.damageInterval = function(skillLv) {
+				return [0, 1300, 900, 600, 400, 300][skillLv];
+			}
+			this.range = function(weapon) {
+				return CSkillData.RANGE_SHORT;
+			}
+			this.Power = function(skillLv, charaData, option, mobData) {
+				let ratio = 0;
+				// 基本倍率
+				ratio = 1500 + 300 * skillLv;
+				// トラップ研究は射程が伸びるだけでダメージには寄与しない
+				// CON補正
+				ratio += 10 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+				// ベースレベル補正
+				ratio = ratio * n_A_BaseLV / 100;
+				// アドバンスドトラップ研究は小数点以下にも掛かる
+				// アドバンスドトラップ研究補正
+				const advanced_trap_lv = Math.max(LearnedSkillSearch(SKILL_ID_ADVANCED_TRAP), UsedSkillSearch(SKILL_ID_ADVANCED_TRAP));
+				ratio = Math.floor(ratio * (1 + 0.2 * advanced_trap_lv));
+				return ratio;
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 210;
 			}
@@ -32897,8 +33075,36 @@ function CSkillManager() {
 			this.kana = "クレツシフホルト";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.range = function(weapon) {
+				return CSkillData.RANGE_LONG;
+			}
+			this.WeaponCondition = function(weapon) {
+				return (weapon === ITEM_KIND_BOW);
+			}
+			this.Power = function(skillLv, charaData, option, mobData) {
+				// ワシの目の習得レベルは射程が伸びるだけでダメージ倍率に寄与しない
+				let ratio = 0;
+				// 基本倍率
+				ratio = 1000 + 200 * skillLv;
+				// CON補正
+				ratio += 10 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+				// ベースレベル補正
+				ratio *= n_A_BaseLV / 100;
+				// クレッシブボルト状態は小数点以下にも掛かる
+				// クレッシブボルト状態による増幅 (1.00, 1.10, 1.25, 1.50)
+				ratio = Math.floor(ratio * [1.00, 1.10, 1.25, 1.50][option.GetOptionValue(0)]);
+				// カラミティゲイル状態は小数点以下に掛からない
+				// カラミティゲイル状態で 1.25 倍
+				if (UsedSkillSearch(SKILL_ID_CALAMITY_GALE) > 0) {
+					ratio = Math.floor(ratio * 1.25);
+					// Mob の種族が魚介または動物の場合さらに 2.00 倍
+					if ([RACE_ID_FISH, RACE_ID_ANIMAL].includes(mobData[MONSTER_DATA_INDEX_RACE])) {
+						ratio = Math.floor(ratio * 2.00);
+					}
+				}
+				return ratio;
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 120;
 			}
@@ -32936,8 +33142,29 @@ function CSkillManager() {
 			this.kana = "フレイムトラツフ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_FORCE_FIRE;
+			this.IsGroundInstallation = true;
+			this.damageInterval = function(skillLv) {
+				return [0, 1300, 900, 600, 400, 300][skillLv];
+			}
+			this.range = function(weapon) {
+				return CSkillData.RANGE_SHORT;
+			}
+			this.Power = function(skillLv, charaData, option, mobData) {
+				let ratio = 0;
+				// 基本倍率
+				ratio = 1500 + 300 * skillLv;
+				// トラップ研究は射程が伸びるだけでダメージには寄与しない
+				// CON補正
+				ratio += 10 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+				// ベースレベル補正
+				ratio = ratio * n_A_BaseLV / 100;
+				// アドバンスドトラップ研究は小数点以下にも掛かる
+				// アドバンスドトラップ研究補正
+				const advanced_trap_lv = Math.max(LearnedSkillSearch(SKILL_ID_ADVANCED_TRAP), UsedSkillSearch(SKILL_ID_ADVANCED_TRAP));
+				ratio = Math.floor(ratio * (1 + 0.2 * advanced_trap_lv));
+				return ratio;
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 210;
 			}
