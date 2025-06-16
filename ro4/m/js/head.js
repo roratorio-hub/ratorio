@@ -89,16 +89,12 @@ let state_nichibotsu = 0;
 let state_tenki_no_mi = 0;
 /** パッシブ持続系 ウィンドウ可視状態 */
 let n_Skill1SW = false;
-/** 演奏・踊り系スキル ウィンドウ可視状態 */
-let n_Skill3SW = false;
 /** ギルドスキル/ゴスペル/他 ウィンドウ可視状態 */
 let n_Skill4SW = false;
 /** アイテム・食品他 ウィンドウ可視状態 */
 let n_Skill7SW = false;
 /** その他の支援/設定 ウィンドウ可視状態 */
 let n_Skill8SW = false;
-/** 演奏・踊り系スキル スイッチ状態配列 */
-let SWs3sw = [0,0,0,0,0,0,0,0,0,0,0,0];
 /** レックスエーテルナの計算に係るフラグ. 解析不足でロジックが追えてない. */
 let wLAch = false;
 /** 三段掌に遠距離ダメージUPを適用するフラグ */
@@ -1411,7 +1407,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_WeaponType);
 				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 				wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				break;
@@ -1540,7 +1536,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				wbairitu = 800 + 200 * n_A_ActiveSkillLV;
 				if(!n_AS_MODE){
 					const tooth_of_wug_lv = Math.max(LearnedSkillSearch(SKILL_ID_TOOTH_OF_WUG), UsedSkillSearch(SKILL_ID_TOOTH_OF_WUG));
-					const w = 50 + 10 * n_A_ActiveSkillLV - Math.floor(mobData[8] / 4) + tooth_of_wug_lv * 2;
+					let w = 50 + 10 * n_A_ActiveSkillLV - Math.floor(mobData[8] / 4) + tooth_of_wug_lv * 2;
 					if(w < 50) w = 50;
 					if(w > 100) w = 100;
 					str_bSUBname += "<Font size=2>命中時の拘束確率(推定)<BR></Font>";
@@ -2475,402 +2471,60 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 
 				break;
 
-
-
-
-
 			//----------------------------------------------------------------
-			//
-			// 四次ここから
-			//
+			// ４次職物理スキルここから
+			// 計算式を CSkillManager.js へ移動させ head.js をスリム化する対応を進めています
 			//----------------------------------------------------------------
 
-			/**
-			 * ドラゴンナイト
-			 */
+			/* ドラゴンナイト */
 			case SKILL_ID_SERVANT_WEAPON:	// サーヴァントウェポン
-			case SKILL_ID_DRAGONIC_AURA:	// ドラゴニックオーラ
-				wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
-				wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				break;
-			case SKILL_ID_SERVANT_WEAPON_PHANTOM:	// サーヴァントウェポン：ファントム
-			case SKILL_ID_SERVANT_WEAPON_DEMOLISION:	// サーヴァントウェポン：デモリッション
-				wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
-				wHITsuu = attackMethodConfArray[0].GetOptionValue(0);
-				break;
 			case SKILL_ID_HACK_AND_SLASHER:	// ハックアンドスラッシャー
-				if (![ITEM_KIND_SWORD_2HAND, ITEM_KIND_SPEAR_2HAND].includes(n_A_WeaponType)) {
-					// 両手剣、両手槍のみ発動可能
-					wbairitu = 0;
-					n_Buki_Muri = true;
-					break;
-				}
-				wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
-				n_Enekyori = (n_A_WeaponType == ITEM_KIND_SWORD_2HAND) ? CSkillData.RANGE_SHORT : CSkillData.RANGE_LONG;
-				wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV);
-				break;
-			case SKILL_ID_MADNESS_CRUSHER:	// マッドネスクラッシャー
-				if (![ITEM_KIND_SWORD_2HAND, ITEM_KIND_SPEAR_2HAND].includes(n_A_WeaponType)) {
-					// 両手剣、両手槍のみ発動可能
-					wbairitu = 0;
-					n_Buki_Muri = true;
-					break;
-				}
-				wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
-				break;
+			case SKILL_ID_DRAGONIC_BREATH: // ドラゴニックブレス
+			case SKILL_ID_SERVANT_WEAPON_PHANTOM:	// サーヴァントウェポン：ファントム
 			case SKILL_ID_STORM_SLASH:	// ストームスラッシュ
-				if (![ITEM_KIND_SWORD_2HAND, ITEM_KIND_AXE_2HAND].includes(n_A_WeaponType)) {
-					// 両手剣、両手斧のみ発動可能
-					wbairitu = 0;
-					n_Buki_Muri = true;
-					break;
-				}
-				wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
-				wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				break;
-
-			/**
-			 * シャドウクロス
-			 */
-			case SKILL_ID_SAVAGE_IMPACT:	// サベージインパクト
-				if (n_A_WeaponType !== ITEM_KIND_KATAR) {
-					// カタールのみ発動可能
-					wbairitu = 0;
-					n_Buki_Muri = true;
-					break;
-				}
-				wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
-				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill);
-				wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
-				wHITsuu = attackMethodConfArray[0].GetOptionValue(0) + 1;
-				break;
-			case SKILL_ID_FATAL_SHADOW_CRAW:	// フェイタルシャドウクロー
-				wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
-				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill);
-				wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
-				wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
-				break;
-			case SKILL_ID_SHADOW_STAB:	// シャドウスタブ
-				// 右手短剣のみ発動可能
-				if (n_A_WeaponType != ITEM_KIND_KNIFE) {
-					wbairitu = 0;
-					n_Buki_Muri = true;
-					break;
-				}
-				wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
-				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill);
-				wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
-				wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
-				break;
+			case SKILL_ID_MADNESS_CRUSHER:	// マッドネスクラッシャー
+			case SKILL_ID_SERVANT_WEAPON_DEMOLISION:	// サーヴァントウェポン：デモリッション
+			case SKILL_ID_DRAGONIC_AURA:	// ドラゴニックオーラ
+			/* シャドウクロス */			
 			case SKILL_ID_DANCING_KNIFE:	// ダンシングナイフ
-				// 右手短剣のみ発動可能
-				if (n_A_WeaponType != ITEM_KIND_KNIFE) {
-					wbairitu = 0;
-					n_Buki_Muri = true;
-					break;
-				}
-				wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
-				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill);
-				wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
-				wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
-				// 自分を中心にした設置スキル
-				g_bDefinedDamageIntervals = true;
-				n_Delay[5] = 300;
-				n_Delay[6] = g_skillManager.GetLifeTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				break;
-			case SKILL_ID_IMPACT_CRATER:	// インパクトクレーター
-				if (n_A_WeaponType !== ITEM_KIND_KATAR) {
-					// カタールのみ発動可能
-					wbairitu = 0;
-					n_Buki_Muri = true;
-					break;
-				}
-				wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
-				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill);
-				wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
-				wHITsuu = attackMethodConfArray[0].GetOptionValue(0);
-				break;
+			case SKILL_ID_SAVAGE_IMPACT:	// サベージインパクト
 			case SKILL_ID_ETERNAL_SLASH:	// エターナルスラッシュ
+			case SKILL_ID_IMPACT_CRATER:	// インパクトクレーター
+			case SKILL_ID_SHADOW_STAB:	// シャドウスタブ
+			case SKILL_ID_FATAL_SHADOW_CRAW:	// フェイタルシャドウクロー
+			/*カーディナル */
+			case SKILL_ID_EFIRIGO:	// エフィリゴ
+			case SKILL_ID_PETITIO: 	// ペティティオ
+			/* ウィンドホーク */
+			case SKILL_ID_HAWK_RUSH:	// ホークラッシュ
+			case SKILL_ID_HAWK_BOOMERANG: // ホークブーメラン
+			case SKILL_ID_GALE_STORM:	// ゲイルストーム
+			case SKILL_ID_DEEP_BLIND_TRAP:	// ディープブラインドトラップ
+			case SKILL_ID_SOLID_TRAP:	// ソリッドトラップ
+			case SKILL_ID_SWIFT_TRAP:	// スイフトトラップ
+			case SKILL_ID_FLAME_TRAP:	// フレイムトラップ
+			case SKILL_ID_CRESSIVE_VOLT:	// クレッシブボルト
+				// スキル使用条件の判定
+				n_Buki_Muri = !g_skillManager.MatchWeaponCondition(n_A_ActiveSkill, n_A_WeaponType);
+				if (n_Buki_Muri) {
+					wbairitu = 0;
+					break;
+				}
+				// 詠唱などの情報
 				wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
-				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill);
+				// ダメージ算出に関する情報
+				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], mobData);
+				wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0]);
 				wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
-				// エターナルカウンター分の連続攻撃になる
-				wHITsuu = Math.max(1, parseInt(attackMethodConfArray[0].GetOptionValue(0), 10));
-				break;
-				
-			//「カーディナル」スキル「エフィリゴ」
-			// 2025-03-30 基本的に誤差無しを確認
-			// 値によっては+7の誤差が生じるケースがありますが分割ヒット計算に伴う丸め誤差と判断しています
-			case SKILL_ID_EFIRIGO: {
-				// 鈍器、本のみ発動可能
-				if (![ITEM_KIND_CLUB, ITEM_KIND_BOOK].includes(n_A_WeaponType)) {
-					wbairitu = 0;
-					n_Buki_Muri = true;
-					break;
-				}
-				// 詠唱時間等
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// 鈍器＆本修練の補正Lv
-				const donki_hon_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_DONKI_HON_SHUREN), UsedSkillSearch(SKILL_ID_DONKI_HON_SHUREN));
-				// 距離属性
-				n_Enekyori = 0;
-				if ([RACE_ID_UNDEAD, RACE_ID_DEMON].includes(mobData[MONSTER_DATA_INDEX_RACE])) {
-					wbairitu = 4000 + 500 * n_A_ActiveSkillLV;							// 基本倍率
-					wbairitu += 60 * GetTotalSpecStatus(MIG_PARAM_ID_POW);				// POW補正
-					wbairitu += (400 + 50 * n_A_ActiveSkillLV) * donki_hon_shuren_lv;	// 鈍器＆本修練 補正
-				} else {
-					wbairitu = 3000 + 375 * n_A_ActiveSkillLV;							// 基本倍率
-					wbairitu += 45 * GetTotalSpecStatus(MIG_PARAM_ID_POW);				// POW補正
-					wbairitu += (275 + 40 * n_A_ActiveSkillLV) * donki_hon_shuren_lv;	// 鈍器＆本修練 補正
-				}
-				// ベースレベル補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
-				// 分割ヒット
-				wActiveHitNum = 7;
-				break;
-			}
-			// 「カーディナル」スキル「ペティティオ」
-			// 2024/10/23 ダメージ誤差無しを確認
-			case SKILL_ID_PETITIO: {
-				// 鈍器、本のみ発動可能
-				if (![ITEM_KIND_CLUB, ITEM_KIND_BOOK].includes(n_A_WeaponType)) {
-					wbairitu = 0;
-					n_Buki_Muri = true;
-					break;
-				}
-				// 詠唱時間等
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// 武器種別による距離属性変化
-				n_Enekyori = (n_A_WeaponType == ITEM_KIND_BOOK) ? 0 :1;
-				// 基本倍率
-				wbairitu = 250 * n_A_ActiveSkillLV;
-				// POW補正
-				wbairitu += 15 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-				// 鈍器・本修練補正
-				const donki_hon_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_DONKI_HON_SHUREN), UsedSkillSearch(SKILL_ID_DONKI_HON_SHUREN));
-				wbairitu += 20 * n_A_ActiveSkillLV * donki_hon_shuren_lv;
-				// ベースレベル補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
-				break;
-			}
-			// 「ウィンドホーク」スキル「ホークラッシュ」
-			// 2024/11/15 誤差無しを確認
-			case SKILL_ID_HAWK_RUSH: {
-				// 弓のみ発動可能
-				if (n_A_WeaponType != ITEM_KIND_BOW) {
-					wbairitu = 0;
-					n_Buki_Muri = true;
-					break;
-				}
-				// ディレイ、クールタイム
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// 距離属性
-				n_Enekyori = 1;
-				// 分割HIT数（スキル説明文には記載なし）
-				wActiveHitNum = 2;
-				// 基本倍率
-				wbairitu = 1000 + (100 * n_A_ActiveSkillLV);
-				// ワシの目の習得レベルは射程が伸びるだけでダメージ倍率に寄与しない
-				// CON補正
-				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
-				// 自然親和補正
-				const shizen_shinwa_lv = Math.max(LearnedSkillSearch(SKILL_ID_SHIZEN_SHINWA), UsedSkillSearch(SKILL_ID_SHIZEN_SHINWA));
-				wbairitu *= (1 + 0.2 * shizen_shinwa_lv);
-				// ベースレベル補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
-				break;
-			}
-			// 「ウィンドホーク」スキル「ホークブーメラン」
-			// 2024/11/15 誤差無しを確認
-			case SKILL_ID_HAWK_BOOMERANG: {
-				// 弓のみ発動可能
-				if (n_A_WeaponType != ITEM_KIND_BOW) {
-					wbairitu = 0;
-					n_Buki_Muri = true;
-					break;
-				}
-				// ディレイ、クールタイム
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// 距離属性
-				n_Enekyori = 1;
-				// 基本倍率
-				wbairitu = 1000 + (100 * n_A_ActiveSkillLV);
-				// ワシの目の習得レベルは射程が伸びるだけでダメージ倍率に寄与しない
-				// CON補正
-				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
-				// 自然親和補正
-				const shizen_shinwa_lv = Math.max(LearnedSkillSearch(SKILL_ID_SHIZEN_SHINWA), UsedSkillSearch(SKILL_ID_SHIZEN_SHINWA));
-				wbairitu *= (1 + 0.2 * shizen_shinwa_lv);
-				// ベースレベル補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);	
-				// 種族特攻は小数点以下に掛からない
-				// 動物・魚貝形はダメージ倍率２倍
-				switch (mobData[MONSTER_DATA_INDEX_RACE]) {
-					case RACE_ID_ANIMAL:
-					case RACE_ID_FISH:
-						wbairitu = Math.floor(wbairitu * 2);	
-						break;
-				}
-				break;
-			}
-			// 「ウィンドホーク」スキル「ゲイルストーム」
-			// 2024/11/15 誤差なしを確認
-			case SKILL_ID_GALE_STORM:
-				// 弓のみ発動可能
-				if (n_A_WeaponType != ITEM_KIND_BOW) {
-					wbairitu = 0;
-					n_Buki_Muri = true;
-					break;
-				}
-				// 詠唱時間等
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// 分割ヒット
-				wActiveHitNum = 5;
-				// 距離属性
-				n_Enekyori = 1;
-				// 基本倍率
-				wbairitu = 1000 + 200 * n_A_ActiveSkillLV;
-				// ワシの目の習得レベルは射程が伸びるだけでダメージ倍率に寄与しない
-				// CON補正
-				wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
-				// ベースレベル補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
-				// カラミティゲイル状態は小数点以下に掛からない
-				// カラミティゲイル状態で Mob の種族が動物・魚介の場合ダメージ２倍
-				if (UsedSkillSearch(SKILL_ID_CALAMITY_GALE) > 0) {
-					if ([RACE_ID_FISH, RACE_ID_ANIMAL].includes(mobData[MONSTER_DATA_INDEX_RACE])) {
-						wbairitu = Math.floor(wbairitu * 2.00);
-					}
-				}
-				break;
-
-			// 「ウィンドホーク」スキル「ディープブラインドトラップ」
-			// 「ウィンドホーク」スキル「ソリッドトラップ」
-			// 「ウィンドホーク」スキル「スイフトトラップ」
-			// 「ウィンドホーク」スキル「フレイムトラップ」
-			// 2024/11/14 実測誤差が 0 ～ +1 であることを確認済み
-			case SKILL_ID_DEEP_BLIND_TRAP:
-			case SKILL_ID_SOLID_TRAP:
-			case SKILL_ID_SWIFT_TRAP:
-			case SKILL_ID_FLAME_TRAP: {
-				// 詠唱時間等
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// 設置スキル
-				g_bDefinedDamageIntervals = true;
-				// オブジェクト存続時間
-				n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// ダメージ間隔
-				n_Delay[5] = ([0, 1300, 900, 600, 400, 300])[n_A_ActiveSkillLV];
-				// 距離属性
-				n_Enekyori = 0;
-				// 基本倍率
-				wbairitu = 1500 + 300 * n_A_ActiveSkillLV;
-				// トラップ研究は射程が伸びるだけでダメージには寄与しない
-				// CON補正
-				wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
-				// ベースレベル補正
-				wbairitu = wbairitu * n_A_BaseLV / 100;
-				// アドバンスドトラップ研究は小数点以下にも掛かる
-				// アドバンスドトラップ研究補正
-				const advanced_trap_lv = Math.max(LearnedSkillSearch(SKILL_ID_ADVANCED_TRAP), UsedSkillSearch(SKILL_ID_ADVANCED_TRAP));
-				wbairitu = Math.floor(wbairitu * (1 + 0.2 * advanced_trap_lv));
-				break;
-			}
-			// 「ウィンドホーク」スキル「クレッシブボルト」
-			// 2024/11/15 誤差なしを確認
-			case SKILL_ID_CRESSIVE_VOLT:
-				// 弓のみ発動可能
-				if (n_A_WeaponType != ITEM_KIND_BOW) {
-					wbairitu = 0;
-					n_Buki_Muri = true;
-					break;
-				}
-				// 詠唱時間等
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// 距離属性
-				n_Enekyori = 1;
-				// 基本倍率
-				wbairitu = 1000 + 200 * n_A_ActiveSkillLV;
-				// ワシの目の習得レベルは射程が伸びるだけでダメージ倍率に寄与しない
-				// CON補正
-				wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
-				// ベースレベル補正
-				wbairitu *= n_A_BaseLV / 100;
-				// クレッシブボルト状態は小数点以下にも掛かる
-				// クレッシブボルト状態による増幅 (1.00, 1.10, 1.25, 1.50)
-				wbairitu = Math.floor(wbairitu * [1.00, 1.10, 1.25, 1.50][attackMethodConfArray[0].GetOptionValue(0)]);
-				// カラミティゲイル状態は小数点以下に掛からない
-				// カラミティゲイル状態で 1.25 倍
-				if (UsedSkillSearch(SKILL_ID_CALAMITY_GALE) > 0) {
-					wbairitu = Math.floor(wbairitu * 1.25);
-					// Mob の種族が魚介または動物の場合さらに 2.00 倍
-					if ([RACE_ID_FISH, RACE_ID_ANIMAL].includes(mobData[MONSTER_DATA_INDEX_RACE])) {
-						wbairitu = Math.floor(wbairitu * 2.00);
-					}
+				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_WeaponType);
+				// 地面設置スキルの情報
+				g_bDefinedDamageIntervals = g_skillManager.IsGroundInstallation(n_A_ActiveSkill);
+				if (g_bDefinedDamageIntervals) {
+					n_Delay[5] = g_skillManager.GetDamageInterval(n_A_ActiveSkill, n_A_ActiveSkillLV);
+					n_Delay[6] = g_skillManager.GetLifeTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				}
 				break;
 
@@ -4305,23 +3959,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				// 分割ヒット
 				wActiveHitNum = 2;
 				break;
-
-			// 「ドラゴンナイト」スキル「ドラゴニックブレス」
-			case SKILL_ID_DRAGONIC_BREATH: {
-				// トレーニング未習得でもドラゴンに乗れるので LearnedSkillSearch に置き換えられない
-				if (UsedSkillSearch(SKILL_ID_DRAGON_TRAINING) == 0) {
-					n_Buki_Muri = true
-					wbairitu = 0;
-					break;
-				}
-				wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);	
-				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				break;
-			}
 			// 「マイスター」スキル「マイティスマッシュ」
 			// 2025/01/18 ふみ。さん提供データに一致
 			case SKILL_ID_MIGHTY_SMASH:
@@ -5391,7 +5028,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-			n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_WeaponType);
 			wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 			wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
 			wbairitu = ATKbaiJYOUSAN(wbairitu);
@@ -9591,7 +9228,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 			wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
-			wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
+			wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV, attackMethodConfArray[0]);
 			n_A_Weapon_zokusei = attackMethodConfArray[0].GetOptionValue(0);
 			break;
 
@@ -9608,7 +9245,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 			wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
-			wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
+			wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV, attackMethodConfArray[0]);
 			n_A_Weapon_zokusei = attackMethodConfArray[0].GetOptionValue(0);
 			break;
 
@@ -16813,416 +16450,6 @@ function Click_A1(n){
 	}else{
 		document.getElementById('A1TD').style.backgroundColor = "#FF7777";
 		myInnerHtml("A1used","　<B>使用中</B>",0);
-	}
-}
-
-/**
- * 演奏・踊り系スキル を構築する
- */
-function Click_Skill3SW(){
-	n_Skill3SW = document.calcForm.A3_SKILLSW.checked;
-	if(n_Skill3SW){
-			let str;
-			str = '<TABLE Border style="white-space:nowrap;"><TR><TD id="A3TD" ColSpan="6" class="title"><input id="OBJID_CHECK_A3_SKILLSW" type="checkbox" name="A3_SKILLSW"onClick="Click_Skill3SW()">';
-			str += '<label for="OBJID_CHECK_A3_SKILLSW">演奏/踊り系スキル</label>';
-			str += '<span id="A3used"></span></TD></TR>';
-			str += '<TR><TD id="EN0_1"></TD><TD id="EN0_2"></TD><TD id="EN0_3"></TD><TD id="EN0_4"></TD><TD id="EN0_5"></TD><TD id="EN0_6"></TD></TR>';
-			str += '<TR><TD id="EN1_1"></TD><TD id="EN1_2"></TD><TD id="EN1_3"></TD><TD id="EN1_4"></TD><TD id="EN1_5"></TD><TD id="EN1_6"></TD></TR>';
-			str += '<TR><TD RowSpan=2 id="EN2_1"></TD><TD RowSpan=2 id="EN2_2"></TD><TD id="EN2_3"></TD><TD id="EN2_4"></TD><TD RowSpan="2" id="EN2_7"></TD><TD RowSpan="2" id="EN2_8"></TD></TR>';
-			str += '<TR><TD id="EN2_5"></TD><TD id="EN2_6"></TD></TR>';
-			str += '<TR><TD id="EN3_1"></TD><TD id="EN3_2"></TD><TD id="EN3_3"></TD><TD id="EN3_4"></TD><TD id="EN3_5"></TD><TD id="EN3_6"></TD></TR>';
-			str += '<TR><TD id="EN4_1"></TD><TD id="EN4_2"></TD><TD id="EN4_3"></TD><TD id="EN4_4"></TD><TD id="EN4_5"></TD><TD id="EN4_6"></TD></TR>';
-			str += '<TR><TD id="EN5_1"></TD><TD id="EN5_2"></TD><TD id="EN5_3"></TD><TD id="EN5_4"></TD><TD id="EN5_5"></TD><TD id="EN5_6"></TD></TR>';
-			str += '<TR><TD id="EN6_1"></TD><TD id="EN6_2"></TD><TD id="EN6_3"></TD><TD id="EN6_4"></TD><TD id="EN6_5"></TD><TD id="EN6_6"></TD></TR>';
-			str += '<TR><TD id="EN7_1"></TD><TD id="EN7_2"></TD><TD id="EN8_1"></TD><TD id="EN8_2"></TD></TR>';
-			str += '<TR><TD id="EN9_1"></TD><TD id="EN9_2"></TD><TD id="EN10_1"></TD><TD id="EN10_2"></TD></TR>';
-			str += '<TR><TD id="EN12_1"></TD><TD id="EN12_2"></TD><TD id="EN12_3"></TD><TD id="EN12_4"></TD><TD id="EN12_5"></TD><TD id="EN12_6"></TD></TR>';
-			str += '<TR><TD id="EN13_1"></TD><TD id="EN13_2"></TD><TD id="EN13_3"></TD><TD id="EN13_4"></TD></TR>';
-			str += '<TR><TD id="EN20_1"></TD><TD id="EN20_2"></TD><TD id="EN21_1"></TD><TD id="EN21_2"></TD></TR>';
-			str += '<TR><TD colspan=4><span id="EN11_1"></span><span id="EN11_2"></span><span id="EN11_1a"></span></TD></TR></TABLE>';
-			myInnerHtml("SP_SIEN01",str,0);
-			document.calcForm.A3_SKILLSW.checked = true;
-			const name_CS3SW_SKILL = ["口笛","夕陽のアサシンクロス","ブラギの詩","イドゥンの林檎","ハミング","幸運のキス","サービスフォーユー","不死身ジークフリード","ニヨルドの宴","戦太鼓の響き","ニーベルングの指輪"];
-			let html_CS3SW_SKILL = new Array();
-			for(i=0;i<=10;i++) myInnerHtml("EN"+i+"_1",name_CS3SW_SKILL[i],0);
-			html_CS3SW_SKILL[0] = '<select name="A3_Skill0_1"onChange="Skill3SW_2()|Click_A3(1)"></select>';
-			html_CS3SW_SKILL[1] = '<select name="A3_Skill1_1"onChange="Skill3SW_2()|Click_A3(1)"></select>';
-			html_CS3SW_SKILL[2] = '<select name="A3_Skill2_1"onChange="Skill3SW_2()|Click_A3(1)"></select>';
-			html_CS3SW_SKILL[3] = '<select name="A3_Skill3_1"onChange="Skill3SW_2()|Click_A3(1)"></select>';
-			html_CS3SW_SKILL[4] = '<select name="A3_Skill4_1"onChange="Skill3SW_2()|Click_A3(1)"></select>';
-			html_CS3SW_SKILL[5] = '<select name="A3_Skill5_1"onChange="Skill3SW_2()|Click_A3(1)"></select>';
-			html_CS3SW_SKILL[6] = '<select name="A3_Skill6_1"onChange="Skill3SW_2()|Click_A3(1)"></select>';
-			html_CS3SW_SKILL[7] = '<select name="A3_Skill7"onChange="Click_A3(1)"></select>';
-			html_CS3SW_SKILL[8] = '<select name="A3_Skill8"onChange="Click_A3(1)"></select>';
-			html_CS3SW_SKILL[9] = '<select name="A3_Skill9"onChange="Click_A3(1)"></select>';
-			html_CS3SW_SKILL[10] = '<select name="A3_Skill10"onChange="Click_A3(1)"></select>';
-			for(i=0;i<=10;i++) myInnerHtml("EN"+i+"_2",html_CS3SW_SKILL[i],0);
-
-			// フリッグの歌は仕様変更により、三次職支援へ移動
-			const uta_name = ["◆三次職歌スキル off","風車に向かって突撃","エコーの歌","式不明(ハーモナイズ)","スイングダンス","(×)恋人たちの為のシンフォニー","月明かりのセレナーデ"];
-			myInnerHtml("EN12_1",'<select name="A3_Skill12_0"onChange="Skill3SW_2()|Click_A3(1)"></select>',0);
-			for(var i= 0; i < uta_name.length; i++) {
-				document.calcForm.A3_Skill12_0.options[i] = new Option(uta_name[i],i);
-			}
-
-			const gassou_name = ["◆三次職合奏スキル off","(仮)フライデーナイトフィーバー","エンドレスハミングボイス","(仮)レーラズの露","(?)ﾋﾞﾖﾝﾄﾞｵﾌﾞｳｫｰｸﾗｲ(敵から)","(?)ﾒﾛﾃﾞｨｰｵﾌﾞｼﾝｸ(敵から)","(?)ﾀﾞﾝｽｳｨｽﾞｳｫｰｸﾞ(ﾚﾝｼﾞｬｰ有)","(?)ﾀﾞﾝｽｳｨｽﾞｳｫｰｸﾞ(ﾚﾝｼﾞｬｰ無)"];
-			myInnerHtml("EN13_1",'<select name="A3_Skill13_0"onChange="Skill3SW_2()|Click_A3(1)"></select>',0);
-			for(var i=0;i<=7;i++) document.calcForm.A3_Skill13_0.options[i] = new Option(gassou_name[i],i);
-			myInnerHtml("EN20_1","<Font size=2>メランコリーLv<BR>(こちらの欄はFleeとASPD低下用)</Font>",0);
-			myInnerHtml("EN20_2",'<select name="A3_Skill20"onChange="Skill3SW_2()|Click_A3(1)"></select>',0);
-			for(i=0;i<=5;i++) document.calcForm.A3_Skill20.options[i] = new Option(i,i);
-			myInnerHtml("EN21_1","<Font size=2>(仮)メランコリーでの威力増加(15%は確殺用<BR>55%か60%がLv5+レッスン10の期待値位)</Font>",0);
-			myInnerHtml("EN21_2",'<select name="A3_Skill42"onChange="Skill3SW_2()|Click_A3(1)"></select>',0);
-			document.calcForm.A3_Skill42.options[0] = new Option("off",0);
-			for(i=3;i<=20;i++) document.calcForm.A3_Skill42.options[i-2] = new Option("+"+(i * 5)+"%",i);
-			myInnerHtml("EN11_1","マリオネットコントロール",0);
-			myInnerHtml("EN11_2", "<br>術者のステ："+ '<select name="A3_Skill11_STR"onChange="Click_A3(1)"></select>'+ '<select name="A3_Skill11_AGI"onChange="Click_A3(1)"></select>'+ '<select name="A3_Skill11_VIT"onChange="Click_A3(1)"></select>'+ '<select name="A3_Skill11_INT"onChange="Click_A3(1)"></select>'+ '<select name="A3_Skill11_DEX"onChange="Click_A3(1)"></select>'+ '<select name="A3_Skill11_LUK"onChange="Click_A3(1)"></select>'+ "<BR>"+'<input id="OBJID_CHECK_A3_Skill11a" type="checkbox" name="A3_Skill11a"onClick="Click_A3(1)">'+'<Font size=2><label for="OBJID_CHECK_A3_Skill11a">ステータスをそのまま補正に＋する(憑神や装備解除調整用/人力計算)</label></Font>',0);
-			// エレメント毎に 130 回の DOM 評価が発生すると重さが実感できてしまうので一旦取り出しています
-			let selectBoxStr = document.calcForm.A3_Skill11_STR;
-			let selectBoxAgi = document.calcForm.A3_Skill11_AGI;
-			let selectBoxVit = document.calcForm.A3_Skill11_VIT;
-			let selectBoxInt = document.calcForm.A3_Skill11_INT;
-			let selectBoxDex = document.calcForm.A3_Skill11_DEX;
-			let selectBoxLuk = document.calcForm.A3_Skill11_LUK;
-			selectBoxStr.options[0] = new Option("STR",0);
-			selectBoxAgi.options[0] = new Option("AGI",0);
-			selectBoxVit.options[0] = new Option("VIT",0);
-			selectBoxInt.options[0] = new Option("INT",0);
-			selectBoxDex.options[0] = new Option("DEX",0);
-			selectBoxLuk.options[0] = new Option("LUK",0);
-			for(let i = 1; i <= 130; i++){
-				selectBoxStr.options[i] = new Option(i,i);
-				selectBoxAgi.options[i] = new Option(i,i);
-				selectBoxVit.options[i] = new Option(i,i);
-				selectBoxInt.options[i] = new Option(i,i);
-				selectBoxDex.options[i] = new Option(i,i);
-				selectBoxLuk.options[i] = new Option(i,i);
-			}
-			selectBoxStr.value = n_A_PassSkill3[12];
-			selectBoxAgi.value = n_A_PassSkill3[13];
-			selectBoxVit.value = n_A_PassSkill3[14];
-			selectBoxInt.value = n_A_PassSkill3[15];
-			selectBoxDex.value = n_A_PassSkill3[16];
-			selectBoxLuk.value = n_A_PassSkill3[17];
-			document.calcForm.A3_Skill11a.checked = n_A_PassSkill3[18];
-			for(let i = 0; i <= 10; i++){
-				document.calcForm.A3_Skill0_1.options[i] = new Option(i,i);
-				document.calcForm.A3_Skill1_1.options[i] = new Option(i,i);
-				document.calcForm.A3_Skill2_1.options[i] = new Option(i,i);
-				document.calcForm.A3_Skill3_1.options[i] = new Option(i,i);
-				document.calcForm.A3_Skill4_1.options[i] = new Option(i,i);
-				document.calcForm.A3_Skill5_1.options[i] = new Option(i,i);
-				document.calcForm.A3_Skill6_1.options[i] = new Option(i,i);
-			}
-			for(let i = 0; i <= 5; i++){
-				document.calcForm.A3_Skill7.options[i] = new Option(i,i);
-				document.calcForm.A3_Skill8.options[i] = new Option(i,i);
-				document.calcForm.A3_Skill9.options[i] = new Option(i,i);
-				document.calcForm.A3_Skill10.options[i] = new Option(i,i);
-			}
-			document.calcForm.A3_Skill0_1.value = n_A_PassSkill3[0];
-			document.calcForm.A3_Skill1_1.value = n_A_PassSkill3[1];
-			document.calcForm.A3_Skill2_1.value = n_A_PassSkill3[2];
-			document.calcForm.A3_Skill3_1.value = n_A_PassSkill3[3];
-			document.calcForm.A3_Skill4_1.value = n_A_PassSkill3[4];
-			document.calcForm.A3_Skill5_1.value = n_A_PassSkill3[5];
-			document.calcForm.A3_Skill6_1.value = n_A_PassSkill3[6];
-			document.calcForm.A3_Skill7.value = n_A_PassSkill3[7];
-			document.calcForm.A3_Skill8.value = n_A_PassSkill3[8];
-			document.calcForm.A3_Skill9.value = n_A_PassSkill3[9];
-			document.calcForm.A3_Skill10.value = n_A_PassSkill3[10];
-			document.calcForm.A3_Skill12_0.value = n_A_PassSkill3[19];
-			document.calcForm.A3_Skill13_0.value = n_A_PassSkill3[39];
-			document.calcForm.A3_Skill20.value = n_A_PassSkill3[11];
-			document.calcForm.A3_Skill42.value = n_A_PassSkill3[42];
-			Skill3SW_2();
-	}
-	else{
-			let str;
-			str = '<TABLE Border><TR><TD id="A3TD" class="title"><input id="OBJID_CHECK_A3_SKILLSW" type="checkbox" name="A3_SKILLSW"onClick="Click_Skill3SW()"><label for="OBJID_CHECK_A3_SKILLSW">演奏/踊り系スキル</label><span id="A3used"></span></TD></TR></TABLE>';
-			myInnerHtml("SP_SIEN01",str,0);
-			document.calcForm.A3_SKILLSW.checked = false;
-			for(i=0;i<=11;i++) SWs3sw[i]=0;
-	}
-	Click_A3(0);
-}
-
-/**
- * 演奏/踊り系スキルの変更を変数に反映する
- */
-function Skill3SW_2(){
-	n_A_PassSkill3[0] =  eval(document.calcForm.A3_Skill0_1.value);
-	n_A_PassSkill3[1] =  eval(document.calcForm.A3_Skill1_1.value);
-	n_A_PassSkill3[2] =  eval(document.calcForm.A3_Skill2_1.value);
-	n_A_PassSkill3[3] =  eval(document.calcForm.A3_Skill3_1.value);
-	n_A_PassSkill3[4] =  eval(document.calcForm.A3_Skill4_1.value);
-	n_A_PassSkill3[5] =  eval(document.calcForm.A3_Skill5_1.value);
-	n_A_PassSkill3[6] =  eval(document.calcForm.A3_Skill6_1.value);
-	n_A_PassSkill3[19] = eval(document.calcForm.A3_Skill12_0.value);
-	n_A_PassSkill3[39] = eval(document.calcForm.A3_Skill13_0.value);
-	if(n_A_PassSkill3[0] != 0){
-			if(SWs3sw[0] == 0){
-				if(n_A_PassSkill3[30] == 0) n_A_PassSkill3[30] = 10;
-				myInnerHtml("EN0_3","バードのAGI<BR>バードのLUK",0);
-				myInnerHtml("EN0_4",'<select name="A3_Skill0_2"onChange="Click_A3(1)"></select><BR><select name="A3_Skill0_4"onChange="Click_A3(1)"></select>',0);
-				myInnerHtml("EN0_5","楽器の練習",0);
-				myInnerHtml("EN0_6",'<select name="A3_Skill0_3"onChange="Click_A3(1)"></select>',0);
-				let selectBox1 = document.calcForm.A3_Skill0_2;
-				let selectBox2 = document.calcForm.A3_Skill0_3;
-				let selectBox3 = document.calcForm.A3_Skill0_4;
-				for(let i = 0; i <= 40; i++) selectBox1.options[i] = new Option((i * 15) +"～"+ ((i * 15)+14),i);
-				for(let i = 1; i <= 10; i++) selectBox2.options[i-1] = new Option(i,i);
-				for(let i = 0; i <= 20; i++) selectBox3.options[i] = new Option((i * 30) +"～"+ ((i * 30)+29),i);
-				SWs3sw[0] = 1;
-				selectBox1.value = n_A_PassSkill3[20];
-				selectBox2.value = n_A_PassSkill3[30];
-				selectBox3.value = n_A_PassSkill3[28];
-			}
-	}else{
-			SWs3sw[0] = 0;
-			if(n_A_PassSkill3[30]==10) n_A_PassSkill3[30] = 0;
-			myInnerHtml("EN0_3","-",0);
-			myInnerHtml("EN0_4","-",0);
-			myInnerHtml("EN0_5","",0);
-			myInnerHtml("EN0_6","",0);
-	}
-	if(n_A_PassSkill3[1] != 0){
-			if(SWs3sw[1] == 0){
-				if(n_A_PassSkill3[31]==0) n_A_PassSkill3[31] = 10;
-				myInnerHtml("EN1_3","バードのAGI",0);
-				myInnerHtml("EN1_4",'<select name="A3_Skill1_2"onChange="Click_A3(1)"></select>',0);
-				myInnerHtml("EN1_5","楽器の練習",0);
-				myInnerHtml("EN1_6",'<select name="A3_Skill1_3"onChange="Click_A3(1)"></select>',0);
-				let selectBox1 = document.calcForm.A3_Skill1_2;
-				let selectBox2 = document.calcForm.A3_Skill1_3;				
-				for(let i = 0; i <= 30; i++) selectBox1.options[i] = new Option((i * 20) +"～"+ ((i * 20)+19),i);
-				for(let i = 1; i <= 10; i++) selectBox2.options[i-1] = new Option(i,i);
-				SWs3sw[1] = 1;
-				selectBox1.value = n_A_PassSkill3[21];
-				selectBox2.value = n_A_PassSkill3[31];
-			}
-	}else{
-			SWs3sw[1] = 0;
-			if(n_A_PassSkill3[31]==10) n_A_PassSkill3[31] = 0;
-			myInnerHtml("EN1_3","-",0);
-			myInnerHtml("EN1_4","-",0);
-			myInnerHtml("EN1_5","",0);
-			myInnerHtml("EN1_6","",0);
-	}
-	if(n_A_PassSkill3[2] != 0){
-			if(SWs3sw[2] == 0){
-				if(n_A_PassSkill3[32]==0) n_A_PassSkill3[32] = 10;
-				myInnerHtml("EN2_3","バードのDEX",0);
-				myInnerHtml("EN2_4",'<select name="A3_Skill2_2"onChange="Click_A3(1)"></select>',0);
-				myInnerHtml("EN2_5","バードのINT",0);
-				myInnerHtml("EN2_6",'<select name="A3_Skill2_3"onChange="Click_A3(1)"></select>',0);
-				myInnerHtml("EN2_7","楽器の練習",0);
-				myInnerHtml("EN2_8",'<select name="A3_Skill2_4"onChange="Click_A3(1)"></select>',0);
-				let selectBox1 = document.calcForm.A3_Skill2_2;
-				let selectBox2 = document.calcForm.A3_Skill2_3;
-				let selectBox3 = document.calcForm.A3_Skill2_4;
-				for(let i = 0; i <= 60; i++) selectBox1.options[i] = new Option((i * 10) +"～"+ ((i * 10)+9),i);
-				for(let i = 0; i <= 90; i++) selectBox2.options[i] = new Option((i * 5) +"～"+ ((i * 5)+4),i);
-				for(let i = 1; i <= 10; i++) selectBox3.options[i-1] = new Option(i,i);
-				SWs3sw[2] = 1;
-				selectBox1.value = n_A_PassSkill3[22];
-				selectBox2.value = n_A_PassSkill3[29];
-				selectBox3.value = n_A_PassSkill3[32];
-			}
-	}else{
-			SWs3sw[2] = 0;
-			if(n_A_PassSkill3[32]==10) n_A_PassSkill3[32] = 0;
-			myInnerHtml("EN2_3","-",0);
-			myInnerHtml("EN2_4","-",0);
-			myInnerHtml("EN2_5","",0);
-			myInnerHtml("EN2_6","",0);
-			myInnerHtml("EN2_7","",0);
-			myInnerHtml("EN2_8","",0);
-	}
-	if(n_A_PassSkill3[3] != 0){
-			if(SWs3sw[3] == 0){
-				if(n_A_PassSkill3[33]==0) n_A_PassSkill3[33] = 10;
-				myInnerHtml("EN3_3","バードのVIT",0);
-				myInnerHtml("EN3_4",'<select name="A3_Skill3_2"onChange="Click_A3(1)"></select>',0);
-				myInnerHtml("EN3_5","楽器の練習",0);
-				myInnerHtml("EN3_6",'<select name="A3_Skill3_3"onChange="Click_A3(1)"></select>',0);
-				let selectBox1 = document.calcForm.A3_Skill3_2;
-				let selectBox2 = document.calcForm.A3_Skill3_3;
-				for(let i = 0; i <= 60; i++) selectBox1.options[i] = new Option((i * 10) +"～"+ ((i * 10)+9),i);
-				for(let i = 1; i <= 10; i++) selectBox2.options[i-1] = new Option(i,i);
-				SWs3sw[3] = 1;
-				selectBox1.value = n_A_PassSkill3[23];
-				selectBox2.value = n_A_PassSkill3[33];
-			}
-	}else{
-			SWs3sw[3] = 0;
-			if(n_A_PassSkill3[33]==10) n_A_PassSkill3[33] = 0;
-			myInnerHtml("EN3_3","-",0);
-			myInnerHtml("EN3_4","-",0);
-			myInnerHtml("EN3_5","",0);
-			myInnerHtml("EN3_6","",0);
-	}
-	if(n_A_PassSkill3[4] != 0){
-			if(SWs3sw[4] == 0){
-				if(n_A_PassSkill3[34]==0) n_A_PassSkill3[34] = 10;
-				myInnerHtml("EN4_3","ダンサーのDEX",0);
-				myInnerHtml("EN4_4",'<select name="A3_Skill4_2"onChange="Click_A3(1)"></select>',0);
-				myInnerHtml("EN4_5","ダンスの練習",0);
-				myInnerHtml("EN4_6",'<select name="A3_Skill4_3"onChange="Click_A3(1)"></select>',0);
-				let selectBox1 = document.calcForm.A3_Skill4_2;
-				let selectBox2 = document.calcForm.A3_Skill4_3;
-				for(let i = 0; i <= 40; i++) selectBox1.options[i] = new Option((i * 15) +"～"+ ((i * 15)+14),i);
-				for(let i = 1; i <= 10; i++) selectBox2.options[i-1] = new Option(i,i);
-				SWs3sw[4] = 1;
-				selectBox1.value = n_A_PassSkill3[24];
-				selectBox2.value = n_A_PassSkill3[34];
-			}
-	}else{
-			SWs3sw[4] = 0;
-			if(n_A_PassSkill3[34]==10) n_A_PassSkill3[34] = 0;
-			myInnerHtml("EN4_3","-",0);
-			myInnerHtml("EN4_4","-",0);
-			myInnerHtml("EN4_5","",0);
-			myInnerHtml("EN4_6","",0);
-	}
-	if(n_A_PassSkill3[5] != 0){
-			if(SWs3sw[5] == 0){
-				if(n_A_PassSkill3[35]==0) n_A_PassSkill3[35] = 10;
-				myInnerHtml("EN5_3","ダンサーのLUK",0);
-				myInnerHtml("EN5_4",'<select name="A3_Skill5_2"onChange="Click_A3(1)"></select>',0);
-				myInnerHtml("EN5_5","ダンスの練習",0);
-				myInnerHtml("EN5_6",'<select name="A3_Skill5_3"onChange="Click_A3(1)"></select>',0);
-				let selectBox1 = document.calcForm.A3_Skill5_2;
-				let selectBox2 = document.calcForm.A3_Skill5_3;
-				for(let i = 0; i <= 60; i++) selectBox1.options[i] = new Option((i * 10) +"～"+ ((i * 10)+9),i);
-				for(let i = 1; i <= 10; i++) selectBox2.options[i-1] = new Option(i,i);
-				SWs3sw[5] = 1;
-				selectBox1.value = n_A_PassSkill3[25];
-				selectBox2.value = n_A_PassSkill3[35];
-			}
-	}else{
-			SWs3sw[5] = 0;
-			if(n_A_PassSkill3[35]==10) n_A_PassSkill3[35] = 0;
-			myInnerHtml("EN5_3","-",0);
-			myInnerHtml("EN5_4","-",0);
-			myInnerHtml("EN5_5","",0);
-			myInnerHtml("EN5_6","",0);
-	}
-	if(n_A_PassSkill3[6] != 0){
-			if(SWs3sw[6] == 0){
-				if(n_A_PassSkill3[36]==0) n_A_PassSkill3[36] = 10;
-				myInnerHtml("EN6_3","ダンサーのINT",0);
-				myInnerHtml("EN6_4",'<select name="A3_Skill6_2"onChange="Click_A3(1)"></select>',0);
-				myInnerHtml("EN6_5","ダンスの練習",0);
-				myInnerHtml("EN6_6",'<select name="A3_Skill6_3"onChange="Click_A3(1)"></select>',0);
-				let selectBox1 = document.calcForm.A3_Skill6_2;
-				let selectBox2 = document.calcForm.A3_Skill6_3;
-				for(let i = 0; i <= 60; i++) selectBox1.options[i] = new Option((i * 10) +"～"+ ((i * 10)+9),i);
-				for(let i = 1; i <= 10; i++) selectBox2.options[i-1] = new Option(i,i);
-				SWs3sw[6] = 1;
-				selectBox1.value = n_A_PassSkill3[26];
-				selectBox2.value = n_A_PassSkill3[36];
-			}
-	}else{
-			SWs3sw[6] = 0;
-			if(n_A_PassSkill3[36]==10) n_A_PassSkill3[36] = 0;
-			myInnerHtml("EN6_3","-",0);
-			myInnerHtml("EN6_4","-",0);
-			myInnerHtml("EN6_5","",0);
-			myInnerHtml("EN6_6","",0);
-	}
-	if(n_A_PassSkill3[19] != 0){
-			if(SWs3sw[7] != 2){
-				if(n_A_PassSkill3[46]==0){
-					n_A_PassSkill3[37] = 5;
-					n_A_PassSkill3[46] = 60;
-					n_A_PassSkill3[38] = 10;
-				}
-				myInnerHtml("EN12_2",'<select name="A3_Skill12_1"onChange="Click_A3(1)"></select>',0);
-				myInnerHtml("EN12_3","ミン/ワンのJobLv",0);
-				myInnerHtml("EN12_4",'<select name="A3_Skill12_2"onChange="Click_A3(1)"></select>',0);
-				myInnerHtml("EN12_5","レッスン",0);
-				myInnerHtml("EN12_6",'<select name="A3_Skill12_3"onChange="Click_A3(1)"></select>',0);
-				let selectBox1 = document.calcForm.A3_Skill12_1;
-				let selectBox2 = document.calcForm.A3_Skill12_2;
-				let selectBox3 = document.calcForm.A3_Skill12_3;
-				for(let i = 1; i <= 5; i++) selectBox1.options[i-1] = new Option(i,i);
-				for(let i = 1; i <= 60; i++) selectBox2.options[i-1] = new Option(i,i);
-				for(let i = 0; i <= 10; i++) selectBox3.options[i] = new Option(i,i);
-				if(n_A_PassSkill3[37] > 5) n_A_PassSkill3[37] = 5;
-				selectBox1.value = n_A_PassSkill3[37];
-				selectBox2.value = n_A_PassSkill3[46];
-				selectBox3.value = n_A_PassSkill3[38];
-				SWs3sw[7] = 2;
-			}
-	}else{
-			SWs3sw[7] = 0;
-			n_A_PassSkill3[37] = 0;
-			n_A_PassSkill3[46] = 0;
-			n_A_PassSkill3[38] = 0;
-			myInnerHtml("EN12_2","",0);
-			myInnerHtml("EN12_3","<Font size=2>←風車などクリックで選択可</Font>",0);
-			myInnerHtml("EN12_4","",0);
-			myInnerHtml("EN12_5","",0);
-			myInnerHtml("EN12_6","",0);
-	}
-	if(n_A_PassSkill3[39] != 0){
-			if(SWs3sw[8] == 0){
-				if(n_A_PassSkill3[41]==0){
-					n_A_PassSkill3[40] = 5;
-					n_A_PassSkill3[41] = 2;
-				}
-				myInnerHtml("EN13_2",'<select name="A3_Skill13_1"onChange="Click_A3(1)"></select>',0);
-				for(let i = 1; i <= 5; i++) document.calcForm.A3_Skill13_1.options[i-1] = new Option(i,i);
-				document.calcForm.A3_Skill13_1.value = n_A_PassSkill3[40];
-				if(n_A_PassSkill3[39] != 1){
-					myInnerHtml("EN13_3","ミン/ワンの人数",0);
-					myInnerHtml("EN13_4",'<select name="A3_Skill13_2"onChange="Click_A3(1)"></select>',0);
-					for(i=2;i<=12;i++) document.calcForm.A3_Skill13_2.options[i-2] = new Option(i,i);
-					if(n_A_PassSkill3[41] <2) n_A_PassSkill3[41] = 2;
-					document.calcForm.A3_Skill13_2.value = n_A_PassSkill3[41];
-				}else{
-					myInnerHtml("EN13_3","ATK増加のタイプ(検証用)",0);
-					myInnerHtml("EN13_4",'<select name="A3_Skill13_2"onChange="Click_A3(1)"></select>',0);
-					document.calcForm.A3_Skill13_2.options[0] = new Option("アンドレC型(ほぼ確定)",3);
-					document.calcForm.A3_Skill13_2.options[1] = new Option("アンドレC型(ほぼ確定)",1);
-					document.calcForm.A3_Skill13_2.options[2] = new Option("アンドレC型(ほぼ確定)",2);
-					document.calcForm.A3_Skill13_2.value = n_A_PassSkill3[41];
-				}
-				SWs3sw[8] = 0;
-			}
-	}else{
-			SWs3sw[8] = 0;
-			n_A_PassSkill3[40] = 0;
-			n_A_PassSkill3[41] = 0;
-			myInnerHtml("EN13_2","",0);
-			myInnerHtml("EN13_3","",0);
-			myInnerHtml("EN13_4","",0);
-	}
-}
-
-/**
- * 演奏/踊り系スキルの変更を反映する
- * @param {*} n 再計算フラグ（n = 1 再計算する）
- */
-function Click_A3(n){
-	if(n==1) AutoCalc("Click_A3");
-
-	var sw=0;
-	for(var i=0;i <n_A_PassSkill3.length;i++){
-		if(n_A_PassSkill3[i] != 0){
-			if(!(20 <= i && i <= 36)){
-				sw = 1;
-				break;
-			}
-		}
-	}
-	if(sw == 0){
-		document.getElementById('A3TD').style.backgroundColor = "#DDDDFF";
-		myInnerHtml("A3used","",0);
-	}else{
-		document.getElementById('A3TD').style.backgroundColor = "#FF7777";
-		myInnerHtml("A3used","　<B>使用中</B>",0);
 	}
 }
 

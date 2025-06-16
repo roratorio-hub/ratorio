@@ -38,38 +38,91 @@ function CSkillData() {
 	this.kana = "";
 	this.maxLv = 0;
 	this.type = 0;
-	this.range = 0;
 	this.element = 0;
+	/** 地面設置スキルフラグ */
+	this.ground_installation = false;
 
+	/**
+	 * スキルの距離属性値を取得する. オーバーライドされていない場合は CSkillData.RANGE_SHORT (近接物理タイプ) が返される.
+	 * @param {Number} weapon 
+	 * @returns {Number}
+	 */
+	this.range = function(weapon) {
+		return CSkillData.RANGE_SHORT;
+	}
+
+	/**
+	 * 装備中の武器種で使用できるスキルかどうか判定する. オーバーライドされていない場合は true が返される.
+	 * @param {Number} weapon 
+	 * @returns {boolean}
+	 */
+	this.WeaponCondition = function(weapon) {
+		return true;
+	}
 	this.CostVary = function(skillLv, charaDataManger) {
 		return 0;
 	}
 	this.CostFixed = function(skillLv, charaDataManger) {
 		return 0;
 	}
+	/**
+	 * スキルの消費APを取得する. オーバーライドされていない場合は 0 が返される.
+	 * @param {Number} skillLv 
+	 * @param {*} charaDataManger 
+	 * @returns {Number}
+	 */
 	this.CostAP = function(skillLv, charaDataManger) {
 		return 0;
 	}
+	/**
+	 * スキルのダメージ倍率％を取得する. オーバーライドされていない場合は 0 が返される.
+	 * @param {Number} skillLv 
+	 * @param {*} charaDataManger 
+	 * @returns {Number}
+	 */
 	this.Power = function(skillLv, charaDataManger) {
 		return 0;
 	}
-	/** ヒット数 */
-	this.hitCount = function(skillLv, charaDataManger) {
+	/**
+	 * スキルのヒット数を取得する. オーバーライドされていない場合は 1 が返される.
+	 * @param {Number} skillLv 
+	 * @param {CAttackMethodConf} option 
+	 * @returns {Number}
+	 */
+	this.hitCount = function(skillLv, option) {
 		return 1;
 	}
 	/** 分割ヒット数 */
 	this.dispHitCount = function(skillLv, charaDataManger) {
 		return 0;
 	}
+	/**
+	 * 変動詠唱をミリ秒で取得する. オーバーライドされていない場合は 0 が返される.
+	 * @param {Number} skillLv 
+	 * @param {*} charaDataManger 
+	 * @returns {Number}
+	 */
 	this.CastTimeVary = function(skillLv, charaDataManger) {
 		return 0;
 	}
+	/**
+	 * 固定詠唱をミリ秒で取得する. オーバーライドされていない場合は 0 が返される.
+	 * @param {Number} skillLv 
+	 * @param {*} charaDataManger 
+	 * @returns {Number}
+	 */
 	this.CastTimeFixed = function(skillLv, charaDataManger) {
 		return 0;
 	}
 	this.CastTimeForce = function(skillLv, charaDataManger) {
 		return 0;
 	}
+	/**
+	 * スキルディレイをミリ秒で取得する. オーバーライドされていない場合は 0 が返される.
+	 * @param {Number} skillLv 
+	 * @param {*} charaDataManger 
+	 * @returns {Number}
+	 */
 	this.DelayTimeCommon = function(skillLv, charaDataManger) {
 		return 0;
 	}
@@ -82,13 +135,32 @@ function CSkillData() {
 	this.DelayTimeSkillObject = function(skillLv, charaDataManger) {
 		return 0;
 	}
+	/**
+	 * スキルクールタイムをミリ秒で取得する. オーバーライドされていない場合は 0 が返される.
+	 * @param {Number} skillLv 
+	 * @param {*} charaDataManger 
+	 * @returns {Number}
+	 */
 	this.CoolTime = function(skillLv, charaDataManger) {
 		return 0;
 	}
+	/**
+	 * スキルの効果時間をミリ秒で取得する. オーバーライドされていない場合は 0 が返される.
+	 * @param {Number} skillLv 
+	 * @param {*} charaDataManger 
+	 * @returns {Number}
+	 */
 	this.LifeTime = function(skillLv, charaDataManger) {
 		return 0;
 	}
-
+	/**
+	 * 地面設置スキルのダメージ発生感覚をミリ秒で取得する.  オーバーライドされていない場合は 0 が返される.
+	 * @param {*} skillLv 
+	 * @returns 
+	 */
+	this.damageInterval = function(skillLv) {
+		return 0;
+	}
 	// クリティカル発生率を取得（0:発生しない、100:等倍、etc...）
 	this.CriActRate = function(skillLv, charaData, specData, mobData) {
 
@@ -171,21 +243,17 @@ function CSkillManager() {
 	}
 
 	this.GetSkillIdByName = function (name) {
-
 		var idx = 0;
 		var regKanaChange = null;
 		var nameChanged = "";
-
 		for (idx = 0; idx < this.dataArray.length; idx++) {
 			if (this.dataArray[idx].name.replace(/\([^)]+\)/g, "") == name) {
 				return this.dataArray[idx].id;
 			}
 		}
-
 		// TODO: 「ヘスペルスリット」などで、「へ」が片仮名ではなく平仮名になっていたりする問題への対応（公式のバグ）
 		// 引数で渡された名称に、平仮名の「へ」がある場合、片仮名に変換して再検索する
 		regKanaChange = new RegExp("(?:へ|ぺ|べ)");
-
 		if (regKanaChange.test(name)) {
 
 			nameChanged = name.replace("へ", "ヘ").replace("ぺ", "ペ").replace("べ", "ベ");
@@ -196,7 +264,6 @@ function CSkillManager() {
 				}
 			}
 		}
-
 		return -1;
 	}
 
@@ -221,15 +288,25 @@ function CSkillManager() {
 
 	/**
 	 * スキルの有効射程カテゴリを取得する
-	 * @param {*} skillId 
-	 * @returns 	[ CSkillData.RANGE_SHORT | CSkillData.RANGE_LONG | CSkillData.RANGE_MAGIC | CSkillData.RANGE_SPECIAL ]
+	 * @param {Number} skillId 
+	 * @param {Number} weapon 武器種
+	 * @returns 	[ CSkillData.RANGE_SHORT (default) | CSkillData.RANGE_LONG | CSkillData.RANGE_MAGIC | CSkillData.RANGE_SPECIAL ]
 	 */
-	this.GetSkillRange = function(skillId) {
-		return this.dataArray[skillId].range;
+	this.GetSkillRange = function(skillId, weapon) {
+		return this.dataArray[skillId].range(weapon);
 	}
 
 	this.GetElement = function(skillId) {
 		return this.dataArray[skillId].element;
+	}
+
+	/**
+	 * 装備中の武器種で使用できるスキルかどうか判定する.
+	 * @param {Number} weapon 
+	 * @returns {boolean}
+	 */
+	this.MatchWeaponCondition = function(skillId, weapon) {
+		return this.dataArray[skillId].WeaponCondition(weapon);
 	}
 
 	/**
@@ -238,20 +315,23 @@ function CSkillManager() {
 	 * @param {Number} skillLv 
 	 * @param {Array} charaDataManger 
 	 * @param {CAttackMethodConf} option 
+	 * @param {Array} mobData
 	 * @returns {Number} スキル倍率％
 	 */
-	this.GetPower = function(skillId, skillLv, charaDataManger, option) {
-		return this.dataArray[skillId].Power(skillLv, charaDataManger, option);
+	this.GetPower = function(skillId, skillLv, charaDataManger, option, mobData) {
+		return this.dataArray[skillId].Power(skillLv, charaDataManger, option, mobData);
 	}
 
 	/**
-	 * スキルのヒット数を取得する
+	 * スキルのヒット数を取得する.
+	 * 各スキルの Switch-Case ブロックでオーバーライドされていない場合は 1 が返される.
 	 * @param {Number} skillId 
 	 * @param {*} skillLv 
-	 * @returns 
+	 * @param {CAttackMethodConf} option 
+	 * @returns {Number}
 	 */
-	this.GetHitCount = function(skillId, skillLv) {
-		return this.dataArray[skillId].hitCount(skillLv);
+	this.GetHitCount = function(skillId, skillLv, option) {
+		return this.dataArray[skillId].hitCount(skillLv, option);
 	}
 
 	/**
@@ -299,6 +379,15 @@ function CSkillManager() {
 	this.GetLifeTime = function(skillId, skillLv, charaDataManger) {
 		return this.dataArray[skillId].LifeTime(skillLv, charaDataManger);
 	}
+	/**
+	 * 地面設置スキルのダメージ発生間隔をミリ秒で取得する.
+	 * @param {Number} skillId 
+	 * @param {Number} skillLv 
+	 * @returns 
+	 */
+	this.GetDamageInterval = function(skillId, skillLv) {
+		return this.dataArray[skillId].damageInterval(skillLv);
+	}
 
 	/**
 	 * クリティカルするスキルの場合、trueを返す
@@ -319,6 +408,15 @@ function CSkillManager() {
 
 	this.CriDamageRate = function(skillId, skillLv, charaData, specData, mobData) {
 		return this.dataArray[skillId].CriDamageRate(skillLv, charaData, specData, mobData);
+	}
+
+	/**
+	 * 地面設置スキルか否かを判定する. オーバーライドされない場合は false を返す.
+	 * @param {Number} skillId 
+	 * @returns {boolean}
+	 */
+	this.IsGroundInstallation = function(skillId) {
+		return this.dataArray[skillId].ground_installation;
 	}
 
 	this.GetDataCount = function() {
@@ -13033,7 +13131,9 @@ function CSkillManager() {
 			this.kana = "ハントレツトスヒア";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = CSkillData.RANGE_LONG;
+			this.range = function(weapon) {
+				return CSkillData.RANGE_LONG;
+			}
 			this.element = CSkillData.ELEMENT_VOID;
 			this.Power = function(skillLv, charaData, option) {
 				let ratio = 0;
@@ -30880,8 +30980,10 @@ function CSkillManager() {
 			this.kana = "サアウアントウエホン";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.range = function(weapon) {
+				return CSkillData.RANGE_SHORT;
+			}
 			this.hitCount = function(skillLv) {							// ヒット数
 				return 3;
 			}
@@ -30977,8 +31079,13 @@ function CSkillManager() {
 			this.kana = "サアウアントウエホンファントム";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.range = function(weapon) {
+				return CSkillData.RANGE_SHORT;
+			}
+			this.hitCount = function(skillLv, option) {	// ヒット数
+				return option.GetOptionValue(0);
+			}
 			this.Power = function(skillLv, charaData) {      		 	// スキル倍率
 				let ratio = 0;
 				ratio += 1250 + 50 * skillLv;
@@ -31029,8 +31136,13 @@ function CSkillManager() {
 			this.kana = "サアウアントウエホンテモリツシヨン";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.range = function(weapon) {
+				return CSkillData.RANGE_SHORT;
+			}
+			this.hitCount = function(skillLv, option) {	// ヒット数
+				return option.GetOptionValue(0);
+			}
 			this.Power = function(skillLv, charaData) {       // スキル倍率
 				let ratio = 0;
 				ratio += 1250 + 50 * skillLv;
@@ -31138,8 +31250,13 @@ function CSkillManager() {
 			this.kana = "ハツクアントスラツシヤア";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = CSkillData.RANGE_SPECIAL;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.range = function(weapon) {
+				return (weapon === ITEM_KIND_SWORD_2HAND) ? CSkillData.RANGE_SHORT : CSkillData.RANGE_LONG;
+			}
+			this.WeaponCondition = function(weapon) {
+				return [ITEM_KIND_SWORD_2HAND, ITEM_KIND_SPEAR_2HAND].includes(weapon);
+			}
 			this.hitCount = function(skillLv) {							// ヒット数
 				return 2;
 			}
@@ -31193,8 +31310,10 @@ function CSkillManager() {
 			this.kana = "トラコニツクオオラ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.range = function(weapon) {
+				return CSkillData.RANGE_LONG;
+			}
 			this.Power = function(skillLv, charaData) {					// スキル倍率
 				let ratio = 0;
 				ratio = 7000 + 2000 * skillLv;
@@ -31240,8 +31359,13 @@ function CSkillManager() {
 			this.kana = "マツトネスクラツシヤア";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.range = function(weapon) {
+				return CSkillData.RANGE_LONG;
+			}
+			this.WeaponCondition = function(weapon) {
+				return [ITEM_KIND_SWORD_2HAND, ITEM_KIND_SPEAR_2HAND].includes(weapon);
+			}
 			this.Power = function(skillLv, charaData, option) {					// スキル倍率
 				let ratio = 0;
 				const wpnLv = ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS]][ITEM_DATA_INDEX_WPNLV] % 10;
@@ -31330,8 +31454,13 @@ function CSkillManager() {
 			this.kana = "ストオムスラツシユ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.range = function(weapon) {
+				return CSkillData.RANGE_SHORT;
+			}
+			this.WeaponCondition = function(weapon) {
+				return [ITEM_KIND_SWORD_2HAND, ITEM_KIND_AXE_2HAND].includes(weapon);
+			}
 			this.hitCount = function(skillLv, charaDataManger) {       	// ヒット数
 				return skillLv;
 			}
@@ -31385,8 +31514,14 @@ function CSkillManager() {
 			this.kana = "タンシンクナイフ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.ground_installation = true;	// 自キャラを中心にした地面設置スキルとして計算する
+			this.range = function(weapon) {
+				return CSkillData.RANGE_SHORT;
+			}
+			this.WeaponCondition = function(weapon) {
+				return (weapon === ITEM_KIND_KNIFE);
+			}
 			this.Power = function(skillLv, charaData, option) {       	// スキル倍率
 				// Lv1 と Lv3 で +6 程度の誤差がありますが計算式に問題はないと判断しています
 				let ratio = 0;
@@ -31407,6 +31542,9 @@ function CSkillManager() {
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return [0, 240, 180, 120, 90, 60][skillLv] * 1000;
 			}
+			this.damageInterval = function(skillLv) {
+				return 300;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -31423,8 +31561,16 @@ function CSkillManager() {
 			this.kana = "サヘエシインハクト";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.range = function(weapon) {
+				return CSkillData.RANGE_SHORT;
+			}
+			this.WeaponCondition = function(weapon) {
+				return (weapon === ITEM_KIND_KATAR);
+			}
+			this.hitCount = function(skillLv, option) {
+				return option.GetOptionValue(0) + 1;
+			}
 			this.Power = function(skillLv, charaData, option) {			// スキル倍率
 				let ratio = 0;
 				ratio = 500 + 100 * skillLv;
@@ -31484,8 +31630,13 @@ function CSkillManager() {
 			this.kana = "エタアナルスラツシユ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.range = function(weapon) {
+				return CSkillData.RANGE_SHORT;
+			}
+			this.hitCount = function(skillLv, option) {
+				return option.GetOptionValue(0);
+			}
 			this.Power = function(skillLv, charaData, option) {       	// スキル倍率
 				// Lv1 と Lv3 のとき +4 の誤差がありますがスキル倍率以外の計算に起因するものだと判断しています
 				let ratio = 0;
@@ -31623,8 +31774,10 @@ function CSkillManager() {
 			this.kana = "フエイタルシヤトウクロオ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.range = function(weapon) {
+				return CSkillData.RANGE_SHORT;
+			}
 			this.Power = function(skillLv, charaData, option) {			// スキル倍率
 				// Lv1 で +35 の誤差があるが Lv2 は誤差ゼロ
 				// スキル倍率とは異なる根本的な計算部分で誤差が生じている可能性がある
@@ -31677,8 +31830,13 @@ function CSkillManager() {
 			this.kana = "シヤトウスタフ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.range = function(weapon) {
+				return CSkillData.RANGE_SHORT;
+			}
+			this.WeaponCondition = function(weapon) {
+				return (weapon === ITEM_KIND_KNIFE);
+			}
 			this.Power = function(skillLv, charaData, option) {			// スキル倍率
 				// 「エクシードの有無によらず」+6程度の誤差があるためスキル計算式以外の場所に問題があると考えられます
 				let ratio = 0;
@@ -31716,8 +31874,16 @@ function CSkillManager() {
 			this.kana = "インハクトクレエタア";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.range = function(weapon) {
+				return CSkillData.RANGE_SHORT;
+			}
+			this.WeaponCondition = function(weapon) {
+				return (weapon === ITEM_KIND_KATAR);
+			}
+			this.hitCount = function(skillLv, option) {
+				return option.GetOptionValue(0);
+			}
 			this.Power = function(skillLv, charaData, option) {			// スキル倍率
 				// Lv1 と Lv3 に +15 程度の誤差がありますが計算式に変更はないので改めて△表示はしません
 				let ratio = 0;
@@ -32032,8 +32198,32 @@ function CSkillManager() {
 			this.kana = "エフイリコ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.range = function(weapon) {
+				return CSkillData.RANGE_SHORT;
+			}
+			this.WeaponCondition = function(weapon) {
+				return [ITEM_KIND_CLUB, ITEM_KIND_BOOK].includes(weapon);
+			}
+			this.Power = function(skillLv, charaData, option, mobData) {			// スキル倍率
+				let ratio = 0;
+				// 鈍器＆本修練の補正Lv
+				const donki_hon_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_DONKI_HON_SHUREN), UsedSkillSearch(SKILL_ID_DONKI_HON_SHUREN));
+				if ([RACE_ID_UNDEAD, RACE_ID_DEMON].includes(mobData[MONSTER_DATA_INDEX_RACE])) {
+					ratio = 4000 + 500 * skillLv;							// 基本倍率
+					ratio += 60 * GetTotalSpecStatus(MIG_PARAM_ID_POW);				// POW補正
+					ratio += (400 + 50 * skillLv) * donki_hon_shuren_lv;	// 鈍器＆本修練 補正
+				} else {
+					ratio = 3000 + 375 * skillLv;							// 基本倍率
+					ratio += 45 * GetTotalSpecStatus(MIG_PARAM_ID_POW);				// POW補正
+					ratio += (275 + 40 * skillLv) * donki_hon_shuren_lv;	// 鈍器＆本修練 補正
+				}
+				// ベースレベル補正
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.dispHitCount = function(skillLv) {
+				return 7;
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 310;
 			}
@@ -32273,8 +32463,25 @@ function CSkillManager() {
 			this.kana = "ヘテイテイオ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.WeaponCondition = function(weapon) {
+				return [ITEM_KIND_CLUB, ITEM_KIND_BOOK].includes(weapon);
+			}
+			this.range = function(weapon) {
+				return (weapon === ITEM_KIND_BOOK) ? CSkillData.RANGE_SHORT : CSkillData.RANGE_LONG;
+			}
+			this.Power = function(skillLv, charaData, option, mobData) {			// スキル倍率
+				let ratio = 0;
+				// 基本倍率
+				ratio = 250 * skillLv;
+				// POW補正
+				ratio += 15 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				// 鈍器・本修練補正
+				const donki_hon_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_DONKI_HON_SHUREN), UsedSkillSearch(SKILL_ID_DONKI_HON_SHUREN));
+				ratio += 20 * skillLv * donki_hon_shuren_lv;
+				// ベースレベル補正
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 210;
 			}
@@ -32448,8 +32655,29 @@ function CSkillManager() {
 			this.kana = "ホオクラツシユ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_FORCE_VANITY;
+			this.WeaponCondition = function(weapon) {
+				return (weapon === ITEM_KIND_BOW);
+			}
+			this.range = function(weapon) {
+				return CSkillData.RANGE_LONG;
+			}
+			this.dispHitCount = function(skillLv) {
+				return 2;
+			}
+			this.Power = function(skillLv, charaData, option, mobData) {
+				// ワシの目の習得レベルは射程が伸びるだけでダメージ倍率に寄与しない
+				let ratio = 0;
+				// 基本倍率
+				ratio = 1000 + 100 * skillLv;
+				// CON補正
+				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+				// 自然親和補正
+				const shizen_shinwa_lv = Math.max(LearnedSkillSearch(SKILL_ID_SHIZEN_SHINWA), UsedSkillSearch(SKILL_ID_SHIZEN_SHINWA));
+				ratio *= (1 + 0.2 * shizen_shinwa_lv);
+				// ベースレベル補正
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 120;
 			}
@@ -32541,8 +32769,34 @@ function CSkillManager() {
 			this.kana = "ホオクフウメラン";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_FORCE_VANITY;
+			this.range = function(weapon) {
+				return CSkillData.RANGE_LONG;
+			}
+			this.WeaponCondition = function(weapon) {
+				return (weapon === ITEM_KIND_BOW);
+			}
+			this.Power = function(skillLv, charaData, option, mobData) {
+				// ワシの目の習得レベルは射程が伸びるだけでダメージ倍率に寄与しない
+				let ratio = 0;
+				// 基本倍率
+				ratio = 1000 + (100 * skillLv);
+				// CON補正
+				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+				// 自然親和補正
+				const shizen_shinwa_lv = Math.max(LearnedSkillSearch(SKILL_ID_SHIZEN_SHINWA), UsedSkillSearch(SKILL_ID_SHIZEN_SHINWA));
+				ratio *= (1 + 0.2 * shizen_shinwa_lv);
+				// ベースレベル補正
+				ratio = Math.floor(ratio * n_A_BaseLV / 100);	
+				// 種族特攻は小数点以下に掛からない
+				// 動物・魚貝形はダメージ倍率２倍
+				switch (mobData[MONSTER_DATA_INDEX_RACE]) {
+					case RACE_ID_ANIMAL:
+					case RACE_ID_FISH:
+						ratio = Math.floor(ratio * 2);	
+				}
+				return ratio;
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 170;
 			}
@@ -32577,8 +32831,34 @@ function CSkillManager() {
 			this.kana = "ケイルストオム";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.range = function(weapon) {
+				return CSkillData.RANGE_LONG;
+			}
+			this.WeaponCondition = function(weapon) {
+				return (weapon === ITEM_KIND_BOW);
+			}
+			this.dispHitCount = function(skillLv) {
+				return 5;
+			}
+			this.Power = function(skillLv, charaData, option, mobData) {
+				let ratio = 0;
+				// 基本倍率
+				ratio = 1000 + 200 * skillLv;
+				// ワシの目の習得レベルは射程が伸びるだけでダメージ倍率に寄与しない
+				// CON補正
+				ratio += 10 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+				// ベースレベル補正
+				ratio = Math.floor(ratio * n_A_BaseLV / 100);
+				// カラミティゲイル状態は小数点以下に掛からない
+				// カラミティゲイル状態で Mob の種族が動物・魚介の場合ダメージ２倍
+				if (UsedSkillSearch(SKILL_ID_CALAMITY_GALE) > 0) {
+					if ([RACE_ID_FISH, RACE_ID_ANIMAL].includes(mobData[MONSTER_DATA_INDEX_RACE])) {
+						ratio = Math.floor(ratio * 2.00);
+					}
+				}
+				return ratio;
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 170;
 			}
@@ -32624,8 +32904,29 @@ function CSkillManager() {
 			this.kana = "テイイフフライントトラツフ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_FORCE_DARK;
+			this.ground_installation = true;
+			this.damageInterval = function(skillLv) {
+				return [0, 1300, 900, 600, 400, 300][skillLv];
+			}
+			this.range = function(weapon) {
+				return CSkillData.RANGE_SHORT;
+			}
+			this.Power = function(skillLv, charaData, option, mobData) {
+				let ratio = 0;
+				// 基本倍率
+				ratio = 1500 + 300 * skillLv;
+				// トラップ研究は射程が伸びるだけでダメージには寄与しない
+				// CON補正
+				ratio += 10 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+				// ベースレベル補正
+				ratio = ratio * n_A_BaseLV / 100;
+				// アドバンスドトラップ研究は小数点以下にも掛かる
+				// アドバンスドトラップ研究補正
+				const advanced_trap_lv = Math.max(LearnedSkillSearch(SKILL_ID_ADVANCED_TRAP), UsedSkillSearch(SKILL_ID_ADVANCED_TRAP));
+				ratio = Math.floor(ratio * (1 + 0.2 * advanced_trap_lv));
+				return ratio;
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 250;
 			}
@@ -32660,8 +32961,29 @@ function CSkillManager() {
 			this.kana = "ソリツトトラツフ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_FORCE_EARTH;
+			this.ground_installation = true;
+			this.damageInterval = function(skillLv) {
+				return [0, 1300, 900, 600, 400, 300][skillLv];
+			}
+			this.range = function(weapon) {
+				return CSkillData.RANGE_SHORT;
+			}
+			this.Power = function(skillLv, charaData, option, mobData) {
+				let ratio = 0;
+				// 基本倍率
+				ratio = 1500 + 300 * skillLv;
+				// トラップ研究は射程が伸びるだけでダメージには寄与しない
+				// CON補正
+				ratio += 10 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+				// ベースレベル補正
+				ratio = ratio * n_A_BaseLV / 100;
+				// アドバンスドトラップ研究は小数点以下にも掛かる
+				// アドバンスドトラップ研究補正
+				const advanced_trap_lv = Math.max(LearnedSkillSearch(SKILL_ID_ADVANCED_TRAP), UsedSkillSearch(SKILL_ID_ADVANCED_TRAP));
+				ratio = Math.floor(ratio * (1 + 0.2 * advanced_trap_lv));
+				return ratio;
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 180;
 			}
@@ -32696,8 +33018,29 @@ function CSkillManager() {
 			this.kana = "スイフトトラツフ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_FORCE_WIND;
+			this.ground_installation = true;
+			this.damageInterval = function(skillLv) {
+				return [0, 1300, 900, 600, 400, 300][skillLv];
+			}
+			this.range = function(weapon) {
+				return CSkillData.RANGE_SHORT;
+			}
+			this.Power = function(skillLv, charaData, option, mobData) {
+				let ratio = 0;
+				// 基本倍率
+				ratio = 1500 + 300 * skillLv;
+				// トラップ研究は射程が伸びるだけでダメージには寄与しない
+				// CON補正
+				ratio += 10 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+				// ベースレベル補正
+				ratio = ratio * n_A_BaseLV / 100;
+				// アドバンスドトラップ研究は小数点以下にも掛かる
+				// アドバンスドトラップ研究補正
+				const advanced_trap_lv = Math.max(LearnedSkillSearch(SKILL_ID_ADVANCED_TRAP), UsedSkillSearch(SKILL_ID_ADVANCED_TRAP));
+				ratio = Math.floor(ratio * (1 + 0.2 * advanced_trap_lv));
+				return ratio;
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 210;
 			}
@@ -32732,8 +33075,36 @@ function CSkillManager() {
 			this.kana = "クレツシフホルト";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.range = function(weapon) {
+				return CSkillData.RANGE_LONG;
+			}
+			this.WeaponCondition = function(weapon) {
+				return (weapon === ITEM_KIND_BOW);
+			}
+			this.Power = function(skillLv, charaData, option, mobData) {
+				// ワシの目の習得レベルは射程が伸びるだけでダメージ倍率に寄与しない
+				let ratio = 0;
+				// 基本倍率
+				ratio = 1000 + 200 * skillLv;
+				// CON補正
+				ratio += 10 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+				// ベースレベル補正
+				// クレッシブボルト状態は小数点以下にも掛かるのでここではfloorしない
+				ratio *= n_A_BaseLV / 100;
+				// クレッシブボルト状態による増幅をかけてからfloorする
+				ratio = Math.floor(ratio * [1.00, 1.10, 1.25, 1.50][option.GetOptionValue(0)]);
+				// カラミティゲイル状態は小数点以下に掛からないのでfloorのあとに計算する
+				// カラミティゲイル状態で 1.25 倍
+				if (UsedSkillSearch(SKILL_ID_CALAMITY_GALE) > 0) {
+					ratio = Math.floor(ratio * 1.25);
+					// Mob の種族が魚介または動物の場合さらに 2.00 倍
+					if ([RACE_ID_FISH, RACE_ID_ANIMAL].includes(mobData[MONSTER_DATA_INDEX_RACE])) {
+						ratio = Math.floor(ratio * 2.00);
+					}
+				}
+				return ratio;
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 120;
 			}
@@ -32771,8 +33142,29 @@ function CSkillManager() {
 			this.kana = "フレイムトラツフ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_FORCE_FIRE;
+			this.ground_installation = true;
+			this.damageInterval = function(skillLv) {
+				return [0, 1300, 900, 600, 400, 300][skillLv];
+			}
+			this.range = function(weapon) {
+				return CSkillData.RANGE_SHORT;
+			}
+			this.Power = function(skillLv, charaData, option, mobData) {
+				let ratio = 0;
+				// 基本倍率
+				ratio = 1500 + 300 * skillLv;
+				// トラップ研究は射程が伸びるだけでダメージには寄与しない
+				// CON補正
+				ratio += 10 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+				// ベースレベル補正
+				ratio = ratio * n_A_BaseLV / 100;
+				// アドバンスドトラップ研究は小数点以下にも掛かる
+				// アドバンスドトラップ研究補正
+				const advanced_trap_lv = Math.max(LearnedSkillSearch(SKILL_ID_ADVANCED_TRAP), UsedSkillSearch(SKILL_ID_ADVANCED_TRAP));
+				ratio = Math.floor(ratio * (1 + 0.2 * advanced_trap_lv));
+				return ratio;
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 210;
 			}
@@ -39840,8 +40232,15 @@ function CSkillManager() {
 			this.kana = "トラコニツクフレス";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.range = function(weapon) {
+				return CSkillData.RANGE_LONG;
+			}
+			this.WeaponCondition = function(weapon) {
+				// 武器種ではなく騎乗状態によって判定される
+				// トレーニング未習得でもドラゴンに乗れるので LearnedSkillSearch に置き換えられない
+				return UsedSkillSearch(SKILL_ID_DRAGON_TRAINING) > 0;
+			}
 			this.Power = function(skillLv, charaData) {					// スキル倍率
 				let ratio = 0;
 				if (UsedSkillSearch(SKILL_ID_DRAGONIC_AURA_STATE) > 1) {
@@ -40775,8 +41174,10 @@ function CSkillManager() {
 			this.kana = "スハイラルヒアアスマツクス";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.range = function(weapon) {
+				return CSkillData.RANGE_LONG;
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 0;
 			}
