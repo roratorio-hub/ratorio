@@ -32465,10 +32465,10 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.element = CSkillData.ELEMENT_VOID;
 			this.WeaponCondition = function(weapon) {
-				return [ITEM_KIND_CLUB, ITEM_KIND_BOOK].includes(n_A_WeaponType);
+				return [ITEM_KIND_CLUB, ITEM_KIND_BOOK].includes(weapon);
 			}
 			this.range = function(weapon) {
-				return (n_A_WeaponType === ITEM_KIND_BOOK) ? CSkillData.RANGE_SHORT : CSkillData.RANGE_LONG;
+				return (weapon === ITEM_KIND_BOOK) ? CSkillData.RANGE_SHORT : CSkillData.RANGE_LONG;
 			}
 			this.Power = function(skillLv, charaData, option, mobData) {			// スキル倍率
 				let ratio = 0;
@@ -33090,8 +33090,8 @@ function CSkillManager() {
 				// CON補正
 				ratio += 10 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
 				// ベースレベル補正
+				// クレッシブボルト状態は小数点以下にも掛かるのでここではfloorしない
 				ratio *= n_A_BaseLV / 100;
-				// クレッシブボルト状態は小数点以下にも掛かる
 				// クレッシブボルト状態による増幅 (1.00, 1.10, 1.25, 1.50)
 				ratio = Math.floor(ratio * [1.00, 1.10, 1.25, 1.50][option.GetOptionValue(0)]);
 				// カラミティゲイル状態は小数点以下に掛からない
