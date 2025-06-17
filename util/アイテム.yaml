@@ -17,13 +17,13 @@ item_list:
       - name: 全サイズへの魔法ダメージ増加
         value: 1
         per_lv: 10
-    enchant: #
-      - name: 
-        slot_list: #
-          - slot: 4
-            refine: 0
-            enchant_list: #
-              - name: 
+#    enchant: #
+#      - name: 
+#        slot_list: #
+#          - slot: 4
+#            refine: 0
+#            enchant_list: #
+#              - name: 
 
   - name: ドラゴンフルプレート
     yomi: ドラゴンフルプレート
@@ -71,13 +71,13 @@ item_list:
       - name: 全属性への物理ダメージ増加
         value: 15
         at_refine: 10
-    enchant: #
-      - name: 
-        slot_list: #
-          - slot: 4
-            refine: 0
-            enchant_list: #
-              - name: 
+#    enchant: #
+#      - name: 
+#        slot_list: #
+#          - slot: 4
+#            refine: 0
+#            enchant_list: #
+#              - name: 
 
   - name: シャドウリチュアル
     yomi: シャドウリチュアル
@@ -118,10 +118,90 @@ item_list:
         value: 1
         per_lv: 10
         skill: フェイタルシャドウクロー
-    enchant: #
-      - name: 
-        slot_list: #
-          - slot: 4
-            refine: 0
-            enchant_list: #
-              - name: 
+#    enchant: #
+#      - name: 
+#        slot_list: #
+#          - slot: 4
+#            refine: 0
+#            enchant_list: #
+#              - name: 
+
+# ブレイド
+# ダガー
+# アックス
+# スピア
+# ブック
+# ワンド
+# フォックステイル
+# クロー
+# バイオリン
+# ウィップ
+# メイス
+  - name: メロン超越ー片手
+    yomi: value
+    type: 短剣
+    slot: 1
+    weapon_lv: 4
+    atk_or_def: 1
+    weight: 1
+    required_lv: 1
+    required_job: 4次職 拡張4次職
+    capabilities: #
+      - name: 全サイズへの物理ダメージ増加
+        value: 6
+        at_transcendence: 1
+        per_refine: 1
+      - name: 全サイズへの魔法ダメージ増加
+        value: 6
+        at_transcendence: 1
+        per_refine: 1
+      - name: MAXHP増加
+        value: 15
+        at_transcendence: 1
+        at_refine: 10
+      - name: MAXSP増加
+        value: 15
+        at_transcendence: 1
+        at_refine: 10
+
+# クレイモア
+# カタール
+# ツーハンドアックス
+# ランス
+# スタッフ
+# 風魔手裏剣
+# ウィング
+# ハンドガン
+# ライフル
+# ショットガン
+# ガトリングガン
+# グレネードガン
+  - name: メロン超越ー両手
+    yomi: value
+    type: 短剣
+    slot: 1
+    weapon_lv: 4
+    atk_or_def: 1
+    weight: 1
+    required_lv: 1
+    required_job: 4次職 拡張4次職
+    capabilities: #
+      - name: 全サイズへの物理ダメージ増加
+        value: 6
+        at_transcendence: 1
+        per_refine: 1
+      - name: 全サイズへの魔法ダメージ増加
+        value: 6
+        at_transcendence: 1
+        per_refine: 1
+      - name: MAXHP増加
+        value: 50
+        at_transcendence: 1
+        at_refine: 10
+      - name: MAXSP増加
+        value: 50
+        at_transcendence: 1
+        at_refine: 10
+      - name: ボス耐性
+        value: 40
+        at_transcendence: 1
