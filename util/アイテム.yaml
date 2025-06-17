@@ -1,426 +1,127 @@
 item_list:
-  - name: バリアントデビルズホーン
-    yomi: バリアントデビルズホーン
-    type: 中段
-    slot: 10
-    weapon_lv: 0
-    atk_or_def: 2
-    weight: 10
-    required_lv: 100
-    required_job: 全ての職業
-    capabilities:
-      - name: ATK加算
-        value: 1
-        per_lv: 1
-      - name: MATK加算
-        value: 1
-        per_lv: 1
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 悪霊の儀式
-        capabilities:
-          - name: プレイヤー耐性
-            value: 5
-          - name: 聖属性耐性
-            value: 5
-          - name: 毒属性耐性
-            value: 5
-    enchant: #
-      - name: スペシャルエンチャント(ミオン)
-        slot_list: #
-          - slot: 4
-            refine: 0
-            enchant_list: #
-              - name: スキルディレイ-15%
-              - name: 必中攻撃+25%
-              - name: Def50%無視
-              - name: Mdef50%無視
-              - name: SpecialStr
-              - name: SpecialAgi
-              - name: SpecialVit
-              - name: SpecialInt
-              - name: SpecialDex
-              - name: SpecialLuk
-              - name: 異境の統轄者
-          - slot: 3
-            refine: 0
-            enchant_list: #
-              - name: MaxHP+15%
-              - name: MaxSP+15%
-              - name: Def50%無視
-              - name: Mdef50%無視
-              - name: SpecialStr
-              - name: SpecialAgi
-              - name: SpecialVit
-              - name: SpecialInt
-              - name: SpecialDex
-              - name: SpecialLuk
-              - name: 詠唱妨害不可
-              - name: 魔鉱
-          - slot: 2
-            refine: 0
-            enchant_list: #
-              - name: Str+10
-              - name: Agi+10
-              - name: Vit+10
-              - name: Int+10
-              - name: Dex+10
-              - name: Luk+10
-              - name: 完全回避+3
-              - name: 悪霊の儀式
-
-  - name: セレスティアルヴァーチャー
-    yomi: セレスティアルヴァーチャー
+  - name: 朱のリアリボン
+    yomi: 朱のリアリボン
     type: 下段
     slot: 0
     weapon_lv: 0
     atk_or_def: 0
     weight: 10
-    required_lv: 100
-    required_job: 全ての職業
+    required_lv: 200
+    required_job: アークメイジ
     capabilities:
+      - name: プレイヤー耐性
+        value: 3
       - name: 全サイズへの物理ダメージ増加
-        value: 15
+        value: 1
+        per_lv: 10
       - name: 全サイズへの魔法ダメージ増加
-        value: 15
-    set_list:
-      - set:
-        entity_list:
-          - card_name: セレスティアルピース
-        capabilities:
-          - name: プレイヤー耐性
-            value: 3
-          - name: 詠唱が中断されない
-            value: 1
+        value: 1
+        per_lv: 10
     enchant: #
-      - name: スペシャルエンチャント(メト)
+      - name: 
         slot_list: #
           - slot: 4
             refine: 0
             enchant_list: #
-              - name: Cri+25
-              - name: スキルディレイ-15%
-              - name: 必中攻撃+25%
-              - name: Def50%無視
-              - name: Mdef50%無視
-              - name: SpecialStr
-              - name: SpecialAgi
-              - name: SpecialVit
-              - name: SpecialInt
-              - name: SpecialDex
-              - name: SpecialLuk
-          - slot: 3
-            refine: 0
-            enchant_list: #
-              - name: SpecialStr
-              - name: SpecialAgi
-              - name: SpecialVit
-              - name: SpecialInt
-              - name: SpecialDex
-              - name: SpecialLuk
-              - name: 固定詠唱時間-70%
-              - name: Def50%無視
-              - name: Mdef50%無視
-          - slot: 2
-            refine: 0
-            enchant_list: #
-              - name: Str+10
-              - name: Agi+10
-              - name: Vit+10
-              - name: Int+10
-              - name: Dex+10
-              - name: Luk+10
-              - name: セレスティアルピース
+              - name: 
 
-  - name: アビスセイバーガーブ
-    yomi: アビスセイバーガーブ
+  - name: ドラゴンフルプレート
+    yomi: ドラゴンフルプレート
     type: 鎧
     slot: 1
     weapon_lv: 0
     atk_or_def: 100
     weight: 100
-    required_lv: 100
-    required_job: 全ての職業
+    required_lv: 200
+    required_job: ドラゴンナイト
     capabilities:
-      - name: 壊れない
-        value: 1
-      - name: 一般耐性
-        value: 5
-      - name: ボス耐性
-        value: 5
       - name: プレイヤー耐性
         value: 7
-      - name: MAXHP増加
-        value: 5
-        per_refine: 1
-      - name: MAXSP増加
-        value: 5
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: ハックアンドスラッシャー
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: マッドネスクラッシャー
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: ドラゴニックオーラ
+      - name: 全サイズへの物理ダメージ増加
+        value: 7
         per_refine: 1
       - name: ASPD増加
         value: 10
         at_refine: 7
-      - name: 全サイズへの物理ダメージ増加
-        value: 15
-        at_refine: 7
-      - name: 全サイズへの魔法ダメージ増加
-        value: 15
-        at_refine: 7
-      - name: 全サイズへの物理ダメージ増加
-        value: 25
-        at_refine: 9
-      - name: 全サイズへの魔法ダメージ増加
-        value: 25
-        at_refine: 9
-      - name: 竜族形モンスター耐性
-        value: 15
-        at_refine: 9
-      - name: 人間形モンスター耐性（プレイヤー除外）
-        value: 7
-        at_refine: 9
-    set_list:
-      - set:
-        entity_list:
-          - card_name: アルカナ
-        capabilities:
-          - name: 石化耐性
-            value: 50
-      - set:
-        entity_list:
-          - card_name: シンソウの王
-        capabilities:
-          - name: 石化耐性
-            value: 50
-      - set:
-        entity_list:
-          - card_name: 極限の魔力
-        capabilities:
-          - name: 壊れない
-            value: 1
-      - set:
-        entity_list:
-          - card_name: 悠遠なる天上の都
-        capabilities:
-          - name: 全サイズへの物理ダメージ増加
-            value: 30
-          - name: 全サイズへの魔法ダメージ増加
-            value: 30
-          - name: 毒属性耐性
-            value: 15
-    enchant: #
-      - name: スペシャルエンチャント(キョウ)
-        slot_list: #
-          - slot: 4
-            refine: 6
-            enchant_list: #
-              - name: スキルディレイ-15%
-              - name: 必中攻撃+25%
-              - name: 詠唱妨害不可
-              - name: アルカナ
-              - name: シンソウの王
-              - name: 極限の魔力
-          - slot: 3
-            refine: 8
-            enchant_list: #
-              - name: 火属性付与(鎧)
-              - name: 水属性付与(鎧)
-              - name: 風属性付与(鎧)
-              - name: 地属性付与(鎧)
-              - name: 聖属性付与(鎧)
-              - name: 闇属性付与(鎧)
-              - name: 念属性付与(鎧)
-              - name: 毒属性付与(鎧)
-              - name: 不死属性付与(鎧)
-          - slot: 2
-            refine: 10
-            enchant_list: #
-              - name: アルカナ
-              - name: シンソウの王
-              - name: 極限の魔力
-              - name: 悠遠なる天上の都
-
-  - name: マギアヴィタ
-    yomi: マギアヴィタ
-    desc: "精錬値が10の時、追加で<br>固定詠唱時間 - 80%"
-    type: 靴
-    slot: 1
-    weapon_lv: 0
-    atk_or_def: 15
-    weight: 50
-    required_lv: 100
-    required_job: 全ての職業
-    capabilities:
-      - name: MDEF加算
-        value: 15
-      - name: 壊れない
-        value: 1
       - name: 一般耐性
         value: 5
+        at_refine: 7
       - name: ボス耐性
         value: 5
-      - name: プレイヤー耐性
-        value: 10
-      - name: 全基本ステータス加算
+        at_refine: 7
+      - name: 壊れない
+        value: 1
+        at_refine: 9
+      - name: 再使用待機時間減少
+        value: 200
+        skill: ソニックウェーブ
+        at_refine: 9
+      - name: 全属性への物理ダメージ増加
+        value: 15
+        at_refine: 10
+    enchant: #
+      - name: 
+        slot_list: #
+          - slot: 4
+            refine: 0
+            enchant_list: #
+              - name: 
+
+  - name: シャドウリチュアル
+    yomi: シャドウリチュアル
+    type: アクセサリー
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 10
+    required_lv: 200
+    required_job: 4次職 拡張4次職
+    capabilities:
+      - name: POW加算
         value: 3
-        per_refine: 1
-      - name: スキルディレイ減少
-        value: 15
-        at_refine: 7
       - name: 物理ダメージ増加
-        value: 15
-        at_refine: 7
-      - name: 魔法ダメージ増加
-        value: 15
-        at_refine: 7
-      - name: スキルディレイ減少
-        value: 25
-        at_refine: 9
-      - name: 物理ダメージ増加
-        value: 25
-        at_refine: 9
-      - name: 魔法ダメージ増加
-        value: 25
-        at_refine: 9
-      - name: 全サイズへの物理ダメージ増加
-        value: 15
-        at_refine: 10
-      - name: 全サイズへの魔法ダメージ増加
-        value: 15
-        at_refine: 10
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 再生の炎
-        capabilities:
-          - name: MAXHP増加
-            value: 40
-          - name: 物理ダメージ増加
-            value: 30
-          - name: 魔法ダメージ増加
-            value: 30
-    enchant: #
-      - name: スペシャルエンチャント(オーブ)
-        slot_list: #
-          - slot: 4
-            refine: 8
-            enchant_list: #
-              - name: 豪傑
-              - name: 真理の解放
-          - slot: 3
-            refine: 9
-            enchant_list: #
-              - name: 潜在解放(アビスチェイサーXIV)
-              - name: 潜在解放(アークメイジXIII)
-              - name: 潜在解放(インクイジターXII)
-              - name: 潜在解放(インペリアルガードXIII)
-              - name: 潜在解放(ウィンドホークXV)
-              - name: 潜在解放(エレメンタルマスターXIII)
-              - name: 潜在解放(カーディナルXIV)
-              - name: 潜在解放(シャドウクロスXII)
-              - name: 潜在解放(ソウルアセティックXII)
-              - name: 潜在解放(ドラゴンナイトXIII)
-              - name: 潜在解放(トルバドゥール&トルヴェールX)
-              - name: 潜在解放(ナイトウォッチXI)
-              - name: 潜在解放(バイオロXIV)
-              - name: 潜在解放(ハイパーノービスXIV)
-              - name: 潜在解放(マイスターXIII)
-              - name: 潜在解放(蜃気楼&不知火XII)
-              - name: 潜在解放(天帝XI)
-          - slot: 2
-            refine: 10
-            enchant_list: #
-              - name: 再生の炎
-
-  - name: グラットンサーベラス
-    yomi: グラットンサーベラス
-    desc: "精錬値が9以上の時、追加で<br>物理攻撃命中時、一定確率で敵に与えたダメージの5%をSPとして吸収<br>物理・魔法攻撃命中時、一定確率で10秒間、[神力]状態になる"
-    type: 肩にかける物
-    slot: 1
-    weapon_lv: 0
-    atk_or_def: 38
-    weight: 40
-    required_lv: 100
-    required_job: 全ての職業
-    capabilities:
-      - name: 壊れない
-        value: 1
-      - name: 一般耐性
-        value: 5
-      - name: ボス耐性
-        value: 5
+        value: 40
       - name: プレイヤー耐性
-        value: 5
-      - name: MAXHP増加
-        value: 2
-        per_refine: 1
-      - name: MAXSP増加
-        value: 2
-        per_refine: 1
-      - name: 闇属性耐性
-        value: 7
-      - name: 全基本ステータス加算
-        value: 10
-        at_refine: 7
-      - name: 全属性への物理ダメージ増加
-        value: 10
-        at_refine: 7
-      - name: 全属性への魔法ダメージ増加
-        value: 10
-        at_refine: 7
-      - name: 全属性への物理ダメージ増加
-        value: 15
-        at_refine: 9
-      - name: 全属性への魔法ダメージ増加
-        value: 15
-        at_refine: 9
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 厄災の魔将
-        capabilities:
-          - name: ASPD増加
-            value: 20
-      - set:
-        entity_list:
-          - card_name: 異境の統轄者
-        capabilities:
-          - name: スキルディレイ減少
-            value: 25
-      - set:
-        entity_list:
-          - card_name: 魔喰いの顎
-        capabilities:
-          - name: 全サイズへの物理ダメージ増加
-            value: 15
-          - name: 全サイズへの魔法ダメージ増加
-            value: 15
+        value: 3
+      - name: 再使用待機時間減少
+        value: 30000
+        skill: ダーククロー
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: カウンタースラッシュ
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: ダンシングナイフ
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: シャドウスタブ
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: エターナルスラッシュ
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: フェイタルシャドウクロー
     enchant: #
-      - name: スペシャルエンチャント(キョウ)
+      - name: 
         slot_list: #
           - slot: 4
-            refine: 6
+            refine: 0
             enchant_list: #
-              - name: Str+10
-              - name: Agi+10
-              - name: Vit+10
-              - name: Int+10
-              - name: Dex+10
-              - name: Luk+10
-              - name: 完全回避+25
-              - name: 必中攻撃+25%
-              - name: ニヒツ
-              - name: 詠唱妨害不可
-              - name: 厄災の魔将
-              - name: 異境の統轄者
-          - slot: 3
-            refine: 8
-            enchant_list: #
-              - name: 大鷲の眼光
-              - name: 覇王
-              - name: 暴走した魔力
-              - name: 厄災の魔将
-              - name: 異境の統轄者
-          - slot: 2
-            refine: 10
-            enchant_list: #
-              - name: 魔喰いの顎
+              - name: 

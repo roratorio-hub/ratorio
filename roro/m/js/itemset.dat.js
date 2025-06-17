@@ -6185,6 +6185,11 @@
 	CardIdToSetIdMap[3631] = CardIdToSetIdMap[3631].concat([3169]);
 	CardIdToSetIdMap[2667] = [3174];	// 再生の炎
 	CardIdToSetIdMap[3608] = [3177];	// 魔喰いの顎
+	// --- 2025-06-17 ---
+	w_SE[3178] = [-3640,-3639,-1245,];
+	CardIdToSetIdMap[3639] = [3178,];
+	w_SE[3179] = [-3642,-3641,-1348,];
+	CardIdToSetIdMap[3641] = [3179,];
 
 	// itemset はセーブデータに書き出されないので
 	// 現実的な範囲において itemsetID の上限値を気にする必要はありません
