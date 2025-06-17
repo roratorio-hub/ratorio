@@ -17,13 +17,47 @@ item_list:
       - name: 全サイズへの魔法ダメージ増加
         value: 1
         per_lv: 10
-#    enchant: #
-#      - name: 
-#        slot_list: #
-#          - slot: 4
-#            refine: 0
-#            enchant_list: #
-#              - name: 
+    enchant: #
+      - name: スペシャルエンチャント(ミオン)
+        slot_list: #
+          - slot: 4
+            refine: 0
+            enchant_list: #
+              - name: 潜在解放(アークメイジXV)
+      - name: スペシャルエンチャント(ミオン)
+        slot_list: #
+          - slot: 3
+            refine: 0
+            enchant_list: #
+              - name: SpecialStr
+              - name: SpecialAgi
+              - name: SpecialVit
+              - name: SpecialInt
+              - name: SpecialDex
+              - name: SpecialLuk
+              - name: 固定詠唱時間-70%
+              - name: 氷結耐性
+              - name: 冷凍耐性
+              - name: 深い睡眠耐性
+              - name: 新毒耐性
+          - slot: 2
+            refine: 0
+            enchant_list: #
+              - name: Str+10
+              - name: Agi+10
+              - name: Vit+10
+              - name: Int+10
+              - name: Dex+10
+              - name: Luk+10
+              - name: 詠唱妨害不可
+              - name: 英雄の凱歌
+              - name: 起源の王
+              - name: 殺意の怨念
+              - name: 豊穣の女神
+              - name: 厄災の魔将
+              - name: 異境の統轄者
+              - name: 知識の探求者
+              - name: 最果ての支配者
 
   - name: ドラゴンフルプレート
     yomi: ドラゴンフルプレート
@@ -71,13 +105,31 @@ item_list:
       - name: 全属性への物理ダメージ増加
         value: 15
         at_refine: 10
-#    enchant: #
-#      - name: 
-#        slot_list: #
-#          - slot: 4
-#            refine: 0
-#            enchant_list: #
-#              - name: 
+    enchant: #
+      - name: スペシャルエンチャント(オーブ)
+        slot_list: #
+          - slot: 4
+            refine: 0
+            enchant_list: #
+              - name: 潜在解放(ドラゴンナイトXIV)
+          - slot: 3
+            refine: 8
+            enchant_list: #
+              - name: 火属性付与(鎧)
+              - name: 水属性付与(鎧)
+              - name: 風属性付与(鎧)
+              - name: 地属性付与(鎧)
+              - name: 聖属性付与(鎧)
+              - name: 闇属性付与(鎧)
+              - name: 念属性付与(鎧)
+              - name: 毒属性付与(鎧)
+              - name: 不死属性付与(鎧)
+          - slot: 2
+            refine: 9
+            enchant_list: #
+              - name: スキルディレイ-15%
+              - name: 必中攻撃+25%
+              - name: 詠唱妨害不可
 
   - name: シャドウリチュアル
     yomi: シャドウリチュアル
@@ -118,90 +170,56 @@ item_list:
         value: 1
         per_lv: 10
         skill: フェイタルシャドウクロー
-#    enchant: #
-#      - name: 
-#        slot_list: #
-#          - slot: 4
-#            refine: 0
-#            enchant_list: #
-#              - name: 
-
-# ブレイド
-# ダガー
-# アックス
-# スピア
-# ブック
-# ワンド
-# フォックステイル
-# クロー
-# バイオリン
-# ウィップ
-# メイス
-  - name: メロン超越ー片手
-    yomi: value
-    type: 短剣
-    slot: 1
-    weapon_lv: 4
-    atk_or_def: 1
-    weight: 1
-    required_lv: 1
-    required_job: 4次職 拡張4次職
-    capabilities: #
-      - name: 全サイズへの物理ダメージ増加
-        value: 6
-        at_transcendence: 1
-        per_refine: 1
-      - name: 全サイズへの魔法ダメージ増加
-        value: 6
-        at_transcendence: 1
-        per_refine: 1
-      - name: MAXHP増加
-        value: 15
-        at_transcendence: 1
-        at_refine: 10
-      - name: MAXSP増加
-        value: 15
-        at_transcendence: 1
-        at_refine: 10
-
-# クレイモア
-# カタール
-# ツーハンドアックス
-# ランス
-# スタッフ
-# 風魔手裏剣
-# ウィング
-# ハンドガン
-# ライフル
-# ショットガン
-# ガトリングガン
-# グレネードガン
-  - name: メロン超越ー両手
-    yomi: value
-    type: 短剣
-    slot: 1
-    weapon_lv: 4
-    atk_or_def: 1
-    weight: 1
-    required_lv: 1
-    required_job: 4次職 拡張4次職
-    capabilities: #
-      - name: 全サイズへの物理ダメージ増加
-        value: 6
-        at_transcendence: 1
-        per_refine: 1
-      - name: 全サイズへの魔法ダメージ増加
-        value: 6
-        at_transcendence: 1
-        per_refine: 1
-      - name: MAXHP増加
-        value: 50
-        at_transcendence: 1
-        at_refine: 10
-      - name: MAXSP増加
-        value: 50
-        at_transcendence: 1
-        at_refine: 10
-      - name: ボス耐性
-        value: 40
-        at_transcendence: 1
+    enchant: #
+      - name: スペシャルエンチャント(モチモチ)
+        slot_list: #
+          - slot: 4
+            refine: 0
+            enchant_list: #
+              - name: Str+7
+              - name: Agi+7
+              - name: Vit+7
+              - name: Int+7
+              - name: Dex+7
+              - name: Luk+7
+              - name: SpecialStr
+              - name: SpecialAgi
+              - name: SpecialVit
+              - name: SpecialInt
+              - name: SpecialDex
+              - name: SpecialLuk
+              - name: 攻撃速度+15%
+              - name: スキルディレイ-15%
+          - slot: 3
+            refine: 0
+            enchant_list: #
+              - name: Str+7
+              - name: Agi+7
+              - name: Vit+7
+              - name: Int+7
+              - name: Dex+7
+              - name: Luk+7
+              - name: SpecialStr
+              - name: SpecialAgi
+              - name: SpecialVit
+              - name: SpecialInt
+              - name: SpecialDex
+              - name: SpecialLuk
+              - name: MaxHP+15%
+              - name: 潜在解放(シャドウクロスIV)
+          - slot: 2
+            refine: 0
+            enchant_list: #
+              - name: Str+7
+              - name: Agi+7
+              - name: Vit+7
+              - name: Int+7
+              - name: Dex+7
+              - name: Luk+7
+              - name: SpecialStr
+              - name: SpecialAgi
+              - name: SpecialVit
+              - name: SpecialInt
+              - name: SpecialDex
+              - name: SpecialLuk
+              - name: 覇王
