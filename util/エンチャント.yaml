@@ -1,0 +1,555 @@
+enchant_list:
+  - enchant: #
+      - name: 強化担当ベータ1号 グループ1
+        item_list: #
+          - item_name: バルムントルーンアーマー(草原)
+          - item_name: バルムントルーンマント(草原)
+          - item_name: バルムントルーンブーツ(草原)
+          - item_name: 刻印されたルーンアーマー(草原)
+          - item_name: 刻印されたルーンマント(草原)
+          - item_name: 刻印されたルーンブーツ(草原)
+        slot_list: #
+          - slot: 4
+            refine: 0
+            enchant_list: #
+              - name: Str+5
+              - name: Agi+5
+              - name: Vit+5
+              - name: Int+5
+              - name: Dex+5
+              - name: Luk+5
+              - name: 知識の探求者
+
+      - name: 強化担当ベータ1号 グループ2
+        item_list: #
+          - item_name: バルムントルーンアーマー(草原)
+          - item_name: 刻印されたルーンアーマー(草原)
+        slot_list: #
+          - slot: 2
+            refine: 0
+            enchant_list: #
+              - name: Str+5
+              - name: Agi+5
+              - name: Vit+5
+              - name: Int+5
+              - name: Dex+5
+              - name: Luk+5
+              - name: 聖属性付与(鎧)
+              - name: 念属性付与(鎧)
+              - name: 毒属性付与(鎧)
+
+      - name: 強化担当ベータ1号 グループ3
+        item_list: #
+          - item_name: バルムントルーンマント(草原)
+          - item_name: 刻印されたルーンマント(草原)
+        slot_list: #
+          - slot: 2
+            refine: 0
+            enchant_list: #
+              - name: Str+5
+              - name: Agi+5
+              - name: Vit+5
+              - name: Int+5
+              - name: Dex+5
+              - name: Luk+5
+              - name: 覇王
+              - name: 暴走した魔力
+              - name: 大鷲の眼光
+
+      - name: 強化担当ベータ1号 グループ4
+        item_list: #
+          - item_name: バルムントルーンブーツ(草原)
+          - item_name: 刻印されたルーンブーツ(草原)
+        slot_list: #
+          - slot: 2
+            refine: 0
+            enchant_list: #
+              - name: Str+5
+              - name: Agi+5
+              - name: Vit+5
+              - name: Int+5
+              - name: Dex+5
+              - name: Luk+5
+              - name: 豪傑
+              - name: 真理の解放
+
+      - name: 強化担当ベータ1号 グループ5
+        item_list: #
+          - item_name: バルムントルーンアーマー(火炎)
+          - item_name: バルムントルーンマント(火炎)
+          - item_name: バルムントルーンブーツ(火炎)
+          - item_name: 刻印されたルーンアーマー(火炎)
+          - item_name: 刻印されたルーンマント(火炎)
+          - item_name: 刻印されたルーンブーツ(火炎)
+        slot_list: #
+          - slot: 4
+            refine: 0
+            enchant_list: #
+              - name: Str+5
+              - name: Agi+5
+              - name: Vit+5
+              - name: Int+5
+              - name: Dex+5
+              - name: Luk+5
+              - name: 知識の探求者
+
+      - name: 強化担当ベータ1号 グループ6
+        item_list: #
+          - item_name: バルムントルーンアーマー(火炎)
+          - item_name: 刻印されたルーンアーマー(火炎)
+        slot_list: #
+          - slot: 2
+            refine: 0
+            enchant_list: #
+              - name: Str+5
+              - name: Agi+5
+              - name: Vit+5
+              - name: Int+5
+              - name: Dex+5
+              - name: Luk+5
+              - name: 聖属性付与(鎧)
+              - name: 念属性付与(鎧)
+              - name: 毒属性付与(鎧)
+
+      - name: 強化担当ベータ1号 グループ7
+        item_list: #
+          - item_name: バルムントルーンマント(火炎)
+          - item_name: 刻印されたルーンマント(火炎)
+        slot_list: #
+          - slot: 2
+            refine: 0
+            enchant_list: #
+              - name: Str+5
+              - name: Agi+5
+              - name: Vit+5
+              - name: Int+5
+              - name: Dex+5
+              - name: Luk+5
+              - name: 覇王
+              - name: 暴走した魔力
+              - name: 大鷲の眼光
+
+      - name: 強化担当ベータ1号 グループ8
+        item_list: #
+          - item_name: バルムントルーンブーツ(火炎)
+          - item_name: 刻印されたルーンブーツ(火炎)
+        slot_list: #
+          - slot: 2
+            refine: 0
+            enchant_list: #
+              - name: Str+5
+              - name: Agi+5
+              - name: Vit+5
+              - name: Int+5
+              - name: Dex+5
+              - name: Luk+5
+              - name: 豪傑
+              - name: 真理の解放
+
+      - name: 強化担当ベータ1号 グループ9
+        item_list: #
+          - item_name: バルムントルーンアーマー(死屍)
+          - item_name: バルムントルーンマント(死屍)
+          - item_name: バルムントルーンブーツ(死屍)
+          - item_name: 刻印されたルーンアーマー(死屍)
+          - item_name: 刻印されたルーンマント(死屍)
+          - item_name: 刻印されたルーンブーツ(死屍)
+        slot_list: #
+          - slot: 4
+            refine: 0
+            enchant_list: #
+              - name: Str+5
+              - name: Agi+5
+              - name: Vit+5
+              - name: Int+5
+              - name: Dex+5
+              - name: Luk+5
+              - name: 知識の探求者
+
+      - name: 強化担当ベータ1号 グループ10
+        item_list: #
+          - item_name: バルムントルーンアーマー(死屍)
+          - item_name: 刻印されたルーンアーマー(死屍)
+        slot_list: #
+          - slot: 2
+            refine: 0
+            enchant_list: #
+              - name: Str+5
+              - name: Agi+5
+              - name: Vit+5
+              - name: Int+5
+              - name: Dex+5
+              - name: Luk+5
+              - name: 聖属性付与(鎧)
+              - name: 念属性付与(鎧)
+              - name: 毒属性付与(鎧)
+
+      - name: 強化担当ベータ1号 グループ11
+        item_list: #
+          - item_name: バルムントルーンマント(死屍)
+          - item_name: 刻印されたルーンマント(死屍)
+        slot_list: #
+          - slot: 2
+            refine: 0
+            enchant_list: #
+              - name: Str+5
+              - name: Agi+5
+              - name: Vit+5
+              - name: Int+5
+              - name: Dex+5
+              - name: Luk+5
+              - name: 覇王
+              - name: 暴走した魔力
+              - name: 大鷲の眼光
+
+      - name: 強化担当ベータ1号 グループ12
+        item_list: #
+          - item_name: バルムントルーンブーツ(死屍)
+          - item_name: 刻印されたルーンブーツ(死屍)
+        slot_list: #
+          - slot: 2
+            refine: 0
+            enchant_list: #
+              - name: Str+5
+              - name: Agi+5
+              - name: Vit+5
+              - name: Int+5
+              - name: Dex+5
+              - name: Luk+5
+              - name: 豪傑
+              - name: 真理の解放
+
+      - name: 強化担当ベータ1号 グループ13
+        item_list: #
+          - item_name: バルムントルーンアーマー(氷河)
+          - item_name: バルムントルーンマント(氷河)
+          - item_name: バルムントルーンブーツ(氷河)
+          - item_name: 刻印されたルーンアーマー(氷河)
+          - item_name: 刻印されたルーンマント(氷河)
+          - item_name: 刻印されたルーンブーツ(氷河)
+        slot_list: #
+          - slot: 2
+            refine: 0
+            enchant_list: #
+              - name: Str+5
+              - name: Agi+5
+              - name: Vit+5
+              - name: Int+5
+              - name: Dex+5
+              - name: Luk+5
+              - name: 知識の探求者
+
+      - name: 強化担当ベータ1号 グループ14
+        item_list: #
+          - item_name: バルムントルーンアーマー(氷河)
+          - item_name: 刻印されたルーンアーマー(氷河)
+        slot_list: #
+          - slot: 2
+            refine: 0
+            enchant_list: #
+              - name: Str+5
+              - name: Agi+5
+              - name: Vit+5
+              - name: Int+5
+              - name: Dex+5
+              - name: Luk+5
+              - name: 聖属性付与(鎧)
+              - name: 念属性付与(鎧)
+              - name: 毒属性付与(鎧)
+
+      - name: 強化担当ベータ1号 グループ15
+        item_list: #
+          - item_name: バルムントルーンマント(氷河)
+          - item_name: 刻印されたルーンマント(氷河)
+        slot_list: #
+          - slot: 2
+            refine: 0
+            enchant_list: #
+              - name: Str+5
+              - name: Agi+5
+              - name: Vit+5
+              - name: Int+5
+              - name: Dex+5
+              - name: Luk+5
+              - name: 覇王
+              - name: 暴走した魔力
+              - name: 大鷲の眼光
+
+      - name: 強化担当ベータ1号 グループ16
+        item_list: #
+          - item_name: バルムントルーンブーツ(氷河)
+          - item_name: 刻印されたルーンブーツ(氷河)
+        slot_list: #
+          - slot: 2
+            refine: 0
+            enchant_list: #
+              - name: Str+5
+              - name: Agi+5
+              - name: Vit+5
+              - name: Int+5
+              - name: Dex+5
+              - name: Luk+5
+              - name: 豪傑
+              - name: 真理の解放
+
+      - name: 強化担当ベータ1号 グループ17
+        item_list: #
+          - item_name: バルムントルーンリング(霊魂)
+          - item_name: 刻印されたルーンリング(霊魂)
+        slot_list: #
+          - slot: 4
+            refine: 0
+            enchant_list: #
+              - name: Str+5
+              - name: Agi+5
+              - name: Vit+5
+              - name: Int+5
+              - name: Dex+5
+              - name: Luk+5
+              - name: 知識の探求者
+
+      - name: 強化担当ベータ1号 グループ18
+        item_list: #
+          - item_name: バルムントルーンリング(霊魂)
+          - item_name: 刻印されたルーンリング(霊魂)
+        slot_list: #
+          - slot: 2
+            refine: 0
+            enchant_list: #
+              - name: Str+5
+              - name: Agi+5
+              - name: Vit+5
+              - name: Int+5
+              - name: Dex+5
+              - name: Luk+5
+              - name: 豪傑
+              - name: 真理の解放
+
+      - name: 強化担当ベータ1号 グループ19
+        item_list: #
+          - item_name: バルムントルーンリング(猛毒)
+          - item_name: 刻印されたルーンリング(猛毒)
+        slot_list: #
+          - slot: 4
+            refine: 0
+            enchant_list: #
+              - name: Str+5
+              - name: Agi+5
+              - name: Vit+5
+              - name: Int+5
+              - name: Dex+5
+              - name: Luk+5
+              - name: 知識の探求者
+
+      - name: 強化担当ベータ1号 グループ20
+        item_list: #
+          - item_name: バルムントルーンリング(猛毒)
+          - item_name: 刻印されたルーンリング(猛毒)
+        slot_list: #
+          - slot: 2
+            refine: 0
+            enchant_list: #
+              - name: Str+5
+              - name: Agi+5
+              - name: Vit+5
+              - name: Int+5
+              - name: Dex+5
+              - name: Luk+5
+              - name: 豪傑
+              - name: 真理の解放
+
+      - name: 強化担当ベータ1号 グループ21
+        item_list: #
+          - item_name: バルムントルーンリング(聖殿)
+          - item_name: 刻印されたルーンリング(聖殿)
+        slot_list: #
+          - slot: 4
+            refine: 0
+            enchant_list: #
+              - name: Str+5
+              - name: Agi+5
+              - name: Vit+5
+              - name: Int+5
+              - name: Dex+5
+              - name: Luk+5
+              - name: 知識の探求者
+
+      - name: 強化担当ベータ1号 グループ22
+        item_list: #
+          - item_name: バルムントルーンリング(聖殿)
+          - item_name: 刻印されたルーンリング(聖殿)
+        slot_list: #
+          - slot: 2
+            refine: 0
+            enchant_list: #
+              - name: Str+5
+              - name: Agi+5
+              - name: Vit+5
+              - name: Int+5
+              - name: Dex+5
+              - name: Luk+5
+              - name: 豪傑
+              - name: 真理の解放
+
+      - name: 強化担当ベータ2号 グループ1
+        item_list: #
+          - item_name: 刻印されたルーンアーマー(草原)
+          - item_name: 刻印されたルーンマント(草原)
+          - item_name: 刻印されたルーンブーツ(草原)
+        slot_list: #
+          - slot: 2
+            refine: 0
+            enchant_list: #
+              - name: バルムントの宝石(草原1)
+              - name: バルムントの宝石(火炎1)
+              - name: バルムントの宝石(氷河1)
+              - name: バルムントの宝石(死屍1)
+              - name: バルムントの宝石(聖殿1)
+              - name: バルムントの宝石(猛毒1)
+              - name: バルムントの宝石(霊魂1)
+
+      - name: 強化担当ベータ2号 グループ2
+        item_list: #
+          - item_name: 刻印されたルーンアーマー(火炎)
+          - item_name: 刻印されたルーンマント(火炎)
+          - item_name: 刻印されたルーンブーツ(火炎)
+        slot_list: #
+          - slot: 2
+            refine: 0
+            enchant_list: #
+              - name: バルムントの宝石(草原1)
+              - name: バルムントの宝石(火炎1)
+              - name: バルムントの宝石(氷河1)
+              - name: バルムントの宝石(死屍1)
+              - name: バルムントの宝石(聖殿1)
+              - name: バルムントの宝石(猛毒1)
+              - name: バルムントの宝石(霊魂1)
+
+      - name: 強化担当ベータ2号 グループ3
+        item_list: #
+          - item_name: 刻印されたルーンアーマー(死屍)
+          - item_name: 刻印されたルーンマント(死屍)
+          - item_name: 刻印されたルーンブーツ(死屍)
+        slot_list: #
+          - slot: 2
+            refine: 0
+            enchant_list: #
+              - name: バルムントの宝石(草原1)
+              - name: バルムントの宝石(火炎1)
+              - name: バルムントの宝石(氷河1)
+              - name: バルムントの宝石(死屍1)
+              - name: バルムントの宝石(聖殿1)
+              - name: バルムントの宝石(猛毒1)
+              - name: バルムントの宝石(霊魂1)
+
+      - name: 強化担当ベータ2号 グループ4
+        item_list: #
+          - item_name: 刻印されたルーンアーマー(氷河)
+          - item_name: 刻印されたルーンマント(氷河)
+          - item_name: 刻印されたルーンブーツ(氷河)
+        slot_list: #
+          - slot: 2
+            refine: 0
+            enchant_list: #
+              - name: バルムントの宝石(草原1)
+              - name: バルムントの宝石(火炎1)
+              - name: バルムントの宝石(氷河1)
+              - name: バルムントの宝石(死屍1)
+              - name: バルムントの宝石(聖殿1)
+              - name: バルムントの宝石(猛毒1)
+              - name: バルムントの宝石(霊魂1)
+
+      - name: 強化担当ベータ2号 グループ5
+        item_list: #
+          - item_name: 刻印されたルーンリング(霊魂)
+        slot_list: #
+          - slot: 2
+            refine: 0
+            enchant_list: #
+              - name: バルムントの宝石(草原1)
+              - name: バルムントの宝石(火炎1)
+              - name: バルムントの宝石(氷河1)
+              - name: バルムントの宝石(死屍1)
+              - name: バルムントの宝石(聖殿1)
+              - name: バルムントの宝石(猛毒1)
+              - name: バルムントの宝石(霊魂1)
+
+      - name: 強化担当ベータ2号 グループ6
+        item_list: #
+          - item_name: 刻印されたルーンリング(猛毒)
+        slot_list: #
+          - slot: 2
+            refine: 0
+            enchant_list: #
+              - name: バルムントの宝石(草原1)
+              - name: バルムントの宝石(火炎1)
+              - name: バルムントの宝石(氷河1)
+              - name: バルムントの宝石(死屍1)
+              - name: バルムントの宝石(聖殿1)
+              - name: バルムントの宝石(猛毒1)
+              - name: バルムントの宝石(霊魂1)
+
+      - name: 強化担当ベータ2号 グループ7
+        item_list: #
+          - item_name: 刻印されたルーンリング(聖殿)
+        slot_list: #
+          - slot: 2
+            refine: 0
+            enchant_list: #
+              - name: バルムントの宝石(草原1)
+              - name: バルムントの宝石(火炎1)
+              - name: バルムントの宝石(氷河1)
+              - name: バルムントの宝石(死屍1)
+              - name: バルムントの宝石(聖殿1)
+              - name: バルムントの宝石(猛毒1)
+              - name: バルムントの宝石(霊魂1)
+
+      - name: 強化担当ベータ2号 グループ8
+        item_list: #
+          - item_name: 刻印されたルーンアーマー(草原)
+          - item_name: 刻印されたルーンマント(草原)
+          - item_name: 刻印されたルーンブーツ(草原)
+          - item_name: 刻印されたルーンアーマー(火炎)
+          - item_name: 刻印されたルーンマント(火炎)
+          - item_name: 刻印されたルーンブーツ(火炎)
+          - item_name: 刻印されたルーンアーマー(死屍)
+          - item_name: 刻印されたルーンマント(死屍)
+          - item_name: 刻印されたルーンブーツ(死屍)
+          - item_name: 刻印されたルーンアーマー(氷河)
+          - item_name: 刻印されたルーンマント(氷河)
+          - item_name: 刻印されたルーンブーツ(氷河)
+          - item_name: 刻印されたルーンリング(霊魂)
+          - item_name: 刻印されたルーンリング(猛毒)
+          - item_name: 刻印されたルーンリング(聖殿)
+        slot_list: #
+          - slot: 2
+            refine: 0
+            enchant_list: #
+              - name: バルムントの宝石(草原2)
+              - name: バルムントの宝石(草原3)
+              - name: バルムントの宝石(草原4)
+              - name: バルムントの宝石(草原5)
+              - name: バルムントの宝石(火炎2)
+              - name: バルムントの宝石(火炎3)
+              - name: バルムントの宝石(火炎4)
+              - name: バルムントの宝石(火炎5)
+              - name: バルムントの宝石(氷河2)
+              - name: バルムントの宝石(氷河3)
+              - name: バルムントの宝石(氷河4)
+              - name: バルムントの宝石(氷河5)
+              - name: バルムントの宝石(死屍2)
+              - name: バルムントの宝石(死屍3)
+              - name: バルムントの宝石(死屍4)
+              - name: バルムントの宝石(死屍5)
+              - name: バルムントの宝石(聖殿2)
+              - name: バルムントの宝石(聖殿3)
+              - name: バルムントの宝石(聖殿4)
+              - name: バルムントの宝石(聖殿5)
+              - name: バルムントの宝石(猛毒2)
+              - name: バルムントの宝石(猛毒3)
+              - name: バルムントの宝石(猛毒4)
+              - name: バルムントの宝石(猛毒5)
+              - name: バルムントの宝石(霊魂2)
+              - name: バルムントの宝石(霊魂3)
+              - name: バルムントの宝石(霊魂4)
+              - name: バルムントの宝石(霊魂5)

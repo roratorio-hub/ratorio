@@ -2,6 +2,8 @@ import os
 import re
 import yaml
 
+ENCHANT     = 99
+
 PER_STATUS_10_CODE = {
     'STR': 1,
     'AGI': 2,
@@ -89,6 +91,48 @@ def loadCardDict() -> dict:
     return {name: int(id) for id, type, name in matches if int(type) != 100}
 
 
+def loadItemList():
+    pattern = r'\[(\d+),(\d+),\d+,\d+,\d+,\d+,\d+,\d+,([^,]*),[^,]*,[^,]*,[^]]*0\]'
+    with open(f'{script_dir}/../roro/m/js/item.dat.js', 'r', encoding='utf-8') as file:
+        js_code = file.read()
+    matches = re.findall(pattern, js_code)
+    return [[int(id), name.replace('"',''), int(type)] for id, type, name in matches]
+
+
+def loadSlotInfoList():
+    pattern = r'\[(\d+),-1,0,0,\[\["([^"]+)","([^"]+)"]],\[],\[\[\[174,\[50,\[(\d+)]]],.+\[]]'
+    with open(f'{script_dir}/../roro/m/js/data/mig.enchlist.dat.js', 'r', encoding='utf-8') as file:
+        js_code = file.read()
+    matches = re.findall(pattern, js_code)
+    return [[int(id), name, code] for id, name, code, item_id in matches]
+
+
+def loadItemDict():
+    pattern = r'\[(\d+),(\d+),\d+,\d+,\d+,\d+,\d+,\d+,([^,]*),[^,]*,[^,]*,[^]]*0\]'
+    with open(f'{script_dir}/../roro/m/js/item.dat.js', 'r', encoding='utf-8') as file:
+        js_code = file.read()
+    matches = re.findall(pattern, js_code)
+    return  {name.replace('"',''): int(id) for id, type, name in matches if type != "100"}    
+
+
+def getEnchantDict(enchant_list):
+    return {item[1]: item[0] for item in enchant_list}
+
+
+def getId(name, list):
+    lookup_dict_reverse = {item[1]: item[0] for item in list}
+    return lookup_dict_reverse.get(name)
+
+
+def getLatestId(list):
+    return max([entity[0] for entity in list])
+
+
+def getEnchantTypeCode(name, slotinfo_list):
+    lookup_dict_reverse = {item[1]: item[2] for item in slotinfo_list}
+    return lookup_dict_reverse.get(name)
+
+
 def loadEnchantList():
     pattern = r'\[(\d+),(\d+),"([^,]+)",[^,]*,[^,]*,.*0\]'
     with open(f'{script_dir}/../roro/m/js/card.dat.js', 'r', encoding='utf-8') as file:
@@ -122,7 +166,6 @@ def loadAutoSpellDict() -> dict:
 
 
 def getLatestIdFromItemSet():
-    """ """
     pattern = r'w_SE\[(\d+)] = \[[^;]+;'
     with open(f'{script_dir}/../roro/m/js/itemset.dat.js', 'r', encoding='utf-8') as file:
         js_code = file.read()
@@ -303,6 +346,26 @@ def buildEnchantRecord(item_id, enchant_id, enchant):
         for enchant in slot_info['enchant_list']:
             if not enchant["name"] in CARD_OR_ENCH_CODE:
                 print(f"アイテムID[{item_id}]に不明なエンチャント[{enchant['name']}]が指定されています")
+            record += f'{CARD_OR_ENCH_CODE.get(enchant["name"])},'
+        record += f']]],,[]]]]]],'
+    record += f']]],[]];'
+    return record
+
+
+def buildEnchantRecord2(item_list, enchant_id, enchant):
+    enchant_name = enchant['name']
+    # エンチャント種別を英字・数字に置き換えたコードは普通の文字列でも動作する模様
+    enchant_code = enchant_name
+    record  = f'g_constDataManager.enchListDataManager.sourceArray[{enchant_id}] = '
+    record += f'[{enchant_id},-1,0,0,[["{enchant_name}","{enchant_code}"]],[],[[[174,[50,['
+    for item_id in item_list:
+        record += f'{item_id},'
+    record += ']]],,['
+    for slot_info in enchant['slot_list']:
+        record += f'[[178,[27,[{slot_info["slot"]}]]],,[[[187,[59,{slot_info["refine"]}],[60,4]],,[[[186,[51,['
+        for enchant in slot_info['enchant_list']:
+            if not enchant["name"] in CARD_OR_ENCH_CODE:
+                print(f"不明なエンチャント[{enchant['name']}]が指定されています")
             record += f'{CARD_OR_ENCH_CODE.get(enchant["name"])},'
         record += f']]],,[]]]]]],'
     record += f']]],[]];'
