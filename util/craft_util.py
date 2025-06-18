@@ -49,6 +49,12 @@ AT_BASE_LV_CODE = {
     175: 4,
     250: 5,
 }
+AT_EQUIP_LOCATION_CODE = {
+    '鎧': 1,
+    '肩にかける物': 2,
+    '靴': 3,
+    'アクセサリー': 4,
+}
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -226,6 +232,7 @@ def buildCapabilityRecord(capability):
         print(f"能力コード「{capability['name']}」は未定義です")
 
     # 条件コード取得
+    at_equip_location = AT_EQUIP_LOCATION_CODE[capability['at_equip_location']] if 'at_equip_location' in capability else 0
     at_transcendence = int(capability['at_transcendence']) if 'at_transcendence' in capability else 0
     per_refine = int(capability['per_refine']) if 'per_refine' in capability else 0
     at_refine = int(capability['at_refine']) if 'at_refine' in capability else 0
@@ -267,8 +274,8 @@ def buildCapabilityRecord(capability):
                 capability_code += SKILL_CODE.get(capability['skill'])
             except:
                 print(f"{capability['skill']} が未定義です")
-
-    code = f"{at_transcendence:01d}"            # 超越段階が n 以上の時に発動する
+    code = f"{at_equip_location:01d}"           # 〇〇部位に装備している時に発動する
+    code += f"{at_transcendence:01d}"            # 超越段階が n 以上の時に発動する
     code += f"{at_baselv:01d}"                  # ベースLvが n 以上のときに（Lv99は "以下" で判定）
     code += f"{per_baselv:02d}"                 # ベースLvが n 上がる度に発動する
     code += f"00"                               # 特定の職業の場合に発動する（新規アイテムでは未だ登場しないためパース処理未実装）
@@ -278,8 +285,9 @@ def buildCapabilityRecord(capability):
     code += f"{per_refine:01d}"                 # 精錬値が n 上がる度に発動する
     code += f"{capability_code:05d}"            # 発動する効果ID
     code = int(code)
-    # 超越段階が n 以上の時に発動する（BigIntフラグ付与）
-    code = f"{code}n" if at_transcendence > 0 else code
+    # BigIntフラグ付与
+    if at_equip_location > 0 or at_transcendence > 0:
+        code = f"{code}n"
 
     return f"{code},{value},"
 

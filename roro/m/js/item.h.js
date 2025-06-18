@@ -1190,6 +1190,19 @@ CGlobalConstManager.DefinePseudoEnum(
 	10000000000000000n,
 );
 
+CGlobalConstManager.DefinePseudoEnum(
+	"EnumItemSpId",
+	[
+		// ◯◯に装備しているとき
+		"ITEM_SP_EQUIPMENT_LOCATION_BODY",		//  1 * 10^18
+		"ITEM_SP_EQUIPMENT_LOCATION_SHOULDER",	//  2 * 10^18
+		"ITEM_SP_EQUIPMENT_LOCATION_SHOES",		//  3 * 10^18
+		"ITEM_SP_EQUIPMENT_LOCATION_ACCESSARY",	//  4 * 10^18
+	],
+	100000000000000000n,
+	100000000000000000n,
+);
+
 /**
  * アイテムの種別名を取得する.
  * @param kindId 種別ＩＤ
@@ -1811,6 +1824,7 @@ function GetItemSP(itemId, spid) {
  */
 function GetItemExplainText(spId, spValue) {
 
+	let condTextEquipmentLocation = "";
 	let condTextTranscendence = "";
 	var condTextFriendlyOver = "";
 	var condTextBaseLvOver = "";
@@ -1832,9 +1846,33 @@ function GetItemExplainText(spId, spValue) {
 	// 戻り値用テキスト配列
 	textInfoArray = new Array();
 
+	// 「〇〇に装備時」条件
+	let equipmentLocation = 0;
+	let baseFlag = toSafeBigInt(ITEM_SP_EQUIPMENT_LOCATION_BODY);
+	if (spId >= baseFlag) {
+		// BigInt の場合、小数点以下は自動的に切り捨てられる
+		equipmentLocation = spId / baseFlag;
+		switch (equipmentLocation) {
+			case 1n:
+				condTextEquipmentLocation = "鎧";
+				break;
+			case 2n:
+				condTextEquipmentLocation = "肩にかける物";
+				break;
+			case 3n:
+				condTextEquipmentLocation = "靴";
+				break;
+			case 4n:
+				condTextEquipmentLocation = "アクセサリー";
+				break;
+		}
+		condTextEquipmentLocation += "に装備時、";
+		spId = parseInt(spId % baseFlag);
+	}
+
 	// 『超越段階が◯以上のとき』条件
 	let transcendenceOver = 0;
-	let baseFlag = toSafeBigInt(ITEM_SP_TRANSCENDENCE_1);
+	baseFlag = toSafeBigInt(ITEM_SP_TRANSCENDENCE_1);
 	if (spId >= baseFlag) {
 		// BigInt の場合、小数点以下は自動的に切り捨てられる
 		transcendenceOver = spId / baseFlag;
@@ -2000,7 +2038,15 @@ function GetItemExplainText(spId, spValue) {
 	// 条件文字列の組み立て
 	textInfoArray.push([
 		"",
-		condTextTranscendence + condTextFriendlyOver + condTextJobRestrict + condTextBaseLvOver + condTextRefineOver + condTextPureStatus + condTextRefineBy + condTextBaseLvBy
+		condTextEquipmentLocation
+		+ condTextTranscendence 
+		+ condTextFriendlyOver 
+		+ condTextJobRestrict 
+		+ condTextBaseLvOver 
+		+ condTextRefineOver 
+		+ condTextPureStatus 
+		+ condTextRefineBy 
+		+ condTextBaseLvBy
 	]);
 
 	sign = (spValue < 0) ? " " : " + ";
