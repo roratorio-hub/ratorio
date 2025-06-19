@@ -1,6 +1,6 @@
 item_list:
-  - name: 刻印されたルーンアーマー(火炎)
-    yomi: コクインサレタルーンアーマーカエン
+  - name: バルムントルーンアーマー(火炎)
+    yomi: バルムントルーンアーマー(火炎)
     type: 鎧
     slot: 1
     weapon_lv: 0
@@ -9,20 +9,16 @@ item_list:
     required_lv: 200
     required_job: 4次職 拡張4次職
     capabilities:
-      - name: 一般耐性
-        value: 5
-      - name: ボス耐性
-        value: 5
       - name: プレイヤー耐性
         value: 7
       - name: 必中
-        value: 50
+        value: 25
         at_lv: 250
       - name: 全種族への物理ダメージ増加
-        value: 7
+        value: 4
         per_refine: 1
       - name: 全種族への魔法ダメージ増加
-        value: 7
+        value: 4
         per_refine: 1
       - name: ASPD増加
         value: 10
@@ -30,8 +26,8 @@ item_list:
       - name: 壊れない
         value: 1
         at_refine: 9
-  - name: 刻印されたルーンアーマー(死屍)
-    yomi: コクインサレタルーンアーマーシシ
+  - name: バルムントルーンアーマー(死屍)
+    yomi: バルムントルーンアーマー(死屍)
     type: 鎧
     slot: 1
     weapon_lv: 0
@@ -40,20 +36,16 @@ item_list:
     required_lv: 200
     required_job: 4次職 拡張4次職
     capabilities:
-      - name: 一般耐性
-        value: 5
-      - name: ボス耐性
-        value: 5
       - name: プレイヤー耐性
         value: 7
       - name: CRI加算
-        value: 50
+        value: 25
         at_lv: 250
       - name: 全種族への物理ダメージ増加
-        value: 7
+        value: 4
         per_refine: 1
       - name: 全種族への魔法ダメージ増加
-        value: 7
+        value: 4
         per_refine: 1
       - name: ASPD増加
         value: 10
@@ -61,8 +53,8 @@ item_list:
       - name: 壊れない
         value: 1
         at_refine: 9
-  - name: 刻印されたルーンアーマー(草原)
-    yomi: コクインサレタルーンアーマーソウゲン
+  - name: バルムントルーンアーマー(草原)
+    yomi: バルムントルーンアーマー(草原)
     type: 鎧
     slot: 1
     weapon_lv: 0
@@ -71,20 +63,16 @@ item_list:
     required_lv: 200
     required_job: 4次職 拡張4次職
     capabilities:
-      - name: 一般耐性
-        value: 5
-      - name: ボス耐性
-        value: 5
       - name: プレイヤー耐性
         value: 7
       - name: スキルディレイ減少
-        value: 30
+        value: 15
         at_lv: 250
       - name: 全種族への物理ダメージ増加
-        value: 7
+        value: 4
         per_refine: 1
       - name: 全種族への魔法ダメージ増加
-        value: 7
+        value: 4
         per_refine: 1
       - name: ASPD増加
         value: 10
@@ -92,8 +80,8 @@ item_list:
       - name: 壊れない
         value: 1
         at_refine: 9
-  - name: 刻印されたルーンアーマー(氷河)
-    yomi: コクインサレタルーンアーマーヒョウガ
+  - name: バルムントルーンアーマー(氷河)
+    yomi: バルムントルーンアーマー(氷河)
     type: 鎧
     slot: 1
     weapon_lv: 0
@@ -102,23 +90,19 @@ item_list:
     required_lv: 200
     required_job: 4次職 拡張4次職
     capabilities:
-      - name: 一般耐性
-        value: 5
-      - name: ボス耐性
-        value: 5
       - name: プレイヤー耐性
         value: 7
       - name: DEF加算
-        value: 300
+        value: 150
         at_lv: 250
       - name: MDEF加算
-        value: 30
+        value: 15
         at_lv: 250
       - name: 全種族への物理ダメージ増加
-        value: 7
+        value: 4
         per_refine: 1
       - name: 全種族への魔法ダメージ増加
-        value: 7
+        value: 4
         per_refine: 1
       - name: ASPD増加
         value: 10
@@ -126,8 +110,18 @@ item_list:
       - name: 壊れない
         value: 1
         at_refine: 9
-  - name: 刻印されたルーンブーツ(火炎)
-    yomi: コクインサレタルーンブーツカエン
+  - name: バルムントルーングリーブ
+    yomi: バルムントルーングリーブ
+    type: 靴
+    slot: 0
+    weapon_lv: 0
+    atk_or_def: 20
+    weight: 60
+    required_lv: 200
+    required_job: 4次職 拡張4次職
+    capabilities: []
+  - name: バルムントルーンブーツ(火炎)
+    yomi: バルムントルーンブーツ(火炎)
     type: 靴
     slot: 1
     weapon_lv: 0
@@ -136,23 +130,16 @@ item_list:
     required_lv: 200
     required_job: 4次職 拡張4次職
     capabilities:
-      - name: 一般耐性
-        value: 5
-      - name: ボス耐性
-        value: 5
       - name: プレイヤー耐性
         value: 10
       - name: 必中
-        value: 50
+        value: 25
         at_lv: 250
-      - name: 全基本ステータス加算
-        value: 3
-        per_refine: 1
       - name: 物理ダメージ増加
-        value: 7
+        value: 4
         per_refine: 1
       - name: 魔法ダメージ増加
-        value: 7
+        value: 4
         per_refine: 1
       - name: MAXHP増加
         value: 20
@@ -166,8 +153,8 @@ item_list:
       - name: スキルディレイ減少
         value: 25
         at_refine: 9
-  - name: 刻印されたルーンブーツ(死屍)
-    yomi: コクインサレタルーンブーツシシ
+  - name: バルムントルーンブーツ(死屍)
+    yomi: バルムントルーンブーツ(死屍)
     type: 靴
     slot: 1
     weapon_lv: 0
@@ -176,23 +163,16 @@ item_list:
     required_lv: 200
     required_job: 4次職 拡張4次職
     capabilities:
-      - name: 一般耐性
-        value: 5
-      - name: ボス耐性
-        value: 5
       - name: プレイヤー耐性
         value: 10
       - name: CRI加算
-        value: 50
+        value: 25
         at_lv: 250
-      - name: 全基本ステータス加算
-        value: 3
-        per_refine: 1
       - name: 物理ダメージ増加
-        value: 7
+        value: 4
         per_refine: 1
       - name: 魔法ダメージ増加
-        value: 7
+        value: 4
         per_refine: 1
       - name: MAXHP増加
         value: 20
@@ -206,8 +186,8 @@ item_list:
       - name: スキルディレイ減少
         value: 25
         at_refine: 9
-  - name: 刻印されたルーンブーツ(草原)
-    yomi: コクインサレタルーンブーツソウゲン
+  - name: バルムントルーンブーツ(草原)
+    yomi: バルムントルーンブーツ(草原)
     type: 靴
     slot: 1
     weapon_lv: 0
@@ -216,23 +196,16 @@ item_list:
     required_lv: 200
     required_job: 4次職 拡張4次職
     capabilities:
-      - name: 一般耐性
-        value: 5
-      - name: ボス耐性
-        value: 5
       - name: プレイヤー耐性
         value: 10
       - name: スキルディレイ減少
-        value: 30
+        value: 15
         at_lv: 250
-      - name: 全基本ステータス加算
-        value: 3
-        per_refine: 1
       - name: 物理ダメージ増加
-        value: 7
+        value: 4
         per_refine: 1
       - name: 魔法ダメージ増加
-        value: 7
+        value: 4
         per_refine: 1
       - name: MAXHP増加
         value: 20
@@ -246,8 +219,8 @@ item_list:
       - name: スキルディレイ減少
         value: 25
         at_refine: 9
-  - name: 刻印されたルーンブーツ(氷河)
-    yomi: コクインサレタルーンブーツヒョウガ
+  - name: バルムントルーンブーツ(氷河)
+    yomi: バルムントルーンブーツ(氷河)
     type: 靴
     slot: 1
     weapon_lv: 0
@@ -256,26 +229,19 @@ item_list:
     required_lv: 200
     required_job: 4次職 拡張4次職
     capabilities:
-      - name: 一般耐性
-        value: 5
-      - name: ボス耐性
-        value: 5
       - name: プレイヤー耐性
         value: 10
       - name: DEF加算
-        value: 300
+        value: 150
         at_lv: 250
       - name: MDEF加算
-        value: 30
+        value: 15
         at_lv: 250
-      - name: 全基本ステータス加算
-        value: 3
-        per_refine: 1
       - name: 物理ダメージ増加
-        value: 7
+        value: 4
         per_refine: 1
       - name: 魔法ダメージ増加
-        value: 7
+        value: 4
         per_refine: 1
       - name: MAXHP増加
         value: 20
@@ -289,8 +255,18 @@ item_list:
       - name: スキルディレイ減少
         value: 25
         at_refine: 9
-  - name: 刻印されたルーンマント(火炎)
-    yomi: コクインサレタルーンマントカエン
+  - name: バルムントルーンポールドロン
+    yomi: バルムントルーンポールドロン
+    type: 肩にかける物
+    slot: 0
+    weapon_lv: 0
+    atk_or_def: 60
+    weight: 100
+    required_lv: 200
+    required_job: 4次職 拡張4次職
+    capabilities: []
+  - name: バルムントルーンマント(火炎)
+    yomi: バルムントルーンマント(火炎)
     type: 肩にかける物
     slot: 1
     weapon_lv: 0
@@ -299,28 +275,15 @@ item_list:
     required_lv: 200
     required_job: 4次職 拡張4次職
     capabilities:
-      - name: 一般耐性
-        value: 5
-      - name: ボス耐性
-        value: 5
       - name: プレイヤー耐性
         value: 5
       - name: 必中
-        value: 50
+        value: 25
         at_lv: 250
-      - name: 全基本ステータス加算
-        value: 1
-        per_refine: 1
       - name: MAXHP増加
-        value: 2
+        value: 1
         per_refine: 1
       - name: MAXSP増加
-        value: 2
-        per_refine: 1
-      - name: 全属性への物理ダメージ増加
-        value: 1
-        per_refine: 1
-      - name: 全属性への魔法ダメージ増加
         value: 1
         per_refine: 1
       - name: スキルディレイ減少
@@ -341,8 +304,8 @@ item_list:
       - name: 全属性への魔法ダメージ増加
         value: 10
         at_refine: 9
-  - name: 刻印されたルーンマント(死屍)
-    yomi: コクインサレタルーンマントシシ
+  - name: バルムントルーンマント(死屍)
+    yomi: バルムントルーンマント(死屍)
     type: 肩にかける物
     slot: 1
     weapon_lv: 0
@@ -351,28 +314,15 @@ item_list:
     required_lv: 200
     required_job: 4次職 拡張4次職
     capabilities:
-      - name: 一般耐性
-        value: 5
-      - name: ボス耐性
-        value: 5
       - name: プレイヤー耐性
         value: 5
       - name: CRI加算
-        value: 50
+        value: 25
         at_lv: 250
-      - name: 全基本ステータス加算
-        value: 1
-        per_refine: 1
       - name: MAXHP増加
-        value: 2
+        value: 1
         per_refine: 1
       - name: MAXSP増加
-        value: 2
-        per_refine: 1
-      - name: 全属性への物理ダメージ増加
-        value: 1
-        per_refine: 1
-      - name: 全属性への魔法ダメージ増加
         value: 1
         per_refine: 1
       - name: スキルディレイ減少
@@ -393,8 +343,8 @@ item_list:
       - name: 全属性への魔法ダメージ増加
         value: 10
         at_refine: 9
-  - name: 刻印されたルーンマント(草原)
-    yomi: コクインサレタルーンマントソウゲン
+  - name: バルムントルーンマント(草原)
+    yomi: バルムントルーンマント(草原)
     type: 肩にかける物
     slot: 1
     weapon_lv: 0
@@ -403,28 +353,15 @@ item_list:
     required_lv: 200
     required_job: 4次職 拡張4次職
     capabilities:
-      - name: 一般耐性
-        value: 5
-      - name: ボス耐性
-        value: 5
       - name: プレイヤー耐性
         value: 5
       - name: スキルディレイ減少
-        value: 30
+        value: 15
         at_lv: 250
-      - name: 全基本ステータス加算
-        value: 1
-        per_refine: 1
       - name: MAXHP増加
-        value: 2
+        value: 1
         per_refine: 1
       - name: MAXSP増加
-        value: 2
-        per_refine: 1
-      - name: 全属性への物理ダメージ増加
-        value: 1
-        per_refine: 1
-      - name: 全属性への魔法ダメージ増加
         value: 1
         per_refine: 1
       - name: スキルディレイ減少
@@ -445,8 +382,8 @@ item_list:
       - name: 全属性への魔法ダメージ増加
         value: 10
         at_refine: 9
-  - name: 刻印されたルーンマント(氷河)
-    yomi: コクインサレタルーンマントヒョウガ
+  - name: バルムントルーンマント(氷河)
+    yomi: バルムントルーンマント(氷河)
     type: 肩にかける物
     slot: 1
     weapon_lv: 0
@@ -455,31 +392,18 @@ item_list:
     required_lv: 200
     required_job: 4次職 拡張4次職
     capabilities:
-      - name: 一般耐性
-        value: 5
-      - name: ボス耐性
-        value: 5
       - name: プレイヤー耐性
         value: 5
       - name: DEF加算
-        value: 300
+        value: 150
         at_lv: 250
       - name: MDEF加算
-        value: 30
+        value: 15
         at_lv: 250
-      - name: 全基本ステータス加算
-        value: 1
-        per_refine: 1
       - name: MAXHP増加
-        value: 2
+        value: 1
         per_refine: 1
       - name: MAXSP増加
-        value: 2
-        per_refine: 1
-      - name: 全属性への物理ダメージ増加
-        value: 1
-        per_refine: 1
-      - name: 全属性への魔法ダメージ増加
         value: 1
         per_refine: 1
       - name: スキルディレイ減少
@@ -500,8 +424,18 @@ item_list:
       - name: 全属性への魔法ダメージ増加
         value: 10
         at_refine: 9
-  - name: 刻印されたルーンリング(聖殿)
-    yomi: コクインサレタルーンリングセイデン
+  - name: バルムントルーンメイル
+    yomi: バルムントルーンメイル
+    type: 鎧
+    slot: 0
+    weapon_lv: 0
+    atk_or_def: 150
+    weight: 120
+    required_lv: 200
+    required_job: 4次職 拡張4次職
+    capabilities: []
+  - name: バルムントルーンリング(聖殿)
+    yomi: バルムントルーンリング(聖殿)
     type: アクセサリー(1)
     slot: 1
     weapon_lv: 0
@@ -514,15 +448,15 @@ item_list:
         value: 3
       - name: 物理ダメージ増加
         value: 1
-        per_lv: 5
+        per_lv: 10
       - name: 魔法ダメージ増加
         value: 1
-        per_lv: 5
+        per_lv: 10
       - name: MDEF無視
-        value: 100
+        value: 50
         at_lv: 250
-  - name: 刻印されたルーンリング(猛毒)
-    yomi: コクインサレタルーンリングもうどく
+  - name: バルムントルーンリング(猛毒)
+    yomi: バルムントルーンリング(猛毒)
     type: アクセサリー(1)
     slot: 1
     weapon_lv: 0
@@ -535,15 +469,15 @@ item_list:
         value: 3
       - name: 物理ダメージ増加
         value: 1
-        per_lv: 5
+        per_lv: 10
       - name: 魔法ダメージ増加
         value: 1
-        per_lv: 5
+        per_lv: 10
       - name: DEF無視
-        value: 100
+        value: 50
         at_lv: 250
-  - name: 刻印されたルーンリング(霊魂)
-    yomi: コクインサレタルーンリングれいこん
+  - name: バルムントルーンリング(霊魂)
+    yomi: バルムントルーンリング(霊魂)
     type: アクセサリー(1)
     slot: 1
     weapon_lv: 0
@@ -556,10 +490,20 @@ item_list:
         value: 3
       - name: 物理ダメージ増加
         value: 1
-        per_lv: 5
+        per_lv: 10
       - name: 魔法ダメージ増加
         value: 1
-        per_lv: 5
+        per_lv: 10
       - name: ASPD増加
-        value: 15
+        value: 10
         at_lv: 250
+  - name: バルムントルーンリング
+    yomi: バルムントルーンリング
+    type: アクセサリー
+    slot: 0
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 10
+    required_lv: 200
+    required_job: 4次職 拡張4次職
+    capabilities: []

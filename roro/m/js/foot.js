@@ -29374,6 +29374,12 @@ function GetEquippedSPSubSPCardAndElse(spid, invalidCardIdArray, bListUp) {
 			spDefRemain = cardData[ CARD_DATA_INDEX_SPBEGIN + spDefIdx ];
 			spDefValue = cardData[ CARD_DATA_INDEX_SPBEGIN + spDefIdx + 1 ];
 
+			// 装備部位を満たさない場合は、次へ
+			spDefRemain = CheckSpDefEquipmentLocation(spDefRemain, cardRegionId);
+			if (spDefRemain < 0) {
+				continue;
+			}
+
 			// 超越段階を満たさない場合は、次へ
 			spDefRemain = CheckSpDefTransendenceOver(spDefRemain, eqpTranscendence);
 			if (spDefRemain < 0) {
@@ -30224,6 +30230,69 @@ function CheckSpDefTransendenceOver(spDefRemain, eqpTranscendence) {
 		return -1;
 	}
 	// 超越条件が指定されていない場合
+	return spDefRemain;	
+}
+
+/**
+ * アイテムの装備部位が「◯◯に装備しているとき」を満たしているか検査する.
+ * 現状ではカードだけチェックしている.
+ * 拡張したければ超越段階を参考にして呼び出し元を増やしてください.
+ * @param {Number} spDefRemain フラグ付きアイテムSP（BitInt の場合と Int の場合がある）
+ * @param {*} location 実際に装備している部位
+ * @returns 
+ */
+function CheckSpDefEquipmentLocation(spDefRemain, location) {
+	// アイテムSPで装備部位が指定されている場合
+	baseFlag = toSafeBigInt(ITEM_SP_EQUIPMENT_LOCATION_BODY);
+	if (spDefRemain >= baseFlag) {
+		// BigInt の場合、小数点以下が自動的に切り捨てられる
+		requireEquipLocation = parseInt(spDefRemain / baseFlag);
+		switch(requireEquipLocation) {
+			case 1:	// 鎧
+				switch(location) {
+					case CARD_REGION_ID_BODY:
+					case CARD_REGION_ID_ENCHANT_BODY_1:
+					case CARD_REGION_ID_ENCHANT_BODY_2:
+					case CARD_REGION_ID_ENCHANT_BODY_3:
+						return parseInt(spDefRemain % baseFlag);
+				}
+				break;
+			case 2:	// 肩にかける物
+				switch(location) {
+					case CARD_REGION_ID_SHOULDER:
+					case CARD_REGION_ID_ENCHANT_SHOULDER_1:
+					case CARD_REGION_ID_ENCHANT_SHOULDER_2:
+					case CARD_REGION_ID_ENCHANT_SHOULDER_3:
+						return parseInt(spDefRemain % baseFlag);
+				}
+				break;
+			case 3:	// 靴
+				switch(location) {
+					case CARD_REGION_ID_SHOES:
+					case CARD_REGION_ID_ENCHANT_SHOES_1:
+					case CARD_REGION_ID_ENCHANT_SHOES_2:
+					case CARD_REGION_ID_ENCHANT_SHOES_3:
+						return parseInt(spDefRemain % baseFlag);
+				}
+				break;
+			case 4:	// アクセサリー
+				switch(location) {
+					case CARD_REGION_ID_ACCESSARY_1:
+					case CARD_REGION_ID_ENCHANT_ACCESSARY_1_1:
+					case CARD_REGION_ID_ENCHANT_ACCESSARY_1_2:
+					case CARD_REGION_ID_ENCHANT_ACCESSARY_1_3:
+					case CARD_REGION_ID_ACCESSARY_2:
+					case CARD_REGION_ID_ENCHANT_ACCESSARY_2_1:
+					case CARD_REGION_ID_ENCHANT_ACCESSARY_2_2:
+					case CARD_REGION_ID_ENCHANT_ACCESSARY_2_3:
+						return parseInt(spDefRemain % baseFlag);
+				}
+				break;
+		}
+		// 実際の装備部位が条件を満たさない場合
+		return -1;
+	}
+	// アイテムSPで装備部位が指定されていない場合
 	return spDefRemain;	
 }
 
