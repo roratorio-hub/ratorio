@@ -1,58 +1,11 @@
-import re
 import os
 import sys
 import yaml
 from craft_util import *
 
-ENCHANT     = 99
-
-script_dir = os.path.dirname(os.path.abspath(__file__))
-
-
-def loadItemList():
-    pattern = r'\[(\d+),(\d+),\d+,\d+,\d+,\d+,\d+,\d+,([^,]*),[^,]*,[^,]*,[^]]*0\]'
-    with open(f'{script_dir}/../roro/m/js/item.dat.js', 'r', encoding='utf-8') as file:
-        js_code = file.read()
-    matches = re.findall(pattern, js_code)
-    return [[int(id), name.replace('"',''), int(type)] for id, type, name in matches]
-
-
-def loadSlotInfoList():
-    pattern = r'\[(\d+),-1,0,0,\[\["([^"]+)","([^"]+)"]],\[],\[\[\[174,\[50,\[(\d+)]]],.+\[]]'
-    with open(f'{script_dir}/../roro/m/js/data/mig.enchlist.dat.js', 'r', encoding='utf-8') as file:
-        js_code = file.read()
-    matches = re.findall(pattern, js_code)
-    return [[int(id), name, code] for id, name, code, item_id in matches]
-
-
-def loadItemDict():
-    pattern = r'\[(\d+),(\d+),\d+,\d+,\d+,\d+,\d+,\d+,([^,]*),[^,]*,[^,]*,[^]]*0\]'
-    with open(f'{script_dir}/../roro/m/js/item.dat.js', 'r', encoding='utf-8') as file:
-        js_code = file.read()
-    matches = re.findall(pattern, js_code)
-    return  {name.replace('"',''): int(id) for id, type, name in matches if type != "100"}    
-
-
-def getEnchantDict(enchant_list):
-    return {item[1]: item[0] for item in enchant_list}
-
-
-def getId(name, list):
-    lookup_dict_reverse = {item[1]: item[0] for item in list}
-    return lookup_dict_reverse.get(name)
-
-
-def getLatestId(list):
-    return max([entity[0] for entity in list])
-
-
-def getEnchantTypeCode(name, slotinfo_list):
-    lookup_dict_reverse = {item[1]: item[2] for item in slotinfo_list}
-    return lookup_dict_reverse.get(name)
-
-
 ITEM_CODE = loadItemDict()
 
+script_dir = os.path.dirname(os.path.abspath(__file__))
  
 # -----------------------------------
 # 初期化

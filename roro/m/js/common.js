@@ -628,17 +628,17 @@ const_identifier = 0;
 CGlobalConstManager.DefineEnum(
 	"EnumEquipRegionId",
 	[
-		"EQUIP_REGION_ID_ARMS",
-		"EQUIP_REGION_ID_ARMS_LEFT",
-		"EQUIP_REGION_ID_HEAD_TOP",
-		"EQUIP_REGION_ID_HEAD_MID",
-		"EQUIP_REGION_ID_HEAD_UNDER",
-		"EQUIP_REGION_ID_SHIELD",
-		"EQUIP_REGION_ID_BODY",
-		"EQUIP_REGION_ID_SHOULDER",
-		"EQUIP_REGION_ID_SHOES",
-		"EQUIP_REGION_ID_ACCESSARY_1",
-		"EQUIP_REGION_ID_ACCESSARY_2",
+		"EQUIP_REGION_ID_ARMS",			// 0 右手
+		"EQUIP_REGION_ID_ARMS_LEFT",	// 1 左手
+		"EQUIP_REGION_ID_HEAD_TOP",		// 2 上段
+		"EQUIP_REGION_ID_HEAD_MID",		// 3 中段
+		"EQUIP_REGION_ID_HEAD_UNDER",	// 4 下段
+		"EQUIP_REGION_ID_SHIELD",		// 5 盾
+		"EQUIP_REGION_ID_BODY",			// 6 鎧
+		"EQUIP_REGION_ID_SHOULDER",		// 7 肩
+		"EQUIP_REGION_ID_SHOES",		// 8 靴
+		"EQUIP_REGION_ID_ACCESSARY_1",	// 9 アクセ1
+		"EQUIP_REGION_ID_ACCESSARY_2",	// 10 アクセ2
 		"EQUIP_REGION_ID_COSTUME_HEAD_TOP",
 		"EQUIP_REGION_ID_COSTUME_HEAD_MID",
 		"EQUIP_REGION_ID_COSTUME_HEAD_UNDER",
@@ -682,56 +682,56 @@ CGlobalConstManager.DefinePseudoEnum(
 // カード部位のインデックス
 const_identifier = 0;
 
-CARD_REGION_ID_ARMS_RIGHT_1	 = const_identifier++;	// 0
-CARD_REGION_ID_ARMS_RIGHT_2	 = const_identifier++;
-CARD_REGION_ID_ARMS_RIGHT_3	 = const_identifier++;
-CARD_REGION_ID_ARMS_RIGHT_4	 = const_identifier++;
-CARD_REGION_ID_ARMS_LEFT_1	 = const_identifier++;
-CARD_REGION_ID_ARMS_LEFT_2	 = const_identifier++;
-CARD_REGION_ID_ARMS_LEFT_3	 = const_identifier++;
-CARD_REGION_ID_ARMS_LEFT_4	 = const_identifier++;
-CARD_REGION_ID_HEAD_TOP		 = const_identifier++;
-CARD_REGION_ID_HEAD_MID		 = const_identifier++;
+CARD_REGION_ID_ARMS_RIGHT_1	 = const_identifier++;	// 0 右手
+CARD_REGION_ID_ARMS_RIGHT_2	 = const_identifier++;	// 1
+CARD_REGION_ID_ARMS_RIGHT_3	 = const_identifier++;	// 2
+CARD_REGION_ID_ARMS_RIGHT_4	 = const_identifier++;	// 3
+CARD_REGION_ID_ARMS_LEFT_1	 = const_identifier++;	// 4 左手
+CARD_REGION_ID_ARMS_LEFT_2	 = const_identifier++;	// 5
+CARD_REGION_ID_ARMS_LEFT_3	 = const_identifier++;	// 6
+CARD_REGION_ID_ARMS_LEFT_4	 = const_identifier++;	// 7
+CARD_REGION_ID_HEAD_TOP		 = const_identifier++;	// 8	
+CARD_REGION_ID_HEAD_MID		 = const_identifier++;	// 9
 CARD_REGION_ID_SHIELD		 = const_identifier++;	// 10
-CARD_REGION_ID_BODY			 = const_identifier++;
-CARD_REGION_ID_SHOULDER		 = const_identifier++;
-CARD_REGION_ID_SHOES		 = const_identifier++;
-CARD_REGION_ID_ACCESSARY_1	 = const_identifier++;
+CARD_REGION_ID_BODY			 = const_identifier++;	// 11
+CARD_REGION_ID_SHOULDER		 = const_identifier++;	// 12
+CARD_REGION_ID_SHOES		 = const_identifier++;	// 13
+CARD_REGION_ID_ACCESSARY_1	 = const_identifier++;	// 14
 CARD_REGION_ID_ACCESSARY_2	 = const_identifier++;	// 15
-CARD_REGION_ID_HEAD_UNDER	 = const_identifier++;
+CARD_REGION_ID_HEAD_UNDER	 = const_identifier++;	// 16
 
 const_identifier = 26;
 
-CARD_REGION_ID_ENCHANT_HEAD_TOP_1		 = const_identifier++;
-CARD_REGION_ID_ENCHANT_HEAD_TOP_2		 = const_identifier++;
-CARD_REGION_ID_ENCHANT_HEAD_TOP_3		 = const_identifier++;
-CARD_REGION_ID_ENCHANT_HEAD_MID_1		 = const_identifier++;
-CARD_REGION_ID_ENCHANT_HEAD_MID_2		 = const_identifier++;
-CARD_REGION_ID_ENCHANT_HEAD_MID_3		 = const_identifier++;
+CARD_REGION_ID_ENCHANT_HEAD_TOP_1		 = const_identifier++;	// 26
+CARD_REGION_ID_ENCHANT_HEAD_TOP_2		 = const_identifier++;	// 27
+CARD_REGION_ID_ENCHANT_HEAD_TOP_3		 = const_identifier++;	// 28
+CARD_REGION_ID_ENCHANT_HEAD_MID_1		 = const_identifier++;	// 29
+CARD_REGION_ID_ENCHANT_HEAD_MID_2		 = const_identifier++;	// 30
+CARD_REGION_ID_ENCHANT_HEAD_MID_3		 = const_identifier++;	// 31
 
 const_identifier = 33;
 
-CARD_REGION_ID_ENCHANT_HEAD_UNDER_1		 = const_identifier++;
-CARD_REGION_ID_ENCHANT_HEAD_UNDER_2		 = const_identifier++;
-CARD_REGION_ID_ENCHANT_HEAD_UNDER_3		 = const_identifier++;
-CARD_REGION_ID_ENCHANT_SHIELD_1			 = const_identifier++;
-CARD_REGION_ID_ENCHANT_SHIELD_2			 = const_identifier++;
-CARD_REGION_ID_ENCHANT_SHIELD_3			 = const_identifier++;
-CARD_REGION_ID_ENCHANT_BODY_1			 = const_identifier++;
-CARD_REGION_ID_ENCHANT_BODY_2			 = const_identifier++;
-CARD_REGION_ID_ENCHANT_BODY_3			 = const_identifier++;
-CARD_REGION_ID_ENCHANT_SHOULDER_1		 = const_identifier++;
-CARD_REGION_ID_ENCHANT_SHOULDER_2		 = const_identifier++;
-CARD_REGION_ID_ENCHANT_SHOULDER_3		 = const_identifier++;
-CARD_REGION_ID_ENCHANT_SHOES_1			 = const_identifier++;
-CARD_REGION_ID_ENCHANT_SHOES_2			 = const_identifier++;
-CARD_REGION_ID_ENCHANT_SHOES_3			 = const_identifier++;
-CARD_REGION_ID_ENCHANT_ACCESSARY_1_1	 = const_identifier++;
-CARD_REGION_ID_ENCHANT_ACCESSARY_1_2	 = const_identifier++;
-CARD_REGION_ID_ENCHANT_ACCESSARY_1_3	 = const_identifier++;
-CARD_REGION_ID_ENCHANT_ACCESSARY_2_1	 = const_identifier++;
-CARD_REGION_ID_ENCHANT_ACCESSARY_2_2	 = const_identifier++;
-CARD_REGION_ID_ENCHANT_ACCESSARY_2_3	 = const_identifier++;
+CARD_REGION_ID_ENCHANT_HEAD_UNDER_1		 = const_identifier++;	// 33
+CARD_REGION_ID_ENCHANT_HEAD_UNDER_2		 = const_identifier++;	// 34
+CARD_REGION_ID_ENCHANT_HEAD_UNDER_3		 = const_identifier++;	// 35
+CARD_REGION_ID_ENCHANT_SHIELD_1			 = const_identifier++;	// 36
+CARD_REGION_ID_ENCHANT_SHIELD_2			 = const_identifier++;	// 37
+CARD_REGION_ID_ENCHANT_SHIELD_3			 = const_identifier++;	// 38
+CARD_REGION_ID_ENCHANT_BODY_1			 = const_identifier++;	// 39
+CARD_REGION_ID_ENCHANT_BODY_2			 = const_identifier++;	// 40
+CARD_REGION_ID_ENCHANT_BODY_3			 = const_identifier++;	// 41
+CARD_REGION_ID_ENCHANT_SHOULDER_1		 = const_identifier++;	// 42
+CARD_REGION_ID_ENCHANT_SHOULDER_2		 = const_identifier++;	// 43
+CARD_REGION_ID_ENCHANT_SHOULDER_3		 = const_identifier++;	// 44
+CARD_REGION_ID_ENCHANT_SHOES_1			 = const_identifier++;	// 45
+CARD_REGION_ID_ENCHANT_SHOES_2			 = const_identifier++;	// 46
+CARD_REGION_ID_ENCHANT_SHOES_3			 = const_identifier++;	// 47
+CARD_REGION_ID_ENCHANT_ACCESSARY_1_1	 = const_identifier++;	// 48
+CARD_REGION_ID_ENCHANT_ACCESSARY_1_2	 = const_identifier++;	// 49
+CARD_REGION_ID_ENCHANT_ACCESSARY_1_3	 = const_identifier++;	// 50
+CARD_REGION_ID_ENCHANT_ACCESSARY_2_1	 = const_identifier++;	// 51
+CARD_REGION_ID_ENCHANT_ACCESSARY_2_2	 = const_identifier++;	// 52
+CARD_REGION_ID_ENCHANT_ACCESSARY_2_3	 = const_identifier++;	// 53
 
 CARD_REGION_ID_COUNT		 = const_identifier;
 

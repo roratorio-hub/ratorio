@@ -484,7 +484,7 @@ function BuildUpItemList() {
 		// エンチャント情報
 		if (showEnchant) {
 
-			for (idxSlot = 0; idxSlot < enchInfoArrayAllSlotsResult.length; idxSlot++) {
+			for (idxSlot = enchInfoArrayAllSlotsResult.length - 1; idxSlot >= 0; idxSlot--) {
 
 				// エンチャント無しは行自体なし
 				if (enchInfoArrayAllSlotsResult[idxSlot].length == 0) {
@@ -501,7 +501,7 @@ function BuildUpItemList() {
 				objTd.setAttribute("colspan", "4");
 				objTr.appendChild(objTd);
 
-				objText = document.createTextNode("第" + (idxSlot + 1) + "エンチャント");
+				objText = document.createTextNode("第" + (4 - idxSlot) + "エンチャント");
 				objTd.appendChild(objText);
 
 				objTd = document.createElement("td");
