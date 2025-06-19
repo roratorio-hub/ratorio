@@ -1853,18 +1853,18 @@ function GetItemExplainText(spId, spValue) {
 		// BigInt の場合、小数点以下は自動的に切り捨てられる
 		equipmentLocation = spId / baseFlag;
 		switch (equipmentLocation) {
-			case 1n:
-				condTextEquipmentLocation = "鎧";
-				break;
-			case 2n:
-				condTextEquipmentLocation = "肩にかける物";
-				break;
-			case 3n:
-				condTextEquipmentLocation = "靴";
-				break;
-			case 4n:
-				condTextEquipmentLocation = "アクセサリー";
-				break;
+            case toSafeBigInt(ITEM_SP_EQUIPMENT_LOCATION_BODY) / baseFlag:  
+                condTextEquipmentLocation = "鎧";  
+                break;  
+            case toSafeBigInt(ITEM_SP_EQUIPMENT_LOCATION_SHOULDER) / baseFlag:  
+                condTextEquipmentLocation = "肩にかける物";  
+                break;  
+            case toSafeBigInt(ITEM_SP_EQUIPMENT_LOCATION_SHOES) / baseFlag:  
+                condTextEquipmentLocation = "靴";  
+                break;  
+            case toSafeBigInt(ITEM_SP_EQUIPMENT_LOCATION_ACCESSARY) / baseFlag:  
+                condTextEquipmentLocation = "アクセサリー";  
+                break;  
 		}
 		condTextEquipmentLocation += "に装備時、";
 		spId = parseInt(spId % baseFlag);
