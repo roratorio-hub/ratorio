@@ -25,7 +25,7 @@ enchant_list:
           - item_name: バルムントルーンアーマー(草原)
           - item_name: 刻印されたルーンアーマー(草原)
         slot_list: #
-          - slot: 2
+          - slot: 3
             refine: 0
             enchant_list: #
               - name: Str+5
@@ -43,7 +43,7 @@ enchant_list:
           - item_name: バルムントルーンマント(草原)
           - item_name: 刻印されたルーンマント(草原)
         slot_list: #
-          - slot: 2
+          - slot: 3
             refine: 0
             enchant_list: #
               - name: Str+5
@@ -61,7 +61,7 @@ enchant_list:
           - item_name: バルムントルーンブーツ(草原)
           - item_name: 刻印されたルーンブーツ(草原)
         slot_list: #
-          - slot: 2
+          - slot: 3
             refine: 0
             enchant_list: #
               - name: Str+5
@@ -98,7 +98,7 @@ enchant_list:
           - item_name: バルムントルーンアーマー(火炎)
           - item_name: 刻印されたルーンアーマー(火炎)
         slot_list: #
-          - slot: 2
+          - slot: 3
             refine: 0
             enchant_list: #
               - name: Str+5
@@ -116,7 +116,7 @@ enchant_list:
           - item_name: バルムントルーンマント(火炎)
           - item_name: 刻印されたルーンマント(火炎)
         slot_list: #
-          - slot: 2
+          - slot: 3
             refine: 0
             enchant_list: #
               - name: Str+5
@@ -134,7 +134,7 @@ enchant_list:
           - item_name: バルムントルーンブーツ(火炎)
           - item_name: 刻印されたルーンブーツ(火炎)
         slot_list: #
-          - slot: 2
+          - slot: 3
             refine: 0
             enchant_list: #
               - name: Str+5
@@ -171,7 +171,7 @@ enchant_list:
           - item_name: バルムントルーンアーマー(死屍)
           - item_name: 刻印されたルーンアーマー(死屍)
         slot_list: #
-          - slot: 2
+          - slot: 3
             refine: 0
             enchant_list: #
               - name: Str+5
@@ -189,7 +189,7 @@ enchant_list:
           - item_name: バルムントルーンマント(死屍)
           - item_name: 刻印されたルーンマント(死屍)
         slot_list: #
-          - slot: 2
+          - slot: 3
             refine: 0
             enchant_list: #
               - name: Str+5
@@ -207,7 +207,7 @@ enchant_list:
           - item_name: バルムントルーンブーツ(死屍)
           - item_name: 刻印されたルーンブーツ(死屍)
         slot_list: #
-          - slot: 2
+          - slot: 3
             refine: 0
             enchant_list: #
               - name: Str+5
@@ -228,7 +228,7 @@ enchant_list:
           - item_name: 刻印されたルーンマント(氷河)
           - item_name: 刻印されたルーンブーツ(氷河)
         slot_list: #
-          - slot: 2
+          - slot: 4
             refine: 0
             enchant_list: #
               - name: Str+5
@@ -244,7 +244,7 @@ enchant_list:
           - item_name: バルムントルーンアーマー(氷河)
           - item_name: 刻印されたルーンアーマー(氷河)
         slot_list: #
-          - slot: 2
+          - slot: 3
             refine: 0
             enchant_list: #
               - name: Str+5
@@ -262,7 +262,7 @@ enchant_list:
           - item_name: バルムントルーンマント(氷河)
           - item_name: 刻印されたルーンマント(氷河)
         slot_list: #
-          - slot: 2
+          - slot: 3
             refine: 0
             enchant_list: #
               - name: Str+5
@@ -280,7 +280,7 @@ enchant_list:
           - item_name: バルムントルーンブーツ(氷河)
           - item_name: 刻印されたルーンブーツ(氷河)
         slot_list: #
-          - slot: 2
+          - slot: 3
             refine: 0
             enchant_list: #
               - name: Str+5
@@ -313,7 +313,7 @@ enchant_list:
           - item_name: バルムントルーンリング(霊魂)
           - item_name: 刻印されたルーンリング(霊魂)
         slot_list: #
-          - slot: 2
+          - slot: 3
             refine: 0
             enchant_list: #
               - name: Str+5
@@ -346,7 +346,7 @@ enchant_list:
           - item_name: バルムントルーンリング(猛毒)
           - item_name: 刻印されたルーンリング(猛毒)
         slot_list: #
-          - slot: 2
+          - slot: 3
             refine: 0
             enchant_list: #
               - name: Str+5
@@ -379,7 +379,7 @@ enchant_list:
           - item_name: バルムントルーンリング(聖殿)
           - item_name: 刻印されたルーンリング(聖殿)
         slot_list: #
-          - slot: 2
+          - slot: 3
             refine: 0
             enchant_list: #
               - name: Str+5
