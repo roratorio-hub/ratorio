@@ -15,7 +15,6 @@
 	<!-- サイト共通系ファイル -->
 	<script type="text/javascript" src="../common/js/util.js"></script>
 	<script type="text/javascript" src="../../ro4/m/js/CModalWindow.js"></script>
-	
 
 	<!-- デバッグ定義 -->
 	<!-- 非デバッグ環境でも読み込む -->
@@ -99,93 +98,6 @@
 	<!-- [MIG] dat ファイル -->
 	<script type="text/javascript" src="../../ro4/m/js/data/mig.job.dat.js"></script>
 	<script type="text/javascript" src="js/data/mig.enchlist.dat.js"></script>
-
-	<!-- データ作成系、データ移行系 javascript ファイル -->
-	<!-- 非デバッグ環境では読み込まない。リリース時にはコメントアウトすること -->
-	<!--
-	<script type="text/javascript" src="js/debug/CAliasDataMaker.js"></script>
-	<script type="text/javascript" src="js/debug/CSkillDataMaker.js"></script>
-	<script type="text/javascript" src="js/debug/CUsableSkillDataMaker.js"></script>
-	<script type="text/javascript" src="js/debug/CAutoSpellDataMaker.js"></script>
-	<script type="text/javascript" src="js/debug/CMonsterDataMaker.js"></script>
-	<script type="text/javascript" src="js/debug/CMonsterGroupDataMaker.js"></script>
-	<script type="text/javascript" src="js/debug/CMonsterMapDataMaker.js"></script>
-	<script type="text/javascript" src="js/debug/CMonsterMapCategoryDataMaker.js"></script>
-	<script type="text/javascript" src="js/debug/CCardDataMaker.js"></script>
-	<script type="text/javascript" src="js/debug/CRndOptDataMaker.js"></script>
-	<script type="text/javascript" src="js/debug/CRndOptListDataMaker.js"></script>
-	<script type="text/javascript" src="js/debug/CRndOptTypeDataMaker.js"></script>
-	<script type="text/javascript" src="js/debug/CEnchListDataMaker.js"></script>
-	<script type="text/javascript" src="js/debug/CEnchTypeDataMaker.js"></script>
-	<script type="text/javascript" src="js/debug/CItemDataMaker.js"></script>
-	<script type="text/javascript" src="js/debug/CArrowDataMaker.js"></script>
-	<script type="text/javascript" src="js/debug/CCostumeDataMaker.js"></script>
-	<script type="text/javascript" src="js/debug/CPetDataMaker.js"></script>
-	<script type="text/javascript" src="js/debug/CItemSetDataMaker.js"></script>
-	<script type="text/javascript" src="js/debug/CTimeItemDataMaker.js"></script>
-	<script type="text/javascript" src="js/debug/CItemPackDataMaker.js"></script>
-	<script type="text/javascript" src="../kousin/js/changelog.h.js"></script>
-	<script type="text/javascript" src="js/debug/CChangeLogDataMaker.js"></script>
-
-	<script type="text/javascript" src="js/migration/CMigEffectiveItemSpMap.js"></script>
-	<script type="text/javascript" src="js/migration/CMigEquipSetInfo.js"></script>
-	<script type="text/javascript" src="js/migration/CMigEquipInfo.js"></script>
-	<script type="text/javascript" src="js/migration/CMigCharaData.js"></script>
-	<script type="text/javascript" src="js/migration/CMigCharaDataManager.js"></script>
-	<script type="text/javascript" src="js/migration/mig.global.js"></script>
-
-	<script type="text/javascript" src="js/migration/debug/mig.id.h.js"></script>
-	<script type="text/javascript" src="js/migration/debug/basic/CMigKeywordDataMakerBase.js"></script>
-	<script>/* 先行移植済み　ここから */</script>
-	<script type="text/javascript" src="js/data/debug/CMigJobDataMakeInfo.js"></script>
-	<script type="text/javascript" src="../../ro4/m/js/data/debug/datsrc/CMigJobDataMake.part.01.js"></script>
-	<script type="text/javascript" src="js/data/debug/CMigEquipableDataMakeInfo.js"></script>
-	<script>/* 先行移植済み　ここまで */</script>
-	<script type="text/javascript" src="js/migration/debug/basic/CMigStateDataMaker.js"></script>
-	<script type="text/javascript" src="js/migration/debug/basic/CMigBuffDataMaker.js"></script>
-	<script type="text/javascript" src="js/migration/debug/basic/CMigArrowDataMaker.js"></script>
-	<script type="text/javascript" src="js/migration/debug/item/CMigItemDataMaker.js"></script>
-	<script type="text/javascript" src="js/migration/debug/item/CMigItemDataMaker.part.00.js"></script>
-	<script type="text/javascript" src="js/migration/debug/item/CMigItemDataMaker.part.01.js"></script>
-	<script type="text/javascript" src="js/migration/debug/item/CMigItemDataMaker.part.02.js"></script>
-	<script type="text/javascript" src="js/migration/debug/item/CMigItemDataMaker.part.03.js"></script>
-	<script type="text/javascript" src="js/migration/debug/item/CMigItemDataMaker.part.04.js"></script>
-	<script type="text/javascript" src="js/migration/debug/item/CMigItemDataMaker.part.05.js"></script>
-	<script type="text/javascript" src="js/migration/debug/item/CMigItemDataMaker.part.06.js"></script>
-	<script type="text/javascript" src="js/migration/debug/item/CMigItemDataMaker.part.07.js"></script>
-	<script type="text/javascript" src="js/migration/debug/item/CMigItemDataMaker.part.08.js"></script>
-	<script type="text/javascript" src="js/migration/debug/item/CMigItemDataMaker.part.09.js"></script>
-	<script type="text/javascript" src="js/migration/debug/item/CMigItemDataMaker.part.10.js"></script>
-	<script>/* 先行移植済み　ここから */</script>
-	<script type="text/javascript" src="js/data/debug/CMigEnchListDataMakeInfo.js"></script>
-	<script type="text/javascript" src="js/data/debug/datsrc/CMigEnchListDataMake.part.00.js"></script>
-	<script type="text/javascript" src="js/data/debug/datsrc/CMigEnchListDataMake.part.01.js"></script>
-	<script type="text/javascript" src="js/data/debug/datsrc/CMigEnchListDataMake.part.96.js"></script>
-	<script type="text/javascript" src="js/data/debug/datsrc/CMigEnchListDataMake.part.97.js"></script>
-	<script type="text/javascript" src="js/data/debug/datsrc/CMigEnchListDataMake.part.98.js"></script>
-	<script type="text/javascript" src="js/data/debug/datsrc/CMigEnchListDataMake.part.99.js"></script>
-	<script>/* 先行移植済み　ここまで */</script>
-	<script type="text/javascript" src="js/migration/debug/basic/dataMakeManualCustomize.js"></script>
-	<script type="text/javascript" src="js/migration/debug/parse/CMigRrtSrcParsedInfo.js"></script>
-	<script type="text/javascript" src="js/migration/debug/parse/CMigDataParserEnchList.js"></script>
-	<script type="text/javascript" src="js/migration/debug/parse/CMigDataParserItem.js"></script>
-	<script type="text/javascript" src="js/migration/debug/parse/CMigSourceTextParser.js"></script>
-
-	<script type="text/javascript" src="js/migration/debug/parse/CMigRrtSrcKeywordInfoList.js"></script>
-	<script type="text/javascript" src="js/migration/debug/parse/CMigRrtSrcKeywordInfoListLibrary.js"></script>
-	<script type="text/javascript" src="js/migration/debug/parse/CMigRrtSrcMatcher.js"></script>
-	<script type="text/javascript" src="js/migration/debug/parse/CMigRrtSrcMatcherLibrary.js"></script>
-	<script type="text/javascript" src="js/migration/debug/parse/CMigRrtSrcMatchedTree.js"></script>
-	<script type="text/javascript" src="js/migration/debug/parse/CMigRrtSrcMatchResult.js"></script>
-
-	<script type="text/javascript" src="js/migration/debug/test/CMigSpPatternCoverageTree.js"></script>
-	<script type="text/javascript" src="js/migration/debug/test/CMigTestCaseCoverageData.js"></script>
-	<script type="text/javascript" src="js/migration/debug/test/CMigCoverageData.js"></script>
-	<script type="text/javascript" src="js/migration/debug/test/CMigTestCaseLabel.js"></script>
-	<script type="text/javascript" src="js/migration/debug/test/CMigTestCondition.js"></script>
-	<script type="text/javascript" src="js/migration/debug/test/CMigTestCase.js"></script>
-	<script type="text/javascript" src="js/migration/debug/test/CMigItemDataTest.js"></script>
-	-->
 
 	<!-- 機能処理系 javascript ファイル -->
 	<script type="text/javascript" src="../../ro4/m/js/calcautospell.js"></script>
@@ -2024,8 +1936,12 @@
 <script type="text/javascript" src="../../ro4/m/js/CSaveController.js"></script>
 <script type="text/javascript" src="../../ro4/m/js/saveload.js"></script>
 
-<!-- 画面下部バフ系 javascript ファイル -->
+<!-- バフ設定系 javascript ファイル -->
 <script type="text/javascript" src="../../ro4/m/js/BuffMusicAndDance.js"></script>
+<script type="text/javascript" src="../../ro4/m/js/BuffJobSpecificSelf.js"></script>
+<script type="text/javascript" src="../../ro4/m/js/BuffGuildAndGospel.js"></script>
+<script type="text/javascript" src="../../ro4/m/js/BuffItemAndFood.js"></script>
+<script type="text/javascript" src="../../ro4/m/js/BuffOtherCategory.js"></script>
 
 <!-- 機能処理系 javascript ファイル （この辺の順序整理したい）-->
 <script type="text/javascript" src="../../ro4/m/js/CAttackMethodAreaComponentManager.js"></script>
