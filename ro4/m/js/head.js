@@ -64,37 +64,15 @@ CGlobalConstManager.DefineEnum(
 	1
 );
 /** セーブデータ配列. 既に使われていない可能性有り */
-let SaveDataAll = new Array();
-for(var i=0;i<=19;i++) SaveDataAll[i] = "ZZZZ";
+let SaveDataAll = Array(20).fill("ZZZZ");
 /** セーブデータ名配列. 既に使われていない可能性有り */
-let SaveNameAll = new Array();
-for(var i=0;i<=500;i++) SaveNameAll[i] = "ZZZZ";
+let SaveNameAll = Array(501).fill("ZZZZ");
 /** シーズモードフラグ */
 let n_SiegeMode = false;
 /** BaseLv */
 let n_A_BaseLV=1;
 /** 遠距離フラグ. CSkillData.RANGE_SHORT | CSkillData.RANGE_LONG | CSkillData.RANGE_MAGIC | CSkillData.RANGE_SPECIAL */
 let n_Enekyori = false;
-/** 天帝 天気の状態 正午 */
-let state_shougo = 0;
-/** 天帝 天気の状態 月出 */
-let state_tukidashi = 0;
-/** 天帝 天気の状態 日出 */
-let state_hinode = 0;
-/** 天帝 天気の状態 月星 */
-let state_tukibotsu = 0;
-/** 天帝 天気の状態 日没 */
-let state_nichibotsu = 0;
-/** 天帝 天気の状態 天気の身 */
-let state_tenki_no_mi = 0;
-/** パッシブ持続系 ウィンドウ可視状態 */
-let n_Skill1SW = false;
-/** ギルドスキル/ゴスペル/他 ウィンドウ可視状態 */
-let n_Skill4SW = false;
-/** アイテム・食品他 ウィンドウ可視状態 */
-let n_Skill7SW = false;
-/** その他の支援/設定 ウィンドウ可視状態 */
-let n_Skill8SW = false;
 /** レックスエーテルナの計算に係るフラグ. 解析不足でロジックが追えてない. */
 let wLAch = false;
 /** 三段掌に遠距離ダメージUPを適用するフラグ */
@@ -130,13 +108,9 @@ let n_A_ActiveSkill = null;
 /** スキルLv */
 let n_A_ActiveSkillLV = null;
 /** アイテムSPの効果量を収める配列. ITEM_SP_XXX を添え字にして要素にアクセスする. */
-let n_tok = new Array();
+let n_tok = Array(451).fill(0);
 /** アイテムSPの効果量を収める配列. n_tok と違って耐性上限の 95 を超えて効果量を格納出来る. */
-let n_tok_no_limit = new Array();
-for(var i=0;i<=450;i++) {
-	n_tok[i] = 0;
-	n_tok_no_limit[i] = 0;
-}
+let n_tok_no_limit = Array(451).fill(0);
 /** equip.js の古い関数内部で使われていた変数. 削除候補 */
 let first_check = 0;
 /** 必中ダメージ */
@@ -269,7 +243,6 @@ let resistValueArrayOver = 0;
 let bodyElmRatioArray = 0;
 /** 属性倍率　耐性を考慮した最終的な値 */
 let finalRatioArray = 0;
-
 /** 変動詠唱 0 を達成するために必要な DEX */
 const CAST_PARAM_BORDER = 265;
 /** オートガードによるダメージ減衰率 */
@@ -341,22 +314,21 @@ const HEAL_TARGETTYPE_ENEMY = 2;
  * @return 全戦闘結果情報インスタンス（CBattleCalcResultAll クラスのインスタンス）
  */
 function BattleCalc999(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray) {
-	var idx = 0;
-	var idxChild = 0;
-	var idxAS = 0;
-	var ret = null;
-	var bPoisonReactRevengeNormal = false;
-	var actRate = 0;
-	var skillId = 0;
-	var skillIdOrigin = 0;
-	var cloned = null;
-	var dmgRate = 0;
-	var dmgRateArray = null;
-	var valueWork = 0;
-	var resultWork = null;
-	var bCommonAppend = true;
-	var battleCalcInfoArray = null;
-	var battleCalcResultAll = null;
+	let idx = 0;
+	let idxChild = 0;
+	let idxAS = 0;
+	let bPoisonReactRevengeNormal = false;
+	let actRate = 0;
+	let skillId = 0;
+	let skillIdOrigin = 0;
+	let cloned = null;
+	let dmgRate = 0;
+	let dmgRateArray = null;
+	let valueWork = 0;
+	let resultWork = null;
+	let bCommonAppend = true;
+	let battleCalcInfoArray = null;
+	let battleCalcResultAll = null;
 	// 戻り値用インスタンス用意
 	battleCalcResultAll = new CBattleCalcResultAll();
 	// 基本情報を設定
@@ -671,11 +643,11 @@ function BattleCalc999(battleCalcInfo, charaData, specData, mobData, attackMetho
  * @returns 
  */
 function BattleCalc999Body(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, bLeft) {
-	var idx = 0;
-	var idxUnit = 0;
-	var battleCalcResult = null;
-	var dmgUnitArray = null;
-	var bCri = false;
+	let idx = 0;
+	let idxUnit = 0;
+	let battleCalcResult = null;
+	let dmgUnitArray = null;
+	let bCri = false;
 	// ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
 	//
 	// 呼び出し元から移植
@@ -952,23 +924,21 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 	let bMatchCond = false;
 	let clonedClacInfo = null;
 	let ampWork = 0;
+	let w_MATK = [0,0,0];
 	wbairitu = 100;
 	wCast = 0;
 	n_KoteiCast = 0;
 	wHITsuu = 1;
 	wLAch = false;
 	w_DMG = [0,0,0];
-	var w_MATK = [0,0,0];
-		cast_kotei = false;
+	cast_kotei = false;
 	str_PerfectHIT_DMG = 0;
-	//SG_Special_ch = 0;
 	wActiveHitNum = 1;
 	for(var i=0;i<=2;i++){
 		Last_DMG_A[i] = 0;
 		Last_DMG_B[i] = 0;
 	}
 	n_AS_check_3dan = false;
-
 	g_bUnknownCasts = false;
 	g_bDefinedDamageIntervals = false;
 	n_Buki_Muri = false;
@@ -2730,11 +2700,11 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 
 			// 「天帝」スキル「太天一陽」
 			// 2024/11/11 もなこさん提供データに対して誤差なしを確認
-			case SKILL_ID_TAITEN_ICHIYO:
+			case SKILL_ID_TAITEN_ICHIYO: {
 				// 日出、正午、天気の身状態でのみ使用可能
-				state_hinode = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 1);
-				state_shougo = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 2);
-				state_tenki_no_mi = (UsedSkillSearch(SKILL_ID_TENKINO_MI) >= 1);
+				const state_hinode = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 1);
+				const state_shougo = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 2);
+				const state_tenki_no_mi = (UsedSkillSearch(SKILL_ID_TENKINO_MI) >= 1);
 				if (!state_hinode && !state_shougo && !state_tenki_no_mi) {
 					wbairitu = 0;
 					n_Buki_Muri = true;
@@ -2759,14 +2729,14 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				// 分割ヒット
 				wActiveHitNum = 2;
 				break;
-
+			}
 			// 「天帝」スキル「天陽」
 			// 2024/11/11 もなこさん提供データに対して誤差なしを確認
-			case SKILL_ID_TENYO:
+			case SKILL_ID_TENYO: {
 				// 正午、日没、天気の身状態でのみ使用可能
-				state_shougo = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 2);
-				state_nichibotsu = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 3);
-				state_tenki_no_mi = (UsedSkillSearch(SKILL_ID_TENKINO_MI) >= 1)
+				const state_shougo = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 2);
+				const state_nichibotsu = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 3);
+				const state_tenki_no_mi = (UsedSkillSearch(SKILL_ID_TENKINO_MI) >= 1)
 				if (!state_shougo && !state_nichibotsu && !state_tenki_no_mi) {
 					wbairitu = 0;
 					n_Buki_Muri = true;
@@ -2791,7 +2761,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				// 分割ヒット
 				wActiveHitNum = 2;
 				break;
-
+			}
 			// 「天帝」スキル「天地一月」
 			case SKILL_ID_TENCHI_ICHIGETSU:
 				// 距離属性
@@ -2814,11 +2784,11 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				break;
 
 			// 「天帝」スキル「太天一月」
-			case SKILL_ID_TAITEN_ICHIGETSU:
+			case SKILL_ID_TAITEN_ICHIGETSU: {
 				// 月出、正子、天気の身状態でのみ使用可能
-				state_tukidashi = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 4);
-				state_shougo = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 5);
-				state_tenki_no_mi = (UsedSkillSearch(SKILL_ID_TENKINO_MI) >= 1);
+				const state_tukidashi = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 4);
+				const state_shougo = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 5);
+				const state_tenki_no_mi = (UsedSkillSearch(SKILL_ID_TENKINO_MI) >= 1);
 				if (!state_tukidashi && !state_shougo && !state_tenki_no_mi) {
 					wbairitu = 0;
 					n_Buki_Muri = true;
@@ -2846,14 +2816,14 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				// 分割ヒット
 				wActiveHitNum = 2;
 				break;
-
+			}
 			// 「天帝」スキル「天月」
 			// 2024/11/11 もなこさん提供データに対して誤差なしを確認
-			case SKILL_ID_TENGETSU:
+			case SKILL_ID_TENGETSU: {
 				// 正子、月没、天気の身状態でのみ使用可能
-				state_shougo = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 5);
-				state_tukibotsu = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 6);
-				state_tenki_no_mi = (UsedSkillSearch(SKILL_ID_TENKINO_MI) >= 1);
+				const state_shougo = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 5);
+				const state_tukibotsu = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 6);
+				const state_tenki_no_mi = (UsedSkillSearch(SKILL_ID_TENKINO_MI) >= 1);
 				if (!state_tukibotsu && !state_shougo && !state_tenki_no_mi) {
 					wbairitu = 0;
 					n_Buki_Muri = true;
@@ -2882,7 +2852,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				// 分割ヒット
 				wActiveHitNum = 2;
 				break;
-
+			}
 			// 「天帝」スキル「天地万星」
 			case SKILL_ID_TENCHI_BANSE:
 				// 距離属性
@@ -3159,7 +3129,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				wActiveHitNum = 3;
 				break;
 
-
 			/*
 				「スピリットハンドラー」スキル「タイガースラッシュ」
 				2024/11/08 誤差なしを確認済み
@@ -3194,7 +3163,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				wActiveHitNum = 2;
 				break;
 
-
 			/*
 				「スピリットハンドラー」スキル「タイガーハウリング」
 			*/
@@ -3225,7 +3193,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				// スキル説明にないが3分割スキル
 				wActiveHitNum = 3;
 				break;
-
 
 			/*
 				「スピリットハンドラー」スキル「タイガーストライク」
@@ -3866,53 +3833,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				}
 				break;
 
-				
-	/*
-			case SKILL_ID_DUMMY:
-				// 使用武器制限
-				if (n_A_WeaponType != ITEM_KIND_SHOTGUN) {
-					wbairitu = 0;
-					break;
-				}
-
-				n_Enekyori = 1;	// 遠距離フラグ
-				wHITsuu = 3;	// 多段ヒット数
-
-				// CSkillManager.js で定義された詠唱時間などを取得する
-				g_bUnknownCasts = true;	// 詠唱時間など未計測フラグ
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-
-				// 設置型の場合
-				g_bDefinedDamageIntervals = true;
-				n_Delay[5] = 500;	// ダメージ間隔
-				n_Delay[6] = 5000;	// オブジェクト存続時間
-
-				// CAttackMethodAreaComponentManager.js で定義されたオプションを取得する
-				option_count = attackMethodConfArray[0].GetOptionValue(0);
-				wbairitu += option_count * (950 + (150 * n_A_ActiveSkillLV));
-
-				// 習得済みスキル条件
-				if (UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0) {
-					wbairitu = 650 + (150 * n_A_ActiveSkillLV);
-				} else {
-					wbairitu = 400 + (100 * n_A_ActiveSkillLV);
-					bCri = false;										// クリティカルしない場合
-				}
-				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// 特性ステータス補正
-
-				// 種族特攻
-				switch (parseInt(mobData[MONSTER_DATA_INDEX_RACE], 10)) {
-					case RACE_ID_DEMON:
-						wHITsuu = 3;
-				}
-
-				wbairitu *= n_A_BaseLV / 100;							// BaseLv補正
-				break;
-	*/
-
 	/* --------------------------------------------------
 	↑ 物理攻撃スキル追加位置
 	-------------------------------------------------- */
@@ -4176,8 +4096,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 
 			break;
 
-
-
 		case SKILL_ID_DOUBLE_STRAFING:
 		case SKILL_ID_PIERCE:
 		case SKILL_ID_FREEZING_TRAP:
@@ -4341,8 +4259,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 
 			break;
 
-
-
 		case SKILL_ID_ISHINAGE:
 			w_HIT = 100;
 			w_HIT_HYOUJI = 100;
@@ -4361,8 +4277,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 
 			break;
-
-
 
 		case SKILL_ID_BLITZ_BEAT:
 		case SKILL_ID_FALCON_ASSALT: {
@@ -4439,8 +4353,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
-
-
 		case SKILL_ID_SHIELD_BOOMERANG:
 		case SKILL_ID_SHIELD_BOOMERANG_TAMASHI:
 			n_PerfectHIT_DMG = 0;
@@ -4469,7 +4381,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
-
 
 		// 「パラディン」スキル「シールドチェーン」
 		case SKILL_ID_SHIELD_CHAIN:
@@ -4518,8 +4429,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
-
-
 		case SKILL_ID_SPIRAL_PIERCE:	// スパイラルピアース
 			wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
@@ -4559,8 +4468,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
-
-
 		case SKILL_ID_VENOM_SPLASHER:
 			w_HIT = 100;
 			w_HIT_HYOUJI = 100;
@@ -4587,8 +4494,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
-
-
 
 		case SKILL_ID_SOUL_BREAKER:
 			w_HIT = 100;
@@ -4629,8 +4534,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
-
-
 
 		case SKILL_ID_GRAND_CROSS:
 			w_HIT = 100;
@@ -4753,8 +4656,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
-
-
 		case SKILL_ID_SACRIFICE:
 			w_HIT = 100;
 			w_HIT_HYOUJI = 100;
@@ -4772,8 +4673,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
-
-
 
 		case SKILL_ID_HAKKEI:
 			n_PerfectHIT_DMG = 0;
@@ -4805,8 +4704,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
-
-
 
 		case SKILL_ID_ASHURA_HAOKEN:
 		case SKILL_ID_ASHURA_HAOKEN_SPKOTEI:
@@ -4856,8 +4753,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
-
-
 
 		case SKILL_ID_SHURIKEN_NAGE: {	// 手裏剣投げ
 			n_Enekyori=1;
@@ -4977,8 +4872,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
-
-
 		case SKILL_ID_ZENI_NAGE:
 			w_HIT_HYOUJI = 100;
 			w_HIT = 100;
@@ -4994,8 +4887,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
-
-
 
 		case SKILL_ID_MUCHANAGE:
 			w_HIT = Math.floor((10 - (1 / (n_A_DEX + n_A_LUK)) * 500) * (n_A_ActiveSkillLV / 2 + 5));
@@ -5022,8 +4913,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
-
-
 
 		case SKILL_ID_ISSEN:
 		case SKILL_ID_ISSEN_MAX:
@@ -5068,8 +4957,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
-
-
 		case SKILL_ID_ACID_TERROR:
 			w_HIT = 100;
 			w_HIT_HYOUJI = 100;
@@ -5103,7 +4990,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
-
 
 		case SKILL_ID_ACID_DEMONSTRATION:
 		case SKILL_ID_FIRE_EXPANSION:
@@ -5161,8 +5047,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
-
-
 
 		case SKILL_ID_LAND_MINE:
 		case SKILL_ID_BLAST_MINE:
@@ -5302,8 +5186,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
-
-
 		case 488:
 			w_HIT = 100;
 			w_HIT_HYOUJI = 100;
@@ -5329,8 +5211,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
-
-
 
 		case SKILL_ID_GRAVITATION_FIELD:
 			// 詠唱時間等
@@ -5358,7 +5238,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i] = w_DMG[2];
 			}
 			break;
-
 
 		case 423:
 			w_HIT = 100;
@@ -5554,8 +5433,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
-
-
 		case SKILL_ID_CHAIN_LIGHTNING:
 			w_HIT = 100;
 			w_HIT_HYOUJI = 100;
@@ -5653,8 +5530,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
-
-
 
 		case SKILL_ID_TETRA_BOLTEX:
 			w_HIT = 100;
@@ -5891,8 +5766,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
-
-
 		case SKILL_ID_PINGPOINT_ATTACK:
 			w_HIT = 100;
 			w_HIT_HYOUJI = 100;
@@ -5984,8 +5857,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
-
-
 		case SKILL_ID_SHURASHINDAN:
 			n_Enekyori = 1;
 			n_Delay[7] = Math.max(200, 1200 - 200 * n_A_ActiveSkillLV);
@@ -6034,8 +5905,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
-
-
 
 		case SKILL_ID_HASAICHU:
 			if(n_DEATH_BOUND[3] == 0){
@@ -6129,8 +5998,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			}
 			break;
 
-
-
 		case SKILL_ID_SHINDOZANKYO:
 			n_Enekyori=0;
 			wCast = 1000 + 100 * n_A_ActiveSkillLV;
@@ -6187,8 +6054,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
-
-
 
 		case SKILL_ID_BLOOD_SUCKER:
 		case SKILL_ID_THORN_TRAP:
@@ -6350,8 +6215,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
-
-
 		case SKILL_ID_SENKO_RENGEKI:
 		case SKILL_ID_COMBO_SANDAN_MONK:
 		case SKILL_ID_COMBO_SANDAN_CHAMP:
@@ -6389,8 +6252,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
-
-
 
 		// 「アースクエイク」
 		case SKILL_ID_EARTH_QUAKE:
@@ -6448,8 +6309,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
-
-
 
 		case SKILL_ID_MAGMA_ILLUPTION:
 			wCast = 2000;
@@ -6511,7 +6370,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
-
 		//「メイジ」スキル「ナパームビート」
 		case SKILL_ID_NAPALM_BEAT:
 			n_PerfectHIT_DMG = 0;
@@ -6560,7 +6418,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
-
 		// 「ハイウィザード」スキル「ナパームバルカン」
 		case SKILL_ID_NAPALM_VULKAN:
 			n_PerfectHIT_DMG = 0;
@@ -6604,8 +6461,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
-
-
 		case SKILL_ID_FIRE_PILLAR:
 			n_PerfectHIT_DMG = 0;
 			n_Enekyori=2;
@@ -6640,8 +6495,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
-
-
 
 		// リベリオン－マススパイラル（ハッケイから流用）
 		case SKILL_ID_MASS_SPIRAL:
@@ -6680,8 +6533,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
-
-
 
 		// リベリオン－ラウンドトリップ（修羅身弾から流用）
 		case SKILL_ID_ROUND_TRIP:
@@ -6738,8 +6589,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
-
-
 
 		// 紅焔脚（修羅身弾から流用）
 		case SKILL_ID_KOEN_KYAKU:
@@ -6806,7 +6655,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
-
 		case SKILL_ID_ZYURYOKU_CHOSE:
 
 			wbairitu = 100;
@@ -6872,76 +6720,18 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 
 			break;
-/*
-		// 「星帝」スキル「創星の書」
-		case SKILL_ID_SOSENO_SHO:
-			n_Enekyori=1;
-			// 特定の戦闘エリアでの補正
-			switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
-			case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
-				wbairitu = 750 + 750 * n_A_ActiveSkillLV;
-				break;
-			default:
-				wbairitu = 500 + 500 * n_A_ActiveSkillLV;
-				break;
-			}
-			wCast = 1000 * n_A_ActiveSkillLV;
-			n_Delay[6] = 10;
-			n_Delay[7] = 5000;
-			wHITsuu = 20;
-			// 必中ダメージのみ仮計算（属性倍率未適用）
-			n_PerfectHIT_DMG = GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray);
-			for(var i=0;i<=2;i++){
-				w_DMG[i] = n_A_DMG[i];
-				w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
-				w_DMG[i] = Math.floor(w_DMG[i] * wbairitu / 100);
-				w_DMG[i] = ApplyMonsterDefence(mobData, w_DMG[i], 0);
-				w_DMG[i] += GetFixedAppendAtk(n_A_ActiveSkill, charaData, specData, mobData, w_DMG[i],i,-1);
-				w_DMG[i] += n_PerfectHIT_DMG;
-				w_DMG[i] = GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray);
-				w_DMG[i] = ApplyHitJudgeElementRatio(n_A_ActiveSkill, w_DMG[i], mobData);
-				w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
-
-				if(wActiveHitNum > 1) {
-					w_DMG[i] = Math.floor(w_DMG[i] / wActiveHitNum) * wActiveHitNum;
-				}
-			}
-			if(n_AS_MODE) return w_DMG;
-			for(var i=0;i<=2;i++){
-
-				// TODO: ダメージ表示方式変更対応
-				//Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i] * wHITsuu;
-
-				g_damageTextArray[i].push(Last_DMG_A[i]);
-				if(wHITsuu > 1) g_damageTextArray[i].push("(", w_DMG[i], "×", wHITsuu, "hit)");
-			}
-			// 改めて必中ダメージ計算
-			n_PerfectHIT_DMG = GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray);
-			n_PerfectHIT_DMG = ApplyHitJudgeElementRatio(n_A_ActiveSkill, n_PerfectHIT_DMG, mobData);
-			n_PerfectHIT_DMG = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, n_PerfectHIT_DMG);
-			w_DMG[1] = (w_DMG[1] * w_HIT + n_PerfectHIT_DMG * (100-w_HIT))/100;
-			AS_PLUS();
-			BuildCastAndDelayHtml(mobData);
-			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
-			break;
-*/
 
 		default:
 			bPhysicalFormula = false;
 			break;
 
 		}
-
 		// 物理判定スキルでなければ別処理へ
 		if (!bPhysicalFormula) {
 			break;
 		}
-
 		return w_DMG;
 	}
-
-
-
 
 	//----------------------------------------------------------------
 	//
@@ -15417,1325 +15207,6 @@ function RebuildSizeModifyRatioInfo(battleCalcInfo, charaData, specData, mobData
 }
 
 /**
- * パッシブ持続系 チェックボックス生成
- */
-function Click_PassSkillSW(){
-
-	let idx = 0;
-	let passiveSkillIdArray = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, n_A_JOB).GetPassiveSkillIdArray();
-	let table_header = `<TABLE Border class="tooltip-target" data-tooltip="パッシブスキル等は今後削除する予定です。代わりに習得スキル欄を使ってください。">
-		<TR><TD ColSpan="4" id="A1TD" Bgcolor="#DDDDFF" class="title">
-		<input id="OBJID_CHECK_A1_SKILL_SW" type="checkbox" name="A1_SKILLSW" onClick="Click_PassSkillSW()">
-		<label for="OBJID_CHECK_A1_SKILL_SW">${GetJobName(n_A_JOB)}固有自己支援</label>
-		<span id="A1used"></span>
-		</TD></TR>`;
-
-	n_Skill1SW = document.calcForm.A1_SKILLSW.checked;
-	if(n_Skill1SW){
-			let end = passiveSkillIdArray.length -1;
-			let str = table_header;
-			for(var i=0;i<=end;i+=2) str += '<TR><TD id="P_Skill'+ i +'"></TD><TD id="P_Skill'+ i +'s"></TD><TD id="P_Skill'+ (i+1) +'"></TD><TD id="P_Skill'+ (i+1) +'s"></TD></TR>';
-			str += '</TABLE>';
-			myInnerHtml("ID_PASS_SKILL",str,0);
-			document.calcForm.A1_SKILLSW.checked = true;
-
-			for(var i=0;i<=end;i++){
-				if (passiveSkillIdArray[i] == SKILL_ID_SHUCHURYOKU_KOZYO) {
-					myInnerHtml("P_Skill"+i, SkillObjNew[passiveSkillIdArray[i]][SKILL_DATA_INDEX_NAME] + "　<a href=\"../kousin/note20210606.html\" target=\"_blank\">(★注意情報★)</a>", 0);
-				}
-				else {
-					myInnerHtml("P_Skill"+i,SkillObjNew[passiveSkillIdArray[i]][SKILL_DATA_INDEX_NAME],0);
-				}
-				myInnerHtml("P_Skill"+i+"s","<select name=A_skill"+i+" id=A_skill"+i+" onChange=Click_A1(1)></select>",0);
-			}
-			for(var j=0;j<=end;j++){
-				var w = passiveSkillIdArray[j];
-				var w2 = [12,68,74,152,153,155,196,253,258,301,309,310,322,345,364,365,383,379,385,386,389,390,392,420,421,422,450,453,522,750,752];
-				var wOBJ = document.getElementById("A_skill"+j);
-				if(NumSearch(w,w2)){
-					wOBJ.options[0] = new Option("off",0);
-					wOBJ.options[1] = new Option("on",1);
-				}
-				else{
-					for(let i = 10; i >= 0; i--) {
-						wOBJ.options[i] = null;
-					}
-					for(let i = 0; i <= SkillObjNew[passiveSkillIdArray[j]][SKILL_DATA_INDEX_MAXLV]; i++) {
-						wOBJ.options[i] = new Option(i,i);
-					}
-				}
-				// スパノビの魂専用処理
-				if (w == SKILL_ID_SUPER_NOVICENO_TAMASHI) {
-					wOBJ.setAttribute("onClick", "RefreshSuperNoviceFullWeapon(parseInt(this.value) == 1)");
-				}
-			}
-			var w = NumSearch2(58,passiveSkillIdArray);
-			if(w != -1){
-				var wOBJ = document.getElementById("A_skill" + w);
-				for(i=10;i>=0;i--) wOBJ.options[i] = null;
-				var w_ECname=["off","6%","12%","18%","24%","30%"];
-				for(i=1;i<=5;i++) w_ECname[i] += "カット";
-				for(i=0;i<=5;i++) wOBJ.options[i] = new Option(w_ECname[i],i);
-			}
-			var w = NumSearch2(78,passiveSkillIdArray);
-			if(w != -1){
-				var wOBJ = document.getElementById("A_skill" + w);
-				for(i=10;i>=0;i--) wOBJ.options[i] = null;
-				var w_name = new Array();
-				w_name[0] = "ペコなし";
-				for(i=1;i<=6;i++) w_name[i] = "修練" + (i-1);
-				for(i=0;i<=6;i++) wOBJ.options[i] = new Option(w_name[i],i);
-			}
-			var w = NumSearch2(446,passiveSkillIdArray);
-			if(w != -1){
-				var wOBJ = document.getElementById("A_skill" + w);
-				for(i=10;i>=0;i--) wOBJ.options[i] = null;
-				var w_name = new Array();
-				w_name[0] = "未騎乗";
-				for(i=1;i<=6;i++) w_name[i] = "Lv" + (i-1);
-				for(i=0;i<=6;i++) wOBJ.options[i] = new Option(w_name[i],i);
-			}
-			var w = NumSearch2(SKILL_ID_FIGHTING_SPIRIT,passiveSkillIdArray);
-			if(w != -1){
-				var wOBJ = document.getElementById("A_skill" + w);
-				for(i=10;i>=0;i--) wOBJ.options[i] = null;
-				wOBJ.options[0] = new Option("off",0);
-				wOBJ.options[1] = new Option("on(ソロ)",1);
-				for(i=2;i<=12;i++) wOBJ.options[i] = new Option(i +"人PT",i);
-			}
-			var w = NumSearch2(SKILL_ID_DRAGONIC_AURA_STATE,passiveSkillIdArray);
-			if(w != -1){
-				var wOBJ = document.getElementById("A_skill" + w);
-				for(i=10;i>=0;i--) wOBJ.options[i] = null;
-				wOBJ.options[0] = new Option("未習得",0);
-				wOBJ.options[1] = new Option("未使用",1);
-				for(i=1;i<=10;i++) wOBJ.options[i+1] = new Option("Lv"+i, i+1);
-			}
-			var w = NumSearch2(367,passiveSkillIdArray);
-			if(w != -1){
-				var wOBJ = document.getElementById("A_skill" + w);
-				for(i=10;i>=0;i--) wOBJ.options[i] = null;
-				var w_name=[0,1,2,3,4,5,6,8,10];
-				for(i=0;i<=8;i++) wOBJ.options[i] = new Option((w_name[i] * 10) + "%",w_name[i]);
-			}
-			var w = NumSearch2(185,passiveSkillIdArray);
-			if(w != -1){
-				if ((n_A_JOB != JOB_ID_MONK) && (n_A_JOB != JOB_ID_CHAMPION)) {
-					var wOBJ = document.getElementById("A_skill" + w);
-					for(i=10;i>=0;i--) wOBJ.options[i] = null;
-					for(i=0;i<=15;i++) wOBJ.options[i] = new Option(i,i);
-				}
-			}
-			var w = NumSearch2(496,passiveSkillIdArray);
-			if(w != -1){
-				var wOBJ = document.getElementById("A_skill" + w);
-				for(i=10;i>=0;i--) wOBJ.options[i] = null;
-				wOBJ.options[0] = new Option("off",0);
-				for(i=1;i<=10;i++) wOBJ.options[i] = new Option(i+"秒",i);
-			}
-			var w = NumSearch2(739,passiveSkillIdArray);
-			if(w != -1){
-				var wOBJ = document.getElementById("A_skill" + w);
-				for(i=10;i>=0;i--) wOBJ.options[i] = null;
-				wOBJ.options[0] = new Option("未搭乗",0);
-				wOBJ.options[1] = new Option("搭乗中",1);
-			}
-			var w = NumSearch2(743,passiveSkillIdArray);
-			if(w != -1){
-				var wOBJ = document.getElementById("A_skill" + w);
-				for(i=10;i>=0;i--) wOBJ.options[i] = null;
-				wOBJ.options[0] = new Option("-",0);
-				wOBJ.options[1] = new Option("FB3",1);
-				wOBJ.options[2] = new Option("CB3",2);
-				wOBJ.options[3] = new Option("LB3",3);
-			}
-			var w = NumSearch2(SKILL_ID_ABR_DUAL_CANNON,passiveSkillIdArray);
-			if(w != -1){
-				var wOBJ = document.getElementById("A_skill" + w);
-				for(i=10;i>=0;i--) wOBJ.options[i] = null;
-				wOBJ.options[0] = new Option("未召喚",0);
-				wOBJ.options[1] = new Option("召喚中",1);
-			}
-
-			// シールドスペル(ATK+)
-			var w = NumSearch2(744,passiveSkillIdArray);
-			if(w != -1){
-				var wOBJ = document.getElementById("A_skill" + w);
-				for(i=10;i>=0;i--) wOBJ.options[i] = null;
-				wOBJ.options[0] = new Option("off",0);
-				wOBJ.options[1] = new Option("装備盾",1);
-				for(i=2;i<n_SieldSp.length;i++) wOBJ.options[i] = new Option("(+"+ n_SieldSpDum[i] +")",n_SieldSpNum[i]);
-			}
-
-			// シールドスペル(反射)
-			var w = NumSearch2(756,passiveSkillIdArray);
-			if(w != -1){
-				var wOBJ = document.getElementById("A_skill" + w);
-				for(i=10;i>=0;i--) wOBJ.options[i] = null;
-				wOBJ.options[0] = new Option("off",0);
-				wOBJ.options[1] = new Option("装備盾",1);
-				for(i=2;i<n_SieldSp.length;i++) wOBJ.options[i] = new Option("("+ n_SieldSpDum[i] +")",n_SieldSpNum[i]);
-			}
-
-			// シールドスペル(DEF+)
-			var w = NumSearch2(745,passiveSkillIdArray);
-			if(w != -1){
-				var wOBJ = document.getElementById("A_skill" + w);
-				for(i=10;i>=0;i--) wOBJ.options[i] = null;
-				wOBJ.options[0] = new Option("off",0);
-				wOBJ.options[1] = new Option("装備盾",1);
-				for(i=2;i<=11;i++) wOBJ.options[i] = new Option("(+"+ (i-1) +")",i);
-			}
-			var w = NumSearch2(747,passiveSkillIdArray);
-			if(w != -1){
-				var wOBJ = document.getElementById("A_skill" + w);
-				for(i=10;i>=0;i--) wOBJ.options[i] = null;
-				var wASSname = ["-","FB","FBL","FW","CB","FD","LB","TS","NB","SS","△MS","JT","△LoV","WB","FN","×SG","ES","HD","×TU","×ME", "CrL", "SoE", "HI"];
-				wOBJ.options[0] = new Option("-",0);
-				for(i=0;i<wASSname.length;i++) wOBJ.options[i] = new Option(wASSname[i],i);
-			}
-			var w = NumSearch2(749,passiveSkillIdArray);
-			if(w != -1){
-				var wOBJ = document.getElementById("A_skill" + w);
-				for(i=10;i>=0;i--) wOBJ.options[i] = null;
-				wOBJ.options[0] = new Option("off",0);
-				for(i=1;i<=10;i++) wOBJ.options[i] = new Option("on(Lv"+ i +")",i);
-			}
-
-			// EDP毒部分消す　説明リンク
-			var w = passiveSkillIdArray.indexOf(SKILL_ID_CANCEL_EDP_POISON_ATTACK);
-			if (w >= 0) {
-				var wOBJ = document.getElementById("P_Skill" + w);
-
-				var objAnchor = HtmlCreateElement("a", wOBJ);
-				objAnchor.setAttribute("href", "../form/20110622edp.html");
-				objAnchor.setAttribute("target", "_blank");
-				objAnchor.style.display = "inline-block";
-				objAnchor.style.marginLeft = "1em";
-				HtmlCreateTextNode("[説明]", objAnchor)
-			}
-
-			var w = NumSearch2(754,passiveSkillIdArray);
-			if(w != -1){
-				var wOBJ = document.getElementById("A_skill" + w);
-				for(i=10;i>=0;i--) wOBJ.options[i] = null;
-				wOBJ.options[0] = new Option("ソロ",0);
-				for(i=1;i<=11;i++) wOBJ.options[i] = new Option((i+1)+"人",i);
-			}
-			var w = NumSearch2(761,passiveSkillIdArray);
-			if(w != -1){
-				var wOBJ = document.getElementById("A_skill" + w);
-				for(i=10;i>=0;i--) wOBJ.options[i] = null;
-				wOBJ.options[0] = new Option(0,0);
-				for(i=1;i<=5;i++) wOBJ.options[i] = new Option("+"+(20 * i),i);
-			}
-			var w = NumSearch2(791,passiveSkillIdArray);
-			if(w != -1){
-				var wOBJ = document.getElementById("A_skill" + w);
-				for(i=10;i>=0;i--) wOBJ.options[i] = null;
-				wOBJ.options[0] = new Option("off",0);
-				wOBJ.options[2] = new Option("水符",1);
-				wOBJ.options[4] = new Option("土符",2);
-				wOBJ.options[1] = new Option("火符",3);
-				wOBJ.options[3] = new Option("風符",4);
-			}
-			var w = NumSearch2(793,passiveSkillIdArray);
-			if(w != -1){
-				var wOBJ = document.getElementById("A_skill" + w);
-				for(i=10;i>=0;i--) wOBJ.options[i] = null;
-				wOBJ.options[0] = new Option("偶偶",0);
-				wOBJ.options[1] = new Option("偶奇",1);
-				wOBJ.options[2] = new Option("奇偶",2);
-				wOBJ.options[3] = new Option("奇奇",3);
-			}
-
-			//----------------------------------------------------------------
-			// エレメンタルマスター系列　召喚中の精霊
-			//----------------------------------------------------------------
-			var sklIdx = NumSearch2(SKILL_ID_SERE, passiveSkillIdArray);
-			if(sklIdx != -1){
-
-				// 一度、選択肢を全削除
-				var objSelect = document.getElementById("A_skill" + sklIdx);
-				HtmlRemoveOptionAll(objSelect);
-
-				var w_name = [
-					"off",					// 0
-					"火Lv1","火Lv2","火Lv3",	// 1 - 3 
-					"水Lv1","水Lv2","水Lv3",	// 4 - 6
-					"風Lv1","風Lv2","風Lv3",	// 7 - 9
-					"地Lv1","地Lv2","地Lv3",	// 10 - 12
-				];
-
-				if (passiveSkillIdArray.indexOf(SKILL_ID_ELEMENTAL_SPIRIT_MASTERY) >= 0) {
-					w_name = w_name.concat([
-						"火四次", "水四次", "風四次", "地四次", "毒四次",	// 13 - 17
-					]);
-				}
-
-				for (idx = 0; idx < w_name.length; idx++) {
-					HtmlCreateElementOption(idx, w_name[idx], objSelect);
-				}
-			}
-
-			// -------------------------------------------------------
-			// エレメンタルマスター系列　精霊のモード
-			// -------------------------------------------------------
-			var w = NumSearch2(SKILL_ID_SERE_MODE, passiveSkillIdArray);
-			if(w != -1){
-				var wOBJ = document.getElementById("A_skill" + w);
-				for(i=10;i>=0;i--) wOBJ.options[i] = null;
-				var w_name = ["off","passive","defensive","ofensive"];
-				for(i=0;i<=3;i++) wOBJ.options[i] = new Option(w_name[i],i);
-			}
-
-			// -------------------------------------------------------
-			// エレメンタルマスター系列　精霊のスキル
-			// -------------------------------------------------------
-			var w = NumSearch2(SKILL_ID_SERE_SUPPORT_SKILL, passiveSkillIdArray);
-			if(w != -1){
-				// i に設定可能な最大値は 64 (=6bit)
-				// 旧バージョンのセーブ処理に含まれており拡張が容易ではない
-				// 拡張するぐらいなら別項目で作り直す方が良いと思います
-				var wOBJ = document.getElementById("A_skill" + w);
-				for(let i=10 ;i>=0; i--) wOBJ.options[i] = null;
-				// --- w_name ---
-				//      Passive, Defence, Attack →
-				// Lv1
-				// Lv2
-				// Lv3
-				// ↓
-				var w_name = [
-					"off",
-					"(火1P)ﾊﾟｲﾛﾃｸﾆｯｸ",0,0,
-					"(火2P)ﾋｰﾀｰ","(火2D)ﾌｧｲｱｰｸﾛｰｸ",0,
-					0,0,0,
-					"(水1P)ｱｸｱﾌﾟﾚｲ",0,0,
-					"(水2P)ｸｰﾗｰ","(水2D)ｳｫｰﾀｰﾄﾞﾛｯﾌﾟ",0,
-					0,"(水3D)ｳｫｰﾀｰﾊﾞﾘｱ",0,
-					"(風1P)ｶﾞｽﾄ","(風1D)ｳｨﾝﾄﾞｽﾃｯﾌﾟ",0,
-					"(風2P)ﾌﾞﾗｽﾄ","(風2D)ｳｨﾝﾄﾞｶｰﾃﾝ",0,
-					0,"(風3D)ｾﾞﾌｧｰ",0,
-					"(地1P)ﾍﾟﾄﾛﾛｼﾞｰ","(地1D)ｿﾘｯﾄﾞｽｷﾝ",0,
-					"(地2P)ｶｰｽﾞﾄﾞｿｲﾙ","(地2D)ｽﾄｰﾝｼｰﾙﾄﾞ",0,
-					0,"(地3D)ﾊﾟﾜｰｵﾌﾞｶﾞｲｱ",0,
-					"(火4P)ﾌﾚｲﾑﾃｸﾆｯｸ", "(火4D)ﾌﾚｲﾑｱｰﾏｰ", 0,
-					"(水4P)ｺｰﾙﾄﾞﾌｫｰｽ", "(水4D)ｸﾘｽﾀﾙｱｰﾏｰ", 0,
-					"(風4P)ｸﾞﾚｲｽﾌﾞﾘｰｽﾞ", "(風4D)ｱｲｽﾞｵﾌﾞｽﾄｰﾑ", 0,
-					"(地4P)ｱｰｽｹｱ", "(地4D)ｽﾄﾛﾝｸﾞﾌﾟﾛﾃｸｼｮﾝ", 0,
-					"(毒4P)ﾃﾞｨｰﾌﾟﾎﾟｲｽﾞﾆﾝｸﾞ", "(毒4D)ﾎﾟｲｽﾞﾝｼｰﾙﾄﾞ", 0,
-				];
-				var sere_skill_index=0;
-				for(let i=0; i<=51; i++){
-					if(w_name[i] != 0){
-						wOBJ.options[sere_skill_index] = new Option(w_name[i],i);
-						sere_skill_index++;
-					}
-				}
-			}
-
-			var w = NumSearch2(SKILL_ID_HOMLV_FOR_PYROCLASTIC, passiveSkillIdArray);
-			if(w != -1){
-				var wOBJ = document.getElementById("A_skill" + w);
-				for(i=10; i>=0; i--) wOBJ.options[i] = null;
-				wOBJ.options[0] = new Option("-",0);
-				for(i=1; i<=29; i++) wOBJ.options[i] = new Option(i+121, i);
-			}
-
-			//----------------------------------------------------------------
-			// 修羅：閃光連撃終了直後状態
-			//----------------------------------------------------------------
-			var sklIdx = NumSearch2(SKILL_ID_ATK_PLUS_AFTER_SENKO_RENGEKI, passiveSkillIdArray);
-			if (sklIdx != -1) {
-				// 一度、選択肢を全削除
-				var objSelect = document.getElementById("A_skill" + sklIdx);
-				HtmlRemoveOptionAll(objSelect);
-
-				// 選択肢を追加
-				HtmlCreateElementOption(0, "なし", objSelect);
-				HtmlCreateElementOption(1, "Lv1", objSelect);
-				HtmlCreateElementOption(2, "Lv2", objSelect);
-				HtmlCreateElementOption(3, "Lv3", objSelect);
-				HtmlCreateElementOption(4, "Lv4", objSelect);
-				HtmlCreateElementOption(5, "Lv5", objSelect);
-			}
-
-			//----------------------------------------------------------------
-			// リベリオン：クイックドロー全追撃
-			//----------------------------------------------------------------
-			var sklIdx = NumSearch2(SKILL_ID_AS_QUICKDRAW, passiveSkillIdArray);
-			if (sklIdx != -1) {
-				// 一度、選択肢を全削除
-				var objSelect = document.getElementById("A_skill" + sklIdx);
-				HtmlRemoveOptionAll(objSelect);
-
-				// 選択肢を追加
-				HtmlCreateElementOption(0, "off", objSelect);
-				HtmlCreateElementOption(1, "on", objSelect);
-			}
-
-			//----------------------------------------------------------------
-			// サモナー：大地の魂効果(ﾏﾀﾀﾋﾞの根っこ使用後のMATK＋)
-			//----------------------------------------------------------------
-			var sklIdx = NumSearch2(SKILL_ID_DAICHINO_TAMASHI_KOKA_MATATABINO_NEKKO, passiveSkillIdArray);
-			if (sklIdx != -1) {
-				// 一度、選択肢を全削除
-				var objSelect = document.getElementById("A_skill" + sklIdx);
-				HtmlRemoveOptionAll(objSelect);
-
-				// 選択肢を追加
-				HtmlCreateElementOption(0, "off", objSelect);
-				HtmlCreateElementOption(1, "on", objSelect);
-			}
-
-			//----------------------------------------------------------------
-			// サモナー：大地の魂効果(ｲﾇﾊｯｶｼｬﾜｰ使用後の完全回避＋)
-			//----------------------------------------------------------------
-			var sklIdx = NumSearch2(SKILL_ID_DAICHINO_TAMASHI_KOKA_INUHAKKA_SHOWER, passiveSkillIdArray);
-			if (sklIdx != -1) {
-				// 一度、選択肢を全削除
-				var objSelect = document.getElementById("A_skill" + sklIdx);
-				HtmlRemoveOptionAll(objSelect);
-
-				// 選択肢を追加
-				HtmlCreateElementOption(0, "off", objSelect);
-				HtmlCreateElementOption(1, "on", objSelect);
-			}
-
-			//----------------------------------------------------------------
-			// サモナー：大地の魂効果(ニャングラス使用後のMATK＋)
-			//----------------------------------------------------------------
-			var sklIdx = NumSearch2(SKILL_ID_DAICHINO_TAMASHI_KOKA_NYAN_GRASS, passiveSkillIdArray);
-			if (sklIdx != -1) {
-				// 一度、選択肢を全削除
-				var objSelect = document.getElementById("A_skill" + sklIdx);
-				HtmlRemoveOptionAll(objSelect);
-
-				// 選択肢を追加
-				HtmlCreateElementOption(0, "off", objSelect);
-				HtmlCreateElementOption(1, "on", objSelect);
-			}
-
-			//----------------------------------------------------------------
-			// サモナー：生命の魂効果(残りHP)
-			//----------------------------------------------------------------
-			var sklIdx = NumSearch2(SKILL_ID_SEIMEINO_TAMASHI_KOKA_NOKORI_HP, passiveSkillIdArray);
-			if (sklIdx != -1) {
-				// 一度、選択肢を全削除
-				var objSelect = document.getElementById("A_skill" + sklIdx);
-				HtmlRemoveOptionAll(objSelect);
-
-				// 選択肢を追加
-				HtmlCreateElementOption(SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_100, "100%", objSelect);
-				HtmlCreateElementOption(SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_81, "81%～99%", objSelect);
-				HtmlCreateElementOption(SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_51, "51%～80%", objSelect);
-				HtmlCreateElementOption(SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_10, "10%～50%", objSelect);
-				HtmlCreateElementOption(SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_0, "0%～9%", objSelect);
-
-			}
-
-			//----------------------------------------------------------------
-			// 星帝：流星落下の計算方法
-			//----------------------------------------------------------------
-			var sklIdx = NumSearch2(SKILL_ID_RYUSE_RAKKA_MODE, passiveSkillIdArray);
-			if (sklIdx != -1) {
-				// 一度、選択肢を全削除
-				var objSelect = document.getElementById("A_skill" + sklIdx);
-				HtmlRemoveOptionAll(objSelect);
-
-				// 選択肢を追加
-				HtmlCreateElementOption(0, "対象＋追撃", objSelect);
-				HtmlCreateElementOption(1, "対象のみ", objSelect);
-				HtmlCreateElementOption(2, "追撃のみ", objSelect);
-			}
-
-			//----------------------------------------------------------------
-			// 天帝：運行の状態
-			//----------------------------------------------------------------
-			var sklIdx = NumSearch2(SKILL_ID_UNKONO_ZYOTAI, passiveSkillIdArray);
-			if (sklIdx != -1) {
-				// 一度、選択肢を全削除
-				var objSelect = document.getElementById("A_skill" + sklIdx);
-				HtmlRemoveOptionAll(objSelect);
-
-				// 選択肢を追加
-				HtmlCreateElementOption(0, "なし", objSelect);
-				HtmlCreateElementOption(1, "日出", objSelect);
-				HtmlCreateElementOption(2, "正午", objSelect);
-				HtmlCreateElementOption(3, "日没", objSelect);
-				HtmlCreateElementOption(4, "月出", objSelect);
-				HtmlCreateElementOption(5, "正子", objSelect);
-				HtmlCreateElementOption(6, "月没", objSelect);
-			}
-
-			//----------------------------------------------------------------
-			// 拳聖・星帝・天帝：太陽と月と星の日
-			//----------------------------------------------------------------
-			var sklIdx = NumSearch2(SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_HI, passiveSkillIdArray);
-			if (sklIdx != -1) {
-				// 一度、選択肢を全削除
-				var objSelect = document.getElementById("A_skill" + sklIdx);
-				HtmlRemoveOptionAll(objSelect);
-
-				// 選択肢を追加
-				HtmlCreateElementOption(0, "全て発動させる", objSelect);
-				HtmlCreateElementOption(1, "今日の日付", objSelect);
-				HtmlCreateElementOption(2, "太陽の日(偶数)", objSelect);
-				HtmlCreateElementOption(3, "月の日(奇数)", objSelect);
-				HtmlCreateElementOption(4, "星の日(5の倍数)", objSelect);
-			}
-
-			//----------------------------------------------------------------
-			// ソウルアセティック：四方符の状態
-			//----------------------------------------------------------------
-			var sklIdx = NumSearch2(SKILL_ID_SHIHO_FU_ZYOTAI, passiveSkillIdArray);
-			if (sklIdx != -1) {
-				// 一度、選択肢を全削除
-				var objSelect = document.getElementById("A_skill" + sklIdx);
-				HtmlRemoveOptionAll(objSelect);
-
-				// 選択肢を追加
-				HtmlCreateElementOption(0, "なし", objSelect);
-				HtmlCreateElementOption(1, "青龍符", objSelect);
-				HtmlCreateElementOption(2, "白虎符", objSelect);
-				HtmlCreateElementOption(3, "朱雀符", objSelect);
-				HtmlCreateElementOption(4, "玄武符", objSelect);
-				HtmlCreateElementOption(5, "四方五行陣Lv1", objSelect);
-				HtmlCreateElementOption(6, "四方五行陣Lv2", objSelect);
-				HtmlCreateElementOption(7, "四方五行陣Lv3", objSelect);
-				HtmlCreateElementOption(8, "四方五行陣Lv4", objSelect);
-				HtmlCreateElementOption(9, "四方五行陣Lv5", objSelect);
-			}
-
-			for (let i = 0; i < passiveSkillIdArray.length; i++) {
-				let wOBJ = document.getElementById("A_skill" + i);
-				wOBJ.value = n_A_PassSkill[i];
-			}
-	}
-	else{
-			let str = table_header;
-			str += '</TABLE>';
-			myInnerHtml("ID_PASS_SKILL",str,0);
-			document.calcForm.A1_SKILLSW.checked = false;
-	}
-	Click_A1(0);
-}
-
-/**
- * パッシブ持続系の設定変更を反映する
- * @param {*} n 再計算フラグ（1 = 再計算する, 1以外 = 再計算しない）
- */
-function Click_A1(n){
-
-	if(n==1) AutoCalc("Click_A1");
-
-	var sw=0;
-
-	var passiveSkillIdArray = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, n_A_JOB).GetPassiveSkillIdArray();
-
-	var end = passiveSkillIdArray.length;
-
-	for(var i=0;i <end;i++){
-		if(n_A_PassSkill[i] != 0){
-			sw = 1;
-			break;
-		}
-	}
-	if(sw == 0){
-		document.getElementById('A1TD').style.backgroundColor = "#DDDDFF";
-		myInnerHtml("A1used","",0);
-	}else{
-		document.getElementById('A1TD').style.backgroundColor = "#FF7777";
-		myInnerHtml("A1used","　<B>使用中</B>",0);
-	}
-}
-
-/**
- * ギルドスキル/ゴスペル/他　を構築する
- */
-function Click_Skill4SW(){
-	n_Skill4SW = document.calcForm.A4_SKILLSW.checked;
-	if(n_Skill4SW){
-			let str;
-			str = '<TABLE Border style="white-space:nowrap;"><TR><TD id="A4TD" ColSpan="10" class="title"><input id="OBJID_CHECK_A4_SKILLSW" type="checkbox" name="A4_SKILLSW"onClick="Click_Skill4SW()"><label for="OBJID_CHECK_A4_SKILLSW">ギルドスキル/ゴスペル/他</label><span id="A4used"></span></TD></TR>';
-			str += '<TR><TD ColSpan="10">ギルドスキル</TD></TR>';
-			str += '<TR><TD id="EN40_1"></TD><TD id="EN40_2"></TD><TD id="EN41_1"></TD><TD id="EN41_2"></TD><TD id="EN42_1"></TD><TD id="EN42_2"></TD></TR>';
-			str += '<TR><TD id="EN43_1"></TD><TD id="EN43_2"></TD><TD id="EN44_1"></TD><TD id="EN44_2"></TD></TR>';
-			str += '<TR><TD ColSpan="10">ゴスペルスキル</TD></TR>';
-			str += '<TR><TD id="EN45_1"></TD><TD id="EN45_2"></TD><TD id="EN46_1"></TD><TD id="EN46_2"></TD><TD id="EN47_1"></TD><TD id="EN47_2"></TD></TR>';
-			str += '<TR><TD id="EN48_1"></TD><TD id="EN48_2"></TD><TD id="EN49_1"></TD><TD id="EN49_2"></TD><TD id="EN410_1"></TD><TD id="EN410_2"></TD></TR>';
-			str += '<TR><TD ColSpan="10">一部スキルの持ち替え等による強化<BR><Font size=2>スキル使用時のステータスを入力してください。スキルに無関係なステータスは無視されます。<BR>スキルレベルはパッシブ/持続系欄で選択してください。</Font></TD></TR>';
-			str += '<TR><TD ColSpan="10" id="EN411_2"></TD></TR>';
-			str += '<TR><TD id="EN430_1"></TD><TD id="EN430_2"></TD><TD id="EN431_1"></TD><TD id="EN431_2"></TD><TD id="EN432_1"></TD><TD id="EN432_2"></TD></TR>';
-			str += '<TR><TD id="EN433_1"></TD><TD id="EN433_2"></TD><TD id="EN434_1"></TD><TD id="EN434_2"></TD><TD id="EN435_1"></TD><TD id="EN435_2"></TD></TR>';
-			str += '</TABLE>';
-			myInnerHtml("SP_SIEN02",str,0);
-			document.calcForm.A4_SKILLSW.checked = true;
-			const name_CS4SW_SKILL = ["臨戦体勢","偉大なる指導力","栄光の傷","冷静な心","鋭い視線","ステータスALL+20","HP+100%","SP+100%","ATK+100%","HIT+50＆FLEE+50","被ダメージ半減"];
-			let html_CS4SW_SKILL = new Array();
-			for(let i = 0; i <= 10; i++) myInnerHtml("EN4"+i+"_1",name_CS4SW_SKILL[i],0);
-			html_CS4SW_SKILL[0] = '<input type="checkbox" name="A4_Skill0"onClick="StAllCalc() | Click_A4(1)">';
-			html_CS4SW_SKILL[1] = '<select name="A4_Skill1"onChange="StAllCalc() | Click_A4(1)"></select>';
-			html_CS4SW_SKILL[2] = '<select name="A4_Skill2"onChange="StAllCalc() | Click_A4(1)"></select>';
-			html_CS4SW_SKILL[3] = '<select name="A4_Skill3"onChange="StAllCalc() | Click_A4(1)"></select>';
-			html_CS4SW_SKILL[4] = '<select name="A4_Skill4"onChange="StAllCalc() | Click_A4(1)"></select>';
-			html_CS4SW_SKILL[5] = '<input type="checkbox" name="A4_Skill5"onClick="StAllCalc() | Click_A4(1)">';
-			html_CS4SW_SKILL[6] = '<input type="checkbox" name="A4_Skill6"onClick="StAllCalc() | Click_A4(1)">';
-			html_CS4SW_SKILL[7] = '<input type="checkbox" name="A4_Skill7"onClick="StAllCalc() | Click_A4(1)">';
-			html_CS4SW_SKILL[8] = '<input type="checkbox" name="A4_Skill8"onClick="StAllCalc() | Click_A4(1)">';
-			html_CS4SW_SKILL[9] = '<input type="checkbox" name="A4_Skill9"onClick="StAllCalc() | Click_A4(1)">';
-			html_CS4SW_SKILL[10] = '<input type="checkbox" name="A4_Skill10"onClick="StAllCalc() | Click_A4(1)">';
-			html_CS4SW_SKILL[11] = '<select name="A4_Skill11"onChange="StAllCalc() | Click_A4(1)"></select>';
-			for(let i = 0; i <= 11; i++) myInnerHtml("EN4"+i+"_2",html_CS4SW_SKILL[i],0);
-			myInnerHtml("EN430_1","STR",0);
-			myInnerHtml("EN431_1","AGI",0);
-			myInnerHtml("EN432_1","VIT",0);
-			myInnerHtml("EN433_1","INT",0);
-			myInnerHtml("EN434_1","DEX",0);
-			myInnerHtml("EN435_1","LUK",0);
-			html_CS4SW_SKILL[30] = '<select name="A4_Skill30"onChange="StAllCalc() | Click_A4(1)"></select>';
-			html_CS4SW_SKILL[31] = '<select name="A4_Skill31"onChange="StAllCalc() | Click_A4(1)"></select>';
-			html_CS4SW_SKILL[32] = '<select name="A4_Skill32"onChange="StAllCalc() | Click_A4(1)"></select>';
-			html_CS4SW_SKILL[33] = '<select name="A4_Skill33"onChange="StAllCalc() | Click_A4(1)"></select>';
-			html_CS4SW_SKILL[34] = '<select name="A4_Skill34"onChange="StAllCalc() | Click_A4(1)"></select>';
-			html_CS4SW_SKILL[35] = '<select name="A4_Skill35"onChange="StAllCalc() | Click_A4(1)"></select>';
-			for(let i = 30; i <= 35; i++) myInnerHtml("EN4"+i+"_2",html_CS4SW_SKILL[i],0);
-			for(let i = 0; i <= 5; i++){
-				document.calcForm.A4_Skill1.options[i] = new Option(i,i);
-				document.calcForm.A4_Skill2.options[i] = new Option(i,i);
-				document.calcForm.A4_Skill3.options[i] = new Option(i,i);
-				document.calcForm.A4_Skill4.options[i] = new Option(i,i);
-			}
-			document.calcForm.A4_Skill11.options[0] = new Option("■選択してください",0);
-			document.calcForm.A4_Skill11.options[1] = new Option(SkillObjNew[439][SKILL_DATA_INDEX_NAME] +"(Int)",1);
-			document.calcForm.A4_Skill11.options[2] = new Option(SkillObjNew[627][SKILL_DATA_INDEX_NAME] +"(Str&Dex&Int)",2);
-			document.calcForm.A4_Skill11.options[3] = new Option(SkillObjNew[628][SKILL_DATA_INDEX_NAME] +"(Vit)",3);
-			let selectBox1 = document.calcForm.A4_Skill31;
-			let selectBox2 = document.calcForm.A4_Skill32;
-			for(let i = 0; i <= 300; i++){
-				selectBox1.options[i] = new Option(i,i);
-				selectBox2.options[i] = new Option(i,i);
-			}
-			let selectBox3 = document.calcForm.A4_Skill30;
-			let selectBox4 = document.calcForm.A4_Skill33;
-			let selectBox5 = document.calcForm.A4_Skill34;
-			let selectBox6 = document.calcForm.A4_Skill35;
-			for(let i = 0; i <= 600; i++){
-				selectBox3.options[i] = new Option(i,i);
-				selectBox4.options[i] = new Option(i,i);
-				selectBox5.options[i] = new Option(i,i);
-				selectBox6.options[i] = new Option(i,i);
-			}
-			document.calcForm.A4_Skill0.checked = n_A_PassSkill4[0];
-			document.calcForm.A4_Skill1.value = n_A_PassSkill4[1];
-			document.calcForm.A4_Skill2.value = n_A_PassSkill4[2];
-			document.calcForm.A4_Skill3.value = n_A_PassSkill4[3];
-			document.calcForm.A4_Skill4.value = n_A_PassSkill4[4];
-			document.calcForm.A4_Skill5.checked = n_A_PassSkill4[5];
-			document.calcForm.A4_Skill6.checked = n_A_PassSkill4[6];
-			document.calcForm.A4_Skill7.checked = n_A_PassSkill4[7];
-			document.calcForm.A4_Skill8.checked = n_A_PassSkill4[8];
-			document.calcForm.A4_Skill9.checked = n_A_PassSkill4[9];
-			document.calcForm.A4_Skill10.checked = n_A_PassSkill4[10];
-			document.calcForm.A4_Skill11.value = n_A_PassSkill4[11];
-			document.calcForm.A4_Skill30.value = n_A_PassSkill4[30];
-			document.calcForm.A4_Skill31.value = n_A_PassSkill4[31];
-			document.calcForm.A4_Skill32.value = n_A_PassSkill4[32];
-			document.calcForm.A4_Skill33.value = n_A_PassSkill4[33];
-			document.calcForm.A4_Skill34.value = n_A_PassSkill4[34];
-			document.calcForm.A4_Skill35.value = n_A_PassSkill4[35];
-	}
-	else{
-			var str;
-			str = '<TABLE Border><TR><TD id="A4TD" class="title"><input id="OBJID_CHECK_A4_SKILLSW" type="checkbox" name="A4_SKILLSW"onClick="Click_Skill4SW()"><label for="OBJID_CHECK_A4_SKILLSW">ギルドスキル/ゴスペル/他</label><span id="A4used"></span></TD></TR></TABLE>';
-			myInnerHtml("SP_SIEN02",str,0);
-			document.calcForm.A4_SKILLSW.checked = 0;
-	}
-	Click_A4(0);
-}
-
-/**
- * ギルドスキル/ゴスペル/他の変更を反映する
- * @param {*} n 再計算フラグ（n = 1 再計算する）
- */
-function Click_A4(n){
-	if(n==1) AutoCalc("Click_A4");
-
-	var sw=0;
-	for(var i=0;i <n_A_PassSkill4.length;i++) {
-		if(n_A_PassSkill4[i] != 0){
-			sw = 1;
-			break;
-		}
-	}
-	if(sw == 0){
-		document.getElementById('A4TD').style.backgroundColor = "#DDDDFF";
-		myInnerHtml("A4used","",0);
-	}else{
-		document.getElementById('A4TD').style.backgroundColor = "#FF7777";
-		myInnerHtml("A4used","　<B>使用中</B>",0);
-	}
-}
-
-/**
- * アイテム・食品他 を構築する
- * @returns 
- */
-function Click_Skill7SW(){
-
-	var idxRow = 0;
-	var idxColumn = 0;
-	var idxKind = 0;
-	var idxValue = 0;
-
-	var objRoot = null;
-	var objTable = null;
-	var objTbody = null;
-	var objTr = null;
-	var objTd = null;
-	var objInput = null;
-	var objSelect = null;
-	var objLabel = null;
-	var objSpan = null;
-
-	var optText = "";
-
-
-
-	// 展開状態を取得
-	objInput = document.getElementById("OBJID_CHECK_A7_SKILLSW");
-	n_Skill7SW = objInput.checked;
-
-	// ルートオブジェクト取得
-	objRoot = document.getElementById("OBJID_SP_SIEN05");
-
-	// ルートオブジェクト配下、全削除
-	HtmlRemoveAllChild(objRoot);
-
-	// テーブル生成
-	objTable = HtmlCreateElement("table", objRoot);
-	objTable.setAttribute("border", "1");
-	objTable.style.whiteSpace = "nowrap";
-	objTbody = HtmlCreateElement("tbody", objTable);
-
-	// ヘッダ部分構築
-	objTr = HtmlCreateElement("tr", objTbody);
-
-	objTd = HtmlCreateElement("td", objTr);
-	objTd.setAttribute("id", "A7TD");
-	objTd.setAttribute("class", "title");
-	if (n_Skill7SW) {
-		objTd.setAttribute("colspan", "6");
-	}
-
-	objInput = HtmlCreateElement("input", objTd);
-	objInput.setAttribute("type", "checkbox");
-	objInput.setAttribute("id", "OBJID_CHECK_A7_SKILLSW");
-	objInput.setAttribute("name", "A7_SKILLSW");
-	objInput.setAttribute("onclick", "Click_Skill7SW()");
-	if (n_Skill7SW) {
-		objInput.setAttribute("checked", "checked");
-	}
-
-	objLabel = HtmlCreateElement("label", objTd);
-	objLabel.setAttribute("for", "OBJID_CHECK_A7_SKILLSW");
-
-	HtmlCreateTextNode("アイテム(食品/他)", objLabel);
-
-	objSpan = HtmlCreateElement("span", objTd);
-	objSpan.setAttribute("id", "A7used");
-
-
-
-	// 展開表示でない場合は、処理終了
-	if (!n_Skill7SW) {
-		Click_A7(0);
-		return;
-	}
-
-
-
-	var buildInfo = null;
-	var buildInfoTable = [
-		[
-			[0, "茶菓子(HIT+30)"],
-			[1, "揚げ菓子(FLEE+30)"],
-			[2, "虹色のお餅(ATK/MATK+10)"]
-		],
-		[
-			[9, "恨みの箱(ATK+20)"],
-			[10, "眠い箱(MATK+20)"],
-			[]
-		],
-		[
-			[11, "レジストコールドポーション"],
-			[12, "レジストアースポーション"],
-			[]
-		],
-		[
-			[13, "レジストファイアーポーション"],
-			[14, "レジストウィンドポーション"],
-			[]
-		],
-		[
-			[22, "濃縮サラマインジュース"],
-			[23, "濃縮ホワイトポーションZ"],
-			[24, "ビタタ500"]
-		],
-		[
-			[25, "ビュッシュ・ド・ノエル"],
-			[35, "ガラナキャンディ"],
-			[36, "焼きトウモロコシ"]
-		],
-		[
-			[26, "ルーンミッドガッツ産おやつ"],
-			[27, "シュバルツバルド産おやつ"],
-			[28, "アルナベルツ産おやつ"]
-		],
-		[
-			[29, "マヌクの豪気"],
-			[30, "マヌクの信念"],
-			[31, "マヌクの意思"]
-		],
-		[
-			[32, "ピンギキュラの果実ジャム"],
-			[33, "コルヌスの涙"],
-			[34, "ルシオラヴェスパのハチ蜜"]
-		],
-		[
-			[37, "アロエベラ"],
-			[38, "HP増加ポーション", ["なし","(小)","(中)","(大)"]],
-			[39, "SP増加ポーション", ["なし","(小)","(中)","(大)"]],
-		],
-		[
-			[40, "(効果なし)マキシマイズパワー"],
-			[41, "戦闘薬", ["なし","戦闘薬","高級戦闘薬"]],
-			[48, "古代精霊のお守り"],
-		],
-		[
-			[50, "エナジーコート", ["なし","6%","12%","18%","24%","30%"]],
-			[49, "オルレアンのフルコース"],
-			[51, "フェンリルの呪符"],
-		],
-	];
-
-	var subInfoArray = null;
-
-
-
-	for (idxRow = 0; idxRow < buildInfoTable.length; idxRow++) {
-
-		// 追加行が存在するインデックス
-		switch (idxRow) {
-
-		case 1:
-			objTr = HtmlCreateElement("tr", objTbody);
-
-			objTd = HtmlCreateElement("td", objTr);
-			objTd.setAttribute("colspan", "3");
-
-			subInfoArray = [
-				[3, "STR"], [4, "AGI"], [5, "VIT"], [6, "INT"], [7, "DEX"], [8, "LUK"],
-			];
-
-			for (idxKind = 0; idxKind < subInfoArray.length; idxKind++) {
-
-				objSelect = HtmlCreateElement("select", objTd);
-				objSelect.setAttribute("name", "A7_Skill" + subInfoArray[idxKind][0]);
-				objSelect.setAttribute("onchange", "StAllCalc() | Click_A7(1)");
-
-				HtmlCreateElementOption(0, subInfoArray[idxKind][1] + "+食品", objSelect);
-				for (idxValue = 1; idxValue <= 10; idxValue++) {
-					HtmlCreateElementOption(idxValue, "+" + idxValue, objSelect);
-				}
-
-				objSelect.value = n_A_PassSkill7[subInfoArray[idxKind][0]];
-
-				HtmlCreateTextNode(" ", objTd);
-			}
-
-			objInput = HtmlCreateElement("input", objTd);
-			objInput.setAttribute("type", "button");
-			objInput.setAttribute("id", "FOODOFF");
-			objInput.setAttribute("value", "全解除");
-			objInput.setAttribute("onclick", "Click_Food_Off() | StAllCalc()");
-
-			HtmlCreateTextNode(" ", objTd);
-
-			objInput = HtmlCreateElement("input", objTd);
-			objInput.setAttribute("type", "button");
-			objInput.setAttribute("name", "NETCAFE3");
-			objInput.setAttribute("value", "ALL＋10");
-			objInput.setAttribute("onclick", "Click_NetCafe3() | StAllCalc()");
-
-			HtmlCreateElement("br", objTd);
-
-			HtmlCreateTextNode("※ネットカフェのステータスALL+10は食品扱い", objTd);
-
-			break;
-
-		case 4:
-			objTr = HtmlCreateElement("tr", objTbody);
-
-			objTd = HtmlCreateElement("td", objTr);
-			objTd.setAttribute("colspan", "3");
-
-			objInput = HtmlCreateElement("input", objTd);
-			objInput.setAttribute("type", "checkbox");
-			objInput.setAttribute("id", "OBJID_CHECK_A7_Skill15");
-			objInput.setAttribute("name", "A7_Skill15");
-			objInput.setAttribute("onclick", "StAllCalc() | Click_A7(1) | CAttackMethodAreaComponentManager.RebuildControls()");
-
-			objLabel = HtmlCreateElement("label", objTd);
-			objLabel.setAttribute("for", "OBJID_CHECK_A7_Skill15");
-
-			HtmlCreateTextNode("攻撃方法を追加する（魔女のスキルカード・攻撃魔法スクロール・イグドラシルの葉）", objLabel);
-
-			if (n_A_PassSkill7[15]) {
-				objInput.checked = "checked";
-			}
-
-			// +20 料理
-			objTr = HtmlCreateElement("tr", objTbody);
-
-			objTd = HtmlCreateElement("td", objTr);
-			objTd.setAttribute("colspan", "3");
-
-			subInfoArray = [
-				[16, "STR"], [17, "AGI"], [18, "VIT"], [19, "INT"], [20, "DEX"], [21, "LUK"],
-			];
-
-			for (idxKind = 0; idxKind < subInfoArray.length; idxKind++) {
-
-				if (idxKind > 0) {
-					HtmlCreateTextNode("　　", objTd);
-				}
-
-				objInput = HtmlCreateElement("input", objTd);
-				objInput.setAttribute("type", "checkbox");
-				objInput.setAttribute("id", "OBJID_CHECK_A7_Skill" + subInfoArray[idxKind][0]);
-				objInput.setAttribute("name", "A7_Skill" + subInfoArray[idxKind][0]);
-				objInput.setAttribute("onclick", "StAllCalc() | Click_A7(1)");
-
-				objLabel = HtmlCreateElement("label", objTd);
-				objLabel.setAttribute("for", "OBJID_CHECK_A7_Skill" + subInfoArray[idxKind][0]);
-
-				HtmlCreateTextNode(subInfoArray[idxKind][1] + "+20", objLabel);
-
-				if (n_A_PassSkill7[subInfoArray[idxKind][0]]) {
-					objInput.checked = "checked";
-				}
-			}
-
-			break;
-
-		}
-
-
-		objTr = HtmlCreateElement("tr", objTbody);
-
-		for (idxColumn = 0; idxColumn < buildInfoTable[idxRow].length; idxColumn++) {
-
-			buildInfo = buildInfoTable[idxRow][idxColumn];
-
-			objTd = HtmlCreateElement("td", objTr);
-
-			// 空要素
-			if (buildInfo.length < 2) {
-				continue;
-			}
-
-			// チェックボックス方式
-			else if (buildInfo.length == 2) {
-				objInput = HtmlCreateElement("input", objTd);
-				objInput.setAttribute("type", "checkbox");
-				objInput.setAttribute("id", "OBJID_CHECK_A7_Skill" + buildInfo[0]);
-				objInput.setAttribute("name", "A7_Skill" + buildInfo[0]);
-				objInput.setAttribute("onclick", "StAllCalc() | Click_A7(1)");
-
-				objLabel = HtmlCreateElement("label", objTd);
-				objLabel.setAttribute("for", "OBJID_CHECK_A7_Skill" + buildInfo[0]);
-
-				HtmlCreateTextNode(buildInfo[1], objLabel);
-
-				if (n_A_PassSkill7[buildInfo[0]]) {
-					objInput.checked = "checked";
-				}
-			}
-
-			// セレクトボックス方式
-			else {
-				HtmlCreateTextNode(buildInfo[1], objTd);
-
-				HtmlCreateTextNode("　", objTd);
-
-				objSelect = HtmlCreateElement("select", objTd);
-				objSelect.setAttribute("name", "A7_Skill" + buildInfo[0]);
-				objSelect.setAttribute("onchange", "StAllCalc() | Click_A7(1)");
-
-				for (idxValue = 0; idxValue < buildInfo[2].length; idxValue++) {
-					HtmlCreateElementOption(idxValue, buildInfo[2][idxValue], objSelect);
-				}
-
-				objSelect.value = n_A_PassSkill7[buildInfo[0]];
-			}
-		}
-	}
-
-	// 期間限定効果行
-	objTr = HtmlCreateElement("tr", objTbody);
-
-	objTd = HtmlCreateElement("td", objTr);
-
-	subInfoArray = [
-		[42, "ATK"], [43, "MATK"], [44, "HIT"], [45, "FLEE"], [46, "Cri"], [47, "ASPD"],
-	];
-
-	for (idxKind = 0; idxKind < subInfoArray.length; idxKind++) {
-
-		objSelect = HtmlCreateElement("select", objTd);
-		objSelect.setAttribute("name", "A7_Skill" + subInfoArray[idxKind][0]);
-		objSelect.setAttribute("onchange", "StAllCalc() | Click_A7(1)");
-
-		HtmlCreateElementOption(0, "期間限定系[" + subInfoArray[idxKind][1] + "] なし", objSelect);
-		for (idxValue = 1; idxValue <= 50; idxValue++) {
-
-			optText = subInfoArray[idxKind][1] + "+" + idxValue;
-
-			if (subInfoArray[idxKind][1] == "ASPD") {
-
-				if (idxValue < 10) {
-					continue;
-				}
-
-				optText += "%";
-
-				switch (idxValue) {
-				case 10:
-					optText += "(=スピポ)";
-					break;
-				case 15:
-					optText += "(=ハイスピ)";
-					break;
-				case 20:
-					optText += "(=バサクP)";
-					break;
-				}
-			}
-
-			HtmlCreateElementOption(idxValue, optText, objSelect);
-		}
-
-		HtmlCreateElement("br", objTd);
-
-		objSelect.value = n_A_PassSkill7[subInfoArray[idxKind][0]];
-	}
-
-	objTd = HtmlCreateElement("td", objTr);
-
-	objSpan = HtmlCreateElement("span", objTd);
-	objSpan.setAttribute("style", "font-size : smaller");
-
-	HtmlCreateTextNode("左欄は期間限定イベントのアイテムや", objSpan);
-	HtmlCreateElement("br", objSpan);
-	HtmlCreateTextNode("イベントNPCからのパワーアップ効果用。", objSpan);
-	HtmlCreateElement("br", objSpan);
-	HtmlCreateTextNode("これらは同じ系列の他の食品と", objSpan);
-	HtmlCreateElement("br", objSpan);
-	HtmlCreateTextNode("競合する可能性があるので", objSpan);
-	HtmlCreateElement("br", objSpan);
-	HtmlCreateTextNode("ゲーム内では食品使ってると効果ないかも。", objSpan);
-	HtmlCreateElement("br", objSpan);
-	HtmlCreateTextNode("例：ASPD+%はスピポ系と競合。", objSpan);
-	HtmlCreateElement("br", objSpan);
-	HtmlCreateTextNode("STR+などは一般食品欄をお使い下さい。", objSpan);
-
-	objTd = HtmlCreateElement("td", objTr);
-
-
-
-	// 表示更新
-	Click_A7(0);
-}
-
-/**
- * アイテム・食品他 > ALL+10 ボタンのクリックイベント
- */
-function Click_NetCafe3(){
-	document.calcForm.A7_Skill3.value = 10;
-	document.calcForm.A7_Skill4.value = 10;
-	document.calcForm.A7_Skill5.value = 10;
-	document.calcForm.A7_Skill6.value = 10;
-	document.calcForm.A7_Skill7.value = 10;
-	document.calcForm.A7_Skill8.value = 10;
-	Click_A7(1);
-}
-
-/**
- * アイテム・食品他 > 全解除 ボタンのクリックイベント
- */
-function Click_Food_Off(){
-	document.calcForm.A7_Skill3.value = 0;
-	document.calcForm.A7_Skill4.value = 0;
-	document.calcForm.A7_Skill5.value = 0;
-	document.calcForm.A7_Skill6.value = 0;
-	document.calcForm.A7_Skill7.value = 0;
-	document.calcForm.A7_Skill8.value = 0;
-	Click_A7(1);
-}
-
-/**
- * アイテム(食品/他)の変更を反映する
- * @param {*} n 再計算フラグ（n = 1 再計算する）
- */
-function Click_A7(n){
-	if(n==1) AutoCalc("Click_A7");
-
-	var sw=0;
-	for(var i=0;i <n_A_PassSkill7.length;i++){
-		if(n_A_PassSkill7[i] != 0){
-			sw = 1;
-			break;
-		}
-	}
-	if(sw == 0){
-		document.getElementById('A7TD').style.backgroundColor = "#DDDDFF";
-		myInnerHtml("A7used","",0);
-	}else{
-		document.getElementById('A7TD').style.backgroundColor = "#FF7777";
-		myInnerHtml("A7used","　<B>使用中</B>",0);
-	}
-}
-
-/**
- * その他の支援/設定 > ペット の変更イベント.
- * 内部で Click_A8() を呼び出す
- */
-function OnChangePetSelect() {
-	// ペット説明更新
-	RefreshPetExplain();
-	// 攻撃方法更新
-	CAttackMethodAreaComponentManager.RebuildControls();
-	// 共通処理へ合流
-	Click_A8(1);
-}
-
-/**
- * ペットの効果説明欄を再生成する
- * @returns 
- */
-function RefreshPetExplain() {
-	var petId = 0;
-	var objSelect = null;
-	var objSpan = null;
-	// 説明欄オブジェクトを取得
-	objSpan = document.getElementById("OBJID_SPAN_PET_EXPLAIN");
-	if (!objSpan) {
-		return;
-	}
-	// 説明欄クリア
-	HtmlRemoveAllChild(objSpan);
-	// 選択されているペットを取得
-	petId = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_PET", 0);
-	// 説明追記
-	CItemInfoManager.AppendEfficiencyInfoSub(objSpan, CONST_DATA_KIND_PET, petId, true);
-	// セット情報追記
-	CItemInfoManager.AppendSetInfo(objSpan, PetIdToSetIdMap[petId], true);
-}
-
-/**
- * その他の支援/設定 を構築する
- */
-function Click_Skill8SW(){
-	let idx = 0;
-	let petId = 0;
-	let petDataArrayWork = null;
-	let objSelect = null;
-	n_Skill8SW = document.calcForm.A8_SKILLSW.checked;
-	if(n_Skill8SW){
-			let str;
-			str = '<TABLE Border style="white-space:nowrap;"><TR><TD id="A8TD" Colspan="2" class="title"><input id="OBJID_CHECK_A8_SKILLSW" type="checkbox" name="A8_SKILLSW"onClick="Click_Skill8SW()"><label for="OBJID_CHECK_A8_SKILLSW">その他の支援/設定 (暫定追加機能)</label><SPAN id="A8used"></SPAN></TD></TR>';
-			str += '<TR><TD>ペット：<select id="OBJID_SELECT_PET" name="A8_Skill0" onchange="StAllCalc() | OnChangePetSelect()"></select></TD><TD>親密度：<select id="OBJID_SELECT_PET_FRIENDLITY" name="A8_Skill17" onChange="StAllCalc() | Click_A8(1)"></select></TD></TR>';
-			str += '<TR><TD colspan="2"><SPAN id="OBJID_SPAN_PET_EXPLAIN"></SPAN></TD></TR>';
-			str += '<TR><TD id="EN801"></TD><TD id="EN802"></TD></TR>';
-			str += '<TR><TD id="EN803"></TD><TD id="EN804"></TD></TR>';
-			str += '<TR><TD id="EN822"></TD><TD id="EN823"></TD></TR>';
-			str += '<TR><TD id="EN805"></TD><TD id="EN806"></TD></TR>';
-			str += '<TR><TD Colspan="2" id="EN821"></TD></TR>';
-			str += '<TR><TD id="EN807"></TD><TD id="EN808"></TD></TR>';
-			str += '<TR><TD Colspan="2" id="EN809"></TD></TR>';
-			str += '<TR><TD id="EN810"></TD><TD id="EN811"></TD></TR>';
-			str += '<TR><TD id="EN812"></TD><TD id="EN813"></TD></TR>';
-			str += '<TR><TD id="EN814"></TD><TD id="EN815"></TD></TR>';
-			str += '<TR><TD id="EN819"></TD><TD id="EN820"></TD></TR>';
-			str += '<TR><TD colspan="2"><Font size=2><B>これより下、自キャラクターがかけられた状態異常</B></Font></TD></TR>';
-			str += '<TR><TD id="EN830"></TD><TD id="EN831"></TD></TR>';
-			str += '<TR><TD id="EN832"></TD><TD id="EN833"></TD></TR>';
-			str += '<TR><TD id="EN834"></TD><TD id="EN835"></TD></TR>';
-			str += '<TR><TD id="EN836"></TD><TD id="EN837"></TD></TR>';
-			str += '</TABLE>';
-			myInnerHtml("ID_ETC",str,0);
-			document.calcForm.A8_SKILLSW.checked = true;
-			// ペットのセレクトボックスを構築
-			// ペットのデータを複製して読み仮名ソート
-			petDataArrayWork = PET_OBJ.slice();
-			petDataArrayWork.sort(
-				function(a, b) {
-					if (a[PET_DATA_INDEX_KANA] < b[PET_DATA_INDEX_KANA]) return -1;
-					if (a[PET_DATA_INDEX_KANA] > b[PET_DATA_INDEX_KANA]) return 1;
-					return 0;
-				}
-			);
-			// ペットセレクトボックスへ追加
-			objSelect = document.getElementById("OBJID_SELECT_PET");
-			for (idx = 0; idx < petDataArrayWork.length; idx++) {
-				petId = petDataArrayWork[idx][PET_DATA_INDEX_ID];
-				HtmlCreateElementOption(PET_OBJ[petId][PET_DATA_INDEX_ID], PET_OBJ[petId][PET_DATA_INDEX_NAME], objSelect);
-			}
-			// 親密度セレクトボックスへ追加
-			objSelect = document.getElementById("OBJID_SELECT_PET_FRIENDLITY");
-			for (idx = FRIENDLITY_ID_AUTO; idx < FRIENDLITY_ID_COUNT; idx++) {
-				HtmlCreateElementOption(idx, GetFriendlityText(idx), objSelect);
-			}
-			myInnerHtml("EN801",'戦闘教範系<select name="A8_Skill1" onChange="StAllCalc() | Click_A8(1)"></select>',0);
-			let w_name = ["なし","25","50","75","100","(125)","(150)"];
-			for (let i = 0; i <= 6; i++) document.calcForm.A8_Skill1.options[i] = new Option(w_name[i],i);
-			myInnerHtml("EN802",'Job教範系<select name="A8_Skill2" onChange="StAllCalc() | Click_A8(1)"></select>',0);
-			w_name = ["なし","50","(75)","(100)"];
-			for (let i = 0; i <= 3; i++) document.calcForm.A8_Skill2.options[i] = new Option(w_name[i],i);
-			myInnerHtml("EN803",'ネットカフェ経験値UP<select name="A8_Skill3" onChange="StAllCalc() | Click_A8(1)"></select>',0);
-			document.calcForm.A8_Skill3.options[0] = new Option("-",0);
-			for (let i = 1; i <= 2; i++) {
-				var wy = 50 * i;
-				var wx = (100 + wy) / 100;
-				document.calcForm.A8_Skill3.options[i] = new Option("+"+ wy +"%("+ wx +"倍)",i);
-			}
-			myInnerHtml("EN804",'経験値増加キャンペーン<select name="A8_Skill7" onChange="StAllCalc() | Click_A8(1)"></select>',0);
-			document.calcForm.A8_Skill7.options[0] = new Option("-",0);
-			for (let i = 1; i <= 8; i++){
-				var wy = 25 * i;
-				var wx = (100 + wy) / 100;
-				document.calcForm.A8_Skill7.options[i] = new Option(wx+"倍(+"+(25*i)+"%)",i);
-			}
-			myInnerHtml("EN822",'OTP<select name="A8_Skill22" onChange="StAllCalc() | Click_A8(1)"></select>',0);
-			document.calcForm.A8_Skill22.options[0] = new Option("ログインボーナスなし",0);
-			document.calcForm.A8_Skill22.options[1] = new Option("ブロンズ(Exp+5%)",1);
-			document.calcForm.A8_Skill22.options[2] = new Option("シルバー(↑＋スピードポーション)",2);
-			document.calcForm.A8_Skill22.options[3] = new Option("ゴールド(↑＋Hit+10/Flee+10)",3);
-			document.calcForm.A8_Skill22.options[4] = new Option("レインボー(↑＋MaxHP+20%/MaxSP+20%)",4);
-			myInnerHtml("EN823",'←ジョンダパスはOTPレインボーです',0);
-			myInnerHtml("EN805",'公平PT人数<select name="A8_Skill5" onChange="StAllCalc() | Click_A8(1)"></select>',0);
-			document.calcForm.A8_Skill5.options[0] = new Option("-",0);
-			for (let i = 1; i <= 11; i++) document.calcForm.A8_Skill5.options[i] = new Option((i+1)+"人",i);
-			myInnerHtml("EN806",'共闘ボーナス<select name="A8_Skill6" onChange="StAllCalc() | Click_A8(1)"></select>',0);
-			document.calcForm.A8_Skill6.options[0] = new Option("-",0);
-			for (let i=1; i <= 20; i++) document.calcForm.A8_Skill6.options[i] = new Option("+"+ (i*25) +"%",i);
-			myInnerHtml("EN821",'討伐クエストのExpを加算(1匹あたりの値)<select name="A8_Skill21" disabled="disabled" onChange="StAllCalc() | Click_A8(1)"></select>',0);
-			document.calcForm.A8_Skill21.options[0] = new Option("-",0);
-			document.calcForm.A8_Skill21.options[1] = new Option("BaseExpで受け取る",1);
-			document.calcForm.A8_Skill21.options[2] = new Option("JobExpで受け取る",2);
-			myInnerHtml("EN807",'<input id="OBJID_CHECK_A8_Skill4" type="checkbox" name="A8_Skill4"onClick="StAllCalc() | Click_A8(1)"><label for="OBJID_CHECK_A8_Skill4">結婚スパノビステータスALL+1付与</label>',0);
-			myInnerHtml("EN808",'<input id="OBJID_CHECK_A8_Skill13" type="checkbox" name="A8_Skill13"onClick="StAllCalc() | Click_A8(1)||RebuildStatusSelect()||CalcStatusPoint(true)"><label for="OBJID_CHECK_A8_Skill13">養子状態にする</label>',0);
-			myInnerHtml("EN809",'<font size="2" color="red">（時限性補助効果の設定は、「アイテム時限効果」設定欄へ移動しました）</font><input type="button" value="設定欄を表示" onclick="CTimeItemAreaComponentManager.FocusArea(0, true)">',0);
-			myInnerHtml("EN810",'囲んでいる敵の数<select name="A8_Skill12" onChange="StAllCalc() | Click_A8(1)"></select>',0);
-			for (let i = 0; i <= 22; i++) document.calcForm.A8_Skill12.options[i] = new Option(i + "匹",i);
-			myInnerHtml("EN812",'<Font size=2><B>攻城戦の設定は[対人プレイヤー設定]欄に移動</B></Font>',0);
-			myInnerHtml("EN813",'防衛値<select name="A8_Skill15" onChange="StAllCalc() | Click_A8(1)"></select><Font size=2>(攻城戦モード時のみ有効)</Font>',0);
-			document.calcForm.A8_Skill15.options[0] = new Option("-",0);
-			for (let i = 1; i <= 20; i++) document.calcForm.A8_Skill15.options[i] = new Option(i * 5,i);
-			myInnerHtml("EN814",'<input id="OBJID_CHECK_A8_Skill16" type="checkbox" name="A8_Skill16"onClick="StAllCalc() | Click_A8(1)"><label for="OBJID_CHECK_A8_Skill16">クリティカル率を0にする</label>',0);
-			if (41 <= n_A_JOB && n_A_JOB <= 43) myInnerHtml("EN819",'<input id="OBJID_CHECK_A8_Skill19" type="checkbox" name="A8_Skill19"onClick="StAllCalc() | Click_A8(1)"><label for="OBJID_CHECK_A8_Skill19"><Font size=2>暖かい風欄を他職からの武器属性付与にする<BR>　（素手Atk部分には武器属性付与が適用されない）</Font></label>',0);
-			else myInnerHtml("EN819",'<input id="OBJID_CHECK_A8_Skill19" type="checkbox" name="A8_Skill19"onClick="StAllCalc() | Click_A8(1)"><label for="OBJID_CHECK_A8_Skill19"><Font size=2>武器属性付与をアカデミーの看板型付与にする<BR>　（素手Atk部分にも武器属性付与が適用される）</Font></label>',0);
-
-			myInnerHtml("EN830",'クァグマイア<select name="A_IJYOU0" onChange="StAllCalc() | Click_A8(1)"></select>',0);
-			document.calcForm.A_IJYOU0.options[0] = new Option("-",0);
-			for (let i = 1; i <= 5; i++) document.calcForm.A_IJYOU0.options[i] = new Option("Lv"+i+"(モンスターが使用)",i);
-			for (let i = 6; i <= 10; i++) document.calcForm.A_IJYOU0.options[i] = new Option("Lv"+(i-5)+"(プレイヤーが使用)",i);
-
-			myInnerHtml("EN831",'速度減少<select name="A_IJYOU1" onChange="StAllCalc() | Click_A8(1)"></select>',0);
-			document.calcForm.A_IJYOU1.options[0] = new Option("-",0);
-			for (let i = 1; i <= 10; i++) document.calcForm.A_IJYOU1.options[i] = new Option("Lv"+i,i);
-			document.calcForm.A_IJYOU1.options[11] = new Option("Lv46",46);
-			document.calcForm.A_IJYOU1.options[12] = new Option("Lv48",48);
-
-			myInnerHtml("EN832",'<input id="OBJID_CHECK_A_IJYOU2" type="checkbox" name="A_IJYOU2"onClick="StAllCalc() | Click_A8(1)"><label for="OBJID_CHECK_A_IJYOU2">毒</label>',0);
-
-			myInnerHtml("EN833",'<input id="OBJID_CHECK_A_IJYOU3" type="checkbox" name="A_IJYOU3"onClick="StAllCalc() | Click_A8(1)"><label for="OBJID_CHECK_A_IJYOU3">呪い</label>',0);
-
-			myInnerHtml("EN834",'スローキャスト<select name="A_IJYOU4" onChange="StAllCalc() | Click_A8(1)"></select>',0);
-			document.calcForm.A_IJYOU4.options[0] = new Option("-",0);
-			for (let i = 1; i <= 5; i++) document.calcForm.A_IJYOU4.options[i] = new Option("Lv"+i,i);
-
-			myInnerHtml("EN835",'<input id="OBJID_CHECK_A_IJYOU5" type="checkbox" name="A_IJYOU5"onClick="StAllCalc() | Click_A8(1)"><label for="OBJID_CHECK_A_IJYOU5">氷結<Font size=2>(ASPD-30%/DEF-10%/固定詠唱+50%)</Font></label>',0);
-
-			myInnerHtml("EN836",'<input id="OBJID_CHECK_A_IJYOU6" type="checkbox" name="A_IJYOU6"onClick="StAllCalc() | Click_A8(1)"><label for="OBJID_CHECK_A_IJYOU6">(×)イヌハッカシャワー</label>',0);
-
-			myInnerHtml("EN837",'<input id="OBJID_CHECK_A_IJYOU7" type="checkbox" name="A_IJYOU7"onClick="StAllCalc() | Click_A8(1)"><label for="OBJID_CHECK_A_IJYOU7">(×)ニャングラス</label>',0);
-
-			document.calcForm.A8_Skill0.value = n_A_PassSkill8[0];
-			document.calcForm.A8_Skill1.value = n_A_PassSkill8[1];
-			document.calcForm.A8_Skill2.value = n_A_PassSkill8[2];
-			document.calcForm.A8_Skill3.value = n_A_PassSkill8[3];
-			document.calcForm.A8_Skill4.checked = n_A_PassSkill8[4];
-			document.calcForm.A8_Skill5.value = n_A_PassSkill8[5];
-			document.calcForm.A8_Skill6.value = n_A_PassSkill8[6];
-			document.calcForm.A8_Skill7.value = n_A_PassSkill8[7];
-			document.calcForm.A8_Skill12.value = n_A_PassSkill8[12];
-			document.calcForm.A8_Skill13.checked = n_A_PassSkill8[13];
-			document.calcForm.A8_Skill15.value = n_A_PassSkill8[15];
-			document.calcForm.A8_Skill16.checked = n_A_PassSkill8[16];
-			document.calcForm.A8_Skill17.value = n_A_PassSkill8[17];
-			document.calcForm.A8_Skill19.checked = n_A_PassSkill8[19];
-			document.calcForm.A8_Skill21.value = n_A_PassSkill8[21];
-			document.calcForm.A8_Skill22.value = n_A_PassSkill8[22];
-			document.calcForm.A_IJYOU0.value = n_A_IJYOU[0];
-			document.calcForm.A_IJYOU1.value = n_A_IJYOU[1];
-			document.calcForm.A_IJYOU2.checked = n_A_IJYOU[2];
-			document.calcForm.A_IJYOU3.checked = n_A_IJYOU[3];
-			document.calcForm.A_IJYOU4.value = n_A_IJYOU[4];
-			document.calcForm.A_IJYOU5.checked = n_A_IJYOU[5];
-			document.calcForm.A_IJYOU6.checked = n_A_IJYOU[6];
-			document.calcForm.A_IJYOU7.checked = n_A_IJYOU[7];
-			// ペット説明更新
-			RefreshPetExplain();
-	}else{
-			let str;
-			str = '<TABLE Border><TR><TD id="A8TD" class="title"><input id="OBJID_CHECK_A8_SKILLSW" type="checkbox" name="A8_SKILLSW"onClick="Click_Skill8SW()"><label for="OBJID_CHECK_A8_SKILLSW">その他の支援/設定 (暫定追加機能)</label><SPAN id="A8used"></SPAN></TD></TR></TABLE>';
-			str += '';
-			myInnerHtml("ID_ETC",str,0);
-			document.calcForm.A8_SKILLSW.checked = false;
-	}
-	Click_A8(0);
-}
-
-/**
- * その他の支援/設定 (暫定追加機能)の変更を反映する
- * @param {*} n 再計算フラグ（n = 1 再計算する）
- */
-function Click_A8(n){
-	if(n==1) AutoCalc("Click_A8");
-
-	var sw=0;
-	for(var i=0;i <n_A_PassSkill8.length;i++){
-		if(n_A_PassSkill8[i] != 0){
-			sw = 1;
-			break;
-		}
-	}
-	for(var i=0;i <n_A_IJYOU.length;i++) if(n_A_IJYOU[i] != 0){
-		sw = 1;
-		break;
-	}
-	if(sw == 0){
-		document.getElementById('A8TD').style.backgroundColor = "#DDDDFF";
-		myInnerHtml("A8used","",0);
-	}else{
-		document.getElementById('A8TD').style.backgroundColor = "#FF7777";
-		myInnerHtml("A8used","　<B>使用中</B>",0);
-	}
- }
-
-/**
  * サイズ補正の倍率を取得する.
  * @param wSC_Size サイズ補正倍率の基礎値
  * @returns 最終サイズ補正倍率
@@ -24116,284 +22587,6 @@ function CalcMeanDamageLeftHand(skillId, mobData, dmg) {
 	var meanDmgAll = meanDmgNormal;
 
 	return meanDmgAll;
-}
-
-/**
- * 有効化されている支援スキルや時限効果などの設定Lvを取得する
- * @param {*} sklId 確認するスキル
- * @param {*} bOnlyUsed true: 時限アイテム効果等も検索する / false: 職業スキルだけを検索する(default)
- * @returns 設定されているLv
- */
-function UsedSkillSearch(sklId, bOnlyUsed = false) {
-	let sklLv = 0;
-	let effectivLvArray = [0];
-	let bAvoidRecalc = false;
-	// スキル欄のみの場合
-	if (bOnlyUsed) {
-		return UsedSkillSearchSubUsedOnly(sklId);
-	}
-	// 時限アイテム欄等で指定するスキル
-	switch (sklId) {
-		// バーサーク
-		case SKILL_ID_BERSERK:
-			if (TimeItemNumSearch(35)) effectivLvArray.push(1);
-			if (TimeItemNumSearch(111)) effectivLvArray.push(1);
-			break;
-
-		// オーバートラストマックス
-		case SKILL_ID_OVER_TRUST_MAX:
-			if (TimeItemNumSearch(112)) effectivLvArray.push(5);
-			break;
-
-		// 魔法力増幅
-		case SKILL_ID_MAHORYOKU_ZOFUKU:
-			if ((sklLv = g_confDataNizi[CCharaConfNizi.CONF_ID_MAHORYOKU_ZOFUKU]) > 0) {
-				effectivLvArray.push(sklLv);
-			}
-			if (TimeItemNumSearch(113)) effectivLvArray.push(5);
-			break;
-
-		// オーラブレイド
-		case SKILL_ID_AURA_BLADE:
-			if ((sklLv = g_confDataNizi[CCharaConfNizi.CONF_ID_AURA_BLADE]) > 0) {
-				effectivLvArray.push(sklLv);
-			}
-			break;
-
-		// トゥルーサイト
-		case SKILL_ID_TRUE_SIGHT:
-			if (TimeItemNumSearch(TIME_ITEM_ID_LEASER_OF_EAGLE_TRUE_SIGHT)) {
-				effectivLvArray.push(2);
-			}
-			if (TimeItemNumSearch(TIME_ITEM_ID_JITTER_BUG)) {
-				effectivLvArray.push(1);
-			}
-			break;
-
-		// 金剛
-		case SKILL_ID_KONGO:
-			if ((sklLv = g_confDataNizi[CCharaConfNizi.CONF_ID_KONGO]) > 0) {
-				effectivLvArray.push(sklLv);
-			}
-			break;
-
-		// 集中力向上
-		case SKILL_ID_SHUCHURYOKU_KOZYO:
-			if (TimeItemNumSearch(TIME_ITEM_ID_VNDER_CANMER_SHUCHURYOKU_KOZYO) > 0){
-				effectivLvArray.push(5);
-			}
-			else if ((bufLv = g_confDataIchizi[CCharaConfIchizi.CONF_ID_SHUCHURYOKU_KOZYO]) > 0) {
-				effectivLvArray.push(bufLv);
-			}
-			else if (TimeItemNumSearch(TIME_ITEM_ID_BLUE_RIBBON) > 0) {
-				effectivLvArray.push(2);
-			}
-			else if (TimeItemNumSearch(4) > 0) {
-				effectivLvArray.push(1);;
-			}
-			break;
-
-		// アンリミット
-		case SKILL_ID_UNLIMIT:
-			if ((bufLv = g_confDataSanzi[CCharaConfSanzi.CONF_ID_UNLIMIT]) > 0) {
-				effectivLvArray.push(bufLv);
-			}
-			else if (TimeItemNumSearch(TIME_ITEM_ID_GULARUSION_UNLIMIT) > 0) {
-				effectivLvArray.push(5);
-			}
-			else if (TimeItemNumSearch(TIME_ITEM_ID_TRAVELER_RING_GOKETSU) > 0) {
-				effectivLvArray.push(5);
-			}
-			else if (TimeItemNumSearch(TIME_ITEM_ID_DARK_TRIAD) > 0) {
-				effectivLvArray.push(5);
-			}
-			else if (TimeItemNumSearch(TIME_ITEM_ID_URUNO_KAGO) > 0) {
-				effectivLvArray.push(5);
-			}
-			else if (TimeItemNumSearch(TIME_ITEM_ID_ENCHANT_GOKETSU_SENZAI_KAIHO_WIND_HAWK_3) > 0) {
-				effectivLvArray.push(5);
-			}
-			else if (TimeItemNumSearch(TIME_ITEM_ID_TRIANGLE_DISASTER) > 0) {
-				effectivLvArray.push(5);
-			}
-			else if (TimeItemNumSearch(TIME_ITEM_ID_ENCHANT_GOKETSU_SENZAI_KAIHO_SHADOW_CHASER_2) > 0) {
-				effectivLvArray.push(5);
-			}		
-			break;
-
-		// テレキネシスインテンス
-		case SKILL_ID_TELECHINESIS_INSTENCE:
-			if (TimeItemNumSearch(TIME_ITEM_ID_ILLUSION_ANCIENT_DUGGER_TELECHINESIS_INSTENCE) > 0) {
-				effectivLvArray.push(3);
-			}
-			break;
-
-		// 三段掌
-		case SKILL_ID_SANDANSHO:
-
-			// 「陣羽織」による、追加発動効果
-			if (EquipNumSearch(ITEM_ID_ZINBAORI)) {
-
-				if (n_A_SHOULDER_DEF_PLUS >= 9) {
-					effectivLvArray.push(10);
-				}
-				else if (n_A_SHOULDER_DEF_PLUS >= 7) {
-					effectivLvArray.push(5);
-				}
-				else {
-					effectivLvArray.push(3);
-				}
-			}
-
-			// 「混沌のサイドワインダーカード」による、追加発動効果
-			if (CardNumSearch(CARD_ID_KONTONNO_SIDEWINDER)) {
-				effectivLvArray.push(5);
-			}
-
-			// 「変異キメラガレンシスカード」による、追加発動効果
-			if (CardNumSearch(CARD_ID_HENI_CHIMERA_GALENSIS, CARD_REGION_ID_HEAD_TOP_ANY)) {
-				effectivLvArray.push(n_A_HEAD_DEF_PLUS);
-			}
-			break;
-
-		// ダブルアタック
-		case SKILL_ID_DOUBLE_ATTACK:
-
-			// 「サイドワインダーカード」の効果
-			if (CardNumSearch(CARD_ID_SIDEWINDER)) {
-				effectivLvArray.push(1);
-			}
-
-			// 「ひよこちゃん」の効果
-			if (EquipNumSearch(ITEM_ID_HIYOKOCHAN)) {
-				effectivLvArray.push(2);
-			}
-
-			// 「[レンタル] ひよこちゃん」の効果
-			if (EquipNumSearch(ITEM_ID_HIYOKOCHAN_RENTAL)) {
-				effectivLvArray.push(2);
-			}
-
-			// 「バレンタイン帽　反対派の証セット」の効果
-			if (EquipNumSearch(ITEM_SET_ID_VALENTINE_BO_HANTAIHANO_AKASHI)) {
-				effectivLvArray.push(2);
-			}
-
-			// 「彷徨う者の羽織　傘セット」の効果
-			if (EquipNumSearch(ITEM_SET_ID_SAMAYOUMONONO_HAORI_KASA)) {
-				if (n_A_SHOULDER_DEF_PLUS >= 7) {
-					effectivLvArray.push(5);
-				}
-				else {
-					effectivLvArray.push(2);
-				}
-			}
-
-			// 「バレンタイン帽　反対派の証セット」の効果
-			if (EquipNumSearch(ITEM_ID_NEIGAN)) {
-				effectivLvArray.push(5);
-			}
-
-			// 「陣羽織」の効果
-			if (EquipNumSearch(ITEM_ID_ZINBAORI)) {
-				if (n_A_SHOULDER_DEF_PLUS >= 9) {
-					effectivLvArray.push(10);
-				}
-				else if (n_A_SHOULDER_DEF_PLUS >= 7) {
-					effectivLvArray.push(5);
-				}
-				else {
-					effectivLvArray.push(3);
-				}
-			}
-
-			// 「スタッフオブパフィ」の効果
-			if (EquipNumSearch(ITEM_ID_STUFF_OF_PUFFY)) {
-				if (n_A_Weapon_ATKplus >= 10) {
-					effectivLvArray.push(3);
-				}
-			}
-
-			// 「頭フィーリル　浮遊する賢者セット」の追加発動の効果
-			if (TimeItemNumSearch(71)) {
-				effectivLvArray.push(10);
-			}
-
-			// 「サーキットボード-OS」の効果
-			if (EquipNumSearch(ITEM_ID_CIRCUIT_BOARD_OS)) {
-				if (n_A_Weapon_ATKplus >= 10) {
-					effectivLvArray.push(10);
-				}
-			}
-
-			// 「トートの書」の効果
-			if (EquipNumSearch(ITEM_ID_TOTONO_SHO) || EquipNumSearch(ITEM_ID_TOTONO_SHO_T1)) {
-				effectivLvArray.push(10);
-			}
-
-			// 「潜在覚醒(スペルフィストI)」の効果
-			if (CardNumSearch(CARD_SET_ID_ENCHANT_SHINRINO_KAIHO_SENZAI_SPELL_FIST_1) > 0) {
-				effectivLvArray.push(10);
-			}
-
-			// 「分身」スキルの効果
-			if (g_confDataSanzi[CCharaConfSanzi.CONF_ID_BUNSHIN] > 0) {
-				effectivLvArray.push(2 * g_confDataSanzi[CCharaConfSanzi.CONF_ID_BUNSHIN]);
-			}
-
-			// 「チェーンアクション」スキルの効果
-			sklLv = Math.max(LearnedSkillSearch(SKILL_ID_CHAIN_ACTION), UsedSkillSearch(SKILL_ID_CHAIN_ACTION));
-			if ((n_A_WeaponType == ITEM_KIND_HANDGUN) && (sklLv > 0)) {
-				effectivLvArray.push(sklLv);
-			}
-
-			// 「エターナルチェーン」スキルの効果
-			sklLv = UsedSkillSearch(SKILL_ID_ETERNAL_CHAIN);
-			if (IsGunSeriesArms(n_A_WeaponType) && (sklLv > 0)) {
-				effectivLvArray.push(sklLv);
-			}
-
-			// 「ダブルアタック」スキルの効果
-			sklLv = Math.max(LearnedSkillSearch(SKILL_ID_DOUBLE_ATTACK), UsedSkillSearch(SKILL_ID_DOUBLE_ATTACK, true));
-			if ((n_A_WeaponType == ITEM_KIND_KNIFE) && (sklLv > 0)) {
-				effectivLvArray.push(sklLv);
-			}
-
-			// 再計算回避フラグを立てる
-			bAvoidRecalc = true;
-
-			break;
-
-	}
-	// 再計算回避フラグが立っていなければ、通常スキル欄を追加
-	if (!bAvoidRecalc) {
-		effectivLvArray.push(UsedSkillSearchSubUsedOnly(sklId));
-	}
-	// 最大レベルを返す
-	return effectivLvArray.reduce(
-		function(a, b) {
- 	   		return Math.max(a, b);
-		});
-}
-
-/**
- * 有効化されている支援スキルの設定Lvを取得する
- * @param {Number} sklId 確認するスキル
- * @returns {Number} 設定されているLv
- */
-function UsedSkillSearchSubUsedOnly(sklId) {
-	// 設定可能な全ての職固有自己支援スキルを取得する
-	const passiveSkillIdArray = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, n_A_JOB).GetPassiveSkillIdArray();
-	for (let idx = 0; idx < passiveSkillIdArray.length; idx++) {
-		if(passiveSkillIdArray[idx] == sklId) {
-			// 指定されたスキルIDが見つかったとき
-			if (n_A_PassSkill[idx] !== undefined && !isNaN(n_A_PassSkill[idx])) {
-				// 該当のスキルLvがundefinedでもNaNでもなければ習得済みLvを返す
-				return n_A_PassSkill[idx];
-			}
-		}
-	}
-	return 0;
 }
 
 /**

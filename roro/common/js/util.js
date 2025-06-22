@@ -1,3 +1,7 @@
+/**
+ * 低レイヤーのユーティリティ関数群
+ */
+
 CONSOLE_LOG_LEVEL_NONE	= 0;
 CONSOLE_LOG_LEVEL_DEBUG	= 1;
 g_bStoreConsoleLog = false;

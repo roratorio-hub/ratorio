@@ -1,16 +1,8 @@
-
+/**
+ * 習得スキル欄の生成・更新・サーチなどの関数群
+ */
 let n_SkillSWLearned = false;
-
 LEARNED_SKILL_MAX_COUNT = 200;
-
-//================================================================================================
-//================================================================================================
-//====
-//==== 習得スキル欄
-//====
-//================================================================================================
-//================================================================================================
-
 n_A_LearnedSkill = new Array();
 for (let dmyidx = 0; dmyidx < LEARNED_SKILL_MAX_COUNT; dmyidx++) {
 	n_A_LearnedSkill[dmyidx] = 0;
@@ -37,6 +29,10 @@ function LearnedSkillSearch(skillId) {
 	return 0;
 }
 
+/**
+ * 習得スキル欄を生成する
+ * @returns 
+ */
 function OnClickSkillSWLearned(){
 	let objSW = null;
 	let objRoot = null;
@@ -47,7 +43,6 @@ function OnClickSkillSWLearned(){
 	let objInput = null;
 	let objText = null;
 	let objSpan = null;
-	let objA = null;
 	let objLabel = null;
 	let skillId = 0;
 	let skillName = "";
@@ -210,31 +205,29 @@ function OnClickSkillSWLearned(){
 	}
 }
 
+/**
+ * 習得スキルをトリガーとするアイテムを装備しているか検査する
+ * @param {Number} skillId  
+ * @returns {boolean} true:装備している / false:装備していない
+ */
 function IsLearnedSkillTarget (skillId) {
-
-	var idx = 0;
-	var itemId = 0;
-	var cardId = 0;
-	var spidx = 0;
-
+	let idx = 0;
+	let itemId = 0;
+	let cardId = 0;
+	let spidx = 0;
 	// 全ての装備を走査し、習得スキル設定対象がないかをチェック
 	for (idx = 0; idx < n_A_Equip.length; idx++) {
-
 		itemId = n_A_Equip[idx];
-
 		spidx = ITEM_DATA_INDEX_SPBEGIN;
-
 		while (ItemObjNew[itemId][spidx] != ITEM_SP_END) {
 			if (ItemObjNew[itemId][spidx] == ITEM_SP_LEARNED_SKILL_EFFECT) {
 				if (ItemObjNew[itemId][spidx + 1] == skillId) {
 					return true;
 				}
 			}
-
 			spidx += 2;
 		}
 	}
-
 	// 全てのカードを走査し、習得スキル設定対象がないかをチェック
 	for (idx = 0; idx < n_A_card.length; idx++) {
 
@@ -252,57 +245,43 @@ function IsLearnedSkillTarget (skillId) {
 			spidx += 2;
 		}
 	}
-
 	return false;
 }
 
-
-
+/**
+ * トリガー条件になっている習得スキルを強調表示する
+ * 判定関数として内部でIsLearnedSkillTargetを呼び出す
+ * @returns 
+ */
 function UpdateLearnedSkillSettingColoring() {
-
-	var idx = 0;
-
-	var learnSkillIdArray = null;
-	var skillId = 0;
-	var objTd = null;
-
-
+	let idx = 0;
+	let learnSkillIdArray = null;
+	let skillId = 0;
+	let objTd = null;
 	// 展開表示しない場合は、ここで処理終了
 	if (!n_SkillSWLearned) {
 		return;
 	}
-
 	// 設定欄内のスキルテーブルを走査
 	learnSkillIdArray = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, n_A_JOB).GetLearnSkillIdArray();
-
 	for (idx = 0; idx < learnSkillIdArray.length; idx++) {
-
 		skillId = learnSkillIdArray[idx];
-
 		// 名称欄
 		objTd = document.getElementById("OBJID_TD_LEARNED_SKILL_NAME_" + idx);
 		objTd.removeAttribute("class");
-
 		// 習得スキル設定対象でれあば、強調表示クラスに設定
 		if (IsLearnedSkillTarget(skillId)) {
 			objTd.setAttribute("class", "CSSCLS_LEARNED_SKILL_TARGET");
 		}
-
-
 		// レベル欄
 		objTd = document.getElementById("OBJID_TD_LEARNED_SKILL_LEVEL_" + idx);
 		objTd.removeAttribute("class");
-
 		// 習得スキル設定対象でれあば、強調表示クラスに設定
 		if (IsLearnedSkillTarget(skillId)) {
 			objTd.setAttribute("class", "CSSCLS_LEARNED_SKILL_TARGET");
 		}
-
-
 	}
-
 }
-
 
 /**
  * 習得スキルの変更を反映する
@@ -311,12 +290,10 @@ function UpdateLearnedSkillSettingColoring() {
  * @param {*} newValue 
  */
 function RefreshSkillColumnHeaderLearned(objSelect, changedIdx, newValue) {
-
 	if (0 <= changedIdx) {
 		n_A_LearnedSkill[changedIdx] = parseInt(newValue);
 		AutoCalc("RefreshSkillColumnHeaderLearned");
 	}
-
 	// 背景設定
 	if (objSelect) {
 		if (0 != newValue) {
@@ -325,29 +302,25 @@ function RefreshSkillColumnHeaderLearned(objSelect, changedIdx, newValue) {
 			objSelect.setAttribute("class", "");
 		}
 	}
-
-	var sColorCode = "#ddddff";
-	var sUsedText = "";
-	for (var idx = 0; idx < n_A_LearnedSkill.length; idx++) {
+	let sColorCode = "#ddddff";
+	let sUsedText = "";
+	for (let idx = 0; idx < n_A_LearnedSkill.length; idx++) {
 		if (n_A_LearnedSkill[idx] != 0) {
 			sColorCode = "#ff7777";
 			sUsedText = "　設定中";
 			break;
 		}
 	}
-	var objHeader = null;
-	var objUsedText = null;
-	var objText = null;
-
+	let objHeader = null;
+	let objUsedText = null;
+	let objText = null;
 	objHeader = document.getElementById("OBJID_SKILL_COLUMN_HEADER_LEARNED");
 	objHeader.setAttribute("bgcolor", sColorCode);
-
 	objUsedText = document.getElementById("OBJID_SKILL_COLUMN_USEDTEXT_LEARNED");
 	while (objUsedText.firstChild) {
 		objUsedText.removeChild(objUsedText.firstChild);
 	}
 	objText = document.createTextNode(sUsedText);
 	objUsedText.appendChild(objText);
-
 }
 
