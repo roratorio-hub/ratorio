@@ -8,7 +8,7 @@ let n_Skill3SW = false;
 /** 演奏・踊り系スキル スイッチ状態配列 */
 let SWs3sw = [0,0,0,0,0,0,0,0,0,0,0,0];
 /** 演奏・踊り系スキル 設定値 */
-let n_A_PassSkill3 = [];
+let n_A_PassSkill3 = Array(47).fill(0);
 
 /**
  * 演奏・踊り系スキル を構築する

@@ -30577,13 +30577,6 @@ function Init(){
 		n_A_costume[i] = 0;
 	}
 
-	n_A_PassSkill = new Array();
-	for(i=0;i<=50;i++) n_A_PassSkill[i] = 0;
-	n_A_PassSkill3 = new Array();
-	for(i=0;i<=46;i++) n_A_PassSkill3[i] = 0;
-	n_A_PassSkill4 = new Array();
-	for(i=0;i<=35;i++) n_A_PassSkill4[i] = 0;
-
 	// オートスペル設定
 	n_A_PassSkill5 = new Array();
 	for (var idx = 0 ; idx < AUTO_SPELL_SETTING_COUNT; idx++) {
@@ -30592,10 +30585,6 @@ function Init(){
 		n_A_PassSkill5[OBJID_OFFSET_AS_SKILL_PROB + idx] = 0;
 	}
 
-	n_A_PassSkill7 = new Array();
-	for(i=0;i<=51;i++) n_A_PassSkill7[i] = 0;
-	n_A_PassSkill8 = new Array();
-	for(i=0;i<=27;i++) n_A_PassSkill8[i] = 0;
 	n_A_IJYOU = new Array();
 	for(i=0;i<=7;i++) n_A_IJYOU[i] = 0;
 
