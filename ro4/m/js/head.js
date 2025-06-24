@@ -6753,9 +6753,35 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			n_A_Weapon_zokusei = g_skillManager.GetElement(battleCalcInfo.skillId);
 		}
 
-
-
 		switch (n_A_ActiveSkill) {
+			/* アークビショップ */
+			case SKILL_ID_JUDEX:	// ジュデックス
+			case SKILL_ID_ADORAMUS:	// アドラムス
+				// スキル使用条件の判定
+				n_Buki_Muri = !g_skillManager.MatchWeaponCondition(n_A_ActiveSkill, n_A_WeaponType);
+				if (n_Buki_Muri) {
+					wbairitu = 0;
+					break;
+				}
+				// 詠唱などの情報
+				wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				// ダメージ算出に関する情報
+				n_A_Weapon_zokusei = g_skillManager.GetElement(n_A_ActiveSkill, attackMethodConfArray[0]);
+				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], mobData);
+				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_WeaponType);
+				// ヒット数に関する情報
+				wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
+				wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
+				// 地面設置スキルの情報
+				g_bDefinedDamageIntervals = g_skillManager.IsGroundInstallation(n_A_ActiveSkill);
+				if (g_bDefinedDamageIntervals) {
+					n_Delay[5] = g_skillManager.GetDamageInterval(n_A_ActiveSkill, n_A_ActiveSkillLV);
+					n_Delay[6] = g_skillManager.GetLifeTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				}
+				break;
 
 		// 「マジシャン」スキル「ファイアーボルト」
 		case SKILL_ID_FIRE_BOLT:
@@ -7134,46 +7160,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			if(UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU)==4) wbairitu += 100 * UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
 			wHITsuu = 1;
 			wCast = 4000;
-			break;
-
-		// 「アークビショップ」スキル「ジュデックス」
-		case SKILL_ID_JUDEX:
-			n_bunkatuHIT = 1;
-			wHITsuu = 3;
-			n_A_Weapon_zokusei = 6;
-			// 特定の戦闘エリアでの補正
-			switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
-				case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
-				case MOB_CONF_PLAYER_ID_SENTO_AREA_YE:	// 2024/10/23 YEお試し道場で確認済み
-					wbairitu = Math.floor((300 + 40 * n_A_ActiveSkillLV) * (n_A_BaseLV / 100));
-					break;
-				default:
-					wbairitu = 300 + 40 * n_A_ActiveSkillLV;
-					wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
-					break;
-			}
-			wCast = 2000;
-			break;
-
-		case SKILL_ID_ADORAMUS:
-			n_A_Weapon_zokusei = 6;
-			wbairitu = Math.floor((500 + 100 * n_A_ActiveSkillLV) * (n_A_BaseLV / 100));
-			n_bunkatuHIT = 1;
-			wHITsuu = 10;
-			wCast = 4000;
-
-			// 特定の戦闘エリアでの補正
-			switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
-
-			case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
-				n_Delay[7] = 5000 - 500 * n_A_ActiveSkillLV;
-				break;
-
-			default:
-				n_Delay[7] = 0;
-				break;
-			}
-
 			break;
 
 		case SKILL_ID_SOUL_EXPANSION:

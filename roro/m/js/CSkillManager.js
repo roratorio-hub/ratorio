@@ -297,8 +297,29 @@ function CSkillManager() {
 		return this.dataArray[skillId].range(weapon);
 	}
 
-	this.GetElement = function(skillId) {
-		return this.dataArray[skillId].element;
+	/**
+	 * スキルの攻撃属性を取得する
+	 * @param {Number} skillId
+	 * @param {CAttackMethodConf} option
+	 * @returns CSkillData.ELEMENT_FORCE_VANITY (default)
+	 * 			| CSkillData.ELEMENT_VOID
+	 *			| CSkillData.ELEMENT_FORCE_WATER
+	 *			| CSkillData.ELEMENT_FORCE_EARTH
+	 *			| CSkillData.ELEMENT_FORCE_FIRE
+	 *			| CSkillData.ELEMENT_FORCE_WIND
+	 *			| CSkillData.ELEMENT_FORCE_POISON
+	 *			| CSkillData.ELEMENT_FORCE_HOLY
+	 *			| CSkillData.ELEMENT_FORCE_DARK
+	 *			| CSkillData.ELEMENT_FORCE_PSYCO
+	 *			| CSkillData.ELEMENT_FORCE_UNDEAD
+	 *			| CSkillData.ELEMENT_SPECIAL
+	 */
+	this.GetElement = function(skillId, option) {
+		if (typeof this.dataArray[skillId].element === "function") {
+			return this.dataArray[skillId].element(option);
+		} else {
+			return this.dataArray[skillId].element;
+		}
 	}
 
 	/**
@@ -14280,40 +14301,40 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
-			this.name = "(△)ジュデックス";
+			this.name = "(×)ジュデックス";
 			this.kana = "シユテツクス";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL
 					| CSkillData.TYPE_DIVHIT_FORMULA;
-			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_HOLY;
-
+			this.range = function(weapon) {
+				return CSkillData.RANGE_MAGIC;
+			}
+			this.dispHitCount = function(skillLv) {
+				return 3;
+			}
+			this.Power = function(skillLv, charaData, option) {
+				ratio = 0;
+				switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
+					case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
+					case MOB_CONF_PLAYER_ID_SENTO_AREA_YE:
+						ratio = 300 + 70 * skillLv;
+						ratio = Math.floor(ratio * n_A_BaseLV / 100);
+						break;
+					default:
+						ratio = 300 + 70 * skillLv;
+						ratio = Math.floor(ratio * n_A_BaseLV / 100);
+						break;
+				}
+				return ratio;
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 17 + 3 * skillLv;
 			}
-
-			this.Power = function(skillLv, charaDataManger) {
-				var pow = 0;
-
-				// 基本式
-				pow = 360 + 48 * skillLv;
-
-				// ベースレベル補正
-				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 100);
-
-				return pow;
-			}
-
-			this.hitCount = function(skillLv, charaDataManger) {
-				return 3;
-			}
-
 			this.CastTimeVary = function(skillLv, charaDataManger) {
 				return 2000;
 			}
-
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -14357,54 +14378,49 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
-			this.name = "アドラムス";
+			this.name = "(×)アドラムス";
 			this.kana = "アトラムス";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL
 					| CSkillData.TYPE_DIVHIT_FORMULA;
-			this.range = CSkillData.RANGE_MAGIC;
-			this.element = CSkillData.ELEMENT_FORCE_HOLY;
-
-			this.CostFixed = function(skillLv, charaDataManger) {
-				return 16 + 6 * skillLv;
+			this.element = function(option) {
+				if (option.GetOptionValue(0) === 1) {
+					// アンシラ状態のとき
+					return CSkillData.ELEMENT_FORCE_VANITY;
+				} else {
+					return CSkillData.ELEMENT_FORCE_HOLY;
+				}
 			}
-
+			this.range = function(weapon) {
+				return CSkillData.RANGE_MAGIC;
+			}
 			this.Power = function(skillLv, charaDataManger) {
-				var pow = 0;
-
-				// 基本式
-				pow = 500 + 100 * skillLv;
-
-				// ベースレベル補正
-				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 100);
-
-				return pow;
+				let ratio = 0;
+				ratio = 500 + 100 * skillLv;
+				ratio = Math.floor(ratio * n_A_BaseLV / 100);
+				return ratio;
 			}
-
-			this.hitCount = function(skillLv, charaDataManger) {
+			this.dispHitCount = function(skillLv) {
 				return 10;
 			}
-
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 16 + 4 * skillLv;
+			}
 			this.CastTimeVary = function(skillLv, charaDataManger) {
 				return 4000;
 			}
-
 			this.CoolTime = function(skillLv, charaDataManger) {
-
 				// 特定の戦闘エリアでの補正
 				switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
-
-				case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
-					return 5000 - 500 * skillLv;
-
-				}
-
+					case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
+						return 5000 - 500 * skillLv;
+					}
 				return 0;
 			}
-
-
+			this.LifeTime = function(skillLv, charaData) {
+				return (10 + 5 * skillLv) * 1000;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;

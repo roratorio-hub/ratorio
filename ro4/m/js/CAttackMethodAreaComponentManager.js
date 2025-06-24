@@ -4141,6 +4141,20 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 			);
 			break;
 
+		//----------------------------------------------------------------
+		// アークビショップ：アドラムス
+		//----------------------------------------------------------------
+		case SKILL_ID_ADORAMUS:
+			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+				"アンシラ状態",
+				[
+					[0, "無し"],
+					[1, "有り"],
+				],
+				0
+			);
+			break;
+
 		}
 	}
 };
