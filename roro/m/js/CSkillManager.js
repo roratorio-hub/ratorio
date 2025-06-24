@@ -294,7 +294,11 @@ function CSkillManager() {
 	 * @returns 	[ CSkillData.RANGE_SHORT (default) | CSkillData.RANGE_LONG | CSkillData.RANGE_MAGIC | CSkillData.RANGE_SPECIAL ]
 	 */
 	this.GetSkillRange = function(skillId, weapon) {
-		return this.dataArray[skillId].range(weapon);
+		if (typeof this.dataArray[skillId].range === "function") {
+			return this.dataArray[skillId].range(weapon);
+		} else {
+			return this.dataArray[skillId].range;
+		}
 	}
 
 	/**
@@ -8724,40 +8728,31 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "アローバルカン";
 			this.kana = "アロオハルカン";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			;
 			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_VOID;
-
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 10 + 2 * skillLv;
 			}
-
 			this.Power = function(skillLv, charaDataManger) {
 				return 200 + 100 * skillLv;
 			}
-
 			this.dispHitCount = function(skillLv, charaDataManger) {
 				return 9;
 			}
-
 			this.CastTimeVary = function(skillLv, charaDataManger) {
 				return 1800 + 200 * Math.floor((skillLv - 1) / 5);
 			}
-
 			this.DelayTimeCommon = function(skillLv, charaDataManger) {
 				return 800 + 200 * Math.floor((skillLv - 1) / 5);
 			}
-
 			this.DelayTimeForceMotion = function(skillLv, charaDataManger) {
 				return 3000;
 			}
-
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
