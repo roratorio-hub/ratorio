@@ -1175,18 +1175,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				else n_Delay[2] = 800;
 				break;
 
-			case SKILL_ID_ARRAW_VULKAN:
-				wActiveHitNum = 9;
-				wbairitu += 100 + 100 * n_A_ActiveSkillLV;
-				n_A_Weapon_zokusei = GetEquippedTotalSPArrow(ITEM_SP_ELEMENTAL);
-				if(eval(document.calcForm.A_Weapon_zokusei.value) != 0) n_A_Weapon_zokusei = eval(document.calcForm.A_Weapon_zokusei.value);
-				n_Enekyori=1;
-				wCast = 1800 + n_A_ActiveSkillLV * 200;
-				if(n_A_ActiveSkillLV>=6) n_Delay[2] = 1000;
-				else n_Delay[2] = 800;
-				n_Delay[3] = 3;
-				break;
-
 			case SKILL_ID_TOMAHAWKNAGE:
 				n_Enekyori=1;
 								n_A_Weapon_zokusei = 4;
@@ -2435,7 +2423,8 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			//----------------------------------------------------------------
 			// 計算式を CSkillManager.js へ移動させ head.js をスリム化する対応を進めています
 			//----------------------------------------------------------------
-
+			/* クラウン・ジプシー */
+			case SKILL_ID_ARRAW_VULKAN:	// アローバルカン
 			/* バード */
 			case SKILL_ID_MUSICAL_STRIKE:	// ミュージカルストライク
 			/* ダンサー */

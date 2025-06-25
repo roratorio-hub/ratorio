@@ -8731,26 +8731,32 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "アローバルカン";
+			this.name = "(×)アローバルカン";
 			this.kana = "アロオハルカン";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
-			this.element = CSkillData.ELEMENT_VOID;
+			this.element = function(option) {
+				return GetEquippedTotalSPArrow(ITEM_SP_ELEMENTAL);
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 10 + 2 * skillLv;
 			}
 			this.Power = function(skillLv, charaDataManger) {
-				return 200 + 100 * skillLv;
+				let ratio = 500 + 100 * skillLv;
+				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.dispHitCount = function(skillLv, charaDataManger) {
 				return 9;
 			}
 			this.CastTimeVary = function(skillLv, charaDataManger) {
-				return 1800 + 200 * Math.floor((skillLv - 1) / 5);
+				return 1800 + 200 * skillLv;
 			}
 			this.DelayTimeCommon = function(skillLv, charaDataManger) {
-				return 800 + 200 * Math.floor((skillLv - 1) / 5);
+				return 2000;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 300;
 			}
 			this.DelayTimeForceMotion = function(skillLv, charaDataManger) {
 				return 3000;
