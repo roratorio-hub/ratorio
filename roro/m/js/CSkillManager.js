@@ -6129,23 +6129,24 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
-			this.name = "ミュージカルストライク";
+			this.name = "(×)ミュージカルストライク";
 			this.kana = "ミユウシカルストライク";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
-			this.element = CSkillData.ELEMENT_VOID;
-
+			this.element = function(option) {
+				return GetEquippedTotalSPArrow(ITEM_SP_ELEMENTAL);
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return -1 + 2 * skillLv;
 			}
-
 			this.Power = function(skillLv, charaDataManger) {
-				return 60 + 40 * skillLv;
+				return 110 + 40 * skillLv;
 			}
-
+			this.hitCount = function(skillLv, option) {
+				return 2;
+			}
 			this.CastTimeVary = function(skillLv, charaDataManger) {
 				return 1500;
 			}
@@ -6327,23 +6328,24 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
-			this.name = "矢撃ち";
+			this.name = "(×)矢撃ち";
 			this.kana = "ヤウチ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
-			this.element = CSkillData.ELEMENT_VOID;
-
+			this.element = function(option) {
+				return GetEquippedTotalSPArrow(ITEM_SP_ELEMENTAL);
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return -1 + 2 * skillLv;
 			}
-
 			this.Power = function(skillLv, charaDataManger) {
-				return 60 + 40 * skillLv;
+				return 110 + 40 * skillLv;
 			}
-
+			this.hitCount = function(skillLv, option) {
+				return 2;
+			}
 			this.CastTimeVary = function(skillLv, charaDataManger) {
 				return 1500;
 			}

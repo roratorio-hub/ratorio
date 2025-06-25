@@ -1134,15 +1134,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				n_Delay[3] = 0.7 - (0.004 * n_A_AGI) - (0.002 * n_A_DEX);
 				break;
 
-			case SKILL_ID_MUSICAL_STRIKE:
-			case SKILL_ID_YAUCHI:
-				wCast = 1500;
-				wbairitu += (40 * n_A_ActiveSkillLV - 40);
-				n_A_Weapon_zokusei = GetEquippedTotalSPArrow(ITEM_SP_ELEMENTAL);
-				if(eval(document.calcForm.A_Weapon_zokusei.value) != 0) n_A_Weapon_zokusei = eval(document.calcForm.A_Weapon_zokusei.value);
-				n_Enekyori=1;
-				break;
-
 			case SKILL_ID_HEAD_CRUSH:
 				n_Enekyori=1;
 				wbairitu += 40 * n_A_ActiveSkillLV;
@@ -2442,10 +2433,13 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				break;
 
 			//----------------------------------------------------------------
-			// ４次職物理スキルここから
 			// 計算式を CSkillManager.js へ移動させ head.js をスリム化する対応を進めています
 			//----------------------------------------------------------------
 
+			/* バード */
+			case SKILL_ID_MUSICAL_STRIKE:	// ミュージカルストライク
+			/* ダンサー */
+			case SKILL_ID_YAUCHI:	// 矢撃ち
 			/* ドラゴンナイト */
 			case SKILL_ID_SERVANT_WEAPON:	// サーヴァントウェポン
 			case SKILL_ID_HACK_AND_SLASHER:	// ハックアンドスラッシャー
