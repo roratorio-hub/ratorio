@@ -3070,12 +3070,14 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 		// ミンストレル・ワンダラー：グレートエコー
 		//----------------------------------------------------------------
 		case SKILL_ID_GREAT_ECHO:
-
 			// オプションリストを生成、追加
 			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"ミンワンの人数",
-				funcCreateNumberDataArrayArray(2, 7, false),
-				2
+				"パートナー",
+				[
+					[0, "無し"],
+					[1, "有り"],
+				],
+				0
 			);
 			break;
 

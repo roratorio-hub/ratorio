@@ -6136,6 +6136,9 @@ function CSkillManager() {
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
+			this.WeaponCondition = function(weapon) {
+				return ITEM_KIND_MUSICAL === weapon;
+			}
 			this.element = function(option) {
 				return GetEquippedTotalSPArrow(ITEM_SP_ELEMENTAL);
 			}
@@ -6335,6 +6338,9 @@ function CSkillManager() {
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
+			this.WeaponCondition = function(weapon) {
+				return ITEM_KIND_WHIP === weapon;
+			}
 			this.element = function(option) {
 				return GetEquippedTotalSPArrow(ITEM_SP_ELEMENTAL);
 			}
@@ -8737,6 +8743,9 @@ function CSkillManager() {
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
+			this.WeaponCondition = function(weapon) {
+				return [ITEM_KIND_WHIP, ITEM_KIND_MUSICAL].includes(weapon);
+			}
 			this.element = function(option) {
 				return GetEquippedTotalSPArrow(ITEM_SP_ELEMENTAL);
 			}
@@ -20367,6 +20376,9 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.WeaponCondition = function(weapon) {
+				return [ITEM_KIND_WHIP, ITEM_KIND_MUSICAL, ITEM_KIND_BOW].includes(weapon);
+			}
 			this.Power = function(skillLv, charaData, option, mobData, weapon) {
 				let ratio = 0;
 				if ([ITEM_KIND_MUSICAL, ITEM_KIND_WHIP].includes(weapon)) {
@@ -20944,45 +20956,46 @@ function CSkillManager() {
 		skillId++;
 
 		// ----------------------------------------------------------------
-		// (×)グレートエコー(未検証)
+		// (×)グレートエコー
 		// ----------------------------------------------------------------
 		SKILL_ID_GREAT_ECHO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
-			this.name = "(×)グレートエコー(未検証)";
+			this.name = "(×)グレートエコー";
 			this.kana = "クレエトエコオ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = CSkillData.RANGE_SHORT;
+			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_VOID;
-
+			this.WeaponCondition = function(weapon) {
+				return [ITEM_KIND_WHIP, ITEM_KIND_MUSICAL].includes(weapon);
+			}
+			this.Power = function(skillLv, charaDataManger, option) {
+				let ratio = 0;
+				ratio = 250 + 500 * skillLv;
+				if (option.GetOptionValue(0) > 0) {
+					// パートナーがいる場合
+					ratio *= 2;
+				}
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 70 + 10 * skillLv;
 			}
-
-			this.Power = function(skillLv, charaDataManger) {
-				return -1;
-			}
-
 			this.CastTimeVary = function(skillLv, charaDataManger) {
-				return 1800 + 200 * skillLv;
+				return 2000;
 			}
-
 			this.CastTimeFixed = function(skillLv, charaDataManger) {
 				return 500;
 			}
-
 			this.DelayTimeCommon = function(skillLv, charaDataManger) {
 				return 1000;
 			}
-
 			this.CoolTime = function(skillLv, charaDataManger) {
-				return 10000;
+				return 500;
 			}
-
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -23657,6 +23670,9 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.WeaponCondition = function(weapon) {
+				return [ITEM_KIND_WHIP, ITEM_KIND_MUSICAL, ITEM_KIND_BOW].includes(weapon);
+			}
 			this.Power = function(skillLv, charaData, option, mobData, weapon) {
 				let ratio = 0;
 				if ([ITEM_KIND_MUSICAL, ITEM_KIND_WHIP].includes(weapon)) {

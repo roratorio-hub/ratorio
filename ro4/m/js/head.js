@@ -1895,19 +1895,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				w_HIT_HYOUJI = w_HIT;
 				break;
 
-			case SKILL_ID_GREAT_ECHO:
-				wCast = 1800 + 200 * n_A_ActiveSkillLV;
-				n_KoteiCast = 500;
-				n_Delay[2] = 1000;
-				n_Delay[7] = 10000;
-				wbairitu = 200 * n_A_ActiveSkillLV + 400;
-				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
-				if(attackMethodConfArray[0].GetOptionValue(0) > 2){
-					var ge = [0,0,0,100,200,400,800,1600];
-					wbairitu += ge[attackMethodConfArray[0].GetOptionValue(0)];
-				}
-				break;
-
 			// 「ジェネティック」スキル「カートトルネード」
 			// 2024/11/16 実測誤差無しを確認済み
 			case SKILL_ID_CART_TORNADO: {
@@ -2426,6 +2413,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			/* ミンストレル・ワンダラー */
 			case SKILL_ID_SEVERE_RAINSTORM:	// シビアレインストーム
 			case SKILL_ID_SEVERE_RAINSTORM_EX:	// シビアレインストーム
+			case SKILL_ID_GREAT_ECHO:	// グレートエコー
 			/* クラウン・ジプシー */
 			case SKILL_ID_ARRAW_VULKAN:	// アローバルカン
 			/* バード */
