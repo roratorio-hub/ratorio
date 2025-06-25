@@ -2424,8 +2424,8 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			// 計算式を CSkillManager.js へ移動させ head.js をスリム化する対応を進めています
 			//----------------------------------------------------------------
 			/* ミンストレル・ワンダラー */
-			case SKILL_ID_SEVERE_RAINSTORM:
-			case SKILL_ID_SEVERE_RAINSTORM_EX:
+			case SKILL_ID_SEVERE_RAINSTORM:	// シビアレインストーム
+			case SKILL_ID_SEVERE_RAINSTORM_EX:	// シビアレインストーム
 			/* クラウン・ジプシー */
 			case SKILL_ID_ARRAW_VULKAN:	// アローバルカン
 			/* バード */
@@ -5955,63 +5955,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			}
 			break;
 
-		case SKILL_ID_SHINDOZANKYO:
-			n_Enekyori=0;
-			wCast = 1000 + 100 * n_A_ActiveSkillLV;
-			n_Delay[7] = 200;
-			wbairitu = 300 + 100 * n_A_ActiveSkillLV;
-			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
-			var wBunsan = attackMethodConfArray[0].GetOptionValue(0);
-			if(wBunsan >= 2) wbairitu = ROUNDDOWN(wbairitu / wBunsan);
-			for(var i=0;i<=2;i++){
-				w_DMG[i] = n_A_DMG[i];
-				w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
-				w_DMG[i] = Math.floor(w_DMG[i] * wbairitu / 100);
-				w_DMG[i] = ApplyMonsterDefence(mobData, w_DMG[i], 0);
-				w_DMG[i] += GetFixedAppendAtk(n_A_ActiveSkill, charaData, specData, mobData, w_DMG[i],i,-1);
-				w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
-			}
-			var w_MagDMG = [0,0,0];
-			var BKzok = n_A_Weapon_zokusei;
-			n_A_Weapon_zokusei = 0;
-			n_Enekyori=2;
-			var w = 100 + 100 * n_A_ActiveSkillLV;
-			w = ROUNDDOWN(w * n_A_BaseLV / 100);
-			if(wBunsan >= 2) w = ROUNDDOWN(w / wBunsan);
-			for(var i=0;i<=2;i++){
-				w_MATK[i] = n_A_MATK[i];
-				w_MATK[i] = ApplyMagicalSpecializeMonster(charaData, specData, mobData, w_MATK[i]);
-				w_MATK[i] = ApplyResistElement(mobData, w_MATK[i]);
-				w_MATK[i] = ApplyRegistPVPNormal(mobData, w_MATK[i]);
-			}
-			for(var i=0;i<=2;i++){
-				w_MagDMG[i] = ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, w_MATK[i] * w / 100);
-			}
-			n_A_Weapon_zokusei = BKzok;
-			n_Enekyori=0;
-			if(n_AS_MODE){
-				for(var i=0;i<=2;i++) w_DMG[i] += w_MagDMG[i];
-				return w_DMG;
-			}
-			for(var i=0;i<=2;i++){
-				g_damageTextArray[i].push(w_DMG[i] + w_MagDMG[i]);
-				g_damageTextArray[i].push(" (", w_DMG[i], " + ", w_MagDMG[i], ")");
-				Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i] = w_DMG[i] + w_MagDMG[i];
-			}
-			w_DMG[1] = (w_DMG[1] * w_HIT + w_MagDMG[1] * (100-w_HIT))/100;
-			n_PerfectHIT_DMG = 0;
-			if(w_HIT_HYOUJI <100){
-				var w0 = w_MagDMG[0];
-				var w2 = w_MagDMG[2];
-				if(w0 == w2) str_PerfectHIT_DMG = __DIG3(w0) +"<BR>";
-				else str_PerfectHIT_DMG = __DIG3(w0) +"～"+ __DIG3(w2) +"<BR>";
-				n_PerfectHIT_DMG = w0;
-			}
-			AS_PLUS();
-			BuildCastAndDelayHtml(mobData);
-			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
-			break;
-
 		case SKILL_ID_BLOOD_SUCKER:
 		case SKILL_ID_THORN_TRAP:
 			w_HIT = 100;
@@ -6711,6 +6654,8 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 		}
 
 		switch (n_A_ActiveSkill) {
+			/* ミンストレル・ワンダラー */
+			case SKILL_ID_SHINDOZANKYO:	// 振動残響
 			/* アークビショップ */
 			case SKILL_ID_JUDEX:	// ジュデックス
 			case SKILL_ID_ADORAMUS:	// アドラムス

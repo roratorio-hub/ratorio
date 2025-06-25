@@ -2056,13 +2056,11 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 		//----------------------------------------------------------------
 		// マジシャン：ナパームビート
 		// ハイウィザード：ナパームバルカン
-		// ミンストレル・ワンダラー：振動残響
 		// 影狼・朧：無茶投げ
 		// 特殊：アースクエイク
 		//----------------------------------------------------------------
 		case SKILL_ID_NAPALM_BEAT:
 		case SKILL_ID_NAPALM_VULKAN:
-		case SKILL_ID_SHINDOZANKYO:
 		case SKILL_ID_MUCHANAGE:
 		case SKILL_ID_EARTH_QUAKE:
 

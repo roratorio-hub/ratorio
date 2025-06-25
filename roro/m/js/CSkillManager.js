@@ -20231,31 +20231,32 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
-			this.name = "振動残響";
+			this.name = "(×)振動残響";
 			this.kana = "シントウサンキヨウ";
 			this.maxLv = 5;
-			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = CSkillData.RANGE_SHORT;
-			this.element = CSkillData.ELEMENT_VOID;
-
-			this.CostFixed = function(skillLv, charaDataManger) {
-				return 24 + 4 * skillLv;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
+			this.range = CSkillData.RANGE_MAGIC;
+			this.element = function(option) {
+				return GetEquippedTotalSPArrow(ITEM_SP_ELEMENTAL);
 			}
-
+			this.WeaponCondition = function(weapon) {
+				return [ITEM_KIND_WHIP, ITEM_KIND_MUSICAL].includes(weapon);
+			}
 			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+				let ratio = 0;
+				ratio = 1000 + 200 * skillLv;
+				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
-
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 15 + skillLv;
+			}
 			this.CastTimeVary = function(skillLv, charaDataManger) {
 				return 1000 + 100 * skillLv;
 			}
-
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 200;
 			}
-
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
