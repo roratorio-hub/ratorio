@@ -2056,13 +2056,11 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 		//----------------------------------------------------------------
 		// マジシャン：ナパームビート
 		// ハイウィザード：ナパームバルカン
-		// ミンストレル・ワンダラー：振動残響
 		// 影狼・朧：無茶投げ
 		// 特殊：アースクエイク
 		//----------------------------------------------------------------
 		case SKILL_ID_NAPALM_BEAT:
 		case SKILL_ID_NAPALM_VULKAN:
-		case SKILL_ID_SHINDOZANKYO:
 		case SKILL_ID_MUCHANAGE:
 		case SKILL_ID_EARTH_QUAKE:
 
@@ -3072,12 +3070,14 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 		// ミンストレル・ワンダラー：グレートエコー
 		//----------------------------------------------------------------
 		case SKILL_ID_GREAT_ECHO:
-
 			// オプションリストを生成、追加
 			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"ミンワンの人数",
-				funcCreateNumberDataArrayArray(2, 7, false),
-				2
+				"パートナー",
+				[
+					[0, "無し"],
+					[1, "有り"],
+				],
+				0
 			);
 			break;
 
@@ -4136,6 +4136,20 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 					["type", "number"],
 					["min", 0],
 					["max", 500],
+				],
+				0
+			);
+			break;
+
+		//----------------------------------------------------------------
+		// アークビショップ：アドラムス
+		//----------------------------------------------------------------
+		case SKILL_ID_ADORAMUS:
+			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+				"アンシラ状態",
+				[
+					[0, "無し"],
+					[1, "有り"],
 				],
 				0
 			);
