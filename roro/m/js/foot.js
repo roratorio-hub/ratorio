@@ -1849,21 +1849,6 @@ function StAllCalc(){
 		defDiv = Math.floor(defDiv * (1 - 0.05 * sklLv));
 	}
 
-	// レンジャー　アンリミット
-	// PvP, GvG 等では効果を発揮しない
-	switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
-	case MOB_CONF_PLAYER_ID_SENTO_AREA_NONE:
-	case MOB_CONF_PLAYER_ID_SENTO_AREA_MH:
-		sklLv = UsedSkillSearch(SKILL_ID_UNLIMIT);
-		if (sklLv > 0) {
-			defDiv = 1;
-		}
-		sklLv = UsedSkillSearch(SKILL_ID_CALAMITY_GALE);
-		if (sklLv > 0) {
-			defDiv = 1;
-		}
-	}
-
 	// ロードナイト　バーサーク
 	if (UsedSkillSearch(SKILL_ID_BERSERK)) {
 		defDiv = 0;
@@ -1960,21 +1945,6 @@ function StAllCalc(){
 		defMinus -= Math.floor(defMinus * 20 / 100);
 	}
 
-	// 「レンジャー　アンリミット」の、効果（ペナルティ）
-	// PvP, GvG 等では効果を発揮しない
-	switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
-	case MOB_CONF_PLAYER_ID_SENTO_AREA_NONE:
-	case MOB_CONF_PLAYER_ID_SENTO_AREA_MH:
-		sklLv = UsedSkillSearch(SKILL_ID_UNLIMIT);
-		if (sklLv > 0) {
-			defMinus = 1;
-		}
-		sklLv = UsedSkillSearch(SKILL_ID_CALAMITY_GALE);
-		if (sklLv > 0) {
-			defMinus = 1;
-		}
-	}
-
 	// 「ロードナイト　バーサーク」の、効果（ペナルティ）
 	if (UsedSkillSearch(SKILL_ID_BERSERK)){
 		defMinus = 0;
@@ -2056,21 +2026,6 @@ function StAllCalc(){
 		mdefDiv -= Math.min(mdefDiv, vartmp);
 	}
 
-	// 「レンジャー　アンリミット」の、効果（ペナルティ）
-	// PvP, GvG 等では効果を発揮しない
-	switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
-	case MOB_CONF_PLAYER_ID_SENTO_AREA_NONE:
-	case MOB_CONF_PLAYER_ID_SENTO_AREA_MH:
-		sklLv = UsedSkillSearch(SKILL_ID_UNLIMIT);
-		if (sklLv > 0) {
-			mdefDiv = 1;
-		}
-		sklLv = UsedSkillSearch(SKILL_ID_CALAMITY_GALE);
-		if (sklLv > 0) {
-			mdefDiv = 1;
-		}		
-	}
-
 	// 「ロードナイト　バーサーク」の、効果（ペナルティ）
 	if (UsedSkillSearch(SKILL_ID_BERSERK)){
 		mdefDiv = 0;
@@ -2130,21 +2085,6 @@ function StAllCalc(){
 	// 「アヌビス帽」の、効果（ペナルティ）
 	if (EquipNumSearch(1281)) {
 		mdefMinus = Math.floor(mdefMinus / 2);
-	}
-
-	// 「レンジャー　アンリミット」の、効果（ペナルティ）
-	// PvP, GvG 等では効果を発揮しない
-	switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
-	case MOB_CONF_PLAYER_ID_SENTO_AREA_NONE:
-	case MOB_CONF_PLAYER_ID_SENTO_AREA_MH:
-		sklLv = UsedSkillSearch(SKILL_ID_UNLIMIT);
-		if (sklLv > 0) {
-			mdefMinus = 1;
-		}
-		sklLv = UsedSkillSearch(SKILL_ID_CALAMITY_GALE);
-		if (sklLv > 0) {
-			mdefMinus = 1;
-		}			
 	}
 
 	// 「ジェネティック　Ｓホム　ペインキラー」の、効果
@@ -12497,18 +12437,14 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 			if (UsedSkillSearch(SKILL_ID_CALAMITY_GALE) == 0) {
 				sklLv = UsedSkillSearch(SKILL_ID_UNLIMIT);
 				if (sklLv > 0) {
-	
 					// 特定の戦闘エリアでの補正
 					switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
-	
-					case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
-						n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += 250 + 20 * sklLv;
-						break;
-	
-					default:
-						n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += 50 * sklLv;
-						break;
-	
+						case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
+							n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += 250 + 20 * sklLv;
+							break;
+						default:
+							n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += 50 * sklLv;
+							break;
 					}
 				}
 			}
