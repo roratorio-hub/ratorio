@@ -2423,6 +2423,9 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			//----------------------------------------------------------------
 			// 計算式を CSkillManager.js へ移動させ head.js をスリム化する対応を進めています
 			//----------------------------------------------------------------
+			/* ミンストレル・ワンダラー */
+			case SKILL_ID_SEVERE_RAINSTORM:
+			case SKILL_ID_SEVERE_RAINSTORM_EX:
 			/* クラウン・ジプシー */
 			case SKILL_ID_ARRAW_VULKAN:	// アローバルカン
 			/* バード */
@@ -2501,7 +2504,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 					n_Delay[7] = 0;
 				}
 				// ダメージ算出に関する情報
-				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], mobData);
+				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], mobData, n_A_WeaponType);
 				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_WeaponType);
 				// ヒット数に関する情報
 				wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
@@ -3540,35 +3543,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 				break;
 			}
-			// 「ミンストレル＆ワンダラー」スキル「シビアレインストーム」
-			case SKILL_ID_SEVERE_RAINSTORM:
-			case SKILL_ID_SEVERE_RAINSTORM_EX:
-				// 遠距離スキル
-				n_Enekyori=1;
-				// 詠唱時間等
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// 設置スキル設定
-				g_bDefinedDamageIntervals = true;
-				n_Delay[5] = 300;								// ダメージ間隔
-				n_Delay[6] = 2400 + 600 * n_A_ActiveSkillLV;	// オブジェクト存続時間
-				// 属性
-				n_A_Weapon_zokusei = g_skillManager.GetElement(battleCalcInfo.skillId);
-				// ダメージ倍率
-				if (n_A_ActiveSkill == SKILL_ID_SEVERE_RAINSTORM) {
-					wbairitu = (n_A_DEX + n_A_AGI) * n_A_ActiveSkillLV / 5;
-				}
-				else {
-					wbairitu = (attackMethodConfArray[0].GetOptionValue(0) + attackMethodConfArray[0].GetOptionValue(1)) * n_A_ActiveSkillLV / 5;
-				}
-				// 楽器、鞭使用時のダメージ補正
-				if ((n_A_WeaponType == ITEM_KIND_MUSICAL) || (n_A_WeaponType == ITEM_KIND_WHIP)) {
-					wbairitu *= 5 / 3;
-				}
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
-				break;
 
 			// 「アルケミスト」スキル「デモンストレーション」
 			case SKILL_ID_DEMONSTRATION:

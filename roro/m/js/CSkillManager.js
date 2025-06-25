@@ -342,10 +342,11 @@ function CSkillManager() {
 	 * @param {Array} charaDataManger 
 	 * @param {CAttackMethodConf} option 
 	 * @param {Array} mobData
+	 * @param {Number} weapon
 	 * @returns {Number} スキル倍率％
 	 */
-	this.GetPower = function(skillId, skillLv, charaDataManger, option, mobData) {
-		return this.dataArray[skillId].Power(skillLv, charaDataManger, option, mobData);
+	this.GetPower = function(skillId, skillLv, charaDataManger, option, mobData, weapon) {
+		return this.dataArray[skillId].Power(skillLv, charaDataManger, option, mobData, weapon);
 	}
 
 	/**
@@ -20365,6 +20366,16 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.Power = function(skillLv, charaData, option, mobData, weapon) {
+				let ratio = 0;
+				if ([ITEM_KIND_MUSICAL, ITEM_KIND_WHIP].includes(weapon)) {
+					ratio = 200 * skillLv;
+				} else {
+					ratio = 100 * skillLv;
+				}
+				ratio += (n_A_DEX + n_A_AGI) * (skillLv / 5);
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 70 + 10 * skillLv;
 			}
@@ -20378,7 +20389,14 @@ function CSkillManager() {
 				return 1000;
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {
-				return 5000;
+				return 4000;
+			}
+			this.ground_installation = true;
+			this.LifeTime = function(skillLv, charaData) {
+				return 3600;
+			}
+			this.damageInterval = function(skillLv) {
+				return 300;
 			}
 		};
 		this.dataArray[skillId] = skillData;
@@ -23638,6 +23656,16 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.Power = function(skillLv, charaData, option, mobData, weapon) {
+				let ratio = 0;
+				if ([ITEM_KIND_MUSICAL, ITEM_KIND_WHIP].includes(weapon)) {
+					ratio = 200 * skillLv;
+				} else {
+					ratio = 100 * skillLv;
+				}
+				ratio += (option.GetOptionValue(0) + option.GetOptionValue(1)) * (skillLv / 5);
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 70 + 10 * skillLv;
 			}
@@ -23651,7 +23679,14 @@ function CSkillManager() {
 				return 1000;
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {
-				return 5000;
+				return 4000;
+			}
+			this.ground_installation = true;
+			this.LifeTime = function(skillLv, charaData) {
+				return 3600;
+			}
+			this.damageInterval = function(skillLv) {
+				return 300;
 			}
 		};
 		this.dataArray[skillId] = skillData;
