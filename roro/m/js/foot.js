@@ -6162,7 +6162,7 @@ if (_APPLY_UPDATE_LV200) {
 			if (aspd >= 145) {
 				w = (aspd - 144) / 50;
 			}
-			if ([ITEM_KIND_BOW, ITEM_KIND_MUSICAL, ITEM_KIND_WHIP, ITEM_KIND_HANDGUN, ITEM_KIND_RIFLE, ITEM_KIND_SHOTGUN, ITEM_KIND_GATLINGGUN, ITEM_KIND_GRENADEGUN].includs(n_A_WeaponType)) {
+			if ([ITEM_KIND_BOW, ITEM_KIND_MUSICAL, ITEM_KIND_WHIP, ITEM_KIND_HANDGUN, ITEM_KIND_RIFLE, ITEM_KIND_SHOTGUN, ITEM_KIND_GATLINGGUN, ITEM_KIND_GRENADEGUN].includes(n_A_WeaponType)) {
 				aspd += Math.sqrt(wAGI * (10 - 1 / 400) + wDEX * 9 / 49) * (1 - tmp_aspd);
 			} else {
 				aspd += Math.sqrt(wAGI * (10 + 10 / 111) + wDEX * 9 / 49) * (1 - tmp_aspd);
