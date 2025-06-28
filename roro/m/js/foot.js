@@ -6142,13 +6142,14 @@ if (_APPLY_UPDATE_LV200) {
 /**
  * ＡＳＰＤ計算　ここから
  */
+		let aspd = 0;
 		{
-			let aspd = 0;
+			/** 途中計算用の一時変数 */
 			let tmp_aspd = 0;
 			let ASPDch = 0;
 			let ASPDplusMAX = 0;
-			const wAGI = Math.min(1, n_A_AGI);
-			const wDEX = Math.min(1, n_A_DEX);
+			const wAGI = Math.max(1, n_A_AGI);
+			const wDEX = Math.max(1, n_A_DEX);
 			const jobData = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, n_A_JOB);
 
 			// 武器種による基本ASPD判定
