@@ -6130,9 +6130,6 @@ if (_APPLY_UPDATE_LV200) {
 			if(n_A_PassSkill7[41] == 1) w += 5;
 			if(n_A_PassSkill7[41] == 2) w += 10;
 		}
-
-
-
 		//----------------------------------------------------------------
 		// 「性能カスタマイズ」の、効果
 		//----------------------------------------------------------------
@@ -6140,279 +6137,243 @@ if (_APPLY_UPDATE_LV200) {
 		if (confval != 0) {
 			w += confval;
 		}
-
-
-
 		n_tok[89] += w;
 
+/**
+ * ＡＳＰＤ計算　ここから
+ */
+		{
+			let aspd = 0;
+			let tmp_aspd = 0;
+			let ASPDch = 0;
+			let ASPDplusMAX = 0;
+			const wAGI = Math.min(1, n_A_AGI);
+			const wDEX = Math.min(1, n_A_DEX);
+			const jobData = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, n_A_JOB);
 
-
-
-
-
-
-
-
-
-
-
-
-
-//================================================================================================================================
-//================================================================================================================================
-//====
-//==== ＡＳＰＤ計算　ここから
-//====
-//================================================================================================================================
-//================================================================================================================================
-
-		var aspd = 0;
-
-
-		var wAGI = n_A_AGI;
-		var wDEX = n_A_DEX;
-		if(wAGI <1) wAGI = 1;
-		if(wDEX <1) wDEX = 1;
-
-		var jobData = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, n_A_JOB);
-
-		aspd = jobData.GetWeaponAspd(n_A_WeaponType);
-		if(n_tok[195]){
-			if(EquipNumSearch(88) == 0 && EquipNumSearch(92) == 0) {
-				aspd = jobData.GetWeaponAspd(ITEM_KIND_STUFF2HAND);
-			}
-		}
-		var w = 0;
-		if(aspd >= 145){
-			w = (aspd - 144) / 50;
-		}
-		if(n_A_WeaponType == 10 || n_A_WeaponType == 14 || n_A_WeaponType == 15 || (17 <= n_A_WeaponType && n_A_WeaponType <= 21)) aspd += Math.sqrt(wAGI * (10 - 1 / 400) + wDEX * 9 / 49) * (1 - w);
-		else aspd += Math.sqrt(wAGI * (10 + 10 / 111) + wDEX * 9 / 49) * (1 - w);
-		if (n_Nitou) {
-			var w = jobData.GetWeaponAspd(n_A_WeaponType) + (jobData.GetWeaponAspd(n_A_Weapon2Type) - 194) / 4;
-			aspd = w + Math.sqrt(wAGI * (10 - 1 / 400) + wDEX * 9 / 49) * 1.05;
-		}
-		if(n_A_Equip[EQUIP_REGION_ID_SHIELD] != 305) {
-			aspd -= jobData.GetWeaponAspd(ITEM_KIND_SHIELD);
-		}
-
-		var w = 0;
-		// ジョンダ設定欄
-		if(2 <= n_A_PassSkill8[22] && n_A_PassSkill8[22] <= 4){	// A8_Skill22 OTPボーナス
-			// OTPシルバー以上
-			w = 10;
-			if(n_A_BaseLV >= 40){
-				if (IsUsableHSPJob(n_A_JOB)) w = 15;	// ハイスピードポーションが使える職はHSPを適用
-			}
-			if(n_A_BaseLV >= 85){
-				if (IsUsableBSPJob(n_A_JOB)) w = 20;	// バーサクポーションが使える職はBSPを適用
-			}
-		}
-		else if(n_A_PassSkill7[35]) { // A7_Skill35 たぶん未使用
-			w += 10;
-		}
-		// ジョンダとスピードポーションのうち大きい効果を適用
-		w = Math.max(w, [0, 10, 15, 20][n_A_SpeedPOT]);
-
-		if(0 <n_A_PassSkill7[47] && n_A_PassSkill7[47] <= 50){	// A7_Skill47 たぶん未使用
-			if(w < n_A_PassSkill7[47]) w = n_A_PassSkill7[47];
-		}
-
-
-		var ASPDch = 0;
-		var ASPDplusMAX = 0;
-
-		if(n_A_PassSkill3[19] == 4){	// A3_Skill19 たぶん未使用
-			ASPDch = n_A_PassSkill3[37] * 5 + n_A_PassSkill3[38];
-			ASPDplusMAX = Math.max(ASPDplusMAX, ASPDch);
-		}
-
-		if(n_A_PassSkill3[39] == 6 || n_A_PassSkill3[39] == 7){	// A3_Skill39 たぶん未使用
-			if(n_A_PassSkill3[41] >= 7) ASPDch = 30;
-			else ASPDch = (5 * n_A_PassSkill3[41]) -5;
-
-			ASPDplusMAX = Math.max(ASPDplusMAX, ASPDch);
-		}
-
-		if (n_A_IJYOU[0] == 0 && n_A_IJYOU[1] == 0) {
-
-			//----------------------------------------------------------------
-			// 「パッシブ持続系　クイッケン系」の効果
-			//----------------------------------------------------------------
-			switch (n_A_WeaponType) {
-			case ITEM_KIND_SWORD:
-				if (UsedSkillSearch(SKILL_ID_ONEHAND_QUICKEN) > 0) {
-					ASPDch = 30;
-				}
-				break;
-
-			case ITEM_KIND_SWORD_2HAND:
-				if (UsedSkillSearch(SKILL_ID_TWOHAND_QUICKEN) > 0) {
-					ASPDch = 30;
-				}
-				break;
-
-			case ITEM_KIND_SPEAR:
-			case ITEM_KIND_SPEAR_2HAND:
-				if (UsedSkillSearch(SKILL_ID_SPEAR_QUICKEN) > 0) {
-					ASPDch = 30;
-				}
-				break;
-
-			// アドレナリンラッシュは、自己支援と他人支援で効果が違うので注意
-			// ここで計算するのは自己支援
-			case ITEM_KIND_AXE:
-			case ITEM_KIND_AXE_2HAND:
-			case ITEM_KIND_CLUB:
-				if (UsedSkillSearch(SKILL_ID_ADRENALINE_RUSH) > 0) {
-					ASPDch = 30;
-				}
-				break;
-
-			}
-
-			//----------------------------------------------------------------
-			// 「二次職支援　フルアドレナリンラッシュ」の効果
-			//----------------------------------------------------------------
-			if ((_APPLY_UPDATE_LV200) || (UsedSkillSearch(SKILL_ID_MADOGEAR) == 0)) {
-				if (ASPDch == 0 && UsedSkillSearch(SKILL_ID_FULL_ADRENALINE_RUSH)) {
-					ASPDch = 30;
+			// 武器種による基本ASPD判定
+			aspd = jobData.GetWeaponAspd(n_A_WeaponType);
+			if (n_tok[ITEM_SP_STUFF2HAND]) {
+				if(EquipNumSearch(ITEM_ID_STUFF_OF_SOUL) == 0 && EquipNumSearch(ITEM_ID_WIZARD_STUFF) == 0) {
+					aspd = jobData.GetWeaponAspd(ITEM_KIND_STUFF2HAND);
 				}
 			}
-
-			//----------------------------------------------------------------
-			// 「時限アイテム　フルアドレナリンラッシュ」の効果
-			// 火雷大神の効果も、実質フルアドレナリンラッシュ？
-			//----------------------------------------------------------------
-			if (TimeItemNumSearch(5)
-				|| TimeItemNumSearch(28)
-				|| TimeItemNumSearch(TIME_ITEM_ID_RALF_FONG_TWIEGE_666)
-				|| TimeItemNumSearch(TIME_ITEM_ID_ENCHANT_HONOIKAZUCHINOOKAMI_AR)) {
-				ASPDch = 30;
+			if (aspd >= 145) {
+				w = (aspd - 144) / 50;
+			}
+			if ([ITEM_KIND_BOW, ITEM_KIND_MUSICAL, ITEM_KIND_WHIP, ITEM_KIND_HANDGUN, ITEM_KIND_RIFLE, ITEM_KIND_SHOTGUN, ITEM_KIND_GATLINGGUN, ITEM_KIND_GRENADEGUN].includs(n_A_WeaponType)) {
+				aspd += Math.sqrt(wAGI * (10 - 1 / 400) + wDEX * 9 / 49) * (1 - tmp_aspd);
+			} else {
+				aspd += Math.sqrt(wAGI * (10 + 10 / 111) + wDEX * 9 / 49) * (1 - tmp_aspd);
+			}
+			if (n_Nitou) {
+				w = jobData.GetWeaponAspd(n_A_WeaponType) + (jobData.GetWeaponAspd(n_A_Weapon2Type) - 194) / 4;
+				aspd = tmp_aspd + Math.sqrt(wAGI * (10 - 1 / 400) + wDEX * 9 / 49) * 1.05;
+			}
+			if(n_A_Equip[EQUIP_REGION_ID_SHIELD] != ITEM_ID_NOEQUIP_SHIELD) {
+				aspd -= jobData.GetWeaponAspd(ITEM_KIND_SHIELD);
 			}
 
-			ASPDplusMAX = Math.max(ASPDplusMAX, ASPDch);
-		}
-
-		//----------------------------------------------------------------
-		// 「ロードナイト　バーサーク」の効果
-		//----------------------------------------------------------------
-		if (UsedSkillSearch(SKILL_ID_BERSERK)) {
-			ASPDch = 30;
-			ASPDplusMAX = Math.max(ASPDplusMAX, ASPDch);
-		}
-
-		//----------------------------------------------------------------
-		// 「ガンスリンガー　マッドネスキャンセラー」の効果
-		//----------------------------------------------------------------
-		if (UsedSkillSearch(SKILL_ID_MADNESSS_CANCELER)) {
-			ASPDch = 20;
-			ASPDplusMAX = Math.max(ASPDplusMAX, ASPDch);
-		}
-
-		//----------------------------------------------------------------
-		// 「拳聖　星の安楽」の効果
-		// 「拳聖　太陽と月と星の悪魔」の効果
-		//----------------------------------------------------------------
-		ASPDch = 0;
-		if (UsedSkillSearch(SKILL_ID_HOSHINO_ANRAKU) > 0) {
-			switch (UsedSkillSearch(SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_HI)) {
-				case 1:	// 今日の日付
-					const today = (new Date()).getDate();
-					if (today % 5 == 1)	break; // 星の日ではない
-				case 0:	// 無条件発動
-				case 4: // 星の日
-					ASPDch += Math.floor((n_A_BaseLV + n_A_LUK + n_A_DEX) / 10);
-			}
-		}
-		const taiyoto_tsukito_hoshino_akuma = Math.max(LearnedSkillSearch(SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_AKUMA), UsedSkillSearch(SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_AKUMA));
-		if (taiyoto_tsukito_hoshino_akuma > 0) {
-			switch (n_A_JOB) {
-				case JOB_ID_STARGRADIATOR:
-					// 拳聖 ジョブレベル５０未満では発動しない
-					if (n_A_JobLV < 50) {
-						break;
-					}
-				default:
-					// 星帝・天帝は制限なし
-					ASPDch += 1 + taiyoto_tsukito_hoshino_akuma;
-			}
-		}
-		ASPDplusMAX = Math.max(ASPDplusMAX, ASPDch);
-
-		//----------------------------------------------------------------
-		// 「二次職支援　アドレナリンラッシュ系」の効果
-		// TODO: 未解析
-		//----------------------------------------------------------------
-		if (g_confDataNizi[CCharaConfNizi.CONF_ID_ADRENALINE_RUSH] >= 1) {
-			if (n_A_IJYOU[0] == 0 && n_A_IJYOU[1] == 0) {
-
-				if ((_APPLY_UPDATE_LV200) || (UsedSkillSearch(SKILL_ID_MADOGEAR) == 0)) {
-
-					if(g_confDataNizi[CCharaConfNizi.CONF_ID_ADRENALINE_RUSH] == 2){
-						if(n_A_WeaponType != 10 && !(17 <= n_A_WeaponType && n_A_WeaponType <= 21)){
-							ASPDch = 20;
-							if(GetHigherJobSeriesID(n_A_JOB)==12) ASPDch += 10;
-							ASPDplusMAX = Math.max(ASPDplusMAX, ASPDch);
-						}
-					}
-
-					if(6 <= n_A_WeaponType && n_A_WeaponType <= 8){
-						if(g_confDataNizi[CCharaConfNizi.CONF_ID_ADRENALINE_RUSH] == 1){
-							ASPDch = 20;
-							if(GetHigherJobSeriesID(n_A_JOB)==12) ASPDch += 10;
-							ASPDplusMAX = Math.max(ASPDplusMAX, ASPDch);
-						}
-					}
+			// クァグマイア または 速度減少 で打ち消されない ASPD 増加計算
+			tmp_aspd = 0;
+			if (n_A_PassSkill8[22] >= 2) {
+				// その他の支援/設定 > OTP が シルバー/ゴールド/レインボー の場合
+				tmp_aspd = 10;
+				if(n_A_BaseLV >= 40 && IsUsableHSPJob(n_A_JOB)) {
+					// Lv40以上でハイスピードポーションが使える職
+					tmp_aspd = 15;
 				}
-
-				if(6 <= n_A_WeaponType && n_A_WeaponType <= 8){
-					if(g_confDataNizi[CCharaConfNizi.CONF_ID_ADRENALINE_RUSH] == 3){
-						ASPDch = 30;
-						ASPDplusMAX = Math.max(ASPDplusMAX, ASPDch);
-					}
+				if(n_A_BaseLV >= 85 && IsUsableBSPJob(n_A_JOB)) {
+					// Lv85以上でバーサクポーションが使える職
+					tmp_aspd = 20;
 				}
+			} else if(n_A_PassSkill7[35]) {
+				// アイテム・食品他 > ガラナキャンディ が使われている場合
+				tmp_aspd += 10;
 			}
-		}
+			// OTPとスピードポーションのうち大きい効果を適用
+			tmp_aspd = Math.max(tmp_aspd, [0, 10, 15, 20][n_A_SpeedPOT]);
 
-		if(n_A_PassSkill3[1]){
-			if(n_A_WeaponType != 10 && !(17 <= n_A_WeaponType && n_A_WeaponType <= 21)){
-				ASPDch = n_A_PassSkill3[1] + Math.floor(n_A_PassSkill3[31] /2) + n_A_PassSkill3[21];
+			if (n_A_PassSkill7[47] > 0) {
+				// アイテム(食品/他) > 期間限定系 ASPD 増加値 が 設定されている場合
+				tmp_aspd = Math.max(tmp_aspd, n_A_PassSkill7[47]);
+			}
+			if(n_A_PassSkill3[19] == 4){
+				// ３次職歌スキル > スイングダンス が ON のとき
+				ASPDch = n_A_PassSkill3[37] * 5 + n_A_PassSkill3[38];	// スキルLv * 5 + レッスン習得Lv
 				ASPDplusMAX = Math.max(ASPDplusMAX, ASPDch);
 			}
-		}
-		w += ASPDplusMAX;
-		// 「ガンスリンガー」スキル「シングルアクション」のASPD増加効果
-		w += Math.round(Math.max(LearnedSkillSearch(SKILL_ID_SINGLE_ACTION), UsedSkillSearch(SKILL_ID_SINGLE_ACTION)) / 2);
+			if(n_A_PassSkill3[39] == 6 || n_A_PassSkill3[39] == 7){
+				// ３次職合奏スキル > ダンスウィズウォーグ が ON のとき
+				ASPDch = Math.max(30, (n_A_PassSkill3[41] - 1) * 5);	// 上限 30 として 自分以外の演奏者の数 * 5 だけ ASPD 増加
+				ASPDplusMAX = Math.max(ASPDplusMAX, ASPDch);
+			}
 
-		// 「プロフェッサー」スキル「アドバンスドブック」のASPD増加効果
-		if (n_A_WeaponType == ITEM_KIND_BOOK) {
-			const advanced_book_lv = Math.max(LearnedSkillSearch(SKILL_ID_ADVANCED_BOOK), UsedSkillSearch(SKILL_ID_ADVANCED_BOOK));
-			w += Math.round(advanced_book_lv / 2);
-		}
-
-		aspd += (200 - aspd) * (w / 100);
-
-		if (UsedSkillSearch(SKILL_ID_FIGHTING_SPIRIT)) {
-			const wfsp = [0,0,0,1,1,2,2,2,3,3,4];
-			const sklLvRuneMastery = Math.max(LearnedSkillSearch(SKILL_ID_RUNE_MASTERY), UsedSkillSearch(SKILL_ID_RUNE_MASTERY));
-			aspd += wfsp[sklLvRuneMastery];
-		}
-
-		if (Math.max(LearnedSkillSearch(SKILL_ID_KIHE_SHUREN), UsedSkillSearch(SKILL_ID_KIHE_SHUREN)) > 0) {
-			if ((n_A_ActiveSkill == SKILL_ID_TUZYO_KOGEKI) || (n_A_ActiveSkill == SKILL_ID_SACRIFICE)) {
-				aspd -= aspd - aspd * (40 + Math.max(LearnedSkillSearch(SKILL_ID_KIHE_SHUREN), UsedSkillSearch(SKILL_ID_KIHE_SHUREN)) * 10) / 100;
+			// クァグマイア または 速度減少 で打ち消される ASPD 増加計算
+			if (n_A_IJYOU[0] === 0 && n_A_IJYOU[1] === 0) {
+				//----------------------------------------------------------------
+				// 「パッシブ持続系　クイッケン系」の効果
+				//----------------------------------------------------------------
+				switch (n_A_WeaponType) {
+					case ITEM_KIND_SWORD:
+						if (UsedSkillSearch(SKILL_ID_ONEHAND_QUICKEN) > 0) {
+							ASPDch = 30;
+						}
+						break;
+					case ITEM_KIND_SWORD_2HAND:
+						if (UsedSkillSearch(SKILL_ID_TWOHAND_QUICKEN) > 0) {
+							ASPDch = 30;
+						}
+						break;
+					case ITEM_KIND_SPEAR:
+					case ITEM_KIND_SPEAR_2HAND:
+						if (UsedSkillSearch(SKILL_ID_SPEAR_QUICKEN) > 0) {
+							ASPDch = 30;
+						}
+						break;
+					// アドレナリンラッシュは、自己支援と他人支援で効果が違うので注意. ここで計算するのは自己支援
+					case ITEM_KIND_AXE:
+					case ITEM_KIND_AXE_2HAND:
+					case ITEM_KIND_CLUB:
+						if (UsedSkillSearch(SKILL_ID_ADRENALINE_RUSH) > 0) {
+							ASPDch = 30;
+						}
+						break;
+				}
+				//----------------------------------------------------------------
+				// 「二次職支援　フルアドレナリンラッシュ」の効果
+				//----------------------------------------------------------------
+				if ((_APPLY_UPDATE_LV200) || (UsedSkillSearch(SKILL_ID_MADOGEAR) == 0)) {
+					if (ASPDch == 0 && UsedSkillSearch(SKILL_ID_FULL_ADRENALINE_RUSH)) {
+						ASPDch = 30;
+					}
+				}
+				//----------------------------------------------------------------
+				// 「時限アイテム　フルアドレナリンラッシュ」の効果
+				// 火雷大神の効果も、実質フルアドレナリンラッシュ？
+				//----------------------------------------------------------------
+				if (TimeItemNumSearch(5)
+					|| TimeItemNumSearch(28)
+					|| TimeItemNumSearch(TIME_ITEM_ID_RALF_FONG_TWIEGE_666)
+					|| TimeItemNumSearch(TIME_ITEM_ID_ENCHANT_HONOIKAZUCHINOOKAMI_AR)) {
+					ASPDch = 30;
+				}
+				ASPDplusMAX = Math.max(ASPDplusMAX, ASPDch);
+			}
+			//----------------------------------------------------------------
+			// 「ロードナイト　バーサーク」の効果
+			//----------------------------------------------------------------
+			if (UsedSkillSearch(SKILL_ID_BERSERK)) {
+				ASPDch = 30;
+				ASPDplusMAX = Math.max(ASPDplusMAX, ASPDch);
+			}
+			//----------------------------------------------------------------
+			// 「ガンスリンガー　マッドネスキャンセラー」の効果
+			//----------------------------------------------------------------
+			if (UsedSkillSearch(SKILL_ID_MADNESSS_CANCELER)) {
+				ASPDch = 20;
+				ASPDplusMAX = Math.max(ASPDplusMAX, ASPDch);
+			}
+			//----------------------------------------------------------------
+			// 「拳聖　星の安楽」の効果
+			// 「拳聖　太陽と月と星の悪魔」の効果
+			//----------------------------------------------------------------
+			ASPDch = 0;
+			if (UsedSkillSearch(SKILL_ID_HOSHINO_ANRAKU) > 0) {
+				switch (UsedSkillSearch(SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_HI)) {
+					case 1:	// 今日の日付
+						const today = (new Date()).getDate();
+						if (today % 5 == 1)	break; // 星の日ではない
+					case 0:	// 無条件発動
+					case 4: // 星の日
+						ASPDch += Math.floor((n_A_BaseLV + n_A_LUK + n_A_DEX) / 10);
+				}
+			}
+			const taiyoto_tsukito_hoshino_akuma = Math.max(LearnedSkillSearch(SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_AKUMA), UsedSkillSearch(SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_AKUMA));
+			if (taiyoto_tsukito_hoshino_akuma > 0) {
+				switch (n_A_JOB) {
+					case JOB_ID_STARGRADIATOR:
+						// 拳聖 ジョブレベル５０未満では発動しない
+						if (n_A_JobLV < 50) {
+							break;
+						}
+					default:
+						// 星帝・天帝は制限なし
+						ASPDch += 1 + taiyoto_tsukito_hoshino_akuma;
+				}
+			}
+			ASPDplusMAX = Math.max(ASPDplusMAX, ASPDch);
+			//----------------------------------------------------------------
+			// 「二次職支援　アドレナリンラッシュ系」の効果
+			// TODO: 未解析
+			//----------------------------------------------------------------
+			if (g_confDataNizi[CCharaConfNizi.CONF_ID_ADRENALINE_RUSH] >= 1) {
+				if (n_A_IJYOU[0] === 0 && n_A_IJYOU[1] === 0) {
+					// クァグマイア または 速度減少 が掛かっていないとき
+					if ((_APPLY_UPDATE_LV200) || (UsedSkillSearch(SKILL_ID_MADOGEAR) === 0)) {
+						if(g_confDataNizi[CCharaConfNizi.CONF_ID_ADRENALINE_RUSH] == 2){
+							if(n_A_WeaponType != 10 && !(17 <= n_A_WeaponType && n_A_WeaponType <= 21)){
+								ASPDch = 20;
+								if(GetHigherJobSeriesID(n_A_JOB)==12) ASPDch += 10;
+								ASPDplusMAX = Math.max(ASPDplusMAX, ASPDch);
+							}
+						}
+						if(6 <= n_A_WeaponType && n_A_WeaponType <= 8){
+							if(g_confDataNizi[CCharaConfNizi.CONF_ID_ADRENALINE_RUSH] == 1){
+								ASPDch = 20;
+								if(GetHigherJobSeriesID(n_A_JOB)==12) ASPDch += 10;
+								ASPDplusMAX = Math.max(ASPDplusMAX, ASPDch);
+							}
+						}
+					}
+					if(6 <= n_A_WeaponType && n_A_WeaponType <= 8){
+						if(g_confDataNizi[CCharaConfNizi.CONF_ID_ADRENALINE_RUSH] == 3){
+							ASPDch = 30;
+							ASPDplusMAX = Math.max(ASPDplusMAX, ASPDch);
+						}
+					}
+				}
+			}
+			if (n_A_PassSkill3[1]) {
+				// 夕陽のアサシンクロス が 設定されているとき
+				if(![ITEM_KIND_BOW, ITEM_KIND_HANDGUN, ITEM_KIND_RIFLE, ITEM_KIND_SHOTGUN, ITEM_KIND_GATLINGGUN, ITEM_KIND_GRENADEGUN].inicluds(n_A_WeaponType)){
+					// 弓 または 銃 を装備していなければ
+					ASPDch = n_A_PassSkill3[1] + Math.floor(n_A_PassSkill3[31] /2) + n_A_PassSkill3[21];
+					ASPDplusMAX = Math.max(ASPDplusMAX, ASPDch);
+				}
+			}
+			tmp_aspd += ASPDplusMAX;
+			// 「ガンスリンガー」スキル「シングルアクション」のASPD増加効果
+			tmp_aspd += Math.round(Math.max(LearnedSkillSearch(SKILL_ID_SINGLE_ACTION), UsedSkillSearch(SKILL_ID_SINGLE_ACTION)) / 2);
+			// 「プロフェッサー」スキル「アドバンスドブック」のASPD増加効果
+			if (n_A_WeaponType == ITEM_KIND_BOOK) {
+				const advanced_book_lv = Math.max(LearnedSkillSearch(SKILL_ID_ADVANCED_BOOK), UsedSkillSearch(SKILL_ID_ADVANCED_BOOK));
+				tmp_aspd += Math.round(advanced_book_lv / 2);
+			}
+			aspd += (200 - aspd) * (tmp_aspd / 100);
+			if (UsedSkillSearch(SKILL_ID_FIGHTING_SPIRIT)) {
+				// ファイティングスピリット が設定されているとき
+				const wfsp = [0,0,0,1,1,2,2,2,3,3,4];
+				const sklLvRuneMastery = Math.max(LearnedSkillSearch(SKILL_ID_RUNE_MASTERY), UsedSkillSearch(SKILL_ID_RUNE_MASTERY));
+				aspd += wfsp[sklLvRuneMastery];
+			}
+			// 修練未習得でもペコペコ・グリフォンに乗れるので LearnedSkillSearch に置き換えられない
+			if (UsedSkillSearch(SKILL_ID_KIHE_SHUREN) > 0) {
+				// ペコペコ・グリフォンに搭乗している場合、騎兵修練の習得Lvに応じてASPDペナルティが課せられる
+				// UsedSkillSearch の方は'Lv0'の前に'ペコ無し'が挿入されているのでオフセットを合わせている
+				if ((n_A_ActiveSkill === SKILL_ID_TUZYO_KOGEKI) || (n_A_ActiveSkill === SKILL_ID_SACRIFICE)) {
+					// 攻撃手段が 通常攻撃 または サクリファイス ならば
+					aspd -= aspd - aspd * (40 + Math.max(LearnedSkillSearch(SKILL_ID_KIHE_SHUREN), UsedSkillSearch(SKILL_ID_KIHE_SHUREN)) * 10) / 100;
+				}
+			}
+			// トレーニング未習得でもドラゴンに乗れるので LearnedSkillSearch に置き換えられない
+			if (UsedSkillSearch(SKILL_ID_DRAGON_TRAINING) > 0) {
+				// ドラゴンに搭乗している場合、ドラゴントレーニングの習得Lvに応じてASPDペナルティが課せられる
+				// UsedSkillSearch の方は'Lv0'の前に'未騎乗'が挿入されているのでオフセットを合わせている
+				const dragon_training_lv = Math.max(LearnedSkillSearch(SKILL_ID_DRAGON_TRAINING), UsedSkillSearch(SKILL_ID_DRAGON_TRAINING) - 1);
+				aspd -= aspd - aspd * (70 + (dragon_training_lv + 1) * 5) / 100;
 			}
 		}
-		// トレーニング未習得でもドラゴンに乗れるので LearnedSkillSearch に置き換えられない
-		if (UsedSkillSearch(SKILL_ID_DRAGON_TRAINING) > 0) {
-			// ドラゴンに搭乗している場合、ドラゴントレーニングの習得Lvに応じてASPDペナルティが課せられる
-			// UsedSkillSearch の方は'Lv0'の前に'未騎乗'が挿入されているのでオフセットを合わせている
-			const dragon_training_lv = Math.max(LearnedSkillSearch(SKILL_ID_DRAGON_TRAINING), UsedSkillSearch(SKILL_ID_DRAGON_TRAINING) - 1);
-			aspd -= aspd - aspd * (70 + (dragon_training_lv + 1) * 5) / 100;
-		}
-
-
 
 
 //================================================================================================================================
