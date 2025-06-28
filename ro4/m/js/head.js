@@ -16998,14 +16998,15 @@ function TYPE_SYUUREN(mobData, attackMethodConfArray, bArmsLeft){
 		case ITEM_KIND_SPEAR_2HAND:
 			if (IsSameJobClass(JOB_ID_RUNEKNIGHT)) {
 				// トレーニング未習得でもドラゴンに乗れるので LearnedSkillSearch に置き換えられない
-				if (UsedSkillSearch(SKILL_ID_DRAGON_TRAINING) == 0) {
+				if (UsedSkillSearch(SKILL_ID_DRAGON_TRAINING) === 0) {
 					w += 4 * Math.max(LearnedSkillSearch(SKILL_ID_YARI_SHUREN), UsedSkillSearch(SKILL_ID_YARI_SHUREN));
 				} else {
 					// ドラゴン搭乗時に槍修練の効果が増強される
 					w += 10 * Math.max(LearnedSkillSearch(SKILL_ID_YARI_SHUREN), UsedSkillSearch(SKILL_ID_YARI_SHUREN));
 				}
 			} else {
-				if (Math.max(LearnedSkillSearch(SKILL_ID_KIHE_SHUREN), UsedSkillSearch(SKILL_ID_KIHE_SHUREN)) == 0) {
+				// 修練未習得でもペコペコ・グリフォンに乗れるので LearnedSkillSearch に置き換えられない
+				if (UsedSkillSearch(SKILL_ID_KIHE_SHUREN) === 0) {
 					w += 4 * Math.max(LearnedSkillSearch(SKILL_ID_YARI_SHUREN), UsedSkillSearch(SKILL_ID_YARI_SHUREN));
 				} else {
 					w += 5 * Math.max(LearnedSkillSearch(SKILL_ID_YARI_SHUREN), UsedSkillSearch(SKILL_ID_YARI_SHUREN));
