@@ -1,0 +1,58 @@
+name: Update Latest PR Date
+
+# master ブランチに対する PR が merge された時のみ実行される
+on:
+  pull_request:
+    branches:
+      - master
+    types: [closed]
+    paths-ignore:
+      - './roro/date.json' # date.json 自身の変更ではトリガーしない
+
+jobs:
+  update-date:
+    # PR に release ラベルが付与されている時のみ実行される
+    if: 
+      contains(github.event.pull_request.labels.*.name, 'release') &&
+      github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      # リポジトリのコードを取得
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # Node.js のセットアップ
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # 依存関係のインストール
+      - name: Install date-fns
+        run: npm install date-fns date-fns-tz
+
+      # PR がマージされた日時を json に書き出す
+      - name: Get and format PR merged date in JST
+        id: get_formatted_pr_date
+        run: |
+          LATEST_PR_DATE_UTC="${{ github.event.pull_request.merged_at }}"
+          FORMATTED_JST_DATE=$(node -e "
+            const { format } = require('date-fns');
+            const { toZonedTime } = require('date-fns-tz');
+            const utcDate = new Date('$LATEST_PR_DATE_UTC');
+            const jstDate = toZonedTime(utcDate, 'Asia/Tokyo');
+            const formattedDate = format(jstDate, 'yyyy-MM-dd HH:mm');
+            console.log(formattedDate);
+          ")
+          echo "{\"release_date\": \"$FORMATTED_JST_DATE\"}" > ./roro/date.json
+
+      # json をコミットする
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add ./roro/date.json
+          git commit -m "リリース日時の更新"
+          git push

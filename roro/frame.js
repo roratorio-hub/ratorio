@@ -1,4 +1,4 @@
-const last_updated = "2025/06/29 19:00";
+let last_updated = ""; // last_updatedを初期化
 
 // 背景色切替
 g_BGColorSwitch = false;
@@ -27,7 +27,16 @@ if (window.location.hostname !== "roratorio-hub.github.io") {
   formurl += `?entry.1590472346=ラトリオHUB以外から遷移しています`
 }
 
-templ = `
+fetch('../date.json')
+  .then(response => response.json())
+  .then(data => {
+    last_updated = data.release_date;
+  })
+  .catch(() => {
+    last_updated = "取得失敗...";
+  })
+  .finally(() => {
+    const templ = `
 <aside id="sidebar" class="sidebar">
   <div class="sidebar-layout">
     <div class="sidebar-header">
@@ -57,7 +66,7 @@ templ = `
           <!--<li class="menu-item"><span class="menu-title"><a href="../../information/wanted/index.html" class="local">[募集] スキル情報</a></span></li>-->
 
 		  <li class="menu-header" style="padding-top: 10px"><span>Contact Us</span></li>
-          <!--<li class="menu-item"><span class="menu-title"><a href="../../information/response/index.html" class="local">Q&amp;A</a></span></li>-->
+          <!--<li class="menu-item"><span class="menu-title"><a href="../../information/response/index.html" class="local">Q&A</a></span></li>-->
 		      <li class="menu-item"><span class="menu-title"><a href="${formurl}">Googleフォーム</a></span></li>
           <li class="menu-item"><span class="menu-title"><a href="https://discord.gg/wcKE7PkQ9x">Discord</a></span></li>
           <li class="menu-item"><span class="menu-title"><a href="https://github.com/roratorio-hub/ratorio">Github</a></span></li>
@@ -82,40 +91,41 @@ templ = `
     </div>
   </div>
 </div>
-`
+`;
 
-$(function(){
-  $("#ID_FRAME").append(templ);
-  $(document).on("click", ".sidebar a.local, .update-toast a.local", (event)=>{
-    $('.modal-container iframe').attr("src",$(event.target).attr("href"));
-    $('.modal-container').toggleClass("active");
-    return false;
-  })
-  $(".modal-close").on("click", ()=>{
-    $('.modal-container').toggleClass("active");
-  })
-  $(document).on('click',function(e) {
-    if(!$(e.target).closest('.modal-body').length) {
-      $('.modal-container').removeClass('active');
-    }
-  });
-  if (typeof CSaveController !== "undefined") {
-    if (CSaveController.isAvailableBrowserStorage(CSaveController.STORAGE_TYPE_LOCALSTORAGE)) {
-      const save_updated = localStorage.getItem("last_updated");
-      if (save_updated < last_updated) {
-        $.toast({
-          heading: "前回アクセス以降に更新があります",
-          text: '<span class="update-toast"><a href="../../information/history/index.html" class="local">更新履歴</a> から詳細を確認してください</span>',
-          icon: "info",
-          hideAfter: 5000,
-          position: 'bottom-center',
-          showHideTransition: 'slide',
-          bgColor: "#00d1b2",
-          textColor: "#000",
-          loader: false,
-        });
+    $(function(){
+      $("#ID_FRAME").append(templ);
+      $(document).on("click", ".sidebar a.local, .update-toast a.local", (event)=>{
+        $('.modal-container iframe').attr("src",$(event.target).attr("href"));
+        $('.modal-container').toggleClass("active");
+        return false;
+      })
+      $(".modal-close").on("click", ()=>{
+        $('.modal-container').toggleClass("active");
+      })
+      $(document).on('click',function(e) {
+        if(!$(e.target).closest('.modal-body').length) {
+          $('.modal-container').removeClass('active');
+        }
+      });
+      if (typeof CSaveController !== "undefined") {
+        if (CSaveController.isAvailableBrowserStorage(CSaveController.STORAGE_TYPE_LOCALSTORAGE)) {
+          const save_updated = localStorage.getItem("last_updated");
+          if (save_updated < last_updated) {
+            $.toast({
+              heading: "前回アクセス以降に更新があります",
+              text: '<span class="update-toast"><a href="../../information/history/index.html" class="local">更新履歴</a> から詳細を確認してください</span>',
+              icon: "info",
+              hideAfter: 5000,
+              position: 'bottom-center',
+              showHideTransition: 'slide',
+              bgColor: "#00d1b2",
+              textColor: "#000",
+              loader: false,
+            });
+          }
+          localStorage.setItem("last_updated", last_updated);
+        }
       }
-      localStorage.setItem("last_updated", last_updated);
-    }
-  }
-})
+    })
+  });
