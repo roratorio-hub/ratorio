@@ -15035,7 +15035,12 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 			if(EquipNumSearch(382)) n_tok[32] += 10;
 		}
 
-
+		/**
+		 * 「三次職支援　ラウダラムス」の効果
+		 */
+		if ((bufLv = g_confDataSanzi[CCharaConfSanzi.CONF_ID_LAUDARAMUS]) > 0) {
+			n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += [0, 6, 9, 12, 15][bufLv];
+		}
 
 		// TODO: 四次対応
 		for (idx = ITEM_SP_CRITICAL_DAMAGE_UP; idx <= ITEM_SP_CRITICAL_DAMAGE_UP; idx++) {
@@ -28192,43 +28197,6 @@ function StPlusCalc() {
 		wSPC_DEX -= 1;
 		wSPC_INT -= 1;
 		wSPC_LUK -= 1;
-	}
-
-	//----------------------------------------------------------------
-	// 「三次職支援　ラウダアグヌス」の効果
-	//----------------------------------------------------------------
-	if ((bufLv = g_confDataSanzi[CCharaConfSanzi.CONF_ID_LAUDAAGNUS]) > 0) {
-
-		// 特定の戦闘エリアでの補正
-		switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
-
-		case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
-			wSPC_VIT += 10 * bufLv;
-			break;
-
-		default:
-			wSPC_VIT += 4 + bufLv;
-			break;
-
-		}
-	}
-
-	//----------------------------------------------------------------
-	// 「三次職支援　ラウダラムス」の効果
-	//----------------------------------------------------------------
-	if ((bufLv = g_confDataSanzi[CCharaConfSanzi.CONF_ID_LAUDARAMUS]) > 0) {
-
-		// 特定の戦闘エリアでの補正
-		switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
-
-		case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
-			wSPC_LUK += 10 * bufLv;
-			break;
-
-		default:
-			wSPC_LUK += 4 + bufLv;
-			break;
-		}
 	}
 
 	//----------------------------------------------------------------

@@ -14657,7 +14657,6 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "ラウダアグヌス";
 			this.kana = "ラウタアクヌス";
@@ -14665,19 +14664,15 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
-
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 40 + 10 * skillLv;
 			}
-
 			this.CastTimeVary = function(skillLv, charaDataManger) {
 				return 3000;
 			}
-
 			this.DelayTimeCommon = function(skillLv, charaDataManger) {
 				return 1000;
 			}
-
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 1000;
 			}
@@ -14693,7 +14688,6 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "ラウダラムス";
 			this.kana = "ラウタラムス";
@@ -14701,19 +14695,15 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
-
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 40 + 10 * skillLv;
 			}
-
 			this.CastTimeVary = function(skillLv, charaDataManger) {
 				return 3000;
 			}
-
 			this.DelayTimeCommon = function(skillLv, charaDataManger) {
 				return 1000;
 			}
-
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 1000;
 			}
