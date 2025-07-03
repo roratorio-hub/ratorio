@@ -14846,7 +14846,6 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "エクスピアティオ";
 			this.kana = "エクスヒアテイオ";
@@ -14854,15 +14853,15 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
-
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 20;
 			}
-
 			this.CoolTime = function(skillLv, charaDataManger) {
-				return 1500;
+				return 1000;
 			}
-
+			this.LifeTime = function(skillLv, charaData) {
+				return (5 + 5 * skillLv) * 1000;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
