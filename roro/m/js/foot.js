@@ -15035,7 +15035,12 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 			if(EquipNumSearch(382)) n_tok[32] += 10;
 		}
 
-
+		/**
+		 * 「三次職支援　ラウダラムス」の効果
+		 */
+		if ((bufLv = g_confDataSanzi[CCharaConfSanzi.CONF_ID_LAUDARAMUS]) > 0) {
+			n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += [0, 6, 9, 12, 15][bufLv];
+		}
 
 		// TODO: 四次対応
 		for (idx = ITEM_SP_CRITICAL_DAMAGE_UP; idx <= ITEM_SP_CRITICAL_DAMAGE_UP; idx++) {
@@ -16958,12 +16963,6 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 		// 「クルセイダー　フェイス」の効果
 		//----------------------------------------------------------------
 		n_tok[ITEM_SP_RESIST_ELM_HOLY] += 5 * Math.max(LearnedSkillSearch(SKILL_ID_FAITH), UsedSkillSearch(SKILL_ID_FAITH));
-
-		//----------------------------------------------------------------
-		// 「アークビショップ　エウカリスティカ」の効果
-		//----------------------------------------------------------------
-		n_tok[ITEM_SP_RESIST_ELM_DARK] += Math.max(LearnedSkillSearch(SKILL_ID_EUCHARISTICA), UsedSkillSearch(SKILL_ID_EUCHARISTICA));
-		n_tok[ITEM_SP_RESIST_ELM_UNDEAD] += Math.max(LearnedSkillSearch(SKILL_ID_EUCHARISTICA), UsedSkillSearch(SKILL_ID_EUCHARISTICA));
 
 		//----------------------------------------------------------------
 		// 「影狼・朧　符」の効果
@@ -20047,12 +20046,6 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 			if(n_A_SHOES_DEF_PLUS >= 7){
 				for(var i=350;i<=354;i++) n_tok[i] += 10;
 			}
-		}
-
-		if (n_A_JOB == JOB_ID_ARCBISHOP) {
-			const eucharistica_lv = Math.max(LearnedSkillSearch(SKILL_ID_EUCHARISTICA), UsedSkillSearch(SKILL_ID_EUCHARISTICA));
-			n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_MONSTER_ELM_DARK] += 2 * eucharistica_lv;
-			n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_MONSTER_ELM_UNDEAD] += 2 * eucharistica_lv;
 		}
 
 		//----------------------------------------------------------------
@@ -28204,43 +28197,6 @@ function StPlusCalc() {
 		wSPC_DEX -= 1;
 		wSPC_INT -= 1;
 		wSPC_LUK -= 1;
-	}
-
-	//----------------------------------------------------------------
-	// 「三次職支援　ラウダアグヌス」の効果
-	//----------------------------------------------------------------
-	if ((bufLv = g_confDataSanzi[CCharaConfSanzi.CONF_ID_LAUDAAGNUS]) > 0) {
-
-		// 特定の戦闘エリアでの補正
-		switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
-
-		case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
-			wSPC_VIT += 10 * bufLv;
-			break;
-
-		default:
-			wSPC_VIT += 4 + bufLv;
-			break;
-
-		}
-	}
-
-	//----------------------------------------------------------------
-	// 「三次職支援　ラウダラムス」の効果
-	//----------------------------------------------------------------
-	if ((bufLv = g_confDataSanzi[CCharaConfSanzi.CONF_ID_LAUDARAMUS]) > 0) {
-
-		// 特定の戦闘エリアでの補正
-		switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
-
-		case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
-			wSPC_LUK += 10 * bufLv;
-			break;
-
-		default:
-			wSPC_LUK += 4 + bufLv;
-			break;
-		}
 	}
 
 	//----------------------------------------------------------------
