@@ -2184,7 +2184,7 @@
 		[865,5,"プレッシャー（重複）"],
 		[866,5,"フルストリップ","ST_FULLSTRIP"],
 		[867,1,"プリザーブ","ST_PRESERVE"],
-		[868,5,"私を縛らないで","CG_LONGINGFREEDOM"],
+		[868,1,"音楽専門家の熟練","CG_SPECIALSINGER"],
 		[869,5,"ヘルモードの杖","CG_HERMODE"],
 		[870,5,"月明かりの下で","CG_MOONLIT"],
 		[871,5,"生命力変換","PF_HPCONVERSION"],

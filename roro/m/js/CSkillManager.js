@@ -27147,21 +27147,24 @@ function CSkillManager() {
 		skillId++;
 
 		// ----------------------------------------------------------------
-		// 私を縛らないで
+		// 音楽専門家の熟練
 		// ----------------------------------------------------------------
-		SKILL_ID_WATASHIWO_SHIBARANAIDE = skillId;
+		SKILL_ID_SPECIALSINGER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "私を縛らないで";
-			this.kana = "ワタシヲシハラナイテ";
-			this.maxLv = 5;
+			this.name = "音楽専門家の熟練";
+			this.kana = "オンガクセンモンカのジュクレン";
+			this.maxLv = 1;
 			this.type = CSkillData.TYPE_ACTIVE;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
 			this.CostFixed = function(skillLv, charaDataManger) {
-				return 15;
+				return 1;
+			}
+			this.CoolTime = function(skillLv, charaData) {
+				return 10000;
 			}
 		};
 		this.dataArray[skillId] = skillData;
