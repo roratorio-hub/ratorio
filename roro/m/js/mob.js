@@ -1082,6 +1082,15 @@ function GetMobDataParameters(monsterId, mobData){
 		}
 	}
 
+	/**
+	 * 「三次職支援　エクスピアティオ」の効果
+	 */
+	if (g_confDataSanzi[CCharaConfSanzi.CONF_ID_EXPIATIO] > 0) {
+		wMDEF -= 20 * g_confDataSanzi[CCharaConfSanzi.CONF_ID_EXPIATIO];
+	} else if (UsedSkillSearch(SKILL_ID_EXPIATIO)) {
+		wMDEF -= 20 * UsedSkillSearch(SKILL_ID_EXPIATIO);
+	}	
+
 	//----------------------------------------------------------------
 	// 「モンスター状態異常　アナライズ」の効果
 	//----------------------------------------------------------------
