@@ -16960,12 +16960,6 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 		n_tok[ITEM_SP_RESIST_ELM_HOLY] += 5 * Math.max(LearnedSkillSearch(SKILL_ID_FAITH), UsedSkillSearch(SKILL_ID_FAITH));
 
 		//----------------------------------------------------------------
-		// 「アークビショップ　エウカリスティカ」の効果
-		//----------------------------------------------------------------
-		n_tok[ITEM_SP_RESIST_ELM_DARK] += Math.max(LearnedSkillSearch(SKILL_ID_EUCHARISTICA), UsedSkillSearch(SKILL_ID_EUCHARISTICA));
-		n_tok[ITEM_SP_RESIST_ELM_UNDEAD] += Math.max(LearnedSkillSearch(SKILL_ID_EUCHARISTICA), UsedSkillSearch(SKILL_ID_EUCHARISTICA));
-
-		//----------------------------------------------------------------
 		// 「影狼・朧　符」の効果
 		//----------------------------------------------------------------
 		if (UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU) != 0) {
@@ -20047,12 +20041,6 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 			if(n_A_SHOES_DEF_PLUS >= 7){
 				for(var i=350;i<=354;i++) n_tok[i] += 10;
 			}
-		}
-
-		if (n_A_JOB == JOB_ID_ARCBISHOP) {
-			const eucharistica_lv = Math.max(LearnedSkillSearch(SKILL_ID_EUCHARISTICA), UsedSkillSearch(SKILL_ID_EUCHARISTICA));
-			n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_MONSTER_ELM_DARK] += 2 * eucharistica_lv;
-			n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_MONSTER_ELM_UNDEAD] += 2 * eucharistica_lv;
 		}
 
 		//----------------------------------------------------------------

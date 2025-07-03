@@ -1803,7 +1803,7 @@
 		[484,10,"オラティオ","AB_ORATIO"],
 		[485,4,"ラウダアグヌス","AB_LAUDAAGNUS"],
 		[486,4,"ラウダラムス","AB_LAUDARAMUS"],
-		[487,10,"(仮)エウカリスティカ","AB_EUCHARISTICA"],
+		[487,10,"(廃止)エウカリスティカ","AB_EUCHARISTICA"],
 		[488,4,"レノヴァティオ","AB_RENOVATIO"],
 		[489,5,"ハイネスヒール","AB_HIGHNESSHEAL"],
 		[490,5,"クリアランス","AB_CLEARANCE"],

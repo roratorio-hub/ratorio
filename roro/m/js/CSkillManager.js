@@ -14731,7 +14731,7 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(仮)エウカリスティカ";
+			this.name = "(廃止)エウカリスティカ";
 			this.kana = "エウカリステイカ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_PASSIVE;
