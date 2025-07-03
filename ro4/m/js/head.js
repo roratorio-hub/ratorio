@@ -18815,15 +18815,6 @@ function ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, 
 		rangeUp = n_tok[ITEM_SP_SHORTRANGE_DAMAGE_UP];
 	}
 	dmg = Math.floor(dmg * (100 + rangeUp) / 100);
-	const eucharistica_lv = Math.max(LearnedSkillSearch(SKILL_ID_EUCHARISTICA), UsedSkillSearch(SKILL_ID_EUCHARISTICA));
-	if (eucharistica_lv > 0) {
-		// エウカリスティカによる、不死／闇属性へのダメージ強化
-		if (n_A_JOB == JOB_ID_ARCBISHOP) {
-			if((70 <= mobData[18] && mobData[18] <= 79) || (90 <= mobData[18] && mobData[18] <= 99)) {
-				dmg = Math.floor(dmg * (100 + 3 * eucharistica_lv) / 100);
-			}
-		}
-	}
 	if (bCri) {
 		// クリティカルダメージ補正
 		// 一部のスキルにおいて効果に修正が入る

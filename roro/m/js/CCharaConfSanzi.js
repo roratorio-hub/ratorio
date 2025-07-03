@@ -187,7 +187,7 @@ function CCharaConfSanzi(confArray) {
 		CCharaConfSanzi.CONF_ID_LAUDAAGNUS = confId;
 		confData = [
 			confId,
-			CConfBase.ConfText("ラウダアグヌス(VIT+)"),
+			CConfBase.ConfText("ラウダアグヌス(MaxHP+)"),
 			CConfBase.ConfControlType(CONTROL_TYPE_SELECTBOX_NUMBER),
 			CConfBase.ConfDefaultValue(0),
 			CConfBase.ConfMinValue(0),
@@ -201,7 +201,7 @@ function CCharaConfSanzi(confArray) {
 		CCharaConfSanzi.CONF_ID_LAUDARAMUS = confId;
 		confData = [
 			confId,
-			CConfBase.ConfText("ラウダラムス(LUK+)"),
+			CConfBase.ConfText("ラウダラムス(Criダメージ+)"),
 			CConfBase.ConfControlType(CONTROL_TYPE_SELECTBOX_NUMBER),
 			CConfBase.ConfDefaultValue(0),
 			CConfBase.ConfMinValue(0),
