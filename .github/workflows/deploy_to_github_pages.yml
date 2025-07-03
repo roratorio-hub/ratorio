@@ -1,4 +1,4 @@
-name: Update Latest PR Date
+name: Deploy to GitHub Pages
 
 # master ブランチに対する PR が merge された時のみ実行される
 on:
@@ -10,12 +10,12 @@ on:
       - './roro/date.json' # date.json 自身の変更ではトリガーしない
 
 jobs:
-  update-date:
-    # PR に release ラベルが付与されている時のみ実行される
-    if: 
-      contains(github.event.pull_request.labels.*.name, 'release') &&
-      github.event.pull_request.merged == true
+  build:
+    if: |
+      github.repository == 'roratorio-hub/ratorio' &&
+      github.event.pull_request.merged == true    
     runs-on: ubuntu-latest
+
     steps:
       # リポジトリのコードを取得
       - name: Checkout repository
@@ -29,12 +29,13 @@ jobs:
         with:
           node-version: '20'
 
-      # 依存関係のインストール
-      - name: Install date-fns
-        run: npm install date-fns date-fns-tz
+      # 依存関係をインストールする
+      - name: Install dependencies
+        run: npm install
 
-      # PR がマージされた日時を json に書き出す
+      # PR に release ラベルが付与されている時のみ PR がマージされた日時を json に書き出す
       - name: Get and format PR merged date in JST
+        if: contains(github.event.pull_request.labels.*.name, 'release')
         id: get_formatted_pr_date
         run: |
           LATEST_PR_DATE_UTC="${{ github.event.pull_request.merged_at }}"
@@ -48,11 +49,24 @@ jobs:
           ")
           echo "{\"release_date\": \"$FORMATTED_JST_DATE\"}" > ./roro/date.json
 
-      # json をコミットする
+      # PR に release ラベルが付与されている時のみ json をコミットする
       - name: Commit and push if changed
+        if: contains(github.event.pull_request.labels.*.name, 'release')
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add ./roro/date.json
           git commit -m "リリース日時の更新"
           git push
+
+      # TypeScript のコンパイル
+      - name: Compile TypeScript
+        run: npx tsc
+
+      # `dist` ディレクトリの内容を GitHub Pages にデプロイ
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./  # ルートディレクトリをコピーする
+          exclude_assets: '.github,.gemini,node_modules,ro4/m/ts/**.ts,.gitignore,package.json,package-lock.json,tsconfig.json,解析メモ,util'
