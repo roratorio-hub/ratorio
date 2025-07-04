@@ -16,19 +16,11 @@ function CCharaConfIchizi(confArray) {
 	 * （継承先でオーバーライドすること）
 	 */
 	this.InitData = function () {
-
-		var idx = 0;
-
 		var confId = 0;
 		var confData = new Array();
 		var confDataOBJSorted = new Array();
-
-
-
 		// 基底クラスのセットアップ処理を実行
 		CCharaConfIchizi.prototype.InitData.call(this);
-
-
 
 		//----------------------------------------------------------------
 		// データ定義　ここから
@@ -45,8 +37,6 @@ function CCharaConfIchizi(confArray) {
 		this.confDataObj[confId] = confData;
 		confId++;
 
-
-
 		CCharaConfIchizi.CONF_ID_SOKUDO_ZOKA = confId;
 		confData = [
 			confId,
@@ -58,8 +48,6 @@ function CCharaConfIchizi(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
-
 
 		CCharaConfIchizi.CONF_ID_ANGELUS = confId;
 		confData = [
@@ -73,8 +61,6 @@ function CCharaConfIchizi(confArray) {
 		this.confDataObj[confId] = confData;
 		confId++;
 
-
-
 		CCharaConfIchizi.CONF_ID_MAGNUM_BREAK_ZYOTAI = confId;
 		confData = [
 			confId,
@@ -86,8 +72,6 @@ function CCharaConfIchizi(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
-
 
 		CCharaConfIchizi.CONF_ID_SHIEN_PROVOKE = confId;
 		confData = [
@@ -101,21 +85,8 @@ function CCharaConfIchizi(confArray) {
 		this.confDataObj[confId] = confData;
 		confId++;
 
-
-
-		CCharaConfIchizi.CONF_ID_MARDERER_BONUS = confId;
-		confData = [
-			confId,
-			CConfBase.ConfText("マーダラーボーナス"),
-			CConfBase.ConfControlType(CONTROL_TYPE_SELECTBOX_SPECIAL),
-			CConfBase.ConfDefaultValue(0),
-			CConfBase.ConfMinValue(0),
-			CConfBase.ConfMaxValue(2)
-		];
-		this.confDataObj[confId] = confData;
+		// マーダラーボーナス廃止に伴う欠番
 		confId++;
-
-
 
 		CCharaConfIchizi.CONF_ID_SHUCHURYOKU_KOZYO = confId;
 		confData = [
@@ -129,8 +100,6 @@ function CCharaConfIchizi(confArray) {
 		this.confDataObj[confId] = confData;
 		confId++;
 
-
-
 		CCharaConfIchizi.CONF_ID_LOUD_VOICE = confId;
 		confData = [
 			confId,
@@ -142,8 +111,6 @@ function CCharaConfIchizi(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
-
 
 		CCharaConfIchizi.CONF_ID_ENDURE = confId;
 		confData = [
@@ -157,10 +124,6 @@ function CCharaConfIchizi(confArray) {
 		this.confDataObj[confId] = confData;
 		confId++;
 
-
-
-
-
 		CCharaConfIchizi.CONF_ID_DUMMY = confId;
 		confData = [
 			confId,
@@ -173,8 +136,6 @@ function CCharaConfIchizi(confArray) {
 		this.confDataObj[confId] = confData;
 		confId++;
 
-
-
 		//----------------------------------------------------------------
 		// データ定義数チェック
 		//----------------------------------------------------------------
@@ -182,8 +143,6 @@ function CCharaConfIchizi(confArray) {
 			alert("一次職支援設定　定義数超過");
 			return;
 		}
-
-
 
 		//----------------------------------------------------------------
 		// 支援設定変数配列を初期化
@@ -197,8 +156,6 @@ function CCharaConfIchizi(confArray) {
 				this.confArray[idx] = 0;
 			}
 		}
-
-
 
 		//----------------------------------------------------------------
 		// 表示順序に従い、一次職支援設定データ定義を再配列
@@ -216,10 +173,8 @@ function CCharaConfIchizi(confArray) {
 		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfIchizi.CONF_ID_DUMMY];
 		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfIchizi.CONF_ID_LOUD_VOICE];
 		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfIchizi.CONF_ID_DUMMY];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfIchizi.CONF_ID_MARDERER_BONUS];
 		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfIchizi.CONF_ID_DUMMY];
 		this.confDataObj = confDataOBJSorted;
-
 	}
 
 	/**
@@ -227,33 +182,11 @@ function CCharaConfIchizi(confArray) {
 	 * （継承先でオーバーライドすること）
 	 */
 	this.BuildUpSelectAreaSubForSpecial = function (objTd, confData) {
-
 		var confId = confData[CConfBase.CONF_DATA_INDEX_ID];
 		var controlId = this.GetControlIdString(this.instanceNo, confId);
 		var controlType = confData[CConfBase.CONF_DATA_INDEX_CONTROL_TYPE];
-
 		// 個別に実装する
 		switch (confId) {
-
-
-		// マーダラーボーナス
-		case CCharaConfIchizi.CONF_ID_MARDERER_BONUS:
-
-			// 選択セレクトボックスを生成
-			objSelect = document.createElement("select");
-			objSelect.setAttribute("id", controlId);
-			objSelect.setAttribute("onChange", "CConfBase.OnChangeValueHandler(" + this.instanceNo + ", true)");
-			objTd.appendChild(objSelect);
-
-			// セレクトオプションを生成
-			objOption = HtmlCreateElementOption(0, "なし", objSelect);
-			objOption = HtmlCreateElementOption(1, "ALL+3", objSelect);
-			objOption = HtmlCreateElementOption(2, "ALL+5", objSelect);
-
-			// 初期値設定
-			objSelect.setAttribute("value", confData[CConfBase.CONF_DATA_INDEX_DEFAULT_VALUE]);
-
-			break;
 		}
 	}
 

@@ -5020,13 +5020,6 @@ if (_APPLY_UPDATE_LV200) {
 		if(EquipNumSearch(1042)) w += n_A_Weapon_ATKplus;
 		if(EquipNumSearch(1029) && n_A_HEAD_DEF_PLUS >= 6) w += n_A_HEAD_DEF_PLUS - 5;
 
-		//----------------------------------------------------------------
-		// 「一次職支援　マーダラーボーナス」の、効果
-		//----------------------------------------------------------------
-		if(g_confDataIchizi[CCharaConfIchizi.CONF_ID_MARDERER_BONUS]) {
-			w += 10;
-		}
-
 		if(EquipNumSearch(1083)){
 			w += n_A_Weapon_ATKplus;
 		}
@@ -28159,28 +28152,6 @@ function StPlusCalc() {
 		wSPC_INT += 20;
 		wSPC_LUK += 20;
 	}
-
-	//----------------------------------------------------------------
-	// 「一次職支援　マーダラーボーナス」の効果
-	//----------------------------------------------------------------
-	var vartmp = 0;
-	switch (g_confDataIchizi[CCharaConfIchizi.CONF_ID_MARDERER_BONUS]) {
-	case 1:
-		vartmp = 3;
-		break;
-	case 2:
-		vartmp = 5;
-		break;
-	}
-
-	wSPC_STR += vartmp;
-	wSPC_AGI += vartmp;
-	wSPC_VIT += vartmp;
-	wSPC_DEX += vartmp;
-	wSPC_INT += vartmp;
-	wSPC_LUK += vartmp;
-
-
 
 	if(n_A_PassSkill8[4]){
 		wSPC_STR += 1;
