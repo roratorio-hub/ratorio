@@ -30492,7 +30492,12 @@ function Init(){
 	g_objCharaConfYozi = new CCharaConfYozi(g_confDataYozi);
 	g_objCharaConfYozi.BuildUpSelectArea(document.getElementById("OBJID_TD_CHARA_CONF_YOZI"), false);
 
-
+	//--------------------------------
+	// デバフ設定欄の初期化
+	//--------------------------------
+	g_confDataDebuff = new Array();
+	g_objCharaConfDebuff = new CCharaConfDebuff(g_confDataDebuff);
+	g_objCharaConfDebuff.BuildUpSelectArea(document.getElementById("OBJID_TD_CHARA_CONF_DEBUFF"), false);
 
 	document.calcForm.A3_SKILLSW.checked = 0;
 	document.calcForm.A4_SKILLSW.checked = 0;

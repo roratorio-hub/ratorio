@@ -12,6 +12,9 @@ let g_confDataSanzi = null;
 /** 四次職支援　設定値配列 */
 let g_confDataYozi = null;
 
+/** デバフ 設定値配列 */
+let g_confDataDebuff = null;
+
 /** 一次職支援　設定欄オブジェクト */
 let g_objCharaConfIchizi = null;
 
@@ -23,6 +26,9 @@ let g_objCharaConfSanzi = null;
 
 /** 四次職支援　設定欄オブジェクト */
 let g_objCharaConfYozi = null;
+
+/** デバフ　設定欄オブジェクト */
+let g_objCharaConfDebuff = null;
 
 /** 時限効果設定　設定数 */
 const TIME_ITEM_CONF_COUNT = 20;
