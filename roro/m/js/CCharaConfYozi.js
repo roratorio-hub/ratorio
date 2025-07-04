@@ -301,10 +301,8 @@ function CCharaConfYozi(confArray) {
 		// 支援設定変数配列を初期化
 		//----------------------------------------------------------------
 		for (let idx = 0; idx < this.confCountLimit; idx++) {
-			if (idx < this.confDataObj.length) {
-				if (this.confDataObj[idx] !== undefined) {
-					this.confArray[idx] = this.confDataObj[idx][CConfBase.CONF_DATA_INDEX_DEFAULT_VALUE];
-				}
+			if (idx < this.confDataObj.length && this.confDataObj[idx] !== undefined) {
+				this.confArray[idx] = this.confDataObj[idx][CConfBase.CONF_DATA_INDEX_DEFAULT_VALUE];
 			} else {
 				this.confArray[idx] = 0;
 			}
