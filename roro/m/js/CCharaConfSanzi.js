@@ -1,40 +1,15 @@
 function CCharaConfSanzi(confArray) {
-
 	// 継承定義
 	CCharaConfSanzi.prototype = new CConfBase();
-
-
-
 	// 基底クラスのコンストラクタ呼び出し
 	CConfBase.call(this, confArray);
-
-
-
 	// 設定の限界値
 	// この数を超える場合は、セーブデータの拡張が必要
 	this.confCountLimit = 100;
-
-
-
 	// 設定欄の横方向項目数
 	this.itemInRow = 2;
-
-
-
 	// 設定欄のラベル
 	this.confLabel = "三次職支援設定";
-
-
-
-
-
-	//********************************************************************************************************************************
-	//********************************************************************************************************************************
-	//****
-	//**** 三次職支援データ定義
-	//****
-	//********************************************************************************************************************************
-	//********************************************************************************************************************************
 
 	/**
 	 * 設定データを初期化（セットアップ）する.
@@ -477,13 +452,14 @@ function CCharaConfSanzi(confArray) {
 
 
 		//----------------------------------------------------------------
-		// 三次職支援設定変数配列を初期化
+		// 支援設定変数配列を初期化
 		//----------------------------------------------------------------
-		for (idx = 0; idx < this.confCountLimit; idx++) {
+		for (let idx = 0; idx < this.confCountLimit; idx++) {
 			if (idx < this.confDataObj.length) {
-				this.confArray[idx] = this.confDataObj[idx][CConfBase.CONF_DATA_INDEX_DEFAULT_VALUE];
-			}
-			else {
+				if (this.confDataObj[idx] !== undefined) {
+					this.confArray[idx] = this.confDataObj[idx][CConfBase.CONF_DATA_INDEX_DEFAULT_VALUE];
+				}
+			} else {
 				this.confArray[idx] = 0;
 			}
 		}
@@ -527,10 +503,6 @@ function CCharaConfSanzi(confArray) {
 		this.confDataObj = confDataOBJSorted;
 
 	}
-
-
-
-
 
 	/**
 	 * 設定欄テーブルを構築する（サブ　特殊欄構築用）.
@@ -608,13 +580,6 @@ function CCharaConfSanzi(confArray) {
 		}
 	}
 
-
-
-
-
 	// 初期化実行
 	this.InitData();
-
-
-
 }
