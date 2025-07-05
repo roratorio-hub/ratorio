@@ -22,10 +22,6 @@ CGlobalConstManager.DefineEnum(
 	1
 );
 
-
-
-
-
 /**
  * データ管理用クラス.
  */
@@ -37,25 +33,17 @@ function CTargetData(instanceNo, objThis, objRoot, objSwitch, objHeader) {
 	this.objHeader = objHeader;
 }
 
-
-
 /**
  * 設定欄クラス.
  */
 function CConfBase(confArray) {
 
-
-
 	// 設定の限界値
 	// この数を超える場合は、セーブデータの拡張が必要
 	this.confCountLimit = 0;
 
-
-
 	// 設定欄の横方向項目数
 	this.itemInRow = 2;
-
-
 
 	//----------------------------------------------------------------
 	// データインデックス定義
@@ -66,10 +54,6 @@ function CConfBase(confArray) {
 	CConfBase.CONF_DATA_INDEX_DEFAULT_VALUE	= 3;
 	CConfBase.CONF_DATA_INDEX_MIN_VALUE		= 4;
 	CConfBase.CONF_DATA_INDEX_MAX_VALUE		= 5;
-
-
-
-
 
 	// インスタンス番号
 	this.instanceNo = -1;
@@ -86,10 +70,6 @@ function CConfBase(confArray) {
 	// 設定データの配列
 	this.confDataObj = new Array();
 
-
-
-
-
 	//================================================================
 	// データ定義用ダミー関数
 	// （可読性を高める目的で使用する）
@@ -100,28 +80,17 @@ function CConfBase(confArray) {
 	CConfBase.ConfMinValue = function (value) { return value; };
 	CConfBase.ConfMaxValue = function (value) { return value; };
 
-
-
-
-
 	/**
 	 * 設定データを初期化（セットアップ）する.
 	 * （継承先でオーバーライドすること）
 	 */
 	this.InitData = function () {
-
 		// ターゲットオブジェクト情報の配列を用意する
 		if (CConfBase.targetArray == undefined) {
 			CConfBase.targetArray = new Array();
-
 		}
-
 		return;
 	}
-
-
-
-
 
 	/**
 	 * ヘッダ部品のＩＤを取得する.
@@ -144,32 +113,24 @@ function CConfBase(confArray) {
 		return "OBJID_CONTROL_CONF_" + instanceNo + "_ID_" + confId;
 	}
 
-
-
-
-
 	/**
 	 * 設定欄テーブルを構築する.
 	 * @param objRoot テーブルの親オブジェクト
 	 * @param bAsExpand 展開表示フラグ（true : 展開表示、false : ヘッダのみ）
 	 */
 	this.BuildUpSelectArea = function (objRoot, bAsExpand) {
-
 		var instanceNo = 0;
 		var instanceData = null;
-
 		var idx = 0;
 		var confId = 0;
 		var confText = "";
 		var textUnit = "";
 		var textArray = null;
-
 		var controlId = "";
 		var controlType = 0;
 		var controlValue = 0;
 		var controlValueMin = 0;
 		var controlValueMax = 0;
-
 		var objTable = null;
 		var objTbody = null;
 		var objTr = null;
@@ -181,13 +142,9 @@ function CConfBase(confArray) {
 		var objLabel = null;
 		var objA = null;
 
-
-
 		if (!objRoot) {
 			return;
 		}
-
-
 
 		// 既に同一のクラスインスタンスがあるかを検索し、インスタンス番号を決定する
 		instanceNo = CConfBase.targetArray.length;
@@ -197,8 +154,6 @@ function CConfBase(confArray) {
 				break;
 			}
 		}
-
-
 
 		// 引数のルートオブジェクト配下を一度全削除
 		HtmlRemoveAllChild(objRoot);
@@ -211,8 +166,6 @@ function CConfBase(confArray) {
 
 		objTbody = document.createElement("tbody");
 		objTable.appendChild(objTbody);
-
-
 
 		// 設定欄テーブルのヘッダ部分を生成
 		objTr = document.createElement("tr");
@@ -237,14 +190,10 @@ function CConfBase(confArray) {
 		objLabel.setAttribute("for", this.GetSwitchIdString(instanceNo));
 		HtmlCreateTextNode(this.confLabel, objLabel);
 
-
-
 		// インスタンスを登録
 		instanceData = new CTargetData(instanceNo, this, objRoot, objInput, objTd);
 		CConfBase.targetArray[instanceNo] = instanceData;
 		this.instanceNo = instanceNo;
-
-
 
 		// 展開表示でなければ、ヘッダだけ更新して終了
 		if (!bAsExpand) {
@@ -253,8 +202,6 @@ function CConfBase(confArray) {
 
 			return;
 		}
-
-
 
 		// 設定定義をループして、設定欄を構築する
 		for (idx = 0; idx < this.confDataObj.length; idx++) {
@@ -266,12 +213,8 @@ function CConfBase(confArray) {
 				objTbody.appendChild(objTr);
 			}
 
-
-
 			// 設定ＩＤを取得
 			confId = this.confDataObj[idx][CConfBase.CONF_DATA_INDEX_ID];
-
-
 
 			// 表示名の欄を生成
 			objTd = document.createElement("td");
@@ -295,16 +238,12 @@ function CConfBase(confArray) {
 				objA.appendChild(objText);
 			}
 
-
-
 			// 設定値の欄を生成
 			objTd = document.createElement("td");
 			objTr.appendChild(objTd);
 
 			controlId = this.GetControlIdString(instanceNo, confId);
 			controlType = this.confDataObj[idx][CConfBase.CONF_DATA_INDEX_CONTROL_TYPE];
-
-
 
 			switch (controlType) {
 
@@ -324,8 +263,6 @@ function CConfBase(confArray) {
 			// 固定テキストの場合
 			case CONTROL_TYPE_TEXT_NODE:
 				break;
-
-
 
 			// 設定方法が数値選択方式の場合
 			case CONTROL_TYPE_SELECTBOX_NUMBER:
@@ -356,8 +293,6 @@ function CConfBase(confArray) {
 
 				break;
 
-
-
 			// 設定方法がチェック方式の場合
 			case CONTROL_TYPE_CHECKBOX:
 
@@ -375,8 +310,6 @@ function CConfBase(confArray) {
 
 				break;
 
-
-
 			// 設定方法が数値入力方式の場合
 			case CONTROL_TYPE_TEXTBOX_NUMBER:
 
@@ -393,8 +326,6 @@ function CConfBase(confArray) {
 
 				break;
 
-
-
 			// 設定方法が特殊方式の場合
 			case CONTROL_TYPE_SELECTBOX_SPECIAL:
 			case CONTROL_TYPE_CHECKBOX_SPECIAL:
@@ -406,8 +337,6 @@ function CConfBase(confArray) {
 			}
 
 		}
-
-
 
 		// 変数の値をもとに、設定欄の各コントロールを同期
 		this.SyncronizeSettingsVarToCtrl();
@@ -431,10 +360,6 @@ function CConfBase(confArray) {
 
 		}
 	};
-
-
-
-
 
 	/**
 	 * 設定欄の状態を同期させる（変数の値をコントロール部品へ反映）.
@@ -513,10 +438,6 @@ function CConfBase(confArray) {
 			}
 		}
 	}
-
-
-
-
 
 	/**
 	 * 設定欄の状態を同期させる（コントロール部品の状態を変数へ反映）.
@@ -599,10 +520,6 @@ function CConfBase(confArray) {
 		}
 	}
 
-
-
-
-
 	/**
 	 * 設定欄の展開スイッチクリックイベントハンドラ.
 	 */
@@ -678,10 +595,6 @@ function CConfBase(confArray) {
 		}
 	}
 
-
-
-
-
 	/**
 	 * 設定欄テーブルのヘッダをリフレッシュする.
 	 */
@@ -720,10 +633,6 @@ function CConfBase(confArray) {
 			objTd.setAttribute("bgcolor", COLOR_CODE_TABLE_HEADER_IS_NOT_SET);
 		}
 	}
-
-
-
-
 
 	/**
 	 * 設定欄の選択状態により、コントロールのCSSを変更する.
@@ -828,8 +737,6 @@ function CConfBase(confArray) {
 			}
 		}
 	}
-
-
 
 	// TODO: 処理構造変えたい
 	/**

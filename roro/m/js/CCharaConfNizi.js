@@ -1,59 +1,27 @@
 function CCharaConfNizi(confArray) {
-
 	// 継承定義
 	CCharaConfNizi.prototype = new CConfBase();
-
-
-
 	// 基底クラスのコンストラクタ呼び出し
 	CConfBase.call(this, confArray);
-
-
-
 	// 設定の限界値
 	// この数を超える場合は、セーブデータの拡張が必要
 	this.confCountLimit = 50;
-
-
-
 	// 設定欄の横方向項目数
 	this.itemInRow = 2;
-
-
-
 	// 設定欄のラベル
 	this.confLabel = "二次職支援設定";
-
-
-
-
-
-	//********************************************************************************************************************************
-	//********************************************************************************************************************************
-	//****
-	//**** 二次職支援データ定義
-	//****
-	//********************************************************************************************************************************
-	//********************************************************************************************************************************
 
 	/**
 	 * 設定データを初期化（セットアップ）する.
 	 * （継承先でオーバーライドすること）
 	 */
 	this.InitData = function () {
-
-		var idx = 0;
-
-		var confId = 0;
-		var confData = new Array();
-		var confDataOBJSorted = new Array();
-
-
+		let confId = 0;
+		let confData = new Array();
+		let confDataOBJSorted = new Array();
 
 		// 基底クラスのセットアップ処理を実行
 		CCharaConfNizi.prototype.InitData.call(this);
-
-
 
 		//----------------------------------------------------------------
 		// データ定義　ここから
@@ -74,8 +42,6 @@ function CCharaConfNizi(confArray) {
 		this.confDataObj[confId] = confData;
 		confId++;
 
-
-
 		CCharaConfNizi.CONF_ID_ZOKUSEIBA_LEVEL = confId;
 		confData = [
 			confId,
@@ -87,8 +53,6 @@ function CCharaConfNizi(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
-
 
 		CCharaConfNizi.CONF_ID_SHIEN_MIND_BREAKER = confId;
 		confData = [
@@ -102,8 +66,6 @@ function CCharaConfNizi(confArray) {
 		this.confDataObj[confId] = confData;
 		confId++;
 
-
-
 		CCharaConfNizi.CONF_ID_SEITAI_KOFUKU = confId;
 		confData = [
 			confId,
@@ -115,8 +77,6 @@ function CCharaConfNizi(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
-
 
 		CCharaConfNizi.CONF_ID_KAITO = confId;
 		confData = [
@@ -130,8 +90,6 @@ function CCharaConfNizi(confArray) {
 		this.confDataObj[confId] = confData;
 		confId++;
 
-
-
 		CCharaConfNizi.CONF_ID_IMPOSITIO_MANUS = confId;
 		confData = [
 			confId,
@@ -143,8 +101,6 @@ function CCharaConfNizi(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
-
 
 		CCharaConfNizi.CONF_ID_SUFFRAGIUM = confId;
 		confData = [
@@ -158,8 +114,6 @@ function CCharaConfNizi(confArray) {
 		this.confDataObj[confId] = confData;
 		confId++;
 
-
-
 		CCharaConfNizi.CONF_ID_GLORIA = confId;
 		confData = [
 			confId,
@@ -171,8 +125,6 @@ function CCharaConfNizi(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
-
 
 		CCharaConfNizi.CONF_ID_ASSUMPTIO = confId;
 		confData = [
@@ -186,8 +138,6 @@ function CCharaConfNizi(confArray) {
 		this.confDataObj[confId] = confData;
 		confId++;
 
-
-
 		CCharaConfNizi.CONF_ID_ADRENALINE_RUSH = confId;
 		confData = [
 			confId,
@@ -199,8 +149,6 @@ function CCharaConfNizi(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
-
 
 		CCharaConfNizi.CONF_ID_WEAPON_PERFECTION = confId;
 		confData = [
@@ -214,8 +162,6 @@ function CCharaConfNizi(confArray) {
 		this.confDataObj[confId] = confData;
 		confId++;
 
-
-
 		CCharaConfNizi.CONF_ID_OVER_TRUST = confId;
 		confData = [
 			confId,
@@ -227,8 +173,6 @@ function CCharaConfNizi(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
-
 
 		CCharaConfNizi.CONF_ID_WIND_WALK = confId;
 		confData = [
@@ -242,8 +186,6 @@ function CCharaConfNizi(confArray) {
 		this.confDataObj[confId] = confData;
 		confId++;
 
-
-
 		CCharaConfNizi.CONF_ID_KIKO = confId;
 		confData = [
 			confId,
@@ -255,8 +197,6 @@ function CCharaConfNizi(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
-
 
 		CCharaConfNizi.CONF_ID_PROVIDENCE = confId;
 		confData = [
@@ -270,8 +210,6 @@ function CCharaConfNizi(confArray) {
 		this.confDataObj[confId] = confData;
 		confId++;
 
-
-
 		CCharaConfNizi.CONF_ID_CONCENTRATION = confId;
 		confData = [
 			confId,
@@ -283,8 +221,6 @@ function CCharaConfNizi(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
-
 
 		CCharaConfNizi.CONF_ID_TRUE_SIGHT = confId;
 		confData = [
@@ -298,8 +234,6 @@ function CCharaConfNizi(confArray) {
 		this.confDataObj[confId] = confData;
 		confId++;
 
-
-
 		CCharaConfNizi.CONF_ID_MAHORYOKU_ZOFUKU = confId;
 		confData = [
 			confId,
@@ -311,8 +245,6 @@ function CCharaConfNizi(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
-
 
 		CCharaConfNizi.CONF_ID_DEFENDER = confId;
 		confData = [
@@ -326,8 +258,6 @@ function CCharaConfNizi(confArray) {
 		this.confDataObj[confId] = confData;
 		confId++;
 
-
-
 		CCharaConfNizi.CONF_ID_AUTO_GUARD = confId;
 		confData = [
 			confId,
@@ -339,8 +269,6 @@ function CCharaConfNizi(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
-
 
 		CCharaConfNizi.CONF_ID_CLOSE_CONFINE = confId;
 		confData = [
@@ -354,8 +282,6 @@ function CCharaConfNizi(confArray) {
 		this.confDataObj[confId] = confData;
 		confId++;
 
-
-
 		CCharaConfNizi.CONF_ID_AURA_BLADE = confId;
 		confData = [
 			confId,
@@ -367,8 +293,6 @@ function CCharaConfNizi(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
-
 
 		CCharaConfNizi.CONF_ID_KONGO = confId;
 		confData = [
@@ -382,7 +306,6 @@ function CCharaConfNizi(confArray) {
 		this.confDataObj[confId] = confData;
 		confId++;
 
-
 		CCharaConfNizi.CONF_ID_MAXIMIZE_POWER = confId;
 		confData = [
 			confId,
@@ -394,9 +317,6 @@ function CCharaConfNizi(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
-
-
 
 		CCharaConfNizi.CONF_ID_DUMMY = confId;
 		confData = [
@@ -410,8 +330,6 @@ function CCharaConfNizi(confArray) {
 		this.confDataObj[confId] = confData;
 		confId++;
 
-
-
 		//----------------------------------------------------------------
 		// データ定義数チェック
 		//----------------------------------------------------------------
@@ -420,63 +338,54 @@ function CCharaConfNizi(confArray) {
 			return;
 		}
 
-
-
 		//----------------------------------------------------------------
-		// 二次職支援設定変数配列を初期化
+		// 支援設定変数配列を初期化
 		//----------------------------------------------------------------
-		for (idx = 0; idx < this.confCountLimit; idx++) {
-			if (idx < this.confDataObj.length) {
+		for (let idx = 0; idx < this.confCountLimit; idx++) {
+			if (this.confDataObj[idx] !== undefined) {
 				this.confArray[idx] = this.confDataObj[idx][CConfBase.CONF_DATA_INDEX_DEFAULT_VALUE];
-			}
-			else {
+			} else {
 				this.confArray[idx] = 0;
 			}
 		}
 
-
-
 		//----------------------------------------------------------------
 		// 表示順序に従い、二次職支援設定データ定義を再配列
 		//----------------------------------------------------------------
-		confDataOBJSorted = new Array();
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_IMPOSITIO_MANUS];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_SUFFRAGIUM];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_GLORIA];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_SEITAI_KOFUKU];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_ASSUMPTIO];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_DUMMY];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_ADRENALINE_RUSH];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_OVER_TRUST];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_WEAPON_PERFECTION];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_MAXIMIZE_POWER];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_KIKO];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_KONGO];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_DEFENDER];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_AUTO_GUARD];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_PROVIDENCE];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_DUMMY];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_CLOSE_CONFINE];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_DUMMY];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_AURA_BLADE];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_CONCENTRATION];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_WIND_WALK];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_TRUE_SIGHT];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_MAHORYOKU_ZOFUKU];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_DUMMY];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_ZOKUSEIBA_SHURUI];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_ZOKUSEIBA_LEVEL];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_SHIEN_MIND_BREAKER];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_DUMMY];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_KAITO];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_DUMMY];
-		this.confDataObj = confDataOBJSorted;
-
+		const displayOrder = [
+			CCharaConfNizi.CONF_ID_IMPOSITIO_MANUS,
+			CCharaConfNizi.CONF_ID_SUFFRAGIUM,
+			CCharaConfNizi.CONF_ID_GLORIA,
+			CCharaConfNizi.CONF_ID_SEITAI_KOFUKU,
+			CCharaConfNizi.CONF_ID_ASSUMPTIO,
+			CCharaConfNizi.CONF_ID_DUMMY,
+			CCharaConfNizi.CONF_ID_ADRENALINE_RUSH,
+			CCharaConfNizi.CONF_ID_OVER_TRUST,
+			CCharaConfNizi.CONF_ID_WEAPON_PERFECTION,
+			CCharaConfNizi.CONF_ID_MAXIMIZE_POWER,
+			CCharaConfNizi.CONF_ID_KIKO,
+			CCharaConfNizi.CONF_ID_KONGO,
+			CCharaConfNizi.CONF_ID_DEFENDER,
+			CCharaConfNizi.CONF_ID_AUTO_GUARD,
+			CCharaConfNizi.CONF_ID_PROVIDENCE,
+			CCharaConfNizi.CONF_ID_DUMMY,
+			CCharaConfNizi.CONF_ID_CLOSE_CONFINE,
+			CCharaConfNizi.CONF_ID_DUMMY,
+			CCharaConfNizi.CONF_ID_AURA_BLADE,
+			CCharaConfNizi.CONF_ID_CONCENTRATION,
+			CCharaConfNizi.CONF_ID_WIND_WALK,
+			CCharaConfNizi.CONF_ID_TRUE_SIGHT,
+			CCharaConfNizi.CONF_ID_MAHORYOKU_ZOFUKU,
+			CCharaConfNizi.CONF_ID_DUMMY,
+			CCharaConfNizi.CONF_ID_ZOKUSEIBA_SHURUI,
+			CCharaConfNizi.CONF_ID_ZOKUSEIBA_LEVEL,
+			CCharaConfNizi.CONF_ID_SHIEN_MIND_BREAKER,
+			CCharaConfNizi.CONF_ID_DUMMY,
+			CCharaConfNizi.CONF_ID_KAITO,
+			CCharaConfNizi.CONF_ID_DUMMY,
+		];
+		this.confDataObj = displayOrder.map(id => this.confDataObj[id]);
 	}
-
-
-
-
 
 	/**
 	 * 設定欄テーブルを構築する（サブ　特殊欄構築用）.
@@ -550,13 +459,6 @@ function CCharaConfNizi(confArray) {
 		}
 	}
 
-
-
-
-
 	// 初期化実行
 	this.InitData();
-
-
-
 }
