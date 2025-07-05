@@ -8708,14 +8708,11 @@ function GetStatusModifyMaxSpUp() {
 	//------------------------------------------------------------------------------------------------
 	// 支援スキル効果　ここから
 
-	//----------------------------------------------------------------
-	// 「ダンサー　サービスフォーユー」の、効果
-	//----------------------------------------------------------------
-	if ((bufLv = ExBuffNumSearch(EXBUF_ID_SERVICE_FOR_YOU)) > 0) {
-		var bufferIntRank = ExBuffNumSearch(EXBUF_ID_SERVICE_FOR_YOU_BUFFER_INTRANK);
-		bufferSkillLv = ExBuffNumSearch(EXBUF_ID_SERVICE_FOR_YOU_BUFFER_SKILLLV);
-
-		val += 15 + bufLv + Math.floor(bufferSkillLv / 2) + bufferIntRank;
+	/**
+	 * 「ダンサー　サービスフォーユー」の、効果
+	 */
+	if ((bufLv = g_confDataNizi[CCharaConfNizi.CONF_ID_SERVICEFORYOU]) > 0) {
+		val += 10 + 2 * bufLv;
 	}
 	
 	//----------------------------------------------------------------
@@ -10434,26 +10431,18 @@ function GetStatusModifyMdefDivUp(bIgnoreBuff) {
 * 装備等によるステータスの追加補正値を取得する（ＨＩＴ＋）.
 */
 function GetStatusModifyHitPlus() {
-
-	var idx = 0;
-	var val = 0;
-
-	var vartmp = 0, varary = [];
-	var itemCount = 0;
-	var itemCountRight = 0, itemCountLeft = 0;
-	var itemCountHeadTop = 0, itemCountHeadMid = 0, itemCountHeadUnder = 0;
-	var itemCountShield = 0, itemCountBody = 0, itemCountShoulder = 0, itemCountShoes = 0;
-	var itemCountAccessary1 = 0, itemCountAccessary2 = 0;
-	var cardCount = 0;
-	var cardCountRight = 0, cardCountLeft = 0;
-	var cardCountHeadTop = 0, cardCountHeadMid = 0, cardCountHeadUnder = 0;
-	var cardCountShield = 0, cardCountBody = 0, cardCountShoulder = 0, cardCountShoes = 0;
-	var cardCountAccessary1 = 0, cardCountAccessary2 = 0;
-	var sklLv = 0;
-	var bufLv = 0;
-	var bufferJobLv = 0, bufferSkillLv = 0;
-
-
+	let idx = 0;
+	let val = 0;
+	let vartmp = 0;
+	let itemCount = 0;
+	let itemCountRight = 0, itemCountLeft = 0;
+	let cardCount = 0;
+	let cardCountRight = 0, cardCountLeft = 0;
+	let cardCountHeadTop = 0;
+	let cardCountShield = 0, cardCountBody = 0, cardCountShoulder = 0, cardCountShoes = 0;
+	let sklLv = 0;
+	let bufLv = 0;
+	let bufferSkillLv = 0;
 
 	//----------------------------------------------------------------
 	// ランダムエンチャント効果
@@ -11840,14 +11829,11 @@ function GetStatusModifyHitPlus() {
 		}
 	}
 
-	//----------------------------------------------------------------
-	// 「支援ハミング」の、効果
-	//----------------------------------------------------------------
-	if ((bufLv = ExBuffNumSearch(EXBUF_ID_HUMMING)) > 0) {
-		var bufferDexRank = ExBuffNumSearch(EXBUF_ID_HUMMING_BUFFER_DEXRANK);
-		bufferSkillLv = ExBuffNumSearch(EXBUF_ID_HUMMING_BUFFER_SKILLLV);
-
-		val += 20 + (2 * bufLv) + (bufferSkillLv) + (bufferDexRank);
+	/**
+	 * 「ダンサー ハミング」の、効果
+	 */
+	if ((bufLv = g_confDataNizi[CCharaConfNizi.CONF_ID_HUMMING]) > 0) {
+		val += 50 + 5 * bufLv;
 	}
 
 	//----------------------------------------------------------------
@@ -11903,8 +11889,6 @@ function GetStatusModifyHitPlus() {
 	if ((bufLv = ExBuffNumSearch(EXBUF_ID_CUSTOM_HIT_PLUS)) != 0) {
 		val += bufLv;
 	}
-
-
 
 	// TODO: 四次対応
 	for (idx = ITEM_SP_HIT_PLUS; idx <= ITEM_SP_HIT_PLUS; idx++) {

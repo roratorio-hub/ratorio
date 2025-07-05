@@ -18350,315 +18350,9 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 		}
 
 
+		// スキル使用時の消費ＳＰ－○○％ を適用する
+		ApplySPCostDown();
 
-
-
-//================================================================================================================================
-//================================================================================================================================
-//====
-//==== スキル使用時の消費ＳＰ－○○％　ここから
-//====
-//================================================================================================================================
-//================================================================================================================================
-
-		//----------------------------------------------------------------
-		// ランダムエンチャント効果
-		//----------------------------------------------------------------
-		for (idx = ITEM_SP_COST_DOWN; idx <= ITEM_SP_COST_DOWN; idx++) {
-			n_tok[idx] += GetRndOptTotalValue(idx, null, false);
-		}
-		if (EquipNumSearch(646)) {
-			n_tok[ITEM_SP_COST_DOWN] += (-2 * n_A_Weapon_ATKplus);
-		}
-		if (EquipNumSearch(765) && SU_DEX >= 70) {
-			n_tok[ITEM_SP_COST_DOWN] += 10;
-		}
-		if (EquipNumSearch(646) && n_A_Weapon_ATKplus >= 9) {
-			n_tok[ITEM_SP_COST_DOWN] += 20;
-		}
-		if (n_A_Equip[EQUIP_REGION_ID_ARMS_LEFT] == 1078 || n_A_Equip[EQUIP_REGION_ID_ARMS_LEFT] == 1079) {
-			if (n_A_Weapon2_ATKplus >= 5) {
-				n_tok[ITEM_SP_COST_DOWN] += 5;
-			}
-			if (n_A_Weapon2_ATKplus >= 7) {
-				n_tok[ITEM_SP_COST_DOWN] += 5;
-			}
-		}
-		if (n_A_Equip[EQUIP_REGION_ID_ARMS] == 1078 || n_A_Equip[EQUIP_REGION_ID_ARMS] == 1079) {
-			if (n_A_Weapon_ATKplus >= 5) {
-				n_tok[ITEM_SP_COST_DOWN] += 5;
-			}
-			if (n_A_Weapon_ATKplus >= 7) {
-				n_tok[ITEM_SP_COST_DOWN] += 5;
-			}
-		}
-		if (EquipNumSearch(ITEM_ID_STUFF_OF_ORD) && LearnedSkillSearch(SKILL_ID_DRAGONOLOGY) == 5) {
-			n_tok[ITEM_SP_COST_DOWN] += 15;
-		}
-		if (EquipNumSearch(1280) && n_A_HEAD_DEF_PLUS >= 3) {
-			n_tok[ITEM_SP_COST_DOWN] += n_A_HEAD_DEF_PLUS - 2;
-		}
-		if (EquipNumSearch(1414)) {
-			if (n_A_HEAD_DEF_PLUS >= 7) {
-				n_tok[ITEM_SP_COST_DOWN] += 1;
-			}
-			if (n_A_HEAD_DEF_PLUS >= 9) {
-				n_tok[ITEM_SP_COST_DOWN] += 1;
-			}
-		}
-		if (EquipNumSearch(1476) && n_A_Weapon_ATKplus >= 6) {
-			n_tok[ITEM_SP_COST_DOWN] += n_A_Weapon_ATKplus - 5;
-		}
-		if (EquipNumSearch(1760) && n_A_HEAD_DEF_PLUS >= 6) {
-			n_tok[ITEM_SP_COST_DOWN] += (n_A_HEAD_DEF_PLUS - 5) * 10;
-		}
-		if (SU_DEX >= 100 && EquipNumSearch(1787)) {
-			n_tok[ITEM_SP_COST_DOWN] += 5;
-			if (SU_DEX >= 120) {
-				n_tok[ITEM_SP_COST_DOWN] += 5;
-			}
-		}
-		if (EquipNumSearch(ITEM_ID_KENSENO_OKAN) && LearnedSkillSearch(SKILL_ID_RYOUTKEN_SHUREN) == 10) {
-			n_tok[ITEM_SP_COST_DOWN] += 5;
-		}
-		if (EquipNumSearch(ITEM_SET_ID_TORIKAINO_KAGITSUME_TORIKAINO_YUMIKAKE)) {
-			n_tok[ITEM_SP_COST_DOWN] += 2 * LearnedSkillSearch(SKILL_ID_BEAST_BANE);
-		}
-		if (EquipNumSearch(2208)) {
-			n_tok[ITEM_SP_COST_DOWN] += 2 * n_A_HEAD_DEF_PLUS;
-		}
-		if (n_A_BODY_DEF_PLUS >= 7 && EquipNumSearch(2250)) {
-			n_tok[ITEM_SP_COST_DOWN] += 5;
-		}
-		if (EquipNumSearch(2368) && n_A_SHOES_DEF_PLUS >= 8) {
-			n_tok[ITEM_SP_COST_DOWN] += (n_A_SHOES_DEF_PLUS - 7);
-		}
-		if (CardNumSearch(831)){
-			if(n_A_HEAD_DEF_PLUS >= 7) {
-				n_tok[ITEM_SP_COST_DOWN] += 2 * CardNumSearch(831);
-			}
-			if(n_A_HEAD_DEF_PLUS >= 9) {
-				n_tok[ITEM_SP_COST_DOWN] += 1 * CardNumSearch(831);
-			}
-		}
-		if (SU_STR >= 108 && EquipNumSearch(2427)){
-			n_tok[ITEM_SP_COST_DOWN] += 20;
-			if (SU_STR >= 120) {
-				n_tok[ITEM_SP_COST_DOWN] += 30;
-			}
-		}
-		if (n_A_SHOULDER_DEF_PLUS >= 3 && EquipNumSearch(2488)) {
-			n_tok[ITEM_SP_COST_DOWN] += 2 * ROUNDDOWN(n_A_SHOULDER_DEF_PLUS / 3);
-		}
-		//----------------------------------------------------------------
-		// 「ドゥクス・ティアのティアラ」の、過剰精錬による強化
-		//----------------------------------------------------------------
-		if (EquipNumSearch(ITEM_ID_DOKUSTIANO_TIARA) && n_A_HEAD_DEF_PLUS >= 5) {
-			n_tok[ITEM_SP_COST_DOWN] += 3 * (n_A_HEAD_DEF_PLUS - 4);
-		}
-		//----------------------------------------------------------------
-		// 「魔法石の恩恵」の、過剰精錬による強化
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_MAHOSEKINO_ONKE)) > 0) {
-			if (n_A_HEAD_DEF_PLUS >= 5) {
-				n_tok[ITEM_SP_COST_DOWN] += 25;
-			}
-			if (n_A_HEAD_DEF_PLUS >= 7) {
-				n_tok[ITEM_SP_COST_DOWN] += 25;
-			}
-			if (n_A_HEAD_DEF_PLUS >= 9) {
-				n_tok[ITEM_SP_COST_DOWN] += 25;
-			}
-		}
-		//----------------------------------------------------------------
-		// 「ヴァルキリーナイフ」の、職業による強化
-		//----------------------------------------------------------------
-		if (EquipNumSearch(ITEM_ID_VALKYRIE_KNIFE)) {
-			switch (GetLowerJobSeriesID(n_A_JOB)) {
-				case JOB_SERIES_ID_NOVICE:
-				case JOB_SERIES_ID_MAGICIAN:
-				case JOB_SERIES_ID_THIEF:
-					break;
-				default:
-					if (GetHigherJobSeriesID(n_A_JOB) === JOB_SERIES_ID_HUNTER) {
-						n_tok[ITEM_SP_COST_DOWN] += 5;
-					}
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「テグリョン」の、過剰精錬による強化
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_TEGRYONG)) > 0) {
-			if (n_A_Weapon_ATKplus >= 9) {
-				n_tok[ITEM_SP_COST_DOWN] += 20;
-			}
-		}
-		if ((itemCount = EquipNumSearch(ITEM_ID_TEGRYONG_S2)) > 0) {
-			if (n_A_Weapon_ATKplus >= 9) {
-				n_tok[ITEM_SP_COST_DOWN] += 20;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「海竜の鎧」の、過剰精錬による強化
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_KAIRYUNO_YOROI)) > 0) {
-			vartmp = 0;
-			if (n_A_BODY_DEF_PLUS >= 7) {
-				vartmp += 5;
-			}
-			if (n_A_BODY_DEF_PLUS >= 9) {
-				vartmp += 5;
-			}
-			n_tok[ITEM_SP_COST_DOWN] += vartmp * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「用心棒のスーツ」の、精錬による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_YOZINBONO_SUITS)) > 0) {
-			vartmp = 0;
-			if (n_A_BODY_DEF_PLUS >= 7) {
-				vartmp += 5;
-			}
-			if (n_A_BODY_DEF_PLUS >= 9) {
-				vartmp += 5;
-			}
-			n_tok[ITEM_SP_COST_DOWN] += vartmp * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「巡礼者の靴」の、精錬による強化
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_ZYUNREISHANO_KUTSU)) > 0) {
-			vartmp = 0;
-			if (n_A_SHOES_DEF_PLUS >= 5) {
-				vartmp += 3;
-			}
-			if (n_A_SHOES_DEF_PLUS >= 7) {
-				vartmp += 5;
-			}
-			n_tok[ITEM_SP_COST_DOWN] += vartmp * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「古びたドライバーバンド」の、精錬による強化
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_FURUBITA_DRIVERBAND_KIRO)) > 0) {
-			n_tok[ITEM_SP_COST_DOWN] += 2 * n_A_HEAD_DEF_PLUS * itemCount;
-		}
-		if ((itemCount = EquipNumSearch(ITEM_ID_FURUBITA_DRIVERBAND_AKA)) > 0) {
-			n_tok[ITEM_SP_COST_DOWN] += 2 * n_A_HEAD_DEF_PLUS * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「イリュージョンスタッフオブオルド」の、スキル習得による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_ILLUSION_STUFF_OF_OLDE)) > 0) {
-			if (LearnedSkillSearch(SKILL_ID_DRAGONOLOGY) >= 5) {
-				n_tok[ITEM_SP_COST_DOWN] += 15 * itemCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「勇者のブローチ」の、職業による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_YUSHANO_BROACH)) > 0) {
-			if (IsSameJobClass(JOB_ID_MECHANIC) || IsSameJobClass(JOB_ID_GENETIC)) {
-				n_tok[ITEM_SP_COST_DOWN] += 10 * itemCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「ブラックフェザー」の、スキル習得による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_BLACK_FEATHER)) > 0) {
-			if (LearnedSkillSearch(SKILL_ID_REPORDUCE) >= 10) {
-				n_tok[ITEM_SP_COST_DOWN] += 30 * itemCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「ヘヴンリーオーダー」の、素ＩＮＴによる効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_HEAVENLY_ORDER)) > 0) {
-			n_tok[ITEM_SP_COST_DOWN] += 2 * Math.floor(SU_INT / 18) * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「インペリアルガトリングスーツ」の、スキル習得による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearchMIG(ITEM_ID_IMPERIAL_GATLING_SUIT)) > 0) {
-			if (LearnedSkillSearch(SKILL_ID_FIRE_RAIN) >= 5) {
-				n_tok[ITEM_SP_COST_DOWN] += 10 * itemCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「グレースガトリングスーツ」の、スキル習得による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearchMIG(ITEM_ID_GRACE_GATLING_SUIT)) > 0) {
-			if (LearnedSkillSearch(SKILL_ID_FIRE_RAIN) >= 5) {
-				n_tok[ITEM_SP_COST_DOWN] += 20 * itemCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「崇拝の指輪」の、スキル習得による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearchMIG(ITEM_ID_SUHAINO_YUBIWA)) > 0) {
-			if (LearnedSkillSearch(SKILL_ID_ORATIO) >= 10) {
-				n_tok[ITEM_SP_COST_DOWN] += 10 * itemCount;
-			}
-		}
-
-		if (CardNumSearch(457) && GetHigherJobSeriesID(n_A_JOB) == 14) {
-			n_tok[ITEM_SP_COST_DOWN] += 20;
-		}
-		if (CardNumSearch(458) && GetHigherJobSeriesID(n_A_JOB) == 15) {
-			n_tok[ITEM_SP_COST_DOWN] += 10;
-		}
-		if (n_A_PassSkill3[6]) {
-			n_tok[ITEM_SP_COST_DOWN] += 20 + n_A_PassSkill3[6] * 3 + Math.floor(n_A_PassSkill3[36] / 2) + n_A_PassSkill3[26];
-		}
-		if (n_A_PassSkill3[39] == 2 && n_A_PassSkill3[41] <= 6) {
-			n_tok[ITEM_SP_COST_DOWN] -= 15 - 3 * (n_A_PassSkill3[41] - 2);
-		}
-
-		n_tok[ITEM_SP_COST_DOWN] += 4 * Math.max(LearnedSkillSearch(SKILL_ID_MANA_RECHARGE), UsedSkillSearch(SKILL_ID_MANA_RECHARGE));
-
-		//----------------------------------------------------------------
-		// 「性能カスタマイズ」の、効果
-		//----------------------------------------------------------------
-		confval = g_objCharaConfCustomStatus.GetConf(CCharaConfCustomStatus.CONF_ID_COST_DOWN);
-		if (confval != 0) {
-			n_tok[ITEM_SP_COST_DOWN] += confval;
-		}
-
-		costDownForDisp = n_tok[ITEM_SP_COST_DOWN];
-
-		if (n_tok[ITEM_SP_COST_DOWN] > 100) {
-			n_tok[ITEM_SP_COST_DOWN] = 100;
-		}
-		n_tok[ITEM_SP_COST_DOWN] = 100 - n_tok[ITEM_SP_COST_DOWN];
-
-		if (UsedSkillSearch(SKILL_ID_RECOGNIZED_SPELL) > 0) {
-			n_tok[ITEM_SP_COST_DOWN] = n_tok[ITEM_SP_COST_DOWN] * -1;
-		}
-
-		// オフェルトリウム
-		if ((bufLv = UsedSkillSearch(SKILL_ID_OFFERTORIUM)) > 0) {
-			// 特定の戦闘エリアでの補正
-			switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
-				case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
-					n_tok[ITEM_SP_COST_DOWN] = Math.floor(n_tok[ITEM_SP_COST_DOWN] * (100 + 20 * bufLv) / 10) / 10;
-					break;
-				default:
-					n_tok[ITEM_SP_COST_DOWN] = Math.floor(n_tok[ITEM_SP_COST_DOWN] * (200 + 20 * bufLv) / 10) / 10;
-					break;
-			}
-		}
 
 //================================================================================================================================
 //================================================================================================================================
@@ -20171,6 +19865,320 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 	}
 
 	return [charaData, n_tok, mobData, attackMethodConfArray];
+}
+
+/**
+ * 公式サイトで「消費SP - ◯%」と表記される消費SP減少効果を適用する
+ * グローバル変数の n_tok[ITEM_SP_COST_DOWN] に直接作用するので戻り値はない
+ */
+function ApplySPCostDown() {
+    //----------------------------------------------------------------
+    // ランダムエンチャント効果
+    //----------------------------------------------------------------
+    for (idx = ITEM_SP_COST_DOWN; idx <= ITEM_SP_COST_DOWN; idx++) {
+        n_tok[idx] += GetRndOptTotalValue(idx, null, false);
+    }
+    if (EquipNumSearch(646)) {
+        n_tok[ITEM_SP_COST_DOWN] += (-2 * n_A_Weapon_ATKplus);
+    }
+    if (EquipNumSearch(765) && SU_DEX >= 70) {
+        n_tok[ITEM_SP_COST_DOWN] += 10;
+    }
+    if (EquipNumSearch(646) && n_A_Weapon_ATKplus >= 9) {
+        n_tok[ITEM_SP_COST_DOWN] += 20;
+    }
+    if (n_A_Equip[EQUIP_REGION_ID_ARMS_LEFT] == 1078 || n_A_Equip[EQUIP_REGION_ID_ARMS_LEFT] == 1079) {
+        if (n_A_Weapon2_ATKplus >= 5) {
+            n_tok[ITEM_SP_COST_DOWN] += 5;
+        }
+        if (n_A_Weapon2_ATKplus >= 7) {
+            n_tok[ITEM_SP_COST_DOWN] += 5;
+        }
+    }
+    if (n_A_Equip[EQUIP_REGION_ID_ARMS] == 1078 || n_A_Equip[EQUIP_REGION_ID_ARMS] == 1079) {
+        if (n_A_Weapon_ATKplus >= 5) {
+            n_tok[ITEM_SP_COST_DOWN] += 5;
+        }
+        if (n_A_Weapon_ATKplus >= 7) {
+            n_tok[ITEM_SP_COST_DOWN] += 5;
+        }
+    }
+    if (EquipNumSearch(ITEM_ID_STUFF_OF_ORD) && LearnedSkillSearch(SKILL_ID_DRAGONOLOGY) == 5) {
+        n_tok[ITEM_SP_COST_DOWN] += 15;
+    }
+    if (EquipNumSearch(1280) && n_A_HEAD_DEF_PLUS >= 3) {
+        n_tok[ITEM_SP_COST_DOWN] += n_A_HEAD_DEF_PLUS - 2;
+    }
+    if (EquipNumSearch(1414)) {
+        if (n_A_HEAD_DEF_PLUS >= 7) {
+            n_tok[ITEM_SP_COST_DOWN] += 1;
+        }
+        if (n_A_HEAD_DEF_PLUS >= 9) {
+            n_tok[ITEM_SP_COST_DOWN] += 1;
+        }
+    }
+    if (EquipNumSearch(1476) && n_A_Weapon_ATKplus >= 6) {
+        n_tok[ITEM_SP_COST_DOWN] += n_A_Weapon_ATKplus - 5;
+    }
+    if (EquipNumSearch(1760) && n_A_HEAD_DEF_PLUS >= 6) {
+        n_tok[ITEM_SP_COST_DOWN] += (n_A_HEAD_DEF_PLUS - 5) * 10;
+    }
+    if (SU_DEX >= 100 && EquipNumSearch(1787)) {
+        n_tok[ITEM_SP_COST_DOWN] += 5;
+        if (SU_DEX >= 120) {
+            n_tok[ITEM_SP_COST_DOWN] += 5;
+        }
+    }
+    if (EquipNumSearch(ITEM_ID_KENSENO_OKAN) && LearnedSkillSearch(SKILL_ID_RYOUTKEN_SHUREN) == 10) {
+        n_tok[ITEM_SP_COST_DOWN] += 5;
+    }
+    if (EquipNumSearch(ITEM_SET_ID_TORIKAINO_KAGITSUME_TORIKAINO_YUMIKAKE)) {
+        n_tok[ITEM_SP_COST_DOWN] += 2 * LearnedSkillSearch(SKILL_ID_BEAST_BANE);
+    }
+    if (EquipNumSearch(2208)) {
+        n_tok[ITEM_SP_COST_DOWN] += 2 * n_A_HEAD_DEF_PLUS;
+    }
+    if (n_A_BODY_DEF_PLUS >= 7 && EquipNumSearch(2250)) {
+        n_tok[ITEM_SP_COST_DOWN] += 5;
+    }
+    if (EquipNumSearch(2368) && n_A_SHOES_DEF_PLUS >= 8) {
+        n_tok[ITEM_SP_COST_DOWN] += (n_A_SHOES_DEF_PLUS - 7);
+    }
+    if (CardNumSearch(831)) {
+        if (n_A_HEAD_DEF_PLUS >= 7) {
+            n_tok[ITEM_SP_COST_DOWN] += 2 * CardNumSearch(831);
+        }
+        if (n_A_HEAD_DEF_PLUS >= 9) {
+            n_tok[ITEM_SP_COST_DOWN] += 1 * CardNumSearch(831);
+        }
+    }
+    if (SU_STR >= 108 && EquipNumSearch(2427)) {
+        n_tok[ITEM_SP_COST_DOWN] += 20;
+        if (SU_STR >= 120) {
+            n_tok[ITEM_SP_COST_DOWN] += 30;
+        }
+    }
+    if (n_A_SHOULDER_DEF_PLUS >= 3 && EquipNumSearch(2488)) {
+        n_tok[ITEM_SP_COST_DOWN] += 2 * ROUNDDOWN(n_A_SHOULDER_DEF_PLUS / 3);
+    }
+    //----------------------------------------------------------------
+    // 「ドゥクス・ティアのティアラ」の、過剰精錬による強化
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_ID_DOKUSTIANO_TIARA) && n_A_HEAD_DEF_PLUS >= 5) {
+        n_tok[ITEM_SP_COST_DOWN] += 3 * (n_A_HEAD_DEF_PLUS - 4);
+    }
+    //----------------------------------------------------------------
+    // 「魔法石の恩恵」の、過剰精錬による強化
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_MAHOSEKINO_ONKE)) > 0) {
+        if (n_A_HEAD_DEF_PLUS >= 5) {
+            n_tok[ITEM_SP_COST_DOWN] += 25;
+        }
+        if (n_A_HEAD_DEF_PLUS >= 7) {
+            n_tok[ITEM_SP_COST_DOWN] += 25;
+        }
+        if (n_A_HEAD_DEF_PLUS >= 9) {
+            n_tok[ITEM_SP_COST_DOWN] += 25;
+        }
+    }
+    //----------------------------------------------------------------
+    // 「ヴァルキリーナイフ」の、職業による強化
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_ID_VALKYRIE_KNIFE)) {
+        switch (GetLowerJobSeriesID(n_A_JOB)) {
+            case JOB_SERIES_ID_NOVICE:
+            case JOB_SERIES_ID_MAGICIAN:
+            case JOB_SERIES_ID_THIEF:
+                break;
+            default:
+                if (GetHigherJobSeriesID(n_A_JOB) === JOB_SERIES_ID_HUNTER) {
+                    n_tok[ITEM_SP_COST_DOWN] += 5;
+                }
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「テグリョン」の、過剰精錬による強化
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_TEGRYONG)) > 0) {
+        if (n_A_Weapon_ATKplus >= 9) {
+            n_tok[ITEM_SP_COST_DOWN] += 20;
+        }
+    }
+    if ((itemCount = EquipNumSearch(ITEM_ID_TEGRYONG_S2)) > 0) {
+        if (n_A_Weapon_ATKplus >= 9) {
+            n_tok[ITEM_SP_COST_DOWN] += 20;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「海竜の鎧」の、過剰精錬による強化
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_KAIRYUNO_YOROI)) > 0) {
+        vartmp = 0;
+        if (n_A_BODY_DEF_PLUS >= 7) {
+            vartmp += 5;
+        }
+        if (n_A_BODY_DEF_PLUS >= 9) {
+            vartmp += 5;
+        }
+        n_tok[ITEM_SP_COST_DOWN] += vartmp * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「用心棒のスーツ」の、精錬による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_YOZINBONO_SUITS)) > 0) {
+        vartmp = 0;
+        if (n_A_BODY_DEF_PLUS >= 7) {
+            vartmp += 5;
+        }
+        if (n_A_BODY_DEF_PLUS >= 9) {
+            vartmp += 5;
+        }
+        n_tok[ITEM_SP_COST_DOWN] += vartmp * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「巡礼者の靴」の、精錬による強化
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_ZYUNREISHANO_KUTSU)) > 0) {
+        vartmp = 0;
+        if (n_A_SHOES_DEF_PLUS >= 5) {
+            vartmp += 3;
+        }
+        if (n_A_SHOES_DEF_PLUS >= 7) {
+            vartmp += 5;
+        }
+        n_tok[ITEM_SP_COST_DOWN] += vartmp * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「古びたドライバーバンド」の、精錬による強化
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_FURUBITA_DRIVERBAND_KIRO)) > 0) {
+        n_tok[ITEM_SP_COST_DOWN] += 2 * n_A_HEAD_DEF_PLUS * itemCount;
+    }
+    if ((itemCount = EquipNumSearch(ITEM_ID_FURUBITA_DRIVERBAND_AKA)) > 0) {
+        n_tok[ITEM_SP_COST_DOWN] += 2 * n_A_HEAD_DEF_PLUS * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「イリュージョンスタッフオブオルド」の、スキル習得による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_ILLUSION_STUFF_OF_OLDE)) > 0) {
+        if (LearnedSkillSearch(SKILL_ID_DRAGONOLOGY) >= 5) {
+            n_tok[ITEM_SP_COST_DOWN] += 15 * itemCount;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「勇者のブローチ」の、職業による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_YUSHANO_BROACH)) > 0) {
+        if (IsSameJobClass(JOB_ID_MECHANIC) || IsSameJobClass(JOB_ID_GENETIC)) {
+            n_tok[ITEM_SP_COST_DOWN] += 10 * itemCount;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「ブラックフェザー」の、スキル習得による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_BLACK_FEATHER)) > 0) {
+        if (LearnedSkillSearch(SKILL_ID_REPORDUCE) >= 10) {
+            n_tok[ITEM_SP_COST_DOWN] += 30 * itemCount;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「ヘヴンリーオーダー」の、素ＩＮＴによる効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_HEAVENLY_ORDER)) > 0) {
+        n_tok[ITEM_SP_COST_DOWN] += 2 * Math.floor(SU_INT / 18) * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「インペリアルガトリングスーツ」の、スキル習得による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearchMIG(ITEM_ID_IMPERIAL_GATLING_SUIT)) > 0) {
+        if (LearnedSkillSearch(SKILL_ID_FIRE_RAIN) >= 5) {
+            n_tok[ITEM_SP_COST_DOWN] += 10 * itemCount;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「グレースガトリングスーツ」の、スキル習得による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearchMIG(ITEM_ID_GRACE_GATLING_SUIT)) > 0) {
+        if (LearnedSkillSearch(SKILL_ID_FIRE_RAIN) >= 5) {
+            n_tok[ITEM_SP_COST_DOWN] += 20 * itemCount;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「崇拝の指輪」の、スキル習得による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearchMIG(ITEM_ID_SUHAINO_YUBIWA)) > 0) {
+        if (LearnedSkillSearch(SKILL_ID_ORATIO) >= 10) {
+            n_tok[ITEM_SP_COST_DOWN] += 10 * itemCount;
+        }
+    }
+
+    if (CardNumSearch(457) && GetHigherJobSeriesID(n_A_JOB) == 14) {
+        n_tok[ITEM_SP_COST_DOWN] += 20;
+    }
+    if (CardNumSearch(458) && GetHigherJobSeriesID(n_A_JOB) == 15) {
+        n_tok[ITEM_SP_COST_DOWN] += 10;
+    }
+
+	// 過去の仕様の歌・踊りバフ
+//    if (n_A_PassSkill3[6]) {
+//        n_tok[ITEM_SP_COST_DOWN] += 20 + n_A_PassSkill3[6] * 3 + Math.floor(n_A_PassSkill3[36] / 2) + n_A_PassSkill3[26];
+//    }
+    if (n_A_PassSkill3[39] == 2 && n_A_PassSkill3[41] <= 6) {
+        n_tok[ITEM_SP_COST_DOWN] -= 15 - 3 * (n_A_PassSkill3[41] - 2);
+    }
+
+	/**
+	 * 「ダンサー　サービスフォーユー」の、効果
+	 */
+	if ((bufLv = g_confDataNizi[CCharaConfNizi.CONF_ID_SERVICEFORYOU]) > 0) {
+	    n_tok[ITEM_SP_COST_DOWN] += 10 + 2 * bufLv;
+	}
+
+    n_tok[ITEM_SP_COST_DOWN] += 4 * Math.max(LearnedSkillSearch(SKILL_ID_MANA_RECHARGE), UsedSkillSearch(SKILL_ID_MANA_RECHARGE));
+
+    //----------------------------------------------------------------
+    // 「性能カスタマイズ」の、効果
+    //----------------------------------------------------------------
+    confval = g_objCharaConfCustomStatus.GetConf(CCharaConfCustomStatus.CONF_ID_COST_DOWN);
+    if (confval != 0) {
+        n_tok[ITEM_SP_COST_DOWN] += confval;
+    }
+
+    costDownForDisp = n_tok[ITEM_SP_COST_DOWN];
+
+    if (n_tok[ITEM_SP_COST_DOWN] > 100) {
+        n_tok[ITEM_SP_COST_DOWN] = 100;
+    }
+    n_tok[ITEM_SP_COST_DOWN] = 100 - n_tok[ITEM_SP_COST_DOWN];
+
+    if (UsedSkillSearch(SKILL_ID_RECOGNIZED_SPELL) > 0) {
+        n_tok[ITEM_SP_COST_DOWN] = n_tok[ITEM_SP_COST_DOWN] * -1;
+    }
+
+    // オフェルトリウム
+    if ((bufLv = UsedSkillSearch(SKILL_ID_OFFERTORIUM)) > 0) {
+        // 特定の戦闘エリアでの補正
+        switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
+            case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
+                n_tok[ITEM_SP_COST_DOWN] = Math.floor(n_tok[ITEM_SP_COST_DOWN] * (100 + 20 * bufLv) / 10) / 10;
+                break;
+            default:
+                n_tok[ITEM_SP_COST_DOWN] = Math.floor(n_tok[ITEM_SP_COST_DOWN] * (200 + 20 * bufLv) / 10) / 10;
+                break;
+        }
+    }
 }
 
 /**
@@ -22255,12 +22263,13 @@ function GetAdditionalCriticalRate(mobData) {
         tmp_cri += 20;
     }
 
+	// 古い歌・踊り支援設定
     if (n_A_PassSkill3[39] == 4) tmp_cri += n_A_PassSkill3[40] * n_A_PassSkill3[41];
     if (n_A_PassSkill7[25]) tmp_cri += 7;
     if (n_A_PassSkill7[28]) tmp_cri += 7;
     else if (n_A_PassSkill7[36]) tmp_cri += 7;
     if (0 < n_A_PassSkill7[46] && n_A_PassSkill7[46] <= 50) tmp_cri += n_A_PassSkill7[46];
-    if (n_A_PassSkill3[5]) tmp_cri += 10 + n_A_PassSkill3[5] + Math.floor(n_A_PassSkill3[35] / 2) + n_A_PassSkill3[25];
+    // if (n_A_PassSkill3[5]) tmp_cri += 10 + n_A_PassSkill3[5] + Math.floor(n_A_PassSkill3[35] / 2) + n_A_PassSkill3[25];
 
     //----------------------------------------------------------------
     // 「性能カスタマイズ」の、効果

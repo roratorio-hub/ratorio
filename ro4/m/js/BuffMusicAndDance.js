@@ -36,7 +36,7 @@ function Click_Skill3SW(){
 		str += '<TR><TD colspan=4><span id="EN11_1"></span><span id="EN11_2"></span><span id="EN11_1a"></span></TD></TR></TABLE>';
 		myInnerHtml("SP_SIEN01", str, 0);
 		document.calcForm.A3_SKILLSW.checked = true;
-		const name_CS3SW_SKILL = ["口笛","夕陽のアサシンクロス","ブラギの詩","イドゥンの林檎","ハミング","幸運のキス","サービスフォーユー","不死身ジークフリード","ニヨルドの宴","戦太鼓の響き","ニーベルングの指輪"];
+		const name_CS3SW_SKILL = ["口笛","夕陽のアサシンクロス","ブラギの詩","イドゥンの林檎","ハミング","(廃止)幸運のキス","(廃止)サービスフォーユー","不死身ジークフリード","ニヨルドの宴","戦太鼓の響き","ニーベルングの指輪"];
 		let html_CS3SW_SKILL = new Array();
 		for (let i = 0; i <= 10; i++) {
                 myInnerHtml(`EN${i}_1`, name_CS3SW_SKILL[i], 0);
