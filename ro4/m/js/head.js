@@ -17030,14 +17030,6 @@ function TYPE_SYUUREN(mobData, attackMethodConfArray, bArmsLeft){
 		case ITEM_KIND_FIST:
 			w += 3 * Math.max(LearnedSkillSearch(SKILL_ID_TEKKEN), UsedSkillSearch(SKILL_ID_TEKKEN));
 			break;
-
-		case ITEM_KIND_MUSICAL:
-			w += 3 * Math.max(LearnedSkillSearch(SKILL_ID_GAKKINO_RENSHU), UsedSkillSearch(SKILL_ID_GAKKINO_RENSHU));
-			break;
-
-		case ITEM_KIND_WHIP:
-			w += 3 * Math.max(LearnedSkillSearch(SKILL_ID_DANCENO_RENSHU), UsedSkillSearch(SKILL_ID_DANCENO_RENSHU));
-			break;
 	}
 	// 「演奏/踊り系スキル」欄の「ニーベルングの指輪」によるATK加算
 	if(n_A_PassSkill3[10]) {

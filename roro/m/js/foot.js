@@ -605,13 +605,9 @@ function StAllCalc(){
 	var cardCountAccessary1 = 0;
 	var cardCountAccessary2 = 0;
 
-
-
 	if (_TEST_SETTINGS_APPLYING) {
 		return [null, null, null, null];
 	}
-
-
 
 	with(document.calcForm){
 
@@ -1084,10 +1080,6 @@ function StAllCalc(){
 
 	}
 
-
-
-
-
 	//----------------------------------------------------------------
 	// モンスターＩＤの取得
 	//----------------------------------------------------------------
@@ -1112,10 +1104,6 @@ function StAllCalc(){
 	//----------------------------------------------------------------
 	GetMobDataBasicAttribute(monsterId, mobData);
 
-
-
-
-
 	SET_ZOKUSEI(mobData, attackMethodConfArray);
 
 /*
@@ -1127,14 +1115,6 @@ function StAllCalc(){
 	}
 */
 
-
-
-
-
-
-
-
-
 //================================================================================================
 // 装備特性値の取得
 //================================================================================================
@@ -1145,7 +1125,6 @@ function StAllCalc(){
 	if (IsEnableMigrationBlockNewProcess()) {
 		g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).CalcEffectiveSpData();
 	}
-
 
 	// 特性値を初期化
 	// TODO: 配列長　直打ち
@@ -1364,25 +1343,17 @@ function StAllCalc(){
 
 	}
 
-
-
-
-
 //================================================================================================
 // プレイヤー防御属性の導出
 //================================================================================================
 
 	n_A_BodyZokusei = GetStatusModifyBodyElement();
 
-
-
 //================================================================================================
 // 基本ステータスの算出
 //================================================================================================
 
 	StPlusCalc();
-
-
 
 //================================================================================================
 // ＡＴＫの算出
@@ -1522,9 +1493,6 @@ function StAllCalc(){
 		}
 	}
 
-
-
-
 //================================================================================================
 // ＭａｘＨＰ算出
 //================================================================================================
@@ -1545,7 +1513,6 @@ function StAllCalc(){
 	// インスピレーション計算用のバックアップを作成しておく
 	var RG_HP_BackUP = 0;
 	RG_HP_BackUP = maxHp;
-
 
 	//----------------------------------------------------------------
 	// ＶＩＴによる補正
@@ -1671,10 +1638,6 @@ function StAllCalc(){
 	//----------------------------------------------------------------
 	charaData[CHARA_DATA_INDEX_MAXHP] = maxHp;
 
-
-
-
-
 //================================================================================================
 // ＭａｘＳＰ算出
 //================================================================================================
@@ -1693,12 +1656,10 @@ function StAllCalc(){
 		}
 	}
 
-
 	//----------------------------------------------------------------
 	// ＩＮＴによる補正
 	//----------------------------------------------------------------
 	maxSp += ROUNDDOWN(maxSp * n_A_INT / 100);
-
 
 	//----------------------------------------------------------------
 	// 装備、支援等による補正（＋○○）
@@ -1737,7 +1698,6 @@ function StAllCalc(){
 	maxSp += maxSpPlus;
 	if(maxSp <0) maxSp = 0;
 
-
 	//----------------------------------------------------------------
 	// 装備、支援等による補正（＋％）
 	//----------------------------------------------------------------
@@ -1755,15 +1715,10 @@ function StAllCalc(){
 	// 最終的な効果を適用
 	maxSp += Math.floor(maxSp * maxSpPerUp / 100);
 
-
 	//----------------------------------------------------------------
 	// 計算した結果をキャラクターデータに保存
 	//----------------------------------------------------------------
 	charaData[CHARA_DATA_INDEX_MAXSP] = maxSp;
-
-
-
-
 
 //================================================================================================
 // 除算Ｄｅｆ算出
@@ -1859,7 +1814,6 @@ function StAllCalc(){
 		defDiv -= Math.floor(defDiv * (n_A_PassSkill8[12] - 2) * 5 / 100);
 	}
 
-
 	//----------------------------------------------------------------
 	// 装備、支援等による補正（＋％）
 	//----------------------------------------------------------------
@@ -1877,13 +1831,10 @@ function StAllCalc(){
 	// 最終的な効果を適用
 	defDiv += ROUNDDOWN(defDiv * defDivUp / 100);
 
-
 	//----------------------------------------------------------------
 	// 計算した結果をキャラクターデータに保存
 	//----------------------------------------------------------------
 	charaData[CHARA_DATA_INDEX_DEF_DIV] = defDiv;
-
-
 
 //================================================================================================
 // 減算Ｄｅｆ算出
@@ -1907,7 +1858,6 @@ function StAllCalc(){
 	// 基本値を算出
 	var defMinus = 0;
 	defMinus = Math.floor(((n_A_VIT / 2) * rateByProvoke / 100) + n_A_BaseLV / 2 + n_A_AGI / 5);
-
 
 	//----------------------------------------------------------------
 	// 特殊効果の適用
@@ -1962,13 +1912,10 @@ function StAllCalc(){
 		defMinus += ROUNDDOWN(100 * bufLv * (132 + homLv) / 100 * n_A_BaseLV / 150);
 	}
 
-
 	//----------------------------------------------------------------
 	// 計算した結果をキャラクターデータに保存
 	//----------------------------------------------------------------
 	charaData[CHARA_DATA_INDEX_DEF_MINUS] = defMinus;
-
-
 
 /**
  * ==================================================================
@@ -2000,7 +1947,6 @@ function StAllCalc(){
 	mdefDiv = mdefDivPlus;
 	mdefDivIgnoreBuff = mdefDivPlusIgnoreBuff;
 
-
 	//----------------------------------------------------------------
 	// 特殊効果の適用（各々乗算扱い）
 	//----------------------------------------------------------------
@@ -2031,7 +1977,6 @@ function StAllCalc(){
 		mdefDiv = 0;
 	}
 
-
 	//----------------------------------------------------------------
 	// 装備、支援等による補正（＋％）
 	//----------------------------------------------------------------
@@ -2053,7 +1998,6 @@ function StAllCalc(){
 	mdefDiv += Math.floor(mdefDiv * mdefDivUp / 100);
 	mdefDivIgnoreBuff += Math.floor(mdefDivIgnoreBuff * mdefDivUpIgnoreBuff / 100);
 
-
 	//----------------------------------------------------------------
 	// 計算した結果をキャラクターデータに保存
 	//----------------------------------------------------------------
@@ -2071,7 +2015,6 @@ function StAllCalc(){
 	//----------------------------------------------------------------
 	var mdefMinus = 0;
 	mdefMinus = Math.floor(n_A_INT + n_A_BaseLV / 4 + n_A_VIT / 5 + n_A_DEX / 5);
-
 
 	//----------------------------------------------------------------
 	// 特殊効果の適用（各々乗算扱い）
@@ -2094,15 +2037,10 @@ function StAllCalc(){
 		mdefMinus += ROUNDDOWN(100 * bufLv * (132 + homLv) / 100 * n_A_BaseLV / 150);
 	}
 
-
 	//----------------------------------------------------------------
 	// 計算した結果をキャラクターデータに保存
 	//----------------------------------------------------------------
 	charaData[CHARA_DATA_INDEX_MDEF_MINUS] = mdefMinus;
-
-
-
-
 
 /**
  * ==================================================================
@@ -2115,7 +2053,6 @@ function StAllCalc(){
 	// 基本ＨＩＴ
 	//----------------------------------------------------------------
 	hit = 175 + Math.floor(n_A_BaseLV + n_A_DEX + n_A_LUK / 3);
-
 
 	//----------------------------------------------------------------
 	// 装備、支援等による補正（＋○○）
@@ -2131,15 +2068,10 @@ function StAllCalc(){
 	// 最終的な効果を適用
 	hit += hitPlus;
 
-
 	//----------------------------------------------------------------
 	// 計算した結果をキャラクターデータに保存
 	//----------------------------------------------------------------
 	charaData[CHARA_DATA_INDEX_HIT] = hit;
-
-
-
-
 
 	with(document.calcForm){
 
@@ -3185,475 +3117,9 @@ if (_APPLY_UPDATE_LV200) {
 			n_tok[ITEM_SP_CRITICAL_UP_RACE_HUMAN] += 5 * LearnedSkillSearch(SKILL_ID_MACE_SHUREN) * itemCount;
 		}
 
-
-
-
-
-//================================================================================================================================
-//================================================================================================================================
-//====
-//==== クリティカル率＋○○　ここから
-//====
-//================================================================================================================================
-//================================================================================================================================
-
-		var cri = 0;
-
-		//----------------------------------------------------------------
-		// ランダムエンチャント効果
-		//----------------------------------------------------------------
-		for (idx = ITEM_SP_CRI_PLUS; idx <= ITEM_SP_CRI_PLUS; idx++) {
-			n_tok[idx] += GetRndOptTotalValue(idx, null, false);
-			// n_tok[idx] += GetRndEnchValue(idx);
-		}
-
-		// TODO: 四次対応
-		for (idx = ITEM_SP_CRI_PLUS; idx <= ITEM_SP_CRI_PLUS; idx++) {
-			n_tok[idx] = ApplySpecModify(idx, n_tok[idx]);
-		}
-
-		w=0;
-		w += n_tok[10];
-		w += n_tok[110+mobData[19]];
-		if(CardNumSearch(402)) w += n_A_SHOULDER_DEF_PLUS;
-		if(GetLowerJobSeriesID(n_A_JOB)==2) w += 4 * CardNumSearch(328);
-		if(GetLowerJobSeriesID(n_A_JOB)==3){
-			if(mobData[19]==1 || mobData[19]==6) w += 9 * CardNumSearch(253);
-		}
-		if(SU_LUK >= 80 && CardNumSearch(267)) w += 3;
-		if(n_A_WeaponType==3 || n_A_WeaponType==2) w += CardNumSearch(464) * 5;
-		if(n_A_WeaponType==10) w += CardNumSearch(465) * 5;
-		if(CardNumSearch(492)) w += Math.floor(n_A_JobLV /10) * CardNumSearch(492);
-		if(n_A_HEAD_DEF_PLUS >= 6 && EquipNumSearch(785)) w += (n_A_HEAD_DEF_PLUS -5);
-		if(EquipNumSearch(640)) w += Math.floor(SU_LUK / 5);
-		if(EquipNumSearch(689)) w += Math.floor(SU_LUK / 10);
-		if(SU_AGI >= 90 && EquipNumSearch(442)) w += 10 * EquipNumSearch(442);
-		if(GetLowerJobSeriesID(n_A_JOB)==41 && EquipNumSearch(675)) w += 5;
-		if(EquipNumSearch(623)) w += n_A_Weapon_ATKplus;
-		if(EquipNumSearch(1122) && GetLowerJobSeriesID(n_A_JOB)==6) w += 5;
-		if(n_A_Weapon_ATKplus >= 7 && mobData[19]==7 && EquipNumSearch(1091)) w += 5;
-
-		if (EquipNumSearch(ITEM_ID_TATSUZINNO_TSUCHI) || EquipNumSearch(ITEM_ID_TATSUZINNO_TSUCHI_S2)) {
-			w += (2 * LearnedSkillSearch(SKILL_ID_MACE_SHUREN));
-		}
-
-		if(SU_DEX >= 90 && EquipNumSearch(1164)) w += 5;
-		if(n_A_HEAD_DEF_PLUS >= 7) if(EquipNumSearch(1267)) w += 5;
-		if(SU_STR >= 120 && EquipNumSearch(1313)) w += 3;
-		if(SU_AGI >= 120 && EquipNumSearch(1200)) w += 4 * EquipNumSearch(1200);
-		if(EquipNumSearch(1412)) w += Math.floor(n_A_SHOES_DEF_PLUS / 2);
-		if(n_A_BODY_DEF_PLUS >= 7 && n_A_SHOULDER_DEF_PLUS >= 7 && n_A_SHOES_DEF_PLUS >= 7 && EquipNumSearch(1591)) w += 8;
-		if(EquipNumSearch(1661)) w += n_A_Weapon_ATKplus;
-		if(n_A_SHOES_DEF_PLUS >= 7 && EquipNumSearch(1812)) w += 3;
-		if(EquipNumSearch(1951)) w += ROUNDDOWN(SU_LUK / 10) * EquipNumSearch(1951);
-		if(SU_STR >= 110 && CardNumSearch(707)) w += 20;
-		if(EquipNumSearch(2242)){
-			w += ROUNDDOWN(SU_LUK / 10);
-			if(SU_LUK >= 108) w += 5;
-			if(SU_LUK >= 120) w += 10;
-		}
-		if(n_A_SHIELD_DEF_PLUS >= 7 && EquipNumSearch(2253)) w += 2;
-		if(n_A_WeaponType == 10 && n_A_Arrow == ARROW_ID_SURUDOI_YA) w += 20;
-
-
-		// ドロセラカード
-		// 遠距離限定
-		n_tok[ITEM_SP_LONGRANGE_CRI_PLUS] += CardNumSearch(462) * 15;
-
-		//----------------------------------------------------------------
-		// 「蒼き夜光石」の、ステによる強化
-		//----------------------------------------------------------------
-		if (EquipNumSearch(ITEM_ID_AOKI_YAKOSEKI)) {
-			if (SU_LUK >= 100) {
-				w += 10 * EquipNumSearch(ITEM_ID_AOKI_YAKOSEKI);
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「ヴァルキリーナイフ」の、職業による強化
-		//----------------------------------------------------------------
-		if (EquipNumSearch(ITEM_ID_VALKYRIE_KNIFE)) {
-			switch (GetLowerJobSeriesID(n_A_JOB)) {
-
-			// ノービス系
-			case JOB_SERIES_ID_NOVICE:
-				w += 7 * n_A_Weapon_ATKplus * EquipNumSearch(ITEM_ID_VALKYRIE_KNIFE);
-				break;
-
-			// マジシャン系
-			case JOB_SERIES_ID_MAGICIAN:
-				break;
-
-			// シーフ系
-			case JOB_SERIES_ID_THIEF:
-				break;
-
-			default:
-				switch (GetHigherJobSeriesID(n_A_JOB)) {
-
-				// ハンター系
-				case JOB_SERIES_ID_HUNTER:
-					break;
-
-				// バード系、ダンサー系
-				case JOB_SERIES_ID_BARD:
-				case JOB_SERIES_ID_DANCER:
-					break;
-				}
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「リス耳フード帽」の、過剰精錬による効果
-		//----------------------------------------------------------------
-		if (EquipNumSearch(ITEM_ID_RISUMIMI_HOODBO)) {
-			// 遠距離物理攻撃限定の効果
-			n_tok[ITEM_SP_LONGRANGE_CRI_PLUS] += 5;
-			if (n_A_HEAD_DEF_PLUS >= 5) n_tok[ITEM_SP_LONGRANGE_CRI_PLUS] += 10;
-			if (n_A_HEAD_DEF_PLUS >= 7) n_tok[ITEM_SP_LONGRANGE_CRI_PLUS] += 15;
-			if (n_A_HEAD_DEF_PLUS >= 9) n_tok[ITEM_SP_LONGRANGE_CRI_PLUS] += 20;
-		}
-
-		//----------------------------------------------------------------
-		// 「セイヴザキング」の、騎兵修練【未習得】時における、「スピアクイッケン」習得による効果
-		//----------------------------------------------------------------
-		if (LearnedSkillSearch(78) == 0) {
-			if (EquipNumSearch(ITEM_ID_SAVE_THE_KING)) {
-				w += 3 * LearnedSkillSearch(SKILL_ID_SPEAR_QUICKEN);
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「マタギの剣鉈」の、素ＬＵＫによる効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_MATAGINO_KENNATA)) > 0) {
-			// 遠距離物理攻撃限定の効果
-			if (SU_LUK >= 100) n_tok[ITEM_SP_LONGRANGE_CRI_PLUS] += 10 * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「暴徒のスカーフ　グラスセット」の、素ＳＴＲと素ＬＵＫによる効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_SET_ID_BOTONO_SCARF_GLASS)) > 0) {
-			w += 5 * ROUNDDOWN((SU_STR + SU_LUK) / 80) * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「暴徒のスカーフ　サングラスセット」の、素ＳＴＲと素ＬＵＫによる効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_SET_ID_BOTONO_SCARF_SUNGLASS)) > 0) {
-			w += 5 * ROUNDDOWN((SU_STR + SU_LUK) / 80) * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「マラクの皮」の、素ＳＴＲと素ＬＵＫによる効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_MARRACONO_KAWA)) > 0) {
-			if (n_A_SHOULDER_DEF_PLUS >= 8) {
-				w += 1 * ROUNDDOWN((SU_STR + SU_LUK) / 20) * itemCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「物影」の、スキル習得による強化
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_MONOKAGE)) > 0) {
-			w += 5 * LearnedSkillSearch(SKILL_ID_KASUMIGIRI) * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「ニーヴバレッタ　ニーヴ武器セット」の、素ＬＵＫによる効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_SET_ID_NIEVE_VALLETTA_NIEVE_ARMS)) > 0) {
-			w += 1 * ROUNDDOWN(SU_LUK / 10) * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「不死の軍団認識票　リンディーホップセット」の、精錬による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_SET_ID_FUSHINO_GUNDAN_NINSHIKIHYO_LINDY_HOP)) > 0) {
-			if (n_A_Weapon_ATKplus >= 9) {
-				w += 50 * itemCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「ローラカード」の、強化
-		//----------------------------------------------------------------
-		if (CardNumSearch(CARD_ID_LOLA)) {
-			if (n_A_WeaponType == ITEM_KIND_CLUB) {
-				w += (10 + 1 * n_A_Weapon_ATKplus) * CardNumSearch(CARD_ID_LOLA);
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「エナジー＜致命ノ一撃＞」の、精錬による効果
-		//----------------------------------------------------------------
-		if ((cardCount = CardNumSearch(CARD_ID_ENCHANT_ENERGY_CHIMEINO_ICHIGEKI)) > 0) {
-			w += 1 * Math.max(0, (n_A_SHOULDER_DEF_PLUS - 4)) * cardCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「パワフルSスケルトンカード」の、ベースレベルによる効果
-		//----------------------------------------------------------------
-		if ((cardCount = CardNumSearch(CARD_ID_POWERFUL_S_SKELETON)) > 0) {
-			w += 1 * ROUNDDOWN(n_A_BaseLV / 20) * cardCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「レンジャーセシル(MVP)カード」の、職業による効果
-		//----------------------------------------------------------------
-		if ((cardCount = CardNumSearch(CARD_ID_RANGER_CECIL_MVP)) > 0) {
-			if (IsSameJobClass(JOB_ID_RANGER)) {
-				w += 20 * cardCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「武侠靴　剣セット」の、精錬による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_SET_ID_BUKYO_KUTSU_SWORD)) > 0) {
-			w += 5 * n_A_SHOES_DEF_PLUS * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「ヘヴンリーオーダー」の、素ＤＥＸによる効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_HEAVENLY_ORDER)) > 0) {
-			w += 2 * Math.floor(SU_DEX / 18) * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「E-EA1Lカード」の、武器種別による効果
-		//----------------------------------------------------------------
-		cardCountRight = CardNumSearch(CARD_ID_E_EA1L, CARD_REGION_ID_ARMS_RIGHT_ANY);
-		cardCountLeft = CardNumSearch(CARD_ID_E_EA1L, CARD_REGION_ID_ARMS_LEFT_ANY);
-		if ((cardCountRight > 0) || (cardCountLeft > 0)) {
-			if (n_A_WeaponType == ITEM_KIND_BOW) {
-				w += 1 * (10 + 1 * n_A_Weapon_ATKplus) * cardCountRight;
-				w += 1 * (10 + 1 * n_A_Weapon2_ATKplus) * cardCountLeft;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「コトネスカード」の、武器種別による効果　Cri+
-		//----------------------------------------------------------------
-		cardCountRight = CardNumSearch(CARD_ID_COTNESS, CARD_REGION_ID_ARMS_RIGHT_ANY);
-		cardCountLeft = CardNumSearch(CARD_ID_COTNESS, CARD_REGION_ID_ARMS_LEFT_ANY);
-		if ((cardCountRight > 0) || (cardCountLeft > 0)) {
-			if ((n_A_WeaponType == ITEM_KIND_FIST)) {
-				w += (10 + 1 * n_A_Weapon_ATKplus) * cardCountRight;
-				w += (10 + 1 * n_A_Weapon2_ATKplus) * cardCountLeft;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「ペタルの尻尾　リス耳フード帽セット」の、過剰精錬による効果
-		//----------------------------------------------------------------
-		if (EquipNumSearch(ITEM_SET_ID_PETALNO_SHIPPO_RISUMIMI_HOOD_BO)) {
-			// 遠距離物理攻撃限定の効果
-			if (n_A_HEAD_DEF_PLUS >= 6) n_tok[ITEM_SP_LONGRANGE_CRI_PLUS] += 10;
-			if (n_A_HEAD_DEF_PLUS >= 8) n_tok[ITEM_SP_LONGRANGE_CRI_PLUS] += 15;
-		}
-
-		//----------------------------------------------------------------
-		// 「ランナウェー・アクセラレータ　T-Assault」の、精錬による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_SET_ID_RUNAWAY_ACCELERATOR_T_ASSAULT)) > 0) {
-			w += 3 * n_A_HEAD_DEF_PLUS * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「封印されたイフリートカード」の、ジョブレベルによる効果
-		//----------------------------------------------------------------
-		if ((cardCount = CardNumSearch(CARD_ID_FUINSARETA_EFREET)) > 0) {
-			w += 1 * Math.floor(n_A_JobLV /20) * cardCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「豊穣の女神　イフリートカード」の、ジョブレベルによる効果
-		//----------------------------------------------------------------
-		if ((cardCount = CardNumSearch(CARD_SET_ID_ENCHANT_HOZYONO_MEGAMI_EFREET)) > 0) {
-			w += 1 * n_A_JobLV * cardCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「豊穣の女神　封印されたイフリートカード」の、ジョブレベルによる効果
-		//----------------------------------------------------------------
-		if ((cardCount = CardNumSearch(CARD_SET_ID_ENCHANT_HOZYONO_MEGAMI_FUINSARETA_EFREET)) > 0) {
-			w += 1 * Math.floor(n_A_JobLV / 2) * cardCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「ハートハンターATカード」の、強化
-		//----------------------------------------------------------------
-		cardCountRight = CardNumSearch(CARD_ID_HEART_HUNTER_AT, CARD_REGION_ID_ARMS_RIGHT_ANY);
-		cardCountLeft = CardNumSearch(CARD_ID_HEART_HUNTER_AT, CARD_REGION_ID_ARMS_LEFT_ANY);
-		if ((cardCountRight > 0) || (cardCountLeft > 0)) {
-			if (n_A_WeaponType == ITEM_KIND_KATAR) {
-				w += (10 + 1 * n_A_Weapon_ATKplus) * cardCountRight;
-				w += (10 + 1 * n_A_Weapon2_ATKplus) * cardCountLeft;
-			}
-		}
-
-
-
-
-
-		//----------------------------------------------------------------
-		// 「パッシブ持続系　潜龍昇天」の、効果
-		// 「パッシブ持続系　爆裂波動」の、効果
-		// 「パッシブ持続系　爆裂波動（Sノビ）」の、効果
-		// 「時限アイテム　ヴンダーカンマー（爆裂波動）」の、効果
-		// 「時限アイテム　リングオブフレームロード（爆裂波動）」の、効果
-		//----------------------------------------------------------------
-		if ((sklLv = UsedSkillSearch(SKILL_ID_SENRYU_SHOTEN)) > 0) {
-			w += 20;
-		}
-		else if ((sklLv = UsedSkillSearch(SKILL_ID_BAKURETSU_HADO)) > 0) {
-			w += 7.5 + 2.5 * sklLv;
-		}
-		else if ((sklLv = UsedSkillSearch(SKILL_ID_BAKURETSU_HADO_SUPER_NOVICE)) > 0) {
-			w += 50;
-		}
-		else if(TimeItemNumSearch(TIME_ITEM_ID_VNDER_CANMER_BAKURETSU_HADO)){
-			w += 15;
-		}
-		else if(TimeItemNumSearch(TIME_ITEM_ID_RING_OF_FLAME_LORD)) {
-			w += 10;
-		}
-
-		//----------------------------------------------------------------
-		// 「パッシブ持続系　トゥルーサイト」の、効果
-		//----------------------------------------------------------------
-		if (UsedSkillSearch(SKILL_ID_TRUE_SIGHT) > 0) {
-			w += UsedSkillSearch(SKILL_ID_TRUE_SIGHT);
-		}
-		//----------------------------------------------------------------
-		// 「二次職支援　トゥルーサイト」の、効果
-		//----------------------------------------------------------------
-		else if ((sklLv = g_confDataNizi[CCharaConfNizi.CONF_ID_TRUE_SIGHT]) > 0) {
-			w += sklLv;
-		}
-
-		//----------------------------------------------------------------
-		// 「パッシブ持続系　スピアクイッケン」の、効果
-		//----------------------------------------------------------------
-		if ((n_A_WeaponType == ITEM_KIND_SPEAR) || (n_A_WeaponType == ITEM_KIND_SPEAR_2HAND)) {
-			w += UsedSkillSearch(SKILL_ID_SPEAR_QUICKEN) * 3;
-		}
-
-		//----------------------------------------------------------------
-		// 「パッシブ持続系　インビジビリティ」の、効果
-		//----------------------------------------------------------------
-		w += 20 * UsedSkillSearch(SKILL_ID_INVISIBILITY);
-
-		//----------------------------------------------------------------
-		// 「パッシブ持続系　カモフラージュ」の、効果
-		//----------------------------------------------------------------
-		w += 10 * UsedSkillSearch(SKILL_ID_CAMOUFLAGE);
-
-		//----------------------------------------------------------------
-		// 「三次職支援　ストライキング」の、効果
-		//----------------------------------------------------------------
-		w += g_confDataSanzi[CCharaConfSanzi.CONF_ID_STRIKING];
-
-		//----------------------------------------------------------------
-		// 「ソウルリーパー　影の魂」の、効果
-		//----------------------------------------------------------------
-		if ((bufLv = g_confDataSanzi[CCharaConfSanzi.CONF_ID_KAGENO_TAMASHI]) > 0) {
-			w += 70;
-		}
-
-		//----------------------------------------------------------------
-		// 「サモナー　生命の力」の、効果
-		//----------------------------------------------------------------
-		if (Math.max(LearnedSkillSearch(SKILL_ID_SEIMEINO_CHIKARA), UsedSkillSearch(SKILL_ID_SEIMEINO_CHIKARA)) > 0) {
-			w += 20;
-		}
-
-		if(n_A_PassSkill3[39] == 4) w += n_A_PassSkill3[40] * n_A_PassSkill3[41];
-		if(n_A_PassSkill7[25]) w += 7;
-		if(n_A_PassSkill7[28]) w += 7;
-		else if(n_A_PassSkill7[36]) w += 7;
-		if(0 <n_A_PassSkill7[46] && n_A_PassSkill7[46] <= 50) w += n_A_PassSkill7[46];
-		if(n_A_PassSkill3[5]) w += 10 + n_A_PassSkill3[5] + Math.floor(n_A_PassSkill3[35] /2) + n_A_PassSkill3[25];
-
-
-
-		//----------------------------------------------------------------
-		// 「性能カスタマイズ」の、効果
-		//----------------------------------------------------------------
-		confval = g_objCharaConfCustomStatus.GetConf(CCharaConfCustomStatus.CONF_ID_CRI_PLUS);
-		if (confval != 0) {
-			w += confval;
-		}
-
-
-
-		//----------------------------------------------------------------
-		// 遠距離物理攻撃限定の効果
-		//----------------------------------------------------------------
-		if (n_Enekyori === 1 
-			|| IsLongRange(n_A_Equip[EQUIP_REGION_ID_ARMS]) 
-			|| UsedSkillSearch(SKILL_ID_SOUL_ATTACK)
-			|| LearnedSkillSearch(SKILL_ID_SOUL_ATTACK)
-			) {
-			w += n_tok[ITEM_SP_LONGRANGE_CRI_PLUS];
-		}
-
-
-
-		//----------------------------------------------------------------
-		// 最終クリティカル率の計算
-		//----------------------------------------------------------------
-
-		cri = 0;
-
-		// その他の支援/設定「クリティカル率を0にする」の場合
-		if (n_A_PassSkill8[16]) {
-			cri = 0;
-		}
-
-		// それ以外の場合
-		else {
-
-			// ステータスによるクリティカル率
-			cri += 0.3 * n_A_LUK;
-
-			// 装備特性
-			cri += w;
-
-			// カタール装備時は２倍
-			if (n_A_WeaponType == ITEM_KIND_KATAR) {
-				cri *= 2;
-			}
-
-			// ベースレベルによるクリティカル率
-			cri += 0.1 + (n_A_BaseLV / 100);
-				// おそらく https://siarodiary.blog.fc2.com/blog-entry-511.html などの検証に基づくもの
-				// 実際のクリティカル率を表示しようとする試みだと思われるので
-				// ゲーム内のCri表示と計算機の間で誤差がありますが静観しています
-
-			// 条件不問の基礎加算値
-			cri += 1;
-
-			// 小数点以下第二位で切り捨て
-			cri = Math.floor(cri * 10) / 10;
-
-			// 負数は０に補正
-			cri = Math.max(0, cri);
-		}
-
-		//----------------------------------------------------------------
-		// 計算した結果をキャラクターデータに保存
-		//----------------------------------------------------------------
-		charaData[CHARA_DATA_INDEX_CRI] = cri;
-
-
-
-
-
+		// クリティカル率＋○○
+		charaData[CHARA_DATA_INDEX_CRI] = GetAdditionalCriticalRate(mobData);
+		
 //================================================================================================================================
 //================================================================================================================================
 //====
@@ -22438,8 +21904,440 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 		CFloatingInfoAreaComponentManager.RefreshDispAreaAll();
 	}
 
-
 	return [charaData, n_tok, mobData, attackMethodConfArray];
+}
+
+/**
+ * 公式サイトで「Cri + ◯」と表記されるクリティカル率の加算値を取得する
+ * @param {Array} mobData 対象に応じてクリティカル率が増加する場合に参照される 
+ * @returns 最終的に加算されるCRIの値
+ */
+function GetAdditionalCriticalRate(mobData) {
+    /** 最終的に返されるCRIの値 */
+    let cri = 0;
+    /** 計算途中のCRIの値 */
+    let tmp_cri = 0;
+
+    //----------------------------------------------------------------
+    // ランダムエンチャント効果
+    //----------------------------------------------------------------
+    for (idx = ITEM_SP_CRI_PLUS; idx <= ITEM_SP_CRI_PLUS; idx++) {
+        n_tok[idx] += GetRndOptTotalValue(idx, null, false);
+    }
+
+    // TODO: 四次対応
+    for (idx = ITEM_SP_CRI_PLUS; idx <= ITEM_SP_CRI_PLUS; idx++) {
+        n_tok[idx] = ApplySpecModify(idx, n_tok[idx]);
+    }
+
+    // CRI増加のアイテムSPを加算する
+    tmp_cri += n_tok[ITEM_SP_CRI_PLUS];
+
+    // 特定種族へCRI増加のアイテムSPを加算する
+    tmp_cri += n_tok[ITEM_SP_CRITICAL_UP_RACE_SOLID + mobData[19]];
+
+    // カードによるCRI増加能力を加算する
+    if (CardNumSearch(CARD_ID_CHUNGE) > 0) tmp_cri += n_A_SHOULDER_DEF_PLUS;
+    if (GetLowerJobSeriesID(n_A_JOB) === JOB_ID_THIEF) tmp_cri += 4 * CardNumSearch(CARD_ID_MOBSTER);
+    if (GetLowerJobSeriesID(n_A_JOB) === JOB_ID_ACOLYTE) {
+        if (mobData[19] === 1 || mobData[19] === 6) tmp_cri += 9 * CardNumSearch(CARD_ID_FUR_SEAL);
+    }
+    if (SU_LUK >= 80 && CardNumSearch(CARD_ID_KYODAI_WHISPER)) tmp_cri += 3;
+    if (n_A_WeaponType === 3 || n_A_WeaponType === 2) tmp_cri += CardNumSearch(CARD_ID_SWORD_GUARDIAN) * 5;
+    if (n_A_WeaponType === 10) tmp_cri += CardNumSearch(CARD_ID_BOW_GUARDIAN) * 5;
+    if (CardNumSearch(CARD_ID_EFREET)) tmp_cri += Math.floor(n_A_JobLV / 10) * CardNumSearch(CARD_ID_EFREET);
+
+    // 装備によるCRI増加能力を加算する
+    if (n_A_HEAD_DEF_PLUS >= 6 && EquipNumSearch(785)) tmp_cri += (n_A_HEAD_DEF_PLUS - 5);
+    if (EquipNumSearch(640)) tmp_cri += Math.floor(SU_LUK / 5);
+    if (EquipNumSearch(689)) tmp_cri += Math.floor(SU_LUK / 10);
+    if (SU_AGI >= 90 && EquipNumSearch(442)) tmp_cri += 10 * EquipNumSearch(442);
+    if (GetLowerJobSeriesID(n_A_JOB) == 41 && EquipNumSearch(675)) tmp_cri += 5;
+    if (EquipNumSearch(623)) tmp_cri += n_A_Weapon_ATKplus;
+    if (EquipNumSearch(1122) && GetLowerJobSeriesID(n_A_JOB) == 6) tmp_cri += 5;
+    if (n_A_Weapon_ATKplus >= 7 && mobData[19] == 7 && EquipNumSearch(1091)) tmp_cri += 5;
+    if (EquipNumSearch(ITEM_ID_TATSUZINNO_TSUCHI) || EquipNumSearch(ITEM_ID_TATSUZINNO_TSUCHI_S2)) {
+        tmp_cri += (2 * LearnedSkillSearch(SKILL_ID_MACE_SHUREN));
+    }
+    if (SU_DEX >= 90 && EquipNumSearch(1164)) tmp_cri += 5;
+    if (n_A_HEAD_DEF_PLUS >= 7)
+        if (EquipNumSearch(1267)) tmp_cri += 5;
+    if (SU_STR >= 120 && EquipNumSearch(1313)) tmp_cri += 3;
+    if (SU_AGI >= 120 && EquipNumSearch(1200)) tmp_cri += 4 * EquipNumSearch(1200);
+    if (EquipNumSearch(1412)) tmp_cri += Math.floor(n_A_SHOES_DEF_PLUS / 2);
+    if (n_A_BODY_DEF_PLUS >= 7 && n_A_SHOULDER_DEF_PLUS >= 7 && n_A_SHOES_DEF_PLUS >= 7 && EquipNumSearch(1591)) tmp_cri += 8;
+    if (EquipNumSearch(1661)) tmp_cri += n_A_Weapon_ATKplus;
+    if (n_A_SHOES_DEF_PLUS >= 7 && EquipNumSearch(1812)) tmp_cri += 3;
+    if (EquipNumSearch(1951)) tmp_cri += ROUNDDOWN(SU_LUK / 10) * EquipNumSearch(1951);
+    if (SU_STR >= 110 && CardNumSearch(707)) tmp_cri += 20;
+    if (EquipNumSearch(2242)) {
+        tmp_cri += ROUNDDOWN(SU_LUK / 10);
+        if (SU_LUK >= 108) tmp_cri += 5;
+        if (SU_LUK >= 120) tmp_cri += 10;
+    }
+    if (n_A_SHIELD_DEF_PLUS >= 7 && EquipNumSearch(2253)) tmp_cri += 2;
+    if (n_A_WeaponType == 10 && n_A_Arrow == ARROW_ID_SURUDOI_YA) tmp_cri += 20;
+
+    // ドロセラカード
+    // 遠距離限定
+    n_tok[ITEM_SP_LONGRANGE_CRI_PLUS] += CardNumSearch(462) * 15;
+
+    //----------------------------------------------------------------
+    // 「蒼き夜光石」の、ステによる強化
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_ID_AOKI_YAKOSEKI)) {
+        if (SU_LUK >= 100) {
+            tmp_cri += 10 * EquipNumSearch(ITEM_ID_AOKI_YAKOSEKI);
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「ヴァルキリーナイフ」の、職業による強化
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_ID_VALKYRIE_KNIFE)) {
+        switch (GetLowerJobSeriesID(n_A_JOB)) {
+            // ノービス系
+            case JOB_SERIES_ID_NOVICE:
+                tmp_cri += 7 * n_A_Weapon_ATKplus * EquipNumSearch(ITEM_ID_VALKYRIE_KNIFE);
+                break;
+                // マジシャン系
+            case JOB_SERIES_ID_MAGICIAN:
+                break;
+                // シーフ系
+            case JOB_SERIES_ID_THIEF:
+                break;
+            default:
+                switch (GetHigherJobSeriesID(n_A_JOB)) {
+                    // ハンター系
+                    case JOB_SERIES_ID_HUNTER:
+                        break;
+                        // バード系、ダンサー系
+                    case JOB_SERIES_ID_BARD:
+                    case JOB_SERIES_ID_DANCER:
+                        break;
+                }
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「リス耳フード帽」の、過剰精錬による効果
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_ID_RISUMIMI_HOODBO)) {
+        // 遠距離物理攻撃限定の効果
+        n_tok[ITEM_SP_LONGRANGE_CRI_PLUS] += 5;
+        if (n_A_HEAD_DEF_PLUS >= 5) n_tok[ITEM_SP_LONGRANGE_CRI_PLUS] += 10;
+        if (n_A_HEAD_DEF_PLUS >= 7) n_tok[ITEM_SP_LONGRANGE_CRI_PLUS] += 15;
+        if (n_A_HEAD_DEF_PLUS >= 9) n_tok[ITEM_SP_LONGRANGE_CRI_PLUS] += 20;
+    }
+
+    //----------------------------------------------------------------
+    // 「セイヴザキング」の、騎兵修練【未習得】時における、「スピアクイッケン」習得による効果
+    //----------------------------------------------------------------
+    if (LearnedSkillSearch(78) == 0) {
+        if (EquipNumSearch(ITEM_ID_SAVE_THE_KING)) {
+            tmp_cri += 3 * LearnedSkillSearch(SKILL_ID_SPEAR_QUICKEN);
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「マタギの剣鉈」の、素ＬＵＫによる効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_MATAGINO_KENNATA)) > 0) {
+        // 遠距離物理攻撃限定の効果
+        if (SU_LUK >= 100) n_tok[ITEM_SP_LONGRANGE_CRI_PLUS] += 10 * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「暴徒のスカーフ　グラスセット」の、素ＳＴＲと素ＬＵＫによる効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_SET_ID_BOTONO_SCARF_GLASS)) > 0) {
+        tmp_cri += 5 * ROUNDDOWN((SU_STR + SU_LUK) / 80) * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「暴徒のスカーフ　サングラスセット」の、素ＳＴＲと素ＬＵＫによる効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_SET_ID_BOTONO_SCARF_SUNGLASS)) > 0) {
+        tmp_cri += 5 * ROUNDDOWN((SU_STR + SU_LUK) / 80) * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「マラクの皮」の、素ＳＴＲと素ＬＵＫによる効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_MARRACONO_KAWA)) > 0) {
+        if (n_A_SHOULDER_DEF_PLUS >= 8) {
+            tmp_cri += 1 * ROUNDDOWN((SU_STR + SU_LUK) / 20) * itemCount;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「物影」の、スキル習得による強化
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_MONOKAGE)) > 0) {
+        tmp_cri += 5 * LearnedSkillSearch(SKILL_ID_KASUMIGIRI) * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「ニーヴバレッタ　ニーヴ武器セット」の、素ＬＵＫによる効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_SET_ID_NIEVE_VALLETTA_NIEVE_ARMS)) > 0) {
+        tmp_cri += 1 * ROUNDDOWN(SU_LUK / 10) * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「不死の軍団認識票　リンディーホップセット」の、精錬による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_SET_ID_FUSHINO_GUNDAN_NINSHIKIHYO_LINDY_HOP)) > 0) {
+        if (n_A_Weapon_ATKplus >= 9) {
+            tmp_cri += 50 * itemCount;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「ローラカード」の、強化
+    //----------------------------------------------------------------
+    if (CardNumSearch(CARD_ID_LOLA)) {
+        if (n_A_WeaponType == ITEM_KIND_CLUB) {
+            tmp_cri += (10 + 1 * n_A_Weapon_ATKplus) * CardNumSearch(CARD_ID_LOLA);
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「エナジー＜致命ノ一撃＞」の、精錬による効果
+    //----------------------------------------------------------------
+    if ((cardCount = CardNumSearch(CARD_ID_ENCHANT_ENERGY_CHIMEINO_ICHIGEKI)) > 0) {
+        tmp_cri += 1 * Math.max(0, (n_A_SHOULDER_DEF_PLUS - 4)) * cardCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「パワフルSスケルトンカード」の、ベースレベルによる効果
+    //----------------------------------------------------------------
+    if ((cardCount = CardNumSearch(CARD_ID_POWERFUL_S_SKELETON)) > 0) {
+        tmp_cri += 1 * ROUNDDOWN(n_A_BaseLV / 20) * cardCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「レンジャーセシル(MVP)カード」の、職業による効果
+    //----------------------------------------------------------------
+    if ((cardCount = CardNumSearch(CARD_ID_RANGER_CECIL_MVP)) > 0) {
+        if (IsSameJobClass(JOB_ID_RANGER)) {
+            tmp_cri += 20 * cardCount;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「武侠靴　剣セット」の、精錬による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_SET_ID_BUKYO_KUTSU_SWORD)) > 0) {
+        tmp_cri += 5 * n_A_SHOES_DEF_PLUS * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「ヘヴンリーオーダー」の、素ＤＥＸによる効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_HEAVENLY_ORDER)) > 0) {
+        tmp_cri += 2 * Math.floor(SU_DEX / 18) * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「E-EA1Lカード」の、武器種別による効果
+    //----------------------------------------------------------------
+    cardCountRight = CardNumSearch(CARD_ID_E_EA1L, CARD_REGION_ID_ARMS_RIGHT_ANY);
+    cardCountLeft = CardNumSearch(CARD_ID_E_EA1L, CARD_REGION_ID_ARMS_LEFT_ANY);
+    if ((cardCountRight > 0) || (cardCountLeft > 0)) {
+        if (n_A_WeaponType == ITEM_KIND_BOW) {
+            tmp_cri += 1 * (10 + 1 * n_A_Weapon_ATKplus) * cardCountRight;
+            tmp_cri += 1 * (10 + 1 * n_A_Weapon2_ATKplus) * cardCountLeft;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「コトネスカード」の、武器種別による効果　Cri+
+    //----------------------------------------------------------------
+    cardCountRight = CardNumSearch(CARD_ID_COTNESS, CARD_REGION_ID_ARMS_RIGHT_ANY);
+    cardCountLeft = CardNumSearch(CARD_ID_COTNESS, CARD_REGION_ID_ARMS_LEFT_ANY);
+    if ((cardCountRight > 0) || (cardCountLeft > 0)) {
+        if ((n_A_WeaponType == ITEM_KIND_FIST)) {
+            tmp_cri += (10 + 1 * n_A_Weapon_ATKplus) * cardCountRight;
+            tmp_cri += (10 + 1 * n_A_Weapon2_ATKplus) * cardCountLeft;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「ペタルの尻尾　リス耳フード帽セット」の、過剰精錬による効果
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_SET_ID_PETALNO_SHIPPO_RISUMIMI_HOOD_BO)) {
+        // 遠距離物理攻撃限定の効果
+        if (n_A_HEAD_DEF_PLUS >= 6) n_tok[ITEM_SP_LONGRANGE_CRI_PLUS] += 10;
+        if (n_A_HEAD_DEF_PLUS >= 8) n_tok[ITEM_SP_LONGRANGE_CRI_PLUS] += 15;
+    }
+
+    //----------------------------------------------------------------
+    // 「ランナウェー・アクセラレータ　T-Assault」の、精錬による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_SET_ID_RUNAWAY_ACCELERATOR_T_ASSAULT)) > 0) {
+        tmp_cri += 3 * n_A_HEAD_DEF_PLUS * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「封印されたイフリートカード」の、ジョブレベルによる効果
+    //----------------------------------------------------------------
+    if ((cardCount = CardNumSearch(CARD_ID_FUINSARETA_EFREET)) > 0) {
+        tmp_cri += 1 * Math.floor(n_A_JobLV / 20) * cardCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「豊穣の女神　イフリートカード」の、ジョブレベルによる効果
+    //----------------------------------------------------------------
+    if ((cardCount = CardNumSearch(CARD_SET_ID_ENCHANT_HOZYONO_MEGAMI_EFREET)) > 0) {
+        tmp_cri += 1 * n_A_JobLV * cardCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「豊穣の女神　封印されたイフリートカード」の、ジョブレベルによる効果
+    //----------------------------------------------------------------
+    if ((cardCount = CardNumSearch(CARD_SET_ID_ENCHANT_HOZYONO_MEGAMI_FUINSARETA_EFREET)) > 0) {
+        tmp_cri += 1 * Math.floor(n_A_JobLV / 2) * cardCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「ハートハンターATカード」の、強化
+    //----------------------------------------------------------------
+    cardCountRight = CardNumSearch(CARD_ID_HEART_HUNTER_AT, CARD_REGION_ID_ARMS_RIGHT_ANY);
+    cardCountLeft = CardNumSearch(CARD_ID_HEART_HUNTER_AT, CARD_REGION_ID_ARMS_LEFT_ANY);
+    if ((cardCountRight > 0) || (cardCountLeft > 0)) {
+        if (n_A_WeaponType == ITEM_KIND_KATAR) {
+            tmp_cri += (10 + 1 * n_A_Weapon_ATKplus) * cardCountRight;
+            tmp_cri += (10 + 1 * n_A_Weapon2_ATKplus) * cardCountLeft;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「パッシブ持続系　潜龍昇天」の、効果
+    // 「パッシブ持続系　爆裂波動」の、効果
+    // 「パッシブ持続系　爆裂波動（Sノビ）」の、効果
+    // 「時限アイテム　ヴンダーカンマー（爆裂波動）」の、効果
+    // 「時限アイテム　リングオブフレームロード（爆裂波動）」の、効果
+    //----------------------------------------------------------------
+    if ((sklLv = UsedSkillSearch(SKILL_ID_SENRYU_SHOTEN)) > 0) {
+        tmp_cri += 20;
+    } else if ((sklLv = UsedSkillSearch(SKILL_ID_BAKURETSU_HADO)) > 0) {
+        tmp_cri += 7.5 + 2.5 * sklLv;
+    } else if ((sklLv = UsedSkillSearch(SKILL_ID_BAKURETSU_HADO_SUPER_NOVICE)) > 0) {
+        tmp_cri += 50;
+    } else if (TimeItemNumSearch(TIME_ITEM_ID_VNDER_CANMER_BAKURETSU_HADO)) {
+        tmp_cri += 15;
+    } else if (TimeItemNumSearch(TIME_ITEM_ID_RING_OF_FLAME_LORD)) {
+        tmp_cri += 10;
+    }
+
+    //----------------------------------------------------------------
+    // 「パッシブ持続系　トゥルーサイト」の、効果
+    //----------------------------------------------------------------
+    if (UsedSkillSearch(SKILL_ID_TRUE_SIGHT) > 0) {
+        tmp_cri += UsedSkillSearch(SKILL_ID_TRUE_SIGHT);
+    }
+    //----------------------------------------------------------------
+    // 「二次職支援　トゥルーサイト」の、効果
+    //----------------------------------------------------------------
+    else if ((sklLv = g_confDataNizi[CCharaConfNizi.CONF_ID_TRUE_SIGHT]) > 0) {
+        tmp_cri += sklLv;
+    }
+
+    //----------------------------------------------------------------
+    // 「パッシブ持続系　スピアクイッケン」の、効果
+    //----------------------------------------------------------------
+    if ((n_A_WeaponType == ITEM_KIND_SPEAR) || (n_A_WeaponType == ITEM_KIND_SPEAR_2HAND)) {
+        tmp_cri += UsedSkillSearch(SKILL_ID_SPEAR_QUICKEN) * 3;
+    }
+
+    //----------------------------------------------------------------
+    // 「パッシブ持続系　インビジビリティ」の、効果
+    //----------------------------------------------------------------
+    tmp_cri += 20 * UsedSkillSearch(SKILL_ID_INVISIBILITY);
+
+    //----------------------------------------------------------------
+    // 「パッシブ持続系　カモフラージュ」の、効果
+    //----------------------------------------------------------------
+    tmp_cri += 10 * UsedSkillSearch(SKILL_ID_CAMOUFLAGE);
+
+    //----------------------------------------------------------------
+    // 「三次職支援　ストライキング」の、効果
+    //----------------------------------------------------------------
+    tmp_cri += g_confDataSanzi[CCharaConfSanzi.CONF_ID_STRIKING];
+
+    //----------------------------------------------------------------
+    // 「ソウルリーパー　影の魂」の、効果
+    //----------------------------------------------------------------
+    if ((bufLv = g_confDataSanzi[CCharaConfSanzi.CONF_ID_KAGENO_TAMASHI]) > 0) {
+        tmp_cri += 70;
+    }
+
+    //----------------------------------------------------------------
+    // 「サモナー　生命の力」の、効果
+    //----------------------------------------------------------------
+    if (Math.max(LearnedSkillSearch(SKILL_ID_SEIMEINO_CHIKARA), UsedSkillSearch(SKILL_ID_SEIMEINO_CHIKARA)) > 0) {
+        tmp_cri += 20;
+    }
+
+    if (n_A_PassSkill3[39] == 4) tmp_cri += n_A_PassSkill3[40] * n_A_PassSkill3[41];
+    if (n_A_PassSkill7[25]) tmp_cri += 7;
+    if (n_A_PassSkill7[28]) tmp_cri += 7;
+    else if (n_A_PassSkill7[36]) tmp_cri += 7;
+    if (0 < n_A_PassSkill7[46] && n_A_PassSkill7[46] <= 50) tmp_cri += n_A_PassSkill7[46];
+    if (n_A_PassSkill3[5]) tmp_cri += 10 + n_A_PassSkill3[5] + Math.floor(n_A_PassSkill3[35] / 2) + n_A_PassSkill3[25];
+
+    //----------------------------------------------------------------
+    // 「性能カスタマイズ」の、効果
+    //----------------------------------------------------------------
+    confval = g_objCharaConfCustomStatus.GetConf(CCharaConfCustomStatus.CONF_ID_CRI_PLUS);
+    if (confval != 0) {
+        tmp_cri += confval;
+    }
+
+    //----------------------------------------------------------------
+    // 遠距離物理攻撃限定の効果
+    //----------------------------------------------------------------
+    if (n_Enekyori === 1 ||
+        IsLongRange(n_A_Equip[EQUIP_REGION_ID_ARMS]) ||
+        UsedSkillSearch(SKILL_ID_SOUL_ATTACK) ||
+        LearnedSkillSearch(SKILL_ID_SOUL_ATTACK)
+    ) {
+        tmp_cri += n_tok[ITEM_SP_LONGRANGE_CRI_PLUS];
+    }
+
+    //----------------------------------------------------------------
+    // 最終クリティカル率の計算
+    //----------------------------------------------------------------
+    cri = 0;
+    if (n_A_PassSkill8[16]) {
+        // その他の支援/設定「クリティカル率を0にする」の場合
+        cri = 0;
+    } else {
+        // それ以外の場合
+
+        // ステータスによるクリティカル率
+        cri += 0.3 * n_A_LUK;
+        // 装備特性
+        cri += tmp_cri;
+        // カタール装備時は２倍
+        if (n_A_WeaponType == ITEM_KIND_KATAR) {
+            cri *= 2;
+        }
+        // ベースレベルによるクリティカル率
+        cri += 0.1 + (n_A_BaseLV / 100);
+        // おそらく https://siarodiary.blog.fc2.com/blog-entry-511.html などの検証に基づくもの
+        // 実際のクリティカル率を表示しようとする試みだと思われるので
+        // ゲーム内のCri表示と計算機の間で誤差がありますが静観しています
+        // 条件不問の基礎加算値
+        cri += 1;
+        // 小数点以下第二位で切り捨て
+        cri = Math.floor(cri * 10) / 10;
+        // 負数は０に補正
+        cri = Math.max(0, cri);
+    }
+
+    return cri;
 }
 
 /**
