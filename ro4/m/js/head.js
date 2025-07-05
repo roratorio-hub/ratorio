@@ -9074,11 +9074,6 @@ function GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfAr
 	// ギルドスキルＡＴＫ＋１００％
 	if(n_A_PassSkill4[8]) w += 100;
 
-	// 「一次職支援　マーダラーボーナス」
-	if(g_confDataIchizi[CCharaConfIchizi.CONF_ID_MARDERER_BONUS]) {
-		w += 10;
-	}
-
 	// ＡＴＫ％ＵＰ
 	if(GetEquippedTotalSPEquip(87)) w += GetEquippedTotalSPEquip(87);
 
@@ -17034,14 +17029,6 @@ function TYPE_SYUUREN(mobData, attackMethodConfArray, bArmsLeft){
 
 		case ITEM_KIND_FIST:
 			w += 3 * Math.max(LearnedSkillSearch(SKILL_ID_TEKKEN), UsedSkillSearch(SKILL_ID_TEKKEN));
-			break;
-
-		case ITEM_KIND_MUSICAL:
-			w += 3 * Math.max(LearnedSkillSearch(SKILL_ID_GAKKINO_RENSHU), UsedSkillSearch(SKILL_ID_GAKKINO_RENSHU));
-			break;
-
-		case ITEM_KIND_WHIP:
-			w += 3 * Math.max(LearnedSkillSearch(SKILL_ID_DANCENO_RENSHU), UsedSkillSearch(SKILL_ID_DANCENO_RENSHU));
 			break;
 	}
 	// 「演奏/踊り系スキル」欄の「ニーベルングの指輪」によるATK加算
