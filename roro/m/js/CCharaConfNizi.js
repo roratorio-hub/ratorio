@@ -511,6 +511,8 @@ function CCharaConfNizi(confArray) {
 	 * （継承先でオーバーライドすること）
 	 */
 	this.BuildUpSelectAreaSubForSpecial = function (objTd, confData) {
+	    let objSelect = null;
+		let objOption = null;
 		let confId = confData[CConfBase.CONF_DATA_INDEX_ID];
 		let controlId = this.GetControlIdString(this.instanceNo, confId);
 		// 個別に実装する
