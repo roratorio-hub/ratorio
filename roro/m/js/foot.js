@@ -12775,10 +12775,6 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 			}
 		}
 
-
-
-
-
 		//----------------------------------------------------------------
 		// 「性能カスタマイズ」の、効果
 		//----------------------------------------------------------------
@@ -12787,471 +12783,8 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 			n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP] += confval;
 		}
 
-
-
-
-
-//================================================================================================================================
-//================================================================================================================================
-//====
-//==== クリティカル攻撃で与えるダメージ＋○○％　ここから
-//====
-//================================================================================================================================
-//================================================================================================================================
-
-		//----------------------------------------------------------------
-		// ランダムエンチャント効果
-		//----------------------------------------------------------------
-		for (idx = ITEM_SP_CRITICAL_DAMAGE_UP; idx <= ITEM_SP_CRITICAL_DAMAGE_UP; idx++) {
-			n_tok[idx] += GetRndOptTotalValue(idx, null, false);
-			// n_tok[idx] += GetRndEnchValue(idx);
-		}
-
-		if(EquipNumSearch(1089)) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += (2 * n_A_Weapon_ATKplus);
-		if(EquipNumSearch(1091)){
-			if(n_A_Weapon_ATKplus >= 5) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 10;
-			if(n_A_Weapon_ATKplus >= 7) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 10;
-		}
-		if(EquipNumSearch(1358)){
-			if (n_A_Arrow == ARROW_ID_SURUDOI_YA) {
-				n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 5;
-				if(n_A_HEAD_DEF_PLUS >= 7) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 5;
-			}
-		}
-		if(n_A_BODY_DEF_PLUS >= 7 && n_A_SHOULDER_DEF_PLUS >= 7 && n_A_SHOES_DEF_PLUS >= 7 && EquipNumSearch(1591)) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 15;
-		if(EquipNumSearch(1592)) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += n_A_SHOULDER_DEF_PLUS;
-		if(n_A_SHOULDER_DEF_PLUS >= 5 && EquipNumSearch(1631)){
-			n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 3;
-			if(n_A_SHOULDER_DEF_PLUS >= 7) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 4;
-		}
-		if(EquipNumSearch(1801)) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 2 * n_A_Weapon_ATKplus;
-		if(n_A_SHOES_DEF_PLUS >= 7 && EquipNumSearch(1812)) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 3;
-
-		if (EquipNumSearch(ITEM_ID_KENSENO_OKAN) && LearnedSkillSearch(SKILL_ID_KATAR_SHUREN) == 10) {
-			n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 20;
-		}
-
-		// 幸運の時空ブーツ
-		if(n_A_SHOES_DEF_PLUS >= 3 && EquipNumSearch(1922)) {
-			n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 2 * ROUNDDOWN(n_A_SHOES_DEF_PLUS / 3);
-		}
-		if(SU_LUK >= 120 && EquipNumSearch(1922)) {
-			n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 30;
-		}
-		if(n_A_SHOES_DEF_PLUS >= 3 && EquipNumSearch(ITEM_ID_KOUNNO_ZIKU_BOOTS_S1)) {
-			n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 2 * ROUNDDOWN(n_A_SHOES_DEF_PLUS / 3);
-		}
-		if(SU_LUK >= 120 && EquipNumSearch(ITEM_ID_KOUNNO_ZIKU_BOOTS_S1)) {
-			n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 30;
-		}
-
-		if(SU_LUK >= 110 && EquipNumSearch(1951)) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 1 * EquipNumSearch(1951);
-		if(n_A_BODY_DEF_PLUS >= 5 && EquipNumSearchMIG(2170)){
-			n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 4;
-			if(n_A_BODY_DEF_PLUS >= 7) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 6;
-		}
-		if(EquipNumSearch(2242)){
-			if(SU_LUK >= 108) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 10;
-			if(SU_LUK >= 120) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 17;
-			n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] -= 2 * ROUNDDOWN(SU_DEX / 10);
-		}
-		if(n_A_SHOULDER_DEF_PLUS >= 5 && EquipNumSearch(2288)){
-			n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 3;
-			if(n_A_SHOULDER_DEF_PLUS >= 7) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 4;
-		}
-		if(GetLowerJobSeriesID(n_A_JOB)==4 && EquipNumSearch(2517)) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 15;
-
-		//----------------------------------------------------------------
-		// 「戦死者のマント」の、純粋なＬＵＫが１３０の時
-		//----------------------------------------------------------------
-		if(EquipNumSearch(ITEM_ID_SENSHISHANO_MANT)){
-			if (SU_LUK >= 130) {
-				if (EquipNumSearchFurubitaSet() > 0) {
-					n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 10;
-				} else {
-					n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 5;
-				}
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「蒼き夜光石」の、ステによる強化
-		//----------------------------------------------------------------
-		if (EquipNumSearch(ITEM_ID_AOKI_YAKOSEKI)) {
-			if (SU_LUK >= 100) {
-				n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 10 * EquipNumSearch(ITEM_ID_AOKI_YAKOSEKI);
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「ヴァルキリーナイフ」の、職業による強化
-		//----------------------------------------------------------------
-		if (EquipNumSearch(ITEM_ID_VALKYRIE_KNIFE)) {
-			switch (GetLowerJobSeriesID(n_A_JOB)) {
-
-			// ノービス系
-			case JOB_SERIES_ID_NOVICE:
-				n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 1 * n_A_Weapon_ATKplus * EquipNumSearch(ITEM_ID_VALKYRIE_KNIFE);
-				break;
-
-			// マジシャン系
-			case JOB_SERIES_ID_MAGICIAN:
-				break;
-
-			// シーフ系
-			case JOB_SERIES_ID_THIEF:
-				n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 1 * n_A_Weapon_ATKplus * EquipNumSearch(ITEM_ID_VALKYRIE_KNIFE, EQUIP_REGION_ID_ARMS);
-				n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 1 * n_A_Weapon2_ATKplus * EquipNumSearch(ITEM_ID_VALKYRIE_KNIFE, EQUIP_REGION_ID_ARMS_LEFT);
-				break;
-
-			default:
-				switch (GetHigherJobSeriesID(n_A_JOB)) {
-
-				// ハンター系
-				case JOB_SERIES_ID_HUNTER:
-					break;
-
-				// バード系、ダンサー系
-				case JOB_SERIES_ID_BARD:
-				case JOB_SERIES_ID_DANCER:
-					break;
-				}
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「ローラカード」の、強化
-		//----------------------------------------------------------------
-		if (CardNumSearch(CARD_ID_LOLA)) {
-			if (n_A_WeaponType == ITEM_KIND_CLUB) {
-				n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += (10 + 1 * n_A_Weapon_ATKplus) * CardNumSearch(CARD_ID_LOLA);
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「アヴェンジャージャマダハル」の、過剰精錬による効果
-		//----------------------------------------------------------------
-		if (EquipNumSearch(ITEM_ID_AVENGER_JAMADHAR)) {
-			if (n_A_Weapon_ATKplus >= 5) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 20;
-			if (n_A_Weapon_ATKplus >= 7) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 20;
-		}
-
-		//----------------------------------------------------------------
-		// 「アヴェンジャーハンターボウ」の、精錬による効果
-		//----------------------------------------------------------------
-		if (EquipNumSearch(ITEM_ID_AVENGER_HUNTERBOW)) {
-			n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 2 * n_A_Weapon_ATKplus;
-		}
-
-		//----------------------------------------------------------------
-		// 「リス耳フード帽」の、過剰精錬による効果
-		//----------------------------------------------------------------
-		if (EquipNumSearch(ITEM_ID_RISUMIMI_HOODBO)) {
-			if (n_A_HEAD_DEF_PLUS >= 5) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 2;
-			if (n_A_HEAD_DEF_PLUS >= 7) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 6;
-			if (n_A_HEAD_DEF_PLUS >= 9) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 12;
-		}
-
-		//----------------------------------------------------------------
-		// 「ガイアシールド」の、精錬による効果
-		//----------------------------------------------------------------
-		if (EquipNumSearch(ITEM_ID_GAIA_SHIELD) > 0) {
-			if (n_A_SHIELD_DEF_PLUS >= 8) {
-				if (SU_LUK >= 90) {
-					n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 5;
-				}
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「反逆者のスカーフ」の、スキル習得による強化
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_HANGYAKUSHANO_SCARF)) > 0) {
-			n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 3 * LearnedSkillSearch(SKILL_ID_DRAGON_TAIL) * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「暴徒のスカーフ　グラスセット」の、素ＳＴＲと素ＬＵＫによる効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_SET_ID_BOTONO_SCARF_GLASS)) > 0) {
-			n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 10 * ROUNDDOWN((SU_STR + SU_LUK) / 80) * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「暴徒のスカーフ　サングラスセット」の、素ＳＴＲと素ＬＵＫによる効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_SET_ID_BOTONO_SCARF_SUNGLASS)) > 0) {
-			n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 10 * ROUNDDOWN((SU_STR + SU_LUK) / 80) * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「アネモスシールド」の、精錬による効果
-		//----------------------------------------------------------------
-		if (EquipNumSearch(ITEM_ID_ANEMOS_SHIELD) > 0) {
-			if (n_A_SHIELD_DEF_PLUS >= 8) {
-				if (SU_LUK >= 90) {
-					n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 5;
-				}
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「マラクの皮」の、過剰精錬による効果
-		//----------------------------------------------------------------
-		if (EquipNumSearch(ITEM_ID_MARRACONO_KAWA)) {
-			if (n_A_SHOULDER_DEF_PLUS >= 7) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 5;
-			if (n_A_SHOULDER_DEF_PLUS >= 9) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 5;
-		}
-
-		//----------------------------------------------------------------
-		// 「くわえたハートのエース　ギャンブラーシールセット」の、素ＤＥＸによる効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_SET_ID_KUWAETA_HEARTNO_ACE_GAMBLER_SEAL)) > 0) {
-			n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 2 * ROUNDDOWN(SU_DEX / 10) * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「くわえたハートのエース　ギャンブラーシールセット」の、素ＬＵＫによる効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_SET_ID_KUWAETA_HEARTNO_ACE_GAMBLER_SEAL)) > 0) {
-			if (SU_LUK >= 108) {
-				n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 2 * itemCount;
-			}
-			if (SU_LUK >= 120) {
-				n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 4 * itemCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「灰羽のブーツ」の、精錬による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_HAIHANENO_BOOTS)) > 0) {
-			vartmp = 0;
-
-			if (n_A_SHOES_DEF_PLUS >= 5) vartmp += 3;
-			if (n_A_SHOES_DEF_PLUS >= 7) vartmp += 5;
-
-			n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += vartmp * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「灰羽のブーツ　白羽スーツセット」の、素ＬＵＫによる強化
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_SET_ID_HAIHANENO_BOOTS_SHIRAHANO_SUITS)) > 0) {
-			n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 4 * ROUNDDOWN(SU_LUK / 20) * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「不死の軍団認識票　リンディーホップセット」の、精錬による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_SET_ID_FUSHINO_GUNDAN_NINSHIKIHYO_LINDY_HOP)) > 0) {
-			n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 3 * n_A_Weapon_ATKplus * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「イリュージョンカウンターダガー」の、ベースレベルによる効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_ILLUSION_COUNTER_DAGGER)) > 0) {
-			if (n_A_BaseLV >= 170) {
-				n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 10 * itemCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「キックアンドキックカード」の、過剰精錬による効果
-		//----------------------------------------------------------------
-		if (CardNumSearch(CARD_ID_KICK_AND_KICK)) {
-			if (n_A_SHOES_DEF_PLUS >= 7) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 3;
-			if (n_A_SHOES_DEF_PLUS >= 9) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 2;
-		}
-
-		//----------------------------------------------------------------
-		// 「死のニーヴ(幸運)」の、精錬による効果
-		//----------------------------------------------------------------
-		cardCountRight	  = CardNumSearch(CARD_ID_ENCHANT_SHINO_NIEVE_KOUN, CARD_REGION_ID_ARMS_RIGHT_ANY);
-		cardCountLeft	  = CardNumSearch(CARD_ID_ENCHANT_SHINO_NIEVE_KOUN, CARD_REGION_ID_ARMS_LEFT_ANY);
-		cardCountHeadTop  = CardNumSearch(CARD_ID_ENCHANT_SHINO_NIEVE_KOUN, CARD_REGION_ID_HEAD_TOP_ANY);
-		cardCountShield	  = CardNumSearch(CARD_ID_ENCHANT_SHINO_NIEVE_KOUN, CARD_REGION_ID_SHIELD_ANY);
-		cardCountBody	  = CardNumSearch(CARD_ID_ENCHANT_SHINO_NIEVE_KOUN, CARD_REGION_ID_BODY_ANY);
-		cardCountShoulder = CardNumSearch(CARD_ID_ENCHANT_SHINO_NIEVE_KOUN, CARD_REGION_ID_SHOULDER_ANY);
-		cardCountShoes	  = CardNumSearch(CARD_ID_ENCHANT_SHINO_NIEVE_KOUN, CARD_REGION_ID_SHOES_ANY);
-		if (cardCountRight + cardCountLeft + cardCountHeadTop + cardCountShield
-			+ cardCountBody + cardCountShoulder + cardCountShoes > 0) {
-
-			// 右手武器へのエンチャント
-			vartmp = 0;
-			if (n_A_Weapon_ATKplus >= 7) vartmp += 1;
-			if (n_A_Weapon_ATKplus >= 9) vartmp += 1;
-			n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += vartmp * cardCountRight
-
-			// 左手武器へのエンチャント
-			vartmp = 0;
-			if (n_A_Weapon2_ATKplus >= 7) vartmp += 1;
-			if (n_A_Weapon2_ATKplus >= 9) vartmp += 1;
-			n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += vartmp * cardCountLeft
-
-			// 頭防具へのエンチャント
-			vartmp = 0;
-			if (n_A_HEAD_DEF_PLUS >= 7) vartmp += 1;
-			if (n_A_HEAD_DEF_PLUS >= 9) vartmp += 1;
-			n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += vartmp * cardCountHeadTop
-
-			// 盾防具へのエンチャント
-			vartmp = 0;
-			if (n_A_SHIELD_DEF_PLUS >= 7) vartmp += 1;
-			if (n_A_SHIELD_DEF_PLUS >= 9) vartmp += 1;
-			n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += vartmp * cardCountShield
-
-			// 体防具へのエンチャント
-			vartmp = 0;
-			if (n_A_BODY_DEF_PLUS >= 7) vartmp += 1;
-			if (n_A_BODY_DEF_PLUS >= 9) vartmp += 1;
-			n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += vartmp * cardCountBody
-
-			// 肩防具へのエンチャント
-			vartmp = 0;
-			if (n_A_SHOULDER_DEF_PLUS >= 7) vartmp += 1;
-			if (n_A_SHOULDER_DEF_PLUS >= 9) vartmp += 1;
-			n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += vartmp * cardCountShoulder
-
-			// 靴防具へのエンチャント
-			vartmp = 0;
-			if (n_A_SHOES_DEF_PLUS >= 7) vartmp += 1;
-			if (n_A_SHOES_DEF_PLUS >= 9) vartmp += 1;
-			n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += vartmp * cardCountShoes
-
-			// アクセサリへのエンチャント
-			// 精錬できないので処理不要
-		}
-
-		//----------------------------------------------------------------
-		// 「サイドライダーカード」の、素ＬＵＫによる効果
-		//----------------------------------------------------------------
-		if ((cardCount = CardNumSearch(CARD_ID_SIDE_RIDER)) > 0) {
-			if (SU_LUK >= 120) {
-				n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 5 * cardCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「フロンティアブーツ　物影セット」の、精錬による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_SET_ID_FRONTIER_BOOTS_MONOKAGE)) > 0) {
-			if (n_A_SHOES_DEF_PLUS >= 7) {
-				n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 30 * itemCount;
-			}
-			if (n_A_SHOES_DEF_PLUS >= 9) {
-				n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 20 * itemCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「スナイピングシューズ」の、スキル習得による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_SNIPING_SHOES)) > 0) {
-			if (LearnedSkillSearch(SKILL_ID_AIMED_BOLT) >= 10) {
-				n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 25 * itemCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「モイスラ-OS」の、ベースレベルによる効果
-		//----------------------------------------------------------------
-		itemCountRight = EquipNumSearch(ITEM_ID_MOISURA_OS, EQUIP_REGION_ID_ARMS);
-		itemCountLeft = EquipNumSearch(ITEM_ID_MOISURA_OS, EQUIP_REGION_ID_ARMS_LEFT);
-		if ((itemCountRight > 0) || (itemCountLeft > 0)) {
-			n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 1 * n_A_BaseLV * itemCountRight;
-			n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 1 * n_A_BaseLV * itemCountLeft;
-		}
-
-		//----------------------------------------------------------------
-		// 「E-EA1Lカード」の、武器種別による効果
-		//----------------------------------------------------------------
-		cardCountRight = CardNumSearch(CARD_ID_E_EA1L, CARD_REGION_ID_ARMS_RIGHT_ANY);
-		cardCountLeft = CardNumSearch(CARD_ID_E_EA1L, CARD_REGION_ID_ARMS_LEFT_ANY);
-		if ((cardCountRight > 0) || (cardCountLeft > 0)) {
-			if (n_A_WeaponType == ITEM_KIND_BOW) {
-				n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 1 * (10 + 1 * n_A_Weapon_ATKplus) * cardCountRight;
-				n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 1 * (10 + 1 * n_A_Weapon2_ATKplus) * cardCountLeft;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「コトネスカード」の、武器種別による効果 クリティカルダメージUP
-		//----------------------------------------------------------------
-		cardCountRight = CardNumSearch(CARD_ID_COTNESS, CARD_REGION_ID_ARMS_RIGHT_ANY);
-		cardCountLeft = CardNumSearch(CARD_ID_COTNESS, CARD_REGION_ID_ARMS_LEFT_ANY);
-		if ((cardCountRight > 0) || (cardCountLeft > 0)) {
-			if (n_A_WeaponType == ITEM_KIND_FIST) {
-				n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += (10 + 1 * n_A_Weapon_ATKplus) * cardCountRight;
-				n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += (10 + 1 * n_A_Weapon2_ATKplus) * cardCountLeft;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「ペタルの尻尾　リス耳フード帽セット」の、過剰精錬による効果
-		//----------------------------------------------------------------
-		if (EquipNumSearch(ITEM_SET_ID_PETALNO_SHIPPO_RISUMIMI_HOOD_BO)) {
-			if (n_A_HEAD_DEF_PLUS >= 6) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 10;
-			if (n_A_HEAD_DEF_PLUS >= 8) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 15;
-		}
-
-		//----------------------------------------------------------------
-		// 「ミステリーウィング」の、素ステータスによる効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearchMIG(ITEM_ID_MYSTERY_WING)) > 0) {
-			n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 5 * Math.floor(GetTotalPureBasicStatus() / 100) * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「ハートハンターATカード」の、強化
-		//----------------------------------------------------------------
-		cardCountRight = CardNumSearch(CARD_ID_HEART_HUNTER_AT, CARD_REGION_ID_ARMS_RIGHT_ANY);
-		cardCountLeft = CardNumSearch(CARD_ID_HEART_HUNTER_AT, CARD_REGION_ID_ARMS_LEFT_ANY);
-		if ((cardCountRight > 0) || (cardCountLeft > 0)) {
-			if (n_A_WeaponType == ITEM_KIND_KATAR) {
-				n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += (10 + 1 * n_A_Weapon_ATKplus) * cardCountRight;
-				n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += (10 + 1 * n_A_Weapon2_ATKplus) * cardCountLeft;
-			}
-		}
-
-
-
-		if(GetLowerJobSeriesID(n_A_JOB)==2 && n_A_card[CARD_REGION_ID_HEAD_TOP]==624) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += Math.floor(n_A_HEAD_DEF_PLUS / 2);
-		if(CardNumSearch(738)) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 2 * ROUNDDOWN(SU_LUK / 10);
-		if(EquipNumSearch(1357)){
-			if(EquipNumSearch(261)) n_tok[45] += 10;
-			if(EquipNumSearch(1221)) n_tok[36] += 10;
-			if(EquipNumSearch(364)) n_tok[30] += 10;
-			if(EquipNumSearch(1023)) n_tok[37] += 10;
-			if(EquipNumSearch(382)) n_tok[32] += 10;
-		}
-
-		/**
-		 * 「三次職支援　ラウダラムス」の効果
-		 */
-		if ((bufLv = g_confDataSanzi[CCharaConfSanzi.CONF_ID_LAUDARAMUS]) > 0) {
-			n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += [0, 6, 9, 12, 15][bufLv];
-		}
-
-		// TODO: 四次対応
-		for (idx = ITEM_SP_CRITICAL_DAMAGE_UP; idx <= ITEM_SP_CRITICAL_DAMAGE_UP; idx++) {
-			n_tok[idx] = ApplySpecModify(idx, n_tok[idx]);
-		}
-
-
-
-		//----------------------------------------------------------------
-		// 「性能カスタマイズ」の、効果
-		//----------------------------------------------------------------
-		confval = g_objCharaConfCustomAtk.GetConf(CCharaConfCustomAtk.CONF_ID_CRITICAL_DAMAGE_UP);
-		if (confval != 0) {
-			n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += confval;
-		}
-
-
-
-
+		// クリティカル攻撃で与えるダメージ + ◯% を適用する
+		ApplyAdditionalCriticalDamageUp();
 
 //================================================================================================================================
 //================================================================================================================================
@@ -20641,6 +20174,461 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 }
 
 /**
+ * 公式サイトで「クリティカル攻撃で与えるダメージ + ◯%」と表記されるダメージの増加率を適用する
+ * グローバル変数の n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] に直接加算するので戻り値はない
+ */
+function ApplyAdditionalCriticalDamageUp() {
+    for (idx = ITEM_SP_CRITICAL_DAMAGE_UP; idx <= ITEM_SP_CRITICAL_DAMAGE_UP; idx++) {
+        n_tok[idx] += GetRndOptTotalValue(idx, null, false);
+    }
+
+    if (EquipNumSearch(1089)) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += (2 * n_A_Weapon_ATKplus);
+    if (EquipNumSearch(1091)) {
+        if (n_A_Weapon_ATKplus >= 5) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 10;
+        if (n_A_Weapon_ATKplus >= 7) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 10;
+    }
+    if (EquipNumSearch(1358)) {
+        if (n_A_Arrow == ARROW_ID_SURUDOI_YA) {
+            n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 5;
+            if (n_A_HEAD_DEF_PLUS >= 7) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 5;
+        }
+    }
+    if (n_A_BODY_DEF_PLUS >= 7 && n_A_SHOULDER_DEF_PLUS >= 7 && n_A_SHOES_DEF_PLUS >= 7 && EquipNumSearch(1591)) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 15;
+    if (EquipNumSearch(1592)) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += n_A_SHOULDER_DEF_PLUS;
+    if (n_A_SHOULDER_DEF_PLUS >= 5 && EquipNumSearch(1631)) {
+        n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 3;
+        if (n_A_SHOULDER_DEF_PLUS >= 7) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 4;
+    }
+    if (EquipNumSearch(1801)) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 2 * n_A_Weapon_ATKplus;
+    if (n_A_SHOES_DEF_PLUS >= 7 && EquipNumSearch(1812)) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 3;
+
+    if (EquipNumSearch(ITEM_ID_KENSENO_OKAN) && LearnedSkillSearch(SKILL_ID_KATAR_SHUREN) == 10) {
+        n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 20;
+    }
+
+    // 幸運の時空ブーツ
+    if (n_A_SHOES_DEF_PLUS >= 3 && EquipNumSearch(1922)) {
+        n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 2 * ROUNDDOWN(n_A_SHOES_DEF_PLUS / 3);
+    }
+    if (SU_LUK >= 120 && EquipNumSearch(1922)) {
+        n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 30;
+    }
+    if (n_A_SHOES_DEF_PLUS >= 3 && EquipNumSearch(ITEM_ID_KOUNNO_ZIKU_BOOTS_S1)) {
+        n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 2 * ROUNDDOWN(n_A_SHOES_DEF_PLUS / 3);
+    }
+    if (SU_LUK >= 120 && EquipNumSearch(ITEM_ID_KOUNNO_ZIKU_BOOTS_S1)) {
+        n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 30;
+    }
+
+    if (SU_LUK >= 110 && EquipNumSearch(1951)) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 1 * EquipNumSearch(1951);
+    if (n_A_BODY_DEF_PLUS >= 5 && EquipNumSearchMIG(2170)) {
+        n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 4;
+        if (n_A_BODY_DEF_PLUS >= 7) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 6;
+    }
+    if (EquipNumSearch(2242)) {
+        if (SU_LUK >= 108) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 10;
+        if (SU_LUK >= 120) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 17;
+        n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] -= 2 * ROUNDDOWN(SU_DEX / 10);
+    }
+    if (n_A_SHOULDER_DEF_PLUS >= 5 && EquipNumSearch(2288)) {
+        n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 3;
+        if (n_A_SHOULDER_DEF_PLUS >= 7) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 4;
+    }
+    if (GetLowerJobSeriesID(n_A_JOB) == 4 && EquipNumSearch(2517)) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 15;
+
+    //----------------------------------------------------------------
+    // 「戦死者のマント」の、純粋なＬＵＫが１３０の時
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_ID_SENSHISHANO_MANT)) {
+        if (SU_LUK >= 130) {
+            if (EquipNumSearchFurubitaSet() > 0) {
+                n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 10;
+            } else {
+                n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 5;
+            }
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「蒼き夜光石」の、ステによる強化
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_ID_AOKI_YAKOSEKI)) {
+        if (SU_LUK >= 100) {
+            n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 10 * EquipNumSearch(ITEM_ID_AOKI_YAKOSEKI);
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「ヴァルキリーナイフ」の、職業による強化
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_ID_VALKYRIE_KNIFE)) {
+        switch (GetLowerJobSeriesID(n_A_JOB)) {
+
+            // ノービス系
+            case JOB_SERIES_ID_NOVICE:
+                n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 1 * n_A_Weapon_ATKplus * EquipNumSearch(ITEM_ID_VALKYRIE_KNIFE);
+                break;
+
+                // マジシャン系
+            case JOB_SERIES_ID_MAGICIAN:
+                break;
+
+                // シーフ系
+            case JOB_SERIES_ID_THIEF:
+                n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 1 * n_A_Weapon_ATKplus * EquipNumSearch(ITEM_ID_VALKYRIE_KNIFE, EQUIP_REGION_ID_ARMS);
+                n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 1 * n_A_Weapon2_ATKplus * EquipNumSearch(ITEM_ID_VALKYRIE_KNIFE, EQUIP_REGION_ID_ARMS_LEFT);
+                break;
+
+            default:
+                switch (GetHigherJobSeriesID(n_A_JOB)) {
+
+                    // ハンター系
+                    case JOB_SERIES_ID_HUNTER:
+                        break;
+
+                        // バード系、ダンサー系
+                    case JOB_SERIES_ID_BARD:
+                    case JOB_SERIES_ID_DANCER:
+                        break;
+                }
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「ローラカード」の、強化
+    //----------------------------------------------------------------
+    if (CardNumSearch(CARD_ID_LOLA)) {
+        if (n_A_WeaponType == ITEM_KIND_CLUB) {
+            n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += (10 + 1 * n_A_Weapon_ATKplus) * CardNumSearch(CARD_ID_LOLA);
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「アヴェンジャージャマダハル」の、過剰精錬による効果
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_ID_AVENGER_JAMADHAR)) {
+        if (n_A_Weapon_ATKplus >= 5) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 20;
+        if (n_A_Weapon_ATKplus >= 7) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 20;
+    }
+
+    //----------------------------------------------------------------
+    // 「アヴェンジャーハンターボウ」の、精錬による効果
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_ID_AVENGER_HUNTERBOW)) {
+        n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 2 * n_A_Weapon_ATKplus;
+    }
+
+    //----------------------------------------------------------------
+    // 「リス耳フード帽」の、過剰精錬による効果
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_ID_RISUMIMI_HOODBO)) {
+        if (n_A_HEAD_DEF_PLUS >= 5) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 2;
+        if (n_A_HEAD_DEF_PLUS >= 7) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 6;
+        if (n_A_HEAD_DEF_PLUS >= 9) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 12;
+    }
+
+    //----------------------------------------------------------------
+    // 「ガイアシールド」の、精錬による効果
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_ID_GAIA_SHIELD) > 0) {
+        if (n_A_SHIELD_DEF_PLUS >= 8) {
+            if (SU_LUK >= 90) {
+                n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 5;
+            }
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「反逆者のスカーフ」の、スキル習得による強化
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_HANGYAKUSHANO_SCARF)) > 0) {
+        n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 3 * LearnedSkillSearch(SKILL_ID_DRAGON_TAIL) * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「暴徒のスカーフ　グラスセット」の、素ＳＴＲと素ＬＵＫによる効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_SET_ID_BOTONO_SCARF_GLASS)) > 0) {
+        n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 10 * ROUNDDOWN((SU_STR + SU_LUK) / 80) * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「暴徒のスカーフ　サングラスセット」の、素ＳＴＲと素ＬＵＫによる効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_SET_ID_BOTONO_SCARF_SUNGLASS)) > 0) {
+        n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 10 * ROUNDDOWN((SU_STR + SU_LUK) / 80) * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「アネモスシールド」の、精錬による効果
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_ID_ANEMOS_SHIELD) > 0) {
+        if (n_A_SHIELD_DEF_PLUS >= 8) {
+            if (SU_LUK >= 90) {
+                n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 5;
+            }
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「マラクの皮」の、過剰精錬による効果
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_ID_MARRACONO_KAWA)) {
+        if (n_A_SHOULDER_DEF_PLUS >= 7) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 5;
+        if (n_A_SHOULDER_DEF_PLUS >= 9) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 5;
+    }
+
+    //----------------------------------------------------------------
+    // 「くわえたハートのエース　ギャンブラーシールセット」の、素ＤＥＸによる効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_SET_ID_KUWAETA_HEARTNO_ACE_GAMBLER_SEAL)) > 0) {
+        n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 2 * ROUNDDOWN(SU_DEX / 10) * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「くわえたハートのエース　ギャンブラーシールセット」の、素ＬＵＫによる効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_SET_ID_KUWAETA_HEARTNO_ACE_GAMBLER_SEAL)) > 0) {
+        if (SU_LUK >= 108) {
+            n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 2 * itemCount;
+        }
+        if (SU_LUK >= 120) {
+            n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 4 * itemCount;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「灰羽のブーツ」の、精錬による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_HAIHANENO_BOOTS)) > 0) {
+        vartmp = 0;
+
+        if (n_A_SHOES_DEF_PLUS >= 5) vartmp += 3;
+        if (n_A_SHOES_DEF_PLUS >= 7) vartmp += 5;
+
+        n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += vartmp * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「灰羽のブーツ　白羽スーツセット」の、素ＬＵＫによる強化
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_SET_ID_HAIHANENO_BOOTS_SHIRAHANO_SUITS)) > 0) {
+        n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 4 * ROUNDDOWN(SU_LUK / 20) * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「不死の軍団認識票　リンディーホップセット」の、精錬による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_SET_ID_FUSHINO_GUNDAN_NINSHIKIHYO_LINDY_HOP)) > 0) {
+        n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 3 * n_A_Weapon_ATKplus * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「イリュージョンカウンターダガー」の、ベースレベルによる効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_ILLUSION_COUNTER_DAGGER)) > 0) {
+        if (n_A_BaseLV >= 170) {
+            n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 10 * itemCount;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「キックアンドキックカード」の、過剰精錬による効果
+    //----------------------------------------------------------------
+    if (CardNumSearch(CARD_ID_KICK_AND_KICK)) {
+        if (n_A_SHOES_DEF_PLUS >= 7) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 3;
+        if (n_A_SHOES_DEF_PLUS >= 9) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 2;
+    }
+
+    //----------------------------------------------------------------
+    // 「死のニーヴ(幸運)」の、精錬による効果
+    //----------------------------------------------------------------
+    cardCountRight = CardNumSearch(CARD_ID_ENCHANT_SHINO_NIEVE_KOUN, CARD_REGION_ID_ARMS_RIGHT_ANY);
+    cardCountLeft = CardNumSearch(CARD_ID_ENCHANT_SHINO_NIEVE_KOUN, CARD_REGION_ID_ARMS_LEFT_ANY);
+    cardCountHeadTop = CardNumSearch(CARD_ID_ENCHANT_SHINO_NIEVE_KOUN, CARD_REGION_ID_HEAD_TOP_ANY);
+    cardCountShield = CardNumSearch(CARD_ID_ENCHANT_SHINO_NIEVE_KOUN, CARD_REGION_ID_SHIELD_ANY);
+    cardCountBody = CardNumSearch(CARD_ID_ENCHANT_SHINO_NIEVE_KOUN, CARD_REGION_ID_BODY_ANY);
+    cardCountShoulder = CardNumSearch(CARD_ID_ENCHANT_SHINO_NIEVE_KOUN, CARD_REGION_ID_SHOULDER_ANY);
+    cardCountShoes = CardNumSearch(CARD_ID_ENCHANT_SHINO_NIEVE_KOUN, CARD_REGION_ID_SHOES_ANY);
+    if (cardCountRight + cardCountLeft + cardCountHeadTop + cardCountShield +
+        cardCountBody + cardCountShoulder + cardCountShoes > 0) {
+
+        // 右手武器へのエンチャント
+        vartmp = 0;
+        if (n_A_Weapon_ATKplus >= 7) vartmp += 1;
+        if (n_A_Weapon_ATKplus >= 9) vartmp += 1;
+        n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += vartmp * cardCountRight
+
+        // 左手武器へのエンチャント
+        vartmp = 0;
+        if (n_A_Weapon2_ATKplus >= 7) vartmp += 1;
+        if (n_A_Weapon2_ATKplus >= 9) vartmp += 1;
+        n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += vartmp * cardCountLeft
+
+        // 頭防具へのエンチャント
+        vartmp = 0;
+        if (n_A_HEAD_DEF_PLUS >= 7) vartmp += 1;
+        if (n_A_HEAD_DEF_PLUS >= 9) vartmp += 1;
+        n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += vartmp * cardCountHeadTop
+
+        // 盾防具へのエンチャント
+        vartmp = 0;
+        if (n_A_SHIELD_DEF_PLUS >= 7) vartmp += 1;
+        if (n_A_SHIELD_DEF_PLUS >= 9) vartmp += 1;
+        n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += vartmp * cardCountShield
+
+        // 体防具へのエンチャント
+        vartmp = 0;
+        if (n_A_BODY_DEF_PLUS >= 7) vartmp += 1;
+        if (n_A_BODY_DEF_PLUS >= 9) vartmp += 1;
+        n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += vartmp * cardCountBody
+
+        // 肩防具へのエンチャント
+        vartmp = 0;
+        if (n_A_SHOULDER_DEF_PLUS >= 7) vartmp += 1;
+        if (n_A_SHOULDER_DEF_PLUS >= 9) vartmp += 1;
+        n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += vartmp * cardCountShoulder
+
+        // 靴防具へのエンチャント
+        vartmp = 0;
+        if (n_A_SHOES_DEF_PLUS >= 7) vartmp += 1;
+        if (n_A_SHOES_DEF_PLUS >= 9) vartmp += 1;
+        n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += vartmp * cardCountShoes
+
+        // アクセサリへのエンチャント
+        // 精錬できないので処理不要
+    }
+
+    //----------------------------------------------------------------
+    // 「サイドライダーカード」の、素ＬＵＫによる効果
+    //----------------------------------------------------------------
+    if ((cardCount = CardNumSearch(CARD_ID_SIDE_RIDER)) > 0) {
+        if (SU_LUK >= 120) {
+            n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 5 * cardCount;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「フロンティアブーツ　物影セット」の、精錬による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_SET_ID_FRONTIER_BOOTS_MONOKAGE)) > 0) {
+        if (n_A_SHOES_DEF_PLUS >= 7) {
+            n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 30 * itemCount;
+        }
+        if (n_A_SHOES_DEF_PLUS >= 9) {
+            n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 20 * itemCount;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「スナイピングシューズ」の、スキル習得による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_SNIPING_SHOES)) > 0) {
+        if (LearnedSkillSearch(SKILL_ID_AIMED_BOLT) >= 10) {
+            n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 25 * itemCount;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「モイスラ-OS」の、ベースレベルによる効果
+    //----------------------------------------------------------------
+    itemCountRight = EquipNumSearch(ITEM_ID_MOISURA_OS, EQUIP_REGION_ID_ARMS);
+    itemCountLeft = EquipNumSearch(ITEM_ID_MOISURA_OS, EQUIP_REGION_ID_ARMS_LEFT);
+    if ((itemCountRight > 0) || (itemCountLeft > 0)) {
+        n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 1 * n_A_BaseLV * itemCountRight;
+        n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 1 * n_A_BaseLV * itemCountLeft;
+    }
+
+    //----------------------------------------------------------------
+    // 「E-EA1Lカード」の、武器種別による効果
+    //----------------------------------------------------------------
+    cardCountRight = CardNumSearch(CARD_ID_E_EA1L, CARD_REGION_ID_ARMS_RIGHT_ANY);
+    cardCountLeft = CardNumSearch(CARD_ID_E_EA1L, CARD_REGION_ID_ARMS_LEFT_ANY);
+    if ((cardCountRight > 0) || (cardCountLeft > 0)) {
+        if (n_A_WeaponType == ITEM_KIND_BOW) {
+            n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 1 * (10 + 1 * n_A_Weapon_ATKplus) * cardCountRight;
+            n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 1 * (10 + 1 * n_A_Weapon2_ATKplus) * cardCountLeft;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「コトネスカード」の、武器種別による効果 クリティカルダメージUP
+    //----------------------------------------------------------------
+    cardCountRight = CardNumSearch(CARD_ID_COTNESS, CARD_REGION_ID_ARMS_RIGHT_ANY);
+    cardCountLeft = CardNumSearch(CARD_ID_COTNESS, CARD_REGION_ID_ARMS_LEFT_ANY);
+    if ((cardCountRight > 0) || (cardCountLeft > 0)) {
+        if (n_A_WeaponType == ITEM_KIND_FIST) {
+            n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += (10 + 1 * n_A_Weapon_ATKplus) * cardCountRight;
+            n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += (10 + 1 * n_A_Weapon2_ATKplus) * cardCountLeft;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「ペタルの尻尾　リス耳フード帽セット」の、過剰精錬による効果
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_SET_ID_PETALNO_SHIPPO_RISUMIMI_HOOD_BO)) {
+        if (n_A_HEAD_DEF_PLUS >= 6) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 10;
+        if (n_A_HEAD_DEF_PLUS >= 8) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 15;
+    }
+
+    //----------------------------------------------------------------
+    // 「ミステリーウィング」の、素ステータスによる効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearchMIG(ITEM_ID_MYSTERY_WING)) > 0) {
+        n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 5 * Math.floor(GetTotalPureBasicStatus() / 100) * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「ハートハンターATカード」の、強化
+    //----------------------------------------------------------------
+    cardCountRight = CardNumSearch(CARD_ID_HEART_HUNTER_AT, CARD_REGION_ID_ARMS_RIGHT_ANY);
+    cardCountLeft = CardNumSearch(CARD_ID_HEART_HUNTER_AT, CARD_REGION_ID_ARMS_LEFT_ANY);
+    if ((cardCountRight > 0) || (cardCountLeft > 0)) {
+        if (n_A_WeaponType == ITEM_KIND_KATAR) {
+            n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += (10 + 1 * n_A_Weapon_ATKplus) * cardCountRight;
+            n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += (10 + 1 * n_A_Weapon2_ATKplus) * cardCountLeft;
+        }
+    }
+
+    if (GetLowerJobSeriesID(n_A_JOB) == 2 && n_A_card[CARD_REGION_ID_HEAD_TOP] == 624) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += Math.floor(n_A_HEAD_DEF_PLUS / 2);
+    if (CardNumSearch(738)) n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 2 * ROUNDDOWN(SU_LUK / 10);
+    if (EquipNumSearch(1357)) {
+        if (EquipNumSearch(261)) n_tok[45] += 10;
+        if (EquipNumSearch(1221)) n_tok[36] += 10;
+        if (EquipNumSearch(364)) n_tok[30] += 10;
+        if (EquipNumSearch(1023)) n_tok[37] += 10;
+        if (EquipNumSearch(382)) n_tok[32] += 10;
+    }
+
+	/**
+	 * 「ダンサー 幸運のキス」の効果
+	 */
+    if ((bufLv = g_confDataNizi[CCharaConfNizi.CONF_ID_FORTUNEKISS]) > 0) {
+        n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += 5 + bufLv;
+    }	
+
+    /**
+     * 「三次職支援　ラウダラムス」の効果
+     */
+    if ((bufLv = g_confDataSanzi[CCharaConfSanzi.CONF_ID_LAUDARAMUS]) > 0) {
+        n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += [0, 6, 9, 12, 15][bufLv];
+    }
+
+    // TODO: 四次対応
+    for (idx = ITEM_SP_CRITICAL_DAMAGE_UP; idx <= ITEM_SP_CRITICAL_DAMAGE_UP; idx++) {
+        n_tok[idx] = ApplySpecModify(idx, n_tok[idx]);
+    }
+
+    //----------------------------------------------------------------
+    // 「性能カスタマイズ」の、効果
+    //----------------------------------------------------------------
+    confval = g_objCharaConfCustomAtk.GetConf(CCharaConfCustomAtk.CONF_ID_CRITICAL_DAMAGE_UP);
+    if (confval != 0) {
+        n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += confval;
+    }
+}
+
+/**
  * 公式サイトで「攻撃速度 + ◯%」と表記されるASPDの増加値を取得する
  * @returns {Number} ASPDが増加される％
  */
@@ -22211,6 +22199,12 @@ function GetAdditionalCriticalRate(mobData) {
 			tmp_cri += Math.round(0.5 * sklLv);
 		}
 	}
+	/**
+	 * 「ダンサースキル 幸運のキス」の、効果
+	 */
+	if ((sklLv = g_confDataNizi[CCharaConfNizi.CONF_ID_FORTUNEKISS]) > 0) {
+        tmp_cri += 20 + 3 * sklLv;
+    }
 
     //----------------------------------------------------------------
     // 「パッシブ持続系　トゥルーサイト」の、効果
