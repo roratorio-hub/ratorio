@@ -21821,6 +21821,15 @@ function GetAdditionalAspdPercent() {
 
     if (n_A_PassSkill7[22]) tmp_percent += 10;
 
+	/**
+	 * 「バード 楽器の練習」の、効果
+	 */
+	if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_GAKKINO_RENSHU), UsedSkillSearch(SKILL_ID_GAKKINO_RENSHU))) > 0) {
+		if(n_A_WeaponType === ITEM_KIND_MUSICAL) {
+			tmp_percent += Math.round(0.5 * sklLv);
+		}
+	}
+
     //----------------------------------------------------------------
     // 「三次職支援　ペインキラー」の効果
     //----------------------------------------------------------------
