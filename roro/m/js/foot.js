@@ -5020,13 +5020,6 @@ if (_APPLY_UPDATE_LV200) {
 		if(EquipNumSearch(1042)) w += n_A_Weapon_ATKplus;
 		if(EquipNumSearch(1029) && n_A_HEAD_DEF_PLUS >= 6) w += n_A_HEAD_DEF_PLUS - 5;
 
-		//----------------------------------------------------------------
-		// 「一次職支援　マーダラーボーナス」の、効果
-		//----------------------------------------------------------------
-		if(g_confDataIchizi[CCharaConfIchizi.CONF_ID_MARDERER_BONUS]) {
-			w += 10;
-		}
-
 		if(EquipNumSearch(1083)){
 			w += n_A_Weapon_ATKplus;
 		}
@@ -28160,28 +28153,6 @@ function StPlusCalc() {
 		wSPC_LUK += 20;
 	}
 
-	//----------------------------------------------------------------
-	// 「一次職支援　マーダラーボーナス」の効果
-	//----------------------------------------------------------------
-	var vartmp = 0;
-	switch (g_confDataIchizi[CCharaConfIchizi.CONF_ID_MARDERER_BONUS]) {
-	case 1:
-		vartmp = 3;
-		break;
-	case 2:
-		vartmp = 5;
-		break;
-	}
-
-	wSPC_STR += vartmp;
-	wSPC_AGI += vartmp;
-	wSPC_VIT += vartmp;
-	wSPC_DEX += vartmp;
-	wSPC_INT += vartmp;
-	wSPC_LUK += vartmp;
-
-
-
 	if(n_A_PassSkill8[4]){
 		wSPC_STR += 1;
 		wSPC_AGI += 1;
@@ -30521,7 +30492,12 @@ function Init(){
 	g_objCharaConfYozi = new CCharaConfYozi(g_confDataYozi);
 	g_objCharaConfYozi.BuildUpSelectArea(document.getElementById("OBJID_TD_CHARA_CONF_YOZI"), false);
 
-
+	//--------------------------------
+	// デバフ設定欄の初期化
+	//--------------------------------
+//	g_confDataDebuff = new Array();
+//	g_objCharaConfDebuff = new CCharaConfDebuff(g_confDataDebuff);
+//	g_objCharaConfDebuff.BuildUpSelectArea(document.getElementById("OBJID_TD_CHARA_CONF_DEBUFF"), false);
 
 	document.calcForm.A3_SKILLSW.checked = 0;
 	document.calcForm.A4_SKILLSW.checked = 0;

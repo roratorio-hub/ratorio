@@ -1515,19 +1515,9 @@ function GetMobDataParameters(monsterId, mobData){
 	}
 
 	//----------------------------------------------------------------
-	// 「一次職支援　マーダラーボーナス」の効果
-	//----------------------------------------------------------------
-	if (g_confDataIchizi[CCharaConfIchizi.CONF_ID_MARDERER_BONUS]) {
-		wAllExp += 100;
-	}
-
-
-	//----------------------------------------------------------------
 	// 「対プレイヤー設定　戦闘エリア」の「Urdr」における効果
-	// 「一次職支援　マーダラーボーナス」の効果
 	//----------------------------------------------------------------
-	if(n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA] == MOB_CONF_PLAYER_ID_SENTO_AREA_URDR
-		|| g_confDataIchizi[CCharaConfIchizi.CONF_ID_MARDERER_BONUS]){
+	if(n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA] == MOB_CONF_PLAYER_ID_SENTO_AREA_URDR){
 		wAllExp = wAllExp * 2;
 		wJobExp = wJobExp * 2;
 	}

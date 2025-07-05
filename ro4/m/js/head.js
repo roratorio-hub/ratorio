@@ -9074,11 +9074,6 @@ function GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfAr
 	// ギルドスキルＡＴＫ＋１００％
 	if(n_A_PassSkill4[8]) w += 100;
 
-	// 「一次職支援　マーダラーボーナス」
-	if(g_confDataIchizi[CCharaConfIchizi.CONF_ID_MARDERER_BONUS]) {
-		w += 10;
-	}
-
 	// ＡＴＫ％ＵＰ
 	if(GetEquippedTotalSPEquip(87)) w += GetEquippedTotalSPEquip(87);
 

@@ -1,40 +1,15 @@
 function CCharaConfYozi(confArray) {
-
 	// 継承定義
 	CCharaConfYozi.prototype = new CConfBase();
-
-
-
 	// 基底クラスのコンストラクタ呼び出し
 	CConfBase.call(this, confArray);
-
-
-
 	// 設定の限界値
 	// この数を超える場合は、セーブデータの拡張が必要
 	this.confCountLimit = 30;
-
-
-
 	// 設定欄の横方向項目数
 	this.itemInRow = 2;
-
-
-
 	// 設定欄のラベル
 	this.confLabel = "四次職支援設定";
-
-
-
-
-
-	//********************************************************************************************************************************
-	//********************************************************************************************************************************
-	//****
-	//**** 四次職支援データ定義
-	//****
-	//********************************************************************************************************************************
-	//********************************************************************************************************************************
 
 	/**
 	 * 設定データを初期化（セットアップ）する.
@@ -323,13 +298,12 @@ function CCharaConfYozi(confArray) {
 
 
 		//----------------------------------------------------------------
-		// 四次職支援設定変数配列を初期化
+		// 支援設定変数配列を初期化
 		//----------------------------------------------------------------
-		for (idx = 0; idx < this.confCountLimit; idx++) {
-			if (idx < this.confDataObj.length) {
+		for (let idx = 0; idx < this.confCountLimit; idx++) {
+			if (this.confDataObj[idx] !== undefined) {
 				this.confArray[idx] = this.confDataObj[idx][CConfBase.CONF_DATA_INDEX_DEFAULT_VALUE];
-			}
-			else {
+			} else {
 				this.confArray[idx] = 0;
 			}
 		}
@@ -339,35 +313,32 @@ function CCharaConfYozi(confArray) {
 		//----------------------------------------------------------------
 		// 表示順序に従い、四次職支援設定データ定義を再配列
 		//----------------------------------------------------------------
-		confDataOBJSorted = new Array();
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfYozi.CONF_ID_ARUGUTUS_VITA];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfYozi.CONF_ID_ARUGUTUS_TERUM];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfYozi.CONF_ID_PRESENSE_AKYACE];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfYozi.CONF_ID_CONPETENTIA];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfYozi.CONF_ID_RERIGIO];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfYozi.CONF_ID_BENEDICTUM];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfYozi.CONF_ID_CLIMAX_IMPACT];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfYozi.CONF_ID_SPELL_ENCHANTING];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfYozi.CONF_ID_KOGEKI_SOCHI_YUKOKA];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfYozi.CONF_ID_BOGYO_SOCHI_YUKOKA];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfYozi.CONF_ID_MUSICAL_INTERLUDE];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfYozi.CONF_ID_YUYAKENO_SERENADE];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfYozi.CONF_ID_PRONTERA_MARCH];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfYozi.CONF_ID_DUMMY];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfYozi.CONF_ID_BUSHI_FU];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfYozi.CONF_ID_HOSHI_FU];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfYozi.CONF_ID_GOGYO_FU];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfYozi.CONF_ID_TENCHI_SHINRE];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfYozi.CONF_ID_NYAN_BRESSING];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfYozi.CONF_ID_MARIN_FESTIVAL];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfYozi.CONF_ID_SAND_FESTIVAL];
-		this.confDataObj = confDataOBJSorted;
+		const displayOrder = [
+			CCharaConfYozi.CONF_ID_ARUGUTUS_VITA,
+			CCharaConfYozi.CONF_ID_ARUGUTUS_TERUM,
+			CCharaConfYozi.CONF_ID_PRESENSE_AKYACE,
+			CCharaConfYozi.CONF_ID_CONPETENTIA,
+			CCharaConfYozi.CONF_ID_RERIGIO,
+			CCharaConfYozi.CONF_ID_BENEDICTUM,
+			CCharaConfYozi.CONF_ID_CLIMAX_IMPACT,
+			CCharaConfYozi.CONF_ID_SPELL_ENCHANTING,
+			CCharaConfYozi.CONF_ID_KOGEKI_SOCHI_YUKOKA,
+			CCharaConfYozi.CONF_ID_BOGYO_SOCHI_YUKOKA,
+			CCharaConfYozi.CONF_ID_MUSICAL_INTERLUDE,
+			CCharaConfYozi.CONF_ID_YUYAKENO_SERENADE,
+			CCharaConfYozi.CONF_ID_PRONTERA_MARCH,
+			CCharaConfYozi.CONF_ID_DUMMY,
+			CCharaConfYozi.CONF_ID_BUSHI_FU,
+			CCharaConfYozi.CONF_ID_HOSHI_FU,
+			CCharaConfYozi.CONF_ID_GOGYO_FU,
+			CCharaConfYozi.CONF_ID_TENCHI_SHINRE,
+			CCharaConfYozi.CONF_ID_NYAN_BRESSING,
+			CCharaConfYozi.CONF_ID_MARIN_FESTIVAL,
+			CCharaConfYozi.CONF_ID_SAND_FESTIVAL,
+		];
+		this.confDataObj = displayOrder.map(id => this.confDataObj[id]);
 
 	}
-
-
-
-
 
 	/**
 	 * 設定欄テーブルを構築する（サブ　特殊欄構築用）.
@@ -385,13 +356,6 @@ function CCharaConfYozi(confArray) {
 		}
 	}
 
-
-
-
-
 	// 初期化実行
 	this.InitData();
-
-
-
 }
