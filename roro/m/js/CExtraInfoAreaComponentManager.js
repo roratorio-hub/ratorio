@@ -737,7 +737,7 @@ function CExtraInfoAreaComponentManager () {
 			for (i = 0; i <= 10; i++) {
 				valueMinArray[i] = Math.floor(valueMinArray[i] * w_BAI / 100);
 				if(healTarget == 0) {
-					valueMinArray[i] = Math.floor(valueMinArray[i] * (100 + n_tok[92]) / 100);
+					valueMinArray[i] = Math.floor(valueMinArray[i] * (100 + n_tok[ITEM_SP_HEAL_UP_USED]) / 100);
 				}
 				valueMaxArray[i] = valueMinArray[i];
 			}
