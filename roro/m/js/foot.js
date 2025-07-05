@@ -5598,9 +5598,9 @@ if (_APPLY_UPDATE_LV200) {
 		}
 		n_tok[89] += w;
 
-/**
- * ＡＳＰＤ計算　ここから
- */
+		/**
+		 * ＡＳＰＤ計算　ここから
+		 */
 		let aspd = 0;
 		{
 			/** 途中計算用の一時変数 */
@@ -5835,1278 +5835,11 @@ if (_APPLY_UPDATE_LV200) {
 			}
 		}
 
-
-//================================================================================================================================
-//================================================================================================================================
-//====
-//==== ＡＳＰＤ　％増加　ここから
-//====
-//================================================================================================================================
-//================================================================================================================================
-
-		//----------------------------------------------------------------
-		// ランダムエンチャント効果
-		//----------------------------------------------------------------
-		for (idx = ITEM_SP_ASPD_UP; idx <= ITEM_SP_ASPD_UP; idx++) {
-			n_tok[idx] += GetRndOptTotalValue(idx, null, false);
-			// n_tok[idx] += GetRndEnchValue(idx);
-		}
-
-		var w = 0;
-		w += n_tok[12];
-		if(EquipNumSearch(654)) w += Math.floor(SU_AGI / 14);
-		if(n_A_Equip[EQUIP_REGION_ID_ARMS]==484 && SU_STR >= 50) w += 5;
-		if(EquipNumSearch(624)) w += (n_A_Weapon_ATKplus);
-		if(EquipNumSearch(641)) w += n_A_Weapon_ATKplus;
-		if(EquipNumSearch(903) && GetHigherJobSeriesID(n_A_JOB) == 13) w += 20;
-		if(SU_STR >= 77 && EquipNumSearch(944)) w += 4;
-		if(n_A_Weapon_ATKplus >= 7 && n_A_Equip[EQUIP_REGION_ID_ARMS] == 1077) w += 10;
-		if(n_A_Weapon2_ATKplus >= 7 && n_A_Equip[EQUIP_REGION_ID_ARMS_LEFT] == 1077) w += 10;
-		if(n_A_Weapon_ATKplus >= 5 && EquipNumSearch(1081)){
-			w += 5;
-			if(n_A_Weapon_ATKplus >= 9) w += 5;
-		}
-		if(n_A_Weapon_ATKplus >= 5 && EquipNumSearch(1086)){
-			w += 5;
-			if(n_A_Weapon_ATKplus >= 9) w += 5;
-		}
-		if(n_A_Weapon_ATKplus >= 5 && EquipNumSearch(1088)){
-			w += 5;
-			if(n_A_Weapon_ATKplus >= 9) w += 5;
-		}
-
-		if ((IsSameJobClass(JOB_ID_LORDKNIGHT) || IsSameJobClass(JOB_ID_RUNEKNIGHT)) && EquipNumSearch(855)) {
-			w -= 5;
-		}
-
-		if(EquipNumSearch(1121) && GetLowerJobSeriesID(n_A_JOB)==2) w += 3;
-		if(SU_STR >= 95 && EquipNumSearch(1167)) w += 3;
-		if(n_A_HEAD_DEF_PLUS >= 2 && EquipNumSearch(1462)) w += Math.floor(n_A_HEAD_DEF_PLUS / 2);
-		if(n_A_BaseLV >= 80 && EquipNumSearch(1485)){
-			w += 1;
-			if(n_A_BaseLV >= 100) w += 1;
-			if(n_A_BaseLV >= 150) w += 1;
-		}
-		if(SU_AGI >= 100 && EquipNumSearch(1525)){
-			var wx = EquipNumSearch(1525);
-			w += 2 * wx;
-			if(SU_AGI >= 120) w += 2 * wx;
-		}
-		if(EquipNumSearch(1644)) w += n_A_Weapon_ATKplus;
-		if(SU_AGI >= 108 && EquipNumSearch(1791)) w += 1;
-		if(n_A_Weapon_ATKplus >= 2 && EquipNumSearch(1821)) w += Math.floor(n_A_Weapon_ATKplus / 2);
-		if(n_A_BODY_DEF_PLUS >= 6 && EquipNumSearch(2059)) w += n_A_BODY_DEF_PLUS - 5;
-		if(EquipNumSearch(2254)) w += n_A_Weapon_ATKplus;
-		if(SU_VIT >= 108 && EquipNumSearch(2257)) w += -5;
-		if(n_A_HEAD_DEF_PLUS >= 7 && EquipNumSearch(2258)) w += 5;
-		if(n_A_BODY_DEF_PLUS >= 7 && EquipNumSearch(2345)) w += 2;
-		if(EquipNumSearch(1888) && LearnedSkillSearch(SKILL_ID_MACE_SHUREN) == 10) w += 10;
-
-		// 俊敏の時空ブーツ
-		if(n_A_SHOES_DEF_PLUS >= 3 && EquipNumSearch(1919)) {
-			w += 3 * ROUNDDOWN(n_A_SHOES_DEF_PLUS / 3);
-		}
-		if(n_A_SHOES_DEF_PLUS >= 3 && EquipNumSearch(ITEM_ID_SHUNBINNO_ZIKU_BOOTS_S1)) {
-			w += 3 * ROUNDDOWN(n_A_SHOES_DEF_PLUS / 3);
-		}
-
-		if(n_A_HEAD_DEF_PLUS >= 1 && EquipNumSearch(2164)) w += n_A_HEAD_DEF_PLUS;
-		if(CardNumSearch(737)){
-			w += 2 * ROUNDDOWN(SU_AGI / 10);
-			if(EquipNumSearch(2415)) w -= 2 * ROUNDDOWN(SU_AGI / 10);
-		}
-		if(n_A_SHIELD_DEF_PLUS >=8 && EquipNumSearch(2241)) w += -3;
-		if(EquipNumSearch(2294)) w += 6 * ROUNDDOWN(n_A_SHIELD_DEF_PLUS / 3);
-		if(EquipNumSearch(2298)) w += ROUNDDOWN(n_A_BaseLV / 20);
-		if(CardNumSearch(825)){
-			if(n_A_HEAD_DEF_PLUS >= 7) w += 1 * CardNumSearch(825);
-			if(n_A_HEAD_DEF_PLUS >= 9) w += 1 * CardNumSearch(825);
-		}
-		if(n_A_HEAD_DEF_PLUS >= 5 && TimeItemNumSearch(82)){
-			w += 5;
-			if(n_A_HEAD_DEF_PLUS >= 7) w += 10;
-			if(n_A_HEAD_DEF_PLUS >= 9) w += 40;
-		}
-
-		// オウルバロンのマント　時限効果
-		if (TimeItemNumSearch(TIME_ITEM_ID_AWL_BARRONNO_MANT)) {
-			if(n_A_SHOULDER_DEF_PLUS >= 7) w += 10;
-			if(n_A_SHOULDER_DEF_PLUS >= 9) w += 10;
-			if(n_A_SHOULDER_DEF_PLUS >= 10) w += 20;
-		}
-
-		if(n_A_SHOULDER_DEF_PLUS >= 5 && EquipNumSearch(2414)){
-			w += 1 * ROUNDDOWN(SU_AGI / 10);
-			if(n_A_SHOULDER_DEF_PLUS >= 7) w += 1 * ROUNDDOWN(SU_AGI / 10);
-		}
-		if(EquipNumSearch(2456)) w += n_A_Weapon_ATKplus;
-
-		if (UsedSkillSearch(SKILL_ID_FIGHTING_SPIRIT) > 0) {
-			if (EquipNumSearch(ITEM_ID_RUNE_HELM) > 0) {
-				w += 10;
-			}
-			else if (EquipNumSearch(ITEM_ID_ZYASPER_CIRCLET) > 0) {
-				w += 10;
-			}
-			else if (EquipNumSearch(ITEM_ID_TENBINKYUNO_DIADEM) > 0) {
-				if (IsSameJobClass(JOB_ID_RUNEKNIGHT)) {
-					w += 10;
-				}
-			}
-			else if (EquipNumSearch(ITEM_ID_FAFNIR_HELM) > 0) {
-				w += 10;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「貴族の仮面」の、ベースレベル依存の効果
-		//----------------------------------------------------------------
-		if(EquipNumSearch(ITEM_ID_KIZOKUNO_KAMEN)){
-			if (n_A_BaseLV >= 100) {
-				w += 1;
-			}
-			if (n_A_BaseLV >= 150) {
-				w += 1;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「ヴァルキリーハンマー」の、職業による強化
-		//----------------------------------------------------------------
-		if (EquipNumSearch(ITEM_ID_VALKYRIE_HAMMER)) {
-			switch (GetLowerJobSeriesID(n_A_JOB)) {
-
-			// ノービス系
-			case JOB_SERIES_ID_NOVICE:
-				w += 1 * n_A_Weapon_ATKplus;
-				break;
-
-			// ソードマン系
-			case JOB_SERIES_ID_SWORDMAN:
-				break;
-
-			// マーチャント系
-			case JOB_SERIES_ID_MERCHANT:
-				break;
-
-			default:
-				switch (GetHigherJobSeriesID(n_A_JOB)) {
-
-				// プリースト系
-				case JOB_SERIES_ID_PRIEST:
-					w += 1 * n_A_Weapon_ATKplus;
-					break;
-
-				// モンク系
-				case JOB_SERIES_ID_MONK:
-					break;
-				}
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「古びたルーンサークレット」の、精錬による強化
-		//----------------------------------------------------------------
-		if(EquipNumSearch(ITEM_ID_FURUBITA_RUNECIRCRET)) {
-			w += 1 * n_A_HEAD_DEF_PLUS;
-		}
-
-		//----------------------------------------------------------------
-		// 「S-Atk　ライオットチップセット」の、効果
-		// 「S-Matk　ライオットチップセット」の、効果
-		// 「S-Avoid　ライオットチップセット」の、効果
-		// 「S-MaxHP　ライオットチップセット」の、効果
-		// 「S-Quick　ライオットチップセット」の、効果
-		// 「S-Cri　ライオットチップセット」の、効果
-		//----------------------------------------------------------------
-		if(EquipNumSearch(ITEM_SET_ID_RIOTCHIP_S_ATK)
-			|| EquipNumSearch(ITEM_SET_ID_RIOTCHIP_S_MATK)
-			|| EquipNumSearch(ITEM_SET_ID_RIOTCHIP_S_AVOID)
-			|| EquipNumSearch(ITEM_SET_ID_RIOTCHIP_S_MAXHP)
-			|| EquipNumSearch(ITEM_SET_ID_RIOTCHIP_S_QUICK)
-			|| EquipNumSearch(ITEM_SET_ID_RIOTCHIP_S_CRI)
-			){
-
-			// ライオットチップとのセット効果
-			w += 1 * ROUNDDOWN(n_A_HEAD_DEF_PLUS / 2);
-		}
-
-		//----------------------------------------------------------------
-		// 「セリーヌ・キミカード　ノーブルセット」の、精錬による効果
-		//----------------------------------------------------------------
-		if (CardNumSearch(CARD_SET_ID_CELINE_KIMI_NOBLE_CROSS)) {
-			w += 2 * n_A_Weapon_ATKplus;
-		}
-
-		//----------------------------------------------------------------
-		// 「ヴァルキリーナイフ」の、職業による強化
-		//----------------------------------------------------------------
-		if (EquipNumSearch(ITEM_ID_VALKYRIE_KNIFE)) {
-			switch (GetLowerJobSeriesID(n_A_JOB)) {
-
-			// ノービス系
-			case JOB_SERIES_ID_NOVICE:
-				w += 10 * n_A_Weapon_ATKplus * EquipNumSearch(ITEM_ID_VALKYRIE_KNIFE);
-				break;
-
-			// マジシャン系
-			case JOB_SERIES_ID_MAGICIAN:
-				break;
-
-			// シーフ系
-			case JOB_SERIES_ID_THIEF:
-				break;
-
-			default:
-				switch (GetHigherJobSeriesID(n_A_JOB)) {
-
-				// ハンター系
-				case JOB_SERIES_ID_HUNTER:
-					break;
-
-				// バード系、ダンサー系
-				case JOB_SERIES_ID_BARD:
-				case JOB_SERIES_ID_DANCER:
-					w += 10 * n_A_Weapon_ATKplus * EquipNumSearch(ITEM_ID_VALKYRIE_KNIFE);
-					break;
-				}
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「与一の肩掛け」の、＋７以上精錬による強化
-		//----------------------------------------------------------------
-		if (EquipNumSearch(ITEM_ID_YOICHINO_KATAKAE)) {
-			if (n_A_SHOULDER_DEF_PLUS >= 7) {
-				w += 3;
-			}
-			if (n_A_SHOULDER_DEF_PLUS >= 9) {
-				w += 3;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「ガーディアンブースター」の、＋８以上精錬による強化
-		//----------------------------------------------------------------
-		if (EquipNumSearch(ITEM_ID_GUARDIAN_BOOSTER)) {
-			if (n_A_SHOES_DEF_PLUS >= 8) {
-				w += (n_A_SHOES_DEF_PLUS - 7);
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「勇者の怒りセット」の、精錬による強化
-		//----------------------------------------------------------------
-		if(EquipNumSearch(ITEM_SET_ID_YUSHANOIKARI_ORCISH_AXE_ORCISH_SWORD)) {
-			w += 5 * ROUNDDOWN( (n_A_Weapon_ATKplus + n_A_Weapon2_ATKplus) / 2);
-		}
-
-		//----------------------------------------------------------------
-		// 「魔羊の咆哮　クレセントサイダーセット」の、精錬による強化
-		//----------------------------------------------------------------
-		if(EquipNumSearch(ITEM_SET_ID_MAHITSUZINO_HOKO_CRESCENT_CIZER)) {
-			w += 5 * n_A_Weapon_ATKplus;
-		}
-
-		//----------------------------------------------------------------
-		// 「魔羊の咆哮　テグリョンセット」の、精錬による強化
-		//----------------------------------------------------------------
-		if(EquipNumSearch(ITEM_SET_ID_MAHITSUZINO_HOKO_TEGRYONG)
-			|| EquipNumSearch(ITEM_SET_ID_MAHITSUZINO_HOKO_TEGRYONG_S2)) {
-			w += 5 * n_A_Weapon_ATKplus;
-		}
-
-		//----------------------------------------------------------------
-		// 「古王の双刃」の、過剰精錬による強化
-		//----------------------------------------------------------------
-		if (EquipNumSearch(ITEM_ID_KOONO_SOZIN)) {
-			if (n_A_Weapon_ATKplus >= 7) {
-				w += 5;
-			}
-			if (n_A_Weapon_ATKplus >= 9) {
-				w += 5;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「アヴェンジャーブラッディロア」の、過剰精錬による効果
-		//----------------------------------------------------------------
-		if (EquipNumSearch(ITEM_ID_AVENGER_BLOODYROAR)) {
-			if (n_A_Weapon_ATKplus >= 5) w += 5;
-			if (n_A_Weapon_ATKplus >= 7) w += 5;
-		}
-
-		//----------------------------------------------------------------
-		// 「セイヴザキング」の、騎兵修練【未習得】時における、「スピアクイッケン」習得による効果
-		//----------------------------------------------------------------
-		if (LearnedSkillSearch(SKILL_ID_KIHE_SHUREN) == 0) {
-			if (EquipNumSearch(ITEM_ID_SAVE_THE_KING)) {
-				w += 3 * LearnedSkillSearch(SKILL_ID_SPEAR_QUICKEN);
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「魔呪のブーツ」の、精錬による強化
-		//----------------------------------------------------------------
-		if(EquipNumSearch(ITEM_ID_MAZYUNO_BOOTS)) {
-			if (n_A_SHOES_DEF_PLUS >= 7) {
-				w += 10;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「ガイアシールド」の、精錬による効果
-		//----------------------------------------------------------------
-		if (EquipNumSearch(ITEM_ID_GAIA_SHIELD) > 0) {
-			if (n_A_SHIELD_DEF_PLUS >= 8) {
-				if (SU_AGI >= 90) {
-					w += 5;
-				}
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「反逆者のスカーフ」の、スキル習得による強化
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_HANGYAKUSHANO_SCARF)) > 0) {
-			w += 2 * LearnedSkillSearch(SKILL_ID_MASS_SPIRAL) * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「ガーディアンプロセッサ　パイルバンカーセット」の、過剰精錬による強化
-		//----------------------------------------------------------------
-		if (EquipNumSearch(ITEM_SET_ID_GUARDIAN_PROCESSOR_PILEBUNKER)) {
-			if (n_A_Weapon_ATKplus >= 7) {
-				w += 10;
-			}
-			if (n_A_Weapon_ATKplus >= 9) {
-				w += 10;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「ガーディアンプロセッサ　ガーディアンブースターセット」の、精錬による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_SET_ID_GUARDIAN_PROCESSOR_GUARDIAN_BOOSTER)) > 0) {
-			vartmp = 0;
-
-			if (n_A_SHOES_DEF_PLUS >= 7) vartmp += 5;
-			if (n_A_SHOES_DEF_PLUS >= 9) vartmp += 5;
-
-			w += vartmp * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「エンチャント　名誉のニーヴ(迅速)」の、精錬による効果
-		//----------------------------------------------------------------
-		cardCountRight	  = CardNumSearch(CARD_ID_ENCHANT_MEIYONO_NIEVE_ZINSOKU, CARD_REGION_ID_ARMS_RIGHT_ANY);
-		cardCountLeft	  = CardNumSearch(CARD_ID_ENCHANT_MEIYONO_NIEVE_ZINSOKU, CARD_REGION_ID_ARMS_LEFT_ANY);
-		cardCountHeadTop  = CardNumSearch(CARD_ID_ENCHANT_MEIYONO_NIEVE_ZINSOKU, CARD_REGION_ID_HEAD_TOP_ANY);
-		cardCountShield	  = CardNumSearch(CARD_ID_ENCHANT_MEIYONO_NIEVE_ZINSOKU, CARD_REGION_ID_SHIELD_ANY);
-		cardCountBody	  = CardNumSearch(CARD_ID_ENCHANT_MEIYONO_NIEVE_ZINSOKU, CARD_REGION_ID_BODY_ANY);
-		cardCountShoulder = CardNumSearch(CARD_ID_ENCHANT_MEIYONO_NIEVE_ZINSOKU, CARD_REGION_ID_SHOULDER_ANY);
-		cardCountShoes	  = CardNumSearch(CARD_ID_ENCHANT_MEIYONO_NIEVE_ZINSOKU, CARD_REGION_ID_SHOES_ANY);
-		if (cardCountRight + cardCountLeft + cardCountHeadTop + cardCountShield
-			+ cardCountBody + cardCountShoulder + cardCountShoes > 0) {
-
-			// 右手武器へのエンチャント
-			vartmp = 0;
-			if (n_A_Weapon_ATKplus >= 7) vartmp += 3;
-			if (n_A_Weapon_ATKplus >= 9) vartmp += 2;
-			w += vartmp * cardCountRight
-
-			// 左手武器へのエンチャント
-			vartmp = 0;
-			if (n_A_Weapon2_ATKplus >= 7) vartmp += 3;
-			if (n_A_Weapon2_ATKplus >= 9) vartmp += 2;
-			w += vartmp * cardCountLeft
-
-			// 頭防具へのエンチャント
-			vartmp = 0;
-			if (n_A_HEAD_DEF_PLUS >= 7) vartmp += 3;
-			if (n_A_HEAD_DEF_PLUS >= 9) vartmp += 2;
-			w += vartmp * cardCountHeadTop
-
-			// 盾防具へのエンチャント
-			vartmp = 0;
-			if (n_A_SHIELD_DEF_PLUS >= 7) vartmp += 3;
-			if (n_A_SHIELD_DEF_PLUS >= 9) vartmp += 2;
-			w += vartmp * cardCountShield
-
-			// 体防具へのエンチャント
-			vartmp = 0;
-			if (n_A_BODY_DEF_PLUS >= 7) vartmp += 3;
-			if (n_A_BODY_DEF_PLUS >= 9) vartmp += 2;
-			w += vartmp * cardCountBody
-
-			// 肩防具へのエンチャント
-			vartmp = 0;
-			if (n_A_SHOULDER_DEF_PLUS >= 7) vartmp += 3;
-			if (n_A_SHOULDER_DEF_PLUS >= 9) vartmp += 2;
-			w += vartmp * cardCountShoulder
-
-			// 靴防具へのエンチャント
-			vartmp = 0;
-			if (n_A_SHOES_DEF_PLUS >= 7) vartmp += 3;
-			if (n_A_SHOES_DEF_PLUS >= 9) vartmp += 2;
-			w += vartmp * cardCountShoes
-
-			// アクセサリへのエンチャント
-			// 精錬できないので処理不要
-		}
-
-
-		//----------------------------------------------------------------
-		// 「麒麟の角」の、素ＡＧＩによる効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_KIRINNO_TSUNO)) > 0) {
-			if (SU_AGI >= 100) {
-				w += 5 * itemCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「暴徒のスカーフ　グラスセット」の、素ＡＧＩと素ＶＩＴによる効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_SET_ID_BOTONO_SCARF_GLASS)) > 0) {
-			w += 5 * ROUNDDOWN((SU_AGI + SU_VIT) / 80) * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「暴徒のスカーフ　サングラスセット」の、素ＡＧＩと素ＶＩＴによる効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_SET_ID_BOTONO_SCARF_SUNGLASS)) > 0) {
-			w += 5 * ROUNDDOWN((SU_AGI + SU_VIT) / 80) * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「勇者の靴　達人の槌　セット」の、スキル習得による強化
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_SET_ID_YUSHANO_KUTSU_TATSUZINNO_TSUCHI)) > 0) {
-			w += 1 * LearnedSkillSearch(SKILL_ID_DUPLELIGHT) * itemCount;
-		}
-		if ((itemCount = EquipNumSearch(ITEM_SET_ID_YUSHANO_KUTSU_TATSUZINNO_TSUCHI_S2)) > 0) {
-			w += 1 * LearnedSkillSearch(SKILL_ID_DUPLELIGHT) * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「業風石　ペオースグリーブセット」の、精錬による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_SET_ID_GOFUSEKI_PEORTH_GREEVE)) > 0) {
-			vartmp = 0;
-
-			if (n_A_SHOES_DEF_PLUS >= 7) vartmp += 10;
-			if (n_A_SHOES_DEF_PLUS >= 9) vartmp += 10;
-
-			w += vartmp * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「アネモスシールド」の、精錬による効果
-		//----------------------------------------------------------------
-		if (EquipNumSearch(ITEM_ID_ANEMOS_SHIELD) > 0) {
-			if (n_A_SHIELD_DEF_PLUS >= 8) {
-				if (SU_AGI >= 90) {
-					w += 5;
-				}
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「マラクの皮」の、素ＳＴＲと素ＬＵＫによる効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_MARRACONO_KAWA)) > 0) {
-			if (n_A_SHOULDER_DEF_PLUS >= 8) {
-				w += 1 * ROUNDDOWN((SU_STR + SU_LUK) / 20) * itemCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「守護騎士の首飾り　インペリアルセット」の、素ＡＧＩによる効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_SET_ID_SHUGOKISHINO_KUBIKAZARI_IMPERIAL_FEATHER)) > 0) {
-			vartmp = 0;
-
-			if (SU_AGI >= 108) vartmp += 5;
-			if (SU_AGI >= 120) vartmp += 7;
-
-			w += vartmp * itemCount
-		}
-
-		//----------------------------------------------------------------
-		// 「ケミカルグローブ」の、スキル習得による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_CHEMICAL_GLOVE)) > 0) {
-			w += 1 * LearnedSkillSearch(SKILL_ID_CART_KAIZO) * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「陣羽織」の、精錬による効果
-		//----------------------------------------------------------------
-		if (EquipNumSearch(ITEM_ID_ZINBAORI) > 0) {
-			if (n_A_SHOULDER_DEF_PLUS >= 7) w += 3;
-			if (n_A_SHOULDER_DEF_PLUS >= 9) w += 3;
-		}
-
-		//----------------------------------------------------------------
-		// 「Y.S.F.0.1.マント」の、精錬による強化
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_YSF01_MANT)) > 0) {
-			if (n_A_SHOULDER_DEF_PLUS >= 9) {
-				w += 15 * itemCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「天狗の下駄」の、スキル習得による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_TENGUNO_GETA)) > 0) {
-			if (sklLv = LearnedSkillSearch(SKILL_ID_TENKETSU_HAN)) {
-				w += 2 * sklLv * itemCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「獄エンチャント」の、職業による効果
-		//----------------------------------------------------------------
-		if (CardNumSearch(CARD_ID_GOKU)) {
-			// 職業限定の効果
-			if (IsSameJobClass(JOB_ID_MECHANIC)) {
-				w += 20;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「太極の護符　灼熱の剣　デイヴィッドシールドセット」の、精錬による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_SET_ID_TAIKYOKUNO_GOFU_SHAKUNETSUNO_KEN_DIVID_SHIELD)) > 0) {
-			w += 4 * n_A_Weapon_ATKplus * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「太極の護符　浄化の剣　デイヴィッドシールドセット」の、精錬による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_SET_ID_TAIKYOKUNO_GOFU_ZYOKANO_KEN_DIVID_SHIELD)) > 0) {
-			w += 4 * n_A_Weapon_ATKplus * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「太極の護符　奈落の剣　デイヴィッドシールドセット」の、精錬による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_SET_ID_TAIKYOKUNO_GOFU_NARAKUNO_KEN_DIVID_SHIELD)) > 0) {
-			w += 4 * n_A_Weapon_ATKplus * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「灰羽のブーツ　白羽スーツセット」の、精錬による強化
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_SET_ID_HAIHANENO_BOOTS_SHIRAHANO_SUITS)) > 0) {
-			if (n_A_BODY_DEF_PLUS >= 7) {
-				w += 8 * itemCount;
-			}
-			if (n_A_BODY_DEF_PLUS >= 9) {
-				w += 4 * itemCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「トップサイドライダーカード」の、過剰精錬による効果
-		//----------------------------------------------------------------
-		if (cardcount = CardNumSearch(CARD_ID_TOP_SIDE_RIDER)) {
-			switch (n_A_WeaponType) {
-			case ITEM_KIND_STUFF:
-			case ITEM_KIND_STUFF2HAND:
-				// 杖系統のみの効果
-				w += 1 * n_A_Weapon_ATKplus * cardcount;
-				break;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「カニバラウスカード」の、素ＩＮＴによる効果
-		//----------------------------------------------------------------
-		if ((cardCount = CardNumSearch(CARD_ID_CARNIVARAUS)) > 0) {
-			w += 1 * ROUNDDOWN(SU_INT / 10) * cardCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「プラズマラットカード」の、素ＳＴＲによる効果
-		//----------------------------------------------------------------
-		if ((cardCount = CardNumSearch(CARD_ID_PLASMA_RAT)) > 0) {
-			w += 1 * ROUNDDOWN(SU_STR / 10) * cardCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「ラウンドライダーカード」の、素ＡＧＩによる効果
-		//----------------------------------------------------------------
-		if ((cardCount = CardNumSearch(CARD_ID_ROUND_RIDER)) > 0) {
-			if (SU_AGI >= 120) {
-				w += 3 * cardCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「自警団の弓」の、素ＩＮＴによる効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_ZIKEIDANNO_YUMI)) > 0) {
-			w += 1 * ROUNDDOWN(SU_INT / 10) * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「風魔手裏剣・花吹雪」の、精錬による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_FUMASHURIKEN_HANAFUBUKI)) > 0) {
-			w += 1 * n_A_Weapon_ATKplus * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「ニーヴバレッタ　ニーヴ武器セット」の、素ＡＧＩによる効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_SET_ID_NIEVE_VALLETTA_NIEVE_ARMS)) > 0) {
-			w += 1 * ROUNDDOWN(SU_AGI / 10) * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「名も無き剣士のブーツ」の、精錬による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_NAMONAKI_KENNSHINO_BOOTS)) > 0) {
-			w += 1 * n_A_SHOES_DEF_PLUS * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「神喰らいの龍槍」の、精錬による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_KAMIKURAINO_RYUSO)) > 0) {
-			w += 2 * n_A_Weapon_ATKplus * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「悪魔の手」の、過剰精錬による効果
-		//----------------------------------------------------------------
-		if (EquipNumSearch(ITEM_ID_AKUMANO_TE)) {
-			if (n_A_HEAD_DEF_PLUS >= 7) {
-				w += 5;
-			}
-			if (n_A_HEAD_DEF_PLUS >= 9) {
-				w += 5;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「日月神示」の、精錬による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_HITSUKISHINZI)) > 0) {
-			w += 1 * n_A_Weapon_ATKplus * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「巡礼者の靴」の、スキル習得による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_ZYUNREISHANO_KUTSU)) > 0) {
-			if (sklLv = LearnedSkillSearch(SKILL_ID_CANTOCANDIDUS)) {
-				w += 4 * sklLv * itemCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「新鮮な草のネックレス」の、スキル習得による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_SHINSENNA_KUSANO_NECKLACE)) > 0) {
-
-			sklLv = 0;
-
-			sklLv += LearnedSkillSearch(SKILL_ID_PIKKI_TSUKI);
-			sklLv += LearnedSkillSearch(SKILL_ID_ARCLOUSE_DASH);
-			sklLv += LearnedSkillSearch(SKILL_ID_TAROUNO_KIZU);
-			sklLv += LearnedSkillSearch(SKILL_ID_CARROT_BEAT);
-			sklLv += LearnedSkillSearch(SKILL_ID_KEIKAI);
-			sklLv += LearnedSkillSearch(SKILL_ID_MURENO_CHIKARA);
-			sklLv += LearnedSkillSearch(SKILL_ID_SAVAGENO_TAMASHI);
-
-			w += 1 * ROUNDDOWN(sklLv / 5) * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「高級ドラムスーツ」の、精錬による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_KOKYU_DORAM_SUITS)) > 0) {
-			if (n_A_BODY_DEF_PLUS >= 7) {
-				w += 5 * itemCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「特選ドラムスーツ」の、精錬による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_TOKUSEN_DORAM_SUITS)) > 0) {
-			if (n_A_BODY_DEF_PLUS >= 7) {
-				w += 10 * itemCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「高級ドラムケープ」の、精錬による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_KOKYU_DORAM_CAPE)) > 0) {
-			if (n_A_SHOULDER_DEF_PLUS >= 7) {
-				w += 5 * itemCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「特選ドラムケープ」の、精錬による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_TOKUSEN_DORAM_CAPE)) > 0) {
-			if (n_A_SHOULDER_DEF_PLUS >= 7) {
-				w += 15 * itemCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「高級ドラムシューズ」の、精錬による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_KOKYU_DORAM_SHOES)) > 0) {
-			if (n_A_SHOES_DEF_PLUS >= 7) {
-				w += 5 * itemCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「特選ドラムシューズ」の、精錬による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_TOKUSEN_DORAM_SHOES)) > 0) {
-			if (n_A_SHOES_DEF_PLUS >= 7) {
-				w += 10 * itemCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「トラベラーシューズ」の、スキル習得による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_TRAVELER_SHOES)) > 0) {
-			w += 4 * LearnedSkillSearch(SKILL_ID_HARMONIZE) * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「リーブラ」の、職業による効果
-		//----------------------------------------------------------------
-		if (CardNumSearch(CARD_ID_LIBRA, CARD_REGION_ID_HEAD_TOP)) {
-			// 職業限定の効果
-			if (IsSameJobClass(JOB_ID_RUNEKNIGHT)) {
-				w += 1 * n_A_HEAD_DEF_PLUS;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「勇者のブローチ」の、職業による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_YUSHANO_BROACH)) > 0) {
-			if (IsSameJobClass(JOB_ID_ARCBISHOP) || IsSameJobClass(JOB_ID_SHURA)) {
-				w += 10 * itemCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「フローズヴィトニルの鎖　ヴァナルガンドの兜セット」の、精錬による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_SET_ID_FROZVITNIRNO_KUSARI_VANARGANDNO_KABUTO)) > 0) {
-			if (n_A_HEAD_DEF_PLUS >= 6) {
-				w += 5 * itemCount;
-			}
-			if (n_A_HEAD_DEF_PLUS >= 8) {
-				w += 10 * itemCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「フルフォース　ドッペルゲンガーカードセット」の、精錬による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_SET_ID_FULL_FORCE_DOPPELGANGER_CARD)) > 0) {
-			if (n_A_BaseLV <= 99) {
-				w += 2 * n_A_Weapon_ATKplus * itemCount;
-			}
-			else {
-				w += 5 * n_A_Weapon_ATKplus * itemCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「ヘヴンリーオーダー」の、素ＤＥＸによる効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_HEAVENLY_ORDER)) > 0) {
-			w += 2 * Math.floor(SU_DEX / 18) * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「虹色のマフラー」の、スキル習得による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_NIZIIRONO_MUFFLER)) > 0) {
-			if (LearnedSkillSearch(SKILL_ID_FRIGNO_UTA) >= 5) {
-				w += 10 * itemCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「虹色のねこじゃらし　レインボウセット」の、精錬による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_SET_ID_NIZIIRONO_NEKOZYARASHI_RAIN_BO)) > 0) {
-			w += 2 * n_A_HEAD_DEF_PLUS * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「古のメガリスカード」の、素ＬＵＫによる効果
-		//----------------------------------------------------------------
-		if ((cardCount = CardNumSearch(CARD_ID_INISHIENO_MEGLIS)) > 0) {
-			w += 1 * Math.floor(SU_LUK / 10) * cardCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「古のウータンシューターカード」の、素ＬＵＫによる効果
-		//----------------------------------------------------------------
-		if ((cardCount = CardNumSearch(CARD_ID_INISHIENO_WOOTANG_SHOOTER)) > 0) {
-			w += 1 * Math.floor(SU_LUK / 10) * cardCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「八卦の封呪」の、素ＩＮＴと素ＤＥＸによる効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_HAKKEINO_FUZYU)) > 0) {
-			w += 2 * ROUNDDOWN((SU_INT + SU_DEX) / 50) * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「フロンティアブーツ　自警団の弓セット」の、精錬による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_SET_ID_FRONTIER_BOOTS_ZIKEDANNO_YUMI)) > 0) {
-			if (n_A_SHOES_DEF_PLUS >= 7) {
-				w += 6 * ROUNDDOWN(SU_INT / 40) * itemCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「フロンティアブーツ　物影セット」の、精錬による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_SET_ID_FRONTIER_BOOTS_MONOKAGE)) > 0) {
-			if (n_A_SHOES_DEF_PLUS >= 9) {
-				w += 20 * itemCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「ふわふわタンポポシューズ」の、スキル習得による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_FUWAFUWA_TANPOPO_SHOES)) > 0) {
-			w += 5 * LearnedSkillSearch(SKILL_ID_CHATTERING) * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「悪鬼羅刹の指輪」の、スキル習得による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_AKKI_RASETSUNO_YUBIWA)) > 0) {
-			if (LearnedSkillSearch(SKILL_ID_RAIKODAN) >= 5) {
-				 w += 10 * itemCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「アジダハーカの皮」の、ステータスによる効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_AZI_DAHAKANO_KAWA)) > 0) {
-			if (n_A_SHOULDER_DEF_PLUS >= 8) {
-				 w += 2 * Math.floor((SU_VIT + SU_LUK) / 20) * itemCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「ぷりちーウリボウシューズ」の、スキル習得による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_PRETTY_URIBO_SHOES)) > 0) {
-			w += 5 * LearnedSkillSearch(SKILL_ID_KEIKAI) * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「ジャガーノート」の、スキル習得による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_JAGUAR_NOTE)) > 0) {
-			if (LearnedSkillSearch(SKILL_ID_FALLIN_ANGEL) >= 1) {
-				w += 20 * itemCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「ギガンテスカード」の、斧系統の効果
-		//----------------------------------------------------------------
-		cardCountRight = CardNumSearch(CARD_ID_GIGANTES, CARD_REGION_ID_ARMS_RIGHT_ANY);
-		cardCountLeft = CardNumSearch(CARD_ID_GIGANTES, CARD_REGION_ID_ARMS_LEFT_ANY);
-		if (cardCountRight > 0) {
-			if ((n_A_WeaponType == ITEM_KIND_AXE) || (n_A_WeaponType == ITEM_KIND_AXE_2HAND)) {
-				w += 3 * cardCountRight;
-			}
-		}
-		if (cardCountLeft > 0) {
-			if ((n_A_Weapon2Type == ITEM_KIND_AXE) || (n_A_Weapon2Type == ITEM_KIND_AXE_2HAND)) {
-				w += 3 * cardCountLeft;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「イリュージョンテグリョン　魔羊の咆哮セット」の、精錬による強化
-		//----------------------------------------------------------------
-		if(EquipNumSearch(ITEM_SET_ID_ILLUSION_TEGRYONG_MAHITSUZINO_HOKO)) {
-			w += 5 * n_A_Weapon_ATKplus;
-		}
-
-		//----------------------------------------------------------------
-		// 「イリュージョンミリタリーブーツ」の、スキル習得による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_ILLUSION_MILITARY_BOOTS)) > 0) {
-			if (LearnedSkillSearch(SKILL_ID_FAW_MAGIC_DECOY) >= 5) {
-				w += 10 * itemCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「ガーディアンオブソウル」の、素ＡＧＩと素ＶＩＴによる効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_GUARDIAN_OF_SOUL)) > 0) {
-			w += 2 * Math.floor((SU_AGI + SU_VIT) / 18) * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「黒無常帽　覚醒ローブセット」の、精錬による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_SET_ID_KUROMUZYO_BO_KAKUSEI_ROBE)) > 0) {
-			w += 1 * n_A_BODY_DEF_PLUS * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「精神拡張リング」の、スキル習得による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_SEISHIN_KAKUCHO_RING)) > 0) {
-			if (LearnedSkillSearch(SKILL_ID_HELL_INFERNO) >= 5) {
-				w += 15 * itemCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「ぴかぴかニャンニャンクラウン」の、スキル習得による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_PIKAPIKA_NYANNYAN_CROWN)) > 0) {
-			w += 3 * LearnedSkillSearch(SKILL_ID_CHATTERING) * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「よちよちウリボウスタイ」の、スキル習得による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_YOCHIYOCHI_URIBO_SUTAI)) > 0) {
-			w += 2 * LearnedSkillSearch(SKILL_ID_KEIKAI) * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「試験管ブーツ」の、スキル習得による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_SHIKENKAN_BOOTS)) > 0) {
-			w += 4 * LearnedSkillSearch(SKILL_ID_CART_BOOST_WS) * itemCount;
-			w += 4 * LearnedSkillSearch(SKILL_ID_CART_BOOST_GENETIC) * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「スカルリング」の、スキル習得による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_SCALL_RING)) > 0) {
-			if (LearnedSkillSearch(SKILL_ID_TAMASHINO_CHIKUSEKI) >= 5) {
-				w += 15 * itemCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「不死鳥のリング」の、スキル習得による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearchMIG(ITEM_ID_FUSHICHONO_RING)) > 0) {
-			if (LearnedSkillSearch(SKILL_ID_FORCE_OF_BANGUARD) >= 5) {
-				w += 10 * itemCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「あざといケロケロカッパ」の、スキル習得による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearchMIG(ITEM_ID_AZATOI_KEROKERO_KAPPA)) > 0) {
-			if (LearnedSkillSearch(SKILL_ID_CHATTERING) >= 5) {
-				w += 10 * itemCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「ジャスパーリング」の、スキル習得による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearchMIG(ITEM_ID_ZYASPER_RING)) > 0) {
-			if (LearnedSkillSearch(SKILL_ID_SONIC_WAVE) >= 10) {
-				w += 10 * itemCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「崇拝の指輪」の、スキル習得による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearchMIG(ITEM_ID_SUHAINO_YUBIWA)) > 0) {
-			if (LearnedSkillSearch(SKILL_ID_ADORAMUS) >= 10) {
-				w += 15 * itemCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「正義の冠」の、スキル習得による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearchMIG(ITEM_ID_SEIGINO_KANMURI)) > 0) {
-			if (LearnedSkillSearch(SKILL_ID_DEBOTION) >= 5) {
-				w += 10 * itemCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「インペリアル天地スーツ」の、スキル習得による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearchMIG(ITEM_ID_IMPERIAL_TENCHI_SUIT)) > 0) {
-			w += 1 * LearnedSkillSearch(SKILL_ID_TENKETSU_HAN) * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「グレース天地スーツ」の、スキル習得による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearchMIG(ITEM_ID_GRACE_TENCHI_SUIT)) > 0) {
-			w += 2 * LearnedSkillSearch(SKILL_ID_TENKETSU_HAN) * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「メタルピック」の、スキル習得による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearchMIG(ITEM_ID_METAL_PICK)) > 0) {
-			if (LearnedSkillSearch(SKILL_ID_YASURAGINO_KOMORIUTA) >= 5) {
-				w += 10 * itemCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「パラケルススグローブ」の、スキル習得による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearchMIG(ITEM_ID_PARACELSUS_GLOVE)) > 0) {
-			if (LearnedSkillSearch(SKILL_ID_CART_BOOST_GENETIC) >= 5) {
-				w += 10 * itemCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「深海のセドラカード」の、楽器・鞭系統の効果
-		//----------------------------------------------------------------
-		cardCountRight = CardNumSearch(CARD_ID_SHINKAINO_CEDORA, CARD_REGION_ID_ARMS_RIGHT_ANY);
-		cardCountLeft = CardNumSearch(CARD_ID_SHINKAINO_CEDORA, CARD_REGION_ID_ARMS_LEFT_ANY);
-		if (cardCountRight > 0) {
-			if ((n_A_WeaponType == ITEM_KIND_MUSICAL) || (n_A_WeaponType == ITEM_KIND_WHIP)) {
-				w += 3 * cardCountRight;
-			}
-		}
-		if (cardCountLeft > 0) {
-			if ((n_A_Weapon2Type == ITEM_KIND_MUSICAL) || (n_A_Weapon2Type == ITEM_KIND_WHIP)) {
-				w += 3 * cardCountLeft;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「インペリアルコンフィデンシャルメイル」の、スキル習得による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_IMPERIAL_CONFIDENCIAL_MAIL)) > 0) {
-			w += 1 * Math.floor(LearnedSkillSearch(SKILL_ID_SONIC_WAVE) / 3) * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「グレースコンフィデンシャルメイル」の、スキル習得による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_GRACE_CONFIDENCIAL_MAIL)) > 0) {
-			w += 1 * LearnedSkillSearch(SKILL_ID_SONIC_WAVE) * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「ウルフオフィサーハット」の、スキル習得による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_WOLF_OFFICER_HAT)) > 0) {
-			if (LearnedSkillSearch(SKILL_ID_AIMED_BOLT) >= 10) {
-				w += 15 * itemCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「覚醒フルフォース　ドッペルゲンガーカードセット」の、ベースレベルと精錬による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_SET_ID_KAKUSE_FULL_FORCE_DOPPELGANGER_CARD)) > 0) {
-			if (n_A_BaseLV <= 99) {
-				w += 2 * n_A_Weapon_ATKplus * itemCount;
-			}
-			else {
-				w += 5 * n_A_Weapon_ATKplus * itemCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「覚醒フルフォース　封印されたドッペルゲンガーカードセット」の、ベースレベルと精錬による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_SET_ID_KAKUSE_FULL_FORCE_FUINSARETA_DOPPELGANGER_CARD)) > 0) {
-			if (n_A_BaseLV <= 99) {
-				w += 2 * n_A_Weapon_ATKplus * itemCount;
-			}
-			else {
-				w += 5 * n_A_Weapon_ATKplus * itemCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「フルフォース　封印されたドッペルゲンガーカードセット」の、精錬による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_SET_ID_FULL_FORCE_FUINSARETA_DOPPELGANGER_CARD)) > 0) {
-			if (n_A_BaseLV <= 99) {
-				w += 1 * n_A_Weapon_ATKplus * itemCount;
-			}
-			else {
-				w += 2 * n_A_Weapon_ATKplus * itemCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「ミリタリーグローブ」の、スキル習得による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_MILITARY_GLOVE)) > 0) {
-			if (LearnedSkillSearch(SKILL_ID_AXE_BOOMERANG) >= 5) {
-				w += 10 * itemCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「怨霊怪異の耳」の、スキル習得による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_ONRYO_KAIINO_MIMI)) > 0) {
-			if (LearnedSkillSearch(SKILL_ID_RAIKODAN) >= 5) {
-				w += 15 * itemCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「ゾディアック　白羊宮のマント」セットの、職業による効果
-		//----------------------------------------------------------------
-		if (CardNumSearch(CARD_SET_ID_ENCHANT_ZODIAC_HAKUYOKYUNO_MANT)) {
-			if (IsSameJobClass(JOB_ID_ROYALGUARD)) {
-				w += 2 * n_A_SHOULDER_DEF_PLUS;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「エレメンタルポゼッション」の、スキル習得による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_ELEMENTAL_POSSESSION)) > 0) {
-			w += 1 * LearnedSkillSearch(SKILL_ID_SUMMON_AGNI) * itemCount;
-			w += 1 * LearnedSkillSearch(SKILL_ID_SUMMON_AQUA) * itemCount;
-			w += 1 * LearnedSkillSearch(SKILL_ID_SUMMON_VENTOS) * itemCount;
-			w += 1 * LearnedSkillSearch(SKILL_ID_SUMMON_TERA) * itemCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「魔力中毒プラガカード」の、斧系統の効果
-		//----------------------------------------------------------------
-		cardCountRight = CardNumSearch(CARD_ID_MARYOKU_CHUDOKU_PLAGA, CARD_REGION_ID_ARMS_RIGHT_ANY);
-		cardCountLeft = CardNumSearch(CARD_ID_MARYOKU_CHUDOKU_PLAGA, CARD_REGION_ID_ARMS_LEFT_ANY);
-		if (cardCountRight > 0) {
-			if (n_A_WeaponType == ITEM_KIND_FIST) {
-				w += 3 * cardCountRight;
-			}
-		}
-		if (cardCountLeft > 0) {
-			if (n_A_Weapon2Type == ITEM_KIND_FIST) {
-				w += 3 * cardCountLeft;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「ミステリーウィング」の、素ステータスによる効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearchMIG(ITEM_ID_MYSTERY_WING)) > 0) {
-			if (GetTotalPureBasicStatus() >= 400) {
-				w += 15 * itemCount;
-			}
-		}
-
-
-
-
-
-// MIGRATION 暫定措置
-g_ITEM_SP_ASPD_UP_value_forCalcData = w;
-
-
-
-		if(n_A_PassSkill7[22]) w += 10;
-
-		//----------------------------------------------------------------
-		// 「三次職支援　ペインキラー」の効果
-		//----------------------------------------------------------------
-		w -= 10 * g_confDataSanzi[CCharaConfSanzi.CONF_ID_PAIN_KILLER];
-
-		//----------------------------------------------------------------
-		// 「修羅　点穴 -反-」の効果
-		//----------------------------------------------------------------
-		w += Math.floor(SU_AGI * UsedSkillSearch(SKILL_ID_TENKETSU_HAN) / 60);
-
-		//----------------------------------------------------------------
-		// 「ガンスリンガー　ガトリングフィーバー」の効果
-		//----------------------------------------------------------------
-		if (n_A_WeaponType == ITEM_KIND_NONE || n_A_WeaponType == ITEM_KIND_GATLINGGUN) {
-			w += UsedSkillSearch(SKILL_ID_GATLING_FEVER);
-		}
-
-		//----------------------------------------------------------------
-		// 「モンク　金剛」の効果
-		//----------------------------------------------------------------
-		if (UsedSkillSearch(SKILL_ID_KONGO) > 0) {
-			w -= 25;
-		}
-
-		//----------------------------------------------------------------
-		// 「シャドウチェイサー　インビジビリティ」の効果
-		//----------------------------------------------------------------
-		if (UsedSkillSearch(SKILL_ID_INVISIBILITY) > 0) {
-			w -= (50 - 10 * UsedSkillSearch(SKILL_ID_INVISIBILITY));
-		}
-
-		//----------------------------------------------------------------
-		// 「星帝　星の構え」の効果
-		//----------------------------------------------------------------
-		w += 5 * UsedSkillSearch(SKILL_ID_HOSHINO_KAMAE);
-
-		if(n_A_PassSkill3[11]) w -= 3 * n_A_PassSkill3[11];
-
-		if(n_A_IJYOU[5]) w -= 30;
-
-
-
-		//----------------------------------------------------------------
-		// 「性能カスタマイズ」の、効果
-		//----------------------------------------------------------------
-		confval = g_objCharaConfCustomStatus.GetConf(CCharaConfCustomStatus.CONF_ID_ASPD_UP);
-		if (confval != 0) {
-			w += confval;
-		}
-
-
-
+		let aspd_up_percent = GetAdditionalAspdPercent();
 		// 拡張表示用にデータを保存
-		CExtraInfoAreaComponentManager.dispDataMap.set(ITEM_SP_ASPD_UP, w);
-
-
-
+		CExtraInfoAreaComponentManager.dispDataMap.set(ITEM_SP_ASPD_UP, aspd_up_percent);
 		// ASPD計算
-		aspd += (200 - aspd) * (w / 100);
-
-
-
-
+		aspd += (200 - aspd) * (aspd_up_percent / 100);
 
 //================================================================================================================================
 //================================================================================================================================
@@ -7124,7 +5857,7 @@ g_ITEM_SP_ASPD_UP_value_forCalcData = w;
 			// n_tok[idx] += GetRndEnchValue(idx);
 		}
 
-		var aspdPlusValue = n_tok[ITEM_SP_ASPD_PLUS];
+		let aspdPlusValue = n_tok[ITEM_SP_ASPD_PLUS];
 
 		if(EquipNumSearch(1339)) aspdPlusValue += ROUNDDOWN(n_A_Weapon_ATKplus / 2);
 		if(SU_AGI >= 120 && EquipNumSearch(1311)) aspdPlusValue += 1;
@@ -21905,6 +20638,1236 @@ g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = w;
 	}
 
 	return [charaData, n_tok, mobData, attackMethodConfArray];
+}
+
+/**
+ * 公式サイトで「攻撃速度 + ◯%」と表記されるASPDの増加値を取得する
+ * @returns {Number} ASPDが増加される％
+ */
+function GetAdditionalAspdPercent() {
+	/** 最終的に返されるASPD増加率 */
+    let tmp_percent = 0;
+    let vartmp = 0;
+    let sklLv = 0;
+    let cardCountRight = 0;
+    let cardCountLeft = 0;
+    let cardCountHeadTop = 0;
+    let cardCountShield = 0;
+    let cardCountBody = 0;
+    let cardCountShoulder = 0;
+    let cardCountShoes = 0;
+    //----------------------------------------------------------------
+    // ランダムエンチャント効果
+    //----------------------------------------------------------------
+    for (let idx = ITEM_SP_ASPD_UP; idx <= ITEM_SP_ASPD_UP; idx++) {
+        n_tok[idx] += GetRndOptTotalValue(idx, null, false);
+    }
+
+    tmp_percent += n_tok[ITEM_SP_ASPD_UP];
+    if (EquipNumSearch(654)) tmp_percent += Math.floor(SU_AGI / 14);
+    if (n_A_Equip[EQUIP_REGION_ID_ARMS] == 484 && SU_STR >= 50) tmp_percent += 5;
+    if (EquipNumSearch(624)) tmp_percent += (n_A_Weapon_ATKplus);
+    if (EquipNumSearch(641)) tmp_percent += n_A_Weapon_ATKplus;
+    if (EquipNumSearch(903) && GetHigherJobSeriesID(n_A_JOB) == 13) tmp_percent += 20;
+    if (SU_STR >= 77 && EquipNumSearch(944)) tmp_percent += 4;
+    if (n_A_Weapon_ATKplus >= 7 && n_A_Equip[EQUIP_REGION_ID_ARMS] == 1077) tmp_percent += 10;
+    if (n_A_Weapon2_ATKplus >= 7 && n_A_Equip[EQUIP_REGION_ID_ARMS_LEFT] == 1077) tmp_percent += 10;
+    if (n_A_Weapon_ATKplus >= 5 && EquipNumSearch(1081)) {
+        tmp_percent += 5;
+        if (n_A_Weapon_ATKplus >= 9) tmp_percent += 5;
+    }
+    if (n_A_Weapon_ATKplus >= 5 && EquipNumSearch(1086)) {
+        tmp_percent += 5;
+        if (n_A_Weapon_ATKplus >= 9) tmp_percent += 5;
+    }
+    if (n_A_Weapon_ATKplus >= 5 && EquipNumSearch(1088)) {
+        tmp_percent += 5;
+        if (n_A_Weapon_ATKplus >= 9) tmp_percent += 5;
+    }
+
+    if ((IsSameJobClass(JOB_ID_LORDKNIGHT) || IsSameJobClass(JOB_ID_RUNEKNIGHT)) && EquipNumSearch(855)) {
+        tmp_percent -= 5;
+    }
+
+    if (EquipNumSearch(1121) && GetLowerJobSeriesID(n_A_JOB) == 2) tmp_percent += 3;
+    if (SU_STR >= 95 && EquipNumSearch(1167)) tmp_percent += 3;
+    if (n_A_HEAD_DEF_PLUS >= 2 && EquipNumSearch(1462)) tmp_percent += Math.floor(n_A_HEAD_DEF_PLUS / 2);
+    if (n_A_BaseLV >= 80 && EquipNumSearch(1485)) {
+        tmp_percent += 1;
+        if (n_A_BaseLV >= 100) tmp_percent += 1;
+        if (n_A_BaseLV >= 150) tmp_percent += 1;
+    }
+    if (SU_AGI >= 100 && EquipNumSearch(1525)) {
+        let wx = EquipNumSearch(1525);
+        tmp_percent += 2 * wx;
+        if (SU_AGI >= 120) tmp_percent += 2 * wx;
+    }
+    if (EquipNumSearch(1644)) tmp_percent += n_A_Weapon_ATKplus;
+    if (SU_AGI >= 108 && EquipNumSearch(1791)) tmp_percent += 1;
+    if (n_A_Weapon_ATKplus >= 2 && EquipNumSearch(1821)) tmp_percent += Math.floor(n_A_Weapon_ATKplus / 2);
+    if (n_A_BODY_DEF_PLUS >= 6 && EquipNumSearch(2059)) tmp_percent += n_A_BODY_DEF_PLUS - 5;
+    if (EquipNumSearch(2254)) tmp_percent += n_A_Weapon_ATKplus;
+    if (SU_VIT >= 108 && EquipNumSearch(2257)) tmp_percent += -5;
+    if (n_A_HEAD_DEF_PLUS >= 7 && EquipNumSearch(2258)) tmp_percent += 5;
+    if (n_A_BODY_DEF_PLUS >= 7 && EquipNumSearch(2345)) tmp_percent += 2;
+    if (EquipNumSearch(1888) && LearnedSkillSearch(SKILL_ID_MACE_SHUREN) == 10) tmp_percent += 10;
+
+    // 俊敏の時空ブーツ
+    if (n_A_SHOES_DEF_PLUS >= 3 && EquipNumSearch(1919)) {
+        tmp_percent += 3 * ROUNDDOWN(n_A_SHOES_DEF_PLUS / 3);
+    }
+    if (n_A_SHOES_DEF_PLUS >= 3 && EquipNumSearch(ITEM_ID_SHUNBINNO_ZIKU_BOOTS_S1)) {
+        tmp_percent += 3 * ROUNDDOWN(n_A_SHOES_DEF_PLUS / 3);
+    }
+
+    if (n_A_HEAD_DEF_PLUS >= 1 && EquipNumSearch(2164)) tmp_percent += n_A_HEAD_DEF_PLUS;
+    if (CardNumSearch(737)) {
+        tmp_percent += 2 * ROUNDDOWN(SU_AGI / 10);
+        if (EquipNumSearch(2415)) tmp_percent -= 2 * ROUNDDOWN(SU_AGI / 10);
+    }
+    if (n_A_SHIELD_DEF_PLUS >= 8 && EquipNumSearch(2241)) tmp_percent += -3;
+    if (EquipNumSearch(2294)) tmp_percent += 6 * ROUNDDOWN(n_A_SHIELD_DEF_PLUS / 3);
+    if (EquipNumSearch(2298)) tmp_percent += ROUNDDOWN(n_A_BaseLV / 20);
+    if (CardNumSearch(825)) {
+        if (n_A_HEAD_DEF_PLUS >= 7) tmp_percent += 1 * CardNumSearch(825);
+        if (n_A_HEAD_DEF_PLUS >= 9) tmp_percent += 1 * CardNumSearch(825);
+    }
+    if (n_A_HEAD_DEF_PLUS >= 5 && TimeItemNumSearch(82)) {
+        tmp_percent += 5;
+        if (n_A_HEAD_DEF_PLUS >= 7) tmp_percent += 10;
+        if (n_A_HEAD_DEF_PLUS >= 9) tmp_percent += 40;
+    }
+
+    // オウルバロンのマント　時限効果
+    if (TimeItemNumSearch(TIME_ITEM_ID_AWL_BARRONNO_MANT)) {
+        if (n_A_SHOULDER_DEF_PLUS >= 7) tmp_percent += 10;
+        if (n_A_SHOULDER_DEF_PLUS >= 9) tmp_percent += 10;
+        if (n_A_SHOULDER_DEF_PLUS >= 10) tmp_percent += 20;
+    }
+
+    if (n_A_SHOULDER_DEF_PLUS >= 5 && EquipNumSearch(2414)) {
+        tmp_percent += 1 * ROUNDDOWN(SU_AGI / 10);
+        if (n_A_SHOULDER_DEF_PLUS >= 7) tmp_percent += 1 * ROUNDDOWN(SU_AGI / 10);
+    }
+    if (EquipNumSearch(2456)) tmp_percent += n_A_Weapon_ATKplus;
+
+    if (UsedSkillSearch(SKILL_ID_FIGHTING_SPIRIT) > 0) {
+        if (EquipNumSearch(ITEM_ID_RUNE_HELM) > 0) {
+            tmp_percent += 10;
+        } else if (EquipNumSearch(ITEM_ID_ZYASPER_CIRCLET) > 0) {
+            tmp_percent += 10;
+        } else if (EquipNumSearch(ITEM_ID_TENBINKYUNO_DIADEM) > 0) {
+            if (IsSameJobClass(JOB_ID_RUNEKNIGHT)) {
+                tmp_percent += 10;
+            }
+        } else if (EquipNumSearch(ITEM_ID_FAFNIR_HELM) > 0) {
+            tmp_percent += 10;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「貴族の仮面」の、ベースレベル依存の効果
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_ID_KIZOKUNO_KAMEN)) {
+        if (n_A_BaseLV >= 100) {
+            tmp_percent += 1;
+        }
+        if (n_A_BaseLV >= 150) {
+            tmp_percent += 1;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「ヴァルキリーハンマー」の、職業による強化
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_ID_VALKYRIE_HAMMER)) {
+        switch (GetLowerJobSeriesID(n_A_JOB)) {
+            // ノービス系
+            case JOB_SERIES_ID_NOVICE:
+                tmp_percent += 1 * n_A_Weapon_ATKplus;
+                break;
+                // ソードマン系
+            case JOB_SERIES_ID_SWORDMAN:
+                break;
+                // マーチャント系
+            case JOB_SERIES_ID_MERCHANT:
+                break;
+            default:
+                switch (GetHigherJobSeriesID(n_A_JOB)) {
+                    // プリースト系
+                    case JOB_SERIES_ID_PRIEST:
+                        tmp_percent += 1 * n_A_Weapon_ATKplus;
+                        break;
+                        // モンク系
+                    case JOB_SERIES_ID_MONK:
+                        break;
+                }
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「古びたルーンサークレット」の、精錬による強化
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_ID_FURUBITA_RUNECIRCRET)) {
+        tmp_percent += 1 * n_A_HEAD_DEF_PLUS;
+    }
+
+    //----------------------------------------------------------------
+    // 「S-Atk　ライオットチップセット」の、効果
+    // 「S-Matk　ライオットチップセット」の、効果
+    // 「S-Avoid　ライオットチップセット」の、効果
+    // 「S-MaxHP　ライオットチップセット」の、効果
+    // 「S-Quick　ライオットチップセット」の、効果
+    // 「S-Cri　ライオットチップセット」の、効果
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_SET_ID_RIOTCHIP_S_ATK) ||
+        EquipNumSearch(ITEM_SET_ID_RIOTCHIP_S_MATK) ||
+        EquipNumSearch(ITEM_SET_ID_RIOTCHIP_S_AVOID) ||
+        EquipNumSearch(ITEM_SET_ID_RIOTCHIP_S_MAXHP) ||
+        EquipNumSearch(ITEM_SET_ID_RIOTCHIP_S_QUICK) ||
+        EquipNumSearch(ITEM_SET_ID_RIOTCHIP_S_CRI)
+    ) {
+
+        // ライオットチップとのセット効果
+        tmp_percent += 1 * ROUNDDOWN(n_A_HEAD_DEF_PLUS / 2);
+    }
+
+    //----------------------------------------------------------------
+    // 「セリーヌ・キミカード　ノーブルセット」の、精錬による効果
+    //----------------------------------------------------------------
+    if (CardNumSearch(CARD_SET_ID_CELINE_KIMI_NOBLE_CROSS)) {
+        tmp_percent += 2 * n_A_Weapon_ATKplus;
+    }
+
+    //----------------------------------------------------------------
+    // 「ヴァルキリーナイフ」の、職業による強化
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_ID_VALKYRIE_KNIFE)) {
+        switch (GetLowerJobSeriesID(n_A_JOB)) {
+            // ノービス系
+            case JOB_SERIES_ID_NOVICE:
+                tmp_percent += 10 * n_A_Weapon_ATKplus * EquipNumSearch(ITEM_ID_VALKYRIE_KNIFE);
+                break;
+                // マジシャン系
+            case JOB_SERIES_ID_MAGICIAN:
+                break;
+                // シーフ系
+            case JOB_SERIES_ID_THIEF:
+                break;
+            default:
+                switch (GetHigherJobSeriesID(n_A_JOB)) {
+                    // ハンター系
+                    case JOB_SERIES_ID_HUNTER:
+                        break;
+                        // バード系、ダンサー系
+                    case JOB_SERIES_ID_BARD:
+                    case JOB_SERIES_ID_DANCER:
+                        tmp_percent += 10 * n_A_Weapon_ATKplus * EquipNumSearch(ITEM_ID_VALKYRIE_KNIFE);
+                        break;
+                }
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「与一の肩掛け」の、＋７以上精錬による強化
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_ID_YOICHINO_KATAKAE)) {
+        if (n_A_SHOULDER_DEF_PLUS >= 7) {
+            tmp_percent += 3;
+        }
+        if (n_A_SHOULDER_DEF_PLUS >= 9) {
+            tmp_percent += 3;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「ガーディアンブースター」の、＋８以上精錬による強化
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_ID_GUARDIAN_BOOSTER)) {
+        if (n_A_SHOES_DEF_PLUS >= 8) {
+            tmp_percent += (n_A_SHOES_DEF_PLUS - 7);
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「勇者の怒りセット」の、精錬による強化
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_SET_ID_YUSHANOIKARI_ORCISH_AXE_ORCISH_SWORD)) {
+        tmp_percent += 5 * ROUNDDOWN((n_A_Weapon_ATKplus + n_A_Weapon2_ATKplus) / 2);
+    }
+
+    //----------------------------------------------------------------
+    // 「魔羊の咆哮　クレセントサイダーセット」の、精錬による強化
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_SET_ID_MAHITSUZINO_HOKO_CRESCENT_CIZER)) {
+        tmp_percent += 5 * n_A_Weapon_ATKplus;
+    }
+
+    //----------------------------------------------------------------
+    // 「魔羊の咆哮　テグリョンセット」の、精錬による強化
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_SET_ID_MAHITSUZINO_HOKO_TEGRYONG) ||
+        EquipNumSearch(ITEM_SET_ID_MAHITSUZINO_HOKO_TEGRYONG_S2)) {
+        tmp_percent += 5 * n_A_Weapon_ATKplus;
+    }
+
+    //----------------------------------------------------------------
+    // 「古王の双刃」の、過剰精錬による強化
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_ID_KOONO_SOZIN)) {
+        if (n_A_Weapon_ATKplus >= 7) {
+            tmp_percent += 5;
+        }
+        if (n_A_Weapon_ATKplus >= 9) {
+            tmp_percent += 5;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「アヴェンジャーブラッディロア」の、過剰精錬による効果
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_ID_AVENGER_BLOODYROAR)) {
+        if (n_A_Weapon_ATKplus >= 5) tmp_percent += 5;
+        if (n_A_Weapon_ATKplus >= 7) tmp_percent += 5;
+    }
+
+    //----------------------------------------------------------------
+    // 「セイヴザキング」の、騎兵修練【未習得】時における、「スピアクイッケン」習得による効果
+    //----------------------------------------------------------------
+    if (LearnedSkillSearch(SKILL_ID_KIHE_SHUREN) == 0) {
+        if (EquipNumSearch(ITEM_ID_SAVE_THE_KING)) {
+            tmp_percent += 3 * LearnedSkillSearch(SKILL_ID_SPEAR_QUICKEN);
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「魔呪のブーツ」の、精錬による強化
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_ID_MAZYUNO_BOOTS)) {
+        if (n_A_SHOES_DEF_PLUS >= 7) {
+            tmp_percent += 10;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「ガイアシールド」の、精錬による効果
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_ID_GAIA_SHIELD) > 0) {
+        if (n_A_SHIELD_DEF_PLUS >= 8) {
+            if (SU_AGI >= 90) {
+                tmp_percent += 5;
+            }
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「反逆者のスカーフ」の、スキル習得による強化
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_HANGYAKUSHANO_SCARF)) > 0) {
+        tmp_percent += 2 * LearnedSkillSearch(SKILL_ID_MASS_SPIRAL) * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「ガーディアンプロセッサ　パイルバンカーセット」の、過剰精錬による強化
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_SET_ID_GUARDIAN_PROCESSOR_PILEBUNKER)) {
+        if (n_A_Weapon_ATKplus >= 7) {
+            tmp_percent += 10;
+        }
+        if (n_A_Weapon_ATKplus >= 9) {
+            tmp_percent += 10;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「ガーディアンプロセッサ　ガーディアンブースターセット」の、精錬による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_SET_ID_GUARDIAN_PROCESSOR_GUARDIAN_BOOSTER)) > 0) {
+        vartmp = 0;
+
+        if (n_A_SHOES_DEF_PLUS >= 7) vartmp += 5;
+        if (n_A_SHOES_DEF_PLUS >= 9) vartmp += 5;
+
+        tmp_percent += vartmp * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「エンチャント　名誉のニーヴ(迅速)」の、精錬による効果
+    //----------------------------------------------------------------
+    cardCountRight = CardNumSearch(CARD_ID_ENCHANT_MEIYONO_NIEVE_ZINSOKU, CARD_REGION_ID_ARMS_RIGHT_ANY);
+    cardCountLeft = CardNumSearch(CARD_ID_ENCHANT_MEIYONO_NIEVE_ZINSOKU, CARD_REGION_ID_ARMS_LEFT_ANY);
+    cardCountHeadTop = CardNumSearch(CARD_ID_ENCHANT_MEIYONO_NIEVE_ZINSOKU, CARD_REGION_ID_HEAD_TOP_ANY);
+    cardCountShield = CardNumSearch(CARD_ID_ENCHANT_MEIYONO_NIEVE_ZINSOKU, CARD_REGION_ID_SHIELD_ANY);
+    cardCountBody = CardNumSearch(CARD_ID_ENCHANT_MEIYONO_NIEVE_ZINSOKU, CARD_REGION_ID_BODY_ANY);
+    cardCountShoulder = CardNumSearch(CARD_ID_ENCHANT_MEIYONO_NIEVE_ZINSOKU, CARD_REGION_ID_SHOULDER_ANY);
+    cardCountShoes = CardNumSearch(CARD_ID_ENCHANT_MEIYONO_NIEVE_ZINSOKU, CARD_REGION_ID_SHOES_ANY);
+    if (cardCountRight + cardCountLeft + cardCountHeadTop + cardCountShield +
+        cardCountBody + cardCountShoulder + cardCountShoes > 0) {
+
+        // 右手武器へのエンチャント
+        vartmp = 0;
+        if (n_A_Weapon_ATKplus >= 7) vartmp += 3;
+        if (n_A_Weapon_ATKplus >= 9) vartmp += 2;
+        tmp_percent += vartmp * cardCountRight
+
+        // 左手武器へのエンチャント
+        vartmp = 0;
+        if (n_A_Weapon2_ATKplus >= 7) vartmp += 3;
+        if (n_A_Weapon2_ATKplus >= 9) vartmp += 2;
+        tmp_percent += vartmp * cardCountLeft
+
+        // 頭防具へのエンチャント
+        vartmp = 0;
+        if (n_A_HEAD_DEF_PLUS >= 7) vartmp += 3;
+        if (n_A_HEAD_DEF_PLUS >= 9) vartmp += 2;
+        tmp_percent += vartmp * cardCountHeadTop
+
+        // 盾防具へのエンチャント
+        vartmp = 0;
+        if (n_A_SHIELD_DEF_PLUS >= 7) vartmp += 3;
+        if (n_A_SHIELD_DEF_PLUS >= 9) vartmp += 2;
+        tmp_percent += vartmp * cardCountShield
+
+        // 体防具へのエンチャント
+        vartmp = 0;
+        if (n_A_BODY_DEF_PLUS >= 7) vartmp += 3;
+        if (n_A_BODY_DEF_PLUS >= 9) vartmp += 2;
+        tmp_percent += vartmp * cardCountBody
+
+        // 肩防具へのエンチャント
+        vartmp = 0;
+        if (n_A_SHOULDER_DEF_PLUS >= 7) vartmp += 3;
+        if (n_A_SHOULDER_DEF_PLUS >= 9) vartmp += 2;
+        tmp_percent += vartmp * cardCountShoulder
+
+        // 靴防具へのエンチャント
+        vartmp = 0;
+        if (n_A_SHOES_DEF_PLUS >= 7) vartmp += 3;
+        if (n_A_SHOES_DEF_PLUS >= 9) vartmp += 2;
+        tmp_percent += vartmp * cardCountShoes
+
+        // アクセサリへのエンチャント
+        // 精錬できないので処理不要
+    }
+
+    //----------------------------------------------------------------
+    // 「麒麟の角」の、素ＡＧＩによる効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_KIRINNO_TSUNO)) > 0) {
+        if (SU_AGI >= 100) {
+            tmp_percent += 5 * itemCount;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「暴徒のスカーフ　グラスセット」の、素ＡＧＩと素ＶＩＴによる効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_SET_ID_BOTONO_SCARF_GLASS)) > 0) {
+        tmp_percent += 5 * ROUNDDOWN((SU_AGI + SU_VIT) / 80) * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「暴徒のスカーフ　サングラスセット」の、素ＡＧＩと素ＶＩＴによる効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_SET_ID_BOTONO_SCARF_SUNGLASS)) > 0) {
+        tmp_percent += 5 * ROUNDDOWN((SU_AGI + SU_VIT) / 80) * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「勇者の靴　達人の槌　セット」の、スキル習得による強化
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_SET_ID_YUSHANO_KUTSU_TATSUZINNO_TSUCHI)) > 0) {
+        tmp_percent += 1 * LearnedSkillSearch(SKILL_ID_DUPLELIGHT) * itemCount;
+    }
+    if ((itemCount = EquipNumSearch(ITEM_SET_ID_YUSHANO_KUTSU_TATSUZINNO_TSUCHI_S2)) > 0) {
+        tmp_percent += 1 * LearnedSkillSearch(SKILL_ID_DUPLELIGHT) * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「業風石　ペオースグリーブセット」の、精錬による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_SET_ID_GOFUSEKI_PEORTH_GREEVE)) > 0) {
+        vartmp = 0;
+        if (n_A_SHOES_DEF_PLUS >= 7) vartmp += 10;
+        if (n_A_SHOES_DEF_PLUS >= 9) vartmp += 10;
+        tmp_percent += vartmp * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「アネモスシールド」の、精錬による効果
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_ID_ANEMOS_SHIELD) > 0) {
+        if (n_A_SHIELD_DEF_PLUS >= 8) {
+            if (SU_AGI >= 90) {
+                tmp_percent += 5;
+            }
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「マラクの皮」の、素ＳＴＲと素ＬＵＫによる効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_MARRACONO_KAWA)) > 0) {
+        if (n_A_SHOULDER_DEF_PLUS >= 8) {
+            tmp_percent += 1 * ROUNDDOWN((SU_STR + SU_LUK) / 20) * itemCount;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「守護騎士の首飾り　インペリアルセット」の、素ＡＧＩによる効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_SET_ID_SHUGOKISHINO_KUBIKAZARI_IMPERIAL_FEATHER)) > 0) {
+        vartmp = 0;
+        if (SU_AGI >= 108) vartmp += 5;
+        if (SU_AGI >= 120) vartmp += 7;
+        tmp_percent += vartmp * itemCount
+    }
+
+    //----------------------------------------------------------------
+    // 「ケミカルグローブ」の、スキル習得による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_CHEMICAL_GLOVE)) > 0) {
+        tmp_percent += 1 * LearnedSkillSearch(SKILL_ID_CART_KAIZO) * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「陣羽織」の、精錬による効果
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_ID_ZINBAORI) > 0) {
+        if (n_A_SHOULDER_DEF_PLUS >= 7) tmp_percent += 3;
+        if (n_A_SHOULDER_DEF_PLUS >= 9) tmp_percent += 3;
+    }
+
+    //----------------------------------------------------------------
+    // 「Y.S.F.0.1.マント」の、精錬による強化
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_YSF01_MANT)) > 0) {
+        if (n_A_SHOULDER_DEF_PLUS >= 9) {
+            tmp_percent += 15 * itemCount;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「天狗の下駄」の、スキル習得による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_TENGUNO_GETA)) > 0) {
+        if (sklLv = LearnedSkillSearch(SKILL_ID_TENKETSU_HAN)) {
+            tmp_percent += 2 * sklLv * itemCount;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「獄エンチャント」の、職業による効果
+    //----------------------------------------------------------------
+    if (CardNumSearch(CARD_ID_GOKU)) {
+        // 職業限定の効果
+        if (IsSameJobClass(JOB_ID_MECHANIC)) {
+            tmp_percent += 20;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「太極の護符　灼熱の剣　デイヴィッドシールドセット」の、精錬による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_SET_ID_TAIKYOKUNO_GOFU_SHAKUNETSUNO_KEN_DIVID_SHIELD)) > 0) {
+        tmp_percent += 4 * n_A_Weapon_ATKplus * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「太極の護符　浄化の剣　デイヴィッドシールドセット」の、精錬による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_SET_ID_TAIKYOKUNO_GOFU_ZYOKANO_KEN_DIVID_SHIELD)) > 0) {
+        tmp_percent += 4 * n_A_Weapon_ATKplus * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「太極の護符　奈落の剣　デイヴィッドシールドセット」の、精錬による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_SET_ID_TAIKYOKUNO_GOFU_NARAKUNO_KEN_DIVID_SHIELD)) > 0) {
+        tmp_percent += 4 * n_A_Weapon_ATKplus * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「灰羽のブーツ　白羽スーツセット」の、精錬による強化
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_SET_ID_HAIHANENO_BOOTS_SHIRAHANO_SUITS)) > 0) {
+        if (n_A_BODY_DEF_PLUS >= 7) {
+            tmp_percent += 8 * itemCount;
+        }
+        if (n_A_BODY_DEF_PLUS >= 9) {
+            tmp_percent += 4 * itemCount;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「トップサイドライダーカード」の、過剰精錬による効果
+    //----------------------------------------------------------------
+    if (cardcount = CardNumSearch(CARD_ID_TOP_SIDE_RIDER)) {
+        switch (n_A_WeaponType) {
+            case ITEM_KIND_STUFF:
+            case ITEM_KIND_STUFF2HAND:
+                // 杖系統のみの効果
+                tmp_percent += 1 * n_A_Weapon_ATKplus * cardcount;
+                break;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「カニバラウスカード」の、素ＩＮＴによる効果
+    //----------------------------------------------------------------
+    if ((cardCount = CardNumSearch(CARD_ID_CARNIVARAUS)) > 0) {
+        tmp_percent += 1 * ROUNDDOWN(SU_INT / 10) * cardCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「プラズマラットカード」の、素ＳＴＲによる効果
+    //----------------------------------------------------------------
+    if ((cardCount = CardNumSearch(CARD_ID_PLASMA_RAT)) > 0) {
+        tmp_percent += 1 * ROUNDDOWN(SU_STR / 10) * cardCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「ラウンドライダーカード」の、素ＡＧＩによる効果
+    //----------------------------------------------------------------
+    if ((cardCount = CardNumSearch(CARD_ID_ROUND_RIDER)) > 0) {
+        if (SU_AGI >= 120) {
+            tmp_percent += 3 * cardCount;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「自警団の弓」の、素ＩＮＴによる効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_ZIKEIDANNO_YUMI)) > 0) {
+        tmp_percent += 1 * ROUNDDOWN(SU_INT / 10) * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「風魔手裏剣・花吹雪」の、精錬による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_FUMASHURIKEN_HANAFUBUKI)) > 0) {
+        tmp_percent += 1 * n_A_Weapon_ATKplus * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「ニーヴバレッタ　ニーヴ武器セット」の、素ＡＧＩによる効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_SET_ID_NIEVE_VALLETTA_NIEVE_ARMS)) > 0) {
+        tmp_percent += 1 * ROUNDDOWN(SU_AGI / 10) * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「名も無き剣士のブーツ」の、精錬による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_NAMONAKI_KENNSHINO_BOOTS)) > 0) {
+        tmp_percent += 1 * n_A_SHOES_DEF_PLUS * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「神喰らいの龍槍」の、精錬による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_KAMIKURAINO_RYUSO)) > 0) {
+        tmp_percent += 2 * n_A_Weapon_ATKplus * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「悪魔の手」の、過剰精錬による効果
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_ID_AKUMANO_TE)) {
+        if (n_A_HEAD_DEF_PLUS >= 7) {
+            tmp_percent += 5;
+        }
+        if (n_A_HEAD_DEF_PLUS >= 9) {
+            tmp_percent += 5;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「日月神示」の、精錬による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_HITSUKISHINZI)) > 0) {
+        tmp_percent += 1 * n_A_Weapon_ATKplus * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「巡礼者の靴」の、スキル習得による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_ZYUNREISHANO_KUTSU)) > 0) {
+        if (sklLv = LearnedSkillSearch(SKILL_ID_CANTOCANDIDUS)) {
+            tmp_percent += 4 * sklLv * itemCount;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「新鮮な草のネックレス」の、スキル習得による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_SHINSENNA_KUSANO_NECKLACE)) > 0) {
+        sklLv = 0;
+        sklLv += LearnedSkillSearch(SKILL_ID_PIKKI_TSUKI);
+        sklLv += LearnedSkillSearch(SKILL_ID_ARCLOUSE_DASH);
+        sklLv += LearnedSkillSearch(SKILL_ID_TAROUNO_KIZU);
+        sklLv += LearnedSkillSearch(SKILL_ID_CARROT_BEAT);
+        sklLv += LearnedSkillSearch(SKILL_ID_KEIKAI);
+        sklLv += LearnedSkillSearch(SKILL_ID_MURENO_CHIKARA);
+        sklLv += LearnedSkillSearch(SKILL_ID_SAVAGENO_TAMASHI);
+        tmp_percent += 1 * ROUNDDOWN(sklLv / 5) * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「高級ドラムスーツ」の、精錬による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_KOKYU_DORAM_SUITS)) > 0) {
+        if (n_A_BODY_DEF_PLUS >= 7) {
+            tmp_percent += 5 * itemCount;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「特選ドラムスーツ」の、精錬による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_TOKUSEN_DORAM_SUITS)) > 0) {
+        if (n_A_BODY_DEF_PLUS >= 7) {
+            tmp_percent += 10 * itemCount;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「高級ドラムケープ」の、精錬による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_KOKYU_DORAM_CAPE)) > 0) {
+        if (n_A_SHOULDER_DEF_PLUS >= 7) {
+            tmp_percent += 5 * itemCount;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「特選ドラムケープ」の、精錬による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_TOKUSEN_DORAM_CAPE)) > 0) {
+        if (n_A_SHOULDER_DEF_PLUS >= 7) {
+            tmp_percent += 15 * itemCount;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「高級ドラムシューズ」の、精錬による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_KOKYU_DORAM_SHOES)) > 0) {
+        if (n_A_SHOES_DEF_PLUS >= 7) {
+            tmp_percent += 5 * itemCount;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「特選ドラムシューズ」の、精錬による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_TOKUSEN_DORAM_SHOES)) > 0) {
+        if (n_A_SHOES_DEF_PLUS >= 7) {
+            tmp_percent += 10 * itemCount;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「トラベラーシューズ」の、スキル習得による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_TRAVELER_SHOES)) > 0) {
+        tmp_percent += 4 * LearnedSkillSearch(SKILL_ID_HARMONIZE) * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「リーブラ」の、職業による効果
+    //----------------------------------------------------------------
+    if (CardNumSearch(CARD_ID_LIBRA, CARD_REGION_ID_HEAD_TOP)) {
+        // 職業限定の効果
+        if (IsSameJobClass(JOB_ID_RUNEKNIGHT)) {
+            tmp_percent += 1 * n_A_HEAD_DEF_PLUS;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「勇者のブローチ」の、職業による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_YUSHANO_BROACH)) > 0) {
+        if (IsSameJobClass(JOB_ID_ARCBISHOP) || IsSameJobClass(JOB_ID_SHURA)) {
+            tmp_percent += 10 * itemCount;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「フローズヴィトニルの鎖　ヴァナルガンドの兜セット」の、精錬による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_SET_ID_FROZVITNIRNO_KUSARI_VANARGANDNO_KABUTO)) > 0) {
+        if (n_A_HEAD_DEF_PLUS >= 6) {
+            tmp_percent += 5 * itemCount;
+        }
+        if (n_A_HEAD_DEF_PLUS >= 8) {
+            tmp_percent += 10 * itemCount;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「フルフォース　ドッペルゲンガーカードセット」の、精錬による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_SET_ID_FULL_FORCE_DOPPELGANGER_CARD)) > 0) {
+        if (n_A_BaseLV <= 99) {
+            tmp_percent += 2 * n_A_Weapon_ATKplus * itemCount;
+        } else {
+            tmp_percent += 5 * n_A_Weapon_ATKplus * itemCount;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「ヘヴンリーオーダー」の、素ＤＥＸによる効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_HEAVENLY_ORDER)) > 0) {
+        tmp_percent += 2 * Math.floor(SU_DEX / 18) * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「虹色のマフラー」の、スキル習得による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_NIZIIRONO_MUFFLER)) > 0) {
+        if (LearnedSkillSearch(SKILL_ID_FRIGNO_UTA) >= 5) {
+            tmp_percent += 10 * itemCount;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「虹色のねこじゃらし　レインボウセット」の、精錬による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_SET_ID_NIZIIRONO_NEKOZYARASHI_RAIN_BO)) > 0) {
+        tmp_percent += 2 * n_A_HEAD_DEF_PLUS * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「古のメガリスカード」の、素ＬＵＫによる効果
+    //----------------------------------------------------------------
+    if ((cardCount = CardNumSearch(CARD_ID_INISHIENO_MEGLIS)) > 0) {
+        tmp_percent += 1 * Math.floor(SU_LUK / 10) * cardCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「古のウータンシューターカード」の、素ＬＵＫによる効果
+    //----------------------------------------------------------------
+    if ((cardCount = CardNumSearch(CARD_ID_INISHIENO_WOOTANG_SHOOTER)) > 0) {
+        tmp_percent += 1 * Math.floor(SU_LUK / 10) * cardCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「八卦の封呪」の、素ＩＮＴと素ＤＥＸによる効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_HAKKEINO_FUZYU)) > 0) {
+        tmp_percent += 2 * ROUNDDOWN((SU_INT + SU_DEX) / 50) * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「フロンティアブーツ　自警団の弓セット」の、精錬による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_SET_ID_FRONTIER_BOOTS_ZIKEDANNO_YUMI)) > 0) {
+        if (n_A_SHOES_DEF_PLUS >= 7) {
+            tmp_percent += 6 * ROUNDDOWN(SU_INT / 40) * itemCount;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「フロンティアブーツ　物影セット」の、精錬による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_SET_ID_FRONTIER_BOOTS_MONOKAGE)) > 0) {
+        if (n_A_SHOES_DEF_PLUS >= 9) {
+            tmp_percent += 20 * itemCount;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「ふわふわタンポポシューズ」の、スキル習得による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_FUWAFUWA_TANPOPO_SHOES)) > 0) {
+        tmp_percent += 5 * LearnedSkillSearch(SKILL_ID_CHATTERING) * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「悪鬼羅刹の指輪」の、スキル習得による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_AKKI_RASETSUNO_YUBIWA)) > 0) {
+        if (LearnedSkillSearch(SKILL_ID_RAIKODAN) >= 5) {
+            tmp_percent += 10 * itemCount;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「アジダハーカの皮」の、ステータスによる効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_AZI_DAHAKANO_KAWA)) > 0) {
+        if (n_A_SHOULDER_DEF_PLUS >= 8) {
+            tmp_percent += 2 * Math.floor((SU_VIT + SU_LUK) / 20) * itemCount;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「ぷりちーウリボウシューズ」の、スキル習得による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_PRETTY_URIBO_SHOES)) > 0) {
+        tmp_percent += 5 * LearnedSkillSearch(SKILL_ID_KEIKAI) * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「ジャガーノート」の、スキル習得による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_JAGUAR_NOTE)) > 0) {
+        if (LearnedSkillSearch(SKILL_ID_FALLIN_ANGEL) >= 1) {
+            tmp_percent += 20 * itemCount;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「ギガンテスカード」の、斧系統の効果
+    //----------------------------------------------------------------
+    cardCountRight = CardNumSearch(CARD_ID_GIGANTES, CARD_REGION_ID_ARMS_RIGHT_ANY);
+    cardCountLeft = CardNumSearch(CARD_ID_GIGANTES, CARD_REGION_ID_ARMS_LEFT_ANY);
+    if (cardCountRight > 0) {
+        if ((n_A_WeaponType == ITEM_KIND_AXE) || (n_A_WeaponType == ITEM_KIND_AXE_2HAND)) {
+            tmp_percent += 3 * cardCountRight;
+        }
+    }
+    if (cardCountLeft > 0) {
+        if ((n_A_Weapon2Type == ITEM_KIND_AXE) || (n_A_Weapon2Type == ITEM_KIND_AXE_2HAND)) {
+            tmp_percent += 3 * cardCountLeft;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「イリュージョンテグリョン　魔羊の咆哮セット」の、精錬による強化
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_SET_ID_ILLUSION_TEGRYONG_MAHITSUZINO_HOKO)) {
+        tmp_percent += 5 * n_A_Weapon_ATKplus;
+    }
+
+    //----------------------------------------------------------------
+    // 「イリュージョンミリタリーブーツ」の、スキル習得による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_ILLUSION_MILITARY_BOOTS)) > 0) {
+        if (LearnedSkillSearch(SKILL_ID_FAW_MAGIC_DECOY) >= 5) {
+            tmp_percent += 10 * itemCount;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「ガーディアンオブソウル」の、素ＡＧＩと素ＶＩＴによる効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_GUARDIAN_OF_SOUL)) > 0) {
+        tmp_percent += 2 * Math.floor((SU_AGI + SU_VIT) / 18) * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「黒無常帽　覚醒ローブセット」の、精錬による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_SET_ID_KUROMUZYO_BO_KAKUSEI_ROBE)) > 0) {
+        tmp_percent += 1 * n_A_BODY_DEF_PLUS * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「精神拡張リング」の、スキル習得による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_SEISHIN_KAKUCHO_RING)) > 0) {
+        if (LearnedSkillSearch(SKILL_ID_HELL_INFERNO) >= 5) {
+            tmp_percent += 15 * itemCount;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「ぴかぴかニャンニャンクラウン」の、スキル習得による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_PIKAPIKA_NYANNYAN_CROWN)) > 0) {
+        tmp_percent += 3 * LearnedSkillSearch(SKILL_ID_CHATTERING) * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「よちよちウリボウスタイ」の、スキル習得による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_YOCHIYOCHI_URIBO_SUTAI)) > 0) {
+        tmp_percent += 2 * LearnedSkillSearch(SKILL_ID_KEIKAI) * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「試験管ブーツ」の、スキル習得による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_SHIKENKAN_BOOTS)) > 0) {
+        tmp_percent += 4 * LearnedSkillSearch(SKILL_ID_CART_BOOST_WS) * itemCount;
+        tmp_percent += 4 * LearnedSkillSearch(SKILL_ID_CART_BOOST_GENETIC) * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「スカルリング」の、スキル習得による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_SCALL_RING)) > 0) {
+        if (LearnedSkillSearch(SKILL_ID_TAMASHINO_CHIKUSEKI) >= 5) {
+            tmp_percent += 15 * itemCount;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「不死鳥のリング」の、スキル習得による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearchMIG(ITEM_ID_FUSHICHONO_RING)) > 0) {
+        if (LearnedSkillSearch(SKILL_ID_FORCE_OF_BANGUARD) >= 5) {
+            tmp_percent += 10 * itemCount;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「あざといケロケロカッパ」の、スキル習得による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearchMIG(ITEM_ID_AZATOI_KEROKERO_KAPPA)) > 0) {
+        if (LearnedSkillSearch(SKILL_ID_CHATTERING) >= 5) {
+            tmp_percent += 10 * itemCount;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「ジャスパーリング」の、スキル習得による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearchMIG(ITEM_ID_ZYASPER_RING)) > 0) {
+        if (LearnedSkillSearch(SKILL_ID_SONIC_WAVE) >= 10) {
+            tmp_percent += 10 * itemCount;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「崇拝の指輪」の、スキル習得による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearchMIG(ITEM_ID_SUHAINO_YUBIWA)) > 0) {
+        if (LearnedSkillSearch(SKILL_ID_ADORAMUS) >= 10) {
+            tmp_percent += 15 * itemCount;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「正義の冠」の、スキル習得による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearchMIG(ITEM_ID_SEIGINO_KANMURI)) > 0) {
+        if (LearnedSkillSearch(SKILL_ID_DEBOTION) >= 5) {
+            tmp_percent += 10 * itemCount;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「インペリアル天地スーツ」の、スキル習得による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearchMIG(ITEM_ID_IMPERIAL_TENCHI_SUIT)) > 0) {
+        tmp_percent += 1 * LearnedSkillSearch(SKILL_ID_TENKETSU_HAN) * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「グレース天地スーツ」の、スキル習得による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearchMIG(ITEM_ID_GRACE_TENCHI_SUIT)) > 0) {
+        tmp_percent += 2 * LearnedSkillSearch(SKILL_ID_TENKETSU_HAN) * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「メタルピック」の、スキル習得による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearchMIG(ITEM_ID_METAL_PICK)) > 0) {
+        if (LearnedSkillSearch(SKILL_ID_YASURAGINO_KOMORIUTA) >= 5) {
+            tmp_percent += 10 * itemCount;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「パラケルススグローブ」の、スキル習得による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearchMIG(ITEM_ID_PARACELSUS_GLOVE)) > 0) {
+        if (LearnedSkillSearch(SKILL_ID_CART_BOOST_GENETIC) >= 5) {
+            tmp_percent += 10 * itemCount;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「深海のセドラカード」の、楽器・鞭系統の効果
+    //----------------------------------------------------------------
+    cardCountRight = CardNumSearch(CARD_ID_SHINKAINO_CEDORA, CARD_REGION_ID_ARMS_RIGHT_ANY);
+    cardCountLeft = CardNumSearch(CARD_ID_SHINKAINO_CEDORA, CARD_REGION_ID_ARMS_LEFT_ANY);
+    if (cardCountRight > 0) {
+        if ((n_A_WeaponType == ITEM_KIND_MUSICAL) || (n_A_WeaponType == ITEM_KIND_WHIP)) {
+            tmp_percent += 3 * cardCountRight;
+        }
+    }
+    if (cardCountLeft > 0) {
+        if ((n_A_Weapon2Type == ITEM_KIND_MUSICAL) || (n_A_Weapon2Type == ITEM_KIND_WHIP)) {
+            tmp_percent += 3 * cardCountLeft;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「インペリアルコンフィデンシャルメイル」の、スキル習得による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_IMPERIAL_CONFIDENCIAL_MAIL)) > 0) {
+        tmp_percent += 1 * Math.floor(LearnedSkillSearch(SKILL_ID_SONIC_WAVE) / 3) * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「グレースコンフィデンシャルメイル」の、スキル習得による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_GRACE_CONFIDENCIAL_MAIL)) > 0) {
+        tmp_percent += 1 * LearnedSkillSearch(SKILL_ID_SONIC_WAVE) * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「ウルフオフィサーハット」の、スキル習得による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_WOLF_OFFICER_HAT)) > 0) {
+        if (LearnedSkillSearch(SKILL_ID_AIMED_BOLT) >= 10) {
+            tmp_percent += 15 * itemCount;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「覚醒フルフォース　ドッペルゲンガーカードセット」の、ベースレベルと精錬による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_SET_ID_KAKUSE_FULL_FORCE_DOPPELGANGER_CARD)) > 0) {
+        if (n_A_BaseLV <= 99) {
+            tmp_percent += 2 * n_A_Weapon_ATKplus * itemCount;
+        } else {
+            tmp_percent += 5 * n_A_Weapon_ATKplus * itemCount;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「覚醒フルフォース　封印されたドッペルゲンガーカードセット」の、ベースレベルと精錬による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_SET_ID_KAKUSE_FULL_FORCE_FUINSARETA_DOPPELGANGER_CARD)) > 0) {
+        if (n_A_BaseLV <= 99) {
+            tmp_percent += 2 * n_A_Weapon_ATKplus * itemCount;
+        } else {
+            tmp_percent += 5 * n_A_Weapon_ATKplus * itemCount;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「フルフォース　封印されたドッペルゲンガーカードセット」の、精錬による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_SET_ID_FULL_FORCE_FUINSARETA_DOPPELGANGER_CARD)) > 0) {
+        if (n_A_BaseLV <= 99) {
+            tmp_percent += 1 * n_A_Weapon_ATKplus * itemCount;
+        } else {
+            tmp_percent += 2 * n_A_Weapon_ATKplus * itemCount;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「ミリタリーグローブ」の、スキル習得による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_MILITARY_GLOVE)) > 0) {
+        if (LearnedSkillSearch(SKILL_ID_AXE_BOOMERANG) >= 5) {
+            tmp_percent += 10 * itemCount;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「怨霊怪異の耳」の、スキル習得による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_ONRYO_KAIINO_MIMI)) > 0) {
+        if (LearnedSkillSearch(SKILL_ID_RAIKODAN) >= 5) {
+            tmp_percent += 15 * itemCount;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「ゾディアック　白羊宮のマント」セットの、職業による効果
+    //----------------------------------------------------------------
+    if (CardNumSearch(CARD_SET_ID_ENCHANT_ZODIAC_HAKUYOKYUNO_MANT)) {
+        if (IsSameJobClass(JOB_ID_ROYALGUARD)) {
+            tmp_percent += 2 * n_A_SHOULDER_DEF_PLUS;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「エレメンタルポゼッション」の、スキル習得による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_ELEMENTAL_POSSESSION)) > 0) {
+        tmp_percent += 1 * LearnedSkillSearch(SKILL_ID_SUMMON_AGNI) * itemCount;
+        tmp_percent += 1 * LearnedSkillSearch(SKILL_ID_SUMMON_AQUA) * itemCount;
+        tmp_percent += 1 * LearnedSkillSearch(SKILL_ID_SUMMON_VENTOS) * itemCount;
+        tmp_percent += 1 * LearnedSkillSearch(SKILL_ID_SUMMON_TERA) * itemCount;
+    }
+
+    //----------------------------------------------------------------
+    // 「魔力中毒プラガカード」の、斧系統の効果
+    //----------------------------------------------------------------
+    cardCountRight = CardNumSearch(CARD_ID_MARYOKU_CHUDOKU_PLAGA, CARD_REGION_ID_ARMS_RIGHT_ANY);
+    cardCountLeft = CardNumSearch(CARD_ID_MARYOKU_CHUDOKU_PLAGA, CARD_REGION_ID_ARMS_LEFT_ANY);
+    if (cardCountRight > 0) {
+        if (n_A_WeaponType == ITEM_KIND_FIST) {
+            tmp_percent += 3 * cardCountRight;
+        }
+    }
+    if (cardCountLeft > 0) {
+        if (n_A_Weapon2Type == ITEM_KIND_FIST) {
+            tmp_percent += 3 * cardCountLeft;
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「ミステリーウィング」の、素ステータスによる効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearchMIG(ITEM_ID_MYSTERY_WING)) > 0) {
+        if (GetTotalPureBasicStatus() >= 400) {
+            tmp_percent += 15 * itemCount;
+        }
+    }
+
+    // MIGRATION 暫定措置
+    g_ITEM_SP_ASPD_UP_value_forCalcData = tmp_percent;
+
+    if (n_A_PassSkill7[22]) tmp_percent += 10;
+
+    //----------------------------------------------------------------
+    // 「三次職支援　ペインキラー」の効果
+    //----------------------------------------------------------------
+    tmp_percent -= 10 * g_confDataSanzi[CCharaConfSanzi.CONF_ID_PAIN_KILLER];
+
+    //----------------------------------------------------------------
+    // 「修羅　点穴 -反-」の効果
+    //----------------------------------------------------------------
+    tmp_percent += Math.floor(SU_AGI * UsedSkillSearch(SKILL_ID_TENKETSU_HAN) / 60);
+
+    //----------------------------------------------------------------
+    // 「ガンスリンガー　ガトリングフィーバー」の効果
+    //----------------------------------------------------------------
+    if (n_A_WeaponType == ITEM_KIND_NONE || n_A_WeaponType == ITEM_KIND_GATLINGGUN) {
+        tmp_percent += UsedSkillSearch(SKILL_ID_GATLING_FEVER);
+    }
+
+    //----------------------------------------------------------------
+    // 「モンク　金剛」の効果
+    //----------------------------------------------------------------
+    if (UsedSkillSearch(SKILL_ID_KONGO) > 0) {
+        tmp_percent -= 25;
+    }
+
+    //----------------------------------------------------------------
+    // 「シャドウチェイサー　インビジビリティ」の効果
+    //----------------------------------------------------------------
+    if (UsedSkillSearch(SKILL_ID_INVISIBILITY) > 0) {
+        tmp_percent -= (50 - 10 * UsedSkillSearch(SKILL_ID_INVISIBILITY));
+    }
+
+    //----------------------------------------------------------------
+    // 「星帝　星の構え」の効果
+    //----------------------------------------------------------------
+    tmp_percent += 5 * UsedSkillSearch(SKILL_ID_HOSHINO_KAMAE);
+    if (n_A_PassSkill3[11]) tmp_percent -= 3 * n_A_PassSkill3[11];
+    if (n_A_IJYOU[5]) tmp_percent -= 30;
+
+    //----------------------------------------------------------------
+    // 「性能カスタマイズ」の、効果
+    //----------------------------------------------------------------
+	let confval = g_objCharaConfCustomStatus.GetConf(CCharaConfCustomStatus.CONF_ID_ASPD_UP);
+    if (confval > 0) {
+        tmp_percent += confval;
+    }
+
+    return tmp_percent;
 }
 
 /**
