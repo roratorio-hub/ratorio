@@ -22231,6 +22231,15 @@ function GetAdditionalCriticalRate(mobData) {
         tmp_cri += 10;
     }
 
+	/**
+	 * 「ダンサースキル ダンスの練習」の、効果
+	 */
+	if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_DANCENO_RENSHU), UsedSkillSearch(SKILL_ID_DANCENO_RENSHU))) > 0) {
+		if(n_A_WeaponType === ITEM_KIND_WHIP) {
+			tmp_cri += Math.round(0.5 * sklLv);
+		}
+	}
+
     //----------------------------------------------------------------
     // 「パッシブ持続系　トゥルーサイト」の、効果
     //----------------------------------------------------------------
