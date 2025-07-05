@@ -204,7 +204,7 @@ class CCharaConfDebuff extends CConfBase {
 		// 設定変数配列を初期化
 		//----------------------------------------------------------------
 		for (let idx = 0; idx < this.confCountLimit; idx++) {
-			if (idx < this.confDataObj.length && this.confDataObj[idx] !== undefined) {
+			if (this.confDataObj[idx] !== undefined) {
 				this.confArray[idx] = this.confDataObj[idx][CConfBase.CONF_DATA_INDEX_DEFAULT_VALUE];
 			} else {
 				this.confArray[idx] = 0;
@@ -214,23 +214,24 @@ class CCharaConfDebuff extends CConfBase {
 		//----------------------------------------------------------------
 		// 表示順序に従い、設定データ定義を再配列
 		//----------------------------------------------------------------
-		confDataOBJSorted = [];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfDebuff.CONF_ID_DONTFORGETME];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfDebuff.CONF_ID_GLOOMYDAY];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfDebuff.CONF_ID_SATURDAY_NIGHT_FEVER];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfDebuff.CONF_ID_MELODYOFSINK];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfDebuff.CONF_ID_BEYOND_OF_WARCRY];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfDebuff.CONF_ID_HARMONIZE];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfDebuff.CONF_ID_DECAGI];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfDebuff.CONF_ID_CURSE];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfDebuff.CONF_ID_DARKNESS];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfDebuff.CONF_ID_SLOW_CAST];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfDebuff.CONF_ID_FREEZING];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfDebuff.CONF_ID_MANDRAGORA];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfDebuff.CONF_ID_LETHARGY];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfDebuff.CONF_ID_UNLUCKY];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfDebuff.CONF_ID_ALL_STATUS_DOWN];
-		this.confDataObj = confDataOBJSorted;
+		const displayOrder = [
+			CCharaConfDebuff.CONF_ID_DONTFORGETME,
+			CCharaConfDebuff.CONF_ID_GLOOMYDAY,
+			CCharaConfDebuff.CONF_ID_SATURDAY_NIGHT_FEVER,
+			CCharaConfDebuff.CONF_ID_MELODYOFSINK,
+			CCharaConfDebuff.CONF_ID_BEYOND_OF_WARCRY,
+			CCharaConfDebuff.CONF_ID_HARMONIZE,
+			CCharaConfDebuff.CONF_ID_DECAGI,
+			CCharaConfDebuff.CONF_ID_CURSE,
+			CCharaConfDebuff.CONF_ID_DARKNESS,
+			CCharaConfDebuff.CONF_ID_SLOW_CAST,
+			CCharaConfDebuff.CONF_ID_FREEZING,
+			CCharaConfDebuff.CONF_ID_MANDRAGORA,
+			CCharaConfDebuff.CONF_ID_LETHARGY,
+			CCharaConfDebuff.CONF_ID_UNLUCKY,
+			CCharaConfDebuff.CONF_ID_ALL_STATUS_DOWN,
+		];
+		this.confDataObj = displayOrder.map(id => this.confDataObj[id]);
 	}
 
 }

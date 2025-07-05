@@ -455,7 +455,7 @@ function CCharaConfSanzi(confArray) {
 		// 支援設定変数配列を初期化
 		//----------------------------------------------------------------
 		for (let idx = 0; idx < this.confCountLimit; idx++) {
-			if (idx < this.confDataObj.length && this.confDataObj[idx] !== undefined) {
+			if (this.confDataObj[idx] !== undefined) {
 				this.confArray[idx] = this.confDataObj[idx][CConfBase.CONF_DATA_INDEX_DEFAULT_VALUE];
 			} else {
 				this.confArray[idx] = 0;
@@ -467,39 +467,39 @@ function CCharaConfSanzi(confArray) {
 		//----------------------------------------------------------------
 		// 表示順序に従い、三次職支援設定データ定義を再配列
 		//----------------------------------------------------------------
-		confDataOBJSorted = new Array();
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfSanzi.CONF_ID_GIANT_GLOTH];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfSanzi.CONF_ID_FIGHTING_SPIRIT];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfSanzi.CONF_ID_PIETY];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfSanzi.CONF_ID_DUMMY];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfSanzi.CONF_ID_STRIKING];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfSanzi.CONF_ID_STRIKINGYO_FUYOSKILL_LEVEL_GOKEI];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfSanzi.CONF_ID_EXPIATIO];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfSanzi.CONF_ID_ODINNO_CHIKARA];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfSanzi.CONF_ID_EPICLESIS];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfSanzi.CONF_ID_SECRAMENT];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfSanzi.CONF_ID_LAUDAAGNUS];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfSanzi.CONF_ID_LAUDARAMUS];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfSanzi.CONF_ID_UNLIMIT];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfSanzi.CONF_ID_FRIGGNO_UTA];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfSanzi.CONF_ID_BUNSHIN];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfSanzi.CONF_ID_DUMMY];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfSanzi.CONF_ID_TAKANO_TAMASHI];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfSanzi.CONF_ID_YOSENO_TAMASHI];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfSanzi.CONF_ID_KAGENO_TAMASHI];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfSanzi.CONF_ID_GOLEMNO_TAMASHI];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfSanzi.CONF_ID_PAIN_KILLER];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfSanzi.CONF_ID_PAIN_KILLER_BASE_LEVEL];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfSanzi.CONF_ID_EBI_ZANMAI];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfSanzi.CONF_ID_GROOMING];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfSanzi.CONF_ID_EBI_PARTY];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfSanzi.CONF_ID_EBI_PARTY_TAMASHI_LEVEL];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfSanzi.CONF_ID_CHATTERING];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfSanzi.CONF_ID_ARCLOUSE_DASH];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfSanzi.CONF_ID_KEIKAI];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfSanzi.CONF_ID_DUMMY];
-		this.confDataObj = confDataOBJSorted;
-
+		const displayOrder = [
+			CCharaConfSanzi.CONF_ID_GIANT_GLOTH,
+			CCharaConfSanzi.CONF_ID_FIGHTING_SPIRIT,
+			CCharaConfSanzi.CONF_ID_PIETY,
+			CCharaConfSanzi.CONF_ID_DUMMY,
+			CCharaConfSanzi.CONF_ID_STRIKING,
+			CCharaConfSanzi.CONF_ID_STRIKINGYO_FUYOSKILL_LEVEL_GOKEI,
+			CCharaConfSanzi.CONF_ID_EXPIATIO,
+			CCharaConfSanzi.CONF_ID_ODINNO_CHIKARA,
+			CCharaConfSanzi.CONF_ID_EPICLESIS,
+			CCharaConfSanzi.CONF_ID_SECRAMENT,
+			CCharaConfSanzi.CONF_ID_LAUDAAGNUS,
+			CCharaConfSanzi.CONF_ID_LAUDARAMUS,
+			CCharaConfSanzi.CONF_ID_UNLIMIT,
+			CCharaConfSanzi.CONF_ID_FRIGGNO_UTA,
+			CCharaConfSanzi.CONF_ID_BUNSHIN,
+			CCharaConfSanzi.CONF_ID_DUMMY,
+			CCharaConfSanzi.CONF_ID_TAKANO_TAMASHI,
+			CCharaConfSanzi.CONF_ID_YOSENO_TAMASHI,
+			CCharaConfSanzi.CONF_ID_KAGENO_TAMASHI,
+			CCharaConfSanzi.CONF_ID_GOLEMNO_TAMASHI,
+			CCharaConfSanzi.CONF_ID_PAIN_KILLER,
+			CCharaConfSanzi.CONF_ID_PAIN_KILLER_BASE_LEVEL,
+			CCharaConfSanzi.CONF_ID_EBI_ZANMAI,
+			CCharaConfSanzi.CONF_ID_GROOMING,
+			CCharaConfSanzi.CONF_ID_EBI_PARTY,
+			CCharaConfSanzi.CONF_ID_EBI_PARTY_TAMASHI_LEVEL,
+			CCharaConfSanzi.CONF_ID_CHATTERING,
+			CCharaConfSanzi.CONF_ID_ARCLOUSE_DASH,
+			CCharaConfSanzi.CONF_ID_KEIKAI,
+			CCharaConfSanzi.CONF_ID_DUMMY,
+		];
+		this.confDataObj = displayOrder.map(id => this.confDataObj[id]);
 	}
 
 	/**

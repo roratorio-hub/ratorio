@@ -342,7 +342,7 @@ function CCharaConfNizi(confArray) {
 		// 支援設定変数配列を初期化
 		//----------------------------------------------------------------
 		for (let idx = 0; idx < this.confCountLimit; idx++) {
-			if (idx < this.confDataObj.length && this.confDataObj[idx] !== undefined) {
+			if (this.confDataObj[idx] !== undefined) {
 				this.confArray[idx] = this.confDataObj[idx][CConfBase.CONF_DATA_INDEX_DEFAULT_VALUE];
 			} else {
 				this.confArray[idx] = 0;
@@ -352,38 +352,39 @@ function CCharaConfNizi(confArray) {
 		//----------------------------------------------------------------
 		// 表示順序に従い、二次職支援設定データ定義を再配列
 		//----------------------------------------------------------------
-		confDataOBJSorted = new Array();
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_IMPOSITIO_MANUS];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_SUFFRAGIUM];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_GLORIA];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_SEITAI_KOFUKU];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_ASSUMPTIO];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_DUMMY];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_ADRENALINE_RUSH];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_OVER_TRUST];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_WEAPON_PERFECTION];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_MAXIMIZE_POWER];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_KIKO];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_KONGO];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_DEFENDER];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_AUTO_GUARD];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_PROVIDENCE];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_DUMMY];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_CLOSE_CONFINE];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_DUMMY];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_AURA_BLADE];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_CONCENTRATION];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_WIND_WALK];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_TRUE_SIGHT];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_MAHORYOKU_ZOFUKU];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_DUMMY];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_ZOKUSEIBA_SHURUI];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_ZOKUSEIBA_LEVEL];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_SHIEN_MIND_BREAKER];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_DUMMY];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_KAITO];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfNizi.CONF_ID_DUMMY];
-		this.confDataObj = confDataOBJSorted;
+		const displayOrder = [
+			CCharaConfNizi.CONF_ID_IMPOSITIO_MANUS,
+			CCharaConfNizi.CONF_ID_SUFFRAGIUM,
+			CCharaConfNizi.CONF_ID_GLORIA,
+			CCharaConfNizi.CONF_ID_SEITAI_KOFUKU,
+			CCharaConfNizi.CONF_ID_ASSUMPTIO,
+			CCharaConfNizi.CONF_ID_DUMMY,
+			CCharaConfNizi.CONF_ID_ADRENALINE_RUSH,
+			CCharaConfNizi.CONF_ID_OVER_TRUST,
+			CCharaConfNizi.CONF_ID_WEAPON_PERFECTION,
+			CCharaConfNizi.CONF_ID_MAXIMIZE_POWER,
+			CCharaConfNizi.CONF_ID_KIKO,
+			CCharaConfNizi.CONF_ID_KONGO,
+			CCharaConfNizi.CONF_ID_DEFENDER,
+			CCharaConfNizi.CONF_ID_AUTO_GUARD,
+			CCharaConfNizi.CONF_ID_PROVIDENCE,
+			CCharaConfNizi.CONF_ID_DUMMY,
+			CCharaConfNizi.CONF_ID_CLOSE_CONFINE,
+			CCharaConfNizi.CONF_ID_DUMMY,
+			CCharaConfNizi.CONF_ID_AURA_BLADE,
+			CCharaConfNizi.CONF_ID_CONCENTRATION,
+			CCharaConfNizi.CONF_ID_WIND_WALK,
+			CCharaConfNizi.CONF_ID_TRUE_SIGHT,
+			CCharaConfNizi.CONF_ID_MAHORYOKU_ZOFUKU,
+			CCharaConfNizi.CONF_ID_DUMMY,
+			CCharaConfNizi.CONF_ID_ZOKUSEIBA_SHURUI,
+			CCharaConfNizi.CONF_ID_ZOKUSEIBA_LEVEL,
+			CCharaConfNizi.CONF_ID_SHIEN_MIND_BREAKER,
+			CCharaConfNizi.CONF_ID_DUMMY,
+			CCharaConfNizi.CONF_ID_KAITO,
+			CCharaConfNizi.CONF_ID_DUMMY,
+		];
+		this.confDataObj = displayOrder.map(id => this.confDataObj[id]);
 	}
 
 	/**

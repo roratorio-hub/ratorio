@@ -148,7 +148,7 @@ function CCharaConfIchizi(confArray) {
 		// 支援設定変数配列を初期化
 		//----------------------------------------------------------------
 		for (let idx = 0; idx < this.confCountLimit; idx++) {
-			if (idx < this.confDataObj.length && this.confDataObj[idx] !== undefined) {
+			if (this.confDataObj[idx] !== undefined) {
 				this.confArray[idx] = this.confDataObj[idx][CConfBase.CONF_DATA_INDEX_DEFAULT_VALUE];
 			} else {
 				this.confArray[idx] = 0;
@@ -158,21 +158,22 @@ function CCharaConfIchizi(confArray) {
 		//----------------------------------------------------------------
 		// 表示順序に従い、一次職支援設定データ定義を再配列
 		//----------------------------------------------------------------
-		confDataOBJSorted = new Array();
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfIchizi.CONF_ID_BLESSING];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfIchizi.CONF_ID_SOKUDO_ZOKA];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfIchizi.CONF_ID_ANGELUS];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfIchizi.CONF_ID_DUMMY];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfIchizi.CONF_ID_SHIEN_PROVOKE];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfIchizi.CONF_ID_MAGNUM_BREAK_ZYOTAI];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfIchizi.CONF_ID_ENDURE];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfIchizi.CONF_ID_DUMMY];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfIchizi.CONF_ID_SHUCHURYOKU_KOZYO];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfIchizi.CONF_ID_DUMMY];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfIchizi.CONF_ID_LOUD_VOICE];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfIchizi.CONF_ID_DUMMY];
-		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfIchizi.CONF_ID_DUMMY];
-		this.confDataObj = confDataOBJSorted;
+		const displayOrder = [
+			CCharaConfIchizi.CONF_ID_BLESSING,
+			CCharaConfIchizi.CONF_ID_SOKUDO_ZOKA,
+			CCharaConfIchizi.CONF_ID_ANGELUS,
+			CCharaConfIchizi.CONF_ID_DUMMY,
+			CCharaConfIchizi.CONF_ID_SHIEN_PROVOKE,
+			CCharaConfIchizi.CONF_ID_MAGNUM_BREAK_ZYOTAI,
+			CCharaConfIchizi.CONF_ID_ENDURE,
+			CCharaConfIchizi.CONF_ID_DUMMY,
+			CCharaConfIchizi.CONF_ID_SHUCHURYOKU_KOZYO,
+			CCharaConfIchizi.CONF_ID_DUMMY,
+			CCharaConfIchizi.CONF_ID_LOUD_VOICE,
+			CCharaConfIchizi.CONF_ID_DUMMY,
+			CCharaConfIchizi.CONF_ID_DUMMY,
+		];
+		this.confDataObj = displayOrder.map(id => this.confDataObj[id]);
 	}
 
 	/**
