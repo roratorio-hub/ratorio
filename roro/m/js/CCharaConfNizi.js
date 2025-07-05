@@ -324,7 +324,8 @@ function CCharaConfNizi(confArray) {
 			CConfBase.ConfControlType(CONTROL_TYPE_SELECTBOX_NUMBER),
 			CConfBase.ConfDefaultValue(0),
 			CConfBase.ConfMinValue(0),
-			CConfBase.ConfMaxValue(10)
+			CConfBase.ConfMaxValue(10),
+			"サービスフォーユー・ハミング・私を忘れないで…とは共存できません"
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
@@ -336,7 +337,8 @@ function CCharaConfNizi(confArray) {
 			CConfBase.ConfControlType(CONTROL_TYPE_SELECTBOX_NUMBER),
 			CConfBase.ConfDefaultValue(0),
 			CConfBase.ConfMinValue(0),
-			CConfBase.ConfMaxValue(10)
+			CConfBase.ConfMaxValue(10),
+			"幸運のキス・サービスフォーユー・私を忘れないで…とは共存できません"
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
@@ -348,7 +350,8 @@ function CCharaConfNizi(confArray) {
 			CConfBase.ConfControlType(CONTROL_TYPE_SELECTBOX_NUMBER),
 			CConfBase.ConfDefaultValue(0),
 			CConfBase.ConfMinValue(0),
-			CConfBase.ConfMaxValue(10)
+			CConfBase.ConfMaxValue(10),
+			"幸運のキス・ハミング・私を忘れないで…とは共存できません"
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
@@ -360,7 +363,8 @@ function CCharaConfNizi(confArray) {
 			CConfBase.ConfControlType(CONTROL_TYPE_SELECTBOX_NUMBER),
 			CConfBase.ConfDefaultValue(0),
 			CConfBase.ConfMinValue(0),
-			CConfBase.ConfMaxValue(10)
+			CConfBase.ConfMaxValue(10),
+			"イドゥンの林檎・ブラギの詩・夕陽のアサシンクロスとは共存できません"
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
@@ -372,7 +376,8 @@ function CCharaConfNizi(confArray) {
 			CConfBase.ConfControlType(CONTROL_TYPE_SELECTBOX_NUMBER),
 			CConfBase.ConfDefaultValue(0),
 			CConfBase.ConfMinValue(0),
-			CConfBase.ConfMaxValue(10)
+			CConfBase.ConfMaxValue(10),
+			"イドゥンの林檎・口笛・ブラギの詩とは共存できません"
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
@@ -384,7 +389,8 @@ function CCharaConfNizi(confArray) {
 			CConfBase.ConfControlType(CONTROL_TYPE_SELECTBOX_NUMBER),
 			CConfBase.ConfDefaultValue(0),
 			CConfBase.ConfMinValue(0),
-			CConfBase.ConfMaxValue(10)
+			CConfBase.ConfMaxValue(10),
+			"イドゥンの林檎・口笛・夕陽のアサシンクロスとは共存できません"
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
@@ -396,7 +402,8 @@ function CCharaConfNizi(confArray) {
 			CConfBase.ConfControlType(CONTROL_TYPE_SELECTBOX_NUMBER),
 			CConfBase.ConfDefaultValue(0),
 			CConfBase.ConfMinValue(0),
-			CConfBase.ConfMaxValue(10)
+			CConfBase.ConfMaxValue(10),
+			"口笛・ブラギの詩・夕陽のアサシンクロスとは共存できません"
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
@@ -408,7 +415,8 @@ function CCharaConfNizi(confArray) {
 			CConfBase.ConfControlType(CONTROL_TYPE_SELECTBOX_NUMBER),
 			CConfBase.ConfDefaultValue(0),
 			CConfBase.ConfMinValue(0),
-			CConfBase.ConfMaxValue(5)
+			CConfBase.ConfMaxValue(5),
+			"戦太鼓の響き・永遠の混沌・深淵の中に・ニヨルドの宴・ニーベルングの指輪・ロキの叫びとは共存できません"
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
@@ -420,7 +428,8 @@ function CCharaConfNizi(confArray) {
 			CConfBase.ConfControlType(CONTROL_TYPE_SELECTBOX_NUMBER),
 			CConfBase.ConfDefaultValue(0),
 			CConfBase.ConfMinValue(0),
-			CConfBase.ConfMaxValue(5)
+			CConfBase.ConfMaxValue(5),
+			"永遠の混沌・深淵の中に・ニヨルドの宴・ニーベルングの指輪・不死身のジークフリード・ロキの叫びとは共存できません"
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
@@ -484,16 +493,15 @@ function CCharaConfNizi(confArray) {
 			CCharaConfNizi.CONF_ID_ZOKUSEIBA_SHURUI,
 			CCharaConfNizi.CONF_ID_ZOKUSEIBA_LEVEL,
 			CCharaConfNizi.CONF_ID_SHIEN_MIND_BREAKER,
-			//---
 			CCharaConfNizi.CONF_ID_FORTUNEKISS,
-			CCharaConfNizi.CONF_ID_HUMMING,
+//			CCharaConfNizi.CONF_ID_HUMMING,
 			CCharaConfNizi.CONF_ID_SERVICEFORYOU,
-			CCharaConfNizi.CONF_ID_WHISTLE,
-			CCharaConfNizi.CONF_ID_ASSASSINCROSS,
+//			CCharaConfNizi.CONF_ID_WHISTLE,
+//			CCharaConfNizi.CONF_ID_ASSASSINCROSS,
 			CCharaConfNizi.CONF_ID_POEMBRAGI,
 			CCharaConfNizi.CONF_ID_APPLEIDUN,
 			CCharaConfNizi.CONF_ID_SIEGFRIED,
-			CCharaConfNizi.CONF_ID_DRUMBATTLEFIELD,
+//			CCharaConfNizi.CONF_ID_DRUMBATTLEFIELD,
 		];
 		this.confDataObj = displayOrder.map(id => this.confDataObj[id]);
 	}

@@ -422,3 +422,8 @@ body[class="CLS_BODY_ALTERNATIVE"] .folding-block-body-MIG {
     opacity: 1; /* ホバー時に表示 */
     transform: translateX(-50%) translateY(0); /* 通常位置に戻す（アニメーション） */
 }
+/* ツールチップ対象のtd要素の表示崩れ対策 */
+td.tooltip-target {
+    display: table-cell; /* tdのデフォルト表示に戻す */
+    padding-bottom: 0;   /* tooltip-targetで追加されたパディングをリセット */
+}

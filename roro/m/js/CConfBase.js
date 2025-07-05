@@ -54,6 +54,7 @@ function CConfBase(confArray) {
 	CConfBase.CONF_DATA_INDEX_DEFAULT_VALUE	= 3;
 	CConfBase.CONF_DATA_INDEX_MIN_VALUE		= 4;
 	CConfBase.CONF_DATA_INDEX_MAX_VALUE		= 5;
+	CConfBase.CONF_DATA_INDEX_TOOL_TIP		= 6;
 
 	// インスタンス番号
 	this.instanceNo = -1;
@@ -119,28 +120,29 @@ function CConfBase(confArray) {
 	 * @param bAsExpand 展開表示フラグ（true : 展開表示、false : ヘッダのみ）
 	 */
 	this.BuildUpSelectArea = function (objRoot, bAsExpand) {
-		var instanceNo = 0;
-		var instanceData = null;
-		var idx = 0;
-		var confId = 0;
-		var confText = "";
-		var textUnit = "";
-		var textArray = null;
-		var controlId = "";
-		var controlType = 0;
-		var controlValue = 0;
-		var controlValueMin = 0;
-		var controlValueMax = 0;
-		var objTable = null;
-		var objTbody = null;
-		var objTr = null;
-		var objTd = null;
-		var objText = null;
-		var objInput = null;
-		var objSelect = null;
-		var objOption = null;
-		var objLabel = null;
-		var objA = null;
+		let instanceNo = 0;
+		let instanceData = null;
+		let idx = 0;
+		let confId = 0;
+		let confText = "";
+		let confToolTip = "";
+		let textUnit = "";
+		let textArray = null;
+		let controlId = "";
+		let controlType = 0;
+		let controlValue = 0;
+		let controlValueMin = 0;
+		let controlValueMax = 0;
+		let objTable = null;
+		let objTbody = null;
+		let objTr = null;
+		let objTd = null;
+		let objText = null;
+		let objInput = null;
+		let objSelect = null;
+		let objOption = null;
+		let objLabel = null;
+		let objA = null;
 
 		if (!objRoot) {
 			return;
@@ -224,7 +226,7 @@ function CConfBase(confArray) {
 			confText = this.confDataObj[idx][CConfBase.CONF_DATA_INDEX_TEXT];
 			objText = document.createTextNode(confText);
 			objTd.appendChild(objText);
-
+			
 			// TODO: 集中力向上の注意喚起
 			if (confText.indexOf("集中力向上") >= 0) {
 				objText = document.createTextNode("　");
@@ -237,10 +239,18 @@ function CConfBase(confArray) {
 				objA.setAttribute("target", "_blank");
 				objA.appendChild(objText);
 			}
-
+			
 			// 設定値の欄を生成
 			objTd = document.createElement("td");
 			objTr.appendChild(objTd);
+
+			// ツールチップの生成
+			confToolTip = this.confDataObj[idx][CConfBase.CONF_DATA_INDEX_TOOL_TIP];
+			if (confToolTip !== undefined) {
+				// ツールチップが設定されていれば追加する
+				objTd.setAttribute("class", "tooltip-target");
+				objTd.setAttribute("data-tooltip", confToolTip);
+			}
 
 			controlId = this.GetControlIdString(instanceNo, confId);
 			controlType = this.confDataObj[idx][CConfBase.CONF_DATA_INDEX_CONTROL_TYPE];
