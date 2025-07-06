@@ -15,28 +15,34 @@ let n_A_PassSkill3 = Array(47).fill(0);
  */
 function Click_Skill3SW(){
 	n_Skill3SW = document.calcForm.A3_SKILLSW.checked;
+	const table_header = `
+			<TABLE Border class="tooltip-target" style="white-space:nowrap;" data-tooltip="これらの設定は「◯次職支援設定」および今後追加する「プレイヤー状態異常設定」へ順次移動します。">
+			<TR><TD id="A3TD" ColSpan="6" class="title">
+				<input id="OBJID_CHECK_A3_SKILLSW" type="checkbox" name="A3_SKILLSW" onClick="Click_Skill3SW()">
+				<label for="OBJID_CHECK_A3_SKILLSW">演奏/踊り系スキル</label>
+				<span id="A3used"></span>
+			</TD></TR>
+			`;
 	if (n_Skill3SW) {
-		let str;
-		str = '<TABLE Border style="white-space:nowrap;"><TR><TD id="A3TD" ColSpan="6" class="title"><input id="OBJID_CHECK_A3_SKILLSW" type="checkbox" name="A3_SKILLSW"onClick="Click_Skill3SW()">';
-		str += '<label for="OBJID_CHECK_A3_SKILLSW">演奏/踊り系スキル</label>';
-		str += '<span id="A3used"></span></TD></TR>';
-		str += '<TR><TD id="EN0_1"></TD><TD id="EN0_2"></TD><TD id="EN0_3"></TD><TD id="EN0_4"></TD><TD id="EN0_5"></TD><TD id="EN0_6"></TD></TR>';
-		str += '<TR><TD id="EN1_1"></TD><TD id="EN1_2"></TD><TD id="EN1_3"></TD><TD id="EN1_4"></TD><TD id="EN1_5"></TD><TD id="EN1_6"></TD></TR>';
-		str += '<TR><TD RowSpan=2 id="EN2_1"></TD><TD RowSpan=2 id="EN2_2"></TD><TD id="EN2_3"></TD><TD id="EN2_4"></TD><TD RowSpan="2" id="EN2_7"></TD><TD RowSpan="2" id="EN2_8"></TD></TR>';
-		str += '<TR><TD id="EN2_5"></TD><TD id="EN2_6"></TD></TR>';
-		str += '<TR><TD id="EN3_1"></TD><TD id="EN3_2"></TD><TD id="EN3_3"></TD><TD id="EN3_4"></TD><TD id="EN3_5"></TD><TD id="EN3_6"></TD></TR>';
-		str += '<TR><TD id="EN4_1"></TD><TD id="EN4_2"></TD><TD id="EN4_3"></TD><TD id="EN4_4"></TD><TD id="EN4_5"></TD><TD id="EN4_6"></TD></TR>';
-		str += '<TR><TD id="EN5_1"></TD><TD id="EN5_2"></TD><TD id="EN5_3"></TD><TD id="EN5_4"></TD><TD id="EN5_5"></TD><TD id="EN5_6"></TD></TR>';
-		str += '<TR><TD id="EN6_1"></TD><TD id="EN6_2"></TD><TD id="EN6_3"></TD><TD id="EN6_4"></TD><TD id="EN6_5"></TD><TD id="EN6_6"></TD></TR>';
-		str += '<TR><TD id="EN7_1"></TD><TD id="EN7_2"></TD><TD id="EN8_1"></TD><TD id="EN8_2"></TD></TR>';
-		str += '<TR><TD id="EN9_1"></TD><TD id="EN9_2"></TD><TD id="EN10_1"></TD><TD id="EN10_2"></TD></TR>';
-		str += '<TR><TD id="EN12_1"></TD><TD id="EN12_2"></TD><TD id="EN12_3"></TD><TD id="EN12_4"></TD><TD id="EN12_5"></TD><TD id="EN12_6"></TD></TR>';
-		str += '<TR><TD id="EN13_1"></TD><TD id="EN13_2"></TD><TD id="EN13_3"></TD><TD id="EN13_4"></TD></TR>';
-		str += '<TR><TD id="EN20_1"></TD><TD id="EN20_2"></TD><TD id="EN21_1"></TD><TD id="EN21_2"></TD></TR>';
-		str += '<TR><TD colspan=4><span id="EN11_1"></span><span id="EN11_2"></span><span id="EN11_1a"></span></TD></TR></TABLE>';
+		let str = `${table_header}
+			<TR><TD id="EN0_1"></TD><TD id="EN0_2"></TD><TD id="EN0_3"></TD><TD id="EN0_4"></TD><TD id="EN0_5"></TD><TD id="EN0_6"></TD></TR>
+			<TR><TD id="EN1_1"></TD><TD id="EN1_2"></TD><TD id="EN1_3"></TD><TD id="EN1_4"></TD><TD id="EN1_5"></TD><TD id="EN1_6"></TD></TR>
+			<TR><TD RowSpan=2 id="EN2_1"></TD><TD RowSpan=2 id="EN2_2"></TD><TD id="EN2_3"></TD><TD id="EN2_4"></TD><TD RowSpan="2" id="EN2_7"></TD><TD RowSpan="2" id="EN2_8"></TD></TR>
+			<TR><TD id="EN2_5"></TD><TD id="EN2_6"></TD></TR>
+			<TR><TD id="EN3_1"></TD><TD id="EN3_2"></TD><TD id="EN3_3"></TD><TD id="EN3_4"></TD><TD id="EN3_5"></TD><TD id="EN3_6"></TD></TR>
+			<TR><TD id="EN4_1"></TD><TD id="EN4_2"></TD><TD id="EN4_3"></TD><TD id="EN4_4"></TD><TD id="EN4_5"></TD><TD id="EN4_6"></TD></TR>
+			<TR><TD id="EN5_1"></TD><TD id="EN5_2"></TD><TD id="EN5_3"></TD><TD id="EN5_4"></TD><TD id="EN5_5"></TD><TD id="EN5_6"></TD></TR>
+			<TR><TD id="EN6_1"></TD><TD id="EN6_2"></TD><TD id="EN6_3"></TD><TD id="EN6_4"></TD><TD id="EN6_5"></TD><TD id="EN6_6"></TD></TR>
+			<TR><TD id="EN7_1"></TD><TD id="EN7_2"></TD><TD id="EN8_1"></TD><TD id="EN8_2"></TD></TR>
+			<TR><TD id="EN9_1"></TD><TD id="EN9_2"></TD><TD id="EN10_1"></TD><TD id="EN10_2"></TD></TR>
+			<TR><TD id="EN12_1"></TD><TD id="EN12_2"></TD><TD id="EN12_3"></TD><TD id="EN12_4"></TD><TD id="EN12_5"></TD><TD id="EN12_6"></TD></TR>
+			<TR><TD id="EN13_1"></TD><TD id="EN13_2"></TD><TD id="EN13_3"></TD><TD id="EN13_4"></TD></TR>
+			<TR><TD id="EN20_1"></TD><TD id="EN20_2"></TD><TD id="EN21_1"></TD><TD id="EN21_2"></TD></TR>
+			<TR><TD colspan=4><span id="EN11_1"></span><span id="EN11_2"></span><span id="EN11_1a"></span></TD></TR></TABLE>
+			`;
 		myInnerHtml("SP_SIEN01", str, 0);
 		document.calcForm.A3_SKILLSW.checked = true;
-		const name_CS3SW_SKILL = ["口笛","夕陽のアサシンクロス","ブラギの詩","イドゥンの林檎","ハミング","幸運のキス","サービスフォーユー","不死身ジークフリード","ニヨルドの宴","戦太鼓の響き","ニーベルングの指輪"];
+		const name_CS3SW_SKILL = ["口笛","夕陽のアサシンクロス","(廃止)ブラギの詩","(廃止)イドゥンの林檎","ハミング","(廃止)幸運のキス","(廃止)サービスフォーユー","(廃止)不死身ジークフリード","ニヨルドの宴","戦太鼓の響き","ニーベルングの指輪"];
 		let html_CS3SW_SKILL = new Array();
 		for (let i = 0; i <= 10; i++) {
                 myInnerHtml(`EN${i}_1`, name_CS3SW_SKILL[i], 0);
@@ -140,7 +146,15 @@ function Click_Skill3SW(){
 		Skill3SW_2(false);
 	} else {
 		let str;
-		str = '<TABLE Border><TR><TD id="A3TD" class="title"><input id="OBJID_CHECK_A3_SKILLSW" type="checkbox" name="A3_SKILLSW"onClick="Click_Skill3SW()"><label for="OBJID_CHECK_A3_SKILLSW">演奏/踊り系スキル</label><span id="A3used"></span></TD></TR></TABLE>';
+		str = `
+			<TABLE Border>
+			<TR><TD id="A3TD" class="title">
+				<input id="OBJID_CHECK_A3_SKILLSW" type="checkbox" name="A3_SKILLSW" onClick="Click_Skill3SW()">
+				<label for="OBJID_CHECK_A3_SKILLSW">演奏/踊り系スキル</label>
+				<span id="A3used"></span>
+			</TD></TR>
+			</TABLE>
+			`;
 		myInnerHtml("SP_SIEN01",str,0);
 		document.calcForm.A3_SKILLSW.checked = false;
 		for (let i = 0; i <= 11; i++) {
