@@ -6333,7 +6333,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)矢撃ち";
+			this.name = "矢撃ち";
 			this.kana = "ヤウチ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -8738,7 +8738,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)アローバルカン";
+			this.name = "アローバルカン";
 			this.kana = "アロオハルカン";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -20359,7 +20359,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)シビアレインストーム";
+			this.name = "シビアレインストーム";
 			this.kana = "シヒアレインストオム";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -20375,7 +20375,7 @@ function CSkillManager() {
 				} else {
 					ratio = 100 * skillLv;
 				}
-				ratio += (n_A_DEX + n_A_AGI) * (skillLv / 5);
+				ratio += Math.floor((n_A_DEX + n_A_AGI) / 2);
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {
@@ -23653,7 +23653,7 @@ function CSkillManager() {
 			CSkillData.call(this);
 			this.id = skillId;
 			this.refId = SKILL_ID_SEVERE_RAINSTORM;
-			this.name = "(×)シビアレインストーム(特殊)";
+			this.name = "シビアレインストーム(特殊)";
 			this.kana = "シヒアレインストオムトクシユ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -23669,7 +23669,7 @@ function CSkillManager() {
 				} else {
 					ratio = 100 * skillLv;
 				}
-				ratio += (option.GetOptionValue(0) + option.GetOptionValue(1)) * (skillLv / 5);
+				ratio += Math.floor((option.GetOptionValue(0) + option.GetOptionValue(1)) / 2);
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {
