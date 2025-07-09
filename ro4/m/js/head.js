@@ -9837,6 +9837,9 @@ function ApplyMagicalSpecializeMonsterMod20211014SubSpecializeMap(charaData, spe
 		if ((cardCount = CardNumSearch(CARD_ID_NETTO_PHEN)) > 0) {
 			wX += 30 * cardCount;
 		}
+		if (EquipNumSearch(ITEM_ID_BURNING_FISH_CLOAK) > 0) {
+			wX += 30;
+		}
 	}
 
 	//--------------------------------
@@ -12913,6 +12916,15 @@ function BattleHiDam(charaData, specData, mobData, attackMethodConfArray, objCel
 	//--------------------------------
 	if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_ABYSS_LAKE_CHIKA_DOKUTSU_04]) == 1){
 		if (EquipNumSearch(ITEM_ID_DRAGON_SCALE_SHAWL) > 0) {
+			wBHD += 60;
+		}
+	}
+
+	//--------------------------------
+	// 大浴場メディタティオ耐性
+	//--------------------------------
+	if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_BALMUNT_TE_DAIYOKUZYO_MEDITATIO]) == 1){
+		if (EquipNumSearch(ITEM_ID_BURNING_FISH_CLOAK) > 0) {
 			wBHD += 60;
 		}
 	}
@@ -18448,6 +18460,9 @@ function ApplyPhysicalSpecializeMonster(charaData, specData, mobData, dmg) {
 	if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_BALMUNT_TE_DAIYOKUZYO_MEDITATIO]) == 1){
 		if ((cardCount = CardNumSearch(CARD_ID_NETTO_PHEN)) > 0) {
 			w += 30 * cardCount;
+		}
+		if (EquipNumSearch(ITEM_ID_BURNING_FISH_CLOAK) > 0) {
+			w += 30;
 		}
 	}
 
