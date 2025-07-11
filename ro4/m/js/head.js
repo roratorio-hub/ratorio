@@ -9077,8 +9077,8 @@ function GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfAr
 	// ＡＴＫ％ＵＰ
 	if(GetEquippedTotalSPEquip(87)) w += GetEquippedTotalSPEquip(87);
 
-	// TODO : 謎補正
-	if(g_confDataDebuff[3]) w -= 25;
+	// 呪いによる ATK -25%
+	if(g_confDataDebuff[CCharaConfDebuff.CONF_ID_CURSE]) w -= 25;
 
 	// 精霊スキル　ウォーターバリア
 	if(UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 17) w -= 30;
@@ -22608,9 +22608,9 @@ function BuildCastAndDelayHtmlMIG(mobData){
 	wCastFixed = wCastFixed * scaling / 100;
 
 	// スローキャスト状態の適用
-	if(g_confDataDebuff[4]) {
-		wCast += (wCast * (20 * g_confDataDebuff[4]) / 100);
-		wCastFixed += (wCastFixed * (20 * g_confDataDebuff[4]) / 100);
+	if(g_confDataDebuff[CCharaConfDebuff.CONF_ID_SLOW_CAST]) {
+		wCast += (wCast * (20 * g_confDataDebuff[CCharaConfDebuff.CONF_ID_SLOW_CAST]) / 100);
+		wCastFixed += (wCastFixed * (20 * g_confDataDebuff[CCharaConfDebuff.CONF_ID_SLOW_CAST]) / 100);
 	}
 
 

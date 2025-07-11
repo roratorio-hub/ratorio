@@ -19,7 +19,7 @@ class CCharaConfDebuff extends CConfBase {
 		/**
 		 * まずは与ダメに影響する状態異常を実装する方針です
 		 */
-		CCharaConfDebuff.CONF_ID_QUAGMIRE = confId;
+		CCharaConfDebuff.CONF_ID_QUAGMIRE = confId;	// 0
 		confData = [
 			confId,
 			CConfBase.ConfText("クァグマイア"),
@@ -31,7 +31,7 @@ class CCharaConfDebuff extends CConfBase {
 		this.confDataObj[confId] = confData;
 		confId++;
 
-		CCharaConfDebuff.CONF_ID_DECAGI = confId;
+		CCharaConfDebuff.CONF_ID_DECAGI = confId;	// 1
 		confData = [
 			confId,
 			CConfBase.ConfText("速度減少"),	// AGI 減少
@@ -43,7 +43,7 @@ class CCharaConfDebuff extends CConfBase {
 		this.confDataObj[confId] = confData;
 		confId++;
 
-		CCharaConfDebuff.CONF_ID_POISON = confId;
+		CCharaConfDebuff.CONF_ID_POISON = confId;	// 2
 		confData = [
 			confId,
 			CConfBase.ConfText("毒"),
@@ -55,7 +55,7 @@ class CCharaConfDebuff extends CConfBase {
 		this.confDataObj[confId] = confData;
 		confId++;
 
-		CCharaConfDebuff.CONF_ID_CURSE = confId;
+		CCharaConfDebuff.CONF_ID_CURSE = confId;	// 3
 		confData = [
 			confId,
 			CConfBase.ConfText("呪い"),	// ATK 減少, LUK 0
@@ -67,7 +67,7 @@ class CCharaConfDebuff extends CConfBase {
 		this.confDataObj[confId] = confData;
 		confId++;
 
-		CCharaConfDebuff.CONF_ID_SLOW_CAST = confId;
+		CCharaConfDebuff.CONF_ID_SLOW_CAST = confId;	// 4
 		confData = [
 			confId,
 			CConfBase.ConfText("スローキャスト"),	// 変動詠唱 増加
@@ -79,7 +79,7 @@ class CCharaConfDebuff extends CConfBase {
 		this.confDataObj[confId] = confData;
 		confId++;
 
-		CCharaConfDebuff.CONF_ID_FREEZING = confId;
+		CCharaConfDebuff.CONF_ID_FREEZING = confId;	// 5
 		confData = [
 			confId,
 			CConfBase.ConfText("氷結"),	// ASPD 減少, 固定詠唱 増加

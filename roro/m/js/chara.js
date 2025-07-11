@@ -9499,14 +9499,14 @@ function GetStatusModifyDefDivUp() {
 	//----------------------------------------------------------------
 	// キャラクター状態異常　毒
 	//----------------------------------------------------------------
-	if (g_confDataDebuff[2]) {
+	if (g_confDataDebuff[CCharaConfDebuff.CONF_ID_POISON]) {
 		val -= 25;
 	}
 
 	//----------------------------------------------------------------
 	// キャラクター状態異常　氷結
 	//----------------------------------------------------------------
-	if (g_confDataDebuff[5]) {
+	if (g_confDataDebuff[CCharaConfDebuff.CONF_ID_FREEZING]) {
 		val -= 10;
 	}
 

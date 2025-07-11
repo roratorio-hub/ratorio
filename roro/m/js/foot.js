@@ -5685,7 +5685,7 @@ if (_APPLY_UPDATE_LV200) {
 			}
 
 			// クァグマイア または 速度減少 で打ち消される ASPD 増加計算
-			if (g_confDataDebuff[0] === 0 && g_confDataDebuff[1] === 0) {
+			if (g_confDataDebuff[CCharaConfDebuff.CONF_ID_QUAGMIRE] === 0 && g_confDataDebuff[CCharaConfDebuff.CONF_ID_DECAGI] === 0) {
 				//----------------------------------------------------------------
 				// 「パッシブ持続系　クイッケン系」の効果
 				//----------------------------------------------------------------
@@ -5783,7 +5783,7 @@ if (_APPLY_UPDATE_LV200) {
 			// TODO: 未解析
 			//----------------------------------------------------------------
 			if (g_confDataNizi[CCharaConfNizi.CONF_ID_ADRENALINE_RUSH] >= 1) {
-				if (g_confDataDebuff[0] === 0 && g_confDataDebuff[1] === 0) {
+				if (g_confDataDebuff[CCharaConfDebuff.CONF_ID_QUAGMIRE] === 0 && g_confDataDebuff[CCharaConfDebuff.CONF_ID_DECAGI] === 0) {
 					// クァグマイア または 速度減少 が掛かっていないとき
 					if ((_APPLY_UPDATE_LV200) || (UsedSkillSearch(SKILL_ID_MADOGEAR) === 0)) {
 						if(g_confDataNizi[CCharaConfNizi.CONF_ID_ADRENALINE_RUSH] == 2){
@@ -6831,7 +6831,7 @@ if (_APPLY_UPDATE_LV200) {
 		}
 
 		n_A_Kotei_Cast_Keigen = wMax;
-		if(g_confDataDebuff[5]) n_A_Kotei_Cast_Keigen -= 50;
+		if(g_confDataDebuff[CCharaConfDebuff.CONF_ID_FREEZING]) n_A_Kotei_Cast_Keigen -= 50;
 
 		charaData[CHARA_DATA_INDEX_FIXED_TIME] = n_A_Kotei_Cast_Keigen;
 
@@ -6937,7 +6937,7 @@ if (_APPLY_UPDATE_LV200) {
 		w2 = (w2 + charaData[CHARA_DATA_INDEX_MAXHP] / 200) * w / 100;
 		hpr += w2;
 		hpr = ROUNDDOWN(hpr);
-		if(g_confDataDebuff[2]) hpr = 0;
+		if(g_confDataDebuff[CCharaConfDebuff.CONF_ID_POISON]) hpr = 0;
 
 
 		//----------------------------------------------------------------
@@ -7098,7 +7098,7 @@ if (_APPLY_UPDATE_LV200) {
 
 		spr += ROUNDDOWN(spr * w / 100);
 		if(n_A_INT>=120) spr += Math.floor((n_A_INT-120)/2) +4;
-		if(g_confDataDebuff[2]) spr = 0;
+		if(g_confDataDebuff[CCharaConfDebuff.CONF_ID_POISON]) spr = 0;
 
 
 		//----------------------------------------------------------------
@@ -21758,6 +21758,17 @@ function GetAdditionalAspdPercent() {
     // 「三次職支援　ペインキラー」の効果
     //----------------------------------------------------------------
     tmp_percent -= 10 * g_confDataSanzi[CCharaConfSanzi.CONF_ID_PAIN_KILLER];
+	
+	/**
+	 * プレイヤー状態異常「私を忘れないで…」の効果
+	 */
+	if (g_confDataDebuff[CCharaConfDebuff.CONF_ID_DONTFORGETME] > 0) {
+		tmp_percent -= 5 + g_confDataDebuff[CCharaConfDebuff.CONF_ID_DONTFORGETME];
+	}
+	/**
+	 * プレイヤー状態異常「メランコリー」の効果
+	 */
+	tmp_percent -= 3 * g_confDataDebuff[CCharaConfDebuff.CONF_ID_GLOOMYDAY];
 
     //----------------------------------------------------------------
     // 「修羅　点穴 -反-」の効果
@@ -21790,7 +21801,7 @@ function GetAdditionalAspdPercent() {
     //----------------------------------------------------------------
     tmp_percent += 5 * UsedSkillSearch(SKILL_ID_HOSHINO_KAMAE);
     if (n_A_PassSkill3[11]) tmp_percent -= 3 * n_A_PassSkill3[11];
-    if (g_confDataDebuff[5]) tmp_percent -= 30;
+    if (g_confDataDebuff[CCharaConfDebuff.CONF_ID_FREEZING]) tmp_percent -= 30;
 
     //----------------------------------------------------------------
     // 「性能カスタマイズ」の、効果
@@ -27886,7 +27897,9 @@ function StPlusCalc() {
 	//----------------------------------------------------------------
 	// 「一次職支援　速度増加」による効果
 	//----------------------------------------------------------------
-	if(g_confDataIchizi[CCharaConfIchizi.CONF_ID_SOKUDO_ZOKA] > 0 && g_confDataDebuff[0] == 0 && g_confDataDebuff[1] == 0) {
+	if(g_confDataIchizi[CCharaConfIchizi.CONF_ID_SOKUDO_ZOKA] > 0 && 
+		g_confDataDebuff[CCharaConfDebuff.CONF_ID_QUAGMIRE] == 0 && 
+		g_confDataDebuff[CCharaConfDebuff.CONF_ID_DECAGI] == 0) {
 		wSPC_AGI += g_confDataIchizi[CCharaConfIchizi.CONF_ID_SOKUDO_ZOKA] + 2;
 	}
 
@@ -28121,25 +28134,25 @@ function StPlusCalc() {
 		wSPC_LUK += confval;
 	}
 
-	if(g_confDataDebuff[0]){
+	if(g_confDataDebuff[CCharaConfDebuff.CONF_ID_QUAGMIRE]){
 		var w1;
 		var w2;
-		if(g_confDataDebuff[0] <= 5){
+		if(g_confDataDebuff[CCharaConfDebuff.CONF_ID_QUAGMIRE] <= 5){
 			w1 = Math.floor((n_A_AGI + wSPC_AGI) / 2);
 			w2 = 9999;
 		}else{
 			w1 = Math.floor((n_A_AGI + wSPC_AGI) / 4);
-			w2 = 5 * (g_confDataDebuff[0] - 5);
+			w2 = 5 * (g_confDataDebuff[CCharaConfDebuff.CONF_ID_QUAGMIRE] - 5);
 		}
 		if(w1 > w2) wSPC_AGI -= w2;
 		else wSPC_AGI -= w1;
-		if(g_confDataDebuff[0] <= 5) w1 = Math.floor((n_A_DEX + wSPC_DEX) / 2);
+		if(g_confDataDebuff[CCharaConfDebuff.CONF_ID_QUAGMIRE] <= 5) w1 = Math.floor((n_A_DEX + wSPC_DEX) / 2);
 		else w1 = Math.floor((n_A_DEX + wSPC_DEX) / 4);
 		if(w1 > w2) wSPC_DEX -= w2;
 		else wSPC_DEX -= w1;
 	}
-	if(g_confDataDebuff[1]) wSPC_AGI -= (g_confDataDebuff[1] + 2);
-	if(g_confDataDebuff[3]) wSPC_LUK = -1 * n_A_LUK;
+	if(g_confDataDebuff[CCharaConfDebuff.CONF_ID_DECAGI]) wSPC_AGI -= (g_confDataDebuff[CCharaConfDebuff.CONF_ID_DECAGI] + 2);
+	if(g_confDataDebuff[CCharaConfDebuff.CONF_ID_CURSE]) wSPC_LUK = -1 * n_A_LUK;
 	n_A_STR += wSPC_STR;
 	n_A_AGI += wSPC_AGI;
 	n_A_VIT += wSPC_VIT;
