@@ -172,10 +172,15 @@ class CSaveDataUnitBase {
 	 * パース済みのプロパティを設定する.
 	 * （継承先のクラスで、値の補正などに用いる）
 	 * @param {string} propName プロパティの名称
-	 * @param {int} value プロパティの値
+	 * @param {Array|Number} value プロパティの値
 	 */
 	setProp (propName, value) {
-		this.parsedMap.set(propName, toSafeBigInt(value));
+		if (Array.isArray(value)) {
+			value = value.map(toSafeBigInt)
+		} else {
+			value = toSafeBigInt(value)
+		}
+		this.parsedMap.set(propName, value);
 	}
 
 	/**

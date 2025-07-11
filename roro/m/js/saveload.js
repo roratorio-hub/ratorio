@@ -1,8 +1,3 @@
-
-
-
-
-
 // ★★　VersionModify() 関数の修正も忘れずに　★★
 
 // CURRENT_VERSION = 11;	// ラトリオ様からフォーク
@@ -51,8 +46,6 @@
 CURRENT_VERSION = 54;	// 対人データの拡張対応
 // 旧データ構造は、最大でバージョン 99 まで
 
-
-
 /**
  * セーブデータのバージョンを取得する.
  * @param saveDataStr セーブデータ文字列（未加工）
@@ -70,8 +63,6 @@ function GetSaveDataVersion(saveDataStr) {
 
 	return CSaveDataConverter.ConvertStoN(versionStr);
 }
-
-
 
 // 対プレイヤー設定用バイアス
 SAVE_DATA_BIAS_CONF_PLAYER_500 = 500;
@@ -104,10 +95,6 @@ BIAS_TARGET_INDEX_ARRAY_CONF_PLAYER_500 = [
 	MOB_CONF_PLAYER_ID_LUK,
 	MOB_CONF_PLAYER_ID_KOGATA_TAISEI,
 ];
-
-
-
-
 
 function SaveButton(){
 
@@ -220,7 +207,6 @@ function GetExpireDateStringSub(dtBase, daysToExpire) {
 	return dtExpire.toUTCString();
 }
 
-
 // 旧セーブ処理
 /*
 function URLOUT(){
@@ -233,28 +219,20 @@ function URLOUT(){
 }
 */
 
-
 /**
  * データＵＲＬを生成する.
  */
 function SaveSystem(funcSaveDataModify = null){
-
 	var idx = 0;
 	var idxLoop = 0;
 	var idxOffset = 0;
-
 	var loopInfoArray = null;
-
 	var objidPrifix = "";
 	var objidKind = "";
 	var objidValue = "";
-
 	var valueWork = 0;
 	var attackMethodConf = null;
-
 	var saveDataMappingArray = null;
-
-
 
 	// データ長定義を取得
 	saveDataMappingArray = CSaveDataMappingManager.GetMappingArray(CURRENT_VERSION);
@@ -508,10 +486,11 @@ function SaveSystem(funcSaveDataModify = null){
 		//----------------------------------------------------------------
 		// [0800 - 0849] キャラクター状態異常
 		//----------------------------------------------------------------
+		/* 新セーブ処理への移行に伴いコメントアウト
 		for (idx = 0; idx < n_A_IJYOU.length; idx++) {
 			SaveData[800 + idx] = n_A_IJYOU[idx];
 		}
-
+		*/		
 
 		//----------------------------------------------------------------
 		// [0850 - 0904] 対プレイヤー設定
@@ -839,16 +818,12 @@ function SaveSystem(funcSaveDataModify = null){
 
 	}
 
-
-
 	//----------------------------------------------------------------
 	// 外部関数によるデータ補正
 	//----------------------------------------------------------------
 	if (funcSaveDataModify) {
 		SaveData = funcSaveDataModify(SaveData);
 	}
-
-
 
 	//----------------------------------------------------------------
 	// データ補正
@@ -862,20 +837,14 @@ function SaveSystem(funcSaveDataModify = null){
 		}
 	}
 
-
 	//----------------------------------------------------------------
 	// データ変換
 	//----------------------------------------------------------------
 	for (idx = 0; idx < SaveData.length; idx++) {
 		SaveData[idx] = CSaveDataConverter.ConvertNtoS(SaveData[idx], saveDataMappingArray[idx]);
 	}
-
 	return NumA(SaveData);
 }
-
-
-
-
 
 function VersionModify(saveDataArray) {
 
@@ -3726,7 +3695,6 @@ function VersionModify(saveDataArray) {
 	return saveDataArray;
 }
 
-
 /**
  * 避難所の安定版に存在した「ロード」ボタンから呼び出される関数
  * もう使うことはない
@@ -3745,7 +3713,6 @@ function LoadButton(){
 		}
 	}
 }
-
 
 /**
  * 旧バージョンのロード処理
@@ -3771,8 +3738,6 @@ function URLIN(strUrl){
 	// 再計算
 	calc();
 }
-
-
 
 /**
  * セーブデータ文字列長を、カレントバージョンのデータ長に合わせる.
@@ -3818,8 +3783,6 @@ function AdaptSaveDataStrSize(saveDataStrExtracted) {
 
 	return saveDataStrExtracted;
 }
-
-
 
 /**
  * ＵＲＬ文字列からデータを復元する.
@@ -4633,10 +4596,11 @@ function DecodeUrl(loadDataUrl){
 		//----------------------------------------------------------------
 		// キャラクター状態異常の読み込み
 		//----------------------------------------------------------------
+		/* 新ロード処理への移行に伴いコメントアウト
 		for (idx = 0; idx < n_A_IJYOU.length; idx++) {
 			n_A_IJYOU[idx] = SaveData[800 + idx];
 		}
-
+		*/
 
 		//----------------------------------------------------------------
 		// 対プレイヤー設定の読み込み
@@ -5013,10 +4977,6 @@ function DecodeUrl(loadDataUrl){
 
 }
 
-
-
-
-
 function LoadCookie3(){
 
 	if (!document.calcForm.A_SaveSlot) {
@@ -5195,10 +5155,6 @@ if ((ch == 0 && SaveData.length > 1)
 	}
 }
 
-
-
-
-
 /**
  * 計算機の設定を保存する.
  */
@@ -5332,10 +5288,6 @@ function SaveCookieConf(){
 	}
 }
 
-
-
-
-
 /**
  * 計算機の設定を読み込む.
  */
@@ -5409,10 +5361,6 @@ function LoadCookieConf(){
 	}
 }
 
-
-
-
-
 function SaveDataChange(wstr){
 	var mozi = new Array();
 	for(var i=0;i<wstr.length;i++) mozi[i] = wstr.charAt(i);
@@ -5445,22 +5393,12 @@ function SaveDataChange(wstr){
 	return wx;
 }
 
-
-
-
-
 function aaa(wnum){
 	var wa = "";
 	for(var i=0;i<wnum;i++) wa += "a";
 	return wa;
 }
-
-
-
-
 n_NtoS2 =["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","0","1","2","3","4","5","6","7","8","9"];
-
-
 
 function NumA(wstr){
 	for(var i=2;i<wstr.length;i++){
@@ -5483,8 +5421,6 @@ function NumA(wstr){
 	return strx;
 }
 
-
-
 function NtoS2(n,keta){
 	var strX = "";
 	if(keta == 3){
@@ -5500,14 +5436,10 @@ function NtoS2(n,keta){
 	return strX;
 }
 
-
-
 function StoNx(n){
 	n += "";
 	for(var i=0;i<=61;i++) if(n == n_NtoS2[i]) return i;
 }
-
-
 
 function StoN2(n){
 	n += "";
@@ -5531,9 +5463,6 @@ function StoN2(n){
 	return x;
 }
 
-
-
-
 /**
  * 旧バージョンのロード処理
  * もう使うことは無い
@@ -5552,10 +5481,6 @@ if (_MAGIC_CALC_INSPECTION) {
 	strUrl = HtmlGetObjectValueById("OBJID_URL_IN", "");
 	URLIN(strUrl);
 }
-
-
-
-
 
 // 魔法特化計算順序検証用
 

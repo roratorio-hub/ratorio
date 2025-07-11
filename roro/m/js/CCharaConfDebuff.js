@@ -4,8 +4,8 @@ class CCharaConfDebuff extends CConfBase {
 		// 親クラスのコンストラクタ呼び出し
 		super(confArray);
 		// 設定の限界値
-		// この数を超える場合は、セーブデータの拡張が必要
-		this.confCountLimit = 90;
+		// この数を超える場合は、CSaveDataUnitCharaDebuff の拡張が必要
+		this.confCountLimit = 50;
 		// 設定欄の横方向項目数
 		this.itemInRow = 3;
 		// 設定欄のラベル
@@ -19,6 +19,102 @@ class CCharaConfDebuff extends CConfBase {
 		/**
 		 * まずは与ダメに影響する状態異常を実装する方針です
 		 */
+		CCharaConfDebuff.CONF_ID_QUAGMIRE = confId;
+		confData = [
+			confId,
+			CConfBase.ConfText("クァグマイア"),
+			CConfBase.ConfControlType(CONTROL_TYPE_SELECTBOX_NUMBER),
+			CConfBase.ConfDefaultValue(0),
+			CConfBase.ConfMinValue(0),
+			CConfBase.ConfMaxValue(10)
+		];
+		this.confDataObj[confId] = confData;
+		confId++;
+
+		CCharaConfDebuff.CONF_ID_DECAGI = confId;
+		confData = [
+			confId,
+			CConfBase.ConfText("速度減少"),	// AGI 減少
+			CConfBase.ConfControlType(CONTROL_TYPE_SELECTBOX_NUMBER),
+			CConfBase.ConfDefaultValue(0),
+			CConfBase.ConfMinValue(0),
+			CConfBase.ConfMaxValue(10)
+		];
+		this.confDataObj[confId] = confData;
+		confId++;
+
+		CCharaConfDebuff.CONF_ID_POISON = confId;
+		confData = [
+			confId,
+			CConfBase.ConfText("毒"),
+			CConfBase.ConfControlType(CONTROL_TYPE_CHECKBOX),
+			CConfBase.ConfDefaultValue(0),
+			CConfBase.ConfMinValue(0),
+			CConfBase.ConfMaxValue(1)
+		];
+		this.confDataObj[confId] = confData;
+		confId++;
+
+		CCharaConfDebuff.CONF_ID_CURSE = confId;
+		confData = [
+			confId,
+			CConfBase.ConfText("呪い"),	// ATK 減少, LUK 0
+			CConfBase.ConfControlType(CONTROL_TYPE_CHECKBOX),
+			CConfBase.ConfDefaultValue(0),
+			CConfBase.ConfMinValue(0),
+			CConfBase.ConfMaxValue(1)
+		];
+		this.confDataObj[confId] = confData;
+		confId++;
+
+		CCharaConfDebuff.CONF_ID_SLOW_CAST = confId;
+		confData = [
+			confId,
+			CConfBase.ConfText("スローキャスト"),	// 変動詠唱 増加
+			CConfBase.ConfControlType(CONTROL_TYPE_SELECTBOX_NUMBER),
+			CConfBase.ConfDefaultValue(0),
+			CConfBase.ConfMinValue(0),
+			CConfBase.ConfMaxValue(5)
+		];
+		this.confDataObj[confId] = confData;
+		confId++;
+
+		CCharaConfDebuff.CONF_ID_FREEZING = confId;
+		confData = [
+			confId,
+			CConfBase.ConfText("氷結"),	// ASPD 減少, 固定詠唱 増加
+			CConfBase.ConfControlType(CONTROL_TYPE_CHECKBOX),
+			CConfBase.ConfDefaultValue(0),
+			CConfBase.ConfMinValue(0),
+			CConfBase.ConfMaxValue(1)
+		];
+		this.confDataObj[confId] = confData;
+		confId++;
+
+		CCharaConfDebuff.CONF_ID_POWDERING = confId;
+		confData = [
+			confId,
+			CConfBase.ConfText("イヌハッカシャワー"),
+			CConfBase.ConfControlType(CONTROL_TYPE_CHECKBOX),
+			CConfBase.ConfDefaultValue(0),
+			CConfBase.ConfMinValue(0),
+			CConfBase.ConfMaxValue(1)
+		];
+		this.confDataObj[confId] = confData;
+		confId++;
+
+		CCharaConfDebuff.CONF_ID_NYANGGRASS = confId;
+		confData = [
+			confId,
+			CConfBase.ConfText("ニャングラス"),
+			CConfBase.ConfControlType(CONTROL_TYPE_CHECKBOX),
+			CConfBase.ConfDefaultValue(0),
+			CConfBase.ConfMinValue(0),
+			CConfBase.ConfMaxValue(1)
+		];
+		this.confDataObj[confId] = confData;
+		confId++;
+
 		CCharaConfDebuff.CONF_ID_DONTFORGETME = confId;
 		confData = [
 			confId,
@@ -91,58 +187,10 @@ class CCharaConfDebuff extends CConfBase {
 		this.confDataObj[confId] = confData;
 		confId++;
 
-		CCharaConfDebuff.CONF_ID_DECAGI = confId;
-		confData = [
-			confId,
-			CConfBase.ConfText("速度減少"),	// AGI 減少
-			CConfBase.ConfControlType(CONTROL_TYPE_SELECTBOX_NUMBER),
-			CConfBase.ConfDefaultValue(0),
-			CConfBase.ConfMinValue(0),
-			CConfBase.ConfMaxValue(10)
-		];
-		this.confDataObj[confId] = confData;
-		confId++;
-
-		CCharaConfDebuff.CONF_ID_CURSE = confId;
-		confData = [
-			confId,
-			CConfBase.ConfText("呪い"),	// ATK 減少, LUK 0
-			CConfBase.ConfControlType(CONTROL_TYPE_CHECKBOX),
-			CConfBase.ConfDefaultValue(0),
-			CConfBase.ConfMinValue(0),
-			CConfBase.ConfMaxValue(1)
-		];
-		this.confDataObj[confId] = confData;
-		confId++;
-
 		CCharaConfDebuff.CONF_ID_DARKNESS = confId;
 		confData = [
 			confId,
 			CConfBase.ConfText("暗黒"),	// HIT 減少
-			CConfBase.ConfControlType(CONTROL_TYPE_CHECKBOX),
-			CConfBase.ConfDefaultValue(0),
-			CConfBase.ConfMinValue(0),
-			CConfBase.ConfMaxValue(1)
-		];
-		this.confDataObj[confId] = confData;
-		confId++;
-
-		CCharaConfDebuff.CONF_ID_SLOW_CAST = confId;
-		confData = [
-			confId,
-			CConfBase.ConfText("スローキャスト"),	// 変動詠唱 増加
-			CConfBase.ConfControlType(CONTROL_TYPE_SELECTBOX_NUMBER),
-			CConfBase.ConfDefaultValue(0),
-			CConfBase.ConfMinValue(0),
-			CConfBase.ConfMaxValue(5)
-		];
-		this.confDataObj[confId] = confData;
-		confId++;
-
-		CCharaConfDebuff.CONF_ID_FREEZING = confId;
-		confData = [
-			confId,
-			CConfBase.ConfText("氷結"),	// ASPD 減少, 固定詠唱 増加
 			CConfBase.ConfControlType(CONTROL_TYPE_CHECKBOX),
 			CConfBase.ConfDefaultValue(0),
 			CConfBase.ConfMinValue(0),

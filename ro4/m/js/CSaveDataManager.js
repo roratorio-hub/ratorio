@@ -200,14 +200,10 @@ class CSaveDataManager {
 		],
 	]);
 
-
-
 	/**
 	 * セーブデータユニットの配列.
 	 */
 	#saveDataUnitArray;
-
-
 
 	/**
 	 * コンストラクタ.
@@ -217,8 +213,6 @@ class CSaveDataManager {
 		// メンバ変数の初期化
 		this.#saveDataUnitArray = [];
 	}
-
-
 
 	/**
 	 * URLクエリ文字列として出力する.
@@ -235,6 +229,7 @@ class CSaveDataManager {
 		this.parseDataText(SaveSystem())
 
 		// 次世代版限定データの追加
+		this.#collectDataCharaConfDebuff();
 		this.#collectDataShadowEquips();
 		this.#collectDataTranscendence();
 
@@ -249,6 +244,20 @@ class CSaveDataManager {
 		}
 
 		return dataTextWork;
+	}
+
+	/**
+	 * セーブ時、プレイヤー状態異常設定のデータをセーブデータユニットに追加する
+	 */
+	#collectDataCharaConfDebuff() {
+		const saveDataUnit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_CHARA_DEBUFF))();
+		saveDataUnit.SetUpAsDefault();
+		saveDataUnit.setProp(CSaveDataConst.propNameOptCode, 0);
+		saveDataUnit.setProp(CSaveDataConst.propNameBuffLv, n_A_IJYOU);
+		saveDataUnit.doCompaction();
+		if (!saveDataUnit.isEmptyUnit()) {
+			this.#saveDataUnitArray.push(saveDataUnit);
+		}
 	}
 
 	/**
@@ -326,13 +335,10 @@ class CSaveDataManager {
 			EQUIP_REGION_ID_SHADOW_ACCESSARY_2,
 		];
 
-
 		// 装備箇所用データユニット用意（すでに存在する可能性がある）
 		let saveDataUnitEqpRgn = null;
 		for (let idx = 0; idx < this.#saveDataUnitArray.length; idx++) {
-
 			const saveDataUnit = this.#saveDataUnitArray[idx];
-
 			// シャドウ装備用装備箇所データユニットでなければ、次へ
 			if (saveDataUnit.constructor.type != SAVE_DATA_UNIT_TYPE_EQUIP_REGIONS) {
 				continue;
@@ -340,12 +346,10 @@ class CSaveDataManager {
 			if (floorBigInt32(saveDataUnit.getProp(CSaveDataConst.propNameDataKind)) != CSaveDataConst.eqpRgnKindShadow) {
 				continue;
 			}
-
 			// ここまで来れば、目的のデータユニット
 			saveDataUnitEqpRgn = saveDataUnit;
 			break;
 		}
-
 		// メンバ変数の配列に存在しなかった場合は、新規に作成
 		if (!saveDataUnitEqpRgn) {
 			saveDataUnitEqpRgn = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_EQUIP_REGIONS))();
@@ -353,25 +357,18 @@ class CSaveDataManager {
 			saveDataUnitEqpRgn.setProp(CSaveDataConst.propNameDataKind, CSaveDataConst.eqpRgnKindShadow);
 			this.#saveDataUnitArray.push(saveDataUnitEqpRgn);
 		}
-
-	
 		// すべての装備箇所のデータを追加する
 		for (let idx = 0; idx < eqpRgnIdArray.length; idx++) {
-
 			const eqpRgnId = eqpRgnIdArray[idx];
-
 			// データユニット生成
 			const saveDataUnit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_EQUIPABLE))();
 			saveDataUnit.SetUpAsDefault();
-
 			// データ設定
 			const candidateDefID = this.#getCandidateEquipItemDefID();
 			saveDataUnit.setProp(CSaveDataConst.propNameEquipItemDefID, candidateDefID);
 			saveDataUnit.setProp(CSaveDataConst.propNameOptCode, 0);
-
 			saveDataUnit.setProp(CSaveDataConst.propNameItemID, g_itemIdArray[eqpRgnId]);
 			saveDataUnit.setProp(CSaveDataConst.propNameRefinedCount, g_refinedArray[eqpRgnId]);
-	
 			saveDataUnit.setProp(CSaveDataConst.propNameRndOptID1, GetEquipRndOptTableKind(eqpRgnId, 0));
 			saveDataUnit.setProp(CSaveDataConst.propNameRndOptValue1, GetEquipRndOptTableValue(eqpRgnId, 0));
 			saveDataUnit.setProp(CSaveDataConst.propNameRndOptID2, GetEquipRndOptTableKind(eqpRgnId, 1));
@@ -382,55 +379,50 @@ class CSaveDataManager {
 			saveDataUnit.setProp(CSaveDataConst.propNameRndOptValue4, GetEquipRndOptTableValue(eqpRgnId, 3));
 			saveDataUnit.setProp(CSaveDataConst.propNameRndOptID5, GetEquipRndOptTableKind(eqpRgnId, 4));
 			saveDataUnit.setProp(CSaveDataConst.propNameRndOptValue5, GetEquipRndOptTableValue(eqpRgnId, 4));
-
 			// コンパクション実行
 			saveDataUnit.doCompaction();
-
 			// データなしの場合は次へ
 			if (saveDataUnit.isEmptyUnit()) {
 				continue;
 			}
-
 			// 装備箇所データ設定
 			let propName = "";
 			switch (eqpRgnId) {
-			case EQUIP_REGION_ID_SHADOW_ARMS_RIGHT:
-				propName = CSaveDataConst.propNameEqpRgnArmsRight;
-				break;
-			case EQUIP_REGION_ID_SHADOW_ARMS_LEFT:
-				propName = CSaveDataConst.propNameEqpRgnArmsLeft;
-				break;
-			case EQUIP_REGION_ID_SHADOW_HEAD_TOP:
-				propName = CSaveDataConst.propNameEqpRgnHeadTop;
-				break;
-			case EQUIP_REGION_ID_SHADOW_HEAD_MID:
-				propName = CSaveDataConst.propNameEqpRgnHeadMid;
-				break;
-			case EQUIP_REGION_ID_SHADOW_HEAD_UNDER:
-				propName = CSaveDataConst.propNameEqpRgnHeadUnder;
-				break;
-			case EQUIP_REGION_ID_SHADOW_BODY:
-				propName = CSaveDataConst.propNameEqpRgnBody;
-				break;
-			case EQUIP_REGION_ID_SHADOW_SHOULDER:
-				propName = CSaveDataConst.propNameEqpRgnShoulder;
-				break;
-			case EQUIP_REGION_ID_SHADOW_FOOT:
-				propName = CSaveDataConst.propNameEqpRgnFoot;
-				break;
-			case EQUIP_REGION_ID_SHADOW_ACCESSARY_1:
-				propName = CSaveDataConst.propNameEqpRgnAccessory1;
-				break;
-			case EQUIP_REGION_ID_SHADOW_ACCESSARY_2:
-				propName = CSaveDataConst.propNameEqpRgnAccessory2;
-				break;
-
-			// 上記以外はNG
-			default:
-				continue;
+				case EQUIP_REGION_ID_SHADOW_ARMS_RIGHT:
+					propName = CSaveDataConst.propNameEqpRgnArmsRight;
+					break;
+				case EQUIP_REGION_ID_SHADOW_ARMS_LEFT:
+					propName = CSaveDataConst.propNameEqpRgnArmsLeft;
+					break;
+				case EQUIP_REGION_ID_SHADOW_HEAD_TOP:
+					propName = CSaveDataConst.propNameEqpRgnHeadTop;
+					break;
+				case EQUIP_REGION_ID_SHADOW_HEAD_MID:
+					propName = CSaveDataConst.propNameEqpRgnHeadMid;
+					break;
+				case EQUIP_REGION_ID_SHADOW_HEAD_UNDER:
+					propName = CSaveDataConst.propNameEqpRgnHeadUnder;
+					break;
+				case EQUIP_REGION_ID_SHADOW_BODY:
+					propName = CSaveDataConst.propNameEqpRgnBody;
+					break;
+				case EQUIP_REGION_ID_SHADOW_SHOULDER:
+					propName = CSaveDataConst.propNameEqpRgnShoulder;
+					break;
+				case EQUIP_REGION_ID_SHADOW_FOOT:
+					propName = CSaveDataConst.propNameEqpRgnFoot;
+					break;
+				case EQUIP_REGION_ID_SHADOW_ACCESSARY_1:
+					propName = CSaveDataConst.propNameEqpRgnAccessory1;
+					break;
+				case EQUIP_REGION_ID_SHADOW_ACCESSARY_2:
+					propName = CSaveDataConst.propNameEqpRgnAccessory2;
+					break;
+				// 上記以外はNG
+				default:
+					continue;
 			}
 			saveDataUnitEqpRgn.setProp(propName, candidateDefID);
-
 			// データユニットをメンバ変数の配列へ追加
 			this.#saveDataUnitArray.push(saveDataUnit);
 		}
@@ -493,8 +485,6 @@ class CSaveDataManager {
 		// オフセット位置はパースした文字数に一致する
 		return offset;
 	}
-
-
 
 	/**
 	 * すべてのセーブデータユニットのコンパクションを行う.
@@ -578,8 +568,6 @@ class CSaveDataManager {
 			}
 		);
 	}
-
-
 
 	/**
 	 * 保持しているデータを画面部品に適用する.
@@ -1923,8 +1911,6 @@ class CSaveDataManager {
 		//  攻撃手段の設定設定を変更
 		CAttackMethodAreaComponentManager.SetAttackMethodConf(attackMethodConf);
 	}
-
-
 }
 
 

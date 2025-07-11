@@ -277,6 +277,27 @@ function RefreshSuperNoviceFullWeapon(bFull) {
 
 }
 
+/**
+ * HTMLからプレイヤー状態異常のデータを読み取ってグローバル変数を更新する
+ */
+function UpdateBadStatusDataByHtml() {
+	const OPTION_COUNT = 8;
+	for (let i = 0; i < OPTION_COUNT; i++) {
+		const element = document.querySelector(`[name="A_IJYOU${i}"]`);
+		switch (element.tagName) {
+			case "SELECT":
+				n_A_IJYOU[i] = Number(element.value);
+				break;
+			case "INPUT":
+				n_A_IJYOU[i] = element.checked;
+				break;
+		}
+	}
+}
+
+/**
+ * HTMLから装備アイテムの状態を読み取ってグローバル変数を更新する
+ */
 function UpdateEquipItemDataByHtml() {
 
 	var charaDataManager = null;
@@ -998,14 +1019,8 @@ function StAllCalc(){
 				if(n_A_PassSkill8[19] == 0) myInnerHtml("ID_A_HUYO_NAME","暖かい風",0);
 				else myInnerHtml("ID_A_HUYO_NAME","武器属性付与",0);
 			}
-			n_A_IJYOU[0] = eval(A_IJYOU0.value);
-			n_A_IJYOU[1] = eval(A_IJYOU1.value);
-			n_A_IJYOU[2] = eval(A_IJYOU2.checked);
-			n_A_IJYOU[3] = eval(A_IJYOU3.checked);
-			n_A_IJYOU[4] = eval(A_IJYOU4.value);
-			n_A_IJYOU[5] = eval(A_IJYOU5.checked);
-			n_A_IJYOU[6] = eval(A_IJYOU6.checked);
-			n_A_IJYOU[7] = eval(A_IJYOU7.checked);
+			// プレイヤー状態異常のグローバル変数を更新
+			UpdateBadStatusDataByHtml();
 		}
 
 		//----------------------------------------------------------------
@@ -30205,8 +30220,8 @@ function Init(){
 		n_A_PassSkill5[OBJID_OFFSET_AS_SKILL_PROB + idx] = 0;
 	}
 
-	n_A_IJYOU = new Array();
-	for(i=0;i<=7;i++) n_A_IJYOU[i] = 0;
+	// プレイヤー状態異常設定
+	n_A_IJYOU = Array(50).fill(0);
 
 	// 時限効果
 	for (idx = 0; idx < g_timeItemConf.length; idx++) {
@@ -30290,9 +30305,9 @@ function Init(){
 	//--------------------------------
 	// デバフ設定欄の初期化
 	//--------------------------------
-//	g_confDataDebuff = new Array();
-//	g_objCharaConfDebuff = new CCharaConfDebuff(g_confDataDebuff);
-//	g_objCharaConfDebuff.BuildUpSelectArea(document.getElementById("OBJID_TD_CHARA_CONF_DEBUFF"), false);
+	g_confDataDebuff = new Array();
+	g_objCharaConfDebuff = new CCharaConfDebuff(g_confDataDebuff);
+	g_objCharaConfDebuff.BuildUpSelectArea(document.getElementById("OBJID_TD_CHARA_CONF_DEBUFF"), false);
 
 	document.calcForm.A3_SKILLSW.checked = 0;
 	document.calcForm.A4_SKILLSW.checked = 0;
