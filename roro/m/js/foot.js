@@ -6157,687 +6157,11 @@ if (_APPLY_UPDATE_LV200) {
 		// 変動詠唱時間の割合減少効果を適用する
 		ApplyVariableCastTimeDown(charaData);
 
-//================================================================================================================================
-//================================================================================================================================
-//====
-//==== 固定詠唱－○○％　ここから
-//====
-//================================================================================================================================
-//================================================================================================================================
-
-		n_A_Kotei_Cast_Keigen = 0;
-
-		// チェック用変数初期化
-		// （固定詠唱短縮効果は、加算等はされず、最大の効果のみが適用される）
-		// （なので、ITEM_SP 定義を検索してやる方法では、共通化ができない）
-		var chkary = new Array();
-		var castcut = 0;
-
-		// ペット効果用
-		const petId = n_A_PassSkill8[0];
-
-		// 「暴食のオルレアンの制服」の精錬値9以上の効果
-		if (EquipNumSearch(5425)) {
-			if (n_A_BODY_DEF_PLUS >= 9) {
-				chkary.push(70);
-			}
-		}
-
-		if (EquipNumSearch(ITEM_ID_MAGIA_VITA)) {
-			// マギアヴィタを装備している時
-			if (n_A_SHOES_DEF_PLUS === 10) {
-				// 精錬値が10の時
-				chkary.push(80);
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「ウォーロック　ラディウス」の効果
-		//----------------------------------------------------------------
-		if ((bufLv = Math.max(LearnedSkillSearch(SKILL_ID_RADIUS), UsedSkillSearch(SKILL_ID_RADIUS))) > 0) {
-			switch (attackMethodConf.skillId) {
-				case SKILL_ID_SOUL_EXPANSION:
-				case SKILL_ID_FROST_MISTY:
-				case SKILL_ID_JACK_FROST:
-				case SKILL_ID_DRAIN_LIFE:
-				case SKILL_ID_CRYMSON_ROCK:
-				case SKILL_ID_HELL_INFERNO:
-				case SKILL_ID_COMMET:
-				case SKILL_ID_CHAIN_LIGHTNING:
-				case SKILL_ID_EARTH_STRAIN:
-				case SKILL_ID_TETRA_BOLTEX:
-				case SKILL_ID_SUMMON_FIRE_BALL:
-				case SKILL_ID_SUMMON_WATER_BALL:
-				case SKILL_ID_SUMMON_LIGHTNING_BALL:
-				case SKILL_ID_SUMMON_STONE:
-					chkary.push(5 + 5 * bufLv);
-			}
-		}
-
-		// ラフィネスタッフの精錬値による効果
-		if (EquipNumSearchMIG(1329)) {
-			chkary.push(n_A_Weapon_ATKplus);
-		}
-
-		//----------------------------------------------------------------
-		// 「三次職支援　サクラメント」の効果
-		//----------------------------------------------------------------
-		if ((bufLv = g_confDataSanzi[CCharaConfSanzi.CONF_ID_SECRAMENT]) > 0) {
-
-			// 特定の戦闘エリアでの補正
-			switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
-
-			case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
-				chkary.push(65 + 5 * bufLv);
-				break;
-
-			default:
-				chkary.push(45 + 5 * bufLv);
-				break;
-
-			}
-		}
-
-		if(CardNumSearch(514) || CardNumSearch(515) || CardNumSearch(588) || CardNumSearch(589)) {
-			chkary.push(1);
-		}
-
-		if (CardNumSearch(CARD_ID_NYDHOGNO_KAGE) > 0) {
-			// ハイウィザード系のみ
-			if (GetHigherJobSeriesID(n_A_JOB) == JOB_SERIES_ID_WIZARD) {
-				if (n_A_JOB != JOB_ID_WIZARD) {
-					chkary.push(50);
-				}
-			}
-		}
-
-		if(TimeItemNumSearch(42)) {
-			chkary.push(50);
-		}
-
-		if(EquipNumSearch(1438)) {
-			chkary.push(10);
-		}
-
-		if(EquipNumSearch(1451)) {
-			chkary.push(3);
-		}
-
-		//----------------------------------------------------------------
-		// 「影狼・朧　十六夜」の効果
-		//----------------------------------------------------------------
-		if (UsedSkillSearch(SKILL_ID_IZAYOI)) {
-			chkary.push(100);
-		}
-
-		if(CardNumSearch(750)) {
-			chkary.push(70);
-		}
-
-		if(n_A_PassSkill7[51]) {
-			chkary.push(50);
-		}
-
-		if(n_A_PassSkill3[39] == 6 || n_A_PassSkill3[39] == 7){
-			if(n_A_PassSkill3[41] >= 7) {
-				chkary.push(70);
-			}
-			else {
-				chkary.push(10 * n_A_PassSkill3[41]);
-			}
-		}
-
-		if(EquipNumSearch(2462)) {
-			chkary.push(50);
-		}
-
-		//----------------------------------------------------------------
-		// 「古びた魔力石の帽子」の、精錬による強化
-		//----------------------------------------------------------------
-		if(EquipNumSearch(ITEM_ID_FURUBITA_MARYOKUSEKI)) {
-			chkary.push(7 * n_A_HEAD_DEF_PLUS);
-		}
-
-		//----------------------------------------------------------------
-		// 「サラのローブセット」の、＋７精錬による強化
-		//----------------------------------------------------------------
-		if(EquipNumSearch(ITEM_SET_ID_HEAL_PIERCED_TELEPORT_PIERCED_SARANO_ROBE)) {
-			if (n_A_BODY_DEF_PLUS >= 7) {
-				chkary.push(50);
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「覚醒ローブセット」の、効果
-		//----------------------------------------------------------------
-		if(EquipNumSearch(ITEM_SET_ID_HEAL_PIERCED_TELEPORT_PIERCED_KAKUSEI_ROBE)) {
-			chkary.push(50);
-		}
-
-		//----------------------------------------------------------------
-		// 「サバイバルオーブ　マントセット」の、装備効果
-		//----------------------------------------------------------------
-		if (EquipNumSearch(ITEM_SET_ID_SURVIVAL_ORB_SURVIVAL_MANT)) {
-			chkary.push(50);
-		}
-
-		//----------------------------------------------------------------
-		// 「T_W_O カード」の、装備効果
-		//----------------------------------------------------------------
-		if (CardNumSearch(CARD_ID_T_W_O)) {
-			chkary.push(50);
-		}
-
-		//----------------------------------------------------------------
-		// 「セリーヌのブローチ　セリーヌのリボンセット」の、装備効果
-		//----------------------------------------------------------------
-		if (EquipNumSearch(ITEM_SET_ID_CELINENO_BROACH_CELINENO_RIBBON)) {
-			chkary.push(50);
-		}
-
-		//----------------------------------------------------------------
-		// 「セリーヌのブローチ　瑞々しいバラセット」の、装備効果
-		//----------------------------------------------------------------
-		if (EquipNumSearch(ITEM_SET_ID_CELINENO_BROACH_MIZUMIZUSHI_BARA)) {
-			chkary.push(50);
-		}
-
-		//----------------------------------------------------------------
-		// 「獄エンチャント」の、職業限定の効果
-		//----------------------------------------------------------------
-		if (CardNumSearch(CARD_ID_GOKU)) {
-			if (IsSameJobClass(JOB_ID_SHADOWCHASER)) {
-				chkary.push(50);
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「悪魔崇拝者の靴　堕天司祭の闇光外套セット」の、装備効果
-		//----------------------------------------------------------------
-		if (EquipNumSearch(ITEM_SET_ID_AKUMASUHAISHANO_KUTSU_DATENSHISAINO_ANKOGAITO)) {
-			chkary.push(50);
-		}
-
-		//----------------------------------------------------------------
-		// 「炎雷魔女の大杖」の、精錬による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_ENRAIMAZYONO_OTSUE)) > 0) {
-			if (n_A_Weapon_ATKplus >= 10) {
-				chkary.push(70);
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「エンチャント　固定詠唱-50%」の、装備効果
-		//----------------------------------------------------------------
-		if (CardNumSearch(CARD_ID_ENCHANT_KOTEIEISHO_50)) {
-			chkary.push(50);
-		}
-
-		//----------------------------------------------------------------
-		// 「エンチャント　固定詠唱-70%」の、装備効果
-		//----------------------------------------------------------------
-		if (CardNumSearch(CARD_ID_ENCHANT_KOTEIEISHO_70)) {
-			chkary.push(70);
-		}
-
-		//----------------------------------------------------------------
-		// 「抹消者のローブ」の、効果
-		//----------------------------------------------------------------
-		if(EquipNumSearch(ITEM_ID_MASSHOSHANO_ROBE)) {
-			chkary.push(50);
-		}
-
-		//----------------------------------------------------------------
-		// 「神喰らいの龍槍」の、精錬による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_KAMIKURAINO_RYUSO)) > 0) {
-			if (n_A_Weapon_ATKplus >= 10) {
-				chkary.push(70);
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「抱きつきシャムネコ」の、精錬による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_DAKITSUKI_SYAMNEKO)) > 0) {
-			chkary.push(7 * n_A_HEAD_DEF_PLUS * itemCount);
-		}
-
-		//----------------------------------------------------------------
-		// 「エンチャント　Z-CastFixed」の、装備効果
-		//----------------------------------------------------------------
-		if (CardNumSearch(CARD_ID_ENCHANT_Z_CASTFIXED)) {
-			chkary.push(50);
-		}
-
-		//----------------------------------------------------------------
-		// 「アクエリアスダイアデム　アクエリアスセット」の、効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_SET_ID_AQUARIUS_DIADEM_AQUARIUS)) > 0) {
-			chkary.push(50);
-		}
-
-		//----------------------------------------------------------------
-		// 「古びた月食の装飾」の、精錬による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_FURUBITA_GESSHOKUNO_SOUSHOKU)) > 0) {
-			if (n_A_BODY_DEF_PLUS >= 9) {
-				chkary.push(50);
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「月食の装飾」の、精錬による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_GESSHOKUNO_SOUSHOKU)) > 0) {
-			if (n_A_BODY_DEF_PLUS >= 9) {
-				chkary.push(70);
-			}
-			else if (n_A_BODY_DEF_PLUS >= 7) {
-				chkary.push(50);
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「イリュージョンアイズ」の、スキル習得による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_ILLUSION_EYES)) > 0) {
-			if (LearnedSkillSearch(SKILL_ID_HOWLING_OF_MANDRAGORA) >= 5) {
-				chkary.push(70);
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「精霊王の宝冠」の、精錬による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_SEREONO_HOKAN)) > 0) {
-			chkary.push(7 * n_A_HEAD_DEF_PLUS * itemCount);
-		}
-
-		//----------------------------------------------------------------
-		// 「グラデニェッツ」の、精錬による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_GRADENIETZ)) > 0) {
-			if (n_A_Weapon_ATKplus >= 10) {
-				chkary.push(70);
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「もこもこお魚シューズ」の、スキル習得による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_MOKOMOKO_OSAKANA_SHOES)) > 0) {
-			if (LearnedSkillSearch(SKILL_ID_GROOMING) >= 5) {
-				chkary.push(50);
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「パイシーズクラウン」の、装備効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_PISCES_CROWN)) > 0) {
-			chkary.push(50);
-		}
-
-		//----------------------------------------------------------------
-		// 「天秤宮のシューズ」の、精錬による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_TENBINKYUNO_SHOES)) > 0) {
-			if (n_A_SHOES_DEF_PLUS >= 8) {
-				if (IsSameJobClass(JOB_ID_RUNEKNIGHT)) {
-					chkary.push(50);
-				}
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「太極の耳飾り(黄)」の、スキル習得による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearchMIG(ITEM_ID_TAIKYOKUNO_MIMIKAZARI_KIIRO)) > 0) {
-			if (LearnedSkillSearch(SKILL_ID_TSUKINO_HIKARI) >= 5) {
-				chkary.push(70);
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「エンチャント　Q-CastFixed」の、精錬による効果
-		//----------------------------------------------------------------
-		cardCountBody	  = CardNumSearch(CARD_ID_ENCHANT_Q_CAST_FIXED, CARD_REGION_ID_BODY_ANY);
-		cardCountShield	  = CardNumSearch(CARD_ID_ENCHANT_Q_CAST_FIXED, CARD_REGION_ID_SHIELD_ANY);
-		cardCountShoulder = CardNumSearch(CARD_ID_ENCHANT_Q_CAST_FIXED, CARD_REGION_ID_SHOULDER_ANY);
-		cardCountShoes	  = CardNumSearch(CARD_ID_ENCHANT_Q_CAST_FIXED, CARD_REGION_ID_SHOES_ANY);
-		cardCountAccessary1	  = CardNumSearch(CARD_ID_ENCHANT_Q_CAST_FIXED, CARD_REGION_ID_ACCESSARY_1_ANY);
-		cardCountAccessary2	  = CardNumSearch(CARD_ID_ENCHANT_Q_CAST_FIXED, CARD_REGION_ID_ACCESSARY_2_ANY);
-
-		if (cardCountBody > 0) {
-			if (n_A_BODY_DEF_PLUS >= 8) {
-				chkary.push(60);
-			}
-			else if (n_A_BODY_DEF_PLUS >= 6) {
-				chkary.push(40);
-			}
-			else {
-				chkary.push(20);
-			}
-		}
-
-		if (cardCountShield > 0) {
-			if (n_A_SHIELD_DEF_PLUS >= 8) {
-				chkary.push(60);
-			}
-			else if (n_A_SHIELD_DEF_PLUS >= 6) {
-				chkary.push(40);
-			}
-			else {
-				chkary.push(20);
-			}
-		}
-
-		if (cardCountShoulder > 0) {
-			if (n_A_SHOULDER_DEF_PLUS >= 8) {
-				chkary.push(60);
-			}
-			else if (n_A_SHOULDER_DEF_PLUS >= 6) {
-				chkary.push(40);
-			}
-			else {
-				chkary.push(20);
-			}
-		}
-
-		if (cardCountShoes > 0) {
-			if (n_A_SHOES_DEF_PLUS >= 8) {
-				chkary.push(60);
-			}
-			else if (n_A_SHOES_DEF_PLUS >= 6) {
-				chkary.push(40);
-			}
-			else {
-				chkary.push(20);
-			}
-		}
-
-		if (cardCountAccessary1 > 0) {
-			// 精錬不可なので 20% 一択
-			chkary.push(20);
-		}
-
-		if (cardCountAccessary2 > 0) {
-			// 精錬不可なので 20% 一択
-			chkary.push(20);
-		}
-
-		//----------------------------------------------------------------
-		// 「リングオブヴィーナス」の、素ＤＥＸによる効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_RING_OF_VENUS, EQUIP_REGION_ID_ACCESSARY_1)) > 0) {
-			if (SU_DEX >= 125) {
-				chkary.push(70);
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「森羅万象の指輪　真理の解放セット」の、効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_SET_ID_SHINRA_BANSHONO_YUBIWA_SHINRINO_KAIHO)) > 0) {
-			chkary.push(70);
-		}
-
-		//----------------------------------------------------------------
-		// 「新暦　暴走した魔力セット」の、効果
-		//----------------------------------------------------------------
-		if ((itemCount = CardNumSearch(CARD_SET_ID_ENCHANT_SHINREKI_BOSOSHITA_MARYOKU)) > 0) {
-			chkary.push(70);
-		}
-
-		//----------------------------------------------------------------
-		// 「レインボースター」の、スキル習得による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_RAINBOW_STAR)) > 0) {
-			if (LearnedSkillSearch(SKILL_ID_UNLIMIT) >= 5) {
-				chkary.push(70);
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「アルカナ　月のカードセット」の、効果
-		//----------------------------------------------------------------
-		if ((itemCount = CardNumSearch(CARD_SET_ID_ENCHANT_ARCANA_ARCANA_MOON_REVERSE)) > 0) {
-			chkary.push(50);
-		}
-
-		//----------------------------------------------------------------
-		// 「デウス・エクス・マキナ」の、精錬による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_DEUS_EX_MACHINA)) > 0) {
-			if (n_A_Weapon_ATKplus >= 10) {
-				chkary.push(70);
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「ゲートオブネザーワールド」の、精錬による効果
-		//----------------------------------------------------------------
-		itemCount = Math.max(
-			EquipNumSearch(ITEM_ID_GATE_OF_NEZAR_WORLD),
-			EquipNumSearch(ITEM_ID_GATE_OF_NEZAR_WORLD_T1)
-			);
-		if (itemCount > 0) {
-			if (n_A_HEAD_DEF_PLUS >= 9) {
-				chkary.push(70);
-			}
-			else if (n_A_HEAD_DEF_PLUS >= 7) {
-				chkary.push(50);
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「ルーングリーブ」の、スキル習得による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_RUNE_GREEVE)) > 0) {
-			if (LearnedSkillSearch(SKILL_ID_PHANTOM_SLAST) >= 5) {
-				chkary.push(50);
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「ポルックスシューズ」の、精錬による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_POLLUX_SHOES)) > 0) {
-			if (n_A_SHOES_DEF_PLUS >= 8) {
-				if (IsSameJobClass(JOB_ID_STAR_EMPEROR)) {
-					chkary.push(60);
-				}
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「プロキオンシューズ」の、精錬による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_PROCYON_SHOES)) > 0) {
-			if (n_A_SHOES_DEF_PLUS >= 8) {
-				if (IsSameJobClass(JOB_ID_SOUL_REAPER)) {
-					chkary.push(60);
-				}
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「変貌のカーリッツバーグカード」の、精錬による強化
-		//----------------------------------------------------------------
-		if (CardNumSearch(CARD_ID_HENBONO_KHALITZBURG)) {
-			chkary.push(50);
-		}
-		if (CardNumSearch(CARD_ID_HENBONO_KHALITZBURG, CARD_REGION_ID_HEAD_TOP)) {
-			if (n_A_HEAD_DEF_PLUS >= 9) {
-				chkary.push(60);
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「ぶくぶくハンティングゴーグル」の、スキル習得による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_BUKUBUKU_HUNTING_GOOGLE)) > 0) {
-			if (LearnedSkillSearch(SKILL_ID_GROOMING) >= 5) {
-				chkary.push(70);
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「英雄の凱歌　ニーズヘッグの影カードセット」の、職業による強化
-		//----------------------------------------------------------------
-		if (CardNumSearch(CARD_SET_ID_ENCHANT_EIYUNO_GAIKA_NYDHOGNO_KAGE) > 0) {
-			// ハイウィザード系のみ
-			if (GetHigherJobSeriesID(n_A_JOB) == JOB_SERIES_ID_WIZARD) {
-				if (n_A_JOB != JOB_ID_WIZARD) {
-					chkary.push(70);
-				}
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「英雄の凱歌　フェンリルカードセット」の、職業による強化
-		//----------------------------------------------------------------
-		if (CardNumSearch(CARD_SET_ID_ENCHANT_EIYUNO_GAIKA_FENRIR) > 0) {
-			chkary.push(80);
-		}
-
-		//----------------------------------------------------------------
-		// 「黒翼の使徒」エンチャントの、時限効果による強化
-		//----------------------------------------------------------------
-		if(TimeItemNumSearch(TIME_ITEM_ID_KOKUYOKUNO_SHITO)) {
-			chkary.push(100);
-		}
-
-		//----------------------------------------------------------------
-		// 「知識の探求者　T_W_Oカードセット」の、効果
-		//----------------------------------------------------------------
-		if (CardNumSearch(CARD_SET_ID_ENCHANT_CHISHIKINO_TANKYUSHA_T_W_O) > 0) {
-			chkary.push(70);
-		}
-
-		//----------------------------------------------------------------
-		// 「ミステリーウィング」の、素ステータスによる効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearchMIG(ITEM_ID_MYSTERY_WING)) > 0) {
-			if (GetTotalPureBasicStatus() >= 500) {
-				chkary.push(70);
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「エンチャント　ウルフオーブ(固定詠唱時間-50%)」の、装備効果
-		//----------------------------------------------------------------
-		if (CardNumSearch(CARD_ID_ENCHANT_WOLF_ORB_CAST_FIXED_50)) {
-			chkary.push(50);
-		}
-
-		/**
-		 * 「セレスティアルダイアデム」の「固定詠唱時間-50%」効果
-		 */
-		if (EquipNumSearch(ITEM_ID_CELESTIAL_DIADEM) > 0) {
-			chkary.push(50);
-		}
-
-		//----------------------------------------------------------------
-		// 「ワイルドビースト　エンチャント　ウルフオーブ(固定詠唱時間-50%)セット」の、装備効果
-		//----------------------------------------------------------------
-		if (EquipNumSearchMIG(ITEM_SET_ID_WILD_BEAST_WOLF_ORB_CAST_FIXED_50)) {
-			chkary.push(70);
-		}
-
-		//----------------------------------------------------------------
-		// 「未知なる魔力のブーツ」の、精錬による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_MICHINARU_MARYOKUNO_BOOTS)) > 0) {
-			if (n_A_SHOES_DEF_PLUS >= 7) {
-				chkary.push(70);
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「メンタルコンデンサー　マジックプロテクターローブセット」の効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_SET_ID_MENTAL_CONDENSER_MAGIC_PROTECTOR_ROBE)) > 0) {
-			chkary.push(70);
-		}
-
-		//----------------------------------------------------------------
-		// 「雪花防具（魔法）セット」の効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_SET_ID_SETSUKA_ARMORS_MAGICAL)) > 0) {
-			chkary.push(70);
-		}
-
-		//----------------------------------------------------------------
-		// 「セトの恩寵＋異境の統轄者セット」の、装備効果
-		//----------------------------------------------------------------
-		if (EquipNumSearchMIG(ITEM_SET_ID_SETONO_ONCHO_IKYONO_TOKATSUSHA)) {
-			chkary.push(70);
-		}
-
-		//----------------------------------------------------------------
-		// 「ミストレスの卵」の、装備効果
-		//----------------------------------------------------------------
-		if (petId === PET_ID_MISTRESS) {
-			if (n_A_BaseLV >= 100) {
-				chkary.push(70);
-			} 
-		}
-
-		//----------------------------------------------------------------
-		// 「秘密の羽・レイジー」カードの、装備効果
-		//----------------------------------------------------------------
-		if (CardNumSearch(CARD_ID_HIMITSU_NO_HANE_LEIZI)) {
-			chkary.push(70);
-		}
-
-		//----------------------------------------------------------------
-		// 「グラキエースアラネア」の、装備効果
-		//----------------------------------------------------------------
-		if (EquipNumSearchMIG(ITEM_ID_GLACIES_ARANEA)) {
-			if (n_A_SHIELD_DEF_PLUS >= 7) {
-				chkary.push(70);
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「性能カスタマイズ」の、効果
-		//----------------------------------------------------------------
-		confval = g_objCharaConfCustomStatus.GetConf(CCharaConfCustomStatus.CONF_ID_CAST_DOWN_FIXED);
-		if (confval != 0) {
-			chkary.push(confval);
-		}
-
-		// TODO: データ移行過渡処理
-		// 計算したSP効果を、移行前のデータ形式に変換して、加算する
-		if (IsEnableMigrationBlockTransit()) {
-
-			var spTag = null;
-
-			spTag = new CMigEquipableSpTag()
-				.SetSpId(MIG_EQUIPABLE_SP_EFFECT_ID_FIXED_TIME)
-				.SetAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_VALUE_UNIT, MIG_VALUE_UNIT_ID_PERCENT);
-
-			// 反転が必要なので注意
-			chkary.push((0 - g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_MIN)));
-			chkary.push((0 - g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_MIN)));
-		}
-
-		var wMax = 0;
-		for(i = 0; i < chkary.length; i++){
-			if(chkary[i] > wMax) wMax = chkary[i];
-		}
-
-		n_A_Kotei_Cast_Keigen = wMax;
-		if(g_confDataDebuff[CCharaConfDebuff.CONF_ID_FREEZING]) n_A_Kotei_Cast_Keigen -= 50;
-
-		charaData[CHARA_DATA_INDEX_FIXED_TIME] = n_A_Kotei_Cast_Keigen;
-
-		// スキルディレイ－○○％　の効果を適用する
-		ApplyDelayTimeDown();
-
+		// 固定詠唱時間の割合減少効果を適用する
+		ApplyFixedCastTimeDown(charaData);
+
+		// スキルディレイの割合減少効果を適用する
+	    ApplyDelayTimeDown();
 
 //================================================================================================================================
 //================================================================================================================================
@@ -16375,6 +15699,672 @@ if (_APPLY_UPDATE_LV200) {
 	}
 
 	return [charaData, n_tok, mobData, attackMethodConfArray];
+}
+
+/**
+ * 公式サイトで「固定詠唱時間 - ◯%」と表記される固定詠唱時間の減少効果を適用する
+ * グローバル変数の charaData[CHARA_DATA_INDEX_FIXED_TIME] に直接作用するので戻り値はない
+ * @param {Array} charaData 
+ */
+function ApplyFixedCastTimeDown(charaData) {
+    n_A_Kotei_Cast_Keigen = 0;
+
+    // チェック用変数初期化
+    // （固定詠唱短縮効果は、加算等はされず、最大の効果のみが適用される）
+    // （なので、ITEM_SP 定義を検索してやる方法では、共通化ができない）
+    let chkary = new Array();
+    let castcut = 0;
+
+    // ペット効果用
+    const petId = n_A_PassSkill8[0];
+
+    // 「暴食のオルレアンの制服」の精錬値9以上の効果
+    if (EquipNumSearch(5425)) {
+        if (n_A_BODY_DEF_PLUS >= 9) {
+            chkary.push(70);
+        }
+    }
+
+    if (EquipNumSearch(ITEM_ID_MAGIA_VITA)) {
+        // マギアヴィタを装備している時
+        if (n_A_SHOES_DEF_PLUS === 10) {
+            // 精錬値が10の時
+            chkary.push(80);
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「ウォーロック　ラディウス」の効果
+    //----------------------------------------------------------------
+    if ((bufLv = Math.max(LearnedSkillSearch(SKILL_ID_RADIUS), UsedSkillSearch(SKILL_ID_RADIUS))) > 0) {
+        switch (attackMethodConf.skillId) {
+            case SKILL_ID_SOUL_EXPANSION:
+            case SKILL_ID_FROST_MISTY:
+            case SKILL_ID_JACK_FROST:
+            case SKILL_ID_DRAIN_LIFE:
+            case SKILL_ID_CRYMSON_ROCK:
+            case SKILL_ID_HELL_INFERNO:
+            case SKILL_ID_COMMET:
+            case SKILL_ID_CHAIN_LIGHTNING:
+            case SKILL_ID_EARTH_STRAIN:
+            case SKILL_ID_TETRA_BOLTEX:
+            case SKILL_ID_SUMMON_FIRE_BALL:
+            case SKILL_ID_SUMMON_WATER_BALL:
+            case SKILL_ID_SUMMON_LIGHTNING_BALL:
+            case SKILL_ID_SUMMON_STONE:
+                chkary.push(5 + 5 * bufLv);
+        }
+    }
+
+    // ラフィネスタッフの精錬値による効果
+    if (EquipNumSearchMIG(1329)) {
+        chkary.push(n_A_Weapon_ATKplus);
+    }
+
+    //----------------------------------------------------------------
+    // 「三次職支援　サクラメント」の効果
+    //----------------------------------------------------------------
+    if ((bufLv = g_confDataSanzi[CCharaConfSanzi.CONF_ID_SECRAMENT]) > 0) {
+
+        // 特定の戦闘エリアでの補正
+        switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
+
+            case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
+                chkary.push(65 + 5 * bufLv);
+                break;
+
+            default:
+                chkary.push(45 + 5 * bufLv);
+                break;
+
+        }
+    }
+
+    if (CardNumSearch(514) || CardNumSearch(515) || CardNumSearch(588) || CardNumSearch(589)) {
+        chkary.push(1);
+    }
+
+    if (CardNumSearch(CARD_ID_NYDHOGNO_KAGE) > 0) {
+        // ハイウィザード系のみ
+        if (GetHigherJobSeriesID(n_A_JOB) == JOB_SERIES_ID_WIZARD) {
+            if (n_A_JOB != JOB_ID_WIZARD) {
+                chkary.push(50);
+            }
+        }
+    }
+
+    if (TimeItemNumSearch(42)) {
+        chkary.push(50);
+    }
+
+    if (EquipNumSearch(1438)) {
+        chkary.push(10);
+    }
+
+    if (EquipNumSearch(1451)) {
+        chkary.push(3);
+    }
+
+    //----------------------------------------------------------------
+    // 「影狼・朧　十六夜」の効果
+    //----------------------------------------------------------------
+    if (UsedSkillSearch(SKILL_ID_IZAYOI)) {
+        chkary.push(100);
+    }
+
+    if (CardNumSearch(750)) {
+        chkary.push(70);
+    }
+
+    if (n_A_PassSkill7[51]) {
+        chkary.push(50);
+    }
+
+    if (n_A_PassSkill3[39] == 6 || n_A_PassSkill3[39] == 7) {
+        if (n_A_PassSkill3[41] >= 7) {
+            chkary.push(70);
+        } else {
+            chkary.push(10 * n_A_PassSkill3[41]);
+        }
+    }
+
+    if (EquipNumSearch(2462)) {
+        chkary.push(50);
+    }
+
+    //----------------------------------------------------------------
+    // 「古びた魔力石の帽子」の、精錬による強化
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_ID_FURUBITA_MARYOKUSEKI)) {
+        chkary.push(7 * n_A_HEAD_DEF_PLUS);
+    }
+
+    //----------------------------------------------------------------
+    // 「サラのローブセット」の、＋７精錬による強化
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_SET_ID_HEAL_PIERCED_TELEPORT_PIERCED_SARANO_ROBE)) {
+        if (n_A_BODY_DEF_PLUS >= 7) {
+            chkary.push(50);
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「覚醒ローブセット」の、効果
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_SET_ID_HEAL_PIERCED_TELEPORT_PIERCED_KAKUSEI_ROBE)) {
+        chkary.push(50);
+    }
+
+    //----------------------------------------------------------------
+    // 「サバイバルオーブ　マントセット」の、装備効果
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_SET_ID_SURVIVAL_ORB_SURVIVAL_MANT)) {
+        chkary.push(50);
+    }
+
+    //----------------------------------------------------------------
+    // 「T_W_O カード」の、装備効果
+    //----------------------------------------------------------------
+    if (CardNumSearch(CARD_ID_T_W_O)) {
+        chkary.push(50);
+    }
+
+    //----------------------------------------------------------------
+    // 「セリーヌのブローチ　セリーヌのリボンセット」の、装備効果
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_SET_ID_CELINENO_BROACH_CELINENO_RIBBON)) {
+        chkary.push(50);
+    }
+
+    //----------------------------------------------------------------
+    // 「セリーヌのブローチ　瑞々しいバラセット」の、装備効果
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_SET_ID_CELINENO_BROACH_MIZUMIZUSHI_BARA)) {
+        chkary.push(50);
+    }
+
+    //----------------------------------------------------------------
+    // 「獄エンチャント」の、職業限定の効果
+    //----------------------------------------------------------------
+    if (CardNumSearch(CARD_ID_GOKU)) {
+        if (IsSameJobClass(JOB_ID_SHADOWCHASER)) {
+            chkary.push(50);
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「悪魔崇拝者の靴　堕天司祭の闇光外套セット」の、装備効果
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_SET_ID_AKUMASUHAISHANO_KUTSU_DATENSHISAINO_ANKOGAITO)) {
+        chkary.push(50);
+    }
+
+    //----------------------------------------------------------------
+    // 「炎雷魔女の大杖」の、精錬による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_ENRAIMAZYONO_OTSUE)) > 0) {
+        if (n_A_Weapon_ATKplus >= 10) {
+            chkary.push(70);
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「エンチャント　固定詠唱-50%」の、装備効果
+    //----------------------------------------------------------------
+    if (CardNumSearch(CARD_ID_ENCHANT_KOTEIEISHO_50)) {
+        chkary.push(50);
+    }
+
+    //----------------------------------------------------------------
+    // 「エンチャント　固定詠唱-70%」の、装備効果
+    //----------------------------------------------------------------
+    if (CardNumSearch(CARD_ID_ENCHANT_KOTEIEISHO_70)) {
+        chkary.push(70);
+    }
+
+    //----------------------------------------------------------------
+    // 「抹消者のローブ」の、効果
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_ID_MASSHOSHANO_ROBE)) {
+        chkary.push(50);
+    }
+
+    //----------------------------------------------------------------
+    // 「神喰らいの龍槍」の、精錬による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_KAMIKURAINO_RYUSO)) > 0) {
+        if (n_A_Weapon_ATKplus >= 10) {
+            chkary.push(70);
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「抱きつきシャムネコ」の、精錬による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_DAKITSUKI_SYAMNEKO)) > 0) {
+        chkary.push(7 * n_A_HEAD_DEF_PLUS * itemCount);
+    }
+
+    //----------------------------------------------------------------
+    // 「エンチャント　Z-CastFixed」の、装備効果
+    //----------------------------------------------------------------
+    if (CardNumSearch(CARD_ID_ENCHANT_Z_CASTFIXED)) {
+        chkary.push(50);
+    }
+
+    //----------------------------------------------------------------
+    // 「アクエリアスダイアデム　アクエリアスセット」の、効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_SET_ID_AQUARIUS_DIADEM_AQUARIUS)) > 0) {
+        chkary.push(50);
+    }
+
+    //----------------------------------------------------------------
+    // 「古びた月食の装飾」の、精錬による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_FURUBITA_GESSHOKUNO_SOUSHOKU)) > 0) {
+        if (n_A_BODY_DEF_PLUS >= 9) {
+            chkary.push(50);
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「月食の装飾」の、精錬による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_GESSHOKUNO_SOUSHOKU)) > 0) {
+        if (n_A_BODY_DEF_PLUS >= 9) {
+            chkary.push(70);
+        } else if (n_A_BODY_DEF_PLUS >= 7) {
+            chkary.push(50);
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「イリュージョンアイズ」の、スキル習得による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_ILLUSION_EYES)) > 0) {
+        if (LearnedSkillSearch(SKILL_ID_HOWLING_OF_MANDRAGORA) >= 5) {
+            chkary.push(70);
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「精霊王の宝冠」の、精錬による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_SEREONO_HOKAN)) > 0) {
+        chkary.push(7 * n_A_HEAD_DEF_PLUS * itemCount);
+    }
+
+    //----------------------------------------------------------------
+    // 「グラデニェッツ」の、精錬による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_GRADENIETZ)) > 0) {
+        if (n_A_Weapon_ATKplus >= 10) {
+            chkary.push(70);
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「もこもこお魚シューズ」の、スキル習得による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_MOKOMOKO_OSAKANA_SHOES)) > 0) {
+        if (LearnedSkillSearch(SKILL_ID_GROOMING) >= 5) {
+            chkary.push(50);
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「パイシーズクラウン」の、装備効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_PISCES_CROWN)) > 0) {
+        chkary.push(50);
+    }
+
+    //----------------------------------------------------------------
+    // 「天秤宮のシューズ」の、精錬による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_TENBINKYUNO_SHOES)) > 0) {
+        if (n_A_SHOES_DEF_PLUS >= 8) {
+            if (IsSameJobClass(JOB_ID_RUNEKNIGHT)) {
+                chkary.push(50);
+            }
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「太極の耳飾り(黄)」の、スキル習得による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearchMIG(ITEM_ID_TAIKYOKUNO_MIMIKAZARI_KIIRO)) > 0) {
+        if (LearnedSkillSearch(SKILL_ID_TSUKINO_HIKARI) >= 5) {
+            chkary.push(70);
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「エンチャント　Q-CastFixed」の、精錬による効果
+    //----------------------------------------------------------------
+    cardCountBody = CardNumSearch(CARD_ID_ENCHANT_Q_CAST_FIXED, CARD_REGION_ID_BODY_ANY);
+    cardCountShield = CardNumSearch(CARD_ID_ENCHANT_Q_CAST_FIXED, CARD_REGION_ID_SHIELD_ANY);
+    cardCountShoulder = CardNumSearch(CARD_ID_ENCHANT_Q_CAST_FIXED, CARD_REGION_ID_SHOULDER_ANY);
+    cardCountShoes = CardNumSearch(CARD_ID_ENCHANT_Q_CAST_FIXED, CARD_REGION_ID_SHOES_ANY);
+    cardCountAccessary1 = CardNumSearch(CARD_ID_ENCHANT_Q_CAST_FIXED, CARD_REGION_ID_ACCESSARY_1_ANY);
+    cardCountAccessary2 = CardNumSearch(CARD_ID_ENCHANT_Q_CAST_FIXED, CARD_REGION_ID_ACCESSARY_2_ANY);
+
+    if (cardCountBody > 0) {
+        if (n_A_BODY_DEF_PLUS >= 8) {
+            chkary.push(60);
+        } else if (n_A_BODY_DEF_PLUS >= 6) {
+            chkary.push(40);
+        } else {
+            chkary.push(20);
+        }
+    }
+
+    if (cardCountShield > 0) {
+        if (n_A_SHIELD_DEF_PLUS >= 8) {
+            chkary.push(60);
+        } else if (n_A_SHIELD_DEF_PLUS >= 6) {
+            chkary.push(40);
+        } else {
+            chkary.push(20);
+        }
+    }
+
+    if (cardCountShoulder > 0) {
+        if (n_A_SHOULDER_DEF_PLUS >= 8) {
+            chkary.push(60);
+        } else if (n_A_SHOULDER_DEF_PLUS >= 6) {
+            chkary.push(40);
+        } else {
+            chkary.push(20);
+        }
+    }
+
+    if (cardCountShoes > 0) {
+        if (n_A_SHOES_DEF_PLUS >= 8) {
+            chkary.push(60);
+        } else if (n_A_SHOES_DEF_PLUS >= 6) {
+            chkary.push(40);
+        } else {
+            chkary.push(20);
+        }
+    }
+
+    if (cardCountAccessary1 > 0) {
+        // 精錬不可なので 20% 一択
+        chkary.push(20);
+    }
+
+    if (cardCountAccessary2 > 0) {
+        // 精錬不可なので 20% 一択
+        chkary.push(20);
+    }
+
+    //----------------------------------------------------------------
+    // 「リングオブヴィーナス」の、素ＤＥＸによる効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_RING_OF_VENUS, EQUIP_REGION_ID_ACCESSARY_1)) > 0) {
+        if (SU_DEX >= 125) {
+            chkary.push(70);
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「森羅万象の指輪　真理の解放セット」の、効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_SET_ID_SHINRA_BANSHONO_YUBIWA_SHINRINO_KAIHO)) > 0) {
+        chkary.push(70);
+    }
+
+    //----------------------------------------------------------------
+    // 「新暦　暴走した魔力セット」の、効果
+    //----------------------------------------------------------------
+    if ((itemCount = CardNumSearch(CARD_SET_ID_ENCHANT_SHINREKI_BOSOSHITA_MARYOKU)) > 0) {
+        chkary.push(70);
+    }
+
+    //----------------------------------------------------------------
+    // 「レインボースター」の、スキル習得による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_RAINBOW_STAR)) > 0) {
+        if (LearnedSkillSearch(SKILL_ID_UNLIMIT) >= 5) {
+            chkary.push(70);
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「アルカナ　月のカードセット」の、効果
+    //----------------------------------------------------------------
+    if ((itemCount = CardNumSearch(CARD_SET_ID_ENCHANT_ARCANA_ARCANA_MOON_REVERSE)) > 0) {
+        chkary.push(50);
+    }
+
+    //----------------------------------------------------------------
+    // 「デウス・エクス・マキナ」の、精錬による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_DEUS_EX_MACHINA)) > 0) {
+        if (n_A_Weapon_ATKplus >= 10) {
+            chkary.push(70);
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「ゲートオブネザーワールド」の、精錬による効果
+    //----------------------------------------------------------------
+    itemCount = Math.max(
+        EquipNumSearch(ITEM_ID_GATE_OF_NEZAR_WORLD),
+        EquipNumSearch(ITEM_ID_GATE_OF_NEZAR_WORLD_T1)
+    );
+    if (itemCount > 0) {
+        if (n_A_HEAD_DEF_PLUS >= 9) {
+            chkary.push(70);
+        } else if (n_A_HEAD_DEF_PLUS >= 7) {
+            chkary.push(50);
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「ルーングリーブ」の、スキル習得による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_RUNE_GREEVE)) > 0) {
+        if (LearnedSkillSearch(SKILL_ID_PHANTOM_SLAST) >= 5) {
+            chkary.push(50);
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「ポルックスシューズ」の、精錬による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_POLLUX_SHOES)) > 0) {
+        if (n_A_SHOES_DEF_PLUS >= 8) {
+            if (IsSameJobClass(JOB_ID_STAR_EMPEROR)) {
+                chkary.push(60);
+            }
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「プロキオンシューズ」の、精錬による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_PROCYON_SHOES)) > 0) {
+        if (n_A_SHOES_DEF_PLUS >= 8) {
+            if (IsSameJobClass(JOB_ID_SOUL_REAPER)) {
+                chkary.push(60);
+            }
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「変貌のカーリッツバーグカード」の、精錬による強化
+    //----------------------------------------------------------------
+    if (CardNumSearch(CARD_ID_HENBONO_KHALITZBURG)) {
+        chkary.push(50);
+    }
+    if (CardNumSearch(CARD_ID_HENBONO_KHALITZBURG, CARD_REGION_ID_HEAD_TOP)) {
+        if (n_A_HEAD_DEF_PLUS >= 9) {
+            chkary.push(60);
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「ぶくぶくハンティングゴーグル」の、スキル習得による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_BUKUBUKU_HUNTING_GOOGLE)) > 0) {
+        if (LearnedSkillSearch(SKILL_ID_GROOMING) >= 5) {
+            chkary.push(70);
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「英雄の凱歌　ニーズヘッグの影カードセット」の、職業による強化
+    //----------------------------------------------------------------
+    if (CardNumSearch(CARD_SET_ID_ENCHANT_EIYUNO_GAIKA_NYDHOGNO_KAGE) > 0) {
+        // ハイウィザード系のみ
+        if (GetHigherJobSeriesID(n_A_JOB) == JOB_SERIES_ID_WIZARD) {
+            if (n_A_JOB != JOB_ID_WIZARD) {
+                chkary.push(70);
+            }
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「英雄の凱歌　フェンリルカードセット」の、職業による強化
+    //----------------------------------------------------------------
+    if (CardNumSearch(CARD_SET_ID_ENCHANT_EIYUNO_GAIKA_FENRIR) > 0) {
+        chkary.push(80);
+    }
+
+    //----------------------------------------------------------------
+    // 「黒翼の使徒」エンチャントの、時限効果による強化
+    //----------------------------------------------------------------
+    if (TimeItemNumSearch(TIME_ITEM_ID_KOKUYOKUNO_SHITO)) {
+        chkary.push(100);
+    }
+
+    //----------------------------------------------------------------
+    // 「知識の探求者　T_W_Oカードセット」の、効果
+    //----------------------------------------------------------------
+    if (CardNumSearch(CARD_SET_ID_ENCHANT_CHISHIKINO_TANKYUSHA_T_W_O) > 0) {
+        chkary.push(70);
+    }
+
+    //----------------------------------------------------------------
+    // 「ミステリーウィング」の、素ステータスによる効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearchMIG(ITEM_ID_MYSTERY_WING)) > 0) {
+        if (GetTotalPureBasicStatus() >= 500) {
+            chkary.push(70);
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「エンチャント　ウルフオーブ(固定詠唱時間-50%)」の、装備効果
+    //----------------------------------------------------------------
+    if (CardNumSearch(CARD_ID_ENCHANT_WOLF_ORB_CAST_FIXED_50)) {
+        chkary.push(50);
+    }
+
+    /**
+     * 「セレスティアルダイアデム」の「固定詠唱時間-50%」効果
+     */
+    if (EquipNumSearch(ITEM_ID_CELESTIAL_DIADEM) > 0) {
+        chkary.push(50);
+    }
+
+    //----------------------------------------------------------------
+    // 「ワイルドビースト　エンチャント　ウルフオーブ(固定詠唱時間-50%)セット」の、装備効果
+    //----------------------------------------------------------------
+    if (EquipNumSearchMIG(ITEM_SET_ID_WILD_BEAST_WOLF_ORB_CAST_FIXED_50)) {
+        chkary.push(70);
+    }
+
+    //----------------------------------------------------------------
+    // 「未知なる魔力のブーツ」の、精錬による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_MICHINARU_MARYOKUNO_BOOTS)) > 0) {
+        if (n_A_SHOES_DEF_PLUS >= 7) {
+            chkary.push(70);
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「メンタルコンデンサー　マジックプロテクターローブセット」の効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_SET_ID_MENTAL_CONDENSER_MAGIC_PROTECTOR_ROBE)) > 0) {
+        chkary.push(70);
+    }
+
+    //----------------------------------------------------------------
+    // 「雪花防具（魔法）セット」の効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_SET_ID_SETSUKA_ARMORS_MAGICAL)) > 0) {
+        chkary.push(70);
+    }
+
+    //----------------------------------------------------------------
+    // 「セトの恩寵＋異境の統轄者セット」の、装備効果
+    //----------------------------------------------------------------
+    if (EquipNumSearchMIG(ITEM_SET_ID_SETONO_ONCHO_IKYONO_TOKATSUSHA)) {
+        chkary.push(70);
+    }
+
+    //----------------------------------------------------------------
+    // 「ミストレスの卵」の、装備効果
+    //----------------------------------------------------------------
+    if (petId === PET_ID_MISTRESS) {
+        if (n_A_BaseLV >= 100) {
+            chkary.push(70);
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「秘密の羽・レイジー」カードの、装備効果
+    //----------------------------------------------------------------
+    if (CardNumSearch(CARD_ID_HIMITSU_NO_HANE_LEIZI)) {
+        chkary.push(70);
+    }
+
+    //----------------------------------------------------------------
+    // 「グラキエースアラネア」の、装備効果
+    //----------------------------------------------------------------
+    if (EquipNumSearchMIG(ITEM_ID_GLACIES_ARANEA)) {
+        if (n_A_SHIELD_DEF_PLUS >= 7) {
+            chkary.push(70);
+        }
+    }
+
+    //----------------------------------------------------------------
+    // 「性能カスタマイズ」の、効果
+    //----------------------------------------------------------------
+    confval = g_objCharaConfCustomStatus.GetConf(CCharaConfCustomStatus.CONF_ID_CAST_DOWN_FIXED);
+    if (confval != 0) {
+        chkary.push(confval);
+    }
+
+    // TODO: データ移行過渡処理
+    // 計算したSP効果を、移行前のデータ形式に変換して、加算する
+    if (IsEnableMigrationBlockTransit()) {
+
+        var spTag = null;
+
+        spTag = new CMigEquipableSpTag()
+            .SetSpId(MIG_EQUIPABLE_SP_EFFECT_ID_FIXED_TIME)
+            .SetAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_VALUE_UNIT, MIG_VALUE_UNIT_ID_PERCENT);
+
+        // 反転が必要なので注意
+        chkary.push((0 - g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_MIN)));
+        chkary.push((0 - g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_MIN)));
+    }
+
+    var wMax = 0;
+    for (i = 0; i < chkary.length; i++) {
+        if (chkary[i] > wMax) wMax = chkary[i];
+    }
+
+    n_A_Kotei_Cast_Keigen = wMax;
+    if (g_confDataDebuff[CCharaConfDebuff.CONF_ID_FREEZING]) n_A_Kotei_Cast_Keigen -= 50;
+
+    charaData[CHARA_DATA_INDEX_FIXED_TIME] = n_A_Kotei_Cast_Keigen;
 }
 
 /**
