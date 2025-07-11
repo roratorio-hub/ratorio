@@ -25530,33 +25530,27 @@ function GetCostFixOfSkill(skillId) {
 }
 
 function StPlusCalc() {
-
-	var idx = 0;
-
-	var jobBonusArray = null;
-	var superNoviceBonus = 0;
-	var bufLv = 0;
-	var vartmp = 0;
-
-	var itemCount = 0;
-	var itemCountRight = 0;
-	var itemCountLeft = 0;
-	var itemCountAccessary1 = 0;
-	var itemCountAccessary2 = 0;
-
-	var cardCount = 0;
-	var cardCountRight = 0;
-	var cardCountLeft = 0;
-	var cardCountHeadTop = 0;
-	var cardCountHeadMid = 0;
-	var cardCountShield = 0;
-	var cardCountBody = 0;
-	var cardCountShoulder = 0;
-	var cardCountShoes = 0;
-	var cardCountAccessary1 = 0;
-	var cardCountAccessary2 = 0;
-
-
+	let idx = 0;
+	let jobBonusArray = null;
+	let superNoviceBonus = 0;
+	let bufLv = 0;
+	let vartmp = 0;
+	let itemCount = 0;
+	let itemCountRight = 0;
+	let itemCountLeft = 0;
+	let itemCountAccessary1 = 0;
+	let itemCountAccessary2 = 0;
+	let cardCount = 0;
+	let cardCountRight = 0;
+	let cardCountLeft = 0;
+	let cardCountHeadTop = 0;
+	let cardCountHeadMid = 0;
+	let cardCountShield = 0;
+	let cardCountBody = 0;
+	let cardCountShoulder = 0;
+	let cardCountShoes = 0;
+	let cardCountAccessary1 = 0;
+	let cardCountAccessary2 = 0;
 
 	// TODO: 将来的に構造の変更が必要
 	// 拡張表示用
@@ -25573,8 +25567,6 @@ function StPlusCalc() {
 	CExtraInfoAreaComponentManager.dispDataMap.set(ITEM_SP_INT_PLUS_PLANE, 0);
 	CExtraInfoAreaComponentManager.dispDataMap.set(ITEM_SP_DEX_PLUS_PLANE, 0);
 	CExtraInfoAreaComponentManager.dispDataMap.set(ITEM_SP_LUK_PLUS_PLANE, 0);
-
-
 
 	// ジョブ補正の算出
 	InitJobInfo();
@@ -25593,8 +25585,6 @@ function StPlusCalc() {
 	){
 		superNoviceBonus = 10;
 	}
-
-
 
 	//----------------------------------------------------------------
 	// 求めた値を基礎値とする
@@ -25667,8 +25657,6 @@ function StPlusCalc() {
 		}
 	}
 
-
-
 	//----------------------------------------------------------------
 	// 「ふくろうの目」の、ＤＥＸ＋効果
 	//----------------------------------------------------------------
@@ -25713,21 +25701,21 @@ function StPlusCalc() {
 	// 「チェイスウォーク」の、ＳＴＲ＋効果
 	//----------------------------------------------------------------
 	switch (UsedSkillSearch(SKILL_ID_CHASEWALK)) {
-	case 5:
-		wSPC_STR += 16;
-		break;
-	case 4:
-		wSPC_STR += 8;
-		break;
-	case 3:
-		wSPC_STR += 4;
-		break;
-	case 2:
-		wSPC_STR += 2;
-		break;
-	case 1:
-		wSPC_STR += 1;
-		break;
+		case 5:
+			wSPC_STR += 16;
+			break;
+		case 4:
+			wSPC_STR += 8;
+			break;
+		case 3:
+			wSPC_STR += 4;
+			break;
+		case 2:
+			wSPC_STR += 2;
+			break;
+		case 1:
+			wSPC_STR += 1;
+			break;
 	}
 
 	if(EquipNumSearch(1305)){
@@ -25740,8 +25728,6 @@ function StPlusCalc() {
 		wSPC_DEX -= w;
 		wSPC_LUK -= w;
 	}
-
-
 
 	// 拡張表示用のデータを格納
 	CExtraInfoAreaComponentManager.dispDataMap.set(ITEM_SP_STR_PLUS_PLANE, wSPC_STR - jobBonusArray[0]);
@@ -25758,8 +25744,6 @@ function StPlusCalc() {
 	g_ITEM_SP_INT_PLUS_PLANE_value_forCalcData = wSPC_INT;
 	g_ITEM_SP_DEX_PLUS_PLANE_value_forCalcData = wSPC_DEX;
 	g_ITEM_SP_LUK_PLUS_PLANE_value_forCalcData = wSPC_LUK;
-
-
 
 	//----------------------------------------------------------------
 	// 「アーチャー　集中力向上」の効果
@@ -25788,17 +25772,9 @@ function StPlusCalc() {
 		wSPC_AGI = Math.floor((n_A_AGI + wSPC_AGI) * 103 / 100) - n_A_AGI;
 	}
 
-
-
-
-
 	//----------------------------------------------------------------
 	// これ以降は、集中力向上が乗らない効果
 	//----------------------------------------------------------------
-
-
-
-
 
 	//----------------------------------------------------------------
 	// 「ガンスリンガー　インクリージングアキュラシー」の効果
@@ -25879,7 +25855,6 @@ function StPlusCalc() {
 	wSPC_INT += 5 * UsedSkillSearch(SKILL_ID_UCHUNO_KAMAE);
 	wSPC_DEX += 5 * UsedSkillSearch(SKILL_ID_UCHUNO_KAMAE);
 	wSPC_LUK += 5 * UsedSkillSearch(SKILL_ID_UCHUNO_KAMAE);
-
 
 	if(GetLowerJobSeriesID(n_A_JOB)==41 && EquipNumSearch(672)) wSPC_AGI += 1;
 	if(GetLowerJobSeriesID(n_A_JOB)==41 && EquipNumSearch(673)) wSPC_INT += 1;
@@ -26073,8 +26048,6 @@ function StPlusCalc() {
 	if(GetLowerJobSeriesID(n_A_JOB)==1 && n_A_card[CARD_REGION_ID_HEAD_TOP]==625) wSPC_STR += Math.floor(n_A_HEAD_DEF_PLUS / 3);
 	if(GetLowerJobSeriesID(n_A_JOB)==6 && n_A_card[CARD_REGION_ID_HEAD_TOP]==637) wSPC_LUK += Math.floor(n_A_HEAD_DEF_PLUS / 3);
 
-
-
 	if(EquipNumSearch(2348)) wSPC_INT += Math.floor(n_A_BaseLV / 20);
 	if(EquipNumSearch(2350)) wSPC_STR += Math.floor(n_A_BaseLV / 20);
 	if(EquipNumSearch(2352)) wSPC_AGI += Math.floor(n_A_BaseLV / 20);
@@ -26109,16 +26082,10 @@ function StPlusCalc() {
 		}
 	}
 
-
 	if(EquipNumSearch(2543)) wSPC_VIT += n_A_SHOES_DEF_PLUS;
-
-
-
-
 
 	/* TODO */
 	// 独自実装箇所　ここから
-
 
 	//----------------------------------------------------------------
 	// 「ヴァルキリーハンマー」の、職業による強化
@@ -27745,14 +27712,6 @@ function StPlusCalc() {
 		wSPC_INT += 3 * LearnedSkillSearch(SKILL_ID_ORATIO) * itemCount;
 	}
 
-
-
-
-
-
-
-
-
 	//----------------------------------------------------------------
 	// 集中力向上が乗らない効果（セット装備等）
 	//----------------------------------------------------------------
@@ -27857,10 +27816,6 @@ function StPlusCalc() {
 	wSPC_DEX += GetRndOptTotalValue(ITEM_SP_DEX_PLUS, null, false) + wSPCall;
 	wSPC_LUK += GetRndOptTotalValue(ITEM_SP_LUK_PLUS, null, false) + wSPCall;
 
-
-
-
-
 	//----------------------------------------------------------------
 	// スキル「フルスロットル」による効果
 	//----------------------------------------------------------------
@@ -27920,7 +27875,6 @@ function StPlusCalc() {
 		wSPC_INT += 5;
 		wSPC_LUK += 5;
 	}
-
 
 	if (UsedSkillSearch(SKILL_ID_SPURT_ZYOTAI) && n_A_WeaponType==0) {
 		wSPC_STR += 10;
@@ -28004,6 +27958,11 @@ function StPlusCalc() {
 	}
 
 	wSPC_VIT += 5 * UsedSkillSearch(SKILL_ID_DEFENCE);
+
+	/**
+	 * プレイヤー状態異常「メロディーオブシンク」の効果
+	 */
+	wSPC_INT -= 5 * g_confDataDebuff[CCharaConfDebuff.CONF_ID_MELODYOFSINK];
 
 	if(n_A_PassSkill3[39] == 5) wSPC_INT -= n_A_PassSkill3[40] * n_A_PassSkill3[41];
 	if(n_A_PassSkill3[39] == 4) wSPC_STR += n_A_PassSkill3[40] * n_A_PassSkill3[41];
@@ -28090,10 +28049,6 @@ function StPlusCalc() {
 		wSPC_LUK += n_A_PassSkill3[17];
 	}
 
-
-
-
-
 	//----------------------------------------------------------------
 	// 「性能カスタマイズ」の、効果
 	//----------------------------------------------------------------
@@ -28153,8 +28108,6 @@ function StPlusCalc() {
 	n_A_DEX += wSPC_DEX;
 	n_A_LUK += wSPC_LUK;
 
-
-
 	// 拡張表示用のデータを格納
 	CExtraInfoAreaComponentManager.dispDataMap.set(ITEM_SP_STR_PLUS, wSPC_STR - jobBonusArray[0]);
 	CExtraInfoAreaComponentManager.dispDataMap.set(ITEM_SP_AGI_PLUS, wSPC_AGI - jobBonusArray[1]);
@@ -28162,10 +28115,6 @@ function StPlusCalc() {
 	CExtraInfoAreaComponentManager.dispDataMap.set(ITEM_SP_INT_PLUS, wSPC_INT - jobBonusArray[3]);
 	CExtraInfoAreaComponentManager.dispDataMap.set(ITEM_SP_DEX_PLUS, wSPC_DEX - jobBonusArray[4]);
 	CExtraInfoAreaComponentManager.dispDataMap.set(ITEM_SP_LUK_PLUS, wSPC_LUK - jobBonusArray[5]);
-
-
-
-
 
 	//------------------------------------------------------------------------------------------------
 	//
