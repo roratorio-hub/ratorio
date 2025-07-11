@@ -487,8 +487,8 @@ function SaveSystem(funcSaveDataModify = null){
 		// [0800 - 0849] キャラクター状態異常
 		//----------------------------------------------------------------
 		/* 新セーブ処理への移行に伴いコメントアウト
-		for (idx = 0; idx < n_A_IJYOU.length; idx++) {
-			SaveData[800 + idx] = n_A_IJYOU[idx];
+		for (idx = 0; idx < g_confDataDebuff.length; idx++) {
+			SaveData[800 + idx] = g_confDataDebuff[idx];
 		}
 		*/		
 
@@ -4597,8 +4597,8 @@ function DecodeUrl(loadDataUrl){
 		// キャラクター状態異常の読み込み
 		//----------------------------------------------------------------
 		/* 新ロード処理への移行に伴いコメントアウト
-		for (idx = 0; idx < n_A_IJYOU.length; idx++) {
-			n_A_IJYOU[idx] = SaveData[800 + idx];
+		for (idx = 0; idx < g_confDataDebuff.length; idx++) {
+			g_confDataDebuff[idx] = SaveData[800 + idx];
 		}
 		*/
 
@@ -4907,22 +4907,6 @@ function DecodeUrl(loadDataUrl){
 	Click_A3(false);
 	Click_A4(false);
 	OnChangeSettingAutoSpell(false);
-
-	g_objCharaConfIchizi.RefreshSelectAreaHeader();
-	g_objCharaConfIchizi.RefreshControlCSS();
-
-	g_objCharaConfNizi.RefreshSelectAreaHeader();
-	g_objCharaConfNizi.RefreshControlCSS();
-
-	g_objCharaConfSanzi.RefreshSelectAreaHeader();
-	g_objCharaConfSanzi.RefreshControlCSS();
-
-	try {
-		g_objCharaConfYozi.RefreshSelectAreaHeader();
-		g_objCharaConfYozi.RefreshControlCSS();
-	}
-	catch (exc) {
-	}
 
 	Click_A7(false);
 	Click_A8(false);

@@ -375,76 +375,47 @@ function CConfBase(confArray) {
 	 * 設定欄の状態を同期させる（変数の値をコントロール部品へ反映）.
 	 */
 	this.SyncronizeSettingsVarToCtrl = function () {
-
-		var idx = 0;
-		var confId = 0;
-
-		var controlId = "";
-		var controlType = 0;
-
-		var objSelect = null;
-		var objInput = null;
-
-
-
+		let idx = 0;
+		let confId = 0;
+		let controlId = "";
+		let controlType = 0;
+		let objSelect = null;
+		let objInput = null;
 		// 設定定義をループして、設定欄の状態を同期
 		for (idx = 0; idx < this.confDataObj.length; idx++) {
-
 			confId = this.confDataObj[idx][CConfBase.CONF_DATA_INDEX_ID];
-
 			controlId = this.GetControlIdString(this.instanceNo, confId);
 			controlType = this.confDataObj[idx][CConfBase.CONF_DATA_INDEX_CONTROL_TYPE];
-
-
 			switch (controlType) {
-
-			// 設定方法が数値選択方式の場合
-			case CONTROL_TYPE_SELECTBOX_NUMBER:
-			case CONTROL_TYPE_SELECTBOX_PERCENT:
-			case CONTROL_TYPE_SELECTBOX_SPECIAL:
-
-				objSelect = document.getElementById(controlId);
-				objSelect.value = this.confArray[confId];
-
-				break;
-
-
-
-			// 設定方法がチェック方式の場合
-			case CONTROL_TYPE_CHECKBOX:
-			case CONTROL_TYPE_CHECKBOX_SPECIAL:
-
-				objInput = document.getElementById(controlId);
-
-				if (this.confArray[confId]) {
-					objInput.setAttribute("checked", "checked");
-				}
-				else {
-					objInput.removeAttribute("checked");
-				}
-
-				break;
-
-
-
-			// 設定方法が数値入力方式の場合
-			case CONTROL_TYPE_TEXTBOX_NUMBER:
-			case CONTROL_TYPE_TEXTBOX_SPECIAL:
-
-				objInput = document.getElementById(controlId);
-				objInput.value = this.confArray[confId];
-
-				break;
-
-
-
-			// 設定方法が特殊方式の場合
-			case CONTROL_TYPE_SPECIAL:
-
-				// 個別に実装する
-				switch (confId) {
-
-				}
+				// 設定方法が数値選択方式の場合
+				case CONTROL_TYPE_SELECTBOX_NUMBER:
+				case CONTROL_TYPE_SELECTBOX_PERCENT:
+				case CONTROL_TYPE_SELECTBOX_SPECIAL:
+					objSelect = document.getElementById(controlId);
+					objSelect.value = this.confArray[confId];
+					break;
+				// 設定方法がチェック方式の場合
+				case CONTROL_TYPE_CHECKBOX:
+				case CONTROL_TYPE_CHECKBOX_SPECIAL:
+					objInput = document.getElementById(controlId);
+					if (this.confArray[confId]) {
+						objInput.setAttribute("checked", "checked");
+					}
+					else {
+						objInput.removeAttribute("checked");
+					}
+					break;
+				// 設定方法が数値入力方式の場合
+				case CONTROL_TYPE_TEXTBOX_NUMBER:
+				case CONTROL_TYPE_TEXTBOX_SPECIAL:
+					objInput = document.getElementById(controlId);
+					objInput.value = this.confArray[confId];
+					break;
+				// 設定方法が特殊方式の場合
+				case CONTROL_TYPE_SPECIAL:
+					// 個別に実装する
+					switch (confId) {
+					}
 			}
 		}
 	}
@@ -609,31 +580,20 @@ function CConfBase(confArray) {
 	 * 設定欄テーブルのヘッダをリフレッシュする.
 	 */
 	this.RefreshSelectAreaHeader = function () {
-
 		var bSet = false;
 		var bChecked = false;
-
 		var idx = 0;
 		var confId = 0;
-
 		var objSelect = null;
 		var objTd = null;
-
-
-
 		// 設定定義をループして、設定欄の状態を検査
 		for (idx = 0; idx < this.confDataObj.length; idx++) {
-
 			confId = this.confDataObj[idx][CConfBase.CONF_DATA_INDEX_ID];
-
 			if (this.confArray[confId] != this.confDataObj[idx][CConfBase.CONF_DATA_INDEX_DEFAULT_VALUE]) {
 				bSet = true;
 				break;
 			}
 		}
-
-
-
 		// 設定状況に応じて、ヘッダ部分の表示を更新
 		objTd = document.getElementById(this.GetHeaderIdString(this.instanceNo));
 		if (bSet) {
@@ -648,102 +608,81 @@ function CConfBase(confArray) {
 	 * 設定欄の選択状態により、コントロールのCSSを変更する.
 	 */
 	this.RefreshControlCSS = function () {
-
 		var idx = 0;
 		var confId = 0;
-
 		var controlId = "";
 		var controlType = 0;
 		var defaultValue = 0;
-
 		var objSelect = null;
 		var objInput = null;
-
-
-
 		// 設定定義をループして、設定欄の状態をもとに変数を同期
 		for (idx = 0; idx < this.confDataObj.length; idx++) {
-
 			confId = this.confDataObj[idx][CConfBase.CONF_DATA_INDEX_ID];
-
 			controlId = this.GetControlIdString(this.instanceNo, confId);
 			controlType = this.confDataObj[idx][CConfBase.CONF_DATA_INDEX_CONTROL_TYPE];
 			defaultValue = this.confDataObj[idx][CConfBase.CONF_DATA_INDEX_DEFAULT_VALUE];
-
-
 			switch (controlType) {
+				// 設定方法が数値選択方式の場合
+				case CONTROL_TYPE_SELECTBOX_NUMBER:
+				case CONTROL_TYPE_SELECTBOX_PERCENT:
+				case CONTROL_TYPE_SELECTBOX_SPECIAL:
 
-			// 設定方法が数値選択方式の場合
-			case CONTROL_TYPE_SELECTBOX_NUMBER:
-			case CONTROL_TYPE_SELECTBOX_PERCENT:
-			case CONTROL_TYPE_SELECTBOX_SPECIAL:
+					objSelect = document.getElementById(controlId);
+					if (!objSelect) {
+						continue;
+					}
 
-				objSelect = document.getElementById(controlId);
-				if (!objSelect) {
-					continue;
-				}
+					if (objSelect.value != defaultValue) {
+						objSelect.setAttribute("class", "CSSCLS_SELECTED_CONF");
+					}
+					else {
+						objSelect.setAttribute("class", "");
+					}
 
-				if (objSelect.value != defaultValue) {
-					objSelect.setAttribute("class", "CSSCLS_SELECTED_CONF");
-				}
-				else {
-					objSelect.setAttribute("class", "");
-				}
+					break;
+				// 設定方法がチェック方式の場合
+				case CONTROL_TYPE_CHECKBOX:
+				case CONTROL_TYPE_CHECKBOX_SPECIAL:
 
-				break;
+					objInput = document.getElementById(controlId);
+					if (!objInput) {
+						continue;
+					}
 
+					if ((objInput.checked) && (defaultValue != 1)) {
+						objInput.setAttribute("class", "CSSCLS_CHECKED_CONF");
+					}
+					if ((!objInput.checked) && (defaultValue != 0)) {
+						objInput.setAttribute("class", "CSSCLS_CHECKED_CONF");
+					}
+					else {
+						objInput.setAttribute("class", "");
+					}
 
+					break;
+				// 設定方法が数値入力方式の場合
+				case CONTROL_TYPE_TEXTBOX_NUMBER:
+				case CONTROL_TYPE_TEXTBOX_SPECIAL:
 
-			// 設定方法がチェック方式の場合
-			case CONTROL_TYPE_CHECKBOX:
-			case CONTROL_TYPE_CHECKBOX_SPECIAL:
+					objInput = document.getElementById(controlId);
+					if (!objInput) {
+						continue;
+					}
 
-				objInput = document.getElementById(controlId);
-				if (!objInput) {
-					continue;
-				}
+					if (objInput.value != defaultValue) {
+						objInput.setAttribute("class", "CSSCLS_INPUTTED_CONF");
+					}
+					else {
+						objInput.setAttribute("class", "");
+					}
 
-				if ((objInput.checked) && (defaultValue != 1)) {
-					objInput.setAttribute("class", "CSSCLS_CHECKED_CONF");
-				}
-				if ((!objInput.checked) && (defaultValue != 0)) {
-					objInput.setAttribute("class", "CSSCLS_CHECKED_CONF");
-				}
-				else {
-					objInput.setAttribute("class", "");
-				}
+					break;
+				// 設定方法が特殊方式の場合
+				case CONTROL_TYPE_SPECIAL:
+					// 個別に実装する
+					switch (confId) {
 
-				break;
-
-
-
-			// 設定方法が数値入力方式の場合
-			case CONTROL_TYPE_TEXTBOX_NUMBER:
-			case CONTROL_TYPE_TEXTBOX_SPECIAL:
-
-				objInput = document.getElementById(controlId);
-				if (!objInput) {
-					continue;
-				}
-
-				if (objInput.value != defaultValue) {
-					objInput.setAttribute("class", "CSSCLS_INPUTTED_CONF");
-				}
-				else {
-					objInput.setAttribute("class", "");
-				}
-
-				break;
-
-
-
-			// 設定方法が特殊方式の場合
-			case CONTROL_TYPE_SPECIAL:
-
-				// 個別に実装する
-				switch (confId) {
-
-				}
+					}
 			}
 		}
 	}

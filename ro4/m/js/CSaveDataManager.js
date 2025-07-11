@@ -253,7 +253,7 @@ class CSaveDataManager {
 		const saveDataUnit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_CHARA_DEBUFF))();
 		saveDataUnit.SetUpAsDefault();
 		saveDataUnit.setProp(CSaveDataConst.propNameOptCode, 0);
-		saveDataUnit.setProp(CSaveDataConst.propNameBuffLv, n_A_IJYOU);
+		saveDataUnit.setProp(CSaveDataConst.propNameBuffLv, g_confDataDebuff);
 		saveDataUnit.doCompaction();
 		if (!saveDataUnit.isEmptyUnit()) {
 			this.#saveDataUnitArray.push(saveDataUnit);
@@ -698,15 +698,25 @@ class CSaveDataManager {
 		funcCallApplyCompositBuff(this, SAVE_DATA_UNIT_TYPE_CHARA_BUFF, n_A_PassSkill8);
 		funcCallApplyBuffLv(this, SAVE_DATA_UNIT_TYPE_SKILL_BUFF_SELF, n_A_PassSkill);
 		funcCallApplyBuffLv(this, SAVE_DATA_UNIT_TYPE_SKILL_BUFF_1ST, g_confDataIchizi);
+		g_objCharaConfIchizi.RefreshSelectAreaHeader();
+		g_objCharaConfIchizi.RefreshControlCSS();
 		funcCallApplyBuffLv(this, SAVE_DATA_UNIT_TYPE_SKILL_BUFF_2ND, g_confDataNizi);
+		g_objCharaConfNizi.RefreshSelectAreaHeader();
+		g_objCharaConfNizi.RefreshControlCSS();
 		funcCallApplyBuffLv(this, SAVE_DATA_UNIT_TYPE_SKILL_BUFF_3RD, g_confDataSanzi);
+		g_objCharaConfSanzi.RefreshSelectAreaHeader();
+		g_objCharaConfSanzi.RefreshControlCSS();
 		funcCallApplyBuffLv(this, SAVE_DATA_UNIT_TYPE_SKILL_BUFF_4TH, g_confDataYozi);
+		g_objCharaConfYozi.RefreshSelectAreaHeader();
+		g_objCharaConfYozi.RefreshControlCSS();
+		funcCallApplyBuffLv(this, SAVE_DATA_UNIT_TYPE_CHARA_DEBUFF, g_confDataDebuff);
+		g_objCharaConfDebuff.RefreshSelectAreaHeader();
+		g_objCharaConfDebuff.RefreshControlCSS();
 		funcCallApplyBuffLv(this, SAVE_DATA_UNIT_TYPE_SKILL_BUFF_MUSIC, n_A_PassSkill3);
 		funcCallApplyBuffLv(this, SAVE_DATA_UNIT_TYPE_SKILL_BUFF_GUILD, n_A_PassSkill4);
 		funcCallApplyCompositBuff(this, SAVE_DATA_UNIT_TYPE_ITEM_BUFF, n_A_PassSkill7);
 		funcCallApplyTimeBuffID(this, SAVE_DATA_UNIT_TYPE_TIME_BUFF, g_timeItemConf);
 		funcCallApplyAutoSpell(this, SAVE_DATA_UNIT_TYPE_AUTO_SPELLS, n_A_PassSkill5);
-		funcCallApplyBuffLv(this, SAVE_DATA_UNIT_TYPE_CHARA_DEBUFF, n_A_IJYOU);
 		funcCallApplyConfig(this, SAVE_DATA_UNIT_TYPE_CHARA_CONF_BASIC, g_confDataCustomStatusMIG);
 		funcCallApplyConfigSpec(this, CSaveDataConst.specKindAttackPhysical, g_confDataSpecMIG[0][0]);
 		funcCallApplyConfigSpec(this, CSaveDataConst.specKindAttackMagical, g_confDataSpecMIG[0][1]);
