@@ -22593,6 +22593,7 @@ function BuildCastAndDelayHtmlMIG(mobData){
 
 	// 詠唱時間短縮効果（±○○秒）の適用
 	n_KoteiCast -= n_tok[ITEM_SP_SKILL_FIXED_MINUS];
+	n_KoteiCast += GetAdditionalFixedCastTime();
 	n_KoteiCast += GetCastFixOfSkillForCastTimeFixed(n_A_ActiveSkill);
 
 	if (n_KoteiCast < 0) n_KoteiCast = 0;
