@@ -27969,6 +27969,19 @@ function StPlusCalc() {
 	 */
 	wSPC_STR -= 6 * g_confDataDebuff[CCharaConfDebuff.CONF_ID_BEYOND_OF_WARCRY];
 
+	/**
+	 * プレイヤー状態異常「ハーモナイズ」の効果
+	 */
+	if (g_confDataDebuff[CCharaConfDebuff.CONF_ID_HARMONIZE] > 0) {
+		const harmonize_val = (5 + 5 * g_confDataDebuff[CCharaConfDebuff.CONF_ID_HARMONIZE]);
+		wSPC_STR -= harmonize_val;
+		wSPC_AGI -= harmonize_val;
+		wSPC_VIT -= harmonize_val;
+		wSPC_INT -= harmonize_val;
+		wSPC_DEX -= harmonize_val;
+		wSPC_LUK -= harmonize_val;
+	}
+
 	if(n_A_PassSkill3[39] == 5) wSPC_INT -= n_A_PassSkill3[40] * n_A_PassSkill3[41];
 	if(n_A_PassSkill3[39] == 4) wSPC_STR += n_A_PassSkill3[40] * n_A_PassSkill3[41];
 	if(n_A_PassSkill7[49]){
