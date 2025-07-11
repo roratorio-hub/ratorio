@@ -23433,8 +23433,14 @@ function GetCastFixOfSkillForCastTimeFixed(skillId) {
  */
 function GetAdditionalFixedCastTime() {
 	let additional_time = 0;
-	// プレイヤー状態異常「メランコリー」の効果
+	/**
+	 * プレイヤー状態異常「メランコリー」の効果
+	 */
 	additional_time += 500 * g_confDataDebuff[CCharaConfDebuff.CONF_ID_GLOOMYDAY];
+	/**
+	 * プレイヤー状態異常「精神衝撃」の効果
+	 */
+	additional_time += 500 * g_confDataDebuff[CCharaConfDebuff.CONF_ID_MANDRAGORA];
 	return additional_time;
 }
 
@@ -27854,6 +27860,11 @@ function StPlusCalc() {
 	 * プレイヤー状態異常「メロディーオブシンク」の効果
 	 */
 	wSPC_INT -= 5 * g_confDataDebuff[CCharaConfDebuff.CONF_ID_MELODYOFSINK];
+
+	/**
+	 * プレイヤー状態異常「精神衝撃」の効果
+	 */
+	wSPC_INT -= 4 * g_confDataDebuff[CCharaConfDebuff.CONF_ID_MANDRAGORA];
 
 	/**
 	 * プレイヤー状態異常「ビヨンドオブウォークライ」の効果
