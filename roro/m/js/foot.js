@@ -15672,6 +15672,13 @@ function ApplyAdditionalFlee(charaData) {
 		flee -= (20 + 30 * g_confDataDebuff[CCharaConfDebuff.CONF_ID_GLOOMYDAY]);
 	}
 
+	/**
+	 * プレイヤー状態異常「狂乱」の効果（マイナスを許容）
+	 */
+	if (g_confDataDebuff[CCharaConfDebuff.CONF_ID_SATURDAY_NIGHT_FEVER] > 0) {
+		flee -= (20 + 30 * g_confDataDebuff[CCharaConfDebuff.CONF_ID_SATURDAY_NIGHT_FEVER]);
+	}
+
     //----------------------------------------------------------------
     // 計算した結果をキャラクターデータに保存
     //----------------------------------------------------------------

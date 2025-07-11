@@ -11866,6 +11866,13 @@ function GetStatusModifyHitPlus() {
 		val += bufLv;
 	}
 
+	/**
+	 * プレイヤー状態異常「狂乱」の効果（マイナスを許容）
+	 */
+	if (g_confDataDebuff[CCharaConfDebuff.CONF_ID_SATURDAY_NIGHT_FEVER] > 0) {
+		val -= (50 + 50 * g_confDataDebuff[CCharaConfDebuff.CONF_ID_SATURDAY_NIGHT_FEVER]);
+	}
+
 	// TODO: 四次対応
 	for (idx = ITEM_SP_HIT_PLUS; idx <= ITEM_SP_HIT_PLUS; idx++) {
 		val = ApplySpecModify(idx, val);
