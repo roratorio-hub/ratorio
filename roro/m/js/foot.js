@@ -27964,6 +27964,11 @@ function StPlusCalc() {
 	 */
 	wSPC_INT -= 5 * g_confDataDebuff[CCharaConfDebuff.CONF_ID_MELODYOFSINK];
 
+	/**
+	 * プレイヤー状態異常「ビヨンドオブウォークライ」の効果
+	 */
+	wSPC_STR -= 6 * g_confDataDebuff[CCharaConfDebuff.CONF_ID_BEYOND_OF_WARCRY];
+
 	if(n_A_PassSkill3[39] == 5) wSPC_INT -= n_A_PassSkill3[40] * n_A_PassSkill3[41];
 	if(n_A_PassSkill3[39] == 4) wSPC_STR += n_A_PassSkill3[40] * n_A_PassSkill3[41];
 	if(n_A_PassSkill7[49]){
