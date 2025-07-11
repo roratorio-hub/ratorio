@@ -541,16 +541,13 @@ function CConfBase(confArray) {
 	 * @param {*} bCalc  再計算フラグ（true : 再計算する、false : 再計算しない）
 	 */
 	CConfBase.OnChangeValueHandler = function (instanceNo, bCalc) {
-
 		var idx = 0;
-
 		for (idx = 0; idx < CConfBase.targetArray.length; idx++) {
 			if (CConfBase.targetArray[idx].instanceNo == instanceNo) {
 				CConfBase.targetArray[idx].objThis.OnChangeValue(bCalc);
 				break;
 			}
 		}
-
 		// 攻撃手段の更新
 		CAttackMethodAreaComponentManager.RebuildControls();
 	}

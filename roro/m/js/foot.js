@@ -278,24 +278,6 @@ function RefreshSuperNoviceFullWeapon(bFull) {
 }
 
 /**
- * HTMLからプレイヤー状態異常のデータを読み取ってグローバル変数を更新する
- */
-function UpdateBadStatusDataByHtml() {
-	const OPTION_COUNT = 8;
-	for (let i = 0; i < OPTION_COUNT; i++) {
-		const element = document.querySelector(`[name="A_IJYOU${i}"]`);
-		switch (element.tagName) {
-			case "SELECT":
-				g_confDataDebuff[i] = Number(element.value);
-				break;
-			case "INPUT":
-				g_confDataDebuff[i] = element.checked;
-				break;
-		}
-	}
-}
-
-/**
  * HTMLから装備アイテムの状態を読み取ってグローバル変数を更新する
  */
 function UpdateEquipItemDataByHtml() {
@@ -1019,8 +1001,6 @@ function StAllCalc(){
 				if(n_A_PassSkill8[19] == 0) myInnerHtml("ID_A_HUYO_NAME","暖かい風",0);
 				else myInnerHtml("ID_A_HUYO_NAME","武器属性付与",0);
 			}
-			// プレイヤー状態異常のグローバル変数を更新
-			UpdateBadStatusDataByHtml();
 		}
 
 		//----------------------------------------------------------------
@@ -22279,10 +22259,6 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 		scaling -= GetEquippedTotalSPCardAndElse(ITEM_SP_SKILL_CAST_TIME_OFFSET + skillId);
 	}
 
-
-
-
-
 	//----------------------------------------------------------------
 	// 「グロリアスフィスト」の「阿修羅覇凰拳」短縮
 	//----------------------------------------------------------------
@@ -22291,8 +22267,6 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 			scaling -= 100;
 		}
 	}
-
-
 
 	//----------------------------------------------------------------
 	// 「グロリアスライフル」の「トラッキング」短縮
@@ -22303,8 +22277,6 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 		}
 	}
 
-
-
 	//----------------------------------------------------------------
 	// 「ラクリマスティック」の「ストームガスト」短縮
 	//----------------------------------------------------------------
@@ -22313,8 +22285,6 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 			scaling -= 8;
 		}
 	}
-
-
 
 	//----------------------------------------------------------------
 	// 「ファルケンブリッツ　リトルフェザーハットセット」の「シャープシューティング」短縮
@@ -22325,8 +22295,6 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 		}
 	}
 
-
-
 	//----------------------------------------------------------------
 	// 「ゲフェニア水の古書　ラクリマスティックセット」の「ストームガスト」短縮
 	//----------------------------------------------------------------
@@ -22335,8 +22303,6 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 			scaling -= 4 * n_A_SHIELD_DEF_PLUS;
 		}
 	}
-
-
 
 	//----------------------------------------------------------------
 	// 「ゲフェニア水の古書　ラクリマスティックセット」の「フロストミスティ」短縮
@@ -22347,8 +22313,6 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 		}
 	}
 
-
-
 	//----------------------------------------------------------------
 	// 「ゲフェニア水の古書　ラクリマスティックセット」の「ジャックフロスト」短縮
 	//----------------------------------------------------------------
@@ -22357,8 +22321,6 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 			scaling -= 4 * n_A_SHIELD_DEF_PLUS;
 		}
 	}
-
-
 
 	//----------------------------------------------------------------
 	// 「エレメンタルブーツ」の「ファイアーボルト」短縮
@@ -22369,8 +22331,6 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 		}
 	}
 
-
-
 	//----------------------------------------------------------------
 	// 「エレメンタルブーツ」の「コールドボルト」短縮
 	//----------------------------------------------------------------
@@ -22379,8 +22339,6 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 			scaling -= n_A_SHOES_DEF_PLUS - 5;
 		}
 	}
-
-
 
 	//----------------------------------------------------------------
 	// 「エレメンタルブーツ」の「ライトニングボルト」短縮
@@ -22391,8 +22349,6 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 		}
 	}
 
-
-
 	//----------------------------------------------------------------
 	// 「エレメンタルブーツ」の「アーススパイク」短縮
 	//----------------------------------------------------------------
@@ -22401,8 +22357,6 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 			scaling -= n_A_SHOES_DEF_PLUS - 5;
 		}
 	}
-
-
 
 	//----------------------------------------------------------------
 	// 「法螺貝」の「振動残響」短縮
@@ -22414,8 +22368,6 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 			if(n_A_Weapon_ATKplus >= 9) scaling -= 40;
 		}
 	}
-
-
 
 	//----------------------------------------------------------------
 	// 「アルティメットモードチェンジャー　ペオースグリーブセット」の「ウィンドカッター」短縮
@@ -22430,8 +22382,6 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 		}
 	}
 
-
-
 	//----------------------------------------------------------------
 	// 「ケラウノス」の「雷光弾」短縮
 	//----------------------------------------------------------------
@@ -22440,8 +22390,6 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 			scaling -= 5 * ROUNDDOWN(n_A_BaseLV / 15) * itemCount;
 		}
 	}
-
-
 
 	//----------------------------------------------------------------
 	// 「ケラウノス」の「羅刹覇王撃」短縮
@@ -22452,8 +22400,6 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 			scaling -= 3 * ROUNDDOWN(n_A_BaseLV / 20) * itemCount;
 		}
 	}
-
-
 
 	//----------------------------------------------------------------
 	// 「業風石　ゲラドリア　セット」の「ウィンドカッター」短縮
@@ -22466,8 +22412,6 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 		}
 	}
 
-
-
 	//----------------------------------------------------------------
 	// 「パワードチップ」の「アームズキャノン」短縮
 	//----------------------------------------------------------------
@@ -22478,8 +22422,6 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 			}
 		}
 	}
-
-
 
 	//----------------------------------------------------------------
 	// 「パワードチップ」の「コールドスロワー」短縮
@@ -22492,8 +22434,6 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 		}
 	}
 
-
-
 	//----------------------------------------------------------------
 	// 「パワードチップ」の「フレイムスロワー」短縮
 	//----------------------------------------------------------------
@@ -22505,8 +22445,6 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 		}
 	}
 
-
-
 	//----------------------------------------------------------------
 	// 「特選葉のお守り」の「イヌハッカメテオ」短縮
 	//----------------------------------------------------------------
@@ -22515,8 +22453,6 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 			scaling -=  3 * ROUNDDOWN(n_A_BaseLV / 10) * itemCount;
 		}
 	}
-
-
 
 	//----------------------------------------------------------------
 	// 「執行者のシューズ」の「メテオアサルト」短縮
@@ -22530,8 +22466,6 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 		}
 	}
 
-
-
 	//----------------------------------------------------------------
 	// 「サファイアリスト」の「アシッドデモンストレーション」短縮
 	//----------------------------------------------------------------
@@ -22541,8 +22475,6 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 			scaling -= Math.floor(n_A_BaseLV / 4) * eqpnum;
 		}
 	}
-
-
 
 	//----------------------------------------------------------------
 	// 「裁きの靴　ホーリーステッキセット」の「ジュデックス」短縮
@@ -22554,8 +22486,6 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 		}
 	}
 
-
-
 	//----------------------------------------------------------------
 	// 「裁きの靴　ホーリーステッキセット」の「アドラムス」短縮
 	//----------------------------------------------------------------
@@ -22565,8 +22495,6 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 			scaling -= 5 * LearnedSkillSearch(SKILL_ID_ORATIO) * eqpnum;
 		}
 	}
-
-
 
 	//----------------------------------------------------------------
 	// 「悪魔の手」の「気功」短縮
@@ -22580,8 +22508,6 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 		}
 	}
 
-
-
 	//----------------------------------------------------------------
 	// 「悪魔の手」の「金剛」短縮
 	//----------------------------------------------------------------
@@ -22593,8 +22519,6 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 			}
 		}
 	}
-
-
 
 	//----------------------------------------------------------------
 	// 「悪魔の手」の「獅子吼」短縮
@@ -22608,8 +22532,6 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 		}
 	}
 
-
-
 	//----------------------------------------------------------------
 	// 「悪魔の手」の「練気功」短縮
 	//----------------------------------------------------------------
@@ -22622,8 +22544,6 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 		}
 	}
 
-
-
 	//----------------------------------------------------------------
 	// 「特選ウサギのお守り」の「キャロットビート」短縮
 	//----------------------------------------------------------------
@@ -22632,8 +22552,6 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 			scaling -= 3 * ROUNDDOWN(n_A_BaseLV / 10) * itemCount;
 		}
 	}
-
-
 
 	//----------------------------------------------------------------
 	// 「エメラルドイヤリング」の「メタリックサウンド」短縮
@@ -22644,8 +22562,6 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 		}
 	}
 
-
-
 	//----------------------------------------------------------------
 	// 「天狗の下駄」の「気功」短縮
 	//----------------------------------------------------------------
@@ -22654,8 +22570,6 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 			scaling -= 10 * LearnedSkillSearch(SKILL_ID_TENKETSU_KYU) * itemCount;
 		}
 	}
-
-
 
 	//----------------------------------------------------------------
 	// 「天狗の下駄」の「金剛」短縮
@@ -22666,8 +22580,6 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 		}
 	}
 
-
-
 	//----------------------------------------------------------------
 	// 「天狗の下駄」の「練気功」短縮
 	//----------------------------------------------------------------
@@ -22677,8 +22589,6 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 		}
 	}
 
-
-
 	//----------------------------------------------------------------
 	// 「トラベラーシューズ」の、「メタリックサウンド」短縮
 	//----------------------------------------------------------------
@@ -22687,8 +22597,6 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 			scaling -= 10 * LearnedSkillSearch(SKILL_ID_MELANCHOLY) * itemCount;
 		}
 	}
-
-
 
 	//----------------------------------------------------------------
 	// 「もこもこお魚シューズ」の、「シーフード系スキル」短縮
@@ -22706,8 +22614,6 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 		}
 	}
 
-
-
 	//----------------------------------------------------------------
 	// 「螺旋風魔の宝珠」の、「風魔手裏剣-乱華-」短縮
 	//----------------------------------------------------------------
@@ -22719,8 +22625,6 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 			}
 		}
 	}
-
-
 
 	//----------------------------------------------------------------
 	// 「聖者の冠」の、「アドラムス」短縮
@@ -22742,8 +22646,6 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 		}
 	}
 
-
-
 	//----------------------------------------------------------------
 	// 「ぷりちーウリボウシューズ」の、「アニマル系スキル」短縮
 	//----------------------------------------------------------------
@@ -22759,8 +22661,6 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 			scaling -= 10 * LearnedSkillSearch(SKILL_ID_SAVAGENO_TAMASHI) * itemCount;
 		}
 	}
-
-
 
 	//----------------------------------------------------------------
 	// 「ぴかぴかニャンニャンクラウン」の、「イヌハッカメテオ」、「マタタビランス」短縮
@@ -22778,8 +22678,6 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 			}
 		}
 	}
-
-
 
 	//----------------------------------------------------------------
 	// 「よちよちウリボウスタイ」の、「アニマル系スキル」短縮
@@ -22803,8 +22701,6 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 		}
 	}
 
-
-
 	//----------------------------------------------------------------
 	// 「審判の天秤」の、「レイオブジェネシス」短縮
 	//----------------------------------------------------------------
@@ -22817,8 +22713,6 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 		}
 	}
 
-
-
 	//----------------------------------------------------------------
 	// 「科学者のマント」の、「スポアエクスプロージョン」短縮
 	//----------------------------------------------------------------
@@ -22830,8 +22724,6 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 			}
 		}
 	}
-
-
 
 	//----------------------------------------------------------------
 	// 「アーヌルス イラ」の、「練気功」短縮
@@ -22857,8 +22749,6 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 		}
 	}
 
-
-
 	//----------------------------------------------------------------
 	// 「グレースホーリーローブ」の、「金剛」短縮
 	//----------------------------------------------------------------
@@ -22871,8 +22761,6 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 		}
 	}
 
-
-
 	//----------------------------------------------------------------
 	// 「パワードインカム」の、「アームズキャノン」短縮
 	//----------------------------------------------------------------
@@ -22884,8 +22772,6 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 			}
 		}
 	}
-
-
 
 	//----------------------------------------------------------------
 	// 「もふもふラブリーフォックス」の、「うずくまる」短縮
@@ -22911,8 +22797,6 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 		}
 	}
 
-
-
 	//----------------------------------------------------------------
 	// 「もこふわシャークパジャマ」の、「シーフード系スキル」短縮
 	//----------------------------------------------------------------
@@ -22928,8 +22812,6 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 			scaling -= 10 * LearnedSkillSearch(SKILL_ID_EBI_PARTY) * itemCount;
 		}
 	}
-
-
 
 	//----------------------------------------------------------------
 	// 「ゾディアック＋α」の、「シーフード系スキル」短縮
@@ -22994,10 +22876,6 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 		}
 	}
 
-
-
-
-
 	//----------------------------------------------------------------
 	// 「性能カスタマイズ」の、効果
 	//----------------------------------------------------------------
@@ -23006,9 +22884,10 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 		scaling -= confval;
 	}
 
-
-
-
+	/**
+	 * プレイヤー状態異常「スローキャスト」の効果
+	 */
+	scaling += 20 * g_confDataDebuff[CCharaConfDebuff.CONF_ID_SLOW_CAST];
 
 	// TODO: データ移行過渡処理
 	// 計算したSP効果を、移行前のデータ形式に変換して、加算する
@@ -23024,10 +22903,6 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 		scaling += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
 		scaling += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
 	}
-
-
-
-
 
 	return scaling;
 }

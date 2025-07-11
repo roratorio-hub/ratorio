@@ -22585,8 +22585,6 @@ function BuildCastAndDelayHtmlMIG(mobData){
 		wCast = wCast * n_A_CAST_COMMON;
 	}
 
-
-
 	//----------------------------------------------------------------
 	// 固定詠唱時間の算出
 	//----------------------------------------------------------------
@@ -22607,14 +22605,6 @@ function BuildCastAndDelayHtmlMIG(mobData){
 	scaling = (100 - n_A_Kotei_Cast_Keigen);		// スキル全般の固定詠唱マイナス。たぶん乗算。
 	if (scaling < 0) scaling = 0;
 	wCastFixed = wCastFixed * scaling / 100;
-
-	// スローキャスト状態の適用
-	if(g_confDataDebuff[CCharaConfDebuff.CONF_ID_SLOW_CAST]) {
-		wCast += (wCast * (20 * g_confDataDebuff[CCharaConfDebuff.CONF_ID_SLOW_CAST]) / 100);
-		wCastFixed += (wCastFixed * (20 * g_confDataDebuff[CCharaConfDebuff.CONF_ID_SLOW_CAST]) / 100);
-	}
-
-
 
 	//----------------------------------------------------------------
 	// 戦闘結果インスタンスに格納
