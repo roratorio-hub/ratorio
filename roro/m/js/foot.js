@@ -15497,9 +15497,6 @@ function ApplyAdditionalFlee(charaData) {
         flee += 20 * LearnedSkillSearch(SKILL_ID_CROSS_IMPACT) * itemCount;
     }
 
-
-
-
     g_ITEM_SP_FLEE_PLUS_value_forCalcData = flee;
 
 
@@ -15623,7 +15620,6 @@ function ApplyAdditionalFlee(charaData) {
         flee += 50 * sklLv;
     }
 
-
     if (n_A_PassSkill4[9]) flee += 50;
     if (n_A_PassSkill3[11]) flee -= (20 + 5 * n_A_PassSkill3[11]);
     if (n_A_PassSkill3[39] == 1) flee -= (40 + 10 * n_A_PassSkill3[40]);
@@ -15636,9 +15632,6 @@ function ApplyAdditionalFlee(charaData) {
     if (0 < n_A_PassSkill7[45] && n_A_PassSkill7[45] <= 50) flee += n_A_PassSkill7[45];
     if (n_A_PassSkill3[0]) flee += n_A_PassSkill3[0] * 3 + Math.floor(n_A_PassSkill3[30] / 2) + n_A_PassSkill3[20];
 
-
-
-
     //----------------------------------------------------------------
     // 「性能カスタマイズ」の、効果
     //----------------------------------------------------------------
@@ -15646,9 +15639,6 @@ function ApplyAdditionalFlee(charaData) {
     if (confval != 0) {
         flee += confval;
     }
-
-
-
 
     //================================
     // 以下、計算順注意
@@ -15668,8 +15658,6 @@ function ApplyAdditionalFlee(charaData) {
         flee = 300 + 40 * sklLv;
     }
 
-
-
     // 囲んでいる敵の数っぽい
     if (n_A_PassSkill8[12] >= 3) {
         var w = n_A_PassSkill8[12] - 2;
@@ -15677,10 +15665,17 @@ function ApplyAdditionalFlee(charaData) {
         flee -= Math.floor(flee * w * 10 / 100);
     }
 
+	/**
+	 * プレイヤー状態異常「メランコリー」の効果
+	 */
+	if (g_confDataDebuff[CCharaConfDebuff.CONF_ID_GLOOMYDAY] > 0) {
+		flee -= (20 + 30 * g_confDataDebuff[CCharaConfDebuff.CONF_ID_GLOOMYDAY]);
+	}
+
     //----------------------------------------------------------------
     // 計算した結果をキャラクターデータに保存
     //----------------------------------------------------------------
-    charaData[CHARA_DATA_INDEX_FLEE] = flee;
+    charaData[CHARA_DATA_INDEX_FLEE] = Math.max(0, flee);
 }
 
 /**
