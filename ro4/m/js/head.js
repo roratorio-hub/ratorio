@@ -6819,7 +6819,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			if(!n_AS_MODE) wHITsuu = Math.round(n_A_ActiveSkillLV / 2) * attackMethodConfArray[0].GetOptionValue(0);
 			else wHITsuu = Math.round(n_A_ActiveSkillLV / 2) * (Math.floor(n_A_ActiveSkillLV / 2) + 2);
 			wCast = 12000;
-			if(n_A_CAST_COMMON == 0) n_Delay[1] = n_Delay[1] / 2;
+			if(g_VariableCastTimeRate == 0) n_Delay[1] = n_Delay[1] / 2;
 			n_Delay[2] = Math.floor(n_A_ActiveSkillLV / 2) * 1000 + 2000;
 			break;
 
@@ -22582,7 +22582,7 @@ function BuildCastAndDelayHtmlMIG(mobData){
 	// 詠唱時間短縮効果（ステータス）の適用
 	var BK_wCast = wCast;
 	if (!cast_kotei && wCast != "不明") {
-		wCast = wCast * n_A_CAST_COMMON;
+		wCast = wCast * g_VariableCastTimeRate;
 	}
 
 	//----------------------------------------------------------------

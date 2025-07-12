@@ -687,7 +687,7 @@ function RefreshCastSimSimulateArea(bRefreshLevelSelect) {
 		if (timeVal < 0) {
 			timeVal = 0;
 		}
-		timeVal *= n_A_CAST_COMMON * GetCastScalingOfSkillForCastTimeVary(skillId) / 100;
+		timeVal *= g_VariableCastTimeRate * GetCastScalingOfSkillForCastTimeVary(skillId) / 100;
 		if (timeVal < 0) {
 			timeVal = 0;
 		}
