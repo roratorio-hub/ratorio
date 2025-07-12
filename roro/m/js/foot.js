@@ -22210,32 +22210,30 @@ function GetAdditionalCriticalRate(mobData) {
     // 最終クリティカル率の計算
     //----------------------------------------------------------------
     cri = 0;
-    if (n_A_PassSkill8[16]) {
-        // その他の支援/設定「クリティカル率を0にする」の場合
-        cri = 0;
-    } else {
-        // それ以外の場合
-
-        // ステータスによるクリティカル率
-        cri += 0.3 * n_A_LUK;
-        // 装備特性
-        cri += tmp_cri;
-        // カタール装備時は２倍
-        if (n_A_WeaponType == ITEM_KIND_KATAR) {
-            cri *= 2;
-        }
-        // ベースレベルによるクリティカル率
-        cri += 0.1 + (n_A_BaseLV / 100);
-        // おそらく https://siarodiary.blog.fc2.com/blog-entry-511.html などの検証に基づくもの
-        // 実際のクリティカル率を表示しようとする試みだと思われるので
-        // ゲーム内のCri表示と計算機の間で誤差がありますが静観しています
-        // 条件不問の基礎加算値
-        cri += 1;
-        // 小数点以下第二位で切り捨て
-        cri = Math.floor(cri * 10) / 10;
-        // 負数は０に補正
-        cri = Math.max(0, cri);
+    // ステータスによるクリティカル率
+    cri += 0.3 * n_A_LUK;
+    // 装備特性
+    cri += tmp_cri;
+    // カタール装備時は２倍
+    if (n_A_WeaponType == ITEM_KIND_KATAR) {
+        cri *= 2;
     }
+    // ベースレベルによるクリティカル率
+    cri += 0.1 + (n_A_BaseLV / 100);
+    // おそらく https://siarodiary.blog.fc2.com/blog-entry-511.html などの検証に基づくもの
+    // 実際のクリティカル率を表示しようとする試みだと思われるので
+    // ゲーム内のCri表示と計算機の間で誤差がありますが静観しています
+    // 条件不問の基礎加算値
+    cri += 1;
+    // 小数点以下第二位で切り捨て
+    cri = Math.floor(cri * 10) / 10;
+    // 負数は０に補正
+    cri = Math.max(0, cri);
+
+    // その他の支援/設定「クリティカル率を0にする」またはプレイヤー状態異常「無気力」の場合
+    if (n_A_PassSkill8[16] || g_confDataDebuff[CCharaConfDebuff.CONF_ID_LETHARGY] > 0) {
+        cri = 0;
+	}
 
     return cri;
 }
