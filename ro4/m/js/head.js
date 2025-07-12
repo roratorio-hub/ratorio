@@ -9077,8 +9077,8 @@ function GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfAr
 	// ＡＴＫ％ＵＰ
 	if(GetEquippedTotalSPEquip(87)) w += GetEquippedTotalSPEquip(87);
 
-	// TODO : 謎補正
-	if(n_A_IJYOU[3]) w -= 25;
+	// 呪いによる ATK -25%
+	if(g_confDataDebuff[CCharaConfDebuff.CONF_ID_CURSE]) w -= 25;
 
 	// 精霊スキル　ウォーターバリア
 	if(UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 17) w -= 30;
@@ -22585,14 +22585,13 @@ function BuildCastAndDelayHtmlMIG(mobData){
 		wCast = wCast * n_A_CAST_COMMON;
 	}
 
-
-
 	//----------------------------------------------------------------
 	// 固定詠唱時間の算出
 	//----------------------------------------------------------------
 
 	// 詠唱時間短縮効果（±○○秒）の適用
 	n_KoteiCast -= n_tok[ITEM_SP_SKILL_FIXED_MINUS];
+	n_KoteiCast += GetAdditionalFixedCastTime();
 	n_KoteiCast += GetCastFixOfSkillForCastTimeFixed(n_A_ActiveSkill);
 
 	if (n_KoteiCast < 0) n_KoteiCast = 0;
@@ -22606,14 +22605,6 @@ function BuildCastAndDelayHtmlMIG(mobData){
 	scaling = (100 - n_A_Kotei_Cast_Keigen);		// スキル全般の固定詠唱マイナス。たぶん乗算。
 	if (scaling < 0) scaling = 0;
 	wCastFixed = wCastFixed * scaling / 100;
-
-	// スローキャスト状態の適用
-	if(n_A_IJYOU[4]) {
-		wCast += (wCast * (20 * n_A_IJYOU[4]) / 100);
-		wCastFixed += (wCastFixed * (20 * n_A_IJYOU[4]) / 100);
-	}
-
-
 
 	//----------------------------------------------------------------
 	// 戦闘結果インスタンスに格納
