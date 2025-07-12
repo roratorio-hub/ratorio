@@ -2086,8 +2086,8 @@ function StAllCalc(){
 	// FLEE 加算
 	ApplyAdditionalFlee(charaData);
 
-	// 完全回避＋○○
-	ApplyAdditionalCompleteAvoidance(charaData);
+	// 完全回避の計算
+	charaData[CHARA_DATA_INDEX_LUCKY] = getCompleteAvoidance();
 
 	with(document.calcForm){
 
@@ -14700,17 +14700,28 @@ function StAllCalc(){
 }
 
 /**
- * 公式サイトで「完全回避 + ◯」と表記される完全回避の増加効果を適用する
+ * キャラクタの基礎値に加えて
+ * 公式サイトで「完全回避 + ◯」と表記される完全回避の増加効果を適用した
+ * 最終的な完全回避の値を取得する
+ * @returns {Number}
  */
-function ApplyAdditionalCompleteAvoidance(charaData) {
+function getCompleteAvoidance() {
     let lucky = 0;
+    let itemCount = 0;
+    let cardCount = 0;
+    let cardCountRight = 0;
+    let cardCountLeft = 0;
+    let cardCountHeadTop = 0;
+    let cardCountShield = 0;
+    let cardCountBody = 0;
+    let cardCountShoulder = 0;
+    let cardCountShoes = 0;
 
     //----------------------------------------------------------------
     // ランダムエンチャント効果
     //----------------------------------------------------------------
-    for (idx = ITEM_SP_LUCKY_PLUS; idx <= ITEM_SP_LUCKY_PLUS; idx++) {
+    for (let idx = ITEM_SP_LUCKY_PLUS; idx <= ITEM_SP_LUCKY_PLUS; idx++) {
         n_tok[idx] += GetRndOptTotalValue(idx, null, false);
-        // n_tok[idx] += GetRndEnchValue(idx);
     }
 
     //----------------------------------------------------------------
@@ -14720,82 +14731,105 @@ function ApplyAdditionalCompleteAvoidance(charaData) {
     if (IsDoramJob(n_A_JOB)) {
         lucky = 1 + SU_LUK * 0.12 + (n_A_LUK - SU_LUK) * 0.1;
     }
-
     // 人間の場合
     else {
         lucky = 1 + n_A_LUK * 0.1;
     }
 
-
-
-    lucky += n_tok[11];
-    if (GetLowerJobSeriesID(n_A_JOB) == 2) lucky += 5 * CardNumSearch(391);
-    if (GetLowerJobSeriesID(n_A_JOB) == 1) lucky += 3 * CardNumSearch(354);
-    if (n_A_SHOULDER_DEF_PLUS <= 4 && CardNumSearch(401)) lucky += 1;
-
-    if (n_A_Equip[EQUIP_REGION_ID_SHOULDER] == 535 ||
-        EquipNumSearch(1647) ||
-        EquipNumSearch(1718) ||
+    lucky += n_tok[ITEM_SP_LUCKY_PLUS];
+    if (GetLowerJobSeriesID(n_A_JOB) === JOB_ID_THIEF) {
+		lucky += 5 * CardNumSearch(CARD_ID_WILD_ROSE);
+	}
+    if (GetLowerJobSeriesID(n_A_JOB) === JOB_ID_SWORDMAN) {
+		lucky += 3 * CardNumSearch(CARD_ID_HEATER);
+	}
+    if (n_A_SHOULDER_DEF_PLUS <= 4 && CardNumSearch(CARD_ID_KAVAC_ICARUS)) {
+		lucky += 1;
+	}
+    if (n_A_Equip[EQUIP_REGION_ID_SHOULDER] === ITEM_ID_VALKYRIE_MANT ||
+        EquipNumSearch(ITEM_ID_AEGIR_MANT) ||
+        EquipNumSearch(ITEM_ID_VALKIRIE_CAPE) ||
         CardNumSearch(CARD_ID_ENCHANT_ENERGY_IKUSAOTOME)) {
-        var wHPVS = GetLowerJobSeriesID(n_A_JOB);
-        if (wHPVS == 3 || wHPVS == 4 || wHPVS == 5) {
+        let wHPVS = GetLowerJobSeriesID(n_A_JOB);
+		if ([JOB_ID_ACOLYTE, JOB_ID_ARCHER, JOB_ID_MAGICIAN].includes(wHPVS)) {
             lucky += 5;
             lucky += n_A_SHOULDER_DEF_PLUS * 2;
         }
     }
-
-    if (GetLowerJobSeriesID(n_A_JOB) == 41 && EquipNumSearch(678)) lucky += 2;
-    if (n_A_SHIELD_DEF_PLUS >= 6 && EquipNumSearch(1251)) lucky += 3;
-    if (SU_AGI >= 120 && EquipNumSearch(1309)) lucky += 5;
-    if (SU_VIT >= 100 && EquipNumSearch(1526)) {
-        var wx = EquipNumSearch(1526);
+    if (GetLowerJobSeriesID(n_A_JOB) === JOB_ID_TAEGWON && EquipNumSearch(ITEM_ID_ROUJINNO_KAMEN)) {
+		lucky += 2;
+	}
+    if (n_A_SHIELD_DEF_PLUS >= 6 && EquipNumSearch(ITEM_ID_TOY_SHIELD)) {
+		lucky += 3;
+	}
+    if (SU_AGI >= 120 && EquipNumSearch(ITEM_ID_CHINMOKUNO_SHIKKOSHA)) {
+		lucky += 5;
+	}
+    if (SU_VIT >= 100 && EquipNumSearch(ITEM_ID_MUBYOSOKUSAINO_OMAMORI)) {
+        let wx = EquipNumSearch(ITEM_ID_MUBYOSOKUSAINO_OMAMORI);
         lucky += 1 * wx;
-        if (SU_VIT >= 120) lucky += 3 * wx;
+        if (SU_VIT >= 120) {
+			lucky += 3 * wx;
+		}
     }
-    if (n_A_BODY_DEF_PLUS >= 7 && n_A_SHOULDER_DEF_PLUS >= 7 && n_A_SHOES_DEF_PLUS >= 7 && EquipNumSearch(1606)) lucky += 5;
-    if (n_A_SHOULDER_DEF_PLUS >= 7 && EquipNumSearch(1607)) lucky += (n_A_SHOULDER_DEF_PLUS - 6);
-    if (n_A_SHOULDER_DEF_PLUS >= 7 && EquipNumSearch(1715)) lucky += 2;
-    if (n_A_Weapon_ATKplus >= 7 && EquipNumSearch(1765)) lucky += 5;
-    if (SU_AGI >= 110 && EquipNumSearch(1948)) lucky += 1 * EquipNumSearch(1948);
-    if (n_A_HEAD_DEF_PLUS >= 7 && EquipNumSearch(2121)) {
+    if (n_A_BODY_DEF_PLUS >= 7 && n_A_SHOULDER_DEF_PLUS >= 7 && n_A_SHOES_DEF_PLUS >= 7 && EquipNumSearch(ITEM_SET_ID_KUROHANO_SUIT_ARTIFACT)) {
+		lucky += 5;
+	}
+    if (n_A_SHOULDER_DEF_PLUS >= 7 && EquipNumSearch(ITEM_ID_KUROHANO_MANT)) {
+		lucky += (n_A_SHOULDER_DEF_PLUS - 6);
+	}
+    if (n_A_SHOULDER_DEF_PLUS >= 7 && EquipNumSearch(ITEM_ID_SKIN_OF_VENTUS_REFINE_7)) {
+		lucky += 2;
+	}
+    if (n_A_Weapon_ATKplus >= 7 && EquipNumSearch(ITEM_ID_UNMEI_NO_SHO)) {
+		lucky += 5;
+	}
+    if (SU_AGI >= 110 && EquipNumSearch(ITEM_ID_SHUNBINNO_GLOVE)) {
+		lucky += 1 * EquipNumSearch(ITEM_ID_SHUNBINNO_GLOVE);
+	}
+    if (n_A_HEAD_DEF_PLUS >= 7 && EquipNumSearch(ITEM_ID_BERET_OF_BOSS_REFINE_7)) {
         lucky += 1;
-        if (n_A_HEAD_DEF_PLUS >= 9) lucky += 1;
-        if (n_A_HEAD_DEF_PLUS >= 10) lucky += 3;
+        if (n_A_HEAD_DEF_PLUS >= 9) {
+			lucky += 1;
+		}
+        if (n_A_HEAD_DEF_PLUS >= 10) {
+			lucky += 3;
+		}
     }
-    if (n_A_BaseLV >= 130 && EquipNumSearch(2464)) {
+    if (n_A_BaseLV >= 130 && EquipNumSearch(ITEM_ID_EXELION_WING)) {
         lucky += 2;
-        if (EquipNumSearch(2465)) lucky += 6;
+        if (EquipNumSearch(ITEM_ID_EXELION_WING_AT_LV130)) {
+			lucky += 6;
+		}
     }
-    if (n_A_SHIELD_DEF_PLUS >= 3 && EquipNumSearch(2533)) lucky += 2 * ROUNDDOWN(n_A_SHIELD_DEF_PLUS / 3);
-    if (EquipNumSearch(2542)) lucky += 3 * n_A_SHOULDER_DEF_PLUS;
+    if (n_A_SHIELD_DEF_PLUS >= 3 && EquipNumSearch(ITEM_ID_SKTOM)) {
+		lucky += 2 * ROUNDDOWN(n_A_SHIELD_DEF_PLUS / 3);
+	}
+    if (EquipNumSearch(ITEM_ID_KUROHANO_MANT_AVOIDANCE_OPTION)) {
+		lucky += 3 * n_A_SHOULDER_DEF_PLUS;
+	}
 
     //----------------------------------------------------------------
     // 「ヴァルキリーハンマー」の、職業による強化
     //----------------------------------------------------------------
     if (EquipNumSearch(ITEM_ID_VALKYRIE_HAMMER)) {
         switch (GetLowerJobSeriesID(n_A_JOB)) {
-
             // ノービス系
             case JOB_SERIES_ID_NOVICE:
                 lucky += 1 * n_A_Weapon_ATKplus;
                 break;
-
                 // ソードマン系
             case JOB_SERIES_ID_SWORDMAN:
                 break;
-
                 // マーチャント系
             case JOB_SERIES_ID_MERCHANT:
                 break;
-
             default:
                 switch (GetHigherJobSeriesID(n_A_JOB)) {
-
                     // プリースト系
                     case JOB_SERIES_ID_PRIEST:
                         break;
-
-                        // モンク系
+                    // モンク系
                     case JOB_SERIES_ID_MONK:
                         lucky += 1 * n_A_Weapon_ATKplus;
                         break;
@@ -14854,11 +14888,13 @@ function ApplyAdditionalCompleteAvoidance(charaData) {
     // 「ジークフリードの兜」の、精錬による効果
     //----------------------------------------------------------------
     if ((itemCount = EquipNumSearch(ITEM_ID_ZIRKFREEDNO_KABUTO)) > 0) {
-        vartmp = 0;
-
-        if (n_A_HEAD_DEF_PLUS >= 6) vartmp += 5;
-        if (n_A_HEAD_DEF_PLUS >= 8) vartmp += 5;
-
+        let vartmp = 0;
+        if (n_A_HEAD_DEF_PLUS >= 6) {
+            vartmp += 5;
+        }
+        if (n_A_HEAD_DEF_PLUS >= 8) {
+            vartmp += 5;
+        }
         lucky += vartmp * itemCount;
     }
 
@@ -14876,7 +14912,7 @@ function ApplyAdditionalCompleteAvoidance(charaData) {
         cardCountBody + cardCountShoulder + cardCountShoes > 0) {
 
         // 右手武器へのエンチャント
-        vartmp = 0;
+        let vartmp = 0;
         if (n_A_Weapon_ATKplus >= 7) vartmp += 2;
         if (n_A_Weapon_ATKplus >= 9) vartmp += 2;
         lucky += vartmp * cardCountRight
@@ -14935,7 +14971,6 @@ function ApplyAdditionalCompleteAvoidance(charaData) {
         if (n_A_BODY_DEF_PLUS >= 7) {
             lucky += 6 * itemCount;
         }
-
         if (n_A_BODY_DEF_PLUS >= 9) {
             lucky += 3 * itemCount;
         }
@@ -14945,12 +14980,16 @@ function ApplyAdditionalCompleteAvoidance(charaData) {
     // 「アンソニの服」の、精錬による強化
     //----------------------------------------------------------------
     if ((itemCount = EquipNumSearch(ITEM_ID_ANSONINO_FUKU)) > 0) {
-        vartmp = 0;
-
-        if (n_A_BODY_DEF_PLUS >= 7) vartmp += 1;
-        if (n_A_BODY_DEF_PLUS >= 8) vartmp += 1;
-        if (n_A_BODY_DEF_PLUS >= 9) vartmp += 1;
-
+        let vartmp = 0;
+        if (n_A_BODY_DEF_PLUS >= 7) {
+            vartmp += 1;
+        }
+        if (n_A_BODY_DEF_PLUS >= 8) {
+            vartmp += 1;
+        }
+        if (n_A_BODY_DEF_PLUS >= 9) {
+            vartmp += 1;
+        }
         lucky += vartmp * itemCount;
     }
 
@@ -14958,11 +14997,13 @@ function ApplyAdditionalCompleteAvoidance(charaData) {
     // 「フェアリークロース」の、精錬による効果
     //----------------------------------------------------------------
     if ((itemCount = EquipNumSearch(ITEM_ID_FAIRLY_CLOTH)) > 0) {
-        vartmp = 0;
-
-        if (n_A_SHOULDER_DEF_PLUS >= 5) vartmp += 10;
-        if (n_A_SHOULDER_DEF_PLUS >= 7) vartmp += 10;
-
+        let vartmp = 0;
+        if (n_A_SHOULDER_DEF_PLUS >= 5) {
+            vartmp += 10;
+        }
+        if (n_A_SHOULDER_DEF_PLUS >= 7) {
+            vartmp += 10;
+        }
         lucky += vartmp * itemCount;
     }
 
@@ -15054,9 +15095,6 @@ function ApplyAdditionalCompleteAvoidance(charaData) {
         }
     }
 
-
-
-
     //----------------------------------------------------------------
     // 「三次職支援　警戒」の効果
     //----------------------------------------------------------------
@@ -15082,41 +15120,34 @@ function ApplyAdditionalCompleteAvoidance(charaData) {
     // 「サモナー　大地の魂効果(ｲﾇﾊｯｶｼｬﾜｰ使用後の完全回避＋)」の、効果
     //----------------------------------------------------------------
     if (Math.max(LearnedSkillSearch(SKILL_ID_DAICHINO_TAMASHI), UsedSkillSearch(SKILL_ID_DAICHINO_TAMASHI)) > 0) {
-        if ((sklLv = UsedSkillSearch(SKILL_ID_DAICHINO_TAMASHI_KOKA_INUHAKKA_SHOWER)) > 0) {
+        if (UsedSkillSearch(SKILL_ID_DAICHINO_TAMASHI_KOKA_INUHAKKA_SHOWER) > 0) {
             lucky += 1 * ROUNDDOWN(n_A_BaseLV / 7);
         }
     }
 
-
-
-
     //----------------------------------------------------------------
     // 「性能カスタマイズ」の、効果
     //----------------------------------------------------------------
-    confval = g_objCharaConfCustomStatus.GetConf(CCharaConfCustomStatus.CONF_ID_LUCKY_PLUS);
+    const confval = g_objCharaConfCustomStatus.GetConf(CCharaConfCustomStatus.CONF_ID_LUCKY_PLUS);
     if (confval != 0) {
         lucky += confval;
     }
 
-
-
-
-    if (n_A_PassSkill3[0]) lucky += Math.floor(n_A_PassSkill3[0] / 2) + Math.floor(n_A_PassSkill3[30] / 5) + n_A_PassSkill3[28];
+    if (n_A_PassSkill3[0]) {
+        lucky += Math.floor(n_A_PassSkill3[0] / 2) + Math.floor(n_A_PassSkill3[30] / 5) + n_A_PassSkill3[28];
+    }
     lucky = Math.round(lucky * 10) / 10;
-    if (lucky < 0) lucky = 0;
-
-
+    if (lucky < 0) {
+        lucky = 0;
+    }
     if (_APPLY_UPDATE_LV200) {
         g_lucky_over = Math.max(0, Math.round(lucky * 10 - 950) / 10);
         lucky = Math.min(95, lucky);
     }
 
-
-    //----------------------------------------------------------------
-    // 計算した結果をキャラクターデータに保存
-    //----------------------------------------------------------------
-    charaData[CHARA_DATA_INDEX_LUCKY] = lucky;
+    return lucky;
 }
+
 
 /**
  * 公式サイトで「Flee - ◯」と表記されるFLEEの増加効果を適用する
