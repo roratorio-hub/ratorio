@@ -15694,23 +15694,19 @@ function ApplyAdditionalFlee(charaData) {
  */
 function ApplyFixedCastTimeDown(charaData) {
     n_A_Kotei_Cast_Keigen = 0;
-
     // チェック用変数初期化
     // （固定詠唱短縮効果は、加算等はされず、最大の効果のみが適用される）
     // （なので、ITEM_SP 定義を検索してやる方法では、共通化ができない）
     let chkary = new Array();
     let castcut = 0;
-
     // ペット効果用
     const petId = n_A_PassSkill8[0];
-
     // 「暴食のオルレアンの制服」の精錬値9以上の効果
     if (EquipNumSearch(5425)) {
         if (n_A_BODY_DEF_PLUS >= 9) {
             chkary.push(70);
         }
     }
-
     if (EquipNumSearch(ITEM_ID_MAGIA_VITA)) {
         // マギアヴィタを装備している時
         if (n_A_SHOES_DEF_PLUS === 10) {
@@ -15718,12 +15714,11 @@ function ApplyFixedCastTimeDown(charaData) {
             chkary.push(80);
         }
     }
-
     //----------------------------------------------------------------
     // 「ウォーロック　ラディウス」の効果
     //----------------------------------------------------------------
     if ((bufLv = Math.max(LearnedSkillSearch(SKILL_ID_RADIUS), UsedSkillSearch(SKILL_ID_RADIUS))) > 0) {
-        switch (attackMethodConf.skillId) {
+        switch (n_A_ActiveSkill) {
             case SKILL_ID_SOUL_EXPANSION:
             case SKILL_ID_FROST_MISTY:
             case SKILL_ID_JACK_FROST:
@@ -15741,12 +15736,10 @@ function ApplyFixedCastTimeDown(charaData) {
                 chkary.push(5 + 5 * bufLv);
         }
     }
-
     // ラフィネスタッフの精錬値による効果
     if (EquipNumSearchMIG(1329)) {
         chkary.push(n_A_Weapon_ATKplus);
     }
-
     //----------------------------------------------------------------
     // 「三次職支援　サクラメント」の効果
     //----------------------------------------------------------------
