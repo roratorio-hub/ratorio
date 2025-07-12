@@ -27888,6 +27888,18 @@ function StPlusCalc() {
 		wSPC_LUK -= harmonize_val;
 	}
 
+	/**
+	 * プレイヤー状態異常「オールステータスダウン」の効果
+	 */
+	if (g_confDataDebuff[CCharaConfDebuff.CONF_ID_ALL_STATUS_DOWN] > 0) {
+		wSPC_STR -= 100;
+		wSPC_AGI -= 100;
+		wSPC_VIT -= 100;
+		wSPC_INT -= 100;
+		wSPC_DEX -= 100;
+		wSPC_LUK -= 100;
+	}
+
 	if(n_A_PassSkill3[39] == 5) wSPC_INT -= n_A_PassSkill3[40] * n_A_PassSkill3[41];
 	if(n_A_PassSkill3[39] == 4) wSPC_STR += n_A_PassSkill3[40] * n_A_PassSkill3[41];
 	if(n_A_PassSkill7[49]){
