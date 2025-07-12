@@ -2083,8 +2083,8 @@ function StAllCalc(){
 		charaData[CHARA_DATA_INDEX_HIT] = hit;
 	}
 
-	// FLEE 加算
-	ApplyAdditionalFlee(charaData);
+	// FLEE の計算
+	charaData[CHARA_DATA_INDEX_FLEE] = getFlee();
 
 	// 完全回避の計算
 	charaData[CHARA_DATA_INDEX_LUCKY] = getCompleteAvoidance();
@@ -15153,6 +15153,7 @@ function getCompleteAvoidance() {
  * TODO:
  * グローバル変数の n_A_Kotei_Cast_Keigen に格納した値を返しているので改善の余地がある
  * これを直接参照している他のファイルの定義を書き換えたうえでローカル変数を返すようにしたほうが良い
+ * @returns {Number}
  */
 function getFixedCastingTimeReduction() {
     n_A_Kotei_Cast_Keigen = 0;
@@ -15816,10 +15817,12 @@ function getFixedCastingTimeReduction() {
 }
 
 /**
- * 公式サイトで「Flee - ◯」と表記されるFLEEの増加効果を適用する
- * @param {Array} charaData 
+ * キャラクタの基礎値に加えて
+ * 公式サイトで「Flee - ◯」と表記されるFLEEの増加効果を適用した
+ * 最終的なFLEEの値を取得する
+ * @returns {Number} 
  */
-function ApplyAdditionalFlee(charaData) {
+function getFlee() {
     let flee = 0;
 
     //----------------------------------------------------------------
@@ -15827,7 +15830,6 @@ function ApplyAdditionalFlee(charaData) {
     //----------------------------------------------------------------
     for (idx = ITEM_SP_FLEE_PLUS; idx <= ITEM_SP_FLEE_PLUS; idx++) {
         n_tok[idx] += GetRndOptTotalValue(idx, null, false);
-        // n_tok[idx] += GetRndEnchValue(idx);
     }
 
     // TODO: 四次対応
@@ -15835,22 +15837,40 @@ function ApplyAdditionalFlee(charaData) {
         n_tok[idx] = ApplySpecModify(idx, n_tok[idx]);
     }
 
-    flee += n_tok[9];
+    flee += n_tok[ITEM_SP_FLEE_PLUS];
 
-
-    if (GetLowerJobSeriesID(n_A_JOB) == 2 && CardNumSearch(295)) flee += 20;
-    if (n_A_SHOULDER_DEF_PLUS >= 9 && CardNumSearch(271)) flee += 20;
-    if (n_A_SHOULDER_DEF_PLUS <= 4 && CardNumSearch(401)) flee += 10;
-    if (n_A_SHOULDER_DEF_PLUS >= 9 && CardNumSearch(403)) flee += 5;
-
-    if (SU_STR >= 90 && EquipNumSearch(442)) flee += 10 * EquipNumSearch(442);
-    if (EquipNumSearch(1273)) {
-        if (n_A_HEAD_DEF_PLUS >= 5) flee += 5;
-        if (n_A_HEAD_DEF_PLUS >= 7) flee += 2;
+    if (GetLowerJobSeriesID(n_A_JOB) == 2 && CardNumSearch(CARD_ID_SAMAYOU_MONO)) {
+        flee += 20;
     }
-    if (SU_AGI >= 120 && EquipNumSearch(1315)) flee += 3;
-    if (SU_INT >= 120 && EquipNumSearch(1319)) flee += 3;
-    if (EquipNumSearch(1387)) flee += n_A_BODY_DEF_PLUS;
+    if (n_A_SHOULDER_DEF_PLUS >= 9 && CardNumSearch(CARD_ID_KUMIHO)) {
+        flee += 20;
+    }
+    if (n_A_SHOULDER_DEF_PLUS <= 4 && CardNumSearch(CARD_ID_KAVAC_ICARUS)) {
+        flee += 10;
+    }
+    if (n_A_SHOULDER_DEF_PLUS >= 9 && CardNumSearch(CARD_ID_ORC_BABY)) {
+        flee += 5;
+    }
+    if (SU_STR >= 90 && EquipNumSearch(ITEM_ID_TOZOKUNO_YUBIWA)) {
+        flee += 10 * EquipNumSearch(ITEM_ID_TOZOKUNO_YUBIWA);
+    }
+    if (EquipNumSearch(ITEM_ID_SAMAYOUMONO_NO_KASA)) {
+        if (n_A_HEAD_DEF_PLUS >= 5) {
+            flee += 5;
+        }
+        if (n_A_HEAD_DEF_PLUS >= 7) {
+            flee += 2;
+        }
+    }
+    if (SU_AGI >= 120 && EquipNumSearch(ITEM_ID_SHADOW_CROWN)) {
+        flee += 3;
+    }
+    if (SU_INT >= 120 && EquipNumSearch(ITEM_ID_KAZE_NO_SASAYAKI)) {
+        flee += 3;
+    }
+    if (EquipNumSearch(ITEM_ID_SHUZINNO_FUKU)) {
+        flee += n_A_BODY_DEF_PLUS;
+    }
 
     //----------------------------------------------------------------
     // 「二次職支援　属性場　バイオレントゲイル」の、効果
@@ -15860,29 +15880,55 @@ function ApplyAdditionalFlee(charaData) {
         flee += g_confDataNizi[CCharaConfNizi.CONF_ID_ZOKUSEIBA_LEVEL] * 3;
     }
 
-    if (n_A_Equip[EQUIP_REGION_ID_ARMS] == 483) flee -= (n_A_BaseLV + SU_AGI);
-    if (n_A_BaseLV <= 79 && EquipNumSearch(1251)) flee += 5;
-    if (SU_AGI >= 80 && EquipNumSearch(1525)) {
-        var wx = EquipNumSearch(1525);
+    if (n_A_Equip[EQUIP_REGION_ID_ARMS] == ITEM_ID_BLOODY_ROAR) {
+        flee -= (n_A_BaseLV + SU_AGI);
+    }
+    if (n_A_BaseLV <= 79 && EquipNumSearch(ITEM_ID_TOY_SHIELD)) {
+        flee += 5;
+    }
+    if (SU_AGI >= 80 && EquipNumSearch(ITEM_ID_SENTEHISSHONO_OMAMORI)) {
+        let wx = EquipNumSearch(ITEM_ID_SENTEHISSHONO_OMAMORI);
         flee += 4 * wx;
-        if (SU_AGI >= 100) flee += 1 * wx;
+        if (SU_AGI >= 100) {
+            flee += 1 * wx;
+        }
     }
-    if (n_A_SHOULDER_DEF_PLUS >= 6 && EquipNumSearch(1531)) {
+    if (n_A_SHOULDER_DEF_PLUS >= 6 && EquipNumSearch(ITEM_ID_FUROSHIKI_MANT)) {
         flee += 2;
-        if (n_A_SHOULDER_DEF_PLUS >= 8) flee += 3;
+        if (n_A_SHOULDER_DEF_PLUS >= 8) {
+            flee += 3;
+        }
     }
-    if (n_A_SHOULDER_DEF_PLUS >= 1 && EquipNumSearch(1597)) flee += n_A_SHOULDER_DEF_PLUS * 2;
-    if (n_A_BODY_DEF_PLUS >= 1 && EquipNumSearch(1600)) flee += n_A_BODY_DEF_PLUS;
-    if (EquipNumSearch(1948)) flee += ROUNDDOWN(SU_AGI / 10) * EquipNumSearch(1948);
-    if (n_A_SHOULDER_DEF_PLUS >= 9 && EquipNumSearch(2453)) flee += 5;
+    if (n_A_SHOULDER_DEF_PLUS >= 1 && EquipNumSearch(ITEM_ID_NABUNO_HOOD)) {
+        flee += n_A_SHOULDER_DEF_PLUS * 2;
+    }
+    if (n_A_BODY_DEF_PLUS >= 1 && EquipNumSearch(ITEM_ID_SHIRAHANO_SUIT)) {
+        flee += n_A_BODY_DEF_PLUS;
+    }
+    if (EquipNumSearch(ITEM_ID_SHUNBINNO_GLOVE)) {
+        flee += ROUNDDOWN(SU_AGI / 10) * EquipNumSearch(ITEM_ID_SHUNBINNO_GLOVE);
+    }
+    if (n_A_SHOULDER_DEF_PLUS >= 9 && EquipNumSearch(ITEM_SET_ID_HIGHLEVEL_ORCBABY)) {
+        flee += 5;
+    }
     if (SU_VIT >= 110) {
-        if (CardNumSearch(706)) flee += 20;
-        if (CardNumSearch(711)) flee += 20;
+        if (CardNumSearch(CARD_ID_ARFOSIO_BASIL_MVP)) {
+            flee += 20;
+        }
+        if (CardNumSearch(CARD_ID_TRENTINI_MVP)) {
+            flee += 20;
+        }
     }
-    if (EquipNumSearch(2464)) flee += 2 * n_A_SHOULDER_DEF_PLUS;
-    if (n_A_BODY_DEF_PLUS >= 7 && EquipNumSearch(2566)) flee += 15;
-    if (EquipNumSearch(1357)) {
-        if (EquipNumSearch(266)) flee += 20;
+    if (EquipNumSearch(ITEM_ID_EXELION_WING)) {
+        flee += 2 * n_A_SHOULDER_DEF_PLUS;
+    }
+    if (n_A_BODY_DEF_PLUS >= 7 && EquipNumSearch(ITEM_SET_ID_ULTIMATE_MODE_CHANGER_NABUNO_CLOTH)) {
+        flee += 15;
+    }
+    if (EquipNumSearch(ITEM_ID_PUMPKIN_HAT_2010)) {
+        if (EquipNumSearch(ITEM_ID_OPERA_MASK)) {
+            flee += 20;
+        }
     }
 
     //----------------------------------------------------------------
@@ -15946,8 +15992,12 @@ function ApplyAdditionalFlee(charaData) {
     // 「陣羽織」の、精錬による効果
     //----------------------------------------------------------------
     if (EquipNumSearch(ITEM_ID_ZINBAORI) > 0) {
-        if (n_A_SHOULDER_DEF_PLUS >= 7) flee += 10;
-        if (n_A_SHOULDER_DEF_PLUS >= 9) flee += 10;
+        if (n_A_SHOULDER_DEF_PLUS >= 7) {
+            flee += 10;
+        }
+        if (n_A_SHOULDER_DEF_PLUS >= 9) {
+            flee += 10;
+        }
     }
 
     //----------------------------------------------------------------
@@ -15970,8 +16020,12 @@ function ApplyAdditionalFlee(charaData) {
     // 「用心棒のスカーフ」の、精錬による効果
     //----------------------------------------------------------------
     if ((itemCount = EquipNumSearch(ITEM_ID_YOZINBONO_SCARF)) > 0) {
-        if (n_A_SHOULDER_DEF_PLUS >= 7) flee += 20;
-        if (n_A_SHOULDER_DEF_PLUS >= 9) flee += 20;
+        if (n_A_SHOULDER_DEF_PLUS >= 7) {
+            flee += 20;
+        }
+        if (n_A_SHOULDER_DEF_PLUS >= 9) {
+            flee += 20;
+        }
     }
 
     //----------------------------------------------------------------
@@ -16008,7 +16062,7 @@ function ApplyAdditionalFlee(charaData) {
         cardCountBody + cardCountShoulder + cardCountShoes > 0) {
 
         // 右手武器へのエンチャント
-        vartmp = 0;
+        let vartmp = 0;
         if (n_A_Weapon_ATKplus >= 7) vartmp += 10;
         if (n_A_Weapon_ATKplus >= 9) vartmp += 10;
         flee += vartmp * cardCountRight
@@ -16190,9 +16244,6 @@ function ApplyAdditionalFlee(charaData) {
     }
 
     g_ITEM_SP_FLEE_PLUS_value_forCalcData = flee;
-
-
-
 
     //----------------------------------------------------------------
     // 基礎補正
@@ -16381,7 +16432,7 @@ function ApplyAdditionalFlee(charaData) {
     //----------------------------------------------------------------
     // 計算した結果をキャラクターデータに保存
     //----------------------------------------------------------------
-    charaData[CHARA_DATA_INDEX_FLEE] = Math.max(0, flee);
+    return Math.max(0, flee);
 }
 
 /**
