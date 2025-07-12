@@ -834,8 +834,8 @@ function StAllCalc(){
 			n_A_PassSkill3[8] = eval(A3_Skill8.value);
 			n_A_PassSkill3[9] = eval(A3_Skill9.value);
 			n_A_PassSkill3[10] = eval(A3_Skill10.value);
-			n_A_PassSkill3[11] = eval(A3_Skill20.value);
-			n_A_PassSkill3[42] = eval(A3_Skill42.value);
+			n_A_PassSkill3[11] = 0;	// 廃止：旧メランコリー
+			n_A_PassSkill3[42] = 0; // 廃止：旧メランコリー
 			n_A_PassSkill3[12] = eval(A3_Skill11_STR.value);
 			n_A_PassSkill3[13] = eval(A3_Skill11_AGI.value);
 			n_A_PassSkill3[14] = eval(A3_Skill11_VIT.value);
