@@ -211,8 +211,6 @@ function CConfBaseConfData() {
 	};
 }
 
-
-
 /**
  * データ登録パラメータクラス.
  */
@@ -248,8 +246,6 @@ function CConfBaseRegisterParam() {
 		return this;
 	};
 }
-
-
 
 /**
  * 設定管理パラメータクラス.
@@ -311,8 +307,6 @@ function CConfBaseManagementParam () {
 		}
 	};
 }
-
-
 
 /**
  * 設定欄クラス.

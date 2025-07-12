@@ -16,7 +16,7 @@ let n_A_PassSkill3 = Array(47).fill(0);
 function Click_Skill3SW(){
 	n_Skill3SW = document.calcForm.A3_SKILLSW.checked;
 	const table_header = `
-			<TABLE Border class="tooltip-target" style="white-space:nowrap;" data-tooltip="これらの設定は「◯次職支援設定」および今後追加する「プレイヤー状態異常設定」へ順次移動します。">
+			<TABLE Border class="tooltip-target" style="white-space:nowrap;" data-tooltip="これらの設定は「◯次職支援設定」および「プレイヤー状態異常設定」へ順次移動します。">
 			<TR><TD id="A3TD" ColSpan="6" class="title">
 				<input id="OBJID_CHECK_A3_SKILLSW" type="checkbox" name="A3_SKILLSW" onClick="Click_Skill3SW()">
 				<label for="OBJID_CHECK_A3_SKILLSW">演奏/踊り系スキル</label>
@@ -72,13 +72,13 @@ function Click_Skill3SW(){
 		for (let i = 0; i <= 7; i++) {
                 document.calcForm.A3_Skill13_0.options[i] = new Option(gassou_name[i],i);
            }
-		myInnerHtml("EN20_1","<Font size=2>メランコリーLv<BR>(こちらの欄はFleeとASPD低下用)</Font>", 0);
-		myInnerHtml("EN20_2",'<select name="A3_Skill20"onChange="Skill3SW_2(true)"></select>', 0);
+		myInnerHtml("EN20_1","<Font size=2>(廃止)メランコリーLv<BR>(こちらの欄はFleeとASPD低下用)</Font>", 0);
+		myInnerHtml("EN20_2",'<select name="A3_Skill20" onChange="Skill3SW_2(true)"></select>', 0);
 		for (let i = 0; i <= 5; i++) {
                 document.calcForm.A3_Skill20.options[i] = new Option(i,i);
            }
-		myInnerHtml("EN21_1","<Font size=2>(仮)メランコリーでの威力増加(15%は確殺用<BR>55%か60%がLv5+レッスン10の期待値位)</Font>",0);
-		myInnerHtml("EN21_2",'<select name="A3_Skill42"onChange="Skill3SW_2(true)"></select>',0);
+		myInnerHtml("EN21_1","<Font size=2>(廃止)メランコリーでの威力増加(15%は確殺用<BR>55%か60%がLv5+レッスン10の期待値位)</Font>",0);
+		myInnerHtml("EN21_2",'<select name="A3_Skill42" onChange="Skill3SW_2(true)"></select>',0);
 		document.calcForm.A3_Skill42.options[0] = new Option("off",0);
 		for (let i = 3; i <= 20; i++) {
                 document.calcForm.A3_Skill42.options[i-2] = new Option(`+${i * 5}%`, i);
