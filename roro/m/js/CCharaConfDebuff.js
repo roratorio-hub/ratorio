@@ -122,7 +122,8 @@ class CCharaConfDebuff extends CConfBase {
 			CConfBase.ConfControlType(CONTROL_TYPE_SELECTBOX_NUMBER),
 			CConfBase.ConfDefaultValue(0),
 			CConfBase.ConfMinValue(0),
-			CConfBase.ConfMaxValue(10)
+			CConfBase.ConfMaxValue(10),
+			"幸運のキス・サービスフォーユー・ハミングとは共存できません"
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
@@ -146,7 +147,8 @@ class CCharaConfDebuff extends CConfBase {
 			CConfBase.ConfControlType(CONTROL_TYPE_SELECTBOX_NUMBER),
 			CConfBase.ConfDefaultValue(0),
 			CConfBase.ConfMinValue(0),
-			CConfBase.ConfMaxValue(5)
+			CConfBase.ConfMaxValue(5),
+			"メロディーオブシンク・ビヨンドオブウォークライ・サウンドオブディストラクションとは共存できません"
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
@@ -158,7 +160,8 @@ class CCharaConfDebuff extends CConfBase {
 			CConfBase.ConfControlType(CONTROL_TYPE_SELECTBOX_NUMBER),
 			CConfBase.ConfDefaultValue(0),
 			CConfBase.ConfMinValue(0),
-			CConfBase.ConfMaxValue(5)
+			CConfBase.ConfMaxValue(5),
+			"ビヨンドオブウォークライ・サウンドオブディストラクション・狂乱とは共存できません"
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
@@ -170,7 +173,8 @@ class CCharaConfDebuff extends CConfBase {
 			CConfBase.ConfControlType(CONTROL_TYPE_SELECTBOX_NUMBER),
 			CConfBase.ConfDefaultValue(0),
 			CConfBase.ConfMinValue(0),
-			CConfBase.ConfMaxValue(5)
+			CConfBase.ConfMaxValue(5),
+			"メロディーオブシンク・サウンドオブディストラクション・狂乱とは共存できません"
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
@@ -182,7 +186,8 @@ class CCharaConfDebuff extends CConfBase {
 			CConfBase.ConfControlType(CONTROL_TYPE_SELECTBOX_NUMBER),
 			CConfBase.ConfDefaultValue(0),
 			CConfBase.ConfMinValue(0),
-			CConfBase.ConfMaxValue(5)
+			CConfBase.ConfMaxValue(5),
+			"風車に向かって突撃・エコーの歌とは共存できません"
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
