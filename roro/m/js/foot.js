@@ -2070,6 +2070,12 @@ function StAllCalc(){
 		if (g_confDataDebuff[CCharaConfDebuff.CONF_ID_DARKNESS] > 0) {
 			hit = Math.floor(hit * 0.75);
 		}
+		/**
+		 * プレイヤー状態異常「不幸」の効果
+		 */
+		if (g_confDataDebuff[CCharaConfDebuff.CONF_ID_UNLUCKY] > 0) {
+			hit = 0;
+		}
 
 		//----------------------------------------------------------------
 		// 計算した結果をキャラクターデータに保存
