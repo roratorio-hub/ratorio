@@ -32,12 +32,8 @@ function Click_Skill8SW(){
 		str += '<TR><TD id="EN812"></TD><TD id="EN813"></TD></TR>';
 		str += '<TR><TD id="EN814"></TD><TD id="EN815"></TD></TR>';
 		str += '<TR><TD id="EN819"></TD><TD id="EN820"></TD></TR>';
-		str += '<TR><TD colspan="2"><Font size=2><B>これより下、自キャラクターがかけられた状態異常</B></Font></TD></TR>';
-		str += '<TR><TD id="EN830"></TD><TD id="EN831"></TD></TR>';
-		str += '<TR><TD id="EN832"></TD><TD id="EN833"></TD></TR>';
-		str += '<TR><TD id="EN834"></TD><TD id="EN835"></TD></TR>';
-		str += '<TR><TD id="EN836"></TD><TD id="EN837"></TD></TR>';
 		str += '</TABLE>';
+		
 		myInnerHtml("ID_ETC",str,0);
 		document.calcForm.A8_SKILLSW.checked = true;
 		// ペットのセレクトボックスを構築
@@ -125,31 +121,6 @@ function Click_Skill8SW(){
         } else {
             myInnerHtml("EN819",'<input id="OBJID_CHECK_A8_Skill19" type="checkbox" name="A8_Skill19"onClick="StAllCalc() | Click_A8(true)"><label for="OBJID_CHECK_A8_Skill19"><Font size=2>武器属性付与をアカデミーの看板型付与にする<BR>　（素手Atk部分にも武器属性付与が適用される）</Font></label>',0);
         }
-		myInnerHtml("EN830",'クァグマイア<select name="A_IJYOU0" onChange="StAllCalc() | Click_A8(true)"></select>',0);
-		document.calcForm.A_IJYOU0.options[0] = new Option("-",0);
-		for (let i = 1; i <= 5; i++) {
-            document.calcForm.A_IJYOU0.options[i] = new Option("Lv"+i+"(モンスターが使用)",i);
-        }
-		for (let i = 6; i <= 10; i++) {
-            document.calcForm.A_IJYOU0.options[i] = new Option("Lv"+(i-5)+"(プレイヤーが使用)",i);
-        }
-		myInnerHtml("EN831",'速度減少<select name="A_IJYOU1" onChange="StAllCalc() | Click_A8(true)"></select>',0);
-		document.calcForm.A_IJYOU1.options[0] = new Option("-",0);
-		for (let i = 1; i <= 10; i++) {
-            document.calcForm.A_IJYOU1.options[i] = new Option("Lv"+i,i);
-        }
-		document.calcForm.A_IJYOU1.options[11] = new Option("Lv46",46);
-		document.calcForm.A_IJYOU1.options[12] = new Option("Lv48",48);
-		myInnerHtml("EN832",'<input id="OBJID_CHECK_A_IJYOU2" type="checkbox" name="A_IJYOU2"onClick="StAllCalc() | Click_A8(true)"><label for="OBJID_CHECK_A_IJYOU2">毒</label>',0);
-		myInnerHtml("EN833",'<input id="OBJID_CHECK_A_IJYOU3" type="checkbox" name="A_IJYOU3"onClick="StAllCalc() | Click_A8(true)"><label for="OBJID_CHECK_A_IJYOU3">呪い</label>',0);
-		myInnerHtml("EN834",'スローキャスト<select name="A_IJYOU4" onChange="StAllCalc() | Click_A8(true)"></select>',0);
-		document.calcForm.A_IJYOU4.options[0] = new Option("-",0);
-		for (let i = 1; i <= 5; i++) {
-            document.calcForm.A_IJYOU4.options[i] = new Option("Lv"+i,i);
-        }
-		myInnerHtml("EN835",'<input id="OBJID_CHECK_A_IJYOU5" type="checkbox" name="A_IJYOU5"onClick="StAllCalc() | Click_A8(true)"><label for="OBJID_CHECK_A_IJYOU5">氷結<Font size=2>(ASPD-30%/DEF-10%/固定詠唱+50%)</Font></label>',0);
-		myInnerHtml("EN836",'<input id="OBJID_CHECK_A_IJYOU6" type="checkbox" name="A_IJYOU6"onClick="StAllCalc() | Click_A8(true)"><label for="OBJID_CHECK_A_IJYOU6">(×)イヌハッカシャワー</label>',0);
-		myInnerHtml("EN837",'<input id="OBJID_CHECK_A_IJYOU7" type="checkbox" name="A_IJYOU7"onClick="StAllCalc() | Click_A8(true)"><label for="OBJID_CHECK_A_IJYOU7">(×)ニャングラス</label>',0);
 		document.calcForm.A8_Skill0.value = n_A_PassSkill8[0];
 		document.calcForm.A8_Skill1.value = n_A_PassSkill8[1];
 		document.calcForm.A8_Skill2.value = n_A_PassSkill8[2];
@@ -166,14 +137,6 @@ function Click_Skill8SW(){
 		document.calcForm.A8_Skill19.checked = n_A_PassSkill8[19];
 		document.calcForm.A8_Skill21.value = n_A_PassSkill8[21];
 		document.calcForm.A8_Skill22.value = n_A_PassSkill8[22];
-		document.calcForm.A_IJYOU0.value = n_A_IJYOU[0];
-		document.calcForm.A_IJYOU1.value = n_A_IJYOU[1];
-		document.calcForm.A_IJYOU2.checked = n_A_IJYOU[2];
-		document.calcForm.A_IJYOU3.checked = n_A_IJYOU[3];
-		document.calcForm.A_IJYOU4.value = n_A_IJYOU[4];
-		document.calcForm.A_IJYOU5.checked = n_A_IJYOU[5];
-		document.calcForm.A_IJYOU6.checked = n_A_IJYOU[6];
-		document.calcForm.A_IJYOU7.checked = n_A_IJYOU[7];
 		// ペット説明更新
 		RefreshPetExplain();
     } else {
@@ -200,12 +163,6 @@ function Click_A8(recalc = false){
 			sw = 1;
 			break;
 		}
-	}
-	for(let i = 0; i < n_A_IJYOU.length; i++) {
-        if(n_A_IJYOU[i] != 0){
-            sw = 1;
-            break;
-        }
 	}
 	if(sw == 0){
 		document.getElementById('A8TD').style.backgroundColor = "#DDDDFF";

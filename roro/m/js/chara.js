@@ -3699,26 +3699,21 @@ function GetStatusModifyAtkPlus() {
 * 装備等によるステータスの追加補正値を取得する（ＭａｘＨＰ＋）.
 */
 function GetStatusModifyMaxHpPlus() {
-
-	var val = 0;
-
-	var vartmp = 0, varary = [];
-	var itemCount = 0;
-	var itemCountRight = 0, itemCountLeft = 0;
-	var itemCountHeadTop = 0, itemCountHeadMid = 0, itemCountHeadUnder = 0;
-	var itemCountShield = 0, itemCountBody = 0, itemCountShoulder = 0, itemCountShoes = 0;
-	var itemCountAccessary1 = 0, itemCountAccessary2 = 0;
-	var cardCount = 0;
-	var cardCountRight = 0, cardCountLeft = 0;
-	var cardCountHeadTop = 0, cardCountHeadMid = 0, cardCountHeadUnder = 0;
-	var cardCountShield = 0, cardCountBody = 0, cardCountShoulder = 0, cardCountShoes = 0;
-	var cardCountAccessary1 = 0, cardCountAccessary2 = 0;
-	var sklLv = 0;
-	var bufLv = 0;
-	var bufferJobLv = 0, bufferSkillLv = 0;
-
-
-
+	let val = 0;
+	let vartmp = 0, varary = [];
+	let itemCount = 0;
+	let itemCountRight = 0, itemCountLeft = 0;
+	let itemCountHeadTop = 0, itemCountHeadMid = 0, itemCountHeadUnder = 0;
+	let itemCountShield = 0, itemCountBody = 0, itemCountShoulder = 0, itemCountShoes = 0;
+	let itemCountAccessary1 = 0, itemCountAccessary2 = 0;
+	let cardCount = 0;
+	let cardCountRight = 0, cardCountLeft = 0;
+	let cardCountHeadTop = 0, cardCountHeadMid = 0, cardCountHeadUnder = 0;
+	let cardCountShield = 0, cardCountBody = 0, cardCountShoulder = 0, cardCountShoes = 0;
+	let cardCountAccessary1 = 0, cardCountAccessary2 = 0;
+	let sklLv = 0;
+	let bufLv = 0;
+	let bufferJobLv = 0, bufferSkillLv = 0;
 
 	//----------------------------------------------------------------
 	// ランダムエンチャント効果
@@ -6705,7 +6700,10 @@ function GetStatusModifyMaxHpUp() {
 		val += bufLv;
 	}
 
-
+	/**
+	 * プレイヤー状態異常「ビヨンドオブウォークライ」の効果
+	 */
+	val -= 3 * g_confDataDebuff[CCharaConfDebuff.CONF_ID_BEYOND_OF_WARCRY];
 
 	// TODO: 四次対応
 	for (idx = ITEM_SP_MAXHP_UP; idx <= ITEM_SP_MAXHP_UP; idx++) {
@@ -9499,14 +9497,14 @@ function GetStatusModifyDefDivUp() {
 	//----------------------------------------------------------------
 	// キャラクター状態異常　毒
 	//----------------------------------------------------------------
-	if (n_A_IJYOU[2]) {
+	if (g_confDataDebuff[CCharaConfDebuff.CONF_ID_POISON]) {
 		val -= 25;
 	}
 
 	//----------------------------------------------------------------
 	// キャラクター状態異常　氷結
 	//----------------------------------------------------------------
-	if (n_A_IJYOU[5]) {
+	if (g_confDataDebuff[CCharaConfDebuff.CONF_ID_FREEZING]) {
 		val -= 10;
 	}
 
@@ -11864,6 +11862,13 @@ function GetStatusModifyHitPlus() {
 	//----------------------------------------------------------------
 	if ((bufLv = ExBuffNumSearch(EXBUF_ID_CUSTOM_HIT_PLUS)) != 0) {
 		val += bufLv;
+	}
+
+	/**
+	 * プレイヤー状態異常「狂乱」の効果（マイナスを許容）
+	 */
+	if (g_confDataDebuff[CCharaConfDebuff.CONF_ID_SATURDAY_NIGHT_FEVER] > 0) {
+		val -= (50 + 50 * g_confDataDebuff[CCharaConfDebuff.CONF_ID_SATURDAY_NIGHT_FEVER]);
 	}
 
 	// TODO: 四次対応
