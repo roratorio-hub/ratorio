@@ -16443,338 +16443,335 @@ function getFlee() {
  * グローバル変数の n_tok[ITEM_SP_RESIST_STATE_XXX] に直接作用するので戻り値はない
  */
 function ApplyResistBadStatus() {
-		let sklLv = 0;
-		if(EquipNumSearch(534) || EquipNumSearch(1646) || EquipNumSearch(1717)){
-			var wSPVS = GetLowerJobSeriesID(n_A_JOB);
-			if(wSPVS==1 || wSPVS==2 || wSPVS==6) n_tok[ITEM_SP_RESIST_STATE_STUN] += 50;
-			if(wSPVS==3 || wSPVS==4 || wSPVS==5) n_tok[ITEM_SP_RESIST_STATE_SILENCE] += 50;
-		}
-		if(EquipNumSearch(828)){
-			n_tok[ITEM_SP_RESIST_STATE_STUN] += 2 * n_A_HEAD_DEF_PLUS;
-			n_tok[ITEM_SP_RESIST_STATE_FROZEN] += 2 * n_A_HEAD_DEF_PLUS;
-			n_tok[ITEM_SP_RESIST_STATE_STONE] += 2 * n_A_HEAD_DEF_PLUS;
-		}
+    let sklLv = 0;
+    if (EquipNumSearch(534) || EquipNumSearch(1646) || EquipNumSearch(1717)) {
+        let wSPVS = GetLowerJobSeriesID(n_A_JOB);
+        if (wSPVS == 1 || wSPVS == 2 || wSPVS == 6) n_tok[ITEM_SP_RESIST_STATE_STUN] += 50;
+        if (wSPVS == 3 || wSPVS == 4 || wSPVS == 5) n_tok[ITEM_SP_RESIST_STATE_SILENCE] += 50;
+    }
+    if (EquipNumSearch(828)) {
+        n_tok[ITEM_SP_RESIST_STATE_STUN] += 2 * n_A_HEAD_DEF_PLUS;
+        n_tok[ITEM_SP_RESIST_STATE_FROZEN] += 2 * n_A_HEAD_DEF_PLUS;
+        n_tok[ITEM_SP_RESIST_STATE_STONE] += 2 * n_A_HEAD_DEF_PLUS;
+    }
 
-		//----------------------------------------------------------------
-		// 「マッドハッター」の、職業ごとの効果
-		//----------------------------------------------------------------
-		if (EquipNumSearch(ITEM_ID_MAD_HATTER)) {
-			var stateid = 0;
-			switch (GetLowerJobSeriesID(n_A_JOB)) {
-			case JOB_SERIES_ID_NOVICE:
-				stateid = ITEM_SP_RESIST_STATE_FROZEN;
-				break;
-			case JOB_SERIES_ID_SWORDMAN:
-				stateid = ITEM_SP_RESIST_STATE_CURSED;
-				break;
-			case JOB_SERIES_ID_THIEF:
-				stateid = ITEM_SP_RESIST_STATE_BLIND;
-				break;
-			case JOB_SERIES_ID_ACOLYTE:
-				stateid = ITEM_SP_RESIST_STATE_STONE;
-				break;
-			case JOB_SERIES_ID_ARCHER:
-				stateid = ITEM_SP_RESIST_STATE_SLEEP;
-				break;
-			case JOB_SERIES_ID_MAGICIAN:
-				stateid = ITEM_SP_RESIST_STATE_BLEEDING;
-				break;
-			case JOB_SERIES_ID_MERCHANT:
-				stateid = ITEM_SP_RESIST_STATE_POISON;
-				break;
-			case JOB_SERIES_ID_TAEGKUON:
-				stateid = ITEM_SP_RESIST_STATE_STUN;
-				break;
-			case JOB_SERIES_ID_NINJA:
-				stateid = ITEM_SP_RESIST_STATE_SILENCE;
-				break;
-			case JOB_SERIES_ID_GUNSLINGER:
-				stateid = ITEM_SP_RESIST_STATE_CONFUSE;
-				break;
-			}
+    //----------------------------------------------------------------
+    // 「マッドハッター」の、職業ごとの効果
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_ID_MAD_HATTER)) {
+        let stateid = 0;
+        switch (GetLowerJobSeriesID(n_A_JOB)) {
+            case JOB_SERIES_ID_NOVICE:
+                stateid = ITEM_SP_RESIST_STATE_FROZEN;
+                break;
+            case JOB_SERIES_ID_SWORDMAN:
+                stateid = ITEM_SP_RESIST_STATE_CURSED;
+                break;
+            case JOB_SERIES_ID_THIEF:
+                stateid = ITEM_SP_RESIST_STATE_BLIND;
+                break;
+            case JOB_SERIES_ID_ACOLYTE:
+                stateid = ITEM_SP_RESIST_STATE_STONE;
+                break;
+            case JOB_SERIES_ID_ARCHER:
+                stateid = ITEM_SP_RESIST_STATE_SLEEP;
+                break;
+            case JOB_SERIES_ID_MAGICIAN:
+                stateid = ITEM_SP_RESIST_STATE_BLEEDING;
+                break;
+            case JOB_SERIES_ID_MERCHANT:
+                stateid = ITEM_SP_RESIST_STATE_POISON;
+                break;
+            case JOB_SERIES_ID_TAEGKUON:
+                stateid = ITEM_SP_RESIST_STATE_STUN;
+                break;
+            case JOB_SERIES_ID_NINJA:
+                stateid = ITEM_SP_RESIST_STATE_SILENCE;
+                break;
+            case JOB_SERIES_ID_GUNSLINGER:
+                stateid = ITEM_SP_RESIST_STATE_CONFUSE;
+                break;
+        }
 
-			if (stateid != 0) {
-				if (n_A_HEAD_DEF_PLUS < 5) {
-					n_tok[stateid] += 20;
-				}
-				else if (n_A_HEAD_DEF_PLUS < 7) {
-					n_tok[stateid] += 50;
-				}
-				else {
-					n_tok[stateid] += 100;
-				}
-			}
-		}
+        if (stateid != 0) {
+            if (n_A_HEAD_DEF_PLUS < 5) {
+                n_tok[stateid] += 20;
+            } else if (n_A_HEAD_DEF_PLUS < 7) {
+                n_tok[stateid] += 50;
+            } else {
+                n_tok[stateid] += 100;
+            }
+        }
+    }
 
-		//----------------------------------------------------------------
-		// 「ジェミニ-S58の目」の、素ＡＧＩ９０以上の効果
-		//----------------------------------------------------------------
-		if(EquipNumSearch(ITEM_ID_GEMINIS58NO_ME)){
-			if (SU_AGI >= 90) {
-				n_tok[ITEM_SP_RESIST_STATE_STUN] += 30;
-				n_tok[ITEM_SP_RESIST_STATE_SILENCE] += 30;
-			}
-		}
+    //----------------------------------------------------------------
+    // 「ジェミニ-S58の目」の、素ＡＧＩ９０以上の効果
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_ID_GEMINIS58NO_ME)) {
+        if (SU_AGI >= 90) {
+            n_tok[ITEM_SP_RESIST_STATE_STUN] += 30;
+            n_tok[ITEM_SP_RESIST_STATE_SILENCE] += 30;
+        }
+    }
 
-		//----------------------------------------------------------------
-		// 「勇者の怒りセット」の、精錬による強化
-		//----------------------------------------------------------------
-		if(EquipNumSearch(ITEM_SET_ID_YUSHANOIKARI_ORCISH_AXE_ORCISH_SWORD)) {
-			if (n_A_Weapon_ATKplus + n_A_Weapon2_ATKplus >= 20) {
-				n_tok[ITEM_SP_RESIST_STATE_STUN] += 100;
-			}
-		}
+    //----------------------------------------------------------------
+    // 「勇者の怒りセット」の、精錬による強化
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_SET_ID_YUSHANOIKARI_ORCISH_AXE_ORCISH_SWORD)) {
+        if (n_A_Weapon_ATKplus + n_A_Weapon2_ATKplus >= 20) {
+            n_tok[ITEM_SP_RESIST_STATE_STUN] += 100;
+        }
+    }
 
-		//----------------------------------------------------------------
-		// 「アインヘリヤルの鎧　イビルドルイドカードセット」の、過剰精錬による効果
-		//----------------------------------------------------------------
-		if(EquipNumSearch(ITEM_SET_ID_EINHERJERNO_YOROI_EVIL_DRUID_CARD)){
-			if (n_A_BODY_DEF_PLUS >= 9) {
-				n_tok[ITEM_SP_RESIST_STATE_CURSED] += 100;
-			}
-		}
+    //----------------------------------------------------------------
+    // 「アインヘリヤルの鎧　イビルドルイドカードセット」の、過剰精錬による効果
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_SET_ID_EINHERJERNO_YOROI_EVIL_DRUID_CARD)) {
+        if (n_A_BODY_DEF_PLUS >= 9) {
+            n_tok[ITEM_SP_RESIST_STATE_CURSED] += 100;
+        }
+    }
 
-		//----------------------------------------------------------------
-		// 「聖なる白衣」の、精錬による効果
-		//----------------------------------------------------------------
-		if (EquipNumSearch(ITEM_ID_SEINARU_HAKUI) > 0) {
-			if (n_A_BODY_DEF_PLUS >= 9) {
-				n_tok[ITEM_SP_RESIST_STATE_STONE] += 50;
-			}
-		}
+    //----------------------------------------------------------------
+    // 「聖なる白衣」の、精錬による効果
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_ID_SEINARU_HAKUI) > 0) {
+        if (n_A_BODY_DEF_PLUS >= 9) {
+            n_tok[ITEM_SP_RESIST_STATE_STONE] += 50;
+        }
+    }
 
-		//----------------------------------------------------------------
-		// 「聖なる白衣　アルギオペカードセット」の、過剰精錬による効果
-		//----------------------------------------------------------------
-		if(EquipNumSearch(ITEM_SET_ID_SEINARU_HAKUI_ARGIOPE)){
-			if (n_A_BODY_DEF_PLUS >= 9) {
-				n_tok[ITEM_SP_RESIST_STATE_FROZEN] += 100;
-			}
-		}
+    //----------------------------------------------------------------
+    // 「聖なる白衣　アルギオペカードセット」の、過剰精錬による効果
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_SET_ID_SEINARU_HAKUI_ARGIOPE)) {
+        if (n_A_BODY_DEF_PLUS >= 9) {
+            n_tok[ITEM_SP_RESIST_STATE_FROZEN] += 100;
+        }
+    }
 
-		//----------------------------------------------------------------
-		// 「エーギルリング　アーマーセット」の、過剰精錬による効果
-		//----------------------------------------------------------------
-		if(EquipNumSearch(ITEM_SET_ID_AEGIR_RING_AEGIR_ARMOR)){
-			if (n_A_BODY_DEF_PLUS >= 7) {
-				n_tok[ITEM_SP_RESIST_STATE_STUN] += 25;
-				n_tok[ITEM_SP_RESIST_STATE_SILENCE] += 25;
-			}
-		}
+    //----------------------------------------------------------------
+    // 「エーギルリング　アーマーセット」の、過剰精錬による効果
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_SET_ID_AEGIR_RING_AEGIR_ARMOR)) {
+        if (n_A_BODY_DEF_PLUS >= 7) {
+            n_tok[ITEM_SP_RESIST_STATE_STUN] += 25;
+            n_tok[ITEM_SP_RESIST_STATE_SILENCE] += 25;
+        }
+    }
 
-		//----------------------------------------------------------------
-		// 「虹色の翼」の、過剰精錬による効果
-		//----------------------------------------------------------------
-		if(EquipNumSearch(ITEM_ID_NIZIIRONO_TSUBASA)){
-			if (n_A_BODY_DEF_PLUS >= 8) {
-				n_tok[ITEM_SP_RESIST_STATE_STONE] += 25;
-			}
-		}
+    //----------------------------------------------------------------
+    // 「虹色の翼」の、過剰精錬による効果
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_ID_NIZIIRONO_TSUBASA)) {
+        if (n_A_BODY_DEF_PLUS >= 8) {
+            n_tok[ITEM_SP_RESIST_STATE_STONE] += 25;
+        }
+    }
 
-		//----------------------------------------------------------------
-		// 「ジェミニ-S58の目」の、素ＶＩＴによる効果
-		//----------------------------------------------------------------
-		if(EquipNumSearch(ITEM_ID_GEMINIS58NO_ME_AKA)){
-			if (SU_VIT >= 90) {
-				n_tok[ITEM_SP_RESIST_STATE_STONE] += 40;
-				n_tok[ITEM_SP_RESIST_STATE_SLEEP] += 40;
-			}
-		}
+    //----------------------------------------------------------------
+    // 「ジェミニ-S58の目」の、素ＶＩＴによる効果
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_ID_GEMINIS58NO_ME_AKA)) {
+        if (SU_VIT >= 90) {
+            n_tok[ITEM_SP_RESIST_STATE_STONE] += 40;
+            n_tok[ITEM_SP_RESIST_STATE_SLEEP] += 40;
+        }
+    }
 
-		//----------------------------------------------------------------
-		// 「ゴッズシールド」の、過剰精錬による効果
-		//----------------------------------------------------------------
-		if(EquipNumSearch(ITEM_ID_GODS_SHIELD)){
-			if (n_A_SHIELD_DEF_PLUS >= 10) {
-				n_tok[ITEM_SP_RESIST_STATE_BLEEDING] += 100;
-				n_tok[ITEM_SP_RESIST_STATE_STONE] += 100;
-			}
-		}
+    //----------------------------------------------------------------
+    // 「ゴッズシールド」の、過剰精錬による効果
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_ID_GODS_SHIELD)) {
+        if (n_A_SHIELD_DEF_PLUS >= 10) {
+            n_tok[ITEM_SP_RESIST_STATE_BLEEDING] += 100;
+            n_tok[ITEM_SP_RESIST_STATE_STONE] += 100;
+        }
+    }
 
-		//----------------------------------------------------------------
-		// 「アンソニの服　アンソニカードセット」の、精錬による効果
-		//----------------------------------------------------------------
-		if(EquipNumSearch(ITEM_SET_ID_ANSONINO_FUKU_ANSONI_CARD)){
-			if (n_A_BODY_DEF_PLUS >= 7) {
-				n_tok[ITEM_SP_RESIST_STATE_FROZEN] += 100;
-			}
-		}
+    //----------------------------------------------------------------
+    // 「アンソニの服　アンソニカードセット」の、精錬による効果
+    //----------------------------------------------------------------
+    if (EquipNumSearch(ITEM_SET_ID_ANSONINO_FUKU_ANSONI_CARD)) {
+        if (n_A_BODY_DEF_PLUS >= 7) {
+            n_tok[ITEM_SP_RESIST_STATE_FROZEN] += 100;
+        }
+    }
 
-		//----------------------------------------------------------------
-		// 「カルデュイの法衣　エンジェリングカードセット」の、精錬による効果
-		//----------------------------------------------------------------
-		if(EquipNumSearchMIG(ITEM_SET_ID_CARDYUINO_HOI_ANGELRING)){
-			if (n_A_BODY_DEF_PLUS >= 9) {
-				n_tok[ITEM_SP_RESIST_STATE_FROZEN] += 100;
-			}
-		}
+    //----------------------------------------------------------------
+    // 「カルデュイの法衣　エンジェリングカードセット」の、精錬による効果
+    //----------------------------------------------------------------
+    if (EquipNumSearchMIG(ITEM_SET_ID_CARDYUINO_HOI_ANGELRING)) {
+        if (n_A_BODY_DEF_PLUS >= 9) {
+            n_tok[ITEM_SP_RESIST_STATE_FROZEN] += 100;
+        }
+    }
 
-/*
-		// 恐怖耐性、計算機未実装
-		//----------------------------------------------------------------
-		// 「古代龍の宝冠」の、精錬による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_KODAIRYUNO_HOKAN)) > 0) {
-			n_tok[ITEM_SP_RESIST_STATE_FEAR] += 10 * n_A_HEAD_DEF_PLUS * itemCount;
-		}
-*/
+    /*
+    		// 恐怖耐性、計算機未実装
+    		//----------------------------------------------------------------
+    		// 「古代龍の宝冠」の、精錬による効果
+    		//----------------------------------------------------------------
+    		if ((itemCount = EquipNumSearch(ITEM_ID_KODAIRYUNO_HOKAN)) > 0) {
+    			n_tok[ITEM_SP_RESIST_STATE_FEAR] += 10 * n_A_HEAD_DEF_PLUS * itemCount;
+    		}
+    */
 
-		//----------------------------------------------------------------
-		// 「魔眼のアムダライスカード」の、精錬による効果
-		//----------------------------------------------------------------
-		if ((cardCount = CardNumSearch(CARD_ID_MAGANNO_AMDARAIS)) > 0) {
-			if (n_A_BODY_DEF_PLUS >= 9) {
-				n_tok[ITEM_SP_RESIST_STATE_FROZEN] += 100;
-			}
-		}
+    //----------------------------------------------------------------
+    // 「魔眼のアムダライスカード」の、精錬による効果
+    //----------------------------------------------------------------
+    if ((cardCount = CardNumSearch(CARD_ID_MAGANNO_AMDARAIS)) > 0) {
+        if (n_A_BODY_DEF_PLUS >= 9) {
+            n_tok[ITEM_SP_RESIST_STATE_FROZEN] += 100;
+        }
+    }
 
-		//----------------------------------------------------------------
-		// 「ジターバグカード」の、職業による効果
-		//----------------------------------------------------------------
-		if ((cardCount = CardNumSearch(CARD_ID_JITTER_BUG)) > 0) {
-			if (IsSameJobClass(JOB_ID_MINSTREL) || IsSameJobClass(JOB_ID_WANDERER)) {
-				n_tok[ITEM_SP_RESIST_STATE_FROZEN] += 100;
-			}
-		}
+    //----------------------------------------------------------------
+    // 「ジターバグカード」の、職業による効果
+    //----------------------------------------------------------------
+    if ((cardCount = CardNumSearch(CARD_ID_JITTER_BUG)) > 0) {
+        if (IsSameJobClass(JOB_ID_MINSTREL) || IsSameJobClass(JOB_ID_WANDERER)) {
+            n_tok[ITEM_SP_RESIST_STATE_FROZEN] += 100;
+        }
+    }
 
-		//----------------------------------------------------------------
-		// 「スティックキャンディロッド」の、ベースレベルによる効果
-		//----------------------------------------------------------------
-		itemCountRight = EquipNumSearch(ITEM_ID_STICK_CANDY_ROD, EQUIP_REGION_ID_ARMS);
-		itemCountLeft = EquipNumSearch(ITEM_ID_STICK_CANDY_ROD, EQUIP_REGION_ID_ARMS_LEFT);
-		if ((itemCountRight > 0) || (itemCountLeft > 0)) {
-			if (n_A_BaseLV >= 170) {
-				n_tok[ITEM_SP_RESIST_STATE_CONFUSE] += 100 * (itemCountRight + itemCountLeft);
-			}
-		}
+    //----------------------------------------------------------------
+    // 「スティックキャンディロッド」の、ベースレベルによる効果
+    //----------------------------------------------------------------
+    itemCountRight = EquipNumSearch(ITEM_ID_STICK_CANDY_ROD, EQUIP_REGION_ID_ARMS);
+    itemCountLeft = EquipNumSearch(ITEM_ID_STICK_CANDY_ROD, EQUIP_REGION_ID_ARMS_LEFT);
+    if ((itemCountRight > 0) || (itemCountLeft > 0)) {
+        if (n_A_BaseLV >= 170) {
+            n_tok[ITEM_SP_RESIST_STATE_CONFUSE] += 100 * (itemCountRight + itemCountLeft);
+        }
+    }
 
-		//----------------------------------------------------------------
-		// 「イリュージョン裏切り者」の、ベースレベルによる効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_ILLUSION_URAGIRIMONO)) > 0) {
-			if (n_A_BaseLV >= 170) {
-				n_tok[ITEM_SP_RESIST_STATE_SLEEP] += 100 * itemCount;
-			}
-		}
+    //----------------------------------------------------------------
+    // 「イリュージョン裏切り者」の、ベースレベルによる効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_ILLUSION_URAGIRIMONO)) > 0) {
+        if (n_A_BaseLV >= 170) {
+            n_tok[ITEM_SP_RESIST_STATE_SLEEP] += 100 * itemCount;
+        }
+    }
 
-		//----------------------------------------------------------------
-		// 「ディアボロスウィング　アーマーセット」の、精錬による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_SET_ID_DIAVOLOS_WING_DIAVOLOS_ARMOR)) > 0) {
-			n_tok[ITEM_SP_RESIST_STATE_STUN] += 5 * n_A_BODY_DEF_PLUS * itemCount;
-			n_tok[ITEM_SP_RESIST_STATE_STONE] += 5 * n_A_BODY_DEF_PLUS * itemCount;
-		}
+    //----------------------------------------------------------------
+    // 「ディアボロスウィング　アーマーセット」の、精錬による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_SET_ID_DIAVOLOS_WING_DIAVOLOS_ARMOR)) > 0) {
+        n_tok[ITEM_SP_RESIST_STATE_STUN] += 5 * n_A_BODY_DEF_PLUS * itemCount;
+        n_tok[ITEM_SP_RESIST_STATE_STONE] += 5 * n_A_BODY_DEF_PLUS * itemCount;
+    }
 
-		//----------------------------------------------------------------
-		// 「ふわふわタンポポシューズ」の、スキル習得による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_FUWAFUWA_TANPOPO_SHOES)) > 0) {
-			if (LearnedSkillSearch(SKILL_ID_DAICHINO_TAMASHI) >= 1) {
-				if (LearnedSkillSearch(SKILL_ID_INUHAKKA_SHOWER) >= 5) {
-					n_tok[ITEM_SP_RESIST_STATE_CURSED] += 100;
-				}
-			}
-		}
+    //----------------------------------------------------------------
+    // 「ふわふわタンポポシューズ」の、スキル習得による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_FUWAFUWA_TANPOPO_SHOES)) > 0) {
+        if (LearnedSkillSearch(SKILL_ID_DAICHINO_TAMASHI) >= 1) {
+            if (LearnedSkillSearch(SKILL_ID_INUHAKKA_SHOWER) >= 5) {
+                n_tok[ITEM_SP_RESIST_STATE_CURSED] += 100;
+            }
+        }
+    }
 
-		//----------------------------------------------------------------
-		// 「竜殺しの長剣　ランドグリスカードセット」の、ベースレベルによる効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_SET_ID_RYUGOROSHINO_CHOKEN_RANDGRIS_CARD)) > 0) {
-			if (n_A_BaseLV <= 99) {
-				n_tok[ITEM_SP_RESIST_STATE_STUN] += 20 * itemCount;
-				n_tok[ITEM_SP_RESIST_STATE_SILENCE] += 20 * itemCount;
-			}
-			else {
-				n_tok[ITEM_SP_RESIST_STATE_STUN] += 50 * itemCount;
-				n_tok[ITEM_SP_RESIST_STATE_SILENCE] += 50 * itemCount;
-			}
-		}
+    //----------------------------------------------------------------
+    // 「竜殺しの長剣　ランドグリスカードセット」の、ベースレベルによる効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_SET_ID_RYUGOROSHINO_CHOKEN_RANDGRIS_CARD)) > 0) {
+        if (n_A_BaseLV <= 99) {
+            n_tok[ITEM_SP_RESIST_STATE_STUN] += 20 * itemCount;
+            n_tok[ITEM_SP_RESIST_STATE_SILENCE] += 20 * itemCount;
+        } else {
+            n_tok[ITEM_SP_RESIST_STATE_STUN] += 50 * itemCount;
+            n_tok[ITEM_SP_RESIST_STATE_SILENCE] += 50 * itemCount;
+        }
+    }
 
-		//----------------------------------------------------------------
-		// 「リングオブヴィーナス」の、素ＤＥＸによる効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_RING_OF_VENUS, EQUIP_REGION_ID_ACCESSARY_1)) > 0) {
-			n_tok[ITEM_SP_RESIST_STATE_STUN] += 3 * Math.floor(SU_DEX / 10) * itemCount;
-		}
+    //----------------------------------------------------------------
+    // 「リングオブヴィーナス」の、素ＤＥＸによる効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_RING_OF_VENUS, EQUIP_REGION_ID_ACCESSARY_1)) > 0) {
+        n_tok[ITEM_SP_RESIST_STATE_STUN] += 3 * Math.floor(SU_DEX / 10) * itemCount;
+    }
 
-		//----------------------------------------------------------------
-		// 「ちゃぷちゃぷニャンプーハット」の、スキル習得による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_CHAPUCHAPU_NYANPU_HAT)) > 0) {
-			if (LearnedSkillSearch(SKILL_ID_GROOMING) >= 5) {
-				n_tok[ITEM_SP_RESIST_STATE_CONFUSE] += 100 * itemCount;
-				n_tok[ITEM_SP_RESIST_STATE_SILENCE] += 100 * itemCount;
-			}
-		}
+    //----------------------------------------------------------------
+    // 「ちゃぷちゃぷニャンプーハット」の、スキル習得による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_CHAPUCHAPU_NYANPU_HAT)) > 0) {
+        if (LearnedSkillSearch(SKILL_ID_GROOMING) >= 5) {
+            n_tok[ITEM_SP_RESIST_STATE_CONFUSE] += 100 * itemCount;
+            n_tok[ITEM_SP_RESIST_STATE_SILENCE] += 100 * itemCount;
+        }
+    }
 
-		//----------------------------------------------------------------
-		// 「インペリアルホーリーローブ」の、スキル習得による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearchMIG(ITEM_ID_IMPERIAL_HOLY_ROBE)) > 0) {
-			if (LearnedSkillSearch(SKILL_ID_HIGHNESS_HEAL) >= 5) {
-				n_tok[ITEM_SP_RESIST_STATE_FROZEN] += 50 * itemCount;
-			}
-		}
+    //----------------------------------------------------------------
+    // 「インペリアルホーリーローブ」の、スキル習得による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearchMIG(ITEM_ID_IMPERIAL_HOLY_ROBE)) > 0) {
+        if (LearnedSkillSearch(SKILL_ID_HIGHNESS_HEAL) >= 5) {
+            n_tok[ITEM_SP_RESIST_STATE_FROZEN] += 50 * itemCount;
+        }
+    }
 
-		//----------------------------------------------------------------
-		// 「グレースホーリーローブ」の、スキル習得による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearchMIG(ITEM_ID_GRACE_HOLY_ROBE)) > 0) {
-			if (LearnedSkillSearch(SKILL_ID_HIGHNESS_HEAL) >= 5) {
-				n_tok[ITEM_SP_RESIST_STATE_FROZEN] += 100 * itemCount;
-			}
-		}
+    //----------------------------------------------------------------
+    // 「グレースホーリーローブ」の、スキル習得による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearchMIG(ITEM_ID_GRACE_HOLY_ROBE)) > 0) {
+        if (LearnedSkillSearch(SKILL_ID_HIGHNESS_HEAL) >= 5) {
+            n_tok[ITEM_SP_RESIST_STATE_FROZEN] += 100 * itemCount;
+        }
+    }
 
-		//----------------------------------------------------------------
-		// 「きらきらニャンニャンチョーカー」の、スキル習得による効果
-		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_KIRAKIRA_NYANNYAN_CHOKER)) > 0) {
-			if (LearnedSkillSearch(SKILL_ID_NYAN_GRASS) >= 5) {
-				n_tok[ITEM_SP_RESIST_STATE_STUN] += 50 * itemCount;
-			}
-		}
+    //----------------------------------------------------------------
+    // 「きらきらニャンニャンチョーカー」の、スキル習得による効果
+    //----------------------------------------------------------------
+    if ((itemCount = EquipNumSearch(ITEM_ID_KIRAKIRA_NYANNYAN_CHOKER)) > 0) {
+        if (LearnedSkillSearch(SKILL_ID_NYAN_GRASS) >= 5) {
+            n_tok[ITEM_SP_RESIST_STATE_STUN] += 50 * itemCount;
+        }
+    }
 
-		if(CardNumSearch(176)){
-			if(SU_AGI >= 90){
-				n_tok[ITEM_SP_RESIST_STATE_STUN] += 30 * CardNumSearch(176);
-				n_tok[ITEM_SP_RESIST_STATE_SILENCE] += 30 * CardNumSearch(176);
-			}
-			if(SU_VIT >= 80){
-				n_tok[ITEM_SP_RESIST_STATE_SLEEP] += 50 * CardNumSearch(176);
-				n_tok[ITEM_SP_RESIST_STATE_STONE] += 50 * CardNumSearch(176);
-			}
-		}
+    if (CardNumSearch(176)) {
+        if (SU_AGI >= 90) {
+            n_tok[ITEM_SP_RESIST_STATE_STUN] += 30 * CardNumSearch(176);
+            n_tok[ITEM_SP_RESIST_STATE_SILENCE] += 30 * CardNumSearch(176);
+        }
+        if (SU_VIT >= 80) {
+            n_tok[ITEM_SP_RESIST_STATE_SLEEP] += 50 * CardNumSearch(176);
+            n_tok[ITEM_SP_RESIST_STATE_STONE] += 50 * CardNumSearch(176);
+        }
+    }
 
-		if(EquipNumSearch(ITEM_SET_ID_DEVILCH_HEADPHONE_PET)){
-			var wDH = GetLowerJobSeriesID(n_A_JOB);
-			if(wDH==3 || wDH==4 || wDH==5){
-				n_tok[ITEM_SP_RESIST_STATE_STUN] += 5;
-				if(n_A_PassSkill8[17] == 6) n_tok[ITEM_SP_RESIST_STATE_STUN] += 15;
-			}
-		}
+    if (EquipNumSearch(ITEM_SET_ID_DEVILCH_HEADPHONE_PET)) {
+        let wDH = GetLowerJobSeriesID(n_A_JOB);
+        if (wDH == 3 || wDH == 4 || wDH == 5) {
+            n_tok[ITEM_SP_RESIST_STATE_STUN] += 5;
+            if (n_A_PassSkill8[17] == 6) n_tok[ITEM_SP_RESIST_STATE_STUN] += 15;
+        }
+    }
 
-		if(n_A_BODY_DEF_PLUS >= 9 && EquipNumSearch(2455)) n_tok[ITEM_SP_RESIST_STATE_FROZEN] += 100;
+    if (n_A_BODY_DEF_PLUS >= 9 && EquipNumSearch(2455)) n_tok[ITEM_SP_RESIST_STATE_FROZEN] += 100;
 
-		/**
-		 * 「２次職合奏 不死身のジークフリード」の効果
-		 */
-		if ((sklLv = g_confDataNizi[CCharaConfNizi.CONF_ID_SIEGFRIED]) > 0) {
-			n_tok[ITEM_SP_RESIST_STATE_BLIND] += 25 + 5 * sklLv;
-			n_tok[ITEM_SP_RESIST_STATE_CONFUSE] += 25 + 5 * sklLv;
-			n_tok[ITEM_SP_RESIST_STATE_SLEEP] += 25 + 5 * sklLv;
-			n_tok[ITEM_SP_RESIST_STATE_STUN] += 25 + 5 * sklLv;
-			n_tok[ITEM_SP_RESIST_STATE_STONE] += 25 + 5 * sklLv;
-			n_tok[ITEM_SP_RESIST_STATE_SILENCE] += 25 + 5 * sklLv;
-			n_tok[ITEM_SP_RESIST_STATE_FROZEN] += 25 + 5 * sklLv;
-			n_tok[ITEM_SP_RESIST_STATE_CURSED] += 25 + 5 * sklLv;
-		}
+    /**
+     * 「２次職合奏 不死身のジークフリード」の効果
+     */
+    if ((sklLv = g_confDataNizi[CCharaConfNizi.CONF_ID_SIEGFRIED]) > 0) {
+        n_tok[ITEM_SP_RESIST_STATE_BLIND] += 25 + 5 * sklLv;
+        n_tok[ITEM_SP_RESIST_STATE_CONFUSE] += 25 + 5 * sklLv;
+        n_tok[ITEM_SP_RESIST_STATE_SLEEP] += 25 + 5 * sklLv;
+        n_tok[ITEM_SP_RESIST_STATE_STUN] += 25 + 5 * sklLv;
+        n_tok[ITEM_SP_RESIST_STATE_STONE] += 25 + 5 * sklLv;
+        n_tok[ITEM_SP_RESIST_STATE_SILENCE] += 25 + 5 * sklLv;
+        n_tok[ITEM_SP_RESIST_STATE_FROZEN] += 25 + 5 * sklLv;
+        n_tok[ITEM_SP_RESIST_STATE_CURSED] += 25 + 5 * sklLv;
+    }
 
-		if (UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 35) {
-			n_tok[ITEM_SP_RESIST_STATE_BLEEDING] += 100;
-			n_tok[ITEM_SP_RESIST_STATE_STONE] += 100;
-		}
+    if (UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 35) {
+        n_tok[ITEM_SP_RESIST_STATE_BLEEDING] += 100;
+        n_tok[ITEM_SP_RESIST_STATE_STONE] += 100;
+    }
 
-		n_tok[ITEM_SP_RESIST_STATE_FROZEN] += n_tok[ITEM_SP_RESIST_FROZEN_GVGTE];
+    n_tok[ITEM_SP_RESIST_STATE_FROZEN] += n_tok[ITEM_SP_RESIST_FROZEN_GVGTE];
 
 }
 
