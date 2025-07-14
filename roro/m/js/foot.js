@@ -17821,12 +17821,10 @@ function ApplyHealRecoveryUp() {
     // 「聖なる白衣」の、精錬による効果
     //----------------------------------------------------------------
     if (EquipNumSearch(ITEM_ID_SEINARU_HAKUI) > 0) {
-        vartmp = 0;
-
+        let vartmp = 0;
         if (n_A_BODY_DEF_PLUS >= 7) vartmp += 2;
         if (n_A_BODY_DEF_PLUS >= 8) vartmp += 3;
         if (n_A_BODY_DEF_PLUS >= 9) vartmp += 4;
-
         n_tok[ITEM_SP_HEAL_UP_USING] += 2 * vartmp;
         n_tok[ITEM_SP_HEAL_UP_USED] += 1 * vartmp;
     }
@@ -17849,11 +17847,9 @@ function ApplyHealRecoveryUp() {
     // 「熾天使の羽毛　熾天使の花冠セット」の、素ＩＮＴによる効果
     //----------------------------------------------------------------
     if (EquipNumSearch(ITEM_SET_ID_SHITENSHINO_UMO_SHITENSHINO_HANAKANMURI)) {
-        vartmp = 0;
-
+        let vartmp = 0;
         if (SU_INT >= 108) vartmp += 10;
         if (SU_INT >= 120) vartmp += 15;
-
         n_tok[ITEM_SP_HEAL_UP_USING] += vartmp;
         n_tok[ITEM_SP_HEAL_UP_USED] += vartmp;
     }
@@ -17873,7 +17869,7 @@ function ApplyHealRecoveryUp() {
     itemCountRight = EquipNumSearch(ITEM_ID_NAGAI_KAIFUKUNO_NEKOZYARASHI, EQUIP_REGION_ID_ARMS);
     itemCountLeft = EquipNumSearch(ITEM_ID_NAGAI_KAIFUKUNO_NEKOZYARASHI, EQUIP_REGION_ID_ARMS_LEFT);
     if ((itemCountRight > 0) || (itemCountLeft > 0)) {
-        vartmp = 0;
+        let vartmp = 0;
         vartmp += 2 * n_A_Weapon_ATKplus;
         if (n_A_Weapon_ATKplus >= 7) vartmp += 10;
         if (n_A_Weapon_ATKplus >= 8) vartmp += 15;
@@ -17939,7 +17935,7 @@ function ApplyHealRecoveryUp() {
     // 「可愛い草のネックレス」の、スキル習得による効果
     //----------------------------------------------------------------
     if ((itemCount = EquipNumSearch(ITEM_ID_KAWAII_KUSANO_NECKLACE)) > 0) {
-        sklLv = 0;
+        let sklLv = 0;
         sklLv += LearnedSkillSearch(SKILL_ID_SHINSENNA_EBI);
         sklLv += LearnedSkillSearch(SKILL_ID_EBI_ZANMAI);
         sklLv += LearnedSkillSearch(SKILL_ID_OTORO);
@@ -18157,7 +18153,7 @@ function ApplyHealRecoveryUp() {
     //----------------------------------------------------------------
     // 「性能カスタマイズ」の、効果
     //----------------------------------------------------------------
-    confval = g_objCharaConfCustomSkill.GetConf(CCharaConfCustomSkill.CONF_ID_HEAL_UP_USING);
+    let confval = g_objCharaConfCustomSkill.GetConf(CCharaConfCustomSkill.CONF_ID_HEAL_UP_USING);
     if (confval != 0) {
         n_tok[ITEM_SP_HEAL_UP_USING] += confval;
     }
@@ -18168,7 +18164,6 @@ function ApplyHealRecoveryUp() {
     }
 
     n_tok[ITEM_SP_HEAL_UP_USING] += n_tok[ITEM_SP_HEAL_UP_USING_GVGTE];
-
 }
 
 /**
