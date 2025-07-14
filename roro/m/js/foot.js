@@ -16784,20 +16784,20 @@ function ApplyAdditionalResistElement() {
     //----------------------------------------------------------------
     // ランダムエンチャント効果
     //----------------------------------------------------------------
-    for (idx = ITEM_SP_RESIST_ELM_VANITY; idx <= ITEM_SP_RESIST_ELM_UNDEAD; idx++) {
+    for (let idx = ITEM_SP_RESIST_ELM_VANITY; idx <= ITEM_SP_RESIST_ELM_UNDEAD; idx++) {
         n_tok[idx] += GetRndOptTotalValue(idx, null, false);
         // n_tok[idx] += GetRndEnchValue(idx);
     }
 
     if (EquipNumSearch(737)) n_tok[ITEM_SP_RESIST_ELM_VANITY] += n_A_SHOULDER_DEF_PLUS * 3;
     if (EquipNumSearch(957)) {
-        for (i = 0; i <= 9; i++) n_tok[60 + i] += 30;
+        for (let i = 0; i <= 9; i++) n_tok[60 + i] += 30;
     }
     if (n_A_SHOULDER_DEF_PLUS >= 9 && CardNumSearch(403)) n_tok[ITEM_SP_RESIST_ELM_VANITY] += 5;
     if (n_A_BaseLV <= 79 && EquipNumSearch(1251)) n_tok[ITEM_SP_RESIST_ELM_VANITY] += 5;
     if (n_A_HEAD_DEF_PLUS >= 8 && EquipNumSearch(1244)) n_tok[ITEM_SP_RESIST_ELM_WATER] += 5;
     if (n_A_HEAD_DEF_PLUS >= 2 && EquipNumSearch(1431)) {
-        var w = ROUNDDOWN(n_A_HEAD_DEF_PLUS / 2);
+        let w = ROUNDDOWN(n_A_HEAD_DEF_PLUS / 2);
         n_tok[ITEM_SP_RESIST_ELM_WATER] += w;
         n_tok[ITEM_SP_RESIST_ELM_EARTH] += w;
         n_tok[ITEM_SP_RESIST_ELM_FIRE] += w;
@@ -16823,14 +16823,14 @@ function ApplyAdditionalResistElement() {
     }
     if (EquipNumSearch(1794)) n_tok[ITEM_SP_RESIST_ELM_VANITY] += n_A_HEAD_DEF_PLUS;
     if (EquipNumSearch(1797)) {
-        for (var i = 61; i <= 69; i++) n_tok[i] -= 3;
+        for (let i = 61; i <= 69; i++) n_tok[i] -= 3;
         if (n_A_SHOES_DEF_PLUS >= 6) n_tok[ITEM_SP_RESIST_ELM_VANITY] += (n_A_SHOES_DEF_PLUS - 5);
     }
     if (n_A_HEAD_DEF_PLUS >= 8 && EquipNumSearch(1798)) n_tok[ITEM_SP_RESIST_ELM_WIND] += 5;
     if (n_A_HEAD_DEF_PLUS >= 9 && EquipNumSearch(1815)) n_tok[ITEM_SP_RESIST_ELM_WATER] += 3;
     if (n_A_HEAD_DEF_PLUS >= 6 && EquipNumSearch(1817)) n_tok[ITEM_SP_RESIST_ELM_FIRE] += 5;
     if (n_A_SHIELD_DEF_PLUS >= 7 && EquipNumSearch(1886)) {
-        for (var i = 60; i <= 69; i++) n_tok[i] += (n_A_SHIELD_DEF_PLUS - 6) * 2;
+        for (let i = 60; i <= 69; i++) n_tok[i] += (n_A_SHIELD_DEF_PLUS - 6) * 2;
     }
     if (GetLowerJobSeriesID(n_A_JOB) == 3 && EquipNumSearch(1913)) n_tok[ITEM_SP_RESIST_ELM_UNDEAD] += 10;
     if (n_A_SHIELD_DEF_PLUS >= 3 && EquipNumSearch(1914)) n_tok[ITEM_SP_RESIST_ELM_WATER] += Math.floor(n_A_SHIELD_DEF_PLUS / 3) * 5;
@@ -16840,7 +16840,7 @@ function ApplyAdditionalResistElement() {
         if (n_A_SHOULDER_DEF_PLUS >= 6) n_tok[ITEM_SP_RESIST_ELM_VANITY] += (n_A_SHOULDER_DEF_PLUS - 5);
     }
     if (n_A_SHIELD_DEF_PLUS >= 1) {
-        for (var i = 2144; i <= 2152; i++) {
+        for (let i = 2144; i <= 2152; i++) {
             if (EquipNumSearch(i)) n_tok[60 + (i - 2143)] += n_A_SHIELD_DEF_PLUS * 2;
         }
         if (EquipNumSearch(2143)) n_tok[ITEM_SP_RESIST_ELM_VANITY] += n_A_SHIELD_DEF_PLUS;
@@ -16973,11 +16973,9 @@ function ApplyAdditionalResistElement() {
     // 「ガーディアンプロセッサ　ガーディアンエンジンセット」の、精錬による効果
     //----------------------------------------------------------------
     if ((itemCount = EquipNumSearch(ITEM_SET_ID_GUARDIAN_PROCESSOR_GUARDIAN_ENGINE)) > 0) {
-        vartmp = 0;
-
+        let vartmp = 0;
         if (n_A_SHOULDER_DEF_PLUS >= 7) vartmp += 15;
         if (n_A_SHOULDER_DEF_PLUS >= 9) vartmp += 15;
-
         n_tok[ITEM_SP_RESIST_ELM_HOLY] += vartmp * itemCount;
         n_tok[ITEM_SP_RESIST_ELM_DARK] += vartmp * itemCount;
     }
@@ -17589,10 +17587,10 @@ function ApplyAdditionalResistElement() {
         n_tok[ITEM_SP_RESIST_ELM_EARTH] -= 15;
     }
     if (n_tok[ITEM_SP_RESIST_ELM_ALL] != 0) {
-        for (var i = ITEM_SP_RESIST_ELM_VANITY; i <= ITEM_SP_RESIST_ELM_UNDEAD; i++) n_tok[i] += n_tok[ITEM_SP_RESIST_ELM_ALL];
+        for (let i = ITEM_SP_RESIST_ELM_VANITY; i <= ITEM_SP_RESIST_ELM_UNDEAD; i++) n_tok[i] += n_tok[ITEM_SP_RESIST_ELM_ALL];
     }
     if (EquipNumSearch(ITEM_SET_ID_STRONG_SHIELD_JUSOHOHEI_NO_KABUTO)) {
-        for (var i = ITEM_SP_RESIST_ELM_VANITY; i <= ITEM_SP_RESIST_ELM_UNDEAD; i++) n_tok[i] += 5;
+        for (let i = ITEM_SP_RESIST_ELM_VANITY; i <= ITEM_SP_RESIST_ELM_UNDEAD; i++) n_tok[i] += 5;
     }
 
     //----------------------------------------------------------------
