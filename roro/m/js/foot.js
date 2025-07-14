@@ -13186,7 +13186,7 @@ function StAllCalc(){
 
 
 		// スキル使用時の消費ＳＰ－○○％ を適用する
-		ApplySPCostDown();
+		n_tok[ITEM_SP_COST_DOWN] = getSPCostReductionRate();
 
 
 //================================================================================================================================
@@ -19927,117 +19927,120 @@ function getVariableCastTimeRate() {
 }
 
 /**
- * 公式サイトで「消費SP - ◯%」と表記される消費SP減少効果を適用する
- * グローバル変数の n_tok[ITEM_SP_COST_DOWN] に直接作用するので戻り値はない
+ * 公式サイトで「消費SP - ◯%」と表記される消費SP減少効果を適用した
+ * 最終的な消費SP軽減率を取得する
+ * @returns {Number}
  */
-function ApplySPCostDown() {
+function getSPCostReductionRate() {
+    let cost_reduction = n_tok[ITEM_SP_COST_DOWN];
+
     //----------------------------------------------------------------
     // ランダムエンチャント効果
     //----------------------------------------------------------------
-    for (idx = ITEM_SP_COST_DOWN; idx <= ITEM_SP_COST_DOWN; idx++) {
-        n_tok[idx] += GetRndOptTotalValue(idx, null, false);
-    }
+    cost_reduction += GetRndOptTotalValue(ITEM_SP_COST_DOWN, null, false);
+
+
     if (EquipNumSearch(646)) {
-        n_tok[ITEM_SP_COST_DOWN] += (-2 * n_A_Weapon_ATKplus);
+        cost_reduction += (-2 * n_A_Weapon_ATKplus);
     }
     if (EquipNumSearch(765) && SU_DEX >= 70) {
-        n_tok[ITEM_SP_COST_DOWN] += 10;
+        cost_reduction += 10;
     }
     if (EquipNumSearch(646) && n_A_Weapon_ATKplus >= 9) {
-        n_tok[ITEM_SP_COST_DOWN] += 20;
+        cost_reduction += 20;
     }
     if (n_A_Equip[EQUIP_REGION_ID_ARMS_LEFT] == 1078 || n_A_Equip[EQUIP_REGION_ID_ARMS_LEFT] == 1079) {
         if (n_A_Weapon2_ATKplus >= 5) {
-            n_tok[ITEM_SP_COST_DOWN] += 5;
+            cost_reduction += 5;
         }
         if (n_A_Weapon2_ATKplus >= 7) {
-            n_tok[ITEM_SP_COST_DOWN] += 5;
+            cost_reduction += 5;
         }
     }
     if (n_A_Equip[EQUIP_REGION_ID_ARMS] == 1078 || n_A_Equip[EQUIP_REGION_ID_ARMS] == 1079) {
         if (n_A_Weapon_ATKplus >= 5) {
-            n_tok[ITEM_SP_COST_DOWN] += 5;
+            cost_reduction += 5;
         }
         if (n_A_Weapon_ATKplus >= 7) {
-            n_tok[ITEM_SP_COST_DOWN] += 5;
+            cost_reduction += 5;
         }
     }
     if (EquipNumSearch(ITEM_ID_STUFF_OF_ORD) && LearnedSkillSearch(SKILL_ID_DRAGONOLOGY) == 5) {
-        n_tok[ITEM_SP_COST_DOWN] += 15;
+        cost_reduction += 15;
     }
     if (EquipNumSearch(1280) && n_A_HEAD_DEF_PLUS >= 3) {
-        n_tok[ITEM_SP_COST_DOWN] += n_A_HEAD_DEF_PLUS - 2;
+        cost_reduction += n_A_HEAD_DEF_PLUS - 2;
     }
     if (EquipNumSearch(1414)) {
         if (n_A_HEAD_DEF_PLUS >= 7) {
-            n_tok[ITEM_SP_COST_DOWN] += 1;
+            cost_reduction += 1;
         }
         if (n_A_HEAD_DEF_PLUS >= 9) {
-            n_tok[ITEM_SP_COST_DOWN] += 1;
+            cost_reduction += 1;
         }
     }
     if (EquipNumSearch(1476) && n_A_Weapon_ATKplus >= 6) {
-        n_tok[ITEM_SP_COST_DOWN] += n_A_Weapon_ATKplus - 5;
+        cost_reduction += n_A_Weapon_ATKplus - 5;
     }
     if (EquipNumSearch(1760) && n_A_HEAD_DEF_PLUS >= 6) {
-        n_tok[ITEM_SP_COST_DOWN] += (n_A_HEAD_DEF_PLUS - 5) * 10;
+        cost_reduction += (n_A_HEAD_DEF_PLUS - 5) * 10;
     }
     if (SU_DEX >= 100 && EquipNumSearch(1787)) {
-        n_tok[ITEM_SP_COST_DOWN] += 5;
+        cost_reduction += 5;
         if (SU_DEX >= 120) {
-            n_tok[ITEM_SP_COST_DOWN] += 5;
+            cost_reduction += 5;
         }
     }
     if (EquipNumSearch(ITEM_ID_KENSENO_OKAN) && LearnedSkillSearch(SKILL_ID_RYOUTKEN_SHUREN) == 10) {
-        n_tok[ITEM_SP_COST_DOWN] += 5;
+        cost_reduction += 5;
     }
     if (EquipNumSearch(ITEM_SET_ID_TORIKAINO_KAGITSUME_TORIKAINO_YUMIKAKE)) {
-        n_tok[ITEM_SP_COST_DOWN] += 2 * LearnedSkillSearch(SKILL_ID_BEAST_BANE);
+        cost_reduction += 2 * LearnedSkillSearch(SKILL_ID_BEAST_BANE);
     }
     if (EquipNumSearch(2208)) {
-        n_tok[ITEM_SP_COST_DOWN] += 2 * n_A_HEAD_DEF_PLUS;
+        cost_reduction += 2 * n_A_HEAD_DEF_PLUS;
     }
     if (n_A_BODY_DEF_PLUS >= 7 && EquipNumSearch(2250)) {
-        n_tok[ITEM_SP_COST_DOWN] += 5;
+        cost_reduction += 5;
     }
     if (EquipNumSearch(2368) && n_A_SHOES_DEF_PLUS >= 8) {
-        n_tok[ITEM_SP_COST_DOWN] += (n_A_SHOES_DEF_PLUS - 7);
+        cost_reduction += (n_A_SHOES_DEF_PLUS - 7);
     }
     if (CardNumSearch(831)) {
         if (n_A_HEAD_DEF_PLUS >= 7) {
-            n_tok[ITEM_SP_COST_DOWN] += 2 * CardNumSearch(831);
+            cost_reduction += 2 * CardNumSearch(831);
         }
         if (n_A_HEAD_DEF_PLUS >= 9) {
-            n_tok[ITEM_SP_COST_DOWN] += 1 * CardNumSearch(831);
+            cost_reduction += 1 * CardNumSearch(831);
         }
     }
     if (SU_STR >= 108 && EquipNumSearch(2427)) {
-        n_tok[ITEM_SP_COST_DOWN] += 20;
+        cost_reduction += 20;
         if (SU_STR >= 120) {
-            n_tok[ITEM_SP_COST_DOWN] += 30;
+            cost_reduction += 30;
         }
     }
     if (n_A_SHOULDER_DEF_PLUS >= 3 && EquipNumSearch(2488)) {
-        n_tok[ITEM_SP_COST_DOWN] += 2 * ROUNDDOWN(n_A_SHOULDER_DEF_PLUS / 3);
+        cost_reduction += 2 * ROUNDDOWN(n_A_SHOULDER_DEF_PLUS / 3);
     }
     //----------------------------------------------------------------
     // 「ドゥクス・ティアのティアラ」の、過剰精錬による強化
     //----------------------------------------------------------------
     if (EquipNumSearch(ITEM_ID_DOKUSTIANO_TIARA) && n_A_HEAD_DEF_PLUS >= 5) {
-        n_tok[ITEM_SP_COST_DOWN] += 3 * (n_A_HEAD_DEF_PLUS - 4);
+        cost_reduction += 3 * (n_A_HEAD_DEF_PLUS - 4);
     }
     //----------------------------------------------------------------
     // 「魔法石の恩恵」の、過剰精錬による強化
     //----------------------------------------------------------------
     if ((itemCount = EquipNumSearch(ITEM_ID_MAHOSEKINO_ONKE)) > 0) {
         if (n_A_HEAD_DEF_PLUS >= 5) {
-            n_tok[ITEM_SP_COST_DOWN] += 25;
+            cost_reduction += 25;
         }
         if (n_A_HEAD_DEF_PLUS >= 7) {
-            n_tok[ITEM_SP_COST_DOWN] += 25;
+            cost_reduction += 25;
         }
         if (n_A_HEAD_DEF_PLUS >= 9) {
-            n_tok[ITEM_SP_COST_DOWN] += 25;
+            cost_reduction += 25;
         }
     }
     //----------------------------------------------------------------
@@ -20051,7 +20054,7 @@ function ApplySPCostDown() {
                 break;
             default:
                 if (GetHigherJobSeriesID(n_A_JOB) === JOB_SERIES_ID_HUNTER) {
-                    n_tok[ITEM_SP_COST_DOWN] += 5;
+                    cost_reduction += 5;
                 }
         }
     }
@@ -20061,12 +20064,12 @@ function ApplySPCostDown() {
     //----------------------------------------------------------------
     if ((itemCount = EquipNumSearch(ITEM_ID_TEGRYONG)) > 0) {
         if (n_A_Weapon_ATKplus >= 9) {
-            n_tok[ITEM_SP_COST_DOWN] += 20;
+            cost_reduction += 20;
         }
     }
     if ((itemCount = EquipNumSearch(ITEM_ID_TEGRYONG_S2)) > 0) {
         if (n_A_Weapon_ATKplus >= 9) {
-            n_tok[ITEM_SP_COST_DOWN] += 20;
+            cost_reduction += 20;
         }
     }
 
@@ -20081,7 +20084,7 @@ function ApplySPCostDown() {
         if (n_A_BODY_DEF_PLUS >= 9) {
             vartmp += 5;
         }
-        n_tok[ITEM_SP_COST_DOWN] += vartmp * itemCount;
+        cost_reduction += vartmp * itemCount;
     }
 
     //----------------------------------------------------------------
@@ -20095,7 +20098,7 @@ function ApplySPCostDown() {
         if (n_A_BODY_DEF_PLUS >= 9) {
             vartmp += 5;
         }
-        n_tok[ITEM_SP_COST_DOWN] += vartmp * itemCount;
+        cost_reduction += vartmp * itemCount;
     }
 
     //----------------------------------------------------------------
@@ -20109,17 +20112,17 @@ function ApplySPCostDown() {
         if (n_A_SHOES_DEF_PLUS >= 7) {
             vartmp += 5;
         }
-        n_tok[ITEM_SP_COST_DOWN] += vartmp * itemCount;
+        cost_reduction += vartmp * itemCount;
     }
 
     //----------------------------------------------------------------
     // 「古びたドライバーバンド」の、精錬による強化
     //----------------------------------------------------------------
     if ((itemCount = EquipNumSearch(ITEM_ID_FURUBITA_DRIVERBAND_KIRO)) > 0) {
-        n_tok[ITEM_SP_COST_DOWN] += 2 * n_A_HEAD_DEF_PLUS * itemCount;
+        cost_reduction += 2 * n_A_HEAD_DEF_PLUS * itemCount;
     }
     if ((itemCount = EquipNumSearch(ITEM_ID_FURUBITA_DRIVERBAND_AKA)) > 0) {
-        n_tok[ITEM_SP_COST_DOWN] += 2 * n_A_HEAD_DEF_PLUS * itemCount;
+        cost_reduction += 2 * n_A_HEAD_DEF_PLUS * itemCount;
     }
 
     //----------------------------------------------------------------
@@ -20127,7 +20130,7 @@ function ApplySPCostDown() {
     //----------------------------------------------------------------
     if ((itemCount = EquipNumSearch(ITEM_ID_ILLUSION_STUFF_OF_OLDE)) > 0) {
         if (LearnedSkillSearch(SKILL_ID_DRAGONOLOGY) >= 5) {
-            n_tok[ITEM_SP_COST_DOWN] += 15 * itemCount;
+            cost_reduction += 15 * itemCount;
         }
     }
 
@@ -20136,7 +20139,7 @@ function ApplySPCostDown() {
     //----------------------------------------------------------------
     if ((itemCount = EquipNumSearch(ITEM_ID_YUSHANO_BROACH)) > 0) {
         if (IsSameJobClass(JOB_ID_MECHANIC) || IsSameJobClass(JOB_ID_GENETIC)) {
-            n_tok[ITEM_SP_COST_DOWN] += 10 * itemCount;
+            cost_reduction += 10 * itemCount;
         }
     }
 
@@ -20145,7 +20148,7 @@ function ApplySPCostDown() {
     //----------------------------------------------------------------
     if ((itemCount = EquipNumSearch(ITEM_ID_BLACK_FEATHER)) > 0) {
         if (LearnedSkillSearch(SKILL_ID_REPORDUCE) >= 10) {
-            n_tok[ITEM_SP_COST_DOWN] += 30 * itemCount;
+            cost_reduction += 30 * itemCount;
         }
     }
 
@@ -20153,7 +20156,7 @@ function ApplySPCostDown() {
     // 「ヘヴンリーオーダー」の、素ＩＮＴによる効果
     //----------------------------------------------------------------
     if ((itemCount = EquipNumSearch(ITEM_ID_HEAVENLY_ORDER)) > 0) {
-        n_tok[ITEM_SP_COST_DOWN] += 2 * Math.floor(SU_INT / 18) * itemCount;
+        cost_reduction += 2 * Math.floor(SU_INT / 18) * itemCount;
     }
 
     //----------------------------------------------------------------
@@ -20161,7 +20164,7 @@ function ApplySPCostDown() {
     //----------------------------------------------------------------
     if ((itemCount = EquipNumSearchMIG(ITEM_ID_IMPERIAL_GATLING_SUIT)) > 0) {
         if (LearnedSkillSearch(SKILL_ID_FIRE_RAIN) >= 5) {
-            n_tok[ITEM_SP_COST_DOWN] += 10 * itemCount;
+            cost_reduction += 10 * itemCount;
         }
     }
 
@@ -20170,7 +20173,7 @@ function ApplySPCostDown() {
     //----------------------------------------------------------------
     if ((itemCount = EquipNumSearchMIG(ITEM_ID_GRACE_GATLING_SUIT)) > 0) {
         if (LearnedSkillSearch(SKILL_ID_FIRE_RAIN) >= 5) {
-            n_tok[ITEM_SP_COST_DOWN] += 20 * itemCount;
+            cost_reduction += 20 * itemCount;
         }
     }
 
@@ -20179,58 +20182,51 @@ function ApplySPCostDown() {
     //----------------------------------------------------------------
     if ((itemCount = EquipNumSearchMIG(ITEM_ID_SUHAINO_YUBIWA)) > 0) {
         if (LearnedSkillSearch(SKILL_ID_ORATIO) >= 10) {
-            n_tok[ITEM_SP_COST_DOWN] += 10 * itemCount;
+            cost_reduction += 10 * itemCount;
         }
     }
 
     if (CardNumSearch(457) && GetHigherJobSeriesID(n_A_JOB) == 14) {
-        n_tok[ITEM_SP_COST_DOWN] += 20;
+        cost_reduction += 20;
     }
     if (CardNumSearch(458) && GetHigherJobSeriesID(n_A_JOB) == 15) {
-        n_tok[ITEM_SP_COST_DOWN] += 10;
+        cost_reduction += 10;
     }
 
-	// 過去の仕様の歌・踊りバフ
-//    if (n_A_PassSkill3[6]) {
-//        n_tok[ITEM_SP_COST_DOWN] += 20 + n_A_PassSkill3[6] * 3 + Math.floor(n_A_PassSkill3[36] / 2) + n_A_PassSkill3[26];
-//    }
     if (n_A_PassSkill3[39] == 2 && n_A_PassSkill3[41] <= 6) {
-        n_tok[ITEM_SP_COST_DOWN] -= 15 - 3 * (n_A_PassSkill3[41] - 2);
+        cost_reduction -= 15 - 3 * (n_A_PassSkill3[41] - 2);
     }
 
 	/**
 	 * 「ダンサー　サービスフォーユー」の、効果
 	 */
 	if ((bufLv = g_confDataNizi[CCharaConfNizi.CONF_ID_SERVICEFORYOU]) > 0) {
-	    n_tok[ITEM_SP_COST_DOWN] += 10 + 2 * bufLv;
+	    cost_reduction += 10 + 2 * bufLv;
 	}
 	/**
 	 * プレイヤー状態異常「メランコリー」の効果
 	 */
-	n_tok[ITEM_SP_COST_DOWN] -= 20 * g_confDataDebuff[CCharaConfDebuff.CONF_ID_GLOOMYDAY];
+	cost_reduction -= 20 * g_confDataDebuff[CCharaConfDebuff.CONF_ID_GLOOMYDAY];
 
 	/**
 	 * 「マナリチャージ」の効果
 	 */
-    n_tok[ITEM_SP_COST_DOWN] += 4 * Math.max(LearnedSkillSearch(SKILL_ID_MANA_RECHARGE), UsedSkillSearch(SKILL_ID_MANA_RECHARGE));
+    cost_reduction += 4 * Math.max(LearnedSkillSearch(SKILL_ID_MANA_RECHARGE), UsedSkillSearch(SKILL_ID_MANA_RECHARGE));
 
     //----------------------------------------------------------------
     // 「性能カスタマイズ」の、効果
     //----------------------------------------------------------------
-    confval = g_objCharaConfCustomStatus.GetConf(CCharaConfCustomStatus.CONF_ID_COST_DOWN);
+    const confval = g_objCharaConfCustomStatus.GetConf(CCharaConfCustomStatus.CONF_ID_COST_DOWN);
     if (confval != 0) {
-        n_tok[ITEM_SP_COST_DOWN] += confval;
+        cost_reduction += confval;
     }
 
-    costDownForDisp = n_tok[ITEM_SP_COST_DOWN];
-
-    if (n_tok[ITEM_SP_COST_DOWN] > 100) {
-        n_tok[ITEM_SP_COST_DOWN] = 100;
-    }
-    n_tok[ITEM_SP_COST_DOWN] = 100 - n_tok[ITEM_SP_COST_DOWN];
+    costDownForDisp = cost_reduction;
+    cost_reduction = Math.min(100, cost_reduction);
+    cost_reduction = 100 - cost_reduction;
 
     if (UsedSkillSearch(SKILL_ID_RECOGNIZED_SPELL) > 0) {
-        n_tok[ITEM_SP_COST_DOWN] = n_tok[ITEM_SP_COST_DOWN] * -1;
+        cost_reduction = cost_reduction * -1;
     }
 
     // オフェルトリウム
@@ -20238,13 +20234,15 @@ function ApplySPCostDown() {
         // 特定の戦闘エリアでの補正
         switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
             case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
-                n_tok[ITEM_SP_COST_DOWN] = Math.floor(n_tok[ITEM_SP_COST_DOWN] * (100 + 20 * bufLv) / 10) / 10;
+                cost_reduction = Math.floor(cost_reduction * (100 + 20 * bufLv) / 10) / 10;
                 break;
             default:
-                n_tok[ITEM_SP_COST_DOWN] = Math.floor(n_tok[ITEM_SP_COST_DOWN] * (200 + 20 * bufLv) / 10) / 10;
+                cost_reduction = Math.floor(cost_reduction * (200 + 20 * bufLv) / 10) / 10;
                 break;
         }
     }
+
+    return cost_reduction;
 }
 
 /**
