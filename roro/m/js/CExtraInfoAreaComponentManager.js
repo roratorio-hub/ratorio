@@ -3027,7 +3027,7 @@ function CExtraInfoAreaComponentManager () {
 		loopDataArrayGeneral = [];
 
 		// 変動詠唱時間
-		value = Math.round(n_A_CAST_COMMON * 10000) / 100;
+		value = Math.round(g_VariableCastTimeRate * 10000) / 100;
 		spanClassName = funcSelectData(value, 100, "CSSCLS_EXTRA_INFO_DISP_TABLE_BLUE", "", "CSSCLS_EXTRA_INFO_DISP_TABLE_RED");
 		valueText = value + "%";
 		loopDataArrayGeneral.push(
@@ -3158,7 +3158,7 @@ function CExtraInfoAreaComponentManager () {
 
 		// 変動詠唱時間
 		value = Math.max(0, GetCastScalingOfSkillForCastTimeVary(n_A_ActiveSkill));
-		value = Math.round((n_A_CAST_COMMON * value / 100) * 10000) / 100;
+		value = Math.round((g_VariableCastTimeRate * value / 100) * 10000) / 100;
 		spanClassName = funcSelectData(value, 100, "CSSCLS_EXTRA_INFO_DISP_TABLE_BLUE", "", "CSSCLS_EXTRA_INFO_DISP_TABLE_RED");
 		valueText = value + "%";
 		loopDataArrayActive.push(

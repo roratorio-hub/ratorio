@@ -61,7 +61,7 @@ fetch('../date.json')
 		  <li class="menu-header"><span>Information</span></li>
           <li class="menu-item"><span class="menu-title"><a href="../../information/index.html" class="local">このサイトについて</a></span></li>
           <li class="menu-item"><span class="menu-title"><a href="https://github.com/orgs/roratorio-hub/projects/1/views/1" target="_blank">今後の予定</a></span></li>
-          <li class="menu-item"><span class="menu-title"><a href="../../information/history/index.html" class="local">更新履歴</a></span></li>
+          <li class="menu-item"><span class="menu-title"><a href="https://github.com/roratorio-hub/ratorio/issues?q=label%3Arelease+" target="_blank">更新履歴</a></span></li>
           <!--<li class="menu-item"><span class="menu-title"><a href="../../information/alert/index.html" class="local">不具合のお知らせ</a></span></li>-->
           <!--<li class="menu-item"><span class="menu-title"><a href="../../information/wanted/index.html" class="local">[募集] スキル情報</a></span></li>-->
 
@@ -114,7 +114,7 @@ fetch('../date.json')
           if (save_updated < last_updated) {
             $.toast({
               heading: "前回アクセス以降に更新があります",
-              text: '<span class="update-toast"><a href="../../information/history/index.html" class="local">更新履歴</a> から詳細を確認してください</span>',
+              text: '<span class="update-toast"><a href="https://github.com/roratorio-hub/ratorio/issues?q=label%3Arelease+" target="_blank">更新履歴</a> から詳細を確認してください</span>',
               icon: "info",
               hideAfter: 5000,
               position: 'bottom-center',

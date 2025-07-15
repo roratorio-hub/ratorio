@@ -257,6 +257,14 @@ capabilities:
     code: 236
   - name: プレイヤー耐性
     code: 243
+  - name: P.ATK加算
+    code: 250
+  - name: S.MATK加算
+    code: 251
+  - name: H.PLUS加算
+    code: 252
+  - name: C.RATE加算
+    code: 253
   - name: RES加算
     code: 254
   - name: MRES加算
