@@ -51,6 +51,12 @@ let n_Nitou = false;
 /** 二刀流フラグ */
 let n_NitouCalc = false;
 
+/** ステータス・装備・スキルなどで短縮された変動詠唱時間の残余率 */
+let g_VariableCastTimeRate = 0;
+
+/** SP消費軽減率 */
+let costDownForDisp = 0;
+
 // TODO: 移行不完全（先行移植）
 /** 定義済みデータマネージャ */
 let g_constDataManager = new CMigConstDataManager();

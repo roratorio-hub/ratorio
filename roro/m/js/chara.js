@@ -2238,7 +2238,7 @@ function GetStatusModifyAtkPlus() {
 	//----------------------------------------------------------------
 	// 「沈黙の執行者」の、素ＡＧＩによる効果
 	//----------------------------------------------------------------
-	if ((itemCount = EquipNumSearch(ITEM_ID_CHIMONKUNO_SHIKKOSHA)) > 0) {
+	if ((itemCount = EquipNumSearch(ITEM_ID_CHINMOKUNO_SHIKKOSHA)) > 0) {
 		if (SU_AGI >= 120) val += 10 * itemCount;
 	}
 
