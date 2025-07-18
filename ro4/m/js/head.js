@@ -4152,12 +4152,12 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				w_DMG[i] += GetFixedAppendAtk(n_A_ActiveSkill, charaData, specData, mobData, w_DMG[i],i,-1);
 				w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
 			}
-			if(n_AS_MODE && attackMethodConfArray[1].GetSkillId() != 391){
-
-				// TODO: ダメージ表示方式変更対応
-				// for(var i=0;i<=2;i++) w_DMG[i] *= wHITsuu;
-
-				return w_DMG;
+			if (n_AS_MODE && attackMethodConfArray.length > 1) {
+				if(attackMethodConfArray[1].GetSkillId() != 391){
+					// TODO: ダメージ表示方式変更対応
+					// for(var i=0;i<=2;i++) w_DMG[i] *= wHITsuu;
+					return w_DMG;
+				}
 			}
 			for(var i=0;i<=2;i++){
 				Last_DMG_B[i] = w_DMG[i];
