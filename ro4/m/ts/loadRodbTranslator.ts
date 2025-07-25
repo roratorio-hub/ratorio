@@ -1,3 +1,4 @@
+declare const pako: any;
 declare function AutoCalc(): void;
 declare function CalcStatusPoint(flag: boolean): void;
 declare function changeJobSettings(job_id_num: number): void;
@@ -103,7 +104,7 @@ async function loadRodbTranslator(fragment: string): Promise<void> {
     }
 
     // 不具合の暫定対処
-    // https://github.com/ragnarok-online-japan/translator/issues/1 
+    // https://github.com/ragnarok-online-japan/translator/issues/1
     if (!jsonObject.status.ratorio_job_id_num && jsonObject.status.job_class_localization == "インクイジター") {
         jsonObject.status.ratorio_job_id_num = 74;
         jsonObject.status.job_class = "inquisitor";
@@ -224,3 +225,5 @@ interface RodbTranslatorJsonFormat {
     supports: object;
     additional_info: AdditionalInfo;
 }
+
+globalThis.loadRodbTranslator = loadRodbTranslator;
