@@ -1,12 +1,17 @@
 {
     "compilerOptions": {
-        "target": "ES2020",
+        "target": "es2020",
         "lib": [
             "ES2020",
             "dom"
         ],
-        "module": "commonjs", // モジュール形式
-        "strict": true // 厳格な型チェック
+        "module": "es2020", // モジュール形式
+        "moduleResolution": "bundler",
+        "strict": true, // 厳格な型チェック
+        "outDir": "./ro4/m/ts/", // 出力先ディレクトリ
+        "types": [],
+        "baseUrl": ".",
+        "paths": {}
     },
     "include": [
         "./ro4/m/ts/*.ts"
