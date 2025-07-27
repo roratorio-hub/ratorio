@@ -13,7 +13,7 @@ jobs:
   build:
     if: |
       github.repository == 'roratorio-hub/ratorio' &&
-      github.event.pull_request.merged == true    
+      github.event.pull_request.merged == true
     runs-on: ubuntu-latest
 
     steps:
@@ -62,6 +62,15 @@ jobs:
       # TypeScript のコンパイル
       - name: Compile TypeScript
         run: npx tsc
+
+      # zstd をインストール
+      - name: Install zstd
+        run: sudo apt-get install -y zstd
+
+      # JSONファイルをzstdで圧縮
+      - name: Compress JSON file with zstd
+        run: |
+          zstd -f ./ro4/m/json/*.json
 
       # `dist` ディレクトリの内容を GitHub Pages にデプロイ
       - name: Deploy to GitHub Pages
