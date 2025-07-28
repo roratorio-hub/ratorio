@@ -70,7 +70,7 @@ jobs:
       # JSONファイルをzstdで圧縮
       - name: Compress JSON file with zstd
         run: |
-          zstd -f ./ro4/m/json/*.json
+          find ./ro4/m/json/ -name '*.json' -type f -exec zstd -f {} +
 
       # `dist` ディレクトリの内容を GitHub Pages にデプロイ
       - name: Deploy to GitHub Pages
