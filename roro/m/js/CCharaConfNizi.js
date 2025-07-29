@@ -494,7 +494,7 @@ function CCharaConfNizi(confArray) {
 			CCharaConfNizi.CONF_ID_ZOKUSEIBA_LEVEL,
 			CCharaConfNizi.CONF_ID_SHIEN_MIND_BREAKER,
 			CCharaConfNizi.CONF_ID_FORTUNEKISS,
-//			CCharaConfNizi.CONF_ID_HUMMING,
+			CCharaConfNizi.CONF_ID_HUMMING,
 			CCharaConfNizi.CONF_ID_SERVICEFORYOU,
 //			CCharaConfNizi.CONF_ID_WHISTLE,
 //			CCharaConfNizi.CONF_ID_ASSASSINCROSS,
