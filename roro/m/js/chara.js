@@ -3525,8 +3525,8 @@ function GetStatusModifyAtkPlus() {
 	//----------------------------------------------------------------
 	// 「支援戦太鼓の響き」の、効果
 	//----------------------------------------------------------------
-	if ((bufLv = ExBuffNumSearch(EXBUF_ID_IKUSADAIKONO_HIBIKI)) > 0) {
-		val += 25 + 25 * bufLv;
+	if ((sklLv = g_confDataNizi[CCharaConfNizi.CONF_ID_DRUMBATTLEFIELD]) > 0) {
+		val += 25 + 25 * sklLv;
 	}
 
 	//----------------------------------------------------------------
@@ -9293,8 +9293,8 @@ function GetStatusModifyDefDivPlus() {
 	//----------------------------------------------------------------
 	// 「支援戦太鼓の響き」の、効果
 	//----------------------------------------------------------------
-	if ((bufLv = ExBuffNumSearch(EXBUF_ID_IKUSADAIKONO_HIBIKI)) > 0) {
-		val += 10 * bufLv;
+	if ((sklLv = g_confDataNizi[CCharaConfNizi.CONF_ID_DRUMBATTLEFIELD]) > 0) {
+		val += 25 + 25 * sklLv;
 	}
 
 	//----------------------------------------------------------------
@@ -9365,26 +9365,15 @@ function GetStatusModifyDefDivPlus() {
 //================================================================================================
 /**
 * 装備等によるステータスの追加補正値を取得する（Ｄｅｆ％）.
+* 公式サイトで「装備Def + ◯%」と表記される除算Defの増幅%を取得する
+* @returns {number} 増幅率
 */
 function GetStatusModifyDefDivUp() {
-
-	var val = 0;
-
-	var vartmp = 0, varary = [];
-	var itemCount = 0;
-	var itemCountRight = 0, itemCountLeft = 0;
-	var itemCountHeadTop = 0, itemCountHeadMid = 0, itemCountHeadUnder = 0;
-	var itemCountShield = 0, itemCountBody = 0, itemCountShoulder = 0, itemCountShoes = 0;
-	var itemCountAccessary1 = 0, itemCountAccessary2 = 0;
-	var cardCount = 0;
-	var cardCountRight = 0, cardCountLeft = 0;
-	var cardCountHeadTop = 0, cardCountHeadMid = 0, cardCountHeadUnder = 0;
-	var cardCountShield = 0, cardCountBody = 0, cardCountShoulder = 0, cardCountShoes = 0;
-	var cardCountAccessary1 = 0, cardCountAccessary2 = 0;
-	var sklLv = 0;
-	var bufLv = 0;
-	var bufferJobLv = 0, bufferSkillLv = 0;
-
+	let val = 0;
+	let sklLv = 0;
+	let bufLv = 0;
+	let bufferJobLv = 0;
+	let bufferSkillLv = 0;
 
 //------------------------------------------------------------------------------------------------
 // 武器効果　ここから
