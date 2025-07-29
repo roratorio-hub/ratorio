@@ -9372,7 +9372,7 @@ function GetStatusModifyDefDivUp() {
 	let val = 0;
 	let sklLv = 0;
 	let bufLv = 0;
-	let bufferJobLv = 0
+	let bufferJobLv = 0;
 	let bufferSkillLv = 0;
 
 //------------------------------------------------------------------------------------------------
