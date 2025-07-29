@@ -15091,6 +15091,11 @@ function getCompleteAvoidance() {
         }
     }
 
+	/** 二次職支援設定「口笛」の効果 */
+	if (g_confDataNizi[CCharaConfNizi.CONF_ID_WHISTLE] > 0) {
+		lucky += 15 + g_confDataNizi[CCharaConfNizi.CONF_ID_WHISTLE];
+	}
+
     //----------------------------------------------------------------
     // 「三次職支援　警戒」の効果
     //----------------------------------------------------------------
@@ -15129,9 +15134,6 @@ function getCompleteAvoidance() {
         lucky += confval;
     }
 
-    if (n_A_PassSkill3[0]) {
-        lucky += Math.floor(n_A_PassSkill3[0] / 2) + Math.floor(n_A_PassSkill3[30] / 5) + n_A_PassSkill3[28];
-    }
     lucky = Math.round(lucky * 10) / 10;
     if (lucky < 0) {
         lucky = 0;
@@ -16246,6 +16248,11 @@ function getFlee() {
     //----------------------------------------------------------------
     flee += 100 + n_A_BaseLV + n_A_AGI + Math.floor(n_A_LUK / 5);
 
+	/** 二次職支援設定「口笛」の効果 */
+	if ((sklLv = g_confDataNizi[CCharaConfNizi.CONF_ID_WHISTLE]) > 0) {
+	    flee += 50 + 5 * sklLv;
+	}
+
     //----------------------------------------------------------------
     // 「三次職支援　グルーミング/のどを鳴らす」の効果
     //----------------------------------------------------------------
@@ -16369,7 +16376,6 @@ function getFlee() {
     else if (3 <= n_A_PassSkill8[22] && n_A_PassSkill8[22] <= 4) flee += 10;
 
     if (0 < n_A_PassSkill7[45] && n_A_PassSkill7[45] <= 50) flee += n_A_PassSkill7[45];
-    if (n_A_PassSkill3[0]) flee += n_A_PassSkill3[0] * 3 + Math.floor(n_A_PassSkill3[30] / 2) + n_A_PassSkill3[20];
 
     //----------------------------------------------------------------
     // 「性能カスタマイズ」の、効果
