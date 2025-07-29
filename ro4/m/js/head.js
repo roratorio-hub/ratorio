@@ -17045,10 +17045,7 @@ function TYPE_SYUUREN(mobData, attackMethodConfArray, bArmsLeft){
 			w += 3 * Math.max(LearnedSkillSearch(SKILL_ID_TEKKEN), UsedSkillSearch(SKILL_ID_TEKKEN));
 			break;
 	}
-	// 「演奏/踊り系スキル」欄の「ニーベルングの指輪」によるATK加算
-	if(n_A_PassSkill3[10]) {
-		w += 75 + 25 * n_A_PassSkill3[10];
-	}
+
 
 	//----------------------------------------------------------------
 	// 「ブラックスミス　武器研究」の効果
