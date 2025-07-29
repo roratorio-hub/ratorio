@@ -6642,6 +6642,8 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 		}
 
 		switch (n_A_ActiveSkill) {
+			/* バード */
+			case SKILL_ID_FUKYOWAON:	// 不協和音
 			/* ミンストレル・ワンダラー */
 			case SKILL_ID_SHINDOZANKYO:	// 振動残響
 			/* アークビショップ */
