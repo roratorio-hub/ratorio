@@ -1804,6 +1804,11 @@ function StAllCalc(){
 		defDiv = 0;
 	}
 
+	/* プレイヤー状態異常設定「永遠の混沌」の効果 */
+	if (g_confDataDebuff[CCharaConfDebuff.CONF_ID_ETERNALCHAOS] > 0) {
+		defDiv = 0;
+	}
+
 	// 囲まれ補正
 	if (n_A_PassSkill8[12] >= 3) {
 		defDiv -= Math.floor(defDiv * (n_A_PassSkill8[12] - 2) * 5 / 100);
@@ -1892,6 +1897,11 @@ function StAllCalc(){
 
 	// 「ロードナイト　バーサーク」の、効果（ペナルティ）
 	if (UsedSkillSearch(SKILL_ID_BERSERK)){
+		defMinus = 0;
+	}
+
+	/* プレイヤー状態異常設定「永遠の混沌」の効果 */
+	if (g_confDataDebuff[CCharaConfDebuff.CONF_ID_ETERNALCHAOS] > 0) {
 		defMinus = 0;
 	}
 
