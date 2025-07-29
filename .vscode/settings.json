@@ -1,0 +1,22 @@
+{
+    "editor.formatOnSave": true, // 全体のフォーマットを有効化
+    "[javascript]": {
+        "editor.tabSize": 4,
+        "editor.insertSpaces": false,
+        "editor.formatOnSave": false, // 保存時のフォーマットを無効化
+        "files.insertFinalNewline": false, // ファイル末尾に改行を保持
+        "files.trimTrailingWhitespace": false // 行末の空白を削除しない
+    },
+    "[typescript]": {
+        "editor.tabSize": 4,
+        "editor.insertSpaces": true
+    },
+    "[json]": {
+        "editor.tabSize": 4,
+        "editor.insertSpaces": true
+    },
+    "[jsonc]": {
+        "editor.tabSize": 4,
+        "editor.insertSpaces": true
+    }
+}
