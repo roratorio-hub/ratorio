@@ -3525,8 +3525,8 @@ function GetStatusModifyAtkPlus() {
 	//----------------------------------------------------------------
 	// 「支援戦太鼓の響き」の、効果
 	//----------------------------------------------------------------
-	if ((bufLv = ExBuffNumSearch(EXBUF_ID_IKUSADAIKONO_HIBIKI)) > 0) {
-		val += 25 + 25 * bufLv;
+	if ((sklLv = g_confDataNizi[CCharaConfNizi.CONF_ID_DRUMBATTLEFIELD]) > 0) {
+		val += 25 + 25 * sklLv;
 	}
 
 	//----------------------------------------------------------------
@@ -9293,8 +9293,8 @@ function GetStatusModifyDefDivPlus() {
 	//----------------------------------------------------------------
 	// 「支援戦太鼓の響き」の、効果
 	//----------------------------------------------------------------
-	if ((bufLv = ExBuffNumSearch(EXBUF_ID_IKUSADAIKONO_HIBIKI)) > 0) {
-		val += 10 * bufLv;
+	if ((sklLv = g_confDataNizi[CCharaConfNizi.CONF_ID_DRUMBATTLEFIELD]) > 0) {
+		val += 25 + 25 * sklLv;
 	}
 
 	//----------------------------------------------------------------

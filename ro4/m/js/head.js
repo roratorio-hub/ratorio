@@ -17049,10 +17049,6 @@ function TYPE_SYUUREN(mobData, attackMethodConfArray, bArmsLeft){
 	if(n_A_PassSkill3[10]) {
 		w += 75 + 25 * n_A_PassSkill3[10];
 	}
-	// 「演奏/踊り系スキル」欄の「戦太鼓の響き」によるATK加算
-	if(n_A_PassSkill3[9]) {
-		w += (125 + 25 * n_A_PassSkill3[9]);
-	}
 
 	//----------------------------------------------------------------
 	// 「ブラックスミス　武器研究」の効果
