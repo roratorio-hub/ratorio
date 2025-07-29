@@ -4,7 +4,7 @@
         "editor.tabSize": 4,
         "editor.insertSpaces": false,
         "editor.formatOnSave": false, // 保存時のフォーマットを無効化
-        "files.insertFinalNewline": false, // ファイル末尾に改行を保持
+        "files.insertFinalNewline": false, // ファイル末尾に改行を追加しない
         "files.trimTrailingWhitespace": false // 行末の空白を削除しない
     },
     "[typescript]": {
