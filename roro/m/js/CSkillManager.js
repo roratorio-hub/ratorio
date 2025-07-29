@@ -6166,19 +6166,34 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
-			this.name = "不協和音";
+			this.name = "(×)不協和音";
 			this.kana = "フキヨウワオン";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE;
-			this.range = CSkillData.RANGE_SHORT;
-			this.element = CSkillData.ELEMENT_VOID;
-
-			this.CostFixed = function(skillLv, charaDataManger) {
-				return 15 + 3 * skillLv;
+			this.range = CSkillData.RANGE_MAGIC;
+			this.element = CSkillData.ELEMENT_FORCE_VANITY;
+			this.WeaponCondition = function(weapon) {
+				return ITEM_KIND_MUSICAL === weapon;
 			}
-
+			this.Power = function(skillLv, charaData) {       // スキル倍率
+				return 110 + 50 * skillLv;	// TODO: 本当はJob補正があるはず
+			}
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 32 + 3 * skillLv;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 1000;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 1000;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 2000;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 5000;
+			}
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;

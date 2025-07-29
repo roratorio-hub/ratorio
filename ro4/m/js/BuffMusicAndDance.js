@@ -42,7 +42,7 @@ function Click_Skill3SW(){
 			`;
 		myInnerHtml("SP_SIEN01", str, 0);
 		document.calcForm.A3_SKILLSW.checked = true;
-		const name_CS3SW_SKILL = ["口笛","夕陽のアサシンクロス","(廃止)ブラギの詩","(廃止)イドゥンの林檎","ハミング","(廃止)幸運のキス","(廃止)サービスフォーユー","(廃止)不死身ジークフリード","ニヨルドの宴","戦太鼓の響き","ニーベルングの指輪"];
+		const name_CS3SW_SKILL = ["(廃止)口笛","(廃止)夕陽のアサシンクロス","(廃止)ブラギの詩","(廃止)イドゥンの林檎","(廃止)ハミング","(廃止)幸運のキス","(廃止)サービスフォーユー","(廃止)不死身ジークフリード","ニヨルドの宴","(廃止)戦太鼓の響き","(廃止)ニーベルングの指輪"];
 		let html_CS3SW_SKILL = new Array();
 		for (let i = 0; i <= 10; i++) {
                 myInnerHtml(`EN${i}_1`, name_CS3SW_SKILL[i], 0);

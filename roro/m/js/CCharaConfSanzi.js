@@ -7,7 +7,7 @@ function CCharaConfSanzi(confArray) {
 	// この数を超える場合は、セーブデータの拡張が必要
 	this.confCountLimit = 100;
 	// 設定欄の横方向項目数
-	this.itemInRow = 2;
+	this.itemInRow = 3;
 	// 設定欄のラベル
 	this.confLabel = "三次職支援設定";
 
@@ -92,7 +92,7 @@ function CCharaConfSanzi(confArray) {
 		CCharaConfSanzi.CONF_ID_STRIKINGYO_FUYOSKILL_LEVEL_GOKEI = confId;
 		confData = [
 			confId,
-			CConfBase.ConfText("ストライキング用付与スキルレベル合計"),
+			CConfBase.ConfText("ストライキング用付与スキルLv合計"),
 			CConfBase.ConfControlType(CONTROL_TYPE_SELECTBOX_NUMBER),
 			CConfBase.ConfDefaultValue(0),
 			CConfBase.ConfMinValue(0),
@@ -422,11 +422,33 @@ function CCharaConfSanzi(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
+/*
+		CCharaConfSanzi.CONF_ID_RUSH_WINDMILL = confId;
+		confData = [
+			confId,
+			CConfBase.ConfText("風車に向かって突撃"),
+			CConfBase.ConfControlType(CONTROL_TYPE_SELECTBOX_NUMBER),
+			CConfBase.ConfDefaultValue(0),
+			CConfBase.ConfMinValue(0),
+			CConfBase.ConfMaxValue(5),
+			"エコーの歌・ハーモナイズとは共存できません",
+		];
+		this.confDataObj[confId] = confData;
+		confId++;
 
-
-
-
-
+		CCharaConfSanzi.CONF_ID_ECHOSONG = confId;
+		confData = [
+			confId,
+			CConfBase.ConfText("エコーの歌"),
+			CConfBase.ConfControlType(CONTROL_TYPE_SELECTBOX_NUMBER),
+			CConfBase.ConfDefaultValue(0),
+			CConfBase.ConfMinValue(0),
+			CConfBase.ConfMaxValue(5),
+			"風車に向かって突撃・ハーモナイズとは共存できません",
+		];
+		this.confDataObj[confId] = confData;
+		confId++;
+*/
 		CCharaConfSanzi.CONF_ID_DUMMY = confId;
 		confData = [
 			confId,
@@ -439,8 +461,6 @@ function CCharaConfSanzi(confArray) {
 		this.confDataObj[confId] = confData;
 		confId++;
 
-
-
 		//----------------------------------------------------------------
 		// データ定義数チェック
 		//----------------------------------------------------------------
@@ -448,8 +468,6 @@ function CCharaConfSanzi(confArray) {
 			alert("三次職支援設定　定義数超過");
 			return;
 		}
-
-
 
 		//----------------------------------------------------------------
 		// 支援設定変数配列を初期化
@@ -462,8 +480,6 @@ function CCharaConfSanzi(confArray) {
 			}
 		}
 
-
-
 		//----------------------------------------------------------------
 		// 表示順序に従い、三次職支援設定データ定義を再配列
 		//----------------------------------------------------------------
@@ -471,25 +487,22 @@ function CCharaConfSanzi(confArray) {
 			CCharaConfSanzi.CONF_ID_GIANT_GLOTH,
 			CCharaConfSanzi.CONF_ID_FIGHTING_SPIRIT,
 			CCharaConfSanzi.CONF_ID_PIETY,
-			CCharaConfSanzi.CONF_ID_DUMMY,
 			CCharaConfSanzi.CONF_ID_STRIKING,
 			CCharaConfSanzi.CONF_ID_STRIKINGYO_FUYOSKILL_LEVEL_GOKEI,
+			CCharaConfSanzi.CONF_ID_BUNSHIN,
 			CCharaConfSanzi.CONF_ID_EXPIATIO,
 			CCharaConfSanzi.CONF_ID_ODINNO_CHIKARA,
 			CCharaConfSanzi.CONF_ID_EPICLESIS,
 			CCharaConfSanzi.CONF_ID_SECRAMENT,
 			CCharaConfSanzi.CONF_ID_LAUDAAGNUS,
 			CCharaConfSanzi.CONF_ID_LAUDARAMUS,
-			CCharaConfSanzi.CONF_ID_UNLIMIT,
-			CCharaConfSanzi.CONF_ID_FRIGGNO_UTA,
-			CCharaConfSanzi.CONF_ID_BUNSHIN,
-			CCharaConfSanzi.CONF_ID_DUMMY,
 			CCharaConfSanzi.CONF_ID_TAKANO_TAMASHI,
 			CCharaConfSanzi.CONF_ID_YOSENO_TAMASHI,
 			CCharaConfSanzi.CONF_ID_KAGENO_TAMASHI,
 			CCharaConfSanzi.CONF_ID_GOLEMNO_TAMASHI,
 			CCharaConfSanzi.CONF_ID_PAIN_KILLER,
 			CCharaConfSanzi.CONF_ID_PAIN_KILLER_BASE_LEVEL,
+			CCharaConfSanzi.CONF_ID_UNLIMIT,
 			CCharaConfSanzi.CONF_ID_EBI_ZANMAI,
 			CCharaConfSanzi.CONF_ID_GROOMING,
 			CCharaConfSanzi.CONF_ID_EBI_PARTY,
@@ -497,7 +510,11 @@ function CCharaConfSanzi(confArray) {
 			CCharaConfSanzi.CONF_ID_CHATTERING,
 			CCharaConfSanzi.CONF_ID_ARCLOUSE_DASH,
 			CCharaConfSanzi.CONF_ID_KEIKAI,
-			CCharaConfSanzi.CONF_ID_DUMMY,
+			CCharaConfSanzi.CONF_ID_FRIGGNO_UTA,
+			/*
+			CCharaConfSanzi.CONF_ID_RUSH_WINDMILL,
+			CCharaConfSanzi.CONF_ID_ECHOSONG,
+			*/
 		];
 		this.confDataObj = displayOrder.map(id => this.confDataObj[id]);
 	}

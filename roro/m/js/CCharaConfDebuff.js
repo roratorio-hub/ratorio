@@ -252,6 +252,18 @@ class CCharaConfDebuff extends CConfBase {
 		this.confDataObj[confId] = confData;
 		confId++;
 
+		CCharaConfDebuff.CONF_ID_ETERNALCHAOS = confId;
+		confData = [
+			confId,
+			CConfBase.ConfText("永遠の混沌"),	// Def 0
+			CConfBase.ConfControlType(CONTROL_TYPE_CHECKBOX),
+			CConfBase.ConfDefaultValue(0),
+			CConfBase.ConfMinValue(0),
+			CConfBase.ConfMaxValue(1),
+			"戦太鼓の響き・深淵の中に・ニヨルドの宴・ニーベルングの指輪・不死身のジークフリード・ロキの叫びとは共存できません"
+		];
+		this.confDataObj[confId] = confData;
+		confId++;
 
 		//----------------------------------------------------------------
 		// 設定変数配列を初期化
@@ -283,6 +295,7 @@ class CCharaConfDebuff extends CConfBase {
 			CCharaConfDebuff.CONF_ID_LETHARGY,
 			CCharaConfDebuff.CONF_ID_UNLUCKY,
 			CCharaConfDebuff.CONF_ID_ALL_STATUS_DOWN,
+			CCharaConfDebuff.CONF_ID_ETERNALCHAOS,
 		];
 		this.confDataObj = displayOrder.map(id => this.confDataObj[id]);
 	}
