@@ -4807,14 +4807,7 @@ function StAllCalc(){
 					}
 				}
 			}
-			if (n_A_PassSkill3[1]) {
-				// 夕陽のアサシンクロス が 設定されているとき
-				if(![ITEM_KIND_BOW, ITEM_KIND_HANDGUN, ITEM_KIND_RIFLE, ITEM_KIND_SHOTGUN, ITEM_KIND_GATLINGGUN, ITEM_KIND_GRENADEGUN].inicluds(n_A_WeaponType)){
-					// 弓 または 銃 を装備していなければ
-					ASPDch = n_A_PassSkill3[1] + Math.floor(n_A_PassSkill3[31] /2) + n_A_PassSkill3[21];
-					ASPDplusMAX = Math.max(ASPDplusMAX, ASPDch);
-				}
-			}
+
 			tmp_aspd += ASPDplusMAX;
 			// 「ガンスリンガー」スキル「シングルアクション」のASPD増加効果
 			tmp_aspd += Math.round(Math.max(LearnedSkillSearch(SKILL_ID_SINGLE_ACTION), UsedSkillSearch(SKILL_ID_SINGLE_ACTION)) / 2);
@@ -21921,6 +21914,11 @@ function GetAdditionalAspdPercent() {
     //----------------------------------------------------------------
     tmp_percent -= 10 * g_confDataSanzi[CCharaConfSanzi.CONF_ID_PAIN_KILLER];
 	
+	/** 二次職支援設定「夕陽のアサシンクロス」の効果 */
+	if ((skilLv = g_confDataNizi[CCharaConfNizi.CONF_ID_ASSASSINCROSS]) > 0) {
+		tmp_percent += 10 + 2 * skilLv;
+	}
+
 	/**
 	 * プレイヤー状態異常「私を忘れないで…」の効果
 	 */
