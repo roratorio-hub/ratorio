@@ -12,320 +12,191 @@
 	<link rel="stylesheet" href="../../ro4/m/calcx.css" type="text/css">
 	<link rel="stylesheet" href="../common.css" type="text/css">
 
-    <!-- アイテム多すぎて選ぶの大変だから検索可能ドロップダウンリストに置き換え -->
-    <link href="../../jquery/select2/select2.min.css" rel="stylesheet">
-    <link href="../../jquery/select2/select2.custom.css" rel="stylesheet">
-    <!-- セーブ履歴機能 -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.2/jquery.modal.min.css" rel="stylesheet">
-    <!-- 更新履歴通知トースト -->
-    <link href="https://cdn.jsdelivr.net/npm/jquery-toast-plugin@1.3.2/dist/jquery.toast.min.css" rel="stylesheet">
-    <!-- 重い処理用のローディングインジケーター -->
-    <link href="../../jquery/loadingindicator/spinner.css" rel="stylesheet" />
+	<!-- サイト共通系ファイル -->
+	<script type="text/javascript" src="../common/js/util.js"></script>
+	<script type="text/javascript" src="../../ro4/m/js/CModalWindow.js"></script>
 
-    <script type="text/javascript">
-        const script_files = [
-            // 定義データ読み込み(WIP 開発中)
-            {src: "../../ro4/m/ts/loadJobMap.js", type: "module" },
-            {src: "../../ro4/m/ts/loadItemMap.js", type: "module" },
-            {src: "../../ro4/m/ts/loadSkillMap.js", type: "module" },
+	<!-- デバッグ定義 -->
+	<!-- 非デバッグ環境でも読み込む -->
+	<script type="text/javascript" src="../../ro4/DEBUG.js"></script>
 
-            // サイト共通系ファイル
-            {src: "../../roro/common/js/util.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/CModalWindow.js", type: "text/javascript" },
+	<!-- 共通系 javascript ファイル -->
+	<script type="text/javascript" src="js/CInstanceManager.js"></script>
+	<script type="text/javascript" src="js/CGlobalConstManager.js"></script>
+	<script type="text/javascript" src="js/CNameKana.js"></script>
+	<script type="text/javascript" src="js/CCustomSelectBase.js"></script>
+	<script type="text/javascript" src="js/CCustomSelectMapBase.js"></script>
+	<script type="text/javascript" src="js/CCustomSelectMapCategory.js"></script>
+	<script type="text/javascript" src="js/CCustomSelectMapMap.js"></script>
+	<script type="text/javascript" src="js/CCustomSelectMapMonster.js"></script>
+	<script type="text/javascript" src="js/common.js"></script>
+	<script type="text/javascript" src="js/etc.js"></script>
 
-            // デバッグ定義
-            // 非デバッグ環境でも読み込む
-            {src: "../../ro4/DEBUG.js", type: "text/javascript" },
+	<!-- データ定義系 javascript ファイル -->
+	<script type="text/javascript" src="js/alias.h.js"></script>
+	<script type="text/javascript" src="js/alias.dat.js"></script>
+	<script type="text/javascript" src="js/chara.dat.js"></script>
+	<script type="text/javascript" src="js/skill.h.js"></script>
+	<script type="text/javascript" src="js/skill.dat.js"></script>
+	<script type="text/javascript" src="js/usableskill.h.js"></script>
+	<script type="text/javascript" src="js/usableskill.dat.js"></script>
+	<script type="text/javascript" src="js/autospell.h.js"></script>
+	<script type="text/javascript" src="js/autospell.dat.js"></script>
+	<script type="text/javascript" src="js/CSkillManager.js"></script>
+	<script type="text/javascript" src="js/monster.h.js"></script>
+	<script type="text/javascript" src="js/monster.dat.js"></script>
+	<script type="text/javascript" src="js/monstergroup.dat.js"></script>
+	<script type="text/javascript" src="js/monstermap.h.js"></script>
+	<script type="text/javascript" src="js/monstermap.dat.js"></script>
+	<script type="text/javascript" src="js/item.h.js"></script>
+	<script type="text/javascript" src="js/item.dat.js"></script>
+	<script type="text/javascript" src="js/arrow.h.js"></script>
+	<script type="text/javascript" src="js/arrow.dat.js"></script>
+	<script type="text/javascript" src="js/card.h.js"></script>
+	<script type="text/javascript" src="js/card.dat.js"></script>
+	<script type="text/javascript" src="js/costume.h.js"></script>
+	<script type="text/javascript" src="js/costume.dat.js"></script>
+	<script type="text/javascript" src="js/pet.h.js"></script>
+	<script type="text/javascript" src="js/pet.dat.js"></script>
+	<script type="text/javascript" src="js/itemset.h.js"></script>
+	<script type="text/javascript" src="js/itemset.dat.js"></script>
+	<script type="text/javascript" src="js/rndopt.h.js"></script>
+	<script type="text/javascript" src="js/rndopt.dat.js"></script>
+	<script type="text/javascript" src="js/rndoptlist.h.js"></script>
+	<script type="text/javascript" src="js/rndoptlist.dat.js"></script>
+	<script type="text/javascript" src="js/rndopttype.h.js"></script>
+	<script type="text/javascript" src="js/rndopttype.dat.js"></script>
+	<script type="text/javascript" src="js/timeitem.h.js"></script>
+	<script type="text/javascript" src="js/timeitem.dat.js"></script>
+	<script type="text/javascript" src="js/itempack.h.js"></script>
+	<script type="text/javascript" src="js/itempack.dat.js"></script>
 
-            // 共通系 javascript ファイル
-            {src: "js/CInstanceManager.js", type: "text/javascript" },
-            {src: "js/CGlobalConstManager.js", type: "text/javascript" },
-            {src: "js/CNameKana.js", type: "text/javascript" },
-            {src: "js/CCustomSelectBase.js", type: "text/javascript" },
-            {src: "js/CCustomSelectMapBase.js", type: "text/javascript" },
-            {src: "js/CCustomSelectMapCategory.js", type: "text/javascript" },
-            {src: "js/CCustomSelectMapMap.js", type: "text/javascript" },
-            {src: "js/CCustomSelectMapMonster.js", type: "text/javascript" },
-            {src: "js/common.js", type: "text/javascript" },
-            {src: "js/etc.js", type: "text/javascript" },
+	<!-- [MIG] データ定義系 javascript ファイル -->
+	<script type="text/javascript" src="../../ro4/m/js/data/mig.job.h.js"></script>
+	<script type="text/javascript" src="js/data/mig.itemsp.h.js"></script>
+	<script type="text/javascript" src="js/data/CMigJobData.js"></script>
+	<script type="text/javascript" src="js/data/CMigStateData.js"></script>
+	<script type="text/javascript" src="js/data/CMigEquipableSpTag.js"></script>
+	<script type="text/javascript" src="js/data/CMigEquipableStaticData.js"></script>
+	<script type="text/javascript" src="js/data/CMigEquipableSpData.js"></script>
+	<script type="text/javascript" src="js/data/CMigEquipableData.js"></script>
+	<script type="text/javascript" src="js/data/CMigConstDataManagerSubBase.js"></script>
+	<script type="text/javascript" src="js/data/CMigConstDataManagerSubJob.js"></script>
+	<script type="text/javascript" src="js/data/CMigConstDataManagerSubState.js"></script>
+	<script type="text/javascript" src="js/data/CMigConstDataManagerSubBuff.js"></script>
+	<script type="text/javascript" src="js/data/CMigConstDataManagerSubMonster.js"></script>
+	<script type="text/javascript" src="js/data/CMigConstDataManagerSubArrow.js"></script>
+	<script type="text/javascript" src="js/data/CMigConstDataManagerSubItem.js"></script>
+	<script type="text/javascript" src="js/data/CMigConstDataManagerSubCard.js"></script>
+	<script type="text/javascript" src="js/data/CMigConstDataManagerSubEnchList.js"></script>
+	<script type="text/javascript" src="js/data/CMigConstDataManagerSubRndOpt.js"></script>
+	<script type="text/javascript" src="js/data/CMigConstDataManager.js"></script>
 
-            // データ定義系 javascript ファイル
-            {src: "js/alias.h.js", type: "text/javascript" },
-            {src: "js/alias.dat.js", type: "text/javascript" },
-            {src: "js/chara.dat.js", type: "text/javascript" },
-            {src: "js/skill.h.js", type: "text/javascript" },
-            {src: "js/skill.dat.js", type: "text/javascript" },
-            {src: "js/usableskill.h.js", type: "text/javascript" },
-            {src: "js/usableskill.dat.js", type: "text/javascript" },
-            {src: "js/autospell.h.js", type: "text/javascript" },
-            {src: "js/autospell.dat.js", type: "text/javascript" },
-            {src: "js/CSkillManager.js", type: "text/javascript" },
-            {src: "js/monster.h.js", type: "text/javascript" },
-            {src: "js/monster.dat.js", type: "text/javascript" },
-            {src: "js/monstergroup.dat.js", type: "text/javascript" },
-            {src: "js/monstermap.h.js", type: "text/javascript" },
-            {src: "js/monstermap.dat.js", type: "text/javascript" },
-            {src: "js/item.h.js", type: "text/javascript" },
-            {src: "js/item.dat.js", type: "text/javascript" },
-            {src: "js/arrow.h.js", type: "text/javascript" },
-            {src: "js/arrow.dat.js", type: "text/javascript" },
-            {src: "js/card.h.js", type: "text/javascript" },
-            {src: "js/card.dat.js", type: "text/javascript" },
-            {src: "js/costume.h.js", type: "text/javascript" },
-            {src: "js/costume.dat.js", type: "text/javascript" },
-            {src: "js/pet.h.js", type: "text/javascript" },
-            {src: "js/pet.dat.js", type: "text/javascript" },
-            {src: "js/itemset.h.js", type: "text/javascript" },
-            {src: "js/itemset.dat.js", type: "text/javascript" },
-            {src: "js/rndopt.h.js", type: "text/javascript" },
-            {src: "js/rndopt.dat.js", type: "text/javascript" },
-            {src: "js/rndoptlist.h.js", type: "text/javascript" },
-            {src: "js/rndoptlist.dat.js", type: "text/javascript" },
-            {src: "js/rndopttype.h.js", type: "text/javascript" },
-            {src: "js/rndopttype.dat.js", type: "text/javascript" },
-            {src: "js/timeitem.h.js", type: "text/javascript" },
-            {src: "js/timeitem.dat.js", type: "text/javascript" },
-            {src: "js/itempack.h.js", type: "text/javascript" },
-            {src: "js/itempack.dat.js", type: "text/javascript" },
+	<!-- グローバル変数定義 javascript ファイル -->
+	<script type="text/javascript" src="../../ro4/m/js/global.js"></script>
 
-            // [MIG] データ定義系 javascript ファイル
-            {src: "../../ro4/m/js/data/mig.job.h.js", type: "text/javascript" },
-            {src: "js/data/mig.itemsp.h.js", type: "text/javascript" },
-            {src: "js/data/CMigJobData.js", type: "text/javascript" },
-            {src: "js/data/CMigStateData.js", type: "text/javascript" },
-            {src: "js/data/CMigEquipableSpTag.js", type: "text/javascript" },
-            {src: "js/data/CMigEquipableStaticData.js", type: "text/javascript" },
-            {src: "js/data/CMigEquipableSpData.js", type: "text/javascript" },
-            {src: "js/data/CMigEquipableData.js", type: "text/javascript" },
-            {src: "js/data/CMigConstDataManagerSubBase.js", type: "text/javascript" },
-            {src: "js/data/CMigConstDataManagerSubJob.js", type: "text/javascript" },
-            {src: "js/data/CMigConstDataManagerSubState.js", type: "text/javascript" },
-            {src: "js/data/CMigConstDataManagerSubBuff.js", type: "text/javascript" },
-            {src: "js/data/CMigConstDataManagerSubMonster.js", type: "text/javascript" },
-            {src: "js/data/CMigConstDataManagerSubArrow.js", type: "text/javascript" },
-            {src: "js/data/CMigConstDataManagerSubItem.js", type: "text/javascript" },
-            {src: "js/data/CMigConstDataManagerSubCard.js", type: "text/javascript" },
-            {src: "js/data/CMigConstDataManagerSubEnchList.js", type: "text/javascript" },
-            {src: "js/data/CMigConstDataManagerSubRndOpt.js", type: "text/javascript" },
-            {src: "js/data/CMigConstDataManager.js", type: "text/javascript" },
+	<!-- [MIG] dat ファイル -->
+	<script type="text/javascript" src="../../ro4/m/js/data/mig.job.dat.js"></script>
+	<script type="text/javascript" src="js/data/mig.enchlist.dat.js"></script>
 
-            // グローバル変数定義 javascript ファイル
-            {src: "../../ro4/m/js/global.js", type: "text/javascript" },
+	<!-- 機能処理系 javascript ファイル -->
+	<script type="text/javascript" src="../../ro4/m/js/calcautospell.js"></script>
+	<script type="text/javascript" src="js/rndench.js"></script>
+	<script type="text/javascript" src="js/equip.js"></script>
+	<script type="text/javascript" src="js/learnedskill.js"></script>
+	<script type="text/javascript" src="js/slotpager.js"></script>
+	<script type="text/javascript" src="js/spmode.js"></script>
+	<script type="text/javascript" src="js/quickcontrol.js"></script>
 
-            // [MIG] dat ファイル
-            {src: "../../ro4/m/js/data/mig.job.dat.js", type: "text/javascript" },
-            {src: "js/data/mig.enchlist.dat.js", type: "text/javascript" },
+	<!-- データ管理系 javascript ファイル -->
+	<script type="text/javascript" src="js/chara.js"></script>
+	<script type="text/javascript" src="js/mob.js"></script>
+	<script type="text/javascript" src="js/CAttackMethodConf.js"></script>
 
-            // 機能処理系 javascript ファイル
-            {src: "../../ro4/m/js/calcautospell.js", type: "text/javascript" },
-            {src: "js/rndench.js", type: "text/javascript" },
-            {src: "js/equip.js", type: "text/javascript" },
-            {src: "js/learnedskill.js", type: "text/javascript" },
-            {src: "js/slotpager.js", type: "text/javascript" },
-            {src: "js/spmode.js", type: "text/javascript" },
-            {src: "js/quickcontrol.js", type: "text/javascript" },
+	<!-- キャラクター設定操作系 javascript ファイル -->
+	<script type="text/javascript" src="js/CConfBase.js"></script>
+	<script type="text/javascript" src="js/CConfBase2.js"></script>
+	<script type="text/javascript" src="js/CCharaConfIchizi.js"></script>
+	<script type="text/javascript" src="js/CCharaConfNizi.js"></script>
+	<script type="text/javascript" src="js/CCharaConfSanzi.js"></script>
+	<script type="text/javascript" src="js/CCharaConfYozi.js"></script>
+	<script type="text/javascript" src="js/CCharaConfDebuff.js"></script>
+	<script type="text/javascript" src="js/CCharaConfCustomStatus.js"></script>
+	<script type="text/javascript" src="js/CCharaConfCustomAtk.js"></script>
+	<script type="text/javascript" src="js/CCharaConfCustomDef.js"></script>
+	<script type="text/javascript" src="js/CCharaConfCustomSkill.js"></script>
+	<script type="text/javascript" src="js/CCharaConfCustomSpecStatus.js"></script>
 
-            // データ管理系 javascript ファイル
-            {src: "js/chara.js", type: "text/javascript" },
-            {src: "js/mob.js", type: "text/javascript" },
-            {src: "js/CAttackMethodConf.js", type: "text/javascript" },
+	<!-- モンスター設定操作系 javascript ファイル -->
+	<script type="text/javascript" src="js/mobconfdebuf.js"></script>
+	<script type="text/javascript" src="js/mobconfbuf.js"></script>
+	<script type="text/javascript" src="js/mobconfplayer.js"></script>
+<!--	<script type="text/javascript" src="js/mobconfinput.js"></script>	-->
+	<script type="text/javascript" src="js/CMobConfInput.js"></script>
 
-            // キャラクター設定操作系 javascript ファイル
-            {src: "js/CConfBase.js", type: "text/javascript" },
-            {src: "js/CConfBase2.js", type: "text/javascript" },
-            {src: "js/CCharaConfIchizi.js", type: "text/javascript" },
-            {src: "js/CCharaConfNizi.js", type: "text/javascript" },
-            {src: "js/CCharaConfSanzi.js", type: "text/javascript" },
-            {src: "js/CCharaConfYozi.js", type: "text/javascript" },
-            {src: "js/CCharaConfDebuff.js", type: "text/javascript" },
-            {src: "js/CCharaConfCustomStatus.js", type: "text/javascript" },
-            {src: "js/CCharaConfCustomAtk.js", type: "text/javascript" },
-            {src: "js/CCharaConfCustomDef.js", type: "text/javascript" },
-            {src: "js/CCharaConfCustomSkill.js", type: "text/javascript" },
-            {src: "js/CCharaConfCustomSpecStatus.js", type: "text/javascript" },
+	<!-- 機能処理系 HTML 処理 javascript ファイル -->
+	<script type="text/javascript" src="js/CItemInfoManager.js"></script>
+	<script type="text/javascript" src="../../ro4/m/js/hmjob.js"></script>
+<!--
+	<script type="text/javascript" src="js/hmautospell.js"></script>
+-->
+	<script type="text/javascript" src="js/hmcard.js"></script>
+	<script type="text/javascript" src="js/hmcostume.js"></script>
+<!--
+	<script type="text/javascript" src="js/hmequip.js"></script>
+-->
+	<script type="text/javascript" src="../../ro4/m/js/CMonsterMapAreaComponentManager.js"></script>
+	<script type="text/javascript" src="js/hmrndopt.js"></script>
+<!--
+	<script type="text/javascript" src="js/hmlearnedskill.js"></script>
+-->
+	<script type="text/javascript" src="js/hmchara.js"></script>
+	<script type="text/javascript" src="js/hmmob.js"></script>
 
-            // モンスター設定操作系 javascript ファイル
-            {src: "js/mobconfdebuf.js", type: "text/javascript" },
-            {src: "js/mobconfbuf.js", type: "text/javascript" },
-            {src: "js/mobconfplayer.js", type: "text/javascript" },
-            {src: "js/CMobConfInput.js", type: "text/javascript" },
+	<!-- その他、機能系 javascript ファイル -->
+	<script type="text/javascript" src="js/castsim.js"></script>
+<!--
+	<script type="text/javascript" src="js/browsermigration.js"></script>
+-->
+	<script type="text/javascript" src="../../ro4/m/js/CEnchSearch.js"></script>
 
-            // 機能処理系 HTML 処理 javascript ファイル
-            {src: "js/CItemInfoManager.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/hmjob.js", type: "text/javascript" },
-            {src: "js/hmcard.js", type: "text/javascript" },
-            {src: "js/hmcostume.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/CMonsterMapAreaComponentManager.js", type: "text/javascript" },
-            {src: "js/hmrndopt.js", type: "text/javascript" },
-            {src: "js/hmchara.js", type: "text/javascript" },
-            {src: "js/hmmob.js", type: "text/javascript" },
-
-            // その他、機能系 javascript ファイル
-            {src: "js/castsim.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/CEnchSearch.js", type: "text/javascript" },
-
-            // jQuery 関連の javascript ファイル
-            {src: "../../jquery/jquery.min.js", type: "text/javascript" },
-            {src: "../../jquery/select2/select2.min.js", type: "text/javascript" },
-            {src: "../../jquery/select2/select2.custom.js", type: "text/javascript" },
-            {src: "https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js", integrity: "sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==", crossorigin: "anonymous", referrerpolicy: "no-referrer", type: "text/javascript" },
-            {src: "../../ro4/m/js/saveimage.js", type: "text/javascript" },
-            {src: "https://cdn.jsdelivr.net/npm/chart.js", type: "text/javascript" },
-            {src: "https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.2/jquery.modal.min.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/calchistory.js", type: "text/javascript" },
-            {src: "https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js", integrity: "sha512-3j3VU6WC5rPQB4Ld1jnLV7Kd5xr+cq9avvhwqzbH/taCRNURoeEpoPBK9pDyeukwSxwRPJ8fDgvYXd6SkaZ2TA==", crossorigin: "anonymous", referrerpolicy: "no-referrer", type: "text/javascript" },
-            {src: "../../ro4/m/js/cookiemanager.js", type: "text/javascript" },
-            {src: "https://cdn.jsdelivr.net/npm/jquery-toast-plugin@1.3.2/dist/jquery.toast.min.js", type: "text/javascript" },
-            {src: "../../jquery/loadingindicator/spinner.js", type: "text/javascript" },
-
-            // 機能処理系 javascript ファイル
-            {src: "js/CTimeItemAreaComponentManager.js", type: "text/javascript" },
-            {src: "js/CBattleQuickControlAreaComponentManager.js", type: "text/javascript" },
-            {src: "js/CExtraInfoAreaComponentManager.js", type: "text/javascript" },
-            {src: "js/CFloatingInfoAreaComponentManager.js", type: "text/javascript" },
-            {src: "js/CCalcDataTextCreator.js", type: "text/javascript" },
-
-            // [MIG] 操作処理系 javascript ファイル
-            {src: "../../ro4/m/js/CShadowEquipController.js", type: "text/javascript" },
-
-            // メイン処理系 javascript ファイル
-            {src: "../../ro4/m/js/CBattleCalcInfo.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/CBattleCalcResult.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/CBattleCalcResultAll.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/head.js", type: "text/javascript" },
-
-            // セーブデータ管理系 javascript ファイル
-            {src: "js/CSaveDataMappingManager.js", type: "text/javascript" },
-            {src: "js/CSaveDataConverter.js", type: "text/javascript" },
-            {src: "js/saveload.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/savedata/SKeyMap.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/savedata/CSingletonMapper.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/savedata/CMultiValueMapper.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/savedata/CSaveDataConst.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/savedata/CSaveDataUnitTypeManager.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/savedata/CSaveDataPropInfo.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/savedata/CSaveDataUnitBase.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/savedata/CSaveDataUnitVersion.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/savedata/CSaveDataUnitChara.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/savedata/CSaveDataUnitEquipable.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/savedata/CSaveDataUnitEquipRegions.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/savedata/CSaveDataUnitLearnedSkills.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/savedata/CSaveDataUnitCharaBuff.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/savedata/CSaveDataUnitSkillBuffSelf.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/savedata/CSaveDataUnitSkillBuff1st.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/savedata/CSaveDataUnitSkillBuff2nd.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/savedata/CSaveDataUnitSkillBuff3rd.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/savedata/CSaveDataUnitSkillBuff4th.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/savedata/CSaveDataUnitSkillBuffMusic.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/savedata/CSaveDataUnitSkillBuffGuild.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/savedata/CSaveDataUnitItemBuff.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/savedata/CSaveDataUnitTimeBuff.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/savedata/CSaveDataUnitAutoSpells.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/savedata/CSaveDataUnitCharaDebuff.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/savedata/CSaveDataUnitCharaConfBasic.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/savedata/CSaveDataUnitCharaConfSpecialize.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/savedata/CSaveDataUnitCharaConfSkill.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/savedata/CSaveDataUnitMob.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/savedata/CSaveDataUnitMobConfPlayer.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/savedata/CSaveDataUnitMobConfPlayer2.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/savedata/CSaveDataUnitMobConfInput.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/savedata/CSaveDataUnitMobBuff.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/savedata/CSaveDataUnitMobDebuff.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/savedata/CSaveDataUnitAttackConf.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/savedata/CSaveDataUnitSettings.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/savedata/CSaveDataUnitCharaConfSpecBasic.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/savedata/CSaveDataUnitEquipArrow.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/savedata/CSaveDataUnit.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/savedata/CSaveDataUnitParse.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/CSaveDataManager.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/CSaveController.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/saveload.js", type: "text/javascript" },
-
-            // バフ設定系 javascript ファイル
-            {src: "../../ro4/m/js/BuffMusicAndDance.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/BuffJobSpecificSelf.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/BuffGuildAndGospel.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/BuffItemAndFood.js", type: "text/javascript" },
-            {src: "../../ro4/m/js/BuffOtherCategory.js", type: "text/javascript" },
-
-            // 機能処理系 javascript ファイル （この辺の順序整理したい）
-            {src: "../../ro4/m/js/CAttackMethodAreaComponentManager.js", type: "text/javascript" },
-
-            // メイン処理系 javascript ファイル
-            {src: "js/foot.js", type: "text/javascript" },
-
-            // 左メニュー用 javascript ファイル
-            {src: "../frame.js", type: "text/javascript" },
-
-            // RODB Translator
-            {src: "https://cdnjs.cloudflare.com/ajax/libs/pako/2.1.0/pako_inflate.min.js",
-             integrity:"sha512-mlnC6JeOvg9V4vBpWMxGKscsCdScB6yvGVCeFF2plnQMRmwH69s9F8SHPbC0oirqfePmRBhqx2s3Bx7WIvHfWg==",
-             crossorigin:"anonymous",
-             referrerpolicy:"no-referrer",
-             type:"text/javascript" },
-            {src: "../../ro4/m/ts/loadRodbTranslator.js", type: "module" },
-
-            // デバッグ系、データ移行系 javascript ファイル
-            // 非デバッグ環境では読み込まない。リリース時にはコメントアウトすること
-            //{src: "js/debug/CDebugUtil.js", type: "text/javascript" },
-            //{src: "js/debug/CReverseCoder.js", type: "text/javascript" },
-            //{src: "js/debug/CDatCoder.js", type: "text/javascript" },
-            //{src: "js/debug/CFileOutputManager.js", type: "text/javascript" },
-            //{src: "js/debug/CDebugAreaComponentManager.js", type: "text/javascript" },
-
-            //{src: "js/migration/debug/parse/CMigParserAreaComponentManager.js", type: "text/javascript" },
-            //{src: "js/migration/debug/test/CMigTestAreaComponentManager.js", type: "text/javascript" },
-            //{src: "js/migration/mig.test.js", type: "text/javascript" },
-        ];
-
-        async function loadScriptsSequentially(script_files) {
-            for (const file of script_files) {
-                await new Promise((resolve, reject) => {
-                    const script = document.createElement("script");
-                    script.src = file.src;
-                    script.type = file.type;
-                    if (file.integrity) {
-                        script.integrity = file.integrity;
-                        script.crossOrigin = file.crossorigin; // CORSを有効にするための設定
-                        if (file.referrerpolicy) {
-                            script.referrerPolicy = file.referrerpolicy; // リファラーポリシーの設定
-                        }
-                    }
-
-                    script.onload = () => {
-                        console.log(`✅ Loaded: ${file.src}`);
-                        resolve(); // スクリプトの読み込みが成功したら解決
-                    };
-
-                    script.onerror = () => {
-                        console.error(`❌ Failed: ${file.src}`);
-                        reject(new Error(`Failed to load script: ${file.src}`)); // エラー時は拒否
-                    };
-
-                    document.head.appendChild(script);
-                });
-            }
-            console.log("📦 Done loading all scripts.");
-
-        }
-
-        // 実行
-        loadScriptsSequentially(script_files).catch(error => {
-            console.error("Error loading scripts:", error);
-        });
-
-        window.addEventListener("load", function () {
-            console.log("Window loaded");
-            // エンチャントサーチのロード
-            new enchSearch();
-
-            // 検索可能ドロップダウンリストのロード
-            LoadSelect2();
-
+	<!-- **************************************************
+	ここからjQuery
+	*************************************************** -->
+	<script src="../../jquery/jquery.min.js"></script>
+	<!-- アイテム多すぎて選ぶの大変だから検索可能ドロップダウンリストに置き換え -->
+	<link href="../../jquery/select2/select2.min.css" rel="stylesheet" />
+	<link href="../../jquery/select2/select2.custom.css" rel="stylesheet" />
+	<script src="../../jquery/select2/select2.min.js"></script>
+	<script src="../../jquery/select2/select2.custom.js"></script>
+	<!-- セーブデータの画像出力機能 -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script type="text/javascript" src="../../ro4/m/js/saveimage.js"></script>
+	<!-- セーブ履歴機能 -->
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.2/jquery.modal.min.css" />
+	<script type="text/javascript" src="../../ro4/m/js/calchistory.js"></script>
+	<!-- 汎用Cookie操作機能 -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js" integrity="sha512-3j3VU6WC5rPQB4Ld1jnLV7Kd5xr+cq9avvhwqzbH/taCRNURoeEpoPBK9pDyeukwSxwRPJ8fDgvYXd6SkaZ2TA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script type="text/javascript" src="../../ro4/m/js/cookiemanager.js"></script>
+	<!-- 更新履歴通知トースト -->
+	<script src="https://cdn.jsdelivr.net/npm/jquery-toast-plugin@1.3.2/dist/jquery.toast.min.js"></script>
+	<link href="https://cdn.jsdelivr.net/npm/jquery-toast-plugin@1.3.2/dist/jquery.toast.min.css" rel="stylesheet">
+	<!-- 重い処理用のローディングインジケーター -->
+	<link href="../../jquery/loadingindicator/spinner.css" rel="stylesheet" />
+	<script src="../../jquery/loadingindicator/spinner.js"></script>
+	<!-- サイト読み込み直後に1回だけ実行される関数 -->
+	<script>
+		$(document).ready(function() {
+			// エンチャントサーチのロード
+			new enchSearch();
+			// 検索可能ドロップダウンリストのロード
+			LoadSelect2();
             // RODB Translatorからのデータロード
             loadRodbTranslator(window.location.hash);
-        });
-    </script>
+		});
+	</script>
 </head>
 
 <body>
@@ -2012,4 +1883,100 @@
 	</div>
 </body>
 
+<!-- 機能処理系 javascript ファイル -->
+<script type="text/javascript" src="js/CTimeItemAreaComponentManager.js"></script>
+<script type="text/javascript" src="js/CBattleQuickControlAreaComponentManager.js"></script>
+<script type="text/javascript" src="js/CExtraInfoAreaComponentManager.js"></script>
+<script type="text/javascript" src="js/CFloatingInfoAreaComponentManager.js"></script>
+<script type="text/javascript" src="js/CCalcDataTextCreator.js"></script>
+
+<!-- [MIG] 操作処理系 javascript ファイル -->
+<script type="text/javascript" src="../../ro4/m/js/CShadowEquipController.js"></script>
+
+<!-- メイン処理系 javascript ファイル -->
+<script type="text/javascript" src="../../ro4/m/js/CBattleCalcInfo.js"></script>
+<script type="text/javascript" src="../../ro4/m/js/CBattleCalcResult.js"></script>
+<script type="text/javascript" src="../../ro4/m/js/CBattleCalcResultAll.js"></script>
+<script type="text/javascript" src="../../ro4/m/js/head.js"></script>
+
+<!-- セーブデータ管理系 javascript ファイル -->
+<script type="text/javascript" src="js/CSaveDataMappingManager.js"></script>
+<script type="text/javascript" src="js/CSaveDataConverter.js"></script>
+<script type="text/javascript" src="js/saveload.js"></script>
+<script type="text/javascript" src="../../ro4/m/js/savedata/SKeyMap.js"></script>
+<script type="text/javascript" src="../../ro4/m/js/savedata/CSingletonMapper.js"></script>
+<script type="text/javascript" src="../../ro4/m/js/savedata/CMultiValueMapper.js"></script>
+<script type="text/javascript" src="../../ro4/m/js/savedata/CSaveDataConst.js"></script>
+<script type="text/javascript" src="../../ro4/m/js/savedata/CSaveDataUnitTypeManager.js"></script>
+<script type="text/javascript" src="../../ro4/m/js/savedata/CSaveDataPropInfo.js"></script>
+<script type="text/javascript" src="../../ro4/m/js/savedata/CSaveDataUnitBase.js"></script>
+<script type="text/javascript" src="../../ro4/m/js/savedata/CSaveDataUnitVersion.js"></script>
+<script type="text/javascript" src="../../ro4/m/js/savedata/CSaveDataUnitChara.js"></script>
+<script type="text/javascript" src="../../ro4/m/js/savedata/CSaveDataUnitEquipable.js"></script>
+<script type="text/javascript" src="../../ro4/m/js/savedata/CSaveDataUnitEquipRegions.js"></script>
+<script type="text/javascript" src="../../ro4/m/js/savedata/CSaveDataUnitLearnedSkills.js"></script>
+<script type="text/javascript" src="../../ro4/m/js/savedata/CSaveDataUnitCharaBuff.js"></script>
+<script type="text/javascript" src="../../ro4/m/js/savedata/CSaveDataUnitSkillBuffSelf.js"></script>
+<script type="text/javascript" src="../../ro4/m/js/savedata/CSaveDataUnitSkillBuff1st.js"></script>
+<script type="text/javascript" src="../../ro4/m/js/savedata/CSaveDataUnitSkillBuff2nd.js"></script>
+<script type="text/javascript" src="../../ro4/m/js/savedata/CSaveDataUnitSkillBuff3rd.js"></script>
+<script type="text/javascript" src="../../ro4/m/js/savedata/CSaveDataUnitSkillBuff4th.js"></script>
+<script type="text/javascript" src="../../ro4/m/js/savedata/CSaveDataUnitSkillBuffMusic.js"></script>
+<script type="text/javascript" src="../../ro4/m/js/savedata/CSaveDataUnitSkillBuffGuild.js"></script>
+<script type="text/javascript" src="../../ro4/m/js/savedata/CSaveDataUnitItemBuff.js"></script>
+<script type="text/javascript" src="../../ro4/m/js/savedata/CSaveDataUnitTimeBuff.js"></script>
+<script type="text/javascript" src="../../ro4/m/js/savedata/CSaveDataUnitAutoSpells.js"></script>
+<script type="text/javascript" src="../../ro4/m/js/savedata/CSaveDataUnitCharaDebuff.js"></script>
+<script type="text/javascript" src="../../ro4/m/js/savedata/CSaveDataUnitCharaConfBasic.js"></script>
+<script type="text/javascript" src="../../ro4/m/js/savedata/CSaveDataUnitCharaConfSpecialize.js"></script>
+<script type="text/javascript" src="../../ro4/m/js/savedata/CSaveDataUnitCharaConfSkill.js"></script>
+<script type="text/javascript" src="../../ro4/m/js/savedata/CSaveDataUnitMob.js"></script>
+<script type="text/javascript" src="../../ro4/m/js/savedata/CSaveDataUnitMobConfPlayer.js"></script>
+<script type="text/javascript" src="../../ro4/m/js/savedata/CSaveDataUnitMobConfPlayer2.js"></script>
+<script type="text/javascript" src="../../ro4/m/js/savedata/CSaveDataUnitMobConfInput.js"></script>
+<script type="text/javascript" src="../../ro4/m/js/savedata/CSaveDataUnitMobBuff.js"></script>
+<script type="text/javascript" src="../../ro4/m/js/savedata/CSaveDataUnitMobDebuff.js"></script>
+<script type="text/javascript" src="../../ro4/m/js/savedata/CSaveDataUnitAttackConf.js"></script>
+<script type="text/javascript" src="../../ro4/m/js/savedata/CSaveDataUnitSettings.js"></script>
+<script type="text/javascript" src="../../ro4/m/js/savedata/CSaveDataUnitCharaConfSpecBasic.js"></script>
+<script type="text/javascript" src="../../ro4/m/js/savedata/CSaveDataUnitEquipArrow.js"></script>
+<script type="text/javascript" src="../../ro4/m/js/savedata/CSaveDataUnit.js"></script>
+<script type="text/javascript" src="../../ro4/m/js/savedata/CSaveDataUnitParse.js"></script>
+<script type="text/javascript" src="../../ro4/m/js/CSaveDataManager.js"></script>
+<script type="text/javascript" src="../../ro4/m/js/CSaveController.js"></script>
+<script type="text/javascript" src="../../ro4/m/js/saveload.js"></script>
+
+<!-- バフ設定系 javascript ファイル -->
+<script type="text/javascript" src="../../ro4/m/js/BuffMusicAndDance.js"></script>
+<script type="text/javascript" src="../../ro4/m/js/BuffJobSpecificSelf.js"></script>
+<script type="text/javascript" src="../../ro4/m/js/BuffGuildAndGospel.js"></script>
+<script type="text/javascript" src="../../ro4/m/js/BuffItemAndFood.js"></script>
+<script type="text/javascript" src="../../ro4/m/js/BuffOtherCategory.js"></script>
+
+<!-- 機能処理系 javascript ファイル （この辺の順序整理したい）-->
+<script type="text/javascript" src="../../ro4/m/js/CAttackMethodAreaComponentManager.js"></script>
+
+<!-- メイン処理系 javascript ファイル -->
+<script type="text/javascript" src="js/foot.js"></script>
+
+<!-- 左メニュー用 javascript ファイル -->
+<script type="text/javascript" src="../frame.js"></script>
+
+<!-- load RODB Translator -->
+<script type="text/javascript" src="../../ro4/m/ts/loadRodbTranslator.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/pako@2/dist/pako.min.js" integrity="sha256-7eJpOkpqUSa501ZpBis1jsq2rnubhqHPMC/rRahRSQc=" crossorigin="anonymous"></script>
+
+<!-- デバッグ系、データ移行系 javascript ファイル -->
+<!-- 非デバッグ環境では読み込まない。リリース時にはコメントアウトすること -->
+<!--
+<script type="text/javascript" src="js/debug/CDebugUtil.js"></script>
+<script type="text/javascript" src="js/debug/CReverseCoder.js"></script>
+<script type="text/javascript" src="js/debug/CDatCoder.js"></script>
+<script type="text/javascript" src="js/debug/CFileOutputManager.js"></script>
+<script type="text/javascript" src="js/debug/CDebugAreaComponentManager.js"></script>
+
+<script type="text/javascript" src="js/migration/debug/parse/CMigParserAreaComponentManager.js"></script>
+<script type="text/javascript" src="js/migration/debug/test/CMigTestAreaComponentManager.js"></script>
+<script type="text/javascript" src="js/migration/mig.test.js"></script>
+-->
 </html>
