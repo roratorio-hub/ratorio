@@ -6642,6 +6642,8 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 		}
 
 		switch (n_A_ActiveSkill) {
+			/* バード */
+			case SKILL_ID_FUKYOWAON:	// 不協和音
 			/* ミンストレル・ワンダラー */
 			case SKILL_ID_SHINDOZANKYO:	// 振動残響
 			/* アークビショップ */
@@ -17043,14 +17045,7 @@ function TYPE_SYUUREN(mobData, attackMethodConfArray, bArmsLeft){
 			w += 3 * Math.max(LearnedSkillSearch(SKILL_ID_TEKKEN), UsedSkillSearch(SKILL_ID_TEKKEN));
 			break;
 	}
-	// 「演奏/踊り系スキル」欄の「ニーベルングの指輪」によるATK加算
-	if(n_A_PassSkill3[10]) {
-		w += 75 + 25 * n_A_PassSkill3[10];
-	}
-	// 「演奏/踊り系スキル」欄の「戦太鼓の響き」によるATK加算
-	if(n_A_PassSkill3[9]) {
-		w += (125 + 25 * n_A_PassSkill3[9]);
-	}
+
 
 	//----------------------------------------------------------------
 	// 「ブラックスミス　武器研究」の効果
