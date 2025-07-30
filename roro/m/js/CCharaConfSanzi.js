@@ -45,8 +45,6 @@ function CCharaConfSanzi(confArray) {
 		this.confDataObj[confId] = confData;
 		confId++;
 
-
-
 		CCharaConfSanzi.CONF_ID_FIGHTING_SPIRIT = confId;
 		confData = [
 			confId,
@@ -58,8 +56,6 @@ function CCharaConfSanzi(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
-
 
 		CCharaConfSanzi.CONF_ID_PIETY = confId;
 		confData = [
@@ -73,8 +69,6 @@ function CCharaConfSanzi(confArray) {
 		this.confDataObj[confId] = confData;
 		confId++;
 
-
-
 		CCharaConfSanzi.CONF_ID_STRIKING = confId;
 		confData = [
 			confId,
@@ -86,8 +80,6 @@ function CCharaConfSanzi(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
-
 
 		CCharaConfSanzi.CONF_ID_STRIKINGYO_FUYOSKILL_LEVEL_GOKEI = confId;
 		confData = [
@@ -101,8 +93,6 @@ function CCharaConfSanzi(confArray) {
 		this.confDataObj[confId] = confData;
 		confId++;
 
-
-
 		CCharaConfSanzi.CONF_ID_EXPIATIO = confId;
 		confData = [
 			confId,
@@ -114,8 +104,6 @@ function CCharaConfSanzi(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
-
 
 		CCharaConfSanzi.CONF_ID_ODINNO_CHIKARA = confId;
 		confData = [
@@ -129,8 +117,6 @@ function CCharaConfSanzi(confArray) {
 		this.confDataObj[confId] = confData;
 		confId++;
 
-
-
 		CCharaConfSanzi.CONF_ID_EPICLESIS = confId;
 		confData = [
 			confId,
@@ -142,8 +128,6 @@ function CCharaConfSanzi(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
-
 
 		CCharaConfSanzi.CONF_ID_SECRAMENT = confId;
 		confData = [
@@ -157,8 +141,6 @@ function CCharaConfSanzi(confArray) {
 		this.confDataObj[confId] = confData;
 		confId++;
 
-
-
 		CCharaConfSanzi.CONF_ID_LAUDAAGNUS = confId;
 		confData = [
 			confId,
@@ -170,8 +152,6 @@ function CCharaConfSanzi(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
-
 
 		CCharaConfSanzi.CONF_ID_LAUDARAMUS = confId;
 		confData = [
@@ -185,8 +165,6 @@ function CCharaConfSanzi(confArray) {
 		this.confDataObj[confId] = confData;
 		confId++;
 
-
-
 		CCharaConfSanzi.CONF_ID_ZYUTSUSHIKI_TENKAI = confId;
 		confData = [
 			confId,
@@ -198,8 +176,6 @@ function CCharaConfSanzi(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
-
 
 		CCharaConfSanzi.CONF_ID_BUNSHIN = confId;
 		confData = [
@@ -213,8 +189,6 @@ function CCharaConfSanzi(confArray) {
 		this.confDataObj[confId] = confData;
 		confId++;
 
-
-
 		CCharaConfSanzi.CONF_ID_PAIN_KILLER = confId;
 		confData = [
 			confId,
@@ -226,8 +200,6 @@ function CCharaConfSanzi(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
-
 
 		CCharaConfSanzi.CONF_ID_PAIN_KILLER_BASE_LEVEL = confId;
 		confData = [
@@ -241,8 +213,6 @@ function CCharaConfSanzi(confArray) {
 		this.confDataObj[confId] = confData;
 		confId++;
 
-
-
 		CCharaConfSanzi.CONF_ID_EBI_ZANMAI = confId;
 		confData = [
 			confId,
@@ -254,8 +224,6 @@ function CCharaConfSanzi(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
-
 
 		CCharaConfSanzi.CONF_ID_GROOMING = confId;
 		confData = [
@@ -269,8 +237,6 @@ function CCharaConfSanzi(confArray) {
 		this.confDataObj[confId] = confData;
 		confId++;
 
-
-
 		CCharaConfSanzi.CONF_ID_EBI_PARTY = confId;
 		confData = [
 			confId,
@@ -282,8 +248,6 @@ function CCharaConfSanzi(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
-
 
 		CCharaConfSanzi.CONF_ID_EBI_PARTY_TAMASHI_LEVEL = confId;
 		confData = [
@@ -297,8 +261,6 @@ function CCharaConfSanzi(confArray) {
 		this.confDataObj[confId] = confData;
 		confId++;
 
-
-
 		CCharaConfSanzi.CONF_ID_CHATTERING = confId;
 		confData = [
 			confId,
@@ -310,8 +272,6 @@ function CCharaConfSanzi(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
-
 
 		CCharaConfSanzi.CONF_ID_ARCLOUSE_DASH = confId;
 		confData = [
@@ -325,8 +285,6 @@ function CCharaConfSanzi(confArray) {
 		this.confDataObj[confId] = confData;
 		confId++;
 
-
-
 		CCharaConfSanzi.CONF_ID_KEIKAI = confId;
 		confData = [
 			confId,
@@ -338,8 +296,6 @@ function CCharaConfSanzi(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
-
 
 		CCharaConfSanzi.CONF_ID_UNLIMIT = confId;
 		confData = [
@@ -353,8 +309,6 @@ function CCharaConfSanzi(confArray) {
 		this.confDataObj[confId] = confData;
 		confId++;
 
-
-
 		CCharaConfSanzi.CONF_ID_TAKANO_TAMASHI = confId;
 		confData = [
 			confId,
@@ -366,8 +320,6 @@ function CCharaConfSanzi(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
-
 
 		CCharaConfSanzi.CONF_ID_YOSENO_TAMASHI = confId;
 		confData = [
@@ -381,8 +333,6 @@ function CCharaConfSanzi(confArray) {
 		this.confDataObj[confId] = confData;
 		confId++;
 
-
-
 		CCharaConfSanzi.CONF_ID_KAGENO_TAMASHI = confId;
 		confData = [
 			confId,
@@ -394,8 +344,6 @@ function CCharaConfSanzi(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
-
 
 		CCharaConfSanzi.CONF_ID_GOLEMNO_TAMASHI = confId;
 		confData = [
@@ -409,8 +357,6 @@ function CCharaConfSanzi(confArray) {
 		this.confDataObj[confId] = confData;
 		confId++;
 
-
-
 		CCharaConfSanzi.CONF_ID_FRIGGNO_UTA = confId;
 		confData = [
 			confId,
@@ -422,6 +368,20 @@ function CCharaConfSanzi(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
+
+		CCharaConfSanzi.CONF_ID_SYMPHONY_OF_LOVER = confId;
+		confData = [
+			confId,
+			CConfBase.ConfText("恋人たちの為のシンフォニー"),
+			CConfBase.ConfControlType(CONTROL_TYPE_SELECTBOX_NUMBER),
+			CConfBase.ConfDefaultValue(0),
+			CConfBase.ConfMinValue(0),
+			CConfBase.ConfMaxValue(5),
+			"スイングダンス・月明かりのセレナーデとは共存できません"
+		];
+		this.confDataObj[confId] = confData;
+		confId++;
+
 /*
 		CCharaConfSanzi.CONF_ID_RUSH_WINDMILL = confId;
 		confData = [
@@ -511,6 +471,7 @@ function CCharaConfSanzi(confArray) {
 			CCharaConfSanzi.CONF_ID_ARCLOUSE_DASH,
 			CCharaConfSanzi.CONF_ID_KEIKAI,
 			CCharaConfSanzi.CONF_ID_FRIGGNO_UTA,
+			CCharaConfSanzi.CONF_ID_SYMPHONY_OF_LOVER,
 			/*
 			CCharaConfSanzi.CONF_ID_RUSH_WINDMILL,
 			CCharaConfSanzi.CONF_ID_ECHOSONG,

@@ -20245,7 +20245,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)振動残響";
+			this.name = "振動残響";
 			this.kana = "シントウサンキヨウ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
@@ -20256,9 +20256,18 @@ function CSkillManager() {
 			this.WeaponCondition = function(weapon) {
 				return [ITEM_KIND_WHIP, ITEM_KIND_MUSICAL].includes(weapon);
 			}
-			this.Power = function(skillLv, charaDataManger) {
+			this.dispHitCount = function(skillLv, charaData) {
+				return 10;
+			}
+			this.Power = function(skillLv, charaDataManger, option) {
 				let ratio = 0;
-				ratio = 1000 + 200 * skillLv;
+				if (option.GetOptionValue(0) === 1) {
+					// サウンドブレンド状態 ON
+					ratio = 1000 + 400 * skillLv;
+				} else {
+					// サウンドブレンド状態 OFF
+					ratio = 1000 + 200 * skillLv;
+				}
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {
@@ -20960,14 +20969,14 @@ function CSkillManager() {
 		skillId++;
 
 		// ----------------------------------------------------------------
-		// (×)グレートエコー
+		// グレートエコー
 		// ----------------------------------------------------------------
 		SKILL_ID_GREAT_ECHO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)グレートエコー";
+			this.name = "グレートエコー";
 			this.kana = "クレエトエコオ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -20983,6 +20992,7 @@ function CSkillManager() {
 					// パートナーがいる場合
 					ratio *= 2;
 				}
+				ratio += 50 * Math.max(LearnedSkillSearch(SKILL_ID_LESSON), UsedSkillSearch(SKILL_ID_LESSON));
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {

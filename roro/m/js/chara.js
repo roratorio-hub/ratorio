@@ -10277,27 +10277,15 @@ function GetStatusModifyMdefDivPlus(bIgnoreBuff) {
 //================================================================================================
 //================================================================================================
 /**
+* 公式サイトで「装備Mdef + ◯%」と表記される
 * 装備等によるステータスの追加補正値を取得する（Ｍｄｅｆ％）.
 */
 function GetStatusModifyMdefDivUp(bIgnoreBuff) {
-
-	var val = 0;
-
-	var vartmp = 0, varary = [];
-	var itemCount = 0;
-	var itemCountRight = 0, itemCountLeft = 0;
-	var itemCountHeadTop = 0, itemCountHeadMid = 0, itemCountHeadUnder = 0;
-	var itemCountShield = 0, itemCountBody = 0, itemCountShoulder = 0, itemCountShoes = 0;
-	var itemCountAccessary1 = 0, itemCountAccessary2 = 0;
-	var cardCount = 0;
-	var cardCountRight = 0, cardCountLeft = 0;
-	var cardCountHeadTop = 0, cardCountHeadMid = 0, cardCountHeadUnder = 0;
-	var cardCountShield = 0, cardCountBody = 0, cardCountShoulder = 0, cardCountShoes = 0;
-	var cardCountAccessary1 = 0, cardCountAccessary2 = 0;
-	var sklLv = 0;
-	var bufLv = 0;
-	var bufferJobLv = 0, bufferSkillLv = 0;
-
+	let val = 0;
+	let itemCount = 0;
+	let sklLv = 0;
+	let bufLv = 0;
+	let bufferJobLv = 0, bufferSkillLv = 0;
 
 //------------------------------------------------------------------------------------------------
 // 武器効果　ここから
@@ -10365,14 +10353,9 @@ function GetStatusModifyMdefDivUp(bIgnoreBuff) {
 			}
 		}
 
-		//----------------------------------------------------------------
-		// 「支援恋人たちのためのシンフォニー」の、効果
-		//----------------------------------------------------------------
-		if ((bufLv = ExBuffNumSearch(EXBUF_ID_KOIBITOTACHINOTAMENO_SYMPHONY)) > 0) {
-			bufferJobLv = ExBuffNumSearch(EXBUF_ID_KOIBITOTACHINOTAMENO_SYMPHONY_BUFFER_JOBLV);
-			bufferSkillLv = ExBuffNumSearch(EXBUF_ID_KOIBITOTACHINOTAMENO_SYMPHONY_BUFFER_SKILLLV);
-
-			val += (12 * bufLv) + (2 * bufferSkillLv) + Math.floor(bufferJobLv / 2);
+		/** 三次職支援設定「恋人たちのためのシンフォニー」の効果 */
+		if ((bufLv = g_confDataSanzi[CCharaConfSanzi.CONF_ID_SYMPHONY_OF_LOVER]) > 0) {
+			val += 12 * bufLv;
 		}
 
 	}
