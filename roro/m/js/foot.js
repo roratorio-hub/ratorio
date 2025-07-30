@@ -17579,6 +17579,12 @@ function ApplyAdditionalResistElement() {
         n_tok[ITEM_SP_RESIST_ELM_WIND] += 3 * sklLv;
     }
 
+	/** 三次職支援設定「恋人たちのためのシンフォニー」の効果 */
+	if ((sklLv = g_confDataSanzi[CCharaConfSanzi.CONF_ID_SYMPHONY_OF_LOVER]) > 0) {
+		n_tok[ITEM_SP_RESIST_ELM_HOLY] += 3 * sklLv;
+		n_tok[ITEM_SP_RESIST_ELM_PSYCO] += 3 * sklLv;
+	}
+
     if (n_A_PassSkill7[11]) { // A7_Skill11 : レジストコールドポーション
         n_tok[ITEM_SP_RESIST_ELM_WATER] += 20;
         n_tok[ITEM_SP_RESIST_ELM_WIND] -= 15;
