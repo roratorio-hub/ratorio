@@ -20245,7 +20245,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)振動残響";
+			this.name = "振動残響";
 			this.kana = "シントウサンキヨウ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
@@ -20969,14 +20969,14 @@ function CSkillManager() {
 		skillId++;
 
 		// ----------------------------------------------------------------
-		// (×)グレートエコー
+		// グレートエコー
 		// ----------------------------------------------------------------
 		SKILL_ID_GREAT_ECHO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)グレートエコー";
+			this.name = "グレートエコー";
 			this.kana = "クレエトエコオ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -20992,6 +20992,7 @@ function CSkillManager() {
 					// パートナーがいる場合
 					ratio *= 2;
 				}
+				ratio += 50 * Math.max(LearnedSkillSearch(SKILL_ID_LESSON), UsedSkillSearch(SKILL_ID_LESSON));
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {
