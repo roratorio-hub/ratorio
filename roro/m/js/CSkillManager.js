@@ -20256,9 +20256,18 @@ function CSkillManager() {
 			this.WeaponCondition = function(weapon) {
 				return [ITEM_KIND_WHIP, ITEM_KIND_MUSICAL].includes(weapon);
 			}
-			this.Power = function(skillLv, charaDataManger) {
+			this.dispHitCount = function(skillLv, charaData) {
+				return 10;
+			}
+			this.Power = function(skillLv, charaDataManger, option) {
 				let ratio = 0;
-				ratio = 1000 + 200 * skillLv;
+				if (option.GetOptionValue(0) === 1) {
+					// サウンドブレンド状態 ON
+					ratio = 1000 + 400 * skillLv;
+				} else {
+					// サウンドブレンド状態 OFF
+					ratio = 1000 + 200 * skillLv;
+				}
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {

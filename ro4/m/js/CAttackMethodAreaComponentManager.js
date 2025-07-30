@@ -379,13 +379,6 @@ CAttackMethodData.GetSkillIdFromFullId = function (fullId) {
 	return skillId;
 };
 
-
-
-
-
-
-
-
 /**
  * 攻撃手段エリアコンポーネントマネージャクラス.
  */
@@ -401,8 +394,6 @@ CAttackMethodAreaComponentManager.labelObjectArray = [];
 
 // 生成された選択部品の配列
 CAttackMethodAreaComponentManager.selectObjectArray = [];
-
-
 
 /**
  * 画面部品を再構築する.
@@ -492,8 +483,6 @@ CAttackMethodAreaComponentManager.RebuildControls = function () {
 	CAttackMethodAreaComponentManager.RebuildSettingArea();
 	CAttackMethodAreaComponentManager.RebuildAttackMethodSelect();
 };
-
-
 
 /**
  * 選択部品をリフレッシュする.
@@ -661,8 +650,6 @@ CAttackMethodAreaComponentManager.RefreshControls = function () {
 		objActive.focus();
 	}
 };
-
-
 
 /**
  * 攻撃手段選択部品を再構築する.
@@ -1036,8 +1023,6 @@ CAttackMethodAreaComponentManager.RebuildSettingArea = function () {
 	HtmlSetObjectValueById("OBJID_SELECT_CASTSIM_INTERVAL", castSimInterval);
 };
 
-
-
 /**
  * 設定変更イベントハンドラ（攻撃手段）.
  */
@@ -1071,8 +1056,6 @@ CAttackMethodAreaComponentManager.OnChangeAttackMethod = function () {
 	// 自動設定が有効の場合のみ、再計算する
 	AutoCalc("CAttackMethodAreaComponentManager.OnChangeAttackMethod");
 };
-
-
 
 /**
  * 設定変更イベントハンドラ（攻撃手段オプション）.
@@ -1133,8 +1116,6 @@ CAttackMethodAreaComponentManager.OnChangeAttackMethodOption = function (objectI
 	AutoCalc("CAttackMethodAreaComponentManager.OnChangeAttackMethodOption");
 };
 
-
-
 /**
  * 設定変更イベントハンドラ（自動計算設定）.
  */
@@ -1194,8 +1175,6 @@ CAttackMethodAreaComponentManager.OnChangeCastSimInterval = function () {
 	// 再計算する
 	calc();
 };
-
-
 
 /**
  * 攻撃手段設定を変更する.
@@ -1285,8 +1264,6 @@ CAttackMethodAreaComponentManager.SetAttackMethodConf = function (attackMethodCo
 	return false;
 };
 
-
-
 /**
  * 現在の選択値の配列を取得する.
  * @return 現在の選択値の配列
@@ -1306,8 +1283,6 @@ CAttackMethodAreaComponentManager.GetSelectedValueArray = function () {
 
 	return selectedValueArray;
 };
-
-
 
 /**
  * 攻撃手段設定を取得する.
@@ -1339,8 +1314,6 @@ CAttackMethodAreaComponentManager.GetAttackMethodConf = function () {
 	return attackMethodConf;
 };
 
-
-
 /**
  * 指定のフルIDを持つ攻撃手段データを取得する.
  * @param fullId フルID
@@ -1363,8 +1336,6 @@ CAttackMethodAreaComponentManager.GetAttackMethodData = function (fullId) {
 
 	return null;
 };
-
-
 
 /**
  * 有効な攻撃手段データ配列を取得する.
@@ -2015,2150 +1986,2150 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 		return attackMethodOptListF;
 	};
 
-
-
 	for (idx = 0; idx < attackMethodDataArray.length; idx++) {
-
 		// 攻撃手段データ取得
 		attackMethodData = attackMethodDataArray[idx];
-
 		// レベル選択のオプションリストを取得
 		attackMethodOptList = attackMethodData.GetNextOptionList();
-
 		// スキルIDを取得
 		skillId = attackMethodData.GetSkillId();
-
 		// スキルIDによって分岐
 		switch (skillId) {
+			//----------------------------------------------------------------
+			// アコライト：ルアフ
+			// ギロチンクロス：ファントムメナス
+			// 修羅：地雷震
+			//----------------------------------------------------------------
+			case SKILL_ID_RUWACH:
+			case SKILL_ID_PHANTOM_MENUS:
+			case SKILL_ID_ZIRAISHIN:
 
-
-		//----------------------------------------------------------------
-		// アコライト：ルアフ
-		// ギロチンクロス：ファントムメナス
-		// 修羅：地雷震
-		//----------------------------------------------------------------
-		case SKILL_ID_RUWACH:
-		case SKILL_ID_PHANTOM_MENUS:
-		case SKILL_ID_ZIRAISHIN:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"敵の状態",
-				[
-					[0, "通常"],
-					[1, "ハイド中"],
-				],
-				((skillId == SKILL_ID_ZIRAISHIN) ? 0 : 1)
-			);
-			break;
-
-
-		//----------------------------------------------------------------
-		// マジシャン：ナパームビート
-		// ハイウィザード：ナパームバルカン
-		// 影狼・朧：無茶投げ
-		// 特殊：アースクエイク
-		//----------------------------------------------------------------
-		case SKILL_ID_NAPALM_BEAT:
-		case SKILL_ID_NAPALM_VULKAN:
-		case SKILL_ID_MUCHANAGE:
-		case SKILL_ID_EARTH_QUAKE:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"敵の数(分散ダメージ用)",
-				funcCreateNumberDataArrayArray(1, 20, false),
-				1
-			);
-			break;
-
-
-		//----------------------------------------------------------------
-		// マーチャント：カートレボリューション
-		// ホワイトスミス：カートターミネーション
-		//----------------------------------------------------------------
-		case SKILL_ID_CART_REVOLUTION:
-		case SKILL_ID_CART_TERMINATION:
-			// カート積載可能量を計算
-			valueWork = 8000 + 500 * Math.max(LearnedSkillSearch(SKILL_ID_CART_KAIZO), UsedSkillSearch(SKILL_ID_CART_KAIZO));
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionListAsInput(attackMethodOptList,
-				"カート重量",
-				[
-					["type", "number"],
-					["min", 0],
-					["max", valueWork],
-				],
-				valueWork
-			);
-			break;
-
-		//----------------------------------------------------------------
-		// ジェネティック：カートトルネード
-		//----------------------------------------------------------------
-		case SKILL_ID_CART_TORNADO:
-			// カート積載可能量を計算
-			valueWork = 8000 + 500 * Math.max(LearnedSkillSearch(SKILL_ID_CART_KAIZO), UsedSkillSearch(SKILL_ID_CART_KAIZO));
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionListAsInput(attackMethodOptList,
-				"カート重量",
-				[
-					["type", "number"],
-					["min", 0],
-					["max", valueWork],
-				],
-				valueWork
-			);
-			// バイオロではない場合は選択させない
-			if (!IsSameJobClass(MIG_JOB_ID_BIOLO)) {
-				break;
-			}
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"ｳﾄﾞｩﾝｳｫﾘｱｰ",
-				[
-					[0, "無し"],
-					[1, "召喚中"],
-				],
-				0
-			);
-			break;
-
-		//----------------------------------------------------------------
-		// ジェネティック：スポアエクスプロージョン
-		//----------------------------------------------------------------
-		case SKILL_ID_SPORE_EXPLOSION:
-			// バイオロではない場合は選択させない
-			if (!IsSameJobClass(MIG_JOB_ID_BIOLO)) {
-				break;
-			}
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"ｳﾄﾞｩﾝﾌｪｱﾘｰ",
-				[
-					[0, "無し"],
-					[1, "召喚中"],
-				],
-				0
-			);
-			break;
-
-		//----------------------------------------------------------------
-		// ウィザード：ストームガスト
-		//----------------------------------------------------------------
-		case SKILL_ID_STORM_GUST:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"HIT数",
-				funcCreateNumberDataArrayArray(1, 10, false),
-				3
-			);
-			break;
-
-
-		//----------------------------------------------------------------
-		// ウィザード：メテオストーム
-		//----------------------------------------------------------------
-		case SKILL_ID_METEOR_STORM:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"隕石の命中回数",
-				funcCreateNumberDataArrayArray(1, 7, false),
-				7
-			);
-			break;
-
-
-		//----------------------------------------------------------------
-		// モンク：阿修羅覇凰拳
-		//----------------------------------------------------------------
-		case SKILL_ID_ASHURA_HAOKEN:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionListAsInput(attackMethodOptList,
-				"発動前残りSP",
-				[
-					["type", "number"],
-					["min", 0],
-					["max", 99999],
-				],
-				0
-			);
-			break;
-
-
-		//----------------------------------------------------------------
-		// モンク：三段掌コンボ
-		//----------------------------------------------------------------
-		case SKILL_ID_COMBO_SANDAN_MONK:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionListAsSkillLvSelect(attackMethodOptList, SKILL_ID_RENDASHO, true, -1);
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionListAsSkillLvSelect(attackMethodOptList, SKILL_ID_MORYUKEN, true, -1);
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionListAsSkillLvSelect(attackMethodOptList, SKILL_ID_ASHURA_HAOKEN_SPKOTEI, true, 0);
-			break;
-
-
-		//----------------------------------------------------------------
-		// ナイト：チャージアタック
-		//----------------------------------------------------------------
-		case SKILL_ID_CHARGE_ATTACK:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"敵との距離",
-				[
-					[0, "0～3セル"],
-					[1, "4～6セル"],
-					[2, "7～9セル"],
-					[3, "10～12セル"],
-					[4, "13セル以上"],
-				],
-				4
-			);
-			break;
-
-
-		//----------------------------------------------------------------
-		// ハンター：ビーストストレイフィング
-		//----------------------------------------------------------------
-		case SKILL_ID_BEAST_STRAIFING:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"",
-				[
-					[0, "ダブルストレイフィングのダメージを足さずに計算"],
-					[1, "DS Lv10のダメージを足して攻撃回数を計算"],
-				],
-				0
-			);
-			break;
-
-
-		//----------------------------------------------------------------
-		// 忍者：手裏剣投げ
-		//----------------------------------------------------------------
-		case SKILL_ID_SHURIKEN_NAGE:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"手裏剣の種類",
-				[
-					[0, SyurikenOBJ[0][2]],
-					[1, SyurikenOBJ[1][2]],
-					[2, SyurikenOBJ[2][2]],
-					[3, SyurikenOBJ[3][2]],
-					[4, SyurikenOBJ[4][2]],
-					[5, SyurikenOBJ[5][2]],
-				],
-				0
-			);
-			break;
-
-
-		//----------------------------------------------------------------
-		// 忍者：苦無投げ
-		// 影狼朧：八方苦無
-		//----------------------------------------------------------------
-		case SKILL_ID_KUNAI_NAGE:
-		case SKILL_ID_HAPPO_KUNAI:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"苦無の種類",
-				[
-					[0, KunaiOBJ[0][2]],
-					[1, KunaiOBJ[1][2]],
-					[2, KunaiOBJ[2][2]],
-					[3, KunaiOBJ[3][2]],
-					[4, KunaiOBJ[4][2]],
-					[5, KunaiOBJ[5][2]],
-					[6, KunaiOBJ[6][2]],
-				],
-				0
-			);
-			break;
-
-
-		//----------------------------------------------------------------
-		// 忍者：一閃
-		//----------------------------------------------------------------
-		case SKILL_ID_ISSEN:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionListAsInput(attackMethodOptList,
-				"残りHP",
-				[
-					["type", "number"],
-					["min", 0],
-					["max", 99999],
-				],
-				0
-			);
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"残り影分身",
-				funcCreateNumberDataArrayArray(0, 5, false),
-				5
-			);
-			break;
-
-
-		//----------------------------------------------------------------
-		// 忍者：一閃(MAXHP固定)
-		//----------------------------------------------------------------
-		case SKILL_ID_ISSEN_MAX:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionListAsInput(attackMethodOptList,
-				"残りHP(MAX固定)",
-				[
-					["type", "number"],
-					["min", 0],
-					["max", 0],
-					["disabled", "disabled"],
-				],
-				0
-			);
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"残り影分身",
-				funcCreateNumberDataArrayArray(0, 5, false),
-				5
-			);
-			break;
-
-
-		//----------------------------------------------------------------
-		// ガンスリンガー：デスペラード
-		//----------------------------------------------------------------
-		case SKILL_ID_DEATHPERAD:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"HIT数(期待値)",
-				[
-					[0, "1Hit"],
-					[1, "1.2Hit"],
-					[2, "1.6Hit"],
-					[3, "2Hit"],
-					[4, "2.4Hit"],
-					[5, "3Hit"],
-					[6, "3.6Hit"],
-					[7, "4Hit"],
-					[8, "5Hit"],
-					[9, "6Hit"],
-					[10, "7Hit"],
-					[11, "8Hit"],
-					[12, "9Hit"],
-					[13, "10Hit"],
-				],
-				6
-			);
-			break;
-
-
-		//----------------------------------------------------------------
-		// チャンピオン：三段掌コンボ
-		//----------------------------------------------------------------
-		case SKILL_ID_COMBO_SANDAN_CHAMP:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionListAsSkillLvSelect(attackMethodOptList, SKILL_ID_RENDASHO, true, -1);
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionListAsSkillLvSelect(attackMethodOptList, SKILL_ID_MORYUKEN, true, -1);
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionListAsSkillLvSelect(attackMethodOptList, SKILL_ID_BUKKOKEN, true, -1);
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionListAsSkillLvSelect(attackMethodOptList, SKILL_ID_RENCHUHOGEKI, true, -1);
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionListAsSkillLvSelect(attackMethodOptList, SKILL_ID_ASHURA_HAOKEN_SPKOTEI, true, 0);
-			break;
-
-
-		//----------------------------------------------------------------
-		// ルーンナイト：ハンドレッドスピア
-		//----------------------------------------------------------------
-		case SKILL_ID_HANDRED_SPEAR:
-			attackMethodOptList = funcCreateOptionListAsLearnLvSelect(attackMethodOptList, SKILL_ID_SPIRAL_PIERCE, -1);
-			attackMethodOptList = funcCreateOptionListAsLearnLvSelect(attackMethodOptList, SKILL_ID_SPEAR_BOOMERANG, 0);
-			if (n_A_JOB == MIG_JOB_ID_DRAGON_KNIGHT) {
-				// ドラゴンナイトの場合
+				// オプションリストを生成、追加
 				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-					"チャージングピアースLv",
+					"敵の状態",
 					[
-						[0, "off"],
-						[1, "1"],
-						[2, "2"],
-						[3, "3"],
-						[4, "4"],
-						[5, "5"],
-						[6, "6"],
-						[7, "7"],
-						[8, "8"],
-						[9, "9"],
-						[10, "10"],
+						[0, "通常"],
+						[1, "ハイド中"],
 					],
-					0
-				);			
-			}
-			break;
+					((skillId == SKILL_ID_ZIRAISHIN) ? 0 : 1)
+				);
+				break;
+			//----------------------------------------------------------------
+			// マジシャン：ナパームビート
+			// ハイウィザード：ナパームバルカン
+			// 影狼・朧：無茶投げ
+			// 特殊：アースクエイク
+			//----------------------------------------------------------------
+			case SKILL_ID_NAPALM_BEAT:
+			case SKILL_ID_NAPALM_VULKAN:
+			case SKILL_ID_MUCHANAGE:
+			case SKILL_ID_EARTH_QUAKE:
 
-		// ピアース
-		// スパイラルピアース
-		// マッドネスクラッシャー
-		case SKILL_ID_PIERCE:
-		case SKILL_ID_SPIRAL_PIERCE:
-		case SKILL_ID_MADNESS_CRUSHER:
-			if (n_A_JOB == MIG_JOB_ID_DRAGON_KNIGHT) {
-				// ドラゴンナイトの場合
+				// オプションリストを生成、追加
 				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-					"チャージングピアース",
+					"敵の数(分散ダメージ用)",
+					funcCreateNumberDataArrayArray(1, 20, false),
+					1
+				);
+				break;
+			//----------------------------------------------------------------
+			// マーチャント：カートレボリューション
+			// ホワイトスミス：カートターミネーション
+			//----------------------------------------------------------------
+			case SKILL_ID_CART_REVOLUTION:
+			case SKILL_ID_CART_TERMINATION:
+				// カート積載可能量を計算
+				valueWork = 8000 + 500 * Math.max(LearnedSkillSearch(SKILL_ID_CART_KAIZO), UsedSkillSearch(SKILL_ID_CART_KAIZO));
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionListAsInput(attackMethodOptList,
+					"カート重量",
 					[
-						[0, "off"],
-						[1, "1"],
-						[2, "2"],
-						[3, "3"],
-						[4, "4"],
-						[5, "5"],
-						[6, "6"],
-						[7, "7"],
-						[8, "8"],
-						[9, "9"],
-						[10, "10"],
+						["type", "number"],
+						["min", 0],
+						["max", valueWork],
 					],
-					0
-				);			
-			}
-			break;
-
-		//----------------------------------------------------------------
-		// ルーンナイト：イグニッションブレイク
-		//----------------------------------------------------------------
-		case SKILL_ID_IGNITION_BREAK:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"敵との距離",
-				[
-					[0, "近"],
-					[1, "中"],
-					[2, "遠"],
-				],
-				0
-			);
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"スキル倍率を-1する",
-				[
-					[0, "off"],
-					[1, "on"],
-				],
-				1
-			);
-			break;
-
-
-		//----------------------------------------------------------------
-		// ルーンナイト：ファイアードラゴンブレス
-		// ルーンナイト：ウォータードラゴンブレス
-		//----------------------------------------------------------------
-		case SKILL_ID_FIRE_DRAGON_BREATH:
-		case SKILL_ID_WATER_DRAGON_BREATH:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionListAsInput(attackMethodOptList,
-				"現在のHP (0の場合MaxHPで計算)",
-				[
-					["type", "number"],
-					["min", 0],
-					["max", 99999],
-				],
-				0
-			);
-			break;
-
-
-		//----------------------------------------------------------------
-		// ギロチンクロス：ダークイリュージョン
-		//----------------------------------------------------------------
-		case SKILL_ID_DARK_ILLUSION:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionListAsLearnLvSelect(attackMethodOptList, SKILL_ID_CROSS_IMPACT, -1);
-			break;
-
-
-		//----------------------------------------------------------------
-		// ギロチンクロス：クロスリッパーラッシャー
-		//----------------------------------------------------------------
-		case SKILL_ID_CROSS_RIPPER_SLASHER:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"回転カウンター数",
-				funcCreateNumberDataArrayArray(1, 10, false),
-				10
-			);
-			break;
-
-
-		//----------------------------------------------------------------
-		// レンジャー：エイムドボルト
-		//----------------------------------------------------------------
-		case SKILL_ID_AIMED_BOLT:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"",
-				[
-					[1, "通常計算"],
-					[2, "最小Hit回数固定"],
-					[3, "最大Hit回数固定"],
-				],
-				1
-			);
-			break;
-
-
-		//----------------------------------------------------------------
-		// レンジャー：鋭敏な嗅覚
-		//----------------------------------------------------------------
-		case SKILL_ID_EIBINNA_KYUKAKU:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionListAsLearnLvSelect(attackMethodOptList, SKILL_ID_WUG_BITE, 0);
-			break;
-
-
-		//----------------------------------------------------------------
-		// ウォーロック：ソウルエクスパンション
-		//----------------------------------------------------------------
-		case SKILL_ID_SOUL_EXPANSION:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"ホワイトインプリズン状態(Boss無効)",
-				[
-					[0, "なし"],
-					[1, "Lv1"],
-					[2, "Lv2"],
-					[3, "Lv3"],
-					[4, "Lv4"],
-					[5, "Lv5"],
-				],
-				0
-			);
-			break;
-
-
-		//----------------------------------------------------------------
-		// ウォーロック：ジャックフロスト
-		//----------------------------------------------------------------
-		case SKILL_ID_JACK_FROST:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"氷結状態",
-				[
-					[0, "なし"],
-					[1, "あり"],
-				],
-				0
-			);
-			break;
-
-
-		//----------------------------------------------------------------
-		// ウォーロック：コメット
-		//----------------------------------------------------------------
-		case SKILL_ID_COMMET:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"中心からの距離",
-				[
-					[0, "0～3マス"],
-					[1, "4～5マス"],
-					[2, "6～7マス"],
-					[3, "8～9マス"],
-					[4, "協力発動"],
-				],
-				0
-			);
-			break;
-
-
-		//----------------------------------------------------------------
-		// ウォーロック：チェーンライトニング
-		//----------------------------------------------------------------
-		case SKILL_ID_CHAIN_LIGHTNING:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"Hit数",
-				[
-					[1, "1Hit"],
-					[2, "2Hit"],
-					[3, "3Hit"],
-					[4, "4Hit"],
-					[5, "5Hit"],
-					[6, "6Hit"],
-				],
-				4
-			);
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"魔法力増幅の扱い",
-				[
-					[0, "1Hit目のみ"],
-					[1, "2Hit適用"],
-					[2, "3Hit適用"],
-					[3, "4Hit適用"],
-					[4, "5Hit適用"],
-					[5, "6Hit適用"],
-				],
-				0
-			);
-			break;
-
-
-		//----------------------------------------------------------------
-		// ウォーロック：テトラボルテックス
-		//----------------------------------------------------------------
-		case SKILL_ID_TETRA_BOLTEX:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"ボール属性(1&2)",
-				[
-					[11, "水水"],
-					[22, "地地"],
-					[33, "火火"],
-					[44, "風風"],
-					[12, "水地"],
-					[13, "水火"],
-					[14, "水風"],
-					[21, "地水"],
-					[23, "地火"],
-					[24, "地風"],
-					[31, "火水"],
-					[32, "火地"],
-					[34, "火風"],
-					[41, "風水"],
-					[42, "風地"],
-					[43, "風火"],
-				],
-				33
-			);
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"ボール属性(3&4)",
-				[
-					[11, "水水"],
-					[22, "地地"],
-					[33, "火火"],
-					[44, "風風"],
-					[12, "水地"],
-					[13, "水火"],
-					[14, "水風"],
-					[21, "地水"],
-					[23, "地火"],
-					[24, "地風"],
-					[31, "火水"],
-					[32, "火地"],
-					[34, "火風"],
-					[41, "風水"],
-					[42, "風地"],
-					[43, "風火"],
-				],
-				33
-			);
-			break;
-
-
-		//----------------------------------------------------------------
-		// ウォーロック：サモンファイアーボール
-		// ウォーロック：サモンウォーターボール
-		// ウォーロック：サモンライトインングボール
-		// ウォーロック：サモンストーン
-		//----------------------------------------------------------------
-		case SKILL_ID_SUMMON_FIRE_BALL:
-		case SKILL_ID_SUMMON_WATER_BALL:
-		case SKILL_ID_SUMMON_LIGHTNING_BALL:
-		case SKILL_ID_SUMMON_STONE:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"リリース時に放出する玉の数",
-				[
-					[1, "1個"],
-					[2, "2個"],
-					[3, "3個"],
-					[4, "4個"],
-					[5, "5個"],
-				],
-				1
-			);
-			break;
-
-
-		//----------------------------------------------------------------
-		// メカニック：パワースイング
-		//----------------------------------------------------------------
-		case SKILL_ID_POWER_SWING:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionListAsLearnLvSelect(attackMethodOptList, 
-				SKILL_ID_AXE_BOOMERANG,
-				((GetHigherJobSeriesID(n_A_JOB) == JOB_SERIES_ID_ROGUE) ? 0 : 3)
-			);
-			if (n_A_JOB === MIG_JOB_ID_MEISTER) {
+					valueWork
+				);
+				break;
+			//----------------------------------------------------------------
+			// ジェネティック：カートトルネード
+			//----------------------------------------------------------------
+			case SKILL_ID_CART_TORNADO:
+				// カート積載可能量を計算
+				valueWork = 8000 + 500 * Math.max(LearnedSkillSearch(SKILL_ID_CART_KAIZO), UsedSkillSearch(SKILL_ID_CART_KAIZO));
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionListAsInput(attackMethodOptList,
+					"カート重量",
+					[
+						["type", "number"],
+						["min", 0],
+						["max", valueWork],
+					],
+					valueWork
+				);
+				// バイオロではない場合は選択させない
+				if (!IsSameJobClass(MIG_JOB_ID_BIOLO)) {
+					break;
+				}
 				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-					"ABRバトルウォリアー",
+					"ｳﾄﾞｩﾝｳｫﾘｱｰ",
 					[
 						[0, "無し"],
 						[1, "召喚中"],
 					],
 					0
-				);			
-			}
-			break;
-
-
-		//----------------------------------------------------------------
-		// メカニック：アームズキャノン
-		//----------------------------------------------------------------
-		case SKILL_ID_ARMS_CANNON:
-
-			// オプションリストを生成、追加
-			arrayWork = [];
-			for (idxOpt = 0; idxOpt < CanonOBJ.length; idxOpt++) {
-				arrayWork.push([idxOpt, CanonOBJ[idxOpt][2]])
-			}
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList, "", arrayWork, 1);
-			break;
-
-
-		//----------------------------------------------------------------
-		// ジェネティック：カートキャノン
-		//----------------------------------------------------------------
-		case SKILL_ID_CART_CANNON:
-
-			// オプションリストを生成、追加
-			arrayWork = [];
-			for (idxOpt = 0; idxOpt < CanonOBJ.length; idxOpt++) {
-				arrayWork.push([idxOpt, CanonOBJ[idxOpt][2]])
-			}
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"ｷｬﾉﾝﾎﾞｰﾙ",
-				arrayWork,
-				1
-			);
-			// バイオロではない場合は選択させない
-			if (!IsSameJobClass(MIG_JOB_ID_BIOLO)) {
+				);
 				break;
-			}
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"ｳﾄﾞｩﾝｳｫﾘｱｰ",
-				[
-					[0, "無し"],
-					[1, "召喚中"],
-				],
-				0
-			);
-			break;			
-
-		//----------------------------------------------------------------
-		// メカニック：セルフディストラクション
-		//----------------------------------------------------------------
-		case SKILL_ID_SELF_DESTRUCTION:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionListAsInput(attackMethodOptList,
-				"残りHP",
-				[
-					["type", "number"],
-					["min", 0],
-					["max", 99999],
-				],
-				0
-			);
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionListAsInput(attackMethodOptList,
-				"残りSP",
-				[
-					["type", "number"],
-					["min", 0],
-					["max", 99999],
-				],
-				0
-			);
-			break;
-
-
-		//----------------------------------------------------------------
-		// ロイヤルガード：バニシングポイント
-		//----------------------------------------------------------------
-		case SKILL_ID_BANISHING_POINT:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionListAsLearnLvSelect(attackMethodOptList, SKILL_ID_BASH, -1);
-			break;
-
-
-		//----------------------------------------------------------------
-		// ロイヤルガード：レイジバーストアタック
-		//----------------------------------------------------------------
-		case SKILL_ID_RAGE_BURST_ATTACK:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"怒りゲージ数",
-				funcCreateNumberDataArrayArray(0, 15, false),
-				15
-			);
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionListAsInput(attackMethodOptList,
-				"現在のHP（0の場合は最大HPで計算）",
-				[
-					["type", "number"],
-					["min", 0],
-					["max", 99999],
-				],
-				0
-			);
-			break;
-
-
-		//----------------------------------------------------------------
-		// ロイヤルガード：オーバーブランド
-		//----------------------------------------------------------------
-		case SKILL_ID_OVER_BLAND:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"壁の3Hit目",
-				[
-					[0, "なし"],
-					[1, "あり"],
-				],
-				1
-			);
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionListAsLearnLvSelect(attackMethodOptList, SKILL_ID_SPEAR_QUICKEN, -1);
-			break;
-
-
-		//----------------------------------------------------------------
-		// ロイヤルガード：ムーンスラッシャー
-		//----------------------------------------------------------------
-		case SKILL_ID_MOON_SLUSHER:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionListAsLearnLvSelect(attackMethodOptList, SKILL_ID_OVER_BLAND, -1);
-			break;
-
-
-		//----------------------------------------------------------------
-		// 修羅：双龍脚
-		//----------------------------------------------------------------
-		case SKILL_ID_SORYUKYAKU:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"固有ディレイ",
-				[
-					[0, "なし(仮)"],
-					[1, "あり(仮)"],
-					[2, "あり+0.3秒(仮)"],
-				],
-				0
-			);
-			break;
-
-
-		//----------------------------------------------------------------
-		// 修羅：爆気散弾
-		//----------------------------------------------------------------
-		case SKILL_ID_BAKKISANDAN:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"気弾数",
-				funcCreateNumberDataArrayArray(0, 15, false),
-				15
-			);
-			break;
-
-
-		//----------------------------------------------------------------
-		// 修羅：修羅身弾
-		//----------------------------------------------------------------
-		case SKILL_ID_SHURASHINDAN:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"Hit数",
-				[
-					[0, "1Hit"],
-					[1, "2Hit"],
-				],
-				0
-			);
-			break;
-
-
-		//----------------------------------------------------------------
-		// 修羅：天羅地網
-		// 修羅：號砲
-		// 修羅：羅刹破凰撃(HPSP固定)
-		//----------------------------------------------------------------
-		case SKILL_ID_TENRACHIMO:
-		case SKILL_ID_GOHO:
-		case SKILL_ID_RASETSU_HAOGEKI_MAX:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"単発orコンボ",
-				[
-					[0, "単発発動"],
-					[1, "コンボ時"],
-				],
-				0
-			);
-			break;
-
-
-		//----------------------------------------------------------------
-		// 修羅：閃光連撃
-		//----------------------------------------------------------------
-		case SKILL_ID_SENKO_RENGEKI:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionListAsSkillLvSelect(attackMethodOptList, SKILL_ID_SORYUKYAKU, false, -1);
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionListAsSkillLvSelect(attackMethodOptList, SKILL_ID_DAITENHOSUI, false, -1);
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionListAsSkillLvSelect(attackMethodOptList, SKILL_ID_GOHO, false, -1);
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionListAsSkillLvSelect(attackMethodOptList, SKILL_ID_TENRACHIMO, false, -1);
-			break;
-
-
-		//----------------------------------------------------------------
-		// 修羅：羅刹破凰撃(HPSP変動可)
-		//----------------------------------------------------------------
-		case SKILL_ID_RASETSU_HAOGEKI:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"単発orコンボ",
-				[
-					[0, "単発発動"],
-					[1, "コンボ時"],
-				],
-				0
-			);
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionListAsInput(attackMethodOptList,
-				"HP",
-				[
-					["type", "number"],
-					["min", 0],
-					["max", 99999],
-				],
-				0
-			);
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionListAsInput(attackMethodOptList,
-				"SP",
-				[
-					["type", "number"],
-					["min", 0],
-					["max", 99999],
-				],
-				0
-			);
-			break;
-
-
-		//----------------------------------------------------------------
-		// 修羅：破碎柱
-		//----------------------------------------------------------------
-		case SKILL_ID_HASAICHU:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"壁の追撃",
-				[
-					[0, "なし"],
-					[1, "あり"],
-				],
-				0
-			);
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionListAsInput(attackMethodOptList,
-				"敵の残りHP(0の場合MaxHP)",
-				[
-					["type", "number"],
-					["min", 0],
-					["max", 99999],
-				],
-				0
-			);
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionListAsInput(attackMethodOptList,
-				"被ダメージ(0の場合は計算結果の[平均被ダメージ]を使用)",
-				[
-					["type", "number"],
-					["min", 0],
-					["max", 99999],
-				],
-				0
-			);
-			break;
-
-
-		//----------------------------------------------------------------
-		// 修羅：双龍脚コンボ
-		//----------------------------------------------------------------
-		case SKILL_ID_COMBO_SORYUKYAKU:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionListAsSkillLvSelect(attackMethodOptList, SKILL_ID_SORYUKYAKU, false, -1);
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionListAsSkillLvSelect(attackMethodOptList, SKILL_ID_TENRACHIMO, true, 0);
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionListAsSkillLvSelect(attackMethodOptList, SKILL_ID_DAITENHOSUI, true, -1);
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionListAsSkillLvSelect(attackMethodOptList, SKILL_ID_GOHO, true, 0);
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionListAsSkillLvSelect(attackMethodOptList, SKILL_ID_RASETSU_HAOGEKI_MAX, true, -1);
-			break;
-
-
-		//----------------------------------------------------------------
-		// ミンストレル・ワンダラー：グレートエコー
-		//----------------------------------------------------------------
-		case SKILL_ID_GREAT_ECHO:
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"パートナー",
-				[
-					[0, "無し"],
-					[1, "有り"],
-				],
-				0
-			);
-			break;
-
-
-		//----------------------------------------------------------------
-		// ミンストレル・ワンダラー：シビアレインストーム(特殊)
-		//----------------------------------------------------------------
-		case SKILL_ID_SEVERE_RAINSTORM_EX:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"発動時のDEX",
-				funcCreateNumberDataArrayArray(0, 999, false),
-				0
-			);
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"発動時のAGI",
-				funcCreateNumberDataArrayArray(0, 999, false),
-				0
-			);
-			break;
-
-
-		//----------------------------------------------------------------
-		// ソーサラー：ファイアーウォーク
-		// ソーサラー：エレクトリックウォーク
-		//----------------------------------------------------------------
-		case SKILL_ID_FIRE_WALK:
-		case SKILL_ID_ELECTRIC_WALK:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"踏ませるセルの数",
-				funcCreateNumberDataArrayArray(0, 16, false),
-				16
-			);
-			break;
-
-
-		//----------------------------------------------------------------
-		// ソーサラー：スペルフィスト
-		//----------------------------------------------------------------
-		case SKILL_ID_SPELL_FIST:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"使用ボルト",
-				[
-					[0, "ファイアーボルト"],
-					[1, "コールドボルト"],
-					[2, "ライトニングボルト"],
-				],
-				0
-			);
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"ボルトLv",
-				funcCreateNumberDataArrayArray(0, 10, false),
-				10
-			);
-			break;
-
-
-		//----------------------------------------------------------------
-		// ソーサラー：サイキックウェーブ
-		//----------------------------------------------------------------
-		case SKILL_ID_PSYCHIC_WAVE:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"精霊による攻撃属性変化",
-				[
-					[0, "無"],
-					[1, "水"],
-					[2, "地"],
-					[3, "火"],
-					[4, "風"],
-				],
-				0
-			);
-			break;
-
-
-		//----------------------------------------------------------------
-		// ソーサラー：アースグレイヴ
-		//----------------------------------------------------------------
-		case SKILL_ID_EARTH_GRAVE:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionListAsLearnLvSelect(attackMethodOptList, SKILL_ID_SEISMIC_WEAPON, -1);
-			break;
-
-
-		//----------------------------------------------------------------
-		// ソーサラー：ダイアモンドダスト
-		//----------------------------------------------------------------
-		case SKILL_ID_DIAMOND_DUST:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionListAsLearnLvSelect(attackMethodOptList, SKILL_ID_FROST_WEAPON, -1);
-			break;
-
-
-		//----------------------------------------------------------------
-		// ソーサラー：ヴェラチュールスピアー
-		//----------------------------------------------------------------
-		case SKILL_ID_VERATURE_SPEAR:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionListAsLearnLvSelect(attackMethodOptList, SKILL_ID_LIGHTNING_LOADER, -1);
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionListAsLearnLvSelect(attackMethodOptList, SKILL_ID_STRIKING, -1);
-			break;
-
-
-		//----------------------------------------------------------------
-		// ジェネティック：スリングアイテム
-		//----------------------------------------------------------------
-		case SKILL_ID_SLING_ITEM:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"投擲アイテム",
-				[
-					[0, "リンゴ爆弾"],
-					[1, "パイナップル爆弾"],
-					[2, "ココナッツ爆弾"],
-					[3, "メロン爆弾"],
-					[4, "バナナ爆弾"],
-				],
-				4
-			);
-			break;
-
-
-		//----------------------------------------------------------------
-		// ジェネティック：クレイジーウィード
-		//----------------------------------------------------------------
-		case SKILL_ID_CRAZY_WEED:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"HIT数(期待値)",
-				[
-					[0, "0Hit"],
-					[1, "1Hit"],
-					[2, "2Hit"],
-					[3, "3Hit"],
-					[4, "4Hit"],
-					[5, "5Hit"],
-					[6, "6Hit"],
-					[7, "7Hit"],
-					[8, "8Hit"],
-				],
-				3
-			);
-			break;
-
-
-		//----------------------------------------------------------------
-		// ジェネティック：ヘルズプラント
-		//----------------------------------------------------------------
-		case SKILL_ID_HELLS_PLANT:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionListAsLearnLvSelect(attackMethodOptList, SKILL_ID_BIOPLANT, -1);
-			break;
-
-
-		//----------------------------------------------------------------
-		// ジェネティック：ファイアーエクスパンション
-		//----------------------------------------------------------------
-		case SKILL_ID_FIRE_EXPANSION:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionListAsLearnLvSelect(attackMethodOptList, SKILL_ID_ACID_DEMONSTRATION, -1);
-			break;
-
-
-		//----------------------------------------------------------------
-		// 影狼・朧：十文字切り
-		//----------------------------------------------------------------
-		case SKILL_ID_ZYUMONZIGIRI:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"設定",
-				[
-					[0, "通常"],
-					[1, "2連撃(1～2の合計)"],
-					[2, "3連撃(1～3の合計)"],
-					[3, "4連撃(1～4の合計)"],
-					[4, "5連撃(1～5の合計)"],
-				],
-				0
-			);
-			break;
-
-
-		//----------------------------------------------------------------
-		// 影狼・朧：黄泉返し
-		//----------------------------------------------------------------
-		case SKILL_ID_YOMIGAESHI:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"敵の魂SkillのLv",
-				funcCreateNumberDataArrayArray(0, 5, false),
-				0
-			);
-			break;
-
-
-		//----------------------------------------------------------------
-		// 影狼・朧：風魔手裏剣・乱華
-		//----------------------------------------------------------------
-		case SKILL_ID_FUMASHURIKEN_RANKA:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionListAsLearnLvSelect(attackMethodOptList, SKILL_ID_FUMASHURIKEN_NAGE, -1);
-			break;
-
-
-		//----------------------------------------------------------------
-		// リベリオン：ファイアーダンス
-		//----------------------------------------------------------------
-		case SKILL_ID_FIRE_DANCE:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionListAsLearnLvSelect(attackMethodOptList, SKILL_ID_DEATHPERAD, -1);
-			break;
-
-
-		//----------------------------------------------------------------
-		// リベリオン：ハンマーオブゴッド
-		//----------------------------------------------------------------
-		case SKILL_ID_HAMMER_OF_GOD:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"コインの枚数",
-				funcCreateNumberDataArrayArray(1, 10, false),
-				10
-			);
-			break;
-
-
-		//----------------------------------------------------------------
-		// リベリオン：ラウンドトリップ
-		//----------------------------------------------------------------
-		case SKILL_ID_ROUND_TRIP:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"HIT数",
-				[
-					[0, "1Hit"],
-					[1, "2Hit"],
-				],
-				0
-			);
-			break;
-
-
-		//----------------------------------------------------------------
-		// ギガントセット：ジョイントビートからのコンボ
-		//----------------------------------------------------------------
-		case SKILL_ID_COMBO_GIGANTSET_JOINT_BEAT:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionListAsSkillLvSelect(attackMethodOptList, SKILL_ID_JOINT_BEAT, false, -1);
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionListAsSkillLvSelect(attackMethodOptList, SKILL_ID_SPIRAL_PIERCE, false, -1);
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionListAsSkillLvSelect(attackMethodOptList, SKILL_ID_SONIC_WAVE, false, -1);
-			break;
-
-
-		//----------------------------------------------------------------
-		// ギガントセット：スパイラルピアースからのコンボ
-		//----------------------------------------------------------------
-		case SKILL_ID_COMBO_GIGANTSET_SPIRAL_PIERCE:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionListAsSkillLvSelect(attackMethodOptList, SKILL_ID_SPIRAL_PIERCE, false, -1);
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionListAsSkillLvSelect(attackMethodOptList, SKILL_ID_SONIC_WAVE, false, -1);
-			break;
-
-
-		//----------------------------------------------------------------
-		// サモナー：かみつく
-		//----------------------------------------------------------------
-		case SKILL_ID_KAMITSUKU:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"敵の残りHP",
-				[
-					[0, "70%より多い"],
-					[1, "70%以下"],
-				],
-				0
-			);
-			break;
-
-
-		//----------------------------------------------------------------
-		// サモナー：イヌハッカメテオ
-		//----------------------------------------------------------------
-		case SKILL_ID_INUHAKKA_METEOR:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"HIT数(期待値)",
-				[
-					[2, "1"],
-					[3, "1.5"],
-					[4, "2"],
-					[5, "2.5"],
-					[6, "3"],
-					[7, "3.5"],
-					[8, "4"],
-					[9, "4.5"],
-					[10, "5"],
-					[11, "5.5"],
-					[12, "6"],
-					[13, "6.5"],
-					[14, "7"],
-				],
-				5
-			);
-			// スピリットハンドラーではない場合、レインボーホーンを選択させない
-			if (!IsSameJobClass(MIG_JOB_ID_SPIRIT_HANDLER)) {
+			//----------------------------------------------------------------
+			// ジェネティック：スポアエクスプロージョン
+			//----------------------------------------------------------------
+			case SKILL_ID_SPORE_EXPLOSION:
+				// バイオロではない場合は選択させない
+				if (!IsSameJobClass(MIG_JOB_ID_BIOLO)) {
+					break;
+				}
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"ｳﾄﾞｩﾝﾌｪｱﾘｰ",
+					[
+						[0, "無し"],
+						[1, "召喚中"],
+					],
+					0
+				);
 				break;
-			}
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"レインボーホーン",
-				[
-					[ELM_ID_VANITY,	"なし"],		// 属性は common.js で EnumElmId として定義されている
-					[ELM_ID_WATER,	"Lv1:水属性"],  // ELM_ID_VANITY = 0 から
-					[ELM_ID_WIND,	"Lv2:風属性"],
-					[ELM_ID_EARTH,	"Lv3:地属性"],
-					[ELM_ID_FIRE,	"Lv4:火属性"],
-					[ELM_ID_DARK,	"Lv5:闇属性"],
-					[ELM_ID_HOLY,	"Lv6:聖属性"],
-				],
-				0
-			);
-			break;
 
+			//----------------------------------------------------------------
+			// ウィザード：ストームガスト
+			//----------------------------------------------------------------
+			case SKILL_ID_STORM_GUST:
 
-
-		//----------------------------------------------------------------
-		// サモナー：ピッキ突き
-		//----------------------------------------------------------------
-		case SKILL_ID_PIKKI_TSUKI:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"敵の残りHP",
-				[
-					[70, "70%以上"],
-					[69, "70%未満"],
-					[59, "60%未満"],
-					[49, "50%未満"],
-					[39, "40%未満"],
-					[29, "30%未満"],
-				],
-				70
-			);
-			break;
-
-
-		//----------------------------------------------------------------
-		// 星帝：紅焔脚
-		//----------------------------------------------------------------
-		case SKILL_ID_KOEN_KYAKU:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"HIT数",
-				[
-					[3, "対象＋追加"],
-					[1, "対象のみ"],
-					[2, "追加のみ"],
-				],
-				3
-			);
-			break;
-
-
-		//----------------------------------------------------------------
-		// 星帝：新星爆発
-		//----------------------------------------------------------------
-		case SKILL_ID_SHINSE_BAKUHATSU:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"次元の書",
-				[
-					[0, "なし"],
-					[1, "あり"],
-				],
-				0
-			);
-			break;
-
-
-		//----------------------------------------------------------------
-		// ドラゴンナイト：サーヴァントウェポン：ファントム
-		// ドラゴンナイト：サーヴァントウェポン：デモリッション
-		//----------------------------------------------------------------
-		case SKILL_ID_SERVANT_WEAPON_PHANTOM:
-		case SKILL_ID_SERVANT_WEAPON_DEMOLISION:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"武器体の数",
-				[
-					[1, "1"],
-					[2, "2"],
-					[3, "3"],
-					[4, "4"],
-					[5, "5"],
-				],
-				5
-			);
-			break;
-
-
-		//----------------------------------------------------------------
-		// シャドウクロス：サベージインパクト
-		//----------------------------------------------------------------
-		case SKILL_ID_SAVAGE_IMPACT:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"クローキングエクシード",
-				[
-					[0, "なし"],
-					[1, "あり"],
-				],
-				0
-			);
-			break;
-
-
-		//----------------------------------------------------------------
-		// シャドウクロス：エターナルスラッシュ
-		//----------------------------------------------------------------
-		case SKILL_ID_ETERNAL_SLASH:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"エターナルカウンター",
-				[
-					[0, "なし"],
-					[1, "1"],
-					[2, "2"],
-					[3, "3"],
-					[4, "4"],
-					[5, "5"],
-				],
-				5
-			);
-			break;
-
-
-		//----------------------------------------------------------------
-		// シャドウクロス：シャドウスタブ
-		//----------------------------------------------------------------
-		case SKILL_ID_SHADOW_STAB:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"クローキングエクシード",
-				[
-					[0, "なし"],
-					[1, "あり"],
-				],
-				0
-			);
-			break;
-
-
-		//----------------------------------------------------------------
-		// シャドウクロス：インパクトクレーター
-		//----------------------------------------------------------------
-		case SKILL_ID_IMPACT_CRATER:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"回転カウンター",
-				[
-					[1, "1"],
-					[2, "2"],
-					[3, "3"],
-					[4, "4"],
-					[5, "5"],
-					[6, "6"],
-					[7, "7"],
-					[8, "8"],
-					[9, "9"],
-					[10, "10"],
-				],
-				10
-			);
-			break;
-
-
-		//----------------------------------------------------------------
-		// ウィンドホーク：クレッシブボルト
-		//----------------------------------------------------------------
-		case SKILL_ID_CRESSIVE_VOLT:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"クレッシブボルト状態",
-				[
-					[0, "なし"],
-					[1, "1 回目"],
-					[2, "2 回目"],
-					[3, "3 回目"],
-				],
-				0
-			);
-			break;
-
-
-		//----------------------------------------------------------------
-		// インペリアルガード：オーバースラッシュ
-		//----------------------------------------------------------------
-		case SKILL_ID_OVER_SLASH:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"範囲内の敵数",
-				[
-					[0, "1 体"],
-					[1, "2～3 体"],
-					[2, "4 体以上"],
-				],
-				0
-			);
-			break;
-
-		//----------------------------------------------------------------
-		// アビスチェイサー：アビススクエア
-		//----------------------------------------------------------------
-		case SKILL_ID_ABYSS_SQUARE:
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"使用者の位置",
-				[
-					[0, "範囲外"],
-					[1, "範囲内"],
-				],
-				1
-			);
-			break;
-
-		//----------------------------------------------------------------
-		// バイオロ：アシディファイドゾーン
-		//----------------------------------------------------------------
-		case SKILL_ID_ACIDIFIED_ZONE_MIZU:
-		case SKILL_ID_ACIDIFIED_ZONE_CHI:
-		case SKILL_ID_ACIDIFIED_ZONE_HI:
-		case SKILL_ID_ACIDIFIED_ZONE_KAZE:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"ダメージ表示",
-				[
-					[0, "使用時ダメージ"],
-					[1, "設置ダメージ(未調整)"],
-				],
-				0
-			);
-			break;
-		
-		//----------------------------------------------------------------
-		// ハイパーノービス：ジャックフロストノヴァ
-		//----------------------------------------------------------------
-		case SKILL_ID_JACK_FROST_NOVA:
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"ダメージ表示",
-				[
-					[0, "使用時ダメージ"],
-					[1, "追加持続ダメージ"],
-				],
-				0
-			);
-			break;
-
-		//----------------------------------------------------------------
-		// ハイパーノービス：グラウンドグラビテーション
-		//----------------------------------------------------------------
-		case SKILL_ID_GROUND_GRAVITATION:
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"ダメージ表示",
-				[
-					[0, "使用時ダメージ"],
-					[1, "追加持続ダメージ"],
-				],
-				0
-			);
-			break;
-
-		//----------------------------------------------------------------
-		// ナイトウォッチ：照準カウンター
-		//----------------------------------------------------------------
-		case SKILL_ID_ONLY_ONE_BULLET:
-		case SKILL_ID_SPIRAL_SHOOTING:
-		case SKILL_ID_MAGAZIN_FOR_ONE:
-		case SKILL_ID_VIGILANT_AT_NIGHT:
-		case SKILL_ID_WILD_FIRE:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"照準カウンター",
-				[
-					[0, "なし"],
-					[1, "1 個"],
-					[2, "2 個"],
-					[3, "3 個"],
-					[4, "4 個"],
-					[5, "5 個"],
-					[6, "6 個"],
-					[7, "7 個"],
-					[8, "8 個"],
-					[9, "9 個"],
-					[10,"10 個"],
-				],
-				0
-			);
-			break;
-
-		//----------------------------------------------------------------
-		// 蜃気楼・不知火：悪夢
-		//----------------------------------------------------------------
-		case SKILL_ID_GENJUTSU_KAGE_NUI:
-		case SKILL_ID_GENJUTSU_KUNAI:
-		case SKILL_ID_GENZYUTSU_ANKOKURYUU:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"悪夢",
-				[
-					[0, "無し"],
-					[1, "有り"],
-				],
-				0
-			);
-			break;
-
-		//----------------------------------------------------------------
-		// 蜃気楼・不知火：風魔手裏剣-構築-
-		//----------------------------------------------------------------
-		case SKILL_ID_FUMASHURIKEN_KOUCHIKU:
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"風魔手裏剣トラップ",
-				[
-					[0, "無し"],
-					[1, "有り"],
-				],
-				0
-			);
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"風魔手裏剣-掌握-の習得Lv",
-				[
-					[5, "Lv5"],
-					[6, "Lv6"],
-					[7, "Lv7"],
-					[8, "Lv8"],
-					[9, "Lv9"],
-					[10,"Lv10"],
-				],
-				5
-			);
-			break;
-
-		//----------------------------------------------------------------
-		// ハイパーノービス：ダブルボウリングバッシュ巻き込み数
-		//----------------------------------------------------------------
-		case SKILL_ID_DOUBLE_BOWLING_BASH:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"巻き込み数",
-				[
-					[0, "無し"],
-					[1, "２～３体"],
-					[2, "４体～"],
-				],
-				0
-			);
-			break;
-
-		//----------------------------------------------------------------
-		// ハイパーノービス：メガソニックブローの敵HP残量
-		//----------------------------------------------------------------
-		case SKILL_ID_MEGA_SONIC_BLOW:
-
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"敵の残りHP",
-				[
-					[0, "50%以上"],
-					[1, "50%未満"],
-				],
-				0
-			);
-			break;
-
-		//----------------------------------------------------------------
-		// スピリットハンドラー：ディアーキャノン
-		//----------------------------------------------------------------
-		case SKILL_ID_DEER_CANON:
-
-			// オプションリストを生成、追加
-			// スピリットハンドラーではない場合、レインボーホーンを選択させない
-			if (!IsSameJobClass(MIG_JOB_ID_SPIRIT_HANDLER)) {
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"HIT数",
+					funcCreateNumberDataArrayArray(1, 10, false),
+					3
+				);
 				break;
-			}
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"レインボーホーン",
-				[
-					[ELM_ID_VANITY,	"なし"],		// 属性は common.js で EnumElmId として定義されている
-					[ELM_ID_WATER,	"Lv1:水属性"],  // ELM_ID_VANITY = 0 から
-					[ELM_ID_WIND,	"Lv2:風属性"],
-					[ELM_ID_EARTH,	"Lv3:地属性"],
-					[ELM_ID_FIRE,	"Lv4:火属性"],
-					[ELM_ID_DARK,	"Lv5:闇属性"],
-					[ELM_ID_HOLY,	"Lv6:聖属性"],
-				],
-				0
-			);
-			break;
 
-		//----------------------------------------------------------------
-		// スピリットハンドラー：ディアーブリーズ
-		//----------------------------------------------------------------
-		case SKILL_ID_DEER_BREEZE:
 
-			// オプションリストを生成、追加
-			// スピリットハンドラーではない場合、レインボーホーンを選択させない
-			if (!IsSameJobClass(MIG_JOB_ID_SPIRIT_HANDLER)) {
+			//----------------------------------------------------------------
+			// ウィザード：メテオストーム
+			//----------------------------------------------------------------
+			case SKILL_ID_METEOR_STORM:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"隕石の命中回数",
+					funcCreateNumberDataArrayArray(1, 7, false),
+					7
+				);
 				break;
-			}
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"レインボーホーン",
-				[
-					[ELM_ID_VANITY,	"なし"],		// 属性は common.js で EnumElmId として定義されている
-					[ELM_ID_WATER,	"Lv1:水属性"],  // ELM_ID_VANITY = 0 から
-					[ELM_ID_WIND,	"Lv2:風属性"],
-					[ELM_ID_EARTH,	"Lv3:地属性"],
-					[ELM_ID_FIRE,	"Lv4:火属性"],
-					[ELM_ID_DARK,	"Lv5:闇属性"],
-					[ELM_ID_HOLY,	"Lv6:聖属性"],
-				],
-				0
-			);
-			break;
 
-		//----------------------------------------------------------------
-		// ナイトウォッチ：ベーシックグレネード ヘイスティファイアインザホール グレネーズドロッピング
-		//----------------------------------------------------------------
-		case SKILL_ID_BASIC_GRENADE :
-		case SKILL_ID_HASTY_FIRE_IN_THE_HOLE :
-		case SKILL_ID_GRENADES_DROPPING :
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"グレネードフラグメント",
-				[
-					[ELM_ID_VANITY,	"なし"],		// 属性は common.js で EnumElmId として定義されている
-					[ELM_ID_WATER,	"Lv1:水属性"],  // ELM_ID_VANITY = 0 から
-					[ELM_ID_WIND,	"Lv2:風属性"],
-					[ELM_ID_EARTH,	"Lv3:地属性"],
-					[ELM_ID_FIRE,	"Lv4:火属性"],
-					[ELM_ID_DARK,	"Lv5:闇属性"],
-					[ELM_ID_HOLY,	"Lv6:聖属性"],
-				],
-				0
-			);
-			break;
 
-		//----------------------------------------------------------------
-		// ナイトウォッチ：ミッションボンバード
-		//----------------------------------------------------------------
-		case SKILL_ID_MISSION_BOMBARD :
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"グレネードフラグメント",
-				[
-					[ELM_ID_VANITY,	"なし"],		// 属性は common.js で EnumElmId として定義されている
-					[ELM_ID_WATER,	"Lv1:水属性"],  // ELM_ID_VANITY = 0 から
-					[ELM_ID_WIND,	"Lv2:風属性"],
-					[ELM_ID_EARTH,	"Lv3:地属性"],
-					[ELM_ID_FIRE,	"Lv4:火属性"],
-					[ELM_ID_DARK,	"Lv5:闇属性"],
-					[ELM_ID_HOLY,	"Lv6:聖属性"],
-				],
-				0
-			);
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"ダメージ表示",
-				[
-					[0, "使用時ダメージ"],
-					[1, "追加持続ダメージ"],
-				],
-				0
-			);
-			break;		
+			//----------------------------------------------------------------
+			// モンク：阿修羅覇凰拳
+			//----------------------------------------------------------------
+			case SKILL_ID_ASHURA_HAOKEN:
 
-		//----------------------------------------------------------------
-		// アークメイジ：アストラルストライク
-		//----------------------------------------------------------------
-		case SKILL_ID_ASTRAL_STRIKE :
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"ダメージ表示",
-				[
-					[0, "使用時ダメージ"],
-					[1, "追加持続ダメージ"],
-				],
-				0
-			);
-			break;
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionListAsInput(attackMethodOptList,
+					"発動前残りSP",
+					[
+						["type", "number"],
+						["min", 0],
+						["max", 99999],
+					],
+					0
+				);
+				break;
 
-		//----------------------------------------------------------------
-		// アークメイジ：オールブルーム
-		//----------------------------------------------------------------
-		case SKILL_ID_ALL_BLOOM :
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"クライマックスLv5の場合",
-				[
-					[0, "設置ダメージ"],
-					[1, "追撃ダメージ"],
-				],
-				0
-			);
-			break;
 
-		//----------------------------------------------------------------
-		// 蜃気楼＆不知火：属性砲
-		//----------------------------------------------------------------
-		case SKILL_ID_SEKIEN_HOU:
-		case SKILL_ID_REIKETSU_HOU:
-		case SKILL_ID_RAIDEN_HOU:
-		case SKILL_ID_KINNRYUU_HOU:
-		case SKILL_ID_ANTEN_HOU:
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"蜃気楼分身の状態",
-				[
-					[0, "本体のみ"],
-					[1, "本体 + 分身1体"],
-					[2, "本体 + 分身2体"],
-					[3, "本体 + 分身3体"],
-				],
-				0
-			);
-			break;
+			//----------------------------------------------------------------
+			// モンク：三段掌コンボ
+			//----------------------------------------------------------------
+			case SKILL_ID_COMBO_SANDAN_MONK:
 
-		//----------------------------------------------------------------
-		// 蜃気楼＆不知火：影の舞
-		//----------------------------------------------------------------
-		case SKILL_ID_KAGE_NO_MAI:
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"蜃気楼分身の状態",
-				[
-					[0, "本体のみ"],
-					[1, "本体 + 分身1体"],
-					[2, "本体 + 分身2体"],
-					[3, "本体 + 分身3体"],
-				],
-				0
-			);
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"影狩りの習得Lv",
-				[
-					[3, "Lv3"],
-					[4, "Lv4"],
-					[5, "Lv5"],
-					[6, "Lv6"],
-					[7, "Lv7"],
-					[8, "Lv8"],
-					[9, "Lv9"],
-					[10,"Lv10"],
-				],
-				3
-			);
-			break;
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionListAsSkillLvSelect(attackMethodOptList, SKILL_ID_RENDASHO, true, -1);
 
-		//----------------------------------------------------------------
-		// 蜃気楼＆不知火：歪曲
-		//----------------------------------------------------------------
-		case SKILL_ID_KUNAI_WAIKYOKU:
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"蜃気楼分身の状態",
-				[
-					[0, "本体のみ"],
-					[1, "本体 + 分身1体"],
-					[2, "本体 + 分身2体"],
-					[3, "本体 + 分身3体"],
-				],
-				0
-			);
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"苦無-屈折-の習得Lv",
-				[
-					[0, "未習得"],
-					[1, "Lv1"],
-					[2, "Lv2"],
-					[3, "Lv3"],
-					[4, "Lv4"],
-					[5, "Lv5"],
-					[6, "Lv6"],
-					[7, "Lv7"],
-					[8, "Lv8"],
-					[9, "Lv9"],
-					[10,"Lv10"],
-				],
-				0
-			);
-			break;
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionListAsSkillLvSelect(attackMethodOptList, SKILL_ID_MORYUKEN, true, -1);
 
-		//----------------------------------------------------------------
-		// 蜃気楼＆不知火：回転
-		//----------------------------------------------------------------
-		case SKILL_ID_KUNAI_KAITEN:
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"苦無-歪曲-の習得Lv",
-				[
-					[3, "Lv3"],
-					[4, "Lv4"],
-					[5, "Lv5"],
-					[6, "Lv6"],
-					[7, "Lv7"],
-					[8, "Lv8"],
-					[9, "Lv9"],
-					[10,"Lv10"],
-				],
-				3
-			);
-			break;
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionListAsSkillLvSelect(attackMethodOptList, SKILL_ID_ASHURA_HAOKEN_SPKOTEI, true, 0);
+				break;
 
-		//----------------------------------------------------------------
-		// 蜃気楼＆不知火：掌握
-		//----------------------------------------------------------------
-		case SKILL_ID_FUMASHURIKEN_SHOUAKU:
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"風魔手裏剣-構築-の習得Lv",
-				[
-					[0, "未習得"],
-					[1, "Lv1"],
-					[2, "Lv2"],
-					[3, "Lv3"],
-					[4, "Lv4"],
-					[5, "Lv5"],
-					[6, "Lv6"],
-					[7, "Lv7"],
-					[8, "Lv8"],
-					[9, "Lv9"],
-					[10,"Lv10"],
-				],
-				0
-			);
-			break;
 
-		//----------------------------------------------------------------
-		// 蜃気楼＆不知火：影狩り
-		//----------------------------------------------------------------
-		case SKILL_ID_KAGE_GARI:
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"影一閃の習得Lv",
-				[
-					[0, "未習得"],
-					[1, "Lv1"],
-					[2, "Lv2"],
-					[3, "Lv3"],
-					[4, "Lv4"],
-					[5, "Lv5"],
-					[6, "Lv6"],
-					[7, "Lv7"],
-					[8, "Lv8"],
-					[9, "Lv9"],
-					[10,"Lv10"],
-				],
-				0
-			);
-			break;
+			//----------------------------------------------------------------
+			// ナイト：チャージアタック
+			//----------------------------------------------------------------
+			case SKILL_ID_CHARGE_ATTACK:
 
-		//----------------------------------------------------------------
-		// 蜃気楼＆不知火：影一閃
-		//----------------------------------------------------------------
-		case SKILL_ID_KAGE_ISSEN:
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"影の舞の習得Lv",
-				[
-					[5, "Lv5"],
-					[6, "Lv6"],
-					[7, "Lv7"],
-					[8, "Lv8"],
-					[9, "Lv9"],
-					[10,"Lv10"],
-				],
-				5
-			);
-			break;
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"敵との距離",
+					[
+						[0, "0～3セル"],
+						[1, "4～6セル"],
+						[2, "7～9セル"],
+						[3, "10～12セル"],
+						[4, "13セル以上"],
+					],
+					4
+				);
+				break;
 
-		//----------------------------------------------------------------
-		// ソウルアセティック：青龍符 白虎符 朱雀符 玄武符 霊道符 死霊浄化 四方神符 四方五行陣
-		//----------------------------------------------------------------
-		case SKILL_ID_SEIRYU_FU:
-		case SKILL_ID_BYAKKO_FU:
-		case SKILL_ID_SUZAKU_FU:
-		case SKILL_ID_GENBU_FU:
-		case SKILL_ID_SHIHOZIN_FU:
-		case SKILL_ID_SHIHO_GOGYO_ZIN:
-		case SKILL_ID_REIDO_FU:
-		case SKILL_ID_SHIRYO_ZYOKA:
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"暖かい風",
-				[
-					[ELM_ID_VANITY	,"無し"		],
-					[ELM_ID_EARTH	,"Lv1 地"	],
-					[ELM_ID_WIND	,"Lv2 風"	],
-					[ELM_ID_WATER	,"Lv3 水"	],
-					[ELM_ID_FIRE	,"Lv4 火"	],
-					[ELM_ID_PSYCO	,"Lv5 念"	],
-					[ELM_ID_DARK	,"Lv6 闇"	],
-					[ELM_ID_HOLY	,"Lv7 聖"	],
-				],
-				0
-			);
-			break;
 
-		//----------------------------------------------------------------
-		// マイスター：攻撃装置有効化
-		//----------------------------------------------------------------
-		case SKILL_ID_KOGEKI_SOCHI_YUKOKA:
-			// オプションリストを生成、追加
-			attackMethodOptList = funcCreateOptionListAsInput(attackMethodOptList,
-				"マイスターのPOW",
-				[
-					["type", "number"],
-					["min", 0],
-					["max", 500],
-				],
-				0
-			);
-			break;
+			//----------------------------------------------------------------
+			// ハンター：ビーストストレイフィング
+			//----------------------------------------------------------------
+			case SKILL_ID_BEAST_STRAIFING:
 
-		//----------------------------------------------------------------
-		// アークビショップ：アドラムス
-		//----------------------------------------------------------------
-		case SKILL_ID_ADORAMUS:
-			attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-				"アンシラ状態",
-				[
-					[0, "無し"],
-					[1, "有り"],
-				],
-				0
-			);
-			break;
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"",
+					[
+						[0, "ダブルストレイフィングのダメージを足さずに計算"],
+						[1, "DS Lv10のダメージを足して攻撃回数を計算"],
+					],
+					0
+				);
+				break;
 
+
+			//----------------------------------------------------------------
+			// 忍者：手裏剣投げ
+			//----------------------------------------------------------------
+			case SKILL_ID_SHURIKEN_NAGE:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"手裏剣の種類",
+					[
+						[0, SyurikenOBJ[0][2]],
+						[1, SyurikenOBJ[1][2]],
+						[2, SyurikenOBJ[2][2]],
+						[3, SyurikenOBJ[3][2]],
+						[4, SyurikenOBJ[4][2]],
+						[5, SyurikenOBJ[5][2]],
+					],
+					0
+				);
+				break;
+
+
+			//----------------------------------------------------------------
+			// 忍者：苦無投げ
+			// 影狼朧：八方苦無
+			//----------------------------------------------------------------
+			case SKILL_ID_KUNAI_NAGE:
+			case SKILL_ID_HAPPO_KUNAI:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"苦無の種類",
+					[
+						[0, KunaiOBJ[0][2]],
+						[1, KunaiOBJ[1][2]],
+						[2, KunaiOBJ[2][2]],
+						[3, KunaiOBJ[3][2]],
+						[4, KunaiOBJ[4][2]],
+						[5, KunaiOBJ[5][2]],
+						[6, KunaiOBJ[6][2]],
+					],
+					0
+				);
+				break;
+
+
+			//----------------------------------------------------------------
+			// 忍者：一閃
+			//----------------------------------------------------------------
+			case SKILL_ID_ISSEN:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionListAsInput(attackMethodOptList,
+					"残りHP",
+					[
+						["type", "number"],
+						["min", 0],
+						["max", 99999],
+					],
+					0
+				);
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"残り影分身",
+					funcCreateNumberDataArrayArray(0, 5, false),
+					5
+				);
+				break;
+
+
+			//----------------------------------------------------------------
+			// 忍者：一閃(MAXHP固定)
+			//----------------------------------------------------------------
+			case SKILL_ID_ISSEN_MAX:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionListAsInput(attackMethodOptList,
+					"残りHP(MAX固定)",
+					[
+						["type", "number"],
+						["min", 0],
+						["max", 0],
+						["disabled", "disabled"],
+					],
+					0
+				);
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"残り影分身",
+					funcCreateNumberDataArrayArray(0, 5, false),
+					5
+				);
+				break;
+
+
+			//----------------------------------------------------------------
+			// ガンスリンガー：デスペラード
+			//----------------------------------------------------------------
+			case SKILL_ID_DEATHPERAD:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"HIT数(期待値)",
+					[
+						[0, "1Hit"],
+						[1, "1.2Hit"],
+						[2, "1.6Hit"],
+						[3, "2Hit"],
+						[4, "2.4Hit"],
+						[5, "3Hit"],
+						[6, "3.6Hit"],
+						[7, "4Hit"],
+						[8, "5Hit"],
+						[9, "6Hit"],
+						[10, "7Hit"],
+						[11, "8Hit"],
+						[12, "9Hit"],
+						[13, "10Hit"],
+					],
+					6
+				);
+				break;
+
+
+			//----------------------------------------------------------------
+			// チャンピオン：三段掌コンボ
+			//----------------------------------------------------------------
+			case SKILL_ID_COMBO_SANDAN_CHAMP:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionListAsSkillLvSelect(attackMethodOptList, SKILL_ID_RENDASHO, true, -1);
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionListAsSkillLvSelect(attackMethodOptList, SKILL_ID_MORYUKEN, true, -1);
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionListAsSkillLvSelect(attackMethodOptList, SKILL_ID_BUKKOKEN, true, -1);
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionListAsSkillLvSelect(attackMethodOptList, SKILL_ID_RENCHUHOGEKI, true, -1);
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionListAsSkillLvSelect(attackMethodOptList, SKILL_ID_ASHURA_HAOKEN_SPKOTEI, true, 0);
+				break;
+
+
+			//----------------------------------------------------------------
+			// ルーンナイト：ハンドレッドスピア
+			//----------------------------------------------------------------
+			case SKILL_ID_HANDRED_SPEAR:
+				attackMethodOptList = funcCreateOptionListAsLearnLvSelect(attackMethodOptList, SKILL_ID_SPIRAL_PIERCE, -1);
+				attackMethodOptList = funcCreateOptionListAsLearnLvSelect(attackMethodOptList, SKILL_ID_SPEAR_BOOMERANG, 0);
+				if (n_A_JOB == MIG_JOB_ID_DRAGON_KNIGHT) {
+					// ドラゴンナイトの場合
+					attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+						"チャージングピアースLv",
+						[
+							[0, "off"],
+							[1, "1"],
+							[2, "2"],
+							[3, "3"],
+							[4, "4"],
+							[5, "5"],
+							[6, "6"],
+							[7, "7"],
+							[8, "8"],
+							[9, "9"],
+							[10, "10"],
+						],
+						0
+					);			
+				}
+				break;
+
+			// ピアース
+			// スパイラルピアース
+			// マッドネスクラッシャー
+			case SKILL_ID_PIERCE:
+			case SKILL_ID_SPIRAL_PIERCE:
+			case SKILL_ID_MADNESS_CRUSHER:
+				if (n_A_JOB == MIG_JOB_ID_DRAGON_KNIGHT) {
+					// ドラゴンナイトの場合
+					attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+						"チャージングピアース",
+						[
+							[0, "off"],
+							[1, "1"],
+							[2, "2"],
+							[3, "3"],
+							[4, "4"],
+							[5, "5"],
+							[6, "6"],
+							[7, "7"],
+							[8, "8"],
+							[9, "9"],
+							[10, "10"],
+						],
+						0
+					);			
+				}
+				break;
+
+			//----------------------------------------------------------------
+			// ルーンナイト：イグニッションブレイク
+			//----------------------------------------------------------------
+			case SKILL_ID_IGNITION_BREAK:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"敵との距離",
+					[
+						[0, "近"],
+						[1, "中"],
+						[2, "遠"],
+					],
+					0
+				);
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"スキル倍率を-1する",
+					[
+						[0, "off"],
+						[1, "on"],
+					],
+					1
+				);
+				break;
+
+
+			//----------------------------------------------------------------
+			// ルーンナイト：ファイアードラゴンブレス
+			// ルーンナイト：ウォータードラゴンブレス
+			//----------------------------------------------------------------
+			case SKILL_ID_FIRE_DRAGON_BREATH:
+			case SKILL_ID_WATER_DRAGON_BREATH:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionListAsInput(attackMethodOptList,
+					"現在のHP (0の場合MaxHPで計算)",
+					[
+						["type", "number"],
+						["min", 0],
+						["max", 99999],
+					],
+					0
+				);
+				break;
+
+
+			//----------------------------------------------------------------
+			// ギロチンクロス：ダークイリュージョン
+			//----------------------------------------------------------------
+			case SKILL_ID_DARK_ILLUSION:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionListAsLearnLvSelect(attackMethodOptList, SKILL_ID_CROSS_IMPACT, -1);
+				break;
+
+
+			//----------------------------------------------------------------
+			// ギロチンクロス：クロスリッパーラッシャー
+			//----------------------------------------------------------------
+			case SKILL_ID_CROSS_RIPPER_SLASHER:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"回転カウンター数",
+					funcCreateNumberDataArrayArray(1, 10, false),
+					10
+				);
+				break;
+
+
+			//----------------------------------------------------------------
+			// レンジャー：エイムドボルト
+			//----------------------------------------------------------------
+			case SKILL_ID_AIMED_BOLT:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"",
+					[
+						[1, "通常計算"],
+						[2, "最小Hit回数固定"],
+						[3, "最大Hit回数固定"],
+					],
+					1
+				);
+				break;
+
+
+			//----------------------------------------------------------------
+			// レンジャー：鋭敏な嗅覚
+			//----------------------------------------------------------------
+			case SKILL_ID_EIBINNA_KYUKAKU:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionListAsLearnLvSelect(attackMethodOptList, SKILL_ID_WUG_BITE, 0);
+				break;
+
+
+			//----------------------------------------------------------------
+			// ウォーロック：ソウルエクスパンション
+			//----------------------------------------------------------------
+			case SKILL_ID_SOUL_EXPANSION:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"ホワイトインプリズン状態(Boss無効)",
+					[
+						[0, "なし"],
+						[1, "Lv1"],
+						[2, "Lv2"],
+						[3, "Lv3"],
+						[4, "Lv4"],
+						[5, "Lv5"],
+					],
+					0
+				);
+				break;
+
+
+			//----------------------------------------------------------------
+			// ウォーロック：ジャックフロスト
+			//----------------------------------------------------------------
+			case SKILL_ID_JACK_FROST:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"氷結状態",
+					[
+						[0, "なし"],
+						[1, "あり"],
+					],
+					0
+				);
+				break;
+
+
+			//----------------------------------------------------------------
+			// ウォーロック：コメット
+			//----------------------------------------------------------------
+			case SKILL_ID_COMMET:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"中心からの距離",
+					[
+						[0, "0～3マス"],
+						[1, "4～5マス"],
+						[2, "6～7マス"],
+						[3, "8～9マス"],
+						[4, "協力発動"],
+					],
+					0
+				);
+				break;
+
+
+			//----------------------------------------------------------------
+			// ウォーロック：チェーンライトニング
+			//----------------------------------------------------------------
+			case SKILL_ID_CHAIN_LIGHTNING:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"Hit数",
+					[
+						[1, "1Hit"],
+						[2, "2Hit"],
+						[3, "3Hit"],
+						[4, "4Hit"],
+						[5, "5Hit"],
+						[6, "6Hit"],
+					],
+					4
+				);
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"魔法力増幅の扱い",
+					[
+						[0, "1Hit目のみ"],
+						[1, "2Hit適用"],
+						[2, "3Hit適用"],
+						[3, "4Hit適用"],
+						[4, "5Hit適用"],
+						[5, "6Hit適用"],
+					],
+					0
+				);
+				break;
+
+
+			//----------------------------------------------------------------
+			// ウォーロック：テトラボルテックス
+			//----------------------------------------------------------------
+			case SKILL_ID_TETRA_BOLTEX:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"ボール属性(1&2)",
+					[
+						[11, "水水"],
+						[22, "地地"],
+						[33, "火火"],
+						[44, "風風"],
+						[12, "水地"],
+						[13, "水火"],
+						[14, "水風"],
+						[21, "地水"],
+						[23, "地火"],
+						[24, "地風"],
+						[31, "火水"],
+						[32, "火地"],
+						[34, "火風"],
+						[41, "風水"],
+						[42, "風地"],
+						[43, "風火"],
+					],
+					33
+				);
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"ボール属性(3&4)",
+					[
+						[11, "水水"],
+						[22, "地地"],
+						[33, "火火"],
+						[44, "風風"],
+						[12, "水地"],
+						[13, "水火"],
+						[14, "水風"],
+						[21, "地水"],
+						[23, "地火"],
+						[24, "地風"],
+						[31, "火水"],
+						[32, "火地"],
+						[34, "火風"],
+						[41, "風水"],
+						[42, "風地"],
+						[43, "風火"],
+					],
+					33
+				);
+				break;
+
+
+			//----------------------------------------------------------------
+			// ウォーロック：サモンファイアーボール
+			// ウォーロック：サモンウォーターボール
+			// ウォーロック：サモンライトインングボール
+			// ウォーロック：サモンストーン
+			//----------------------------------------------------------------
+			case SKILL_ID_SUMMON_FIRE_BALL:
+			case SKILL_ID_SUMMON_WATER_BALL:
+			case SKILL_ID_SUMMON_LIGHTNING_BALL:
+			case SKILL_ID_SUMMON_STONE:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"リリース時に放出する玉の数",
+					[
+						[1, "1個"],
+						[2, "2個"],
+						[3, "3個"],
+						[4, "4個"],
+						[5, "5個"],
+					],
+					1
+				);
+				break;
+
+
+			//----------------------------------------------------------------
+			// メカニック：パワースイング
+			//----------------------------------------------------------------
+			case SKILL_ID_POWER_SWING:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionListAsLearnLvSelect(attackMethodOptList, 
+					SKILL_ID_AXE_BOOMERANG,
+					((GetHigherJobSeriesID(n_A_JOB) == JOB_SERIES_ID_ROGUE) ? 0 : 3)
+				);
+				if (n_A_JOB === MIG_JOB_ID_MEISTER) {
+					attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+						"ABRバトルウォリアー",
+						[
+							[0, "無し"],
+							[1, "召喚中"],
+						],
+						0
+					);			
+				}
+				break;
+
+
+			//----------------------------------------------------------------
+			// メカニック：アームズキャノン
+			//----------------------------------------------------------------
+			case SKILL_ID_ARMS_CANNON:
+
+				// オプションリストを生成、追加
+				arrayWork = [];
+				for (idxOpt = 0; idxOpt < CanonOBJ.length; idxOpt++) {
+					arrayWork.push([idxOpt, CanonOBJ[idxOpt][2]])
+				}
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList, "", arrayWork, 1);
+				break;
+
+
+			//----------------------------------------------------------------
+			// ジェネティック：カートキャノン
+			//----------------------------------------------------------------
+			case SKILL_ID_CART_CANNON:
+
+				// オプションリストを生成、追加
+				arrayWork = [];
+				for (idxOpt = 0; idxOpt < CanonOBJ.length; idxOpt++) {
+					arrayWork.push([idxOpt, CanonOBJ[idxOpt][2]])
+				}
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"ｷｬﾉﾝﾎﾞｰﾙ",
+					arrayWork,
+					1
+				);
+				// バイオロではない場合は選択させない
+				if (!IsSameJobClass(MIG_JOB_ID_BIOLO)) {
+					break;
+				}
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"ｳﾄﾞｩﾝｳｫﾘｱｰ",
+					[
+						[0, "無し"],
+						[1, "召喚中"],
+					],
+					0
+				);
+				break;			
+
+			//----------------------------------------------------------------
+			// メカニック：セルフディストラクション
+			//----------------------------------------------------------------
+			case SKILL_ID_SELF_DESTRUCTION:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionListAsInput(attackMethodOptList,
+					"残りHP",
+					[
+						["type", "number"],
+						["min", 0],
+						["max", 99999],
+					],
+					0
+				);
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionListAsInput(attackMethodOptList,
+					"残りSP",
+					[
+						["type", "number"],
+						["min", 0],
+						["max", 99999],
+					],
+					0
+				);
+				break;
+
+
+			//----------------------------------------------------------------
+			// ロイヤルガード：バニシングポイント
+			//----------------------------------------------------------------
+			case SKILL_ID_BANISHING_POINT:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionListAsLearnLvSelect(attackMethodOptList, SKILL_ID_BASH, -1);
+				break;
+
+
+			//----------------------------------------------------------------
+			// ロイヤルガード：レイジバーストアタック
+			//----------------------------------------------------------------
+			case SKILL_ID_RAGE_BURST_ATTACK:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"怒りゲージ数",
+					funcCreateNumberDataArrayArray(0, 15, false),
+					15
+				);
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionListAsInput(attackMethodOptList,
+					"現在のHP（0の場合は最大HPで計算）",
+					[
+						["type", "number"],
+						["min", 0],
+						["max", 99999],
+					],
+					0
+				);
+				break;
+
+
+			//----------------------------------------------------------------
+			// ロイヤルガード：オーバーブランド
+			//----------------------------------------------------------------
+			case SKILL_ID_OVER_BLAND:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"壁の3Hit目",
+					[
+						[0, "なし"],
+						[1, "あり"],
+					],
+					1
+				);
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionListAsLearnLvSelect(attackMethodOptList, SKILL_ID_SPEAR_QUICKEN, -1);
+				break;
+
+
+			//----------------------------------------------------------------
+			// ロイヤルガード：ムーンスラッシャー
+			//----------------------------------------------------------------
+			case SKILL_ID_MOON_SLUSHER:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionListAsLearnLvSelect(attackMethodOptList, SKILL_ID_OVER_BLAND, -1);
+				break;
+
+
+			//----------------------------------------------------------------
+			// 修羅：双龍脚
+			//----------------------------------------------------------------
+			case SKILL_ID_SORYUKYAKU:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"固有ディレイ",
+					[
+						[0, "なし(仮)"],
+						[1, "あり(仮)"],
+						[2, "あり+0.3秒(仮)"],
+					],
+					0
+				);
+				break;
+
+
+			//----------------------------------------------------------------
+			// 修羅：爆気散弾
+			//----------------------------------------------------------------
+			case SKILL_ID_BAKKISANDAN:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"気弾数",
+					funcCreateNumberDataArrayArray(0, 15, false),
+					15
+				);
+				break;
+
+
+			//----------------------------------------------------------------
+			// 修羅：修羅身弾
+			//----------------------------------------------------------------
+			case SKILL_ID_SHURASHINDAN:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"Hit数",
+					[
+						[0, "1Hit"],
+						[1, "2Hit"],
+					],
+					0
+				);
+				break;
+
+
+			//----------------------------------------------------------------
+			// 修羅：天羅地網
+			// 修羅：號砲
+			// 修羅：羅刹破凰撃(HPSP固定)
+			//----------------------------------------------------------------
+			case SKILL_ID_TENRACHIMO:
+			case SKILL_ID_GOHO:
+			case SKILL_ID_RASETSU_HAOGEKI_MAX:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"単発orコンボ",
+					[
+						[0, "単発発動"],
+						[1, "コンボ時"],
+					],
+					0
+				);
+				break;
+
+
+			//----------------------------------------------------------------
+			// 修羅：閃光連撃
+			//----------------------------------------------------------------
+			case SKILL_ID_SENKO_RENGEKI:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionListAsSkillLvSelect(attackMethodOptList, SKILL_ID_SORYUKYAKU, false, -1);
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionListAsSkillLvSelect(attackMethodOptList, SKILL_ID_DAITENHOSUI, false, -1);
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionListAsSkillLvSelect(attackMethodOptList, SKILL_ID_GOHO, false, -1);
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionListAsSkillLvSelect(attackMethodOptList, SKILL_ID_TENRACHIMO, false, -1);
+				break;
+
+
+			//----------------------------------------------------------------
+			// 修羅：羅刹破凰撃(HPSP変動可)
+			//----------------------------------------------------------------
+			case SKILL_ID_RASETSU_HAOGEKI:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"単発orコンボ",
+					[
+						[0, "単発発動"],
+						[1, "コンボ時"],
+					],
+					0
+				);
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionListAsInput(attackMethodOptList,
+					"HP",
+					[
+						["type", "number"],
+						["min", 0],
+						["max", 99999],
+					],
+					0
+				);
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionListAsInput(attackMethodOptList,
+					"SP",
+					[
+						["type", "number"],
+						["min", 0],
+						["max", 99999],
+					],
+					0
+				);
+				break;
+
+
+			//----------------------------------------------------------------
+			// 修羅：破碎柱
+			//----------------------------------------------------------------
+			case SKILL_ID_HASAICHU:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"壁の追撃",
+					[
+						[0, "なし"],
+						[1, "あり"],
+					],
+					0
+				);
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionListAsInput(attackMethodOptList,
+					"敵の残りHP(0の場合MaxHP)",
+					[
+						["type", "number"],
+						["min", 0],
+						["max", 99999],
+					],
+					0
+				);
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionListAsInput(attackMethodOptList,
+					"被ダメージ(0の場合は計算結果の[平均被ダメージ]を使用)",
+					[
+						["type", "number"],
+						["min", 0],
+						["max", 99999],
+					],
+					0
+				);
+				break;
+
+
+			//----------------------------------------------------------------
+			// 修羅：双龍脚コンボ
+			//----------------------------------------------------------------
+			case SKILL_ID_COMBO_SORYUKYAKU:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionListAsSkillLvSelect(attackMethodOptList, SKILL_ID_SORYUKYAKU, false, -1);
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionListAsSkillLvSelect(attackMethodOptList, SKILL_ID_TENRACHIMO, true, 0);
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionListAsSkillLvSelect(attackMethodOptList, SKILL_ID_DAITENHOSUI, true, -1);
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionListAsSkillLvSelect(attackMethodOptList, SKILL_ID_GOHO, true, 0);
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionListAsSkillLvSelect(attackMethodOptList, SKILL_ID_RASETSU_HAOGEKI_MAX, true, -1);
+				break;
+
+
+			//----------------------------------------------------------------
+			// ミンストレル・ワンダラー：グレートエコー
+			//----------------------------------------------------------------
+			case SKILL_ID_GREAT_ECHO:
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"パートナー",
+					[
+						[0, "無し"],
+						[1, "有り"],
+					],
+					0
+				);
+				break;
+
+
+			//----------------------------------------------------------------
+			// ミンストレル・ワンダラー：シビアレインストーム(特殊)
+			//----------------------------------------------------------------
+			case SKILL_ID_SEVERE_RAINSTORM_EX:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"発動時のDEX",
+					funcCreateNumberDataArrayArray(0, 999, false),
+					0
+				);
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"発動時のAGI",
+					funcCreateNumberDataArrayArray(0, 999, false),
+					0
+				);
+				break;
+
+
+			//----------------------------------------------------------------
+			// ソーサラー：ファイアーウォーク
+			// ソーサラー：エレクトリックウォーク
+			//----------------------------------------------------------------
+			case SKILL_ID_FIRE_WALK:
+			case SKILL_ID_ELECTRIC_WALK:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"踏ませるセルの数",
+					funcCreateNumberDataArrayArray(0, 16, false),
+					16
+				);
+				break;
+
+
+			//----------------------------------------------------------------
+			// ソーサラー：スペルフィスト
+			//----------------------------------------------------------------
+			case SKILL_ID_SPELL_FIST:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"使用ボルト",
+					[
+						[0, "ファイアーボルト"],
+						[1, "コールドボルト"],
+						[2, "ライトニングボルト"],
+					],
+					0
+				);
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"ボルトLv",
+					funcCreateNumberDataArrayArray(0, 10, false),
+					10
+				);
+				break;
+
+
+			//----------------------------------------------------------------
+			// ソーサラー：サイキックウェーブ
+			//----------------------------------------------------------------
+			case SKILL_ID_PSYCHIC_WAVE:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"精霊による攻撃属性変化",
+					[
+						[0, "無"],
+						[1, "水"],
+						[2, "地"],
+						[3, "火"],
+						[4, "風"],
+					],
+					0
+				);
+				break;
+
+
+			//----------------------------------------------------------------
+			// ソーサラー：アースグレイヴ
+			//----------------------------------------------------------------
+			case SKILL_ID_EARTH_GRAVE:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionListAsLearnLvSelect(attackMethodOptList, SKILL_ID_SEISMIC_WEAPON, -1);
+				break;
+
+
+			//----------------------------------------------------------------
+			// ソーサラー：ダイアモンドダスト
+			//----------------------------------------------------------------
+			case SKILL_ID_DIAMOND_DUST:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionListAsLearnLvSelect(attackMethodOptList, SKILL_ID_FROST_WEAPON, -1);
+				break;
+
+
+			//----------------------------------------------------------------
+			// ソーサラー：ヴェラチュールスピアー
+			//----------------------------------------------------------------
+			case SKILL_ID_VERATURE_SPEAR:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionListAsLearnLvSelect(attackMethodOptList, SKILL_ID_LIGHTNING_LOADER, -1);
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionListAsLearnLvSelect(attackMethodOptList, SKILL_ID_STRIKING, -1);
+				break;
+
+
+			//----------------------------------------------------------------
+			// ジェネティック：スリングアイテム
+			//----------------------------------------------------------------
+			case SKILL_ID_SLING_ITEM:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"投擲アイテム",
+					[
+						[0, "リンゴ爆弾"],
+						[1, "パイナップル爆弾"],
+						[2, "ココナッツ爆弾"],
+						[3, "メロン爆弾"],
+						[4, "バナナ爆弾"],
+					],
+					4
+				);
+				break;
+
+
+			//----------------------------------------------------------------
+			// ジェネティック：クレイジーウィード
+			//----------------------------------------------------------------
+			case SKILL_ID_CRAZY_WEED:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"HIT数(期待値)",
+					[
+						[0, "0Hit"],
+						[1, "1Hit"],
+						[2, "2Hit"],
+						[3, "3Hit"],
+						[4, "4Hit"],
+						[5, "5Hit"],
+						[6, "6Hit"],
+						[7, "7Hit"],
+						[8, "8Hit"],
+					],
+					3
+				);
+				break;
+
+
+			//----------------------------------------------------------------
+			// ジェネティック：ヘルズプラント
+			//----------------------------------------------------------------
+			case SKILL_ID_HELLS_PLANT:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionListAsLearnLvSelect(attackMethodOptList, SKILL_ID_BIOPLANT, -1);
+				break;
+
+
+			//----------------------------------------------------------------
+			// ジェネティック：ファイアーエクスパンション
+			//----------------------------------------------------------------
+			case SKILL_ID_FIRE_EXPANSION:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionListAsLearnLvSelect(attackMethodOptList, SKILL_ID_ACID_DEMONSTRATION, -1);
+				break;
+
+
+			//----------------------------------------------------------------
+			// 影狼・朧：十文字切り
+			//----------------------------------------------------------------
+			case SKILL_ID_ZYUMONZIGIRI:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"設定",
+					[
+						[0, "通常"],
+						[1, "2連撃(1～2の合計)"],
+						[2, "3連撃(1～3の合計)"],
+						[3, "4連撃(1～4の合計)"],
+						[4, "5連撃(1～5の合計)"],
+					],
+					0
+				);
+				break;
+
+
+			//----------------------------------------------------------------
+			// 影狼・朧：黄泉返し
+			//----------------------------------------------------------------
+			case SKILL_ID_YOMIGAESHI:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"敵の魂SkillのLv",
+					funcCreateNumberDataArrayArray(0, 5, false),
+					0
+				);
+				break;
+
+
+			//----------------------------------------------------------------
+			// 影狼・朧：風魔手裏剣・乱華
+			//----------------------------------------------------------------
+			case SKILL_ID_FUMASHURIKEN_RANKA:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionListAsLearnLvSelect(attackMethodOptList, SKILL_ID_FUMASHURIKEN_NAGE, -1);
+				break;
+
+
+			//----------------------------------------------------------------
+			// リベリオン：ファイアーダンス
+			//----------------------------------------------------------------
+			case SKILL_ID_FIRE_DANCE:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionListAsLearnLvSelect(attackMethodOptList, SKILL_ID_DEATHPERAD, -1);
+				break;
+
+
+			//----------------------------------------------------------------
+			// リベリオン：ハンマーオブゴッド
+			//----------------------------------------------------------------
+			case SKILL_ID_HAMMER_OF_GOD:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"コインの枚数",
+					funcCreateNumberDataArrayArray(1, 10, false),
+					10
+				);
+				break;
+
+
+			//----------------------------------------------------------------
+			// リベリオン：ラウンドトリップ
+			//----------------------------------------------------------------
+			case SKILL_ID_ROUND_TRIP:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"HIT数",
+					[
+						[0, "1Hit"],
+						[1, "2Hit"],
+					],
+					0
+				);
+				break;
+
+
+			//----------------------------------------------------------------
+			// ギガントセット：ジョイントビートからのコンボ
+			//----------------------------------------------------------------
+			case SKILL_ID_COMBO_GIGANTSET_JOINT_BEAT:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionListAsSkillLvSelect(attackMethodOptList, SKILL_ID_JOINT_BEAT, false, -1);
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionListAsSkillLvSelect(attackMethodOptList, SKILL_ID_SPIRAL_PIERCE, false, -1);
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionListAsSkillLvSelect(attackMethodOptList, SKILL_ID_SONIC_WAVE, false, -1);
+				break;
+
+
+			//----------------------------------------------------------------
+			// ギガントセット：スパイラルピアースからのコンボ
+			//----------------------------------------------------------------
+			case SKILL_ID_COMBO_GIGANTSET_SPIRAL_PIERCE:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionListAsSkillLvSelect(attackMethodOptList, SKILL_ID_SPIRAL_PIERCE, false, -1);
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionListAsSkillLvSelect(attackMethodOptList, SKILL_ID_SONIC_WAVE, false, -1);
+				break;
+
+
+			//----------------------------------------------------------------
+			// サモナー：かみつく
+			//----------------------------------------------------------------
+			case SKILL_ID_KAMITSUKU:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"敵の残りHP",
+					[
+						[0, "70%より多い"],
+						[1, "70%以下"],
+					],
+					0
+				);
+				break;
+
+
+			//----------------------------------------------------------------
+			// サモナー：イヌハッカメテオ
+			//----------------------------------------------------------------
+			case SKILL_ID_INUHAKKA_METEOR:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"HIT数(期待値)",
+					[
+						[2, "1"],
+						[3, "1.5"],
+						[4, "2"],
+						[5, "2.5"],
+						[6, "3"],
+						[7, "3.5"],
+						[8, "4"],
+						[9, "4.5"],
+						[10, "5"],
+						[11, "5.5"],
+						[12, "6"],
+						[13, "6.5"],
+						[14, "7"],
+					],
+					5
+				);
+				// スピリットハンドラーではない場合、レインボーホーンを選択させない
+				if (!IsSameJobClass(MIG_JOB_ID_SPIRIT_HANDLER)) {
+					break;
+				}
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"レインボーホーン",
+					[
+						[ELM_ID_VANITY,	"なし"],		// 属性は common.js で EnumElmId として定義されている
+						[ELM_ID_WATER,	"Lv1:水属性"],  // ELM_ID_VANITY = 0 から
+						[ELM_ID_WIND,	"Lv2:風属性"],
+						[ELM_ID_EARTH,	"Lv3:地属性"],
+						[ELM_ID_FIRE,	"Lv4:火属性"],
+						[ELM_ID_DARK,	"Lv5:闇属性"],
+						[ELM_ID_HOLY,	"Lv6:聖属性"],
+					],
+					0
+				);
+				break;
+
+
+
+			//----------------------------------------------------------------
+			// サモナー：ピッキ突き
+			//----------------------------------------------------------------
+			case SKILL_ID_PIKKI_TSUKI:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"敵の残りHP",
+					[
+						[70, "70%以上"],
+						[69, "70%未満"],
+						[59, "60%未満"],
+						[49, "50%未満"],
+						[39, "40%未満"],
+						[29, "30%未満"],
+					],
+					70
+				);
+				break;
+
+
+			//----------------------------------------------------------------
+			// 星帝：紅焔脚
+			//----------------------------------------------------------------
+			case SKILL_ID_KOEN_KYAKU:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"HIT数",
+					[
+						[3, "対象＋追加"],
+						[1, "対象のみ"],
+						[2, "追加のみ"],
+					],
+					3
+				);
+				break;
+
+
+			//----------------------------------------------------------------
+			// 星帝：新星爆発
+			//----------------------------------------------------------------
+			case SKILL_ID_SHINSE_BAKUHATSU:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"次元の書",
+					[
+						[0, "なし"],
+						[1, "あり"],
+					],
+					0
+				);
+				break;
+
+
+			//----------------------------------------------------------------
+			// ドラゴンナイト：サーヴァントウェポン：ファントム
+			// ドラゴンナイト：サーヴァントウェポン：デモリッション
+			//----------------------------------------------------------------
+			case SKILL_ID_SERVANT_WEAPON_PHANTOM:
+			case SKILL_ID_SERVANT_WEAPON_DEMOLISION:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"武器体の数",
+					[
+						[1, "1"],
+						[2, "2"],
+						[3, "3"],
+						[4, "4"],
+						[5, "5"],
+					],
+					5
+				);
+				break;
+
+
+			//----------------------------------------------------------------
+			// シャドウクロス：サベージインパクト
+			//----------------------------------------------------------------
+			case SKILL_ID_SAVAGE_IMPACT:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"クローキングエクシード",
+					[
+						[0, "なし"],
+						[1, "あり"],
+					],
+					0
+				);
+				break;
+
+
+			//----------------------------------------------------------------
+			// シャドウクロス：エターナルスラッシュ
+			//----------------------------------------------------------------
+			case SKILL_ID_ETERNAL_SLASH:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"エターナルカウンター",
+					[
+						[0, "なし"],
+						[1, "1"],
+						[2, "2"],
+						[3, "3"],
+						[4, "4"],
+						[5, "5"],
+					],
+					5
+				);
+				break;
+
+
+			//----------------------------------------------------------------
+			// シャドウクロス：シャドウスタブ
+			//----------------------------------------------------------------
+			case SKILL_ID_SHADOW_STAB:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"クローキングエクシード",
+					[
+						[0, "なし"],
+						[1, "あり"],
+					],
+					0
+				);
+				break;
+
+
+			//----------------------------------------------------------------
+			// シャドウクロス：インパクトクレーター
+			//----------------------------------------------------------------
+			case SKILL_ID_IMPACT_CRATER:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"回転カウンター",
+					[
+						[1, "1"],
+						[2, "2"],
+						[3, "3"],
+						[4, "4"],
+						[5, "5"],
+						[6, "6"],
+						[7, "7"],
+						[8, "8"],
+						[9, "9"],
+						[10, "10"],
+					],
+					10
+				);
+				break;
+
+
+			//----------------------------------------------------------------
+			// ウィンドホーク：クレッシブボルト
+			//----------------------------------------------------------------
+			case SKILL_ID_CRESSIVE_VOLT:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"クレッシブボルト状態",
+					[
+						[0, "なし"],
+						[1, "1 回目"],
+						[2, "2 回目"],
+						[3, "3 回目"],
+					],
+					0
+				);
+				break;
+
+
+			//----------------------------------------------------------------
+			// インペリアルガード：オーバースラッシュ
+			//----------------------------------------------------------------
+			case SKILL_ID_OVER_SLASH:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"範囲内の敵数",
+					[
+						[0, "1 体"],
+						[1, "2～3 体"],
+						[2, "4 体以上"],
+					],
+					0
+				);
+				break;
+
+			//----------------------------------------------------------------
+			// アビスチェイサー：アビススクエア
+			//----------------------------------------------------------------
+			case SKILL_ID_ABYSS_SQUARE:
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"使用者の位置",
+					[
+						[0, "範囲外"],
+						[1, "範囲内"],
+					],
+					1
+				);
+				break;
+
+			//----------------------------------------------------------------
+			// バイオロ：アシディファイドゾーン
+			//----------------------------------------------------------------
+			case SKILL_ID_ACIDIFIED_ZONE_MIZU:
+			case SKILL_ID_ACIDIFIED_ZONE_CHI:
+			case SKILL_ID_ACIDIFIED_ZONE_HI:
+			case SKILL_ID_ACIDIFIED_ZONE_KAZE:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"ダメージ表示",
+					[
+						[0, "使用時ダメージ"],
+						[1, "設置ダメージ(未調整)"],
+					],
+					0
+				);
+				break;
+			
+			//----------------------------------------------------------------
+			// ハイパーノービス：ジャックフロストノヴァ
+			//----------------------------------------------------------------
+			case SKILL_ID_JACK_FROST_NOVA:
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"ダメージ表示",
+					[
+						[0, "使用時ダメージ"],
+						[1, "追加持続ダメージ"],
+					],
+					0
+				);
+				break;
+
+			//----------------------------------------------------------------
+			// ハイパーノービス：グラウンドグラビテーション
+			//----------------------------------------------------------------
+			case SKILL_ID_GROUND_GRAVITATION:
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"ダメージ表示",
+					[
+						[0, "使用時ダメージ"],
+						[1, "追加持続ダメージ"],
+					],
+					0
+				);
+				break;
+
+			//----------------------------------------------------------------
+			// ナイトウォッチ：照準カウンター
+			//----------------------------------------------------------------
+			case SKILL_ID_ONLY_ONE_BULLET:
+			case SKILL_ID_SPIRAL_SHOOTING:
+			case SKILL_ID_MAGAZIN_FOR_ONE:
+			case SKILL_ID_VIGILANT_AT_NIGHT:
+			case SKILL_ID_WILD_FIRE:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"照準カウンター",
+					[
+						[0, "なし"],
+						[1, "1 個"],
+						[2, "2 個"],
+						[3, "3 個"],
+						[4, "4 個"],
+						[5, "5 個"],
+						[6, "6 個"],
+						[7, "7 個"],
+						[8, "8 個"],
+						[9, "9 個"],
+						[10,"10 個"],
+					],
+					0
+				);
+				break;
+
+			//----------------------------------------------------------------
+			// 蜃気楼・不知火：悪夢
+			//----------------------------------------------------------------
+			case SKILL_ID_GENJUTSU_KAGE_NUI:
+			case SKILL_ID_GENJUTSU_KUNAI:
+			case SKILL_ID_GENZYUTSU_ANKOKURYUU:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"悪夢",
+					[
+						[0, "無し"],
+						[1, "有り"],
+					],
+					0
+				);
+				break;
+
+			//----------------------------------------------------------------
+			// 蜃気楼・不知火：風魔手裏剣-構築-
+			//----------------------------------------------------------------
+			case SKILL_ID_FUMASHURIKEN_KOUCHIKU:
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"風魔手裏剣トラップ",
+					[
+						[0, "無し"],
+						[1, "有り"],
+					],
+					0
+				);
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"風魔手裏剣-掌握-の習得Lv",
+					[
+						[5, "Lv5"],
+						[6, "Lv6"],
+						[7, "Lv7"],
+						[8, "Lv8"],
+						[9, "Lv9"],
+						[10,"Lv10"],
+					],
+					5
+				);
+				break;
+
+			//----------------------------------------------------------------
+			// ハイパーノービス：ダブルボウリングバッシュ巻き込み数
+			//----------------------------------------------------------------
+			case SKILL_ID_DOUBLE_BOWLING_BASH:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"巻き込み数",
+					[
+						[0, "無し"],
+						[1, "２～３体"],
+						[2, "４体～"],
+					],
+					0
+				);
+				break;
+
+			//----------------------------------------------------------------
+			// ハイパーノービス：メガソニックブローの敵HP残量
+			//----------------------------------------------------------------
+			case SKILL_ID_MEGA_SONIC_BLOW:
+
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"敵の残りHP",
+					[
+						[0, "50%以上"],
+						[1, "50%未満"],
+					],
+					0
+				);
+				break;
+
+			//----------------------------------------------------------------
+			// スピリットハンドラー：ディアーキャノン
+			//----------------------------------------------------------------
+			case SKILL_ID_DEER_CANON:
+
+				// オプションリストを生成、追加
+				// スピリットハンドラーではない場合、レインボーホーンを選択させない
+				if (!IsSameJobClass(MIG_JOB_ID_SPIRIT_HANDLER)) {
+					break;
+				}
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"レインボーホーン",
+					[
+						[ELM_ID_VANITY,	"なし"],		// 属性は common.js で EnumElmId として定義されている
+						[ELM_ID_WATER,	"Lv1:水属性"],  // ELM_ID_VANITY = 0 から
+						[ELM_ID_WIND,	"Lv2:風属性"],
+						[ELM_ID_EARTH,	"Lv3:地属性"],
+						[ELM_ID_FIRE,	"Lv4:火属性"],
+						[ELM_ID_DARK,	"Lv5:闇属性"],
+						[ELM_ID_HOLY,	"Lv6:聖属性"],
+					],
+					0
+				);
+				break;
+
+			//----------------------------------------------------------------
+			// スピリットハンドラー：ディアーブリーズ
+			//----------------------------------------------------------------
+			case SKILL_ID_DEER_BREEZE:
+
+				// オプションリストを生成、追加
+				// スピリットハンドラーではない場合、レインボーホーンを選択させない
+				if (!IsSameJobClass(MIG_JOB_ID_SPIRIT_HANDLER)) {
+					break;
+				}
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"レインボーホーン",
+					[
+						[ELM_ID_VANITY,	"なし"],		// 属性は common.js で EnumElmId として定義されている
+						[ELM_ID_WATER,	"Lv1:水属性"],  // ELM_ID_VANITY = 0 から
+						[ELM_ID_WIND,	"Lv2:風属性"],
+						[ELM_ID_EARTH,	"Lv3:地属性"],
+						[ELM_ID_FIRE,	"Lv4:火属性"],
+						[ELM_ID_DARK,	"Lv5:闇属性"],
+						[ELM_ID_HOLY,	"Lv6:聖属性"],
+					],
+					0
+				);
+				break;
+
+			//----------------------------------------------------------------
+			// ナイトウォッチ：ベーシックグレネード ヘイスティファイアインザホール グレネーズドロッピング
+			//----------------------------------------------------------------
+			case SKILL_ID_BASIC_GRENADE :
+			case SKILL_ID_HASTY_FIRE_IN_THE_HOLE :
+			case SKILL_ID_GRENADES_DROPPING :
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"グレネードフラグメント",
+					[
+						[ELM_ID_VANITY,	"なし"],		// 属性は common.js で EnumElmId として定義されている
+						[ELM_ID_WATER,	"Lv1:水属性"],  // ELM_ID_VANITY = 0 から
+						[ELM_ID_WIND,	"Lv2:風属性"],
+						[ELM_ID_EARTH,	"Lv3:地属性"],
+						[ELM_ID_FIRE,	"Lv4:火属性"],
+						[ELM_ID_DARK,	"Lv5:闇属性"],
+						[ELM_ID_HOLY,	"Lv6:聖属性"],
+					],
+					0
+				);
+				break;
+
+			//----------------------------------------------------------------
+			// ナイトウォッチ：ミッションボンバード
+			//----------------------------------------------------------------
+			case SKILL_ID_MISSION_BOMBARD :
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"グレネードフラグメント",
+					[
+						[ELM_ID_VANITY,	"なし"],		// 属性は common.js で EnumElmId として定義されている
+						[ELM_ID_WATER,	"Lv1:水属性"],  // ELM_ID_VANITY = 0 から
+						[ELM_ID_WIND,	"Lv2:風属性"],
+						[ELM_ID_EARTH,	"Lv3:地属性"],
+						[ELM_ID_FIRE,	"Lv4:火属性"],
+						[ELM_ID_DARK,	"Lv5:闇属性"],
+						[ELM_ID_HOLY,	"Lv6:聖属性"],
+					],
+					0
+				);
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"ダメージ表示",
+					[
+						[0, "使用時ダメージ"],
+						[1, "追加持続ダメージ"],
+					],
+					0
+				);
+				break;		
+
+			//----------------------------------------------------------------
+			// アークメイジ：アストラルストライク
+			//----------------------------------------------------------------
+			case SKILL_ID_ASTRAL_STRIKE :
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"ダメージ表示",
+					[
+						[0, "使用時ダメージ"],
+						[1, "追加持続ダメージ"],
+					],
+					0
+				);
+				break;
+
+			//----------------------------------------------------------------
+			// アークメイジ：オールブルーム
+			//----------------------------------------------------------------
+			case SKILL_ID_ALL_BLOOM :
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"クライマックスLv5の場合",
+					[
+						[0, "設置ダメージ"],
+						[1, "追撃ダメージ"],
+					],
+					0
+				);
+				break;
+
+			//----------------------------------------------------------------
+			// 蜃気楼＆不知火：属性砲
+			//----------------------------------------------------------------
+			case SKILL_ID_SEKIEN_HOU:
+			case SKILL_ID_REIKETSU_HOU:
+			case SKILL_ID_RAIDEN_HOU:
+			case SKILL_ID_KINNRYUU_HOU:
+			case SKILL_ID_ANTEN_HOU:
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"蜃気楼分身の状態",
+					[
+						[0, "本体のみ"],
+						[1, "本体 + 分身1体"],
+						[2, "本体 + 分身2体"],
+						[3, "本体 + 分身3体"],
+					],
+					0
+				);
+				break;
+
+			//----------------------------------------------------------------
+			// 蜃気楼＆不知火：影の舞
+			//----------------------------------------------------------------
+			case SKILL_ID_KAGE_NO_MAI:
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"蜃気楼分身の状態",
+					[
+						[0, "本体のみ"],
+						[1, "本体 + 分身1体"],
+						[2, "本体 + 分身2体"],
+						[3, "本体 + 分身3体"],
+					],
+					0
+				);
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"影狩りの習得Lv",
+					[
+						[3, "Lv3"],
+						[4, "Lv4"],
+						[5, "Lv5"],
+						[6, "Lv6"],
+						[7, "Lv7"],
+						[8, "Lv8"],
+						[9, "Lv9"],
+						[10,"Lv10"],
+					],
+					3
+				);
+				break;
+
+			//----------------------------------------------------------------
+			// 蜃気楼＆不知火：歪曲
+			//----------------------------------------------------------------
+			case SKILL_ID_KUNAI_WAIKYOKU:
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"蜃気楼分身の状態",
+					[
+						[0, "本体のみ"],
+						[1, "本体 + 分身1体"],
+						[2, "本体 + 分身2体"],
+						[3, "本体 + 分身3体"],
+					],
+					0
+				);
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"苦無-屈折-の習得Lv",
+					[
+						[0, "未習得"],
+						[1, "Lv1"],
+						[2, "Lv2"],
+						[3, "Lv3"],
+						[4, "Lv4"],
+						[5, "Lv5"],
+						[6, "Lv6"],
+						[7, "Lv7"],
+						[8, "Lv8"],
+						[9, "Lv9"],
+						[10,"Lv10"],
+					],
+					0
+				);
+				break;
+
+			//----------------------------------------------------------------
+			// 蜃気楼＆不知火：回転
+			//----------------------------------------------------------------
+			case SKILL_ID_KUNAI_KAITEN:
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"苦無-歪曲-の習得Lv",
+					[
+						[3, "Lv3"],
+						[4, "Lv4"],
+						[5, "Lv5"],
+						[6, "Lv6"],
+						[7, "Lv7"],
+						[8, "Lv8"],
+						[9, "Lv9"],
+						[10,"Lv10"],
+					],
+					3
+				);
+				break;
+
+			//----------------------------------------------------------------
+			// 蜃気楼＆不知火：掌握
+			//----------------------------------------------------------------
+			case SKILL_ID_FUMASHURIKEN_SHOUAKU:
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"風魔手裏剣-構築-の習得Lv",
+					[
+						[0, "未習得"],
+						[1, "Lv1"],
+						[2, "Lv2"],
+						[3, "Lv3"],
+						[4, "Lv4"],
+						[5, "Lv5"],
+						[6, "Lv6"],
+						[7, "Lv7"],
+						[8, "Lv8"],
+						[9, "Lv9"],
+						[10,"Lv10"],
+					],
+					0
+				);
+				break;
+
+			//----------------------------------------------------------------
+			// 蜃気楼＆不知火：影狩り
+			//----------------------------------------------------------------
+			case SKILL_ID_KAGE_GARI:
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"影一閃の習得Lv",
+					[
+						[0, "未習得"],
+						[1, "Lv1"],
+						[2, "Lv2"],
+						[3, "Lv3"],
+						[4, "Lv4"],
+						[5, "Lv5"],
+						[6, "Lv6"],
+						[7, "Lv7"],
+						[8, "Lv8"],
+						[9, "Lv9"],
+						[10,"Lv10"],
+					],
+					0
+				);
+				break;
+
+			//----------------------------------------------------------------
+			// 蜃気楼＆不知火：影一閃
+			//----------------------------------------------------------------
+			case SKILL_ID_KAGE_ISSEN:
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"影の舞の習得Lv",
+					[
+						[5, "Lv5"],
+						[6, "Lv6"],
+						[7, "Lv7"],
+						[8, "Lv8"],
+						[9, "Lv9"],
+						[10,"Lv10"],
+					],
+					5
+				);
+				break;
+
+			//----------------------------------------------------------------
+			// ソウルアセティック：青龍符 白虎符 朱雀符 玄武符 霊道符 死霊浄化 四方神符 四方五行陣
+			//----------------------------------------------------------------
+			case SKILL_ID_SEIRYU_FU:
+			case SKILL_ID_BYAKKO_FU:
+			case SKILL_ID_SUZAKU_FU:
+			case SKILL_ID_GENBU_FU:
+			case SKILL_ID_SHIHOZIN_FU:
+			case SKILL_ID_SHIHO_GOGYO_ZIN:
+			case SKILL_ID_REIDO_FU:
+			case SKILL_ID_SHIRYO_ZYOKA:
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"暖かい風",
+					[
+						[ELM_ID_VANITY	,"無し"		],
+						[ELM_ID_EARTH	,"Lv1 地"	],
+						[ELM_ID_WIND	,"Lv2 風"	],
+						[ELM_ID_WATER	,"Lv3 水"	],
+						[ELM_ID_FIRE	,"Lv4 火"	],
+						[ELM_ID_PSYCO	,"Lv5 念"	],
+						[ELM_ID_DARK	,"Lv6 闇"	],
+						[ELM_ID_HOLY	,"Lv7 聖"	],
+					],
+					0
+				);
+				break;
+
+			//----------------------------------------------------------------
+			// マイスター：攻撃装置有効化
+			//----------------------------------------------------------------
+			case SKILL_ID_KOGEKI_SOCHI_YUKOKA:
+				// オプションリストを生成、追加
+				attackMethodOptList = funcCreateOptionListAsInput(attackMethodOptList,
+					"マイスターのPOW",
+					[
+						["type", "number"],
+						["min", 0],
+						["max", 500],
+					],
+					0
+				);
+				break;
+			//----------------------------------------------------------------
+			// アークビショップ：アドラムス
+			//----------------------------------------------------------------
+			case SKILL_ID_ADORAMUS:
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"アンシラ状態",
+					[
+						[0, "無し"],
+						[1, "有り"],
+					],
+					0
+				);
+				break;
+			/**
+			 * 振動残響
+			 * メタリックサウンド
+			 * リズムシューティング
+			 * メタリックフューリー
+			 * ロゼブロッサム
+			 */
+			case SKILL_ID_SHINDOZANKYO:
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"サウンドブレンド状態",
+					[
+						[0, "無し"],
+						[1, "有り"],
+					],
+					0
+				);
+				break;
 		}
 	}
 };
-
 
 /**
  * 補足説明ブロックを生成する.
@@ -4245,10 +4216,6 @@ CAttackMethodAreaComponentManager.CreateNoticeBlock = function () {
 
 	return objSpan;
 };
-
-
-
-
 
 // 初期構築処理
 // TODO: 現状、呼び出しに任せる
