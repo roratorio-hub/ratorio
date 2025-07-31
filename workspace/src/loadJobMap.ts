@@ -48,7 +48,7 @@ export class JobMap {
 
     /** id_name から Job を取得 */
     static getByIdName(id_name: string): JobData | undefined {
-        return this.jobMap[id_name] || undefined;
+        return this.jobMap[id_name];
     }
 
     /** id_num から Job を取得 */
