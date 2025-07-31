@@ -23,7 +23,7 @@ export class ItemMap {
 
     /** id から Item を取得 */
     static getById(id: number): ItemData | undefined {
-        return this.itemMap[id] || undefined;
+        return this.itemMap[id];
     }
 
     /** displayname から Item を取得 */
