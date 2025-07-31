@@ -27,11 +27,14 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '20' # memo: version 20 のEOLは 2026年4月頃
 
-      # 依存関係をインストールする
-      - name: Install dependencies
-        run: npm install
+      # Node.js 依存関係をインストール & webpack でビルド
+      - name: Install and build Node.js dependencies
+        working-directory: workspace
+        run: |
+             npm install
+             npm run build
 
       # PR に release ラベルが付与されている時のみ PR がマージされた日時を json に書き出す
       - name: Get and format PR merged date in JST
@@ -59,10 +62,6 @@ jobs:
           git commit -m "リリース日時の更新"
           git push
 
-      # TypeScript のコンパイル
-      - name: Compile TypeScript
-        run: npx tsc
-
       # zstd をインストール
       - name: Install zstd
         run: sudo apt-get install -y zstd
@@ -78,4 +77,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./  # ルートディレクトリをコピーする
-          exclude_assets: '.github,.gemini,node_modules,ro4/m/ts/**.ts,.gitignore,package.json,package-lock.json,tsconfig.json,解析メモ,util'
+          exclude_assets: '.github,.gemini,node_modules,.gitignore,解析メモ,util,workspace'
