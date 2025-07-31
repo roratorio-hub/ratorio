@@ -30,7 +30,7 @@ export class SkillMap {
 
     /** id から Skill を取得 */
     static getById(id: string): SkillData | undefined {
-        return this.skillMap[id] || undefined;
+        return this.skillMap[id];
     }
 
     /** id_num から Skill を取得 */
