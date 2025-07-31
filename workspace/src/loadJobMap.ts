@@ -1,7 +1,7 @@
 import { loadFileAsUint8Array, zstdDecompress } from "./funcZstdLoad";
 
 export interface JobData {
-    id_name: string, //ID Name
+    id_name: string, // ID Name
     id_num: number, //ID Num
     is_doram: boolean, //ドラムかどうか
     _mig_id_name: string, //MIG ID Name
