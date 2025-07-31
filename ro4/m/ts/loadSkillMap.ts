@@ -1,4 +1,4 @@
-import { loadFileAsUint8Array, zstdDecompress } from "./funcZstdLoad.js";
+import { loadFileAsUint8Array, zstdDecompress } from "./funcZstdLoad";
 
 // SkillMapの型定義
 export interface SkillData {
@@ -30,7 +30,7 @@ export class SkillMap {
 
     /** id から Skill を取得 */
     static getById(id: string): SkillData | undefined {
-        return this.skillMap[id];
+        return this.skillMap[id] || undefined;
     }
 
     /** id_num から Skill を取得 */
@@ -44,9 +44,9 @@ export class SkillMap {
     }
 
     /** _mig_id から Skill を取得 */
-    static getByMigId(id: string): SkillData | undefined {
+    static getByMigId(midId: string): SkillData | undefined {
         for (const skill of Object.values(this.skillMap)) {
-            if (skill._mig_id === id) {
+            if (skill._mig_id === midId) {
                 return skill;
             }
         }
@@ -54,9 +54,9 @@ export class SkillMap {
     }
 
     /** _mig_id2 から skill.h.jsで定義していた数値を取得 */
-    static getMigIdNumByMigId2(id: string): number {
+    static getMigIdNumByMigId2(migId2: string): number {
         for (const skill of Object.values(this.skillMap)) {
-            if (skill._mig_id2 === id) {
+            if (skill._mig_id2 === migId2) {
                 if (skill._mig_id_num !== null) {
                     return skill._mig_id_num;
                 }

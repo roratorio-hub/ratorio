@@ -1,4 +1,4 @@
-import { loadFileAsUint8Array, zstdDecompress } from "./funcZstdLoad.js";
+import { loadFileAsUint8Array, zstdDecompress } from "./funcZstdLoad";
 
 // ItemMapの型定義
 export interface ItemData {
@@ -23,7 +23,7 @@ export class ItemMap {
 
     /** id から Item を取得 */
     static getById(id: number): ItemData | undefined {
-        return this.itemMap[id];
+        return this.itemMap[id] || undefined;
     }
 
     /** displayname から Item を取得 */
