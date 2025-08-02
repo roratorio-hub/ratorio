@@ -1,5 +1,4 @@
-// @ts-ignore
-import { ZSTDDecoder } from "https://cdn.skypack.dev/pin/zstddec@v0.1.0-WTastKZ9TFWDpoN47TOq/mode=imports,min/optimized/zstddec.js"
+import { ZSTDDecoder } from 'zstddec'
 const zstd = new ZSTDDecoder();
 
 // ファイル読み込み

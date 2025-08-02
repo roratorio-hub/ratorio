@@ -193,8 +193,6 @@
 			new enchSearch();
 			// 検索可能ドロップダウンリストのロード
 			LoadSelect2();
-            // RODB Translatorからのデータロード
-            loadRodbTranslator(window.location.hash);
 		});
 	</script>
 </head>
@@ -1961,10 +1959,6 @@
 
 <!-- 左メニュー用 javascript ファイル -->
 <script type="text/javascript" src="../frame.js"></script>
-
-<!-- load RODB Translator -->
-<script type="text/javascript" src="../../ro4/m/ts/loadRodbTranslator.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/pako@2/dist/pako.min.js" integrity="sha256-7eJpOkpqUSa501ZpBis1jsq2rnubhqHPMC/rRahRSQc=" crossorigin="anonymous"></script>
 
 <!-- デバッグ系、データ移行系 javascript ファイル -->
 <!-- 非デバッグ環境では読み込まない。リリース時にはコメントアウトすること -->

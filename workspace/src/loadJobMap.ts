@@ -1,7 +1,7 @@
-import { loadFileAsUint8Array, zstdDecompress } from "./funcZstdLoad.js";
+import { loadFileAsUint8Array, zstdDecompress } from "./funcZstdLoad";
 
 export interface JobData {
-    id_name: string, //ID
+    id_name: string, // ID Name
     id_num: number, //ID Num
     is_doram: boolean, //ドラムかどうか
     _mig_id_name: string, //MIG ID Name
@@ -38,16 +38,10 @@ export class JobMap {
     static getById(key: string | number): JobData | undefined {
         if (typeof key === 'string') {
             // 文字列の場合はID Nameを検索
-            if (key in this.jobMap) {
-                return this.jobMap[key];
-            }
+            return this.getByIdName(key);
         } else if (typeof key === 'number') {
-            // 数値の場合は_mig_id_numを検索(暫定的対応)
-            for (const job of Object.values(this.jobMap)) {
-                if (job._mig_id_num === key) {
-                    return job;
-                }
-            }
+            // 数値の場合は_mig_id_numを検索
+            return this.getByIdNum(key);
         }
         return undefined;
     }

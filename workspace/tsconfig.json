@@ -8,15 +8,16 @@
         "module": "es2020", // モジュール形式
         "moduleResolution": "bundler",
         "strict": true, // 厳格な型チェック
-        "outDir": "./ro4/m/ts/", // 出力先ディレクトリ
+        "outDir": "../dist", // 出力先ディレクトリ(実際はwebpackが管理)
         "types": [],
         "baseUrl": ".",
         "paths": {}
     },
     "include": [
-        "./ro4/m/ts/*.ts"
+        "./src/*.ts"
     ],
     "exclude": [
-        "./node_modules"
+        "./node_modules",
+        "./dist"
     ]
 }
