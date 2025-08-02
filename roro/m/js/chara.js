@@ -519,12 +519,12 @@ function ExBuffNumSearch(exBufId) {
 		if (n_A_PassSkill3[39] == 1) exBufNum = n_A_PassSkill3[40];
 		break;
 
-	// 支援レーラズの露
+	// 支援レーラズの霧
 	case EXBUF_ID_RELAZUNO_TSUYU:
 		if (n_A_PassSkill3[39] == 3) exBufNum = n_A_PassSkill3[40];
 		break;
 
-	// 支援レーラズの露　ミンストレルワンダラーの数
+	// 支援レーラズの霧　ミンストレルワンダラーの数
 	case EXBUF_ID_RELAZUNO_TSUYU_COUNT_OF_MINWAN:
 		if (n_A_PassSkill3[39] == 3) exBufNum = n_A_PassSkill3[41];
 		break;
@@ -4550,7 +4550,7 @@ function GetStatusModifyMaxHpPlus() {
 // 支援スキル効果　ここから
 
 	//----------------------------------------------------------------
-	// 「合奏　支援レーラズの露」の、効果
+	// 「合奏　支援レーラズの霧」の、効果
 	//----------------------------------------------------------------
 	if ((bufLv = ExBuffNumSearch(EXBUF_ID_RELAZUNO_TSUYU)) > 0) {
 		vartmp = ExBuffNumSearch(EXBUF_ID_RELAZUNO_TSUYU_COUNT_OF_MINWAN);

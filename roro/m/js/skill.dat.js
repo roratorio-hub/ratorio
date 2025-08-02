@@ -1965,7 +1965,7 @@
 		[646,5,"月明かりのセレナーデ","WA_MOONLIT_SERENADE"],
 		[647,5,"恋人たちの為のシンフォニー","WA_SYMPHONY_OF_LOVER"],
 		[648,5,"スイングダンス","WA_SWING_DANCE"],
-		[649,5,"レーラズの露","WM_LERADS_DEW"],
+		[649,5,"レーラズの霧","WM_LERADS_DEW"],
 		[650,5,"ビヨンドオブウォークライ","WM_BEYOND_OF_WARCRY"],
 		[651,5,"マナの歌","WM_SONG_OF_MANA"],
 		[652,5,"メロディーオブシンク","WM_MELODYOFSINK"],
