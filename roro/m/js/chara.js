@@ -3528,16 +3528,6 @@ function GetStatusModifyAtkPlus() {
 	}
 
 	//----------------------------------------------------------------
-	// 「合奏　支援ダンスウィズウォーグ（レンジャー有）」の、効果
-	//----------------------------------------------------------------
-	if ((bufLv = ExBuffNumSearch(EXBUF_ID_DANCE_WITH_WUG)) > 0) {
-		if (IsSameJobClass(JOB_ID_RANGER) || IsSameJobClass(JOB_ID_MINSTREL) || IsSameJobClass(JOB_ID_WANDERER)) {
-			vartmp = Math.min(7, ExBuffNumSearch(EXBUF_ID_DANCE_WITH_WUG_COUNT_OF_MINWAN));
-			val += (2 * bufLv) * vartmp;
-		}
-	}
-
-	//----------------------------------------------------------------
 	// 三次職支援設定「風車に向かって突撃」の装備Atk + 効果
 	//----------------------------------------------------------------
 	if ((bufLv = g_confDataSanzi[CCharaConfSanzi.CONF_ID_RUSH_WINDMILL]) > 0) {

@@ -459,6 +459,32 @@ function CCharaConfSanzi(confArray) {
 		this.confDataObj[confId] = confData;
 		confId++;
 
+		CCharaConfSanzi.CONF_ID_DANCE_WITH_WUG = confId;
+		confData = [
+			confId,
+			CConfBase.ConfText("ダンスウィズウォーグ"),
+			CConfBase.ConfControlType(CONTROL_TYPE_SELECTBOX_NUMBER),
+			CConfBase.ConfDefaultValue(0),
+			CConfBase.ConfMinValue(0),
+			CConfBase.ConfMaxValue(5),
+			"循環する自然の音・マナの歌・レーラズの霧・エンドレスハミングボイス・魅了・深い睡眠とは共存できません",
+		];
+		this.confDataObj[confId] = confData;
+		confId++;
+
+		CCharaConfSanzi.CONF_ID_UNLIMITED_HUMMING_VOICE = confId;
+		confData = [
+			confId,
+			CConfBase.ConfText("エンドレスハミングボイス"),
+			CConfBase.ConfControlType(CONTROL_TYPE_SELECTBOX_NUMBER),
+			CConfBase.ConfDefaultValue(0),
+			CConfBase.ConfMinValue(0),
+			CConfBase.ConfMaxValue(5),
+			"循環する自然の音・ダンスウィズウォーグ・マナの歌・レーラズの霧・魅了・深い睡眠とは共存できません",
+		];
+		this.confDataObj[confId] = confData;
+		confId++;
+
 		CCharaConfSanzi.CONF_ID_DUMMY = confId;
 		confData = [
 			confId,
@@ -528,6 +554,8 @@ function CCharaConfSanzi(confArray) {
 			CCharaConfSanzi.CONF_ID_MOONLIT_SERENADE,
 			CCharaConfSanzi.CONF_ID_RUSH_WINDMILL,
 			CCharaConfSanzi.CONF_ID_ECHOSONG,
+			CCharaConfSanzi.CONF_ID_DANCE_WITH_WUG,
+			CCharaConfSanzi.CONF_ID_UNLIMITED_HUMMING_VOICE,
 		];
 		this.confDataObj = displayOrder.map(id => this.confDataObj[id]);
 	}

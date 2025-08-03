@@ -4660,9 +4660,10 @@ function StAllCalc(){
 				ASPDch += g_confDataSanzi[CCharaConfSanzi.CONF_ID_LESSON];
 				ASPDplusMAX = Math.max(ASPDplusMAX, ASPDch);
 			}
-			if(n_A_PassSkill3[39] == 6 || n_A_PassSkill3[39] == 7){
-				// ３次職合奏スキル > ダンスウィズウォーグ が ON のとき
-				ASPDch = Math.max(30, (n_A_PassSkill3[41] - 1) * 5);	// 上限 30 として 自分以外の演奏者の数 * 5 だけ ASPD 増加
+
+			/** 三次職支援設定「ダンスウィズウォーグ」の基本攻撃速度 + 効果 */
+			if (g_confDataSanzi[CCharaConfSanzi.CONF_ID_DANCE_WITH_WUG] > 0) {
+				ASPDch = 5;
 				ASPDplusMAX = Math.max(ASPDplusMAX, ASPDch);
 			}
 
@@ -6705,11 +6706,12 @@ function StAllCalc(){
 //================================================================================================================================
 //================================================================================================================================
 //====
+//==== 公式サイトで「遠距離物理攻撃 + ◯%」と表記される
 //==== 遠距離物理攻撃で与えるダメージ＋○○％　ここから
 //====
 //================================================================================================================================
 //================================================================================================================================
-
+	{
 		//----------------------------------------------------------------
 		// ランダムエンチャント効果
 		//----------------------------------------------------------------
@@ -7127,9 +7129,6 @@ function StAllCalc(){
 			n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += 2 * n_A_BODY_DEF_PLUS * itemCount;
 		}
 
-
-
-
 		//----------------------------------------------------------------
 		// レンジャー　アンリミット
 		// PvP, GvG 等では効果を発揮しない（YEは使用可能の模様）
@@ -7189,6 +7188,11 @@ function StAllCalc(){
 				}
 			}
 
+		/** 三次職支援設定「ダンスウィズウォーグ」の遠距離物理攻撃 + 効果 */
+		if (g_confDataSanzi[CCharaConfSanzi.CONF_ID_DANCE_WITH_WUG] > 0) {
+			n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += 5 * g_confDataSanzi[CCharaConfSanzi.CONF_ID_DANCE_WITH_WUG];
+		}
+
 		//----------------------------------------------------------------
 		// 「三次職支援　アクラウスダッシュ」の効果（サモナー限定）
 		//----------------------------------------------------------------
@@ -7225,10 +7229,6 @@ function StAllCalc(){
 			}
 		}
 
-
-
-
-
 		//----------------------------------------------------------------
 		// 「性能カスタマイズ」の、効果
 		//----------------------------------------------------------------
@@ -7241,10 +7241,7 @@ function StAllCalc(){
 		for (idx = ITEM_SP_LONGRANGE_DAMAGE_UP; idx <= ITEM_SP_LONGRANGE_DAMAGE_UP; idx++) {
 			n_tok[idx] = ApplySpecModify(idx, n_tok[idx]);
 		}
-
-
-
-
+	}
 
 //================================================================================================================================
 //================================================================================================================================
@@ -15215,6 +15212,11 @@ function getFixedCastTimeReductionRate() {
 		chkary.push(45 + 5 * bufLv);
 	}
 
+	/** 三次職支援設定「ダンスウィズウォーグ」の固定詠唱時間 - 効果 */
+	if ((bufLv = g_confDataSanzi[CCharaConfSanzi.CONF_ID_DANCE_WITH_WUG]) > 0) {
+		chkary.push(45 + 5 * bufLv);
+	}
+
     if (CardNumSearch(CARD_ID_ENCHANT_MATK_1_CAST_FIXED_1) || 
         CardNumSearch(CARD_ID_ENCHANT_MATK_2_CAST_FIXED_1) || 
         CardNumSearch(CARD_ID_ENCHANT_MATK_3_CAST_FIXED_1) || 
@@ -15256,14 +15258,6 @@ function getFixedCastTimeReductionRate() {
 
     if (n_A_PassSkill7[51]) {
         chkary.push(50);
-    }
-
-    if (n_A_PassSkill3[39] == 6 || n_A_PassSkill3[39] == 7) {
-        if (n_A_PassSkill3[41] >= 7) {
-            chkary.push(70);
-        } else {
-            chkary.push(10 * n_A_PassSkill3[41]);
-        }
     }
 
     if (EquipNumSearch(ITEM_ID_RIOTCHIP)) {
@@ -20176,10 +20170,6 @@ function getSPCostReductionRate() {
     }
     if (CardNumSearch(458) && GetHigherJobSeriesID(n_A_JOB) == 15) {
         cost_reduction += 10;
-    }
-
-    if (n_A_PassSkill3[39] == 2 && n_A_PassSkill3[41] <= 6) {
-        cost_reduction -= 15 - 3 * (n_A_PassSkill3[41] - 2);
     }
 
 	/**
