@@ -3531,8 +3531,9 @@ function GetStatusModifyAtkPlus() {
 	// 三次職支援設定「風車に向かって突撃」の装備Atk + 効果
 	//----------------------------------------------------------------
 	if ((bufLv = g_confDataSanzi[CCharaConfSanzi.CONF_ID_RUSH_WINDMILL]) > 0) {
-		// TODO: レッスン習得済みLvの補正効果が必要
-		val += -20 + 50 * bufLv;
+		// 職ディスコより、風車5レッスン10のとき加算値が250との情報より
+		const lesson = g_confDataSanzi[CCharaConfSanzi.CONF_ID_LESSON];
+		val += -20 + 50 * bufLv + 2 * lesson;
 	}
 
 	//----------------------------------------------------------------
