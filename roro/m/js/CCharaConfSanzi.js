@@ -386,11 +386,36 @@ function CCharaConfSanzi(confArray) {
 		confData = [
 			confId,
 			CConfBase.ConfText("レーラズの霧"),
-			CConfBase.ConfControlType(CONTROL_TYPE_SELECTBOX_SPECIAL),
+			CConfBase.ConfControlType(CONTROL_TYPE_SELECTBOX_NUMBER),
 			CConfBase.ConfDefaultValue(0),
 			CConfBase.ConfMinValue(0),
 			CConfBase.ConfMaxValue(5),
 			"循環する自然の音・ダンスウィズウォーグ・マナの歌・エンドレスハミングボイス・魅了・深い睡眠とは共存できません"
+		];
+		this.confDataObj[confId] = confData;
+		confId++;
+
+		CCharaConfSanzi.CONF_ID_LESSON = confId;
+		confData = [
+			confId,
+			CConfBase.ConfText("レッスン習得Lv"),
+			CConfBase.ConfControlType(CONTROL_TYPE_SELECTBOX_NUMBER),
+			CConfBase.ConfDefaultValue(1),
+			CConfBase.ConfMinValue(1),
+			CConfBase.ConfMaxValue(10),
+		];
+		this.confDataObj[confId] = confData;
+		confId++;
+
+		CCharaConfSanzi.CONF_ID_SWING_DANCE = confId;
+		confData = [
+			confId,
+			CConfBase.ConfText("スイングダンス"),
+			CConfBase.ConfControlType(CONTROL_TYPE_SELECTBOX_NUMBER),
+			CConfBase.ConfDefaultValue(0),
+			CConfBase.ConfMinValue(0),
+			CConfBase.ConfMaxValue(5),
+			"恋人たちの為のシンフォニー・月明かりのセレナーデとは共存できません",
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
@@ -486,6 +511,8 @@ function CCharaConfSanzi(confArray) {
 			CCharaConfSanzi.CONF_ID_FRIGGNO_UTA,
 			CCharaConfSanzi.CONF_ID_SYMPHONY_OF_LOVER,
 			CCharaConfSanzi.CONF_ID_LERADS_DEW,
+			CCharaConfSanzi.CONF_ID_SWING_DANCE,
+			CCharaConfSanzi.CONF_ID_LESSON,
 			/*
 			CCharaConfSanzi.CONF_ID_RUSH_WINDMILL,
 			CCharaConfSanzi.CONF_ID_ECHOSONG,
@@ -547,42 +574,6 @@ function CCharaConfSanzi(confArray) {
 				for (var loopIdx = 0; loopIdx <= 18; loopIdx++) {
 					objOption = HtmlCreateElementOption(loopIdx, loopIdx + 132, objSelect);
 				}
-				// 初期値設定
-				objSelect.setAttribute("value", confData[CConfBase.CONF_DATA_INDEX_DEFAULT_VALUE]);
-				break;
-			case CCharaConfSanzi.CONF_ID_LERADS_DEW:
-				// 選択セレクトボックスを生成
-				objSelect = document.createElement("select");
-				objSelect.setAttribute("id", controlId);
-				objSelect.setAttribute("onChange", "CConfBase.OnChangeValueHandler(" + this.instanceNo + ", true)");
-				objTd.appendChild(objSelect);
-				// セレクトオプションを生成
-				const subject = [
-					"なし",			// 0
-					"Lv1:ﾚｯｽﾝLv1",	// 1
-					"Lv1:ﾚｯｽﾝLv3",	// 2
-					"Lv1:ﾚｯｽﾝLv6",	// 3
-					"Lv1:ﾚｯｽﾝLv9",	// 4
-					"Lv2:ﾚｯｽﾝLv1",	// 5
-					"Lv2:ﾚｯｽﾝLv3",	// 6
-					"Lv2:ﾚｯｽﾝLv6",	// 7
-					"Lv2:ﾚｯｽﾝLv9",	// 8
-					"Lv3:ﾚｯｽﾝLv1",	// 
-					"Lv3:ﾚｯｽﾝLv3",	// 
-					"Lv3:ﾚｯｽﾝLv6",	// 
-					"Lv3:ﾚｯｽﾝLv9",	// 
-					"Lv4:ﾚｯｽﾝLv1",
-					"Lv4:ﾚｯｽﾝLv3",
-					"Lv4:ﾚｯｽﾝLv6",
-					"Lv4:ﾚｯｽﾝLv9",
-					"Lv5:ﾚｯｽﾝLv1",
-					"Lv5:ﾚｯｽﾝLv3",
-					"Lv5:ﾚｯｽﾝLv6",
-					"Lv5:ﾚｯｽﾝLv9",
-				];
-				subject.forEach((item, index) => {
-					objOption = HtmlCreateElementOption(index, item, objSelect);
-				});
 				// 初期値設定
 				objSelect.setAttribute("value", confData[CConfBase.CONF_DATA_INDEX_DEFAULT_VALUE]);
 				break;

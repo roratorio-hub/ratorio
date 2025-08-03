@@ -4622,7 +4622,7 @@ function StAllCalc(){
 		n_tok[89] += w;
 
 		/**
-		 * ＡＳＰＤ計算　ここから
+		 * 公式サイトで「基本攻撃速度」と表記されるASPD計算式
 		 */
 		let aspd = 0;
 		{
@@ -4676,14 +4676,19 @@ function StAllCalc(){
 			}
 			// OTPとスピードポーションのうち大きい効果を適用
 			tmp_aspd = Math.max(tmp_aspd, [0, 10, 15, 20][n_A_SpeedPOT]);
-
 			if (n_A_PassSkill7[47] > 0) {
 				// アイテム(食品/他) > 期間限定系 ASPD 増加値 が 設定されている場合
 				tmp_aspd = Math.max(tmp_aspd, n_A_PassSkill7[47]);
 			}
-			if(n_A_PassSkill3[19] == 4){
-				// ３次職歌スキル > スイングダンス が ON のとき
-				ASPDch = n_A_PassSkill3[37] * 5 + n_A_PassSkill3[38];	// スキルLv * 5 + レッスン習得Lv
+
+			// -------------------------------------------
+			// 以下のスキルは加算されず最大値だけが適用される
+			// -------------------------------------------
+
+			/** 三次職支援設定「スイングダンス」の基本攻撃速度 + 効果 */
+			if (g_confDataSanzi[CCharaConfSanzi.CONF_ID_SWING_DANCE] > 0) {
+				ASPDch = 5 * g_confDataSanzi[CCharaConfSanzi.CONF_ID_SWING_DANCE];
+				ASPDch += g_confDataSanzi[CCharaConfSanzi.CONF_ID_LESSON];
 				ASPDplusMAX = Math.max(ASPDplusMAX, ASPDch);
 			}
 			if(n_A_PassSkill3[39] == 6 || n_A_PassSkill3[39] == 7){
@@ -4827,6 +4832,7 @@ function StAllCalc(){
 				tmp_aspd += Math.round(advanced_book_lv / 2);
 			}
 			aspd += (200 - aspd) * (tmp_aspd / 100);
+
 			if (UsedSkillSearch(SKILL_ID_FIGHTING_SPIRIT)) {
 				// ファイティングスピリット が設定されているとき
 				const wfsp = [0,0,0,1,1,2,2,2,3,3,4];
@@ -15233,6 +15239,12 @@ function getFixedCastTimeReductionRate() {
                 break;
         }
     }
+
+	/** 三次職支援設定「スイングダンス」の固定詠唱時間 - 効果 */
+	if ((bufLv = g_confDataSanzi[CCharaConfSanzi.CONF_ID_SWING_DANCE]) > 0) {
+		// 固定詠唱はレッスンの影響を受けないと仮定した計算
+		chkary.push(45 + 5 * bufLv);
+	}
 
     if (CardNumSearch(CARD_ID_ENCHANT_MATK_1_CAST_FIXED_1) || 
         CardNumSearch(CARD_ID_ENCHANT_MATK_2_CAST_FIXED_1) || 

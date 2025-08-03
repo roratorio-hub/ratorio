@@ -6638,10 +6638,8 @@ function GetStatusModifyMaxHpUp() {
 	/** 三次職支援設定「レーラズの霧」の効果 */
 	if ((bufLv = g_confDataSanzi[CCharaConfSanzi.CONF_ID_LERADS_DEW]) > 0) {
 		// 職ディスコよりレッスンの習得LV +3 ごとに補正 +1.
-		// 本計算機の使用Lvは 0 開始で +1 ごとにレッスン習得Lv補正が 4 段階
-		const skill = Math.ceil(bufLv / 4);
-		const lesson = Math.floor((bufLv - 1) % 4);
-		val += 12 + 3 * skill + lesson;
+		const lesson = g_confDataSanzi[CCharaConfSanzi.CONF_ID_LESSON];
+		val += 12 + 3 * bufLv + Math.floor(lesson / 3);
 	}
 
 	//----------------------------------------------------------------
