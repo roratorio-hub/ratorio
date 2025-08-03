@@ -420,6 +420,19 @@ function CCharaConfSanzi(confArray) {
 		this.confDataObj[confId] = confData;
 		confId++;
 
+		CCharaConfSanzi.CONF_ID_MOONLIT_SERENADE = confId;
+		confData = [
+			confId,
+			CConfBase.ConfText("月明かりのセレナーデ"),
+			CConfBase.ConfControlType(CONTROL_TYPE_SELECTBOX_NUMBER),
+			CConfBase.ConfDefaultValue(0),
+			CConfBase.ConfMinValue(0),
+			CConfBase.ConfMaxValue(5),
+			"スイングダンス・恋人たちの為のシンフォニーとは共存できません",
+		];
+		this.confDataObj[confId] = confData;
+		confId++;
+
 /*
 		CCharaConfSanzi.CONF_ID_RUSH_WINDMILL = confId;
 		confData = [
@@ -513,6 +526,7 @@ function CCharaConfSanzi(confArray) {
 			CCharaConfSanzi.CONF_ID_LERADS_DEW,
 			CCharaConfSanzi.CONF_ID_SWING_DANCE,
 			CCharaConfSanzi.CONF_ID_LESSON,
+			CCharaConfSanzi.CONF_ID_MOONLIT_SERENADE,
 			/*
 			CCharaConfSanzi.CONF_ID_RUSH_WINDMILL,
 			CCharaConfSanzi.CONF_ID_ECHOSONG,

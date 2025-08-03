@@ -81,7 +81,7 @@ function Click_Skill3SW(){
 			"(廃止)ハーモナイズ",
 			"(廃止)スイングダンス",
 			"(廃止)恋人たちの為のシンフォニー",
-			"月明かりのセレナーデ"
+			"(廃止)月明かりのセレナーデ"
 			];
 		myInnerHtml("EN12_1",'<select name="A3_Skill12_0"onChange="Skill3SW_2(true)"></select>',0);
 		for (let i = 0; i < uta_name.length; i++) {
