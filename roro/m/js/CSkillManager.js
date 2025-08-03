@@ -20649,7 +20649,7 @@ function CSkillManager() {
 		skillId++;
 
 		// ----------------------------------------------------------------
-		// レーラズの露
+		// レーラズの霧
 		// ----------------------------------------------------------------
 		SKILL_ID_LERAORNO_TSUYU = skillId;
 		skillData = new function() {
@@ -20657,7 +20657,7 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "レーラズの露";
+			this.name = "レーラズの霧";
 			this.kana = "レエラスノツユ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE;

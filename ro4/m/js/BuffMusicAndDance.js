@@ -42,7 +42,19 @@ function Click_Skill3SW(){
 			`;
 		myInnerHtml("SP_SIEN01", str, 0);
 		document.calcForm.A3_SKILLSW.checked = true;
-		const name_CS3SW_SKILL = ["(廃止)口笛","(廃止)夕陽のアサシンクロス","(廃止)ブラギの詩","(廃止)イドゥンの林檎","(廃止)ハミング","(廃止)幸運のキス","(廃止)サービスフォーユー","(廃止)不死身ジークフリード","ニヨルドの宴","(廃止)戦太鼓の響き","(廃止)ニーベルングの指輪"];
+		const name_CS3SW_SKILL = [
+			"(廃止)口笛",
+			"(廃止)夕陽のアサシンクロス",
+			"(廃止)ブラギの詩",
+			"(廃止)イドゥンの林檎",
+			"(廃止)ハミング",
+			"(廃止)幸運のキス",
+			"(廃止)サービスフォーユー",
+			"(廃止)不死身ジークフリード",
+			"ニヨルドの宴",
+			"(廃止)戦太鼓の響き",
+			"(廃止)ニーベルングの指輪"
+			];
 		let html_CS3SW_SKILL = new Array();
 		for (let i = 0; i <= 10; i++) {
                 myInnerHtml(`EN${i}_1`, name_CS3SW_SKILL[i], 0);
@@ -62,12 +74,29 @@ function Click_Skill3SW(){
                 myInnerHtml(`EN${i}_2`, html_CS3SW_SKILL[i], 0);
            }
 		// フリッグの歌は仕様変更により、三次職支援へ移動
-		const uta_name = ["◆三次職歌スキル off","風車に向かって突撃","エコーの歌","式不明(ハーモナイズ)","スイングダンス","(×)恋人たちの為のシンフォニー","月明かりのセレナーデ"];
+		const uta_name = [
+			"◆三次職歌スキル off",
+			"(廃止)風車に向かって突撃",
+			"(廃止)エコーの歌",
+			"(廃止)ハーモナイズ",
+			"(廃止)スイングダンス",
+			"(廃止)恋人たちの為のシンフォニー",
+			"(廃止)月明かりのセレナーデ"
+			];
 		myInnerHtml("EN12_1",'<select name="A3_Skill12_0"onChange="Skill3SW_2(true)"></select>',0);
 		for (let i = 0; i < uta_name.length; i++) {
 				document.calcForm.A3_Skill12_0.options[i] = new Option(uta_name[i], i);
 		}
-		const gassou_name = ["◆三次職合奏スキル off","(仮)フライデーナイトフィーバー","エンドレスハミングボイス","(仮)レーラズの露","(?)ﾋﾞﾖﾝﾄﾞｵﾌﾞｳｫｰｸﾗｲ(敵から)","(?)ﾒﾛﾃﾞｨｰｵﾌﾞｼﾝｸ(敵から)","(?)ﾀﾞﾝｽｳｨｽﾞｳｫｰｸﾞ(ﾚﾝｼﾞｬｰ有)","(?)ﾀﾞﾝｽｳｨｽﾞｳｫｰｸﾞ(ﾚﾝｼﾞｬｰ無)"];
+		const gassou_name = [
+			"◆三次職合奏スキル off",
+			"(廃止)フライデーナイトフィーバー",
+			"(廃止)エンドレスハミングボイス",
+			"(廃止)レーラズの霧",
+			"(廃止)ﾋﾞﾖﾝﾄﾞｵﾌﾞｳｫｰｸﾗｲ(敵から)",
+			"(廃止)ﾒﾛﾃﾞｨｰｵﾌﾞｼﾝｸ(敵から)",
+			"(廃止)ﾀﾞﾝｽｳｨｽﾞｳｫｰｸﾞ(ﾚﾝｼﾞｬｰ有)",
+			"(廃止)ﾀﾞﾝｽｳｨｽﾞｳｫｰｸﾞ(ﾚﾝｼﾞｬｰ無)"
+			];
 		myInnerHtml("EN13_1",'<select name="A3_Skill13_0"onChange="Skill3SW_2(true)"></select>',0);
 		for (let i = 0; i <= 7; i++) {
                 document.calcForm.A3_Skill13_0.options[i] = new Option(gassou_name[i],i);

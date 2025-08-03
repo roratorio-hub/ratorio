@@ -382,7 +382,57 @@ function CCharaConfSanzi(confArray) {
 		this.confDataObj[confId] = confData;
 		confId++;
 
-/*
+		CCharaConfSanzi.CONF_ID_LERADS_DEW = confId;
+		confData = [
+			confId,
+			CConfBase.ConfText("レーラズの霧"),
+			CConfBase.ConfControlType(CONTROL_TYPE_SELECTBOX_NUMBER),
+			CConfBase.ConfDefaultValue(0),
+			CConfBase.ConfMinValue(0),
+			CConfBase.ConfMaxValue(5),
+			"循環する自然の音・ダンスウィズウォーグ・マナの歌・エンドレスハミングボイス・魅了・深い睡眠とは共存できません"
+		];
+		this.confDataObj[confId] = confData;
+		confId++;
+
+		CCharaConfSanzi.CONF_ID_LESSON = confId;
+		confData = [
+			confId,
+			CConfBase.ConfText("レッスン習得Lv"),
+			CConfBase.ConfControlType(CONTROL_TYPE_SELECTBOX_NUMBER),
+			CConfBase.ConfDefaultValue(1),
+			CConfBase.ConfMinValue(1),
+			CConfBase.ConfMaxValue(10),
+		];
+		this.confDataObj[confId] = confData;
+		confId++;
+
+		CCharaConfSanzi.CONF_ID_SWING_DANCE = confId;
+		confData = [
+			confId,
+			CConfBase.ConfText("スイングダンス"),
+			CConfBase.ConfControlType(CONTROL_TYPE_SELECTBOX_NUMBER),
+			CConfBase.ConfDefaultValue(0),
+			CConfBase.ConfMinValue(0),
+			CConfBase.ConfMaxValue(5),
+			"恋人たちの為のシンフォニー・月明かりのセレナーデとは共存できません",
+		];
+		this.confDataObj[confId] = confData;
+		confId++;
+
+		CCharaConfSanzi.CONF_ID_MOONLIT_SERENADE = confId;
+		confData = [
+			confId,
+			CConfBase.ConfText("月明かりのセレナーデ"),
+			CConfBase.ConfControlType(CONTROL_TYPE_SELECTBOX_NUMBER),
+			CConfBase.ConfDefaultValue(0),
+			CConfBase.ConfMinValue(0),
+			CConfBase.ConfMaxValue(5),
+			"スイングダンス・恋人たちの為のシンフォニーとは共存できません",
+		];
+		this.confDataObj[confId] = confData;
+		confId++;
+
 		CCharaConfSanzi.CONF_ID_RUSH_WINDMILL = confId;
 		confData = [
 			confId,
@@ -408,7 +458,33 @@ function CCharaConfSanzi(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-*/
+
+		CCharaConfSanzi.CONF_ID_DANCE_WITH_WUG = confId;
+		confData = [
+			confId,
+			CConfBase.ConfText("ダンスウィズウォーグ"),
+			CConfBase.ConfControlType(CONTROL_TYPE_SELECTBOX_NUMBER),
+			CConfBase.ConfDefaultValue(0),
+			CConfBase.ConfMinValue(0),
+			CConfBase.ConfMaxValue(5),
+			"循環する自然の音・マナの歌・レーラズの霧・エンドレスハミングボイス・魅了・深い睡眠とは共存できません",
+		];
+		this.confDataObj[confId] = confData;
+		confId++;
+
+		CCharaConfSanzi.CONF_ID_UNLIMITED_HUMMING_VOICE = confId;
+		confData = [
+			confId,
+			CConfBase.ConfText("エンドレスハミングボイス"),
+			CConfBase.ConfControlType(CONTROL_TYPE_SELECTBOX_NUMBER),
+			CConfBase.ConfDefaultValue(0),
+			CConfBase.ConfMinValue(0),
+			CConfBase.ConfMaxValue(5),
+			"循環する自然の音・ダンスウィズウォーグ・マナの歌・レーラズの霧・魅了・深い睡眠とは共存できません",
+		];
+		this.confDataObj[confId] = confData;
+		confId++;
+
 		CCharaConfSanzi.CONF_ID_DUMMY = confId;
 		confData = [
 			confId,
@@ -472,10 +548,14 @@ function CCharaConfSanzi(confArray) {
 			CCharaConfSanzi.CONF_ID_KEIKAI,
 			CCharaConfSanzi.CONF_ID_FRIGGNO_UTA,
 			CCharaConfSanzi.CONF_ID_SYMPHONY_OF_LOVER,
-			/*
+			CCharaConfSanzi.CONF_ID_LERADS_DEW,
+			CCharaConfSanzi.CONF_ID_SWING_DANCE,
+			CCharaConfSanzi.CONF_ID_LESSON,
+			CCharaConfSanzi.CONF_ID_MOONLIT_SERENADE,
 			CCharaConfSanzi.CONF_ID_RUSH_WINDMILL,
 			CCharaConfSanzi.CONF_ID_ECHOSONG,
-			*/
+			CCharaConfSanzi.CONF_ID_DANCE_WITH_WUG,
+			CCharaConfSanzi.CONF_ID_UNLIMITED_HUMMING_VOICE,
 		];
 		this.confDataObj = displayOrder.map(id => this.confDataObj[id]);
 	}
@@ -485,74 +565,57 @@ function CCharaConfSanzi(confArray) {
 	 * （継承先でオーバーライドすること）
 	 */
 	this.BuildUpSelectAreaSubForSpecial = function (objTd, confData) {
-
 		var confId = confData[CConfBase.CONF_DATA_INDEX_ID];
 		var controlId = this.GetControlIdString(this.instanceNo, confId);
 		var controlType = confData[CConfBase.CONF_DATA_INDEX_CONTROL_TYPE];
 
 		// 個別に実装する
 		switch (confId) {
-
-		// ファイティングスピリット
-		case CCharaConfSanzi.CONF_ID_FIGHTING_SPIRIT:
-
-			// 選択セレクトボックスを生成
-			objSelect = document.createElement("select");
-			objSelect.setAttribute("id", controlId);
-			objSelect.setAttribute("onChange", "CConfBase.OnChangeValueHandler(" + this.instanceNo + ", true)");
-			objTd.appendChild(objSelect);
-
-			// セレクトオプションを生成
-			objOption = HtmlCreateElementOption(0, "off", objSelect);
-			for (var loopIdx = 2; loopIdx <= 12; loopIdx++) {
-				objOption = HtmlCreateElementOption(loopIdx, loopIdx + "人PT", objSelect);
-			}
-
-			// 初期値設定
-			objSelect.setAttribute("value", confData[CConfBase.CONF_DATA_INDEX_DEFAULT_VALUE]);
-
-			break;
-
-		// 術式-展開-
-		case CCharaConfSanzi.CONF_ID_ZYUTSUSHIKI_TENKAI:
-
-			// 選択セレクトボックスを生成
-			objSelect = document.createElement("select");
-			objSelect.setAttribute("id", controlId);
-			objSelect.setAttribute("onChange", "CConfBase.OnChangeValueHandler(" + this.instanceNo + ", true)");
-			objTd.appendChild(objSelect);
-
-			// セレクトオプションを生成
-			objOption = HtmlCreateElementOption(0, "off", objSelect);
-			objOption = HtmlCreateElementOption(1, "水", objSelect);
-			objOption = HtmlCreateElementOption(2, "土", objSelect);
-			objOption = HtmlCreateElementOption(3, "火", objSelect);
-			objOption = HtmlCreateElementOption(4, "風", objSelect);
-
-			// 初期値設定
-			objSelect.setAttribute("value", confData[CConfBase.CONF_DATA_INDEX_DEFAULT_VALUE]);
-
-			break;
-
-		// ペインキラー用SホムのBaseLv
-		case CCharaConfSanzi.CONF_ID_PAIN_KILLER_BASE_LEVEL:
-
-			// 選択セレクトボックスを生成
-			objSelect = document.createElement("select");
-			objSelect.setAttribute("id", controlId);
-			objSelect.setAttribute("onChange", "CConfBase.OnChangeValueHandler(" + this.instanceNo + ", true)");
-			objTd.appendChild(objSelect);
-
-			// セレクトオプションを生成
-			for (var loopIdx = 0; loopIdx <= 18; loopIdx++) {
-				objOption = HtmlCreateElementOption(loopIdx, loopIdx + 132, objSelect);
-			}
-
-			// 初期値設定
-			objSelect.setAttribute("value", confData[CConfBase.CONF_DATA_INDEX_DEFAULT_VALUE]);
-
-			break;
-
+			// ファイティングスピリット
+			case CCharaConfSanzi.CONF_ID_FIGHTING_SPIRIT:
+				// 選択セレクトボックスを生成
+				objSelect = document.createElement("select");
+				objSelect.setAttribute("id", controlId);
+				objSelect.setAttribute("onChange", "CConfBase.OnChangeValueHandler(" + this.instanceNo + ", true)");
+				objTd.appendChild(objSelect);
+				// セレクトオプションを生成
+				objOption = HtmlCreateElementOption(0, "off", objSelect);
+				for (var loopIdx = 2; loopIdx <= 12; loopIdx++) {
+					objOption = HtmlCreateElementOption(loopIdx, loopIdx + "人PT", objSelect);
+				}
+				// 初期値設定
+				objSelect.setAttribute("value", confData[CConfBase.CONF_DATA_INDEX_DEFAULT_VALUE]);
+				break;
+			// 術式-展開-
+			case CCharaConfSanzi.CONF_ID_ZYUTSUSHIKI_TENKAI:
+				// 選択セレクトボックスを生成
+				objSelect = document.createElement("select");
+				objSelect.setAttribute("id", controlId);
+				objSelect.setAttribute("onChange", "CConfBase.OnChangeValueHandler(" + this.instanceNo + ", true)");
+				objTd.appendChild(objSelect);
+				// セレクトオプションを生成
+				objOption = HtmlCreateElementOption(0, "off", objSelect);
+				objOption = HtmlCreateElementOption(1, "水", objSelect);
+				objOption = HtmlCreateElementOption(2, "土", objSelect);
+				objOption = HtmlCreateElementOption(3, "火", objSelect);
+				objOption = HtmlCreateElementOption(4, "風", objSelect);
+				// 初期値設定
+				objSelect.setAttribute("value", confData[CConfBase.CONF_DATA_INDEX_DEFAULT_VALUE]);
+				break;
+			// ペインキラー用SホムのBaseLv
+			case CCharaConfSanzi.CONF_ID_PAIN_KILLER_BASE_LEVEL:
+				// 選択セレクトボックスを生成
+				objSelect = document.createElement("select");
+				objSelect.setAttribute("id", controlId);
+				objSelect.setAttribute("onChange", "CConfBase.OnChangeValueHandler(" + this.instanceNo + ", true)");
+				objTd.appendChild(objSelect);
+				// セレクトオプションを生成
+				for (var loopIdx = 0; loopIdx <= 18; loopIdx++) {
+					objOption = HtmlCreateElementOption(loopIdx, loopIdx + 132, objSelect);
+				}
+				// 初期値設定
+				objSelect.setAttribute("value", confData[CConfBase.CONF_DATA_INDEX_DEFAULT_VALUE]);
+				break;
 		}
 	}
 
