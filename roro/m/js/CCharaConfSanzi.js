@@ -433,7 +433,6 @@ function CCharaConfSanzi(confArray) {
 		this.confDataObj[confId] = confData;
 		confId++;
 
-/*
 		CCharaConfSanzi.CONF_ID_RUSH_WINDMILL = confId;
 		confData = [
 			confId,
@@ -459,7 +458,7 @@ function CCharaConfSanzi(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-*/
+
 		CCharaConfSanzi.CONF_ID_DUMMY = confId;
 		confData = [
 			confId,
@@ -527,10 +526,8 @@ function CCharaConfSanzi(confArray) {
 			CCharaConfSanzi.CONF_ID_SWING_DANCE,
 			CCharaConfSanzi.CONF_ID_LESSON,
 			CCharaConfSanzi.CONF_ID_MOONLIT_SERENADE,
-			/*
 			CCharaConfSanzi.CONF_ID_RUSH_WINDMILL,
 			CCharaConfSanzi.CONF_ID_ECHOSONG,
-			*/
 		];
 		this.confDataObj = displayOrder.map(id => this.confDataObj[id]);
 	}
