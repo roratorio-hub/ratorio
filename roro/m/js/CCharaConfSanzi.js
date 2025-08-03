@@ -400,8 +400,8 @@ function CCharaConfSanzi(confArray) {
 			confId,
 			CConfBase.ConfText("レッスン習得Lv"),
 			CConfBase.ConfControlType(CONTROL_TYPE_SELECTBOX_NUMBER),
-			CConfBase.ConfDefaultValue(1),
-			CConfBase.ConfMinValue(1),
+			CConfBase.ConfDefaultValue(0),
+			CConfBase.ConfMinValue(0),
 			CConfBase.ConfMaxValue(10),
 		];
 		this.confDataObj[confId] = confData;
