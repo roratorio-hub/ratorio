@@ -512,8 +512,6 @@ function ExBuffNumSearch(exBufId) {
 		exBufNum = g_confDataSanzi[CCharaConfSanzi.CONF_ID_FRIGGNO_UTA];
 		break;
 
-
-
 	// 支援フライデーナイトフィーバー
 	case EXBUF_ID_FRYDAY_NIGHT_FEVER:
 		if (n_A_PassSkill3[39] == 1) exBufNum = n_A_PassSkill3[40];
@@ -3530,13 +3528,6 @@ function GetStatusModifyAtkPlus() {
 	}
 
 	//----------------------------------------------------------------
-	// 「合奏　支援フライデーナイトフィーバー」の、効果
-	//----------------------------------------------------------------
-	if ((bufLv = ExBuffNumSearch(EXBUF_ID_FRYDAY_NIGHT_FEVER)) > 0) {
-		val += 100 * bufLv;
-	}
-
-	//----------------------------------------------------------------
 	// 「合奏　支援ダンスウィズウォーグ（レンジャー有）」の、効果
 	//----------------------------------------------------------------
 	if ((bufLv = ExBuffNumSearch(EXBUF_ID_DANCE_WITH_WUG)) > 0) {
@@ -4548,15 +4539,6 @@ function GetStatusModifyMaxHpPlus() {
 // 自己スキル効果　ここまで
 //------------------------------------------------------------------------------------------------
 // 支援スキル効果　ここから
-
-	//----------------------------------------------------------------
-	// 「合奏　支援レーラズの霧」の、効果
-	//----------------------------------------------------------------
-	if ((bufLv = ExBuffNumSearch(EXBUF_ID_RELAZUNO_TSUYU)) > 0) {
-		vartmp = ExBuffNumSearch(EXBUF_ID_RELAZUNO_TSUYU_COUNT_OF_MINWAN);
-		val += (200 * bufLv) - 600 + (300 * vartmp);
-
-	}
 
 	//----------------------------------------------------------------
 	// 「ＨＰ増加ポーション」の、効果
@@ -6628,14 +6610,6 @@ function GetStatusModifyMaxHpUp() {
 	}
 
 	//----------------------------------------------------------------
-	// 「支援ビヨンドオブウォークライ（敵から）」の、効果（ペナルティ）
-	//----------------------------------------------------------------
-	if ((bufLv = ExBuffNumSearch(EXBUF_ID_BEYOND_OF_WARCRAY)) > 0) {
-		var bufferCount = ExBuffNumSearch(EXBUF_ID_BEYOND_OF_WARCRAY_COUNT_OF_MINWAN);
-		val += -4 * (bufLv + Math.min(7, bufferCount) - 2);
-	}
-
-	//----------------------------------------------------------------
 	// 「支援エピクレシス」の、効果
 	//----------------------------------------------------------------
 	if ((bufLv = ExBuffNumSearch(EXBUF_ID_ODINNO_EPICLESIS)) > 0) {
@@ -6659,6 +6633,15 @@ function GetStatusModifyMaxHpUp() {
 	 */
 	if ((bufLv = g_confDataSanzi[CCharaConfSanzi.CONF_ID_LAUDAAGNUS]) > 0) {
 		val += [0, 6, 9, 12, 15][bufLv];
+	}
+
+	/** 三次職支援設定「レーラズの霧」の効果 */
+	if ((bufLv = g_confDataSanzi[CCharaConfSanzi.CONF_ID_LERADS_DEW]) > 0) {
+		// 職ディスコよりレッスンの習得LV +3 ごとに補正 +1.
+		// 本計算機の使用Lvは 0 開始で +1 ごとにレッスン習得Lv補正が 4 段階
+		const skill = Math.ceil(bufLv / 4);
+		const lesson = Math.floor((bufLv - 1) % 4);
+		val += 12 + 3 * skill + lesson;
 	}
 
 	//----------------------------------------------------------------
@@ -9474,13 +9457,6 @@ function GetStatusModifyDefDivUp() {
 		bufferSkillLv = ExBuffNumSearch(EXBUF_ID_ECHONO_UTA_BUFFER_SKILLLV);
 
 		val += (6 * bufLv) + (bufferSkillLv) + Math.floor(bufferJobLv / 4);
-	}
-
-	//----------------------------------------------------------------
-	// 「支援フライデーナイトフィーバー」の、効果（ペナルティ）
-	//----------------------------------------------------------------
-	if ((bufLv = ExBuffNumSearch(EXBUF_ID_FRYDAY_NIGHT_FEVER)) > 0) {
-		val += -1 * (10 + 10 * bufLv);
 	}
 
 	//----------------------------------------------------------------

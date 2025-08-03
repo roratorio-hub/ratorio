@@ -16378,7 +16378,6 @@ function getFlee() {
 
     if (n_A_PassSkill4[9]) flee += 50;
     if (n_A_PassSkill3[11]) flee -= (20 + 5 * n_A_PassSkill3[11]);
-    if (n_A_PassSkill3[39] == 1) flee -= (40 + 10 * n_A_PassSkill3[40]);
 
     if (n_A_PassSkill7[1]) flee += 30;
     else if (n_A_PassSkill7[27]) flee += 20;
@@ -22385,7 +22384,6 @@ function GetAdditionalCriticalRate(mobData) {
     }
 
 	// 古い歌・踊り支援設定
-    if (n_A_PassSkill3[39] == 4) tmp_cri += n_A_PassSkill3[40] * n_A_PassSkill3[41];
     if (n_A_PassSkill7[25]) tmp_cri += 7;
     if (n_A_PassSkill7[28]) tmp_cri += 7;
     else if (n_A_PassSkill7[36]) tmp_cri += 7;
@@ -28099,8 +28097,6 @@ function StPlusCalc() {
 		wSPC_LUK -= 100;
 	}
 
-	if(n_A_PassSkill3[39] == 5) wSPC_INT -= n_A_PassSkill3[40] * n_A_PassSkill3[41];
-	if(n_A_PassSkill3[39] == 4) wSPC_STR += n_A_PassSkill3[40] * n_A_PassSkill3[41];
 	if(n_A_PassSkill7[49]){
 		wSPC_STR += 10;
 		wSPC_AGI += 10;
