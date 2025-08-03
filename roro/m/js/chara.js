@@ -9447,13 +9447,14 @@ function GetStatusModifyDefDivUp() {
 	}
 
 	//----------------------------------------------------------------
-	// 「支援エコーの歌」の、効果
+	// 三次職支援設定「エコーの歌」の 装備Def + ◯% 効果
 	//----------------------------------------------------------------
-	if ((bufLv = ExBuffNumSearch(EXBUF_ID_ECHONO_UTA)) > 0) {
-		bufferJobLv = ExBuffNumSearch(EXBUF_ID_ECHONO_UTA_BUFFER_JOBLV);
-		bufferSkillLv = ExBuffNumSearch(EXBUF_ID_ECHONO_UTA_BUFFER_SKILLLV);
-
-		val += (6 * bufLv) + (bufferSkillLv) + Math.floor(bufferJobLv / 4);
+	if ((bufLv = g_confDataSanzi[CCharaConfSanzi.CONF_ID_ECHOSONG]) > 0) {
+		const lesson = g_confDataSanzi[CCharaConfSanzi.CONF_ID_LESSON];
+		// TODO 使用者のJOBレベル補正が必要
+		val += 6 * bufLv + lesson;
+		// スキル仕様変更前の計算式がそのまま使われている可能性もある
+		// val += (6 * bufLv) + (bufferSkillLv) + Math.floor(bufferJobLv / 4);
 	}
 
 	//----------------------------------------------------------------
