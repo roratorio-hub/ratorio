@@ -398,7 +398,7 @@ function CCharaConfSanzi(confArray) {
 		CCharaConfSanzi.CONF_ID_LESSON = confId;
 		confData = [
 			confId,
-			CConfBase.ConfText("レッスン習得Lv"),
+			CConfBase.ConfText("演奏用レッスン習得Lv"),
 			CConfBase.ConfControlType(CONTROL_TYPE_SELECTBOX_NUMBER),
 			CConfBase.ConfDefaultValue(0),
 			CConfBase.ConfMinValue(0),
@@ -449,7 +449,7 @@ function CCharaConfSanzi(confArray) {
 		CCharaConfSanzi.CONF_ID_ECHOSONG = confId;
 		confData = [
 			confId,
-			CConfBase.ConfText("エコーの歌"),
+			CConfBase.ConfText("(△)エコーの歌"),
 			CConfBase.ConfControlType(CONTROL_TYPE_SELECTBOX_NUMBER),
 			CConfBase.ConfDefaultValue(0),
 			CConfBase.ConfMinValue(0),
@@ -462,7 +462,7 @@ function CCharaConfSanzi(confArray) {
 		CCharaConfSanzi.CONF_ID_DANCE_WITH_WUG = confId;
 		confData = [
 			confId,
-			CConfBase.ConfText("ダンスウィズウォーグ"),
+			CConfBase.ConfText("(△)ダンスウィズウォーグ"),
 			CConfBase.ConfControlType(CONTROL_TYPE_SELECTBOX_NUMBER),
 			CConfBase.ConfDefaultValue(0),
 			CConfBase.ConfMinValue(0),
@@ -550,12 +550,12 @@ function CCharaConfSanzi(confArray) {
 			CCharaConfSanzi.CONF_ID_SYMPHONY_OF_LOVER,
 			CCharaConfSanzi.CONF_ID_LERADS_DEW,
 			CCharaConfSanzi.CONF_ID_SWING_DANCE,
-			CCharaConfSanzi.CONF_ID_LESSON,
 			CCharaConfSanzi.CONF_ID_MOONLIT_SERENADE,
 			CCharaConfSanzi.CONF_ID_RUSH_WINDMILL,
 			CCharaConfSanzi.CONF_ID_ECHOSONG,
 			CCharaConfSanzi.CONF_ID_DANCE_WITH_WUG,
 			CCharaConfSanzi.CONF_ID_UNLIMITED_HUMMING_VOICE,
+			CCharaConfSanzi.CONF_ID_LESSON,
 		];
 		this.confDataObj = displayOrder.map(id => this.confDataObj[id]);
 	}
