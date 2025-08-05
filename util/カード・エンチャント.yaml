@@ -1,54 +1,36 @@
 card_list:
-  - name: 潜在解放(スピリットハンドラーXIV)
-    yomi: センザイカイホウスピリットハンドラー14
-    type: エンチャント
+  - name: 偽神の夏休み
+    yomi: ギシンノナツヤスミ
+    type: 武器
+    capabilities:
+      - name: 魔法ダメージ増加
+        value: 10
+      - name: 魔法ダメージ増加
+        value: 1
+        per_lv: 10
     set_list:
       - set:
         entity_list:
-          - card_name: 真理の解放
+          - card_name: 根源への到達
         capabilities:
-          - name: 再使用待機時間減少
-            skill: ディアーキャノン
-            value: 100
-  - name: 潜在解放(蜃気楼&不知火XIII)
-    yomi: センザイカイホウシンキロウアンドシラヌイ13
-    type: エンチャント
+          - name: MDEF無視
+            value: 50
+
+  - name: 限界科学者の夏休み
+    yomi: ゲンカイカガクシャノナツヤスミ
+    type: 武器
+    capabilities:
+      - name: 物理ダメージ増加
+        value: 10
+      - name: 物理ダメージ増加
+        value: 1
+        per_lv: 10
     set_list:
       - set:
         entity_list:
-          - card_name: 真理の解放
+          - card_name: 魔獣の爪牙
         capabilities:
-          - name: 再使用待機時間減少
-            skill: 冷血砲
-            value: 200
-          - name: 再使用待機時間減少
-            skill: 金龍砲
-            value: 200
-  - name: 潜在解放(カーディナルXV)
-    yomi: センザイカイホウカーディナル15
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 真理の解放
-        capabilities:
-          - name: スキル固定詠唱割合減少
-            skill: プレセンスアキエース
-            value: 100
-          - name: スキル固定詠唱割合減少
-            skill: アルグトゥステルム
-            value: 100
-          - name: スキル固定詠唱割合減少
-            skill: アルグトゥスヴィタ
-            value: 100
-  - name: 潜在覚醒(クリアランスI)
-    yomi: センザイカクセイクリアランス1
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 真理の解放
-        capabilities:
-          - name: 再使用待機時間減少
-            skill: クリアランス
-            value: 1000
+          - name: 遠距離ダメージ増加
+            value: 10
+          - name: 近距離ダメージ増加
+            value: 10
