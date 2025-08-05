@@ -449,7 +449,7 @@ function CCharaConfSanzi(confArray) {
 		CCharaConfSanzi.CONF_ID_ECHOSONG = confId;
 		confData = [
 			confId,
-			CConfBase.ConfText("エコーの歌"),
+			CConfBase.ConfText("(△)エコーの歌"),
 			CConfBase.ConfControlType(CONTROL_TYPE_SELECTBOX_NUMBER),
 			CConfBase.ConfDefaultValue(0),
 			CConfBase.ConfMinValue(0),

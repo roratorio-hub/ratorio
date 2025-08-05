@@ -9441,7 +9441,7 @@ function GetStatusModifyDefDivUp() {
 	//----------------------------------------------------------------
 	if ((bufLv = g_confDataSanzi[CCharaConfSanzi.CONF_ID_ECHOSONG]) > 0) {
 		const lesson = g_confDataSanzi[CCharaConfSanzi.CONF_ID_LESSON];
-		// TODO 使用者のJOBレベル補正が必要
+		// TODO 使用者のJOBレベル補正が必要ですが、このスキルのためだけにJobLv設定欄を設ける必要があるか悩んだので一旦無しにしています
 		val += 6 * bufLv + lesson;
 		// スキル仕様変更前の計算式がそのまま使われている可能性もある
 		// val += (6 * bufLv) + (bufferSkillLv) + Math.floor(bufferJobLv / 4);
