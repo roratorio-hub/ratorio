@@ -1,4 +1,4 @@
-import { loadFileAsUint8Array, zstdDecompress } from "./funcZstdLoad.js";
+import { loadFileAsUint8Array, zstdDecompress } from "./funcZstdLoad";
 
 // ItemMapの型定義
 export interface ItemData {
