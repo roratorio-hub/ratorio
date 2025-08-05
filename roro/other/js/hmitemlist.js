@@ -53,133 +53,107 @@ function SetUpSelects() {
 	}
 }
 
+/**
+ * 渡された配列から名前が検索ワードに部分一致する集合を返す
+ * @param {Array} itemlist 検索元配列. ItemObjNew のデータ定義に基づくこと
+ * @param {String} seachword 検索ワード
+ * @returns {Array}
+ */
+function getItemList(itemlist, seachword) {
+	if (seachword == "") return itemlist;
+	return itemlist.filter((item) => String(item[ITEM_DATA_INDEX_NAME]).includes(seachword));
+}
+
+/**
+ * 表示するアイテム一覧を更新する
+ */
 function BuildUpItemList() {
-
-	var idx = 0;
-	var idxList = 0;
-	var idxSlot = 0;
-	var idxEnchList = 0;
-	var idxInfo = 0;
-
-	var objRoot = null;
-	var objTable = null;
-	var objTbody = null;
-	var objTr = null;
-	var objTd = null;
-	var objText = null;
-	var objSelect = null;
-	var objInput = null;
-	var objSpan = null;
-
-	var condKind = 0;
-	var condJob = 0;
-	var condSlot = 0;
-	var condSort = 0;
-	var condDesc = 0;
-
-	var showKind = false;
-	var showSP = false;
-	var showEnchant = false;
-
-	var itemId = 0;
-	var itemData = null;
-	var itemObjLoc = null;
-
-	var enchListId = 0;
-	var enchListDataManager = g_constDataManager.GetDataManger(CONST_DATA_KIND_ENCHANT_LIST);
-	var enchListIdArray = null;
-
-	var enchInfoArray = null;
-	var enchInfoArrayAllSlots = null;
-	var enchInfoArrayAllSlotsResult = null;
-	var enchInfoText = "";
-	var enchInfo = null;
-	var enchListIdLast = 0;
-
-	var colspanSP = 0;
-	var rowspanName = 0;
-	var rowCountEnchInfo = 0;
-
-
+	let idxSlot = 0;
+	let idxEnchList = 0;
+	let idxInfo = 0;
+	let objRoot = null;
+	let objTable = null;
+	let objTbody = null;
+	let objTr = null;
+	let objTd = null;
+	let objText = null;
+	let objSelect = null;
+	let objInput = null;
+	let objSpan = null;
+	let condSort = 0;
+	let condDesc = 0;
+	let showSP = false;
+	let showEnchant = false;
+	let itemId = 0;
+	let enchListId = 0;
+	let enchListDataManager = g_constDataManager.GetDataManger(CONST_DATA_KIND_ENCHANT_LIST);
+	let enchListIdArray = null;
+	let enchInfoArray = null;
+	let enchInfoArrayAllSlots = null;
+	let enchInfoArrayAllSlotsResult = null;
+	let enchInfoText = "";
+	let enchInfo = null;
+	let enchListIdLast = 0;
+	let colspanSP = 0;
+	let rowspanName = 0;
+	let rowCountEnchInfo = 0;
+	let itemObjLoc = [];
 
 	//----------------------------------------------------------------
 	// 抽出条件の取得
 	//----------------------------------------------------------------
-	objSelect = document.getElementById("OBJID_SELECT_ITEM_KIND");
-	condKind = parseInt(objSelect.value);
-
-	showKind = ((condKind == -999) || (condKind == -9999));
-
-	objSelect = document.getElementById("OBJID_SELECT_JOB_RESTRICT");
-	condJob = parseInt(objSelect.value);
-
-	objInput = document.getElementById("OBJID_INPUT_SLOT_RESTRICT");
-	condSlot = objInput.checked ? true : false;
-
-
+	const condKind = parseInt(document.getElementById("OBJID_SELECT_ITEM_KIND").value);
+	const showKind = ((condKind == -999) || (condKind == -9999));
+	const condJob = parseInt(document.getElementById("OBJID_SELECT_JOB_RESTRICT").value);
+	const condSlot = document.getElementById("OBJID_INPUT_SLOT_RESTRICT").checked ? true : false;
+	const searchName = document.getElementById("F_CONDITION").value;
 
 	//----------------------------------------------------------------
 	// 対象となるアイテムの抽出
 	//----------------------------------------------------------------
-	itemObjLoc = new Array();
-
-	for (itemId = 0; itemId < ItemObjNew.length; itemId++) {
-
-		itemData = ItemObjNew[itemId];
-
+	// 部分一致検索
+	const itemList = getItemList(ItemObjNew, searchName);
+	for (itemId = 0; itemId < itemList.length; itemId++) {
+		const itemData = itemList[itemId];
 		// アイテム種別を検査
-		// すべての武器
-		if (condKind == -999) {
+		if (condKind == -999) { // すべての武器
 			if (itemData[ITEM_DATA_INDEX_KIND] < ITEM_KIND_KNIFE) {
 				continue;
 			}
 			if (itemData[ITEM_DATA_INDEX_KIND] > ITEM_KIND_GRENADEGUN) {
 				continue;
 			}
-		}
-
-		// すべての防具
-		else if (condKind == -9999) {
+		} else if (condKind == -9999) { // すべての防具
 			if (itemData[ITEM_DATA_INDEX_KIND] < ITEM_KIND_HEAD_TOP) {
 				continue;
 			}
 			if (itemData[ITEM_DATA_INDEX_KIND] > ITEM_KIND_ACCESSARY_ON2) {
 				continue;
 			}
-		}
-
-		// 特定の種類
-		else {
+		} else {	// 特定の種類
 			if (itemData[ITEM_DATA_INDEX_KIND] != condKind) {
 				continue;
 			}
 		}
-
 		// 職業制限を検査
 		if (condJob != -1) {
 			if (!IsMatchJobRestrict(itemId, condJob)) {
 				continue;
 			}
 		}
-
 		// スロット条件を検査
 		if (condSlot) {
 			if (itemData[ITEM_DATA_INDEX_SLOT] == 0) {
 				continue;
 			}
 		}
-
-
 		// ここまでくれば表示対象
 		itemObjLoc.push(itemData);
 	}
 
-
-
 	//----------------------------------------------------------------
 	// 対象アイテムリストのソート
 	//----------------------------------------------------------------
-
 	// ソート条件の取得
 	objSelect = document.getElementById("OBJID_SELECT_SORT_ATTR");
 	condSort = parseInt(objSelect.value);
@@ -209,7 +183,6 @@ function BuildUpItemList() {
 			}
 		);
 	}
-
 
 	//----------------------------------------------------------------
 	// アイテム一覧テーブルの再構築
@@ -346,7 +319,7 @@ function BuildUpItemList() {
 
 
 		// アイテムデータ取得
-		itemData = itemObjLoc[itemId];
+		const itemData = itemObjLoc[itemId];
 
 		// エンチャント情報行数計算
 		rowCountEnchInfo = 0;
@@ -587,8 +560,6 @@ function BuildUpItemList() {
 
 }
 
-
-
 function GetElmTextForItemList(itemData) {
 
 	var idx = 0;
@@ -602,15 +573,17 @@ function GetElmTextForItemList(itemData) {
 	return "";
 }
 
-
-
-
-
+/**
+ * 武器種を変更したときに呼び出される
+ */
 function OnChangeKindRestrict() {
 	// 一覧テーブルを再構築
 	BuildUpItemList();
 }
 
+/**
+ * 職業を変更したときに呼び出される
+ */
 function OnChangeJobRestrict() {
 	// 一覧テーブルを再構築
 	BuildUpItemList();
@@ -621,6 +594,9 @@ function OnChnageShowSP() {
 	BuildUpItemList();
 }
 
+/**
+ * 並び順を変更したときに呼び出される
+ */
 function OnChangeSortCondition() {
 	// 一覧テーブルを再構築
 	BuildUpItemList();

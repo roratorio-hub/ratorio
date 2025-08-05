@@ -16085,9 +16085,9 @@ function calc() {
 		//--------------------------------
 		// 演奏スキル「ダンスウィズウォーグ」の攻撃力増加
 		//--------------------------------
-		if(n_A_PassSkill3[39] == 6){
-			// ミンストレルとワンダラーの人数による効果の変化（上限７人）
-			BK_n_A_DMG_Wolf[idx] += (2 * n_A_PassSkill3[40]) * Math.min(7, parseInt("" + n_A_PassSkill3[41], 10));
+		if (g_confDataSanzi[CCharaConfSanzi.CONF_ID_DANCE_WITH_WUG] > 0) {
+			// 仕様変更前の「ミンストレルとワンダラーの人数による効果の変化」を常に最大値 7 が出るものと仮定
+			BK_n_A_DMG_Wolf[idx] += 2 * g_confDataSanzi[CCharaConfSanzi.CONF_ID_DANCE_WITH_WUG] * 7;
 		}
 	}
 
@@ -21878,10 +21878,11 @@ function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, 
 	//----------------------------------------------------------------
 	// 「ダンスウィズウォーグ」の、「ウォーグ系スキル」強化
 	//----------------------------------------------------------------
-	if(n_A_PassSkill3[39] == 6 || n_A_PassSkill3[39] == 7){
-		if(n_A_ActiveSkill==511 || n_A_ActiveSkill==513 || n_A_ActiveSkill==516){
-			if(n_A_PassSkill3[41] >= 7) w1 += (10 * n_A_PassSkill3[40]) * 7;
-			else w1 += (10 * n_A_PassSkill3[40]) * n_A_PassSkill3[41];
+	if (g_confDataSanzi[CCharaConfSanzi.CONF_ID_DANCE_WITH_WUG] > 0) {
+		if ([SKILL_ID_WUG_BITE, SKILL_ID_WUG_STRIKE, SKILL_ID_WUG_DASH].includes(n_A_ActiveSkill)) {
+			// 仕様変更前の「ミンストレルとワンダラーの人数による効果の変化」を常に最大値 7 が出るものと仮定
+			// if (n_A_PassSkill3[41] >= 7) w1 += (10 * n_A_PassSkill3[40]) * 7;
+			w1 += 10 * g_confDataSanzi[CCharaConfSanzi.CONF_ID_DANCE_WITH_WUG] * 7;
 		}
 	}
 

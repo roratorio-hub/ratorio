@@ -256,91 +256,79 @@ function CConfBase(confArray) {
 			controlType = this.confDataObj[idx][CConfBase.CONF_DATA_INDEX_CONTROL_TYPE];
 
 			switch (controlType) {
+				// ダミーの場合
+				case CONTROL_TYPE_DUMMY:
 
-			// ダミーの場合
-			case CONTROL_TYPE_DUMMY:
+					// ダミーテキストを生成
+					objText = document.createTextNode("-");
+					objTd.appendChild(objText);
 
-				// ダミーテキストを生成
-				objText = document.createTextNode("-");
-				objTd.appendChild(objText);
+					break;
+				// ブランクの場合
+				case CONTROL_TYPE_BLANK:
+					break;
+				// 固定テキストの場合
+				case CONTROL_TYPE_TEXT_NODE:
+					break;
+				// 設定方法が数値選択方式の場合
+				case CONTROL_TYPE_SELECTBOX_NUMBER:
+				case CONTROL_TYPE_SELECTBOX_PERCENT:
+					if (controlType == CONTROL_TYPE_SELECTBOX_PERCENT) {
+						textUnit = "%";
+					}
+					else {
+						textUnit = "";
+					}
+					// 選択セレクトボックスを生成
+					objSelect = document.createElement("select");
+					objSelect.setAttribute("id", controlId);
+					objSelect.setAttribute("onChange", "CConfBase.OnChangeValueHandler(" + instanceNo + ", true)");
+					objTd.appendChild(objSelect);
+					// 範囲定義に従い、セレクトオプションを生成
+					controlValueMin = this.confDataObj[idx][CConfBase.CONF_DATA_INDEX_MIN_VALUE];
+					controlValueMax = this.confDataObj[idx][CConfBase.CONF_DATA_INDEX_MAX_VALUE];
+					for (controlValue = controlValueMin; controlValue <= controlValueMax; controlValue++) {
+						objOption = HtmlCreateElementOption(controlValue, controlValue + textUnit, objSelect);
+					}
+					// 初期値設定
+					objSelect.setAttribute("value", this.confDataObj[idx][CConfBase.CONF_DATA_INDEX_DEFAULT_VALUE]);
+					break;
+				// 設定方法がチェック方式の場合
+				case CONTROL_TYPE_CHECKBOX:
 
-				break;
+					// チェックボックスを生成
+					objInput = document.createElement("input");
+					objInput.setAttribute("id", controlId);
+					objInput.setAttribute("type", "checkbox");
+					objInput.setAttribute("onChange", "CConfBase.OnChangeValueHandler(" + instanceNo + ", true)");
+					objTd.appendChild(objInput);
 
-			// ブランクの場合
-			case CONTROL_TYPE_BLANK:
-				break;
+					// 初期値設定
+					if (this.confDataObj[idx][CConfBase.CONF_DATA_INDEX_DEFAULT_VALUE] == 1) {
+						objInput.setAttribute("checked", "checked");
+					}
 
-			// 固定テキストの場合
-			case CONTROL_TYPE_TEXT_NODE:
-				break;
+					break;
+				// 設定方法が数値入力方式の場合
+				case CONTROL_TYPE_TEXTBOX_NUMBER:
 
-			// 設定方法が数値選択方式の場合
-			case CONTROL_TYPE_SELECTBOX_NUMBER:
-			case CONTROL_TYPE_SELECTBOX_PERCENT:
+					// 予備(未使用)入力テキストボックスを生成
+					objInput = document.createElement("input");
+					objInput.setAttribute("type", "text");
+					objInput.setAttribute("id", controlId);
+					objInput.setAttribute("size", "6");
+					objInput.setAttribute("onChange", "CConfBase.OnChangeValueHandler(" + instanceNo + ", true)");
+					objTd.appendChild(objInput);
 
-				if (controlType == CONTROL_TYPE_SELECTBOX_PERCENT) {
-					textUnit = "%";
-				}
-				else {
-					textUnit = "";
-				}
+					// 初期値設定
+					objInput.setAttribute("value", this.confDataObj[idx][CConfBase.CONF_DATA_INDEX_DEFAULT_VALUE]);
 
-				// 選択セレクトボックスを生成
-				objSelect = document.createElement("select");
-				objSelect.setAttribute("id", controlId);
-				objSelect.setAttribute("onChange", "CConfBase.OnChangeValueHandler(" + instanceNo + ", true)");
-				objTd.appendChild(objSelect);
-
-				// 範囲定義に従い、セレクトオプションを生成
-				controlValueMin = this.confDataObj[idx][CConfBase.CONF_DATA_INDEX_MIN_VALUE];
-				controlValueMax = this.confDataObj[idx][CConfBase.CONF_DATA_INDEX_MAX_VALUE];
-				for (controlValue = controlValueMin; controlValue <= controlValueMax; controlValue++) {
-					objOption = HtmlCreateElementOption(controlValue, controlValue + textUnit, objSelect);
-				}
-
-				// 初期値設定
-				objSelect.setAttribute("value", this.confDataObj[idx][CConfBase.CONF_DATA_INDEX_DEFAULT_VALUE]);
-
-				break;
-
-			// 設定方法がチェック方式の場合
-			case CONTROL_TYPE_CHECKBOX:
-
-				// チェックボックスを生成
-				objInput = document.createElement("input");
-				objInput.setAttribute("id", controlId);
-				objInput.setAttribute("type", "checkbox");
-				objInput.setAttribute("onChange", "CConfBase.OnChangeValueHandler(" + instanceNo + ", true)");
-				objTd.appendChild(objInput);
-
-				// 初期値設定
-				if (this.confDataObj[idx][CConfBase.CONF_DATA_INDEX_DEFAULT_VALUE] == 1) {
-					objInput.setAttribute("checked", "checked");
-				}
-
-				break;
-
-			// 設定方法が数値入力方式の場合
-			case CONTROL_TYPE_TEXTBOX_NUMBER:
-
-				// 予備(未使用)入力テキストボックスを生成
-				objInput = document.createElement("input");
-				objInput.setAttribute("type", "text");
-				objInput.setAttribute("id", controlId);
-				objInput.setAttribute("size", "6");
-				objInput.setAttribute("onChange", "CConfBase.OnChangeValueHandler(" + instanceNo + ", true)");
-				objTd.appendChild(objInput);
-
-				// 初期値設定
-				objInput.setAttribute("value", this.confDataObj[idx][CConfBase.CONF_DATA_INDEX_DEFAULT_VALUE]);
-
-				break;
-
-			// 設定方法が特殊方式の場合
-			case CONTROL_TYPE_SELECTBOX_SPECIAL:
-			case CONTROL_TYPE_CHECKBOX_SPECIAL:
-			case CONTROL_TYPE_TEXTBOX_SPECIAL:
-			case CONTROL_TYPE_SPECIAL:
+					break;
+				// 設定方法が特殊方式の場合
+				case CONTROL_TYPE_SELECTBOX_SPECIAL:
+				case CONTROL_TYPE_CHECKBOX_SPECIAL:
+				case CONTROL_TYPE_TEXTBOX_SPECIAL:
+				case CONTROL_TYPE_SPECIAL:
 
 				// 個別に実装する
 				this.BuildUpSelectAreaSubForSpecial(objTd, this.confDataObj[idx]);

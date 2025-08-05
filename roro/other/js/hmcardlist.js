@@ -31,7 +31,6 @@ function SetUpSelectCardType(){
 	objSelect.value = CARD_KIND_ARMS;
 }
 
-
 /**
  * カード一覧テーブルを更新する.
  */
@@ -59,7 +58,6 @@ function RefreshCardListTable(){
 	// データを表示する
 	DispData(selectedCardKind, cardDataArray);
 }
-
 
 /**
  * データを抽出する.
@@ -119,7 +117,6 @@ function PivotData(selectedCardKind) {
 	return cardDataArray;
 }
 
-
 function GetItemToEnchInfoMapAllEnchList() {
 	var idxItem = 0;
 	var idxEnchList = 0;
@@ -165,43 +162,33 @@ function GetItemToEnchInfoMapAllEnchList() {
 	return dataMap;
 }
 
-
 /**
  * 抽出されたデータを表示する（リストテーブル生成）
  * @param selectedCardKind 抽出条件（選択されたカード種別）
  * @param cardDataArray 抽出された CardData の配列
  */
 function DispData(selectedCardKind, cardDataArray) {
-	var idx = 0;
-	var idxType = 0;
-	var idxList = 0;
-	var idxItem = 0;
-	var idxKind = 0;
-	var idxEnchList = 0;
-	var partName = "";
-	var objRoot = null;
-	var objTable = null;
-	var objTbody = null;
-	var objTr = null;
-	var objTd = null;
-	var objText = null;
-	var objInput = null;
-	var showEnchant = false;
-	var rowCountEnchant = 0;
-	var colspanEffect = 1;
-	var itemId = 0;
-	var itemKind = 0;
-	var itemData = null;
-	var itemIdArray = null;
-	var itemIdArrayByItemKind = null;
-	var cardId = 0;
-	var cardData = null;
-	var enchTypeIdToItemIdMap = null;
-	var enchListToItemMap = null;
-	var enchListIdArray = null;
-	var enchListId = null;
-	var enchListArrayTo_ItemToEnchInfoMap = null;
-	var itemToEnchInfoMap = null;
+	let idx = 0;
+	let idxKind = 0;
+	let idxEnchList = 0;
+	let partName = "";
+	let objRoot = null;
+	let objTable = null;
+	let objTbody = null;
+	let objTr = null;
+	let objTd = null;
+	let objText = null;
+	let objInput = null;
+	let showEnchant = false;
+	let rowCountEnchant = 0;
+	let colspanEffect = 1;
+	let itemIdArrayByItemKind = null;
+	let cardId = 0;
+	let cardData = null;
+	let enchListIdArray = null;
+	let enchListId = null;
+	let enchListArrayTo_ItemToEnchInfoMap = null;
+	let itemToEnchInfoMap = null;
 	// ルートオブジェクト取得
 	objRoot = document.getElementById("OBJID_SPAN_ROOT_OF_CARD_LIST");
 	// テーブル生成
@@ -422,7 +409,6 @@ function DispData(selectedCardKind, cardDataArray) {
 		}
 	}
 }
-
 
 function OnChangeKindRestrict() {
 	// 一覧テーブルを再構築

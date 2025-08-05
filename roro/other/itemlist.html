@@ -1,4 +1,5 @@
 <html>
+
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
 
@@ -99,6 +100,17 @@
 									<select id="OBJID_SELECT_ITEM_KIND" onchange="OnChangeKindRestrict()">
 									</select>
 								</td>
+								<td>職業で抽出</td>
+								<td>
+									<select id="OBJID_SELECT_JOB_RESTRICT" onchange="OnChangeJobRestrict()">
+									</select>
+								</td>
+								<td>検索</td>
+								<td>
+									<input type="text" style="display:none">
+									<input id="F_CONDITION" type="text" placeholder="検索文字（部分一致）"
+										onChange="BuildUpItemList()">
+								</td>
 								<td>並べ替え</td>
 								<td>
 									<select id="OBJID_SELECT_SORT_ATTR" onchange="OnChangeSortCondition()">
@@ -107,11 +119,6 @@
 										<option value=6>重量
 										<option value=7>装備LV
 										<option value=9>五十音順
-									</select>
-								</td>
-								<td>職業で抽出</td>
-								<td>
-									<select id="OBJID_SELECT_JOB_RESTRICT" onchange="OnChangeJobRestrict()">
 									</select>
 								</td>
 							</tr>
@@ -123,22 +130,26 @@
 							<tr>
 								<td>オプション</td>
 								<td>
-									<input type="checkbox" id="OBJID_INPUT_SHOW_SP" name="F_SORT6" onchange="OnChnageShowSP()">
+									<input type="checkbox" id="OBJID_INPUT_SHOW_SP" name="F_SORT6"
+										onchange="OnChnageShowSP()">
 									<label for="OBJID_INPUT_SHOW_SP">特殊効果を表示</label>
 									　
 								</td>
 								<td>
-									<input type="checkbox" id="OBJID_INPUT_SORT_DESC" onchange="OnChangeSortCondition()">
+									<input type="checkbox" id="OBJID_INPUT_SORT_DESC"
+										onchange="OnChangeSortCondition()">
 									<label for="OBJID_INPUT_SORT_DESC">降順表示</label>
 									　
 								</td>
 								<td>
-									<input type="checkbox" id="OBJID_INPUT_SLOT_RESTRICT" onchange="OnChangeSlotRestrict()">
+									<input type="checkbox" id="OBJID_INPUT_SLOT_RESTRICT"
+										onchange="OnChangeSlotRestrict()">
 									<label for="OBJID_INPUT_SLOT_RESTRICT">スロット0を表示しない</label>
 									　
 								</td>
 								<td>
-									<input type="checkbox" id="OBJID_INPUT_SHOW_ENCHANT_INFO" onchange="OnChangeShowEnchantInfo()">
+									<input type="checkbox" id="OBJID_INPUT_SHOW_ENCHANT_INFO"
+										onchange="OnChangeShowEnchantInfo()">
 									<label for="OBJID_INPUT_SHOW_ENCHANT_INFO">エンチャント情報を表示</label>
 									　
 								</td>
