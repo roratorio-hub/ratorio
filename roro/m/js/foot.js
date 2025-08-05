@@ -3212,8 +3212,14 @@ function StAllCalc(){
 
 	    /** 三次職支援設定「月明かりのセレナーデ」の装備Matk + 効果 */
 		if ((bufLv = g_confDataSanzi[CCharaConfSanzi.CONF_ID_MOONLIT_SERENADE]) > 0) {
-			// TODO: レッスンの習得Lvによる補正が必要
 			w += -20 + 50 * bufLv;
+			// 提供された情報に合わせてありますが風車と同じでLvに依らず lesson * 2 が正しいかもしれない
+			const lesson = g_confDataSanzi[CCharaConfSanzi.CONF_ID_LESSON];
+			if (lesson === 5) {
+				w += lesson * 2;
+			} else {
+				w += lesson;
+			}
 		}
 
 	    //----------------------------------------------------------------
@@ -12485,7 +12491,6 @@ function StAllCalc(){
 		/** 三次職支援設定「エンドレスハミングボイス」の全ての属性魔法攻撃で与えるダメージ + 効果 */
 		if (g_confDataSanzi[CCharaConfSanzi.CONF_ID_UNLIMITED_HUMMING_VOICE] > 0) {
 			let effect = 4 * g_confDataSanzi[CCharaConfSanzi.CONF_ID_UNLIMITED_HUMMING_VOICE];
-			// 職ディスコより、レッスンLv5のとき補正 +5 という情報から計算式を仮定
 			effect += Math.floor(g_confDataSanzi[CCharaConfSanzi.CONF_ID_LESSON] / 2);
 			n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_ELM_ALL] += effect;
 		}
