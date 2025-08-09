@@ -367,13 +367,13 @@ function CCharaConfYozi(confArray) {
 			// 演奏用パートナー
 			case CCharaConfYozi.CONF_ID_MUSICAL_PARTNER:
 				// 選択セレクトボックスを生成
-				objSelect = document.createElement("select");
+				const objSelect = document.createElement("select");
 				objSelect.setAttribute("id", controlId);
 				objSelect.setAttribute("onChange", "CConfBase.OnChangeValueHandler(" + this.instanceNo + ", true)");
 				objTd.appendChild(objSelect);
 				// セレクトオプションを生成
-				objOption = HtmlCreateElementOption(0, "無し", objSelect);
-				objOption = HtmlCreateElementOption(1, "有り", objSelect);
+				HtmlCreateElementOption(0, "無し", objSelect);
+				HtmlCreateElementOption(1, "有り", objSelect);
 				// 初期値設定
 				objSelect.setAttribute("value", confData[CConfBase.CONF_DATA_INDEX_DEFAULT_VALUE]);
 				break;
