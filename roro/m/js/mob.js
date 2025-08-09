@@ -1,9 +1,9 @@
-
-
-
-
-
-
+/**
+ * モンスター基本情報を取得する
+ * @param {number} monsterId 
+ * @param {Array} mobData 
+ * @returns {Array} mobData
+ */
 function GetMobDataBasicAttribute(monsterId, mobData){
 
 //================================================================================================
@@ -14,16 +14,12 @@ function GetMobDataBasicAttribute(monsterId, mobData){
 	mobData[MONSTER_DATA_INDEX_NAME] = MonsterObjNew[monsterId][MONSTER_DATA_INDEX_NAME];
 	mobData[MONSTER_DATA_INDEX_QUALIFIED] = MonsterObjNew[monsterId][MONSTER_DATA_INDEX_QUALIFIED];
 
-
-
 	// 特性ステータス対応
 	mobData[MONSTER_DATA_INDEX_RES] = MonsterObjNew[monsterId][MONSTER_DATA_INDEX_RES];
 	mobData[MONSTER_DATA_INDEX_MRES] = MonsterObjNew[monsterId][MONSTER_DATA_INDEX_MRES];
 
 	mobData[MONSTER_DATA_INDEX_RES] = (mobData[MONSTER_DATA_INDEX_RES] === undefined) ? 0 : mobData[MONSTER_DATA_INDEX_RES];
 	mobData[MONSTER_DATA_INDEX_MRES] = (mobData[MONSTER_DATA_INDEX_MRES] === undefined) ? 0 : mobData[MONSTER_DATA_INDEX_MRES];
-
-
 
 //================================================================================================
 // ボス属性の取得
@@ -41,10 +37,6 @@ function GetMobDataBasicAttribute(monsterId, mobData){
 		mobData[MONSTER_DATA_INDEX_BOSS_TYPE] = MonsterObjNew[monsterId][MONSTER_DATA_INDEX_BOSS_TYPE];
 	}
 
-
-
-
-
 //================================================================================================
 // 草属性の取得
 //================================================================================================
@@ -60,10 +52,6 @@ function GetMobDataBasicAttribute(monsterId, mobData){
 	default:
 		mobData[MONSTER_DATA_INDEX_GRASS_TYPE] = MonsterObjNew[monsterId][MONSTER_DATA_INDEX_GRASS_TYPE];
 	}
-
-
-
-
 
 //================================================================================================
 // 属性の取得
@@ -123,10 +111,6 @@ function GetMobDataBasicAttribute(monsterId, mobData){
 		}
 	}
 
-
-
-
-
 //================================================================================================
 // 種族の取得
 //================================================================================================
@@ -142,10 +126,6 @@ function GetMobDataBasicAttribute(monsterId, mobData){
 	default:
 		mobData[MONSTER_DATA_INDEX_RACE] = MonsterObjNew[monsterId][MONSTER_DATA_INDEX_RACE];
 	}
-
-
-
-
 
 //================================================================================================
 // サイズの取得
@@ -172,31 +152,22 @@ function GetMobDataBasicAttribute(monsterId, mobData){
 		mobData[MONSTER_DATA_INDEX_SIZE] = MonsterObjNew[monsterId][MONSTER_DATA_INDEX_SIZE];
 	}
 
-
-
-
-
 	return mobData;
 }
 
-
-
-
-
+/**
+ * 状態異常・状態強化を考慮した最終的なモンスター情報を取得する
+ * @param {number} monsterId 
+ * @param {Array} mobData 
+ * @returns {Array} mobData
+ */
 function GetMobDataParameters(monsterId, mobData){
-
-	var idx = 0;
-
-	var bufLv = 0;
-	var val = 0;
-	var ratio = 0;
-
-	var qmVal = 0;
-	var qmValLimit = 0;
-
-
-
-
+	let idx = 0;
+	let bufLv = 0;
+	let val = 0;
+	let ratio = 0;
+	let qmVal = 0;
+	let qmValLimit = 0;
 
 	//----------------------------------------------------------------
 	// 一般パラメータ部分のコピー
@@ -247,23 +218,6 @@ function GetMobDataParameters(monsterId, mobData){
 		}
 	}
 
-
-
-/*
-		if(eval(A_youshi.checked)){
-			if(Math.floor(mobDataOriginal[15] / 10) == mobDataOriginal[15] / 10) mobDataOriginal[15] = Math.floor(mobDataOriginal[15] / 10);
-			else mobDataOriginal[15] = Math.floor(mobDataOriginal[15] / 10) + 1;
-			if(Math.floor(mobDataOriginal[16] / 10) == mobDataOriginal[16] / 10) mobDataOriginal[16] = Math.floor(mobDataOriginal[16] / 10);
-			else mobDataOriginal[16] = Math.floor(mobDataOriginal[16] / 10) + 1;
-		}
-*/
-
-
-
-
-
-
-
 //================================================================================================
 // HPの補正
 //================================================================================================
@@ -275,10 +229,6 @@ function GetMobDataParameters(monsterId, mobData){
 		mobData[MONSTER_DATA_INDEX_HP]
 			= ROUNDDOWN(mobData[MONSTER_DATA_INDEX_HP] * (20 * n_B_KYOUKA[MOB_CONF_BUF_ID_REBIRTH]) / 100);
 	}
-
-
-
-
 
 //================================================================================================
 // ＡＴＫの補正
@@ -391,10 +341,6 @@ function GetMobDataParameters(monsterId, mobData){
 		mobData[MONSTER_DATA_EXTRA_INDEX_ATK_MIN] -= Math.floor(mobData[MONSTER_DATA_EXTRA_INDEX_ATK_MIN] * 25 /100);
 		mobData[MONSTER_DATA_EXTRA_INDEX_ATK_MAX] -= Math.floor(mobData[MONSTER_DATA_EXTRA_INDEX_ATK_MAX] * 25 /100);
 	}
-
-
-
-
 
 //================================================================================================
 // 基本ステータスの補正
@@ -523,10 +469,6 @@ function GetMobDataParameters(monsterId, mobData){
 		mobData[MONSTER_DATA_INDEX_LUK] -= Math.floor(mobData[MONSTER_DATA_INDEX_LUK] * 20 / 100);
 	}
 
-
-
-
-
 //================================================================================================
 // 導出ステータスの算出
 //================================================================================================
@@ -601,16 +543,10 @@ function GetMobDataParameters(monsterId, mobData){
 		mobData[MONSTER_DATA_EXTRA_INDEX_100HIT] = mobData[MONSTER_DATA_EXTRA_INDEX_FLEE] + 100;
 	}
 
-
-
 	// TODO: これどうしよう
 	B_Original_DEF = mobData[MONSTER_DATA_INDEX_DEF_DIV];
 	B_Total_DEF = mobData[MONSTER_DATA_INDEX_DEF_DIV] + mobData[MONSTER_DATA_EXTRA_INDEX_DEF_MINUS_MIN];
 	B_Total_MDEF = mobData[MONSTER_DATA_INDEX_MDEF_DIV] + mobData[MONSTER_DATA_EXTRA_INDEX_MDEF_MINUS];
-
-
-
-
 
 //================================================================================================
 // 除算ＤＥＦの補正
@@ -631,10 +567,6 @@ function GetMobDataParameters(monsterId, mobData){
 		}
 	}
 
-
-
-
-
 	//================================
 	// ここで一度計算が入る（らしい）
 	//================================
@@ -642,10 +574,6 @@ function GetMobDataParameters(monsterId, mobData){
 		mobData[MONSTER_DATA_INDEX_DEF_DIV] += ROUNDDOWN(mobData[MONSTER_DATA_INDEX_DEF_DIV] * wDEF / 100);
 		B_Total_DEF += ROUNDDOWN(B_Total_DEF * wDEF / 100);
 	}
-
-
-
-
 
 	wDEF = 0;
 
@@ -668,8 +596,6 @@ function GetMobDataParameters(monsterId, mobData){
 	if (n_B_IJYOU[MOB_CONF_DEBUF_ID_ESKU]) {
 		wDEF -= 50;
 	}
-
-
 
 	//----------------------------------------------------------------
 	// 「モンスター状態異常　フライング」の効果
@@ -807,10 +733,6 @@ function GetMobDataParameters(monsterId, mobData){
 	// 特定種族のＤＥＦ無視
 	wDEF -= n_tok[ITEM_SP_IGNORE_DEF_RACE_SOLID + mobData[MONSTER_DATA_INDEX_RACE]];
 
-
-
-
-
 	//================================
 	// ここで一度計算が入る（らしい）
 	//================================
@@ -822,10 +744,6 @@ function GetMobDataParameters(monsterId, mobData){
 		mobData[MONSTER_DATA_INDEX_DEF_DIV] += ROUNDDOWN(mobData[MONSTER_DATA_INDEX_DEF_DIV] * wDEF / 100);
 		B_Total_DEF += ROUNDDOWN(B_Total_DEF * wDEF / 100);
 	}
-
-
-
-
 
 	wDEF = 0;
 
@@ -851,10 +769,6 @@ function GetMobDataParameters(monsterId, mobData){
 		}
 	}
 
-
-
-
-
 	//================================
 	// ここで一度計算が入る（らしい）
 	//================================
@@ -866,10 +780,6 @@ function GetMobDataParameters(monsterId, mobData){
 		mobData[MONSTER_DATA_INDEX_DEF_DIV] += ROUNDDOWN(mobData[MONSTER_DATA_INDEX_DEF_DIV] * wDEF / 100);
 		B_Total_DEF += ROUNDDOWN(B_Total_DEF * wDEF / 100);
 	}
-
-
-
-
 
 	//----------------------------------------------------------------
 	// 「モンスター状態強化　キーピング」の効果
@@ -889,17 +799,9 @@ function GetMobDataParameters(monsterId, mobData){
 		mobData[MONSTER_DATA_INDEX_DEF_DIV] = 0;
 	}
 
-
-
-
-
 	if (mobData[MONSTER_DATA_INDEX_DEF_DIV] < 0) {
 		mobData[MONSTER_DATA_INDEX_DEF_DIV] = 0;
 	}
-
-
-
-
 
 	wDEF = 0;
 
@@ -913,10 +815,6 @@ function GetMobDataParameters(monsterId, mobData){
 		}
 	}
 
-
-
-
-
 	//================================
 	// ここで一度計算が入る（らしい）
 	//================================
@@ -928,10 +826,6 @@ function GetMobDataParameters(monsterId, mobData){
 		mobData[MONSTER_DATA_INDEX_DEF_DIV] += ROUNDDOWN(mobData[MONSTER_DATA_INDEX_DEF_DIV] * wDEF / 100);
 		B_Total_DEF += ROUNDDOWN(B_Total_DEF * wDEF / 100);
 	}
-
-
-
-
 
 //================================================================================================
 // 減算ＤＥＦの補正
@@ -969,10 +863,6 @@ function GetMobDataParameters(monsterId, mobData){
 		mobData[MONSTER_DATA_EXTRA_INDEX_DEF_MINUS_MAX] = 0;
 	}
 
-
-
-
-
 //================================================================================================
 // 除算ＭＤＥＦの補正
 //================================================================================================
@@ -981,8 +871,6 @@ function GetMobDataParameters(monsterId, mobData){
 
 	// 計算前の元の値を保持
 	mobData[MONSTER_DATA_INDEX_MDEF_DIV_IGNORE_BUFF] = mobData[MONSTER_DATA_INDEX_MDEF_DIV];
-
-
 
 	//----------------------------------------------------------------
 	// 「モンスター状態異常　凍結」の効果
@@ -1006,10 +894,6 @@ function GetMobDataParameters(monsterId, mobData){
 		}
 	}
 
-
-
-
-
 	//================================
 	// ここで一度計算が入る（らしい）
 	//================================
@@ -1021,10 +905,6 @@ function GetMobDataParameters(monsterId, mobData){
 		mobData[MONSTER_DATA_INDEX_MDEF_DIV] += ROUNDDOWN(mobData[MONSTER_DATA_INDEX_MDEF_DIV] * wMDEF / 100);
 		B_Total_MDEF += Math.floor(B_Total_MDEF * wMDEF / 100);
 	}
-
-
-
-
 
 	//----------------------------------------------------------------
 	// アイテム特性のＭＤＥＦ無視効果の適用
@@ -1049,10 +929,6 @@ function GetMobDataParameters(monsterId, mobData){
 	// 特定種族のＭＤＥＦ無視
 	wMDEF -= n_tok[ITEM_SP_IGNORE_MDEF_RACE_SOLID + mobData[MONSTER_DATA_INDEX_RACE]];
 
-
-
-
-
 	//================================
 	// ここで一度計算が入る（らしい）
 	//================================
@@ -1064,10 +940,6 @@ function GetMobDataParameters(monsterId, mobData){
 		mobData[MONSTER_DATA_INDEX_MDEF_DIV] += ROUNDDOWN(mobData[MONSTER_DATA_INDEX_MDEF_DIV] * wMDEF / 100);
 		B_Total_MDEF += Math.floor(B_Total_MDEF * wMDEF / 100);
 	}
-
-
-
-
 
 	wMDEF = 0;
 
@@ -1171,10 +1043,6 @@ function GetMobDataParameters(monsterId, mobData){
 		}
 	}
 
-
-
-
-
 	//================================
 	// ここで一度計算が入る（らしい）
 	//================================
@@ -1187,21 +1055,6 @@ function GetMobDataParameters(monsterId, mobData){
 		B_Total_MDEF += Math.floor(B_Total_MDEF * wMDEF / 100);
 	}
 
-
-
-
-/*
-	// 2018/04/03 のパッチで仕様変更（削除）の模様
-
-	//----------------------------------------------------------------
-	// 「モンスター状態強化　ストーンスキン」の効果
-	//----------------------------------------------------------------
-	if (n_B_KYOUKA[MOB_CONF_BUF_ID_STONE_SKIN]) {
-		ratio = 100 + 20 * n_B_KYOUKA[MOB_CONF_BUF_ID_STONE_SKIN];
-		mobData[MONSTER_DATA_INDEX_MDEF_DIV] = Math.floor(mobData[14] * ratio / 100);
-	}
-*/
-
 	//----------------------------------------------------------------
 	// 「モンスター状態強化　キーピング」の効果
 	//----------------------------------------------------------------
@@ -1212,8 +1065,6 @@ function GetMobDataParameters(monsterId, mobData){
 			mobData[MONSTER_DATA_INDEX_MDEF_DIV] = 90;
 		}
 	}
-
-
 
 	//----------------------------------------------------------------
 	// 「カトリーヌ＝ケイロン（ＭＶＰ）カード」の効果
@@ -1230,10 +1081,6 @@ function GetMobDataParameters(monsterId, mobData){
 	if (TimeItemNumSearch(69)) {
 		 mobData[MONSTER_DATA_INDEX_MDEF_DIV] = 0;
 	}
-
-
-
-
 
 //================================================================================================
 // 減算ＭＤＥＦの補正
@@ -1261,10 +1108,6 @@ function GetMobDataParameters(monsterId, mobData){
 	if (TimeItemNumSearch(69)) {
 		 mobData[MONSTER_DATA_EXTRA_INDEX_MDEF_MINUS] = 0;
 	}
-
-
-
-
 
 //================================================================================================
 // ＨＩＴの補正
@@ -1296,10 +1139,6 @@ function GetMobDataParameters(monsterId, mobData){
 	if (n_B_KYOUKA[MOB_CONF_BUF_ID_RUSH_ATTACK]) {
 		mobData[MONSTER_DATA_EXTRA_INDEX_HIT] = mobData[MONSTER_DATA_EXTRA_INDEX_HIT] * 2;
 	}
-
-
-
-
 
 //================================================================================================
 // ＦＬＥＥの補正
@@ -1363,10 +1202,6 @@ function GetMobDataParameters(monsterId, mobData){
 		}
 	}
 
-
-
-
-
 	//----------------------------------------------------------------
 	// TODO: シーズ補正？
 	//----------------------------------------------------------------
@@ -1385,10 +1220,6 @@ function GetMobDataParameters(monsterId, mobData){
 			break;
 		}
 	}
-
-
-
-
 
 	//----------------------------------------------------------------
 	// 「モンスター状態異常　凍結」の効果
@@ -1419,10 +1250,6 @@ function GetMobDataParameters(monsterId, mobData){
 		}
 	}
 
-
-
-
-
 //================================================================================================
 // 必中ＨＩＴ／９５％ＦＬＥＥの補正
 //================================================================================================
@@ -1430,22 +1257,9 @@ function GetMobDataParameters(monsterId, mobData){
 	mobData[MONSTER_DATA_EXTRA_INDEX_100HIT] = mobData[MONSTER_DATA_EXTRA_INDEX_FLEE] + 100;
 	mobData[MONSTER_DATA_EXTRA_INDEX_95FLEE] = mobData[MONSTER_DATA_EXTRA_INDEX_HIT] - 5;
 
-
-
-
-
 //================================================================================================
 // 経験値の補正
 //================================================================================================
-
-/*
-	if(eval(A_youshi.checked)){
-		if(Math.floor(mobData[15] / 5) == mobData[15] / 5) mobData[15] = Math.floor(mobData[15] / 5);
-		else mobData[15] = Math.floor(mobData[15] / 5) + 1;
-		if(Math.floor(mobData[16] / 5) == mobData[16] / 5) mobData[16] = Math.floor(mobData[16] / 5);
-		else mobData[16] = Math.floor(mobData[16] / 5) + 1;
-	}
-*/
 
 	//----------------------------------------------------------------
 	// 「その他の支援　経験値増加キャンペーン」の効果
@@ -1472,10 +1286,6 @@ function GetMobDataParameters(monsterId, mobData){
 		mobData[MONSTER_DATA_INDEX_BASE_EXP] += n_A_PassSkill8[5] + 1;
 		mobData[MONSTER_DATA_INDEX_JOB_EXP] += n_A_PassSkill8[5] + 1;
 	}
-
-
-
-
 
 	var wAllExp = 100;
 	var wJobExp = 0;
@@ -1522,19 +1332,11 @@ function GetMobDataParameters(monsterId, mobData){
 		wJobExp = wJobExp * 2;
 	}
 
-
-
-
-
 	//================================
 	// ここで一度計算が入る（らしい）
 	//================================
 	mobData[MONSTER_DATA_INDEX_BASE_EXP] = Math.floor(mobData[MONSTER_DATA_INDEX_BASE_EXP] * wAllExp / 100);
 	mobData[MONSTER_DATA_INDEX_JOB_EXP] = Math.floor(mobData[MONSTER_DATA_INDEX_JOB_EXP] * (wAllExp + wJobExp) / 100);
-
-
-
-
 
 	//----------------------------------------------------------------
 	// 「その他の支援　公平ＰＴ人数」の効果（公平ボーナスと公平による分割）
@@ -1568,11 +1370,5 @@ function GetMobDataParameters(monsterId, mobData){
 		}
 	}
 
-
-
-
-
 	return mobData;
 }
-
-
