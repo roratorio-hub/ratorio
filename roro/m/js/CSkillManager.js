@@ -20251,7 +20251,13 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = function(option) {
-				return GetEquippedTotalSPArrow(ITEM_SP_ELEMENTAL);
+				// 属性付与を優先する
+				let value = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_ARMS_ELEMENT", ELM_ID_VANITY);
+				if (value === ELM_ID_VANITY) {
+					// 付与されていなければ矢の属性を適用する
+					value = GetEquippedTotalSPArrow(ITEM_SP_ELEMENTAL);
+				}
+				return value;
 			}
 			this.WeaponCondition = function(weapon) {
 				return [ITEM_KIND_WHIP, ITEM_KIND_MUSICAL].includes(weapon);
