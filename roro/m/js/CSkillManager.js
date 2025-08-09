@@ -36698,16 +36698,6 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_VOID;
-			this.Power = function(skillLv, charaData, option) {
-				// 基本倍率
-				let ratio = 2000 + 500 * skillLv;
-				// ステージマナー習得Lv
-				const stage_manner_lv = Math.max(LearnedSkillSearch(SKILL_ID_STAGE_MANNER), UsedSkillSearch(SKILL_ID_STAGE_MANNER));
-				// SPL補正
-				ratio += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL) * stage_manner_lv;
-				// ベースレベル補正
-				ratio = Math.floor(ratio * n_A_BaseLV / 100);
-			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 55;
 			}
