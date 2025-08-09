@@ -809,9 +809,7 @@ function InitMobConfDebufData() {
 		MOB_CONF_DEBUF_ID_STRIP_HELM,				// Int-40%
 		MOB_CONF_DEBUF_ID_STRIP_ACCESSARY,			// Int-20%, Dex-20%, Luk-20%
 	];
-	const MobConfDebufOBJSorted = [];
-	DEBUF_ARRAY.forEach((debuf) => MobConfDebufOBJSorted.push(MobConfDebufOBJ[debuf]));
-	MobConfDebufOBJ = MobConfDebufOBJSorted;
+	MobConfDebufOBJ = DEBUF_ARRAY.map(debufId => MobConfDebufOBJ[debufId]);
 }
 
 /**
