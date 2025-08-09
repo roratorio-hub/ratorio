@@ -560,9 +560,12 @@ function GetPAtk() {
 		value += 20 + 2 * bufLv;
 	}
 	// 四次職支援「プロンテラマーチ」による効果
-	// 「自身の周辺31 x 31セルにトルバドゥールかトルヴェールの異性のパーティーメンバーがいる場合、P.Atk増加量が 1.5倍になる」効果は未実装
 	if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_PRONTERA_MARCH]) > 0) {
-		const values = [0, 1, 3, 5, 8, 12];
+		let values = [0, 1, 3, 5, 8, 12];
+		if (g_confDataYozi[CCharaConfYozi.CONF_ID_MUSICAL_PARTNER] > 0) {
+			// パートナーが居るときは効果量が1.5倍になる
+			values = values.map(v => Math.ceil(v * 1.5));
+		}
 		if (bufLv < values.length) {
 			value += values[bufLv];
 		}
@@ -695,9 +698,12 @@ function GetSMatk() {
 	}
 
 	// 四次職支援「夕焼けのセレナーデ」による効果
-	// 「自身の周辺31 x 31セルにトルバドゥールかトルヴェールの異性のパーティーメンバーがいる場合、S.Matk増加量が 1.5倍になる」効果は未実装
 	if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_YUYAKENO_SERENADE]) > 0) {
-		const values = [0, 1, 3, 5, 8, 12];
+		let values = [0, 1, 3, 5, 8, 12];
+		if (g_confDataYozi[CCharaConfYozi.CONF_ID_MUSICAL_PARTNER] > 0) {
+			// パートナーが居るときは効果量が1.5倍になる
+			values = values.map(v => Math.ceil(v * 1.5));
+		}
 		if (bufLv < values.length) {
 			value += values[bufLv];
 		}
@@ -796,12 +802,13 @@ function GetRes() {
 		value += [0, 20, 30, 40, 60, 100][bufLv];
 	}
 	// 四次職支援「ミュージカルインタールード」による効果
-	// 「自身の周辺31 x 31セルにトルバドゥールかトルヴェールの異性のパーティーメンバーがいる場合、Res増加量が 1.5倍になる」効果は未実装
 	if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_MUSICAL_INTERLUDE]) > 0) {
-		const values = [0, 20, 30, 40, 60, 100];
-		if (bufLv < values.length) {
-			value += values[bufLv];
+		let values = [0, 20, 30, 40, 60, 100];
+		if (g_confDataYozi[CCharaConfYozi.CONF_ID_MUSICAL_PARTNER] > 0) {
+			// パートナーが居るときは効果量が1.5倍になる
+			values = values.map(v => Math.ceil(v * 1.5));
 		}
+		value += values[bufLv];
 	}
 	/** バイオロ固有支援「ゴールデントーン」によるRes + 効果 */
 	if ((bufLv = UsedSkillSearch(SKILL_ID_GOLDENE_TONE)) > 0) {
