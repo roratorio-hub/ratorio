@@ -4065,7 +4065,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				wHITsuu = 2;
 				if(n_A_ActiveSkillLV == 1) wHITsuu = 1;
 				wLAch = true;
-				if(n_B_IJYOU[6] == 1){
+				if(n_B_IJYOU[MOB_CONF_DEBUF_ID_LEX_AETERNA] == 1){
 					wHITsuu = 3;
 					if(n_A_ActiveSkillLV == 1) wHITsuu = 2;
 				}
@@ -4166,7 +4166,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				// TODO: ダメージ表示方式変更対応
 				// Last_DMG_A[i] = w_DMG[i] * wHITsuu;
 
-				if(n_B_IJYOU[6] == 0 || !wLAch) g_damageTextArray[i].push(Math.floor(w_DMG[i] * wHITsuu), "(", w_DMG[i], SubName[8], wHITsuu, "hit)");
+				if(n_B_IJYOU[MOB_CONF_DEBUF_ID_LEX_AETERNA] == 0 || !wLAch) g_damageTextArray[i].push(Math.floor(w_DMG[i] * wHITsuu), "(", w_DMG[i], SubName[8], wHITsuu, "hit)");
 				else{
 					g_damageTextArray[i].push((w_DMG[i] * 3), "(", (w_DMG[i] * 2), "＋", w_DMG[i], ")");
 					Last_DMG_B[i] = w_DMG[i] * 3;
@@ -4542,7 +4542,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				for(var i=0;i<=2;i++) w_DMG[i] = w_DMG[i] * 3;
 				return w_DMG;
 			}
-			if(n_B_IJYOU[6] == 0){
+			if(n_B_IJYOU[MOB_CONF_DEBUF_ID_LEX_AETERNA] == 0){
 				for(var b=0;b<=2;b++){
 					Last_DMG_A[b] = Last_DMG_B[b] = w_DMG[b] * 3;
 					g_damageTextArray[b].push(Last_DMG_A[b], "(", w_DMG[b], SubName[8], "3hit)");
@@ -5365,7 +5365,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			}
 			for(var i=0;i<=2;i++){
 				Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i] = wHell_DMG1[i] + wHell_DMG2[i];
-				if(n_B_IJYOU[6] == 0) g_damageTextArray[i].push(w_DMG[i], " (", wHell_DMG1[i], "+", wHell_DMG2[i], ")");
+				if(n_B_IJYOU[MOB_CONF_DEBUF_ID_LEX_AETERNA] == 0) g_damageTextArray[i].push(w_DMG[i], " (", wHell_DMG1[i], "+", wHell_DMG2[i], ")");
 				else{
 					var w = wHell_DMG1[i] * 2;
 					var w2 = w + wHell_DMG2[i];
@@ -5421,11 +5421,11 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 					wC_DMG[i][2] = ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, wBK_MATK[2] * wbairitu / 100);
 				}
 				if(i==0){
-					if(n_B_IJYOU[4] || n_B_IJYOU[9]){
+					if(n_B_IJYOU[MOB_CONF_DEBUF_ID_TOUKETSU] || n_B_IJYOU[MOB_CONF_DEBUF_ID_SEKIKA]){
 						T_check = mobData[18];
 						mobData[18] = MonsterObjNew[eval(document.calcForm.B_Enemy.value)][18];
 						if(n_B_KYOUKA[6]) T_check = n_B_KYOUKA[6];
-						if(n_B_IJYOU[23]) T_check = n_B_IJYOU[23] * 10 + (T_check % 10);
+						if(n_B_IJYOU[MOB_CONF_DEBUF_ID_ELEMENTAL_CHANGE]) T_check = n_B_IJYOU[MOB_CONF_DEBUF_ID_ELEMENTAL_CHANGE] * 10 + (T_check % 10);
 					}
 				}
 			}
@@ -5442,7 +5442,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				return w_DMG;
 			}
 			for(var i=0;i<=2;i++){
-				if(n_B_IJYOU[6] == 0){
+				if(n_B_IJYOU[MOB_CONF_DEBUF_ID_LEX_AETERNA] == 0){
 
 					Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i] = wC_DMG[0][i] + wC_DMG[1][i] + wC_DMG[2][i] + wC_DMG[3][i] + wC_DMG[4][i] + wC_DMG[5][i];
 
@@ -5515,11 +5515,11 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			}
 			n_A_Weapon_zokusei = Math.floor(attackMethodConfArray[0].GetOptionValue(1) % 10);
 			var T_check = -1;
-			if(n_B_IJYOU[4] || n_B_IJYOU[9]){
+			if(n_B_IJYOU[MOB_CONF_DEBUF_ID_TOUKETSU] || n_B_IJYOU[MOB_CONF_DEBUF_ID_SEKIKA]){
 				T_check = mobData[3];
 				mobData[18] = MonsterObjNew[eval(document.calcForm.B_Enemy.value)][18];
 				if(n_B_KYOUKA[6]) T_check = n_B_KYOUKA[6];
-				if(n_B_IJYOU[23]) T_check = n_B_IJYOU[23] * 10 + (T_check % 10);
+				if(n_B_IJYOU[MOB_CONF_DEBUF_ID_ELEMENTAL_CHANGE]) T_check = n_B_IJYOU[MOB_CONF_DEBUF_ID_ELEMENTAL_CHANGE] * 10 + (T_check % 10);
 			}
 			for(var i=0;i<=2;i++){
 				w_MATK[i] = n_A_MATK[i];
@@ -5541,7 +5541,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			}
 			for(var i=0;i<=2;i++){
 				Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i] = wT_DMG1[i] + wT_DMG2[i] + wT_DMG3[i] + wT_DMG4[i];
-				if(n_B_IJYOU[6] == 0) g_damageTextArray[i].push(w_DMG[i], " (", wT_DMG1[i], "+", wT_DMG2[i], "+", wT_DMG3[i], "+", wT_DMG4[i], ")");
+				if(n_B_IJYOU[MOB_CONF_DEBUF_ID_LEX_AETERNA] == 0) g_damageTextArray[i].push(w_DMG[i], " (", wT_DMG1[i], "+", wT_DMG2[i], "+", wT_DMG3[i], "+", wT_DMG4[i], ")");
 				else{
 					var w = wT_DMG1[i] * 2;
 					var w2 = w + wT_DMG2[i] + wT_DMG3[i] + wT_DMG4[i];
@@ -5772,7 +5772,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			if(w3HIT==1){
 				for(var i=0;i<=2;i++){
 					Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i] = wOB_DMG[0][i] + wOB_DMG[1][i] + wOB_DMG[2][i];
-					if(n_B_IJYOU[6] == 0) g_damageTextArray[i].push(w_DMG[i], " (", wOB_DMG[0][i], "+", wOB_DMG[1][i], "+", wOB_DMG[2][i], ")");
+					if(n_B_IJYOU[MOB_CONF_DEBUF_ID_LEX_AETERNA] == 0) g_damageTextArray[i].push(w_DMG[i], " (", wOB_DMG[0][i], "+", wOB_DMG[1][i], "+", wOB_DMG[2][i], ")");
 					else{
 						var w = wOB_DMG[0][i] * 2;
 						var w2 = w + wOB_DMG[1][i] + wOB_DMG[2][i];
@@ -5783,7 +5783,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			}else{
 				for(var i=0;i<=2;i++){
 					Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i] = wOB_DMG[0][i] + wOB_DMG[1][i];
-					if(n_B_IJYOU[6] == 0) g_damageTextArray[i].push(w_DMG[i], " (", wOB_DMG[0][i], "+", wOB_DMG[1][i], ")");
+					if(n_B_IJYOU[MOB_CONF_DEBUF_ID_LEX_AETERNA] == 0) g_damageTextArray[i].push(w_DMG[i], " (", wOB_DMG[0][i], "+", wOB_DMG[1][i], ")");
 					else{
 						var w = wOB_DMG[0][i] * 2;
 						var w2 = w + wOB_DMG[1][i];
@@ -9146,10 +9146,6 @@ function ATKbaiJYOUSAN(wJ) {
 	const katar_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_KATAR_KENKYU), UsedSkillSearch(SKILL_ID_KATAR_KENKYU));
 	if(n_A_WeaponType == 11 && katar_shuren_lv) {
 		w += 10 + 2 * katar_shuren_lv;
-	}
-	// デバフ「クエイク状態」による効果
-	if (n_B_IJYOU[MOB_CONF_DEBUF_ID_QUAKE_DEBUFF] > 0) {
-		w += 15;
 	}
 	// 「モンスター状態異常　カイト」
 	if (n_B_IJYOU[MOB_CONF_DEBUF_ID_KAITO]) {
@@ -14927,7 +14923,7 @@ function ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData,
 
 
 	// 冷凍状態での、風属性魔法ダメージ増加の適用
-	if(n_B_IJYOU[35] == 1){
+	if(n_B_IJYOU[MOB_CONF_DEBUF_ID_REITO] == 1){
 		if(n_A_Weapon_zokusei == 4) wBMC2 = Math.floor(wBMC2 * 1.5);
 	}
 
@@ -15882,7 +15878,7 @@ function calc() {
 	w_Cri -= ((mobData[MONSTER_DATA_INDEX_LEVEL] / 150) + (mobData[MONSTER_DATA_INDEX_LUK] / 5));
 
 	// 睡眠状態ならば、クリティカル率２倍
-	if (n_B_IJYOU[8]) {
+	if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SUIMIN]) {
 		w_Cri *= 2;
 	}
 
@@ -18738,7 +18734,7 @@ function GetSpiderWebDamageRatio() {
 
 	var w=0;
 
-	if(n_A_Weapon_zokusei == 3 && n_B_IJYOU[17]) w += 100;
+	if(n_A_Weapon_zokusei == 3 && n_B_IJYOU[MOB_CONF_DEBUF_ID_SPIDER_WEB]) w += 100;
 
 	return w;
 }
@@ -22117,7 +22113,7 @@ function ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData
 	}
 
 	// 「冷凍状態」のダメージ増減効果
-	if(n_B_IJYOU[35] == 1){
+	if(n_B_IJYOU[MOB_CONF_DEBUF_ID_REITO] == 1){
 		switch (n_A_ActiveSkill) {
 		case 118:	// ブリッツビート
 		case 271:	// ファルコンアサルト
@@ -22375,7 +22371,7 @@ function ApplyLexAeterna(mobData, dmg) {
 	if(!n_AS_MODE){
 
 		// レックスエーテルナ状態の場合
-		if(n_B_IJYOU[6] && !wLAch){
+		if(n_B_IJYOU[MOB_CONF_DEBUF_ID_LEX_AETERNA] && !wLAch){
 
 			// チェーンライトニング、テトラボルテックス以外の場合（多段判定以外の場合）
 			if(n_A_ActiveSkill != 530 && n_A_ActiveSkill != 532) return (dmg * 2);
@@ -22386,8 +22382,8 @@ function ApplyLexAeterna(mobData, dmg) {
 	var w_num = 0;
 
 	// サプライズアタック後状態の場合
-	if(n_B_IJYOU[33]){
-		// TODO : 謎判定
+	if(n_B_IJYOU[MOB_CONF_DEBUF_ID_SURPRISE_ATTACK_EFFECT]){
+		// ボス属性には 10% 増加
 		if(mobData[20] == 1) w_num = 10;
 		else w_num = 20;
 	}

@@ -1,4 +1,5 @@
 import { loadFileAsUint8Array, zstdDecompress } from "./funcZstdLoad";
+import { parse as JSONCparser } from "jsonc-parser";
 
 // ItemMapの型定義
 export interface ItemData {
@@ -38,13 +39,14 @@ export class ItemMap {
 
     /** アイテムデータをロード */
     static async load(): Promise<void> {
-        let compressed = await loadFileAsUint8Array('../../ro4/m/json/item.json.zst');
+        let compressed = await loadFileAsUint8Array('../../ro4/m/json/item.jsonc.zst');
         let decompressed = await zstdDecompress(compressed);
         let itemLines = new TextDecoder('utf-8').decode(decompressed);
         try {
-            this.itemMap = JSON.parse(itemLines);
+            // JSONCとしてパース
+            this.itemMap = JSONCparser(itemLines);
         } catch (err) {
-            console.error('JSON parse error:', err);
+            console.error('JSONC parse error:', err);
         }
     }
 }

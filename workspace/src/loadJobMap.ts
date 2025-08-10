@@ -1,4 +1,5 @@
 import { loadFileAsUint8Array, zstdDecompress } from "./funcZstdLoad";
+import { parse as JSONCparser } from "jsonc-parser";
 
 export interface JobData {
     id_name: string, // ID Name
@@ -63,13 +64,13 @@ export class JobMap {
 
     /** 職業データをロード */
     static async load(): Promise<void> {
-        let compressed = await loadFileAsUint8Array('../../ro4/m/json/job.json.zst');
+        let compressed = await loadFileAsUint8Array('../../ro4/m/json/job.jsonc.zst');
         let decompressed = await zstdDecompress(compressed);
         let jobLines = new TextDecoder('utf-8').decode(decompressed);
         try {
-            this.jobMap = JSON.parse(jobLines);
+            this.jobMap = JSONCparser(jobLines);
         } catch (err) {
-            console.error('JSON parse error:', err);
+            console.error('JSONC parse error:', err);
         }
     }
 }

@@ -80,7 +80,7 @@ async function fetchSearchSkill(seachUrls: string[]): Promise<void> {
     }
 }
 
-async function loadRodbTranslator(fragment: string): Promise<void> {
+export async function loadRodbTranslator(fragment: string): Promise<void> {
     const prefixCheck = /^#rtx(\d+):(.+)$/;
     const matches = prefixCheck.exec(fragment);
     if (!matches) {
@@ -225,5 +225,3 @@ interface RodbTranslatorJsonFormat {
     supports: object;
     additional_info: AdditionalInfo;
 }
-
-globalThis.loadRodbTranslator = loadRodbTranslator;
