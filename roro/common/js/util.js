@@ -630,22 +630,31 @@ function GetStatefullData(dataid, valueWhenNull) {
  * @return 生成した配列
  */
 function MallocArray(size, initValue) {
-
 	var idx = 0;
-
 	var ary = null;
-
 	if (size < 1) {
 		return null;
 	}
-
 	ary = new Array();
-
 	for (idx = 0; idx < size; idx++) {
 		ary[idx] = initValue;
 	}
-
 	return ary;
+}
+
+/**
+ * 等差数列を生成する
+ * @param {number} start 
+ * @param {number} step 
+ * @param {number} length 
+ * @returns {Array}
+ */
+function createArithmeticSequence(start, step, length) {
+	const result = [];
+	for (let i = 0; i < length; i++) {
+		result.push(start + i * step);
+	}
+	return result;
 }
 
 /**

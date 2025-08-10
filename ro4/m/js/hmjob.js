@@ -504,25 +504,25 @@ function ApplySpecStatusModifyMATK(charaData, n_tok) {
 	charaData[CHARA_DATA_INDEX_STATUS_MATK] += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 }
 
+/**
+ * 特性ステータスに加えて
+ * 公式サイトで「P.Atk + ◯」と表記される装備、スキルの加算値を考慮した
+ * 最終P.Atkを取得する
+ * @returns 
+ */
 function GetPAtk() {
-
-	var value = 0;
-	var sklLv = 0;
-	var bufLv = 0;
-	var valWork = 0;
-
+	let value = 0;
+	let sklLv = 0;
+	let bufLv = 0;
 	// ステータス値
 	value += Math.floor(GetTotalSpecStatus(MIG_PARAM_ID_POW) / 3);
 	value += Math.floor(GetTotalSpecStatus(MIG_PARAM_ID_CON) / 5);
-
 	// 装備効果
 	value += GetEquippedTotalSPEquip(ITEM_SP_P_ATK_PLUS);
 	value += GetEquippedTotalSPCardAndElse(ITEM_SP_P_ATK_PLUS);
 	value += GetRndOptTotalValue(ITEM_SP_P_ATK_PLUS);
-
 	// 性能カスタマイズ
 	value += g_objCharaConfCustomSpecStatus.GetConf(CCharaConfCustomSpecStatus.CONF_ID_P_ATK_PLUS)
-
 	// 「インペリアルガード」スキル「アタックスタンス」による効果
 	if ((sklLv = UsedSkillSearch(SKILL_ID_ATTACK_STANCE)) > 0) {
 
@@ -531,20 +531,16 @@ function GetPAtk() {
 			value += [0, 1, 3, 5, 10, 15][sklLv];
 		}
 	}
-
 	// 「アビスチェイサー」スキル「アビススレイヤー」による効果
 	if ((sklLv = UsedSkillSearch(SKILL_ID_ABYSS_SLAYER)) > 0) {
 		value += 2 * sklLv;
 	}
-
 	// 「インクイジター」スキル「強靭な信念」による効果
 	if ((sklLv = UsedSkillSearch(SKILL_ID_KYOZINNA_SHINNEN)) > 0) {
 		value += [0, 1, 3, 5, 10, 15][sklLv];
 	}
-
 	// 「トルバドゥール／トルヴェール」スキル「ステージマナー」による効果
 	if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_STAGE_MANNER), UsedSkillSearch(SKILL_ID_STAGE_MANNER))) > 0) {
-
 		// 弓・楽器・鞭装備時装備時限定
 		switch (n_A_WeaponType) {
 		case ITEM_KIND_BOW:
@@ -554,52 +550,46 @@ function GetPAtk() {
 			break;
 		}
 	}
-
 	// 「天帝」スキル「兵法修練」による効果
 	if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_HYOHO_SHUREN), UsedSkillSearch(SKILL_ID_HYOHO_SHUREN))) > 0) {
 		value += (1 * Math.min(5, sklLv)) + (2 * Math.min(5, Math.max(0, sklLv - 5)));
 	}
-
 	// 四次職支援「コンペテンティア」による効果
 	// SKILL_ID_CONPETENTIA
 	if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_CONPETENTIA]) > 0) {
 		value += 20 + 2 * bufLv;
 	}
-
 	// 四次職支援「プロンテラマーチ」による効果
-	// 「自身の周辺31 x 31セルにトルバドゥールかトルヴェールの異性のパーティーメンバーがいる場合、P.Atk増加量が 1.5倍になる」効果は未実装
 	if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_PRONTERA_MARCH]) > 0) {
-		const values = [0, 1, 3, 5, 8, 12];
+		let values = [0, 1, 3, 5, 8, 12];
+		if (g_confDataYozi[CCharaConfYozi.CONF_ID_MUSICAL_PARTNER] > 0) {
+			// パートナーが居るときは効果量が1.5倍になる
+			values = values.map(v => Math.ceil(v * 1.5));
+		}
 		if (bufLv < values.length) {
 			value += values[bufLv];
 		}
 	}
-
 	// 四次職支援「武士符」による効果
 	if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_BUSHI_FU]) > 0) {
 		value += 2 * bufLv;
 	}
-
 	// 「スピリットハンドラー」スキル「スピリットマスタリー」による効果
 	if (( sklLv = Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY)) ) > 0) {
 		value += [0, 1, 2, 3, 4, 5, 6, 7, 9, 12, 15][sklLv];
 	}
-
 	// 「スピリットハンドラー」スキル「三霊一体」による効果
 	if ((sklLv = UsedSkillSearch(SKILL_ID_SANREI_ITTAI)) > 0) {
 		value += 3 * sklLv;
 	}
-
 	// 「スピリットハンドラー」スキル「にゃんブレッシング」による効果
 	if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_NYAN_BRESSING]) > 0) {
 		value += 5 * bufLv;
 	}
-
 	// 「ハイパーノービス」スキル「独学 -戦闘学-」による効果
 	if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU), UsedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU))) > 0) {
 		value += [0, 1, 2, 3, 4, 5, 6, 7, 9, 12, 15][sklLv];
 	}
-
 	// 「ナイトウォッチ」スキル「P.F.I」による効果
 	if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_PFI), UsedSkillSearch(SKILL_ID_PFI))) > 0) {
 		// 銃装備時のみ
@@ -613,11 +603,14 @@ function GetPAtk() {
 				break;
 			}	
 	}
-
 	// 「ナイトウォッチ」スキル「ヒドゥンカード」による効果
 	if ((sklLv = UsedSkillSearch(SKILL_ID_HIDDEN_CARD)) > 0) {
 		value += sklLv + 5;
-	}			
+	}
+	/** バイオロ固有支援「テンパリング」によるP.Atk + 効果 */
+	if ((sklLv = UsedSkillSearch(SKILL_ID_TEMPERING)) > 0) {
+		value += 5 + sklLv;
+	}
 
 	return value;
 }
@@ -705,9 +698,12 @@ function GetSMatk() {
 	}
 
 	// 四次職支援「夕焼けのセレナーデ」による効果
-	// 「自身の周辺31 x 31セルにトルバドゥールかトルヴェールの異性のパーティーメンバーがいる場合、S.Matk増加量が 1.5倍になる」効果は未実装
 	if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_YUYAKENO_SERENADE]) > 0) {
-		const values = [0, 1, 3, 5, 8, 12];
+		let values = [0, 1, 3, 5, 8, 12];
+		if (g_confDataYozi[CCharaConfYozi.CONF_ID_MUSICAL_PARTNER] > 0) {
+			// パートナーが居るときは効果量が1.5倍になる
+			values = values.map(v => Math.ceil(v * 1.5));
+		}
 		if (bufLv < values.length) {
 			value += values[bufLv];
 		}
@@ -773,7 +769,9 @@ function GetCRate() {
 }
 
 /**
- * 特性ステータス、装備、スキルを考慮した最終RESを取得する
+ * 特性ステータスに加えて
+ * 公式サイトで「Res + ◯」と表記される装備、スキルの加算値を考慮した
+ * 最終RESを取得する
  * @returns RESの値
  */
 function GetRes() {
@@ -804,34 +802,43 @@ function GetRes() {
 		value += [0, 20, 30, 40, 60, 100][bufLv];
 	}
 	// 四次職支援「ミュージカルインタールード」による効果
-	// 「自身の周辺31 x 31セルにトルバドゥールかトルヴェールの異性のパーティーメンバーがいる場合、Res増加量が 1.5倍になる」効果は未実装
 	if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_MUSICAL_INTERLUDE]) > 0) {
-		const values = [0, 20, 30, 40, 60, 100];
-		if (bufLv < values.length) {
-			value += values[bufLv];
+		let values = [0, 20, 30, 40, 60, 100];
+		if (g_confDataYozi[CCharaConfYozi.CONF_ID_MUSICAL_PARTNER] > 0) {
+			// パートナーが居るときは効果量が1.5倍になる
+			values = values.map(v => Math.ceil(v * 1.5));
 		}
+		value += values[bufLv];
 	}
+	/** バイオロ固有支援「ゴールデントーン」によるRes + 効果 */
+	if ((bufLv = UsedSkillSearch(SKILL_ID_GOLDENE_TONE)) > 0) {
+		value += 50 + 5 * bufLv
+	}
+
 	return value;
 }
 
+/**
+ * 特性ステータスに加えて
+ * 公式サイトで「Mres + ◯」と表記される装備、スキルの加算値を考慮した
+ * 最終MRESを取得する
+ * @returns 
+ */
 function GetMres() {
-
-	var value = 0;
-
-
-
+	let value = 0;
+	let bufLv = 0;
 	// ステータス値
 	value += GetTotalSpecStatus(MIG_PARAM_ID_WIS);
 	value += 5 * Math.floor(GetTotalSpecStatus(MIG_PARAM_ID_WIS) / 3);
-
 	// 装備効果
 	value += n_tok[ITEM_SP_MRES_PLUS];
 	value += GetRndOptTotalValue(ITEM_SP_MRES_PLUS);
-
+	/** バイオロ固有支援「ゴールデントーン」によるMres + 効果 */
+	if ((bufLv = UsedSkillSearch(SKILL_ID_GOLDENE_TONE)) > 0) {
+		value += 50 + 5 * bufLv
+	}
 	// 性能カスタマイズ
 	value += g_objCharaConfCustomSpecStatus.GetConf(CCharaConfCustomSpecStatus.CONF_ID_MRES_PLUS)
-
-
 	return value;
 }
 
@@ -854,39 +861,47 @@ function GetHPlus() {
 	return value;
 }
 
+/**
+ * 公式サイトで「Res - ◯」と表記されるデバフを考慮した
+ * 最終的なモンスターのResを取得する
+ * @param {*} mobData 
+ * @returns 
+ */
 function GetMobRes(mobData) {
-
-	var value = 0;
-	var bufLv = 0;
-	var ignore = 0;
+	let value = 0;
+	let bufLv = 0;
 
 	// 基礎値
 	value = mobData[MONSTER_DATA_INDEX_RES];
 
-	// Res無視効果
-	ignore = 0;
-
+	// -------------------------------------
+	// 割合減少効果
+	// -------------------------------------
+	let ratio = 0;
 	// アイテム特性による効果（とりあえず全種族だけ対応）
-	ignore += n_tok[ITEM_SP_IGNORE_RES_RACE_ALL];
-
+	ratio += n_tok[ITEM_SP_IGNORE_RES_RACE_ALL];
 	// 四次職支援「アルグトゥステルム」による効果
-	// SKILL_ID_ARUGUTUS_TERUM
 	if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_ARUGUTUS_TERUM]) > 0) {
-		ignore += 5 * bufLv;
+		ratio += 5 * bufLv;
 	}
-
 	// シャドウクロス「ポテントベナム」による効果
 	if ((bufLv = UsedSkillSearch(SKILL_ID_POTENT_VENOM)) > 0) {
-		ignore += 20 + bufLv;
+		ratio += 20 + bufLv;
+	}
+	// RES無視効果の上限は５０％
+	ratio = Math.min(50, ratio);
+	value -= Math.floor(value * ratio / 100);
+
+	// -------------------------------------
+	// 固定減少効果
+	// -------------------------------------
+	let diff = 0;
+	// モンスター状態異常設定「トキシンオブマンドラ」による Res - 効果
+	if ((bufLv = n_B_IJYOU[MOB_CONF_DEBUF_ID_TOXIN_OF_MANDARA]) > 0) {
+		diff += 25 + 5 * bufLv;
 	}
 
-	// RES無視効果の上限は５０％
-	ignore = Math.min(50, ignore);
-
-	// 無視効果適用
-	value -= Math.floor(value * ignore / 100);
-	value = Math.max(0, value);
-
+	value = Math.max(0, value - diff);
 	return value;
 }
 

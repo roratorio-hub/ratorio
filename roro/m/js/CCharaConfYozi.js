@@ -273,6 +273,18 @@ function CCharaConfYozi(confArray) {
 		this.confDataObj[confId] = confData;
 		confId++;
 
+		CCharaConfYozi.CONF_ID_MUSICAL_PARTNER = confId;
+		confData = [
+			confId,
+			CConfBase.ConfText("演奏用ﾊﾟｰﾄﾅｰ(ｿﾅﾀｵﾌﾞｸｳﾞｧｼﾙ)"),
+			CConfBase.ConfControlType(CONTROL_TYPE_SELECTBOX_SPECIAL),
+			CConfBase.ConfDefaultValue(0),
+			CConfBase.ConfMinValue(0),
+			CConfBase.ConfMaxValue(1)
+		];
+		this.confDataObj[confId] = confData;
+		confId++;
+
 		CCharaConfYozi.CONF_ID_DUMMY = confId;
 		confData = [
 			confId,
@@ -327,7 +339,7 @@ function CCharaConfYozi(confArray) {
 			CCharaConfYozi.CONF_ID_MUSICAL_INTERLUDE,
 			CCharaConfYozi.CONF_ID_YUYAKENO_SERENADE,
 			CCharaConfYozi.CONF_ID_PRONTERA_MARCH,
-			CCharaConfYozi.CONF_ID_DUMMY,
+			CCharaConfYozi.CONF_ID_MUSICAL_PARTNER,
 			CCharaConfYozi.CONF_ID_BUSHI_FU,
 			CCharaConfYozi.CONF_ID_HOSHI_FU,
 			CCharaConfYozi.CONF_ID_GOGYO_FU,
@@ -352,7 +364,19 @@ function CCharaConfYozi(confArray) {
 
 		// 個別に実装する
 		switch (confId) {
-
+			// 演奏用パートナー
+			case CCharaConfYozi.CONF_ID_MUSICAL_PARTNER:
+				// 選択セレクトボックスを生成
+				const objSelect = document.createElement("select");
+				objSelect.setAttribute("id", controlId);
+				objSelect.setAttribute("onChange", "CConfBase.OnChangeValueHandler(" + this.instanceNo + ", true)");
+				objTd.appendChild(objSelect);
+				// セレクトオプションを生成
+				HtmlCreateElementOption(0, "無し", objSelect);
+				HtmlCreateElementOption(1, "有り", objSelect);
+				// 初期値設定
+				objSelect.setAttribute("value", confData[CConfBase.CONF_DATA_INDEX_DEFAULT_VALUE]);
+				break;
 		}
 	}
 
