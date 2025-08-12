@@ -1,13 +1,13 @@
 item_list:
-  - name: 甘えた黒猫
-    yomi: 甘えた黒猫
+  - name: インペリアルガーディアン
+    yomi: インペリアルガーディアン
     type: 下段
     slot: 0
     weapon_lv: 0
     atk_or_def: 0
     weight: 10
     required_lv: 200
-    required_job: スピリットハンドラー
+    required_job: インペリアルガード
     capabilities:
       - name: プレイヤー耐性
         value: 3
@@ -17,51 +17,47 @@ item_list:
       - name: 全サイズへの魔法ダメージ増加
         value: 1
         per_lv: 10
-    enchant: #
-      - name: ミオン
-        slot_list: #
-          - slot: 4
-            refine: 0
-            enchant_list: #
-              - name: 潜在解放(スピリットハンドラーXIV)
 
-  - name: 桜花白魔の紋服
-    yomi: 桜花白魔の紋服
+  - name: オープンエアヘッドフォン(赤)
+    yomi: オープンエアヘッドフォン(赤)
+    type: 下段
+    slot: 0
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 10
+    required_lv: 200
+    required_job: マイスター
+    capabilities:
+      - name: プレイヤー耐性
+        value: 3
+      - name: 全サイズへの物理ダメージ増加
+        value: 1
+        per_lv: 10
+      - name: 全サイズへの魔法ダメージ増加
+        value: 1
+        per_lv: 10
+
+  - name: リヴァイアサンスケイル
+    yomi: リヴァイアサンスケイル
     type: 鎧
     slot: 1
     weapon_lv: 0
     atk_or_def: 100
     weight: 100
     required_lv: 200
-    required_job: 蜃気楼 不知火
+    required_job: ドラゴンナイト
     capabilities:
       - name: プレイヤー耐性
         value: 7
       - name: スキルダメージ増加
         value: 1
         per_lv: 10
-        skill: 赤炎砲
+        skill: ドラゴニックブレス
       - name: スキルダメージ増加
         value: 1
         per_lv: 10
-        skill: 冷血砲
-      - name: スキルダメージ増加
-        value: 1
-        per_lv: 10
-        skill: 雷電砲
-      - name: スキルダメージ増加
-        value: 1
-        per_lv: 10
-        skill: 金龍砲
-      - name: スキルダメージ増加
-        value: 1
-        per_lv: 10
-        skill: 暗転砲
-      - name: スキルダメージ増加
-        value: 1
-        per_lv: 10
-        skill: 幻術 -暗黒龍-
-      - name: 全サイズへの魔法ダメージ増加
+        skill: ドラゴニックオーラ
+      - name: 全サイズへの物理ダメージ増加
         value: 7
         per_refine: 1
       - name: ASPD増加
@@ -76,51 +72,34 @@ item_list:
       - name: 壊れない
         value: 1
         at_refine: 9
-      - name: 再使用待機時間減少
-        value: 30000
-        skill: 十六夜
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 1
         at_refine: 9
-      - name: 全属性への魔法ダメージ増加
+        skill: ウォータードラゴンブレス
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 1
+        at_refine: 9
+        skill: ファイアードラゴンブレス
+      - name: 全属性への物理ダメージ増加
         value: 15
         at_refine: 10
-    enchant: #
-      - name: オーブ
-        slot_list: #
-          - slot: 4
-            refine: 0
-            enchant_list: #
-              - name: 潜在解放(蜃気楼&不知火XIII)
-          - slot: 3
-            refine: 8
-            enchant_list: #
-              - name: 火属性付与(鎧)
-              - name: 水属性付与(鎧)
-              - name: 風属性付与(鎧)
-              - name: 地属性付与(鎧)
-              - name: 聖属性付与(鎧)
-              - name: 闇属性付与(鎧)
-              - name: 念属性付与(鎧)
-              - name: 毒属性付与(鎧)
-              - name: 不死属性付与(鎧)
-          - slot: 2
-            refine: 9
-            enchant_list: #
-              - name: スキルディレイ-15%
-              - name: 必中攻撃+25%
-              - name: 詠唱妨害不可
-              - name: 厄災の魔将
 
-  - name: アポテオシス
-    yomi: アポテオシス
+  - name: きらきらさんごのクリアチャーム
+    yomi: きらきらさんごのクリアチャーム
+    desc: "[にゃん友 -亀設-]Lv1習得時、追加で[ニューマ]Lv1使用可能"
     type: アクセサリー(2)
     slot: 1
     weapon_lv: 0
     atk_or_def: 0
     weight: 10
     required_lv: 200
-    required_job: カーディナル
+    required_job: スピリットハンドラー
     capabilities:
-      - name: H.PLUS加算
+      - name: RES加算
+        value: 15
+      - name: MRES加算
         value: 15
       - name: ASPD増加
         value: 15
@@ -128,12 +107,6 @@ item_list:
         value: 15
       - name: プレイヤー耐性
         value: 3
-      - name: スキル固定詠唱割合減少
-        value: 100
-        skill: オラティオ
-      - name: スキル固定詠唱割合減少
-        value: 100
-        skill: レノヴァティオ
       - name: DEF加算
         value: 1
         per_lv: 1
@@ -146,55 +119,3 @@ item_list:
       - name: MAXSP加算
         value: 50
         per_lv: 10
-    enchant: #
-      - name: ミオン
-        slot_list: #
-          - slot: 4
-            refine: 0
-            enchant_list: #
-              - name: Str+7
-              - name: Agi+7
-              - name: Vit+7
-              - name: Int+7
-              - name: Dex+7
-              - name: Luk+7
-              - name: SpecialStr
-              - name: SpecialAgi
-              - name: SpecialVit
-              - name: SpecialInt
-              - name: SpecialDex
-              - name: SpecialLuk
-              - name: 潜在覚醒(クリアランスI)
-          - slot: 3
-            refine: 0
-            enchant_list: #
-              - name: Str+7
-              - name: Agi+7
-              - name: Vit+7
-              - name: Int+7
-              - name: Dex+7
-              - name: Luk+7
-              - name: SpecialStr
-              - name: SpecialAgi
-              - name: SpecialVit
-              - name: SpecialInt
-              - name: SpecialDex
-              - name: SpecialLuk
-              - name: 潜在解放(カーディナルXV)
-          - slot: 2
-            refine: 0
-            enchant_list: #
-              - name: Str+7
-              - name: Agi+7
-              - name: Vit+7
-              - name: Int+7
-              - name: Dex+7
-              - name: Luk+7
-              - name: SpecialStr
-              - name: SpecialAgi
-              - name: SpecialVit
-              - name: SpecialInt
-              - name: SpecialDex
-              - name: SpecialLuk
-              - name: 暴走した魔力
-              - name: 真理の解放
