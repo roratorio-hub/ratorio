@@ -6072,7 +6072,7 @@
 	w_SE[3115] = [-3593,-3592,-1348,];
 	CardIdToSetIdMap[3592] = [3115,];
 	w_SE[3116] = [-3595,-3594,-1348,];	// 3595 スピリットハンドラーXIII
-//	CardIdToSetIdMap[3594] = [3116,];	// ゲーム内未実装のため一時的にコメントアウト
+	CardIdToSetIdMap[3594] = [3116,];
 	w_SE[3117] = [-3597,-3596,-1348,];
 	CardIdToSetIdMap[3596] = [3117,];
 	w_SE[3118] = [-3599,-3598,-1348,];
@@ -6157,7 +6157,7 @@
 	ItemIdToSetIdMap[5462] = [3150];
 	ItemIdToSetIdMap[5468] = [3145];
 	CardIdToSetIdMap[1245] = CardIdToSetIdMap[1245].concat([3105, 3106, 3110, 3111, 3112, 3119]);
-	CardIdToSetIdMap[1348] = CardIdToSetIdMap[1348].concat([3107, 3108, 3109, 3113, 3114, 3115, 3117, 3118, 3120, 3121, 3122]);
+	CardIdToSetIdMap[1348] = CardIdToSetIdMap[1348].concat([3107, 3108, 3109, 3113, 3114, 3115, 3116, 3117, 3118, 3120, 3121, 3122]);
 	CardIdToSetIdMap[3505] = CardIdToSetIdMap[3505].concat([3125]);
 	//
 	w_SE[3168] = [5480,5479,-3609,];
