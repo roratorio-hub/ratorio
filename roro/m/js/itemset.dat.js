@@ -6072,7 +6072,7 @@
 	w_SE[3115] = [-3593,-3592,-1348,];
 	CardIdToSetIdMap[3592] = [3115,];
 	w_SE[3116] = [-3595,-3594,-1348,];	// 3595 スピリットハンドラーXIII
-//	CardIdToSetIdMap[3594] = [3116,];	// ゲーム内未実装のため一時的にコメントアウト
+	CardIdToSetIdMap[3594] = [3116,];
 	w_SE[3117] = [-3597,-3596,-1348,];
 	CardIdToSetIdMap[3596] = [3117,];
 	w_SE[3118] = [-3599,-3598,-1348,];
@@ -6157,7 +6157,7 @@
 	ItemIdToSetIdMap[5462] = [3150];
 	ItemIdToSetIdMap[5468] = [3145];
 	CardIdToSetIdMap[1245] = CardIdToSetIdMap[1245].concat([3105, 3106, 3110, 3111, 3112, 3119]);
-	CardIdToSetIdMap[1348] = CardIdToSetIdMap[1348].concat([3107, 3108, 3109, 3113, 3114, 3115, 3117, 3118, 3120, 3121, 3122]);
+	CardIdToSetIdMap[1348] = CardIdToSetIdMap[1348].concat([3107, 3108, 3109, 3113, 3114, 3115, 3116, 3117, 3118, 3120, 3121, 3122]);
 	CardIdToSetIdMap[3505] = CardIdToSetIdMap[3505].concat([3125]);
 	//
 	w_SE[3168] = [5480,5479,-3609,];
@@ -6209,6 +6209,26 @@
 	CardIdToSetIdMap[3688] = [3185,];
 	CardIdToSetIdMap[2886] = CardIdToSetIdMap[2886].concat([3185]);
 	CardIdToSetIdMap[2889] = CardIdToSetIdMap[2889].concat([3184]);
+	// --- 2025-08-12 ---
+	w_SE[3186] = [-3691,-3690,-1348,];
+	CardIdToSetIdMap[3690] = [3186,];
+	w_SE[3187] = [-3693,-3692,-1348,];
+	CardIdToSetIdMap[3692] = [3187,];
+	w_SE[3188] = [-3695,-3694,-1245,];
+	CardIdToSetIdMap[3694] = [3188,];
+	w_SE[3189] = [-3697,-3696,-1245,];
+	CardIdToSetIdMap[3696] = [3189,];
+	w_SE[3190] = [-3699,-3698,-1245,];
+	CardIdToSetIdMap[3698] = [3190,];
+	w_SE[3091] = [4236,4235,-10104],	// ワンダーエッグバスケット(4235) + 魔王モロク
+	PetIdToSetIdMap[104] = [3091];
+	w_SE[3092] = [4236,4235,-10106],	// ワンダーエッグバスケット(4235) + 絶望の神モロク
+	PetIdToSetIdMap[106] = [3092];
+	w_SE[3093] = [4238,4235,-10105],	// Atk+200, Matk+200, Def+150, Mdef+15 (4238) = ワンダーエッグ(4235) + 再生の半魔神
+	PetIdToSetIdMap[105] = [3093];
+	CardIdToSetIdMap[1245] = CardIdToSetIdMap[1245].concat([3188, 3189, 3190]);
+	CardIdToSetIdMap[1348] = CardIdToSetIdMap[1348].concat([3186, 3187]);
+	ItemIdToSetIdMap[4235] = ItemIdToSetIdMap[4235].concat([3091, 3092, 3093]);
 
 	// itemset はセーブデータに書き出されないので
 	// 現実的な範囲において itemsetID の上限値を気にする必要はありません
