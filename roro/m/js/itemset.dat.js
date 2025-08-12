@@ -6209,6 +6209,26 @@
 	CardIdToSetIdMap[3688] = [3185,];
 	CardIdToSetIdMap[2886] = CardIdToSetIdMap[2886].concat([3185]);
 	CardIdToSetIdMap[2889] = CardIdToSetIdMap[2889].concat([3184]);
+	// --- 2025-08-12 ---
+	w_SE[3186] = [-3691,-3690,-1348,];
+	CardIdToSetIdMap[3690] = [3186,];
+	w_SE[3187] = [-3693,-3692,-1348,];
+	CardIdToSetIdMap[3692] = [3187,];
+	w_SE[3188] = [-3695,-3694,-1245,];
+	CardIdToSetIdMap[3694] = [3188,];
+	w_SE[3189] = [-3697,-3696,-1245,];
+	CardIdToSetIdMap[3696] = [3189,];
+	w_SE[3190] = [-3699,-3698,-1245,];
+	CardIdToSetIdMap[3698] = [3190,];
+	w_SE[3091] = [4236,4235,-10104],	// ワンダーエッグバスケット(4235) + 魔王モロク
+	PetIdToSetIdMap[104] = [3091];
+	w_SE[3092] = [4236,4235,-10106],	// ワンダーエッグバスケット(4235) + 絶望の神モロク
+	PetIdToSetIdMap[106] = [3092];
+	w_SE[3093] = [4238,4235,-10105],	// Atk+200, Matk+200, Def+150, Mdef+15 (4238) = ワンダーエッグ(4235) + 再生の半魔神
+	PetIdToSetIdMap[105] = [3093];
+	CardIdToSetIdMap[1245] = CardIdToSetIdMap[1245].concat([3188, 3189, 3190]);
+	CardIdToSetIdMap[1348] = CardIdToSetIdMap[1348].concat([3186, 3187]);
+	ItemIdToSetIdMap[4235] = ItemIdToSetIdMap[4235].concat([3091, 3092, 3093]);
 
 	// itemset はセーブデータに書き出されないので
 	// 現実的な範囲において itemsetID の上限値を気にする必要はありません
