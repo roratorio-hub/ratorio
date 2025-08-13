@@ -1,8 +1,10 @@
 #!/bin/bash
 rm -rf node_modules
 rm -rf package-lock.json
-find ../ro4/m/json/ -name '*.zst' -type f -exec rm -f {} +
-find ../ro4/m/json/ -name '*.jsonc' -type f -exec zstd -f {} +
+find ./data/ -name '*.zst' -type f -exec rm -f {} +
+find ../dist/ -name '*.yaml.zst' -type f -exec rm -f {} +
+find ./data/ -name '*.yaml' -type f -exec zstd -f {} +
+find ./data/ -name '*.yaml.zst' -type f -exec mv -t ../dist/ {} +
 npm install
 npm run build
 
