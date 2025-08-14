@@ -30106,13 +30106,21 @@ window.addEventListener('load', () => {
 		CSaveController.LoadSettingFromLocalStorageMIG();
 	}
 
+	// 職業選択セレクトボックスの構築
+	var idx = 0;
+	var jobIdArray = null;
+	jobIdArray = g_constDataManager.GetDataManger(CONST_DATA_KIND_JOB).EnumId();
+	for (idx = 0; idx < jobIdArray.length; idx++) {
+		document.calcForm.A_JOB.options[idx] = new Option(GetJobName(jobIdArray[idx]), jobIdArray[idx]);
+	}
+
 	document.calcForm.A_SpeedPOT.options[0] = new Option(SpeedPotName[0],0);
 	document.calcForm.A_SpeedPOT.options[1] = new Option(SpeedPotName[1],1);
 
 	for (i=0;i<=9;i++) {
 		document.calcForm.A_Weapon_zokusei.options[i] = new Option(EnName[i],i);
 	}
-
+	
 	CMonsterMapAreaComponentManager.RebuildControls();
 
 	//--------------------------------
@@ -30120,6 +30128,10 @@ window.addEventListener('load', () => {
 	//--------------------------------
 	g_objMobConfInput = new CMobConfInputAreaComponentManager(g_dataManagerMobConfInput);
 	g_objMobConfInput.BuildUpSelectArea(document.getElementById("OBJID_TD_MOB_CONF_INPUT_NEW"), false);
+
+	n_A_JOB = 0;
+	document.calcForm.A_JOB.value = 0;
+	changeJobSettings(0);
 
 	//--------------------------------
 	// ステートフルデータの初期化

@@ -9,6 +9,7 @@ window.addEventListener('load', () => {
     console.log('✅ All resources finished loading.');
 
     // 職業選択セレクトボックスの構築
+    /*
     const selectElem = document.getElementById("OBJID_SELECT_JOB") as HTMLSelectElement | null;
     if (selectElem) {
         JobMap.getAll().forEach((job_array, idx) => {
@@ -29,6 +30,7 @@ window.addEventListener('load', () => {
         // foot.js で実行していたものをここで実行
         changeJobSettings(0);
     }
+    */
 
     // RODB Translatorからのデータロード
     loadRodbTranslator(window.location.hash);
