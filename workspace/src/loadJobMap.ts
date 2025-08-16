@@ -1,5 +1,5 @@
 import { loadFileAsUint8Array, zstdDecompress } from "./funcZstdLoad";
-import { parse as JSONCparser } from "jsonc-parser";
+import { load as loadYAML } from "js-yaml"
 
 export interface JobData {
     id_name: string, // ID Name
@@ -64,13 +64,14 @@ export class JobMap {
 
     /** 職業データをロード */
     static async load(): Promise<void> {
-        let compressed = await loadFileAsUint8Array('../../ro4/m/json/job.jsonc.zst');
+        let compressed = await loadFileAsUint8Array('../../dist/job.yaml.zst');
         let decompressed = await zstdDecompress(compressed);
         let jobLines = new TextDecoder('utf-8').decode(decompressed);
         try {
-            this.jobMap = JSONCparser(jobLines);
+            // YAMLとしてロード
+            this.jobMap = loadYAML(jobLines) as Record<string, JobData>;
         } catch (err) {
-            console.error('JSONC parse error:', err);
+            console.error('YAML load error:', err);
         }
     }
 }

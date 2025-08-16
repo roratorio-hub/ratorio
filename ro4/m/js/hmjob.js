@@ -65,7 +65,7 @@ function RebuildStatusSelect(jobId) {
 		HtmlRemoveOptionAll(objArray[idxObj]);
 	}
 
-	stMax = 100;
+	stMax = 110;
 
 	for (st = 0; st <= stMax; st++) {
 		for (idxObj = 0; idxObj < objArray.length; idxObj++) {

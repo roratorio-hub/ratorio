@@ -67,10 +67,12 @@ jobs:
       - name: Install zstd
         run: sudo apt-get install -y zstd
 
-      # JSONCファイルをzstdで圧縮
-      - name: Compress JSONC file with zstd
+      # YAMLファイルをzstdで圧縮
+      - name: Compress YAML file with zstd
         run: |
-          find ./ro4/m/json/ -name '*.jsonc' -type f -exec zstd -f {} +
+          find ./workspace/data/ -name '*.zst' -type f -exec rm -f {} +
+          find ./workspace/data/ -name '*.yaml' -type f -exec zstd -f {} +
+          find ./workspace/data/ -name '*.yaml.zst' -type f -exec mv -t ./dist/ {} +
 
       # `dist` ディレクトリの内容を GitHub Pages にデプロイ
       - name: Deploy to GitHub Pages

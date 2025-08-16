@@ -12,6 +12,9 @@
 	<link rel="stylesheet" href="../../ro4/m/calcx.css" type="text/css">
 	<link rel="stylesheet" href="../common.css" type="text/css">
 
+	<!-- Webpack -->
+	<script type="text/javascript" src="../../dist/bundle.js"></script>
+
 	<!-- サイト共通系ファイル -->
 	<script type="text/javascript" src="../common/js/util.js"></script>
 	<script type="text/javascript" src="../../ro4/m/js/CModalWindow.js"></script>
@@ -188,7 +191,7 @@
 	<script src="../../jquery/loadingindicator/spinner.js"></script>
 	<!-- サイト読み込み直後に1回だけ実行される関数 -->
 	<script>
-		$(document).ready(function() {
+		window.addEventListener('load', () => {
 			// エンチャントサーチのロード
 			new enchSearch();
 			// 検索可能ドロップダウンリストのロード

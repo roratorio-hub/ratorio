@@ -30098,54 +30098,44 @@ function ROUNDUP(num){
 	return num;
 }
 
-// 計算機設定の読み込み
-if (document.getElementById("OBJID_SAVE_BLOCK_MIG")) {
-	CSaveController.LoadSettingFromLocalStorageMIG();
-}
+const SpeedPotName = ["なし","スピードアップポーション","ハイスピードポーション","バーサークポーション"];
+const EnName =["なし","水","地","火","風","毒","聖","闇","念","死"];
 
-// 職業選択セレクトボックスの構築
-(function () {
+// 他の関数実行に先駆けて初期化される必要があるので load だとタイミングが遅い. DOMContentLoaded を指定する必要がある.
+document.addEventListener('DOMContentLoaded', () => {
+	console.log("DOM Content is loaded.");
+	// 計算機設定の読み込み
+	if (document.getElementById("OBJID_SAVE_BLOCK_MIG")) {
+		CSaveController.LoadSettingFromLocalStorageMIG();
+	}
 
+	// 職業選択セレクトボックスの構築
 	var idx = 0;
-
 	var jobIdArray = null;
-
 	jobIdArray = g_constDataManager.GetDataManger(CONST_DATA_KIND_JOB).EnumId();
-
-
 	for (idx = 0; idx < jobIdArray.length; idx++) {
 		document.calcForm.A_JOB.options[idx] = new Option(GetJobName(jobIdArray[idx]), jobIdArray[idx]);
 	}
 
-})();
+	document.calcForm.A_SpeedPOT.options[0] = new Option(SpeedPotName[0],0);
+	document.calcForm.A_SpeedPOT.options[1] = new Option(SpeedPotName[1],1);
 
-SpeedPotName = ["なし","スピードアップポーション","ハイスピードポーション","バーサークポーション"];
-document.calcForm.A_SpeedPOT.options[0] = new Option(SpeedPotName[0],0);
-document.calcForm.A_SpeedPOT.options[1] = new Option(SpeedPotName[1],1);
+	for (i=0;i<=9;i++) {
+		document.calcForm.A_Weapon_zokusei.options[i] = new Option(EnName[i],i);
+	}
+	
+	CMonsterMapAreaComponentManager.RebuildControls();
 
-EnName =["なし","水","地","火","風","毒","聖","闇","念","死"];
-for (i=0;i<=9;i++) {
-	document.calcForm.A_Weapon_zokusei.options[i] = new Option(EnName[i],i);
-}
+	//--------------------------------
+	// モンスター手入力設定欄の初期化
+	//--------------------------------
+	g_objMobConfInput = new CMobConfInputAreaComponentManager(g_dataManagerMobConfInput);
+	g_objMobConfInput.BuildUpSelectArea(document.getElementById("OBJID_TD_MOB_CONF_INPUT_NEW"), false);
 
-/*
-InitMonsterMpaSelect();
-SortEnemy();
-RefreshMonsteMapSortKey();
-*/
-CMonsterMapAreaComponentManager.RebuildControls();
+	n_A_JOB = 0;
+	document.calcForm.A_JOB.value = 0;
+	changeJobSettings(0);
 
-//--------------------------------
-// モンスター手入力設定欄の初期化
-//--------------------------------
-g_objMobConfInput = new CMobConfInputAreaComponentManager(g_dataManagerMobConfInput);
-g_objMobConfInput.BuildUpSelectArea(document.getElementById("OBJID_TD_MOB_CONF_INPUT_NEW"), false);
-
-n_A_JOB = 0;
-document.calcForm.A_JOB.value = 0;
-changeJobSettings(0);
-
-if (true) {
 	//--------------------------------
 	// ステートフルデータの初期化
 	//--------------------------------
@@ -30160,7 +30150,45 @@ if (true) {
 	UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_SHOES);
 	UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_ACCESSARY_1);
 	UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_ACCESSARY_2);
-}
+
+	if (document.getElementById("OBJID_SAVE_BLOCK_MIG")) {
+		CSaveController.LoadFromLocalStorageMIG();
+		// 画面上部セーブ選択セレクトボックスの初期化
+		const objSelect = document.getElementById("OBJID_SELECT_SAVE_DATA_MIG");
+		HtmlRemoveAllChild(objSelect)
+		for (let idx = 0; idx < CSaveController.CHARA_DATA_COUNT; idx++) {
+			const optText = CSaveController.getDisplayName(idx);
+			HtmlCreateElementOption(idx, optText, objSelect);
+		}
+		// 確認ダイアログの有効化スイッチを初期化
+		if (CSaveController.getSettingProp(CSaveDataConst.propNameConfirmDialogSwitch) == 1) {
+			$("#OBJID_SWITCH_CONFIRM_DIALOG").click();
+		}
+	}
+	else {
+		LoadSaveDataToCalculator();
+	}
+
+	// 旧形式のロード処理はコメントアウト
+	//URLIN(location.href);
+
+	/**
+	 * 新形式を前提としたロード処理
+	 * 初代の a 形式
+	 * 避難所の b 形式
+	 * Hub の c 形式
+	 * どれも読み込めることを確認
+	 */
+	let splittedArray = location.href.split("?");
+	if (splittedArray.length == 2) {
+		CSaveController.loadFromURL(splittedArray[1]);
+		CItemInfoManager.OnClickExtractSwitch();
+	}
+
+	// 再計算
+	CalcStatusPoint(true);
+	calc();
+});
 
 function LoadSaveDataToCalculator () {
 
@@ -30181,44 +30209,6 @@ function LoadSaveDataToCalculator () {
 		}
 	}
 }
-
-if (document.getElementById("OBJID_SAVE_BLOCK_MIG")) {
-	CSaveController.LoadFromLocalStorageMIG();
-	// 画面上部セーブ選択セレクトボックスの初期化
-	const objSelect = document.getElementById("OBJID_SELECT_SAVE_DATA_MIG");
-	HtmlRemoveAllChild(objSelect)
-	for (let idx = 0; idx < CSaveController.CHARA_DATA_COUNT; idx++) {
-		const optText = CSaveController.getDisplayName(idx);
-		HtmlCreateElementOption(idx, optText, objSelect);
-	}
-	// 確認ダイアログの有効化スイッチを初期化
-	if (CSaveController.getSettingProp(CSaveDataConst.propNameConfirmDialogSwitch) == 1) {
-		$("#OBJID_SWITCH_CONFIRM_DIALOG").click();
-	}
-}
-else {
-	LoadSaveDataToCalculator();
-}
-
-// 旧形式のロード処理はコメントアウト
-//URLIN(location.href);
-
-/**
- * 新形式を前提としたロード処理
- * 初代の a 形式
- * 避難所の b 形式
- * Hub の c 形式
- * どれも読み込めることを確認
- */
-let splittedArray = location.href.split("?");
-if (splittedArray.length == 2) {
-	CSaveController.loadFromURL(splittedArray[1]);
-	CItemInfoManager.OnClickExtractSwitch();
-}
-
-// 再計算
-CalcStatusPoint(true);
-calc();
 
 function Init(){
 
