@@ -30102,7 +30102,9 @@ function ROUNDUP(num){
 
 const SpeedPotName = ["なし","スピードアップポーション","ハイスピードポーション","バーサークポーション"];
 const EnName =["なし","水","地","火","風","毒","聖","闇","念","死"];
-window.addEventListener('load', () => {
+document.addEventListener('DOMContentLoaded', () => {
+	console.log("DOM Content is loaded.");
+
 	// 計算機設定の読み込み
 	if (document.getElementById("OBJID_SAVE_BLOCK_MIG")) {
 		CSaveController.LoadSettingFromLocalStorageMIG();
