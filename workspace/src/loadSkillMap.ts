@@ -1,5 +1,5 @@
 import { loadFileAsUint8Array, zstdDecompress } from "./funcZstdLoad";
-import { parse as JSONCparser } from "jsonc-parser";
+import { load as loadYAML } from "js-yaml"
 
 // SkillMapの型定義
 export interface SkillData {
@@ -69,13 +69,14 @@ export class SkillMap {
 
     /** スキルデータをロード */
     static async load(): Promise<void> {
-        let compressed = await loadFileAsUint8Array('../../ro4/m/json/skill.jsonc.zst');
+        let compressed = await loadFileAsUint8Array('../../dist/skill.yaml.zst');
         let decompressed = await zstdDecompress(compressed);
         let skillLines = new TextDecoder('utf-8').decode(decompressed);
         try {
-            this.skillMap = JSONCparser(skillLines);
+            // YAMLとしてロード
+            this.skillMap = loadYAML(skillLines) as Record<string, SkillData>;
         } catch (err) {
-            console.error('JSONC parse error:', err);
+            console.error('YAML load error:', err);
         }
     }
 }

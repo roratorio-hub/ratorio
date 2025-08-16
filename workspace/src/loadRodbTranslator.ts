@@ -1,9 +1,4 @@
 declare const pako: any;
-declare function AutoCalc(): void;
-declare function CalcStatusPoint(flag: boolean): void;
-declare function changeJobSettings(job_id_num: number): void;
-declare function OnClickSkillSWLearned(): void;
-declare function StAllCalc(): void;
 
 // Base64デコード関数（URLセーフに対応）
 function base64ToUint8Array(base64: string): Uint8Array {
