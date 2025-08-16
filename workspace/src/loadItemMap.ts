@@ -52,4 +52,4 @@ export class ItemMap {
 }
 
 // 初期ロード
-ItemMap.load();
+(window as any).ItemMap = ItemMap; // グローバルに登録

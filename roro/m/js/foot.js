@@ -29993,7 +29993,9 @@ function CheckSpDefEquipmentLocation(spDefRemain, location) {
 function InitJobInfo() {
 
 	// 職業ＩＤ
-	n_A_JOB = eval(document.calcForm.A_JOB.value);
+	var selectJob = document.getElementById("OBJID_SELECT_JOB");
+	var selectedJobValue = selectJob.value;
+	n_A_JOB = selectedJobValue;
 
 	// TODO: データ移行過渡処理
 	// 移行後の通常処理（追加で行う）
@@ -30106,6 +30108,7 @@ window.addEventListener('load', () => {
 		CSaveController.LoadSettingFromLocalStorageMIG();
 	}
 
+	/*
 	// 職業選択セレクトボックスの構築
 	var idx = 0;
 	var jobIdArray = null;
@@ -30113,6 +30116,10 @@ window.addEventListener('load', () => {
 	for (idx = 0; idx < jobIdArray.length; idx++) {
 		document.calcForm.A_JOB.options[idx] = new Option(GetJobName(jobIdArray[idx]), jobIdArray[idx]);
 	}
+	n_A_JOB = 0;
+	document.calcForm.A_JOB.value = 0;
+	changeJobSettings(0);
+	*/
 
 	document.calcForm.A_SpeedPOT.options[0] = new Option(SpeedPotName[0],0);
 	document.calcForm.A_SpeedPOT.options[1] = new Option(SpeedPotName[1],1);
@@ -30128,10 +30135,6 @@ window.addEventListener('load', () => {
 	//--------------------------------
 	g_objMobConfInput = new CMobConfInputAreaComponentManager(g_dataManagerMobConfInput);
 	g_objMobConfInput.BuildUpSelectArea(document.getElementById("OBJID_TD_MOB_CONF_INPUT_NEW"), false);
-
-	n_A_JOB = 0;
-	document.calcForm.A_JOB.value = 0;
-	changeJobSettings(0);
 
 	//--------------------------------
 	// ステートフルデータの初期化

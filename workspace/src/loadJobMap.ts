@@ -1,7 +1,7 @@
 import { loadFileAsUint8Array, zstdDecompress } from "./funcZstdLoad";
 import { load as loadYAML } from "js-yaml"
 
-export interface JobData {
+export interface JobDataParameter {
     id_name: string, // ID Name
     id_num: number, //ID Num
     is_doram: boolean, //ドラムかどうか
@@ -14,29 +14,93 @@ export interface JobData {
     job_type_num: number, //職業タイプ
     job_type_name: string,  //職業タイプ名
     weight_correction: number, //重量補正
-    weapons_aspd: {}, //武器ASPD
-    additional_status: {}, //追加ステータス
+    weapons_aspd: { [key: number]: number }, //武器ASPD
+    additional_status: { [key: number]: { name: string, add_value: number } }, //追加ステータス
     hp_basic_values: number[], //基本HP
     sp_basic_values: number[], //基本SP
-    learned_skills: number[], //習得スキル
-    passive_skills: number[], //パッシブスキル
-    attack_skills: number[],  //攻撃スキル
+    learned_skills: { [id: string]: { id_num: number } }, //習得スキル
+    passive_skills: { [id: string]: { id_num: number } }, //パッシブスキル
+    attack_skills: { [id: string]: { id_num: number } }, //攻撃スキル
     allow_equipment_weapons_type: number[], //装備可能武器タイプ
     base_lv_min: number, //基本最小レベル
     base_lv_max: number, //基本最大レベル
     job_lv_max: number, //基本最大ジョブレベル
 }
 
+export class JobData {
+    parameter: JobDataParameter;
+
+    constructor(jobId: string | number) {
+        const param = JobMap.getById(jobId);
+        if (!param) {
+            throw new Error(`JobDataParameter not found: jobId=${jobId}`);
+        }
+        this.parameter = param;
+    }
+
+    GetParameter(): JobDataParameter {
+        return this.parameter;
+    }
+
+    /*
+     * 以下は旧式のCMigJobDataを模したメソッド群
+     * これらはJobDataParameterのプロパティを参照する形で
+     * 実装されています。
+     */
+
+    GetId(): string {
+        return this.parameter.id_name;
+    }
+    GetNameKanaArray(): string[] {
+        let array = [this.parameter.name_ja]
+        array = array.concat(this.parameter.name_ja_alias);
+        return array;
+    }
+    GetBaseExpTableId(): number {
+        return 0; //未実装
+    }
+    GetJobExpTableId(): number {
+        return 0; //未実装
+    }
+    GetWeightBonus(): number {
+        return this.parameter.weight_correction;
+    }
+    GetWeaponAspd(wpnType: number): number {
+        return this.parameter.weapons_aspd[wpnType] || 0;
+    }
+    GetJobBonus(): number[] {
+        return [0]; //未実装
+    }
+    GetHPBase(): number {
+        return this.parameter.hp_basic_values[0];
+    }
+    GetSPBase(): number {
+        return this.parameter.sp_basic_values[0];
+    }
+    GetLearnSkillIdArray(): number[] {
+        return Object.keys(this.parameter.learned_skills).map(id => this.parameter.learned_skills[id].id_num);
+    }
+    GetPassiveSkillIdArray(): number[] {
+        return Object.keys(this.parameter.passive_skills).map(id => this.parameter.passive_skills[id].id_num);
+    }
+    GetAttackSkillIdArray(): number[] {
+        return Object.keys(this.parameter.attack_skills).map(id => this.parameter.attack_skills[id].id_num);
+    }
+    IsEquipableEquipFlag(eqpFlag: number): boolean {
+        return this.parameter.allow_equipment_weapons_type.includes(eqpFlag);
+    }
+}
+
 export class JobMap {
-    private static jobMap: Record<string, JobData> = {};
+    private static jobMap: Record<string, JobDataParameter> = {};
 
     /** 全ての職業を取得 */
-    static getAll(): [string, JobData][] {
+    static getAll(): [string, JobDataParameter][] {
         return Object.entries(this.jobMap);
     }
 
     /** id_name(string or number) から Job を取得 */
-    static getById(key: string | number): JobData | undefined {
+    static getById(key: string | number): JobDataParameter | undefined {
         if (typeof key === 'string') {
             // 文字列の場合はID Nameを検索
             return this.getByIdName(key);
@@ -48,12 +112,12 @@ export class JobMap {
     }
 
     /** id_name から Job を取得 */
-    static getByIdName(id_name: string): JobData | undefined {
+    static getByIdName(id_name: string): JobDataParameter | undefined {
         return this.jobMap[id_name];
     }
 
     /** id_num から Job を取得 */
-    static getByIdNum(id_num: number): JobData | undefined {
+    static getByIdNum(id_num: number): JobDataParameter | undefined {
         for (const job of Object.values(this.jobMap)) {
             if (job.id_num === id_num) {
                 return job;
@@ -69,7 +133,7 @@ export class JobMap {
         let jobLines = new TextDecoder('utf-8').decode(decompressed);
         try {
             // YAMLとしてロード
-            this.jobMap = loadYAML(jobLines) as Record<string, JobData>;
+            this.jobMap = loadYAML(jobLines) as Record<string, JobDataParameter>;
         } catch (err) {
             console.error('YAML load error:', err);
         }
@@ -77,4 +141,5 @@ export class JobMap {
 }
 
 // 初期ロード
-JobMap.load();
+(window as any).JobMap = JobMap; // グローバルに登録
+(window as any).JobData = JobData; // グローバルに登録

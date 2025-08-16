@@ -82,4 +82,4 @@ export class SkillMap {
 }
 
 // 初期ロード
-SkillMap.load();
+(window as any).SkillMap = SkillMap; // グローバルに登録

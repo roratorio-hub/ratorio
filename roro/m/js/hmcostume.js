@@ -199,9 +199,8 @@ function BuildUpCostumeSlotsCostume(eqpRgnId, itemId, objArySlots) {
 
 	var sortedCostumeObj = null;
 
-	var jobData = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, n_A_JOB);
-
-
+	let jobData = new JobData(n_A_JOB);
+	console.log(jobData);
 
 	// 整列済み配列を用意
 	sortedCostumeObj = CostumeOBJ.slice();
