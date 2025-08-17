@@ -587,7 +587,10 @@ CMonsterMapAreaComponentManager.GetMonsterId = function () {
 };
 
 /**
- * 選択状態を設定する.
+ * 選択状態を設定する. 
+ * セーブデータを読み込むときだけこの関数が呼び出される. 
+ * ユーザーがモンスターを選択したときには呼び出されないので注意. 
+ * ユーザーインタラクションを編集したい場合は CCustomSelectMapMonster.js を触ること.
  * @param categoryId カテゴリID
  * @param mapId マップID
  * @param monsterId モンスターID
