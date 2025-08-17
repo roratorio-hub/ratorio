@@ -5,6 +5,13 @@ class MonsterToughness {
     static DAMPING_5 = 1;
     /** ダメージ 1/10 エンドコンテンツMVP */
     static DAMPING_10 = 2;
+    /** ダメージ 1/100 エンドコンテンツMVP */
+    static DAMPING_100 = 4;
+    /** 時限式 */
+    static DAMPING_TIME_DECAY = 8;
+    /** 倍率強化 */
+    static DAMPING_AMPLIFY = 16;
+
     /** 特性リスト */
     static ToughnessList = [
         ["ベテルギウス", MonsterToughness.DAMPING_5 + MonsterToughness.DAMPING_10],
@@ -12,6 +19,14 @@ class MonsterToughness {
         ["混沌のゴーストリング（MD）", MonsterToughness.DAMPING_5],
         ["迷宮のヴェルゼブブ（MD）", MonsterToughness.DAMPING_5],
         ["怨霊武士（MD）", MonsterToughness.DAMPING_5],
+        ["オークヒーロー（MD）", MonsterToughness.DAMPING_5],
+        ["Sユンケア", MonsterToughness.DAMPING_10 + MonsterToughness.DAMPING_TIME_DECAY],
+        ["デミフレイヤ", MonsterToughness.DAMPING_10 + MonsterToughness.DAMPING_TIME_DECAY],
+        ["究極のラスガンド", MonsterToughness.DAMPING_100 + MonsterToughness.DAMPING_AMPLIFY],
+        ["次元犯罪者リゲル（難易度★）", MonsterToughness.DAMPING_100 + MonsterToughness.DAMPING_AMPLIFY],
+        ["次元犯罪者リゲル（難易度★★）", MonsterToughness.DAMPING_100 + MonsterToughness.DAMPING_AMPLIFY],
+        ["次元犯罪者リゲル（難易度★★★）", MonsterToughness.DAMPING_100 + MonsterToughness.DAMPING_AMPLIFY],
+        ["次元犯罪者リゲル（難易度★★★★）", MonsterToughness.DAMPING_100 + MonsterToughness.DAMPING_AMPLIFY],
         ["雪嵐天使ウミウシ", MonsterToughness.DAMPING_10],
         ["ゴブリンキング", MonsterToughness.DAMPING_10],
         ["ルニレ", MonsterToughness.DAMPING_10],
@@ -61,6 +76,12 @@ class MonsterToughness {
                 break;
             case MonsterToughness.DAMPING_5 + MonsterToughness.DAMPING_10:
                 result = "受けるダメージを1/50に減少する";
+                break;
+            case MonsterToughness.DAMPING_100 + MonsterToughness.DAMPING_AMPLIFY:
+                result = "受けるダメージを1/100に減少する。ギミック発動中は更に減少する";
+                break;
+            case MonsterToughness.DAMPING_10 + MonsterToughness.DAMPING_TIME_DECAY:
+                result = "受けるダメージを1/10に減少する。規定の時間が過ぎると等倍になる。";
                 break;
         }
         return result;
