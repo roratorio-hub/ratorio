@@ -1,7 +1,7 @@
 import { loadFileAsUint8Array, zstdDecompress } from "./funcZstdLoad";
 import { load as loadYAML } from "js-yaml"
 
-export interface JobDataParameter {
+interface JobDataParameter {
     id_name: string, // ID Name
     id_num: number, //ID Num
     is_doram: boolean, //ドラムかどうか
@@ -27,30 +27,54 @@ export interface JobDataParameter {
     job_lv_max: number, //基本最大ジョブレベル
 }
 
-export class JobData {
+class JobData {
     parameter: JobDataParameter;
 
-    constructor(jobId: string | number) {
-        const param = JobMap.getById(jobId);
-        if (!param) {
-            throw new Error(`JobDataParameter not found: jobId=${jobId}`);
-        }
-        this.parameter = param;
+    constructor(parameter: JobDataParameter) {
+        this.parameter = parameter;
     }
-
-    GetParameter(): JobDataParameter {
-        return this.parameter;
-    }
-
-    /*
-     * 以下は旧式のCMigJobDataを模したメソッド群
-     * これらはJobDataParameterのプロパティを参照する形で
-     * 実装されています。
-     */
-
-    GetId(): string {
+    getId(): string {
         return this.parameter.id_name;
     }
+    getIdNum(): number {
+        return this.parameter.id_num;
+    }
+    getName(): string {
+        return this.parameter.name;
+    }
+    getNameJa(): string {
+        return this.parameter.name_ja;
+    }
+    getNameJaAlias(): string[] {
+        return this.parameter.name_ja_alias;
+    }
+    isRebirthed(): boolean {
+        return this.parameter.is_rebirthed;
+    }
+    isDoram(): boolean {
+        return this.parameter.is_doram;
+    }
+    getBaseLvMin(): number {
+        return this.parameter.base_lv_min;
+    }
+    getBaseLvMax(): number {
+        return this.parameter.base_lv_max;
+    }
+    getJobLvMax(): number {
+        return this.parameter.job_lv_max;
+    }
+    getMigIdName(): string {
+        return this.parameter._mig_id_name;
+    }
+    getMigIdNum(): number {
+        return this.parameter._mig_id_num;
+    }
+    /*
+     * 以下は旧式のCMigJobDataを模したメソッド群
+     * これらはJobDataParameterのプロパティを参照する形で装されています。
+     * その為、命名規則についても維持しています。
+     */
+
     GetNameKanaArray(): string[] {
         let array = [this.parameter.name_ja]
         array = array.concat(this.parameter.name_ja_alias);
@@ -100,7 +124,7 @@ export class JobMap {
     }
 
     /** id_name(string or number) から Job を取得 */
-    static getById(key: string | number): JobDataParameter | undefined {
+    static getById(key: string | number): JobData | undefined {
         if (typeof key === 'string') {
             // 文字列の場合はID Nameを検索
             return this.getByIdName(key);
@@ -112,16 +136,28 @@ export class JobMap {
     }
 
     /** id_name から Job を取得 */
-    static getByIdName(id_name: string): JobDataParameter | undefined {
-        return this.jobMap[id_name];
+    static getByIdName(id_name: string): JobData | undefined {
+        return new JobData(this.jobMap[id_name]);
     }
 
     /** id_num から Job を取得 */
-    static getByIdNum(id_num: number): JobDataParameter | undefined {
+    static getByIdNum(id_num: number): JobData | undefined {
         for (const job of Object.values(this.jobMap)) {
             if (job.id_num === id_num) {
-                return job;
+                return new JobData(job);
             }
+        }
+        return undefined;
+    }
+
+    /** id_name(string or number) から MigIdNum を取得 */
+    static getMigIdNumFromById(key: string | number): number | undefined {
+        if (typeof key === 'string') {
+            // 文字列の場合はID Nameを検索
+            return this.getByIdName(key)?.getMigIdNum();
+        } else if (typeof key === 'number') {
+            // 数値の場合は_mig_id_numを検索
+            return this.getByIdNum(key)?.getMigIdNum();
         }
         return undefined;
     }
@@ -142,4 +178,3 @@ export class JobMap {
 
 // 初期ロード
 (window as any).JobMap = JobMap; // グローバルに登録
-(window as any).JobData = JobData; // グローバルに登録
