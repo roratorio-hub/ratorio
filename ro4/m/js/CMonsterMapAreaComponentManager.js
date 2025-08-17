@@ -657,21 +657,18 @@ CMonsterMapAreaComponentManager.RefreshtDispObject = function (objId) {
 
 /**
  * 一部のモンスターに設定されている「受けるダメージを1/xxに減少する」効果をサジェストする
- * @param {*} monsterId 
- * @returns 
+ * @param {number} monsterId 
  */
 CMonsterMapAreaComponentManager.updateMonsterSuggest = function (monsterId) {
     const name = MonsterToughness.getMobName(monsterId);
     const code = MonsterToughness.getToughnessCode(name);
     const message = MonsterToughness.getNotification(code);
-    const objDiv = document.getElementById("OBJ_ID_MONSTER_SUGGEST");
+    const objDiv = CMonsterMapAreaComponentManager.monsterSuggestMessage;
     if (!objDiv) {
         return;
     }
-    if (message === "") {
-        objDiv.style.visibility = "hidden";
-    } else {
-        objDiv.style.visibility = "visible";
+    objDiv.style.visibility = message ? "visible" : "hidden";
+    if (message) {
         objDiv.setAttribute("data-tooltip", message);
     }
 };

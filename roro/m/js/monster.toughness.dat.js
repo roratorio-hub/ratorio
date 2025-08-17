@@ -54,6 +54,15 @@ class MonsterToughness {
         ["ガイアポール", MonsterToughness.DAMPING_10],
     ]);
 
+    /** 通知メッセージのリスト */
+    static notificationMessages = new Map([
+        [MonsterToughness.DAMPING_5, "受けるダメージを1/5に減少する"],
+        [MonsterToughness.DAMPING_10, "受けるダメージを1/10に減少する"],
+        [MonsterToughness.DAMPING_5 | MonsterToughness.DAMPING_10, "受けるダメージを1/50に減少する"],
+        [MonsterToughness.DAMPING_100 | MonsterToughness.DAMPING_AMPLIFY, "受けるダメージを1/100に減少する。ギミック発動中は更に減少する"],
+        [MonsterToughness.DAMPING_10 | MonsterToughness.DAMPING_TIME_DECAY, "受けるダメージを1/10に減少する。規定の時間が過ぎると等倍になる。"],
+    ]);
+
     /**
      * 検索対象のモンスターに設定されている特性コードを取得する.
      * @param {string} name モンスター名
@@ -65,7 +74,7 @@ class MonsterToughness {
 
 	/**
 	 * モンスターIDに対応するモンスター名を取得する.
-	 * @param {*} id 
+	 * @param {number} id 
 	 * @returns {string} モンスター名
 	 */
 	static getMobName(id) {
@@ -82,16 +91,6 @@ class MonsterToughness {
      * @returns {string} メッセージ
      */
     static getNotification(code) {
-        // Mapを静的プロパティとしてキャッシュする
-        if (!MonsterToughness.getNotification.messages) {
-            MonsterToughness.getNotification.messages = new Map([
-                [MonsterToughness.DAMPING_5, "受けるダメージを1/5に減少する"],
-                [MonsterToughness.DAMPING_10, "受けるダメージを1/10に減少する"],
-                [MonsterToughness.DAMPING_5 | MonsterToughness.DAMPING_10, "受けるダメージを1/50に減少する"],
-                [MonsterToughness.DAMPING_100 | MonsterToughness.DAMPING_AMPLIFY, "受けるダメージを1/100に減少する。ギミック発動中は更に減少する"],
-                [MonsterToughness.DAMPING_10 | MonsterToughness.DAMPING_TIME_DECAY, "受けるダメージを1/10に減少する。規定の時間が過ぎると等倍になる。"],
-            ]);
-        }
-        return MonsterToughness.getNotification.messages.get(code) ?? "";
+        return MonsterToughness.notificationMessages.get(code) ?? "";
     }
 }
