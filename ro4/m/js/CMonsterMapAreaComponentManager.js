@@ -190,9 +190,26 @@ CMonsterMapAreaComponentManager.RebuildControls = function () {
 	objTd = HtmlCreateElement("td", objTr);
 	objTd.setAttribute("colspan", "3");
 
-	objTd.appendChild(CMonsterMapAreaComponentManager.customSelectMonster.GetRootObject());
+	objContainer = HtmlCreateElement("div", objTd);
+	objContainer.style.padding = "0 15px 0 0";
+	objContainer.style.display = "flex";
+	objContainer.style.justifyContent = "space-between";
+	objContainer.style.alignItems = "center";
+	objContainer.appendChild(CMonsterMapAreaComponentManager.customSelectMonster.GetRootObject());
 
-
+	// ---------------
+	// バリカタなどの特性サジェスト
+	// ---------------
+	const objDiv = HtmlCreateElement("div");
+	objDiv.setAttribute("id", "OBJ_ID_MONSTER_SUGGEST");
+	objDiv.setAttribute("class", "tooltip-target");
+	objDiv.setAttribute("data-tooltip", "here is suggestion message");
+	objDiv.style.visibility = "hidden";
+	const iconElement = HtmlCreateElement("i");
+	iconElement.className = "fa-solid fa-lightbulb fa-fade"; // Font Awesome
+	iconElement.style.color = "#dc3545";
+	objDiv.appendChild(iconElement);
+	objContainer.appendChild(objDiv);
 
 	//----------------------------------------------------------------
 	// HP / LV
@@ -588,6 +605,18 @@ CMonsterMapAreaComponentManager.ChangeSelect = function (categoryId, mapId, mons
 	selectedArray.push(CMonsterMapAreaComponentManager.customSelectMonster.ChangeSelectedDataId(monsterId, bResetWhenFailed));
 
 	CMonsterMapAreaComponentManager.RebuildControls();
+
+	// バリカタ情報をサジェストする
+	const name = MonsterToughness.getMobName(monsterId);
+	const code = MonsterToughness.get_toughness_code(name);
+	const message = MonsterToughness.get_notification(code);
+	const objDiv = document.getElementById("OBJ_ID_MONSTER_SUGGEST");
+	if (message === "") {
+		objDiv.style.visibility = "hidden";
+	} else {
+		objDiv.style.visibility = "visible";
+		objDiv.setAttribute("data-tooltip", message);
+	}
 
 	return selectedArray;
 };
