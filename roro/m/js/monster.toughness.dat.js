@@ -78,11 +78,10 @@ class MonsterToughness {
 	 * @returns {string} モンスター名
 	 */
 	static getMobName(id) {
-		let result = "モンスターIDが定義されていません";
 		if (MonsterObjNew[id] !== undefined) {
-			result = MonsterObjNew[id][1];
+			return MonsterObjNew[id][1];
 		}
-		return result;
+		return "";
 	}
 
     /**

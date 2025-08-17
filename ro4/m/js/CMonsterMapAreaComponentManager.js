@@ -198,7 +198,7 @@ CMonsterMapAreaComponentManager.RebuildControls = function () {
 		const objDiv = HtmlCreateElement("div");
 		objDiv.setAttribute("id", "OBJ_ID_MONSTER_SUGGEST");
 		objDiv.setAttribute("class", "tooltip-target");
-		objDiv.setAttribute("data-tooltip", "here is suggestion message");
+		objDiv.setAttribute("data-tooltip", "");
 		objDiv.style.visibility = "hidden";
 		const iconElement = HtmlCreateElement("i");
 		iconElement.className = "fa-solid fa-lightbulb fa-fade"; // Font Awesome
