@@ -71,7 +71,7 @@ class JobData {
     }
     /*
      * 以下は旧式のCMigJobDataを模したメソッド群
-     * これらはJobDataParameterのプロパティを参照する形で装されています。
+     * これらはJobDataParameterのプロパティを参照する形で実装されています。
      * その為、命名規則についても維持しています。
      */
 
