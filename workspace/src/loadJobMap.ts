@@ -9,7 +9,7 @@ interface JobDataParameter {
     _mig_id_num: number, //MIG ID Num
     name: string, //名前(英語)
     name_ja: string, //名前(日本語)
-    name_ja_alias: string[], //名前(日本語)の別名
+    name_alias: string[], //名前の別名
     is_rebirthed: boolean, //転生職かどうか
     job_type_num: number, //職業タイプ
     job_type_name: string,  //職業タイプ名
@@ -45,8 +45,8 @@ class JobData {
     getNameJa(): string {
         return this.parameter.name_ja;
     }
-    getNameJaAlias(): string[] {
-        return this.parameter.name_ja_alias;
+    getNameAlias(): string[] {
+        return this.parameter.name_alias;
     }
     isRebirthed(): boolean {
         return this.parameter.is_rebirthed;
@@ -77,7 +77,7 @@ class JobData {
 
     GetNameKanaArray(): string[] {
         let array = [this.parameter.name_ja]
-        array = array.concat(this.parameter.name_ja_alias);
+        array = array.concat(this.parameter.name_alias);
         return array;
     }
     GetBaseExpTableId(): number {
