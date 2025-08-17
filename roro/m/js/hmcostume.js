@@ -104,9 +104,10 @@ function __ClearCostumeSlot(objidPrifix) {
  *-----------------------------------------------------------------------------------------------
  * @param eqpRgnId 装備領域ＩＤ
  * @param itemId 変更後のアイテムＩＤ
+ * @param jobId 職業ID
  *-----------------------------------------------------------------------------------------------
  ************************************************************************************************/
-function RebuildCostumeSelect(eqpRgnId, itemId) {
+function RebuildCostumeSelect(eqpRgnId, itemId, jobId) {
 
 	var objidPrifix = "";
 	var objSelect = null;
@@ -170,7 +171,7 @@ function RebuildCostumeSelect(eqpRgnId, itemId) {
 	//----------------------------------------------------------------
 
 	// 項目の全削除
-	for (idx = 0; idx < objArySlots.length; idx++) {
+	for (var idx = 0; idx < objArySlots.length; idx++) {
 		if (objArySlots[idx] == null) {
 			continue;
 		}
@@ -179,13 +180,18 @@ function RebuildCostumeSelect(eqpRgnId, itemId) {
 	}
 
 	// 衣装項目の追加
-	BuildUpCostumeSlotsCostume(eqpRgnId, itemId, objArySlots);
+	BuildUpCostumeSlotsCostume(eqpRgnId, itemId, objArySlots, jobId);
 }
 
 /**
  * 衣装スロットの再構築（衣装項目）.
  */
-function BuildUpCostumeSlotsCostume(eqpRgnId, itemId, objArySlots) {
+function BuildUpCostumeSlotsCostume(eqpRgnId, itemId, objArySlots, jobId) {
+	// 職業IDが引数で渡されなかった時用のコード
+	if (typeof jobId === "undefined" || jobId === null) {
+		jobId = document.getElementById("OBJID_SELECT_JOB").value;
+	}
+	let jobData = JobMap.getById(jobId);
 
 	var idx = 0;
 	var idxEquipable = 0;
@@ -198,9 +204,6 @@ function BuildUpCostumeSlotsCostume(eqpRgnId, itemId, objArySlots) {
 	var objSelect = null;
 
 	var sortedCostumeObj = null;
-
-	let jobData = new JobData(n_A_JOB);
-	console.log(jobData);
 
 	// 整列済み配列を用意
 	sortedCostumeObj = CostumeOBJ.slice();

@@ -930,7 +930,8 @@ class CSaveDataManager {
 
 		// 職業選択セレクトボックスの設定
 		HtmlSetObjectValueById(objID, propValue);
-		changeJobSettings(propValue);
+		let jobData = JobMap.getByMigIdNum(propValue);
+		changeJobSettings(jobData.getId());
 
 		// スパノビ　全武器チェック
 		if (IsSameJobClass(JOB_ID_SUPERNOVICE) || IsSameJobClass(JOB_ID_SUPERNOVICE_PLUS)) {
@@ -1916,12 +1917,11 @@ class CSaveDataManager {
 		attackMethodConf.SetSkillId(skillID);
 		attackMethodConf.SetSourceType(sourceTypeID);
 		attackMethodConf.SetSkillLv(skillLv);
-		attackMethodConf.SetOptionValueArray(optionArray);
+		if (optionArray != undefined) {
+			attackMethodConf.SetOptionValueArray(optionArray);
+		}
 
 		//  攻撃手段の設定設定を変更
 		CAttackMethodAreaComponentManager.SetAttackMethodConf(attackMethodConf);
 	}
 }
-
-
-

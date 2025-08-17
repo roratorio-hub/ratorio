@@ -285,40 +285,40 @@ function UpdateEquipItemDataByHtml() {
 	var charaDataManager = null;
 
 	// ＨＴＭＬの入力値を元に、変数を更新する
-	with(document.calcForm){
+	var calcForm = document.calcForm;
 
-		n_A_WeaponType = eval(A_WeaponType.value);
-		n_A_WeaponZokusei = eval(A_Weapon_zokusei.value);
-		n_A_Arrow = parseInt(HtmlGetObjectValueById("OBJID_SELECT_ARROW", ARROW_ID_NONE));
+	n_A_WeaponType = eval(calcForm.A_WeaponType.value);
+	n_A_WeaponZokusei = eval(calcForm.A_Weapon_zokusei.value);
+	n_A_Arrow = parseInt(HtmlGetObjectValueById("OBJID_SELECT_ARROW", ARROW_ID_NONE));
 
-		// 装備部位配列初期化
-		for (var eqpIdx = 0; eqpIdx < EQUIP_REGION_ID_COUNT; eqpIdx++) {
-			n_A_Equip[eqpIdx] = 0;
-		}
-
-		n_A_Equip[EQUIP_REGION_ID_ARMS] = HtmlGetObjectValueByIdAsInteger("OBJID_ARMS_RIGHT", 0);
-		if (n_Nitou) {
-			n_A_Equip[EQUIP_REGION_ID_ARMS_LEFT] = HtmlGetObjectValueByIdAsInteger("OBJID_ARMS_LEFT", 0);
-		}
-
-		n_A_Equip[EQUIP_REGION_ID_HEAD_TOP]		 = HtmlGetObjectValueByIdAsInteger("OBJID_HEAD_TOP", 0);
-		n_A_Equip[EQUIP_REGION_ID_HEAD_MID]		 = HtmlGetObjectValueByIdAsInteger("OBJID_HEAD_MID", 0);
-		n_A_Equip[EQUIP_REGION_ID_HEAD_UNDER]	 = HtmlGetObjectValueByIdAsInteger("OBJID_HEAD_UNDER", 0);
-		n_A_Equip[EQUIP_REGION_ID_SHIELD]		 = HtmlGetObjectValueByIdAsInteger("OBJID_SHIELD", 0);
-		n_A_Equip[EQUIP_REGION_ID_BODY]			 = HtmlGetObjectValueByIdAsInteger("OBJID_BODY", 0);
-		n_A_Equip[EQUIP_REGION_ID_SHOULDER]		 = HtmlGetObjectValueByIdAsInteger("OBJID_SHOULDER", 0);
-		n_A_Equip[EQUIP_REGION_ID_SHOES]		 = HtmlGetObjectValueByIdAsInteger("OBJID_SHOES", 0);
-		n_A_Equip[EQUIP_REGION_ID_ACCESSARY_1]	 = HtmlGetObjectValueByIdAsInteger("OBJID_ACCESSARY_1", 0);
-		n_A_Equip[EQUIP_REGION_ID_ACCESSARY_2]	 = HtmlGetObjectValueByIdAsInteger("OBJID_ACCESSARY_2", 0);
-		n_A_Equip[EQUIP_REGION_ID_COSTUME_HEAD_UNDER] = HtmlGetObjectValueByIdAsInteger("A_isyou3", 0);
-
-		// 各種精錬値
-		n_A_HEAD_DEF_PLUS = eval(A_HEAD_DEF_PLUS.value);
-		n_A_BODY_DEF_PLUS = eval(A_BODY_DEF_PLUS.value);
-		n_A_SHIELD_DEF_PLUS = eval(A_SHIELD_DEF_PLUS.value);
-		n_A_SHOULDER_DEF_PLUS = eval(A_SHOULDER_DEF_PLUS.value);
-		n_A_SHOES_DEF_PLUS = eval(A_SHOES_DEF_PLUS.value);
+	// 装備部位配列初期化
+	for (var idx = 0; idx < EQUIP_REGION_ID_COUNT; idx++) {
+		n_A_Equip[idx] = 0;
 	}
+
+	n_A_Equip[EQUIP_REGION_ID_ARMS] = HtmlGetObjectValueByIdAsInteger("OBJID_ARMS_RIGHT", 0);
+	if (n_Nitou) {
+		n_A_Equip[EQUIP_REGION_ID_ARMS_LEFT] = HtmlGetObjectValueByIdAsInteger("OBJID_ARMS_LEFT", 0);
+	}
+
+	n_A_Equip[EQUIP_REGION_ID_HEAD_TOP]		 = HtmlGetObjectValueByIdAsInteger("OBJID_HEAD_TOP", 0);
+	n_A_Equip[EQUIP_REGION_ID_HEAD_MID]		 = HtmlGetObjectValueByIdAsInteger("OBJID_HEAD_MID", 0);
+	n_A_Equip[EQUIP_REGION_ID_HEAD_UNDER]	 = HtmlGetObjectValueByIdAsInteger("OBJID_HEAD_UNDER", 0);
+	n_A_Equip[EQUIP_REGION_ID_SHIELD]		 = HtmlGetObjectValueByIdAsInteger("OBJID_SHIELD", 0);
+	n_A_Equip[EQUIP_REGION_ID_BODY]			 = HtmlGetObjectValueByIdAsInteger("OBJID_BODY", 0);
+	n_A_Equip[EQUIP_REGION_ID_SHOULDER]		 = HtmlGetObjectValueByIdAsInteger("OBJID_SHOULDER", 0);
+	n_A_Equip[EQUIP_REGION_ID_SHOES]		 = HtmlGetObjectValueByIdAsInteger("OBJID_SHOES", 0);
+	n_A_Equip[EQUIP_REGION_ID_ACCESSARY_1]	 = HtmlGetObjectValueByIdAsInteger("OBJID_ACCESSARY_1", 0);
+	n_A_Equip[EQUIP_REGION_ID_ACCESSARY_2]	 = HtmlGetObjectValueByIdAsInteger("OBJID_ACCESSARY_2", 0);
+	n_A_Equip[EQUIP_REGION_ID_COSTUME_HEAD_UNDER] = HtmlGetObjectValueByIdAsInteger("A_isyou3", 0);
+
+	// 各種精錬値
+	n_A_HEAD_DEF_PLUS = eval(calcForm.A_HEAD_DEF_PLUS.value);
+	n_A_BODY_DEF_PLUS = eval(calcForm.A_BODY_DEF_PLUS.value);
+	n_A_SHIELD_DEF_PLUS = eval(calcForm.A_SHIELD_DEF_PLUS.value);
+	n_A_SHOULDER_DEF_PLUS = eval(calcForm.A_SHOULDER_DEF_PLUS.value);
+	n_A_SHOES_DEF_PLUS = eval(calcForm.A_SHOES_DEF_PLUS.value);
+
 
 	// シャドウ装備データ
 	g_itemIdArray = [];
@@ -29990,17 +29990,17 @@ function CheckSpDefEquipmentLocation(spDefRemain, location) {
 /**
  * 職業の基本条件を設定する
  */
-function InitJobInfo() {
-
-	// 職業ＩＤ
-	var selectJob = document.getElementById("OBJID_SELECT_JOB");
-	var selectedJobValue = selectJob.value;
-	n_A_JOB = selectedJobValue;
+function InitJobInfo(jobId) {
+	// 職業IDが引数で渡されなかった時用のコード
+	if (typeof jobId === "undefined" || jobId === null) {
+		jobId = document.getElementById("OBJID_SELECT_JOB").value;
+	}
 
 	// TODO: データ移行過渡処理
 	// 移行後の通常処理（追加で行う）
 	if (IsEnableMigrationBlockNewProcess()) {
-		g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).SetJob(n_A_JOB);
+		let jobData = JobMap.getById(jobId);
+		g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).SetJob(jobData.getMigIdNum());
 	}
 }
 
@@ -30103,94 +30103,102 @@ function ROUNDUP(num){
 const SpeedPotName = ["なし","スピードアップポーション","ハイスピードポーション","バーサークポーション"];
 const EnName =["なし","水","地","火","風","毒","聖","闇","念","死"];
 
+/**
+ * YAMLデータのロード完了まで待機する関数
+ */
+async function waitForDataLoaded() {
+	while (true) {
+		const jobMapLoaded = await JobMap.isLoaded();
+		const skillMapLoaded = await SkillMap.isLoaded();
+		const itemMapLoaded = await ItemMap.isLoaded();
+
+		if (jobMapLoaded && skillMapLoaded && itemMapLoaded) {
+			break;
+		}
+
+		// まだロードされていなければ少し待つ（100ms）
+		await new Promise(resolve => setTimeout(resolve, 100));
+	}
+}
+
 // 他の関数実行に先駆けて初期化される必要があるので load だとタイミングが遅い. DOMContentLoaded を指定する必要がある.
 document.addEventListener('DOMContentLoaded', () => {
 	console.log("DOM Content is loaded.");
-	// 計算機設定の読み込み
-	if (document.getElementById("OBJID_SAVE_BLOCK_MIG")) {
-		CSaveController.LoadSettingFromLocalStorageMIG();
-	}
-
-	/*
-	// 職業選択セレクトボックスの構築
-	var idx = 0;
-	var jobIdArray = null;
-	jobIdArray = g_constDataManager.GetDataManger(CONST_DATA_KIND_JOB).EnumId();
-	for (idx = 0; idx < jobIdArray.length; idx++) {
-		document.calcForm.A_JOB.options[idx] = new Option(GetJobName(jobIdArray[idx]), jobIdArray[idx]);
-	}
-	n_A_JOB = 0;
-	document.calcForm.A_JOB.value = 0;
-	changeJobSettings(0);
-	*/
-
-	document.calcForm.A_SpeedPOT.options[0] = new Option(SpeedPotName[0],0);
-	document.calcForm.A_SpeedPOT.options[1] = new Option(SpeedPotName[1],1);
-
-	for (i=0;i<=9;i++) {
-		document.calcForm.A_Weapon_zokusei.options[i] = new Option(EnName[i],i);
-	}
-	
-	CMonsterMapAreaComponentManager.RebuildControls();
-
-	//--------------------------------
-	// モンスター手入力設定欄の初期化
-	//--------------------------------
-	g_objMobConfInput = new CMobConfInputAreaComponentManager(g_dataManagerMobConfInput);
-	g_objMobConfInput.BuildUpSelectArea(document.getElementById("OBJID_TD_MOB_CONF_INPUT_NEW"), false);
-
-	//--------------------------------
-	// ステートフルデータの初期化
-	//--------------------------------
-	UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_ARMS);
-	UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_ARMS_LEFT);
-	UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_HEAD_TOP);
-	UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_HEAD_MID);
-	UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_HEAD_UNDER);
-	UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_SHIELD);
-	UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_BODY);
-	UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_SHOULDER);
-	UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_SHOES);
-	UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_ACCESSARY_1);
-	UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_ACCESSARY_2);
-
-	if (document.getElementById("OBJID_SAVE_BLOCK_MIG")) {
-		CSaveController.LoadFromLocalStorageMIG();
-		// 画面上部セーブ選択セレクトボックスの初期化
-		const objSelect = document.getElementById("OBJID_SELECT_SAVE_DATA_MIG");
-		HtmlRemoveAllChild(objSelect)
-		for (let idx = 0; idx < CSaveController.CHARA_DATA_COUNT; idx++) {
-			const optText = CSaveController.getDisplayName(idx);
-			HtmlCreateElementOption(idx, optText, objSelect);
+	// YAMLデータのロードが完了していたら発火
+	waitForDataLoaded().then(() => {
+		// 計算機設定の読み込み
+		if (document.getElementById("OBJID_SAVE_BLOCK_MIG")) {
+			CSaveController.LoadSettingFromLocalStorageMIG();
 		}
-		// 確認ダイアログの有効化スイッチを初期化
-		if (CSaveController.getSettingProp(CSaveDataConst.propNameConfirmDialogSwitch) == 1) {
-			$("#OBJID_SWITCH_CONFIRM_DIALOG").click();
+
+		document.calcForm.A_SpeedPOT.options[0] = new Option(SpeedPotName[0],0);
+		document.calcForm.A_SpeedPOT.options[1] = new Option(SpeedPotName[1],1);
+
+		for (var i=0; i<=9; i++) {
+			document.calcForm.A_Weapon_zokusei.options[i] = new Option(EnName[i],i);
 		}
-	}
-	else {
-		LoadSaveDataToCalculator();
-	}
 
-	// 旧形式のロード処理はコメントアウト
-	//URLIN(location.href);
+		CMonsterMapAreaComponentManager.RebuildControls();
 
-	/**
-	 * 新形式を前提としたロード処理
-	 * 初代の a 形式
-	 * 避難所の b 形式
-	 * Hub の c 形式
-	 * どれも読み込めることを確認
-	 */
-	let splittedArray = location.href.split("?");
-	if (splittedArray.length == 2) {
-		CSaveController.loadFromURL(splittedArray[1]);
-		CItemInfoManager.OnClickExtractSwitch();
-	}
+		//--------------------------------
+		// モンスター手入力設定欄の初期化
+		//--------------------------------
+		g_objMobConfInput = new CMobConfInputAreaComponentManager(g_dataManagerMobConfInput);
+		g_objMobConfInput.BuildUpSelectArea(document.getElementById("OBJID_TD_MOB_CONF_INPUT_NEW"), false);
 
-	// 再計算
-	CalcStatusPoint(true);
-	calc();
+		//--------------------------------
+		// ステートフルデータの初期化
+		//--------------------------------
+		UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_ARMS);
+		UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_ARMS_LEFT);
+		UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_HEAD_TOP);
+		UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_HEAD_MID);
+		UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_HEAD_UNDER);
+		UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_SHIELD);
+		UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_BODY);
+		UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_SHOULDER);
+		UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_SHOES);
+		UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_ACCESSARY_1);
+		UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_ACCESSARY_2);
+
+		if (document.getElementById("OBJID_SAVE_BLOCK_MIG")) {
+			CSaveController.LoadFromLocalStorageMIG();
+			// 画面上部セーブ選択セレクトボックスの初期化
+			const objSelect = document.getElementById("OBJID_SELECT_SAVE_DATA_MIG");
+			HtmlRemoveAllChild(objSelect)
+			for (let idx = 0; idx < CSaveController.CHARA_DATA_COUNT; idx++) {
+				const optText = CSaveController.getDisplayName(idx);
+				HtmlCreateElementOption(idx, optText, objSelect);
+			}
+			// 確認ダイアログの有効化スイッチを初期化
+			if (CSaveController.getSettingProp(CSaveDataConst.propNameConfirmDialogSwitch) == 1) {
+				$("#OBJID_SWITCH_CONFIRM_DIALOG").click();
+			}
+		}
+		else {
+			LoadSaveDataToCalculator();
+		}
+
+		/**
+		 * 新形式を前提としたロード処理
+		 * 初代の a 形式
+		 * 避難所の b 形式
+		 * Hub の c 形式
+		 * どれも読み込めることを確認
+		 */
+		let splittedArray = location.href.split("?");
+		if (splittedArray.length == 2) {
+			CSaveController.loadFromURL(splittedArray[1]);
+			CItemInfoManager.OnClickExtractSwitch();
+		} else {
+			// URLロードがない場合は、ノービスを初期ジョブとして設定
+			changeJobSettings("NOVICE");
+		}
+
+		// 再計算
+		CalcStatusPoint(true);
+		calc();
+	});
 });
 
 function LoadSaveDataToCalculator () {
@@ -30213,7 +30221,11 @@ function LoadSaveDataToCalculator () {
 	}
 }
 
-function Init(){
+function Init(jobId){
+	// 職業IDが引数で渡されなかった時用のコード
+	if (typeof jobId === "undefined" || jobId === null) {
+		jobId = document.getElementById("OBJID_SELECT_JOB").value;
+	}
 
 	var idx = 0;
 
@@ -30287,7 +30299,7 @@ function Init(){
 		BreakSlotOfCardAll();
 		BreakSlotOfCostumeAll();
 		RebuildSlotAsCardAll();
-		RebuildSlotAsCostumeAll();
+		RebuildSlotAsCostumeAll(jobId);
 		ClearCardSlotAll();
 		ClearCostumeSlotAll();
 		ClearRndOptSelectAll();
