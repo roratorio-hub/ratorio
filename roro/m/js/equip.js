@@ -3,9 +3,9 @@
  * @param {string} jobId
  */
 function changeJobSettings(jobId) {
-	// 職業IDが引数で渡されなかった時用のコード
 	const selectJobElem = document.getElementById("OBJID_SELECT_JOB");
 	if (selectJobElem) {
+		// 職業IDが引数で渡されなかった時用のコード
 		if (typeof jobId === "undefined" || jobId === null) {
 			jobId = selectJobElem.value;
 		}
