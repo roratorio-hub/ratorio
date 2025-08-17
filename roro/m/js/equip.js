@@ -9,6 +9,7 @@ function changeJobSettings(jobId) {
 		if (typeof jobId === "undefined" || jobId === null) {
 			jobId = selectJobElem.value;
 		}
+		selectJobElem.value = jobId;
 		// OBJID_SELECT_JOB内にoptionが存在しない場合
 		// 後ほど選択できるようdata-job-idに値を保存
 		selectJobElem.setAttribute("data-job-id", jobId);
