@@ -12,6 +12,9 @@
 	<link rel="stylesheet" href="../../ro4/m/calcx.css" type="text/css">
 	<link rel="stylesheet" href="../common.css" type="text/css">
 
+	<!-- アイコン -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+
 	<!-- Webpack -->
 	<script type="text/javascript" src="../../dist/bundle.js"></script>
 
@@ -48,6 +51,7 @@
 	<script type="text/javascript" src="js/CSkillManager.js"></script>
 	<script type="text/javascript" src="js/monster.h.js"></script>
 	<script type="text/javascript" src="js/monster.dat.js"></script>
+	<script type="text/javascript" src="js/monster.toughness.dat.js"></script>
 	<script type="text/javascript" src="js/monstergroup.dat.js"></script>
 	<script type="text/javascript" src="js/monstermap.h.js"></script>
 	<script type="text/javascript" src="js/monstermap.dat.js"></script>
@@ -134,23 +138,23 @@
 	<script type="text/javascript" src="js/mobconfdebuf.js"></script>
 	<script type="text/javascript" src="js/mobconfbuf.js"></script>
 	<script type="text/javascript" src="js/mobconfplayer.js"></script>
-<!--	<script type="text/javascript" src="js/mobconfinput.js"></script>	-->
+	<!--	<script type="text/javascript" src="js/mobconfinput.js"></script>	-->
 	<script type="text/javascript" src="js/CMobConfInput.js"></script>
 
 	<!-- 機能処理系 HTML 処理 javascript ファイル -->
 	<script type="text/javascript" src="js/CItemInfoManager.js"></script>
 	<script type="text/javascript" src="../../ro4/m/js/hmjob.js"></script>
-<!--
+	<!--
 	<script type="text/javascript" src="js/hmautospell.js"></script>
 -->
 	<script type="text/javascript" src="js/hmcard.js"></script>
 	<script type="text/javascript" src="js/hmcostume.js"></script>
-<!--
+	<!--
 	<script type="text/javascript" src="js/hmequip.js"></script>
 -->
 	<script type="text/javascript" src="../../ro4/m/js/CMonsterMapAreaComponentManager.js"></script>
 	<script type="text/javascript" src="js/hmrndopt.js"></script>
-<!--
+	<!--
 	<script type="text/javascript" src="js/hmlearnedskill.js"></script>
 -->
 	<script type="text/javascript" src="js/hmchara.js"></script>
@@ -158,7 +162,7 @@
 
 	<!-- その他、機能系 javascript ファイル -->
 	<script type="text/javascript" src="js/castsim.js"></script>
-<!--
+	<!--
 	<script type="text/javascript" src="js/browsermigration.js"></script>
 -->
 	<script type="text/javascript" src="../../ro4/m/js/CEnchSearch.js"></script>
@@ -173,7 +177,9 @@
 	<script src="../../jquery/select2/select2.min.js"></script>
 	<script src="../../jquery/select2/select2.custom.js"></script>
 	<!-- セーブデータの画像出力機能 -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
+		integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
+		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<script type="text/javascript" src="../../ro4/m/js/saveimage.js"></script>
 	<!-- セーブ履歴機能 -->
 	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -181,7 +187,9 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.2/jquery.modal.min.css" />
 	<script type="text/javascript" src="../../ro4/m/js/calchistory.js"></script>
 	<!-- 汎用Cookie操作機能 -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js" integrity="sha512-3j3VU6WC5rPQB4Ld1jnLV7Kd5xr+cq9avvhwqzbH/taCRNURoeEpoPBK9pDyeukwSxwRPJ8fDgvYXd6SkaZ2TA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"
+		integrity="sha512-3j3VU6WC5rPQB4Ld1jnLV7Kd5xr+cq9avvhwqzbH/taCRNURoeEpoPBK9pDyeukwSxwRPJ8fDgvYXd6SkaZ2TA=="
+		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<script type="text/javascript" src="../../ro4/m/js/cookiemanager.js"></script>
 	<!-- 更新履歴通知トースト -->
 	<script src="https://cdn.jsdelivr.net/npm/jquery-toast-plugin@1.3.2/dist/jquery.toast.min.js"></script>
@@ -202,45 +210,57 @@
 
 <body>
 	<div class="wrapper">
-	<div class="side">
-		<span id="ID_FRAME"></span>
-	</div>
-	<div class="content">
-		<div class="spinner" id="loadingSpinner"></div>
-		<div style="padding: 20px 34px">
+		<div class="side">
+			<span id="ID_FRAME"></span>
+		</div>
+		<div class="content">
+			<div class="spinner" id="loadingSpinner"></div>
+			<div style="padding: 20px 34px">
 
-			<form name="calcForm">
-				<!-- セーブ・ロード、基本ステータス、フローティングメニュー -->
-				<div>
-					<!-- ヘッダ部 -->
-					<div id="OBJID_CALCULAATOR_HEADER" style="white-space: nowrap;">
+				<form name="calcForm">
+					<!-- セーブ・ロード、基本ステータス、フローティングメニュー -->
+					<div>
+						<!-- ヘッダ部 -->
+						<div id="OBJID_CALCULAATOR_HEADER" style="white-space: nowrap;">
 							<div id="OBJID_SAVE_BLOCK_MIG" class="folding-block-MIG">
 								<input type="checkbox" id="OBJID_SWITCH_SAVE_CTRL_MIG" class="folding-switch-MIG">
 								<label for="OBJID_SWITCH_SAVE_CTRL_MIG">セーブ／ロード</label>
 								<div class="folding-block-body-MIG">
 									<select id="OBJID_SELECT_SAVE_DATA_MIG">
 									</select>
-									<input id="OBJID_INPUT_SAVE_NAME_MIG" type="textbox" size="24" placeholder="名前入力可能（40文字まで）">
+									<input id="OBJID_INPUT_SAVE_NAME_MIG" type="textbox" size="24"
+										placeholder="名前入力可能（40文字まで）">
 									<button id="OBJID_BUTTON_IMAGE_SAVE_DATA_MIG" type="button">画像保存</button>
 
-									<button id="OBJID_BUTTON_LOAD_SAVE_DATA_MIG" type="button" onclick="OnClickLoadSaveData()">ロード</button>
-									<button id="OBJID_BUTTON_SAVE_SAVE_DATA_MIG" type="button" onclick="OnClickSaveSaveData()">セーブ</button>
-									<button id="OBJID_BUTTON_DELETE_SAVE_DATA_MIG" type="button" onclick="OnClickDeleteSaveData()">削除</button>
-									<button id="OBJID_BUTTON_DEBUG_SAVE_DATA_MIG" type="button" onclick="OnClickClipboardSaveData()">バグ報告用データ出力</button>
+									<button id="OBJID_BUTTON_LOAD_SAVE_DATA_MIG" type="button"
+										onclick="OnClickLoadSaveData()">ロード</button>
+									<button id="OBJID_BUTTON_SAVE_SAVE_DATA_MIG" type="button"
+										onclick="OnClickSaveSaveData()">セーブ</button>
+									<button id="OBJID_BUTTON_DELETE_SAVE_DATA_MIG" type="button"
+										onclick="OnClickDeleteSaveData()">削除</button>
+									<button id="OBJID_BUTTON_DEBUG_SAVE_DATA_MIG" type="button"
+										onclick="OnClickClipboardSaveData()">バグ報告用データ出力</button>
 
-									<button id="OBJID_BUTTON_URL_OUT_MIG" type="button" onclick="OnClickUrlOutMIG()">URL出力</button>
+									<button id="OBJID_BUTTON_URL_OUT_MIG" type="button"
+										onclick="OnClickUrlOutMIG()">URL出力</button>
 									<input id="OBJID_INPUT_URL_OUT_MIG" type="textbox" size="24">
-									<button id="OBJID_BUTTON_COPY_URL_OUT_MIG" type="button" onclick="HtmlCopyToClipboardById('OBJID_INPUT_URL_OUT_MIG')">コピー</button>
+									<button id="OBJID_BUTTON_COPY_URL_OUT_MIG" type="button"
+										onclick="HtmlCopyToClipboardById('OBJID_INPUT_URL_OUT_MIG')">コピー</button>
 
-									<button id="OBJID_BUTTON_URL_IN_MIG" type="button" onclick="OnClickUrlInMIG()">URL入力</button>
+									<button id="OBJID_BUTTON_URL_IN_MIG" type="button"
+										onclick="OnClickUrlInMIG()">URL入力</button>
 									<input id="OBJID_INPUT_URL_IN_MIG" type="textbox" size="24">
-									<button id="OBJID_BUTTON_CLEAR_URL_IN_MIG" type="button" onclick="HtmlSetObjectValueById('OBJID_INPUT_URL_IN_MIG', '')">クリア</button>
+									<button id="OBJID_BUTTON_CLEAR_URL_IN_MIG" type="button"
+										onclick="HtmlSetObjectValueById('OBJID_INPUT_URL_IN_MIG', '')">クリア</button>
 
-									<button id="OBJID_BUTTON_EXPORT_ALL_DATA_MIG" type="button" onclick="CSaveController.exportAllCharaData()">全データをエクスポート</button>
-									<button id="OBJID_BUTTON_IMPORT_ALL_DATA_MIG" type="button" onclick="CSaveController.importAllCharaData()">全データをインポート</button>
+									<button id="OBJID_BUTTON_EXPORT_ALL_DATA_MIG" type="button"
+										onclick="CSaveController.exportAllCharaData()">全データをエクスポート</button>
+									<button id="OBJID_BUTTON_IMPORT_ALL_DATA_MIG" type="button"
+										onclick="CSaveController.importAllCharaData()">全データをインポート</button>
 
 									<div id="OBJID_SWITCH_CONFIRM_DIALOG_BLOCK">
-										<input type="checkbox" id="OBJID_SWITCH_CONFIRM_DIALOG" class="folding-switch-MIG" onclick="OnClickConfirmDialogSwitch()">
+										<input type="checkbox" id="OBJID_SWITCH_CONFIRM_DIALOG"
+											class="folding-switch-MIG" onclick="OnClickConfirmDialogSwitch()">
 										<label for="OBJID_SWITCH_CONFIRM_DIALOG">操作時に確認する</label>
 									</div>
 
@@ -249,20 +269,21 @@
 							<div>
 								<strong style="color: red;">
 									本サイトの管理人を騙って近づいてくる人物がいた場合<br>
-									無闇に信用せず、一旦 <a href="../../information/index.html" target="_blank">連絡先</a> からご確認ください<br>
+									無闇に信用せず、一旦 <a href="../../information/index.html" target="_blank">連絡先</a>
+									からご確認ください<br>
 								</strong>
 								<strong>
 									以前のデータも問題なく読み込むことが出来ます<br>
 									URL出力にてデータを取得し、こちらのURL入力から入力いただくことでデータ移行が可能です<br>
 								</strong>
 							</div>
-					</div>
-					<!-- ボディ部 -->
-					<div style="display: grid; grid-template-columns: max-content auto; column-gap: 3%;">
-						<!-- 基本ステータス -->
-						<div>
-							<!-- 設定部 -->
-							<table>
+						</div>
+						<!-- ボディ部 -->
+						<div style="display: grid; grid-template-columns: max-content auto; column-gap: 3%;">
+							<!-- 基本ステータス -->
+							<div>
+								<!-- 設定部 -->
+								<table>
 									<tr>
 										<td valign="top">
 											<div style="display: inline-block;">
@@ -272,38 +293,50 @@
 														<td colSpan="6" bgcolor="#DDDDFF">
 															<span>基本ステータス</span>
 
-															<input id="OBJID_CHECK_AUTO_BASE_LEVEL" type="checkbox" name="BLVauto" checked="checked">
-															<label for="OBJID_CHECK_AUTO_BASE_LEVEL">BaseLVを自動調節する</label>
+															<input id="OBJID_CHECK_AUTO_BASE_LEVEL" type="checkbox"
+																name="BLVauto" checked="checked">
+															<label
+																for="OBJID_CHECK_AUTO_BASE_LEVEL">BaseLVを自動調節する</label>
 														</td>
 													</tr>
 
 													<tr>
 														<td style="min-width: 4em; text-align:center;">LV</td>
-														<td style="min-width: 7em;"><select id="OBJID_SELECT_BASE_LEVEL" name="A_BaseLV"onChange="CalcStatusPoint(true) | StAllCalc() | CAttackMethodAreaComponentManager.RebuildControls() | AutoCalc()"></select></td>
+														<td style="min-width: 7em;"><select id="OBJID_SELECT_BASE_LEVEL"
+																name="A_BaseLV"
+																onChange="CalcStatusPoint(true) | StAllCalc() | CAttackMethodAreaComponentManager.RebuildControls() | AutoCalc()"></select>
+														</td>
 
 														<td style="min-width: 4em; text-align:center;">JobLV</td>
-														<td style="min-width: 7em;"><select id="OBJID_SELECT_JOB_LEVEL" name="A_JobLV"onChange="StAllCalc() | AutoCalc()"></select></td>
+														<td style="min-width: 7em;"><select id="OBJID_SELECT_JOB_LEVEL"
+																name="A_JobLV"
+																onChange="StAllCalc() | AutoCalc()"></select></td>
 
 														<td style="min-width: 4em; text-align:center;">職業</td>
-														<td style="min-width: 7em;"><select id="OBJID_SELECT_JOB" name="A_JOB" onChange="OnChangeJob(this.value)"></select></td>
+														<td style="min-width: 7em;"><select id="OBJID_SELECT_JOB"
+																name="A_JOB"
+																onChange="OnChangeJob(this.value)"></select></td>
 													</tr>
 
 													<tr>
 														<td style="text-align: center;">Str</td>
 														<td>
-															<select id="OBJID_SELECT_STATUS_STR" name="A_STR" onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()"></select>
+															<select id="OBJID_SELECT_STATUS_STR" name="A_STR"
+																onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()"></select>
 															<span id="OBJID_SPAN_STATUS_BONUS_STR"></span>
 														</td>
 
 														<td style="text-align: center;">Agi</td>
 														<td>
-															<select id="OBJID_SELECT_STATUS_AGI" name="A_AGI" onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()"></select>
+															<select id="OBJID_SELECT_STATUS_AGI" name="A_AGI"
+																onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()"></select>
 															<span id="OBJID_SPAN_STATUS_BONUS_AGI"></span>
 														</td>
 
 														<td style="text-align: center;">Vit</td>
 														<td>
-															<select id="OBJID_SELECT_STATUS_VIT" name="A_VIT" onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()"></select>
+															<select id="OBJID_SELECT_STATUS_VIT" name="A_VIT"
+																onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()"></select>
 															<span id="OBJID_SPAN_STATUS_BONUS_VIT"></span>
 														</td>
 													</tr>
@@ -311,19 +344,22 @@
 													<tr>
 														<td style="text-align: center;">Int</td>
 														<td>
-															<select id="OBJID_SELECT_STATUS_INT" name="A_INT" onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()"></select>
+															<select id="OBJID_SELECT_STATUS_INT" name="A_INT"
+																onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()"></select>
 															<span id="OBJID_SPAN_STATUS_BONUS_INT"></span>
 														</td>
 
 														<td style="text-align: center;">Dex</td>
 														<td>
-															<select id="OBJID_SELECT_STATUS_DEX" name="A_DEX" onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()"></select>
+															<select id="OBJID_SELECT_STATUS_DEX" name="A_DEX"
+																onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()"></select>
 															<span id="OBJID_SPAN_STATUS_BONUS_DEX"></span>
 														</td>
 
 														<td style="text-align: center;">Luk</td>
 														<td>
-															<select id="OBJID_SELECT_STATUS_LUK" name="A_LUK" onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()"></select>
+															<select id="OBJID_SELECT_STATUS_LUK" name="A_LUK"
+																onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()"></select>
 															<span id="OBJID_SPAN_STATUS_BONUS_LUK"></span>
 														</td>
 													</tr>
@@ -335,7 +371,10 @@
 												<table border="1">
 													<tr>
 														<td><span>基本ステータスポイント　残り</span></td>
-														<td style="min-width: 4em; text-align: right; padding-right: 0.5em;"><span id = "A_STPOINT">0000</span></td>
+														<td
+															style="min-width: 4em; text-align: right; padding-right: 0.5em;">
+															<span id="A_STPOINT">0000</span>
+														</td>
 													</tr>
 												</table>
 
@@ -347,84 +386,107 @@
 													</tr>
 
 													<tr>
-														<td style="min-width: 4em; text-align:center; background-color: #ddddff;">Pow</td>
+														<td
+															style="min-width: 4em; text-align:center; background-color: #ddddff;">
+															Pow</td>
 														<td style="min-width: 7em;">
-															<select id="OBJID_SELECT_STATUS_POW" name="A_POW" onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()"></select>
+															<select id="OBJID_SELECT_STATUS_POW" name="A_POW"
+																onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()"></select>
 															<span id="OBJID_SPAN_STATUS_BONUS_POW"></span>
 														</td>
 
-														<td style="min-width: 5em; text-align:center; background-color: #ddddff;">P.Atk</td>
+														<td
+															style="min-width: 5em; text-align:center; background-color: #ddddff;">
+															P.Atk</td>
 														<td style="min-width: 7em; text-align:center;">
 															<span id="OBJID_SPAN_STATUS_P_ATK"></span>
 														</td>
 
-														<td style="min-width: 5em; text-align:center; background-color: #ddddff;">Res</td>
+														<td
+															style="min-width: 5em; text-align:center; background-color: #ddddff;">
+															Res</td>
 														<td style="min-width: 7em; text-align:center;">
 															<span id="OBJID_SPAN_STATUS_RES"></span>
 														</td>
 													</tr>
 
 													<tr>
-														<td style="text-align:center; background-color: #ddddff;">Sta</td>
+														<td style="text-align:center; background-color: #ddddff;">Sta
+														</td>
 														<td>
-															<select id="OBJID_SELECT_STATUS_STA" name="A_STA" onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()"></select>
+															<select id="OBJID_SELECT_STATUS_STA" name="A_STA"
+																onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()"></select>
 															<span id="OBJID_SPAN_STATUS_BONUS_STA"></span>
 														</td>
 
-														<td style="text-align:center; background-color: #ddddff;">S.Matk</td>
+														<td style="text-align:center; background-color: #ddddff;">S.Matk
+														</td>
 														<td style="text-align:center;">
 															<span id="OBJID_SPAN_STATUS_S_MATK"></span>
 														</td>
 
-														<td style="text-align:center; background-color: #ddddff;">Mres</td>
+														<td style="text-align:center; background-color: #ddddff;">Mres
+														</td>
 														<td style="text-align:center;">
 															<span id="OBJID_SPAN_STATUS_MRES"></span>
 														</td>
 													</tr>
 
 													<tr>
-														<td style="text-align:center; background-color: #ddddff;">Wis</td>
+														<td style="text-align:center; background-color: #ddddff;">Wis
+														</td>
 														<td>
-															<select id="OBJID_SELECT_STATUS_WIS" name="A_WIS" onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()"></select>
+															<select id="OBJID_SELECT_STATUS_WIS" name="A_WIS"
+																onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()"></select>
 															<span id="OBJID_SPAN_STATUS_BONUS_WIS"></span>
 														</td>
 
-														<td style="text-align:center; background-color: #ddddff;">H.Plus</td>
+														<td style="text-align:center; background-color: #ddddff;">H.Plus
+														</td>
 														<td style="text-align:center;">
 															<span id="OBJID_SPAN_STATUS_H_PLUS"></span>
 														</td>
 													</tr>
 
 													<tr>
-														<td style="text-align:center; background-color: #ddddff;">Spl</td>
+														<td style="text-align:center; background-color: #ddddff;">Spl
+														</td>
 														<td>
-															<select id="OBJID_SELECT_STATUS_SPL" name="A_SPL" onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()"></select>
+															<select id="OBJID_SELECT_STATUS_SPL" name="A_SPL"
+																onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()"></select>
 															<span id="OBJID_SPAN_STATUS_BONUS_SPL"></span>
 														</td>
 
-														<td style="text-align:center; background-color: #ddddff;">C.Rate</td>
+														<td style="text-align:center; background-color: #ddddff;">C.Rate
+														</td>
 														<td style="text-align:center;">
 															<span id="OBJID_SPAN_STATUS_C_RATE"></span>
 														</td>
 													</tr>
 
 													<tr>
-														<td style="text-align:center; background-color: #ddddff;">Con</td>
+														<td style="text-align:center; background-color: #ddddff;">Con
+														</td>
 														<td>
-															<select id="OBJID_SELECT_STATUS_CON" name="A_CON" onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()"></select>
+															<select id="OBJID_SELECT_STATUS_CON" name="A_CON"
+																onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()"></select>
 															<span id="OBJID_SPAN_STATUS_BONUS_CON"></span>
 														</td>
 
-														<td colspan="2" style="text-align:center; background-color: #ddddff;">T.Status Point</td>
+														<td colspan="2"
+															style="text-align:center; background-color: #ddddff;">
+															T.Status Point</td>
 														<td colspan="2" style="text-align:center;">
 															<span id="OBJID_SPAN_STATUS_T_STATUS_POINT"></span>
 														</td>
 													</tr>
 
 													<tr>
-														<td style="text-align:center; background-color: #ddddff;">Crt</td>
+														<td style="text-align:center; background-color: #ddddff;">Crt
+														</td>
 														<td>
-															<select id="OBJID_SELECT_STATUS_CRT" name="A_CRT" onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()"></select>
+															<select id="OBJID_SELECT_STATUS_CRT" name="A_CRT"
+																onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()"></select>
 															<span id="OBJID_SPAN_STATUS_BONUS_CRT"></span>
 														</td>
 													</tr>
@@ -433,10 +495,11 @@
 
 											</div>
 
-											<div style="display: inline-block; margin-left: 2em; padding: 0.5em; border: 1px solid black; vertical-align: top;">
+											<div
+												style="display: inline-block; margin-left: 2em; padding: 0.5em; border: 1px solid black; vertical-align: top;">
 
 												<style>
-													#OBJID_CHK_UPGRADE_JOB_EXPLAIN:checked ~ .OBJCLS_EXPLAIN {
+													#OBJID_CHK_UPGRADE_JOB_EXPLAIN:checked~.OBJCLS_EXPLAIN {
 														display: block !important;
 													}
 												</style>
@@ -450,9 +513,9 @@
 										</td>
 
 									</tr>
-							</table>
-							<!-- 算出部 -->
-							<table>
+								</table>
+								<!-- 算出部 -->
+								<table>
 									<tbody>
 										<tr>
 											<td>
@@ -530,1209 +593,1261 @@
 											</td>
 										</tr>
 									</tbody>
-							</table>
+								</table>
+							</div>
+							<!-- フローティングメニュー -->
+							<div>
+								<!-- チェックボックスの状態に応じて CSS で埋め込み・フローティングを切り替える -->
+								<input type="checkbox" id="OBJID_CHK_DISABLE_FLOATING" style="display: none;">
+								<div id="OBJID_DIV_FLOATING_MENU" class="CSSCLS_DIV_FLOATING_MENU">
+									<table>
+										<tbody>
+											<tr>
+												<td id="ID_FLOATING_INFO_AREA">
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
 						</div>
-						<!-- フローティングメニュー -->
-						<div>
-							<!-- チェックボックスの状態に応じて CSS で埋め込み・フローティングを切り替える -->
-							<input type="checkbox" id="OBJID_CHK_DISABLE_FLOATING" style="display: none;">
-							<div id="OBJID_DIV_FLOATING_MENU" class="CSSCLS_DIV_FLOATING_MENU">
+					</div>
+					<!-- 基本装備 -->
+					<table>
+						<tbody>
+							<!-- クイック設定 -->
+							<tr>
+								<td>
+									<span id="ID_QUICK_CONTROL">
+										<input type="checkbox" id="OBJID_QUICK_CONTROL_EXTRACT_CHECKBOX"
+											onclick="OnClickQuickControlSW()">
+									</span>
+								</td>
+							</tr>
+							<!-- オプション -->
+							<tr>
+								<td>
+									<span id="nm026">スピードポーション：</span>
+									<select id="OBJID_SPEED_POT" name="A_SpeedPOT" onChange="StAllCalc() | AutoCalc()">
+									</select>
+									<br>
+									<span id="nm027">武器タイプ：</span>
+									<select id="OBJID_ARMS_TYPE_RIGHT" name="A_WeaponType"
+										onChange="OnChangeArmsTypeRight(this[this.selectedIndex].value) | StAllCalc() | AutoCalc()">
+									</select>
+									<span id="A_SobWeaponName"></span>
+									<span id="OBJID_SPAN_SELECT_ARROW"></span>
+									<span id="OBJID_SPAN_SWAP_ARMS"></span>
+								</td>
+							</tr>
+							<!-- 装備設定 -->
+							<tr>
+								<td>
+									<table border="1">
+										<!-- ヘッダ -->
+										<tr>
+											<td ColSpan="3" Bgcolor="#DDDDFF">武器＆防具/カード</td>
+											<td ColSpan="10" Bgcolor="#DDDDFF">
+												<input type="button" id="OBJID_SLOT_MODE_BUTTON" value="入力欄切替"
+													onclick="OnClickSlotModeButton()">
+												カードの入力とランダムオプションの入力を切り替えます
+											</td>
+										</tr>
+										<!-- 右手装備 -->
+										<tr>
+											<td rowspan="2">
+												<select id="OBJID_ARMS_RIGHT_REFINE" name="A_Weapon_ATKplus"
+													onChange="OnChangeRefined() | AutoCalc()">
+													<option value="0">+0
+													<option value="1">+1
+													<option value="2">+2
+													<option value="3">+3
+													<option value="4">+4
+													<option value="5">+5
+													<option value="6">+6
+													<option value="7">+7
+													<option value="8">+8
+													<option value="9">+9
+													<option value="10">+10
+												</select>
+											</td>
+											<td rowspan="2">
+												<select id="OBJID_ARMS_RIGHT_TRANSCENDENCE"
+													name="A_Weapon_Transcendence" onChange="StAllCalc() | AutoCalc()">
+													<option value="0">-
+													<option value="1">★1
+													<option value="2">★2
+													<option value="3">★3
+													<option value="4">★4
+												</select>
+											</td>
+											<td rowspan="2">
+												<select id="OBJID_ARMS_RIGHT"
+													onChange="OnChangeEquip(EQUIP_REGION_ID_ARMS, parseInt(this.value)) | AutoCalc()">
+												</select>
+											</td>
+											<td colspan="2" style="white-space: nowrap;">
+												<span id="ID_A_HUYO_NAME">武器属性付与</span>
+												<select id="OBJID_SELECT_ARMS_ELEMENT" name="A_Weapon_zokusei"
+													onChange="AutoCalc()">
+												</select>
+											</td>
+											<td colspan="8">
+												<span
+													style="font-size: smaller; white-space: nowrap;">※攻撃属性の優先度は状況次第なので、確実に設定するには左の付与欄で指定してください。（無属性は、全ての属性設定を解除）</span>
+											</td>
+										</tr>
+										<tr id="OBJID_ARMS_RIGHT_SLOT_ROOT">
+										</tr>
+										<!-- パディング -->
+										<tr>
+											<td colspan="12">
+											</td>
+										</tr>
+										<!-- 左手装備 -->
+										<tr id="OBJID_ARMS_LEFT_SLOT_ROOT">
+											<td>
+												<select id="OBJID_ARMS_LEFT_REFINE" name="A_Weapon2_ATKplus"
+													onChange="OnChangeRefined() | AutoCalc()" disabled>
+													<option value="0">+0
+													<option value="1">+1
+													<option value="2">+2
+													<option value="3">+3
+													<option value="4">+4
+													<option value="5">+5
+													<option value="6">+6
+													<option value="7">+7
+													<option value="8">+8
+													<option value="9">+9
+													<option value="10">+10
+												</select>
+											</td>
+											<td>
+												<select id="OBJID_ARMS_LEFT_TRANSCENDENCE"
+													name="A_Weapon2_Transcendence" onChange="StAllCalc() | AutoCalc()"
+													disabled>
+													<option value="0">-
+													<option value="1">★1
+													<option value="2">★2
+													<option value="3">★3
+													<option value="4">★4
+												</select>
+											</td>
+											<td>
+												<select id="OBJID_ARMS_LEFT"
+													onChange="OnChangeEquip(EQUIP_REGION_ID_ARMS_LEFT, parseInt(this.value)) | AutoCalc()">
+												</select>
+											</td>
+										</tr>
+										<!-- パディング -->
+										<tr>
+											<td colspan="12">
+											</td>
+										</tr>
+										<!-- 頭上段装備 -->
+										<tr id="OBJID_HEAD_TOP_SLOT_ROOT">
+											<td>
+												<select id="OBJID_HEAD_TOP_REFINE" name="A_HEAD_DEF_PLUS"
+													onChange="OnChangeRefined() | AutoCalc()">
+													<option value="0">+0
+													<option value="1">+1
+													<option value="2">+2
+													<option value="3">+3
+													<option value="4">+4
+													<option value="5">+5
+													<option value="6">+6
+													<option value="7">+7
+													<option value="8">+8
+													<option value="9">+9
+													<option value="10">+10
+												</select>
+											</td>
+											<td>
+												<select id="OBJID_HEAD_TOP_TRANSCENDENCE"
+													name="A_HEAD_DEF_Transcendence" onChange="StAllCalc() | AutoCalc()">
+													<option value="0">-
+													<option value="1">★1
+													<option value="2">★2
+													<option value="3">★3
+													<option value="4">★4
+												</select>
+											</td>
+											<td>
+												<select id="OBJID_HEAD_TOP" name="A_head1"
+													onChange="OnChangeEquip(EQUIP_REGION_ID_HEAD_TOP, parseInt(this.value)) | AutoCalc()"></select>
+											</td>
+										</tr>
+										<!-- パディング -->
+										<tr>
+											<td colspan="12">
+											</td>
+										</tr>
+										<!-- 頭中段装備 -->
+										<tr id="OBJID_HEAD_MID_SLOT_ROOT">
+											<td>
+											</td>
+											<td>
+											</td>
+											<td>
+												<select id="OBJID_HEAD_MID" name="A_head2"
+													onChange="OnChangeEquip(EQUIP_REGION_ID_HEAD_MID, parseInt(this.value)) | AutoCalc()"></select>
+											</td>
+										</tr>
+										<!-- パディング -->
+										<tr>
+											<td colspan="12">
+											</td>
+										</tr>
+										<!-- 頭下段装備 -->
+										<tr id="OBJID_HEAD_UNDER_SLOT_ROOT">
+											<td>
+											</td>
+											<td>
+											</td>
+											<td>
+												<select id="OBJID_HEAD_UNDER" name="A_head3"
+													onChange="OnChangeEquip(EQUIP_REGION_ID_HEAD_UNDER, parseInt(this.value)) | AutoCalc()"></select>
+											</td>
+										</tr>
+										<!-- パディング -->
+										<tr>
+											<td colspan="12">
+											</td>
+										</tr>
+										<!-- 盾装備 -->
+										<tr id="OBJID_SHIELD_SLOT_ROOT">
+											<td id="ID_B4">
+												<select id="OBJID_SHIELD_REFINE" name="A_SHIELD_DEF_PLUS"
+													onChange="OnChangeRefined() | AutoCalc()">
+													<option value="0">+0
+													<option value="1">+1
+													<option value="2">+2
+													<option value="3">+3
+													<option value="4">+4
+													<option value="5">+5
+													<option value="6">+6
+													<option value="7">+7
+													<option value="8">+8
+													<option value="9">+9
+													<option value="10">+10
+												</select>
+											</td>
+											<td>
+												<select id="OBJID_SHIELD_TRANSCENDENCE"
+													name="A_SHIELD_DEF_Transcendence"
+													onChange="StAllCalc() | AutoCalc()">
+													<option value="0">-
+													<option value="1">★1
+													<option value="2">★2
+													<option value="3">★3
+													<option value="4">★4
+												</select>
+											</td>
+											<td>
+												<select id="OBJID_SHIELD" name="A_left"
+													onChange="OnChangeEquip(EQUIP_REGION_ID_SHIELD, parseInt(this.value)) | AutoCalc()"></select>
+											</td>
+										</tr>
+										<!-- パディング -->
+										<tr>
+											<td colspan="12">
+											</td>
+										</tr>
+										<!-- 鎧装備 -->
+										<tr id="OBJID_BODY_SLOT_ROOT">
+											<td>
+												<select id="OBJID_BODY_REFINE" name="A_BODY_DEF_PLUS"
+													onChange="OnChangeRefined() | AutoCalc()">
+													<option value="0">+0
+													<option value="1">+1
+													<option value="2">+2
+													<option value="3">+3
+													<option value="4">+4
+													<option value="5">+5
+													<option value="6">+6
+													<option value="7">+7
+													<option value="8">+8
+													<option value="9">+9
+													<option value="10">+10
+												</select>
+											</td>
+											<td>
+												<select id="OBJID_BODY_TRANSCENDENCE" name="A_BODY_DEF_Transcendence"
+													onChange="StAllCalc() | AutoCalc()">
+													<option value="0">-
+													<option value="1">★1
+													<option value="2">★2
+													<option value="3">★3
+													<option value="4">★4
+												</select>
+											</td>
+											<td>
+												<select id="OBJID_BODY" name="A_body"
+													onChange="OnChangeEquip(EQUIP_REGION_ID_BODY, parseInt(this.value)) | AutoCalc()"></select>
+											</td>
+										</tr>
+										<!-- パディング -->
+										<tr>
+											<td colspan="12">
+											</td>
+										</tr>
+										<!-- 肩装備 -->
+										<tr id="OBJID_SHOULDER_SLOT_ROOT">
+											<td>
+												<select id="OBJID_SHOULDER_REFINE" name="A_SHOULDER_DEF_PLUS"
+													onChange="OnChangeRefined() | AutoCalc()">
+													<option value="0">+0
+													<option value="1">+1
+													<option value="2">+2
+													<option value="3">+3
+													<option value="4">+4
+													<option value="5">+5
+													<option value="6">+6
+													<option value="7">+7
+													<option value="8">+8
+													<option value="9">+9
+													<option value="10">+10
+												</select>
+											</td>
+											<td>
+												<select id="OBJID_SHOULDER_TRANSCENDENCE"
+													name="A_SHOULDER_DEF_Transcendence"
+													onChange="StAllCalc() | AutoCalc()">
+													<option value="0">-
+													<option value="1">★1
+													<option value="2">★2
+													<option value="3">★3
+													<option value="4">★4
+												</select>
+											</td>
+											<td>
+												<select id="OBJID_SHOULDER" name="A_shoulder"
+													onChange="OnChangeEquip(EQUIP_REGION_ID_SHOULDER, parseInt(this.value)) | AutoCalc()"></select>
+											</td>
+										</tr>
+										<!-- パディング -->
+										<tr>
+											<td colspan="12">
+											</td>
+										</tr>
+										<!-- 靴装備 -->
+										<tr id="OBJID_SHOES_SLOT_ROOT">
+											<td>
+												<select id="OBJID_SHOES_REFINE" name="A_SHOES_DEF_PLUS"
+													onChange="OnChangeRefined() | AutoCalc()">
+													<option value="0">+0
+													<option value="1">+1
+													<option value="2">+2
+													<option value="3">+3
+													<option value="4">+4
+													<option value="5">+5
+													<option value="6">+6
+													<option value="7">+7
+													<option value="8">+8
+													<option value="9">+9
+													<option value="10">+10
+												</select>
+											</td>
+											<td>
+												<select id="OBJID_SHOES_TRANSCENDENCE" name="A_SHOES_DEF_Transcendence"
+													onChange="StAllCalc() | AutoCalc()">
+													<option value="0">-
+													<option value="1">★1
+													<option value="2">★2
+													<option value="3">★3
+													<option value="4">★4
+												</select>
+											</td>
+											<td>
+												<select id="OBJID_SHOES" name="A_shoes"
+													onChange="OnChangeEquip(EQUIP_REGION_ID_SHOES, parseInt(this.value)) | AutoCalc()"></select>
+											</td>
+										</tr>
+										<!-- パディング -->
+										<tr>
+											<td colspan="12">
+											</td>
+										</tr>
+										<!-- アクセサリ1装備 -->
+										<tr id="OBJID_ACCESSARY_1_SLOT_ROOT">
+											<td>
+											</td>
+											<td style="text-align:right">
+												<button type="button" id="OBJID_ACCESSARY_1_COPY"
+													onclick="copyAccs(1, 2)">↓</button>
+											</td>
+											<td>
+												<select id="OBJID_ACCESSARY_1" name="A_acces1"
+													onChange="OnChangeEquip(EQUIP_REGION_ID_ACCESSARY_1, parseInt(this.value)) | AutoCalc()"></select>
+											</td>
+										</tr>
+										<!-- パディング -->
+										<tr>
+											<td colspan="12">
+											</td>
+										</tr>
+										<!-- アクセサリ2装備 -->
+										<tr id="OBJID_ACCESSARY_2_SLOT_ROOT">
+											<td>
+											</td>
+											<td style="text-align:right">
+												<button type="button" id="OBJID_ACCESSARY_2_COPY"
+													onclick="copyAccs(2, 1)">↑</button>
+											</td>
+											<td>
+												<select id="OBJID_ACCESSARY_2" name="A_acces2"
+													onChange="OnChangeEquip(EQUIP_REGION_ID_ACCESSARY_2, parseInt(this.value)) | AutoCalc()"></select>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<!-- 簡易表示 -->
+					<div id="OBJID_DIV_BATTLE_RESULT_TINY"></div>
+					<div id="OBJID_DIV_RESIST_ELEMENT_TINY"></div>
+					<!-- アイテム情報 -->
+					<table>
+						<tbody>
+							<tr>
+								<td id="ID_ITEM_INFO">
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<!-- シャドウ装備 -->
+					<div id="OBJID_SHADOW_EQUIPS_MIG" class="folding-block-MIG">
+						<input type="checkbox" id="OBJID_SWITCH_SHADOW_EQUIPS_CTRL_MIG" class="folding-switch-MIG"
+							checked>
+						<label for="OBJID_SWITCH_SHADOW_EQUIPS_CTRL_MIG">シャドウ装備</label>
+						<div class="folding-block-body-MIG shadow-equips">
+
+							<div class="equip-block eqprgn-arms-right">
+								<input class="equip-ctrl" type="checkbox" checked>
+								<div class="equip-conf">
+
+									<input type="checkbox" class="item-ctrl" checked>
+									<div class="item-conf">
+										<select class="item-refined" id="OBJID_SHADOW_WEAPON_REFINE"></select>
+										<select class="item-select" id="OBJID_SHADOW_WEAPON"
+											onChange="OnChangeEquip(EQUIP_REGION_ID_SHADOW_ARMS_RIGHT, parseInt(this.value))"></select>
+									</div>
+
+									<input type="checkbox" class="card-ctrl">
+									<div class="card-conf">
+										<select class="card-select"></select>
+										<select class="card-select"></select>
+										<select class="card-select"></select>
+										<select class="card-select"></select>
+									</div>
+
+									<input type="checkbox" class="rndopt-ctrl" checked>
+									<div class="rndopt-conf">
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+									</div>
+
+									<div class="divider-line"></div>
+								</div>
+							</div>
+
+							<div class="equip-block eqprgn-arms-left">
+								<input class="equip-ctrl" type="checkbox" checked>
+								<div class="equip-conf">
+
+									<input type="checkbox" class="item-ctrl" checked>
+									<div class="item-conf">
+										<select class="item-refined" id="OBJID_SHADOW_SHIELD_REFINE"></select>
+										<select class="item-select" id="OBJID_SHADOW_SHIELD"
+											onChange="OnChangeEquip(EQUIP_REGION_ID_SHADOW_ARMS_LEFT, parseInt(this.value))"></select>
+									</div>
+
+									<input type="checkbox" class="card-ctrl">
+									<div class="card-conf">
+										<select class="card-select"></select>
+										<select class="card-select"></select>
+										<select class="card-select"></select>
+										<select class="card-select"></select>
+									</div>
+
+									<input type="checkbox" class="rndopt-ctrl" checked>
+									<div class="rndopt-conf">
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+									</div>
+
+									<div class="divider-line"></div>
+								</div>
+							</div>
+
+							<div class="equip-block eqprgn-head-top">
+								<input class="equip-ctrl" type="checkbox">
+								<div class="equip-conf">
+
+									<input type="checkbox" class="item-ctrl" checked>
+									<div class="item-conf">
+										<select class="item-refined"></select>
+										<select class="item-select"></select>
+									</div>
+
+									<input type="checkbox" class="card-ctrl">
+									<div class="card-conf">
+										<select class="card-select"></select>
+										<select class="card-select"></select>
+										<select class="card-select"></select>
+										<select class="card-select"></select>
+									</div>
+
+									<input type="checkbox" class="rndopt-ctrl" checked>
+									<div class="rndopt-conf">
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+									</div>
+
+									<div class="divider-line"></div>
+								</div>
+							</div>
+
+							<div class="equip-block eqprgn-head-mid">
+								<input class="equip-ctrl" type="checkbox">
+								<div class="equip-conf">
+
+									<input type="checkbox" class="item-ctrl" checked>
+									<div class="item-conf">
+										<select class="item-refined"></select>
+										<select class="item-select"></select>
+									</div>
+
+									<input type="checkbox" class="card-ctrl">
+									<div class="card-conf">
+										<select class="card-select"></select>
+										<select class="card-select"></select>
+										<select class="card-select"></select>
+										<select class="card-select"></select>
+									</div>
+
+									<input type="checkbox" class="rndopt-ctrl" checked>
+									<div class="rndopt-conf">
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+									</div>
+
+									<div class="divider-line"></div>
+								</div>
+							</div>
+
+							<div class="equip-block eqprgn-head-under">
+								<input class="equip-ctrl" type="checkbox">
+								<div class="equip-conf">
+
+									<input type="checkbox" class="item-ctrl" checked>
+									<div class="item-conf">
+										<select class="item-refined"></select>
+										<select class="item-select"></select>
+									</div>
+
+									<input type="checkbox" class="card-ctrl">
+									<div class="card-conf">
+										<select class="card-select"></select>
+										<select class="card-select"></select>
+										<select class="card-select"></select>
+										<select class="card-select"></select>
+									</div>
+
+									<input type="checkbox" class="rndopt-ctrl" checked>
+									<div class="rndopt-conf">
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+									</div>
+
+									<div class="divider-line"></div>
+								</div>
+							</div>
+
+							<div class="equip-block eqprgn-shield">
+								<input class="equip-ctrl" type="checkbox">
+								<div class="equip-conf">
+
+									<input type="checkbox" class="item-ctrl" checked>
+									<div class="item-conf">
+										<select class="item-refined"></select>
+										<select class="item-select"></select>
+									</div>
+
+									<input type="checkbox" class="card-ctrl">
+									<div class="card-conf">
+										<select class="card-select"></select>
+										<select class="card-select"></select>
+										<select class="card-select"></select>
+										<select class="card-select"></select>
+									</div>
+
+									<input type="checkbox" class="rndopt-ctrl" checked>
+									<div class="rndopt-conf">
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+									</div>
+
+									<div class="divider-line"></div>
+								</div>
+							</div>
+
+							<div class="equip-block eqprgn-body">
+								<input class="equip-ctrl" type="checkbox" checked>
+								<div class="equip-conf">
+
+									<input type="checkbox" class="item-ctrl" checked>
+									<div class="item-conf">
+										<select class="item-refined" id="OBJID_SHADOW_BODY_REFINE"></select>
+										<select class="item-select" id="OBJID_SHADOW_BODY"
+											onChange="OnChangeEquip(EQUIP_REGION_ID_SHADOW_BODY, parseInt(this.value))"></select>
+									</div>
+
+									<input type="checkbox" class="card-ctrl">
+									<div class="card-conf">
+										<select class="card-select"></select>
+										<select class="card-select"></select>
+										<select class="card-select"></select>
+										<select class="card-select"></select>
+									</div>
+
+									<input type="checkbox" class="rndopt-ctrl" checked>
+									<div class="rndopt-conf">
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+									</div>
+
+									<div class="divider-line"></div>
+								</div>
+							</div>
+
+							<div class="equip-block eqprgn-shoulder">
+								<input class="equip-ctrl" type="checkbox">
+								<div class="equip-conf">
+
+									<input type="checkbox" class="item-ctrl" checked>
+									<div class="item-conf">
+										<select class="item-refined"></select>
+										<select class="item-select"></select>
+									</div>
+
+									<input type="checkbox" class="card-ctrl">
+									<div class="card-conf">
+										<select class="card-select"></select>
+										<select class="card-select"></select>
+										<select class="card-select"></select>
+										<select class="card-select"></select>
+									</div>
+
+									<input type="checkbox" class="rndopt-ctrl" checked>
+									<div class="rndopt-conf">
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+									</div>
+
+									<div class="divider-line"></div>
+								</div>
+							</div>
+
+							<div class="equip-block eqprgn-foot">
+								<input class="equip-ctrl" type="checkbox" checked>
+								<div class="equip-conf">
+
+									<input type="checkbox" class="item-ctrl" checked>
+									<div class="item-conf">
+										<select class="item-refined" id="OBJID_SHADOW_SHOESE_REFINE"></select>
+										<select class="item-select" id="OBJID_SHADOW_SHOESE"
+											onChange="OnChangeEquip(EQUIP_REGION_ID_SHADOW_FOOT, parseInt(this.value))"></select>
+									</div>
+
+									<input type="checkbox" class="card-ctrl">
+									<div class="card-conf">
+										<select class="card-select"></select>
+										<select class="card-select"></select>
+										<select class="card-select"></select>
+										<select class="card-select"></select>
+									</div>
+
+									<input type="checkbox" class="rndopt-ctrl" checked>
+									<div class="rndopt-conf">
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+									</div>
+
+									<div class="divider-line"></div>
+								</div>
+							</div>
+
+							<div class="equip-block eqprgn-accessory-1">
+								<input class="equip-ctrl" type="checkbox" checked>
+								<div class="equip-conf">
+
+									<input type="checkbox" class="item-ctrl" checked>
+									<div class="item-conf">
+										<select class="item-refined" id="OBJID_SHADOW_ACCESSORY1_REFINE"></select>
+										<select class="item-select" id="OBJID_SHADOW_ACCESSORY1"
+											onChange="OnChangeEquip(EQUIP_REGION_ID_SHADOW_ACCESSARY_1, parseInt(this.value))"></select>
+									</div>
+
+									<input type="checkbox" class="card-ctrl">
+									<div class="card-conf">
+										<select class="card-select"></select>
+										<select class="card-select"></select>
+										<select class="card-select"></select>
+										<select class="card-select"></select>
+									</div>
+
+									<input type="checkbox" class="rndopt-ctrl" checked>
+									<div class="rndopt-conf">
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+									</div>
+
+									<div class="divider-line"></div>
+								</div>
+							</div>
+
+							<div class="equip-block eqprgn-accessory-2">
+								<input class="equip-ctrl" type="checkbox" checked>
+								<div class="equip-conf">
+
+									<input type="checkbox" class="item-ctrl" checked>
+									<div class="item-conf">
+										<select class="item-refined" id="OBJID_SHADOW_ACCESSORY2_REFINE"></select>
+										<select class="item-select" id="OBJID_SHADOW_ACCESSORY2"
+											onChange="OnChangeEquip(EQUIP_REGION_ID_SHADOW_ACCESSARY_2, parseInt(this.value))"></select>
+									</div>
+
+									<input type="checkbox" class="card-ctrl">
+									<div class="card-conf">
+										<select class="card-select"></select>
+										<select class="card-select"></select>
+										<select class="card-select"></select>
+										<select class="card-select"></select>
+									</div>
+
+									<input type="checkbox" class="rndopt-ctrl" checked>
+									<div class="rndopt-conf">
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+										<select class="rndopt-kind-select"></select>
+										<select class="rndopt-value-select"></select>
+									</div>
+
+									<div class="divider-line"></div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<!-- 習得スキル -->
+					<table>
+						<tbody>
+							<tr>
+								<td id="ID_SKILL_LEARNED">
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<!-- 職固有支援 -->
+					<table>
+						<tbody>
+							<tr>
+								<td id="ID_PASS_SKILL">
+									<input type="checkbox" name="A1_SKILLSW" onclick="Click_PassSkillSW()">
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<!-- １次職支援 -->
+					<table>
+						<tbody>
+							<tr>
+								<td id="OBJID_TD_CHARA_CONF_ICHIZI">
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<!-- ２次職支援 -->
+					<table>
+						<tbody>
+							<tr>
+								<td id="OBJID_TD_CHARA_CONF_NIZI">
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<!-- ３次職支援 -->
+					<table>
+						<tbody>
+							<tr>
+								<td id="OBJID_TD_CHARA_CONF_SANZI">
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<!-- ４次職支援 -->
+					<table>
+						<tbody>
+							<tr>
+								<td id="OBJID_TD_CHARA_CONF_YOZI">
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<!-- デバフ -->
+					<table>
+						<tbody>
+							<tr>
+								<td id="OBJID_TD_CHARA_CONF_DEBUFF">
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<br>
+					<!-- 攻撃設定部 -->
+					<div id="OBJID_ATTACK_BLOCK_MIG">
+						<!-- 攻撃方法 -->
+						<div id="ID_ATTACK_METHOD_AREA">
+						</div>
+						<!-- 動作設定 -->
+						<div id="OBJID_ATTACK_SETTING_BLOCK_MIG" class="folding-block-MIG" style="white-space: nowrap;">
+							<input type="checkbox" id="OBJID_SWITCH_ATTACK_SETTING_MIG" class="folding-switch-MIG">
+							<label for="OBJID_SWITCH_ATTACK_SETTING_MIG">動作設定</label>
+							<span class="folding-link-help-MIG"><a href="../other/set.html"
+									target="_blank">説明表示</a></span>
+							<div class="folding-block-body-MIG">
+								<div id="OBJID_ATTACK_SETTING_DIGIT3_MIG">
+									<input id="OBJID_CHECK_DIGIT3" type="checkbox"
+										onchange="CAttackMethodAreaComponentManager.OnChangeDigit3()">
+									<label for="OBJID_CHECK_DIGIT3">3桁区切りで表示する</label>
+								</div>
+								<div id="OBJID_ATTACK_SETTING_AUTO_CALC_MIG">
+									<label for="OBJID_INPUT_ATTACK_METHOD_AUTO_CALC">自動再計算：</label>
+									<select id="OBJID_INPUT_ATTACK_METHOD_AUTO_CALC"
+										onchange="CAttackMethodAreaComponentManager.OnChangeAutoCalc()">
+										<option value="0">攻撃方法変更時に自動で再計算しない</option>
+										<option value="1">攻撃方法変更時に自動で再計算する</option>
+										<option value="2">全ての項目変更時に自動で再計算しない</option>
+										<option value="3">全ての項目変更時に自動で再計算する</option>
+									</select>
+								</div>
+								<div id="OBJID_ATTACK_SETTING_ACTIVE_INTERVAL_MIG">
+									<label for="OBJID_SELECT_ACTIVE_INTERVAL">アクティブスキルの限界攻撃間隔：</label>
+									<select id="OBJID_SELECT_ACTIVE_INTERVAL" name="Conf01"
+										onchange="CAttackMethodAreaComponentManager.OnChangeAttackInterval()">
+										<option value="10">0.10秒(秒間10発)</option>
+										<option value="11">0.11秒(秒間9発)</option>
+										<option value="12">0.12秒(秒間8発)</option>
+										<option value="14" selected>0.14秒(秒間7発)</option>
+										<option value="15">0.15秒</option>
+										<option value="17">0.17秒(秒間6発)</option>
+										<option value="20">0.20秒(秒間5発)</option>
+										<option value="25">0.25秒(秒間4発)</option>
+										<option value="30">0.30秒</option>
+										<option value="33">0.33秒(秒間3発)</option>
+										<option value="40">0.40秒</option>
+										<option value="50">0.50秒(秒間2発)</option>
+									</select>
+								</div>
+								<div id="OBJID_ATTACK_SETTING_CASTSIM_INTERVAL_MIG">
+									<label for="OBJID_SELECT_CASTSIM_INTERVAL">詠唱イメージ更新間隔：</label>
+									<select id="OBJID_SELECT_CASTSIM_INTERVAL"
+										onchange="CAttackMethodAreaComponentManager.OnChangeCastSimInterval()">
+										<option value="10" selected>10ミリ秒(最も滑らか)</option>
+										<option value="25">25ミリ秒</option>
+										<option value="50">50ミリ秒</option>
+										<option value="100">100ミリ秒</option>
+										<option value="250">250ミリ秒(最もカクカク)</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- スキル倍率補正・サイズ補正 表示部 -->
+					<table>
+						<tbody>
+							<tr>
+								<td>
+									<span id="OBJID_SPAN_ACTIVE_SKILL_RATIO_CHANGE_PHYSICAL"></span>
+								</td>
+								<td>
+									<span id="OBJID_SPAN_ACTIVE_SKILL_RATIO_CHANGE_MAGICAL"></span>
+								</td>
+								<td>
+									<span id="OBJID_SPAN_SIZE_MODIFY"></span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<!-- ダメージ計算部 -->
+					<table>
+						<tr valign="top">
+							<!-- モンスター設定 -->
+							<td>
 								<table>
+									<!-- マップ指定 -->
+									<tr>
+										<td id="OBJID_TD_MONSTER_MAP_AREA">
+										</td>
+									</tr>
+									<!-- 状態異常設定 -->
+									<tr>
+										<td id="OBJID_TD_MOB_CONF_DEBUF">
+										</td>
+									</tr>
+									<!-- 強化設定 -->
+									<tr>
+										<td id="OBJID_TD_MOB_CONF_BUF">
+										</td>
+									</tr>
+									<!-- 対プレイヤー設定 -->
+									<tr>
+										<td id="OBJID_TD_MOB_CONF_PLAYER">
+										</td>
+									</tr>
+									<!-- 手動入力 -->
+									<tr>
+										<td id="OBJID_TD_MOB_CONF_INPUT_NEW">
+										</td>
+									</tr>
+								</table>
+							</td>
+							<!-- 基本情報 -->
+							<td>
+								<div id="BATTLE_RESULT_BASIC"></div>
+								<table style="display: none;">
 									<tbody>
 										<tr>
-											<td id="ID_FLOATING_INFO_AREA">
+											<td>
+												<table border="1">
+													<tr>
+														<td ColSpan="2" Bgcolor="#DDDDFF">戦闘結果</td>
+													</tr>
+
+													<tr>
+														<td>命中率　（必中効果）</td>
+														<td><span id="BattleHIT"></span>％　（<span
+																id="BattlePerfectHIT"></span>％）</td>
+													</tr>
+
+													<tr>
+														<td>回避率</td>
+														<td><span id="BattleFLEE"></span>％</td>
+													</tr>
+
+													<tr>
+														<td id="CRIATKname">クリティカルダメージ</td>
+														<td id="CRIATK"></td>
+													</tr>
+
+													<tr>
+														<td id="CRInumname">クリティカル(発動率)</td>
+														<td id="CRInum"></td>
+													</tr>
+
+													<tr>
+														<td id="bSUBname"></td>
+														<td id="bSUB"></td>
+													</tr>
+
+													<tr>
+														<td id="bSUB2name">攻撃間隔</td>
+														<td id="bSUB2"></td>
+													</tr>
+
+													<tr>
+														<td>
+															<a href="../howtouse/howtouse_simulatecasttime.html"
+																target="_blank">詠唱イメージ</a>
+															<input type="button" value="詠唱!!"
+																id="OBJID_BUTTON_SIMULATE_CAST_TIME">
+														</td>
+														<td>
+															<progress id="OBJID_PROGRESS_SIMULATE_CAST_TIME"></progress>
+														</td>
+													</tr>
+
+													<tr>
+														<td>最小与ダメ</td>
+														<td id="strID_0"></td>
+													</tr>
+
+													<tr>
+														<td>平均与ダメ</td>
+														<td id="strID_1"></td>
+													</tr>
+
+													<tr>
+														<td>最大与ダメ</td>
+														<td id="strID_2"></td>
+													</tr>
+
+													<tr>
+														<td>秒間与ダメ</td>
+														<td id="AveSecondATK"></td>
+													</tr>
+
+													<tr>
+														<td>最小攻撃回数</td>
+														<td id="MinATKnum"></td>
+													</tr>
+
+													<tr>
+														<td>平均攻撃回数</td>
+														<td id="AveATKnum"></td>
+													</tr>
+
+													<tr>
+														<td>最大攻撃回数</td>
+														<td id="MaxATKnum"></td>
+													</tr>
+
+													<tr>
+														<td>平均戦闘時間</td>
+														<td id="BattleTime"></td>
+													</tr>
+
+													<tr>
+														<td>一撃BaseExp</td>
+														<td id="AtkBaseExp"></td>
+													</tr>
+
+													<tr>
+														<td>一撃JobExp</td>
+														<td id="AtkJobExp"></td>
+													</tr>
+
+													<tr>
+														<td>平均被ダメージ(仮)</td>
+														<td id="B_AveAtk"></td>
+													</tr>
+
+													<tr>
+														<td>平均被ダメ(回避込)</td>
+														<td Width=128 id="B_Ave2Atk"></td>
+													</tr>
+												</table>
 											</td>
 										</tr>
 									</tbody>
 								</table>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- 基本装備 -->
-				<table>
-					<tbody>
-						<!-- クイック設定 -->
-						<tr>
+							</td>
+							<!-- ダメージ表示 -->
 							<td>
-								<span id="ID_QUICK_CONTROL">
-									<input type="checkbox" id="OBJID_QUICK_CONTROL_EXTRACT_CHECKBOX" onclick="OnClickQuickControlSW()">
-								</span>
+								<div id="BATTLE_RESULT_DAMAGE"></div>
 							</td>
-						</tr>
-						<!-- オプション -->
-						<tr>
+							<!-- 時限効果クイック調整 -->
 							<td>
-								<span id="nm026">スピードポーション：</span>
-								<select id="OBJID_SPEED_POT" name = "A_SpeedPOT" onChange = "StAllCalc() | AutoCalc()">
-								</select>
-								<br>
-								<span id="nm027">武器タイプ：</span>
-								<select id="OBJID_ARMS_TYPE_RIGHT" name="A_WeaponType" onChange="OnChangeArmsTypeRight(this[this.selectedIndex].value) | StAllCalc() | AutoCalc()">
-								</select>
-								<span id = "A_SobWeaponName"></span>
-								<span id = "OBJID_SPAN_SELECT_ARROW"></span>
-								<span id = "OBJID_SPAN_SWAP_ARMS"></span>
+								<div id="ID_BATTLE_QUICK_CONTROL_AREA" style="margin-top: 3px;"></div>
 							</td>
 						</tr>
-						<!-- 装備設定 -->
-						<tr>
-							<td>
-								<table border="1">
-									<!-- ヘッダ -->
-									<tr>
-										<td ColSpan="3" Bgcolor="#DDDDFF">武器＆防具/カード</td>
-										<td ColSpan="10" Bgcolor="#DDDDFF">
-											<input type="button" id="OBJID_SLOT_MODE_BUTTON" value="入力欄切替" onclick="OnClickSlotModeButton()">
-											カードの入力とランダムオプションの入力を切り替えます
-										</td>
-									</tr>
-									<!-- 右手装備 -->
-									<tr>
-										<td rowspan="2">
-											<select id="OBJID_ARMS_RIGHT_REFINE" name="A_Weapon_ATKplus" onChange = "OnChangeRefined() | AutoCalc()">
-												<option value="0">+0
-												<option value="1">+1
-												<option value="2">+2
-												<option value="3">+3
-												<option value="4">+4
-												<option value="5">+5
-												<option value="6">+6
-												<option value="7">+7
-												<option value="8">+8
-												<option value="9">+9
-												<option value="10">+10
-											</select>
-										</td>
-										<td rowspan="2">
-											<select id="OBJID_ARMS_RIGHT_TRANSCENDENCE" name="A_Weapon_Transcendence" onChange = "StAllCalc() | AutoCalc()">
-												<option value="0">-
-												<option value="1">★1
-												<option value="2">★2
-												<option value="3">★3
-												<option value="4">★4
-											</select>
-										</td>
-										<td rowspan="2">
-											<select id="OBJID_ARMS_RIGHT" onChange="OnChangeEquip(EQUIP_REGION_ID_ARMS, parseInt(this.value)) | AutoCalc()">
-											</select>
-										</td>
-										<td colspan="2" style="white-space: nowrap;">
-											<span id="ID_A_HUYO_NAME">武器属性付与</span>
-											<select id="OBJID_SELECT_ARMS_ELEMENT" name="A_Weapon_zokusei" onChange="AutoCalc()">
-											</select>
-										</td>
-										<td colspan="8">
-											<span style="font-size: smaller; white-space: nowrap;">※攻撃属性の優先度は状況次第なので、確実に設定するには左の付与欄で指定してください。（無属性は、全ての属性設定を解除）</span>
-										</td>
-									</tr>
-									<tr id="OBJID_ARMS_RIGHT_SLOT_ROOT">
-									</tr>
-									<!-- パディング -->
-									<tr>
-										<td colspan="12">
-										</td>
-									</tr>
-									<!-- 左手装備 -->
-									<tr id="OBJID_ARMS_LEFT_SLOT_ROOT">
-										<td>
-											<select id="OBJID_ARMS_LEFT_REFINE" name="A_Weapon2_ATKplus" onChange = "OnChangeRefined() | AutoCalc()" disabled>
-												<option value="0">+0
-												<option value="1">+1
-												<option value="2">+2
-												<option value="3">+3
-												<option value="4">+4
-												<option value="5">+5
-												<option value="6">+6
-												<option value="7">+7
-												<option value="8">+8
-												<option value="9">+9
-												<option value="10">+10
-											</select>
-										</td>
-										<td>
-											<select id="OBJID_ARMS_LEFT_TRANSCENDENCE" name="A_Weapon2_Transcendence" onChange = "StAllCalc() | AutoCalc()" disabled>
-												<option value="0">-
-												<option value="1">★1
-												<option value="2">★2
-												<option value="3">★3
-												<option value="4">★4
-											</select>
-										</td>
-										<td>
-											<select id="OBJID_ARMS_LEFT" onChange="OnChangeEquip(EQUIP_REGION_ID_ARMS_LEFT, parseInt(this.value)) | AutoCalc()">
-											</select>
-										</td>
-									</tr>
-									<!-- パディング -->
-									<tr>
-										<td colspan="12">
-										</td>
-									</tr>
-									<!-- 頭上段装備 -->
-									<tr id="OBJID_HEAD_TOP_SLOT_ROOT">
-										<td>
-											<select id="OBJID_HEAD_TOP_REFINE" name="A_HEAD_DEF_PLUS" onChange="OnChangeRefined() | AutoCalc()">
-												<option value="0">+0
-												<option value="1">+1
-												<option value="2">+2
-												<option value="3">+3
-												<option value="4">+4
-												<option value="5">+5
-												<option value="6">+6
-												<option value="7">+7
-												<option value="8">+8
-												<option value="9">+9
-												<option value="10">+10
-											</select>
-										</td>
-										<td>
-											<select id="OBJID_HEAD_TOP_TRANSCENDENCE" name="A_HEAD_DEF_Transcendence" onChange = "StAllCalc() | AutoCalc()">
-												<option value="0">-
-												<option value="1">★1
-												<option value="2">★2
-												<option value="3">★3
-												<option value="4">★4
-											</select>
-										</td>
-										<td>
-											<select id="OBJID_HEAD_TOP" name="A_head1" onChange="OnChangeEquip(EQUIP_REGION_ID_HEAD_TOP, parseInt(this.value)) | AutoCalc()"></select>
-										</td>
-									</tr>
-									<!-- パディング -->
-									<tr>
-										<td colspan="12">
-										</td>
-									</tr>
-									<!-- 頭中段装備 -->
-									<tr id="OBJID_HEAD_MID_SLOT_ROOT">
-										<td>
-										</td>
-										<td>
-										</td>
-										<td>
-											<select id="OBJID_HEAD_MID" name="A_head2" onChange="OnChangeEquip(EQUIP_REGION_ID_HEAD_MID, parseInt(this.value)) | AutoCalc()"></select>
-										</td>
-									</tr>
-									<!-- パディング -->
-									<tr>
-										<td colspan="12">
-										</td>
-									</tr>
-									<!-- 頭下段装備 -->
-									<tr id="OBJID_HEAD_UNDER_SLOT_ROOT">
-										<td>
-										</td>
-										<td>
-										</td>
-										<td>
-											<select id="OBJID_HEAD_UNDER" name="A_head3" onChange="OnChangeEquip(EQUIP_REGION_ID_HEAD_UNDER, parseInt(this.value)) | AutoCalc()"></select>
-										</td>
-									</tr>
-									<!-- パディング -->
-									<tr>
-										<td colspan="12">
-										</td>
-									</tr>
-									<!-- 盾装備 -->
-									<tr id="OBJID_SHIELD_SLOT_ROOT">
-										<td id="ID_B4">
-											<select id="OBJID_SHIELD_REFINE" name="A_SHIELD_DEF_PLUS" onChange="OnChangeRefined() | AutoCalc()">
-												<option value="0">+0
-												<option value="1">+1
-												<option value="2">+2
-												<option value="3">+3
-												<option value="4">+4
-												<option value="5">+5
-												<option value="6">+6
-												<option value="7">+7
-												<option value="8">+8
-												<option value="9">+9
-												<option value="10">+10
-											</select>
-										</td>
-										<td>
-											<select id="OBJID_SHIELD_TRANSCENDENCE" name="A_SHIELD_DEF_Transcendence" onChange = "StAllCalc() | AutoCalc()">
-												<option value="0">-
-												<option value="1">★1
-												<option value="2">★2
-												<option value="3">★3
-												<option value="4">★4
-											</select>
-										</td>
-										<td>
-											<select id="OBJID_SHIELD" name="A_left" onChange="OnChangeEquip(EQUIP_REGION_ID_SHIELD, parseInt(this.value)) | AutoCalc()"></select>
-										</td>
-									</tr>
-									<!-- パディング -->
-									<tr>
-										<td colspan="12">
-										</td>
-									</tr>
-									<!-- 鎧装備 -->
-									<tr id="OBJID_BODY_SLOT_ROOT">
-										<td>
-											<select id="OBJID_BODY_REFINE" name="A_BODY_DEF_PLUS" onChange="OnChangeRefined() | AutoCalc()">
-												<option value="0">+0
-												<option value="1">+1
-												<option value="2">+2
-												<option value="3">+3
-												<option value="4">+4
-												<option value="5">+5
-												<option value="6">+6
-												<option value="7">+7
-												<option value="8">+8
-												<option value="9">+9
-												<option value="10">+10
-											</select>
-										</td>
-										<td>
-											<select id="OBJID_BODY_TRANSCENDENCE" name="A_BODY_DEF_Transcendence" onChange = "StAllCalc() | AutoCalc()">
-												<option value="0">-
-												<option value="1">★1
-												<option value="2">★2
-												<option value="3">★3
-												<option value="4">★4
-											</select>
-										</td>
-										<td>
-											<select id="OBJID_BODY" name="A_body" onChange="OnChangeEquip(EQUIP_REGION_ID_BODY, parseInt(this.value)) | AutoCalc()"></select>
-										</td>
-									</tr>
-									<!-- パディング -->
-									<tr>
-										<td colspan="12">
-										</td>
-									</tr>
-									<!-- 肩装備 -->
-									<tr id="OBJID_SHOULDER_SLOT_ROOT">
-										<td>
-											<select id="OBJID_SHOULDER_REFINE" name="A_SHOULDER_DEF_PLUS" onChange="OnChangeRefined() | AutoCalc()">
-												<option value="0">+0
-												<option value="1">+1
-												<option value="2">+2
-												<option value="3">+3
-												<option value="4">+4
-												<option value="5">+5
-												<option value="6">+6
-												<option value="7">+7
-												<option value="8">+8
-												<option value="9">+9
-												<option value="10">+10
-											</select>
-										</td>
-										<td>
-											<select id="OBJID_SHOULDER_TRANSCENDENCE" name="A_SHOULDER_DEF_Transcendence" onChange = "StAllCalc() | AutoCalc()">
-												<option value="0">-
-												<option value="1">★1
-												<option value="2">★2
-												<option value="3">★3
-												<option value="4">★4
-											</select>
-										</td>
-										<td>
-											<select id="OBJID_SHOULDER" name="A_shoulder" onChange="OnChangeEquip(EQUIP_REGION_ID_SHOULDER, parseInt(this.value)) | AutoCalc()"></select>
-										</td>
-									</tr>
-									<!-- パディング -->
-									<tr>
-										<td colspan="12">
-										</td>
-									</tr>
-									<!-- 靴装備 -->
-									<tr id="OBJID_SHOES_SLOT_ROOT">
-										<td>
-											<select id="OBJID_SHOES_REFINE" name="A_SHOES_DEF_PLUS" onChange="OnChangeRefined() | AutoCalc()">
-												<option value="0">+0
-												<option value="1">+1
-												<option value="2">+2
-												<option value="3">+3
-												<option value="4">+4
-												<option value="5">+5
-												<option value="6">+6
-												<option value="7">+7
-												<option value="8">+8
-												<option value="9">+9
-												<option value="10">+10
-											</select>
-										</td>
-										<td>
-											<select id="OBJID_SHOES_TRANSCENDENCE" name="A_SHOES_DEF_Transcendence" onChange = "StAllCalc() | AutoCalc()">
-												<option value="0">-
-												<option value="1">★1
-												<option value="2">★2
-												<option value="3">★3
-												<option value="4">★4
-											</select>
-										</td>
-										<td>
-											<select id="OBJID_SHOES" name="A_shoes" onChange="OnChangeEquip(EQUIP_REGION_ID_SHOES, parseInt(this.value)) | AutoCalc()"></select>
-										</td>
-									</tr>
-									<!-- パディング -->
-									<tr>
-										<td colspan="12">
-										</td>
-									</tr>
-									<!-- アクセサリ1装備 -->
-									<tr id="OBJID_ACCESSARY_1_SLOT_ROOT">
-										<td>
-										</td>
-										<td style="text-align:right">
-											<button type="button" id="OBJID_ACCESSARY_1_COPY" onclick="copyAccs(1, 2)">↓</button>
-										</td>
-										<td>
-											<select id="OBJID_ACCESSARY_1" name="A_acces1" onChange="OnChangeEquip(EQUIP_REGION_ID_ACCESSARY_1, parseInt(this.value)) | AutoCalc()"></select>
-										</td>
-									</tr>
-									<!-- パディング -->
-									<tr>
-										<td colspan="12">
-										</td>
-									</tr>
-									<!-- アクセサリ2装備 -->
-									<tr id="OBJID_ACCESSARY_2_SLOT_ROOT">
-										<td>
-										</td>
-										<td style="text-align:right">
-											<button type="button" id="OBJID_ACCESSARY_2_COPY" onclick="copyAccs(2, 1)">↑</button>
-										</td>
-										<td>
-											<select id="OBJID_ACCESSARY_2" name="A_acces2" onChange="OnChangeEquip(EQUIP_REGION_ID_ACCESSARY_2, parseInt(this.value)) | AutoCalc()"></select>
-										</td>
-									</tr>
-								</table>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<!-- 簡易表示 -->
-				<div id = "OBJID_DIV_BATTLE_RESULT_TINY"></div>
-				<div id = "OBJID_DIV_RESIST_ELEMENT_TINY"></div>
-				<!-- アイテム情報 -->
-				<table>
-					<tbody>
-						<tr>
-							<td id="ID_ITEM_INFO">
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<!-- シャドウ装備 -->
-				<div id="OBJID_SHADOW_EQUIPS_MIG" class="folding-block-MIG">
-					<input type="checkbox" id="OBJID_SWITCH_SHADOW_EQUIPS_CTRL_MIG" class="folding-switch-MIG" checked>
-					<label for="OBJID_SWITCH_SHADOW_EQUIPS_CTRL_MIG">シャドウ装備</label>
-					<div class="folding-block-body-MIG shadow-equips">
-
-						<div class="equip-block eqprgn-arms-right">
-							<input class="equip-ctrl" type="checkbox" checked>
-							<div class="equip-conf">
-
-								<input type="checkbox" class="item-ctrl" checked>
-								<div class="item-conf">
-									<select class="item-refined" id="OBJID_SHADOW_WEAPON_REFINE"></select>
-									<select class="item-select" id="OBJID_SHADOW_WEAPON" onChange="OnChangeEquip(EQUIP_REGION_ID_SHADOW_ARMS_RIGHT, parseInt(this.value))"></select>
-								</div>
-
-								<input type="checkbox" class="card-ctrl">
-								<div class="card-conf">
-									<select class="card-select"></select>
-									<select class="card-select"></select>
-									<select class="card-select"></select>
-									<select class="card-select"></select>
-								</div>
-
-								<input type="checkbox" class="rndopt-ctrl" checked>
-								<div class="rndopt-conf">
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-								</div>
-
-								<div class="divider-line"></div>
-							</div>
-						</div>
-
-						<div class="equip-block eqprgn-arms-left">
-							<input class="equip-ctrl" type="checkbox" checked>
-							<div class="equip-conf">
-
-								<input type="checkbox" class="item-ctrl" checked>
-								<div class="item-conf">
-									<select class="item-refined" id="OBJID_SHADOW_SHIELD_REFINE"></select>
-									<select class="item-select" id="OBJID_SHADOW_SHIELD" onChange="OnChangeEquip(EQUIP_REGION_ID_SHADOW_ARMS_LEFT, parseInt(this.value))"></select>
-								</div>
-
-								<input type="checkbox" class="card-ctrl">
-								<div class="card-conf">
-									<select class="card-select"></select>
-									<select class="card-select"></select>
-									<select class="card-select"></select>
-									<select class="card-select"></select>
-								</div>
-
-								<input type="checkbox" class="rndopt-ctrl" checked>
-								<div class="rndopt-conf">
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-								</div>
-
-								<div class="divider-line"></div>
-							</div>
-						</div>
-
-						<div class="equip-block eqprgn-head-top">
-							<input class="equip-ctrl" type="checkbox">
-							<div class="equip-conf">
-
-								<input type="checkbox" class="item-ctrl" checked>
-								<div class="item-conf">
-									<select class="item-refined"></select>
-									<select class="item-select"></select>
-								</div>
-
-								<input type="checkbox" class="card-ctrl">
-								<div class="card-conf">
-									<select class="card-select"></select>
-									<select class="card-select"></select>
-									<select class="card-select"></select>
-									<select class="card-select"></select>
-								</div>
-
-								<input type="checkbox" class="rndopt-ctrl" checked>
-								<div class="rndopt-conf">
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-								</div>
-
-								<div class="divider-line"></div>
-							</div>
-						</div>
-
-						<div class="equip-block eqprgn-head-mid">
-							<input class="equip-ctrl" type="checkbox">
-							<div class="equip-conf">
-
-								<input type="checkbox" class="item-ctrl" checked>
-								<div class="item-conf">
-									<select class="item-refined"></select>
-									<select class="item-select"></select>
-								</div>
-
-								<input type="checkbox" class="card-ctrl">
-								<div class="card-conf">
-									<select class="card-select"></select>
-									<select class="card-select"></select>
-									<select class="card-select"></select>
-									<select class="card-select"></select>
-								</div>
-
-								<input type="checkbox" class="rndopt-ctrl" checked>
-								<div class="rndopt-conf">
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-								</div>
-
-								<div class="divider-line"></div>
-							</div>
-						</div>
-
-						<div class="equip-block eqprgn-head-under">
-							<input class="equip-ctrl" type="checkbox">
-							<div class="equip-conf">
-
-								<input type="checkbox" class="item-ctrl" checked>
-								<div class="item-conf">
-									<select class="item-refined"></select>
-									<select class="item-select"></select>
-								</div>
-
-								<input type="checkbox" class="card-ctrl">
-								<div class="card-conf">
-									<select class="card-select"></select>
-									<select class="card-select"></select>
-									<select class="card-select"></select>
-									<select class="card-select"></select>
-								</div>
-
-								<input type="checkbox" class="rndopt-ctrl" checked>
-								<div class="rndopt-conf">
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-								</div>
-
-								<div class="divider-line"></div>
-							</div>
-						</div>
-
-						<div class="equip-block eqprgn-shield">
-							<input class="equip-ctrl" type="checkbox">
-							<div class="equip-conf">
-
-								<input type="checkbox" class="item-ctrl" checked>
-								<div class="item-conf">
-									<select class="item-refined"></select>
-									<select class="item-select"></select>
-								</div>
-
-								<input type="checkbox" class="card-ctrl">
-								<div class="card-conf">
-									<select class="card-select"></select>
-									<select class="card-select"></select>
-									<select class="card-select"></select>
-									<select class="card-select"></select>
-								</div>
-
-								<input type="checkbox" class="rndopt-ctrl" checked>
-								<div class="rndopt-conf">
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-								</div>
-
-								<div class="divider-line"></div>
-							</div>
-						</div>
-
-						<div class="equip-block eqprgn-body">
-							<input class="equip-ctrl" type="checkbox" checked>
-							<div class="equip-conf">
-
-								<input type="checkbox" class="item-ctrl" checked>
-								<div class="item-conf">
-									<select class="item-refined" id="OBJID_SHADOW_BODY_REFINE"></select>
-									<select class="item-select" id="OBJID_SHADOW_BODY" onChange="OnChangeEquip(EQUIP_REGION_ID_SHADOW_BODY, parseInt(this.value))"></select>
-								</div>
-
-								<input type="checkbox" class="card-ctrl">
-								<div class="card-conf">
-									<select class="card-select"></select>
-									<select class="card-select"></select>
-									<select class="card-select"></select>
-									<select class="card-select"></select>
-								</div>
-
-								<input type="checkbox" class="rndopt-ctrl" checked>
-								<div class="rndopt-conf">
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-								</div>
-
-								<div class="divider-line"></div>
-							</div>
-						</div>
-
-						<div class="equip-block eqprgn-shoulder">
-							<input class="equip-ctrl" type="checkbox">
-							<div class="equip-conf">
-
-								<input type="checkbox" class="item-ctrl" checked>
-								<div class="item-conf">
-									<select class="item-refined"></select>
-									<select class="item-select"></select>
-								</div>
-
-								<input type="checkbox" class="card-ctrl">
-								<div class="card-conf">
-									<select class="card-select"></select>
-									<select class="card-select"></select>
-									<select class="card-select"></select>
-									<select class="card-select"></select>
-								</div>
-
-								<input type="checkbox" class="rndopt-ctrl" checked>
-								<div class="rndopt-conf">
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-								</div>
-
-								<div class="divider-line"></div>
-							</div>
-						</div>
-
-						<div class="equip-block eqprgn-foot">
-							<input class="equip-ctrl" type="checkbox" checked>
-							<div class="equip-conf">
-
-								<input type="checkbox" class="item-ctrl" checked>
-								<div class="item-conf">
-									<select class="item-refined" id="OBJID_SHADOW_SHOESE_REFINE"></select>
-									<select class="item-select" id="OBJID_SHADOW_SHOESE" onChange="OnChangeEquip(EQUIP_REGION_ID_SHADOW_FOOT, parseInt(this.value))"></select>
-								</div>
-
-								<input type="checkbox" class="card-ctrl">
-								<div class="card-conf">
-									<select class="card-select"></select>
-									<select class="card-select"></select>
-									<select class="card-select"></select>
-									<select class="card-select"></select>
-								</div>
-
-								<input type="checkbox" class="rndopt-ctrl" checked>
-								<div class="rndopt-conf">
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-								</div>
-
-								<div class="divider-line"></div>
-							</div>
-						</div>
-
-						<div class="equip-block eqprgn-accessory-1">
-							<input class="equip-ctrl" type="checkbox" checked>
-							<div class="equip-conf">
-
-								<input type="checkbox" class="item-ctrl" checked>
-								<div class="item-conf">
-									<select class="item-refined" id="OBJID_SHADOW_ACCESSORY1_REFINE"></select>
-									<select class="item-select" id="OBJID_SHADOW_ACCESSORY1" onChange="OnChangeEquip(EQUIP_REGION_ID_SHADOW_ACCESSARY_1, parseInt(this.value))"></select>
-								</div>
-
-								<input type="checkbox" class="card-ctrl">
-								<div class="card-conf">
-									<select class="card-select"></select>
-									<select class="card-select"></select>
-									<select class="card-select"></select>
-									<select class="card-select"></select>
-								</div>
-
-								<input type="checkbox" class="rndopt-ctrl" checked>
-								<div class="rndopt-conf">
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-								</div>
-
-								<div class="divider-line"></div>
-							</div>
-						</div>
-
-						<div class="equip-block eqprgn-accessory-2">
-							<input class="equip-ctrl" type="checkbox" checked>
-							<div class="equip-conf">
-
-								<input type="checkbox" class="item-ctrl" checked>
-								<div class="item-conf">
-									<select class="item-refined" id="OBJID_SHADOW_ACCESSORY2_REFINE"></select>
-									<select class="item-select" id="OBJID_SHADOW_ACCESSORY2" onChange="OnChangeEquip(EQUIP_REGION_ID_SHADOW_ACCESSARY_2, parseInt(this.value))"></select>
-								</div>
-
-								<input type="checkbox" class="card-ctrl">
-								<div class="card-conf">
-									<select class="card-select"></select>
-									<select class="card-select"></select>
-									<select class="card-select"></select>
-									<select class="card-select"></select>
-								</div>
-
-								<input type="checkbox" class="rndopt-ctrl" checked>
-								<div class="rndopt-conf">
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-									<select class="rndopt-kind-select"></select>
-									<select class="rndopt-value-select"></select>
-								</div>
-
-								<div class="divider-line"></div>
-							</div>
-						</div>
-
-					</div>
-				</div>
-				<!-- 習得スキル -->
-				<table>
-					<tbody>
-						<tr>
-							<td id="ID_SKILL_LEARNED">
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<!-- 職固有支援 -->
-				<table>
-					<tbody>
-						<tr>
-							<td id="ID_PASS_SKILL">
-								<input type="checkbox" name="A1_SKILLSW"onclick="Click_PassSkillSW()">
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<!-- １次職支援 -->
-				<table>
-					<tbody>
-						<tr>
-							<td id="OBJID_TD_CHARA_CONF_ICHIZI">
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<!-- ２次職支援 -->
-				<table>
-					<tbody>
-						<tr>
-							<td id="OBJID_TD_CHARA_CONF_NIZI">
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<!-- ３次職支援 -->
-				<table>
-					<tbody>
-						<tr>
-							<td id="OBJID_TD_CHARA_CONF_SANZI">
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<!-- ４次職支援 -->
-				<table>
-					<tbody>
-						<tr>
-							<td id="OBJID_TD_CHARA_CONF_YOZI">
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<!-- デバフ -->
-				<table>
-					<tbody>
-						<tr>
-							<td id="OBJID_TD_CHARA_CONF_DEBUFF">
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<br>
-				<!-- 攻撃設定部 -->
-				<div id="OBJID_ATTACK_BLOCK_MIG">
-					<!-- 攻撃方法 -->
-					<div id="ID_ATTACK_METHOD_AREA">
-					</div>
-					<!-- 動作設定 -->
-					<div id="OBJID_ATTACK_SETTING_BLOCK_MIG" class="folding-block-MIG" style="white-space: nowrap;">
-						<input type="checkbox" id="OBJID_SWITCH_ATTACK_SETTING_MIG" class="folding-switch-MIG">
-						<label for="OBJID_SWITCH_ATTACK_SETTING_MIG">動作設定</label>
-						<span class="folding-link-help-MIG"><a href="../other/set.html" target="_blank">説明表示</a></span>
-						<div class="folding-block-body-MIG">
-							<div id="OBJID_ATTACK_SETTING_DIGIT3_MIG">
-								<input id="OBJID_CHECK_DIGIT3" type="checkbox" onchange="CAttackMethodAreaComponentManager.OnChangeDigit3()">
-								<label for="OBJID_CHECK_DIGIT3">3桁区切りで表示する</label>
-							</div>
-							<div id="OBJID_ATTACK_SETTING_AUTO_CALC_MIG">
-								<label for="OBJID_INPUT_ATTACK_METHOD_AUTO_CALC">自動再計算：</label>
-								<select id="OBJID_INPUT_ATTACK_METHOD_AUTO_CALC" onchange="CAttackMethodAreaComponentManager.OnChangeAutoCalc()">
-									<option value="0">攻撃方法変更時に自動で再計算しない</option>
-									<option value="1">攻撃方法変更時に自動で再計算する</option>
-									<option value="2">全ての項目変更時に自動で再計算しない</option>
-									<option value="3">全ての項目変更時に自動で再計算する</option>
-								</select>
-							</div>
-							<div id="OBJID_ATTACK_SETTING_ACTIVE_INTERVAL_MIG">
-								<label for="OBJID_SELECT_ACTIVE_INTERVAL">アクティブスキルの限界攻撃間隔：</label>
-								<select id="OBJID_SELECT_ACTIVE_INTERVAL" name="Conf01" onchange="CAttackMethodAreaComponentManager.OnChangeAttackInterval()">
-									<option value="10">0.10秒(秒間10発)</option>
-									<option value="11">0.11秒(秒間9発)</option>
-									<option value="12">0.12秒(秒間8発)</option>
-									<option value="14" selected>0.14秒(秒間7発)</option>
-									<option value="15">0.15秒</option>
-									<option value="17">0.17秒(秒間6発)</option>
-									<option value="20">0.20秒(秒間5発)</option>
-									<option value="25">0.25秒(秒間4発)</option>
-									<option value="30">0.30秒</option>
-									<option value="33">0.33秒(秒間3発)</option>
-									<option value="40">0.40秒</option>
-									<option value="50">0.50秒(秒間2発)</option>
-								</select>
-							</div>
-							<div id="OBJID_ATTACK_SETTING_CASTSIM_INTERVAL_MIG">
-								<label for="OBJID_SELECT_CASTSIM_INTERVAL">詠唱イメージ更新間隔：</label>
-								<select id="OBJID_SELECT_CASTSIM_INTERVAL" onchange="CAttackMethodAreaComponentManager.OnChangeCastSimInterval()">
-									<option value="10" selected>10ミリ秒(最も滑らか)</option>
-									<option value="25">25ミリ秒</option>
-									<option value="50">50ミリ秒</option>
-									<option value="100">100ミリ秒</option>
-									<option value="250">250ミリ秒(最もカクカク)</option>
-								</select>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- スキル倍率補正・サイズ補正 表示部 -->
-				<table>
-					<tbody>
-						<tr>
-							<td>
-								<span id="OBJID_SPAN_ACTIVE_SKILL_RATIO_CHANGE_PHYSICAL"></span>
-							</td>
-							<td>
-								<span id="OBJID_SPAN_ACTIVE_SKILL_RATIO_CHANGE_MAGICAL"></span>
-							</td>
-							<td>
-								<span id="OBJID_SPAN_SIZE_MODIFY"></span>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<!-- ダメージ計算部 -->
-				<table>
-					<tr valign="top">
-						<!-- モンスター設定 -->
-						<td>
-							<table>
-								<!-- マップ指定 -->
-								<tr>
-									<td id="OBJID_TD_MONSTER_MAP_AREA">
-									</td>
-								</tr>
-								<!-- 状態異常設定 -->
-								<tr>
-									<td id="OBJID_TD_MOB_CONF_DEBUF">
-									</td>
-								</tr>
-								<!-- 強化設定 -->
-								<tr>
-									<td id="OBJID_TD_MOB_CONF_BUF">
-									</td>
-								</tr>
-								<!-- 対プレイヤー設定 -->
-								<tr>
-									<td id="OBJID_TD_MOB_CONF_PLAYER">
-									</td>
-								</tr>
-								<!-- 手動入力 -->
-								<tr>
-									<td id="OBJID_TD_MOB_CONF_INPUT_NEW">
-									</td>
-								</tr>
-							</table>
-						</td>
-						<!-- 基本情報 -->
-						<td>
-							<div id="BATTLE_RESULT_BASIC"></div>
-							<table style="display: none;">
-								<tbody>
-									<tr>
-										<td>
-											<table border="1">
-												<tr>
-													<td ColSpan="2" Bgcolor="#DDDDFF">戦闘結果</td>
-												</tr>
-
-												<tr>
-													<td>命中率　（必中効果）</td>
-													<td><span id="BattleHIT"></span>％　（<span id="BattlePerfectHIT"></span>％）</td>
-												</tr>
-
-												<tr>
-													<td>回避率</td>
-													<td><span id="BattleFLEE"></span>％</td>
-												</tr>
-
-												<tr>
-													<td id="CRIATKname">クリティカルダメージ</td>
-													<td id="CRIATK"></td>
-												</tr>
-
-												<tr>
-													<td id="CRInumname">クリティカル(発動率)</td>
-													<td id="CRInum"></td>
-												</tr>
-
-												<tr>
-													<td id="bSUBname"></td><td id="bSUB"></td>
-												</tr>
-
-												<tr>
-													<td id="bSUB2name">攻撃間隔</td>
-													<td id="bSUB2"></td>
-												</tr>
-
-												<tr>
-													<td>
-														<a href="../howtouse/howtouse_simulatecasttime.html" target="_blank">詠唱イメージ</a>
-														<input type="button" value="詠唱!!" id="OBJID_BUTTON_SIMULATE_CAST_TIME">
-													</td>
-													<td>
-														<progress id="OBJID_PROGRESS_SIMULATE_CAST_TIME"></progress>
-													</td>
-												</tr>
-
-												<tr>
-													<td>最小与ダメ</td>
-													<td id="strID_0"></td>
-												</tr>
-
-												<tr>
-													<td>平均与ダメ</td>
-													<td id="strID_1"></td>
-												</tr>
-
-												<tr>
-													<td>最大与ダメ</td>
-													<td id="strID_2"></td>
-												</tr>
-
-												<tr>
-													<td>秒間与ダメ</td>
-													<td id="AveSecondATK"></td>
-												</tr>
-
-												<tr>
-													<td>最小攻撃回数</td>
-													<td id="MinATKnum"></td>
-												</tr>
-
-												<tr>
-													<td>平均攻撃回数</td>
-													<td id="AveATKnum"></td>
-												</tr>
-
-												<tr>
-													<td>最大攻撃回数</td>
-													<td id="MaxATKnum"></td>
-												</tr>
-
-												<tr>
-													<td>平均戦闘時間</td>
-													<td id="BattleTime"></td>
-												</tr>
-
-												<tr>
-													<td>一撃BaseExp</td>
-													<td id="AtkBaseExp"></td>
-												</tr>
-
-												<tr>
-													<td>一撃JobExp</td>
-													<td id="AtkJobExp"></td>
-												</tr>
-
-												<tr>
-													<td>平均被ダメージ(仮)</td>
-													<td id="B_AveAtk"></td>
-												</tr>
-
-												<tr>
-													<td>平均被ダメ(回避込)</td>
-													<td Width=128 id="B_Ave2Atk"></td>
-												</tr>
-											</table>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</td>
-						<!-- ダメージ表示 -->
-						<td>
-							<div id="BATTLE_RESULT_DAMAGE"></div>
-						</td>
-						<!-- 時限効果クイック調整 -->
-						<td>
-							<div id="ID_BATTLE_QUICK_CONTROL_AREA" style="margin-top: 3px;"></div>
-						</td>
-					</tr>
-				</table>
-				<br clear="left">
-				<hr>
-				<!-- 演奏・踊り系スキル -->
-				<table>
-					<tbody>
-						<tr>
-							<td id="SP_SIEN01">
-								<input type="checkbox" name="A3_SKILLSW"onclick="Click_Skill3SW()">
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<!-- ギルドスキル・ゴスペル他 -->
-				<table>
-					<tbody>
-						<tr>
-							<td id="SP_SIEN02">
-								<input type="checkbox" name="A4_SKILLSW"onclick="Click_Skill4SW()">
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<!-- オートスペル -->
-				<table>
-					<tbody>
-						<tr>
-							<td id="SP_SIEN03">
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<!-- アイテム・食品他 -->
-				<table>
-					<tbody>
-						<tr>
-							<td id="OBJID_SP_SIEN05">
-								<input id="OBJID_CHECK_A7_SKILLSW" type="checkbox" name="A7_SKILLSW"onclick="Click_Skill7SW()">
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<!-- アイテム時限効果 -->
-				<table>
-					<tbody>
-						<tr>
-							<td id="ID_TIME_ITEM_AREA">
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<!-- その他支援 -->
-				<table>
-					<tbody>
-						<tr>
-							<td id="ID_ETC">
-								<input type="checkbox" name="A8_SKILLSW"onclick="Click_Skill8SW()">
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<!-- 性能カスタマイズ ステータス関連 -->
-				<table>
-					<tbody>
-						<tr>
-							<td id="OBJID_TD_CHARA_CONF_CUSTOM_STATUS">
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<!-- 性能カスタマイズ 攻撃関連 -->
-				<table>
-					<tbody>
-						<tr>
-							<td id="OBJID_TD_CHARA_CONF_CUSTOM_ATK">
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<!-- 性能カスタマイズ 防御関連 -->
-				<table>
-					<tbody>
-						<tr>
-							<td id="OBJID_TD_CHARA_CONF_CUSTOM_DEF">
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<!-- 性能カスタマイズ スキル関連 -->
-				<table>
-					<tbody>
-						<tr>
-							<td id="OBJID_TD_CHARA_CONF_CUSTOM_SKILL">
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<!--- 性能カスタマイズ 特性ステータス関連 -->
-				<table>
-					<tbody>
-						<tr>
-							<td id="OBJID_TD_CHARA_CONF_CUSTOM_SPECSTATUS">
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<hr>
-				<!-- 詠唱シミュレーター -->
-				<table>
-					<tbody>
-						<tr>
-							<td id="OBJID_TD_CASTSIM">
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<!-- フッター -->
-				<!--
+					</table>
+					<br clear="left">
+					<hr>
+					<!-- 演奏・踊り系スキル -->
+					<table>
+						<tbody>
+							<tr>
+								<td id="SP_SIEN01">
+									<input type="checkbox" name="A3_SKILLSW" onclick="Click_Skill3SW()">
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<!-- ギルドスキル・ゴスペル他 -->
+					<table>
+						<tbody>
+							<tr>
+								<td id="SP_SIEN02">
+									<input type="checkbox" name="A4_SKILLSW" onclick="Click_Skill4SW()">
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<!-- オートスペル -->
+					<table>
+						<tbody>
+							<tr>
+								<td id="SP_SIEN03">
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<!-- アイテム・食品他 -->
+					<table>
+						<tbody>
+							<tr>
+								<td id="OBJID_SP_SIEN05">
+									<input id="OBJID_CHECK_A7_SKILLSW" type="checkbox" name="A7_SKILLSW"
+										onclick="Click_Skill7SW()">
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<!-- アイテム時限効果 -->
+					<table>
+						<tbody>
+							<tr>
+								<td id="ID_TIME_ITEM_AREA">
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<!-- その他支援 -->
+					<table>
+						<tbody>
+							<tr>
+								<td id="ID_ETC">
+									<input type="checkbox" name="A8_SKILLSW" onclick="Click_Skill8SW()">
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<!-- 性能カスタマイズ ステータス関連 -->
+					<table>
+						<tbody>
+							<tr>
+								<td id="OBJID_TD_CHARA_CONF_CUSTOM_STATUS">
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<!-- 性能カスタマイズ 攻撃関連 -->
+					<table>
+						<tbody>
+							<tr>
+								<td id="OBJID_TD_CHARA_CONF_CUSTOM_ATK">
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<!-- 性能カスタマイズ 防御関連 -->
+					<table>
+						<tbody>
+							<tr>
+								<td id="OBJID_TD_CHARA_CONF_CUSTOM_DEF">
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<!-- 性能カスタマイズ スキル関連 -->
+					<table>
+						<tbody>
+							<tr>
+								<td id="OBJID_TD_CHARA_CONF_CUSTOM_SKILL">
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<!--- 性能カスタマイズ 特性ステータス関連 -->
+					<table>
+						<tbody>
+							<tr>
+								<td id="OBJID_TD_CHARA_CONF_CUSTOM_SPECSTATUS">
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<hr>
+					<!-- 詠唱シミュレーター -->
+					<table>
+						<tbody>
+							<tr>
+								<td id="OBJID_TD_CASTSIM">
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<!-- フッター -->
+					<!--
 				<div style="white-space:nowrap;">
 					<hr>
 					<p>
@@ -1747,140 +1862,140 @@
 					</p>
 				</div>
 				-->
-				<table>
+					<table>
+						<tbody>
+							<tr>
+								<td id="ID_PARSER_AREA">
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<table>
+						<tbody>
+							<tr>
+								<td id="ID_TESTER_AREA">
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<table>
+						<tbody>
+							<tr>
+								<td id="ID_DEBUG_AREA">
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<div id="OBJID_RRTGET_ROOT"></div>
+				</form>
+				<table border="1" style="display: none;">
 					<tbody>
 						<tr>
-							<td id="ID_PARSER_AREA">
-							</td>
+							<td id="DATA_OBJID_SLOT_MODE_BUTTON"></td>
+						</tr>
+						<tr>
+							<td id="DATA_OBJID_ARMS_RIGHT_REFINE"></td>
+							<td id="DATA_OBJID_ARMS_RIGHT"></td>
+							<td id="DATA_OBJID_ARMS_RIGHT_CARD_1"></td>
+							<td id="DATA_OBJID_ARMS_RIGHT_CARD_2"></td>
+							<td id="DATA_OBJID_ARMS_RIGHT_CARD_3"></td>
+							<td id="DATA_OBJID_ARMS_RIGHT_CARD_4"></td>
+							<td id="DATA_OBJID_ARMS_RIGHT_COSTUME_1"></td>
+						</tr>
+						<tr>
+							<td id="DATA_OBJID_ARMS_LEFT_REFINE"></td>
+							<td id="DATA_OBJID_ARMS_LEFT"></td>
+							<td id="DATA_OBJID_ARMS_LEFT_CARD_1"></td>
+							<td id="DATA_OBJID_ARMS_LEFT_CARD_2"></td>
+							<td id="DATA_OBJID_ARMS_LEFT_CARD_3"></td>
+							<td id="DATA_OBJID_ARMS_LEFT_CARD_4"></td>
+							<td id="DATA_OBJID_ARMS_LEFT_COSTUME_1"></td>
+						</tr>
+						<tr>
+							<td id="DATA_OBJID_HEAD_TOP_REFINE"></td>
+							<td id="DATA_OBJID_HEAD_TOP"></td>
+							<td id="DATA_OBJID_HEAD_TOP_CARD_1"></td>
+							<td id="DATA_OBJID_HEAD_TOP_CARD_2"></td>
+							<td id="DATA_OBJID_HEAD_TOP_CARD_3"></td>
+							<td id="DATA_OBJID_HEAD_TOP_CARD_4"></td>
+							<td id="DATA_OBJID_HEAD_TOP_COSTUME_1"></td>
+						</tr>
+						<tr>
+							<td id="DATA_OBJID_HEAD_MID_REFINE"></td>
+							<td id="DATA_OBJID_HEAD_MID"></td>
+							<td id="DATA_OBJID_HEAD_MID_CARD_1"></td>
+							<td id="DATA_OBJID_HEAD_MID_CARD_2"></td>
+							<td id="DATA_OBJID_HEAD_MID_CARD_3"></td>
+							<td id="DATA_OBJID_HEAD_MID_CARD_4"></td>
+							<td id="DATA_OBJID_HEAD_MID_COSTUME_1"></td>
+						</tr>
+						<tr>
+							<td id="DATA_OBJID_HEAD_UNDER_REFINE"></td>
+							<td id="DATA_OBJID_HEAD_UNDER"></td>
+							<td id="DATA_OBJID_HEAD_UNDER_CARD_1"></td>
+							<td id="DATA_OBJID_HEAD_UNDER_CARD_2"></td>
+							<td id="DATA_OBJID_HEAD_UNDER_CARD_3"></td>
+							<td id="DATA_OBJID_HEAD_UNDER_CARD_4"></td>
+							<td id="DATA_OBJID_HEAD_UNDER_COSTUME"></td>
+						</tr>
+						<tr>
+							<td id="DATA_OBJID_SHIELD_REFINE"></td>
+							<td id="DATA_OBJID_SHIELD"></td>
+							<td id="DATA_OBJID_SHIELD_CARD_1"></td>
+							<td id="DATA_OBJID_SHIELD_CARD_2"></td>
+							<td id="DATA_OBJID_SHIELD_CARD_3"></td>
+							<td id="DATA_OBJID_SHIELD_CARD_4"></td>
+							<td id="DATA_OBJID_SHIELD_COSTUME_1"></td>
+						</tr>
+						<tr>
+							<td id="DATA_OBJID_BODY_REFINE"></td>
+							<td id="DATA_OBJID_BODY"></td>
+							<td id="DATA_OBJID_BODY_CARD_1"></td>
+							<td id="DATA_OBJID_BODY_CARD_2"></td>
+							<td id="DATA_OBJID_BODY_CARD_3"></td>
+							<td id="DATA_OBJID_BODY_CARD_4"></td>
+							<td id="DATA_OBJID_BODY_COSTUME_1"></td>
+						</tr>
+						<tr>
+							<td id="DATA_OBJID_SHOULDER_REFINE"></td>
+							<td id="DATA_OBJID_SHOULDER"></td>
+							<td id="DATA_OBJID_SHOULDER_CARD_1"></td>
+							<td id="DATA_OBJID_SHOULDER_CARD_2"></td>
+							<td id="DATA_OBJID_SHOULDER_CARD_3"></td>
+							<td id="DATA_OBJID_SHOULDER_CARD_4"></td>
+							<td id="DATA_OBJID_SHOULDER_COSTUME_1"></td>
+						</tr>
+						<tr>
+							<td id="DATA_OBJID_SHOES_REFINE"></td>
+							<td id="DATA_OBJID_SHOES"></td>
+							<td id="DATA_OBJID_SHOES_CARD_1"></td>
+							<td id="DATA_OBJID_SHOES_CARD_2"></td>
+							<td id="DATA_OBJID_SHOES_CARD_3"></td>
+							<td id="DATA_OBJID_SHOES_CARD_4"></td>
+							<td id="DATA_OBJID_SHOES_COSTUME_1"></td>
+						</tr>
+						<tr>
+							<td id="DATA_OBJID_ACCESSARY_1_REFINE"></td>
+							<td id="DATA_OBJID_ACCESSARY_1"></td>
+							<td id="DATA_OBJID_ACCESSARY_1_CARD_1"></td>
+							<td id="DATA_OBJID_ACCESSARY_1_CARD_2"></td>
+							<td id="DATA_OBJID_ACCESSARY_1_CARD_3"></td>
+							<td id="DATA_OBJID_ACCESSARY_1_CARD_4"></td>
+							<td id="DATA_OBJID_ACCESSARY_1_COSTUME_1"></td>
+						</tr>
+						<tr>
+							<td id="DATA_OBJID_ACCESSARY_2_REFINE"></td>
+							<td id="DATA_OBJID_ACCESSARY_2"></td>
+							<td id="DATA_OBJID_ACCESSARY_2_CARD_1"></td>
+							<td id="DATA_OBJID_ACCESSARY_2_CARD_2"></td>
+							<td id="DATA_OBJID_ACCESSARY_2_CARD_3"></td>
+							<td id="DATA_OBJID_ACCESSARY_2_CARD_4"></td>
+							<td id="DATA_OBJID_ACCESSARY_2_COSTUME_1"></td>
 						</tr>
 					</tbody>
 				</table>
-				<table>
-					<tbody>
-						<tr>
-							<td id="ID_TESTER_AREA">
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<table>
-					<tbody>
-						<tr>
-							<td id="ID_DEBUG_AREA">
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<div id="OBJID_RRTGET_ROOT"></div>
-			</form>
-			<table border="1" style="display: none;">
-				<tbody>
-					<tr>
-						<td id="DATA_OBJID_SLOT_MODE_BUTTON"></td>
-					</tr>
-					<tr>
-						<td id="DATA_OBJID_ARMS_RIGHT_REFINE"></td>
-						<td id="DATA_OBJID_ARMS_RIGHT"></td>
-						<td id="DATA_OBJID_ARMS_RIGHT_CARD_1"></td>
-						<td id="DATA_OBJID_ARMS_RIGHT_CARD_2"></td>
-						<td id="DATA_OBJID_ARMS_RIGHT_CARD_3"></td>
-						<td id="DATA_OBJID_ARMS_RIGHT_CARD_4"></td>
-						<td id="DATA_OBJID_ARMS_RIGHT_COSTUME_1"></td>
-					</tr>
-					<tr>
-						<td id="DATA_OBJID_ARMS_LEFT_REFINE"></td>
-						<td id="DATA_OBJID_ARMS_LEFT"></td>
-						<td id="DATA_OBJID_ARMS_LEFT_CARD_1"></td>
-						<td id="DATA_OBJID_ARMS_LEFT_CARD_2"></td>
-						<td id="DATA_OBJID_ARMS_LEFT_CARD_3"></td>
-						<td id="DATA_OBJID_ARMS_LEFT_CARD_4"></td>
-						<td id="DATA_OBJID_ARMS_LEFT_COSTUME_1"></td>
-					</tr>
-					<tr>
-						<td id="DATA_OBJID_HEAD_TOP_REFINE"></td>
-						<td id="DATA_OBJID_HEAD_TOP"></td>
-						<td id="DATA_OBJID_HEAD_TOP_CARD_1"></td>
-						<td id="DATA_OBJID_HEAD_TOP_CARD_2"></td>
-						<td id="DATA_OBJID_HEAD_TOP_CARD_3"></td>
-						<td id="DATA_OBJID_HEAD_TOP_CARD_4"></td>
-						<td id="DATA_OBJID_HEAD_TOP_COSTUME_1"></td>
-					</tr>
-					<tr>
-						<td id="DATA_OBJID_HEAD_MID_REFINE"></td>
-						<td id="DATA_OBJID_HEAD_MID"></td>
-						<td id="DATA_OBJID_HEAD_MID_CARD_1"></td>
-						<td id="DATA_OBJID_HEAD_MID_CARD_2"></td>
-						<td id="DATA_OBJID_HEAD_MID_CARD_3"></td>
-						<td id="DATA_OBJID_HEAD_MID_CARD_4"></td>
-						<td id="DATA_OBJID_HEAD_MID_COSTUME_1"></td>
-					</tr>
-					<tr>
-						<td id="DATA_OBJID_HEAD_UNDER_REFINE"></td>
-						<td id="DATA_OBJID_HEAD_UNDER"></td>
-						<td id="DATA_OBJID_HEAD_UNDER_CARD_1"></td>
-						<td id="DATA_OBJID_HEAD_UNDER_CARD_2"></td>
-						<td id="DATA_OBJID_HEAD_UNDER_CARD_3"></td>
-						<td id="DATA_OBJID_HEAD_UNDER_CARD_4"></td>
-						<td id="DATA_OBJID_HEAD_UNDER_COSTUME"></td>
-					</tr>
-					<tr>
-						<td id="DATA_OBJID_SHIELD_REFINE"></td>
-						<td id="DATA_OBJID_SHIELD"></td>
-						<td id="DATA_OBJID_SHIELD_CARD_1"></td>
-						<td id="DATA_OBJID_SHIELD_CARD_2"></td>
-						<td id="DATA_OBJID_SHIELD_CARD_3"></td>
-						<td id="DATA_OBJID_SHIELD_CARD_4"></td>
-						<td id="DATA_OBJID_SHIELD_COSTUME_1"></td>
-					</tr>
-					<tr>
-						<td id="DATA_OBJID_BODY_REFINE"></td>
-						<td id="DATA_OBJID_BODY"></td>
-						<td id="DATA_OBJID_BODY_CARD_1"></td>
-						<td id="DATA_OBJID_BODY_CARD_2"></td>
-						<td id="DATA_OBJID_BODY_CARD_3"></td>
-						<td id="DATA_OBJID_BODY_CARD_4"></td>
-						<td id="DATA_OBJID_BODY_COSTUME_1"></td>
-					</tr>
-					<tr>
-						<td id="DATA_OBJID_SHOULDER_REFINE"></td>
-						<td id="DATA_OBJID_SHOULDER"></td>
-						<td id="DATA_OBJID_SHOULDER_CARD_1"></td>
-						<td id="DATA_OBJID_SHOULDER_CARD_2"></td>
-						<td id="DATA_OBJID_SHOULDER_CARD_3"></td>
-						<td id="DATA_OBJID_SHOULDER_CARD_4"></td>
-						<td id="DATA_OBJID_SHOULDER_COSTUME_1"></td>
-					</tr>
-					<tr>
-						<td id="DATA_OBJID_SHOES_REFINE"></td>
-						<td id="DATA_OBJID_SHOES"></td>
-						<td id="DATA_OBJID_SHOES_CARD_1"></td>
-						<td id="DATA_OBJID_SHOES_CARD_2"></td>
-						<td id="DATA_OBJID_SHOES_CARD_3"></td>
-						<td id="DATA_OBJID_SHOES_CARD_4"></td>
-						<td id="DATA_OBJID_SHOES_COSTUME_1"></td>
-					</tr>
-					<tr>
-						<td id="DATA_OBJID_ACCESSARY_1_REFINE"></td>
-						<td id="DATA_OBJID_ACCESSARY_1"></td>
-						<td id="DATA_OBJID_ACCESSARY_1_CARD_1"></td>
-						<td id="DATA_OBJID_ACCESSARY_1_CARD_2"></td>
-						<td id="DATA_OBJID_ACCESSARY_1_CARD_3"></td>
-						<td id="DATA_OBJID_ACCESSARY_1_CARD_4"></td>
-						<td id="DATA_OBJID_ACCESSARY_1_COSTUME_1"></td>
-					</tr>
-					<tr>
-						<td id="DATA_OBJID_ACCESSARY_2_REFINE"></td>
-						<td id="DATA_OBJID_ACCESSARY_2"></td>
-						<td id="DATA_OBJID_ACCESSARY_2_CARD_1"></td>
-						<td id="DATA_OBJID_ACCESSARY_2_CARD_2"></td>
-						<td id="DATA_OBJID_ACCESSARY_2_CARD_3"></td>
-						<td id="DATA_OBJID_ACCESSARY_2_CARD_4"></td>
-						<td id="DATA_OBJID_ACCESSARY_2_COSTUME_1"></td>
-					</tr>
-				</tbody>
-			</table>
+			</div>
 		</div>
-	</div>
 	</div>
 </body>
 
@@ -1976,4 +2091,5 @@
 <script type="text/javascript" src="js/migration/debug/test/CMigTestAreaComponentManager.js"></script>
 <script type="text/javascript" src="js/migration/mig.test.js"></script>
 -->
+
 </html>
