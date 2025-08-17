@@ -30190,9 +30190,13 @@ document.addEventListener('DOMContentLoaded', () => {
 		 * Hub の c 形式
 		 * どれも読み込めることを確認
 		 */
-		let splittedArray = location.href.split("?");
-		if (splittedArray.length == 2) {
-			CSaveController.loadFromURL(splittedArray[1]);
+		// URL引数のチェック
+		const query = window.location.search;
+		const param = query.replace("?", "");
+		const patternRtx = /^rtx[0-9]+:/
+		if (param.length > 0 && !patternRtx.test(param)) {
+			// ラトリオ独自のロード処理
+			CSaveController.loadFromURL(param);
 			CItemInfoManager.OnClickExtractSwitch();
 		} else {
 			// URLロードがない場合は、ノービスを初期ジョブとして設定
