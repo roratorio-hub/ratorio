@@ -682,7 +682,7 @@ ABYSS_CHASER:
     id_num: 5319
   name: Abyss Chaser
   name_ja: アビスチェイサー
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: TF_DOUBLE
     id_num: 48
@@ -1020,7 +1020,7 @@ ACOLYTE:
     id_num: 156
   name: Acolyte
   name_ja: アコライト
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: AL_DP
     id_num: 22
@@ -1360,7 +1360,7 @@ ACOLYTE_H:
     id_num: 156
   name: Acolyte High
   name_ja: ハイ アコライト
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: AL_DP
     id_num: 22
@@ -1769,7 +1769,7 @@ ALCHEMIST:
     id_num: 247
   name: Alchemist
   name_ja: アルケミスト
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: MC_LOUD
     id_num: 155
@@ -2236,7 +2236,7 @@ ALCHEMIST_H:
     id_num: 479
   name: Creator
   name_ja: クリエイター
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: MC_LOUD
     id_num: 155
@@ -2777,7 +2777,7 @@ ARCHBISHOP:
     id_num: 5071
   name: Arch Bishop
   name_ja: アークビショップ
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: AL_DP
     id_num: 22
@@ -3129,7 +3129,7 @@ ARCHER:
     id_num: 147
   name: Archer
   name_ja: アーチャー
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: AC_OWL
     id_num: 43
@@ -3451,7 +3451,7 @@ ARCHER_H:
     id_num: 147
   name: Archer High
   name_ja: ハイ アーチャー
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: AC_OWL
     id_num: 43
@@ -4091,7 +4091,7 @@ ARCH_MAGE:
     id_num: 5232
   name: Arch Mage
   name_ja: アークメイジ
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: MG_ENERGYCOAT
     id_num: 157
@@ -4473,7 +4473,7 @@ ASSASSIN:
     id_num: 1003
   name: Assassin
   name_ja: アサシン
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: TF_DOUBLE
     id_num: 48
@@ -4948,7 +4948,7 @@ ASSASSIN_H:
     id_num: 378
   name: Assassin Cross
   name_ja: アサシンクロス
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: TF_DOUBLE
     id_num: 48
@@ -5360,7 +5360,7 @@ BARD:
     id_num: 313
   name: Bard
   name_ja: バード
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: AC_OWL
     id_num: 43
@@ -5823,7 +5823,7 @@ BARD_H:
     id_num: 396
   name: Clown
   name_ja: クラウン
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: AC_OWL
     id_num: 43
@@ -6387,7 +6387,7 @@ BIOLO:
     id_num: 6006
   name: Biolo
   name_ja: バイオロ
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: MC_LOUD
     id_num: 155
@@ -6788,7 +6788,7 @@ BLACKSMITH:
     id_num: 1012
   name: Blacksmith
   name_ja: ブラックスミス
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: MC_LOUD
     id_num: 155
@@ -7279,7 +7279,7 @@ BLACKSMITH_H:
     id_num: 477
   name: White Smith
   name_ja: ホワイトスミス
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: MC_LOUD
     id_num: 155
@@ -7861,7 +7861,7 @@ CARDINAL:
     id_num: 5277
   name: Cardinal
   name_ja: カーディナル
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: AL_DP
     id_num: 22
@@ -8454,7 +8454,7 @@ CHASER:
     id_num: 476
   name: Shadow Chaser
   name_ja: チェイサー
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: TF_DOUBLE
     id_num: 48
@@ -8886,7 +8886,7 @@ CRUSADER:
     id_num: 1002
   name: Crusader
   name_ja: クルセイダー
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: SM_SWORD
     id_num: 2
@@ -9386,7 +9386,7 @@ CRUSADER_H:
     id_num: 369
   name: Paladin
   name_ja: パラディン
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: SM_SWORD
     id_num: 2
@@ -9810,7 +9810,7 @@ DANCER:
     id_num: 313
   name: Dancer
   name_ja: ダンサー
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: AC_OWL
     id_num: 43
@@ -10273,7 +10273,7 @@ DANCER_H:
     id_num: 396
   name: Gypsy
   name_ja: ジプシー
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: AC_OWL
     id_num: 43
@@ -10810,7 +10810,7 @@ DRAGON_KNIGHT:
     id_num: 6001
   name: Dragon Knight
   name_ja: ドラゴンナイト
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: SM_SWORD
     id_num: 2
@@ -11428,7 +11428,7 @@ ELEMENTAL_MASTER:
     id_num: 5380
   name: Elemental Master
   name_ja: エレメンタルマスター
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: MG_ENERGYCOAT
     id_num: 157
@@ -11940,7 +11940,7 @@ GENETIC:
     id_num: 5071
   name: Genetic
   name_ja: ジェネティック
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: MC_LOUD
     id_num: 155
@@ -12497,7 +12497,7 @@ GUILLOTINE_CROSS:
     id_num: 5071
   name: Glt. Cross
   name_ja: ギロチンクロス
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: TF_DOUBLE
     id_num: 48
@@ -12907,7 +12907,7 @@ GUNSLINGER:
     id_num: 521
   name: Gunslinger
   name_ja: ガンスリンガー
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: GS_SINGLEACTION
     id_num: 509
@@ -13331,7 +13331,7 @@ HUNTER:
     id_num: 1009
   name: Hunter
   name_ja: ハンター
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: AC_OWL
     id_num: 43
@@ -13808,7 +13808,7 @@ HUNTER_H:
     id_num: 381
   name: Sniper
   name_ja: スナイパー
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: AC_OWL
     id_num: 43
@@ -14471,7 +14471,7 @@ HYPER_NOVICE:
     id_num: 5071
   name: Hyper Novice
   name_ja: ハイパーノービス
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: SM_SWORD
     id_num: 2
@@ -15035,7 +15035,7 @@ IMPERIAL_GUARD:
     id_num: 5264
   name: Imperial Guard
   name_ja: インペリアルガード
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: SM_SWORD
     id_num: 2
@@ -15657,7 +15657,7 @@ INQUISITOR:
     id_num: 5243
   name: Inquisitor
   name_ja: インクイジター
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: AL_DP
     id_num: 22
@@ -16166,7 +16166,7 @@ KAGEROU:
     id_num: 5071
   name: Kagerou
   name_ja: 影狼
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: NJ_TOBIDOUGU
     id_num: 522
@@ -16583,7 +16583,7 @@ KNIGHT:
     id_num: 1001
   name: Knight
   name_ja: ナイト
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: SM_SWORD
     id_num: 2
@@ -17072,7 +17072,7 @@ KNIGHT_H:
     id_num: 359
   name: Lord Knight
   name_ja: ロードナイト
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: SM_SWORD
     id_num: 2
@@ -17532,7 +17532,7 @@ LINKER:
     id_num: 494
   name: Soul Linker
   name_ja: ソウルリンカー
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: TK_RUN
     id_num: 411
@@ -17883,7 +17883,7 @@ MAGICIAN:
     id_num: 157
   name: Magician
   name_ja: マジシャン
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: MG_ENERGYCOAT
     id_num: 157
@@ -18227,7 +18227,7 @@ MAGICIAN_H:
     id_num: 157
   name: Magician High
   name_ja: ハイ マジシャン
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: MG_ENERGYCOAT
     id_num: 157
@@ -18792,7 +18792,7 @@ MECHANIC:
     id_num: 5071
   name: Mechanic
   name_ja: メカニック
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: MC_LOUD
     id_num: 155
@@ -19418,7 +19418,7 @@ MEISTER:
     id_num: 6004
   name: Meister
   name_ja: マイスター
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: MC_LOUD
     id_num: 155
@@ -19753,7 +19753,7 @@ MERCHANT:
     id_num: 153
   name: Merchant
   name_ja: マーチャント
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: MC_LOUD
     id_num: 155
@@ -20085,7 +20085,7 @@ MERCHANT_H:
     id_num: 153
   name: Merchant High
   name_ja: ハイ マーチャント
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: MC_LOUD
     id_num: 155
@@ -20613,7 +20613,7 @@ MINSTREL:
     id_num: 5071
   name: Minstrel
   name_ja: ミンストレル
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: AC_OWL
     id_num: 43
@@ -21058,7 +21058,7 @@ MONK:
     id_num: 1015
   name: Monk
   name_ja: モンク
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: AL_DP
     id_num: 22
@@ -21556,7 +21556,7 @@ MONK_H:
     id_num: 370
   name: Champion
   name_ja: チャンピオン
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: AL_DP
     id_num: 22
@@ -22072,7 +22072,7 @@ NIGHT_WATCH:
     id_num: 5071
   name: Night Watch
   name_ja: ナイトウォッチ
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: GS_SINGLEACTION
     id_num: 509
@@ -22462,7 +22462,7 @@ NINJA:
     id_num: 532
   name: Ninja
   name_ja: 忍者
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: NJ_TOBIDOUGU
     id_num: 522
@@ -22705,7 +22705,7 @@ NOVICE:
     id_num: 143
   name: Novice
   name_ja: ノービス
-  name_ja_alias: []
+  name_alias: []
   passive_skills: []
   sp_basic_values:
   - 11
@@ -23221,7 +23221,7 @@ OBORO:
     id_num: 5071
   name: Oboro
   name_ja: 朧
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: NJ_TOBIDOUGU
     id_num: 522
@@ -23660,7 +23660,7 @@ PRIEST:
     id_num: 1014
   name: Priest
   name_ja: プリースト
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: AL_DP
     id_num: 22
@@ -24145,7 +24145,7 @@ PRIEST_H:
     id_num: 362
   name: High Priest
   name_ja: ハイプリースト
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: AL_DP
     id_num: 22
@@ -24697,7 +24697,7 @@ RANGER:
     id_num: 5071
   name: Ranger
   name_ja: レンジャー
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: AC_OWL
     id_num: 43
@@ -25237,7 +25237,7 @@ REBELLION:
     id_num: 5071
   name: Rebellion
   name_ja: リベリオン
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: GS_SINGLEACTION
     id_num: 509
@@ -25817,7 +25817,7 @@ ROGUE:
     id_num: 1005
   name: Rogue
   name_ja: ローグ
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: TF_DOUBLE
     id_num: 48
@@ -26371,7 +26371,7 @@ ROYAL_GUARD:
     id_num: 5071
   name: Royal Guard
   name_ja: ロイヤルガード
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: SM_SWORD
     id_num: 2
@@ -26949,7 +26949,7 @@ RUNE_KNIGHT:
     id_num: 5071
   name: Rune Knight
   name_ja: ルーンナイト
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: SM_SWORD
     id_num: 2
@@ -27438,7 +27438,7 @@ SAGE:
     id_num: 1017
   name: Sage
   name_ja: セージ
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: MG_ENERGYCOAT
     id_num: 157
@@ -27947,7 +27947,7 @@ SAGE_H:
     id_num: 482
   name: Professor
   name_ja: プロフェッサー
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: MG_ENERGYCOAT
     id_num: 157
@@ -28739,7 +28739,7 @@ SHADOW_CHASER:
     id_num: 5071
   name: Shadow Chaser
   name_ja: シャドウチェイサー
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: TF_DOUBLE
     id_num: 48
@@ -29321,7 +29321,7 @@ SHADOW_CROSS:
     id_num: 5285
   name: Shadow Cross
   name_ja: シャドウクロス
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: TF_DOUBLE
     id_num: 48
@@ -29860,7 +29860,7 @@ SHINKIRO:
     id_num: 5071
   name: Shinkiro
   name_ja: 蜃気楼
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: NJ_TOBIDOUGU
     id_num: 522
@@ -30380,7 +30380,7 @@ SHIRANUI:
     id_num: 5071
   name: Shiranui
   name_ja: 不知火
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: NJ_TOBIDOUGU
     id_num: 522
@@ -30911,7 +30911,7 @@ SKY_EMPEROR:
     id_num: 5473
   name: Sky Emperor
   name_ja: 天帝
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: TK_RUN
     id_num: 411
@@ -31501,7 +31501,7 @@ SORCERER:
     id_num: 5071
   name: Sorcerer
   name_ja: ソーサラー
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: MG_ENERGYCOAT
     id_num: 157
@@ -32093,7 +32093,7 @@ SOUL_ASCETIC:
     id_num: 5432
   name: Soul Ascetic
   name_ja: ソウルアセティック
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: TK_RUN
     id_num: 411
@@ -32586,7 +32586,7 @@ SOUL_REAPER:
     id_num: 5071
   name: Soul Reaper
   name_ja: ソウルリーパー
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: TK_RUN
     id_num: 411
@@ -33055,7 +33055,7 @@ SPIRIT_HANDLER:
     id_num: 5071
   name: Spirit Handler
   name_ja: スピリットハンドラー
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: SU_SPRITEMABLE
     id_num: 5024
@@ -33458,7 +33458,7 @@ STAR:
     id_num: 444
   name: Star Gladiator
   name_ja: 拳聖
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: TK_RUN
     id_num: 411
@@ -34005,7 +34005,7 @@ STAR_EMPEROR:
     id_num: 5071
   name: Star Emperor
   name_ja: 星帝
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: TK_RUN
     id_num: 411
@@ -34594,7 +34594,7 @@ SUMMONER:
     id_num: 5071
   name: Summoner
   name_ja: サモナー
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: SU_SPRITEMABLE
     id_num: 5024
@@ -35124,7 +35124,7 @@ SUPERNOVICE:
     id_num: 42
   name: Super Novice
   name_ja: スーパーノービス
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: SM_SWORD
     id_num: 2
@@ -35742,7 +35742,7 @@ SUPERNOVICE2:
     id_num: 5071
   name: Super Novice
   name_ja: スーパーノービス＋
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: SM_SWORD
     id_num: 2
@@ -36354,7 +36354,7 @@ SURA:
     id_num: 5071
   name: Sura
   name_ja: 修羅
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: AL_DP
     id_num: 22
@@ -36722,7 +36722,7 @@ SWORDMAN:
     id_num: 146
   name: Swordman
   name_ja: ソードマン
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: SM_SWORD
     id_num: 2
@@ -37065,7 +37065,7 @@ SWORDMAN_H:
     id_num: 146
   name: Swordman High
   name_ja: ハイ ソードマン
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: SM_SWORD
     id_num: 2
@@ -37421,7 +37421,7 @@ TAEKWON:
     id_num: 493
   name: Taekwon
   name_ja: テコンキッド
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: TK_RUN
     id_num: 411
@@ -37753,7 +37753,7 @@ THIEF:
     id_num: 150
   name: Thief
   name_ja: シーフ
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: TF_DOUBLE
     id_num: 48
@@ -38086,7 +38086,7 @@ THIEF_H:
     id_num: 150
   name: Thief High
   name_ja: ハイ シーフ
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: TF_DOUBLE
     id_num: 48
@@ -38639,7 +38639,7 @@ TROUBADOUR:
     id_num: 5352
   name: Troubadour
   name_ja: トルバドゥール
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: AC_OWL
     id_num: 43
@@ -39163,7 +39163,7 @@ TROUVERE:
     id_num: 5352
   name: Trouvere
   name_ja: トルヴェール
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: AC_OWL
     id_num: 43
@@ -39663,7 +39663,7 @@ WANDERER:
     id_num: 5071
   name: Wanderer
   name_ja: ワンダラー
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: AC_OWL
     id_num: 43
@@ -40266,7 +40266,7 @@ WARLOCK:
     id_num: 5071
   name: Warlock
   name_ja: ウォーロック
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: MG_ENERGYCOAT
     id_num: 157
@@ -40859,7 +40859,7 @@ WINDHAWK:
     id_num: 5329
   name: Windhawk
   name_ja: ウィンドホーク
-  name_ja_alias: []
+  name_alias: [ウインドホーク]
   passive_skills:
   - id: AC_OWL
     id_num: 43
@@ -41287,7 +41287,7 @@ WIZARD:
     id_num: 1006
   name: Wizard
   name_ja: ウィザード
-  name_ja_alias: []
+  name_alias: [ウイザード]
   passive_skills:
   - id: MG_ENERGYCOAT
     id_num: 157
@@ -41782,7 +41782,7 @@ WIZARD_H:
     id_num: 483
   name: High Wizard
   name_ja: ハイウィザード
-  name_ja_alias: []
+  name_alias: []
   passive_skills:
   - id: MG_ENERGYCOAT
     id_num: 157
