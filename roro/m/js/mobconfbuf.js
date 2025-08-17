@@ -293,6 +293,7 @@ function InitMobConfBufData() {
 	// 表示順序に従い、状態強化データ定義を再配列
 	//----------------------------------------------------------------
 	MobConfBufOBJSorted = new Array();
+	MobConfBufOBJSorted[MobConfBufOBJSorted.length] = MobConfBufOBJ[MOB_CONF_BUF_ID_DAMAGE_DIVIDE];
 	MobConfBufOBJSorted[MobConfBufOBJSorted.length] = MobConfBufOBJ[MOB_CONF_BUF_ID_SOKUDO_ZOKA];
 	MobConfBufOBJSorted[MobConfBufOBJSorted.length] = MobConfBufOBJ[MOB_CONF_BUF_ID_ASSUMPTIO];
 	MobConfBufOBJSorted[MobConfBufOBJSorted.length] = MobConfBufOBJ[MOB_CONF_BUF_ID_ADRENALINE_RUSH];
@@ -305,7 +306,6 @@ function InitMobConfBufData() {
 	MobConfBufOBJSorted[MobConfBufOBJSorted.length] = MobConfBufOBJ[MOB_CONF_BUF_ID_KEEPING];
 	MobConfBufOBJSorted[MobConfBufOBJSorted.length] = MobConfBufOBJ[MOB_CONF_BUF_ID_DEFENDER];
 	MobConfBufOBJSorted[MobConfBufOBJSorted.length] = MobConfBufOBJ[MOB_CONF_BUF_ID_REBIRTH];
-	MobConfBufOBJSorted[MobConfBufOBJSorted.length] = MobConfBufOBJ[MOB_CONF_BUF_ID_DAMAGE_DIVIDE];
 	MobConfBufOBJSorted[MobConfBufOBJSorted.length] = MobConfBufOBJ[MOB_CONF_BUF_ID_MAX_PAIN];
 	MobConfBufOBJ = MobConfBufOBJSorted;
 
