@@ -20,18 +20,22 @@ Promise.all([
  * YAMLデータのロード完了まで待機する関数
  */
 async function waitForDataLoaded() {
-    while (true) {
+    const maxRetries = 100; // 100ms * 100 = 10 seconds
+    let retries = 0;
+    while (retries < maxRetries) {
         const jobMapLoaded = await JobMap.isLoaded();
         const skillMapLoaded = await SkillMap.isLoaded();
         const itemMapLoaded = await ItemMap.isLoaded();
 
         if (jobMapLoaded && skillMapLoaded && itemMapLoaded) {
-            break;
+            return;
         }
 
         // まだロードされていなければ少し待つ（100msなど）
         await new Promise(resolve => setTimeout(resolve, 100));
+        retries++;
     }
+    throw new Error('Timeout: Data failed to load within expected time.');
 }
 
 /**
