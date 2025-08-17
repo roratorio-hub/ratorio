@@ -1,8 +1,3 @@
-
-
-
-
-
 /**
  * カスタムセレクトクラス（モンスター）.
  */
@@ -13,8 +8,6 @@ function CCustomSelectMapMonster (instanceIdNameC, mapSelectC) {
 
 	// マップ選択セレクトクラスのインスタンス
 	this.mapSelect = null;
-
-
 
 	/**
 	 * イニシャライザ.
@@ -40,8 +33,6 @@ function CCustomSelectMapMonster (instanceIdNameC, mapSelectC) {
 		// 初期化完了後、再計算フラグを立てる
 		this.bRecalculate = true;
 	};
-
-
 
 	/**
 	 * データ選択コントロールを再構築する（処理本体）.
@@ -229,17 +220,16 @@ function CCustomSelectMapMonster (instanceIdNameC, mapSelectC) {
 	 * @remark 継承先でオーバーライドすること
 	 */
 	this.OnChangeSelectDataSub = function () {
-
 		// 基底クラスの処理をコール
 		CCustomSelectMapMonster.prototype.OnChangeSelectDataSub.call(this);
-
+		// バリカタ情報をサジェストする
+		const monsterId = this.GetSelectedDataId();
+		CMonsterMapAreaComponentManager.updateMonsterSuggest(monsterId);
 		// 再計算
 		if (this.bRecalculate) {
 			calc();
 		}
 	};
-
-
 
 	/**
 	 * ヘルプエリアを再構築する（処理本体）.
@@ -291,8 +281,6 @@ function CCustomSelectMapMonster (instanceIdNameC, mapSelectC) {
 		this.RebuildHelpAreaSubDefault(summaryArray, explainArray, objRoot);
 	};
 
-
-
 	/**
 	 * ソート選択コントロールを再構築する（処理本体）.
 	 * @remark 必要に応じて継承先でオーバーライドすること
@@ -315,8 +303,6 @@ function CCustomSelectMapMonster (instanceIdNameC, mapSelectC) {
 		// 選択するIDを調整
 		this.selectedSortId = parseInt(this.objSelectSort.value, 10);
 	};
-
-
 
 	/**
 	 * 検索結果コントロールを再構築する（処理本体）.
@@ -408,18 +394,9 @@ function CCustomSelectMapMonster (instanceIdNameC, mapSelectC) {
 		this.objSearchResult.value = this.selectedSearchResult
 	};
 
-
-
 	// イニシャライザ呼び出し
 	this.Initialize(instanceIdNameC, "モンスター選択", mapSelectC);
 
 }
 
 CCustomSelectMapMonster.prototype = new CCustomSelectBase();
-
-
-
-
-
-
-

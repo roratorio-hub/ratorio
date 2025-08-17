@@ -1,15 +1,8 @@
-
-
-
-
-
 /**
  * モンスターマップエリアコンポーネントマネージャクラス.
  */
 function CMonsterMapAreaComponentManager () {
 }
-
-
 
 // カテゴリ選択セレクト
 CMonsterMapAreaComponentManager.customSelectCategory = new CCustomSelectMapCategory("MONSTER_MAP_CATEGORY");
@@ -23,7 +16,8 @@ CMonsterMapAreaComponentManager.customSelectMonster = new CCustomSelectMapMonste
 // 表示データのマップ
 CMonsterMapAreaComponentManager.dispObjectMap = new Map();
 
-
+// サジェスト表示オブジェクト
+CMonsterMapAreaComponentManager.monsterSuggestMessage = null;
 
 /**
  * 画面部品を再構築する.
@@ -190,9 +184,29 @@ CMonsterMapAreaComponentManager.RebuildControls = function () {
 	objTd = HtmlCreateElement("td", objTr);
 	objTd.setAttribute("colspan", "3");
 
-	objTd.appendChild(CMonsterMapAreaComponentManager.customSelectMonster.GetRootObject());
+	const objContainer = HtmlCreateElement("div", objTd);
+	objContainer.style.padding = "0 15px 0 0";
+	objContainer.style.display = "flex";
+	objContainer.style.justifyContent = "space-between";
+	objContainer.style.alignItems = "center";
+	objContainer.appendChild(CMonsterMapAreaComponentManager.customSelectMonster.GetRootObject());
 
-
+	// ---------------
+	// バリカタなどの特性サジェスト
+	// ---------------
+	if (CMonsterMapAreaComponentManager.monsterSuggestMessage === null) {
+		const objDiv = HtmlCreateElement("div");
+		objDiv.setAttribute("id", "OBJ_ID_MONSTER_SUGGEST");
+		objDiv.setAttribute("class", "tooltip-target");
+		objDiv.setAttribute("data-tooltip", "");
+		objDiv.style.visibility = "hidden";
+		const iconElement = HtmlCreateElement("i");
+		iconElement.className = "fa-solid fa-lightbulb fa-fade"; // Font Awesome
+		iconElement.style.color = "#dc3545";
+		objDiv.appendChild(iconElement);
+		CMonsterMapAreaComponentManager.monsterSuggestMessage = objDiv;
+	}
+	objContainer.appendChild(CMonsterMapAreaComponentManager.monsterSuggestMessage);
 
 	//----------------------------------------------------------------
 	// HP / LV
@@ -533,8 +547,6 @@ CMonsterMapAreaComponentManager.RebuildControls = function () {
 
 };
 
-
-
 /**
  * 展開表示変更イベントハンドラ.
  */
@@ -542,8 +554,6 @@ CMonsterMapAreaComponentManager.OnClickExtractSwitch = function () {
 	// コントロール再構築
 	CMonsterMapAreaComponentManager.RebuildControls();
 };
-
-
 
 /**
  * 選択中のカテゴリIDを取得する.
@@ -570,7 +580,10 @@ CMonsterMapAreaComponentManager.GetMonsterId = function () {
 };
 
 /**
- * 選択状態を設定する.
+ * 選択状態を設定する. 
+ * セーブデータを読み込むときだけこの関数が呼び出される. 
+ * ユーザーがモンスターを選択したときには呼び出されないので注意. 
+ * ユーザーインタラクションを編集したい場合は CCustomSelectMapMonster.js を触ること.
  * @param categoryId カテゴリID
  * @param mapId マップID
  * @param monsterId モンスターID
@@ -578,17 +591,13 @@ CMonsterMapAreaComponentManager.GetMonsterId = function () {
  * @return 実際に選択されたIDの配列
  */
 CMonsterMapAreaComponentManager.ChangeSelect = function (categoryId, mapId, monsterId, bResetWhenFailed) {
-
-	var selectedArray = null;
-
-	selectedArray = [];
-
+	const selectedArray = [];
 	selectedArray.push(CMonsterMapAreaComponentManager.customSelectCategory.ChangeSelectedDataId(categoryId, bResetWhenFailed));
 	selectedArray.push(CMonsterMapAreaComponentManager.customSelectMap.ChangeSelectedDataId(mapId, bResetWhenFailed));
 	selectedArray.push(CMonsterMapAreaComponentManager.customSelectMonster.ChangeSelectedDataId(monsterId, bResetWhenFailed));
-
 	CMonsterMapAreaComponentManager.RebuildControls();
-
+	// バリカタ情報をサジェストする
+	CMonsterMapAreaComponentManager.updateMonsterSuggest(monsterId);
 	return selectedArray;
 };
 
@@ -603,8 +612,6 @@ CMonsterMapAreaComponentManager.ResetSelect = function () {
 
 	CMonsterMapAreaComponentManager.RebuildControls();
 };
-
-
 
 /**
  * 表示オブジェクトを設定する.
@@ -648,7 +655,20 @@ CMonsterMapAreaComponentManager.RefreshtDispObject = function (objId) {
 	}
 };
 
-
-
-
-
+/**
+ * 一部のモンスターに設定されている「受けるダメージを1/xxに減少する」効果をサジェストする
+ * @param {number} monsterId 
+ */
+CMonsterMapAreaComponentManager.updateMonsterSuggest = function (monsterId) {
+    const name = MonsterToughness.getMobName(monsterId);
+    const code = MonsterToughness.getToughnessCode(name);
+    const message = MonsterToughness.getNotification(code);
+    const objDiv = CMonsterMapAreaComponentManager.monsterSuggestMessage;
+    if (!objDiv) {
+        return;
+    }
+    objDiv.style.visibility = message ? "visible" : "hidden";
+    if (message) {
+        objDiv.setAttribute("data-tooltip", message);
+    }
+};
