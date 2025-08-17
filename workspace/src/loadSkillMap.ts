@@ -79,7 +79,11 @@ export class SkillMap {
             console.error('YAML load error:', err);
         }
     }
+
+    /** ロード完了か確認 **/
+    static async isLoaded(): Promise<boolean> {
+        return Object.keys(this.skillMap).length > 0;
+    }
 }
 
-// 初期ロード
 (window as any).SkillMap = SkillMap; // グローバルに登録

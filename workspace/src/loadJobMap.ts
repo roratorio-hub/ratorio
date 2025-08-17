@@ -136,14 +136,24 @@ export class JobMap {
     }
 
     /** id_name から Job を取得 */
-    static getByIdName(id_name: string): JobData | undefined {
-        return new JobData(this.jobMap[id_name]);
+    static getByIdName(idName: string): JobData | undefined {
+        return new JobData(this.jobMap[idName]);
     }
 
     /** id_num から Job を取得 */
-    static getByIdNum(id_num: number): JobData | undefined {
+    static getByIdNum(idNum: number): JobData | undefined {
         for (const job of Object.values(this.jobMap)) {
-            if (job.id_num === id_num) {
+            if (job.id_num === idNum) {
+                return new JobData(job);
+            }
+        }
+        return undefined;
+    }
+
+    /** _mig_id_num から Job を取得 */
+    static getByMigIdNum(migIdNum: number): JobData | undefined {
+        for (const job of Object.values(this.jobMap)) {
+            if (job._mig_id_num === migIdNum) {
                 return new JobData(job);
             }
         }
@@ -174,7 +184,11 @@ export class JobMap {
             console.error('YAML load error:', err);
         }
     }
+
+    /** ロード完了か確認 **/
+    static async isLoaded(): Promise<boolean> {
+        return Object.keys(this.jobMap).length > 0;
+    }
 }
 
-// 初期ロード
 (window as any).JobMap = JobMap; // グローバルに登録

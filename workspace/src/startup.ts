@@ -3,39 +3,73 @@ import { SkillMap } from './loadSkillMap';
 import { ItemMap } from './loadItemMap';
 import { loadRodbTranslator } from './loadRodbTranslator';
 
+/**
+ * YAMLデータのロード実行
+ */
+Promise.all([
+    JobMap.load(),
+    SkillMap.load(),
+    ItemMap.load()
+]).then(() => {
+    console.log('🎉 All data loaded successfully.');
+}).catch((error) => {
+    console.error('⚠️ Error loading maps:', error);
+});
+
+/**
+ * YAMLデータのロード完了まで待機する関数
+ */
+async function waitForDataLoaded() {
+    while (true) {
+        const jobMapLoaded = await JobMap.isLoaded();
+        const skillMapLoaded = await SkillMap.isLoaded();
+        const itemMapLoaded = await ItemMap.isLoaded();
+
+        if (jobMapLoaded && skillMapLoaded && itemMapLoaded) {
+            break;
+        }
+
+        // まだロードされていなければ少し待つ（100msなど）
+        await new Promise(resolve => setTimeout(resolve, 100));
+    }
+}
+
+/**
+ * DOMContentLoadedイベントリスナー
+ */
 window.addEventListener('DOMContentLoaded', () => {
     console.log('📦 Webpack is ready and DOM is fully loaded.');
 
-    Promise.all([
-        JobMap.load(),
-        SkillMap.load(),
-        ItemMap.load()
-    ]).then(() => {
+    waitForDataLoaded().then(() => {
         // 職業選択セレクトボックスの構築
-        const selectElem = document.getElementById("OBJID_SELECT_JOB") as HTMLSelectElement | null;
-        if (selectElem) {
-            JobMap.getAll().forEach((job_array) => {
-                const job_data = job_array[1];
-                if (!job_data.name_ja) {
+        const selectJobElem = document.getElementById("OBJID_SELECT_JOB") as HTMLSelectElement | null;
+        if (selectJobElem) {
+            JobMap.getAll().forEach((jobData) => {
+                const job = jobData[1];
+                if (!job.name_ja) {
                     return; //日本語名がない場合はskip
                 }
                 const option = document.createElement('option');
-                option.text = job_data.name_ja;
-                option.value = job_data.id_name;
-                // id_nameが"NOVICE"なら初期選択状態にする
-                if (job_data.id_name === "NOVICE") {
-                    option.selected = true;
-                }
-                selectElem.appendChild(option);
+                option.text = job.name_ja;
+                option.value = job.id_name;
+                selectJobElem.appendChild(option);
             });
 
-            changeJobSettings("NOVICE");
+            // data-job-id属性に値があり、選択されている職業IDと異なる場合
+            // data-job-idの値を反映させる
+            let dataJobId = selectJobElem.getAttribute("data-job-id");
+            if (dataJobId && selectJobElem.value !== dataJobId) {
+                selectJobElem.value = dataJobId;
+            }
         }
     });
 });
 
+/**
+ * ウィンドウのロードイベントリスナー
+ */
 window.addEventListener('load', () => {
-    console.log('✅ All resources finished loading.');
+    console.log('✅ Webpack is all resources finished loading.');
 
     // RODB Translatorからのデータロード
     loadRodbTranslator(window.location.hash);

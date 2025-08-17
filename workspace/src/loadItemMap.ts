@@ -49,7 +49,11 @@ export class ItemMap {
             console.error('YAML load error:', err);
         }
     }
+
+    /** ロード完了か確認 **/
+    static async isLoaded(): Promise<boolean> {
+        return Object.keys(this.itemMap).length > 0;
+    }
 }
 
-// 初期ロード
 (window as any).ItemMap = ItemMap; // グローバルに登録
