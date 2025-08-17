@@ -23,6 +23,8 @@ CMonsterMapAreaComponentManager.customSelectMonster = new CCustomSelectMapMonste
 // 表示データのマップ
 CMonsterMapAreaComponentManager.dispObjectMap = new Map();
 
+// サジェスト表示オブジェクト
+CMonsterMapAreaComponentManager.monsterSuggestMessage = null;
 
 
 /**
@@ -190,7 +192,7 @@ CMonsterMapAreaComponentManager.RebuildControls = function () {
 	objTd = HtmlCreateElement("td", objTr);
 	objTd.setAttribute("colspan", "3");
 
-	objContainer = HtmlCreateElement("div", objTd);
+	const objContainer = HtmlCreateElement("div", objTd);
 	objContainer.style.padding = "0 15px 0 0";
 	objContainer.style.display = "flex";
 	objContainer.style.justifyContent = "space-between";
@@ -200,16 +202,18 @@ CMonsterMapAreaComponentManager.RebuildControls = function () {
 	// ---------------
 	// バリカタなどの特性サジェスト
 	// ---------------
-	const objDiv = HtmlCreateElement("div");
-	objDiv.setAttribute("id", "OBJ_ID_MONSTER_SUGGEST");
-	objDiv.setAttribute("class", "tooltip-target");
-	objDiv.setAttribute("data-tooltip", "here is suggestion message");
-	objDiv.style.visibility = "hidden";
-	const iconElement = HtmlCreateElement("i");
-	iconElement.className = "fa-solid fa-lightbulb fa-fade"; // Font Awesome
-	iconElement.style.color = "#dc3545";
-	objDiv.appendChild(iconElement);
-	objContainer.appendChild(objDiv);
+	if (CMonsterMapAreaComponentManager.monsterSuggestMessage === null) {
+		CMonsterMapAreaComponentManager.monsterSuggestMessage = HtmlCreateElement("div");
+		CMonsterMapAreaComponentManager.monsterSuggestMessage.setAttribute("id", "OBJ_ID_MONSTER_SUGGEST");
+		CMonsterMapAreaComponentManager.monsterSuggestMessage.setAttribute("class", "tooltip-target");
+		CMonsterMapAreaComponentManager.monsterSuggestMessage.setAttribute("data-tooltip", "here is suggestion message");
+		CMonsterMapAreaComponentManager.monsterSuggestMessage.style.visibility = "hidden";
+		const iconElement = HtmlCreateElement("i");
+		iconElement.className = "fa-solid fa-lightbulb fa-fade"; // Font Awesome
+		iconElement.style.color = "#dc3545";
+		CMonsterMapAreaComponentManager.monsterSuggestMessage.appendChild(iconElement);
+	}
+	objContainer.appendChild(CMonsterMapAreaComponentManager.monsterSuggestMessage);
 
 	//----------------------------------------------------------------
 	// HP / LV
