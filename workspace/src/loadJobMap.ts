@@ -137,7 +137,8 @@ export class JobMap {
 
     /** id_name から Job を取得 */
     static getByIdName(idName: string): JobData | undefined {
-        return new JobData(this.jobMap[idName]);
+        const jobParam = this.jobMap[idName];
+        return jobParam !== undefined ? new JobData(jobParam) : undefined;
     }
 
     /** id_num から Job を取得 */
