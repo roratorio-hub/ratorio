@@ -24,7 +24,7 @@ interface JobDataParameter {
     allow_equipment_weapons_type: number[], //装備可能武器タイプ
     base_lv_min: number, //基本最小レベル
     base_lv_max: number, //基本最大レベル
-    job_lv_max: number, //基本最大ジョブレベル
+    job_lv_max: number, //最大ジョブレベル
 }
 
 class JobData {
@@ -69,12 +69,12 @@ class JobData {
     getMigIdNum(): number {
         return this.parameter._mig_id_num;
     }
+
     /*
      * 以下は旧式のCMigJobDataを模したメソッド群
      * これらはJobDataParameterのプロパティを参照する形で実装されています。
      * その為、命名規則についても維持しています。
      */
-
     GetNameKanaArray(): string[] {
         let array = [this.parameter.name_ja]
         array = array.concat(this.parameter.name_alias);
