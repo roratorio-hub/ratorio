@@ -203,15 +203,16 @@ CMonsterMapAreaComponentManager.RebuildControls = function () {
 	// バリカタなどの特性サジェスト
 	// ---------------
 	if (CMonsterMapAreaComponentManager.monsterSuggestMessage === null) {
-		CMonsterMapAreaComponentManager.monsterSuggestMessage = HtmlCreateElement("div");
-		CMonsterMapAreaComponentManager.monsterSuggestMessage.setAttribute("id", "OBJ_ID_MONSTER_SUGGEST");
-		CMonsterMapAreaComponentManager.monsterSuggestMessage.setAttribute("class", "tooltip-target");
-		CMonsterMapAreaComponentManager.monsterSuggestMessage.setAttribute("data-tooltip", "here is suggestion message");
-		CMonsterMapAreaComponentManager.monsterSuggestMessage.style.visibility = "hidden";
+		const objDiv = HtmlCreateElement("div");
+		objDiv.setAttribute("id", "OBJ_ID_MONSTER_SUGGEST");
+		objDiv.setAttribute("class", "tooltip-target");
+		objDiv.setAttribute("data-tooltip", "here is suggestion message");
+		objDiv.style.visibility = "hidden";
 		const iconElement = HtmlCreateElement("i");
 		iconElement.className = "fa-solid fa-lightbulb fa-fade"; // Font Awesome
 		iconElement.style.color = "#dc3545";
-		CMonsterMapAreaComponentManager.monsterSuggestMessage.appendChild(iconElement);
+		objDiv.appendChild(iconElement);
+		CMonsterMapAreaComponentManager.monsterSuggestMessage = objDiv;
 	}
 	objContainer.appendChild(CMonsterMapAreaComponentManager.monsterSuggestMessage);
 
