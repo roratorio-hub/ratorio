@@ -1,5 +1,7 @@
+/**
+ * 他のスクリプトに先んじて定義する必要があるため無名関数内部に収められています.
+ */
 (function () {
-
 	MONSTER_ID_ARCANGELING = 0;
 	MONSTER_ID_ARCHER_SKELETON = 1;
 	MONSTER_ID_AOIKUSA = 2;
