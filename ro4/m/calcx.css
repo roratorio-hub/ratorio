@@ -439,9 +439,7 @@ input[type="number"] {
 /* 数値入力フィールドの値が不正な場合の背景色 */
 input[type="number"]:invalid {
     background-color: red;
-    background-color: red;
     /* Add space for the error icon */
-    padding-right: 2em;
     position: relative;
 }
 /* Add a visible warning icon for invalid input */
