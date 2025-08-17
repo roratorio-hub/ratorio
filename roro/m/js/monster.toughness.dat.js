@@ -14,12 +14,31 @@ class MonsterToughness {
 
     /** 特性リスト */
     static ToughnessList = [
+        // 星座
+        ["アモンラー（星座の塔）", MonsterToughness.DAMPING_5],
+        ["アトロス（星座の塔）", MonsterToughness.DAMPING_5],
+        ["イグニゼム=セニア（一次職）（MVP）（星座の塔）", MonsterToughness.DAMPING_5],
+        ["バフォメット（星座の塔）", MonsterToughness.DAMPING_5],
+        ["ダークロード（星座の塔）", MonsterToughness.DAMPING_5],
+        ["黒蛇王（星座の塔）", MonsterToughness.DAMPING_5],
+        ["ドッペルゲンガー（星座の塔）", MonsterToughness.DAMPING_5],
+        ["ドレイク（星座の塔）", MonsterToughness.DAMPING_5],
+        ["イフリート（星座の塔）", MonsterToughness.DAMPING_5],
+        ["マヤー（星座の塔）", MonsterToughness.DAMPING_5],
+        ["ミストレス（星座の塔）", MonsterToughness.DAMPING_5],
+        ["オークロード（星座の塔）", MonsterToughness.DAMPING_5],
+        ["オークヒーロー（星座の塔）", MonsterToughness.DAMPING_5],
+        ["オシリス（星座の塔）", MonsterToughness.DAMPING_5],
+        ["ランドグリス（星座の塔）", MonsterToughness.DAMPING_5],
+        ["瀕死のナハトズィーガー", MonsterToughness.DAMPING_5],
         ["ベテルギウス", MonsterToughness.DAMPING_5 + MonsterToughness.DAMPING_10],
+        // 幻影
         ["混沌のバフォメット（MD）", MonsterToughness.DAMPING_5],
         ["混沌のゴーストリング（MD）", MonsterToughness.DAMPING_5],
         ["迷宮のヴェルゼブブ（MD）", MonsterToughness.DAMPING_5],
         ["怨霊武士（MD）", MonsterToughness.DAMPING_5],
         ["オークヒーロー（MD）", MonsterToughness.DAMPING_5],
+        // 他
         ["Sユンケア", MonsterToughness.DAMPING_10 + MonsterToughness.DAMPING_TIME_DECAY],
         ["デミフレイヤ", MonsterToughness.DAMPING_10 + MonsterToughness.DAMPING_TIME_DECAY],
         ["究極のラスガンド", MonsterToughness.DAMPING_100 + MonsterToughness.DAMPING_AMPLIFY],
@@ -28,6 +47,8 @@ class MonsterToughness {
         ["次元犯罪者リゲル（難易度★★★）", MonsterToughness.DAMPING_100 + MonsterToughness.DAMPING_AMPLIFY],
         ["次元犯罪者リゲル（難易度★★★★）", MonsterToughness.DAMPING_100 + MonsterToughness.DAMPING_AMPLIFY],
         ["雪嵐天使ウミウシ", MonsterToughness.DAMPING_10],
+        ["死の大魔女", MonsterToughness.DAMPING_10],
+        ["ウルトラリマキナ", MonsterToughness.DAMPING_10],
         ["ゴブリンキング", MonsterToughness.DAMPING_10],
         ["ルニレ", MonsterToughness.DAMPING_10],
         ["ガイアポール", MonsterToughness.DAMPING_10],
