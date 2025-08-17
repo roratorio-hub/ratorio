@@ -82,24 +82,16 @@ class MonsterToughness {
      * @returns {string} メッセージ
      */
     static getNotification(code) {
-        let result = "";
-        switch (code) {
-            case MonsterToughness.DAMPING_5:
-                result = "受けるダメージを1/5に減少する";
-                break;
-            case MonsterToughness.DAMPING_10:
-                result = "受けるダメージを1/10に減少する";
-                break;
-            case MonsterToughness.DAMPING_5 | MonsterToughness.DAMPING_10:
-                result = "受けるダメージを1/50に減少する";
-                break;
-            case MonsterToughness.DAMPING_100 | MonsterToughness.DAMPING_AMPLIFY:
-                result = "受けるダメージを1/100に減少する。ギミック発動中は更に減少する";
-                break;
-            case MonsterToughness.DAMPING_10 | MonsterToughness.DAMPING_TIME_DECAY:
-                result = "受けるダメージを1/10に減少する。規定の時間が過ぎると等倍になる。";
-                break;
+        // Mapを静的プロパティとしてキャッシュする
+        if (!MonsterToughness.getNotification.messages) {
+            MonsterToughness.getNotification.messages = new Map([
+                [MonsterToughness.DAMPING_5, "受けるダメージを1/5に減少する"],
+                [MonsterToughness.DAMPING_10, "受けるダメージを1/10に減少する"],
+                [MonsterToughness.DAMPING_5 | MonsterToughness.DAMPING_10, "受けるダメージを1/50に減少する"],
+                [MonsterToughness.DAMPING_100 | MonsterToughness.DAMPING_AMPLIFY, "受けるダメージを1/100に減少する。ギミック発動中は更に減少する"],
+                [MonsterToughness.DAMPING_10 | MonsterToughness.DAMPING_TIME_DECAY, "受けるダメージを1/10に減少する。規定の時間が過ぎると等倍になる。"],
+            ]);
         }
-        return result;
+        return MonsterToughness.getNotification.messages.get(code) ?? "";
     }
 }
