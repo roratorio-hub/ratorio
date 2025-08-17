@@ -78,8 +78,7 @@ function CalcStatusPoint(bIgnoreAutoCalc) {
 
 		// 職業ＩＤを取得する
 		var selectJob = document.getElementById("OBJID_SELECT_JOB");
-		var selectedJobValue = selectJob.value;
-		var jobId = selectedJobValue;
+		var jobId = selectJob.value;
 
 		// ベースレベルを取得する
 		var blvSelected = eval(A_BaseLV.value);
