@@ -13,7 +13,7 @@ class MonsterToughness {
     static DAMPING_AMPLIFY = 16;
 
     /** 特性リスト */
-    static ToughnessList = [
+    static ToughnessList = new Map([
         // 星座
         ["アモンラー（星座の塔）", MonsterToughness.DAMPING_5],
         ["アトロス（星座の塔）", MonsterToughness.DAMPING_5],
@@ -31,7 +31,7 @@ class MonsterToughness {
         ["オシリス（星座の塔）", MonsterToughness.DAMPING_5],
         ["ランドグリス（星座の塔）", MonsterToughness.DAMPING_5],
         ["瀕死のナハトズィーガー", MonsterToughness.DAMPING_5],
-        ["ベテルギウス", MonsterToughness.DAMPING_5 + MonsterToughness.DAMPING_10],
+        ["ベテルギウス", MonsterToughness.DAMPING_5 | MonsterToughness.DAMPING_10],
         // 幻影
         ["混沌のバフォメット（MD）", MonsterToughness.DAMPING_5],
         ["混沌のゴーストリング（MD）", MonsterToughness.DAMPING_5],
@@ -39,33 +39,28 @@ class MonsterToughness {
         ["怨霊武士（MD）", MonsterToughness.DAMPING_5],
         ["オークヒーロー（MD）", MonsterToughness.DAMPING_5],
         // 他
-        ["Sユンケア", MonsterToughness.DAMPING_10 + MonsterToughness.DAMPING_TIME_DECAY],
-        ["デミフレイヤ", MonsterToughness.DAMPING_10 + MonsterToughness.DAMPING_TIME_DECAY],
-        ["究極のラスガンド", MonsterToughness.DAMPING_100 + MonsterToughness.DAMPING_AMPLIFY],
-        ["次元犯罪者リゲル（難易度★）", MonsterToughness.DAMPING_100 + MonsterToughness.DAMPING_AMPLIFY],
-        ["次元犯罪者リゲル（難易度★★）", MonsterToughness.DAMPING_100 + MonsterToughness.DAMPING_AMPLIFY],
-        ["次元犯罪者リゲル（難易度★★★）", MonsterToughness.DAMPING_100 + MonsterToughness.DAMPING_AMPLIFY],
-        ["次元犯罪者リゲル（難易度★★★★）", MonsterToughness.DAMPING_100 + MonsterToughness.DAMPING_AMPLIFY],
+        ["Sユンケア", MonsterToughness.DAMPING_10 | MonsterToughness.DAMPING_TIME_DECAY],
+        ["デミフレイヤ", MonsterToughness.DAMPING_10 | MonsterToughness.DAMPING_TIME_DECAY],
+        ["究極のラスガンド", MonsterToughness.DAMPING_100 | MonsterToughness.DAMPING_AMPLIFY],
+        ["次元犯罪者リゲル（難易度★）", MonsterToughness.DAMPING_100 | MonsterToughness.DAMPING_AMPLIFY],
+        ["次元犯罪者リゲル（難易度★★）", MonsterToughness.DAMPING_100 | MonsterToughness.DAMPING_AMPLIFY],
+        ["次元犯罪者リゲル（難易度★★★）", MonsterToughness.DAMPING_100 | MonsterToughness.DAMPING_AMPLIFY],
+        ["次元犯罪者リゲル（難易度★★★★）", MonsterToughness.DAMPING_100 | MonsterToughness.DAMPING_AMPLIFY],
         ["雪嵐天使ウミウシ", MonsterToughness.DAMPING_10],
         ["死の大魔女", MonsterToughness.DAMPING_10],
         ["ウルトラリマキナ", MonsterToughness.DAMPING_10],
         ["ゴブリンキング", MonsterToughness.DAMPING_10],
         ["ルニレ", MonsterToughness.DAMPING_10],
         ["ガイアポール", MonsterToughness.DAMPING_10],
-    ];
+    ]);
 
     /**
      * 検索対象のモンスターに設定されている特性コードを取得する.
      * @param {string} name モンスター名
-     * @returns {number} 特性コード= DAMPING_NONE | DAMPING_5 | DAMPING_10
+     * @returns {number} 特性コード
      */
-    static get_toughness_code(name) {
-        let result = MonsterToughness.DAMPING_NONE;
-        const data = MonsterToughness.ToughnessList.find((arg) => name === arg[0]);
-        if (data !== undefined) {
-            result = data[1];
-        }
-        return result;
+    static getToughnessCode(name) {
+        return MonsterToughness.ToughnessList.get(name) ?? MonsterToughness.DAMPING_NONE;
     }
 
 	/**
@@ -86,7 +81,7 @@ class MonsterToughness {
      * @param {number} code 合成された特性コード
      * @returns {string} メッセージ
      */
-    static get_notification(code) {
+    static getNotification(code) {
         let result = "";
         switch (code) {
             case MonsterToughness.DAMPING_5:
@@ -95,13 +90,13 @@ class MonsterToughness {
             case MonsterToughness.DAMPING_10:
                 result = "受けるダメージを1/10に減少する";
                 break;
-            case MonsterToughness.DAMPING_5 + MonsterToughness.DAMPING_10:
+            case MonsterToughness.DAMPING_5 | MonsterToughness.DAMPING_10:
                 result = "受けるダメージを1/50に減少する";
                 break;
-            case MonsterToughness.DAMPING_100 + MonsterToughness.DAMPING_AMPLIFY:
+            case MonsterToughness.DAMPING_100 | MonsterToughness.DAMPING_AMPLIFY:
                 result = "受けるダメージを1/100に減少する。ギミック発動中は更に減少する";
                 break;
-            case MonsterToughness.DAMPING_10 + MonsterToughness.DAMPING_TIME_DECAY:
+            case MonsterToughness.DAMPING_10 | MonsterToughness.DAMPING_TIME_DECAY:
                 result = "受けるダメージを1/10に減少する。規定の時間が過ぎると等倍になる。";
                 break;
         }

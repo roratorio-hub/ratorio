@@ -220,23 +220,11 @@ function CCustomSelectMapMonster (instanceIdNameC, mapSelectC) {
 	 * @remark 継承先でオーバーライドすること
 	 */
 	this.OnChangeSelectDataSub = function () {
-
 		// 基底クラスの処理をコール
 		CCustomSelectMapMonster.prototype.OnChangeSelectDataSub.call(this);
-
 		// バリカタ情報をサジェストする
 		const monsterId = this.GetSelectedDataId();
-		const name = MonsterToughness.getMobName(monsterId);
-		const code = MonsterToughness.get_toughness_code(name);
-		const message = MonsterToughness.get_notification(code);
-		const objDiv = document.getElementById("OBJ_ID_MONSTER_SUGGEST");
-		if (message === "") {
-			objDiv.style.visibility = "hidden";
-		} else {
-			objDiv.style.visibility = "visible";
-			objDiv.setAttribute("data-tooltip", message);
-		}
-		
+		CMonsterMapAreaComponentManager.updateMonsterSuggest(monsterId);
 		// 再計算
 		if (this.bRecalculate) {
 			calc();

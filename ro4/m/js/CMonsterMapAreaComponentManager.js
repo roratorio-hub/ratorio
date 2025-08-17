@@ -1,15 +1,8 @@
-
-
-
-
-
 /**
  * モンスターマップエリアコンポーネントマネージャクラス.
  */
 function CMonsterMapAreaComponentManager () {
 }
-
-
 
 // カテゴリ選択セレクト
 CMonsterMapAreaComponentManager.customSelectCategory = new CCustomSelectMapCategory("MONSTER_MAP_CATEGORY");
@@ -25,7 +18,6 @@ CMonsterMapAreaComponentManager.dispObjectMap = new Map();
 
 // サジェスト表示オブジェクト
 CMonsterMapAreaComponentManager.monsterSuggestMessage = null;
-
 
 /**
  * 画面部品を再構築する.
@@ -555,8 +547,6 @@ CMonsterMapAreaComponentManager.RebuildControls = function () {
 
 };
 
-
-
 /**
  * 展開表示変更イベントハンドラ.
  */
@@ -564,8 +554,6 @@ CMonsterMapAreaComponentManager.OnClickExtractSwitch = function () {
 	// コントロール再構築
 	CMonsterMapAreaComponentManager.RebuildControls();
 };
-
-
 
 /**
  * 選択中のカテゴリIDを取得する.
@@ -603,29 +591,13 @@ CMonsterMapAreaComponentManager.GetMonsterId = function () {
  * @return 実際に選択されたIDの配列
  */
 CMonsterMapAreaComponentManager.ChangeSelect = function (categoryId, mapId, monsterId, bResetWhenFailed) {
-
-	var selectedArray = null;
-
-	selectedArray = [];
-
+	const selectedArray = [];
 	selectedArray.push(CMonsterMapAreaComponentManager.customSelectCategory.ChangeSelectedDataId(categoryId, bResetWhenFailed));
 	selectedArray.push(CMonsterMapAreaComponentManager.customSelectMap.ChangeSelectedDataId(mapId, bResetWhenFailed));
 	selectedArray.push(CMonsterMapAreaComponentManager.customSelectMonster.ChangeSelectedDataId(monsterId, bResetWhenFailed));
-
 	CMonsterMapAreaComponentManager.RebuildControls();
-
 	// バリカタ情報をサジェストする
-	const name = MonsterToughness.getMobName(monsterId);
-	const code = MonsterToughness.get_toughness_code(name);
-	const message = MonsterToughness.get_notification(code);
-	const objDiv = document.getElementById("OBJ_ID_MONSTER_SUGGEST");
-	if (message === "") {
-		objDiv.style.visibility = "hidden";
-	} else {
-		objDiv.style.visibility = "visible";
-		objDiv.setAttribute("data-tooltip", message);
-	}
-
+	CMonsterMapAreaComponentManager.updateMonsterSuggest(monsterId);
 	return selectedArray;
 };
 
@@ -640,8 +612,6 @@ CMonsterMapAreaComponentManager.ResetSelect = function () {
 
 	CMonsterMapAreaComponentManager.RebuildControls();
 };
-
-
 
 /**
  * 表示オブジェクトを設定する.
@@ -685,7 +655,23 @@ CMonsterMapAreaComponentManager.RefreshtDispObject = function (objId) {
 	}
 };
 
-
-
-
-
+/**
+ * 一部のモンスターに設定されている「受けるダメージを1/xxに減少する」効果をサジェストする
+ * @param {*} monsterId 
+ * @returns 
+ */
+CMonsterMapAreaComponentManager.updateMonsterSuggest = function (monsterId) {
+    const name = MonsterToughness.getMobName(monsterId);
+    const code = MonsterToughness.getToughnessCode(name);
+    const message = MonsterToughness.getNotification(code);
+    const objDiv = document.getElementById("OBJ_ID_MONSTER_SUGGEST");
+    if (!objDiv) {
+        return;
+    }
+    if (message === "") {
+        objDiv.style.visibility = "hidden";
+    } else {
+        objDiv.style.visibility = "visible";
+        objDiv.setAttribute("data-tooltip", message);
+    }
+};
