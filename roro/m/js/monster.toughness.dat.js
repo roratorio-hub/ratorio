@@ -24,7 +24,7 @@ class MonsterToughness {
      * @returns {number} 特性コード= DAMPING_NONE | DAMPING_5 | DAMPING_10
      */
     static get_toughness_code(name) {
-        let result = 0;
+        let result = MonsterToughness.DAMPING_NONE;
         const data = MonsterToughness.ToughnessList.find((arg) => name === arg[0]);
         if (data !== undefined) {
             result = data[1];
