@@ -30840,7 +30840,7 @@ DRAGON_KNIGHT:
     id_num: 5213
   - id: DK_DRAGONIC_BREATH
     id_num: 6001
-  base_lv_max: 260
+  base_lv_max: 275
   base_lv_min: 200
   hp_basic_values:
   - 22660
@@ -30908,7 +30908,7 @@ DRAGON_KNIGHT:
   id_num: 4252
   is_doram: false
   is_rebirthed: true
-  job_lv_max: 55
+  job_lv_max: 60
   job_type_name: fourth_job
   job_type_num: 11
   learned_skills:
@@ -31388,7 +31388,7 @@ SHADOW_CROSS:
     id_num: 5292
   - id: SHC_FATAL_SHADOW_CROW
     id_num: 5294
-  base_lv_max: 260
+  base_lv_max: 275
   base_lv_min: 200
   hp_basic_values:
   - 21849
@@ -31456,7 +31456,7 @@ SHADOW_CROSS:
   id_num: 4254
   is_doram: false
   is_rebirthed: true
-  job_lv_max: 55
+  job_lv_max: 60
   job_type_name: fourth_job
   job_type_num: 11
   learned_skills:
@@ -31901,7 +31901,7 @@ CARDINAL:
     id_num: 5279
   - id: CD_EFFLIGO
     id_num: 5277
-  base_lv_max: 260
+  base_lv_max: 275
   base_lv_min: 200
   hp_basic_values:
   - 19236
@@ -31969,7 +31969,7 @@ CARDINAL:
   id_num: 4256
   is_doram: false
   is_rebirthed: true
-  job_lv_max: 55
+  job_lv_max: 60
   job_type_name: fourth_job
   job_type_num: 11
   learned_skills:
@@ -32474,7 +32474,7 @@ WINDHAWK:
     id_num: 5326
   - id: WH_HAWKBOOMERANG
     id_num: 5329
-  base_lv_max: 260
+  base_lv_max: 275
   base_lv_min: 200
   hp_basic_values:
   - 18197
@@ -32542,7 +32542,7 @@ WINDHAWK:
   id_num: 4257
   is_doram: false
   is_rebirthed: true
-  job_lv_max: 55
+  job_lv_max: 60
   job_type_name: fourth_job
   job_type_num: 11
   learned_skills:
@@ -33084,7 +33084,7 @@ ARCH_MAGE:
     id_num: 5233
   - id: AG_VIOLENT_QUAKE
     id_num: 5218
-  base_lv_max: 260
+  base_lv_max: 275
   base_lv_min: 200
   hp_basic_values:
   - 17155
@@ -33152,7 +33152,7 @@ ARCH_MAGE:
   id_num: 4255
   is_doram: false
   is_rebirthed: true
-  job_lv_max: 55
+  job_lv_max: 60
   job_type_name: fourth_job
   job_type_num: 11
   learned_skills:
@@ -33638,7 +33638,7 @@ MEISTER:
     id_num: 6003
   - id: MT_MIGHTY_SMASH
     id_num: 6004
-  base_lv_max: 260
+  base_lv_max: 275
   base_lv_min: 200
   hp_basic_values:
   - 20846
@@ -33706,7 +33706,7 @@ MEISTER:
   id_num: 4253
   is_doram: false
   is_rebirthed: true
-  job_lv_max: 55
+  job_lv_max: 60
   job_type_name: fourth_job
   job_type_num: 11
   learned_skills:
@@ -34234,7 +34234,7 @@ IMPERIAL_GUARD:
     id_num: 5267
   - id: IG_JUDGEMENT_CROSS
     id_num: 5264
-  base_lv_max: 260
+  base_lv_max: 275
   base_lv_min: 200
   hp_basic_values:
   - 22411
@@ -34302,7 +34302,7 @@ IMPERIAL_GUARD:
   id_num: 4258
   is_doram: false
   is_rebirthed: true
-  job_lv_max: 55
+  job_lv_max: 60
   job_type_name: fourth_job
   job_type_num: 11
   learned_skills:
@@ -35032,7 +35032,7 @@ ABYSS_CHASER:
     id_num: 5322
   - id: ABC_ABYSS_STRIKE
     id_num: 5319
-  base_lv_max: 260
+  base_lv_max: 275
   base_lv_min: 200
   hp_basic_values:
   - 20884
@@ -35100,7 +35100,7 @@ ABYSS_CHASER:
   id_num: 4260
   is_doram: false
   is_rebirthed: true
-  job_lv_max: 55
+  job_lv_max: 60
   job_type_name: fourth_job
   job_type_num: 11
   learned_skills:
@@ -35620,7 +35620,7 @@ INQUISITOR:
     id_num: 5244
   - id: IQ_MASSIVE_F_BLASTER
     id_num: 5243
-  base_lv_max: 260
+  base_lv_max: 275
   base_lv_min: 200
   hp_basic_values:
   - 20948
@@ -35688,7 +35688,7 @@ INQUISITOR:
   id_num: 4262
   is_doram: false
   is_rebirthed: true
-  job_lv_max: 55
+  job_lv_max: 60
   job_type_name: fourth_job
   job_type_num: 11
   learned_skills:
@@ -36173,7 +36173,7 @@ TROUBADOUR:
     id_num: 5355
   - id: TR_ROSEBLOSSOM
     id_num: 5353
-  base_lv_max: 260
+  base_lv_max: 275
   base_lv_min: 200
   hp_basic_values:
   - 18306
@@ -36241,7 +36241,7 @@ TROUBADOUR:
   id_num: 4263
   is_doram: false
   is_rebirthed: true
-  job_lv_max: 55
+  job_lv_max: 60
   job_type_name: fourth_job
   job_type_num: 11
   learned_skills:
@@ -36697,7 +36697,7 @@ TROUVERE:
     id_num: 5355
   - id: TR_ROSEBLOSSOM
     id_num: 5353
-  base_lv_max: 260
+  base_lv_max: 275
   base_lv_min: 200
   hp_basic_values:
   - 18306
@@ -36765,7 +36765,7 @@ TROUVERE:
   id_num: 4264
   is_doram: false
   is_rebirthed: true
-  job_lv_max: 55
+  job_lv_max: 60
   job_type_name: fourth_job
   job_type_num: 11
   learned_skills:
@@ -37248,7 +37248,7 @@ ELEMENTAL_MASTER:
     id_num: 5371
   - id: EM_ELEMENTAL_BUSTER
     id_num: 5380
-  base_lv_max: 260
+  base_lv_max: 275
   base_lv_min: 200
   hp_basic_values:
   - 17712
@@ -37316,7 +37316,7 @@ ELEMENTAL_MASTER:
   id_num: 4261
   is_doram: false
   is_rebirthed: true
-  job_lv_max: 55
+  job_lv_max: 60
   job_type_name: fourth_job
   job_type_num: 11
   learned_skills:
@@ -37833,7 +37833,7 @@ BIOLO:
     id_num: 6005
   - id: BO_MAYHEMIC_THORNS
     id_num: 6006
-  base_lv_max: 260
+  base_lv_max: 275
   base_lv_min: 200
   hp_basic_values:
   - 21347
@@ -37901,7 +37901,7 @@ BIOLO:
   id_num: 4259
   is_doram: false
   is_rebirthed: true
-  job_lv_max: 55
+  job_lv_max: 60
   job_type_name: fourth_job
   job_type_num: 11
   learned_skills:
@@ -38371,7 +38371,7 @@ SKY_EMPEROR:
     id_num: 5473
   - id: SKE_ALL_IN_THE_SKY
     id_num: 5474
-  base_lv_max: 260
+  base_lv_max: 275
   base_lv_min: 200
   hp_basic_values:
   - 26264
@@ -38439,7 +38439,7 @@ SKY_EMPEROR:
   id_num: 4302
   is_doram: false
   is_rebirthed: true
-  job_lv_max: 55
+  job_lv_max: 60
   job_type_name: fourth_job
   job_type_num: 11
   learned_skills:
@@ -38932,7 +38932,7 @@ SOUL_ASCETIC:
     id_num: 5430
   - id: SOA_CIRCLE_OF_DIRECTIONS_AND_ELEMENTALS
     id_num: 5431
-  base_lv_max: 260
+  base_lv_max: 275
   base_lv_min: 200
   hp_basic_values:
   - 21947
@@ -39000,7 +39000,7 @@ SOUL_ASCETIC:
   id_num: 4303
   is_doram: false
   is_rebirthed: true
-  job_lv_max: 55
+  job_lv_max: 60
   job_type_name: fourth_job
   job_type_num: 11
   learned_skills:
@@ -39518,7 +39518,7 @@ SHINKIRO:
     id_num: 5487
   - id: SS_HITOUAKUMU
     id_num: 5494
-  base_lv_max: 260
+  base_lv_max: 275
   base_lv_min: 200
   hp_basic_values:
   - 23838
@@ -39586,7 +39586,7 @@ SHINKIRO:
   id_num: 4304
   is_doram: false
   is_rebirthed: true
-  job_lv_max: 55
+  job_lv_max: 60
   job_type_name: fourth_job
   job_type_num: 11
   learned_skills:
@@ -40038,7 +40038,7 @@ SHIRANUI:
     id_num: 5487
   - id: SS_HITOUAKUMU
     id_num: 5494
-  base_lv_max: 260
+  base_lv_max: 275
   base_lv_min: 200
   hp_basic_values:
   - 23838
@@ -40106,7 +40106,7 @@ SHIRANUI:
   id_num: 4305
   is_doram: false
   is_rebirthed: true
-  job_lv_max: 55
+  job_lv_max: 60
   job_type_name: fourth_job
   job_type_num: 11
   learned_skills:
@@ -40528,7 +40528,7 @@ NIGHT_WATCH:
     id_num: 5409
   - id: NW_MISSION_BOMBARD
     id_num: 5415
-  base_lv_max: 260
+  base_lv_max: 275
   base_lv_min: 200
   hp_basic_values:
   - 26075
@@ -40596,7 +40596,7 @@ NIGHT_WATCH:
   id_num: 4306
   is_doram: false
   is_rebirthed: true
-  job_lv_max: 55
+  job_lv_max: 60
   job_type_name: fourth_job
   job_type_num: 11
   learned_skills:
@@ -41062,7 +41062,7 @@ HYPER_NOVICE:
     id_num: 5457
   - id: HN_GROUND_GRAVITATION
     id_num: 5459
-  base_lv_max: 260
+  base_lv_max: 275
   base_lv_min: 200
   hp_basic_values:
   - 7580
@@ -41130,7 +41130,7 @@ HYPER_NOVICE:
   id_num: 4307
   is_doram: false
   is_rebirthed: true
-  job_lv_max: 55
+  job_lv_max: 60
   job_type_name: fourth_job
   job_type_num: 11
   learned_skills:
@@ -41652,7 +41652,7 @@ SPIRIT_HANDLER:
     id_num: 5446
   - id: SH_HYUN_ROKS_BREEZE
     id_num: 5445
-  base_lv_max: 260
+  base_lv_max: 275
   base_lv_min: 200
   hp_basic_values:
   - 26705
@@ -41720,7 +41720,7 @@ SPIRIT_HANDLER:
   id_num: 4308
   is_doram: false
   is_rebirthed: true
-  job_lv_max: 55
+  job_lv_max: 60
   job_type_name: fourth_job
   job_type_num: 11
   learned_skills:
