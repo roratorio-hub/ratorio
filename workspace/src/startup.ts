@@ -4,23 +4,10 @@ import { ItemMap } from './loadItemMap';
 import { loadRodbTranslator } from './loadRodbTranslator';
 
 /**
- * YAMLデータのロード実行
- */
-Promise.all([
-    JobMap.load(),
-    SkillMap.load(),
-    ItemMap.load()
-]).then(() => {
-    console.log('🎉 All data loaded successfully.');
-}).catch((error) => {
-    console.error('⚠️ Error loading maps:', error);
-});
-
-/**
  * YAMLデータのロード完了まで待機する関数
  */
 async function waitForDataLoaded() {
-    const maxRetries = 100; // 100ms * 100 = 10 seconds
+    const maxRetries = 300; // 100ms * 300 = 30 seconds
     let retries = 0;
     while (retries < maxRetries) {
         const jobMapLoaded = await JobMap.isLoaded();
@@ -75,6 +62,21 @@ document.addEventListener('DOMContentLoaded', () => {
 window.addEventListener('load', () => {
     console.log('✅ Webpack is all resources finished loading.');
 
-    // RODB Translatorからのデータロード
-    loadRodbTranslator(window.location.hash);
+    waitForDataLoaded().then(() => {
+        // RODB Translatorからのデータロード
+        loadRodbTranslator(window.location.hash);
+    });
+});
+
+/**
+ * YAMLデータのロード実行
+ */
+Promise.all([
+    JobMap.load(),
+    SkillMap.load(),
+    ItemMap.load()
+]).then(() => {
+    console.log('🎉 All data loaded successfully.');
+}).catch((error) => {
+    console.error('⚠️ Error loading maps:', error);
 });
