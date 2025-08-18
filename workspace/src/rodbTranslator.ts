@@ -1,5 +1,7 @@
 import { load as loadYAML, dump as dumpYAML } from "js-yaml"
-declare const pako: any;
+import { Zstd } from "@hpcc-js/wasm-zstd";
+
+const zstd = await Zstd.load();
 
 // Base64 → Uint8Array（URLセーフに対応）
 function base64ToUint8Array(base64: string): Uint8Array {
@@ -30,11 +32,11 @@ function uint8ArrayToBase64(bytes: Uint8Array): string {
     return base64;
 }
 
-// zlibで展開
-function zlibDecompress(compressed: Uint8Array): string | null {
+// zstdで展開
+function zstdDecompress(compressed: Uint8Array): string | null {
     try {
-        // pako.inflate() で zlib データを展開
-        const decompressedData = pako.inflate(compressed);
+        // zstd.decompress() で zstd データを展開
+        const decompressedData = zstd.decompress(compressed);
         return new TextDecoder('utf-8').decode(decompressedData);
     } catch (err) {
         console.error("展開エラー:", err);
@@ -42,13 +44,13 @@ function zlibDecompress(compressed: Uint8Array): string | null {
     }
 }
 
-// zlibで圧縮
-function zlibCompress(text: string): Uint8Array | null {
+// zstdで圧縮
+function zstdCompress(text: string): Uint8Array | null {
     try {
         // 文字列をUTF-8のUint8Arrayに変換
         const input = new TextEncoder().encode(text);
-        // pako.deflate() でzlib圧縮
-        return pako.deflate(input);
+        // zstd.compress() でzstd圧縮
+        return zstd.compress(input);
     } catch (err) {
         console.error("圧縮エラー:", err);
         return null;
@@ -62,8 +64,8 @@ function decodeProcess(encodedData: string): RodbTranslatorDataFormat | null {
         // デコード => 圧縮データ
         const compressedData = base64ToUint8Array(encodedData);
 
-        // zlibで展開
-        const yamlData = zlibDecompress(compressedData);
+        // zstdで展開
+        const yamlData = zstdDecompress(compressedData);
 
         if (yamlData) {
             // YAML文字列 => JavaScriptオブジェクト
@@ -82,8 +84,8 @@ function encodeProcess(dataObject: RodbTranslatorDataFormat): string | null {
         // YAMLオブジェクト => YAML文字列
         const yamlData = dumpYAML(dataObject);
 
-        // zlibで圧縮
-        const compressedData = zlibCompress(yamlData);
+        // zstdで圧縮
+        const compressedData = zstdCompress(yamlData);
 
         if (compressedData) {
             // 圧縮データ => Base64
@@ -136,7 +138,7 @@ export async function loadRodbTranslator(fragment: string): Promise<void> {
     // フラグメントをデコード
     const decodedData = decodeURIComponent(matches[2]);
 
-    // 中身のデコード、zlib解凍を行う
+    // 中身のデコード、zstd展開を行う
     const yamlObject: RodbTranslatorDataFormat | null = decodeProcess(decodedData)
     if (!yamlObject) {
         alert("URLからのデータロードに失敗しました");
@@ -145,19 +147,15 @@ export async function loadRodbTranslator(fragment: string): Promise<void> {
 
     // Set Job
     const jobElement = document.getElementById("OBJID_SELECT_JOB") as HTMLSelectElement;
-    jobElement.value = String(yamlObject.status.ratorio_job_id_num);
-    const jobContainer = document.getElementById("select2-OBJID_SELECT_JOB-container");
-    if (jobContainer) {
-        jobContainer.textContent = yamlObject.status.job_class_localization;
-    }
+    jobElement.value = yamlObject.status.job_class.toLocaleUpperCase();
     changeJobSettings(yamlObject.status.job_class.toLocaleUpperCase());
 
     // Set Base Lv
-    const baseLvElement = document.getElementById("OBJID_SELECT_BASE_LEVEL") as HTMLSelectElement;
+    const baseLvElement = document.getElementById("OBJID_SELECT_BASE_LEVEL") as HTMLInputElement;
     baseLvElement.value = String(yamlObject.status.base_lv);
 
     // Set Job Lv
-    const jobLvElement = document.getElementById("OBJID_SELECT_JOB_LEVEL") as HTMLSelectElement;
+    const jobLvElement = document.getElementById("OBJID_SELECT_JOB_LEVEL") as HTMLInputElement;
     jobLvElement.value = String(yamlObject.status.job_lv);
 
     // Set status

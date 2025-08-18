@@ -76,9 +76,6 @@ window.addEventListener('load', () => {
     console.log('✅ Webpack is all resources finished loading.');
 
     // RODB Translatorによるデータロード
-    const fragment = window.location.search.substring(1); // ?以降の部分を取得
-    const patternRtx = /^rtx[\d]+\:/;
-    if (patternRtx.test(fragment)) {
-        loadRodbTranslator(fragment);
-    }
+    const fragment = window.location.hash.substring(1); // #以降の部分を取得
+    loadRodbTranslator(fragment);
 });
