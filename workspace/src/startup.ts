@@ -1,7 +1,7 @@
 import { JobMap } from './loadJobMap';
 import { SkillMap } from './loadSkillMap';
 import { ItemMap } from './loadItemMap';
-import { loadRodbTranslator } from './loadRodbTranslator';
+import { loadRodbTranslator } from './rodbTranslator';
 
 /**
  * YAMLデータのロード実行
@@ -75,6 +75,10 @@ window.addEventListener('DOMContentLoaded', () => {
 window.addEventListener('load', () => {
     console.log('✅ Webpack is all resources finished loading.');
 
-    // RODB Translatorからのデータロード
-    loadRodbTranslator(window.location.hash);
+    // RODB Translatorによるデータロード
+    const fragment = window.location.search.substring(1); // ?以降の部分を取得
+    const patternRtx = /^rtx[\d]+\:/;
+    if (patternRtx.test(fragment)) {
+        loadRodbTranslator(fragment);
+    }
 });

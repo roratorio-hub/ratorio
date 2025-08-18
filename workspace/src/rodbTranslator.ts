@@ -1,6 +1,7 @@
+import { load as loadYAML, dump as dumpYAML } from "js-yaml"
 declare const pako: any;
 
-// Base64デコード関数（URLセーフに対応）
+// Base64 → Uint8Array（URLセーフに対応）
 function base64ToUint8Array(base64: string): Uint8Array {
     // パディングの補完
     let paddedBase = base64.replace(/-/g, '+').replace(/_/g, '/');
@@ -17,38 +18,81 @@ function base64ToUint8Array(base64: string): Uint8Array {
     return bytes;
 }
 
-// zlibで解凍
+// Uint8Array → Base64（URLセーフ対応）
+function uint8ArrayToBase64(bytes: Uint8Array): string {
+    let binary = '';
+    for (let i = 0; i < bytes.length; i++) {
+        binary += String.fromCharCode(bytes[i]);
+    }
+    let base64 = btoa(binary);
+    // URLセーフ変換
+    base64 = base64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+    return base64;
+}
+
+// zlibで展開
 function zlibDecompress(compressed: Uint8Array): string | null {
     try {
-        // pako.inflate() で zlib データを解凍
+        // pako.inflate() で zlib データを展開
         const decompressedData = pako.inflate(compressed);
         return new TextDecoder('utf-8').decode(decompressedData);
     } catch (err) {
-        console.error("解凍エラー:", err);
+        console.error("展開エラー:", err);
         return null;
     }
 }
 
-// Decode => 解凍 => JSON復元
-function decodeProcess(encodedData: string): RodbTranslatorJsonFormat | null {
-    let jsonObject: RodbTranslatorJsonFormat | null = null;
+// zlibで圧縮
+function zlibCompress(text: string): Uint8Array | null {
+    try {
+        // 文字列をUTF-8のUint8Arrayに変換
+        const input = new TextEncoder().encode(text);
+        // pako.deflate() でzlib圧縮
+        return pako.deflate(input);
+    } catch (err) {
+        console.error("圧縮エラー:", err);
+        return null;
+    }
+}
+
+// Decode => 展開 => YAML load
+function decodeProcess(encodedData: string): RodbTranslatorDataFormat | null {
+    let dataObject: RodbTranslatorDataFormat | null = null;
     try {
         // デコード => 圧縮データ
         const compressedData = base64ToUint8Array(encodedData);
 
-        // zlibで解凍
-        const jsonString = zlibDecompress(compressedData);
+        // zlibで展開
+        const yamlData = zlibDecompress(compressedData);
 
-        if (jsonString) {
-            // JSON文字列 => JavaScriptオブジェクト
-            jsonObject = JSON.parse(jsonString);
-            //console.debug("Decoded JSON:", jsonObject);
+        if (yamlData) {
+            // YAML文字列 => JavaScriptオブジェクト
+            dataObject = loadYAML(yamlData) as RodbTranslatorDataFormat;
         }
     } catch (error) {
         console.error("エラーが発生しました:", error);
     }
+    return dataObject;
+}
 
-    return jsonObject;
+// YAML dump => 圧縮 => Encode
+function encodeProcess(dataObject: RodbTranslatorDataFormat): string | null {
+    let encodedData: string | null = null;
+    try {
+        // YAMLオブジェクト => YAML文字列
+        const yamlData = dumpYAML(dataObject);
+
+        // zlibで圧縮
+        const compressedData = zlibCompress(yamlData);
+
+        if (compressedData) {
+            // 圧縮データ => Base64
+            encodedData = uint8ArrayToBase64(compressedData);
+        }
+    } catch (error) {
+        console.error("エラーが発生しました:", error);
+    }
+    return encodedData;
 }
 
 async function fetchSearchSkill(seachUrls: string[]): Promise<void> {
@@ -76,14 +120,15 @@ async function fetchSearchSkill(seachUrls: string[]): Promise<void> {
 }
 
 export async function loadRodbTranslator(fragment: string): Promise<void> {
-    const prefixCheck = /^#rtx(\d+):(.+)$/;
+    const supportVersion = 2;
+    const prefixCheck = /^rtx(\d+):(.+)$/;
     const matches = prefixCheck.exec(fragment);
     if (!matches) {
         return;
     }
 
     // Version Check
-    if (Number(matches[1]) != 1) {
+    if (Number(matches[1]) != supportVersion) {
         alert("RODB Translatorから出力された\nフォーマットバージョンが異なるため中止します\nVersion:" + matches[1]);
         return;
     }
@@ -92,35 +137,28 @@ export async function loadRodbTranslator(fragment: string): Promise<void> {
     const decodedData = decodeURIComponent(matches[2]);
 
     // 中身のデコード、zlib解凍を行う
-    const jsonObject: RodbTranslatorJsonFormat | null = decodeProcess(decodedData)
-    if (!jsonObject) {
+    const yamlObject: RodbTranslatorDataFormat | null = decodeProcess(decodedData)
+    if (!yamlObject) {
         alert("URLからのデータロードに失敗しました");
         return;
     }
 
-    // 不具合の暫定対処
-    // https://github.com/ragnarok-online-japan/translator/issues/1
-    if (!jsonObject.status.ratorio_job_id_num && jsonObject.status.job_class_localization == "インクイジター") {
-        jsonObject.status.ratorio_job_id_num = 74;
-        jsonObject.status.job_class = "inquisitor";
-    }
-
     // Set Job
     const jobElement = document.getElementById("OBJID_SELECT_JOB") as HTMLSelectElement;
-    jobElement.value = String(jsonObject.status.ratorio_job_id_num);
+    jobElement.value = String(yamlObject.status.ratorio_job_id_num);
     const jobContainer = document.getElementById("select2-OBJID_SELECT_JOB-container");
     if (jobContainer) {
-        jobContainer.textContent = jsonObject.status.job_class_localization;
+        jobContainer.textContent = yamlObject.status.job_class_localization;
     }
-    changeJobSettings(jsonObject.status.job_class.toLocaleUpperCase());
+    changeJobSettings(yamlObject.status.job_class.toLocaleUpperCase());
 
     // Set Base Lv
     const baseLvElement = document.getElementById("OBJID_SELECT_BASE_LEVEL") as HTMLSelectElement;
-    baseLvElement.value = String(jsonObject.status.base_lv);
+    baseLvElement.value = String(yamlObject.status.base_lv);
 
     // Set Job Lv
     const jobLvElement = document.getElementById("OBJID_SELECT_JOB_LEVEL") as HTMLSelectElement;
-    jobLvElement.value = String(jsonObject.status.job_lv);
+    jobLvElement.value = String(yamlObject.status.job_lv);
 
     // Set status
     const keys: (keyof JobStatus)[] = [
@@ -130,7 +168,7 @@ export async function loadRodbTranslator(fragment: string): Promise<void> {
 
     for (const key of keys) {
         const statusElement: HTMLInputElement = document.getElementById("OBJID_SELECT_STATUS_" + key.toUpperCase()) as HTMLInputElement;
-        let value = jsonObject.status[key];
+        let value = yamlObject.status[key];
         statusElement.value = String(value);
     }
 
@@ -140,7 +178,7 @@ export async function loadRodbTranslator(fragment: string): Promise<void> {
     OnClickSkillSWLearned();
 
     let seachUrls = [];
-    const urlPrefix = "https://rodb.aws.0nyx.net/translator/approximate_search/skill";
+    const urlPrefix = "https://ro-database.info/translator/approximate_search/skill";
     let idx = 0;
     while (true) {
         const skillNameElement: HTMLTableCellElement = document.getElementById("OBJID_TD_LEARNED_SKILL_NAME_" + idx) as HTMLTableCellElement;
@@ -158,7 +196,7 @@ export async function loadRodbTranslator(fragment: string): Promise<void> {
     // スキルのSelectBoxにdata-skill-name属性を付与
     await fetchSearchSkill(seachUrls);
 
-    Object.entries(jsonObject.skills).forEach(([skillName, skill]) => {
+    Object.entries(yamlObject.skills).forEach(([skillName, skill]) => {
         const skillLvElement: HTMLSelectElement = document.querySelector(`select[data-skill-name=${skillName}]`) as HTMLSelectElement;
         console.debug(`${skillName}`);
         if (skillLvElement) {
@@ -210,7 +248,7 @@ interface AdditionalInfo {
     world_name: string;
 }
 
-interface RodbTranslatorJsonFormat {
+interface RodbTranslatorDataFormat {
     format_version: number;
     overwrite: boolean;
     status: JobStatus;
@@ -219,4 +257,5 @@ interface RodbTranslatorJsonFormat {
     items: object;
     supports: object;
     additional_info: AdditionalInfo;
+    battle_info: object;
 }
