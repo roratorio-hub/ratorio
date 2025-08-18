@@ -41,7 +41,7 @@ async function waitForDataLoaded() {
 /**
  * DOMContentLoadedイベントリスナー
  */
-window.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
     console.log('📦 Webpack is ready and DOM is fully loaded.');
 
     waitForDataLoaded().then(() => {
