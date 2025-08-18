@@ -28,7 +28,7 @@ async function waitForDataLoaded() {
 /**
  * DOMContentLoadedイベントリスナー
  */
-window.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
     console.log('📦 Webpack is ready and DOM is fully loaded.');
 
     waitForDataLoaded().then(() => {
@@ -62,9 +62,10 @@ window.addEventListener('DOMContentLoaded', () => {
 window.addEventListener('load', () => {
     console.log('✅ Webpack is all resources finished loading.');
 
-    // RODB Translatorによるデータロード
-    const fragment = window.location.hash.substring(1); // #以降の部分を取得
-    loadRodbTranslator(fragment);
+    waitForDataLoaded().then(() => {
+        // RODB Translatorからのデータロード
+        loadRodbTranslator(window.location.hash);
+    });
 });
 
 /**
