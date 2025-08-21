@@ -54,10 +54,16 @@ function GetSlotMode() {
  * スロットモードボタン　クリックイベントハンドラ.
  *
  *-----------------------------------------------------------------------------------------------
+ * @param jobId 職業ID
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function OnClickSlotModeButton() {
+function OnClickSlotModeButton(jobId) {
+	// 職業IDが引数で渡されなかった時用のコード
+	if (typeof jobId === "undefined" || jobId === null) {
+		const selectJobElem = document.getElementById("OBJID_SELECT_JOB");
+		jobId = selectJobElem.value;
+	}
 
 	var slotModeNow = GetSlotMode();
 
