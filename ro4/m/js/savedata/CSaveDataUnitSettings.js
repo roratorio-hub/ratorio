@@ -1,5 +1,7 @@
 /**
- * 「計算機の設定」情報クラス
+ * 計算機の挙動に関する設定を保持するクラス
+ * 本クラスは単体で用いられるのでparse時のデータ長不足に特に注意を払う必要があります
+ * 他のCSaveDataUnitクラスは複数のクラスと連結された文字列をparseするのでデータ長不足になる可能性が低いです
  */
 class CSaveDataUnitSettings extends CSaveDataUnitBase {
 
@@ -14,24 +16,27 @@ class CSaveDataUnitSettings extends CSaveDataUnitBase {
      * バージョン番号.
      */
     static get version () {
-        return 2;
+        return 3;
     }
 
     // オーバーライドされた parse 関数
     parse (dataText, bitOffset) {
-        // バージョニングできていない古いデータ形式の互換性確保
+        let nextOffset = 0;
         if (dataText.length < 7) {
-            // 現行バージョンのデータ構造では末尾に新たな AttackAutoCalc が追加されているので、延長しないと長さが足りなくなる
-            let nextOffset = super.parse(dataText + "0", bitOffset);
+            // version 1 にはバージョニングされていない 長さ 6（version 1.0）と長さ 7（version 1.1） のパターンが存在する
+            // データ長 1 文字延長
+            nextOffset = super.parse(dataText + "0", bitOffset);
             // 現行バージョンで ConfirmDialogSwitch の位置にあるデータは、古いバージョンで AttackAutoCalc として使われていたので移植する
             const attach_auto_calc_old = this.parsedMap.get(CSaveDataConst.propNameConfirmDialogSwitch);
             this.parsedMap.set(CSaveDataConst.propNameAttackAutoCalc, attach_auto_calc_old);
             return nextOffset;
+        } else if (dataText.length < 8) {
+            // version 2 → 3 の後方互換性確保
+            // データ長 10 文字延長
+            nextOffset = super.parse(dataText + "iA0000000w", bitOffset);
+            return nextOffset;
         }
-        // 以降、通常の互換性確保
-        let nextOffset = super.parse(dataText, bitOffset);
-        if (this.getProp(CSaveDataConst.propNameVersion) == 1n) {
-        }
+        nextOffset = super.parse(dataText, bitOffset);
         // バージョン更新
         this.setProp(CSaveDataConst.propNameVersion, this.constructor.version);
         return nextOffset;
@@ -47,6 +52,23 @@ class CSaveDataUnitSettings extends CSaveDataUnitBase {
             CSaveDataConst.propNameAttackInterval,
             CSaveDataConst.propNameCastSimInterval,
             CSaveDataConst.propNameAttackAutoCalc,
+            // version 3 で追加
+            CSaveDataConst.propNameFloatingInfoAreaSwitch,
+            CSaveDataConst.propNameFloatingInfoAreaCount,
+            CSaveDataConst.propNameFloatingInfoAreaFontSize,
+            CSaveDataConst.propNameFloatingInfo1CategoryName,
+            CSaveDataConst.propNameFloatingInfo1InfoName,
+            CSaveDataConst.propNameFloatingInfo2CategoryName,
+            CSaveDataConst.propNameFloatingInfo2InfoName,
+            CSaveDataConst.propNameFloatingInfo3CategoryName,
+            CSaveDataConst.propNameFloatingInfo3InfoName,
+            CSaveDataConst.propNameFloatingInfo4CategoryName,
+            CSaveDataConst.propNameFloatingInfo4InfoName,
+            CSaveDataConst.propNameFloatingInfo5CategoryName,
+            CSaveDataConst.propNameFloatingInfo5InfoName,
+            CSaveDataConst.propNameItemInfoSwitch,
+            CSaveDataConst.propNameItemInfoAutoSwitch,
+            CSaveDataConst.propNameItemInfoTimeEffectSwitch,
         ];
     }
 
@@ -63,12 +85,29 @@ class CSaveDataUnitSettings extends CSaveDataUnitBase {
     constructor () {
         super();
         // プロパティ定義情報の登録
-        this.registerPropInfo(CSaveDataConst.propNameParseCtrlFlag, 5);
+        this.registerPropInfo(CSaveDataConst.propNameParseCtrlFlag, 21);    // version 3 で 5 → 21 へ増加
         this.registerPropInfo(CSaveDataConst.propNameConfirmDialogSwitch, 1);
         this.registerPropInfo(CSaveDataConst.propNameResultDigit3, 1);
         this.registerPropInfo(CSaveDataConst.propNameAttackInterval, 6);
         this.registerPropInfo(CSaveDataConst.propNameCastSimInterval, 8);
         this.registerPropInfo(CSaveDataConst.propNameAttackAutoCalc, 8);
+        // version 3 で 16 件追加
+        this.registerPropInfo(CSaveDataConst.propNameFloatingInfoAreaSwitch, 1);
+        this.registerPropInfo(CSaveDataConst.propNameFloatingInfoAreaCount, 3);
+        this.registerPropInfo(CSaveDataConst.propNameFloatingInfoAreaFontSize, 8);
+        this.registerPropInfo(CSaveDataConst.propNameFloatingInfo1CategoryName, 3);
+        this.registerPropInfo(CSaveDataConst.propNameFloatingInfo1InfoName, 6);
+        this.registerPropInfo(CSaveDataConst.propNameFloatingInfo2CategoryName, 3);
+        this.registerPropInfo(CSaveDataConst.propNameFloatingInfo2InfoName, 6);
+        this.registerPropInfo(CSaveDataConst.propNameFloatingInfo3CategoryName, 3);
+        this.registerPropInfo(CSaveDataConst.propNameFloatingInfo3InfoName, 6);
+        this.registerPropInfo(CSaveDataConst.propNameFloatingInfo4CategoryName, 3);
+        this.registerPropInfo(CSaveDataConst.propNameFloatingInfo4InfoName, 6);
+        this.registerPropInfo(CSaveDataConst.propNameFloatingInfo5CategoryName, 3);
+        this.registerPropInfo(CSaveDataConst.propNameFloatingInfo5InfoName, 6);
+        this.registerPropInfo(CSaveDataConst.propNameItemInfoSwitch, 1);
+        this.registerPropInfo(CSaveDataConst.propNameItemInfoAutoSwitch, 1);
+        this.registerPropInfo(CSaveDataConst.propNameItemInfoTimeEffectSwitch, 1);
     }
 
     /**
@@ -82,6 +121,23 @@ class CSaveDataUnitSettings extends CSaveDataUnitBase {
         this.setProp(CSaveDataConst.propNameAttackInterval, 14);
         this.setProp(CSaveDataConst.propNameCastSimInterval, 10);
         this.setProp(CSaveDataConst.propNameAttackAutoCalc, 0);
+        // version 3 で追加
+        this.setProp(CSaveDataConst.propNameFloatingInfoAreaSwitch, 0);
+        this.setProp(CSaveDataConst.propNameFloatingInfoAreaCount, 1);
+        this.setProp(CSaveDataConst.propNameFloatingInfoAreaFontSize, 100);
+        this.setProp(CSaveDataConst.propNameFloatingInfo1CategoryName, 0);
+        this.setProp(CSaveDataConst.propNameFloatingInfo1InfoName, 0);
+        this.setProp(CSaveDataConst.propNameFloatingInfo2CategoryName, 0);
+        this.setProp(CSaveDataConst.propNameFloatingInfo2InfoName, 0);
+        this.setProp(CSaveDataConst.propNameFloatingInfo3CategoryName, 0);
+        this.setProp(CSaveDataConst.propNameFloatingInfo3InfoName, 0);
+        this.setProp(CSaveDataConst.propNameFloatingInfo4CategoryName, 0);
+        this.setProp(CSaveDataConst.propNameFloatingInfo4InfoName, 0);
+        this.setProp(CSaveDataConst.propNameFloatingInfo5CategoryName, 0);
+        this.setProp(CSaveDataConst.propNameFloatingInfo5InfoName, 0);
+        this.setProp(CSaveDataConst.propNameItemInfoSwitch, 0);
+        this.setProp(CSaveDataConst.propNameItemInfoAutoSwitch, 0);
+        this.setProp(CSaveDataConst.propNameItemInfoTimeEffectSwitch, 0);
     }
 
     /**
