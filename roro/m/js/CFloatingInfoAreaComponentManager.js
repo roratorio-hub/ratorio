@@ -372,8 +372,12 @@ CFloatingInfoAreaComponentManager.RebuildControls = function () {
  * 展開チェックボックス切り替えイベントハンドラ.
  */
 CFloatingInfoAreaComponentManager.OnClickExtractSwitch = function () {
+	// セーブデータ更新
+	const status = document.getElementById("OBJID_FLOATING_INFO_AREA_EXTRACT_CHECKBOX").checked ? 1 : 0;
+	CSaveController.setSettingProp(CSaveDataConst.propNameFloatingInfoAreaSwitch, status);
 	// 再構築する
 	CFloatingInfoAreaComponentManager.RebuildControls();
+	CFloatingInfoAreaComponentManager.LoadFromLocalStorage();
 };
 
 
@@ -382,10 +386,11 @@ CFloatingInfoAreaComponentManager.OnClickExtractSwitch = function () {
  * フローティング情報欄の数変更イベントハンドラ.
  */
 CFloatingInfoAreaComponentManager.OnChangeAreaCount = function () {
-
+	// セーブデータ更新
+	const count = document.getElementById("OBJID_SELECT_FLOATING_INFO_AREA_COUNT").value
+	CSaveController.setSettingProp(CSaveDataConst.propNameFloatingInfoAreaCount, count);
 	// 情報欄の数を更新
 	CFloatingInfoAreaComponentManager.areaCount = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_FLOATING_INFO_AREA_COUNT", 1);
-
 	// 全部品再構築処理呼び出し
 	CFloatingInfoAreaComponentManager.RebuildControls();
 };
@@ -396,15 +401,13 @@ CFloatingInfoAreaComponentManager.OnChangeAreaCount = function () {
  * フローティング情報ＩＤ変更イベントハンドラ.
  */
 CFloatingInfoAreaComponentManager.OnChangeInfo = function (idxArea) {
-
 	var infoId = 0;
-
 	// フローティング情報ＩＤを取得
 	infoId = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_FLOATING_INFO_" + idxArea, 0);
-
 	// 選択中のＩＤを更新
 	CFloatingInfoAreaComponentManager.infoUnitArray[idxArea].selectedInfoId = infoId;
-
+	// セーブデータ更新
+	CSaveController.setSettingProp(`floatingInfo${idxArea + 1}CategoryName`, infoId);
 	// 再構築処理呼び出し
 	CFloatingInfoAreaComponentManager.RebuildDispArea(idxArea);
 };
@@ -1158,12 +1161,30 @@ CFloatingInfoAreaComponentManager.RefreshDispAreaNotice = function (idxArea) {
 
 };
 
-
-
-
-
-
-
+/**
+ * ローカルストレージに保存された状態を復元する
+ */
+CFloatingInfoAreaComponentManager.LoadFromLocalStorage = function () {
+	const event = new Event('change', { bubbles: true });
+	// 表示欄の数を設定する
+	const floating_info_area_count = Number(CSaveController.getSettingProp(CSaveDataConst.propNameFloatingInfoAreaCount));
+	const selectElement = document.getElementById("OBJID_SELECT_FLOATING_INFO_AREA_COUNT");
+	selectElement.value = floating_info_area_count;
+	selectElement.dispatchEvent(event);
+	// 文字サイズを設定する
+	//      TODO: 文字サイズを相対指定出来るようになってから実装する
+	for (let i=0; floating_info_area_count > i; i++) {
+		// カスタム表示本体を設定する
+		const category_id = Number(CSaveController.getSettingProp(`floatingInfo${i + 1}CategoryName`));
+		const info_id = Number(CSaveController.getSettingProp(`floatingInfo${i + 1}InfoName`));
+		const categoryElement = document.getElementById(`OBJID_SELECT_FLOATING_INFO_${i}`);
+		categoryElement.value = category_id;
+		categoryElement.dispatchEvent(event);
+		const infoElement = document.getElementById(`OBJID_SELECT_EXTRA_INFO_${i + 1}`);
+		infoElement.value = info_id;
+		infoElement.dispatchEvent(event);
+	}	
+}
 
 //--------------------------------------------------------------------------------
 // 各フローティング情報ごとの表示欄構築関数ここまで

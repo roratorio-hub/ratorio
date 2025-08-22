@@ -1,4 +1,5 @@
 /**
+ * deprecated
  * 計算機の状態をCookieにセーブ、あるいはロードする
  */
 $(function () {

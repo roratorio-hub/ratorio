@@ -30188,6 +30188,27 @@ document.addEventListener('DOMContentLoaded', () => {
 	// 再計算
 	CalcStatusPoint(true);
 	calc();
+
+	/**
+	 * カスタム表示の状態を復元する
+	 * 装備・ステータスに依存するカスタム表示欄があるので再計算後に実施する
+	 */
+	if (CSaveController.getSettingProp(CSaveDataConst.propNameFloatingInfoAreaSwitch) == 1) {
+		// カスタム表示を開く
+		document.getElementById("OBJID_FLOATING_INFO_AREA_EXTRACT_CHECKBOX").click();
+		// 中身を復元する
+		CFloatingInfoAreaComponentManager.LoadFromLocalStorage();
+	}
+	/**
+	 * アイテム情報の状態を復元する
+	 */
+	if (CSaveController.getSettingProp(CSaveDataConst.propNameItemInfoSwitch) == 1) {
+		// カスタム表示を開く
+		document.getElementById("OBJID_ITEM_INFO_EXTRACT_CHECKBOX").click();
+		// 中身を復元する
+		CItemInfoManager.LoadFromLocalStorage();
+	}
+
 });
 
 function LoadSaveDataToCalculator () {
