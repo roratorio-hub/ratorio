@@ -30130,6 +30130,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	console.log("DOM Content is loaded.");
 	// YAMLデータのロードが完了していたら発火
 	waitForDataLoaded().then(() => {
+		console.log("All data is loaded.");
+
 		// 計算機設定の読み込み
 		if (document.getElementById("OBJID_SAVE_BLOCK_MIG")) {
 			CSaveController.LoadSettingFromLocalStorageMIG();

@@ -10,9 +10,6 @@ function changeJobSettings(jobId) {
 			jobId = selectJobElem.value;
 		}
 		selectJobElem.value = jobId;
-		// OBJID_SELECT_JOB内にoptionが存在しない場合
-		// 後ほど選択できるようdata-job-idに値を保存
-		selectJobElem.setAttribute("data-job-id", jobId);
 	}
 	// 職業IDが確定したら、ジョブデータを取得
 	let jobData = JobMap.getById(jobId);
