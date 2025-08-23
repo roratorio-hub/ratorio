@@ -75,3 +75,5 @@ Promise.all([
 }).catch((error) => {
     console.error('⚠️ Error loading maps:', error);
 });
+
+(window as any).waitForDataLoaded = waitForDataLoaded;
