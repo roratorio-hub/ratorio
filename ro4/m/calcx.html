@@ -200,10 +200,13 @@
 	<!-- サイト読み込み直後に1回だけ実行される関数 -->
 	<script>
 		window.addEventListener('load', () => {
-			// エンチャントサーチのロード
-			new enchSearch();
-			// 検索可能ドロップダウンリストのロード
-			LoadSelect2();
+			// YAMLデータのロードが完了していたら発火
+			waitForDataLoaded().then(() => {
+				// エンチャントサーチのロード
+				new enchSearch();
+				// 検索可能ドロップダウンリストのロード
+				LoadSelect2();
+			});
 		});
 	</script>
 </head>
