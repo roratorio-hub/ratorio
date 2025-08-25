@@ -345,6 +345,9 @@ function CExtraInfoAreaComponentManager () {
 		// 選択中のＩＤを更新
 		this.selectedInfoId = infoId;
 
+		// セーブデータ更新
+		CSaveController.setSettingProp(`floatingInfo${this.managerInstanceId}InfoName`, infoId);
+		
 		// 再構築処理呼び出し
 		this.RebuildDispArea();
 	};

@@ -1945,7 +1945,85 @@ class CSaveDataConst {
 	 */
 	static propNameCastSimInterval = "castSimInterval";
 
+	/**
+	 * プロパティ名：カスタム表示スイッチ
+	 */
+	static propNameFloatingInfoAreaSwitch = "floatingInfoAreaSwitch";
 
+	/**
+	 * プロパティ名：カスタム表示生成数
+	 */
+	static propNameFloatingInfoAreaCount = "floatingInfoAreaCount";
+
+	/**
+	 * プロパティ名：カスタム表示文字サイズ
+	 */
+	static propNameFloatingInfoAreaFontSize = "floatingInfoAreaFontSize";
+
+	/**
+	 * プロパティ名：カスタム表示１カテゴリ名
+	 */
+	static propNameFloatingInfo1CategoryName = "floatingInfo1CategoryName";
+
+	/**
+	 * プロパティ名：カスタム表示１情報名
+	 */
+	static propNameFloatingInfo1InfoName = "floatingInfo1InfoName";
+
+	/**
+	 * プロパティ名：カスタム表示２カテゴリ名
+	 */
+	static propNameFloatingInfo2CategoryName = "floatingInfo2CategoryName";
+
+	/**
+	 * プロパティ名：カスタム表示２情報名
+	 */
+	static propNameFloatingInfo2InfoName = "floatingInfo2InfoName";
+
+	/**
+	 * プロパティ名：カスタム表示３カテゴリ名
+	 */
+	static propNameFloatingInfo3CategoryName = "floatingInfo3CategoryName";
+
+	/**
+	 * プロパティ名：カスタム表示３情報名
+	 */
+	static propNameFloatingInfo3InfoName = "floatingInfo3InfoName";
+
+	/**
+	 * プロパティ名：カスタム表示４カテゴリ名
+	 */
+	static propNameFloatingInfo4CategoryName = "floatingInfo4CategoryName";
+
+	/**
+	 * プロパティ名：カスタム表示４情報名
+	 */
+	static propNameFloatingInfo4InfoName = "floatingInfo4InfoName";
+
+	/**
+	 * プロパティ名：カスタム表示５カテゴリ名
+	 */
+	static propNameFloatingInfo5CategoryName = "floatingInfo5CategoryName";
+
+	/**
+	 * プロパティ名：カスタム表示５情報名
+	 */
+	static propNameFloatingInfo5InfoName = "floatingInfo5InfoName";
+
+	/**
+	 * プロパティ名：アイテム情報スイッチ
+	 */
+	static propNameItemInfoSwitch = "itemInfoSwitch";
+
+	/**
+	 * プロパティ名：アイテム情報自動表示スイッチ
+	 */
+	static propNameItemInfoAutoSwitch = "itemInfoAutoSwitch";
+
+	/**
+	 * プロパティ名：アイテム情報時限効果スイッチ
+	 */
+	static propNameItemInfoTimeEffectSwitch = "itemInfoTimeEffectSwitch";
 
 	/**
 	 * プロパティ値：装備位置種別（アイテム）.

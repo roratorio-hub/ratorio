@@ -146,7 +146,7 @@ body[class="CLS_BODY_ALTERNATIVE"] .folding-block-body-MIG {
 
 /* =======================================================
 装備ブロック
-======================================================= */ 
+======================================================= */
 
 /* 新装備ブロック */
 #OBJID_SHADOW_EQUIPS_MIG {
@@ -373,7 +373,7 @@ body[class="CLS_BODY_ALTERNATIVE"] .folding-block-body-MIG {
 }
 
 /*
-* ツールチップ 
+* ツールチップ
 *   多用しすぎないように注意
 */
 .tooltip-target {
@@ -426,4 +426,39 @@ body[class="CLS_BODY_ALTERNATIVE"] .folding-block-body-MIG {
 td.tooltip-target {
     display: table-cell; /* tdのデフォルト表示に戻す */
     padding-bottom: 0;   /* tooltip-targetで追加されたパディングをリセット */
+}
+
+/* 数値入力フィールドのスタイル */
+input[type="number"] {
+    width: 5em; /* 入力フィールドの幅を指定 */
+    padding: 0.25em; /* 入力フィールドの内側の余白 */
+    border: 1px solid #ccc; /* 入力フィールドの境界線 */
+    border-radius: 4px; /* 入力フィールドの角を丸くする */
+}
+
+/* 数値入力フィールドの値が不正な場合の背景色 */
+input[type="number"]:invalid {
+    background-color: red;
+    /* Add space for the error icon */
+    position: relative;
+}
+/* Add a visible warning icon for invalid input */
+input[type="number"]:invalid::after {
+    content: "⚠";
+    color: #fff;
+    background: #d32f2f;
+    border-radius: 50%;
+    font-size: 1em;
+    position: absolute;
+    right: 0.5em;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    /* Optional: add a border for better contrast */
+    border: 1px solid #fff;
+    width: 1.2em;
+    height: 1.2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

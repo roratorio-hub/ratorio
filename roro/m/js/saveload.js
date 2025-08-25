@@ -243,6 +243,12 @@ function SaveSystem(funcSaveDataModify = null){
 		SaveData[idx] = 0;
 	}
 
+	let jobId = null;
+	if (typeof jobId === "undefined" || jobId === null) {
+		jobId = document.getElementById("OBJID_SELECT_JOB").value;
+	}
+	let jobData = JobMap.getById(jobId);
+
 	with(document.calcForm){
 
 		//----------------------------------------------------------------
@@ -256,7 +262,7 @@ function SaveSystem(funcSaveDataModify = null){
 		//----------------------------------------------------------------
 
 		// 基本情報
-		SaveData[1] = eval(A_JOB.value);
+		SaveData[1] = jobData.getMigIdNum();
 		SaveData[2] = eval(A_BaseLV.value);
 		SaveData[3] = eval(A_JobLV.value);
 		SaveData[4] = eval(A_STR.value);
@@ -5645,6 +5651,3 @@ function MagicDamageCalcPatternSurbey() {
 
 }
 */
-
-
-
