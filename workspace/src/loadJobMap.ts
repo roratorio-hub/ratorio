@@ -89,8 +89,8 @@ class JobData {
     GetWeightBonus(): number {
         return this.parameter.weight_correction;
     }
-    GetWeaponAspd(wpnType: number): number {
-        return this.parameter.weapons_aspd[wpnType] || 0;
+    GetWeaponAspd(wpnType: number): number | undefined {
+        return this.parameter.weapons_aspd[wpnType];
     }
     GetJobBonus(): number[] {
         return [0]; //未実装
