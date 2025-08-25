@@ -276,8 +276,14 @@ CItemInfoManager.RebuildControls = function () {
  * 展開チェックボックス切り替えイベントハンドラ.
  */
 CItemInfoManager.OnClickExtractSwitch = function () {
+	// セーブデータ更新
+	const status = document.getElementById("OBJID_ITEM_INFO_EXTRACT_CHECKBOX").checked ? 1 : 0;
+	CSaveController.setSettingProp(CSaveDataConst.propNameItemInfoSwitch, status);
 	// 再構築する
 	CItemInfoManager.RebuildControls();
+	if (status === 1) {
+		CItemInfoManager.LoadFromLocalStorage();
+	}
 };
 
 
@@ -286,17 +292,11 @@ CItemInfoManager.OnClickExtractSwitch = function () {
  * 自動表示チェックボックス変更イベントハンドラ.
  */
 CItemInfoManager.OnChangeCheckAutoFlag = function () {
-
-	var objInput = null;
-
-	objInput = document.getElementById("OBJID_CHECK_ITEM_INFO_AUTO_FLAG");
-
-	if (objInput.checked) {
-		CItemInfoManager.AutoFlag = true;
-	}
-	else {
-		CItemInfoManager.AutoFlag = false;
-	}
+	const objInput = document.getElementById("OBJID_CHECK_ITEM_INFO_AUTO_FLAG");
+	CItemInfoManager.AutoFlag = objInput.checked;
+	// セーブデータ更新
+	const status = objInput.checked?1:0;
+	CSaveController.setSettingProp(CSaveDataConst.propNameItemInfoAutoSwitch, status);
 };
 
 
@@ -305,17 +305,11 @@ CItemInfoManager.OnChangeCheckAutoFlag = function () {
  * 時限効果設定時画面フォーカスチェックボックス変更イベントハンドラ.
  */
 CItemInfoManager.OnChangeCheckApplyAutoFocusFlag = function () {
-
-	var objInput = null;
-
-	objInput = document.getElementById("OBJID_CHECK_ITEM_INFO_APPLY_AUTO_FOCUS_FLAG");
-
-	if (objInput.checked) {
-		CItemInfoManager.ApplyAutoFocusFlag = true;
-	}
-	else {
-		CItemInfoManager.ApplyAutoFocusFlag = false;
-	}
+	const objInput = document.getElementById("OBJID_CHECK_ITEM_INFO_APPLY_AUTO_FOCUS_FLAG");
+	CItemInfoManager.ApplyAutoFocusFlag = objInput.checked;
+	// セーブデータ更新
+	const status = objInput.checked?1:0;
+	CSaveController.setSettingProp(CSaveDataConst.propNameItemInfoTimeEffectSwitch, status);
 };
 
 
@@ -1322,7 +1316,19 @@ CItemInfoManager.ApplyTimeItem = function (timeItemId) {
 	}
 };
 
-
+/**
+ * ローカルストレージに保存された状態を復元する
+ */
+CItemInfoManager.LoadFromLocalStorage = function () {
+	// 自動表示の状態を設定する
+	let status = (CSaveController.getSettingProp(CSaveDataConst.propNameItemInfoAutoSwitch) === 1n);
+	document.getElementById("OBJID_CHECK_ITEM_INFO_AUTO_FLAG").checked = status;
+	CItemInfoManager.AutoFlag = status;
+	// 時限効果フォーカスの状態を設定する
+	status = (CSaveController.getSettingProp(CSaveDataConst.propNameItemInfoTimeEffectSwitch) === 1n);
+	document.getElementById("OBJID_CHECK_ITEM_INFO_APPLY_AUTO_FOCUS_FLAG").checked = status;
+	CItemInfoManager.ApplyAutoFocusFlag = status;
+}
 
 /**
  * セット情報を追記する.

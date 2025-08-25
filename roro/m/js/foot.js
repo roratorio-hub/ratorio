@@ -30177,7 +30177,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		if (param.length > 0 && !patternRtx.test(param)) {
 			// ラトリオ独自のロード処理
 			CSaveController.loadFromURL(param);
-			CItemInfoManager.OnClickExtractSwitch();
 		} else {
 			// URLロードがない場合は、ノービスを初期ジョブとして設定
 			changeJobSettings("NOVICE");
@@ -30186,6 +30185,26 @@ document.addEventListener('DOMContentLoaded', () => {
 		// 再計算
 		CalcStatusPoint(true);
 		calc();
+
+		/**
+		 * カスタム表示の状態を復元する
+		 * 装備・ステータスに依存するカスタム表示欄があるので再計算後に実施する
+		 */
+		if (CSaveController.getSettingProp(CSaveDataConst.propNameFloatingInfoAreaSwitch) === 1n) {
+			// カスタム表示を開く
+			document.getElementById("OBJID_FLOATING_INFO_AREA_EXTRACT_CHECKBOX").click();
+			// 中身を復元する
+			CFloatingInfoAreaComponentManager.LoadFromLocalStorage();
+		}
+		/**
+		 * アイテム情報の状態を復元する
+		 */
+		if (CSaveController.getSettingProp(CSaveDataConst.propNameItemInfoSwitch) === 1n) {
+			// カスタム表示を開く
+			document.getElementById("OBJID_ITEM_INFO_EXTRACT_CHECKBOX").click();
+			// 中身を復元する
+			CItemInfoManager.LoadFromLocalStorage();
+		}
 	});
 });
 
