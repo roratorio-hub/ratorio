@@ -300,9 +300,15 @@
 
 													<tr>
 														<td style="min-width: 4em; text-align:center;">BaseLV</td>
-														<td style="min-width: 7em;"><input type="number" min="1" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_BASE_LEVEL" name="A_BaseLV" onChange="CalcStatusPoint(true) | StAllCalc() | CAttackMethodAreaComponentManager.RebuildControls() | AutoCalc()"></td>
+														<td style="min-width: 7em;">
+															<input type="number" min="1" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_BASE_LEVEL" name="A_BaseLV" required
+																onChange="CalcStatusPoint(true) | StAllCalc() | CAttackMethodAreaComponentManager.RebuildControls() | AutoCalc()">
+														</td>
 														<td style="min-width: 4em; text-align:center;">JobLV</td>
-														<td style="min-width: 7em;"><input type="number" min="1" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_JOB_LEVEL" name="A_JobLV" onChange="StAllCalc() | AutoCalc()"></td>
+														<td style="min-width: 7em;">
+															<input type="number" min="1" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_JOB_LEVEL" name="A_JobLV" required
+																onChange="StAllCalc() | AutoCalc()">
+														</td>
 
 														<td style="min-width: 4em; text-align:center;">職業</td>
 														<td style="min-width: 7em;"><select id="OBJID_SELECT_JOB"
@@ -313,19 +319,22 @@
 													<tr>
 														<td style="text-align: center;">Str</td>
 														<td>
-															<input type="number" min="1" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_STATUS_STR" name="A_STR" onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()">
+															<input type="number" min="1" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_STATUS_STR" name="A_STR" required
+																onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()">
 															<span id="OBJID_SPAN_STATUS_BONUS_STR"></span>
 														</td>
 
 														<td style="text-align: center;">Agi</td>
 														<td>
-															<input type="number" min="1" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_STATUS_AGI" name="A_AGI" onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()">
+															<input type="number" min="1" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_STATUS_AGI" name="A_AGI" required
+																onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()">
 															<span id="OBJID_SPAN_STATUS_BONUS_AGI"></span>
 														</td>
 
 														<td style="text-align: center;">Vit</td>
 														<td>
-															<input type="number" min="1" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_STATUS_VIT" name="A_VIT" onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()">
+															<input type="number" min="1" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_STATUS_VIT" name="A_VIT" required
+																onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()">
 															<span id="OBJID_SPAN_STATUS_BONUS_VIT"></span>
 														</td>
 													</tr>
@@ -333,19 +342,22 @@
 													<tr>
 														<td style="text-align: center;">Int</td>
 														<td>
-															<input type="number" min="1" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_STATUS_INT" name="A_INT" onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()">
+															<input type="number" min="1" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_STATUS_INT" name="A_INT" required
+																onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()">
 															<span id="OBJID_SPAN_STATUS_BONUS_INT"></span>
 														</td>
 
 														<td style="text-align: center;">Dex</td>
 														<td>
-															<input type="number" min="1" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_STATUS_DEX" name="A_DEX" onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()">
+															<input type="number" min="1" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_STATUS_DEX" name="A_DEX" required
+																onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()">
 															<span id="OBJID_SPAN_STATUS_BONUS_DEX"></span>
 														</td>
 
 														<td style="text-align: center;">Luk</td>
 														<td>
-															<input type="number" min="1" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_STATUS_LUK" name="A_LUK" onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()">
+															<input type="number" min="1" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_STATUS_LUK" name="A_LUK" required
+																onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()">
 															<span id="OBJID_SPAN_STATUS_BONUS_LUK"></span>
 														</td>
 													</tr>
@@ -376,7 +388,8 @@
 															style="min-width: 4em; text-align:center; background-color: #ddddff;">
 															Pow</td>
 														<td style="min-width: 7em;">
-															<input type="number" min="0" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_STATUS_POW" name="A_POW" onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()">
+															<input type="number" min="0" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_STATUS_POW" name="A_POW" required
+																onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()">
 															<span id="OBJID_SPAN_STATUS_BONUS_POW"></span>
 														</td>
 
@@ -399,7 +412,8 @@
 														<td style="text-align:center; background-color: #ddddff;">Sta
 														</td>
 														<td>
-															<input type="number" min="0" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_STATUS_STA" name="A_STA" onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()">
+															<input type="number" min="0" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_STATUS_STA" name="A_STA" required
+																onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()">
 															<span id="OBJID_SPAN_STATUS_BONUS_STA"></span>
 														</td>
 
@@ -420,7 +434,8 @@
 														<td style="text-align:center; background-color: #ddddff;">Wis
 														</td>
 														<td>
-															<input type="number" min="0" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_STATUS_WIS" name="A_WIS" onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()">
+															<input type="number" min="0" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_STATUS_WIS" name="A_WIS" required
+																onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()">
 															<span id="OBJID_SPAN_STATUS_BONUS_WIS"></span>
 														</td>
 
@@ -435,7 +450,8 @@
 														<td style="text-align:center; background-color: #ddddff;">Spl
 														</td>
 														<td>
-															<input type="number" min="0" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_STATUS_SPL" name="A_SPL" onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()">
+															<input type="number" min="0" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_STATUS_SPL" name="A_SPL" required
+																onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()">
 															<span id="OBJID_SPAN_STATUS_BONUS_SPL"></span>
 														</td>
 
@@ -450,7 +466,8 @@
 														<td style="text-align:center; background-color: #ddddff;">Con
 														</td>
 														<td>
-															<input type="number" min="0" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_STATUS_CON" name="A_CON" onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()">
+															<input type="number" min="0" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_STATUS_CON" name="A_CON" required
+																onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()">
 															<span id="OBJID_SPAN_STATUS_BONUS_CON"></span>
 														</td>
 
@@ -466,7 +483,8 @@
 														<td style="text-align:center; background-color: #ddddff;">Crt
 														</td>
 														<td>
-															<input type="number" min="0" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_STATUS_CRT" name="A_CRT" onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()">
+															<input type="number" min="0" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_STATUS_CRT" name="A_CRT" required
+																onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()">
 															<span id="OBJID_SPAN_STATUS_BONUS_CRT"></span>
 														</td>
 													</tr>

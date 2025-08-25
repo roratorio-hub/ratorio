@@ -30177,7 +30177,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		if (param.length > 0 && !patternRtx.test(param)) {
 			// ラトリオ独自のロード処理
 			CSaveController.loadFromURL(param);
-			CItemInfoManager.OnClickExtractSwitch();
 		} else {
 			// URLロードがない場合は、ノービスを初期ジョブとして設定
 			changeJobSettings("NOVICE");
