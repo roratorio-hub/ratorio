@@ -31,8 +31,8 @@ class CSaveDataUnitSettings extends CSaveDataUnitBase {
             this.parsedMap.set(CSaveDataConst.propNameAttackAutoCalc, attach_auto_calc_old);
             return nextOffset;
         } else if (dataText.length < 8) {
-            // version 2 → 3 の後方互換性確保
-            // データ長 10 文字延長
+            // version 2 → 3 の後方互換性確保でデータ延長
+            // "iA0000000w" は追加された16個のプロパティのデフォルト値をエンコードしたものです。
             nextOffset = super.parse(dataText + "iA0000000w", bitOffset);
             return nextOffset;
         }
