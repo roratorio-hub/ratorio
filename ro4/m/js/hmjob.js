@@ -100,6 +100,9 @@ function CalcStatusPoint(bIgnoreAutoCalc) {
 		var stValCRT = eval(A_CRT.value);
 	}
 
+	const jobData = JobMap.getById(jobId);
+	const migJobIdNum = jobData.getMigIdNum();
+
 	// 消費ステータスポイントを計算する
 	var stPointUsed = 0;
 	stPointUsed += GetStatusTotalCost(stValSTR);
@@ -127,7 +130,7 @@ function CalcStatusPoint(bIgnoreAutoCalc) {
 
 	// 初期ステータスポイントの決定
 	var stPointEarned = 48;
-	if (IsReincarnatedJob(jobId) && n_A_PassSkill8[13] == 0) {
+	if (IsReincarnatedJob(migJobIdNum) && n_A_PassSkill8[13] == 0) {
 		stPointEarned = 100;
 	}
 
@@ -147,7 +150,7 @@ function CalcStatusPoint(bIgnoreAutoCalc) {
 			stPointEarned += GetEarningStatusPoint(blv);
 		}
 		// ４次職の場合
-		if (IsYojiJob(jobId)) {
+		if (IsYojiJob(migJobIdNum)) {
 			// 獲得した特性ステータスポイントが消費ステータスポイント未満の間
 			// かつ、最大レベル以下の間、レベルを上げる
 			for (blv; (stTSPointEarned < stTSPointUsed) && (blv <= blvMax); blv++) {
