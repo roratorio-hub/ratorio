@@ -125,8 +125,8 @@ function CalcStatusPoint(bIgnoreAutoCalc) {
 	InitJobInfo();
 
 	// ベースレベル情報の取得
-	var blvMin = GetBaseLevelMin(jobId);
-	var blvMax = GetBaseLevelMax(jobId);
+	var blvMin = jobData.getBaseLvMin();
+	var blvMax = jobData.getBaseLvMax();
 
 	// 初期ステータスポイントの決定
 	var stPointEarned = 48;
@@ -1603,7 +1603,7 @@ function migrateOtherJob(jobId) {
 	showLoadingIndicator();
 	setTimeout(() => {
 		// 変更後の職業の二刀流可能性に合わせる
-		n_Nitou = IsDualArmsJob(jobId);
+		n_Nitou = IsDualArmsJob(jobData.getMigIdNum());
 		// TODO: 暫定対処　旧形式の保存処理呼び出し
 		dataURL = SaveSystem(funcModifySaveData);
 		// URL入力を実行
