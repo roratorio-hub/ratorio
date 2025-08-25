@@ -54,10 +54,16 @@ function GetSlotMode() {
  * スロットモードボタン　クリックイベントハンドラ.
  *
  *-----------------------------------------------------------------------------------------------
+ * @param jobId 職業ID
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function OnClickSlotModeButton() {
+function OnClickSlotModeButton(jobId) {
+	// 職業IDが引数で渡されなかった時用のコード
+	if (typeof jobId === "undefined" || jobId === null) {
+		const selectJobElem = document.getElementById("OBJID_SELECT_JOB");
+		jobId = selectJobElem.value;
+	}
 
 	var slotModeNow = GetSlotMode();
 
@@ -106,7 +112,7 @@ function OnClickSlotModeButton() {
 		SetCardSlotEnabilityAll();
 
 		// 衣装欄を再構築
-		RebuildSlotAsCostumeAll();
+		RebuildSlotAsCostumeAll(jobId);
 
 		// 使用可否を設定
 		SetCostumeSlotEnabilityAll();
@@ -922,13 +928,13 @@ function __BreakSlotOfCostume(objidPrifix) {
  * スロット欄を再構築する（衣装用）（すべて）.
  *
  *-----------------------------------------------------------------------------------------------
+ * @param jobId 職業ID
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function RebuildSlotAsCostumeAll() {
-
+function RebuildSlotAsCostumeAll(jobId) {
 	// 個別関数を全コール
-	RebuildSlotAsCostume(EQUIP_REGION_ID_HEAD_UNDER);
+	RebuildSlotAsCostume(EQUIP_REGION_ID_HEAD_UNDER, jobId);
 }
 
 /************************************************************************************************
@@ -937,55 +943,60 @@ function RebuildSlotAsCostumeAll() {
  *
  *-----------------------------------------------------------------------------------------------
  * @param eqpRgnId 対象となる装備領域ＩＤ
+ * @param jobId 職業ID
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function RebuildSlotAsCostume(eqpRgnId) {
+function RebuildSlotAsCostume(eqpRgnId, jobId) {
+	// 職業IDが引数で渡されなかった時用のコード
+	if (typeof jobId === "undefined" || jobId === null) {
+		jobId = document.getElementById("OBJID_SELECT_JOB").value;
+	}
 
 	// サブ関数をコール
 	switch (eqpRgnId) {
 	case EQUIP_REGION_ID_ARMS:
-		__RebuildSlotAsCostume(eqpRgnId, "OBJID_ARMS_RIGHT");
+		__RebuildSlotAsCostume(eqpRgnId, "OBJID_ARMS_RIGHT", jobId);
 		break;
 
 	case EQUIP_REGION_ID_ARMS_LEFT:
-		__RebuildSlotAsCostume(eqpRgnId, "OBJID_ARMS_LEFT");
+		__RebuildSlotAsCostume(eqpRgnId, "OBJID_ARMS_LEFT", jobId);
 		break;
 
 	case EQUIP_REGION_ID_HEAD_TOP:
-		__RebuildSlotAsCostume(eqpRgnId, "OBJID_HEAD_TOP");
+		__RebuildSlotAsCostume(eqpRgnId, "OBJID_HEAD_TOP", jobId);
 		break;
 
 	case EQUIP_REGION_ID_HEAD_MID:
-		__RebuildSlotAsCostume(eqpRgnId, "OBJID_HEAD_MID");
+		__RebuildSlotAsCostume(eqpRgnId, "OBJID_HEAD_MID", jobId);
 		break;
 
 	case EQUIP_REGION_ID_HEAD_UNDER:
-		__RebuildSlotAsCostume(eqpRgnId, "OBJID_HEAD_UNDER");
+		__RebuildSlotAsCostume(eqpRgnId, "OBJID_HEAD_UNDER", jobId);
 		break;
 
 	case EQUIP_REGION_ID_SHIELD:
-		__RebuildSlotAsCostume(eqpRgnId, "OBJID_SHIELD");
+		__RebuildSlotAsCostume(eqpRgnId, "OBJID_SHIELD", jobId);
 		break;
 
 	case EQUIP_REGION_ID_BODY:
-		__RebuildSlotAsCostume(eqpRgnId, "OBJID_BODY");
+		__RebuildSlotAsCostume(eqpRgnId, "OBJID_BODY", jobId);
 		break;
 
 	case EQUIP_REGION_ID_SHOULDER:
-		__RebuildSlotAsCostume(eqpRgnId, "OBJID_SHOULDER");
+		__RebuildSlotAsCostume(eqpRgnId, "OBJID_SHOULDER", jobId);
 		break;
 
 	case EQUIP_REGION_ID_SHOES:
-		__RebuildSlotAsCostume(eqpRgnId, "OBJID_SHOES");
+		__RebuildSlotAsCostume(eqpRgnId, "OBJID_SHOES", jobId);
 		break;
 
 	case EQUIP_REGION_ID_ACCESSARY_1:
-		__RebuildSlotAsCostume(eqpRgnId, "OBJID_ACCESSARY_1");
+		__RebuildSlotAsCostume(eqpRgnId, "OBJID_ACCESSARY_1", jobId);
 		break;
 
 	case EQUIP_REGION_ID_ACCESSARY_2:
-		__RebuildSlotAsCostume(eqpRgnId, "OBJID_ACCESSARY_2");
+		__RebuildSlotAsCostume(eqpRgnId, "OBJID_ACCESSARY_2", jobId);
 		break;
 	}
 }
@@ -997,10 +1008,11 @@ function RebuildSlotAsCostume(eqpRgnId) {
  *-----------------------------------------------------------------------------------------------
  * @param eqpRgnId 対象となる装備領域ＩＤ
  * @param objidPrefix オブジェクトＩＤのプリフィックス
+ * @param jobId 職業ID
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function __RebuildSlotAsCostume(eqpRgnId, objidPrifix) {
+function __RebuildSlotAsCostume(eqpRgnId, objidPrifix, jobId) {
 
 	var objRoot = null;
 	var objTd = null;
@@ -1030,7 +1042,7 @@ function __RebuildSlotAsCostume(eqpRgnId, objidPrifix) {
 
 		// 衣装選択セレクトボックスの再構築
 		itemId = GetStatefullData("DATA_" + objidPrifix, 0);
-		RebuildCostumeSelect(eqpRgnId, itemId);
+		RebuildCostumeSelect(eqpRgnId, itemId, jobId);
 	}
 }
 

@@ -1,110 +1,128 @@
 /**
  * ステータスや装備などを初期化して職業変更する
- * @param {Number} jobId 
+ * @param {string} jobId
  */
-function changeJobSettings(jobId){
-	var i = 0
-	var j = 0;;
-	var objSelect = null;
-	with(document.calcForm){
-		// 職業情報の初期化
-		InitJobInfo();
-		jobId = n_A_JOB;
-		// 計算機の初期化
-		Init();
-		// 武器属性付与手段の名称の設定
-		if(41 <= n_A_JOB && n_A_JOB <= 43) myInnerHtml("ID_A_HUYO_NAME","暖かい風",0);
-		else myInnerHtml("ID_A_HUYO_NAME","武器属性付与",0);
-		// ベースレベル選択セレクトボックスの設定
-		var lv = 0;
-		var lvMax = GetBaseLevelMax(jobId);
-		var lvMin = GetBaseLevelMin(jobId);
-		objSelect = document.getElementById("OBJID_SELECT_BASE_LEVEL");
-		HtmlRemoveOptionAll(objSelect);
-		for (lv = lvMin; lv <= lvMax; lv++) {
-			HtmlCreateElementOption(lv, lv, objSelect);
+function changeJobSettings(jobId) {
+	const selectJobElem = document.getElementById("OBJID_SELECT_JOB");
+	if (selectJobElem) {
+		// 職業IDが引数で渡されなかった時用のコード
+		if (typeof jobId === "undefined" || jobId === null) {
+			jobId = selectJobElem.value;
 		}
-		objSelect.value = lvMin;
-		// ジョブレベル選択セレクトボックスの設定
-		lv = 0;
-		lvMax = GetJobLevelMax(jobId);
-		lvMin = 1;
-		objSelect = document.getElementById("OBJID_SELECT_JOB_LEVEL");
-		HtmlRemoveOptionAll(objSelect);
-		for (lv = lvMin; lv <= lvMax; lv++) {
-			HtmlCreateElementOption(lv, lv, objSelect);
-		}
-		objSelect.value = lvMin;
-		// ステータス選択セレクトボックスの設定
-		RebuildStatusSelect(jobId);
-		// 速度ＰＯＴ選択セレクトボックスの設定
-		// スピードアップポーション
-		for(var i=2;i<=3;i++) {
-			A_SpeedPOT.options[2] = null;
-		}
-		// ハイスピードポーション
-		if (IsUsableHSPJob(n_A_JOB)) {
-			A_SpeedPOT.options[2] = new Option(SpeedPotName[2]+"(Lv40)",2);
-		}
-		else {
-			A_SpeedPOT.options[2] = new Option("-",0);
-		}
-		// バーサークポーション
-		if (IsUsableBSPJob(n_A_JOB)) {
-			A_SpeedPOT.options[3] = new Option(SpeedPotName[3]+"(Lv85)",3);
-		}
-		else if(IsSameJobClass(JOB_ID_ASSASINCROSS) || IsSameJobClass(JOB_ID_GILOTINCROSS)) {
-			A_SpeedPOT.options[3] = new Option("■特殊("+ SkillObjNew[304][SKILL_DATA_INDEX_NAME] +"Lv85)/毒薬の瓶",3);
-		}
-		else {
-			A_SpeedPOT.options[3] = new Option("■特殊("+ SkillObjNew[304][SKILL_DATA_INDEX_NAME] +")(Lv85)",3);
-		}
-		// スパノビの装備制限解除フラグを初期化
-		g_bSuperNoviceFullWeapon = undefined;
-		// 二刀流状態の解除
-		if (n_Nitou) {
-			n_Nitou = false;
-		}
-		OnChangeArmsTypeLeft(ITEM_KIND_NONE);
-		// 武器種類選択セレクトボックスの設定
-		var jobData = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, jobId);
-		HtmlRemoveOptionAll(A_WeaponType);
-		j = 0;
-		for(i = 0; i<=21; i++) {
-			// スパノビ系の両手斧は装備制限解除状態の時のみ可
-			if (GetHigherJobSeriesID(jobId) == JOB_SERIES_ID_SUPERNOVICE) {
-				if (i == ITEM_KIND_AXE_2HAND) {
-					if (!g_bSuperNoviceFullWeapon) {
-						continue;
-					}
+		selectJobElem.value = jobId;
+	}
+	// 職業IDが確定したら、ジョブデータを取得
+	let jobData = JobMap.getById(jobId);
+
+	// 移行中のため、MigIDをグローバル変数「n_A_JOB」を設定
+	window.n_A_JOB = jobData.getMigIdNum();
+
+	// 職業情報の初期化
+	InitJobInfo(jobId);
+
+	// 計算機の初期化
+	Init(jobId);
+
+	// 武器属性付与手段の名称の設定
+	if (41 <= jobData.getMigIdNum() && jobData.getMigIdNum() <= 43) {
+		myInnerHtml("ID_A_HUYO_NAME","暖かい風",0);
+	} else {
+		myInnerHtml("ID_A_HUYO_NAME","武器属性付与",0);
+	}
+
+	// Baseレベル自動調整が有効だと値設定ができない不具合があるので、無効化...
+	let checkAutoBaseLevel = document.getElementById("OBJID_CHECK_AUTO_BASE_LEVEL");
+	if (checkAutoBaseLevel.getAttribute("checked")) {
+		checkAutoBaseLevel.removeAttribute("checked");
+	}
+
+	// ベースレベル選択セレクトボックスの設定
+	var lvMax = jobData.getBaseLvMax();
+	var lvMin = jobData.getBaseLvMin();
+	var inputElem = document.getElementById("OBJID_SELECT_BASE_LEVEL");
+	inputElem.min = lvMin;
+	inputElem.max = lvMax;
+	inputElem.value = lvMin.toString();
+
+	// ジョブレベル選択セレクトボックスの設定
+	var lvMax = jobData.getJobLvMax();
+	var lvMin = 1;
+	var inputElem = document.getElementById("OBJID_SELECT_JOB_LEVEL");
+	inputElem.min = lvMin;
+	inputElem.max = lvMax;
+	inputElem.value = lvMin.toString();
+
+	// ステータス選択セレクトボックスの設定
+	RebuildStatusSelect(jobId);
+
+	// 速度ＰＯＴ選択セレクトボックスの設定
+	// スピードアップポーション
+	for (var i = 2; i <= 3; i++) {
+		document.getElementById("OBJID_SPEED_POT").options[2] = null;
+	}
+	// ハイスピードポーション
+	if (IsUsableHSPJob(jobData.getMigIdNum())) {
+		document.getElementById("OBJID_SPEED_POT").options[2] = new Option(SpeedPotName[2] + "(Lv40)", "2");
+	} else {
+		document.getElementById("OBJID_SPEED_POT").options[2] = new Option("-", "0");
+	}
+	// バーサークポーション
+	if (IsUsableBSPJob(jobData.getMigIdNum())) {
+		document.getElementById("OBJID_SPEED_POT").options[3] = new Option(SpeedPotName[3]+"(Lv85)", "3");
+	} else if(IsSameJobClass(JOB_ID_ASSASINCROSS) || IsSameJobClass(JOB_ID_GILOTINCROSS)) {
+		document.getElementById("OBJID_SPEED_POT").options[3] = new Option("■特殊("+ SkillObjNew[304][SKILL_DATA_INDEX_NAME] +"Lv85)/毒薬の瓶", "3");
+	} else {
+		document.getElementById("OBJID_SPEED_POT").options[3] = new Option("■特殊("+ SkillObjNew[304][SKILL_DATA_INDEX_NAME] +")(Lv85)", "3");
+	}
+
+	// スパノビの装備制限解除フラグを初期化
+	g_bSuperNoviceFullWeapon = undefined;
+	// 二刀流状態の解除
+	if (n_Nitou) {
+		n_Nitou = false;
+	}
+	OnChangeArmsTypeLeft(ITEM_KIND_NONE);
+
+	// 武器種類選択セレクトボックスの設定
+	//var jobData = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, jobId);
+
+	var selectElem = document.getElementById("OBJID_ARMS_TYPE_RIGHT");
+	HtmlRemoveOptionAll(selectElem);
+	var j = 0;
+	for (var i = 0; i <= 21; i++) {
+		// スパノビ系の両手斧は装備制限解除状態の時のみ可
+		if (GetHigherJobSeriesID(jobData.getMigIdNum()) == JOB_SERIES_ID_SUPERNOVICE) {
+			if (i == ITEM_KIND_AXE_2HAND) {
+				if (!g_bSuperNoviceFullWeapon) {
+					continue;
 				}
 			}
-			if (jobData.GetWeaponAspd(i) !== undefined) {
-				A_WeaponType.options[j] = new Option(GetItemKindNameText(i),i);
-				j++;
-			}
 		}
-		// 武器選択セレクトボックスの設定
-		OnChangeArmsTypeRight(ITEM_KIND_NONE);
-		// 防具選択欄を再構築
-		RebuildArmorsSelect();
-		// シャドウ装備
-		if ((typeof g_shadowEquipController) !== "undefined") {
-			g_shadowEquipController.rebuildAll();
+		if (jobData.GetWeaponAspd(i) !== undefined) {
+			selectElem.options[j] = new Option(GetItemKindNameText(i), i.toString());
+			j++;
 		}
-		// 習得スキルの初期化
-		n_A_LearnedSkill = new Array();
-		for (var dmyidx = 0; dmyidx < LEARNED_SKILL_MAX_COUNT; dmyidx++) {
-			n_A_LearnedSkill[dmyidx] = 0;
-		}
-		OnClickSkillSWLearned();
-		// 攻撃手段欄の初期化
-		CAttackMethodAreaComponentManager.RebuildControls();
-		// 拡張表示の選択値記憶のリセット
-		CExtraInfoAreaComponentManager.ClearStoredValueAll(true);
-		// 拡張表示の再構築
-		CExtraInfoAreaComponentManager.RebuildDispAreaAll();
 	}
+	// 武器選択セレクトボックスの設定
+	OnChangeArmsTypeRight(ITEM_KIND_NONE);
+	// 防具選択欄を再構築
+	RebuildArmorsSelect();
+	// シャドウ装備
+	if ((typeof g_shadowEquipController) !== "undefined") {
+		g_shadowEquipController.rebuildAll();
+	}
+	// 習得スキルの初期化
+	n_A_LearnedSkill = new Array();
+	for (var dmyidx = 0; dmyidx < LEARNED_SKILL_MAX_COUNT; dmyidx++) {
+		n_A_LearnedSkill[dmyidx] = 0;
+	}
+	OnClickSkillSWLearned();
+	// 攻撃手段欄の初期化
+	CAttackMethodAreaComponentManager.RebuildControls();
+	// 拡張表示の選択値記憶のリセット
+	CExtraInfoAreaComponentManager.ClearStoredValueAll(true);
+	// 拡張表示の再構築
+	CExtraInfoAreaComponentManager.RebuildDispAreaAll();
 }
 
 

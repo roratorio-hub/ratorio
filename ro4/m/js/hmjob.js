@@ -2,87 +2,66 @@ g_pureStatus = [];
 g_bonusStatus = [];
 
 function RebuildStatusSelect(jobId) {
-
-	var objStr = null;
-	var objAgi = null;
-	var objVit = null;
-	var objInt = null;
-	var objDex = null;
-	var objLuk = null;
-
-	var stMax = 0;
-	var st = 0;
-
-	objStr = document.getElementById("OBJID_SELECT_STATUS_STR");
-	objAgi = document.getElementById("OBJID_SELECT_STATUS_AGI");
-	objVit = document.getElementById("OBJID_SELECT_STATUS_VIT");
-	objInt = document.getElementById("OBJID_SELECT_STATUS_INT");
-	objDex = document.getElementById("OBJID_SELECT_STATUS_DEX");
-	objLuk = document.getElementById("OBJID_SELECT_STATUS_LUK");
-
-	HtmlRemoveOptionAll(objStr);
-	HtmlRemoveOptionAll(objAgi);
-	HtmlRemoveOptionAll(objVit);
-	HtmlRemoveOptionAll(objInt);
-	HtmlRemoveOptionAll(objDex);
-	HtmlRemoveOptionAll(objLuk);
-
-	stMax = GetStatusMax(n_A_JOB, n_A_PassSkill8[13]);
-
-	for (st = 1; st <= stMax; st++) {
-		HtmlCreateElementOption(st, st, objStr);
-		HtmlCreateElementOption(st, st, objAgi);
-		HtmlCreateElementOption(st, st, objVit);
-		HtmlCreateElementOption(st, st, objInt);
-		HtmlCreateElementOption(st, st, objDex);
-		HtmlCreateElementOption(st, st, objLuk);
+	// 職業IDが引数で渡されなかった時用のコード
+	if (typeof jobId === "undefined" || jobId === null) {
+		jobId = document.getElementById("OBJID_SELECT_JOB").value;
 	}
+	let jobData = JobMap.getById(jobId);
 
-	objStr.value = 1;
-	objAgi.value = 1;
-	objVit.value = 1;
-	objInt.value = 1;
-	objDex.value = 1;
-	objLuk.value = 1;
+	// 基本ステータス
+	let inputStr = document.getElementById("OBJID_SELECT_STATUS_STR");
+	let inputAgi = document.getElementById("OBJID_SELECT_STATUS_AGI");
+	let inputVit = document.getElementById("OBJID_SELECT_STATUS_VIT");
+	let inputInt = document.getElementById("OBJID_SELECT_STATUS_INT");
+	let inputDex = document.getElementById("OBJID_SELECT_STATUS_DEX");
+	let inputLuk = document.getElementById("OBJID_SELECT_STATUS_LUK");
 
+	let statusBaseMax = GetStatusMax(jobData.getMigIdNum(), n_A_PassSkill8[13]);
 
+	inputStr.max = statusBaseMax;
+	inputAgi.max = statusBaseMax;
+	inputVit.max = statusBaseMax;
+	inputInt.max = statusBaseMax;
+	inputDex.max = statusBaseMax;
+	inputLuk.max = statusBaseMax;
 
+	inputStr.value = 1;
+	inputAgi.value = 1;
+	inputVit.value = 1;
+	inputInt.value = 1;
+	inputDex.value = 1;
+	inputLuk.value = 1;
 
+	// 特性ステータス
+	let inputPow = document.getElementById("OBJID_SELECT_STATUS_POW");
+	let inputSta = document.getElementById("OBJID_SELECT_STATUS_STA");
+	let inputWis = document.getElementById("OBJID_SELECT_STATUS_WIS");
+	let inputSpl = document.getElementById("OBJID_SELECT_STATUS_SPL");
+	let inputCon = document.getElementById("OBJID_SELECT_STATUS_CON");
+	let inputCrt = document.getElementById("OBJID_SELECT_STATUS_CRT");
 
-	// 特性ステータス仮処理
-	var idxObj = 0;
-	var objArray = null;
+	statusBaseMax = 110;
 
-	objArray = [];
-	objArray.push(document.getElementById("OBJID_SELECT_STATUS_POW"));
-	objArray.push(document.getElementById("OBJID_SELECT_STATUS_STA"));
-	objArray.push(document.getElementById("OBJID_SELECT_STATUS_WIS"));
-	objArray.push(document.getElementById("OBJID_SELECT_STATUS_SPL"));
-	objArray.push(document.getElementById("OBJID_SELECT_STATUS_CON"));
-	objArray.push(document.getElementById("OBJID_SELECT_STATUS_CRT"));
+	inputPow.max = statusBaseMax;
+	inputSta.max = statusBaseMax;
+	inputWis.max = statusBaseMax;
+	inputSpl.max = statusBaseMax;
+	inputCon.max = statusBaseMax;
+	inputCrt.max = statusBaseMax;
 
-	for (idxObj = 0; idxObj < objArray.length; idxObj++) {
-		HtmlRemoveOptionAll(objArray[idxObj]);
-	}
-
-	stMax = 110;
-
-	for (st = 0; st <= stMax; st++) {
-		for (idxObj = 0; idxObj < objArray.length; idxObj++) {
-			HtmlCreateElementOption(st, st, objArray[idxObj]);
-		}
-	}
+	inputPow.value = 0;
+	inputSta.value = 0;
+	inputWis.value = 0;
+	inputSpl.value = 0;
+	inputCon.value = 0;
+	inputCrt.value = 0;
 
 	// 四次職出ない場合は、特性ステータス欄は非表示
-	var dispStyle = "";
-	if (GetBaseLevelMin(jobId) < 200) {
-		dispStyle = "none";
+	if (jobData.getBaseLvMin() < 200) {
+		document.getElementById("OBJID_TABLE_SPEC_STATUS").style.display = "none";
+	} else {
+		document.getElementById("OBJID_TABLE_SPEC_STATUS").style.display = "table";
 	}
-	else {
-		dispStyle = "table";
-	}
-	document.getElementById("OBJID_TABLE_SPEC_STATUS").style.display = dispStyle;
-
 }
 
 /**
@@ -98,7 +77,8 @@ function CalcStatusPoint(bIgnoreAutoCalc) {
 		}
 
 		// 職業ＩＤを取得する
-		var jobId = eval(A_JOB.value);
+		var selectJob = document.getElementById("OBJID_SELECT_JOB");
+		var jobId = selectJob.value;
 
 		// ベースレベルを取得する
 		var blvSelected = eval(A_BaseLV.value);
@@ -119,6 +99,9 @@ function CalcStatusPoint(bIgnoreAutoCalc) {
 		var stValCON = eval(A_CON.value);
 		var stValCRT = eval(A_CRT.value);
 	}
+
+	const jobData = JobMap.getById(jobId);
+	const migJobIdNum = jobData.getMigIdNum();
 
 	// 消費ステータスポイントを計算する
 	var stPointUsed = 0;
@@ -147,7 +130,7 @@ function CalcStatusPoint(bIgnoreAutoCalc) {
 
 	// 初期ステータスポイントの決定
 	var stPointEarned = 48;
-	if (IsReincarnatedJob(jobId) && n_A_PassSkill8[13] == 0) {
+	if (IsReincarnatedJob(migJobIdNum) && n_A_PassSkill8[13] == 0) {
 		stPointEarned = 100;
 	}
 
@@ -167,7 +150,7 @@ function CalcStatusPoint(bIgnoreAutoCalc) {
 			stPointEarned += GetEarningStatusPoint(blv);
 		}
 		// ４次職の場合
-		if (IsYojiJob(jobId)) {
+		if (IsYojiJob(migJobIdNum)) {
 			// 獲得した特性ステータスポイントが消費ステータスポイント未満の間
 			// かつ、最大レベル以下の間、レベルを上げる
 			for (blv; (stTSPointEarned < stTSPointUsed) && (blv <= blvMax); blv++) {
@@ -1602,14 +1585,16 @@ function ApplySpecModify(spid, spVal) {
 
 /**
  * ステータス、装備、その他の設定を維持したまま任意の職に変更する
- * @param {Number} latest_job 
+ * @param {string} jobId
  */
-function migrateOtherJob(latest_job) {
-	const recent_job = n_A_JOB;
+function migrateOtherJob(jobId) {
+	let jobData = JobMap.getById(jobId);
+
+	const recentJobMigId = n_A_JOB;
 	let dataURL = "";
 	let funcModifySaveData = function (saveDataArrayF) {
 		// 職業ID
-		saveDataArrayF[1] = latest_job;
+		saveDataArrayF[1] = jobData.getMigIdNum();
 		// 自動レベル調整は強制OFF
 		saveDataArrayF[11] = 0;
 		return saveDataArrayF;
@@ -1618,13 +1603,13 @@ function migrateOtherJob(latest_job) {
 	showLoadingIndicator();
 	setTimeout(() => {
 		// 変更後の職業の二刀流可能性に合わせる
-		n_Nitou = IsDualArmsJob(latest_job);
+		n_Nitou = IsDualArmsJob(jobId);
 		// TODO: 暫定対処　旧形式の保存処理呼び出し
 		dataURL = SaveSystem(funcModifySaveData);
 		// URL入力を実行
 		CSaveController.loadFromURL(dataURL);
 		// 異なる職業系列へ変更する場合
-		if (!IsSameJobGroup(latest_job, recent_job)) {
+		if (!IsSameJobGroup(jobData.getMigIdNum(), recentJobMigId)) {
 			// 習得スキルの初期化
 			n_A_LearnedSkill = new Array();
 			for (let dmyidx = 0; dmyidx < LEARNED_SKILL_MAX_COUNT; dmyidx++) {
@@ -1649,11 +1634,11 @@ function migrateOtherJob(latest_job) {
 
 /**
  * OBJID_SELECT_JOB の状態が変更された時に呼び出されるエントリ関数
- * @param {*} jobId 
+ * @param {string} jobId
  */
 function OnChangeJob(jobId) {
 	if (document.getElementById("OBJID_CHK_MIGRATE_SETTING").checked) {
-		migrateOtherJob(Number(jobId));
+		migrateOtherJob(jobId);
 	} else {
 		changeJobSettings(jobId);
 		StAllCalc();
@@ -1661,4 +1646,3 @@ function OnChangeJob(jobId) {
 		AutoCalc();
 	}
 }
-
