@@ -292,8 +292,7 @@ CItemInfoManager.OnClickExtractSwitch = function () {
  * 自動表示チェックボックス変更イベントハンドラ.
  */
 CItemInfoManager.OnChangeCheckAutoFlag = function () {
-	const objInput = null;
-	objInput = document.getElementById("OBJID_CHECK_ITEM_INFO_AUTO_FLAG");
+	const objInput = document.getElementById("OBJID_CHECK_ITEM_INFO_AUTO_FLAG");
 	CItemInfoManager.AutoFlag = objInput.checked;
 	// セーブデータ更新
 	const status = objInput.checked?1:0;
@@ -306,8 +305,7 @@ CItemInfoManager.OnChangeCheckAutoFlag = function () {
  * 時限効果設定時画面フォーカスチェックボックス変更イベントハンドラ.
  */
 CItemInfoManager.OnChangeCheckApplyAutoFocusFlag = function () {
-	const objInput = null;
-	objInput = document.getElementById("OBJID_CHECK_ITEM_INFO_APPLY_AUTO_FOCUS_FLAG");
+	const objInput = document.getElementById("OBJID_CHECK_ITEM_INFO_APPLY_AUTO_FOCUS_FLAG");
 	CItemInfoManager.ApplyAutoFocusFlag = objInput.checked;
 	// セーブデータ更新
 	const status = objInput.checked?1:0;

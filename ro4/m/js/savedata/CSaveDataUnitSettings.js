@@ -22,22 +22,28 @@ class CSaveDataUnitSettings extends CSaveDataUnitBase {
     // オーバーライドされた parse 関数
     parse (dataText, bitOffset) {
         let nextOffset = 0;
-        if (dataText.length < 7) {
-            // version 1 にはバージョニングされていない 長さ 6（version 1.0）と長さ 7（version 1.1） のパターンが存在する
-            // データ長 1 文字延長
-            nextOffset = super.parse(dataText + "0", bitOffset);
-            // 現行バージョンで ConfirmDialogSwitch の位置にあるデータは、古いバージョンで AttackAutoCalc として使われていたので移植する
+        // 互換性確保のための延長データ
+        let extend = "";
+        // CSaveDataUnitSettings は他のクラスと異なりデータ長でバージョン判定する必要がある
+        const STATE_VERSION_1 = dataText.length < 7;
+        const STATE_VERSION_2 = dataText.length < 8;
+        const STATE_VERSION_3 = dataText.length < 17;
+        // データ延長
+        if (STATE_VERSION_1) {
+            extend += "0";
+        }
+        if (STATE_VERSION_2) {
+            extend += "iA0000000w";
+        }
+        // 延長後データを読み込む
+        nextOffset = super.parse(dataText + extend, bitOffset);
+        // データを置換する
+        if (STATE_VERSION_1) {
+            // version 1.0 で AttackAutoCalc として使われていたデータは現在 ConfirmDialogSwitch の位置にあるので移植する
             const attach_auto_calc_old = this.parsedMap.get(CSaveDataConst.propNameConfirmDialogSwitch);
             this.parsedMap.set(CSaveDataConst.propNameAttackAutoCalc, attach_auto_calc_old);
-            return nextOffset;
-        } else if (dataText.length < 8) {
-            // version 2 → 3 の後方互換性確保でデータ延長
-            // "iA0000000w" は追加された16個のプロパティのデフォルト値をエンコードしたものです。
-            nextOffset = super.parse(dataText + "iA0000000w", bitOffset);
-            return nextOffset;
         }
-        nextOffset = super.parse(dataText, bitOffset);
-        // バージョン更新
+        // 最新バージョンへ更新
         this.setProp(CSaveDataConst.propNameVersion, this.constructor.version);
         return nextOffset;
     }
