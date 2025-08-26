@@ -9819,6 +9819,24 @@ function ApplyMagicalSpecializeMonsterMod20211014SubSpecializeMap(charaData, spe
 		}
 	}
 
+	// -------------------------------
+	// 古代神殿アケト 特化
+	// -------------------------------
+	if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_AKHET]) == 1){
+		if ((cardCount = CardNumSearch(CARD_ID_MEDJAY)) > 0) {
+			wX += 30 * cardCount;
+		}
+	}
+
+	// -------------------------------
+	// ニブルヘイムカボチャ農場 特化
+	// -------------------------------
+	if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_PUMPKIN_FARM]) == 1){
+		if ((cardCount = CardNumSearch(CARD_ID_JACKONETTE)) > 0) {
+			wX += 30 * cardCount;
+		}
+	}
+
 	//--------------------------------
 	// 崩れたオペラハウス特化
 	//--------------------------------
@@ -18432,6 +18450,24 @@ function ApplyPhysicalSpecializeMonster(charaData, specData, mobData, dmg) {
 			w += 30;
 		}
 		if ((cardCount = CardNumSearch(CARD_ID_VENEDI)) > 0) {
+			w += 30 * cardCount;
+		}
+	}
+
+	// -------------------------------
+	// 古代神殿アケト 特化
+	// -------------------------------
+	if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_AKHET]) == 1){
+		if ((cardCount = CardNumSearch(CARD_ID_MEDJAY)) > 0) {
+			w += 30 * cardCount;
+		}
+	}
+
+	// -------------------------------
+	// ニブルヘイムカボチャ農場 特化
+	// -------------------------------
+	if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_PUMPKIN_FARM]) == 1){
+		if ((cardCount = CardNumSearch(CARD_ID_JACKONETTE)) > 0) {
 			w += 30 * cardCount;
 		}
 	}

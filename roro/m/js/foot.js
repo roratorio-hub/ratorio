@@ -29843,7 +29843,10 @@ function CheckSpDefPureStatus(spDefRemain) {
 	const idxStatus = (spDefCondition - 1) % 6;									// ステータス識別用の添字 0 ～ 5 を得る
 	// 条件を満たす場合 true
 	let boolResult = false;
-	if (spDefCondition >= 49) {
+	if (spDefCondition >= 55) {
+		// 純粋な特性ステータスが50以上の場合 (55 - 60)
+		boolResult = pureSpStatusValue[idxStatus] >= 50;
+	} else if (spDefCondition >= 49) {
 		// 純粋なステータスが100以上の場合 (49 - 54)
 		boolResult = pureStatusValue[idxStatus] >= 100;
 	} else if (spDefCondition >= 43) {
@@ -29976,6 +29979,12 @@ function CheckSpDefEquipmentLocation(spDefRemain, location) {
 					case CARD_REGION_ID_ENCHANT_ACCESSARY_2_1:
 					case CARD_REGION_ID_ENCHANT_ACCESSARY_2_2:
 					case CARD_REGION_ID_ENCHANT_ACCESSARY_2_3:
+						return parseInt(spDefRemain % baseFlag);
+				}
+				break;
+			case 5:	// 兜中段
+				switch(location) {
+					case CARD_REGION_ID_HEAD_MID:
 						return parseInt(spDefRemain % baseFlag);
 				}
 				break;
