@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../common.css" type="text/css">
 	<link rel="stylesheet" href="../m/calcx.css" type="text/css">
 	<link rel="stylesheet" href="../../ro4/m/calcx.css" type="text/css">
+	<script type="text/javascript" src="../../roro/m/js/etc.js"></script>
 	<script type="text/javascript" src="../../jquery/jquery.min.js"></script>
     <style type="text/css">
     td{white-space:nowrap;text-align:right;}
@@ -78,63 +79,11 @@
     <script language="JavaScript" src="../frame.js"></script>
     <script language="JavaScript" src="../common/js/util.js"></script>
     <script language="JavaScript"><!--
-    
-    zokusei = new Array();
-    //無
-    zokusei[1] = new Array(1,1,1,1,1,1,1,1,0.25,1);
-    zokusei[2] = new Array(1,1,1,1,1,1,1,1,0,1);
-    zokusei[3] = new Array(1,1,1,1,1,1,1,1,0,1);
-    zokusei[4] = new Array(1,1,1,1,1,1,1,1,0,1);
-    //水
-    zokusei[11] = new Array(1,0.25,1,0.5,1.75,1,1,1,1,1);
-    zokusei[12] = new Array(1,0,1,0.25,1.75,0.75,1,1,0.75,0.75);
-    zokusei[13] = new Array(1,-0.25,1,0,2,0.5,1,1,0.5,0.5);
-    zokusei[14] = new Array(1,-0.5,1,0,2,0.25,0.75,0.75,0.25,0.25);
-    //地
-    zokusei[21] = new Array(1,1,0.25,1.5,0.5,1.25,1,1,1,1);
-    zokusei[22] = new Array(1,1,0,1.75,0.25,1.25,1,1,0.75,0.75);
-    zokusei[23] = new Array(1,1,-0.25,2,0,1,1,1,0.5,0.5);
-    zokusei[24] = new Array(1,1,-0.5,2,0,0.75,0.75,0.75,0.25,0.25);
-    //火
-    zokusei[31] = new Array(1,1.5,0.5,0.25,1,1.25,1,1,1,1);
-    zokusei[32] = new Array(1,1.75,0.25,0,1,1.25,1,1,0.75,0.75);
-    zokusei[33] = new Array(1,2,0,-0.25,1,1,1,1,0.5,0.5);
-    zokusei[34] = new Array(1,2,0,-0.5,1,0.75,0.75,0.75,0.25,0.25);
-    //風
-    zokusei[41] = new Array(1,0.5,1.5,1,0.25,1.25,1,1,1,1);
-    zokusei[42] = new Array(1,0.25,1.75,1,0,1.25,1,1,0.75,0.75);
-    zokusei[43] = new Array(1,0,2,1,-0.25,1,1,1,0.5,0.5);
-    zokusei[44] = new Array(1,0,2,1,-0.5,0.75,0.75,0.75,0.25,0.25);
-    //毒
-    zokusei[51] = new Array(1,1,1,1,1,0,1,0.5,1,0.5);
-    zokusei[52] = new Array(1,1,1,1,1,0,1,0.25,0.75,0.25);
-    zokusei[53] = new Array(1,1,1,1,1,0,1.25,0,0.5,0);
-    zokusei[54] = new Array(1,0.75,0.75,0.75,0.75,0,1.25,-0.25,0.25,-0.25);
-    //聖
-    zokusei[61] = new Array(1,0.75,0.75,0.75,0.75,0.75,0,1.25,0.75,1);
-    zokusei[62] = new Array(1,0.5,0.5,0.5,0.5,0.5,-0.25,1.5,0.5,1.25);
-    zokusei[63] = new Array(1,0.25,0.25,0.25,0.25,0.25,-0.5,1.75,0.25,1.5);
-    zokusei[64] = new Array(1,0,0,0,0,0,-1,2,0,1.75);
-    //闇
-    zokusei[71] = new Array(1,1,1,1,1,0.5,1.25,0,0.75,0);
-    zokusei[72] = new Array(1,0.75,0.75,0.75,0.75,0.25,1.5,-0.25,0.5,0);
-    zokusei[73] = new Array(1,0.5,0.5,0.5,0.5,0,1.75,-0.5,0.25,0);
-    zokusei[74] = new Array(1,0.25,0.25,0.25,0.25,-0.25,2,-1,0,0);
-    //念
-    zokusei[81] = new Array(0.25,1,1,1,1,1,1,1,1.25,1);
-    zokusei[82] = new Array(0.25,1,1,1,1,0.75,1,1,1.50,1);
-    zokusei[83] = new Array(0,1,1,1,1,0.5,1,1,1.75,1);
-    zokusei[84] = new Array(0,1,1,1,1,0.25,1,1,2,1);
-    //不死
-    zokusei[91] = new Array(1,1,1,1.25,1,-0.25,1.5,-0.25,1,0);
-    zokusei[92] = new Array(1,1,1,1.5,1,-0.5,1.75,-0.5,1.25,0);
-    zokusei[93] = new Array(1,0.75,0.75,1.75,1,-0.75,2,-0.75,1.5,0);
-    zokusei[94] = new Array(1,0.5,0.5,2,1,-1,2,-1,1.75,0);
-    
+
     for(var j=1;j<=4;j++){
         for(var i=0;i<=9;i++){
             for(var k=0;k<=9;k++){
-                zokusei[i*10+j][k] = zokusei[i*10+j][k] * 100;
+                zokusei[i*10+j][k] = zokusei[i*10+j][k] + 100;
                 if(zokusei[i*10+j][k] > 100)
                     zokusei[i*10+j][k] = "<Font color='#0000FF'><B>" + zokusei[i*10+j][k] +"</B></Font>";
                 if(zokusei[i*10+j][k] < 100)
