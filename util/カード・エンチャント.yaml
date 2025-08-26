@@ -1,94 +1,130 @@
 card_list:
-  - name: 潜在解放(マイスターXIV)
-    yomi: センザイカイホウマイスター14
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 豪傑
-        capabilities:
-          - name: 再使用待機時間減少
-            skill: スパークブラスター
-            value: 100
 
-  - name: 潜在解放(ドラゴンナイトXV)
-    yomi: センザイカイホウドラゴンナイト15
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 豪傑
-        capabilities:
-          - name: 再使用待機時間減少
-            skill: ドラゴニックブレス
-            value: 100
-
-  - name: 潜在解放(インペリアルガードXIV)
-    yomi: センザイカイホウインペリアルガード14
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 真理の解放
-        capabilities:
-          - name: 再使用待機時間減少
-            skill: クロスレイン
-            value: 500
-
-  - name: 潜在解放(スピリットハンドラーXV)
-    yomi: センザイカイホウスピリットハンドラー15
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 真理の解放
-        capabilities:
-          - name: 再使用待機時間減少
-            skill: タートルスプリンクラー
-            value: 200
-
-  - name: 潜在覚醒(マグロシールドI)
-    yomi: センザイカクセイマグロシールドワン
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 真理の解放
-        capabilities:
-          - name: スキル固定詠唱割合減少
-            skill: マグロシールド
-            value: 100
-
-  - name: 魔王モロク
-    yomi: マオウモロク
-    type: ペット
+  - name: メジャイ
+    yomi: メジャイ
+    desc: "物理・魔法攻撃時、[古代神殿アケト]に出現するモンスターに与えるダメージ + 30%"
+    type: 武器
     capabilities:
-      - name: スキル使用可能
-        skill: ニューマ
-        skill_lv: 1
-        at_lv: 100
-      - name: DEF加算
-        value: 30
-        per_status_10: VIT
-      - name: MDEF加算
+      - name: 壊れない
+        value: 1
+
+  - name: ヘカ
+    yomi: ヘカ
+    type: 兜
+    capabilities:
+      - name: 魔法ダメージ増加
+        value: 5
+      - name: 詠唱が中断されない
+        at_refine: 8
+        value: 1
+
+  - name: メジェド
+    yomi: メジェド
+    type: 兜
+    capabilities:
+      - name: ASPD増加
+        value: 10
+
+  - name: ウプウアウト
+    yomi: ウプウアウト
+    type: 鎧
+    capabilities:
+      - name: 天使形への物理ダメージ増加
+        value: 1
+        per_refine: 1
+      - name: 天使形への物理ダメージ増加
+        value: 10
+        at_refine: 9
+
+  - name: 死者の案内人
+    yomi: シシャノアンナイニン
+    type: 鎧
+    capabilities:
+      - name: 無形への物理ダメージ増加
+        value: 50
+      - name: 悪魔形への物理ダメージ増加
+        value: 50
+      - name: 火属性への物理ダメージ増加
+        value: 50
+      - name: 無属性への物理ダメージ増加
+        value: 50
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 異境の統轄者
+        capabilities:
+          - name: MAXHP増加
+            value: 50
+
+  - name: ジャックオネット
+    yomi: ジャックオネット
+    desc: "物理・魔法攻撃時、[ニブルヘイムカボチャ農場]に出現するモンスターに与えるダメージ + 30%"
+    type: 武器
+    capabilities:
+      - name: 壊れない
+        value: 1
+
+  - name: リアメット
+    yomi: リアメット
+    type: 兜
+    capabilities:
+      - name: 睡眠耐性
+        value: 25
+        at_sp_status_50: STA
+      - name: 石化耐性
+        value: 25
+        at_sp_status_50: STA
+      - name: スタン耐性
+        value: 50
+        at_sp_status_100: STA
+      - name: 沈黙耐性
+        value: 50
+        at_sp_status_100: STA
+
+  - name: 悪夢のピアメット
+    yomi: アクムノピアメット
+    type: 靴
+    capabilities:
+      - name: 魔法ダメージ増加
+        value: 10
+      - name: 不死形への魔法ダメージ増加
+        value: 50
+      - name: 悪魔形への魔法ダメージ増加
+        value: 50
+      - name: MAXSP増加
+        value: -50
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 異境の統轄者
+        capabilities:
+          - name: 魔法ダメージ増加
+            value: 10
+          - name: スキル使用可能
+            skill: レイオブジェネシス
+            skill_lv: 10
+
+  - name: ガーリン
+    yomi: ガーリン
+    type: 靴
+    capabilities:
+      - name: 地属性魔法ダメージ増加
         value: 3
-        per_status_10: VIT
+        per_refine: 1
 
-  - name: 再生の半魔神
-    yomi: サイセイノハンマジン
-    type: ペット
+  - name: ヴィオレン
+    yomi: ヴィオレン
+    type: アクセサリー
     capabilities:
-      - name: スキルダメージ増加
-        skill: 死霊爆発
-        value: 20
-        at_lv: 100
+      - name: DEX加算
+        value: 5
+      - name: 物理ダメージ増加
+        value: 5
+        at_sp_status_100: CON
 
-  - name: 絶望の神モロク
-    yomi: ゼツボウノカミモロク
-    type: ペット
-    desc: "BaseLv100以上の時、[Mレイオブジェネシス]で受けるダメージ - 50%"
+  - name: スパイダリン
+    yomi: スパイダリン
+    type: アクセサリー
     capabilities:
-      - name: スキル使用可能
-        skill: ケミカルアーマーチャージ
-        skill_lv: 5
-        at_lv: 100
+      - name: 地属性魔法ダメージ増加
+        value: 10

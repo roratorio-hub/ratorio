@@ -25,5 +25,10 @@ for filename in os.listdir(f"{script_dir}/config"):
                 # このスクリプトでは index 1 = str だけど mig.job.dat.js では str = 0 なので i - 1 
                 if matche[i] == '1':
                     result += f"[{joblv},{i-1}],"
+                if matche[i] == '2':
+                    result += f"[{joblv},{i-1}],[{joblv},{i-1}],"
+                if matche[i] == '3':
+                    result += f"[{joblv},{i-1}],[{joblv},{i-1}],[{joblv},{i-1}],"
+                
         print(filename)
         print(result)
