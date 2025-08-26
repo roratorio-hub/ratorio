@@ -1023,6 +1023,12 @@ CGlobalConstManager.DefinePseudoEnum(
 		"ITEM_SP_PURE_DEX_100_OFFSET",	// 53,000,000,000
 		"ITEM_SP_PURE_LUK_100_OFFSET",	// 54,000,000,000	54 * 10^9
 
+		"ITEM_SP_PURE_POW_50_OFFSET",	// 55 * 10^9
+		"ITEM_SP_PURE_STA_50_OFFSET",	// 56
+		"ITEM_SP_PURE_WIS_50_OFFSET",	// 57
+		"ITEM_SP_PURE_SPL_50_OFFSET",	// 58
+		"ITEM_SP_PURE_CON_50_OFFSET",	// 59
+		"ITEM_SP_PURE_CRT_50_OFFSET",	// 60
 
 	],
 	1000000000,
@@ -1198,6 +1204,7 @@ CGlobalConstManager.DefinePseudoEnum(
 		"ITEM_SP_EQUIPMENT_LOCATION_SHOULDER",	//  2 * 10^18
 		"ITEM_SP_EQUIPMENT_LOCATION_SHOES",		//  3 * 10^18
 		"ITEM_SP_EQUIPMENT_LOCATION_ACCESSARY",	//  4 * 10^18
+		"ITEM_SP_EQUIPMENT_LOCATION_HEAD_MID",	//  5 * 10^18
 	],
 	100000000000000000n,
 	100000000000000000n,
@@ -1861,9 +1868,12 @@ function GetItemExplainText(spId, spValue) {
                 break;  
             case toSafeBigInt(ITEM_SP_EQUIPMENT_LOCATION_SHOES) / baseFlag:  
                 condTextEquipmentLocation = "靴";  
-                break;  
+                break;
             case toSafeBigInt(ITEM_SP_EQUIPMENT_LOCATION_ACCESSARY) / baseFlag:  
                 condTextEquipmentLocation = "アクセサリー";  
+                break;  
+            case toSafeBigInt(ITEM_SP_EQUIPMENT_LOCATION_HEAD_MID) / baseFlag:  
+                condTextEquipmentLocation = "兜中段";  
                 break;  
 		}
 		condTextEquipmentLocation += "に装備時、";
@@ -1995,6 +2005,9 @@ function GetItemExplainText(spId, spValue) {
 	}
 	else if (43 <= pureStatus && pureStatus <= 48) {
 		condTextPureStatus += "純粋な" + spStatusName[pureStatus - 43] +  "が100以上の時、";
+	}
+	else if (55 <= pureStatus && pureStatus <= 60) {
+		condTextPureStatus += "純粋な" + spStatusName[pureStatus - 55] +  "が50以上の時、";
 	}
 	
 	spId = pureStatusEffect;
