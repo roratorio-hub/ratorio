@@ -28,6 +28,62 @@ ABC_ABYSS_DAGGER:
     4: 200
     5: 200
   type: Normal
+ABC_ABYSS_FLAME:
+  _mig_id: null
+  _mig_id2: null
+  _mig_id_num: null
+  _mig_name: null
+  attack_range:
+    0: null
+    1: 9
+    2: 9
+    3: 9
+    4: 9
+    5: 9
+  id: ABC_ABYSS_FLAME
+  id_num: 6515
+  max_lv: 5
+  name: アビスフレイム
+  need_skill_list:
+  - need_lv: 5
+    skill_id: ABC_MAGIC_SWORD_M
+  - need_lv: 3
+    skill_id: ABC_FROM_THE_ABYSS
+  seperate_lv: true
+  sp_amount:
+    0: null
+    1: 170
+    2: 170
+    3: 170
+    4: 170
+    5: 170
+  type: Normal
+ABC_ABYSS_FLAME_ATK:
+  _mig_id: null
+  _mig_id2: null
+  _mig_id_num: null
+  _mig_name: null
+  attack_range:
+    0: null
+    1: 1
+    2: 1
+    3: 1
+    4: 1
+    5: 1
+  id: ABC_ABYSS_FLAME_ATK
+  id_num: 6522
+  max_lv: 5
+  name: アビスフレイム
+  need_skill_list: []
+  seperate_lv: false
+  sp_amount:
+    0: null
+    1: 0
+    2: 0
+    3: 0
+    4: 0
+    5: 0
+  type: Normal
 ABC_ABYSS_SLAYER:
   _mig_id: ABC_ABYSS_SLAYER
   _mig_id2: SKILL_ID_ABYSS_SLAYER
@@ -175,6 +231,62 @@ ABC_CHAIN_REACTION_SHOT_ATK:
   _mig_name: null
   id: ABC_CHAIN_REACTION_SHOT_ATK
   id_num: 5382
+ABC_CHASING_BREAK:
+  _mig_id: null
+  _mig_id2: null
+  _mig_id_num: null
+  _mig_name: null
+  attack_range:
+    0: null
+    1: 9
+    2: 9
+    3: 9
+    4: 9
+    5: 9
+  id: ABC_CHASING_BREAK
+  id_num: 6513
+  max_lv: 5
+  name: チェイシングブレイク
+  need_skill_list:
+  - need_lv: 3
+    skill_id: ABC_HIT_AND_SLIDING
+  seperate_lv: true
+  sp_amount:
+    0: null
+    1: 200
+    2: 200
+    3: 200
+    4: 200
+    5: 200
+  type: Normal
+ABC_CHASING_SHOT:
+  _mig_id: null
+  _mig_id2: null
+  _mig_id_num: null
+  _mig_name: null
+  attack_range:
+    0: null
+    1: 9
+    2: 9
+    3: 9
+    4: 9
+    5: 9
+  id: ABC_CHASING_SHOT
+  id_num: 6514
+  max_lv: 5
+  name: チェイシングショット
+  need_skill_list:
+  - need_lv: 3
+    skill_id: ABC_HIT_AND_SLIDING
+  seperate_lv: true
+  sp_amount:
+    0: null
+    1: 200
+    2: 200
+    3: 200
+    4: 200
+    5: 200
+  type: Normal
 ABC_DAGGER_AND_BOW_M:
   _mig_id: ABC_DAGGER_AND_BOW_M
   _mig_id2: SKILL_ID_TANKEN_YUMI_SHUREN
@@ -324,8 +436,43 @@ ABC_FROM_THE_ABYSS_ATK:
   _mig_id2: null
   _mig_id_num: null
   _mig_name: null
+  attack_range: '{}'
   id: ABC_FROM_THE_ABYSS_ATK
   id_num: 5383
+  max_lv: 0
+  name: アビス球体攻撃
+  need_skill_list: []
+  seperate_lv: false
+  sp_amount: '{}'
+  type: Normal
+ABC_HIT_AND_SLIDING:
+  _mig_id: null
+  _mig_id2: null
+  _mig_id_num: null
+  _mig_name: null
+  attack_range:
+    0: null
+    1: 2
+    2: 2
+    3: 2
+    4: 2
+    5: 2
+  id: ABC_HIT_AND_SLIDING
+  id_num: 6512
+  max_lv: 5
+  name: ヒットアンドスライディング
+  need_skill_list:
+  - need_lv: 3
+    skill_id: ABC_DAGGER_AND_BOW_M
+  seperate_lv: true
+  sp_amount:
+    0: null
+    1: 110
+    2: 110
+    3: 110
+    4: 110
+    5: 110
+  type: Normal
 ABC_MAGIC_SWORD_M:
   _mig_id: ABC_MAGIC_SWORD_M
   _mig_id2: SKILL_ID_MAHOKEN_SHUREN
@@ -566,7 +713,7 @@ AB_ANCILLA:
   seperate_lv: false
   sp_amount:
     0: null
-    1: 30
+    1: 10
   type: Normal
 AB_CANTO:
   _mig_id: AB_CANTO
@@ -673,8 +820,23 @@ AB_CONVENIO:
   _mig_id2: null
   _mig_id_num: null
   _mig_name: null
+  attack_range:
+    0: null
+    1: 1
   id: AB_CONVENIO
   id_num: 5073
+  max_lv: 1
+  name: コンベニオ
+  need_skill_list:
+  - need_lv: 1
+    skill_id: AB_ANCILLA
+  - need_lv: 5
+    skill_id: AB_ORATIO
+  seperate_lv: false
+  sp_amount:
+    0: null
+    1: 70
+  type: Normal
 AB_DUPLELIGHT:
   _mig_id: AB_DUPLELIGHT
   _mig_id2: SKILL_ID_DUPLELIGHT
@@ -820,41 +982,8 @@ AB_EUCHARISTICA:
   _mig_id2: SKILL_ID_EUCHARISTICA
   _mig_id_num: 487
   _mig_name: (仮)エウカリスティカ
-  attack_range:
-    0: null
-    1: 1
-    2: 1
-    3: 1
-    4: 1
-    5: 1
-    6: 1
-    7: 1
-    8: 1
-    9: 1
-    10: 1
   id: AB_EUCHARISTICA
   id_num: 2049
-  max_lv: 10
-  name: エウカリスティカ
-  need_skill_list:
-  - need_lv: 1
-    skill_id: AB_EXPIATIO
-  - need_lv: 1
-    skill_id: AB_EPICLESIS
-  seperate_lv: false
-  sp_amount:
-    0: null
-    1: 0
-    2: 0
-    3: 0
-    4: 0
-    5: 0
-    6: 0
-    7: 0
-    8: 0
-    9: 0
-    10: 0
-  type: Normal
 AB_EXPIATIO:
   _mig_id: AB_EXPIATIO
   _mig_id2: SKILL_ID_EXPIATIO
@@ -1125,7 +1254,7 @@ AB_RENOVATIO:
   need_skill_list:
   - need_lv: 3
     skill_id: AB_CHEAL
-  seperate_lv: false
+  seperate_lv: true
   sp_amount:
     0: null
     1: 70
@@ -1196,8 +1325,31 @@ AB_VITUPERATUM:
   _mig_id2: null
   _mig_id_num: null
   _mig_name: null
+  attack_range:
+    0: null
+    1: 11
+    2: 11
+    3: 11
+    4: 11
+    5: 11
   id: AB_VITUPERATUM
   id_num: 5072
+  max_lv: 5
+  name: ヴィトゥペラトゥム
+  need_skill_list:
+  - need_lv: 1
+    skill_id: AB_EXPIATIO
+  - need_lv: 1
+    skill_id: AB_EPICLESIS
+  seperate_lv: false
+  sp_amount:
+    0: null
+    1: 144
+    2: 120
+    3: 106
+    4: 92
+    5: 78
+  type: Normal
 AC_CHARGEARROW:
   _mig_id: AC_CHARGEARROW
   _mig_id2: SKILL_ID_CHARGE_ARROW
@@ -1680,6 +1832,36 @@ AG_DESTRUCTIVE_HURRICANE:
     3: 360
     4: 360
     5: 360
+  type: Normal
+AG_ENERGY_CONVERSION:
+  _mig_id: null
+  _mig_id2: null
+  _mig_id_num: null
+  _mig_name: null
+  attack_range:
+    0: null
+    1: null
+    2: null
+    3: null
+    4: null
+    5: null
+  id: AG_ENERGY_CONVERSION
+  id_num: 6516
+  max_lv: 5
+  name: エナジーコンバージョン
+  need_skill_list:
+  - need_lv: 2
+    skill_id: WL_RECOGNIZEDSPELL
+  - need_lv: 1
+    skill_id: AG_CLIMAX
+  seperate_lv: true
+  sp_amount:
+    0: null
+    1: 1
+    2: 2
+    3: 3
+    4: 4
+    5: 5
   type: Normal
 AG_FLORAL_FLARE_ROAD:
   _mig_id: AG_FLORAL_FLARE_ROAD
@@ -4120,16 +4302,16 @@ BA_ASSASSINCROSS:
   seperate_lv: true
   sp_amount:
     0: null
-    1: 38
-    2: 41
-    3: 44
-    4: 47
-    5: 50
-    6: 53
-    7: 56
-    8: 59
-    9: 62
-    10: 65
+    1: 40
+    2: 45
+    3: 50
+    4: 55
+    5: 60
+    6: 65
+    7: 70
+    8: 75
+    9: 80
+    10: 85
   type: Normal
 BA_DISSONANCE:
   _mig_id: BA_DISSONANCE
@@ -4155,11 +4337,11 @@ BA_DISSONANCE:
   seperate_lv: true
   sp_amount:
     0: null
-    1: 18
-    2: 21
-    3: 24
-    4: 27
-    5: 30
+    1: 35
+    2: 38
+    3: 41
+    4: 44
+    5: 47
   type: Normal
 BA_FROSTJOKE:
   _mig_id: BA_FROSTJOKE
@@ -4298,16 +4480,16 @@ BA_POEMBRAGI:
   seperate_lv: true
   sp_amount:
     0: null
-    1: 40
-    2: 45
-    3: 50
-    4: 55
-    5: 60
-    6: 65
-    7: 70
-    8: 75
-    9: 80
-    10: 85
+    1: 65
+    2: 70
+    3: 75
+    4: 80
+    5: 85
+    6: 90
+    7: 95
+    8: 100
+    9: 105
+    10: 110
   type: Normal
 BA_POEMBRAGI2:
   _mig_id: null
@@ -4350,16 +4532,16 @@ BA_WHISTLE:
   seperate_lv: true
   sp_amount:
     0: null
-    1: 24
-    2: 28
-    3: 32
-    4: 36
-    5: 40
-    6: 44
-    7: 48
-    8: 52
-    9: 56
-    10: 60
+    1: 22
+    2: 24
+    3: 26
+    4: 28
+    5: 30
+    6: 32
+    7: 34
+    8: 36
+    9: 38
+    10: 40
   type: Normal
 BD_ADAPTATION:
   _mig_id: BD_ADAPTATION
@@ -4377,7 +4559,7 @@ BD_ADAPTATION:
   seperate_lv: false
   sp_amount:
     0: null
-    1: 1
+    1: 10
   type: Normal
 BD_DRUMBATTLEFIELD:
   _mig_id: BD_DRUMBATTLEFIELD
@@ -4399,11 +4581,11 @@ BD_DRUMBATTLEFIELD:
   seperate_lv: true
   sp_amount:
     0: null
-    1: 38
-    2: 41
-    3: 44
-    4: 47
-    5: 50
+    1: 50
+    2: 54
+    3: 58
+    4: 62
+    5: 66
   type: Normal
 BD_ENCORE:
   _mig_id: BD_ENCORE
@@ -4443,7 +4625,7 @@ BD_ETERNALCHAOS:
   seperate_lv: false
   sp_amount:
     0: null
-    1: 30
+    1: 120
   type: Normal
 BD_INTOABYSS:
   _mig_id: BD_INTOABYSS
@@ -4463,7 +4645,7 @@ BD_INTOABYSS:
   seperate_lv: false
   sp_amount:
     0: null
-    1: 10
+    1: 70
   type: Normal
 BD_LULLABY:
   _mig_id: BD_LULLABY
@@ -4481,7 +4663,7 @@ BD_LULLABY:
   seperate_lv: false
   sp_amount:
     0: null
-    1: 20
+    1: 40
   type: Normal
 BD_RAGNAROK:
   _mig_id: null
@@ -4512,11 +4694,11 @@ BD_RICHMANKIM:
   seperate_lv: false
   sp_amount:
     0: null
-    1: 20
-    2: 20
-    3: 20
-    4: 20
-    5: 20
+    1: 62
+    2: 68
+    3: 74
+    4: 80
+    5: 86
   type: Normal
 BD_RINGNIBELUNGEN:
   _mig_id: BD_RINGNIBELUNGEN
@@ -4540,11 +4722,11 @@ BD_RINGNIBELUNGEN:
   seperate_lv: true
   sp_amount:
     0: null
-    1: 38
-    2: 41
-    3: 44
-    4: 47
-    5: 50
+    1: 64
+    2: 60
+    3: 56
+    4: 52
+    5: 48
   type: Normal
 BD_ROKISWEIL:
   _mig_id: BD_ROKISWEIL
@@ -4562,7 +4744,7 @@ BD_ROKISWEIL:
   seperate_lv: false
   sp_amount:
     0: null
-    1: 15
+    1: 180
   type: Normal
 BD_SIEGFRIED:
   _mig_id: BD_SIEGFRIED
@@ -4584,11 +4766,11 @@ BD_SIEGFRIED:
   seperate_lv: false
   sp_amount:
     0: null
-    1: 20
-    2: 20
-    3: 20
-    4: 20
-    5: 20
+    1: 40
+    2: 44
+    3: 48
+    4: 52
+    5: 56
   type: Normal
 BO_ACIDIFIED_ZONE_FIRE:
   _mig_id: BO_ACIDIFIED_ZONE_FIRE
@@ -4880,6 +5062,34 @@ BO_CREEPER:
     4: 150
     5: 150
   type: Normal
+BO_DUST_EXPLOSION:
+  _mig_id: null
+  _mig_id2: null
+  _mig_id_num: null
+  _mig_name: null
+  attack_range:
+    0: null
+    1: 3
+    2: 3
+    3: 3
+    4: 3
+    5: 3
+  id: BO_DUST_EXPLOSION
+  id_num: 6510
+  max_lv: 5
+  name: ダストエクスプロージョン
+  need_skill_list:
+  - need_lv: 3
+    skill_id: BO_MYSTERY_POWDER
+  seperate_lv: true
+  sp_amount:
+    0: null
+    1: 300
+    2: 300
+    3: 300
+    4: 300
+    5: 300
+  type: Normal
 BO_EXPLOSIVE_POWDER:
   _mig_id: BO_EXPLOSIVE_POWDER
   _mig_id2: SKILL_ID_EXPLOSIVE_POWDER
@@ -4977,6 +5187,34 @@ BO_MAYHEMIC_THORNS:
     8: 300
     9: 300
     10: 300
+  type: Normal
+BO_MYSTERY_POWDER:
+  _mig_id: null
+  _mig_id2: null
+  _mig_id_num: null
+  _mig_name: null
+  attack_range:
+    0: null
+    1: 3
+    2: 3
+    3: 3
+    4: 3
+    5: 3
+  id: BO_MYSTERY_POWDER
+  id_num: 6509
+  max_lv: 5
+  name: ミステリーパウダー
+  need_skill_list:
+  - need_lv: 5
+    skill_id: BO_EXPLOSIVE_POWDER
+  seperate_lv: true
+  sp_amount:
+    0: null
+    1: 360
+    2: 360
+    3: 360
+    4: 360
+    5: 360
   type: Normal
 BO_RESEARCHREPORT:
   _mig_id: BO_RESEARCHREPORT
@@ -5909,6 +6147,36 @@ CD_DILECTIO_HEAL:
     4: 380
     5: 380
   type: Normal
+CD_DIVINUS_FLOS:
+  _mig_id: null
+  _mig_id2: null
+  _mig_id_num: null
+  _mig_name: null
+  attack_range:
+    0: null
+    1: 9
+    2: 9
+    3: 9
+    4: 9
+    5: 9
+  id: CD_DIVINUS_FLOS
+  id_num: 6518
+  max_lv: 5
+  name: ディヴィヌスフロス
+  need_skill_list:
+  - need_lv: 5
+    skill_id: AB_ADORAMUS
+  - need_lv: 5
+    skill_id: CD_FRAMEN
+  seperate_lv: true
+  sp_amount:
+    0: null
+    1: 440
+    2: 440
+    3: 440
+    4: 440
+    5: 440
+  type: Normal
 CD_EFFLIGO:
   _mig_id: CD_EFFLIGO
   _mig_id2: SKILL_ID_EFIRIGO
@@ -6314,27 +6582,8 @@ CG_LONGINGFREEDOM:
   _mig_id2: SKILL_ID_WATASHIWO_SHIBARANAIDE
   _mig_id_num: 868
   _mig_name: 私を縛らないで
-  attack_range:
-    0: null
-    1: 1
-    2: 1
-    3: 1
-    4: 1
-    5: 1
   id: CG_LONGINGFREEDOM
   id_num: 487
-  max_lv: 5
-  name: 私を縛らないで
-  need_skill_list: []
-  seperate_lv: false
-  sp_amount:
-    0: null
-    1: 15
-    2: 15
-    3: 15
-    4: 15
-    5: 15
-  type: Normal
 CG_MARIONETTE:
   _mig_id: CG_MARIONETTE
   _mig_id2: SKILL_ID_MARIONET_CONTROL
@@ -6384,8 +6633,19 @@ CG_SPECIALSINGER:
   _mig_id2: null
   _mig_id_num: null
   _mig_name: null
+  attack_range:
+    0: null
+    1: 1
   id: CG_SPECIALSINGER
   id_num: 5068
+  max_lv: 1
+  name: 音楽専門家の熟練
+  need_skill_list: []
+  seperate_lv: false
+  sp_amount:
+    0: null
+    1: 1
+  type: Normal
 CG_TAROTCARD:
   _mig_id: CG_TAROTCARD
   _mig_id2: SKILL_ID_UNMEINO_TALOTCARD
@@ -7378,16 +7638,16 @@ DC_DONTFORGETME:
   seperate_lv: true
   sp_amount:
     0: null
-    1: 28
-    2: 31
-    3: 34
-    4: 37
-    5: 40
-    6: 43
-    7: 46
-    8: 49
-    9: 52
-    10: 55
+    1: 38
+    2: 41
+    3: 44
+    4: 47
+    5: 50
+    6: 53
+    7: 56
+    8: 59
+    9: 62
+    10: 65
   type: Normal
 DC_FORTUNEKISS:
   _mig_id: DC_FORTUNEKISS
@@ -7416,16 +7676,16 @@ DC_FORTUNEKISS:
   seperate_lv: true
   sp_amount:
     0: null
-    1: 43
-    2: 46
-    3: 49
-    4: 52
-    5: 55
-    6: 58
-    7: 61
-    8: 64
-    9: 67
-    10: 70
+    1: 40
+    2: 45
+    3: 50
+    4: 55
+    5: 60
+    6: 65
+    7: 70
+    8: 75
+    9: 80
+    10: 85
   type: Normal
 DC_FORTUNEKISS2:
   _mig_id: null
@@ -7461,16 +7721,16 @@ DC_HUMMING:
   seperate_lv: true
   sp_amount:
     0: null
-    1: 22
-    2: 24
-    3: 26
-    4: 28
-    5: 30
-    6: 32
-    7: 34
-    8: 36
-    9: 38
-    10: 40
+    1: 33
+    2: 36
+    3: 39
+    4: 42
+    5: 45
+    6: 48
+    7: 51
+    8: 54
+    9: 57
+    10: 60
   type: Normal
 DC_SCREAM:
   _mig_id: DC_SCREAM
@@ -7527,16 +7787,16 @@ DC_SERVICEFORYOU:
   seperate_lv: true
   sp_amount:
     0: null
-    1: 40
-    2: 45
-    3: 50
-    4: 55
-    5: 60
-    6: 65
-    7: 70
-    8: 75
-    9: 80
-    10: 85
+    1: 60
+    2: 63
+    3: 66
+    4: 69
+    5: 72
+    6: 75
+    7: 78
+    8: 81
+    9: 84
+    10: 87
   type: Normal
 DC_THROWARROW:
   _mig_id: DC_THROWARROW
@@ -7590,11 +7850,11 @@ DC_UGLYDANCE:
   seperate_lv: true
   sp_amount:
     0: null
-    1: 23
-    2: 26
-    3: 29
-    4: 32
-    5: 35
+    1: 35
+    2: 38
+    3: 41
+    4: 44
+    5: 47
   type: Normal
 DC_WINKCHARM:
   _mig_id: DC_WINKCHARM
@@ -8013,6 +8273,34 @@ DK_DRAGONIC_BREATH:
     8: 230
     9: 230
     10: 230
+  type: Normal
+DK_DRAGONIC_PIERCE:
+  _mig_id: null
+  _mig_id2: null
+  _mig_id_num: null
+  _mig_name: null
+  attack_range:
+    0: null
+    1: 9
+    2: 9
+    3: 9
+    4: 9
+    5: 9
+  id: DK_DRAGONIC_PIERCE
+  id_num: 6502
+  max_lv: 5
+  name: ドラゴニックピアース
+  need_skill_list:
+  - need_lv: 7
+    skill_id: DK_HACKANDSLASHER
+  seperate_lv: true
+  sp_amount:
+    0: null
+    1: 110
+    2: 110
+    3: 110
+    4: 110
+    5: 110
   type: Normal
 DK_HACKANDSLASHER:
   _mig_id: DK_HACKANDSLASHER
@@ -9722,6 +10010,44 @@ EM_MAGIC_BOOK_M:
     8: 0
     9: 0
     10: 0
+  type: Normal
+EM_PSYCHIC_STREAM:
+  _mig_id: null
+  _mig_id2: null
+  _mig_id_num: null
+  _mig_name: null
+  attack_range:
+    0: null
+    1: 9
+    2: 9
+    3: 9
+    4: 9
+    5: 9
+  id: EM_PSYCHIC_STREAM
+  id_num: 6517
+  max_lv: 5
+  name: サイキックストリーム
+  need_skill_list:
+  - need_lv: 5
+    skill_id: EM_MAGIC_BOOK_M
+  - need_lv: 3
+    skill_id: EM_DIAMOND_STORM
+  - need_lv: 3
+    skill_id: EM_CONFLAGRATION
+  - need_lv: 3
+    skill_id: EM_LIGHTNING_LAND
+  - need_lv: 3
+    skill_id: EM_TERRA_DRIVE
+  - need_lv: 3
+    skill_id: EM_VENOM_SWAMP
+  seperate_lv: true
+  sp_amount:
+    0: null
+    1: 420
+    2: 420
+    3: 420
+    4: 420
+    5: 420
   type: Normal
 EM_SPELL_ENCHANTING:
   _mig_id: EM_SPELL_ENCHANTING
@@ -12945,6 +13271,36 @@ HN_NAPALM_VULCAN_STRIKE:
     9: 110
     10: 110
   type: Normal
+HN_OVERCOMING_CRISIS:
+  _mig_id: null
+  _mig_id2: null
+  _mig_id_num: null
+  _mig_name: null
+  attack_range:
+    0: null
+    1: null
+    2: null
+    3: null
+    4: null
+    5: null
+  id: HN_OVERCOMING_CRISIS
+  id_num: 5505
+  max_lv: 5
+  name: オーバーカミングクライシス
+  need_skill_list:
+  - need_lv: 5
+    skill_id: HN_SELFSTUDY_TATICS
+  - need_lv: 5
+    skill_id: HN_SELFSTUDY_SOCERY
+  seperate_lv: true
+  sp_amount:
+    0: null
+    1: 110
+    2: 110
+    3: 110
+    4: 110
+    5: 110
+  type: Normal
 HN_RULEBREAK:
   _mig_id: HN_RULEBREAK
   _mig_id_num: 1281
@@ -14256,6 +14612,64 @@ IG_HOLY_SHIELD:
     4: 270
     5: 270
   type: Normal
+IG_IMPERIAL_CROSS:
+  _mig_id: null
+  _mig_id2: null
+  _mig_id_num: null
+  _mig_name: null
+  attack_range:
+    0: null
+    1: 3
+    2: 3
+    3: 3
+    4: 3
+    5: 3
+  id: IG_IMPERIAL_CROSS
+  id_num: 6504
+  max_lv: 5
+  name: インペリアルクロス
+  need_skill_list:
+  - need_lv: 5
+    skill_id: IG_OVERSLASH
+  seperate_lv: true
+  sp_amount:
+    0: null
+    1: 140
+    2: 140
+    3: 140
+    4: 140
+    5: 140
+  type: Normal
+IG_IMPERIAL_PRESSURE:
+  _mig_id: null
+  _mig_id2: null
+  _mig_id_num: null
+  _mig_name: null
+  attack_range:
+    0: null
+    1: 9
+    2: 9
+    3: 9
+    4: 9
+    5: 9
+  id: IG_IMPERIAL_PRESSURE
+  id_num: 6505
+  max_lv: 5
+  name: インペリアルプレッシャー
+  need_skill_list:
+  - need_lv: 7
+    skill_id: IG_SPEAR_SWORD_M
+  - need_lv: 3
+    skill_id: IG_GUARD_STANCE
+  seperate_lv: true
+  sp_amount:
+    0: null
+    1: 350
+    2: 350
+    3: 350
+    4: 350
+    5: 350
+  type: Normal
 IG_JUDGEMENT_CROSS:
   _mig_id: IG_JUDGEMENT_CROSS
   _mig_id2: SKILL_ID_JUDGEMENT_CROSS
@@ -14320,6 +14734,46 @@ IG_OVERSLASH:
   need_skill_list:
   - need_lv: 3
     skill_id: IG_ATTACK_STANCE
+  seperate_lv: true
+  sp_amount:
+    0: null
+    1: 240
+    2: 240
+    3: 240
+    4: 240
+    5: 240
+    6: 240
+    7: 240
+    8: 240
+    9: 240
+    10: 240
+  type: Normal
+IG_RADIANT_SPEAR:
+  _mig_id: null
+  _mig_id2: null
+  _mig_id_num: null
+  _mig_name: null
+  attack_range:
+    0: null
+    1: 9
+    2: 9
+    3: 9
+    4: 9
+    5: 9
+    6: 9
+    7: 9
+    8: 9
+    9: 9
+    10: 9
+  id: IG_RADIANT_SPEAR
+  id_num: 6503
+  max_lv: 10
+  name: レイディアントスピア
+  need_skill_list:
+  - need_lv: 3
+    skill_id: IG_OVERSLASH
+  - need_lv: 3
+    skill_id: IG_SHIELD_SHOOTING
   seperate_lv: true
   sp_amount:
     0: null
@@ -14493,6 +14947,34 @@ IG_ULTIMATE_SACRIFICE:
     3: 300
     4: 300
     5: 300
+  type: Normal
+IQ_BLAZING_FLAME_BLAST:
+  _mig_id: null
+  _mig_id2: null
+  _mig_id_num: null
+  _mig_name: null
+  attack_range:
+    0: null
+    1: 9
+    2: 9
+    3: 9
+    4: 9
+    5: 9
+  id: IQ_BLAZING_FLAME_BLAST
+  id_num: 6519
+  max_lv: 5
+  name: 烈火気弾
+  need_skill_list:
+  - need_lv: 7
+    skill_id: IQ_MASSIVE_F_BLASTER
+  seperate_lv: true
+  sp_amount:
+    0: null
+    1: 110
+    2: 110
+    3: 110
+    4: 110
+    5: 110
   type: Normal
 IQ_EXPOSION_BLASTER:
   _mig_id: IQ_EXPOSION_BLASTER
@@ -18771,8 +19253,37 @@ MH_ABSOLUTE_ZEPHYR:
   _mig_id2: null
   _mig_id_num: null
   _mig_name: null
+  attack_range:
+    0: null
+    1: 7
+    2: 7
+    3: 7
+    4: 7
+    5: 7
+    6: 7
+    7: 7
+    8: 7
+    9: 7
+    10: 7
   id: MH_ABSOLUTE_ZEPHYR
   id_num: 8048
+  max_lv: 10
+  name: アブソリュートゼファー
+  need_skill_list: []
+  seperate_lv: true
+  sp_amount:
+    0: null
+    1: 122
+    2: 129
+    3: 136
+    4: 143
+    5: 150
+    6: 157
+    7: 164
+    8: 171
+    9: 178
+    10: 185
+  type: Normal
 MH_ANGRIFFS_MODUS:
   _mig_id: null
   _mig_id2: null
@@ -18780,11 +19291,11 @@ MH_ANGRIFFS_MODUS:
   _mig_name: null
   attack_range:
     0: null
-    1: 1
-    2: 1
-    3: 1
-    4: 1
-    5: 1
+    1: null
+    2: null
+    3: null
+    4: null
+    5: null
   id: MH_ANGRIFFS_MODUS
   id_num: 8035
   max_lv: 5
@@ -18804,29 +19315,145 @@ MH_BLAST_FORGE:
   _mig_id2: null
   _mig_id_num: null
   _mig_name: null
+  attack_range:
+    0: null
+    1: 1
+    2: 1
+    3: 1
+    4: 1
+    5: 1
+    6: 1
+    7: 1
+    8: 1
+    9: 1
+    10: 1
   id: MH_BLAST_FORGE
   id_num: 8044
+  max_lv: 10
+  name: ブラストフォージ
+  need_skill_list: []
+  seperate_lv: true
+  sp_amount:
+    0: null
+    1: 52
+    2: 59
+    3: 66
+    4: 73
+    5: 80
+    6: 87
+    7: 94
+    8: 101
+    9: 108
+    10: 115
+  type: Normal
 MH_BLAZING_AND_FURIOUS:
   _mig_id: null
   _mig_id2: null
   _mig_id_num: null
   _mig_name: null
+  attack_range:
+    0: null
+    1: 7
+    2: 7
+    3: 7
+    4: 7
+    5: 7
+    6: 7
+    7: 7
+    8: 7
+    9: 7
+    10: 7
   id: MH_BLAZING_AND_FURIOUS
   id_num: 8050
+  max_lv: 10
+  name: ブレイジングアンドフューリアス
+  need_skill_list: []
+  seperate_lv: true
+  sp_amount:
+    0: null
+    1: 103
+    2: 108
+    3: 113
+    4: 118
+    5: 123
+    6: 128
+    7: 133
+    8: 138
+    9: 143
+    10: 148
+  type: Normal
 MH_BLAZING_LAVA:
   _mig_id: null
   _mig_id2: null
   _mig_id_num: null
   _mig_name: null
+  attack_range:
+    0: null
+    1: null
+    2: null
+    3: null
+    4: null
+    5: null
+    6: null
+    7: null
+    8: null
+    9: null
+    10: null
   id: MH_BLAZING_LAVA
   id_num: 8059
+  max_lv: 10
+  name: ブレイジングラーヴァ
+  need_skill_list: []
+  seperate_lv: false
+  sp_amount:
+    0: null
+    1: 0
+    2: 0
+    3: 0
+    4: 0
+    5: 0
+    6: 0
+    7: 0
+    8: 0
+    9: 0
+    10: 0
+  type: Normal
 MH_BRUSHUP_CLAW:
   _mig_id: null
   _mig_id2: null
   _mig_id_num: null
   _mig_name: null
+  attack_range:
+    0: null
+    1: null
+    2: null
+    3: null
+    4: null
+    5: null
+    6: null
+    7: null
+    8: null
+    9: null
+    10: null
   id: MH_BRUSHUP_CLAW
   id_num: 8049
+  max_lv: 10
+  name: ブラッシュアップクロー
+  need_skill_list: []
+  seperate_lv: false
+  sp_amount:
+    0: null
+    1: 0
+    2: 0
+    3: 0
+    4: 0
+    5: 0
+    6: 0
+    7: 0
+    8: 0
+    9: 0
+    10: 0
+  type: Normal
 MH_CBC:
   _mig_id: null
   _mig_id2: null
@@ -18858,8 +19485,37 @@ MH_CLASSY_FLUTTER:
   _mig_id2: null
   _mig_id_num: null
   _mig_name: null
+  attack_range:
+    0: null
+    1: null
+    2: null
+    3: null
+    4: null
+    5: null
+    6: null
+    7: null
+    8: null
+    9: null
+    10: null
   id: MH_CLASSY_FLUTTER
   id_num: 8046
+  max_lv: 10
+  name: クラッシーフラッター
+  need_skill_list: []
+  seperate_lv: false
+  sp_amount:
+    0: null
+    1: 0
+    2: 0
+    3: 0
+    4: 0
+    5: 0
+    6: 0
+    7: 0
+    8: 0
+    9: 0
+    10: 0
+  type: Normal
 MH_EQC:
   _mig_id: null
   _mig_id2: null
@@ -18898,6 +19554,11 @@ MH_ERASER_CUTTER:
     3: 7
     4: 7
     5: 7
+    6: 7
+    7: 7
+    8: 7
+    9: 7
+    10: 7
   id: MH_ERASER_CUTTER
   id_num: 8024
   max_lv: 5
@@ -18911,14 +19572,48 @@ MH_ERASER_CUTTER:
     3: 25
     4: 25
     5: 25
+    6: 35
+    7: 35
+    8: 35
+    9: 35
+    10: 35
   type: Normal
 MH_GLANZEN_SPIES:
   _mig_id: null
   _mig_id2: null
   _mig_id_num: null
   _mig_name: null
+  attack_range:
+    0: null
+    1: 3
+    2: 3
+    3: 3
+    4: 3
+    5: 3
+    6: 3
+    7: 3
+    8: 3
+    9: 3
+    10: 3
   id: MH_GLANZEN_SPIES
   id_num: 8056
+  max_lv: 10
+  name: グレンツェンスパイズ
+  need_skill_list: []
+  seperate_lv: true
+  sp_amount:
+    0: null
+    1: 60
+    2: 65
+    3: 70
+    4: 75
+    5: 80
+    6: 85
+    7: 90
+    8: 95
+    9: 100
+    10: 105
+  type: Normal
 MH_GOLDENE_FERSE:
   _mig_id: null
   _mig_id2: null
@@ -18950,8 +19645,37 @@ MH_GOLDENE_TONE:
   _mig_id2: null
   _mig_id_num: null
   _mig_name: null
+  attack_range:
+    0: null
+    1: null
+    2: null
+    3: null
+    4: null
+    5: null
+    6: null
+    7: null
+    8: null
+    9: null
+    10: null
   id: MH_GOLDENE_TONE
   id_num: 8058
+  max_lv: 10
+  name: ゴールデントーン
+  need_skill_list: []
+  seperate_lv: true
+  sp_amount:
+    0: null
+    1: 124
+    2: 133
+    3: 142
+    4: 151
+    5: 160
+    6: 169
+    7: 178
+    8: 187
+    9: 196
+    10: 205
+  type: Normal
 MH_GRANITIC_ARMOR:
   _mig_id: null
   _mig_id2: SKILL_ID_GRANITIC_ARMOR
@@ -18983,8 +19707,37 @@ MH_HEILIGE_PFERD:
   _mig_id2: null
   _mig_id_num: null
   _mig_name: null
+  attack_range:
+    0: null
+    1: 1
+    2: 1
+    3: 1
+    4: 1
+    5: 1
+    6: 1
+    7: 1
+    8: 1
+    9: 1
+    10: 1
   id: MH_HEILIGE_PFERD
   id_num: 8057
+  max_lv: 10
+  name: ハイリゲプフェーアト
+  need_skill_list: []
+  seperate_lv: true
+  sp_amount:
+    0: null
+    1: 122
+    2: 129
+    3: 136
+    4: 143
+    5: 150
+    6: 157
+    7: 164
+    8: 171
+    9: 178
+    10: 185
+  type: Normal
 MH_HEILIGE_STANGE:
   _mig_id: null
   _mig_id2: null
@@ -18997,9 +19750,14 @@ MH_HEILIGE_STANGE:
     3: 9
     4: 9
     5: 9
+    6: 9
+    7: 9
+    8: 9
+    9: 9
+    10: 9
   id: MH_HEILIGE_STANGE
   id_num: 8034
-  max_lv: 5
+  max_lv: 10
   name: ハイリエージュスタンジェ
   need_skill_list: []
   seperate_lv: true
@@ -19010,6 +19768,11 @@ MH_HEILIGE_STANGE:
     3: 76
     4: 84
     5: 92
+    6: 100
+    7: 108
+    8: 116
+    9: 124
+    10: 132
   type: Normal
 MH_LAST:
   _mig_id: null
@@ -19030,9 +19793,14 @@ MH_LAVA_SLIDE:
     3: 7
     4: 7
     5: 7
+    6: 7
+    7: 7
+    8: 7
+    9: 7
+    10: 7
   id: MH_LAVA_SLIDE
   id_num: 8041
-  max_lv: 5
+  max_lv: 10
   name: ラーヴァスライド
   need_skill_list: []
   seperate_lv: true
@@ -19043,14 +19811,48 @@ MH_LAVA_SLIDE:
     3: 40
     4: 45
     5: 50
+    6: 55
+    7: 60
+    8: 65
+    9: 70
+    10: 75
   type: Normal
 MH_LICHT_GEHORN:
   _mig_id: null
   _mig_id2: null
   _mig_id_num: null
   _mig_name: null
+  attack_range:
+    0: null
+    1: null
+    2: null
+    3: null
+    4: null
+    5: null
+    6: null
+    7: null
+    8: null
+    9: null
+    10: null
   id: MH_LICHT_GEHORN
   id_num: 8055
+  max_lv: 10
+  name: リヒトゲホーン
+  need_skill_list: []
+  seperate_lv: false
+  sp_amount:
+    0: null
+    1: 0
+    2: 0
+    3: 0
+    4: 0
+    5: 0
+    6: 0
+    7: 0
+    8: 0
+    9: 0
+    10: 0
+  type: Normal
 MH_LIGHT_OF_REGENE:
   _mig_id: null
   _mig_id2: null
@@ -19115,9 +19917,14 @@ MH_MIDNIGHT_FRENZY:
     3: 1
     4: 1
     5: 1
+    6: 1
+    7: 1
+    8: 1
+    9: 1
+    10: 1
   id: MH_MIDNIGHT_FRENZY
   id_num: 8030
-  max_lv: 5
+  max_lv: 10
   name: ミッドナイトフレンジ
   need_skill_list: []
   seperate_lv: true
@@ -19128,6 +19935,11 @@ MH_MIDNIGHT_FRENZY:
     3: 24
     4: 32
     5: 40
+    6: 48
+    7: 56
+    8: 64
+    9: 72
+    10: 80
   type: Normal
 MH_NEEDLE_OF_PARALYZE:
   _mig_id: null
@@ -19141,9 +19953,14 @@ MH_NEEDLE_OF_PARALYZE:
     3: 5
     4: 5
     5: 5
+    6: 5
+    7: 5
+    8: 5
+    9: 5
+    10: 5
   id: MH_NEEDLE_OF_PARALYZE
   id_num: 8019
-  max_lv: 5
+  max_lv: 10
   name: ニードルオブパラライズ
   need_skill_list: []
   seperate_lv: true
@@ -19154,14 +19971,48 @@ MH_NEEDLE_OF_PARALYZE:
     3: 72
     4: 84
     5: 96
+    6: 108
+    7: 120
+    8: 132
+    9: 144
+    10: 156
   type: Normal
 MH_NEEDLE_STINGER:
   _mig_id: null
   _mig_id2: null
   _mig_id_num: null
   _mig_name: null
+  attack_range:
+    0: null
+    1: 7
+    2: 7
+    3: 7
+    4: 7
+    5: 7
+    6: 7
+    7: 7
+    8: 7
+    9: 7
+    10: 7
   id: MH_NEEDLE_STINGER
   id_num: 8054
+  max_lv: 10
+  name: ニードルスティンガー
+  need_skill_list: []
+  seperate_lv: true
+  sp_amount:
+    0: null
+    1: 74
+    2: 82
+    3: 90
+    4: 98
+    5: 106
+    6: 114
+    7: 122
+    8: 130
+    9: 138
+    10: 146
+  type: Normal
 MH_OVERED_BOOST:
   _mig_id: null
   _mig_id2: SKILL_ID_OVERED_BOOST
@@ -19195,14 +20046,19 @@ MH_PAIN_KILLER:
   _mig_name: null
   attack_range:
     0: null
-    1: 9
-    2: 9
-    3: 9
-    4: 9
-    5: 9
+    1: null
+    2: null
+    3: null
+    4: null
+    5: null
+    6: null
+    7: null
+    8: null
+    9: null
+    10: null
   id: MH_PAIN_KILLER
   id_num: 8021
-  max_lv: 5
+  max_lv: 10
   name: ペインキラー
   need_skill_list: []
   seperate_lv: true
@@ -19213,6 +20069,11 @@ MH_PAIN_KILLER:
     3: 56
     4: 60
     5: 64
+    6: 68
+    7: 72
+    8: 76
+    9: 80
+    10: 84
   type: Normal
 MH_POISON_MIST:
   _mig_id: null
@@ -19245,8 +20106,37 @@ MH_POLISHING_NEEDLE:
   _mig_id2: null
   _mig_id_num: null
   _mig_name: null
+  attack_range:
+    0: null
+    1: null
+    2: null
+    3: null
+    4: null
+    5: null
+    6: null
+    7: null
+    8: null
+    9: null
+    10: null
   id: MH_POLISHING_NEEDLE
   id_num: 8052
+  max_lv: 10
+  name: ポリッシングニードル
+  need_skill_list: []
+  seperate_lv: false
+  sp_amount:
+    0: null
+    1: 0
+    2: 0
+    3: 0
+    4: 0
+    5: 0
+    6: 0
+    7: 0
+    8: 0
+    9: 0
+    10: 0
+  type: Normal
 MH_PYROCLASTIC:
   _mig_id: null
   _mig_id2: SKILL_ID_PYROCLASTIC
@@ -19254,14 +20144,19 @@ MH_PYROCLASTIC:
   _mig_name: パイロクラスティック(Sホム)
   attack_range:
     0: null
-    1: 1
-    2: 1
-    3: 1
-    4: 1
-    5: 1
+    1: null
+    2: null
+    3: null
+    4: null
+    5: null
+    6: null
+    7: null
+    8: null
+    9: null
+    10: null
   id: MH_PYROCLASTIC
   id_num: 8042
-  max_lv: 5
+  max_lv: 10
   name: パイロクラスティック
   need_skill_list: []
   seperate_lv: true
@@ -19272,6 +20167,11 @@ MH_PYROCLASTIC:
     3: 36
     4: 44
     5: 52
+    6: 60
+    7: 68
+    8: 76
+    9: 84
+    10: 92
   type: Normal
 MH_SILENT_BREEZE:
   _mig_id: null
@@ -19311,9 +20211,14 @@ MH_SILVERVEIN_RUSH:
     3: 1
     4: 1
     5: 1
+    6: 1
+    7: 1
+    8: 1
+    9: 1
+    10: 1
   id: MH_SILVERVEIN_RUSH
   id_num: 8029
-  max_lv: 5
+  max_lv: 10
   name: シルバーベインラッシュ
   need_skill_list: []
   seperate_lv: true
@@ -19324,6 +20229,11 @@ MH_SILVERVEIN_RUSH:
     3: 20
     4: 25
     5: 30
+    6: 35
+    7: 40
+    8: 45
+    9: 50
+    10: 55
   type: Normal
 MH_SONIC_CRAW:
   _mig_id: null
@@ -19363,9 +20273,14 @@ MH_STAHL_HORN:
     3: 7
     4: 8
     5: 9
+    6: 9
+    7: 9
+    8: 9
+    9: 9
+    10: 9
   id: MH_STAHL_HORN
   id_num: 8031
-  max_lv: 5
+  max_lv: 10
   name: シュタールホーン
   need_skill_list: []
   seperate_lv: true
@@ -19376,6 +20291,11 @@ MH_STAHL_HORN:
     3: 50
     4: 55
     5: 60
+    6: 65
+    7: 70
+    8: 75
+    9: 80
+    10: 85
   type: Normal
 MH_STEINWAND:
   _mig_id: null
@@ -19384,11 +20304,11 @@ MH_STEINWAND:
   _mig_name: null
   attack_range:
     0: null
-    1: 1
-    2: 1
-    3: 1
-    4: 1
-    5: 1
+    1: null
+    2: null
+    3: null
+    4: null
+    5: null
   id: MH_STEINWAND
   id_num: 8033
   max_lv: 5
@@ -19452,15 +20372,73 @@ MH_TEMPERING:
   _mig_id2: null
   _mig_id_num: null
   _mig_name: null
+  attack_range:
+    0: null
+    1: null
+    2: null
+    3: null
+    4: null
+    5: null
+    6: null
+    7: null
+    8: null
+    9: null
+    10: null
   id: MH_TEMPERING
   id_num: 8045
+  max_lv: 10
+  name: テンパリング
+  need_skill_list: []
+  seperate_lv: true
+  sp_amount:
+    0: null
+    1: 83
+    2: 91
+    3: 99
+    4: 107
+    5: 115
+    6: 123
+    7: 131
+    8: 139
+    9: 147
+    10: 155
+  type: Normal
 MH_THE_ONE_FIGHTER_RISES:
   _mig_id: null
   _mig_id2: null
   _mig_id_num: null
   _mig_name: null
+  attack_range:
+    0: null
+    1: 1
+    2: 1
+    3: 1
+    4: 1
+    5: 1
+    6: 1
+    7: 1
+    8: 1
+    9: 1
+    10: 1
   id: MH_THE_ONE_FIGHTER_RISES
   id_num: 8051
+  max_lv: 10
+  name: ワンファイターライズ
+  need_skill_list: []
+  seperate_lv: true
+  sp_amount:
+    0: null
+    1: 100
+    2: 106
+    3: 112
+    4: 118
+    5: 124
+    6: 130
+    7: 136
+    8: 142
+    9: 148
+    10: 154
+  type: Normal
 MH_TINDER_BREAKER:
   _mig_id: null
   _mig_id2: null
@@ -19492,15 +20470,73 @@ MH_TOXIN_OF_MANDARA:
   _mig_id2: null
   _mig_id_num: null
   _mig_name: null
+  attack_range:
+    0: null
+    1: 2
+    2: 2
+    3: 2
+    4: 2
+    5: 2
+    6: 2
+    7: 2
+    8: 2
+    9: 2
+    10: 2
   id: MH_TOXIN_OF_MANDARA
   id_num: 8053
+  max_lv: 10
+  name: トキシンオブマンドラ
+  need_skill_list: []
+  seperate_lv: true
+  sp_amount:
+    0: null
+    1: 60
+    2: 65
+    3: 70
+    4: 75
+    5: 80
+    6: 85
+    7: 90
+    8: 95
+    9: 100
+    10: 105
+  type: Normal
 MH_TWISTER_CUTTER:
   _mig_id: null
   _mig_id2: null
   _mig_id_num: null
   _mig_name: null
+  attack_range:
+    0: null
+    1: 7
+    2: 7
+    3: 7
+    4: 7
+    5: 7
+    6: 7
+    7: 7
+    8: 7
+    9: 7
+    10: 7
   id: MH_TWISTER_CUTTER
   id_num: 8047
+  max_lv: 10
+  name: ツイスターカッター
+  need_skill_list: []
+  seperate_lv: true
+  sp_amount:
+    0: null
+    1: 106
+    2: 112
+    3: 118
+    4: 124
+    5: 130
+    6: 136
+    7: 142
+    8: 148
+    9: 154
+    10: 160
+  type: Normal
 MH_VOLCANIC_ASH:
   _mig_id: null
   _mig_id2: null
@@ -19539,9 +20575,14 @@ MH_XENO_SLASHER:
     3: 7
     4: 7
     5: 7
+    6: 7
+    7: 7
+    8: 7
+    9: 7
+    10: 7
   id: MH_XENO_SLASHER
   id_num: 8025
-  max_lv: 5
+  max_lv: 10
   name: ゼノスラッシャー
   need_skill_list: []
   seperate_lv: true
@@ -19552,6 +20593,11 @@ MH_XENO_SLASHER:
     3: 50
     4: 50
     5: 50
+    6: 75
+    7: 75
+    8: 75
+    9: 75
+    10: 75
   type: Normal
 MI_ECHOSONG:
   _mig_id: MI_ECHOSONG
@@ -20639,6 +21685,34 @@ MT_D_MACHINE:
     4: 140
     5: 140
   type: Normal
+MT_ENERGY_CANNONADE:
+  _mig_id: null
+  _mig_id2: null
+  _mig_id_num: null
+  _mig_name: null
+  attack_range:
+    0: null
+    1: 9
+    2: 9
+    3: 9
+    4: 9
+    5: 9
+  id: MT_ENERGY_CANNONADE
+  id_num: 6508
+  max_lv: 5
+  name: エナジーキャノネード
+  need_skill_list:
+  - need_lv: 3
+    skill_id: MT_TRIPLE_LASER
+  seperate_lv: true
+  sp_amount:
+    0: null
+    1: 300
+    2: 300
+    3: 300
+    4: 300
+    5: 300
+  type: Normal
 MT_MIGHTY_SMASH:
   _mig_id: MT_MIGHTY_SMASH
   _mig_id2: SKILL_ID_MIGHTY_SMASH
@@ -20703,6 +21777,34 @@ MT_M_MACHINE:
     4: 70
     5: 70
   type: Normal
+MT_POWERFUL_SWING:
+  _mig_id: null
+  _mig_id2: null
+  _mig_id_num: null
+  _mig_name: null
+  attack_range:
+    0: null
+    1: 3
+    2: 3
+    3: 3
+    4: 3
+    5: 3
+  id: MT_POWERFUL_SWING
+  id_num: 6507
+  max_lv: 5
+  name: パワフルスイング
+  need_skill_list:
+  - need_lv: 3
+    skill_id: MT_RUSH_STRIKE
+  seperate_lv: true
+  sp_amount:
+    0: null
+    1: 250
+    2: 250
+    3: 250
+    4: 250
+    5: 250
+  type: Normal
 MT_RUSH_QUAKE:
   _mig_id: MT_RUSH_QUAKE
   _mig_id2: SKILL_ID_RUSH_QUAKE
@@ -20740,6 +21842,34 @@ MT_RUSH_QUAKE:
     8: 440
     9: 440
     10: 440
+  type: Normal
+MT_RUSH_STRIKE:
+  _mig_id: null
+  _mig_id2: null
+  _mig_id_num: null
+  _mig_name: null
+  attack_range:
+    0: null
+    1: 9
+    2: 9
+    3: 9
+    4: 9
+    5: 9
+  id: MT_RUSH_STRIKE
+  id_num: 6506
+  max_lv: 5
+  name: ラッシュストライク
+  need_skill_list:
+  - need_lv: 5
+    skill_id: MT_RUSH_QUAKE
+  seperate_lv: true
+  sp_amount:
+    0: null
+    1: 300
+    2: 300
+    3: 300
+    4: 300
+    5: 300
   type: Normal
 MT_SPARK_BLASTER:
   _mig_id: MT_SPARK_BLASTER
@@ -26517,6 +27647,38 @@ NW_MAGAZINE_FOR_ONE:
     4: 100
     5: 100
   type: Normal
+NW_MIDNIGHT_FALLEN:
+  _mig_id: null
+  _mig_id2: null
+  _mig_id_num: null
+  _mig_name: null
+  attack_range:
+    0: null
+    1: 9
+    2: 9
+    3: 9
+    4: 9
+    5: 9
+  id: NW_MIDNIGHT_FALLEN
+  id_num: 5501
+  max_lv: 5
+  name: ミッドナイトフォーリン
+  need_skill_list:
+  - need_lv: 3
+    skill_id: NW_THE_VIGILANTE_AT_NIGHT
+  - need_lv: 3
+    skill_id: NW_MAGAZINE_FOR_ONE
+  - need_lv: 3
+    skill_id: NW_WILD_FIRE
+  seperate_lv: true
+  sp_amount:
+    0: null
+    1: 270
+    2: 270
+    3: 270
+    4: 270
+    5: 270
+  type: Normal
 NW_MISSION_BOMBARD:
   _mig_id: NW_MISSION_BOMBARD
   _mig_id2: SKILL_ID_MISSION_BOMBARD
@@ -26764,6 +27926,38 @@ NW_WILD_FIRE:
     3: 230
     4: 230
     5: 230
+  type: Normal
+NW_WILD_SHOT:
+  _mig_id: null
+  _mig_id2: null
+  _mig_id_num: null
+  _mig_name: null
+  attack_range:
+    0: null
+    1: 15
+    2: 15
+    3: 15
+    4: 15
+    5: 15
+  id: NW_WILD_SHOT
+  id_num: 5500
+  max_lv: 5
+  name: ワイルドショット
+  need_skill_list:
+  - need_lv: 3
+    skill_id: NW_ONLY_ONE_BULLET
+  - need_lv: 3
+    skill_id: NW_SPIRAL_SHOOTING
+  - need_lv: 3
+    skill_id: NW_MAGAZINE_FOR_ONE
+  seperate_lv: true
+  sp_amount:
+    0: null
+    1: 220
+    2: 220
+    3: 220
+    4: 220
+    5: 220
   type: Normal
 OB_AKAITSUKI:
   _mig_id: OB_AKAITSUKI
@@ -32227,6 +33421,36 @@ SG_SUN_WARM:
     2: 20
     3: 20
   type: Normal
+SHC_CROSS_SLASH:
+  _mig_id: null
+  _mig_id2: null
+  _mig_id_num: null
+  _mig_name: null
+  attack_range:
+    0: null
+    1: 3
+    2: 3
+    3: 3
+    4: 3
+    5: 3
+  id: SHC_CROSS_SLASH
+  id_num: 6511
+  max_lv: 5
+  name: クロススラッシュ
+  need_skill_list:
+  - need_lv: 3
+    skill_id: GC_WEAPONBLOCKING
+  - need_lv: 3
+    skill_id: SHC_DANCING_KNIFE
+  seperate_lv: true
+  sp_amount:
+    0: null
+    1: 210
+    2: 210
+    3: 210
+    4: 210
+    5: 210
+  type: Normal
 SHC_DANCING_KNIFE:
   _mig_id: SHC_DANCING_KNIFE
   _mig_id2: SKILL_ID_DANCING_KNIFE
@@ -32611,6 +33835,38 @@ SH_BLESSING_OF_MYSTICAL_CREATURES:
     4: 170
     5: 170
   type: Normal
+SH_CHUL_HO_BATTERING:
+  _mig_id: null
+  _mig_id2: null
+  _mig_id_num: null
+  _mig_name: null
+  attack_range:
+    0: null
+    1: 9
+    2: 9
+    3: 9
+    4: 9
+    5: 9
+    6: 9
+    7: 9
+  id: SH_CHUL_HO_BATTERING
+  id_num: 5506
+  max_lv: 7
+  name: タイガーバトリング
+  need_skill_list:
+  - need_lv: 1
+    skill_id: SH_COMMUNE_WITH_CHUL_HO
+  seperate_lv: true
+  sp_amount:
+    0: null
+    1: 170
+    2: 170
+    3: 170
+    4: 170
+    5: 170
+    6: 170
+    7: 170
+  type: Normal
 SH_CHUL_HO_SONIC_CLAW:
   _mig_id: SH_CHUL_HO_SONIC_CLAW
   _mig_id2: SKILL_ID_TIGER_SLASH
@@ -32893,6 +34149,38 @@ SH_HYUN_ROK_CANNON:
     6: 110
     7: 110
   type: Normal
+SH_HYUN_ROK_SPIRIT_POWER:
+  _mig_id: null
+  _mig_id2: null
+  _mig_id_num: null
+  _mig_name: null
+  attack_range:
+    0: null
+    1: 9
+    2: 9
+    3: 9
+    4: 9
+    5: 9
+    6: 9
+    7: 9
+  id: SH_HYUN_ROK_SPIRIT_POWER
+  id_num: 5507
+  max_lv: 7
+  name: ディアースピリットパワー
+  need_skill_list:
+  - need_lv: 1
+    skill_id: SH_COMMUNE_WITH_HYUN_ROK
+  seperate_lv: true
+  sp_amount:
+    0: null
+    1: 170
+    2: 170
+    3: 170
+    4: 170
+    5: 170
+    6: 170
+    7: 170
+  type: Normal
 SH_KI_SUL_RAMPAGE:
   _mig_id: SH_KI_SUL_RAMPAGE
   _mig_id_num: 1276
@@ -33000,8 +34288,6 @@ SH_MARINE_FESTIVAL_OF_KI_SUL:
     3: 210
     4: 210
     5: 210
-    6: 210
-    7: 210
   type: Normal
 SH_MYSTICAL_CREATURE_MASTERY:
   _mig_id: SH_MYSTICAL_CREATURE_MASTERY
@@ -33082,8 +34368,6 @@ SH_SANDY_FESTIVAL_OF_KI_SUL:
     3: 210
     4: 210
     5: 210
-    6: 210
-    7: 210
   type: Normal
 SH_TEMPORARY_COMMUNION:
   _mig_id: SH_TEMPORARY_COMMUNION
@@ -33981,6 +35265,70 @@ SKE_SKY_MASTERY:
     9: 0
     10: 0
   type: Normal
+SKE_SKY_MOON:
+  _mig_id: null
+  _mig_id2: null
+  _mig_id_num: null
+  _mig_name: null
+  attack_range:
+    0: null
+    1: 2
+    2: 2
+    3: 2
+    4: 2
+    5: 2
+  id: SKE_SKY_MOON
+  id_num: 5503
+  max_lv: 5
+  name: 天気身月
+  need_skill_list:
+  - need_lv: 3
+    skill_id: SKE_MIDNIGHT_KICK
+  - need_lv: 3
+    skill_id: SKE_DAWN_BREAK
+  - need_lv: 7
+    skill_id: SKE_ENCHANTING_SKY
+  seperate_lv: true
+  sp_amount:
+    0: null
+    1: 270
+    2: 270
+    3: 270
+    4: 270
+    5: 270
+  type: Normal
+SKE_SKY_SUN:
+  _mig_id: null
+  _mig_id2: null
+  _mig_id_num: null
+  _mig_name: null
+  attack_range:
+    0: null
+    1: null
+    2: null
+    3: null
+    4: null
+    5: null
+  id: SKE_SKY_SUN
+  id_num: 5502
+  max_lv: 5
+  name: 天気身陽
+  need_skill_list:
+  - need_lv: 3
+    skill_id: SKE_NOON_BLAST
+  - need_lv: 3
+    skill_id: SKE_SUNSET_BLAST
+  - need_lv: 7
+    skill_id: SKE_ENCHANTING_SKY
+  seperate_lv: true
+  sp_amount:
+    0: null
+    1: 270
+    2: 270
+    3: 270
+    4: 270
+    5: 270
+  type: Normal
 SKE_STAR_BURST:
   _mig_id: SKE_STAR_BURST
   _mig_id2: SKILL_ID_TENME_RAKUSE
@@ -34032,6 +35380,38 @@ SKE_STAR_CANNON:
     skill_id: SKE_SKY_MASTERY
   - need_lv: 1
     skill_id: SKE_STAR_BURST
+  seperate_lv: true
+  sp_amount:
+    0: null
+    1: 270
+    2: 270
+    3: 270
+    4: 270
+    5: 270
+  type: Normal
+SKE_STAR_LIGHT_KICK:
+  _mig_id: null
+  _mig_id2: null
+  _mig_id_num: null
+  _mig_name: null
+  attack_range:
+    0: null
+    1: 9
+    2: 9
+    3: 9
+    4: 9
+    5: 9
+  id: SKE_STAR_LIGHT_KICK
+  id_num: 5504
+  max_lv: 5
+  name: 天星の行
+  need_skill_list:
+  - need_lv: 3
+    skill_id: SKE_STAR_BURST
+  - need_lv: 3
+    skill_id: SKE_STAR_CANNON
+  - need_lv: 7
+    skill_id: SKE_ENCHANTING_SKY
   seperate_lv: true
   sp_amount:
     0: null
@@ -37966,6 +39346,28 @@ SS_ANTENPOU:
     9: 230
     10: 230
   type: Normal
+SS_FOUR_CHARM:
+  _mig_id: null
+  _mig_id2: null
+  _mig_id_num: null
+  _mig_name: null
+  attack_range:
+    0: null
+    1: null
+  id: SS_FOUR_CHARM
+  id_num: 5499
+  max_lv: 1
+  name: 四色符
+  need_skill_list:
+  - need_lv: 1
+    skill_id: KO_KAIHOU
+  - need_lv: 1
+    skill_id: SS_SHINKIROU
+  seperate_lv: false
+  sp_amount:
+    0: null
+    1: 320
+  type: Normal
 SS_FUUMAKOUCHIKU:
   _mig_id: SS_FUUMAKOUCHIKU
   _mig_id2: SKILL_ID_FUMASHURIKEN_KOUCHIKU
@@ -40582,6 +41984,34 @@ TR_RETROSPECTION:
     0: null
     1: 1
   type: Normal
+TR_RHYTHMICAL_WAVE:
+  _mig_id: null
+  _mig_id2: null
+  _mig_id_num: null
+  _mig_name: null
+  attack_range:
+    0: null
+    1: 9
+    2: 9
+    3: 9
+    4: 9
+    5: 9
+  id: TR_RHYTHMICAL_WAVE
+  id_num: 6521
+  max_lv: 5
+  name: リズミカルウェーブ
+  need_skill_list:
+  - need_lv: 3
+    skill_id: TR_METALIC_FURY
+  seperate_lv: true
+  sp_amount:
+    0: null
+    1: 230
+    2: 230
+    3: 230
+    4: 230
+    5: 230
+  type: Normal
 TR_RHYTHMSHOOTING:
   _mig_id: TR_RHYTHMSHOOTING
   _mig_id2: SKILL_ID_RHYTHM_SHOOTING
@@ -41345,6 +42775,36 @@ WH_SWIFTTRAP:
     3: 210
     4: 210
     5: 210
+  type: Normal
+WH_WILD_WALK:
+  _mig_id: null
+  _mig_id2: null
+  _mig_id_num: null
+  _mig_name: null
+  attack_range:
+    0: null
+    1: 5
+    2: 5
+    3: 5
+    4: 5
+    5: 5
+  id: WH_WILD_WALK
+  id_num: 6520
+  max_lv: 5
+  name: ワイルドウォーク
+  need_skill_list:
+  - need_lv: 3
+    skill_id: WH_NATUREFRIENDLY
+  - need_lv: 3
+    skill_id: WH_HAWKRUSH
+  seperate_lv: true
+  sp_amount:
+    0: null
+    1: 170
+    2: 170
+    3: 170
+    4: 170
+    5: 170
   type: Normal
 WH_WIND_SIGN:
   _mig_id: WH_WIND_SIGN
@@ -42277,21 +43737,8 @@ WM_DOMINION_IMPULSE:
   _mig_id2: SKILL_ID_DOMINION_IMPULSE
   _mig_id_num: 640
   _mig_name: ドミニオンインパルス
-  attack_range:
-    0: null
-    1: 11
   id: WM_DOMINION_IMPULSE
   id_num: 2417
-  max_lv: 1
-  name: ドミニオンインパルス
-  need_skill_list:
-  - need_lv: 1
-    skill_id: WM_REVERBERATION
-  seperate_lv: false
-  sp_amount:
-    0: null
-    1: 10
-  type: Normal
 WM_ENDMARK:
   _mig_id: null
   _mig_id2: null
@@ -42334,11 +43781,11 @@ WM_GLOOMYDAY:
   _mig_name: メランコリー
   attack_range:
     0: null
-    1: 9
-    2: 9
-    3: 9
-    4: 9
-    5: 9
+    1: 11
+    2: 11
+    3: 11
+    4: 11
+    5: 11
   id: WM_GLOOMYDAY
   id_num: 2425
   max_lv: 5
@@ -42362,11 +43809,11 @@ WM_GREAT_ECHO:
   _mig_name: (×)グレートエコー(未検証)
   attack_range:
     0: null
-    1: 9
-    2: 9
-    3: 9
-    4: 9
-    5: 9
+    1: 11
+    2: 11
+    3: 11
+    4: 11
+    5: 11
   id: WM_GREAT_ECHO
   id_num: 2426
   max_lv: 5
@@ -42452,11 +43899,11 @@ WM_LULLABY_DEEPSLEEP:
   _mig_name: 安らぎの子守唄
   attack_range:
     0: null
-    1: 1
-    2: 1
-    3: 1
-    4: 1
-    5: 1
+    1: 11
+    2: 11
+    3: 11
+    4: 11
+    5: 11
   id: WM_LULLABY_DEEPSLEEP
   id_num: 2422
   max_lv: 5
@@ -42524,7 +43971,7 @@ WM_METALICSOUND:
   name: メタリックサウンド
   need_skill_list:
   - need_lv: 1
-    skill_id: WM_DOMINION_IMPULSE
+    skill_id: WM_REVERBERATION
   seperate_lv: true
   sp_amount:
     0: null
@@ -42574,11 +44021,11 @@ WM_RANDOMIZESPELL:
   _mig_name: 不確定要素の言語
   attack_range:
     0: null
-    1: 9
-    2: 9
-    3: 9
-    4: 9
-    5: 9
+    1: 11
+    2: 11
+    3: 11
+    4: 11
+    5: 11
   id: WM_RANDOMIZESPELL
   id_num: 2424
   max_lv: 5
@@ -42589,11 +44036,11 @@ WM_RANDOMIZESPELL:
   seperate_lv: true
   sp_amount:
     0: null
-    1: 40
-    2: 45
-    3: 50
-    4: 55
-    5: 60
+    1: 20
+    2: 20
+    3: 20
+    4: 20
+    5: 20
   type: Normal
 WM_REVERBERATION:
   _mig_id: WM_REVERBERATION
@@ -42602,11 +44049,11 @@ WM_REVERBERATION:
   _mig_name: 振動残響
   attack_range:
     0: null
-    1: 9
-    2: 9
-    3: 9
-    4: 9
-    5: 9
+    1: 11
+    2: 11
+    3: 11
+    4: 11
+    5: 11
   id: WM_REVERBERATION
   id_num: 2414
   max_lv: 5
@@ -42795,11 +44242,11 @@ WM_SOUND_OF_DESTRUCTION:
   seperate_lv: true
   sp_amount:
     0: null
-    1: 50
-    2: 60
-    3: 70
-    4: 80
-    5: 90
+    1: 80
+    2: 90
+    3: 100
+    4: 110
+    5: 120
   type: Normal
 WM_STARTMARK:
   _mig_id: null
