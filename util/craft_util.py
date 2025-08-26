@@ -44,6 +44,14 @@ AT_SP_STATUS_100_CODE = {
     'CON': 47,
     'CRT': 48,
 }
+AT_SP_STATUS_50_CODE = {
+    'POW': 55,
+    'STA': 56,
+    'WIS': 57,
+    'SPL': 58,
+    'CON': 59,
+    'CRT': 60,
+}
 AT_BASE_LV_CODE = {
     170: 1,
     100: 2,
@@ -290,6 +298,8 @@ def buildCapabilityRecord(capability):
         at_status = AT_STATUS_130_CODE[capability['at_status_130']]
     elif 'at_sp_status_100' in capability:
         at_status = AT_SP_STATUS_100_CODE[capability['at_sp_status_100']]
+    elif 'at_sp_status_50' in capability:
+        at_status = AT_SP_STATUS_50_CODE[capability['at_sp_status_50']]
     at_baselv = 0
     if 'at_lv' in capability:
         at_baselv = AT_BASE_LV_CODE[capability['at_lv']]
