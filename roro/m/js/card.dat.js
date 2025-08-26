@@ -2773,7 +2773,6 @@
 	CARD_SET_ID_ENCHANT_GOKETSU_SENZAI_KAKUSEI_DRAGON_TAIL = 3402;
 	CARD_SET_ID_ENCHANT_GOKETSU_SENZAI_KAKUSEI_TAROU_NO_KIZU = 3404;
 	CARD_ID_COTNESS = 3428;
-	CARD_ID_MAX = 3428 + 1;	// この値である必然性はありません。定義位置と合わせて変更も視野に入ります。詳細は hmcard.js 参照。
 	CARD_ID_MEDJAY = 3700;
 	CARD_ID_JACKONETTE = 3706;
 
@@ -6536,6 +6535,8 @@
 	CardObjNew[3710] = [3710,6,"ガーリン","ガーリン","",100342,3,0];
 	CardObjNew[3711] = [3711,7,"ヴィオレン","ヴィオレン","",215,5,47000000080,5,0];
 	CardObjNew[3712] = [3712,7,"スパイダリン","スパイダリン","",342,10,0];
+
+	CARD_ID_MAX = CardObjNew.length;
 
 	/*
 	データ破損せず扱える cardID の最大値は 12bit = 4095 です
