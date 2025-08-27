@@ -33011,10 +33011,10 @@ function CSkillManager() {
 			this.Power = function(skillLv, charaData, option, mobData) {
 				let ratio = 0;
 				// 基本倍率
-				ratio = 1500 + 300 * skillLv;
+				ratio = 3600 + 600 * skillLv;
 				// トラップ研究は射程が伸びるだけでダメージには寄与しない
 				// CON補正
-				ratio += 10 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+				ratio += 22 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
 				// ベースレベル補正
 				ratio = ratio * n_A_BaseLV / 100;
 				// アドバンスドトラップ研究は小数点以下にも掛かる
@@ -33068,10 +33068,10 @@ function CSkillManager() {
 			this.Power = function(skillLv, charaData, option, mobData) {
 				let ratio = 0;
 				// 基本倍率
-				ratio = 1500 + 300 * skillLv;
+				ratio = 3600 + 600 * skillLv;
 				// トラップ研究は射程が伸びるだけでダメージには寄与しない
 				// CON補正
-				ratio += 10 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+				ratio += 22 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
 				// ベースレベル補正
 				ratio = ratio * n_A_BaseLV / 100;
 				// アドバンスドトラップ研究は小数点以下にも掛かる
@@ -33125,10 +33125,10 @@ function CSkillManager() {
 			this.Power = function(skillLv, charaData, option, mobData) {
 				let ratio = 0;
 				// 基本倍率
-				ratio = 1500 + 300 * skillLv;
+				ratio = 3600 + 600 * skillLv;
 				// トラップ研究は射程が伸びるだけでダメージには寄与しない
 				// CON補正
-				ratio += 10 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+				ratio += 22 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
 				// ベースレベル補正
 				ratio = ratio * n_A_BaseLV / 100;
 				// アドバンスドトラップ研究は小数点以下にも掛かる
@@ -33249,10 +33249,10 @@ function CSkillManager() {
 			this.Power = function(skillLv, charaData, option, mobData) {
 				let ratio = 0;
 				// 基本倍率
-				ratio = 1500 + 300 * skillLv;
+				ratio = 3600 + 600 * skillLv;
 				// トラップ研究は射程が伸びるだけでダメージには寄与しない
 				// CON補正
-				ratio += 10 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+				ratio += 22 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
 				// ベースレベル補正
 				ratio = ratio * n_A_BaseLV / 100;
 				// アドバンスドトラップ研究は小数点以下にも掛かる
@@ -42280,6 +42280,64 @@ function CSkillManager() {
 		this.dataArray[skillId] = skillData;
 		skillId++;
 
+		/** ワイルドウォーク */
+		SKILL_ID_WILD_WALK = skillId;
+		skillData = new function() {
+			this.prototype = new CSkillData();
+			CSkillData.call(this);
+			this.id = skillId;
+			this.name = "ワイルドウォーク";
+			this.kana = "ワイルドウォーク";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_PHYSICAL;
+			this.range = CSkillData.RANGE_LONG;
+			this.element = function(option) {
+				// 属性付与を優先する
+				let value = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_ARMS_ELEMENT", ELM_ID_VANITY);
+				if (value === ELM_ID_VANITY) {
+					// 付与されていなければ矢の属性を適用する
+					value = GetEquippedTotalSPArrow(ITEM_SP_ELEMENTAL);
+				}
+				return value;
+			}
+			this.Power = function(skillLv, charaData) {       // スキル倍率
+				let ratio = -500 + 1000 * skillLv;
+				ratio += 30 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+				const shizen_shinwa_lv = Math.max(LearnedSkillSearch(SKILL_ID_SHIZEN_SHINWA), UsedSkillSearch(SKILL_ID_SHIZEN_SHINWA));
+				const steel_crow_lv = Math.max(LearnedSkillSearch(SKILL_ID_STEEL_CROW), UsedSkillSearch(SKILL_ID_STEEL_CROW));
+				ratio += 300 * (shizen_shinwa_lv + steel_crow_lv);
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 170;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 5;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 0;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 0;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 1000 * skillLv;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 3000 * skillLv;
+			}
+			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
+				return this._CriActRate100(skillLv, charaData, specData, mobData);
+			}
+			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
+				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
+			}
+		};
+		this.dataArray[skillId] = skillData;
+		skillId++;
 	}
 
 	// 初期化
