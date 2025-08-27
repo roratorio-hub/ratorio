@@ -6638,7 +6638,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 
 		// 四次スキル以降の属性設定共通処理
 		if (battleCalcInfo.skillId >= SKILL_ID_TUZYO_KOGEKI_CALC_RIGHT) {
-			n_A_Weapon_zokusei = g_skillManager.GetElement(battleCalcInfo.skillId);
+			n_A_Weapon_zokusei = g_skillManager.GetElement(battleCalcInfo.skillId, attackMethodConfArray[0]);
 		}
 
 		switch (n_A_ActiveSkill) {
@@ -7490,6 +7490,44 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 		// 四次ここから
 		//
 		//----------------------------------------------------------------
+
+		//----------------------------------------------------------------
+		// 計算式を CSkillManager.js へ移動させ head.js をスリム化する対応を進めています
+		//----------------------------------------------------------------
+		/** エレメンタルマスター */
+		case SKILL_ID_PSYCHIC_STREAM: // サイキックストリーム
+		/** ソウルアセティック */
+		case SKILL_ID_SEIRYU_FU:	// 青龍符
+		case SKILL_ID_BYAKKO_FU:	// 白虎符
+		case SKILL_ID_SUZAKU_FU:	// 朱雀符
+		case SKILL_ID_GENBU_FU:		// 玄武符
+		case SKILL_ID_SHIRYO_ZYOKA:	// 死霊浄化
+		case SKILL_ID_SHIHOZIN_FU:	// 四方神符
+		case SKILL_ID_REIDO_FU:		// 霊道符
+			// スキル使用条件の判定
+			n_Buki_Muri = !g_skillManager.MatchWeaponCondition(n_A_ActiveSkill, n_A_WeaponType);
+			if (n_Buki_Muri) {
+				wbairitu = 0;
+				break;
+			}
+			// 詠唱などの情報
+			wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			// ダメージ算出に関する情報
+			wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], mobData, n_A_WeaponType);
+			n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_WeaponType);
+			// ヒット数に関する情報
+			wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
+			wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
+			// 地面設置スキルの情報
+			g_bDefinedDamageIntervals = g_skillManager.IsGroundInstallation(n_A_ActiveSkill);
+			if (g_bDefinedDamageIntervals) {
+				n_Delay[5] = g_skillManager.GetDamageInterval(n_A_ActiveSkill, n_A_ActiveSkillLV);
+				n_Delay[6] = g_skillManager.GetLifeTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			}
+			break;
 
 		// 「カーディナル」スキル「アルビトリウム」
 		// 2024/10/23 誤差無しを確認
@@ -8377,24 +8415,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				wbairitu = 0;
 				n_Buki_Muri = true;
 			}
-			break;
-
-		// ソウルアセティック
-		case SKILL_ID_SEIRYU_FU:	// 青龍符
-		case SKILL_ID_BYAKKO_FU:	// 白虎符
-		case SKILL_ID_SUZAKU_FU:	// 朱雀符
-		case SKILL_ID_GENBU_FU:		// 玄武符
-		case SKILL_ID_SHIRYO_ZYOKA:	// 死霊浄化
-		case SKILL_ID_SHIHOZIN_FU:	// 四方神符
-		case SKILL_ID_REIDO_FU:		// 霊道符
-			wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-			wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
-			wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
-			wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV, attackMethodConfArray[0]);
-			n_A_Weapon_zokusei = attackMethodConfArray[0].GetOptionValue(0);
 			break;
 
 		// 「ソウルアセティック」スキル「四方五行陣」
@@ -17517,7 +17537,7 @@ function SET_ZOKUSEI(mobData, attackMethodConfArray) {
 
 			// 四次スキルはスキルデータを参照して設定する
 			if (n_A_ActiveSkill >= SKILL_ID_TUZYO_KOGEKI_CALC_RIGHT) {
-				var elmWork = g_skillManager.GetElement(n_A_ActiveSkill);
+				var elmWork = g_skillManager.GetElement(n_A_ActiveSkill, attackMethodConfArray[0]);
 				if ((CSkillData.ELEMENT_FORCE_VANITY <= elmWork) && (elmWork <= CSkillData.ELEMENT_FORCE_UNDEAD)) {
 					n_A_Weapon_zokusei = elmWork;
 				}
