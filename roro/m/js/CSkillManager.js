@@ -38875,7 +38875,9 @@ function CSkillManager() {
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_LONG;
-			this.element = CSkillData.ELEMENT_VOID;
+			this.element = function(option) {
+				return option.GetOptionValue(0);
+			}
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				ratio = 2000 + 200 * skillLv;
@@ -38915,7 +38917,9 @@ function CSkillManager() {
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_LONG;
-			this.element = CSkillData.ELEMENT_VOID;
+			this.element = function(option) {
+				return option.GetOptionValue(0);
+			}
 			this.dispHitCount = function(skillLv) {
 				return 5;
 			}
@@ -38962,7 +38966,9 @@ function CSkillManager() {
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_LONG;
-			this.element = CSkillData.ELEMENT_VOID;
+			this.element = function(option) {
+				return option.GetOptionValue(0);
+			}
 			this.Power = function(skillLv, charaData, option) {			// スキル倍率
 				let ratio = 0;
 				if (UsedSkillSearch(SKILL_ID_SHIHO_FU_ZYOTAI) >= 5) {
@@ -39010,7 +39016,9 @@ function CSkillManager() {
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_LONG;
-			this.element = CSkillData.ELEMENT_VOID;
+			this.element = function(option) {
+				return option.GetOptionValue(0);
+			}
 			this.dispHitCount = function(skillLv) {
 				return 2;
 			}
@@ -39062,7 +39070,9 @@ function CSkillManager() {
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_LONG;
-			this.element = CSkillData.ELEMENT_VOID;
+			this.element = function(option) {
+				return option.GetOptionValue(0);
+			}
 			this.dispHitCount = function(skillLv) {
 				return 3;
 			}
@@ -39113,7 +39123,9 @@ function CSkillManager() {
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_LONG;
-			this.element = CSkillData.ELEMENT_VOID;
+			this.element = function(option) {
+				return option.GetOptionValue(0);
+			}
 			this.dispHitCount = function(skillLv) {
 				return 3;
 			}
@@ -39165,7 +39177,9 @@ function CSkillManager() {
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_LONG;
-			this.element = CSkillData.ELEMENT_VOID;
+			this.element = function(option) {
+				return option.GetOptionValue(0);
+			}
 			this.hitCount = function(skillLv) {
 				return 1 + Math.min(5, UsedSkillSearch(SKILL_ID_SHIHO_FU_ZYOTAI));
 			}
@@ -42224,6 +42238,43 @@ function CSkillManager() {
 			}
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return (10 + 5 * skillLv) * 1000;
+			}
+		};
+		this.dataArray[skillId] = skillData;
+		skillId++;
+
+		/** サイキックストリーム */
+		SKILL_ID_PSYCHIC_STREAM = skillId;
+		skillData = new function() {
+			this.prototype = new CSkillData();
+			CSkillData.call(this);
+			this.id = skillId;
+			this.name = "サイキックストリーム";
+			this.kana = "サイキックストリーム";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_MAGICAL;
+			this.range = CSkillData.RANGE_MAGIC;
+			this.element = CSkillData.ELEMENT_FORCE_VANITY;
+			// 「使用条件 : 「エナジーコート」状態 ではない」を厳密に処理するメリットがないと思うので無条件使用可
+			this.Power = function(skillLv, charaData) {       // スキル倍率
+				let ratio = 4500 + 4500 * skillLv;
+				ratio += 90 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 420;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 10;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 5500 + 800 * skillLv;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 5000;
 			}
 		};
 		this.dataArray[skillId] = skillData;

@@ -2606,6 +2606,7 @@
 		[1287,7,"グレネードフラグメント","NW_GRENADE_FRAGMENT"],
 		[1288,10,"ゴールデントーン","MH_GOLDENE_TONE"],
 		[1289,10,"テンパリング","MH_TEMPERING"],
+		[1290,5,"サイキックストリーム","EM_PSYCHIC_STREAM"],
 
 	/*
 	データ破損せず扱える SkillID の最大値は 11bit = 2048 です
