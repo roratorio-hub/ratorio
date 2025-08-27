@@ -2448,6 +2448,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			case SKILL_ID_SWIFT_TRAP:	// スイフトトラップ
 			case SKILL_ID_FLAME_TRAP:	// フレイムトラップ
 			case SKILL_ID_CRESSIVE_VOLT:	// クレッシブボルト
+			case SKILL_ID_WILD_WALK: // ワイルドウォーク
 			/* マイスター */
 			case SKILL_ID_AXE_STOMP:	// アックスストンプ
 			case SKILL_ID_RUSH_QUAKE:	// ラッシュクエイク
