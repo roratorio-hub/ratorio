@@ -40648,7 +40648,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "ドラゴニックブレス";
+			this.name = "(△)ドラゴニックブレス";
 			this.kana = "トラコニツクフレス";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -40670,8 +40670,10 @@ function CSkillManager() {
 					ratio = 2750 + 325 * skillLv;
 					ratio += 20 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				}
-				ratio += charaData[CHARA_DATA_INDEX_MAXHP] / 500;
-				ratio += charaData[CHARA_DATA_INDEX_MAXSP] / 20;
+				// 2025-08-26 アップデート後の実測値に対して計算値が僅かにオーバーする
+				// HPSP係数が間違っているか他の計算部分で誤差が生じている
+				ratio += charaData[CHARA_DATA_INDEX_MAXHP] / 320
+				ratio += charaData[CHARA_DATA_INDEX_MAXSP] / 12;
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
 			}
