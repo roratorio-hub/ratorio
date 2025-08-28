@@ -4127,6 +4127,23 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 					0
 				);
 				break;
+			/**
+			 * アックストルネード
+			 * マイティスマッシュ
+			 * パワフルスイング
+			 */
+			case SKILL_ID_AXE_TORNADE:
+			case SKILL_ID_MIGHTY_SMASH:
+			case SKILL_ID_POWERFUL_SWING:
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"アックスストンプ状態",
+					[
+						[0, "無し"],
+						[1, "有り"],
+					],
+					0
+				);
+				break;
 		}
 	}
 };

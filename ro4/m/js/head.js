@@ -1529,20 +1529,15 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				n_Delay[2] = 500;
 				n_Delay[7] = 4500 - 500 * n_A_ActiveSkillLV;
 				// 基本倍率
-				if (UsedSkillSearch(SKILL_ID_AXE_STOMP_STATUS) == 1) {
+				// TODO: アックスストンプ状態はスキル倍率だけに影響するので職固有自己支援から攻撃手段オプションに移行する
+				const state_axe_stomp = Math.max(UsedSkillSearch(SKILL_ID_AXE_STOMP_STATUS), attackMethodConfArray[0].GetOptionValue(0)); 
+				if (state_axe_stomp === 1) {
 					// アックスストンプ状態の場合
 					wbairitu = 230 + 230 * n_A_ActiveSkillLV;
 					wbairitu += n_A_VIT * 2;
 				} else {
 					wbairitu = 200 + 180 * n_A_ActiveSkillLV;
 					wbairitu += n_A_VIT;
-				}
-				// TODO 削除して良いかもしれない部分
-				if (_APPLY_UPDATE_LV200) {
-				}
-				else {
-					if(attackMethodConfArray[0].GetOptionValue(0)) wbairitu = wbairitu * 3 / 4;
-					if(BK_Weapon_zokusei == 4) wbairitu = wbairitu * 125 / 100;
 				}
 				// 最終倍率
 				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
@@ -2456,6 +2451,9 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			case SKILL_ID_TRIPLE_LASER:	// トリプルレーザー
 			case SKILL_ID_MIGHTY_SMASH:	// マイティスマッシュ
 			case SKILL_ID_KOGEKI_SOCHI_YUKOKA:	// 攻撃装置有効化
+			case SKILL_ID_RUSH_STRIKE: // ラッシュストライク
+			case SKILL_ID_POWERFUL_SWING: // パワフルスイング
+			case SKILL_ID_ENERGY_CANNONADE: // エナジーキャノネード
 			/* インペリアルガード */
 			case SKILL_ID_GRAND_JUDGEMENT:	// グランドジャッジメント
 			case SKILL_ID_SHIELD_SHOOTING:	// シールドシューティング
@@ -16903,6 +16901,7 @@ function _SUB_ApplyMonsterDefence(mobData, dmg){
 		case SKILL_ID_SHADOW_STAB:		// シャドウスタブ
 		case SKILL_ID_SPARK_BLASTER: 	// スパークブラスター
 		case SKILL_ID_DRAGONIC_BREATH:	// ドラゴニックブレス
+		case SKILL_ID_ENERGY_CANNONADE: // エナジーキャノネード
 			bPenetrate = true;
 	}
 

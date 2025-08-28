@@ -2608,6 +2608,9 @@
 		[1289,10,"テンパリング","MH_TEMPERING"],
 		[1290,5,"サイキックストリーム","EM_PSYCHIC_STREAM"],
 		[1291,5,"ワイルドウォーク","WH_WILD_WALK"],
+		[1292,5,"ラッシュストライク","MT_RUSH_STRIKE"],
+		[1293,5,"パワフルスイング","MT_POWERFUL_SWING"],
+		[1294,5,"エナジーキャノネード","MT_ENERGY_CANNONADE"],
 
 	/*
 	データ破損せず扱える SkillID の最大値は 11bit = 2048 です

@@ -40725,8 +40725,10 @@ function CSkillManager() {
 			}
 			this.Power = function(skillLv, charaData, option) {
 				let ratio = 0;
+				// TODO: アックスストンプ状態はスキル倍率だけに影響するので職固有自己支援から攻撃手段オプションに移行する
+				const state_axe_stomp = Math.max(UsedSkillSearch(SKILL_ID_AXE_STOMP_STATUS), option.GetOptionValue(0)); 
 				// 基本倍率
-				if (UsedSkillSearch(SKILL_ID_AXE_STOMP_STATUS) > 0) {
+				if (state_axe_stomp === 0) {
 					// アックスストンプ状態の場合
 					ratio = 4700 + 400 * skillLv;						// 基礎倍率
 					ratio += 29 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// 特性ステータス補正
@@ -42254,7 +42256,7 @@ function CSkillManager() {
 			this.name = "サイキックストリーム";
 			this.kana = "サイキックストリーム";
 			this.maxLv = 5;
-			this.type = CSkillData.TYPE_MAGICAL;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_VANITY;
 			// 「使用条件 : 「エナジーコート」状態 ではない」を厳密に処理するメリットがないと思うので無条件使用可
@@ -42291,7 +42293,7 @@ function CSkillManager() {
 			this.name = "ワイルドウォーク";
 			this.kana = "ワイルドウォーク";
 			this.maxLv = 5;
-			this.type = CSkillData.TYPE_PHYSICAL;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
 			this.element = function(option) {
 				// 属性付与を優先する
@@ -42340,8 +42342,179 @@ function CSkillManager() {
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
-	}
 
+		/** ラッシュストライク */
+		SKILL_ID_RUSH_STRIKE = skillId;
+		skillData = new function() {
+			this.prototype = new CSkillData();
+			CSkillData.call(this);
+			this.id = skillId;
+			this.name = "(×)ラッシュストライク";
+			this.kana = "ラッシュストライク";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
+			this.range = CSkillData.RANGE_SHORT;			
+			this.element = CSkillData.ELEMENT_VOID;
+			this.WeaponCondition = function(weapon) {
+				// 魔導ギア搭乗はスキル倍率以外に追加ATKへの補正があるので職固有自己支援で設定する
+				const disarm_gear = UsedSkillSearch(SKILL_ID_MADOGEAR) === 0;
+				const mutch_weapon = ITEM_KIND_AXE_2HAND === weapon;
+				return mutch_weapon && disarm_gear;
+			}
+			this.Power = function(skillLv, charaData) {       // スキル倍率
+				let ratio = 9800 + 2000 * skillLv;
+				ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数未検証
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 300;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 0;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 0;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 1000 * skillLv;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 0;
+			}
+			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
+				return 0;
+			}
+			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
+				return 0;
+			}
+		};
+		this.dataArray[skillId] = skillData;
+		skillId++;
+
+		/** パワフルスイング */
+		SKILL_ID_POWERFUL_SWING = skillId;
+		skillData = new function() {
+			this.prototype = new CSkillData();
+			CSkillData.call(this);
+			this.id = skillId;
+			this.name = "(×)パワフルスイング";
+			this.kana = "パワフルスイング";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_VOID;
+			this.WeaponCondition = function(weapon) {
+				// 魔導ギア搭乗はスキル倍率以外に追加ATKへの補正があるので職固有自己支援で設定する
+				const disarm_gear = UsedSkillSearch(SKILL_ID_MADOGEAR) === 0;
+				const mutch_weapon = ITEM_KIND_AXE_2HAND === weapon;
+				return mutch_weapon && disarm_gear;
+			}
+			this.Power = function(skillLv, charaData, option) {       // スキル倍率
+				let ratio = 0;
+				// TODO: アックスストンプ状態はスキル倍率だけに影響するので職固有自己支援から攻撃手段オプションに移行する
+				const state_axe_stomp = Math.max(UsedSkillSearch(SKILL_ID_AXE_STOMP_STATUS), option.GetOptionValue(0)); 
+				if (state_axe_stomp === 1) {
+					ratio += 11100 + 2700 * skillLv;
+					ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数未検証
+				} else {
+					ratio += 8800 + 2200 * skillLv;
+					ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数未検証
+				}
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 250;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 400 * skillLv;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 0;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 1000 * skillLv;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 0;
+			}
+			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
+				return 0;
+			}
+			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
+				return 0;
+			}
+		};
+		this.dataArray[skillId] = skillData;
+		skillId++;
+
+		/** エナジーキャノネード */
+		SKILL_ID_ENERGY_CANNONADE = skillId;
+		skillData = new function() {
+			this.prototype = new CSkillData();
+			CSkillData.call(this);
+			this.id = skillId;
+			this.name = "(×)エナジーキャノネード";
+			this.kana = "エナジーキャノネード";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
+			this.range = CSkillData.RANGE_LONG;			
+			this.element = CSkillData.ELEMENT_VOID;
+			// Def無視設定は head.js の _SUB_ApplyMonsterDefence にある
+			this.WeaponCondition = function(weapon) {
+				// 魔導ギア搭乗はスキル倍率以外に追加ATKへの補正があるので職固有自己支援で設定する
+				const armed_gear = UsedSkillSearch(SKILL_ID_MADOGEAR) === 1;
+				return armed_gear;
+			}
+			this.Power = function(skillLv, charaData) {       // スキル倍率
+				let ratio = 6150 + 1650 * skillLv;
+				ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数未検証
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 300;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 2000 + 400 * skillLv;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 500;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 1000 * skillLv;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 0;
+			}
+			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
+				return 0;
+			}
+			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
+				return 0;
+			}
+		};
+		this.dataArray[skillId] = skillData;
+		skillId++;
+
+
+	}
 	// 初期化
 	this.Init();
 
