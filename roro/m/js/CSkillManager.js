@@ -32909,7 +32909,7 @@ function CSkillManager() {
 				return this._CriActRate100(skillLv, charaData, specData, mobData);
 			}
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {
-				return this._CriDamageRate100(skillLv, charaData, specData, mobData) * 1.25;
+				return this._CriDamageRate100(skillLv, charaData, specData, mobData) * 0.5;
 			}
 		};
 		this.dataArray[skillId] = skillData;
