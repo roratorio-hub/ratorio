@@ -7497,6 +7497,8 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 		//----------------------------------------------------------------
 		// 計算式を CSkillManager.js へ移動させ head.js をスリム化する対応を進めています
 		//----------------------------------------------------------------
+		/** トルヴェール・トルバドゥール */
+		case SKILL_ID_RHYTHMICAL_WAVE: // リズミカルウェーブ
 		/** エレメンタルマスター */
 		case SKILL_ID_PSYCHIC_STREAM: // サイキックストリーム
 		/** ソウルアセティック */

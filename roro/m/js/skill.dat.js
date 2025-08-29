@@ -2614,6 +2614,7 @@
 		[1295,5,"ドラゴニックピアース","DK_DRAGONIC_PIERCE"],
 		[1296,5,"ワイルドショット","NW_WILD_SHOT"],
 		[1297,5,"ミッドナイトフォーリン","NW_MIDNIGHT_FALLEN"],
+		[1298,5,"リズミカルウェーブ","TR_RHYTHMICAL_WAVE"],
 
 	/*
 	データ破損せず扱える SkillID の最大値は 11bit = 2048 です

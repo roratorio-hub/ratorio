@@ -4157,6 +4157,20 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 					0
 				);
 				break;
+			/**
+			 * リズミカルウェーブ
+			 */
+			case SKILL_ID_RHYTHMICAL_WAVE:
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"ミスティックシンフォニー状態",
+					[
+						[0, "無し"],
+						[1, "有り"],
+					],
+					0
+				);
+				break;
+				
 		}
 	}
 };

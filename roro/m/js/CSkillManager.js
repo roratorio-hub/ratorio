@@ -93,7 +93,7 @@ function CSkillData() {
 	this.hitCount = function(skillLv, option, weapon) {
 		return 1;
 	}
-	/** 分割ヒット数 */
+	/** 分割ヒット数を取得する. オーバーライドされていない場合は 0 が返される. */
 	this.dispHitCount = function(skillLv, charaDataManger) {
 		return 0;
 	}
@@ -368,13 +368,17 @@ function CSkillManager() {
 	}
 
 	/**
-	 * スキルの分割ヒット数を取得する
+	 * スキルの分割ヒット数を取得する. オーバーライドされていない場合は0が返される.
 	 * @param {Number} skillId 
 	 * @param {*} skillLv 
 	 * @returns 
 	 */
 	this.GetDividedHitCount = function(skillId, skillLv) {
-		return this.dataArray[skillId].dispHitCount(skillLv);
+		if (typeof this.dataArray[skillId].dispHitCount === "function") {
+			return this.dataArray[skillId].dispHitCount(skillLv);
+		} else {
+			return this.dataArray[skillId].dispHitCount;
+		}
 	}
 
 	this.GetCostVary = function(skillId, skillLv, charaDataManger) {
@@ -42681,6 +42685,79 @@ function CSkillManager() {
 			}
 			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
 				return 500;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 1000 * skillLv;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 0;
+			}
+			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
+				//return this._CriActRate100(skillLv, charaData, specData, mobData);
+				return 0;
+			}
+			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
+				//return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
+				return 0;
+			}
+		};
+		this.dataArray[skillId] = skillData;
+		skillId++;
+
+		/** リズミカルウェーブ */
+		SKILL_ID_RHYTHMICAL_WAVE = skillId;
+		skillData = new function() {
+			this.prototype = new CSkillData();
+			CSkillData.call(this);
+			this.id = skillId;
+			this.name = "(×)リズミカルウェーブ";
+			this.kana = "リズミカルウェーブ";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
+			this.range = CSkillData.RANGE_MAGIC;
+			this.element = function(option) {
+				// 属性付与を優先する
+				let value = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_ARMS_ELEMENT", ELM_ID_VANITY);
+				if (value === ELM_ID_VANITY) {
+					// 付与されていなければ矢の属性を適用する
+					value = GetEquippedTotalSPArrow(ITEM_SP_ELEMENTAL);
+				}
+				return value;
+			}
+			this.WeaponCondition = function(weapon) {
+				const mutch_weapon = [ITEM_KIND_MUSICAL, ITEM_KIND_WHIP].includes(weapon);
+				return mutch_weapon;
+			}
+			// 分割2ヒット
+			this.dispHitCount = 2;
+			this.Power = function(skillLv, charaData, option) {       // スキル倍率
+				let ratio = 0;
+				// TODO: ミスティックシンフォニーはスキル倍率だけに影響するので職固有自己支援から攻撃方法オプションに移行する
+				const state_mystic_symphony = Math.max(UsedSkillSearch(SKILL_ID_MYSTIC_SYMPHONY), option.GetOptionValue(0));
+				const stage_manner_lv = Math.max(UsedSkillSearch(SKILL_ID_STAGE_MANNER), LearnedSkillSearch(SKILL_ID_STAGE_MANNER));
+				if (state_mystic_symphony === 1) {
+					ratio += 4000 + 1000 * skillLv;
+					ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_SPL) * stage_manner_lv;	// Spl係数未検証
+				} else {
+					ratio += 2250 + 750 * skillLv;
+					ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_SPL) * stage_manner_lv;	// Spl係数未検証
+				}
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 230;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 500 + 500 * skillLv;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 1500;
 			}
 			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
 				return 1000 * skillLv;
