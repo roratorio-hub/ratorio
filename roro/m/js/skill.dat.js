@@ -2618,6 +2618,7 @@
 		[1299,5,"天気身陽","SKE_SKY_SUN"],
 		[1300,5,"天気身月","SKE_SKY_MOON"],
 		[1301,5,"天星の行","SKE_STAR_LIGHT_KICK"],
+		[1302,5,"烈火気弾","IQ_BLAZING_FLAME_BLAST"],
 
 	/*
 	データ破損せず扱える SkillID の最大値は 11bit = 2048 です

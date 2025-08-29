@@ -4170,6 +4170,19 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 					0
 				);
 				break;
+			/**
+			 * 烈火気弾
+			 */
+			case SKILL_ID_BLAZING_FLAME_BLAST:
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"炎火滅魔神弾 状態",
+					[
+						[0, "無し"],
+						[1, "有り"],
+					],
+					0
+				);
+				break;
 				
 		}
 	}

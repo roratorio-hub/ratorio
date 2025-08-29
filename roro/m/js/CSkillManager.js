@@ -42943,6 +42943,67 @@ function CSkillManager() {
 		this.dataArray[skillId] = skillData;
 		skillId++;
 
+		/** 烈火気弾 */
+		SKILL_ID_BLAZING_FLAME_BLAST = skillId;
+		skillData = new function() {
+			this.prototype = new CSkillData();
+			CSkillData.call(this);
+			this.id = skillId;
+			this.name = "(×)烈火気弾";
+			this.kana = "烈火気弾";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
+			this.range = CSkillData.RANGE_LONG;			
+			this.element = CSkillData.ELEMENT_VOID;
+			this.WeaponCondition = function(weapon) {
+				// 爆裂波動状態はスキル倍率だけでなくCriにも影響するので職固有自己支援で設定する
+				const state_bakuretsu_hado = UsedSkillSearch(SKILL_ID_BAKURETSU_HADO) > 0;
+				return state_bakuretsu_hado;
+			}
+			// Def無視設定は _SUB_ApplyMonsterDefence にある
+			this.Power = function(skillLv, charaData, option) {       // スキル倍率
+				let ratio = 0;
+				const state_enka_metsuma_shindan = option.GetOptionValue(0);
+				if (state_enka_metsuma_shindan === 1) {
+					ratio += 3150 + 750 * skillLv;
+					ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数未検証
+				} else {
+					ratio += 2400 + 600 * skillLv;
+					ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数未検証
+				}
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 110;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 2000;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 500;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 1000 * skillLv;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 0;
+			}
+			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
+				return this._CriActRate100(skillLv, charaData, specData, mobData);
+			}
+			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
+				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
+			}
+		};
+		this.dataArray[skillId] = skillData;
+		skillId++;
+
 
 	}
 	// 初期化

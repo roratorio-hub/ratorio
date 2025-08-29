@@ -2476,6 +2476,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			case SKILL_ID_DAISANGEKI_MEKKAGEKI:	// 第三撃：滅火撃
 			case SKILL_ID_BAKKA_SHINDAN:	// 爆火神弾
 			case SKILL_ID_ENKA_METSUMA_SHINDAN:	// 炎火滅魔神弾
+			case SKILL_ID_BLAZING_FLAME_BLAST: // 烈火気弾
 			/* ナイトウォッチ */
 			case SKILL_ID_WILD_SHOT: // ワイルドショット
 			case SKILL_ID_MIDNIGHT_FALLEN: // ミッドナイトフォーリン
@@ -16915,6 +16916,7 @@ function _SUB_ApplyMonsterDefence(mobData, dmg){
 		case SKILL_ID_ENERGY_CANNONADE: // エナジーキャノネード
 		case SKILL_ID_MIDNIGHT_FALLEN: // ミッドナイトフォーリン
 		case SKILL_ID_SKY_SUN: // 天気身陽
+		case SKILL_ID_BLAZING_FLAME_BLAST: // 烈火気弾
 			bPenetrate = true;
 	}
 
