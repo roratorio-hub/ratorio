@@ -3,8 +3,9 @@
  * 画面下部の「ギルドスキル/ゴスペル/他」のバフウィンドウ構築関数群
 */ 
 
-/** その他の支援/設定 設定値の配列 */
-let n_A_PassSkill4 = Array(36).fill(0);
+const BUFF_CONF_GUILD_LIMIT = 36;
+/** ギルドスキル/ゴスペル/他 設定値の配列 */
+let n_A_PassSkill4 = [];
 /** ギルドスキル/ゴスペル/他 ウィンドウ可視状態 */
 let n_Skill4SW = false;
 

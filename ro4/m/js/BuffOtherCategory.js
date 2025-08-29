@@ -3,8 +3,10 @@
  * 画面下部の「その他の支援/設定」のバフウィンドウ構築関数群
 */ 
 
+const BUFF_CONF_OTHER_LIMIT = 28;
+
 /** その他の支援/設定 設定値の配列 */
-let n_A_PassSkill8 = Array(28).fill(0);
+let n_A_PassSkill8 = [];
 /** その他の支援/設定 ウィンドウ可視状態 */
 let n_Skill8SW = false;
 

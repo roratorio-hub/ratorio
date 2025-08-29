@@ -3,12 +3,13 @@
  * 画面下部の「演奏/踊り系スキル」のバフウィンドウ構築関数群
 */ 
 
+const BUFF_CONF_MUSICAL_LIMIT = 47;
 /** 演奏・踊り系スキル ウィンドウ可視状態 */
 let n_Skill3SW = false;
 /** 演奏・踊り系スキル スイッチ状態配列 */
 let SWs3sw = [0,0,0,0,0,0,0,0,0,0,0,0];
 /** 演奏・踊り系スキル 設定値 */
-let n_A_PassSkill3 = Array(47).fill(0);
+let n_A_PassSkill3 = [];
 
 /**
  * 演奏・踊り系スキル を構築する

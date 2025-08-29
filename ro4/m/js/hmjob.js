@@ -1612,6 +1612,7 @@ function migrateOtherJob(jobId) {
 		// 変更後の職業の二刀流可能性に合わせる
 		n_Nitou = IsDualArmsJob(jobData.getMigIdNum());
 		// TODO: 暫定対処　旧形式の保存処理呼び出し
+		// 「プレイヤー状態異常設定」のように旧形式に存在しなかった入力項目は維持できないということ
 		dataURL = SaveSystem(funcModifySaveData);
 		// URL入力を実行
 		CSaveController.loadFromURL(dataURL);
