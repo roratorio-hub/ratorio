@@ -359,7 +359,12 @@ function CSkillManager() {
 	 * @returns {Number}
 	 */
 	this.GetHitCount = function(skillId, skillLv, option, weapon) {
-		return this.dataArray[skillId].hitCount(skillLv, option, weapon);
+		if (typeof this.dataArray[skillId].hitCount === "function") {
+			return this.dataArray[skillId].hitCount(skillLv, option, weapon);
+		} else {
+			return this.dataArray[skillId].hitCount;
+		}
+
 	}
 
 	/**
@@ -42568,6 +42573,131 @@ function CSkillManager() {
 			}
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
+			}
+		};
+		this.dataArray[skillId] = skillData;
+		skillId++;
+
+		/** ワイルドショット */
+		SKILL_ID_WILD_SHOT = skillId;
+		skillData = new function() {
+			this.prototype = new CSkillData();
+			CSkillData.call(this);
+			this.id = skillId;
+			this.name = "(×)ワイルドショット";
+			this.kana = "ワイルドショット";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
+			this.range = CSkillData.RANGE_LONG;			
+			this.element = CSkillData.ELEMENT_VOID;
+			this.WeaponCondition = function(weapon) {
+				const mutch_weapon = [ITEM_KIND_HANDGUN, ITEM_KIND_RIFLE].includes(weapon);
+				return mutch_weapon;
+			}
+			this.hitCount = 2;
+			this.Power = function(skillLv, charaData, option) {       // スキル倍率
+				let ratio = 0;
+				// ヒドゥンカードはスキル倍率だけでなくP.Atkと遠距離ダメージに影響するので職固有自己支援で設定する
+				const state_hidden_card = Math.max(UsedSkillSearch(SKILL_ID_HIDDEN_CARD));
+				if (state_hidden_card > 0) {
+					ratio += 475 + 205 * skillLv;
+					ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_CON);	// Con係数未検証
+				} else {
+					ratio += 475 + 125 * skillLv;
+					ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_CON);	// Con係数未検証
+				}
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 220;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 500 + 500 * skillLv;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 500;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 1000 * skillLv;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 0;
+			}
+			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
+				return this._CriActRate100(skillLv, charaData, specData, mobData);
+			}
+			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
+				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
+			}
+		};
+		this.dataArray[skillId] = skillData;
+		skillId++;
+
+		/** ミッドナイトフォーリン */
+		SKILL_ID_MIDNIGHT_FALLEN = skillId;
+		skillData = new function() {
+			this.prototype = new CSkillData();
+			CSkillData.call(this);
+			this.id = skillId;
+			this.name = "(×)ミッドナイトフォーリン";
+			this.kana = "ミッドナイトフォーリン";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
+			this.range = CSkillData.RANGE_LONG;			
+			this.element = CSkillData.ELEMENT_VOID;
+			this.WeaponCondition = function(weapon) {
+				const mutch_weapon = [ITEM_KIND_SHOTGUN, ITEM_KIND_GATLINGGUN, ITEM_KIND_GRENADEGUN].includes(weapon);
+				return mutch_weapon;
+			}
+			this.hitCount = 3;
+			// Def無視設定は head.js の _SUB_ApplyMonsterDefence にある
+			this.Power = function(skillLv, charaData, option) {       // スキル倍率
+				let ratio = 0;
+				// ヒドゥンカードはスキル倍率だけでなくP.Atkと遠距離ダメージに影響するので職固有自己支援で設定する
+				const state_hidden_card = Math.max(UsedSkillSearch(SKILL_ID_HIDDEN_CARD));
+				if (state_hidden_card > 0) {
+					ratio += 925 + 235 * skillLv;
+					ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_CON);	// Con係数未検証
+				} else {
+					ratio += 925 + 125 * skillLv;
+					ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_CON);	// Con係数未検証
+				}
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 270;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 500 + 500 * skillLv;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 500;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 1000 * skillLv;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 0;
+			}
+			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
+				//return this._CriActRate100(skillLv, charaData, specData, mobData);
+				return 0;
+			}
+			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
+				//return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
+				return 0;
 			}
 		};
 		this.dataArray[skillId] = skillData;

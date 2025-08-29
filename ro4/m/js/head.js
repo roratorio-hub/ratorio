@@ -2476,6 +2476,9 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			case SKILL_ID_DAISANGEKI_MEKKAGEKI:	// 第三撃：滅火撃
 			case SKILL_ID_BAKKA_SHINDAN:	// 爆火神弾
 			case SKILL_ID_ENKA_METSUMA_SHINDAN:	// 炎火滅魔神弾
+			/* ナイトウォッチ */
+			case SKILL_ID_WILD_SHOT: // ワイルドショット
+			case SKILL_ID_MIDNIGHT_FALLEN: // ミッドナイトフォーリン
 				// スキル使用条件の判定
 				n_Buki_Muri = !g_skillManager.MatchWeaponCondition(n_A_ActiveSkill, n_A_WeaponType);
 				if (n_Buki_Muri) {
@@ -16903,6 +16906,7 @@ function _SUB_ApplyMonsterDefence(mobData, dmg){
 		case SKILL_ID_SPARK_BLASTER: 	// スパークブラスター
 		case SKILL_ID_DRAGONIC_BREATH:	// ドラゴニックブレス
 		case SKILL_ID_ENERGY_CANNONADE: // エナジーキャノネード
+		case SKILL_ID_MIDNIGHT_FALLEN: // ミッドナイトフォーリン
 			bPenetrate = true;
 	}
 

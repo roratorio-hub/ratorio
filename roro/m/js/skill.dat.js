@@ -2612,6 +2612,8 @@
 		[1293,5,"パワフルスイング","MT_POWERFUL_SWING"],
 		[1294,5,"エナジーキャノネード","MT_ENERGY_CANNONADE"],
 		[1295,5,"ドラゴニックピアース","DK_DRAGONIC_PIERCE"],
+		[1296,5,"ワイルドショット","NW_WILD_SHOT"],
+		[1297,5,"ミッドナイトフォーリン","NW_MIDNIGHT_FALLEN"],
 
 	/*
 	データ破損せず扱える SkillID の最大値は 11bit = 2048 です
