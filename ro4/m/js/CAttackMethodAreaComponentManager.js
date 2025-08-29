@@ -4155,7 +4155,36 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 					0
 				);
 				break;
-				
+			/**
+			 * チェイシングブレイク
+			 * チェイシングショット
+			 */
+			case SKILL_ID_CHASING_BREAK:
+			case SKILL_ID_CHASING_SHOT: 
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"ヒットアンドスライディング 状態",
+					[
+						[0, "無し"],
+						[1, "有り"],
+					],
+					0
+				);
+				break;
+			/**
+			 * アビスチェイサー
+			 */
+			case SKILL_ID_ABYSS_FLAME:
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"計算対象",
+					[
+						[0, "対象周辺"],
+						[1, "自身周辺"],
+						[2, "両方"],
+					],
+					0
+				);
+				break;
+
 		}
 	}
 };

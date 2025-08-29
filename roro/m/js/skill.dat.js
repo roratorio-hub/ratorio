@@ -2621,8 +2621,10 @@
 		[1302,5,"烈火気弾","IQ_BLAZING_FLAME_BLAST"],
 		[1303,7,"タイガーバトリング","SH_CHUL_HO_BATTERING"],
 		[1304,7,"ディアースピリットパワー","SH_HYUN_ROK_SPIRIT_POWER"],
-		
-
+		[1305,5,"ヒットアンドスライディング","ABC_HIT_AND_SLIDING"],
+		[1306,5,"チェイシングブレイク","ABC_CHASING_BREAK"],
+		[1307,5,"チェイシングショット","ABC_CHASING_SHOT"],
+		[1308,5,"アビスフレイム","ABC_ABYSS_FLAME"],
 
 	/*
 	データ破損せず扱える SkillID の最大値は 11bit = 2048 です

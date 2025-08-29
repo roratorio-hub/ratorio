@@ -2465,6 +2465,9 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			case SKILL_ID_DEFT_STAB:	// デフトスタブ
 			case SKILL_ID_FLANGE_SHOT:	// フレンジショット
 			case SKILL_ID_CHAIN_REACTION_SHOT:	// チェーンリアクションショット
+			case SKILL_ID_HIT_AND_SLIDING: // 
+			case SKILL_ID_CHASING_BREAK: // 
+			case SKILL_ID_CHASING_SHOT: // 
 			/* インクイジター */
 			case SKILL_ID_SEYU_SENRE:	// 聖油洗礼
 			case SKILL_ID_DAIICHIGEKI_RAKUIN:	// 第一撃：烙印
@@ -7518,6 +7521,8 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 		case SKILL_ID_REIDO_FU:		// 霊道符
 		/** スピリットハンドラー */
 		case SKILL_ID_HYUN_ROK_SPIRIT_POWER: // ディアースピリットパワー
+		/** アビスチェイサー */
+		case SKILL_ID_ABYSS_FLAME: // アビスフレイム
 			// スキル使用条件の判定
 			n_Buki_Muri = !g_skillManager.MatchWeaponCondition(n_A_ActiveSkill, n_A_WeaponType);
 			if (n_Buki_Muri) {
