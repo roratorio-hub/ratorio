@@ -3,7 +3,7 @@
 MOB_CONF_DEBUF_LIMIT = 80;
 
 // 初期化作業
-n_B_IJYOU = new Array();
+let n_B_IJYOU = [];
 
 MobConfDebufOBJ = new Array();
 
