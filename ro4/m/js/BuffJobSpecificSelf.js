@@ -5,7 +5,7 @@
 
 const BUFF_CONF_SELF_LIMIT = 51;
 /** 職固有自己支援 設定値の配列 */
-let n_A_PassSkill = [];
+let n_A_PassSkill = Array(BUFF_CONF_SELF_LIMIT).fill(0);
 /** 職固有自己支援 ウィンドウ可視状態 */
 let n_Skill1SW = false;
 
