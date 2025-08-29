@@ -5,7 +5,7 @@
 MOB_CONF_BUF_LIMIT = 80;
 
 // 初期化作業
-let n_B_KYOUKA = [];
+var n_B_KYOUKA = [];
 
 MobConfBufOBJ = new Array();
 
