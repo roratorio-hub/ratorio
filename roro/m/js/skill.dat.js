@@ -2615,6 +2615,9 @@
 		[1296,5,"ワイルドショット","NW_WILD_SHOT"],
 		[1297,5,"ミッドナイトフォーリン","NW_MIDNIGHT_FALLEN"],
 		[1298,5,"リズミカルウェーブ","TR_RHYTHMICAL_WAVE"],
+		[1299,5,"天気身陽","SKE_SKY_SUN"],
+		[1300,5,"天気身月","SKE_SKY_MOON"],
+		[1301,5,"天星の行","SKE_STAR_LIGHT_KICK"],
 
 	/*
 	データ破損せず扱える SkillID の最大値は 11bit = 2048 です

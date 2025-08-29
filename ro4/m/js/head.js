@@ -2479,6 +2479,10 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			/* ナイトウォッチ */
 			case SKILL_ID_WILD_SHOT: // ワイルドショット
 			case SKILL_ID_MIDNIGHT_FALLEN: // ミッドナイトフォーリン
+			/* 天帝 */
+			case SKILL_ID_SKY_SUN: // 天気身陽
+			case SKILL_ID_SKY_MOON: // 天気身月
+			case SKILL_ID_STAR_LIGHT_KICK: // 天星の行
 				// スキル使用条件の判定
 				n_Buki_Muri = !g_skillManager.MatchWeaponCondition(n_A_ActiveSkill, n_A_WeaponType);
 				if (n_Buki_Muri) {
@@ -16892,6 +16896,7 @@ g_appliedAppendDamage = (appendDamageRate > 0);
 
 /**
  * モンスターの防御力を適用する
+ * TODO: 本関数内部の DEF 無視スキルのチェックは CSkillManager.js に移動したほうが便利だと思う
  * @param {*} mobData 
  * @param {*} dmg ダメージ
  * @returns 適用後のダメージ
@@ -16909,6 +16914,7 @@ function _SUB_ApplyMonsterDefence(mobData, dmg){
 		case SKILL_ID_DRAGONIC_BREATH:	// ドラゴニックブレス
 		case SKILL_ID_ENERGY_CANNONADE: // エナジーキャノネード
 		case SKILL_ID_MIDNIGHT_FALLEN: // ミッドナイトフォーリン
+		case SKILL_ID_SKY_SUN: // 天気身陽
 			bPenetrate = true;
 	}
 
