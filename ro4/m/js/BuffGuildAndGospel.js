@@ -5,7 +5,7 @@
 
 const BUFF_CONF_GUILD_LIMIT = 36;
 /** ギルドスキル/ゴスペル/他 設定値の配列 */
-let n_A_PassSkill4 = [];
+let n_A_PassSkill4 = Array(BUFF_CONF_GUILD_LIMIT).fill(0);
 /** ギルドスキル/ゴスペル/他 ウィンドウ可視状態 */
 let n_Skill4SW = false;
 
