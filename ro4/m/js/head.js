@@ -2424,6 +2424,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			case SKILL_ID_MADNESS_CRUSHER:	// マッドネスクラッシャー
 			case SKILL_ID_SERVANT_WEAPON_DEMOLISION:	// サーヴァントウェポン：デモリッション
 			case SKILL_ID_DRAGONIC_AURA:	// ドラゴニックオーラ
+			case SKILL_ID_DRAGONIC_PIERCE:	// ドラゴニックピアース
 			/* シャドウクロス */			
 			case SKILL_ID_DANCING_KNIFE:	// ダンシングナイフ
 			case SKILL_ID_SAVAGE_IMPACT:	// サベージインパクト

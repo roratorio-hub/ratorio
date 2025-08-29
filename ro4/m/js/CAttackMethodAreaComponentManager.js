@@ -4144,6 +4144,19 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 					0
 				);
 				break;
+			/**
+			 * ドラゴニックピアース
+			 */
+			case SKILL_ID_DRAGONIC_PIERCE:
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"ドラゴニックオーラ状態",
+					[
+						[0, "無し"],
+						[1, "有り"],
+					],
+					0
+				);
+				break;
 		}
 	}
 };
