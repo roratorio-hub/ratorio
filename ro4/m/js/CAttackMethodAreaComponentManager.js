@@ -3760,42 +3760,14 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 				);
 				break;
 
-			//----------------------------------------------------------------
-			// スピリットハンドラー：ディアーキャノン
-			//----------------------------------------------------------------
+			/**
+			 * ディアーキャノン
+			 * ディアーブリーズ
+			 * ディアースピリットパワー
+			 */
 			case SKILL_ID_DEER_CANON:
-
-				// オプションリストを生成、追加
-				// スピリットハンドラーではない場合、レインボーホーンを選択させない
-				if (!IsSameJobClass(MIG_JOB_ID_SPIRIT_HANDLER)) {
-					break;
-				}
-				// オプションリストを生成、追加
-				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-					"レインボーホーン",
-					[
-						[ELM_ID_VANITY,	"なし"],		// 属性は common.js で EnumElmId として定義されている
-						[ELM_ID_WATER,	"Lv1:水属性"],  // ELM_ID_VANITY = 0 から
-						[ELM_ID_WIND,	"Lv2:風属性"],
-						[ELM_ID_EARTH,	"Lv3:地属性"],
-						[ELM_ID_FIRE,	"Lv4:火属性"],
-						[ELM_ID_DARK,	"Lv5:闇属性"],
-						[ELM_ID_HOLY,	"Lv6:聖属性"],
-					],
-					0
-				);
-				break;
-
-			//----------------------------------------------------------------
-			// スピリットハンドラー：ディアーブリーズ
-			//----------------------------------------------------------------
 			case SKILL_ID_DEER_BREEZE:
-
-				// オプションリストを生成、追加
-				// スピリットハンドラーではない場合、レインボーホーンを選択させない
-				if (!IsSameJobClass(MIG_JOB_ID_SPIRIT_HANDLER)) {
-					break;
-				}
+			case SKILL_ID_HYUN_ROK_SPIRIT_POWER:
 				// オプションリストを生成、追加
 				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
 					"レインボーホーン",
@@ -3808,7 +3780,7 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 						[ELM_ID_DARK,	"Lv5:闇属性"],
 						[ELM_ID_HOLY,	"Lv6:聖属性"],
 					],
-					0
+					ELM_ID_VANITY
 				);
 				break;
 
@@ -3829,7 +3801,7 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 						[ELM_ID_DARK,	"Lv5:闇属性"],
 						[ELM_ID_HOLY,	"Lv6:聖属性"],
 					],
-					0
+					ELM_ID_VANITY
 				);
 				break;
 
@@ -3848,7 +3820,7 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 						[ELM_ID_DARK,	"Lv5:闇属性"],
 						[ELM_ID_HOLY,	"Lv6:聖属性"],
 					],
-					0
+					ELM_ID_VANITY
 				);
 				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
 					"ダメージ表示",
@@ -4101,6 +4073,7 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 			// アークビショップ：アドラムス
 			//----------------------------------------------------------------
 			case SKILL_ID_ADORAMUS:
+			case SKILL_ID_DIVINUS_FLOS:
 				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
 					"アンシラ状態",
 					[
@@ -4127,6 +4100,133 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 					0
 				);
 				break;
+			/**
+			 * アックストルネード
+			 * マイティスマッシュ
+			 * パワフルスイング
+			 */
+			case SKILL_ID_AXE_TORNADE:
+			case SKILL_ID_MIGHTY_SMASH:
+			case SKILL_ID_POWERFUL_SWING:
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"アックスストンプ状態",
+					[
+						[0, "無し"],
+						[1, "有り"],
+					],
+					0
+				);
+				break;
+			/**
+			 * ドラゴニックピアース
+			 */
+			case SKILL_ID_DRAGONIC_PIERCE:
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"ドラゴニックオーラ状態",
+					[
+						[0, "無し"],
+						[1, "有り"],
+					],
+					0
+				);
+				break;
+			/**
+			 * リズミカルウェーブ
+			 */
+			case SKILL_ID_RHYTHMICAL_WAVE:
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"ミスティックシンフォニー状態",
+					[
+						[0, "無し"],
+						[1, "有り"],
+					],
+					0
+				);
+				break;
+			/**
+			 * 烈火気弾
+			 */
+			case SKILL_ID_BLAZING_FLAME_BLAST:
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"炎火滅魔神弾 状態",
+					[
+						[0, "無し"],
+						[1, "有り"],
+					],
+					0
+				);
+				break;
+			/**
+			 * チェイシングブレイク
+			 * チェイシングショット
+			 */
+			case SKILL_ID_CHASING_BREAK:
+			case SKILL_ID_CHASING_SHOT: 
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"ヒットアンドスライディング 状態",
+					[
+						[0, "無し"],
+						[1, "有り"],
+					],
+					0
+				);
+				break;
+			/**
+			 * アビスフレイム
+			 */
+			case SKILL_ID_ABYSS_FLAME:
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"計算対象",
+					[
+						[0, "対象周辺"],
+						[1, "自身周辺"],
+						[2, "両方"],
+					],
+					0
+				);
+				break;
+			/**
+			 * レイディアントスピア
+			 * インペリアルクロス
+			 */
+			case SKILL_ID_RADIANT_SPEAR:
+			case SKILL_ID_IMPERIAL_CROSS:
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"グランドジャッジメント状態",
+					[
+						[0, "無し"],
+						[1, "有り"],
+					],
+					0
+				);
+				break;
+			/**
+			 * クロススラッシュ
+			 */
+			case SKILL_ID_CROSS_SLASH:
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"シャドウエクシード状態",
+					[
+						[0, "無し"],
+						[1, "有り"],
+					],
+					0
+				);
+				break;
+			/**
+			 * ダストエクスプロージョン
+			 */
+			case SKILL_ID_DUST_EXPLOSION:
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"リサーチレポート状態",
+					[
+						[0, "無し"],
+						[1, "有り"],
+					],
+					0
+				);
+				break;
+
 		}
 	}
 };

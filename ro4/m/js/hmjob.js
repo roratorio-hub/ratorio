@@ -594,6 +594,10 @@ function GetPAtk() {
 	if ((sklLv = UsedSkillSearch(SKILL_ID_TEMPERING)) > 0) {
 		value += 5 + sklLv;
 	}
+	/** ハイパーノービス固有支援「オーバーカミングクライシス」によるP.Atk + 効果 */
+	if ((sklLv = UsedSkillSearch(SKILL_ID_OVERCOMING_CRISIS)) > 0) {
+		value += 5 + 5 * sklLv;
+	}
 
 	return value;
 }
@@ -716,7 +720,10 @@ function GetSMatk() {
 	if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU), UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU))) > 0) {
 		value += [0, 1, 2, 3, 4, 5, 6, 7, 9, 12, 15][sklLv];
 	}
-	
+	/** ハイパーノービス固有支援「オーバーカミングクライシス」によるS.Matk + 効果 */
+	if ((sklLv = UsedSkillSearch(SKILL_ID_OVERCOMING_CRISIS)) > 0) {
+		value += 5 + 5 * sklLv;
+	}
 
 	return value;
 }
