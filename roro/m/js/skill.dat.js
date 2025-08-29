@@ -2632,6 +2632,9 @@
 		[1313,5,"ディヴィヌスフロス","CD_DIVINUS_FLOS"],
 		[1314,5,"ミステリーパウダー","BO_MYSTERY_POWDER"],
 		[1315,5,"ダストエクスプロージョン","BO_DUST_EXPLOSION"],
+		[1316,1,"四色符","SS_FOUR_CHARM"],
+		[1317,5,"オーバーカミングクライシス","HN_OVERCOMING_CRISIS"],
+		[1318,5,"エナジーコンバージョン","AG_ENERGY_CONVERSION"],
 
 
 	/*
