@@ -4171,7 +4171,7 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 				);
 				break;
 			/**
-			 * アビスチェイサー
+			 * アビスフレイム
 			 */
 			case SKILL_ID_ABYSS_FLAME:
 				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
@@ -4180,6 +4180,21 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 						[0, "対象周辺"],
 						[1, "自身周辺"],
 						[2, "両方"],
+					],
+					0
+				);
+				break;
+			/**
+			 * レイディアントスピア
+			 * インペリアルクロス
+			 */
+			case SKILL_ID_RADIANT_SPEAR:
+			case SKILL_ID_IMPERIAL_CROSS:
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"グランドジャッジメント状態",
+					[
+						[0, "無し"],
+						[1, "有り"],
 					],
 					0
 				);

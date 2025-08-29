@@ -2625,6 +2625,10 @@
 		[1306,5,"チェイシングブレイク","ABC_CHASING_BREAK"],
 		[1307,5,"チェイシングショット","ABC_CHASING_SHOT"],
 		[1308,5,"アビスフレイム","ABC_ABYSS_FLAME"],
+		[1309,10,"レイディアントスピア","IG_RADIANT_SPEAR"],
+		[1310,5,"インペリアルクロス","IG_IMPERIAL_CROSS"],
+		[1311,5,"インペリアルプレッシャー","IG_IMPERIAL_PRESSURE"],
+
 
 	/*
 	データ破損せず扱える SkillID の最大値は 11bit = 2048 です

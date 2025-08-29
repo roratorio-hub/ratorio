@@ -2459,6 +2459,8 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			case SKILL_ID_GRAND_JUDGEMENT:	// グランドジャッジメント
 			case SKILL_ID_SHIELD_SHOOTING:	// シールドシューティング
 			case SKILL_ID_OVER_SLASH:	// オーバースラッシュ
+			case SKILL_ID_RADIANT_SPEAR: // レイディアントスピア
+			case SKILL_ID_IMPERIAL_CROSS: // 
 			/* アビスチェイサー */
 			case SKILL_ID_ABYSS_DAGGER:	// アビスダガー
 			case SKILL_ID_UNLUCKY_RUSH:	// アンラッキーラッシュ
@@ -7523,6 +7525,8 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 		case SKILL_ID_HYUN_ROK_SPIRIT_POWER: // ディアースピリットパワー
 		/** アビスチェイサー */
 		case SKILL_ID_ABYSS_FLAME: // アビスフレイム
+		/** インペリアルガード */
+		case SKILL_ID_IMPERIAL_PRESSURE: // インペリアルプレッシャー
 			// スキル使用条件の判定
 			n_Buki_Muri = !g_skillManager.MatchWeaponCondition(n_A_ActiveSkill, n_A_WeaponType);
 			if (n_Buki_Muri) {
