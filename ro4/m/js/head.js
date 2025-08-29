@@ -2484,6 +2484,8 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			case SKILL_ID_SKY_SUN: // 天気身陽
 			case SKILL_ID_SKY_MOON: // 天気身月
 			case SKILL_ID_STAR_LIGHT_KICK: // 天星の行
+			/* スピリットハンドラー */
+			case SKILL_ID_CHUL_HO_BATTERING: // タイガーバトリング
 				// スキル使用条件の判定
 				n_Buki_Muri = !g_skillManager.MatchWeaponCondition(n_A_ActiveSkill, n_A_WeaponType);
 				if (n_Buki_Muri) {
@@ -7514,6 +7516,8 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 		case SKILL_ID_SHIRYO_ZYOKA:	// 死霊浄化
 		case SKILL_ID_SHIHOZIN_FU:	// 四方神符
 		case SKILL_ID_REIDO_FU:		// 霊道符
+		/** スピリットハンドラー */
+		case SKILL_ID_HYUN_ROK_SPIRIT_POWER: // ディアースピリットパワー
 			// スキル使用条件の判定
 			n_Buki_Muri = !g_skillManager.MatchWeaponCondition(n_A_ActiveSkill, n_A_WeaponType);
 			if (n_Buki_Muri) {
@@ -16917,6 +16921,7 @@ function _SUB_ApplyMonsterDefence(mobData, dmg){
 		case SKILL_ID_MIDNIGHT_FALLEN: // ミッドナイトフォーリン
 		case SKILL_ID_SKY_SUN: // 天気身陽
 		case SKILL_ID_BLAZING_FLAME_BLAST: // 烈火気弾
+		case SKILL_ID_CHUL_HO_BATTERING: // タイガーバトリング
 			bPenetrate = true;
 	}
 
