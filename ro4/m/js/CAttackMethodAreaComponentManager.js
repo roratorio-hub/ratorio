@@ -4073,6 +4073,7 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 			// アークビショップ：アドラムス
 			//----------------------------------------------------------------
 			case SKILL_ID_ADORAMUS:
+			case SKILL_ID_DIVINUS_FLOS:
 				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
 					"アンシラ状態",
 					[

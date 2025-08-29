@@ -2629,6 +2629,9 @@
 		[1310,5,"インペリアルクロス","IG_IMPERIAL_CROSS"],
 		[1311,5,"インペリアルプレッシャー","IG_IMPERIAL_PRESSURE"],
 		[1312,5,"クロススラッシュ","SHC_CROSS_SLASH"],
+		[1313,5,"ディヴィヌスフロス","CD_DIVINUS_FLOS"],
+
+		
 
 
 	/*

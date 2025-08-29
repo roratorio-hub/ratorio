@@ -43594,6 +43594,66 @@ function CSkillManager() {
 		this.dataArray[skillId] = skillData;
 		skillId++;
 
+		/** ディヴィヌスフロス */
+		SKILL_ID_DIVINUS_FLOS = skillId;
+		skillData = new function() {
+			this.prototype = new CSkillData();
+			CSkillData.call(this);
+			this.id = skillId;
+			this.name = "(×)ディヴィヌスフロス";
+			this.kana = "ディヴィヌスフロス";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
+			this.range = CSkillData.RANGE_MAGIC;
+			this.element = function(option) {
+				const state_ancilla = option.GetOptionValue(0) === 1;
+				if (state_ancilla) {
+					return CSkillData.ELEMENT_FORCE_VANITY;
+				} else {
+					return CSkillData.ELEMENT_FORCE_HOLY;
+				}
+			}
+			this.Power = function(skillLv, charaData, option) {       // スキル倍率
+				let ratio = 0;
+				const fidos_animus_lv = Math.max(UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS), LearnedSkillSearch(SKILL_ID_FIDOS_ANIMUS));
+				ratio += 1000 + 1000 * skillLv;
+				ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// Spl係数未検証
+				ratio += 1 * fidos_animus_lv;	// 修練係数未検証
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 440;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 5500 + 800 * skillLv;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 500;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 5000;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 0;
+			}
+			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
+				return 0;
+				// return this._CriActRate100(skillLv, charaData, specData, mobData);
+			}
+			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
+				return 0;
+				// return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
+			}
+		};
+		this.dataArray[skillId] = skillData;
+		skillId++;
+
 	}
 	// 初期化
 	this.Init();
