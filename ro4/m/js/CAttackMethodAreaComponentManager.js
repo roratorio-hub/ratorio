@@ -4199,6 +4199,19 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 					0
 				);
 				break;
+			/**
+			 * クロススラッシュ
+			 */
+			case SKILL_ID_CROSS_SLASH:
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"シャドウエクシード状態",
+					[
+						[0, "無し"],
+						[1, "有り"],
+					],
+					0
+				);
+				break;
 
 		}
 	}

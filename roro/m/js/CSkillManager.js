@@ -43538,6 +43538,62 @@ function CSkillManager() {
 		this.dataArray[skillId] = skillData;
 		skillId++;
 
+		/** クロススラッシュ */
+		SKILL_ID_CROSS_SLASH = skillId;
+		skillData = new function() {
+			this.prototype = new CSkillData();
+			CSkillData.call(this);
+			this.id = skillId;
+			this.name = "(×)クロススラッシュ";
+			this.kana = "クロススラッシュ";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_VOID;
+			this.Power = function(skillLv, charaData, option) {       // スキル倍率
+				let ratio = 0;
+				// TODO: シャドウエクシード状態はスキル倍率のみに影響するため職固有自己支援から攻撃オプションへ移行する
+				const state_shadow_exceed = Math.max(UsedSkillSearch(SKILL_ID_SHADOW_EXCEED), option.GetOptionValue(0)) > 0;
+				if (state_shadow_exceed) {
+					ratio += 100 + 100 * skillLv;
+					ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数未検証
+				} else {
+					ratio += 50 + 50 * skillLv;
+					ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数未検証
+				}
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 210;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 0 * skillLv;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 0;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 1000 * skillLv;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 10 * 1000;
+			}
+			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
+				return this._CriActRate100(skillLv, charaData, specData, mobData);
+			}
+			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
+				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
+			}
+		};
+		this.dataArray[skillId] = skillData;
+		skillId++;
+
 	}
 	// 初期化
 	this.Init();

@@ -2432,6 +2432,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			case SKILL_ID_IMPACT_CRATER:	// インパクトクレーター
 			case SKILL_ID_SHADOW_STAB:	// シャドウスタブ
 			case SKILL_ID_FATAL_SHADOW_CRAW:	// フェイタルシャドウクロー
+			case SKILL_ID_CROSS_SLASH: // クロススラッシュ
 			/*カーディナル */
 			case SKILL_ID_EFIRIGO:	// エフィリゴ
 			case SKILL_ID_PETITIO: 	// ペティティオ

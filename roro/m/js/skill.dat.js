@@ -2628,6 +2628,7 @@
 		[1309,10,"レイディアントスピア","IG_RADIANT_SPEAR"],
 		[1310,5,"インペリアルクロス","IG_IMPERIAL_CROSS"],
 		[1311,5,"インペリアルプレッシャー","IG_IMPERIAL_PRESSURE"],
+		[1312,5,"クロススラッシュ","SHC_CROSS_SLASH"],
 
 
 	/*
