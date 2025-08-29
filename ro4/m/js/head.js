@@ -2492,6 +2492,9 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			case SKILL_ID_STAR_LIGHT_KICK: // 天星の行
 			/* スピリットハンドラー */
 			case SKILL_ID_CHUL_HO_BATTERING: // タイガーバトリング
+			/** バイオロ */
+			case SKILL_ID_MYSTERY_POWDER: // 
+			case SKILL_ID_DUST_EXPLOSION: // 
 				// スキル使用条件の判定
 				n_Buki_Muri = !g_skillManager.MatchWeaponCondition(n_A_ActiveSkill, n_A_WeaponType);
 				if (n_Buki_Muri) {

@@ -2630,8 +2630,8 @@
 		[1311,5,"インペリアルプレッシャー","IG_IMPERIAL_PRESSURE"],
 		[1312,5,"クロススラッシュ","SHC_CROSS_SLASH"],
 		[1313,5,"ディヴィヌスフロス","CD_DIVINUS_FLOS"],
-
-		
+		[1314,5,"ミステリーパウダー","BO_MYSTERY_POWDER"],
+		[1315,5,"ダストエクスプロージョン","BO_DUST_EXPLOSION"],
 
 
 	/*

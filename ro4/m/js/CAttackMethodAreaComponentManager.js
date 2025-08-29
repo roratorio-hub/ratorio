@@ -4213,6 +4213,19 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 					0
 				);
 				break;
+			/**
+			 * ダストエクスプロージョン
+			 */
+			case SKILL_ID_DUST_EXPLOSION:
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"リサーチレポート状態",
+					[
+						[0, "無し"],
+						[1, "有り"],
+					],
+					0
+				);
+				break;
 
 		}
 	}
