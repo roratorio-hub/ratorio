@@ -5,7 +5,7 @@
 MOB_CONF_PLAYER_LIMIT = 54;
 
 // 初期化作業
-let n_B_TAISEI = [];
+var n_B_TAISEI = [];
 
 MobConfPlayerOBJ = new Array();
 
