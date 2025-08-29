@@ -1529,20 +1529,15 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				n_Delay[2] = 500;
 				n_Delay[7] = 4500 - 500 * n_A_ActiveSkillLV;
 				// 基本倍率
-				if (UsedSkillSearch(SKILL_ID_AXE_STOMP_STATUS) == 1) {
+				// TODO: アックスストンプ状態はスキル倍率だけに影響するので職固有自己支援から攻撃手段オプションに移行する
+				const state_axe_stomp = Math.max(UsedSkillSearch(SKILL_ID_AXE_STOMP_STATUS), attackMethodConfArray[0].GetOptionValue(0)); 
+				if (state_axe_stomp === 1) {
 					// アックスストンプ状態の場合
 					wbairitu = 230 + 230 * n_A_ActiveSkillLV;
 					wbairitu += n_A_VIT * 2;
 				} else {
 					wbairitu = 200 + 180 * n_A_ActiveSkillLV;
 					wbairitu += n_A_VIT;
-				}
-				// TODO 削除して良いかもしれない部分
-				if (_APPLY_UPDATE_LV200) {
-				}
-				else {
-					if(attackMethodConfArray[0].GetOptionValue(0)) wbairitu = wbairitu * 3 / 4;
-					if(BK_Weapon_zokusei == 4) wbairitu = wbairitu * 125 / 100;
 				}
 				// 最終倍率
 				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
@@ -2429,6 +2424,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			case SKILL_ID_MADNESS_CRUSHER:	// マッドネスクラッシャー
 			case SKILL_ID_SERVANT_WEAPON_DEMOLISION:	// サーヴァントウェポン：デモリッション
 			case SKILL_ID_DRAGONIC_AURA:	// ドラゴニックオーラ
+			case SKILL_ID_DRAGONIC_PIERCE:	// ドラゴニックピアース
 			/* シャドウクロス */			
 			case SKILL_ID_DANCING_KNIFE:	// ダンシングナイフ
 			case SKILL_ID_SAVAGE_IMPACT:	// サベージインパクト
@@ -2436,6 +2432,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			case SKILL_ID_IMPACT_CRATER:	// インパクトクレーター
 			case SKILL_ID_SHADOW_STAB:	// シャドウスタブ
 			case SKILL_ID_FATAL_SHADOW_CRAW:	// フェイタルシャドウクロー
+			case SKILL_ID_CROSS_SLASH: // クロススラッシュ
 			/*カーディナル */
 			case SKILL_ID_EFIRIGO:	// エフィリゴ
 			case SKILL_ID_PETITIO: 	// ペティティオ
@@ -2456,16 +2453,24 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			case SKILL_ID_TRIPLE_LASER:	// トリプルレーザー
 			case SKILL_ID_MIGHTY_SMASH:	// マイティスマッシュ
 			case SKILL_ID_KOGEKI_SOCHI_YUKOKA:	// 攻撃装置有効化
+			case SKILL_ID_RUSH_STRIKE: // ラッシュストライク
+			case SKILL_ID_POWERFUL_SWING: // パワフルスイング
+			case SKILL_ID_ENERGY_CANNONADE: // エナジーキャノネード
 			/* インペリアルガード */
 			case SKILL_ID_GRAND_JUDGEMENT:	// グランドジャッジメント
 			case SKILL_ID_SHIELD_SHOOTING:	// シールドシューティング
 			case SKILL_ID_OVER_SLASH:	// オーバースラッシュ
+			case SKILL_ID_RADIANT_SPEAR: // レイディアントスピア
+			case SKILL_ID_IMPERIAL_CROSS: // 
 			/* アビスチェイサー */
 			case SKILL_ID_ABYSS_DAGGER:	// アビスダガー
 			case SKILL_ID_UNLUCKY_RUSH:	// アンラッキーラッシュ
 			case SKILL_ID_DEFT_STAB:	// デフトスタブ
 			case SKILL_ID_FLANGE_SHOT:	// フレンジショット
 			case SKILL_ID_CHAIN_REACTION_SHOT:	// チェーンリアクションショット
+			case SKILL_ID_HIT_AND_SLIDING: // 
+			case SKILL_ID_CHASING_BREAK: // 
+			case SKILL_ID_CHASING_SHOT: // 
 			/* インクイジター */
 			case SKILL_ID_SEYU_SENRE:	// 聖油洗礼
 			case SKILL_ID_DAIICHIGEKI_RAKUIN:	// 第一撃：烙印
@@ -2477,6 +2482,19 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			case SKILL_ID_DAISANGEKI_MEKKAGEKI:	// 第三撃：滅火撃
 			case SKILL_ID_BAKKA_SHINDAN:	// 爆火神弾
 			case SKILL_ID_ENKA_METSUMA_SHINDAN:	// 炎火滅魔神弾
+			case SKILL_ID_BLAZING_FLAME_BLAST: // 烈火気弾
+			/* ナイトウォッチ */
+			case SKILL_ID_WILD_SHOT: // ワイルドショット
+			case SKILL_ID_MIDNIGHT_FALLEN: // ミッドナイトフォーリン
+			/* 天帝 */
+			case SKILL_ID_SKY_SUN: // 天気身陽
+			case SKILL_ID_SKY_MOON: // 天気身月
+			case SKILL_ID_STAR_LIGHT_KICK: // 天星の行
+			/* スピリットハンドラー */
+			case SKILL_ID_CHUL_HO_BATTERING: // タイガーバトリング
+			/** バイオロ */
+			case SKILL_ID_MYSTERY_POWDER: // 
+			case SKILL_ID_DUST_EXPLOSION: // 
 				// スキル使用条件の判定
 				n_Buki_Muri = !g_skillManager.MatchWeaponCondition(n_A_ActiveSkill, n_A_WeaponType);
 				if (n_Buki_Muri) {
@@ -7495,6 +7513,8 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 		//----------------------------------------------------------------
 		// 計算式を CSkillManager.js へ移動させ head.js をスリム化する対応を進めています
 		//----------------------------------------------------------------
+		/** トルヴェール・トルバドゥール */
+		case SKILL_ID_RHYTHMICAL_WAVE: // リズミカルウェーブ
 		/** エレメンタルマスター */
 		case SKILL_ID_PSYCHIC_STREAM: // サイキックストリーム
 		/** ソウルアセティック */
@@ -7505,6 +7525,14 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 		case SKILL_ID_SHIRYO_ZYOKA:	// 死霊浄化
 		case SKILL_ID_SHIHOZIN_FU:	// 四方神符
 		case SKILL_ID_REIDO_FU:		// 霊道符
+		/** スピリットハンドラー */
+		case SKILL_ID_HYUN_ROK_SPIRIT_POWER: // ディアースピリットパワー
+		/** アビスチェイサー */
+		case SKILL_ID_ABYSS_FLAME: // アビスフレイム
+		/** インペリアルガード */
+		case SKILL_ID_IMPERIAL_PRESSURE: // インペリアルプレッシャー
+		/** カーディナル */
+		case SKILL_ID_DIVINUS_FLOS:	// ディヴィヌスフロス
 			// スキル使用条件の判定
 			n_Buki_Muri = !g_skillManager.MatchWeaponCondition(n_A_ActiveSkill, n_A_WeaponType);
 			if (n_Buki_Muri) {
@@ -16888,6 +16916,7 @@ g_appliedAppendDamage = (appendDamageRate > 0);
 
 /**
  * モンスターの防御力を適用する
+ * TODO: 本関数内部の DEF 無視スキルのチェックは CSkillManager.js に移動したほうが便利だと思う
  * @param {*} mobData 
  * @param {*} dmg ダメージ
  * @returns 適用後のダメージ
@@ -16903,6 +16932,11 @@ function _SUB_ApplyMonsterDefence(mobData, dmg){
 		case SKILL_ID_SHADOW_STAB:		// シャドウスタブ
 		case SKILL_ID_SPARK_BLASTER: 	// スパークブラスター
 		case SKILL_ID_DRAGONIC_BREATH:	// ドラゴニックブレス
+		case SKILL_ID_ENERGY_CANNONADE: // エナジーキャノネード
+		case SKILL_ID_MIDNIGHT_FALLEN: // ミッドナイトフォーリン
+		case SKILL_ID_SKY_SUN: // 天気身陽
+		case SKILL_ID_BLAZING_FLAME_BLAST: // 烈火気弾
+		case SKILL_ID_CHUL_HO_BATTERING: // タイガーバトリング
 			bPenetrate = true;
 	}
 
