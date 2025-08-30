@@ -40031,7 +40031,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "影の舞";
+			this.name = "(×)影の舞";
 			this.kana = "カケノマイ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -40070,12 +40070,23 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "影一閃";
+			this.name = "(×)影一閃";
 			this.kana = "カケイツセン";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.hitCount = 4;
+			this.Power = function(skillLv, charaData, option) {
+				let ratio = 0;
+				// 影の舞の習得Lv
+				const kage_no_mai_lv = Math.max(LearnedSkillSearch(SKILL_ID_KAGE_NO_MAI), option.GetOptionValue(0));
+				// ダメージ倍率
+				ratio = 500 + 50 * skillLv;				// 基礎倍率
+				ratio += 30 * skillLv * kage_no_mai_lv;	// 修練係数 未検証
+				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// 特性ステータス補正
+				return Math.floor(ratio * n_A_BaseLV / 100);		// BaseLv補正
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 190;
 			}
@@ -40115,12 +40126,22 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "影狩り";
+			this.name = "(×)影狩り";
 			this.kana = "カケカリ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.Power = function(skillLv, charaData, option) {
+				let ratio = 0;
+				// ダメージ倍率
+				ratio = 7700 + 100 * skillLv;					// 基礎倍率
+				// 影一閃の習得Lv
+				const kage_issen_lv = Math.max(LearnedSkillSearch(SKILL_ID_KAGE_ISSEN), option.GetOptionValue(0));
+				ratio += 45 * skillLv * kage_issen_lv;			// 修練係数 未検証
+				ratio += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);		// 特性ステータス
+				return Math.floor(ratio * n_A_BaseLV / 100);			// BaseLv補正
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 230;
 			}
@@ -40160,6 +40181,19 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.dispHitCount = 4;
+			this.Power = function(skillLv, charaData, option) {
+				let ratio = 0;
+				// ダメージ倍率
+				ratio = 52000;										// 基礎倍率
+				ratio += 10 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// 特性ステータス補正
+				ratio = Math.floor(ratio * n_A_BaseLV / 100);		// BaseLv補正
+				// 悪夢の場合
+				if (option.GetOptionValue(0) === 1) {
+					ratio *= 1.5;
+				}
+				return ratio;
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 280;
 			}
