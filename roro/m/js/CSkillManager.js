@@ -435,7 +435,11 @@ function CSkillManager() {
 	 * @returns 
 	 */
 	this.GetDamageInterval = function(skillId, skillLv) {
-		return this.dataArray[skillId].damageInterval(skillLv);
+		if (typeof this.dataArray[skillId].damageInterval === "function") {
+			return this.dataArray[skillId].damageInterval(skillLv);
+		} else {
+			return this.dataArray[skillId].damageInterval;
+		}
 	}
 
 	/**
@@ -38222,6 +38226,18 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.dispHitCount = 3;
+			this.Power = function(skillLv, charaData, option) {
+				let ratio = 0;
+				// 基本倍率
+				ratio = 700 + 200 * skillLv;
+				// POW補正
+				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				// 天気修練 補正
+				ratio += 5 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_TENKI_SHUREN), UsedSkillSearch(SKILL_ID_TENKI_SHUREN));
+				// ベースレベル補正
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 150;
 			}
@@ -38368,6 +38384,18 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.dispHitCount = 2;
+			this.Power = function(skillLv, charaData, option) {
+				let ratio = 0;
+				// 基本倍率
+				ratio = 1000 + 100 * skillLv;
+				// POW補正
+				ratio += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				// 天気修練 補正
+				ratio += 5 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_TENKI_SHUREN), UsedSkillSearch(SKILL_ID_TENKI_SHUREN));
+				// ベースレベル補正
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 270;
 			}
@@ -38397,7 +38425,6 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "太天一月";
 			this.kana = "タイテンイチケツ";
@@ -38405,6 +38432,24 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.dispHitCount = 2;
+			// 使用条件の「月出・正子・天気の身」を厳密に再現するメリットがないので無条件で計算させる
+			this.Power = function(skillLv, charaData, option) {
+				// TODO: 正子、天気の身はスキル倍率だけに影響するので職固有自己支援から攻撃オプションへ移行する
+				const state_tenki_buff = option.GetOptionValue(0) === 1;
+				// 基本倍率
+				let ratio = 1450 + 250 * skillLv;
+				// 正子、天気の身状態なら、倍率２倍
+				if (state_tenki_buff) {
+					ratio *= 2;
+				}
+				// POW補正
+				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				// 天気修練 補正
+				ratio += 5 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_TENKI_SHUREN), UsedSkillSearch(SKILL_ID_TENKI_SHUREN));
+				// ベースレベル補正
+				return Math.floor(ratio * n_A_BaseLV / 100);				
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 230;
 			}
@@ -38438,6 +38483,25 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.dispHitCount = 2;
+			// 使用条件の「正子・月没・天気の身」を厳密に再現するメリットがないので無条件で計算させる
+			this.Power = function(skillLv, charaData, option) {
+				let ratio = 0;
+				// TODO: 月没・天気の身はスキル倍率だけに影響するので職固有自己支援から攻撃オプションへ移行する
+				const state_tenki_buff = option.GetOptionValue(0) === 1;
+				// 基本倍率
+				if (state_tenki_buff) {
+					ratio = 4000 + 550 * skillLv;
+				} else {
+					ratio = 2100 + 175 * skillLv;
+				}
+				// POW補正
+				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				// 天気修練 補正
+				ratio += 5 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_TENKI_SHUREN), UsedSkillSearch(SKILL_ID_TENKI_SHUREN));
+				// ベースレベル補正
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 230;
 			}
@@ -38507,6 +38571,18 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.dispHitCount = 2;
+			this.ground_installation = true;
+			this.damageInterval = 300;
+			this.Power = function(skillLv, charaData, option) {
+				let ratio = 625 + 125 * skillLv;
+				// POW補正
+				ratio += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				// 天気修練 補正
+				ratio += 5 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_TENKI_SHUREN), UsedSkillSearch(SKILL_ID_TENKI_SHUREN));
+				// ベースレベル補正
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 270;
 			}
@@ -38543,6 +38619,19 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.dispHitCount = 3;
+			this.ground_installation = true;
+			this.damageInterval = 300;
+			this.Power = function(skillLv, charaData, option) {
+				// 基本倍率
+				let ratio = 1050 + 150 * skillLv;
+				// 天気修練 補正
+				ratio += 5 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_TENKI_SHUREN), UsedSkillSearch(SKILL_ID_TENKI_SHUREN));
+				// POW補正
+				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				// ベースレベル補正
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 270;
 			}

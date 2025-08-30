@@ -4226,6 +4226,32 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 					0
 				);
 				break;
+			/**
+			 * 太天一月
+			 */
+			case SKILL_ID_TAITEN_ICHIGETSU:
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"正子・天気の身",
+					[
+						[0, "無し"],
+						[1, "有り"],
+					],
+					0
+				);
+				break;
+			/**
+			 * 天月
+			 */
+			case SKILL_ID_TENGETSU:
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"月没・天気の身",
+					[
+						[0, "無し"],
+						[1, "有り"],
+					],
+					0
+				);
+				break;
 
 		}
 	}
