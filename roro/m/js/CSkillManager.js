@@ -32323,14 +32323,13 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "エフィリゴ";
+			this.name = "(×)エフィリゴ";
 			this.kana = "エフイリコ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.element = CSkillData.ELEMENT_VOID;
-			this.range = function(weapon) {
-				return CSkillData.RANGE_SHORT;
-			}
+			this.range = CSkillData.RANGE_SHORT;
+			this.dispHitCount = 7;
 			this.WeaponCondition = function(weapon) {
 				return [ITEM_KIND_CLUB, ITEM_KIND_BOOK].includes(weapon);
 			}
@@ -32338,20 +32337,11 @@ function CSkillManager() {
 				let ratio = 0;
 				// 鈍器＆本修練の補正Lv
 				const donki_hon_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_DONKI_HON_SHUREN), UsedSkillSearch(SKILL_ID_DONKI_HON_SHUREN));
-				if ([RACE_ID_UNDEAD, RACE_ID_DEMON].includes(mobData[MONSTER_DATA_INDEX_RACE])) {
-					ratio = 4000 + 500 * skillLv;							// 基本倍率
-					ratio += 60 * GetTotalSpecStatus(MIG_PARAM_ID_POW);				// POW補正
-					ratio += (400 + 50 * skillLv) * donki_hon_shuren_lv;	// 鈍器＆本修練 補正
-				} else {
-					ratio = 3000 + 375 * skillLv;							// 基本倍率
-					ratio += 45 * GetTotalSpecStatus(MIG_PARAM_ID_POW);				// POW補正
-					ratio += (275 + 40 * skillLv) * donki_hon_shuren_lv;	// 鈍器＆本修練 補正
-				}
+				ratio = 4000 + 500 * skillLv;							// 基本倍率
+				ratio += 60 * GetTotalSpecStatus(MIG_PARAM_ID_POW);		// POW補正
+				ratio += (400 + 50 * skillLv) * donki_hon_shuren_lv;	// 鈍器＆本修練 補正
 				// ベースレベル補正
 				return Math.floor(ratio * n_A_BaseLV / 100);
-			}
-			this.dispHitCount = function(skillLv) {
-				return 7;
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 310;
@@ -32588,7 +32578,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "ペティティオ";
+			this.name = "(×)ペティティオ";
 			this.kana = "ヘテイテイオ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -32601,12 +32591,12 @@ function CSkillManager() {
 			}
 			this.Power = function(skillLv, charaData, option, mobData) {			// スキル倍率
 				let ratio = 0;
-				// 基本倍率
-				ratio = 250 * skillLv;
-				// POW補正
-				ratio += 15 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-				// 鈍器・本修練補正
 				const donki_hon_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_DONKI_HON_SHUREN), UsedSkillSearch(SKILL_ID_DONKI_HON_SHUREN));
+				// 基本倍率
+				ratio = 350 * skillLv;
+				// POW補正 未検証
+				ratio += 15 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				// 鈍器・本修練補正 未検証
 				ratio += 20 * skillLv * donki_hon_shuren_lv;
 				// ベースレベル補正
 				return Math.floor(ratio * n_A_BaseLV / 100);
