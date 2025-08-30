@@ -2506,6 +2506,12 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			case SKILL_ID_KAGE_GARI:
 			case SKILL_ID_KAGE_ISSEN:
 			case SKILL_ID_GENJUTSU_KAGE_NUI:
+			/** ハイパーノービス */
+			case SKILL_ID_DOUBLE_BOWLING_BASH:
+			case SKILL_ID_MEGA_SONIC_BLOW:
+			case SKILL_ID_SHIELD_CHAIN_RUSH:
+			case SKILL_ID_SPIRAL_PIERCE_MAX:
+
 				// スキル使用条件の判定
 				n_Buki_Muri = !g_skillManager.MatchWeaponCondition(n_A_ActiveSkill, n_A_WeaponType);
 				if (n_Buki_Muri) {
@@ -3102,56 +3108,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);					// BaseLv補正
 				break;
 			}
-			// 「ハイパーノービス」スキル「ダブルボウリングバッシュ」
-			case SKILL_ID_DOUBLE_BOWLING_BASH: {
-				// 詠唱など
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// ヒット数
-				option_count = attackMethodConfArray[0].GetOptionValue(0);								// 巻き込み数補正
-				wHITsuu = [3,4,5][option_count];
-				// 基本倍率
-				let sentogaku = Math.max(LearnedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU), UsedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU));
-				wbairitu = 850;																			// 基礎倍率
-				wbairitu += 3 * n_A_ActiveSkillLV * sentogaku;		// 習得済みスキル条件
-				wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_POW);									// 特性ステータス補正
-				wbairitu *= n_A_BaseLV / 100;															// BaseLv補正
-				wbairitu = Math.floor(wbairitu);
-				// 最終倍率
-				wbairitu *= [100, 101, 103, 105, 107, 109, 111, 113, 115, 120, 125][sentogaku] / 100;	// 独学補正
-				wbairitu = Math.floor(wbairitu);
-				wbairitu *= [100, 150][UsedSkillSearch(SKILL_ID_BREAKING_LIMIT_STATE)] / 100;												// ブレイキングリミット補正
-				wbairitu = Math.floor(wbairitu);
-				break;
-			}
-			// 「ハイパーノービス」スキル「メガソニックブロー」
-			case SKILL_ID_MEGA_SONIC_BLOW: {
-				// 詠唱など
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// 分割ヒット数
-				wActiveHitNum = 8;
-				// 基本倍率
-				let sentogaku = Math.max(LearnedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU), UsedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU));
-				wbairitu = 1650 + (50 * n_A_ActiveSkillLV);												// 基礎倍率
-				wbairitu += 5 * n_A_ActiveSkillLV * sentogaku;		// 習得済みスキル条件
-				wbairitu += 4 * GetTotalSpecStatus(MIG_PARAM_ID_POW);									// 特性ステータス補正
-				wbairitu *= n_A_BaseLV / 100;															// BaseLv補正
-				wbairitu = Math.floor(wbairitu);
-				// 最終倍率
-				wbairitu *= [100, 101, 103, 105, 107, 109, 111, 113, 115, 120, 125][sentogaku] / 100;	// 独学補正
-				wbairitu = Math.floor(wbairitu);
-				wbairitu *= [100, 150][UsedSkillSearch(SKILL_ID_BREAKING_LIMIT_STATE)] / 100;												// ブレイキングリミット補正
-				wbairitu = Math.floor(wbairitu);
-				// 敵のHPが50%未満の場合ダメージ2倍
-				option_count = attackMethodConfArray[0].GetOptionValue(0);								// 敵の残りHP
-				wbairitu *= [100, 200][option_count] / 100;
-				break;
-			}
 
 			// 「バイオロ」スキル「エクスプロッシブパウダー」
 			// 2024/11/16 実測誤差無しを確認
@@ -3476,67 +3432,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				wActiveHitNum = 8;
 				break;
 			}
-			// 「ハイパーノービス」スキル「シールドチェーンラッシュ」
-			case SKILL_ID_SHIELD_CHAIN_RUSH: {
-				// 遠距離フラグ
-				n_Enekyori = 1;
-				// 分割ヒット数
-				wActiveHitNum = 5
-				// 詠唱時間等
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// 基本倍率
-				let sentogaku = Math.max(LearnedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU), UsedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU));
-				wbairitu = 3050 + (175 * n_A_ActiveSkillLV);											// 基礎倍率
-				wbairitu += 3 * n_A_ActiveSkillLV * sentogaku;											// 習得済みスキル条件
-				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);									// 特性ステータス補正
-				wbairitu *= n_A_BaseLV / 100;															// BaseLv補正
-				wbairitu = Math.floor(wbairitu);
-				// 最終倍率
-				wbairitu *= [100, 101, 103, 105, 107, 109, 111, 113, 115, 120, 125][sentogaku] / 100;	// 独学補正
-				wbairitu = Math.floor(wbairitu);
-				wbairitu *= [100, 150][UsedSkillSearch(SKILL_ID_BREAKING_LIMIT_STATE)] / 100;			// ブレイキングリミット補正
-				wbairitu = Math.floor(wbairitu);
-				break;
-			}
-			// 「ハイパーノービス」スキル「スパイラルピアースマックス」
-			case SKILL_ID_SPIRAL_PIERCE_MAX: {
-				// 遠距離フラグ
-				n_Enekyori = 1;
-				// 分割ヒット数
-				wActiveHitNum = 5			
-				// 詠唱時間等
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// 基本倍率
-				let sentogaku = Math.max(LearnedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU), UsedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU));
-				wbairitu = 4475 + (125 * n_A_ActiveSkillLV);											// 基礎倍率
-				wbairitu += 3 * n_A_ActiveSkillLV * sentogaku;		// 習得済みスキル条件
-				switch (mobData[MONSTER_DATA_INDEX_SIZE]) {												// サイズ補正 (POWには掛からない)
-					case SIZE_ID_LARGE:
-						wbairitu *= 1.2;
-						break;
-					case SIZE_ID_MEDIUM:
-						wbairitu *= 1.3;
-						break;
-					case SIZE_ID_SMALL:
-						wbairitu *= 1.5;
-						break;
-				}
-				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);																		// 特性ステータス補正
-				wbairitu *= n_A_BaseLV / 100;																								// BaseLv補正
-				wbairitu = Math.floor(wbairitu);
-				// 最終倍率
-				wbairitu *= [100, 101, 103, 105, 107, 109, 111, 113, 115, 120, 125][sentogaku] / 100;	// 独学補正
-				wbairitu = Math.floor(wbairitu);
-				wbairitu *= [100, 150][UsedSkillSearch(SKILL_ID_BREAKING_LIMIT_STATE)] / 100;												// ブレイキングリミット補正
-				wbairitu = Math.floor(wbairitu);
-				break;
-			}
+
 			// 「星帝」スキル「流星落下」
 			/**
 			 *  オートスペルですが何故かアクティブスキルとして登録されています

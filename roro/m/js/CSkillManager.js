@@ -40549,14 +40549,32 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
-			this.name = "ダブルボウリングバッシュ";
+			this.name = "(×)ダブルボウリングバッシュ";
 			this.kana = "タフルホウリンクハツシユ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.hitCount = function(skillLv, option) {
+				const enemy_scope = option.GetOptionValue(0); // 巻き込み数補正
+				return [3,4,5][enemy_scope];
+			}
+			this.Power = function(skillLv, charaData, option) {
+				// 基本倍率
+				const sentogaku_lv = Math.max(LearnedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU), UsedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU));
+				const braking_limit_lv = UsedSkillSearch(SKILL_ID_BREAKING_LIMIT_STATE);
+				let ratio = 1350 + 50 * skillLv;																			// 基礎倍率
+				ratio += 3 * skillLv * sentogaku_lv;		// 習得済みスキル条件
+				ratio += 2 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// 特性ステータス補正
+				ratio *= n_A_BaseLV / 100;	// BaseLv補正
+				ratio = Math.floor(ratio);
+				// 最終倍率
+				ratio *= [100, 101, 103, 105, 107, 109, 111, 113, 115, 120, 125][sentogaku_lv] / 100;	// 独学補正
+				ratio = Math.floor(ratio);
+				ratio *= [100, 150][braking_limit_lv] / 100; // ブレイキングリミット補正
+				return Math.floor(ratio);
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 0;
 			}
@@ -40583,14 +40601,36 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
-			this.name = "メガソニックブロー";
+			this.name = "(×)メガソニックブロー";
 			this.kana = "メカソニツクフロオ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.dispHitCount = 8;
+			this.Power = function(skillLv, charaData, option) {
+				// 基本倍率
+				const sentogaku = Math.max(LearnedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU), UsedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU));
+				const breaking_limit_lv = UsedSkillSearch(SKILL_ID_BREAKING_LIMIT_STATE);
+				const state_enemy_hp_half = option.GetOptionValue(0) === 1; // 敵の残りHPが半分以下
+				let ratio = 4500 + 100 * skillLv;												// 基礎倍率
+				ratio += 5 * skillLv * sentogaku;		// 習得済みスキル条件
+				ratio += 4 * GetTotalSpecStatus(MIG_PARAM_ID_POW);									// 特性ステータス補正
+				ratio *= n_A_BaseLV / 100;															// BaseLv補正
+				ratio = Math.floor(ratio);
+				// 最終倍率
+				ratio *= [100, 101, 103, 105, 107, 109, 111, 113, 115, 120, 125][sentogaku] / 100;	// 独学補正
+				ratio = Math.floor(ratio);
+				ratio *= [100, 150][breaking_limit_lv] / 100;												// ブレイキングリミット補正
+				ratio = Math.floor(ratio);
+				// 敵のHPが50%未満の場合ダメージ2倍
+				if (state_enemy_hp_half) {
+					ratio *= 2;
+				}
+				return ratio;
+
+			}
 			this.CriActRate = (skillLv, charaData, specData, mobData) => {
 				return this._CriActRate100(skillLv, charaData, specData, mobData);
 			}
@@ -41753,14 +41793,29 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
-			this.name = "シールドチェーンラッシュ";
+			this.name = "(×)シールドチェーンラッシュ";
 			this.kana = "シイルトチエエンラツシユ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.dispHitCount = 5;
+			this.Power = function(skillLv, charaData, option) {
+				// 基本倍率
+				const sentogaku = Math.max(LearnedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU), UsedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU));
+				const breaking_limit_lv = UsedSkillSearch(SKILL_ID_BREAKING_LIMIT_STATE);
+				let ratio = 4300 + 200 * skillLv;											// 基礎倍率
+				ratio += 3 * skillLv * sentogaku;											// 習得済みスキル条件
+				ratio += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);									// 特性ステータス補正
+				ratio *= n_A_BaseLV / 100;															// BaseLv補正
+				ratio = Math.floor(ratio);
+				// 最終倍率
+				ratio *= [100, 101, 103, 105, 107, 109, 111, 113, 115, 120, 125][sentogaku] / 100;	// 独学補正
+				ratio = Math.floor(ratio);
+				ratio *= [100, 150][breaking_limit_lv] / 100;			// ブレイキングリミット補正
+				return Math.floor(ratio);
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 0;
 			}
@@ -41787,15 +41842,35 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
-			this.name = "スパイラルピアースマックス";
+			this.name = "(×)スパイラルピアースマックス";
 			this.kana = "スハイラルヒアアスマツクス";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.element = CSkillData.ELEMENT_VOID;
-			this.range = function(weapon) {
-				return CSkillData.RANGE_LONG;
+			this.range = CSkillData.RANGE_LONG;
+			this.dispHitCount = 5;
+			this.Power = function(skillLv, charaData, option, mobData) {
+				// 基本倍率
+				let ratio = 4500 + 250 * skillLv;
+				const sentogaku = Math.max(LearnedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU), UsedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU));
+				ratio += 3 * skillLv * sentogaku;
+				// サイズ補正 (POWには掛からない)
+				const size_ratio = [
+					{ id: SIZE_ID_LARGE, ratio: 1.2 },
+					{ id: SIZE_ID_MEDIUM, ratio: 1.3 },
+					{ id: SIZE_ID_SMALL, ratio: 1.5 },
+				];
+				ratio *= size_ratio.find(item => item.id === mobData[MONSTER_DATA_INDEX_SIZE]).ratio;
+				ratio += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);																		// 特性ステータス補正
+				ratio *= n_A_BaseLV / 100;																								// BaseLv補正
+				ratio = Math.floor(ratio);
+				// 最終倍率
+				ratio *= [100, 101, 103, 105, 107, 109, 111, 113, 115, 120, 125][sentogaku] / 100;	// 独学補正
+				ratio = Math.floor(ratio);
+				const breaking_limit_lv = UsedSkillSearch(SKILL_ID_BREAKING_LIMIT_STATE);
+				ratio *= [100, 150][breaking_limit_lv] / 100;	// ブレイキングリミット補正
+				return Math.floor(ratio);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 0;
