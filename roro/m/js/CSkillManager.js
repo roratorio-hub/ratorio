@@ -35761,7 +35761,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "第一撃：烙印";
+			this.name = "(×)第一撃：烙印";
 			this.kana = "タイ１ケキ　ラクイン";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -35771,8 +35771,8 @@ function CSkillManager() {
 			this.Power = function(skillLv, charaData, option) {
 				let ratio = 0;
 				// 基本倍率
-				ratio = 2000 + 500 * skillLv;
-				// POW補正
+				ratio = 2900 + 500 * skillLv;
+				// POW補正 未検証
 				ratio += 15 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// ベースレベル補正
 				return Math.floor(ratio * n_A_BaseLV / 100);
@@ -36048,7 +36048,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "第二撃：滅魔の火";
+			this.name = "(×)第二撃：滅魔の火";
 			this.kana = "タイ２ケキ　メツマノヒ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -36058,8 +36058,8 @@ function CSkillManager() {
 			this.Power = function(skillLv, charaData, option) {
 				let ratio = 0;
 				// 基本倍率
-				ratio = 3600 + 900 * skillLv;
-				// POW補正
+				ratio = 5750 + 1250 * skillLv;
+				// POW補正 未検証
 				ratio += 27 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// ベースレベル補正
 				return Math.floor(ratio * n_A_BaseLV / 100);
@@ -36106,7 +36106,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "第二撃：信念";
+			this.name = "(×)第二撃：信念";
 			this.kana = "タイ２ケキ　シンネン";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -36116,8 +36116,8 @@ function CSkillManager() {
 			this.Power = function(skillLv, charaData, option) {
 				let ratio = 0;
 				// 基本倍率
-				ratio = 3150 + 750 * skillLv;
-				// POW補正
+				ratio = 4950 + 1250 * skillLv;
+				// POW補正 未検証
 				ratio += 23 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// ベースレベル補正
 				return Math.floor(ratio * n_A_BaseLV / 100);
@@ -36167,7 +36167,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "第二撃：審判";
+			this.name = "(×)第二撃：審判";
 			this.kana = "タイ２ケキ　シンハン";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -36177,8 +36177,8 @@ function CSkillManager() {
 			this.Power = function(skillLv, charaData, option) {
 				let ratio = 0;
 				// 基本倍率
-				ratio = 3375 + 825 * skillLv;
-				// POW補正
+				ratio = 4850 + 1250 * skillLv;
+				// POW補正 未検証
 				ratio += 25 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// ベースレベル補正
 				return Math.floor(ratio * n_A_BaseLV / 100);
@@ -36339,7 +36339,6 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "第二章：審判者";
 			this.kana = "タイ２シヨウ　シンハンシヤ";
@@ -36351,7 +36350,7 @@ function CSkillManager() {
 				return 280;
 			}
 			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
-				return 110 - 15 * skillLv;
+				return 70 - 10 * skillLv;
 			}
 			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
 				return 0;
@@ -36379,7 +36378,6 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "最終章：滅魔の炎";
 			this.kana = "サイシユウシヨウ　メツマノホノオ";
@@ -36391,7 +36389,7 @@ function CSkillManager() {
 				return 340;
 			}
 			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
-				return 170 - 20 * skillLv;
+				return 180 - 30 * skillLv;
 			}
 			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
 				return 0;
