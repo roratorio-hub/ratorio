@@ -31363,7 +31363,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "ハックアンドスラッシャー";
+			this.name = "(×)ハックアンドスラッシャー";
 			this.kana = "ハツクアントスラツシヤア";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -31377,10 +31377,14 @@ function CSkillManager() {
 			this.hitCount = function(skillLv) {							// ヒット数
 				return 2;
 			}
-			this.Power = function(skillLv, charaData) {					// スキル倍率
+			this.Power = function(skillLv, charaData, option, mobData, weapon) { // スキル倍率
 				let ratio = 0;
-				ratio = 1400 + 100 * skillLv;
-				ratio += 8 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				if (weapon === ITEM_KIND_SWORD_2HAND) {
+					ratio = 2500 + 200 * skillLv;
+				} else {
+					ratio = 1800 + 150 * skillLv;
+				}
+				ratio += 8 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数 未検証
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
 			}
@@ -31423,7 +31427,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "ドラゴニックオーラ";
+			this.name = "(×)ドラゴニックオーラ";
 			this.kana = "トラコニツクオオラ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -31433,9 +31437,9 @@ function CSkillManager() {
 			}
 			this.Power = function(skillLv, charaData) {					// スキル倍率
 				let ratio = 0;
-				ratio = 7000 + 2000 * skillLv;
+				ratio = 7500 + 2250 * skillLv;
 				ratio += 90 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-				ratio = Math.floor(ratio * n_A_BaseLV / 100);
+				ratio = Math.floor(ratio * n_A_BaseLV / 100);	// Pow係数 未検証
 				return ratio;
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
@@ -31466,13 +31470,12 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// マッドネスクラッシャー
 		// ----------------------------------------------------------------
-		// TODO ハルバード使用時にスキルLv5で+17のダメージ誤差が生じるので計算式に疑いが残る
 		SKILL_ID_MADNESS_CRUSHER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(△)マッドネスクラッシャー";
+			this.name = "(×)マッドネスクラッシャー";
 			this.kana = "マツトネスクラツシヤア";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -31487,9 +31490,9 @@ function CSkillManager() {
 				let ratio = 0;
 				const wpnLv = ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS]][ITEM_DATA_INDEX_WPNLV] % 10;
 				const weight = ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS]][ITEM_DATA_INDEX_WEIGHT];
-				ratio += 3000 + 900 * skillLv;
+				ratio += 5700 + 1200 * skillLv;
 				ratio += weight * wpnLv;
-				ratio += [0, 15, 18, 19, 22, 25][skillLv] * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				ratio += [0, 15, 18, 19, 22, 25][skillLv] * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数 未検証
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				// チャージングピアースがONの時、与えるダメージ + 10% x スキルレベル
 				ratio = ratio * (1 + 0.1 * option.GetOptionValue(0));
@@ -31567,7 +31570,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(△)ストームスラッシュ";
+			this.name = "(×)ストームスラッシュ";
 			this.kana = "ストオムスラツシユ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -31581,10 +31584,15 @@ function CSkillManager() {
 			this.hitCount = function(skillLv, charaDataManger) {       	// ヒット数
 				return skillLv;
 			}
-			this.Power = function(skillLv, charaDataManger) {       	// スキル倍率
+			this.Power = function(skillLv, charaDataManger, option) {       	// スキル倍率
 				let ratio = 0;
-				ratio += 1250 + 50 * skillLv;
-				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				// ジャイアントグロース(スリサズルーンストーン)はスキル倍率だけでなく基礎ステータスにも影響を与えるので職固有自己支援で設定する
+				const state_giant_growth = UsedSkillSearch(SKILL_ID_GIANT_GROWTH) === 1;
+				ratio += 1550 + 50 * skillLv;
+				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数 未検証
+				if (state_giant_growth) {
+					ratio *= 2;
+				}
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
 			}
