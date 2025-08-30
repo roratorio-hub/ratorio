@@ -35063,29 +35063,25 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "アビスダガー";
+			this.name = "(×)アビスダガー";
 			this.kana = "アヒスタカア";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = function(weapon) {
-				return CSkillData.RANGE_SHORT;
-			}
+			this.dispHitCount = 2;
+			this.element = CSkillData.ELEMENT_VOID;
+			this.range = CSkillData.RANGE_SHORT;
 			this.WeaponCondition = function(weapon) {
 				return [ITEM_KIND_KNIFE, ITEM_KIND_SWORD].includes(n_A_WeaponType);
 			}
 			this.Power = function(skillLv, charaData, option) {
 				let ratio = 0;
 				// 基本倍率
-				ratio = 3150 + 750 * skillLv;
-				// POW補正
+				ratio = 5700 + 1500 * skillLv;
+				// POW補正 未検証
 				ratio += 23 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// ベースレベル補正
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
-			this.dispHitCount = function(skillLv) {
-				return 2;
-			}
-			this.element = CSkillData.ELEMENT_VOID;
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 200;
 			}
@@ -35119,23 +35115,21 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "アンラッキーラッシュ";
+			this.name = "(×)アンラッキーラッシュ";
 			this.kana = "アンラツキイラツシユ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = function(weapon) {
-				return CSkillData.RANGE_SHORT;
-			}
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_VOID;
 			this.Power = function(skillLv, charaData, option) {
 				let ratio = 0;
 				// 基本倍率
-				ratio = 2100 + 600 * skillLv;
-				// POW補正
+				ratio = 2500 + 1300 * skillLv;
+				// POW補正 未検証
 				ratio += 17 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// ベースレベル補正
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
-			this.element = CSkillData.ELEMENT_VOID;
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 110;
 			}
@@ -35371,26 +35365,22 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "デフトスタブ";
+			this.name = "(×)デフトスタブ";
 			this.kana = "テフトスタフ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = function(weapon) {
-				return CSkillData.RANGE_SHORT;
-			}
-			this.dispHitCount = function(skillLv) {
-				return 2;
-			}
+			this.range = CSkillData.RANGE_SHORT;
+			this.dispHitCount = 2;
+			this.element = CSkillData.ELEMENT_VOID;
 			this.Power = function(skillLv, charaData, option) {
 				let ratio = 0;
 				// 基本倍率
-				ratio = 3400 + 350 * skillLv;
-				// POW補正
+				ratio = 5700 + 750 * skillLv;
+				// POW補正 未検証
 				ratio += 23 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// ベースレベル補正
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
-			this.element = CSkillData.ELEMENT_VOID;
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 200;
 			}
