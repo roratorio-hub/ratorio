@@ -30283,10 +30283,10 @@ function Init(jobId){
 	n_A_SHOES_DEF_PLUS = 0;
 
 	n_A_Equip = new Array();
-	for(i=0;i<=50;i++) n_A_Equip[i] = 0;
+	for(let i = 0; i <= ITEMSET_ID_LIMIT_WITH_ITEM; i++) n_A_Equip[i] = 0;
 
 	n_A_card = new Array();
-	for(i=0;i<=100;i++) n_A_card[i] = 0;
+	for(let i = 0; i <= ITEMSET_ID_LIMIT_WITH_CARD; i++) n_A_card[i] = 0;
 
 	n_A_costume = new Array();
 	for(i = 0; i < COSTUME_REGION_ID_COUNT; i++) {
