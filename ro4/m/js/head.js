@@ -2500,6 +2500,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			case SKILL_ID_TIGER_SLASH:
 			case SKILL_ID_CHUL_HO_BATTERING: // タイガーバトリング
 			/** バイオロ */
+			case SKILL_ID_EXPLOSIVE_POWDER: // 
 			case SKILL_ID_MYSTERY_POWDER: // 
 			case SKILL_ID_DUST_EXPLOSION: // 
 			/** 蜃気楼・不知火 */
@@ -3108,29 +3109,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);					// BaseLv補正
 				break;
 			}
-
-			// 「バイオロ」スキル「エクスプロッシブパウダー」
-			// 2024/11/16 実測誤差無しを確認
-			case SKILL_ID_EXPLOSIVE_POWDER:
-				// 詠唱時間など
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				if (UsedSkillSearch(SKILL_ID_RESEARCH_REPORT) > 0) {
-					// 基礎倍率
-					wbairitu = 3700 + 1000 * n_A_ActiveSkillLV;
-					// 特性ステータス補正
-					wbairitu += 29 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-				} else {
-					// 基礎倍率
-					wbairitu = 3150 + 750 * n_A_ActiveSkillLV;
-					// 特性ステータス補正
-					wbairitu += 23 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-				}
-				// BaseLv補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
-				break;
 
 			// 「バイオロ」スキル「メイヘミックソーンズ」
 			// 2024/11/15 実測誤差なしを確認

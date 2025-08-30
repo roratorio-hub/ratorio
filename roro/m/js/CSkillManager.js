@@ -34821,7 +34821,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "シールドシューティング";
+			this.name = "(×)シールドシューティング";
 			this.kana = "シイルトシユウテインク";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -40777,12 +40777,24 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "エクスプロッシブパウダー";
+			this.name = "(×)エクスプロッシブパウダー";
 			this.kana = "エクスフロツシフハウタア";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.Power = function(skillLv, charaData, option) {
+				let ratio = 0;
+				const state_research_report = UsedSkillSearch(SKILL_ID_RESEARCH_REPORT) > 0;
+				if (state_research_report) {
+					ratio = 7750 + 1750 * skillLv;
+					ratio += 23 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				} else {
+					ratio = 5700 + 1500 * skillLv;
+					ratio += 29 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				}
+				return Math.floor(ratio * n_A_BaseLV / 100);				
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 300;
 			}
