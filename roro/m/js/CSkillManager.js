@@ -34739,22 +34739,22 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "グランドジャッジメント";
+			this.name = "(×)グランドジャッジメント";
 			this.kana = "クラントシヤツシメント";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = function(weapon) {
-				return CSkillData.RANGE_LONG;
-			}
+			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_VOID;
 			this.WeaponCondition = function(weapon) {
-				return [ITEM_KIND_SPEAR,ITEM_KIND_SPEAR_2HAND].includes(n_A_WeaponType) && (UsedSkillSearch(SKILL_ID_ATTACK_STANCE) > 0);
+				const state_attack_stance = UsedSkillSearch(SKILL_ID_ATTACK_STANCE) > 0;
+				const mutch_weapon = [ITEM_KIND_SPEAR,ITEM_KIND_SPEAR_2HAND].includes(n_A_WeaponType);
+				return state_attack_stance && mutch_weapon;
 			}
 			this.Power = function(skillLv, charaData, option) {
 				let ratio = 0;
 				// 基本倍率
-				ratio = 7000 + 2000 * skillLv;
-				// POW補正
+				ratio = 7500 + 2250 * skillLv;
+				// POW補正 未検証
 				ratio += 90 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// ベースレベル補正
 				return Math.floor(ratio * n_A_BaseLV / 100);
@@ -34835,18 +34835,19 @@ function CSkillManager() {
 			this.kana = "シイルトシユウテインク";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = function(weapon) {
-				return CSkillData.RANGE_LONG;
-			}
+			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.dispHitCount = 7;
 			this.WeaponCondition = function(weapon) {
-				return (n_A_Equip[EQUIP_REGION_ID_SHIELD] !== ITEM_ID_NOEQUIP_SHIELD && UsedSkillSearch(SKILL_ID_ATTACK_STANCE) > 0);
+				const mutch_weapon = n_A_Equip[EQUIP_REGION_ID_SHIELD] !== ITEM_ID_NOEQUIP_SHIELD;
+				const state_attack_stance = UsedSkillSearch(SKILL_ID_ATTACK_STANCE) > 0;
+				return mutch_weapon && state_attack_stance;
 			}
 			this.Power = function(skillLv, charaData, option) {
 				let ratio = 0;
 				// 基本倍率
-				ratio = 600 + 800 * skillLv;
-				// 修練補正
+				ratio = 1200 + 800 * skillLv;
+				// 修練補正 未検証
 				ratio += 40 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_TATE_SHUREN), UsedSkillSearch(SKILL_ID_TATE_SHUREN));
 				// 盾の精錬値・重量補正
 				ratio += n_A_SHIELD_DEF_PLUS * 200 + ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][ITEM_DATA_INDEX_WEIGHT];
@@ -34854,9 +34855,6 @@ function CSkillManager() {
 				ratio += 30 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// ベースレベル補正
 				return Math.floor(ratio * n_A_BaseLV / 100);
-			}
-			this.dispHitCount = function(skillLv) {
-				return 7;
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 160;
@@ -34891,16 +34889,15 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "オーバースラッシュ";
+			this.name = "(×)オーバースラッシュ";
 			this.kana = "オオハアスラツシユ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = function(weapon) {
-				return CSkillData.RANGE_SHORT;
-			}
+			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
 			this.WeaponCondition = function(weapon) {
-				return (UsedSkillSearch(SKILL_ID_ATTACK_STANCE) > 0);
+				const state_attack_stance = UsedSkillSearch(SKILL_ID_ATTACK_STANCE) > 0;
+				return state_attack_stance;
 			}
 			this.hitCount = function(skillLv, option, weapon) {
 				return [3,5,7][option.GetOptionValue(0)];
@@ -34908,8 +34905,8 @@ function CSkillManager() {
 			this.Power = function(skillLv, charaData, option) {
 				let ratio = 0;
 				// 基本倍率
-				ratio = 70 * skillLv;
-				// 修練補正
+				ratio = 130 * skillLv;
+				// 修練補正 未検証
 				ratio += 8 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN), UsedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN));
 				// POW補正 
 				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
@@ -34955,6 +34952,24 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_HOLY;
+			this.ground_installation = true;
+			this.damageInterval = 300;
+			this.Power = function(skillLv, charaData, option) {
+				let ratio = 0;
+				const state_holy_shield = UsedSkillSearch(SKILL_ID_HOLY_SHIELD) > 0;
+				const yari_katate_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN), UsedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN));
+				if (state_holy_shield) {
+					ratio = 150 * skillLv;
+					ratio += 15 * skillLv * yari_katate_shuren_lv;
+					ratio += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				} else {
+					ratio = 120 * skillLv;
+					ratio += 12 * skillLv * yari_katate_shuren_lv;
+					ratio += 8 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	
+				}
+				// ベースレベル補正
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 430;
 			}
@@ -34965,7 +34980,7 @@ function CSkillManager() {
 				return 2500 + 500 * skillLv;
 			}
 			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
-				return 1500;
+				return 500 + 100 * skillLv;
 			}
 			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
 				return 2500 + 500 * skillLv;

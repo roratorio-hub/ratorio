@@ -7288,6 +7288,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 		/** アビスチェイサー */
 		case SKILL_ID_ABYSS_FLAME: // アビスフレイム
 		/** インペリアルガード */
+		case SKILL_ID_CROSS_RAIN:
 		case SKILL_ID_IMPERIAL_PRESSURE: // インペリアルプレッシャー
 		/** カーディナル */
 		case SKILL_ID_DIVINUS_FLOS:	// ディヴィヌスフロス
@@ -7856,37 +7857,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			// 見た目10hit
 			wActiveHitNum = 10;
-			break;
-
-		// 「インペリアルガード」スキル「クロスレイン」
-		// 2025/03/02 もなこさんから連携して頂いた情報に合わせてあります
-		case SKILL_ID_CROSS_RAIN:
-			// 詠唱時間等
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// 設置スキル
-			g_bDefinedDamageIntervals = true;
-			// ダメージ間隔
-			n_Delay[5] = 300;
-			// オブジェクト存続時間
-			n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// スキル倍率
-			if (UsedSkillSearch(SKILL_ID_HOLY_SHIELD) > 0) {
-				// ホーリーシールド有り
-				wbairitu = 150 * n_A_ActiveSkillLV;
-				wbairitu += 15 * n_A_ActiveSkillLV * Math.max(LearnedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN), UsedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN));
-				wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			}
-			else {
-				// 通常時
-				wbairitu = 120 * n_A_ActiveSkillLV;
-				wbairitu += 12 * n_A_ActiveSkillLV * Math.max(LearnedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN), UsedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN));
-				wbairitu += 8 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	
-			}
-			// ベースレベル補正
-			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
 		// 「アビスチェイサー」スキル「フロムジアビス」
