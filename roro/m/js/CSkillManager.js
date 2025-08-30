@@ -33766,7 +33766,7 @@ function CSkillManager() {
 				return 610;
 			}
 			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
-				return 30 * skillLv;
+				return 20 + 10 * skillLv;
 			}
 			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
 				return 0;
@@ -33795,7 +33795,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "アストラルストライク";
+			this.name = "(×)アストラルストライク";
 			this.kana = "アストラルストライク";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
@@ -33805,22 +33805,22 @@ function CSkillManager() {
 				return 680;
 			}
 			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
-				return 15 + skillLv;
+				return 10;
 			}
 			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
 				return 16000;
 			}
 			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
-				return 2000;
+				return 500 + 100 * skillLv;
 			}
 			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
 				return 5000;
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
-				return 5000 + 1000 * skillLv;
+				return 500;
 			}
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
-				return 5000 + 1000 * skillLv;
+				return 3000;
 			}
 		};
 		this.dataArray[skillId] = skillData;

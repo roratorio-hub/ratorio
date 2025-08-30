@@ -7596,7 +7596,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				// ダメージ間隔
 				n_Delay[5] = 300;
 				// 基本倍率
-				wbairitu = 1500 + 150 * n_A_ActiveSkillLV;
+				wbairitu = 200 + 100 * n_A_ActiveSkillLV;
 				// SPL補正
 				if (n_A_ActiveSkillLV <= 5) {
 					wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
