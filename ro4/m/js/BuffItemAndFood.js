@@ -3,8 +3,9 @@
  * 画面下部の「アイテム(食品/他)」のバフウィンドウ構築関数群
 */ 
 
+const BUFF_CONF_FOOD_LIMIT = 52;
 /** アイテム・食品他 設定値の配列 */
-let n_A_PassSkill7 = Array(52).fill(0);
+let n_A_PassSkill7 = Array(BUFF_CONF_FOOD_LIMIT).fill(0);
 /** アイテム・食品他 ウィンドウ可視状態 */
 let n_Skill7SW = false;
 

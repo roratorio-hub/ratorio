@@ -4,12 +4,8 @@
 // この数を超える場合は、セーブデータの拡張が必要
 MOB_CONF_PLAYER_LIMIT = 54;
 
-
-
-
-
 // 初期化作業
-n_B_TAISEI = new Array();
+let n_B_TAISEI = [];
 
 MobConfPlayerOBJ = new Array();
 
