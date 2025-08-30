@@ -563,7 +563,7 @@ function GetPAtk() {
 	}
 	// 「スピリットハンドラー」スキル「三霊一体」による効果
 	if ((sklLv = UsedSkillSearch(SKILL_ID_SANREI_ITTAI)) > 0) {
-		value += 3 * sklLv;
+		value += 5 + 5 * sklLv;
 	}
 	// 「スピリットハンドラー」スキル「にゃんブレッシング」による効果
 	if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_NYAN_BRESSING]) > 0) {
@@ -708,7 +708,7 @@ function GetSMatk() {
 
 	// 「スピリットハンドラー」スキル「三霊一体」による効果
 	if ((sklLv = UsedSkillSearch(SKILL_ID_SANREI_ITTAI)) > 0) {
-		value += 3 * sklLv;
+		value += 5 + 5 * sklLv;
 	}
 
 	// 「スピリットハンドラー」スキル「にゃんブレッシング」による効果
@@ -832,18 +832,25 @@ function GetMres() {
 	return value;
 }
 
+/**
+ * 公式サイトで「」と表記されるバフを考慮した
+ * 最終的なH.Plusを取得する
+ * @returns 
+ */
 function GetHPlus() {
-
-	var value = 0;
-
-
-
+	let value = 0;
+	let sklLv = 0;
 	// ステータス値
 	value += GetTotalSpecStatus(MIG_PARAM_ID_CRT);
 
 	// 装備効果
 	value += n_tok[ITEM_SP_H_PLUS_PLUS];
 	value += GetRndOptTotalValue(ITEM_SP_H_PLUS_PLUS);
+
+	// 「スピリットハンドラー」スキル「三霊一体」による効果
+	if ((sklLv = UsedSkillSearch(SKILL_ID_SANREI_ITTAI)) > 0) {
+		value += 5 + 5 * sklLv;
+	}
 
 	// 性能カスタマイズ
 	value += g_objCharaConfCustomSpecStatus.GetConf(CCharaConfCustomSpecStatus.CONF_ID_H_PLUS_PLUS)

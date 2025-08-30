@@ -39471,7 +39471,7 @@ function CSkillManager() {
 				return 230;
 			}
 			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
-				return 25 + 5 * skillLv;
+				return 10 + 20 * skillLv;
 			}
 			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
 				return 0;
@@ -39983,14 +39983,30 @@ function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
-			this.name = "タイガースラッシュ";
+			this.name = "(×)タイガースラッシュ";
 			this.kana = "タイカアスラツシユ";
 			this.maxLv = 7;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.dispHitCount = 2;
+			this.Power = function(skillLv, charaData, option) {
+				let ratio = 0;
+				const state_sanrei_ittai = UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0;
+				const state_tekko = Math.max(UsedSkillSearch(SKILL_ID_NYANTOMO_TEKKO),LearnedSkillSearch(SKILL_ID_NYANTOMO_TEKKO)) > 0;
+				if (state_sanrei_ittai || state_tekko) {
+					ratio = 3500 + 500 * skillLv;
+					ratio += 150 * Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
+				} else {
+					ratio = 2050 + 350 * skillLv;
+					ratio += 100 * Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
+				}
+				// POW補正
+				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				// ベースレベル補正
+				return Math.floor(ratio * n_A_BaseLV / 100);				
+			}
 			this.CriActRate = (skillLv, charaData, specData, mobData) => {
 				return this._CriActRate100(skillLv, charaData, specData, mobData);
 			}
@@ -40011,6 +40027,17 @@ function CSkillManager() {
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 500;
+			}
+			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
+				const state_sanrei_ittai = UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0;
+				const state_tekko = Math.max(UsedSkillSearch(SKILL_ID_NYANTOMO_TEKKO),LearnedSkillSearch(SKILL_ID_NYANTOMO_TEKKO)) > 0;
+				if (state_sanrei_ittai || state_tekko) {
+					return this._CriActRate100(skillLv, charaData, specData, mobData);
+				}
+				return 0;
+			}
+			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
+				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
 		};
 		this.dataArray[skillId] = skillData;

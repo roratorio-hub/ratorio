@@ -2497,6 +2497,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			case SKILL_ID_TENME_RAKUSE:
 			case SKILL_ID_TENSE:
 			/* スピリットハンドラー */
+			case SKILL_ID_TIGER_SLASH:
 			case SKILL_ID_CHUL_HO_BATTERING: // タイガーバトリング
 			/** バイオロ */
 			case SKILL_ID_MYSTERY_POWDER: // 
@@ -2965,40 +2966,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 				// 分割3ヒット
 				wActiveHitNum = 3;
-				break;
-
-			/*
-				「スピリットハンドラー」スキル「タイガースラッシュ」
-				2024/11/08 誤差なしを確認済み
-			*/
-			case SKILL_ID_TIGER_SLASH:
-				// 詠唱など
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// 遠距離属性
-				n_Enekyori = 1;
-				if (   UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0
-					|| UsedSkillSearch(SKILL_ID_NYANTOMO_TEKKO) > 0
-					|| LearnedSkillSearch(SKILL_ID_NYANTOMO_TEKKO) > 0
-					) {
-					// 基礎倍率
-					wbairitu = 3000 + 500 * n_A_ActiveSkillLV;
-					wbairitu += 150 * Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
-				} else {
-					// 基礎倍率
-					wbairitu = 2050 + 350 * n_A_ActiveSkillLV;
-					wbairitu += 100 * Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
-					// クリティカル無し
-					bCri = false;
-				}
-				// POW補正
-				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-				// ベースレベル補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
-				// 分割ヒット
-				wActiveHitNum = 2;
 				break;
 
 			/*
