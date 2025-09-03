@@ -1,4 +1,4 @@
-import './src/funcZstdLoad.ts';
+import './src/funcZstd.ts';
 import './src/loadItemMap.ts';
 import './src/loadJobMap.ts';
 import './src/loadSkillMap.ts';
