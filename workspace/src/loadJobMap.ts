@@ -1,12 +1,10 @@
 import { loadFileAsUint8Array, zstdDecompress } from "./funcZstdLoad";
 import { load as loadYAML } from "js-yaml"
 
-interface JobDataParameter {
+export interface JobDataParameter {
     id_name: string, // ID Name
     id_num: number, //ID Num
     is_doram: boolean, //ドラムかどうか
-    _mig_id_name: string, //MIG ID Name
-    _mig_id_num: number, //MIG ID Num
     name: string, //名前(英語)
     name_ja: string, //名前(日本語)
     name_alias: string[], //名前の別名
@@ -25,6 +23,8 @@ interface JobDataParameter {
     base_lv_min: number, //基本最小レベル
     base_lv_max: number, //基本最大レベル
     job_lv_max: number, //最大ジョブレベル
+    _mig_id_name?: string, //MIG ID Name
+    _mig_id_num?: number, //MIG ID Num
 }
 
 class JobData {
@@ -72,10 +72,10 @@ class JobData {
     getAttackSkills(): string[] {
         return Object.keys(this.parameter.attack_skills).map(idx => this.parameter.attack_skills[idx].id);
     }
-    getMigIdName(): string {
+    getMigIdName(): string | undefined {
         return this.parameter._mig_id_name;
     }
-    getMigIdNum(): number {
+    getMigIdNum(): number | undefined {
         return this.parameter._mig_id_num;
     }
 

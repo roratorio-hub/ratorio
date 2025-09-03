@@ -1,11 +1,7 @@
 import { loadFileAsUint8Array, zstdDecompress } from "./funcZstdLoad";
 import { load as loadYAML } from "js-yaml"
 
-interface SkillDataParameter {
-    _mig_id: string | null;
-    _mig_id2: string | null;
-    _mig_id_num: number | null;
-    _mig_name: string | null;
+export interface SkillDataParameter {
     attack_range: Record<number, number> | null;
     id: string;
     id_num: number;
@@ -18,6 +14,10 @@ interface SkillDataParameter {
     separate_lv: boolean | null;
     sp_amount: Record<number, number> | null;
     type: string | null;
+    _mig_id?: string | null;
+    _mig_id2?: string | null;
+    _mig_id_num?: number | null;
+    _mig_name?: string | null;
 }
 
 class SkillData {
@@ -50,7 +50,7 @@ class SkillData {
     getNeedSkillList(): { need_lv: number; skill_id: string; }[] | null {
         return this.parameter.need_skill_list;
     }
-    getMigIdNum(): number | null {
+    getMigIdNum(): number | null | undefined {
         return this.parameter._mig_id_num;
     }
 }
