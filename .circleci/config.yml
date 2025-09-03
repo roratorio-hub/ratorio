@@ -32,7 +32,8 @@ jobs:
           name: Git Pull in Specified Directory
           command: |
             cd /var/www/html/roratorio-hub
-            git pull --force origin $CIRCLE_BRANCH  # 現在のbranchをpull（必要に応じて調整）
+            git fetch origin $CIRCLE_BRANCH
+            git reset --hard origin/$CIRCLE_BRANCH  # 現在のbranchをリモートに強制的に合わせる（必要に応じて調整）
 
       # 依存関係のパッケージはself-hosted runnerに事前インストール済みとし、ここではスキップ
       #- run:
