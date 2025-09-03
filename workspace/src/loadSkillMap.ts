@@ -50,10 +50,14 @@ class SkillData {
     getNeedSkillList(): { need_lv: number; skill_id: string; }[] | null {
         return this.parameter.need_skill_list;
     }
+    getMigIdNum(): number | null {
+        return this.parameter._mig_id_num;
+    }
 }
 
 export class SkillMap {
     private static skillMap: Record<string, SkillDataParameter> = {};
+    private static migIdNumIndex: Record<number, string> = {};
 
     /** 全てのスキルを取得 */
     static getAll(): [string, SkillDataParameter][] {
@@ -66,37 +70,19 @@ export class SkillMap {
         return skillParam !== undefined ? new SkillData(skillParam) : undefined;
     }
 
-    /** id_num から Skill を取得 */
-    static getByIdNum(num: number): SkillData | undefined {
-        for (const skill of Object.values(this.skillMap)) {
-            if (skill.id_num === num) {
-                return new SkillData(skill);
-            }
-        }
-        return undefined;
+    /** id から Skill があるか */
+    static existsById(id: string): boolean {
+        return this.skillMap[id] !== undefined;
     }
 
-    /** _mig_id から Skill を取得 */
-    static getByMigId(midId: string): SkillData | undefined {
-        for (const skill of Object.values(this.skillMap)) {
-            if (skill._mig_id === midId) {
-                return new SkillData(skill);
-            }
-        }
-        return undefined;
+    /** _mig_id_num から Skill を取得 */
+    static getByMigIdNum(migIdNum: number): SkillData | undefined {
+        const skillId = this.migIdNumIndex[migIdNum];
+        return skillId !== undefined ? this.getById(skillId) : undefined;
     }
 
-    /** _mig_id2 から skill.h.jsで定義していた数値を取得 */
-    static getMigIdNumByMigId2(migId2: string): number {
-        for (const skill of Object.values(this.skillMap)) {
-            if (skill._mig_id2 === migId2) {
-                if (skill._mig_id_num !== null) {
-                    return skill._mig_id_num;
-                }
-                break;
-            }
-        }
-        return -1;
+    static getIdByMigIdNum(migIdNum: number): string | undefined {
+        return this.migIdNumIndex[migIdNum];
     }
 
     /** スキルデータをロード */
@@ -107,6 +93,14 @@ export class SkillMap {
         try {
             // YAMLとしてロード
             this.skillMap = loadYAML(skillLines) as Record<string, SkillDataParameter>;
+
+            // インデックスを構築
+            this.migIdNumIndex = {};
+            for (const skill of Object.values(this.skillMap)) {
+                if (skill._mig_id_num !== null && skill._mig_id_num !== undefined) {
+                    this.migIdNumIndex[skill._mig_id_num] = skill.id;
+                }
+            }
         } catch (err) {
             console.error('YAML load error:', err);
         }

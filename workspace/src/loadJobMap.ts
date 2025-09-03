@@ -18,9 +18,9 @@ interface JobDataParameter {
     additional_status: { [key: number]: { name: string, add_value: number } }, //追加ステータス
     hp_basic_values: number[], //基本HP
     sp_basic_values: number[], //基本SP
-    learned_skills: { [id: string]: { id_num: number } }, //習得スキル
-    passive_skills: { [id: string]: { id_num: number } }, //パッシブスキル
-    attack_skills: { [id: string]: { id_num: number } }, //攻撃スキル
+    learned_skills: { [idx: string]: { id: string, id_num: number } }, //習得スキル
+    passive_skills: { [idx: string]: { id: string, id_num: number } }, //パッシブスキル
+    attack_skills: { [idx: string]: { id: string, id_num: number } }, //攻撃スキル
     allow_equipment_weapons_type: number[], //装備可能武器タイプ
     base_lv_min: number, //基本最小レベル
     base_lv_max: number, //基本最大レベル
@@ -62,6 +62,15 @@ class JobData {
     }
     getJobLvMax(): number {
         return this.parameter.job_lv_max;
+    }
+    getLearnedSkills(): string[] {
+        return Object.keys(this.parameter.learned_skills).map(idx => this.parameter.learned_skills[idx].id);
+    }
+    getPassiveSkills(): string[] {
+        return Object.keys(this.parameter.passive_skills).map(idx => this.parameter.passive_skills[idx].id);
+    }
+    getAttackSkills(): string[] {
+        return Object.keys(this.parameter.attack_skills).map(idx => this.parameter.attack_skills[idx].id);
     }
     getMigIdName(): string {
         return this.parameter._mig_id_name;

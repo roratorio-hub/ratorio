@@ -3,8 +3,9 @@
  * 「職固有自己支援」のバフウィンドウ構築関数群
 */ 
 
+const BUFF_CONF_SELF_LIMIT = 51;
 /** 職固有自己支援 設定値の配列 */
-let n_A_PassSkill = Array(51).fill(0);
+let n_A_PassSkill = Array(BUFF_CONF_SELF_LIMIT).fill(0);
 /** 職固有自己支援 ウィンドウ可視状態 */
 let n_Skill1SW = false;
 
@@ -12,19 +13,23 @@ let n_Skill1SW = false;
  * 職固有自己支援 チェックボックス生成
  */
 function Click_PassSkillSW(){
-	let idx = 0;
-	let passiveSkillIdArray = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, n_A_JOB).GetPassiveSkillIdArray();
+	// 職業データ
+	const jobData = JobMap.getByMigIdNum(n_A_JOB);
+	// パッシブスキルID配列
+	const passiveSKillIds = jobData.getPassiveSkills();
+
 	let table_header = `
 		<TABLE Border class="tooltip-target" data-tooltip="パッシブスキル等は今後削除する予定です。代わりに習得スキル欄を使ってください。">
 			<TR><TD ColSpan="4" id="A1TD" Bgcolor="#DDDDFF" class="title">
 				<input id="OBJID_CHECK_A1_SKILL_SW" type="checkbox" name="A1_SKILLSW" onClick="Click_PassSkillSW()">
-				<label for="OBJID_CHECK_A1_SKILL_SW">${GetJobName(n_A_JOB)}固有自己支援</label>
+				<label for="OBJID_CHECK_A1_SKILL_SW">${jobData.getNameJa()}固有自己支援</label>
 				<span id="A1used"></span>
 			</TD></TR>
 		`;
+
 	n_Skill1SW = document.calcForm.A1_SKILLSW.checked;
 	if (n_Skill1SW) {
-		let end = passiveSkillIdArray.length -1;
+		let end = passiveSKillIds.length - 1;
 		let str = table_header;
 		for (let i = 0; i <= end; i += 2) {
 			str += '<TR><TD id="P_Skill'+ i +'"></TD><TD id="P_Skill'+ i +'s"></TD><TD id="P_Skill'+ (i+1) +'"></TD><TD id="P_Skill'+ (i+1) +'s"></TD></TR>';
@@ -32,36 +37,51 @@ function Click_PassSkillSW(){
 		str += '</TABLE>';
 		myInnerHtml("ID_PASS_SKILL",str,0);
 		document.calcForm.A1_SKILLSW.checked = true;
-		for (let i = 0; i <= end; i++) {
-				if (passiveSkillIdArray[i] == SKILL_ID_SHUCHURYOKU_KOZYO) {
-					myInnerHtml("P_Skill"+i, SkillObjNew[passiveSkillIdArray[i]][SKILL_DATA_INDEX_NAME] + "　<a href=\"../kousin/note20210606.html\" target=\"_blank\">(★注意情報★)</a>", 0);
-				}
-				else {
-					myInnerHtml("P_Skill"+i,SkillObjNew[passiveSkillIdArray[i]][SKILL_DATA_INDEX_NAME],0);
-				}
-				myInnerHtml("P_Skill"+i+"s","<select name=A_skill"+i+" id=A_skill"+i+" onChange=Click_A1(true)></select>",0);
+
+		// 既存SelectBoxは削除
+		for (let idx = 0; idx < BUFF_CONF_SELF_LIMIT; idx++) {
+			const selectElement = document.getElementById(`A_skill${idx}`);
+			if (selectElement) {
+				selectElement.parentNode.removeChild(selectElement);
+			}
 		}
-		for (let j = 0; j <= end; j++) {
-				let w = passiveSkillIdArray[j];
-				const w2 = [12,68,74,152,153,155,196,253,258,301,309,310,322,345,364,365,383,379,385,386,389,390,392,420,421,422,450,453,522,750,752];
-				let wOBJ = document.getElementById("A_skill"+j);
-				if(NumSearch(w,w2)){
-					wOBJ.options[0] = new Option("off",0);
-					wOBJ.options[1] = new Option("on",1);
-				}
-				else{
-					for(let i = 10; i >= 0; i--) {
-						wOBJ.options[i] = null;
+
+		// 選択肢が2つしかないMigIdNumリスト?
+		// 利用しない方向に変更
+		//const w2 = [12, 68, 74, 152, 153, 155, 196, 253, 258, 301, 309, 310, 322, 345, 364, 365, 383, 379, 385, 386, 389, 390, 392, 420, 421, 422, 450, 453, 522, 750, 752];
+
+		passiveSKillIds.forEach((skillId, idx) => {
+			const skillData = SkillMap.getById(skillId);
+			const skillName = skillData.getName();
+			if (skillName == undefined) return;
+			
+			if (skillId == "AC_CONCENTRATION") {
+				//集中力向上
+				myInnerHtml(`P_Skill${idx}`, `${skillName}　<a href="../kousin/note20210606.html" target="_blank">(★注意情報★)</a>`, 0);
+			} else {
+				myInnerHtml(`P_Skill${idx}`, skillName, 0);
+			}
+			myInnerHtml(`P_Skill${idx}s`, `<select name="A_skill${idx}" id="A_skill${idx}" data-passive-skill-id="${skillId}" onChange="Click_A1(true)"></select>`, 0);
+
+			const selectElement = document.getElementById(`A_skill${idx}`);
+			if (selectElement) {
+				if (skillData.getMaxLv() == 1) {
+					selectElement.options[0] = new Option("off", "0");
+					selectElement.options[1] = new Option("on",  "1");
+				} else {
+					for (let level = 0; level <= skillData.getMaxLv(); level++) {
+						selectElement.options[level] = new Option(level, level.toString());
 					}
-					for(let i = 0; i <= SkillObjNew[passiveSkillIdArray[j]][SKILL_DATA_INDEX_MAXLV]; i++) {
-						wOBJ.options[i] = new Option(i,i);
-					}
 				}
-				// スパノビの魂専用処理
-				if (w == SKILL_ID_SUPER_NOVICENO_TAMASHI) {
-					wOBJ.setAttribute("onClick", "RefreshSuperNoviceFullWeapon(parseInt(this.value) == 1)");
+				// スパノビの魂(SL_SUPERNOVICE)専用処理
+				if (skillId == "SL_SUPERNOVICE") {
+					selectElement.setAttribute("onClick", "RefreshSuperNoviceFullWeapon(parseInt(this.value) == 1)");
 				}
-		}
+			}
+
+		});
+
+		/*
 		var w = NumSearch2(SKILL_ID_ENERGY_COAT, passiveSkillIdArray);
 		if(w != -1){
 				var wOBJ = document.getElementById("A_skill" + w);
@@ -484,12 +504,13 @@ function Click_PassSkillSW(){
 				let wOBJ = document.getElementById("A_skill" + i);
 				wOBJ.value = n_A_PassSkill[i];
 		}
+		*/
 	} else {
 		let str = `
 			<TABLE Border>
 				<TR><TD ColSpan="4" id="A1TD" Bgcolor="#DDDDFF" class="title">
 					<input id="OBJID_CHECK_A1_SKILL_SW" type="checkbox" name="A1_SKILLSW" onClick="Click_PassSkillSW()">
-					<label for="OBJID_CHECK_A1_SKILL_SW">${GetJobName(n_A_JOB)}固有自己支援</label>
+					<label for="OBJID_CHECK_A1_SKILL_SW">${jobData.getNameJa()}固有自己支援</label>
 					<span id="A1used"></span>
 				</TD></TR>
 			</TABLE>
