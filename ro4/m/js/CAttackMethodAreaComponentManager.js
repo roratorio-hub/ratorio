@@ -3861,12 +3861,35 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 				break;
 
 			//----------------------------------------------------------------
-			// 蜃気楼＆不知火：属性砲
+			// 蜃気楼＆不知火：4属性砲
 			//----------------------------------------------------------------
 			case SKILL_ID_SEKIEN_HOU:
 			case SKILL_ID_REIKETSU_HOU:
 			case SKILL_ID_RAIDEN_HOU:
 			case SKILL_ID_KINNRYUU_HOU:
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"蜃気楼分身の状態",
+					[
+						[0, "本体のみ"],
+						[1, "本体 + 分身1体"],
+						[2, "本体 + 分身2体"],
+						[3, "本体 + 分身3体"],
+					],
+					0
+				);
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"四色符",
+					[
+						[0, "無し"],
+						[1, "有り"],
+					],
+					0
+				);
+				break;
+
+			//----------------------------------------------------------------
+			// 蜃気楼＆不知火：暗転砲
+			//----------------------------------------------------------------
 			case SKILL_ID_ANTEN_HOU:
 				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
 					"蜃気楼分身の状態",

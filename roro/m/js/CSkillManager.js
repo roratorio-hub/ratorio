@@ -40140,7 +40140,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)影の舞";
+			this.name = "影の舞";
 			this.kana = "カケノマイ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -40179,7 +40179,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)影一閃";
+			this.name = "影一閃";
 			this.kana = "カケイツセン";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -40192,7 +40192,7 @@ function CSkillManager() {
 				const kage_no_mai_lv = Math.max(LearnedSkillSearch(SKILL_ID_KAGE_NO_MAI), option.GetOptionValue(0));
 				// ダメージ倍率
 				ratio = 500 + 50 * skillLv;				// 基礎倍率
-				ratio += 30 * skillLv * kage_no_mai_lv;	// 修練係数 未検証
+				ratio += 5 * skillLv * kage_no_mai_lv;	// 修練係数 検証済み
 				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// 特性ステータス補正
 				return Math.floor(ratio * n_A_BaseLV / 100);		// BaseLv補正
 			}
@@ -40235,7 +40235,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)影狩り";
+			this.name = "影狩り";
 			this.kana = "カケカリ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -40247,7 +40247,7 @@ function CSkillManager() {
 				ratio = 7700 + 100 * skillLv;					// 基礎倍率
 				// 影一閃の習得Lv
 				const kage_issen_lv = Math.max(LearnedSkillSearch(SKILL_ID_KAGE_ISSEN), option.GetOptionValue(0));
-				ratio += 45 * skillLv * kage_issen_lv;			// 修練係数 未検証
+				ratio += 87 * skillLv * kage_issen_lv;			// 修練係数 検証済み
 				ratio += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);		// 特性ステータス
 				return Math.floor(ratio * n_A_BaseLV / 100);			// BaseLv補正
 			}
@@ -44021,7 +44021,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)四色符";
+			this.name = "四色符";
 			this.kana = "四色符";
 			this.maxLv = 1;
 			this.type = CSkillData.TYPE_ACTIVE;
