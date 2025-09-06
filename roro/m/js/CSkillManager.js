@@ -42841,7 +42841,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)ワイルドショット";
+			this.name = "ワイルドショット";
 			this.kana = "ワイルドショット";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -42858,11 +42858,10 @@ function CSkillManager() {
 				const state_hidden_card = Math.max(UsedSkillSearch(SKILL_ID_HIDDEN_CARD));
 				if (state_hidden_card > 0) {
 					ratio += 475 + 205 * skillLv;
-					ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_CON);	// Con係数未検証
 				} else {
 					ratio += 475 + 125 * skillLv;
-					ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_CON);	// Con係数未検証
 				}
+				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_CON);	// Con係数 検証済み
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
@@ -42902,7 +42901,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)ミッドナイトフォーリン";
+			this.name = "ミッドナイトフォーリン";
 			this.kana = "ミッドナイトフォーリン";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -42920,11 +42919,10 @@ function CSkillManager() {
 				const state_hidden_card = Math.max(UsedSkillSearch(SKILL_ID_HIDDEN_CARD));
 				if (state_hidden_card > 0) {
 					ratio += 925 + 235 * skillLv;
-					ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_CON);	// Con係数未検証
 				} else {
 					ratio += 925 + 125 * skillLv;
-					ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_CON);	// Con係数未検証
 				}
+				ratio += 7 * GetTotalSpecStatus(MIG_PARAM_ID_CON);	// Con係数 検証済み
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
@@ -43920,7 +43918,7 @@ function CSkillManager() {
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				ratio += 5950 + 1450 * skillLv;
-				ratio += 44 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数未検証
+				ratio += 44 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数 検証済み
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
