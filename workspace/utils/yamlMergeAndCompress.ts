@@ -123,14 +123,14 @@ async function mergeSkill(): Promise<void> {
             console.warn(`attack_range のパースに失敗: ${(value as any).attack_range} (${(e as Error).message})`);
         }
 
-        for (const { migIdNum, level, name, code } of migSkill) {
+        const matchedMig = migSkill.find(({ migIdNum, level, name, code }) => {
             const migName = name?.replace(/^\(.+?\)/, "").trim();
-            if ((code !== null && code == id) || (name == skillMapObject[id].name) || (migName == skillMapObject[id].name)) {
-                skillMapObject[id]._mig_id_num = migIdNum;
-                skillMapObject[id]._mig_name = name;
-                skillMapObject[id]._mig_id_name = code;
-                return;
-            }
+            return (code !== null && code == id) || (name == skillMapObject[id].name) || (migName == skillMapObject[id].name);
+        });
+        if (matchedMig) {
+            skillMapObject[id]._mig_id_num = matchedMig.migIdNum;
+            skillMapObject[id]._mig_name = matchedMig.name;
+            skillMapObject[id]._mig_id_name = matchedMig.code;
         }
     });
 
