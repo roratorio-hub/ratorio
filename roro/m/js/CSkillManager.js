@@ -14355,7 +14355,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)ジュデックス";
+			this.name = "ジュデックス";
 			this.kana = "シユテツクス";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL
@@ -14432,7 +14432,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)アドラムス";
+			this.name = "アドラムス";
 			this.kana = "アトラムス";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL
@@ -32323,7 +32323,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)エフィリゴ";
+			this.name = "エフィリゴ";
 			this.kana = "エフイリコ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -32578,7 +32578,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)ペティティオ";
+			this.name = "ペティティオ";
 			this.kana = "ヘテイテイオ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -32589,15 +32589,16 @@ function CSkillManager() {
 			this.range = function(weapon) {
 				return (weapon === ITEM_KIND_BOOK) ? CSkillData.RANGE_SHORT : CSkillData.RANGE_LONG;
 			}
-			this.Power = function(skillLv, charaData, option, mobData) {			// スキル倍率
+			this.Power = function(skillLv, charaData, option, mobData) { // スキル倍率
+				// 計算式はこれで良いと判断しているが Lv1, 5, 10 のとき僅かな誤差があり小数点以下の扱いに未知のルールがありそう
 				let ratio = 0;
 				const donki_hon_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_DONKI_HON_SHUREN), UsedSkillSearch(SKILL_ID_DONKI_HON_SHUREN));
 				// 基本倍率
 				ratio = 350 * skillLv;
-				// POW補正 未検証
-				ratio += 15 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-				// 鈍器・本修練補正 未検証
-				ratio += 20 * skillLv * donki_hon_shuren_lv;
+				// POW補正 検証済み
+				ratio += 20 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				// 鈍器・本修練補正 検証済み
+				ratio += 25 * skillLv * donki_hon_shuren_lv;
 				// ベースレベル補正
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
@@ -43849,7 +43850,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)ディヴィヌスフロス";
+			this.name = "ディヴィヌスフロス";
 			this.kana = "ディヴィヌスフロス";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
@@ -43866,8 +43867,8 @@ function CSkillManager() {
 				let ratio = 0;
 				const fidos_animus_lv = Math.max(UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS), LearnedSkillSearch(SKILL_ID_FIDOS_ANIMUS));
 				ratio += 1000 + 1000 * skillLv;
-				ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// Spl係数未検証
-				ratio += 1 * fidos_animus_lv;	// 修練係数未検証
+				ratio += 30 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// Spl係数 検証済み
+				ratio += 300 * fidos_animus_lv;	// 修練係数 検証済み
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
