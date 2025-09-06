@@ -4,12 +4,8 @@
 // この数を超える場合は、セーブデータの拡張が必要
 MOB_CONF_BUF_LIMIT = 80;
 
-
-
-
-
 // 初期化作業
-n_B_KYOUKA = new Array();
+let n_B_KYOUKA = [];
 
 MobConfBufOBJ = new Array();
 

@@ -28492,7 +28492,7 @@ function GetEquippedSPSubEquip(spid, invalidItemIdArray, bListUp, bExact) {
 
 
 	// 全ての装備箇所をループ
-	for(eqpRegionId = 0; eqpRegionId <= 50; eqpRegionId++) {	// セットが増えたらこの上限が増える可能性がある
+	for(eqpRegionId = 0; eqpRegionId < n_A_Equip.length; eqpRegionId++) {
 
 		// 装備データからアイテムデータを取得
 		itemId = n_A_Equip[eqpRegionId];
@@ -30237,6 +30237,10 @@ function LoadSaveDataToCalculator () {
 	}
 }
 
+/**
+ * 計算機の初回ロード時、および職業変更時に呼び出される初期化関数
+ * @param {*} jobId 
+ */
 function Init(jobId){
 	// 職業IDが引数で渡されなかった時用のコード
 	if (typeof jobId === "undefined" || jobId === null) {
@@ -30278,16 +30282,33 @@ function Init(jobId){
 	n_A_SHOULDER_DEF_PLUS = 0;
 	n_A_SHOES_DEF_PLUS = 0;
 
-	n_A_Equip = new Array();	// セットが増えたらこの上限が増える可能性がある
-	for(i=0;i<=50;i++) n_A_Equip[i] = 0;
+	n_A_Equip = new Array();
+	for(let i = 0; i <= ITEMSET_ID_LIMIT_WITH_ITEM; i++) n_A_Equip[i] = 0;
 
 	n_A_card = new Array();
-	for(i=0;i<=100;i++) n_A_card[i] = 0;
+	for(let i = 0; i <= ITEMSET_ID_LIMIT_WITH_CARD; i++) n_A_card[i] = 0;
 
 	n_A_costume = new Array();
 	for(i = 0; i < COSTUME_REGION_ID_COUNT; i++) {
 		n_A_costume[i] = 0;
 	}
+
+	// 対プレイヤー設定 の初期化
+	n_B_TAISEI = Array(MOB_CONF_PLAYER_LIMIT).fill(0);
+	// モンスター状態強化 の初期化
+	n_B_KYOUKA = Array(MOB_CONF_BUF_LIMIT).fill(0);
+	// モンスター状態異常 の初期化
+	n_B_IJYOU = Array(MOB_CONF_DEBUF_LIMIT).fill(0);
+	// ギルドスキル/ゴスペル/他 の初期化
+	n_A_PassSkill4 = Array(BUFF_CONF_GUILD_LIMIT).fill(0);
+	// アイテム・食品他 の初期化
+	n_A_PassSkill7 = Array(BUFF_CONF_FOOD_LIMIT).fill(0);
+	// 演奏・踊り系スキル の初期化
+	n_A_PassSkill3 = Array(BUFF_CONF_MUSICAL_LIMIT).fill(0);
+	// 職固有自己支援 の初期化
+	n_A_PassSkill = Array(BUFF_CONF_SELF_LIMIT).fill(0);
+	// その他の支援/設定 の初期化
+	n_A_PassSkill8 = Array(BUFF_CONF_OTHER_LIMIT).fill(0);
 
 	// オートスペル設定
 	n_A_PassSkill5 = new Array();

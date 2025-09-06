@@ -27,7 +27,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20' # memo: version 20 のEOLは 2026年4月頃
+          node-version: '22' # memo: version 22 のEOLは 2027年4月頃
 
       # Node.js 依存関係をインストール & webpack でビルド
       - name: Install and build Node.js dependencies
@@ -35,6 +35,8 @@ jobs:
         run: |
              npm install
              npm run build
+             cd workspace
+             npx ts-node --project tsconfig.node.json utils/yamlMergeAndCompress.ts
 
       # PR に release ラベルが付与されている時のみ PR がマージされた日時を json に書き出す
       - name: Get and format PR merged date in JST
@@ -63,21 +65,10 @@ jobs:
           git commit -m "リリース日時の更新"
           git push
 
-      # zstd をインストール
-      - name: Install zstd
-        run: sudo apt-get install -y zstd
-
-      # YAMLファイルをzstdで圧縮
-      - name: Compress YAML file with zstd
-        run: |
-          find ./workspace/data/ -name '*.zst' -type f -exec rm -f {} +
-          find ./workspace/data/ -name '*.yaml' -type f -exec zstd -f {} +
-          find ./workspace/data/ -name '*.yaml.zst' -type f -exec mv -t ./dist/ {} +
-
       # `dist` ディレクトリの内容を GitHub Pages にデプロイ
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./  # ルートディレクトリをコピーする
-          exclude_assets: '.github,.gemini,node_modules,.gitignore,解析メモ,util,workspace'
+          exclude_assets: '.circleci,.github,.gemini,node_modules,.gitignore,解析メモ,util,workspace'

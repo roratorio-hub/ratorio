@@ -1,10 +1,7 @@
 #!/bin/bash
 rm -rf node_modules
 rm -rf package-lock.json
-find ./data/ -name '*.zst' -type f -exec rm -f {} +
-find ./data/ -name '*.yaml' -type f -exec zstd -f {} +
 mkdir -p ../dist/
-find ./data/ -name '*.yaml.zst' -type f -exec mv -t ../dist/ {} +
 npm install
 npm run build
 npx ts-node --project tsconfig.node.json utils/yamlMergeAndCompress.ts

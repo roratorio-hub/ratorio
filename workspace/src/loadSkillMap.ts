@@ -15,6 +15,7 @@ export interface SkillDataParameter {
     sp_amount: Record<number, number> | null;
     type: string | null;
     _mig_id_num?: number | null;
+    _mig_id_name?: string | null;
     _mig_name?: string | null;
 }
 

@@ -3,8 +3,8 @@
 // TODO: いずれ修正予定
 ITEM_SET_PET_ID_OFFSET = 10000;
 
-
-
+const ITEMSET_ID_LIMIT_WITH_ITEM = 100;
+const ITEMSET_ID_LIMIT_WITH_CARD = 100;
 
 // アイテムセット定義配列
 w_SE = new Array();
@@ -209,11 +209,10 @@ function CheckAndApplyItemSetEquipping() {
 	}
 
 	// 領域の空きを埋める
-	// TODO: 根拠のないマジックナンバー直接指定
-	while (modifiedItemIdArray.length < 51) {	// セットが増えたらこの上限が増える可能性がある
+	while (modifiedItemIdArray.length < ITEMSET_ID_LIMIT_WITH_ITEM) {	// セットが増えたらこの上限が増える可能性がある
 		modifiedItemIdArray.push(ITEM_ID_NOEQUIP_SET);
 	}
-	while (modifiedCardIdArray.length < 100) {
+	while (modifiedCardIdArray.length < ITEMSET_ID_LIMIT_WITH_CARD) {
 		modifiedCardIdArray.push(CARD_ID_NONE);
 	}
 

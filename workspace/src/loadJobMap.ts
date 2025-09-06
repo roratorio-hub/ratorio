@@ -23,7 +23,8 @@ export interface JobDataParameter {
     base_lv_min: number, //基本最小レベル
     base_lv_max: number, //基本最大レベル
     job_lv_max: number, //最大ジョブレベル
-    _mig_id_name?: string, //MIG ID Name
+    status_basic_max: number, //基本ステータス最大値
+    status_talent_max: number, //特性ステータス最大値
     _mig_id_num?: number, //MIG ID Num
 }
 
@@ -71,9 +72,6 @@ class JobData {
     }
     getAttackSkills(): string[] {
         return Object.keys(this.parameter.attack_skills).map(idx => this.parameter.attack_skills[idx].id);
-    }
-    getMigIdName(): string | undefined {
-        return this.parameter._mig_id_name;
     }
     getMigIdNum(): number | undefined {
         return this.parameter._mig_id_num;
