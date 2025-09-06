@@ -723,7 +723,13 @@ const statusMap: Record<number, string> = {
     2: "vit",
     3: "dex",
     4: "int",
-    5: "luk"
+    5: "luk",
+    6: "pow",
+    7: "sta",
+    8: "wis",
+    9: "spl",
+    10: "con",
+    11: "crt",
 };
 
 // YAMLオプションを定義（Pythonの represent_str に相当）
