@@ -3050,7 +3050,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				const kage_gari_lv = Math.max(LearnedSkillSearch(SKILL_ID_KAGE_GARI), attackMethodConfArray[0].GetOptionValue(1));
 				// ダメージ倍率
 				wbairitu = 4600 + 100 * n_A_ActiveSkillLV;				// 基礎倍率
-				wbairitu += 45 * n_A_ActiveSkillLV * kage_gari_lv;		// 修練係数 未検証
+				wbairitu += 56 * n_A_ActiveSkillLV * kage_gari_lv;		// 修練係数 検証済み
 				wbairitu += 4 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// 特性ステータス補正
 				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);		// BaseLv補正
 				if (battleCalcInfo.parentSkillId === undefined) {
@@ -7598,11 +7598,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				// 基本倍率
 				wbairitu = 200 + 100 * n_A_ActiveSkillLV;
 				// SPL補正
-				if (n_A_ActiveSkillLV <= 5) {
-					wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				} else {
-					wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				}
+				wbairitu += 4 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			}
 			// ベースレベル補正
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
@@ -8259,8 +8255,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 
 		/**
 		 * 「蜃気楼　不知火」スキル「赤炎砲」「冷血砲」「雷電砲」「金龍砲」
-		 * 2024/10/23 提供データとの誤差+1以下を確認しています
-		 * 計算前後の丸め誤差によるものと判断
 		 */
 		case SKILL_ID_SEKIEN_HOU:
 		case SKILL_ID_REIKETSU_HOU:
@@ -8275,7 +8269,13 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			const anten_hou_lv = Math.max(LearnedSkillSearch(SKILL_ID_ANTEN_HOU), UsedSkillSearch(SKILL_ID_ANTEN_HOU_LEARNED_LEVEL));
 			if (battleCalcInfo.parentSkillId === undefined) {
 				// 本体の攻撃
-				wbairitu = 4000 + 300 * n_A_ActiveSkillLV;					// 基本倍率
+				const yonshoku_fu = attackMethodConfArray[0].GetOptionValue(1);
+				if (yonshoku_fu === 0) {
+					wbairitu = 4000 + 300 * n_A_ActiveSkillLV;
+				} else {
+					// 四色符 は4属性部分の基本倍率のみに影響する
+					wbairitu = 7500 + 300 * n_A_ActiveSkillLV;
+				}
 				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);		// spl補正
 				wbairitu += 70 * n_A_ActiveSkillLV * anten_hou_lv;			// 習得済みスキル条件
 				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);			// BaseLv補正
