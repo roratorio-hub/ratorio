@@ -7598,11 +7598,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				// 基本倍率
 				wbairitu = 200 + 100 * n_A_ActiveSkillLV;
 				// SPL補正
-				if (n_A_ActiveSkillLV <= 5) {
-					wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				} else {
-					wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				}
+				wbairitu += 4 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			}
 			// ベースレベル補正
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
