@@ -43795,7 +43795,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)クロススラッシュ";
+			this.name = "クロススラッシュ";
 			this.kana = "クロススラッシュ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -43805,12 +43805,10 @@ function CSkillManager() {
 				let ratio = 0;
 				// TODO: シャドウエクシード状態はスキル倍率のみに影響するため職固有自己支援から攻撃オプションへ移行する
 				const state_shadow_exceed = Math.max(UsedSkillSearch(SKILL_ID_SHADOW_EXCEED), option.GetOptionValue(0)) > 0;
+				ratio += 50 + 50 * skillLv;
+				ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数 検証済み
 				if (state_shadow_exceed) {
-					ratio += 100 + 100 * skillLv;
-					ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数未検証
-				} else {
-					ratio += 50 + 50 * skillLv;
-					ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数未検証
+					ratio *= 2;
 				}
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
