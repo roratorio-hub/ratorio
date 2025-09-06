@@ -42964,7 +42964,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)リズミカルウェーブ";
+			this.name = "リズミカルウェーブ";
 			this.kana = "リズミカルウェーブ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
@@ -42991,10 +42991,10 @@ function CSkillManager() {
 				const stage_manner_lv = Math.max(UsedSkillSearch(SKILL_ID_STAGE_MANNER), LearnedSkillSearch(SKILL_ID_STAGE_MANNER));
 				if (state_mystic_symphony === 1) {
 					ratio += 4000 + 1000 * skillLv;
-					ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_SPL) * stage_manner_lv;	// Spl係数未検証
+					ratio += 6 * GetTotalSpecStatus(MIG_PARAM_ID_SPL) * stage_manner_lv;	// Spl係数 検証済み
 				} else {
 					ratio += 2250 + 750 * skillLv;
-					ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_SPL) * stage_manner_lv;	// Spl係数未検証
+					ratio += 4 * GetTotalSpecStatus(MIG_PARAM_ID_SPL) * stage_manner_lv;	// Spl係数 検証済み
 				}
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
