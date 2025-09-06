@@ -40778,7 +40778,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)エクスプロッシブパウダー";
+			this.name = "エクスプロッシブパウダー";
 			this.kana = "エクスフロツシフハウタア";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -40786,13 +40786,14 @@ function CSkillManager() {
 			this.element = CSkillData.ELEMENT_VOID;
 			this.Power = function(skillLv, charaData, option) {
 				let ratio = 0;
-				const state_research_report = UsedSkillSearch(SKILL_ID_RESEARCH_REPORT) > 0;
+				// TODO: リサーチレポートはスキル倍率のみに影響を与えるので職固有自己支援からオプションへ移行する
+				const state_research_report = Math.max(UsedSkillSearch(SKILL_ID_RESEARCH_REPORT),option.GetOptionValue(0)) > 0;
 				if (state_research_report) {
 					ratio = 7750 + 1750 * skillLv;
-					ratio += 23 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+					ratio += 55 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				} else {
 					ratio = 5700 + 1500 * skillLv;
-					ratio += 29 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+					ratio += 44 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				}
 				return Math.floor(ratio * n_A_BaseLV / 100);				
 			}
@@ -43910,7 +43911,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)ミステリーパウダー";
+			this.name = "ミステリーパウダー";
 			this.kana = "ミステリーパウダー";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -43919,7 +43920,7 @@ function CSkillManager() {
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				ratio += 5950 + 1450 * skillLv;
-				ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数未検証
+				ratio += 44 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数未検証
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
@@ -43961,7 +43962,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)ダストエクスプロージョン";
+			this.name = "ダストエクスプロージョン";
 			this.kana = "ダストエクスプロージョン";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -43974,10 +43975,10 @@ function CSkillManager() {
 				const state_research_report = Math.max(UsedSkillSearch(SKILL_ID_RESEARCH_REPORT), option.GetOptionValue(0)) === 1;
 				if (state_research_report) {
 					ratio += 7000 + 1900 * skillLv;
-					ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数未検証
+					ratio += 55 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数 検証済み
 				} else {
 					ratio += 5950 + 1450 * skillLv;
-					ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数未検証
+					ratio += 44 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数 検証済み
 				}
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}

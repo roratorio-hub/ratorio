@@ -4237,9 +4237,11 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 				);
 				break;
 			/**
+			 * エクスプロッシブパウダー
 			 * ダストエクスプロージョン
 			 */
 			case SKILL_ID_DUST_EXPLOSION:
+			case SKILL_ID_EXPLOSIVE_POWDER:
 				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
 					"リサーチレポート状態",
 					[
