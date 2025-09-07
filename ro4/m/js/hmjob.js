@@ -1344,6 +1344,7 @@ function ApplySpecModify(spid, spVal) {
 
 		// 「インクイジター」スキル「忠実な信念」習得による効果
 		if ((sklLv = UsedSkillSearch(SKILL_ID_CHUZITSUNA_SHINNEN)) > 0) {
+			sklLv = ValueRangeModify(sklLv, 0, 5);
 			spVal += [0, 1, 3, 5, 10, 15][sklLv];
 		}
 		break;
