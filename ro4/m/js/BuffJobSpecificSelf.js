@@ -770,9 +770,9 @@ function UsedSkillSearch(sklId, bOnlyUsed = false) {
 }
 
 /**
- * 有効化されている「職固有自己支援」の設定Lvを取得する
+ * 有効化されている「職固有自己支援」の設定Lvを取得する. 
  * @param {Number} sklId 確認するスキル
- * @returns {Number} 設定されているLv
+ * @returns {Number} 設定されているLv. 異常な値がセットされている場合は何も返さない.
  */
 function UsedSkillSearchSubUsedOnly(sklId) {
 	// 設定可能な全ての職固有自己支援スキルを取得する
