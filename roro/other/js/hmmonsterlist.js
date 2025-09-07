@@ -334,26 +334,27 @@ function RefreshMonsterList() {
 	}
 
 	// ソートの 範囲 を特定する
-	objLow = document.getElementById("OBJID_INPUT_LOW");
-	LowNum = parseInt(objLow.value);
-	objHigh = document.getElementById("OBJID_INPUT_HIGH");
-	HighNum = parseInt(objHigh.value);
-	if(isNaN(LowNum)){
-		LowNum = 0;
-	}
-	if(isNaN(HighNum)){
-		HighNum = 0;
+	var objLow = document.getElementById("OBJID_INPUT_LOW");
+	var LowNum = parseInt(objLow.value, 10);
+	var objHigh = document.getElementById("OBJID_INPUT_HIGH");
+	var HighNum = parseInt(objHigh.value, 10);
+
+	// 下限値でフィルタリング
+	if (!isNaN(LowNum)) {
+		dataArraySorted = dataArraySorted.filter(
+			function (i) {
+				return i[sortKeyIndex] >= LowNum;
+			}
+		);
 	}
 
-
-	// 条件で抽出
-	if(LowNum){
-		NewArray = dataArraySorted.filter(i => i[sortKeyIndex] >= LowNum);
-		dataArraySorted = NewArray;
-	}
-	if(HighNum){
-		NewArray = dataArraySorted.filter(i => i[sortKeyIndex] <= HighNum);
-		dataArraySorted = NewArray;
+	// 上限値でフィルタリング
+	if (!isNaN(HighNum)) {
+		dataArraySorted = dataArraySorted.filter(
+			function (i) {
+				return i[sortKeyIndex] <= HighNum;
+			}
+		);
 	}
 
 
