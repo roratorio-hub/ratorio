@@ -9,11 +9,11 @@ let n_A_PassSkill = Array(BUFF_CONF_SELF_LIMIT).fill(0);
 /** 職固有自己支援 ウィンドウ可視状態 */
 let n_Skill1SW = false;
 
-function findSearchIndex(searchSkillIdNum, skillIds) {
+function findIndexByMigIdNum(findMigIdNum, skillIds) {
 	const idx = skillIds.findIndex((skillId) => {
 		const skillData = SkillMap.getById(skillId);
 		const migIdNum = skillData.getMigIdNum();
-		return migIdNum == searchSkillIdNum;
+		return migIdNum == findMigIdNum;
 	});
 	return idx;
 }
@@ -89,7 +89,7 @@ function Click_PassSkillSW(){
 			}
 
 		});
-		var w = findSearchIndex(SKILL_ID_ENERGY_COAT, passiveSkillIds);
+		var w = findIndexByMigIdNum(SKILL_ID_ENERGY_COAT, passiveSkillIds);
 		if(w != -1){
 				var wOBJ = document.getElementById("A_skill" + w);
 				for(i=10;i>=0;i--) wOBJ.options[i] = null;
@@ -97,7 +97,7 @@ function Click_PassSkillSW(){
 				for(i=1;i<=5;i++) w_ECname[i] += "カット";
 				for(i=0;i<=5;i++) wOBJ.options[i] = new Option(w_ECname[i],i);
 		}
-		var w = findSearchIndex(SKILL_ID_KIHE_SHUREN, passiveSkillIds);
+		var w = findIndexByMigIdNum(SKILL_ID_KIHE_SHUREN, passiveSkillIds);
 		if(w != -1){
 				var wOBJ = document.getElementById("A_skill" + w);
 				for(i=10;i>=0;i--) wOBJ.options[i] = null;
@@ -106,7 +106,7 @@ function Click_PassSkillSW(){
 				for(i=1;i<=6;i++) w_name[i] = "修練" + (i-1);
 				for(i=0;i<=6;i++) wOBJ.options[i] = new Option(w_name[i],i);
 		}
-		var w = findSearchIndex(SKILL_ID_DRAGON_TRAINING, passiveSkillIds);
+		var w = findIndexByMigIdNum(SKILL_ID_DRAGON_TRAINING, passiveSkillIds);
 		if(w != -1){
 				var wOBJ = document.getElementById("A_skill" + w);
 				for(i=10;i>=0;i--) wOBJ.options[i] = null;
@@ -115,7 +115,7 @@ function Click_PassSkillSW(){
 				for(i=1;i<=6;i++) w_name[i] = "Lv" + (i-1);
 				for(i=0;i<=6;i++) wOBJ.options[i] = new Option(w_name[i],i);
 		}
-		var w = findSearchIndex(SKILL_ID_FIGHTING_SPIRIT,passiveSkillIds);
+		var w = findIndexByMigIdNum(SKILL_ID_FIGHTING_SPIRIT,passiveSkillIds);
 		if(w != -1){
 				var wOBJ = document.getElementById("A_skill" + w);
 				for(i=10;i>=0;i--) wOBJ.options[i] = null;
@@ -123,7 +123,7 @@ function Click_PassSkillSW(){
 				wOBJ.options[1] = new Option("on(ソロ)",1);
 				for(i=2;i<=12;i++) wOBJ.options[i] = new Option(i +"人PT",i);
 		}
-		var w = findSearchIndex(SKILL_ID_DRAGONIC_AURA_STATE,passiveSkillIds);
+		var w = findIndexByMigIdNum(SKILL_ID_DRAGONIC_AURA_STATE,passiveSkillIds);
 		if(w != -1){
 				var wOBJ = document.getElementById("A_skill" + w);
 				for(i=10;i>=0;i--) wOBJ.options[i] = null;
@@ -131,14 +131,14 @@ function Click_PassSkillSW(){
 				wOBJ.options[1] = new Option("未使用",1);
 				for(i=1;i<=10;i++) wOBJ.options[i+1] = new Option("Lv"+i, i+1);
 		}
-		var w = findSearchIndex(SKILL_ID_SHUKUFUKU, passiveSkillIds);
+		var w = findIndexByMigIdNum(SKILL_ID_SHUKUFUKU, passiveSkillIds);
 		if(w != -1){
 				var wOBJ = document.getElementById("A_skill" + w);
 				for(i=10;i>=0;i--) wOBJ.options[i] = null;
 				var w_name=[0,1,2,3,4,5,6,8,10];
 				for(i=0;i<=8;i++) wOBJ.options[i] = new Option((w_name[i] * 10) + "%",w_name[i]);
 		}
-		var w = findSearchIndex(SKILL_ID_KIKO, passiveSkillIds);
+		var w = findIndexByMigIdNum(SKILL_ID_KIKO, passiveSkillIds);
 		if(w != -1){
 				if ((n_A_JOB != JOB_ID_MONK) && (n_A_JOB != JOB_ID_CHAMPION)) {
 					var wOBJ = document.getElementById("A_skill" + w);
@@ -146,21 +146,21 @@ function Click_PassSkillSW(){
 					for(i=0;i<=15;i++) wOBJ.options[i] = new Option(i,i);
 				}
 		}
-		var w = findSearchIndex(SKILL_ID_CAMOUFLAGE, passiveSkillIds);
+		var w = findIndexByMigIdNum(SKILL_ID_CAMOUFLAGE, passiveSkillIds);
 		if(w != -1){
 				var wOBJ = document.getElementById("A_skill" + w);
 				for(i=10;i>=0;i--) wOBJ.options[i] = null;
 				wOBJ.options[0] = new Option("off",0);
 				for(i=1;i<=10;i++) wOBJ.options[i] = new Option(i+"秒",i);
 		}
-		var w = findSearchIndex(SKILL_ID_MADOGEAR, passiveSkillIds);
+		var w = findIndexByMigIdNum(SKILL_ID_MADOGEAR, passiveSkillIds);
 		if(w != -1){
 				var wOBJ = document.getElementById("A_skill" + w);
 				for(i=10;i>=0;i--) wOBJ.options[i] = null;
 				wOBJ.options[0] = new Option("未搭乗",0);
 				wOBJ.options[1] = new Option("搭乗中",1);
 		}
-		var w = findSearchIndex(SKILL_ID_MAGIC_SETTING_FOR_AUTO_SPELL, passiveSkillIds);
+		var w = findIndexByMigIdNum(SKILL_ID_MAGIC_SETTING_FOR_AUTO_SPELL, passiveSkillIds);
 		if(w != -1){
 				var wOBJ = document.getElementById("A_skill" + w);
 				for(i=10;i>=0;i--) wOBJ.options[i] = null;
@@ -169,7 +169,7 @@ function Click_PassSkillSW(){
 				wOBJ.options[2] = new Option("CB3",2);
 				wOBJ.options[3] = new Option("LB3",3);
 		}
-		var w = findSearchIndex(SKILL_ID_ABR_DUAL_CANNON,passiveSkillIds);
+		var w = findIndexByMigIdNum(SKILL_ID_ABR_DUAL_CANNON,passiveSkillIds);
 		if(w != -1){
 				var wOBJ = document.getElementById("A_skill" + w);
 				for(i=10;i>=0;i--) wOBJ.options[i] = null;
@@ -177,7 +177,7 @@ function Click_PassSkillSW(){
 				wOBJ.options[1] = new Option("召喚中",1);
 		}
 		// シールドスペル(ATK+)
-		var w = findSearchIndex(SKILL_ID_SHIELD_SPELL_ATK_PLUS, passiveSkillIds);
+		var w = findIndexByMigIdNum(SKILL_ID_SHIELD_SPELL_ATK_PLUS, passiveSkillIds);
 		if(w != -1){
 				var wOBJ = document.getElementById("A_skill" + w);
 				for(i=10;i>=0;i--) wOBJ.options[i] = null;
@@ -186,7 +186,7 @@ function Click_PassSkillSW(){
 				for(i=2;i<n_SieldSp.length;i++) wOBJ.options[i] = new Option("(+"+ n_SieldSpDum[i] +")",n_SieldSpNum[i]);
 		}
 		// シールドスペル(反射)
-		var w = findSearchIndex(SKILL_ID_SHIELD_SPELL_REFLECT, passiveSkillIds);
+		var w = findIndexByMigIdNum(SKILL_ID_SHIELD_SPELL_REFLECT, passiveSkillIds);
 		if(w != -1){
 				var wOBJ = document.getElementById("A_skill" + w);
 				for(i=10;i>=0;i--) wOBJ.options[i] = null;
@@ -195,7 +195,7 @@ function Click_PassSkillSW(){
 				for(i=2;i<n_SieldSp.length;i++) wOBJ.options[i] = new Option("("+ n_SieldSpDum[i] +")",n_SieldSpNum[i]);
 		}
 		// シールドスペル(DEF+)
-		var w = findSearchIndex(SKILL_ID_SHIELD_SPELL_DEF_PLUS, passiveSkillIds);
+		var w = findIndexByMigIdNum(SKILL_ID_SHIELD_SPELL_DEF_PLUS, passiveSkillIds);
 		if(w != -1){
 				var wOBJ = document.getElementById("A_skill" + w);
 				for(i=10;i>=0;i--) wOBJ.options[i] = null;
@@ -203,7 +203,7 @@ function Click_PassSkillSW(){
 				wOBJ.options[1] = new Option("装備盾",1);
 				for(i=2;i<=11;i++) wOBJ.options[i] = new Option("(+"+ (i-1) +")",i);
 		}
-		var w = findSearchIndex(SKILL_ID_MAGIC_SETTING_FOR_AUTO_SHADOW_SPELL, passiveSkillIds);
+		var w = findIndexByMigIdNum(SKILL_ID_MAGIC_SETTING_FOR_AUTO_SHADOW_SPELL, passiveSkillIds);
 		if(w != -1){
 				var wOBJ = document.getElementById("A_skill" + w);
 				for(i=10;i>=0;i--) wOBJ.options[i] = null;
@@ -211,7 +211,7 @@ function Click_PassSkillSW(){
 				wOBJ.options[0] = new Option("-",0);
 				for(i=0;i<wASSname.length;i++) wOBJ.options[i] = new Option(wASSname[i],i);
 		}
-		var w = findSearchIndex(SKILL_ID_SAGENO_TAMASHI_MAHONO_SHUTOKU_LEVEL, passiveSkillIds);
+		var w = findIndexByMigIdNum(SKILL_ID_SAGENO_TAMASHI_MAHONO_SHUTOKU_LEVEL, passiveSkillIds);
 		if(w != -1){
 				var wOBJ = document.getElementById("A_skill" + w);
 				for(i=10;i>=0;i--) wOBJ.options[i] = null;
@@ -230,21 +230,21 @@ function Click_PassSkillSW(){
 				objAnchor.style.marginLeft = "1em";
 				HtmlCreateTextNode("[説明]", objAnchor)
 		}
-		var w = findSearchIndex(SKILL_ID_COUNT_OF_RG_FOR_BANDING, passiveSkillIds);
+		var w = findIndexByMigIdNum(SKILL_ID_COUNT_OF_RG_FOR_BANDING, passiveSkillIds);
 		if(w != -1){
 				var wOBJ = document.getElementById("A_skill" + w);
 				for(i=10;i>=0;i--) wOBJ.options[i] = null;
 				wOBJ.options[0] = new Option("ソロ",0);
 				for(i=1;i<=11;i++) wOBJ.options[i] = new Option((i+1)+"人",i);
 		}
-		var w = findSearchIndex(SKILL_ID_ATK_FOR_IRON_NAIL, passiveSkillIds);
+		var w = findIndexByMigIdNum(SKILL_ID_ATK_FOR_IRON_NAIL, passiveSkillIds);
 		if(w != -1){
 				var wOBJ = document.getElementById("A_skill" + w);
 				for(i=10;i>=0;i--) wOBJ.options[i] = null;
 				wOBJ.options[0] = new Option(0,0);
 				for(i=1;i<=5;i++) wOBJ.options[i] = new Option("+"+(20 * i),i);
 		}
-		var w = findSearchIndex(SKILL_ID_FU_ELEMENT_OF_FU, passiveSkillIds);
+		var w = findIndexByMigIdNum(SKILL_ID_FU_ELEMENT_OF_FU, passiveSkillIds);
 		if(w != -1){
 				var wOBJ = document.getElementById("A_skill" + w);
 				for(i=10;i>=0;i--) wOBJ.options[i] = null;
@@ -254,7 +254,7 @@ function Click_PassSkillSW(){
 				wOBJ.options[1] = new Option("火符",3);
 				wOBJ.options[3] = new Option("風符",4);
 		}
-		var w = findSearchIndex(SKILL_ID_HPSPCONF_FOR_GENZYUTSU_ZANGETSU, passiveSkillIds);
+		var w = findIndexByMigIdNum(SKILL_ID_HPSPCONF_FOR_GENZYUTSU_ZANGETSU, passiveSkillIds);
 		if(w != -1){
 				var wOBJ = document.getElementById("A_skill" + w);
 				for(i=10;i>=0;i--) wOBJ.options[i] = null;
@@ -266,7 +266,7 @@ function Click_PassSkillSW(){
 		//----------------------------------------------------------------
 			// エレメンタルマスター系列　召喚中の精霊
 			//----------------------------------------------------------------
-		var sklIdx = findSearchIndex(SKILL_ID_SERE, passiveSkillIds);
+		var sklIdx = findIndexByMigIdNum(SKILL_ID_SERE, passiveSkillIds);
 		if(sklIdx != -1){
 
 				// 一度、選択肢を全削除
@@ -294,7 +294,7 @@ function Click_PassSkillSW(){
 		// -------------------------------------------------------
 			// エレメンタルマスター系列　精霊のモード
 			// -------------------------------------------------------
-		var w = findSearchIndex(SKILL_ID_SERE_MODE, passiveSkillIds);
+		var w = findIndexByMigIdNum(SKILL_ID_SERE_MODE, passiveSkillIds);
 		if(w != -1){
 				var wOBJ = document.getElementById("A_skill" + w);
 				for(i=10;i>=0;i--) wOBJ.options[i] = null;
@@ -304,7 +304,7 @@ function Click_PassSkillSW(){
 		// -------------------------------------------------------
 			// エレメンタルマスター系列　精霊のスキル
 			// -------------------------------------------------------
-		var w = findSearchIndex(SKILL_ID_SERE_SUPPORT_SKILL, passiveSkillIds);
+		var w = findIndexByMigIdNum(SKILL_ID_SERE_SUPPORT_SKILL, passiveSkillIds);
 		if(w != -1){
 				// i に設定可能な最大値は 64 (=6bit)
 				// 旧バージョンのセーブ処理に含まれており拡張が容易ではない
@@ -345,7 +345,7 @@ function Click_PassSkillSW(){
 					}
 				}
 		}
-		var w = findSearchIndex(SKILL_ID_HOMLV_FOR_PYROCLASTIC, passiveSkillIds);
+		var w = findIndexByMigIdNum(SKILL_ID_HOMLV_FOR_PYROCLASTIC, passiveSkillIds);
 		if(w != -1){
 				var wOBJ = document.getElementById("A_skill" + w);
 				for(i=10; i>=0; i--) wOBJ.options[i] = null;
@@ -355,7 +355,7 @@ function Click_PassSkillSW(){
 		//----------------------------------------------------------------
 			// 修羅：閃光連撃終了直後状態
 			//----------------------------------------------------------------
-		var sklIdx = findSearchIndex(SKILL_ID_ATK_PLUS_AFTER_SENKO_RENGEKI, passiveSkillIds);
+		var sklIdx = findIndexByMigIdNum(SKILL_ID_ATK_PLUS_AFTER_SENKO_RENGEKI, passiveSkillIds);
 		if (sklIdx != -1) {
 				// 一度、選択肢を全削除
 				var objSelect = document.getElementById("A_skill" + sklIdx);
@@ -372,7 +372,7 @@ function Click_PassSkillSW(){
 		//----------------------------------------------------------------
 			// リベリオン：クイックドロー全追撃
 			//----------------------------------------------------------------
-		var sklIdx = findSearchIndex(SKILL_ID_AS_QUICKDRAW, passiveSkillIds);
+		var sklIdx = findIndexByMigIdNum(SKILL_ID_AS_QUICKDRAW, passiveSkillIds);
 		if (sklIdx != -1) {
 				// 一度、選択肢を全削除
 				var objSelect = document.getElementById("A_skill" + sklIdx);
@@ -385,7 +385,7 @@ function Click_PassSkillSW(){
 		//----------------------------------------------------------------
 			// サモナー：大地の魂効果(ﾏﾀﾀﾋﾞの根っこ使用後のMATK＋)
 			//----------------------------------------------------------------
-		var sklIdx = findSearchIndex(SKILL_ID_DAICHINO_TAMASHI_KOKA_MATATABINO_NEKKO, passiveSkillIds);
+		var sklIdx = findIndexByMigIdNum(SKILL_ID_DAICHINO_TAMASHI_KOKA_MATATABINO_NEKKO, passiveSkillIds);
 		if (sklIdx != -1) {
 				// 一度、選択肢を全削除
 				var objSelect = document.getElementById("A_skill" + sklIdx);
@@ -398,7 +398,7 @@ function Click_PassSkillSW(){
 		//----------------------------------------------------------------
 			// サモナー：大地の魂効果(ｲﾇﾊｯｶｼｬﾜｰ使用後の完全回避＋)
 			//----------------------------------------------------------------
-		var sklIdx = findSearchIndex(SKILL_ID_DAICHINO_TAMASHI_KOKA_INUHAKKA_SHOWER, passiveSkillIds);
+		var sklIdx = findIndexByMigIdNum(SKILL_ID_DAICHINO_TAMASHI_KOKA_INUHAKKA_SHOWER, passiveSkillIds);
 		if (sklIdx != -1) {
 				// 一度、選択肢を全削除
 				var objSelect = document.getElementById("A_skill" + sklIdx);
@@ -411,7 +411,7 @@ function Click_PassSkillSW(){
 		//----------------------------------------------------------------
 			// サモナー：大地の魂効果(ニャングラス使用後のMATK＋)
 			//----------------------------------------------------------------
-		var sklIdx = findSearchIndex(SKILL_ID_DAICHINO_TAMASHI_KOKA_NYAN_GRASS, passiveSkillIds);
+		var sklIdx = findIndexByMigIdNum(SKILL_ID_DAICHINO_TAMASHI_KOKA_NYAN_GRASS, passiveSkillIds);
 		if (sklIdx != -1) {
 				// 一度、選択肢を全削除
 				var objSelect = document.getElementById("A_skill" + sklIdx);
@@ -424,7 +424,7 @@ function Click_PassSkillSW(){
 		//----------------------------------------------------------------
 			// サモナー：生命の魂効果(残りHP)
 			//----------------------------------------------------------------
-		var sklIdx = findSearchIndex(SKILL_ID_SEIMEINO_TAMASHI_KOKA_NOKORI_HP, passiveSkillIds);
+		var sklIdx = findIndexByMigIdNum(SKILL_ID_SEIMEINO_TAMASHI_KOKA_NOKORI_HP, passiveSkillIds);
 		if (sklIdx != -1) {
 				// 一度、選択肢を全削除
 				var objSelect = document.getElementById("A_skill" + sklIdx);
@@ -441,7 +441,7 @@ function Click_PassSkillSW(){
 		//----------------------------------------------------------------
 			// 星帝：流星落下の計算方法
 			//----------------------------------------------------------------
-		var sklIdx = findSearchIndex(SKILL_ID_RYUSE_RAKKA_MODE, passiveSkillIds);
+		var sklIdx = findIndexByMigIdNum(SKILL_ID_RYUSE_RAKKA_MODE, passiveSkillIds);
 		if (sklIdx != -1) {
 				// 一度、選択肢を全削除
 				var objSelect = document.getElementById("A_skill" + sklIdx);
@@ -455,7 +455,7 @@ function Click_PassSkillSW(){
 		//----------------------------------------------------------------
 			// 天帝：運行の状態
 			//----------------------------------------------------------------
-		var sklIdx = findSearchIndex(SKILL_ID_UNKONO_ZYOTAI, passiveSkillIds);
+		var sklIdx = findIndexByMigIdNum(SKILL_ID_UNKONO_ZYOTAI, passiveSkillIds);
 		if (sklIdx != -1) {
 				// 一度、選択肢を全削除
 				var objSelect = document.getElementById("A_skill" + sklIdx);
@@ -473,7 +473,7 @@ function Click_PassSkillSW(){
 		//----------------------------------------------------------------
 			// 拳聖・星帝・天帝：太陽と月と星の日
 			//----------------------------------------------------------------
-		var sklIdx = findSearchIndex(SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_HI, passiveSkillIds);
+		var sklIdx = findIndexByMigIdNum(SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_HI, passiveSkillIds);
 		if (sklIdx != -1) {
 				// 一度、選択肢を全削除
 				var objSelect = document.getElementById("A_skill" + sklIdx);
@@ -489,7 +489,7 @@ function Click_PassSkillSW(){
 		//----------------------------------------------------------------
 			// ソウルアセティック：四方符の状態
 			//----------------------------------------------------------------
-		var sklIdx = findSearchIndex(SKILL_ID_SHIHO_FU_ZYOTAI, passiveSkillIds);
+		var sklIdx = findIndexByMigIdNum(SKILL_ID_SHIHO_FU_ZYOTAI, passiveSkillIds);
 		if (sklIdx != -1) {
 				// 一度、選択肢を全削除
 				var objSelect = document.getElementById("A_skill" + sklIdx);
