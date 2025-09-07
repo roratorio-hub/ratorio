@@ -9,6 +9,12 @@ let n_A_PassSkill = Array(BUFF_CONF_SELF_LIMIT).fill(0);
 /** 職固有自己支援 ウィンドウ可視状態 */
 let n_Skill1SW = false;
 
+/**
+ * skillIds 配列から findMigIdNum を持つスキルのインデックスを返す
+ * @param {*} findMigIdNum 
+ * @param {*} skillIds 
+ * @returns {number} 見つからなかった場合 -1
+ */
 function findIndexByMigIdNum(findMigIdNum, skillIds) {
 	const idx = skillIds.findIndex((skillId) => {
 		const skillData = SkillMap.getById(skillId);

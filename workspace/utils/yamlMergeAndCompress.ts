@@ -134,8 +134,6 @@ async function mergeSkill(): Promise<void> {
         }
     });
 
-    //await fs.writeFile(outYaml, dumpYAML(skillMapObject));
-
     const compressed = await zstdCompress(dumpYAML(skillMapObject, yamlOptions));
     if (compressed === null) {
         throw new Error("zstdCompress が null を返しました");
@@ -317,6 +315,9 @@ async function mergeJob(): Promise<void> {
             for (const value of migJob.passiveSkills) {
                 const mig_skill_id: number | string | null = value;
                 const skill_data = getSkillByMigId(skillObject, mig_skill_id);
+                if (mig_skill_id == 814) {
+                    console.log(mig_skill_id, skill_data); // デバッグ用
+                }
                 if (skill_data) {
                     jobMapObject[correctJobIdName].passive_skills[skill_data.id] = {
                         id: skill_data.id,
@@ -352,7 +353,6 @@ async function mergeJob(): Promise<void> {
 
     });
 
-    // 出力（例: 圧縮して保存）
     const compressedJob = await zstdCompress(dumpYAML(jobMapObject, yamlOptions));
     if (compressedJob === null) {
         throw new Error("zstdCompress が null を返しました");
