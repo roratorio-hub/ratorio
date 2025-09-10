@@ -333,6 +333,29 @@ function RefreshMonsterList() {
 		);
 	}
 
+	// ソートの 範囲 を特定する
+	var objLow = document.getElementById("OBJID_INPUT_LOW");
+	var LowNum = parseInt(objLow.value, 10);
+	var objHigh = document.getElementById("OBJID_INPUT_HIGH");
+	var HighNum = parseInt(objHigh.value, 10);
+
+	// 下限値でフィルタリング
+	if (!isNaN(LowNum)) {
+		dataArraySorted = dataArraySorted.filter(
+			function (i) {
+				return i[sortKeyIndex] >= LowNum;
+			}
+		);
+	}
+
+	// 上限値でフィルタリング
+	if (!isNaN(HighNum)) {
+		dataArraySorted = dataArraySorted.filter(
+			function (i) {
+				return i[sortKeyIndex] <= HighNum;
+			}
+		);
+	}
 
 
 

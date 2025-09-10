@@ -405,6 +405,50 @@ function HtmlSetObjectValueById(objID, valutToSet) {
 	objTarget.value = valutToSet;
 }
 
+/**
+ * 指定されたselect要素の取りうる値の最小値と最大値を取得する
+ * @param {string} selectId - select要素のID
+ * @returns {{min: number, max: number} | null} 値の範囲、または要素が見つからない場合はnull
+ */
+function getSelectValueRange(selectId) {
+  const selectElement = document.getElementById(selectId);
+  
+  // 指定されたIDの要素が見つからない場合はnullを返す
+  if (!selectElement) {
+    return null;
+  }
+  if (selectId === "A_skill15") {
+	console.log(selectId)
+  }
+
+  // <option>要素のリストを取得
+  const options = selectElement.options;
+  
+  // 値を格納する配列を初期化
+  const values = [];
+
+  // 各optionのvalueを配列に追加
+  for (let i = 0; i < options.length; i++) {
+    // 数値としてパースして格納する
+    const value = parseFloat(options[i].value);
+    // 有効な数値であることを確認
+    if (!isNaN(value)) {
+      values.push(value);
+    }
+  }
+
+  // 値がない場合はnullを返す
+  if (values.length === 0) {
+    return null;
+  }
+
+  // 最小値と最大値を取得して返す
+  return {
+    min: Math.min(...values),
+    max: Math.max(...values)
+  };
+}
+
 /************************************************************************************************
  *
  * ＨＴＭＬオブジェクトの value 値を範囲内に補正する.
@@ -571,6 +615,13 @@ function WriteConsoleLog(msg) {
 	console.log(GetLogText(msg));
 }
 
+/**
+ * 数値を指定された最小値と最大値の間にクランプする
+ * @param {number} value 
+ * @param {number} min 
+ * @param {number} max 
+ * @returns {number} クランプされた値
+ */
 function ValueRangeModify(value, min, max) {
 
 	if (isNaN(parseInt(value))) {
