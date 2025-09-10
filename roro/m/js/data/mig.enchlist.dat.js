@@ -1285,6 +1285,13 @@
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5536] = [813, 776];
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5537] = [815, 730];
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5538] = [814];
+	// --- 2025-09-10 ---
+	g_constDataManager.enchListDataManager.sourceArray[816] = [816,-1,0,0,[["スペシャルエンチャント(ミオン)","スペシャルエンチャント(ミオン)"]],[],[[[174,[50,[5539]]],,[[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[3717,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5539] = [816,776];	// エレメス=ガイルのスカーフ(白)
+	g_constDataManager.enchListDataManager.sourceArray[817] = [817,-1,0,0,[["スペシャルエンチャント(ミオン)","スペシャルエンチャント(ミオン)"]],[],[[[174,[50,[5540]]],,[[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[3715,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5540] = [817,776];	// 名誉ある夜警のマント
+	g_constDataManager.enchListDataManager.sourceArray[818] = [818,-1,0,0,[["スペシャルエンチャント(オーブ)","スペシャルエンチャント(オーブ)"]],[],[[[174,[50,[5541]]],,[[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[3713,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,8],[60,4]],,[[[186,[51,[1655,1656,1657,1658,1659,1660,1661,1662,1663,]]],,[]]]]]],[[178,[27,[2]]],,[[[187,[59,9],[60,4]],,[[[186,[51,[1247,1625,1179,1975,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5541] = [818,730];	// プリマヒヤドゥム
 
 	// enchant はセーブデータに書き出されないので
 	// 現実的な範囲において enchantID の上限値を気にする必要はありません
