@@ -1,130 +1,34 @@
 card_list:
-
-  - name: メジャイ
-    yomi: メジャイ
-    desc: "物理・魔法攻撃時、[古代神殿アケト]に出現するモンスターに与えるダメージ + 30%"
-    type: 武器
-    capabilities:
-      - name: 壊れない
-        value: 1
-
-  - name: ヘカ
-    yomi: ヘカ
-    type: 兜
-    capabilities:
-      - name: 魔法ダメージ増加
-        value: 5
-      - name: 詠唱が中断されない
-        at_refine: 8
-        value: 1
-
-  - name: メジェド
-    yomi: メジェド
-    type: 兜
-    capabilities:
-      - name: ASPD増加
-        value: 10
-
-  - name: ウプウアウト
-    yomi: ウプウアウト
-    type: 鎧
-    capabilities:
-      - name: 天使形への物理ダメージ増加
-        value: 1
-        per_refine: 1
-      - name: 天使形への物理ダメージ増加
-        value: 10
-        at_refine: 9
-
-  - name: 死者の案内人
-    yomi: シシャノアンナイニン
-    type: 鎧
-    capabilities:
-      - name: 無形への物理ダメージ増加
-        value: 50
-      - name: 悪魔形への物理ダメージ増加
-        value: 50
-      - name: 火属性への物理ダメージ増加
-        value: 50
-      - name: 無属性への物理ダメージ増加
-        value: 50
+  - name: 潜在解放(バイオロXV)
+    yomi: センザイカイホウバイオロ15
+    type: エンチャント
     set_list:
       - set:
         entity_list:
-          - card_name: 異境の統轄者
+          - card_name: 豪傑
         capabilities:
-          - name: MAXHP増加
-            value: 50
-
-  - name: ジャックオネット
-    yomi: ジャックオネット
-    desc: "物理・魔法攻撃時、[ニブルヘイムカボチャ農場]に出現するモンスターに与えるダメージ + 30%"
-    type: 武器
-    capabilities:
-      - name: 壊れない
-        value: 1
-
-  - name: リアメット
-    yomi: リアメット
-    type: 兜
-    capabilities:
-      - name: 睡眠耐性
-        value: 25
-        at_sp_status_50: STA
-      - name: 石化耐性
-        value: 25
-        at_sp_status_50: STA
-      - name: スタン耐性
-        value: 50
-        at_sp_status_100: STA
-      - name: 沈黙耐性
-        value: 50
-        at_sp_status_100: STA
-
-  - name: 悪夢のピアメット
-    yomi: アクムノピアメット
-    type: 靴
-    capabilities:
-      - name: 魔法ダメージ増加
-        value: 10
-      - name: 不死形への魔法ダメージ増加
-        value: 50
-      - name: 悪魔形への魔法ダメージ増加
-        value: 50
-      - name: MAXSP増加
-        value: -50
+          - name: 再使用待機時間減少
+            skill: メイヘミックソーンズ
+            value: 100
+  - name: 潜在解放(ナイトウォッチXII)
+    yomi: センザイカイホウナイトウォッチ12
+    type: エンチャント
     set_list:
       - set:
         entity_list:
-          - card_name: 異境の統轄者
+          - card_name: 豪傑
         capabilities:
-          - name: 魔法ダメージ増加
-            value: 10
-          - name: スキル使用可能
-            skill: レイオブジェネシス
-            skill_lv: 10
-
-  - name: ガーリン
-    yomi: ガーリン
-    type: 靴
-    capabilities:
-      - name: 地属性魔法ダメージ増加
-        value: 3
-        per_refine: 1
-
-  - name: ヴィオレン
-    yomi: ヴィオレン
-    type: アクセサリー
-    capabilities:
-      - name: DEX加算
-        value: 5
-      - name: 物理ダメージ増加
-        value: 5
-        at_sp_status_100: CON
-
-  - name: スパイダリン
-    yomi: スパイダリン
-    type: アクセサリー
-    capabilities:
-      - name: 地属性魔法ダメージ増加
-        value: 10
+          - name: 再使用待機時間減少
+            skill: スパイラルシューティング
+            value: 200
+  - name: 潜在解放(シャドウクロスXIII)
+    yomi: センザイカイホウシャドウクロス13
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: 再使用待機時間減少
+            skill: サベージインパクト
+            value: 200
