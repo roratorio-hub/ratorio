@@ -640,6 +640,13 @@ class CSaveDataManager {
 		const funcCallApplySkillLv = (thisF, unitTypeF, dataArrayF) => {
 			thisF.#applyDataToControlsXXXXLv(unitTypeF, idxMap.get(unitTypeF), CSaveDataConst.propNameSkillLv, dataArrayF);
 		};
+
+		/**
+		 * 各種バフの設定をセーブデータから読み取り、グローバル変数に書き込む
+		 * @param {*} thisF 
+		 * @param {*} unitTypeF セーブデータユニットタイプ. SAVE_DATA_UNIT_TYPE_SKILL_BUFF_SELF など
+		 * @param {*} dataArrayF セーブデータの書き込み先配列. n_A_PassSkill など
+		 */
 		const funcCallApplyBuffLv = (thisF, unitTypeF, dataArrayF) => {
 			thisF.#applyDataToControlsXXXXLv(unitTypeF, idxMap.get(unitTypeF), CSaveDataConst.propNameBuffLv, dataArrayF);
 		};
@@ -1376,7 +1383,7 @@ class CSaveDataManager {
 
 	/**
 	 * 保持しているデータを画面部品に適用する（スキル／BUFFレベル）.
-	 * @param {int} unitType ユニットのタイプ値
+	 * @param {int} unitType ユニットのタイプ値. SAVE_DATA_UNIT_TYPE_SKILL_BUFF_SELF など
 	 * @param {int|undefined} idxUnit データユニットの配列インデックス
 	 * @param {string} propName 対応するプロパティの名称
 	 * @param {Array} dataArrayF データ値を保存しておくグローバル空間の配列（n_A_PassSkill等）
@@ -1403,12 +1410,28 @@ class CSaveDataManager {
 		let ctrlFlagWork = ctrlFlag;
 		const propValueArray = saveDataUnit.getProp(propName);
 
+		// 職固有自己支援スキル配列
+		const specificBuffArray = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, n_A_JOB).GetPassiveSkillIdArray();
+
 		// すべてのプロパティを走査し、必要なプロパティのみ処理
 		const dataArrayRead = [];
 		for (let idx = 0; ctrlFlagWork > 0n; ctrlFlagWork >>= 1n, idx++) {
 
 			// スキルレベルを取得
-			const skillLv = (ctrlFlagWork & 1n) ? floorBigInt32(propValueArray[idx]) : 0;
+			let skillLv = (ctrlFlagWork & 1n) ? floorBigInt32(propValueArray[idx]) : 0;
+
+			// 職固有自己支援スキル の構造は他の支援スキルと違うので個別に手当する
+			if (unitType === SAVE_DATA_UNIT_TYPE_SKILL_BUFF_SELF) {
+				// 職固有自己支援スキル配列からスキルIDを取得
+				const skillID = specificBuffArray[idx];
+				// 拡張性を考えて「プロパティ数 > 職固有自己支援スキル配列数」になっているので undefined の場合をチェックする
+				if (skillID !== undefined) {
+					// データ破損している場合を想定してスキルLvを最大値でクリップする.
+					// ただし設定欄を On/Off にカスタマイズしている場合はこれで手当できないので認識しておくこと.
+					// 例. 金剛の設定欄は 0=Off, 1=On なので MaxLv 5 で ceiling しても範囲外になる
+					skillLv = Math.min(g_skillManager.GetMaxLv(skillID), skillLv);
+				}
+			}
 
 			// データを設定
 			dataArrayRead.push(skillLv);
