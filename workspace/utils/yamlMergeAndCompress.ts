@@ -1836,7 +1836,7 @@ const jobTypeMap: JobType[] = [
         ja: "スーパーノービス",
         base_lv_min: 1,
         base_lv_max: 99,
-        job_lv_max: 50,
+        job_lv_max: 99,
         status_basic_max: 130,
         status_talent_max: 0,
     },
