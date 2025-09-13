@@ -43541,7 +43541,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)アビスフレイム";
+			this.name = "アビスフレイム";
 			this.kana = "アビスフレイム";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
@@ -43554,16 +43554,20 @@ function CSkillManager() {
 				switch (attack_area) {
 					case 0:	// 対象周辺
 						ratio += 750 * skillLv;
+						ratio += 75 * mahoken_shuren_lv;	// 修練係数
+						ratio += 25 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// Spl係数
 						break;
 					case 1:	// 自身周辺
 						ratio += 600 * skillLv;
+						ratio += 60 * mahoken_shuren_lv;	// 修練係数
+						ratio += 20 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// Spl係数
 						break;
 					case 2:	// 両方
 						ratio += (750 + 600) * skillLv;
+						ratio += (75 + 60) * mahoken_shuren_lv;
+						ratio += (25 + 20) * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 						break;
 				}
-				ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// Spl係数未検証
-				ratio += 1 * mahoken_shuren_lv;	// 修練係数未検証
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
