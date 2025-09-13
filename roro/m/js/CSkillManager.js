@@ -35069,7 +35069,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)アビスダガー";
+			this.name = "アビスダガー";
 			this.kana = "アヒスタカア";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -35083,8 +35083,8 @@ function CSkillManager() {
 				let ratio = 0;
 				// 基本倍率
 				ratio = 5700 + 1500 * skillLv;
-				// POW補正 未検証
-				ratio += 23 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				// POW補正
+				ratio += 44 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// ベースレベル補正
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
@@ -35121,7 +35121,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)アンラッキーラッシュ";
+			this.name = "アンラッキーラッシュ";
 			this.kana = "アンラツキイラツシユ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -35130,9 +35130,9 @@ function CSkillManager() {
 			this.Power = function(skillLv, charaData, option) {
 				let ratio = 0;
 				// 基本倍率
-				ratio = 2500 + 1300 * skillLv;
+				ratio = 3100 + 700 * skillLv;
 				// POW補正 未検証
-				ratio += 17 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				ratio += 22 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// ベースレベル補正
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
@@ -35371,7 +35371,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)デフトスタブ";
+			this.name = "デフトスタブ";
 			this.kana = "テフトスタフ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -35382,8 +35382,8 @@ function CSkillManager() {
 				let ratio = 0;
 				// 基本倍率
 				ratio = 5700 + 750 * skillLv;
-				// POW補正 未検証
-				ratio += 23 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				// POW補正
+				ratio += 44 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// ベースレベル補正
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
@@ -43368,7 +43368,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)ヒットアンドスライディング";
+			this.name = "ヒットアンドスライディング";
 			this.kana = "ヒットアンドスライディング";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -43383,7 +43383,7 @@ function CSkillManager() {
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				ratio += 3250 + 850 * skillLv;
-				ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数未検証
+				ratio += 25 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
@@ -43425,7 +43425,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)チェイシングブレイク";
+			this.name = "チェイシングブレイク";
 			this.kana = "チェイシングブレイク";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -43436,10 +43436,10 @@ function CSkillManager() {
 				const state_hit_and_sliding = option.GetOptionValue(0) === 1;
 				if (state_hit_and_sliding) {
 					ratio += 7750 + 1750 * skillLv;
-					ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数未検証
+					ratio += 55 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
 				} else {
 					ratio += 5700 + 1500 * skillLv;
-					ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数未検証
+					ratio += 44 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
 				}
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
@@ -43482,7 +43482,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)チェイシングショット";
+			this.name = "チェイシングショット";
 			this.kana = "チェイシングショット";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -43497,10 +43497,10 @@ function CSkillManager() {
 				const state_hit_and_sliding = option.GetOptionValue(0) === 1;
 				if (state_hit_and_sliding) {
 					ratio += 1250 + 350 * skillLv;
-					ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_CON);	// Con係数未検証
+					ratio += 10 * GetTotalSpecStatus(MIG_PARAM_ID_CON);	// Con係数
 				} else {
 					ratio += 1150 + 250 * skillLv;
-					ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_CON);	// Con係数未検証
+					ratio += 8 * GetTotalSpecStatus(MIG_PARAM_ID_CON);	// Con係数
 				}
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
