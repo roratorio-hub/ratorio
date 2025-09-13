@@ -43037,7 +43037,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)天気身陽";
+			this.name = "天気身陽";
 			this.kana = "天気身陽";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -43049,8 +43049,8 @@ function CSkillManager() {
 				let ratio = 0;
 				const tenki_shuren_lv = Math.max(UsedSkillSearch(SKILL_ID_TENKI_SHUREN), LearnedSkillSearch(SKILL_ID_TENKI_SHUREN));
 				ratio += 1250 + 50 * skillLv;
-				ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数未検証
-				ratio += 1 * skillLv * tenki_shuren_lv;	// 修練係数未検証
+				ratio += 10 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
+				ratio += 30 * skillLv * tenki_shuren_lv;	// 修練係数
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
@@ -43090,7 +43090,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)天気身月";
+			this.name = "天気身月";
 			this.kana = "天気身月";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -43103,8 +43103,8 @@ function CSkillManager() {
 				let ratio = 0;
 				const tenki_shuren_lv = Math.max(UsedSkillSearch(SKILL_ID_TENKI_SHUREN), LearnedSkillSearch(SKILL_ID_TENKI_SHUREN));
 				ratio += 3100 + 50 * skillLv;
-				ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数未検証
-				ratio += 1 * skillLv * tenki_shuren_lv;	// 修練係数未検証
+				ratio += 22 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
+				ratio += 66 * skillLv * tenki_shuren_lv;	// 修練係数
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
@@ -43146,7 +43146,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)天星の行";
+			this.name = "天星の行";
 			this.kana = "天星の行";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -43157,8 +43157,8 @@ function CSkillManager() {
 				let ratio = 0;
 				const tenki_shuren_lv = Math.max(UsedSkillSearch(SKILL_ID_TENKI_SHUREN), LearnedSkillSearch(SKILL_ID_TENKI_SHUREN));
 				ratio += 3100 + 50 * skillLv;
-				ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数未検証
-				ratio += 1 * skillLv * tenki_shuren_lv;	// 修練係数未検証
+				ratio += 22 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
+				ratio += 66 * skillLv * tenki_shuren_lv;	// 修練係数
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
