@@ -39980,7 +39980,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)タイガースラッシュ";
+			this.name = "タイガースラッシュ";
 			this.kana = "タイカアスラツシユ";
 			this.maxLv = 7;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -43261,7 +43261,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)タイガーバトリング";
+			this.name = "タイガーバトリング";
 			this.kana = "タイガーバトリング";
 			this.maxLv = 7;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -43271,8 +43271,8 @@ function CSkillManager() {
 				let ratio = 0;
 				const spirit_mastery_lv = Math.max(UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY), LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
 				ratio += 1475 + 325 * skillLv;
-				ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数未検証
-				ratio += 1 * spirit_mastery_lv;	// 修練係数未検証
+				ratio += 15 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数未検証
+				ratio += 75 * spirit_mastery_lv;	// 修練係数未検証
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
@@ -43312,7 +43312,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)ディアースピリットパワー";
+			this.name = "ディアースピリットパワー";
 			this.kana = "ディアースピリットパワー";
 			this.maxLv = 7;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
@@ -43325,8 +43325,8 @@ function CSkillManager() {
 				let ratio = 0;
 				const spirit_mastery_lv = Math.max(UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY), LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
 				ratio += 2650 + 650 * skillLv;
-				ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// Spl係数未検証
-				ratio += 1 * spirit_mastery_lv;	// 修練係数未検証
+				ratio += 30 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// Spl係数未検証
+				ratio += 180 * spirit_mastery_lv;	// 修練係数未検証
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
