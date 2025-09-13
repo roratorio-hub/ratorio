@@ -38222,11 +38222,11 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
-			this.dispHitCount = 3;
+			this.dispHitCount = 2;
 			this.Power = function(skillLv, charaData, option) {
 				let ratio = 0;
 				// 基本倍率
-				ratio = 700 + 200 * skillLv;
+				ratio = 800 + 100 * skillLv;
 				// POW補正
 				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// 天気修練 補正
@@ -38434,7 +38434,7 @@ function CSkillManager() {
 				// TODO: 正子、天気の身はスキル倍率だけに影響するので職固有自己支援から攻撃オプションへ移行する
 				const state_tenki_buff = option.GetOptionValue(0) === 1;
 				// 基本倍率
-				let ratio = 1450 + 250 * skillLv;
+				let ratio = 1475 + 225 * skillLv;
 				// 正子、天気の身状態なら、倍率２倍
 				if (state_tenki_buff) {
 					ratio *= 2;
@@ -38489,7 +38489,7 @@ function CSkillManager() {
 				if (state_tenki_buff) {
 					ratio = 4000 + 550 * skillLv;
 				} else {
-					ratio = 2100 + 175 * skillLv;
+					ratio = 2000 + 275 * skillLv;
 				}
 				// POW補正
 				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
@@ -38571,7 +38571,7 @@ function CSkillManager() {
 			this.ground_installation = true;
 			this.damageInterval = 300;
 			this.Power = function(skillLv, charaData, option) {
-				let ratio = 625 + 125 * skillLv;
+				let ratio = 675 + 75 * skillLv;
 				// POW補正
 				ratio += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// 天気修練 補正
