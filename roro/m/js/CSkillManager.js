@@ -43734,7 +43734,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)インペリアルプレッシャー";
+			this.name = "インペリアルプレッシャー";
 			this.kana = "インペリアルプレッシャー";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
@@ -43752,8 +43752,8 @@ function CSkillManager() {
 				let ratio = 0;
 				const yari_katate_shuren_lv = Math.max(UsedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN), LearnedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN));
 				ratio += -500 + 1000 * skillLv;
-				ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// Spl係数未検証
-				ratio += 1 * yari_katate_shuren_lv;	// 修練係数未検証
+				ratio += 30 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// Spl係数
+				ratio += 450 * yari_katate_shuren_lv;	// 修練係数
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
