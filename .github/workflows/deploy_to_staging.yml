@@ -52,5 +52,20 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git remote set-url origin https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/roratorio-hub/staging.git
-          git subtree push --prefix dist origin main --force
+
+          # ディレクトリの内容を一時的に別のディレクトリに移動
+          mkdir temp_dist
+          mv ./* temp_dist/
+
+          # ratorio-staging リポジトリをクローン
+          git clone https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/roratorio-hub/staging.git staging
+          cd staging
+
+          # 既存のファイルをすべて削除し、新しいファイルをコピー
+          find . -type f -not -path "./.git/*" -delete
+          mv ../temp_dist/* .
+
+          # コミットとプッシュ
+          git add .
+          git commit -m "Deploy from ratorio staging branch"
+          git push origin main
