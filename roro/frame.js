@@ -60,6 +60,7 @@ fetch('../date.json')
 
 		  <li class="menu-header"><span>Information</span></li>
           <li class="menu-item"><span class="menu-title"><a href="../../information/index.html" class="local">このサイトについて</a></span></li>
+          <li class="menu-item"><span class="menu-title"><a href="https://github.com/roratorio-hub/ratorio/wiki" target="_blank">使い方Wiki</a></span></li>
           <li class="menu-item"><span class="menu-title"><a href="https://github.com/orgs/roratorio-hub/projects/1/views/1" target="_blank">今後の予定</a></span></li>
           <li class="menu-item"><span class="menu-title"><a href="https://github.com/roratorio-hub/ratorio/issues?q=label%3Arelease+" target="_blank">更新履歴</a></span></li>
           <!--<li class="menu-item"><span class="menu-title"><a href="../../information/alert/index.html" class="local">不具合のお知らせ</a></span></li>-->
