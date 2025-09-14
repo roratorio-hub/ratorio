@@ -1,13 +1,13 @@
 item_list:
-  - name: インペリアルガーディアン
-    yomi: インペリアルガーディアン
+  - name: エレメス=ガイルのスカーフ(白)
+    yomi: エレメス=ガイルのスカーフ(白)
     type: 下段
     slot: 0
     weapon_lv: 0
     atk_or_def: 0
     weight: 10
     required_lv: 200
-    required_job: インペリアルガード
+    required_job: シャドウクロス
     capabilities:
       - name: プレイヤー耐性
         value: 3
@@ -17,16 +17,23 @@ item_list:
       - name: 全サイズへの魔法ダメージ増加
         value: 1
         per_lv: 10
+    enchant: #
+      - name: スペシャルエンチャント(ミオン)
+        slot_list: #
+          - slot: 4
+            refine: 0
+            enchant_list: #
+              - name: 潜在解放(シャドウクロスXIII)
 
-  - name: オープンエアヘッドフォン(赤)
-    yomi: オープンエアヘッドフォン(赤)
+  - name: 名誉ある夜警のマント
+    yomi: 名誉ある夜警のマント
     type: 下段
     slot: 0
     weapon_lv: 0
     atk_or_def: 0
     weight: 10
     required_lv: 200
-    required_job: マイスター
+    required_job: ナイトウォッチ
     capabilities:
       - name: プレイヤー耐性
         value: 3
@@ -36,27 +43,31 @@ item_list:
       - name: 全サイズへの魔法ダメージ増加
         value: 1
         per_lv: 10
+    enchant: #
+      - name: スペシャルエンチャント(ミオン)
+        slot_list: #
+          - slot: 4
+            refine: 0
+            enchant_list: #
+              - name: 潜在解放(ナイトウォッチXII)
 
-  - name: リヴァイアサンスケイル
-    yomi: リヴァイアサンスケイル
+
+  - name: プリマヒヤドゥム
+    yomi: プリマヒヤドゥム
     type: 鎧
     slot: 1
     weapon_lv: 0
-    atk_or_def: 100
+    atk_or_def: 0
     weight: 100
     required_lv: 200
-    required_job: ドラゴンナイト
+    required_job: バイオロ
     capabilities:
       - name: プレイヤー耐性
         value: 7
       - name: スキルダメージ増加
         value: 1
+        skill: メイヘミックソーンズ
         per_lv: 10
-        skill: ドラゴニックブレス
-      - name: スキルダメージ増加
-        value: 1
-        per_lv: 10
-        skill: ドラゴニックオーラ
       - name: 全サイズへの物理ダメージ増加
         value: 7
         per_refine: 1
@@ -72,50 +83,36 @@ item_list:
       - name: 壊れない
         value: 1
         at_refine: 9
-      - name: スキルダメージ増加
-        value: 1
-        per_lv: 1
+      - name: 再使用待機時間減少
+        value: 16000
+        skill: ハウリングオブマンドラゴラ
         at_refine: 9
-        skill: ウォータードラゴンブレス
-      - name: スキルダメージ増加
-        value: 1
-        per_lv: 1
-        at_refine: 9
-        skill: ファイアードラゴンブレス
       - name: 全属性への物理ダメージ増加
         value: 15
         at_refine: 10
-
-  - name: きらきらさんごのクリアチャーム
-    yomi: きらきらさんごのクリアチャーム
-    desc: "[にゃん友 -亀設-]Lv1習得時、追加で[ニューマ]Lv1使用可能"
-    type: アクセサリー(2)
-    slot: 1
-    weapon_lv: 0
-    atk_or_def: 0
-    weight: 10
-    required_lv: 200
-    required_job: スピリットハンドラー
-    capabilities:
-      - name: RES加算
-        value: 15
-      - name: MRES加算
-        value: 15
-      - name: ASPD増加
-        value: 15
-      - name: スキルディレイ減少
-        value: 15
-      - name: プレイヤー耐性
-        value: 3
-      - name: DEF加算
-        value: 1
-        per_lv: 1
-      - name: MAXHP加算
-        value: 50
-        per_lv: 1
-      - name: MDEF加算
-        value: 1
-        per_lv: 10
-      - name: MAXSP加算
-        value: 50
-        per_lv: 10
+    enchant: #
+      - name: スペシャルエンチャント(オーブ)
+        slot_list: #
+          - slot: 4
+            refine: 0
+            enchant_list: #
+              - name: 潜在解放(バイオロXV)
+          - slot: 3
+            refine: 8
+            enchant_list: #
+              - name: 火属性付与(鎧)
+              - name: 水属性付与(鎧)
+              - name: 風属性付与(鎧)
+              - name: 地属性付与(鎧)
+              - name: 聖属性付与(鎧)
+              - name: 闇属性付与(鎧)
+              - name: 念属性付与(鎧)
+              - name: 毒属性付与(鎧)
+              - name: 不死属性付与(鎧)
+          - slot: 2
+            refine: 9
+            enchant_list: #
+              - name: スキルディレイ-15%
+              - name: 必中攻撃+25%
+              - name: 詠唱妨害不可
+              - name: 英雄の凱歌

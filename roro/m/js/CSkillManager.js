@@ -34010,7 +34010,7 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "(×)アックスストンプ";
+			this.name = "アックスストンプ";
 			this.kana = "アツクスストンフ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -34032,7 +34032,7 @@ function CSkillManager() {
 				// 基本倍率
 				ratio = 4900 + 1000 * skillLv;
 				// POW補正
-				ratio += 23 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数未検証
+				ratio += 33 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
 				// ベースレベル補正
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
@@ -34061,7 +34061,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)ラッシュクエイク";
+			this.name = "ラッシュクエイク";
 			this.kana = "ラツシユクエイク";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -34074,7 +34074,7 @@ function CSkillManager() {
 				// 基本倍率
 				ratio = 3900 * skillLv;
 				// POW補正
-				ratio += 90 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow補正未検証
+				ratio += 130 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow補正
 				// ベースレベル補正
 				return Math.floor(ratio * n_A_BaseLV / 100);				
 			}
@@ -35069,7 +35069,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)アビスダガー";
+			this.name = "アビスダガー";
 			this.kana = "アヒスタカア";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -35083,8 +35083,8 @@ function CSkillManager() {
 				let ratio = 0;
 				// 基本倍率
 				ratio = 5700 + 1500 * skillLv;
-				// POW補正 未検証
-				ratio += 23 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				// POW補正
+				ratio += 44 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// ベースレベル補正
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
@@ -35121,7 +35121,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)アンラッキーラッシュ";
+			this.name = "アンラッキーラッシュ";
 			this.kana = "アンラツキイラツシユ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -35130,9 +35130,9 @@ function CSkillManager() {
 			this.Power = function(skillLv, charaData, option) {
 				let ratio = 0;
 				// 基本倍率
-				ratio = 2500 + 1300 * skillLv;
+				ratio = 3100 + 700 * skillLv;
 				// POW補正 未検証
-				ratio += 17 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				ratio += 22 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// ベースレベル補正
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
@@ -35371,7 +35371,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)デフトスタブ";
+			this.name = "デフトスタブ";
 			this.kana = "テフトスタフ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -35382,8 +35382,8 @@ function CSkillManager() {
 				let ratio = 0;
 				// 基本倍率
 				ratio = 5700 + 750 * skillLv;
-				// POW補正 未検証
-				ratio += 23 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				// POW補正
+				ratio += 44 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// ベースレベル補正
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
@@ -35761,7 +35761,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)第一撃：烙印";
+			this.name = "第一撃：烙印";
 			this.kana = "タイ１ケキ　ラクイン";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -35772,8 +35772,8 @@ function CSkillManager() {
 				let ratio = 0;
 				// 基本倍率
 				ratio = 2900 + 500 * skillLv;
-				// POW補正 未検証
-				ratio += 15 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				// POW補正
+				ratio += 18 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// ベースレベル補正
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
@@ -36048,7 +36048,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)第二撃：滅魔の火";
+			this.name = "第二撃：滅魔の火";
 			this.kana = "タイ２ケキ　メツマノヒ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -36059,8 +36059,8 @@ function CSkillManager() {
 				let ratio = 0;
 				// 基本倍率
 				ratio = 5750 + 1250 * skillLv;
-				// POW補正 未検証
-				ratio += 27 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				// POW補正
+				ratio += 40 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// ベースレベル補正
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
@@ -36106,7 +36106,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)第二撃：信念";
+			this.name = "第二撃：信念";
 			this.kana = "タイ２ケキ　シンネン";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -36116,9 +36116,9 @@ function CSkillManager() {
 			this.Power = function(skillLv, charaData, option) {
 				let ratio = 0;
 				// 基本倍率
-				ratio = 4950 + 1250 * skillLv;
-				// POW補正 未検証
-				ratio += 23 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				ratio = 3950 + 1250 * skillLv;
+				// POW補正
+				ratio += 34 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// ベースレベル補正
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
@@ -36167,7 +36167,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)第二撃：審判";
+			this.name = "第二撃：審判";
 			this.kana = "タイ２ケキ　シンハン";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -36178,8 +36178,8 @@ function CSkillManager() {
 				let ratio = 0;
 				// 基本倍率
 				ratio = 4850 + 1250 * skillLv;
-				// POW補正 未検証
-				ratio += 25 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				// POW補正
+				ratio += 37 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// ベースレベル補正
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
@@ -38222,11 +38222,11 @@ function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
-			this.dispHitCount = 3;
+			this.dispHitCount = 2;
 			this.Power = function(skillLv, charaData, option) {
 				let ratio = 0;
 				// 基本倍率
-				ratio = 700 + 200 * skillLv;
+				ratio = 800 + 100 * skillLv;
 				// POW補正
 				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// 天気修練 補正
@@ -38434,7 +38434,7 @@ function CSkillManager() {
 				// TODO: 正子、天気の身はスキル倍率だけに影響するので職固有自己支援から攻撃オプションへ移行する
 				const state_tenki_buff = option.GetOptionValue(0) === 1;
 				// 基本倍率
-				let ratio = 1450 + 250 * skillLv;
+				let ratio = 1475 + 225 * skillLv;
 				// 正子、天気の身状態なら、倍率２倍
 				if (state_tenki_buff) {
 					ratio *= 2;
@@ -38489,7 +38489,7 @@ function CSkillManager() {
 				if (state_tenki_buff) {
 					ratio = 4000 + 550 * skillLv;
 				} else {
-					ratio = 2100 + 175 * skillLv;
+					ratio = 2000 + 275 * skillLv;
 				}
 				// POW補正
 				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
@@ -38571,7 +38571,7 @@ function CSkillManager() {
 			this.ground_installation = true;
 			this.damageInterval = 300;
 			this.Power = function(skillLv, charaData, option) {
-				let ratio = 625 + 125 * skillLv;
+				let ratio = 675 + 75 * skillLv;
 				// POW補正
 				ratio += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// 天気修練 補正
@@ -39980,7 +39980,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)タイガースラッシュ";
+			this.name = "タイガースラッシュ";
 			this.kana = "タイカアスラツシユ";
 			this.maxLv = 7;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -40551,7 +40551,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)ダブルボウリングバッシュ";
+			this.name = "ダブルボウリングバッシュ";
 			this.kana = "タフルホウリンクハツシユ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -40603,7 +40603,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)メガソニックブロー";
+			this.name = "メガソニックブロー";
 			this.kana = "メカソニツクフロオ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -40665,7 +40665,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)スパークブラスター";
+			this.name = "スパークブラスター";
 			this.kana = "スハアクフラスタア";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -40679,7 +40679,7 @@ function CSkillManager() {
 				let ratio = 0;
 				// スキル倍率
 				ratio = 4600 + 500 * skillLv;							// 基礎倍率
-				ratio += 25 * GetTotalSpecStatus(MIG_PARAM_ID_POW);		// 特性ステータス補正 未検証
+				ratio += 32 * GetTotalSpecStatus(MIG_PARAM_ID_POW);		// 特性ステータス補正
 				return Math.floor(ratio * n_A_BaseLV / 100);			// BaseLv補正
 			}
 			this.dispHitCount = function(skillLv) {
@@ -40719,7 +40719,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)トリプルレーザー";
+			this.name = "トリプルレーザー";
 			this.kana = "トリフルレエサア";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -40735,7 +40735,7 @@ function CSkillManager() {
 			this.Power = function(skillLv, charaData, option) {
 				let ratio = 0;
 				ratio = 1200 + 200 * skillLv;						// 基礎倍率
-				ratio += 7 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// 特性ステータス補正 未検証
+				ratio += 8 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// 特性ステータス補正
 				return Math.floor(ratio * n_A_BaseLV / 100);		// BaseLv補正
 			}
 			this.element = CSkillData.ELEMENT_VOID;
@@ -40937,7 +40937,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)マイティスマッシュ";
+			this.name = "マイティスマッシュ";
 			this.kana = "マイテイスマツシユ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -40955,14 +40955,14 @@ function CSkillManager() {
 				// TODO: アックスストンプ状態はスキル倍率だけに影響するので職固有自己支援から攻撃手段オプションに移行する
 				const state_axe_stomp = Math.max(UsedSkillSearch(SKILL_ID_AXE_STOMP_STATUS), option.GetOptionValue(0)); 
 				// 基本倍率
-				if (state_axe_stomp === 0) {
+				if (state_axe_stomp === 1) {
 					// アックスストンプ状態の場合
 					ratio = 9000 + 750 * skillLv;						// 基礎倍率
-					ratio += 29 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// 特性ステータス補正 未検証
+					ratio += 55 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// 特性ステータス補正
 				} else {
 					// 通常時
 					ratio = 6700 + 650 * skillLv;						// 基礎倍率
-					ratio += 23 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// 特性ステータス補正 未検証
+					ratio += 44 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// 特性ステータス補正
 				}
 				return Math.floor(ratio * n_A_BaseLV / 100);			// BaseLv補正
 			}
@@ -41808,7 +41808,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)シールドチェーンラッシュ";
+			this.name = "シールドチェーンラッシュ";
 			this.kana = "シイルトチエエンラツシユ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -41857,7 +41857,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)スパイラルピアースマックス";
+			this.name = "スパイラルピアースマックス";
 			this.kana = "スハイラルヒアアスマツクス";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -42611,7 +42611,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)ラッシュストライク";
+			this.name = "ラッシュストライク";
 			this.kana = "ラッシュストライク";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -42625,7 +42625,7 @@ function CSkillManager() {
 			}
 			this.Power = function(skillLv, charaData) {       // スキル倍率
 				let ratio = 9800 + 2000 * skillLv;
-				ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数未検証
+				ratio += 66 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
@@ -42665,7 +42665,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)パワフルスイング";
+			this.name = "パワフルスイング";
 			this.kana = "パワフルスイング";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -42683,10 +42683,10 @@ function CSkillManager() {
 				const state_axe_stomp = Math.max(UsedSkillSearch(SKILL_ID_AXE_STOMP_STATUS), option.GetOptionValue(0)); 
 				if (state_axe_stomp === 1) {
 					ratio += 11100 + 2700 * skillLv;
-					ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数未検証
+					ratio += 82 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
 				} else {
 					ratio += 8800 + 2200 * skillLv;
-					ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数未検証
+					ratio += 66 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
 				}
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
@@ -42727,7 +42727,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)エナジーキャノネード";
+			this.name = "エナジーキャノネード";
 			this.kana = "エナジーキャノネード";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -42741,7 +42741,7 @@ function CSkillManager() {
 			}
 			this.Power = function(skillLv, charaData) {       // スキル倍率
 				let ratio = 6150 + 1650 * skillLv;
-				ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数未検証
+				ratio += 48 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
@@ -43037,7 +43037,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)天気身陽";
+			this.name = "天気身陽";
 			this.kana = "天気身陽";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -43049,8 +43049,8 @@ function CSkillManager() {
 				let ratio = 0;
 				const tenki_shuren_lv = Math.max(UsedSkillSearch(SKILL_ID_TENKI_SHUREN), LearnedSkillSearch(SKILL_ID_TENKI_SHUREN));
 				ratio += 1250 + 50 * skillLv;
-				ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数未検証
-				ratio += 1 * skillLv * tenki_shuren_lv;	// 修練係数未検証
+				ratio += 10 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
+				ratio += 30 * skillLv * tenki_shuren_lv;	// 修練係数
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
@@ -43090,7 +43090,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)天気身月";
+			this.name = "天気身月";
 			this.kana = "天気身月";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -43103,8 +43103,8 @@ function CSkillManager() {
 				let ratio = 0;
 				const tenki_shuren_lv = Math.max(UsedSkillSearch(SKILL_ID_TENKI_SHUREN), LearnedSkillSearch(SKILL_ID_TENKI_SHUREN));
 				ratio += 3100 + 50 * skillLv;
-				ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数未検証
-				ratio += 1 * skillLv * tenki_shuren_lv;	// 修練係数未検証
+				ratio += 22 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
+				ratio += 66 * skillLv * tenki_shuren_lv;	// 修練係数
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
@@ -43146,7 +43146,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)天星の行";
+			this.name = "天星の行";
 			this.kana = "天星の行";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -43157,8 +43157,8 @@ function CSkillManager() {
 				let ratio = 0;
 				const tenki_shuren_lv = Math.max(UsedSkillSearch(SKILL_ID_TENKI_SHUREN), LearnedSkillSearch(SKILL_ID_TENKI_SHUREN));
 				ratio += 3100 + 50 * skillLv;
-				ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数未検証
-				ratio += 1 * skillLv * tenki_shuren_lv;	// 修練係数未検証
+				ratio += 22 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
+				ratio += 66 * skillLv * tenki_shuren_lv;	// 修練係数
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
@@ -43200,7 +43200,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)烈火気弾";
+			this.name = "烈火気弾";
 			this.kana = "烈火気弾";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -43217,10 +43217,10 @@ function CSkillManager() {
 				const state_enka_metsuma_shindan = option.GetOptionValue(0);
 				if (state_enka_metsuma_shindan === 1) {
 					ratio += 3150 + 750 * skillLv;
-					ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数未検証
+					ratio += 23 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
 				} else {
 					ratio += 2400 + 600 * skillLv;
-					ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数未検証
+					ratio += 18 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
 				}
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
@@ -43261,7 +43261,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)タイガーバトリング";
+			this.name = "タイガーバトリング";
 			this.kana = "タイガーバトリング";
 			this.maxLv = 7;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -43271,8 +43271,8 @@ function CSkillManager() {
 				let ratio = 0;
 				const spirit_mastery_lv = Math.max(UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY), LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
 				ratio += 1475 + 325 * skillLv;
-				ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数未検証
-				ratio += 1 * spirit_mastery_lv;	// 修練係数未検証
+				ratio += 15 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数未検証
+				ratio += 75 * spirit_mastery_lv;	// 修練係数未検証
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
@@ -43312,7 +43312,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)ディアースピリットパワー";
+			this.name = "ディアースピリットパワー";
 			this.kana = "ディアースピリットパワー";
 			this.maxLv = 7;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
@@ -43325,8 +43325,8 @@ function CSkillManager() {
 				let ratio = 0;
 				const spirit_mastery_lv = Math.max(UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY), LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
 				ratio += 2650 + 650 * skillLv;
-				ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// Spl係数未検証
-				ratio += 1 * spirit_mastery_lv;	// 修練係数未検証
+				ratio += 30 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// Spl係数未検証
+				ratio += 180 * spirit_mastery_lv;	// 修練係数未検証
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
@@ -43368,7 +43368,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)ヒットアンドスライディング";
+			this.name = "ヒットアンドスライディング";
 			this.kana = "ヒットアンドスライディング";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -43383,7 +43383,7 @@ function CSkillManager() {
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				ratio += 3250 + 850 * skillLv;
-				ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数未検証
+				ratio += 25 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
@@ -43425,7 +43425,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)チェイシングブレイク";
+			this.name = "チェイシングブレイク";
 			this.kana = "チェイシングブレイク";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -43436,10 +43436,10 @@ function CSkillManager() {
 				const state_hit_and_sliding = option.GetOptionValue(0) === 1;
 				if (state_hit_and_sliding) {
 					ratio += 7750 + 1750 * skillLv;
-					ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数未検証
+					ratio += 55 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
 				} else {
 					ratio += 5700 + 1500 * skillLv;
-					ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数未検証
+					ratio += 44 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
 				}
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
@@ -43482,7 +43482,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)チェイシングショット";
+			this.name = "チェイシングショット";
 			this.kana = "チェイシングショット";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -43497,10 +43497,10 @@ function CSkillManager() {
 				const state_hit_and_sliding = option.GetOptionValue(0) === 1;
 				if (state_hit_and_sliding) {
 					ratio += 1250 + 350 * skillLv;
-					ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_CON);	// Con係数未検証
+					ratio += 10 * GetTotalSpecStatus(MIG_PARAM_ID_CON);	// Con係数
 				} else {
 					ratio += 1150 + 250 * skillLv;
-					ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_CON);	// Con係数未検証
+					ratio += 8 * GetTotalSpecStatus(MIG_PARAM_ID_CON);	// Con係数
 				}
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
@@ -43541,7 +43541,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)アビスフレイム";
+			this.name = "アビスフレイム";
 			this.kana = "アビスフレイム";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
@@ -43554,16 +43554,20 @@ function CSkillManager() {
 				switch (attack_area) {
 					case 0:	// 対象周辺
 						ratio += 750 * skillLv;
+						ratio += 75 * mahoken_shuren_lv;	// 修練係数
+						ratio += 25 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// Spl係数
 						break;
 					case 1:	// 自身周辺
 						ratio += 600 * skillLv;
+						ratio += 60 * mahoken_shuren_lv;	// 修練係数
+						ratio += 20 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// Spl係数
 						break;
 					case 2:	// 両方
 						ratio += (750 + 600) * skillLv;
+						ratio += (75 + 60) * mahoken_shuren_lv;
+						ratio += (25 + 20) * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 						break;
 				}
-				ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// Spl係数未検証
-				ratio += 1 * mahoken_shuren_lv;	// 修練係数未検証
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
@@ -43734,7 +43738,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)インペリアルプレッシャー";
+			this.name = "インペリアルプレッシャー";
 			this.kana = "インペリアルプレッシャー";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
@@ -43752,8 +43756,8 @@ function CSkillManager() {
 				let ratio = 0;
 				const yari_katate_shuren_lv = Math.max(UsedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN), LearnedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN));
 				ratio += -500 + 1000 * skillLv;
-				ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// Spl係数未検証
-				ratio += 1 * yari_katate_shuren_lv;	// 修練係数未検証
+				ratio += 30 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// Spl係数
+				ratio += 450 * yari_katate_shuren_lv;	// 修練係数
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
@@ -43880,7 +43884,7 @@ function CSkillManager() {
 				return 5500 + 800 * skillLv;
 			}
 			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
-				return 500;
+				return 1500;
 			}
 			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
 				return 5000;
