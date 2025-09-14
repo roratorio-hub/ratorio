@@ -69,7 +69,7 @@ jobs:
           cd staging
 
           # 既存のファイルをすべて削除し、新しいファイルをコピー
-          find . -type f -not -path "./.git/*" -delete
+          rm -rf *
           mv ../temp_dist/* .
 
           # コミットとプッシュ
