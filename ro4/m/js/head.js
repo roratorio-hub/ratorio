@@ -15273,9 +15273,10 @@ function GetIkariPow(mobData) {
 	var lvWork = 0;
 	var effectMax = 0;
 	// 複数の怒り系をパッシブで設定できるようにするため、適切な怒りを検索する
+	// 怒りは指定したモンスターだけに掛かるバフなのでLearnedSkillを参照することはできない
 	while (true) {
 		// 星の怒り
-		if ((lvWork = Math.max(LearnedSkillSearch(SKILL_ID_HOSHINO_IKARI), UsedSkillSearch(SKILL_ID_HOSHINO_IKARI))) > 0) {
+		if ((lvWork = UsedSkillSearch(SKILL_ID_HOSHINO_IKARI)) > 0) {
 			bEffective = true;
 			if (UsedSkillSearch(SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_KISEKI) > 0) {
 				// 太陽と月と星の奇跡発動中は、条件不問
@@ -15292,7 +15293,7 @@ function GetIkariPow(mobData) {
 			}
 		}
 		// 月の怒り
-		if ((lvWork = Math.max(LearnedSkillSearch(SKILL_ID_TSUKINO_IKARI), UsedSkillSearch(SKILL_ID_TSUKINO_IKARI))) > 0) {
+		if ((lvWork = UsedSkillSearch(SKILL_ID_TSUKINO_IKARI)) > 0) {
 			bEffective = true;
 			if (mobData[MONSTER_DATA_INDEX_ID] !== MONSTER_ID_PLAYER) {
 				// 対プレイヤーではない場合は、サイズ・HP条件チェック
@@ -15307,7 +15308,7 @@ function GetIkariPow(mobData) {
 			}
 		}
 		// 太陽の怒り
-		if ((lvWork = Math.max(LearnedSkillSearch(SKILL_ID_TAIYONO_IKARI), UsedSkillSearch(SKILL_ID_TAIYONO_IKARI))) > 0) {
+		if ((lvWork = UsedSkillSearch(SKILL_ID_TAIYONO_IKARI)) > 0) {
 			bEffective = true;
 			if (mobData[MONSTER_DATA_INDEX_ID] !== MONSTER_ID_PLAYER) {
 				// 対プレイヤーではない場合は、サイズ条件チェック
