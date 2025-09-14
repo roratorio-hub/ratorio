@@ -316,7 +316,7 @@ async function mergeJob(): Promise<void> {
                 const mig_skill_id: number | string | null = value;
                 const skill_data = getSkillByMigId(skillObject, mig_skill_id);
                 if (mig_skill_id == 814) {
-                    console.log(mig_skill_id, skill_data); // デバッグ用
+                    //console.log(mig_skill_id, skill_data); // デバッグ用
                 }
                 if (skill_data) {
                     jobMapObject[correctJobIdName].passive_skills[skill_data.id] = {
