@@ -1,0 +1,56 @@
+name: Deploy to Staging
+
+# staging ブランチにプッシュされた時のみ実行される
+on:
+  push:
+    branches:
+      - staging
+    paths-ignore:
+      - './roro/date.json'
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install and build Node.js dependencies
+        working-directory: workspace
+        run: |
+          npm install
+          npm run build
+
+      - name: Get and format PR merged date in JST
+        if: always()
+        id: get_formatted_pr_date
+        working-directory: workspace
+        run: |
+          LATEST_PR_DATE_UTC="$(TZ='Asia/Tokyo' date '+%Y-%m-%d %H:%M')"
+          echo "{\"release_date\": \"$LATEST_PR_DATE_UTC\"}" > ../roro/date.json
+
+      - name: Install zstd
+        run: sudo apt-get install -y zstd
+
+      - name: Compress YAML file with zstd
+        run: |
+          find ./workspace/data/ -name '*.zst' -type f -exec rm -f {} +
+          find ./workspace/data/ -name '*.yaml' -type f -exec zstd -f {} +
+          find ./workspace/data/ -name '*.yaml.zst' -type f -exec mv -t ./dist/ {} +
+
+      - name: Deploy to Staging Repository
+        env:
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/roratorio-hub/staging.git
+          git subtree push --prefix dist origin main --force
