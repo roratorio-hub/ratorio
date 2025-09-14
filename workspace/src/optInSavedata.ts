@@ -222,7 +222,12 @@ async function optInSavedata(): Promise<void> {
                                         const data = await response.json();
                                         // 成功メッセージをダイアログに表示
                                         const successMessage = document.createElement('p');
-                                        successMessage.innerHTML = `🐱🚀データ送信成功<br>ID: ${data.id}, 作成日時: ${data.created_at}<br>ご協力ありがとうございます`;
+                                        // Safely add message with textContent and <br> elements
+                                        successMessage.appendChild(document.createTextNode('🐱🚀データ送信成功'));
+                                        successMessage.appendChild(document.createElement('br'));
+                                        successMessage.appendChild(document.createTextNode(`ID: ${data.id}, 作成日時: ${data.created_at}`));
+                                        successMessage.appendChild(document.createElement('br'));
+                                        successMessage.appendChild(document.createTextNode('ご協力ありがとうございます'));
                                         successMessage.style.color = 'green';
                                         successMessage.style.fontWeight = 'bold';
                                         successMessage.style.marginTop = '20px';
