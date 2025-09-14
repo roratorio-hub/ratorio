@@ -1,4 +1,4 @@
-async function optInData(): Promise<void> {
+async function optInSavedata(): Promise<void> {
     // ダイアログを作成
     const dialog = document.createElement('div');
     dialog.style.position = 'fixed';
@@ -297,4 +297,4 @@ async function optInData(): Promise<void> {
     document.body.appendChild(dialog);
 }
 
-(window as any).optInData = optInData; // グローバルに登録
+(window as any).optInSavedata = optInSavedata; // グローバルに登録
