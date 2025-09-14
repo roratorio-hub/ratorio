@@ -40,7 +40,18 @@ async function optInSavedata(): Promise<void> {
     closeButton.style.borderRadius = '4px';  // 角を丸くしてバランスを取る
 
     const message = document.createElement('p');
-    message.innerHTML = 'データをラトリオHub開発チームに提供しますか？<br>この操作により、装備構成データ、ステータスが外部サーバに送信されます。<br>提供されたデータはラトリオHubの改善にのみ使用されます。';
+    // Avoid innerHTML: use text nodes and <br> elements for each line
+    const messageLines = [
+        'データをラトリオHub開発チームに提供しますか？',
+        'この操作により、装備構成データ、ステータスが外部サーバに送信されます。',
+        '提供されたデータはラトリオHubの改善にのみ使用されます。'
+    ];
+    messageLines.forEach((line, idx) => {
+        message.appendChild(document.createTextNode(line));
+        if (idx < messageLines.length - 1) {
+            message.appendChild(document.createElement('br'));
+        }
+    });
     message.style.marginBottom = '20px';
 
     // 問題(issue)であるかのスライドボタンを追加
