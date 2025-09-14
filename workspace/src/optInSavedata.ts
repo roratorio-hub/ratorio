@@ -56,7 +56,7 @@ async function optInSavedata(): Promise<void> {
 
     // 問題(issue)であるかのスライドボタンを追加
     const issueLabel = document.createElement('label');
-    issueLabel.textContent = '問題(issue)であるか:';
+    issueLabel.textContent = '「問題が発生するデータ」として提供する';
     issueLabel.style.display = 'block';
     issueLabel.style.marginBottom = '10px';
     issueLabel.style.fontSize = '14px';
@@ -110,7 +110,7 @@ async function optInSavedata(): Promise<void> {
 
     // コメント入力用のTextareaを追加
     const commentLabel = document.createElement('label');
-    commentLabel.textContent = 'コメント（任意）:';
+    commentLabel.textContent = 'コメント（任意）';
     commentLabel.style.display = 'block';
     commentLabel.style.marginBottom = '10px';
     commentLabel.style.fontSize = '14px';
