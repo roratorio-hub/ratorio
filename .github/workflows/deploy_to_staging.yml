@@ -55,7 +55,10 @@ jobs:
 
           # ディレクトリの内容を一時的に別のディレクトリに移動
           mkdir temp_dist
-          mv ./* temp_dist/
+          mv ./jquery temp_dist/
+          mv ./ro4 temp_dist/
+          mv ./roro temp_dist/
+          mv ./dist temp_dist/
 
           # ratorio-staging リポジトリをクローン
           git clone https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/roratorio-hub/staging.git staging
