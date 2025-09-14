@@ -1,12 +1,10 @@
-import { loadFileAsUint8Array, zstdDecompress } from "./funcZstdLoad";
+import { loadFileAsUint8Array, zstdDecompress } from "./funcZstd";
 import { load as loadYAML } from "js-yaml"
 
-interface JobDataParameter {
+export interface JobDataParameter {
     id_name: string, // ID Name
     id_num: number, //ID Num
     is_doram: boolean, //ドラムかどうか
-    _mig_id_name: string, //MIG ID Name
-    _mig_id_num: number, //MIG ID Num
     name: string, //名前(英語)
     name_ja: string, //名前(日本語)
     name_alias: string[], //名前の別名
@@ -18,13 +16,16 @@ interface JobDataParameter {
     additional_status: { [key: number]: { name: string, add_value: number } }, //追加ステータス
     hp_basic_values: number[], //基本HP
     sp_basic_values: number[], //基本SP
-    learned_skills: { [id: string]: { id_num: number } }, //習得スキル
-    passive_skills: { [id: string]: { id_num: number } }, //パッシブスキル
-    attack_skills: { [id: string]: { id_num: number } }, //攻撃スキル
+    learned_skills: { [idx: string]: { id: string, id_num: number } }, //習得スキル
+    passive_skills: { [idx: string]: { id: string, id_num: number } }, //パッシブスキル
+    attack_skills: { [idx: string]: { id: string, id_num: number } }, //攻撃スキル
     allow_equipment_weapons_type: number[], //装備可能武器タイプ
     base_lv_min: number, //基本最小レベル
     base_lv_max: number, //基本最大レベル
     job_lv_max: number, //最大ジョブレベル
+    status_basic_max: number, //基本ステータス最大値
+    status_talent_max: number, //特性ステータス最大値
+    _mig_id_num?: number, //MIG ID Num
 }
 
 class JobData {
@@ -63,10 +64,16 @@ class JobData {
     getJobLvMax(): number {
         return this.parameter.job_lv_max;
     }
-    getMigIdName(): string {
-        return this.parameter._mig_id_name;
+    getLearnedSkills(): string[] {
+        return Object.keys(this.parameter.learned_skills).map(idx => this.parameter.learned_skills[idx].id);
     }
-    getMigIdNum(): number {
+    getPassiveSkills(): string[] {
+        return Object.keys(this.parameter.passive_skills).map(idx => this.parameter.passive_skills[idx].id);
+    }
+    getAttackSkills(): string[] {
+        return Object.keys(this.parameter.attack_skills).map(idx => this.parameter.attack_skills[idx].id);
+    }
+    getMigIdNum(): number | undefined {
         return this.parameter._mig_id_num;
     }
 
@@ -175,9 +182,8 @@ export class JobMap {
 
     /** 職業データをロード */
     static async load(): Promise<void> {
-        let compressed = await loadFileAsUint8Array('../../dist/job.yaml.zst');
-        let decompressed = await zstdDecompress(compressed);
-        let jobLines = new TextDecoder('utf-8').decode(decompressed);
+        const compressed = await loadFileAsUint8Array('../../dist/job.yaml.zst');
+        const jobLines = await zstdDecompress(compressed) || "";
         try {
             // YAMLとしてロード
             this.jobMap = loadYAML(jobLines) as Record<string, JobDataParameter>;
