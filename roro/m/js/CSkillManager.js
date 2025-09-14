@@ -34730,7 +34730,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)グランドジャッジメント";
+			this.name = "グランドジャッジメント";
 			this.kana = "クラントシヤツシメント";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -34745,8 +34745,8 @@ function CSkillManager() {
 				let ratio = 0;
 				// 基本倍率
 				ratio = 7500 + 2250 * skillLv;
-				// POW補正 未検証
-				ratio += 90 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				// POW補正
+				ratio += 100 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// ベースレベル補正
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
@@ -34822,7 +34822,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)シールドシューティング";
+			this.name = "シールドシューティング";
 			this.kana = "シイルトシユウテインク";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -34838,12 +34838,12 @@ function CSkillManager() {
 				let ratio = 0;
 				// 基本倍率
 				ratio = 1200 + 800 * skillLv;
-				// 修練補正 未検証
+				// 修練補正
 				ratio += 40 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_TATE_SHUREN), UsedSkillSearch(SKILL_ID_TATE_SHUREN));
 				// 盾の精錬値・重量補正
 				ratio += n_A_SHIELD_DEF_PLUS * 200 + ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][ITEM_DATA_INDEX_WEIGHT];
 				// POW補正
-				ratio += 30 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				ratio += 32 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// ベースレベル補正
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
@@ -34880,7 +34880,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)オーバースラッシュ";
+			this.name = "オーバースラッシュ";
 			this.kana = "オオハアスラツシユ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -34897,10 +34897,10 @@ function CSkillManager() {
 				let ratio = 0;
 				// 基本倍率
 				ratio = 130 * skillLv;
-				// 修練補正 未検証
-				ratio += 8 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN), UsedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN));
+				// 修練補正
+				ratio += 12 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN), UsedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN));
 				// POW補正 
-				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				ratio += 7 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// ベースレベル補正
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
@@ -43609,7 +43609,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)レイディアントスピア";
+			this.name = "レイディアントスピア";
 			this.kana = "レイディアントスピア";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -43627,13 +43627,12 @@ function CSkillManager() {
 				const yari_katate_shuren_lv = Math.max(UsedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN), LearnedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN));
 				if (state_grand_judgement) {
 					ratio += 1200 + 450 * skillLv;
-					ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数未検証
-					ratio += 1 * yari_katate_shuren_lv; // 修練係数未検証
+					ratio += 32 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
 				} else {
 					ratio += -100 + 400 * skillLv;
-					ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数未検証
-					ratio += 1 * yari_katate_shuren_lv; // 修練係数未検証
+					ratio += 26 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
 				}
+				ratio += 390 * yari_katate_shuren_lv; // 修練係数
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
@@ -43673,7 +43672,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)インペリアルクロス";
+			this.name = "インペリアルクロス";
 			this.kana = "インペリアルクロス";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -43690,13 +43689,12 @@ function CSkillManager() {
 				const yari_katate_shuren_lv = Math.max(UsedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN), LearnedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN));
 				if (state_grand_judgement) {
 					ratio += 1500 + 2700 * skillLv;
-					ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数未検証
-					ratio += 1 * yari_katate_shuren_lv; // 修練係数未検証
+					ratio += 82 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
 				} else {
 					ratio += -800 + 2200 * skillLv;
-					ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数未検証
-					ratio += 1 * yari_katate_shuren_lv; // 修練係数未検証
+					ratio += 66 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
 				}
+				ratio += 960 * yari_katate_shuren_lv; // 修練係数
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
