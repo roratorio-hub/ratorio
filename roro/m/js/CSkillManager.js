@@ -40551,7 +40551,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)ダブルボウリングバッシュ";
+			this.name = "ダブルボウリングバッシュ";
 			this.kana = "タフルホウリンクハツシユ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -40603,7 +40603,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)メガソニックブロー";
+			this.name = "メガソニックブロー";
 			this.kana = "メカソニツクフロオ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -40955,7 +40955,7 @@ function CSkillManager() {
 				// TODO: アックスストンプ状態はスキル倍率だけに影響するので職固有自己支援から攻撃手段オプションに移行する
 				const state_axe_stomp = Math.max(UsedSkillSearch(SKILL_ID_AXE_STOMP_STATUS), option.GetOptionValue(0)); 
 				// 基本倍率
-				if (state_axe_stomp === 0) {
+				if (state_axe_stomp === 1) {
 					// アックスストンプ状態の場合
 					ratio = 9000 + 750 * skillLv;						// 基礎倍率
 					ratio += 55 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// 特性ステータス補正
@@ -41808,7 +41808,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)シールドチェーンラッシュ";
+			this.name = "シールドチェーンラッシュ";
 			this.kana = "シイルトチエエンラツシユ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -41857,7 +41857,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)スパイラルピアースマックス";
+			this.name = "スパイラルピアースマックス";
 			this.kana = "スハイラルヒアアスマツクス";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
