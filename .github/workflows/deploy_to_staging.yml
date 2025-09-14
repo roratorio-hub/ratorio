@@ -1,15 +1,16 @@
 name: Deploy to Staging
 
-# staging ブランチにプッシュされた時のみ実行される
+# dev ブランチにプッシュされた時のみ実行される
 on:
   push:
     branches:
-      - staging
+      - dev
     paths-ignore:
       - './roro/date.json'
 
 jobs:
   build_and_deploy:
+    if: ${{ github.repository == 'roratorio-hub/ratorio' }}
     runs-on: ubuntu-latest
     
     steps:
@@ -59,8 +60,11 @@ jobs:
           mv ./ro4 temp_dist/
           mv ./roro temp_dist/
           mv ./dist temp_dist/
+          mv ./README.md temp_dist/
+          mv ./LICENSE temp_dist/
+          mv ./index.html temp_dist/
 
-          # ratorio-staging リポジトリをクローン
+          # staging リポジトリをクローン
           git clone https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/roratorio-hub/staging.git staging
           cd staging
 
