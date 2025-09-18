@@ -16,6 +16,7 @@ import type { JobDataParameter } from "../src/loadJobMap";
 async function main() {
     await mergeSkill();
     await mergeJob();
+    await mergeItem();
 }
 
 async function mergeSkill(): Promise<void> {
@@ -1723,6 +1724,25 @@ async function parseJobDat(src: string): Promise<{ id: number; name: string; isR
     });
 
     return parsedJobs;
+}
+
+async function mergeItem(): Promise<void> {
+    const srcYaml = path.resolve("./data/item.yaml");
+    const outYaml = path.resolve("../dist/item.yaml.zst");
+
+    // ファイル読み込み
+    const yamlText = new TextDecoder("utf-8").decode(await fs.readFile(srcYaml));
+
+    /*
+    将来的にitem処理をここに追加
+    */
+
+    // zstd 圧縮
+    const compressed = await zstdCompress(yamlText);
+    if (compressed === null) {
+        throw new Error("zstdCompress が null を返しました");
+    }
+    await fs.writeFile(outYaml, compressed);
 }
 
 main().catch((e) => {

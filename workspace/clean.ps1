@@ -9,6 +9,9 @@ if (-not (Test-Path "../dist")) {
     New-Item -Path "../dist" -ItemType Directory
 }
 
+# dist ディレクトリ内の *.zst を削除
+Remove-Item -Path "../dist/*.zst" -ErrorAction SilentlyContinue
+
 # npm install を実行
 npm install
 
