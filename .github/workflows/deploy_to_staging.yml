@@ -40,7 +40,7 @@ jobs:
         id: get_formatted_pr_date
         working-directory: workspace
         run: |
-          LATEST_PR_DATE_UTC="${{ github.event.pull_request.merged_at }}"
+          LATEST_PR_DATE_UTC="${{ github.event.pull_request.created_at }}"
           FORMATTED_JST_DATE=$(node -e "
             const { format } = require('date-fns');
             const { toZonedTime } = require('date-fns-tz');
