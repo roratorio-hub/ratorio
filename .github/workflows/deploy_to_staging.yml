@@ -1,16 +1,15 @@
 name: Deploy to Staging
 
-# dev ブランチにプッシュされた時のみ実行される
+# dev ブランチに PR された時のみ実行される
 on:
-  push:
+  pull_request:
     branches:
       - dev
-    paths-ignore:
-      - './roro/date.json'
 
 jobs:
   build_and_deploy:
     if: ${{ github.repository == 'roratorio-hub/ratorio' }}
+    environment: approval-required-workflow # レビューされるまで最大 30 日保留する
     runs-on: ubuntu-latest
     
     steps:
@@ -18,43 +17,46 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          ref: ${{ github.event.pull_request.head.ref }}
 
+      # --------- ここからメインのワークフロー ----------
+      # Node.js のセットアップ
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22' # memo: version 22 のEOLは 2027年4月頃
 
+      # Node.js 依存関係をインストール & webpack でビルド
       - name: Install and build Node.js dependencies
         working-directory: workspace
         run: |
-          npm install
-          npm run build
+             npm install
+             npm run build
+             npx ts-node --project tsconfig.node.json utils/yamlMergeAndCompress.ts
 
+      # PR がマージされた日時を json に書き出す
       - name: Get and format PR merged date in JST
         if: always()
         id: get_formatted_pr_date
         working-directory: workspace
         run: |
-          LATEST_PR_DATE_UTC="$(TZ='Asia/Tokyo' date '+%Y-%m-%d %H:%M')"
-          echo "{\"release_date\": \"$LATEST_PR_DATE_UTC\"}" > ../roro/date.json
+          LATEST_PR_DATE_UTC="${{ github.event.pull_request.created_at }}"
+          FORMATTED_JST_DATE=$(node -e "
+            const { format } = require('date-fns');
+            const { toZonedTime } = require('date-fns-tz');
+            const utcDate = new Date('$LATEST_PR_DATE_UTC');
+            const jstDate = toZonedTime(utcDate, 'Asia/Tokyo');
+            const formattedDate = format(jstDate, 'yyyy-MM-dd HH:mm');
+            console.log(formattedDate);
+          ")
+          echo "{\"release_date\": \"$FORMATTED_JST_DATE\"}" > ../roro/date.json
 
-      - name: Install zstd
-        run: sudo apt-get install -y zstd
-
-      - name: Compress YAML file with zstd
-        run: |
-          find ./workspace/data/ -name '*.zst' -type f -exec rm -f {} +
-          find ./workspace/data/ -name '*.yaml' -type f -exec zstd -f {} +
-          find ./workspace/data/ -name '*.yaml.zst' -type f -exec mv -t ./dist/ {} +
-
+      # ------------ ここまでメインのワークフロー ----------
       - name: Deploy to Staging Repository
         env:
           PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-
-          # ディレクトリの内容を一時的に別のディレクトリに移動
+          # PR ブランチの内容を一時作業ディレクトリに移動する
           mkdir temp_dist
           mv ./jquery temp_dist/
           mv ./ro4 temp_dist/
@@ -64,15 +66,35 @@ jobs:
           mv ./LICENSE temp_dist/
           mv ./index.html temp_dist/
 
-          # staging リポジトリをクローン
-          git clone https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/roratorio-hub/staging.git staging
-          cd staging
+          # アカウント設定
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-          # 既存のファイルをすべて削除し、新しいファイルをコピー
+          # staging リポジトリをクローン
+          git clone https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/roratorio-hub/staging.git staging-repo
+          cd staging-repo
+
+          # staging リポジトリの既存ファイルをすべて削除し、一時作業ディレクトリの内容をコピーする
           rm -rf *
           mv ../temp_dist/* .
 
-          # コミットとプッシュ
+          # staging リポジトリを更新する
           git add .
-          git commit -m "Deploy from ratorio staging branch"
+          git commit -m "staging request" || true
           git push origin main
+
+      - name: Result
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const prNumber = context.payload.pull_request.number;
+            const stagingRepoUrl = 'https://roratorio-hub.github.io/staging';
+            const stagingSourceUrl = 'https://github.com/roratorio-hub/staging';
+            const previewUrl = `${stagingRepoUrl}/ro4/m/calcx.html`;
+            
+            github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber,
+              body: `🚀 [PRプレビュー環境](${previewUrl})がデプロイされました！５分ほど待ってから確認してください.\nステージング環境の[ソースはこちら](${stagingSourceUrl})`
+            });
