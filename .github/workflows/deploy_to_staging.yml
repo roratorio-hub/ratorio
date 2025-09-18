@@ -11,12 +11,12 @@ jobs:
     if: ${{ github.repository == 'roratorio-hub/ratorio' }}
     environment: approval-required-workflow # レビューされるまで最大 30 日保留する
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PAT_TOKEN }}
           ref: ${{ github.event.pull_request.head.ref }}
 
       # --------- ここからメインのワークフロー ----------
@@ -40,16 +40,9 @@ jobs:
         id: get_formatted_pr_date
         working-directory: workspace
         run: |
-          LATEST_PR_DATE_UTC="${{ github.event.pull_request.created_at }}"
-          FORMATTED_JST_DATE=$(node -e "
-            const { format } = require('date-fns');
-            const { toZonedTime } = require('date-fns-tz');
-            const utcDate = new Date('$LATEST_PR_DATE_UTC');
-            const jstDate = toZonedTime(utcDate, 'Asia/Tokyo');
-            const formattedDate = format(jstDate, 'yyyy-MM-dd HH:mm');
-            console.log(formattedDate);
-          ")
-          echo "{\"release_date\": \"$FORMATTED_JST_DATE\"}" > ../roro/date.json
+          export LATEST_PR_DATE_UTC="${{ github.event.pull_request.created_at }}"
+          export FORMATTED_JST_DATE=$(date -d "${LATEST_PR_DATE_UTC}" "+%Y-%m-%d %H:%M")
+          echo "{\"release_date\": \"${FORMATTED_JST_DATE}\"}" > ../roro/date.json
 
       # ------------ ここまでメインのワークフロー ----------
       - name: Deploy to Staging Repository
@@ -91,7 +84,7 @@ jobs:
             const stagingRepoUrl = 'https://roratorio-hub.github.io/staging';
             const stagingSourceUrl = 'https://github.com/roratorio-hub/staging';
             const previewUrl = `${stagingRepoUrl}/ro4/m/calcx.html`;
-            
+
             github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
