@@ -34,3 +34,4 @@ ROラトリオHUBをWebサイトとして公開するためのブランチです
 masterブランチに対するMergeをトリガーとして自動的にデプロイされます。
 
 ![](./.github/repository_guide/branch-work.drawio.svg)
+
