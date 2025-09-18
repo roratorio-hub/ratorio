@@ -27,7 +27,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22' # memo: version 22 のEOLは 2027年4月頃
+          node-version: '20' # memo: version 20 のEOLは 2026年4月頃
 
       # Node.js 依存関係をインストール & webpack でビルド
       - name: Install and build Node.js dependencies
@@ -35,7 +35,6 @@ jobs:
         run: |
              npm install
              npm run build
-             npx ts-node --project tsconfig.node.json utils/yamlMergeAndCompress.ts
 
       # PR に release ラベルが付与されている時のみ PR がマージされた日時を json に書き出す
       - name: Get and format PR merged date in JST
@@ -63,6 +62,15 @@ jobs:
           git add ./roro/date.json
           git commit -m "リリース日時の更新"
           git push
+
+      # zstd をインストール
+      - name: Install zstd
+        run: sudo apt-get install -y zstd
+
+      # JSONCファイルをzstdで圧縮
+      - name: Compress JSONC file with zstd
+        run: |
+          find ./ro4/m/json/ -name '*.jsonc' -type f -exec zstd -f {} +
 
       # `dist` ディレクトリの内容を GitHub Pages にデプロイ
       - name: Deploy to GitHub Pages
