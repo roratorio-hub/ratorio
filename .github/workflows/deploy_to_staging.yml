@@ -1,11 +1,9 @@
 name: Deploy to Staging
 
-# dev ブランチに PR された時のみ実行される
+# 手動で指定された時のみ実行
 on:
-  pull_request:
-    branches:
-      - dev
-
+  workflow_dispatch:
+        
 jobs:
   build_and_deploy:
     if: ${{ github.repository == 'roratorio-hub/ratorio' }}
