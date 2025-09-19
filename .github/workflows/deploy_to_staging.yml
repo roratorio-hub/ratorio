@@ -1,11 +1,17 @@
 name: Deploy to Staging
 
-#  Fork されたリポジトリから dev ブランチに PR された時のみ実行される
 on:
+  #  Fork されたリポジトリから dev ブランチに PR された時のみ実行される
   pull_request_target:
     branches:
       - dev
-
+  # 任意でワークフローをキックした時に実行される
+  workflow_dispatch:
+    inputs:
+      pull_request_number:
+        description: 'PR Number to deploy'
+        required: false
+        
 jobs:
   build_and_deploy:
     if: ${{ github.repository == 'roratorio-hub/ratorio' }}
