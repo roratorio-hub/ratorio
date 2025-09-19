@@ -3,6 +3,11 @@ name: Deploy to Staging
 # 手動で指定された時のみ実行
 on:
   workflow_dispatch:
+    inputs:
+      pull_request_number:
+        description: 'PR Number to deploy'
+        required: true
+        type: number # 数値であることを明示
         
 jobs:
   build_and_deploy:
