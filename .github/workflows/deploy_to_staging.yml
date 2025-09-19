@@ -1,16 +1,8 @@
 name: Deploy to Staging
 
+# 手動で指定された時のみ実行
 on:
-  #  Fork されたリポジトリから dev ブランチに PR された時のみ実行される
-  pull_request_target:
-    branches:
-      - dev
-  # 任意でワークフローをキックした時に実行される
   workflow_dispatch:
-    inputs:
-      pull_request_number:
-        description: 'PR Number to deploy'
-        required: false
         
 jobs:
   build_and_deploy:
