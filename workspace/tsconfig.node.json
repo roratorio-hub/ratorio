@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "commonjs", // モジュール形式
+        "moduleResolution": "bundler",
+        "strict": true, // 厳格な型チェック
+        "types": [
+            "node"
+        ],
+        "paths": {},
+        "noImplicitAny": true,
+        "noUnusedLocals": false,
+        "noUnusedParameters": false,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true
+    },
+    "include": [
+        "./utils/*.ts",
+        "./src/*.ts"
+    ],
+    "exclude": [
+        "./node_modules",
+        "./dist"
+    ]
+}

@@ -14,14 +14,13 @@ jobs:
     if: ${{ github.repository == 'roratorio-hub/ratorio' }}
     environment: approval-required-workflow # レビューされるまで最大 30 日保留する
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           ref: refs/pull/${{ github.event.inputs.pull_request_number }}/head
-          #ref: ${{ github.event.pull_request.head.sha }}
 
       # --------- ここからメインのワークフロー ----------
       # Node.js のセットアップ
@@ -86,7 +85,7 @@ jobs:
             const stagingRepoUrl = 'https://roratorio-hub.github.io/staging';
             const stagingSourceUrl = 'https://github.com/roratorio-hub/staging';
             const previewUrl = `${stagingRepoUrl}/ro4/m/calcx.html`;
-            
+
             github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
