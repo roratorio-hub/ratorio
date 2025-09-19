@@ -71,8 +71,11 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
           # staging リポジトリをクローン
-          git clone https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/roratorio-hub/staging.git staging-repo
+          git clone https://github.com/roratorio-hub/staging.git staging-repo
           cd staging-repo
+
+          # リモートURLにトークンを追加して認証を有効にする
+          git remote set-url origin https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/roratorio-hub/staging.git
 
           # staging リポジトリの既存ファイルをすべて削除し、一時作業ディレクトリの内容をコピーする
           rm -rf *
