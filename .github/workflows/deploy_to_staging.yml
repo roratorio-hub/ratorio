@@ -1,6 +1,6 @@
 name: Deploy to Staging
 
-# Fork されたリポジトリから dev ブランチに PR された時のみ実行される
+#  Fork されたリポジトリから dev ブランチに PR された時のみ実行される
 on:
   pull_request_target:
     branches:
