@@ -20,7 +20,8 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          ref: ${{ github.event.pull_request.head.sha }}
+          ref: refs/pull/${{ github.event.inputs.pull_request_number }}/head
+          #ref: ${{ github.event.pull_request.head.sha }}
 
       # --------- ここからメインのワークフロー ----------
       # Node.js のセットアップ
