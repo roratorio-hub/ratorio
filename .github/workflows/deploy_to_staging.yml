@@ -37,25 +37,16 @@ jobs:
              npm install
              npm run build
              npx ts-node --project tsconfig.node.json utils/yamlMergeAndCompress.ts
-
-      # PR がマージされた日時を json に書き出す
-      - name: Get and format PR merged date in JST
-        if: always()
-        id: get_formatted_pr_date
+      # ------------ ここまでメインのワークフロー ----------
+      
+      # ワークフローがキックされた日時を json に書き出す
+      - name: Get and format current date in JST
+        id: get_formatted_date
         working-directory: workspace
         run: |
-          LATEST_PR_DATE_UTC="${{ github.event.pull_request.created_at }}"
-          FORMATTED_JST_DATE=$(node -e "
-            const { format } = require('date-fns');
-            const { toZonedTime } = require('date-fns-tz');
-            const utcDate = new Date('$LATEST_PR_DATE_UTC');
-            const jstDate = toZonedTime(utcDate, 'Asia/Tokyo');
-            const formattedDate = format(jstDate, 'yyyy-MM-dd HH:mm');
-            console.log(formattedDate);
-          ")
-          echo "{\"release_date\": \"$FORMATTED_JST_DATE\"}" > ../roro/date.json
+          JST_DATE=$(TZ="Asia/Tokyo" date +"%Y-%m-%d %H:%M")
+          echo "{\"release_date\": \"$JST_DATE\"}" > ../roro/date.json
 
-      # ------------ ここまでメインのワークフロー ----------
       - name: Deploy to Staging Repository
         env:
           PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
