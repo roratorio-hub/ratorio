@@ -40900,8 +40900,8 @@ function CSkillManager() {
 				}
 				// 2025-08-26 アップデート後の実測値に対して計算値が僅かにオーバーする
 				// HPSP係数が間違っているか他の計算部分で誤差が生じている
-				ratio += charaData[CHARA_DATA_INDEX_MAXHP] / 320
-				ratio += charaData[CHARA_DATA_INDEX_MAXSP] / 12;
+				ratio += charaData[CHARA_DATA_INDEX_MAXHP] / 314.8
+				ratio += charaData[CHARA_DATA_INDEX_MAXSP] / 12.5;
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
 			}
