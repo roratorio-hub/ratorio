@@ -22,7 +22,7 @@ function SwitchBGColor() {
 // オリジナル版とFork版の判定
 let sitename = "ROラトリオHub"
 let formurl = "https://docs.google.com/forms/d/e/1FAIpQLSfP7hZkIInuBIvlDKf3L66fQ4DGzP3DUAbGPeTwTc3B-y7AKg/viewform"
-if (window.location.hostname !== "roratorio-hub.github.io") {
+if (window.location.hostname !== "roratorio-hub.github.io" || window.location.pathname.split("/")[1] !== "ratorio") {
   sitename += "<br>- 開発デモ版 -"
   formurl += `?entry.1590472346=ラトリオHUB以外から遷移しています`
 }
