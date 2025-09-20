@@ -70,10 +70,9 @@ jobs:
 
 # Workflows を定義（pushイベントでジョブを実行）
 workflows:
-  version: 2
   e2e-test:
     jobs:
       - build-and-test:
           filters:
             branches:
-              only: /^(feature\/.*|hotfix\/.*)$/  # feature/*, hotfix/* のブランチで実行
+              only: /^(dev|feature\/.*|hotfix\/.*)$/  # dev, feature/*, hotfix/* のブランチで実行
