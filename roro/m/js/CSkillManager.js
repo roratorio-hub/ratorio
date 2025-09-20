@@ -31367,7 +31367,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)ハックアンドスラッシャー";
+			this.name = "ハックアンドスラッシャー";
 			this.kana = "ハツクアントスラツシヤア";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -31385,10 +31385,11 @@ function CSkillManager() {
 				let ratio = 0;
 				if (weapon === ITEM_KIND_SWORD_2HAND) {
 					ratio = 2500 + 200 * skillLv;
+					ratio += 15 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
 				} else {
 					ratio = 1800 + 150 * skillLv;
+					ratio += 11 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
 				}
-				ratio += 8 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数 未検証
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
 			}
@@ -31431,7 +31432,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)ドラゴニックオーラ";
+			this.name = "ドラゴニックオーラ";
 			this.kana = "トラコニツクオオラ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -31442,7 +31443,7 @@ function CSkillManager() {
 			this.Power = function(skillLv, charaData) {					// スキル倍率
 				let ratio = 0;
 				ratio = 7500 + 2250 * skillLv;
-				ratio += 90 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				ratio += 100 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);	// Pow係数 未検証
 				return ratio;
 			}
@@ -31479,7 +31480,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)マッドネスクラッシャー";
+			this.name = "マッドネスクラッシャー";
 			this.kana = "マツトネスクラツシヤア";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -31496,7 +31497,7 @@ function CSkillManager() {
 				const weight = ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS]][ITEM_DATA_INDEX_WEIGHT];
 				ratio += 5700 + 1200 * skillLv;
 				ratio += weight * wpnLv;
-				ratio += [0, 15, 18, 19, 22, 25][skillLv] * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数 未検証
+				ratio += (19 + 4 * skillLv) * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				// チャージングピアースがONの時、与えるダメージ + 10% x スキルレベル
 				ratio = ratio * (1 + 0.1 * option.GetOptionValue(0));
@@ -31574,7 +31575,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)ストームスラッシュ";
+			this.name = "ストームスラッシュ";
 			this.kana = "ストオムスラツシユ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -31593,7 +31594,7 @@ function CSkillManager() {
 				// ジャイアントグロース(スリサズルーンストーン)はスキル倍率だけでなく基礎ステータスにも影響を与えるので職固有自己支援で設定する
 				const state_giant_growth = UsedSkillSearch(SKILL_ID_GIANT_GROWTH) === 1;
 				ratio += 1550 + 50 * skillLv;
-				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数 未検証
+				ratio += 6 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
 				if (state_giant_growth) {
 					ratio *= 2;
 				}
@@ -42781,7 +42782,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)ドラゴニックピアース";
+			this.name = "ドラゴニックピアース";
 			this.kana = "ドラゴニックピアース";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -42797,10 +42798,10 @@ function CSkillManager() {
 				const state_dragonic_aura = Math.max(UsedSkillSearch(SKILL_ID_DRAGONIC_AURA_STATE) - 1, option.GetOptionValue(0));
 				if (state_dragonic_aura > 0) {
 					ratio += 4600 + 1000 * skillLv;
-					ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数未検証
+					ratio += 32 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
 				} else {
 					ratio += 3550 + 850 * skillLv;
-					ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数未検証
+					ratio += 26 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
 				}
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
