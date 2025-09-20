@@ -3,7 +3,7 @@ version: 2.1
 executors:
   self-hosted-executor:
     machine: true  # self-hosted runnerの場合、machine: true を指定
-    resource_class: m10i/raspberry-pi  # self-hosted runnerの名前を指定
+    resource_class: m10i/aws  # self-hosted runnerの名前を指定
 
 # Job を定義
 jobs:
@@ -76,4 +76,4 @@ workflows:
       - build-and-test:
           filters:
             branches:
-              only: /^(feature\/.*|hotfix\/.*|patch\/.*)$/  # feature/*, hotfix/*, patch/* のブランチで実行
+              only: /^(feature\/.*|hotfix\/.*)$/  # feature/*, hotfix/* のブランチで実行
