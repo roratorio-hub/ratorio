@@ -2,6 +2,22 @@
 // https://ragnarokonline.gungho.jp/campaign_event/campaign/baselv220cp-2.html#modal
 // calcx.html?cx1cy1EtMmfo4Owqof.3M4X00cz11.32jYJlE0cz120022jAp3VvR1cz13.4fYl3cz14.4hj1cz15002Edw7Bot9w8cz16002yfJC0xiTd62cz170022j8nn3td2cz18.4fIm3cz19.32dhop8cz1a002GhcqRoQmQ6G8cz1b.4hM1cz1c.4hOacz1d00s0hPgX1h_1cz1e00c0jP1to02cz1f00s0jOfup0z0cz1g00c0jP2vq01cz1h00s0jPjsr0utcz1i.4mcA1Z_1127456b89a3cA128c0cA1vgfdejgh2cB1.sf_V___51d171n5n5nll5dldldl511cC1.ecR1.4S8cU1.cg003cW100Bcl3cZ121
 $(function () {
+  $("#OBJID_BUTTON_IMAGE_SAVE_DATA_MIG").click(function () {
+	generateImage();
+    html2canvas(document.querySelector("#imgdiv"), { allowTaint: true, useCORS: true }).then(
+      function (canvas) {
+        var download = document.createElement("a");
+        download.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+        download.download = "ratorio.png";
+        download.click();
+        $("#imgdiv").remove();
+      }
+    );
+    return false;
+  });
+});
+
+function generateImage() {
   const v = (selector) => {
     return $(selector).val() || $(selector).text();
   }
@@ -95,8 +111,6 @@ $(function () {
     text += " )"
     return text;
   }
-
-  $("#OBJID_BUTTON_IMAGE_SAVE_DATA_MIG").click(function () {
     regist_elm_vanity = [];
     elm_ratio = [];
     regist_ratio = [];
@@ -587,16 +601,4 @@ $(function () {
       $(dd[i]).text($(dd[i]).text().replace(/ *\(\+\d+以上\)/g, ""))
       $(dd[i]).text($(dd[i]).text().replace(/【習】/g, ""))
     }
-
-    html2canvas(document.querySelector("#imgdiv"), { allowTaint: true, useCORS: true }).then(
-      function (canvas) {
-        var download = document.createElement("a");
-        download.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
-        download.download = "ratorio.png";
-        download.click();
-        $("#imgdiv").remove();
-      }
-    );
-    return false;
-  });
-});
+}
