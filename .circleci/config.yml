@@ -30,23 +30,23 @@ jobs:
       # 4. 指定した場所でgit pullを実行
       - run:
           name: Git Pull in Specified Directory
-          workspace: /var/www/html/roratorio-hub
           command: |
+            cd /var/www/html/roratorio-hub
             git fetch origin ${CIRCLE_BRANCH}
             git reset --hard origin/${CIRCLE_BRANCH}  # 現在のbranchをリモートに強制的に合わせる（必要に応じて調整）
 
       # 5. 環境クリーンアップ用のシェルを実行
       - run:
           name: Run Shell Script
-          workspace: /var/www/html/roratorio-hub/workspace
           command: |
+            cd /var/www/html/roratorio-hub/workspace
             bash ./clean.sh
 
       # 6. Playwrightコンテナを起動し、テストを実行（結果を直接受け取る）
       - run:
           name: Run Playwright Tests in Container
-          workspace: /var/www/html/roratorio-hub/workspace
           command: |
+            cd /var/www/html/roratorio-hub
             podman pull ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/roratorio-hub/e2e-testkit:latest-arm64
             mkdir -p test-results
             podman run --rm --replace \
