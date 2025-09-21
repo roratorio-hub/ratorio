@@ -47,14 +47,14 @@ jobs:
           name: Run Playwright Tests in Container
           command: |
             cd /var/www/html/roratorio-hub
-            podman pull ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/roratorio-hub/e2e-testkit:latest-arm64
+            podman pull public.ecr.aws/u3l2i4k1/m10i/roratorio-hub-e2e-testkit:latest-arm64
             mkdir -p test-results
             podman run --rm --replace \
               --name testing-roratorio-hub \
               --network host \
               -v $(pwd)/test-results:/opt/workspace/test-results \
               -e BASE_URL="http://localhost/roratorio-hub/ro4/m/calcx.html" \
-              ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/roratorio-hub/e2e-testkit:latest-arm64 \
+              public.ecr.aws/u3l2i4k1/m10i/roratorio-hub-e2e-testkit:latest-arm64 \
               npx playwright test --output=/opt/workspace/test-results
 
       # 7. テスト結果をartifactsとして保存
