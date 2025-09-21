@@ -74,7 +74,7 @@ async function optInSavedata(): Promise<void> {
     issueToggle.style.display = 'none';  // チェックボックスを隠す
 
     const issueSlider = document.createElement('label');
-    issueSlider.htmlFor = 'optInIssue';
+    issueSlider.setAttribute('for', 'optInIssue');
     issueSlider.style.position = 'relative';
     issueSlider.style.width = '50px';
     issueSlider.style.height = '24px';
