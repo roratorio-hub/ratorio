@@ -7,7 +7,7 @@ executors:
 
 # Job を定義
 jobs:
-  build-and-test:
+  e2e-test:
     executor: self-hosted-executor  # self-hosted executorを使用
     steps:
       # 1. GitHubのホストキーをknown_hostsに追加（SSHエラー対策）
@@ -64,9 +64,9 @@ jobs:
 
 # Workflows を定義（pushイベントでジョブを実行）
 workflows:
-  e2e-test:
+  tests:
     jobs:
-      - build-and-test:
+      - e2e-test:
           filters:
             branches:
-              only: /^(dev|feature\/.*|hotfix\/.*)$/  # dev, feature/*, hotfix/* のブランチで実行
+              only: /^(feature|hotfix)\/.*/  # feature/*, hotfix/* のブランチで実行
