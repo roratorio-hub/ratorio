@@ -8,13 +8,12 @@ on:
         description: 'PR Number to deploy'
         required: true
         type: number # 数値であることを明示
-        
+
 jobs:
   build_and_deploy:
     if: ${{ github.repository == 'roratorio-hub/ratorio' }}
     environment: approval-required-workflow # レビューされるまで最大 30 日保留する
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -37,7 +36,7 @@ jobs:
              npm run build
              npx ts-node --project tsconfig.node.json utils/yamlMergeAndCompress.ts
       # ------------ ここまでメインのワークフロー ----------
-      
+
       # ワークフローがキックされた日時を json に書き出す
       - name: Get and format current date in JST
         id: get_formatted_date

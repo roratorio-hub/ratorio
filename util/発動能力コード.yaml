@@ -1,4 +1,13 @@
 capabilities:
+  # --- ↓ 固定値上昇（集中力向上等の基礎値に含まれる） ---
+  # 1 STR
+  # 2 AGI
+  # 3 VIT
+  # 4 INT
+  # 5 DEX
+  # 6 LUK
+  # 7 全ステ
+  # --- ↑ 固定値上昇（集中力向上等の基礎値に含まれる） ---
   - name: FLEE加算
     code: 9
   - name: CRI加算
@@ -213,6 +222,7 @@ capabilities:
     code: 199
   - name: 近接ダメージ増加
     code: 210
+  # --- ↓ セット定義用（集中力向上等の基礎値に含まれない） ---
   - name: STR加算
     code: 211
   - name: AGI加算
@@ -227,6 +237,7 @@ capabilities:
     code: 216
   - name: 全基本ステータス加算
     code: 217
+  # --- ↑ セット定義用（集中力向上等の基礎値に含まれない） ---
   - name: アイテムの効果が発動しない
     code: 218
   - name: カードの効果が発動しない 
