@@ -99,9 +99,21 @@ async function optInSavedata(): Promise<void> {
         if (issueToggle.checked) {
             issueSlider.style.backgroundColor = '#4CAF50';
             issueKnob.style.transform = 'translateX(26px)';
+            // ラベルを変更: 問題個所のコメント(必須)
+            commentLabel.textContent = '問題個所のコメント(必須):';
+            // プレースホルダを問題報告用に変更
+            commentTextarea.placeholder = 'ここに問題個所についてコメント入力してください\n(例:ダメージ結果が異なる、特定の装備が反映されない等)';
+            // チェックを入れたときはエラーはそのまま表示しておく（検証は送信時）
         } else {
             issueSlider.style.backgroundColor = '#ccc';
             issueKnob.style.transform = 'translateX(0)';
+            // ラベルを戻す: コメント（任意）
+            commentLabel.textContent = 'コメント(任意):';
+            // プレースホルダを元に戻す
+            commentTextarea.placeholder = 'ここにコメントを入力してください\n(例: 改善点の提案など)';
+            // チェックを外したらエラーを消す（必須表示解除）
+            const existing = document.getElementById('optInError');
+            if (existing) existing.remove();
         }
     });
 
@@ -110,7 +122,7 @@ async function optInSavedata(): Promise<void> {
 
     // コメント入力用のTextareaを追加
     const commentLabel = document.createElement('label');
-    commentLabel.textContent = 'コメント（任意）:';
+    commentLabel.textContent = 'コメント(任意):';
     commentLabel.style.display = 'block';
     commentLabel.style.marginBottom = '10px';
     commentLabel.style.fontSize = '14px';
@@ -118,7 +130,7 @@ async function optInSavedata(): Promise<void> {
 
     const commentTextarea = document.createElement('textarea');
     commentTextarea.id = 'optInComment';
-    commentTextarea.placeholder = 'ここにコメントを入力してください（例: 改善点の提案など）';
+    commentTextarea.placeholder = 'ここにコメントを入力してください\n(例: 改善点の提案など)';
     commentTextarea.style.width = '100%';
     commentTextarea.style.height = '80px';
     commentTextarea.style.padding = '10px';
@@ -126,6 +138,14 @@ async function optInSavedata(): Promise<void> {
     commentTextarea.style.borderRadius = '4px';
     commentTextarea.style.resize = 'vertical';
     commentTextarea.style.marginBottom = '20px';
+
+    // 単一のエラー表示要素を準備（再利用する）
+    const errorMessage = document.createElement('p');
+    errorMessage.id = 'optInError';
+    errorMessage.style.color = 'red';
+    errorMessage.style.fontWeight = 'bold';
+    errorMessage.style.marginTop = '20px';
+    // initial: 未追加（必要時に dialogContent に append する）
 
     const yesButton = document.createElement('button');
     yesButton.textContent = 'はい(同意する)';
@@ -148,6 +168,30 @@ async function optInSavedata(): Promise<void> {
 
     // Yesボタンのクリックイベント
     yesButton.addEventListener('click', async () => {
+        // 既存のエラー表示があれば削除（重複を防止）
+        const prev = document.getElementById('optInError');
+        if (prev) prev.remove();
+
+        // 問題(issue)であるかの状態を取得
+        const issueToggleElement = document.getElementById('optInIssue') as HTMLInputElement;
+        const isIssue = issueToggleElement ? issueToggleElement.checked : false;
+
+        // コメントを取得
+        const commentTextareaElement = document.getElementById('optInComment') as HTMLTextAreaElement;
+        const commentValue = commentTextareaElement ? commentTextareaElement.value.trim() : '';  // trim()で空白を除去
+
+        // バリデーション: 問題データの場合、コメントが必須
+        if (isIssue && commentValue === '') {
+            errorMessage.textContent = '問題データを報告する場合、コメントは必須です。';
+            // 重複していなければ追加
+            if (!document.getElementById('optInError')) dialogContent.appendChild(errorMessage);
+            return;  // 送信を中止
+        }
+
+        // 送信前にエラーが残っていれば削除
+        const remain = document.getElementById('optInError');
+        if (remain) remain.remove();
+
         try {
             // 無効化して多重送信を防止
             yesButton.disabled = true;
@@ -218,6 +262,9 @@ async function optInSavedata(): Promise<void> {
 
                                 if (response.ok) {
                                     sendingMessage.remove(); // 送信中メッセージを削除
+                                    // 成功時に残ったエラーを削除
+                                    const e = document.getElementById('optInError');
+                                    if (e) e.remove();
                                     try {
                                         const data = await response.json();
                                         // 成功メッセージをダイアログに表示

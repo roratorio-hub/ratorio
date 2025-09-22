@@ -3,11 +3,11 @@ version: 2.1
 executors:
   self-hosted-executor:
     machine: true  # self-hosted runnerの場合、machine: true を指定
-    resource_class: m10i/raspberry-pi  # self-hosted runnerの名前を指定
+    resource_class: m10i/aws  # self-hosted runnerの名前を指定
 
 # Job を定義
 jobs:
-  build-and-test:
+  e2e-test:
     executor: self-hosted-executor  # self-hosted executorを使用
     steps:
       # 1. GitHubのホストキーをknown_hostsに追加（SSHエラー対策）
@@ -32,14 +32,8 @@ jobs:
           name: Git Pull in Specified Directory
           command: |
             cd /var/www/html/roratorio-hub
-            git fetch origin $CIRCLE_BRANCH
-            git reset --hard origin/$CIRCLE_BRANCH  # 現在のbranchをリモートに強制的に合わせる（必要に応じて調整）
-
-      # 依存関係のパッケージはself-hosted runnerに事前インストール済みとし、ここではスキップ
-      #- run:
-      #    name: Run dependencies package Installation
-      #    command: |
-      #      sudo dnf install -y podman zstd nodejs nodejs-npm
+            git fetch origin ${CIRCLE_BRANCH}
+            git reset --hard origin/${CIRCLE_BRANCH}  # 現在のbranchをリモートに強制的に合わせる（必要に応じて調整）
 
       # 5. 環境クリーンアップ用のシェルを実行
       - run:
@@ -53,14 +47,14 @@ jobs:
           name: Run Playwright Tests in Container
           command: |
             cd /var/www/html/roratorio-hub
-            podman pull ghcr.io/m10i-0nyx/roratorio-hub-testkit/playwright:latest-arm64
+            podman pull public.ecr.aws/u3l2i4k1/m10i/roratorio-hub-e2e-testkit:latest-arm64
             mkdir -p test-results
             podman run --rm --replace \
-              --name testing-playwright \
+              --name testing-roratorio-hub \
               --network host \
-              --cgroup-manager=cgroupfs \
               -v $(pwd)/test-results:/opt/workspace/test-results \
-              ghcr.io/m10i-0nyx/roratorio-hub-testkit/playwright:latest-arm64 \
+              -e BASE_URL="http://localhost/roratorio-hub/ro4/m/calcx.html" \
+              public.ecr.aws/u3l2i4k1/m10i/roratorio-hub-e2e-testkit:latest-arm64 \
               npx playwright test --output=/opt/workspace/test-results
 
       # 7. テスト結果をartifactsとして保存
@@ -70,10 +64,9 @@ jobs:
 
 # Workflows を定義（pushイベントでジョブを実行）
 workflows:
-  version: 2
-  e2e-test:
+  tests:
     jobs:
-      - build-and-test:
+      - e2e-test:
           filters:
             branches:
               only: /^(feature\/.*|hotfix\/.*|patch\/.*)$/  # feature/*, hotfix/*, patch/* のブランチで実行
