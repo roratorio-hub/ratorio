@@ -227,7 +227,7 @@ async function optInSavedata(): Promise<void> {
 
             // コメントを取得
             const commentTextareaElement = document.getElementById('optInComment') as HTMLTextAreaElement;
-            const commentValue = commentTextareaElement ? commentTextarea.value : '';
+            const commentValue = commentTextareaElement ? commentTextareaElement.value : '';
 
             // 問題(issue)であるかの状態を取得
             const issueToggleElement = document.getElementById('optInIssue') as HTMLInputElement;
