@@ -178,7 +178,7 @@ async function optInSavedata(): Promise<void> {
 
         // コメントを取得
         const commentTextareaElement = document.getElementById('optInComment') as HTMLTextAreaElement;
-        const commentValue = commentTextareaElement ? commentTextarea.value.trim() : '';  // trim()で空白を除去
+        const commentValue = commentTextareaElement ? commentTextareaElement.value.trim() : '';  // trim()で空白を除去
 
         // バリデーション: 問題データの場合、コメントが必須
         if (isIssue && commentValue === '') {
