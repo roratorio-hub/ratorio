@@ -69,4 +69,4 @@ workflows:
       - e2e-test:
           filters:
             branches:
-              only: /^(feature|hotfix)\/.*/  # feature/*, hotfix/* のブランチで実行
+              only: /^(feature\/.*|hotfix\/.*|patch\/.*)$/  # feature/*, hotfix/*, patch/* のブランチで実行
