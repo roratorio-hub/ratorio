@@ -4,6 +4,12 @@ import { zstdCompress, zstdDecompress } from "./funcZstd";
 
 const API_VERSION = 2;
 
+function getCalculationResultsInYAML(): string {
+    const object = {};
+    return dumpYAML(object);
+}
+(window as any).getCalculationResultsInYAML = getCalculationResultsInYAML; //グローバルに登録
+
 // LocalFileへ保存
 function saveToLocalFile(): void {
     try {
@@ -26,7 +32,7 @@ function saveToLocalFile(): void {
 (window as any).saveToLocalFile = saveToLocalFile; //グローバルに登録
 
 // LocalFile読み込み
-function loadFromLocalFile(): void {
+async function loadFromLocalFile(): Promise<void> {
     try {
         // input 要素を動的に作成してファイル選択ダイアログを表示
         const input = document.createElement("input");
@@ -86,11 +92,11 @@ function saveToLocalStorage(key: string = "RTX_DATA_DEFAULT"): void {
 (window as any).saveToLocalStorage = saveToLocalStorage; //グローバルに登録
 
 // LocalStorage読み込み
-function loadFromLocalStorage(key: string = "RTX_DATA_DEFAULT") {
+async function loadFromLocalStorage(key: string = "RTX_DATA_DEFAULT"): Promise<void> {
     const yamlData = localStorage.getItem(key);
     if (!yamlData) throw new Error("No data found in LocalStorage");
     const dataObject = loadYAML(yamlData) as RtxData;
-    importRtxDataObject(dataObject);
+    await importRtxDataObject(dataObject);
     console.log(`🐱‍💻データをLocalStorageから読み込みました: ${key}`);
 }
 (window as any).loadFromLocalStorage = loadFromLocalStorage; //グローバルに登録
@@ -108,7 +114,7 @@ async function outputConsoleRtxDataFormat(): Promise<void> {
 }
 (window as any).outputConsoleRtxDataFormat = outputConsoleRtxDataFormat; //グローバルに登録
 
-export async function loadFromString(importData: string): Promise<void> {
+export async function loadFromBase64String(importData: string): Promise<void> {
     const prefixCheck = /^rtx(\d+):(.+)$/;
     const matches = prefixCheck.exec(importData);
     if (!matches) {
@@ -166,6 +172,147 @@ async function importRtxDataObject(dataObject: RtxData): Promise<void> {
             statusElement.value = String(value);
         }
 
+        // ---------- ここから装備／カード／オプションの適用 ----------
+        // 補助: セレクト要素を表示名で選択するユーティリティ
+        const setSelectByOptionText = function (selectId: string, idNum: number | null, displayName: string | null, migIdNum: number | null = null) {
+            if (!selectId) return;
+            const selectElement = document.getElementById(selectId) as HTMLSelectElement | null;
+            if (!selectElement) return;
+
+            if (migIdNum !== null) {
+                // MIG IDが指定されている場合はこちらを優先して選択(旧互換用)
+                selectElement.value = String(migIdNum);
+            } else if (idNum !== null && idNum > 0) {
+                // IDが指定されている場合はIDで選択
+                selectElement.value = String(idNum);
+            } else if (displayName) {
+                // DisplayNameで検索して選択
+                for (let idx = 0; idx < selectElement.options.length; idx++) {
+                    const opt = selectElement.options[idx];
+                    const txt = (opt.textContent || opt.innerText || "").trim();
+                    if (txt === displayName) {
+                        selectElement.selectedIndex = idx;
+                        break;
+                    }
+                }
+            } else {
+                return; // 何も指定されていない場合はスキップ
+            }
+            console.debug(`Setting select ${selectId} to ID: ${idNum}, Display Name: ${displayName}, MIG ID: ${migIdNum}`);
+            selectElement.dispatchEvent(changeEvent); // 変更イベントを発火
+        };
+
+        // 装備位置ごとのUI IDマッピング（calcx.htmlのIDに合わせる）
+        const equipMappings: { [key in RtxEquipmentLocation]: { prefix: string, rndopt: string } } = {
+            arms_right: { prefix: "OBJID_ARMS_RIGHT", rndopt: "OBJID_EQUIP_REGION_ID_ARMS_RNDOPT" },
+            arms_left: { prefix: "OBJID_ARMS_LEFT", rndopt: "OBJID_EQUIP_REGION_ID_ARMS_LNDOPT" }, // NOTE: left rndopt name used in export
+            head_top: { prefix: "OBJID_HEAD_TOP", rndopt: "OBJID_EQUIP_REGION_ID_HEAD_TOP" },
+            head_middle: { prefix: "OBJID_HEAD_MID", rndopt: "OBJID_EQUIP_REGION_ID_HEAD_MID" },
+            head_under: { prefix: "OBJID_HEAD_UNDER", rndopt: "OBJID_EQUIP_REGION_ID_HEAD_UNDER" },
+            shield: { prefix: "OBJID_SHIELD", rndopt: "OBJID_EQUIP_REGION_ID_SHIELD" },
+            body: { prefix: "OBJID_BODY", rndopt: "OBJID_EQUIP_REGION_ID_BODY" },
+            shoulder: { prefix: "OBJID_SHOULDER", rndopt: "OBJID_EQUIP_REGION_ID_SHOULDER" },
+            shoes: { prefix: "OBJID_SHOES", rndopt: "OBJID_EQUIP_REGION_ID_SHOES" },
+            accessory1: { prefix: "OBJID_ACCESSARY_1", rndopt: "OBJID_EQUIP_REGION_ID_ACCESSARY_1" }, // calcx.html の綴りに合わせる
+            accessory2: { prefix: "OBJID_ACCESSARY_2", rndopt: "OBJID_EQUIP_REGION_ID_ACCESSARY_2" }  // calcx.html の綴りに合わせる
+        };
+
+        // arms_type_right 反映
+        try {
+            const armsTypeRightElement = document.getElementById("OBJID_ARMS_TYPE_RIGHT") as HTMLSelectElement | null;
+            if (armsTypeRightElement && (dataObject.equipments as RtxEquipments).arms_type_right !== undefined) {
+                armsTypeRightElement.value = String((dataObject.equipments as RtxEquipments).arms_type_right);
+                armsTypeRightElement.dispatchEvent(changeEvent);
+            }
+        } catch (ex) {
+            console.warn("arms_type_right の適用に失敗しました", ex);
+        }
+
+        // arms_type_left 反映 (存在する場合のみ)
+        try {
+            const armsTypeLeftElement = document.getElementById("OBJID_ARMS_TYPE_LEFT") as HTMLSelectElement | null;
+            if (armsTypeLeftElement && (dataObject.equipments as RtxEquipments).arms_type_left !== undefined && (dataObject.equipments as RtxEquipments).arms_type_left !== null) {
+                armsTypeLeftElement.value = String((dataObject.equipments as RtxEquipments).arms_type_left);
+                armsTypeLeftElement.dispatchEvent(changeEvent);
+            }
+        } catch (ex) {
+            console.warn("arms_type_left の適用に失敗しました", ex);
+        }
+
+        // 各装備について適用処理
+        if (dataObject.equipments) {
+            (Object.keys(equipMappings) as RtxEquipmentLocation[]).forEach((location) => {
+                const mapping = equipMappings[location];
+                const equipment = (dataObject.equipments as RtxEquipments)[location];
+                if (!equipment) return;
+
+                // 装備本体
+                console.debug(`Applying equipment for ${location}: ${equipment.name} (ID: ${equipment.id_num}, MIG ID: ${equipment._mig_id_num})`);
+                setSelectByOptionText(mapping.prefix, equipment.id_num, equipment.name || null, equipment._mig_id_num || null);
+
+                // 強化値 / 超越値
+                const refineElement = document.getElementById(`${mapping.prefix}_REFINE`) as HTMLInputElement | HTMLSelectElement | null;
+                if (refineElement && equipment.refine !== undefined && equipment.refine !== null) {
+                    refineElement.value = String(equipment.refine);
+                    refineElement.dispatchEvent(changeEvent);
+                }
+                const transcElement = document.getElementById(`${mapping.prefix}_TRANSCENDENCE`) as HTMLInputElement | HTMLSelectElement | null;
+                if (transcElement && equipment.transcendence !== undefined && equipment.transcendence !== null) {
+                    transcElement.value = String(equipment.transcendence);
+                    transcElement.dispatchEvent(changeEvent);
+                }
+
+                // スロット（カード/エンチャント）は ${prefix}_CARD_${slotId}
+                if (equipment.slot) {
+                    Object.keys(equipment.slot).forEach((slotIdStr) => {
+                        const slotId = Number(slotIdStr);
+                        if (isNaN(slotId)) return;
+                        // まずカードセレクトとして適用
+                        const slotSelectId = `${mapping.prefix}_CARD_${slotId}`;
+                        setSelectByOptionText(slotSelectId, equipment.slot[slotId]?.id_num, equipment.slot[slotId]?.name || null, equipment.slot[slotId]?._mig_id_num || null); // 型チェックを無効化するので注意
+
+                        // もし別のUIがある場合は追加のIDにも対応させたい場合ここに追記
+                    });
+                }
+
+                // ランダムオプション（kind と value）
+                if (equipment.random_option && mapping.rndopt) {
+                    // ランダムオプション欄を表示
+                    OnClickSlotModeButton();
+
+                    for (let rndidx = 0; rndidx <= 5; rndidx++) {
+                        const kindId = `${mapping.rndopt}_KIND_${rndidx}`;
+                        const valueId = `${mapping.rndopt}_VALUE_${rndidx}`;
+
+                        const kindName = equipment.random_option[rndidx]?.kind || null;
+                        const kindElement = document.getElementById(kindId) as HTMLSelectElement | null;
+                        if (kindElement && kindName) {
+                            // kind は表示名でマッチさせる
+                            for (let idx = 0; idx < kindElement.options.length; idx++) {
+                                const opt = kindElement.options[idx];
+                                const txt = (opt.textContent || opt.innerText || "").trim();
+                                if (txt === kindName || txt.indexOf(kindName) !== -1) {
+                                    kindElement.selectedIndex = idx;
+                                    kindElement.dispatchEvent(changeEvent);
+                                    break;
+                                }
+                            }
+                        }
+
+                        const val = equipment.random_option[rndidx]?.value;
+                        const valElement = document.getElementById(valueId) as HTMLInputElement | HTMLSelectElement | null;
+                        if (valElement && (val !== undefined && val !== null)) {
+                            valElement.value = String(val);
+                            valElement.dispatchEvent(changeEvent);
+                        }
+                    }
+                    // ランダムオプション欄を閉じる
+                    OnClickSlotModeButton();
+                }
+            });
+        }
+        // ---------- 装備適用ここまで ----------
+
         // Set Learned skills
         const skillColumnCheckbox = document.getElementById("OBJID_SKILL_COLUMN_EXTRACT_CHECKBOX") as HTMLInputElement;
         skillColumnCheckbox.checked = true;
@@ -193,7 +340,6 @@ async function importRtxDataObject(dataObject: RtxData): Promise<void> {
 function exportRtxDataObject(): RtxData {
     let dataObject: RtxData = {
         api_version: API_VERSION,
-        overwright: true,
         status: {} as RtxJobStatus,
         learned_skills: {} as RtxSkills,
         equipments: {} as RtxEquipments,
@@ -207,7 +353,6 @@ function exportRtxDataObject(): RtxData {
     // Get Job
     const jobElement = document.getElementById("OBJID_SELECT_JOB") as HTMLSelectElement;
     dataObject.status.job_id = jobElement.value;
-    //dataObject.status.job_class_localization = JobMap.getById(jobElement.value)?.getNameJa(); // 容量削減のためローカライズ名は保存しない
 
     // Get Base Lv
     const baseLvElement = document.getElementById("OBJID_SELECT_BASE_LEVEL") as HTMLInputElement;
@@ -247,6 +392,15 @@ function exportRtxDataObject(): RtxData {
 
     // Equipments
     if (dataObject.equipments) {
+        const armsTypeRightElement = document.getElementById("OBJID_ARMS_TYPE_RIGHT") as HTMLSelectElement | null;
+        dataObject.equipments.arms_type_right = Number(armsTypeRightElement?.value);
+        const armsTypeLeftElement = document.getElementById("OBJID_ARMS_TYPE_LEFT") as HTMLSelectElement | null;
+        if (armsTypeLeftElement) {
+            dataObject.equipments.arms_type_left = Number(armsTypeLeftElement?.value);
+        } else {
+            dataObject.equipments.arms_type_left = null;
+        }
+
         // 右腕武器
         dataObject = getRecursiveItemValueById(dataObject, "arms_right" as const, "OBJID_ARMS_RIGHT", "OBJID_EQUIP_REGION_ID_ARMS_RNDOPT");
         // 左腕武器
@@ -280,19 +434,33 @@ function exportRtxDataObject(): RtxData {
         }
     }
 
+    if (dataObject.additional_info) {
+        // キャラクター名
+        const charNameElement = document.getElementById("OBJID_CHARACTER_NAME") as HTMLInputElement;
+        if (charNameElement) {
+            dataObject.additional_info.character_name = charNameElement.value || undefined;
+        }
+        // 現在日時
+        dataObject.additional_info.last_modified = (new Date()).toISOString();
+    }
+
     return dataObject;
 }
 
 function getRecursiveItemValueById(dataObject: RtxData, equipmentLocation: RtxEquipmentLocation, objectIdPrefix: string, objectIdRndopt: string, slotMaxNum: number = 4): RtxData {
-    const itemData = getChildItemValueById(`DATA_${objectIdPrefix}`, "item") as ItemData | null | undefined;
+    const itemData = getItemValueById(`${objectIdPrefix}`, "item") as ItemData | null | undefined;
     const itemRefine = getItemValueById(`${objectIdPrefix}_REFINE`, "refine") as number | null | undefined;
     const itemTranscendence = getItemValueById(`${objectIdPrefix}_TRANSCENDENCE`, "transcendence") as number | null | undefined;
+    const itemSelectElement = document.getElementById(objectIdPrefix) as HTMLSelectElement | null;
+
     if (equipmentLocation === "arms_right" || equipmentLocation === "arms_left") {
         //武器
         dataObject.equipments[equipmentLocation] = {
+            id_num: itemData?.getId() || null,
             refine: itemRefine || 0,
             transcendence: itemTranscendence || null,
             name: itemData?.getDisplayName() || null,
+            _mig_id_num: itemSelectElement && itemSelectElement.value != "0" ? Number(itemSelectElement.value) : null, // 旧仕様互換用
             slot: {},
             element: null,
             random_option: {}
@@ -300,21 +468,25 @@ function getRecursiveItemValueById(dataObject: RtxData, equipmentLocation: RtxEq
     } else {
         //それ以外
         dataObject.equipments[equipmentLocation] = {
+            id_num: itemData?.getId() || null,
             refine: itemRefine || null,
             transcendence: itemTranscendence || null,
             name: itemData?.getDisplayName() || null,
+            _mig_id_num: itemSelectElement && itemSelectElement.value != "0" ? Number(itemSelectElement.value) : null, // 旧仕様互換用
             slot: {},
             random_option: {}
         };
     }
     // カード、エンチャントスロット
     for (let slotId = 1; slotId <= slotMaxNum; slotId++) {
-        const slotName = `DATA_${objectIdPrefix}_CARD_${slotId}`;
-        let value;
+        const slotName = `${objectIdPrefix}_CARD_${slotId}`;
+        const itemSelectElement = document.getElementById(`${objectIdPrefix}_CARD_${slotId}`) as HTMLSelectElement | null;
+
+        let value: ItemData | null | undefined;
         if (itemData && itemData.getSlot() !== undefined && itemData.getSlot()! >= slotId) {
-            value = getChildItemValueById(slotName, "card") as ItemData | null | undefined;
+            value = getItemValueById(slotName, "card") as ItemData | null | undefined;
         } else {
-            value = getChildItemValueById(slotName, "enchant") as ItemData | null | undefined;
+            value = getItemValueById(slotName, "enchant") as ItemData | null | undefined;
         }
         if (value === undefined) {
             // 定義がない場合、Null扱いとする
@@ -323,15 +495,17 @@ function getRecursiveItemValueById(dataObject: RtxData, equipmentLocation: RtxEq
             value = null;
         }
         dataObject.equipments[equipmentLocation].slot[slotId] = {
-            name: value?.getDisplayName() || null
+            name: value?.getDisplayName() || null,
+            id_num: value?.getId() || null,
+            _mig_id_num: itemSelectElement && itemSelectElement.value != "0" ? Number(itemSelectElement.value) : null
         };
     }
     // ランダムオプション
     for (let slotId = 0; slotId <= 5; slotId++) {
         const kindName = `${objectIdRndopt}_KIND_${slotId}`;
-        const kindValue = getChildItemValueById(kindName, "random") as ItemData | null | undefined;
+        const kindValue = getItemValueById(kindName, "random") as ItemData | null | undefined;
         const valueName = `${objectIdRndopt}_VALUE_${slotId}`;
-        const value = getChildItemValueById(valueName, "random") as number | null | undefined;
+        const value = getItemValueById(valueName, "random") as number | null | undefined;
         if (dataObject.equipments[equipmentLocation].random_option) {
             dataObject.equipments[equipmentLocation].random_option[slotId] = {
                 kind: kindValue?.getDisplayName() || null,
@@ -368,43 +542,6 @@ function getItemValueById(elementId: string, objectType: string): ItemData | num
             return ItemMap.findItemByMigIdFromCardOrEnchant(numericValue, true);
         } else {
             // Refine or Transcendence or Random
-            return numericValue;
-        }
-    }
-    return null;
-}
-
-function getChildItemValueById(elementId: string, objectType: string): ItemData | number | null | undefined {
-    const selectElement = document.getElementById(elementId) as HTMLSelectElement;
-    if (!selectElement || !selectElement.hasChildNodes()) {
-        //console.warn(`Select element not found or has no child nodes for ID: ${elementId}`);
-        return undefined;
-    }
-    const firstChild = selectElement.firstChild;
-    if (!firstChild || firstChild.nodeValue === null || firstChild.nodeValue.length === 0) {
-        console.warn(`Select element is empty for ID: ${elementId}`);
-        return undefined;
-    }
-    const itemValue = firstChild.nodeValue;
-    if (itemValue !== null && itemValue !== "") {
-        const matches = itemValue.match(/(\d+)$/);
-        if (!matches) {
-            console.warn(`No trailing number found in itemValue for ID: ${elementId}, Value: ${itemValue}`);
-            return null;
-        }
-        const numericValue = parseInt(matches[1], 10);  // 末尾の数値部分をパース
-        if (isNaN(numericValue)) {
-            console.warn(`Invalid number in itemValue for ID: ${elementId}, Value: ${itemValue}`);
-            return null;
-        }
-        if (objectType === "item") {
-            return ItemMap.findItemByMigIdFromItem(numericValue);
-        } else if (objectType === "card") {
-            return ItemMap.findItemByMigIdFromCardOrEnchant(numericValue, false);
-        } else if (objectType === "enchant") {
-            return ItemMap.findItemByMigIdFromCardOrEnchant(numericValue, true);
-        } else {
-            // Refine or Transcendence
             return numericValue;
         }
     }
@@ -483,7 +620,6 @@ async function encodeProcess(dataObject: RtxData): Promise<string | null> {
 
 interface RtxData {
     api_version: number;
-    overwright: boolean;
     status: RtxJobStatus;
     learned_skills: RtxSkills;
     equipments: RtxEquipments;
@@ -537,14 +673,19 @@ type RtxEquipmentLocation =
 
 interface RtxEquipments {
     arms_type_right: number;
+    arms_type_left: number | null;
     arms_right: {
+        id_num: number | null,
         refine: number | null,
         transcendence: number | null,
-        name: string | null,
+        name?: string | null,
+        _mig_id_num?: number | null, // 旧仕様互換用
         element: string | null, // 武器の属性
         slot: {
             [slotId: number]: {
-                name: string | null
+                id_num: number | null,
+                name?: string | null,
+                _mig_id_num?: number | null // 旧仕様互換用
             }
         },
         random_option?: {
@@ -555,13 +696,17 @@ interface RtxEquipments {
         }
     },
     arms_left?: {
+        id_num: number | null,
         refine: number | null,
         transcendence: number | null,
-        name: string | null,
+        name?: string | null,
+        _mig_id_num?: number | null, // 旧仕様互換用
         element: string | null, // 武器の属性
         slot: {
             [slotId: number]: {
-                name: string | null
+                id_num: number | null,
+                name?: string | null,
+                _mig_id_num?: number | null // 旧仕様互換用
             }
         },
         random_option?: {
@@ -572,12 +717,16 @@ interface RtxEquipments {
         }
     },
     head_top: {
+        id_num: number | null,
         refine: number | null,
         transcendence: number | null,
-        name: string | null,
+        name?: string | null,
+        _mig_id_num?: number | null, // 旧仕様互換用
         slot: {
             [slotId: number]: {
-                name: string | null
+                id_num: number | null,
+                name?: string | null,
+                _mig_id_num?: number | null // 旧仕様互換用
             }
         },
         random_option?: {
@@ -588,12 +737,16 @@ interface RtxEquipments {
         }
     },
     head_middle: {
+        id_num: number | null,
         refine: number | null,
         transcendence: number | null,
-        name: string | null,
+        name?: string | null,
+        _mig_id_num?: number | null, // 旧仕様互換用
         slot: {
             [slotId: number]: {
-                name: string | null
+                id_num: number | null,
+                name?: string | null,
+                _mig_id_num?: number | null // 旧仕様互換用
             }
         },
         random_option?: {
@@ -604,12 +757,16 @@ interface RtxEquipments {
         }
     },
     head_under: {
+        id_num: number | null,
         refine: number | null,
         transcendence: number | null,
-        name: string | null,
+        name?: string | null,
+        _mig_id_num?: number | null, // 旧仕様互換用
         slot: {
             [slotId: number]: {
-                name: string | null
+                id_num: number | null,
+                name?: string | null,
+                _mig_id_num?: number | null // 旧仕様互換用
             }
         },
         random_option?: {
@@ -620,12 +777,16 @@ interface RtxEquipments {
         }
     },
     shield?: {
+        id_num: number | null,
         refine: number | null,
         transcendence: number | null,
-        name: string | null,
+        name?: string | null,
+        _mig_id_num?: number | null, // 旧仕様互換用
         slot: {
             [slotId: number]: {
-                name: string | null
+                id_num: number | null,
+                name?: string | null,
+                _mig_id_num?: number | null // 旧仕様互換用
             }
         },
         random_option?: {
@@ -636,12 +797,16 @@ interface RtxEquipments {
         }
     },
     body: {
+        id_num: number | null,
         refine: number | null,
         transcendence: number | null,
-        name: string | null,
+        name?: string | null,
+        _mig_id_num?: number | null, // 旧仕様互換用
         slot: {
             [slotId: number]: {
-                name: string | null
+                id_num: number | null,
+                name?: string | null,
+                _mig_id_num?: number | null // 旧仕様互換用
             }
         },
         random_option?: {
@@ -652,12 +817,16 @@ interface RtxEquipments {
         }
     },
     shoulder: {
+        id_num: number | null,
         refine: number | null,
         transcendence: number | null,
-        name: string | null,
+        name?: string | null,
+        _mig_id_num?: number | null, // 旧仕様互換用
         slot: {
             [slotId: number]: {
-                name: string | null
+                id_num: number | null,
+                name?: string | null,
+                _mig_id_num?: number | null // 旧仕様互換用
             }
         },
         random_option?: {
@@ -668,12 +837,16 @@ interface RtxEquipments {
         }
     },
     shoes: {
+        id_num: number | null,
         refine: number | null,
         transcendence: number | null,
-        name: string | null,
+        name?: string | null,
+        _mig_id_num?: number | null, // 旧仕様互換用
         slot: {
             [slotId: number]: {
-                name: string | null
+                id_num: number | null,
+                name?: string | null,
+                _mig_id_num?: number | null // 旧仕様互換用
             }
         },
         random_option?: {
@@ -684,12 +857,16 @@ interface RtxEquipments {
         }
     },
     accessory1: {
-        refine?: number | null,
-        transcendence?: number | null,
-        name: string | null,
+        id_num: number | null,
+        refine: number | null,
+        transcendence: number | null,
+        name?: string | null,
+        _mig_id_num?: number | null, // 旧仕様互換用
         slot: {
             [slotId: number]: {
-                name: string | null
+                id_num: number | null,
+                name?: string | null,
+                _mig_id_num?: number | null // 旧仕様互換用
             }
         },
         random_option?: {
@@ -700,12 +877,16 @@ interface RtxEquipments {
         }
     },
     accessory2: {
-        refine?: number | null,
-        transcendence?: number | null,
-        name: string | null,
+        id_num: number | null,
+        refine: number | null,
+        transcendence: number | null,
+        name?: string | null,
+        _mig_id_num?: number | null, // 旧仕様互換用
         slot: {
             [slotId: number]: {
-                name: string | null
+                id_num: number | null,
+                name?: string | null,
+                _mig_id_num?: number | null // 旧仕様互換用
             }
         },
         random_option?: {
@@ -728,4 +909,5 @@ interface RtxAdditionalInfo {
     character_name?: string;
     world_name?: string;
     comment?: string;
+    last_modified?: string; // ISO 8601 形式の日時文字列
 }

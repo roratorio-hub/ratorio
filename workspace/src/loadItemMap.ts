@@ -22,6 +22,9 @@ export class ItemData {
     getId(): number {
         return this.parameter.id;
     }
+    getIdNum(): number {
+        return this.parameter.id; // getId()のエイリアス
+    }
     getDisplayName(): string {
         return this.parameter.displayname;
     }
