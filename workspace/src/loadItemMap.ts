@@ -10,9 +10,10 @@ interface ItemDataParameter {
     is_enchant: boolean; // エンチャント可能かどうか
     resname: string; // リソース名
     type: string | null; // アイテムタイプ
+    slot: number | undefined; // スロット数
 }
 
-class ItemData {
+export class ItemData {
     parameter: ItemDataParameter;
 
     constructor(parameter: ItemDataParameter) {
@@ -39,6 +40,9 @@ class ItemData {
     getType(): string | null {
         return this.parameter.type;
     }
+    getSlot(): number | undefined {
+        return this.parameter.slot;
+    }
 }
 
 export class ItemMap {
@@ -62,9 +66,39 @@ export class ItemMap {
         for (const item of Object.values(this.itemMap)) {
             if (item.displayname === displayName) {
                 return new ItemData(item);
+            } else {
+                //名前の揺らぎ考慮
+                if (displayName.match(/[\+\-]/) && item.displayname === displayName.replace(/\+/g, ' + ').replace(/\-/g, ' - ')) {
+                    return new ItemData(item);
+                }
             }
         }
         return undefined;
+    }
+
+    /* migId から Id を取得 */
+    static findItemByMigIdFromItem(migId: number): ItemData | undefined {
+        const itemObject = ItemObjNew[migId];
+        if (!itemObject) return undefined;
+        const displayName = itemObject[8] as string;
+        return this.getByDisplayName(displayName);
+    }
+
+    /* migId から Id を取得 */
+    static findItemByMigIdFromCardOrEnchant(migId: number, is_enchant: boolean = false): ItemData | undefined {
+        const itemObject = CardObjNew[migId];
+        if (!itemObject) {
+            console.warn(`Item not found for migId: ${migId}`);
+            return undefined;
+        }
+        let displayName = itemObject[2] as string;
+        if (is_enchant === false && displayName.match(/カード/) === null) {
+            displayName += 'カード';
+        } else {
+            displayName = displayName.replace(/^(Special)(.+)$/, '$1 $2'); //間にスペース
+            displayName = displayName.replace(/^(Extra)(.+)$/, '$1 $2'); //間にスペース
+        }
+        return this.getByDisplayName(displayName);
     }
 
     /** アイテムデータをロード */
