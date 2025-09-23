@@ -4,11 +4,19 @@ import { zstdCompress, zstdDecompress } from "./funcZstd";
 
 const API_VERSION = 2;
 
-function getCalculationResultsInYAML(): string {
+// シミュレーション結果の出力
+function exportSimulationResult(format: string = "yaml"): string {
     const object = {};
-    return dumpYAML(object);
+
+    if (format === "yaml") {
+        return dumpYAML(object);
+    } else if (format === "json") {
+        return JSON.stringify(object, null, 2);
+    } else {
+        return "";
+    }
 }
-(window as any).getCalculationResultsInYAML = getCalculationResultsInYAML; //グローバルに登録
+(window as any).exportSimulationResult = exportSimulationResult; //グローバルに登録
 
 // LocalFileへ保存
 function saveToLocalFile(): void {
@@ -32,7 +40,7 @@ function saveToLocalFile(): void {
 (window as any).saveToLocalFile = saveToLocalFile; //グローバルに登録
 
 // LocalFile読み込み
-async function loadFromLocalFile(): Promise<void> {
+function loadFromLocalFile(): void {
     try {
         // input 要素を動的に作成してファイル選択ダイアログを表示
         const input = document.createElement("input");
@@ -55,8 +63,10 @@ async function loadFromLocalFile(): Promise<void> {
                         return;
                     }
                     const dataObject = loadYAML(text) as RtxData;
+                    // 完了を待つように変更
                     await importRtxDataObject(dataObject);
                     console.log(`🐱‍💻データをファイルから読み込みました: ${file.name}`);
+                    alert(`🐱‍💻データをファイルから読み込みました: ${file.name}`);
                 } catch (err) {
                     console.error("ファイルの読み込みまたはパース中にエラーが発生しました:", err);
                     alert("ファイルの読み込みに失敗しました（内容を確認してください）");
@@ -98,6 +108,7 @@ async function loadFromLocalStorage(key: string = "RTX_DATA_DEFAULT"): Promise<v
     const dataObject = loadYAML(yamlData) as RtxData;
     await importRtxDataObject(dataObject);
     console.log(`🐱‍💻データをLocalStorageから読み込みました: ${key}`);
+    alert(`🐱‍💻データをLocalStorageから読み込みました: ${key}`);
 }
 (window as any).loadFromLocalStorage = loadFromLocalStorage; //グローバルに登録
 
@@ -107,6 +118,7 @@ async function outputConsoleRtxDataFormat(): Promise<void> {
         const yamlData = dumpYAML(dataObject);
         const encodedData = await encodeProcess(dataObject);
         console.log("圧縮前:", yamlData.length, "->", "圧縮後:", encodedData?.length);
+        console.log(`RTX${API_VERSION}:${encodedData}`);
         console.log("🐱‍💻データをコンソールに出力しました");
     } catch (ex) {
         console.error("Error occurred while outputting console RTX data format:", ex);
@@ -137,210 +149,232 @@ export async function loadFromBase64String(importData: string): Promise<void> {
     }
     console.debug(dataObject);
 
-    importRtxDataObject(dataObject);
+    await importRtxDataObject(dataObject);
 }
 
 async function importRtxDataObject(dataObject: RtxData): Promise<void> {
     // ローディングインジケーターを表示
     showLoadingIndicator();
 
-    setTimeout(() => {
-        const changeEvent = new Event('change', { bubbles: true });
+    // setTimeout 内の処理が完了するまで待てるよう Promise で包む
+    await new Promise<void>((resolve) => {
+        setTimeout(() => {
+            try {
+                const changeEvent = new Event('change', { bubbles: true });
 
-        // Set Job
-        const jobElement = document.getElementById("OBJID_SELECT_JOB") as HTMLSelectElement;
-        jobElement.value = dataObject.status.job_id;
-        jobElement.dispatchEvent(changeEvent);
+                // --- 既存処理開始 ---
+                // Set Job
+                const jobElement = document.getElementById("OBJID_SELECT_JOB") as HTMLSelectElement;
+                jobElement.value = dataObject.status.job_id;
+                jobElement.dispatchEvent(changeEvent);
 
-        // Set Base Lv
-        const baseLvElement = document.getElementById("OBJID_SELECT_BASE_LEVEL") as HTMLInputElement;
-        baseLvElement.value = String(dataObject.status.base_lv);
+                // Set Base Lv
+                const baseLvElement = document.getElementById("OBJID_SELECT_BASE_LEVEL") as HTMLInputElement;
+                baseLvElement.value = String(dataObject.status.base_lv);
 
-        // Set Job Lv
-        const jobLvElement = document.getElementById("OBJID_SELECT_JOB_LEVEL") as HTMLInputElement;
-        jobLvElement.value = String(dataObject.status.job_lv);
+                // Set Job Lv
+                const jobLvElement = document.getElementById("OBJID_SELECT_JOB_LEVEL") as HTMLInputElement;
+                jobLvElement.value = String(dataObject.status.job_lv);
 
-        // Set status
-        const keys: (keyof RtxJobStatus)[] = [
-            "str", "agi", "vit", "int", "dex", "luk",
-            "pow", "sta", "wis", "spl", "con", "crt"
-        ];
+                // Set status
+                const keys: (keyof RtxStatus)[] = [
+                    "str", "agi", "vit", "int", "dex", "luk",
+                    "pow", "sta", "wis", "spl", "con", "crt"
+                ];
 
-        for (const key of keys) {
-            const statusElement = document.getElementById("OBJID_SELECT_STATUS_" + key.toUpperCase()) as HTMLInputElement;
-            let value = dataObject.status[key];
-            statusElement.value = String(value);
-        }
-
-        // ---------- ここから装備／カード／オプションの適用 ----------
-        // 補助: セレクト要素を表示名で選択するユーティリティ
-        const setSelectByOptionText = function (selectId: string, idNum: number | null, displayName: string | null, migIdNum: number | null = null) {
-            if (!selectId) return;
-            const selectElement = document.getElementById(selectId) as HTMLSelectElement | null;
-            if (!selectElement) return;
-
-            if (migIdNum !== null) {
-                // MIG IDが指定されている場合はこちらを優先して選択(旧互換用)
-                selectElement.value = String(migIdNum);
-            } else if (idNum !== null && idNum > 0) {
-                // IDが指定されている場合はIDで選択
-                selectElement.value = String(idNum);
-            } else if (displayName) {
-                // DisplayNameで検索して選択
-                for (let idx = 0; idx < selectElement.options.length; idx++) {
-                    const opt = selectElement.options[idx];
-                    const txt = (opt.textContent || opt.innerText || "").trim();
-                    if (txt === displayName) {
-                        selectElement.selectedIndex = idx;
-                        break;
-                    }
-                }
-            } else {
-                return; // 何も指定されていない場合はスキップ
-            }
-            console.debug(`Setting select ${selectId} to ID: ${idNum}, Display Name: ${displayName}, MIG ID: ${migIdNum}`);
-            selectElement.dispatchEvent(changeEvent); // 変更イベントを発火
-        };
-
-        // 装備位置ごとのUI IDマッピング（calcx.htmlのIDに合わせる）
-        const equipMappings: { [key in RtxEquipmentLocation]: { prefix: string, rndopt: string } } = {
-            arms_right: { prefix: "OBJID_ARMS_RIGHT", rndopt: "OBJID_EQUIP_REGION_ID_ARMS_RNDOPT" },
-            arms_left: { prefix: "OBJID_ARMS_LEFT", rndopt: "OBJID_EQUIP_REGION_ID_ARMS_LNDOPT" }, // NOTE: left rndopt name used in export
-            head_top: { prefix: "OBJID_HEAD_TOP", rndopt: "OBJID_EQUIP_REGION_ID_HEAD_TOP" },
-            head_middle: { prefix: "OBJID_HEAD_MID", rndopt: "OBJID_EQUIP_REGION_ID_HEAD_MID" },
-            head_under: { prefix: "OBJID_HEAD_UNDER", rndopt: "OBJID_EQUIP_REGION_ID_HEAD_UNDER" },
-            shield: { prefix: "OBJID_SHIELD", rndopt: "OBJID_EQUIP_REGION_ID_SHIELD" },
-            body: { prefix: "OBJID_BODY", rndopt: "OBJID_EQUIP_REGION_ID_BODY" },
-            shoulder: { prefix: "OBJID_SHOULDER", rndopt: "OBJID_EQUIP_REGION_ID_SHOULDER" },
-            shoes: { prefix: "OBJID_SHOES", rndopt: "OBJID_EQUIP_REGION_ID_SHOES" },
-            accessory1: { prefix: "OBJID_ACCESSARY_1", rndopt: "OBJID_EQUIP_REGION_ID_ACCESSARY_1" }, // calcx.html の綴りに合わせる
-            accessory2: { prefix: "OBJID_ACCESSARY_2", rndopt: "OBJID_EQUIP_REGION_ID_ACCESSARY_2" }  // calcx.html の綴りに合わせる
-        };
-
-        // arms_type_right 反映
-        try {
-            const armsTypeRightElement = document.getElementById("OBJID_ARMS_TYPE_RIGHT") as HTMLSelectElement | null;
-            if (armsTypeRightElement && (dataObject.equipments as RtxEquipments).arms_type_right !== undefined) {
-                armsTypeRightElement.value = String((dataObject.equipments as RtxEquipments).arms_type_right);
-                armsTypeRightElement.dispatchEvent(changeEvent);
-            }
-        } catch (ex) {
-            console.warn("arms_type_right の適用に失敗しました", ex);
-        }
-
-        // arms_type_left 反映 (存在する場合のみ)
-        try {
-            const armsTypeLeftElement = document.getElementById("OBJID_ARMS_TYPE_LEFT") as HTMLSelectElement | null;
-            if (armsTypeLeftElement && (dataObject.equipments as RtxEquipments).arms_type_left !== undefined && (dataObject.equipments as RtxEquipments).arms_type_left !== null) {
-                armsTypeLeftElement.value = String((dataObject.equipments as RtxEquipments).arms_type_left);
-                armsTypeLeftElement.dispatchEvent(changeEvent);
-            }
-        } catch (ex) {
-            console.warn("arms_type_left の適用に失敗しました", ex);
-        }
-
-        // 各装備について適用処理
-        if (dataObject.equipments) {
-            (Object.keys(equipMappings) as RtxEquipmentLocation[]).forEach((location) => {
-                const mapping = equipMappings[location];
-                const equipment = (dataObject.equipments as RtxEquipments)[location];
-                if (!equipment) return;
-
-                // 装備本体
-                console.debug(`Applying equipment for ${location}: ${equipment.name} (ID: ${equipment.id_num}, MIG ID: ${equipment._mig_id_num})`);
-                setSelectByOptionText(mapping.prefix, equipment.id_num, equipment.name || null, equipment._mig_id_num || null);
-
-                // 強化値 / 超越値
-                const refineElement = document.getElementById(`${mapping.prefix}_REFINE`) as HTMLInputElement | HTMLSelectElement | null;
-                if (refineElement && equipment.refine !== undefined && equipment.refine !== null) {
-                    refineElement.value = String(equipment.refine);
-                    refineElement.dispatchEvent(changeEvent);
-                }
-                const transcElement = document.getElementById(`${mapping.prefix}_TRANSCENDENCE`) as HTMLInputElement | HTMLSelectElement | null;
-                if (transcElement && equipment.transcendence !== undefined && equipment.transcendence !== null) {
-                    transcElement.value = String(equipment.transcendence);
-                    transcElement.dispatchEvent(changeEvent);
+                for (const key of keys) {
+                    const statusElement = document.getElementById("OBJID_SELECT_STATUS_" + key.toUpperCase()) as HTMLInputElement;
+                    let value = dataObject.status[key];
+                    statusElement.value = String(value);
                 }
 
-                // スロット（カード/エンチャント）は ${prefix}_CARD_${slotId}
-                if (equipment.slot) {
-                    Object.keys(equipment.slot).forEach((slotIdStr) => {
-                        const slotId = Number(slotIdStr);
-                        if (isNaN(slotId)) return;
-                        // まずカードセレクトとして適用
-                        const slotSelectId = `${mapping.prefix}_CARD_${slotId}`;
-                        setSelectByOptionText(slotSelectId, equipment.slot[slotId]?.id_num, equipment.slot[slotId]?.name || null, equipment.slot[slotId]?._mig_id_num || null); // 型チェックを無効化するので注意
+                // ---------- ここから装備／カード／オプションの適用 ----------
+                // 補助: セレクト要素を表示名で選択するユーティリティ
+                const setSelectByOptionText = function (selectId: string, idNum: number | null, displayName: string | null, migIdNum: number | null = null) {
+                    if (!selectId) return;
+                    const selectElement = document.getElementById(selectId) as HTMLSelectElement | null;
+                    if (!selectElement) return;
 
-                        // もし別のUIがある場合は追加のIDにも対応させたい場合ここに追記
-                    });
-                }
-
-                // ランダムオプション（kind と value）
-                if (equipment.random_option && mapping.rndopt) {
-                    // ランダムオプション欄を表示
-                    OnClickSlotModeButton();
-
-                    for (let rndidx = 0; rndidx <= 5; rndidx++) {
-                        const kindId = `${mapping.rndopt}_KIND_${rndidx}`;
-                        const valueId = `${mapping.rndopt}_VALUE_${rndidx}`;
-
-                        const kindName = equipment.random_option[rndidx]?.kind || null;
-                        const kindElement = document.getElementById(kindId) as HTMLSelectElement | null;
-                        if (kindElement && kindName) {
-                            // kind は表示名でマッチさせる
-                            for (let idx = 0; idx < kindElement.options.length; idx++) {
-                                const opt = kindElement.options[idx];
-                                const txt = (opt.textContent || opt.innerText || "").trim();
-                                if (txt === kindName || txt.indexOf(kindName) !== -1) {
-                                    kindElement.selectedIndex = idx;
-                                    kindElement.dispatchEvent(changeEvent);
-                                    break;
-                                }
+                    if (migIdNum !== null) {
+                        // MIG IDが指定されている場合はこちらを優先して選択(旧互換用)
+                        selectElement.value = String(migIdNum);
+                    } else if (idNum !== null && idNum > 0) {
+                        // IDが指定されている場合はIDで選択
+                        selectElement.value = String(idNum);
+                    } else if (displayName) {
+                        // DisplayNameで検索して選択
+                        for (let idx = 0; idx < selectElement.options.length; idx++) {
+                            const opt = selectElement.options[idx];
+                            const txt = (opt.textContent || opt.innerText || "").trim();
+                            if (txt === displayName) {
+                                selectElement.selectedIndex = idx;
+                                break;
                             }
                         }
-
-                        const val = equipment.random_option[rndidx]?.value;
-                        const valElement = document.getElementById(valueId) as HTMLInputElement | HTMLSelectElement | null;
-                        if (valElement && (val !== undefined && val !== null)) {
-                            valElement.value = String(val);
-                            valElement.dispatchEvent(changeEvent);
-                        }
+                    } else {
+                        console.warn(`No valid select ${selectId} to ID: ${idNum}, Display Name: ${displayName}, MIG ID: ${migIdNum}`);
+                        return; // 何も指定されていない場合はスキップ
                     }
-                    // ランダムオプション欄を閉じる
-                    OnClickSlotModeButton();
+                    console.debug(`Setting select ${selectId} to ID: ${idNum}, Display Name: ${displayName}, MIG ID: ${migIdNum}`);
+                    selectElement.dispatchEvent(changeEvent); // 変更イベントを発火
+                };
+
+                // 装備位置ごとのUI IDマッピング（calcx.htmlのIDに合わせる）
+                const equipMappings: { [key in RtxEquipmentLocation]: { prefix: string, rndopt: string } } = {
+                    arms_right: { prefix: "OBJID_ARMS_RIGHT", rndopt: "OBJID_EQUIP_REGION_ID_ARMS_RNDOPT" },
+                    arms_left: { prefix: "OBJID_ARMS_LEFT", rndopt: "OBJID_EQUIP_REGION_ID_ARMS_LNDOPT" }, // NOTE: left rndopt name used in export
+                    head_top: { prefix: "OBJID_HEAD_TOP", rndopt: "OBJID_EQUIP_REGION_ID_HEAD_TOP" },
+                    head_middle: { prefix: "OBJID_HEAD_MID", rndopt: "OBJID_EQUIP_REGION_ID_HEAD_MID" },
+                    head_under: { prefix: "OBJID_HEAD_UNDER", rndopt: "OBJID_EQUIP_REGION_ID_HEAD_UNDER" },
+                    shield: { prefix: "OBJID_SHIELD", rndopt: "OBJID_EQUIP_REGION_ID_SHIELD" },
+                    body: { prefix: "OBJID_BODY", rndopt: "OBJID_EQUIP_REGION_ID_BODY" },
+                    shoulder: { prefix: "OBJID_SHOULDER", rndopt: "OBJID_EQUIP_REGION_ID_SHOULDER" },
+                    shoes: { prefix: "OBJID_SHOES", rndopt: "OBJID_EQUIP_REGION_ID_SHOES" },
+                    accessory1: { prefix: "OBJID_ACCESSARY_1", rndopt: "OBJID_EQUIP_REGION_ID_ACCESSARY_1" }, // calcx.html の綴りに合わせる
+                    accessory2: { prefix: "OBJID_ACCESSARY_2", rndopt: "OBJID_EQUIP_REGION_ID_ACCESSARY_2" }  // calcx.html の綴りに合わせる
+                };
+
+                // arms_type_right 反映
+                try {
+                    const armsTypeRightElement = document.getElementById("OBJID_ARMS_TYPE_RIGHT") as HTMLSelectElement | null;
+                    if (armsTypeRightElement && (dataObject.equipments as RtxEquipments).arms_type_right !== undefined) {
+                        armsTypeRightElement.value = String((dataObject.equipments as RtxEquipments).arms_type_right);
+                        armsTypeRightElement.dispatchEvent(changeEvent);
+                    }
+                } catch (ex) {
+                    console.warn("arms_type_right の適用に失敗しました", ex);
                 }
-            });
-        }
-        // ---------- 装備適用ここまで ----------
 
-        // Set Learned skills
-        const skillColumnCheckbox = document.getElementById("OBJID_SKILL_COLUMN_EXTRACT_CHECKBOX") as HTMLInputElement;
-        skillColumnCheckbox.checked = true;
-        OnClickSkillSWLearned();
+                // arms_type_left 反映 (存在する場合のみ)
+                try {
+                    const armsTypeLeftElement = document.getElementById("OBJID_ARMS_TYPE_LEFT") as HTMLSelectElement | null;
+                    if (armsTypeLeftElement && (dataObject.equipments as RtxEquipments).arms_type_left !== undefined && (dataObject.equipments as RtxEquipments).arms_type_left !== null) {
+                        armsTypeLeftElement.value = String((dataObject.equipments as RtxEquipments).arms_type_left);
+                        armsTypeLeftElement.dispatchEvent(changeEvent);
+                    }
+                } catch (ex) {
+                    console.warn("arms_type_left の適用に失敗しました", ex);
+                }
 
-        Object.entries(dataObject.learned_skills).forEach(([skillId, skill]) => {
-            const skillLvElement = document.querySelector(`select[data-learned-skill-id=${skillId}]`) as HTMLSelectElement;
-            if (skillLvElement) {
-                skillLvElement.value = String(skill.lv);
-                //console.debug(`Skill ID: ${skillId}, 習得レベル: ${skillLvElement.value}`)
-                skillLvElement.dispatchEvent(changeEvent);
+                // 各装備について適用処理
+                if (dataObject.equipments) {
+                    (Object.keys(equipMappings) as RtxEquipmentLocation[]).forEach((location) => {
+                        const mapping = equipMappings[location];
+                        const equipment = (dataObject.equipments as RtxEquipments)[location];
+                        if (!equipment) return;
+
+                        // 安全に _mig_id_num を取得（ユニオン型で存在しない場合の型エラー回避）
+                        const migId = (equipment && (equipment as any) && (equipment as any)["_mig_id_num"] !== undefined)
+                            ? (equipment as any)["_mig_id_num"]
+                            : null;
+
+                        // 装備本体（ログは安全な値を使う）
+                        console.debug(`Applying equipment for ${location}: ${equipment.name} (ID: ${equipment.id_num}, MIG ID: ${migId})`);
+                        setSelectByOptionText(mapping.prefix, equipment.id_num, equipment.name || null, migId);
+
+                        // 強化値 / 超越値
+                        const refineElement = document.getElementById(`${mapping.prefix}_REFINE`) as HTMLInputElement | HTMLSelectElement | null;
+                        if (refineElement && equipment.refine !== undefined && equipment.refine !== null) {
+                            refineElement.value = String(equipment.refine);
+                            refineElement.dispatchEvent(changeEvent);
+                        }
+                        const transcElement = document.getElementById(`${mapping.prefix}_TRANSCENDENCE`) as HTMLInputElement | HTMLSelectElement | null;
+                        if (transcElement && equipment.transcendence !== undefined && equipment.transcendence !== null) {
+                            transcElement.value = String(equipment.transcendence);
+                            transcElement.dispatchEvent(changeEvent);
+                        }
+
+                        // スロット（カード/エンチャント）は ${prefix}_CARD_${slotId}
+                        if (equipment.slot) {
+                            Object.keys(equipment.slot).forEach((slotIdStr) => {
+                                const slotId = Number(slotIdStr);
+                                if (isNaN(slotId)) return;
+
+                                // スロットの _mig_id_num も安全に取得
+                                const slotEntry = equipment.slot[slotId];
+                                const slotMigId = (slotEntry && (slotEntry as any) && (slotEntry as any)["_mig_id_num"] !== undefined)
+                                    ? (slotEntry as any)["_mig_id_num"]
+                                    : null;
+
+                                // まずカードセレクトとして適用
+                                const slotSelectId = `${mapping.prefix}_CARD_${slotId}`;
+                                setSelectByOptionText(slotSelectId, slotEntry?.id_num ?? null, slotEntry?.name || null, slotMigId);
+
+                                // もし別のUIがある場合は追加のIDにも対応させたい場合ここに追記
+                            });
+                        }
+
+                        // ランダムオプション（kind と value）
+                        if (equipment.random_option && mapping.rndopt) {
+                            // ランダムオプション欄を表示
+                            OnClickSlotModeButton();
+
+                            for (let rndidx = 0; rndidx <= 5; rndidx++) {
+                                const kindId = `${mapping.rndopt}_KIND_${rndidx}`;
+                                const valueId = `${mapping.rndopt}_VALUE_${rndidx}`;
+
+                                const kindName = equipment.random_option[rndidx]?.kind || null;
+                                const kindElement = document.getElementById(kindId) as HTMLSelectElement | null;
+                                if (kindElement && kindName) {
+                                    // kind は表示名でマッチさせる
+                                    for (let idx = 0; idx < kindElement.options.length; idx++) {
+                                        const opt = kindElement.options[idx];
+                                        const txt = (opt.textContent || opt.innerText || "").trim();
+                                        if (txt === kindName || txt.indexOf(kindName) !== -1) {
+                                            kindElement.selectedIndex = idx;
+                                            kindElement.dispatchEvent(changeEvent);
+                                            break;
+                                        }
+                                    }
+                                }
+
+                                const val = equipment.random_option[rndidx]?.value;
+                                const valElement = document.getElementById(valueId) as HTMLInputElement | HTMLSelectElement | null;
+                                if (valElement && (val !== undefined && val !== null)) {
+                                    valElement.value = String(val);
+                                    valElement.dispatchEvent(changeEvent);
+                                }
+                            }
+                            // ランダムオプション欄を閉じる
+                            OnClickSlotModeButton();
+                        }
+                    });
+                }
+                // ---------- 装備適用ここまで ----------
+
+                // Set Learned skills
+                const skillColumnCheckbox = document.getElementById("OBJID_SKILL_COLUMN_EXTRACT_CHECKBOX") as HTMLInputElement;
+                skillColumnCheckbox.checked = true;
+                OnClickSkillSWLearned();
+
+                Object.entries(dataObject.learned_skills).forEach(([skillId, skill]) => {
+                    const skillLvElement = document.querySelector(`select[data-learned-skill-id=${skillId}]`) as HTMLSelectElement;
+                    if (skillLvElement) {
+                        skillLvElement.value = String(skill.lv);
+                        //console.debug(`Skill ID: ${skillId}, 習得レベル: ${skillLvElement.value}`)
+                        skillLvElement.dispatchEvent(changeEvent);
+                    }
+                });
+
+                // 計算
+                CalcStatusPoint(true);
+                StAllCalc();
+                AutoCalc();
+            } catch (err) {
+                console.error("importRtxDataObject 内でエラー:", err);
+            } finally {
+                // 処理中にエラーが出てもインジケーターを消して resolve する
+                try { hideLoadingIndicator(); } catch (e) { /* ignore */ }
+                resolve();
             }
-        });
-
-        // 計算
-        CalcStatusPoint(true);
-        StAllCalc();
-        AutoCalc();
-
-        // ローディングインジケーターを非表示
-        hideLoadingIndicator();
-    }, 0);
+        }, 0);
+    });
 }
 
 function exportRtxDataObject(): RtxData {
     let dataObject: RtxData = {
         api_version: API_VERSION,
-        status: {} as RtxJobStatus,
+        status: {} as RtxStatus,
         learned_skills: {} as RtxSkills,
         equipments: {} as RtxEquipments,
         use_items: {} as RtxUseItems,
@@ -620,7 +654,7 @@ async function encodeProcess(dataObject: RtxData): Promise<string | null> {
 
 interface RtxData {
     api_version: number;
-    status: RtxJobStatus;
+    status: RtxStatus;
     learned_skills: RtxSkills;
     equipments: RtxEquipments;
     use_items?: RtxUseItems;
@@ -632,7 +666,7 @@ interface RtxData {
     additional_info?: RtxAdditionalInfo;
 }
 
-interface RtxJobStatus {
+interface RtxStatus {
     job_id: string;
     base_lv: number;
     job_lv: number;
@@ -910,4 +944,38 @@ interface RtxAdditionalInfo {
     world_name?: string;
     comment?: string;
     last_modified?: string; // ISO 8601 形式の日時文字列
+}
+
+interface RtxMetaResult {
+    simulator_version: string;
+    timestamp: string;     // ISO8601
+    input_hash: string;    // sha256など
+}
+
+interface RtxSkillResult {
+    id: string;
+    level: number;
+    damage_avg: number;
+    dps: number;
+}
+
+interface RtxResults {
+    offense: {
+        dps: number;
+        hit_rate: number;
+        crit_rate: number;
+        skills: RtxSkillResult[];
+    };
+    defense: {
+        received_dps: number;
+        survival_time_sec: number;
+        effective_hp: number;
+    };
+    summary: {
+        scores: {
+            power: number;
+            durability: number;
+            overall: number;
+        };
+    };
 }
