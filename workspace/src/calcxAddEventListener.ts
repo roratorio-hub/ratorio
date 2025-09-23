@@ -44,7 +44,7 @@ export function initializePageKeyListeners(): void {
     });
 }
 
-// 自動初期化
+// 対象要素のID一覧
 const ATTACH_PAGE_KEY_IDS = [
     'OBJID_SELECT_BASE_LEVEL',
     'OBJID_SELECT_JOB_LEVEL',
