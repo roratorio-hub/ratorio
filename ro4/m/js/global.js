@@ -68,15 +68,20 @@ let g_charaData = {
 };
 
 // 性能カスタマイズ ステータス関連
-let g_confDataCustomStatus = [];
+const CUSTOM_CONF_STATUS_LIMIT = 30;
+let g_confDataCustomStatus = Array(CUSTOM_CONF_STATUS_LIMIT).fill(0);
 // 性能カスタマイズ 攻撃関連
-let g_confDataCustomAtk = [];
+const CUSTOM_CONF_ATK_LIMIT = 30;
+let g_confDataCustomAtk = Array(CUSTOM_CONF_ATK_LIMIT).fill(0);
 // 性能カスタマイズ 防御関連
-let g_confDataCustomDef = [];
+const CUSTOM_CONF_DEF_LIMIT = 20;
+let g_confDataCustomDef = Array(CUSTOM_CONF_DEF_LIMIT).fill(0);
 // 性能カスタマイズ スキル関連
-let g_confDataCustomSkill = [];
+const CUSTOM_CONF_SKILL_LIMIT = 20;
+let g_confDataCustomSkill = Array(CUSTOM_CONF_SKILL_LIMIT).fill(0);
 // 性能カスタマイズ 特性ステータス関連
-let g_confDataCustomSpecStatus = [];
+const CUSTOM_CONF_SPEC_LIMIT = 20;
+let g_confDataCustomSpecStatus = Array(CUSTOM_CONF_SPEC_LIMIT).fill(0);
 
 // 計算機メインコントローラ（ro4以降）
 let g_confDataCustomStatusMIG = null;

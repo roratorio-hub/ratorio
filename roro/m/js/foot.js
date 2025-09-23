@@ -30184,11 +30184,12 @@ document.addEventListener('DOMContentLoaded', () => {
 		const param = query.replace("?", "");
 		const patternRtx = /^rtx[0-9]+:/
 
-		// この関数が init() を内包しているのでまずノービスを初期ジョブとして設定
-		changeJobSettings("NOVICE");
-		// URLでセーブデータが渡されている場合は状態を上書きする
 		if (param.length > 0 && !patternRtx.test(param)) {
+			// ラトリオ独自のロード処理
 			CSaveController.loadFromURL(param);
+		} else {
+			// URLロードがない場合は、ノービスを初期ジョブとして設定
+			changeJobSettings("NOVICE");
 		}
 
 		// 再計算
