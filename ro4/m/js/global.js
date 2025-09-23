@@ -67,6 +67,17 @@ let g_charaData = {
 	cardCategoryMap: new Map()
 };
 
+// 性能カスタマイズ ステータス関連
+let g_confDataCustomStatus = null;
+// 性能カスタマイズ 攻撃関連
+let g_confDataCustomAtk = null;
+// 性能カスタマイズ 防御関連
+let g_confDataCustomDef = null;
+// 性能カスタマイズ スキル関連
+let g_confDataCustomSkill = null;
+// 性能カスタマイズ 特性ステータス関連
+let g_confDataCustomSpecStatus = null;
+
 // 計算機メインコントローラ（ro4以降）
 let g_confDataCustomStatusMIG = null;
 let g_confDataSpecMIG = null;
