@@ -97,6 +97,7 @@ function encodeProcess(dataObject: RodbTranslatorDataFormat): string | null {
     return encodedData;
 }
 
+// [deprecated] RODB Translatorからのスキル名を元に、ro-database.infoからスキル情報を取得し、SelectBoxにdata-skill-name属性を付与する
 async function fetchSearchSkill(seachUrls: string[]): Promise<void> {
     try {
         // URLごとにリクエストを作成
@@ -175,6 +176,10 @@ export async function loadRodbTranslator(fragment: string): Promise<void> {
     skillColumnCheckbox.checked = true;
     OnClickSkillSWLearned();
 
+    /*
+    [deprecated] RODB Translatorからのスキル名を元に、ro-database.infoからスキル情報を取得し、SelectBoxにdata-skill-name属性を付与する
+    これをやると、ro-database.infoのサーバに負荷がかかるため、廃止
+
     let seachUrls = [];
     const urlPrefix = "https://ro-database.info/translator/approximate_search/skill";
     let idx = 0;
@@ -193,6 +198,7 @@ export async function loadRodbTranslator(fragment: string): Promise<void> {
     }
     // スキルのSelectBoxにdata-skill-name属性を付与
     await fetchSearchSkill(seachUrls);
+    */
 
     Object.entries(yamlObject.skills).forEach(([skillName, skill]) => {
         const skillLvElement: HTMLSelectElement = document.querySelector(`select[data-skill-name=${skillName}]`) as HTMLSelectElement;
