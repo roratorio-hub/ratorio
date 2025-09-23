@@ -73,20 +73,20 @@ function loadFromLocalFile(): void {
 (window as any).loadFromLocalFile = loadFromLocalFile; //グローバルに登録
 
 // LocalStorageへ保存
-function saveToLocalStorage(key: string = "default") {
+function saveToLocalStorage(key: string = "RTX_DATA_DEFAULT"): void {
     try {
         const dataObject = exportRtxDataObject();
         const yamlData = dumpYAML(dataObject);
         localStorage.setItem(key, yamlData);
         console.log(`🐱‍💻データをLocalStorageに保存しました: ${key}`);
     } catch (ex) {
-        console.error("Error occurred while saving LocalStorage RTX data format:", ex);
+        console.error("Error occurred while saving LocalStorage RTX data:", ex);
     }
 }
 (window as any).saveToLocalStorage = saveToLocalStorage; //グローバルに登録
 
 // LocalStorage読み込み
-function loadFromLocalStorage(key: string = "default") {
+function loadFromLocalStorage(key: string = "RTX_DATA_DEFAULT") {
     const yamlData = localStorage.getItem(key);
     if (!yamlData) throw new Error("No data found in LocalStorage");
     const dataObject = loadYAML(yamlData) as RtxData;
