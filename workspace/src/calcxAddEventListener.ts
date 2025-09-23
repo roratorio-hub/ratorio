@@ -13,7 +13,7 @@ function attachPageKeyListenerToInput(input: HTMLInputElement | null): void {
         const rawMax = input.getAttribute('max') ?? input.dataset.max ?? '';
         const rawMin = input.getAttribute('min') ?? input.dataset.min ?? '';
 
-        if (!rawMax && !rawMin) return;
+        if (rawMax === '' && rawMin === '') return;
 
         const max = rawMax !== '' ? Number(rawMax) : NaN;
         const min = rawMin !== '' ? Number(rawMin) : NaN;
