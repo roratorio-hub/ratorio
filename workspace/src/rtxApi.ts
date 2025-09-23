@@ -1,18 +1,122 @@
-import { load as loadYAML, dump as dumpYAML, dump } from "js-yaml"
+import { load as loadYAML, dump as dumpYAML } from "js-yaml"
 import { ItemData, ItemMap } from "./loadItemMap";
 import { zstdCompress, zstdDecompress } from "./funcZstd";
 
-const RTX_API_VERSION = 2;
+const API_VERSION = 2;
 
-export async function loadRtxData(importData: string): Promise<void> {
-    const prefixCheck = /^#rtx(\d+):(.+)$/;
+// LocalFileへ保存
+function saveToLocalFile(): void {
+    try {
+        const dataObject = exportRtxDataObject();
+        const yamlData = dumpYAML(dataObject);
+        const blob = new Blob([yamlData], { type: "text/yaml" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "rtx_data.yaml";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        console.log("🐱‍💻データをファイルに保存しました");
+    } catch (ex) {
+        console.error("Error occurred while saving RTX data to file:", ex);
+    }
+}
+(window as any).saveToLocalFile = saveToLocalFile; //グローバルに登録
+
+// LocalFile読み込み
+function loadFromLocalFile(): void {
+    try {
+        // input 要素を動的に作成してファイル選択ダイアログを表示
+        const input = document.createElement("input");
+        input.type = "file";
+        input.accept = ".yaml,.yml,text/yaml";
+
+        input.addEventListener("change", async () => {
+            const file = input.files?.[0];
+            if (!file) {
+                console.warn("ファイルが選択されませんでした");
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = async (ev) => {
+                try {
+                    const text = ev.target?.result;
+                    if (typeof text !== "string") {
+                        console.error("ファイル読み込み結果が文字列ではありません");
+                        alert("ファイルの読み込みに失敗しました");
+                        return;
+                    }
+                    const dataObject = loadYAML(text) as RtxData;
+                    await importRtxDataObject(dataObject);
+                    console.log(`🐱‍💻データをファイルから読み込みました: ${file.name}`);
+                } catch (err) {
+                    console.error("ファイルの読み込みまたはパース中にエラーが発生しました:", err);
+                    alert("ファイルの読み込みに失敗しました（内容を確認してください）");
+                }
+            };
+            reader.onerror = (err) => {
+                console.error("FileReader エラー:", err);
+                alert("ファイルの読み込みに失敗しました");
+            };
+            reader.readAsText(file, "utf-8");
+        });
+
+        // ダイアログを開く
+        input.click();
+    } catch (ex) {
+        console.error("Error occurred while loading RTX data from file:", ex);
+        alert("ファイル選択中にエラーが発生しました");
+    }
+}
+(window as any).loadFromLocalFile = loadFromLocalFile; //グローバルに登録
+
+// LocalStorageへ保存
+function saveToLocalStorage(key: string = "default") {
+    try {
+        const dataObject = exportRtxDataObject();
+        const yamlData = dumpYAML(dataObject);
+        localStorage.setItem(key, yamlData);
+        console.log(`🐱‍💻データをLocalStorageに保存しました: ${key}`);
+    } catch (ex) {
+        console.error("Error occurred while saving LocalStorage RTX data format:", ex);
+    }
+}
+(window as any).saveToLocalStorage = saveToLocalStorage; //グローバルに登録
+
+// LocalStorage読み込み
+function loadFromLocalStorage(key: string = "default") {
+    const yamlData = localStorage.getItem(key);
+    if (!yamlData) throw new Error("No data found in LocalStorage");
+    const dataObject = loadYAML(yamlData) as RtxData;
+    importRtxDataObject(dataObject);
+    console.log(`🐱‍💻データをLocalStorageから読み込みました: ${key}`);
+}
+(window as any).loadFromLocalStorage = loadFromLocalStorage; //グローバルに登録
+
+async function outputConsoleRtxDataFormat(): Promise<void> {
+    try {
+        const dataObject = exportRtxDataObject();
+        const yamlData = dumpYAML(dataObject);
+        const encodedData = await encodeProcess(dataObject);
+        console.log("圧縮前:", yamlData.length, "->", "圧縮後:", encodedData?.length);
+        console.log("🐱‍💻データをコンソールに出力しました");
+    } catch (ex) {
+        console.error("Error occurred while outputting console RTX data format:", ex);
+    }
+}
+(window as any).outputConsoleRtxDataFormat = outputConsoleRtxDataFormat; //グローバルに登録
+
+export async function loadFromString(importData: string): Promise<void> {
+    const prefixCheck = /^rtx(\d+):(.+)$/;
     const matches = prefixCheck.exec(importData);
     if (!matches) {
         return;
     }
 
     // Version Check
-    if (Number(matches[1]) != RTX_API_VERSION) {
+    if (Number(matches[1]) != API_VERSION) {
         alert("RTX APIバージョンが異なるため中止します\nVersion:" + matches[1]);
         return;
     }
@@ -20,17 +124,17 @@ export async function loadRtxData(importData: string): Promise<void> {
     const decodedData = decodeURIComponent(matches[2]);
 
     // 中身のデコード、zstd展開を行う
-    const dataObject: RtxDataFormat | null = await decodeProcess(decodedData)
+    const dataObject: RtxData | null = await decodeProcess(decodedData)
     if (!dataObject) {
         alert("RTXデータロードに失敗しました");
         return;
     }
     console.debug(dataObject);
 
-    importRtxDataFormat(dataObject);
+    importRtxDataObject(dataObject);
 }
 
-async function importRtxDataFormat(dataObject: RtxDataFormat): Promise<void> {
+async function importRtxDataObject(dataObject: RtxData): Promise<void> {
     // ローディングインジケーターを表示
     showLoadingIndicator();
 
@@ -86,23 +190,9 @@ async function importRtxDataFormat(dataObject: RtxDataFormat): Promise<void> {
     }, 0);
 }
 
-export async function outputConsoleRtxDataFormat(): Promise<void> {
-    try {
-        const dataObject = exportRtxDataFormat();
-        //console.log(dataObject);
-        const yamlData = dumpYAML(dataObject);
-        console.log(yamlData);
-        const encodedData = await encodeProcess(dataObject);
-        console.log("圧縮前:", yamlData.length, "->", "圧縮後:", encodedData?.length);
-        //alert("🐱‍💻データをコンソールに出力しました");
-    } catch (ex) {
-        console.error("Error occurred while outputting console RTX data format:", ex);
-    }
-}
-
-function exportRtxDataFormat(): RtxDataFormat {
-    let dataObject: RtxDataFormat = {
-        api_version: RTX_API_VERSION,
+function exportRtxDataObject(): RtxData {
+    let dataObject: RtxData = {
+        api_version: API_VERSION,
         overwright: true,
         status: {} as RtxJobStatus,
         learned_skills: {} as RtxSkills,
@@ -193,7 +283,7 @@ function exportRtxDataFormat(): RtxDataFormat {
     return dataObject;
 }
 
-function getRecursiveItemValueById(dataObject: RtxDataFormat, equipmentLocation: RtxEquipmentLocation, objectIdPrefix: string, objectIdRndopt: string, slotMaxNum: number = 4): RtxDataFormat {
+function getRecursiveItemValueById(dataObject: RtxData, equipmentLocation: RtxEquipmentLocation, objectIdPrefix: string, objectIdRndopt: string, slotMaxNum: number = 4): RtxData {
     const itemData = getChildItemValueById(`DATA_${objectIdPrefix}`, "item") as ItemData | null | undefined;
     const itemRefine = getItemValueById(`${objectIdPrefix}_REFINE`, "refine") as number | null | undefined;
     const itemTranscendence = getItemValueById(`${objectIdPrefix}_TRANSCENDENCE`, "transcendence") as number | null | undefined;
@@ -351,8 +441,8 @@ function uint8ArrayToBase64(bytes: Uint8Array): string {
 }
 
 // Decode => 展開 => YAML load
-async function decodeProcess(encodedData: string): Promise<RtxDataFormat | null> {
-    let dataObject: RtxDataFormat | null = null;
+async function decodeProcess(encodedData: string): Promise<RtxData | null> {
+    let dataObject: RtxData | null = null;
     try {
         // デコード => 圧縮データ
         const compressedData = base64ToUint8Array(encodedData);
@@ -363,7 +453,7 @@ async function decodeProcess(encodedData: string): Promise<RtxDataFormat | null>
         if (yamlData) {
             //console.debug(yamlData);
             // YAML文字列 => JavaScriptオブジェクト
-            dataObject = loadYAML(yamlData) as RtxDataFormat;
+            dataObject = loadYAML(yamlData) as RtxData;
         }
     } catch (error) {
         console.error("エラーが発生しました:", error);
@@ -372,7 +462,7 @@ async function decodeProcess(encodedData: string): Promise<RtxDataFormat | null>
 }
 
 // YAML dump => 圧縮 => Encode
-async function encodeProcess(dataObject: RtxDataFormat): Promise<string | null> {
+async function encodeProcess(dataObject: RtxData): Promise<string | null> {
     let encodedData: string | null = null;
     try {
         // YAMLオブジェクト => YAML文字列
@@ -391,7 +481,7 @@ async function encodeProcess(dataObject: RtxDataFormat): Promise<string | null> 
     return encodedData;
 }
 
-interface RtxDataFormat {
+interface RtxData {
     api_version: number;
     overwright: boolean;
     status: RtxJobStatus;
@@ -639,5 +729,3 @@ interface RtxAdditionalInfo {
     world_name?: string;
     comment?: string;
 }
-
-(window as any).outputConsoleRtxDataFormat = outputConsoleRtxDataFormat; //グローバルに登録
