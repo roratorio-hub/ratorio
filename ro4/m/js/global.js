@@ -68,15 +68,15 @@ let g_charaData = {
 };
 
 // 性能カスタマイズ ステータス関連
-let g_confDataCustomStatus = null;
+let g_confDataCustomStatus = [];
 // 性能カスタマイズ 攻撃関連
-let g_confDataCustomAtk = null;
+let g_confDataCustomAtk = [];
 // 性能カスタマイズ 防御関連
-let g_confDataCustomDef = null;
+let g_confDataCustomDef = [];
 // 性能カスタマイズ スキル関連
-let g_confDataCustomSkill = null;
+let g_confDataCustomSkill = [];
 // 性能カスタマイズ 特性ステータス関連
-let g_confDataCustomSpecStatus = null;
+let g_confDataCustomSpecStatus = [];
 
 // 計算機メインコントローラ（ro4以降）
 let g_confDataCustomStatusMIG = null;
