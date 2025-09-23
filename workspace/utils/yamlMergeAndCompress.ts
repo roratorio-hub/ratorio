@@ -209,10 +209,6 @@ async function mergeJob(): Promise<void> {
             console.warn(`${beforeJobIdName} not found in job_table (invalid job id name)`);
             return;
         }
-        if (beforeJobIdName === "HI_NOVICE") {
-            //console.warn(`${beforeJobIdName} is HI_NOVICE, skipping`);
-            return;
-        }
 
         let job: { id: string; id_num: number; name: string; } | null = null;
         for (let idx = 0; idx < jobObject.length; idx++) {
@@ -1915,7 +1911,7 @@ const mig_job_id_map: Record<string, MigJobId> = {
     "ZYPSY": { id: 31, correct: "DANCER_H" },
     "PROFESSOR": { id: 32, correct: "SAGE_H" },
     "CREATOR": { id: 33, correct: "ALCHEMIST_H" },
-    "HI_NOVICE": { id: 34, correct: "HYPER_NOVICE" },
+    "HI_NOVICE": { id: 34, correct: "NOVICE_H" },
     "HI_SWORDMAN": { id: 35, correct: "SWORDMAN_H" },
     "HI_THIEF": { id: 36, correct: "THIEF_H" },
     "HI_ACOLYTE": { id: 37, correct: "ACOLYTE_H" },
