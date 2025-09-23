@@ -1,7 +1,7 @@
 import { JobMap } from './loadJobMap';
 import { SkillMap } from './loadSkillMap';
 import { ItemMap } from './loadItemMap';
-import { loadRodbTranslator } from './rodbTranslator';
+import { loadRtxData } from './rtx';
 
 /**
  * YAMLデータのロード完了まで待機する関数
@@ -58,8 +58,8 @@ window.addEventListener('load', () => {
     waitForDataLoaded().then(() => {
         console.log('load: 🎉 All data is loaded.');
 
-        // RODB Translatorからのデータロード
-        loadRodbTranslator(window.location.hash);
+        // RTXデータロード
+        loadRtxData(window.location.hash);
     });
 });
 

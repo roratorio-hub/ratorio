@@ -75,7 +75,7 @@ async function encodeProcess(dataObject: RtxDataFormat): Promise<string | null> 
 }
 
 
-export async function loadRodbTranslator(importData: string): Promise<void> {
+export async function loadRtxData(importData: string): Promise<void> {
     const prefixCheck = /^#rtx(\d+):(.+)$/;
     const matches = prefixCheck.exec(importData);
     if (!matches) {
@@ -84,7 +84,7 @@ export async function loadRodbTranslator(importData: string): Promise<void> {
 
     // Version Check
     if (Number(matches[1]) != RTX_SUPPORT_VERSION) {
-        alert("RODB Translatorから出力された\nフォーマットバージョンが異なるため中止します\nVersion:" + matches[1]);
+        alert("RTXフォーマットバージョンが異なるため中止します\nVersion:" + matches[1]);
         return;
     }
     // フラグメントをデコード
@@ -93,7 +93,7 @@ export async function loadRodbTranslator(importData: string): Promise<void> {
     // 中身のデコード、zstd展開を行う
     const dataObject: RtxDataFormat | null = await decodeProcess(decodedData)
     if (!dataObject) {
-        alert("URLからのデータロードに失敗しました");
+        alert("RTXデータロードに失敗しました");
         return;
     }
     console.debug(dataObject);
@@ -179,7 +179,7 @@ function exportRtxDataFormat(): RtxDataFormat {
         learned_skills: {} as RtxSkills,
         equipments: {} as RtxEquipments,
         use_items: {} as RtxUseItems,
-        buff: {} as RtxSkills,
+        buff_skills: {} as RtxSkills,
         debuff: {} as RtxSkills,
         additional_info: {} as RtxAdditionalInfo,
         battle_info: {}
@@ -188,7 +188,7 @@ function exportRtxDataFormat(): RtxDataFormat {
     // Get Job
     const jobElement = document.getElementById("OBJID_SELECT_JOB") as HTMLSelectElement;
     dataObject.status.job_id = jobElement.value;
-    //dataObject.status.job_class_localization = JobMap.getById(jobElement.value)?.getNameJa();
+    //dataObject.status.job_class_localization = JobMap.getById(jobElement.value)?.getNameJa(); // 容量削減のためローカライズ名は保存しない
 
     // Get Base Lv
     const baseLvElement = document.getElementById("OBJID_SELECT_BASE_LEVEL") as HTMLInputElement;
@@ -400,10 +400,12 @@ interface RtxDataFormat {
     learned_skills: RtxSkills;
     equipments: RtxEquipments;
     use_items?: RtxUseItems;
-    buff?: RtxSkills;
-    debuff?: RtxSkills;
+    buff_skills?: RtxSkills;
+    debuff?: object; // 暫定でobjectにしておく
+    battle_info?: object; // 暫定でobjectにしておく
+    monster_buff?: object; // 暫定でobjectにしておく
+    monster_debuff?: object; // 暫定でobjectにしておく
     additional_info?: RtxAdditionalInfo;
-    battle_info?: object;
 }
 
 interface RtxJobStatus {
