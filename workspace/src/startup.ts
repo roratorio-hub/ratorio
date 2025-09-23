@@ -1,7 +1,7 @@
 import { JobMap } from './loadJobMap';
 import { SkillMap } from './loadSkillMap';
 import { ItemMap } from './loadItemMap';
-import { loadRtxData } from './rtxApi';
+import { loadFromString } from './rtxApi';
 
 /**
  * YAMLデータのロード完了まで待機する関数
@@ -59,7 +59,7 @@ window.addEventListener('load', () => {
         console.log('load: 🎉 All data is loaded.');
 
         // RTXデータロード
-        loadRtxData(window.location.hash);
+        loadFromString(window.location.hash.substring(1) || '');
     });
 });
 
