@@ -1,79 +1,8 @@
-import { load as loadYAML, dump as dumpYAML } from "js-yaml"
+import { load as loadYAML, dump as dumpYAML, dump } from "js-yaml"
 import { ItemData, ItemMap } from "./loadItemMap";
 import { zstdCompress, zstdDecompress } from "./funcZstd";
 
 const RTX_API_VERSION = 2;
-
-// Base64 → Uint8Array（URLセーフに対応）
-function base64ToUint8Array(base64: string): Uint8Array {
-    // パディングの補完
-    let paddedBase = base64.replace(/-/g, '+').replace(/_/g, '/');
-    const padding = paddedBase.length % 4;
-    if (padding === 2) paddedBase += '==';
-    else if (padding === 3) paddedBase += '=';
-
-    const binaryString = atob(paddedBase);
-    const len = binaryString.length;
-    const bytes = new Uint8Array(len);
-    for (let i = 0; i < len; i++) {
-        bytes[i] = binaryString.charCodeAt(i);
-    }
-    return bytes;
-}
-
-// Uint8Array → Base64（URLセーフ対応）
-function uint8ArrayToBase64(bytes: Uint8Array): string {
-    let binary = '';
-    for (let i = 0; i < bytes.length; i++) {
-        binary += String.fromCharCode(bytes[i]);
-    }
-    let base64 = btoa(binary);
-    // URLセーフ変換
-    base64 = base64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
-    return base64;
-}
-
-// Decode => 展開 => YAML load
-async function decodeProcess(encodedData: string): Promise<RtxDataFormat | null> {
-    let dataObject: RtxDataFormat | null = null;
-    try {
-        // デコード => 圧縮データ
-        const compressedData = base64ToUint8Array(encodedData);
-
-        // zstdで展開
-        const yamlData = await zstdDecompress(compressedData);
-
-        if (yamlData) {
-            //console.debug(yamlData);
-            // YAML文字列 => JavaScriptオブジェクト
-            dataObject = loadYAML(yamlData) as RtxDataFormat;
-        }
-    } catch (error) {
-        console.error("エラーが発生しました:", error);
-    }
-    return dataObject;
-}
-
-// YAML dump => 圧縮 => Encode
-async function encodeProcess(dataObject: RtxDataFormat): Promise<string | null> {
-    let encodedData: string | null = null;
-    try {
-        // YAMLオブジェクト => YAML文字列
-        const yamlData = dumpYAML(dataObject);
-
-        // zstdで圧縮
-        const compressedData = await zstdCompress(yamlData);
-
-        if (compressedData) {
-            // 圧縮データ => 文字列
-            encodedData = uint8ArrayToBase64(compressedData);
-        }
-    } catch (error) {
-        console.error("エラーが発生しました:", error);
-    }
-    return encodedData;
-}
-
 
 export async function loadRtxData(importData: string): Promise<void> {
     const prefixCheck = /^#rtx(\d+):(.+)$/;
@@ -323,7 +252,6 @@ function getRecursiveItemValueById(dataObject: RtxDataFormat, equipmentLocation:
     return dataObject;
 }
 
-
 function getItemValueById(elementId: string, objectType: string): ItemData | number | null | undefined {
     const selectElement = document.getElementById(elementId) as HTMLSelectElement;
     if (!selectElement || !selectElement.hasChildNodes()) {
@@ -391,6 +319,76 @@ function getChildItemValueById(elementId: string, objectType: string): ItemData 
         }
     }
     return null;
+}
+
+// Base64 → Uint8Array（URLセーフに対応）
+function base64ToUint8Array(base64: string): Uint8Array {
+    // パディングの補完
+    let paddedBase = base64.replace(/-/g, '+').replace(/_/g, '/');
+    const padding = paddedBase.length % 4;
+    if (padding === 2) paddedBase += '==';
+    else if (padding === 3) paddedBase += '=';
+
+    const binaryString = atob(paddedBase);
+    const len = binaryString.length;
+    const bytes = new Uint8Array(len);
+    for (let i = 0; i < len; i++) {
+        bytes[i] = binaryString.charCodeAt(i);
+    }
+    return bytes;
+}
+
+// Uint8Array → Base64（URLセーフ対応）
+function uint8ArrayToBase64(bytes: Uint8Array): string {
+    let binary = '';
+    for (let i = 0; i < bytes.length; i++) {
+        binary += String.fromCharCode(bytes[i]);
+    }
+    let base64 = btoa(binary);
+    // URLセーフ変換
+    base64 = base64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+    return base64;
+}
+
+// Decode => 展開 => YAML load
+async function decodeProcess(encodedData: string): Promise<RtxDataFormat | null> {
+    let dataObject: RtxDataFormat | null = null;
+    try {
+        // デコード => 圧縮データ
+        const compressedData = base64ToUint8Array(encodedData);
+
+        // zstdで展開
+        const yamlData = await zstdDecompress(compressedData);
+
+        if (yamlData) {
+            //console.debug(yamlData);
+            // YAML文字列 => JavaScriptオブジェクト
+            dataObject = loadYAML(yamlData) as RtxDataFormat;
+        }
+    } catch (error) {
+        console.error("エラーが発生しました:", error);
+    }
+    return dataObject;
+}
+
+// YAML dump => 圧縮 => Encode
+async function encodeProcess(dataObject: RtxDataFormat): Promise<string | null> {
+    let encodedData: string | null = null;
+    try {
+        // YAMLオブジェクト => YAML文字列
+        const yamlData = dumpYAML(dataObject);
+
+        // zstdで圧縮
+        const compressedData = await zstdCompress(yamlData);
+
+        if (compressedData) {
+            // 圧縮データ => 文字列
+            encodedData = uint8ArrayToBase64(compressedData);
+        }
+    } catch (error) {
+        console.error("エラーが発生しました:", error);
+    }
+    return encodedData;
 }
 
 interface RtxDataFormat {
