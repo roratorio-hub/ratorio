@@ -2,7 +2,7 @@ import { load as loadYAML, dump as dumpYAML } from "js-yaml"
 import { ItemData, ItemMap } from "./loadItemMap";
 import { zstdCompress, zstdDecompress } from "./funcZstd";
 
-const RTX_SUPPORT_VERSION = 2;
+const RTX_API_VERSION = 2;
 
 // Base64 → Uint8Array（URLセーフに対応）
 function base64ToUint8Array(base64: string): Uint8Array {
@@ -83,8 +83,8 @@ export async function loadRtxData(importData: string): Promise<void> {
     }
 
     // Version Check
-    if (Number(matches[1]) != RTX_SUPPORT_VERSION) {
-        alert("RTXフォーマットバージョンが異なるため中止します\nVersion:" + matches[1]);
+    if (Number(matches[1]) != RTX_API_VERSION) {
+        alert("RTX APIバージョンが異なるため中止します\nVersion:" + matches[1]);
         return;
     }
     // フラグメントをデコード
@@ -173,7 +173,7 @@ export async function outputConsoleRtxDataFormat(): Promise<void> {
 
 function exportRtxDataFormat(): RtxDataFormat {
     let dataObject: RtxDataFormat = {
-        format_version: RTX_SUPPORT_VERSION,
+        api_version: RTX_API_VERSION,
         overwright: true,
         status: {} as RtxJobStatus,
         learned_skills: {} as RtxSkills,
@@ -394,7 +394,7 @@ function getChildItemValueById(elementId: string, objectType: string): ItemData 
 }
 
 interface RtxDataFormat {
-    format_version: number;
+    api_version: number;
     overwright: boolean;
     status: RtxJobStatus;
     learned_skills: RtxSkills;

@@ -1,7 +1,7 @@
 import { JobMap } from './loadJobMap';
 import { SkillMap } from './loadSkillMap';
 import { ItemMap } from './loadItemMap';
-import { loadRtxData } from './rtx';
+import { loadRtxData } from './rtxApi';
 
 /**
  * YAMLデータのロード完了まで待機する関数
