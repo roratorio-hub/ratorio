@@ -30183,6 +30183,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		const query = window.location.search;
 		const param = query.replace("?", "");
 		const patternRtx = /^rtx[0-9]+:/
+
 		if (param.length > 0 && !patternRtx.test(param)) {
 			// ラトリオ独自のロード処理
 			CSaveController.loadFromURL(param);
