@@ -1,8 +1,8 @@
 import { JobMap } from './loadJobMap';
 import { SkillMap } from './loadSkillMap';
 import { ItemMap } from './loadItemMap';
-import { loadFromBase64String } from './rtxApi';
 import { initializePageKeyListeners } from './calcxAddEventListener';
+import { loadFromBase64String } from './rtxApiImport';
 
 /**
  * YAMLデータのロード完了まで待機する関数

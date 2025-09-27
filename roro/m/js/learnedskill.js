@@ -188,10 +188,10 @@ function OnClickSkillSWLearned(){
 		objSelect.setAttribute("id", "OBJID_SELECT_LEARNED_SKILL_LEVEL_" + idx);
 		objSelect.setAttribute("onChange", "RefreshSkillColumnHeaderLearned(this, " + idx + ", this.value)");
 
-		// RODB Translator用の属性追加
+		// RTX API用の属性追加
 		const skillData = SkillMap.getByMigIdNum(skillId);
 		if (skillData) {
-			objSelect.setAttribute("data-learned-skill-id", skillData.getId());
+			objSelect.setAttribute("data-rtx-learned-skill-id", skillData.getId());
 		} else {
 			// SkillMapに存在しないスキルはdata-skill-name属性を付与せず、警告ログを出す
 			console.warn("SkillMap not found skillId=", skillId, SkillObjNew[skillId]);
