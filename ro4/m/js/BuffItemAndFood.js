@@ -3,7 +3,16 @@
  * 画面下部の「アイテム(食品/他)」のバフウィンドウ構築関数群
 */ 
 
-const BUFF_CONF_FOOD_LIMIT = 52;
+/**
+ * Note:
+ * 配列数とセーブデータ領域数は等しくない
+ * セーブデータ領域の最大値は 70 で CSaveDataUnitItemBuff で定義されている
+ * ただし saveload.js が容易に変更できない書き方になっているから迂闊にセーブデータ領域を拡張してはいけない
+ * 70 までは増やしてOK
+ */
+
+/** アイテム・食品他 設定値の配列数 */
+const BUFF_CONF_FOOD_LIMIT = 53;
 /** アイテム・食品他 設定値の配列 */
 let n_A_PassSkill7 = Array(BUFF_CONF_FOOD_LIMIT).fill(0);
 /** アイテム・食品他 ウィンドウ可視状態 */
@@ -24,6 +33,31 @@ function Click_Skill7SW(){
 	let objLabel = null;
 	let objSpan = null;
 	let optText = "";
+
+	const ID_FOOD_CHAGASHI = 0;
+	const ID_FOOD_AGEGASHI = 1;
+	const ID_FOOD_NIJIOMOCHI = 2;
+	const ID_STATUS_STR = 3;
+	const ID_STATUS_AGI = 4;
+	const ID_STATUS_VIT = 5;
+	const ID_STATUS_INT = 6;
+	const ID_STATUS_DEX = 7;
+	const ID_STATUS_LUK = 8;
+	const ID_BOX_URAMI = 9;
+	const ID_BOX_NEMUI = 10;
+	const ID_POTION_COLD = 11;
+	const ID_POTION_EARTH = 12;
+	const ID_POTION_FIRE = 13;
+	const ID_POTION_WIND = 14;
+	const ID_MAJO_NO_SKILL_CARD = 15;
+	const ID_STATUS_20_STR = 16;
+	const ID_STATUS_20_AGI = 17;
+	const ID_STATUS_20_VIT = 18;
+	const ID_STATUS_20_INT = 19;
+	const ID_STATUS_20_DEX = 20;
+	const ID_STATUS_20_LUK = 21;
+	const ID_SOUSHO_CARD = 52;
+
 	// 展開状態を取得
 	objInput = document.getElementById("OBJID_CHECK_A7_SKILLSW");
 	n_Skill7SW = objInput.checked;
@@ -65,24 +99,24 @@ function Click_Skill7SW(){
 	let buildInfo = null;
 	let buildInfoTable = [
 		[
-			[0, "茶菓子(HIT+30)"],
-			[1, "揚げ菓子(FLEE+30)"],
-			[2, "虹色のお餅(ATK/MATK+10)"]
+			[ID_FOOD_CHAGASHI, "茶菓子(HIT+30)"],
+			[ID_FOOD_AGEGASHI, "揚げ菓子(FLEE+30)"],
+			[ID_FOOD_NIJIOMOCHI, "虹色のお餅(ATK/MATK+10)"]
 		],
 		[
-			[9, "恨みの箱(ATK+20)"],
-			[10, "眠い箱(MATK+20)"],
+			[ID_BOX_URAMI, "恨みの箱(ATK+20)"],
+			[ID_BOX_NEMUI, "眠い箱(MATK+20)"],
 			[]
 		],
 		[
-			[11, "レジストコールドポーション"],
-			[12, "レジストアースポーション"],
+			[ID_POTION_COLD, "レジストコールドポーション"],
+			[ID_POTION_EARTH, "レジストアースポーション"],
 			[]
 		],
 		[
-			[13, "レジストファイアーポーション"],
-			[14, "レジストウィンドポーション"],
-			[]
+			[ID_POTION_FIRE, "レジストファイアーポーション"],
+			[ID_POTION_WIND, "レジストウィンドポーション"],
+			[ID_SOUSHO_CARD, "幻想叢書カード", ["なし", "アグネス", "ヴェルナー", "エレナ", "セイレン", "グラリン", "レハール", "イーブル", "マルブロン"]],
 		],
 		[
 			[22, "濃縮サラマインジュース"],
@@ -134,7 +168,12 @@ function Click_Skill7SW(){
                 objTd = HtmlCreateElement("td", objTr);
                 objTd.setAttribute("colspan", "3");
                 subInfoArray = [
-                    [3, "STR"], [4, "AGI"], [5, "VIT"], [6, "INT"], [7, "DEX"], [8, "LUK"],
+                    [ID_STATUS_STR, "STR"],
+					[ID_STATUS_AGI, "AGI"],
+					[ID_STATUS_VIT, "VIT"],
+					[ID_STATUS_INT, "INT"],
+					[ID_STATUS_DEX, "DEX"],
+					[ID_STATUS_LUK, "LUK"],
                 ];
                 for (let idxKind = 0; idxKind < subInfoArray.length; idxKind++) {
                     objSelect = HtmlCreateElement("select", objTd);
@@ -181,7 +220,12 @@ function Click_Skill7SW(){
                 objTd = HtmlCreateElement("td", objTr);
                 objTd.setAttribute("colspan", "3");
                 subInfoArray = [
-                    [16, "STR"], [17, "AGI"], [18, "VIT"], [19, "INT"], [20, "DEX"], [21, "LUK"],
+                    [ID_STATUS_20_STR, "STR"],
+					[ID_STATUS_20_AGI, "AGI"],
+					[ID_STATUS_20_VIT, "VIT"],
+					[ID_STATUS_20_INT, "INT"],
+					[ID_STATUS_20_DEX, "DEX"],
+					[ID_STATUS_20_LUK, "LUK"],
                 ];
                 for (let idxKind = 0; idxKind < subInfoArray.length; idxKind++) {
                     if (idxKind > 0) {
