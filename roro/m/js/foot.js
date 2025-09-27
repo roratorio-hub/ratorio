@@ -924,7 +924,7 @@ function StAllCalc(){
 			}
 		}
 
-
+		// アイテム(食品/他) の取得
 		if(n_Skill7SW){
 			n_A_PassSkill7[0] = eval(A7_Skill0.checked);
 			n_A_PassSkill7[1] = eval(A7_Skill1.checked);
@@ -978,6 +978,7 @@ function StAllCalc(){
 			n_A_PassSkill7[49] = eval(A7_Skill49.checked);
 			n_A_PassSkill7[50] = eval(A7_Skill50.value);
 			n_A_PassSkill7[51] = eval(A7_Skill51.checked);
+			n_A_PassSkill7[52] = eval(A7_Skill52.value);
 		}
 		n_A_PassSkill8[14] = 0;
 		if(n_Skill8SW){
@@ -7235,6 +7236,13 @@ function StAllCalc(){
 			}
 		}
 
+		/**
+		 * 幻想叢書カード エレナ
+		 */
+		if (n_A_PassSkill7[52] === 3) {
+			n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += 5;
+		}
+
 		//----------------------------------------------------------------
 		// 「性能カスタマイズ」の、効果
 		//----------------------------------------------------------------
@@ -7860,10 +7868,6 @@ function StAllCalc(){
 				n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_ELM_ALL] += valWork;
 			}
 		}
-
-
-
-
 
 		//----------------------------------------------------------------
 		// 影狼・朧スキル「符」の効果
@@ -12488,6 +12492,20 @@ function StAllCalc(){
 				break;
 		}
 
+		/**
+		 * 幻想叢書カード ヴェルナー による 無属性魔法攻撃 + 5%
+		 */
+		if (n_A_PassSkill7[52] === 2) {
+			n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_ELM_VANITY] += 5;
+		}
+
+		/**
+		 * 幻想叢書カード グラリン による 聖属性魔法攻撃 + 5%
+		 */
+		if (n_A_PassSkill7[52] === 5) {
+			n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_ELM_HOLY] += 5;
+		}
+
 		/** 三次職支援設定「エンドレスハミングボイス」の全ての属性魔法攻撃で与えるダメージ + 効果 */
 		if (g_confDataSanzi[CCharaConfSanzi.CONF_ID_UNLIMITED_HUMMING_VOICE] > 0) {
 			let effect = 4 * g_confDataSanzi[CCharaConfSanzi.CONF_ID_UNLIMITED_HUMMING_VOICE];
@@ -13775,8 +13793,6 @@ function StAllCalc(){
 //================================================================================================================================
 //================================================================================================================================
 
-
-
 		//----------------------------------------------------------------
 		// ★★★暫定措置　コピペ禁止★★★
 		// 「変貌の白騎士」の、効果
@@ -13793,7 +13809,6 @@ function StAllCalc(){
 			n_tok[ITEM_SP_SHORTRANGE_DAMAGE_UP] += 3 * LearnedSkillSearch(SKILL_ID_MAGMA_ILLUPTION) * itemCount;
 		}
 
-
 		//----------------------------------------------------------------
 		// 「グレースマグマスーツ」の、スキル習得による効果
 		//----------------------------------------------------------------
@@ -13801,9 +13816,12 @@ function StAllCalc(){
 			n_tok[ITEM_SP_SHORTRANGE_DAMAGE_UP] += 6 * LearnedSkillSearch(SKILL_ID_MAGMA_ILLUPTION) * itemCount;
 		}
 
-
-
-
+		/**
+		 * 幻想叢書カード セイレン
+		 */
+		if (n_A_PassSkill7[52] === 4) {
+			n_tok[ITEM_SP_SHORTRANGE_DAMAGE_UP] += 5;
+		}
 
 		//----------------------------------------------------------------
 		// 「性能カスタマイズ」の、効果（遠距離と共用）
@@ -13817,14 +13835,6 @@ function StAllCalc(){
 		for (idx = ITEM_SP_SHORTRANGE_DAMAGE_UP; idx <= ITEM_SP_SHORTRANGE_DAMAGE_UP; idx++) {
 			n_tok[idx] = ApplySpecModify(idx, n_tok[idx]);
 		}
-
-
-
-
-
-
-
-
 
 //================================================================================================================================
 //================================================================================================================================
@@ -18142,6 +18152,13 @@ function ApplyHealRecoveryUp() {
         n_tok[ITEM_SP_HEAL_UP_USING] += 3 * sklLv;
     }
 
+	/**
+	 * 幻想叢書カード　アグネス　の効果
+	 */
+	if (n_A_PassSkill7[52] === 1) {
+		n_tok[ITEM_SP_HEAL_UP_USING] += 10;
+	}
+
     //----------------------------------------------------------------
     // 「性能カスタマイズ」の、効果
     //----------------------------------------------------------------
@@ -20703,6 +20720,13 @@ function getCriticalDamageRate() {
     // TODO: 四次対応
     damage_ratio = ApplySpecModify(ITEM_SP_CRITICAL_DAMAGE_UP, damage_ratio);
 
+	/**
+	 * 幻想叢書カード イーブル
+	 */
+	if (n_A_PassSkill7[52] === 7) {
+		damage_ratio += 10;
+	}
+
     //----------------------------------------------------------------
     // 「性能カスタマイズ」の、効果
     //----------------------------------------------------------------
@@ -21957,6 +21981,13 @@ function GetAdditionalAspdPercent() {
     tmp_percent += 5 * UsedSkillSearch(SKILL_ID_HOSHINO_KAMAE);
     if (n_A_PassSkill3[11]) tmp_percent -= 3 * n_A_PassSkill3[11];
     if (g_confDataDebuff[CCharaConfDebuff.CONF_ID_FREEZING]) tmp_percent -= 30;
+
+	/**
+	 * 幻想叢書カード レハール
+	 */
+	if (n_A_PassSkill7[52] === 6) {
+		tmp_percent += 5;
+	}
 
     //----------------------------------------------------------------
     // 「性能カスタマイズ」の、効果
