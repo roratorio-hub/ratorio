@@ -40,6 +40,8 @@ const ID_BUFF_STATUS_20_VIT = 18;
 const ID_BUFF_STATUS_20_INT = 19;
 const ID_BUFF_STATUS_20_DEX = 20;
 const ID_BUFF_STATUS_20_LUK = 21;
+const ID_BUFF_MANUK_ISHI = 31;
+const ID_BUFF_VESPER_HONEY = 34;
 const ID_BUFF_SOUSHO_CARD = 52;
 
 /**
@@ -136,12 +138,12 @@ function Click_Skill7SW(){
 		[
 			[29, "マヌクの豪気"],
 			[30, "マヌクの信念"],
-			[31, "マヌクの意思"]
+			[ID_BUFF_MANUK_ISHI, "マヌクの意思"]
 		],
 		[
 			[32, "ピンギキュラの果実ジャム"],
 			[33, "コルヌスの涙"],
-			[34, "ルシオラヴェスパのハチ蜜"]
+			[ID_BUFF_VESPER_HONEY, "ルシオラヴェスパのハチ蜜"]
 		],
 		[
 			[37, "アロエベラ"],
