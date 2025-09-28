@@ -18,29 +18,29 @@ let n_A_PassSkill7 = Array(BUFF_CONF_FOOD_LIMIT).fill(0);
 /** アイテム・食品他 ウィンドウ可視状態 */
 let n_Skill7SW = false;
 
-const ID_FOOD_CHAGASHI = 0;
-const ID_FOOD_AGEGASHI = 1;
-const ID_FOOD_NIJIOMOCHI = 2;
-const ID_STATUS_STR = 3;
-const ID_STATUS_AGI = 4;
-const ID_STATUS_VIT = 5;
-const ID_STATUS_INT = 6;
-const ID_STATUS_DEX = 7;
-const ID_STATUS_LUK = 8;
-const ID_BOX_URAMI = 9;
-const ID_BOX_NEMUI = 10;
-const ID_POTION_COLD = 11;
-const ID_POTION_EARTH = 12;
-const ID_POTION_FIRE = 13;
-const ID_POTION_WIND = 14;
-const ID_MAJO_NO_SKILL_CARD = 15;
-const ID_STATUS_20_STR = 16;
-const ID_STATUS_20_AGI = 17;
-const ID_STATUS_20_VIT = 18;
-const ID_STATUS_20_INT = 19;
-const ID_STATUS_20_DEX = 20;
-const ID_STATUS_20_LUK = 21;
-const ID_SOUSHO_CARD = 52;
+const ID_BUFF_FOOD_CHAGASHI = 0;
+const ID_BUFF_FOOD_AGEGASHI = 1;
+const ID_BUFF_FOOD_NIJIOMOCHI = 2;
+const ID_BUFF_STATUS_STR = 3;
+const ID_BUFF_STATUS_AGI = 4;
+const ID_BUFF_STATUS_VIT = 5;
+const ID_BUFF_STATUS_INT = 6;
+const ID_BUFF_STATUS_DEX = 7;
+const ID_BUFF_STATUS_LUK = 8;
+const ID_BUFF_BOX_URAMI = 9;
+const ID_BUFF_BOX_NEMUI = 10;
+const ID_BUFF_POTION_COLD = 11;
+const ID_BUFF_POTION_EARTH = 12;
+const ID_BUFF_POTION_FIRE = 13;
+const ID_BUFF_POTION_WIND = 14;
+const ID_BUFF_MAJO_NO_SKILL_CARD = 15;
+const ID_BUFF_STATUS_20_STR = 16;
+const ID_BUFF_STATUS_20_AGI = 17;
+const ID_BUFF_STATUS_20_VIT = 18;
+const ID_BUFF_STATUS_20_INT = 19;
+const ID_BUFF_STATUS_20_DEX = 20;
+const ID_BUFF_STATUS_20_LUK = 21;
+const ID_BUFF_SOUSHO_CARD = 52;
 
 /**
  * アイテム・食品他 を構築する
@@ -99,24 +99,24 @@ function Click_Skill7SW(){
 	let buildInfo = null;
 	let buildInfoTable = [
 		[
-			[ID_FOOD_CHAGASHI, "茶菓子(HIT+30)"],
-			[ID_FOOD_AGEGASHI, "揚げ菓子(FLEE+30)"],
-			[ID_FOOD_NIJIOMOCHI, "虹色のお餅(ATK/MATK+10)"]
+			[ID_BUFF_FOOD_CHAGASHI, "茶菓子(HIT+30)"],
+			[ID_BUFF_FOOD_AGEGASHI, "揚げ菓子(FLEE+30)"],
+			[ID_BUFF_FOOD_NIJIOMOCHI, "虹色のお餅(ATK/MATK+10)"]
 		],
 		[
-			[ID_BOX_URAMI, "恨みの箱(ATK+20)"],
-			[ID_BOX_NEMUI, "眠い箱(MATK+20)"],
+			[ID_BUFF_BOX_URAMI, "恨みの箱(ATK+20)"],
+			[ID_BUFF_BOX_NEMUI, "眠い箱(MATK+20)"],
 			[]
 		],
 		[
-			[ID_POTION_COLD, "レジストコールドポーション"],
-			[ID_POTION_EARTH, "レジストアースポーション"],
+			[ID_BUFF_POTION_COLD, "レジストコールドポーション"],
+			[ID_BUFF_POTION_EARTH, "レジストアースポーション"],
 			[]
 		],
 		[
-			[ID_POTION_FIRE, "レジストファイアーポーション"],
-			[ID_POTION_WIND, "レジストウィンドポーション"],
-			[ID_SOUSHO_CARD, "幻想叢書カード", ["なし", "アグネス", "ヴェルナー", "エレナ", "セイレン", "グラリン", "レハール", "イーブル", "マルブロン"]],
+			[ID_BUFF_POTION_FIRE, "レジストファイアーポーション"],
+			[ID_BUFF_POTION_WIND, "レジストウィンドポーション"],
+			[ID_BUFF_SOUSHO_CARD, "幻想叢書カード", ["なし", "アグネス", "ヴェルナー", "エレナ", "セイレン", "グラリン", "レハール", "イーブル", "マルブロン"]],
 		],
 		[
 			[22, "濃縮サラマインジュース"],
@@ -168,12 +168,12 @@ function Click_Skill7SW(){
                 objTd = HtmlCreateElement("td", objTr);
                 objTd.setAttribute("colspan", "3");
                 subInfoArray = [
-                    [ID_STATUS_STR, "STR"],
-					[ID_STATUS_AGI, "AGI"],
-					[ID_STATUS_VIT, "VIT"],
-					[ID_STATUS_INT, "INT"],
-					[ID_STATUS_DEX, "DEX"],
-					[ID_STATUS_LUK, "LUK"],
+                    [ID_BUFF_STATUS_STR, "STR"],
+					[ID_BUFF_STATUS_AGI, "AGI"],
+					[ID_BUFF_STATUS_VIT, "VIT"],
+					[ID_BUFF_STATUS_INT, "INT"],
+					[ID_BUFF_STATUS_DEX, "DEX"],
+					[ID_BUFF_STATUS_LUK, "LUK"],
                 ];
                 for (let idxKind = 0; idxKind < subInfoArray.length; idxKind++) {
                     objSelect = HtmlCreateElement("select", objTd);
@@ -227,12 +227,12 @@ function Click_Skill7SW(){
                 objTd = HtmlCreateElement("td", objTr);
                 objTd.setAttribute("colspan", "3");
                 subInfoArray = [
-                    [ID_STATUS_20_STR, "STR"],
-					[ID_STATUS_20_AGI, "AGI"],
-					[ID_STATUS_20_VIT, "VIT"],
-					[ID_STATUS_20_INT, "INT"],
-					[ID_STATUS_20_DEX, "DEX"],
-					[ID_STATUS_20_LUK, "LUK"],
+                    [ID_BUFF_STATUS_20_STR, "STR"],
+					[ID_BUFF_STATUS_20_AGI, "AGI"],
+					[ID_BUFF_STATUS_20_VIT, "VIT"],
+					[ID_BUFF_STATUS_20_INT, "INT"],
+					[ID_BUFF_STATUS_20_DEX, "DEX"],
+					[ID_BUFF_STATUS_20_LUK, "LUK"],
                 ];
                 for (let idxKind = 0; idxKind < subInfoArray.length; idxKind++) {
                     if (idxKind > 0) {
@@ -394,12 +394,12 @@ function Click_Food_Off(){
  */
 function setAllStatusBuff(value){
 	[
-		ID_STATUS_STR,
-		ID_STATUS_AGI,
-		ID_STATUS_VIT,
-		ID_STATUS_INT,
-		ID_STATUS_DEX,
-		ID_STATUS_LUK,
+		ID_BUFF_STATUS_STR,
+		ID_BUFF_STATUS_AGI,
+		ID_BUFF_STATUS_VIT,
+		ID_BUFF_STATUS_INT,
+		ID_BUFF_STATUS_DEX,
+		ID_BUFF_STATUS_LUK,
 	].forEach(n => document.getElementById(`OBJID_CHECK_A7_Skill${n}`).value = value);
 	Click_A7(true);
 }
@@ -409,11 +409,11 @@ function setAllStatusBuff(value){
  */
 function toggleAllStatus20() {
 	[
-		ID_STATUS_20_STR,
-		ID_STATUS_20_AGI,
-		ID_STATUS_20_VIT,
-		ID_STATUS_20_INT,
-		ID_STATUS_20_DEX,
-		ID_STATUS_20_LUK,
+		ID_BUFF_STATUS_20_STR,
+		ID_BUFF_STATUS_20_AGI,
+		ID_BUFF_STATUS_20_VIT,
+		ID_BUFF_STATUS_20_INT,
+		ID_BUFF_STATUS_20_DEX,
+		ID_BUFF_STATUS_20_LUK,
 	].forEach(n => document.getElementById(`OBJID_CHECK_A7_Skill${n}`).click());
 }
