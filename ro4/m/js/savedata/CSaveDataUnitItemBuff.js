@@ -27,6 +27,7 @@ class CSaveDataUnitItemBuff extends CSaveDataUnitBase {
             CSaveDataConst.propNameParseCtrlFlag,
             // データは、初期バージョンでは、70個
             // （領域的には71個用意されていたが末尾は使用していなかったので切り捨て）
+            // saveload.js が容易に拡張できない方法で書かれているので拡張は慎重に判断すること
             ...(Array(70).fill(CSaveDataConst.propNameBuffLv)),
         ];
     }
