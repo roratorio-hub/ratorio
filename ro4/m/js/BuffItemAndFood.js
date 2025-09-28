@@ -3,11 +3,46 @@
  * 画面下部の「アイテム(食品/他)」のバフウィンドウ構築関数群
 */ 
 
-const BUFF_CONF_FOOD_LIMIT = 52;
+/**
+ * Note:
+ * 配列数とセーブデータ領域数は等しくない
+ * セーブデータ領域の最大値は 70 で CSaveDataUnitItemBuff で定義されている
+ * ただし saveload.js が容易に変更できない書き方になっているから迂闊にセーブデータ領域を拡張してはいけない
+ * 70 までは増やしてOK
+ */
+
+/** アイテム・食品他 設定値の配列数 */
+const BUFF_CONF_FOOD_LIMIT = 53;
 /** アイテム・食品他 設定値の配列 */
 let n_A_PassSkill7 = Array(BUFF_CONF_FOOD_LIMIT).fill(0);
 /** アイテム・食品他 ウィンドウ可視状態 */
 let n_Skill7SW = false;
+
+const ID_BUFF_FOOD_CHAGASHI = 0;
+const ID_BUFF_FOOD_AGEGASHI = 1;
+const ID_BUFF_FOOD_NIJIOMOCHI = 2;
+const ID_BUFF_STATUS_STR = 3;
+const ID_BUFF_STATUS_AGI = 4;
+const ID_BUFF_STATUS_VIT = 5;
+const ID_BUFF_STATUS_INT = 6;
+const ID_BUFF_STATUS_DEX = 7;
+const ID_BUFF_STATUS_LUK = 8;
+const ID_BUFF_BOX_URAMI = 9;
+const ID_BUFF_BOX_NEMUI = 10;
+const ID_BUFF_POTION_COLD = 11;
+const ID_BUFF_POTION_EARTH = 12;
+const ID_BUFF_POTION_FIRE = 13;
+const ID_BUFF_POTION_WIND = 14;
+const ID_BUFF_MAJO_NO_SKILL_CARD = 15;
+const ID_BUFF_STATUS_20_STR = 16;
+const ID_BUFF_STATUS_20_AGI = 17;
+const ID_BUFF_STATUS_20_VIT = 18;
+const ID_BUFF_STATUS_20_INT = 19;
+const ID_BUFF_STATUS_20_DEX = 20;
+const ID_BUFF_STATUS_20_LUK = 21;
+const ID_BUFF_MANUK_ISHI = 31;
+const ID_BUFF_VESPER_HONEY = 34;
+const ID_BUFF_SOUSHO_CARD = 52;
 
 /**
  * アイテム・食品他 を構築する
@@ -24,6 +59,7 @@ function Click_Skill7SW(){
 	let objLabel = null;
 	let objSpan = null;
 	let optText = "";
+
 	// 展開状態を取得
 	objInput = document.getElementById("OBJID_CHECK_A7_SKILLSW");
 	n_Skill7SW = objInput.checked;
@@ -65,24 +101,24 @@ function Click_Skill7SW(){
 	let buildInfo = null;
 	let buildInfoTable = [
 		[
-			[0, "茶菓子(HIT+30)"],
-			[1, "揚げ菓子(FLEE+30)"],
-			[2, "虹色のお餅(ATK/MATK+10)"]
+			[ID_BUFF_FOOD_CHAGASHI, "茶菓子(HIT+30)"],
+			[ID_BUFF_FOOD_AGEGASHI, "揚げ菓子(FLEE+30)"],
+			[ID_BUFF_FOOD_NIJIOMOCHI, "虹色のお餅(ATK/MATK+10)"]
 		],
 		[
-			[9, "恨みの箱(ATK+20)"],
-			[10, "眠い箱(MATK+20)"],
+			[ID_BUFF_BOX_URAMI, "恨みの箱(ATK+20)"],
+			[ID_BUFF_BOX_NEMUI, "眠い箱(MATK+20)"],
 			[]
 		],
 		[
-			[11, "レジストコールドポーション"],
-			[12, "レジストアースポーション"],
+			[ID_BUFF_POTION_COLD, "レジストコールドポーション"],
+			[ID_BUFF_POTION_EARTH, "レジストアースポーション"],
 			[]
 		],
 		[
-			[13, "レジストファイアーポーション"],
-			[14, "レジストウィンドポーション"],
-			[]
+			[ID_BUFF_POTION_FIRE, "レジストファイアーポーション"],
+			[ID_BUFF_POTION_WIND, "レジストウィンドポーション"],
+			[ID_BUFF_SOUSHO_CARD, "幻想叢書カード", ["なし", "アグネス", "ヴェルナー", "エレナ", "セイレン", "グラリン", "レハール", "イーブル", "マルブロン"]],
 		],
 		[
 			[22, "濃縮サラマインジュース"],
@@ -102,12 +138,12 @@ function Click_Skill7SW(){
 		[
 			[29, "マヌクの豪気"],
 			[30, "マヌクの信念"],
-			[31, "マヌクの意思"]
+			[ID_BUFF_MANUK_ISHI, "マヌクの意思"]
 		],
 		[
 			[32, "ピンギキュラの果実ジャム"],
 			[33, "コルヌスの涙"],
-			[34, "ルシオラヴェスパのハチ蜜"]
+			[ID_BUFF_VESPER_HONEY, "ルシオラヴェスパのハチ蜜"]
 		],
 		[
 			[37, "アロエベラ"],
@@ -134,11 +170,17 @@ function Click_Skill7SW(){
                 objTd = HtmlCreateElement("td", objTr);
                 objTd.setAttribute("colspan", "3");
                 subInfoArray = [
-                    [3, "STR"], [4, "AGI"], [5, "VIT"], [6, "INT"], [7, "DEX"], [8, "LUK"],
+                    [ID_BUFF_STATUS_STR, "STR"],
+					[ID_BUFF_STATUS_AGI, "AGI"],
+					[ID_BUFF_STATUS_VIT, "VIT"],
+					[ID_BUFF_STATUS_INT, "INT"],
+					[ID_BUFF_STATUS_DEX, "DEX"],
+					[ID_BUFF_STATUS_LUK, "LUK"],
                 ];
                 for (let idxKind = 0; idxKind < subInfoArray.length; idxKind++) {
                     objSelect = HtmlCreateElement("select", objTd);
                     objSelect.setAttribute("name", "A7_Skill" + subInfoArray[idxKind][0]);
+					objSelect.setAttribute("id", "OBJID_CHECK_A7_Skill" + subInfoArray[idxKind][0]);
                     objSelect.setAttribute("onchange", "StAllCalc() | Click_A7(true)");
                     HtmlCreateElementOption(0, subInfoArray[idxKind][1] + "+食品", objSelect);
                     for (let idxValue = 1; idxValue <= 10; idxValue++) {
@@ -157,9 +199,15 @@ function Click_Skill7SW(){
                 objInput.setAttribute("type", "button");
                 objInput.setAttribute("name", "NETCAFE3");
                 objInput.setAttribute("value", "ALL＋10");
-                objInput.setAttribute("onclick", "Click_NetCafe3() | StAllCalc()");
+                objInput.setAttribute("onclick", "setAllStatusBuff(10) | StAllCalc()");
+                HtmlCreateTextNode(" ", objTd);
+                objInput = HtmlCreateElement("input", objTd);
+                objInput.setAttribute("type", "button");
+                objInput.setAttribute("name", "NETCAFE3");
+                objInput.setAttribute("value", "ALL＋6");
+                objInput.setAttribute("onclick", "setAllStatusBuff(6) | StAllCalc()");
                 HtmlCreateElement("br", objTd);
-                HtmlCreateTextNode("※ネットカフェのステータスALL+10は食品扱い", objTd);
+                HtmlCreateTextNode("※ネットカフェ/エクラージュ/手紙の「ステータスALL+◯」は食品扱いで、同時に発動できない", objTd);
                 break;
             case 4:
                 objTr = HtmlCreateElement("tr", objTbody);
@@ -181,11 +229,16 @@ function Click_Skill7SW(){
                 objTd = HtmlCreateElement("td", objTr);
                 objTd.setAttribute("colspan", "3");
                 subInfoArray = [
-                    [16, "STR"], [17, "AGI"], [18, "VIT"], [19, "INT"], [20, "DEX"], [21, "LUK"],
+                    [ID_BUFF_STATUS_20_STR, "STR"],
+					[ID_BUFF_STATUS_20_AGI, "AGI"],
+					[ID_BUFF_STATUS_20_VIT, "VIT"],
+					[ID_BUFF_STATUS_20_INT, "INT"],
+					[ID_BUFF_STATUS_20_DEX, "DEX"],
+					[ID_BUFF_STATUS_20_LUK, "LUK"],
                 ];
                 for (let idxKind = 0; idxKind < subInfoArray.length; idxKind++) {
                     if (idxKind > 0) {
-                        HtmlCreateTextNode("　　", objTd);
+                        HtmlCreateTextNode("　", objTd);
                     }
                     objInput = HtmlCreateElement("input", objTd);
                     objInput.setAttribute("type", "checkbox");
@@ -199,6 +252,11 @@ function Click_Skill7SW(){
                         objInput.checked = "checked";
                     }
                 }
+                HtmlCreateTextNode(" ", objTd);
+                objInput = HtmlCreateElement("input", objTd);
+                objInput.setAttribute("type", "button");
+                objInput.setAttribute("value", "ALL＋20");
+                objInput.setAttribute("onclick", "toggleAllStatus20() | StAllCalc()");
                 break;
 		}
 		objTr = HtmlCreateElement("tr", objTbody);
@@ -331,12 +389,33 @@ function Click_Food_Off(){
 /**
  * アイテム・食品他 > ALL+10 ボタンのクリックイベント
  */
-function Click_NetCafe3(){
-	document.calcForm.A7_Skill3.value = 10;
-	document.calcForm.A7_Skill4.value = 10;
-	document.calcForm.A7_Skill5.value = 10;
-	document.calcForm.A7_Skill6.value = 10;
-	document.calcForm.A7_Skill7.value = 10;
-	document.calcForm.A7_Skill8.value = 10;
+
+/**
+ * 「基礎ステータス+食品」のドロップダウンリストに一括で任意の値を設定する
+ * @param {number} value 
+ */
+function setAllStatusBuff(value){
+	[
+		ID_BUFF_STATUS_STR,
+		ID_BUFF_STATUS_AGI,
+		ID_BUFF_STATUS_VIT,
+		ID_BUFF_STATUS_INT,
+		ID_BUFF_STATUS_DEX,
+		ID_BUFF_STATUS_LUK,
+	].forEach(n => document.getElementById(`OBJID_CHECK_A7_Skill${n}`).value = value);
 	Click_A7(true);
+}
+
+/**
+ * 「基礎ステータス+20」のチェックボックスを一括で切り替える
+ */
+function toggleAllStatus20() {
+	[
+		ID_BUFF_STATUS_20_STR,
+		ID_BUFF_STATUS_20_AGI,
+		ID_BUFF_STATUS_20_VIT,
+		ID_BUFF_STATUS_20_INT,
+		ID_BUFF_STATUS_20_DEX,
+		ID_BUFF_STATUS_20_LUK,
+	].forEach(n => document.getElementById(`OBJID_CHECK_A7_Skill${n}`).click());
 }

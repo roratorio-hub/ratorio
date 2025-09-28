@@ -2,6 +2,7 @@ import { JobMap } from './loadJobMap';
 import { SkillMap } from './loadSkillMap';
 import { ItemMap } from './loadItemMap';
 import { loadRodbTranslator } from './rodbTranslator';
+import { initializePageKeyListeners } from './calcxAddEventListener';
 
 /**
  * YAMLデータのロード完了まで待機する関数
@@ -48,6 +49,9 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     });
+
+    // PageUp / PageDown キーリスナーの登録
+    initializePageKeyListeners();
 });
 
 /**
