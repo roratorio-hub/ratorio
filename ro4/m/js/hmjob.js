@@ -999,26 +999,19 @@ function ApplyCRateAmplify(criDmgRate) {
  * 導出特性ステータス Res によるダメージ減衰効果の適用.
  */
 function ApplyResResist(mobData, dmg) {
-
 	var res = 0;
 	var resistedRatio = 0;
 	var resisted = 0;
 
-
 	// 敵の Res を取得する
 	res = GetMobRes(mobData);
 
-
-
 	// 実測との誤差から、減少量を計算→小数切り捨て→元ダメージから減算、という順序の模様
-
 	// 減衰率の計算
 	resistedRatio = 1 - (2000 + res) / (2000 + (5 * res));
 
 	// 減衰ダメージを計算
 	resisted = Math.floor(dmg * resistedRatio);
-
-
 
 	return (dmg - resisted);
 }

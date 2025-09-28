@@ -12,7 +12,7 @@ function CCharaConfCustomSkill(confArray) {
 
 	// 設定の限界値
 	// この数を超える場合は、セーブデータの拡張が必要
-	this.confCountLimit = 20;
+	this.confCountLimit = CUSTOM_CONF_SKILL_LIMIT;
 
 
 

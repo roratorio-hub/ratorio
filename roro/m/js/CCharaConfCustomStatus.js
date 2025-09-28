@@ -12,7 +12,7 @@ function CCharaConfCustomStatus(confArray) {
 
 	// 設定の限界値
 	// この数を超える場合は、セーブデータの拡張が必要
-	this.confCountLimit = 30;
+	this.confCountLimit = CUSTOM_CONF_STATUS_LIMIT;
 
 
 
