@@ -585,6 +585,7 @@ function StAllCalc(){
 	var monsterId = 0;
 
 	var charaData = new Array();
+	/** Item SPの効果値が格納された配列. n_tok がそのまま渡されると考えて良い. */
 	var specData = new Array();
 	var mobData = new Array();
 	var attackMethodConf = null;
