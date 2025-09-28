@@ -11852,33 +11852,56 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 	}
 	objCell.classList.add("BTLRSLT_TAB_RESULT");
 	objCell.classList.add("CSSCLS_BTLRSLT_HEADER");
-	funcAppendCheckbox(objCell, partIdStr, "被ダメージ（仮）", uncheckedMap.get(partIdStr), funcOnChangeChkPart);
+	funcAppendCheckbox(objCell, partIdStr, "平均被ダメージ（仮）", uncheckedMap.get(partIdStr), funcOnChangeChkPart);
 
 	//----------------
-	// 平均ダメージ
+	// 物理ダメージ
 	//----------------
 	objCell = HtmlCreateElement("div", objGridDmg);
-	objCell.style.gridColumnStart = "1";
+	objCell.style.gridColumn = "1 / 3";
 	objCell.classList.add("BTLRSLT_TAB_RESULT");
 	objCell.classList.add(partIdStr);
-	HtmlCreateTextNode("平均", objCell);
+	const enemy_attack_method_physical = HtmlCreateElement("select", objCell);
+	enemy_attack_method_physical.setAttribute("id", "OBJID_ENEMY_ATTACK_METHOD_PHYSICAL");
+	HtmlCreateElementOption(0, "通常攻撃", enemy_attack_method_physical);
+	HtmlCreateElementOption(1, "ヘルジャッジメント Lv10", enemy_attack_method_physical);
 
-	// トータルダメージ
-	objCell = HtmlCreateElement("div", objGridDmg);
-	objCell.classList.add("BTLRSLT_TAB_RESULT");
-	objCell.classList.add(partIdStr);
-	objCell.classList.add("CSSCLS_BTLRSLT_VALUE");
+	const objPhysicalDamageView = HtmlCreateElement("div", objGridDmg);
+	objPhysicalDamageView.setAttribute("id", "OBJID_RECEIVED_DAMAGE_PHYSICAL");
+	objPhysicalDamageView.classList.add("BTLRSLT_TAB_RESULT");
+	objPhysicalDamageView.classList.add(partIdStr);
+	objPhysicalDamageView.classList.add("CSSCLS_BTLRSLT_VALUE");
 	if (n_B_KYOUKA[MOB_CONF_BUF_ID_MAX_PAIN] == 0) {
-		calcReceivedDamage(charaData, specData, mobData, attackMethodConfArray, objCell);
+		calcReceivedDamage(charaData, specData, mobData, attackMethodConfArray, objPhysicalDamageView);
+		enemy_attack_method_physical.addEventListener("change", () => {
+			calcReceivedDamage(charaData, specData, mobData, attackMethodConfArray, objPhysicalDamageView);
+		});
 	} else {
-		BattleHiDamMaxPain(charaData, specData, mobData, attackMethodConfArray, battleCalcResultAll.GetDamageSummaryAvePerAtk(), objCell);
+		BattleHiDamMaxPain(charaData, specData, mobData, attackMethodConfArray, battleCalcResultAll.GetDamageSummaryAvePerAtk(), objPhysicalDamageView);
 	}
 
+	//----------------
+	// 魔法ダメージ
+	//----------------
+	objCell = HtmlCreateElement("div", objGridDmg);
+	objCell.style.gridColumn = "1 / 3";
+	objCell.classList.add("BTLRSLT_TAB_RESULT");
+	objCell.classList.add(partIdStr);
+	const enemy_attack_method_masical = HtmlCreateElement("select", objCell);
+	enemy_attack_method_masical.setAttribute("id", "OBJID_ENEMY_ATTACK_METHOD_MASICAL");
+	HtmlCreateElementOption(0, "ファイアーボルト Lv1", enemy_attack_method_masical);
+	HtmlCreateElementOption(1, "アースクエイク Lv10", enemy_attack_method_masical);
+	HtmlCreateElementOption(2, "テトラボルテックス", enemy_attack_method_masical);
 
-
-
-
-
+	const objMagicalDamageView = HtmlCreateElement("div", objGridDmg);
+	objMagicalDamageView.setAttribute("id", "OBJID_RECEIVED_DAMAGE_MAGICAL");
+	objMagicalDamageView.classList.add("BTLRSLT_TAB_RESULT");
+	objMagicalDamageView.classList.add(partIdStr);
+	objMagicalDamageView.classList.add("CSSCLS_BTLRSLT_VALUE");
+	calcReceivedMagicDamage(charaData, mobData, objMagicalDamageView);
+	enemy_attack_method_masical.addEventListener("change", () => {
+		calcReceivedMagicDamage(charaData, mobData, objMagicalDamageView);
+	});
 
 	// 各パートの表示状態の更新
 	for (idx = 0; idx < refreshCheckboxArray.length; idx++) {
@@ -12248,414 +12271,22 @@ function calcReceivedDamage(charaData, specData, mobData, attackMethodConfArray,
 		for(var i=0;i<=6;i++) w_HiDam[i] = mobMaxATK;
 	}
 	
-	/**
-	 * TODO: この辺にMOBの使用スキル倍率を挟む
-	 */
-	// ヘルジャッジ Lv10 1000%
-	// パルス Lv10 500%
-	// w_HiDam = w_HiDam.map(damage => Math.floor(damage * 1000 / 100));
+	const SKILL_RATIO = [
+		100,	// 通常攻撃
+		1000,	// ヘルジャッジ Lv10
+	]
+	const enemy_attack_method = document.getElementById("OBJID_ENEMY_ATTACK_METHOD_PHYSICAL");
+	if (enemy_attack_method) {
+		const skill_index = Number(enemy_attack_method.value);
+		w_HiDam = w_HiDam.map(damage => Math.floor(damage * SKILL_RATIO[skill_index] / 100));
+	}
 
 	/** ダメージ耐性値 */
 	let wBHD;
 
-	/**
-	 * 公式サイトで「◯に出現するモンスターから受けるダメージ - ◯%」と表記される
-	 * 特定モンスター耐性
-	 */
-	{
-		// 任意のモンスターIDを指定する耐性
-		// ...を意図していると思われるが item.h.js にそんなオフセット値は見当たらない
-		wBHD = GetEquippedTotalSPCardAndElse(3000+mobData[0]);
-		wBHD += GetEquippedTotalSPEquip(3000+mobData[0]);
-
-		//--------------------------------
-		// マヌク耐性
-		//--------------------------------
-		if(n_A_PassSkill7[ID_BUFF_MANUK_ISHI]){
-			if (NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_MANUKU]) == 1) {
-				wBHD += 10;
-			}
-		}
-
-		//--------------------------------
-		// スプレンディッド耐性
-		//--------------------------------
-		if(n_A_PassSkill7[ID_BUFF_VESPER_HONEY]){
-			if (NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_SPRENDED]) == 1) {
-				wBHD += 10;
-			}
-		}
-
-		//--------------------------------
-		// モロク耐性　タイプ１
-		//--------------------------------
-		switch (n_A_Equip[EQUIP_REGION_ID_ARMS]) {
-		case 2431:		// 両手剣
-		case 2432:		// カタール
-		case 2433:		// 杖
-		case 2434:		// ハンマ－
-		case 2435:		// 弓
-			if(NumSearch(mobData[0],MonsterGroupObj[MONSTER_GROUP_ID_MOROC]) == 1){
-				if(n_A_Weapon_ATKplus >= 5) wBHD += 10;
-				if(n_A_Weapon_ATKplus >= 7) wBHD += 20;
-				if(n_A_Weapon_ATKplus >= 9) wBHD += 40;
-			}
-			break;
-		}
-
-		//--------------------------------
-		// モロク耐性　タイプ２
-		//--------------------------------
-		switch (n_A_Equip[EQUIP_REGION_ID_ARMS]) {
-		case 2436:		// 短剣
-			if(NumSearch(mobData[0],MonsterGroupObj[MONSTER_GROUP_ID_MOROC]) == 1){
-				if(n_A_Weapon_ATKplus >= 5) wBHD += 5;
-				if(n_A_Weapon_ATKplus >= 7) wBHD += 10;
-				if(n_A_Weapon_ATKplus >= 9) wBHD += 20;
-			}
-			break;
-		}
-		switch (n_A_Equip[EQUIP_REGION_ID_ARMS_LEFT]) {
-		case 2436:		// 短剣
-			if(NumSearch(mobData[0],MonsterGroupObj[MONSTER_GROUP_ID_MOROC]) == 1){
-				if(n_A_Weapon2_ATKplus >= 5) wBHD += 5;
-				if(n_A_Weapon2_ATKplus >= 7) wBHD += 10;
-				if(n_A_Weapon2_ATKplus >= 9) wBHD += 20;
-			}
-			break;
-		}
-
-		//--------------------------------
-		// フェイスワーム耐性
-		//--------------------------------
-		switch (mobData[0]) {
-		case 748:
-		case 749:
-		case 750:
-		case 752:
-		case 753:
-		case 754:
-		case 755:
-		case 756:
-		case 757:
-			if(EquipNumSearch(2490)){
-				wBHD += 5;
-				if(n_A_HEAD_DEF_PLUS >= 5) wBHD += 10;
-				if(n_A_HEAD_DEF_PLUS >= 7) wBHD += 15;
-				if(n_A_HEAD_DEF_PLUS >= 9) wBHD += 20;
-			}
-			break;
-		}
-
-		//--------------------------------
-		// 生体耐性
-		//--------------------------------
-		switch (n_A_Equip[EQUIP_REGION_ID_ARMS]) {
-		case ITEM_ID_REQUIEM_CLAYMORE:			// レクイエムクレイモア
-		case ITEM_ID_REQUIEM_LANCE:				// レクイエムランス
-		case ITEM_ID_REQUIEM_TWOHANDAXE:		// レクイエムツーハンドアックス
-		case ITEM_ID_REQUIEM_WIZARDSTUFF:		// レクイエムウィザードスタッフ
-		case ITEM_ID_REQUIEM_GREATBOW:			// レクイエムグレイトボウ
-		case ITEM_ID_REQUIEM_KATAR:				// レクイエムカタール
-			if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_SEITAI]) == 1){
-				wBHD += 5;
-				if(n_A_Weapon_ATKplus >= 5) wBHD += 5;
-				if(n_A_Weapon_ATKplus >= 6) wBHD += 1 * (n_A_Weapon_ATKplus - 5);
-			}
-			break;
-		}
-
-		//--------------------------------
-		// 英雄エンチャント耐性
-		//--------------------------------
-		if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_EIYUENCHANT]) == 1){
-			if(CardNumSearch(CARD_ID_ENCHANT_UCHUKONGEN_GENZYU)){
-				wBHD += 20;
-			}
-		}
-
-		//--------------------------------
-		// 生体耐性　防具
-		//--------------------------------
-		// レクイエムスーツ、または、レクイエムローブ
-		if(EquipNumSearch(ITEM_ID_REQUIEM_SUIT) || EquipNumSearch(ITEM_ID_REQUIEM_ROBE)){
-			if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_SEITAI]) == 1){
-				wBHD += 3;
-				if(n_A_BODY_DEF_PLUS >= 6) wBHD += 2;
-				if(n_A_BODY_DEF_PLUS >= 8) wBHD += 2;
-			}
-		}
-		// レクイエムシールド
-		if(EquipNumSearch(ITEM_ID_REQUIEM_SHIELD)){
-			if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_SEITAI]) == 1){
-				wBHD += 10;
-				if(n_A_SHIELD_DEF_PLUS >= 6) wBHD += 7;
-				if(n_A_SHIELD_DEF_PLUS >= 8) wBHD += 7;
-			}
-		}
-		// レクイエムマント
-		if(EquipNumSearch(ITEM_ID_REQUIEM_MANT)){
-			if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_SEITAI]) == 1){
-				wBHD += 3;
-				if(n_A_SHOULDER_DEF_PLUS >= 6) wBHD += 1;
-				if(n_A_SHOULDER_DEF_PLUS >= 8) wBHD += 1;
-			}
-		}
-		// レクイエムブーツ
-		if(EquipNumSearch(ITEM_ID_REQUIEM_BOOTS)){
-			if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_SEITAI]) == 1){
-				wBHD += 3;
-				if(n_A_SHOES_DEF_PLUS >= 6) wBHD += 1;
-				if(n_A_SHOES_DEF_PLUS >= 8) wBHD += 1;
-			}
-		}
-
-		//--------------------------------
-		// タナトス耐性
-		//--------------------------------
-		if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_THANATOS]) == 1){
-			if (EquipNumSearch(ITEM_ID_USUDUKIYONO_BOSHI)) {
-				wBHD += 5;
-				if (n_A_HEAD_DEF_PLUS >= 5) wBHD += 10;
-				if (n_A_HEAD_DEF_PLUS >= 7) wBHD += 15;
-				if (n_A_HEAD_DEF_PLUS >= 9) wBHD += 20;
-			}
-		}
-
-		//--------------------------------
-		// 地下排水路耐性
-		//--------------------------------
-		if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_CHIKA_HAISUIRO]) == 1){
-			if (EquipNumSearch(ITEM_ID_NEKORYOTEKEN_TACHIUO)) wBHD += 30;
-			if (EquipNumSearch(ITEM_ID_NEKOKATAR_TSUNA)) wBHD += 30;
-			if (EquipNumSearch(ITEM_ID_NEKORYOTETSUE_KAZIKI)) wBHD += 30;
-			if (EquipNumSearch(ITEM_ID_NEKORYOTEONO_KUROMAGURO)) wBHD += 30;
-			if (EquipNumSearch(ITEM_ID_NEKOYUMI_KANI)) wBHD += 30;
-			if (EquipNumSearch(ITEM_ID_NEKOTANKEN_AZI)) wBHD += 15 * EquipNumSearch(ITEM_ID_NEKOTANKEN_AZI);
-
-			if (EquipNumSearch(ITEM_ID_MARAN_KAIZOKUDANBO) > 0) {
-				wBHD += 15;
-				if (n_A_HEAD_DEF_PLUS >= 7) wBHD += 15;
-				if (n_A_HEAD_DEF_PLUS >= 9) wBHD += 20;
-			}
-		}
-
-		//--------------------------------
-		// 暴屈折王の洞窟耐性
-		//--------------------------------
-		if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_BOKUTSUONO_DOKUTSU]) == 1){
-			if (EquipNumSearch(ITEM_ID_NEKORYOTEKEN_TACHIUO)) wBHD += 30;
-			if (EquipNumSearch(ITEM_ID_NEKOKATAR_TSUNA)) wBHD += 30;
-			if (EquipNumSearch(ITEM_ID_NEKORYOTETSUE_KAZIKI)) wBHD += 30;
-			if (EquipNumSearch(ITEM_ID_NEKORYOTEONO_KUROMAGURO)) wBHD += 30;
-			if (EquipNumSearch(ITEM_ID_NEKOYUMI_KANI)) wBHD += 30;
-			if (EquipNumSearch(ITEM_ID_NEKOTANKEN_AZI)) wBHD += 15 * EquipNumSearch(ITEM_ID_NEKOTANKEN_AZI);
-
-			if (EquipNumSearch(ITEM_ID_MARAN_KAIZOKUDANBO) > 0) {
-				wBHD += 15;
-				if (n_A_HEAD_DEF_PLUS >= 7) wBHD += 15;
-				if (n_A_HEAD_DEF_PLUS >= 9) wBHD += 20;
-			}
-		}
-
-		//--------------------------------
-		// 時計塔耐性
-		//--------------------------------
-		if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_TOKEITO]) == 1){
-			if (EquipNumSearch(ITEM_ID_NIZIIRONO_TSUBASA) > 0) {
-				wBHD += 15;
-				if (n_A_HEAD_DEF_PLUS >= 7) wBHD += 15;
-				if (n_A_HEAD_DEF_PLUS >= 9) wBHD += 20;
-			}
-		}
-
-		//--------------------------------
-		// ハートハンター軍事基地耐性
-		//--------------------------------
-		if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_HEARTHUNTER]) == 1){
-			if (EquipNumSearch(ITEM_ID_GOOGLE_HAT) > 0) {
-				wBHD += 15;
-				if (n_A_HEAD_DEF_PLUS >= 7) wBHD += 15;
-				if (n_A_HEAD_DEF_PLUS >= 9) wBHD += 20;
-			}
-		}
-
-		//--------------------------------
-		// ロックリッジ耐性
-		//--------------------------------
-		if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_ROCKRIDGE]) == 1){
-			if (EquipNumSearch(ITEM_ID_TAURUS_HAT) > 0) {
-				wBHD += 15;
-				if (n_A_HEAD_DEF_PLUS >= 7) wBHD += 15;
-				if (n_A_HEAD_DEF_PLUS >= 9) wBHD += 20;
-			}
-		}
-
-		//--------------------------------
-		// ヴェルナー耐性
-		//--------------------------------
-		if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_VERNAR]) == 1){
-			if (EquipNumSearch(ITEM_ID_ZIKKEN_SEITAI_GOATGATA_CAP) > 0) {
-				wBHD += 15;
-				if (n_A_HEAD_DEF_PLUS >= 7) wBHD += 15;
-				if (n_A_HEAD_DEF_PLUS >= 9) wBHD += 20;
-			}
-		}
-
-		//--------------------------------
-		// ２５０ページ耐性
-		//--------------------------------
-		if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_PAGE250]) == 1){
-			if (EquipNumSearch(ITEM_ID_BLACK_VEIL) > 0) {
-				wBHD += 15;
-				if (n_A_HEAD_DEF_PLUS >= 7) wBHD += 15;
-				if (n_A_HEAD_DEF_PLUS >= 9) wBHD += 20;
-			}
-		}
-
-		//--------------------------------
-		// 魔神殿耐性
-		//--------------------------------
-		if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_MAZINDEN]) == 1){
-			if (EquipNumSearch(ITEM_SET_ID_DIAVOLOS_WING_DIAVOLOS_ARMOR) > 0) {
-				wBHD += 5;
-			}
-			if (EquipNumSearch(ITEM_SET_ID_DIAVOLOS_WING_DIAVOLOS_ROBE) > 0) {
-				wBHD += 5;
-			}
-			if (EquipNumSearch(ITEM_SET_ID_DIAVOLOS_WING_DIAVOLOS_MANT) > 0) {
-				wBHD += 5;
-			}
-			if (EquipNumSearch(ITEM_SET_ID_DIAVOLOS_WING_DIAVOLOS_BOOTS) > 0) {
-				wBHD += 5;
-			}
-			if (EquipNumSearch(ITEM_SET_ID_DIAVOLOS_WING_DIAVOLOS_RING) > 0) {
-				wBHD += 5;
-			}
-		}
-
-		//--------------------------------
-		// オース二次捜索耐性
-		//--------------------------------
-		if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_OS_NIZI_SOSAKU]) == 1){
-			if (EquipNumSearch(ITEM_ID_KETTONO_RYU_BOSHI) > 0) {
-				wBHD += 15;
-				if (n_A_HEAD_DEF_PLUS >= 7) wBHD += 15;
-				if (n_A_HEAD_DEF_PLUS >= 9) wBHD += 20;
-			}
-		}
-
-		//--------------------------------
-		// フローズンメモリー耐性
-		//--------------------------------
-		if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_FROZEN_MEMORY]) == 1){
-			if (EquipNumSearch(ITEM_ID_FROZEN_SCALE_SHAWL) > 0) {
-				wBHD += 60;
-			}
-		}
-
-		//--------------------------------
-		// ネジリアン帝国耐性
-		//--------------------------------
-		if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_NEZIRIAN_TEKOKU]) == 1){
-			if (EquipNumSearch(ITEM_ID_KIGURUMI_BEARDOLL) > 0) {
-				wBHD += 60;
-			}
-		}
-
-		//--------------------------------
-		// 幻想の北洞窟ルワンダ耐性
-		//--------------------------------
-		if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_GENSONO_KITA_DOKUTSU_RUWANDA]) == 1){
-			if (EquipNumSearch(ITEM_ID_ANCIENT_MEGALIS_MANT) > 0) {
-				wBHD += 60;
-			}
-		}
-
-		//--------------------------------
-		// 歪んだ迷宮の森耐性
-		//--------------------------------
-		if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_YUGANDA_MEIKYUNO_MORI]) == 1){
-			if (EquipNumSearch(ITEM_ID_YAGIGENO_MUFFLER) > 0) {
-				wBHD += 60;
-			}
-		}
-
-		//--------------------------------
-		// 紫色の深海洞窟耐性
-		//--------------------------------
-		if ((NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_MURASAKI_IRONO_SHINKAI_DOKUTSU_ZYOSO]) == 1)
-			|| (NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_MURASAKI_IRONO_SHINKAI_DOKUTSU_KASO]) == 1)) {
-
-			if (EquipNumSearch(ITEM_ID_SHINKAI_SEIBUTSUNO_MANT) > 0) {
-				wBHD += 60;
-			}
-		}
-
-		//--------------------------------
-		// アビスレイク地下洞窟04耐性
-		//--------------------------------
-		if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_ABYSS_LAKE_CHIKA_DOKUTSU_04]) == 1){
-			if (EquipNumSearch(ITEM_ID_DRAGON_SCALE_SHAWL) > 0) {
-				wBHD += 60;
-			}
-		}
-
-		//--------------------------------
-		// 大浴場メディタティオ耐性
-		//--------------------------------
-		if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_BALMUNT_TE_DAIYOKUZYO_MEDITATIO]) == 1){
-			if (EquipNumSearch(ITEM_ID_BURNING_FISH_CLOAK) > 0) {
-				wBHD += 60;
-			}
-		}
-
-		//--------------------------------
-		// 廃棄実験体遊技場ルドゥス4階耐性
-		//--------------------------------
-		if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_HAIKI_ZIKKENTAI_YUGIZYO_RUDUS_4F]) == 1){
-			if (EquipNumSearch(ITEM_ID_DISCARDED_CAPE) > 0) {
-				wBHD += 60;
-			}
-		}
-
-		//--------------------------------
-		// 魔力が歪んだ平原 耐性
-		//--------------------------------
-		if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_PLAINS_DISTORTED_BY_MAGIC]) == 1){
-			if (EquipNumSearch(ITEM_ID_DISTORTED_MAGIC_HOOD) > 0) {
-				wBHD += 60;
-			}
-		}
-
-		//--------------------------------
-		// 英雄の痕跡支援
-		//--------------------------------
-		if(TimeItemNumSearch(72)){
-			if(743 <= mobData[0] && mobData[0] <= 757) wBHD += 20;
-			if(769 <= mobData[0] && mobData[0] <= 786) wBHD += 20;
-		}
-
-		//--------------------------------
-		// 12thアニバ星座支援
-		//--------------------------------
-		if(TimeItemNumSearch(80)) wBHD += 40;
-
-		//----------------------------------------------------------------
-		// 「性能カスタマイズ欄」の、地域耐性効果
-		//----------------------------------------------------------------
-		confval = g_objCharaConfCustomDef.GetConf(CCharaConfCustomDef.CONF_ID_RESIST_GROUP);
-		if (confval != 0) {
-			wBHD += confval;
-		}
-
-		// Lv200解放アップデートでの、上限値新設への対応
-		wBHD = Math.min(95, wBHD);
-
-		for (idx = 0; idx < w_HiDam.length; idx++) {
-			w_HiDam[idx] -= Math.floor(w_HiDam[idx] * wBHD /100);
-		}
-	}
+	// 特定モンスター耐性
+	wBHD = getResistanceOfEnvironment(mobData[0]);
+	w_HiDam = w_HiDam.map(damage => damage - Math.floor(damage * wBHD /100));
 
 	/**
 	 * 公式サイトで「◯型モンスターから受けるダメージ - ◯%」と表記される
@@ -12870,20 +12501,9 @@ function calcReceivedDamage(charaData, specData, mobData, attackMethodConfArray,
 		//--------------------------------
 		// 「マジシャン　エナジーコート」の効果
 		//--------------------------------
-		if (UsedSkillSearch(SKILL_ID_ENERGY_COAT)){
-			wBHD = 6 * UsedSkillSearch(SKILL_ID_ENERGY_COAT);
-
-			for (i = 0; i <= 6; i++) {
-				w_HiDam[i] -= Math.floor(w_HiDam[i] * wBHD /100);
-			}
-		}
-		else if (n_A_PassSkill7[50]){
-			wBHD = 6 * n_A_PassSkill7[50];
-
-			for (i = 0; i <= 6; i++) {
-				w_HiDam[i] -= Math.floor(w_HiDam[i] * wBHD /100);
-			}
-		}
+		const energy_coat = Math.max(UsedSkillSearch(SKILL_ID_ENERGY_COAT), n_A_PassSkill7[50]);
+		wBHD = 6 * energy_coat;
+		w_HiDam = w_HiDam.map(damage => damage - Math.floor(damage * wBHD /100));
 
 		//--------------------------------
 		// ストーンスキンのダメージ軽減効果
@@ -13038,6 +12658,7 @@ function calcReceivedDamage(charaData, specData, mobData, attackMethodConfArray,
 	}
 
 	if (objCell) {
+		HtmlRemoveAllChild(objCell);
 		HtmlCreateTextNode(__DIG3(Math.floor(wBHD)), objCell);
 	} else {
 		// 現行バージョンでは詳細な「戦闘結果」テーブルが非表示になっているから意味が無いコード
@@ -13047,6 +12668,474 @@ function calcReceivedDamage(charaData, specData, mobData, attackMethodConfArray,
 	g_receiveDamageAverage = wBHD;
 
 	return wBHD;
+}
+
+/**
+ * 魔法の被ダメージを計算する. 
+ * @param {*} charaData 
+ * @param {*} mobData 
+ * @param {*} objCell 
+ */
+function calcReceivedMagicDamage(charaData, mobData, objCell){
+	let mobMinMATK = mobData[MONSTER_DATA_EXTRA_INDEX_MATK_MIN];
+	let mobMaxMATK = mobData[MONSTER_DATA_EXTRA_INDEX_MATK_MAX];
+	let damage = (mobMinMATK + mobMaxMATK) / 2;
+	let ratio = 0;
+
+	/**
+	 * TODO: この辺にMOBスキル倍率計算を入れる
+	 */
+	const SKILL_RATIO = [
+		100,	// ファイアーボルト
+		5500,	// アースクエイク Lv10
+		1000,	// テトラボルテックス
+	]
+	const skill_index = Number(document.getElementById("OBJID_ENEMY_ATTACK_METHOD_MASICAL").value);
+	damage = Math.floor(damage * SKILL_RATIO[skill_index] / 100);
+
+	/** モンスター耐性 */
+	damage -= Math.floor(damage * getResistanceOfEnvironment(mobData[0]) / 100);
+
+	/** サイズ耐性 */
+	ratio = n_tok[ITEM_SP_RESIST_SIZE_SMALL + mobData[17]];
+	ratio = Math.min(95, ratio);
+	damage -= Math.floor(damage * ratio / 100);
+
+	/** ボス・一般耐性 */
+	ratio = (mobData[20] === MONSTER_BOSSTYPE_BOSS) ? n_tok[ITEM_SP_RESIST_BOSS] : n_tok[ITEM_SP_RESIST_NOTBOSS];
+	ratio = Math.min(95, ratio);
+	damage -= Math.floor(damage * ratio / 100);
+
+	/** 属性耐性 */
+	ratio = n_tok[ITEM_SP_RESIST_ELM_VANITY];
+	ratio = Math.min(95, ratio);
+	damage -= Math.floor(damage * ratio / 100);
+
+	/** モンスター属性耐性 */
+	ratio = n_tok[ITEM_SP_RESIST_MONSTER_ELM_VANITY + Math.floor(mobData[18] / 10)];
+	ratio = Math.min(95, ratio);
+	damage -= Math.floor(damage * ratio / 100);
+
+	/** 種族耐性 */
+	ratio = n_tok[ITEM_SP_RESIST_RACE_SOLID + mobData[19]];
+	ratio += (mobData[19] === RACE_ID_HUMAN) ? n_tok[ITEM_SP_RESIST_RACE_HUMAN_NOT_PLAYER] : 0;
+	ratio = Math.min(95, ratio);
+	damage -= Math.floor(damage * ratio / 100);
+
+	// RES によるダメージ減少
+	const mres = GetMres();
+	const decay = Math.floor(damage * (1 - (2000 + mres) / (2000 + 5 * mres)));
+	damage -= decay;
+
+	// 除算Mdefによるダメージ減少
+    damage = Math.floor(damage * (4000 + charaData[CHARA_DATA_INDEX_MDEF_DIV]) / (4000 + charaData[CHARA_DATA_INDEX_MDEF_DIV] * 10));
+
+	// 減算Mdefによるダメージ減少
+	damage -= charaData[CHARA_DATA_INDEX_MDEF_MINUS];
+
+	/** スキルによる減少 */
+	{
+		// エナジーコート
+		const energy_coat = Math.max(UsedSkillSearch(SKILL_ID_ENERGY_COAT), n_A_PassSkill7[50]);
+		ratio = Math.min(95, 6 * energy_coat);
+		damage -= Math.floor(damage * ratio / 100);
+	}
+	/** スキルによる減少（排他的な効果） */
+	{
+		const candidate = [0];
+		// 金剛
+		if (UsedSkillSearch(SKILL_ID_KONGO) > 0) {
+			candidate.push(90);
+		}
+		// うずくまる
+		if (UsedSkillSearch(SKILL_ID_UZUKUMARU) > 0) {
+			candidate.push(80);
+		}
+		ratio = Math.min(95, Math.max(...candidate));
+		damage -= Math.floor(damage * ratio / 100);
+	}
+	/** 耐性ペナルティ */
+	{
+		// ストーンスキン Lv6
+		if (TimeItemNumSearch(TIME_ITEM_ID_WOLF_HEZIN)) {
+			damage += Math.floor(damage * 20 / 100);
+		}
+	}
+
+	/** 最小ダメージ保証 */
+	damage = Math.max(damage, 1);
+
+	// 被ダメ表示
+	HtmlRemoveAllChild(objCell);
+	HtmlCreateTextNode(__DIG3(Math.floor(damage)), objCell);
+}
+
+/**
+ * 公式サイトで「◯に出現するモンスターから受けるダメージ - ◯%」と表記される
+ * 特定モンスター耐性を取得する
+ * @param {number} mobID
+ * @returns {number} 耐性値
+ */
+function getResistanceOfEnvironment(mobID) {
+	let result = 0;
+
+	// 任意のモンスターIDを指定する耐性
+	// ...を意図していると思われるが item.h.js にそんなオフセット値は見当たらない
+	result = GetEquippedTotalSPCardAndElse(3000+mobID);
+	result += GetEquippedTotalSPEquip(3000+mobID);
+
+	//--------------------------------
+	// マヌク耐性
+	//--------------------------------
+	if(n_A_PassSkill7[ID_BUFF_MANUK_ISHI]){
+		if (NumSearch(mobID, MonsterGroupObj[MONSTER_GROUP_ID_MANUKU]) == 1) {
+			result += 10;
+		}
+	}
+	//--------------------------------
+	// スプレンディッド耐性
+	//--------------------------------
+	if(n_A_PassSkill7[ID_BUFF_VESPER_HONEY]){
+		if (NumSearch(mobID, MonsterGroupObj[MONSTER_GROUP_ID_SPRENDED]) == 1) {
+			result += 10;
+		}
+	}
+	//--------------------------------
+	// モロク耐性　タイプ１
+	//--------------------------------
+	switch (n_A_Equip[EQUIP_REGION_ID_ARMS]) {
+	case 2431:		// 両手剣
+	case 2432:		// カタール
+	case 2433:		// 杖
+	case 2434:		// ハンマ－
+	case 2435:		// 弓
+		if(NumSearch(mobID,MonsterGroupObj[MONSTER_GROUP_ID_MOROC]) == 1){
+			if(n_A_Weapon_ATKplus >= 5) result += 10;
+			if(n_A_Weapon_ATKplus >= 7) result += 20;
+			if(n_A_Weapon_ATKplus >= 9) result += 40;
+		}
+		break;
+	}
+	//--------------------------------
+	// モロク耐性　タイプ２
+	//--------------------------------
+	switch (n_A_Equip[EQUIP_REGION_ID_ARMS]) {
+	case 2436:		// 短剣
+		if(NumSearch(mobID,MonsterGroupObj[MONSTER_GROUP_ID_MOROC]) == 1){
+			if(n_A_Weapon_ATKplus >= 5) result += 5;
+			if(n_A_Weapon_ATKplus >= 7) result += 10;
+			if(n_A_Weapon_ATKplus >= 9) result += 20;
+		}
+		break;
+	}
+	switch (n_A_Equip[EQUIP_REGION_ID_ARMS_LEFT]) {
+	case 2436:		// 短剣
+		if(NumSearch(mobID,MonsterGroupObj[MONSTER_GROUP_ID_MOROC]) == 1){
+			if(n_A_Weapon2_ATKplus >= 5) result += 5;
+			if(n_A_Weapon2_ATKplus >= 7) result += 10;
+			if(n_A_Weapon2_ATKplus >= 9) result += 20;
+		}
+		break;
+	}
+	//--------------------------------
+	// フェイスワーム耐性
+	//--------------------------------
+	switch (mobID) {
+	case 748:
+	case 749:
+	case 750:
+	case 752:
+	case 753:
+	case 754:
+	case 755:
+	case 756:
+	case 757:
+		if(EquipNumSearch(2490)){
+			result += 5;
+			if(n_A_HEAD_DEF_PLUS >= 5) result += 10;
+			if(n_A_HEAD_DEF_PLUS >= 7) result += 15;
+			if(n_A_HEAD_DEF_PLUS >= 9) result += 20;
+		}
+		break;
+	}
+	//--------------------------------
+	// 生体耐性
+	//--------------------------------
+	switch (n_A_Equip[EQUIP_REGION_ID_ARMS]) {
+	case ITEM_ID_REQUIEM_CLAYMORE:			// レクイエムクレイモア
+	case ITEM_ID_REQUIEM_LANCE:				// レクイエムランス
+	case ITEM_ID_REQUIEM_TWOHANDAXE:		// レクイエムツーハンドアックス
+	case ITEM_ID_REQUIEM_WIZARDSTUFF:		// レクイエムウィザードスタッフ
+	case ITEM_ID_REQUIEM_GREATBOW:			// レクイエムグレイトボウ
+	case ITEM_ID_REQUIEM_KATAR:				// レクイエムカタール
+		if(NumSearch(mobID, MonsterGroupObj[MONSTER_GROUP_ID_SEITAI]) == 1){
+			result += 5;
+			if(n_A_Weapon_ATKplus >= 5) result += 5;
+			if(n_A_Weapon_ATKplus >= 6) result += 1 * (n_A_Weapon_ATKplus - 5);
+		}
+		break;
+	}
+	//--------------------------------
+	// 英雄エンチャント耐性
+	//--------------------------------
+	if(NumSearch(mobID, MonsterGroupObj[MONSTER_GROUP_ID_EIYUENCHANT]) == 1){
+		if(CardNumSearch(CARD_ID_ENCHANT_UCHUKONGEN_GENZYU)){
+			result += 20;
+		}
+	}
+	//--------------------------------
+	// 生体耐性　防具
+	//--------------------------------
+	// レクイエムスーツ、または、レクイエムローブ
+	if(EquipNumSearch(ITEM_ID_REQUIEM_SUIT) || EquipNumSearch(ITEM_ID_REQUIEM_ROBE)){
+		if(NumSearch(mobID, MonsterGroupObj[MONSTER_GROUP_ID_SEITAI]) == 1){
+			result += 3;
+			if(n_A_BODY_DEF_PLUS >= 6) result += 2;
+			if(n_A_BODY_DEF_PLUS >= 8) result += 2;
+		}
+	}
+	// レクイエムシールド
+	if(EquipNumSearch(ITEM_ID_REQUIEM_SHIELD)){
+		if(NumSearch(mobID, MonsterGroupObj[MONSTER_GROUP_ID_SEITAI]) == 1){
+			result += 10;
+			if(n_A_SHIELD_DEF_PLUS >= 6) result += 7;
+			if(n_A_SHIELD_DEF_PLUS >= 8) result += 7;
+		}
+	}
+	// レクイエムマント
+	if(EquipNumSearch(ITEM_ID_REQUIEM_MANT)){
+		if(NumSearch(mobID, MonsterGroupObj[MONSTER_GROUP_ID_SEITAI]) == 1){
+			result += 3;
+			if(n_A_SHOULDER_DEF_PLUS >= 6) result += 1;
+			if(n_A_SHOULDER_DEF_PLUS >= 8) result += 1;
+		}
+	}
+	// レクイエムブーツ
+	if(EquipNumSearch(ITEM_ID_REQUIEM_BOOTS)){
+		if(NumSearch(mobID, MonsterGroupObj[MONSTER_GROUP_ID_SEITAI]) == 1){
+			result += 3;
+			if(n_A_SHOES_DEF_PLUS >= 6) result += 1;
+			if(n_A_SHOES_DEF_PLUS >= 8) result += 1;
+		}
+	}
+	//--------------------------------
+	// タナトス耐性
+	//--------------------------------
+	if(NumSearch(mobID, MonsterGroupObj[MONSTER_GROUP_ID_THANATOS]) == 1){
+		if (EquipNumSearch(ITEM_ID_USUDUKIYONO_BOSHI)) {
+			result += 5;
+			if (n_A_HEAD_DEF_PLUS >= 5) result += 10;
+			if (n_A_HEAD_DEF_PLUS >= 7) result += 15;
+			if (n_A_HEAD_DEF_PLUS >= 9) result += 20;
+		}
+	}
+	//--------------------------------
+	// 地下排水路耐性
+	//--------------------------------
+	if(NumSearch(mobID, MonsterGroupObj[MONSTER_GROUP_ID_CHIKA_HAISUIRO]) == 1){
+		if (EquipNumSearch(ITEM_ID_NEKORYOTEKEN_TACHIUO)) result += 30;
+		if (EquipNumSearch(ITEM_ID_NEKOKATAR_TSUNA)) result += 30;
+		if (EquipNumSearch(ITEM_ID_NEKORYOTETSUE_KAZIKI)) result += 30;
+		if (EquipNumSearch(ITEM_ID_NEKORYOTEONO_KUROMAGURO)) result += 30;
+		if (EquipNumSearch(ITEM_ID_NEKOYUMI_KANI)) result += 30;
+		if (EquipNumSearch(ITEM_ID_NEKOTANKEN_AZI)) result += 15 * EquipNumSearch(ITEM_ID_NEKOTANKEN_AZI);
+		if (EquipNumSearch(ITEM_ID_MARAN_KAIZOKUDANBO) > 0) {
+			result += 15;
+			if (n_A_HEAD_DEF_PLUS >= 7) result += 15;
+			if (n_A_HEAD_DEF_PLUS >= 9) result += 20;
+		}
+	}
+	//--------------------------------
+	// 暴屈折王の洞窟耐性
+	//--------------------------------
+	if(NumSearch(mobID, MonsterGroupObj[MONSTER_GROUP_ID_BOKUTSUONO_DOKUTSU]) == 1){
+		if (EquipNumSearch(ITEM_ID_NEKORYOTEKEN_TACHIUO)) result += 30;
+		if (EquipNumSearch(ITEM_ID_NEKOKATAR_TSUNA)) result += 30;
+		if (EquipNumSearch(ITEM_ID_NEKORYOTETSUE_KAZIKI)) result += 30;
+		if (EquipNumSearch(ITEM_ID_NEKORYOTEONO_KUROMAGURO)) result += 30;
+		if (EquipNumSearch(ITEM_ID_NEKOYUMI_KANI)) result += 30;
+		if (EquipNumSearch(ITEM_ID_NEKOTANKEN_AZI)) result += 15 * EquipNumSearch(ITEM_ID_NEKOTANKEN_AZI);
+		if (EquipNumSearch(ITEM_ID_MARAN_KAIZOKUDANBO) > 0) {
+			result += 15;
+			if (n_A_HEAD_DEF_PLUS >= 7) result += 15;
+			if (n_A_HEAD_DEF_PLUS >= 9) result += 20;
+		}
+	}
+	//--------------------------------
+	// 時計塔耐性
+	//--------------------------------
+	if(NumSearch(mobID, MonsterGroupObj[MONSTER_GROUP_ID_TOKEITO]) == 1){
+		if (EquipNumSearch(ITEM_ID_NIZIIRONO_TSUBASA) > 0) {
+			result += 15;
+			if (n_A_HEAD_DEF_PLUS >= 7) result += 15;
+			if (n_A_HEAD_DEF_PLUS >= 9) result += 20;
+		}
+	}
+	//--------------------------------
+	// ハートハンター軍事基地耐性
+	//--------------------------------
+	if(NumSearch(mobID, MonsterGroupObj[MONSTER_GROUP_ID_HEARTHUNTER]) == 1){
+		if (EquipNumSearch(ITEM_ID_GOOGLE_HAT) > 0) {
+			result += 15;
+			if (n_A_HEAD_DEF_PLUS >= 7) result += 15;
+			if (n_A_HEAD_DEF_PLUS >= 9) result += 20;
+		}
+	}
+	//--------------------------------
+	// ロックリッジ耐性
+	//--------------------------------
+	if(NumSearch(mobID, MonsterGroupObj[MONSTER_GROUP_ID_ROCKRIDGE]) == 1){
+		if (EquipNumSearch(ITEM_ID_TAURUS_HAT) > 0) {
+			result += 15;
+			if (n_A_HEAD_DEF_PLUS >= 7) result += 15;
+			if (n_A_HEAD_DEF_PLUS >= 9) result += 20;
+		}
+	}
+	//--------------------------------
+	// ヴェルナー耐性
+	//--------------------------------
+	if(NumSearch(mobID, MonsterGroupObj[MONSTER_GROUP_ID_VERNAR]) == 1){
+		if (EquipNumSearch(ITEM_ID_ZIKKEN_SEITAI_GOATGATA_CAP) > 0) {
+			result += 15;
+			if (n_A_HEAD_DEF_PLUS >= 7) result += 15;
+			if (n_A_HEAD_DEF_PLUS >= 9) result += 20;
+		}
+	}
+	//--------------------------------
+	// ２５０ページ耐性
+	//--------------------------------
+	if(NumSearch(mobID, MonsterGroupObj[MONSTER_GROUP_ID_PAGE250]) == 1){
+		if (EquipNumSearch(ITEM_ID_BLACK_VEIL) > 0) {
+			result += 15;
+			if (n_A_HEAD_DEF_PLUS >= 7) result += 15;
+			if (n_A_HEAD_DEF_PLUS >= 9) result += 20;
+		}
+	}
+	//--------------------------------
+	// 魔神殿耐性
+	//--------------------------------
+	if(NumSearch(mobID, MonsterGroupObj[MONSTER_GROUP_ID_MAZINDEN]) == 1){
+		if (EquipNumSearch(ITEM_SET_ID_DIAVOLOS_WING_DIAVOLOS_ARMOR) > 0) {
+			result += 5;
+		}
+		if (EquipNumSearch(ITEM_SET_ID_DIAVOLOS_WING_DIAVOLOS_ROBE) > 0) {
+			result += 5;
+		}
+		if (EquipNumSearch(ITEM_SET_ID_DIAVOLOS_WING_DIAVOLOS_MANT) > 0) {
+			result += 5;
+		}
+		if (EquipNumSearch(ITEM_SET_ID_DIAVOLOS_WING_DIAVOLOS_BOOTS) > 0) {
+			result += 5;
+		}
+		if (EquipNumSearch(ITEM_SET_ID_DIAVOLOS_WING_DIAVOLOS_RING) > 0) {
+			result += 5;
+		}
+	}
+	//--------------------------------
+	// オース二次捜索耐性
+	//--------------------------------
+	if(NumSearch(mobID, MonsterGroupObj[MONSTER_GROUP_ID_OS_NIZI_SOSAKU]) == 1){
+		if (EquipNumSearch(ITEM_ID_KETTONO_RYU_BOSHI) > 0) {
+			result += 15;
+			if (n_A_HEAD_DEF_PLUS >= 7) result += 15;
+			if (n_A_HEAD_DEF_PLUS >= 9) result += 20;
+		}
+	}
+	//--------------------------------
+	// フローズンメモリー耐性
+	//--------------------------------
+	if(NumSearch(mobID, MonsterGroupObj[MONSTER_GROUP_ID_FROZEN_MEMORY]) == 1){
+		if (EquipNumSearch(ITEM_ID_FROZEN_SCALE_SHAWL) > 0) {
+			result += 60;
+		}
+	}
+	//--------------------------------
+	// ネジリアン帝国耐性
+	//--------------------------------
+	if(NumSearch(mobID, MonsterGroupObj[MONSTER_GROUP_ID_NEZIRIAN_TEKOKU]) == 1){
+		if (EquipNumSearch(ITEM_ID_KIGURUMI_BEARDOLL) > 0) {
+			result += 60;
+		}
+	}
+	//--------------------------------
+	// 幻想の北洞窟ルワンダ耐性
+	//--------------------------------
+	if(NumSearch(mobID, MonsterGroupObj[MONSTER_GROUP_ID_GENSONO_KITA_DOKUTSU_RUWANDA]) == 1){
+		if (EquipNumSearch(ITEM_ID_ANCIENT_MEGALIS_MANT) > 0) {
+			result += 60;
+		}
+	}
+	//--------------------------------
+	// 歪んだ迷宮の森耐性
+	//--------------------------------
+	if(NumSearch(mobID, MonsterGroupObj[MONSTER_GROUP_ID_YUGANDA_MEIKYUNO_MORI]) == 1){
+		if (EquipNumSearch(ITEM_ID_YAGIGENO_MUFFLER) > 0) {
+			result += 60;
+		}
+	}
+	//--------------------------------
+	// 紫色の深海洞窟耐性
+	//--------------------------------
+	if ((NumSearch(mobID, MonsterGroupObj[MONSTER_GROUP_ID_MURASAKI_IRONO_SHINKAI_DOKUTSU_ZYOSO]) == 1)
+		|| (NumSearch(mobID, MonsterGroupObj[MONSTER_GROUP_ID_MURASAKI_IRONO_SHINKAI_DOKUTSU_KASO]) == 1)) {
+		if (EquipNumSearch(ITEM_ID_SHINKAI_SEIBUTSUNO_MANT) > 0) {
+			result += 60;
+		}
+	}
+	//--------------------------------
+	// アビスレイク地下洞窟04耐性
+	//--------------------------------
+	if(NumSearch(mobID, MonsterGroupObj[MONSTER_GROUP_ID_ABYSS_LAKE_CHIKA_DOKUTSU_04]) == 1){
+		if (EquipNumSearch(ITEM_ID_DRAGON_SCALE_SHAWL) > 0) {
+			result += 60;
+		}
+	}
+	//--------------------------------
+	// 大浴場メディタティオ耐性
+	//--------------------------------
+	if(NumSearch(mobID, MonsterGroupObj[MONSTER_GROUP_ID_BALMUNT_TE_DAIYOKUZYO_MEDITATIO]) == 1){
+		if (EquipNumSearch(ITEM_ID_BURNING_FISH_CLOAK) > 0) {
+			result += 60;
+		}
+	}
+	//--------------------------------
+	// 廃棄実験体遊技場ルドゥス4階耐性
+	//--------------------------------
+	if(NumSearch(mobID, MonsterGroupObj[MONSTER_GROUP_ID_HAIKI_ZIKKENTAI_YUGIZYO_RUDUS_4F]) == 1){
+		if (EquipNumSearch(ITEM_ID_DISCARDED_CAPE) > 0) {
+			result += 60;
+		}
+	}
+	//--------------------------------
+	// 魔力が歪んだ平原 耐性
+	//--------------------------------
+	if(NumSearch(mobID, MonsterGroupObj[MONSTER_GROUP_ID_PLAINS_DISTORTED_BY_MAGIC]) == 1){
+		if (EquipNumSearch(ITEM_ID_DISTORTED_MAGIC_HOOD) > 0) {
+			result += 60;
+		}
+	}
+	//--------------------------------
+	// 英雄の痕跡支援
+	//--------------------------------
+	if(TimeItemNumSearch(72)){
+		if(743 <= mobID && mobID <= 757) result += 20;
+		if(769 <= mobID && mobID <= 786) result += 20;
+	}
+	//--------------------------------
+	// 12thアニバ星座支援
+	//--------------------------------
+	if(TimeItemNumSearch(80)) result += 40;
+	//----------------------------------------------------------------
+	// 「性能カスタマイズ欄」の、地域耐性効果
+	//----------------------------------------------------------------
+	confval = g_objCharaConfCustomDef.GetConf(CCharaConfCustomDef.CONF_ID_RESIST_GROUP);
+	if (confval != 0) {
+		result += confval;
+	}
+	// Lv200解放アップデートでの、上限値新設への対応
+	result = Math.min(95, result);
+
+	return result;
 }
 
 /**
@@ -15382,6 +15471,7 @@ function calc() {
 	var idxArray = 0;
 	var atkWork = 0;
 	var charaData = null;
+	/** Item SPの効果値が格納された配列. n_tok がそのまま渡されると考えて良い. */
 	var specData = null;
 	var mobData = null;
 	var attackMethodConfArray = null;
