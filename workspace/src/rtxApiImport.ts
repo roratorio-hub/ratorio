@@ -323,6 +323,7 @@ async function importRtxDataObject(dataObject: RtxData): Promise<void> {
                                 if (element) {
                                     if (element.type === "checkbox") {
                                         element.checked = entry.value === 1;
+                                        element.dispatchEvent(changeEvent);
                                     } else {
                                         element.value = String(entry.value);
                                         element.dispatchEvent(changeEvent);
@@ -348,6 +349,7 @@ async function importRtxDataObject(dataObject: RtxData): Promise<void> {
                                 if (element) {
                                     if (element.type === "checkbox") {
                                         element.checked = entry.value === 1;
+                                        element.dispatchEvent(changeEvent);
                                     } else {
                                         element.value = String(entry.value);
                                         element.dispatchEvent(changeEvent);
