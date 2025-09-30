@@ -152,8 +152,7 @@ function exportRtxDataObject(): RtxData {
     if (!skillColumnCheckbox.checked) {
         // スキルカラムがチェックされていない場合は、開く
         // そうしないと、スキル学習状況が取得できない
-        skillColumnCheckbox.checked = true;
-        OnClickSkillSWLearned();
+        skillColumnCheckbox.click();
     }
     const learnedSkillElements = document.querySelectorAll(`select[data-rtx-learned-skill-id]`) as NodeListOf<HTMLSelectElement>;
     learnedSkillElements.forEach((skillLvElement) => {
@@ -162,6 +161,7 @@ function exportRtxDataObject(): RtxData {
             dataObject.learned_skills[skillId] = { lv: Number(skillLvElement.value) };
         }
     });
+    skillColumnCheckbox.click();
 
     // 支援
     if (dataObject.supports) {

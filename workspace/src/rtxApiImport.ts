@@ -254,8 +254,9 @@ async function importRtxDataObject(dataObject: RtxData): Promise<void> {
 
                         // ランダムオプション（kind と value）
                         if (equipment.random_option && mapping.rndopt) {
+                            const slotModeButton = document.getElementById("OBJID_SLOT_MODE_BUTTON") as HTMLButtonElement;
                             // ランダムオプション欄を表示
-                            OnClickSlotModeButton();
+                            slotModeButton.click();
 
                             for (let rndidx = 0; rndidx <= 5; rndidx++) {
                                 const kindId = `${mapping.rndopt}_KIND_${rndidx}`;
@@ -284,7 +285,7 @@ async function importRtxDataObject(dataObject: RtxData): Promise<void> {
                                 }
                             }
                             // ランダムオプション欄を閉じる
-                            OnClickSlotModeButton();
+                            slotModeButton.click();
                         }
                     });
                 }
@@ -292,10 +293,7 @@ async function importRtxDataObject(dataObject: RtxData): Promise<void> {
                 // 習得スキル
                 const skillColumnCheckbox = document.getElementById("OBJID_SKILL_COLUMN_EXTRACT_CHECKBOX") as HTMLInputElement;
                 if (!skillColumnCheckbox.checked) {
-                    // スキルカラムがチェックされていない場合は、開く
-                    // そうしないと、スキル学習状況が取得できない
-                    skillColumnCheckbox.checked = true;
-                    OnClickSkillSWLearned();
+                    skillColumnCheckbox.click();
                 }
                 Object.entries(dataObject.learned_skills).forEach(([skillId, skill]) => {
                     const skillLvElement = document.querySelector(`select[data-rtx-learned-skill-id=${skillId}]`) as HTMLSelectElement;
@@ -305,10 +303,11 @@ async function importRtxDataObject(dataObject: RtxData): Promise<void> {
                         skillLvElement.dispatchEvent(changeEvent);
                     }
                 });
+                skillColumnCheckbox.click();
 
                 // 支援
                 if (dataObject.supports) {
-                    CONTROL_CONF_LIST.forEach((configDict, switchIdx) => {
+                    CONTROL_CONF_LIST.forEach((configDict) => {
                         if (configDict.type !== 'support') return; // 支援のみ
                         const controlSwitchBox = document.getElementById(configDict.control_switch_element_id) as HTMLInputElement | null;
                         if (!controlSwitchBox) return;
@@ -331,10 +330,11 @@ async function importRtxDataObject(dataObject: RtxData): Promise<void> {
                                 }
                             });
                         }
+                        controlSwitchBox.click();
                     });
                 }
                 if (dataObject.customize) {
-                    CONTROL_CONF_LIST.forEach((configDict, switchIdx) => {
+                    CONTROL_CONF_LIST.forEach((configDict) => {
                         if (configDict.type !== 'customize') return; // カスタマイズのみ
                         const controlSwitchBox = document.getElementById(configDict.control_switch_element_id) as HTMLInputElement | null;
                         if (!controlSwitchBox) return;
@@ -357,6 +357,7 @@ async function importRtxDataObject(dataObject: RtxData): Promise<void> {
                                 }
                             });
                         }
+                        controlSwitchBox.click();
                     });
                 }
 
