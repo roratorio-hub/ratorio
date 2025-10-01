@@ -18369,8 +18369,7 @@ function ApplyPhysicalSpecializeMonster(charaData, specData, mobData, dmg) {
 	}
 
 	/** ヨルンビル 隆起した大地 特化 */
-	candidate = MonsterGroupObj[MONSTER_GROUP_ID_JOR_RAISE1].concat(MonsterGroupObj[MONSTER_GROUP_ID_JOR_RAISE2]);
-	candidate = candidate.concat(MonsterGroupObj[MONSTER_GROUP_ID_JOR_BASE]);
+candidate = MonsterGroupObj[MONSTER_GROUP_ID_JOR_RAISE1].concat(MonsterGroupObj[MONSTER_GROUP_ID_JOR_RAISE2], MonsterGroupObj[MONSTER_GROUP_ID_JOR_BASE]);
 	if(NumSearch(mobData[0], candidate) === 1){
 		if ((cardCount = CardNumSearch(CARD_ID_SEA_WIND)) > 0) {
 			w += 30 * cardCount;
