@@ -1,1027 +1,1057 @@
 card_list:
-  - name: 潜在解放(アビスチェイサーX)
-    yomi: センザイカイホウアビスチェイサー10
-    type: エンチャント
+  - name: アイスシーホース
+    yomi: アイスシーホース
+    type: 肩にかける物
     capabilities:
-      - name: スキル消費SP固定値減少
-        skill: チェーンリアクションショット
-        value: 5
-      - name: スキル消費SP固定値減少
-        skill: フレンジショット
-        value: 3
-      - name: スキル消費SP固定値減少
-        skill: ヒットアンドスライディング
-        value: 3
-      - name: スキル消費SP固定値減少
-        skill: チェイシングショット
-        value: 6
-      - name: スキル消費SP固定値減少
-        skill: チェーンリアクションショット
-        value: 6
+      - name: 水属性耐性
+        value: 25
+      - name: 無属性耐性
+        value: 15
         at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: フレンジショット
-        value: 4
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: ヒットアンドスライディング
-        value: 4
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: チェイシングショット
-        value: 7
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: チェーンリアクションショット
-        value: 6
+      - name: 水属性耐性
+        value: 25
         at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: フレンジショット
-        value: 4
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: ヒットアンドスライディング
-        value: 4
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: チェイシングショット
-        value: 7
-        at_refine: 9
-  - name: 潜在解放(アビスチェイサーXI)
-    yomi: センザイカイホウアビスチェイサー11
-    type: エンチャント
+  - name: 侵食されたタン
+    yomi: シンショクサレタタン
+    type: 肩にかける物
     capabilities:
-      - name: スキル消費SP固定値減少
-        skill: アビススクエア
-        value: 6
-      - name: スキル消費SP固定値減少
-        skill: オメガアビスストライク
-        value: 10
-      - name: スキル消費SP固定値減少
-        skill: アビスフレイム
-        value: 5
-      - name: スキル消費SP固定値減少
-        skill: アビススクエア
-        value: 7
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: オメガアビスストライク
-        value: 10
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: アビスフレイム
-        value: 6
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: アビススクエア
-        value: 7
+      - name: 物理ダメージ増加
+        value: 15
+      - name: 魔法ダメージ増加
+        value: 15
+      - name: 闇属性耐性
+        value: 50
+      - name: 火属性耐性
+        value: 50
         at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: オメガアビスストライク
+      - name: 遠距離攻撃耐性
         value: 10
         at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: アビスフレイム
-        value: 6
-        at_refine: 9
-  - name: 潜在解放(アビスチェイサーXII)
-    yomi: センザイカイホウアビスチェイサー12
-    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 異境の統轄者
+        capabilities:
+          - name: 無属性耐性
+            value: 20
+          - name: 石化耐性
+            value: 50
+  - name: シーウィンド
+    yomi: シーウィンド
+    type: 武器
     capabilities:
-      - name: スキル消費SP固定値減少
-        skill: アビスダガー
-        value: 6
-      - name: スキル消費SP固定値減少
-        skill: デフトスタブ
-        value: 6
-      - name: スキル消費SP固定値減少
-        skill: チェイシングブレイク
-        value: 6
-      - name: スキル消費SP固定値減少
-        skill: アンラッキーラッシュ
-        value: 3
-      - name: スキル消費SP固定値減少
-        skill: ヒットアンドスライディング
-        value: 3
-      - name: スキル消費SP固定値減少
-        skill: アビスダガー
-        value: 7
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: デフトスタブ
-        value: 7
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: チェイシングブレイク
-        value: 7
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: アンラッキーラッシュ
-        value: 4
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: ヒットアンドスライディング
-        value: 4
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: アビスダガー
-        value: 7
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: デフトスタブ
-        value: 7
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: チェイシングブレイク
-        value: 7
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: アンラッキーラッシュ
-        value: 4
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: ヒットアンドスライディング
-        value: 4
-        at_refine: 9
-  - name: 潜在解放(インクイジターVIII)
-    yomi: センザイカイホウインクイジター8
-    type: エンチャント
-    capabilities:
-      - name: スキル消費SP固定値減少
-        skill: 聖油洗礼
-        value: 6
-      - name: スキル消費SP固定値減少
-        skill: 爆火神弾
-        value: 5
-      - name: スキル消費SP固定値減少
-        skill: 炎火滅魔神弾
-        value: 10
-      - name: スキル消費SP固定値減少
-        skill: 烈火気弾
-        value: 3
-      - name: スキル消費SP固定値減少
-        skill: 聖油洗礼
-        value: 7
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: 爆火神弾
-        value: 6
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: 炎火滅魔神弾
-        value: 10
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: 烈火気弾
-        value: 4
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: 聖油洗礼
-        value: 7
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: 爆火神弾
-        value: 6
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: 炎火滅魔神弾
-        value: 10
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: 烈火気弾
-        value: 4
-        at_refine: 9
-  - name: 潜在解放(インペリアルガードIX)
-    yomi: センザイカイホウインペリアルガード9
-    type: エンチャント
-    capabilities:
-      - name: スキル消費SP固定値減少
-        skill: オーバースラッシュ
-        value: 8
-      - name: スキル消費SP固定値減少
-        skill: レイディアントスピア
-        value: 8
-      - name: スキル消費SP固定値減少
-        skill: グランドジャッジメント
-        value: 14
-      - name: スキル消費SP固定値減少
-        skill: シールドシューティング
-        value: 5
-      - name: スキル消費SP固定値減少
-        skill: インペリアルクロス
-        value: 4
-      - name: スキル消費SP固定値減少
-        skill: オーバースラッシュ
-        value: 8
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: レイディアントスピア
-        value: 8
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: グランドジャッジメント
-        value: 14
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: シールドシューティング
-        value: 5
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: インペリアルクロス
-        value: 5
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: オーバースラッシュ
-        value: 8
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: レイディアントスピア
-        value: 8
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: グランドジャッジメント
-        value: 15
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: シールドシューティング
-        value: 6
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: インペリアルクロス
-        value: 5
-        at_refine: 9
-  - name: 潜在解放(インペリアルガードX)
-    yomi: センザイカイホウインペリアルガード10
-    type: エンチャント
-    capabilities:
-      - name: スキル消費SP固定値減少
-        skill: クロスレイン
-        value: 14
-      - name: スキル消費SP固定値減少
-        skill: ジャッジメントクロス
-        value: 6
-      - name: スキル消費SP固定値減少
-        skill: インペリアルプレッシャー
-        value: 11
-      - name: スキル消費SP固定値減少
-        skill: クロスレイン
-        value: 14
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: ジャッジメントクロス
-        value: 7
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: インペリアルプレッシャー
-        value: 12
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: クロスレイン
-        value: 15
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: ジャッジメントクロス
-        value: 7
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: インペリアルプレッシャー
-        value: 12
-        at_refine: 9
-  - name: 潜在解放(ウィンドホークX)
-    yomi: センザイカイホウウィンドホーク10
-    type: エンチャント
-    capabilities:
-      - name: スキル消費SP固定値減少
-        skill: ホークブーメラン
-        value: 5
-      - name: スキル消費SP固定値減少
-        skill: ワイルドウォーク
-        value: 5
-      - name: スキル消費SP固定値減少
-        skill: ホークラッシュ
-        value: 4
-      - name: スキル消費SP固定値減少
-        skill: ホークブーメラン
-        value: 6
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: ワイルドウォーク
-        value: 6
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: ホークラッシュ
-        value: 4
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: ホークブーメラン
-        value: 6
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: ワイルドウォーク
-        value: 6
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: ホークラッシュ
-        value: 4
-        at_refine: 9
-  - name: 潜在解放(エレメンタルマスターIX)
-    yomi: センザイカイホウエレメンタルマスター9
-    type: エンチャント
-    capabilities:
-      - name: スキル消費SP固定値減少
-        skill: コンフラグレーション
-        value: 14
-      - name: スキル消費SP固定値減少
-        skill: ライトニングランド
-        value: 14
-      - name: スキル消費SP固定値減少
-        skill: サイキックストリーム
-        value: 14
-      - name: スキル消費SP固定値減少
-        skill: ダイヤモンドストーム
-        value: 13
-      - name: スキル消費SP固定値減少
-        skill: テラドライブ
-        value: 13
-      - name: スキル消費SP固定値減少
-        skill: ベナムスワンプ
-        value: 11
-      - name: スキル消費SP固定値減少
-        skill: エレメンタルバスター
-        value: 17
-      - name: スキル消費SP固定値減少
-        skill: コンフラグレーション
-        value: 15
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: ライトニングランド
-        value: 15
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: ダイヤモンドストーム
-        value: 13
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: テラドライブ
-        value: 13
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: ベナムスワンプ
-        value: 12
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: エレメンタルバスター
-        value: 18
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: サイキックストリーム
-        value: 14
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: コンフラグレーション
-        value: 15
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: ライトニングランド
-        value: 15
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: ダイヤモンドストーム
-        value: 14
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: テラドライブ
-        value: 14
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: サイキックストリーム
-        value: 14
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: ベナムスワンプ
-        value: 12
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: エレメンタルバスター
-        value: 18
-        at_refine: 9
-  - name: 潜在解放(カーディナルX)
-    yomi: センザイカイホウカーディナル10
-    type: エンチャント
-    capabilities:
-      - name: スキル消費SP固定値減少
-        skill: アルビトリウム
-        value: 14
-      - name: スキル消費SP固定値減少
-        skill: フレーメン
-        value: 14
-      - name: スキル消費SP固定値減少
-        skill: ディヴィヌスフロス
-        value: 14
-      - name: スキル消費SP固定値減少
-        skill: ニューマティックプロセラ
-        value: 22
-      - name: スキル消費SP固定値減少
-        skill: アルビトリウム
-        value: 15
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: フレーメン
-        value: 15
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: ディヴィヌスフロス
-        value: 15
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: ニューマティックプロセラ
-        value: 22
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: アルビトリウム
-        value: 15
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: フレーメン
-        value: 15
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: ディヴィヌスフロス
-        value: 15
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: ニューマティックプロセラ
-        value: 22
-        at_refine: 9
-  - name: 潜在解放(シャドウクロスX)
-    yomi: センザイカイホウシャドウクロス10
-    type: エンチャント
-    capabilities:
-      - name: スキル消費SP固定値減少
-        skill: シャドウスタブ
-        value: 3
-      - name: スキル消費SP固定値減少
-        skill: エターナルスラッシュ
-        value: 4
-      - name: スキル消費SP固定値減少
-        skill: フェイタルシャドウクロー
-        value: 10
-      - name: スキル消費SP固定値減少
-        skill: クロススラッシュ
-        value: 7
-      - name: スキル消費SP固定値減少
-        skill: シャドウスタブ
-        value: 3
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: エターナルスラッシュ
-        value: 4
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: フェイタルシャドウクロー
-        value: 10
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: クロススラッシュ
-        value: 7
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: シャドウスタブ
-        value: 4
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: エターナルスラッシュ
-        value: 4
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: フェイタルシャドウクロー
-        value: 11
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: クロススラッシュ
-        value: 7
-        at_refine: 9
-  - name: 潜在解放(スピリットハンドラーX)
-    yomi: センザイカイホウスピリットハンドラー10
-    type: エンチャント
-    capabilities:
-      - name: スキル消費SP固定値減少
-        skill: タイガースラッシュ
-        value: 3
-      - name: スキル消費SP固定値減少
-        skill: タイガーハウリング
-        value: 6
-      - name: スキル消費SP固定値減少
-        skill: タイガーストライク
-        value: 5
-      - name: スキル消費SP固定値減少
-        skill: タイガーバトリング
-        value: 5
-      - name: スキル消費SP固定値減少
-        skill: タイガースラッシュ
-        value: 3
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: タイガーハウリング
-        value: 7
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: タイガーストライク
-        value: 6
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: タイガーバトリング
-        value: 6
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: タイガースラッシュ
-        value: 4
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: タイガーハウリング
-        value: 7
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: タイガーストライク
-        value: 6
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: タイガーバトリング
-        value: 6
-        at_refine: 9
-  - name: 潜在解放(スピリットハンドラーXI)
-    yomi: センザイカイホウスピリットハンドラー11
-    type: エンチャント
-    capabilities:
-      - name: スキル消費SP固定値減少
-        skill: ディアーキャノン
-        value: 3
-      - name: スキル消費SP固定値減少
-        skill: ディアーブリーズ
-        value: 6
-      - name: スキル消費SP固定値減少
-        skill: ディアースピリットパワー
-        value: 5
-      - name: スキル消費SP固定値減少
-        skill: ディアーキャノン
-        value: 4
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: ディアーブリーズ
-        value: 7
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: ディアースピリットパワー
-        value: 6
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: ディアーキャノン
-        value: 4
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: ディアーブリーズ
-        value: 7
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: ディアースピリットパワー
-        value: 6
-        at_refine: 9
-  - name: 潜在解放(ドラゴンナイトVIII)
-    yomi: センザイカイホウドラゴンナイト8
-    type: エンチャント
-    capabilities:
-      - name: スキル消費SP固定値減少
-        skill: ハックアンドスラッシャー
-        value: 6
-      - name: スキル消費SP固定値減少
-        skill: マッドネスクラッシャー
-        value: 6
-      - name: スキル消費SP固定値減少
-        skill: ドラゴニックオーラ
-        value: 6
-      - name: スキル消費SP固定値減少
-        skill: ドラゴニックピアース
-        value: 3
-      - name: スキル消費SP固定値減少
-        skill: ハックアンドスラッシャー
-        value: 6
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: マッドネスクラッシャー
-        value: 6
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: ドラゴニックオーラ
-        value: 6
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: ドラゴニックピアース
-        value: 4
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: ハックアンドスラッシャー
-        value: 7
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: マッドネスクラッシャー
-        value: 7
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: ドラゴニックオーラ
-        value: 7
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: ドラゴニックピアース
-        value: 4
-        at_refine: 9
-  - name: 潜在解放(トルバドゥール&トルヴェールVII)
-    yomi: センザイカイホウトルバドゥールアンドトルヴェール7
-    type: エンチャント
-    capabilities:
-      - name: スキル消費SP固定値減少
-        skill: サウンドブレンド
+      - name: 壊れない
         value: 1
-      - name: スキル消費SP固定値減少
-        skill: メタリックフューリー
-        value: 4
-      - name: スキル消費SP固定値減少
-        skill: リズミカルウェーブ
-        value: 7
-      - name: スキル消費SP固定値減少
-        skill: サウンドブレンド
-        value: 2
+  - name: ヨスタシェフ
+    yomi: ヨスタシェフ
+    type: 武器
+    capabilities:
+      - name: 壊れない
+        value: 1
+  - name: ヨルトゥス執行官
+    yomi: ヨルトゥスシッコウカン
+    type: 武器
+    capabilities:
+      - name: ASPD増加
+        value: 1
+      - name: 聖属性魔法ダメージ増加
+        value: 20
+      - name: 無属性魔法ダメージ増加
+        value: 20
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 異境の統轄者
+        capabilities:
+          - name: ASPD増加
+            value: 1
+          - name: 魔法ダメージ増加
+            value: 10
+  - name: ヨルトゥス調停官
+    yomi: ヨルトゥスチョウテイカン
+    type: 武器
+    capabilities:
+      - name: ASPD増加
+        value: 1
+      - name: 闇属性魔法ダメージ増加
+        value: 20
+      - name: 無属性魔法ダメージ増加
+        value: 20
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 異境の統轄者
+        capabilities:
+          - name: ASPD増加
+            value: 1
+          - name: 魔法ダメージ増加
+            value: 10
+  - name: ヨルドス処刑官
+    yomi: ヨルドスショケイカン
+    type: 武器
+    capabilities:
+      - name: 壊れない
+        value: 1
+  - name: アイスホーン
+    yomi: アイスホーン
+    type: 兜
+    capabilities:
+      - name: 水属性耐性
+        value: 10
+      - name: 冷凍耐性
+        value: 100
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 異境の統轄者
+        capabilities:
+          - name: 水属性耐性
+            value: 10
+  - name: クリオリマ
+    yomi: クリオリマ
+    type: 兜
+    capabilities:
+      - name: ヒール系スキル使用時HP回復量増加
+        value: 1
+        per_refine: 1
+  - name: スカレッグ
+    yomi: スカレッグ
+    type: 兜
+    capabilities:
+      - name: DEF加算
+        value: 50
+      - name: DEF加算
+        value: 50
         at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: メタリックフューリー
-        value: 4
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: リズミカルウェーブ
-        value: 8
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: サウンドブレンド
-        value: 2
+      - name: DEF加算
+        value: 50
         at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: メタリックフューリー
+  - name: ヨスコプス守護者
+    yomi: ヨスコプスシュゴシャ
+    type: 兜
+    capabilities:
+      - name: MDEF加算
         value: 5
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: リズミカルウェーブ
-        value: 8
-        at_refine: 9
-  - name: 潜在解放(ナイトウォッチVII)
-    yomi: センザイカイホウナイトウォッチ7
-    type: エンチャント
-    capabilities:
-      - name: スキル消費SP固定値減少
-        skill: オンリーワンバレット
-        value: 3
-      - name: スキル消費SP固定値減少
-        skill: マガジンフォーワン
-        value: 3
-      - name: スキル消費SP固定値減少
-        skill: スパイラルシューティング
-        value: 6
-      - name: スキル消費SP固定値減少
-        skill: ビジラントアットナイト
-        value: 6
-      - name: スキル消費SP固定値減少
-        skill: ワイルドファイア
-        value: 7
-      - name: スキル消費SP固定値減少
-        skill: ワイルドショット
-        value: 7
-      - name: スキル消費SP固定値減少
-        skill: ミッドナイトフォーリン
-        value: 9
-      - name: スキル消費SP固定値減少
-        skill: オンリーワンバレット
-        value: 3
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: マガジンフォーワン
-        value: 3
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: スパイラルシューティング
-        value: 6
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: ビジラントアットナイト
-        value: 6
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: ワイルドファイア
-        value: 8
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: ワイルドショット
-        value: 7
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: ミッドナイトフォーリン
-        value: 9
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: オンリーワンバレット
-        value: 4
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: マガジンフォーワン
-        value: 4
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: スパイラルシューティング
-        value: 6
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: ビジラントアットナイト
-        value: 6
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: ワイルドファイア
-        value: 8
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: ワイルドショット
-        value: 8
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: ミッドナイトフォーリン
-        value: 9
-        at_refine: 9
-  - name: 潜在解放(バイオロIX)
-    yomi: センザイカイホウバイオロ9
-    type: エンチャント
-    capabilities:
-      - name: スキル消費SP固定値減少
-        skill: エクスプロッシブパウダー
-        value: 10
-      - name: スキル消費SP固定値減少
-        skill: ダストエクスプロージョン
-        value: 10
-      - name: スキル消費SP固定値減少
-        skill: ミステリーパウダー
-        value: 12
-      - name: スキル消費SP固定値減少
-        skill: エクスプロッシブパウダー
-        value: 10
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: ダストエクスプロージョン
-        value: 10
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: ミステリーパウダー
-        value: 12
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: エクスプロッシブパウダー
-        value: 10
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: ダストエクスプロージョン
-        value: 10
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: ミステリーパウダー
-        value: 12
-        at_refine: 9
-  - name: 潜在解放(マイスターX)
-    yomi: センザイカイホウマイスター10
-    type: エンチャント
-    capabilities:
-      - name: スキル消費SP固定値減少
-        skill: アックスストンプ
-        value: 10
-      - name: スキル消費SP固定値減少
-        skill: ラッシュストライク
-        value: 10
-      - name: スキル消費SP固定値減少
-        skill: マイティスマッシュ
-        value: 8
-      - name: スキル消費SP固定値減少
-        skill: パワフルスイング
-        value: 8
-      - name: スキル消費SP固定値減少
-        skill: ラッシュクエイク
-        value: 14
-      - name: スキル消費SP固定値減少
-        skill: アックスストンプ
-        value: 10
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: ラッシュストライク
-        value: 10
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: マイティスマッシュ
-        value: 8
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: パワフルスイング
-        value: 8
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: ラッシュクエイク
-        value: 15
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: アックスストンプ
-        value: 10
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: ラッシュストライク
-        value: 10
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: マイティスマッシュ
-        value: 9
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: パワフルスイング
-        value: 9
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: ラッシュクエイク
-        value: 15
-        at_refine: 9
-  - name: 潜在解放(マイスターXI)
-    yomi: センザイカイホウマイスター11
-    type: エンチャント
-    capabilities:
-      - name: スキル消費SP固定値減少
-        skill: スパークブラスター
-        value: 8
-      - name: スキル消費SP固定値減少
-        skill: トリプルレーザー
-        value: 4
-      - name: スキル消費SP固定値減少
-        skill: エナジーキャノネード
-        value: 10
-      - name: スキル消費SP固定値減少
-        skill: スパークブラスター
-        value: 8
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: トリプルレーザー
+      - name: MDEF加算
         value: 5
         at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: エナジーキャノネード
-        value: 10
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: スパークブラスター
-        value: 9
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: トリプルレーザー
+      - name: MDEF加算
         value: 5
         at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: エナジーキャノネード
-        value: 10
-        at_refine: 9
-  - name: 潜在解放(天帝VII)
-    yomi: センザイカイホウテンテイ7
-    type: エンチャント
+  - name: ヨスタクリーナー
+    yomi: ヨスタクリーナー
+    type: 兜
     capabilities:
-      - name: スキル消費SP固定値減少
-        skill: 天地一陽
-        value: 5
-      - name: スキル消費SP固定値減少
-        skill: 太天一陽
-        value: 7
-      - name: スキル消費SP固定値減少
-        skill: 天陽
-        value: 7
-      - name: スキル消費SP固定値減少
-        skill: 太天一月
-        value: 7
-      - name: スキル消費SP固定値減少
-        skill: 天月
-        value: 7
-      - name: スキル消費SP固定値減少
-        skill: 天地一月
-        value: 9
-      - name: スキル消費SP固定値減少
-        skill: 天気身陽
-        value: 9
-      - name: スキル消費SP固定値減少
-        skill: 天気身月
-        value: 9
-      - name: スキル消費SP固定値減少
-        skill: 天地一陽
-        value: 5
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: 太天一陽
-        value: 8
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: 天陽
-        value: 8
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: 太天一月
-        value: 8
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: 天月
-        value: 8
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: 天地一月
-        value: 9
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: 天気身陽
-        value: 9
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: 天気身月
-        value: 9
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: 天地一陽
-        value: 5
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: 太天一陽
-        value: 8
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: 天陽
-        value: 8
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: 太天一月
-        value: 8
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: 天月
-        value: 8
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: 天地一月
-        value: 9
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: 天気身陽
-        value: 9
-        at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: 天気身月
-        value: 9
-        at_refine: 9
-  - name: 潜在解放(天帝VIII)
-    yomi: センザイカイホウテンテイ8
-    type: エンチャント
+      - name: DEF無視
+        value: 25
+  - name: ヨルカ牧師
+    yomi: ヨルカボクシ
+    type: 兜
     capabilities:
-      - name: スキル消費SP固定値減少
-        skill: 天地万星
-        value: 9
-      - name: スキル消費SP固定値減少
-        skill: 天命落星
-        value: 9
-      - name: スキル消費SP固定値減少
-        skill: 天星
-        value: 9
-      - name: スキル消費SP固定値減少
-        skill: 天星の行
-        value: 9
-      - name: スキル消費SP固定値減少
-        skill: 天地万星
-        value: 9
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: 天命落星
-        value: 9
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: 天星
-        value: 9
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: 天星の行
-        value: 9
-        at_refine: 7
-      - name: スキル消費SP固定値減少
-        skill: 天地万星
-        value: 9
+      - name: スキル使用可能
+        skill: キュアー
+        skill_lv: 1
+  - name: ロックストライカー
+    yomi: ロックストライカー
+    type: 兜
+    capabilities:
+      - name: CRI加算
+        value: 1
+        per_refine: 1
+      - name: クリティカルダメージ増加
+        value: 8
         at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: 天命落星
-        value: 9
+  - name: ヴェレリン
+    yomi: ヴェレリン
+    type: 鎧
+    capabilities:
+      - name: 毒属性耐性
+        value: 5
+      - name: 毒耐性
+        value: 100
+  - name: ヨスコプス魔術師
+    yomi: ヨスコプス魔術師
+    type: 鎧
+    capabilities:
+      - name: 不死形への魔法ダメージ増加
+        value: 1
+        per_refine: 1
+      - name: 不死形への魔法ダメージ増加
+        value: 10
         at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: 天星
-        value: 9
+  - name: ヨスタフィクサー
+    yomi: ヨスタフィクサー
+    type: 鎧
+    capabilities:
+      - name: 物理ダメージ増加
+        value: 5
+      - name: 物理ダメージ増加
+        value: 10
+        at_refine: 8
+  - name: ヨルミ
+    yomi: ヨルミ
+    type: 鎧
+    capabilities:
+      - name: 闇属性への魔法ダメージ増加
+        value: 1
+        per_refine: 1
+      - name: 闇属性への魔法ダメージ増加
+        value: 10
         at_refine: 9
-      - name: スキル消費SP固定値減少
-        skill: 天星の行
-        value: 9
+  - name: ヨルミ宣教師
+    yomi: ヨルミセンキョウシ
+    type: 鎧
+    capabilities:
+      - name: 聖属性への魔法ダメージ増加
+        value: 1
+        per_refine: 1
+      - name: 聖属性への魔法ダメージ増加
+        value: 10
         at_refine: 9
+  - name: 幽霊船の艦長
+    yomi: ユウレイセンノカンチョウ
+    desc: "物理攻撃命中時、一定確率で敵に与えたダメージの3%をHPとして吸収"
+    type: 鎧
+    capabilities:
+      - name: 壊れない
+        value: 1
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 異境の統轄者
+        capabilities:
+          - name: MAXHP増加
+            value: 50
+  - name: スキップスキッパー
+    yomi: スキップスキッパー
+    type: 靴
+    capabilities:
+      - name: MDEF加算
+        value: 1
+        per_refine: 1
+      - name: MDEF加算
+        value: 10
+        at_refine: 9
+  - name: レタースター
+    yomi: レタースター
+    type: 靴
+    capabilities:
+      - name: 必中
+        value: 10
+  - name: ヨスタコレクター
+    yomi: ヨスタコレクター
+    desc: "物理攻撃命中時、一定確率で敵にオートスペル[スティール]Lv5発動"
+    type: アクセサリー
+    capabilities:
+      - name: 壊れない
+        value: 1
+  - name: ヨスタネゴシエーター
+    yomi: ヨスタネゴシエーター
+    desc: "[オーバーチャージ]Lv5使用可能"
+    type: アクセサリー
+    capabilities:
+      - name: 壊れない
+        value: 1
+  - name: ヨルカ商人
+    yomi: ヨルカショウニン
+    desc: "[アイテム鑑定]Lv1使用可能"
+    type: アクセサリー
+    capabilities:
+      - name: 壊れない
+        value: 1
+  - name: ヨルトゥス司教
+    yomi: ヨルトゥスシキョウ
+    type: アクセサリー
+    capabilities:
+      - name: 聖属性魔法ダメージ増加
+        value: 10
+  - name: ヨルトゥス呪術師
+    yomi: ヨルトゥスジュジュツシ
+    type: アクセサリー
+    capabilities:
+      - name: 闇属性魔法ダメージ増加
+        value: 10
+  - name: ヨルドス裁判官
+    yomi: ヨルドスサイバンカン
+    type: アクセサリー
+    capabilities:
+      - name: スキルダメージ増加
+        value: 25
+        skill: ライトニングボルト
+      - name: スキル固定詠唱ミリ秒減少
+        value: -5000
+        skill: ライトニングボルト
+  - name: ヨルドス審問官
+    yomi: ヨルドスシンモンカン
+    type: アクセサリー
+    capabilities:
+      - name: MDEF加算
+        value: 10
+  - name: アイヴァン・ウィグナー
+    yomi: アイヴァンウィグナー
+    type: 制限なし
+    capabilities:
+      - name: ATK加算
+        value: 1
+        per_lv: 2
+      - name: MATK加算
+        value: 1
+        per_lv: 2
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 王家の栄光
+        capabilities:
+          - name: スキルダメージ増加
+            value: 25
+            skill: 聖油洗礼
+          - name: スキルダメージ増加
+            value: 25
+            skill: 爆火神弾
+          - name: スキルダメージ増加
+            value: 25
+            skill: 炎火滅魔神弾
+          - name: スキルダメージ増加
+            value: 25
+            skill: 烈火気弾
+          - name: スキルダメージ増加
+            value: 25
+            skill: 第二撃：信念
+          - name: スキルダメージ増加
+            value: 25
+            skill: 第三撃：断罪
+          - name: スキルダメージ増加
+            value: 25
+            skill: 第二撃：審判
+          - name: スキルダメージ増加
+            value: 25
+            skill: 第三撃：浄化
+          - name: スキルダメージ増加
+            value: 25
+            skill: 第二撃：滅魔の火
+          - name: スキルダメージ増加
+            value: 25
+            skill: 第三撃：滅火撃
+  - name: イアナ・オペルタ
+    yomi: イアナオペルタ
+    type: 制限なし
+    capabilities:
+      - name: ATK加算
+        value: 1
+        per_lv: 2
+      - name: MATK加算
+        value: 1
+        per_lv: 2
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 王家の栄光
+        capabilities:
+          - name: スキルダメージ増加
+            value: 25
+            skill: アシディファイドゾーン(火)
+          - name: スキルダメージ増加
+            value: 25
+            skill: アシディファイドゾーン(水)
+          - name: スキルダメージ増加
+            value: 25
+            skill: アシディファイドゾーン(風)
+          - name: スキルダメージ増加
+            value: 25
+            skill: アシディファイドゾーン(地)
+          - name: スキルダメージ増加
+            value: 25
+            skill: エクスプロッシブパウダー
+          - name: スキルダメージ増加
+            value: 25
+            skill: ミステリーパウダー
+          - name: スキルダメージ増加
+            value: 25
+            skill: ダストエクスプロージョン
+          - name: スキルダメージ増加
+            value: 25
+            skill: メイヘミックソーンズ
+  - name: イルジェ・エル・ハイネン
+    yomi: イルジェエルハイネン
+    type: 制限なし
+    capabilities:
+      - name: ATK加算
+        value: 1
+        per_lv: 2
+      - name: MATK加算
+        value: 1
+        per_lv: 2
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 王家の栄光
+        capabilities:
+          - name: スキルダメージ増加
+            value: 25
+            skill: フローラルフレアロード
+          - name: スキルダメージ増加
+            value: 25
+            skill: クリムゾンアロー
+          - name: スキルダメージ増加
+            value: 25
+            skill: レインオブクリスタル
+          - name: スキルダメージ増加
+            value: 25
+            skill: フローズンスラッシュ
+          - name: スキルダメージ増加
+            value: 25
+            skill: トルネードストーム
+          - name: スキルダメージ増加
+            value: 25
+            skill: ストームキャノン
+          - name: スキルダメージ増加
+            value: 25
+            skill: ストラタムトレマー
+          - name: スキルダメージ増加
+            value: 25
+            skill: ロックダウン
+          - name: スキルダメージ増加
+            value: 25
+            skill: ソウルバルカンストライク
+          - name: スキルダメージ増加
+            value: 25
+            skill: ミステリーイリュージョン
+          - name: スキルダメージ増加
+            value: 25
+            skill: デッドリープロジェクション
+          - name: スキルダメージ増加
+            value: 25
+            skill: アストラルストライク
+  - name: ヴィルヘルム・レベンブルグ
+    yomi: ヴィルヘルムレベンブルグ
+    type: 制限なし
+    capabilities:
+      - name: ATK加算
+        value: 1
+        per_lv: 2
+      - name: MATK加算
+        value: 1
+        per_lv: 2
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 王家の栄光
+        capabilities:
+          - name: スキルダメージ増加
+            value: 25
+            skill: 青龍符
+          - name: スキルダメージ増加
+            value: 25
+            skill: 白虎符
+          - name: スキルダメージ増加
+            value: 25
+            skill: 朱雀符
+          - name: スキルダメージ増加
+            value: 25
+            skill: 玄武符
+          - name: スキルダメージ増加
+            value: 25
+            skill: 四方神符
+          - name: スキルダメージ増加
+            value: 25
+            skill: 霊道符
+          - name: スキルダメージ増加
+            value: 25
+            skill: 死霊浄化
+          - name: スキルダメージ増加
+            value: 25
+            skill: 四方五行陣
+  - name: エフェスト・バルター・メガス
+    yomi: エフェストバルターメガス
+    type: 制限なし
+    capabilities:
+      - name: ATK加算
+        value: 1
+        per_lv: 2
+      - name: MATK加算
+        value: 1
+        per_lv: 2
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 王家の栄光
+        capabilities:
+          - name: スキルダメージ増加
+            value: 25
+            skill: アックスストンプ
+          - name: スキルダメージ増加
+            value: 25
+            skill: マイティスマッシュ
+          - name: スキルダメージ増加
+            value: 25
+            skill: ラッシュクエイク
+          - name: スキルダメージ増加
+            value: 25
+            skill: ラッシュストライク
+          - name: スキルダメージ増加
+            value: 25
+            skill: パワフルスイング
+          - name: スキルダメージ増加
+            value: 25
+            skill: スパークブラスター
+          - name: スキルダメージ増加
+            value: 25
+            skill: トリプルレーザー
+          - name: スキルダメージ増加
+            value: 25
+            skill: エナジーキャノネード
+  - name: オーレリー・プティ
+    yomi: オーレリープティ
+    type: 制限なし
+    capabilities:
+      - name: ATK加算
+        value: 1
+        per_lv: 2
+      - name: MATK加算
+        value: 1
+        per_lv: 2
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 王家の栄光
+        capabilities:
+          - name: スキルダメージ増加
+            value: 25
+            skill: コンフラグレーション
+          - name: スキルダメージ増加
+            value: 25
+            skill: ダイヤモンドストーム
+          - name: スキルダメージ増加
+            value: 25
+            skill: ライトニングランド
+          - name: スキルダメージ増加
+            value: 25
+            skill: テラドライブ
+          - name: スキルダメージ増加
+            value: 25
+            skill: ベナムスワンプ
+          - name: スキルダメージ増加
+            value: 25
+            skill: エレメンタルバスター
+          - name: スキルダメージ増加
+            value: 25
+            skill: サイキックストリーム
+  - name: ガラシア・ネリウス
+    yomi: ガラシアネリウス
+    type: 制限なし
+    capabilities:
+      - name: ATK加算
+        value: 1
+        per_lv: 2
+      - name: MATK加算
+        value: 1
+        per_lv: 2
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 王家の栄光
+        capabilities:
+          - name: スキルダメージ増加
+            value: 25
+            skill: オーバースラッシュ
+          - name: スキルダメージ増加
+            value: 25
+            skill: グランドジャッジメント
+          - name: スキルダメージ増加
+            value: 25
+            skill: シールドシューティング
+          - name: スキルダメージ増加
+            value: 25
+            skill: レイディアントスピア
+          - name: スキルダメージ増加
+            value: 25
+            skill: インペリアルクロス
+          - name: スキルダメージ増加
+            value: 25
+            skill: クロスレイン
+          - name: スキルダメージ増加
+            value: 25
+            skill: ジャッジメントクロス
+          - name: スキルダメージ増加
+            value: 25
+            skill: インペリアルプレッシャー
+  - name: ギュンター
+    yomi: ギュンター
+    type: 制限なし
+    capabilities:
+      - name: ATK加算
+        value: 1
+        per_lv: 2
+      - name: MATK加算
+        value: 1
+        per_lv: 2
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 王家の栄光
+        capabilities:
+          - name: スキルダメージ増加
+            value: 25
+            skill: アビスダガー
+          - name: スキルダメージ増加
+            value: 25
+            skill: アンラッキーラッシュ
+          - name: スキルダメージ増加
+            value: 25
+            skill: デフトスタブ
+          - name: スキルダメージ増加
+            value: 25
+            skill: ヒットアンドスライディング
+          - name: スキルダメージ増加
+            value: 25
+            skill: チェイシングブレイク
+          - name: スキルダメージ増加
+            value: 25
+            skill: チェーンリアクションショット
+          - name: スキルダメージ増加
+            value: 25
+            skill: フレンジショット
+          - name: スキルダメージ増加
+            value: 25
+            skill: チェイシングショット
+          - name: スキルダメージ増加
+            value: 25
+            skill: フロムジアビス
+          - name: スキルダメージ増加
+            value: 25
+            skill: アビススクエア
+          - name: スキルダメージ増加
+            value: 25
+            skill: オメガアビスストライク
+          - name: スキルダメージ増加
+            value: 25
+            skill: アビスフレイム
+  - name: タン
+    yomi: タン
+    type: 制限なし
+    capabilities:
+      - name: ATK加算
+        value: 1
+        per_lv: 2
+      - name: MATK加算
+        value: 1
+        per_lv: 2
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 王家の栄光
+        capabilities:
+          - name: スキルダメージ増加
+            value: 25
+            skill: インパクトクレーター
+          - name: スキルダメージ増加
+            value: 25
+            skill: サベージインパクト
+          - name: スキルダメージ増加
+            value: 25
+            skill: ダンシングナイフ
+          - name: スキルダメージ増加
+            value: 25
+            skill: シャドウスタブ
+          - name: スキルダメージ増加
+            value: 25
+            skill: エターナルスラッシュ
+          - name: スキルダメージ増加
+            value: 25
+            skill: フェイタルシャドウクロー
+          - name: スキルダメージ増加
+            value: 25
+            skill: クロススラッシュ
+  - name: トリス
+    yomi: トリス
+    type: 制限なし
+    capabilities:
+      - name: ATK加算
+        value: 1
+        per_lv: 2
+      - name: MATK加算
+        value: 1
+        per_lv: 2
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 王家の栄光
+        capabilities:
+          - name: スキルダメージ増加
+            value: 25
+            skill: ハックアンドスラッシャー
+          - name: スキルダメージ増加
+            value: 25
+            skill: マッドネスクラッシャー
+          - name: スキルダメージ増加
+            value: 25
+            skill: ストームスラッシュ
+          - name: スキルダメージ増加
+            value: 25
+            skill: ドラゴニックオーラ
+          - name: スキルダメージ増加
+            value: 25
+            skill: ドラゴニックピアース
+          - name: スキルダメージ増加
+            value: 25
+            skill: ドラゴニックブレス
+          - name: スキルダメージ増加
+            value: 25
+            skill: サーヴァントウェポン
+          - name: スキルダメージ増加
+            value: 25
+            skill: サーヴァントウェポン：ファントム
+          - name: スキルダメージ増加
+            value: 25
+            skill: サーヴァントウェポン：デモリッション
+  - name: ナドヨ
+    yomi: ナドヨ
+    type: 制限なし
+    capabilities:
+      - name: ATK加算
+        value: 1
+        per_lv: 2
+      - name: MATK加算
+        value: 1
+        per_lv: 2
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 王家の栄光
+        capabilities:
+          - name: スキルダメージ増加
+            value: 25
+            skill: タイガースラッシュ
+          - name: スキルダメージ増加
+            value: 25
+            skill: タイガーハウリング
+          - name: スキルダメージ増加
+            value: 25
+            skill: タイガーストライク
+          - name: スキルダメージ増加
+            value: 25
+            skill: タイガーバトリング
+          - name: スキルダメージ増加
+            value: 25
+            skill: ディアーキャノン
+          - name: スキルダメージ増加
+            value: 25
+            skill: ディアーブリーズ
+          - name: スキルダメージ増加
+            value: 25
+            skill: ディアースピリットパワー
+  - name: マリステラ・バルター
+    yomi: マリステラバルター
+    type: 制限なし
+    capabilities:
+      - name: ATK加算
+        value: 1
+        per_lv: 2
+      - name: MATK加算
+        value: 1
+        per_lv: 2
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 王家の栄光
+        capabilities:
+          - name: スキルダメージ増加
+            value: 25
+            skill: 天地一陽
+          - name: スキルダメージ増加
+            value: 25
+            skill: 太天一陽
+          - name: スキルダメージ増加
+            value: 25
+            skill: 天陽
+          - name: スキルダメージ増加
+            value: 25
+            skill: 天地一月
+          - name: スキルダメージ増加
+            value: 25
+            skill: 太天一月
+          - name: スキルダメージ増加
+            value: 25
+            skill: 天月
+          - name: スキルダメージ増加
+            value: 25
+            skill: 天羅万象
+          - name: スキルダメージ増加
+            value: 25
+            skill: 天気身陽
+          - name: スキルダメージ増加
+            value: 25
+            skill: 天気身月
+          - name: スキルダメージ増加
+            value: 25
+            skill: 天地万星
+          - name: スキルダメージ増加
+            value: 25
+            skill: 天命落星
+          - name: スキルダメージ増加
+            value: 25
+            skill: 天星
+          - name: スキルダメージ増加
+            value: 25
+            skill: 天星の行
+  - name: ヨハン
+    yomi: ヨハン
+    type: 制限なし
+    capabilities:
+      - name: ATK加算
+        value: 1
+        per_lv: 2
+      - name: MATK加算
+        value: 1
+        per_lv: 2
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 王家の栄光
+        capabilities:
+          - name: スキルダメージ増加
+            value: 25
+            skill: クレッシブボルト
+          - name: スキルダメージ増加
+            value: 25
+            skill: ゲイルストーム
+          - name: スキルダメージ増加
+            value: 25
+            skill: ホークブーメラン
+          - name: スキルダメージ増加
+            value: 25
+            skill: ホークラッシュ
+          - name: スキルダメージ増加
+            value: 25
+            skill: ワイルドウォーク
+          - name: スキルダメージ増加
+            value: 25
+            skill: フレイムトラップ
+          - name: スキルダメージ増加
+            value: 25
+            skill: スイフトトラップ
+          - name: スキルダメージ増加
+            value: 25
+            skill: ソリッドトラップ
+          - name: スキルダメージ増加
+            value: 25
+            skill: ディープブラインドトラップ
+  - name: ラインハルト・レベンブルグ
+    yomi: ラインハルトレベンブルグ
+    type: 制限なし
+    capabilities:
+      - name: ATK加算
+        value: 1
+        per_lv: 2
+      - name: MATK加算
+        value: 1
+        per_lv: 2
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 王家の栄光
+        capabilities:
+          - name: スキルダメージ増加
+            value: 25
+            skill: アルビトリウム
+          - name: スキルダメージ増加
+            value: 25
+            skill: ニューマティックプロセラ
+          - name: スキルダメージ増加
+            value: 25
+            skill: フレーメン
+          - name: スキルダメージ増加
+            value: 25
+            skill: ディヴィヌスフロス
+          - name: スキルダメージ増加
+            value: 25
+            skill: ペティティオ
+          - name: スキルダメージ増加
+            value: 25
+            skill: エフィリゴ
+  - name: ラウラ・バルダリス
+    yomi: ラウラバルダリス
+    type: 制限なし
+    capabilities:
+      - name: ATK加算
+        value: 1
+        per_lv: 2
+      - name: MATK加算
+        value: 1
+        per_lv: 2
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 王家の栄光
+        capabilities:
+          - name: スキルダメージ増加
+            value: 25
+            skill: 影狩り
+          - name: スキルダメージ増加
+            value: 25
+            skill: 影の舞
+          - name: スキルダメージ増加
+            value: 25
+            skill: 影一閃
+          - name: スキルダメージ増加
+            value: 25
+            skill: 風魔手裏剣 -掌握-
+          - name: スキルダメージ増加
+            value: 25
+            skill: 風魔手裏剣 -構築-
+          - name: スキルダメージ増加
+            value: 25
+            skill: 幻術 -影縫い-
+          - name: スキルダメージ増加
+            value: 25
+            skill: 苦無 -歪曲-
+          - name: スキルダメージ増加
+            value: 25
+            skill: 苦無 -回転-
+          - name: スキルダメージ増加
+            value: 25
+            skill: 苦無 -屈折-
+          - name: スキルダメージ増加
+            value: 25
+            skill: 幻術 -苦無-
+          - name: スキルダメージ増加
+            value: 25
+            skill: 赤炎砲
+          - name: スキルダメージ増加
+            value: 25
+            skill: 冷血砲
+          - name: スキルダメージ増加
+            value: 25
+            skill: 雷電砲
+          - name: スキルダメージ増加
+            value: 25
+            skill: 金龍砲
+          - name: スキルダメージ増加
+            value: 25
+            skill: 暗転砲
+          - name: スキルダメージ増加
+            value: 25
+            skill: 幻術 -暗黒龍-
+  - name: ラライラ・ナザール・ウィグナー
+    yomi: ラライラナザールウィグナー
+    type: 制限なし
+    capabilities:
+      - name: ATK加算
+        value: 1
+        per_lv: 2
+      - name: MATK加算
+        value: 1
+        per_lv: 2
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 王家の栄光
+        capabilities:
+          - name: スキルダメージ増加
+            value: 25
+            skill: リズムシューティング
+          - name: スキルダメージ増加
+            value: 25
+            skill: ロゼブロッサム
+          - name: スキルダメージ増加
+            value: 25
+            skill: サウンドブレンド
+          - name: スキルダメージ増加
+            value: 25
+            skill: メタリックフューリー
+          - name: スキルダメージ増加
+            value: 25
+            skill: リズミカルウェーブ
+  - name: リー
+    yomi: リー
+    type: 制限なし
+    capabilities:
+      - name: ATK加算
+        value: 1
+        per_lv: 2
+      - name: MATK加算
+        value: 1
+        per_lv: 2
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 王家の栄光
+        capabilities:
+          - name: スキルダメージ増加
+            value: 25
+            skill: ダブルボウリングバッシュ
+          - name: スキルダメージ増加
+            value: 25
+            skill: メガソニックブロー
+          - name: スキルダメージ増加
+            value: 25
+            skill: シールドチェーンラッシュ
+          - name: スキルダメージ増加
+            value: 25
+            skill: スパイラルピアースマックス
+          - name: スキルダメージ増加
+            value: 25
+            skill: ユピテルサンダーストーム
+          - name: スキルダメージ増加
+            value: 25
+            skill: ヘルズドライブ
+          - name: スキルダメージ増加
+            value: 25
+            skill: ナパームバルカンストライク
+          - name: スキルダメージ増加
+            value: 25
+            skill: メテオストームバスター
+          - name: スキルダメージ増加
+            value: 25
+            skill: グラウンドグラビテーション
+          - name: スキルダメージ増加
+            value: 25
+            skill: ジャックフロストノヴァ
+  - name: リハルト・リハルト
+    yomi: リハルトリハルト
+    type: 制限なし
+    capabilities:
+      - name: ATK加算
+        value: 1
+        per_lv: 2
+      - name: MATK加算
+        value: 1
+        per_lv: 2
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 王家の栄光
+        capabilities:
+          - name: スキルダメージ増加
+            value: 25
+            skill: オンリーワンバレット
+          - name: スキルダメージ増加
+            value: 25
+            skill: スパイラルシューティング
+          - name: スキルダメージ増加
+            value: 25
+            skill: マガジンフォーワン
+          - name: スキルダメージ増加
+            value: 25
+            skill: ビジラントアットナイト
+          - name: スキルダメージ増加
+            value: 25
+            skill: ワイルドファイア
+          - name: スキルダメージ増加
+            value: 25
+            skill: ワイルドショット
+          - name: スキルダメージ増加
+            value: 25
+            skill: ミッドナイトフォーリン
+          - name: スキルダメージ増加
+            value: 25
+            skill: ベーシックグレネード
+          - name: スキルダメージ増加
+            value: 25
+            skill: ヘイスティファイアインザホール
+          - name: スキルダメージ増加
+            value: 25
+            skill: グレネーズドロッピング
+          - name: スキルダメージ増加
+            value: 25
+            skill: ミッションボンバード
