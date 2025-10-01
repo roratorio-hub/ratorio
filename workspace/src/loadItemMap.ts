@@ -2,16 +2,64 @@ import { loadFileAsUint8Array, zstdDecompress } from "./funcZstd";
 import { load as loadYAML } from "js-yaml"
 
 // ItemMapの型定義
-interface ItemDataParameter {
-    id: number; // アイテムID
-    displayname: string; // アイテムの表示名
-    description: string; // アイテムの説明
-    is_card: boolean; // カードアイテムかどうか
-    is_enchant: boolean; // エンチャント可能かどうか
-    resname: string; // リソース名
-    type: string | null; // アイテムタイプ
-    slot: number | undefined; // スロット数
+export interface ItemDataParameter {
+    // 基本
+    id: number;
+    displayname: string;
+    description: string;
+    is_card: boolean;
+    is_enchant: boolean;
+    resname: string;
+    type: string | null;
+    slot: number | undefined;
+
+    // 抽出フィールド
+    series?: string | null;
+    position?: string | null;       // 防具位置
+    card_position?: string | null;  // カード装着部位
+    attribute?: string | null;
+    def?: number;
+    mdef?: number;
+    atk?: number;
+    matk?: number;
+    weapon_lv?: number;
+    is_refine?: boolean;
+    is_breakable?: boolean;
+    weight?: number;
+    required_lv?: number;
+    jobs?: string[];
+
+    // 効果カテゴリ
+    stats?: { stat: string; value: number }[];
+    damage_bonus?: { condition: string; value: number }[];
+    race_bonus?: { target: string; value: number }[];
+    race_resist?: { target: string; value: number }[];
+    status_resist?: { status: string; value: number }[];
+    auto_spells?: { skill: string; level: number; chance?: string }[];
+
+    refine_bonus?: { per: number; stats: { stat: string; value: number }[] }[];
+    refine_skill_bonus?: {
+        with?: string[];
+        per: number;
+        skills: { name: string; bonus: number }[];
+    }[];
+    set_bonus?: {
+        with?: string[];
+        with_any?: string[];
+        refine?: number;
+        effects: any[];
+    }[];
+    set_penalty?: {
+        with: string[];
+        disable: string[];
+    }[];
+    status_inflict?: {
+        condition: string;
+        status: string;
+        chance?: string;
+    }[];
 }
+
 
 export class ItemData {
     parameter: ItemDataParameter;
