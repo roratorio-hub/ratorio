@@ -11,6 +11,8 @@ class MonsterToughness {
     static DAMPING_TIME_DECAY = 8;
     /** 倍率強化 */
     static DAMPING_AMPLIFY = 16;
+    /** ダメージ 1/1000 */
+    static DAMPING_1000 = 32;
 
     /** 特性リスト */
     static ToughnessList = new Map([
@@ -73,6 +75,50 @@ class MonsterToughness {
 		["ヴィオレン", MonsterToughness.DAMPING_10],
         ["死者の案内人", MonsterToughness.DAMPING_100],
         ["悪夢のピアメット", MonsterToughness.DAMPING_100],
+        // イスガルド 英雄の時代
+        ["クリオリマ", MonsterToughness.DAMPING_10],
+        ["アイスシーホース", MonsterToughness.DAMPING_10],
+        ["シーウィンド", MonsterToughness.DAMPING_10],
+        ["スキップスキッパー", MonsterToughness.DAMPING_10],
+        ["レタースター", MonsterToughness.DAMPING_10],
+        ["ロックストライカー", MonsterToughness.DAMPING_10],
+        ["スカレッグ", MonsterToughness.DAMPING_10],
+        ["ヴェレリン", MonsterToughness.DAMPING_10],
+        ["ヨルカ牧師", MonsterToughness.DAMPING_10],
+        ["ヨルカ商人", MonsterToughness.DAMPING_10],
+        ["ヨルミ", MonsterToughness.DAMPING_10],
+        ["ヨルミ宣教師", MonsterToughness.DAMPING_10],
+        ["ヨスタクリーナー", MonsterToughness.DAMPING_10],
+        ["ヨスタフィクサー", MonsterToughness.DAMPING_10],
+        ["ヨスタコレクター", MonsterToughness.DAMPING_10],
+        ["ヨスタネゴシエーター", MonsterToughness.DAMPING_10],
+        ["ヨスタシェフ", MonsterToughness.DAMPING_10],
+        ["ヨルドス審問官", MonsterToughness.DAMPING_10],
+        ["ヨルドス裁判官", MonsterToughness.DAMPING_10],
+        ["ヨルドス処刑官", MonsterToughness.DAMPING_10],
+        ["ヨルトゥス司教", MonsterToughness.DAMPING_10],
+        ["ヨルトゥス呪術師", MonsterToughness.DAMPING_10],
+        ["ヨスコプス守護者", MonsterToughness.DAMPING_10],
+        ["ヨスコプス魔術師", MonsterToughness.DAMPING_10],
+        ["覚醒ヨルドス審問官", MonsterToughness.DAMPING_10],
+        ["覚醒ヨルドス裁判官", MonsterToughness.DAMPING_10],
+        ["覚醒ヨルドス処刑官", MonsterToughness.DAMPING_10],
+        ["覚醒ヨルミ", MonsterToughness.DAMPING_10],
+        ["覚醒ヨルミ宣教師", MonsterToughness.DAMPING_10],
+        ["覚醒ヨルトゥス司教", MonsterToughness.DAMPING_10],
+        ["覚醒ヨルトゥス呪術師", MonsterToughness.DAMPING_10],
+        ["覚醒ヨスコプス守護者", MonsterToughness.DAMPING_10],
+        ["覚醒ヨスコプス魔術師", MonsterToughness.DAMPING_10],
+        ["幽霊船の艦長", MonsterToughness.DAMPING_10],
+        ["幽霊船の船員", MonsterToughness.DAMPING_10],
+        ["アイスホーン", MonsterToughness.DAMPING_100],
+        ["ヨルトゥス調停官", MonsterToughness.DAMPING_100],
+        ["ヨルトゥス執行官", MonsterToughness.DAMPING_100],
+        ["覚醒ヨルトゥス調停官", MonsterToughness.DAMPING_100],
+        ["覚醒ヨルトゥス執行官", MonsterToughness.DAMPING_100],
+        ["小さな蛇の幻影", MonsterToughness.DAMPING_100],
+        ["侵食されたタン", MonsterToughness.DAMPING_1000],
+        ["大きな蛇の幻影", MonsterToughness.DAMPING_1000],
     ]);
 
     /** 通知メッセージのリスト */
@@ -80,6 +126,7 @@ class MonsterToughness {
         [MonsterToughness.DAMPING_5, "受けるダメージを1/5に減少する"],
         [MonsterToughness.DAMPING_10, "受けるダメージを1/10に減少する"],
         [MonsterToughness.DAMPING_100, "受けるダメージを1/100に減少する"],
+        [MonsterToughness.DAMPING_1000, "受けるダメージを1/1000に減少する"],
         [MonsterToughness.DAMPING_5 | MonsterToughness.DAMPING_10, "受けるダメージを1/50に減少する"],
         [MonsterToughness.DAMPING_100 | MonsterToughness.DAMPING_AMPLIFY, "受けるダメージを1/100に減少する。ギミック発動中は更に減少する"],
         [MonsterToughness.DAMPING_10 | MonsterToughness.DAMPING_TIME_DECAY, "受けるダメージを1/10に減少する。規定の時間が過ぎると等倍になる。"],
