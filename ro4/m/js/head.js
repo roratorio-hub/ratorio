@@ -9054,6 +9054,8 @@ function ApplyMagicalSpecializeMonsterMod20211014SubSpiderWebModify(charaData, s
  * @returns 
  */
 function ApplyMagicalSpecializeMonsterMod20211014SubSpecializeMap(charaData, specData, mobData, dmg) {
+	/** モンスターグループの合成配列 */
+	let candidate = [];
 	var wX = 0;
 	//--------------------------------
 	// マヌク特化
@@ -9628,6 +9630,23 @@ function ApplyMagicalSpecializeMonsterMod20211014SubSpecializeMap(charaData, spe
 			wX += 30 * cardCount;
 		}
 	}
+
+	/** ギムレー 特化 */
+	candidate = MonsterGroupObj[MONSTER_GROUP_ID_JOR_TMPLE1].concat(MonsterGroupObj[MONSTER_GROUP_ID_JOR_TMPLE2]);
+	if(NumSearch(mobData[0], candidate) === 1){
+		if ((cardCount = CardNumSearch(CARD_ID_YORDOS_EXECUTOR)) > 0) {
+			wX += 30 * cardCount;
+		}
+	}
+
+	/** ヨルンビル 隆起した大地 特化 */
+candidate = MonsterGroupObj[MONSTER_GROUP_ID_JOR_RAISE1].concat(MonsterGroupObj[MONSTER_GROUP_ID_JOR_RAISE2], MonsterGroupObj[MONSTER_GROUP_ID_JOR_BASE]);
+	if(NumSearch(mobData[0], candidate) === 1){
+		if ((cardCount = CardNumSearch(CARD_ID_SEA_WIND)) > 0) {
+			wX += 30 * cardCount;
+		}
+	}
+
 
 	//--------------------------------
 	// 英雄の痕跡支援
@@ -17589,7 +17608,8 @@ function ApplyHitJudgeElementRatio(skillId, dam, mobData) {
  * @returns 適用後のダメージ
  */
 function ApplyPhysicalSpecializeMonster(charaData, specData, mobData, dmg) {
-
+	/** モンスターグループの合成配列 */
+	let candidate = [];
 	//--------------------------------
 	// 種族特化
 	//--------------------------------
@@ -18336,6 +18356,22 @@ function ApplyPhysicalSpecializeMonster(charaData, specData, mobData, dmg) {
 	//--------------------------------
 	if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_JOR_ROOT]) == 1){
 		if ((cardCount = CardNumSearch(CARD_ID_JOR_MUNGANDR_GUARDIAN)) > 0) {
+			w += 30 * cardCount;
+		}
+	}
+
+	/** ギムレー 特化 */
+	candidate = MonsterGroupObj[MONSTER_GROUP_ID_JOR_TMPLE1].concat(MonsterGroupObj[MONSTER_GROUP_ID_JOR_TMPLE2]);
+	if(NumSearch(mobData[0], candidate) === 1){
+		if ((cardCount = CardNumSearch(CARD_ID_YORDOS_EXECUTOR)) > 0) {
+			w += 30 * cardCount;
+		}
+	}
+
+	/** ヨルンビル 隆起した大地 特化 */
+candidate = MonsterGroupObj[MONSTER_GROUP_ID_JOR_RAISE1].concat(MonsterGroupObj[MONSTER_GROUP_ID_JOR_RAISE2], MonsterGroupObj[MONSTER_GROUP_ID_JOR_BASE]);
+	if(NumSearch(mobData[0], candidate) === 1){
+		if ((cardCount = CardNumSearch(CARD_ID_SEA_WIND)) > 0) {
 			w += 30 * cardCount;
 		}
 	}

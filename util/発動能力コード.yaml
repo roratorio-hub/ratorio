@@ -142,6 +142,8 @@ capabilities:
     code: 76
   - name: ボス耐性
     code: 77
+  - name: 遠距離攻撃耐性
+    code: 78
   - name: 一般耐性
     code: 79
   - name: 物理ダメージ増加
