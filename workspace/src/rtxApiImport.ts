@@ -254,9 +254,9 @@ async function importRtxDataObject(dataObject: RtxData): Promise<void> {
 
                         // ランダムオプション（kind と value）
                         if (equipment.random_option && mapping.rndopt) {
-                            const slotModeButton = document.getElementById("OBJID_SLOT_MODE_BUTTON") as HTMLButtonElement;
+                            const slotModeButton = document.getElementById("OBJID_SLOT_MODE_BUTTON") as HTMLButtonElement | null;
                             // ランダムオプション欄を表示
-                            slotModeButton.click();
+                            if (slotModeButton) slotModeButton.click();
 
                             for (let rndidx = 0; rndidx <= 5; rndidx++) {
                                 const kindId = `${mapping.rndopt}_KIND_${rndidx}`;
@@ -285,7 +285,7 @@ async function importRtxDataObject(dataObject: RtxData): Promise<void> {
                                 }
                             }
                             // ランダムオプション欄を閉じる
-                            slotModeButton.click();
+                            if (slotModeButton) slotModeButton.click();
                         }
                     });
                 }
