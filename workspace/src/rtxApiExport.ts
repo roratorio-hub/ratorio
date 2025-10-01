@@ -79,7 +79,6 @@ function exportRtxDataObject(): RtxData {
         battle_info: {}
     };
 
-    const clickEvent = new MouseEvent('click', { bubbles: true, cancelable: true, view: window });
 
     // Get Job
     const jobElement = document.getElementById("OBJID_SELECT_JOB") as HTMLSelectElement;
