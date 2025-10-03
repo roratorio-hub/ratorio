@@ -1,8 +1,8 @@
 import { JobMap } from './loadJobMap';
 import { SkillMap } from './loadSkillMap';
 import { ItemMap } from './loadItemMap';
-import { loadRodbTranslator } from './rodbTranslator';
 import { initializePageKeyListeners } from './calcxAddEventListener';
+import { loadFromBase64String } from './rtxApiImport';
 
 /**
  * YAMLデータのロード完了まで待機する関数
@@ -52,6 +52,55 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // PageUp / PageDown キーリスナーの登録
     initializePageKeyListeners();
+
+    // 開発中の UI 表示
+    // GitHub Pages でホストされている場合は表示しない
+    if (!(window.location.hostname === "roratorio-hub.github.io" && window.location.pathname.split("/")[1] === "ratorio")) {
+        const devSpace = document.getElementById("UI_DISPLAY_SPACE_UNDER_DEVELOPMENT");
+        if (devSpace) {
+            // ボタン定義リスト（handler は string | string[] | Function | Function[] を許容）
+            const devButtons: any[] = [
+                { text: '🐱‍💻 loadFromLocalStorage', handler: 'loadFromLocalStorage', fontSize: '2em' },
+                { text: '🐱‍💻 saveToLocalStorage', handler: 'saveToLocalStorage', fontSize: '1em' },
+                { text: '🐱‍💻 loadFromLocalFile', handler: 'loadFromLocalFile', fontSize: '1em' },
+                { text: '🐱‍💻 saveToLocalFile', handler: 'saveToLocalFile', fontSize: '1em' },
+            ];
+
+            devButtons.forEach((btnDef) => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.textContent = btnDef.text;
+                btn.style.fontSize = btnDef.fontSize;
+                btn.style.backgroundColor = "#d5da71ff";
+
+                btn.addEventListener('click', () => {
+                    // handler を配列に統一
+                    const handlers = Array.isArray(btnDef.handler) ? btnDef.handler : [btnDef.handler];
+                    handlers.forEach((h: any) => {
+                        let fn: any = null;
+                        if (typeof h === 'string') {
+                            fn = (window as any)[h];
+                        } else if (typeof h === 'function') {
+                            fn = h;
+                        }
+
+                        if (typeof fn === 'function') {
+                            try {
+                                fn();
+                            } catch (e) {
+                                console.error(`handler execution failed`, e);
+                            }
+                        } else {
+                            console.warn(`handler is not available or not a function`, h);
+                        }
+                    });
+                });
+
+                devSpace.appendChild(btn);
+                devSpace.appendChild(document.createElement('br'));
+            });
+        }
+    }
 });
 
 /**
@@ -62,8 +111,8 @@ window.addEventListener('load', () => {
     waitForDataLoaded().then(() => {
         console.log('load: 🎉 All data is loaded.');
 
-        // RODB Translatorからのデータロード
-        loadRodbTranslator(window.location.hash);
+        // RTXデータロード
+        loadFromBase64String(window.location.hash.substring(1) || '');
     });
 });
 

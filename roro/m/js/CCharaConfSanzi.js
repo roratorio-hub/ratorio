@@ -585,6 +585,12 @@ function CCharaConfSanzi(confArray) {
 				}
 				// 初期値設定
 				objSelect.setAttribute("value", confData[CConfBase.CONF_DATA_INDEX_DEFAULT_VALUE]);
+
+				// RTX API用の属性追加
+				if (this.dataRtxAttributeIdPrefix !== null) {
+					objSelect.setAttribute(`${this.dataRtxAttributeIdPrefix}-element-id`, controlId);
+					objSelect.setAttribute(`${this.dataRtxAttributeIdPrefix}-displayname`, confData[CConfBase.CONF_DATA_INDEX_TEXT]);
+				}
 				break;
 			// 術式-展開-
 			case CCharaConfSanzi.CONF_ID_ZYUTSUSHIKI_TENKAI:
@@ -601,6 +607,12 @@ function CCharaConfSanzi(confArray) {
 				objOption = HtmlCreateElementOption(4, "風", objSelect);
 				// 初期値設定
 				objSelect.setAttribute("value", confData[CConfBase.CONF_DATA_INDEX_DEFAULT_VALUE]);
+
+				// RTX API用の属性追加
+				if (this.dataRtxAttributeIdPrefix !== null) {
+					objSelect.setAttribute(`${this.dataRtxAttributeIdPrefix}-element-id`, controlId);
+					objSelect.setAttribute(`${this.dataRtxAttributeIdPrefix}-displayname`, confData[CConfBase.CONF_DATA_INDEX_TEXT]);
+				}
 				break;
 			// ペインキラー用SホムのBaseLv
 			case CCharaConfSanzi.CONF_ID_PAIN_KILLER_BASE_LEVEL:
@@ -615,6 +627,12 @@ function CCharaConfSanzi(confArray) {
 				}
 				// 初期値設定
 				objSelect.setAttribute("value", confData[CConfBase.CONF_DATA_INDEX_DEFAULT_VALUE]);
+
+				// RTX API用の属性追加
+				if (this.dataRtxAttributeIdPrefix !== null) {
+					objSelect.setAttribute(`${this.dataRtxAttributeIdPrefix}-element-id`, controlId);
+					objSelect.setAttribute(`${this.dataRtxAttributeIdPrefix}-displayname`, confData[CConfBase.CONF_DATA_INDEX_TEXT]);
+				}
 				break;
 		}
 	}

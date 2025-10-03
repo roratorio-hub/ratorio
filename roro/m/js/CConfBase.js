@@ -148,6 +148,44 @@ function CConfBase(confArray) {
 			return;
 		}
 
+		// RTX API用のdata属性準備
+		this.dataRtxAttributeIdPrefix = null;
+		switch(this.confLabel) {
+			case "一次職支援設定":
+				this.dataRtxAttributeIdPrefix = "data-rtx-support-skill-1st";
+				break;
+			case "二次職支援設定":
+				this.dataRtxAttributeIdPrefix = "data-rtx-support-skill-2nd";
+				break;
+			case "三次職支援設定":
+				this.dataRtxAttributeIdPrefix = "data-rtx-support-skill-3rd";
+				break;
+			case "四次職支援設定":
+				this.dataRtxAttributeIdPrefix = "data-rtx-support-skill-4th";
+				break;
+			case "プレイヤー状態異常設定":
+				this.dataRtxAttributeIdPrefix = "data-rtx-support-debuff";
+				break;
+			case "性能カスタマイズ（ステータス関連）":
+				this.dataRtxAttributeIdPrefix = "data-rtx-customize-status-basic";
+				break;
+			case "性能カスタマイズ（攻撃関連）":
+				this.dataRtxAttributeIdPrefix = "data-rtx-customize-attack";
+				break;
+			case "性能カスタマイズ（防御関連）":
+				this.dataRtxAttributeIdPrefix = "data-rtx-customize-defense";
+				break;
+			case "性能カスタマイズ（スキル関連）":
+				this.dataRtxAttributeIdPrefix = "data-rtx-customize-skill";
+				break;
+			case "性能カスタマイズ（特性ステータス関連）":
+				this.dataRtxAttributeIdPrefix = "data-rtx-customize-status-special";
+				break;
+			default:
+				console.log(`Unknown confLabel for RTX API attributes: ${this.confLabel}`);
+				break;
+		}
+
 		// 既に同一のクラスインスタンスがあるかを検索し、インスタンス番号を決定する
 		instanceNo = CConfBase.targetArray.length;
 		for (idx = 0; idx < CConfBase.targetArray.length; idx++) {
@@ -292,6 +330,13 @@ function CConfBase(confArray) {
 					}
 					// 初期値設定
 					objSelect.setAttribute("value", this.confDataObj[idx][CConfBase.CONF_DATA_INDEX_DEFAULT_VALUE]);
+
+					// RTX API用の属性追加
+					if (this.dataRtxAttributeIdPrefix !== null) {
+						objSelect.setAttribute(`${this.dataRtxAttributeIdPrefix}-element-id`, controlId);
+						objSelect.setAttribute(`${this.dataRtxAttributeIdPrefix}-displayname`, confText);
+					}
+
 					break;
 				// 設定方法がチェック方式の場合
 				case CONTROL_TYPE_CHECKBOX:
@@ -308,6 +353,12 @@ function CConfBase(confArray) {
 						objInput.setAttribute("checked", "checked");
 					}
 
+					// RTX API用の属性追加
+					if (this.dataRtxAttributeIdPrefix !== null) {
+						objInput.setAttribute(`${this.dataRtxAttributeIdPrefix}-element-id`, controlId);
+						objInput.setAttribute(`${this.dataRtxAttributeIdPrefix}-displayname`, confText);
+					}
+
 					break;
 				// 設定方法が数値入力方式の場合
 				case CONTROL_TYPE_TEXTBOX_NUMBER:
@@ -322,6 +373,12 @@ function CConfBase(confArray) {
 
 					// 初期値設定
 					objInput.setAttribute("value", this.confDataObj[idx][CConfBase.CONF_DATA_INDEX_DEFAULT_VALUE]);
+
+					// RTX API用の属性追加
+					if (this.dataRtxAttributeIdPrefix !== null) {
+						objInput.setAttribute(`${this.dataRtxAttributeIdPrefix}-element-id`, controlId);
+						objInput.setAttribute(`${this.dataRtxAttributeIdPrefix}-displayname`, confText);
+					}
 
 					break;
 				// 設定方法が特殊方式の場合

@@ -187,6 +187,16 @@ function OnClickSkillSWLearned(){
 		objSelect = document.createElement("select");
 		objSelect.setAttribute("id", "OBJID_SELECT_LEARNED_SKILL_LEVEL_" + idx);
 		objSelect.setAttribute("onChange", "RefreshSkillColumnHeaderLearned(this, " + idx + ", this.value)");
+
+		// RTX API用の属性追加
+		const skillData = SkillMap.getByMigIdNum(skillId);
+		if (skillData) {
+			objSelect.setAttribute("data-rtx-learned-skill-id", skillData.getId());
+		} else {
+			// SkillMapに存在しないスキルはdata-skill-name属性を付与せず、警告ログを出す
+			console.warn("SkillMap not found skillId=", skillId, SkillObjNew[skillId]);
+		}
+
 		objTd.appendChild(objSelect);
 		for (let lvIdx = 0; lvIdx <= SkillObjNew[skillId][SKILL_DATA_INDEX_MAXLV]; lvIdx++) {
 			objOption = document.createElement("option");
@@ -323,4 +333,3 @@ function RefreshSkillColumnHeaderLearned(objSelect, changedIdx, newValue) {
 	objText = document.createTextNode(sUsedText);
 	objUsedText.appendChild(objText);
 }
-
