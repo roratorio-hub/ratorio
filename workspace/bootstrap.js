@@ -4,5 +4,7 @@ import './src/loadItemMap.ts';
 import './src/loadJobMap.ts';
 import './src/loadSkillMap.ts';
 import './src/optInSavedata.ts';
-import './src/rodbTranslator.ts';
+import './src/rtxApiCommon.ts';
+import './src/rtxApiImport.ts';
+import './src/rtxApiExport.ts';
 import './src/startup.ts';
