@@ -6290,6 +6290,37 @@
 	CardIdToSetIdMap[3805] = [3220,];
 	w_SE[3221] = [-3808,-3807,-2123,];
 	CardIdToSetIdMap[3807] = [3221,];
+	// --- 2025-10-14 ---
+	w_SE[3222] = [-3819,-3818,-1348,];
+	CardIdToSetIdMap[3818] = [3222,];
+	w_SE[3223] = [-3821,-3820,-1245,];
+	CardIdToSetIdMap[3820] = [3223,];
+	w_SE[3224] = [-3823,-3822,-1348,];
+	CardIdToSetIdMap[3822] = [3224,];
+	w_SE[3225] = [-3825,-3824,-1245,];
+	CardIdToSetIdMap[3824] = [3225,];
+	w_SE[3226] = [-3827,-3826,-1348,];
+	CardIdToSetIdMap[3826] = [3226,];
+	w_SE[3227] = [-3829,-3828,-1348,];
+	CardIdToSetIdMap[3828] = [3227,];
+	w_SE[3228] = [-3632,-3631,5550,];	// セレスティアルツーハン
+	ItemIdToSetIdMap[5550] = [3228,];
+	w_SE[3229] = [-3632,-3631,5552,];	// セレスティアルガトリン
+	ItemIdToSetIdMap[5552] = [3229,];
+	w_SE[3230] = [5556,5555,-1975,];
+	ItemIdToSetIdMap[5555] = [3230,];
+	w_SE[3231] = [4238,4235,-10107],	// Atk+200, Matk+200, Def+150, Mdef+15 (4238) = ワンダーエッグ(4235) + 包装されなかった人形
+	w_SE[3232] = [4236,4235,-10108],	// ワンダーエッグバスケット(4235) + セリーヌ・キミ
+	PetIdToSetIdMap[107] = [3231];
+	PetIdToSetIdMap[108] = [3232];
+	ItemIdToSetIdMap[4235] = ItemIdToSetIdMap[4235].concat([3231, 3232]);
+	CardIdToSetIdMap[1245] = CardIdToSetIdMap[1245].concat([3223, 3225]);
+	CardIdToSetIdMap[1348] = CardIdToSetIdMap[1348].concat([3222, 3224, 3226, 3227]);
+	CardIdToSetIdMap[1975] = CardIdToSetIdMap[1975].concat([3230]);
+	CardIdToSetIdMap[2123] = CardIdToSetIdMap[2123].concat([3204, 3205, 3206, 3207, 3208, 3209, 3210, 3211, 3212, 3213, 3214, 3215, 3216, 3217, 3218, 3219, 3220, 3221]);
+	CardIdToSetIdMap[2311] = CardIdToSetIdMap[2311].concat([3199, 3200, 3201, 3202, 3203]);
+	CardIdToSetIdMap[3631] = CardIdToSetIdMap[3631].concat([3228, 3229]);
+
 
 	// itemset はセーブデータに書き出されないので
 	// 現実的な範囲において itemsetID の上限値を気にする必要はありません
