@@ -376,6 +376,12 @@ function CCharaConfYozi(confArray) {
 				HtmlCreateElementOption(1, "有り", objSelect);
 				// 初期値設定
 				objSelect.setAttribute("value", confData[CConfBase.CONF_DATA_INDEX_DEFAULT_VALUE]);
+
+				// RTX API用の属性追加
+				if (this.dataRtxAttributeIdPrefix !== null) {
+					objSelect.setAttribute(`${this.dataRtxAttributeIdPrefix}-element-id`, controlId);
+					objSelect.setAttribute(`${this.dataRtxAttributeIdPrefix}-displayname`, confData[CConfBase.CONF_DATA_INDEX_TEXT]);
+				}
 				break;
 		}
 	}

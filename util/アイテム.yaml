@@ -1,643 +1,336 @@
 item_list:
-  - name: ゲオルグアーマー
-    yomi: ゲオルグアーマー
-    type: 鎧
-    slot: 1
-    weapon_lv: 0
-    atk_or_def: 150
-    weight: 120
-    required_lv: 260
-    required_job: 4次職 拡張4次職
+  - name: セレスティアルツーハンドソード
+    yomi: セレスティアルツーハンドソード
+    type: 両手剣
+    slot: 0
+    weapon_lv: 4
+    atk_or_def: 280
+    weight: 340
+    required_lv: 200
+    required_job: 4次職ソードマン系
     capabilities:
-      - name: プレイヤー耐性
-        value: 7
-      - name: 闇属性耐性
-        value: 10
-      - name: 全種族への物理ダメージ増加
-        value: 4
-        per_refine: 1
-      - name: 全種族への魔法ダメージ増加
-        value: 4
-        per_refine: 1
-      - name: ASPD増加
-        value: 10
-        at_refine: 7
       - name: 壊れない
         value: 1
-        at_refine: 9
+      - name: 武器のMATK
+        value: 230
+      - name: 変動詠唱減少
+        value: 100
+      - name: ボス耐性
+        value: 40
+      - name: プレイヤー耐性
+        value: 45
+      - name: 全種族への物理ダメージ増加
+        value: 6
+        per_refine: 1
+      - name: 全種族への魔法ダメージ増加
+        value: 3
+        per_refine: 1
+      - name: 一般耐性
+        value: 40
+        at_transcendence: 1
+      - name: 全種族への物理ダメージ増加
+        value: 7
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全種族への魔法ダメージ増加
+        value: 7
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 10
+        at_transcendence: 1
+    set_list:
+      - set:
+        entity_list:
+          - card_name: セレスティアルピース
+        capabilities:
+          - name: MAXHP増加
+            value: 15
+          - name: ボス耐性
+            value: 10
+          - name: スキル使用可能
+            skill: テレポート
+            skill_lv: 1
+  - name: セレスティアルガトリングガン
+    yomi: セレスティアルガトリングガン
+    type: ガトリングガン
+    slot: 0
+    weapon_lv: 4
+    atk_or_def: 120
+    weight: 250
+    required_lv: 200
+    required_job: ナイトウォッチ
+    capabilities:
+      - name: 壊れない
+        value: 1
+      - name: 変動詠唱減少
+        value: 100
+      - name: ボス耐性
+        value: 40
+      - name: プレイヤー耐性
+        value: 45
+      - name: 全種族への物理ダメージ増加
+        value: 6
+        per_refine: 1
+      - name: 全種族への魔法ダメージ増加
+        value: 3
+        per_refine: 1
+      - name: 一般耐性
+        value: 40
+        at_transcendence: 1
+      - name: 全種族への物理ダメージ増加
+        value: 7
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全種族への魔法ダメージ増加
+        value: 7
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 10
+        at_transcendence: 1
+    set_list:
+      - set:
+        entity_list:
+          - card_name: セレスティアルピース
+        capabilities:
+          - name: MAXHP増加
+            value: 15
+          - name: ボス耐性
+            value: 10
+          - name: スキル使用可能
+            skill: テレポート
+            skill_lv: 1
+
+  - name: あったかキジトラマフラー
+    yomi: あったかキジトラマフラー
+    type: 下段
+    slot: 0
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 10
+    required_lv: 200
+    required_job: スピリットハンドラー
+    capabilities:
+      - name: プレイヤー耐性
+        value: 3
+      - name: 全サイズへの物理ダメージ増加
+        value: 1
+        per_lv: 10
+      - name: 全サイズへの魔法ダメージ増加
+        value: 1
+        per_lv: 10
     enchant: #
-      - name: ゲオルグ防具エンチャント
+      - name: スペシャルエンチャント（ミオン）
         slot_list: #
           - slot: 4
             refine: 0
             enchant_list: #
-              - name: Str+5
-              - name: Agi+5
-              - name: Vit+5
-              - name: Int+5
-              - name: Dex+5
-              - name: Luk+5
+              - name: 潜在解放(スピリットハンドラーXVI)
+
+  - name: マジェスティックフォックス
+    yomi: マジェスティックフォックス
+    type: 下段
+    slot: 0
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 10
+    required_lv: 100
+    required_job: 全ての職業
+    capabilities:
+      - name: プレイヤー耐性
+        value: 3
+      - name: 全サイズへの物理ダメージ増加
+        value: 1
+        per_lv: 10
+      - name: 全サイズへの魔法ダメージ増加
+        value: 1
+        per_lv: 10
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 英雄の凱歌
+        capabilities:
+          - name: 詠唱が中断されない
+            value: 1
+          - name: オートスペル発動
+            skill: チェーンライトニング
+            skill_lv: 5
+    enchant: #
+      - name: スペシャルエンチャント（キョウ）
+        slot_list: #
+          - slot: 4
+            refine: 0
+            enchant_list: #
+              - name: スキルディレイ-15%
+              - name: Mdef50%無視
               - name: SpecialStr
               - name: SpecialAgi
               - name: SpecialVit
               - name: SpecialInt
               - name: SpecialDex
               - name: SpecialLuk
-              - name: 必中攻撃+25%
-              - name: Cri+25
-              - name: 詠唱妨害不可
               - name: 英雄の凱歌
-              - name: 異境の統轄者
           - slot: 3
             refine: 0
             enchant_list: #
-              - name: Str+5
-              - name: Agi+5
-              - name: Vit+5
-              - name: Int+5
-              - name: Dex+5
-              - name: Luk+5
+              - name: Mdef50%無視
+              - name: 固定詠唱時間-70%
               - name: SpecialStr
               - name: SpecialAgi
               - name: SpecialVit
               - name: SpecialInt
               - name: SpecialDex
               - name: SpecialLuk
+          - slot: 2
+            refine: 0
+            enchant_list: #
+              - name: Str+10
+              - name: Agi+10
+              - name: Vit+10
+              - name: Int+10
+              - name: Dex+10
+              - name: Luk+10
+              - name: 暴走した魔力
+              - name: 真理の解放
+
+  - name: テオフィルス
+    yomi: テオフィルス
+    desc: "[シビアレインストーム]使用時、20秒間、[アンリミット]Lv5状態になる<br>装備解除時、[アンリミット]を解除する"
+    type: 鎧
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 100
+    weight: 100
+    required_lv: 200
+    required_job: トルバドゥール トルヴェール
+    capabilities:
+      - name: プレイヤー耐性
+        value: 7
+      - name: スキルダメージ増加
+        skill: リズムシューティング
+        value: 1
+        per_lv: 10
+      - name: スキルダメージ増加
+        skill: ロゼブロッサム
+        value: 1
+        per_lv: 10
+      - name: 全サイズへの物理ダメージ増加
+        value: 7
+        per_refine: 1
+      - name: ASPD増加
+        value: 10
+        at_refine: 7
+      - name: 一般耐性
+        value: 5
+        at_refine: 7
+      - name: ボス耐性
+        value: 5
+        at_refine: 7
+      - name: 壊れない
+        value: 1
+        at_refine: 9
+      - name: 全属性への物理ダメージ増加
+        value: 15
+        at_refine: 10
+    enchant: #
+      - name: スペシャルエンチャント（オーブ）
+        slot_list: #
+          - slot: 4
+            refine: 0
+            enchant_list: #
+              - name: 潜在解放(トルバドゥール&トルヴェールXI)
+          - slot: 3
+            refine: 8
+            enchant_list: #
+              - name: 火属性付与(鎧)
+              - name: 水属性付与(鎧)
+              - name: 風属性付与(鎧)
+              - name: 地属性付与(鎧)
               - name: 聖属性付与(鎧)
               - name: 闇属性付与(鎧)
               - name: 念属性付与(鎧)
               - name: 毒属性付与(鎧)
               - name: 不死属性付与(鎧)
-
-  - name: ゲオルグマント
-    yomi: ゲオルグマント
-    type: 肩にかける物
-    slot: 1
-    weapon_lv: 0
-    atk_or_def: 60
-    weight: 100
-    required_lv: 260
-    required_job: 4次職 拡張4次職
-    capabilities:
-      - name: 壊れない
-        value: 1
-      - name: プレイヤー耐性
-        value: 5
-      - name: 闇属性耐性
-        value: 50
-      - name: MAXHP増加
-        value: 1
-        per_refine: 1
-      - name: MAXSP増加
-        value: 1
-        per_refine: 1
-      - name: スキルディレイ減少
-        value: 25
-        at_refine: 7
-      - name: 全属性への物理ダメージ増加
-        value: 5
-        at_refine: 7
-      - name: 全属性への魔法ダメージ増加
-        value: 5
-        at_refine: 7
-      - name: ASPD増加
-        value: 20
-        at_refine: 9
-      - name: 全属性への物理ダメージ増加
-        value: 10
-        at_refine: 9
-      - name: 全属性への魔法ダメージ増加
-        value: 10
-        at_refine: 9
-    enchant: #
-      - name: ゲオルグ防具エンチャント
-        slot_list: #
-          - slot: 4
-            refine: 0
-            enchant_list: #
-              - name: Str+5
-              - name: Agi+5
-              - name: Vit+5
-              - name: Int+5
-              - name: Dex+5
-              - name: Luk+5
-              - name: SpecialStr
-              - name: SpecialAgi
-              - name: SpecialVit
-              - name: SpecialInt
-              - name: SpecialDex
-              - name: SpecialLuk
-              - name: 必中攻撃+25%
-              - name: Cri+25
-              - name: 詠唱妨害不可
-              - name: 英雄の凱歌
-              - name: 異境の統轄者
-          - slot: 3
-            refine: 0
-            enchant_list: #
-              - name: Str+5
-              - name: Agi+5
-              - name: Vit+5
-              - name: Int+5
-              - name: Dex+5
-              - name: Luk+5
-              - name: SpecialStr
-              - name: SpecialAgi
-              - name: SpecialVit
-              - name: SpecialInt
-              - name: SpecialDex
-              - name: SpecialLuk
-              - name: 覇王
-              - name: 暴走した魔力
-              - name: 大鷲の眼光
-              - name: 豪傑
-              - name: 真理の解放
-
-  - name: ゲオルグブーツ
-    yomi: ゲオルグブーツ
-    type: 靴
-    slot: 1
-    weapon_lv: 0
-    atk_or_def: 20
-    weight: 60
-    required_lv: 260
-    required_job: 4次職 拡張4次職
-    capabilities:
-      - name: 壊れない
-        value: 1
-      - name: プレイヤー耐性
-        value: 10
-      - name: 闇属性耐性
-        value: 10
-      - name: 物理ダメージ増加
-        value: 4
-        per_refine: 1
-      - name: 魔法ダメージ増加
-        value: 4
-        per_refine: 1
-      - name: MAXHP増加
-        value: 20
-        at_refine: 7
-      - name: スキルディレイ減少
-        value: 15
-        at_refine: 7
-      - name: MAXHP増加
-        value: 20
-        at_refine: 9
-      - name: スキルディレイ減少
-        value: 25
-        at_refine: 9
-    enchant: #
-      - name: ゲオルグ防具エンチャント
-        slot_list: #
-          - slot: 4
-            refine: 0
-            enchant_list: #
-              - name: Str+5
-              - name: Agi+5
-              - name: Vit+5
-              - name: Int+5
-              - name: Dex+5
-              - name: Luk+5
-              - name: SpecialStr
-              - name: SpecialAgi
-              - name: SpecialVit
-              - name: SpecialInt
-              - name: SpecialDex
-              - name: SpecialLuk
-              - name: 必中攻撃+25%
-              - name: Cri+25
-              - name: 詠唱妨害不可
-              - name: 英雄の凱歌
-              - name: 異境の統轄者
-          - slot: 3
-            refine: 0
-            enchant_list: #
-              - name: Str+5
-              - name: Agi+5
-              - name: Vit+5
-              - name: Int+5
-              - name: Dex+5
-              - name: Luk+5
-              - name: SpecialStr
-              - name: SpecialAgi
-              - name: SpecialVit
-              - name: SpecialInt
-              - name: SpecialDex
-              - name: SpecialLuk
-              - name: 覇王
-              - name: 暴走した魔力
-              - name: 大鷲の眼光
-              - name: 豪傑
-              - name: 真理の解放
-
-  - name: エグゼキューションサークレット
-    yomi: エグゼキューションサークレット
-    type: 上段
-    slot: 1
-    weapon_lv: 0
-    atk_or_def: 10
-    weight: 50
-    required_lv: 260
-    required_job: 4次職 拡張4次職
-    capabilities:
-      - name: 壊れない
-        value: 1
-      - name: 一般耐性
-        value: 20
-      - name: ボス耐性
-        value: 20
-      - name: プレイヤー耐性
-        value: 13
-      - name: 闇属性耐性
-        value: 5
-      - name: 全属性への物理ダメージ増加
-        value: 4
-        per_refine: 1
-      - name: 全属性への魔法ダメージ増加
-        value: 4
-        per_refine: 1
-      - name: MAXHP増加
-        value: 10
-        at_refine: 7
-      - name: MAXSP増加
-        value: 10
-        at_refine: 7
-      - name: スキルディレイ減少
-        value: 10
-        at_refine: 7
-      - name: 闇属性耐性
-        value: 5
-        at_refine: 7
-      - name: 全基本ステータス加算
-        value: 10
-        at_refine: 9
-      - name: スキルディレイ減少
-        value: 10
-        at_refine: 9
-      - name: 闇属性耐性
-        value: 5
-        at_refine: 9
-
-  - name: ジャッジメントサークレット
-    yomi: ジャッジメントサークレット
-    type: 上段
-    slot: 1
-    weapon_lv: 0
-    atk_or_def: 10
-    weight: 50
-    required_lv: 260
-    required_job: 4次職 拡張4次職
-    capabilities:
-      - name: 壊れない
-        value: 1
-      - name: 一般耐性
-        value: 20
-      - name: ボス耐性
-        value: 20
-      - name: プレイヤー耐性
-        value: 13
-      - name: 聖属性耐性
-        value: 5
-      - name: 全属性への物理ダメージ増加
-        value: 4
-        per_refine: 1
-      - name: 全属性への魔法ダメージ増加
-        value: 4
-        per_refine: 1
-      - name: MAXHP増加
-        value: 10
-        at_refine: 7
-      - name: MAXSP増加
-        value: 10
-        at_refine: 7
-      - name: スキルディレイ減少
-        value: 10
-        at_refine: 7
-      - name: 聖属性耐性
-        value: 5
-        at_refine: 7
-      - name: 全基本ステータス加算
-        value: 10
-        at_refine: 9
-      - name: スキルディレイ減少
-        value: 10
-        at_refine: 9
-      - name: 聖属性耐性
-        value: 5
-        at_refine: 9
-    enchant: #
-      - name: ヨルスキャールヴ防具エンチャント
-        slot_list: #
-          - slot: 4
-            refine: 0
-            enchant_list: #
-              - name: Str+5
-              - name: Agi+5
-              - name: Vit+5
-              - name: Int+5
-              - name: Dex+5
-              - name: Luk+5
-              - name: SpecialStr
-              - name: SpecialAgi
-              - name: SpecialVit
-              - name: SpecialInt
-              - name: SpecialDex
-              - name: SpecialLuk
-              - name: 必中攻撃+25%
-              - name: Cri+25
-              - name: 詠唱妨害不可
-              - name: 英雄の凱歌
-              - name: 異境の統轄者
-          - slot: 3
-            refine: 0
-            enchant_list: #
-              - name: Str+5
-              - name: Agi+5
-              - name: Vit+5
-              - name: Int+5
-              - name: Dex+5
-              - name: Luk+5
-              - name: SpecialStr
-              - name: SpecialAgi
-              - name: SpecialVit
-              - name: SpecialInt
-              - name: SpecialDex
-              - name: SpecialLuk
-              - name: 覇王
-              - name: 暴走した魔力
-              - name: 大鷲の眼光
-              - name: 豪傑
-              - name: 真理の解放
           - slot: 2
-            refine: 0
+            refine: 9
             enchant_list: #
-              - name: 王家の栄光
+              - name: スキルディレイ-15%
+              - name: 必中攻撃+25%
+              - name: 詠唱妨害不可
+              - name: 英雄の凱歌
 
-  - name: ヨルスキャールヴアーマー
-    yomi: ヨルスキャールヴアーマー
+  - name: グロズヌイ
+    yomi: グロズヌイ
     type: 鎧
     slot: 1
     weapon_lv: 0
-    atk_or_def: 150
-    weight: 120
-    required_lv: 260
-    required_job: 4次職 拡張4次職
+    atk_or_def: 100
+    weight: 100
+    required_lv: 200
+    required_job: ハイパーノービス
     capabilities:
-      - name: 一般耐性
-        value: 5
-      - name: ボス耐性
-        value: 5
       - name: プレイヤー耐性
         value: 7
-      - name: 闇属性耐性
-        value: 10
-      - name: 全サイズへの物理ダメージ増加
-        value: 7
-        per_refine: 1
+      - name: スキルダメージ増加
+        skill: ユピテルサンダーストーム
+        value: 1
+        per_lv: 10
+      - name: スキルダメージ増加
+        skill: ヘルズドライブ
+        value: 1
+        per_lv: 10
+      - name: スキルダメージ増加
+        skill: ナパームバルカンストライク
+        value: 1
+        per_lv: 10
       - name: 全サイズへの魔法ダメージ増加
         value: 7
         per_refine: 1
       - name: ASPD増加
         value: 10
         at_refine: 7
+      - name: 一般耐性
+        value: 5
+        at_refine: 7
+      - name: ボス耐性
+        value: 5
+        at_refine: 7
       - name: 壊れない
         value: 1
         at_refine: 9
+      - name: スキル使用可能
+        skill: バイオレントゲイル
+        skill_lv: 5
+        at_refine: 9
+      - name: 全属性への魔法ダメージ増加
+        value: 15
+        at_refine: 10
     enchant: #
-      - name: ヨルスキャールヴ防具エンチャント
+      - name: スペシャルエンチャント（オーブ）
         slot_list: #
           - slot: 4
             refine: 0
             enchant_list: #
-              - name: Str+5
-              - name: Agi+5
-              - name: Vit+5
-              - name: Int+5
-              - name: Dex+5
-              - name: Luk+5
-              - name: SpecialStr
-              - name: SpecialAgi
-              - name: SpecialVit
-              - name: SpecialInt
-              - name: SpecialDex
-              - name: SpecialLuk
-              - name: 必中攻撃+25%
-              - name: Cri+25
-              - name: 詠唱妨害不可
-              - name: 英雄の凱歌
-              - name: 異境の統轄者
+              - name: 潜在解放(ハイパーノービスXV)
           - slot: 3
-            refine: 0
+            refine: 8
             enchant_list: #
-              - name: Str+5
-              - name: Agi+5
-              - name: Vit+5
-              - name: Int+5
-              - name: Dex+5
-              - name: Luk+5
-              - name: SpecialStr
-              - name: SpecialAgi
-              - name: SpecialVit
-              - name: SpecialInt
-              - name: SpecialDex
-              - name: SpecialLuk
+              - name: 火属性付与(鎧)
+              - name: 水属性付与(鎧)
+              - name: 風属性付与(鎧)
+              - name: 地属性付与(鎧)
               - name: 聖属性付与(鎧)
               - name: 闇属性付与(鎧)
               - name: 念属性付与(鎧)
               - name: 毒属性付与(鎧)
               - name: 不死属性付与(鎧)
           - slot: 2
-            refine: 0
+            refine: 9
             enchant_list: #
-              - name: 王家の栄光
-
-  - name: ヨルスキャールヴマント
-    yomi: ヨルスキャールヴマント
-    type: 肩にかける物
-    slot: 1
-    weapon_lv: 0
-    atk_or_def: 60
-    weight: 100
-    required_lv: 260
-    required_job: 4次職 拡張4次職
-    capabilities:
-      - name: 壊れない
-        value: 1
-      - name: 一般耐性
-        value: 5
-      - name: ボス耐性
-        value: 5
-      - name: プレイヤー耐性
-        value: 5
-      - name: 闇属性耐性
-        value: 50
-      - name: 全基本ステータス加算
-        value: 1
-        per_refine: 1
-      - name: MAXHP増加
-        value: 2
-        per_refine: 1
-      - name: MAXSP増加
-        value: 2
-        per_refine: 1
-      - name: 全属性への物理ダメージ増加
-        value: 1
-        per_refine: 1
-      - name: 全属性への魔法ダメージ増加
-        value: 1
-        per_refine: 1
-      - name: スキルディレイ減少
-        value: 25
-        at_refine: 7
-      - name: 全属性への物理ダメージ増加
-        value: 5
-        at_refine: 7
-      - name: 全属性への魔法ダメージ増加
-        value: 5
-        at_refine: 7
-      - name: ASPD増加
-        value: 20
-        at_refine: 9
-      - name: 全属性への物理ダメージ増加
-        value: 10
-        at_refine: 9
-      - name: 全属性への魔法ダメージ増加
-        value: 10
-        at_refine: 9
-    enchant: #
-      - name: ヨルスキャールヴ防具エンチャント
-        slot_list: #
-          - slot: 4
-            refine: 0
-            enchant_list: #
-              - name: Str+5
-              - name: Agi+5
-              - name: Vit+5
-              - name: Int+5
-              - name: Dex+5
-              - name: Luk+5
-              - name: SpecialStr
-              - name: SpecialAgi
-              - name: SpecialVit
-              - name: SpecialInt
-              - name: SpecialDex
-              - name: SpecialLuk
+              - name: スキルディレイ-15%
               - name: 必中攻撃+25%
-              - name: Cri+25
               - name: 詠唱妨害不可
-              - name: 英雄の凱歌
-              - name: 異境の統轄者
-          - slot: 3
-            refine: 0
-            enchant_list: #
-              - name: Str+5
-              - name: Agi+5
-              - name: Vit+5
-              - name: Int+5
-              - name: Dex+5
-              - name: Luk+5
-              - name: SpecialStr
-              - name: SpecialAgi
-              - name: SpecialVit
-              - name: SpecialInt
-              - name: SpecialDex
-              - name: SpecialLuk
-              - name: 覇王
-              - name: 暴走した魔力
-              - name: 大鷲の眼光
-              - name: 豪傑
-              - name: 真理の解放
-          - slot: 2
-            refine: 0
-            enchant_list: #
-              - name: 王家の栄光
-
-  - name: ヨルスキャールヴブーツ
-    yomi: ヨルスキャールヴブーツ
-    type: 靴
-    slot: 1
-    weapon_lv: 0
-    atk_or_def: 20
-    weight: 60
-    required_lv: 260
-    required_job: 4次職 拡張4次職
-    capabilities:
-      - name: 壊れない
-        value: 1
-      - name: 一般耐性
-        value: 5
-      - name: ボス耐性
-        value: 5
-      - name: プレイヤー耐性
-        value: 10
-      - name: 闇属性耐性
-        value: 10
-      - name: 全基本ステータス加算
-        value: 3
-        per_refine: 1
-      - name: 物理ダメージ増加
-        value: 7
-        per_refine: 1
-      - name: 魔法ダメージ増加
-        value: 7
-        per_refine: 1
-      - name: MAXHP増加
-        value: 20
-        at_refine: 7
-      - name: スキルディレイ減少
-        value: 15
-        at_refine: 7
-      - name: MAXHP増加
-        value: 20
-        at_refine: 9
-      - name: スキルディレイ減少
-        value: 25
-        at_refine: 9
-    enchant: #
-      - name: ヨルスキャールヴ防具エンチャント
-        slot_list: #
-          - slot: 4
-            refine: 0
-            enchant_list: #
-              - name: Str+5
-              - name: Agi+5
-              - name: Vit+5
-              - name: Int+5
-              - name: Dex+5
-              - name: Luk+5
-              - name: SpecialStr
-              - name: SpecialAgi
-              - name: SpecialVit
-              - name: SpecialInt
-              - name: SpecialDex
-              - name: SpecialLuk
-              - name: 必中攻撃+25%
-              - name: Cri+25
-              - name: 詠唱妨害不可
-              - name: 英雄の凱歌
-              - name: 異境の統轄者
-          - slot: 3
-            refine: 0
-            enchant_list: #
-              - name: Str+5
-              - name: Agi+5
-              - name: Vit+5
-              - name: Int+5
-              - name: Dex+5
-              - name: Luk+5
-              - name: SpecialStr
-              - name: SpecialAgi
-              - name: SpecialVit
-              - name: SpecialInt
-              - name: SpecialDex
-              - name: SpecialLuk
-              - name: 覇王
-              - name: 暴走した魔力
-              - name: 大鷲の眼光
-              - name: 豪傑
-              - name: 真理の解放
-          - slot: 2
-            refine: 0
-            enchant_list: #
-              - name: 王家の栄光
+              - name: 厄災の魔将

@@ -37,6 +37,9 @@ class JobData {
     getId(): string {
         return this.parameter.id_name;
     }
+    getIdName(): string {
+        return this.parameter.id_name; // getId()のエイリアス
+    }
     getIdNum(): number {
         return this.parameter.id_num;
     }
@@ -130,13 +133,13 @@ export class JobMap {
         return Object.entries(this.jobMap);
     }
 
-    /** id_name(string or number) から Job を取得 */
+    /** id(string or number) から Job を取得 */
     static getById(key: string | number): JobData | undefined {
         if (typeof key === 'string') {
             // 文字列の場合はID Nameを検索
             return this.getByIdName(key);
         } else if (typeof key === 'number') {
-            // 数値の場合は_mig_id_numを検索
+            // 数値の場合はID Numを検索
             return this.getByIdNum(key);
         }
         return undefined;
