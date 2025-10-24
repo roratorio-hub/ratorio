@@ -1,9 +1,6 @@
 # node_modules ディレクトリを削除
 Remove-Item -Path "node_modules" -Recurse -Force -ErrorAction SilentlyContinue
 
-# package-lock.json ファイルを削除
-Remove-Item -Path "package-lock.json" -ErrorAction SilentlyContinue
-
 # dist ディレクトリが存在しない場合は作成
 if (-not (Test-Path "../dist")) {
     New-Item -Path "../dist" -ItemType Directory
@@ -12,8 +9,8 @@ if (-not (Test-Path "../dist")) {
 # dist ディレクトリ内のファイルを削除
 Remove-Item -Path "../dist/*" -ErrorAction SilentlyContinue
 
-# npm install を実行
-npm install
+# npm ci(clean-install) を実行
+npm ci
 
 # npm run build を実行
 npm run build
