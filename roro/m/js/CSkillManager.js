@@ -41931,7 +41931,7 @@ function CSkillManager() {
 				return 150 * skillLv;
 			}
 			this.DelayTimeCommon = function(skillLv, charaDataManger) {
-				return 5000 * skillLv;
+				return 5000;
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 3000;
