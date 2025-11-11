@@ -6320,7 +6320,9 @@
 	CardIdToSetIdMap[2123] = CardIdToSetIdMap[2123].concat([3204, 3205, 3206, 3207, 3208, 3209, 3210, 3211, 3212, 3213, 3214, 3215, 3216, 3217, 3218, 3219, 3220, 3221]);
 	CardIdToSetIdMap[2311] = CardIdToSetIdMap[2311].concat([3199, 3200, 3201, 3202, 3203]);
 	CardIdToSetIdMap[3631] = CardIdToSetIdMap[3631].concat([3228, 3229]);
-
+	w_SE[3233] = [4237,4235,-10109];	// Atk+200, Matk+200, 全サイズ物理+10, 全サイズ魔法+10 (4237) = ワンダーエッグ(4235) + ブルームーンロリルリ(109)
+	PetIdToSetIdMap[109] = [3233];
+	ItemIdToSetIdMap[4235] = ItemIdToSetIdMap[4235].concat([3233]);
 
 	// itemset はセーブデータに書き出されないので
 	// 現実的な範囲において itemsetID の上限値を気にする必要はありません
