@@ -40949,7 +40949,7 @@ function CSkillManager() {
 				return [ITEM_KIND_AXE, ITEM_KIND_AXE_2HAND].includes(weapon);
 			}
 			this.dispHitCount = function(skillLv) {
-				return 2;
+				return 1;
 			}
 			this.Power = function(skillLv, charaData, option) {
 				let ratio = 0;
