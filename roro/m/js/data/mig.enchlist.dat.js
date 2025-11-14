@@ -1319,6 +1319,15 @@
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5558] = [829,730];	// グロズヌイ
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5550] = [769];	// セレスティアルツーハンドソード
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5552] = [769];	// セレスティアルガトリングガン
+	// --- 2025-11-11 ---
+	g_constDataManager.enchListDataManager.sourceArray[830] = [830,-1,0,0,[["スペシャルエンチャント（キョウ）","スペシャルエンチャント（キョウ）"]],[],[[[174,[50,[5559]]],,[[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[1247,1625,1425,1428,659,599,660,661,662,663,2005,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[1848,2657,1425,1428,659,599,660,661,662,663,1179,2738,]]],,[]]]]]],[[178,[27,[2]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[668,673,678,683,688,692,990,2499,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5559] = [830];	// アシャワヒシュタ
+	g_constDataManager.enchListDataManager.sourceArray[831] = [831,-1,0,0,[["スペシャルエンチャント（ミオン）","スペシャルエンチャント（ミオン）"]],[],[[[174,[50,[5560]]],,[[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[3588,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5560] = [831,776];	// 心頭滅却マフラー(青)
+	g_constDataManager.enchListDataManager.sourceArray[832] = [832,-1,0,0,[["スペシャルエンチャント（ミオン）","スペシャルエンチャント（ミオン）"]],[],[[[174,[50,[5561]]],,[[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[2936,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5561] = [832,776];	// ポポリンシャボンパイプ
+	g_constDataManager.enchListDataManager.sourceArray[833] = [833,-1,0,0,[["スペシャルエンチャント（キョウ）","スペシャルエンチャント（キョウ）"]],[],[[[174,[50,[5562]]],,[[[178,[27,[4]]],,[[[187,[59,8],[60,4]],,[[[186,[51,[668,673,678,683,688,692,1247,1975,2043,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,9],[60,4]],,[[[186,[51,[668,673,678,683,688,692,1247,2145,3106,3519,]]],,[]]]]]],[[178,[27,[2]]],,[[[187,[59,10],[60,4]],,[[[186,[51,[2220,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5562] = [833];	// ヴァルキリーカースシールド
 
 	// enchant はセーブデータに書き出されないので
 	// 現実的な範囲において enchantID の上限値を気にする必要はありません
