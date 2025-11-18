@@ -12,7 +12,8 @@ import { yamlOptions } from "./yamlMergeAndCompress";
 
 export async function mergeSkill(): Promise<void> {
     const srcYaml = path.resolve("./data/skill.yaml");
-    const outYaml = path.resolve("../dist/skill.yaml.zst");
+    const outYaml = path.resolve("../dist/skill.yaml");
+    const outYamlZstd = path.resolve("../dist/skill.yaml.zst");
     const srcJs = path.resolve("../roro/m/js/skill.dat.js");
 
     // ファイル読み込み
@@ -126,11 +127,17 @@ export async function mergeSkill(): Promise<void> {
         }
     });
 
-    const compressed = await zstdCompress(dumpYAML(skillMapObject, yamlOptions));
+    const yamlString = dumpYAML(skillMapObject, yamlOptions);
+    if (yamlString === null) {
+        throw new Error("dumpYAML が null を返しました");
+    }
+    await fs.writeFile(outYaml, yamlString);
+
+    const compressed = await zstdCompress(yamlString);
     if (compressed === null) {
         throw new Error("zstdCompress が null を返しました");
     }
-    await fs.writeFile(outYaml, compressed);
+    await fs.writeFile(outYamlZstd, compressed);
 }
 
 async function parseSkillDat(src: string): Promise<{ migIdNum: number, level: number | null, name: string | null, code: string | null }[]> {
