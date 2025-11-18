@@ -16888,13 +16888,6 @@ function TYPE_SYUUREN(mobData, attackMethodConfArray, bArmsLeft){
 	w += 10 * UsedSkillSearch(SKILL_ID_CART_BOOST_GENETIC);
 
 	//----------------------------------------------------------------
-	// 「二次職支援　イムポシティオマヌス」の効果
-	//----------------------------------------------------------------
-	if(g_confDataNizi[CCharaConfNizi.CONF_ID_IMPOSITIO_MANUS]) {
-		w += g_confDataNizi[CCharaConfNizi.CONF_ID_IMPOSITIO_MANUS] * 5;
-	}
-
-	//----------------------------------------------------------------
 	// 「二次職支援　ボルケーノ」の効果
 	//----------------------------------------------------------------
 	if(g_confDataNizi[CCharaConfNizi.CONF_ID_ZOKUSEIBA_SHURUI] == CCharaConfNizi.CONF_ID_ZOKUSEIBA_SHURUI_VOLCANO) {
