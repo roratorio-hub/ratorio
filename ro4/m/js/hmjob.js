@@ -1631,8 +1631,6 @@ function migrateOtherJob(jobId) {
 		}
 		// 再計算
 		calc();
-		// 検索可能リスト更新
-		LoadSelect2();
 		// インジケーター非表示
 		hideLoadingIndicator();
 		setTimeout(() => {

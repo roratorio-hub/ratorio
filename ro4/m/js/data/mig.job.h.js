@@ -2766,8 +2766,9 @@ function IsMatchJobRestrict(itemId, jobId) {
 
 /**
  * 四次職へ変更する.
- * @remarks 本来ここにあるべきではない。お試し。
- */
+ * @deprecated
+ * @remarks migrateOtherJobへ移行
+*/
 function UpgradeJobTo4th() {
 	var msg = "";
 	var jobId4th = 0;
@@ -2867,8 +2868,6 @@ function UpgradeJobTo4th() {
 		dataURL = SaveSystem(funcModifySaveData);
 		// URL入力を実行
 		CSaveController.loadFromURL(dataURL);
-		// 検索可能リスト更新
-		LoadSelect2();
 		// インジケーター非表示
 		hideLoadingIndicator();
 		setTimeout(() => {

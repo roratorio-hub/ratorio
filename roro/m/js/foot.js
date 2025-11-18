@@ -1,4 +1,7 @@
 /**
+ * 計算機の初期化コードが記述されたエントリーポイント
+ * DOMContentLoaded をトリガーにして初期化が開始される
+ * 
  * 主にキャラクタステータスに作用する関数がまとめられたファイル
  * ただし
  * roro が避難所安定版で運用されていたファイル群
@@ -30222,6 +30225,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		} else {
 			// URLロードがない場合は、ノービスを初期ジョブとして設定
 			changeJobSettings("NOVICE");
+			// 検索可能ドロップダウンリストのロード
+			LoadSelect2();
 		}
 
 		// 再計算
@@ -30247,6 +30252,9 @@ document.addEventListener('DOMContentLoaded', () => {
 			// 中身を復元する
 			CItemInfoManager.LoadFromLocalStorage();
 		}
+
+		// エンチャントサーチのロード
+		new enchSearch();
 	});
 });
 

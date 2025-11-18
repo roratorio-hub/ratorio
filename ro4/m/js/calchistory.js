@@ -138,7 +138,6 @@ div.clip_memo {
             url = chart.data.datasets[0].metadata[Math.abs(dataX)]["url"];
             CSaveController.loadFromURL(url);
             CItemInfoManager.OnClickExtractSwitch();
-            LoadSelect2();
           }
         }
       }

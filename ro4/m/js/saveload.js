@@ -140,8 +140,6 @@ function OnClickUrlInMIG () {
 			// アイテム情報の構築
 			CItemInfoManager.OnClickExtractSwitch();
 			document.getElementById("OBJID_INPUT_URL_IN_MIG").focus();
-			// 検索可能リスト更新
-			LoadSelect2();
 		} 
 		// インジケーター非表示
 		hideLoadingIndicator();

@@ -195,19 +195,7 @@
 	<!-- 重い処理用のローディングインジケーター -->
 	<link href="../../jquery/loadingindicator/spinner.css" rel="stylesheet" />
 	<script src="../../jquery/loadingindicator/spinner.js"></script>
-	<!-- サイト読み込み直後に1回だけ実行される関数 -->
-	<script>
-		window.addEventListener('load', () => {
-			// YAMLデータのロードが完了していたら発火
-			waitForDataLoaded().then(() => {
-				// エンチャントサーチのロード
-				new enchSearch();
-				//new itemSpSearch();
-				// 検索可能ドロップダウンリストのロード
-				LoadSelect2();
-			});
-		});
-	</script>
+
 </head>
 
 <body>
