@@ -17121,12 +17121,7 @@ function SET_ZOKUSEI(mobData, attackMethodConfArray) {
 	if (UsedSkillSearch(SKILL_ID_INVISIBILITY)) {
 		n_A_Weapon_zokusei = ELM_ID_PSYCO;
 	}
-	// 「パイロクラスティック」は、付与なしの場合に限り、火属性付与
-	if (UsedSkillSearch(SKILL_ID_PYROCLASTIC)) {
-		if (n_A_Weapon_zokusei == ELM_ID_VANITY) {
-			n_A_Weapon_zokusei = ELM_ID_FIRE;
-		}
-	}
+
 	// 強制属性系の設定
 	switch (n_A_ActiveSkill) {
 
