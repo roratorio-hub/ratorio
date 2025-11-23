@@ -247,19 +247,6 @@ let finalRatioArray = 0;
 const CAST_PARAM_BORDER = 265;
 /** オートガードによるダメージ減衰率 */
 const w_AG = [100,95,90,86,82,79,76,74,72,71,70];
-/** 属性配列 */
-const mostEffectiveElmIdArray = [
-	ELM_ID_VANITY,
-	ELM_ID_WIND,
-	ELM_ID_FIRE,
-	ELM_ID_WATER,
-	ELM_ID_EARTH,
-	ELM_ID_HOLY,
-	ELM_ID_DARK,
-	ELM_ID_HOLY,
-	ELM_ID_PSYCO,
-	ELM_ID_HOLY,
-];
 /** 手裏剣の種類 */
 const SyurikenOBJ = [ [10,0,"手裏剣"] ,[30,0,"雨雲の手裏剣"] ,[45,0,"閃光の手裏剣"] ,[70,0,"鋭刃の手裏剣"] ,[100,0,"棘針の手裏剣"] ,[110,0,"星ヒトデ"] ];
 /** 苦無の種類 */
@@ -6293,38 +6280,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 		}
 
 		switch (n_A_ActiveSkill) {
-			/* バード */
-			case SKILL_ID_FUKYOWAON:	// 不協和音
-			/* ミンストレル・ワンダラー */
-			case SKILL_ID_SHINDOZANKYO:	// 振動残響
-			/* アークビショップ */
-			case SKILL_ID_JUDEX:	// ジュデックス
-			case SKILL_ID_ADORAMUS:	// アドラムス
-				// スキル使用条件の判定
-				n_Buki_Muri = !g_skillManager.MatchWeaponCondition(n_A_ActiveSkill, n_A_WeaponType);
-				if (n_Buki_Muri) {
-					wbairitu = 0;
-					break;
-				}
-				// 詠唱などの情報
-				wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				// ダメージ算出に関する情報
-				n_A_Weapon_zokusei = g_skillManager.GetElement(n_A_ActiveSkill, attackMethodConfArray[0]);
-				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], mobData);
-				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_WeaponType);
-				// ヒット数に関する情報
-				wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
-				wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
-				// 地面設置スキルの情報
-				g_bDefinedDamageIntervals = g_skillManager.IsGroundInstallation(n_A_ActiveSkill);
-				if (g_bDefinedDamageIntervals) {
-					n_Delay[5] = g_skillManager.GetDamageInterval(n_A_ActiveSkill, n_A_ActiveSkillLV);
-					n_Delay[6] = g_skillManager.GetLifeTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				}
-				break;
 
 		// 「マジシャン」スキル「ファイアーボルト」
 		case SKILL_ID_FIRE_BOLT:
@@ -7132,21 +7087,26 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 
 			break;
 
-
-
-
-
 		//----------------------------------------------------------------
 		//
-		// 四次ここから
+		// 魔法ここから
 		//
 		//----------------------------------------------------------------
 
 		//----------------------------------------------------------------
 		// 計算式を CSkillManager.js へ移動させ head.js をスリム化する対応を進めています
 		//----------------------------------------------------------------
+		/* バード */
+		case SKILL_ID_FUKYOWAON:	// 不協和音
+		/* ミンストレル・ワンダラー */
+		case SKILL_ID_SHINDOZANKYO:	// 振動残響
+		/* アークビショップ */
+		case SKILL_ID_JUDEX:	// ジュデックス
+		case SKILL_ID_ADORAMUS:	// アドラムス		
 		/** トルヴェール・トルバドゥール */
 		case SKILL_ID_RHYTHMICAL_WAVE: // リズミカルウェーブ
+		case SKILL_ID_SOUND_BLEND:	// サウンドブレンド
+		case SKILL_ID_METALIC_FURY: // メタリックフューリー
 		/** エレメンタルマスター */
 		case SKILL_ID_PSYCHIC_STREAM: // サイキックストリーム
 		/** ソウルアセティック */
@@ -7178,6 +7138,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			// ダメージ算出に関する情報
+			n_A_Weapon_zokusei = g_skillManager.GetElement(battleCalcInfo.skillId, attackMethodConfArray[0], mobData);
 			wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], mobData, n_A_WeaponType);
 			n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_WeaponType);
 			// ヒット数に関する情報
@@ -7794,82 +7755,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			if (attackMethodConfArray[0].GetOptionValue(0) >= 1) {
 				wHITsuu = 2;
 			}
-			break;
-		}
-		// 「トルバドゥール・トルヴェール」スキル「メタリックフューリー」
-		// 2025-04-03 実測確認済み
-		case SKILL_ID_METALIC_FURY: {
-			// 楽器・鞭装備状態のみ発動可能
-			if (![ITEM_KIND_MUSICAL, ITEM_KIND_WHIP].includes(n_A_WeaponType)) {
-				wbairitu = 0;
-				n_Buki_Muri = true;
-				break;
-			}
-			// 属性自動矢
-			if(n_A_Arrow == ARROW_ID_ZOKUSE_ZIDO_YA_ATK30){
-				n_A_Weapon_zokusei = mostEffectiveElmIdArray[ Math.floor(mobData[MONSTER_DATA_INDEX_ELEMENT] / 10) ];
-			}
-			// 通常の矢
-			else {
-				n_A_Weapon_zokusei = GetEquippedTotalSPArrow(ITEM_SP_ELEMENTAL);
-			}
-			// 詠唱時間等
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// ステージマナー習得Lv
-			const stage_manner_lv = Math.max(LearnedSkillSearch(SKILL_ID_STAGE_MANNER), UsedSkillSearch(SKILL_ID_STAGE_MANNER));
-			// 基本倍率
-			if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SOUND_BLEND]) {
-				// サウンドブレンド 有り
-				wbairitu = 4000 + 1000 * n_A_ActiveSkillLV;
-				wbairitu += 6 * GetTotalSpecStatus(MIG_PARAM_ID_SPL) * stage_manner_lv;
-			} else {
-				// サウンドブレンド 無し
-				wbairitu = 1250 + 350 * n_A_ActiveSkillLV;
-				wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_SPL) * stage_manner_lv;
-			}
-			// ベースレベル補正
-			wbairitu =  Math.floor(wbairitu * n_A_BaseLV / 100);
-			break;
-		}
-		// 「トルバドゥール・トルヴェール」スキル「サウンドブレンド」
-		// 2025-04-03 実測確認済み
-		case SKILL_ID_SOUND_BLEND: {
-			// 楽器・鞭装備状態のみ発動可能
-			if (![ITEM_KIND_MUSICAL, ITEM_KIND_WHIP].includes(n_A_WeaponType)) {
-				wbairitu = 0;
-				n_Buki_Muri = true;
-				break;
-			}
-			// 属性自動矢
-			if(n_A_Arrow == ARROW_ID_ZOKUSE_ZIDO_YA_ATK30){
-				n_A_Weapon_zokusei = mostEffectiveElmIdArray[ Math.floor(mobData[MONSTER_DATA_INDEX_ELEMENT] / 10) ];
-			}
-			// 通常の矢
-			else {
-				n_A_Weapon_zokusei = GetEquippedTotalSPArrow(ITEM_SP_ELEMENTAL);
-			}
-			// 詠唱時間等
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// 持続時間が終了した時点でダメージが発生するので擬似的に設置スキルとして扱う
-			g_bDefinedDamageIntervals = true;
-			// 持続時間
-			n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// ダメージ発生間隔
-			n_Delay[5] = n_Delay[6] - 200;
-			// 基本倍率
-			wbairitu = 2000 + 500 * n_A_ActiveSkillLV;
-			// ステージマナー習得Lv
-			const stage_manner_lv = Math.max(LearnedSkillSearch(SKILL_ID_STAGE_MANNER), UsedSkillSearch(SKILL_ID_STAGE_MANNER));
-			// SPL補正
-			wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL) * stage_manner_lv;
-			// ベースレベル補正
-			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 		}
 
@@ -17098,15 +16983,8 @@ function SET_ZOKUSEI(mobData, attackMethodConfArray) {
 				}
 		}
 		if (bApplyArrowElement) {
-			// 属性自動矢
-			if(n_A_Arrow == ARROW_ID_ZOKUSE_ZIDO_YA_ATK30){
-				n_A_Weapon_zokusei = mostEffectiveElmIdArray[ Math.floor(mobData[MONSTER_DATA_INDEX_ELEMENT] / 10) ];
-			}
-			// 通常の矢
-			else {
-				n_A_Weapon_zokusei = GetEquippedTotalSPArrow(ITEM_SP_ELEMENTAL);
-			}
-			BK_Weapon_zokusei = n_A_Weapon_zokusei;
+			// 属性矢
+			BK_Weapon_zokusei = GetEquippedTotalSPArrow(ITEM_SP_ELEMENTAL, mobData);
 		}
 	}
 	// スキル使用状態による、攻撃属性の変化

@@ -29645,83 +29645,85 @@ function GetEquippedTotalSPCostume(spid) {
 }
 
 /**
- * 装備中のＳＰの合計値を取得する（矢のみ）.
- * @param spid ＳＰのＩＤ
- * @return 当該ＳＰのパラメタ合計値
+ * arrow.dat.js で定義されている矢のアイテムデータを参照して
+ * キャラクタに攻撃力や攻撃属性を加算する
+ * @param {Number} spid {ITEM_SP_ELEMENTAL | ITEM_SP_ATK_PLUS}
+ * @param {Array} mobdata (optional) 属性自動矢の判定に利用する
+ * @returns アイテムSPの値
  */
-function GetEquippedTotalSPArrow(spid) {
-
-	var spDefIdx = 0;
-
-	var eqpRefined = 0;
-
-	var spDefRemain = 0;		// 計算途中のＳＰＩＤ値
-	var spDefValue = 0;			// 設定されているＳＰの値
-	var spDefBaseLvBy = 0;		// BaseLvが上がる度に条件
-	var spDefRefineBy = 0;		// 精錬値が上がる度に条件
-
-	var spVal = 0;
-	var arrowData = 0;
-
-
-
+function GetEquippedTotalSPArrow(spid, mobData) {
+	let spDefIdx = 0;
+	let eqpRefined = 0;
+	let spDefRemain = 0;		// 計算途中のＳＰＩＤ値
+	let spDefValue = 0;			// 設定されているＳＰの値
+	let spDefBaseLvBy = 0;		// BaseLvが上がる度に条件
+	let spDefRefineBy = 0;		// 精錬値が上がる度に条件
+	let spVal = 0;
+	let arrowData = 0;
+	/** 属性配列 */
+	const mostEffectiveElmIdArray = [
+		ELM_ID_VANITY,
+		ELM_ID_WIND,
+		ELM_ID_FIRE,
+		ELM_ID_WATER,
+		ELM_ID_EARTH,
+		ELM_ID_HOLY,
+		ELM_ID_DARK,
+		ELM_ID_HOLY,
+		ELM_ID_PSYCO,
+		ELM_ID_HOLY,
+	];
 	// 矢データを取得
 	arrowData = ArrowOBJNew[n_A_Arrow];
 
-	eqpRefined = 0;
+	// 属性自動矢の場合
+	if (spid === ITEM_SP_ELEMENTAL && mobData !== undefined) {
+		if (arrowData[0] === ARROW_ID_ZOKUSE_ZIDO_YA_ATK30) {
+			return mostEffectiveElmIdArray[ Math.floor(mobData[MONSTER_DATA_INDEX_ELEMENT] / 10) ];
+		}
+	}
 
 	// アイテムのＳＰ定義をループ検索
 	for (spDefIdx = 0; arrowData[ ARROW_DATA_INDEX_SPBEGIN + spDefIdx ] != ITEM_SP_END; spDefIdx += 2) {
-
 		// ＳＰの定義を取得
 		spDefRemain = arrowData[ ARROW_DATA_INDEX_SPBEGIN + spDefIdx ];
 		spDefValue = arrowData[ ARROW_DATA_INDEX_SPBEGIN + spDefIdx + 1 ];
-
 		// ＳＰ定義ＩＤが一致しない場合は、次へ
 		if (!IsMatchSpDefId(spDefRemain, spid)) {
 			continue;
 		}
-
 		// 親密度条件を満たさない場合は、次へ
 		spDefRemain = CheckSpDefFriendlyOver(spDefRemain);
 		if (spDefRemain < 0) {
 			continue;
 		}
-
 		// BaseLv以上条件を満たさない場合は、次へ
 		spDefRemain = CheckSpDefBaseLvOver(spDefRemain);
 		if (spDefRemain < 0) {
 			continue;
 		}
-
 		// BaseLvが上がる度に条件を取得
 		spDefBaseLvBy = Math.floor(spDefRemain / ITEM_SP_BASE_LV_BY_1_OFFSET);
 		spDefRemain = spDefRemain % ITEM_SP_BASE_LV_BY_1_OFFSET;
-
 		// 職業条件を満たさない場合は、次へ
 		spDefRemain = CheckSpDefJobRestrict(spDefRemain);
 		if (spDefRemain < 0) {
 			continue;
 		}
-
 		// 純粋なステータス条件を満たさない場合は、次へ
 		spDefRemain = CheckSpDefPureStatus(spDefRemain);
 		if (spDefRemain < 0) {
 			continue;
 		}
-
 		// 精錬値以上条件を満たさない場合は、次へ
 		spDefRemain = CheckSpDefRefineOver(spDefRemain, eqpRefined);
 		if (spDefRemain < 0) {
 			continue;
 		}
-
 		// 精錬値が上がる度に条件を取得
 		spDefRefineBy = Math.floor(spDefRemain / ITEM_SP_REFINE_BY_1_OFFSET);
 		spDefRemain = spDefRemain % ITEM_SP_REFINE_BY_1_OFFSET;
-
 		// ＳＰ定義値を追加する
-
 		// 精錬値が上がる度に条件が設定されている場合
 		if (spDefRefineBy > 0) {
 			// BaseLvが上がる度に条件が設定されている場合
@@ -29732,7 +29734,6 @@ function GetEquippedTotalSPArrow(spid) {
 				spVal += spDefValue * Math.floor(eqpRefined / spDefRefineBy);
 			}
 		}
-
 		// 精錬値によらず一定の場合
 		else {
 			// BaseLvが上がる度に条件が設定されている場合
@@ -29744,7 +29745,6 @@ function GetEquippedTotalSPArrow(spid) {
 			}
 		}
 	}
-
 	return spVal;
 }
 
