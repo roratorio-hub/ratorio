@@ -11906,11 +11906,12 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 	objCell.style.gridColumn = "1 / 3";
 	objCell.classList.add("BTLRSLT_TAB_RESULT");
 	objCell.classList.add(partIdStr);
-	const enemy_attack_method_masical = HtmlCreateElement("select", objCell);
-	enemy_attack_method_masical.setAttribute("id", "OBJID_ENEMY_ATTACK_METHOD_MASICAL");
-	HtmlCreateElementOption(0, "ファイアーボルト Lv1", enemy_attack_method_masical);
-	HtmlCreateElementOption(1, "アースクエイク Lv10", enemy_attack_method_masical);
-	HtmlCreateElementOption(2, "テトラボルテックス", enemy_attack_method_masical);
+	const enemy_attack_method_magical = HtmlCreateElement("select", objCell);
+	enemy_attack_method_magical.setAttribute("id", "OBJID_ENEMY_ATTACK_METHOD_MAGICAL");
+	HtmlCreateElementOption(0, "ファイアーボルト Lv1", enemy_attack_method_magical);
+	HtmlCreateElementOption(1, "アースクエイク Lv10", enemy_attack_method_magical);
+	HtmlCreateElementOption(2, "ﾃﾄﾗﾎﾞﾙﾃｯｸｽ(強)", enemy_attack_method_magical);
+	HtmlCreateElementOption(3, "Mﾚｲｵﾌﾞｼﾞｪﾈｼｽ(強)", enemy_attack_method_magical);
 
 	const objMagicalDamageView = HtmlCreateElement("div", objGridDmg);
 	objMagicalDamageView.setAttribute("id", "OBJID_RECEIVED_DAMAGE_MAGICAL");
@@ -11918,7 +11919,7 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 	objMagicalDamageView.classList.add(partIdStr);
 	objMagicalDamageView.classList.add("CSSCLS_BTLRSLT_VALUE");
 	calcReceivedMagicDamage(charaData, mobData, objMagicalDamageView);
-	enemy_attack_method_masical.addEventListener("change", () => {
+	enemy_attack_method_magical.addEventListener("change", () => {
 		calcReceivedMagicDamage(charaData, mobData, objMagicalDamageView);
 	});
 
@@ -12263,9 +12264,8 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
  * @returns {number} 回避率を考慮しない被ダメージ
  */
 function calcReceivedDamage(charaData, specData, mobData, attackMethodConfArray, objCell = null){
-	let idx = 0;
-
 	w_HiDam = new Array();
+	let idx = 0;
 	let mobMaxATK = mobData[MONSTER_DATA_EXTRA_INDEX_ATK_MAX];
 	let mobMinATK = mobData[MONSTER_DATA_EXTRA_INDEX_ATK_MIN];
 	let mobStATK = mobData[MONSTER_DATA_INDEX_LEVEL] * 2;
@@ -12291,14 +12291,15 @@ function calcReceivedDamage(charaData, specData, mobData, attackMethodConfArray,
 	}
 	
 	const SKILL_RATIO = [
-		100,	// 通常攻撃
-		1000,	// ヘルジャッジ Lv10
+		[100, ELM_ID_VANITY],	// 通常攻撃
+		[1000, ELM_ID_VANITY],	// ヘルジャッジ Lv10
 	]
 	const enemy_attack_method = document.getElementById("OBJID_ENEMY_ATTACK_METHOD_PHYSICAL");
-	if (enemy_attack_method) {
-		const skill_index = Number(enemy_attack_method.value);
-		w_HiDam = w_HiDam.map(damage => Math.floor(damage * SKILL_RATIO[skill_index] / 100));
+	if (!enemy_attack_method) {
+		return;
 	}
+	const skill_index = Number(enemy_attack_method.value);
+	w_HiDam = w_HiDam.map(damage => Math.floor(damage * SKILL_RATIO[skill_index][0] / 100));
 
 	/** ダメージ耐性値 */
 	let wBHD;
@@ -12313,17 +12314,9 @@ function calcReceivedDamage(charaData, specData, mobData, attackMethodConfArray,
 	 */
 	{
 		wBHD = n_tok[ITEM_SP_RESIST_SIZE_SMALL + mobData[17]];
-
-		// TODO: 四次対応
-		// サイズ物理耐性の加算
 		wBHD += n_tok[ITEM_SP_PHYSICAL_RESIST_SIZE_SMALL + mobData[17]];
-
-		// Lv200解放アップデートでの、上限値新設への対応
 		wBHD = Math.min(95, wBHD);
-
-		for (idx = 0; idx < w_HiDam.length; idx++) {
-			w_HiDam[idx] -= Math.floor(w_HiDam[idx] * wBHD /100);
-		}
+		w_HiDam = w_HiDam.map(damage => damage - Math.floor(damage * wBHD /100));
 	}
 
 	/**
@@ -12332,32 +12325,29 @@ function calcReceivedDamage(charaData, specData, mobData, attackMethodConfArray,
 	 * ボス／一般耐性
 	 */
 	{
-		if (mobData[20] == MONSTER_BOSSTYPE_BOSS) {
-			wBHD = n_tok[ITEM_SP_RESIST_BOSS];
-		} else {
-			wBHD = n_tok[ITEM_SP_RESIST_NOTBOSS];
-		}
-
-		// Lv200解放アップデートでの、上限値新設への対応
+		wBHD = (mobData[20] == MONSTER_BOSSTYPE_BOSS) ? n_tok[ITEM_SP_RESIST_BOSS] : n_tok[ITEM_SP_RESIST_NOTBOSS];
 		wBHD = Math.min(95, wBHD);
+		w_HiDam = w_HiDam.map(damage => damage - Math.floor(damage * wBHD /100));
+	}
 
-		for (idx = 0; idx < w_HiDam.length; idx++) {
-			w_HiDam[idx] -= Math.floor(w_HiDam[idx] * wBHD /100);
-		}
+	/** 
+	 * 属性相性 
+	 * 通常攻撃は念鎧で防げないので条件判定する
+	*/
+	const attack_elemental = SKILL_RATIO[skill_index][1];
+	if (skill_index > 0) {
+		wBHD = zokusei[n_A_BodyZokusei * 10 + 1][attack_elemental] + 100;
+		w_HiDam = w_HiDam.map(damage => Math.floor(damage * wBHD /100));
 	}
 
 	/**
 	 * 公式サイトで「◯属性攻撃で受けるダメージ - ◯%」と表記される
 	 * 属性耐性
-	 * 現状では素殴りしか計算しないので無属性のみ
 	 */
 	{
-		wBHD = n_tok[ITEM_SP_RESIST_ELM_VANITY];
-		// Lv200解放アップデートでの、上限値新設への対応
+		wBHD = n_tok[ ITEM_SP_RESIST_ELM_VANITY + attack_elemental ];
 		wBHD = Math.min(95, wBHD);
-		for (idx = 0; idx < w_HiDam.length; idx++) {
-			w_HiDam[idx] -= Math.floor(w_HiDam[idx] * wBHD /100);
-		}
+		w_HiDam = w_HiDam.map(damage => damage - Math.floor(damage * wBHD /100));
 	}
 
 	/**
@@ -12366,19 +12356,12 @@ function calcReceivedDamage(charaData, specData, mobData, attackMethodConfArray,
 	 */
 	{
 		wBHD = n_tok[ITEM_SP_RESIST_MONSTER_ELM_VANITY + Math.floor(mobData[18] / 10)];
-
-		// Lv200解放アップデートでの、上限値新設への対応
 		wBHD = Math.min(95, wBHD);
-
-		for (idx = 0; idx < w_HiDam.length; idx++) {
-			w_HiDam[idx] -= Math.floor(w_HiDam[idx] * wBHD /100);
-		}
+		w_HiDam = w_HiDam.map(damage => damage - Math.floor(damage * wBHD /100));
 	}
 
 	// これ以降の耐性は素手ATKにも効果がある
-	for (idx = 0; idx < w_HiDam.length; idx++) {
-		w_HiDam[idx] += mobStATK;
-	}
+	w_HiDam = w_HiDam.map(damage => damage + mobStATK);
 
 	//--------------------------------
 	// 種族耐性
@@ -12411,12 +12394,8 @@ function calcReceivedDamage(charaData, specData, mobData, attackMethodConfArray,
 					break;
 			}
 		}
-		// Lv200解放アップデートでの、上限値新設への対応
 		wBHD = Math.min(95, wBHD);
-
-		for (idx = 0; idx < w_HiDam.length; idx++) {
-			w_HiDam[idx] -= Math.floor(w_HiDam[idx] * wBHD /100);
-		}
+		w_HiDam = w_HiDam.map(damage => damage - Math.floor(damage * wBHD /100));
 	}
 
 	//--------------------------------
@@ -12424,12 +12403,8 @@ function calcReceivedDamage(charaData, specData, mobData, attackMethodConfArray,
 	//--------------------------------
 	if(mobData[12] >= 4){
 		wBHD = n_tok[ITEM_SP_RESIST_LONGRANGE];
-		// Lv200解放アップデートでの、上限値新設への対応
 		wBHD = Math.min(95, wBHD);
-
-		for (idx = 0; idx < w_HiDam.length; idx++) {
-			w_HiDam[idx] -= Math.floor(w_HiDam[idx] * wBHD /100);
-		}
+		w_HiDam = w_HiDam.map(damage => damage - Math.floor(damage * wBHD /100));
 	}
 
 	/**
@@ -12705,12 +12680,13 @@ function calcReceivedMagicDamage(charaData, mobData, objCell){
 	 * TODO: この辺にMOBスキル倍率計算を入れる
 	 */
 	const SKILL_RATIO = [
-		100,	// ファイアーボルト
-		5500,	// アースクエイク Lv10
-		1000,	// テトラボルテックス
+		[100, ELM_ID_FIRE],	// ファイアーボルト
+		[5500, ELM_ID_VANITY],	// アースクエイク Lv10
+		[10000, ELM_ID_VANITY],	// ﾃﾄﾗﾎﾞﾙﾃｯｸｽ(強)
+		[16000, ELM_ID_HOLY], // Mﾚｲｵﾌﾞｼﾞｪﾈｼｽ(強)
 	]
-	const skill_index = Number(document.getElementById("OBJID_ENEMY_ATTACK_METHOD_MASICAL").value);
-	damage = Math.floor(damage * SKILL_RATIO[skill_index] / 100);
+	const skill_index = Number(document.getElementById("OBJID_ENEMY_ATTACK_METHOD_MAGICAL").value);
+	damage = Math.floor(damage * SKILL_RATIO[skill_index][0] / 100);
 
 	/** モンスター耐性 */
 	damage -= Math.floor(damage * getResistanceOfEnvironment(mobData[0]) / 100);
@@ -12725,8 +12701,13 @@ function calcReceivedMagicDamage(charaData, mobData, objCell){
 	ratio = Math.min(95, ratio);
 	damage -= Math.floor(damage * ratio / 100);
 
+	/** 属性相性 */
+	const attack_elemental = SKILL_RATIO[skill_index][1];
+	ratio = zokusei[n_A_BodyZokusei * 10 + 1][attack_elemental] + 100;
+	damage = Math.floor(damage * ratio / 100);
+
 	/** 属性耐性 */
-	ratio = n_tok[ITEM_SP_RESIST_ELM_VANITY];
+	ratio = n_tok[ ITEM_SP_RESIST_ELM_VANITY + attack_elemental ];
 	ratio = Math.min(95, ratio);
 	damage -= Math.floor(damage * ratio / 100);
 
@@ -12741,7 +12722,7 @@ function calcReceivedMagicDamage(charaData, mobData, objCell){
 	ratio = Math.min(95, ratio);
 	damage -= Math.floor(damage * ratio / 100);
 
-	// RES によるダメージ減少
+	// MRES によるダメージ減少
 	const mres = GetMres();
 	const decay = Math.floor(damage * (1 - (2000 + mres) / (2000 + 5 * mres)));
 	damage -= decay;
