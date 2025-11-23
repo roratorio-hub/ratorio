@@ -69,8 +69,6 @@ function OnClickLoadSaveData () {
 			HtmlSetObjectValueById("OBJID_INPUT_SAVE_NAME_MIG", charaName);
 			// アイテム情報の構築
 			CItemInfoManager.OnClickExtractSwitch();
-			// 検索可能リスト更新
-			LoadSelect2();
 		} else {
 			alert("データがありません。");
 		}
