@@ -1172,27 +1172,26 @@ function ApplySpecModify(spid, spVal) {
 		break;
 
 	case ITEM_SP_ATK_PLUS:
-
 		// 「インペリアルガード」スキル「ガードスタンス」による効果（ペナルティ）
 		if ((sklLv = UsedSkillSearch(SKILL_ID_GUARD_STANCE)) > 0) {
-
 			// 盾装備時限定
 			if (n_A_Equip[EQUIP_REGION_ID_SHIELD] != ITEM_ID_NOEQUIP_SHIELD) {
 				spVal -= 10 * sklLv;
 			}
 		}
-
 		// 「インクイジター」スキル「強靭な信念」による効果
 		if ((sklLv = UsedSkillSearch(SKILL_ID_KYOZINNA_SHINNEN)) > 0) {
 			spVal += 100;
 		}
-
 		// 「ナイトウォッチ」スキル「インテンシブエイム」による効果
 		if ((sklLv = UsedSkillSearch(SKILL_ID_INTENSIVE_AIM)) > 0) {
 			spVal += 100;
 		}
-
-
+		// 「二次職支援　イムポシティオマヌス」の効果
+		// 念相手には効果がないことが実証出来たため修練ATKから武器ATKへ移動
+		if(g_confDataNizi[CCharaConfNizi.CONF_ID_IMPOSITIO_MANUS]) {
+			spVal += g_confDataNizi[CCharaConfNizi.CONF_ID_IMPOSITIO_MANUS] * 5;
+		}
 		break;
 
 	case ITEM_SP_DEF_PLUS:
