@@ -16,6 +16,8 @@ capabilities:
     code: 11
   - name: ASPD増加
     code: 12
+  - name: ASPD加算
+    code: 101
   - name: MAXHP加算
     code: 13
   - name: MAXSP加算
