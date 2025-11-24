@@ -1,9 +1,8 @@
 #!/bin/bash
 rm -rf node_modules
-rm -rf package-lock.json
 mkdir -p ../dist/
-rm -f ../dist/*.zst
-npm install
+rm -f ../dist/*
+npm ci #clean-install
 npm run build
 npx ts-node --project tsconfig.node.json utils/yamlMergeAndCompress.ts
 

@@ -12,16 +12,24 @@ import { yamlOptions } from "./yamlMergeAndCompress";
 
 export async function mergeItem(): Promise<void> {
     const srcYaml = path.resolve("./data/item.yaml");
-    const outYaml = path.resolve("../dist/item.yaml.zst");
+    const outYaml = path.resolve("../dist/item.yaml");
+    const outYamlZstd = path.resolve("../dist/item.yaml.zst");
 
     // ファイル読み込み
     const yamlText = new TextDecoder("utf-8").decode(await fs.readFile(srcYaml));
     const itemObject = loadYAML(yamlText) as Record<number, ItemDataParameter>;
 
+
+    const yamlString = dumpYAML(itemObject, yamlOptions);
+    if (yamlString === null) {
+        throw new Error("dumpYAML が null を返しました");
+    }
+    await fs.writeFile(outYaml, yamlString);
+
     // zstd 圧縮
-    const compressed = await zstdCompress(dumpYAML(itemObject, yamlOptions));
+    const compressed = await zstdCompress(yamlString);
     if (compressed === null) {
         throw new Error("zstdCompress が null を返しました");
     }
-    await fs.writeFile(outYaml, compressed);
+    await fs.writeFile(outYamlZstd, compressed);
 }

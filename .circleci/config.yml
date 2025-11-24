@@ -19,19 +19,20 @@ jobs:
 
       # 2. 指定した場所にcheckout
       - checkout:
-          path: /var/www/html/roratorio-hub  # チェックアウト先を指定
+          path: /var/www/html/ratorio  # チェックアウト先を指定
+          method: blobless
 
       # 3. Gitの安全ディレクトリを設定（エラー対策）
       - run:
           name: Set Git Safe Directory
           command: |
-            git config --global --add safe.directory /var/www/html/roratorio-hub
+            git config --global --add safe.directory /var/www/html/ratorio
 
       # 4. 指定した場所でgit pullを実行
       - run:
           name: Git Pull in Specified Directory
           command: |
-            cd /var/www/html/roratorio-hub
+            cd /var/www/html/ratorio
             git fetch origin ${CIRCLE_BRANCH}
             git reset --hard origin/${CIRCLE_BRANCH}  # 現在のbranchをリモートに強制的に合わせる（必要に応じて調整）
 
@@ -39,14 +40,14 @@ jobs:
       - run:
           name: Run Shell Script
           command: |
-            cd /var/www/html/roratorio-hub/workspace
+            cd /var/www/html/ratorio/workspace
             bash ./clean.sh
 
       # 6. Playwrightコンテナを起動し、テストを実行（結果を直接受け取る）
       - run:
           name: Run Playwright Tests in Container
           command: |
-            cd /var/www/html/roratorio-hub
+            cd /var/www/html/ratorio
             podman pull public.ecr.aws/u3l2i4k1/m10i/roratorio-hub-e2e-testkit:latest-arm64
             mkdir -p test-results
             podman run --rm --replace \
@@ -59,7 +60,7 @@ jobs:
 
       # 7. テスト結果をartifactsとして保存
       - store_artifacts:
-          path: /var/www/html/roratorio-hub/test-results
+          path: /var/www/html/ratorio/test-results
           destination: test-results
 
 # Workflows を定義（pushイベントでジョブを実行）

@@ -13,7 +13,8 @@ import { yamlOptions } from "./yamlMergeAndCompress";
 
 export async function mergeJob(): Promise<void> {
     const srcYaml = path.resolve("./data/job.yaml");
-    const outYaml = path.resolve("../dist/job.yaml.zst");
+    const outYaml = path.resolve("../dist/job.yaml");
+    const outYamlZstd = path.resolve("../dist/job.yaml.zst");
     const srcJs = path.resolve("../ro4/m/js/data/mig.job.dat.js");
     const skillYaml = path.resolve("../dist/skill.yaml.zst");
 
@@ -185,11 +186,17 @@ export async function mergeJob(): Promise<void> {
 
     });
 
-    const compressedJob = await zstdCompress(dumpYAML(jobMapObject, yamlOptions));
-    if (compressedJob === null) {
+    const yamlString = dumpYAML(jobMapObject, yamlOptions);
+    if (yamlString === null) {
+        throw new Error("dumpYAML が null を返しました");
+    }
+    await fs.writeFile(outYaml, yamlString);
+
+    const compressed = await zstdCompress(yamlString);
+    if (compressed === null) {
         throw new Error("zstdCompress が null を返しました");
     }
-    await fs.writeFile(outYaml, compressedJob);
+    await fs.writeFile(outYamlZstd, compressed);
 }
 
 async function parseJobDat(src: string): Promise<{ id: number; name: string; isRebirthed: number; class: number; weightCorrection: number; weaponsAspd: [number, number][]; additionalStatusJob: number[]; hp: number[]; sp: number[]; lernedSkills: number[]; passiveSkills: number[]; attackSkills: number[]; equipCategories: number[] }[]> {
