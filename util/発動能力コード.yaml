@@ -34,7 +34,7 @@ capabilities:
     code: 19
   - name: 弓装備時、遠距離ダメージ増加
     code: 21
-  - name: 錐
+  - name: 相手の防御力が高いほど与えるダメージが増加
     code: 23
   - name: 遠距離ダメージ増加
     code: 25
