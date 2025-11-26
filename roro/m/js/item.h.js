@@ -2161,7 +2161,7 @@ function GetItemExplainText(spId, spValue) {
 			break;
 
 		case ITEM_SP_KIRI_EFFECT:
-			textInfoArray.push(["", "敵のDEFとVITが高いほど高ダメージを与える"]);
+			textInfoArray.push(["", "相手の防御力が高いほど与えるダメージが増加"]);
 			break;
 
 		case ITEM_SP_DEF_DIVIDE_PENARTY:
@@ -2313,7 +2313,7 @@ function GetItemExplainText(spId, spValue) {
 			break;
 
 		case ITEM_SP_PERFECT_ATTACK_UP:
-			textInfoArray.push(["", spValue + "% の確率で攻撃が必中になる"]);
+			textInfoArray.push(["", `必中攻撃 + ${spValue}%`]);
 			break;
 
 		case ITEM_SP_ATK_UP:
