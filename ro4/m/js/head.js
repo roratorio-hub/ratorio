@@ -9430,6 +9430,9 @@ function ApplyMagicalSpecializeMonsterMod20211014SubSpecializeMap(charaData, spe
 		if ((cardCount = CardNumSearch(CARD_ID_VALTY)) > 0) {
 			wX += 30 * cardCount;
 		}
+		if (EquipNumSearch(ITEM_ID_OZ_MAGMA_HOOD) > 0) {
+			wX += 30;
+		}
 	}
 
 	//--------------------------------
@@ -12988,6 +12991,14 @@ function getResistanceOfEnvironment(mobID) {
 	//--------------------------------
 	if(NumSearch(mobID, MonsterGroupObj[MONSTER_GROUP_ID_HAIKI_ZIKKENTAI_YUGIZYO_RUDUS_4F]) == 1){
 		if (EquipNumSearch(ITEM_ID_DISCARDED_CAPE) > 0) {
+			result += 60;
+		}
+	}
+	//--------------------------------
+	// オズの迷路耐性
+	//--------------------------------
+	if(NumSearch(mobID, MonsterGroupObj[MONSTER_GROUP_ID_OZNO_MEIRO]) == 1){
+		if (EquipNumSearch(ITEM_ID_OZ_MAGMA_HOOD) > 0) {
 			result += 60;
 		}
 	}
@@ -18120,6 +18131,9 @@ function ApplyPhysicalSpecializeMonster(charaData, specData, mobData, dmg) {
 	if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_OZNO_MEIRO]) == 1){
 		if ((cardCount = CardNumSearch(CARD_ID_VALTY)) > 0) {
 			w += 30 * cardCount;
+		}
+		if (EquipNumSearch(ITEM_ID_OZ_MAGMA_HOOD) > 0) {
+			w += 30;
 		}
 	}
 
