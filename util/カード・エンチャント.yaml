@@ -1,19 +1,65 @@
 card_list:
-  - name: 包装されなかった人形
-    yomi: ホウソウサレナカッタニンギョウ
-    type: ペット
+  - name: グロウアース
+    yomi: グロウアース
+    type: エンチャント
     capabilities:
-      - name: スキルダメージ増加
-        skill: サイキックウェーブ
-        value: 20
-        at_lv: 100
-
-  - name: セリーヌ・キミ
-    yomi: セリーヌキミ
-    desc: "BaseLv100以上の時、移動速度増加"
-    type: ペット
+      - name: 地属性耐性
+        value: 7
+        per_refine: 1
+  - name: グロウウィンド
+    yomi: グロウウィンド
+    type: エンチャント
     capabilities:
-      - name: スキル使用可能
-        skill: サイキックウェーブ
-        skill_lv: 5
-        at_lv: 100
+      - name: 風属性耐性
+        value: 7
+        per_refine: 1
+  - name: グロウウォーター
+    yomi: グロウウォーター
+    type: エンチャント
+    capabilities:
+      - name: 水属性耐性
+        value: 7
+        per_refine: 1
+  - name: グロウセイント
+    yomi: グロウセイント
+    type: エンチャント
+    capabilities:
+      - name: 聖属性耐性
+        value: 7
+        per_refine: 1
+  - name: グロウダークネス
+    yomi: グロウダークネス
+    type: エンチャント
+    capabilities:
+      - name: 闇属性耐性
+        value: 7
+        per_refine: 1
+  - name: グロウテレキネシス
+    yomi: グロウテレキネシス
+    type: エンチャント
+    capabilities:
+      - name: 念属性耐性
+        value: 7
+        per_refine: 1
+  - name: グロウファイア
+    yomi: グロウファイア
+    type: エンチャント
+    capabilities:
+      - name: 火属性耐性
+        value: 7
+        per_refine: 1
+  - name: グロウポイズン
+    yomi: グロウポイズン
+    type: エンチャント
+    capabilities:
+      - name: 毒属性耐性
+        value: 7
+        per_refine: 1
+  - name: 偽りの心臓
+    yomi: イツワリノシンゾウ
+    type: エンチャント
+    capabilities:
+      - name: 全サイズへの物理ダメージ増加
+        value: 10
+      - name: 全サイズへの魔法ダメージ増加
+        value: 10
