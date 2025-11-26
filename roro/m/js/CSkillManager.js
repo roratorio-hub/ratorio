@@ -43031,7 +43031,7 @@ function CSkillManager() {
 				return 500 + 500 * skillLv;
 			}
 			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
-				return 1500;
+				return 500;
 			}
 			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
 				return 1000 * skillLv;
