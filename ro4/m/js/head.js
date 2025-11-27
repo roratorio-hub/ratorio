@@ -16976,7 +16976,8 @@ function SET_ZOKUSEI(mobData, attackMethodConfArray) {
 		}
 		if (bApplyArrowElement) {
 			// 属性矢
-			BK_Weapon_zokusei = GetEquippedTotalSPArrow(ITEM_SP_ELEMENTAL, mobData);
+			n_A_Weapon_zokusei = GetEquippedTotalSPArrow(ITEM_SP_ELEMENTAL, mobData);
+			BK_Weapon_zokusei = n_A_Weapon_zokusei;
 		}
 	}
 	// スキル使用状態による、攻撃属性の変化
