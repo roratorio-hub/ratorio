@@ -16414,6 +16414,28 @@ function GetWeaponAtk(strdex, strBonus, armsType, armsLv, armsAtk, sizeModify,
 			if (TimeItemNumSearch(TIME_ITEM_ID_KAKYU_RGAN) > 0) {
 				funcSelectAppendDamage(ELM_ID_DARK, 10);
 			}
+			// 
+			if (TimeItemNumSearch(TIME_ITEM_ID_ADD_ELEMENTAL_POISON_ATK_50) > 0) {
+				funcSelectAppendDamage(ELM_ID_POISON, 50);
+			}
+			if (TimeItemNumSearch(TIME_ITEM_ID_ADD_ELEMENTAL_FIRE_ATK_50) > 0) {
+				funcSelectAppendDamage(ELM_ID_FIRE, 50);
+			}
+			if (TimeItemNumSearch(TIME_ITEM_ID_ADD_ELEMENTAL_WIND_ATK_50) > 0) {
+				funcSelectAppendDamage(ELM_ID_WIND, 50);
+			}
+			if (TimeItemNumSearch(TIME_ITEM_ID_ADD_ELEMENTAL_EARTH_ATK_50) > 0) {
+				funcSelectAppendDamage(ELM_ID_EARTH, 50);
+			}
+			if (TimeItemNumSearch(TIME_ITEM_ID_ADD_ELEMENTAL_WATER_ATK_50) > 0) {
+				funcSelectAppendDamage(ELM_ID_WATER, 50);
+			}
+			if (TimeItemNumSearch(TIME_ITEM_ID_ADD_ELEMENTAL_HOLY_ATK_50) > 0) {
+				funcSelectAppendDamage(ELM_ID_HOLY, 50);
+			}
+			if (TimeItemNumSearch(TIME_ITEM_ID_ADD_ELEMENTAL_HOLY_ATK_100) > 0) {
+				funcSelectAppendDamage(ELM_ID_HOLY, 100);
+			}
 
 			// 性能カスタマイズの効果
 			for (let loopElmId = ELM_ID_VANITY; loopElmId <= ELM_ID_UNDEAD; loopElmId++) {

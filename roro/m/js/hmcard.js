@@ -1009,67 +1009,65 @@ function BuildUpCardSlotsCard(eqpRgnId, itemId, enchantTypeId, objArySlots) {
 
 		// 装備箇所に応じたカードデータの追加
 		switch (eqpRgnId) {
+			case EQUIP_REGION_ID_ARMS:
+				if (slotidx == 0) {
+					cardSortObjTarget = CardSortOBJ[CARD_KIND_NONE];
+				}
+				else {
+					cardSortObjTarget = CardSortOBJ[CARD_KIND_ARMS];
+				}
+				cardIdSelected = n_A_card[CARD_REGION_ID_ARMS_RIGHT_1 + slotidx];
+				break;
 
-		case EQUIP_REGION_ID_ARMS:
-			if (slotidx == 0) {
-				cardSortObjTarget = CardSortOBJ[0];
-			}
-			else {
-				cardSortObjTarget = CardSortOBJ[1];
-			}
-			cardIdSelected = n_A_card[CARD_REGION_ID_ARMS_RIGHT_1 + slotidx];
-			break;
+			case EQUIP_REGION_ID_ARMS_LEFT:
+				if (slotidx == 0) {
+					cardSortObjTarget = CardSortOBJ[CARD_KIND_NONE];
+				}
+				else {
+					cardSortObjTarget = CardSortOBJ[CARD_KIND_ARMS];
+				}
+				cardIdSelected = n_A_card[CARD_REGION_ID_ARMS_LEFT_1 + slotidx];
+				break;
 
-		case EQUIP_REGION_ID_ARMS_LEFT:
-			if (slotidx == 0) {
-				cardSortObjTarget = CardSortOBJ[0];
-			}
-			else {
-				cardSortObjTarget = CardSortOBJ[1];
-			}
-			cardIdSelected = n_A_card[CARD_REGION_ID_ARMS_LEFT_1 + slotidx];
-			break;
+			case EQUIP_REGION_ID_HEAD_TOP:
+				cardSortObjTarget = CardSortOBJ[CARD_KIND_HEAD].concat(CardSortOBJ[CARD_KIND_TOP]);
+				cardIdSelected = n_A_card[CARD_REGION_ID_HEAD_TOP];
+				break;
 
-		case EQUIP_REGION_ID_HEAD_TOP:
-			cardSortObjTarget = CardSortOBJ[2];
-			cardIdSelected = n_A_card[CARD_REGION_ID_HEAD_TOP];
-			break;
+			case EQUIP_REGION_ID_HEAD_MID:
+				cardSortObjTarget = CardSortOBJ[CARD_KIND_HEAD].concat(CardSortOBJ[CARD_KIND_MID]);
+				cardIdSelected = n_A_card[CARD_REGION_ID_HEAD_MID];
+				break;
 
-		case EQUIP_REGION_ID_HEAD_MID:
-			cardSortObjTarget = CardSortOBJ[2];
-			cardIdSelected = n_A_card[CARD_REGION_ID_HEAD_MID];
-			break;
+			case EQUIP_REGION_ID_SHIELD:
+				cardSortObjTarget = CardSortOBJ[CARD_KIND_SHIELD];
+				cardIdSelected = n_A_card[CARD_REGION_ID_SHIELD];
+				break;
 
-		case EQUIP_REGION_ID_SHIELD:
-			cardSortObjTarget = CardSortOBJ[3];
-			cardIdSelected = n_A_card[CARD_REGION_ID_SHIELD];
-			break;
+			case EQUIP_REGION_ID_BODY:
+				cardSortObjTarget = CardSortOBJ[CARD_KIND_BODY];
+				cardIdSelected = n_A_card[CARD_REGION_ID_BODY];
+				break;
 
-		case EQUIP_REGION_ID_BODY:
-			cardSortObjTarget = CardSortOBJ[4];
-			cardIdSelected = n_A_card[CARD_REGION_ID_BODY];
-			break;
+			case EQUIP_REGION_ID_SHOULDER:
+				cardSortObjTarget = CardSortOBJ[CARD_KIND_SHOULDER];
+				cardIdSelected = n_A_card[CARD_REGION_ID_SHOULDER];
+				break;
 
-		case EQUIP_REGION_ID_SHOULDER:
-			cardSortObjTarget = CardSortOBJ[5];
-			cardIdSelected = n_A_card[CARD_REGION_ID_SHOULDER];
-			break;
+			case EQUIP_REGION_ID_SHOES:
+				cardSortObjTarget = CardSortOBJ[CARD_KIND_FOOT];
+				cardIdSelected = n_A_card[CARD_REGION_ID_SHOES];
+				break;
 
-		case EQUIP_REGION_ID_SHOES:
-			cardSortObjTarget = CardSortOBJ[6];
-			cardIdSelected = n_A_card[CARD_REGION_ID_SHOES];
-			break;
+			case EQUIP_REGION_ID_ACCESSARY_1:
+				cardSortObjTarget = CardSortOBJ[CARD_KIND_ACCESSARY].concat(CardSortOBJ[CARD_KIND_ACCESSARY_ON1]);
+				cardIdSelected = n_A_card[CARD_REGION_ID_ACCESSARY_1];
+				break;
 
-		case EQUIP_REGION_ID_ACCESSARY_1:
-			cardSortObjTarget = CardSortOBJ[7];
-			cardIdSelected = n_A_card[CARD_REGION_ID_ACCESSARY_1];
-			break;
-
-		case EQUIP_REGION_ID_ACCESSARY_2:
-			cardSortObjTarget = CardSortOBJ[7];
-			cardIdSelected = n_A_card[CARD_REGION_ID_ACCESSARY_2];
-			break;
-
+			case EQUIP_REGION_ID_ACCESSARY_2:
+				cardSortObjTarget = CardSortOBJ[CARD_KIND_ACCESSARY].concat(CardSortOBJ[CARD_KIND_ACCESSARY_ON2]);
+				cardIdSelected = n_A_card[CARD_REGION_ID_ACCESSARY_2];
+				break;
 		}
 
 		objSelect = objArySlots[slotidx];
@@ -1269,61 +1267,61 @@ function BuildUpCardSlotsMIG(eqpRgnId, itemId, enchInfoArray, objArySlots) {
 
 		case EQUIP_REGION_ID_ARMS:
 			if (idxSlot == 0) {
-				cardSortObjTarget = CardSortOBJ[0];
+				cardSortObjTarget = CardSortOBJ[CARD_KIND_NONE];
 			}
 			else {
-				cardSortObjTarget = CardSortOBJ[1];
+				cardSortObjTarget = CardSortOBJ[CARD_KIND_ARMS];
 			}
 			cardIdSelected = n_A_card[CARD_REGION_ID_ARMS_RIGHT_1 + idxSlot];
 			break;
 
 		case EQUIP_REGION_ID_ARMS_LEFT:
 			if (idxSlot == 0) {
-				cardSortObjTarget = CardSortOBJ[0];
+				cardSortObjTarget = CardSortOBJ[CARD_KIND_NONE];
 			}
 			else {
-				cardSortObjTarget = CardSortOBJ[1];
+				cardSortObjTarget = CardSortOBJ[CARD_KIND_ARMS];
 			}
 			cardIdSelected = n_A_card[CARD_REGION_ID_ARMS_LEFT_1 + idxSlot];
 			break;
 
 		case EQUIP_REGION_ID_HEAD_TOP:
-			cardSortObjTarget = CardSortOBJ[2];
+			cardSortObjTarget = CardSortOBJ[CARD_KIND_HEAD].concat(CardSortOBJ[CARD_KIND_TOP]);
 			cardIdSelected = n_A_card[CARD_REGION_ID_HEAD_TOP];
 			break;
 
 		case EQUIP_REGION_ID_HEAD_MID:
-			cardSortObjTarget = CardSortOBJ[2];
+			cardSortObjTarget = CardSortOBJ[CARD_KIND_HEAD].concat(CardSortOBJ[CARD_KIND_MID]);
 			cardIdSelected = n_A_card[CARD_REGION_ID_HEAD_MID];
 			break;
 
 		case EQUIP_REGION_ID_SHIELD:
-			cardSortObjTarget = CardSortOBJ[3];
+			cardSortObjTarget = CardSortOBJ[CARD_KIND_SHIELD];
 			cardIdSelected = n_A_card[CARD_REGION_ID_SHIELD];
 			break;
 
 		case EQUIP_REGION_ID_BODY:
-			cardSortObjTarget = CardSortOBJ[4];
+			cardSortObjTarget = CardSortOBJ[CARD_KIND_BODY];
 			cardIdSelected = n_A_card[CARD_REGION_ID_BODY];
 			break;
 
 		case EQUIP_REGION_ID_SHOULDER:
-			cardSortObjTarget = CardSortOBJ[5];
+			cardSortObjTarget = CardSortOBJ[CARD_KIND_SHOULDER];
 			cardIdSelected = n_A_card[CARD_REGION_ID_SHOULDER];
 			break;
 
 		case EQUIP_REGION_ID_SHOES:
-			cardSortObjTarget = CardSortOBJ[6];
+			cardSortObjTarget = CardSortOBJ[CARD_KIND_FOOT];
 			cardIdSelected = n_A_card[CARD_REGION_ID_SHOES];
 			break;
 
 		case EQUIP_REGION_ID_ACCESSARY_1:
-			cardSortObjTarget = CardSortOBJ[7];
+			cardSortObjTarget = CardSortOBJ[CARD_KIND_ACCESSARY].concat(CardSortOBJ[CARD_KIND_ACCESSARY_ON1]);
 			cardIdSelected = n_A_card[CARD_REGION_ID_ACCESSARY_1];
 			break;
 
 		case EQUIP_REGION_ID_ACCESSARY_2:
-			cardSortObjTarget = CardSortOBJ[7];
+			cardSortObjTarget = CardSortOBJ[CARD_KIND_ACCESSARY].concat(CardSortOBJ[CARD_KIND_ACCESSARY_ON2]);
 			cardIdSelected = n_A_card[CARD_REGION_ID_ACCESSARY_2];
 			break;
 
