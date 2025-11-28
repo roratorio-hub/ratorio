@@ -103,9 +103,6 @@ function PivotData(selectedCardKind) {
 		else {
 			if ([CARD_KIND_HEAD, CARD_KIND_TOP, CARD_KIND_MID].includes(CARD_KIND)) {
 			// 兜の場合
-				if (CardObjNew[idx][CARD_DATA_INDEX_NAME] === "憤怒のアークビショップマーガレッタ") {
-					console.log(".")
-				}
 				if (selectedCardKind !== CARD_KIND_HEAD) {
 					continue;
 				}
