@@ -20,7 +20,7 @@ function SetUpSelectCardType(){
 	// 選択肢を追加
 	HtmlCreateElementOption(CARD_KIND_DMY_FOR_ALL, "全てのカード", objSelect);
 	HtmlCreateElementOption(CARD_KIND_ARMS, "武器カード", objSelect);
-	HtmlCreateElementOption(CARD_KIND_HEAD, "頭カード", objSelect);
+	HtmlCreateElementOption(CARD_KIND_HEAD, "兜カード", objSelect);
 	HtmlCreateElementOption(CARD_KIND_SHIELD, "盾カード", objSelect);
 	HtmlCreateElementOption(CARD_KIND_BODY, "鎧カード", objSelect);
 	HtmlCreateElementOption(CARD_KIND_SHOULDER, "肩カード", objSelect);
@@ -40,7 +40,7 @@ function RefreshCardListTable(){
 	var cardDataArray = null;
 	// 選択された抽出条件を取得
 	objSelect = document.getElementById("OBJID_SELECT_CARD_KIND");
-	selectedCardKind = objSelect.value;
+	selectedCardKind = Number(objSelect.value);
 	// データを抽出する
 	cardDataArray = PivotData(selectedCardKind);
 	// データをソート
@@ -67,23 +67,30 @@ function RefreshCardListTable(){
 function PivotData(selectedCardKind) {
 	var idx = 0;
 	var cardDataArray = null;
+	let CARD_KIND = 0;
 	cardDataArray = new Array();
 
 	//--------------------------------
 	// 抽出条件判定とデータ抽出
 	//--------------------------------
 	for (idx = 0; idx < CardObjNew.length; idx++) {
+		CARD_KIND = CardObjNew[idx][CARD_DATA_INDEX_KIND];
 		// 全てのカードの場合
 		if (selectedCardKind == CARD_KIND_DMY_FOR_ALL) {
 			// 下記の種別に該当する場合のみ表示する
-			switch (CardObjNew[idx][CARD_DATA_INDEX_KIND]) {
+			switch (CARD_KIND) {
 				case CARD_KIND_ARMS:
 				case CARD_KIND_HEAD:
+				case CARD_KIND_TOP:
+				case CARD_KIND_MID:
+				case CARD_KIND_UNDER:
 				case CARD_KIND_SHIELD:
 				case CARD_KIND_BODY:
 				case CARD_KIND_SHOULDER:
 				case CARD_KIND_FOOT:
 				case CARD_KIND_ACCESSARY:
+				case CARD_KIND_ACCESSARY_ON1:
+				case CARD_KIND_ACCESSARY_ON2:
 				case CARD_KIND_ENCHANT:
 				case CARD_KIND_ANY:
 					break;
@@ -92,14 +99,24 @@ function PivotData(selectedCardKind) {
 					continue;
 			}
 		}
-		// 特定の種別の場合
+		// 特定の種別の場合は一致するカードのみ選択する
 		else {
-			// 種別が一致しない場合は表示しない
-			if (CardObjNew[idx][CARD_DATA_INDEX_KIND] != selectedCardKind) {
+			if ([CARD_KIND_HEAD, CARD_KIND_TOP, CARD_KIND_MID].includes(CARD_KIND)) {
+			// 兜の場合
+				if (selectedCardKind !== CARD_KIND_HEAD) {
+					continue;
+				}
+			} else if ([CARD_KIND_ACCESSARY, CARD_KIND_ACCESSARY_ON1, CARD_KIND_ACCESSARY_ON2].includes(CARD_KIND)) {
+			// アクセサリーの場合
+				if (selectedCardKind !== CARD_KIND_ACCESSARY) {
+					continue;
+				}
+			} else if (CARD_KIND != selectedCardKind) {
+			// その他
 				continue;
 			}
 		}
-		// 特定のカード場合
+		// 特定のカードをスキップする
 		switch (CardObjNew[idx][CARD_DATA_INDEX_ID]) {
 			case 0:
 			case 1:
@@ -320,7 +337,13 @@ function DispData(selectedCardKind, cardDataArray) {
 					partName = "武器";
 					break;
 				case CARD_KIND_HEAD:
-					partName = "頭";
+					partName = "兜";
+					break;
+				case CARD_KIND_TOP:
+					partName = "兜(上段)";
+					break;
+				case CARD_KIND_MID:
+					partName = "兜(中段)";
 					break;
 				case CARD_KIND_SHIELD:
 					partName = "盾";
@@ -329,13 +352,19 @@ function DispData(selectedCardKind, cardDataArray) {
 					partName = "鎧";
 					break;
 				case CARD_KIND_SHOULDER:
-					partName = "肩";
+					partName = "肩にかける物";
 					break;
 				case CARD_KIND_FOOT:
 					partName = "靴";
 					break;
 				case CARD_KIND_ACCESSARY:
-					partName = "アクセサリ";
+					partName = "アクセサリー";
+					break;
+				case CARD_KIND_ACCESSARY_ON1:
+					partName = "アクセサリー(1)";
+					break;
+				case CARD_KIND_ACCESSARY_ON2:
+					partName = "アクセサリー(2)";
 					break;
 				case CARD_KIND_ENCHANT:
 					partName = "エンチャント";
