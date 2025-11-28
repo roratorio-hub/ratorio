@@ -1,65 +1,410 @@
 card_list:
-  - name: グロウアース
-    yomi: グロウアース
+  - name: 潜在解放(ドラゴンナイトXVI)
+    yomi: センザイカイホウドラゴンナイト16
     type: エンチャント
-    capabilities:
-      - name: 地属性耐性
-        value: 7
-        per_refine: 1
-  - name: グロウウィンド
-    yomi: グロウウィンド
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: 再使用待機時間減少
+            skill: ドラゴニックピアース
+            value: 300
+  - name: 潜在解放(インペリアルガードXV)
+    yomi: センザイカイホウインペリアルガード15
     type: エンチャント
-    capabilities:
-      - name: 風属性耐性
-        value: 7
-        per_refine: 1
-  - name: グロウウォーター
-    yomi: グロウウォーター
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: 再使用待機時間減少
+            skill: レイディアントスピア
+            value: 300
+          - name: 再使用待機時間減少
+            skill: インペリアルクロス
+            value: 300
+  - name: 潜在解放(アークメイジXVI)
+    yomi: センザイカイホウアークメイジ16
     type: エンチャント
-    capabilities:
-      - name: 水属性耐性
-        value: 7
-        per_refine: 1
-  - name: グロウセイント
-    yomi: グロウセイント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 真理の解放
+        capabilities:
+          - name: スキル固定詠唱ミリ秒減少
+            skill: フローラルフレアロード
+            value: 1000
+          - name: スキル固定詠唱ミリ秒減少
+            skill: レインオブクリスタル
+            value: 1000
+          - name: スキル固定詠唱ミリ秒減少
+            skill: トルネードストーム
+            value: 1000
+          - name: スキル固定詠唱ミリ秒減少
+            skill: ストラタムトレマー
+            value: 1000
+  - name: 潜在解放(アークメイジXVII)
+    yomi: センザイカイホウアークメイジ17
     type: エンチャント
-    capabilities:
-      - name: 聖属性耐性
-        value: 7
-        per_refine: 1
-  - name: グロウダークネス
-    yomi: グロウダークネス
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 真理の解放
+        capabilities:
+          - name: スキル固定詠唱ミリ秒減少
+            skill: フローラルフレアロード
+            value: 500
+          - name: スキル固定詠唱ミリ秒減少
+            skill: レインオブクリスタル
+            value: 500
+          - name: スキル固定詠唱ミリ秒減少
+            skill: トルネードストーム
+            value: 500
+          - name: スキル固定詠唱ミリ秒減少
+            skill: ストラタムトレマー
+            value: 500
+  - name: 潜在解放(エレメンタルマスターXIV)
+    yomi: センザイカイホウエレメンタルマスター14
     type: エンチャント
-    capabilities:
-      - name: 闇属性耐性
-        value: 7
-        per_refine: 1
-  - name: グロウテレキネシス
-    yomi: グロウテレキネシス
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 真理の解放
+        capabilities:
+          - name: 再使用待機時間減少
+            skill: サイキックストリーム
+            value: 300
+  - name: 潜在解放(エレメンタルマスターXV)
+    yomi: センザイカイホウエレメンタルマスター15
+    desc: "魔法攻撃命中時、一定確率で20秒間、<br>[コンフラグレーション]、[ライトニングランド]の消費SP - 439<br>[ダイヤモンドストーム]、[テラドライブ]の消費SP - 399<br>[ベナムスワンプ]の消費SP - 349<br>[エレメンタルバスター]の消費SP - 529<br>[サイキックストリーム]の消費SP - 419"
     type: エンチャント
-    capabilities:
-      - name: 念属性耐性
-        value: 7
-        per_refine: 1
-  - name: グロウファイア
-    yomi: グロウファイア
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 真理の解放
+        capabilities:
+          - name: スキル消費SP固定値減少
+            skill: コンフラグレーション
+            value: 439
+          - name: スキル消費SP固定値減少
+            skill: ライトニングランド
+            value: 439
+          - name: スキル消費SP固定値減少
+            skill: ダイヤモンドストーム
+            value: 399
+          - name: スキル消費SP固定値減少
+            skill: テラドライブ
+            value: 399
+          - name: スキル消費SP固定値減少
+            skill: ベナムスワンプ
+            value: 349
+          - name: スキル消費SP固定値減少
+            skill: エレメンタルバスター
+            value: 529
+          - name: スキル消費SP固定値減少
+            skill: サイキックストリーム
+            value: 419
+  - name: 潜在解放(ウィンドホークXVI)
+    yomi: センザイカイホウウィンドホーク16
+    desc: "物理攻撃命中時、一定確率で敵にオートスペル[ホークラッシュ]が習得Lvで発動"
     type: エンチャント
-    capabilities:
-      - name: 火属性耐性
-        value: 7
-        per_refine: 1
-  - name: グロウポイズン
-    yomi: グロウポイズン
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: オートスペル発動
+            skill: ホークラッシュ
+            skill_lv: 5
+  - name: 潜在解放(ウィンドホークXVII)
+    yomi: センザイカイホウウィンドホーク17
+    desc: "物理攻撃命中時、一定確率で敵にオートスペル[ホークブーメラン]が習得Lvで発動"
     type: エンチャント
-    capabilities:
-      - name: 毒属性耐性
-        value: 7
-        per_refine: 1
-  - name: 偽りの心臓
-    yomi: イツワリノシンゾウ
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: オートスペル発動
+            skill: ホークブーメラン
+            skill_lv: 5
+  - name: 潜在解放(トルバドゥール&トルヴェールXII)
+    yomi: センザイカイホウトルバドゥールアンドトルヴェール12
     type: エンチャント
-    capabilities:
-      - name: 全サイズへの物理ダメージ増加
-        value: 10
-      - name: 全サイズへの魔法ダメージ増加
-        value: 10
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 真理の解放
+        capabilities:
+          - name: スキル固定詠唱ミリ秒減少
+            skill: リズミカルウェーブ
+            value: 500
+  - name: 潜在解放(カーディナルXVI)
+    yomi: センザイカイホウカーディナル16
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 真理の解放
+        capabilities:
+          - name: スキル固定詠唱ミリ秒減少
+            skill: ディヴィヌスフロス
+            value: 500
+  - name: 潜在解放(カーディナルXVII)
+    yomi: センザイカイホウカーディナル17
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 真理の解放
+        capabilities:
+          - name: スキル固定詠唱ミリ秒減少
+            skill: ディヴィヌスフロス
+            value: 1000
+  - name: 潜在解放(インクイジターXIII)
+    yomi: センザイカイホウインクイジター13
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: スキル固定詠唱ミリ秒減少
+            skill: 烈火気弾
+            value: 500
+  - name: 潜在解放(シャドウクロスXIV)
+    yomi: センザイカイホウシャドウクロス14
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: 再使用待機時間減少
+            skill: クロススラッシュ
+            value: 200
+  - name: 潜在解放(シャドウクロスXV)
+    yomi: センザイカイホウシャドウクロス15
+    desc: "物理攻撃命中時、一定確率で20秒間、<br>[シャドウスタブ]の消費SP - 99<br>[エターナルスラッシュ]の消費SP - 119<br>[フェイタルシャドウクロー]の消費SP - 309<br>[クロススラッシュ]の消費SP - 209"
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: スキル消費SP固定値減少
+            skill: シャドウスタブ
+            value: 99
+          - name: スキル消費SP固定値減少
+            skill: エターナルスラッシュ
+            value: 119
+          - name: スキル消費SP固定値減少
+            skill: フェイタルシャドウクロー
+            value: 309
+          - name: スキル消費SP固定値減少
+            skill: クロススラッシュ
+            value: 209
+  - name: 潜在解放(アビスチェイサーXV)
+    yomi: センザイカイホウアビスチェイサー15
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 真理の解放
+        capabilities:
+          - name: スキル固定詠唱ミリ秒減少
+            skill: アビスフレイム
+            value: 500
+  - name: 潜在解放(アビスチェイサーXVI)
+    yomi: センザイカイホウアビスチェイサー16
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 真理の解放
+        capabilities:
+          - name: スキル固定詠唱ミリ秒減少
+            skill: オメガアビスストライク
+            value: 1000
+  - name: 潜在解放(マイスターXV)
+    yomi: センザイカイホウマイスター15
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: 再使用待機時間減少
+            skill: ラッシュストライク
+            value: 200
+          - name: 再使用待機時間減少
+            skill: パワフルスイング
+            value: 200
+  - name: 潜在解放(バイオロXVI)
+    yomi: センザイカイホウバイオロ16
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: 再使用待機時間減少
+            skill: ダストエクスプロージョン
+            value: 200
+  - name: 潜在解放(バイオロXVII)
+    yomi: センザイカイホウバイオロ17
+    desc: "物理攻撃命中時、一定確率で20秒間、<br>[エクスプロッシブパウダー][ダストエクスプロージョン]の消費SP - 299<br>[ミステリーパウダー]の消費SP - 359"
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: スキル消費SP固定値減少
+            skill: エクスプロッシブパウダー
+            value: 299
+          - name: スキル消費SP固定値減少
+            skill: ダストエクスプロージョン
+            value: 299
+          - name: スキル消費SP固定値減少
+            skill: ミステリーパウダー
+            value: 359
+  - name: 潜在解放(天帝XII)
+    yomi: センザイカイホウテンテイ12
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: 再使用待機時間減少
+            skill: 天星の行
+            value: 1000
+  - name: 潜在解放(ソウルアセティックXIV)
+    yomi: センザイカイホウソウルアセティック14
+    desc: "魔法攻撃命中時、一定確率で20秒間、<br>[青龍符]の消費SP - 199<br>[白虎符]、[朱雀符]、[玄武符]、[四方五行陣]の消費SP - 359<br>[四方神符]の消費SP - 299"
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 真理の解放
+        capabilities:
+          - name: スキル消費SP固定値減少
+            skill: 青龍符
+            value: 199
+          - name: スキル消費SP固定値減少
+            skill: 白虎符
+            value: 359
+          - name: スキル消費SP固定値減少
+            skill: 朱雀符
+            value: 359
+          - name: スキル消費SP固定値減少
+            skill: 玄武符
+            value: 359
+          - name: スキル消費SP固定値減少
+            skill: 四方五行陣
+            value: 359
+          - name: スキル消費SP固定値減少
+            skill: 四方神符
+            value: 299
+  - name: 潜在解放(蜃気楼&不知火XIV)
+    yomi: センザイカイホウシンキロウアンドシラヌイ14
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: 再使用待機時間減少
+            skill: 苦無 -歪曲-
+            value: 300
+  - name: 潜在解放(蜃気楼&不知火XV)
+    yomi: センザイカイホウシンキロウアンドシラヌイ15
+    desc: "物理攻撃命中時、一定確率で20秒間、<br>[苦無 -歪曲-]、[幻術 -苦無-]の消費SP - 279<br>[苦無 -回転-]の消費SP - 229<br>[苦無 -屈折-]の消費SP - 189"
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: スキル消費SP固定値減少
+            skill: 苦無 -歪曲-
+            value: 279
+          - name: スキル消費SP固定値減少
+            skill: 幻術 -苦無-
+            value: 279
+          - name: スキル消費SP固定値減少
+            skill: 苦無 -回転-
+            value: 229
+          - name: スキル消費SP固定値減少
+            skill: 苦無 -屈折-
+            value: 189
+  - name: 潜在解放(ナイトウォッチXIV)
+    yomi: センザイカイホウナイトウォッチ14
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: スキル固定詠唱ミリ秒減少
+            skill: ミッドナイトフォーリン
+            value: 500
+  - name: 潜在解放(ナイトウォッチXV)
+    yomi: センザイカイホウナイトウォッチ15
+    desc: "物理攻撃命中時、一定確率で20秒間、<br>[スパイラルシューティング]の消費SP - 179<br>[ワイルドファイア]の消費SP - 229<br>[ミッドナイトフォーリン]の消費SP - 269"
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: スキル消費SP固定値減少
+            skill: スパイラルシューティング
+            value: 179
+          - name: スキル消費SP固定値減少
+            skill: ワイルドファイア
+            value: 229
+          - name: スキル消費SP固定値減少
+            skill: ミッドナイトフォーリン
+            value: 269
+  - name: 潜在解放(ハイパーノービスXVII)
+    yomi: センザイカイホウハイパーノービス17
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 真理の解放
+        capabilities:
+          - name: スキル固定詠唱ミリ秒減少
+            skill: グラウンドグラビテーション
+            value: 500
+          - name: スキル固定詠唱ミリ秒減少
+            skill: ジャックフロストノヴァ
+            value: 500
+  - name: 潜在解放(ハイパーノービスXVIII)
+    yomi: センザイカイホウハイパーノービス18
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 真理の解放
+        capabilities:
+          - name: スキル固定詠唱ミリ秒減少
+            skill: グラウンドグラビテーション
+            value: 1000
+          - name: スキル固定詠唱ミリ秒減少
+            skill: ジャックフロストノヴァ
+            value: 1000
+  - name: 潜在解放(スピリットハンドラーXVII)
+    yomi: センザイカイホウスピリットハンドラー17
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: スキル固定詠唱ミリ秒減少
+            skill: タイガーバトリング
+            value: 500
