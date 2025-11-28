@@ -171,6 +171,10 @@ class MonsterToughness {
         ["憤怒のセリア（インフェルノ）（強力な憤怒の思念体）（取り巻き）",MonsterToughness.DAMPING_1000],
         ["憤怒のチェン（インフェルノ）（強力な憤怒の思念体）（取り巻き）",MonsterToughness.DAMPING_1000],
         ["憤怒のカトリーヌ（インフェルノ）（強力な憤怒の思念体）（取り巻き）",MonsterToughness.DAMPING_1000],
+        ["ガイダンス・キッド",MonsterToughness.DAMPING_100],
+        ["レディ・C・ムーン",MonsterToughness.DAMPING_100],
+        ["ゴーストマスター",MonsterToughness.DAMPING_100],
+        ["ストレンジ・ルーム",MonsterToughness.DAMPING_100],
     ]);
 
     /** 通知メッセージのリスト */
