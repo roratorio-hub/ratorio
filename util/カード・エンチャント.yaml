@@ -1,65 +1,342 @@
 card_list:
-  - name: グロウアース
-    yomi: グロウアース
-    type: エンチャント
+  - name: 憤怒のアークビショップマーガレッタ(MVP)
+    yomi: フンヌノアークビショップマーガレッタMVP
+    type: 肩にかける物
     capabilities:
-      - name: 地属性耐性
-        value: 7
-        per_refine: 1
-  - name: グロウウィンド
-    yomi: グロウウィンド
-    type: エンチャント
-    capabilities:
-      - name: 風属性耐性
-        value: 7
-        per_refine: 1
-  - name: グロウウォーター
-    yomi: グロウウォーター
-    type: エンチャント
-    capabilities:
-      - name: 水属性耐性
-        value: 7
-        per_refine: 1
-  - name: グロウセイント
-    yomi: グロウセイント
-    type: エンチャント
-    capabilities:
+      - name: 聖属性魔法ダメージ増加
+        value: 50
       - name: 聖属性耐性
-        value: 7
-        per_refine: 1
-  - name: グロウダークネス
-    yomi: グロウダークネス
-    type: エンチャント
+        value: 70
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 殺意の怨念
+        capabilities:
+          - name: 魔法ダメージ増加
+            value: 10
+          - name: スキル使用可能
+            skill: アドラムス
+            skill_lv: 10
+  - name: 憤怒のアークビショップマーガレッタ
+    yomi: フンヌノアークビショップマーガレッタ
+    type: 中段
     capabilities:
+      - name: ヒール系スキル使用時HP回復量増加
+        value: 5
+      - name: ヒール系スキル使用時HP回復量増加
+        value: 15
+        at_lv: 250
+  - name: 憤怒のウォーロックカトリーヌ(MVP)
+    yomi: フンヌノウォーロックカトリーヌMVP
+    type: 肩にかける物
+    capabilities:
+      - name: 闇属性魔法ダメージ増加
+        value: 100
       - name: 闇属性耐性
-        value: 7
-        per_refine: 1
-  - name: グロウテレキネシス
-    yomi: グロウテレキネシス
-    type: エンチャント
+        value: 50
+      - name: 暗闇耐性
+        value: 100
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 殺意の怨念
+        capabilities:
+          - name: 闇属性耐性
+            value: 50
+  - name: 憤怒のウォーロックカトリーヌ
+    yomi: フンヌノウォーロックカトリーヌ
+    type: 武器
     capabilities:
-      - name: 念属性耐性
-        value: 7
-        per_refine: 1
-  - name: グロウファイア
-    yomi: グロウファイア
-    type: エンチャント
+      - name: 魔法ダメージ増加
+        value: 5
+      - name: 魔法ダメージ増加
+        value: 15
+        at_lv: 250
+  - name: 憤怒のギロチンクロスエレメス(MVP)
+    yomi: フンヌノギロチンクロスエレメスMVP
+    type: 肩にかける物
     capabilities:
+      - name: 必中
+        value: 10
+      - name: 近距離ダメージ増加
+        value: 10
+      - name: 風属性耐性
+        value: 70
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 殺意の怨念
+        capabilities:
+          - name: 必中
+            value: 15
+  - name: 憤怒のギロチンクロスエレメス
+    yomi: フンヌノギロチンクロスエレメス
+    type: 中段
+    capabilities:
+      - name: 近距離ダメージ増加
+        value: 5
+      - name: 近距離ダメージ増加
+        value: 5
+        at_lv: 250
+  - name: 憤怒のジェネティックエミュール(MVP)
+    yomi: フンヌノジェネティックエミュールMVP
+    type: 肩にかける物
+    capabilities:
+      - name: CRI加算
+        value: 25
+      - name: 遠距離ダメージ増加
+        value: 10
       - name: 火属性耐性
-        value: 7
-        per_refine: 1
-  - name: グロウポイズン
-    yomi: グロウポイズン
-    type: エンチャント
+        value: 70
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 殺意の怨念
+        capabilities:
+          - name: CRI加算
+            value: 25
+  - name: 憤怒のジェネティックエミュール
+    yomi: フンヌノジェネティックエミュール
+    type: 靴
     capabilities:
+      - name: クリティカルダメージ増加
+        value: 5
+      - name: クリティカルダメージ増加
+        value: 15
+        at_lv: 250
+  - name: 憤怒のシャドウチェイサーガーティー(MVP)
+    yomi: フンヌノシャドウチェイサーガーティーMVP
+    type: 肩にかける物
+    capabilities:
+      - name: 必中
+        value: 10
+      - name: 近距離ダメージ増加
+        value: 10
+      - name: 水属性耐性
+        value: 70
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 殺意の怨念
+        capabilities:
+          - name: 必中
+            value: 15
+  - name: 憤怒のシャドウチェイサーガーティー
+    yomi: フンヌノシャドウチェイサーガーティー
+    type: 中段
+    capabilities:
+      - name: 遠距離ダメージ増加
+        value: 5
+      - name: 遠距離ダメージ増加
+        value: 5
+        at_lv: 250
+  - name: 憤怒のソーサラーセリア(MVP)
+    yomi: フンヌノソーサラーセリアMVP
+    desc: "絶対に猛毒状態にならない"
+    type: 肩にかける物
+    capabilities:
+      - name: 毒属性魔法ダメージ増加
+        value: 100
       - name: 毒属性耐性
-        value: 7
-        per_refine: 1
-  - name: 偽りの心臓
-    yomi: イツワリノシンゾウ
-    type: エンチャント
+        value: 50
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 殺意の怨念
+        capabilities:
+          - name: 毒属性耐性
+            value: 50
+  - name: 憤怒のソーサラーセリア
+    yomi: フンヌノソーサラーセリア
+    type: 靴
     capabilities:
-      - name: 全サイズへの物理ダメージ増加
+      - name: 魔法ダメージ増加
+        value: 5
+      - name: 魔法ダメージ増加
+        value: 15
+        at_lv: 250
+  - name: 憤怒のミンストレルアルフォシオ(MVP)
+    yomi: フンヌノミンストレルアルフォシオMVP
+    type: 肩にかける物
+    capabilities:
+      - name: FLEE加算
+        value: 50
+      - name: 遠距離ダメージ増加
         value: 10
-      - name: 全サイズへの魔法ダメージ増加
+      - name: 地属性耐性
+        value: 70
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 殺意の怨念
+        capabilities:
+          - name: FLEE加算
+            value: 50
+  - name: 憤怒のミンストレルアルフォシオ
+    yomi: フンヌノミンストレルアルフォシオ
+    type: 靴
+    capabilities:
+      - name: 凍結耐性
+        value: 25
+      - name: 凍結耐性
+        value: 25
+        at_lv: 250
+  - name: 憤怒のメカニックハワード(MVP)
+    yomi: フンヌノメカニックハワードMVP
+    type: 肩にかける物
+    capabilities:
+      - name: CRI加算
+        value: 25
+      - name: 近距離ダメージ増加
         value: 10
+      - name: 地属性耐性
+        value: 70
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 殺意の怨念
+        capabilities:
+          - name: CRI加算
+            value: 25
+  - name: 憤怒のメカニックハワード
+    yomi: フンヌノメカニックハワード
+    type: 武器
+    capabilities:
+      - name: クリティカルダメージ増加
+        value: 15
+      - name: クリティカルダメージ増加
+        value: 15
+        at_lv: 250
+  - name: 憤怒のルーンナイトセイレン(MVP)
+    yomi: フンヌノルーンナイトセイレンMVP
+    type: 肩にかける物
+    capabilities:
+      - name: MAXHP増加
+        value: 10
+      - name: 物理ダメージ増加
+        value: 10
+      - name: 火属性耐性
+        value: 50
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 殺意の怨念
+        capabilities:
+          - name: MAXHP増加
+            value: 10
+  - name: 憤怒のルーンナイトセイレン
+    yomi: フンヌノルーンナイトセイレン
+    type: アクセサリー(1)
+    capabilities:
+      - name: 遠距離ダメージ増加
+        value: 4
+      - name: 遠距離ダメージ増加
+        value: 4
+        at_lv: 250
+  - name: 憤怒のレンジャーセシル(MVP)
+    yomi: フンヌノレンジャーセシルMVP
+    type: 肩にかける物
+    capabilities:
+      - name: FLEE加算
+        value: 50
+      - name: 遠距離ダメージ増加
+        value: 10
+      - name: 風属性耐性
+        value: 70
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 殺意の怨念
+        capabilities:
+          - name: FLEE加算
+            value: 50
+  - name: 憤怒のレンジャーセシル
+    yomi: フンヌノレンジャーセシル
+    type: 靴
+    capabilities:
+      - name: 物理ダメージ増加
+        value: 10
+      - name: 物理ダメージ増加
+        value: 10
+        at_lv: 250
+  - name: 憤怒のロイヤルガードランデル(MVP)
+    yomi: フンヌノロイヤルガードランデルMVP
+    type: 肩にかける物
+    capabilities:
+      - name: MAXHP増加
+        value: 10
+      - name: 近距離ダメージ増加
+        value: 10
+      - name: 火属性耐性
+        value: 70
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 殺意の怨念
+        capabilities:
+          - name: MAXHP増加
+            value: 10
+
+  - name: 憤怒のロイヤルガードランデル
+    yomi: フンヌノロイヤルガードランデル
+    type: アクセサリー
+    capabilities:
+      - name: 近距離ダメージ増加
+        value: 4
+      - name: 近距離ダメージ増加
+        value: 4
+        at_lv: 250
+  - name: 憤怒のワンダラートレンティーニ(MVP)
+    yomi: フンヌノワンダラートレンティーニMVP
+    type: 肩にかける物
+    capabilities:
+      - name: 無属性魔法ダメージ増加
+        value: 50
+      - name: 無属性耐性
+        value: 35
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 殺意の怨念
+        capabilities:
+          - name: 魔法ダメージ増加
+            value: 10
+          - name: スキル使用可能
+            skill: メタリックサウンド
+            skill_lv: 10
+
+  - name: 憤怒のワンダラートレンティーニ
+    yomi: フンヌノワンダラートレンティーニ
+    type: 靴
+    capabilities:
+      - name: スタン耐性
+        value: 25
+      - name: スタン耐性
+        value: 25
+        at_lv: 250
+  - name: 憤怒の修羅チェン(MVP)
+    yomi: フンヌノシュラチェンMVP
+    type: 肩にかける物
+    capabilities:
+      - name: ATK加算
+        value: 50
+      - name: 遠距離ダメージ増加
+        value: 10
+      - name: 水属性耐性
+        value: 70
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 殺意の怨念
+        capabilities:
+          - name: ATK加算
+            value: 50
+  - name: 憤怒の修羅チェン
+    yomi: フンヌノシュラチェン
+    type: 武器
+    capabilities:
+      - name: 近距離ダメージ増加
+        value: 5
+      - name: 近距離ダメージ増加
+        value: 15
+        at_lv: 250

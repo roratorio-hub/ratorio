@@ -496,11 +496,16 @@ CItemInfoManager.RefreshItemSelectBox = function (optionIdNew) {
 		switch (cardData[CARD_DATA_INDEX_KIND]) {
 			case CARD_KIND_ARMS:
 			case CARD_KIND_HEAD:
+			case CARD_KIND_TOP:
+			case CARD_KIND_MID:
+			case CARD_KIND_UNDER:
 			case CARD_KIND_SHIELD:
 			case CARD_KIND_BODY:
 			case CARD_KIND_SHOULDER:
 			case CARD_KIND_FOOT:
 			case CARD_KIND_ACCESSARY:
+			case CARD_KIND_ACCESSARY_ON1:
+			case CARD_KIND_ACCESSARY_ON2:
 			case CARD_KIND_ENCHANT:
 			case CARD_KIND_ANY:
 				break;

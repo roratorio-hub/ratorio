@@ -15,6 +15,14 @@ card:
     code: 6
   - name: アクセサリー
     code: 7
+  - name: 上段
+    code: 8
+  - name: 中段
+    code: 9
+  - name: アクセサリー(1)
+    code: 11
+  - name: アクセサリー(2)
+    code: 12
   - name: エンチャント  
     code: 99
   - name: ペット

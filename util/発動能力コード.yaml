@@ -216,7 +216,7 @@ capabilities:
     code: 178
   - name: 竜形への魔法ダメージ増加
     code: 179
-  - name: 壊れない
+  - name: 破損しない
     code: 194
   - name: 両手杖
     code: 195
