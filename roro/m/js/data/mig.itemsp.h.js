@@ -3557,6 +3557,12 @@ function MigGetEquipRegionByCardKind(cardId, jobId) {
 		case CARD_KIND_HEAD:
 			candidateRegionIdArray = [MIG_EQUIP_REGION_ID_HEAD_TOP, MIG_EQUIP_REGION_ID_HEAD_MID];
 			break;
+		case CARD_KIND_TOP:
+			candidateRegionIdArray = [MIG_EQUIP_REGION_ID_HEAD_TOP];
+			break;
+		case CARD_KIND_MID:
+			candidateRegionIdArray = [MIG_EQUIP_REGION_ID_HEAD_MID];
+			break;
 		case CARD_KIND_BODY:
 			candidateRegionIdArray = [MIG_EQUIP_REGION_ID_BODY];
 			break;
@@ -3571,6 +3577,12 @@ function MigGetEquipRegionByCardKind(cardId, jobId) {
 			break;
 		case CARD_KIND_ACCESSARY:
 			candidateRegionIdArray = [MIG_EQUIP_REGION_ID_ACCESSORY_1, MIG_EQUIP_REGION_ID_ACCESSORY_2];
+			break;
+		case CARD_KIND_ACCESSARY_ON1:
+			candidateRegionIdArray = [MIG_EQUIP_REGION_ID_ACCESSORY_1];
+			break;
+		case CARD_KIND_ACCESSARY_ON2:
+			candidateRegionIdArray = [MIG_EQUIP_REGION_ID_ACCESSORY_2];
 			break;
 
 		default:

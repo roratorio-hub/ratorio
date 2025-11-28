@@ -79,11 +79,16 @@ function PivotData(selectedCardKind) {
 			switch (CardObjNew[idx][CARD_DATA_INDEX_KIND]) {
 				case CARD_KIND_ARMS:
 				case CARD_KIND_HEAD:
+				case CARD_KIND_TOP:
+				case CARD_KIND_MID:
+				case CARD_KIND_UNDER:
 				case CARD_KIND_SHIELD:
 				case CARD_KIND_BODY:
 				case CARD_KIND_SHOULDER:
 				case CARD_KIND_FOOT:
 				case CARD_KIND_ACCESSARY:
+				case CARD_KIND_ACCESSARY_ON1:
+				case CARD_KIND_ACCESSARY_ON2:
 				case CARD_KIND_ENCHANT:
 				case CARD_KIND_ANY:
 					break;
@@ -320,7 +325,13 @@ function DispData(selectedCardKind, cardDataArray) {
 					partName = "武器";
 					break;
 				case CARD_KIND_HEAD:
-					partName = "頭";
+					partName = "兜";
+					break;
+				case CARD_KIND_TOP:
+					partName = "兜(上段)";
+					break;
+				case CARD_KIND_MID:
+					partName = "兜(中段)";
 					break;
 				case CARD_KIND_SHIELD:
 					partName = "盾";
@@ -329,13 +340,19 @@ function DispData(selectedCardKind, cardDataArray) {
 					partName = "鎧";
 					break;
 				case CARD_KIND_SHOULDER:
-					partName = "肩";
+					partName = "肩にかける物";
 					break;
 				case CARD_KIND_FOOT:
 					partName = "靴";
 					break;
 				case CARD_KIND_ACCESSARY:
-					partName = "アクセサリ";
+					partName = "アクセサリー";
+					break;
+				case CARD_KIND_ACCESSARY_ON1:
+					partName = "アクセサリー(1)";
+					break;
+				case CARD_KIND_ACCESSARY_ON2:
+					partName = "アクセサリー(2)";
 					break;
 				case CARD_KIND_ENCHANT:
 					partName = "エンチャント";
