@@ -6816,6 +6816,7 @@
 		});
 	}
 
+	// 全部位カードを各部位カード配列に追加する
 	for (i = 0; i < card_ordered_info.length; i++) {
 		CardSortOBJ[i] = card_ordered_info[i].concat(sorted_card.filter(c => {
 			return (c && c[2] != "類"  &&(!card_ordered_info[i].includes(c[0])) && (c[1] == (i==0?1:i)));
