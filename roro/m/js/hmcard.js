@@ -1,6 +1,4 @@
 
-
-
 CardShortObj =[
 	 [
 	 	"カードショートカット",
@@ -311,10 +309,6 @@ CardShortObj =[
 
 ];
 
-
-
-
-
 /************************************************************************************************
  *
  * カード選択状態をクリアする（すべて）.
@@ -476,10 +470,6 @@ function __ClearCardSlot(objidPrifix, idxArrayToClear) {
 		n_A_card[rgnIdx] = CARD_ID_NONE;
 	}
 }
-
-
-
-
 
 /************************************************************************************************
  *
@@ -950,12 +940,14 @@ function RebuildCardSelectSubSortCollectedEnchListData(enchInfoArrayAllSlots) {
 	}
 }
 
-
-
-
-
 /**
- * カードスロットの再構築（カード項目）.
+ * 古いカードスロットの再構築処理
+ * もう使われていないはずですが精査が終わるまでは残しておきます
+ * @deprecated
+ * @param {*} eqpRgnId 
+ * @param {*} itemId 
+ * @param {*} enchantTypeId 
+ * @param {*} objArySlots 
  */
 function BuildUpCardSlotsCard(eqpRgnId, itemId, enchantTypeId, objArySlots) {
 
@@ -1148,7 +1140,11 @@ function BuildUpCardSlotsEnchant(enchantTypeId, objArySlots) {
 }
 
 /**
- * カードスロットの再構築（[MIG] カード項目）.
+ * カードスロットの再構築
+ * @param {*} eqpRgnId 
+ * @param {*} itemId 
+ * @param {*} enchInfoArray 
+ * @param {*} objArySlots 
  */
 function BuildUpCardSlotsMIG(eqpRgnId, itemId, enchInfoArray, objArySlots) {
 
@@ -1464,10 +1460,6 @@ function __SetCardSlotEnability(objTarget, enabled) {
 		objTarget.style.visibility = "hidden";
 	}
 }
-
-
-
-
 
 /************************************************************************************************
  *
