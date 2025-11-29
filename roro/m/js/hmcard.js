@@ -1,6 +1,4 @@
 
-
-
 CardShortObj =[
 	 [
 	 	"カードショートカット",
@@ -311,10 +309,6 @@ CardShortObj =[
 
 ];
 
-
-
-
-
 /************************************************************************************************
  *
  * カード選択状態をクリアする（すべて）.
@@ -476,10 +470,6 @@ function __ClearCardSlot(objidPrifix, idxArrayToClear) {
 		n_A_card[rgnIdx] = CARD_ID_NONE;
 	}
 }
-
-
-
-
 
 /************************************************************************************************
  *
@@ -950,12 +940,14 @@ function RebuildCardSelectSubSortCollectedEnchListData(enchInfoArrayAllSlots) {
 	}
 }
 
-
-
-
-
 /**
- * カードスロットの再構築（カード項目）.
+ * 古いカードスロットの再構築処理
+ * もう使われていないはずですが精査が終わるまでは残しておきます
+ * @deprecated
+ * @param {*} eqpRgnId 
+ * @param {*} itemId 
+ * @param {*} enchantTypeId 
+ * @param {*} objArySlots 
  */
 function BuildUpCardSlotsCard(eqpRgnId, itemId, enchantTypeId, objArySlots) {
 
@@ -1030,12 +1022,16 @@ function BuildUpCardSlotsCard(eqpRgnId, itemId, enchantTypeId, objArySlots) {
 				break;
 
 			case EQUIP_REGION_ID_HEAD_TOP:
+				// TODO: コードの役割分担を考えると本当は card.dat.js 末尾で処理したほうが良い
 				cardSortObjTarget = CardSortOBJ[CARD_KIND_HEAD].concat(CardSortOBJ[CARD_KIND_TOP]);
+				cardSortObjTarget = Array.from(new Set(cardSortObjTarget));
 				cardIdSelected = n_A_card[CARD_REGION_ID_HEAD_TOP];
 				break;
 
 			case EQUIP_REGION_ID_HEAD_MID:
+				// TODO: コードの役割分担を考えると本当は card.dat.js 末尾で処理したほうが良い
 				cardSortObjTarget = CardSortOBJ[CARD_KIND_HEAD].concat(CardSortOBJ[CARD_KIND_MID]);
+				cardSortObjTarget = Array.from(new Set(cardSortObjTarget));
 				cardIdSelected = n_A_card[CARD_REGION_ID_HEAD_MID];
 				break;
 
@@ -1060,12 +1056,16 @@ function BuildUpCardSlotsCard(eqpRgnId, itemId, enchantTypeId, objArySlots) {
 				break;
 
 			case EQUIP_REGION_ID_ACCESSARY_1:
+				// TODO: コードの役割分担を考えると本当は card.dat.js 末尾で処理したほうが良い
 				cardSortObjTarget = CardSortOBJ[CARD_KIND_ACCESSARY].concat(CardSortOBJ[CARD_KIND_ACCESSARY_ON1]);
+				cardSortObjTarget = Array.from(new Set(cardSortObjTarget));
 				cardIdSelected = n_A_card[CARD_REGION_ID_ACCESSARY_1];
 				break;
 
 			case EQUIP_REGION_ID_ACCESSARY_2:
+				// TODO: コードの役割分担を考えると本当は card.dat.js 末尾で処理したほうが良い
 				cardSortObjTarget = CardSortOBJ[CARD_KIND_ACCESSARY].concat(CardSortOBJ[CARD_KIND_ACCESSARY_ON2]);
+				cardSortObjTarget = Array.from(new Set(cardSortObjTarget));
 				cardIdSelected = n_A_card[CARD_REGION_ID_ACCESSARY_2];
 				break;
 		}
@@ -1140,7 +1140,11 @@ function BuildUpCardSlotsEnchant(enchantTypeId, objArySlots) {
 }
 
 /**
- * カードスロットの再構築（[MIG] カード項目）.
+ * カードスロットの再構築
+ * @param {*} eqpRgnId 
+ * @param {*} itemId 
+ * @param {*} enchInfoArray 
+ * @param {*} objArySlots 
  */
 function BuildUpCardSlotsMIG(eqpRgnId, itemId, enchInfoArray, objArySlots) {
 
@@ -1286,12 +1290,16 @@ function BuildUpCardSlotsMIG(eqpRgnId, itemId, enchInfoArray, objArySlots) {
 			break;
 
 		case EQUIP_REGION_ID_HEAD_TOP:
+			// TODO: コードの役割分担を考えると本当は card.dat.js 末尾で処理したほうが良い
 			cardSortObjTarget = CardSortOBJ[CARD_KIND_HEAD].concat(CardSortOBJ[CARD_KIND_TOP]);
+			cardSortObjTarget = Array.from(new Set(cardSortObjTarget));
 			cardIdSelected = n_A_card[CARD_REGION_ID_HEAD_TOP];
 			break;
 
 		case EQUIP_REGION_ID_HEAD_MID:
+			// TODO: コードの役割分担を考えると本当は card.dat.js 末尾で処理したほうが良い
 			cardSortObjTarget = CardSortOBJ[CARD_KIND_HEAD].concat(CardSortOBJ[CARD_KIND_MID]);
+			cardSortObjTarget = Array.from(new Set(cardSortObjTarget));
 			cardIdSelected = n_A_card[CARD_REGION_ID_HEAD_MID];
 			break;
 
@@ -1316,12 +1324,16 @@ function BuildUpCardSlotsMIG(eqpRgnId, itemId, enchInfoArray, objArySlots) {
 			break;
 
 		case EQUIP_REGION_ID_ACCESSARY_1:
+			// TODO: コードの役割分担を考えると本当は card.dat.js 末尾で処理したほうが良い
 			cardSortObjTarget = CardSortOBJ[CARD_KIND_ACCESSARY].concat(CardSortOBJ[CARD_KIND_ACCESSARY_ON1]);
+			cardSortObjTarget = Array.from(new Set(cardSortObjTarget));
 			cardIdSelected = n_A_card[CARD_REGION_ID_ACCESSARY_1];
 			break;
 
 		case EQUIP_REGION_ID_ACCESSARY_2:
+			// TODO: コードの役割分担を考えると本当は card.dat.js 末尾で処理したほうが良い
 			cardSortObjTarget = CardSortOBJ[CARD_KIND_ACCESSARY].concat(CardSortOBJ[CARD_KIND_ACCESSARY_ON2]);
+			cardSortObjTarget = Array.from(new Set(cardSortObjTarget));
 			cardIdSelected = n_A_card[CARD_REGION_ID_ACCESSARY_2];
 			break;
 
@@ -1448,10 +1460,6 @@ function __SetCardSlotEnability(objTarget, enabled) {
 		objTarget.style.visibility = "hidden";
 	}
 }
-
-
-
-
 
 /************************************************************************************************
  *
