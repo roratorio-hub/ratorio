@@ -344,17 +344,25 @@ class CShadowEquipController {
 		});
 		/* 選択中のシャドウ装備にセット可能なエンチャントID一覧 */
 		const enchant_id_list = g_constDataManager.GetDataManger(CONST_DATA_KIND_ENCHANT_LIST).GetEnchListIdArrayByItemId(newValue);
-		const enchInfoArrayAllSlotsResult = [[],[],[]];
+		// 結果用配列用意
+		let enchInfoArrayAllSlotsResult = [[],[],[],[]];
 		let enchInfoArrayAllSlots = null;
 		if (enchant_id_list.length > 0) {
-			enchInfoArrayAllSlots = RebuildCardSelectSubCollectEnchListData(enchant_id_list, enchInfoArrayAllSlotsResult);
-			// 
+			// エンチャント情報の収集
+			for (let i = 0; i < enchant_id_list.length; i++) {
+				enchInfoArrayAllSlots = RebuildCardSelectSubCollectEnchListData(enchant_id_list[i], enchInfoArrayAllSlotsResult);
+				// 最終結果に追記
+				for (let idxSlot = 0; idxSlot < enchInfoArrayAllSlots.length; idxSlot++) {
+					enchInfoArrayAllSlotsResult[idxSlot] = enchInfoArrayAllSlotsResult[idxSlot].concat(enchInfoArrayAllSlots[idxSlot]);
+				}
+			}
+			// エンチャント選択欄の構築
 			for (let i = 1; i < element_list.length; i++) {
 				const objSelect = element_list[i];
 				HtmlCreateElementOption(CARD_ID_NONE, "エンチャントなし", objSelect);
 				let enchListIdLast = -1;
 				let objSelectGroup = null;
-				enchInfoArrayAllSlots[i].forEach(enchInfo => {
+				enchInfoArrayAllSlotsResult[i].forEach(enchInfo => {
 					// セレクトボックスのオプショングループを生成
 					if (enchListIdLast != enchInfo[0]) {
 						objSelectGroup = HtmlCreateElement("optgroup", objSelect);
@@ -380,7 +388,7 @@ class CShadowEquipController {
 		}
 		// エンチャントを表示
 		element_list.forEach(element => {
-			if(element.length > 0) {
+			if(element.length > 1) {
 				element.style.display = "block";
 			}
 		});

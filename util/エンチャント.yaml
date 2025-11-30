@@ -1,0 +1,57 @@
+enchant_list:
+  - enchant: #
+      - name: シーズナルシャドウエンチャント グループ1
+        item_list: #
+          - item_name: シーズナルウェポン
+          - item_name: シーズナルシールド
+          - item_name: シーズナルアーマー
+          - item_name: シーズナルシューズ
+          - item_name: シーズナルイヤリング
+          - item_name: シーズナルペンダント
+        slot_list: #
+          - slot: 4
+            refine: 0
+            enchant_list: #
+              - name: 潜在解放(アークメイジVIII)
+              - name: 潜在解放(アークメイジIX)
+              - name: 潜在解放(アビスチェイサーX)
+              - name: 潜在解放(アビスチェイサーXI)
+              - name: 潜在解放(アビスチェイサーXII)
+              - name: 潜在解放(インクイジターVIII)
+              - name: 潜在解放(インクイジターIX)
+              - name: 潜在解放(インペリアルガードIX)
+              - name: 潜在解放(インペリアルガードX)
+              - name: 潜在解放(ウィンドホークIX)
+              - name: 潜在解放(ウィンドホークX)
+              - name: 潜在解放(ウィンドホークXI)
+              - name: 潜在解放(エレメンタルマスターIX)
+              - name: 潜在解放(カーディナルX)
+              - name: 潜在解放(カーディナルXI)
+              - name: 潜在解放(カーディナルXII)
+              - name: 潜在解放(シャドウクロスX)
+              - name: 潜在解放(シャドウクロスXI)
+              - name: 潜在解放(スピリットハンドラーX)
+              - name: 潜在解放(スピリットハンドラーXI)
+              - name: 潜在解放(ソウルアセティックVIII)
+              - name: 潜在解放(ソウルアセティックIX)
+              - name: 潜在解放(ソウルアセティックX)
+              - name: 潜在解放(ドラゴンナイトVIII)
+              - name: 潜在解放(ドラゴンナイトIX)
+              - name: 潜在解放(トルバドゥール&トルヴェールVI)
+              - name: 潜在解放(トルバドゥール&トルヴェールVII)
+              - name: 潜在解放(ナイトウォッチVII)
+              - name: 潜在解放(ナイトウォッチVIII)
+              - name: 潜在解放(バイオロVIII)
+              - name: 潜在解放(バイオロIX)
+              - name: 潜在解放(バイオロX)
+              - name: 潜在解放(ハイパーノービスX)
+              - name: 潜在解放(ハイパーノービスXI)
+              - name: 潜在解放(ハイパーノービスXII)
+              - name: 潜在解放(マイスターX)
+              - name: 潜在解放(マイスターXI)
+              - name: 潜在解放(蜃気楼&不知火VII)
+              - name: 潜在解放(蜃気楼&不知火VIII)
+              - name: 潜在解放(蜃気楼&不知火IX)
+              - name: 潜在解放(天帝VII)
+              - name: 潜在解放(天帝VIII)
+

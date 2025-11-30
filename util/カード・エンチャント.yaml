@@ -1,342 +1,980 @@
 card_list:
-  - name: 憤怒のアークビショップマーガレッタ(MVP)
-    yomi: フンヌノアークビショップマーガレッタMVP
-    type: 肩にかける物
+  - name: 潜在解放(アークメイジVIII)
+    yomi: センザイカイホウアークメイジ8
+    type: エンチャント
     capabilities:
-      - name: 聖属性魔法ダメージ増加
-        value: 50
-      - name: 聖属性耐性
-        value: 70
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 殺意の怨念
-        capabilities:
-          - name: 魔法ダメージ増加
-            value: 10
-          - name: スキル使用可能
-            skill: アドラムス
-            skill_lv: 10
-  - name: 憤怒のアークビショップマーガレッタ
-    yomi: フンヌノアークビショップマーガレッタ
-    type: 中段
-    capabilities:
-      - name: ヒール系スキル使用時HP回復量増加
-        value: 5
-      - name: ヒール系スキル使用時HP回復量増加
+      - name: スキル消費SP固定値減少
+        skill: オールブルーム
         value: 15
-        at_lv: 250
-  - name: 憤怒のウォーロックカトリーヌ(MVP)
-    yomi: フンヌノウォーロックカトリーヌMVP
-    type: 肩にかける物
-    capabilities:
-      - name: 闇属性魔法ダメージ増加
-        value: 100
-      - name: 闇属性耐性
-        value: 50
-      - name: 暗闇耐性
-        value: 100
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 殺意の怨念
-        capabilities:
-          - name: 闇属性耐性
-            value: 50
-  - name: 憤怒のウォーロックカトリーヌ
-    yomi: フンヌノウォーロックカトリーヌ
-    type: 武器
-    capabilities:
-      - name: 魔法ダメージ増加
-        value: 5
-      - name: 魔法ダメージ増加
+      - name: スキル消費SP固定値減少
+        skill: クリスタルインパクト
+        value: 11
+      - name: スキル消費SP固定値減少
+        skill: フローズンスラッシュ
+        value: 11
+      - name: スキル消費SP固定値減少
+        skill: ロックダウン
+        value: 11
+      - name: スキル消費SP固定値減少
+        skill: ディストラクティブハリケーン
+        value: 12
+      - name: スキル消費SP固定値減少
+        skill: クリムゾンアロー
+        value: 12
+      - name: スキル消費SP固定値減少
+        skill: ストームキャノン
+        value: 12
+      - name: スキル消費SP固定値減少
+        skill: バイオレントクエイク
+        value: 13
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: オールブルーム
         value: 15
-        at_lv: 250
-  - name: 憤怒のギロチンクロスエレメス(MVP)
-    yomi: フンヌノギロチンクロスエレメスMVP
-    type: 肩にかける物
-    capabilities:
-      - name: 必中
-        value: 10
-      - name: 近距離ダメージ増加
-        value: 10
-      - name: 風属性耐性
-        value: 70
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 殺意の怨念
-        capabilities:
-          - name: 必中
-            value: 15
-  - name: 憤怒のギロチンクロスエレメス
-    yomi: フンヌノギロチンクロスエレメス
-    type: 中段
-    capabilities:
-      - name: 近距離ダメージ増加
-        value: 5
-      - name: 近距離ダメージ増加
-        value: 5
-        at_lv: 250
-  - name: 憤怒のジェネティックエミュール(MVP)
-    yomi: フンヌノジェネティックエミュールMVP
-    type: 肩にかける物
-    capabilities:
-      - name: CRI加算
-        value: 25
-      - name: 遠距離ダメージ増加
-        value: 10
-      - name: 火属性耐性
-        value: 70
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 殺意の怨念
-        capabilities:
-          - name: CRI加算
-            value: 25
-  - name: 憤怒のジェネティックエミュール
-    yomi: フンヌノジェネティックエミュール
-    type: 靴
-    capabilities:
-      - name: クリティカルダメージ増加
-        value: 5
-      - name: クリティカルダメージ増加
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: クリスタルインパクト
+        value: 11
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: フローズンスラッシュ
+        value: 11
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: ロックダウン
+        value: 11
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: ディストラクティブハリケーン
+        value: 12
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: クリムゾンアロー
+        value: 12
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: ストームキャノン
+        value: 12
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: バイオレントクエイク
+        value: 14
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: オールブルーム
         value: 15
-        at_lv: 250
-  - name: 憤怒のシャドウチェイサーガーティー(MVP)
-    yomi: フンヌノシャドウチェイサーガーティーMVP
-    type: 肩にかける物
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: クリスタルインパクト
+        value: 11
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: フローズンスラッシュ
+        value: 11
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: ロックダウン
+        value: 11
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: ディストラクティブハリケーン
+        value: 12
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: クリムゾンアロー
+        value: 12
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: ストームキャノン
+        value: 12
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: バイオレントクエイク
+        value: 14
+  - name: 潜在解放(アークメイジIX)
+    yomi: センザイカイホウアークメイジ9
+    type: エンチャント
     capabilities:
-      - name: 必中
-        value: 10
-      - name: 近距離ダメージ増加
-        value: 10
-      - name: 水属性耐性
-        value: 70
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 殺意の怨念
-        capabilities:
-          - name: 必中
-            value: 15
-  - name: 憤怒のシャドウチェイサーガーティー
-    yomi: フンヌノシャドウチェイサーガーティー
-    type: 中段
-    capabilities:
-      - name: 遠距離ダメージ増加
-        value: 5
-      - name: 遠距離ダメージ増加
-        value: 5
-        at_lv: 250
-  - name: 憤怒のソーサラーセリア(MVP)
-    yomi: フンヌノソーサラーセリアMVP
-    desc: "絶対に猛毒状態にならない"
-    type: 肩にかける物
-    capabilities:
-      - name: 毒属性魔法ダメージ増加
-        value: 100
-      - name: 毒属性耐性
-        value: 50
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 殺意の怨念
-        capabilities:
-          - name: 毒属性耐性
-            value: 50
-  - name: 憤怒のソーサラーセリア
-    yomi: フンヌノソーサラーセリア
-    type: 靴
-    capabilities:
-      - name: 魔法ダメージ増加
-        value: 5
-      - name: 魔法ダメージ増加
+      - name: スキル消費SP固定値減少
+        skill: ソウルバルカンストライク
+        value: 11
+      - name: スキル消費SP固定値減少
+        skill: ミステリーイリュージョン
         value: 15
-        at_lv: 250
-  - name: 憤怒のミンストレルアルフォシオ(MVP)
-    yomi: フンヌノミンストレルアルフォシオMVP
-    type: 肩にかける物
-    capabilities:
-      - name: FLEE加算
-        value: 50
-      - name: 遠距離ダメージ増加
-        value: 10
-      - name: 地属性耐性
-        value: 70
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 殺意の怨念
-        capabilities:
-          - name: FLEE加算
-            value: 50
-  - name: 憤怒のミンストレルアルフォシオ
-    yomi: フンヌノミンストレルアルフォシオ
-    type: 靴
-    capabilities:
-      - name: 凍結耐性
-        value: 25
-      - name: 凍結耐性
-        value: 25
-        at_lv: 250
-  - name: 憤怒のメカニックハワード(MVP)
-    yomi: フンヌノメカニックハワードMVP
-    type: 肩にかける物
-    capabilities:
-      - name: CRI加算
-        value: 25
-      - name: 近距離ダメージ増加
-        value: 10
-      - name: 地属性耐性
-        value: 70
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 殺意の怨念
-        capabilities:
-          - name: CRI加算
-            value: 25
-  - name: 憤怒のメカニックハワード
-    yomi: フンヌノメカニックハワード
-    type: 武器
-    capabilities:
-      - name: クリティカルダメージ増加
+      - name: スキル消費SP固定値減少
+        skill: デッドリープロジェクション
+        value: 5
+      - name: スキル消費SP固定値減少
+        skill: アストラルストライク
+        value: 22
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: ソウルバルカンストライク
+        value: 11
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: ミステリーイリュージョン
         value: 15
-      - name: クリティカルダメージ増加
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: デッドリープロジェクション
+        value: 5
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: アストラルストライク
+        value: 23
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: ソウルバルカンストライク
+        value: 11
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: ミステリーイリュージョン
         value: 15
-        at_lv: 250
-  - name: 憤怒のルーンナイトセイレン(MVP)
-    yomi: フンヌノルーンナイトセイレンMVP
-    type: 肩にかける物
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: デッドリープロジェクション
+        value: 6
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: アストラルストライク
+        value: 23
+  - name: 潜在解放(インクイジターIX)
+    yomi: センザイカイホウインクイジター9
+    type: エンチャント
     capabilities:
-      - name: MAXHP増加
-        value: 10
-      - name: 物理ダメージ増加
-        value: 10
-      - name: 火属性耐性
-        value: 50
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 殺意の怨念
-        capabilities:
-          - name: MAXHP増加
-            value: 10
-  - name: 憤怒のルーンナイトセイレン
-    yomi: フンヌノルーンナイトセイレン
-    type: アクセサリー(1)
+      - name: スキル消費SP固定値減少
+        skill: 第二撃：信念
+        value: 5
+      - name: スキル消費SP固定値減少
+        skill: 第二撃：審判
+        value: 5
+      - name: スキル消費SP固定値減少
+        skill: 第二撃：滅魔の火
+        value: 5
+      - name: スキル消費SP固定値減少
+        skill: 第三撃：断罪
+        value: 6
+      - name: スキル消費SP固定値減少
+        skill: 第三撃：浄化
+        value: 6
+      - name: スキル消費SP固定値減少
+        skill: 第三撃：滅火撃
+        value: 6
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: 第二撃：信念
+        value: 6
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: 第二撃：審判
+        value: 6
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: 第二撃：滅魔の火
+        value: 6
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: 第三撃：断罪
+        value: 7
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: 第三撃：浄化
+        value: 7
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: 第三撃：滅火撃
+        value: 7
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: 第二撃：信念
+        value: 6
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: 第二撃：審判
+        value: 6
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: 第二撃：滅魔の火
+        value: 6
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: 第三撃：断罪
+        value: 7
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: 第三撃：浄化
+        value: 7
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: 第三撃：滅火撃
+        value: 7
+  - name: 潜在解放(ウィンドホークIX)
+    yomi: センザイカイホウウィンドホーク9
+    type: エンチャント
     capabilities:
-      - name: 遠距離ダメージ増加
+      - name: スキル消費SP固定値減少
+        skill: クレッシブボルト
         value: 4
-      - name: 遠距離ダメージ増加
-        value: 4
-        at_lv: 250
-  - name: 憤怒のレンジャーセシル(MVP)
-    yomi: フンヌノレンジャーセシルMVP
-    type: 肩にかける物
-    capabilities:
-      - name: FLEE加算
-        value: 50
-      - name: 遠距離ダメージ増加
-        value: 10
-      - name: 風属性耐性
-        value: 70
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 殺意の怨念
-        capabilities:
-          - name: FLEE加算
-            value: 50
-  - name: 憤怒のレンジャーセシル
-    yomi: フンヌノレンジャーセシル
-    type: 靴
-    capabilities:
-      - name: 物理ダメージ増加
-        value: 10
-      - name: 物理ダメージ増加
-        value: 10
-        at_lv: 250
-  - name: 憤怒のロイヤルガードランデル(MVP)
-    yomi: フンヌノロイヤルガードランデルMVP
-    type: 肩にかける物
-    capabilities:
-      - name: MAXHP増加
-        value: 10
-      - name: 近距離ダメージ増加
-        value: 10
-      - name: 火属性耐性
-        value: 70
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 殺意の怨念
-        capabilities:
-          - name: MAXHP増加
-            value: 10
-
-  - name: 憤怒のロイヤルガードランデル
-    yomi: フンヌノロイヤルガードランデル
-    type: アクセサリー
-    capabilities:
-      - name: 近距離ダメージ増加
-        value: 4
-      - name: 近距離ダメージ増加
-        value: 4
-        at_lv: 250
-  - name: 憤怒のワンダラートレンティーニ(MVP)
-    yomi: フンヌノワンダラートレンティーニMVP
-    type: 肩にかける物
-    capabilities:
-      - name: 無属性魔法ダメージ増加
-        value: 50
-      - name: 無属性耐性
-        value: 35
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 殺意の怨念
-        capabilities:
-          - name: 魔法ダメージ増加
-            value: 10
-          - name: スキル使用可能
-            skill: メタリックサウンド
-            skill_lv: 10
-
-  - name: 憤怒のワンダラートレンティーニ
-    yomi: フンヌノワンダラートレンティーニ
-    type: 靴
-    capabilities:
-      - name: スタン耐性
-        value: 25
-      - name: スタン耐性
-        value: 25
-        at_lv: 250
-  - name: 憤怒の修羅チェン(MVP)
-    yomi: フンヌノシュラチェンMVP
-    type: 肩にかける物
-    capabilities:
-      - name: ATK加算
-        value: 50
-      - name: 遠距離ダメージ増加
-        value: 10
-      - name: 水属性耐性
-        value: 70
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 殺意の怨念
-        capabilities:
-          - name: ATK加算
-            value: 50
-  - name: 憤怒の修羅チェン
-    yomi: フンヌノシュラチェン
-    type: 武器
-    capabilities:
-      - name: 近距離ダメージ増加
+      - name: スキル消費SP固定値減少
+        skill: ゲイルストーム
         value: 5
-      - name: 近距離ダメージ増加
-        value: 15
-        at_lv: 250
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: クレッシブボルト
+        value: 4
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: ゲイルストーム
+        value: 6
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: クレッシブボルト
+        value: 4
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: ゲイルストーム
+        value: 6
+  - name: 潜在解放(ウィンドホークXI)
+    yomi: センザイカイホウウィンドホーク11
+    type: エンチャント
+    capabilities:
+      - name: スキル消費SP固定値減少
+        skill: フレイムトラップ
+        value: 7
+      - name: スキル消費SP固定値減少
+        skill: スイフトトラップ
+        value: 7
+      - name: スキル消費SP固定値減少
+        skill: ソリッドトラップ
+        value: 6
+      - name: スキル消費SP固定値減少
+        skill: ディープブラインドトラップ
+        value: 8
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: フレイムトラップ
+        value: 7
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: スイフトトラップ
+        value: 7
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: ソリッドトラップ
+        value: 6
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: ディープブラインドトラップ
+        value: 8
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: フレイムトラップ
+        value: 7
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: スイフトトラップ
+        value: 7
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: ソリッドトラップ
+        value: 6
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: ディープブラインドトラップ
+        value: 9
+  - name: 潜在解放(カーディナルXI)
+    yomi: センザイカイホウカーディナル11
+    type: エンチャント
+    capabilities:
+      - name: スキル消費SP固定値減少
+        skill: ディレクティオヒール
+        value: 12
+      - name: スキル消費SP固定値減少
+        skill: レパラティオ
+        value: 5
+      - name: スキル消費SP固定値減少
+        skill: コンペテンティア
+        value: 23
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: ディレクティオヒール
+        value: 13
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: レパラティオ
+        value: 6
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: コンペテンティア
+        value: 23
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: ディレクティオヒール
+        value: 13
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: レパラティオ
+        value: 6
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: コンペテンティア
+        value: 23
+  - name: 潜在解放(カーディナルXII)
+    yomi: センザイカイホウカーディナル12
+    type: エンチャント
+    capabilities:
+      - name: スキル消費SP固定値減少
+        skill: ペティティオ
+        value: 7
+      - name: スキル消費SP固定値減少
+        skill: エフィリゴ
+        value: 10
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: ペティティオ
+        value: 7
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: エフィリゴ
+        value: 10
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: ペティティオ
+        value: 7
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: エフィリゴ
+        value: 11
+  - name: 潜在解放(シャドウクロスXI)
+    yomi: センザイカイホウシャドウクロス11
+    type: エンチャント
+    capabilities:
+      - name: スキル消費SP固定値減少
+        skill: インパクトクレーター
+        value: 7
+      - name: スキル消費SP固定値減少
+        skill: サベージインパクト
+        value: 7
+      - name: スキル消費SP固定値減少
+        skill: フェイタルシャドウクロー
+        value: 10
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: インパクトクレーター
+        value: 7
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: サベージインパクト
+        value: 7
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: フェイタルシャドウクロー
+        value: 10
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: インパクトクレーター
+        value: 7
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: サベージインパクト
+        value: 7
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: フェイタルシャドウクロー
+        value: 11
+  - name: 潜在解放(ソウルアセティックVIII)
+    yomi: センザイカイホウソウルアセティック8
+    type: エンチャント
+    capabilities:
+      - name: スキル消費SP固定値減少
+        skill: 青龍符
+        value: 6
+      - name: スキル消費SP固定値減少
+        skill: 白虎符
+        value: 12
+      - name: スキル消費SP固定値減少
+        skill: 朱雀符
+        value: 12
+      - name: スキル消費SP固定値減少
+        skill: 玄武符
+        value: 12
+      - name: スキル消費SP固定値減少
+        skill: 四方五行陣
+        value: 12
+      - name: スキル消費SP固定値減少
+        skill: 四方神符
+        value: 10
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: 青龍符
+        value: 7
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: 白虎符
+        value: 12
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: 朱雀符
+        value: 12
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: 玄武符
+        value: 12
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: 四方五行陣
+        value: 12
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: 四方神符
+        value: 10
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: 青龍符
+        value: 7
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: 白虎符
+        value: 12
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: 朱雀符
+        value: 12
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: 玄武符
+        value: 12
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: 四方五行陣
+        value: 12
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: 四方神符
+        value: 10
+  - name: 潜在解放(ソウルアセティックIX)
+    yomi: センザイカイホウソウルアセティック9
+    type: エンチャント
+    capabilities:
+      - name: スキル消費SP固定値減少
+        skill: 霊道符
+        value: 6
+      - name: スキル消費SP固定値減少
+        skill: 死霊浄化
+        value: 10
+      - name: スキル消費SP固定値減少
+        skill: 四方五行陣
+        value: 12
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: 霊道符
+        value: 7
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: 死霊浄化
+        value: 10
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: 四方五行陣
+        value: 12
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: 霊道符
+        value: 7
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: 死霊浄化
+        value: 10
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: 四方五行陣
+        value: 12
+  - name: 潜在解放(ソウルアセティックX)
+    yomi: センザイカイホウソウルアセティック10
+    type: エンチャント
+    capabilities:
+      - name: スキル消費SP固定値減少
+        skill: 守護符
+        value: 5
+      - name: スキル消費SP固定値減少
+        skill: 武士符
+        value: 5
+      - name: スキル消費SP固定値減少
+        skill: 法師符
+        value: 5
+      - name: スキル消費SP固定値減少
+        skill: 五行符
+        value: 5
+      - name: スキル消費SP固定値減少
+        skill: 城隍堂
+        value: 19
+      - name: スキル消費SP固定値減少
+        skill: 天地神霊
+        value: 22
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: 守護符
+        value: 6
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: 武士符
+        value: 6
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: 法師符
+        value: 6
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: 五行符
+        value: 6
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: 城隍堂
+        value: 19
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: 天地神霊
+        value: 23
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: 守護符
+        value: 6
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: 武士符
+        value: 6
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: 法師符
+        value: 6
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: 五行符
+        value: 6
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: 城隍堂
+        value: 19
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: 天地神霊
+        value: 23
+  - name: 潜在解放(ドラゴンナイトIX)
+    yomi: センザイカイホウドラゴンナイト9
+    type: エンチャント
+    capabilities:
+      - name: スキル消費SP固定値減少
+        skill: ドラゴニックブレス
+        value: 7
+      - name: スキル消費SP固定値減少
+        skill: ドラゴニックオーラ
+        value: 6
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: ドラゴニックブレス
+        value: 8
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: ドラゴニックオーラ
+        value: 6
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: ドラゴニックブレス
+        value: 8
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: ドラゴニックオーラ
+        value: 7
+  - name: 潜在解放(トルバドゥール&トルヴェールVI)
+    yomi: センザイカイホウトルバドゥールアンドトルヴェール6
+    type: エンチャント
+    capabilities:
+      - name: スキル消費SP固定値減少
+        skill: リズムシューティング
+        value: 3
+      - name: スキル消費SP固定値減少
+        skill: ロゼブロッサム
+        value: 7
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: リズムシューティング
+        value: 4
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: ロゼブロッサム
+        value: 8
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: リズムシューティング
+        value: 4
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: ロゼブロッサム
+        value: 8
+  - name: 潜在解放(ナイトウォッチVIII)
+    yomi: センザイカイホウナイトウォッチ8
+    type: エンチャント
+    capabilities:
+      - name: スキル消費SP固定値減少
+        skill: ベーシックグレネード
+        value: 6
+      - name: スキル消費SP固定値減少
+        skill: ヘイスティファイアインザホール
+        value: 7
+      - name: スキル消費SP固定値減少
+        skill: グレネーズドロッピング
+        value: 7
+      - name: スキル消費SP固定値減少
+        skill: ミッションボンバード
+        value: 11
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: ベーシックグレネード
+        value: 6
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: ヘイスティファイアインザホール
+        value: 8
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: グレネーズドロッピング
+        value: 8
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: ミッションボンバード
+        value: 11
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: ベーシックグレネード
+        value: 6
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: ヘイスティファイアインザホール
+        value: 8
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: グレネーズドロッピング
+        value: 8
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: ミッションボンバード
+        value: 12
+  - name: 潜在解放(バイオロVIII)
+    yomi: センザイカイホウバイオロ8
+    type: エンチャント
+    capabilities:
+      - name: スキル消費SP固定値減少
+        skill: アシディファイドゾーン(火)
+        value: 18
+      - name: スキル消費SP固定値減少
+        skill: アシディファイドゾーン(風)
+        value: 18
+      - name: スキル消費SP固定値減少
+        skill: アシディファイドゾーン(水)
+        value: 16
+      - name: スキル消費SP固定値減少
+        skill: アシディファイドゾーン(地)
+        value: 16
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: アシディファイドゾーン(火)
+        value: 18
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: アシディファイドゾーン(風)
+        value: 18
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: アシディファイドゾーン(水)
+        value: 16
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: アシディファイドゾーン(地)
+        value: 16
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: アシディファイドゾーン(火)
+        value: 18
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: アシディファイドゾーン(風)
+        value: 18
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: アシディファイドゾーン(水)
+        value: 16
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: アシディファイドゾーン(地)
+        value: 16
+  - name: 潜在解放(バイオロX)
+    yomi: センザイカイホウバイオロ10
+    type: エンチャント
+    capabilities:
+      - name: スキル消費SP固定値減少
+        skill: メイヘミックソーンズ
+        value: 10
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: メイヘミックソーンズ
+        value: 10
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: メイヘミックソーンズ
+        value: 10
+  - name: 潜在解放(ハイパーノービスX)
+    yomi: センザイカイホウハイパーノービス10
+    type: エンチャント
+    capabilities:
+      - name: スキル消費SP固定値減少
+        skill: ユピテルサンダーストーム
+        value: 2
+      - name: スキル消費SP固定値減少
+        skill: ヘルズドライブ
+        value: 2
+      - name: スキル消費SP固定値減少
+        skill: ナパームバルカンストライク
+        value: 3
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: ユピテルサンダーストーム
+        value: 3
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: ヘルズドライブ
+        value: 2
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: ナパームバルカンストライク
+        value: 4
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: ユピテルサンダーストーム
+        value: 3
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: ヘルズドライブ
+        value: 3
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: ナパームバルカンストライク
+        value: 4
+  - name: 潜在解放(ハイパーノービスXI)
+    yomi: センザイカイホウハイパーノービス11
+    type: エンチャント
+    capabilities:
+      - name: スキル消費SP固定値減少
+        skill: シールドチェーンラッシュ
+        value: 3
+      - name: スキル消費SP固定値減少
+        skill: スパイラルピアースマックス
+        value: 2
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: シールドチェーンラッシュ
+        value: 3
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: スパイラルピアースマックス
+        value: 2
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: シールドチェーンラッシュ
+        value: 4
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: スパイラルピアースマックス
+        value: 2
+  - name: 潜在解放(ハイパーノービスXII)
+    yomi: センザイカイホウハイパーノービス12
+    type: エンチャント
+    capabilities:
+      - name: スキル消費SP固定値減少
+        skill: ダブルボウリングバッシュ
+        value: 2
+      - name: スキル消費SP固定値減少
+        skill: メガソニックブロー
+        value: 2
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: ダブルボウリングバッシュ
+        value: 3
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: メガソニックブロー
+        value: 2
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: ダブルボウリングバッシュ
+        value: 3
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: メガソニックブロー
+        value: 2
+  - name: 潜在解放(蜃気楼&不知火VII)
+    yomi: センザイカイホウシンキロウアンドシラヌイ7
+    type: エンチャント
+    capabilities:
+      - name: スキル消費SP固定値減少
+        skill: 影狩り
+        value: 7
+      - name: スキル消費SP固定値減少
+        skill: 影の舞
+        value: 6
+      - name: スキル消費SP固定値減少
+        skill: 影一閃
+        value: 6
+      - name: スキル消費SP固定値減少
+        skill: 幻術 -影縫い-
+        value: 9
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: 影狩り
+        value: 8
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: 影の舞
+        value: 6
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: 影一閃
+        value: 6
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: 幻術 -影縫い-
+        value: 9
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: 影狩り
+        value: 8
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: 影の舞
+        value: 6
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: 影一閃
+        value: 7
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: 幻術 -影縫い-
+        value: 10
+  - name: 潜在解放(蜃気楼&不知火VIII)
+    yomi: センザイカイホウシンキロウアンドシラヌイ8
+    type: エンチャント
+    capabilities:
+      - name: スキル消費SP固定値減少
+        skill: 苦無 -歪曲-
+        value: 9
+      - name: スキル消費SP固定値減少
+        skill: 幻術 -苦無-
+        value: 9
+      - name: スキル消費SP固定値減少
+        skill: 苦無 -回転-
+        value: 7
+      - name: スキル消費SP固定値減少
+        skill: 苦無 -屈折-
+        value: 6
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: 苦無 -歪曲-
+        value: 9
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: 幻術 -苦無-
+        value: 9
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: 苦無 -回転-
+        value: 8
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: 苦無 -屈折-
+        value: 6
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: 苦無 -歪曲-
+        value: 10
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: 幻術 -苦無-
+        value: 10
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: 苦無 -回転-
+        value: 8
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: 苦無 -屈折-
+        value: 7
+  - name: 潜在解放(蜃気楼&不知火IX)
+    yomi: センザイカイホウシンキロウアンドシラヌイ9
+    type: エンチャント
+    capabilities:
+      - name: スキル消費SP固定値減少
+        skill: 赤炎砲
+        value: 9
+      - name: スキル消費SP固定値減少
+        skill: 雷電砲
+        value: 9
+      - name: スキル消費SP固定値減少
+        skill: 冷血砲
+        value: 8
+      - name: スキル消費SP固定値減少
+        skill: 金龍砲
+        value: 6
+      - name: スキル消費SP固定値減少
+        skill: 暗転砲
+        value: 7
+      - name: スキル消費SP固定値減少
+        skill: 幻術 -暗黒龍-
+        value: 13
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: 赤炎砲
+        value: 9
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: 雷電砲
+        value: 9
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: 冷血砲
+        value: 8
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: 金龍砲
+        value: 7
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: 暗転砲
+        value: 8
+      - name: スキル消費SP固定値減少
+        at_refine: 7
+        skill: 幻術 -暗黒龍-
+        value: 14
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: 赤炎砲
+        value: 10
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: 雷電砲
+        value: 10
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: 冷血砲
+        value: 9
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: 金龍砲
+        value: 7
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: 暗転砲
+        value: 8
+      - name: スキル消費SP固定値減少
+        at_refine: 9
+        skill: 幻術 -暗黒龍-
+        value: 14

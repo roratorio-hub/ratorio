@@ -631,18 +631,13 @@ if (!_ENCH_LIST_MIG) {
  * @returns 
  */
 function RebuildCardSelectSubCollectEnchListData(enchListId, enchInfoArrayAllSlotsBefore) {
-
 	var idx = 0;
 	var idxSlot = 0;
 	var idxEnchList = 0;
-
 	var enchListData = null;
 	var enchListDataManager = g_constDataManager.GetDataManger(CONST_DATA_KIND_ENCHANT_LIST);
-
 	var enchInfoArray = null;
 	var enchInfoArrayAllSlots = null;
-
-
 
 	var funcTargetIdCollector = function (enchListIdF, slotF, spDataF, paramsF) {
 
