@@ -8,6 +8,8 @@ capabilities:
   # 6 LUK
   # 7 全ステ
   # --- ↑ 固定値上昇（集中力向上等の基礎値に含まれる） ---
+  - name: HIT加算
+    code: 8
   - name: FLEE加算
     code: 9
   - name: CRI加算

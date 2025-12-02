@@ -624,24 +624,20 @@ if (!_ENCH_LIST_MIG) {
 
 }
 
-/*
- * エンチャントリストデータを収集する.
- * @param enchListId 収集対象のエンチャントリストID
- * @param enchInfoArrayBefore これまでに、収集されたデータの配列（アップグレードの判定に使用）
+/**
+ * エンチャントリストデータを収集する
+ * @param {*} enchListId 収集対象のエンチャントリストID
+ * @param {*} enchInfoArrayAllSlotsBefore これまでに、収集されたデータの配列（アップグレードの判定に使用）
+ * @returns 
  */
 function RebuildCardSelectSubCollectEnchListData(enchListId, enchInfoArrayAllSlotsBefore) {
-
 	var idx = 0;
 	var idxSlot = 0;
 	var idxEnchList = 0;
-
 	var enchListData = null;
 	var enchListDataManager = g_constDataManager.GetDataManger(CONST_DATA_KIND_ENCHANT_LIST);
-
 	var enchInfoArray = null;
 	var enchInfoArrayAllSlots = null;
-
-
 
 	var funcTargetIdCollector = function (enchListIdF, slotF, spDataF, paramsF) {
 
@@ -1141,10 +1137,10 @@ function BuildUpCardSlotsEnchant(enchantTypeId, objArySlots) {
 
 /**
  * カードスロットの再構築
- * @param {*} eqpRgnId 
- * @param {*} itemId 
- * @param {*} enchInfoArray 
- * @param {*} objArySlots 
+ * @param {*} eqpRgnId 装備部位ID
+ * @param {*} itemId 装備中のアイテムID
+ * @param {*} enchInfoArray カード・エンチャント情報の配列
+ * @param {*} objArySlots Selectオブジェクトの配列
  */
 function BuildUpCardSlotsMIG(eqpRgnId, itemId, enchInfoArray, objArySlots) {
 
