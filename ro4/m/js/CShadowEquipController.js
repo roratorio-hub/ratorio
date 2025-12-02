@@ -81,8 +81,6 @@ class CShadowEquipController {
 		return "eqprgn-accessory-2";
 	}
 
-
-
 	/**
 	 * 有効な装備箇所名の配列を取得する.
 	 * @param {boolean} bDualArms 二刀流フラグ
@@ -113,17 +111,11 @@ class CShadowEquipController {
 		];
 	}
 
-
-
-
-
 	/**
 	 * コンストラクタ.
 	 */
 	constructor () {
 	}
-
-
 
 	initializeHTML () {
 
@@ -135,21 +127,16 @@ class CShadowEquipController {
 
 		// 装備ブロックごとの初期化処理
 		for (let idx = 0; idx < equipBlockList.length; idx++) {
-
 			// 選択状態変更イベントリスナの追加
 			equipBlockList[idx].addEventListener("change", (evt) => this.onChangeShadow(evt));
-
 			// 精錬値選択オブジェクトの初期化
 			const objItemRefined = equipBlockList[idx].querySelector(":scope .item-refined");
 			HtmlRemoveAllChild(objItemRefined);
-
 			for (let refined = 0; refined <= 10; refined++) {
 				HtmlCreateElementOption(refined, "+" + refined, objItemRefined)
 			}
 		}
 	}
-
-
 
 	/**
 	 * シャドウ装備設定ブロックを取得する.
@@ -167,8 +154,6 @@ class CShadowEquipController {
 		// ブロック全体を取得
 		return objRoot.querySelector(":scope .equip-block." + eqprgnName);
 	}
-
-
 
 	/**
 	 * すべての箇所のシャドウ装備選択欄を再構築する.
@@ -232,12 +217,15 @@ class CShadowEquipController {
 
 		// 装備可能アイテムがない場合は、強制非表示にして終了
 		const objEquipCtrl = objEquipBlock.querySelector(":scope .equip-ctrl");
+		const objCardCtrl = objEquipBlock.querySelector(":scope .card-ctrl");
 		if (itemCount == 0) {
 			objEquipCtrl.checked = null;
+			objCardCtrl.checked = null;
 			return 0;
 		}
 		// そうでなければ、表示状態にする
 		objEquipCtrl.checked = "checked";
+		objCardCtrl.checked = "checked";
 
 		// シャドウ装備の選択変更処理を呼び出し
 		this.#changeShadowItem(objEquipBlock, itemIdArray[0]);
@@ -287,8 +275,6 @@ class CShadowEquipController {
 		return itemInfoArray.length;
 	}
 
-
-
 	/**
 	 * シャドウ装備の変更イベントハンドラ.
 	 * @param {Event} evt イベントオブジェクト
@@ -303,20 +289,22 @@ class CShadowEquipController {
 			const objEquipBlock = objTarget.closest(".equip-block");
 			this.#changeShadowItem(objEquipBlock, selectedValue);
 		}
-
 		// 精錬値変更イベントの場合
 		else if (objTarget.classList.contains("item-refined")) {
 			this.#changeRefined(objTarget, selectedValue);
 		}
-
 		// ランダムオプションの種類変更イベントの場合
 		else if (objTarget.classList.contains("rndopt-kind-select")) {
 			this.#changeRndOptKind(objTarget, selectedValue);
 		}
-
 		// ランダムオプションの種類変更イベントの場合
 		else if (objTarget.classList.contains("rndopt-value-select")) {
 			this.#changeRndOptValue(objTarget, selectedValue);
+		}
+		// エンチャントの変更イベントの場合
+		else if (objTarget.classList.contains("card-select")) {
+			const id = this.#changeEnchantValue(objTarget, selectedValue);
+			OnChangeCard(id);
 		}
 
 		// 再計算
@@ -327,7 +315,7 @@ class CShadowEquipController {
 	/**
 	 * シャドウ装備を変更する.
 	 * @param {HTMLElement} objEquipBlock 装備ブロックオブジェクト
-	 * @param {int} itemId 変更後のアイテムID
+	 * @param {int} newValue 変更後のアイテムID
 	 * @returns 変更前の値、または、undefined
 	 */
 	#changeShadowItem (objEquipBlock, newValue) {
@@ -335,7 +323,6 @@ class CShadowEquipController {
 		//--------------------------------
 		// アイテムの設定
 		//--------------------------------
-
 		// シャドウ装備選択用画面部品に設定
 		const objItemSelect = objEquipBlock.querySelector(":scope .item-conf .item-select");
 
@@ -345,23 +332,74 @@ class CShadowEquipController {
 			return oldValue;
 		}
 
-
 		//--------------------------------
 		// カード選択欄の再構築
 		//--------------------------------
-		// 現状、シャドウ装備にカードは挿せないので未対応
-
+		/* HTMLエレメント */
+		const element_list = objEquipBlock.querySelectorAll(":scope .card-select");
+		// 初期化
+		element_list.forEach(element => {
+			HtmlRemoveAllChild(element);
+			element.style.display = "none";
+		});
+		/* 選択中のシャドウ装備にセット可能なエンチャントID一覧 */
+		const enchant_id_list = g_constDataManager.GetDataManger(CONST_DATA_KIND_ENCHANT_LIST).GetEnchListIdArrayByItemId(newValue);
+		// 結果用配列用意
+		let enchInfoArrayAllSlotsResult = [[],[],[],[]];
+		let enchInfoArrayAllSlots = null;
+		if (enchant_id_list.length > 0) {
+			// エンチャント情報の収集
+			for (let i = 0; i < enchant_id_list.length; i++) {
+				enchInfoArrayAllSlots = RebuildCardSelectSubCollectEnchListData(enchant_id_list[i], enchInfoArrayAllSlotsResult);
+				// 最終結果に追記
+				for (let idxSlot = 0; idxSlot < enchInfoArrayAllSlots.length; idxSlot++) {
+					enchInfoArrayAllSlotsResult[idxSlot] = enchInfoArrayAllSlotsResult[idxSlot].concat(enchInfoArrayAllSlots[idxSlot]);
+				}
+			}
+			// エンチャント選択欄の構築
+			for (let i = 1; i < element_list.length; i++) {
+				const objSelect = element_list[i];
+				HtmlCreateElementOption(CARD_ID_NONE, "エンチャントなし", objSelect);
+				let enchListIdLast = -1;
+				let objSelectGroup = null;
+				enchInfoArrayAllSlotsResult[i].forEach(enchInfo => {
+					// セレクトボックスのオプショングループを生成
+					if (enchListIdLast != enchInfo[0]) {
+						objSelectGroup = HtmlCreateElement("optgroup", objSelect);
+						objSelectGroup.setAttribute("label", g_constDataManager.GetName(CONST_DATA_KIND_ENCHANT_LIST, enchInfo[0]));
+						objSelectGroup.setAttribute("data-ench-list-id", enchInfo[0]);
+						enchListIdLast = enchInfo[0];
+					}
+					// エンチャントデータ（カードデータ）を特定
+					let cardId = enchInfo[1];
+					let cardName = CardObjNew[cardId][CARD_DATA_INDEX_NAME];
+					// 精錬条件を追記
+					if (enchInfo[2].refinedBorderBase) {
+						if (enchInfo[2].refinedBorderFlag) {
+							if (!((enchInfo[2].refinedBorderBase == 0) && (enchInfo[2].refinedBorderFlag == MIG_BORDER_FLAG_ID_OVER))) {
+								cardName += " (+" + enchInfo[2].refinedBorderBase + MigGetBorderFlagText(enchInfo[2].refinedBorderFlag, true) + ")";
+							}
+						}
+					}
+					// 選択肢を追加
+					HtmlCreateElementOption(cardId, cardName, objSelectGroup);
+				})
+			}
+		}
+		// エンチャントを表示
+		element_list.forEach(element => {
+			if(element.length > 1) {
+				element.style.display = "block";
+			}
+		});
 
 		//--------------------------------
 		// ランダムオプション欄の再構築
 		//--------------------------------
-
 		// ランダムオプションタイプIDを取得する
 		const rndOptTypeId = GetRndOptTypeId(ItemObjNew[newValue][ITEM_DATA_INDEX_WPNLV]);
-
 		const rndOptTypeList = objEquipBlock.querySelectorAll(":scope .rndopt-conf .rndopt-kind-select");
 		const rndOptValueList = objEquipBlock.querySelectorAll(":scope .rndopt-conf .rndopt-value-select");
-
 		// 全オプションスロットをループ
 		for (let idx = 0; (idx < rndOptTypeList.length) && (idx < rndOptValueList.length); idx++) {
 
@@ -384,8 +422,6 @@ class CShadowEquipController {
 			// ランダムオプション値　選択欄
 			SetUpRndOptValue(objRndOptValue, rndOptId);
 		}
-
-
 		// 変更前に選択されていた値を返す
 		return oldValue;
 	}
@@ -437,17 +473,28 @@ class CShadowEquipController {
 	 * @returns 変更前の値、または、undefined
 	 */
 	#changeRndOptValue (objTarget, newValue) {
-
 		// 値変更
 		const oldValue = HtmlSelectObjectValueAsInteger(objTarget, newValue);
 		if (oldValue === undefined) {
 			return oldValue;
 		}
-
 		return oldValue;
 	}
 
-
+	/**
+	 * エンチャントの変更イベントハンドラ.
+	 * @param {HTMLElement} objTarget 変更したHTMLオブジェクト
+	 * @param {int} newValue 変更後の値
+	 * @returns 変更前の値、または、undefined
+	 */
+	#changeEnchantValue (objTarget, newValue) {
+		// 値変更
+		const oldValue = HtmlSelectObjectValueAsInteger(objTarget, newValue);
+		if (oldValue === undefined) {
+			return oldValue;
+		}
+		return oldValue;
+	}
 
 	/**
 	 * シャドウ装備のデータロード処理.
@@ -480,8 +527,6 @@ class CShadowEquipController {
 		// 再計算
 		StAllCalc();
 	}
-
-
 
 	/**
 	 * 指定の装備個所の装備IDを取得する.

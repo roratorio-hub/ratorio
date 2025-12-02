@@ -157,6 +157,14 @@ function SaveSlotStateCardAll() {
 	SaveSlotStateCard(EQUIP_REGION_ID_SHOES);
 	SaveSlotStateCard(EQUIP_REGION_ID_ACCESSARY_1);
 	SaveSlotStateCard(EQUIP_REGION_ID_ACCESSARY_2);
+
+	SaveSlotStateCard(EQUIP_REGION_ID_SHADOW_ARMS_RIGHT);
+	SaveSlotStateCard(EQUIP_REGION_ID_SHADOW_ARMS_LEFT);
+	SaveSlotStateCard(EQUIP_REGION_ID_SHADOW_BODY);
+	SaveSlotStateCard(EQUIP_REGION_ID_SHADOW_FOOT);
+	SaveSlotStateCard(EQUIP_REGION_ID_SHADOW_ACCESSARY_1);
+	SaveSlotStateCard(EQUIP_REGION_ID_SHADOW_ACCESSARY_2);
+	
 }
 
 /************************************************************************************************
@@ -170,52 +178,27 @@ function SaveSlotStateCardAll() {
  ************************************************************************************************/
 function SaveSlotStateCard(eqpRgnId) {
 
-	// サブ関数をコール
-	switch (eqpRgnId) {
-	case EQUIP_REGION_ID_ARMS:
-		__SaveSlotStateCard("OBJID_ARMS_RIGHT");
-		break;
-
-	case EQUIP_REGION_ID_ARMS_LEFT:
-		__SaveSlotStateCard("OBJID_ARMS_LEFT");
-		break;
-
-	case EQUIP_REGION_ID_HEAD_TOP:
-		__SaveSlotStateCard("OBJID_HEAD_TOP");
-		break;
-
-	case EQUIP_REGION_ID_HEAD_MID:
-		__SaveSlotStateCard("OBJID_HEAD_MID");
-		break;
-
-	case EQUIP_REGION_ID_HEAD_UNDER:
-		__SaveSlotStateCard("OBJID_HEAD_UNDER");
-		break;
-
-	case EQUIP_REGION_ID_SHIELD:
-		__SaveSlotStateCard("OBJID_SHIELD");
-		break;
-
-	case EQUIP_REGION_ID_BODY:
-		__SaveSlotStateCard("OBJID_BODY");
-		break;
-
-	case EQUIP_REGION_ID_SHOULDER:
-		__SaveSlotStateCard("OBJID_SHOULDER");
-		break;
-
-	case EQUIP_REGION_ID_SHOES:
-		__SaveSlotStateCard("OBJID_SHOES");
-		break;
-
-	case EQUIP_REGION_ID_ACCESSARY_1:
-		__SaveSlotStateCard("OBJID_ACCESSARY_1");
-		break;
-
-	case EQUIP_REGION_ID_ACCESSARY_2:
-		__SaveSlotStateCard("OBJID_ACCESSARY_2");
-		break;
+	const EQUIP_REGION = {
+		[EQUIP_REGION_ID_ARMS]:"OBJID_ARMS_RIGHT",
+		[EQUIP_REGION_ID_ARMS_LEFT]:"OBJID_ARMS_LEFT",
+		[EQUIP_REGION_ID_HEAD_TOP]:"OBJID_HEAD_TOP",
+		[EQUIP_REGION_ID_HEAD_MID]:"OBJID_HEAD_MID",
+		[EQUIP_REGION_ID_HEAD_UNDER]:"OBJID_HEAD_UNDER",
+		[EQUIP_REGION_ID_SHIELD]:"OBJID_SHIELD",
+		[EQUIP_REGION_ID_BODY]:"OBJID_BODY",
+		[EQUIP_REGION_ID_SHOULDER]:"OBJID_SHOULDER",
+		[EQUIP_REGION_ID_SHOES]:"OBJID_SHOES",
+		[EQUIP_REGION_ID_ACCESSARY_1]:"OBJID_ACCESSARY_1",
+		[EQUIP_REGION_ID_ACCESSARY_2]:"OBJID_ACCESSARY_2",
+		[EQUIP_REGION_ID_SHADOW_ARMS_RIGHT]:"OBJID_SHADOW_ARMS_RIGHT",
+		[EQUIP_REGION_ID_SHADOW_ARMS_LEFT]:"OBJID_SHADOW_SHIELD",
+		[EQUIP_REGION_ID_SHADOW_BODY]:"OBJID_SHADOW_BODY",
+		[EQUIP_REGION_ID_SHADOW_FOOT]:"OBJID_SHADOW_SHOES",
+		[EQUIP_REGION_ID_SHADOW_ACCESSARY_1]:"OBJID_SHADOW_ACCESSARY-1",
+		[EQUIP_REGION_ID_SHADOW_ACCESSARY_2]:"OBJID_SHADOW_ACCESSARY-2",
 	}
+
+	__SaveSlotStateCard(EQUIP_REGION[eqpRgnId]);
 }
 
 /************************************************************************************************
