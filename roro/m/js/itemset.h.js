@@ -3,8 +3,8 @@
 // TODO: いずれ修正予定
 ITEM_SET_PET_ID_OFFSET = 10000;
 
-const ITEMSET_ID_LIMIT_WITH_ITEM = 100;
-const ITEMSET_ID_LIMIT_WITH_CARD = 100;
+const ITEMSET_ID_LIMIT_WITH_ITEM = 200;
+const ITEMSET_ID_LIMIT_WITH_CARD = 200;
 
 // アイテムセット定義配列
 w_SE = new Array();
