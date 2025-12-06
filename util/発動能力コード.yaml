@@ -152,6 +152,8 @@ capabilities:
     code: 79
   - name: 物理ダメージ増加
     code: 80
+  - name: 武器攻撃力増加
+    code: 85
   - name: 必中
     code: 86
   - name: 武器のMATK
