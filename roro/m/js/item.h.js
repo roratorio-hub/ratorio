@@ -490,7 +490,7 @@ CGlobalConstManager.DefineEnum(
 		"ITEM_SP_DAMAGE_UP_GROUP_COBOLD",
 		"ITEM_SP_DAMAGE_UP_GROUP_ORC",
 		"ITEM_SP_DAMAGE_UP_GROUP_GOLEM",
-		"ITEM_SP_WEAPON_ATK_UP",			// 武器攻撃力＋○○％
+		"ITEM_SP_WEAPON_ATK_UP",			// 85 武器攻撃力＋○○％
 		"ITEM_SP_PERFECT_ATTACK_UP",		// ○○％の確率で必中攻撃
 		"ITEM_SP_ATK_UP",
 		"ITEM_SP_MATK_PLUS_TYPE_WEAPON",	// 88 武器のMATK
