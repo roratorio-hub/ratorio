@@ -17372,9 +17372,10 @@ function ApplyAdditionalResistElement() {
     }
 
     //----------------------------------------------------------------
-    // 「無限のエクリプス」の、スキル習得による効果
+    // 「無限のエクリプス」および「超越したエクリプス」の、スキル習得による効果
     //----------------------------------------------------------------
-    if ((cardCount = CardNumSearch(CARD_ID_MUGENNO_ECLIPSE)) > 0) {
+	cardCount = CardNumSearch(CARD_ID_MUGENNO_ECLIPSE) + CardNumSearch(CARD_ID_INFINITE2_ECLIPSE);
+    if (cardCount > 0) {
         n_tok[ITEM_SP_RESIST_ELM_HOLY] -= 5 * LearnedSkillSearch(SKILL_ID_FAITH) * cardCount;
     }
 
