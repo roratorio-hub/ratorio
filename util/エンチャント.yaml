@@ -1,57 +1,206 @@
 enchant_list:
   - enchant: #
-      - name: シーズナルシャドウエンチャント グループ1
+      - name: ベテラン遺跡細工師
         item_list: #
-          - item_name: シーズナルウェポン
-          - item_name: シーズナルシールド
-          - item_name: シーズナルアーマー
-          - item_name: シーズナルシューズ
-          - item_name: シーズナルイヤリング
-          - item_name: シーズナルペンダント
+          - item_name: バリアントデビルズホーン
         slot_list: #
           - slot: 4
             refine: 0
             enchant_list: #
-              - name: 潜在解放(アークメイジVIII)
-              - name: 潜在解放(アークメイジIX)
-              - name: 潜在解放(アビスチェイサーX)
-              - name: 潜在解放(アビスチェイサーXI)
-              - name: 潜在解放(アビスチェイサーXII)
-              - name: 潜在解放(インクイジターVIII)
-              - name: 潜在解放(インクイジターIX)
-              - name: 潜在解放(インペリアルガードIX)
-              - name: 潜在解放(インペリアルガードX)
-              - name: 潜在解放(ウィンドホークIX)
-              - name: 潜在解放(ウィンドホークX)
-              - name: 潜在解放(ウィンドホークXI)
-              - name: 潜在解放(エレメンタルマスターIX)
-              - name: 潜在解放(カーディナルX)
-              - name: 潜在解放(カーディナルXI)
-              - name: 潜在解放(カーディナルXII)
-              - name: 潜在解放(シャドウクロスX)
-              - name: 潜在解放(シャドウクロスXI)
-              - name: 潜在解放(スピリットハンドラーX)
-              - name: 潜在解放(スピリットハンドラーXI)
-              - name: 潜在解放(ソウルアセティックVIII)
-              - name: 潜在解放(ソウルアセティックIX)
-              - name: 潜在解放(ソウルアセティックX)
-              - name: 潜在解放(ドラゴンナイトVIII)
-              - name: 潜在解放(ドラゴンナイトIX)
-              - name: 潜在解放(トルバドゥール&トルヴェールVI)
-              - name: 潜在解放(トルバドゥール&トルヴェールVII)
-              - name: 潜在解放(ナイトウォッチVII)
-              - name: 潜在解放(ナイトウォッチVIII)
-              - name: 潜在解放(バイオロVIII)
-              - name: 潜在解放(バイオロIX)
-              - name: 潜在解放(バイオロX)
-              - name: 潜在解放(ハイパーノービスX)
-              - name: 潜在解放(ハイパーノービスXI)
-              - name: 潜在解放(ハイパーノービスXII)
-              - name: 潜在解放(マイスターX)
-              - name: 潜在解放(マイスターXI)
-              - name: 潜在解放(蜃気楼&不知火VII)
-              - name: 潜在解放(蜃気楼&不知火VIII)
-              - name: 潜在解放(蜃気楼&不知火IX)
-              - name: 潜在解放(天帝VII)
-              - name: 潜在解放(天帝VIII)
+              - name: 英雄の凱歌
+              - name: 厄災の魔将
+              - name: 起源の王
+              - name: 殺意の怨念
+              - name: 豊穣の女神
+              - name: 知識の探求者
+              - name: 最果ての支配者
+              - name: シンソウの王
+          - slot: 3
+            refine: 0
+            enchant_list: #
+              - name: 新毒耐性
+              - name: 石化耐性
 
+      - name: ベテラン遺跡細工師
+        item_list: #
+          - item_name: セレスティアルヴァーチャー
+        slot_list: #
+          - slot: 4
+            refine: 0
+            enchant_list: #
+              - name: 英雄の凱歌
+              - name: 起源の王
+              - name: 殺意の怨念
+              - name: 豊穣の女神
+              - name: 厄災の魔将
+              - name: 異境の統轄者
+              - name: 知識の探求者
+              - name: 最果ての支配者
+              - name: シンソウの王
+
+      - name: ベテラン遺跡細工師
+        item_list: #
+          - item_name: パーマフロストオブリビオン
+        slot_list: #
+          - slot: 4
+            refine: 0
+            enchant_list: #
+              - name: 英雄の凱歌
+              - name: 起源の王
+              - name: 殺意の怨念
+              - name: 豊穣の女神
+              - name: 厄災の魔将
+              - name: 知識の探求者
+              - name: 最果ての支配者
+              - name: シンソウの王
+          - slot: 3
+            refine: 0
+            enchant_list: #
+              - name: ExtraStr
+              - name: ExtraAgi
+              - name: ExtraVit
+              - name: ExtraInt
+              - name: ExtraDex
+              - name: ExtraLuk
+
+      - name: ベテラン遺跡細工師
+        item_list: #
+          - item_name: アトクウェ・ポエニテンティア
+        slot_list: #
+          - slot: 4
+            refine: 0
+            enchant_list: #
+              - name: 起源の王
+              - name: 殺意の怨念
+              - name: 豊穣の女神
+              - name: 厄災の魔将
+              - name: 異境の統轄者
+              - name: 知識の探求者
+              - name: 最果ての支配者
+              - name: シンソウの王
+
+      - name: ベテラン遺跡細工師
+        item_list: #
+          - item_name: 偽神のイビルアイ
+        slot_list: #
+          - slot: 4
+            refine: 0
+            enchant_list: #
+              - name: 英雄の凱歌
+              - name: 起源の王
+              - name: 殺意の怨念
+              - name: 厄災の魔将
+              - name: 異境の統轄者
+              - name: 知識の探求者
+              - name: 最果ての支配者
+              - name: シンソウの王
+          - slot: 3
+            refine: 0
+            enchant_list: #
+              - name: 石化耐性
+
+      - name: ベテラン遺跡細工師
+        item_list: #
+          - item_name: マジェスティックフォックス
+        slot_list: #
+          - slot: 4
+            refine: 0
+            enchant_list: #
+              - name: 起源の王
+              - name: 殺意の怨念
+              - name: 豊穣の女神
+              - name: 厄災の魔将
+              - name: 異境の統轄者
+              - name: 知識の探求者
+              - name: 最果ての支配者
+              - name: シンソウの王
+
+      - name: ベテラン遺跡細工師
+        item_list: #
+          - item_name: インターディメンショナルリフト
+        slot_list: #
+          - slot: 4
+            refine: 0
+            enchant_list: #
+              - name: 起源の王
+              - name: 殺意の怨念
+              - name: 豊穣の女神
+              - name: 厄災の魔将
+              - name: 異境の統轄者
+              - name: 知識の探求者
+              - name: 最果ての支配者
+              - name: シンソウの王
+          - slot: 3
+            refine: 0
+            enchant_list: #
+              - name: 石化耐性
+
+      - name: ベテラン遺跡細工師
+        item_list: #
+          - item_name: コンセクレイト・フィデス・オーリーオラ
+        slot_list: #
+          - slot: 4
+            refine: 0
+            enchant_list: #
+              - name: 英雄の凱歌
+              - name: 起源の王
+              - name: 殺意の怨念
+              - name: 厄災の魔将
+              - name: 異境の統轄者
+              - name: 知識の探求者
+              - name: 最果ての支配者
+              - name: シンソウの王
+
+      - name: ベテラン遺跡細工師
+        item_list: #
+          - item_name: ケミカルレジスタントグローブ
+          - item_name: ペタルの尻尾(アルビノ)
+          - item_name: リングオブアルテミス
+          - item_name: 天涯極地の腕輪
+          - item_name: 決闘者のゴールドコイン
+          - item_name: エレクトロンブースター
+          - item_name: パワーマシンアーム
+          - item_name: レリックランタン
+          - item_name: てちてちにゃんこのもこふわソックス
+          - item_name: リヴァイアサンオーブ
+          - item_name: 白狐のお守り
+          - item_name: シャドウリチュアル
+          - item_name: 枢機卿の指輪
+          - item_name: ロードオブエレメンタル
+          - item_name: エスタブリッシュ
+          - item_name: イントゥジアビス
+          - item_name: エレメンタルジュエル
+          - item_name: 五行封神陣
+          - item_name: 極意皆伝之巻
+          - item_name: ドロップオブセブンカラーズ
+          - item_name: ぱかぱかにゃんこのぽかぽかソックス
+          - item_name: 白きカーリッツバーグ騎士団の籠手
+        slot_list: #
+          - slot: 4
+            refine: 0
+            enchant_list: #
+              - name: 英雄の凱歌
+              - name: 起源の王
+              - name: 殺意の怨念
+              - name: 豊穣の女神
+              - name: 厄災の魔将
+              - name: 異境の統轄者
+              - name: 知識の探求者
+              - name: 最果ての支配者
+              - name: シンソウの王
+
+      - name: ベテラン遺跡細工師
+        item_list: #
+          - item_name: アシャワヒシュタ
+        slot_list: #
+          - slot: 4
+            refine: 0
+            enchant_list: #
+              - name: 英雄の凱歌
+              - name: 殺意の怨念
+              - name: 豊穣の女神
+              - name: 厄災の魔将
+              - name: 異境の統轄者
+              - name: 知識の探求者
+              - name: 最果ての支配者
+              - name: シンソウの王

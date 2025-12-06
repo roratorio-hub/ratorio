@@ -1375,6 +1375,48 @@
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5381] = [846,840,844];
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5382] = [846,840,845];
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5383] = [846,840,845];
+	// --- 2025-12-06 ---
+	g_constDataManager.enchListDataManager.sourceArray[847] = [847,-1,0,0,[["ベテラン遺跡細工師","ベテラン遺跡細工師"]],[],[[[174,[50,[5479,]]],,[[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[1975,2043,2005,1813,2028,2437,2668,1678,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[3519,1594,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.sourceArray[848] = [848,-1,0,0,[["ベテラン遺跡細工師","ベテラン遺跡細工師"]],[],[[[174,[50,[5481,]]],,[[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[1975,2005,1813,2028,2043,2311,2437,2668,1678,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.sourceArray[849] = [849,-1,0,0,[["ベテラン遺跡細工師","ベテラン遺跡細工師"]],[],[[[174,[50,[5367,]]],,[[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[1975,2005,1813,2028,2043,2437,2668,1678,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[1859,1860,1861,1862,1863,1864,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.sourceArray[850] = [850,-1,0,0,[["ベテラン遺跡細工師","ベテラン遺跡細工師"]],[],[[[174,[50,[5368,]]],,[[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[2005,1813,2028,2043,2311,2437,2668,1678,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.sourceArray[851] = [851,-1,0,0,[["ベテラン遺跡細工師","ベテラン遺跡細工師"]],[],[[[174,[50,[4997,]]],,[[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[1975,2005,1813,2043,2311,2437,2668,1678,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[1594,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.sourceArray[852] = [852,-1,0,0,[["ベテラン遺跡細工師","ベテラン遺跡細工師"]],[],[[[174,[50,[5555,]]],,[[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[2005,1813,2028,2043,2311,2437,2668,1678,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.sourceArray[853] = [853,-1,0,0,[["ベテラン遺跡細工師","ベテラン遺跡細工師"]],[],[[[174,[50,[5213,]]],,[[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[2005,1813,2028,2043,2311,2437,2668,1678,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[1594,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.sourceArray[854] = [854,-1,0,0,[["ベテラン遺跡細工師","ベテラン遺跡細工師"]],[],[[[174,[50,[4942,]]],,[[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[1975,2005,1813,2043,2311,2437,2668,1678,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.sourceArray[855] = [855,-1,0,0,[["ベテラン遺跡細工師","ベテラン遺跡細工師"]],[],[[[174,[50,[4987,4988,5032,5175,5183,5184,5280,5390,5391,5404,5407,5496,4776,4864,4953,4983,4991,5086,5384,5405,5419,5456,]]],,[[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[1975,2005,1813,2028,2043,2311,2437,2668,1678,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.sourceArray[856] = [856,-1,0,0,[["ベテラン遺跡細工師","ベテラン遺跡細工師"]],[],[[[174,[50,[5559,]]],,[[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[1975,1813,2028,2043,2311,2437,2668,1678,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[4776].push(855);
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[4864].push(855);
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[4942].push(854);
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[4953].push(855);
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[4983].push(855);
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[4987].push(855);
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[4988].push(855);
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[4991].push(855);
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[4997].push(851);
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5032].push(855);
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5086].push(855);
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5175].push(855);
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5183].push(855);
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5184].push(855);
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5213].push(853);
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5280].push(855);
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5367].push(849);
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5368].push(850);
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5384].push(855);
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5390].push(855);
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5391].push(855);
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5404].push(855);
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5405].push(855);
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5407].push(855);
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5419].push(855);
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5456].push(855);
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5479].push(847);
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5481].push(848);
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5496].push(855);
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5555].push(852);
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5559].push(856);
 
 
 	// enchant はセーブデータに書き出されないので
