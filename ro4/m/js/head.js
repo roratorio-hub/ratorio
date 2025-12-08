@@ -247,19 +247,6 @@ let finalRatioArray = 0;
 const CAST_PARAM_BORDER = 265;
 /** オートガードによるダメージ減衰率 */
 const w_AG = [100,95,90,86,82,79,76,74,72,71,70];
-/** 属性配列 */
-const mostEffectiveElmIdArray = [
-	ELM_ID_VANITY,
-	ELM_ID_WIND,
-	ELM_ID_FIRE,
-	ELM_ID_WATER,
-	ELM_ID_EARTH,
-	ELM_ID_HOLY,
-	ELM_ID_DARK,
-	ELM_ID_HOLY,
-	ELM_ID_PSYCO,
-	ELM_ID_HOLY,
-];
 /** 手裏剣の種類 */
 const SyurikenOBJ = [ [10,0,"手裏剣"] ,[30,0,"雨雲の手裏剣"] ,[45,0,"閃光の手裏剣"] ,[70,0,"鋭刃の手裏剣"] ,[100,0,"棘針の手裏剣"] ,[110,0,"星ヒトデ"] ];
 /** 苦無の種類 */
@@ -6293,38 +6280,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 		}
 
 		switch (n_A_ActiveSkill) {
-			/* バード */
-			case SKILL_ID_FUKYOWAON:	// 不協和音
-			/* ミンストレル・ワンダラー */
-			case SKILL_ID_SHINDOZANKYO:	// 振動残響
-			/* アークビショップ */
-			case SKILL_ID_JUDEX:	// ジュデックス
-			case SKILL_ID_ADORAMUS:	// アドラムス
-				// スキル使用条件の判定
-				n_Buki_Muri = !g_skillManager.MatchWeaponCondition(n_A_ActiveSkill, n_A_WeaponType);
-				if (n_Buki_Muri) {
-					wbairitu = 0;
-					break;
-				}
-				// 詠唱などの情報
-				wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				// ダメージ算出に関する情報
-				n_A_Weapon_zokusei = g_skillManager.GetElement(n_A_ActiveSkill, attackMethodConfArray[0]);
-				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], mobData);
-				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_WeaponType);
-				// ヒット数に関する情報
-				wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
-				wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
-				// 地面設置スキルの情報
-				g_bDefinedDamageIntervals = g_skillManager.IsGroundInstallation(n_A_ActiveSkill);
-				if (g_bDefinedDamageIntervals) {
-					n_Delay[5] = g_skillManager.GetDamageInterval(n_A_ActiveSkill, n_A_ActiveSkillLV);
-					n_Delay[6] = g_skillManager.GetLifeTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				}
-				break;
 
 		// 「マジシャン」スキル「ファイアーボルト」
 		case SKILL_ID_FIRE_BOLT:
@@ -7132,21 +7087,26 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 
 			break;
 
-
-
-
-
 		//----------------------------------------------------------------
 		//
-		// 四次ここから
+		// 魔法ここから
 		//
 		//----------------------------------------------------------------
 
 		//----------------------------------------------------------------
 		// 計算式を CSkillManager.js へ移動させ head.js をスリム化する対応を進めています
 		//----------------------------------------------------------------
+		/* バード */
+		case SKILL_ID_FUKYOWAON:	// 不協和音
+		/* ミンストレル・ワンダラー */
+		case SKILL_ID_SHINDOZANKYO:	// 振動残響
+		/* アークビショップ */
+		case SKILL_ID_JUDEX:	// ジュデックス
+		case SKILL_ID_ADORAMUS:	// アドラムス		
 		/** トルヴェール・トルバドゥール */
 		case SKILL_ID_RHYTHMICAL_WAVE: // リズミカルウェーブ
+		case SKILL_ID_SOUND_BLEND:	// サウンドブレンド
+		case SKILL_ID_METALIC_FURY: // メタリックフューリー
 		/** エレメンタルマスター */
 		case SKILL_ID_PSYCHIC_STREAM: // サイキックストリーム
 		/** ソウルアセティック */
@@ -7178,6 +7138,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			// ダメージ算出に関する情報
+			n_A_Weapon_zokusei = g_skillManager.GetElement(battleCalcInfo.skillId, attackMethodConfArray[0], mobData);
 			wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], mobData, n_A_WeaponType);
 			n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_WeaponType);
 			// ヒット数に関する情報
@@ -7794,82 +7755,6 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			if (attackMethodConfArray[0].GetOptionValue(0) >= 1) {
 				wHITsuu = 2;
 			}
-			break;
-		}
-		// 「トルバドゥール・トルヴェール」スキル「メタリックフューリー」
-		// 2025-04-03 実測確認済み
-		case SKILL_ID_METALIC_FURY: {
-			// 楽器・鞭装備状態のみ発動可能
-			if (![ITEM_KIND_MUSICAL, ITEM_KIND_WHIP].includes(n_A_WeaponType)) {
-				wbairitu = 0;
-				n_Buki_Muri = true;
-				break;
-			}
-			// 属性自動矢
-			if(n_A_Arrow == ARROW_ID_ZOKUSE_ZIDO_YA_ATK30){
-				n_A_Weapon_zokusei = mostEffectiveElmIdArray[ Math.floor(mobData[MONSTER_DATA_INDEX_ELEMENT] / 10) ];
-			}
-			// 通常の矢
-			else {
-				n_A_Weapon_zokusei = GetEquippedTotalSPArrow(ITEM_SP_ELEMENTAL);
-			}
-			// 詠唱時間等
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// ステージマナー習得Lv
-			const stage_manner_lv = Math.max(LearnedSkillSearch(SKILL_ID_STAGE_MANNER), UsedSkillSearch(SKILL_ID_STAGE_MANNER));
-			// 基本倍率
-			if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SOUND_BLEND]) {
-				// サウンドブレンド 有り
-				wbairitu = 4000 + 1000 * n_A_ActiveSkillLV;
-				wbairitu += 6 * GetTotalSpecStatus(MIG_PARAM_ID_SPL) * stage_manner_lv;
-			} else {
-				// サウンドブレンド 無し
-				wbairitu = 1250 + 350 * n_A_ActiveSkillLV;
-				wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_SPL) * stage_manner_lv;
-			}
-			// ベースレベル補正
-			wbairitu =  Math.floor(wbairitu * n_A_BaseLV / 100);
-			break;
-		}
-		// 「トルバドゥール・トルヴェール」スキル「サウンドブレンド」
-		// 2025-04-03 実測確認済み
-		case SKILL_ID_SOUND_BLEND: {
-			// 楽器・鞭装備状態のみ発動可能
-			if (![ITEM_KIND_MUSICAL, ITEM_KIND_WHIP].includes(n_A_WeaponType)) {
-				wbairitu = 0;
-				n_Buki_Muri = true;
-				break;
-			}
-			// 属性自動矢
-			if(n_A_Arrow == ARROW_ID_ZOKUSE_ZIDO_YA_ATK30){
-				n_A_Weapon_zokusei = mostEffectiveElmIdArray[ Math.floor(mobData[MONSTER_DATA_INDEX_ELEMENT] / 10) ];
-			}
-			// 通常の矢
-			else {
-				n_A_Weapon_zokusei = GetEquippedTotalSPArrow(ITEM_SP_ELEMENTAL);
-			}
-			// 詠唱時間等
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// 持続時間が終了した時点でダメージが発生するので擬似的に設置スキルとして扱う
-			g_bDefinedDamageIntervals = true;
-			// 持続時間
-			n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// ダメージ発生間隔
-			n_Delay[5] = n_Delay[6] - 200;
-			// 基本倍率
-			wbairitu = 2000 + 500 * n_A_ActiveSkillLV;
-			// ステージマナー習得Lv
-			const stage_manner_lv = Math.max(LearnedSkillSearch(SKILL_ID_STAGE_MANNER), UsedSkillSearch(SKILL_ID_STAGE_MANNER));
-			// SPL補正
-			wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL) * stage_manner_lv;
-			// ベースレベル補正
-			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 		}
 
@@ -11906,11 +11791,12 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 	objCell.style.gridColumn = "1 / 3";
 	objCell.classList.add("BTLRSLT_TAB_RESULT");
 	objCell.classList.add(partIdStr);
-	const enemy_attack_method_masical = HtmlCreateElement("select", objCell);
-	enemy_attack_method_masical.setAttribute("id", "OBJID_ENEMY_ATTACK_METHOD_MASICAL");
-	HtmlCreateElementOption(0, "ファイアーボルト Lv1", enemy_attack_method_masical);
-	HtmlCreateElementOption(1, "アースクエイク Lv10", enemy_attack_method_masical);
-	HtmlCreateElementOption(2, "テトラボルテックス", enemy_attack_method_masical);
+	const enemy_attack_method_magical = HtmlCreateElement("select", objCell);
+	enemy_attack_method_magical.setAttribute("id", "OBJID_ENEMY_ATTACK_METHOD_MAGICAL");
+	HtmlCreateElementOption(0, "ファイアーボルト Lv1", enemy_attack_method_magical);
+	HtmlCreateElementOption(1, "アースクエイク Lv10", enemy_attack_method_magical);
+	HtmlCreateElementOption(2, "ﾃﾄﾗﾎﾞﾙﾃｯｸｽ(強)", enemy_attack_method_magical);
+	HtmlCreateElementOption(3, "Mﾚｲｵﾌﾞｼﾞｪﾈｼｽ(強)", enemy_attack_method_magical);
 
 	const objMagicalDamageView = HtmlCreateElement("div", objGridDmg);
 	objMagicalDamageView.setAttribute("id", "OBJID_RECEIVED_DAMAGE_MAGICAL");
@@ -11918,7 +11804,7 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 	objMagicalDamageView.classList.add(partIdStr);
 	objMagicalDamageView.classList.add("CSSCLS_BTLRSLT_VALUE");
 	calcReceivedMagicDamage(charaData, mobData, objMagicalDamageView);
-	enemy_attack_method_masical.addEventListener("change", () => {
+	enemy_attack_method_magical.addEventListener("change", () => {
 		calcReceivedMagicDamage(charaData, mobData, objMagicalDamageView);
 	});
 
@@ -12263,9 +12149,8 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
  * @returns {number} 回避率を考慮しない被ダメージ
  */
 function calcReceivedDamage(charaData, specData, mobData, attackMethodConfArray, objCell = null){
-	let idx = 0;
-
 	w_HiDam = new Array();
+	let idx = 0;
 	let mobMaxATK = mobData[MONSTER_DATA_EXTRA_INDEX_ATK_MAX];
 	let mobMinATK = mobData[MONSTER_DATA_EXTRA_INDEX_ATK_MIN];
 	let mobStATK = mobData[MONSTER_DATA_INDEX_LEVEL] * 2;
@@ -12291,14 +12176,15 @@ function calcReceivedDamage(charaData, specData, mobData, attackMethodConfArray,
 	}
 	
 	const SKILL_RATIO = [
-		100,	// 通常攻撃
-		1000,	// ヘルジャッジ Lv10
+		[100, ELM_ID_VANITY],	// 通常攻撃
+		[1000, ELM_ID_VANITY],	// ヘルジャッジ Lv10
 	]
 	const enemy_attack_method = document.getElementById("OBJID_ENEMY_ATTACK_METHOD_PHYSICAL");
-	if (enemy_attack_method) {
-		const skill_index = Number(enemy_attack_method.value);
-		w_HiDam = w_HiDam.map(damage => Math.floor(damage * SKILL_RATIO[skill_index] / 100));
+	if (!enemy_attack_method) {
+		return;
 	}
+	const skill_index = Number(enemy_attack_method.value);
+	w_HiDam = w_HiDam.map(damage => Math.floor(damage * SKILL_RATIO[skill_index][0] / 100));
 
 	/** ダメージ耐性値 */
 	let wBHD;
@@ -12313,17 +12199,9 @@ function calcReceivedDamage(charaData, specData, mobData, attackMethodConfArray,
 	 */
 	{
 		wBHD = n_tok[ITEM_SP_RESIST_SIZE_SMALL + mobData[17]];
-
-		// TODO: 四次対応
-		// サイズ物理耐性の加算
 		wBHD += n_tok[ITEM_SP_PHYSICAL_RESIST_SIZE_SMALL + mobData[17]];
-
-		// Lv200解放アップデートでの、上限値新設への対応
 		wBHD = Math.min(95, wBHD);
-
-		for (idx = 0; idx < w_HiDam.length; idx++) {
-			w_HiDam[idx] -= Math.floor(w_HiDam[idx] * wBHD /100);
-		}
+		w_HiDam = w_HiDam.map(damage => damage - Math.floor(damage * wBHD /100));
 	}
 
 	/**
@@ -12332,32 +12210,29 @@ function calcReceivedDamage(charaData, specData, mobData, attackMethodConfArray,
 	 * ボス／一般耐性
 	 */
 	{
-		if (mobData[20] == MONSTER_BOSSTYPE_BOSS) {
-			wBHD = n_tok[ITEM_SP_RESIST_BOSS];
-		} else {
-			wBHD = n_tok[ITEM_SP_RESIST_NOTBOSS];
-		}
-
-		// Lv200解放アップデートでの、上限値新設への対応
+		wBHD = (mobData[20] == MONSTER_BOSSTYPE_BOSS) ? n_tok[ITEM_SP_RESIST_BOSS] : n_tok[ITEM_SP_RESIST_NOTBOSS];
 		wBHD = Math.min(95, wBHD);
+		w_HiDam = w_HiDam.map(damage => damage - Math.floor(damage * wBHD /100));
+	}
 
-		for (idx = 0; idx < w_HiDam.length; idx++) {
-			w_HiDam[idx] -= Math.floor(w_HiDam[idx] * wBHD /100);
-		}
+	/** 
+	 * 属性相性 
+	 * 通常攻撃は念鎧で防げないので条件判定する
+	*/
+	const attack_elemental = SKILL_RATIO[skill_index][1];
+	if (skill_index > 0) {
+		wBHD = zokusei[n_A_BodyZokusei * 10 + 1][attack_elemental] + 100;
+		w_HiDam = w_HiDam.map(damage => Math.floor(damage * wBHD /100));
 	}
 
 	/**
 	 * 公式サイトで「◯属性攻撃で受けるダメージ - ◯%」と表記される
 	 * 属性耐性
-	 * 現状では素殴りしか計算しないので無属性のみ
 	 */
 	{
-		wBHD = n_tok[ITEM_SP_RESIST_ELM_VANITY];
-		// Lv200解放アップデートでの、上限値新設への対応
+		wBHD = n_tok[ ITEM_SP_RESIST_ELM_VANITY + attack_elemental ];
 		wBHD = Math.min(95, wBHD);
-		for (idx = 0; idx < w_HiDam.length; idx++) {
-			w_HiDam[idx] -= Math.floor(w_HiDam[idx] * wBHD /100);
-		}
+		w_HiDam = w_HiDam.map(damage => damage - Math.floor(damage * wBHD /100));
 	}
 
 	/**
@@ -12366,19 +12241,12 @@ function calcReceivedDamage(charaData, specData, mobData, attackMethodConfArray,
 	 */
 	{
 		wBHD = n_tok[ITEM_SP_RESIST_MONSTER_ELM_VANITY + Math.floor(mobData[18] / 10)];
-
-		// Lv200解放アップデートでの、上限値新設への対応
 		wBHD = Math.min(95, wBHD);
-
-		for (idx = 0; idx < w_HiDam.length; idx++) {
-			w_HiDam[idx] -= Math.floor(w_HiDam[idx] * wBHD /100);
-		}
+		w_HiDam = w_HiDam.map(damage => damage - Math.floor(damage * wBHD /100));
 	}
 
 	// これ以降の耐性は素手ATKにも効果がある
-	for (idx = 0; idx < w_HiDam.length; idx++) {
-		w_HiDam[idx] += mobStATK;
-	}
+	w_HiDam = w_HiDam.map(damage => damage + mobStATK);
 
 	//--------------------------------
 	// 種族耐性
@@ -12411,12 +12279,8 @@ function calcReceivedDamage(charaData, specData, mobData, attackMethodConfArray,
 					break;
 			}
 		}
-		// Lv200解放アップデートでの、上限値新設への対応
 		wBHD = Math.min(95, wBHD);
-
-		for (idx = 0; idx < w_HiDam.length; idx++) {
-			w_HiDam[idx] -= Math.floor(w_HiDam[idx] * wBHD /100);
-		}
+		w_HiDam = w_HiDam.map(damage => damage - Math.floor(damage * wBHD /100));
 	}
 
 	//--------------------------------
@@ -12424,12 +12288,8 @@ function calcReceivedDamage(charaData, specData, mobData, attackMethodConfArray,
 	//--------------------------------
 	if(mobData[12] >= 4){
 		wBHD = n_tok[ITEM_SP_RESIST_LONGRANGE];
-		// Lv200解放アップデートでの、上限値新設への対応
 		wBHD = Math.min(95, wBHD);
-
-		for (idx = 0; idx < w_HiDam.length; idx++) {
-			w_HiDam[idx] -= Math.floor(w_HiDam[idx] * wBHD /100);
-		}
+		w_HiDam = w_HiDam.map(damage => damage - Math.floor(damage * wBHD /100));
 	}
 
 	/**
@@ -12705,12 +12565,13 @@ function calcReceivedMagicDamage(charaData, mobData, objCell){
 	 * TODO: この辺にMOBスキル倍率計算を入れる
 	 */
 	const SKILL_RATIO = [
-		100,	// ファイアーボルト
-		5500,	// アースクエイク Lv10
-		1000,	// テトラボルテックス
+		[100, ELM_ID_FIRE],	// ファイアーボルト
+		[5500, ELM_ID_VANITY],	// アースクエイク Lv10
+		[10000, ELM_ID_VANITY],	// ﾃﾄﾗﾎﾞﾙﾃｯｸｽ(強)
+		[16000, ELM_ID_HOLY], // Mﾚｲｵﾌﾞｼﾞｪﾈｼｽ(強)
 	]
-	const skill_index = Number(document.getElementById("OBJID_ENEMY_ATTACK_METHOD_MASICAL").value);
-	damage = Math.floor(damage * SKILL_RATIO[skill_index] / 100);
+	const skill_index = Number(document.getElementById("OBJID_ENEMY_ATTACK_METHOD_MAGICAL").value);
+	damage = Math.floor(damage * SKILL_RATIO[skill_index][0] / 100);
 
 	/** モンスター耐性 */
 	damage -= Math.floor(damage * getResistanceOfEnvironment(mobData[0]) / 100);
@@ -12725,8 +12586,13 @@ function calcReceivedMagicDamage(charaData, mobData, objCell){
 	ratio = Math.min(95, ratio);
 	damage -= Math.floor(damage * ratio / 100);
 
+	/** 属性相性 */
+	const attack_elemental = SKILL_RATIO[skill_index][1];
+	ratio = zokusei[n_A_BodyZokusei * 10 + 1][attack_elemental] + 100;
+	damage = Math.floor(damage * ratio / 100);
+
 	/** 属性耐性 */
-	ratio = n_tok[ITEM_SP_RESIST_ELM_VANITY];
+	ratio = n_tok[ ITEM_SP_RESIST_ELM_VANITY + attack_elemental ];
 	ratio = Math.min(95, ratio);
 	damage -= Math.floor(damage * ratio / 100);
 
@@ -12741,7 +12607,7 @@ function calcReceivedMagicDamage(charaData, mobData, objCell){
 	ratio = Math.min(95, ratio);
 	damage -= Math.floor(damage * ratio / 100);
 
-	// RES によるダメージ減少
+	// MRES によるダメージ減少
 	const mres = GetMres();
 	const decay = Math.floor(damage * (1 - (2000 + mres) / (2000 + 5 * mres)));
 	damage -= decay;
@@ -16888,13 +16754,6 @@ function TYPE_SYUUREN(mobData, attackMethodConfArray, bArmsLeft){
 	w += 10 * UsedSkillSearch(SKILL_ID_CART_BOOST_GENETIC);
 
 	//----------------------------------------------------------------
-	// 「二次職支援　イムポシティオマヌス」の効果
-	//----------------------------------------------------------------
-	if(g_confDataNizi[CCharaConfNizi.CONF_ID_IMPOSITIO_MANUS]) {
-		w += g_confDataNizi[CCharaConfNizi.CONF_ID_IMPOSITIO_MANUS] * 5;
-	}
-
-	//----------------------------------------------------------------
 	// 「二次職支援　ボルケーノ」の効果
 	//----------------------------------------------------------------
 	if(g_confDataNizi[CCharaConfNizi.CONF_ID_ZOKUSEIBA_SHURUI] == CCharaConfNizi.CONF_ID_ZOKUSEIBA_SHURUI_VOLCANO) {
@@ -17105,15 +16964,8 @@ function SET_ZOKUSEI(mobData, attackMethodConfArray) {
 				}
 		}
 		if (bApplyArrowElement) {
-			// 属性自動矢
-			if(n_A_Arrow == ARROW_ID_ZOKUSE_ZIDO_YA_ATK30){
-				n_A_Weapon_zokusei = mostEffectiveElmIdArray[ Math.floor(mobData[MONSTER_DATA_INDEX_ELEMENT] / 10) ];
-			}
-			// 通常の矢
-			else {
-				n_A_Weapon_zokusei = GetEquippedTotalSPArrow(ITEM_SP_ELEMENTAL);
-			}
-			BK_Weapon_zokusei = n_A_Weapon_zokusei;
+			// 属性矢
+			BK_Weapon_zokusei = GetEquippedTotalSPArrow(ITEM_SP_ELEMENTAL, mobData);
 		}
 	}
 	// スキル使用状態による、攻撃属性の変化
@@ -17121,12 +16973,7 @@ function SET_ZOKUSEI(mobData, attackMethodConfArray) {
 	if (UsedSkillSearch(SKILL_ID_INVISIBILITY)) {
 		n_A_Weapon_zokusei = ELM_ID_PSYCO;
 	}
-	// 「パイロクラスティック」は、付与なしの場合に限り、火属性付与
-	if (UsedSkillSearch(SKILL_ID_PYROCLASTIC)) {
-		if (n_A_Weapon_zokusei == ELM_ID_VANITY) {
-			n_A_Weapon_zokusei = ELM_ID_FIRE;
-		}
-	}
+
 	// 強制属性系の設定
 	switch (n_A_ActiveSkill) {
 

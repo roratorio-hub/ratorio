@@ -305,6 +305,7 @@ function CSkillManager() {
 	 * スキルの攻撃属性を取得する
 	 * @param {Number} skillId
 	 * @param {CAttackMethodConf} option
+	 * @param {Array} mobData
 	 * @returns CSkillData.ELEMENT_FORCE_VANITY (default)
 	 * 			| CSkillData.ELEMENT_VOID
 	 *			| CSkillData.ELEMENT_FORCE_WATER
@@ -318,9 +319,9 @@ function CSkillManager() {
 	 *			| CSkillData.ELEMENT_FORCE_UNDEAD
 	 *			| CSkillData.ELEMENT_SPECIAL
 	 */
-	this.GetElement = function(skillId, option) {
+	this.GetElement = function(skillId, option, mobData) {
 		if (typeof this.dataArray[skillId].element === "function") {
-			return this.dataArray[skillId].element(option);
+			return this.dataArray[skillId].element(option, mobData);
 		} else {
 			return this.dataArray[skillId].element;
 		}
@@ -20275,12 +20276,12 @@ function CSkillManager() {
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
-			this.element = function(option) {
+			this.element = function(option, mobData) {
 				// 属性付与を優先する
 				let value = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_ARMS_ELEMENT", ELM_ID_VANITY);
 				if (value === ELM_ID_VANITY) {
 					// 付与されていなければ矢の属性を適用する
-					value = GetEquippedTotalSPArrow(ITEM_SP_ELEMENTAL);
+					value = GetEquippedTotalSPArrow(ITEM_SP_ELEMENTAL, mobData);
 				}
 				return value;
 			}
@@ -36679,35 +36680,46 @@ function CSkillManager() {
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
-			this.element = CSkillData.ELEMENT_VOID;
+			this.element = function(option, mobData) {
+				// 属性付与を優先する
+				let value = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_ARMS_ELEMENT", ELM_ID_VANITY);
+				if (value === ELM_ID_VANITY) {
+					// 付与されていなければ矢の属性を適用する
+					value = GetEquippedTotalSPArrow(ITEM_SP_ELEMENTAL, mobData);
+				}
+				return value;
+			}			
+			this.WeaponCondition = function(weapon) {
+				return [ITEM_KIND_MUSICAL, ITEM_KIND_WHIP].includes(weapon);
+			}
+			this.Power = function(skillLv) {
+				let ratio = 0;
+				// ステージマナー習得Lv
+				const stage_manner_lv = Math.max(LearnedSkillSearch(SKILL_ID_STAGE_MANNER), UsedSkillSearch(SKILL_ID_STAGE_MANNER));
+				// 基本倍率
+				if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SOUND_BLEND]) {
+					// サウンドブレンド 有り
+					ratio = 4000 + 1000 * skillLv;
+					ratio += 6 * GetTotalSpecStatus(MIG_PARAM_ID_SPL) * stage_manner_lv;
+				} else {
+					// サウンドブレンド 無し
+					ratio = 1250 + 350 * skillLv;
+					ratio += 2 * GetTotalSpecStatus(MIG_PARAM_ID_SPL) * stage_manner_lv;
+				}
+				// ベースレベル補正
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 130;
 			}
-			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
-				return 0;
-			}
 			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
 				return 500 + 500 * skillLv;
-			}
-			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
-				return 0;
 			}
 			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
 				return 1000 * skillLv;
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
 				return 500;
-			}
-			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
-				return 0;
-			}
-			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
-				// return this._CriActRate100(skillLv, charaData, specData, mobData);
-				return 0;
-			}
-			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
-				// return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
-				return 0;
 			}
 		};
 		this.dataArray[skillId] = skillData;
@@ -36726,18 +36738,34 @@ function CSkillManager() {
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
-			this.element = CSkillData.ELEMENT_VOID;
+			this.element = function(option, mobData) {
+				// 属性付与を優先する
+				let value = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_ARMS_ELEMENT", ELM_ID_VANITY);
+				if (value === ELM_ID_VANITY) {
+					// 付与されていなければ矢の属性を適用する
+					value = GetEquippedTotalSPArrow(ITEM_SP_ELEMENTAL, mobData);
+				}
+				return value;
+			}			
+			this.WeaponCondition = function(weapon) {
+				return [ITEM_KIND_MUSICAL, ITEM_KIND_WHIP].includes(weapon);
+			}
+			this.ground_installation = true;
+			this.damageInterval = function(skillLv) {
+				return [0, 1, 3, 8, 15, 30][skillLv] * 1000 - 200;
+			}
+			this.Power = function(skillLv) {
+				// 基本倍率
+				let ratio = 2000 + 500 * skillLv;
+				// ステージマナー習得Lv
+				const stage_manner_lv = Math.max(LearnedSkillSearch(SKILL_ID_STAGE_MANNER), UsedSkillSearch(SKILL_ID_STAGE_MANNER));
+				// SPL補正
+				ratio += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL) * stage_manner_lv;
+				// ベースレベル補正
+				return Math.floor(ratio * n_A_BaseLV / 100);				
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 55;
-			}
-			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
-				return 0;
-			}
-			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
-				return 0;
-			}
-			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
-				return 0;
 			}
 			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
 				return 1000;
@@ -36747,14 +36775,6 @@ function CSkillManager() {
 			}
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return [0, 1, 3, 8, 15, 30][skillLv] * 1000;
-			}
-			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
-				// return this._CriActRate100(skillLv, charaData, specData, mobData);
-				return 0;
-			}
-			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
-				// return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
-				return 0;
 			}
 		};
 		this.dataArray[skillId] = skillData;

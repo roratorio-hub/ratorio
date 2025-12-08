@@ -377,6 +377,9 @@ class CSaveController {
 
 		// 再計算
 		calc();
+
+		// 検索可能ドロップダウンリストのロード
+		LoadSelect2();
 	}
 
 
