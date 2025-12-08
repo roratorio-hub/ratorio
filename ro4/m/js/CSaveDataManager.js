@@ -321,7 +321,7 @@ class CSaveDataManager {
 	}
 
 	/**
-	 * シャドウ装備のデータを収集する.
+	 * セーブ時、シャドウ装備のデータを収集する.
 	 */
 	#collectDataShadowEquips () {
 
@@ -334,6 +334,15 @@ class CSaveDataManager {
 			EQUIP_REGION_ID_SHADOW_ACCESSARY_1,
 			EQUIP_REGION_ID_SHADOW_ACCESSARY_2,
 		];
+		// シャドウ装備の連想配列キー
+		const eqpRgnKey = {
+			[EQUIP_REGION_ID_SHADOW_ARMS_RIGHT]: "OBJID_SHADOW_ARMS_RIGHT_CARD_",
+			[EQUIP_REGION_ID_SHADOW_ARMS_LEFT]: "OBJID_SHADOW_SHIELD_CARD_",
+			[EQUIP_REGION_ID_SHADOW_BODY]: "OBJID_SHADOW_BODY_CARD_",
+			[EQUIP_REGION_ID_SHADOW_FOOT]: "OBJID_SHADOW_SHOES_CARD_",
+			[EQUIP_REGION_ID_SHADOW_ACCESSARY_1]: "OBJID_SHADOW_ACCESSARY-1_CARD_",
+			[EQUIP_REGION_ID_SHADOW_ACCESSARY_2]: "OBJID_SHADOW_ACCESSARY-2_CARD_",
+		}
 
 		// 装備箇所用データユニット用意（すでに存在する可能性がある）
 		let saveDataUnitEqpRgn = null;
@@ -379,6 +388,12 @@ class CSaveDataManager {
 			saveDataUnit.setProp(CSaveDataConst.propNameRndOptValue4, GetEquipRndOptTableValue(eqpRgnId, 3));
 			saveDataUnit.setProp(CSaveDataConst.propNameRndOptID5, GetEquipRndOptTableKind(eqpRgnId, 4));
 			saveDataUnit.setProp(CSaveDataConst.propNameRndOptValue5, GetEquipRndOptTableValue(eqpRgnId, 4));
+			const shadow_equip_key = eqpRgnKey[eqpRgnId];
+			// シャドウ装備はSlot1にカードを挿せないのでID2からスタート
+			saveDataUnit.setProp(CSaveDataConst.propNameCardID2, HtmlGetObjectValueByIdAsInteger(`${shadow_equip_key}2`, 0));
+			saveDataUnit.setProp(CSaveDataConst.propNameCardID3, HtmlGetObjectValueByIdAsInteger(`${shadow_equip_key}3`, 0));
+			saveDataUnit.setProp(CSaveDataConst.propNameCardID4, HtmlGetObjectValueByIdAsInteger(`${shadow_equip_key}4`, 0));
+			
 			// コンパクション実行
 			saveDataUnit.doCompaction();
 			// データなしの場合は次へ
@@ -1231,8 +1246,6 @@ class CSaveDataManager {
 			return;
 		}
 
-	
-
 		// 装備領域データユニットを取得
 		const saveDataUnitEqpRgn = this.#saveDataUnitArray[idxUnitEqpRgn];
 
@@ -1268,7 +1281,7 @@ class CSaveDataManager {
 				rndOptInfoArray[idxOpt][1] = (rndOptInfoArray[idxOpt][1] === undefined) ? 0 : floorBigInt32(rndOptInfoArray[idxOpt][1]);
 			}
 
-			// プロパティ名から設定箇所名を取得
+			// プロパティ名から設定箇所名を取得する. シャドウ装備ではない場合はスキップする
 			let eqpRgnName = "";
 			switch (propName) {
 
@@ -1317,8 +1330,15 @@ class CSaveDataManager {
 				}
 			}
 
+			// エンチャントデータのロード
+			const enchantArray = [
+				floorBigInt32(saveDataUnitItemDef.getProp(CSaveDataConst.propNameCardID2)),
+				floorBigInt32(saveDataUnitItemDef.getProp(CSaveDataConst.propNameCardID3)),
+				floorBigInt32(saveDataUnitItemDef.getProp(CSaveDataConst.propNameCardID4)),
+			]
+
 			// 設定の適用
-			g_shadowEquipController.onLoadShadow(eqpRgnName, itemID, refined, rndOptInfoArray);
+			g_shadowEquipController.onLoadShadow(eqpRgnName, itemID, refined, rndOptInfoArray, enchantArray);
 		}
 	}
 

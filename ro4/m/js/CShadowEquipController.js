@@ -502,8 +502,9 @@ class CShadowEquipController {
 	 * @param {int} itemId 装備ID
 	 * @param {int} refined 精錬値
 	 * @param {Array} rndOptInfoArray ランダムオプション情報（[[RndOptID, 値], [], ...]）
+	 * @param {Array} enchantArray エンチャント情報
 	 */
-	onLoadShadow (eqprgnName, itemId, refined, rndOptInfoArray) {
+	onLoadShadow (eqprgnName, itemId, refined, rndOptInfoArray, enchantArray) {
 
 		// ブロック全体を取得
 		const objEquipBlock = this.#getEquipBlockHTML(eqprgnName);
@@ -518,10 +519,16 @@ class CShadowEquipController {
 		// ランダムオプション
 		const objKindArray = objEquipBlock.querySelectorAll(":scope .rndopt-conf .rndopt-kind-select");
 		const objValueArray = objEquipBlock.querySelectorAll(":scope .rndopt-conf .rndopt-value-select");
-
 		for (let idx = 0; (idx < objKindArray.length) && (idx < objValueArray.length) && (idx < rndOptInfoArray.length); idx++) {
 			this.#changeRndOptKind(objKindArray[idx], rndOptInfoArray[idx][0]);
 			this.#changeRndOptValue(objValueArray[idx], rndOptInfoArray[idx][1]);
+		}
+
+		// エンチャント
+		const objEnchantArray = objEquipBlock.querySelectorAll(":scope .card-select");
+		for (let i = 0; i < 3; i++) {
+			const id = this.#changeEnchantValue(objEnchantArray[i + 1], enchantArray[i]);
+			OnChangeCard(id);
 		}
 
 		// 再計算
