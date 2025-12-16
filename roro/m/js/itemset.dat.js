@@ -6559,7 +6559,15 @@
 	CardIdToSetIdMap[2475] = [3363, 3364];
 	CardIdToSetIdMap[1381] = CardIdToSetIdMap[1381].concat([3317, 3359, 3361, 3363]);
 	CardIdToSetIdMap[2643] = CardIdToSetIdMap[2643].concat([3320, 3322, 3324, 3326, 3328, 3330, 3332, 3334, 3336, 3338, 3340, 3342, 3344, 3346, 3348, 3350, 3352, 3354, 3356, 3358, 3360, 3362, 3364]);
-
+	w_SE[3365] = [-4037,-4036,-1348,];
+	CardIdToSetIdMap[4036] = [3365,];
+	w_SE[3366] = [-4039,-4038,-1245,];
+	CardIdToSetIdMap[4038] = [3366,];
+	w_SE[3367] = [-4041,-4040,-1245,];
+	CardIdToSetIdMap[4040] = [3367,];
+	CardIdToSetIdMap[1245] = CardIdToSetIdMap[1245].concat([3366, 3367]);
+	CardIdToSetIdMap[1348] = CardIdToSetIdMap[1348].concat([3365]);
+	
 	// itemset はセーブデータに書き出されないので
 	// 現実的な範囲において itemsetID の上限値を気にする必要はありません
 })();
