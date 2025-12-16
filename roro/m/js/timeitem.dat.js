@@ -686,6 +686,8 @@ ITEM_SP_TIME_OBJ[309] = [309,"潜在解放(スピリットハンドラーIII)","
 	ITEM_SP_TIME_OBJ_SORT.push(328);
 	ITEM_SP_TIME_OBJ_SORT.push(329);
 	ITEM_SP_TIME_OBJ_SORT.push(330);
+	ITEM_SP_TIME_OBJ[331] = [331,"Vit + 100","Vit + 100",[[2,4033]],213,100,0];
+	ITEM_SP_TIME_OBJ_SORT.push(331);
 
 })();
 /**

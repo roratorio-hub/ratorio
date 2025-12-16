@@ -1,125 +1,34 @@
 card_list:
-  - name: 超越したエクリプス
-    yomi: チョウエツシタエクリプス
-    desc: "[フェイス]Lv1以上を習得している場合、<br>習得Lvが1上がる度に追加で聖属性攻撃で受けるダメージ + 5%"
-    type: 肩にかける物
-    capabilities:
-      - name: スキルディレイ減少
-        value: 10
-      - name: 聖属性耐性
-        value: 100
-      - name: 物理ダメージ増加
-        value: 15
-        at_refine: 10
-      - name: 魔法ダメージ増加
-        value: 15
-        at_refine: 10
-  - name: 超越したエドガ
-    yomi: チョウエツシタエドガ
-    desc: "インデュア状態になる"
-    type: 兜
-    capabilities:
-      - name: MAXHP増加
-        value: 15
-      - name: 火属性耐性
-        value: 15
-      - name: 念属性耐性
-        value: 15
-  - name: 超越したオークヒーロー
-    yomi: チョウエツシタオークヒーロー
-    type: アクセサリー
-    capabilities:
-      - name: スタン耐性
-        value: 100
-      - name: ASPD増加
-        value: 15
-      - name: 物理ダメージ増加
-        value: 15
-  - name: 超越したオシリス
-    yomi: チョウエツシタオシリス
-    type: 靴
-    capabilities:
-      - name: FLEE加算
-        value: 100
-      - name: MAXHP増加
-        value: 25
-      - name: 石化耐性
-        value: 100
-      - name: ノックバックしない
-        value: 1
-  - name: 超越したキメラ
-    yomi: チョウエツシタキメラ
-    type: 肩にかける物
-    capabilities:
-      - name: スキルディレイ減少
-        value: 10
-      - name: 毒属性耐性
-        value: 100
-      - name: 物理ダメージ増加
-        value: 15
-        at_refine: 10
-      - name: 魔法ダメージ増加
-        value: 15
-        at_refine: 10
-  - name: 超越したさすらい狼
-    yomi: チョウエツシタサスライオオカミ
-    type: 肩にかける物
-    capabilities:
-      - name: スキルディレイ減少
-        value: 10
-      - name: 闇属性耐性
-        value: 100
-      - name: 物理ダメージ増加
-        value: 15
-        at_refine: 10
-      - name: 魔法ダメージ増加
-        value: 15
-        at_refine: 10
-  - name: 超越したタオグンカ
-    yomi: チョウエツシタタオグンカ
-    desc: "一部のダメージを反射する効果で受けるダメージ - 100%"
-    type: 兜
-    capabilities:
-      - name: 物理ダメージ増加
-        value: 15
-      - name: 魔法ダメージ増加
-        value: 15
-  - name: 超越したトード
-    yomi: チョウエツシタトード
-    type: 肩にかける物
-    capabilities:
-      - name: スキルディレイ減少
-        value: 10
-      - name: 不死属性耐性
-        value: 100
-      - name: 物理ダメージ増加
-        value: 15
-        at_refine: 10
-      - name: 魔法ダメージ増加
-        value: 15
-        at_refine: 10
-  - name: 超越したフリオニ
-    yomi: チョウエツシタフリオニ
-    type: 靴
-    capabilities:
-      - name: 物理ダメージ増加
-        value: 20
-      - name: 無属性への物理ダメージ増加
-        value: 50
-      - name: スキル使用可能
-        skill: エナジーコート
-        skill_lv: 1
-  - name: 超越したボーカル
-    yomi: チョウエツシタボーカル
-    type: 肩にかける物
-    capabilities:
-      - name: スキルディレイ減少
-        value: 10
-      - name: 念属性耐性
-        value: 100
-      - name: 物理ダメージ増加
-        value: 15
-        at_refine: 10
-      - name: 魔法ダメージ増加
-        value: 15
-        at_refine: 10
+  - name: 潜在解放(蜃気楼&不知火XVI)
+    yomi: センザイカイホウシンキロウトシラヌイ16
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: 再使用待機時間減少
+            skill: 幻術 -影縫い-
+            value: 200
+  - name: 潜在解放(カーディナルXVIII)
+    yomi: センザイカイホウカーディナル18
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 真理の解放
+        capabilities:
+          - name: 再使用待機時間減少
+            skill: ニューマティックプロセラ
+            value: 4000
+  - name: 潜在解放(トルバドゥール&トルヴェールXIII)
+    yomi: センザイカイホウトオルバドゥールアンドトルヴェール13
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 真理の解放
+        capabilities:
+          - name: 再使用待機時間減少
+            skill: リズミカルウェーブ
+            value: 200

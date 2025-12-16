@@ -19,6 +19,8 @@ equipment:
     code: 8
   - name: 杖
     code: 9
+  - name: 片手杖
+    code: 9
   - name: 両手杖
     code: 9
   - name: 弓

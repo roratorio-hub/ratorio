@@ -1,1346 +1,178 @@
 item_list:
-  - name: セプルクルム・ホノリス・ウィップ
-    yomi: セプルクルムホノリスウィップ
-    type: 鞭
+  # アルタイルハット と同じエンチャを手動追加
+  - name: 鳩のマジックハット
+    yomi: 鳩のマジックハット
+    type: 上段
     slot: 1
-    weapon_lv: 4
-    atk_or_def: 150
+    weapon_lv: 0
+    atk_or_def: 10
     weight: 50
     required_lv: 200
-    required_job: トルヴェール
+    required_job: 4次職 拡張4次職
     capabilities:
-      - name: 破損しない
-        value: 1
-      - name: 武器のMATK
-        value: 120
+      - name: SPL加算
+        value: 3
       - name: プレイヤー耐性
-        value: 10
-      - name: 全種族への魔法ダメージ増加
-        value: 10
-        per_refine: 1
+        value: 13
+      - name: 一般耐性
+        value: 20
+      - name: ボス耐性
+        value: 20
+      - name: 魔法ダメージ増加
+        value: 40
       - name: スキルダメージ増加
-        value: 10
-        skill: メタリックサウンド
-        per_refine: 1
-        at_transcendence: 1
+        value: 1
+        per_lv: 10
+        skill: サウンドブレンド
       - name: スキルダメージ増加
-        value: 30
-        skill: 振動残響
+        value: 1
+        per_lv: 10
+        skill: メタリックフューリー
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: リズミカルウェーブ
+      - name: SPL加算
+        value: 1
         per_refine: 1
-        at_transcendence: 1
-      - name: MAXHP増加
-        value: 15
+      - name: スキルディレイ減少
+        value: 20
         at_refine: 10
-        at_transcendence: 1
-      - name: 毒属性耐性
-        value: 10
+      - name: MDEF無視
+        value: 50
         at_refine: 10
-        at_transcendence: 1
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 偽りの心臓
-        capabilities:
-          - name: MAXHP増加
-            value: 15
-          - name: ボス耐性
-            value: 10
-          - name: スキル使用可能
-            skill: クローキング
-            skill_lv: 3
-      - set:
-        entity_list:
-          - card_name: 殺意の怨念
-        capabilities:
-          - name: スキルダメージ増加
-            value: 1
-            skill: サウンドブレンド
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: メタリックフューリー
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: リズミカルウェーブ
-            per_lv: 10
     enchant: #
-      - name: ホノリスエンチャント
+      - name: スペシャルエンチャント(オーブ)
         slot_list: #
           - slot: 4
             refine: 0
             enchant_list: #
-              - name: Str+7
-              - name: Agi+7
-              - name: Vit+7
-              - name: Int+7
-              - name: Dex+7
-              - name: Luk+7
-              - name: SpecialStr
-              - name: SpecialInt
-              - name: SpecialDex
-              - name: SpecialAgi
-              - name: SpecialVit
-              - name: SpecialLuk
-              - name: 火属性付与(武器)
-              - name: 水属性付与(武器)
-              - name: 風属性付与(武器)
-              - name: 地属性付与(武器)
-              - name: 聖属性付与(武器)
-              - name: 闇属性付与(武器)
-              - name: 念属性付与(武器)
-              - name: 毒属性付与(武器)
-              - name: 殺意の怨念
-              - name: 潜在解放(ドラゴンナイトI)
-              - name: 潜在解放(インペリアルガードI)
-              - name: 潜在解放(アークメイジXVI)
-              - name: 潜在解放(エレメンタルマスターI)
-              - name: 潜在解放(ウィンドホークXVII)
-              - name: 潜在解放(トルバドゥール&トルヴェールIV)
-              - name: 潜在解放(マイスターI)
-              - name: 潜在解放(バイオロXVII)
-              - name: 潜在解放(シャドウクロスIX)
-              - name: 潜在解放(アビスチェイサーXVI)
-              - name: 潜在解放(カーディナルXVII)
-              - name: 潜在解放(インクイジターI)
-              - name: 潜在解放(天帝I)
-              - name: 潜在解放(ソウルアセティックXIV)
-              - name: 潜在解放(蜃気楼&不知火XV)
-              - name: 潜在解放(ナイトウォッチXV)
-              - name: 潜在解放(ハイパーノービスXVIII)
-              - name: 潜在解放(スピリットハンドラーI)
+              - name: 潜在解放(トルバドゥール&トルヴェールXIII)
           - slot: 3
-            refine: 0
+            refine: 8
             enchant_list: #
-              - name: Str+7
-              - name: Agi+7
-              - name: Vit+7
-              - name: Int+7
-              - name: Dex+7
-              - name: Luk+7
-              - name: SpecialStr
-              - name: SpecialInt
-              - name: SpecialDex
-              - name: SpecialAgi
-              - name: SpecialVit
-              - name: SpecialLuk
-              - name: 潜在解放(ドラゴンナイトXVI)
-              - name: 潜在解放(インペリアルガードXV)
-              - name: 潜在解放(アークメイジXVII)
-              - name: 潜在解放(エレメンタルマスターXIV)
-              - name: 潜在解放(ウィンドホークXVI)
-              - name: 潜在解放(トルバドゥール&トルヴェールXII)
-              - name: 潜在解放(マイスターXV)
-              - name: 潜在解放(バイオロXVI)
-              - name: 潜在解放(シャドウクロスXIV)
-              - name: 潜在解放(アビスチェイサーXV)
-              - name: 潜在解放(カーディナルXVI)
-              - name: 潜在解放(インクイジターXIII)
-              - name: 潜在解放(天帝XII)
-              - name: 潜在解放(ソウルアセティックI)
-              - name: 潜在解放(蜃気楼&不知火XIV)
-              - name: 潜在解放(ナイトウォッチXIV)
-              - name: 潜在解放(ハイパーノービスXVII)
-              - name: 潜在解放(スピリットハンドラーXVII)
-          - slot: 2
-            refine: 0
-            enchant_list: #
-              - name: Str+7
-              - name: Agi+7
-              - name: Vit+7
-              - name: Int+7
-              - name: Dex+7
-              - name: Luk+7
-              - name: SpecialStr
-              - name: SpecialInt
-              - name: SpecialDex
-              - name: SpecialAgi
-              - name: SpecialVit
-              - name: SpecialLuk
-              - name: ExtraStr
-              - name: ExtraAgi
-              - name: ExtraVit
-              - name: ExtraInt
-              - name: ExtraDex
-              - name: ExtraLuk
-              - name: 覇王
+              - name: Str+10
+              - name: Agi+10
+              - name: Vit+10
+              - name: Int+10
+              - name: Dex+10
+              - name: Luk+10
+              - name: スキルディレイ-15%
               - name: 暴走した魔力
-              - name: 大鷲の眼光
-              - name: 豪傑
-              - name: 真理の解放
+          - slot: 2
+            refine: 9
+            enchant_list: #
+              - name: Str+10
+              - name: Agi+10
+              - name: Vit+10
+              - name: Int+10
+              - name: Dex+10
+              - name: Luk+10
+              - name: スキルディレイ-15%
+              - name: 厄災の魔将
 
-  - name: セプルクルム・ホノリス・オーガー
-    yomi: セプルクルムホノリスオーガー
-    type: 短剣
+  # がおがおタイガーパジャマ と同じエンチャを手動追加
+  - name: 影走白狐の紋服
+    yomi: 影走白狐の紋服
+    type: 鎧
     slot: 1
-    weapon_lv: 4
-    atk_or_def: 120
-    weight: 60
+    weapon_lv: 0
+    atk_or_def: 100
+    weight: 100
     required_lv: 200
     required_job: 蜃気楼 不知火
     capabilities:
-      - name: 破損しない
-        value: 1
-      - name: 武器のMATK
-        value: 120
       - name: プレイヤー耐性
-        value: 10
-      - name: 全種族への物理ダメージ増加
-        value: 13
-        per_refine: 1
+        value: 7
       - name: スキルダメージ増加
-        value: 5
-        skill: 十文字斬り
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        value: 5
-        skill: 爆裂苦無
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        value: 20
-        skill: 八方苦無
-        per_refine: 1
-        at_transcendence: 1
-      - name: MAXHP増加
-        value: 15
-        at_refine: 10
-        at_transcendence: 1
-      - name: 毒属性耐性
-        value: 10
-        at_refine: 10
-        at_transcendence: 1
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 殺意の怨念
-        capabilities:
-          - name: スキルダメージ増加
-            value: 1
-            skill: 苦無 -歪曲-
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: 苦無 -回転-
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: 苦無 -屈折-
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: 幻術 -苦無-
-            per_lv: 10
-  - name: セプルクルム・ホノリス・ギター
-    yomi: セプルクルムホノリスギター
-    type: 楽器
-    slot: 1
-    weapon_lv: 4
-    atk_or_def: 180
-    weight: 25
-    required_lv: 200
-    required_job: トルバドゥール
-    capabilities:
-      - name: 破損しない
         value: 1
-      - name: 武器のMATK
-        value: 120
-      - name: プレイヤー耐性
-        value: 10
-      - name: 全種族への魔法ダメージ増加
-        value: 10
-        per_refine: 1
+        per_lv: 10
+        skill: 影狩り
       - name: スキルダメージ増加
-        value: 10
-        skill: メタリックサウンド
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        value: 30
-        skill: 振動残響
-        per_refine: 1
-        at_transcendence: 1
-      - name: MAXHP増加
-        value: 15
-        at_refine: 10
-        at_transcendence: 1
-      - name: 毒属性耐性
-        value: 10
-        at_refine: 10
-        at_transcendence: 1
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 殺意の怨念
-        capabilities:
-          - name: スキルダメージ増加
-            value: 1
-            skill: サウンドブレンド
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: メタリックフューリー
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: リズミカルウェーブ
-            per_lv: 10
-  - name: セプルクルム・ホノリス・グレネードガン
-    yomi: セプルクルムホノリスグレネードガン
-    type: グレネードガン
-    slot: 1
-    weapon_lv: 4
-    atk_or_def: 210
-    weight: 140
-    required_lv: 200
-    required_job: ナイトウォッチ
-    capabilities:
-      - name: 破損しない
         value: 1
+        per_lv: 10
+        skill: 影の舞
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: 影一閃
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: 幻術 -影縫い-
+      - name: 全サイズへの物理ダメージ増加
+        value: 7
+        per_refine: 1
+      - name: ASPD増加
+        value: 10
+        at_refine: 7
       - name: 一般耐性
-        value: 40
+        value: 5
+        at_refine: 7
       - name: ボス耐性
-        value: 40
-      - name: プレイヤー耐性
-        value: 45
-      - name: 全種族への物理ダメージ増加
-        value: 13
-        per_refine: 1
-      - name: スキルダメージ増加
-        value: 10
-        skill: ドラゴンテイル
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        value: 15
-        skill: ハウリングマイン
-        per_refine: 1
-        at_transcendence: 1
-      - name: MAXHP増加
-        value: 50
-        at_refine: 10
-        at_transcendence: 1
-      - name: 毒属性耐性
-        value: 25
-        at_refine: 10
-        at_transcendence: 1
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 殺意の怨念
-        capabilities:
-          - name: スキルダメージ増加
-            value: 1
-            skill: スパイラルシューティング
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: ワイルドファイア
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: ミッドナイトフォーリン
-            per_lv: 10
-  - name: セプルクルム・ホノリス・スターダストブック
-    yomi: セプルクルムホノリススターダストブック
-    type: 本
-    slot: 1
-    weapon_lv: 4
-    atk_or_def: 120
-    weight: 80
-    required_lv: 200
-    required_job: 天帝
-    capabilities:
+        value: 5
+        at_refine: 7
       - name: 破損しない
         value: 1
-      - name: 武器のMATK
-        value: 140
-      - name: プレイヤー耐性
-        value: 10
-      - name: 全種族への物理ダメージ増加
-        value: 13
-        per_refine: 1
-      - name: スキルダメージ増加
-        value: 5
-        skill: 太陽爆発
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        value: 5
-        skill: 満月脚
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        value: 5
-        skill: 流星落下
-        per_refine: 1
-        at_transcendence: 1
-      - name: MAXHP増加
+        at_refine: 9
+      - name: 再使用待機時間減少
+        value: 30
+        at_refine: 9
+        skill: 十六夜
+      - name: 全属性への物理ダメージ増加
         value: 15
         at_refine: 10
-        at_transcendence: 1
-      - name: 毒属性耐性
-        value: 10
-        at_refine: 10
-        at_transcendence: 1
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 殺意の怨念
-        capabilities:
-          - name: スキルダメージ増加
-            value: 1
-            skill: 天地万星
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: 天命落星
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: 天星
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: 天星の行
-            per_lv: 10
-  - name: セプルクルム・ホノリス・ステッキ
-    yomi: セプルクルムホノリスステッキ
-    type: 杖
-    slot: 1
-    weapon_lv: 4
-    atk_or_def: 60
-    weight: 30
+    enchant: #
+      - name: スペシャルエンチャント(オーブ)
+        slot_list: #
+          - slot: 4
+            refine: 0
+            enchant_list: #
+              - name: 潜在解放(蜃気楼&不知火XVI)
+          - slot: 3
+            refine: 8
+            enchant_list: #
+              - name: 火属性付与(鎧)
+              - name: 水属性付与(鎧)
+              - name: 風属性付与(鎧)
+              - name: 地属性付与(鎧)
+              - name: 聖属性付与(鎧)
+              - name: 闇属性付与(鎧)
+              - name: 念属性付与(鎧)
+              - name: 毒属性付与(鎧)
+              - name: 不死属性付与(鎧)
+          - slot: 2
+            refine: 9
+            enchant_list: #
+              - name: スキルディレイ-15%
+              - name: 必中攻撃+25%
+              - name: 詠唱妨害不可
+              - name: 英雄の凱歌
+
+  # エクリプスマフラー と同じエンチャを手動追加
+  - name: 天使のバレッタ
+    yomi: 天使のバレッタ
+    type: 下段
+    slot: 0
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 10
     required_lv: 200
     required_job: カーディナル
     capabilities:
-      - name: 破損しない
-        value: 1
-      - name: 武器のMATK
-        value: 180
       - name: プレイヤー耐性
-        value: 10
-      - name: 全種族への魔法ダメージ増加
-        value: 10
-        per_refine: 1
-      - name: スキルダメージ増加
-        value: 15
-        skill: アドラムス
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        value: 15
-        skill: ジュデックス
-        per_refine: 1
-        at_transcendence: 1
-      - name: MAXHP増加
-        value: 15
-        at_refine: 10
-        at_transcendence: 1
-      - name: 毒属性耐性
-        value: 10
-        at_refine: 10
-        at_transcendence: 1
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 殺意の怨念
-        capabilities:
-          - name: スキルダメージ増加
-            value: 1
-            skill: アルビトリウム
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: ニューマティックプロセラ
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: フレーメン
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: ディヴィヌスフロス
-            per_lv: 10
-  - name: セプルクルム・ホノリス・スピア
-    yomi: セプルクルムホノリススピア
-    type: 片手槍
-    slot: 1
-    weapon_lv: 4
-    atk_or_def: 150
-    weight: 180
-    required_lv: 200
-    required_job: インペリアルガード
-    capabilities:
-      - name: 破損しない
+        value: 3
+      - name: 全サイズへの物理ダメージ増加
         value: 1
-      - name: 武器のMATK
-        value: 110
-      - name: プレイヤー耐性
-        value: 10
-      - name: 全種族への物理ダメージ増加
-        value: 13
-        per_refine: 1
-      - name: スキルダメージ増加
-        value: 10
-        skill: アースドライブ
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        value: 10
-        skill: キャノンスピア
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        value: 30
-        skill: バニシングポイント
-        per_refine: 1
-        at_transcendence: 1
-      - name: MAXHP増加
-        value: 15
-        at_refine: 10
-        at_transcendence: 1
-      - name: 毒属性耐性
-        value: 10
-        at_refine: 10
-        at_transcendence: 1
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 殺意の怨念
-        capabilities:
-          - name: スキルダメージ増加
-            value: 1
-            skill: オーバースラッシュ
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: グランドジャッジメント
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: シールドシューティング
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: レイディアントスピア
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: インペリアルクロス
-            per_lv: 10
-  - name: セプルクルム・ホノリス・ソード
-    yomi: セプルクルムホノリスソード
-    type: 片手剣
-    slot: 1
-    weapon_lv: 4
-    atk_or_def: 150
-    weight: 120
-    required_lv: 200
-    required_job: バイオロ
-    capabilities:
-      - name: 破損しない
+        per_lv: 10
+      - name: 全サイズへの魔法ダメージ増加
         value: 1
-      - name: 武器のMATK
-        value: 130
-      - name: プレイヤー耐性
-        value: 10
-      - name: 全種族への物理ダメージ増加
-        value: 13
-        per_refine: 1
-      - name: スキルダメージ増加
-        value: 15
-        skill: カートキャノン
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        value: 15
-        skill: スポアエクスプロージョン
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        value: 30
-        skill: カートトルネード
-        per_refine: 1
-        at_transcendence: 1
-      - name: MAXHP増加
-        value: 15
-        at_refine: 10
-        at_transcendence: 1
-      - name: 毒属性耐性
-        value: 10
-        at_refine: 10
-        at_transcendence: 1
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 殺意の怨念
-        capabilities:
-          - name: スキルダメージ増加
-            value: 1
-            skill: エクスプロッシブパウダー
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: ミステリーパウダー
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: ダストエクスプロージョン
-            per_lv: 10
-  - name: セプルクルム・ホノリス・ダークワンド
-    yomi: セプルクルムホノリスダークワンド
-    type: 杖
-    slot: 1
-    weapon_lv: 4
-    atk_or_def: 60
-    weight: 30
-    required_lv: 200
-    required_job: ソウルアセティック
-    capabilities:
-      - name: 破損しない
-        value: 1
-      - name: 武器のMATK
-        value: 180
-      - name: プレイヤー耐性
-        value: 10
-      - name: 全種族への魔法ダメージ増加
-        value: 10
-        per_refine: 1
-      - name: スキルダメージ増加
-        value: 5
-        skill: エスパ
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        value: 5
-        skill: エスフ
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        value: 5
-        skill: 死霊爆発
-        per_refine: 1
-        at_transcendence: 1
-      - name: MAXHP増加
-        value: 15
-        at_refine: 10
-        at_transcendence: 1
-      - name: 毒属性耐性
-        value: 10
-        at_refine: 10
-        at_transcendence: 1
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 殺意の怨念
-        capabilities:
-          - name: スキルダメージ増加
-            value: 1
-            skill: 青龍符
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: 白虎符
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: 朱雀符
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: 玄武符
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: 四方神符
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: 四方五行陣
-            per_lv: 10
-  - name: セプルクルム・ホノリス・ツーハンドアックス
-    yomi: セプルクルムホノリスツーハンドアックス
-    type: 両手斧
-    slot: 1
-    weapon_lv: 4
-    atk_or_def: 320
-    weight: 400
-    required_lv: 200
-    required_job: マイスター
-    capabilities:
-      - name: 破損しない
-        value: 1
-      - name: 武器のMATK
-        value: 200
-      - name: 一般耐性
-        value: 40
-      - name: ボス耐性
-        value: 40
-      - name: プレイヤー耐性
-        value: 45
-      - name: 全種族への物理ダメージ増加
-        value: 13
-        per_refine: 1
-      - name: スキルダメージ増加
-        value: 15
-        skill: アックストルネード
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        value: 15
-        skill: アックスブーメラン
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        value: 15
-        skill: パワースイング
-        per_refine: 1
-        at_transcendence: 1
-      - name: MAXHP増加
-        value: 50
-        at_refine: 10
-        at_transcendence: 1
-      - name: 毒属性耐性
-        value: 25
-        at_refine: 10
-        at_transcendence: 1
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 殺意の怨念
-        capabilities:
-          - name: スキルダメージ増加
-            value: 1
-            skill: アックスストンプ
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: マイティスマッシュ
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: ラッシュクエイク
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: ラッシュストライク
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: パワフルスイング
-            per_lv: 10
-  - name: セプルクルム・ホノリス・ナイフ
-    yomi: セプルクルムホノリスナイフ
-    type: 短剣
-    slot: 1
-    weapon_lv: 4
-    atk_or_def: 120
-    weight: 60
-    required_lv: 200
-    required_job: シャドウクロス
-    capabilities:
-      - name: 破損しない
-        value: 1
-      - name: 武器のMATK
-        value: 120
-      - name: プレイヤー耐性
-        value: 10
-      - name: 全種族への物理ダメージ増加
-        value: 13
-        per_refine: 1
-      - name: スキルダメージ増加
-        value: 5
-        skill: クロスインパクト
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        value: 5
-        skill: カウンタースラッシュ
-        per_refine: 1
-        at_transcendence: 1
-      - name: MAXHP増加
-        value: 15
-        at_refine: 10
-        at_transcendence: 1
-      - name: 毒属性耐性
-        value: 10
-        at_refine: 10
-        at_transcendence: 1
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 殺意の怨念
-        capabilities:
-          - name: スキルダメージ増加
-            value: 1
-            skill: ダンシングナイフ
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: シャドウスタブ
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: エターナルスラッシュ
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: フェイタルシャドウクロー
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: クロススラッシュ
-            per_lv: 10
-  - name: セプルクルム・ホノリス・ハンターボウ
-    yomi: セプルクルムホノリスハンターボウ
-    type: 弓
-    slot: 1
-    weapon_lv: 4
-    atk_or_def: 160
-    weight: 90
-    required_lv: 200
-    required_job: ウィンドホーク
-    capabilities:
-      - name: 破損しない
-        value: 1
-      - name: 武器のMATK
-        value: 170
-      - name: 一般耐性
-        value: 40
-      - name: ボス耐性
-        value: 40
-      - name: プレイヤー耐性
-        value: 45
-      - name: 全種族への物理ダメージ増加
-        value: 13
-        per_refine: 1
-      - name: スキルダメージ増加
-        value: 5
-        skill: アローストーム
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        value: 5
-        skill: エイムドボルト
-        per_refine: 1
-        at_transcendence: 1
-      - name: MAXHP増加
-        value: 50
-        at_refine: 10
-        at_transcendence: 1
-      - name: 毒属性耐性
-        value: 25
-        at_refine: 10
-        at_transcendence: 1
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 殺意の怨念
-        capabilities:
-          - name: スキルダメージ増加
-            value: 1
-            skill: ホークブーメラン
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: ホークラッシュ
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: ワイルドウォーク
-            per_lv: 10
-  - name: セプルクルム・ホノリス・フィスト
-    yomi: セプルクルムホノリスフィスト
-    type: 爪
-    slot: 1
-    weapon_lv: 4
-    atk_or_def: 140
-    weight: 40
-    required_lv: 200
-    required_job: インクイジター
-    capabilities:
-      - name: 破損しない
-        value: 1
-      - name: 武器のMATK
-        value: 100
-      - name: プレイヤー耐性
-        value: 10
-      - name: 全種族への物理ダメージ増加
-        value: 13
-        per_refine: 1
-      - name: スキルダメージ増加
-        value: 30
-        skill: 獅子吼
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        value: 30
-        skill: 天羅地網
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        value: 30
-        skill: 爆気散弾
-        per_refine: 1
-        at_transcendence: 1
-      - name: MAXHP増加
-        value: 15
-        at_refine: 10
-        at_transcendence: 1
-      - name: 毒属性耐性
-        value: 10
-        at_refine: 10
-        at_transcendence: 1
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 殺意の怨念
-        capabilities:
-          - name: スキルダメージ増加
-            value: 1
-            skill: 聖油洗礼
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: 爆火神弾
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: 炎火滅魔神弾
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: 烈火気弾
-            per_lv: 10
-  - name: セプルクルム・ホノリス・フォックステイル
-    yomi: セプルクルムホノリスフォックステイル
-    type: 杖
-    slot: 1
-    weapon_lv: 4
-    atk_or_def: 150
-    weight: 40
-    required_lv: 200
-    required_job: スピリットハンドラー
-    capabilities:
-      - name: 破損しない
-        value: 1
-      - name: 武器のMATK
-        value: 180
-      - name: プレイヤー耐性
-        value: 10
-      - name: 全種族への物理ダメージ増加
-        value: 13
-        per_refine: 1
-      - name: スキルダメージ増加
-        value: 5
-        skill: キャロットビート
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        value: 5
-        skill: サベージの魂
-        per_refine: 1
-        at_transcendence: 1
-      - name: MAXHP増加
-        value: 15
-        at_refine: 10
-        at_transcendence: 1
-      - name: 毒属性耐性
-        value: 10
-        at_refine: 10
-        at_transcendence: 1
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 偽りの心臓
-        capabilities:
-          - name: MAXHP増加
-            value: 15
-          - name: CRI加算
-            value: 50
-          - name: スキル使用可能
-            skill: クローキング
-            skill_lv: 3
-      - set:
-        entity_list:
-          - card_name: 殺意の怨念
-        capabilities:
-          - name: スキルダメージ増加
-            value: 1
-            skill: タイガースラッシュ
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: タイガーハウリング
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: タイガーストライク
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: タイガーバトリング
-            per_lv: 10
-  - name: セプルクルム・ホノリス・ブレイド
-    yomi: セプルクルムホノリスブレイド
-    type: 片手剣
-    slot: 1
-    weapon_lv: 4
-    atk_or_def: 150
-    weight: 120
-    required_lv: 200
-    required_job: アビスチェイサー
-    capabilities:
-      - name: 破損しない
-        value: 1
-      - name: 武器のMATK
-        value: 130
-      - name: プレイヤー耐性
-        value: 10
-      - name: 全種族への魔法ダメージ増加
-        value: 10
-        per_refine: 1
-      - name: スキルダメージ増加
-        value: 10
-        skill: クリムゾンロック
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        value: 10
-        skill: ソウルエクスパンション
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        value: 30
-        skill: ヘルインフェルノ
-        per_refine: 1
-        at_transcendence: 1
-      - name: MAXHP増加
-        value: 15
-        at_refine: 10
-        at_transcendence: 1
-      - name: 毒属性耐性
-        value: 10
-        at_refine: 10
-        at_transcendence: 1
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 殺意の怨念
-        capabilities:
-          - name: スキルダメージ増加
-            value: 1
-            skill: フロムジアビス
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: アビススクエア
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: オメガアビスストライク
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: アビスフレイム
-            per_lv: 10
-  - name: セプルクルム・ホノリス・マジックブック
-    yomi: セプルクルムホノリスマジックブック
-    type: 本
-    slot: 1
-    weapon_lv: 4
-    atk_or_def: 120
-    weight: 80
-    required_lv: 200
-    required_job: エレメンタルマスター
-    capabilities:
-      - name: 破損しない
-        value: 1
-      - name: 武器のMATK
-        value: 140
-      - name: プレイヤー耐性
-        value: 10
-      - name: 全種族への魔法ダメージ増加
-        value: 10
-        per_refine: 1
-      - name: スキルダメージ増加
-        value: 10
-        skill: アースグレイヴ
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        value: 10
-        skill: ヴェラチュールスピアー
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        value: 10
-        skill: サイキックウェーブ
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        value: 10
-        skill: ダイヤモンドダスト
-        per_refine: 1
-        at_transcendence: 1
-      - name: MAXHP増加
-        value: 15
-        at_refine: 10
-        at_transcendence: 1
-      - name: 毒属性耐性
-        value: 10
-        at_refine: 10
-        at_transcendence: 1
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 殺意の怨念
-        capabilities:
-          - name: スキルダメージ増加
-            value: 1
-            skill: コンフラグレーション
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: ダイヤモンドストーム
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: ライトニングランド
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: テラドライブ
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: ベナムスワンプ
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: エレメンタルバスター
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: サイキックストリーム
-            per_lv: 10
-  - name: セプルクルム・ホノリス・ランス
-    yomi: セプルクルムホノリスランス
-    type: 両手槍
-    slot: 1
-    weapon_lv: 4
-    atk_or_def: 200
-    weight: 2000
-    required_lv: 200
-    required_job: ドラゴンナイト
-    capabilities:
-      - name: 破損しない
-        value: 1
-      - name: 武器のMATK
-        value: 230
-      - name: 一般耐性
-        value: 40
-      - name: ボス耐性
-        value: 40
-      - name: プレイヤー耐性
-        value: 45
-      - name: 全種族への物理ダメージ増加
-        value: 13
-        per_refine: 1
-      - name: スキルダメージ増加
-        value: 25
-        skill: イグニッションブレイク
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        value: 25
-        skill: ソニックウェーブ
-        per_refine: 1
-        at_transcendence: 1
-      - name: MAXHP増加
-        value: 50
-        at_refine: 10
-        at_transcendence: 1
-      - name: 毒属性耐性
-        value: 25
-        at_refine: 10
-        at_transcendence: 1
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 殺意の怨念
-        capabilities:
-          - name: スキルダメージ増加
-            value: 1
-            skill: ハックアンドスラッシャー
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: マッドネスクラッシャー
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: ドラゴニックオーラ
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: ドラゴニックピアース
-            per_lv: 10
-  - name: セプルクルム・ホノリス・ロッド
-    yomi: セプルクルムホノリスロッド
-    type: 杖
-    slot: 1
-    weapon_lv: 4
-    atk_or_def: 60
-    weight: 30
-    required_lv: 200
-    required_job: アークメイジ
-    capabilities:
-      - name: 破損しない
-        value: 1
-      - name: 武器のMATK
-        value: 180
-      - name: プレイヤー耐性
-        value: 10
-      - name: 全種族への魔法ダメージ増加
-        value: 10
-        per_refine: 1
-      - name: スキルダメージ増加
-        value: 10
-        skill: アースストレイン
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        value: 10
-        skill: クリムゾンロック
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        value: 10
-        skill: ソウルエクスパンション
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        value: 30
-        skill: ジャックフロスト
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        value: 30
-        skill: フロストミスティ
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        value: 30
-        skill: ヘルインフェルノ
-        per_refine: 1
-        at_transcendence: 1
-      - name: MAXHP増加
-        value: 15
-        at_refine: 10
-        at_transcendence: 1
-      - name: 毒属性耐性
-        value: 10
-        at_refine: 10
-        at_transcendence: 1
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 殺意の怨念
-        capabilities:
-          - name: スキルダメージ増加
-            value: 1
-            skill: フローラルフレアロード
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: クリムゾンアロー
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: レインオブクリスタル
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: フローズンスラッシュ
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: トルネードストーム
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: ストームキャノン
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: ストラタムトレマー
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: ロックダウン
-            per_lv: 10
-  - name: セプルクルム・ホノリス・ワンド
-    yomi: セプルクルムホノリスワンド
-    type: 杖
-    slot: 1
-    weapon_lv: 4
-    atk_or_def: 60
-    weight: 30
-    required_lv: 200
-    required_job: ハイパーノービス
-    capabilities:
-      - name: 破損しない
-        value: 1
-      - name: 武器のMATK
-        value: 180
-      - name: プレイヤー耐性
-        value: 10
-      - name: 全種族への魔法ダメージ増加
-        value: 10
-        per_refine: 1
-      - name: MAXHP加算
-        value: 1000
-        at_transcendence: 1
-      - name: MAXSP加算
-        value: 100
-        at_transcendence: 1
-      - name: MAXHP増加
-        value: 15
-        at_refine: 10
-        at_transcendence: 1
-      - name: 毒属性耐性
-        value: 10
-        at_refine: 10
-        at_transcendence: 1
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 殺意の怨念
-        capabilities:
-          - name: スキルダメージ増加
-            value: 1
-            skill: ユピテルサンダーストーム
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: ヘルズドライブ
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: ナパームバルカンストライク
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: メテオストームバスター
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: グラウンドグラビテーション
-            per_lv: 10
-          - name: スキルダメージ増加
-            value: 1
-            skill: ジャックフロストノヴァ
-            per_lv: 10
+        per_lv: 10
+    enchant: #
+      - name: スペシャルエンチャント(ミオン)
+        slot_list: #
+          - slot: 4
+            refine: 0
+            enchant_list: #
+              - name: 潜在解放(カーディナルXVIII)
+
