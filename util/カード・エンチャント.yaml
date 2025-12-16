@@ -1,125 +1,67 @@
 card_list:
-  - name: 超越したエクリプス
-    yomi: チョウエツシタエクリプス
-    desc: "[フェイス]Lv1以上を習得している場合、<br>習得Lvが1上がる度に追加で聖属性攻撃で受けるダメージ + 5%"
+  - name: 魔女ジラント
+    yomi: マジョジラント
     type: 肩にかける物
     capabilities:
-      - name: スキルディレイ減少
-        value: 10
-      - name: 聖属性耐性
-        value: 100
-      - name: 物理ダメージ増加
-        value: 15
-        at_refine: 10
-      - name: 魔法ダメージ増加
-        value: 15
-        at_refine: 10
-  - name: 超越したエドガ
-    yomi: チョウエツシタエドガ
-    desc: "インデュア状態になる"
-    type: 兜
-    capabilities:
-      - name: MAXHP増加
-        value: 15
-      - name: 火属性耐性
-        value: 15
-      - name: 念属性耐性
-        value: 15
-  - name: 超越したオークヒーロー
-    yomi: チョウエツシタオークヒーロー
-    type: アクセサリー
-    capabilities:
-      - name: スタン耐性
-        value: 100
-      - name: ASPD増加
-        value: 15
-      - name: 物理ダメージ増加
-        value: 15
-  - name: 超越したオシリス
-    yomi: チョウエツシタオシリス
-    type: 靴
-    capabilities:
-      - name: FLEE加算
-        value: 100
-      - name: MAXHP増加
-        value: 25
-      - name: 石化耐性
-        value: 100
-      - name: ノックバックしない
+      - name: 破損しない
         value: 1
-  - name: 超越したキメラ
-    yomi: チョウエツシタキメラ
+    set_list:
+      - set:
+        entity_list:
+          - card_name: アルカナ
+        capabilities:
+          - name: 火属性耐性
+            value: 50
+      - set:
+        entity_list:
+          - card_name: 悠遠なる天上の都
+        capabilities:
+          - name: 風属性魔法ダメージ増加
+            value: 100
+  - name: 古龍ジラント
+    yomi: コリュウジラント
     type: 肩にかける物
     capabilities:
-      - name: スキルディレイ減少
-        value: 10
-      - name: 毒属性耐性
-        value: 100
-      - name: 物理ダメージ増加
-        value: 15
-        at_refine: 10
-      - name: 魔法ダメージ増加
-        value: 15
-        at_refine: 10
-  - name: 超越したさすらい狼
-    yomi: チョウエツシタサスライオオカミ
+      - name: 破損しない
+        value: 1
+    set_list:
+      - set:
+        entity_list:
+          - card_name: アルカナ
+        capabilities:
+          - name: スキルダメージ増加
+            value: 50
+            skill: ドラゴニックブレス
+          - name: スキルダメージ増加
+            value: 50
+            skill: ドラゴニックオーラ
+      - set:
+        entity_list:
+          - card_name: 悠遠なる天上の都
+        capabilities:
+          - name: VIT加算
+            value: 100
+  - name: 深海の魔女
+    yomi: シンカイノマジョ
     type: 肩にかける物
     capabilities:
-      - name: スキルディレイ減少
-        value: 10
-      - name: 闇属性耐性
-        value: 100
-      - name: 物理ダメージ増加
-        value: 15
-        at_refine: 10
-      - name: 魔法ダメージ増加
-        value: 15
-        at_refine: 10
-  - name: 超越したタオグンカ
-    yomi: チョウエツシタタオグンカ
-    desc: "一部のダメージを反射する効果で受けるダメージ - 100%"
-    type: 兜
-    capabilities:
-      - name: 物理ダメージ増加
-        value: 15
-      - name: 魔法ダメージ増加
-        value: 15
-  - name: 超越したトード
-    yomi: チョウエツシタトード
-    type: 肩にかける物
-    capabilities:
-      - name: スキルディレイ減少
-        value: 10
-      - name: 不死属性耐性
-        value: 100
-      - name: 物理ダメージ増加
-        value: 15
-        at_refine: 10
-      - name: 魔法ダメージ増加
-        value: 15
-        at_refine: 10
-  - name: 超越したフリオニ
-    yomi: チョウエツシタフリオニ
-    type: 靴
-    capabilities:
-      - name: 物理ダメージ増加
-        value: 20
-      - name: 無属性への物理ダメージ増加
-        value: 50
-      - name: スキル使用可能
-        skill: エナジーコート
-        skill_lv: 1
-  - name: 超越したボーカル
-    yomi: チョウエツシタボーカル
-    type: 肩にかける物
-    capabilities:
-      - name: スキルディレイ減少
-        value: 10
-      - name: 念属性耐性
-        value: 100
-      - name: 物理ダメージ増加
-        value: 15
-        at_refine: 10
-      - name: 魔法ダメージ増加
-        value: 15
-        at_refine: 10
+      - name: 破損しない
+        value: 1
+    set_list:
+      - set:
+        entity_list:
+          - card_name: アルカナ
+        capabilities:
+          - name: 水属性耐性
+            value: 50
+          - name: スキル固定詠唱割合減少
+            value: 100
+            skill: フロストミスティ
+      - set:
+        entity_list:
+          - card_name: 悠遠なる天上の都
+        capabilities:
+          - name: 凍結耐性
+            value: 100
+          - name: 氷結耐性
+            value: 100
