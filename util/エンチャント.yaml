@@ -1,206 +1,181 @@
 enchant_list:
   - enchant: #
-      - name: ベテラン遺跡細工師
+      - name: 深淵の回廊エンチャント
         item_list: #
-          - item_name: バリアントデビルズホーン
+          - item_name: 覇王のアミュレット
         slot_list: #
           - slot: 4
             refine: 0
             enchant_list: #
-              - name: 英雄の凱歌
-              - name: 厄災の魔将
-              - name: 起源の王
-              - name: 殺意の怨念
-              - name: 豊穣の女神
-              - name: 知識の探求者
-              - name: 最果ての支配者
+              - name: Str+10
+              - name: Agi+10
+              - name: Vit+10
+              - name: Int+10
+              - name: Dex+10
+              - name: Luk+10
+              - name: SpecialStr
+              - name: SpecialAgi
+              - name: SpecialVit
+              - name: SpecialInt
+              - name: SpecialDex
+              - name: SpecialLuk
+              - name: Def50%無視
+              - name: Mdef50%無視
+              - name: 必中攻撃+25%
+              - name: アルカナ
               - name: シンソウの王
           - slot: 3
             refine: 0
             enchant_list: #
-              - name: 新毒耐性
-              - name: 石化耐性
-
-      - name: ベテラン遺跡細工師
-        item_list: #
-          - item_name: セレスティアルヴァーチャー
-        slot_list: #
-          - slot: 4
+              - name: Str+10
+              - name: Agi+10
+              - name: Vit+10
+              - name: Int+10
+              - name: Dex+10
+              - name: Luk+10
+              - name: SpecialStr
+              - name: SpecialAgi
+              - name: SpecialVit
+              - name: SpecialInt
+              - name: SpecialDex
+              - name: SpecialLuk
+              - name: Def50%無視
+              - name: Mdef50%無視
+              - name: 透視
+              - name: アルカナ
+              - name: 極限の魔力
+          - slot: 2
             refine: 0
             enchant_list: #
-              - name: 英雄の凱歌
-              - name: 起源の王
-              - name: 殺意の怨念
-              - name: 豊穣の女神
-              - name: 厄災の魔将
-              - name: 異境の統轄者
-              - name: 知識の探求者
-              - name: 最果ての支配者
-              - name: シンソウの王
-
-      - name: ベテラン遺跡細工師
-        item_list: #
-          - item_name: パーマフロストオブリビオン
-        slot_list: #
-          - slot: 4
-            refine: 0
-            enchant_list: #
-              - name: 英雄の凱歌
-              - name: 起源の王
-              - name: 殺意の怨念
-              - name: 豊穣の女神
-              - name: 厄災の魔将
-              - name: 知識の探求者
-              - name: 最果ての支配者
-              - name: シンソウの王
-          - slot: 3
-            refine: 0
-            enchant_list: #
+              - name: SpecialStr
+              - name: SpecialAgi
+              - name: SpecialVit
+              - name: SpecialInt
+              - name: SpecialDex
+              - name: SpecialLuk
               - name: ExtraStr
               - name: ExtraAgi
               - name: ExtraVit
               - name: ExtraInt
               - name: ExtraDex
               - name: ExtraLuk
+              - name: 悠遠なる天上の都
 
-      - name: ベテラン遺跡細工師
+      - name: 深淵の回廊エンチャント
         item_list: #
-          - item_name: アトクウェ・ポエニテンティア
+          - item_name: マルキダエルスピア
+          - item_name: アスモデルブレイド
+          - item_name: アムブリエルバイオリン
+          - item_name: アムブリエルブレイドウィップ
+          - item_name: ムリエルアックス
+          - item_name: ウェルキエルクロー
+          - item_name: ハマリエルワンド
+          - item_name: ハナエルダガー
+          - item_name: ガムビエルスタッフ
+          - item_name: バキエルブック
+          - item_name: サタンフォックステイル
+          - item_name: フルーレティワンド
+          - item_name: アガリアレプト風魔手裏剣
+          - item_name: ズリエルクレイモア
+          - item_name: ネビロスライフル
+          - item_name: バルビエルカタール
+          - item_name: アドナキエルウィング
+          - item_name: ルキフグスブレイド
+          - item_name: サタナキアブック          
         slot_list: #
           - slot: 4
             refine: 0
             enchant_list: #
-              - name: 起源の王
-              - name: 殺意の怨念
-              - name: 豊穣の女神
-              - name: 厄災の魔将
-              - name: 異境の統轄者
-              - name: 知識の探求者
-              - name: 最果ての支配者
-              - name: シンソウの王
-
-      - name: ベテラン遺跡細工師
-        item_list: #
-          - item_name: 偽神のイビルアイ
-        slot_list: #
-          - slot: 4
-            refine: 0
-            enchant_list: #
-              - name: 英雄の凱歌
-              - name: 起源の王
-              - name: 殺意の怨念
-              - name: 厄災の魔将
-              - name: 異境の統轄者
-              - name: 知識の探求者
-              - name: 最果ての支配者
-              - name: シンソウの王
+              - name: Str+7
+              - name: Agi+7
+              - name: Vit+7
+              - name: Int+7
+              - name: Dex+7
+              - name: Luk+7
+              - name: SpecialStr
+              - name: SpecialAgi
+              - name: SpecialVit
+              - name: SpecialInt
+              - name: SpecialDex
+              - name: SpecialLuk
+              - name: 火属性付与(武器)
+              - name: 水属性付与(武器)
+              - name: 風属性付与(武器)
+              - name: 地属性付与(武器)
+              - name: 聖属性付与(武器)
+              - name: 闇属性付与(武器)
+              - name: 念属性付与(武器)
+              - name: 毒属性付与(武器)
+              - name: 極限の魔力
+              - name: アルカナ
           - slot: 3
             refine: 0
             enchant_list: #
-              - name: 石化耐性
-
-      - name: ベテラン遺跡細工師
-        item_list: #
-          - item_name: マジェスティックフォックス
-        slot_list: #
-          - slot: 4
+              - name: Str+7
+              - name: Agi+7
+              - name: Vit+7
+              - name: Int+7
+              - name: Dex+7
+              - name: Luk+7
+              - name: SpecialStr
+              - name: SpecialAgi
+              - name: SpecialVit
+              - name: SpecialInt
+              - name: SpecialDex
+              - name: SpecialLuk
+              - name: 潜在解放(アークメイジI)
+              - name: 潜在解放(インクイジターI)
+              - name: 潜在解放(インペリアルガードI)
+              - name: 潜在解放(ウィンドホークI)
+              - name: 潜在解放(エレメンタルマスターI)
+              - name: 潜在解放(カーディナルI)
+              - name: 潜在解放(シャドウクロスI)
+              - name: 潜在解放(ドラゴンナイトI)
+              - name: 潜在解放(トルバドゥールI)
+              - name: 潜在解放(トルヴェールI)
+              - name: 潜在解放(バイオロI)
+              - name: 潜在解放(マイスターI)
+              - name: 潜在解放(スピリットハンドラーI)
+              - name: 潜在解放(ソウルアセティックI)
+              - name: 潜在解放(ナイトウォッチI)
+              - name: 潜在解放(ハイパーノービスI)
+              - name: 潜在解放(蜃気楼&不知火I)
+              - name: 潜在解放(天帝I)
+              - name: 潜在解放(アビスチェイサーVIII)
+              - name: 潜在解放(インクイジターV)
+              - name: 潜在解放(インペリアルガードVII)
+              - name: 潜在解放(スピリットハンドラーVIII)
+              - name: 潜在解放(ソウルアセティックVI)
+              - name: 潜在解放(ドラゴンナイトVI)
+              - name: 潜在解放(トルバドゥール&トルヴェールIV)
+              - name: 潜在解放(バイオロVI)
+              - name: 潜在解放(ハイパーノービスVIII)
+              - name: 潜在解放(マイスターVII)
+              - name: 潜在解放(蜃気楼&不知火V)
+              - name: 潜在解放(天帝V)
+          - slot: 2
             refine: 0
             enchant_list: #
-              - name: 起源の王
-              - name: 殺意の怨念
-              - name: 豊穣の女神
-              - name: 厄災の魔将
-              - name: 異境の統轄者
-              - name: 知識の探求者
-              - name: 最果ての支配者
-              - name: シンソウの王
-
-      - name: ベテラン遺跡細工師
-        item_list: #
-          - item_name: インターディメンショナルリフト
-        slot_list: #
-          - slot: 4
-            refine: 0
-            enchant_list: #
-              - name: 起源の王
-              - name: 殺意の怨念
-              - name: 豊穣の女神
-              - name: 厄災の魔将
-              - name: 異境の統轄者
-              - name: 知識の探求者
-              - name: 最果ての支配者
-              - name: シンソウの王
-          - slot: 3
-            refine: 0
-            enchant_list: #
-              - name: 石化耐性
-
-      - name: ベテラン遺跡細工師
-        item_list: #
-          - item_name: コンセクレイト・フィデス・オーリーオラ
-        slot_list: #
-          - slot: 4
-            refine: 0
-            enchant_list: #
-              - name: 英雄の凱歌
-              - name: 起源の王
-              - name: 殺意の怨念
-              - name: 厄災の魔将
-              - name: 異境の統轄者
-              - name: 知識の探求者
-              - name: 最果ての支配者
-              - name: シンソウの王
-
-      - name: ベテラン遺跡細工師
-        item_list: #
-          - item_name: ケミカルレジスタントグローブ
-          - item_name: ペタルの尻尾(アルビノ)
-          - item_name: リングオブアルテミス
-          - item_name: 天涯極地の腕輪
-          - item_name: 決闘者のゴールドコイン
-          - item_name: エレクトロンブースター
-          - item_name: パワーマシンアーム
-          - item_name: レリックランタン
-          - item_name: てちてちにゃんこのもこふわソックス
-          - item_name: リヴァイアサンオーブ
-          - item_name: 白狐のお守り
-          - item_name: シャドウリチュアル
-          - item_name: 枢機卿の指輪
-          - item_name: ロードオブエレメンタル
-          - item_name: エスタブリッシュ
-          - item_name: イントゥジアビス
-          - item_name: エレメンタルジュエル
-          - item_name: 五行封神陣
-          - item_name: 極意皆伝之巻
-          - item_name: ドロップオブセブンカラーズ
-          - item_name: ぱかぱかにゃんこのぽかぽかソックス
-          - item_name: 白きカーリッツバーグ騎士団の籠手
-        slot_list: #
-          - slot: 4
-            refine: 0
-            enchant_list: #
-              - name: 英雄の凱歌
-              - name: 起源の王
-              - name: 殺意の怨念
-              - name: 豊穣の女神
-              - name: 厄災の魔将
-              - name: 異境の統轄者
-              - name: 知識の探求者
-              - name: 最果ての支配者
-              - name: シンソウの王
-
-      - name: ベテラン遺跡細工師
-        item_list: #
-          - item_name: アシャワヒシュタ
-        slot_list: #
-          - slot: 4
-            refine: 0
-            enchant_list: #
-              - name: 英雄の凱歌
-              - name: 殺意の怨念
-              - name: 豊穣の女神
-              - name: 厄災の魔将
-              - name: 異境の統轄者
-              - name: 知識の探求者
-              - name: 最果ての支配者
-              - name: シンソウの王
+              - name: Str+7
+              - name: Agi+7
+              - name: Vit+7
+              - name: Int+7
+              - name: Dex+7
+              - name: Luk+7
+              - name: SpecialStr
+              - name: SpecialAgi
+              - name: SpecialVit
+              - name: SpecialInt
+              - name: SpecialDex
+              - name: SpecialLuk
+              - name: ExtraStr
+              - name: ExtraAgi
+              - name: ExtraVit
+              - name: ExtraInt
+              - name: ExtraDex
+              - name: ExtraLuk
+              - name: 覇王
+              - name: 暴走した魔力
+              - name: 大鷲の眼光
+              - name: 豪傑
+              - name: 真理の解放
