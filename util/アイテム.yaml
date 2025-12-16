@@ -1,1517 +1,178 @@
 item_list:
-  - name: 覇王のアミュレット
-    yomi: 覇王のアミュレット
-    desc: "[エルヴィラキャンディ]、[エルヴィラキャンディ(YE)]のいずれかを使用時、[オールステータスダウン]状態を回復する<BR>[悠遠なる天上の都]と共に装備時、物理・魔法攻撃命中時、一定確率で自分に発生している[エルヴィラキャンディ]、[エルヴィラキャンディ(YE)]の再使用待機時間を解除する"
-    type: アクセサリー
+  # アルタイルハット と同じエンチャを手動追加
+  - name: 鳩のマジックハット
+    yomi: 鳩のマジックハット
+    type: 上段
     slot: 1
     weapon_lv: 0
-    atk_or_def: 0
-    weight: 10
-    required_lv: 100
-    required_job: 全ての職業
-    capabilities:
-      - name: ASPD増加
-        value: 15
-      - name: プレイヤー耐性
-        value: 3
-      - name: ATK加算
-        value: 1
-        per_lv: 1
-      - name: MATK加算
-        value: 1
-        per_lv: 1
-      - name: MAXHP増加
-        value: 50
-        per_lv: 1
-      - name: MAXSP増加
-        value: 5
-        per_lv: 1
-      - name: 物理ダメージ増加
-        value: 1
-        per_lv: 5
-      - name: 魔法ダメージ増加
-        value: 1
-        per_lv: 5
-    set_list:
-      - set:
-        entity_list:
-          - card_name: アルカナ
-        capabilities:
-          - name: 毒耐性
-            value: 50
-      - set:
-        entity_list:
-          - card_name: シンソウの王
-        capabilities:
-          - name: 毒耐性
-            value: 50
-      - set:
-        entity_list:
-          - card_name: 極限の魔力
-        capabilities:
-          - name: SP回復力向上
-            value: 10
-      - set:
-        entity_list:
-          - card_name: 悠遠なる天上の都
-        capabilities:
-          - name: スキルディレイ減少
-            value: 15
-
-  - name: アスモデルブレイド
-    yomi: アスモデルブレイド
-    type: 片手剣
-    slot: 1
-    weapon_lv: 4
-    atk_or_def: 150
-    weight: 120
-    required_lv: 200
-    required_job: バイオロ
-    capabilities:
-      - name: 破損しない
-        value: 1
-      - name: 武器のMATK
-        value: 130
-      - name: プレイヤー耐性
-        value: 10
-      - name: スキルダメージ増加
-        skill: アシディファイドゾーン(火)
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: アシディファイドゾーン(水)
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: アシディファイドゾーン(風)
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: アシディファイドゾーン(地)
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: メイヘミックソーンズ
-        value: 1
-        per_lv: 10
-      - name: 全種族への物理ダメージ増加
-        value: 13
-        per_refine: 1
-      - name: 全種族への魔法ダメージ増加
-        value: 10
-        per_refine: 1
-      - name: スキルダメージ増加
-        skill: カートキャノン
-        value: 15
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        skill: スポアエクスプロージョン
-        value: 15
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        skill: カートトルネード
-        value: 30
-        per_refine: 1
-        at_transcendence: 1
-      - name: MAXHP増加
-        value: 15
-        at_refine: 10
-        at_transcendence: 1
-      - name: 毒属性耐性
-        value: 10
-        at_refine: 10
-        at_transcendence: 1
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 極限の魔力
-        capabilities:
-          - name: 破損しない
-            value: 1
-      - set:
-        entity_list:
-          - card_name: 悠遠なる天上の都
-        capabilities:
-          - name: MAXHP増加
-            value: 15
-          - name: ボス耐性
-            value: 10
-          - name: スキル使用可能
-            skill: ファイアーウォール
-            skill_lv: 10
-
-  - name: ルキフグスブレイド
-    yomi: ルキフグスブレイド
-    type: 片手剣
-    slot: 1
-    weapon_lv: 4
-    atk_or_def: 150
-    weight: 120
-    required_lv: 200
-    required_job: ハイパーノービス
-    capabilities:
-      - name: 破損しない
-        value: 1
-      - name: 武器のMATK
-        value: 130
-      - name: プレイヤー耐性
-        value: 10
-      - name: スキルダメージ増加
-        skill: シールドチェーンラッシュ
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: スパイラルピアースマックス
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: ユピテルサンダーストーム
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: ヘルズドライブ
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: ナパームバルカンストライク
-        value: 1
-        per_lv: 10
-      - name: 全種族への物理ダメージ増加
-        value: 13
-        per_refine: 1
-      - name: 全種族への魔法ダメージ増加
-        value: 10
-        per_refine: 1
-      - name: MAXHP加算
-        value: 1000
-        per_refine: 1
-        at_transcendence: 1
-      - name: MAXSP加算
-        value: 100
-        per_refine: 1
-        at_transcendence: 1
-      - name: MAXHP増加
-        value: 15
-        at_refine: 10
-        at_transcendence: 1
-      - name: 毒属性耐性
-        value: 10
-        at_refine: 10
-        at_transcendence: 1
-
-  - name: ハナエルダガー
-    yomi: ハナエルダガー
-    desc: "射程距離 3"
-    type: 短剣
-    slot: 1
-    weapon_lv: 4
-    atk_or_def: 120
-    weight: 60
-    required_lv: 200
-    required_job: アビスチェイサー
-    capabilities:
-      - name: 破損しない
-        value: 1
-      - name: 武器のMATK
-        value: 120
-      - name: プレイヤー耐性
-        value: 10
-      - name: スキルダメージ増加
-        skill: フロムジアビス
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: アビススクエア
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: オメガアビスストライク
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: アビスフレイム
-        value: 1
-        per_lv: 10
-      - name: 全種族への物理ダメージ増加
-        value: 13
-        per_refine: 1
-      - name: 全種族への魔法ダメージ増加
-        value: 10
-        per_refine: 1
-      - name: スキルダメージ増加
-        skill: クリムゾンロック
-        value: 10
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        skill: ソウルエクスパンション
-        value: 10
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        skill: ヘルインフェルノ
-        value: 30
-        per_refine: 1
-        at_transcendence: 1
-      - name: MAXHP増加
-        value: 15
-        at_refine: 10
-        at_transcendence: 1
-      - name: 毒属性耐性
-        value: 10
-        at_refine: 10
-        at_transcendence: 1
-
-  - name: ムリエルアックス
-    yomi: ムリエルアックス
-    type: 片手斧
-    slot: 1
-    weapon_lv: 4
-    atk_or_def: 180
-    weight: 180
-    required_lv: 200
-    required_job: マイスター
-    capabilities:
-      - name: 破損しない
-        value: 1
-      - name: 武器のMATK
-        value: 110
-      - name: プレイヤー耐性
-        value: 10
-      - name: スキルダメージ増加
-        skill: アックスストンプ
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: マイティスマッシュ
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: ラッシュクエイク
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: スパークブラスター
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: トリプルレーザー
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: エナジーキャノネード
-        value: 1
-        per_lv: 10
-      - name: 全種族への物理ダメージ増加
-        value: 13
-        per_refine: 1
-      - name: 全種族への魔法ダメージ増加
-        value: 10
-        per_refine: 1
-      - name: スキルダメージ増加
-        skill: アックストルネード
-        value: 15
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        skill: アックスブーメラン
-        value: 15
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        skill: パワースイング
-        value: 15
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        skill: アームズキャノン
-        value: 10
-        per_refine: 1
-        at_transcendence: 1
-      - name: MAXHP増加
-        value: 15
-        at_refine: 10
-        at_transcendence: 1
-      - name: 毒属性耐性
-        value: 10
-        at_refine: 10
-        at_transcendence: 1
-
-  - name: マルキダエルスピア
-    yomi: マルキダエルスピア
-    type: 片手槍
-    slot: 1
-    weapon_lv: 4
-    atk_or_def: 150
-    weight: 180
-    required_lv: 200
-    required_job: インペリアルガード
-    capabilities:
-      - name: 破損しない
-        value: 1
-      - name: 武器のMATK
-        value: 110
-      - name: プレイヤー耐性
-        value: 10
-      - name: スキルダメージ増加
-        skill: オーバースラッシュ
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: グランドジャッジメント
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: シールドシューティング
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: レイディアントスピア
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: インペリアルクロス
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: クロスレイン
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: ジャッジメントクロス
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: インペリアルプレッシャー
-        value: 1
-        per_lv: 10
-      - name: 全種族への物理ダメージ増加
-        value: 13
-        per_refine: 1
-      - name: 全種族への魔法ダメージ増加
-        value: 10
-        per_refine: 1
-      - name: スキルダメージ増加
-        skill: アースドライブ
-        value: 10
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        skill: キャノンスピア
-        value: 10
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        skill: バニシングポイント
-        value: 30
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        skill: レイオブジェネシス
-        value: 15
-        per_refine: 1
-        at_transcendence: 1
-      - name: MAXHP増加
-        value: 15
-        at_refine: 10
-        at_transcendence: 1
-      - name: 毒属性耐性
-        value: 10
-        at_refine: 10
-        at_transcendence: 1
-
-  - name: バキエルブック
-    yomi: バキエルブック
-    type: 本
-    slot: 1
-    weapon_lv: 4
-    atk_or_def: 120
-    weight: 80
-    required_lv: 200
-    required_job: エレメンタルマスター
-    capabilities:
-      - name: 破損しない
-        value: 1
-      - name: 武器のMATK
-        value: 140
-      - name: プレイヤー耐性
-        value: 10
-      - name: スキルダメージ増加
-        skill: コンフラグレーション
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: ダイヤモンドストーム
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: ライトニングランド
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: テラドライブ
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: ベナムスワンプ
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: エレメンタルバスター
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: サイキックストリーム
-        value: 1
-        per_lv: 10
-      - name: 全種族への物理ダメージ増加
-        value: 13
-        per_refine: 1
-      - name: 全種族への魔法ダメージ増加
-        value: 10
-        per_refine: 1
-      - name: スキルダメージ増加
-        skill: アースグレイヴ
-        value: 10
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        skill: ヴェラチュールスピアー
-        value: 10
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        skill: サイキックウェーブ
-        value: 10
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        skill: ダイヤモンドダスト
-        value: 10
-        per_refine: 1
-        at_transcendence: 1
-      - name: MAXHP増加
-        value: 15
-        at_refine: 10
-        at_transcendence: 1
-      - name: 毒属性耐性
-        value: 10
-        at_refine: 10
-        at_transcendence: 1
-
-  - name: サタナキアブック
-    yomi: サタナキアブック
-    type: 本
-    slot: 1
-    weapon_lv: 4
-    atk_or_def: 120
-    weight: 80
-    required_lv: 200
-    required_job: 天帝
-    capabilities:
-      - name: 破損しない
-        value: 1
-      - name: 武器のMATK
-        value: 140
-      - name: プレイヤー耐性
-        value: 10
-      - name: スキルダメージ増加
-        skill: 天地一陽
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: 太天一陽
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: 天陽
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: 天地一月
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: 太天一月
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: 天月
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: 天羅万象
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: 天気身陽
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: 天気身月
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: 天地万星
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: 天命落星
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: 天星
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: 天星の行
-        value: 1
-        per_lv: 10
-      - name: 全種族への物理ダメージ増加
-        value: 13
-        per_refine: 1
-      - name: 全種族への魔法ダメージ増加
-        value: 10
-        per_refine: 1
-      - name: スキルダメージ増加
-        skill: 太陽爆発
-        value: 5
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        skill: 満月脚
-        value: 5
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        skill: 流星落下
-        value: 5
-        per_refine: 1
-        at_transcendence: 1
-      - name: MAXHP増加
-        value: 15
-        at_refine: 10
-        at_transcendence: 1
-      - name: 毒属性耐性
-        value: 10
-        at_refine: 10
-        at_transcendence: 1
-
-  - name: ハマリエルワンド
-    yomi: ハマリエルワンド
-    type: 杖
-    slot: 1
-    weapon_lv: 4
-    atk_or_def: 60
-    weight: 30
-    required_lv: 200
-    required_job: カーディナル
-    capabilities:
-      - name: 破損しない
-        value: 1
-      - name: 武器のMATK
-        value: 180
-      - name: プレイヤー耐性
-        value: 10
-      - name: スキルダメージ増加
-        skill: アルビトリウム
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: ニューマティックプロセラ
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: フレーメン
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: ディヴィヌスフロス
-        value: 1
-        per_lv: 10
-      - name: 全種族への物理ダメージ増加
-        value: 13
-        per_refine: 1
-      - name: 全種族への魔法ダメージ増加
-        value: 10
-        per_refine: 1
-      - name: スキルダメージ増加
-        skill: アドラムス
-        value: 15
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        skill: ジュデックス
-        value: 15
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        skill: グレイアムライト
-        value: 60
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        skill: ミリアムライト
-        value: 60
-        per_refine: 1
-        at_transcendence: 1
-      - name: MAXHP増加
-        value: 15
-        at_refine: 10
-        at_transcendence: 1
-      - name: 毒属性耐性
-        value: 10
-        at_refine: 10
-        at_transcendence: 1
-
-  - name: フルーレティワンド
-    yomi: フルーレティワンド
-    type: 片手杖
-    slot: 1
-    weapon_lv: 4
-    atk_or_def: 60
-    weight: 30
-    required_lv: 200
-    required_job: ソウルアセティック
-    capabilities:
-      - name: 破損しない
-        value: 1
-      - name: 武器のMATK
-        value: 180
-      - name: プレイヤー耐性
-        value: 10
-      - name: スキルダメージ増加
-        skill: 青龍符
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: 白虎符
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: 朱雀符
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: 玄武符
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: 四方神符
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: 霊道符
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: 死霊浄化
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: 四方五行陣
-        value: 1
-        per_lv: 10
-      - name: 全種族への物理ダメージ増加
-        value: 13
-        per_refine: 1
-      - name: 全種族への魔法ダメージ増加
-        value: 10
-        per_refine: 1
-      - name: スキルダメージ増加
-        skill: エスパ
-        value: 5
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        skill: エスフ
-        value: 5
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        skill: 死霊爆発
-        value: 5
-        per_refine: 1
-        at_transcendence: 1
-      - name: MAXHP増加
-        value: 15
-        at_refine: 10
-        at_transcendence: 1
-      - name: 毒属性耐性
-        value: 10
-        at_refine: 10
-        at_transcendence: 1
-
-  - name: ウェルキエルクロー
-    yomi: ウェルキエルクロー
-    type: 爪
-    slot: 1
-    weapon_lv: 4
-    atk_or_def: 140
-    weight: 40
-    required_lv: 200
-    required_job: インクイジター
-    capabilities:
-      - name: 破損しない
-        value: 1
-      - name: 武器のMATK
-        value: 100
-      - name: プレイヤー耐性
-        value: 10
-      - name: スキルダメージ増加
-        skill: 聖油洗礼
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: 爆火神弾
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: 炎火滅魔神弾
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: 烈火気弾
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: 第二撃：信念
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: 第三撃：断罪
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: 第二撃：審判
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: 第三撃：浄化
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: 第二撃：滅魔の火
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: 第三撃：滅火撃
-        value: 1
-        per_lv: 10
-      - name: 全種族への物理ダメージ増加
-        value: 13
-        per_refine: 1
-      - name: 全種族への魔法ダメージ増加
-        value: 10
-        per_refine: 1
-      - name: スキルダメージ増加
-        skill: 獅子吼
-        value: 30
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        skill: 天羅地網
-        value: 30
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        skill: 爆気散弾
-        value: 30
-        per_refine: 1
-        at_transcendence: 1
-      - name: MAXHP増加
-        value: 15
-        at_refine: 10
-        at_transcendence: 1
-      - name: 毒属性耐性
-        value: 10
-        at_refine: 10
-        at_transcendence: 1
-
-  - name: アムブリエルバイオリン
-    yomi: アムブリエルバイオリン
-    type: 楽器
-    slot: 1
-    weapon_lv: 4
-    atk_or_def: 180
-    weight: 25
-    required_lv: 200
-    required_job: トルバドゥール
-    capabilities:
-      - name: 破損しない
-        value: 1
-      - name: 武器のMATK
-        value: 120
-      - name: プレイヤー耐性
-        value: 10
-      - name: スキルダメージ増加
-        skill: リズムシューティング
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: ロゼブロッサム
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: サウンドブレンド
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: メタリックフューリー
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: リズミカルウェーブ
-        value: 1
-        per_lv: 10
-      - name: 全種族への物理ダメージ増加
-        value: 13
-        per_refine: 1
-      - name: 全種族への魔法ダメージ増加
-        value: 10
-        per_refine: 1
-      - name: スキルダメージ増加
-        skill: シビアレインストーム
-        value: 10
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        skill: メタリックサウンド
-        value: 10
-        per_refine: 1
-        at_transcendence: 1
-      - name: MAXHP増加
-        value: 15
-        at_refine: 10
-        at_transcendence: 1
-      - name: 毒属性耐性
-        value: 10
-        at_refine: 10
-        at_transcendence: 1
-
-  - name: アムブリエルブレイドウィップ
-    yomi: アムブリエルブレイドウィップ
-    type: 鞭
-    slot: 1
-    weapon_lv: 4
-    atk_or_def: 150
+    atk_or_def: 10
     weight: 50
     required_lv: 200
-    required_job: トルヴェール
+    required_job: 4次職 拡張4次職
     capabilities:
-      - name: 破損しない
-        value: 1
-      - name: 武器のMATK
-        value: 120
+      - name: SPL加算
+        value: 3
       - name: プレイヤー耐性
-        value: 10
+        value: 13
+      - name: 一般耐性
+        value: 20
+      - name: ボス耐性
+        value: 20
+      - name: 魔法ダメージ増加
+        value: 40
       - name: スキルダメージ増加
-        skill: リズムシューティング
         value: 1
         per_lv: 10
-      - name: スキルダメージ増加
-        skill: ロゼブロッサム
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
         skill: サウンドブレンド
+      - name: スキルダメージ増加
         value: 1
         per_lv: 10
-      - name: スキルダメージ増加
         skill: メタリックフューリー
+      - name: スキルダメージ増加
         value: 1
         per_lv: 10
-      - name: スキルダメージ増加
         skill: リズミカルウェーブ
+      - name: SPL加算
         value: 1
-        per_lv: 10
-      - name: 全種族への物理ダメージ増加
-        value: 13
         per_refine: 1
-      - name: 全種族への魔法ダメージ増加
-        value: 10
-        per_refine: 1
-      - name: スキルダメージ増加
-        skill: シビアレインストーム
-        value: 10
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        skill: メタリックサウンド
-        value: 10
-        per_refine: 1
-        at_transcendence: 1
-      - name: MAXHP増加
-        value: 15
+      - name: スキルディレイ減少
+        value: 20
         at_refine: 10
-        at_transcendence: 1
-      - name: 毒属性耐性
-        value: 10
+      - name: MDEF無視
+        value: 50
         at_refine: 10
-        at_transcendence: 1
+    enchant: #
+      - name: スペシャルエンチャント(オーブ)
+        slot_list: #
+          - slot: 4
+            refine: 0
+            enchant_list: #
+              - name: 潜在解放(トルバドゥール&トルヴェールXIII)
+          - slot: 3
+            refine: 8
+            enchant_list: #
+              - name: Str+10
+              - name: Agi+10
+              - name: Vit+10
+              - name: Int+10
+              - name: Dex+10
+              - name: Luk+10
+              - name: スキルディレイ-15%
+              - name: 暴走した魔力
+          - slot: 2
+            refine: 9
+            enchant_list: #
+              - name: Str+10
+              - name: Agi+10
+              - name: Vit+10
+              - name: Int+10
+              - name: Dex+10
+              - name: Luk+10
+              - name: スキルディレイ-15%
+              - name: 厄災の魔将
 
-  - name: ズリエルクレイモア
-    yomi: ズリエルクレイモア
-    type: 両手剣
+  # がおがおタイガーパジャマ と同じエンチャを手動追加
+  - name: 影走白狐の紋服
+    yomi: 影走白狐の紋服
+    type: 鎧
     slot: 1
-    weapon_lv: 4
-    atk_or_def: 280
-    weight: 2000
-    required_lv: 200
-    required_job: ドラゴンナイト
-    capabilities:
-      - name: 破損しない
-        value: 1
-      - name: 武器のMATK
-        value: 230
-      - name: ボス耐性
-        value: 40
-      - name: プレイヤー耐性
-        value: 45
-      - name: スキルダメージ増加
-        skill: ハックアンドスラッシャー
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: マッドネスクラッシャー
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: ストームスラッシュ
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: ドラゴニックオーラ
-        value: 1
-        per_lv: 10
-      - name: 全種族への物理ダメージ増加
-        value: 13
-        per_refine: 1
-      - name: 全種族への魔法ダメージ増加
-        value: 10
-        per_refine: 1
-      - name: 一般耐性
-        value: 40
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        skill: イグニッションブレイク
-        value: 25
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        skill: ソニックウェーブ
-        value: 25
-        per_refine: 1
-        at_transcendence: 1
-      - name: MAXHP増加
-        value: 50
-        at_refine: 10
-        at_transcendence: 1
-      - name: 毒属性耐性
-        value: 25
-        at_refine: 10
-        at_transcendence: 1
-
-  - name: バルビエルカタール
-    yomi: バルビエルカタール
-    type: カタール
-    slot: 1
-    weapon_lv: 4
-    atk_or_def: 150
-    weight: 280
-    required_lv: 200
-    required_job: シャドウクロス
-    capabilities:
-      - name: 破損しない
-        value: 1
-      - name: 武器のMATK
-        value: 250
-      - name: ボス耐性
-        value: 40
-      - name: プレイヤー耐性
-        value: 45
-      - name: スキルダメージ増加
-        skill: インパクトクレーター
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: サベージインパクト
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: フェイタルシャドウクロー
-        value: 1
-        per_lv: 10
-      - name: 全種族への物理ダメージ増加
-        value: 13
-        per_refine: 1
-      - name: 全種族への魔法ダメージ増加
-        value: 10
-        per_refine: 1
-      - name: 一般耐性
-        value: 40
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        skill: クロスインパクト
-        value: 50
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        skill: クロスリッパースラッシャー
-        value: 50
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        skill: ローリングカッター
-        value: 50
-        per_refine: 1
-        at_transcendence: 1
-      - name: MAXHP増加
-        value: 50
-        at_refine: 10
-        at_transcendence: 1
-      - name: 毒属性耐性
-        value: 25
-        at_refine: 10
-        at_transcendence: 1
-
-  - name: ガムビエルスタッフ
-    yomi: ガムビエルスタッフ
-    type: 両手杖
-    slot: 1
-    weapon_lv: 4
-    atk_or_def: 120
-    weight: 240
-    required_lv: 200
-    required_job: アークメイジ
-    capabilities:
-      - name: 両手杖
-        value: 1
-      - name: 破損しない
-        value: 1
-      - name: 武器のMATK
-        value: 270
-      - name: ボス耐性
-        value: 40
-      - name: プレイヤー耐性
-        value: 45
-      - name: スキルダメージ増加
-        skill: フローラルフレアロード
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: クリムゾンアロー
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: レインオブクリスタル
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: フローズンスラッシュ
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: トルネードストーム
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: ストームキャノン
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: ストラタムトレマー
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: ロックダウン
-        value: 1
-        per_lv: 10
-      - name: 全種族への物理ダメージ増加
-        value: 13
-        per_refine: 1
-      - name: 全種族への魔法ダメージ増加
-        value: 10
-        per_refine: 1
-      - name: 一般耐性
-        value: 40
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        skill: アースストレイン
-        value: 10
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        skill: クリムゾンロック
-        value: 10
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        skill: ソウルエクスパンション
-        value: 10
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        skill: ジャックフロスト
-        value: 30
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        skill: フロストミスティ
-        value: 30
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        skill: ヘルインフェルノ
-        value: 30
-        per_refine: 1
-        at_transcendence: 1
-      - name: MAXHP増加
-        value: 50
-        at_refine: 10
-        at_transcendence: 1
-      - name: 毒属性耐性
-        value: 25
-        at_refine: 10
-        at_transcendence: 1
-
-  - name: アガリアレプト風魔手裏剣
-    yomi: アガリアレプト風魔手裏剣
-    type: 風魔手裏剣
-    slot: 1
-    weapon_lv: 4
-    atk_or_def: 150
-    weight: 150
+    weapon_lv: 0
+    atk_or_def: 100
+    weight: 100
     required_lv: 200
     required_job: 蜃気楼 不知火
     capabilities:
-      - name: 破損しない
-        value: 1
-      - name: 武器のMATK
-        value: 160
-      - name: ボス耐性
-        value: 40
       - name: プレイヤー耐性
-        value: 45
-      - name: スキルダメージ増加
-        skill: 影狩り
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: 影の舞
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: 影一閃
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: 風魔手裏剣 -掌握-
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: 風魔手裏剣 -構築-
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: 幻術 -影縫い-
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: 苦無 -歪曲-
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: 苦無 -回転-
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: 苦無 -屈折-
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: 幻術 -苦無-
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: 赤炎砲
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: 冷血砲
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: 雷電砲
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: 金龍砲
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: 暗転砲
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: 幻術 -暗黒龍-
-        value: 1
-        per_lv: 10
-      - name: 全種族への物理ダメージ増加
-        value: 13
-        per_refine: 1
-      - name: 全種族への魔法ダメージ増加
-        value: 10
-        per_refine: 1
-      - name: 一般耐性
-        value: 40
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        skill: 十文字斬り
-        value: 5
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        skill: 爆裂苦無
-        value: 5
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        skill: 八方苦無
-        value: 20
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        skill: 龍炎陣
-        value: 30
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        skill: 氷柱落し
-        value: 30
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        skill: 風刃
-        value: 30
-        per_refine: 1
-        at_transcendence: 1
-      - name: MAXHP増加
-        value: 50
-        at_refine: 10
-        at_transcendence: 1
-      - name: 毒属性耐性
-        value: 25
-        at_refine: 10
-        at_transcendence: 1
-
-  - name: アドナキエルウィング
-    yomi: アドナキエルウィング
-    type: 弓
-    slot: 1
-    weapon_lv: 4
-    atk_or_def: 160
-    weight: 90
-    required_lv: 200
-    required_job: ウィンドホーク
-    capabilities:
-      - name: 破損しない
-        value: 1
-      - name: 武器のMATK
-        value: 170
-      - name: ボス耐性
-        value: 40
-      - name: プレイヤー耐性
-        value: 45
-      - name: スキルダメージ増加
-        skill: クレッシブボルト
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: ゲイルストーム
-        value: 1
-        per_lv: 10
-      - name: 全種族への物理ダメージ増加
-        value: 13
-        per_refine: 1
-      - name: 全種族への魔法ダメージ増加
-        value: 10
-        per_refine: 1
-      - name: 一般耐性
-        value: 40
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        skill: アローストーム
-        value: 5
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        skill: エイムドボルト
-        value: 5
-        per_refine: 1
-        at_transcendence: 1
-      - name: MAXHP増加
-        value: 50
-        at_refine: 10
-        at_transcendence: 1
-      - name: 毒属性耐性
-        value: 25
-        at_refine: 10
-        at_transcendence: 1
-
-  - name: ネビロスライフル
-    yomi: ネビロスライフル
-    type: ライフル
-    slot: 1
-    weapon_lv: 4
-    atk_or_def: 170
-    weight: 85
-    required_lv: 200
-    required_job: ナイトウォッチ
-    capabilities:
-      - name: 破損しない
-        value: 1
-      - name: スキルダメージ増加
-        skill: ハンマーオブゴッド
         value: 7
-        per_status_10: INT
       - name: スキルダメージ増加
-        skill: ハンマーオブゴッド
-        value: 30
-        at_status_110: INT
-      - name: ボス耐性
-        value: 40
-      - name: プレイヤー耐性
-        value: 45
-      - name: スキルダメージ増加
-        skill: オンリーワンバレット
         value: 1
         per_lv: 10
+        skill: 影狩り
       - name: スキルダメージ増加
-        skill: スパイラルシューティング
         value: 1
         per_lv: 10
+        skill: 影の舞
       - name: スキルダメージ増加
-        skill: ワイルドショット
         value: 1
         per_lv: 10
-      - name: 全種族への物理ダメージ増加
-        value: 13
+        skill: 影一閃
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        skill: 幻術 -影縫い-
+      - name: 全サイズへの物理ダメージ増加
+        value: 7
         per_refine: 1
-      - name: 全種族への魔法ダメージ増加
+      - name: ASPD増加
         value: 10
-        per_refine: 1
+        at_refine: 7
       - name: 一般耐性
-        value: 40
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        skill: ハンマーオブゴッド
-        value: 10
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        skill: マススパイラル
-        value: 10
-        per_refine: 1
-        at_transcendence: 1
-      - name: MAXHP増加
-        value: 50
-        at_refine: 10
-        at_transcendence: 1
-      - name: 毒属性耐性
-        value: 25
-        at_refine: 10
-        at_transcendence: 1
-
-  - name: サタンフォックステイル
-    yomi: サタンフォックステイル
-    type: 杖
-    slot: 1
-    weapon_lv: 4
-    atk_or_def: 150
-    weight: 40
-    required_lv: 200
-    required_job: スピリットハンドラー
-    capabilities:
+        value: 5
+        at_refine: 7
+      - name: ボス耐性
+        value: 5
+        at_refine: 7
       - name: 破損しない
         value: 1
-      - name: 武器のMATK
-        value: 180
-      - name: プレイヤー耐性
-        value: 10
-      - name: スキルダメージ増加
-        skill: タイガースラッシュ
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: タイガーハウリング
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: タイガーストライク
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: タイガーバトリング
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: ディアーキャノン
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: ディアーブリーズ
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: ディアースピリットパワー
-        value: 1
-        per_lv: 10
-      - name: 全種族への物理ダメージ増加
-        value: 13
-        per_refine: 1
-      - name: 全種族への魔法ダメージ増加
-        value: 10
-        per_refine: 1
-      - name: スキルダメージ増加
-        skill: キャロットビート
-        value: 5
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        skill: サベージの魂
-        value: 5
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        skill: イヌハッカメテオ
-        value: 5
-        per_refine: 1
-        at_transcendence: 1
-      - name: スキルダメージ増加
-        skill: マタタビランス
-        value: 5
-        per_refine: 1
-        at_transcendence: 1
-      - name: MAXHP増加
+        at_refine: 9
+      - name: 再使用待機時間減少
+        value: 30
+        at_refine: 9
+        skill: 十六夜
+      - name: 全属性への物理ダメージ増加
         value: 15
         at_refine: 10
-        at_transcendence: 1
-      - name: 毒属性耐性
-        value: 10
-        at_refine: 10
-        at_transcendence: 1
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 悠遠なる天上の都
-        capabilities:
-          - name: CRI加算
-            value: 50
-          - name: MAXHP増加
-            value: 15
-          - name: スキル使用可能
-            skill: ファイアーウォール
-            skill_lv: 10
+    enchant: #
+      - name: スペシャルエンチャント(オーブ)
+        slot_list: #
+          - slot: 4
+            refine: 0
+            enchant_list: #
+              - name: 潜在解放(蜃気楼&不知火XVI)
+          - slot: 3
+            refine: 8
+            enchant_list: #
+              - name: 火属性付与(鎧)
+              - name: 水属性付与(鎧)
+              - name: 風属性付与(鎧)
+              - name: 地属性付与(鎧)
+              - name: 聖属性付与(鎧)
+              - name: 闇属性付与(鎧)
+              - name: 念属性付与(鎧)
+              - name: 毒属性付与(鎧)
+              - name: 不死属性付与(鎧)
+          - slot: 2
+            refine: 9
+            enchant_list: #
+              - name: スキルディレイ-15%
+              - name: 必中攻撃+25%
+              - name: 詠唱妨害不可
+              - name: 英雄の凱歌
+
+  # エクリプスマフラー と同じエンチャを手動追加
+  - name: 天使のバレッタ
+    yomi: 天使のバレッタ
+    type: 下段
+    slot: 0
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 10
+    required_lv: 200
+    required_job: カーディナル
+    capabilities:
+      - name: プレイヤー耐性
+        value: 3
+      - name: 全サイズへの物理ダメージ増加
+        value: 1
+        per_lv: 10
+      - name: 全サイズへの魔法ダメージ増加
+        value: 1
+        per_lv: 10
+    enchant: #
+      - name: スペシャルエンチャント(ミオン)
+        slot_list: #
+          - slot: 4
+            refine: 0
+            enchant_list: #
+              - name: 潜在解放(カーディナルXVIII)
+
