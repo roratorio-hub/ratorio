@@ -95,6 +95,8 @@ CFloatingInfoAreaComponentManager.infoUnitArray = [
 	new CFloatingInfoAreaInfoUnit(),
 	new CFloatingInfoAreaInfoUnit(),
 	new CFloatingInfoAreaInfoUnit(),
+	new CFloatingInfoAreaInfoUnit(),
+	new CFloatingInfoAreaInfoUnit(),
 ];
 
 
@@ -305,11 +307,29 @@ CFloatingInfoAreaComponentManager.RebuildControls = function () {
 	objSelect.setAttribute("id", "OBJID_SELECT_FLOATING_INFO_AREA_FONT_SIZE");
 	objSelect.setAttribute("onchange", "CFloatingInfoAreaComponentManager.OnChangeFontSize()");
 
-	HtmlCreateElementOption("CSSCLS_FLOATING_MENU_FONT_SIZE_SMALL_SMALL", "小小", objSelect);
-	HtmlCreateElementOption("CSSCLS_FLOATING_MENU_FONT_SIZE_SMALL", "小", objSelect);
-	HtmlCreateElementOption("", "普通", objSelect);
-	HtmlCreateElementOption("CSSCLS_FLOATING_MENU_FONT_SIZE_LARGE", "大", objSelect);
-	HtmlCreateElementOption("CSSCLS_FLOATING_MENU_FONT_SIZE_LARGE_LARGE", "大大", objSelect);
+	HtmlCreateElementOption("CSSCLS_FLOATING_MENU_FONT_SIZE_8PX", "8px", objSelect);
+	HtmlCreateElementOption("CSSCLS_FLOATING_MENU_FONT_SIZE_9PX", "9px", objSelect);
+	HtmlCreateElementOption("CSSCLS_FLOATING_MENU_FONT_SIZE_10PX", "10px", objSelect);
+	HtmlCreateElementOption("CSSCLS_FLOATING_MENU_FONT_SIZE_11PX", "11px", objSelect);
+	HtmlCreateElementOption("CSSCLS_FLOATING_MENU_FONT_SIZE_12PX", "12px", objSelect);
+	HtmlCreateElementOption("CSSCLS_FLOATING_MENU_FONT_SIZE_13PX", "13px", objSelect);
+	HtmlCreateElementOption("CSSCLS_FLOATING_MENU_FONT_SIZE_14PX", "14px", objSelect);
+	HtmlCreateElementOption("CSSCLS_FLOATING_MENU_FONT_SIZE_15PX", "15px", objSelect);
+	HtmlCreateElementOption("", "16px", objSelect);
+	HtmlCreateElementOption("CSSCLS_FLOATING_MENU_FONT_SIZE_17PX", "17px", objSelect);
+	HtmlCreateElementOption("CSSCLS_FLOATING_MENU_FONT_SIZE_18PX", "18px", objSelect);
+	HtmlCreateElementOption("CSSCLS_FLOATING_MENU_FONT_SIZE_19PX", "19px", objSelect);
+	HtmlCreateElementOption("CSSCLS_FLOATING_MENU_FONT_SIZE_20PX", "20px", objSelect);
+	HtmlCreateElementOption("CSSCLS_FLOATING_MENU_FONT_SIZE_21PX", "21px", objSelect);
+	HtmlCreateElementOption("CSSCLS_FLOATING_MENU_FONT_SIZE_22PX", "22px", objSelect);
+	HtmlCreateElementOption("CSSCLS_FLOATING_MENU_FONT_SIZE_23PX", "23px", objSelect);
+	HtmlCreateElementOption("CSSCLS_FLOATING_MENU_FONT_SIZE_24PX", "24px", objSelect);
+	HtmlCreateElementOption("CSSCLS_FLOATING_MENU_FONT_SIZE_25PX", "25px", objSelect);
+	HtmlCreateElementOption("CSSCLS_FLOATING_MENU_FONT_SIZE_26PX", "26px", objSelect);
+	HtmlCreateElementOption("CSSCLS_FLOATING_MENU_FONT_SIZE_27PX", "27px", objSelect);
+	HtmlCreateElementOption("CSSCLS_FLOATING_MENU_FONT_SIZE_28PX", "28px", objSelect);
+	HtmlCreateElementOption("CSSCLS_FLOATING_MENU_FONT_SIZE_29PX", "29px", objSelect);
+	HtmlCreateElementOption("CSSCLS_FLOATING_MENU_FONT_SIZE_30PX", "30px", objSelect);
 
 	objSelect.value = CFloatingInfoAreaComponentManager.fontSizeClassName;
 
