@@ -16,7 +16,7 @@ class CSaveDataUnitSettings extends CSaveDataUnitBase {
      * バージョン番号.
      */
     static get version () {
-        return 3;
+        return 4;
     }
 
     // オーバーライドされた parse 関数
@@ -28,12 +28,16 @@ class CSaveDataUnitSettings extends CSaveDataUnitBase {
         const STATE_VERSION_1 = dataText.length < 7;
         const STATE_VERSION_2 = dataText.length < 8;
         const STATE_VERSION_3 = dataText.length < 17;
+        const STATE_VERSION_4 = dataText.length < 22;
         // データ延長
         if (STATE_VERSION_1) {
             extend += "0";
         }
         if (STATE_VERSION_2) {
             extend += "iA0000000w";
+        }
+        if (STATE_VERSION_3) {
+            extend += "0000";
         }
         // 延長後データを読み込む
         nextOffset = super.parse(dataText + extend, bitOffset);
@@ -72,6 +76,10 @@ class CSaveDataUnitSettings extends CSaveDataUnitBase {
             CSaveDataConst.propNameFloatingInfo4InfoName,
             CSaveDataConst.propNameFloatingInfo5CategoryName,
             CSaveDataConst.propNameFloatingInfo5InfoName,
+            CSaveDataConst.propNameFloatingInfo6CategoryName,
+            CSaveDataConst.propNameFloatingInfo6InfoName,
+            CSaveDataConst.propNameFloatingInfo7CategoryName,
+            CSaveDataConst.propNameFloatingInfo7InfoName,
             CSaveDataConst.propNameItemInfoSwitch,
             CSaveDataConst.propNameItemInfoAutoSwitch,
             CSaveDataConst.propNameItemInfoTimeEffectSwitch,
@@ -91,7 +99,7 @@ class CSaveDataUnitSettings extends CSaveDataUnitBase {
     constructor () {
         super();
         // プロパティ定義情報の登録
-        this.registerPropInfo(CSaveDataConst.propNameParseCtrlFlag, 21);    // version 3 で 5 → 21 へ増加
+        this.registerPropInfo(CSaveDataConst.propNameParseCtrlFlag, 25);    // version 3 で 5 → 21 へ増加  version 4 で 21 → 25 へ増加
         this.registerPropInfo(CSaveDataConst.propNameConfirmDialogSwitch, 1);
         this.registerPropInfo(CSaveDataConst.propNameResultDigit3, 1);
         this.registerPropInfo(CSaveDataConst.propNameAttackInterval, 6);
@@ -111,6 +119,10 @@ class CSaveDataUnitSettings extends CSaveDataUnitBase {
         this.registerPropInfo(CSaveDataConst.propNameFloatingInfo4InfoName, 6);
         this.registerPropInfo(CSaveDataConst.propNameFloatingInfo5CategoryName, 3);
         this.registerPropInfo(CSaveDataConst.propNameFloatingInfo5InfoName, 6);
+        this.registerPropInfo(CSaveDataConst.propNameFloatingInfo6CategoryName, 3);
+        this.registerPropInfo(CSaveDataConst.propNameFloatingInfo6InfoName, 6);
+        this.registerPropInfo(CSaveDataConst.propNameFloatingInfo7CategoryName, 3);
+        this.registerPropInfo(CSaveDataConst.propNameFloatingInfo7InfoName, 6);
         this.registerPropInfo(CSaveDataConst.propNameItemInfoSwitch, 1);
         this.registerPropInfo(CSaveDataConst.propNameItemInfoAutoSwitch, 1);
         this.registerPropInfo(CSaveDataConst.propNameItemInfoTimeEffectSwitch, 1);
@@ -141,6 +153,10 @@ class CSaveDataUnitSettings extends CSaveDataUnitBase {
         this.setProp(CSaveDataConst.propNameFloatingInfo4InfoName, 0);
         this.setProp(CSaveDataConst.propNameFloatingInfo5CategoryName, 0);
         this.setProp(CSaveDataConst.propNameFloatingInfo5InfoName, 0);
+        this.setProp(CSaveDataConst.propNameFloatingInfo6CategoryName, 0);
+        this.setProp(CSaveDataConst.propNameFloatingInfo6InfoName, 0);
+        this.setProp(CSaveDataConst.propNameFloatingInfo7CategoryName, 0);
+        this.setProp(CSaveDataConst.propNameFloatingInfo7InfoName, 0);
         this.setProp(CSaveDataConst.propNameItemInfoSwitch, 0);
         this.setProp(CSaveDataConst.propNameItemInfoAutoSwitch, 0);
         this.setProp(CSaveDataConst.propNameItemInfoTimeEffectSwitch, 0);
