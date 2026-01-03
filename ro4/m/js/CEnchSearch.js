@@ -236,6 +236,15 @@ class enchSearch {
             }
 
             div.appendChild(select);
+
+            // 解除ボタン
+            const clearBtn = document.createElement('button');
+            clearBtn.type = 'button';
+            clearBtn.textContent = '解除';
+            clearBtn.style.marginLeft = '5px';
+            clearBtn.addEventListener('click', () => this.resetEnchSearch('ench_id_reset'));
+            div.appendChild(clearBtn);
+
             return div;
     }
     
