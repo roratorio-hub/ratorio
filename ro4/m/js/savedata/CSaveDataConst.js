@@ -2011,6 +2011,26 @@ class CSaveDataConst {
 	static propNameFloatingInfo5InfoName = "floatingInfo5InfoName";
 
 	/**
+	 * プロパティ名：カスタム表示6カテゴリ名
+	 */
+	static propNameFloatingInfo6CategoryName = "floatingInfo6CategoryName";
+
+	/**
+	 * プロパティ名：カスタム表示6情報名
+	 */
+	static propNameFloatingInfo6InfoName = "floatingInfo6InfoName";
+
+	/**
+	 * プロパティ名：カスタム表示7カテゴリ名
+	 */
+	static propNameFloatingInfo7CategoryName = "floatingInfo7CategoryName";
+
+	/**
+	 * プロパティ名：カスタム表示7情報名
+	 */
+	static propNameFloatingInfo7InfoName = "floatingInfo7InfoName";
+
+	/**
 	 * プロパティ名：アイテム情報スイッチ
 	 */
 	static propNameItemInfoSwitch = "itemInfoSwitch";
