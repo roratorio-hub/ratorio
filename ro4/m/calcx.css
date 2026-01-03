@@ -462,3 +462,22 @@ input[type="number"]:invalid::after {
     align-items: center;
     justify-content: center;
 }
+
+/* エンチャント検索ショートカットボタン */
+.ench-search-shortcut-btn {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 5px 2px;
+    opacity: 0.2;
+}
+.ench-search-shortcut-btn::before {
+    content: '🔍';
+}
+.ench-search-shortcut-parent:hover .ench-search-shortcut-btn {
+    opacity: 1;
+}
