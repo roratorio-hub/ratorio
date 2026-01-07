@@ -27,7 +27,7 @@ class CSaveDataUnitSettings extends CSaveDataUnitBase {
         // CSaveDataUnitSettings は他のクラスと異なりデータ長でバージョン判定する必要がある
         const STATE_VERSION_1 = dataText.length < 7;
         const STATE_VERSION_2 = dataText.length < 8;
-        const STATE_VERSION_3 = dataText.length < 17;
+        const STATE_VERSION_3 = dataText.length < 19;
         const STATE_VERSION_4 = dataText.length < 22;
         // データ延長
         if (STATE_VERSION_1) {
