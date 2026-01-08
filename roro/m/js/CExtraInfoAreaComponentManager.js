@@ -5490,7 +5490,7 @@ else {
 
 				// 固定値上昇
 				dispValue = funcCreateDispValueText(dispInfoArray[2], true, false);
-				valueObjectClassName = funcGetValueObjectClassNameBySpId(dispInfoArray[2], false);
+				valueObjectClassName = funcGetValueObjectClassNameBySpValue(dispInfoArray[2], false);
 
 				objTd = HtmlCreateElement("td", objTr);
 				objTd.setAttribute("class", "CSSCLS_EXTRA_INFO_DISP_TABLE");
