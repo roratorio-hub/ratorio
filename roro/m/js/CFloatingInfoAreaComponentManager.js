@@ -657,9 +657,177 @@ CFloatingInfoAreaComponentManager.OnChangeFontSize = function () {
 	CFloatingInfoAreaComponentManager.fontSizeClassName = className;
 	CExtraInfoAreaComponentManager.fontSizeClassName = className;
 
+	// 文字サイズをセレクトナンバーで保存
+	CSaveController.setSettingProp(CSaveDataConst.propNameFloatingInfoAreaFontSize, this.FontSizeClassToSelect(className));
+
 	// 再構築する
 	CFloatingInfoAreaComponentManager.RebuildControls();
 };
+
+
+
+/**
+ * フォントクラス→セレクトナンバー.
+ */
+CFloatingInfoAreaComponentManager.FontSizeClassToSelect = function (classname) {
+
+	var select = 8;
+	switch (classname) {
+		case "CSSCLS_FLOATING_MENU_FONT_SIZE_8PX":
+			select = 0;
+			break;
+		case "CSSCLS_FLOATING_MENU_FONT_SIZE_9PX":
+			select = 1;
+			break;
+		case "CSSCLS_FLOATING_MENU_FONT_SIZE_10PX":
+			select = 2;
+			break;
+		case "CSSCLS_FLOATING_MENU_FONT_SIZE_11PX":
+			select = 3;
+			break;
+		case "CSSCLS_FLOATING_MENU_FONT_SIZE_12PX":
+			select = 4;
+			break;
+		case "CSSCLS_FLOATING_MENU_FONT_SIZE_13PX":
+			select = 5;
+			break;
+		case "CSSCLS_FLOATING_MENU_FONT_SIZE_14PX":
+			select = 6;
+			break;
+		case "CSSCLS_FLOATING_MENU_FONT_SIZE_15PX":
+			select = 7;
+			break;
+		case "CSSCLS_FLOATING_MENU_FONT_SIZE_17PX":
+			select = 9;
+			break;
+		case "CSSCLS_FLOATING_MENU_FONT_SIZE_18PX":
+			select = 10;
+			break;
+		case "CSSCLS_FLOATING_MENU_FONT_SIZE_19PX":
+			select = 11;
+			break;
+		case "CSSCLS_FLOATING_MENU_FONT_SIZE_20PX":
+			select = 12;
+			break;
+		case "CSSCLS_FLOATING_MENU_FONT_SIZE_21PX":
+			select = 13;
+			break;
+		case "CSSCLS_FLOATING_MENU_FONT_SIZE_22PX":
+			select = 14;
+			break;
+		case "CSSCLS_FLOATING_MENU_FONT_SIZE_23PX":
+			select = 15;
+			break;
+		case "CSSCLS_FLOATING_MENU_FONT_SIZE_24PX":
+			select = 16;
+			break;
+		case "CSSCLS_FLOATING_MENU_FONT_SIZE_25PX":
+			select = 17;
+			break;
+		case "CSSCLS_FLOATING_MENU_FONT_SIZE_26PX":
+			select = 18;
+			break;
+		case "CSSCLS_FLOATING_MENU_FONT_SIZE_27PX":
+			select = 19;
+			break;
+		case "CSSCLS_FLOATING_MENU_FONT_SIZE_28PX":
+			select = 20;
+			break;
+		case "CSSCLS_FLOATING_MENU_FONT_SIZE_29PX":
+			select = 21;
+			break;
+		case "CSSCLS_FLOATING_MENU_FONT_SIZE_30PX":
+			select = 22;
+			break;
+		default:
+			select = 8;
+	}
+
+	return select;
+
+}
+
+
+/**
+ * セレクトナンバー→フォントクラス.
+ */
+CFloatingInfoAreaComponentManager.FontSizeSelectToClass = function (select) {
+
+	var classname = "";
+	switch (select) {
+		case 0:
+			classname = "CSSCLS_FLOATING_MENU_FONT_SIZE_8PX";
+			break;
+		case 1:
+			classname = "CSSCLS_FLOATING_MENU_FONT_SIZE_9PX";
+			break;
+		case 2:
+			classname = "CSSCLS_FLOATING_MENU_FONT_SIZE_10PX";
+			break;
+		case 3:
+			classname = "CSSCLS_FLOATING_MENU_FONT_SIZE_11PX";
+			break;
+		case 4:
+			classname = "CSSCLS_FLOATING_MENU_FONT_SIZE_12PX";
+			break;
+		case 5:
+			classname = "CSSCLS_FLOATING_MENU_FONT_SIZE_13PX";
+			break;
+		case 6:
+			classname = "CSSCLS_FLOATING_MENU_FONT_SIZE_14PX";
+			break;
+		case 7:
+			classname = "CSSCLS_FLOATING_MENU_FONT_SIZE_15PX";
+			break;
+		case 9:
+			classname = "CSSCLS_FLOATING_MENU_FONT_SIZE_17PX";
+			break;
+		case 10:
+			classname = "CSSCLS_FLOATING_MENU_FONT_SIZE_18PX";
+			break;
+		case 11:
+			classname = "CSSCLS_FLOATING_MENU_FONT_SIZE_19PX";
+			break;
+		case 12:
+			classname = "CSSCLS_FLOATING_MENU_FONT_SIZE_20PX";
+			break;
+		case 13:
+			classname = "CSSCLS_FLOATING_MENU_FONT_SIZE_21PX";
+			break;
+		case 14:
+			classname = "CSSCLS_FLOATING_MENU_FONT_SIZE_22PX";
+			break;
+		case 15:
+			classname = "CSSCLS_FLOATING_MENU_FONT_SIZE_23PX";
+			break;
+		case 16:
+			classname = "CSSCLS_FLOATING_MENU_FONT_SIZE_24PX";
+			break;
+		case 17:
+			classname = "CSSCLS_FLOATING_MENU_FONT_SIZE_25PX";
+			break;
+		case 18:
+			classname = "CSSCLS_FLOATING_MENU_FONT_SIZE_26PX";
+			break;
+		case 19:
+			classname = "CSSCLS_FLOATING_MENU_FONT_SIZE_27PX";
+			break;
+		case 20:
+			classname = "CSSCLS_FLOATING_MENU_FONT_SIZE_28PX";
+			break;
+		case 21:
+			classname = "CSSCLS_FLOATING_MENU_FONT_SIZE_29PX";
+			break;
+		case 22:
+			classname = "CSSCLS_FLOATING_MENU_FONT_SIZE_30PX";
+			break;
+		default:
+			classname = "";
+	}
+
+	return classname;
+
+}
 
 
 
@@ -1191,8 +1359,13 @@ CFloatingInfoAreaComponentManager.LoadFromLocalStorage = function () {
 	const event = new Event('change', { bubbles: true });
 	// 表示欄の数を設定する
 	const floating_info_area_count = Number(CSaveController.getSettingProp(CSaveDataConst.propNameFloatingInfoAreaCount));
-	const selectElement = document.getElementById("OBJID_SELECT_FLOATING_INFO_AREA_COUNT");
+	let selectElement = document.getElementById("OBJID_SELECT_FLOATING_INFO_AREA_COUNT");
 	selectElement.value = floating_info_area_count;
+	selectElement.dispatchEvent(event);
+	// フォントサイズを設定する
+	const floating_info_font_size = Number(CSaveController.getSettingProp(CSaveDataConst.propNameFloatingInfoAreaFontSize));
+	selectElement = document.getElementById("OBJID_SELECT_FLOATING_INFO_AREA_FONT_SIZE");
+	selectElement.value = this.FontSizeSelectToClass(floating_info_font_size);
 	selectElement.dispatchEvent(event);
 	for (let i=0; floating_info_area_count > i; i++) {
 		// { なし|ステータス|拡張情報|注意事項 } を設定する
