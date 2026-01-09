@@ -50,6 +50,7 @@ CGlobalConstManager.DefineEnum(
 		"EXTRA_INFO_EFFECTIVE_SP_KIND_NONE",
 
 		"EXTRA_INFO_EFFECTIVE_SP_KIND_STATUS_BASIC",
+		"EXTRA_INFO_EFFECTIVE_SP_KIND_STATUS_SPECIAL",
 		"EXTRA_INFO_EFFECTIVE_SP_KIND_STATUS_EXTRA",
 		"EXTRA_INFO_EFFECTIVE_SP_KIND_STATUS_ALL",
 	],
@@ -5034,6 +5035,7 @@ else {
 		objSelect.setAttribute("id", "OBJID_SELECT_EXTRA_INFO_EFFECTIVE_SP_DISP_KIND_" + this.managerInstanceId);
 		objSelect.setAttribute("onChange", "CExtraInfoAreaComponentManager.RebuildAndRefreshDispArea(" + this.managerInstanceId + ")");
 		HtmlCreateElementOption(EXTRA_INFO_EFFECTIVE_SP_KIND_STATUS_BASIC, "基本ステータス", objSelect);
+		HtmlCreateElementOption(EXTRA_INFO_EFFECTIVE_SP_KIND_STATUS_SPECIAL, "特性ステータス", objSelect);
 		HtmlCreateElementOption(EXTRA_INFO_EFFECTIVE_SP_KIND_STATUS_EXTRA, "拡張ステータス", objSelect);
 		HtmlCreateElementOption(EXTRA_INFO_EFFECTIVE_SP_KIND_STATUS_ALL, "全ステータス（※縦長注意）", objSelect);
 		this.RestoreSelectedValue("OBJID_SELECT_EXTRA_INFO_EFFECTIVE_SP_DISP_KIND_" + this.managerInstanceId, EXTRA_INFO_EFFECTIVE_SP_KIND_STATUS_BASIC);
@@ -5132,6 +5134,23 @@ else {
 
 			return "";
 		}
+
+		var funcGetValueObjectClassNameByValue = function (valueF, bReverse, bAddPlusSignF, bPercentF) {
+
+			if (!valueF) {
+				valueF = 0;
+			}
+
+			if (valueF > 0) {
+				return (!bReverse ? "CSSCLS_EXTRA_INFO_DISP_TABLE_SPEC_VALUE_BLUE" : "CSSCLS_EXTRA_INFO_DISP_TABLE_SPEC_VALUE_RED");
+			}
+			else if (valueF < 0) {
+				return (!bReverse ? "CSSCLS_EXTRA_INFO_DISP_TABLE_SPEC_VALUE_RED" : "CSSCLS_EXTRA_INFO_DISP_TABLE_SPEC_VALUE_BLUE");
+			}
+
+			return "";
+		}
+
 
 		var objRoot = null;
 		var objTable = null;
@@ -5256,6 +5275,239 @@ else {
 			HtmlCreateTextSpan("※『＋○○』欄にある()内の数値は、", objSpan, CExtraInfoAreaComponentManager.fontSizeClassName);
 			HtmlCreateElement("br", objSpan);
 			HtmlCreateTextSpan("　集中力向上の計算に含まれる値。", objSpan, CExtraInfoAreaComponentManager.fontSizeClassName);
+
+			break;
+
+		default:
+			break;
+
+		}
+
+
+		switch (dispKind) {
+
+		case EXTRA_INFO_EFFECTIVE_SP_KIND_STATUS_SPECIAL:
+		case EXTRA_INFO_EFFECTIVE_SP_KIND_STATUS_ALL:
+
+			//------------------------------------------------------------------------------------------------
+			//
+			// 特性ステータス対応
+			//
+			//------------------------------------------------------------------------------------------------
+			var wSPC_SPEC_ALL = GetEquippedTotalSPEquip(ITEM_SP_ALL_SPECS_PLUS);
+
+			var wSPC_POW = GetEquippedTotalSPEquip(ITEM_SP_POW_PLUS) + GetEquippedTotalSPCardAndElse(ITEM_SP_POW_PLUS);
+			var wSPC_STA = GetEquippedTotalSPEquip(ITEM_SP_STA_PLUS) + GetEquippedTotalSPCardAndElse(ITEM_SP_STA_PLUS);
+			var wSPC_WIS = GetEquippedTotalSPEquip(ITEM_SP_WIS_PLUS) + GetEquippedTotalSPCardAndElse(ITEM_SP_WIS_PLUS);
+			var wSPC_SPL = GetEquippedTotalSPEquip(ITEM_SP_SPL_PLUS) + GetEquippedTotalSPCardAndElse(ITEM_SP_SPL_PLUS);
+			var wSPC_CON = GetEquippedTotalSPEquip(ITEM_SP_CON_PLUS) + GetEquippedTotalSPCardAndElse(ITEM_SP_CON_PLUS);
+			var wSPC_CRT = GetEquippedTotalSPEquip(ITEM_SP_CRT_PLUS) + GetEquippedTotalSPCardAndElse(ITEM_SP_CRT_PLUS);
+
+			// ランダムエンチャント効果
+			wSPC_SPEC_ALL += GetRndOptTotalValue(ITEM_SP_ALL_SPECS_PLUS, null, false);
+
+			wSPC_POW += GetRndOptTotalValue(ITEM_SP_POW_PLUS, null, false);
+			wSPC_STA += GetRndOptTotalValue(ITEM_SP_STA_PLUS, null, false);
+			wSPC_WIS += GetRndOptTotalValue(ITEM_SP_WIS_PLUS, null, false);
+			wSPC_SPL += GetRndOptTotalValue(ITEM_SP_SPL_PLUS, null, false);
+			wSPC_CON += GetRndOptTotalValue(ITEM_SP_CON_PLUS, null, false);
+			wSPC_CRT += GetRndOptTotalValue(ITEM_SP_CRT_PLUS, null, false);
+
+			// 全ステ上昇を分配
+			wSPC_POW += wSPC_SPEC_ALL;
+			wSPC_STA += wSPC_SPEC_ALL;
+			wSPC_WIS += wSPC_SPEC_ALL;
+			wSPC_SPL += wSPC_SPEC_ALL;
+			wSPC_CON += wSPC_SPEC_ALL;
+			wSPC_CRT += wSPC_SPEC_ALL;
+
+
+			//----------------------------------------------------------------
+			// 「性能カスタマイズ」の、効果
+			//----------------------------------------------------------------
+			confval = g_objCharaConfCustomSpecStatus.GetConf(CCharaConfCustomSpecStatus.CONF_ID_POW_PLUS);
+			if (confval != 0) {
+				wSPC_POW += confval;
+			}
+
+			confval = g_objCharaConfCustomSpecStatus.GetConf(CCharaConfCustomSpecStatus.CONF_ID_STA_PLUS);
+			if (confval != 0) {
+				wSPC_STA += confval;
+			}
+
+			confval = g_objCharaConfCustomSpecStatus.GetConf(CCharaConfCustomSpecStatus.CONF_ID_WIS_PLUS);
+			if (confval != 0) {
+				wSPC_WIS += confval;
+			}
+
+			confval = g_objCharaConfCustomSpecStatus.GetConf(CCharaConfCustomSpecStatus.CONF_ID_SPL_PLUS);
+			if (confval != 0) {
+				wSPC_SPL += confval;
+			}
+
+			confval = g_objCharaConfCustomSpecStatus.GetConf(CCharaConfCustomSpecStatus.CONF_ID_CON_PLUS);
+			if (confval != 0) {
+				wSPC_CON += confval;
+			}
+
+			confval = g_objCharaConfCustomSpecStatus.GetConf(CCharaConfCustomSpecStatus.CONF_ID_CRT_PLUS);
+			if (confval != 0) {
+				wSPC_CRT += confval;
+			}
+
+
+
+			// 「砂時計のネックレス」の効果（ペナルティ）
+			if ((itemCount = EquipNumSearch(ITEM_ID_SUNADOKENO_NECKLACE)) > 0) {
+				confval = Math.min(6, Math.floor(n_A_JobLV / 5)) * itemCount;
+
+				wSPC_POW -= confval;
+				wSPC_STA -= confval;
+				wSPC_WIS -= confval;
+				wSPC_SPL -= confval;
+				wSPC_CON -= confval;
+				wSPC_CRT -= confval;
+			}
+
+			// 「ソウルアセティック」スキル「霊道術修練」による効果
+			if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_REIDOZYUTSU_SHUREN), UsedSkillSearch(SKILL_ID_REIDOZYUTSU_SHUREN))) > 0) {
+				wSPC_SPL += sklLv;
+			}
+
+			// 四次職支援「レリギオ」による効果
+			// 術者側の H.Plus +100 あたり効果量 +2 加算は未実装
+			// SKILL_ID_RERIGIO
+			if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_RERIGIO]) > 0) {
+				value = 2 * bufLv;
+				wSPC_STA += value;
+				wSPC_WIS += value;
+				wSPC_SPL += value;
+			}
+
+			// 四次職支援「ベネディクトゥム」による効果
+			// 術者側の H.Plus +100 あたり効果量 +2 加算は未実装
+			// SKILL_ID_BENEDICTUM
+			if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_BENEDICTUM]) > 0) {
+
+				value = 2 * bufLv;
+
+				wSPC_POW += value;
+				wSPC_CON += value;
+				wSPC_CRT += value;
+			}
+
+			// 四次職支援「サンドフェスティバル」による効果
+			if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_SAND_FESTIVAL]) > 0) {
+				if (g_confDataYozi[CCharaConfYozi.CONF_ID_RERIGIO] == 0) {
+					value = 2 * bufLv;
+
+					wSPC_STA += value;
+					wSPC_WIS += value;
+					wSPC_SPL += value;
+				}
+			}
+
+			// 四次職支援「マリンフェスティバル」による効果
+			if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_MARIN_FESTIVAL]) > 0) {
+				if (g_confDataYozi[CCharaConfYozi.CONF_ID_BENEDICTUM] == 0) {
+					value = 2 * bufLv;
+
+					wSPC_POW += value;
+					wSPC_CON += value;
+					wSPC_CRT += value;	
+				}
+			}
+
+			// 「ナイトウォッチ」スキル「グレネードマスタリー」による効果
+			if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_GRENADE_MASTERY), UsedSkillSearch(SKILL_ID_GRENADE_MASTERY))) > 0) {
+				wSPC_CON += sklLv
+			}
+
+
+
+
+			// ジョブボーナス取得
+			jobBonusArray = GetJobBonus(n_A_JOB, n_A_JobLV);
+
+			// 表示情報配列を生成
+			dispInfoArrayArray = [
+				["POW", jobBonusArray[6], wSPC_POW, ITEM_SP_NONE],
+				["STA", jobBonusArray[7], wSPC_STA, ITEM_SP_NONE],
+				["WIS", jobBonusArray[8], wSPC_WIS, ITEM_SP_NONE],
+				["SPL", jobBonusArray[9], wSPC_SPL, ITEM_SP_NONE],
+				["CON", jobBonusArray[10], wSPC_CON, ITEM_SP_NONE],
+				["CRT", jobBonusArray[11], wSPC_CRT, ITEM_SP_NONE],
+			];
+
+			// 表示用テーブル生成
+			objTable = HtmlCreateElement("table", objRoot);
+			objTable.setAttribute("class", "CSSCLS_EXTRA_INFO_DISP_TABLE");
+			objTable.setAttribute("style", "width : 100%;");
+			objTbody = HtmlCreateElement("tbody", objTable);
+
+			// ヘッダ
+			objTr = HtmlCreateElement("tr", objTbody);
+
+			objTd = HtmlCreateElement("td", objTr);
+			objTd.setAttribute("class", "CSSCLS_EXTRA_INFO_DISP_TABLE_GRAY_BACK");
+			HtmlCreateTextSpan("能力", objTd, CExtraInfoAreaComponentManager.fontSizeClassName);
+
+			objTd = HtmlCreateElement("td", objTr);
+			objTd.setAttribute("class", "CSSCLS_EXTRA_INFO_DISP_TABLE_GRAY_BACK");
+			HtmlCreateTextSpan("Job補正", objTd, CExtraInfoAreaComponentManager.fontSizeClassName);
+
+			objTd = HtmlCreateElement("td", objTr);
+			objTd.setAttribute("class", "CSSCLS_EXTRA_INFO_DISP_TABLE_GRAY_BACK");
+			HtmlCreateTextSpan("＋○○", objTd, CExtraInfoAreaComponentManager.fontSizeClassName);
+
+			objTd = HtmlCreateElement("td", objTr);
+			objTd.setAttribute("class", "CSSCLS_EXTRA_INFO_DISP_TABLE_GRAY_BACK");
+			HtmlCreateTextSpan("○○％", objTd, CExtraInfoAreaComponentManager.fontSizeClassName);
+
+
+			// データ表示
+			for (idx = 0; idx < dispInfoArrayArray.length; idx++) {
+
+				dispInfoArray = dispInfoArrayArray[idx];
+
+				// 行生成
+				objTr = HtmlCreateElement("tr", objTbody);
+
+				// 能力名
+				objTd = HtmlCreateElement("td", objTr);
+				objTd.setAttribute("class", "CSSCLS_EXTRA_INFO_DISP_TABLE");
+				HtmlCreateTextSpan(dispInfoArray[0], objTd, CExtraInfoAreaComponentManager.fontSizeClassName);
+
+				// Job補正
+				dispValue = funcCreateDispValueText(dispInfoArray[1], true, false);
+				valueObjectClassName = "";
+
+				objTd = HtmlCreateElement("td", objTr);
+				objTd.setAttribute("class", "CSSCLS_EXTRA_INFO_DISP_TABLE");
+				objSpan = HtmlCreateElement("span", objTd);
+				objSpan.setAttribute("class", valueObjectClassName);
+				HtmlCreateTextSpan(dispValue, objSpan, CExtraInfoAreaComponentManager.fontSizeClassName);
+
+				// 固定値上昇
+				dispValue = funcCreateDispValueText(dispInfoArray[2], true, false);
+				valueObjectClassName = funcGetValueObjectClassNameByValue(dispInfoArray[2], false);
+
+				objTd = HtmlCreateElement("td", objTr);
+				objTd.setAttribute("class", "CSSCLS_EXTRA_INFO_DISP_TABLE");
+				objSpan = HtmlCreateElement("span", objTd);
+				objSpan.setAttribute("class", valueObjectClassName);
+				HtmlCreateTextSpan(dispValue, objSpan, CExtraInfoAreaComponentManager.fontSizeClassName);
+
+				// ％上昇
+				dispValue = funcCreateDispValueTextBySpId(dispInfoArray[3], true, true);
+				valueObjectClassName = funcGetValueObjectClassNameByValue(dispInfoArray[3], false);
+
+				objTd = HtmlCreateElement("td", objTr);
+				objTd.setAttribute("class", "CSSCLS_EXTRA_INFO_DISP_TABLE");
+				objSpan = HtmlCreateElement("span", objTd);
+				objSpan.setAttribute("class", valueObjectClassName);
+				HtmlCreateTextSpan(dispValue, objSpan, CExtraInfoAreaComponentManager.fontSizeClassName);
+			}
 
 			break;
 
