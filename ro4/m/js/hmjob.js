@@ -206,6 +206,59 @@ function CalcStatusPoint(bIgnoreAutoCalc) {
 			CalcStatusPoint(true);
 			return;
 		}
+		else {
+			// 空白の箇所は初期値に戻す
+			with (document.calcForm) {
+				if (A_STR.value == "") {
+					A_STR.value = 1;
+					stValSTR = 1;
+				}
+				if (A_AGI.value == "") {
+					A_AGI.value = 1;
+					stValAGI = 1;
+				}
+				if (A_VIT.value == "") {
+					A_VIT.value = 1;
+					stValVIT = 1;
+				}
+				if (A_INT.value == "") {
+					A_INT.value = 1;
+					stValINT = 1;
+				}
+				if (A_DEX.value == "") {
+					A_DEX.value = 1;
+					stValDEX = 1;
+				}
+				if (A_LUK.value == "") {
+					A_LUK.value = 1;
+					stValLUK = 1;
+				}
+				if (A_POW.value == "") {
+					A_POW.value = 0;
+					stValPOW = 0;
+				}
+				if (A_STA.value == "") {
+					A_STA.value = 0;
+					stValSTA = 0;
+				}
+				if (A_WIS.value == "") {
+					A_WIS.value = 0;
+					stValWIS = 0;
+				}
+				if (A_SPL.value == "") {
+					A_SPL.value = 0;
+					stValSPL = 0;
+				}
+				if (A_CON.value == "") {
+					A_CON.value = 0;
+					stValCON = 0;
+				}
+				if (A_CRT.value == "") {
+					A_CRT.value = 0;
+					stValCRT = 0;
+				}
+			}
+		}
 	}
 	g_STR = stValSTR;
 	g_AGI = stValAGI;
