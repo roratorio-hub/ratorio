@@ -1,6 +1,21 @@
 g_pureStatus = [];
 g_bonusStatus = [];
 
+// 設定値の保存領域
+g_STR = 0;
+g_AGI = 0;
+g_VIT = 0;
+g_INT = 0;
+g_DEX = 0;
+g_LUK = 0;
+g_POW = 0;
+g_STA = 0;
+g_WIS = 0;
+g_SPL = 0;
+g_CON = 0;
+g_CRT = 0;
+
+
 function RebuildStatusSelect(jobId) {
 	// 職業IDが引数で渡されなかった時用のコード
 	if (typeof jobId === "undefined" || jobId === null) {
@@ -168,6 +183,95 @@ function CalcStatusPoint(bIgnoreAutoCalc) {
 		// ベースレベルの値を設定する
 		document.calcForm.A_BaseLV.value = blv - 1;
 	}
+
+	// ポイントキャップをチェック
+	let bPointCap = CSaveController.getSettingProp(CSaveDataConst.propNamePointCap);
+	if (bPointCap) {
+		// ステータスポイントを超えていたら値を戻す
+		if ((stPointEarned - stPointUsed) < 0) {
+			with(document.calcForm) {
+				A_STR.value = g_STR;
+				A_AGI.value = g_AGI;
+				A_VIT.value = g_VIT;
+				A_INT.value = g_INT;
+				A_DEX.value = g_DEX;
+				A_LUK.value = g_LUK;
+				A_POW.value = g_POW;
+				A_STA.value = g_STA;
+				A_WIS.value = g_WIS;
+				A_SPL.value = g_SPL;
+				A_CON.value = g_CON;
+				A_CRT.value = g_CRT;
+			}
+			CalcStatusPoint(true);
+			return;
+		}
+		else {
+			// 空白の箇所は初期値に戻す
+			with (document.calcForm) {
+				if (A_STR.value == "") {
+					A_STR.value = 1;
+					stValSTR = 1;
+				}
+				if (A_AGI.value == "") {
+					A_AGI.value = 1;
+					stValAGI = 1;
+				}
+				if (A_VIT.value == "") {
+					A_VIT.value = 1;
+					stValVIT = 1;
+				}
+				if (A_INT.value == "") {
+					A_INT.value = 1;
+					stValINT = 1;
+				}
+				if (A_DEX.value == "") {
+					A_DEX.value = 1;
+					stValDEX = 1;
+				}
+				if (A_LUK.value == "") {
+					A_LUK.value = 1;
+					stValLUK = 1;
+				}
+				if (A_POW.value == "") {
+					A_POW.value = 0;
+					stValPOW = 0;
+				}
+				if (A_STA.value == "") {
+					A_STA.value = 0;
+					stValSTA = 0;
+				}
+				if (A_WIS.value == "") {
+					A_WIS.value = 0;
+					stValWIS = 0;
+				}
+				if (A_SPL.value == "") {
+					A_SPL.value = 0;
+					stValSPL = 0;
+				}
+				if (A_CON.value == "") {
+					A_CON.value = 0;
+					stValCON = 0;
+				}
+				if (A_CRT.value == "") {
+					A_CRT.value = 0;
+					stValCRT = 0;
+				}
+			}
+		}
+	}
+	g_STR = stValSTR;
+	g_AGI = stValAGI;
+	g_VIT = stValVIT;
+	g_INT = stValINT;
+	g_DEX = stValDEX;
+	g_LUK = stValLUK;
+	g_POW = stValPOW;
+	g_STA = stValSTA;
+	g_WIS = stValWIS;
+	g_SPL = stValSPL;
+	g_CON = stValCON;
+	g_CRT = stValCRT;
 
 	myInnerHtml("A_STPOINT", stPointEarned - stPointUsed, 0);
 	myInnerHtml("OBJID_SPAN_STATUS_T_STATUS_POINT", stTSPointEarned - stTSPointUsed, 0);

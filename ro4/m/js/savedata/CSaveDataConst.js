@@ -1936,6 +1936,11 @@ class CSaveDataConst {
 	static propNameResultDigit3 = "resultDigit3";
 
 	/**
+	 * プロパティ名：ステータスポイント上限設定.
+	 */
+	static propNamePointCap = "pointCap";
+
+	/**
 	 * プロパティ名：攻撃間隔.
 	 */
 	static propNameAttackInterval = "attackInterval";
