@@ -1021,10 +1021,13 @@ CAttackMethodAreaComponentManager.RebuildSettingArea = function () {
 
 	let castSimInterval = CSaveController.getSettingProp(CSaveDataConst.propNameCastSimInterval);
 	HtmlSetObjectValueById("OBJID_SELECT_CASTSIM_INTERVAL", castSimInterval);
+
+	let bPointCap = CSaveController.getSettingProp(CSaveDataConst.propNamePointCap);
+	HtmlSetObjectCheckedById("OBJID_CHECK_POINT_CAP", bPointCap ? "checked" : null);
+
 };
 
-/**
- * 設定変更イベントハンドラ（攻撃手段）.
+/* 設定変更イベントハンドラ（攻撃手段）.
  */
 CAttackMethodAreaComponentManager.OnChangeAttackMethod = function () {
 
@@ -1141,6 +1144,21 @@ CAttackMethodAreaComponentManager.OnChangeDigit3 = function () {
 
 	// セーブコントローラへ保存
 	CSaveController.setSettingProp(CSaveDataConst.propNameResultDigit3, (checked ? 1 : 0));
+
+	// 再計算する
+	calc();
+};
+
+/**
+ * 設定変更イベントハンドラ（ポイントキャップ）.
+ */
+CAttackMethodAreaComponentManager.OnChangePointCap = function () {
+
+	// 設定値取得
+	const checked = HtmlGetObjectCheckedById("OBJID_CHECK_POINT_CAP", "checked");
+
+	// セーブコントローラへ保存
+	CSaveController.setSettingProp(CSaveDataConst.propNamePointCap, (checked ? 1 : 0));
 
 	// 再計算する
 	calc();
