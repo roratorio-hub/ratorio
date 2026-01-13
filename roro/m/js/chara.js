@@ -4886,6 +4886,14 @@ function GetStatusModifyMaxHpUp() {
 		if (n_A_Weapon2_ATKplus >= 10) vartmp += 15;
 		val += vartmp * itemCountLeft;
 	}
+
+	// [タートルフォックステイル] の [にゃん友 -亀設-] 習得による効果
+	itemCount = EquipNumSearch(ITEM_ID_TURTLE_FOX_TAIL);
+	if (UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0 || LearnedSkillSearch(SKILL_ID_NYANTOMO_KAMESETSU) > 0) {
+		val += 15 * itemCount;
+	}
+
+
 // ★武器は両手に装備される可能性（アサシン、影狼など）を考慮すること
 // 武器効果　ここまで
 //------------------------------------------------------------------------------------------------
