@@ -6567,7 +6567,60 @@
 	CardIdToSetIdMap[4040] = [3367,];
 	CardIdToSetIdMap[1245] = CardIdToSetIdMap[1245].concat([3366, 3367]);
 	CardIdToSetIdMap[1348] = CardIdToSetIdMap[1348].concat([3365]);
-	
+	// --- 2026-01-13 ---
+	w_SE[3368] = [-4043,-4042,-1245,];
+	CardIdToSetIdMap[4042] = [3368,];
+	w_SE[3369] = [-4045,-4044,-1245,];
+	CardIdToSetIdMap[4044] = [3369,];
+	w_SE[3370] = [-4047,-4046,-1245,];
+	CardIdToSetIdMap[4046] = [3370,];
+	w_SE[3371] = [-4049,-4048,-1348,];
+	CardIdToSetIdMap[4048] = [3371,];
+	w_SE[3372] = [-4051,-4050,-1348,];
+	CardIdToSetIdMap[4050] = [3372,];
+	w_SE[3373] = [-4053,-4052,-1348,];
+	CardIdToSetIdMap[4052] = [3373,];
+	w_SE[3374] = [-4055,-4054,-1245,];
+	CardIdToSetIdMap[4054] = [3374,];
+	w_SE[3375] = [-4057,-4056,-1245,];
+	CardIdToSetIdMap[4056] = [3375,];
+	w_SE[3376] = [-4059,-4058,-1348,];
+	CardIdToSetIdMap[4058] = [3376,];
+	w_SE[3377] = [-4061,-4060,-1348,];
+	CardIdToSetIdMap[4060] = [3377,];
+	w_SE[3378] = [-4063,-4062,-1348,];
+	CardIdToSetIdMap[4062] = [3378,];
+	w_SE[3379] = [-4065,-4064,-1245,];
+	CardIdToSetIdMap[4064] = [3379,];
+	w_SE[3380] = [-4067,-4066,-1348,];
+	CardIdToSetIdMap[4066] = [3380,];
+	w_SE[3381] = [-4069,-4068,-1245,];
+	CardIdToSetIdMap[4068] = [3381,];
+	w_SE[3382] = [-4071,-4070,-1245,];
+	CardIdToSetIdMap[4070] = [3382,];
+	w_SE[3383] = [-4073,-4072,-1245,];
+	CardIdToSetIdMap[4072] = [3383,];
+	w_SE[3384] = [-4075,-4074,-1245,];
+	CardIdToSetIdMap[4074] = [3384,];
+	w_SE[3385] = [-4077,-4076,-1245,];
+	CardIdToSetIdMap[4076] = [3385,];
+	w_SE[3386] = [-4079,-4078,-1348,];
+	CardIdToSetIdMap[4078] = [3386,];
+	w_SE[3387] = [-4081,-4080,-1348,];
+	CardIdToSetIdMap[4080] = [3387,];
+	w_SE[3388] = [-4083,-4082,-1245,];
+	CardIdToSetIdMap[4082] = [3388,];
+	w_SE[3389] = [-4085,-4084,-1348,];
+	CardIdToSetIdMap[4084] = [3389,];
+	w_SE[3390] = [-4087,-4086,-1348,];
+	CardIdToSetIdMap[4086] = [3390,];
+	w_SE[3391] = [-4089,-4088,-1245,];
+	CardIdToSetIdMap[4088] = [3391,];
+	w_SE[3392] = [-4091,-4090,-1348,];
+	CardIdToSetIdMap[4090] = [3392,];
+	w_SE[3393] = [-4093,-4092,-1348,];
+	CardIdToSetIdMap[4092] = [3393,];
+
 	// itemset はセーブデータに書き出されないので
 	// 現実的な範囲において itemsetID の上限値を気にする必要はありません
 })();

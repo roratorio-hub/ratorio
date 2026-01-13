@@ -1,6 +1,42 @@
 card_list:
-  - name: 潜在解放(蜃気楼&不知火XVI)
-    yomi: センザイカイホウシンキロウトシラヌイ16
+  - name: 潜在解放(エレメンタルマスターXVI)
+    yomi: センザイカイホウエレメンタルマスター16
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 真理の解放
+        capabilities:
+          - name: 再使用待機時間減少
+            skill: サイキックストリーム
+            value: 200
+
+  - name: 潜在解放(スピリットハンドラーXIX)
+    yomi: センザイカイホウスピリットハンドラー19
+    desc: "[真理の解放]と共に装備時、追加で[タートルランページ]使用時、20秒間、[リフレッシュ]Lv1状態になる"
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 真理の解放
+        capabilities:
+          - name: 破損しない
+            value: 1
+
+  - name: 潜在解放(スピリットハンドラーXVIII)
+    yomi: センザイカイホウスピリットハンドラー18
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 真理の解放
+        capabilities:
+          - name: スキル固定詠唱ミリ秒減少
+            skill: タートルランページ
+            value: 1000
+
+  - name: 潜在解放(ドラゴンナイトXVII)
+    yomi: センザイカイホウドラゴンナイト17
     type: エンチャント
     set_list:
       - set:
@@ -8,10 +44,95 @@ card_list:
           - card_name: 豪傑
         capabilities:
           - name: 再使用待機時間減少
-            skill: 幻術 -影縫い-
+            skill: ドラゴニックオーラ
             value: 200
-  - name: 潜在解放(カーディナルXVIII)
-    yomi: センザイカイホウカーディナル18
+
+  - name: 潜在解放(インクイジターXIV)
+    yomi: センザイカイホウインクイジター14
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: 再使用待機時間減少
+            skill: 烈火気弾
+            value: 300
+
+  - name: 潜在解放(ドラゴンナイトXVIII)
+    yomi: センザイカイホウドラゴンナイト18
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: 再使用待機時間減少
+            skill: ドラゴニックピアース
+            value: 200
+
+  - name: 潜在解放(エレメンタルマスターXVII)
+    yomi: センザイカイホウエレメンタルマスター17
+    desc: "[真理の解放]と共に装備時、追加で[コンフラグレーション]、[ライトニングランド]使用時、一定確率でAP回復量 + 10"
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 真理の解放
+        capabilities:
+          - name: 破損しない
+            value: 1
+
+  - name: 潜在解放(カーディナルXIX)
+    yomi: センザイカイホウカーディナル19
+    desc: "[真理の解放]と共に装備時、追加で[アルビトリウム]、[フレーメン]、[ディヴィヌスフロス]使用時、一定確率でAP回復量 + 10"
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 真理の解放
+        capabilities:
+          - name: 破損しない
+            value: 1
+
+  - name: 潜在解放(インクイジターXVI)
+    yomi: センザイカイホウインクイジター16
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: 再使用待機時間減少
+            skill: 烈火気弾
+            value: 200
+
+  - name: 潜在解放(シャドウクロスXVI)
+    yomi: センザイカイホウシャドウクロス16
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: 再使用待機時間減少
+            skill: シャドウスタブ
+            value: 500
+
+  - name: 潜在解放(アビスチェイサーXVII)
+    yomi: センザイカイホウアビスチェイサー17
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: 再使用待機時間減少
+            skill: チェイシングショット
+            value: 200
+
+  - name: 潜在解放(ソウルアセティックXV)
+    yomi: センザイカイホウソウルアセティック15
     type: エンチャント
     set_list:
       - set:
@@ -19,10 +140,32 @@ card_list:
           - card_name: 真理の解放
         capabilities:
           - name: 再使用待機時間減少
-            skill: ニューマティックプロセラ
-            value: 4000
-  - name: 潜在解放(トルバドゥール&トルヴェールXIII)
-    yomi: センザイカイホウトオルバドゥールアンドトルヴェール13
+            skill: 青龍符
+            value: 100
+          - name: 再使用待機時間減少
+            skill: 白虎符
+            value: 100
+          - name: 再使用待機時間減少
+            skill: 朱雀符
+            value: 100
+          - name: 再使用待機時間減少
+            skill: 玄武符
+            value: 100
+
+  - name: 潜在解放(蜃気楼&不知火XVII)
+    yomi: センザイカイホウシンキロウアンドシラヌイ17
+    desc: "[豪傑]と共に装備時、追加で[影の舞]使用時、一定確率でAP回復量 + 10"
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: 破損しない
+            value: 1
+
+  - name: 潜在解放(ハイパーノービスXIX)
+    yomi: センザイカイホウハイパーノービス19
     type: エンチャント
     set_list:
       - set:
@@ -30,5 +173,152 @@ card_list:
           - card_name: 真理の解放
         capabilities:
           - name: 再使用待機時間減少
-            skill: リズミカルウェーブ
+            skill: ナパームバルカンストライク
+            value: 200
+
+  - name: 潜在解放(スピリットハンドラーXX)
+    yomi: センザイカイホウスピリットハンドラー20
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 真理の解放
+        capabilities:
+          - name: 再使用待機時間減少
+            skill: ディアーブリーズ
+            value: 500
+          - name: 再使用待機時間減少
+            skill: イヌハッカメテオ
+            value: -500
+
+  - name: 潜在解放(インペリアルガードXVI)
+    yomi: センザイカイホウインペリアルガード16
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 真理の解放
+        capabilities:
+          - name: 再使用待機時間減少
+            skill: ジャッジメントクロス
+            value: 100
+
+  - name: 潜在解放(アークメイジXVIII)
+    yomi: センザイカイホウアークメイジ18
+    desc: "[真理の解放]と共に装備時、追加で[ミステリーイリュージョン]使用時、一定確率でAP回復量 + 10"
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 真理の解放
+        capabilities:
+          - name: 破損しない
+            value: 1
+
+  - name: 潜在解放(エレメンタルマスターXVIII)
+    yomi: センザイカイホウエレメンタルマスター18
+    desc: "[真理の解放]と共に装備時、追加で[ベナムスワンプ]使用時、一定確率でAP回復量 + 10"
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 真理の解放
+        capabilities:
+          - name: 破損しない
+            value: 1
+
+  - name: 潜在解放(ウィンドホークXVIII)
+    yomi: センザイカイホウウィンドホーク18
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: 再使用待機時間減少
+            skill: ソリッドトラップ
+            value: 2000
+
+  - name: 潜在解放(インクイジターXV)
+    yomi: センザイカイホウインクイジター15
+    desc: "[豪傑]と共に装備時、追加で[最終章：滅魔の炎]のAP消費量 + 50 [最終章：滅魔の炎]使用時、60秒間、[P.Atk増加]状態になる装備解除時、[P.Atk増加]状態を解除する"
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: 破損しない
+            value: 1
+
+  - name: 潜在解放(アビスチェイサーXVIII)
+    yomi: センザイカイホウアビスチェイサー18
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 真理の解放
+        capabilities:
+          - name: 再使用待機時間減少
+            skill: アビスフレイム
+            value: 200
+
+  - name: 潜在解放(マイスターXVI)
+    yomi: センザイカイホウマイスター16
+    desc: "[豪傑]と共に装備時、追加で[アックスストンプ]、[ラッシュストライク]、[パワフルスイング]使用時、一定確率でAP回復量 + 10"
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: 破損しない
+            value: 1
+
+  - name: 潜在解放(天帝XIII)
+    yomi: センザイカイホウテンテイ13
+    desc: "[豪傑]と共に装備時、追加で[太天一陽]、[天陽]、[太天一月]、[天月]、[天気身陽]、[天気身月]使用時、一定確率でAP回復量 + 10"
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: 破損しない
+            value: 1
+
+  - name: 潜在解放(蜃気楼&不知火XVIII)
+    yomi: センザイカイホウシンキロウアンドシラヌイ18
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 真理の解放
+        capabilities:
+          - name: 再使用待機時間減少
+            skill: 暗転砲
+            value: 200
+
+  - name: 潜在解放(ハイパーノービスXX)
+    yomi: センザイカイホウハイパーノービス20
+    desc: "[豪傑]と共に装備時、追加で[ダブルボウリングバッシュ][メガソニックブロー]使用時、一定確率でAP回復量 + 10"
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: 破損しない
+            value: 1
+            
+  - name: 潜在解放(スピリットハンドラーXXI)
+    yomi: センザイカイホウスピリットハンドラー21
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: 再使用待機時間減少
+            skill: タイガーバトリング
             value: 200
