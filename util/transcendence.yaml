@@ -1,127 +1,451 @@
 item_list:
 
-  - name: アルジャンブランコ
+  - name: 暴食のクラウン(アークメイジ)
     capabilities:
-      - name: スキルダメージ増加
-        skill: イグニッションブレイク
-        value: 10
-        per_refine: 1
-      - name: 必中
-        value: 50
-        at_refine: 1
-
-  # 精錬値が10の時、追加で魔法攻撃命中時、一定確率で10秒間、1秒毎にSP + 200
-  - name: クリムゾンローズスティック
-    capabilities:
-      - name: スキルダメージ増加
-        skill: クリムゾンロック
-        value: 2
-        per_refine: 1
-
-  - name: エイミングボウ
-    capabilities:
-      - name: ボス耐性
-        value: 40
-      - name: スキルダメージ増加
-        skill: エイムドボルト
-        value: 2
-        per_refine: 1
-      - name: 必中
-        value: 50
-        at_refine: 1
-
-  # 精錬値が10の時、追加で物理攻撃命中時、一定確率で敵に与えたダメージの15%をHPとして吸収
-  - name: エンジンパイルバンカー
-    capabilities:
-      - name: スキルダメージ増加
-        skill: アームズキャノン
-        value: 5
-        per_refine: 1
-
-  # 精錬値が10の時、追加で物理攻撃命中時、一定確率で敵に与えたダメージの15%をHPとして吸収
-  - name: リッパークロス
-    capabilities:
-      - name: ボス耐性
-        value: 40
-      - name: スキルダメージ増加
-        skill: ローリングカッター
-        value: 25
-        per_refine: 1
-
-  # 精錬値が10の時、追加でジェムストーンを消費する一部のスキルをジェムストーン無しで使用できる
-  - name: 崇拝の杖
-    capabilities:
-      - name: ボス耐性
-        value: 40
-      - name: スキルダメージ増加
-        skill: アドラムス
-        value: 25
-        per_refine: 1
-
-  - name: フォートレイジ
-    capabilities:
-      - name: スキルダメージ増加
-        skill: キャノンスピア
-        value: 5
-        per_refine: 1
-      - name: 必中
-        value: 50
-        at_refine: 1
-
-  # 精錬値が10の時、追加で魔法攻撃命中時、一定確率で10秒間、1秒毎にSP + 200
-  - name: サイキックスピアロッド
-    capabilities:
-      - name: スキルダメージ増加
-        skill: サイキックウェーブ
-        value: 5
-        per_refine: 1
-
-  - name: ブラックサークル
-    capabilities:
-      - name: スキルダメージ増加
-        skill: メタリックサウンド
-        value: 5
-        per_refine: 1
-      - name: オートスペル発動
-        skill: サイキックウェーブ
-        skill_lv: 3
+      - name: SPL加算
+        value: 20
         at_refine: 10
-
-  - name: ハートウィップ
-    capabilities:
-      - name: スキルダメージ増加
-        skill: メタリックサウンド
-        value: 5
-        per_refine: 1
-      - name: オートスペル発動
-        skill: サイキックウェーブ
-        skill_lv: 3
-        at_refine: 10
-
-  # 精錬値が10の時、追加で物理攻撃命中時、一定確率で敵に与えたダメージの15%をHPとして吸収
-  - name: ジーンロッド
-    capabilities:
-      - name: スキルダメージ増加
-        skill: クレイジーウィード
-        value: 5
-        per_refine: 1
-
-  - name: ラピッドファイア
-    capabilities:
-      - name: ボス耐性
-        value: 40
-      - name: スキルダメージ増加
-        skill: トライアングルショット
-        value: 25
-        per_refine: 1
-      - name: 必中
+      - name: MDEF無視
         value: 50
-        at_refine: 1
-
-  # 精錬値が10の時、追加で物理攻撃命中時、一定確率で敵に与えたダメージの15%をHPとして吸収
-  - name: 光耀錘
-    capabilities:
-      - name: スキルダメージ増加
-        skill: 雷光弾
-        value: 10
+        at_refine: 10
+      - name: 全属性への物理ダメージ増加
+        value: 1
         per_refine: 1
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 聖属性耐性
+        value: 10
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: 暴食のクラウン(アビスチェイサー)
+    capabilities:
+      - name: SPL加算
+        value: 20
+        at_refine: 10
+      - name: MDEF無視
+        value: 50
+        at_refine: 10
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 聖属性耐性
+        value: 10
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: 暴食のクラウン(インクイジター)
+    capabilities:
+      - name: POW加算
+        value: 20
+        at_refine: 10
+      - name: 必中
+        value: 25
+        at_refine: 10
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 聖属性耐性
+        value: 10
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: 暴食のクラウン(インペリアルガード)
+    capabilities:
+      - name: SPL加算
+        value: 20
+        at_refine: 10
+      - name: MDEF無視
+        value: 50
+        at_refine: 10
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 聖属性耐性
+        value: 10
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: 暴食のクラウン(ウィンドホーク)
+    capabilities:
+      - name: CON加算
+        value: 20
+        at_refine: 10
+      - name: 必中
+        value: 25
+        at_refine: 10
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 聖属性耐性
+        value: 10
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: 暴食のクラウン(エレメンタルマスター)
+    capabilities:
+      - name: SPL加算
+        value: 20
+        at_refine: 10
+      - name: MDEF無視
+        value: 50
+        at_refine: 10
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 聖属性耐性
+        value: 10
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: 暴食のクラウン(カーディナル)
+    capabilities:
+      - name: POW加算
+        value: 20
+        at_refine: 10
+      - name: CRI加算
+        value: 25
+        at_refine: 10
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 聖属性耐性
+        value: 10
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: 暴食のクラウン(シャドウクロス)
+    capabilities:
+      - name: POW加算
+        value: 20
+        at_refine: 10
+      - name: CRI加算
+        value: 25
+        at_refine: 10
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 聖属性耐性
+        value: 10
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: 暴食のクラウン(スピリットハンドラー)
+    capabilities:
+      - name: POW加算
+        value: 20
+        at_refine: 10
+      - name: CRI加算
+        value: 25
+        at_refine: 10
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 聖属性耐性
+        value: 10
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: 暴食のクラウン(ソウルアセティック)
+    capabilities:
+      - name: SPL加算
+        value: 20
+        at_refine: 10
+      - name: MDEF無視
+        value: 50
+        at_refine: 10
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 聖属性耐性
+        value: 10
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: 暴食のクラウン(ドラゴンナイト)
+    capabilities:
+      - name: POW加算
+        value: 20
+        at_refine: 10
+      - name: CRI加算
+        value: 25
+        at_refine: 10
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 聖属性耐性
+        value: 10
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: 暴食のクラウン(トルバドゥール&トルヴェール)
+    capabilities:
+      - name: SPL加算
+        value: 20
+        at_refine: 10
+      - name: MDEF無視
+        value: 50
+        at_refine: 10
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 聖属性耐性
+        value: 10
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: 暴食のクラウン(ナイトウォッチ)
+    capabilities:
+      - name: CON加算
+        value: 20
+        at_refine: 10
+      - name: 必中
+        value: 25
+        at_refine: 10
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 聖属性耐性
+        value: 10
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: 暴食のクラウン(バイオロ)
+    capabilities:
+      - name: POW加算
+        value: 20
+        at_refine: 10
+      - name: CRI加算
+        value: 25
+        at_refine: 10
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 聖属性耐性
+        value: 10
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: 暴食のクラウン(ハイパーノービス)
+    capabilities:
+      - name: POW加算
+        value: 20
+        at_refine: 10
+      - name: 必中
+        value: 25
+        at_refine: 10
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 聖属性耐性
+        value: 10
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: 暴食のクラウン(マイスター)
+    capabilities:
+      - name: POW加算
+        value: 20
+        at_refine: 10
+      - name: 必中
+        value: 25
+        at_refine: 10
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 聖属性耐性
+        value: 10
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: 暴食のクラウン(天帝)
+    capabilities:
+      - name: POW加算
+        value: 20
+        at_refine: 10
+      - name: 必中
+        value: 25
+        at_refine: 10
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 聖属性耐性
+        value: 10
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: 暴食のクラウン(蜃気楼&不知火)
+    capabilities:
+      - name: SPL加算
+        value: 20
+        at_refine: 10
+      - name: MDEF無視
+        value: 50
+        at_refine: 10
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 聖属性耐性
+        value: 10
+        at_refine: 10
+        at_transcendence: 1

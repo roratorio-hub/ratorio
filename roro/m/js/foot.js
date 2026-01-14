@@ -10935,8 +10935,6 @@ function StAllCalc(){
 			// n_tok[idx] += GetRndEnchValue(idx);
 		}
 
-
-
 		if(EquipNumSearch(1030)){
 			n_tok[77] -= (5 * EquipNumSearch(1030));
 			n_tok[79] -= (5 * EquipNumSearch(1030));
@@ -11141,9 +11139,11 @@ function StAllCalc(){
 			}
 		}
 
-
-
-
+		// [タートルフォックステイル] の [にゃん友 -亀設-] 習得による効果
+		itemCount = EquipNumSearch(ITEM_ID_TURTLE_FOX_TAIL);
+		if (UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0 || LearnedSkillSearch(SKILL_ID_NYANTOMO_KAMESETSU) > 0) {
+			n_tok[ITEM_SP_RESIST_BOSS] += 10 * itemCount;
+		}
 
 		//----------------------------------------------------------------
 		// 「性能カスタマイズ」の、効果

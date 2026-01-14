@@ -207,6 +207,7 @@ def getLatestEnchantId():
 
 def getItemRecord(item_name):
     """ item_name に該当するレコードを取得する """
+    item_name = item_name.replace("(", "\(").replace(")", "\)")
     pattern = r'\[\d+,.*"' + item_name + r'".*,0\]'
     with open(f'{script_dir}/../roro/m/js/item.dat.js', 'r', encoding='utf-8') as file:
         js_code = file.read()
@@ -216,6 +217,7 @@ def getItemRecord(item_name):
 
 def getItemId(item_name):
     """ item_name に該当するアイテムID を取得する"""
+    item_name = item_name.replace("(", "\(").replace(")", "\)")
     pattern = r'\[(\d+),.*"' + item_name + r'".*,0\]'
     with open(f'{script_dir}/../roro/m/js/item.dat.js', 'r', encoding='utf-8') as file:
         js_code = file.read()

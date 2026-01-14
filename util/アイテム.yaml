@@ -1,7 +1,6 @@
 item_list:
-  # アルタイルハット と同じエンチャを手動追加
-  - name: 鳩のマジックハット
-    yomi: 鳩のマジックハット
+  - name: 青狐耳鈴リボン
+    yomi: 青狐耳鈴リボン
     type: 上段
     slot: 1
     weapon_lv: 0
@@ -22,16 +21,32 @@ item_list:
         value: 40
       - name: スキルダメージ増加
         value: 1
+        skill: コンフラグレーション
         per_lv: 10
-        skill: サウンドブレンド
       - name: スキルダメージ増加
         value: 1
+        skill: ダイヤモンドストーム
         per_lv: 10
-        skill: メタリックフューリー
       - name: スキルダメージ増加
         value: 1
+        skill: ライトニングランド
         per_lv: 10
-        skill: リズミカルウェーブ
+      - name: スキルダメージ増加
+        value: 1
+        skill: テラドライブ
+        per_lv: 10
+      - name: スキルダメージ増加
+        value: 1
+        skill: ベナムスワンプ
+        per_lv: 10
+      - name: スキルダメージ増加
+        value: 1
+        skill: エレメンタルバスター
+        per_lv: 10
+      - name: スキルダメージ増加
+        value: 1
+        skill: サイキックストリーム
+        per_lv: 10
       - name: SPL加算
         value: 1
         per_refine: 1
@@ -47,7 +62,7 @@ item_list:
           - slot: 4
             refine: 0
             enchant_list: #
-              - name: 潜在解放(トルバドゥール&トルヴェールXIII)
+              - name: 潜在解放(エレメンタルマスターXVI)
           - slot: 3
             refine: 8
             enchant_list: #
@@ -70,95 +85,130 @@ item_list:
               - name: Luk+10
               - name: スキルディレイ-15%
               - name: 厄災の魔将
+    # リチャードグループ３
 
-  # がおがおタイガーパジャマ と同じエンチャを手動追加
-  - name: 影走白狐の紋服
-    yomi: 影走白狐の紋服
-    type: 鎧
+  - name: タートルフォックステイル
+    yomi: タートルフォックステイル
+    desc: "[にゃん友 -亀設-]Lv1習得時、追加で<br>MaxHP + 15%<br>ボスモンスターから受けるダメージ - 10%<br>[エナジーコート]Lv1使用可能"
+    type: 片手杖
     slot: 1
-    weapon_lv: 0
-    atk_or_def: 100
-    weight: 100
+    weapon_lv: 4
+    atk_or_def: 150
+    weight: 40
     required_lv: 200
-    required_job: 蜃気楼 不知火
+    required_job: スピリットハンドラー
     capabilities:
-      - name: プレイヤー耐性
-        value: 7
-      - name: スキルダメージ増加
-        value: 1
-        per_lv: 10
-        skill: 影狩り
-      - name: スキルダメージ増加
-        value: 1
-        per_lv: 10
-        skill: 影の舞
-      - name: スキルダメージ増加
-        value: 1
-        per_lv: 10
-        skill: 影一閃
-      - name: スキルダメージ増加
-        value: 1
-        per_lv: 10
-        skill: 幻術 -影縫い-
-      - name: 全サイズへの物理ダメージ増加
-        value: 7
-        per_refine: 1
-      - name: ASPD増加
-        value: 10
-        at_refine: 7
-      - name: 一般耐性
-        value: 5
-        at_refine: 7
-      - name: ボス耐性
-        value: 5
-        at_refine: 7
+      - name: 武器のMATK
+        value: 180
       - name: 破損しない
         value: 1
-        at_refine: 9
-      - name: 再使用待機時間減少
+      - name: プレイヤー耐性
+        value: 10
+      - name: ヒール系スキル使用時HP回復量増加
+        value: 6
+        per_refine: 1
+      - name: DEF加算
         value: 30
-        at_refine: 9
-        skill: 十六夜
-      - name: 全属性への物理ダメージ増加
+        per_refine: 1
+        at_transcendence: 1
+      - name: MDEF加算
+        value: 3
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
         value: 15
         at_refine: 10
+        at_transcendence: 1
+      - name: 聖属性耐性
+        value: 10
+        at_refine: 10
+        at_transcendence: 1
     enchant: #
       - name: スペシャルエンチャント(オーブ)
         slot_list: #
           - slot: 4
-            refine: 0
-            enchant_list: #
-              - name: 潜在解放(蜃気楼&不知火XVI)
-          - slot: 3
             refine: 8
             enchant_list: #
-              - name: 火属性付与(鎧)
-              - name: 水属性付与(鎧)
-              - name: 風属性付与(鎧)
-              - name: 地属性付与(鎧)
-              - name: 聖属性付与(鎧)
-              - name: 闇属性付与(鎧)
-              - name: 念属性付与(鎧)
-              - name: 毒属性付与(鎧)
-              - name: 不死属性付与(鎧)
-          - slot: 2
+              - name: Str+7
+              - name: Agi+7
+              - name: Vit+7
+              - name: Int+7
+              - name: Dex+7
+              - name: Luk+7
+              - name: SpecialStr
+              - name: SpecialAgi
+              - name: SpecialVit
+              - name: SpecialInt
+              - name: SpecialDex
+              - name: SpecialLuk
+          - slot: 3
             refine: 9
             enchant_list: #
-              - name: スキルディレイ-15%
-              - name: 必中攻撃+25%
-              - name: 詠唱妨害不可
-              - name: 英雄の凱歌
+              - name: Str+7
+              - name: Agi+7
+              - name: Vit+7
+              - name: Int+7
+              - name: Dex+7
+              - name: Luk+7
+              - name: SpecialStr
+              - name: SpecialAgi
+              - name: SpecialVit
+              - name: SpecialInt
+              - name: SpecialDex
+              - name: SpecialLuk
+              - name: 潜在解放(スピリットハンドラーXVIII)
+          - slot: 2
+            refine: 10
+            enchant_list: #
+              - name: Str+7
+              - name: Agi+7
+              - name: Vit+7
+              - name: Int+7
+              - name: Dex+7
+              - name: Luk+7
+              - name: SpecialStr
+              - name: SpecialAgi
+              - name: SpecialVit
+              - name: SpecialInt
+              - name: SpecialDex
+              - name: SpecialLuk
+              - name: ExtraStr
+              - name: ExtraAgi
+              - name: ExtraVit
+              - name: ExtraInt
+              - name: ExtraDex
+              - name: ExtraLuk
+              - name: 暴走した魔力
+              - name: 真理の解放
+      - name: スペシャルエンチャント(リチャード)
+        slot_list: #
+          - slot: 4
+            refine: 9
+            enchant_list: #
+              - name: Str+7
+              - name: Agi+7
+              - name: Vit+7
+              - name: Int+7
+              - name: Dex+7
+              - name: Luk+7
+              - name: SpecialStr
+              - name: SpecialAgi
+              - name: SpecialVit
+              - name: SpecialInt
+              - name: SpecialDex
+              - name: SpecialLuk
+              - name: 潜在解放(スピリットハンドラーXIX)
 
-  # エクリプスマフラー と同じエンチャを手動追加
-  - name: 天使のバレッタ
-    yomi: 天使のバレッタ
+
+  - name: ドラコ・エクエス
+    yomi: ドラコ・エクエス
     type: 下段
     slot: 0
     weapon_lv: 0
     atk_or_def: 0
     weight: 10
     required_lv: 200
-    required_job: カーディナル
+    required_job: ドラゴンナイト
     capabilities:
       - name: プレイヤー耐性
         value: 3
@@ -174,5 +224,98 @@ item_list:
           - slot: 4
             refine: 0
             enchant_list: #
-              - name: 潜在解放(カーディナルXVIII)
+              - name: 潜在解放(ドラゴンナイトXVII)
+      # ミオン職下段
 
+  - name: 火の聖霊石
+    yomi: 火の聖霊石
+    type: アクセサリー
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 10
+    required_lv: 200
+    required_job: 4次職 拡張4次職
+    capabilities:
+      - name: POW加算
+        value: 3
+      - name: 物理ダメージ増加
+        value: 40
+      - name: プレイヤー耐性
+        value: 3
+      - name: スキル固定詠唱割合減少
+        value: 100
+        skill: 獅子吼
+      - name: スキルダメージ増加
+        value: 1
+        skill: 獅子吼
+        per_lv: 3
+      - name: スキルダメージ増加
+        value: 1
+        skill: 聖油洗礼
+        per_lv: 10
+      - name: スキルダメージ増加
+        value: 1
+        skill: 爆火神弾
+        per_lv: 10
+      - name: スキルダメージ増加
+        value: 1
+        skill: 炎火滅魔神弾
+        per_lv: 10
+      - name: スキルダメージ増加
+        value: 1
+        skill: 烈火気弾
+        per_lv: 10
+    enchant: #
+      - name: スペシャルエンチャント(ミオン)
+        slot_list: #
+          - slot: 4
+            refine: 0
+            enchant_list: #
+              - name: Str+7
+              - name: Agi+7
+              - name: Vit+7
+              - name: Int+7
+              - name: Dex+7
+              - name: Luk+7
+              - name: SpecialStr
+              - name: SpecialAgi
+              - name: SpecialVit
+              - name: SpecialInt
+              - name: SpecialDex
+              - name: SpecialLuk
+              - name: 攻撃速度+15%
+              - name: スキルディレイ-15%
+          - slot: 3
+            refine: 0
+            enchant_list: #
+              - name: Str+7
+              - name: Agi+7
+              - name: Vit+7
+              - name: Int+7
+              - name: Dex+7
+              - name: Luk+7
+              - name: SpecialStr
+              - name: SpecialAgi
+              - name: SpecialVit
+              - name: SpecialInt
+              - name: SpecialDex
+              - name: SpecialLuk
+              - name: MaxHP+15%
+              - name: 潜在解放(インクイジターXIV)
+          - slot: 2
+            refine: 0
+            enchant_list: #
+              - name: Str+7
+              - name: Agi+7
+              - name: Vit+7
+              - name: Int+7
+              - name: Dex+7
+              - name: Luk+7
+              - name: SpecialStr
+              - name: SpecialAgi
+              - name: SpecialVit
+              - name: SpecialInt
+              - name: SpecialDex
+              - name: SpecialLuk
+              - name: 覇王
