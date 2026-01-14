@@ -1,34 +1,34 @@
 card_list:
-  - name: 潜在解放(蜃気楼&不知火XVI)
-    yomi: センザイカイホウシンキロウトシラヌイ16
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 豪傑
-        capabilities:
-          - name: 再使用待機時間減少
-            skill: 幻術 -影縫い-
-            value: 200
-  - name: 潜在解放(カーディナルXVIII)
-    yomi: センザイカイホウカーディナル18
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 真理の解放
-        capabilities:
-          - name: 再使用待機時間減少
-            skill: ニューマティックプロセラ
-            value: 4000
-  - name: 潜在解放(トルバドゥール&トルヴェールXIII)
-    yomi: センザイカイホウトオルバドゥールアンドトルヴェール13
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 真理の解放
-        capabilities:
-          - name: 再使用待機時間減少
-            skill: リズミカルウェーブ
-            value: 200
+  - name: ストームナイト
+    yomi: ストームナイト
+    type: ペット
+    capabilities:
+      - name: 風属性魔法ダメージ増加
+        value: 10
+        at_lv: 100
+      - name: 聖属性魔法ダメージ増加
+        value: 10
+        at_lv: 100
+      - name: スキル使用可能
+        skill: コンセントレイション
+        skill_lv: 5
+
+  - name: ボスピタヤ
+    yomi: ボスピタヤ
+    type: ペット
+    capabilities:
+      - name: 聖属性への物理ダメージ増加
+        value: 10
+        at_lv: 100
+      - name: 念属性への物理ダメージ増加
+        value: 10
+        at_lv: 100
+      - name: 聖属性への魔法ダメージ増加
+        value: 10
+        at_lv: 100
+      - name: 念属性への魔法ダメージ増加
+        value: 10
+        at_lv: 100
+      - name: スキル使用可能
+        skill: ファイアーウォール
+        skill_lv: 10
