@@ -1,7 +1,13 @@
 item_list:
 
-  - name: "時間のサークレット(アークメイジ)"
+  - name: 暴食のクラウン(アークメイジ)
     capabilities:
+      - name: SPL加算
+        value: 20
+        at_refine: 10
+      - name: MDEF無視
+        value: 50
+        at_refine: 10
       - name: 全属性への物理ダメージ増加
         value: 1
         per_refine: 1
@@ -19,8 +25,14 @@ item_list:
         at_refine: 10
         at_transcendence: 1
 
-  - name: 時間のサークレット(アビスチェイサー)
+  - name: 暴食のクラウン(アビスチェイサー)
     capabilities:
+      - name: SPL加算
+        value: 20
+        at_refine: 10
+      - name: MDEF無視
+        value: 50
+        at_refine: 10
       - name: 全属性への物理ダメージ増加
         value: 1
         per_refine: 1
@@ -38,8 +50,14 @@ item_list:
         at_refine: 10
         at_transcendence: 1
 
-  - name: 時間のサークレット(インクイジター)
+  - name: 暴食のクラウン(インクイジター)
     capabilities:
+      - name: POW加算
+        value: 20
+        at_refine: 10
+      - name: 必中
+        value: 25
+        at_refine: 10
       - name: 全属性への物理ダメージ増加
         value: 1
         per_refine: 1
@@ -57,8 +75,14 @@ item_list:
         at_refine: 10
         at_transcendence: 1
 
-  - name: 時間のサークレット(インペリアルガード)
+  - name: 暴食のクラウン(インペリアルガード)
     capabilities:
+      - name: SPL加算
+        value: 20
+        at_refine: 10
+      - name: MDEF無視
+        value: 50
+        at_refine: 10
       - name: 全属性への物理ダメージ増加
         value: 1
         per_refine: 1
@@ -76,8 +100,14 @@ item_list:
         at_refine: 10
         at_transcendence: 1
 
-  - name: 時間のサークレット(ウィンドホーク)
+  - name: 暴食のクラウン(ウィンドホーク)
     capabilities:
+      - name: CON加算
+        value: 20
+        at_refine: 10
+      - name: 必中
+        value: 25
+        at_refine: 10
       - name: 全属性への物理ダメージ増加
         value: 1
         per_refine: 1
@@ -95,8 +125,14 @@ item_list:
         at_refine: 10
         at_transcendence: 1
 
-  - name: 時間のサークレット(エレメンタルマスター)
+  - name: 暴食のクラウン(エレメンタルマスター)
     capabilities:
+      - name: SPL加算
+        value: 20
+        at_refine: 10
+      - name: MDEF無視
+        value: 50
+        at_refine: 10
       - name: 全属性への物理ダメージ増加
         value: 1
         per_refine: 1
@@ -114,8 +150,14 @@ item_list:
         at_refine: 10
         at_transcendence: 1
 
-  - name: 時間のサークレット(カーディナル)
+  - name: 暴食のクラウン(カーディナル)
     capabilities:
+      - name: POW加算
+        value: 20
+        at_refine: 10
+      - name: CRI加算
+        value: 25
+        at_refine: 10
       - name: 全属性への物理ダメージ増加
         value: 1
         per_refine: 1
@@ -133,8 +175,14 @@ item_list:
         at_refine: 10
         at_transcendence: 1
 
-  - name: 時間のサークレット(シャドウクロス)
+  - name: 暴食のクラウン(シャドウクロス)
     capabilities:
+      - name: POW加算
+        value: 20
+        at_refine: 10
+      - name: CRI加算
+        value: 25
+        at_refine: 10
       - name: 全属性への物理ダメージ増加
         value: 1
         per_refine: 1
@@ -152,8 +200,14 @@ item_list:
         at_refine: 10
         at_transcendence: 1
 
-  - name: 時間のサークレット(スピリットハンドラー)
+  - name: 暴食のクラウン(スピリットハンドラー)
     capabilities:
+      - name: POW加算
+        value: 20
+        at_refine: 10
+      - name: CRI加算
+        value: 25
+        at_refine: 10
       - name: 全属性への物理ダメージ増加
         value: 1
         per_refine: 1
@@ -171,8 +225,14 @@ item_list:
         at_refine: 10
         at_transcendence: 1
 
-  - name: 時間のサークレット(ソウルアセティック)
+  - name: 暴食のクラウン(ソウルアセティック)
     capabilities:
+      - name: SPL加算
+        value: 20
+        at_refine: 10
+      - name: MDEF無視
+        value: 50
+        at_refine: 10
       - name: 全属性への物理ダメージ増加
         value: 1
         per_refine: 1
@@ -190,8 +250,14 @@ item_list:
         at_refine: 10
         at_transcendence: 1
 
-  - name: 時間のサークレット(ドラゴンナイト)
+  - name: 暴食のクラウン(ドラゴンナイト)
     capabilities:
+      - name: POW加算
+        value: 20
+        at_refine: 10
+      - name: CRI加算
+        value: 25
+        at_refine: 10
       - name: 全属性への物理ダメージ増加
         value: 1
         per_refine: 1
@@ -209,8 +275,14 @@ item_list:
         at_refine: 10
         at_transcendence: 1
 
-  - name: 時間のサークレット(トルバドゥール&トルヴェール)
+  - name: 暴食のクラウン(トルバドゥール&トルヴェール)
     capabilities:
+      - name: SPL加算
+        value: 20
+        at_refine: 10
+      - name: MDEF無視
+        value: 50
+        at_refine: 10
       - name: 全属性への物理ダメージ増加
         value: 1
         per_refine: 1
@@ -228,8 +300,14 @@ item_list:
         at_refine: 10
         at_transcendence: 1
 
-  - name: 時間のサークレット(ナイトウォッチ)
+  - name: 暴食のクラウン(ナイトウォッチ)
     capabilities:
+      - name: CON加算
+        value: 20
+        at_refine: 10
+      - name: 必中
+        value: 25
+        at_refine: 10
       - name: 全属性への物理ダメージ増加
         value: 1
         per_refine: 1
@@ -247,8 +325,14 @@ item_list:
         at_refine: 10
         at_transcendence: 1
 
-  - name: 時間のサークレット(バイオロ)
+  - name: 暴食のクラウン(バイオロ)
     capabilities:
+      - name: POW加算
+        value: 20
+        at_refine: 10
+      - name: CRI加算
+        value: 25
+        at_refine: 10
       - name: 全属性への物理ダメージ増加
         value: 1
         per_refine: 1
@@ -266,8 +350,14 @@ item_list:
         at_refine: 10
         at_transcendence: 1
 
-  - name: 時間のサークレット(ハイパーノービス)
+  - name: 暴食のクラウン(ハイパーノービス)
     capabilities:
+      - name: POW加算
+        value: 20
+        at_refine: 10
+      - name: 必中
+        value: 25
+        at_refine: 10
       - name: 全属性への物理ダメージ増加
         value: 1
         per_refine: 1
@@ -285,8 +375,14 @@ item_list:
         at_refine: 10
         at_transcendence: 1
 
-  - name: 時間のサークレット(マイスター)
+  - name: 暴食のクラウン(マイスター)
     capabilities:
+      - name: POW加算
+        value: 20
+        at_refine: 10
+      - name: 必中
+        value: 25
+        at_refine: 10
       - name: 全属性への物理ダメージ増加
         value: 1
         per_refine: 1
@@ -304,8 +400,14 @@ item_list:
         at_refine: 10
         at_transcendence: 1
 
-  - name: 時間のサークレット(天帝)
+  - name: 暴食のクラウン(天帝)
     capabilities:
+      - name: POW加算
+        value: 20
+        at_refine: 10
+      - name: 必中
+        value: 25
+        at_refine: 10
       - name: 全属性への物理ダメージ増加
         value: 1
         per_refine: 1
@@ -323,8 +425,14 @@ item_list:
         at_refine: 10
         at_transcendence: 1
 
-  - name: 時間のサークレット(蜃気楼&不知火)
+  - name: 暴食のクラウン(蜃気楼&不知火)
     capabilities:
+      - name: SPL加算
+        value: 20
+        at_refine: 10
+      - name: MDEF無視
+        value: 50
+        at_refine: 10
       - name: 全属性への物理ダメージ増加
         value: 1
         per_refine: 1
