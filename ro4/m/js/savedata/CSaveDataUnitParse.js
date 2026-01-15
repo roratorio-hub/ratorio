@@ -58,7 +58,7 @@ class CSaveDataUnitParse extends CSaveDataUnitBase {
 
 			// タイプ値が最小値よりも小さい場合は、旧形式のデータと判断して、移行処理に変更する
 			if ((bitOffset == 0) && (unitType < this.#typeValueMin)) {
-				const translated = this.translateFromOldFormat(dataText);
+				const translated = this.translateFromOldFormat(dataText, false);
 				return this.parse(translated, bitOffset);
 			}
 
@@ -87,11 +87,53 @@ class CSaveDataUnitParse extends CSaveDataUnitBase {
 	}
 
 	/**
-	 * 旧形式のセーブデータを、新形式のセーブデータに変換する.
-	 * （前提として、旧形式の最新の構造には変換してあること）
+	 * parse 関数からコピーしたセーブ専用の暫定処理
+	 * セーブとロードが両方ともparse関数を利用していて場合分けが複雑になりすぎるため
 	 * @param {string} dataText パース対象を含む文字表現データ文字列
+	 * @param {int} bitOffset 読み取りオフセット（ビット数）
+	 * @returns {int} パースした文字数
 	 */
-	translateFromOldFormat (dataText) {
+	parseForCreateSave (dataText, bitOffset) {
+		// 強制文字列化
+		dataText = "" + dataText;
+		while (bitOffset < (dataText.length * this.letterBits)) {
+			// 基底クラスのパース処理を仮実施
+			super.clear();
+			super.parse(dataText, bitOffset);
+			// パース結果から、ユニットのタイプ値を取得
+			const unitType = this.getProp(CSaveDataConst.propNameType);
+			// タイプ値が最小値よりも小さい場合は、旧形式のデータと判断して、移行処理に変更する
+			if ((bitOffset == 0) && (unitType < this.#typeValueMin)) {
+				const translated = this.translateFromOldFormat(dataText, true);
+				return this.parseForCreateSave(translated, bitOffset);
+			}
+			// ユニットのタイプ値から、ユニットの処理クラスを取得
+			const unitClass = CSaveDataUnitTypeManager.getUnitClass(unitType);
+			// TODO: デバッグ用
+			if (!unitClass) {
+				break;
+			}
+			// ユニットの処理クラスで、パース処理を実施
+			const unitInstance = new unitClass();
+			bitOffset = unitInstance.parse(dataText, bitOffset);
+			// ユニット処理クラスのインスタンスを保持
+			unitInstance.doCompaction();
+			this.#parsedUnitArray.push(unitInstance);
+			// データユニットが中途半端なところで終わらないようパディングする
+			bitOffset = Math.ceil(bitOffset / this.letterBits) * this.letterBits;
+		}
+		// オフセット位置はパースしたビット数に一致する
+		return bitOffset;
+	}
+	
+	/**
+	 * 旧形式のセーブデータを、新形式のセーブデータに変換する.
+	 * 前提として、旧形式の最新の構造には変換してあること.
+	 * いまは暫定処置として新形式のセーブを作成する前段階の処理としても呼び出されている.
+	 * @param {string} dataText パース対象を含む文字表現データ文字列
+	 * @param {boolean} createSaveFlag セーブデータを作成するときに呼び出された場合 true
+	 */
+	translateFromOldFormat (dataText, createSaveFlag) {
 
 		let saveDataUnit = null;
 		let dataTextWork = "";
@@ -121,54 +163,56 @@ class CSaveDataUnitParse extends CSaveDataUnitBase {
 			saveDataArrayOld[1824], saveDataArrayOld[1825], saveDataArrayOld[1826]
 		);
 
-		//--------------------------------
-		// 装備アイテム（旧：装備アイテム）
-		// （装備位置に従った仮のIDを設定）
-		//--------------------------------
-		for (let idxKind = 0; idxKind < 10; idxKind++) {
+		if (!createSaveFlag) {	// 新規セーブを作成する場合はスキップする
+			//--------------------------------
+			// 装備アイテム（旧：装備アイテム）
+			// （装備位置に従った仮のIDを設定）
+			//--------------------------------
+			for (let idxKind = 0; idxKind < 10; idxKind++) {
 
-			// データ位置補正
-			const idxBase = 15 + (6 * idxKind);
-			const idxRndOpt = 1260 + (20 * idxKind);
-			const idxCardCategory = 1781 + (4 * idxKind);
+				// データ位置補正
+				const idxBase = 15 + (6 * idxKind);
+				const idxRndOpt = 1260 + (20 * idxKind);
+				const idxCardCategory = 1781 + (4 * idxKind);
 
-			// データ変換
+				// データ変換
+				saveDataUnit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_EQUIPABLE))();
+				[dataTextWork, bitOffset] = saveDataUnit.convertFromOldFormat(dataTextWork, bitOffset,
+					(1 + idxKind),	// propNameEquipItemDefID
+					0,	// propNameOptCode
+					((1n << 20n) - 1n),	// propNameParseCtrlFlag
+					saveDataArrayOld[idxBase + 1], saveDataArrayOld[idxBase],
+					saveDataArrayOld[idxCardCategory + 0], saveDataArrayOld[idxBase + 2],
+					saveDataArrayOld[idxCardCategory + 1], saveDataArrayOld[idxBase + 3],
+					saveDataArrayOld[idxCardCategory + 2], saveDataArrayOld[idxBase + 4],
+					saveDataArrayOld[idxCardCategory + 3], saveDataArrayOld[idxBase + 5],
+					...(saveDataArrayOld.slice(idxRndOpt, idxRndOpt + 10))
+				);
+			}
+			// 矢、衣装も装備アイテム扱いにする
+			// 矢
+			const arrowIdModified = (GetLowerJobSeriesID(saveDataArrayOld[1]) == JOB_SERIES_ID_GUNSLINGER) ? (ITEM_ID_BULLET_NONE + saveDataArrayOld[12] - 26) : (ITEM_ID_ARROW_NONE + saveDataArrayOld[12]);
 			saveDataUnit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_EQUIPABLE))();
 			[dataTextWork, bitOffset] = saveDataUnit.convertFromOldFormat(dataTextWork, bitOffset,
-				(1 + idxKind),
+				11,
 				0,
 				((1n << 20n) - 1n),
-				saveDataArrayOld[idxBase + 1], saveDataArrayOld[idxBase],
-				saveDataArrayOld[idxCardCategory + 0], saveDataArrayOld[idxBase + 2],
-				saveDataArrayOld[idxCardCategory + 1], saveDataArrayOld[idxBase + 3],
-				saveDataArrayOld[idxCardCategory + 2], saveDataArrayOld[idxBase + 4],
-				saveDataArrayOld[idxCardCategory + 3], saveDataArrayOld[idxBase + 5],
-				...(saveDataArrayOld.slice(idxRndOpt, idxRndOpt + 10))
+				arrowIdModified, 0,
+				...(Array(8).fill(0)),
+				...(Array(10).fill(0))
+			);
+			// 衣装
+			const costumeIdModified = (saveDataArrayOld[1682] > 0) ? ITEM_ID_ISHO_BEGINNER_BO : ITEM_ID_ISHO_NONE;
+			saveDataUnit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_EQUIPABLE))();
+			[dataTextWork, bitOffset] = saveDataUnit.convertFromOldFormat(dataTextWork, bitOffset,
+				12,	// propNameEquipItemDefID
+				0, // propNameOptCode
+				((1n << 20n) - 1n), // propNameParseCtrlFlag
+				costumeIdModified, 0,
+				...(Array(8).fill(0)),
+				...(Array(10).fill(0))
 			);
 		}
-		// 矢、衣装も装備アイテム扱いにする
-		// 矢
-		const arrowIdModified = (GetLowerJobSeriesID(saveDataArrayOld[1]) == JOB_SERIES_ID_GUNSLINGER) ? (ITEM_ID_BULLET_NONE + saveDataArrayOld[12] - 26) : (ITEM_ID_ARROW_NONE + saveDataArrayOld[12]);
-		saveDataUnit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_EQUIPABLE))();
-		[dataTextWork, bitOffset] = saveDataUnit.convertFromOldFormat(dataTextWork, bitOffset,
-			11,
-			0,
-			((1n << 20n) - 1n),
-			arrowIdModified, 0,
-			...(Array(8).fill(0)),
-			...(Array(10).fill(0))
-		);
-		// 衣装
-		const costumeIdModified = (saveDataArrayOld[1682] > 0) ? ITEM_ID_ISHO_BEGINNER_BO : ITEM_ID_ISHO_NONE;
-		saveDataUnit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_EQUIPABLE))();
-		[dataTextWork, bitOffset] = saveDataUnit.convertFromOldFormat(dataTextWork, bitOffset,
-			12,
-			0,
-			((1n << 20n) - 1n),
-			costumeIdModified, 0,
-			...(Array(8).fill(0)),
-			...(Array(10).fill(0))
-		);
 
 		//--------------------------------
 		// 装備位置（装備）：（旧：※該当なし新規）

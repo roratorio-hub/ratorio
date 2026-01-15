@@ -14,7 +14,7 @@ class CSaveDataUnitEquipable extends CSaveDataUnitBase {
      * バージョン番号.
      */
     static get version () {
-        return 2;
+        return 3;
     }
 
     // parse 関数で参照するためのアイテムID変換テーブル
@@ -24,6 +24,23 @@ class CSaveDataUnitEquipable extends CSaveDataUnitBase {
     // オーバーライドされた parse 関数
     parse (dataText, bitOffset) {
         let nextOffset = super.parse(dataText, bitOffset);	// version を識別するために一旦 parse する
+
+        // version 3 でカードIDの長さが 12bit から 13bit へ拡張されている
+        // version 2 以前のデータを読み込む際はカードIDの長さを 12bit へダウングレードする
+        if (this.getProp("version") <= 2n) {
+            const candidate = [
+                CSaveDataConst.propNameCardID1,
+                CSaveDataConst.propNameCardID2,
+                CSaveDataConst.propNameCardID3,
+                CSaveDataConst.propNameCardID4,];
+            candidate.forEach(property => {
+                this.propInfoMap.delete(property);
+                this.propInfoMap.set(property, new CSaveDataPropInfo(property, 12));
+            });
+            this.parsedMap.clear();
+            nextOffset = super.parse(dataText, bitOffset);
+        }
+
         if (this.getProp("version") == 1n) {	// version 1 のセーブデータを version 2 以上のプロパティ定義で読み込むとデータが壊れるので差分修正する
             this.propInfoMap.delete(CSaveDataConst.propNameParseCtrlFlag);	// version 1 → version 2 で parse するプロパティ数が 1 増えているので parse 処理対象数 (ParseCtrlFlag) を一旦消す
             let prop = new CSaveDataPropInfo(CSaveDataConst.propNameParseCtrlFlag, 20); // 処理対象数を 21 → 20 に減らしてから...
@@ -180,18 +197,17 @@ class CSaveDataUnitEquipable extends CSaveDataUnitBase {
         // プロパティ定義情報の登録
         this.registerPropInfo(CSaveDataConst.propNameEquipItemDefID, 6);
         this.registerPropInfo(CSaveDataConst.propNameOptCode, 6);
-        this.registerPropInfo(CSaveDataConst.propNameParseCtrlFlag, 21);
-        //this.registerPropInfo(CSaveDataConst.propNameParseCtrlFlag, 20);	// version 1
+        this.registerPropInfo(CSaveDataConst.propNameParseCtrlFlag, 21); // version 1 = 20 > version 2 = 21
         this.registerPropInfo(CSaveDataConst.propNameItemID, 14);
         this.registerPropInfo(CSaveDataConst.propNameRefinedCount, 4);
         this.registerPropInfo(CSaveDataConst.propNameCardCategoryID1, 10);
-        this.registerPropInfo(CSaveDataConst.propNameCardID1, 12);
+        this.registerPropInfo(CSaveDataConst.propNameCardID1, 13);
         this.registerPropInfo(CSaveDataConst.propNameCardCategoryID2, 10);
-        this.registerPropInfo(CSaveDataConst.propNameCardID2, 12);
+        this.registerPropInfo(CSaveDataConst.propNameCardID2, 13);
         this.registerPropInfo(CSaveDataConst.propNameCardCategoryID3, 10);
-        this.registerPropInfo(CSaveDataConst.propNameCardID3, 12);
+        this.registerPropInfo(CSaveDataConst.propNameCardID3, 13);
         this.registerPropInfo(CSaveDataConst.propNameCardCategoryID4, 10);
-        this.registerPropInfo(CSaveDataConst.propNameCardID4, 12);
+        this.registerPropInfo(CSaveDataConst.propNameCardID4, 13);
         this.registerPropInfo(CSaveDataConst.propNameRndOptID1, 9);
         this.registerPropInfo(CSaveDataConst.propNameRndOptValue1, 9);
         this.registerPropInfo(CSaveDataConst.propNameRndOptID2, 9);
@@ -248,6 +264,14 @@ class CSaveDataUnitEquipable extends CSaveDataUnitBase {
             if (idx == 25) {
                 break;	// version 1 時点で存在した上位 25 個の処理が完了したら終了する
             }
+            const candidate = [
+                CSaveDataConst.propNameCardID1,
+                CSaveDataConst.propNameCardID2,
+                CSaveDataConst.propNameCardID3,
+                CSaveDataConst.propNameCardID4,];
+            if (candidate.includes(propName)) {
+                propBits = 12;  // 旧形式のセーブデータのカードID長さは 12bit なので揃える
+            }
             if (propName == CSaveDataConst.propNameVersion) {
                 propValue = 1;	// 旧形式のセーブデータは必ず version 1 未満なので 1 に揃える
             }
@@ -278,5 +302,5 @@ class CSaveDataUnitEquipable extends CSaveDataUnitBase {
         this.propInfoMap.set(CSaveDataConst.propNameParseCtrlFlag, prop);
         return super.encodeToURL(dataTextWork, bitOffset);
     }
-    
+
 }
