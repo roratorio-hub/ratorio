@@ -1443,15 +1443,15 @@
 		[4111,4110,3829],
 		[4111,4110,3828],
 		[4111,4110,3830],
-		[4113,1421,1273,-10049],
-		[4114,1976,-10021],
-		[4115,1325,-10013],
-		[4116,1450,-10010],
-		[4117,2296,-10001],
-		[4118,2826,-10014],
-		[4119,1464,-10021],
-		[4120,2824,-10042],
-		[4121,1218,-10042],
+		[4113,1421,1273,-(ITEM_SET_PET_ID_OFFSET + 49)],
+		[4114,1976,-(ITEM_SET_PET_ID_OFFSET + 21)],
+		[4115,1325,-(ITEM_SET_PET_ID_OFFSET + 13)],
+		[4116,1450,-(ITEM_SET_PET_ID_OFFSET + 10)],
+		[4117,2296,-(ITEM_SET_PET_ID_OFFSET + 1)],
+		[4118,2826,-(ITEM_SET_PET_ID_OFFSET + 14)],
+		[4119,1464,-(ITEM_SET_PET_ID_OFFSET + 21)],
+		[4120,2824,-(ITEM_SET_PET_ID_OFFSET + 42)],
+		[4121,1218,-(ITEM_SET_PET_ID_OFFSET + 42)],
 		[4125,4124,3713],
 		[4126,4124,3730],
 		[4127,4124,3712],
@@ -1564,33 +1564,33 @@
 		[4232,4231,3120],
 		[4233,4231,-1245],
 		[4234,4231,-1361],
-		[4236,4235,-10066],	// ワンダーエッグバスケット(4235) + 月夜花(66)
-		[4236,4235,-10077],
-		[4236,4235,-10060],
-		[4236,4235,-10074],
-		[4236,4235,-10058],
-		[4236,4235,-10064],
-		[4236,4235,-10078],
-		[4236,4235,-10081],
-		[4236,4235,-10089],
-		[4237,4235,-10063],
-		[4237,4235,-10067],
-		[4237,4235,-10068],
-		[4237,4235,-10085],
-		[4237,4235,-10086],
-		[4237,4235,-10090],
-		[4238,4235,-10073],	// Atk+200, Matk+200, Def+150, Mdef+15 (4238) = ワンダーエッグ(4235) + エリオット(73)
-		[4238,4235,-10076],
-		[4238,4235,-10075],
-		[4238,4235,-10072],
-		[4238,4235,-10065],
-		[4238,4235,-10070],
-		[4238,4235,-10059],
-		[4238,4235,-10061],
-		[4238,4235,-10062],
-		[4238,4235,-10080],
-		[4238,4235,-10082],
-		[4238,4235,-10088],
+		[4236,4235,-(ITEM_SET_PET_ID_OFFSET + 66)],	// ワンダーエッグバスケット(4235) + 月夜花(66)
+		[4236,4235,-(ITEM_SET_PET_ID_OFFSET + 77)],
+		[4236,4235,-(ITEM_SET_PET_ID_OFFSET + 60)],
+		[4236,4235,-(ITEM_SET_PET_ID_OFFSET + 74)],
+		[4236,4235,-(ITEM_SET_PET_ID_OFFSET + 58)],
+		[4236,4235,-(ITEM_SET_PET_ID_OFFSET + 64)],
+		[4236,4235,-(ITEM_SET_PET_ID_OFFSET + 78)],
+		[4236,4235,-(ITEM_SET_PET_ID_OFFSET + 81)],
+		[4236,4235,-(ITEM_SET_PET_ID_OFFSET + 89)],
+		[4237,4235,-(ITEM_SET_PET_ID_OFFSET + 63)],
+		[4237,4235,-(ITEM_SET_PET_ID_OFFSET + 67)],
+		[4237,4235,-(ITEM_SET_PET_ID_OFFSET + 68)],
+		[4237,4235,-(ITEM_SET_PET_ID_OFFSET + 85)],
+		[4237,4235,-(ITEM_SET_PET_ID_OFFSET + 86)],
+		[4237,4235,-(ITEM_SET_PET_ID_OFFSET + 90)],
+		[4238,4235,-(ITEM_SET_PET_ID_OFFSET + 73)],	// Atk+200, Matk+200, Def+150, Mdef+15 (4238) = ワンダーエッグ(4235) + エリオット(73)
+		[4238,4235,-(ITEM_SET_PET_ID_OFFSET + 76)],
+		[4238,4235,-(ITEM_SET_PET_ID_OFFSET + 75)],
+		[4238,4235,-(ITEM_SET_PET_ID_OFFSET + 72)],
+		[4238,4235,-(ITEM_SET_PET_ID_OFFSET + 65)],
+		[4238,4235,-(ITEM_SET_PET_ID_OFFSET + 70)],
+		[4238,4235,-(ITEM_SET_PET_ID_OFFSET + 59)],
+		[4238,4235,-(ITEM_SET_PET_ID_OFFSET + 61)],
+		[4238,4235,-(ITEM_SET_PET_ID_OFFSET + 62)],
+		[4238,4235,-(ITEM_SET_PET_ID_OFFSET + 80)],
+		[4238,4235,-(ITEM_SET_PET_ID_OFFSET + 82)],
+		[4238,4235,-(ITEM_SET_PET_ID_OFFSET + 88)],
 		[4241,4240,-1249],
 		[4241,4240,-1250],
 		[4241,4240,-1251],
@@ -4867,11 +4867,11 @@
 	CardIdToSetIdMap[2906] = [2494,];
 	w_SE[2495] = [5088,5087,-2043,];	// 剣禅一如
 	ItemIdToSetIdMap[5087] = [2495,];
-	w_SE[2496] = [4237,4235,-10091];	// Atk+200, Matk+200, 全サイズ物理+10, 全サイズ魔法+10 (4237) = ワンダーエッグ(4235) + レッドピタヤ(91)
+	w_SE[2496] = [4237,4235,-(ITEM_SET_PET_ID_OFFSET + 91)];	// Atk+200, Matk+200, 全サイズ物理+10, 全サイズ魔法+10 (4237) = ワンダーエッグ(4235) + レッドピタヤ(91)
 	PetIdToSetIdMap[91] = [2496];
-	w_SE[2497] = [4236,4235,-10092];	// ワンダーエッグ(4235) + ミストレス(92)
+	w_SE[2497] = [4236,4235,-(ITEM_SET_PET_ID_OFFSET + 92)];	// ワンダーエッグ(4235) + ミストレス(92)
 	PetIdToSetIdMap[92] = [2497];
-	w_SE[2498] = [4238,4235,-10093];	// Atk+200, Matk+200, Def+150, Mdef+15 (4238) = ワンダーエッグ(4235) + ジャイアントホーネット(93)
+	w_SE[2498] = [4238,4235,-(ITEM_SET_PET_ID_OFFSET + 93)];	// Atk+200, Matk+200, Def+150, Mdef+15 (4238) = ワンダーエッグ(4235) + ジャイアントホーネット(93)
 	PetIdToSetIdMap[93] = [2498];
 	// --
 	w_SE[2499] = [-2909,-2908,-1348,];	// 潜在解放(マイスターII)
@@ -5291,7 +5291,7 @@
 	CardIdToSetIdMap[1245] = CardIdToSetIdMap[1245].concat([2739]);
 	CardIdToSetIdMap[1348] = CardIdToSetIdMap[1348].concat([2740]);
 	// ---
-	w_SE[2741] = [4236,4235,-10094];	// Atk+200, Matk+200, AllStatus+10 (4236) = ワンダーエッグ(4235) + バフォメット(94)
+	w_SE[2741] = [4236,4235,-(ITEM_SET_PET_ID_OFFSET + 94)];	// Atk+200, Matk+200, AllStatus+10 (4236) = ワンダーエッグ(4235) + バフォメット(94)
 	PetIdToSetIdMap[94] = [2741];
 	ItemIdToSetIdMap[4235] = ItemIdToSetIdMap[4235].concat([2741]);
 	CardIdToSetIdMap[10094] = [2741];		// ペットバフォ
@@ -5302,10 +5302,10 @@
 	CardIdToSetIdMap[3114] = [2743,];
 	CardIdToSetIdMap[1348] = CardIdToSetIdMap[1348].concat([2742, 2743]);	// 豪傑の逆参照
 	// --- 2024/08/13 ---
-	w_SE[2744] = [4236,4235,-10095];	// Atk+200, Matk+200, AllStatus+10 (4236) = ワンダーエッグ(4235) + ランドグリス(95)
+	w_SE[2744] = [4236,4235,-(ITEM_SET_PET_ID_OFFSET + 95)];	// Atk+200, Matk+200, AllStatus+10 (4236) = ワンダーエッグ(4235) + ランドグリス(95)
 	PetIdToSetIdMap[95] = [2744];
 	ItemIdToSetIdMap[4235] = ItemIdToSetIdMap[4235].concat([2744]);
-	w_SE[2745] = [4238,4235,-10096];	// Atk+200, Matk+200, Def+150, Mdef+15 (4238) = ワンダーエッグ(4235) + エンジェゴルトブルー(96)
+	w_SE[2745] = [4238,4235,-(ITEM_SET_PET_ID_OFFSET + 96)];	// Atk+200, Matk+200, Def+150, Mdef+15 (4238) = ワンダーエッグ(4235) + エンジェゴルトブルー(96)
 	PetIdToSetIdMap[96] = [2745];
 	ItemIdToSetIdMap[4235] = ItemIdToSetIdMap[4235].concat([2745]);
 	// --- 2024/08/13 ---
@@ -5432,8 +5432,8 @@
 	w_SE[2797] = [-3229,-3228,-2311,];	// 3228 ルガンチーフクリーナー + 2311 異境の統轄者
 	CardIdToSetIdMap[3228] = [2797,];
 	CardIdToSetIdMap[2311] = CardIdToSetIdMap[2311].concat([2794,2795,2796,2797]);
-	w_SE[2798] = [4238,4235,-10097];	// Atk+200, Matk+200, Def+150, Mdef+15 (4238) = ワンダーエッグ(4235) + グレーアイスウィンド(97)
-	w_SE[2799] = [4238,4235,-10098];	// Atk+200, Matk+200, Def+150, Mdef+15 (4238) = ワンダーエッグ(4235) + ホワイトアイスウィンド(98)
+	w_SE[2798] = [4238,4235,-(ITEM_SET_PET_ID_OFFSET + 97)];	// Atk+200, Matk+200, Def+150, Mdef+15 (4238) = ワンダーエッグ(4235) + グレーアイスウィンド(97)
+	w_SE[2799] = [4238,4235,-(ITEM_SET_PET_ID_OFFSET + 98)];	// Atk+200, Matk+200, Def+150, Mdef+15 (4238) = ワンダーエッグ(4235) + ホワイトアイスウィンド(98)
 	ItemIdToSetIdMap[4235] = ItemIdToSetIdMap[4235].concat([2798,2799]);
 	PetIdToSetIdMap[97] = [2798];
 	PetIdToSetIdMap[98] = [2799];
@@ -5448,9 +5448,9 @@
 	CardIdToSetIdMap[3236] = [2803,];
 	CardIdToSetIdMap[1245] = CardIdToSetIdMap[1245].concat([2801,2802]);
 	CardIdToSetIdMap[1348] = CardIdToSetIdMap[1348].concat([2800,2803]);
-	w_SE[2804] = [4238,4235,-10100];	// Atk+200, Matk+200, Def+150, Mdef+15 (4238) = ワンダーエッグ(4235) + 時計塔管理者(100)
+	w_SE[2804] = [4238,4235,-(ITEM_SET_PET_ID_OFFSET + 100)];	// Atk+200, Matk+200, Def+150, Mdef+15 (4238) = ワンダーエッグ(4235) + 時計塔管理者(100)
 	PetIdToSetIdMap[100] = [2804];
-	w_SE[2805] = [4236,4235,-10099];	// Atk+200, Matk+200, AllStatus+10 (4236) = ワンダーエッグ(4235) + タイムホルダー(99)
+	w_SE[2805] = [4236,4235,-(ITEM_SET_PET_ID_OFFSET + 99)];	// Atk+200, Matk+200, AllStatus+10 (4236) = ワンダーエッグ(4235) + タイムホルダー(99)
 	PetIdToSetIdMap[99] = [2805];
 	ItemIdToSetIdMap[4235] = ItemIdToSetIdMap[4235].concat([2804,2805]);
 	// --- 2024/10/29 ---
@@ -5738,9 +5738,9 @@
 	ItemIdToSetIdMap[4485] = ItemIdToSetIdMap[4485].concat([2928]);
 	ItemIdToSetIdMap[4947] = ItemIdToSetIdMap[4947].concat([2929]);
 	//
-	w_SE[2930] = [4238,4235,-10101];	// pet
+	w_SE[2930] = [4238,4235,-(ITEM_SET_PET_ID_OFFSET + 101)];	// pet
 	PetIdToSetIdMap[101] = [2930];
-	w_SE[2931] = [4236,4235,-10102];	// pet
+	w_SE[2931] = [4236,4235,-(ITEM_SET_PET_ID_OFFSET + 102)];	// pet
 	PetIdToSetIdMap[102] = [2931];
 	ItemIdToSetIdMap[4235] = ItemIdToSetIdMap[4235].concat([2930,2931]);
 	// --- 2025/01/21 ---
@@ -5815,7 +5815,7 @@
 	CardIdToSetIdMap[1245] = CardIdToSetIdMap[1245].concat([2950, 2955, 2956, 2957, 2961]);
 	CardIdToSetIdMap[1348] = CardIdToSetIdMap[1348].concat([2949, 2951, 2952, 2953, 2954, 2958, 2959, 2960, 2962, 2963, 2964]);
 	// --- 2025/01/28 ---
-	// 3423 時限リフレ = 3417～ 星雲の精髄 + 5004～ 星座の印章
+	// 3423 時限リフレ = 3417～ 星雲の精髄+ 5004～ 星座の印章
 	w_SE[2965] = [-3423,-3417,5004,];
 	w_SE[2966] = [-3423,-3417,5005,];
 	w_SE[2967] = [-3423,-3417,5008,];
@@ -6041,7 +6041,7 @@
 	CardIdToSetIdMap[3516] = [3102,];
 	CardIdToSetIdMap[2311] = CardIdToSetIdMap[2311].concat([3100, 3101]);
 	// --- 2025-04-20 ---
-	w_SE[3103] = [4238,4235,-10103];	// Atk+200, Matk+200, Def+150, Mdef+15 (4238) = ワンダーエッグ(4235) + 混沌のバフォメット.Jr(103)
+	w_SE[3103] = [4238,4235,-(ITEM_SET_PET_ID_OFFSET + 103)];	// Atk+200, Matk+200, Def+150, Mdef+15 (4238) = ワンダーエッグ(4235) + 混沌のバフォメット.Jr(103)
 	PetIdToSetIdMap[103] = [3103];
 	ItemIdToSetIdMap[4235] = ItemIdToSetIdMap[4235].concat([3103]);
 	// --- 2025-05-13 ---
@@ -6220,11 +6220,11 @@
 	CardIdToSetIdMap[3696] = [3189,];
 	w_SE[3190] = [-3699,-3698,-1245,];
 	CardIdToSetIdMap[3698] = [3190,];
-	w_SE[3191] = [4236,4235,-10104],	// ワンダーエッグバスケット(4235) + 魔王モロク
+	w_SE[3191] = [4236,4235,-(ITEM_SET_PET_ID_OFFSET + 104)],	// ワンダーエッグバスケット(4235) + 魔王モロク
 	PetIdToSetIdMap[104] = [3191];
-	w_SE[3192] = [4236,4235,-10106],	// ワンダーエッグバスケット(4235) + 絶望の神モロク
+	w_SE[3192] = [4236,4235,-(ITEM_SET_PET_ID_OFFSET + 106)],	// ワンダーエッグバスケット(4235) + 絶望の神モロク
 	PetIdToSetIdMap[106] = [3192];
-	w_SE[3193] = [4238,4235,-10105],	// Atk+200, Matk+200, Def+150, Mdef+15 (4238) = ワンダーエッグ(4235) + 再生の半魔神
+	w_SE[3193] = [4238,4235,-(ITEM_SET_PET_ID_OFFSET + 105)],	// Atk+200, Matk+200, Def+150, Mdef+15 (4238) = ワンダーエッグ(4235) + 再生の半魔神
 	PetIdToSetIdMap[105] = [3193];
 	CardIdToSetIdMap[1245] = CardIdToSetIdMap[1245].concat([3188, 3189, 3190]);
 	CardIdToSetIdMap[1348] = CardIdToSetIdMap[1348].concat([3186, 3187]);
@@ -6309,8 +6309,8 @@
 	ItemIdToSetIdMap[5552] = [3229,];
 	w_SE[3230] = [5556,5555,-1975,];
 	ItemIdToSetIdMap[5555] = [3230,];
-	w_SE[3231] = [4238,4235,-10107],	// Atk+200, Matk+200, Def+150, Mdef+15 (4238) = ワンダーエッグ(4235) + 包装されなかった人形
-	w_SE[3232] = [4236,4235,-10108],	// ワンダーエッグバスケット(4235) + セリーヌ・キミ
+	w_SE[3231] = [4238,4235,-(ITEM_SET_PET_ID_OFFSET + 107)],	// Atk+ 200, Matk+200, Def+150, Mdef+15 (4238) = ワンダーエッグ(4235) + 包装されなかった人形
+	w_SE[3232] = [4236,4235,-(ITEM_SET_PET_ID_OFFSET + 108)],	// ワンダーエッグバスケット(4235) + セリーヌ・キミ
 	PetIdToSetIdMap[107] = [3231];
 	PetIdToSetIdMap[108] = [3232];
 	ItemIdToSetIdMap[4235] = ItemIdToSetIdMap[4235].concat([3231, 3232]);
@@ -6320,7 +6320,7 @@
 	CardIdToSetIdMap[2123] = CardIdToSetIdMap[2123].concat([3204, 3205, 3206, 3207, 3208, 3209, 3210, 3211, 3212, 3213, 3214, 3215, 3216, 3217, 3218, 3219, 3220, 3221]);
 	CardIdToSetIdMap[2311] = CardIdToSetIdMap[2311].concat([3199, 3200, 3201, 3202, 3203]);
 	CardIdToSetIdMap[3631] = CardIdToSetIdMap[3631].concat([3228, 3229]);
-	w_SE[3233] = [4237,4235,-10109];	// Atk+200, Matk+200, 全サイズ物理+10, 全サイズ魔法+10 (4237) = ワンダーエッグ(4235) + ブルームーンロリルリ(109)
+	w_SE[3233] = [4237,4235,-(ITEM_SET_PET_ID_OFFSET + 109)];	// Atk+200, Matk+200, 全サイズ物理+10, 全サイズ魔法+10 (4237) = ワンダーエッグ(4235) + ブルームーンロリルリ(109)
 	PetIdToSetIdMap[109] = [3233];
 	ItemIdToSetIdMap[4235] = ItemIdToSetIdMap[4235].concat([3233]);
 	// --- 2025-11-26 ---
@@ -6620,8 +6620,8 @@
 	CardIdToSetIdMap[4090] = [3392,];
 	w_SE[3393] = [-4093,-4092,-1348,];
 	CardIdToSetIdMap[4092] = [3393,];
-	w_SE[3394] = [4236,4235,-10110]; // ワンダーエッグバスケット(4235) + ストームナイト(110)
-	w_SE[3395] = [4236,4235,-10111]; // ワンダーエッグバスケット(4235) + ボスピタヤ(111)
+	w_SE[3394] = [4236,4235,-(ITEM_SET_PET_ID_OFFSET + 110)]; // ワンダーエッグバスケット(4235) + ストームナイト(110)
+	w_SE[3395] = [4236,4235,-(ITEM_SET_PET_ID_OFFSET + 111)]; // ワンダーエッグバスケット(4235) + ボスピタヤ(111)
 	PetIdToSetIdMap[110] = [3394];
 	PetIdToSetIdMap[111] = [3395];
 	CardIdToSetIdMap[1245] = CardIdToSetIdMap[1245].concat([3368, 3369, 3370, 3374, 3375, 3379, 3381, 3382, 3383, 3384, 3385, 3388, 3391]);
