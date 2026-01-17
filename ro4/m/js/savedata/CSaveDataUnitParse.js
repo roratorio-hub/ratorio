@@ -181,8 +181,8 @@ class CSaveDataUnitParse extends CSaveDataUnitBase {
 					(1 + idxKind),	// propNameEquipItemDefID
 					0,	// propNameOptCode
 					((1n << 20n) - 1n),	// propNameParseCtrlFlag
-					saveDataArrayOld[idxBase + 1], saveDataArrayOld[idxBase],
-					saveDataArrayOld[idxCardCategory + 0], saveDataArrayOld[idxBase + 2],
+					saveDataArrayOld[idxBase + 1], saveDataArrayOld[idxBase],	// propNameItemID, propNameRefinedCount
+					saveDataArrayOld[idxCardCategory + 0], saveDataArrayOld[idxBase + 2],	// propNameCardCategoryID1, propNameCardID1
 					saveDataArrayOld[idxCardCategory + 1], saveDataArrayOld[idxBase + 3],
 					saveDataArrayOld[idxCardCategory + 2], saveDataArrayOld[idxBase + 4],
 					saveDataArrayOld[idxCardCategory + 3], saveDataArrayOld[idxBase + 5],

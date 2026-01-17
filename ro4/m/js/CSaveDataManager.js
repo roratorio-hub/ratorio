@@ -298,17 +298,17 @@ class CSaveDataManager {
 		];
 		// カードマップ
 		const cardMap = {
-			[MIG_EQUIP_REGION_ID_ARMS_RIGHT]: "OBJID_ARMS_RIGHT_CARD",
-			[MIG_EQUIP_REGION_ID_ARMS_LEFT]: "OBJID_ARMS_LEFT_CARD",
-			[MIG_EQUIP_REGION_ID_HEAD_TOP]: "OBJID_HEAD_TOP_CARD",
-			[MIG_EQUIP_REGION_ID_HEAD_MID]: "OBJID_HEAD_MID_CARD",
-			[MIG_EQUIP_REGION_ID_HEAD_UNDER]: "OBJID_HEAD_UNDER_CARD",
-			[MIG_EQUIP_REGION_ID_SHIELD]: "OBJID_SHIELD_CARD",
-			[MIG_EQUIP_REGION_ID_BODY]: "OBJID_BODY_CARD",
-			[MIG_EQUIP_REGION_ID_SHOULDER]: "OBJID_SHOULDER_CARD",
-			[MIG_EQUIP_REGION_ID_FOOT]: "OBJID_SHOES_CARD",
-			[MIG_EQUIP_REGION_ID_ACCESSORY_1]: "OBJID_ACCESSARY_1_CARD",
-			[MIG_EQUIP_REGION_ID_ACCESSORY_2]: "OBJID_ACCESSARY_2_CARD",
+			[MIG_EQUIP_REGION_ID_ARMS_RIGHT]: "OBJID_ARMS_RIGHT",
+			[MIG_EQUIP_REGION_ID_ARMS_LEFT]: "OBJID_ARMS_LEFT",
+			[MIG_EQUIP_REGION_ID_HEAD_TOP]: "OBJID_HEAD_TOP",
+			[MIG_EQUIP_REGION_ID_HEAD_MID]: "OBJID_HEAD_MID",
+			[MIG_EQUIP_REGION_ID_HEAD_UNDER]: "OBJID_HEAD_UNDER",
+			[MIG_EQUIP_REGION_ID_SHIELD]: "OBJID_SHIELD",
+			[MIG_EQUIP_REGION_ID_BODY]: "OBJID_BODY",
+			[MIG_EQUIP_REGION_ID_SHOULDER]: "OBJID_SHOULDER",
+			[MIG_EQUIP_REGION_ID_FOOT]: "OBJID_SHOES",
+			[MIG_EQUIP_REGION_ID_ACCESSORY_1]: "OBJID_ACCESSARY_1",
+			[MIG_EQUIP_REGION_ID_ACCESSORY_2]: "OBJID_ACCESSARY_2",
 		};
 		// 精錬値マップ
 		const refineMap = {
@@ -373,10 +373,17 @@ class CSaveDataManager {
 			saveDataUnit.setProp(CSaveDataConst.propNameRndOptID5, GetEquipRndOptTableKind(eqpRgnId, 4));
 			saveDataUnit.setProp(CSaveDataConst.propNameRndOptValue5, GetEquipRndOptTableValue(eqpRgnId, 4));
 			// カード情報の採取
-			saveDataUnit.setProp(CSaveDataConst.propNameCardID1, HtmlGetObjectValueByIdAsInteger(`${cardMap[eqpRgnId]}_1`, 0));
-			saveDataUnit.setProp(CSaveDataConst.propNameCardID2, HtmlGetObjectValueByIdAsInteger(`${cardMap[eqpRgnId]}_2`, 0));
-			saveDataUnit.setProp(CSaveDataConst.propNameCardID3, HtmlGetObjectValueByIdAsInteger(`${cardMap[eqpRgnId]}_3`, 0));
-			saveDataUnit.setProp(CSaveDataConst.propNameCardID4, HtmlGetObjectValueByIdAsInteger(`${cardMap[eqpRgnId]}_4`, 0));
+			const cardCategoryArray = g_charaData.cardCategoryMap.get(cardMap[eqpRgnId])
+			if (cardCategoryArray) {
+				saveDataUnit.setProp(CSaveDataConst.propNameCardCategoryID1, cardCategoryArray[0]);
+				saveDataUnit.setProp(CSaveDataConst.propNameCardCategoryID2, cardCategoryArray[1]);
+				saveDataUnit.setProp(CSaveDataConst.propNameCardCategoryID3, cardCategoryArray[2]);
+				saveDataUnit.setProp(CSaveDataConst.propNameCardCategoryID4, cardCategoryArray[3]);
+			}
+			saveDataUnit.setProp(CSaveDataConst.propNameCardID1, HtmlGetObjectValueByIdAsInteger(`${cardMap[eqpRgnId]}_CARD_1`, 0));
+			saveDataUnit.setProp(CSaveDataConst.propNameCardID2, HtmlGetObjectValueByIdAsInteger(`${cardMap[eqpRgnId]}_CARD_2`, 0));
+			saveDataUnit.setProp(CSaveDataConst.propNameCardID3, HtmlGetObjectValueByIdAsInteger(`${cardMap[eqpRgnId]}_CARD_3`, 0));
+			saveDataUnit.setProp(CSaveDataConst.propNameCardID4, HtmlGetObjectValueByIdAsInteger(`${cardMap[eqpRgnId]}_CARD_4`, 0));
 			
 			// コンパクション実行
 			saveDataUnit.doCompaction();

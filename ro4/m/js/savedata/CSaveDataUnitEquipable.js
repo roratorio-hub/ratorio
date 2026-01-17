@@ -25,7 +25,7 @@ class CSaveDataUnitEquipable extends CSaveDataUnitBase {
     parse (dataText, bitOffset) {
         let nextOffset = super.parse(dataText, bitOffset);	// version を識別するために一旦 parse する
 
-        // version 3 でカードIDの長さが 12bit から 13bit へ拡張されている
+        // version 3 でカードIDの長さが 12bit から 16bit へ拡張されている
         // version 2 以前のデータを読み込む際はカードIDの長さを 12bit へダウングレードする
         if (this.getProp("version") <= 2n) {
             const candidate = [
@@ -201,13 +201,13 @@ class CSaveDataUnitEquipable extends CSaveDataUnitBase {
         this.registerPropInfo(CSaveDataConst.propNameItemID, 14);
         this.registerPropInfo(CSaveDataConst.propNameRefinedCount, 4);
         this.registerPropInfo(CSaveDataConst.propNameCardCategoryID1, 10);
-        this.registerPropInfo(CSaveDataConst.propNameCardID1, 13);
+        this.registerPropInfo(CSaveDataConst.propNameCardID1, 16);
         this.registerPropInfo(CSaveDataConst.propNameCardCategoryID2, 10);
-        this.registerPropInfo(CSaveDataConst.propNameCardID2, 13);
+        this.registerPropInfo(CSaveDataConst.propNameCardID2, 16);
         this.registerPropInfo(CSaveDataConst.propNameCardCategoryID3, 10);
-        this.registerPropInfo(CSaveDataConst.propNameCardID3, 13);
+        this.registerPropInfo(CSaveDataConst.propNameCardID3, 16);
         this.registerPropInfo(CSaveDataConst.propNameCardCategoryID4, 10);
-        this.registerPropInfo(CSaveDataConst.propNameCardID4, 13);
+        this.registerPropInfo(CSaveDataConst.propNameCardID4, 16);
         this.registerPropInfo(CSaveDataConst.propNameRndOptID1, 9);
         this.registerPropInfo(CSaveDataConst.propNameRndOptValue1, 9);
         this.registerPropInfo(CSaveDataConst.propNameRndOptID2, 9);
