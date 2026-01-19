@@ -61,7 +61,23 @@ function SetUpSelects() {
  */
 function getItemList(itemlist, seachword) {
 	if (seachword == "") return itemlist;
-	return itemlist.filter((item) => String(item[ITEM_DATA_INDEX_NAME]).includes(seachword));
+	var spDataArray;
+	var textInfoArray;
+	var spText;
+	let retList = itemlist.filter((item) => String(item[ITEM_DATA_INDEX_NAME]).includes(seachword));
+	for ( idxData = 0; idxData < itemlist.length; idxData++ ) {
+		spDataArray = itemlist[idxData].slice(ITEM_DATA_INDEX_SPBEGIN);
+		for ( idxSp = 0; (idxSp + 1) < spDataArray.length; idxSp += 2) {
+			textInfoArray = GetItemExplainText(spDataArray[idxSp], spDataArray[idxSp + 1]);
+			for ( idxText = 1; idxText < textInfoArray.length; idxText++) {
+				spText = textInfoArray[0][1] + textInfoArray[idxText][1];
+				if ( spText.search(seachword) >= 1) {
+					retList.push(itemlist[idxData]);
+				}
+			}
+		}
+	}
+	return retList;
 }
 
 /**
