@@ -76,6 +76,34 @@ function getItemList(itemlist, seachword) {
 				}
 			}
 		}
+		itemData = itemlist[idxData];
+		let enchListDataManager = g_constDataManager.GetDataManger(CONST_DATA_KIND_ENCHANT_LIST);
+		enchListIdArray = enchListDataManager.GetEnchListIdArrayByItemId(itemData[ITEM_DATA_INDEX_ID]);
+		enchInfoArrayAllSlotsResult = [];
+		for (idxSlot = 0; idxSlot < 4; idxSlot++) {
+			enchInfoArrayAllSlotsResult[idxSlot] = [];
+		}
+		for ( idxEnchList = 0; idxEnchList < enchListIdArray.length; idxEnchList++) {
+			enchListId = enchListIdArray[idxEnchList];
+			enchInfoArrayAllSlots = RebuildCardSelectSubCollectEnchListData(enchListId, enchInfoArrayAllSlotsResult);
+			enchInfoText = "";
+			for (idxSlot = 0; idxSlot < enchInfoArrayAllSlots.length; idxSlot++) {
+				enchInfoArrayAllSlotsResult[idxSlot] = enchInfoArrayAllSlotsResult[idxSlot].concat(enchInfoArrayAllSlots[idxSlot]);
+			}
+			for (idxSlot = enchInfoArrayAllSlotsResult.length - 1; idxSlot >= 0; idxSlot--) {
+				enchInfoArray = enchInfoArrayAllSlotsResult[idxSlot];
+				enchListIdLast = -1;
+				for (idxInfo = 0; idxInfo < enchInfoArray.length; idxInfo++) {
+					enchInfo = enchInfoArray[idxInfo];
+					enchId = enchInfo[1];
+					enchData = CardObjNew[enchId];
+					enchInfoText += enchData[CARD_DATA_INDEX_NAME];
+				}
+			}
+			if (enchInfoText.search(seachword) >= 1) {
+				retList.push(itemlist[idxData]);
+			}
+		}
 	}
 	return retList;
 }
