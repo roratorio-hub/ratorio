@@ -61,7 +61,51 @@ function SetUpSelects() {
  */
 function getItemList(itemlist, seachword) {
 	if (seachword == "") return itemlist;
-	return itemlist.filter((item) => String(item[ITEM_DATA_INDEX_NAME]).includes(seachword));
+	var spDataArray;
+	var textInfoArray;
+	var spText;
+	let retList = itemlist.filter((item) => String(item[ITEM_DATA_INDEX_NAME]).includes(seachword));
+	for ( idxData = 0; idxData < itemlist.length; idxData++ ) {
+		spDataArray = itemlist[idxData].slice(ITEM_DATA_INDEX_SPBEGIN);
+		for ( idxSp = 0; (idxSp + 1) < spDataArray.length; idxSp += 2) {
+			textInfoArray = GetItemExplainText(spDataArray[idxSp], spDataArray[idxSp + 1]);
+			for ( idxText = 1; idxText < textInfoArray.length; idxText++) {
+				spText = textInfoArray[0][1] + textInfoArray[idxText][1];
+				if ( spText.search(seachword) >= 1) {
+					retList.push(itemlist[idxData]);
+				}
+			}
+		}
+		itemData = itemlist[idxData];
+		let enchListDataManager = g_constDataManager.GetDataManger(CONST_DATA_KIND_ENCHANT_LIST);
+		enchListIdArray = enchListDataManager.GetEnchListIdArrayByItemId(itemData[ITEM_DATA_INDEX_ID]);
+		enchInfoArrayAllSlotsResult = [];
+		for (idxSlot = 0; idxSlot < 4; idxSlot++) {
+			enchInfoArrayAllSlotsResult[idxSlot] = [];
+		}
+		for ( idxEnchList = 0; idxEnchList < enchListIdArray.length; idxEnchList++) {
+			enchListId = enchListIdArray[idxEnchList];
+			enchInfoArrayAllSlots = RebuildCardSelectSubCollectEnchListData(enchListId, enchInfoArrayAllSlotsResult);
+			enchInfoText = "";
+			for (idxSlot = 0; idxSlot < enchInfoArrayAllSlots.length; idxSlot++) {
+				enchInfoArrayAllSlotsResult[idxSlot] = enchInfoArrayAllSlotsResult[idxSlot].concat(enchInfoArrayAllSlots[idxSlot]);
+			}
+			for (idxSlot = enchInfoArrayAllSlotsResult.length - 1; idxSlot >= 0; idxSlot--) {
+				enchInfoArray = enchInfoArrayAllSlotsResult[idxSlot];
+				enchListIdLast = -1;
+				for (idxInfo = 0; idxInfo < enchInfoArray.length; idxInfo++) {
+					enchInfo = enchInfoArray[idxInfo];
+					enchId = enchInfo[1];
+					enchData = CardObjNew[enchId];
+					enchInfoText += enchData[CARD_DATA_INDEX_NAME];
+				}
+			}
+			if (enchInfoText.search(seachword) >= 1) {
+				retList.push(itemlist[idxData]);
+			}
+		}
+	}
+	return retList;
 }
 
 /**
