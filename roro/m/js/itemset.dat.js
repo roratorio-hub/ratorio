@@ -6658,6 +6658,18 @@
 	CardIdToSetIdMap[4121] = [3409,];
 	w_SE[3410] = [5648,5647,-4094,];
 	ItemIdToSetIdMap[5647] = [3410,];
+	w_SE[3411] = [5655,5397,-2886,]; // 生命の循環：春 + 魔獣の爪牙
+	w_SE[3412] = [5655,5398,-2890,]; // 生命の循環：夏 + 蒼穹の覇者
+	w_SE[3413] = [5655,5399,-2889,]; // 生命の循環：秋 + 根源への到達
+	w_SE[3414] = [5655,5400,-2891,]; // 生命の循環：冬 + 天与の才
+	ItemIdToSetIdMap[5397] = ItemIdToSetIdMap[5397].concat([3411]);
+	ItemIdToSetIdMap[5398] = ItemIdToSetIdMap[5398].concat([3412]);
+	ItemIdToSetIdMap[5399] = ItemIdToSetIdMap[5399].concat([3413]);
+	ItemIdToSetIdMap[5400] = ItemIdToSetIdMap[5400].concat([3414]);
+	CardIdToSetIdMap[1245] = CardIdToSetIdMap[1245].concat([3403, 3405, 3408, 3409]);
+	CardIdToSetIdMap[1348] = CardIdToSetIdMap[1348].concat([3399, 3400, 3401, 3402, 3404, 3406, 3407]);
+	CardIdToSetIdMap[2311] = CardIdToSetIdMap[2311].concat([3396, 3397, 3398]);
+	CardIdToSetIdMap[4094] = [3410];
 
 	// itemset はセーブデータに書き出されないので
 	// 現実的な範囲において itemsetID の上限値を気にする必要はありません

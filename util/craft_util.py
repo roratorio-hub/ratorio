@@ -58,6 +58,7 @@ AT_BASE_LV_CODE = {
      99: 3,
     175: 4,
     250: 5,
+    260: 6,
 }
 AT_EQUIP_LOCATION_CODE = {
     '鎧': 1,

@@ -15188,10 +15188,15 @@ function getFixedCastTimeReductionRate() {
 
     // ペット効果用
     const petId = n_A_PassSkill8[0];
-    // 「暴食のオルレアンの制服」の精錬値9以上の効果
+    // 「暴食のオルレアンの制服」の
     if (EquipNumSearch(ITEM_ID_GLUTTONOUS_ORLEANS_UNIFORM)) {
+		// 精錬値9以上の効果
         if (n_A_BODY_DEF_PLUS >= 9) {
             chkary.push(70);
+        }
+		// 超越段階が2以上の時、精錬値が10の時の効果
+        if (n_A_BODY_DEF_Transcendence >= 2 && n_A_BODY_DEF_PLUS >= 10) {
+            chkary.push(80);
         }
     }
     if (EquipNumSearch(ITEM_ID_MAGIA_VITA)) {
@@ -29850,6 +29855,11 @@ function CheckSpDefBaseLvOver(spDefRemain) {
 		break;
 	case 5:
 		if (n_A_BaseLV < 250) {
+			return -1;
+		}
+		break;
+	case 6:
+		if (n_A_BaseLV < 260) {
 			return -1;
 		}
 		break;
