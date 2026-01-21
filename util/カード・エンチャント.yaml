@@ -1,34 +1,246 @@
 card_list:
-  - name: ストームナイト
-    yomi: ストームナイト
-    type: ペット
+  - name: 迷宮のダークロード
+    yomi: メイキュウノダークロード
+    type: アクセサリー
     capabilities:
-      - name: 風属性魔法ダメージ増加
-        value: 10
-        at_lv: 100
-      - name: 聖属性魔法ダメージ増加
-        value: 10
-        at_lv: 100
-      - name: スキル使用可能
-        skill: コンセントレイション
-        skill_lv: 5
+      - name: 全基本ステータス加算
+        value: 3
 
-  - name: ボスピタヤ
-    yomi: ボスピタヤ
-    type: ペット
+  - name: 亜空の月夜花
+    yomi: アクウノウオルヤフア
+    type: 靴
     capabilities:
-      - name: 聖属性への物理ダメージ増加
+      - name: MAXHP増加
         value: 10
-        at_lv: 100
-      - name: 念属性への物理ダメージ増加
+      - name: MAXSP増加
         value: 10
-        at_lv: 100
-      - name: 聖属性への魔法ダメージ増加
+      - name: スキルダメージ増加
+        skill: ファイアーボルト
+        value: 100
+      - name: スキルダメージ増加
+        skill: コールドボルト
+        value: 100
+      - name: スキルダメージ増加
+        skill: ライトニングボルト
+        value: 100
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 異境の統轄者
+        capabilities:
+          - name: 火属性魔法ダメージ増加
+            value: 30
+          - name: スキル固定詠唱割合減少
+            skill: ファイアーボルト
+            value: -100
+          - name: スキル固定詠唱割合減少
+            skill: コールドボルト
+            value: -100
+          - name: スキル固定詠唱割合減少
+            skill: ライトニングボルト
+            value: -100
+
+  - name: 亜空のストームナイト
+    yomi: アクウノストームナイト
+    type: 肩にかける物
+    desc: "物理攻撃命中時、一定確率で10秒間、風属性物理攻撃力 + 30%<br>精錬値が1上がる度に追加で発動率が上昇"
+    capabilities:
+      - name: 物理ダメージ増加
         value: 10
-        at_lv: 100
-      - name: 念属性への魔法ダメージ増加
+      - name: 風属性耐性
+        value: 50
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 異境の統轄者
+        capabilities:
+          - name: 風属性耐性
+            value: 50
+
+  - name: 亜空のハティー
+    yomi: アクウノハティー
+    desc: "物理攻撃命中時、一定確率で10秒間、水属性物理攻撃力 + 30%<br>精錬値が1上がる度に追加で発動率が上昇"
+    type: 肩にかける物
+    capabilities:
+      - name: 物理ダメージ増加
         value: 10
-        at_lv: 100
-      - name: スキル使用可能
-        skill: ファイアーウォール
-        skill_lv: 10
+      - name: 水属性耐性
+        value: 50
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 異境の統轄者
+        capabilities:
+          - name: 冷凍耐性
+            value: 100
+          - name: 凍結耐性
+            value: 100
+          - name: 氷結耐性
+            value: 100
+          - name: 水属性耐性
+            value: 50
+
+  - name: 潜在解放(アビスチェイサーXIX)
+    yomi: センザイカイホウアビスチェイサーナインティーン
+    type: エンチャント
+    desc: "[豪傑]と共に装備時、[フレンジショット][ヒットアンドスライディング][チェイシングショット]使用時、一定確率でAP回復量 + 10"
+    capabilities:
+      - name: 破損しない
+        value: 1
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: 破損しない
+            value: 1
+
+  - name: 潜在解放(インペリアルガードXVII)
+    yomi: センザイカイホウインペリアルガードセブンティーン
+    type: エンチャント
+    desc: "[豪傑]と共に装備時、[オーバースラッシュ][シールドシューティング][レイディアントスピア][インペリアルクロス]使用時、一定確率でAP回復量 + 10"
+    capabilities:
+      - name: 破損しない
+        value: 1
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: 破損しない
+            value: 1
+
+  - name: 潜在解放(ウィンドホークXIX)
+    yomi: センザイカイホウウィンドホークナインティーン
+    type: エンチャント
+    desc: "[豪傑]と共に装備時、[クレッシブボルト]使用時、一定確率でAP回復量 + 10"
+    capabilities:
+      - name: 破損しない
+        value: 1
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: 破損しない
+            value: 1
+
+  - name: 潜在解放(シャドウクロスXVII)
+    yomi: センザイカイホウシャドウクロスセブンティーン
+    type: エンチャント
+    desc: "[豪傑]と共に装備時、[クロススラッシュ]使用時、一定確率でAP回復量 + 10"
+    capabilities:
+      - name: 破損しない
+        value: 1
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: 破損しない
+            value: 1
+
+  - name: 潜在解放(ソウルアセティックXVI)
+    yomi: センザイカイホウソウルアセティックシックスティーン
+    type: エンチャント
+    desc: "[真理の解放]と共に装備時、[死霊浄化]使用時、一定確率でAP回復量 + 10"
+    capabilities:
+      - name: 破損しない
+        value: 1
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 真理の解放
+        capabilities:
+          - name: 破損しない
+            value: 1
+
+  - name: 潜在解放(ドラゴンナイトXIX)
+    yomi: センザイカイホウドドラゴンナイトナインティーン
+    type: エンチャント
+    desc: "[豪傑]と共に装備時、[ドラゴニックピアース]使用時、一定確率でAP回復量 + 10"
+    capabilities:
+      - name: 破損しない
+        value: 1
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: 破損しない
+            value: 1
+
+  - name: 潜在解放(トルバドゥール&トルヴェールXIV)
+    yomi: センザイカイホウトルバドゥールアンドトルヴェールフォーティーン
+    type: エンチャント
+    desc: "[真理の解放]と共に装備時、[ミスティックシンフォニー]のAP消費量 + 50、[ミスティックシンフォニー]使用時、60秒間、[S.Matk増加]状態になる"
+    capabilities:
+      - name: 破損しない
+        value: 1
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 真理の解放
+        capabilities:
+          - name: 破損しない
+            value: 1
+
+  - name: 潜在解放(ナイトウォッチXVI)
+    yomi: センザイカイホウナイトウォッチシックスティーン
+    type: エンチャント
+    desc: "[豪傑]と共に装備時、[ヒドゥンカード]のAP消費量 + 50、[ヒドゥンカード]使用時、60秒間、[P.Atk増加]状態になる"
+    capabilities:
+      - name: 破損しない
+        value: 1
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: 破損しない
+            value: 1
+
+  - name: 潜在解放(バイオロXVIII)
+    yomi: センザイカイホウバイオロエイティーン
+    type: エンチャント
+    desc: "[豪傑]と共に装備時、[メイヘミックソーンズ]使用時、一定確率でAP回復量 + 10"
+    capabilities:
+      - name: 破損しない
+        value: 1
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: 破損しない
+            value: 1
+
+  - name: 潜在解放(蜃気楼&不知火XIX)
+    yomi: センザイカイホウシンキロウアンドシラヌイナインティーン
+    type: エンチャント
+    desc: "[真理の解放]と共に装備時、[暗転砲]使用時、一定確率でAP回復量 + 10"
+    capabilities:
+      - name: 破損しない
+        value: 1
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 真理の解放
+        capabilities:
+          - name: 破損しない
+            value: 1
+
+  - name: 潜在解放(スピリットハンドラーXXII)
+    yomi: センザイカイホウスピリットハンドラートゥエンティツー
+    type: エンチャント
+    desc: "[真理の解放]と共に装備時、[ディアーキャノン][ディアーブリーズ][ディアースピリットパワー]使用時、一定確率でAP回復量 + 10"
+    capabilities:
+      - name: 破損しない
+        value: 1
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 真理の解放
+        capabilities:
+          - name: 破損しない
+            value: 1

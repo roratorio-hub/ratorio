@@ -1,321 +1,2426 @@
 item_list:
-  - name: 青狐耳鈴リボン
-    yomi: 青狐耳鈴リボン
-    type: 上段
-    slot: 1
-    weapon_lv: 0
-    atk_or_def: 10
-    weight: 50
-    required_lv: 200
-    required_job: 4次職 拡張4次職
+  - name: スプンタアールマティ
     capabilities:
-      - name: SPL加算
-        value: 3
-      - name: プレイヤー耐性
-        value: 13
-      - name: 一般耐性
-        value: 20
-      - name: ボス耐性
-        value: 20
-      - name: 魔法ダメージ増加
-        value: 40
-      - name: スキルダメージ増加
-        value: 1
-        skill: コンフラグレーション
-        per_lv: 10
-      - name: スキルダメージ増加
-        value: 1
-        skill: ダイヤモンドストーム
-        per_lv: 10
-      - name: スキルダメージ増加
-        value: 1
-        skill: ライトニングランド
-        per_lv: 10
-      - name: スキルダメージ増加
-        value: 1
-        skill: テラドライブ
-        per_lv: 10
-      - name: スキルダメージ増加
-        value: 1
-        skill: ベナムスワンプ
-        per_lv: 10
-      - name: スキルダメージ増加
-        value: 1
-        skill: エレメンタルバスター
-        per_lv: 10
-      - name: スキルダメージ増加
-        value: 1
-        skill: サイキックストリーム
-        per_lv: 10
-      - name: SPL加算
-        value: 1
-        per_refine: 1
-      - name: スキルディレイ減少
-        value: 20
-        at_refine: 10
-      - name: MDEF無視
-        value: 50
-        at_refine: 10
-    enchant: #
-      - name: スペシャルエンチャント(オーブ)
-        slot_list: #
-          - slot: 4
-            refine: 0
-            enchant_list: #
-              - name: 潜在解放(エレメンタルマスターXVI)
-          - slot: 3
-            refine: 8
-            enchant_list: #
-              - name: Str+10
-              - name: Agi+10
-              - name: Vit+10
-              - name: Int+10
-              - name: Dex+10
-              - name: Luk+10
-              - name: スキルディレイ-15%
-              - name: 暴走した魔力
-          - slot: 2
-            refine: 9
-            enchant_list: #
-              - name: Str+10
-              - name: Agi+10
-              - name: Vit+10
-              - name: Int+10
-              - name: Dex+10
-              - name: Luk+10
-              - name: スキルディレイ-15%
-              - name: 厄災の魔将
-    # リチャードグループ３
-
-  - name: タートルフォックステイル
-    yomi: タートルフォックステイル
-    desc: "[にゃん友 -亀設-]Lv1習得時、追加で<br>MaxHP + 15%<br>ボスモンスターから受けるダメージ - 10%<br>[エナジーコート]Lv1使用可能"
-    type: 片手杖
-    slot: 1
-    weapon_lv: 4
-    atk_or_def: 150
-    weight: 40
-    required_lv: 200
-    required_job: スピリットハンドラー
-    capabilities:
-      - name: 武器のMATK
-        value: 180
-      - name: 破損しない
-        value: 1
-      - name: プレイヤー耐性
-        value: 10
-      - name: ヒール系スキル使用時HP回復量増加
-        value: 6
-        per_refine: 1
-      - name: DEF加算
-        value: 30
+      - name: MDEF加算
+        value: 2
         per_refine: 1
         at_transcendence: 1
+
+  - name: フシャスラワルヤ
+    capabilities:
       - name: MDEF加算
         value: 3
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全属性への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: カースドプリンスガード
+    capabilities:
+      - name: 全基本ステータス加算
+        value: 2
+        per_refine: 1
+        at_transcendence: 1
+
+  - name: シンボルオブエデン
+    capabilities:
+      - name: 魔法ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+
+  - name: スターリースカイ・ツインプライム
+    capabilities:
+      - name: ASPD増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全サイズへの物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全サイズへの魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: スクリーミングゴーストパーティ
+    capabilities:
+      - name: スキルディレイ減少
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 50
+        at_refine: 10
+        at_transcendence: 1
+      - name: MAXSP増加
+        value: 50
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: ステラ・グラーティア
+    capabilities:
+      - name: 聖属性耐性
+        value: 2
+        per_refine: 1
+        at_transcendence: 1
+      - name: 念属性耐性
+        value: 2
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全サイズへの物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全サイズへの魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 聖属性耐性
+        value: 25
+        at_refine: 10
+        at_transcendence: 1
+      - name: 念属性耐性
+        value: 25
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: デイブレイク・スターゲイザー
+    capabilities:
+      - name: DEF無視
+        value: 10
+        per_refine: 1
+        at_transcendence: 1
+      - name: MDEF無視
+        value: 10
+        per_refine: 1
+        at_transcendence: 1
+      - name: スキルディレイ減少
+        value: 30
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: 心外無刀
+    capabilities:
+      - name: クリティカルダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: CRI加算
+        value: 50
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: 剛勇無双の籠手
+    capabilities:
+      - name: 武器攻撃力増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: サイズペナルティ無し
+        value: 1
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: ガーディアンオブアビス
+    capabilities:
+      - name: 毒属性耐性
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全サイズへの物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全サイズへの魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 毒属性耐性
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: ウォフマナフ
+    capabilities:
+      - name: MDEF加算
+        value: 3
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全サイズへの物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全サイズへの魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: グラットンサーベラス
+    capabilities:
+      - name: 闇属性耐性
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全サイズへの物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全サイズへの魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 闇属性耐性
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: マギアヴィタ
+    capabilities:
+      - name: MAXHP増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全属性への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: セレスティアルダイアデム
+    capabilities:
+      - name: スキルディレイ減少
+        value: 2
+        per_refine: 1
+        at_transcendence: 2
+      - name: 全属性への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+      - name: 全属性への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+
+  - name: セレスティアルアーマー
+    capabilities:
+      - name: MAXHP増加
+        value: 2
+        per_refine: 1
+        at_transcendence: 2
+      - name: 全属性への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+      - name: 全属性への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+
+  - name: セレスティアルスーツ
+    capabilities:
+      - name: MAXHP増加
+        value: 2
+        per_refine: 1
+        at_transcendence: 2
+      - name: 全属性への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+      - name: 全属性への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+
+  - name: セレスティアルマント
+    capabilities:
+      - name: 無属性耐性
+        value: 2
+        per_refine: 1
+        at_transcendence: 2
+      - name: 全サイズへの物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+      - name: 全サイズへの魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+
+  - name: セレスティアルブーツ
+    capabilities:
+      - name: MAXHP増加
+        value: 2
+        per_refine: 1
+        at_transcendence: 2
+      - name: 全サイズへの物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+      - name: 全サイズへの魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+
+  - name: セレスティアルツーハンドアックス
+    capabilities:
+      - name: MAXHP増加
+        value: 3
+        per_refine: 1
+        at_transcendence: 2
+      - name: 全種族への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+      - name: 全種族への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+
+  - name: セレスティアルツーハンドソード
+    capabilities:
+      - name: MAXHP増加
+        value: 3
+        per_refine: 1
+        at_transcendence: 2
+      - name: 全種族への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+      - name: 全種族への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+
+  - name: セレスティアルカタール
+    capabilities:
+      - name: MAXHP増加
+        value: 3
+        per_refine: 1
+        at_transcendence: 2
+      - name: 全種族への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+      - name: 全種族への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+
+  - name: セレスティアルガトリングガン
+    capabilities:
+      - name: MAXHP増加
+        value: 3
+        per_refine: 1
+        at_transcendence: 2
+      - name: 全種族への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+      - name: 全種族への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+
+  - name: セレスティアルスタッフ
+    capabilities:
+      - name: MAXHP増加
+        value: 3
+        per_refine: 1
+        at_transcendence: 2
+      - name: 全種族への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+      - name: 全種族への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+
+  - name: セレスティアルランス
+    capabilities:
+      - name: MAXHP増加
+        value: 3
+        per_refine: 1
+        at_transcendence: 2
+      - name: 全種族への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+      - name: 全種族への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+
+  - name: セレスティアルボウ
+    capabilities:
+      - name: MAXHP増加
+        value: 3
+        per_refine: 1
+        at_transcendence: 2
+      - name: 全種族への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+      - name: 全種族への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+
+  - name: セレスティアルライフル
+    capabilities:
+      - name: MAXHP増加
+        value: 3
+        per_refine: 1
+        at_transcendence: 2
+      - name: 全種族への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+      - name: 全種族への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+
+  - name: セレスティアルウィップ
+    capabilities:
+      - name: MAXHP増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 2
+      - name: 全種族への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+      - name: 全種族への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+
+  - name: セレスティアルスピア
+    capabilities:
+      - name: MAXHP増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 2
+      - name: 全種族への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+      - name: 全種族への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+
+  - name: セレスティアルソード
+    capabilities:
+      - name: MAXHP増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 2
+      - name: 全種族への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+      - name: 全種族への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+
+  - name: セレスティアルナイフ
+    capabilities:
+      - name: MAXHP増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 2
+      - name: 全種族への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+      - name: 全種族への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+
+  - name: セレスティアルバイオリン
+    capabilities:
+      - name: MAXHP増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 2
+      - name: 全種族への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+      - name: 全種族への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+
+  - name: セレスティアルナックル
+    capabilities:
+      - name: MAXHP増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 2
+      - name: 全種族への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+      - name: 全種族への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+
+  - name: セレスティアルブック
+    capabilities:
+      - name: MAXHP増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 2
+      - name: 全種族への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+      - name: 全種族への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+
+  - name: セレスティアルフォックステイル
+    capabilities:
+      - name: MAXHP増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 2
+      - name: 全種族への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+      - name: 全種族への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+
+  - name: セレスティアルメイス
+    capabilities:
+      - name: MAXHP増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 2
+      - name: 全種族への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+      - name: 全種族への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+
+  - name: セレスティアルワンド
+    capabilities:
+      - name: MAXHP増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 2
+      - name: 全種族への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+      - name: 全種族への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+
+  - name: 暴食の野牛の角
+    capabilities:
+      - name: 全属性への物理ダメージ増加
+        value: 25
+        at_lv: 260
+      - name: 全属性への魔法ダメージ増加
+        value: 25
+        at_lv: 260
+
+  - name: 暴食のエキスパートリング
+    capabilities:
+      - name: 全属性への物理ダメージ増加
+        value: 25
+        at_lv: 260
+      - name: 全属性への魔法ダメージ増加
+        value: 25
+        at_lv: 260
+
+  - name: 暴食のスピリチュアルリング
+    capabilities:
+      - name: 全属性への魔法ダメージ増加
+        value: 25
+        at_lv: 260
+
+  - name: 暴食のバリアントシューズ
+    capabilities:
+      - name: 変動詠唱減少
+        value: 10
+        per_refine: 1
+        at_transcendence: 2
+      - name: 全属性への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+      - name: 全属性への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+      - name: 闇属性耐性
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+
+  - name: 暴食のウールスカーフ
+    capabilities:
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 2
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 2
+      - name: 水属性耐性
+        value: 2
+        per_refine: 1
+        at_transcendence: 2
+      - name: 毒属性耐性
+        value: 2
+        per_refine: 1
+        at_transcendence: 2
+      - name: 全サイズへの物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+      - name: 全サイズへの魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+      - name: 水属性耐性
+        value: 25
+        at_refine: 10
+        at_transcendence: 2
+      - name: 毒属性耐性
+        value: 25
+        at_refine: 10
+        at_transcendence: 2
+
+  - name: 暴食のタイダルシューズ
+    capabilities:
+      - name: MAXHP増加
+        value: 2
+        per_refine: 1
+        at_transcendence: 2
+      - name: 全属性への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+      - name: 全属性への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+      - name: 毒属性耐性
+        value: 15
+        at_refine: 10
+        at_transcendence: 2
+
+  - name: 暴食のオルレアンの制服
+    capabilities:
+      - name: 破損しない
+        value: 1
+        at_transcendence: 2
+      - name: ATK加算
+        value: 30
+        per_refine: 1
+        at_transcendence: 2
+      - name: MATK加算
+        value: 30
+        per_refine: 1
+        at_transcendence: 2
+      - name: MAXHP増加
+        value: 50
+        at_refine: 10
+        at_transcendence: 2
+      - name: MAXSP増加
+        value: 50
+        at_refine: 10
+        at_transcendence: 2
+
+  - name: アルタイルハット
+    capabilities:
+      - name: 全基本ステータス加算
+        value: 10
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 10
+        at_transcendence: 1
+      - name: MAXSP増加
+        value: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: ホークブーメラン
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: ホークラッシュ
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: ワイルドウォーク
+        per_lv: 10
+        at_transcendence: 1
+      - name: CON加算
+        value: 1
         per_refine: 1
         at_transcendence: 1
       - name: MAXHP増加
         value: 15
         at_refine: 10
         at_transcendence: 1
-      - name: 聖属性耐性
-        value: 10
+      - name: 全属性への物理ダメージ増加
+        value: 15
         at_refine: 10
         at_transcendence: 1
-    enchant: #
-      - name: スペシャルエンチャント(オーブ)
-        slot_list: #
-          - slot: 4
-            refine: 8
-            enchant_list: #
-              - name: Str+7
-              - name: Agi+7
-              - name: Vit+7
-              - name: Int+7
-              - name: Dex+7
-              - name: Luk+7
-              - name: SpecialStr
-              - name: SpecialAgi
-              - name: SpecialVit
-              - name: SpecialInt
-              - name: SpecialDex
-              - name: SpecialLuk
-          - slot: 3
-            refine: 9
-            enchant_list: #
-              - name: Str+7
-              - name: Agi+7
-              - name: Vit+7
-              - name: Int+7
-              - name: Dex+7
-              - name: Luk+7
-              - name: SpecialStr
-              - name: SpecialAgi
-              - name: SpecialVit
-              - name: SpecialInt
-              - name: SpecialDex
-              - name: SpecialLuk
-              - name: 潜在解放(スピリットハンドラーXVIII)
-          - slot: 2
-            refine: 10
-            enchant_list: #
-              - name: Str+7
-              - name: Agi+7
-              - name: Vit+7
-              - name: Int+7
-              - name: Dex+7
-              - name: Luk+7
-              - name: SpecialStr
-              - name: SpecialAgi
-              - name: SpecialVit
-              - name: SpecialInt
-              - name: SpecialDex
-              - name: SpecialLuk
-              - name: ExtraStr
-              - name: ExtraAgi
-              - name: ExtraVit
-              - name: ExtraInt
-              - name: ExtraDex
-              - name: ExtraLuk
-              - name: 暴走した魔力
-              - name: 真理の解放
-      - name: スペシャルエンチャント(リチャード)
-        slot_list: #
-          - slot: 4
-            refine: 9
-            enchant_list: #
-              - name: Str+7
-              - name: Agi+7
-              - name: Vit+7
-              - name: Int+7
-              - name: Dex+7
-              - name: Luk+7
-              - name: SpecialStr
-              - name: SpecialAgi
-              - name: SpecialVit
-              - name: SpecialInt
-              - name: SpecialDex
-              - name: SpecialLuk
-              - name: 潜在解放(スピリットハンドラーXIX)
+      - name: 全属性への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
 
-
-  - name: ドラコ・エクエス
-    yomi: ドラコ・エクエス
-    type: 下段
-    slot: 0
-    weapon_lv: 0
-    atk_or_def: 0
-    weight: 10
-    required_lv: 200
-    required_job: ドラゴンナイト
+  - name: ウォルフライエ
     capabilities:
-      - name: プレイヤー耐性
-        value: 3
-      - name: 全サイズへの物理ダメージ増加
-        value: 1
-        per_lv: 10
-      - name: 全サイズへの魔法ダメージ増加
-        value: 1
-        per_lv: 10
-    enchant: #
-      - name: スペシャルエンチャント(ミオン)
-        slot_list: #
-          - slot: 4
-            refine: 0
-            enchant_list: #
-              - name: 潜在解放(ドラゴンナイトXVII)
-      # ミオン職下段
-
-  - name: 火の聖霊石
-    yomi: 火の聖霊石
-    type: アクセサリー
-    slot: 1
-    weapon_lv: 0
-    atk_or_def: 0
-    weight: 10
-    required_lv: 200
-    required_job: 4次職 拡張4次職
-    capabilities:
-      - name: POW加算
-        value: 3
-      - name: 物理ダメージ増加
-        value: 40
-      - name: プレイヤー耐性
-        value: 3
-      - name: スキル固定詠唱割合減少
-        value: 100
-        skill: 獅子吼
+      - name: 全基本ステータス加算
+        value: 10
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 10
+        at_transcendence: 1
+      - name: MAXSP増加
+        value: 10
+        at_transcendence: 1
       - name: スキルダメージ増加
         value: 1
-        skill: 獅子吼
-        per_lv: 3
+        skill: オーバースラッシュ
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: グランドジャッジメント
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: シールドシューティング
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: レイディアントスピア
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: インペリアルクロス
+        per_lv: 10
+        at_transcendence: 1
+      - name: POW加算
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: クロックワイズ
+    capabilities:
+      - name: 全基本ステータス加算
+        value: 10
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 10
+        at_transcendence: 1
+      - name: MAXSP増加
+        value: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: フローラルフレアロード
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: クリムゾンアロー
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: レインオブクリスタル
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: フローズンスラッシュ
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: トルネードストーム
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: ストームキャノン
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: ストラタムトレマー
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: ロックダウン
+        per_lv: 10
+        at_transcendence: 1
+      - name: SPL加算
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: シックピオニー
+    capabilities:
+      - name: 全基本ステータス加算
+        value: 10
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 10
+        at_transcendence: 1
+      - name: MAXSP増加
+        value: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: ダンシングナイフ
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: シャドウスタブ
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: エターナルスラッシュ
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: フェイタルシャドウクロー
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: クロススラッシュ
+        per_lv: 10
+        at_transcendence: 1
+      - name: POW加算
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: ストライプリボンハット
+    capabilities:
+      - name: 全基本ステータス加算
+        value: 10
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 10
+        at_transcendence: 1
+      - name: MAXSP増加
+        value: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: アルビトリウム
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: ニューマティックプロセラ
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: フレーメン
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: ディヴィヌスフロス
+        per_lv: 10
+        at_transcendence: 1
+      - name: SPL加算
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: ツートンキャップ
+    capabilities:
+      - name: 全基本ステータス加算
+        value: 10
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 10
+        at_transcendence: 1
+      - name: MAXSP増加
+        value: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: アシディファイドゾーン(火)
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: アシディファイドゾーン(水)
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: アシディファイドゾーン(風)
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: アシディファイドゾーン(地)
+        per_lv: 10
+        at_transcendence: 1
+      - name: POW加算
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: ドラゴンサークレット
+    capabilities:
+      - name: 全基本ステータス加算
+        value: 10
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 10
+        at_transcendence: 1
+      - name: MAXSP増加
+        value: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: ハックアンドスラッシャー
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: マッドネスクラッシャー
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: ドラゴニックオーラ
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: ドラゴニックピアース
+        per_lv: 10
+        at_transcendence: 1
+      - name: POW加算
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: ヤマネコニット帽(白)
+    capabilities:
+      - name: 全基本ステータス加算
+        value: 10
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 10
+        at_transcendence: 1
+      - name: MAXSP増加
+        value: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: アビスダガー
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: アンラッキーラッシュ
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: デフトスタブ
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: ヒットアンドスライディング
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: チェイシングブレイク
+        per_lv: 10
+        at_transcendence: 1
+      - name: POW加算
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: リス耳フード帽(アルビノ)
+    capabilities:
+      - name: 全基本ステータス加算
+        value: 10
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 10
+        at_transcendence: 1
+      - name: MAXSP増加
+        value: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: ペティティオ
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: エフィリゴ
+        per_lv: 10
+        at_transcendence: 1
+      - name: POW加算
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: 異端審問官のヴェール
+    capabilities:
+      - name: 全基本ステータス加算
+        value: 10
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 10
+        at_transcendence: 1
+      - name: MAXSP増加
+        value: 10
+        at_transcendence: 1
       - name: スキルダメージ増加
         value: 1
         skill: 聖油洗礼
         per_lv: 10
+        at_transcendence: 1
       - name: スキルダメージ増加
         value: 1
         skill: 爆火神弾
         per_lv: 10
+        at_transcendence: 1
       - name: スキルダメージ増加
         value: 1
         skill: 炎火滅魔神弾
         per_lv: 10
+        at_transcendence: 1
       - name: スキルダメージ増加
         value: 1
         skill: 烈火気弾
         per_lv: 10
-    enchant: #
-      - name: スペシャルエンチャント(ミオン)
-        slot_list: #
-          - slot: 4
-            refine: 0
-            enchant_list: #
-              - name: Str+7
-              - name: Agi+7
-              - name: Vit+7
-              - name: Int+7
-              - name: Dex+7
-              - name: Luk+7
-              - name: SpecialStr
-              - name: SpecialAgi
-              - name: SpecialVit
-              - name: SpecialInt
-              - name: SpecialDex
-              - name: SpecialLuk
-              - name: 攻撃速度+15%
-              - name: スキルディレイ-15%
-          - slot: 3
-            refine: 0
-            enchant_list: #
-              - name: Str+7
-              - name: Agi+7
-              - name: Vit+7
-              - name: Int+7
-              - name: Dex+7
-              - name: Luk+7
-              - name: SpecialStr
-              - name: SpecialAgi
-              - name: SpecialVit
-              - name: SpecialInt
-              - name: SpecialDex
-              - name: SpecialLuk
-              - name: MaxHP+15%
-              - name: 潜在解放(インクイジターXIV)
-          - slot: 2
-            refine: 0
-            enchant_list: #
-              - name: Str+7
-              - name: Agi+7
-              - name: Vit+7
-              - name: Int+7
-              - name: Dex+7
-              - name: Luk+7
-              - name: SpecialStr
-              - name: SpecialAgi
-              - name: SpecialVit
-              - name: SpecialInt
-              - name: SpecialDex
-              - name: SpecialLuk
-              - name: 覇王
+        at_transcendence: 1
+      - name: POW加算
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: 紫電一閃
+    capabilities:
+      - name: 全基本ステータス加算
+        value: 10
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 10
+        at_transcendence: 1
+      - name: MAXSP増加
+        value: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: サーヴァントウェポン
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: サーヴァントウェポン：ファントム
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: サーヴァントウェポン：デモリッション
+        per_lv: 10
+        at_transcendence: 1
+      - name: CRT加算
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: 情熱あふれるラビットリボン
+    capabilities:
+      - name: 全基本ステータス加算
+        value: 10
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 10
+        at_transcendence: 1
+      - name: MAXSP増加
+        value: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: リズムシューティング
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: ロゼブロッサム
+        per_lv: 10
+        at_transcendence: 1
+      - name: CON加算
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: 天下無敵の紋帽子
+    capabilities:
+      - name: 全基本ステータス加算
+        value: 10
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 10
+        at_transcendence: 1
+      - name: MAXSP増加
+        value: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: クレッシブボルト
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: ゲイルストーム
+        per_lv: 10
+        at_transcendence: 1
+      - name: CON加算
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: 白きカーリッツバーグ騎士団のヘルム
+    capabilities:
+      - name: 全基本ステータス加算
+        value: 10
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 10
+        at_transcendence: 1
+      - name: MAXSP増加
+        value: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: クロスレイン
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: ジャッジメントクロス
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: インペリアルプレッシャー
+        per_lv: 10
+        at_transcendence: 1
+      - name: SPL加算
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: イエローキティヘッドフォン
+    capabilities:
+      - name: 全基本ステータス加算
+        value: 10
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 10
+        at_transcendence: 1
+      - name: MAXSP増加
+        value: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: スパークブラスター
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: トリプルレーザー
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: エナジーキャノネード
+        per_lv: 10
+        at_transcendence: 1
+      - name: POW加算
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: ぷにぷにあんよのスタンプフード
+    capabilities:
+      - name: 全基本ステータス加算
+        value: 10
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 10
+        at_transcendence: 1
+      - name: MAXSP増加
+        value: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: タイガースラッシュ
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: タイガーハウリング
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: タイガーストライク
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: タイガーバトリング
+        per_lv: 10
+        at_transcendence: 1
+      - name: POW加算
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: スチームローラー
+    capabilities:
+      - name: 全基本ステータス加算
+        value: 10
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 10
+        at_transcendence: 1
+      - name: MAXSP増加
+        value: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: オンリーワンバレット
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: スパイラルシューティング
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: ワイルドファイア
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: ワイルドショット
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: ミッドナイトフォーリン
+        per_lv: 10
+        at_transcendence: 1
+      - name: CON加算
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: 白狐耳の笠
+    capabilities:
+      - name: 全基本ステータス加算
+        value: 10
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 10
+        at_transcendence: 1
+      - name: MAXSP増加
+        value: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: 影狩り
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: 影の舞
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: 影一閃
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: 幻術 -影縫い-
+        per_lv: 10
+        at_transcendence: 1
+      - name: POW加算
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: 白猫の魔女帽子
+    capabilities:
+      - name: 全基本ステータス加算
+        value: 10
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 10
+        at_transcendence: 1
+      - name: MAXSP増加
+        value: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: ディアーキャノン
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: ディアーブリーズ
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: ディアースピリットパワー
+        per_lv: 10
+        at_transcendence: 1
+      - name: SPL加算
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: 霊道冠
+    capabilities:
+      - name: 全基本ステータス加算
+        value: 10
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 10
+        at_transcendence: 1
+      - name: MAXSP増加
+        value: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: 青龍符
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: 白虎符
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: 朱雀符
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: 玄武符
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: 四方神符
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: 四方五行陣
+        per_lv: 10
+        at_transcendence: 1
+      - name: SPL加算
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: ガーデンオブヘヴン
+    capabilities:
+      - name: 全基本ステータス加算
+        value: 10
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 10
+        at_transcendence: 1
+      - name: MAXSP増加
+        value: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: コンフラグレーション
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: ダイヤモンドストーム
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: ライトニングランド
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: テラドライブ
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: ベナムスワンプ
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: エレメンタルバスター
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: サイキックストリーム
+        per_lv: 10
+        at_transcendence: 1
+      - name: SPL加算
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: サタニッククラウン
+    capabilities:
+      - name: 全基本ステータス加算
+        value: 10
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 10
+        at_transcendence: 1
+      - name: MAXSP増加
+        value: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: チェーンリアクションショット
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: フレンジショット
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: ヒットアンドスライディング
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: チェイシングショット
+        per_lv: 10
+        at_transcendence: 1
+      - name: CON加算
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: マーリン柄の丸帽子
+    capabilities:
+      - name: 全基本ステータス加算
+        value: 10
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 10
+        at_transcendence: 1
+      - name: MAXSP増加
+        value: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: ダブルボウリングバッシュ
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: メガソニックブロー
+        per_lv: 10
+        at_transcendence: 1
+      - name: POW加算
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: マグマイグニスキャップ
+    capabilities:
+      - name: 全基本ステータス加算
+        value: 10
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 10
+        at_transcendence: 1
+      - name: MAXSP増加
+        value: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: アックスストンプ
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: マイティスマッシュ
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: ラッシュクエイク
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: ラッシュストライク
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: パワフルスイング
+        per_lv: 10
+        at_transcendence: 1
+      - name: POW加算
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: 百花の愛
+    capabilities:
+      - name: 全基本ステータス加算
+        value: 10
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 10
+        at_transcendence: 1
+      - name: MAXSP増加
+        value: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: インパクトクレーター
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: サベージインパクト
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: フェイタルシャドウクロー
+        per_lv: 10
+        at_transcendence: 1
+      - name: POW加算
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: 桜の白魔女帽子
+    capabilities:
+      - name: 全基本ステータス加算
+        value: 10
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 10
+        at_transcendence: 1
+      - name: MAXSP増加
+        value: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: 赤炎砲
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: 冷血砲
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: 雷電砲
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: 金龍砲
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: 暗転砲
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: 幻術 -暗黒龍-
+        per_lv: 10
+        at_transcendence: 1
+      - name: SPL加算
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: 白い機械植物帽
+    capabilities:
+      - name: 全基本ステータス加算
+        value: 10
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 10
+        at_transcendence: 1
+      - name: MAXSP増加
+        value: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: エクスプロッシブパウダー
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: ミステリーパウダー
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: ダストエクスプロージョン
+        per_lv: 10
+        at_transcendence: 1
+      - name: POW加算
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: リヴァイアサンヘルム
+    capabilities:
+      - name: 全基本ステータス加算
+        value: 10
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 10
+        at_transcendence: 1
+      - name: MAXSP増加
+        value: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: ドラゴニックブレス
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: ドラゴニックオーラ
+        per_lv: 10
+        at_transcendence: 1
+      - name: POW加算
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: 機械羽根のブルーヘアバンド
+    capabilities:
+      - name: 全基本ステータス加算
+        value: 10
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 10
+        at_transcendence: 1
+      - name: MAXSP増加
+        value: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: スパイラルシューティング
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: ビジラントアットナイト
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: ワイルドファイア
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: ミッドナイトフォーリン
+        per_lv: 10
+        at_transcendence: 1
+      - name: CON加算
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: 星魔術師の三角帽
+    capabilities:
+      - name: 全基本ステータス加算
+        value: 10
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 10
+        at_transcendence: 1
+      - name: MAXSP増加
+        value: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: ソウルバルカンストライク
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: ミステリーイリュージョン
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: デッドリープロジェクション
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: アストラルストライク
+        per_lv: 10
+        at_transcendence: 1
+      - name: SPL加算
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: 濃紺のイビルドルイド帽
+    capabilities:
+      - name: 全基本ステータス加算
+        value: 10
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 10
+        at_transcendence: 1
+      - name: MAXSP増加
+        value: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: フロムジアビス
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: アビススクエア
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: オメガアビスストライク
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: アビスフレイム
+        per_lv: 10
+        at_transcendence: 1
+      - name: SPL加算
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: 鳩のマジックハット
+    capabilities:
+      - name: 全基本ステータス加算
+        value: 10
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 10
+        at_transcendence: 1
+      - name: MAXSP増加
+        value: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: サウンドブレンド
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: メタリックフューリー
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: リズミカルウェーブ
+        per_lv: 10
+        at_transcendence: 1
+      - name: SPL加算
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: 青狐耳鈴リボン
+    capabilities:
+      - name: 全基本ステータス加算
+        value: 10
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 10
+        at_transcendence: 1
+      - name: MAXSP増加
+        value: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: コンフラグレーション
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: ダイヤモンドストーム
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: ライトニングランド
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: テラドライブ
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: ベナムスワンプ
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: エレメンタルバスター
+        per_lv: 10
+        at_transcendence: 1
+      - name: スキルダメージ増加
+        value: 1
+        skill: サイキックストリーム
+        per_lv: 10
+        at_transcendence: 1
+      - name: SPL加算
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: 生命の循環：春
+    capabilities:
+      - name: POW加算
+        value: 2
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全サイズへの物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全サイズへの魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+    set_list:
+      - set:
+        entity_list:
+          - item_name: 魔獣の爪牙
+        capabilities:
+          - name: 破損しない
+            value: 1
+
+  - name: 生命の循環：夏
+    capabilities:
+      - name: CON加算
+        value: 2
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全サイズへの物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全サイズへの魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: 生命の循環：秋
+    capabilities:
+      - name: SPL加算
+        value: 2
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全サイズへの物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全サイズへの魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: 生命の循環：冬
+    capabilities:
+      - name: CRT加算
+        value: 2
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全サイズへの物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全サイズへの魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: 神獣のマント：春
+    capabilities:
+      - name: POW加算
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全サイズへの物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全サイズへの魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: 神獣のマント：夏
+    capabilities:
+      - name: CON加算
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全サイズへの物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全サイズへの魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: 神獣のマント：秋
+    capabilities:
+      - name: SPL加算
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全サイズへの物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全サイズへの魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+
+  - name: 神獣のマント：冬
+    capabilities:
+      - name: CRT加算
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全サイズへの物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 全サイズへの魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
