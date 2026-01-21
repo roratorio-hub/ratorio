@@ -1,44 +1,578 @@
 enchant_list:
   - enchant: #
-      - name: 暴食のクラウン(超越)
-        item_list: #
-          - item_name: 暴食のクラウン(アークメイジ)
-          - item_name: 暴食のクラウン(アビスチェイサー)
-          - item_name: 暴食のクラウン(インクイジター)
-          - item_name: 暴食のクラウン(インペリアルガード)
-          - item_name: 暴食のクラウン(ウィンドホーク)
-          - item_name: 暴食のクラウン(エレメンタルマスター)
-          - item_name: 暴食のクラウン(カーディナル)
-          - item_name: 暴食のクラウン(シャドウクロス)
-          - item_name: 暴食のクラウン(スピリットハンドラー)
-          - item_name: 暴食のクラウン(ソウルアセティック)
-          - item_name: 暴食のクラウン(ドラゴンナイト)
-          - item_name: 暴食のクラウン(トルバドゥール&トルヴェール)
-          - item_name: 暴食のクラウン(ナイトウォッチ)
-          - item_name: 暴食のクラウン(バイオロ)
-          - item_name: 暴食のクラウン(ハイパーノービス)
-          - item_name: 暴食のクラウン(マイスター)
-          - item_name: 暴食のクラウン(天帝)
-          - item_name: 暴食のクラウン(蜃気楼&不知火)
-        slot_list: #
-          - slot: 4
-            refine: 9
-            enchant_list: #
-              - name: 潜在解放(ドラゴンナイトXIII)
-              - name: 潜在解放(インペリアルガードXVI)
-              - name: 潜在解放(アークメイジXVIII)
-              - name: 潜在解放(エレメンタルマスターXVIII)
-              - name: 潜在解放(ウィンドホークXVIII)
-              - name: 潜在解放(トルバドゥール&トルヴェールXIII)
-              - name: 潜在解放(カーディナルXIV)
-              - name: 潜在解放(インクイジターXV)
-              - name: 潜在解放(シャドウクロスXII)
-              - name: 潜在解放(アビスチェイサーXVIII)
-              - name: 潜在解放(マイスターXVI)
-              - name: 潜在解放(バイオロXIV)
-              - name: 潜在解放(天帝XIII)
-              - name: 潜在解放(ソウルアセティックIII)
-              - name: 潜在解放(蜃気楼&不知火XVIII)
-              - name: 潜在解放(ナイトウォッチXI)
-              - name: 潜在解放(ハイパーノービスXX)
-              - name: 潜在解放(スピリットハンドラーXXI)
+    - name: 超越エンチャント
+      item_list: #
+        - item_name: スプンタアールマティ
+      slot_list: #
+        - slot: 4
+          refine: 8
+          enchant_list: #
+            - name: Def50%無視
+            - name: Mdef50%無視
+            - name: 英雄の凱歌
+            - name: 厄災の魔将
+            - name: 殺意の怨念
+            - name: 豊穣の女神
+            - name: 異境の統轄者
+            - name: 知識の探求者
+            - name: 最果ての支配者
+        - slot: 4
+          refine: 9
+          enchant_list: #
+            - name: Def50%無視
+            - name: Mdef50%無視
+        - slot: 4
+          refine: 10
+          enchant_list: #
+            - name: 不滅なる利益者
+
+    - name: 超越エンチャント
+      item_list: #
+        - item_name: フシャスラワルヤ
+      slot_list: #
+        - slot: 4
+          refine: 8
+          enchant_list: #
+            - name: Def50%無視
+            - name: Mdef50%無視
+            - name: 英雄の凱歌
+            - name: 厄災の魔将
+            - name: 殺意の怨念
+            - name: 豊穣の女神
+            - name: 異境の統轄者
+            - name: 知識の探求者
+            - name: 最果ての支配者
+        - slot: 3
+          refine: 9
+          enchant_list: #
+            - name: 覇王
+            - name: 暴走した魔力
+            - name: 大鷲の眼光
+
+    - name: 超越エンチャント
+      item_list: #
+        - item_name: カースドプリンスガード
+      slot_list: #
+        - slot: 4
+          refine: 8
+          enchant_list: #
+            - name: Def50%無視
+            - name: Mdef50%無視
+            - name: 英雄の凱歌
+            - name: 厄災の魔将
+            - name: 起源の王
+            - name: 殺意の怨念
+            - name: 豊穣の女神
+            - name: 異境の統轄者
+            - name: 知識の探求者
+            - name: 最果ての支配者          
+        - slot: 3
+          refine: 9
+          enchant_list: #
+            - name: Def50%無視
+            - name: Mdef50%無視
+        - slot: 2
+          refine: 10
+          enchant_list: #
+            - name: 悠遠なる天上の都
+
+    - name: 超越エンチャント
+      item_list: #
+        - item_name: シンボルオブエデン
+      slot_list: #
+        - slot: 4
+          refine: 8
+          enchant_list: #
+            - name: 英雄の凱歌
+            - name: 厄災の魔将
+            - name: 殺意の怨念
+            - name: 豊穣の女神
+            - name: 異境の統轄者
+            - name: 知識の探求者
+            - name: 最果ての支配者
+        - slot: 3
+          refine: 9
+          enchant_list: #
+            - name: 暴走した魔力
+
+    - name: 超越エンチャント
+      item_list: #
+        - item_name: スターリースカイ・ツインプライム
+      slot_list: #
+        - slot: 4
+          refine: 8
+          enchant_list: #
+            - name: Def50%無視
+            - name: Mdef50%無視
+            - name: 英雄の凱歌
+            - name: 厄災の魔将
+            - name: 起源の王
+            - name: 殺意の怨念
+            - name: 豊穣の女神
+            - name: 異境の統轄者
+            - name: 知識の探求者
+            - name: 最果ての支配者
+        - slot: 3
+          refine: 9
+          enchant_list: #
+            - name: 覇王
+            - name: 暴走した魔力
+            - name: 大鷲の眼光
+
+    - name: 超越エンチャント
+      item_list: #
+        - item_name: スクリーミングゴーストパーティ
+      slot_list: #
+        - slot: 4
+          refine: 8
+          enchant_list: #
+            - name: 起源の王
+            - name: 殺意の怨念
+            - name: 豊穣の女神
+            - name: 異境の統轄者
+            - name: 知識の探求者
+            - name: 最果ての支配者
+
+    - name: 超越エンチャント
+      item_list: #
+        - item_name: ステラ・グラーティア
+      slot_list: #
+        - slot: 4
+          refine: 8
+          enchant_list: #
+            - name: Def50%無視
+            - name: Mdef50%無視
+        - slot: 3
+          refine: 9
+          enchant_list: #
+            - name: 豪傑
+            - name: 真理の解放
+
+    - name: 超越エンチャント
+      item_list: #
+        - item_name: デイブレイク・スターゲイザー
+      slot_list: #
+        - slot: 4
+          refine: 8
+          enchant_list: #
+            - name: 覇王
+            - name: 暴走した魔力
+            - name: 大鷲の眼光
+        - slot: 3
+          refine: 9
+          enchant_list: #
+            - name: 固定詠唱時間-70%
+            - name: 詠唱妨害不可
+
+    - name: 超越エンチャント
+      item_list: #
+        - item_name: 心外無刀
+      slot_list: #
+        - slot: 4
+          refine: 8
+          enchant_list: #
+            - name: Def50%無視
+            - name: 必中攻撃+25%
+        - slot: 3
+          refine: 9
+          enchant_list: #
+            - name: 英雄の凱歌
+            - name: 起源の王
+            - name: 殺意の怨念
+            - name: 豊穣の女神
+            - name: 異境の統轄者
+            - name: 知識の探求者
+            - name: 最果ての支配者
+
+    - name: 超越エンチャント
+      item_list: #
+        - item_name: 剛勇無双の籠手
+      slot_list: #
+        - slot: 4
+          refine: 8
+          enchant_list: #
+            - name: Cri+25
+            - name: Def50%無視
+        - slot: 3
+          refine: 9
+          enchant_list: #
+            - name: 覇王
+            - name: 大鷲の眼光
+
+    - name: 超越エンチャント
+      item_list: #
+        - item_name: ガーディアンオブアビス
+      slot_list: #
+        - slot: 4
+          refine: 8
+          enchant_list: #
+            - name: Def50%無視
+            - name: Mdef50%無視
+            - name: 英雄の凱歌
+            - name: 厄災の魔将
+            - name: 起源の王
+            - name: 殺意の怨念
+            - name: 豊穣の女神
+            - name: 異境の統轄者
+            - name: 知識の探求者
+            - name: 最果ての支配者
+        - slot: 3
+          refine: 9
+          enchant_list: #
+            - name: 豪傑
+            - name: 真理の解放
+
+    - name: 超越エンチャント
+      item_list: #
+        - item_name: ウォフマナフ
+      slot_list: #
+        - slot: 4
+          refine: 8
+          enchant_list: #
+            - name: Def50%無視
+            - name: Mdef50%無視
+            - name: 英雄の凱歌
+            - name: 殺意の怨念
+            - name: 豊穣の女神
+            - name: 厄災の魔将
+            - name: 異境の統轄者
+            - name: 知識の探求者
+            - name: 最果ての支配者
+
+    - name: 超越エンチャント
+      item_list: #
+        - item_name: グラットンサーベラス
+      slot_list: #
+        - slot: 4
+          refine: 8
+          enchant_list: #
+            - name: Def50%無視
+            - name: Mdef50%無視
+            - name: 英雄の凱歌
+            - name: 起源の王
+            - name: 殺意の怨念
+            - name: 豊穣の女神
+            - name: 知識の探求者
+            - name: 最果ての支配者
+        - slot: 3
+          refine: 9
+          enchant_list: #
+            - name: 豪傑
+            - name: 真理の解放
+
+    - name: 超越エンチャント
+      item_list: #
+        - item_name: マギアヴィタ
+      slot_list: #
+        - slot: 4
+          refine: 8
+          enchant_list: #
+            - name: 覇王
+            - name: 暴走した魔力
+            - name: 大鷲の眼光
+        - slot: 3
+          refine: 9
+          enchant_list: #
+            - name: 潜在解放(アビスチェイサーXIX)
+            - name: 潜在解放(アークメイジXVIII)
+            - name: 潜在解放(インクイジターXV)
+            - name: 潜在解放(インペリアルガードXVII)
+            - name: 潜在解放(ウィンドホークXIX)
+            - name: 潜在解放(エレメンタルマスターXVII)
+            - name: 潜在解放(カーディナルXIX)
+            - name: 潜在解放(シャドウクロスXVII)
+            - name: 潜在解放(ソウルアセティックXVI)
+            - name: 潜在解放(ドラゴンナイトXIX)
+            - name: 潜在解放(トルバドゥール&トルヴェールXIV)
+            - name: 潜在解放(ナイトウォッチXVI)
+            - name: 潜在解放(バイオロXVIII)
+            - name: 潜在解放(ハイパーノービスXX)
+            - name: 潜在解放(マイスターXVI)
+            - name: 潜在解放(蜃気楼&不知火XIX)
+            - name: 潜在解放(天帝XIII)
+            - name: 潜在解放(スピリットハンドラーXXII)
+
+    - name: 超越エンチャント
+      item_list: #
+        - item_name: セレスティアルランス
+        - item_name: セレスティアルスタッフ
+        - item_name: セレスティアルボウ
+        - item_name: セレスティアルツーハンドアックス
+        - item_name: セレスティアルカタール
+        - item_name: セレスティアルワンド
+        - item_name: セレスティアルスピア
+        - item_name: セレスティアルブック
+        - item_name: セレスティアルバイオリン
+        - item_name: セレスティアルウィップ
+        - item_name: セレスティアルソード
+        - item_name: セレスティアルナックル
+        - item_name: セレスティアルライフル
+        - item_name: セレスティアルナイフ
+        - item_name: セレスティアルフォックステイル
+        - item_name: セレスティアルメイス
+        - item_name: セレスティアルツーハンドソード
+        - item_name: セレスティアルガトリングガン
+      slot_list: #
+        - slot: 2
+          refine: 0
+          enchant_list: #
+            - name: 覇王
+            - name: 暴走した魔力
+            - name: 大鷲の眼光
+            - name: 豪傑
+            - name: 真理の解放
+
+    - name: 超越エンチャント
+      item_list: #
+        - item_name: セレスティアルダイアデム
+      slot_list: #
+        - slot: 2
+          refine: 0
+          enchant_list: #
+            - name: 死の欲動
+            - name: 無念無想
+
+    - name: 超越エンチャント
+      item_list: #
+        - item_name: セレスティアルマント
+      slot_list: #
+        - slot: 2
+          refine: 0
+          enchant_list: #
+            - name: プロテクトセイント
+            - name: プロテクトダークネス
+            - name: プロテクトテレキネシス
+            - name: プロテクトポイズン
+
+    - name: 超越2エンチャント
+      item_list: #
+        - item_name: 暴食のバリアントシューズ
+      slot_list: #
+        - slot: 4
+          refine: 8
+          enchant_list: #
+            - name: Def50%無視
+            - name: Mdef50%無視
+            - name: 英雄の凱歌
+            - name: 厄災の魔将
+            - name: 起源の王
+            - name: 殺意の怨念
+            - name: 豊穣の女神
+            - name: 異境の統轄者
+            - name: 知識の探求者
+            - name: 最果ての支配者
+
+    - name: 超越2エンチャント
+      item_list: #
+        - item_name: 暴食のウールスカーフ
+      slot_list: #
+        - slot: 4
+          refine: 8
+          enchant_list: #
+            - name: Def50%無視
+            - name: Mdef50%無視
+            - name: 英雄の凱歌
+            - name: 厄災の魔将
+            - name: 起源の王
+            - name: 殺意の怨念
+            - name: 豊穣の女神
+            - name: 異境の統轄者
+            - name: 知識の探求者
+            - name: 最果ての支配者
+        - slot: 3
+          refine: 9
+          enchant_list: #
+            - name: 豪傑
+            - name: 真理の解放
+
+    - name: 超越2エンチャント
+      item_list: #
+        - item_name: 暴食のタイダルシューズ
+      slot_list: #
+        - slot: 4
+          refine: 8
+          enchant_list: #
+            - name: 英雄の凱歌
+            - name: 厄災の魔将
+            - name: 起源の王
+            - name: 殺意の怨念
+            - name: 豊穣の女神
+            - name: 知識の探求者
+            - name: 最果ての支配者
+        - slot: 3
+          refine: 9
+          enchant_list: #
+            - name: 大鷲の眼光
+            - name: 覇王
+            - name: 暴走した魔力
+
+    - name: 超越2エンチャント
+      item_list: #
+        - item_name: 暴食のオルレアンの制服
+      slot_list: #
+        - slot: 4
+          refine: 8
+          enchant_list: #
+            - name: 英雄の凱歌
+            - name: 厄災の魔将
+            - name: 起源の王
+            - name: 殺意の怨念
+            - name: 豊穣の女神
+            - name: 知識の探求者
+            - name: 最果ての支配者
+
+    - name: 超越エンチャント
+      item_list: #
+        - item_name: アルタイルハット
+        - item_name: ウォルフライエ
+        - item_name: クロックワイズ
+        - item_name: シックピオニー
+        - item_name: ストライプリボンハット
+        - item_name: ツートンキャップ
+        - item_name: ドラゴンサークレット
+        - item_name: ヤマネコニット帽(白)
+        - item_name: リス耳フード帽(アルビノ)
+        - item_name: 異端審問官のヴェール
+        - item_name: 紫電一閃
+        - item_name: 情熱あふれるラビットリボン
+        - item_name: 天下無敵の紋帽子
+        - item_name: 白きカーリッツバーグ騎士団のヘルム
+        - item_name: イエローキティヘッドフォン
+        - item_name: ぷにぷにあんよのスタンプフード
+        - item_name: スチームローラー
+        - item_name: 白狐耳の笠
+        - item_name: 白猫の魔女帽子
+        - item_name: 霊道冠
+        - item_name: ガーデンオブヘヴン
+        - item_name: サタニッククラウン
+        - item_name: マーリン柄の丸帽子
+        - item_name: マグマイグニスキャップ
+        - item_name: 百花の愛
+        - item_name: 桜の白魔女帽子
+        - item_name: 白い機械植物帽
+        - item_name: リヴァイアサンヘルム
+        - item_name: 機械羽根のブルーヘアバンド
+        - item_name: 星魔術師の三角帽
+        - item_name: 濃紺のイビルドルイド帽
+        - item_name: 鳩のマジックハット
+        - item_name: 青狐耳鈴リボン        
+      slot_list: #
+        - slot: 3
+          refine: 10
+          enchant_list: #
+            - name: 死の欲動
+            - name: 無念無想
+        - slot: 2
+          refine: 8
+          enchant_list: #
+            - name: 潜在覚醒(イグニッションブレイクII)
+            - name: 潜在覚醒(ソニックウェーブI)
+            - name: 潜在覚醒(クリムゾンロックI)
+            - name: 潜在覚醒(ソウルエクスパンションI)
+            - name: 潜在覚醒(アースストレインI)
+            - name: 潜在覚醒(ジャックフロストII)
+            - name: 潜在覚醒(ヘルインフェルノI)
+            - name: 潜在覚醒(アローストームII)
+            - name: 潜在覚醒(エイムドボルトI)
+            - name: 潜在覚醒(アームズキャノンII)
+            - name: 潜在覚醒(カウンタースラッシュI)
+            - name: 潜在覚醒(ジュデックスII)
+            - name: 潜在覚醒(アドラムスI)
+            - name: 潜在覚醒(インスピレーションI)
+            - name: 潜在覚醒(アースドライブI)
+            - name: 潜在覚醒(キャノンスピアI)
+            - name: 潜在覚醒(シールドプレスI)
+            - name: 潜在覚醒(バニシングポイントI)
+            - name: 潜在覚醒(サイキックウェーブI)
+            - name: 潜在覚醒(ヴェラチュールスピアーI)
+            - name: 潜在覚醒(スペルフィストI)
+            - name: 潜在覚醒(シビアレインストームII)
+            - name: 潜在覚醒(カートキャノンI)
+            - name: 潜在覚醒(カートトルネードI)
+            - name: 潜在覚醒(トライアングルショットI)
+            - name: 潜在覚醒(獅子吼II)
+            - name: 潜在覚醒(爆気散弾I)
+            - name: 潜在覚醒(雷光弾I)
+            - name: 潜在覚醒(天羅地網I)
+            - name: 潜在覚醒(死霊爆発I)
+            - name: 潜在覚醒(エスパI)
+            - name: 潜在覚醒(ラウンドトリップI)
+            - name: 潜在覚醒(ファイアーレインI)
+            - name: 潜在覚醒(風魔手裏剣 -乱華-I)
+            - name: 潜在覚醒(十文字斬りI)
+            - name: 潜在覚醒(太陽爆発I)
+            - name: 潜在覚醒(満月脚II)
+            - name: 潜在覚醒(流星落下I)
+            - name: 潜在覚醒(マタタビランスI)
+            - name: 潜在覚醒(イヌハッカメテオI)
+
+    - name: 超越エンチャント
+      item_list: #
+        - item_name: 生命の循環：春
+        - item_name: 生命の循環：夏
+        - item_name: 生命の循環：秋
+        - item_name: 生命の循環：冬
+      slot_list: #
+        - slot: 4
+          refine: 0
+          enchant_list: #
+            - name: 時間の注視者
+            - name: 悪霊の儀式
+        - slot: 3
+          refine: 0
+          enchant_list: #
+            - name: 豪傑
+            - name: 真理の解放
+            - name: 魔獣の爪牙
+            - name: 根源への到達
+            - name: 蒼穹の覇者
+            - name: 天与の才
+        - slot: 2
+          refine: 0
+          enchant_list: #
+            - name: プロテクトファイア
+            - name: プロテクトウォーター
+            - name: プロテクトウィンド
+            - name: プロテクトアース
+            - name: プロテクトセイント
+            - name: プロテクトダークネス
+            - name: プロテクトテレキネシス
+            - name: プロテクトポイズン
+            - name: プロテクトアンデッド
+
+    - name: 超越エンチャント
+      item_list: #
+        - item_name: 神獣のマント：春
+        - item_name: 神獣のマント：夏
+        - item_name: 神獣のマント：秋
+        - item_name: 神獣のマント：冬
+      slot_list: #
+        - slot: 4
+          refine: 0
+          enchant_list: #
+            - name: 時間の注視者
+            - name: 悪霊の儀式
+        - slot: 3
+          refine: 0
+          enchant_list: #
+            - name: 豪傑
+            - name: 真理の解放
+        - slot: 2
+          refine: 0
+          enchant_list: #
+            - name: レジストファイア
+            - name: レジストウォーター
+            - name: レジストウィンド
+            - name: レジストアース
+            - name: レジストダークネス
+            - name: レジストポイズン
+            - name: グロウファイア
+            - name: グロウウォーター
+            - name: グロウウィンド
+            - name: グロウアース
+            - name: グロウセイント
+            - name: グロウダークネス
+            - name: グロウテレキネシス
+            - name: グロウポイズン
+
+

@@ -1165,7 +1165,7 @@ CGlobalConstManager.DefinePseudoEnum(
 		"ITEM_SP_BASE_LV_OVER_175_OFFSET",			// 4000000000000000
 
 		"ITEM_SP_BASE_LV_OVER_250_OFFSET",			// 5000000000000000
-		"ITEM_SP_RESERVED_6000000000000000",		// 6
+		"ITEM_SP_BASE_LV_OVER_260_OFFSET",			// 6
 		"ITEM_SP_RESERVED_7000000000000000", 		// 7
 
 		// もう限界なので
@@ -1948,6 +1948,9 @@ function GetItemExplainText(spId, spValue) {
 		break;
 	case 5:
 		condTextFriendlyOver = "BaseLvが250以上の時、追加で";
+		break;
+	case 6:
+		condTextFriendlyOver = "BaseLvが260以上の時、追加で";
 		break;
 	}
 

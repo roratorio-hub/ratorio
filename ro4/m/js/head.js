@@ -16421,11 +16421,17 @@ function GetWeaponAtk(strdex, strBonus, armsType, armsLv, armsAtk, sizeModify,
 			if (TimeItemNumSearch(TIME_ITEM_ID_ADD_ELEMENTAL_FIRE_ATK_50) > 0) {
 				funcSelectAppendDamage(ELM_ID_FIRE, 50);
 			}
+			if (TimeItemNumSearch(TIME_ITEM_ID_ADD_ELEMENTAL_WIND_ATK_30) > 0) {
+				funcSelectAppendDamage(ELM_ID_WIND, 30);
+			}
 			if (TimeItemNumSearch(TIME_ITEM_ID_ADD_ELEMENTAL_WIND_ATK_50) > 0) {
 				funcSelectAppendDamage(ELM_ID_WIND, 50);
 			}
 			if (TimeItemNumSearch(TIME_ITEM_ID_ADD_ELEMENTAL_EARTH_ATK_50) > 0) {
 				funcSelectAppendDamage(ELM_ID_EARTH, 50);
+			}
+			if (TimeItemNumSearch(TIME_ITEM_ID_ADD_ELEMENTAL_WATER_ATK_30) > 0) {
+				funcSelectAppendDamage(ELM_ID_WATER, 30);
 			}
 			if (TimeItemNumSearch(TIME_ITEM_ID_ADD_ELEMENTAL_WATER_ATK_50) > 0) {
 				funcSelectAppendDamage(ELM_ID_WATER, 50);
