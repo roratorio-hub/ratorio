@@ -1,7 +1,7 @@
 
 // ペットID指定のオフセット（カードと同じように指定するので、カードIDで実現しないぐらい大きな値を設定）
 // TODO: いずれ修正予定
-ITEM_SET_PET_ID_OFFSET = 10000;
+ITEM_SET_PET_ID_OFFSET = 100000;
 
 const ITEMSET_ID_LIMIT_WITH_ITEM = 200;
 const ITEMSET_ID_LIMIT_WITH_CARD = 200;

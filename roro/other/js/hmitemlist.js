@@ -61,7 +61,64 @@ function SetUpSelects() {
  */
 function getItemList(itemlist, seachword) {
 	if (seachword == "") return itemlist;
-	return itemlist.filter((item) => String(item[ITEM_DATA_INDEX_NAME]).includes(seachword));
+	var spDataArray;
+	var textInfoArray;
+	var spText;
+	// 名前で一致するものを先に検索する
+	let retList = itemlist.filter((item) => String(item[ITEM_DATA_INDEX_NAME]).includes(seachword));
+	// アイテムSPとエンチャで検索する
+	for ( idxData = 0; idxData < itemlist.length; idxData++ ) {
+		// アイテムSP検索
+		spDataArray = itemlist[idxData].slice(ITEM_DATA_INDEX_SPBEGIN);
+		for ( idxSp = 0; (idxSp + 1) < spDataArray.length; idxSp += 2) {
+			// アイテムSP説明文取得
+			textInfoArray = GetItemExplainText(spDataArray[idxSp], spDataArray[idxSp + 1]);
+			for ( idxText = 1; idxText < textInfoArray.length; idxText++) {
+				// アイテムSPをがっちゃんこ
+				spText = textInfoArray[0][1] + textInfoArray[idxText][1];
+				// 検索ワードで一致したら配列に追加
+				if ( spText.search(seachword) >= 1) {
+					retList.push(itemlist[idxData]);
+				}
+			}
+		}
+		// エンチャント検索
+		itemData = itemlist[idxData];
+		let enchListDataManager = g_constDataManager.GetDataManger(CONST_DATA_KIND_ENCHANT_LIST);
+		enchListIdArray = enchListDataManager.GetEnchListIdArrayByItemId(itemData[ITEM_DATA_INDEX_ID]);
+		enchInfoArrayAllSlotsResult = [];
+		for (idxSlot = 0; idxSlot < 4; idxSlot++) {
+			enchInfoArrayAllSlotsResult[idxSlot] = [];
+		}
+		// 検索準備完了 - 全エンチャントリストをループ処理
+		for ( idxEnchList = 0; idxEnchList < enchListIdArray.length; idxEnchList++) {
+			enchListId = enchListIdArray[idxEnchList];
+			// サブ関数をコールしてデータ配列を収集
+			enchInfoArrayAllSlots = RebuildCardSelectSubCollectEnchListData(enchListId, enchInfoArrayAllSlotsResult);
+			enchInfoText = "";
+			// 各スロットにつくエンチャントを取得
+			for (idxSlot = 0; idxSlot < enchInfoArrayAllSlots.length; idxSlot++) {
+				enchInfoArrayAllSlotsResult[idxSlot] = enchInfoArrayAllSlotsResult[idxSlot].concat(enchInfoArrayAllSlots[idxSlot]);
+			}
+			for (idxSlot = enchInfoArrayAllSlotsResult.length - 1; idxSlot >= 0; idxSlot--) {
+				enchInfoArray = enchInfoArrayAllSlotsResult[idxSlot];
+				enchListIdLast = -1;
+				// エンチャント情報配列を走査し、エンチャント情報文字列生成
+				for (idxInfo = 0; idxInfo < enchInfoArray.length; idxInfo++) {
+					enchInfo = enchInfoArray[idxInfo];
+					enchId = enchInfo[1];
+					enchData = CardObjNew[enchId];
+					enchInfoText += enchData[CARD_DATA_INDEX_NAME];
+				}
+			}
+			// 検索ワードで一致したら配列に追加
+			if (enchInfoText.search(seachword) >= 1) {
+				retList.push(itemlist[idxData]);
+			}
+		}
+	}
+	// 重複を削除して返却
+	return Array.from(new Set(retList));
 }
 
 /**
