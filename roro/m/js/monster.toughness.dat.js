@@ -238,6 +238,26 @@ class MonsterToughness {
         ["無限のトード（ハード）",MonsterToughness.DAMPING_100],
         ["無限のフリオニ（ハード）",MonsterToughness.DAMPING_100],
         ["無限のボーカル（ハード）",MonsterToughness.DAMPING_100],
+        // 亜空の迷宮
+		["迷宮のダークロード（亜空の迷宮）",MonsterToughness.DAMPING_100],
+		["ボミ（亜空の迷宮）",MonsterToughness.DAMPING_100],
+		["不吉なソリッドタートル（亜空の迷宮）",MonsterToughness.DAMPING_100],
+		["怒りのドラキュラ（亜空の迷宮）",MonsterToughness.DAMPING_100],
+		["硬化ムスペルスコール（亜空の迷宮）",MonsterToughness.DAMPING_100],
+		["R48-85-ベスティア（亜空の迷宮）",MonsterToughness.DAMPING_100],
+		["変異のシーラカンス（亜空の迷宮）",MonsterToughness.DAMPING_100],
+		["セシル=ディモン（亜空の迷宮）",MonsterToughness.DAMPING_100],
+		["ランドグリス（亜空の迷宮）",MonsterToughness.DAMPING_100],
+		["ゴピニク（亜空の迷宮）",MonsterToughness.DAMPING_100],
+		["怒りの月夜花（亜空の迷宮）",MonsterToughness.DAMPING_100],
+		["ゴブリンキング（亜空の迷宮）",MonsterToughness.DAMPING_100],
+		["古のタオグンカ（亜空の迷宮）",MonsterToughness.DAMPING_100],
+		["ボーンデータルザウルス（亜空の迷宮）",MonsterToughness.DAMPING_100],
+		["R001-ベスティア（亜空の迷宮）",MonsterToughness.DAMPING_100],
+		["死者の案内人（亜空の迷宮）",MonsterToughness.DAMPING_100],
+		["亜空の月夜花（亜空の迷宮）",MonsterToughness.DAMPING_100],
+		["亜空のハティー（亜空の迷宮）",MonsterToughness.DAMPING_100],
+		["亜空のストームナイト（亜空の迷宮）",MonsterToughness.DAMPING_100],
     ]);
 
     /** 通知メッセージのリスト */
