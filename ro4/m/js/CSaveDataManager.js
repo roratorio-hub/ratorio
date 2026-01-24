@@ -1120,9 +1120,16 @@ class CSaveDataManager {
 					if (targetOption) {
 						// 見つかった場合はその option を選択状態にする
 						objSelectF.value = cardIdF; 
+						// 親の optgroup から最新の ID を取得して変数を更新
+						const parentGroup = targetOption.closest('optgroup');
+						if (parentGroup && parentGroup.dataset.enchListId) {
+							// 変数 enchListIdF を最新の状態に更新. これにより、次にセーブ処理が走った際に最新のカテゴリIDが保存される
+							enchListIdF = parentGroup.dataset.enchListId;
+						}
 					} else {
 						// どこにも見つからない場合は「無し(0)」にフォールバック
 						objSelectF.value = "0";
+						enchListIdF = "0";
 					}
 					// 4. 変更を通知
 					const event = new Event('change', { bubbles: true });
@@ -1130,7 +1137,7 @@ class CSaveDataManager {
 				}
 			}
 			// エンチャントリストIDデータ設定
-			const rgnTextF = objIdPrifixF.replace(/^OBJECT_/, "");
+			const rgnTextF = objIdPrifixF.replace(/^OBJID_/, "");
 			let cardCategoryIDArrayF = g_charaData.cardCategoryMap.get(rgnTextF);
 			if (!cardCategoryIDArrayF) {
 				cardCategoryIDArrayF = [0, 0, 0, 0];
