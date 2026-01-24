@@ -1090,55 +1090,60 @@ class CSaveDataManager {
 			],
 		]);
 
-		// カード設定用関数（旧処理の移植）
+		/**
+		 * カード設定用関数
+		 * @param {*} objIdPrifixF 装備部位
+		 * @param {*} slotNoF スロット番号
+		 * @param {*} enchListIdF エンチャントカテゴリID
+		 * @param {*} cardIdF カードID
+		 */
 		const funcLoadAndSetCard = (objIdPrifixF, slotNoF, enchListIdF, cardIdF) => {
-
-			// データ補正
+			// エンチャントカテゴリIDの補正
 			enchListIdF = (enchListIdF === undefined) ? 0 : enchListIdF;
+			// エンチャントIDの補正
 			cardIdF = (cardIdF === undefined) ? 0 : cardIdF;
-
 			// 従来の設定方法による設定
 			HtmlSetObjectValueById(objIdPrifixF + "_CARD_" + slotNoF, cardIdF);
-
-			// 可能であれば、エンチャントリストの選択状態を復元する
-			do {
-
-				// セレクトボックス取得
-				const objSelectF = document.getElementById(objIdPrifixF + "_CARD_" + slotNoF);
-				if (!objSelectF) {
-					break;
+			// エンチャントの場合はカテゴリも復元する
+			if (enchListIdF != 0) {
+				// 対象のセレクトボックスを取得
+				const objId = objIdPrifixF + "_CARD_" + slotNoF;
+				const objSelectF = document.getElementById(objId);
+				if (objSelectF) {
+					// 1. まずは指定された optgroup 内に該当の cardId があるか確認
+					let targetOption = objSelectF.querySelector(`optgroup[data-ench-list-id="${enchListIdF}"] > option[value="${cardIdF}"]`);
+					// 2. 指定カテゴリに見つからない場合、セレクトボックス全体から検索
+					if (!targetOption && cardIdF !== 0) {
+						targetOption = objSelectF.querySelector(`option[value="${cardIdF}"]`);
+					}
+					// 3. 反映処理
+					if (targetOption) {
+						// 見つかった場合はその option を選択状態にする
+						objSelectF.value = cardIdF; 
+						// 親の optgroup から最新の ID を取得して変数を更新
+						const parentGroup = targetOption.closest('optgroup');
+						if (parentGroup && parentGroup.dataset.enchListId) {
+							// 変数 enchListIdF を最新の状態に更新. これにより、次にセーブ処理が走った際に最新のカテゴリIDが保存される
+							enchListIdF = parentGroup.dataset.enchListId;
+						}
+					} else {
+						// どこにも見つからない場合は「無し(0)」にフォールバック
+						objSelectF.value = "0";
+						enchListIdF = "0";
+					}
+					// 4. 変更を通知
+					const event = new Event('change', { bubbles: true });
+					objSelectF.dispatchEvent(event);
 				}
-
-				// optgroup のリストを取得
-				const objOptgroup = objSelectF.querySelector(":scope > optgroup[data-ench-list-id=\"" + enchListIdF + "\"]");
-				if (!objOptgroup) {
-					break;
-				}
-
-				// エンチャントを取得
-				const objOption = objOptgroup.querySelector(":scope > option[value=\"" + cardIdF + "\"]");
-				if (!objOption) {
-					// エンチャントが一覧に存在しない場合は「無し」に変更する
-					cardIdF = 0;
-					$(`#${objIdPrifixF}_CARD_${slotNoF}`).val("0").trigger("change");
-					break;
-				}
-
-				objOption.selected = true;
-
-			} while (false);
-
+			}
 			// エンチャントリストIDデータ設定
-			const rgnTextF = objIdPrifixF.replace(/^OBJECT_/, "");
-
+			const rgnTextF = objIdPrifixF.replace(/^OBJID_/, "");
 			let cardCategoryIDArrayF = g_charaData.cardCategoryMap.get(rgnTextF);
 			if (!cardCategoryIDArrayF) {
 				cardCategoryIDArrayF = [0, 0, 0, 0];
 				g_charaData.cardCategoryMap.set(rgnTextF, cardCategoryIDArrayF);
 			}
-
 			cardCategoryIDArrayF[slotNoF - SLOT_INDEX_CARD_MIN] = enchListIdF;
-
 			// ステートフルデータ設定
 			SetStatefullData("DATA_" + objIdPrifixF + "_CARD_" + slotNoF, cardIdF);
 		};
