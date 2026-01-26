@@ -384,13 +384,6 @@ class CSaveDataManager {
 			saveDataUnit.setProp(CSaveDataConst.propNameCardID2, HtmlGetObjectValueByIdAsInteger(`${cardMap[eqpRgnId]}_CARD_2`, 0));
 			saveDataUnit.setProp(CSaveDataConst.propNameCardID3, HtmlGetObjectValueByIdAsInteger(`${cardMap[eqpRgnId]}_CARD_3`, 0));
 			saveDataUnit.setProp(CSaveDataConst.propNameCardID4, HtmlGetObjectValueByIdAsInteger(`${cardMap[eqpRgnId]}_CARD_4`, 0));
-			
-			// コンパクション実行
-			saveDataUnit.doCompaction();
-			// データなしの場合は次へ
-			if (saveDataUnit.isEmptyUnit()) {
-				continue;
-			}
 			// 装備箇所データ設定
 			saveDataUnitEqpRgn.setProp(regionMap[eqpRgnId], eqpRgnId + 1);
 			// データユニットをメンバ変数の配列へ追加
