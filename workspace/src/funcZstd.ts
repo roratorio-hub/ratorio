@@ -24,8 +24,8 @@ export async function loadFileAsUint8Array(url: string): Promise<Uint8Array> {
 
 // zstdで展開
 export async function zstdDecompress(compressed: Uint8Array): Promise<string | null> {
-    const zstd = await initZstd();
     try {
+        const zstd = await initZstd();
         // zstd.decompress() で zstd データを展開
         const decompressedData = await zstd.decompress(compressed);
         return new TextDecoder('utf-8').decode(decompressedData);
@@ -42,8 +42,8 @@ if (typeof window !== 'undefined') {
 
 // zstdで圧縮
 export async function zstdCompress(text: string, level: number = 22): Promise<Uint8Array | null> {
-    const zstd = await initZstd();
     try {
+        const zstd = await initZstd();
         // 文字列をUTF-8のUint8Arrayに変換
         const input = new TextEncoder().encode(text);
         // zstd.compress() でzstd圧縮
