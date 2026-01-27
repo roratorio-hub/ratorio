@@ -6,7 +6,7 @@ let zstdInstance: Zstd | null = null;
 let zstdInstancePromise: Promise<Zstd> | null = null;
 
 // Zstdインスタンスの初期化（統一された初期化関数）
-export async function initZstd(): Promise<Zstd> {
+export async function initializeZstd(): Promise<Zstd> {
     // 既に初期化済みならそのまま返す
     if (zstdInstance) {
         return zstdInstance;
@@ -27,14 +27,6 @@ export async function initZstd(): Promise<Zstd> {
     }
     return zstdInstancePromise;
 }
-// ブラウザ環境でのみ初期化を実行
-if (typeof window !== 'undefined') {
-    initZstd().then(() => {
-        console.log('Zstd initialized successfully.');
-    }).catch(err => {
-        console.error("zstd initialization failed:", err);
-    });
-}
 
 // ファイル読み込み
 export async function loadFileAsUint8Array(url: string): Promise<Uint8Array> {
@@ -45,7 +37,7 @@ export async function loadFileAsUint8Array(url: string): Promise<Uint8Array> {
 // zstdで展開
 export async function zstdDecompressAsync(compressed: Uint8Array): Promise<Uint8Array | null> {
     try {
-        const zstd = await initZstd();
+        const zstd = await initializeZstd();
         // zstd.decompress() で zstd データを展開
         const result = await zstd.decompress(compressed);
         return result;
@@ -53,10 +45,6 @@ export async function zstdDecompressAsync(compressed: Uint8Array): Promise<Uint8
         console.error("Error decompressing:", err);
         return null;
     }
-}
-// ブラウザ環境でのみグローバルに登録
-if (typeof window !== 'undefined') {
-    (window as any).zstdDecompressAsync = zstdDecompressAsync;
 }
 
 // 文字列をzstdで展開
@@ -72,7 +60,7 @@ export async function zstdDecompressString(compressed: Uint8Array): Promise<stri
 // zstdで圧縮
 export async function zstdCompressAsync(inputBytes: Uint8Array, level: number = 22): Promise<Uint8Array | null> {
     try {
-        const zstd = await initZstd();
+        const zstd = await initializeZstd();
         // zstd.compress() でzstd圧縮
         const result = await zstd.compress(inputBytes, level);
         return result;
@@ -80,10 +68,6 @@ export async function zstdCompressAsync(inputBytes: Uint8Array, level: number = 
         console.error("Error compressing:", err);
         throw err; // エラーを呼び出し元に伝播させる
     }
-}
-// ブラウザ環境でのみグローバルに登録
-if (typeof window !== 'undefined') {
-    (window as any).zstdCompressAsync = zstdCompressAsync;
 }
 
 // 文字列をzstdで圧縮
@@ -109,10 +93,6 @@ export function base64ToUint8Array(base64: string): Uint8Array {
     }
     return bytes;
 }
-// ブラウザ環境でのみグローバルに登録
-if (typeof window !== 'undefined') {
-    (window as any).base64ToUint8Array = base64ToUint8Array;
-}
 
 // Uint8Array → Base64（URLセーフ対応）
 export function uint8ArrayToBase64(bytes: Uint8Array): string {
@@ -125,7 +105,16 @@ export function uint8ArrayToBase64(bytes: Uint8Array): string {
     base64 = base64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
     return base64;
 }
-// ブラウザ環境でのみグローバルに登録
+
+// ブラウザ環境でのみ初期化を実行
 if (typeof window !== 'undefined') {
+    initializeZstd().then(() => {
+        console.log('Zstd initialized successfully.');
+    }).catch(err => {
+        console.error("zstd initialization failed:", err);
+    });
+    (window as any).zstdDecompressAsync = zstdDecompressAsync;
+    (window as any).zstdCompressAsync = zstdCompressAsync;
+    (window as any).base64ToUint8Array = base64ToUint8Array;
     (window as any).uint8ArrayToBase64 = uint8ArrayToBase64;
 }
