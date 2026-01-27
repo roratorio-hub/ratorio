@@ -23,12 +23,11 @@ export async function loadFileAsUint8Array(url: string): Promise<Uint8Array> {
 }
 
 // zstdで展開
-export async function zstdDecompress(compressed: Uint8Array): Promise<string | null> {
+export async function zstdDecompress(compressed: Uint8Array): Promise<Uint8Array | null> {
     try {
         const zstd = await initZstd();
         // zstd.decompress() で zstd データを展開
-        const decompressedData = await zstd.decompress(compressed);
-        return new TextDecoder('utf-8').decode(decompressedData);
+        return await zstd.decompress(compressed);
     } catch (err) {
         console.error("展開エラー:", err);
         return null;
@@ -41,13 +40,11 @@ if (typeof window !== 'undefined') {
 }
 
 // zstdで圧縮
-export async function zstdCompress(text: string, level: number = 22): Promise<Uint8Array | null> {
+export async function zstdCompress(inputBytes: Uint8Array, level: number = 22): Promise<Uint8Array | null> {
     try {
         const zstd = await initZstd();
-        // 文字列をUTF-8のUint8Arrayに変換
-        const input = new TextEncoder().encode(text);
         // zstd.compress() でzstd圧縮
-        return await zstd.compress(input, level);
+        return await zstd.compress(inputBytes, level);
     } catch (err) {
         console.error("圧縮エラー:", err);
         return null;
@@ -57,4 +54,21 @@ export async function zstdCompress(text: string, level: number = 22): Promise<Ui
 // ブラウザ環境でのみグローバルに登録
 if (typeof window !== 'undefined') {
     (window as any).zstdCompress = zstdCompress;
+}
+
+// 文字列をzstdで展開
+export async function zstdDecompressString(compressed: Uint8Array): Promise<string | null> {
+    const decompressed = await zstdDecompress(compressed);
+    if (decompressed) {
+        const decoder = new TextDecoder();
+        return decoder.decode(decompressed);
+    }
+    return null;
+}
+
+// 文字列をzstdで圧縮
+export async function zstdCompressString(input: string, level: number = 22): Promise<Uint8Array | null> {
+    const encoder = new TextEncoder();
+    const inputBytes = encoder.encode(input);
+    return await zstdCompress(inputBytes, level);
 }
