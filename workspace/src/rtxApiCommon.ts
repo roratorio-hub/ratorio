@@ -1,5 +1,5 @@
 import { load as loadYAML, dump as dumpYAML } from "js-yaml"
-import { zstdCompress, zstdDecompress } from "./funcZstd";
+import { zstdCompressString, zstdDecompressString } from "./funcZstd";
 
 export const API_VERSION = 2;
 
@@ -98,7 +98,7 @@ export async function decodeProcess(encodedData: string): Promise<RtxData | null
         const compressedData = base64ToUint8Array(encodedData);
 
         // zstdで展開
-        const yamlData = await zstdDecompress(compressedData);
+        const yamlData = await zstdDecompressString(compressedData);
 
         if (yamlData) {
             //console.debug(yamlData);
@@ -119,7 +119,7 @@ export async function encodeProcess(dataObject: RtxData): Promise<string | null>
         const yamlData = dumpYAML(dataObject);
 
         // zstdで圧縮
-        const compressedData = await zstdCompress(yamlData);
+        const compressedData = await zstdCompressString(yamlData);
 
         if (compressedData) {
             // 圧縮データ => 文字列

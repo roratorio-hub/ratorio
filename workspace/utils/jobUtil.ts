@@ -5,7 +5,7 @@ import * as vm from "vm";
 // @ts-ignore: suppress missing module types
 import * as path from "path";
 import { load as loadYAML, dump as dumpYAML } from "js-yaml";
-import { zstdCompress, zstdDecompress } from "../src/funcZstd";
+import { zstdCompressString, zstdDecompressString } from "../src/funcZstd";
 import type { SkillDataParameter } from "../src/loadSkillMap";
 import type { JobDataParameter } from "../src/loadJobMap";
 import { yamlOptions } from "./yamlMergeAndCompress";
@@ -26,7 +26,7 @@ export async function mergeJob(): Promise<void> {
     //console.log(`Loaded ${Object.keys(jobObject).length} jobs`);
 
     // Skill ファイル読み込み
-    const skillYamlText = await zstdDecompress(await fs.readFile(skillYaml));
+    const skillYamlText = await zstdDecompressString(await fs.readFile(skillYaml));
     if (skillYamlText === null) {
         console.error("skill.yaml.zst の展開に失敗しました");
         return;
@@ -192,7 +192,7 @@ export async function mergeJob(): Promise<void> {
     }
     await fs.writeFile(outYaml, yamlString);
 
-    const compressed = await zstdCompress(yamlString);
+    const compressed = await zstdCompressString(yamlString);
     if (compressed === null) {
         throw new Error("zstdCompress が null を返しました");
     }
