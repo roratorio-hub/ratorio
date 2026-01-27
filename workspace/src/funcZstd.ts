@@ -133,8 +133,6 @@ if (typeof window !== 'undefined') {
     }).catch(err => {
         console.error("zstd initialization failed:", err);
     });
-    (window as any).zstdDecompressAsync = zstdDecompressAsync;
-    (window as any).zstdCompressAsync = zstdCompressAsync;
     (window as any).zstdDecompressSync = zstdDecompressSync;
     (window as any).zstdCompressSync = zstdCompressSync;
     (window as any).base64ToUint8Array = base64ToUint8Array;
