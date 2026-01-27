@@ -72,3 +72,40 @@ export async function zstdCompressString(input: string, level: number = 22): Pro
     const inputBytes = encoder.encode(input);
     return await zstdCompress(inputBytes, level);
 }
+
+// Base64 → Uint8Array（URLセーフに対応）
+export function base64ToUint8Array(base64: string): Uint8Array {
+    // パディングの補完
+    let paddedBase = base64.replace(/-/g, '+').replace(/_/g, '/');
+    const padding = paddedBase.length % 4;
+    if (padding === 2) paddedBase += '==';
+    else if (padding === 3) paddedBase += '=';
+
+    const binaryString = atob(paddedBase);
+    const len = binaryString.length;
+    const bytes = new Uint8Array(len);
+    for (let i = 0; i < len; i++) {
+        bytes[i] = binaryString.charCodeAt(i);
+    }
+    return bytes;
+}
+// ブラウザ環境でのみグローバルに登録
+if (typeof window !== 'undefined') {
+    (window as any).base64ToUint8Array = base64ToUint8Array;
+}
+
+// Uint8Array → Base64（URLセーフ対応）
+export function uint8ArrayToBase64(bytes: Uint8Array): string {
+    let binary = '';
+    for (let i = 0; i < bytes.length; i++) {
+        binary += String.fromCharCode(bytes[i]);
+    }
+    let base64 = btoa(binary);
+    // URLセーフ変換
+    base64 = base64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+    return base64;
+}
+// ブラウザ環境でのみグローバルに登録
+if (typeof window !== 'undefined') {
+    (window as any).uint8ArrayToBase64 = uint8ArrayToBase64;
+}
