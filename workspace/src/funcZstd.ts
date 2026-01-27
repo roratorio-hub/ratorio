@@ -27,13 +27,14 @@ export async function zstdDecompress(compressed: Uint8Array): Promise<Uint8Array
     try {
         const zstd = await initZstd();
         // zstd.decompress() で zstd データを展開
-        return await zstd.decompress(compressed);
+        const result = await zstd.decompress(compressed);
+        console.debug("Success decompress:", result);
+        return result;
     } catch (err) {
-        console.error("展開エラー:", err);
+        console.error("Error decompressing:", err);
         return null;
     }
 }
-
 // ブラウザ環境でのみグローバルに登録
 if (typeof window !== 'undefined') {
     (window as any).zstdDecompress = zstdDecompress;
@@ -44,13 +45,14 @@ export async function zstdCompress(inputBytes: Uint8Array, level: number = 22): 
     try {
         const zstd = await initZstd();
         // zstd.compress() でzstd圧縮
-        return await zstd.compress(inputBytes, level);
+        const result = await zstd.compress(inputBytes, level);
+        console.debug("Success compress:", result);
+        return result;
     } catch (err) {
-        console.error("圧縮エラー:", err);
-        return null;
+        console.error("Error compressing:", err);
+        throw err; // エラーを呼び出し元に伝播させる
     }
 }
-
 // ブラウザ環境でのみグローバルに登録
 if (typeof window !== 'undefined') {
     (window as any).zstdCompress = zstdCompress;
