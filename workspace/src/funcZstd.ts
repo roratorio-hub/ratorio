@@ -23,7 +23,7 @@ export async function loadFileAsUint8Array(url: string): Promise<Uint8Array> {
 }
 
 // zstdで展開
-export async function zstdDecompress(compressed: Uint8Array): Promise<Uint8Array | null> {
+export async function zstdDecompressAsync(compressed: Uint8Array): Promise<Uint8Array | null> {
     try {
         const zstd = await initZstd();
         // zstd.decompress() で zstd データを展開
@@ -35,13 +35,19 @@ export async function zstdDecompress(compressed: Uint8Array): Promise<Uint8Array
         return null;
     }
 }
-// ブラウザ環境でのみグローバルに登録
-if (typeof window !== 'undefined') {
-    (window as any).zstdDecompress = zstdDecompress;
+
+// 文字列をzstdで展開
+export async function zstdDecompressString(compressed: Uint8Array): Promise<string | null> {
+    const decompressed = await zstdDecompressAsync(compressed);
+    if (decompressed) {
+        const decoder = new TextDecoder();
+        return decoder.decode(decompressed);
+    }
+    return null;
 }
 
 // zstdで圧縮
-export async function zstdCompress(inputBytes: Uint8Array, level: number = 22): Promise<Uint8Array | null> {
+export async function zstdCompressAsync(inputBytes: Uint8Array, level: number = 22): Promise<Uint8Array | null> {
     try {
         const zstd = await initZstd();
         // zstd.compress() でzstd圧縮
@@ -53,26 +59,12 @@ export async function zstdCompress(inputBytes: Uint8Array, level: number = 22): 
         throw err; // エラーを呼び出し元に伝播させる
     }
 }
-// ブラウザ環境でのみグローバルに登録
-if (typeof window !== 'undefined') {
-    (window as any).zstdCompress = zstdCompress;
-}
-
-// 文字列をzstdで展開
-export async function zstdDecompressString(compressed: Uint8Array): Promise<string | null> {
-    const decompressed = await zstdDecompress(compressed);
-    if (decompressed) {
-        const decoder = new TextDecoder();
-        return decoder.decode(decompressed);
-    }
-    return null;
-}
 
 // 文字列をzstdで圧縮
 export async function zstdCompressString(input: string, level: number = 22): Promise<Uint8Array | null> {
     const encoder = new TextEncoder();
     const inputBytes = encoder.encode(input);
-    return await zstdCompress(inputBytes, level);
+    return await zstdCompressAsync(inputBytes, level);
 }
 
 // Base64 → Uint8Array（URLセーフに対応）
