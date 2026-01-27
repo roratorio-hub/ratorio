@@ -1,14 +1,19 @@
 import { Zstd } from "@hpcc-js/wasm-zstd";
 
-// Zstdインスタンスをキャッシュ
-let zstdInstance: Zstd | null = null;
+// Zstd 初期化中の Promise をキャッシュ（並列呼び出しでも 1 回だけロード）
+let zstdInstancePromise: Promise<Zstd> | null = null;
 
 // Zstdインスタンスの初期化
 export async function initZstd(): Promise<Zstd> {
-    if (!zstdInstance) {
-        zstdInstance = await Zstd.load();
+    if (!zstdInstancePromise) {
+        // 初期化中の Promise をキャッシュし、失敗時はキャッシュをリセットして再試行可能にする
+        zstdInstancePromise = Zstd.load().catch((err) => {
+            // 初期化に失敗した場合は次回の呼び出しで再試行できるようにリセット
+            zstdInstancePromise = null;
+            throw err;
+        });
     }
-    return zstdInstance;
+    return zstdInstancePromise;
 }
 
 // ファイル読み込み
