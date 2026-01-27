@@ -106,6 +106,26 @@ export function uint8ArrayToBase64(bytes: Uint8Array): string {
     return base64;
 }
 
+/**
+ * 同期展開（初期化後のみ使用可）
+ */
+function zstdDecompressSync(input: Uint8Array): Uint8Array {
+    if (!zstdInstance) {
+        throw new Error("zstd not initialized: call initZstdOnce()");
+    }
+    return zstdInstance.decompress(input);
+}
+
+/**
+ * 同期圧縮（初期化後のみ使用可）
+ */
+function zstdCompressSync(input: Uint8Array, level: number = 22): Uint8Array {
+    if (!zstdInstance) {
+        throw new Error("zstd not initialized: call initZstdOnce()");
+    }
+    return zstdInstance.compress(input, level);
+}
+
 // ブラウザ環境でのみ初期化を実行
 if (typeof window !== 'undefined') {
     initializeZstd().then(() => {
@@ -115,6 +135,8 @@ if (typeof window !== 'undefined') {
     });
     (window as any).zstdDecompressAsync = zstdDecompressAsync;
     (window as any).zstdCompressAsync = zstdCompressAsync;
+    (window as any).zstdDecompressSync = zstdDecompressSync;
+    (window as any).zstdCompressSync = zstdCompressSync;
     (window as any).base64ToUint8Array = base64ToUint8Array;
     (window as any).uint8ArrayToBase64 = uint8ArrayToBase64;
 }
