@@ -28,7 +28,6 @@ export async function zstdDecompressAsync(compressed: Uint8Array): Promise<Uint8
         const zstd = await initZstd();
         // zstd.decompress() で zstd データを展開
         const result = await zstd.decompress(compressed);
-        console.debug("Success decompress:", result);
         return result;
     } catch (err) {
         console.error("Error decompressing:", err);
@@ -52,7 +51,6 @@ export async function zstdCompressAsync(inputBytes: Uint8Array, level: number = 
         const zstd = await initZstd();
         // zstd.compress() でzstd圧縮
         const result = await zstd.compress(inputBytes, level);
-        console.debug("Success compress:", result);
         return result;
     } catch (err) {
         console.error("Error compressing:", err);
