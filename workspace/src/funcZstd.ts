@@ -4,7 +4,7 @@ import { Zstd } from "@hpcc-js/wasm-zstd";
 let zstdInstancePromise: Promise<Zstd> | null = null;
 
 // Zstdインスタンスの初期化
-export async function initZstd(): Promise<Zstd> {
+async function initZstd(): Promise<Zstd> {
     if (!zstdInstancePromise) {
         // 初期化中の Promise をキャッシュし、失敗時はキャッシュをリセットして再試行可能にする
         zstdInstancePromise = Zstd.load().catch((err) => {
@@ -102,4 +102,45 @@ export function uint8ArrayToBase64(bytes: Uint8Array): string {
 // ブラウザ環境でのみグローバルに登録
 if (typeof window !== 'undefined') {
     (window as any).uint8ArrayToBase64 = uint8ArrayToBase64;
+}
+
+/**
+ * 初期化を待つためのコード（モジュールロード時に一度だけ実行される）
+ */
+
+let zstdInstance: Zstd | null = null;
+
+// 初期化だけを async で行う
+async function initZstdOnce() {
+    if (!zstdInstance) {
+        zstdInstance = await Zstd.load();
+    }
+}
+// ブラウザ環境でのみ初期化を実行
+if (typeof window !== 'undefined') {
+    initZstdOnce().catch(err => {
+        console.error("zstd initialization failed:", err);
+    });
+}
+
+function zstdCompress(data: Uint8Array, level: number = 22) {
+    if (!zstdInstance) {
+        throw new Error("zstd not initialized");
+    }
+    return zstdInstance.compress(data, level);
+}
+// ブラウザ環境でのみグローバルに登録
+if (typeof window !== 'undefined') {
+    (window as any).zstdCompress = zstdCompress;
+}
+
+function zstdDecompress(data: Uint8Array) {
+    if (!zstdInstance) {
+        throw new Error("zstd not initialized");
+    }
+    return zstdInstance.decompress(data);
+}
+// ブラウザ環境でのみグローバルに登録
+if (typeof window !== 'undefined') {
+    (window as any).zstdDecompress = zstdDecompress;
 }
