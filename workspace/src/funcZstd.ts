@@ -36,13 +36,13 @@ if (typeof window !== 'undefined') {
 }
 
 // zstdで圧縮
-export async function zstdCompress(text: string): Promise<Uint8Array | null> {
+export async function zstdCompress(text: string, level: number = 22): Promise<Uint8Array | null> {
     const zstd = await initZstd();
     try {
         // 文字列をUTF-8のUint8Arrayに変換
         const input = new TextEncoder().encode(text);
         // zstd.compress() でzstd圧縮
-        return await zstd.compress(input, 22);
+        return await zstd.compress(input, level);
     } catch (err) {
         console.error("圧縮エラー:", err);
         return null;
