@@ -316,57 +316,48 @@ class CSaveController {
 		return this.getDisplayName(index);
 	}
 
-
-
 	/**
 	 * URLへデータを出力する.
 	 * @returns {string} データURL文字列（クエリ部分のみ）
 	 */
 	static encodeToURL (Chart = false) {
+		try {
+			calc();
 
-		// 再計算
-		calc();
+			if (!this.#saveDataManagerCur) {
+				this.#saveDataManagerCur = new CSaveDataManager();
+			}
 
-		// セーブデータマネージャが存在しない場合は生成（ロードせずに保存する場合など）
-		if (!this.#saveDataManagerCur) {
-			this.#saveDataManagerCur = new CSaveDataManager();
+			// basedata をシリアライズ
+			let baseJsonData = this.#saveDataManagerCur.encodeToJSON();
+
+			// chartdata をシリアライズ
+			let chartJsonData = null;
+			if (g_Chart !== undefined && g_Chart !== null && Chart !== false) {
+				chartJsonData = this.#serializeChartData(g_Chart);
+			}
+
+			console.debug('[encodeToURL]', 'Base Data Size:', baseJsonData.length);
+			console.debug('[encodeToURL]', 'Chart Data Size:', chartJsonData ? chartJsonData.length : 0);
+
+			// 1度だけ JSON 化
+			const dataObj = {
+				base: baseJsonData,
+				chart: chartJsonData
+			};
+			const jsonString = JSON.stringify(dataObj);
+			const inputBytes = this.stringToByteArray(jsonString);
+
+			const compressed = window.zstdCompressSync(inputBytes);
+			console.debug('[encodeToURL]', 'Compressed Data Size:', compressed.length);
+			const base64String = uint8ArrayToBase64(compressed);
+			return `dx${base64String}`;
+
+		} catch (ex) {
+			console.error('[encodeToURL]', ex);
+			return "";
 		}
-
-		// 新処理(basedata と chartdata を個別に ZIP に格納)
-		var zip = new Zlib.Zip();
-
-		// basedata をシリアライズして ZIP に追加
-		let baseJsonData = this.#saveDataManagerCur.encodeToJSON();
-		let baseDataBytes = this.stringToByteArray(baseJsonData);
-		zip.addFile(baseDataBytes, {
-			filename: this.stringToByteArray("basedata")
-		});
-
-		// chartdata をシリアライズして ZIP に追加
-		if (g_Chart !== undefined && g_Chart !== null && Chart !== false) {
-			let chartJsonData = this.#serializeChartData(g_Chart);
-			let chartDataBytes = this.stringToByteArray(chartJsonData);
-			zip.addFile(chartDataBytes, {
-				filename: this.stringToByteArray("chartdata")
-			});
-		}
-
-		// ZIP を圧縮して Base64 エンコード
-		var zipData = zip.compress();
-
-		let bstr = String.fromCharCode(...zipData);
-		let encoded = "dx" + btoa(bstr);
-
-
-//		// データをエンコード
-//		let encoded = this.#saveDataManagerCur.encodeToURL();
-//
-//		// データURL文字列を圧縮（新形式用）
-//		encoded = CSaveDataConverter.CompressDataTextMIG(encoded);
-
-		return encoded;
 	}
-
 
 	static stringToByteArray(str) {
 		// TextEncoder を使用して UTF-8 エンコーディング（制御文字対応）
@@ -1006,106 +997,101 @@ class CSaveController {
 	static loadFromURL (urlText) {
 
 		if(urlText.startsWith('dx')){
-			// 新処理でデコード
-			const baseData = urlText.slice(2);
-			var binStr = atob(baseData);
-			var zipData = Uint8Array.from(binStr.split(""), e => e.charCodeAt(0));
-			const unZip = new Zlib.Unzip(zipData);
-			const entries = unZip.getFilenames();
+			// 新処理 デコード
 
-			if (entries.length === 0) {
-				console.warn("[Load] ZIP is empty!");
-				//NOP
+			// base64 デコード
+			const compressedData = base64ToUint8Array(urlText.slice(2));
+
+			// Zstd 展開
+			const decompressedData = window.zstdDecompressSync(compressedData);
+
+			const parsedDecompressedData = JSON.parse(new TextDecoder().decode(decompressedData));
+
+			const baseData = parsedDecompressedData["base"];
+			const chartData = parsedDecompressedData["chart"];
+
+			// basedata を復元
+			let parsedData;
+			try {
+				parsedData = JSON.parse(baseData);
+			} catch (e) {
+				console.warn('[loadFromURL] failed to JSON.parse basedata', e);
+				parsedData = [];
 			}
-			else {
-				const decoder = new TextDecoder();
 
-				// basedata を復元
-				var packData = unZip.decompress(entries[0]);
-				var jsonData = decoder.decode(packData);
-				let parsedData;
-				try {
-					parsedData = JSON.parse(jsonData);
-				} catch (e) {
-					console.warn('[CSaveController] failed to JSON.parse basedata', e);
-					parsedData = [];
-				}
+			const restoredUnitArray = [];
+			const pdlen = Array.isArray(parsedData) ? parsedData.length : 0;
+			let pidx = 0;
+			const BATCH = 200;
 
-				const restoredUnitArray = [];
-				const pdlen = Array.isArray(parsedData) ? parsedData.length : 0;
-				let pidx = 0;
-				const BATCH = 200;
-
-				const end = Math.min(pidx + BATCH, pdlen);
-				while (pidx < pdlen) {
-					for (; pidx < end; pidx++) {
-						const unit = parsedData[pidx];
-						const restoredParsedMap = new CMultiValueMapper();
+			const end = Math.min(pidx + BATCH, pdlen);
+			while (pidx < pdlen) {
+				for (; pidx < end; pidx++) {
+					const unit = parsedData[pidx];
+					const restoredParsedMap = new CMultiValueMapper();
+					try {
+						Object.entries(unit.parsedMap).forEach(([key, value]) => {
+							const restoredValue = (typeof value === 'string' && /^\d+$/.test(value)) ? BigInt(value) : value;
+							restoredParsedMap.add(key, restoredValue);
+						});
+					} catch (e) {
 						try {
-							Object.entries(unit.parsedMap).forEach(([key, value]) => {
-								const restoredValue = (typeof value === 'string' && /^\d+$/.test(value)) ? BigInt(value) : value;
-								restoredParsedMap.add(key, restoredValue);
-							});
-						} catch (e) {
-							try {
-								for (const k in unit.parsedMap) {
-									const v = unit.parsedMap[k];
-									const restoredValue = (typeof v === 'string' && /^\d+$/.test(v)) ? BigInt(v) : v;
-									restoredParsedMap.add(k, restoredValue);
-								}
-							} catch (ee) {}
-						}
-
-						const restoredPropInfoMap = new CSingletonMapper();
-						try {
-							Object.entries(unit.propInfoMap).forEach(([key, value]) => {
-								const propInfo = new CSaveDataPropInfo(value.name, value.bits);
-								restoredPropInfoMap.set(key, propInfo);
-							});
-						} catch (e) {
-							try {
-								for (const k in unit.propInfoMap) {
-									const v = unit.propInfoMap[k];
-									const propInfo = new CSaveDataPropInfo(v.name, v.bits);
-									restoredPropInfoMap.set(k, propInfo);
-								}
-							} catch (ee) {}
-						}
-
-						restoredUnitArray.push({ parsedMap: restoredParsedMap, propInfoMap: restoredPropInfoMap });
+							for (const k in unit.parsedMap) {
+								const v = unit.parsedMap[k];
+								const restoredValue = (typeof v === 'string' && /^\d+$/.test(v)) ? BigInt(v) : v;
+								restoredParsedMap.add(k, restoredValue);
+							}
+						} catch (ee) {}
 					}
-				}
-				const mgr = new CSaveDataManager();
-				mgr.restoreFromParsedData(restoredUnitArray);
-				CSaveController.setSaveDataManagerCur(mgr);
 
-				if (Array.isArray(n_B_KYOUKA)) n_B_KYOUKA.fill(0);
-				if (Array.isArray(n_B_IJYOU)) n_B_IJYOU.fill(0);
+					const restoredPropInfoMap = new CSingletonMapper();
+					try {
+						Object.entries(unit.propInfoMap).forEach(([key, value]) => {
+							const propInfo = new CSaveDataPropInfo(value.name, value.bits);
+							restoredPropInfoMap.set(key, propInfo);
+						});
+					} catch (e) {
+						try {
+							for (const k in unit.propInfoMap) {
+								const v = unit.propInfoMap[k];
+								const propInfo = new CSaveDataPropInfo(v.name, v.bits);
+								restoredPropInfoMap.set(k, propInfo);
+							}
+						} catch (ee) {}
+					}
 
-				const mgr2 = CSaveController.getSaveDataManagerCur();
-				mgr2.applyDataToControls();
-				if(mgr !== mgr2){
-				}
-
-				// 再計算
-				calc();
-
-				// 検索可能ドロップダウンリストのロード
-				LoadSelect2();
-
-				// chartdata があれば復元
-				if (entries.length > 1) {
-					packData = unZip.decompress(entries[1]);
-					jsonData = decoder.decode(packData);
-					g_Chart = JSON.parse(jsonData, (key, value) => {
-						if (typeof value === 'string' && /^\d+$/.test(value)) {
-							// leave numeric-looking strings as-is (no BigInt conversion here)
-						}
-						return value;
-					});
-					this.#restoreChartDisplay();
+					restoredUnitArray.push({ parsedMap: restoredParsedMap, propInfoMap: restoredPropInfoMap });
 				}
 			}
+			const mgr = new CSaveDataManager();
+			mgr.restoreFromParsedData(restoredUnitArray);
+			CSaveController.setSaveDataManagerCur(mgr);
+
+			if (Array.isArray(n_B_KYOUKA)) n_B_KYOUKA.fill(0);
+			if (Array.isArray(n_B_IJYOU)) n_B_IJYOU.fill(0);
+
+			const mgr2 = CSaveController.getSaveDataManagerCur();
+			mgr2.applyDataToControls();
+			if(mgr !== mgr2){
+			}
+
+			// 再計算
+			calc();
+
+			// 検索可能ドロップダウンリストのロード
+			LoadSelect2();
+
+			// chartdata があれば復元
+			if (chartData && chartData.length > 1) {
+				g_Chart = JSON.parse(chartData, (key, value) => {
+					if (typeof value === 'string' && /^\d+$/.test(value)) {
+						// leave numeric-looking strings as-is (no BigInt conversion here)
+					}
+					return value;
+				});
+				this.#restoreChartDisplay();
+			}
+
 		} else {
 
 			// サニタイジング
