@@ -214,6 +214,133 @@ class CSaveDataManager {
 		this.#saveDataUnitArray = [];
 	}
 
+
+	/**
+	 * JSONに変換する.
+	 */
+	encodeToJSON () {
+
+		if (!Array.isArray(this.#saveDataUnitArray)) {
+			return "";
+		}
+
+		// 全てのセーブデータユニットを効率的に JSON に変換
+		const unitDataArray = this.#saveDataUnitArray.map((unit) => {
+			// Map -> Object に変換（JSON 対応）
+			const parsedMapObj = {};
+			unit.parsedMap.forEach((value, key) => {
+				parsedMapObj[key] = value;
+			});
+
+			const propInfoMapObj = {};
+			unit.propInfoMap.forEach((value, key) => {
+				propInfoMapObj[key] = {
+					name: value.name,
+					bits: value.bits
+				};
+			});
+
+			return {
+				parsedMap: parsedMapObj,
+				propInfoMap: propInfoMapObj
+			};
+		});
+
+		// JSON 文字列に変換して返す（BigInt を文字列に変換）
+		return JSON.stringify(unitDataArray, (key, value) => {
+			if (typeof value === 'bigint') {
+				return value.toString();
+			}
+			return value;
+		});
+	}
+
+	/**
+	 * JSON からパース済みデータを復元する.
+	 * @param {Array} restoredUnitArray 復元されたユニット配列
+	 */
+	restoreFromParsedData (restoredUnitArray) {
+		if (!Array.isArray(restoredUnitArray)) {
+			return;
+		}
+
+		// 復元したデータを実際の CSaveDataUnit サブクラスインスタンスに変換
+		this.#saveDataUnitArray = restoredUnitArray.map((unit) => {
+			// 復元されたデータから type を取得
+			const typeValue = unit.parsedMap instanceof Map 
+				? unit.parsedMap.get(CSaveDataConst.propNameType)
+				: (unit.parsedMap[CSaveDataConst.propNameType] !== undefined 
+					? unit.parsedMap[CSaveDataConst.propNameType]
+					: null);
+
+			const unitType = typeValue !== null 
+				? floorBigInt32(typeValue)
+				: null;
+
+			// type に基づいて適切なクラスを生成
+			let newUnit = null;
+			if (unitType !== null) {
+				const unitClass = CSaveDataUnitTypeManager.getUnitClass(unitType);
+				if (unitClass) {
+					newUnit = new unitClass();
+				}
+			}
+
+			if (!newUnit) {
+				// フォールバック：既存のマップデータを使用
+				newUnit = {
+					parsedMap: unit.parsedMap instanceof Map ? unit.parsedMap : new CMultiValueMapper(),
+					propInfoMap: unit.propInfoMap instanceof Map ? unit.propInfoMap : new CSingletonMapper(),
+					getProp: function(propName) {
+						if (this.parsedMap instanceof Map) {
+							return this.parsedMap.get(propName);
+						}
+						return this.parsedMap[propName];
+					},
+					setProp: function(propName, value) {
+						if (this.parsedMap instanceof Map) {
+							this.parsedMap.set(propName, value);
+						} else {
+							this.parsedMap[propName] = value;
+						}
+					}
+				};
+			} else {
+				// 新しく生成されたインスタンスに復元データをセット
+				if (unit.parsedMap instanceof Map) {
+					unit.parsedMap.forEach((value, key) => {
+						newUnit.setProp(key, value);
+					});
+				} else {
+					Object.entries(unit.parsedMap).forEach(([key, value]) => {
+						newUnit.setProp(key, value);
+					});
+				}
+			}
+
+			return newUnit;
+		});
+	}
+
+
+
+	/**
+	 * 計算機の状態を採取して状態を更新する.
+	 */
+	ReCalcManager() {
+		if (!Array.isArray(this.#saveDataUnitArray)) {
+			return "";
+		}
+
+		this.parseDataTextForCreateSave(SaveSystem());
+		this.#collectDataEquipable();
+		this.#collectDataCharaConfDebuff();
+		this.#collectDataShadowEquips();
+		this.doCompaction();
+		this.applyDataToControls();
+	}
+
+
 	/**
 	 * 計算機の状態を採取してURLクエリ文字列として出力する.
 	 * セーブ時のみ呼び出される.
