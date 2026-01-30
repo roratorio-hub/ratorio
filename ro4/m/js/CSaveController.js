@@ -329,21 +329,29 @@ class CSaveController {
 			}
 
 			// basedata をシリアライズ
-			let baseJsonData = this.#saveDataManagerCur.encodeToJSON();
+			//let baseJsonData = this.#saveDataManagerCur.encodeToJSON();		// いったんURLエンコードをJSON利用から従来のデータに切り戻す
+			let encoded = this.#saveDataManagerCur.encodeToURL();
+			encoded = CSaveDataConverter.CompressDataTextMIG(encoded);
 
 			// chartdata をシリアライズ
-			let chartJsonData = null;
+//			let chartJsonData = null;
+			let chartData = null;
 			if (g_Chart !== undefined && g_Chart !== null && Chart !== false) {
-				chartJsonData = this.#serializeChartData(g_Chart);
+//				chartJsonData = this.#serializeChartData(g_Chart);
+				chartData = this.#serializeChartData(g_Chart);
 			}
 
-			console.debug('[encodeToURL]', 'Base Data Size:', baseJsonData.length);
-			console.debug('[encodeToURL]', 'Chart Data Size:', chartJsonData ? chartJsonData.length : 0);
+//			console.debug('[encodeToURL]', 'Base Data Size:', baseJsonData.length);
+//			console.debug('[encodeToURL]', 'Chart Data Size:', chartJsonData ? chartJsonData.length : 0);
+			console.debug('[encodeToURL]', 'Base Data Size:', encoded.length);
+			console.debug('[encodeToURL]', 'Chart Data Size:', chartData ? chartData.length : 0);
 
 			// 1度だけ JSON 化
 			const dataObj = {
-				base: baseJsonData,
-				chart: chartJsonData
+//				base: baseJsonData,
+//				chart: chartJsonData
+				base: encoded,
+				chart: chartData
 			};
 			const jsonString = JSON.stringify(dataObj);
 			const inputBytes = this.stringToByteArray(jsonString);
@@ -509,13 +517,16 @@ class CSaveController {
 			};
 
 			// データをサニタイズしてから JSON.stringify
-			const sanitized = sanitizeValue(chartData);
-			const jsonData = JSON.stringify(sanitized);
-			return jsonData;
+//			const sanitized = sanitizeValue(chartData);
+//			const jsonData = JSON.stringify(sanitized);
+//			return jsonData;
+			// ほしいのはChartのdataだけなので、そこだけJSONにする
+			return JSON.stringify(g_Chart.data);
 		} catch (error) {
 			console.warn("チャートデータのシリアライズに失敗しました:", error);
 			// フォールバック: 空のオブジェクトを返す
-			return JSON.stringify({});
+//			return JSON.stringify({});
+			return [];
 		}
 	}
 
@@ -1011,6 +1022,43 @@ class CSaveController {
 			const chartData = parsedDecompressedData["chart"];
 
 			// basedata を復元
+
+
+			// サニタイジング
+			let dataText = this.sanitizeDataText(baseData);
+
+			// ゼロ値圧縮の展開
+			dataText = CSaveDataConverter.ExtractDataTextMIG(dataText);
+
+			// モンスター状態異常等のクリア
+			// 職業変更など引き継ぎたいケースもあるので、ロード処理のここでクリアする
+			if (Array.isArray(n_B_KYOUKA)) {
+				n_B_KYOUKA.fill(0);
+			}
+			if (Array.isArray(n_B_IJYOU)) {
+				n_B_IJYOU.fill(0);
+			}
+
+			// セーブデータ読み込み
+			const saveDataManagerNew = new CSaveDataManager();
+			saveDataManagerNew.parseDataText(dataText);
+			// 旧形式から移行した場合には、全体のコンパクションが必要なので
+			saveDataManagerNew.doCompaction();
+
+			// データ復元
+			saveDataManagerNew.applyDataToControls();
+
+			// メンバ変数を置き換え
+			this.#saveDataManagerCur = saveDataManagerNew;
+
+			// 再計算
+			calc();
+
+			// 検索可能ドロップダウンリストのロード
+			LoadSelect2();
+
+
+/*  この区間はJSONで全データをコートしてるときの処理
 			let parsedData;
 			try {
 				parsedData = JSON.parse(baseData);
@@ -1080,15 +1128,20 @@ class CSaveController {
 
 			// 検索可能ドロップダウンリストのロード
 			LoadSelect2();
+*/
 
 			// chartdata があれば復元
 			if (chartData && chartData.length > 1) {
-				g_Chart = JSON.parse(chartData, (key, value) => {
+/*				g_Chart = JSON.parse(chartData, (key, value) => {
 					if (typeof value === 'string' && /^\d+$/.test(value)) {
 						// leave numeric-looking strings as-is (no BigInt conversion here)
 					}
 					return value;
-				});
+				});*/
+				// Chartのデータはchart.dataのみに絞っているのでこれだけでよい
+				let param = JSON.parse(chartData)
+				g_Chart = new Object();
+				g_Chart.data = param;
 				this.#restoreChartDisplay();
 			}
 
