@@ -336,7 +336,7 @@ class CSaveController {
 				this.#saveDataManagerCur = new CSaveDataManager();
 			}
 
-			if (this.bJSON) {
+			if (CSaveController.bJSON) {
 				// basedata をシリアライズ
 				baseJsonData = this.#saveDataManagerCur.encodeToJSON();
 			}
@@ -349,7 +349,7 @@ class CSaveController {
 			let chartJsonData = null;
 			let chartData = null;
 			if (g_Chart !== undefined && g_Chart !== null && Chart !== false) {
-				if (this.bJSON) {
+				if (CSaveController.bJSON) {
 					chartJsonData = this.#serializeChartData(g_Chart);
 					if (chartJsonData.length > 4000) {
 						if (!confirm("【重要】長すぎてアドレスバーから読み込めない恐れがあります。\n\nURL入力ボタンからなら読み込めます。このままクリップデータを保存しますか？")) {
@@ -367,7 +367,7 @@ class CSaveController {
 				}
 			}
 
-			if (this.bJSON) {
+			if (CSaveController.bJSON) {
 				console.debug('[encodeToURL]', 'Base Data Size:', baseJsonData.length);
 				console.debug('[encodeToURL]', 'Chart Data Size:', chartJsonData ? chartJsonData.length : 0);
 			}
@@ -378,7 +378,7 @@ class CSaveController {
 
 			let dataObj = {};
 			// 1度だけ JSON 化
-			if (this.bJSON) {
+			if (CSaveController.bJSON) {
 				dataObj = {
 					base: baseJsonData,
 					chart: chartJsonData
@@ -557,7 +557,7 @@ class CSaveController {
 			};
 
 			// データをサニタイズしてから JSON.stringify
-			if (this.bJSON) {
+			if (CSaveController.bJSON) {
 				const sanitized = sanitizeValue(chartData);
 				const jsonData = JSON.stringify(sanitized);
 				return jsonData;
@@ -569,8 +569,7 @@ class CSaveController {
 		} catch (error) {
 			console.warn("チャートデータのシリアライズに失敗しました:", error);
 			// フォールバック: 空のオブジェクトを返す
-//			return JSON.stringify({});
-			return [];
+			return JSON.stringify({});
 		}
 	}
 
@@ -1062,7 +1061,7 @@ class CSaveController {
 			const baseData = parsedDecompressedData["base"];
 			const chartData = parsedDecompressedData["chart"];
 
-			if (this.bJSON) {
+			if (CSaveController.bJSON) {
 				let parsedData;
 				try {
 					parsedData = JSON.parse(baseData);
@@ -1164,7 +1163,7 @@ class CSaveController {
 
 			// chartdata があれば復元
 			if (chartData && chartData.length > 1) {
-				if (this.bJSON) {
+				if (CSaveController.bJSON) {
 					g_Chart = JSON.parse(chartData, (key, value) => {
 						if (typeof value === 'string' && /^\d+$/.test(value)) {
 							// leave numeric-looking strings as-is (no BigInt conversion here)
