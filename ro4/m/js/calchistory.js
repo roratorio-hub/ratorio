@@ -1,5 +1,9 @@
 $(function () {
   const buildForm = () => {
+	let test = document.getElementById("history_graph");
+	if (test) {
+      return;
+	}
     $("#OBJID_ATTACK_SETTING_BLOCK_MIG").after(`
 <div id="history_button" style="margin-left:1em;width:4em">
 <input type="button" id="history_clip" value="Clip" style="width:100%"><br>

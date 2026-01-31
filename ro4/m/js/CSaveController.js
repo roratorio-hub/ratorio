@@ -62,6 +62,12 @@ class CSaveController {
 
 
 	/**
+	 * JSONを全面的に利用するフラグ.(URLが長大になるため現状では利用しない設定だが将来性のために必要)
+	 */
+	static bJSON = false;
+
+
+	/**
 	 * 計算機設定データユニット.
 	 */
 	static #settingDataUnit = null;
@@ -324,36 +330,70 @@ class CSaveController {
 		try {
 			calc();
 
+			let baseJsonData = "";
+			let encoded = "";
 			if (!this.#saveDataManagerCur) {
 				this.#saveDataManagerCur = new CSaveDataManager();
 			}
 
-			// basedata をシリアライズ
-			//let baseJsonData = this.#saveDataManagerCur.encodeToJSON();		// いったんURLエンコードをJSON利用から従来のデータに切り戻す
-			let encoded = this.#saveDataManagerCur.encodeToURL();
-			encoded = CSaveDataConverter.CompressDataTextMIG(encoded);
-
-			// chartdata をシリアライズ
-//			let chartJsonData = null;
-			let chartData = null;
-			if (g_Chart !== undefined && g_Chart !== null && Chart !== false) {
-//				chartJsonData = this.#serializeChartData(g_Chart);
-				chartData = this.#serializeChartData(g_Chart);
+			if (this.bJSON) {
+				// basedata をシリアライズ
+				baseJsonData = this.#saveDataManagerCur.encodeToJSON();
+			}
+			else{
+				encoded = this.#saveDataManagerCur.encodeToURL();
+				encoded = CSaveDataConverter.CompressDataTextMIG(encoded);
 			}
 
-//			console.debug('[encodeToURL]', 'Base Data Size:', baseJsonData.length);
-//			console.debug('[encodeToURL]', 'Chart Data Size:', chartJsonData ? chartJsonData.length : 0);
-			console.debug('[encodeToURL]', 'Base Data Size:', encoded.length);
-			console.debug('[encodeToURL]', 'Chart Data Size:', chartData ? chartData.length : 0);
+			// chartdata をシリアライズ
+			let chartJsonData = null;
+			let chartData = null;
+			if (g_Chart !== undefined && g_Chart !== null && Chart !== false) {
+				if (this.bJSON) {
+					chartJsonData = this.#serializeChartData(g_Chart);
+					if (chartJsonData.length > 4000) {
+						if (!confirm("【重要】長すぎてアドレスバーから読み込めない恐れがあります。\n\nURL入力ボタンからなら読み込めます。このままクリップデータを保存しますか？")) {
+							chartJsonData = null;
+						}
+					}
+				}
+				else {
+					chartData = this.#serializeChartData(g_Chart);
+					if (chartData.length > 4000) {
+						if (!confirm("【重要】長すぎてアドレスバーから読み込めない恐れがあります。\n\nURL入力ボタンからなら読み込めます。このままクリップデータを保存しますか？")) {
+							chartData = null;
+						}
+					}
+				}
+			}
 
+			if (this.bJSON) {
+				console.debug('[encodeToURL]', 'Base Data Size:', baseJsonData.length);
+				console.debug('[encodeToURL]', 'Chart Data Size:', chartJsonData ? chartJsonData.length : 0);
+			}
+			else {
+				console.debug('[encodeToURL]', 'Base Data Size:', encoded.length);
+				console.debug('[encodeToURL]', 'Chart Data Size:', chartData ? chartData.length : 0);
+			}
+
+			let dataObj = {};
 			// 1度だけ JSON 化
-			const dataObj = {
-//				base: baseJsonData,
-//				chart: chartJsonData
-				base: encoded,
-				chart: chartData
-			};
+			if (this.bJSON) {
+				dataObj = {
+					base: baseJsonData,
+					chart: chartJsonData
+				};
+			}
+			else {
+				dataObj = {
+					base: encoded,
+					chart: chartData
+				};
+			}
 			const jsonString = JSON.stringify(dataObj);
+
+			console.debug('[encodeToURL]', 'jsonString for AI:', jsonString);
+
 			const inputBytes = this.stringToByteArray(jsonString);
 
 			const compressed = window.zstdCompressSync(inputBytes);
@@ -517,11 +557,15 @@ class CSaveController {
 			};
 
 			// データをサニタイズしてから JSON.stringify
-//			const sanitized = sanitizeValue(chartData);
-//			const jsonData = JSON.stringify(sanitized);
-//			return jsonData;
-			// ほしいのはChartのdataだけなので、そこだけJSONにする
-			return JSON.stringify(g_Chart.data);
+			if (this.bJSON) {
+				const sanitized = sanitizeValue(chartData);
+				const jsonData = JSON.stringify(sanitized);
+				return jsonData;
+			}
+			else {
+				// ほしいのはChartのdataだけなので、そこだけJSONにする
+				return JSON.stringify(g_Chart.data);
+			}
 		} catch (error) {
 			console.warn("チャートデータのシリアライズに失敗しました:", error);
 			// フォールバック: 空のオブジェクトを返す
@@ -545,49 +589,46 @@ class CSaveController {
 		let canvas = document.getElementById("history_graph");
 		let cont = document.getElementById("history_container");
 		let button = document.getElementById("history_button");
-		if (!canvas) {
-			console.warn("[Chart] history_graph canvas not found");
-			return;
-		}
+		if (canvas) {
 
-		// Canvas 上のすべての Chart インスタンスを破棄
-		// Chart.instances は配列またはオブジェクト形式の可能性があるため、
-		// より柔軟に対応
-		if (window.Chart) {
-			if (window.Chart.instances) {
-				// WeakMap また は Map, Array の場合に対応
-				if (Array.isArray(window.Chart.instances)) {
-					// 配列の場合
-					for (let i = window.Chart.instances.length - 1; i >= 0; i--) {
-						if (window.Chart.instances[i] && window.Chart.instances[i].canvas === canvas) {
-							window.Chart.instances[i].destroy();
-							window.Chart.instances.splice(i, 1);
+			// Canvas 上のすべての Chart インスタンスを破棄
+			// Chart.instances は配列またはオブジェクト形式の可能性があるため、
+			// より柔軟に対応
+			if (window.Chart) {
+				if (window.Chart.instances) {
+					// WeakMap また は Map, Array の場合に対応
+					if (Array.isArray(window.Chart.instances)) {
+						// 配列の場合
+						for (let i = window.Chart.instances.length - 1; i >= 0; i--) {
+							if (window.Chart.instances[i] && window.Chart.instances[i].canvas === canvas) {
+								window.Chart.instances[i].destroy();
+								window.Chart.instances.splice(i, 1);
+							}
 						}
+					} else if (typeof window.Chart.instances.entries === 'function') {
+						// Map の場合
+						const toDelete = [];
+						window.Chart.instances.forEach((instance) => {
+							if (instance && instance.canvas === canvas) {
+								toDelete.push(instance);
+							}
+						});
+						toDelete.forEach(instance => {
+							instance.destroy();
+							window.Chart.instances.delete(instance);
+						});
 					}
-				} else if (typeof window.Chart.instances.entries === 'function') {
-					// Map の場合
-					const toDelete = [];
-					window.Chart.instances.forEach((instance) => {
-						if (instance && instance.canvas === canvas) {
-							toDelete.push(instance);
-						}
-					});
-					toDelete.forEach(instance => {
-						instance.destroy();
-						window.Chart.instances.delete(instance);
-					});
+				}
+				
+				// 既存の g_Chart インスタンスも破棄
+				if (g_Chart && typeof g_Chart.destroy === 'function') {
+					g_Chart.destroy();
 				}
 			}
-			
-			// 既存の g_Chart インスタンスも破棄
-			if (g_Chart && typeof g_Chart.destroy === 'function') {
-				g_Chart.destroy();
-			}
+			canvas.remove();
+			cont.remove();
+			button.remove()
 		}
-		canvas.remove();
-		cont.remove();
-		button.remove()
-
 
 		// 復元データから必要な情報を抽出
 		let chartType = 'line';
@@ -1008,8 +1049,6 @@ class CSaveController {
 	static loadFromURL (urlText) {
 
 		if(urlText.startsWith('dx')){
-			// 新処理 デコード
-
 			// base64 デコード
 			const compressedData = base64ToUint8Array(urlText.slice(2));
 
@@ -1018,109 +1057,101 @@ class CSaveController {
 
 			const parsedDecompressedData = JSON.parse(new TextDecoder().decode(decompressedData));
 
+			console.debug('[loadFromURL]', 'jsonString for AI:', parsedDecompressedData);
+
 			const baseData = parsedDecompressedData["base"];
 			const chartData = parsedDecompressedData["chart"];
 
-			// basedata を復元
-
-
-			// サニタイジング
-			let dataText = this.sanitizeDataText(baseData);
-
-			// ゼロ値圧縮の展開
-			dataText = CSaveDataConverter.ExtractDataTextMIG(dataText);
-
-			// モンスター状態異常等のクリア
-			// 職業変更など引き継ぎたいケースもあるので、ロード処理のここでクリアする
-			if (Array.isArray(n_B_KYOUKA)) {
-				n_B_KYOUKA.fill(0);
-			}
-			if (Array.isArray(n_B_IJYOU)) {
-				n_B_IJYOU.fill(0);
-			}
-
-			// セーブデータ読み込み
-			const saveDataManagerNew = new CSaveDataManager();
-			saveDataManagerNew.parseDataText(dataText);
-			// 旧形式から移行した場合には、全体のコンパクションが必要なので
-			saveDataManagerNew.doCompaction();
-
-			// データ復元
-			saveDataManagerNew.applyDataToControls();
-
-			// メンバ変数を置き換え
-			this.#saveDataManagerCur = saveDataManagerNew;
-
-			// 再計算
-			calc();
-
-			// 検索可能ドロップダウンリストのロード
-			LoadSelect2();
-
-
-/*  この区間はJSONで全データをコートしてるときの処理
-			let parsedData;
-			try {
-				parsedData = JSON.parse(baseData);
-			} catch (e) {
-				console.warn('[loadFromURL] failed to JSON.parse basedata', e);
-				parsedData = [];
-			}
-
-			const restoredUnitArray = [];
-			const pdlen = Array.isArray(parsedData) ? parsedData.length : 0;
-			let pidx = 0;
-			const BATCH = 200;
-
-			const end = Math.min(pidx + BATCH, pdlen);
-			while (pidx < pdlen) {
-				for (; pidx < end; pidx++) {
-					const unit = parsedData[pidx];
-					const restoredParsedMap = new CMultiValueMapper();
-					try {
-						Object.entries(unit.parsedMap).forEach(([key, value]) => {
-							const restoredValue = (typeof value === 'string' && /^\d+$/.test(value)) ? BigInt(value) : value;
-							restoredParsedMap.add(key, restoredValue);
-						});
-					} catch (e) {
-						try {
-							for (const k in unit.parsedMap) {
-								const v = unit.parsedMap[k];
-								const restoredValue = (typeof v === 'string' && /^\d+$/.test(v)) ? BigInt(v) : v;
-								restoredParsedMap.add(k, restoredValue);
-							}
-						} catch (ee) {}
-					}
-
-					const restoredPropInfoMap = new CSingletonMapper();
-					try {
-						Object.entries(unit.propInfoMap).forEach(([key, value]) => {
-							const propInfo = new CSaveDataPropInfo(value.name, value.bits);
-							restoredPropInfoMap.set(key, propInfo);
-						});
-					} catch (e) {
-						try {
-							for (const k in unit.propInfoMap) {
-								const v = unit.propInfoMap[k];
-								const propInfo = new CSaveDataPropInfo(v.name, v.bits);
-								restoredPropInfoMap.set(k, propInfo);
-							}
-						} catch (ee) {}
-					}
-
-					restoredUnitArray.push({ parsedMap: restoredParsedMap, propInfoMap: restoredPropInfoMap });
+			if (this.bJSON) {
+				let parsedData;
+				try {
+					parsedData = JSON.parse(baseData);
+				} catch (e) {
+					console.warn('[loadFromURL] failed to JSON.parse basedata', e);
+					parsedData = [];
 				}
+
+				const restoredUnitArray = [];
+				const pdlen = Array.isArray(parsedData) ? parsedData.length : 0;
+				let pidx = 0;
+				const BATCH = 200;
+
+				const end = Math.min(pidx + BATCH, pdlen);
+				while (pidx < pdlen) {
+					for (; pidx < end; pidx++) {
+						const unit = parsedData[pidx];
+						const restoredParsedMap = new CMultiValueMapper();
+						try {
+							Object.entries(unit.parsedMap).forEach(([key, value]) => {
+								const restoredValue = (typeof value === 'string' && /^\d+$/.test(value)) ? BigInt(value) : value;
+								restoredParsedMap.add(key, restoredValue);
+							});
+						} catch (e) {
+							try {
+								for (const k in unit.parsedMap) {
+									const v = unit.parsedMap[k];
+									const restoredValue = (typeof v === 'string' && /^\d+$/.test(v)) ? BigInt(v) : v;
+									restoredParsedMap.add(k, restoredValue);
+								}
+							} catch (ee) {}
+						}
+
+						const restoredPropInfoMap = new CSingletonMapper();
+						try {
+							Object.entries(unit.propInfoMap).forEach(([key, value]) => {
+								const propInfo = new CSaveDataPropInfo(value.name, value.bits);
+								restoredPropInfoMap.set(key, propInfo);
+							});
+						} catch (e) {
+							try {
+								for (const k in unit.propInfoMap) {
+									const v = unit.propInfoMap[k];
+									const propInfo = new CSaveDataPropInfo(v.name, v.bits);
+									restoredPropInfoMap.set(k, propInfo);
+								}
+							} catch (ee) {}
+						}
+
+						restoredUnitArray.push({ parsedMap: restoredParsedMap, propInfoMap: restoredPropInfoMap });
+					}
+				}
+				const mgr = new CSaveDataManager();
+				mgr.restoreFromParsedData(restoredUnitArray);
+				CSaveController.setSaveDataManagerCur(mgr);
+
+				if (Array.isArray(n_B_KYOUKA)) n_B_KYOUKA.fill(0);
+				if (Array.isArray(n_B_IJYOU)) n_B_IJYOU.fill(0);
+
 			}
-			const mgr = new CSaveDataManager();
-			mgr.restoreFromParsedData(restoredUnitArray);
-			CSaveController.setSaveDataManagerCur(mgr);
+			else {
 
-			if (Array.isArray(n_B_KYOUKA)) n_B_KYOUKA.fill(0);
-			if (Array.isArray(n_B_IJYOU)) n_B_IJYOU.fill(0);
+				// サニタイジング
+				let dataText = this.sanitizeDataText(baseData);
 
-			const mgr2 = CSaveController.getSaveDataManagerCur();
-			mgr2.applyDataToControls();
-			if(mgr !== mgr2){
+				// ゼロ値圧縮の展開
+				dataText = CSaveDataConverter.ExtractDataTextMIG(dataText);
+
+				// モンスター状態異常等のクリア
+				// 職業変更など引き継ぎたいケースもあるので、ロード処理のここでクリアする
+				if (Array.isArray(n_B_KYOUKA)) {
+					n_B_KYOUKA.fill(0);
+				}
+				if (Array.isArray(n_B_IJYOU)) {
+					n_B_IJYOU.fill(0);
+				}
+
+				// セーブデータ読み込み
+				const saveDataManagerNew = new CSaveDataManager();
+				saveDataManagerNew.parseDataText(dataText);
+				// 旧形式から移行した場合には、全体のコンパクションが必要なので
+				saveDataManagerNew.doCompaction();
+
+				// データ復元
+				saveDataManagerNew.applyDataToControls();
+
+				// メンバ変数を置き換え
+				this.#saveDataManagerCur = saveDataManagerNew;
+
 			}
 
 			// 再計算
@@ -1128,20 +1159,26 @@ class CSaveController {
 
 			// 検索可能ドロップダウンリストのロード
 			LoadSelect2();
-*/
+
+
 
 			// chartdata があれば復元
 			if (chartData && chartData.length > 1) {
-/*				g_Chart = JSON.parse(chartData, (key, value) => {
-					if (typeof value === 'string' && /^\d+$/.test(value)) {
-						// leave numeric-looking strings as-is (no BigInt conversion here)
-					}
-					return value;
-				});*/
-				// Chartのデータはchart.dataのみに絞っているのでこれだけでよい
-				let param = JSON.parse(chartData)
-				g_Chart = new Object();
-				g_Chart.data = param;
+				if (this.bJSON) {
+					g_Chart = JSON.parse(chartData, (key, value) => {
+						if (typeof value === 'string' && /^\d+$/.test(value)) {
+							// leave numeric-looking strings as-is (no BigInt conversion here)
+						}
+						return value;
+					});
+				}
+				else {
+					// Chartのデータはchart.dataのみに絞っているのでこれだけでよい
+					let param = JSON.parse(chartData);
+					g_Chart = {};
+					g_Chart.data = param;
+				}
+				// チャートの復元
 				this.#restoreChartDisplay();
 			}
 
