@@ -330,66 +330,36 @@ class CSaveController {
 		try {
 			calc();
 
-			let baseJsonData = "";
-			let encoded = "";
-			if (!this.#saveDataManagerCur) {
-				this.#saveDataManagerCur = new CSaveDataManager();
-			}
-
+			let baseData;
 			if (CSaveController.bJSON) {
 				// basedata をシリアライズ
-				baseJsonData = this.#saveDataManagerCur.encodeToJSON();
+				baseData = CSaveController.#saveDataManagerCur.encodeToJSON();
 			}
-			else{
-				encoded = this.#saveDataManagerCur.encodeToURL();
-				encoded = CSaveDataConverter.CompressDataTextMIG(encoded);
+			else {
+				baseData = CSaveController.#saveDataManagerCur.encodeToURL();
+				baseData = CSaveDataConverter.CompressDataTextMIG(baseData);
 			}
 
 			// chartdata をシリアライズ
-			let chartJsonData = null;
 			let chartData = null;
 			if (g_Chart !== undefined && g_Chart !== null && Chart !== false) {
-				if (CSaveController.bJSON) {
-					chartJsonData = this.#serializeChartData(g_Chart);
-					if (chartJsonData.length > 4000) {
-						if (!confirm("【重要】長すぎてアドレスバーから読み込めない恐れがあります。\n\nURL入力ボタンからなら読み込めます。このままクリップデータを保存しますか？")) {
-							chartJsonData = null;
-						}
-					}
-				}
-				else {
-					chartData = this.#serializeChartData(g_Chart);
-					if (chartData.length > 4000) {
-						if (!confirm("【重要】長すぎてアドレスバーから読み込めない恐れがあります。\n\nURL入力ボタンからなら読み込めます。このままクリップデータを保存しますか？")) {
-							chartData = null;
-						}
+				chartData = this.#serializeChartData(g_Chart);
+				if (chartData.length > 4000) {
+					if (!confirm("【重要】URLが長くなりアドレスバーから読み込めない恐れがあります。\n\nURL入力ボタンからなら読み込めます。このままクリップデータを保存しますか？")) {
+						chartData = null;
 					}
 				}
 			}
 
-			if (CSaveController.bJSON) {
-				console.debug('[encodeToURL]', 'Base Data Size:', baseJsonData.length);
-				console.debug('[encodeToURL]', 'Chart Data Size:', chartJsonData ? chartJsonData.length : 0);
-			}
-			else {
-				console.debug('[encodeToURL]', 'Base Data Size:', encoded.length);
-				console.debug('[encodeToURL]', 'Chart Data Size:', chartData ? chartData.length : 0);
-			}
+			console.debug('[encodeToURL]', 'Base Data Size:', baseData.length);
+			console.debug('[encodeToURL]', 'Chart Data Size:', chartData ? chartData.length : 0);
 
-			let dataObj = {};
 			// 1度だけ JSON 化
-			if (CSaveController.bJSON) {
-				dataObj = {
-					base: baseJsonData,
-					chart: chartJsonData
-				};
-			}
-			else {
-				dataObj = {
-					base: encoded,
-					chart: chartData
-				};
-			}
+			const dataObj = {
+				base: baseData,
+				chart: chartData
+			};
+
 			const jsonString = JSON.stringify(dataObj);
 
 			console.debug('[encodeToURL]', 'jsonString for AI:', jsonString);
@@ -1118,9 +1088,6 @@ class CSaveController {
 				mgr.restoreFromParsedData(restoredUnitArray);
 				CSaveController.setSaveDataManagerCur(mgr);
 
-				if (Array.isArray(n_B_KYOUKA)) n_B_KYOUKA.fill(0);
-				if (Array.isArray(n_B_IJYOU)) n_B_IJYOU.fill(0);
-
 			}
 			else {
 
@@ -1130,28 +1097,28 @@ class CSaveController {
 				// ゼロ値圧縮の展開
 				dataText = CSaveDataConverter.ExtractDataTextMIG(dataText);
 
-				// モンスター状態異常等のクリア
-				// 職業変更など引き継ぎたいケースもあるので、ロード処理のここでクリアする
-				if (Array.isArray(n_B_KYOUKA)) {
-					n_B_KYOUKA.fill(0);
-				}
-				if (Array.isArray(n_B_IJYOU)) {
-					n_B_IJYOU.fill(0);
-				}
-
 				// セーブデータ読み込み
 				const saveDataManagerNew = new CSaveDataManager();
 				saveDataManagerNew.parseDataText(dataText);
 				// 旧形式から移行した場合には、全体のコンパクションが必要なので
 				saveDataManagerNew.doCompaction();
 
-				// データ復元
-				saveDataManagerNew.applyDataToControls();
-
 				// メンバ変数を置き換え
-				this.#saveDataManagerCur = saveDataManagerNew;
+				CSaveController.#saveDataManagerCur = saveDataManagerNew;
 
 			}
+
+			// モンスター状態異常等のクリア
+			// 職業変更など引き継ぎたいケースもあるので、ロード処理のここでクリアする
+			if (Array.isArray(n_B_KYOUKA)) {
+				n_B_KYOUKA.fill(0);
+			}
+			if (Array.isArray(n_B_IJYOU)) {
+				n_B_IJYOU.fill(0);
+			}
+
+			// データ復元
+			CSaveController.#saveDataManagerCur.applyDataToControls();
 
 			// 再計算
 			calc();
@@ -1178,7 +1145,7 @@ class CSaveController {
 					g_Chart.data = param;
 				}
 				// チャートの復元
-				this.#restoreChartDisplay();
+				CSaveController.#restoreChartDisplay();
 			}
 
 		} else {
@@ -1208,7 +1175,7 @@ class CSaveController {
 			saveDataManagerNew.applyDataToControls();
 
 			// メンバ変数を置き換え
-			this.#saveDataManagerCur = saveDataManagerNew;
+			CSaveController.#saveDataManagerCur = saveDataManagerNew;
 
 			// 再計算
 			calc();
