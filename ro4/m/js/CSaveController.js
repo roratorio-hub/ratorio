@@ -740,7 +740,7 @@ class CSaveController {
 				    `);
 
 			let target = 0;
-			const data = {
+			let data = {
 			  labels: [],
 			  datasets: [{
 			    label: "DPS",
@@ -957,6 +957,7 @@ class CSaveController {
 		    });
 
 			chart.data = chartDataObj;
+			data = chartDataObj;
 	    	chart.update();
 			g_Chart = chart;
 
