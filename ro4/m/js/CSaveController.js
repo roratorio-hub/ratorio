@@ -329,6 +329,9 @@ class CSaveController {
 	static encodeToURL (Chart = false) {
 		try {
 			calc();
+			if (!CSaveController.#saveDataManagerCur){
+				CSaveController.#saveDataManagerCur = new CSaveDataManager();
+			}
 
 			let baseData;
 			if (CSaveController.bJSON) {
