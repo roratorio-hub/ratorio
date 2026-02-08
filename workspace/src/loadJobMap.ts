@@ -1,4 +1,4 @@
-import { loadFileAsUint8Array, zstdDecompress } from "./funcZstd";
+import { loadFileAsUint8Array, zstdDecompressString } from "./funcZstd";
 import { load as loadYAML } from "js-yaml"
 
 export interface JobDataParameter {
@@ -186,7 +186,7 @@ export class JobMap {
     /** 職業データをロード */
     static async load(): Promise<void> {
         const compressed = await loadFileAsUint8Array('../../dist/job.yaml.zst');
-        const jobLines = await zstdDecompress(compressed) || "";
+        const jobLines = await zstdDecompressString(compressed) || "";
         try {
             // YAMLとしてロード
             this.jobMap = loadYAML(jobLines) as Record<string, JobDataParameter>;

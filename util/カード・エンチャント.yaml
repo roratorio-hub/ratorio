@@ -1,246 +1,129 @@
 card_list:
-  - name: 迷宮のダークロード
-    yomi: メイキュウノダークロード
+  - name: アース
+    yomi: アース
     type: アクセサリー
     capabilities:
-      - name: 全基本ステータス加算
-        value: 3
-
-  - name: 亜空の月夜花
-    yomi: アクウノウオルヤフア
+      - name: DEF加算
+        value: 100
+  - name: アイゼン・ヴェルナー
+    yomi: アイゼンヴェルナー
+    type: アクセサリー
+    capabilities:
+      - name: 睡眠耐性
+        value: 100
+  - name: カヤ・トース
+    yomi: カヤトース
     type: 靴
     capabilities:
       - name: MAXHP増加
         value: 10
-      - name: MAXSP増加
+      - name: 必中
         value: 10
-      - name: スキルダメージ増加
-        skill: ファイアーボルト
+        at_refine: 8
+  - name: タティオ
+    yomi: タティオ
+    type: 兜
+    capabilities:
+      - name: MATK加算
+        value: 10
+      - name: 無属性魔法ダメージ増加
+        value: 5
+      - name: 無属性魔法ダメージ増加
+        value: 5
+        at_refine: 9
+  - name: ボルセブ
+    yomi: ボルセブ
+    type: アクセサリー
+    capabilities:
+      - name: スキル使用可能
+        skill: アンチドート
+        skill_lv: 1
+  - name: レッケンベル・アース
+    yomi: レッケンベルアース
+    type: 靴
+    capabilities:
+      - name: MAXHP増加
+        value: 10
+      - name: DEF加算
         value: 100
-      - name: スキルダメージ増加
-        skill: コールドボルト
+        at_refine: 7
+      - name: DEF加算
+        value: 150
+        at_refine: 9
+  - name: レッケンベル・アイゼン・ヴェルナー
+    yomi: レッケンベルアイゼンヴェルナー
+    type: 兜
+    capabilities:
+      - name: 無属性への魔法ダメージ増加
+        value: 30
+      - name: 睡眠耐性
         value: 100
-      - name: スキルダメージ増加
-        skill: ライトニングボルト
+        at_refine: 9
+  - name: レッケンベル・アイゼン・ヴェルナー(サイン入り)
+    yomi: レッケンベルアイゼンヴェルナーサインイリ
+    type: アクセサリー
+    capabilities:
+      - name: 深い睡眠耐性
         value: 100
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 異境の統轄者
-        capabilities:
-          - name: 火属性魔法ダメージ増加
-            value: 30
-          - name: スキル固定詠唱割合減少
-            skill: ファイアーボルト
-            value: -100
-          - name: スキル固定詠唱割合減少
-            skill: コールドボルト
-            value: -100
-          - name: スキル固定詠唱割合減少
-            skill: ライトニングボルト
-            value: -100
-
-  - name: 亜空のストームナイト
-    yomi: アクウノストームナイト
+      - name: スキル使用可能
+        skill: クレイジーウィード
+        skill_lv: 10
+  - name: レッケンベル・カヤ・トース
+    yomi: レッケンベルカヤトース
+    type: 兜
+    capabilities:
+      - name: 必中
+        value: 5
+      - name: 必中
+        value: 10
+        at_refine: 7
+      - name: 必中
+        value: 10
+        at_refine: 9
+  - name: レッケンベル・タティオ
+    yomi: レッケンベルタティオ
     type: 肩にかける物
-    desc: "物理攻撃命中時、一定確率で10秒間、風属性物理攻撃力 + 30%<br>精錬値が1上がる度に追加で発動率が上昇"
     capabilities:
-      - name: 物理ダメージ増加
-        value: 10
-      - name: 風属性耐性
-        value: 50
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 異境の統轄者
-        capabilities:
-          - name: 風属性耐性
-            value: 50
-
-  - name: 亜空のハティー
-    yomi: アクウノハティー
-    desc: "物理攻撃命中時、一定確率で10秒間、水属性物理攻撃力 + 30%<br>精錬値が1上がる度に追加で発動率が上昇"
+      - name: 無属性耐性
+        value: 15
+      - name: 無属性魔法ダメージ増加
+        value: 3
+        per_refine: 1
+  - name: レッケンベル・タティオ(サイン入り)
+    yomi: レッケンベルタティオサインイリ
+    type: アクセサリー
+    desc: "物理・魔法攻撃命中時、一定確率で自分に発生している[リバウンド]状態を解除する"
+    capabilities:
+      - name: 再使用待機時間減少
+        skill: フルスロットル
+        value: 600000
+  - name: レッケンベル・ボルセブ
+    yomi: レッケンベルボルセブ
     type: 肩にかける物
+    desc: "物理攻撃命中時、一定確率で10秒間、毒属性物理攻撃力 + 30%<br>精錬値が1上がる度に追加で発動率が上昇"
     capabilities:
-      - name: 物理ダメージ増加
-        value: 10
-      - name: 水属性耐性
-        value: 50
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 異境の統轄者
-        capabilities:
-          - name: 冷凍耐性
-            value: 100
-          - name: 凍結耐性
-            value: 100
-          - name: 氷結耐性
-            value: 100
-          - name: 水属性耐性
-            value: 50
-
-  - name: 潜在解放(アビスチェイサーXIX)
-    yomi: センザイカイホウアビスチェイサーナインティーン
-    type: エンチャント
-    desc: "[豪傑]と共に装備時、[フレンジショット][ヒットアンドスライディング][チェイシングショット]使用時、一定確率でAP回復量 + 10"
+      - name: 無属性耐性
+        value: 15
+  - name: レッケンベル・ボルセブ(サイン入り)
+    yomi: レッケンベルボルセブサインイリ
+    type: アクセサリー
+    desc: "絶対に新毒状態にならない"
     capabilities:
-      - name: 破損しない
-        value: 1
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 豪傑
-        capabilities:
-          - name: 破損しない
-            value: 1
-
-  - name: 潜在解放(インペリアルガードXVII)
-    yomi: センザイカイホウインペリアルガードセブンティーン
-    type: エンチャント
-    desc: "[豪傑]と共に装備時、[オーバースラッシュ][シールドシューティング][レイディアントスピア][インペリアルクロス]使用時、一定確率でAP回復量 + 10"
+      - name: スキル使用可能
+        skill: ベナムインプレス
+        skill_lv: 3
+  - name: レッケンベル・レッケンベル会長
+    yomi: レッケンベルレッケンベルカイチョウ
+    type: 兜
     capabilities:
-      - name: 破損しない
-        value: 1
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 豪傑
-        capabilities:
-          - name: 破損しない
-            value: 1
-
-  - name: 潜在解放(ウィンドホークXIX)
-    yomi: センザイカイホウウィンドホークナインティーン
-    type: エンチャント
-    desc: "[豪傑]と共に装備時、[クレッシブボルト]使用時、一定確率でAP回復量 + 10"
+      - name: 無属性への物理ダメージ増加
+        value: 30
+      - name: 沈黙耐性
+        value: 100
+        at_refine: 9
+  - name: レッケンベル会長
+    yomi: レッケンベルカイチョウ
+    type: アクセサリー
     capabilities:
-      - name: 破損しない
-        value: 1
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 豪傑
-        capabilities:
-          - name: 破損しない
-            value: 1
-
-  - name: 潜在解放(シャドウクロスXVII)
-    yomi: センザイカイホウシャドウクロスセブンティーン
-    type: エンチャント
-    desc: "[豪傑]と共に装備時、[クロススラッシュ]使用時、一定確率でAP回復量 + 10"
-    capabilities:
-      - name: 破損しない
-        value: 1
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 豪傑
-        capabilities:
-          - name: 破損しない
-            value: 1
-
-  - name: 潜在解放(ソウルアセティックXVI)
-    yomi: センザイカイホウソウルアセティックシックスティーン
-    type: エンチャント
-    desc: "[真理の解放]と共に装備時、[死霊浄化]使用時、一定確率でAP回復量 + 10"
-    capabilities:
-      - name: 破損しない
-        value: 1
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 真理の解放
-        capabilities:
-          - name: 破損しない
-            value: 1
-
-  - name: 潜在解放(ドラゴンナイトXIX)
-    yomi: センザイカイホウドドラゴンナイトナインティーン
-    type: エンチャント
-    desc: "[豪傑]と共に装備時、[ドラゴニックピアース]使用時、一定確率でAP回復量 + 10"
-    capabilities:
-      - name: 破損しない
-        value: 1
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 豪傑
-        capabilities:
-          - name: 破損しない
-            value: 1
-
-  - name: 潜在解放(トルバドゥール&トルヴェールXIV)
-    yomi: センザイカイホウトルバドゥールアンドトルヴェールフォーティーン
-    type: エンチャント
-    desc: "[真理の解放]と共に装備時、[ミスティックシンフォニー]のAP消費量 + 50、[ミスティックシンフォニー]使用時、60秒間、[S.Matk増加]状態になる"
-    capabilities:
-      - name: 破損しない
-        value: 1
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 真理の解放
-        capabilities:
-          - name: 破損しない
-            value: 1
-
-  - name: 潜在解放(ナイトウォッチXVI)
-    yomi: センザイカイホウナイトウォッチシックスティーン
-    type: エンチャント
-    desc: "[豪傑]と共に装備時、[ヒドゥンカード]のAP消費量 + 50、[ヒドゥンカード]使用時、60秒間、[P.Atk増加]状態になる"
-    capabilities:
-      - name: 破損しない
-        value: 1
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 豪傑
-        capabilities:
-          - name: 破損しない
-            value: 1
-
-  - name: 潜在解放(バイオロXVIII)
-    yomi: センザイカイホウバイオロエイティーン
-    type: エンチャント
-    desc: "[豪傑]と共に装備時、[メイヘミックソーンズ]使用時、一定確率でAP回復量 + 10"
-    capabilities:
-      - name: 破損しない
-        value: 1
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 豪傑
-        capabilities:
-          - name: 破損しない
-            value: 1
-
-  - name: 潜在解放(蜃気楼&不知火XIX)
-    yomi: センザイカイホウシンキロウアンドシラヌイナインティーン
-    type: エンチャント
-    desc: "[真理の解放]と共に装備時、[暗転砲]使用時、一定確率でAP回復量 + 10"
-    capabilities:
-      - name: 破損しない
-        value: 1
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 真理の解放
-        capabilities:
-          - name: 破損しない
-            value: 1
-
-  - name: 潜在解放(スピリットハンドラーXXII)
-    yomi: センザイカイホウスピリットハンドラートゥエンティツー
-    type: エンチャント
-    desc: "[真理の解放]と共に装備時、[ディアーキャノン][ディアーブリーズ][ディアースピリットパワー]使用時、一定確率でAP回復量 + 10"
-    capabilities:
-      - name: 破損しない
-        value: 1
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 真理の解放
-        capabilities:
-          - name: 破損しない
-            value: 1
+      - name: 沈黙耐性
+        value: 100
