@@ -16421,6 +16421,9 @@ function GetWeaponAtk(strdex, strBonus, armsType, armsLv, armsAtk, sizeModify,
 			if (TimeItemNumSearch(TIME_ITEM_ID_ADD_ELEMENTAL_POISON_ATK_50) > 0) {
 				funcSelectAppendDamage(ELM_ID_POISON, 50);
 			}
+			if (TimeItemNumSearch(TIME_ITEM_ID_ADD_ELEMENTAL_POISON_ATK_30) > 0) {
+				funcSelectAppendDamage(ELM_ID_POISON, 30);
+			}
 			if (TimeItemNumSearch(TIME_ITEM_ID_ADD_ELEMENTAL_FIRE_ATK_50) > 0) {
 				funcSelectAppendDamage(ELM_ID_FIRE, 50);
 			}
