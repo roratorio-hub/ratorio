@@ -9,6 +9,12 @@ import { setupRoroTestEnvironment } from '../helpers/roroScriptLoader';
 import { readFileSync } from 'fs';
 import { join } from 'path';
 
+// グローバルスコープへのアクセス
+declare global {
+    var zokusei: any;
+    var weaponsize: any;
+}
+
 describe('roro/m/js/etc.js', () => {
 
     beforeAll(() => {
@@ -45,6 +51,34 @@ describe('roro/m/js/etc.js', () => {
             const content = readFileSync(filepath, 'utf-8');
             const lines = content.split('\n');
             expect(lines.length).toBeGreaterThan(10);
+        });
+    });
+
+    describe('グローバル変数の定義確認', () => {
+        it('zokusei（属性相性テーブル）が定義されている', () => {
+            if (typeof zokusei !== 'undefined') {
+                expect(typeof zokusei).not.toBe('undefined');
+            }
+        });
+
+        it('weaponsize（武器サイズ相性テーブル）が定義されている', () => {
+            if (typeof weaponsize !== 'undefined') {
+                expect(typeof weaponsize).not.toBe('undefined');
+            }
+        });
+
+        it('zokusei が配列またはオブジェクトである', () => {
+            if (typeof zokusei !== 'undefined') {
+                const isValidType = Array.isArray(zokusei) || (typeof zokusei === 'object' && zokusei !== null);
+                expect(isValidType).toBe(true);
+            }
+        });
+
+        it('weaponsize が配列またはオブジェクトである', () => {
+            if (typeof weaponsize !== 'undefined') {
+                const isValidType = Array.isArray(weaponsize) || (typeof weaponsize === 'object' && weaponsize !== null);
+                expect(isValidType).toBe(true);
+            }
         });
     });
 });

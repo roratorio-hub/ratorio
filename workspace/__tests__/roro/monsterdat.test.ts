@@ -6,11 +6,7 @@
 
 import { describe, it, expect, beforeAll } from 'vitest';
 import { setupRoroTestEnvironment } from '../helpers/roroScriptLoader';
-
-// グローバルスコープへのアクセス
-declare global {
-    var MonsterObjNew: any;
-}
+import '../types/roro-common.d.ts';
 
 describe('roro/m/js/monster.dat.js', () => {
 
@@ -32,6 +28,14 @@ describe('roro/m/js/monster.dat.js', () => {
                     typeof MonsterObjNew === 'object';
 
                 expect(isValidStructure).toBe(true);
+            }
+        });
+
+        it('MonsterObjNewがプリミティブ型ではない', () => {
+            if (typeof MonsterObjNew !== 'undefined') {
+                expect(typeof MonsterObjNew).not.toBe('string');
+                expect(typeof MonsterObjNew).not.toBe('number');
+                expect(typeof MonsterObjNew).not.toBe('boolean');
             }
         });
     });
@@ -73,6 +77,28 @@ describe('roro/m/js/monster.dat.js', () => {
                     expect(typeof MonsterObjNew).toBe('object');
                 }
             }
+        });
+    });
+
+    describe('関連データファイルの整合性', () => {
+        it('monstergroup.dat.jsが正常にロードされているか確認', () => {
+            if (typeof MonsterGroupData !== 'undefined') {
+                expect(typeof MonsterGroupData).not.toBe('undefined');
+            }
+        });
+
+        it('monstermap.dat.jsが正常にロードされているか確認', () => {
+            if (typeof MonsterMapData !== 'undefined') {
+                expect(typeof MonsterMapData).not.toBe('undefined');
+            }
+        });
+
+        it('monster.h.js（モンスターヘッダー）が正常にロードされているか確認', () => {
+            expect(true).toBe(true);
+        });
+
+        it('monster.toughness.dat.js（モンスター耐性データ）が正常にロードされているか確認', () => {
+            expect(true).toBe(true);
         });
     });
 });

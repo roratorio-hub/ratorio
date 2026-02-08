@@ -34,26 +34,26 @@ workspace/
 
 ```bash
 cd workspace
-npm install
+pnpm install
 ```
 
 ### テストの実行
 
 ```bash
 # すべてのテストを実行
-npm test
+pnpm test
 
 # ウォッチモードでテストを実行（ファイル変更を監視）
-npm run test
+pnpm run test
 
 # テストを1回だけ実行
-npm run test:run
+pnpm run test:run
 
 # カバレッジレポート付きでテストを実行
-npm run test:coverage
+pnpm run test:coverage
 
 # UI付きでテストを実行
-npm run test:ui
+pnpm run test:ui
 ```
 
 ## テストファイルの作成ガイド

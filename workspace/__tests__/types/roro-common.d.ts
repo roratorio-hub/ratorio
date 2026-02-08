@@ -15,6 +15,19 @@ declare global {
     // CInstanceManager関連
     function CInstanceManager(): void;
 
+    // データオブジェクト
+    let ItemObjNew: any;
+    let ItemPackData: any;
+    let ItemSetData: any;
+    let SkillObjNew: any;
+    let PetObjNew: any;
+    let CardObjNew: any;
+    let MonsterObjNew: any;
+    let UsableSkillData: any;
+    let MonsterGroupData: any;
+    let MonsterMapData: any;
+    let EnumCharaDataIndex: any;
+
     // Enum値（common.jsで定義される定数）
     let CONST_DATA_KIND_NONE: number;
     let CONST_DATA_KIND_ITEM: number;
@@ -142,6 +155,37 @@ declare global {
     function GetSizeText(sizeId: number): string;
     function GetStateText(stateId: number): string;
     function GetFriendlityText(friendlityId: number): string;
+
+    // roro コンポーネント・マネージャークラス
+    function CItemInfoManager(): void;
+    function CSaveDataConverter(): void;
+    function CSaveDataMappingManager(): void;
+    function CConfBase(): void;
+    function CConfBase2(): void;
+    function CAttackMethodConf(): void;
+    function CCharaConfCustomAtk(): void;
+    function CCharaConfCustomDef(): void;
+    function CCharaConfCustomSkill(): void;
+    function CCharaConfCustomStatus(): void;
+    function CCharaConfCustomSpecStatus(): void;
+    function CCharaConfDebuff(): void;
+    function CCharaConfIchizi(): void;
+    function CCharaConfNizi(): void;
+    function CCharaConfSanzi(): void;
+    function CCharaConfYozi(): void;
+    function CCustomSelectBase(): void;
+    function CCustomSelectMapBase(): void;
+    function CCustomSelectMapCategory(): void;
+    function CCustomSelectMapMap(): void;
+    function CCustomSelectMapMonster(): void;
+    function CExtraInfoAreaComponentManager(): void;
+    function CFloatingInfoAreaComponentManager(): void;
+    function CNewsAreaComponentManager(): void;
+    function CBattleQuickControlAreaComponentManager(): void;
+    function CTimeItemAreaComponentManager(): void;
+    function CCalcDataTextCreator(): void;
+    function CMobConfInput(): void;
+    function CNameKana(): void;
 }
 
 export { };

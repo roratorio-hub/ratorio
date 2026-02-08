@@ -9,7 +9,6 @@ import { setupRo4TestEnvironment } from '../helpers/ro4ScriptLoader';
 
 // グローバルスコープへのアクセス
 declare global {
-    var CSaveDataManager: any;
 }
 
 describe('ro4/m/js/CSaveDataManager.js', () => {

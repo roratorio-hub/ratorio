@@ -77,6 +77,65 @@ declare global {
     class CMigConstDataManager {
         constructor();
     }
+
+    // Buff系ファイル
+    const BUFF_CONF_GUILD_LIMIT: number;
+    let n_A_PassSkill4: any;
+    let n_Skill4SW: boolean;
+
+    // calcautospell.js
+    const AUTO_SPELL_SETTING_COUNT: number;
+    const AUTO_SPELL_SKILL_COUNT_MAX: number;
+    let AUTO_SPELL_PROB_ARRAY: any;
+    const OBJID_OFFSET_AS_SKILL_ID: number;
+    const OBJID_OFFSET_AS_SKILL_LV: number;
+    const OBJID_OFFSET_AS_SKILL_PROB: number;
+    let n_AS_SKILL: any;
+    let n_AS_DMG: any;
+    let n_AS_DMG_OverHP: any;
+    function AS_Calc(charaData: any, specData: any, mobData: any, attackMethodConfArray: any, battleCalcInfo: any): any;
+
+    // Battle関連クラス
+    class CBattleCalcInfo {
+        constructor();
+    }
+
+    class CBattleCalcResult {
+        constructor();
+    }
+
+    class CBattleCalcResultAll {
+        constructor();
+    }
+
+    class CAttackMethodAreaComponentManager {
+        constructor();
+    }
+
+    class CMonsterMapAreaComponentManager {
+        constructor();
+    }
+
+    // Save関連クラス
+    class CSaveController {
+        constructor();
+    }
+
+    class CSaveDataManager {
+        constructor();
+    }
+
+    class CShadowEquipController {
+        constructor();
+    }
+
+    class CEnchSearch {
+        constructor();
+    }
+
+    class CModalWindow {
+        constructor();
+    }
 }
 
 export { };

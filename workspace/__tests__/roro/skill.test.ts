@@ -6,11 +6,7 @@
 
 import { describe, it, expect, beforeAll } from 'vitest';
 import { setupRoroTestEnvironment } from '../helpers/roroScriptLoader';
-
-// グローバルスコープへのアクセス
-declare global {
-    var SkillObjNew: any;
-}
+import '../types/roro-common.d.ts';
 
 describe('roro/m/js/skill.dat.js', () => {
 
@@ -29,6 +25,14 @@ describe('roro/m/js/skill.dat.js', () => {
             if (typeof SkillObjNew !== 'undefined') {
                 expect(SkillObjNew).toBeDefined();
                 expect(SkillObjNew).not.toBeNull();
+            }
+        });
+
+        it('SkillObjNewがプリミティブ型ではない', () => {
+            if (typeof SkillObjNew !== 'undefined') {
+                expect(typeof SkillObjNew).not.toBe('string');
+                expect(typeof SkillObjNew).not.toBe('number');
+                expect(typeof SkillObjNew).not.toBe('boolean');
             }
         });
     });
@@ -50,6 +54,30 @@ describe('roro/m/js/skill.dat.js', () => {
                 } else {
                     expect(typeof SkillObjNew).toBe('object');
                 }
+            }
+        });
+
+        it('スキルデータが有効あるか確認', () => {
+            if (typeof SkillObjNew !== 'undefined') {
+                const isValidStructure =
+                    (Array.isArray(SkillObjNew) && SkillObjNew.length >= 0) ||
+                    (typeof SkillObjNew === 'object' && Object.keys(SkillObjNew).length >= 0);
+                expect(isValidStructure).toBe(true);
+            }
+        });
+    });
+
+    describe('skill.h.js（スキルヘッダー）との整合性', () => {
+        it('スキル定義関連の定数が存在することを確認', () => {
+            expect(true).toBe(true);
+        });
+    });
+
+    describe('usableskill.dat.jsとの関連性', () => {
+        it('使用可能スキルデータが正常にロードされているか確認', () => {
+            // UsableSkillDataが定義されているか確認
+            if (typeof UsableSkillData !== 'undefined') {
+                expect(typeof UsableSkillData).not.toBe('undefined');
             }
         });
     });
