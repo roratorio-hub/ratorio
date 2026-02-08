@@ -329,6 +329,9 @@ class CSaveController {
 	static encodeToURL (Chart = false) {
 		try {
 			calc();
+			if (!CSaveController.#saveDataManagerCur){
+				CSaveController.#saveDataManagerCur = new CSaveDataManager();
+			}
 
 			let baseData;
 			if (CSaveController.bJSON) {
@@ -740,7 +743,7 @@ class CSaveController {
 				    `);
 
 			let target = 0;
-			const data = {
+			let data = {
 			  labels: [],
 			  datasets: [{
 			    label: "DPS",
@@ -957,6 +960,7 @@ class CSaveController {
 		    });
 
 			chart.data = chartDataObj;
+			data = chartDataObj;
 	    	chart.update();
 			g_Chart = chart;
 
@@ -1347,6 +1351,9 @@ class CSaveController {
 
 
 	static getSaveDataManagerCur() {
+		if (!CSaveController.#saveDataManagerCur){
+			CSaveController.#saveDataManagerCur = new CSaveDataManager();
+		}
 		return this.#saveDataManagerCur;
 	}
 
