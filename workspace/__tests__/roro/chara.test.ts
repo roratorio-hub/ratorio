@@ -112,7 +112,7 @@ describe('roro/m/js/chara.js', () => {
             if (undefinedCount.length > 0) {
                 const indexes = undefinedCount;
                 const uniqueIndexes = new Set(indexes);
-                expect(undefinedCount.length > 0).toBe(true);
+                expect(uniqueIndexes.size).toBe(indexes.length);
             }
         });
 
