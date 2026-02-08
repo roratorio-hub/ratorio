@@ -2632,7 +2632,7 @@ function CExtraInfoAreaComponentManager () {
 
 			if (penalty > 0) {
 				// 素の耐性に取り消し線を引く
-				objSpan.style.textDecoration = "line-through";
+				objSpan.classList.add('strike-line');
 				// ペナルティ適用後の耐性を追記する
 				const value_after_decay = Math.max(paramValueArray[idx] - penalty, 0);
 				objSpan = HtmlCreateElement("span", objTd);
