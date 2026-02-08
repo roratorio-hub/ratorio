@@ -17,20 +17,6 @@ describe('ro4/m/js/CSaveDataManager.js', () => {
     beforeAll(() => {
         // テスト環境のセットアップ（依存ファイルのロード）
         setupRo4TestEnvironment();
-
-        // CSaveDataManager.js をロード
-        const { readFileSync } = require('fs');
-        const { join } = require('path');
-        const rootPath = join(__dirname, '../../..');
-
-        try {
-            const content = readFileSync(join(rootPath, 'ro4/m/js/CSaveDataManager.js'), 'utf-8');
-            // eslint-disable-next-line no-eval
-            eval(content);
-        } catch (e) {
-            // ファイルが存在しない場合の処理
-            console.warn('CSaveDataManager.js がロードできません');
-        }
     });
 
     describe('CSaveDataManagerの定義確認', () => {

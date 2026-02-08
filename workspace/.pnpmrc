@@ -1,0 +1,3 @@
+# Only allow pnpm as package manager
+use-node-version=18
+shamefully-hoist=false

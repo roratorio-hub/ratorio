@@ -17,21 +17,6 @@ describe('roro/m/js/monster.dat.js', () => {
     beforeAll(() => {
         // テスト環境のセットアップ（依存ファイルのロード）
         setupRoroTestEnvironment();
-
-        // monster.dat.js をロード
-        const { readFileSync } = require('fs');
-        const { join } = require('path');
-        const rootPath = join(__dirname, '../../..');
-
-        try {
-            const content = readFileSync(join(rootPath, 'roro/m/js/monster.dat.js'), 'utf-8');
-            // eslint-disable-next-line no-eval
-            eval(content);
-        } catch (e) {
-            // ファイルが存在しない場合の処理
-            const errorMessage = e instanceof Error ? e.message : String(e);
-            console.warn('monster.dat.js がロードできません: ' + errorMessage);
-        }
     });
 
     describe('モンスターデータオブジェクトの構造', () => {

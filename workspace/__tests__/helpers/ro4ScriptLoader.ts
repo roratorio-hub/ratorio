@@ -153,6 +153,9 @@ export function loadRo4Dependencies(): void {
     // 5. ro4の基本ファイルをロード
     loadRo4Script('global.js');
     loadRo4Script('head.js');
+
+    // 6. ro4のその他のファイルをロード
+    loadRo4Script('hmjob.js');
 }
 
 /**

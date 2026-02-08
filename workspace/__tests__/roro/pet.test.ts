@@ -17,20 +17,6 @@ describe('roro/m/js/pet.dat.js', () => {
     beforeAll(() => {
         // テスト環境のセットアップ（依存ファイルのロード）
         setupRoroTestEnvironment();
-
-        // pet.dat.js をロード
-        const { readFileSync } = require('fs');
-        const { join } = require('path');
-        const rootPath = join(__dirname, '../../..');
-
-        try {
-            const content = readFileSync(join(rootPath, 'roro/m/js/pet.dat.js'), 'utf-8');
-            // eslint-disable-next-line no-eval
-            eval(content);
-        } catch (e) {
-            // ファイルが存在しない場合の処理
-            console.warn('pet.dat.js がロードできません');
-        }
     });
 
     describe('ペットデータオブジェクトの構造', () => {

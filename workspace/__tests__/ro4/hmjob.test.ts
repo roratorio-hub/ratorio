@@ -31,14 +31,6 @@ describe('ro4/m/js/hmjob.js', () => {
     beforeAll(() => {
         // テスト環境のセットアップ（依存ファイルのロード）
         setupRo4TestEnvironment();
-
-        // hmjob.js をロード
-        const { readFileSync } = require('fs');
-        const { join } = require('path');
-        const rootPath = join(__dirname, '../../..');
-        const content = readFileSync(join(rootPath, 'ro4/m/js/hmjob.js'), 'utf-8');
-        // eslint-disable-next-line no-eval
-        (0, eval)(content);
     });
 
     describe('ステータス配列の初期化', () => {

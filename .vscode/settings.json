@@ -30,6 +30,7 @@
         "editor.insertSpaces": true
     },
     "chat.tools.terminal.autoApprove": {
-        "npm run test:run": true
+        "npm run test:run": true,
+        "npm test": true
     }
 }

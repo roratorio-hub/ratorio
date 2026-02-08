@@ -1,11 +1,16 @@
 {
     "scripts": {
+        "preinstall": "npx only-allow pnpm",
         "build": "webpack",
         "watch": "webpack --watch --progress",
         "test": "vitest",
         "test:ui": "vitest --ui",
         "test:run": "vitest run",
         "test:coverage": "vitest run --coverage"
+    },
+    "engines": {
+        "node": ">=18.0.0",
+        "pnpm": ">=8.0.0"
     },
     "devDependencies": {
         "@hpcc-js/wasm-zstd": "^1.5.0",
