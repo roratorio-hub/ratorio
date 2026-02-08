@@ -37,15 +37,12 @@ function loadRoroScriptSafe(relativePath: string): void {
  * テスト環境で使用するグローバルユーティリティ関数を定義
  */
 function defineGlobalUtilities(): void {
-    // eslint-disable-next-line no-eval
-    (0, eval)(`
-        function toSafeBigInt(value) {
-            if (typeof value === 'bigint') {
-                return value;
-            }
-            return BigInt(value);
+    (globalThis as any).toSafeBigInt = function toSafeBigInt(value: unknown): bigint {
+        if (typeof value === 'bigint') {
+            return value;
         }
-    `);
+        return BigInt(value as any);
+    };
 }
 
 /**
