@@ -1,5 +1,5 @@
 import { load as loadYAML, dump as dumpYAML } from "js-yaml"
-import { zstdCompress, zstdDecompress } from "./funcZstd";
+import { base64ToUint8Array, uint8ArrayToBase64, zstdCompressString, zstdDecompressString } from "./funcZstd";
 
 export const API_VERSION = 2;
 
@@ -61,35 +61,6 @@ export const CONTROL_CONF_LIST = [
     }
 ];
 
-// Base64 → Uint8Array（URLセーフに対応）
-export function base64ToUint8Array(base64: string): Uint8Array {
-    // パディングの補完
-    let paddedBase = base64.replace(/-/g, '+').replace(/_/g, '/');
-    const padding = paddedBase.length % 4;
-    if (padding === 2) paddedBase += '==';
-    else if (padding === 3) paddedBase += '=';
-
-    const binaryString = atob(paddedBase);
-    const len = binaryString.length;
-    const bytes = new Uint8Array(len);
-    for (let i = 0; i < len; i++) {
-        bytes[i] = binaryString.charCodeAt(i);
-    }
-    return bytes;
-}
-
-// Uint8Array → Base64（URLセーフ対応）
-export function uint8ArrayToBase64(bytes: Uint8Array): string {
-    let binary = '';
-    for (let i = 0; i < bytes.length; i++) {
-        binary += String.fromCharCode(bytes[i]);
-    }
-    let base64 = btoa(binary);
-    // URLセーフ変換
-    base64 = base64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
-    return base64;
-}
-
 // Decode => 展開 => YAML load
 export async function decodeProcess(encodedData: string): Promise<RtxData | null> {
     let dataObject: RtxData | null = null;
@@ -98,7 +69,7 @@ export async function decodeProcess(encodedData: string): Promise<RtxData | null
         const compressedData = base64ToUint8Array(encodedData);
 
         // zstdで展開
-        const yamlData = await zstdDecompress(compressedData);
+        const yamlData = await zstdDecompressString(compressedData);
 
         if (yamlData) {
             //console.debug(yamlData);
@@ -119,7 +90,7 @@ export async function encodeProcess(dataObject: RtxData): Promise<string | null>
         const yamlData = dumpYAML(dataObject);
 
         // zstdで圧縮
-        const compressedData = await zstdCompress(yamlData);
+        const compressedData = await zstdCompressString(yamlData);
 
         if (compressedData) {
             // 圧縮データ => 文字列
