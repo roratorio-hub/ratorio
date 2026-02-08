@@ -1351,6 +1351,9 @@ class CSaveController {
 
 
 	static getSaveDataManagerCur() {
+		if (!CSaveController.#saveDataManagerCur){
+			CSaveController.#saveDataManagerCur = new CSaveDataManager();
+		}
 		return this.#saveDataManagerCur;
 	}
 
