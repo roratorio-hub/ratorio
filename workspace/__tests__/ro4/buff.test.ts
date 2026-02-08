@@ -10,7 +10,6 @@
 
 import { describe, it, expect, beforeAll } from 'vitest';
 import { setupRo4TestEnvironment } from '../helpers/ro4ScriptLoader';
-import '../types/ro4-global.d.ts';
 
 describe('ro4/m/js/Buff系ファイル', () => {
 
