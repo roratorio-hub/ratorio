@@ -4,9 +4,9 @@
  * カードデータ定義の基本テスト
  */
 
+/// <reference path="../types/roro-common.d.ts" />
 import { describe, it, expect, beforeAll } from 'vitest';
 import { setupRoroTestEnvironment } from '../helpers/roroScriptLoader';
-import '../types/roro-common.d.ts';
 
 
 describe('roro/m/js/card.dat.js', () => {
