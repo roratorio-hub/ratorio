@@ -57,7 +57,7 @@ describe('roro/m/js/グローバルマネージャーとコンポーネント', 
     describe('CSkillManager.js', () => {
         it('スキルマネージャーが存在することを確認', () => {
             if (typeof CSkillManager !== 'undefined') {
-                expect(typeof CSkillManager).toBe('object');
+                expect(typeof CSkillManager).toBe('function');
             }
         });
     });
