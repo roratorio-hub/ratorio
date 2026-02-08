@@ -25222,20 +25222,19 @@ function GetCostScalingOfSkill(skillId) {
 //================================================================================================================================
 
 function GetCostFixOfSkill(skillId) {
-
+	let prefetch = 0;
 	var costfix = 0;
 
-
 	// 装備品の短縮効果
-	if (GetEquippedTotalSPEquip(ITEM_SP_SKILL_COST_MINUS_OFFSET + skillId) != 0) {
-		costfix -= GetEquippedTotalSPEquip(ITEM_SP_SKILL_COST_MINUS_OFFSET + skillId);
+	prefetch = GetEquippedTotalSPEquip(ITEM_SP_SKILL_COST_MINUS_OFFSET + skillId);
+	if (prefetch != 0) {
+		costfix -= prefetch;
 	}
 
-	if (GetEquippedTotalSPCardAndElse(ITEM_SP_SKILL_COST_MINUS_OFFSET + skillId) != 0) {
-		costfix -= GetEquippedTotalSPCardAndElse(ITEM_SP_SKILL_COST_MINUS_OFFSET + skillId);
+	prefetch = GetEquippedTotalSPCardAndElse(ITEM_SP_SKILL_COST_MINUS_OFFSET + skillId);
+	if (prefetch != 0) {
+		costfix -= prefetch;
 	}
-
-
 
 	//----------------------------------------------------------------
 	// 「冷気の魔道書」の「コールドボルト」消費増加（ペナルティ）
@@ -29048,6 +29047,7 @@ function GetEquippedSPSubSPCardAndElse(spid, invalidCardIdArray, bListUp) {
 		// 装備中のカードデータから、カードデータを取得
 		cardId = n_A_card[cardRegionId];
 		cardData = CardObjNew[cardId];
+
 		// 効果が無効の装備でないかを検査
 		if (invalidCardIdArray) {
 			if (invalidCardIdArray.indexOf(cardId) >= 0) {
@@ -29112,6 +29112,42 @@ function GetEquippedSPSubSPCardAndElse(spid, invalidCardIdArray, bListUp) {
 				eqpTranscendence = typeof n_A_SHOES_DEF_Transcendence != "undefined" ? n_A_SHOES_DEF_Transcendence: 0;
 				break;
 
+			case CARD_REGION_ID_SHADOW_ARMS_RIGHT_1:
+			case CARD_REGION_ID_SHADOW_ARMS_RIGHT_2:
+			case CARD_REGION_ID_SHADOW_ARMS_RIGHT_3:
+				eqpRefined = typeof g_refinedArray != "undefined" ? g_refinedArray[EQUIP_REGION_ID_SHADOW_ARMS_RIGHT]: 0;
+				break;
+
+			case CARD_REGION_ID_SHADOW_SHIELD_1:
+			case CARD_REGION_ID_SHADOW_SHIELD_2:
+			case CARD_REGION_ID_SHADOW_SHIELD_3:
+				eqpRefined = typeof g_refinedArray != "undefined" ? g_refinedArray[EQUIP_REGION_ID_SHADOW_ARMS_LEFT]: 0;
+				break;
+			
+			case CARD_REGION_ID_SHADOW_ENCHANT_BODY_1:
+			case CARD_REGION_ID_SHADOW_ENCHANT_BODY_2:
+			case CARD_REGION_ID_SHADOW_ENCHANT_BODY_3:
+				eqpRefined = typeof g_refinedArray != "undefined" ? g_refinedArray[EQUIP_REGION_ID_SHADOW_BODY]: 0;
+				break;
+			
+			case CARD_REGION_ID_SHADOW_ENCHANT_SHOES_1:
+			case CARD_REGION_ID_SHADOW_ENCHANT_SHOES_2:
+			case CARD_REGION_ID_SHADOW_ENCHANT_SHOES_3:
+				eqpRefined = typeof g_refinedArray != "undefined" ? g_refinedArray[EQUIP_REGION_ID_SHADOW_FOOT]: 0;
+				break;
+			
+			case CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY1_1:
+			case CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY1_2:
+			case CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY1_3:
+				eqpRefined = typeof g_refinedArray != "undefined" ? g_refinedArray[EQUIP_REGION_ID_SHADOW_ACCESSARY_1]: 0;
+				break;
+			
+			case CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY2_1:
+			case CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY2_2:
+			case CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY2_3:
+				eqpRefined = typeof g_refinedArray != "undefined" ? g_refinedArray[EQUIP_REGION_ID_SHADOW_ACCESSARY_2]: 0;
+				break;
+				
 			default:
 				eqpRefined = 0;
 				eqpTranscendence = 0;
