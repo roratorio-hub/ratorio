@@ -34,13 +34,32 @@ function loadRoroScriptSafe(relativePath: string): void {
 }
 
 /**
+ * テスト環境で使用するグローバルユーティリティ関数を定義
+ */
+function defineGlobalUtilities(): void {
+    // eslint-disable-next-line no-eval
+    (0, eval)(`
+        function toSafeBigInt(value) {
+            if (typeof value === 'bigint') {
+                return value;
+            }
+            return BigInt(value);
+        }
+    `);
+}
+
+/**
  * 必要な依存ファイルを順番にロード
  */
 export function loadRoroDependencies(): void {
+    // グローバルユーティリティ関数を先に定義
+    defineGlobalUtilities();
+
     // 依存関係の順序が重要
     loadRoroScript('CInstanceManager.js');
     loadRoroScript('CGlobalConstManager.js');
     loadRoroScript('common.js');
+    loadRoroScript('CNameKana.js');
 
     // ヘッダーファイル（定数・インデックス定義）を先にロード
     // これらは対応するデータファイルで参照される
