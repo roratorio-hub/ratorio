@@ -2467,16 +2467,12 @@ function CExtraInfoAreaComponentManager () {
 	 * 拡張情報の表示欄を構築する（状態異常耐性）.
 	 */
 	this.RebuildDispAreaResistState = function () {
-
 		var idx = 0;
-
 		var objRoot = null;
 		var objTable = null;
 		var objTbody = null;
 		var objTr = null;
 		var objTd = null;
-
-
 
 		// 指定の領域をクリア
 		objRoot = document.getElementById("OBJID_TD_EXTRA_INFO_" + this.managerInstanceId);
@@ -2486,8 +2482,6 @@ function CExtraInfoAreaComponentManager () {
 		objTable = HtmlCreateElement("table", objRoot);
 		objTable.setAttribute("style", "width : 100%;");
 		objTbody = HtmlCreateElement("tbody", objTable);
-
-
 
 		// 表示欄
 		objTr = HtmlCreateElement("tr", objTbody);
@@ -2500,26 +2494,20 @@ function CExtraInfoAreaComponentManager () {
 	 * 拡張情報の表示欄を更新する（状態異常耐性）.
 	 */
 	this.RefreshDispAreaResistState = function () {
-
 		var idx = 0;
-
 		var lv = 0;
 		var lvMax = 0;
 		var value = 0;
-
 		var typeText = "";
 		var valueText = "";
 		var equipValueArray = null;
 		var paramValueArray = null;
-
 		var objRoot = null;
 		var objTable = null;
 		var objTbody = null;
 		var objTr = null;
 		var objTd = null;
 		var objSpan = null;
-
-
 
 		//--------------------------------
 		// 状態異常耐性計算
@@ -2530,39 +2518,32 @@ function CExtraInfoAreaComponentManager () {
 
 		// 装備効果等による耐性
 		for (idx = 0; idx <= STATE_ID_STONE; idx++) {
-
 			equipValueArray[idx] = n_tok[ITEM_SP_RESIST_STATE_POISON + idx];
 
 			switch (idx) {
-
-			case STATE_ID_SLEEP:
-			case STATE_ID_BLEEDING:
-				paramValueArray[idx] = n_A_AGI;
-				break;
-
-			case STATE_ID_POISON:
-			case STATE_ID_STUN:
-				paramValueArray[idx] = n_A_VIT;
-				break;
-
-			case STATE_ID_BLIND:
-			case STATE_ID_SILENCE:
-				paramValueArray[idx] = n_A_INT;
-				break;
-
-			case STATE_ID_CURSED:
-			case STATE_ID_CONFUSE:
-				paramValueArray[idx] = n_A_LUK;
-				break;
-
-			case STATE_ID_FROZEN:
-			case STATE_ID_STONE:
-				paramValueArray[idx] = CExtraInfoAreaComponentManager.charaData[CHARA_DATA_INDEX_MDEF_DIV_IGNORE_BUFF];
-				break;
-
-			default:
-				paramValueArray[idx] = 0;
-				break;
+				case STATE_ID_SLEEP:
+				case STATE_ID_BLEEDING:
+					paramValueArray[idx] = n_A_AGI;
+					break;
+				case STATE_ID_POISON:
+				case STATE_ID_STUN:
+					paramValueArray[idx] = n_A_VIT;
+					break;
+				case STATE_ID_BLIND:
+				case STATE_ID_SILENCE:
+					paramValueArray[idx] = n_A_INT;
+					break;
+				case STATE_ID_CURSED:
+				case STATE_ID_CONFUSE:
+					paramValueArray[idx] = n_A_LUK;
+					break;
+				case STATE_ID_FROZEN:
+				case STATE_ID_STONE:
+					paramValueArray[idx] = CExtraInfoAreaComponentManager.charaData[CHARA_DATA_INDEX_MDEF_DIV_IGNORE_BUFF];
+					break;
+				default:
+					paramValueArray[idx] = 0;
+					break;
 			}
 		}
 
@@ -2606,6 +2587,11 @@ function CExtraInfoAreaComponentManager () {
 		objTd.setAttribute("class", "CSSCLS_EXTRA_INFO_DISP_TABLE");
 		HtmlCreateTextSpan("ステ耐性", objTd, CExtraInfoAreaComponentManager.fontSizeClassName);
 
+		// BaseLv差ペナルティ
+		const mobBaseLv = MonsterObjNew[CMonsterMapAreaComponentManager.GetMonsterId()][MONSTER_DATA_INDEX_LEVEL];
+		const diffBaseLv = mobBaseLv - n_A_BaseLV;
+		const penalty = (diffBaseLv > 0) ? Math.ceil((Math.pow(diffBaseLv, 2) / 5)) : 0;
+
 		// 石化まで表示
 		for (idx = 0; idx <= STATE_ID_STONE; idx++) {
 
@@ -2642,8 +2628,22 @@ function CExtraInfoAreaComponentManager () {
 			else if (paramValueArray[idx] < 0) {
 				objSpan.setAttribute("class", "CSSCLS_EXTRA_INFO_DISP_TABLE_RED");
 			}
-
 			HtmlCreateTextSpan(paramValueArray[idx] + "%", objSpan, CExtraInfoAreaComponentManager.fontSizeClassName);
+
+			if (penalty > 0) {
+				// 素の耐性に取り消し線を引く
+				objSpan.classList.add('strike-line');
+				// ペナルティ適用後の耐性を追記する
+				const value_after_decay = Math.max(paramValueArray[idx] - penalty, 0);
+				objSpan = HtmlCreateElement("span", objTd);
+				if (value_after_decay > 0) {
+					objSpan.setAttribute("class", "CSSCLS_EXTRA_INFO_DISP_TABLE_BLUE");
+				}
+				else if (value_after_decay < 0) {
+					objSpan.setAttribute("class", "CSSCLS_EXTRA_INFO_DISP_TABLE_RED");
+				}
+				HtmlCreateTextSpan(` → ${value_after_decay} %`, objSpan, CExtraInfoAreaComponentManager.fontSizeClassName);
+			}
 		}
 	};
 

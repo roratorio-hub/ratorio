@@ -574,3 +574,19 @@ td.CSSCLS_EXTRA_INFO_DISP_TABLE_SKILL_CARD_NG {
 #BATTLE_RESULT_DAMAGE:not(.CSSFLG_BTLRSLT_DAMAGE_DETAIL) .BTLRSLT_DAMAGE_DETAIL {
 	display: none;
 }
+
+/* 取り消し線専用のクラス */
+.strike-line {
+  position: relative; /* 線の位置の基準にする */
+  display: inline-block; /* 高さと幅を正しく認識させる */
+  text-decoration: none !important; /* 標準の線は消す */
+}
+.strike-line::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%; /* 常に文字の高さの真ん中 */
+  width: 100%;
+  border-bottom: 1px solid currentColor; /* 文字と同じ色で線を引く */
+  transform: translateY(-50%); /* 線の太さ分だけ微調整 */
+}

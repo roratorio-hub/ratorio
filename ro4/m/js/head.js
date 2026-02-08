@@ -1830,19 +1830,22 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				n_Delay[7] = 2000;
 				var w1 = ROUNDDOWN(charaData[CHARA_DATA_INDEX_MAXHP] * (10 + 2 * n_A_ActiveSkillLV) / 100);
 				var w2 = ROUNDDOWN(charaData[CHARA_DATA_INDEX_MAXSP] * (5 + n_A_ActiveSkillLV) / 100);
-				wbairitu = (w1 + w2) / 4;
 				if(!n_AS_MODE){
+					// 手動時
 					if(attackMethodConfArray[0].GetOptionValue(0) == 0) {
+						// 単発
 						wCast = 1000 + 100 * n_A_ActiveSkillLV;
-					} else {
-						n_Delay[0] = 1;
+						wbairitu = (w1 + w2) / 4;
 					}
 					if(attackMethodConfArray[0].GetOptionValue(0) == 1) {
-						wbairitu = wbairitu * 2;
+						// コンボ
+						n_Delay[0] = 1;
+						wbairitu = (w1 + w2) / 1.5;
 					}
 				} else {
+					// オートスペル時
 					if(attackMethodConfArray[0].GetSkillId() == SKILL_ID_COMBO_SORYUKYAKU) {
-						wbairitu = wbairitu * 2;
+						wbairitu = (w1 + w2) / 1.5;
 					}
 				}
 				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
@@ -16417,6 +16420,9 @@ function GetWeaponAtk(strdex, strBonus, armsType, armsLv, armsAtk, sizeModify,
 			// 
 			if (TimeItemNumSearch(TIME_ITEM_ID_ADD_ELEMENTAL_POISON_ATK_50) > 0) {
 				funcSelectAppendDamage(ELM_ID_POISON, 50);
+			}
+			if (TimeItemNumSearch(TIME_ITEM_ID_ADD_ELEMENTAL_POISON_ATK_30) > 0) {
+				funcSelectAppendDamage(ELM_ID_POISON, 30);
 			}
 			if (TimeItemNumSearch(TIME_ITEM_ID_ADD_ELEMENTAL_FIRE_ATK_50) > 0) {
 				funcSelectAppendDamage(ELM_ID_FIRE, 50);
