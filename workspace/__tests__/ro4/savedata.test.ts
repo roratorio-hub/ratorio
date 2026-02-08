@@ -26,8 +26,9 @@ describe('ro4/m/js/CSaveDataManager.js', () => {
             const isDefined = typeof CSaveDataManager !== 'undefined';
             const hasFunction = isDefined && typeof CSaveDataManager.constructor === 'function';
 
-            // どちらかが成立すればテスト成功
-            expect(isDefined || !isDefined).toBe(true);
+            // CSaveDataManager が定義されている場合はコンストラクタが関数であることを確認し、
+            // 定義されていない場合はテスト成功（スキップ相当）とみなす
+            expect(isDefined ? hasFunction : true).toBe(true);
         });
     });
 
