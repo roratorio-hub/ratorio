@@ -1,6 +1,5 @@
 {
     "scripts": {
-        "preinstall": "npx only-allow pnpm",
         "build": "webpack",
         "watch": "webpack --watch --progress",
         "test": "vitest",
@@ -20,13 +19,13 @@
         "@vitest/ui": "^2.1.8",
         "date-fns": "^3.6.0",
         "date-fns-tz": "^3.2.0",
-        "happy-dom": "^15.11.7",
+        "happy-dom": "^20.0.0",
         "js-yaml": "^4.1.1",
         "ts-loader": "^9.5.2",
         "ts-node": "^10.9.2",
         "typescript": "^5.9.2",
         "vitest": "^2.1.8",
-        "webpack": "^5.101.0",
+        "webpack": "^5.105.0",
         "webpack-cli": "^6.0.1"
     }
 }
