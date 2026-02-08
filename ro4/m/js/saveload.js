@@ -104,7 +104,7 @@ function OnClickDeleteSaveData () {
 function OnClickUrlOutMIG () {
 
 	// データURLの生成
-	const dataURL = CSaveController.encodeToURL();
+	const dataURL = CSaveController.encodeToURL(true);
 
 	// サイトのベースURLを取得
 	let locationBase = (location.href.split("?"))[0];

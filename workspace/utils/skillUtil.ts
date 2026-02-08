@@ -5,7 +5,7 @@ import * as vm from "vm";
 // @ts-ignore: suppress missing module types
 import * as path from "path";
 import { load as loadYAML, dump as dumpYAML } from "js-yaml";
-import { zstdCompress, } from "../src/funcZstd";
+import { zstdCompressString, } from "../src/funcZstd";
 import type { SkillDataParameter } from "../src/loadSkillMap";
 import { yamlOptions } from "./yamlMergeAndCompress";
 
@@ -133,7 +133,7 @@ export async function mergeSkill(): Promise<void> {
     }
     await fs.writeFile(outYaml, yamlString);
 
-    const compressed = await zstdCompress(yamlString);
+    const compressed = await zstdCompressString(yamlString);
     if (compressed === null) {
         throw new Error("zstdCompress が null を返しました");
     }

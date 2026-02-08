@@ -1,4 +1,4 @@
-import { loadFileAsUint8Array, zstdDecompress } from "./funcZstd";
+import { loadFileAsUint8Array, zstdDecompressString } from "./funcZstd";
 import { load as loadYAML } from "js-yaml"
 
 // ItemMapの型定義
@@ -155,7 +155,7 @@ export class ItemMap {
     /** アイテムデータをロード */
     static async load(): Promise<void> {
         const compressed = await loadFileAsUint8Array('../../dist/item.yaml.zst');
-        const itemLines = await zstdDecompress(compressed) || "";
+        const itemLines = await zstdDecompressString(compressed) || "";
         try {
             // YAMLとしてロード
             this.itemMap = loadYAML(itemLines) as Record<number, ItemDataParameter>;
