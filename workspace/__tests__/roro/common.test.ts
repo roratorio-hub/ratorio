@@ -5,9 +5,9 @@
  * テスト対象のJavaScriptファイルは一切変更せず、TypeScriptラッパーを通じてテストします。
  */
 
+/// <reference path="../types/roro-common.d.ts" />
 import { describe, it, expect, beforeAll } from 'vitest';
 import { setupRoroTestEnvironment } from '../helpers/roroScriptLoader';
-import '../types/roro-common.d.ts';
 
 describe('roro/m/js/common.js', () => {
 
