@@ -5,6 +5,15 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
 
+declare global {
+    // eslint-disable-next-line no-var
+    var g_dataManagerMobConfInput: any;
+    // eslint-disable-next-line no-var
+    var n_B_TAISEI: number[];
+    // eslint-disable-next-line no-var
+    var _APPLY_UPDATE_LV200: boolean;
+}
+
 /**
  * JavaScriptファイルをグローバルスコープで実行
  * @param relativePath ro4/m/jsからの相対パス
@@ -15,8 +24,38 @@ export function loadRo4Script(relativePath: string): void {
     const content = readFileSync(fullPath, 'utf-8');
 
     // グローバルスコープで実行
+    try {
+        // eslint-disable-next-line no-eval
+        (globalThis as any).eval(content);
+    } catch (error) {
+        console.error(`Error loading ro4/m/js/${relativePath}:`, error);
+        throw error;
+    }
+}
+
+/**
+ * roroのスクリプトをロード
+ * @param relativePath roro/m/jsからの相対パス
+ */
+function loadRoroScript(relativePath: string): void {
+    const rootPath = join(__dirname, '../../..');
+    const fullPath = join(rootPath, 'roro/m/js', relativePath);
+    const content = readFileSync(fullPath, 'utf-8');
+
+    // グローバルスコープで実行
     // eslint-disable-next-line no-eval
-    eval(content);
+    (globalThis as any).eval(content);
+}
+
+/**
+ * roroの共通ユーティリティをロード
+ */
+function loadRoroCommonUtils(): void {
+    const rootPath = join(__dirname, '../../..');
+    const fullPath = join(rootPath, 'roro/common/js/util.js');
+    const content = readFileSync(fullPath, 'utf-8');
+    // eslint-disable-next-line no-eval
+    (globalThis as any).eval(content);
 }
 
 /**
@@ -24,54 +63,96 @@ export function loadRo4Script(relativePath: string): void {
  * ro4はroroの共通ファイルに依存するため、それらもロード
  */
 export function loadRo4Dependencies(): void {
-    const rootPath = join(__dirname, '../../..');
-
-    // roroの依存ファイルをロード
-    const loadRoroScript = (relativePath: string) => {
-        const fullPath = join(rootPath, 'roro/m/js', relativePath);
-        const content = readFileSync(fullPath, 'utf-8');
-        // eslint-disable-next-line no-eval
-        eval(content);
-    };
-
     // 依存関係の順序が重要
+    // 0. roroの共通ユーティリティをロード（他のファイルが依存]
+    loadRoroCommonUtils();
+
+    // 1. roroの基本クラスをロード
     loadRoroScript('CInstanceManager.js');
     loadRoroScript('CGlobalConstManager.js');
 
-    // Mock関数を定義（ro4で必要だがテストで省略可能なもの）
-    // eslint-disable-next-line no-eval
-    eval(`
-    function MallocArray(count, initialValue) {
-      return Array(count).fill(initialValue);
-    }
-    function DivideDigits3(value) {
-      return String(value).replace(/(\\d)(?=(\\d{3})+$)/g, '$1,');
-    }
-    function HtmlGetObjectCheckedById(id, defaultValue) {
-      return defaultValue;
+    // 2. roroの共通ファイルをロード
+    loadRoroScript('common.js');
+    loadRoroScript('etc.js');
+    loadRoroScript('CNameKana.js');
+
+    // 3. roroのデータ定義ファイルをロード（HTMLのロード順序に従う）
+    // *.h.js はIDの定義、*.dat.js はデータ定義
+    const roroDataFiles = [
+        'alias.h.js', 'alias.dat.js',
+        'chara.dat.js',
+        'skill.h.js', 'skill.dat.js',
+        'usableskill.h.js', 'usableskill.dat.js',
+        'autospell.h.js', 'autospell.dat.js',
+        'CSkillManager.js',
+        'monster.h.js', 'monster.dat.js',
+        'monster.toughness.dat.js',
+        'monstergroup.dat.js',
+        'monstermap.h.js', 'monstermap.dat.js',
+        'item.h.js', 'item.dat.js',
+        'arrow.h.js', 'arrow.dat.js',
+        'card.h.js', 'card.dat.js',
+        'costume.h.js', 'costume.dat.js',
+        'pet.h.js', 'pet.dat.js',
+        'itemset.h.js', 'itemset.dat.js',
+        'rndopt.h.js', 'rndopt.dat.js',
+        'rndoptlist.h.js', 'rndoptlist.dat.js',
+        'rndopttype.h.js', 'rndopttype.dat.js',
+        'timeitem.h.js', 'timeitem.dat.js',
+        'itempack.h.js', 'itempack.dat.js'
+    ];
+
+    for (const file of roroDataFiles) {
+        try {
+            loadRoroScript(file);
+        } catch (error) {
+            // ロード失敗時はログに出力するが、処理は続行
+            console.error(`Warning: Failed to load roro/${file}:`, error);
+        }
     }
 
-    // CSkillManagerのモック
-    function CSkillManager() {
-      this.skills = [];
+    // 4. Mock関数を定義（ro4で必要だがテストで省略可能なもの）
+    if (typeof globalThis.MallocArray === 'undefined') {
+        globalThis.MallocArray = function (count: number, initialValue: any) {
+            return Array(count).fill(initialValue);
+        };
+    }
+    if (typeof globalThis.DivideDigits3 === 'undefined') {
+        globalThis.DivideDigits3 = function (value: number) {
+            return String(value).replace(/(\d)(?=(\d{3})+$)/g, '$1,');
+        };
+    }
+    if (typeof globalThis.HtmlGetObjectCheckedById === 'undefined') {
+        globalThis.HtmlGetObjectCheckedById = function (id: string, defaultValue: any) {
+            return defaultValue;
+        };
+    }
+    if (typeof (globalThis as any).CSkillManager === 'undefined') {
+        (globalThis as any).CSkillManager = function () {
+            this.skills = [];
+        };
+    }
+    if (typeof (globalThis as any).CMigConstDataManager === 'undefined') {
+        (globalThis as any).CMigConstDataManager = function () {
+            this.data = new Map();
+        };
+    }
+    if (typeof globalThis.g_dataManagerMobConfInput === 'undefined') {
+        globalThis.g_dataManagerMobConfInput = {
+            ResetDataAll: function () { }
+        };
+    }
+    if (typeof globalThis.n_B_TAISEI === 'undefined') {
+        globalThis.n_B_TAISEI = Array(10).fill(0);
+    }
+    // スキル200レベル以上のアップデート適用フラグ
+    if (typeof (globalThis as any)._APPLY_UPDATE_LV200 === 'undefined') {
+        (globalThis as any)._APPLY_UPDATE_LV200 = false;
     }
 
-    // CMigConstDataManagerのモック
-    function CMigConstDataManager() {
-      this.data = new Map();
-    }
-
-    // CDataManagerMobConfInputのモック
-    let g_dataManagerMobConfInput = {
-      ResetDataAll: function() {}
-    };
-
-    // n_B_TAISEIのモック
-    let n_B_TAISEI = Array(10).fill(0);
-  `);
-
-    // ro4の基本ファイルをロード
+    // 5. ro4の基本ファイルをロード
     loadRo4Script('global.js');
+    loadRo4Script('head.js');
 }
 
 /**

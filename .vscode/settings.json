@@ -28,5 +28,8 @@
     "[css]": {
         "editor.tabSize": 4,
         "editor.insertSpaces": true
+    },
+    "chat.tools.terminal.autoApprove": {
+        "npm run test:run": true
     }
 }
