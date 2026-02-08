@@ -65,7 +65,7 @@ describe('roro/m/js/グローバルマネージャーとコンポーネント', 
     describe('CItemInfoManager.js', () => {
         it('アイテム情報マネージャーが存在することを確認', () => {
             if (typeof CItemInfoManager !== 'undefined') {
-                expect(typeof CItemInfoManager).toBe('object');
+                expect(typeof CItemInfoManager).toBe('function');
             }
         });
     });
