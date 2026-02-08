@@ -844,7 +844,7 @@ class CSaveController {
 				calc();
 		    	const metadata = { "memo": "", "url": CSaveController.encodeToURL() };
 		    	if ($("#clip_with_memo").prop('checked')) {
-		    		memo = prompt("clipメモ");
+		    		let memo = prompt("clipメモ");
 		    		if (memo) metadata["memo"] = memo;
 		    	}
 		    	chart.data.labels.push(chart.data.labels.length + 1);
