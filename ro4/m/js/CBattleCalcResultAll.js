@@ -814,7 +814,7 @@ function CBattleCalcResultAll () {
 		}
 
 		// 基本攻撃の攻撃間隔を追加攻撃の攻撃間隔として扱う
-		var appendInterval = resultWork.attackInterval;
+		var appendInterval = (resultWork) ? resultWork.attackInterval : 0;
 
 		// 確率追撃は最小値を全加算（発動率等は考慮済み）
 		for (idx = 0; idx < this.appendResultArray.length; idx++) {
