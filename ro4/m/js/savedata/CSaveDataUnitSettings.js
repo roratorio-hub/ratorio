@@ -109,7 +109,7 @@ class CSaveDataUnitSettings extends CSaveDataUnitBase {
     constructor () {
         super();
         // プロパティ定義情報の登録
-        this.registerPropInfo(CSaveDataConst.propNameParseCtrlFlag, 27);    // version 3 で 5 → 21 へ増加  version 4 で 21 → 25 へ増加 version 5 で 25 → 26 へ増加 version6 で26 → 27 へ増加
+        this.registerPropInfo(CSaveDataConst.propNameParseCtrlFlag, 26);
         this.registerPropInfo(CSaveDataConst.propNameConfirmDialogSwitch, 1);
         this.registerPropInfo(CSaveDataConst.propNameResultDigit3, 1);
         this.registerPropInfo(CSaveDataConst.propNameAttackInterval, 6);

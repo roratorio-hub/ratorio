@@ -11417,12 +11417,10 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 		objCell.classList.add("BTLRSLT_TAB_DAMAGE");
 		objCell.classList.add(partIdStr);
 		objCell.classList.add("CSSCLS_BTLRSLT_VALUE");
-		if (bDPSActual) {
-			HtmlCreateTextNode(funcDIG3PX(battleCalcResultAll.GetDamageSummaryMinPerSecActual(), 0), objCell);
-		}
-		else {
-			HtmlCreateTextNode(funcDIG3PX(battleCalcResultAll.GetDamageSummaryMinPerSec(), 0), objCell);
-		}
+		const minDmg = bDPSActual
+					? battleCalcResultAll.GetDamageSummaryMinPerSecActual()
+					: battleCalcResultAll.GetDamageSummaryMinPerSec();
+		HtmlCreateTextNode(funcDIG3PX(minDmg, 0), objCell);
 	}
 
 	//----------------
@@ -11500,12 +11498,10 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 		objCell.classList.add("BTLRSLT_TAB_DAMAGE");
 		objCell.classList.add(partIdStr);
 		objCell.classList.add("CSSCLS_BTLRSLT_VALUE");
-		if (bDPSActual) {
-			HtmlCreateTextNode(funcDIG3PX(battleCalcResultAll.GetDamageSummaryMaxPerSecActual(), 0), objCell);
-		}
-		else {
-			HtmlCreateTextNode(funcDIG3PX(battleCalcResultAll.GetDamageSummaryMaxPerSec(), 0), objCell);
-		}
+		const maxDmg = bDPSActual
+					? battleCalcResultAll.GetDamageSummaryMaxPerSecActual()
+					: battleCalcResultAll.GetDamageSummaryMaxPerSec();
+		HtmlCreateTextNode(funcDIG3PX(maxDmg, 0), objCell);
 	}
 
 

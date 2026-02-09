@@ -660,8 +660,6 @@ function CBattleCalcResult () {
 
 		var dmg = 0;
 		var dmgPerHit = 0;
-		var dmgArray = null;
-		var actInterval = 0;
 		var hitsPerSecond = this._getHitsPerSecondActual(castVary, castFixed, attackInterval, bCollectChild);
 
 		// 発生率が 100% 未満の場合、未発生（0 ダメージ）が最小
@@ -717,7 +715,6 @@ function CBattleCalcResult () {
 
 		var dmg = 0;
 		var dmgArray = null;
-		var actInterval = 0;
 		var hitsPerSecond = this._getHitsPerSecondActual(castVary, castFixed, attackInterval, bCollectChild);
 
 		// 通常ダメージ
@@ -755,8 +752,6 @@ function CBattleCalcResult () {
 		var ret = null;
 
 		var dmg = 0;
-		var dmgArray = null;
-		var actInterval = 0;
 		var hitsPerSecond = this._getHitsPerSecondActual(castVary, castFixed, attackInterval, bCollectChild);
 
 		// 全最大ダメージを取得
@@ -789,9 +784,9 @@ function CBattleCalcResult () {
 
 
 	/**
-	 * 概算ダメージ（秒間最大・実際）の取得.
-	 * 1秒間に実際に打てる回数を考慮した計算
-	 * @return 概算ダメージ（最大）
+	 * Hit/Secの取得.
+	 * 1秒間に実際に打てる回数を計算
+	 * @return Hit/Sec
 	 */
 	this._getHitsPerSecondActual = function (castVary, castFixed, attackInterval, bCollectChild) {
 
