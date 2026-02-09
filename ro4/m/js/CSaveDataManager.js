@@ -338,6 +338,7 @@ class CSaveDataManager {
 		this.#collectDataShadowEquips();
 		this.doCompaction();
 		this.applyDataToControls();
+		CItemInfoManager.RebuildControls();
 	}
 
 
