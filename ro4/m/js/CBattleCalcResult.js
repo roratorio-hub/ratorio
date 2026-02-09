@@ -765,13 +765,12 @@ function CBattleCalcResult () {
 		dmg = GetArrayMax(dmgArray);
 
 		// 子要素の、最大ダメージを取得し、加算する
-		if (bCollectChild) {
+        if (bCollectChild) {
+
 			for (idx = 0; idx < this.childResultArray.length; idx++) {
-				if (this.childResultArray.length - 1 == idx) {
-					// これ以上の子要素が無い場合
-					bCollectChild = false
-				}
-				ret = this.childResultArray[idx].GetDamageSummaryMaxPerSecActual(castVary, castFixed, attackInterval, bCollectChild);
+				const child = this.childResultArray[idx];
+				const grandChildExists = (child.childResultArray.length > 0);
+				ret = child.GetDamageSummaryMaxPerSecActual(castVary, castFixed, attackInterval, grandChildExists);
 				dmg += GetArrayMax(ret);
 			}
 		}
@@ -802,7 +801,7 @@ function CBattleCalcResult () {
 			
 			// スキル発動間隔を計算
 			var undertime = lifetime - Math.max(delay, cooltime);
-			var skillinterval = casttime + (lifetime - (undertime > 0 ? undertime : 0));
+			var skillinterval = casttime + Math.max(delay, cooltime);
 			
 			hitsPerSecond = 0;
 			var currentTime = 0.0;
