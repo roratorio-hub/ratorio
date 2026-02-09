@@ -1168,7 +1168,7 @@ CAttackMethodAreaComponentManager.OnChangePointCap = function () {
 };
 
 /**
- * 設定変更イベントハンドラ（ポイントキャップ）.
+ * 設定変更イベントハンドラ（DPS精密化）.
  */
 CAttackMethodAreaComponentManager.OnChangeDpsActual = function () {
 
