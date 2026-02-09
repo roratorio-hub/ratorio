@@ -690,12 +690,10 @@ function CBattleCalcResult () {
 		if (bCollectChild) {
 
 			for (idx = 0; idx < this.childResultArray.length; idx++) {
-				if (this.childResultArray.length - 1 == idx) {
-					// これ以上の子要素が無い場合
-					bCollectChild = false
-				}
+				const child = this.childResultArray[idx];
+				const grandChildExists = (child.childResultArray.length > 0);
 				// 子要素は発生率を考慮する
-				ret = this.childResultArray[idx].GetDamageSummaryMinPerSecActual(castVary, castFixed, attackInterval, bCollectChild, false);
+				ret = child.GetDamageSummaryMinPerSecActual(castVary, castFixed, attackInterval, grandChildExists, false);
 				dmg += GetArrayMin(ret);
 			}
 		}
@@ -729,11 +727,10 @@ function CBattleCalcResult () {
 		// 子要素
 		if (bCollectChild) {
 			for (idx = 0; idx < this.childResultArray.length; idx++) {
-				if (this.childResultArray.length - 1 == idx) {
-					// これ以上の子要素が無い場合
-					bCollectChild = false
-				}
-				ret = this.childResultArray[idx].GetDamageSummaryAvePerSecActual(castVary, castFixed, attackInterval, bCollectChild);
+				const child = this.childResultArray[idx];
+				const grandChildExists = (child.childResultArray.length > 0);
+				// 子要素は発生率を考慮する
+				ret = this.childResultArray[idx].GetDamageSummaryAvePerSecActual(castVary, castFixed, attackInterval, grandChildExists, false);
 				dmgArray = dmgArray.concat(ret);
 			}
 		}
@@ -752,6 +749,7 @@ function CBattleCalcResult () {
 		var ret = null;
 
 		var dmg = 0;
+		var dmgArray = null;
 		var hitsPerSecond = this._getHitsPerSecondActual(castVary, castFixed, attackInterval, bCollectChild);
 
 		// 全最大ダメージを取得
@@ -793,7 +791,7 @@ function CBattleCalcResult () {
 		var hitsPerSecond = 1;
 		if (g_bDefinedDamageIntervals && !bCollectChild){
 			// 子要素を持たない設置スキルの場合：instobjectで正確に計算
-			actInterval = attackInterval;
+			let actInterval = attackInterval;
 			
 			// 1秒以内に発動する全てのスキルのヒット数を計算
 			var casttime = castVary + castFixed;
@@ -803,7 +801,6 @@ function CBattleCalcResult () {
 			var interval = attackInterval;
 			
 			// スキル発動間隔を計算
-			var maxhit = lifetime / interval;
 			var undertime = lifetime - Math.max(delay, cooltime);
 			var skillinterval = casttime + (lifetime - (undertime > 0 ? undertime : 0));
 			
