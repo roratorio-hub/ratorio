@@ -648,6 +648,255 @@ function CBattleCalcResult () {
 
 
 
+	/**
+	 * 概算ダメージ（秒間最小・実際）の取得.
+	 * 1秒間に実際に打てる回数を考慮した計算
+	 * @return 概算ダメージ（最小）
+	 */
+	this.GetDamageSummaryMinPerSecActual = function (castVary, castFixed, attackInterval, bCollectChild, bIgnoreActRate) {
+
+		var idx = 0;
+		var ret = null;
+
+		var dmg = 0;
+		var dmgPerHit = 0;
+		var dmgArray = null;
+		var actInterval = 0;
+		var hitsPerSecond = 1;
+
+		if (g_bDefinedDamageIntervals && !bCollectChild){
+			// 子要素を持たない設置スキルの場合：instobjectで正確に計算
+			actInterval = attackInterval;
+			
+			// 1秒以内に発動する全てのスキルのヒット数を計算
+			var casttime = castVary + castFixed;
+			var delay = this.delaySkill;
+			var cooltime = this.coolTime;
+			var lifetime = this.objectLifeTime / 1000.0;
+			var interval = attackInterval;
+			
+			// スキル発動間隔を計算
+			var maxhit = lifetime / interval;
+			var undertime = lifetime - Math.max(delay, cooltime);
+			var skillinterval = casttime + (lifetime - (undertime > 0 ? undertime : 0));
+			
+			hitsPerSecond = 0;
+			var currentTime = 0.0;
+			
+			// 1秒未満に発動する全てのスキルを計算
+			while (currentTime < 1.0) {
+				var instobj = new instobject();
+				instobj.init(0, 999999, currentTime, casttime, delay, cooltime, lifetime, interval);
+				instobj.now = 1.0;
+				hitsPerSecond += instobj.getHitCount(1.0);
+				
+				currentTime += skillinterval;
+				if (currentTime + casttime > 1.0) break; // 詠唱が1秒を超える場合は終了
+			}
+		}
+		else {
+			// 子要素を持つ設置スキル（アストラルストライクの初撃など）の場合
+			// または設置スキルではない場合：従来通り割り算
+			actInterval = castVary + castFixed + attackInterval;
+			hitsPerSecond = actInterval > 0 ? (Math.floor(1 / actInterval) + 1) : 1;
+		}
+
+		// 発生率が 100% 未満の場合、未発生（0 ダメージ）が最小
+		if ((!bIgnoreActRate) && (this.actRate < 100)) {
+			// 追撃も発生しないので、そのまま return
+			return [0];
+		}
+
+		// クリティカル率が 100% の場合、クリティカルダメージの最小ダメージを採用
+		else if (this.criRate >= 100) {
+			dmgPerHit = this.dmgUnitArray[1][0] * Math.max(1, this.hitCountArray[1][0]);
+			dmg = Math.floor(dmgPerHit * hitsPerSecond);
+		}
+
+		// 上記以外で、命中率が 100% 未満の場合、Miss （0 ダメージ）が最小
+		else if (this.hitRate < 100) {
+			// 追撃も発生しないので、そのまま return
+			return [0];
+		}
+
+		// 上記以外の場合、通常ダメージの最小ダメージを採用
+		else {
+			dmgPerHit = this.dmgUnitArray[0][0] * Math.max(1, this.hitCountArray[0][0]);
+			dmg = Math.floor(dmgPerHit * hitsPerSecond);
+		}
+
+		// 子要素の、最小ダメージを取得し、加算する
+		if (bCollectChild) {
+
+			for (idx = 0; idx < this.childResultArray.length; idx++) {
+				if (this.childResultArray.length - 1 == idx) {
+					// これ以上の子要素が無い場合
+					bCollectChild = false
+				}
+				// 子要素は発生率を考慮する
+				ret = this.childResultArray[idx].GetDamageSummaryMinPerSecActual(castVary, castFixed, attackInterval, bCollectChild, false);
+				dmg += GetArrayMin(ret);
+			}
+		}
+
+		return [dmg];
+	};
+
+	/**
+	 * 概算ダメージ（秒間平均・実際）の取得.
+	 * 1秒間に実際に打てる回数を考慮した計算
+	 * @return 概算ダメージ（平均）
+	 */
+	this.GetDamageSummaryAvePerSecActual = function (castVary, castFixed, attackInterval, bCollectChild) {
+
+		var idx = 0;
+		var ret = null;
+
+		var dmg = 0;
+		var dmgArray = null;
+		var actInterval = 0;
+		var hitsPerSecond = 1;
+
+		if (g_bDefinedDamageIntervals && !bCollectChild){
+			// 子要素を持たない設置スキルの場合：instobjectで正確に計算
+			actInterval = attackInterval;
+			
+			// 1秒以内に発動する全てのスキルのヒット数を計算
+			var casttime = castVary + castFixed;
+			var delay = this.delaySkill;
+			var cooltime = this.coolTime;
+			var lifetime = this.objectLifeTime / 1000.0;
+			var interval = attackInterval;
+			
+			// スキル発動間隔を計算
+			var maxhit = lifetime / interval;
+			var undertime = lifetime - Math.max(delay, cooltime);
+			var skillinterval = casttime + (lifetime - (undertime > 0 ? undertime : 0));
+			
+			hitsPerSecond = 0;
+			var currentTime = 0.0;
+			
+			// 1秒未満に発動する全てのスキルを計算
+			while (currentTime < 1.0) {
+				var instobj = new instobject();
+				instobj.init(0, 999999, currentTime, casttime, delay, cooltime, lifetime, interval);
+				instobj.now = 1.0;
+				hitsPerSecond += instobj.getHitCount(1.0);
+				
+				currentTime += skillinterval;
+				if (currentTime + casttime > 1.0) break; // 詠唱が1秒を超える場合は終了
+			}
+		}
+		else {
+			// 子要素を持つ設置スキル（アストラルストライクの初撃など）の場合
+			// または設置スキルではない場合：従来通り割り算
+			actInterval = castVary + castFixed + attackInterval;
+			hitsPerSecond = actInterval > 0 ? (Math.floor(1 / actInterval) + 1) : 1;
+		}
+
+		// 通常ダメージ
+		dmg += Math.floor((this.dmgUnitArray[0][1] * Math.max(1, this.hitCountArray[0][1]) * hitsPerSecond) * (100 - this.criRate) / 100 * this.hitRate / 100);
+
+		// クリティカルダメージ
+		dmg += Math.floor((this.dmgUnitArray[1][1] * Math.max(1, this.hitCountArray[1][1]) * hitsPerSecond) * this.criRate / 100);
+
+		// 配列に格納
+		dmgArray = [dmg];
+
+		// 子要素
+		if (bCollectChild) {
+			for (idx = 0; idx < this.childResultArray.length; idx++) {
+				if (this.childResultArray.length - 1 == idx) {
+					// これ以上の子要素が無い場合
+					bCollectChild = false
+				}
+				ret = this.childResultArray[idx].GetDamageSummaryAvePerSecActual(castVary, castFixed, attackInterval, bCollectChild);
+				dmgArray = dmgArray.concat(ret);
+			}
+		}
+
+		return dmgArray;
+	};
+
+	/**
+	 * 概算ダメージ（秒間最大・実際）の取得.
+	 * 1秒間に実際に打てる回数を考慮した計算
+	 * @return 概算ダメージ（最大）
+	 */
+	this.GetDamageSummaryMaxPerSecActual = function (castVary, castFixed, attackInterval, bCollectChild) {
+
+		var idx = 0;
+		var ret = null;
+
+		var dmg = 0;
+		var dmgArray = null;
+		var actInterval = 0;
+		var hitsPerSecond = 1;
+
+		if (g_bDefinedDamageIntervals && !bCollectChild){
+			// 子要素を持たない設置スキルの場合：instobjectで正確に計算
+			actInterval = attackInterval;
+			
+			// 1秒以内に発動する全てのスキルのヒット数を計算
+			var casttime = castVary + castFixed;
+			var delay = this.delaySkill;
+			var cooltime = this.coolTime;
+			var lifetime = this.objectLifeTime / 1000.0;
+			var interval = attackInterval;
+			
+			// スキル発動間隔を計算
+			var maxhit = lifetime / interval;
+			var undertime = lifetime - Math.max(delay, cooltime);
+			var skillinterval = casttime + (lifetime - (undertime > 0 ? undertime : 0));
+			
+			hitsPerSecond = 0;
+			var currentTime = 0.0;
+			
+			// 1秒未満に発動する全てのスキルを計算
+			while (currentTime < 1.0) {
+				var instobj = new instobject();
+				instobj.init(0, 999999, currentTime, casttime, delay, cooltime, lifetime, interval);
+				instobj.now = 1.0;
+				hitsPerSecond += instobj.getHitCount(1.0);
+				
+				currentTime += skillinterval;
+				if (currentTime + casttime > 1.0) break; // 詠唱が1秒を超える場合は終了
+			}
+		}
+		else {
+			// 子要素を持つ設置スキル（アストラルストライクの初撃など）の場合
+			// または設置スキルではない場合：従来通り割り算
+			actInterval = castVary + castFixed + attackInterval;
+			hitsPerSecond = actInterval > 0 ? (Math.floor(1 / actInterval) + 1) : 1;
+		}
+
+		// 全最大ダメージを取得
+		dmgArray = [];
+
+		// 通常ダメージ
+		dmgArray.push(Math.floor(this.dmgUnitArray[0][2] * Math.max(1, this.hitCountArray[0][2]) * hitsPerSecond));
+
+		// クリティカルダメージ
+		dmgArray.push(Math.floor(this.dmgUnitArray[1][2] * Math.max(1, this.hitCountArray[1][2]) * hitsPerSecond));
+
+		// その中でも最大のダメージを採用する
+		dmg = GetArrayMax(dmgArray);
+
+		// 子要素の、最大ダメージを取得し、加算する
+		if (bCollectChild) {
+			for (idx = 0; idx < this.childResultArray.length; idx++) {
+				if (this.childResultArray.length - 1 == idx) {
+					// これ以上の子要素が無い場合
+					bCollectChild = false
+				}
+				ret = this.childResultArray[idx].GetDamageSummaryMaxPerSecActual(castVary, castFixed, attackInterval, bCollectChild);
+				dmg += GetArrayMax(ret);
+			}
+		}
+
+		return [dmg];
+	};
+
 
 
 	/**

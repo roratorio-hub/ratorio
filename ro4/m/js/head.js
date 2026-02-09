@@ -11402,6 +11402,7 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 	objCell.classList.add("CSSCLS_BTLRSLT_VALUE");
 	HtmlCreateTextNode(funcDIG3PX(battleCalcResultAll.GetDamageSummaryMinPerAtk(), 0), objCell);
 
+	let bDPSActual = CSaveController.getSettingProp(CSaveDataConst.propNameDPSActual);
 	// TODO: 詠唱時間等未実測スキル対応
 	if (g_bUnknownCasts) {
 		objCell = HtmlCreateElement("div", objGridDmg);
@@ -11416,7 +11417,12 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 		objCell.classList.add("BTLRSLT_TAB_DAMAGE");
 		objCell.classList.add(partIdStr);
 		objCell.classList.add("CSSCLS_BTLRSLT_VALUE");
-		HtmlCreateTextNode(funcDIG3PX(battleCalcResultAll.GetDamageSummaryMinPerSec(), 0), objCell);
+		if (bDPSActual) {
+			HtmlCreateTextNode(funcDIG3PX(battleCalcResultAll.GetDamageSummaryMinPerSecActual(), 0), objCell);
+		}
+		else {
+			HtmlCreateTextNode(funcDIG3PX(battleCalcResultAll.GetDamageSummaryMinPerSec(), 0), objCell);
+		}
 	}
 
 	//----------------
@@ -11454,9 +11460,16 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 		objCell.classList.add("BTLRSLT_TAB_DAMAGE");
 		objCell.classList.add(partIdStr);
 		objCell.classList.add("CSSCLS_BTLRSLT_VALUE");
-		HtmlCreateTextNode(funcDIG3PX(battleCalcResultAll.GetDamageSummaryAvePerSec(), 0), objCell);
+		if (bDPSActual) {
+			HtmlCreateTextNode(funcDIG3PX(battleCalcResultAll.GetDamageSummaryAvePerSecActual(), 0), objCell);
 
-		funcRenderResultTinyHtml(objGridTiny, "DPS", funcDIG3PX(battleCalcResultAll.GetDamageSummaryAvePerSec(), 0));
+			funcRenderResultTinyHtml(objGridTiny, "DPS", funcDIG3PX(battleCalcResultAll.GetDamageSummaryAvePerSecActual(), 0));
+		}
+		else {
+			HtmlCreateTextNode(funcDIG3PX(battleCalcResultAll.GetDamageSummaryAvePerSec(), 0), objCell);
+
+			funcRenderResultTinyHtml(objGridTiny, "DPS", funcDIG3PX(battleCalcResultAll.GetDamageSummaryAvePerSec(), 0));
+		}
 	}
 
 	//----------------
@@ -11491,7 +11504,12 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 		objCell.classList.add("BTLRSLT_TAB_DAMAGE");
 		objCell.classList.add(partIdStr);
 		objCell.classList.add("CSSCLS_BTLRSLT_VALUE");
-		HtmlCreateTextNode(funcDIG3PX(battleCalcResultAll.GetDamageSummaryMaxPerSec(), 0), objCell);
+		if (bDPSActual) {
+			HtmlCreateTextNode(funcDIG3PX(battleCalcResultAll.GetDamageSummaryMaxPerSecActual(), 0), objCell);
+		}
+		else {
+			HtmlCreateTextNode(funcDIG3PX(battleCalcResultAll.GetDamageSummaryMaxPerSec(), 0), objCell);
+		}
 	}
 
 
