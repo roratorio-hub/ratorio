@@ -788,8 +788,8 @@ function CBattleCalcResult () {
 	this._getHitsPerSecondActual = function (castVary, castFixed, attackInterval, bCollectChild) {
 
 		var hitsPerSecond = 1;
-		if (g_bDefinedDamageIntervals && !bCollectChild){
-			// 子要素を持たない設置スキルの場合：instobjectで正確に計算
+		if (g_bDefinedDamageIntervals || bCollectChild){
+			// instobjectで正確に計算
 			let actInterval = attackInterval;
 			
 			// 1秒以内に発動する全てのスキルのヒット数を計算
@@ -819,8 +819,7 @@ function CBattleCalcResult () {
 			}
 		}
 		else {
-			// 子要素を持つ設置スキル（アストラルストライクの初撃など）の場合
-			// または設置スキルではない場合：従来通り割り算
+			// 設置スキルではない場合：従来通り割り算
 			actInterval = castVary + castFixed + attackInterval;
 			hitsPerSecond = actInterval > 0 ? (Math.floor(1 / actInterval) + 1) : 1;
 		}
