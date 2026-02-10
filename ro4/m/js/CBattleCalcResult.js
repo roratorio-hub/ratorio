@@ -815,6 +815,7 @@ function CBattleCalcResult () {
 				
 				currentTime += skillinterval;
 				if (currentTime + casttime > 1.0) break; // 詠唱が1秒を超える場合は終了
+				if (currentTime === 0) break; // 詠唱が進まない場合は終了(無限ループ対策)
 			}
 		}
 		else {
