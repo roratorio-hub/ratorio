@@ -1563,6 +1563,15 @@
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5552].push(883);
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5640].push(890);
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5643].push(890);
+	// --- 2026-02-10 ---
+	g_constDataManager.enchListDataManager.sourceArray[893] = [893,-1,0,0,[["スペシャルエンチャント(ミオン)","スペシャルエンチャント(ミオン)"]],[],[[[174,[50,[5656]]],,[[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[4138,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.sourceArray[894] = [894,-1,0,0,[["スペシャルエンチャント(ミオン)","スペシャルエンチャント(ミオン)"]],[],[[[174,[50,[5657]]],,[[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[4140,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5656] = [893,776];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5657] = [894,776];
+	g_constDataManager.enchListDataManager.sourceArray[895] = [895,-1,0,0,[["スペシャルエンチャント(メト)","スペシャルエンチャント(メト)"]],[],[[[174,[50,[5658]]],,[[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[665,670,675,680,685,689,659,599,660,661,662,663,2680,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[665,670,675,680,685,689,659,599,660,661,662,663,4144,]]],,[]]]]]],[[178,[27,[2]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[665,670,675,680,685,689,659,599,660,661,662,663,888,1245,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.sourceArray[896] = [896,-1,0,0,[["スペシャルエンチャント(メト)","スペシャルエンチャント(メト)"]],[],[[[174,[50,[5659]]],,[[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[665,670,675,680,685,689,659,599,660,661,662,663,3336,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[665,670,675,680,685,689,659,599,660,661,662,663,4142,]]],,[]]]]]],[[178,[27,[2]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[665,670,675,680,685,689,659,599,660,661,662,663,1297,1348,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5658] = [895];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5659] = [896];
 
 	// enchant はセーブデータに書き出されないので
 	// 現実的な範囲において enchantID の上限値を気にする必要はありません
