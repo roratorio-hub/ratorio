@@ -1,129 +1,48 @@
 card_list:
-  - name: アース
-    yomi: アース
-    type: アクセサリー
-    capabilities:
-      - name: DEF加算
-        value: 100
-  - name: アイゼン・ヴェルナー
-    yomi: アイゼンヴェルナー
-    type: アクセサリー
-    capabilities:
-      - name: 睡眠耐性
-        value: 100
-  - name: カヤ・トース
-    yomi: カヤトース
-    type: 靴
-    capabilities:
-      - name: MAXHP増加
-        value: 10
-      - name: 必中
-        value: 10
-        at_refine: 8
-  - name: タティオ
-    yomi: タティオ
-    type: 兜
-    capabilities:
-      - name: MATK加算
-        value: 10
-      - name: 無属性魔法ダメージ増加
-        value: 5
-      - name: 無属性魔法ダメージ増加
-        value: 5
-        at_refine: 9
-  - name: ボルセブ
-    yomi: ボルセブ
-    type: アクセサリー
-    capabilities:
-      - name: スキル使用可能
-        skill: アンチドート
-        skill_lv: 1
-  - name: レッケンベル・アース
-    yomi: レッケンベルアース
-    type: 靴
-    capabilities:
-      - name: MAXHP増加
-        value: 10
-      - name: DEF加算
-        value: 100
-        at_refine: 7
-      - name: DEF加算
-        value: 150
-        at_refine: 9
-  - name: レッケンベル・アイゼン・ヴェルナー
-    yomi: レッケンベルアイゼンヴェルナー
-    type: 兜
-    capabilities:
-      - name: 無属性への魔法ダメージ増加
-        value: 30
-      - name: 睡眠耐性
-        value: 100
-        at_refine: 9
-  - name: レッケンベル・アイゼン・ヴェルナー(サイン入り)
-    yomi: レッケンベルアイゼンヴェルナーサインイリ
-    type: アクセサリー
-    capabilities:
-      - name: 深い睡眠耐性
-        value: 100
-      - name: スキル使用可能
-        skill: クレイジーウィード
-        skill_lv: 10
-  - name: レッケンベル・カヤ・トース
-    yomi: レッケンベルカヤトース
-    type: 兜
-    capabilities:
-      - name: 必中
-        value: 5
-      - name: 必中
-        value: 10
-        at_refine: 7
-      - name: 必中
-        value: 10
-        at_refine: 9
-  - name: レッケンベル・タティオ
-    yomi: レッケンベルタティオ
-    type: 肩にかける物
-    capabilities:
-      - name: 無属性耐性
-        value: 15
-      - name: 無属性魔法ダメージ増加
-        value: 3
-        per_refine: 1
-  - name: レッケンベル・タティオ(サイン入り)
-    yomi: レッケンベルタティオサインイリ
-    type: アクセサリー
-    desc: "物理・魔法攻撃命中時、一定確率で自分に発生している[リバウンド]状態を解除する"
-    capabilities:
-      - name: 再使用待機時間減少
-        skill: フルスロットル
-        value: 600000
-  - name: レッケンベル・ボルセブ
-    yomi: レッケンベルボルセブ
-    type: 肩にかける物
-    desc: "物理攻撃命中時、一定確率で10秒間、毒属性物理攻撃力 + 30%<br>精錬値が1上がる度に追加で発動率が上昇"
-    capabilities:
-      - name: 無属性耐性
-        value: 15
-  - name: レッケンベル・ボルセブ(サイン入り)
-    yomi: レッケンベルボルセブサインイリ
-    type: アクセサリー
-    desc: "絶対に新毒状態にならない"
-    capabilities:
-      - name: スキル使用可能
-        skill: ベナムインプレス
-        skill_lv: 3
-  - name: レッケンベル・レッケンベル会長
-    yomi: レッケンベルレッケンベルカイチョウ
-    type: 兜
-    capabilities:
-      - name: 無属性への物理ダメージ増加
-        value: 30
-      - name: 沈黙耐性
-        value: 100
-        at_refine: 9
-  - name: レッケンベル会長
-    yomi: レッケンベルカイチョウ
-    type: アクセサリー
-    capabilities:
-      - name: 沈黙耐性
-        value: 100
+  - name: 潜在解放(エレメンタルマスターXIX)
+    yomi: センザイカイホウエレメンタルマスター19
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 真理の解放
+        capabilities:
+          - name: 再使用待機時間減少
+            skill: エレメンタルバスター
+            value: 100
+  - name: 潜在解放(トルバドゥール&トルヴェールXV)
+    yomi: センザイカイホウトルバドゥールアンドトルヴェール15
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 真理の解放
+        capabilities:
+          - name: 再使用待機時間減少
+            skill: リズミカルウェーブ
+            value: 100
+  - name: 潜在解放(スピリットハンドラーXXIII)
+    yomi: センザイカイホウスピリットハンドラー23
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: 再使用待機時間減少
+            skill: タイガーバトリング
+            value: 300
+  - name: 潜在解放(アークメイジXIX)
+    yomi: センザイカイホウアークメイジ19
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 真理の解放
+        capabilities:
+          - name: 再使用待機時間減少
+            skill: レインオブクリスタル
+            value: 2000
+          - name: 再使用待機時間減少
+            skill: ストラタムトレマー
+            value: 2000
