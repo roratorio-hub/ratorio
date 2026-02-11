@@ -2,7 +2,7 @@
 rm -rf node_modules
 mkdir -p ../dist/
 rm -f ../dist/*
-npm ci #clean-install
+npm install
 npm run build
 npx ts-node --project tsconfig.node.json utils/yamlMergeAndCompress.ts
 
