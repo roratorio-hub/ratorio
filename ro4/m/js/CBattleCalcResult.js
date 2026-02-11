@@ -671,7 +671,7 @@ function CBattleCalcResult () {
 		// クリティカル率が 100% の場合、クリティカルダメージの最小ダメージを採用
 		else if (this.criRate >= 100) {
 			dmgPerHit = this.dmgUnitArray[1][0] * Math.max(1, this.hitCountArray[1][0]);
-			dmg = Math.floor(dmgPerHit * hitsPerSecond);
+			dmg = Math.floor(dmgPerHit * hitsPerSecond.min);
 		}
 
 		// 上記以外で、命中率が 100% 未満の場合、Miss （0 ダメージ）が最小
@@ -683,7 +683,7 @@ function CBattleCalcResult () {
 		// 上記以外の場合、通常ダメージの最小ダメージを採用
 		else {
 			dmgPerHit = this.dmgUnitArray[0][0] * Math.max(1, this.hitCountArray[0][0]);
-			dmg = Math.floor(dmgPerHit * hitsPerSecond);
+			dmg = Math.floor(dmgPerHit * hitsPerSecond.min);
 		}
 
 		// 子要素の、最小ダメージを取得し、加算する
@@ -716,10 +716,10 @@ function CBattleCalcResult () {
 		var hitsPerSecond = this._getHitsPerSecondActual(castVary, castFixed, attackInterval, bCollectChild);
 
 		// 通常ダメージ
-		dmg += Math.floor((this.dmgUnitArray[0][1] * Math.max(1, this.hitCountArray[0][1]) * hitsPerSecond) * (100 - this.criRate) / 100 * this.hitRate / 100);
+		dmg += Math.floor((this.dmgUnitArray[0][1] * Math.max(1, this.hitCountArray[0][1]) * hitsPerSecond.ave) * (100 - this.criRate) / 100 * this.hitRate / 100);
 
 		// クリティカルダメージ
-		dmg += Math.floor((this.dmgUnitArray[1][1] * Math.max(1, this.hitCountArray[1][1]) * hitsPerSecond) * this.criRate / 100);
+		dmg += Math.floor((this.dmgUnitArray[1][1] * Math.max(1, this.hitCountArray[1][1]) * hitsPerSecond.ave) * this.criRate / 100);
 
 		// 配列に格納
 		dmgArray = [dmg];
@@ -756,10 +756,10 @@ function CBattleCalcResult () {
 		dmgArray = [];
 
 		// 通常ダメージ
-		dmgArray.push(Math.floor(this.dmgUnitArray[0][2] * Math.max(1, this.hitCountArray[0][2]) * hitsPerSecond));
+		dmgArray.push(Math.floor(this.dmgUnitArray[0][2] * Math.max(1, this.hitCountArray[0][2]) * hitsPerSecond.max));
 
 		// クリティカルダメージ
-		dmgArray.push(Math.floor(this.dmgUnitArray[1][2] * Math.max(1, this.hitCountArray[1][2]) * hitsPerSecond));
+		dmgArray.push(Math.floor(this.dmgUnitArray[1][2] * Math.max(1, this.hitCountArray[1][2]) * hitsPerSecond.max));
 
 		// その中でも最大のダメージを採用する
 		dmg = GetArrayMax(dmgArray);
@@ -787,43 +787,123 @@ function CBattleCalcResult () {
 	 */
 	this._getHitsPerSecondActual = function (castVary, castFixed, attackInterval, bCollectChild) {
 
-		var hitsPerSecond = 1;
+		var hitsMin = 1;
+		var hitsMax = 1;
+		var hitsAve = 1;
+		
 		if (g_bDefinedDamageIntervals || bCollectChild){
 			// instobjectで正確に計算
 			let actInterval = attackInterval;
 			
-			// 1秒以内に発動する全てのスキルのヒット数を計算
 			var casttime = castVary + castFixed;
 			var delay = this.delaySkill;
 			var cooltime = this.coolTime;
 			var lifetime = this.objectLifeTime / 1000.0;
 			var interval = attackInterval;
 			
-			// スキル発動間隔を計算
-			var undertime = lifetime - Math.max(delay, cooltime);
 			var skillinterval = casttime + Math.max(delay, cooltime);
 			
-			hitsPerSecond = 0;
-			var currentTime = 0.0;
+			// 1秒以内の各設置物の存在期間を記録
+			var placements = [];
+			var currentTime = 0;
 			
-			// 1秒未満に発動する全てのスキルを計算
 			while (currentTime < 1.0) {
-				var instobj = new instobject();
-				instobj.init(0, 999999, currentTime, casttime, delay, cooltime, lifetime, interval);
-				instobj.now = 1.0;
-				hitsPerSecond += instobj.getHitCount(1.0);
+				if (currentTime + casttime <= 1.0) {
+					// この設置物がヒットを開始する時刻と終了時刻
+					var startHitTime = currentTime + casttime;
+					var endHitTime = Math.min(1.0, startHitTime + lifetime);
+					
+					placements.push({
+						startTime: startHitTime,
+						endTime: endHitTime,
+						interval: interval
+					});
+				}
 				
 				currentTime += skillinterval;
-				if (currentTime + casttime > 1.0) break; // 詠唱が1秒を超える場合は終了
-				if (currentTime === 0) break; // 詠唱が進まない場合は終了(無限ループ対策)
+				if (currentTime + casttime > 1.0) break;
+				if (skillinterval === 0) break; // 無限ループ対策
 			}
+			
+			if (placements.length === 0) {
+				// 1秒以内に設置できない場合
+				return { min: 0, ave: 0, max: 0 };
+			}
+			
+			// 重要なイベント時刻（設置開始/終了時刻）を収集
+			var eventTimes = new Set();
+			placements.forEach(function(p) {
+				eventTimes.add(p.startTime);
+				eventTimes.add(p.endTime);
+			});
+			eventTimes.add(1.0); // 1秒時点も追加
+			eventTimes = Array.from(eventTimes).sort(function(a, b) { return a - b; });
+			
+			// 各時刻での重ね合わせ数と総ヒット数を計算
+			var minOverlap = Infinity;
+			var maxOverlap = 0;
+			var timeWeightedSum = 0; // 時間加重合計
+			
+			// 各区間での設置物の数を計算し、時間加重平均を求める
+			for (var i = 0; i < eventTimes.length - 1; i++) {
+				var timeStart = eventTimes[i];
+				var timeEnd = eventTimes[i + 1];
+				var duration = timeEnd - timeStart;
+				
+				// この区間でアクティブな設置物の数
+				var activeCount = placements.filter(function(p) {
+					return timeStart >= p.startTime && timeStart < p.endTime;
+				}).length;
+				
+				if (activeCount > 0) {
+					minOverlap = Math.min(minOverlap, activeCount);
+					maxOverlap = Math.max(maxOverlap, activeCount);
+					timeWeightedSum += activeCount * duration;
+				}
+			}
+			
+			// 時間加重平均重ね合わせ数を計算
+			var aveOverlap = timeWeightedSum / 1.0;
+			
+			// 最小重ね合わせでのヒット数（1つの設置物のヒット数 × 最小同時存在数）
+			if (minOverlap === Infinity) {
+				hitsMin = 0;
+			} else {
+				var instobj = new instobject();
+				instobj.init(0, 999999, 0, casttime, delay, cooltime, lifetime, interval);
+				instobj.now = 1.0;
+				var singleHitCount = instobj.getHitCount(1.0);
+				hitsMin = singleHitCount * minOverlap;
+			}
+			
+			// 平均重ね合わせでのヒット数（1つの設置物のヒット数 × 時間加重平均同時存在数）
+			if (aveOverlap > 0) {
+				var instobj2 = new instobject();
+				instobj2.init(0, 999999, 0, casttime, delay, cooltime, lifetime, interval);
+				instobj2.now = 1.0;
+				var singleHitCount2 = instobj2.getHitCount(1.0);
+				hitsAve = singleHitCount2 * aveOverlap;
+			} else {
+				hitsAve = 0;
+			}
+			
+			// 最大重ね合わせでのヒット数（全設置物の合計）
+			hitsMax = 0;
+			placements.forEach(function(p) {
+				var instobj = new instobject();
+				instobj.init(0, 999999, p.startTime - casttime, casttime, delay, cooltime, lifetime, interval);
+				instobj.now = 1.0;
+				hitsMax += instobj.getHitCount(1.0);
+			});
 		}
 		else {
 			// 設置スキルではない場合：従来通り割り算
 			actInterval = castVary + castFixed + attackInterval;
-			hitsPerSecond = actInterval > 0 ? (Math.floor(1 / actInterval) + 1) : 1;
+			var hits = actInterval > 0 ? Math.floor(1 / actInterval) : 1;
+			hitsMin = hitsMax = hitsAve = hits;
 		}
-		return hitsPerSecond;
+		
+		return { min: hitsMin, ave: hitsAve, max: hitsMax };
 	}
 
 
