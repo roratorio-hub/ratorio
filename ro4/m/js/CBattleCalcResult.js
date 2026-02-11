@@ -899,7 +899,7 @@ function CBattleCalcResult () {
 		else {
 			// 設置スキルではない場合：従来通り割り算
 			actInterval = castVary + castFixed + attackInterval;
-			var hits = actInterval > 0 ? Math.floor(1 / actInterval) : 1;
+			var hits = actInterval > 0 ? (1 / actInterval) : 1;
 			hitsMin = hitsMax = hitsAve = hits;
 		}
 		
