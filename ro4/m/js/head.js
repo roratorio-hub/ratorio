@@ -11402,6 +11402,7 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 	objCell.classList.add("CSSCLS_BTLRSLT_VALUE");
 	HtmlCreateTextNode(funcDIG3PX(battleCalcResultAll.GetDamageSummaryMinPerAtk(), 0), objCell);
 
+	let bDPSActual = CSaveController.getSettingProp(CSaveDataConst.propNameDPSActual);
 	// TODO: 詠唱時間等未実測スキル対応
 	if (g_bUnknownCasts) {
 		objCell = HtmlCreateElement("div", objGridDmg);
@@ -11416,7 +11417,10 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 		objCell.classList.add("BTLRSLT_TAB_DAMAGE");
 		objCell.classList.add(partIdStr);
 		objCell.classList.add("CSSCLS_BTLRSLT_VALUE");
-		HtmlCreateTextNode(funcDIG3PX(battleCalcResultAll.GetDamageSummaryMinPerSec(), 0), objCell);
+		const minDmg = bDPSActual
+					? battleCalcResultAll.GetDamageSummaryMinPerSecActual()
+					: battleCalcResultAll.GetDamageSummaryMinPerSec();
+		HtmlCreateTextNode(funcDIG3PX(minDmg, 0), objCell);
 	}
 
 	//----------------
@@ -11454,9 +11458,12 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 		objCell.classList.add("BTLRSLT_TAB_DAMAGE");
 		objCell.classList.add(partIdStr);
 		objCell.classList.add("CSSCLS_BTLRSLT_VALUE");
-		HtmlCreateTextNode(funcDIG3PX(battleCalcResultAll.GetDamageSummaryAvePerSec(), 0), objCell);
 
-		funcRenderResultTinyHtml(objGridTiny, "DPS", funcDIG3PX(battleCalcResultAll.GetDamageSummaryAvePerSec(), 0));
+		const aveDmg = bDPSActual
+					? battleCalcResultAll.GetDamageSummaryAvePerSecActual()
+					: battleCalcResultAll.GetDamageSummaryAvePerSec();
+		HtmlCreateTextNode(funcDIG3PX(aveDmg, 0), objCell);
+		funcRenderResultTinyHtml(objGridTiny, "DPS", funcDIG3PX(aveDmg, 0));
 	}
 
 	//----------------
@@ -11491,7 +11498,10 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 		objCell.classList.add("BTLRSLT_TAB_DAMAGE");
 		objCell.classList.add(partIdStr);
 		objCell.classList.add("CSSCLS_BTLRSLT_VALUE");
-		HtmlCreateTextNode(funcDIG3PX(battleCalcResultAll.GetDamageSummaryMaxPerSec(), 0), objCell);
+		const maxDmg = bDPSActual
+					? battleCalcResultAll.GetDamageSummaryMaxPerSecActual()
+					: battleCalcResultAll.GetDamageSummaryMaxPerSec();
+		HtmlCreateTextNode(funcDIG3PX(maxDmg, 0), objCell);
 	}
 
 

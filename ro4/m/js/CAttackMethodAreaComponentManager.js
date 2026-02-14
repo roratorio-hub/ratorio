@@ -1025,6 +1025,9 @@ CAttackMethodAreaComponentManager.RebuildSettingArea = function () {
 	let bPointCap = CSaveController.getSettingProp(CSaveDataConst.propNamePointCap);
 	HtmlSetObjectCheckedById("OBJID_CHECK_POINT_CAP", bPointCap ? "checked" : null);
 
+	let bDPSActual = CSaveController.getSettingProp(CSaveDataConst.propNameDPSActual);
+	HtmlSetObjectCheckedById("OBJID_CHECK_DPS_ACTUAL", bDPSActual ? "checked" : null);
+
 };
 
 /* 設定変更イベントハンドラ（攻撃手段）.
@@ -1159,6 +1162,21 @@ CAttackMethodAreaComponentManager.OnChangePointCap = function () {
 
 	// セーブコントローラへ保存
 	CSaveController.setSettingProp(CSaveDataConst.propNamePointCap, (checked ? 1 : 0));
+
+	// 再計算する
+	calc();
+};
+
+/**
+ * 設定変更イベントハンドラ（DPS精密化）.
+ */
+CAttackMethodAreaComponentManager.OnChangeDpsActual = function () {
+
+	// 設定値取得
+	const checked = HtmlGetObjectCheckedById("OBJID_CHECK_DPS_ACTUAL", "checked");
+
+	// セーブコントローラへ保存
+	CSaveController.setSettingProp(CSaveDataConst.propNameDPSActual, (checked ? 1 : 0));
 
 	// 再計算する
 	calc();

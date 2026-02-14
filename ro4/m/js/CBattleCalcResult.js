@@ -648,6 +648,274 @@ function CBattleCalcResult () {
 
 
 
+	/**
+	 * 概算ダメージ（秒間最小・実際）の取得.
+	 * 1秒間に実際に打てる回数を考慮した計算
+	 * @return 概算ダメージ（最小）
+	 */
+	this.GetDamageSummaryMinPerSecActual = function (castVary, castFixed, attackInterval, bCollectChild, bIgnoreActRate) {
+
+		var idx = 0;
+		var ret = null;
+
+		var dmg = 0;
+		var dmgPerHit = 0;
+		var hitsPerSecond = this._getHitsPerSecondActual(castVary, castFixed, attackInterval, bCollectChild);
+
+		// 発生率が 100% 未満の場合、未発生（0 ダメージ）が最小
+		if ((!bIgnoreActRate) && (this.actRate < 100)) {
+			// 追撃も発生しないので、そのまま return
+			return [0];
+		}
+
+		// クリティカル率が 100% の場合、クリティカルダメージの最小ダメージを採用
+		else if (this.criRate >= 100) {
+			dmgPerHit = this.dmgUnitArray[1][0] * Math.max(1, this.hitCountArray[1][0]);
+			dmg = Math.floor(dmgPerHit * hitsPerSecond.min);
+		}
+
+		// 上記以外で、命中率が 100% 未満の場合、Miss （0 ダメージ）が最小
+		else if (this.hitRate < 100) {
+			// 追撃も発生しないので、そのまま return
+			return [0];
+		}
+
+		// 上記以外の場合、通常ダメージの最小ダメージを採用
+		else {
+			dmgPerHit = this.dmgUnitArray[0][0] * Math.max(1, this.hitCountArray[0][0]);
+			dmg = Math.floor(dmgPerHit * hitsPerSecond.min);
+		}
+
+		// 子要素の、最小ダメージを取得し、加算する
+		if (bCollectChild) {
+
+			for (idx = 0; idx < this.childResultArray.length; idx++) {
+				const child = this.childResultArray[idx];
+				const grandChildExists = (child.childResultArray.length > 0);
+				// 子要素は発生率を考慮する
+				ret = child.GetDamageSummaryMinPerSecActual(castVary, castFixed, attackInterval, grandChildExists, false);
+				dmg += GetArrayMin(ret);
+			}
+		}
+
+		return [dmg];
+	};
+
+	/**
+	 * 概算ダメージ（秒間平均・実際）の取得.
+	 * 1秒間に実際に打てる回数を考慮した計算
+	 * @return 概算ダメージ（平均）
+	 */
+	this.GetDamageSummaryAvePerSecActual = function (castVary, castFixed, attackInterval, bCollectChild) {
+
+		var idx = 0;
+		var ret = null;
+
+		var dmg = 0;
+		var dmgArray = null;
+		var hitsPerSecond = this._getHitsPerSecondActual(castVary, castFixed, attackInterval, bCollectChild);
+
+		// 通常ダメージ
+		dmg += Math.floor((this.dmgUnitArray[0][1] * Math.max(1, this.hitCountArray[0][1]) * hitsPerSecond.ave) * (100 - this.criRate) / 100 * this.hitRate / 100);
+
+		// クリティカルダメージ
+		dmg += Math.floor((this.dmgUnitArray[1][1] * Math.max(1, this.hitCountArray[1][1]) * hitsPerSecond.ave) * this.criRate / 100);
+
+		// 配列に格納
+		dmgArray = [dmg];
+
+		// 子要素
+		if (bCollectChild) {
+			for (idx = 0; idx < this.childResultArray.length; idx++) {
+				const child = this.childResultArray[idx];
+				const grandChildExists = (child.childResultArray.length > 0);
+				// 子要素は発生率を考慮する
+				ret = this.childResultArray[idx].GetDamageSummaryAvePerSecActual(castVary, castFixed, attackInterval, grandChildExists, false);
+				dmgArray = dmgArray.concat(ret);
+			}
+		}
+
+		return dmgArray;
+	};
+
+	/**
+	 * 概算ダメージ（秒間最大・実際）の取得.
+	 * 1秒間に実際に打てる回数を考慮した計算
+	 * @return 概算ダメージ（最大）
+	 */
+	this.GetDamageSummaryMaxPerSecActual = function (castVary, castFixed, attackInterval, bCollectChild) {
+
+		var idx = 0;
+		var ret = null;
+
+		var dmg = 0;
+		var dmgArray = null;
+		var hitsPerSecond = this._getHitsPerSecondActual(castVary, castFixed, attackInterval, bCollectChild);
+
+		// 全最大ダメージを取得
+		dmgArray = [];
+
+		// 通常ダメージ
+		dmgArray.push(Math.floor(this.dmgUnitArray[0][2] * Math.max(1, this.hitCountArray[0][2]) * hitsPerSecond.max));
+
+		// クリティカルダメージ
+		dmgArray.push(Math.floor(this.dmgUnitArray[1][2] * Math.max(1, this.hitCountArray[1][2]) * hitsPerSecond.max));
+
+		// その中でも最大のダメージを採用する
+		dmg = GetArrayMax(dmgArray);
+
+		// 子要素の、最大ダメージを取得し、加算する
+        if (bCollectChild) {
+
+			for (idx = 0; idx < this.childResultArray.length; idx++) {
+				const child = this.childResultArray[idx];
+				const grandChildExists = (child.childResultArray.length > 0);
+				ret = child.GetDamageSummaryMaxPerSecActual(castVary, castFixed, attackInterval, grandChildExists);
+				dmg += GetArrayMax(ret);
+			}
+		}
+
+		return [dmg];
+	};
+
+
+
+	/**
+	 * Hit/Secの取得.
+	 * 1秒間に実際に打てる回数を計算
+	 * @return Hit/Sec
+	 */
+	this._getHitsPerSecondActual = function (castVary, castFixed, attackInterval, bCollectChild) {
+
+		var hitsMin = 1;
+		var hitsMax = 1;
+		var hitsAve = 1;
+		
+		if (g_bDefinedDamageIntervals || bCollectChild){
+			// instobjectで正確に計算
+			let actInterval = attackInterval;
+			
+			var casttime = castVary + castFixed;
+			var delay = this.delaySkill;
+			var cooltime = this.coolTime;
+			var lifetime = this.objectLifeTime / 1000.0;
+			var interval = attackInterval;
+			
+			var skillinterval = casttime + Math.max(delay, cooltime);
+			
+			// 十分な範囲の設置物を生成（定常状態を含むため）
+			// スキルinterval × 最大ヒット数分の時間で、十分な設置物が揃う
+			var simulationTime = Math.max(10.0, lifetime * 2);
+			var placements = [];
+			var currentTime = 0;
+			
+			while (currentTime < simulationTime) {
+				// この設置物がヒットを開始する時刻と終了時刻
+				var startHitTime = currentTime + casttime;
+				var endHitTime = startHitTime + lifetime;
+				
+				placements.push({
+					startTime: startHitTime,
+					endTime: endHitTime,
+					interval: interval
+				});
+				
+				currentTime += skillinterval;
+				if (skillinterval === 0) break; // 無限ループ対策
+			}
+			
+			if (placements.length === 0) {
+				// 1秒以内に設置できない場合
+				return { min: 0, ave: 0, max: 0 };
+			}
+			
+			// 重要なイベント時刻（設置開始/終了時刻）を収集
+			var eventTimes = new Set();
+			placements.forEach(function(p) {
+				eventTimes.add(p.startTime);
+				eventTimes.add(p.endTime);
+			});
+			eventTimes.add(1.0); // 1秒時点も追加
+			eventTimes = Array.from(eventTimes).sort(function(a, b) { return a - b; });
+			
+			// 各時刻での重ね合わせ数と総ヒット数を計算
+			var minOverlap = Infinity;
+			var maxOverlap = 0;
+			var timeWeightedSum = 0; // 時間加重合計
+			
+			// 各区間での設置物の数を計算し、時間加重平均を求める
+			for (var i = 0; i < eventTimes.length - 1; i++) {
+				var timeStart = eventTimes[i];
+				var timeEnd = eventTimes[i + 1];
+				var duration = timeEnd - timeStart;
+				
+				// この区間でアクティブな設置物の数
+				var activeCount = placements.filter(function(p) {
+					return timeStart >= p.startTime && timeStart < p.endTime;
+				}).length;
+				
+				if (activeCount > 0) {
+					minOverlap = Math.min(minOverlap, activeCount);
+					maxOverlap = Math.max(maxOverlap, activeCount);
+					timeWeightedSum += activeCount * duration;
+				}
+			}
+			
+			// 時間加重平均重ね合わせ数を計算
+			var aveOverlap = timeWeightedSum / 1.0;
+			
+			// 全ての1秒区間をスライディングウィンドウで調べる
+			// 定常状態を含む範囲を調査（立ち上がり期間を除く）
+			var steadyStateStart = Math.max(lifetime, skillinterval * 3); // 定常状態開始
+			var searchStartTime = 0;
+			var searchEndTime = simulationTime - lifetime - 1.0;
+			
+			var minHitsPerSecond = Infinity;
+			var maxHitsPerSecond = 0;
+			var sampleCount = 0;
+			var totalHitsSum = 0;
+			
+			// 0.1秒刻みで1秒区間を調べる（精度と速度のバランス）
+			for (var windowStart = searchStartTime; windowStart <= searchEndTime; windowStart += 0.1) {
+				var windowEnd = windowStart + 1.0;
+				var hitsInWindow = 0;
+				
+				placements.forEach(function(p) {
+					var instobj = new instobject();
+					instobj.init(0, 999999, p.startTime - casttime, casttime, delay, cooltime, lifetime, interval);
+					instobj.now = windowEnd;
+					var hitsAtEnd = instobj.getHitCount(windowEnd);
+					
+					instobj.now = windowStart;
+					var hitsAtStart = instobj.getHitCount(windowStart);
+					
+					hitsInWindow += (hitsAtEnd - hitsAtStart);
+				});
+				
+				minHitsPerSecond = Math.min(minHitsPerSecond, hitsInWindow);
+				maxHitsPerSecond = Math.max(maxHitsPerSecond, hitsInWindow);
+				totalHitsSum += hitsInWindow;
+				sampleCount++;
+			}
+			
+			if (minHitsPerSecond === Infinity) {
+				hitsMin = hitsAve = hitsMax = 0;
+			} else {
+				hitsMin = minHitsPerSecond;
+				hitsMax = maxHitsPerSecond;
+				hitsAve = sampleCount > 0 ? (totalHitsSum / sampleCount) : minHitsPerSecond;
+			}
+		}
+		else {
+			// 設置スキルではない場合：従来通り割り算
+			actInterval = castVary + castFixed + attackInterval;
+			var hits = actInterval > 0 ? (1 / actInterval) : 1;
+			hitsMin = hitsMax = hitsAve = hits;
+		}
+		
+		return { min: hitsMin, ave: hitsAve, max: hitsMax };
+	}
+
 
 
 	/**
