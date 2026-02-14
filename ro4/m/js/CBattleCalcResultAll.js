@@ -28,7 +28,7 @@ const instobject = class {
 		this.lifetime = lifetime;
 		this.interval = interval;
 		//
-		this.maxhit = this.lifetime / this.interval;
+		this.maxhit = Math.floor(this.lifetime / this.interval);
 		this.undertime = this.lifetime - ((this.delay > this.cooltime) ? this.delay : this.cooltime);//undertime が正数なら、削られる時間。負数なら、増える時間。
 		this.skillinterval = this.casttime + (this.lifetime - this.undertime);
 	}
@@ -36,8 +36,9 @@ const instobject = class {
 	getHitCount(now) {
 		var t;
 		t = now - (this.starttime + this.casttime);//オブジェクト設置開始時刻
-		if (t < 0) return 0;
-		return ((Math.floor(t / this.interval)+1) <= this.maxhit) ? (Math.floor(t / this.interval)+1) : this.maxhit;
+		if (t < this.interval) return 0; // 初回ヒットは interval 経過後
+		var hitCount = Math.floor(t / this.interval);
+		return Math.min(hitCount, this.maxhit);
 	}
 
 	getTotalCount() {

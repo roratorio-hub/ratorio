@@ -803,25 +803,24 @@ function CBattleCalcResult () {
 			
 			var skillinterval = casttime + Math.max(delay, cooltime);
 			
-			// 1秒以内の各設置物の存在期間を記録
+			// 十分な範囲の設置物を生成（定常状態を含むため）
+			// スキルinterval × 最大ヒット数分の時間で、十分な設置物が揃う
+			var simulationTime = Math.max(10.0, lifetime * 2);
 			var placements = [];
 			var currentTime = 0;
 			
-			while (currentTime < 1.0) {
-				if (currentTime + casttime <= 1.0) {
-					// この設置物がヒットを開始する時刻と終了時刻
-					var startHitTime = currentTime + casttime;
-					var endHitTime = Math.min(1.0, startHitTime + lifetime);
-					
-					placements.push({
-						startTime: startHitTime,
-						endTime: endHitTime,
-						interval: interval
-					});
-				}
+			while (currentTime < simulationTime) {
+				// この設置物がヒットを開始する時刻と終了時刻
+				var startHitTime = currentTime + casttime;
+				var endHitTime = startHitTime + lifetime;
+				
+				placements.push({
+					startTime: startHitTime,
+					endTime: endHitTime,
+					interval: interval
+				});
 				
 				currentTime += skillinterval;
-				if (currentTime + casttime > 1.0) break;
 				if (skillinterval === 0) break; // 無限ループ対策
 			}
 			
@@ -865,36 +864,47 @@ function CBattleCalcResult () {
 			// 時間加重平均重ね合わせ数を計算
 			var aveOverlap = timeWeightedSum / 1.0;
 			
-			// 最小重ね合わせでのヒット数（1つの設置物のヒット数 × 最小同時存在数）
-			if (minOverlap === Infinity) {
-				hitsMin = 0;
-			} else {
-				var instobj = new instobject();
-				instobj.init(0, 999999, 0, casttime, delay, cooltime, lifetime, interval);
-				instobj.now = 1.0;
-				var singleHitCount = instobj.getHitCount(1.0);
-				hitsMin = singleHitCount * minOverlap;
+			// 全ての1秒区間をスライディングウィンドウで調べる
+			// 定常状態を含む範囲を調査（立ち上がり期間を除く）
+			var steadyStateStart = Math.max(lifetime, skillinterval * 3); // 定常状態開始
+			var searchStartTime = 0;
+			var searchEndTime = simulationTime - lifetime - 1.0;
+			
+			var minHitsPerSecond = Infinity;
+			var maxHitsPerSecond = 0;
+			var sampleCount = 0;
+			var totalHitsSum = 0;
+			
+			// 0.1秒刻みで1秒区間を調べる（精度と速度のバランス）
+			for (var windowStart = searchStartTime; windowStart <= searchEndTime; windowStart += 0.1) {
+				var windowEnd = windowStart + 1.0;
+				var hitsInWindow = 0;
+				
+				placements.forEach(function(p) {
+					var instobj = new instobject();
+					instobj.init(0, 999999, p.startTime - casttime, casttime, delay, cooltime, lifetime, interval);
+					instobj.now = windowEnd;
+					var hitsAtEnd = instobj.getHitCount(windowEnd);
+					
+					instobj.now = windowStart;
+					var hitsAtStart = instobj.getHitCount(windowStart);
+					
+					hitsInWindow += (hitsAtEnd - hitsAtStart);
+				});
+				
+				minHitsPerSecond = Math.min(minHitsPerSecond, hitsInWindow);
+				maxHitsPerSecond = Math.max(maxHitsPerSecond, hitsInWindow);
+				totalHitsSum += hitsInWindow;
+				sampleCount++;
 			}
 			
-			// 平均重ね合わせでのヒット数（1つの設置物のヒット数 × 時間加重平均同時存在数）
-			if (aveOverlap > 0) {
-				var instobj2 = new instobject();
-				instobj2.init(0, 999999, 0, casttime, delay, cooltime, lifetime, interval);
-				instobj2.now = 1.0;
-				var singleHitCount2 = instobj2.getHitCount(1.0);
-				hitsAve = singleHitCount2 * aveOverlap;
+			if (minHitsPerSecond === Infinity) {
+				hitsMin = hitsAve = hitsMax = 0;
 			} else {
-				hitsAve = 0;
+				hitsMin = minHitsPerSecond;
+				hitsMax = maxHitsPerSecond;
+				hitsAve = sampleCount > 0 ? (totalHitsSum / sampleCount) : minHitsPerSecond;
 			}
-			
-			// 最大重ね合わせでのヒット数（全設置物の合計）
-			hitsMax = 0;
-			placements.forEach(function(p) {
-				var instobj = new instobject();
-				instobj.init(0, 999999, p.startTime - casttime, casttime, delay, cooltime, lifetime, interval);
-				instobj.now = 1.0;
-				hitsMax += instobj.getHitCount(1.0);
-			});
 		}
 		else {
 			// 設置スキルではない場合：従来通り割り算
