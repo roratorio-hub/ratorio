@@ -18,4 +18,4 @@ if (Test-Path $envFile) {
     exit 1
 }
 
-npx -y "pnpm@$PNPM_VER" build:watch
+npx -y "pnpm@$PNPM_VER" run build:watch
