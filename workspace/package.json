@@ -8,7 +8,7 @@
         "test:coverage": "vitest run --coverage"
     },
     "engines": {
-        "node": ">=22.0.0",
+        "node": ">=20.0.0",
         "pnpm": ">=10.0.0"
     },
     "devDependencies": {
