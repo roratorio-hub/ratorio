@@ -14,7 +14,22 @@ if (-not (Test-Path "../dist")) {
 # ../dist/* を削除（空でもエラーにしない）
 Remove-Item -Path "../dist/*" -Force -ErrorAction SilentlyContinue
 
-$PNPM_VER = "10.29.3"
+# Load environment variables from env file
+$envFile = Join-Path $PSScriptRoot "env"
+if (Test-Path $envFile) {
+    Write-Host "Loading environment from: $envFile"
+    Get-Content $envFile | ForEach-Object {
+        if ($_ -match '^\s*([^=]+)=(.*)$') {
+            $key = $matches[1].Trim()
+            $value = $matches[2].Trim() -replace '^["'']|["'']$', ''  # Remove quotes
+            Set-Variable -Name $key -Value $value -Scope Script
+            Write-Host "  $key=$value"
+        }
+    }
+} else {
+    Write-Host "ERROR: env file not found at $envFile"
+    exit 1
+}
 
 Write-Host "[1/3] Installing dependencies via pnpm (npx)..."
 npx -y "pnpm@$PNPM_VER" install --frozen-lockfile
