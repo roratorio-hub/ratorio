@@ -23,18 +23,18 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      # Node.js のパッケージマネージャー pnpm をインストール
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10
-
+      # --------- ここからメインのワークフロー ----------
       # Node.js のセットアップ
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '22' # memo: version 22 のEOLは 2027年4月頃
-          cache: "pnpm"
+
+      # Node.js のパッケージマネージャー pnpm をインストール
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
 
       # Node.js 依存関係をpnpmでインストール & webpack でビルド
       - name: Install and build Node.js dependencies
