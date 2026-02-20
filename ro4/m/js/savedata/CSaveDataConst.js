@@ -1941,6 +1941,11 @@ class CSaveDataConst {
 	static propNamePointCap = "pointCap";
 
 	/**
+	 * プロパティ名：DPS計算設定設定.
+	 */
+	static propNameDPSActual = "DPSActual";
+
+	/**
 	 * プロパティ名：攻撃間隔.
 	 */
 	static propNameAttackInterval = "attackInterval";
