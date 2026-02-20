@@ -12013,8 +12013,9 @@ function StAllCalc(){
 				n_tok[ITEM_SP_RESIST_ELM_FIRE] += -20;
 			}
 		}
-		if(n_A_SHOULDER_DEF_PLUS >= 7 && 1902 <= n_A_Equip[EQUIP_REGION_ID_SHOULDER] && n_A_Equip[EQUIP_REGION_ID_SHOULDER] <= 1905) n_tok[341 + n_A_Equip[EQUIP_REGION_ID_SHOULDER] - 1902] += 3;
-		if(n_A_HEAD_DEF_PLUS >= 9 && 740 <= n_A_card[CARD_REGION_ID_HEAD_TOP] && n_A_card[CARD_REGION_ID_HEAD_TOP] <= 749) n_tok[340 + n_A_card[CARD_REGION_ID_HEAD_TOP] - 740] += 5;
+		if(n_A_SHOULDER_DEF_PLUS >= 7 && 1902 <= n_A_Equip[EQUIP_REGION_ID_SHOULDER] && n_A_Equip[EQUIP_REGION_ID_SHOULDER] <= 1905){
+			n_tok[341 + n_A_Equip[EQUIP_REGION_ID_SHOULDER] - 1902] += 3;
+		}		
 		if(CardNumSearch(784)) n_tok[342] += 3 * n_A_SHOULDER_DEF_PLUS;
 		if(CardNumSearch(883)) n_tok[343] += 3 * n_A_SHOULDER_DEF_PLUS;
 		if(EquipNumSearch(2528)) n_tok[347] += 2 * n_A_BODY_DEF_PLUS;
@@ -12064,42 +12065,6 @@ function StAllCalc(){
 		//----------------------------------------------------------------
 		if ((cardCount = CardNumSearch(CARD_ID_FUMETSUNO_WINDGHOST)) > 0) {
 			n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_ELM_WIND] += 3 * n_A_SHOULDER_DEF_PLUS * cardCount;
-		}
-
-		//----------------------------------------------------------------
-		// 「ヴァッサー・リヒテルンカード」の、精錬による効果
-		//----------------------------------------------------------------
-		if ((cardCount = CardNumSearch(CARD_ID_VASER_RIHITERN, CARD_REGION_ID_HEAD_TOP_ANY)) > 0) {
-			if (n_A_HEAD_DEF_PLUS >= 9) {
-				n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_ELM_WATER] += 5 * cardCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「フェルス・リヒテルンカード」の、精錬による効果
-		//----------------------------------------------------------------
-		if ((cardCount = CardNumSearch(CARD_ID_FELUS_RIHITERN, CARD_REGION_ID_HEAD_TOP_ANY)) > 0) {
-			if (n_A_HEAD_DEF_PLUS >= 9) {
-				n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_ELM_EARTH] += 5 * cardCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「フンケ・リヒテルンカード」の、精錬による効果
-		//----------------------------------------------------------------
-		if ((cardCount = CardNumSearch(CARD_ID_FUNKE_RIHITERN, CARD_REGION_ID_HEAD_TOP_ANY)) > 0) {
-			if (n_A_HEAD_DEF_PLUS >= 9) {
-				n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_ELM_FIRE] += 5 * cardCount;
-			}
-		}
-
-		//----------------------------------------------------------------
-		// 「ゲルブ・リヒテルンカード」の、精錬による効果
-		//----------------------------------------------------------------
-		if ((cardCount = CardNumSearch(CARD_ID_GERVE_RIHITERN, CARD_REGION_ID_HEAD_TOP_ANY)) > 0) {
-			if (n_A_HEAD_DEF_PLUS >= 9) {
-				n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_ELM_PSYCO] += 5 * cardCount;
-			}
 		}
 
 		//----------------------------------------------------------------

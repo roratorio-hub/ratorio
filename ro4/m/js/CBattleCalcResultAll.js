@@ -28,7 +28,7 @@ const instobject = class {
 		this.lifetime = lifetime;
 		this.interval = interval;
 		//
-		this.maxhit = this.lifetime / this.interval;
+		this.maxhit = Math.floor(this.lifetime / this.interval);
 		this.undertime = this.lifetime - ((this.delay > this.cooltime) ? this.delay : this.cooltime);//undertime が正数なら、削られる時間。負数なら、増える時間。
 		this.skillinterval = this.casttime + (this.lifetime - this.undertime);
 	}
@@ -36,8 +36,9 @@ const instobject = class {
 	getHitCount(now) {
 		var t;
 		t = now - (this.starttime + this.casttime);//オブジェクト設置開始時刻
-		if (t < 0) return 0;
-		return ((Math.floor(t / this.interval)+1) <= this.maxhit) ? (Math.floor(t / this.interval)+1) : this.maxhit;
+		if (t < this.interval) return 0; // 初回ヒットは interval 経過後
+		var hitCount = Math.floor(t / this.interval);
+		return Math.min(hitCount, this.maxhit);
 	}
 
 	getTotalCount() {
@@ -773,6 +774,135 @@ function CBattleCalcResultAll () {
 			resultWork = this.appendResultArray[idx];
 			hasChild = (resultWork.childResultArray.length > 0) ? true : false;
 			dmg += GetArrayMax(resultWork.GetDamageSummaryMaxPerSec(0, 0, appendInterval, hasChild));
+		}
+
+		return Math.floor(dmg);
+	};
+
+
+
+	/**
+	 * 概算ダメージ（秒間最小・実際）の取得.
+	 * 1秒間に実際に打てる回数を考慮した計算
+	 * @return 概算ダメージ（最小）
+	 */
+	this.GetDamageSummaryMinPerSecActual = function () {
+
+		var idx = 0;
+
+		var dmg = 0;
+		var resultWork = null;
+		var resultWorkArray = null;
+		let hasChild = false;
+
+		// パッシブ系列はいずれか一つしか発動しないので、最小ダメージを採用する
+		resultWorkArray = [];
+		for (idx = 0; idx < this.passiveResultArray.length; idx++) {
+			resultWork = this.passiveResultArray[idx];
+			hasChild = (resultWork.childResultArray.length > 0) ? true : false;
+			resultWorkArray.push(GetArrayTotal(resultWork.GetDamageSummaryMinPerSecActual(0, 0, resultWork.attackInterval, hasChild, true)));
+		}
+		if (resultWorkArray.length > 0) {
+			dmg = GetArrayMin(resultWorkArray);
+		}
+
+		// アクティブは最小値を全加算（発動率等は考慮済み）
+		for (idx = 0; idx < this.activeResultArray.length; idx++) {
+			resultWork = this.activeResultArray[idx];
+			hasChild = (resultWork.childResultArray.length > 0) ? true : false;
+			dmg += GetArrayMin(resultWork.GetDamageSummaryMinPerSecActual(
+				resultWork.castVary, resultWork.castFixed, resultWork.attackInterval, hasChild, false));
+		}
+
+		// 基本攻撃の攻撃間隔を追加攻撃の攻撃間隔として扱う
+		var appendInterval = (resultWork) ? resultWork.attackInterval : 0;
+
+		// 確率追撃は最小値を全加算（発動率等は考慮済み）
+		for (idx = 0; idx < this.appendResultArray.length; idx++) {
+			resultWork = this.appendResultArray[idx];
+			hasChild = (resultWork.childResultArray.length > 0) ? true : false;
+			dmg += GetArrayMin(resultWork.GetDamageSummaryMinPerSecActual(0, 0, appendInterval, hasChild, false));
+		}
+
+
+		return Math.floor(dmg);
+	};
+
+	/**
+	 * 概算ダメージ（秒間平均・実際）の取得.
+	 * 1秒間に実際に打てる回数を考慮した計算
+	 * @return 概算ダメージ（平均）
+	 */
+	this.GetDamageSummaryAvePerSecActual = function () {
+		var idx = 0;
+		var dmg = 0;
+		var resultWork = null;
+		let hasChild = false;
+
+		for (idx = 0; idx < this.passiveResultArray.length; idx++) {
+			resultWork = this.passiveResultArray[idx];
+			hasChild = (resultWork.childResultArray.length > 0) ? true : false;
+			dmg += GetArrayTotal(resultWork.GetDamageSummaryAvePerSecActual(0, 0, resultWork.attackInterval, hasChild)) * resultWork.actRate / 100;
+		}
+
+		for (idx = 0; idx < this.activeResultArray.length; idx++) {
+			resultWork = this.activeResultArray[idx];
+			hasChild = (resultWork.childResultArray.length > 0) ? true : false;
+			dmg += GetArrayTotal(resultWork.GetDamageSummaryAvePerSecActual(
+				resultWork.castVary, resultWork.castFixed, resultWork.attackInterval, hasChild)) * resultWork.actRate / 100;
+		}
+
+		// 基本攻撃の攻撃間隔を追加攻撃の攻撃間隔として扱う
+		var appendInterval = (resultWork) ? resultWork.attackInterval : 0;
+
+		for (idx = 0; idx < this.appendResultArray.length; idx++) {
+			resultWork = this.appendResultArray[idx];
+			hasChild = (resultWork.childResultArray.length > 0) ? true : false;
+			dmg += GetArrayTotal(resultWork.GetDamageSummaryAvePerSecActual(0, 0, appendInterval, hasChild)) * resultWork.actRate / 100;
+		}
+
+		return Math.floor(dmg);
+	};
+
+	/**
+	 * 概算ダメージ（秒間最大・実際）の取得.
+	 * 1秒間に実際に打てる回数を考慮した計算
+	 * @return 概算ダメージ（最大）
+	 */
+	this.GetDamageSummaryMaxPerSecActual = function () {
+		var idx = 0;
+		var dmg = 0;
+		var resultWork = null;
+		var resultWorkArray = null;
+		let hasChild = false;
+		
+		// パッシブ系列はいずれか一つしか発動しないので、最大ダメージを採用する
+		resultWorkArray = [];
+		for (idx = 0; idx < this.passiveResultArray.length; idx++) {
+			resultWork = this.passiveResultArray[idx];
+			hasChild = (resultWork.childResultArray.length > 0) ? true : false;
+			resultWorkArray.push(GetArrayTotal(resultWork.GetDamageSummaryMaxPerSecActual(0, 0, resultWork.attackInterval, hasChild)));
+		}
+		if (resultWorkArray.length > 0) {
+			dmg = GetArrayMax(resultWorkArray);
+		}
+
+		// アクティブは全発動を採用
+		for (idx = 0; idx < this.activeResultArray.length; idx++) {
+			resultWork = this.activeResultArray[idx];
+			hasChild = (resultWork.childResultArray.length > 0) ? true : false;
+			dmg += GetArrayMax(resultWork.GetDamageSummaryMaxPerSecActual(
+				resultWork.castVary, resultWork.castFixed, resultWork.attackInterval, hasChild));
+		}
+
+		// 基本攻撃の攻撃間隔を追加攻撃の攻撃間隔として扱う
+		var appendInterval = (resultWork) ? resultWork.attackInterval : 0;
+
+		// 確率追撃は全発動を採用
+		for (idx = 0; idx < this.appendResultArray.length; idx++) {
+			resultWork = this.appendResultArray[idx];
+			hasChild = (resultWork.childResultArray.length > 0) ? true : false;
+			dmg += GetArrayMax(resultWork.GetDamageSummaryMaxPerSecActual(0, 0, appendInterval, hasChild));
 		}
 
 		return Math.floor(dmg);
