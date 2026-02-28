@@ -346,10 +346,12 @@ class CSaveController {
 			// chartdata をシリアライズ
 			let chartData = null;
 			if (g_Chart !== undefined && g_Chart !== null && Chart !== false) {
-				chartData = this.#serializeChartData(g_Chart);
-				if (chartData.length > 4000) {
-					if (!confirm("【重要】URLが長くなりアドレスバーから読み込めない恐れがあります。\n\nURL入力ボタンからなら読み込めます。このままクリップデータを保存しますか？")) {
-						chartData = null;
+				if (confirm("【重要】クリップデータを保存しますか？")) {
+					chartData = this.#serializeChartData(g_Chart);
+					if (chartData.length > 4000) {
+						if (!confirm("【重要】URLが長くなりアドレスバーから読み込めない恐れがあります。\n\nURL入力ボタンからなら読み込めます。このままクリップデータを保存しますか？")) {
+							chartData = null;
+						}
 					}
 				}
 			}

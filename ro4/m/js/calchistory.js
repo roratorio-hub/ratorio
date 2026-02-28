@@ -143,6 +143,7 @@ div.clip_memo {
             CSaveController.loadFromURL(url);
             CItemInfoManager.OnClickExtractSwitch();
           }
+					LoadSelect2();
         }
       }
     });
