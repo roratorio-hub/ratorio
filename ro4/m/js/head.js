@@ -9513,6 +9513,14 @@ function ApplyMagicalSpecializeMonsterMod20211014SubSpecializeMap(charaData, spe
 		}
 	}
 
+	// 凍て付いた鱗の氷河 特化
+	if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_JOR_BACK3]) == 1){
+		if (EquipNumSearch(ITEM_ID_AURORA_CURTAIN_ROBE) > 0) {
+			wX += 30;
+		}
+	}
+	
+
 	//--------------------------------
 	// 蛇神の根源 特化
 	//--------------------------------
@@ -13023,6 +13031,13 @@ function getResistanceOfEnvironment(mobID) {
 			result += 60;
 		}
 	}
+	// 凍て付いた鱗の氷河 耐性
+	if(NumSearch(mobID, MonsterGroupObj[MONSTER_GROUP_ID_JOR_BACK3]) == 1){
+		if (EquipNumSearch(ITEM_ID_AURORA_CURTAIN_ROBE) > 0) {
+			result += 60;
+		}
+	}
+
 	//--------------------------------
 	// 英雄の痕跡支援
 	//--------------------------------
@@ -18254,6 +18269,13 @@ function ApplyPhysicalSpecializeMonster(charaData, specData, mobData, dmg) {
 	if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_ISGARD_NORTH_FIELD]) == 1){
 		if ((cardCount = CardNumSearch(CARD_ID_FAKE_IWIN_SOLDIERS)) > 0) {
 			w += 30 * cardCount;
+		}
+	}
+
+	// 凍て付いた鱗の氷河 特化
+	if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_JOR_BACK3]) == 1){
+		if (EquipNumSearch(ITEM_ID_AURORA_CURTAIN_ROBE) > 0) {
+			w += 30;
 		}
 	}
 
