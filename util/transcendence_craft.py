@@ -43,7 +43,9 @@ if __name__ == "__main__":
     enchant_id = getLatestEnchantId()
     for item_info in config['item_list']:
         origin_item_id = getItemId(item_info['name'])
-        item_id += 1
+        # 既存レコードを上書きする運用に合わせる
+        # item_id += 1
+        item_id = origin_item_id
         
         # --- item.dat.js ---
         # 超越で追加された Item SP を既存のレコードに付加して出力する
