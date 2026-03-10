@@ -1,48 +1,311 @@
 card_list:
-  - name: 潜在解放(エレメンタルマスターXIX)
-    yomi: センザイカイホウエレメンタルマスター19
-    type: エンチャント
+  - name: イグリン
+    yomi: イグリン
+    desc: "[世界樹のほこり]Lv1使用可能"
+    type: 兜
+  - name: リーフリン
+    yomi: リーフリン
+    desc: ""
+    type: 肩にかける物
+    capabilities:
+      - name: FLEE加算
+        value: 5
+        per_refine: 1
+  - name: チャコリン
+    yomi: チャコリン
+    desc: ""
+    type: 兜
+    capabilities:
+      - name: 物理ダメージ増加
+        value: 5
+      - name: 詠唱が中断されない
+        value: 1
+        at_refine: 8
+  - name: ブルリン
+    yomi: ブルリン
+    desc: ""
+    type: アクセサリー
+    capabilities:
+      - name: スキルダメージ増加
+        value: 25
+        skill: ファイアーボルト
+      - name: スキル固定詠唱ミリ秒減少
+        value: -5000
+        skill: ファイアーボルト
+  - name: ファイアループ
+    yomi: ファイアループ
+    desc: "精錬値と同じLvの[ファイアーウォール]使用可能"
+    type: 靴
+    capabilities:
+      - name: スキル使用可能
+        skill: ファイアーウォール
+        value: 10
+  - name: 不老草
+    yomi: フロウソウ
+    desc: ""
+    type: 靴
+    capabilities:
+      - name: 魔法ダメージ増加
+        value: 5
+      - name: 魔法ダメージ増加
+        value: 15
+        at_transcendence: 1
+  - name: 火山貝
+    yomi: カザンガイ
+    desc: "物理・魔法攻撃時、[ヴェルンド渓谷 外郭]に出現するモンスターに与えるダメージ + 30%"
+    type: 武器
+  - name: 火花
+    yomi: ヒバナ
+    desc: ""
+    type: 肩にかける物
+    capabilities:
+      - name: 火属性耐性
+        value: 25
+      - name: 無属性耐性
+        value: 15
+        at_refine: 7
+      - name: 火属性耐性
+        value: 25
+        at_refine: 9
+  - name: ピーピング
+    yomi: ピーピング
+    desc: ""
+    type: 武器
+    capabilities:
+      - name: 物理ダメージ増加
+        value: 10
+  - name: 汚染ロッダフロッグ
+    yomi: オセンロッダフロッグ
+    desc: "物理・魔法攻撃時、[破壊されたゲフェンフィールド]に出現するモンスターに与えるダメージ + 30%"
+    type: 武器
+  - name: 汚染アンバーナイト
+    yomi: オセンアンバーナイト
+    desc: ""
+    type: 肩にかける物
+    capabilities:
+      - name: 闇属性耐性
+        value: 25
+      - name: 闇属性耐性
+        value: 25
+        at_transcendence: 1
+  - name: 浸食された探査型Vギア
+    yomi: シンショクサレタタンサガタVギア
+    desc: ""
+    type: 肩にかける物
+    capabilities:
+      - name: 念属性耐性
+        value: 25
+      - name: 念属性耐性
+        value: 25
+        at_transcendence: 1
+  - name: 浸食された修理型Vギア
+    yomi: シンショクサレタシュウリガタVギア
+    desc: ""
+    type: 靴
+    capabilities:
+      - name: 物理ダメージ増加
+        value: 5
+      - name: 物理ダメージ増加
+        value: 3
+        at_refine: 7
+      - name: 物理ダメージ増加
+        value: 2
+        at_refine: 9
+  - name: 浸食されたディミック
+    yomi: シンショクサレタディミック
+    desc: "物理・魔法攻撃時、[破壊されたウェルス]に出現するモンスターに与えるダメージ + 30%"
+    type: 武器
+  - name: ニャイズ
+    yomi: ニャイズ
+    desc: "片手杖、両手杖の場合、精錬値が1上がる度に追加で攻撃速度 + 1%"
+    type: 武器
+    capabilities:
+      - name: 物理ダメージ増加
+        value: 5
+        at_refine: 10
+  - name: 影の看守
+    yomi: カゲノカンシュ
+    desc: "物理・魔法攻撃時、[歪んだブリミル 1階]、[歪んだブリミル 2階]に出現するモンスターに与えるダメージ + 30%"
+    type: 武器
+  - name: チューリップ
+    yomi: チューリップ
+    desc: ""
+    type: 靴
+    capabilities:
+      - name: 無形への物理ダメージ増加
+        value: 3
+        per_refine: 1
+  - name: カレンデュラ
+    yomi: カレンデュラ
+    desc: ""
+    type: 靴
+    capabilities:
+      - name: 動物形への物理ダメージ増加
+        value: 3
+        per_refine: 1
+  - name: スカビオサ
+    yomi: スカビオサ
+    desc: ""
+    type: 靴
+    capabilities:
+      - name: 天使形への物理ダメージ増加
+        value: 3
+        per_refine: 1
+  - name: ロベリア
+    yomi: ロベリア
+    desc: ""
+    type: 靴
+    capabilities:
+      - name: 悪魔形への物理ダメージ増加
+        value: 3
+        per_refine: 1
+  - name: ミオソティス
+    yomi: ミオソティス
+    desc: ""
+    type: 靴
+    capabilities:
+      - name: 不死形への物理ダメージ増加
+        value: 3
+        per_refine: 1
+  - name: アネモネ
+    yomi: アネモネ
+    desc: ""
+    type: 靴
+    capabilities:
+      - name: 竜形への物理ダメージ増加
+        value: 3
+        per_refine: 1
+  - name: 奇怪なスコグル
+    yomi: キカイナスコグル
+    desc: ""
+    type: 肩にかける物
+    capabilities:
+      - name: 聖属性耐性
+        value: 25
+      - name: 聖属性耐性
+        value: 25
+        at_transcendence: 1
+  - name: 奇怪なプルス
+    yomi: キカイナプルス
+    desc: ""
+    type: 肩にかける物
+    capabilities:
+      - name: 毒属性耐性
+        value: 25
+      - name: 毒属性耐性
+        value: 25
+        at_transcendence: 1
+  - name: リスナー
+    yomi: リスナー
+    desc: ""
+    type: 鎧
+    capabilities:
+      - name: MAXHP増加
+        value: 15
+      - name: MAXHP増加
+        value: 25
+        at_transcendence: 1
+  - name: 不吉な軍団
+    yomi: フキツナグンダン
+    desc: ""
+    type: 靴
+    capabilities:
+      - name: MAXHP増加
+        value: 10
+      - name: MAXHP増加
+        value: 15
+        at_transcendence: 1
+  - name: トキシン
+    yomi: トキシン
+    desc: ""
+    type: 靴
+    capabilities:
+      - name: 物理ダメージ増加
+        value: 5
+      - name: 物理ダメージ増加
+        value: 15
+        at_transcendence: 1
+  - name: ルナリナ
+    yomi: ルナリナ
+    desc: "超越段階が1以上の時、物理攻撃命中時、一定確率で敵に与えたダメージの15%をHPとして吸収"
+    type: 武器
+    capabilities:
+      - name: 物理ダメージ増加
+        value: 15
+  - name: ブラッディスラッシャー
+    yomi: ブラッディスラッシャー
+    desc: "超越段階が1以上の時、固定詠唱時間 - 70%"
+    type: 兜
+    capabilities:
+      - name: 物理ダメージ増加
+        value: 5
+  - name: シャイディエスト
+    yomi: シャイディエスト
+    desc: "超越段階が1以上の時、固定詠唱時間 - 70%"
+    type: 兜
+    capabilities:
+      - name: 魔法ダメージ増加
+        value: 5
+  - name: ハイサキュバス
+    yomi: ハイサキュバス
+    desc: ""
+    type: アクセサリー
+    capabilities:
+      - name: 物理ダメージ増加
+        value: 4
+      - name: 詠唱が中断されない
+        value: 1
+        at_lv: 250
+  - name: ハイインキュバス
+    yomi: ハイインキュバス
+    desc: ""
+    type: アクセサリー
+    capabilities:
+      - name: 魔法ダメージ増加
+        value: 4
+      - name: 詠唱が中断されない
+        value: 1
+        at_lv: 250
+  - name: 深淵の騎士団長
+    yomi: シンエンノキシフトチョウ
+    desc: "物理攻撃命中時、一定確率で10秒間、闇属性物理攻撃力 + 30%<br>精錬値が1上がる度に追加で発動率が上昇"
+    type: 肩にかける物
+    capabilities:
+      - name: 無属性耐性
+        value: 15
+  - name: ブルガサリ
+    yomi: ブルガサリ
+    desc: ""
+    type: 兜
+    capabilities:
+      - name: 火属性耐性
+        value: 10
+      - name: 発火耐性
+        value: 100
     set_list:
       - set:
         entity_list:
-          - card_name: 真理の解放
+          - card_name: 厄災の魔将
         capabilities:
-          - name: 再使用待機時間減少
-            skill: エレメンタルバスター
-            value: 100
-  - name: 潜在解放(トルバドゥール&トルヴェールXV)
-    yomi: センザイカイホウトルバドゥールアンドトルヴェール15
-    type: エンチャント
+          - name: 火属性耐性
+            value: 10
+  - name: グラトニー
+    yomi: グラトニー
+    desc: "[Mクラウドキル]で受けるダメージ - 50%"
+    type: 兜
+    capabilities:
+      - name: 地属性耐性
+        value: 10
+      - name: 闇属性耐性
+        value: 10
+      - name: スタン耐性
+        value: 50
     set_list:
       - set:
         entity_list:
-          - card_name: 真理の解放
+          - card_name: 厄災の魔将
         capabilities:
-          - name: 再使用待機時間減少
-            skill: リズミカルウェーブ
-            value: 100
-  - name: 潜在解放(スピリットハンドラーXXIII)
-    yomi: センザイカイホウスピリットハンドラー23
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 豪傑
-        capabilities:
-          - name: 再使用待機時間減少
-            skill: タイガーバトリング
-            value: 300
-  - name: 潜在解放(アークメイジXIX)
-    yomi: センザイカイホウアークメイジ19
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 真理の解放
-        capabilities:
-          - name: 再使用待機時間減少
-            skill: レインオブクリスタル
-            value: 2000
-          - name: 再使用待機時間減少
-            skill: ストラタムトレマー
-            value: 2000
+          - name: MAXHP増加
+            value: 15
+          - name: 地属性耐性
+            value: 10

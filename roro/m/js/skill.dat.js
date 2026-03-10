@@ -1589,7 +1589,7 @@
 		[270,10,"トゥルーサイト","SN_SIGHT"],
 		[271,5,"ファルコンアサルト","SN_FALCONASSAULT"],
 		[272,5,"シャープシューティング","SN_SHARPSHOOTING"],
-		[273,10,"ウインドウォーク","SN_WINDWALK"],
+		[273,10,"ウィンドウォーク","SN_WINDWALK"],
 		[274,10,"ソウルドレイン","HW_SOULDRAIN"],
 		[275,1,"マジッククラッシャー","HW_MAGICCRASHER"],
 		[276,10,"魔法力増幅","HW_MAGICPOWER"],

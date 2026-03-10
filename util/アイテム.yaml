@@ -1,248 +1,259 @@
 item_list:
-  - name: ブックオブエレメンタラー
-    yomi: ブックオブエレメンタラー
-    type: 下段
-    slot: 0
-    weapon_lv: 0
-    atk_or_def: 0
-    weight: 10
-    required_lv: 200
-    required_job: エレメンタルマスター
-    capabilities:
-      - name: プレイヤー耐性
-        value: 3
-      - name: 全サイズへの物理ダメージ増加
-        value: 1
-        per_lv: 10
-      - name: 全サイズへの魔法ダメージ増加
-        value: 1
-        per_lv: 10
-    enchant: #
-      - name: スペシャルエンチャント(ミオン)
-        slot_list: #
-          - slot: 4
-            refine: 0
-            enchant_list: #
-              - name: 潜在解放(エレメンタルマスターXIX)
-
-  - name: おしゃべりオカメインコ
-    yomi: オシャベリオカメインコ
-    type: 下段
-    slot: 0
-    weapon_lv: 0
-    atk_or_def: 0
-    weight: 10
-    required_lv: 200
-    required_job: トルバドゥール トルヴェール
-    capabilities:
-      - name: プレイヤー耐性
-        value: 3
-      - name: 全サイズへの物理ダメージ増加
-        value: 1
-        per_lv: 10
-      - name: 全サイズへの魔法ダメージ増加
-        value: 1
-        per_lv: 10
-    enchant: #
-      - name: スペシャルエンチャント(ミオン)
-        slot_list: #
-          - slot: 4
-            refine: 0
-            enchant_list: #
-              - name: 潜在解放(トルバドゥール&トルヴェールXV)
-
-  - name: 朱のリボンチャーム
-    yomi: シュノリボンチャーム
-    type: アクセサリー
+  - name: エントワインドマジカルアーマー
+    yomi: エントワインドマジカルアーマー
+    type: 鎧
     slot: 1
     weapon_lv: 0
     atk_or_def: 0
-    weight: 10
-    required_lv: 200
+    weight: 120
+    required_lv: 275
     required_job: 4次職 拡張4次職
     capabilities:
-      - name: SPL加算
-        value: 3
-      - name: ASPD増加
-        value: 15
-      - name: スキルディレイ減少
-        value: 15
-      - name: 魔法ダメージ増加
-        value: 40
+      - name: 一般耐性
+        value: 5
+      - name: ボス耐性
+        value: 5
       - name: プレイヤー耐性
+        value: 7
+      - name: 必中
+        value: 25
+      - name: 全サイズへの物理ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: ASPD増加
+        value: 10
+        at_refine: 7
+      - name: 破損しない
+        value: 1
+        at_refine: 9
+      - name: 全サイズへの物理ダメージ増加
         value: 3
-      - name: スキルダメージ増加
-        value: 1
-        per_lv: 10
-        skill: フローラルフレアロード
-      - name: スキルダメージ増加
-        value: 1
-        per_lv: 10
-        skill: クリムゾンアロー
-      - name: スキルダメージ増加
-        value: 1
-        per_lv: 10
-        skill: レインオブクリスタル
-      - name: スキルダメージ増加
-        value: 1
-        per_lv: 10
-        skill: フローズンスラッシュ
-      - name: スキルダメージ増加
-        value: 1
-        per_lv: 10
-        skill: トルネードストーム
-      - name: スキルダメージ増加
-        value: 1
-        per_lv: 10
-        skill: ストームキャノン
-      - name: スキルダメージ増加
-        value: 1
-        per_lv: 10
-        skill: ストラタムトレマー
-      - name: スキルダメージ増加
-        value: 1
-        per_lv: 10
-        skill: ロックダウン
-    enchant: #
-      - name: スペシャルエンチャント(メト)
-        slot_list: #
-          - slot: 4
-            refine: 0
-            enchant_list: #
-              - name: Str+7
-              - name: Agi+7
-              - name: Vit+7
-              - name: Int+7
-              - name: Dex+7
-              - name: Luk+7
-              - name: SpecialStr
-              - name: SpecialAgi
-              - name: SpecialVit
-              - name: SpecialInt
-              - name: SpecialDex
-              - name: SpecialLuk
-              - name: 潜在解放(アークメイジIII)
-          - slot: 3
-            refine: 0
-            enchant_list: #
-              - name: Str+7
-              - name: Agi+7
-              - name: Vit+7
-              - name: Int+7
-              - name: Dex+7
-              - name: Luk+7
-              - name: SpecialStr
-              - name: SpecialAgi
-              - name: SpecialVit
-              - name: SpecialInt
-              - name: SpecialDex
-              - name: SpecialLuk
-              - name: 潜在解放(アークメイジXIX)
-          - slot: 2
-            refine: 0
-            enchant_list: #
-              - name: Str+7
-              - name: Agi+7
-              - name: Vit+7
-              - name: Int+7
-              - name: Dex+7
-              - name: Luk+7
-              - name: SpecialStr
-              - name: SpecialAgi
-              - name: SpecialVit
-              - name: SpecialInt
-              - name: SpecialDex
-              - name: SpecialLuk
-              - name: 暴走した魔力
-              - name: 真理の解放
-
-  - name: 荒ぶる虎んぷるソックス
-    yomi: アラフルトランフルソックス
-    type: アクセサリー
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全属性への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+  - name: エントワインドマジカルローブ
+    yomi: エントワインドマジカルローブ
+    type: 鎧
     slot: 1
     weapon_lv: 0
     atk_or_def: 0
-    weight: 10
-    required_lv: 200
+    weight: 120
+    required_lv: 275
     required_job: 4次職 拡張4次職
     capabilities:
-      - name: POW加算
-        value: 3
-      - name: CRI加算
-        value: 50
+      - name: 一般耐性
+        value: 5
+      - name: ボス耐性
+        value: 5
+      - name: プレイヤー耐性
+        value: 7
+      - name: 変動詠唱減少
+        value: 25
+      - name: 全サイズへの魔法ダメージ増加
+        value: 4
+        per_refine: 1
       - name: ASPD増加
+        value: 10
+        at_refine: 7
+      - name: 破損しない
+        value: 1
+        at_refine: 9
+      - name: 全サイズへの魔法ダメージ増加
+        value: 3
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
         value: 15
-      - name: スキルディレイ減少
-        value: 15
+        at_refine: 10
+        at_transcendence: 1
+  - name: エントワインドマジカルブーツ
+    yomi: エントワインドマジカルブーツ
+    type: 靴
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 60
+    required_lv: 275
+    required_job: 4次職 拡張4次職
+    capabilities:
+      - name: 一般耐性
+        value: 5
+      - name: ボス耐性
+        value: 5
+      - name: プレイヤー耐性
+        value: 10
+      - name: 必中
+        value: 25
+      - name: 全基本ステータス加算
+        value: 3
+        per_refine: 1
       - name: 物理ダメージ増加
-        value: 40
-      - name: プレイヤー耐性
+        value: 4
+        per_refine: 1
+      - name: MAXHP増加
+        value: 20
+        at_refine: 7
+      - name: スキルディレイ減少
+        value: 15
+        at_refine: 7
+      - name: MAXHP増加
+        value: 20
+        at_refine: 9
+      - name: スキルディレイ減少
+        value: 25
+        at_refine: 9
+      - name: 物理ダメージ増加
         value: 3
-      - name: スキルダメージ増加
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全属性への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+  - name: エントワインドマジカルシューズ
+    yomi: エントワインドマジカルシューズ
+    type: 靴
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 60
+    required_lv: 275
+    required_job: 4次職 拡張4次職
+    capabilities:
+      - name: 一般耐性
+        value: 5
+      - name: ボス耐性
+        value: 5
+      - name: プレイヤー耐性
+        value: 10
+      - name: 変動詠唱減少
+        value: 25
+      - name: 全基本ステータス加算
+        value: 3
+        per_refine: 1
+      - name: 魔法ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: MAXHP増加
+        value: 20
+        at_refine: 7
+      - name: スキルディレイ減少
+        value: 15
+        at_refine: 7
+      - name: MAXHP増加
+        value: 20
+        at_refine: 9
+      - name: スキルディレイ減少
+        value: 25
+        at_refine: 9
+      - name: 魔法ダメージ増加
+        value: 3
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+  - name: エントワインドマジカルマント
+    yomi: エントワインドマジカルマント
+    type: 肩にかける物
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 100
+    required_lv: 275
+    required_job: 4次職 拡張4次職
+    capabilities:
+      - name: 一般耐性
+        value: 5
+      - name: ボス耐性
+        value: 5
+      - name: プレイヤー耐性
+        value: 5
+      - name: 必中
+        value: 25
+      - name: 全基本ステータス加算
         value: 1
-        per_lv: 10
-        skill: タイガースラッシュ
-      - name: スキルダメージ増加
+        per_refine: 1
+      - name: MAXHP増加
+        value: 2
+        per_refine: 1
+      - name: MAXSP増加
+        value: 2
+        per_refine: 1
+      - name: 全属性への物理ダメージ増加
         value: 1
-        per_lv: 10
-        skill: タイガーハウリング
-      - name: スキルダメージ増加
+        per_refine: 1
+      - name: スキルディレイ減少
+        value: 25
+        at_refine: 7
+      - name: 全属性への物理ダメージ増加
+        value: 5
+        at_refine: 7
+      - name: ASPD増加
+        value: 20
+        at_refine: 9
+      - name: 全属性への物理ダメージ増加
+        value: 10
+        at_refine: 9
+      - name: 聖属性耐性
+        value: 7
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全属性への物理ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+  - name: エントワインドマジカルマフラー
+    yomi: エントワインドマジカルマフラー
+    type: 肩にかける物
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 100
+    required_lv: 275
+    required_job: 4次職 拡張4次職
+    capabilities:
+      - name: 一般耐性
+        value: 5
+      - name: ボス耐性
+        value: 5
+      - name: プレイヤー耐性
+        value: 5
+      - name: 変動詠唱減少
+        value: 25
+      - name: 全基本ステータス加算
         value: 1
-        per_lv: 10
-        skill: タイガーストライク
-      - name: スキルダメージ増加
+        per_refine: 1
+      - name: MAXHP増加
+        value: 2
+        per_refine: 1
+      - name: MAXSP増加
+        value: 2
+        per_refine: 1
+      - name: 全属性への魔法ダメージ増加
         value: 1
-        per_lv: 10
-        skill: タイガーバトリング
-    enchant: #
-      - name: スペシャルエンチャント(メト)
-        slot_list: #
-          - slot: 4
-            refine: 0
-            enchant_list: #
-              - name: Str+7
-              - name: Agi+7
-              - name: Vit+7
-              - name: Int+7
-              - name: Dex+7
-              - name: Luk+7
-              - name: SpecialStr
-              - name: SpecialAgi
-              - name: SpecialVit
-              - name: SpecialInt
-              - name: SpecialDex
-              - name: SpecialLuk
-              - name: 潜在解放(スピリットハンドラーXII)
-          - slot: 3
-            refine: 0
-            enchant_list: #
-              - name: Str+7
-              - name: Agi+7
-              - name: Vit+7
-              - name: Int+7
-              - name: Dex+7
-              - name: Luk+7
-              - name: SpecialStr
-              - name: SpecialAgi
-              - name: SpecialVit
-              - name: SpecialInt
-              - name: SpecialDex
-              - name: SpecialLuk
-              - name: 潜在解放(スピリットハンドラーXXIII)
-          - slot: 2
-            refine: 0
-            enchant_list: #
-              - name: Str+7
-              - name: Agi+7
-              - name: Vit+7
-              - name: Int+7
-              - name: Dex+7
-              - name: Luk+7
-              - name: SpecialStr
-              - name: SpecialAgi
-              - name: SpecialVit
-              - name: SpecialInt
-              - name: SpecialDex
-              - name: SpecialLuk
-              - name: 覇王
-              - name: 豪傑
+        per_refine: 1
+      - name: スキルディレイ減少
+        value: 25
+        at_refine: 7
+      - name: 全属性への魔法ダメージ増加
+        value: 5
+        at_refine: 7
+      - name: ASPD増加
+        value: 20
+        at_refine: 9
+      - name: 全属性への魔法ダメージ増加
+        value: 10
+        at_refine: 9
+      - name: 聖属性耐性
+        value: 7
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
