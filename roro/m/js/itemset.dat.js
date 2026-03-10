@@ -6703,6 +6703,7 @@
 	CardIdToSetIdMap[4179] = [3419,];
 	w_SE[3420] = [-4182,-4181,-2043,];
 	CardIdToSetIdMap[4181] = [3420,];
+	CardIdToSetIdMap[2043] = CardIdToSetIdMap[2043].concat([3419, 3420]);
 
 	// itemset はセーブデータに書き出されないので
 	// 現実的な範囲において itemsetID の上限値を気にする必要はありません
