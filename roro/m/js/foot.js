@@ -15672,6 +15672,17 @@ function getFixedCastTimeReductionRate() {
         chkary.push(80);
     }
 
+	if (n_A_HEAD_DEF_Transcendence > 0) {
+		// ブラッディスラッシャー の超越効果
+		if (CardNumSearch(CARD_ID_BLOODY_SLASHER) > 0) {
+			chkary.push(70);
+		}
+		// シャイディエスト の超越効果
+		if (CardNumSearch(CARD_ID_SHADIEST) > 0) {
+			chkary.push(70);
+		}
+	}
+
     //----------------------------------------------------------------
     // 「黒翼の使徒」エンチャントの、時限効果による強化
     //----------------------------------------------------------------
@@ -21295,13 +21306,16 @@ function GetAdditionalAspdPercent() {
     // 「トップサイドライダーカード」の、過剰精錬による効果
     //----------------------------------------------------------------
     if (cardcount = CardNumSearch(CARD_ID_TOP_SIDE_RIDER)) {
-        switch (n_A_WeaponType) {
-            case ITEM_KIND_STUFF:
-            case ITEM_KIND_STUFF2HAND:
-                // 杖系統のみの効果
+		if ([ITEM_KIND_STUFF, ITEM_KIND_STUFF2HAND].includes(n_A_WeaponType)) {
                 tmp_percent += 1 * n_A_Weapon_ATKplus * cardcount;
-                break;
-        }
+		}
+    }
+
+	// ニャイズ カード
+    if (cardcount = CardNumSearch(CARD_ID_NYAISE)) {
+		if ([ITEM_KIND_STUFF, ITEM_KIND_STUFF2HAND].includes(n_A_WeaponType)) {
+                tmp_percent += 1 * n_A_Weapon_ATKplus * cardcount;
+		}
     }
 
     //----------------------------------------------------------------

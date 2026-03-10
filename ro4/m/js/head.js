@@ -9426,6 +9426,34 @@ function ApplyMagicalSpecializeMonsterMod20211014SubSpecializeMap(charaData, spe
 		}
 	}
 
+	// ヴェルンド渓谷 外郭 特化
+	if(NumSearch(mobData[0], MonsterGroupObj[0]) == 1){
+		if ((cardCount = CardNumSearch(CARD_ID_VOLIMPET)) > 0) {
+			wX += 30 * cardCount;
+		}
+	}
+
+	// 破壊されたゲフェンフィールド 特化
+	if(NumSearch(mobData[0], MonsterGroupObj[0]) == 1){
+		if ((cardCount = CardNumSearch(CARD_ID_POLLUTED_SILK_FROG)) > 0) {
+			wX += 30 * cardCount;
+		}
+	}
+	
+	// 破壊されたウェルス 特化
+	if(NumSearch(mobData[0], MonsterGroupObj[0]) == 1){
+		if ((cardCount = CardNumSearch(CARD_ID_ENCROACHED_DIMIK)) > 0) {
+			wX += 30 * cardCount;
+		}
+	}
+	
+	// 歪んだブリミル 1階 2階 特化
+	if(NumSearch(mobData[0], MonsterGroupObj[0]) == 1){
+		if ((cardCount = CardNumSearch(CARD_ID_SHADOW_JAILER)) > 0) {
+			wX += 30 * cardCount;
+		}
+	}
+
 	//--------------------------------
 	// オズの迷路特化
 	//--------------------------------
@@ -16443,6 +16471,9 @@ function GetWeaponAtk(strdex, strBonus, armsType, armsLv, armsAtk, sizeModify,
 				funcSelectAppendDamage(ELM_ID_DARK, 10);
 			}
 			// 
+			if (TimeItemNumSearch(TIME_ITEM_ID_ADD_ELEMENTAL_DARK_ATK_30) > 0) {
+				funcSelectAppendDamage(ELM_ID_DARK, 30);
+			}
 			if (TimeItemNumSearch(TIME_ITEM_ID_ADD_ELEMENTAL_POISON_ATK_50) > 0) {
 				funcSelectAppendDamage(ELM_ID_POISON, 50);
 			}
@@ -18181,6 +18212,34 @@ function ApplyPhysicalSpecializeMonster(charaData, specData, mobData, dmg) {
 	//--------------------------------
 	if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_HAIIRO_OKAMINO_MORI]) == 1){
 		if ((cardCount = CardNumSearch(CARD_ID_GRAY_WOLF)) > 0) {
+			w += 30 * cardCount;
+		}
+	}
+
+	// ヴェルンド渓谷 外郭 特化
+	if(NumSearch(mobData[0], MonsterGroupObj[0]) == 1){
+		if ((cardCount = CardNumSearch(CARD_ID_VOLIMPET)) > 0) {
+			w += 30 * cardCount;
+		}
+	}
+
+	// 破壊されたゲフェンフィールド 特化
+	if(NumSearch(mobData[0], MonsterGroupObj[0]) == 1){
+		if ((cardCount = CardNumSearch(CARD_ID_POLLUTED_SILK_FROG)) > 0) {
+			w += 30 * cardCount;
+		}
+	}
+	
+	// 破壊されたウェルス 特化
+	if(NumSearch(mobData[0], MonsterGroupObj[0]) == 1){
+		if ((cardCount = CardNumSearch(CARD_ID_ENCROACHED_DIMIK)) > 0) {
+			w += 30 * cardCount;
+		}
+	}
+	
+	// 歪んだブリミル 1階 2階 特化
+	if(NumSearch(mobData[0], MonsterGroupObj[0]) == 1){
+		if ((cardCount = CardNumSearch(CARD_ID_SHADOW_JAILER)) > 0) {
 			w += 30 * cardCount;
 		}
 	}
