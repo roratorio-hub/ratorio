@@ -1574,7 +1574,15 @@
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5659] = [896];
 	// --- 2026-03-03 ---
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5660] = [291];		// オーロラカーテンローブ
-
+	// --- 2026-03-10 ---
+	g_constDataManager.enchListDataManager.sourceArray[897] = [897,-1,0,0,[["エントワインドマジカル防具エンチャント","エントワインドマジカル防具エンチャント"]],[],[[[174,[50,[5661,5662,]]],,[[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[558,560,565,567,569,574,659,599,660,661,662,663,1179,1678,1975,2005,1813,2028,2043,2311,2437,2668,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[558,560,565,567,569,574,659,599,660,661,662,663,1659,1660,1661,1662,1663,]]],,[]]]]]],[[178,[27,[2]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[2220,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.sourceArray[898] = [898,-1,0,0,[["エントワインドマジカル防具エンチャント","エントワインドマジカル防具エンチャント"]],[],[[[174,[50,[5665,5666,5663,5664,]]],,[[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[558,560,565,567,569,574,659,599,660,661,662,663,1179,1678,1975,2005,1813,2028,2043,2311,2437,2668,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[558,560,565,567,569,574,659,599,660,661,662,663,1297,888,1303,1348,1245,]]],,[]]]]]],[[178,[27,[2]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[2220,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5661] = [897];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5662] = [897];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5663] = [898];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5664] = [898];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5665] = [898];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5666] = [898];
 
 	// enchant はセーブデータに書き出されないので
 	// 現実的な範囲において enchantID の上限値を気にする必要はありません

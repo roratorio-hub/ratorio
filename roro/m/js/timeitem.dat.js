@@ -284,6 +284,7 @@
 	TIME_ITEM_ID_ADD_ELEMENTAL_WIND_ATK_30 = 332;
 	TIME_ITEM_ID_ADD_ELEMENTAL_WATER_ATK_30 = 333;
 	TIME_ITEM_ID_ADD_ELEMENTAL_POISON_ATK_30 = 334;
+	TIME_ITEM_ID_ADD_ELEMENTAL_DARK_ATK_30 = 335;
 
 	ITEM_SP_TIME_OBJ = [
 		[0,"装備/カードの時限性補助効果+NPC支援+期間限定","なし",[[0,0]],0],
@@ -699,7 +700,9 @@ ITEM_SP_TIME_OBJ[309] = [309,"潜在解放(スピリットハンドラーIII)","
 	// --- 2026-02-08 ---
 	ITEM_SP_TIME_OBJ[334] = [334,"毒属性物理攻撃力 + 30%","毒属性物理攻撃力 + 30%",[[2,4134]],0];
 	ITEM_SP_TIME_OBJ_SORT.push(334);
-
+	// --- 2026-02-08 ---
+	ITEM_SP_TIME_OBJ[335] = [335,"闇属性物理攻撃力 + 30%","闇属性物理攻撃力 + 30%",[[2,4178]],0];
+	ITEM_SP_TIME_OBJ_SORT.push(335);
 
 })();
 /**

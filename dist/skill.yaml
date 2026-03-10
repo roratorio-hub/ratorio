@@ -33,7 +33,7 @@ SN_WINDWALK:
     '10': 100
   type: Normal
   _mig_id_num: 273
-  _mig_name: ウインドウォーク
+  _mig_name: ウィンドウォーク
   _mig_id_name: SN_WINDWALK
 AL_RUWACH:
   attack_range:
