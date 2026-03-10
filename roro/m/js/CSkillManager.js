@@ -8224,7 +8224,7 @@ function CSkillManager() {
 		skillId++;
 
 		// ----------------------------------------------------------------
-		// ウインドウォーク
+		// ウィンドウォーク
 		// ----------------------------------------------------------------
 		SKILL_ID_WIND_WALK = skillId;
 		skillData = new function() {
@@ -8232,7 +8232,7 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = "ウインドウォーク";
+			this.name = "ウィンドウォーク";
 			this.kana = "ウイントウオオク";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE;
