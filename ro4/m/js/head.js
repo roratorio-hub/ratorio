@@ -18504,7 +18504,24 @@ candidate = MonsterGroupObj[MONSTER_GROUP_ID_JOR_RAISE1].concat(MonsterGroupObj[
  * 命中物理攻撃で与えるダメージ＋◯％
  */
 function ApplyPhysicalDamageUpExcludingCritical(dmg) {
-	// 物理ダメージUP
+	// 除外スキル
+	const excludeSkillList = [
+		SKILL_ID_SHIELD_BOOMERANG,
+		SKILL_ID_DEMONSTRATION,
+		SKILL_ID_FIRE_DRAGON_BREATH,
+		SKILL_ID_WATER_DRAGON_BREATH,
+		SKILL_ID_ISSEN,
+		SKILL_ID_ISSEN_MAX,
+		SKILL_ID_GOHO,
+		SKILL_ID_SHIELD_CHAIN,
+		SKILL_ID_DRAGONIC_BREATH,
+		SKILL_ID_MAGIC_CRUSHER,
+		SKILL_ID_DAISANGEKI_MEKKAGEKI,
+		SKILL_ID_SOUL_BREAKER,
+	]
+	if (excludeSkillList.includes(n_A_ActiveSkill)) {
+		return dmg;
+	}
 	return Math.floor(dmg * (100 + n_tok[ITEM_SP_DAMAGE_UP_EXCLUDING_CRITICAL]) / 100);
 }
 
