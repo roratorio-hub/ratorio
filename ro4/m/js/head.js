@@ -634,7 +634,8 @@ function BattleCalc999Body(battleCalcInfo, charaData, specData, mobData, attackM
 	let idxUnit = 0;
 	let battleCalcResult = null;
 	let dmgUnitArray = null;
-	let bCri = false;
+	/** クリティカル発生フラグ true/false */
+	const bCri = (g_skillManager.GetCriActRate(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData, specData, mobData) > 0);
 	// ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
 	//
 	// 呼び出し元から移植
@@ -804,7 +805,6 @@ function BattleCalc999Body(battleCalcInfo, charaData, specData, mobData, attackM
 	// クリティカル発生判定
 	//
 	//----------------------------------------------------------------
-	bCri = (g_skillManager.GetCriActRate(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData, specData, mobData) > 0);
 	// クリティカルが発生しないスキルの場合、クリティカル率を 0 にする
 	if (!bCri) {
 		battleCalcResult.criRate = 0;
@@ -18373,8 +18373,6 @@ candidate = MonsterGroupObj[MONSTER_GROUP_ID_JOR_RAISE1].concat(MonsterGroupObj[
 	//--------------------------------
 	w += GetEquippedTotalSPCardAndElse(1000+mobData[0]);
 
-
-
 	//--------------------------------
 	// 英雄の痕跡支援
 	//--------------------------------
@@ -18388,8 +18386,6 @@ candidate = MonsterGroupObj[MONSTER_GROUP_ID_JOR_RAISE1].concat(MonsterGroupObj[
 	//--------------------------------
 	if(TimeItemNumSearch(80)) w += 30;
 
-
-
 	//----------------------------------------------------------------
 	// 「性能カスタマイズ欄」の、地域特化効果
 	//----------------------------------------------------------------
@@ -18397,8 +18393,6 @@ candidate = MonsterGroupObj[MONSTER_GROUP_ID_JOR_RAISE1].concat(MonsterGroupObj[
 	if (confval != 0) {
 		w += confval;
 	}
-
-
 
 	// TODO: データ移行過渡処理
 	// 計算したSP効果を、移行前のデータ形式に変換して、加算する
@@ -18460,12 +18454,7 @@ candidate = MonsterGroupObj[MONSTER_GROUP_ID_JOR_RAISE1].concat(MonsterGroupObj[
 			}
 		}
 	}
-
-
-
 	dmg = Math.floor(dmg * w /100);
-
-
 
 	// ボス／一般特化
 	w = 0;
@@ -18476,10 +18465,9 @@ candidate = MonsterGroupObj[MONSTER_GROUP_ID_JOR_RAISE1].concat(MonsterGroupObj[
 		w += n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP_NOTBOSS];
 	}
 
+	// 物理ダメージUP
 	w += n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP];
 	dmg = Math.floor(dmg * (100+w) /100);
-
-
 
 	//--------------------------------
 	// ＥＤＰ補正
@@ -18510,6 +18498,14 @@ candidate = MonsterGroupObj[MONSTER_GROUP_ID_JOR_RAISE1].concat(MonsterGroupObj[
 	}
 
 	return Math.floor(dmg);
+}
+
+/**
+ * 命中物理攻撃で与えるダメージ＋◯％
+ */
+function ApplyPhysicalDamageUpExcludingCritical(dmg) {
+	// 物理ダメージUP
+	return Math.floor(dmg * (100 + n_tok[ITEM_SP_DAMAGE_UP_EXCLUDING_CRITICAL]) / 100);
 }
 
 /**
@@ -21833,14 +21829,10 @@ function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, 
  * @returns 適用後のダメージ
  */
 function ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, dmg, dmgType, bCri, bLeft) {
-
 	var w1 = 0;
-
 	var bEffective = false;
 	var powWork = 0;
 	var lvWork = 0;
-
-
 
 	// バックスタブ、かつ、弓装備時の、ダメージ半減効果
 	if (n_A_ActiveSkill == SKILL_ID_BACK_STAB) {
@@ -21849,8 +21841,6 @@ function ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData
 		}
 	}
 
-
-
 	// TODO : ポイズンリアクトと拳聖スキルだけ別計算？
 
 	// ポイズンリアクト
@@ -21858,22 +21848,14 @@ function ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData
 		dmg = Math.floor(dmg * (100 + 30 * n_A_ActiveSkillLV) /100);
 	}
 
-	// ○○の怒りは、素ＡＴＫ計算へ移動（『○○の怒り』で検索可）
-
 	dmg = ApplyLexAeterna(mobData, dmg);
 	dmg = ApplyRegistPVPEnergyCoat(mobData, dmg);
-
-
 
 	// 物理ダメージ倍率強化を取得
 	w1 = GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData);
 
-
-
 	// dmg に対して、ここまでで求めた強化値、装備自体の当該スキル強化値、カード自体の当該スキル強化値を適用する
 	dmg = ROUNDDOWN(dmg * (100 + w1) / 100);
-
-
 
 	// ジャイアントグロースの効果補正
 	switch (n_A_ActiveSkill) {
@@ -21881,19 +21863,15 @@ function ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData
 	case SKILL_ID_TUZYO_KOGEKI_CALC_RIGHT:
 	// 左手は乗らないように
 	case SKILL_ID_TUZYO_KOGEKI_CALC_KATAR_APPEND:
-
 		if ((UsedSkillSearch(SKILL_ID_GIANT_GROWTH) || g_confDataSanzi[CCharaConfSanzi.CONF_ID_GIANT_GLOTH])
 			&& (mobData[21] <= 4 || mobData[21] >= 10)) {
-
 			switch (dmgType) {
-
-			case 1:
-				dmg = ROUNDDOWN(dmg * 145 / 100);
-				break;
-
-			case 2:
-				dmg = dmg * 3;
-				break;
+				case 1:
+					dmg = ROUNDDOWN(dmg * 145 / 100);
+					break;
+				case 2:
+					dmg = dmg * 3;
+					break;
 			}
 		}
 	}
@@ -21912,7 +21890,6 @@ function ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData
 		case 794:	// ウォータードラゴンブレス
 			// 上記スキルは、冷凍状態の影響を受けない
 			break;
-
 		default:
 			// 武器種類による補正の適用
 			if(n_A_WeaponType == 6 || n_A_WeaponType == 7 || n_A_WeaponType == 8) dmg = Math.floor(dmg * 1.5);
@@ -21926,18 +21903,17 @@ function ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData
 		dmg = ApplyElementRatio(mobData, dmg,0);
 	}
 
-	// クリティカルダメージ補正（左手は乗らない）
 	if (bCri) {
+		// クリティカルダメージ補正（左手は乗らない）
 		if (!bLeft) {
-
 			// 特性ステータス対応
 			var criDmgRate = ApplyCRateAmplify(140);
-
 			dmg = Math.floor(dmg * criDmgRate /100);
 		}
+	} else {
+		// 命中物理攻撃で与えるダメージ+◯%
+		dmg = ApplyPhysicalDamageUpExcludingCritical(dmg);
 	}
-
-
 
 	// ダメージカット効果の適用
 	dmg = ApplyAttackDamageAmplify(mobData, dmg);
@@ -21946,164 +21922,41 @@ function ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData
 	w1 = 100;
 
 	switch (n_A_ActiveSkill) {
-
-	// 双龍脚
-	case SKILL_ID_SORYUKYAKU:
-
-		// YEマップでない場合（コロッセオを除く）のみ、増加
-		switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
-
-		case MOB_CONF_PLAYER_ID_SENTO_AREA_YE:
-		case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_GVG_TE:
-		// case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
-		case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_SHINKIRO:
+		// 双龍脚
+		case SKILL_ID_SORYUKYAKU:
+			// YEマップでない場合（コロッセオを除く）のみ、増加
+			switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
+			case MOB_CONF_PLAYER_ID_SENTO_AREA_YE:
+			case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_GVG_TE:
+			// case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
+			case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_SHINKIRO:
+				break;
+			default:
+				w1 += 100;
+				break;
+			}
 			break;
-
-		default:
-			w1 += 100;
-			break;
-		}
-
-		break;
-
-	// 大纏崩捶
-	case SKILL_ID_DAITENHOSUI:
-		// 全マップで増加（計算式が特殊なため、ここで300%に補正する）
-		w1 += 200;
-		break;
-
-	// フェイントボム
-	case SKILL_ID_FAINT_BOMB:
-		// 一般マップでのみ、増加
-		if (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA] == MOB_CONF_PLAYER_ID_SENTO_AREA_NONE) {
-			w1 += 100;
-		}
-		break;
-
-	// スポアエクスプロージョン
-	case SKILL_ID_SPORE_EXPLOSION:
-		// 一般マップでのみ、増加
-		if (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA] == MOB_CONF_PLAYER_ID_SENTO_AREA_NONE) {
-			w1 += 100;
-		}
-		break;
-
-
-// 2023/01/24 のパッチで効果がなくなったのか未確認
-/*
-	// ローリングカッター
-	case SKILL_ID_ROLLING_CUTTER:
-
-		// 一般マップでない、かつ、YE系マップでない場合のみ、増加
-		switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
-
-		case MOB_CONF_PLAYER_ID_SENTO_AREA_NONE:
-		case MOB_CONF_PLAYER_ID_SENTO_AREA_YE:
-		case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_GVG_TE:
-		case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
-		case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_SHINKIRO:
-			break;
-
-		default:
-			w1 += 50;
-			break;
-
-		}
-
-		break;
-
-	// クロスリッパーラッシャー
-	case SKILL_ID_CROSS_RIPPER_SLASHER:
-
-		// 一般マップでない、かつ、YE系マップでない場合のみ、増加
-		switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
-
-		case MOB_CONF_PLAYER_ID_SENTO_AREA_NONE:
-		case MOB_CONF_PLAYER_ID_SENTO_AREA_YE:
-		case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_GVG_TE:
-		case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
-		case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_SHINKIRO:
-			break;
-
-		default:
-			w1 += 50;
-			break;
-
-		}
-
-		break;
-
-	// ブーストナックル
-	case SKILL_ID_BOOST_KNUCKLE:
-
-		// 一般マップでない、かつ、YE系マップでない場合のみ、増加
-		switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
-
-		case MOB_CONF_PLAYER_ID_SENTO_AREA_NONE:
-		case MOB_CONF_PLAYER_ID_SENTO_AREA_YE:
-		case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_GVG_TE:
-		case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
-		case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_SHINKIRO:
-			break;
-
-		default:
-			w1 += 100;
-			break;
-
-		}
-
-		break;
-
-	// パイルバンカー
-	case SKILL_ID_PILE_BUNKER:
-
-		// 一般マップでない、かつ、YE系マップでない場合のみ、増加
-		switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
-
-		case MOB_CONF_PLAYER_ID_SENTO_AREA_NONE:
-		case MOB_CONF_PLAYER_ID_SENTO_AREA_YE:
-		case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_GVG_TE:
-		case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
-		case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_SHINKIRO:
-			break;
-
-		default:
-			w1 += 100;
-			break;
-
-		}
-
-		break;
-
-	// バルカンアーム
-	case SKILL_ID_VULCAN_ARM:
-
-		// 一般マップでない、かつ、YE系マップでない場合のみ、増加
-		switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
-
-		case MOB_CONF_PLAYER_ID_SENTO_AREA_NONE:
-		case MOB_CONF_PLAYER_ID_SENTO_AREA_YE:
-		case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_GVG_TE:
-		case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
-		case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_SHINKIRO:
-			break;
-
-		default:
+		// 大纏崩捶
+		case SKILL_ID_DAITENHOSUI:
+			// 全マップで増加（計算式が特殊なため、ここで300%に補正する）
 			w1 += 200;
 			break;
-
-		}
-
-		break;
-*/
-
-
+		// フェイントボム
+		case SKILL_ID_FAINT_BOMB:
+			// 一般マップでのみ、増加
+			if (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA] == MOB_CONF_PLAYER_ID_SENTO_AREA_NONE) {
+				w1 += 100;
+			}
+			break;
+		// スポアエクスプロージョン
+		case SKILL_ID_SPORE_EXPLOSION:
+			// 一般マップでのみ、増加
+			if (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA] == MOB_CONF_PLAYER_ID_SENTO_AREA_NONE) {
+				w1 += 100;
+			}
+			break;
 	}
-
 	dmg = ROUNDDOWN(dmg * w1 / 100);
-
-
-
 	return Math.floor(dmg);
 }
 

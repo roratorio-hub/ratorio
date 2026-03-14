@@ -485,7 +485,7 @@ CGlobalConstManager.DefineEnum(
 		"ITEM_SP_RESIST_LONGRANGE",			// 78 遠距離耐性
 		"ITEM_SP_RESIST_NOTBOSS",			// 79 一般耐性
 
-		"ITEM_SP_PHYSICAL_DAMAGE_UP",		// 80
+		"ITEM_SP_PHYSICAL_DAMAGE_UP",		// 80 物理ダメージUP
 		"ITEM_SP_DAMAGE_UP_GROUP_GOBLIN",
 		"ITEM_SP_DAMAGE_UP_GROUP_COBOLD",
 		"ITEM_SP_DAMAGE_UP_GROUP_ORC",
@@ -580,7 +580,7 @@ CGlobalConstManager.DefineEnum(
 		"ITEM_SP_RESIST_STATE_BREAK_SHOULDER",	// 164 
 		"ITEM_SP_RESIST_STATE_BREAK_SHOES",		// 165 
 		"ITEM_SP_RESIST_STATE_BREAK_ACCESSARY",	// 166 
-		"ITEM_SP_RESERVED_167",				// 未使用（167）
+		"ITEM_SP_DAMAGE_UP_EXCLUDING_CRITICAL",	// 167 命中物理攻撃で与えるダメージ+◯%
 		"ITEM_SP_RESERVED_168",				// 未使用（168）
 		"ITEM_SP_RESERVED_169",				// 未使用（169）
 
@@ -2293,6 +2293,10 @@ function GetItemExplainText(spId, spValue) {
 
 		case ITEM_SP_PHYSICAL_DAMAGE_UP:
 			textInfoArray.push(["", "物理攻撃で与えるダメージ" + sign + spValue + "%"]);
+			break;
+		
+		case ITEM_SP_DAMAGE_UP_EXCLUDING_CRITICAL:
+			textInfoArray.push(["", "命中物理攻撃で与えるダメージ" + sign + spValue + "%"]);
 			break;
 
 		case ITEM_SP_DAMAGE_UP_GROUP_GOBLIN:
