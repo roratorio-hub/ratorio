@@ -15536,16 +15536,16 @@ SR_HOWLINGOFLION:
 SR_TIGERCANNON:
   attack_range:
     '0': null
-    '1': 3
-    '2': 3
-    '3': 3
-    '4': 3
-    '5': 3
-    '6': 3
-    '7': 3
-    '8': 3
-    '9': 3
-    '10': 3
+    '1': null
+    '2': null
+    '3': null
+    '4': null
+    '5': null
+    '6': null
+    '7': null
+    '8': null
+    '9': null
+    '10': null
   id: SR_TIGERCANNON
   id_num: 2330
   max_lv: 10
@@ -15556,16 +15556,16 @@ SR_TIGERCANNON:
   seperate_lv: true
   sp_amount:
     '0': null
-    '1': 1
-    '2': 1
-    '3': 1
-    '4': 1
-    '5': 1
-    '6': 1
-    '7': 1
-    '8': 1
-    '9': 1
-    '10': 1
+    '1': 30
+    '2': 35
+    '3': 40
+    '4': 45
+    '5': 50
+    '6': 55
+    '7': 60
+    '8': 65
+    '9': 70
+    '10': 75
   type: Normal
   _mig_id_num: 615
   _mig_name: 號砲
@@ -40721,6 +40721,106 @@ SH_HYUN_ROK_SPIRIT_POWER:
   _mig_id_num: 1304
   _mig_name: ディアースピリットパワー
   _mig_id_name: SH_HYUN_ROK_SPIRIT_POWER
+NPC_REFLECTDAMAGE:
+  attack_range: '{}'
+  id: NPC_REFLECTDAMAGE
+  id_num: 14000
+  max_lv: 10
+  name: Mリフレクトダメージ
+  need_skill_list: []
+  seperate_lv: false
+  sp_amount: '{}'
+  type: Normal
+NPC_STASIS:
+  attack_range: '{}'
+  id: NPC_STASIS
+  id_num: 14001
+  max_lv: 10
+  name: Mステイシス
+  need_skill_list: []
+  seperate_lv: false
+  sp_amount: '{}'
+  type: Normal
+NPC_WHITEIMPRISON:
+  attack_range: '{}'
+  id: NPC_WHITEIMPRISON
+  id_num: 14002
+  max_lv: 10
+  name: Mホワイトインプリズン
+  need_skill_list: []
+  seperate_lv: false
+  sp_amount: '{}'
+  type: Normal
+NPC_ARRULLO:
+  attack_range: '{}'
+  id: NPC_ARRULLO
+  id_num: 14003
+  max_lv: 10
+  name: Mアルージョ
+  need_skill_list: []
+  seperate_lv: false
+  sp_amount: '{}'
+  type: Normal
+NPC_SATURDAY_NIGHT_FEVER:
+  attack_range: '{}'
+  id: NPC_SATURDAY_NIGHT_FEVER
+  id_num: 14004
+  max_lv: 10
+  name: Mフライデーナイトフィーバー
+  need_skill_list: []
+  seperate_lv: false
+  sp_amount: '{}'
+  type: Normal
+NPC_DIAMONDDUST:
+  attack_range: '{}'
+  id: NPC_DIAMONDDUST
+  id_num: 14005
+  max_lv: 10
+  name: Mダイヤモンドダスト
+  need_skill_list: []
+  seperate_lv: false
+  sp_amount: '{}'
+  type: Normal
+NPC_DARKCROW:
+  attack_range: '{}'
+  id: NPC_DARKCROW
+  id_num: 14006
+  max_lv: 10
+  name: Mダーククロー
+  need_skill_list: []
+  seperate_lv: false
+  sp_amount: '{}'
+  type: Normal
+NPC_POISONSMOKE:
+  attack_range: '{}'
+  id: NPC_POISONSMOKE
+  id_num: 14007
+  max_lv: 8
+  name: Mポイズンスモーク
+  need_skill_list: []
+  seperate_lv: false
+  sp_amount: '{}'
+  type: Normal
+NPC_WEAKNESS:
+  attack_range: '{}'
+  id: NPC_WEAKNESS
+  id_num: 14008
+  max_lv: 10
+  name: Mウィークネス
+  need_skill_list: []
+  seperate_lv: false
+  sp_amount: '{}'
+  type: Normal
+NPC_DARKIMPULSE:
+  attack_range: '{}'
+  id: NPC_DARKIMPULSE
+  id_num: 14009
+  max_lv: 10
+  name: ダークインパルス
+  need_skill_list: []
+  seperate_lv: false
+  sp_amount: '{}'
+  type: Normal
 NPC_RANDOMATTACK:
   id: NPC_RANDOMATTACK
   id_num: 183
