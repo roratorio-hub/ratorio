@@ -113,6 +113,10 @@ CGlobalConstManager.DefineEnum(
 		"JOB_ID_NIGHT_WATCH",  		// 83
 		"JOB_ID_HYPER_NOVICE",  	// 84
 		"JOB_ID_SPIRIT_HANDLER",	// 85
+		// ドルイド系
+		"JOB_ID_DRUID",		// 86
+		"JOB_ID_KARNOS",	// 87
+		"JOB_ID_ALITEA",	// 88
 	]
 );
 
@@ -280,6 +284,12 @@ function GetLowerJobSeriesID(jobID){
 	case JOB_ID_SUMMONER:
 	case MIG_JOB_ID_SPIRIT_HANDLER:
 		return JOB_SERIES_ID_SUMMONER;
+	
+	// ドルイド系
+	case JOB_ID_KARNOS:
+	case JOB_ID_ALITEA:
+	case JOB_ID_DRUID:
+		return JOB_ID_DRUID;
 
 	}
 
@@ -381,7 +391,6 @@ function GetHigherJobSeriesID(jobID) {
 
 	case JOB_ID_SUMMONER:
 		return JOB_SERIES_ID_SUMMONER;
-
 	}
 
 
@@ -430,6 +439,7 @@ function IsYojiJob(jobID) {
 		case MIG_JOB_ID_NIGHT_WATCH:
 		case MIG_JOB_ID_HYPER_NOVICE:
 		case MIG_JOB_ID_SPIRIT_HANDLER:
+		case MIG_JOB_ID_ALITEA:
 			return true;
 	}
 	return false;
@@ -591,6 +601,7 @@ function IsSameJobGroup(target_job, current_job = n_A_JOB) {
 		[MIG_JOB_ID_GUNSLINGER, MIG_JOB_ID_REBELLION, MIG_JOB_ID_NIGHT_WATCH],
 		[MIG_JOB_ID_SUPERNOVICE, MIG_JOB_ID_SUPERNOVICE_PLUS, MIG_JOB_ID_HYPER_NOVICE],
 		[MIG_JOB_ID_SUMMONER, MIG_JOB_ID_SPIRIT_HANDLER],
+		[MIG_JOB_ID_DRUID, MIG_JOB_ID_KARNOS, MIG_JOB_ID_ALITEA],
 	];
 	for (let i = 0; i < job_series.length; i++) {
 		if (job_series[i].includes(current_job) && job_series[i].includes(target_job)) {
@@ -602,6 +613,8 @@ function IsSameJobGroup(target_job, current_job = n_A_JOB) {
 
 /**
  * ベースレベルの最小値を取得する.
+ * 呼び出し元の処理が一部 TypeScript に置き換えられておりBaseLvの下限として機能していない.
+ * しかし HP/SP 配列のオフセットとして今も利用されているので廃止することはできない.
  * @param jobId ジョブＩＤ
  */
 function GetBaseLevelMin(jobId) {
@@ -629,6 +642,7 @@ function GetBaseLevelMin(jobId) {
 	case MIG_JOB_ID_NIGHT_WATCH:
 	case MIG_JOB_ID_HYPER_NOVICE:
 	case MIG_JOB_ID_SPIRIT_HANDLER:
+	case MIG_JOB_ID_ALITEA:
 		return 200;
 
 	case JOB_ID_RUNEKNIGHT:
@@ -652,6 +666,7 @@ function GetBaseLevelMin(jobId) {
 	case JOB_ID_REBELLION:
 	case JOB_ID_STAR_EMPEROR:
 	case JOB_ID_SOUL_REAPER:
+	case MIG_JOB_ID_KARNOS:
 		return 99;
 
 	case JOB_ID_SUPERNOVICE:
@@ -693,6 +708,7 @@ function GetBaseLevelMax(jobId) {
 		case MIG_JOB_ID_NIGHT_WATCH:
 		case MIG_JOB_ID_HYPER_NOVICE:
 		case MIG_JOB_ID_SPIRIT_HANDLER:
+		case MIG_JOB_ID_ALITEA:
 			return 275;
 
 		case JOB_ID_RUNEKNIGHT:
@@ -715,6 +731,7 @@ function GetBaseLevelMax(jobId) {
 		case JOB_ID_SOUL_REAPER:
 		case JOB_ID_SUMMONER:
 		case JOB_ID_SUPERNOVICE_PLUS:
+		case JOB_ID_KARNOS:
 			return 200;
 
 		default:
@@ -787,6 +804,7 @@ function GetJobLevelMax(jobId) {
 		case JOB_ID_STAR_EMPEROR:
 		case JOB_ID_SOUL_REAPER:
 		case JOB_ID_SUPERNOVICE_PLUS:
+		case JOB_ID_KARNOS:
 			return 70;
 
 		case JOB_ID_LORDKNIGHT:
@@ -804,6 +822,7 @@ function GetJobLevelMax(jobId) {
 		case JOB_ID_CREATOR:
 		case JOB_ID_NINJA:
 		case JOB_ID_GUNSLINGER:
+		case JOB_ID_DRUID:
 			return 70;
 
 		case JOB_ID_SUPERNOVICE:
@@ -829,6 +848,7 @@ function GetJobLevelMax(jobId) {
 		case MIG_JOB_ID_NIGHT_WATCH:
 		case MIG_JOB_ID_HYPER_NOVICE:
 		case MIG_JOB_ID_SPIRIT_HANDLER:
+		case MIG_JOB_ID_ALITEA:
 			return 60;
 
 	}
@@ -866,6 +886,7 @@ function GetStatusMax(jobId, bChild) {
 		case JOB_ID_SOUL_REAPER:
 		case JOB_ID_SUPERNOVICE_PLUS:
 		case JOB_ID_SUMMONER:
+		case JOB_ID_KARNOS:
 
 		case MIG_JOB_ID_DRAGON_KNIGHT:
 		case MIG_JOB_ID_SHADOW_CROSS:
@@ -887,6 +908,7 @@ function GetStatusMax(jobId, bChild) {
 		case MIG_JOB_ID_NIGHT_WATCH:
 		case MIG_JOB_ID_HYPER_NOVICE:
 		case MIG_JOB_ID_SPIRIT_HANDLER:
+		case MIG_JOB_ID_ALITEA:
 			return 117;
 
 		case JOB_ID_TAEGWON:
@@ -894,6 +916,7 @@ function GetStatusMax(jobId, bChild) {
 		case JOB_ID_SOULLINKER:
 		case JOB_ID_NINJA:
 		case JOB_ID_GUNSLINGER:
+		case JOB_ID_DRUID:
 			return 99;
 
 		}
@@ -927,6 +950,7 @@ function GetStatusMax(jobId, bChild) {
 	case JOB_ID_SOUL_REAPER:
 	case JOB_ID_SUPERNOVICE_PLUS:
 	case JOB_ID_SUMMONER:
+	case JOB_ID_KARNOS:
 
 	case MIG_JOB_ID_DRAGON_KNIGHT:
 	case MIG_JOB_ID_SHADOW_CROSS:
@@ -948,6 +972,7 @@ function GetStatusMax(jobId, bChild) {
 	case MIG_JOB_ID_NIGHT_WATCH:
 	case MIG_JOB_ID_HYPER_NOVICE:
 	case MIG_JOB_ID_SPIRIT_HANDLER:
+	case MIG_JOB_ID_ALITEA:
 
 		return 130;
 

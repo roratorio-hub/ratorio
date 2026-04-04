@@ -86,6 +86,10 @@
 	MIG_JOB_ID_NIGHT_WATCH = 83;
 	MIG_JOB_ID_HYPER_NOVICE = 84;
 	MIG_JOB_ID_SPIRIT_HANDLER = 85;
+	// ドルイド系
+	MIG_JOB_ID_DRUID = 86;
+	MIG_JOB_ID_KARNOS = 87;
+	MIG_JOB_ID_ALITEA = 88;
 
 	g_constDataManager.jobDataManager.sourceArray = [
 		[0,[["ノービス","E5A5f2C3"]],0,0,0,[[0,152],[1,141],[2,140],[6,138],[8,140],[9,141],[61,7]],
@@ -867,6 +871,75 @@
 				SKILL_ID_HYUN_ROK_SPIRIT_POWER,
 			],[
 				0,1,201,177,192,999
+			]],
+		[86,[["ドルイド","ドルイド"]],
+			BASE_EXP_TABLE_ID_NORMAL,	// 未転生
+			JOB_EXP_TABLE_ID_EXTRA_1ST,	// 特殊1次職
+			0,	// 所持重量補正値
+			[   // ASPD
+				[0,154],
+			],
+			[   // Job Bonus
+				[1,1],
+			],
+			    // HP
+				createArithmeticSequence(26705, 213, 99),
+			    // SP
+				createArithmeticSequence(1275, 5, 99),
+			[   // 習得スキル
+				1,
+			],[ // 職固有支援スキル
+				3,
+			],[	// 攻撃スキル
+				0,
+			],[ // 装備可能カテゴリ
+				0,
+			]],
+		[87,[["カルノス","カルノス"]],
+			BASE_EXP_TABLE_ID_REINCANATED,	// 転生職
+			JOB_EXP_TABLE_ID_3RD,	// 上位特殊1次職
+			0,	// 所持重量補正値
+			[   // ASPD
+				[0,154],
+			],
+			[   // Job Bonus
+				[1,1],
+			],
+				// HP
+			    createArithmeticSequence(26705, 213, 110 + 1),
+				// SP
+			    createArithmeticSequence(1275, 5, 110 + 1),
+			[	// 習得スキル
+				1,
+			],[ // 職固有支援スキル
+				3,
+			],[	// 攻撃スキル
+				0,
+			],[ // 装備可能カテゴリ
+				0,
+			]],
+		[88,[["アリテア","アリテア"]],
+			BASE_EXP_TABLE_ID_REINCANATED,	// 転生職
+			JOB_EXP_TABLE_ID_4TH,	// 4次職
+			10,	// 所持重量補正値
+			[   // ASPD
+				[0,154],
+			],
+			[   // Job Bonus
+				[1,1],
+			],
+				// HP
+			    createArithmeticSequence(26705, 213, 75 + 1),
+				// SP
+			    createArithmeticSequence(1275, 5, 75 + 1),
+			[	// 習得スキル
+				1,
+			],[ // 職固有支援スキル
+				3,
+			],[	// 攻撃スキル
+				0,
+			],[ // 装備可能カテゴリ
+				0,192,
 			]],
 	];
  

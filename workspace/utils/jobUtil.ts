@@ -1639,7 +1639,7 @@ const jobTypeMap: JobType[] = [
     },
     {
         en: "ninja",
-        ja: "忍者",
+        ja: "忍者", // 特殊1次職
         base_lv_min: 99,
         base_lv_max: 200,
         job_lv_max: 70,
@@ -1657,7 +1657,7 @@ const jobTypeMap: JobType[] = [
     },
     {
         en: "third_job",
-        ja: "3次職",
+        ja: "3次職", // スーパーノービス限界突破を含む
         base_lv_min: 90,
         base_lv_max: 200,
         job_lv_max: 70,
@@ -1667,10 +1667,10 @@ const jobTypeMap: JobType[] = [
     {
         en: "super_novice",
         ja: "スーパーノービス",
-        base_lv_min: 1,
+        base_lv_min: 45,
         base_lv_max: 99,
         job_lv_max: 99,
-        status_basic_max: 130,
+        status_basic_max: 99,
         status_talent_max: 0,
     },
     {
@@ -1779,7 +1779,10 @@ const mig_job_id_map: Record<string, MigJobId> = {
     "SHIRANUI": { id: 82 },
     "NIGHT_WATCH": { id: 83 },
     "HYPER_NOVICE": { id: 84 },
-    "SPIRIT_HANDLER": { id: 85 }
+    "SPIRIT_HANDLER": { id: 85 },
+    "DRUID": { id: 86 },
+    "KARNOS": { id: 87 },
+    "ALITEA": { id: 88 },
 };
 
 /**
