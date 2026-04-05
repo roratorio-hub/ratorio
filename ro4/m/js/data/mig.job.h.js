@@ -1174,6 +1174,31 @@ function GetSPBase(jobId, baseLv, bChild) {
 //================================================================================================
 //================================================================================================
 
+/**
+ * 経験値テーブル定義
+ * 
+ * ROは職業ごとに異なる経験値テーブルを採用している
+ * https://ragnarokonline.gungho.jp/gameguide/character/exp-table.html
+ * 
+ * BaseEXPテーブル 2種
+ * - 未転生Base99まで
+ * - 転生・ドラム
+ * 
+ * JobEXPテーブル 12種
+ * - ノービス
+ * - 転生ノービス
+ * - 1次職・テコンキッド
+ * - 転生1次職
+ * - 2次職・ソウルリンカー
+ * - 上位2次職
+ * - 忍者・ガンスリンガー
+ * - 拳聖
+ * - 3次職・上位特殊1次職
+ * - スーパーノービスJob99まで
+ * - サモナー
+ * - 4次職・拡張4次職
+ */
+
 CGlobalConstManager.DefineEnum(
 	"BaseExpTableId",
 	[
@@ -1182,21 +1207,26 @@ CGlobalConstManager.DefineEnum(
 	]
 );
 
+/**
+ * 8と12は同じテーブルを参照するが
+ * 一部のコードで本定数を職業分類として利用する場面があるので分けている
+ */
 CGlobalConstManager.DefineEnum(
 	"JobExpTableId",
 	[
-		"JOB_EXP_TABLE_ID_NOVICE",
-		"JOB_EXP_TABLE_ID_NOVICE_REINCANATED",
-		"JOB_EXP_TABLE_ID_1ST",
-		"JOB_EXP_TABLE_ID_1ST_REINCANATED",
-		"JOB_EXP_TABLE_ID_2ND",
-		"JOB_EXP_TABLE_ID_2ND_REINCANATED",
-		"JOB_EXP_TABLE_ID_EXTRA_1ST",
-		"JOB_EXP_TABLE_ID_STAR_GRADIATOR",
-		"JOB_EXP_TABLE_ID_3RD",
-		"JOB_EXP_TABLE_ID_SUPER_NOVICE",
-		"JOB_EXP_TABLE_ID_SUMMONER",
-		"JOB_EXP_TABLE_ID_4TH",
+		"JOB_EXP_TABLE_ID_NOVICE",				// 0: ノービスのみ
+		"JOB_EXP_TABLE_ID_NOVICE_REINCANATED",	// 1: 転生ノービスのみ
+		"JOB_EXP_TABLE_ID_1ST",					// 2: ソードマン、マーチャント、アコライトなど公式で「1次職」と表記される職業
+		"JOB_EXP_TABLE_ID_1ST_REINCANATED", 	// 3: 転生した「1次職」
+		"JOB_EXP_TABLE_ID_2ND",					// 4: ナイト、ブラックスミス、プリーストなど公式で「2次職」と表記される職業
+		"JOB_EXP_TABLE_ID_2ND_REINCANATED",		// 5: ロードナイト、ホワイトスミスなど公式で「上位2次職」と表記される職業
+		"JOB_EXP_TABLE_ID_EXTRA_1ST",			// 6: 忍者、ガンスリンガーなど公式で「特殊1次職」と表記される職業
+		"JOB_EXP_TABLE_ID_STAR_GRADIATOR",		// 7: 拳聖のみ
+		"JOB_EXP_TABLE_ID_3RD",					// 8: ルーンナイト、メカニック、アークビショップなど公式で「3次職」と表記される職業
+		"JOB_EXP_TABLE_ID_SUPER_NOVICE",		// 9: 限界突破していないスーパーノービス
+		"JOB_EXP_TABLE_ID_SUMMONER",			// 10: サモナーのみ
+		"JOB_EXP_TABLE_ID_4TH",					// 11: ドラゴンナイト、マイスターなど公式で「4次職」、または蜃気楼、不知火など公式で「上位特殊2次職」と表記される職業
+		"JOB_EXP_TABLE_ID_EXTRA_1ST_UPGRADE",	// 12 リベリオン、ソウルリーパー，星帝など公式で「上位特殊1次職」と表記される職業＋スパノビ限界突破
 	]
 );
 
@@ -2111,8 +2141,9 @@ function GetJobExpTable(tableId) {
 				,0
 			];
 			break;
-		// 三次職
+		// 三次職・上位特殊一次職・スパノビ限界突破
 		case JOB_EXP_TABLE_ID_3RD:
+		case JOB_EXP_TABLE_ID_EXTRA_1ST_UPGRADE:
 			expTable = [
 				// 1 - 10
 				0

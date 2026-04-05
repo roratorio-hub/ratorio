@@ -1657,7 +1657,7 @@ const jobTypeMap: JobType[] = [
     },
     {
         en: "third_job",
-        ja: "3次職", // スーパーノービス限界突破を含む
+        ja: "3次職",
         base_lv_min: 90,
         base_lv_max: 200,
         job_lv_max: 70,
@@ -1666,7 +1666,7 @@ const jobTypeMap: JobType[] = [
     },
     {
         en: "super_novice",
-        ja: "スーパーノービス",
+        ja: "スーパーノービス", // 限界突破を含まない
         base_lv_min: 45,
         base_lv_max: 99,
         job_lv_max: 99,
@@ -1690,7 +1690,16 @@ const jobTypeMap: JobType[] = [
         job_lv_max: 60,
         status_basic_max: 130,
         status_talent_max: 110,
-    }
+    },
+    {
+        en: "upgraded_extra_1st_job",
+        ja: "上位特殊1次職", // スパノビ限界突破、リベ、リーパーなど
+        base_lv_min: 99,
+        base_lv_max: 200,
+        job_lv_max: 70,
+        status_basic_max: 130,
+        status_talent_max: 0,
+    },
 ];
 
 const mig_job_id_map: Record<string, MigJobId> = {
