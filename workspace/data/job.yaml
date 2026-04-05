@@ -487,3 +487,12 @@
 - id: JT_WANDERER_2ND
   id_num: 4344
   name: Wanderer 2nd
+- id: JT_DRUID
+  id_num: 4345
+  name: Druid
+- id: JT_KARNOS
+  id_num: 4346
+  name: Karnos
+- id: JT_ALITEA
+  id_num: 4347
+  name: Alitea
