@@ -1621,7 +1621,7 @@ const jobTypeMap: JobType[] = [
     },
     {
         en: "secondary_job",
-        ja: "2次職",
+        ja: "2次職",    // リーパー（特殊2次職）を含む
         base_lv_min: 1,
         base_lv_max: 99,
         job_lv_max: 50,
@@ -1639,9 +1639,9 @@ const jobTypeMap: JobType[] = [
     },
     {
         en: "ninja",
-        ja: "忍者", // 特殊1次職
-        base_lv_min: 99,
-        base_lv_max: 200,
+        ja: "忍者", // ガンスリンガーと忍者のみ（特殊1次職）
+        base_lv_min: 1,
+        base_lv_max: 99,
         job_lv_max: 70,
         status_basic_max: 99,
         status_talent_max: 0,
@@ -1649,8 +1649,8 @@ const jobTypeMap: JobType[] = [
     {
         en: "kwonsung",
         ja: "拳聖",
-        base_lv_min: 99,
-        base_lv_max: 200,
+        base_lv_min: 1,
+        base_lv_max: 99,
         job_lv_max: 70,
         status_basic_max: 99,
         status_talent_max: 0,
