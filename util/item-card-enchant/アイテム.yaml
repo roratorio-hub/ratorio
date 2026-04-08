@@ -1,225 +1,387 @@
 item_list:
-  - name: ジュディス・ラケル
-    yomi: ジュディス・ラケル
-    type: 鎧
-    slot: 1
-    weapon_lv: 0
-    atk_or_def: 100
-    weight: 100
-    required_lv: 200
-    required_job: アークメイジ
+  - name: 初心者用バトルアックス
+    yomi: ショシンシャヨウバトルアックス
+    type: 両手斧
+    slot: 0
+    weapon_lv: 1
+    atk_or_def: 80
+    weight: 150
+    required_lv: 3
+    required_job: ドルイド系
     capabilities:
-      - name: プレイヤー耐性
-        value: 7
-      - name: スキルダメージ増加
-        value: 1
-        per_lv: 10
-        skill: フローラルフレアロード
-      - name: スキルダメージ増加
-        value: 1
-        per_lv: 10
-        skill: クリムゾンアロー
-      - name: スキルダメージ増加
-        value: 1
-        per_lv: 10
-        skill: レインオブクリスタル
-      - name: スキルダメージ増加
-        value: 1
-        per_lv: 10
-        skill: フローズンスラッシュ
-      - name: スキルダメージ増加
-        value: 1
-        per_lv: 10
-        skill: トルネードストーム
-      - name: スキルダメージ増加
-        value: 1
-        per_lv: 10
-        skill: ストームキャノン
-      - name: スキルダメージ増加
-        value: 1
-        per_lv: 10
-        skill: ストラタムトレマー
-      - name: スキルダメージ増加
-        value: 1
-        per_lv: 10
-        skill: ロックダウン
-      - name: 全サイズへの魔法ダメージ増加
-        value: 7
-        per_refine: 1
-      - name: ASPD増加
-        value: 10
-        at_refine: 7
-      - name: 一般耐性
-        value: 5
-        at_refine: 7
-      - name: ボス耐性
-        value: 5
-        at_refine: 7
       - name: 破損しない
         value: 1
-        at_refine: 9
-      - name: スキル固定詠唱割合減少
-        value: 100
-        skill: ジャックフロスト
-        at_refine: 9
-      - name: 全属性への魔法ダメージ増加
-        value: 15
-        at_refine: 10
-    enchant: #
-      - name: スペシャルエンチャント（オーブ）
-        slot_list: #
-          - slot: 4
-            refine: 0
-            enchant_list: #
-              - name: 潜在解放(アークメイジXX)
-          - slot: 3
-            refine: 8
-            enchant_list: #
-              - name: 火属性付与(鎧)
-              - name: 水属性付与(鎧)
-              - name: 風属性付与(鎧)
-              - name: 地属性付与(鎧)
-              - name: 聖属性付与(鎧)
-              - name: 闇属性付与(鎧)
-              - name: 念属性付与(鎧)
-              - name: 毒属性付与(鎧)
-              - name: 不死属性付与(鎧)
-          - slot: 2
-            refine: 9
-            enchant_list: #
-              - name: スキルディレイ-15%
-              - name: 必中攻撃+25%
-              - name: 詠唱妨害不可
-              - name: 厄災の魔将
 
-  - name: リーブラオブジャッジメント
-    yomi: リーブラオブジャッジメント
-    type: 中段
+  - name: モカダスガルズ
+    yomi: モカダスガルズ
+    type: 鈍器
+    slot: 1
+    weapon_lv: 4
+    atk_or_def: 150
+    weight: 150
+    required_lv: 220
+    required_job: アリテア
+    capabilities:
+      - name: 武器のMATK
+        value: 110
+      - name: 破損しない
+        value: 1
+      - name: プレイヤー耐性
+        value: 10
+      - name: 聖属性耐性
+        value: 5
+      - name: 魔法ダメージ増加
+        value: 10
+        per_refine: 1
+      - name: スキルダメージ増加
+        skill: グレイシアモノリス
+        value: 25
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: グレイシアノヴァ
+        value: 25
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: グレイシアシャード
+        value: 25
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: グレイシアストンプ
+        value: 25
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: チリングブラスト
+        value: 25
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: ロアリングピアサー
+        value: 25
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: ロアリングチャージ
+        value: 25
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: フューリアスストーム
+        value: 25
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: テラウェーブ
+        value: 25
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: テラハーベスト
+        value: 25
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: ソリッドストンプ
+        value: 25
+        at_refine: 7
+      - name: スキルダメージ増加
+        skill: グラビティホール
+        value: 25
+        at_refine: 7
+      - name: SPL加算
+        value: 20
+        at_refine: 10
+
+  - name: 暴食のクラウン(アリテア)
+    yomi: ボウショクノクラウンアリテア
+    type: 上段
     slot: 1
     weapon_lv: 0
-    atk_or_def: 0
-    weight: 10
-    required_lv: 100
-    required_job: 全ての職業
-    capabilities:
-      - name: プレイヤー耐性
-        value: 5
-      - name: 必中
-        value: 25
-      - name: 詠唱が中断されない
-        value: 1
-      - name: 全サイズへの物理ダメージ増加
-        value: 10
-      - name: 全サイズへの魔法ダメージ増加
-        value: 10
-      - name: ATK加算
-        value: 1
-        per_lv: 1
-      - name: MATK加算
-        value: 1
-        per_lv: 1
-    enchant: #
-      - name: スペシャルエンチャント（ミオン）
-        slot_list: #
-          - slot: 4
-            refine: 0
-            enchant_list: #
-              - name: スキルディレイ-15%
-              - name: 固定詠唱時間-70%
-              - name: Def50%無視
-              - name: Mdef50%無視
-              - name: SpecialStr
-              - name: SpecialAgi
-              - name: SpecialVit
-              - name: SpecialInt
-              - name: SpecialDex
-              - name: SpecialLuk
-          - slot: 3
-            refine: 0
-            enchant_list: #
-              - name: MaxHP+15%
-              - name: MaxSP+15%
-              - name: Def50%無視
-              - name: Mdef50%無視
-              - name: SpecialStr
-              - name: SpecialAgi
-              - name: SpecialVit
-              - name: SpecialInt
-              - name: SpecialDex
-              - name: SpecialLuk
-              - name: 英雄の凱歌
-          - slot: 2
-            refine: 0
-            enchant_list: #
-              - name: Str+10
-              - name: Agi+10
-              - name: Vit+10
-              - name: Int+10
-              - name: Dex+10
-              - name: Luk+10
-              - name: 完全回避+3
-              - name: 覇王
-      - name: ファロスエンチャント（ベテラン遺跡細工師）
-        slot_list: #
-          - slot: 4
-            refine: 0
-            enchant_list: #
-              - name: スキルディレイ-15%
-              - name: 固定詠唱時間-70%
-              - name: Def50%無視
-              - name: Mdef50%無視
-              - name: SpecialStr
-              - name: SpecialAgi
-              - name: SpecialVit
-              - name: SpecialInt
-              - name: SpecialDex
-              - name: SpecialLuk
-              - name: 石化耐性
-          - slot: 3
-            refine: 0
-            enchant_list: #
-              - name: MaxHP+15%
-              - name: MaxSP+15%
-              - name: Def50%無視
-              - name: Mdef50%無視
-              - name: SpecialStr
-              - name: SpecialAgi
-              - name: SpecialVit
-              - name: SpecialInt
-              - name: SpecialDex
-              - name: SpecialLuk
-              - name: 英雄の凱歌
-              - name: シンソウの王
-              - name: 起源の王
-              - name: 殺意の怨念
-              - name: 豊穣の女神
-              - name: 厄災の魔将
-              - name: 異境の統轄者
-              - name: 知識の探求者
-              - name: 最果ての支配者
-
-  - name: ルインテンペスト
-    yomi: ルインテンペスト
-    type: 下段
-    slot: 0
-    weapon_lv: 0
-    atk_or_def: 0
-    weight: 10
+    atk_or_def: 10
+    weight: 50
     required_lv: 200
-    required_job: 蜃気楼 不知火
+    required_job: アリテア
     capabilities:
+      - name: 破損しない
+        value: 1
+      - name: 一般耐性
+        value: 20
+      - name: ボス耐性
+        value: 20
       - name: プレイヤー耐性
-        value: 3
-      - name: 全サイズへの物理ダメージ増加
+        value: 13
+      - name: 全属性への物理ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: スキル固定詠唱割合減少
+        skill: サンダリングフォーカス
+        value: 100
+        at_refine: 7
+      - name: スキル固定詠唱割合減少
+        skill: サンダリングオーブ
+        value: 100
+        at_refine: 7
+      - name: スキル固定詠唱割合減少
+        skill: アーススタンプ
+        value: 100
+        at_refine: 7
+      - name: MAXHP増加
+        value: 10
+        at_refine: 7
+      - name: MAXSP増加
+        value: 10
+        at_refine: 7
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 9
+      - name: スキルダメージ増加
+        skill: グレイシアモノリス
         value: 1
         per_lv: 10
-      - name: 全サイズへの魔法ダメージ増加
+        at_refine: 9
+      - name: スキルダメージ増加
+        skill: グレイシアノヴァ
         value: 1
         per_lv: 10
-    enchant: #
-      - name: スペシャルエンチャント（ミオン）
-        slot_list: #
-          - slot: 4
-            refine: 0
-            enchant_list: #
-              - name: 潜在解放(蜃気楼&不知火XX)
+        at_refine: 9
+      - name: スキルダメージ増加
+        skill: グレイシアシャード
+        value: 1
+        per_lv: 10
+        at_refine: 9
+      - name: スキルダメージ増加
+        skill: グレイシアストンプ
+        value: 1
+        per_lv: 10
+        at_refine: 9
+      - name: スキルダメージ増加
+        skill: チリングブラスト
+        value: 1
+        per_lv: 10
+        at_refine: 9
+      - name: スキルダメージ増加
+        skill: ロアリングピアサー
+        value: 1
+        per_lv: 10
+        at_refine: 9
+      - name: スキルダメージ増加
+        skill: ロアリングチャージ
+        value: 1
+        per_lv: 10
+        at_refine: 9
+      - name: スキルダメージ増加
+        skill: フューリアスストーム
+        value: 1
+        per_lv: 10
+        at_refine: 9
+      - name: スキルダメージ増加
+        skill: テラウェーブ
+        value: 1
+        per_lv: 10
+        at_refine: 9
+      - name: スキルダメージ増加
+        skill: テラハーベスト
+        value: 1
+        per_lv: 10
+        at_refine: 9
+      - name: スキルダメージ増加
+        skill: ソリッドストンプ
+        value: 1
+        per_lv: 10
+        at_refine: 9
+      - name: スキルダメージ増加
+        skill: グラビティホール
+        value: 1
+        per_lv: 10
+        at_refine: 9
+      - name: SPL加算
+        value: 20
+        at_refine: 10
+      - name: MDEF無視
+        value: 50
+        at_refine: 10
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 聖属性耐性
+        value: 10
+        at_refine: 10
+        at_transcendence: 1
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 悪霊の儀式
+        capabilities:
+          - name: スキルディレイ減少
+            value: 20
+          - name: スキル使用可能
+            skill: ブレッシング
+            skill_lv: 10
+          - name: スキルダメージ増加
+            skill: グレイシアモノリス
+            value: 1
+            per_lv: 10
+          - name: スキルダメージ増加
+            skill: グレイシアノヴァ
+            value: 1
+            per_lv: 10
+          - name: スキルダメージ増加
+            skill: グレイシアシャード
+            value: 1
+            per_lv: 10
+          - name: スキルダメージ増加
+            skill: グレイシアストンプ
+            value: 1
+            per_lv: 10
+          - name: スキルダメージ増加
+            skill: チリングブラスト
+            value: 1
+            per_lv: 10
+          - name: スキルダメージ増加
+            skill: ロアリングピアサー
+            value: 1
+            per_lv: 10
+          - name: スキルダメージ増加
+            skill: ロアリングチャージ
+            value: 1
+            per_lv: 10
+          - name: スキルダメージ増加
+            skill: フューリアスストーム
+            value: 1
+            per_lv: 10
+          - name: スキルダメージ増加
+            skill: テラウェーブ
+            value: 1
+            per_lv: 10
+          - name: スキルダメージ増加
+            skill: テラハーベスト
+            value: 1
+            per_lv: 10
+          - name: スキルダメージ増加
+            skill: ソリッドストンプ
+            value: 1
+            per_lv: 10
+          - name: スキルダメージ増加
+            skill: グラビティホール
+            value: 1
+            per_lv: 10
+
+  - name: 時間のサークレット(アリテア)
+    yomi: ジカンノサークレットアリテア
+    type: 上段
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 10
+    weight: 50
+    required_lv: 200
+    required_job: アリテア
+    capabilities:
+      - name: 破損しない
+        value: 1
+      - name: 一般耐性
+        value: 20
+      - name: ボス耐性
+        value: 20
+      - name: プレイヤー耐性
+        value: 13
+      - name: 全属性への物理ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: スキル固定詠唱割合減少
+        skill: クローウェーブ
+        value: 100
+        at_refine: 7
+      - name: MAXHP増加
+        value: 10
+        at_refine: 7
+      - name: MAXSP増加
+        value: 10
+        at_refine: 7
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 9
+      - name: スキルダメージ増加
+        skill: プライマルクロー
+        value: 1
+        per_lv: 10
+        at_refine: 9
+      - name: スキルダメージ増加
+        skill: フェラルクロー
+        value: 1
+        per_lv: 10
+        at_refine: 9
+      - name: スキルダメージ増加
+        skill: アルファクロー
+        value: 1
+        per_lv: 10
+        at_refine: 9
+      - name: スキルダメージ増加
+        skill: サベージランジ
+        value: 1
+        per_lv: 10
+        at_refine: 9
+      - name: スキルダメージ増加
+        skill: フレンジファング
+        value: 1
+        per_lv: 10
+        at_refine: 9
+      - name: POW加算
+        value: 20
+        at_refine: 10
+      - name: CRI加算
+        value: 25
+        at_refine: 10
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 聖属性耐性
+        value: 10
+        at_refine: 10
+        at_transcendence: 1
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 時間の注視者
+        capabilities:
+          - name: スキルディレイ減少
+            value: 20
+          - name: スキル使用可能
+            skill: ブレッシング
+            skill_lv: 10
+          - name: スキルダメージ増加
+            skill: プライマルクロー
+            value: 1
+            per_lv: 10
+          - name: スキルダメージ増加
+            skill: フェラルクロー
+            value: 1
+            per_lv: 10
+          - name: スキルダメージ増加
+            skill: アルファクロー
+            value: 1
+            per_lv: 10
+          - name: スキルダメージ増加
+            skill: サベージランジ
+            value: 1
+            per_lv: 10
+          - name: スキルダメージ増加
+            skill: フレンジファング
+            value: 1
+            per_lv: 10

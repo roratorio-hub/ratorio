@@ -1,26 +1,136 @@
 card_list:
-  - name: 潜在解放(アークメイジXX)
-    yomi: センザイカイホウアークメイジ20
-    type: エンチャント
+  - name: ハーウェル・メガス・バルター
+    yomi: ハーウェルメガスバルター
+    type: 全ての部位
+    capabilities:
+      - name: ATK加算
+        value: 1
+        per_lv: 2
+      - name: MATK加算
+        value: 1
+        per_lv: 2
     set_list:
       - set:
         entity_list:
-          - card_name: 真理の解放
+          - card_name: 王家の栄光
         capabilities:
-          - name: 再使用待機時間減少
-            skill: レインオブクリスタル
-            value: 500
-          - name: 再使用待機時間減少
-            skill: ストラタムトレマー
-            value: 500
-  - name: 潜在解放(蜃気楼&不知火XX)
-    yomi: センザイカイホウシンキロウアンドシラヌイ20
-    type: エンチャント
+          - name: スキルダメージ増加
+            skill: プライマルクロー
+            value: 25
+          - name: スキルダメージ増加
+            skill: フェラルクロー
+            value: 25
+          - name: スキルダメージ増加
+            skill: アルファクロー
+            value: 25
+          - name: スキルダメージ増加
+            skill: サベージランジ
+            value: 25
+          - name: スキルダメージ増加
+            skill: フレンジファング
+            value: 25
+          - name: スキルダメージ増加
+            skill: ピニオンショット
+            value: 25
+          - name: スキルダメージ増加
+            skill: クイールスピア
+            value: 25
+          - name: スキルダメージ増加
+            skill: テンペストフラップ
+            value: 25
+          - name: スキルダメージ増加
+            skill: グレイシアモノリス
+            value: 25
+          - name: スキルダメージ増加
+            skill: グレイシアノヴァ
+            value: 25
+          - name: スキルダメージ増加
+            skill: グレイシアシャード
+            value: 25
+          - name: スキルダメージ増加
+            skill: グレイシアストンプ
+            value: 25
+          - name: スキルダメージ増加
+            skill: チリングブラスト
+            value: 25
+          - name: スキルダメージ増加
+            skill: ロアリングピアサー
+            value: 25
+          - name: スキルダメージ増加
+            skill: ロアリングチャージ
+            value: 25
+          - name: スキルダメージ増加
+            skill: フューリアスストーム
+            value: 25
+          - name: スキルダメージ増加
+            skill: テラウェーブ
+            value: 25
+          - name: スキルダメージ増加
+            skill: テラハーベスト
+            value: 25
+          - name: スキルダメージ増加
+            skill: ソリッドストンプ
+            value: 25
+          - name: スキルダメージ増加
+            skill: グラビティホール
+            value: 25
+
+  - name: 女帝のカード
+    yomi: ジョテイノカード
+    type: 全ての部位
+    capabilities:
+      - name: スキルダメージ増加
+        skill: クローウェーブ
+        value: 5
+      - name: スキルダメージ増加
+        skill: クローウェーブ
+        value: 1
+        per_refine: 1
+      - name: スキルダメージ増加
+        skill: クローウェーブ
+        value: 5
+        at_refine: 10
     set_list:
       - set:
         entity_list:
-          - card_name: 豪傑
+          - card_name: アルカナ
         capabilities:
-          - name: 再使用待機時間減少
-            skill: 幻術 -影縫い-
-            value: 100
+          - name: STR加算
+            value: 2
+          - name: LUK加算
+            value: 2
+          - name: クリティカルダメージ増加
+            value: 10
+          - name: スキルダメージ増加
+            skill: クローウェーブ
+            value: 50
+
+  - name: 女帝のカード(逆位置)
+    yomi: ジョテイノカードギャクイチ
+    type: 全ての部位
+    capabilities:
+      - name: スキルダメージ増加
+        skill: フェザースプリンクル
+        value: 5
+      - name: スキルダメージ増加
+        skill: フェザースプリンクル
+        value: 1
+        per_refine: 1
+      - name: スキルダメージ増加
+        skill: フェザースプリンクル
+        value: 5
+        at_refine: 10
+    set_list:
+      - set:
+        entity_list:
+          - card_name: アルカナ
+        capabilities:
+          - name: AGI加算
+            value: 2
+          - name: DEX加算
+            value: 2
+          - name: 命中物理攻撃で与えるダメージ増加
+            value: 5
+          - name: スキルダメージ増加
+            skill: フェザースプリンクル
+            value: 50

@@ -1,7 +1,8 @@
 _draft
-util/output_*.js
-util/*item.yaml
-util/*card.yaml
+util/item-card-enchant/output_*.js
+util/item-card-enchant/*item.yaml
+util/item-card-enchant/*card.yaml
+util/item-card-enchant/__pycache__
 util/__pycache__
 util/*monster.csv
 .clineignore

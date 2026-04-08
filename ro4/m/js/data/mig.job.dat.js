@@ -943,7 +943,7 @@
 				SKILL_ID_HUNGER,
 				SKILL_ID_FLICKING_TONADO,
 			],[ // 装備可能カテゴリ
-				0,
+				0,134,
 			]],
 		[87,[["カルノス","カルノス"]],
 			1,	// 転生職
@@ -1055,7 +1055,7 @@
 				SKILL_ID_CHOP_CHOP,
 				SKILL_ID_TYPHOON_WING,
 			],[ // 装備可能カテゴリ
-				0,
+				0,134,
 			]],
 		[88,[["アリテア","アリテア"]],
 			1,	// 転生職
@@ -1216,7 +1216,7 @@
 				SKILL_ID_GRAVITY_HOLE,
 				SKILL_ID_SAVAGE_LUNGE,
 			],[ // 装備可能カテゴリ
-				0,192,
+				0,134,178,192,
 			]],
 	];
  

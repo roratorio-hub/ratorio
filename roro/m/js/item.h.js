@@ -273,6 +273,7 @@ CGlobalConstManager.DefineEnum(
 		"ITEM_EQPFLG_SERIES_ZYPSY",
 		"ITEM_EQPFLG_SERIES_PROFESSOR",
 		"ITEM_EQPFLG_SERIES_CREATOR",
+		"ITEM_EQPFLG_SERIES_DRUID"
 	],
 	50,
 	1
@@ -324,6 +325,7 @@ CGlobalConstManager.DefineEnum(
 		"ITEM_EQPFLG_NIGHT_WATCH",
 		"ITEM_EQPFLG_HYPER_NOVICE",
 		"ITEM_EQPFLG_SPIRIT_HANDLER",
+		"ITEM_EQPFLG_ALITEA"
 	],
 	141,
 	1
@@ -1546,6 +1548,8 @@ function GetJobRestrictText(eqpflg) {
 			return "プロフェッサー系";
 		case ITEM_EQPFLG_SERIES_CREATOR:
 			return "クリエイター系";
+		case ITEM_EQPFLG_SERIES_DRUID:
+			return "ドルイド系";
 
 		case ITEM_EQPFLG_TAEGWON:
 			return "テコンキッド";
@@ -1673,6 +1677,8 @@ function GetJobRestrictText(eqpflg) {
 			return "ナイトウォッチ";
 		case ITEM_EQPFLG_SPIRIT_HANDLER:
 			return "スピリットハンドラー";
+		case ITEM_EQPFLG_ALITEA:
+			return "アリテア";
 		case ITEM_EQPFLG_ABYSS_CHASER:
 			return "アビスチェイサー";
 		case ITEM_EQPFLG_SHINKIRO_SHIRANUI:

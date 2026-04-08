@@ -14,7 +14,7 @@ def loadCardTypeDict():
 
 def loadCardList():
     pattern = r'\[(\d+),(\d+),"([^,]+)",[^,]*,[^,]*,.*0\]'
-    with open(f'{script_dir}/../roro/m/js/card.dat.js', 'r', encoding='utf-8') as file:
+    with open(f'{script_dir}/../../roro/m/js/card.dat.js', 'r', encoding='utf-8') as file:
         js_code = file.read()
     matches = re.findall(pattern, js_code)
     return [[int(id), name] for id, type, name in matches if int(type)]
@@ -24,7 +24,7 @@ def getLatestIdFromCard():
     """card.dat.jsに定義されている最も大きい CardID を返す
     """
     pattern = r'\[(\d+),\d+,[^,]+,[^,]*,[^,]*,.*0\]'
-    with open(f'{script_dir}/../roro/m/js/card.dat.js', 'r', encoding='utf-8') as file:
+    with open(f'{script_dir}/../../roro/m/js/card.dat.js', 'r', encoding='utf-8') as file:
         js_code = file.read()
     matches = re.findall(pattern, js_code)
     return max([int(id) for id in matches])

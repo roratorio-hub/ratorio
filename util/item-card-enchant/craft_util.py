@@ -94,7 +94,7 @@ def loadEquipableCodeDict():
 def loadCardDict() -> dict:
     """key = カードorエンチャント名, value = cardID"""
     pattern = r'\[(\d+),(\d+),"([^,]+)",[^,]*,[^,]*,.*0\]'
-    with open(f'{script_dir}/../roro/m/js/card.dat.js', 'r', encoding='utf-8') as file:
+    with open(f'{script_dir}/../../roro/m/js/card.dat.js', 'r', encoding='utf-8') as file:
         js_code = file.read()
     matches = re.findall(pattern, js_code)
     return {name: int(id) for id, type, name in matches if int(type) != 100}
@@ -102,7 +102,7 @@ def loadCardDict() -> dict:
 
 def loadItemList():
     pattern = r'\[(\d+),(\d+),\d+,\d+,\d+,\d+,\d+,\d+,([^,]*),[^,]*,[^,]*,[^]]*0\]'
-    with open(f'{script_dir}/../roro/m/js/item.dat.js', 'r', encoding='utf-8') as file:
+    with open(f'{script_dir}/../../roro/m/js/item.dat.js', 'r', encoding='utf-8') as file:
         js_code = file.read()
     matches = re.findall(pattern, js_code)
     return [[int(id), name.replace('"',''), int(type)] for id, type, name in matches]
@@ -110,7 +110,7 @@ def loadItemList():
 
 def loadSlotInfoList():
     pattern = r'\[(\d+),-1,0,0,\[\["([^"]+)","([^"]+)"]],\[],\[\[\[174,\[50,\[(\d+)]]],.+\[]]'
-    with open(f'{script_dir}/../roro/m/js/data/mig.enchlist.dat.js', 'r', encoding='utf-8') as file:
+    with open(f'{script_dir}/../../roro/m/js/data/mig.enchlist.dat.js', 'r', encoding='utf-8') as file:
         js_code = file.read()
     matches = re.findall(pattern, js_code)
     return [[int(id), name, code] for id, name, code, item_id in matches]
@@ -118,7 +118,7 @@ def loadSlotInfoList():
 
 def loadItemDict():
     pattern = r'\[(\d+),(\d+),\d+,\d+,\d+,\d+,\d+,\d+,([^,]*),[^,]*,[^,]*,[^]]*0\]'
-    with open(f'{script_dir}/../roro/m/js/item.dat.js', 'r', encoding='utf-8') as file:
+    with open(f'{script_dir}/../../roro/m/js/item.dat.js', 'r', encoding='utf-8') as file:
         js_code = file.read()
     matches = re.findall(pattern, js_code)
     return  {name.replace('"',''): int(id) for id, type, name in matches if type != "100"}    
@@ -144,7 +144,7 @@ def getEnchantTypeCode(name, slotinfo_list):
 
 def loadEnchantList():
     pattern = r'\[(\d+),(\d+),"([^,]+)",[^,]*,[^,]*,.*0\]'
-    with open(f'{script_dir}/../roro/m/js/card.dat.js', 'r', encoding='utf-8') as file:
+    with open(f'{script_dir}/../../roro/m/js/card.dat.js', 'r', encoding='utf-8') as file:
         js_code = file.read()
     matches = re.findall(pattern, js_code)
     return [[int(id), name] for id, type, name in matches if int(type) == 99]
@@ -153,7 +153,7 @@ def loadEnchantList():
 def loadSkillDict() -> dict:
     """key = str スキル名, value = int スキルID"""
     pattern = r'\[(\d+),\d+,"(\(.+\))*([^"]+)"(,.+)*\],'
-    with open(f'{script_dir}/../roro/m/js/skill.dat.js', 'r', encoding='utf-8') as file:
+    with open(f'{script_dir}/../../roro/m/js/skill.dat.js', 'r', encoding='utf-8') as file:
         js_code = file.read()
     return { m[2]: int(m[0]) for m in re.findall(pattern, js_code) }
 
@@ -161,7 +161,7 @@ def loadSkillDict() -> dict:
 def loadUsableSkillDict() -> dict:
     """key = (int スキルID, int スキルLv), value = int 使用可能スキルID"""
     pattern = r'\[(\d+),\d,(\d+),(\d+)\],'
-    with open(f'{script_dir}/../roro/m/js/usableskill.dat.js', 'r', encoding='utf-8') as file:
+    with open(f'{script_dir}/../../roro/m/js/usableskill.dat.js', 'r', encoding='utf-8') as file:
         js_code = file.read()
     return { (int(m[1]), int(m[2])): int(m[0]) for m in re.findall(pattern, js_code) }
 
@@ -169,14 +169,14 @@ def loadUsableSkillDict() -> dict:
 def loadAutoSpellDict() -> dict:
     """key = (int スキルID, int スキルLv), value = int 使用可能スキルID"""
     pattern = r'\[(\d+),\d,(\d+),(\d+),\d+,\d+\],'
-    with open(f'{script_dir}/../roro/m/js/autospell.dat.js', 'r', encoding='utf-8') as file:
+    with open(f'{script_dir}/../../roro/m/js/autospell.dat.js', 'r', encoding='utf-8') as file:
         js_code = file.read()
     return { (int(m[1]), int(m[2])): int(m[0]) for m in re.findall(pattern, js_code) }
 
 
 def getLatestIdFromItemSet():
     pattern = r'w_SE\[(\d+)] = \[[^;]+;'
-    with open(f'{script_dir}/../roro/m/js/itemset.dat.js', 'r', encoding='utf-8') as file:
+    with open(f'{script_dir}/../../roro/m/js/itemset.dat.js', 'r', encoding='utf-8') as file:
         js_code = file.read()
     matches = re.findall(pattern, js_code)
     return max([int(id) for id in matches])
@@ -184,7 +184,7 @@ def getLatestIdFromItemSet():
 
 def getLatestMonsterId():
     pattern = r'\[(\d+),.+'
-    with open(f'{script_dir}/../roro/m/js/monster.dat.js', 'r', encoding='utf-8') as file:
+    with open(f'{script_dir}/../../roro/m/js/monster.dat.js', 'r', encoding='utf-8') as file:
         js_code = file.read()
     matches = re.findall(pattern, js_code)
     return max([int(id) for id in matches])
@@ -192,7 +192,7 @@ def getLatestMonsterId():
 
 def getLatestItemId():
     pattern = r'\[(\d+),.+0\][,;]'
-    with open(f'{script_dir}/../roro/m/js/item.dat.js', 'r', encoding='utf-8') as file:
+    with open(f'{script_dir}/../../roro/m/js/item.dat.js', 'r', encoding='utf-8') as file:
         js_code = file.read()
     matches = re.findall(pattern, js_code)
     return max([int(id) for id in matches])
@@ -200,7 +200,7 @@ def getLatestItemId():
 
 def getLatestEnchantId():
     pattern = r'\[(\d+),-1,0,0,.*'
-    with open(f'{script_dir}/../roro/m/js/data/mig.enchlist.dat.js', 'r', encoding='utf-8') as file:
+    with open(f'{script_dir}/../../roro/m/js/data/mig.enchlist.dat.js', 'r', encoding='utf-8') as file:
         js_code = file.read()
     matches = re.findall(pattern, js_code)
     return max([int(id) for id in matches])
@@ -210,7 +210,7 @@ def getItemRecord(item_name):
     """ item_name に該当するレコードを取得する """
     item_name = item_name.replace("(", r"\(").replace(")", r"\)")
     pattern = r'\[\d+,.*"' + item_name + r'".*,0\]'
-    with open(f'{script_dir}/../roro/m/js/item.dat.js', 'r', encoding='utf-8') as file:
+    with open(f'{script_dir}/../../roro/m/js/item.dat.js', 'r', encoding='utf-8') as file:
         js_code = file.read()
     matches = re.findall(pattern, js_code)
     return matches
@@ -220,7 +220,7 @@ def getItemId(item_name):
     """ item_name に該当するアイテムID を取得する"""
     item_name = item_name.replace("(", r"\(").replace(")", r"\)")
     pattern = r'\[(\d+),.*"' + item_name + r'".*,0\]'
-    with open(f'{script_dir}/../roro/m/js/item.dat.js', 'r', encoding='utf-8') as file:
+    with open(f'{script_dir}/../../roro/m/js/item.dat.js', 'r', encoding='utf-8') as file:
         js_code = file.read()
     matches = re.findall(pattern, js_code)
     return matches[0]
@@ -229,7 +229,7 @@ def getItemId(item_name):
 def getItemSetRecordArray(item_id):
     """ w_SE から item_id が含まれるレコードを取得する """
     pattern = r'(\[[\-\d]+.*,' + item_id + r'[,\]].*)[,;]'
-    with open(f'{script_dir}/../roro/m/js/itemset.dat.js', 'r', encoding='utf-8') as file:
+    with open(f'{script_dir}/../../roro/m/js/itemset.dat.js', 'r', encoding='utf-8') as file:
         js_code = file.read()
     matches = re.findall(pattern, js_code)
     return matches
@@ -238,7 +238,7 @@ def getItemSetRecordArray(item_id):
 def getItemSetMap(item_id):
     """ ItemIdToSetIdMap から item_id が含まれるマップを取得する """
     pattern = r'ItemIdToSetIdMap\[' + item_id + r'\] = .+'
-    with open(f'{script_dir}/../roro/m/js/itemset.dat.js', 'r', encoding='utf-8') as file:
+    with open(f'{script_dir}/../../roro/m/js/itemset.dat.js', 'r', encoding='utf-8') as file:
         js_code = file.read()
     matches = re.findall(pattern, js_code)
     return matches
@@ -247,7 +247,7 @@ def getItemSetMap(item_id):
 def getEnchantRecordArray(item_id):
     """ sourceArray から item_id が含まれるレコードを取得する """
     pattern = r'(\[\d+,-1,0,0,[^,]+,[^,]+,[^,]+,\[{3}174,\[50,[^\]]*[\[,]' + item_id + r'[\],].+)[,;]'
-    with open(f'{script_dir}/../roro/m/js/data/mig.enchlist.dat.js', 'r', encoding='utf-8') as file:
+    with open(f'{script_dir}/../../roro/m/js/data/mig.enchlist.dat.js', 'r', encoding='utf-8') as file:
         js_code = file.read()
     matches = re.findall(pattern, js_code)
     return matches
@@ -256,7 +256,7 @@ def getEnchantRecordArray(item_id):
 def getEnchantIdArray(item_id):
     """ sourceArray から item_id が含まれるレコードのIDを取得する """
     pattern = r'\[(\d+),-1,0,0,[^,]+,[^,]+,[^,]+,\[{3}174,\[50,[^\]]*[\[,]' + item_id + r'[\],].+[,;]'
-    with open(f'{script_dir}/../roro/m/js/data/mig.enchlist.dat.js', 'r', encoding='utf-8') as file:
+    with open(f'{script_dir}/../../roro/m/js/data/mig.enchlist.dat.js', 'r', encoding='utf-8') as file:
         js_code = file.read()
     matches = re.findall(pattern, js_code)
     return matches
@@ -265,7 +265,7 @@ def getEnchantIdArray(item_id):
 def getTimeItemRecordArray(item_id):
     """ ITEM_SP_TIME_OBJ から item_id が含まれるレコードを取得する """
     pattern = r'(\[\d+,[^,]+,[^,]+,\[.*\[1,' + item_id + '].+)[,;]'
-    with open(f'{script_dir}/../roro/m/js/timeitem.dat.js', 'r', encoding='utf-8') as file:
+    with open(f'{script_dir}/../../roro/m/js/timeitem.dat.js', 'r', encoding='utf-8') as file:
         js_code = file.read()
     matches = re.findall(pattern, js_code)
     return matches
