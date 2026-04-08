@@ -44155,7 +44155,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "シェイプシフト：ウェアウルフ";
+			this.name = "(×)シェイプシフト：ウェアウルフ";
 			this.kana = "シェイプシフトウェアウルフ";
 			this.maxLv = 1;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -44202,7 +44202,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "シェイプシフト：ウェアラプター";
+			this.name = "(×)シェイプシフト：ウェアラプター";
 			this.kana = "シェイプシフトウェアラプタタ";
 			this.maxLv = 1;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -44249,7 +44249,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "ビースティノーズ";
+			this.name = "(×)ビースティノーズ";
 			this.kana = "ビビスティノノズ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -44296,7 +44296,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "トゥルースオブアイス";
+			this.name = "(×)トゥルースオブアイス";
 			this.kana = "トゥルルスオブアイス";
 			this.maxLv = 1;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -44343,7 +44343,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "トゥルースオブウィンド";
+			this.name = "(×)トゥルースオブウィンド";
 			this.kana = "トゥルルスオブウィンド";
 			this.maxLv = 1;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -44390,7 +44390,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "トゥルースオブアース";
+			this.name = "(×)トゥルースオブアース";
 			this.kana = "トゥルルスオブアアス";
 			this.maxLv = 1;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -44437,7 +44437,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "ブラッドハウリング";
+			this.name = "(×)ブラッドハウリング";
 			this.kana = "ブラッドハウリング";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -44484,7 +44484,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "プリーニング";
+			this.name = "(×)プリーニング";
 			this.kana = "プリリニング";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -44531,7 +44531,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "シャープアイズ";
+			this.name = "(×)シャープアイズ";
 			this.kana = "シャャプアイズ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -44578,7 +44578,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "アイストーテム";
+			this.name = "(×)アイストーテム";
 			this.kana = "アイストトテム";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -44625,7 +44625,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "カッティングウィンド";
+			this.name = "(×)カッティングウィンド";
 			this.kana = "カッティングウィンド";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -44672,7 +44672,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "アースフラワー";
+			this.name = "(×)アースフラワー";
 			this.kana = "アアスフラワワ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -44719,7 +44719,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "エンレイジウルフ";
+			this.name = "(×)エンレイジウルフ";
 			this.kana = "エンレイジウルフ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -44766,7 +44766,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "エンレイジラプター";
+			this.name = "(×)エンレイジラプター";
 			this.kana = "エンレイジラプタタ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -44813,7 +44813,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "アイスクラウド";
+			this.name = "(×)アイスクラウド";
 			this.kana = "アイスクラウド";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -44860,7 +44860,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "ウィンドボム";
+			this.name = "(×)ウィンドボム";
 			this.kana = "ウィンドボム";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -44907,7 +44907,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "アラウンドフラワー";
+			this.name = "(×)アラウンドフラワー";
 			this.kana = "アラウンドフラワワ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -44954,7 +44954,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "ノーマーシークロー";
+			this.name = "(×)ノーマーシークロー";
 			this.kana = "ノノママシシクロロ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -45001,7 +45001,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "シューティングフェザー";
+			this.name = "(×)シューティングフェザー";
 			this.kana = "シュュティングフェザザ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -45048,7 +45048,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "ネイチャーシールド";
+			this.name = "(×)ネイチャーシールド";
 			this.kana = "ネイチャャシシルド";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -45095,7 +45095,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "ネイチャーロジック";
+			this.name = "(×)ネイチャーロジック";
 			this.kana = "ネイチャャロジック";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -45142,7 +45142,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "クルーエルバイト";
+			this.name = "(×)クルーエルバイト";
 			this.kana = "クルルエルバイト";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -45189,7 +45189,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "ローフライト";
+			this.name = "(×)ローフライト";
 			this.kana = "ロロフライト";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -45236,7 +45236,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "ハンガー";
+			this.name = "(×)ハンガー";
 			this.kana = "ハンガガ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -45283,7 +45283,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "フリッキングトルネード";
+			this.name = "(×)フリッキングトルネード";
 			this.kana = "フリッキングトルネネド";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -45330,7 +45330,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "ダブルスラッシュ";
+			this.name = "(×)ダブルスラッシュ";
 			this.kana = "ダブルスラッシュ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -45377,7 +45377,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "シャープンガスト";
+			this.name = "(×)シャープンガスト";
 			this.kana = "シャャプンガスト";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -45424,7 +45424,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "ウルフインスティンクト";
+			this.name = "(×)ウルフインスティンクト";
 			this.kana = "ウルフインスティンクト";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -45471,7 +45471,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "アイスピラー";
+			this.name = "(×)アイスピラー";
 			this.kana = "アイスピララ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -45518,7 +45518,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "サンダリングフォーカス";
+			this.name = "(×)サンダリングフォーカス";
 			this.kana = "サンダリングフォォカス";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -45565,7 +45565,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "アースバド";
+			this.name = "(×)アースバド";
 			this.kana = "アアスバド";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -45612,7 +45612,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "ナスティスラッシュ";
+			this.name = "(×)ナスティスラッシュ";
 			this.kana = "ナスティスラッシュ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -45659,7 +45659,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "シャープンヘイル";
+			this.name = "(×)シャープンヘイル";
 			this.kana = "シャャプンヘイル";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -45706,7 +45706,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "ラプトリアルインスティンクト";
+			this.name = "(×)ラプトリアルインスティンクト";
 			this.kana = "ラプトリアルインスティンクト";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -45753,7 +45753,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "アイススプラッシュ";
+			this.name = "(×)アイススプラッシュ";
 			this.kana = "アイススプラッシュ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -45800,7 +45800,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "サンダリングオーブ";
+			this.name = "(×)サンダリングオーブ";
 			this.kana = "サンダリングオオブ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -45847,7 +45847,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "アースドリル";
+			this.name = "(×)アースドリル";
 			this.kana = "アアスドリル";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -45894,7 +45894,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "クローウェーブ";
+			this.name = "(×)クローウェーブ";
 			this.kana = "クロロウェェブ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -45941,7 +45941,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "フェザースプリンクル";
+			this.name = "(×)フェザースプリンクル";
 			this.kana = "フェザザスプリンクル";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -45988,7 +45988,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "サンダリングコール";
+			this.name = "(×)サンダリングコール";
 			this.kana = "サンダリングココル";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -46035,7 +46035,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "アーススタンプ";
+			this.name = "(×)アーススタンプ";
 			this.kana = "アアススタンプ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -46082,7 +46082,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "チョップチョップ";
+			this.name = "(×)チョップチョップ";
 			this.kana = "チョップチョップ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -46129,7 +46129,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "タイフーンウィング";
+			this.name = "(×)タイフーンウィング";
 			this.kana = "タイフフンウィング";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -46176,7 +46176,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "ネイチャーヴィゴール";
+			this.name = "(×)ネイチャーヴィゴール";
 			this.kana = "ネイチャャヴィゴゴル";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -46223,7 +46223,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "ネイチャープロテクション";
+			this.name = "(×)ネイチャープロテクション";
 			this.kana = "ネイチャャプロテクション";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -46270,7 +46270,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "アイアンハウリング";
+			this.name = "(×)アイアンハウリング";
 			this.kana = "アイアンハウリング";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -46317,7 +46317,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "ウィンドヴェール";
+			this.name = "(×)ウィンドヴェール";
 			this.kana = "ウィンドヴェェル";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -46364,7 +46364,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "パルスオブマッドネス";
+			this.name = "(×)パルスオブマッドネス";
 			this.kana = "パルスオブマッドネス";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -46411,7 +46411,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "フリップフラップ";
+			this.name = "(×)フリップフラップ";
 			this.kana = "フリップフラップ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -46458,7 +46458,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "シックスセンス";
+			this.name = "(×)シックスセンス";
 			this.kana = "シックスセンス";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -46505,7 +46505,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "グレイシアモノリス";
+			this.name = "(×)グレイシアモノリス";
 			this.kana = "グレイシアモノリス";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -46552,7 +46552,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "ロアリングチャージ";
+			this.name = "(×)ロアリングチャージ";
 			this.kana = "ロアリングチャャジ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -46599,7 +46599,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "テラハーベスト";
+			this.name = "(×)テラハーベスト";
 			this.kana = "テラハハベスト";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -46646,7 +46646,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "プライマルクロー";
+			this.name = "(×)プライマルクロー";
 			this.kana = "プライマルクロロ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -46693,7 +46693,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "ピニオンショット";
+			this.name = "(×)ピニオンショット";
 			this.kana = "ピニオンショット";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -46740,7 +46740,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "アルファフェーズ";
+			this.name = "(×)アルファフェーズ";
 			this.kana = "アルファフェェズ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -46787,7 +46787,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "グレイシアシャード";
+			this.name = "(×)グレイシアシャード";
 			this.kana = "グレイシアシャャド";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -46834,7 +46834,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "ロアリングピアサー";
+			this.name = "(×)ロアリングピアサー";
 			this.kana = "ロアリングピアササ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -46881,7 +46881,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "テラウェーブ";
+			this.name = "(×)テラウェーブ";
 			this.kana = "テラウェェブ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -46928,7 +46928,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "フェラルクロー";
+			this.name = "(×)フェラルクロー";
 			this.kana = "フェラルクロロ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -46975,7 +46975,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "クイールスピア";
+			this.name = "(×)クイールスピア";
 			this.kana = "クイイルスピア";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -47022,7 +47022,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "エイペックスフェーズ";
+			this.name = "(×)エイペックスフェーズ";
 			this.kana = "エイペックスフェェズ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -47069,7 +47069,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "グレイシアストンプ";
+			this.name = "(×)グレイシアストンプ";
 			this.kana = "グレイシアストンプ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -47116,7 +47116,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "フューリアスストーム";
+			this.name = "(×)フューリアスストーム";
 			this.kana = "フュュリアスストトム";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -47163,7 +47163,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "ソリッドストンプ";
+			this.name = "(×)ソリッドストンプ";
 			this.kana = "ソリッドストンプ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -47210,7 +47210,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "アルファクロー";
+			this.name = "(×)アルファクロー";
 			this.kana = "アルファクロロ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -47257,7 +47257,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "テンペストフラップ";
+			this.name = "(×)テンペストフラップ";
 			this.kana = "テンペストフラップ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -47304,7 +47304,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "チリングブラスト";
+			this.name = "(×)チリングブラスト";
 			this.kana = "チリングブラスト";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -47351,7 +47351,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "フレンジファング";
+			this.name = "(×)フレンジファング";
 			this.kana = "フレンジファング";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -47398,7 +47398,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "エアロシンク";
+			this.name = "(×)エアロシンク";
 			this.kana = "エアロシンク";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -47445,7 +47445,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "ネイチャーエイド";
+			this.name = "(×)ネイチャーエイド";
 			this.kana = "ネイチャャエイド";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -47492,7 +47492,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "ネイチャーハーモニー";
+			this.name = "(×)ネイチャーハーモニー";
 			this.kana = "ネイチャャハハモニニ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -47539,7 +47539,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "グラビティホール";
+			this.name = "(×)グラビティホール";
 			this.kana = "グラビティホホル";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -47586,7 +47586,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "サベージランジ";
+			this.name = "(×)サベージランジ";
 			this.kana = "サベベジランジ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
