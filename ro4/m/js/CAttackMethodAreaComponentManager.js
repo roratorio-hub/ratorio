@@ -4331,9 +4331,11 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 				);
 				break;
 			/**
-			 * サンダリングロッドマックス
+			 * ロアリングチャージ
+			 * ロアリングピアサー
 			 */
 			case SKILL_ID_ROARING_CHARGE:
+			case SKILL_ID_ROARING_PIERCER:
 				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
 					"サンダリングロッドマックス",
 					[
