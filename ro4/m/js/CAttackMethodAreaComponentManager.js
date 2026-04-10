@@ -4313,6 +4313,19 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 					0
 				);
 				break;
+			/**
+			 * ピニオンショット
+			 */
+			case SKILL_ID_PINION_SHOT:
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"エイペックスフェーズ",
+					[
+						[0, "無し"],
+						[1, "有り"],
+					],
+					0
+				);
+				break;
 
 		}
 	}

@@ -7259,6 +7259,11 @@ function StAllCalc(){
 			}
 		}
 
+		/** 四次職支援 アリテア「ゼファーリンク」の効果  */
+		if (g_confDataYozi[CCharaConfYozi.CONF_ID_ZEPHYR_LINK]) {
+			n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += 15;
+		}
+
 		/**
 		 * 幻想叢書カード エレナ
 		 */
@@ -12501,6 +12506,11 @@ function StAllCalc(){
 			n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_ELM_ALL] += effect;
 		}
 
+		/** 四次職支援 アリテア「ゼファーリンク」の効果  */
+		if (g_confDataYozi[CCharaConfYozi.CONF_ID_ZEPHYR_LINK]) {
+			n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_ELM_ALL] += 15;
+		}
+
 		//----------------------------------------------------------------
 		// 「性能カスタマイズ」の、効果
 		//----------------------------------------------------------------
@@ -13802,6 +13812,11 @@ function StAllCalc(){
 		//----------------------------------------------------------------
 		if ((itemCount = EquipNumSearchMIG(ITEM_ID_GRACE_MAGMA_SUIT)) > 0) {
 			n_tok[ITEM_SP_SHORTRANGE_DAMAGE_UP] += 6 * LearnedSkillSearch(SKILL_ID_MAGMA_ILLUPTION) * itemCount;
+		}
+
+		/** 四次職支援 アリテア「ゼファーリンク」の効果  */
+		if (g_confDataYozi[CCharaConfYozi.CONF_ID_ZEPHYR_LINK]) {
+			n_tok[ITEM_SP_SHORTRANGE_DAMAGE_UP] += 15;
 		}
 
 		/**
