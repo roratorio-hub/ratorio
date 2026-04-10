@@ -12510,6 +12510,17 @@ function StAllCalc(){
 		if (g_confDataYozi[CCharaConfYozi.CONF_ID_ZEPHYR_LINK]) {
 			n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_ELM_ALL] += 15;
 		}
+		
+		/** ドルイド「トゥルースオブアイス」「トゥルースオブウィンド」「トゥルースオブアース」の効果 */
+		if (UsedSkillSearch(SKILL_ID_TRUTH_OF_ICE) > 0) {
+			n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_ELM_WATER] += 10;
+		}
+		if (UsedSkillSearch(SKILL_ID_TRUTH_OF_WIND) > 0) {
+			n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_ELM_WIND] += 10;
+		}
+		if (UsedSkillSearch(SKILL_ID_TRUTH_OF_EARTH) > 0) {
+			n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_ELM_EARTH] += 10;
+		}
 
 		//----------------------------------------------------------------
 		// 「性能カスタマイズ」の、効果
