@@ -47269,30 +47269,32 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)テンペストフラップ";
+			this.name = "(△)テンペストフラップ";
 			this.kana = "テンペストフラップ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = CSkillData.RANGE_SHORT;
+			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_VOID;
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
+				ratio += 13500 + 1350 * skillLv;
+				ratio += 90 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
-				return 300;
+				return 280;
 			}
 			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
-				return 0;
+				return 10;
 			}
 			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
-				return 1000 + 200 * skillLv;
+				return 2000;
 			}
 			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
 				return 0;
 			}
 			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
-				return 1000 * skillLv;
+				return 3000;
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
 				return 500;
@@ -47300,8 +47302,12 @@ function CSkillManager() {
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
 			}
-			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
-				return this._CriActRate100(skillLv, charaData, specData, mobData);
+			this.CriActRate = (skillLv, charaData, specData, mobData, option) => {              // クリティカル発生率
+				if (option.GetOptionValue(0) == 1) {
+					// エイペックスフェーズ状態
+					return this._CriActRate100(skillLv, charaData, specData, mobData);
+				}
+				return 0;
 			}
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;

@@ -4316,9 +4316,11 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 			/**
 			 * ピニオンショット
 			 * クイールスピア
+			 * テンペストフラップ
 			 */
 			case SKILL_ID_PINION_SHOT:
 			case SKILL_ID_QUILL_SPEAR:
+			case SKILL_ID_TEMPEST_FLAP:
 				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
 					"エイペックスフェーズ",
 					[

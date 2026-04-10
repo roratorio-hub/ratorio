@@ -2505,6 +2505,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			/** アリテア */
 			case SKILL_ID_PINION_SHOT:
 			case SKILL_ID_QUILL_SPEAR:
+			case SKILL_ID_TEMPEST_FLAP:
 
 				// スキル使用条件の判定
 				n_Buki_Muri = !g_skillManager.MatchWeaponCondition(n_A_ActiveSkill, n_A_WeaponType);
