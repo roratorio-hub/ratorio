@@ -4330,7 +4330,19 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 					0
 				);
 				break;
-
+			/**
+			 * サンダリングロッドマックス
+			 */
+			case SKILL_ID_ROARING_CHARGE:
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"サンダリングロッドマックス",
+					[
+						[0, "無し"],
+						[1, "有り"],
+					],
+					0
+				);
+				break;
 		}
 	}
 };

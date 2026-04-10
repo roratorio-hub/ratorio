@@ -2687,7 +2687,7 @@
 		[1367,5,"(×)フリップフラップ","AT_FLIP_FLAP"],
 		[1368,5,"(×)シックスセンス","AT_SIXTH_SENSE"],
 		[1369,10,"(△)グレイシアモノリス","AT_GLACIER_MONOLITH"],
-		[1370,5,"(×)ロアリングチャージ","AT_ROARING_CHARGE"],
+		[1370,5,"(△)ロアリングチャージ","AT_ROARING_CHARGE"],
 		[1371,10,"(×)テラハーベスト","AT_TERRA_HARVEST"],
 		[1372,5,"(×)プライマルクロー","AT_PRIMAL_CLAW"],
 		[1373,10,"(△)ピニオンショット","AT_PINION_SHOT"],
