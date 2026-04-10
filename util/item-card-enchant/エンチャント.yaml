@@ -1,5 +1,6 @@
 enchant_list:
   - enchant: #
+
     - name: エントワインドマジカル防具エンチャント
       item_list: #
         - item_name: エントワインドマジカルアーマー
@@ -9,105 +10,38 @@ enchant_list:
           refine: 0
           enchant_list: #
             - name: Str+5
-            - name: Agi+5
-            - name: Vit+5
-            - name: Int+5
-            - name: Dex+5
-            - name: Luk+5
-            - name: SpecialStr
-            - name: SpecialAgi
-            - name: SpecialVit
-            - name: SpecialInt
-            - name: SpecialDex
-            - name: SpecialLuk
-            - name: 詠唱妨害不可
-            - name: シンソウの王
-            - name: 英雄の凱歌
-            - name: 起源の王
-            - name: 殺意の怨念
-            - name: 豊穣の女神
-            - name: 厄災の魔将
-            - name: 異境の統轄者
-            - name: 知識の探求者
-            - name: 最果ての支配者
         - slot: 3
           refine: 0
           enchant_list: #
             - name: Str+5
-            - name: Agi+5
-            - name: Vit+5
-            - name: Int+5
-            - name: Dex+5
-            - name: Luk+5
-            - name: SpecialStr
-            - name: SpecialAgi
-            - name: SpecialVit
-            - name: SpecialInt
-            - name: SpecialDex
-            - name: SpecialLuk
-            - name: 聖属性付与(鎧)
-            - name: 闇属性付与(鎧)
-            - name: 念属性付与(鎧)
-            - name: 毒属性付与(鎧)
-            - name: 不死属性付与(鎧)
         - slot: 2
           refine: 0
           enchant_list: #
             - name: 黒翼の使徒
 
+
+
+
+
+
+
+
+
     - name: エントワインドマジカル防具エンチャント
       item_list: #
-        - item_name: エントワインドマジカルマント
-        - item_name: エントワインドマジカルマフラー
-        - item_name: エントワインドマジカルブーツ
-        - item_name: エントワインドマジカルシューズ
+        - item_name: エントワインドマジカルアーマー
+        - item_name: エントワインドマジカルローブ
       slot_list: #
         - slot: 4
           refine: 0
           enchant_list: #
             - name: Str+5
-            - name: Agi+5
-            - name: Vit+5
-            - name: Int+5
-            - name: Dex+5
-            - name: Luk+5
-            - name: SpecialStr
-            - name: SpecialAgi
-            - name: SpecialVit
-            - name: SpecialInt
-            - name: SpecialDex
-            - name: SpecialLuk
-            - name: 詠唱妨害不可
-            - name: シンソウの王
-            - name: 英雄の凱歌
-            - name: 起源の王
-            - name: 殺意の怨念
-            - name: 豊穣の女神
-            - name: 厄災の魔将
-            - name: 異境の統轄者
-            - name: 知識の探求者
-            - name: 最果ての支配者
         - slot: 3
           refine: 0
           enchant_list: #
             - name: Str+5
-            - name: Agi+5
-            - name: Vit+5
-            - name: Int+5
-            - name: Dex+5
-            - name: Luk+5
-            - name: SpecialStr
-            - name: SpecialAgi
-            - name: SpecialVit
-            - name: SpecialInt
-            - name: SpecialDex
-            - name: SpecialLuk
-            - name: 覇王
-            - name: 暴走した魔力
-            - name: 大鷲の眼光
-            - name: 豪傑
-            - name: 真理の解放
         - slot: 2
           refine: 0
           enchant_list: #
             - name: 黒翼の使徒
+

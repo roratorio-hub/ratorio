@@ -1216,7 +1216,7 @@
 				SKILL_ID_GRAVITY_HOLE,
 				SKILL_ID_SAVAGE_LUNGE,
 			],[ // 装備可能カテゴリ
-				0,134,178,192,
+				0,134,178,192,206
 			]],
 	];
  
