@@ -117,6 +117,8 @@ equipable_list:
     code: 130
   - name: ジプシー ワンダラー系
     code: 131
+  - name: ドルイド系
+    code: 134
   - name: 星帝系
     code: 142
   - name: ソウルリーパー系
@@ -185,6 +187,8 @@ equipable_list:
     code: 176
   - name: スピリットハンドラー
     code: 177
+  - name: アリテア
+    code: 178
   - name: ミンストレル系 ワンダラー系
     code: 191
   - name: 4次職 拡張4次職

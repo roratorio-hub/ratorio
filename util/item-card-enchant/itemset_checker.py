@@ -9,7 +9,7 @@ import os
 import re
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
-with open(f'{script_dir}/../roro/m/js/itemset.dat.js', 'r', encoding='utf-8') as file:
+with open(f'{script_dir}/../../roro/m/js/itemset.dat.js', 'r', encoding='utf-8') as file:
     js_code = file.read()
 
 # アイテム変換マップの取得
