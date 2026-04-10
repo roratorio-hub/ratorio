@@ -7140,6 +7140,9 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 		case SKILL_ID_ROARING_CHARGE:
 		case SKILL_ID_ROARING_PIERCER:
 		case SKILL_ID_FURIOS_STORM:
+		case SKILL_ID_TERRA_HARVEST:
+		case SKILL_ID_TERRA_WAVE:
+		case SKILL_ID_SOLID_STOMP:
 
 			// スキル使用条件の判定
 			n_Buki_Muri = !g_skillManager.MatchWeaponCondition(n_A_ActiveSkill, n_A_WeaponType);
