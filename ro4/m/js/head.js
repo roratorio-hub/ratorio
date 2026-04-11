@@ -22489,8 +22489,8 @@ function ApplyAttackDamageAmplify(mobData, dmg){
 
 		// YE攻城戦（マッチング・小規模・乱戦）の場合
 		case MOB_CONF_PLAYER_ID_SENTO_AREA_YE:
-			// 全ての攻撃ダメージが一律 1/20
-			dmg = Math.floor(dmg / 20);
+			// 全ての攻撃ダメージが一律 2 %
+			dmg = Math.floor(dmg / 50);
 			break;
 
 		// YE攻城戦TE（模擬戦）の場合
@@ -22661,8 +22661,8 @@ function DamageModifierOfArea(mobData, dmg) {
 	switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
 		// YE攻城戦（マッチング・小規模・乱戦）の場合
 		case MOB_CONF_PLAYER_ID_SENTO_AREA_YE:
-			// 全ての攻撃ダメージが一律 1/20
-			dmg = Math.floor(dmg / 20);
+			// 全ての攻撃ダメージが一律 2 %
+			dmg = Math.floor(dmg / 50);
 			break;
 		// YE攻城戦TE（模擬戦）の場合
 		case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_GVG_TE:
