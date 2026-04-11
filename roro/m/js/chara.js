@@ -4571,6 +4571,8 @@ function GetStatusModifyMaxHpUp() {
 	let sklLv = 0;
 	let bufLv = 0;
 	let bufferSkillLv = 0;
+	/** アイテム数・スキルLvを格納する一次変数 */
+	let prefetch = 0;
 
 	//----------------------------------------------------------------
 	// ランダムエンチャント効果
@@ -6567,6 +6569,11 @@ function GetStatusModifyMaxHpUp() {
 	//----------------------------------------------------------------
 	if ((sklLv = UsedSkillSearch(SKILL_ID_TSUKINO_KAMAE)) > 0) {
 		val += -5 + 10 * sklLv;
+	}
+
+	/** ドルイド「シェイプシフト：ウェアウルフ」による MaxHP + 効果 */
+	if (UsedSkillSearch(SKILL_ID_WEREWOLF) > 0) {
+		val += 10;
 	}
 
 // 自己スキル効果　ここまで
