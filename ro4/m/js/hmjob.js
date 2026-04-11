@@ -702,6 +702,8 @@ function GetPAtk() {
 	if ((sklLv = UsedSkillSearch(SKILL_ID_OVERCOMING_CRISIS)) > 0) {
 		value += 5 + 5 * sklLv;
 	}
+	/** アリテア「シックスセンス」による P.Atk + 効果 */
+	value += 2 * LearnedSkillSearch(SKILL_ID_SIXTH_SENSE);	
 
 	return value;
 }
@@ -828,6 +830,11 @@ function GetSMatk() {
 	if ((sklLv = UsedSkillSearch(SKILL_ID_OVERCOMING_CRISIS)) > 0) {
 		value += 5 + 5 * sklLv;
 	}
+	/** アリテア「ネイチャーエイド」によるS.Matk + 効果 */
+	if ((sklLv = LearnedSkillSearch(SKILL_ID_NATURE_AID)) > 0) {
+		value += [0, 1, 3, 6, 10, 15][sklLv];
+	}
+
 
 	return value;
 }

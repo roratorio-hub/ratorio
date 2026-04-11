@@ -6742,6 +6742,9 @@ function StAllCalc(){
 //================================================================================================================================
 //================================================================================================================================
 	{
+		/** アイテム数・スキルLvを格納する一次変数 */
+		let prefetch = 0;
+
 		//----------------------------------------------------------------
 		// ランダムエンチャント効果
 		//----------------------------------------------------------------
@@ -7259,9 +7262,18 @@ function StAllCalc(){
 			}
 		}
 
-		/** 四次職支援 アリテア「ゼファーリンク」の効果  */
+		/** 四次職支援 アリテア「ゼファーリンク」の遠距離物理攻撃で与えるダメージ + 効果  */
 		if (g_confDataYozi[CCharaConfYozi.CONF_ID_ZEPHYR_LINK]) {
 			n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += 15;
+		}
+
+		/** アリテア「フリップフラップ」「エアロシンク」の遠距離物理攻撃で与えるダメージ + 効果  */
+		prefetch = UsedSkillSearch(SKILL_ID_FLIP_FLAP);
+		if (prefetch > 0) {
+			n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += 3 * prefetch;
+		} else {
+			// 対象が「フリップフラップ」状態の場合、「エアロシンク」状態にはならない
+			n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += 5 * g_confDataYozi[CCharaConfYozi.CONF_ID_AERO_SYNC];
 		}
 
 		/**
@@ -11976,6 +11988,9 @@ function StAllCalc(){
 //================================================================================================================================
 //================================================================================================================================
 	{
+		/** アイテム数・スキルLvを保存する一次変数 */
+		let prefetch = 0;
+
 		if(n_A_Weapon_ATKplus >= 7 && n_A_BODY_DEF_PLUS >= 7 && n_A_SHOES_DEF_PLUS >= 7){
 			if(EquipNumSearch(1535)){
 				n_tok[344] += 10;
@@ -12509,6 +12524,14 @@ function StAllCalc(){
 		/** 四次職支援 アリテア「ゼファーリンク」の効果  */
 		if (g_confDataYozi[CCharaConfYozi.CONF_ID_ZEPHYR_LINK]) {
 			n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_ELM_ALL] += 15;
+		}
+
+		/** 四次職支援 アリテア「ネイチャーハーモニー」の効果  */
+		prefetch = UsedSkillSearch(SKILL_ID_NATURE_HARMONY);
+		if (prefetch > 0) {
+			n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_ELM_WATER] += 25 + 5 * prefetch;
+			n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_ELM_WIND] += 25 + 5 * prefetch;
+			n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_ELM_EARTH] += 25 + 5 * prefetch;
 		}
 		
 		/** ドルイド「トゥルースオブアイス」「トゥルースオブウィンド」「トゥルースオブアース」の効果 */
@@ -22044,6 +22067,8 @@ function GetAdditionalCriticalRate(mobData) {
     let cri = 0;
     /** 計算途中のCRIの値 */
     let tmp_cri = 0;
+	/** アイテム数・スキルLvを格納する一次変数 */
+	let prefetch = 0;
 
     //----------------------------------------------------------------
     // ランダムエンチャント効果
@@ -22414,6 +22439,19 @@ function GetAdditionalCriticalRate(mobData) {
     if ((bufLv = g_confDataSanzi[CCharaConfSanzi.CONF_ID_KAGENO_TAMASHI]) > 0) {
         tmp_cri += 70;
     }
+
+	/** アリテア「シックスセンス」の Cri + 効果 */
+	tmp_cri += 5 * LearnedSkillSearch(SKILL_ID_SIXTH_SENSE);
+
+	/** アリテア「フリップフラップ」「エアロシンク」の Cri + 効果 */
+	prefetch = UsedSkillSearch(SKILL_ID_FLIP_FLAP);
+	if (prefetch > 0) {
+		tmp_cri += 5 * UsedSkillSearch(SKILL_ID_FLIP_FLAP);
+	} else {
+		// 対象が「フリップフラップ」状態の場合、「エアロシンク」状態にはならない
+		tmp_cri += 20 * g_confDataYozi[CCharaConfYozi.CONF_ID_AERO_SYNC];
+	}
+
 
     //----------------------------------------------------------------
     // 「サモナー　生命の力」の、効果
