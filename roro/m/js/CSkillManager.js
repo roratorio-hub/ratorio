@@ -46300,7 +46300,7 @@ function CSkillManager() {
 			this.element = CSkillData.ELEMENT_VOID;
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
-				ratio += 6800 + 675 * skillLv;
+				ratio += 6750 + 675 * skillLv;
 				ratio += 45 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
