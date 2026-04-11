@@ -1,0 +1,47 @@
+enchant_list:
+  - enchant: #
+
+    - name: エントワインドマジカル防具エンチャント
+      item_list: #
+        - item_name: エントワインドマジカルアーマー
+        - item_name: エントワインドマジカルローブ
+      slot_list: #
+        - slot: 4
+          refine: 0
+          enchant_list: #
+            - name: Str+5
+        - slot: 3
+          refine: 0
+          enchant_list: #
+            - name: Str+5
+        - slot: 2
+          refine: 0
+          enchant_list: #
+            - name: 黒翼の使徒
+
+
+
+
+
+
+
+
+
+    - name: エントワインドマジカル防具エンチャント
+      item_list: #
+        - item_name: エントワインドマジカルアーマー
+        - item_name: エントワインドマジカルローブ
+      slot_list: #
+        - slot: 4
+          refine: 0
+          enchant_list: #
+            - name: Str+5
+        - slot: 3
+          refine: 0
+          enchant_list: #
+            - name: Str+5
+        - slot: 2
+          refine: 0
+          enchant_list: #
+            - name: 黒翼の使徒
+

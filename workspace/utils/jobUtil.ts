@@ -1621,7 +1621,7 @@ const jobTypeMap: JobType[] = [
     },
     {
         en: "secondary_job",
-        ja: "2次職",
+        ja: "2次職",    // リーパー（特殊2次職）を含む
         base_lv_min: 1,
         base_lv_max: 99,
         job_lv_max: 50,
@@ -1639,9 +1639,9 @@ const jobTypeMap: JobType[] = [
     },
     {
         en: "ninja",
-        ja: "忍者",
-        base_lv_min: 99,
-        base_lv_max: 200,
+        ja: "忍者", // ガンスリンガーと忍者のみ（特殊1次職）
+        base_lv_min: 1,
+        base_lv_max: 99,
         job_lv_max: 70,
         status_basic_max: 99,
         status_talent_max: 0,
@@ -1649,8 +1649,8 @@ const jobTypeMap: JobType[] = [
     {
         en: "kwonsung",
         ja: "拳聖",
-        base_lv_min: 99,
-        base_lv_max: 200,
+        base_lv_min: 1,
+        base_lv_max: 99,
         job_lv_max: 70,
         status_basic_max: 99,
         status_talent_max: 0,
@@ -1666,11 +1666,11 @@ const jobTypeMap: JobType[] = [
     },
     {
         en: "super_novice",
-        ja: "スーパーノービス",
-        base_lv_min: 1,
+        ja: "スーパーノービス", // 限界突破を含まない
+        base_lv_min: 45,
         base_lv_max: 99,
         job_lv_max: 99,
-        status_basic_max: 130,
+        status_basic_max: 99,
         status_talent_max: 0,
     },
     {
@@ -1690,7 +1690,16 @@ const jobTypeMap: JobType[] = [
         job_lv_max: 60,
         status_basic_max: 130,
         status_talent_max: 110,
-    }
+    },
+    {
+        en: "upgraded_extra_1st_job",
+        ja: "上位特殊1次職", // スパノビ限界突破、リベ、リーパーなど
+        base_lv_min: 99,
+        base_lv_max: 200,
+        job_lv_max: 70,
+        status_basic_max: 130,
+        status_talent_max: 0,
+    },
 ];
 
 const mig_job_id_map: Record<string, MigJobId> = {
@@ -1779,7 +1788,10 @@ const mig_job_id_map: Record<string, MigJobId> = {
     "SHIRANUI": { id: 82 },
     "NIGHT_WATCH": { id: 83 },
     "HYPER_NOVICE": { id: 84 },
-    "SPIRIT_HANDLER": { id: 85 }
+    "SPIRIT_HANDLER": { id: 85 },
+    "DRUID": { id: 86 },
+    "KARNOS": { id: 87 },
+    "ALITEA": { id: 88 },
 };
 
 /**

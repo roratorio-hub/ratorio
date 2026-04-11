@@ -1,0 +1,412 @@
+capabilities:
+  # --- ↓ 固定値上昇（集中力向上等の基礎値に含まれる） ---
+  # 1 STR
+  # 2 AGI
+  # 3 VIT
+  # 4 INT
+  # 5 DEX
+  # 6 LUK
+  # 7 全ステ
+  # --- ↑ 固定値上昇（集中力向上等の基礎値に含まれる） ---
+  - name: HIT加算
+    code: 8
+  - name: FLEE加算
+    code: 9
+  - name: CRI加算
+    code: 10
+  - name: 完全回避
+    code: 11
+  - name: ASPD増加
+    code: 12
+  - name: ASPD加算
+    code: 101
+  - name: MAXHP加算
+    code: 13
+  - name: MAXSP加算
+    code: 14
+  - name: MAXHP増加
+    code: 15
+  - name: MAXSP増加
+    code: 16
+  - name: ATK加算
+    code: 17
+  - name: DEF加算
+    code: 18
+  - name: MDEF加算
+    code: 19
+  - name: 弓装備時、遠距離ダメージ増加
+    code: 21
+  - name: 相手の防御力が高いほど与えるダメージが増加
+    code: 23
+  - name: 遠距離ダメージ増加
+    code: 25
+  - name: 近距離ダメージ増加
+    code: 210
+  - name: ボスへの物理ダメージ増加
+    code: 26
+  - name: 小型への物理ダメージ増加
+    code: 27
+  - name: 中型への物理ダメージ増加
+    code: 28
+  - name: 大型への物理ダメージ増加
+    code: 29
+  - name: 無形への物理ダメージ増加 
+    code: 30
+  - name: 不死形への物理ダメージ増加 
+    code: 31
+  - name: 動物形への物理ダメージ増加 
+    code: 32
+  - name: 植物形への物理ダメージ増加
+    code: 33
+  - name: 昆虫形への物理ダメージ増加
+    code: 34
+  - name: 魚貝形への物理ダメージ増加
+    code: 35
+  - name: 悪魔形への物理ダメージ増加
+    code: 36
+  - name: 人間形への物理ダメージ増加
+    code: 37
+  - name: 人間形への物理ダメージ増加（プレイヤー除外）
+    code: 106
+  - name: 天使形への物理ダメージ増加
+    code: 38
+  - name: 竜形への物理ダメージ増加
+    code: 39
+  - name: 無属性への物理ダメージ増加
+    code: 40
+  - name: 水属性への物理ダメージ増加
+    code: 41
+  - name: 地属性への物理ダメージ増加
+    code: 42
+  - name: 火属性への物理ダメージ増加
+    code: 43
+  - name: 風属性への物理ダメージ増加
+    code: 44
+  - name: 毒属性への物理ダメージ増加
+    code: 45
+  - name: 聖属性への物理ダメージ増加
+    code: 46
+  - name: 闇属性への物理ダメージ増加
+    code: 47
+  - name: 念属性への物理ダメージ増加
+    code: 48
+  - name: 不死属性への物理ダメージ増加
+    code: 49
+  - name: 無形モンスター耐性
+    code: 50
+  - name: 不死形モンスター耐性
+    code: 51
+  - name: 動物形モンスター耐性
+    code: 52
+  - name: 植物形モンスター耐性
+    code: 53
+  - name: 昆虫形モンスター耐性
+    code: 54
+  - name: 魚貝形モンスター耐性
+    code: 55
+  - name: 悪魔形モンスター耐性
+    code: 56
+  - name: 人間形モンスター耐性
+    code: 57
+  - name: 人間形モンスター耐性（プレイヤー除外）
+    code: 108
+  - name: 天使形モンスター耐性
+    code: 58
+  - name: 竜族形モンスター耐性
+    code: 59
+  - name: 無属性耐性
+    code: 60
+  - name: 水属性耐性
+    code: 61
+  - name: 地属性耐性
+    code: 62
+  - name: 火属性耐性
+    code: 63
+  - name: 風属性耐性
+    code: 64
+  - name: 毒属性耐性
+    code: 65
+  - name: 聖属性耐性
+    code: 66
+  - name: 闇属性耐性
+    code: 67
+  - name: 念属性耐性
+    code: 68
+  - name: 不死属性耐性
+    code: 69
+  - name: クリティカルダメージ増加
+    code: 70
+  - name: 変動詠唱減少
+    code: 73
+  - name: スキルディレイ減少
+    code: 74
+  - name: HP回復力向上
+    code: 75
+  - name: SP回復力向上
+    code: 76
+  - name: ボス耐性
+    code: 77
+  - name: 遠距離攻撃耐性
+    code: 78
+  - name: 一般耐性
+    code: 79
+  - name: 物理ダメージ増加
+    code: 80
+  - name: 命中物理攻撃で与えるダメージ増加
+    code: 167
+  - name: 武器攻撃力増加
+    code: 85
+  - name: 必中
+    code: 86
+  - name: 武器のMATK
+    code: 88
+  - name: 魔法ダメージ増加
+    code: 89
+  - name: ヒール系スキル使用時HP回復量増加
+    code: 91
+  - name: ヒール系スキルを受けた時のHP回復量増加
+    code: 92
+  - name: ボスへの魔法ダメージ増加
+    code: 96
+  - name: 小型への魔法ダメージ増加
+    code: 97
+  - name: 中型への魔法ダメージ増加
+    code: 98
+  - name: 大型への魔法ダメージ増加
+    code: 99
+  - name: MATK加算
+    code: 100
+  - name: 消費SP減少
+    code: 102
+  - name: 固定詠唱ミリ秒減少  # スキルに依存しない固定詠唱％減少の定義は存在しないので foot.js で個別対応が必要
+    code: 109
+  - name: 毒耐性
+    code: 150
+  - name: スタン耐性
+    code: 151
+  - name: 凍結耐性
+    code: 152
+  - name: 呪い耐性
+    code: 153
+  - name: 暗闇耐性
+    code: 154
+  - name: 睡眠耐性
+    code: 155
+  - name: 沈黙耐性
+    code: 156
+  - name: 混乱耐性
+    code: 157
+  - name: 出血耐性
+    code: 158
+  - name: 石化耐性
+    code: 159
+  - name: 無形への魔法ダメージ増加 
+    code: 170
+  - name: 不死形への魔法ダメージ増加 
+    code: 171
+  - name: 動物形への魔法ダメージ増加 
+    code: 172
+  - name: 植物形への魔法ダメージ増加
+    code: 173
+  - name: 昆虫形への魔法ダメージ増加
+    code: 174
+  - name: 魚貝形への魔法ダメージ増加
+    code: 175
+  - name: 悪魔形への魔法ダメージ増加
+    code: 176
+  - name: 人間形への魔法ダメージ増加
+    code: 177
+  - name: 人間形への魔法ダメージ増加（プレイヤー除外）
+    code: 107
+  - name: 天使形への魔法ダメージ増加
+    code: 178
+  - name: 竜形への魔法ダメージ増加
+    code: 179
+  - name: 破損しない
+    code: 194
+  - name: 両手杖
+    code: 195
+  - name: 鎧に属性付与
+    code: 198
+  - name: スキル習得時効果
+    code: 199
+  - name: 近接ダメージ増加
+    code: 210
+  # --- ↓ セット定義用（集中力向上等の基礎値に含まれない） ---
+  - name: STR加算
+    code: 211
+  - name: AGI加算
+    code: 212
+  - name: VIT加算
+    code: 213
+  - name: INT加算
+    code: 214
+  - name: DEX加算
+    code: 215
+  - name: LUK加算
+    code: 216
+  - name: 全基本ステータス加算
+    code: 217
+  # --- ↑ セット定義用（集中力向上等の基礎値に含まれない） ---
+  - name: アイテムの効果が発動しない
+    code: 218
+  - name: カードの効果が発動しない 
+    code: 219 
+  - name: スキル使用可能
+    code: 220
+  - name: オートスペル発動
+    code: 221
+  - name: スキル使用可能（説明非表示）
+    code: 224
+  - name: オートスペル発動（説明非表示）
+    code: 225
+  - name: サイズペナルティ無し
+    code: 228
+  - name: POW加算
+    code: 230
+  - name: STA加算
+    code: 231
+  - name: WIS加算
+    code: 232
+  - name: SPL加算
+    code: 233
+  - name: CON加算
+    code: 234
+  - name: CRT加算
+    code: 235
+  - name: 全特性ステータス上昇
+    code: 236
+  - name: プレイヤー耐性
+    code: 243
+  - name: P.ATK加算
+    code: 250
+  - name: S.MATK加算
+    code: 251
+  - name: H.PLUS加算
+    code: 252
+  - name: C.RATE加算
+    code: 253
+  - name: RES加算
+    code: 254
+  - name: MRES加算
+    code: 255
+  - name: 全サイズへの物理ダメージ増加
+    code: 260
+  - name: 全種族への物理ダメージ増加
+    code: 261
+  - name: 全属性への物理ダメージ増加
+    code: 262
+  - name: 全サイズへの魔法ダメージ増加
+    code: 265
+  - name: 全種族への魔法ダメージ増加
+    code: 266
+  - name: 一般への物理ダメージ増加
+    code: 267
+  - name: 一般への魔法ダメージ増加
+    code: 268
+  - name: 全属性への魔法ダメージ増加
+    code: 269
+  - name: 全属性魔法のダメージ増加
+    code: 270
+  - name: ドラム形への物理ダメージ増加
+    code: 272
+  - name: ドラム形への魔法ダメージ増加
+    code: 273
+  - name: 無属性物理ダメージ増加
+    code: 280
+  - name: 水属性物理ダメージ増加
+    code: 281
+  - name: 地属性物理ダメージ増加
+    code: 282
+  - name: 火属性物理ダメージ増加
+    code: 283
+  - name: 風属性物理ダメージ増加
+    code: 284
+  - name: 毒属性物理ダメージ増加
+    code: 285
+  - name: 聖属性物理ダメージ増加
+    code: 286
+  - name: 闇属性物理ダメージ増加
+    code: 287
+  - name: 念属性物理ダメージ増加
+    code: 288
+  - name: 不死属性物理ダメージ増加
+    code: 289
+  - name: DEF無視
+    code: 293
+  - name: MDEF無視
+    code: 298
+  - name: 無属性魔法ダメージ増加
+    code: 340
+  - name: 水属性魔法ダメージ増加
+    code: 341
+  - name: 地属性魔法ダメージ増加
+    code: 342
+  - name: 火属性魔法ダメージ増加
+    code: 343
+  - name: 風属性魔法ダメージ増加
+    code: 344
+  - name: 毒属性魔法ダメージ増加
+    code: 345
+  - name: 聖属性魔法ダメージ増加
+    code: 346
+  - name: 闇属性魔法ダメージ増加
+    code: 347
+  - name: 念属性魔法ダメージ増加
+    code: 348
+  - name: 不死属性魔法ダメージ増加
+    code: 349
+  - name: 無属性への魔法ダメージ増加
+    code: 350
+  - name: 水属性への魔法ダメージ増加
+    code: 351
+  - name: 地属性への魔法ダメージ増加
+    code: 352
+  - name: 火属性への魔法ダメージ増加
+    code: 353
+  - name: 風属性への魔法ダメージ増加
+    code: 354
+  - name: 毒属性への魔法ダメージ増加
+    code: 355
+  - name: 聖属性への魔法ダメージ増加
+    code: 356
+  - name: 闇属性への魔法ダメージ増加
+    code: 357
+  - name: 念属性への魔法ダメージ増加
+    code: 358
+  - name: 不死属性への魔法ダメージ増加
+    code: 359
+  - name: 冷凍耐性
+    code: 360
+  - name: 氷結耐性
+    code: 361
+  - name: 発火耐性
+    code: 362
+  - name: 恐怖耐性
+    code: 363
+  - name: 深い睡眠耐性
+    code: 364
+  - name: 魅了耐性
+    code: 365
+  - name: 狂乱耐性
+    code: 366
+  - name: 詠唱が中断されない
+    code: 380
+  - name: ノックバックしない
+    code: 381
+  - name: スキルダメージ増加
+    code: 5000
+  - name: スキル変動詠唱割合減少
+    code: 7000
+  - name: スキル変動詠唱ミリ秒減少
+    code: 9000
+  - name: スキル固定詠唱割合減少
+    code: 11000
+  - name: スキル固定詠唱ミリ秒減少
+    code: 13000
+  - name: 再使用待機時間減少
+    code: 19000
+  - name: スキル消費SP割合増加
+    code: 21000
+  - name: スキル消費SP固定値減少
+    code: 23000

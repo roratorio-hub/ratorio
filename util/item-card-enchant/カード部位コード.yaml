@@ -1,0 +1,29 @@
+card:
+  - name: 全ての部位
+    code: 200
+  - name: 武器
+    code: 1
+  - name: 兜
+    code: 2
+  - name: 盾
+    code: 3
+  - name: 鎧
+    code: 4
+  - name: 肩にかける物
+    code: 5
+  - name: 靴
+    code: 6
+  - name: アクセサリー
+    code: 7
+  - name: 上段
+    code: 8
+  - name: 中段
+    code: 9
+  - name: アクセサリー(1)
+    code: 11
+  - name: アクセサリー(2)
+    code: 12
+  - name: エンチャント  
+    code: 99
+  - name: ペット
+    code: -1

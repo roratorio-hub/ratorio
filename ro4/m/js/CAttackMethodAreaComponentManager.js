@@ -4313,7 +4313,59 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 					0
 				);
 				break;
-
+			/**
+			 * ピニオンショット
+			 * クイールスピア
+			 * テンペストフラップ
+			 */
+			case SKILL_ID_PINION_SHOT:
+			case SKILL_ID_QUILL_SPEAR:
+			case SKILL_ID_TEMPEST_FLAP:
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"エイペックスフェーズ",
+					[
+						[0, "無し"],
+						[1, "有り"],
+					],
+					0
+				);
+				break;
+			/**
+			 * ロアリングチャージ
+			 * ロアリングピアサー
+			 */
+			case SKILL_ID_ROARING_CHARGE:
+			case SKILL_ID_ROARING_PIERCER:
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"サンダリングロッドマックス",
+					[
+						[0, "無し"],
+						[1, "有り"],
+					],
+					0
+				);
+				break;
+			/**
+			 * グラビティホール
+			 */
+			case SKILL_ID_GRAVITY_HOLE:
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"武器属性",
+					[
+						[ELM_ID_VANITY,	"なし"],
+						[ELM_ID_WATER,	"水属性"],
+						[ELM_ID_WIND,	"風属性"],
+						[ELM_ID_EARTH,	"地属性"],
+						[ELM_ID_FIRE,	"火属性"],
+						[ELM_ID_DARK,	"闇属性"],
+						[ELM_ID_HOLY,	"聖属性"],
+						[ELM_ID_POISON,	"毒属性"],
+						[ELM_ID_PSYCO,	"念属性"],
+					],
+					ELM_ID_VANITY
+				);
+				break;
+			
 		}
 	}
 };
