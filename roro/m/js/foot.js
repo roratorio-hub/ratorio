@@ -2178,6 +2178,8 @@ function StAllCalc(){
 	    let w = 0;
 	    let statusMatk = 0;
 	    let weaponMatk = 0;
+		/** アイテム数・スキルLvを格納する一次変数 */
+		let prefetch = 0;
 
 	    //----------------------------------------------------------------
 	    // ランダムエンチャント効果
@@ -3375,6 +3377,10 @@ function StAllCalc(){
 	        w += 3 * UsedSkillSearch(SKILL_ID_COUNT_OF_SOUL_ENERGY);
 	    }
 
+		/** ドルイド「ネイチャーロジック」による装備Matk + 効果 */
+		w += 15 * LearnedSkillSearch(SKILL_ID_NATURE_LOGIC)
+
+		// その他 未整理
 	    if (TimeItemNumSearch(59)) w += 5 * Math.floor(n_A_SHOULDER_DEF_PLUS / 3);
 	    if (TimeItemNumSearch(85)) w += 7 * n_A_BODY_DEF_PLUS;
 	    if (n_A_PassSkill7[49]) w += 30;
@@ -6463,6 +6469,9 @@ function StAllCalc(){
 //====
 //================================================================================================================================
 //================================================================================================================================
+	{
+		/** アイテム数・スキルLvを格納する一次変数 */
+		let prefetch = 0;
 
 		//----------------------------------------------------------------
 		// ランダムエンチャント効果
@@ -6479,8 +6488,6 @@ function StAllCalc(){
 			n_tok[29] += n_tok[260];
 		}
 
-
-
 		//----------------------------------------------------------------
 		// 「スナイピングシューズ」の、スキル習得による効果
 		//----------------------------------------------------------------
@@ -6489,8 +6496,6 @@ function StAllCalc(){
 			n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_MEDIUM] += 5 * LearnedSkillSearch(SKILL_ID_WUG_RIDER) * itemCount;
 			n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_LARGE] += 5 * LearnedSkillSearch(SKILL_ID_WUG_RIDER) * itemCount;
 		}
-
-
 
 		//----------------------------------------------------------------
 		// 「オウルバロンのマント　エクスキューショナーカード」の、過剰精錬による効果
@@ -6501,8 +6506,6 @@ function StAllCalc(){
 			}
 		}
 
-
-
 		//----------------------------------------------------------------
 		// 「オウルバロンのマント　オーガトゥースカード」の、過剰精錬による効果
 		//----------------------------------------------------------------
@@ -6511,8 +6514,6 @@ function StAllCalc(){
 				n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_MEDIUM] += 25 * itemCount;
 			}
 		}
-
-
 
 		//----------------------------------------------------------------
 		// 「オウルバロンのマント　ミスティルティンカード」の、過剰精錬による効果
@@ -6523,8 +6524,6 @@ function StAllCalc(){
 			}
 		}
 
-
-
 		//----------------------------------------------------------------
 		// 「よちよちウリボウスタイ」の、スキル習得による効果
 		//----------------------------------------------------------------
@@ -6533,8 +6532,6 @@ function StAllCalc(){
 			n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_MEDIUM] += 2 * LearnedSkillSearch(SKILL_ID_MURENO_CHIKARA) * itemCount;
 			n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_LARGE] += 2 * LearnedSkillSearch(SKILL_ID_MURENO_CHIKARA) * itemCount;
 		}
-
-
 
 		//----------------------------------------------------------------
 		// 「隷属の首輪」の、素ＳＴＲと素ＬＵＫによる効果
@@ -6545,8 +6542,6 @@ function StAllCalc(){
 			n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_LARGE] += 4 * ROUNDDOWN((SU_STR + SU_LUK) / 50) * itemCount;
 		}
 
-
-
 		//----------------------------------------------------------------
 		// 「グレースアニマルローブ」の、スキル習得による効果
 		//----------------------------------------------------------------
@@ -6556,8 +6551,6 @@ function StAllCalc(){
 			n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_LARGE] += 7 * LearnedSkillSearch(SKILL_ID_MURENO_CHIKARA) * itemCount;
 		}
 
-
-
 		//----------------------------------------------------------------
 		// 「グレースガトリングスーツ」の、スキル習得による効果
 		//----------------------------------------------------------------
@@ -6566,8 +6559,6 @@ function StAllCalc(){
 			n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_MEDIUM] += 7 * LearnedSkillSearch(SKILL_ID_PLATINUM_ALTER) * itemCount;
 			n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_LARGE] += 7 * LearnedSkillSearch(SKILL_ID_PLATINUM_ALTER) * itemCount;
 		}
-
-
 
 		//----------------------------------------------------------------
 		// 「太極の耳飾り(黄)」の、スキル習得による効果
@@ -6580,8 +6571,6 @@ function StAllCalc(){
 			}
 		}
 
-
-
 		//----------------------------------------------------------------
 		// 「グロトネリーア」の、スキル習得による効果
 		//----------------------------------------------------------------
@@ -6590,8 +6579,6 @@ function StAllCalc(){
 			n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_MEDIUM] += 1 * LearnedSkillSearch(SKILL_ID_AUTO_SHADOW_SPELL) * itemCount;
 			n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_LARGE] += 1 * LearnedSkillSearch(SKILL_ID_AUTO_SHADOW_SPELL) * itemCount;
 		}
-
-
 
 		//----------------------------------------------------------------
 		// 「辰戌の腕輪」の、スキル習得による効果
@@ -6604,8 +6591,6 @@ function StAllCalc(){
 			}
 		}
 
-
-
 		//----------------------------------------------------------------
 		// 「インペリアル天地スーツ」の、スキル習得による効果
 		//----------------------------------------------------------------
@@ -6614,8 +6599,6 @@ function StAllCalc(){
 			n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_MEDIUM] += 4 * Math.floor(LearnedSkillSearch(SKILL_ID_SHURASHINDAN) / 2) * itemCount;
 			n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_LARGE] += 4 * Math.floor(LearnedSkillSearch(SKILL_ID_SHURASHINDAN) / 2) * itemCount;
 		}
-
-
 
 		//----------------------------------------------------------------
 		// 「グレース天地スーツ」の、スキル習得による効果
@@ -6626,8 +6609,6 @@ function StAllCalc(){
 			n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_LARGE] += 7 * Math.floor(LearnedSkillSearch(SKILL_ID_SHURASHINDAN) / 2) * itemCount;
 		}
 
-
-
 		//----------------------------------------------------------------
 		// 「ロードオブロイヤルズ」の、素ＳＴＲと素ＩＮＴによる効果
 		//----------------------------------------------------------------
@@ -6636,8 +6617,6 @@ function StAllCalc(){
 			n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_MEDIUM] += 4 * ROUNDDOWN((SU_STR + SU_INT) / 50) * itemCount;
 			n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_LARGE] += 4 * ROUNDDOWN((SU_STR + SU_INT) / 50) * itemCount;
 		}
-
-
 
 		//----------------------------------------------------------------
 		// 「パラケルススグローブ」の、スキル習得による効果
@@ -6650,8 +6629,6 @@ function StAllCalc(){
 			}
 		}
 
-
-
 		//----------------------------------------------------------------
 		// 「インペリアルカルティベイションコート」の、スキル習得による効果
 		//----------------------------------------------------------------
@@ -6660,8 +6637,6 @@ function StAllCalc(){
 			n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_MEDIUM] += 4 * LearnedSkillSearch(SKILL_ID_FIRE_EXPANSION) * itemCount;
 			n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_LARGE] += 4 * LearnedSkillSearch(SKILL_ID_FIRE_EXPANSION) * itemCount;
 		}
-
-
 
 		//----------------------------------------------------------------
 		// 「グレースカルティベイションコート」の、スキル習得による効果
@@ -6672,8 +6647,6 @@ function StAllCalc(){
 			n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_LARGE] += 7 * LearnedSkillSearch(SKILL_ID_FIRE_EXPANSION) * itemCount;
 		}
 
-
-
 		//----------------------------------------------------------------
 		// 「夢見る赤羊」の、スキル習得による効果
 		//----------------------------------------------------------------
@@ -6682,8 +6655,6 @@ function StAllCalc(){
 			n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_MEDIUM] += 5 * LearnedSkillSearch(SKILL_ID_WUG_RIDER) * itemCount;
 			n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_LARGE] += 5 * LearnedSkillSearch(SKILL_ID_WUG_RIDER) * itemCount;
 		}
-
-
 
 		//----------------------------------------------------------------
 		// 「サンクトゥス」の、スキル習得による効果
@@ -6696,8 +6667,6 @@ function StAllCalc(){
 			}
 		}
 
-
-
 		//----------------------------------------------------------------
 		// 「携帯式サポートシステム」の、スキル習得による効果
 		//----------------------------------------------------------------
@@ -6709,10 +6678,21 @@ function StAllCalc(){
 			}
 		}
 
+		/** カルノス「ウルフインスティンクト」による 小・中・大型モンスターに与えるダメージ + 効果 */
+		if (UsedSkillSearch(SKILL_ID_WEREWOLF) > 0) {
+			prefetch = LearnedSkillSearch(SKILL_ID_WOLF_INSTINCT);
+			n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_SMALL] += prefetch;
+			n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_MEDIUM] += prefetch;
+			n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_LARGE] += prefetch;
+		}
 
-
-
-
+		/** カルノス「ラプトリアルインスティンクト」による 小・中・大型モンスターに与えるダメージ + 効果 */
+		if (UsedSkillSearch(SKILL_ID_WERERAPTOR) > 0) {
+			prefetch = LearnedSkillSearch(SKILL_ID_RAPTORIAL_INSTINCT);
+			n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_SMALL] += prefetch;
+			n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_MEDIUM] += prefetch;
+			n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_LARGE] += prefetch;
+		}
 
 		//----------------------------------------------------------------
 		// 「性能カスタマイズ」の、効果
@@ -6728,10 +6708,7 @@ function StAllCalc(){
 		for (idx = ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_SMALL; idx <= ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_LARGE; idx++) {
 			n_tok[idx] = ApplySpecModify(idx, n_tok[idx]);
 		}
-
-
-
-
+	}
 
 //================================================================================================================================
 //================================================================================================================================
@@ -6742,6 +6719,9 @@ function StAllCalc(){
 //================================================================================================================================
 //================================================================================================================================
 	{
+		/** アイテム数・スキルLvを格納する一次変数 */
+		let prefetch = 0;
+
 		//----------------------------------------------------------------
 		// ランダムエンチャント効果
 		//----------------------------------------------------------------
@@ -7257,6 +7237,20 @@ function StAllCalc(){
 			if (Math.max(summoner_skill_animal_sum, UsedSkillSearch(SKILL_ID_ANIMAL_KEI_SHUTOKU_LEVEL_GOKEI)) >= 20) {
 				n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += 10;
 			}
+		}
+
+		/** 四次職支援 アリテア「ゼファーリンク」の遠距離物理攻撃で与えるダメージ + 効果  */
+		if (g_confDataYozi[CCharaConfYozi.CONF_ID_ZEPHYR_LINK]) {
+			n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += 15;
+		}
+
+		/** アリテア「フリップフラップ」「エアロシンク」の遠距離物理攻撃で与えるダメージ + 効果  */
+		prefetch = UsedSkillSearch(SKILL_ID_FLIP_FLAP);
+		if (prefetch > 0) {
+			n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += 3 * prefetch;
+		} else {
+			// 対象が「フリップフラップ」状態の場合、「エアロシンク」状態にはならない
+			n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += 5 * g_confDataYozi[CCharaConfYozi.CONF_ID_AERO_SYNC];
 		}
 
 		/**
@@ -11971,6 +11965,9 @@ function StAllCalc(){
 //================================================================================================================================
 //================================================================================================================================
 	{
+		/** アイテム数・スキルLvを保存する一次変数 */
+		let prefetch = 0;
+
 		if(n_A_Weapon_ATKplus >= 7 && n_A_BODY_DEF_PLUS >= 7 && n_A_SHOES_DEF_PLUS >= 7){
 			if(EquipNumSearch(1535)){
 				n_tok[344] += 10;
@@ -12499,6 +12496,30 @@ function StAllCalc(){
 			let effect = 4 * g_confDataSanzi[CCharaConfSanzi.CONF_ID_UNLIMITED_HUMMING_VOICE];
 			effect += Math.floor(g_confDataSanzi[CCharaConfSanzi.CONF_ID_LESSON] / 2);
 			n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_ELM_ALL] += effect;
+		}
+
+		/** 四次職支援 アリテア「ゼファーリンク」の効果  */
+		if (g_confDataYozi[CCharaConfYozi.CONF_ID_ZEPHYR_LINK]) {
+			n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_ELM_ALL] += 15;
+		}
+
+		/** 四次職支援 アリテア「ネイチャーハーモニー」の効果  */
+		prefetch = UsedSkillSearch(SKILL_ID_NATURE_HARMONY);
+		if (prefetch > 0) {
+			n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_ELM_WATER] += 25 + 5 * prefetch;
+			n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_ELM_WIND] += 25 + 5 * prefetch;
+			n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_ELM_EARTH] += 25 + 5 * prefetch;
+		}
+		
+		/** ドルイド「トゥルースオブアイス」「トゥルースオブウィンド」「トゥルースオブアース」の効果 */
+		if (UsedSkillSearch(SKILL_ID_TRUTH_OF_ICE) > 0) {
+			n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_ELM_WATER] += 10;
+		}
+		if (UsedSkillSearch(SKILL_ID_TRUTH_OF_WIND) > 0) {
+			n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_ELM_WIND] += 10;
+		}
+		if (UsedSkillSearch(SKILL_ID_TRUTH_OF_EARTH) > 0) {
+			n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_ELM_EARTH] += 10;
 		}
 
 		//----------------------------------------------------------------
@@ -13802,6 +13823,11 @@ function StAllCalc(){
 		//----------------------------------------------------------------
 		if ((itemCount = EquipNumSearchMIG(ITEM_ID_GRACE_MAGMA_SUIT)) > 0) {
 			n_tok[ITEM_SP_SHORTRANGE_DAMAGE_UP] += 6 * LearnedSkillSearch(SKILL_ID_MAGMA_ILLUPTION) * itemCount;
+		}
+
+		/** 四次職支援 アリテア「ゼファーリンク」の効果  */
+		if (g_confDataYozi[CCharaConfYozi.CONF_ID_ZEPHYR_LINK]) {
+			n_tok[ITEM_SP_SHORTRANGE_DAMAGE_UP] += 15;
 		}
 
 		/**
@@ -15823,6 +15849,7 @@ function getFixedCastTimeReductionRate() {
  * @returns {Number} 
  */
 function getFlee() {
+	let prefetch = 0;
     let flee = 0;
 
     //----------------------------------------------------------------
@@ -16368,6 +16395,10 @@ function getFlee() {
         flee += 50 * sklLv;
     }
 
+	/** ドルイド「プリーニング」による Flee + 効果 */
+	flee += 10 * UsedSkillSearch(SKILL_ID_PREENING);
+
+	// その他未整理
     if (n_A_PassSkill4[9]) flee += 50;
     if (n_A_PassSkill3[11]) flee -= (20 + 5 * n_A_PassSkill3[11]);
 
@@ -20759,6 +20790,9 @@ function GetAdditionalAspdPercent() {
     let cardCountBody = 0;
     let cardCountShoulder = 0;
     let cardCountShoes = 0;
+
+	let prefetch = 0;
+
     //----------------------------------------------------------------
     // ランダムエンチャント効果
     //----------------------------------------------------------------
@@ -21983,6 +22017,9 @@ function GetAdditionalAspdPercent() {
         tmp_percent -= (50 - 10 * UsedSkillSearch(SKILL_ID_INVISIBILITY));
     }
 
+	/** ドルイド「ビースティノーズ」による攻撃速度 + 効果 */
+	tmp_percent += LearnedSkillSearch(SKILL_ID_BEASTY_NOSE);
+
     //----------------------------------------------------------------
     // 「星帝　星の構え」の効果
     //----------------------------------------------------------------
@@ -22018,6 +22055,8 @@ function GetAdditionalCriticalRate(mobData) {
     let cri = 0;
     /** 計算途中のCRIの値 */
     let tmp_cri = 0;
+	/** アイテム数・スキルLvを格納する一次変数 */
+	let prefetch = 0;
 
     //----------------------------------------------------------------
     // ランダムエンチャント効果
@@ -22388,6 +22427,19 @@ function GetAdditionalCriticalRate(mobData) {
     if ((bufLv = g_confDataSanzi[CCharaConfSanzi.CONF_ID_KAGENO_TAMASHI]) > 0) {
         tmp_cri += 70;
     }
+
+	/** アリテア「シックスセンス」の Cri + 効果 */
+	tmp_cri += 5 * LearnedSkillSearch(SKILL_ID_SIXTH_SENSE);
+
+	/** アリテア「フリップフラップ」「エアロシンク」の Cri + 効果 */
+	prefetch = UsedSkillSearch(SKILL_ID_FLIP_FLAP);
+	if (prefetch > 0) {
+		tmp_cri += 5 * UsedSkillSearch(SKILL_ID_FLIP_FLAP);
+	} else {
+		// 対象が「フリップフラップ」状態の場合、「エアロシンク」状態にはならない
+		tmp_cri += 20 * g_confDataYozi[CCharaConfYozi.CONF_ID_AERO_SYNC];
+	}
+
 
     //----------------------------------------------------------------
     // 「サモナー　生命の力」の、効果
@@ -25639,6 +25691,10 @@ function GetCostFixOfSkill(skillId) {
 	return costfix;
 }
 
+/**
+ * 公式サイトで Str + ◯ などと表記される
+ * 基礎ステータス加算効果
+ */
 function StPlusCalc() {
 	let idx = 0;
 	let jobBonusArray = null;
@@ -25661,6 +25717,8 @@ function StPlusCalc() {
 	let cardCountShoes = 0;
 	let cardCountAccessary1 = 0;
 	let cardCountAccessary2 = 0;
+
+	let prefetch = 0;
 
 	// TODO: 将来的に構造の変更が必要
 	// 拡張表示用
@@ -28392,12 +28450,30 @@ function StPlusCalc() {
 	if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_GRENADE_MASTERY), UsedSkillSearch(SKILL_ID_GRENADE_MASTERY))) > 0) {
 		wSPC_CON += sklLv
 	}
-	
+
+	/** ドルイド「ネイチャーシールド」による Vit・Int + 効果 */
+	prefetch = UsedSkillSearch(SKILL_ID_NATURE_SHIELD);
+	if (prefetch > 0) {
+		wSPC_VIT += prefetch;
+		wSPC_INT += prefetch;
+	}
+
+	/** ドルイド「プリーニング」による Agi・Dex + 効果 */
+	prefetch = UsedSkillSearch(SKILL_ID_PREENING);
+	if (prefetch > 0) {
+		wSPC_AGI += 2 * prefetch;
+		wSPC_DEX += 2 * prefetch;
+	}
+
+	/** ドルイド「ブラッドハウリング」による Str・Luk + 効果 */
+	prefetch = UsedSkillSearch(SKILL_ID_BLOOD_HOWLING);
+	if (prefetch > 0) {
+		wSPC_STR += 2 * prefetch;
+		wSPC_LUK += 2 * prefetch;
+	}
 
 	// 特性ステータス補正の保持
 	var spc4thArray = StoreSpecStatusBonusAll(wSPC_POW, wSPC_STA, wSPC_WIS, wSPC_SPL, wSPC_CON, wSPC_CRT);
-
-
 
 	// ステータス補正の画面出力
 	DisplayStatusBonusAll(
@@ -28405,10 +28481,6 @@ function StPlusCalc() {
 		wSPC_STR, wSPC_AGI, wSPC_VIT, wSPC_INT, wSPC_DEX, wSPC_LUK,
 		spc4thArray[0], spc4thArray[1], spc4thArray[2], spc4thArray[3], spc4thArray[4], spc4thArray[5]
 	);
-
-
-
-
 
 	// 特性データ対応
 	// 画面出力

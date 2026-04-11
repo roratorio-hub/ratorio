@@ -9212,10 +9212,10 @@ SUPERNOVICE:
     - 94
     - 120
     - 999
-  base_lv_min: 1
+  base_lv_min: 45
   base_lv_max: 99
   job_lv_max: 99
-  status_basic_max: 130
+  status_basic_max: 99
   status_talent_max: 0
   _mig_id_num: 20
 KNIGHT_H:
@@ -19774,8 +19774,8 @@ STAR:
     - 95
     - 142
     - 999
-  base_lv_min: 99
-  base_lv_max: 200
+  base_lv_min: 1
+  base_lv_max: 99
   job_lv_max: 70
   status_basic_max: 99
   status_talent_max: 0
@@ -20708,8 +20708,8 @@ NINJA:
     - 58
     - 91
     - 999
-  base_lv_min: 99
-  base_lv_max: 200
+  base_lv_min: 1
+  base_lv_max: 99
   job_lv_max: 70
   status_basic_max: 99
   status_talent_max: 0
@@ -21146,8 +21146,8 @@ GUNSLINGER:
     - 83
     - 98
     - 999
-  base_lv_min: 99
-  base_lv_max: 200
+  base_lv_min: 1
+  base_lv_max: 99
   job_lv_max: 70
   status_basic_max: 99
   status_talent_max: 0
@@ -30233,8 +30233,8 @@ KAGEROU:
   name_alias:
     - B1b4I5A3
   is_rebirthed: true
-  job_type_num: 8
-  job_type_name: third_job
+  job_type_num: 12
+  job_type_name: upgraded_extra_1st_job
   weight_correction: 0
   weapons_aspd:
     '0': 153
@@ -30829,7 +30829,7 @@ KAGEROU:
     - 91
     - 93
     - 999
-  base_lv_min: 90
+  base_lv_min: 99
   base_lv_max: 200
   job_lv_max: 70
   status_basic_max: 130
@@ -30844,8 +30844,8 @@ OBORO:
   name_alias:
     - A5f5I5
   is_rebirthed: true
-  job_type_num: 8
-  job_type_name: third_job
+  job_type_num: 12
+  job_type_name: upgraded_extra_1st_job
   weight_correction: 0
   weapons_aspd:
     '0': 153
@@ -31443,7 +31443,7 @@ OBORO:
     - 91
     - 93
     - 999
-  base_lv_min: 90
+  base_lv_min: 99
   base_lv_max: 200
   job_lv_max: 70
   status_basic_max: 130
@@ -31458,8 +31458,8 @@ SUPERNOVICE2:
   name_alias:
     - C3A3y1A1E5A5f2C3y3I1C3
   is_rebirthed: true
-  job_type_num: 8
-  job_type_name: third_job
+  job_type_num: 12
+  job_type_name: upgraded_extra_1st_job
   weight_correction: 0
   weapons_aspd:
     '0': 152
@@ -32287,7 +32287,7 @@ SUPERNOVICE2:
     - 94
     - 120
     - 999
-  base_lv_min: 90
+  base_lv_min: 99
   base_lv_max: 200
   job_lv_max: 70
   status_basic_max: 130
@@ -32302,8 +32302,8 @@ REBELLION:
   name_alias:
     - I2f4I2A5J5
   is_rebirthed: true
-  job_type_num: 8
-  job_type_name: third_job
+  job_type_num: 12
+  job_type_name: upgraded_extra_1st_job
   weight_correction: 0
   weapons_aspd:
     '0': 149
@@ -32904,7 +32904,7 @@ REBELLION:
     - 93
     - 98
     - 999
-  base_lv_min: 90
+  base_lv_min: 99
   base_lv_max: 200
   job_lv_max: 70
   status_basic_max: 130
@@ -33631,8 +33631,8 @@ STAR_EMPEROR:
   name_alias:
     - C4A2D4A2
   is_rebirthed: true
-  job_type_num: 8
-  job_type_name: third_job
+  job_type_num: 12
+  job_type_name: upgraded_extra_1st_job
   weight_correction: 0
   weapons_aspd:
     '0': 151
@@ -34290,7 +34290,7 @@ STAR_EMPEROR:
     - 95
     - 142
     - 999
-  base_lv_min: 90
+  base_lv_min: 99
   base_lv_max: 200
   job_lv_max: 70
   status_basic_max: 130
@@ -34305,8 +34305,8 @@ SOUL_REAPER:
   name_alias:
     - C5A3I3I2A2y1A1
   is_rebirthed: true
-  job_type_num: 8
-  job_type_name: third_job
+  job_type_num: 12
+  job_type_name: upgraded_extra_1st_job
   weight_correction: 0
   weapons_aspd:
     '0': 149
@@ -34897,7 +34897,7 @@ SOUL_REAPER:
     - 111
     - 143
     - 999
-  base_lv_min: 90
+  base_lv_min: 99
   base_lv_max: 200
   job_lv_max: 70
   status_basic_max: 130
@@ -35584,6 +35584,7 @@ DRAGON_KNIGHT:
     - 198
     - 199
     - 204
+    - 206
     - 999
   base_lv_min: 200
   base_lv_max: 275
@@ -39230,6 +39231,7 @@ MEISTER:
     - 197
     - 198
     - 204
+    - 206
     - 999
   base_lv_min: 200
   base_lv_max: 275
@@ -39972,6 +39974,7 @@ IMPERIAL_GUARD:
     - 198
     - 199
     - 204
+    - 206
     - 999
   base_lv_min: 200
   base_lv_max: 275
@@ -44583,6 +44586,7 @@ BIOLO:
     - 197
     - 198
     - 204
+    - 206
     - 999
   base_lv_min: 200
   base_lv_max: 275
@@ -49626,3 +49630,1043 @@ SPIRIT_HANDLER:
   status_basic_max: 130
   status_talent_max: 110
   _mig_id_num: 85
+DRUID:
+  id_name: DRUID
+  id_num: 4345
+  is_doram: false
+  name: Druid
+  name_ja: ドルイド
+  name_alias:
+    - ドルイド
+  is_rebirthed: false
+  job_type_num: 6
+  job_type_name: ninja
+  weight_correction: 0
+  weapons_aspd:
+    '0': 162
+    '1': 142
+    '6': 144
+    '7': 141
+    '8': 144
+  additional_status:
+    '1':
+      name: int
+      add_value: 1
+    '2':
+      name: str
+      add_value: 1
+    '3':
+      name: dex
+      add_value: 1
+    '4':
+      name: int
+      add_value: 1
+    '5':
+      name: dex
+      add_value: 1
+    '6':
+      name: str
+      add_value: 1
+    '7':
+      name: int
+      add_value: 1
+    '8':
+      name: int
+      add_value: 1
+    '9':
+      name: vit
+      add_value: 1
+    '10':
+      name: int
+      add_value: 1
+    '11':
+      name: dex
+      add_value: 1
+    '12':
+      name: luk
+      add_value: 1
+    '13':
+      name: vit
+      add_value: 1
+    '16':
+      name: str
+      add_value: 1
+    '17':
+      name: agi
+      add_value: 1
+    '20':
+      name: str
+      add_value: 1
+    '21':
+      name: int
+      add_value: 1
+    '22':
+      name: agi
+      add_value: 1
+    '23':
+      name: agi
+      add_value: 1
+    '24':
+      name: int
+      add_value: 1
+    '25':
+      name: agi
+      add_value: 1
+    '26':
+      name: luk
+      add_value: 1
+    '28':
+      name: agi
+      add_value: 1
+    '29':
+      name: int
+      add_value: 1
+    '30':
+      name: luk
+      add_value: 1
+    '31':
+      name: vit
+      add_value: 1
+    '32':
+      name: agi
+      add_value: 1
+    '33':
+      name: vit
+      add_value: 1
+  hp_basic_values:
+    - 112
+    - 126
+    - 140
+    - 154
+    - 168
+    - 182
+    - 196
+    - 210
+    - 224
+    - 238
+    - 252
+    - 266
+    - 280
+    - 294
+    - 308
+    - 322
+    - 336
+    - 350
+    - 364
+    - 378
+    - 392
+    - 406
+    - 420
+    - 434
+    - 448
+    - 462
+    - 476
+    - 490
+    - 504
+    - 518
+    - 532
+    - 546
+    - 560
+    - 574
+    - 588
+    - 602
+    - 616
+    - 630
+    - 644
+    - 658
+    - 672
+    - 686
+    - 700
+    - 714
+    - 728
+    - 742
+    - 756
+    - 770
+    - 784
+    - 798
+    - 812
+    - 826
+    - 840
+    - 854
+    - 868
+    - 882
+    - 896
+    - 910
+    - 924
+    - 938
+    - 952
+    - 966
+    - 980
+    - 994
+    - 1008
+    - 1022
+    - 1036
+    - 1050
+    - 1064
+    - 1078
+    - 1092
+    - 1106
+    - 1120
+    - 1134
+    - 1148
+    - 1162
+    - 1176
+    - 1190
+    - 1204
+    - 1218
+    - 1232
+    - 1246
+    - 1260
+    - 1274
+    - 1288
+    - 1302
+    - 1316
+    - 1330
+    - 1344
+    - 1358
+    - 1372
+    - 1386
+    - 1400
+    - 1414
+    - 1428
+    - 1442
+    - 1456
+    - 1470
+    - 1484
+  sp_basic_values:
+    - 37
+    - 39
+    - 41
+    - 43
+    - 45
+    - 47
+    - 49
+    - 51
+    - 53
+    - 55
+    - 57
+    - 59
+    - 61
+    - 63
+    - 65
+    - 67
+    - 69
+    - 71
+    - 73
+    - 75
+    - 77
+    - 79
+    - 81
+    - 83
+    - 85
+    - 87
+    - 89
+    - 91
+    - 93
+    - 95
+    - 97
+    - 99
+    - 101
+    - 103
+    - 105
+    - 107
+    - 109
+    - 111
+    - 113
+    - 115
+    - 117
+    - 119
+    - 121
+    - 123
+    - 125
+    - 127
+    - 129
+    - 131
+    - 133
+    - 135
+    - 137
+    - 139
+    - 141
+    - 143
+    - 145
+    - 147
+    - 149
+    - 151
+    - 153
+    - 155
+    - 157
+    - 159
+    - 161
+    - 163
+    - 165
+    - 167
+    - 169
+    - 171
+    - 173
+    - 175
+    - 177
+    - 179
+    - 181
+    - 183
+    - 185
+    - 187
+    - 189
+    - 191
+    - 193
+    - 195
+    - 197
+    - 199
+    - 201
+    - 203
+    - 205
+    - 207
+    - 209
+    - 211
+    - 213
+    - 215
+    - 217
+    - 219
+    - 221
+    - 223
+    - 225
+    - 227
+    - 229
+    - 231
+    - 233
+  learned_skills:
+    NV_BASIC:
+      id: NV_BASIC
+      id_num: 1
+    NV_FIRSTAID:
+      id: NV_FIRSTAID
+      id_num: 142
+    NV_TRICKDEAD:
+      id: NV_TRICKDEAD
+      id_num: 143
+  passive_skills: {}
+  attack_skills: {}
+  allow_equipment_weapons_type:
+    - 0
+    - 134
+  base_lv_min: 1
+  base_lv_max: 99
+  job_lv_max: 70
+  status_basic_max: 99
+  status_talent_max: 0
+  _mig_id_num: 86
+KARNOS:
+  id_name: KARNOS
+  id_num: 4346
+  is_doram: false
+  name: Karnos
+  name_ja: カルノス
+  name_alias:
+    - カルノス
+  is_rebirthed: true
+  job_type_num: 12
+  job_type_name: upgraded_extra_1st_job
+  weight_correction: 0
+  weapons_aspd:
+    '0': 151
+    '1': 146
+    '6': 145
+    '7': 144
+    '8': 146
+  additional_status:
+    '1':
+      name: int
+      add_value: 1
+    '2':
+      name: str
+      add_value: 1
+    '3':
+      name: dex
+      add_value: 1
+    '4':
+      name: int
+      add_value: 1
+    '5':
+      name: dex
+      add_value: 1
+    '6':
+      name: str
+      add_value: 1
+    '7':
+      name: int
+      add_value: 1
+    '8':
+      name: int
+      add_value: 1
+    '9':
+      name: vit
+      add_value: 1
+    '10':
+      name: int
+      add_value: 1
+    '11':
+      name: dex
+      add_value: 1
+    '12':
+      name: luk
+      add_value: 1
+    '13':
+      name: vit
+      add_value: 1
+    '16':
+      name: str
+      add_value: 1
+    '17':
+      name: agi
+      add_value: 1
+    '20':
+      name: str
+      add_value: 1
+    '21':
+      name: int
+      add_value: 1
+    '22':
+      name: agi
+      add_value: 1
+    '23':
+      name: agi
+      add_value: 1
+    '24':
+      name: int
+      add_value: 1
+    '25':
+      name: agi
+      add_value: 1
+    '26':
+      name: luk
+      add_value: 1
+    '28':
+      name: agi
+      add_value: 1
+    '29':
+      name: int
+      add_value: 1
+    '30':
+      name: luk
+      add_value: 1
+    '31':
+      name: vit
+      add_value: 1
+    '32':
+      name: agi
+      add_value: 1
+    '33':
+      name: vit
+      add_value: 1
+  hp_basic_values:
+    - 26705
+    - 26918
+    - 27131
+    - 27344
+    - 27557
+    - 27770
+    - 27983
+    - 28196
+    - 28409
+    - 28622
+    - 28835
+    - 29048
+    - 29261
+    - 29474
+    - 29687
+    - 29900
+    - 30113
+    - 30326
+    - 30539
+    - 30752
+    - 30965
+    - 31178
+    - 31391
+    - 31604
+    - 31817
+    - 32030
+    - 32243
+    - 32456
+    - 32669
+    - 32882
+    - 33095
+    - 33308
+    - 33521
+    - 33734
+    - 33947
+    - 34160
+    - 34373
+    - 34586
+    - 34799
+    - 35012
+    - 35225
+    - 35438
+    - 35651
+    - 35864
+    - 36077
+    - 36290
+    - 36503
+    - 36716
+    - 36929
+    - 37142
+    - 37355
+    - 37568
+    - 37781
+    - 37994
+    - 38207
+    - 38420
+    - 38633
+    - 38846
+    - 39059
+    - 39272
+    - 39485
+    - 39698
+    - 39911
+    - 40124
+    - 40337
+    - 40550
+    - 40763
+    - 40976
+    - 41189
+    - 41402
+    - 41615
+    - 41828
+    - 42041
+    - 42254
+    - 42467
+    - 42680
+    - 42893
+    - 43106
+    - 43319
+    - 43532
+    - 43745
+    - 43958
+    - 44171
+    - 44384
+    - 44597
+    - 44810
+    - 45023
+    - 45236
+    - 45449
+    - 45662
+    - 45875
+    - 46088
+    - 46301
+    - 46514
+    - 46727
+    - 46940
+    - 47153
+    - 47366
+    - 47579
+    - 47792
+    - 48005
+    - 48218
+    - 48431
+    - 48644
+    - 48857
+    - 49070
+    - 49283
+    - 49496
+    - 49709
+    - 49922
+    - 50135
+  sp_basic_values:
+    - 1275
+    - 1280
+    - 1285
+    - 1290
+    - 1295
+    - 1300
+    - 1305
+    - 1310
+    - 1315
+    - 1320
+    - 1325
+    - 1330
+    - 1335
+    - 1340
+    - 1345
+    - 1350
+    - 1355
+    - 1360
+    - 1365
+    - 1370
+    - 1375
+    - 1380
+    - 1385
+    - 1390
+    - 1395
+    - 1400
+    - 1405
+    - 1410
+    - 1415
+    - 1420
+    - 1425
+    - 1430
+    - 1435
+    - 1440
+    - 1445
+    - 1450
+    - 1455
+    - 1460
+    - 1465
+    - 1470
+    - 1475
+    - 1480
+    - 1485
+    - 1490
+    - 1495
+    - 1500
+    - 1505
+    - 1510
+    - 1515
+    - 1520
+    - 1525
+    - 1530
+    - 1535
+    - 1540
+    - 1545
+    - 1550
+    - 1555
+    - 1560
+    - 1565
+    - 1570
+    - 1575
+    - 1580
+    - 1585
+    - 1590
+    - 1595
+    - 1600
+    - 1605
+    - 1610
+    - 1615
+    - 1620
+    - 1625
+    - 1630
+    - 1635
+    - 1640
+    - 1645
+    - 1650
+    - 1655
+    - 1660
+    - 1665
+    - 1670
+    - 1675
+    - 1680
+    - 1685
+    - 1690
+    - 1695
+    - 1700
+    - 1705
+    - 1710
+    - 1715
+    - 1720
+    - 1725
+    - 1730
+    - 1735
+    - 1740
+    - 1745
+    - 1750
+    - 1755
+    - 1760
+    - 1765
+    - 1770
+    - 1775
+    - 1780
+    - 1785
+    - 1790
+    - 1795
+    - 1800
+    - 1805
+    - 1810
+    - 1815
+    - 1820
+    - 1825
+  learned_skills:
+    NV_BASIC:
+      id: NV_BASIC
+      id_num: 1
+    NV_FIRSTAID:
+      id: NV_FIRSTAID
+      id_num: 142
+    NV_TRICKDEAD:
+      id: NV_TRICKDEAD
+      id_num: 143
+    ALL_FULL_THROTTLE:
+      id: ALL_FULL_THROTTLE
+      id_num: 5014
+  passive_skills: {}
+  attack_skills: {}
+  allow_equipment_weapons_type:
+    - 0
+    - 134
+  base_lv_min: 99
+  base_lv_max: 200
+  job_lv_max: 70
+  status_basic_max: 130
+  status_talent_max: 0
+  _mig_id_num: 87
+ALITEA:
+  id_name: ALITEA
+  id_num: 4347
+  is_doram: false
+  name: Alitea
+  name_ja: アリテア
+  name_alias:
+    - アリテア
+  is_rebirthed: true
+  job_type_num: 11
+  job_type_name: fourth_job
+  weight_correction: 0
+  weapons_aspd:
+    '0': 151
+    '1': 147
+    '6': 146
+    '7': 143
+    '8': 147
+  additional_status:
+    '1':
+      name: int
+      add_value: 1
+    '2':
+      name: pow
+      add_value: 1
+    '3':
+      name: dex
+      add_value: 1
+    '4':
+      name: int
+      add_value: 1
+    '5':
+      name: pow
+      add_value: 1
+    '6':
+      name: str
+      add_value: 1
+    '7':
+      name: int
+      add_value: 1
+    '8':
+      name: crt
+      add_value: 1
+    '9':
+      name: vit
+      add_value: 1
+    '10':
+      name: int
+      add_value: 1
+    '11':
+      name: dex
+      add_value: 1
+    '12':
+      name: luk
+      add_value: 1
+    '13':
+      name: vit
+      add_value: 1
+    '14':
+      name: crt
+      add_value: 1
+    '15':
+      name: wis
+      add_value: 1
+    '16':
+      name: str
+      add_value: 1
+    '17':
+      name: agi
+      add_value: 1
+    '18':
+      name: sta
+      add_value: 1
+    '19':
+      name: pow
+      add_value: 1
+    '20':
+      name: str
+      add_value: 1
+    '21':
+      name: int
+      add_value: 1
+    '22':
+      name: agi
+      add_value: 1
+    '23':
+      name: agi
+      add_value: 1
+    '24':
+      name: int
+      add_value: 1
+    '25':
+      name: agi
+      add_value: 1
+    '26':
+      name: luk
+      add_value: 1
+    '27':
+      name: con
+      add_value: 1
+    '28':
+      name: pow
+      add_value: 1
+    '29':
+      name: int
+      add_value: 1
+    '30':
+      name: con
+      add_value: 1
+    '31':
+      name: vit
+      add_value: 1
+    '32':
+      name: agi
+      add_value: 1
+    '33':
+      name: sta
+      add_value: 1
+    '34':
+      name: pow
+      add_value: 1
+    '35':
+      name: con
+      add_value: 1
+    '36':
+      name: pow
+      add_value: 1
+    '37':
+      name: con
+      add_value: 1
+    '38':
+      name: crt
+      add_value: 1
+    '39':
+      name: sta
+      add_value: 1
+    '40':
+      name: pow
+      add_value: 1
+    '41':
+      name: pow
+      add_value: 1
+    '42':
+      name: crt
+      add_value: 1
+    '43':
+      name: sta
+      add_value: 1
+    '44':
+      name: pow
+      add_value: 1
+    '45':
+      name: crt
+      add_value: 1
+    '46':
+      name: crt
+      add_value: 1
+    '47':
+      name: wis
+      add_value: 1
+    '48':
+      name: sta
+      add_value: 1
+    '49':
+      name: con
+      add_value: 1
+    '50':
+      name: crt
+      add_value: 1
+    '51':
+      name: con
+      add_value: 1
+    '53':
+      name: sta
+      add_value: 1
+    '55':
+      name: con
+      add_value: 1
+    '57':
+      name: wis
+      add_value: 1
+    '59':
+      name: con
+      add_value: 1
+  hp_basic_values:
+    - 26705
+    - 26918
+    - 27131
+    - 27344
+    - 27557
+    - 27770
+    - 27983
+    - 28196
+    - 28409
+    - 28622
+    - 28835
+    - 29048
+    - 29261
+    - 29474
+    - 29687
+    - 29900
+    - 30113
+    - 30326
+    - 30539
+    - 30752
+    - 30965
+    - 31178
+    - 31391
+    - 31604
+    - 31817
+    - 32030
+    - 32243
+    - 32456
+    - 32669
+    - 32882
+    - 33095
+    - 33308
+    - 33521
+    - 33734
+    - 33947
+    - 34160
+    - 34373
+    - 34586
+    - 34799
+    - 35012
+    - 35225
+    - 35438
+    - 35651
+    - 35864
+    - 36077
+    - 36290
+    - 36503
+    - 36716
+    - 36929
+    - 37142
+    - 37355
+    - 37568
+    - 37781
+    - 37994
+    - 38207
+    - 38420
+    - 38633
+    - 38846
+    - 39059
+    - 39272
+    - 39485
+    - 39698
+    - 39911
+    - 40124
+    - 40337
+    - 40550
+    - 40763
+    - 40976
+    - 41189
+    - 41402
+    - 41615
+    - 41828
+    - 42041
+    - 42254
+    - 42467
+    - 42680
+  sp_basic_values:
+    - 1275
+    - 1280
+    - 1285
+    - 1290
+    - 1295
+    - 1300
+    - 1305
+    - 1310
+    - 1315
+    - 1320
+    - 1325
+    - 1330
+    - 1335
+    - 1340
+    - 1345
+    - 1350
+    - 1355
+    - 1360
+    - 1365
+    - 1370
+    - 1375
+    - 1380
+    - 1385
+    - 1390
+    - 1395
+    - 1400
+    - 1405
+    - 1410
+    - 1415
+    - 1420
+    - 1425
+    - 1430
+    - 1435
+    - 1440
+    - 1445
+    - 1450
+    - 1455
+    - 1460
+    - 1465
+    - 1470
+    - 1475
+    - 1480
+    - 1485
+    - 1490
+    - 1495
+    - 1500
+    - 1505
+    - 1510
+    - 1515
+    - 1520
+    - 1525
+    - 1530
+    - 1535
+    - 1540
+    - 1545
+    - 1550
+    - 1555
+    - 1560
+    - 1565
+    - 1570
+    - 1575
+    - 1580
+    - 1585
+    - 1590
+    - 1595
+    - 1600
+    - 1605
+    - 1610
+    - 1615
+    - 1620
+    - 1625
+    - 1630
+    - 1635
+    - 1640
+    - 1645
+    - 1650
+  learned_skills:
+    NV_BASIC:
+      id: NV_BASIC
+      id_num: 1
+    NV_FIRSTAID:
+      id: NV_FIRSTAID
+      id_num: 142
+    NV_TRICKDEAD:
+      id: NV_TRICKDEAD
+      id_num: 143
+    ALL_FULL_THROTTLE:
+      id: ALL_FULL_THROTTLE
+      id_num: 5014
+  passive_skills: {}
+  attack_skills: {}
+  allow_equipment_weapons_type:
+    - 0
+    - 134
+    - 178
+    - 192
+    - 206
+  base_lv_min: 200
+  base_lv_max: 275
+  job_lv_max: 60
+  status_basic_max: 130
+  status_talent_max: 110
+  _mig_id_num: 88

@@ -113,6 +113,10 @@ CGlobalConstManager.DefineEnum(
 		"JOB_ID_NIGHT_WATCH",  		// 83
 		"JOB_ID_HYPER_NOVICE",  	// 84
 		"JOB_ID_SPIRIT_HANDLER",	// 85
+		// ドルイド系
+		"JOB_ID_DRUID",		// 86
+		"JOB_ID_KARNOS",	// 87
+		"JOB_ID_ALITEA",	// 88
 	]
 );
 
@@ -280,6 +284,12 @@ function GetLowerJobSeriesID(jobID){
 	case JOB_ID_SUMMONER:
 	case MIG_JOB_ID_SPIRIT_HANDLER:
 		return JOB_SERIES_ID_SUMMONER;
+	
+	// ドルイド系
+	case JOB_ID_KARNOS:
+	case JOB_ID_ALITEA:
+	case JOB_ID_DRUID:
+		return JOB_ID_DRUID;
 
 	}
 
@@ -381,7 +391,6 @@ function GetHigherJobSeriesID(jobID) {
 
 	case JOB_ID_SUMMONER:
 		return JOB_SERIES_ID_SUMMONER;
-
 	}
 
 
@@ -430,6 +439,7 @@ function IsYojiJob(jobID) {
 		case MIG_JOB_ID_NIGHT_WATCH:
 		case MIG_JOB_ID_HYPER_NOVICE:
 		case MIG_JOB_ID_SPIRIT_HANDLER:
+		case MIG_JOB_ID_ALITEA:
 			return true;
 	}
 	return false;
@@ -591,6 +601,7 @@ function IsSameJobGroup(target_job, current_job = n_A_JOB) {
 		[MIG_JOB_ID_GUNSLINGER, MIG_JOB_ID_REBELLION, MIG_JOB_ID_NIGHT_WATCH],
 		[MIG_JOB_ID_SUPERNOVICE, MIG_JOB_ID_SUPERNOVICE_PLUS, MIG_JOB_ID_HYPER_NOVICE],
 		[MIG_JOB_ID_SUMMONER, MIG_JOB_ID_SPIRIT_HANDLER],
+		[MIG_JOB_ID_DRUID, MIG_JOB_ID_KARNOS, MIG_JOB_ID_ALITEA],
 	];
 	for (let i = 0; i < job_series.length; i++) {
 		if (job_series[i].includes(current_job) && job_series[i].includes(target_job)) {
@@ -602,6 +613,8 @@ function IsSameJobGroup(target_job, current_job = n_A_JOB) {
 
 /**
  * ベースレベルの最小値を取得する.
+ * 呼び出し元の処理が一部 TypeScript に置き換えられておりBaseLvの下限として機能していない.
+ * しかし HP/SP 配列のオフセットとして今も利用されているので廃止することはできない.
  * @param jobId ジョブＩＤ
  */
 function GetBaseLevelMin(jobId) {
@@ -629,6 +642,7 @@ function GetBaseLevelMin(jobId) {
 	case MIG_JOB_ID_NIGHT_WATCH:
 	case MIG_JOB_ID_HYPER_NOVICE:
 	case MIG_JOB_ID_SPIRIT_HANDLER:
+	case MIG_JOB_ID_ALITEA:
 		return 200;
 
 	case JOB_ID_RUNEKNIGHT:
@@ -652,6 +666,7 @@ function GetBaseLevelMin(jobId) {
 	case JOB_ID_REBELLION:
 	case JOB_ID_STAR_EMPEROR:
 	case JOB_ID_SOUL_REAPER:
+	case MIG_JOB_ID_KARNOS:
 		return 99;
 
 	case JOB_ID_SUPERNOVICE:
@@ -693,6 +708,7 @@ function GetBaseLevelMax(jobId) {
 		case MIG_JOB_ID_NIGHT_WATCH:
 		case MIG_JOB_ID_HYPER_NOVICE:
 		case MIG_JOB_ID_SPIRIT_HANDLER:
+		case MIG_JOB_ID_ALITEA:
 			return 275;
 
 		case JOB_ID_RUNEKNIGHT:
@@ -715,6 +731,7 @@ function GetBaseLevelMax(jobId) {
 		case JOB_ID_SOUL_REAPER:
 		case JOB_ID_SUMMONER:
 		case JOB_ID_SUPERNOVICE_PLUS:
+		case JOB_ID_KARNOS:
 			return 200;
 
 		default:
@@ -787,6 +804,7 @@ function GetJobLevelMax(jobId) {
 		case JOB_ID_STAR_EMPEROR:
 		case JOB_ID_SOUL_REAPER:
 		case JOB_ID_SUPERNOVICE_PLUS:
+		case JOB_ID_KARNOS:
 			return 70;
 
 		case JOB_ID_LORDKNIGHT:
@@ -804,6 +822,7 @@ function GetJobLevelMax(jobId) {
 		case JOB_ID_CREATOR:
 		case JOB_ID_NINJA:
 		case JOB_ID_GUNSLINGER:
+		case JOB_ID_DRUID:
 			return 70;
 
 		case JOB_ID_SUPERNOVICE:
@@ -829,6 +848,7 @@ function GetJobLevelMax(jobId) {
 		case MIG_JOB_ID_NIGHT_WATCH:
 		case MIG_JOB_ID_HYPER_NOVICE:
 		case MIG_JOB_ID_SPIRIT_HANDLER:
+		case MIG_JOB_ID_ALITEA:
 			return 60;
 
 	}
@@ -866,6 +886,7 @@ function GetStatusMax(jobId, bChild) {
 		case JOB_ID_SOUL_REAPER:
 		case JOB_ID_SUPERNOVICE_PLUS:
 		case JOB_ID_SUMMONER:
+		case JOB_ID_KARNOS:
 
 		case MIG_JOB_ID_DRAGON_KNIGHT:
 		case MIG_JOB_ID_SHADOW_CROSS:
@@ -887,6 +908,7 @@ function GetStatusMax(jobId, bChild) {
 		case MIG_JOB_ID_NIGHT_WATCH:
 		case MIG_JOB_ID_HYPER_NOVICE:
 		case MIG_JOB_ID_SPIRIT_HANDLER:
+		case MIG_JOB_ID_ALITEA:
 			return 117;
 
 		case JOB_ID_TAEGWON:
@@ -894,6 +916,7 @@ function GetStatusMax(jobId, bChild) {
 		case JOB_ID_SOULLINKER:
 		case JOB_ID_NINJA:
 		case JOB_ID_GUNSLINGER:
+		case JOB_ID_DRUID:
 			return 99;
 
 		}
@@ -927,6 +950,7 @@ function GetStatusMax(jobId, bChild) {
 	case JOB_ID_SOUL_REAPER:
 	case JOB_ID_SUPERNOVICE_PLUS:
 	case JOB_ID_SUMMONER:
+	case JOB_ID_KARNOS:
 
 	case MIG_JOB_ID_DRAGON_KNIGHT:
 	case MIG_JOB_ID_SHADOW_CROSS:
@@ -948,6 +972,7 @@ function GetStatusMax(jobId, bChild) {
 	case MIG_JOB_ID_NIGHT_WATCH:
 	case MIG_JOB_ID_HYPER_NOVICE:
 	case MIG_JOB_ID_SPIRIT_HANDLER:
+	case MIG_JOB_ID_ALITEA:
 
 		return 130;
 
@@ -1149,6 +1174,31 @@ function GetSPBase(jobId, baseLv, bChild) {
 //================================================================================================
 //================================================================================================
 
+/**
+ * 経験値テーブル定義
+ * 
+ * ROは職業ごとに異なる経験値テーブルを採用している
+ * https://ragnarokonline.gungho.jp/gameguide/character/exp-table.html
+ * 
+ * BaseEXPテーブル 2種
+ * - 未転生Base99まで
+ * - 転生・ドラム
+ * 
+ * JobEXPテーブル 12種
+ * - ノービス
+ * - 転生ノービス
+ * - 1次職・テコンキッド
+ * - 転生1次職
+ * - 2次職・ソウルリンカー
+ * - 上位2次職
+ * - 忍者・ガンスリンガー
+ * - 拳聖
+ * - 3次職・上位特殊1次職
+ * - スーパーノービスJob99まで
+ * - サモナー
+ * - 4次職・拡張4次職
+ */
+
 CGlobalConstManager.DefineEnum(
 	"BaseExpTableId",
 	[
@@ -1157,21 +1207,26 @@ CGlobalConstManager.DefineEnum(
 	]
 );
 
+/**
+ * 8と12は同じテーブルを参照するが
+ * 一部のコードで本定数を職業分類として利用する場面があるので分けている
+ */
 CGlobalConstManager.DefineEnum(
 	"JobExpTableId",
 	[
-		"JOB_EXP_TABLE_ID_NOVICE",
-		"JOB_EXP_TABLE_ID_NOVICE_REINCANATED",
-		"JOB_EXP_TABLE_ID_1ST",
-		"JOB_EXP_TABLE_ID_1ST_REINCANATED",
-		"JOB_EXP_TABLE_ID_2ND",
-		"JOB_EXP_TABLE_ID_2ND_REINCANATED",
-		"JOB_EXP_TABLE_ID_EXTRA_1ST",
-		"JOB_EXP_TABLE_ID_STAR_GRADIATOR",
-		"JOB_EXP_TABLE_ID_3RD",
-		"JOB_EXP_TABLE_ID_SUPER_NOVICE",
-		"JOB_EXP_TABLE_ID_SUMMONER",
-		"JOB_EXP_TABLE_ID_4TH",
+		"JOB_EXP_TABLE_ID_NOVICE",				// 0: ノービスのみ
+		"JOB_EXP_TABLE_ID_NOVICE_REINCANATED",	// 1: 転生ノービスのみ
+		"JOB_EXP_TABLE_ID_1ST",					// 2: ソードマン、マーチャント、アコライトなど公式で「1次職」と表記される職業
+		"JOB_EXP_TABLE_ID_1ST_REINCANATED", 	// 3: 転生した「1次職」
+		"JOB_EXP_TABLE_ID_2ND",					// 4: ナイト、ブラックスミス、プリーストなど公式で「2次職」と表記される職業
+		"JOB_EXP_TABLE_ID_2ND_REINCANATED",		// 5: ロードナイト、ホワイトスミスなど公式で「上位2次職」と表記される職業
+		"JOB_EXP_TABLE_ID_EXTRA_1ST",			// 6: 忍者、ガンスリンガーなど公式で「特殊1次職」と表記される職業
+		"JOB_EXP_TABLE_ID_STAR_GRADIATOR",		// 7: 拳聖のみ
+		"JOB_EXP_TABLE_ID_3RD",					// 8: ルーンナイト、メカニック、アークビショップなど公式で「3次職」と表記される職業
+		"JOB_EXP_TABLE_ID_SUPER_NOVICE",		// 9: 限界突破していないスーパーノービス
+		"JOB_EXP_TABLE_ID_SUMMONER",			// 10: サモナーのみ
+		"JOB_EXP_TABLE_ID_4TH",					// 11: ドラゴンナイト、マイスターなど公式で「4次職」、または蜃気楼、不知火など公式で「上位特殊2次職」と表記される職業
+		"JOB_EXP_TABLE_ID_EXTRA_1ST_UPGRADE",	// 12 リベリオン、ソウルリーパー，星帝など公式で「上位特殊1次職」と表記される職業＋スパノビ限界突破
 	]
 );
 
@@ -2086,8 +2141,9 @@ function GetJobExpTable(tableId) {
 				,0
 			];
 			break;
-		// 三次職
+		// 三次職・上位特殊一次職・スパノビ限界突破
 		case JOB_EXP_TABLE_ID_3RD:
+		case JOB_EXP_TABLE_ID_EXTRA_1ST_UPGRADE:
 			expTable = [
 				// 1 - 10
 				0
