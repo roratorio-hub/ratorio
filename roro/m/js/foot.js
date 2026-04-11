@@ -15849,6 +15849,7 @@ function getFixedCastTimeReductionRate() {
  * @returns {Number} 
  */
 function getFlee() {
+	let prefetch = 0;
     let flee = 0;
 
     //----------------------------------------------------------------
@@ -16394,6 +16395,10 @@ function getFlee() {
         flee += 50 * sklLv;
     }
 
+	/** ドルイド「プリーニング」による Flee + 効果 */
+	flee += 10 * UsedSkillSearch(SKILL_ID_PREENING);
+
+	// その他未整理
     if (n_A_PassSkill4[9]) flee += 50;
     if (n_A_PassSkill3[11]) flee -= (20 + 5 * n_A_PassSkill3[11]);
 
@@ -20785,6 +20790,9 @@ function GetAdditionalAspdPercent() {
     let cardCountBody = 0;
     let cardCountShoulder = 0;
     let cardCountShoes = 0;
+
+	let prefetch = 0;
+
     //----------------------------------------------------------------
     // ランダムエンチャント効果
     //----------------------------------------------------------------
@@ -22008,6 +22016,9 @@ function GetAdditionalAspdPercent() {
     if (UsedSkillSearch(SKILL_ID_INVISIBILITY) > 0) {
         tmp_percent -= (50 - 10 * UsedSkillSearch(SKILL_ID_INVISIBILITY));
     }
+
+	/** ドルイド「ビースティノーズ」による攻撃速度 + 効果 */
+	tmp_percent += LearnedSkillSearch(SKILL_ID_BEASTY_NOSE);
 
     //----------------------------------------------------------------
     // 「星帝　星の構え」の効果
@@ -28446,7 +28457,21 @@ function StPlusCalc() {
 		wSPC_VIT += prefetch;
 		wSPC_INT += prefetch;
 	}
-	
+
+	/** ドルイド「プリーニング」による Agi・Dex + 効果 */
+	prefetch = UsedSkillSearch(SKILL_ID_PREENING);
+	if (prefetch > 0) {
+		wSPC_AGI += 2 * prefetch;
+		wSPC_DEX += 2 * prefetch;
+	}
+
+	/** ドルイド「ブラッドハウリング」による Str・Luk + 効果 */
+	prefetch = UsedSkillSearch(SKILL_ID_BLOOD_HOWLING);
+	if (prefetch > 0) {
+		wSPC_STR += 2 * prefetch;
+		wSPC_LUK += 2 * prefetch;
+	}
+
 	// 特性ステータス補正の保持
 	var spc4thArray = StoreSpecStatusBonusAll(wSPC_POW, wSPC_STA, wSPC_WIS, wSPC_SPL, wSPC_CON, wSPC_CRT);
 

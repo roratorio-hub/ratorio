@@ -10337,8 +10337,9 @@ function GetStatusModifyMdefDivUp(bIgnoreBuff) {
 }
 
 /**
-* 装備等によるステータスの追加補正値を取得する（ＨＩＴ＋）.
-*/
+ * 公式サイトで Hit + ◯ と表記される
+ * 装備等によるステータスの追加補正値を取得する（ＨＩＴ＋）.
+ */
 function GetStatusModifyHitPlus() {
 	let idx = 0;
 	let val = 0;
@@ -10352,6 +10353,8 @@ function GetStatusModifyHitPlus() {
 	let sklLv = 0;
 	let bufLv = 0;
 	let bufferSkillLv = 0;
+
+	let prefetch = 0;
 
 	//----------------------------------------------------------------
 	// ランダムエンチャント効果
@@ -11758,6 +11761,12 @@ function GetStatusModifyHitPlus() {
 	if ((bufLv = ExBuffNumSearch(EXBUF_ID_BUCHE_DE_NOEL)) > 0) {
 		val += 3 * bufLv;
 	}
+
+	/** ドルイド「シャープアイズ」による Hit + 効果 */
+	val += 5 * LearnedSkillSearch(SKILL_ID_SHARPE_EYES);
+
+	/** ドルイド「ブラッドハウリング」による Hit + 効果 */
+	val += 10 * UsedSkillSearch(SKILL_ID_BLOOD_HOWLING);
 
 	//----------------------------------------------------------------
 	// 「茶菓子」の、効果
