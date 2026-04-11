@@ -285,6 +285,30 @@ function CCharaConfYozi(confArray) {
 		this.confDataObj[confId] = confData;
 		confId++;
 
+		CCharaConfYozi.CONF_ID_ZEPHYR_LINK = confId;
+		confData = [
+			confId,
+			CConfBase.ConfText("ゼファーリンク"),
+			CConfBase.ConfControlType(CONTROL_TYPE_CHECKBOX),
+			CConfBase.ConfDefaultValue(0),
+			CConfBase.ConfMinValue(0),
+			CConfBase.ConfMaxValue(1)
+		];
+		this.confDataObj[confId] = confData;
+		confId++;
+
+		CCharaConfYozi.CONF_ID_AERO_SYNC = confId;
+		confData = [
+			confId,
+			CConfBase.ConfText("エアロシンク"),
+			CConfBase.ConfControlType(CONTROL_TYPE_SELECTBOX_NUMBER),
+			CConfBase.ConfDefaultValue(0),
+			CConfBase.ConfMinValue(0),
+			CConfBase.ConfMaxValue(5)
+		];
+		this.confDataObj[confId] = confData;
+		confId++;
+
 		CCharaConfYozi.CONF_ID_DUMMY = confId;
 		confData = [
 			confId,
@@ -347,6 +371,8 @@ function CCharaConfYozi(confArray) {
 			CCharaConfYozi.CONF_ID_NYAN_BRESSING,
 			CCharaConfYozi.CONF_ID_MARIN_FESTIVAL,
 			CCharaConfYozi.CONF_ID_SAND_FESTIVAL,
+			CCharaConfYozi.CONF_ID_ZEPHYR_LINK,
+			CCharaConfYozi.CONF_ID_AERO_SYNC
 		];
 		this.confDataObj = displayOrder.map(id => this.confDataObj[id]);
 

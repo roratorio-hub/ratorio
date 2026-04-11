@@ -635,7 +635,7 @@ function BattleCalc999Body(battleCalcInfo, charaData, specData, mobData, attackM
 	let battleCalcResult = null;
 	let dmgUnitArray = null;
 	/** クリティカル発生フラグ true/false */
-	const bCri = (g_skillManager.GetCriActRate(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData, specData, mobData) > 0);
+	const bCri = (g_skillManager.GetCriActRate(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData, specData, mobData, attackMethodConfArray[0]) > 0);
 	// ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
 	//
 	// 呼び出し元から移植
@@ -2502,6 +2502,10 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			case SKILL_ID_MEGA_SONIC_BLOW:
 			case SKILL_ID_SHIELD_CHAIN_RUSH:
 			case SKILL_ID_SPIRAL_PIERCE_MAX:
+			/** アリテア */
+			case SKILL_ID_PINION_SHOT:
+			case SKILL_ID_QUILL_SPEAR:
+			case SKILL_ID_TEMPEST_FLAP:
 
 				// スキル使用条件の判定
 				n_Buki_Muri = !g_skillManager.MatchWeaponCondition(n_A_ActiveSkill, n_A_WeaponType);
@@ -7129,6 +7133,19 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 		case SKILL_ID_IMPERIAL_PRESSURE: // インペリアルプレッシャー
 		/** カーディナル */
 		case SKILL_ID_DIVINUS_FLOS:	// ディヴィヌスフロス
+		/** アリテア */
+		case SKILL_ID_GLACIER_MONOLITH:
+		case SKILL_ID_GLACIER_SHARD:
+		case SKILL_ID_GLACIER_STOMP:
+		case SKILL_ID_ROARING_CHARGE:
+		case SKILL_ID_ROARING_PIERCER:
+		case SKILL_ID_FURIOS_STORM:
+		case SKILL_ID_TERRA_HARVEST:
+		case SKILL_ID_TERRA_WAVE:
+		case SKILL_ID_SOLID_STOMP:
+		case SKILL_ID_CHILLING_BLAST:
+		case SKILL_ID_GRAVITY_HOLE:
+
 			// スキル使用条件の判定
 			n_Buki_Muri = !g_skillManager.MatchWeaponCondition(n_A_ActiveSkill, n_A_WeaponType);
 			if (n_Buki_Muri) {
@@ -15563,7 +15580,7 @@ function calc() {
 	w_Cri = charaData[CHARA_DATA_INDEX_CRI];
 
 	// スキルクリティカルの確率補正を適用したクリティカル率を取得
-	w_Cri = g_skillManager.GetCriActRate(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, specData, mobData);
+	w_Cri = g_skillManager.GetCriActRate(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, specData, mobData, attackMethodConfArray[0]);
 
 	// 敵のCRI耐性減算
 	w_Cri -= ((mobData[MONSTER_DATA_INDEX_LEVEL] / 150) + (mobData[MONSTER_DATA_INDEX_LUK] / 5));
