@@ -49648,6 +49648,7 @@ DRUID:
     '6': 144
     '7': 141
     '8': 144
+    '61': 5
   additional_status:
     '1':
       name: int
@@ -49972,6 +49973,7 @@ KARNOS:
     '6': 145
     '7': 144
     '8': 146
+    '61': 5
   additional_status:
     '1':
       name: int
@@ -50318,11 +50320,12 @@ ALITEA:
   job_type_name: fourth_job
   weight_correction: 0
   weapons_aspd:
-    '0': 151
+    '0': 150
     '1': 147
     '6': 146
     '7': 143
     '8': 147
+    '61': 5
   additional_status:
     '1':
       name: int
@@ -50663,6 +50666,7 @@ ALITEA:
     - 134
     - 178
     - 192
+    - 196
     - 206
   base_lv_min: 200
   base_lv_max: 275
