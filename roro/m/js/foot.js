@@ -2178,6 +2178,8 @@ function StAllCalc(){
 	    let w = 0;
 	    let statusMatk = 0;
 	    let weaponMatk = 0;
+		/** アイテム数・スキルLvを格納する一次変数 */
+		let prefetch = 0;
 
 	    //----------------------------------------------------------------
 	    // ランダムエンチャント効果
@@ -3375,6 +3377,10 @@ function StAllCalc(){
 	        w += 3 * UsedSkillSearch(SKILL_ID_COUNT_OF_SOUL_ENERGY);
 	    }
 
+		/** ドルイド「ネイチャーロジック」による装備Matk + 効果 */
+		w += 15 * LearnedSkillSearch(SKILL_ID_NATURE_LOGIC)
+
+		// その他 未整理
 	    if (TimeItemNumSearch(59)) w += 5 * Math.floor(n_A_SHOULDER_DEF_PLUS / 3);
 	    if (TimeItemNumSearch(85)) w += 7 * n_A_BODY_DEF_PLUS;
 	    if (n_A_PassSkill7[49]) w += 30;
@@ -25674,6 +25680,10 @@ function GetCostFixOfSkill(skillId) {
 	return costfix;
 }
 
+/**
+ * 公式サイトで Str + ◯ などと表記される
+ * 基礎ステータス加算効果
+ */
 function StPlusCalc() {
 	let idx = 0;
 	let jobBonusArray = null;
@@ -25696,6 +25706,8 @@ function StPlusCalc() {
 	let cardCountShoes = 0;
 	let cardCountAccessary1 = 0;
 	let cardCountAccessary2 = 0;
+
+	let prefetch = 0;
 
 	// TODO: 将来的に構造の変更が必要
 	// 拡張表示用
@@ -28427,12 +28439,16 @@ function StPlusCalc() {
 	if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_GRENADE_MASTERY), UsedSkillSearch(SKILL_ID_GRENADE_MASTERY))) > 0) {
 		wSPC_CON += sklLv
 	}
-	
 
+	/** ドルイド「ネイチャーシールド」による Vit・Int + 効果 */
+	prefetch = UsedSkillSearch(SKILL_ID_NATURE_SHIELD);
+	if (prefetch > 0) {
+		wSPC_VIT += prefetch;
+		wSPC_INT += prefetch;
+	}
+	
 	// 特性ステータス補正の保持
 	var spc4thArray = StoreSpecStatusBonusAll(wSPC_POW, wSPC_STA, wSPC_WIS, wSPC_SPL, wSPC_CON, wSPC_CRT);
-
-
 
 	// ステータス補正の画面出力
 	DisplayStatusBonusAll(
@@ -28440,10 +28456,6 @@ function StPlusCalc() {
 		wSPC_STR, wSPC_AGI, wSPC_VIT, wSPC_INT, wSPC_DEX, wSPC_LUK,
 		spc4thArray[0], spc4thArray[1], spc4thArray[2], spc4thArray[3], spc4thArray[4], spc4thArray[5]
 	);
-
-
-
-
 
 	// 特性データ対応
 	// 画面出力
