@@ -342,7 +342,7 @@ CGlobalConstManager.DefineEnum(
 		"ITEM_EQPFLG_MAJO_NO_HOUKI",			// 193 ハイパーノービス 4次職マジシャン系 4次職アコライト系 ソウルアセティック
 		"ITEM_EQPFLG_TROUBADOUR_TROUVERE",		// 194 トルバドゥール&トルヴェール
 		"ITEM_EQPFLG_4TH_THIEF",				// 195 4次職シーフ系
-		"ITEM_EQPFLG_4TH_EXCLUDE_CAT", 			// 196 4次職 天帝 ソウルアセティック 蜃気楼 不知火 ナイトウォッチ ハイパーノービス
+		"ITEM_EQPFLG_4TH_EXCLUDE_CAT", 			// 196 4次職 天帝 ソウルアセティック 蜃気楼 不知火 ナイトウォッチ ハイパーノービス アリテア
 		"ITEM_EQPFLG_4TH_SWORDMAN_MERCHANT",	// 197 4次職ソードマン系 4次職マーチャント系
 		"ITEM_EQPFLG_4TH_BLADE_USER", 			// 198 ハイパーノービス 4次職ソードマン系 4次職マジシャン系 4次職アーチャー系 4次職シーフ系 4次職マーチャント系 ソウルアセティック 蜃気楼 不知火
 		"ITEM_EQPFLG_4TH_SWORDMAN", 			// 199 4次職ソードマン系
