@@ -603,6 +603,7 @@ SWORDMAN:
     - 92
     - 101
     - 96
+    - 179
     - 999
   base_lv_min: 1
   base_lv_max: 99
@@ -2391,6 +2392,7 @@ MERCHANT:
     - 92
     - 106
     - 96
+    - 179
     - 999
   base_lv_min: 1
   base_lv_max: 99
@@ -2854,6 +2856,7 @@ KNIGHT:
     - 92
     - 107
     - 96
+    - 179
     - 999
   base_lv_min: 1
   base_lv_max: 99
@@ -5226,6 +5229,7 @@ BLACKSMITH:
     - 92
     - 112
     - 96
+    - 179
     - 999
   base_lv_min: 1
   base_lv_max: 99
@@ -5725,6 +5729,7 @@ CRUSADER:
     - 92
     - 113
     - 96
+    - 179
     - 999
   base_lv_min: 1
   base_lv_max: 99
@@ -8736,6 +8741,7 @@ ALCHEMIST:
     - 92
     - 119
     - 96
+    - 179
     - 999
   base_lv_min: 1
   base_lv_max: 99
@@ -9762,6 +9768,7 @@ KNIGHT_H:
     - 92
     - 107
     - 121
+    - 179
     - 999
   base_lv_min: 1
   base_lv_max: 99
@@ -12487,6 +12494,7 @@ BLACKSMITH_H:
     - 92
     - 112
     - 126
+    - 179
     - 999
   base_lv_min: 1
   base_lv_max: 99
@@ -13053,6 +13061,7 @@ CRUSADER_H:
     - 92
     - 113
     - 127
+    - 179
     - 999
   base_lv_min: 1
   base_lv_max: 99
@@ -16466,6 +16475,7 @@ ALCHEMIST_H:
     - 92
     - 119
     - 133
+    - 179
     - 999
   base_lv_min: 1
   base_lv_max: 99
@@ -17097,6 +17107,7 @@ SWORDMAN_H:
     - 91
     - 92
     - 101
+    - 179
     - 999
   base_lv_min: 1
   base_lv_max: 99
@@ -18895,6 +18906,7 @@ MERCHANT_H:
     - 91
     - 92
     - 106
+    - 179
     - 999
   base_lv_min: 1
   base_lv_max: 99
@@ -21806,6 +21818,7 @@ RUNE_KNIGHT:
     - 107
     - 121
     - 146
+    - 179
     - 999
   base_lv_min: 90
   base_lv_max: 200
@@ -25199,6 +25212,7 @@ MECHANIC:
     - 112
     - 126
     - 151
+    - 179
     - 999
   base_lv_min: 90
   base_lv_max: 200
@@ -25896,6 +25910,7 @@ ROYAL_GUARD:
     - 113
     - 127
     - 152
+    - 179
     - 999
   base_lv_min: 90
   base_lv_max: 200
@@ -30217,6 +30232,7 @@ GENETIC:
     - 119
     - 133
     - 158
+    - 179
     - 999
   base_lv_min: 90
   base_lv_max: 200
@@ -35578,6 +35594,7 @@ DRAGON_KNIGHT:
     - 121
     - 146
     - 159
+    - 179
     - 192
     - 196
     - 197
@@ -39226,6 +39243,7 @@ MEISTER:
     - 126
     - 151
     - 164
+    - 179
     - 192
     - 196
     - 197
@@ -39968,6 +39986,7 @@ IMPERIAL_GUARD:
     - 127
     - 152
     - 165
+    - 179
     - 192
     - 196
     - 197
@@ -44581,6 +44600,7 @@ BIOLO:
     - 133
     - 158
     - 171
+    - 179
     - 192
     - 196
     - 197
@@ -49948,7 +49968,9 @@ DRUID:
   attack_skills: {}
   allow_equipment_weapons_type:
     - 0
+    - 90
     - 134
+    - 179
   base_lv_min: 1
   base_lv_max: 99
   job_lv_max: 70
@@ -50300,7 +50322,9 @@ KARNOS:
   attack_skills: {}
   allow_equipment_weapons_type:
     - 0
+    - 90
     - 134
+    - 179
   base_lv_min: 99
   base_lv_max: 200
   job_lv_max: 70
@@ -50663,8 +50687,10 @@ ALITEA:
   attack_skills: {}
   allow_equipment_weapons_type:
     - 0
+    - 90
     - 134
     - 178
+    - 179
     - 192
     - 196
     - 206

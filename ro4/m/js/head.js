@@ -2506,6 +2506,27 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			case SKILL_ID_PINION_SHOT:
 			case SKILL_ID_QUILL_SPEAR:
 			case SKILL_ID_TEMPEST_FLAP:
+			case SKILL_ID_PRIMAL_CLAW:
+			case SKILL_ID_FERAL_CLAW:
+			case SKILL_ID_ALPHA_CLAW:
+			case SKILL_ID_FRENZY_FANG:
+			case SKILL_ID_SAVAGE_LUNGE:
+			/** ドルイド */
+			case SKILL_ID_NOMERCY_CLAW:
+			case SKILL_ID_CRUEL_BITE:
+			case SKILL_ID_HUNGER:
+			case SKILL_ID_SHOOTING_FEATHER:
+			case SKILL_ID_LOW_FLIGHT:
+			case SKILL_ID_FLICKING_TONADO:
+			/** カルノス */
+			case SKILL_ID_DOUBLE_SLASH:
+			case SKILL_ID_CLAW_WAVE:
+			case SKILL_ID_CHOP_CHOP:
+			case SKILL_ID_NASTY_SLASH:
+			case SKILL_ID_SHARPEN_GUST:
+			case SKILL_ID_SHARPEN_HAIL:
+			case SKILL_ID_TYPHOON_WING:
+			case SKILL_ID_FEATHER_SPRINKLE:
 
 				// スキル使用条件の判定
 				n_Buki_Muri = !g_skillManager.MatchWeaponCondition(n_A_ActiveSkill, n_A_WeaponType);
@@ -7145,6 +7166,21 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 		case SKILL_ID_SOLID_STOMP:
 		case SKILL_ID_CHILLING_BLAST:
 		case SKILL_ID_GRAVITY_HOLE:
+		/** ドルイド */
+		case SKILL_ID_ICE_TOTEM:
+		case SKILL_ID_ICE_CLOUD:
+		case SKILL_ID_CUTTING_WIND:
+		case SKILL_ID_WIND_BOMB:
+		case SKILL_ID_EARTH_FLOWER:
+		case SKILL_ID_AROUND_FLOWER:
+		/** カルノス */
+		case SKILL_ID_ICE_PILLAR:
+		case SKILL_ID_ICE_SPLASH:
+		case SKILL_ID_THUNDERING_FOCUS:
+		case SKILL_ID_THUNDERING_ORB:
+		case SKILL_ID_THUNDERING_CALL:
+		case SKILL_ID_EARTH_DRILL:
+		case SKILL_ID_EARTH_STAMP:
 
 			// スキル使用条件の判定
 			n_Buki_Muri = !g_skillManager.MatchWeaponCondition(n_A_ActiveSkill, n_A_WeaponType);
@@ -7165,7 +7201,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
 			wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
 			// 地面設置スキルの情報
-			g_bDefinedDamageIntervals = g_skillManager.IsGroundInstallation(n_A_ActiveSkill);
+			g_bDefinedDamageIntervals = g_skillManager.IsGroundInstallation(n_A_ActiveSkill, attackMethodConfArray[0]);
 			if (g_bDefinedDamageIntervals) {
 				n_Delay[5] = g_skillManager.GetDamageInterval(n_A_ActiveSkill, n_A_ActiveSkillLV);
 				n_Delay[6] = g_skillManager.GetLifeTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
@@ -12697,7 +12733,7 @@ function calcReceivedMagicDamage(charaData, mobData, objCell){
 	/** スキルによる減少（排他的な効果） */
 	{
 		const candidate = [0];
-		// 金剛
+		// 金剛のダメージ軽減効果
 		if (UsedSkillSearch(SKILL_ID_KONGO) > 0) {
 			candidate.push(90);
 		}
