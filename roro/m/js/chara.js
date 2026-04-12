@@ -6557,9 +6557,13 @@ function GetStatusModifyMaxHpUp() {
 		val += -5 + 10 * sklLv;
 	}
 
-	/** ドルイド「シェイプシフト：ウェアウルフ」による MaxHP + 効果 */
+	/** ドルイド「アースバド」「シェイプシフト：ウェアウルフ」による MaxHP + 効果 */
 	if (UsedSkillSearch(SKILL_ID_WEREWOLF) > 0) {
+		// ウェアウルフのとき
 		val += 10;
+	} else if (UsedSkillSearch(SKILL_ID_WERERAPTOR) == 0) {
+		// ウェアウルフでもウェアラプターでもないとき
+		val += 2 * LearnedSkillSearch(SKILL_ID_EARTH_BUD);
 	}
 
 // 自己スキル効果　ここまで
@@ -8648,6 +8652,9 @@ function GetStatusModifyMaxSpUp() {
 	if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_GAKKINO_RENSHU), UsedSkillSearch(SKILL_ID_GAKKINO_RENSHU))) > 0) {
 		val += Math.round(0.5 * sklLv);
 	}
+
+	/** ドルイド「ネイチャーヴィゴール」のMaxSP + 効果 */
+	val += 5 * LearnedSkillSearch(SKILL_ID_NATURE_VIGOUR);
 
 	// 自己スキル効果　ここまで
 	//------------------------------------------------------------------------------------------------
