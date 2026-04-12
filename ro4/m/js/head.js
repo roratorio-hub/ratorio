@@ -2506,6 +2506,11 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			case SKILL_ID_PINION_SHOT:
 			case SKILL_ID_QUILL_SPEAR:
 			case SKILL_ID_TEMPEST_FLAP:
+			case SKILL_ID_PRIMAL_CLAW:
+			case SKILL_ID_FERAL_CLAW:
+			case SKILL_ID_ALPHA_CLAW:
+			case SKILL_ID_FRENZY_FANG:
+			case SKILL_ID_SAVAGE_LUNGE:
 
 				// スキル使用条件の判定
 				n_Buki_Muri = !g_skillManager.MatchWeaponCondition(n_A_ActiveSkill, n_A_WeaponType);

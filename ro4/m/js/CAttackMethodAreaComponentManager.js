@@ -4365,7 +4365,42 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 					ELM_ID_VANITY
 				);
 				break;
-			
+			/**
+			 * プライマルクロー
+			 * フェラルクロー
+			 * アルファクロー
+			 * サベージランジ
+			 */
+			case SKILL_ID_PRIMAL_CLAW:
+			case SKILL_ID_FERAL_CLAW:
+			case SKILL_ID_ALPHA_CLAW:
+			case SKILL_ID_SAVAGE_LUNGE:
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"狂気",
+					[
+						[0, "無し"],
+						[1, "I・II"],
+						[2, "III"],
+					],
+					0
+				);
+				break;
+
+			/**
+			 * フレンジファング
+			 */
+			case SKILL_ID_FRENZY_FANG:
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"狂気",
+					[
+						[0, "無し"],
+						[1, "I"],
+						[2, "II"],
+						[3, "III"],
+					],
+					0
+				);
+				break;
 		}
 	}
 };
