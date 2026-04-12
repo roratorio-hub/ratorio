@@ -7169,6 +7169,14 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 		case SKILL_ID_WIND_BOMB:
 		case SKILL_ID_EARTH_FLOWER:
 		case SKILL_ID_AROUND_FLOWER:
+		/** カルノス */
+		case SKILL_ID_ICE_PILLAR:
+		case SKILL_ID_ICE_SPLASH:
+		case SKILL_ID_THUNDERING_FOCUS:
+		case SKILL_ID_THUNDERING_ORB:
+		case SKILL_ID_THUNDERING_CALL:
+		case SKILL_ID_EARTH_DRILL:
+		case SKILL_ID_EARTH_STAMP:
 
 			// スキル使用条件の判定
 			n_Buki_Muri = !g_skillManager.MatchWeaponCondition(n_A_ActiveSkill, n_A_WeaponType);
@@ -7189,7 +7197,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
 			wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
 			// 地面設置スキルの情報
-			g_bDefinedDamageIntervals = g_skillManager.IsGroundInstallation(n_A_ActiveSkill);
+			g_bDefinedDamageIntervals = g_skillManager.IsGroundInstallation(n_A_ActiveSkill, attackMethodConfArray[0]);
 			if (g_bDefinedDamageIntervals) {
 				n_Delay[5] = g_skillManager.GetDamageInterval(n_A_ActiveSkill, n_A_ActiveSkillLV);
 				n_Delay[6] = g_skillManager.GetLifeTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);

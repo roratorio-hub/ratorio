@@ -4333,9 +4333,15 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 			/**
 			 * ロアリングチャージ
 			 * ロアリングピアサー
+			 * サンダリングフォーカス
+			 * サンダリングオーブ
+			 * サンダリングコール
 			 */
 			case SKILL_ID_ROARING_CHARGE:
 			case SKILL_ID_ROARING_PIERCER:
+			case SKILL_ID_THUNDERING_FOCUS:
+			case SKILL_ID_THUNDERING_ORB:
+			case SKILL_ID_THUNDERING_CALL:
 				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
 					"サンダリングロッドマックス",
 					[
@@ -4401,6 +4407,21 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 					0
 				);
 				break;
+			
+			/**
+			 * アイスピラー
+			 */
+			case SKILL_ID_ICE_PILLAR:
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"計算対象",
+					[
+						[0, "使用時ダメージ"],
+						[1, "設置ダメージ"],
+					],
+					0
+				);
+				break;
+
 		}
 	}
 };
