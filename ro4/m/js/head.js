@@ -2511,6 +2511,13 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			case SKILL_ID_ALPHA_CLAW:
 			case SKILL_ID_FRENZY_FANG:
 			case SKILL_ID_SAVAGE_LUNGE:
+			/** ドルイド */
+			case SKILL_ID_NOMERCY_CLAW:
+			case SKILL_ID_CRUEL_BITE:
+			case SKILL_ID_HUNGER:
+			case SKILL_ID_SHOOTING_FEATHER:
+			case SKILL_ID_LOW_FLIGHT:
+			case SKILL_ID_FLICKING_TONADO:
 
 				// スキル使用条件の判定
 				n_Buki_Muri = !g_skillManager.MatchWeaponCondition(n_A_ActiveSkill, n_A_WeaponType);
@@ -7150,6 +7157,13 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 		case SKILL_ID_SOLID_STOMP:
 		case SKILL_ID_CHILLING_BLAST:
 		case SKILL_ID_GRAVITY_HOLE:
+		/** ドルイド */
+		case SKILL_ID_ICE_TOTEM:
+		case SKILL_ID_ICE_CLOUD:
+		case SKILL_ID_CUTTING_WIND:
+		case SKILL_ID_WIND_BOMB:
+		case SKILL_ID_EARTH_FLOWER:
+		case SKILL_ID_AROUND_FLOWER:
 
 			// スキル使用条件の判定
 			n_Buki_Muri = !g_skillManager.MatchWeaponCondition(n_A_ActiveSkill, n_A_WeaponType);
