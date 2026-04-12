@@ -5416,13 +5416,10 @@ function StAllCalc(){
 			break;
 		}
 
-
+		/** ドルイド「ネイチャーヴィゴール」の SP自然回復量 + 効果 */
+		w += 30 * LearnedSkillSearch(SKILL_ID_NATURE_VIGOUR);
 
 		if(n_A_PassSkill7[24]) w += 20;
-
-
-
-
 
 		//----------------------------------------------------------------
 		// 「性能カスタマイズ」の、効果
@@ -7252,6 +7249,9 @@ function StAllCalc(){
 			// 対象が「フリップフラップ」状態の場合、「エアロシンク」状態にはならない
 			n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += 5 * g_confDataYozi[CCharaConfYozi.CONF_ID_AERO_SYNC];
 		}
+
+		/** ドルイド「エンレイジラプター」の遠距離物理攻撃で与えるダメージ + 効果 */
+		n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += 2 * UsedSkillSearch(SKILL_ID_ENRAGE_RAPTOR);
 
 		/**
 		 * 幻想叢書カード エレナ
@@ -13786,49 +13786,44 @@ function StAllCalc(){
 			n_tok[idx] = ApplySpecModify(idx, n_tok[idx]);
 		}
 
-
-
-
-
-
-
-
-
-//================================================================================================================================
-//================================================================================================================================
-//====
-//==== 近接物理攻撃で与えるダメージ＋○○％　ここから
-//====
-//================================================================================================================================
-//================================================================================================================================
+	/**
+	 * 公式サイトで
+	 * 近接物理攻撃で与えるダメージ ＋ ○○％
+	 * と表記されるダメージ増加効果
+	 */
+	{
+		let prefetch = 0;
 
 		//----------------------------------------------------------------
 		// ★★★暫定措置　コピペ禁止★★★
 		// 「変貌の白騎士」の、効果
 		//----------------------------------------------------------------
-		if ((cardCount = CardNumSearch(CARD_ID_HENBONO_SHIROKISHI)) > 0) {
-			n_tok[ITEM_SP_SHORTRANGE_DAMAGE_UP] += 5 * cardCount;
-			n_tok[ITEM_SP_SHORTRANGE_DAMAGE_UP] += 1 * Math.floor(n_A_BaseLV / 20) * cardCount;
+		if ((prefetch = CardNumSearch(CARD_ID_HENBONO_SHIROKISHI)) > 0) {
+			n_tok[ITEM_SP_SHORTRANGE_DAMAGE_UP] += 5 * prefetch;
+			n_tok[ITEM_SP_SHORTRANGE_DAMAGE_UP] += 1 * Math.floor(n_A_BaseLV / 20) * prefetch;
 		}
 
 		//----------------------------------------------------------------
 		// 「インペリアルマグマスーツ」の、スキル習得による効果
 		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearchMIG(ITEM_ID_IMPERIAL_MAGMA_SUIT)) > 0) {
-			n_tok[ITEM_SP_SHORTRANGE_DAMAGE_UP] += 3 * LearnedSkillSearch(SKILL_ID_MAGMA_ILLUPTION) * itemCount;
+		if ((prefetch = EquipNumSearchMIG(ITEM_ID_IMPERIAL_MAGMA_SUIT)) > 0) {
+			n_tok[ITEM_SP_SHORTRANGE_DAMAGE_UP] += 3 * LearnedSkillSearch(SKILL_ID_MAGMA_ILLUPTION) * prefetch;
 		}
 
 		//----------------------------------------------------------------
 		// 「グレースマグマスーツ」の、スキル習得による効果
 		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearchMIG(ITEM_ID_GRACE_MAGMA_SUIT)) > 0) {
-			n_tok[ITEM_SP_SHORTRANGE_DAMAGE_UP] += 6 * LearnedSkillSearch(SKILL_ID_MAGMA_ILLUPTION) * itemCount;
+		if ((prefetch = EquipNumSearchMIG(ITEM_ID_GRACE_MAGMA_SUIT)) > 0) {
+			n_tok[ITEM_SP_SHORTRANGE_DAMAGE_UP] += 6 * LearnedSkillSearch(SKILL_ID_MAGMA_ILLUPTION) * prefetch;
 		}
 
 		/** 四次職支援 アリテア「ゼファーリンク」の効果  */
 		if (g_confDataYozi[CCharaConfYozi.CONF_ID_ZEPHYR_LINK]) {
 			n_tok[ITEM_SP_SHORTRANGE_DAMAGE_UP] += 15;
 		}
+
+		/** ドルイド「エンレイジウルフ」の効果 */
+		n_tok[ITEM_SP_SHORTRANGE_DAMAGE_UP] += 2 * UsedSkillSearch(SKILL_ID_ENRAGE_WOLF);
 
 		/**
 		 * 幻想叢書カード セイレン
@@ -13840,15 +13835,16 @@ function StAllCalc(){
 		//----------------------------------------------------------------
 		// 「性能カスタマイズ」の、効果（遠距離と共用）
 		//----------------------------------------------------------------
-		confval = g_objCharaConfCustomAtk.GetConf(CCharaConfCustomAtk.CONF_ID_LONGRANGE_DAMAGE_UP);
-		if (confval != 0) {
-			n_tok[ITEM_SP_SHORTRANGE_DAMAGE_UP] += confval;
+		prefetch = g_objCharaConfCustomAtk.GetConf(CCharaConfCustomAtk.CONF_ID_LONGRANGE_DAMAGE_UP);
+		if (prefetch != 0) {
+			n_tok[ITEM_SP_SHORTRANGE_DAMAGE_UP] += prefetch;
 		}
 
 		// TODO: 四次対応
-		for (idx = ITEM_SP_SHORTRANGE_DAMAGE_UP; idx <= ITEM_SP_SHORTRANGE_DAMAGE_UP; idx++) {
+		for (let idx = ITEM_SP_SHORTRANGE_DAMAGE_UP; idx <= ITEM_SP_SHORTRANGE_DAMAGE_UP; idx++) {
 			n_tok[idx] = ApplySpecModify(idx, n_tok[idx]);
 		}
+	}
 
 //================================================================================================================================
 //================================================================================================================================
@@ -22004,7 +22000,7 @@ function GetAdditionalAspdPercent() {
     }
 
     //----------------------------------------------------------------
-    // 「モンク　金剛」の効果
+    // 「モンク　金剛」のASPDペナルティ効果
     //----------------------------------------------------------------
     if (UsedSkillSearch(SKILL_ID_KONGO) > 0) {
         tmp_percent -= 25;
