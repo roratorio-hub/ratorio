@@ -2518,6 +2518,11 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			case SKILL_ID_SHOOTING_FEATHER:
 			case SKILL_ID_LOW_FLIGHT:
 			case SKILL_ID_FLICKING_TONADO:
+			/** カルノス */
+			case SKILL_ID_DOUBLE_SLASH:
+			case SKILL_ID_CLAW_WAVE:
+			case SKILL_ID_CHOP_CHOP:
+			case SKILL_ID_NASTY_SLASH:
 
 				// スキル使用条件の判定
 				n_Buki_Muri = !g_skillManager.MatchWeaponCondition(n_A_ActiveSkill, n_A_WeaponType);
