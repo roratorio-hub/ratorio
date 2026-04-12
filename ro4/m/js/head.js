@@ -2523,6 +2523,10 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 			case SKILL_ID_CLAW_WAVE:
 			case SKILL_ID_CHOP_CHOP:
 			case SKILL_ID_NASTY_SLASH:
+			case SKILL_ID_SHARPEN_GUST:
+			case SKILL_ID_SHARPEN_HAIL:
+			case SKILL_ID_TYPHOON_WING:
+			case SKILL_ID_FEATHER_SPRINKLE:
 
 				// スキル使用条件の判定
 				n_Buki_Muri = !g_skillManager.MatchWeaponCondition(n_A_ActiveSkill, n_A_WeaponType);
