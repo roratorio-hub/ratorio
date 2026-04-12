@@ -12733,7 +12733,7 @@ function calcReceivedMagicDamage(charaData, mobData, objCell){
 	/** スキルによる減少（排他的な効果） */
 	{
 		const candidate = [0];
-		// 金剛
+		// 金剛のダメージ軽減効果
 		if (UsedSkillSearch(SKILL_ID_KONGO) > 0) {
 			candidate.push(90);
 		}
