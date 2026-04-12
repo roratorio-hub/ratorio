@@ -850,7 +850,6 @@ function GetCRate() {
 	value += Math.floor(GetTotalSpecStatus(MIG_PARAM_ID_CRT) / 3);
 
 	// 装備効果
-	value += n_tok[ITEM_SP_C_RATE_PLUS];
 	value += GetEquippedTotalSPEquip(ITEM_SP_C_RATE_PLUS);
 	value += GetEquippedTotalSPCardAndElse(ITEM_SP_C_RATE_PLUS);
 	value += GetRndOptTotalValue(ITEM_SP_C_RATE_PLUS);
