@@ -1,136 +1,104 @@
 card_list:
-  - name: ハーウェル・メガス・バルター
-    yomi: ハーウェルメガスバルター
-    type: 全ての部位
-    capabilities:
-      - name: ATK加算
-        value: 1
-        per_lv: 2
-      - name: MATK加算
-        value: 1
-        per_lv: 2
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 王家の栄光
-        capabilities:
-          - name: スキルダメージ増加
-            skill: プライマルクロー
-            value: 25
-          - name: スキルダメージ増加
-            skill: フェラルクロー
-            value: 25
-          - name: スキルダメージ増加
-            skill: アルファクロー
-            value: 25
-          - name: スキルダメージ増加
-            skill: サベージランジ
-            value: 25
-          - name: スキルダメージ増加
-            skill: フレンジファング
-            value: 25
-          - name: スキルダメージ増加
-            skill: ピニオンショット
-            value: 25
-          - name: スキルダメージ増加
-            skill: クイールスピア
-            value: 25
-          - name: スキルダメージ増加
-            skill: テンペストフラップ
-            value: 25
-          - name: スキルダメージ増加
-            skill: グレイシアモノリス
-            value: 25
-          - name: スキルダメージ増加
-            skill: グレイシアノヴァ
-            value: 25
-          - name: スキルダメージ増加
-            skill: グレイシアシャード
-            value: 25
-          - name: スキルダメージ増加
-            skill: グレイシアストンプ
-            value: 25
-          - name: スキルダメージ増加
-            skill: チリングブラスト
-            value: 25
-          - name: スキルダメージ増加
-            skill: ロアリングピアサー
-            value: 25
-          - name: スキルダメージ増加
-            skill: ロアリングチャージ
-            value: 25
-          - name: スキルダメージ増加
-            skill: フューリアスストーム
-            value: 25
-          - name: スキルダメージ増加
-            skill: テラウェーブ
-            value: 25
-          - name: スキルダメージ増加
-            skill: テラハーベスト
-            value: 25
-          - name: スキルダメージ増加
-            skill: ソリッドストンプ
-            value: 25
-          - name: スキルダメージ増加
-            skill: グラビティホール
-            value: 25
+  - name: 魔弓の弦音
+    yomi: マキュウノツルネ
+    desc: "物理攻撃命中時、一定確率で10秒間、Hit + 150、攻撃速度 + 100%、[セシル=ディモン]に変身"
+    type: エンチャント
 
-  - name: 女帝のカード
-    yomi: ジョテイノカード
-    type: 全ての部位
-    capabilities:
-      - name: スキルダメージ増加
-        skill: クローウェーブ
-        value: 5
-      - name: スキルダメージ増加
-        skill: クローウェーブ
-        value: 1
-        per_refine: 1
-      - name: スキルダメージ増加
-        skill: クローウェーブ
-        value: 5
-        at_refine: 10
+  - name: 潜在解放(ウィンドホークXX)
+    yomi: センザイカイホウウィンドホーク20
+    type: エンチャント
     set_list:
       - set:
         entity_list:
-          - card_name: アルカナ
+          - card_name: 豪傑
         capabilities:
-          - name: STR加算
-            value: 2
-          - name: LUK加算
-            value: 2
-          - name: クリティカルダメージ増加
-            value: 10
-          - name: スキルダメージ増加
-            skill: クローウェーブ
-            value: 50
+          - name: 再使用待機時間減少
+            skill: ホークブーメラン
+            value: 300
+          - name: 再使用待機時間減少
+            skill: ホークラッシュ
+            value: 300
 
-  - name: 女帝のカード(逆位置)
-    yomi: ジョテイノカードギャクイチ
-    type: 全ての部位
-    capabilities:
-      - name: スキルダメージ増加
-        skill: フェザースプリンクル
-        value: 5
-      - name: スキルダメージ増加
-        skill: フェザースプリンクル
-        value: 1
-        per_refine: 1
-      - name: スキルダメージ増加
-        skill: フェザースプリンクル
-        value: 5
-        at_refine: 10
+  - name: 潜在解放(カーディナルXX)
+    yomi: センザイカイホウカーディナル20
+    type: エンチャント
     set_list:
       - set:
         entity_list:
-          - card_name: アルカナ
+          - card_name: 真理の解放
         capabilities:
-          - name: AGI加算
-            value: 2
-          - name: DEX加算
-            value: 2
-          - name: 命中物理攻撃で与えるダメージ増加
-            value: 5
-          - name: スキルダメージ増加
-            skill: フェザースプリンクル
-            value: 50
+          - name: 再使用待機時間減少
+            skill: ディヴィヌスフロス
+            value: 200
+
+  - name: 潜在解放(シャドウクロスXVIII)
+    yomi: センザイカイホウシャドウクロス18
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: 再使用待機時間減少
+            skill: クロススラッシュ
+            value: 100
+
+  - name: 潜在解放(ナイトウォッチXVII)
+    yomi: センザイカイホウナイトウォッチ17
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: 再使用待機時間減少
+            skill: ミッドナイトフォーリン
+            value: 300
+
+  - name: 潜在解放(ハイパーノービスXXII)
+    yomi: センザイカイホウハイパーノービス22
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 真理の解放
+        capabilities:
+          - name: 再使用待機時間減少
+            skill: ジャックフロストノヴァ
+            value: 2000
+
+  - name: 潜在解放(マイスターXVII)
+    yomi: センザイカイホウマイスター17
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: 再使用待機時間減少
+            skill: パワフルスイング
+            value: 100
+
+  - name: 潜在解放(蜃気楼&不知火XXI)
+    yomi: センザイカイホウシンキロウフシラヌイ21
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: 再使用待機時間減少
+            skill: 苦無 -回転-
+            value: 1000
+
+  - name: 潜在解放(エレメンタルマスターXX)
+    yomi: センザイカイホウエレメンタルマスター20
+    desc: "物理攻撃命中時、一定確率で敵を中心にオートスペル[ダイヤモンドストーム]が習得Lvで発動"
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 真理の解放
+        capabilities:
+          - name: 破損しない
+            value: 1
