@@ -1,387 +1,394 @@
 item_list:
-  - name: 初心者用バトルアックス
-    yomi: ショシンシャヨウバトルアックス
-    type: 両手斧
-    slot: 0
-    weapon_lv: 1
-    atk_or_def: 80
-    weight: 150
-    required_lv: 3
-    required_job: ドルイド系
-    capabilities:
-      - name: 破損しない
-        value: 1
-
-  - name: モカダスガルズ
-    yomi: モカダスガルズ
-    type: 鈍器
-    slot: 1
-    weapon_lv: 4
-    atk_or_def: 150
-    weight: 150
-    required_lv: 220
-    required_job: アリテア
-    capabilities:
-      - name: 武器のMATK
-        value: 110
-      - name: 破損しない
-        value: 1
-      - name: プレイヤー耐性
-        value: 10
-      - name: 聖属性耐性
-        value: 5
-      - name: 魔法ダメージ増加
-        value: 10
-        per_refine: 1
-      - name: スキルダメージ増加
-        skill: グレイシアモノリス
-        value: 25
-        at_refine: 7
-      - name: スキルダメージ増加
-        skill: グレイシアノヴァ
-        value: 25
-        at_refine: 7
-      - name: スキルダメージ増加
-        skill: グレイシアシャード
-        value: 25
-        at_refine: 7
-      - name: スキルダメージ増加
-        skill: グレイシアストンプ
-        value: 25
-        at_refine: 7
-      - name: スキルダメージ増加
-        skill: チリングブラスト
-        value: 25
-        at_refine: 7
-      - name: スキルダメージ増加
-        skill: ロアリングピアサー
-        value: 25
-        at_refine: 7
-      - name: スキルダメージ増加
-        skill: ロアリングチャージ
-        value: 25
-        at_refine: 7
-      - name: スキルダメージ増加
-        skill: フューリアスストーム
-        value: 25
-        at_refine: 7
-      - name: スキルダメージ増加
-        skill: テラウェーブ
-        value: 25
-        at_refine: 7
-      - name: スキルダメージ増加
-        skill: テラハーベスト
-        value: 25
-        at_refine: 7
-      - name: スキルダメージ増加
-        skill: ソリッドストンプ
-        value: 25
-        at_refine: 7
-      - name: スキルダメージ増加
-        skill: グラビティホール
-        value: 25
-        at_refine: 7
-      - name: SPL加算
-        value: 20
-        at_refine: 10
-
-  - name: 暴食のクラウン(アリテア)
-    yomi: ボウショクノクラウンアリテア
-    type: 上段
+  - name: 覚醒創星石のアミュレット
+    yomi: カクセイソウセイセキノアミュレット
+    desc: "物理・魔法攻撃命中時、一定確率で自分に発生している[エルヴィラキャンディ]、[エルヴィラキャンディ(YE)]の再使用待機時間を解除する"
+    type: アクセサリー(2)
     slot: 1
     weapon_lv: 0
-    atk_or_def: 10
-    weight: 50
+    atk_or_def: 0
+    weight: 10
     required_lv: 200
-    required_job: アリテア
+    required_job: 4次職 拡張4次職
     capabilities:
-      - name: 破損しない
+      - name: ASPD増加
+        value: 15
+      - name: スキルディレイ減少
+        value: 15
+      - name: 必中
+        value: 25
+      - name: 詠唱が中断されない
         value: 1
-      - name: 一般耐性
-        value: 20
-      - name: ボス耐性
-        value: 20
       - name: プレイヤー耐性
-        value: 13
-      - name: 全属性への物理ダメージ増加
-        value: 4
-        per_refine: 1
-      - name: 全属性への魔法ダメージ増加
-        value: 4
-        per_refine: 1
-      - name: スキル固定詠唱割合減少
-        skill: サンダリングフォーカス
-        value: 100
-        at_refine: 7
-      - name: スキル固定詠唱割合減少
-        skill: サンダリングオーブ
-        value: 100
-        at_refine: 7
-      - name: スキル固定詠唱割合減少
-        skill: アーススタンプ
-        value: 100
-        at_refine: 7
-      - name: MAXHP増加
+        value: 3
+      - name: 全サイズへの物理ダメージ増加
         value: 10
-        at_refine: 7
-      - name: MAXSP増加
+      - name: 全サイズへの魔法ダメージ増加
         value: 10
-        at_refine: 7
-      - name: 全基本ステータス加算
-        value: 10
-        at_refine: 9
-      - name: スキルダメージ増加
-        skill: グレイシアモノリス
+      - name: ATK加算
         value: 1
-        per_lv: 10
-        at_refine: 9
-      - name: スキルダメージ増加
-        skill: グレイシアノヴァ
+        per_lv: 1
+      - name: MATK加算
         value: 1
-        per_lv: 10
-        at_refine: 9
-      - name: スキルダメージ増加
-        skill: グレイシアシャード
-        value: 1
-        per_lv: 10
-        at_refine: 9
-      - name: スキルダメージ増加
-        skill: グレイシアストンプ
-        value: 1
-        per_lv: 10
-        at_refine: 9
-      - name: スキルダメージ増加
-        skill: チリングブラスト
-        value: 1
-        per_lv: 10
-        at_refine: 9
-      - name: スキルダメージ増加
-        skill: ロアリングピアサー
-        value: 1
-        per_lv: 10
-        at_refine: 9
-      - name: スキルダメージ増加
-        skill: ロアリングチャージ
-        value: 1
-        per_lv: 10
-        at_refine: 9
-      - name: スキルダメージ増加
-        skill: フューリアスストーム
-        value: 1
-        per_lv: 10
-        at_refine: 9
-      - name: スキルダメージ増加
-        skill: テラウェーブ
-        value: 1
-        per_lv: 10
-        at_refine: 9
-      - name: スキルダメージ増加
-        skill: テラハーベスト
-        value: 1
-        per_lv: 10
-        at_refine: 9
-      - name: スキルダメージ増加
-        skill: ソリッドストンプ
-        value: 1
-        per_lv: 10
-        at_refine: 9
-      - name: スキルダメージ増加
-        skill: グラビティホール
-        value: 1
-        per_lv: 10
-        at_refine: 9
-      - name: SPL加算
-        value: 20
-        at_refine: 10
-      - name: MDEF無視
+        per_lv: 1
+      - name: MAXHP加算
         value: 50
-        at_refine: 10
-      - name: 全属性への物理ダメージ増加
+        per_lv: 1
+      - name: MAXSP加算
+        value: 5
+        per_lv: 1
+      - name: 物理ダメージ増加
         value: 1
-        per_refine: 1
-        at_transcendence: 1
-      - name: 全属性への魔法ダメージ増加
+        per_lv: 5
+      - name: 魔法ダメージ増加
         value: 1
-        per_refine: 1
-        at_transcendence: 1
-      - name: MAXHP増加
-        value: 15
-        at_refine: 10
-        at_transcendence: 1
-      - name: 聖属性耐性
-        value: 10
-        at_refine: 10
-        at_transcendence: 1
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 悪霊の儀式
-        capabilities:
-          - name: スキルディレイ減少
-            value: 20
-          - name: スキル使用可能
-            skill: ブレッシング
-            skill_lv: 10
-          - name: スキルダメージ増加
-            skill: グレイシアモノリス
-            value: 1
-            per_lv: 10
-          - name: スキルダメージ増加
-            skill: グレイシアノヴァ
-            value: 1
-            per_lv: 10
-          - name: スキルダメージ増加
-            skill: グレイシアシャード
-            value: 1
-            per_lv: 10
-          - name: スキルダメージ増加
-            skill: グレイシアストンプ
-            value: 1
-            per_lv: 10
-          - name: スキルダメージ増加
-            skill: チリングブラスト
-            value: 1
-            per_lv: 10
-          - name: スキルダメージ増加
-            skill: ロアリングピアサー
-            value: 1
-            per_lv: 10
-          - name: スキルダメージ増加
-            skill: ロアリングチャージ
-            value: 1
-            per_lv: 10
-          - name: スキルダメージ増加
-            skill: フューリアスストーム
-            value: 1
-            per_lv: 10
-          - name: スキルダメージ増加
-            skill: テラウェーブ
-            value: 1
-            per_lv: 10
-          - name: スキルダメージ増加
-            skill: テラハーベスト
-            value: 1
-            per_lv: 10
-          - name: スキルダメージ増加
-            skill: ソリッドストンプ
-            value: 1
-            per_lv: 10
-          - name: スキルダメージ増加
-            skill: グラビティホール
-            value: 1
-            per_lv: 10
+        per_lv: 5
+      - name: 再使用待機時間減少
+        skill: フルスロットル
+        value: 10000
+        per_lv: 5
+    enchant: #
+      - name: スペシャルエンチャント（キョウ・ソラマメ）
+        slot_list: #
+          - slot: 4
+            refine: 0
+            enchant_list: #
+              - name: Def50%無視
+              - name: Mdef50%無視
+              - name: アルカナ
+              - name: シンソウの王
+              - name: 極限の魔力
+              - name: 潜在解放(アークメイジIII)
+              - name: 潜在解放(アビスチェイサーIII)
+              - name: 潜在解放(アリテアIV)
+              - name: 潜在解放(アリテアVIII)
+              - name: 潜在解放(アリテアXII)
+              - name: 潜在解放(インクイジターII)
+              - name: 潜在解放(インクイジターX)
+              - name: 潜在解放(インペリアルガードV)
+              - name: 潜在解放(インペリアルガードVI)
+              - name: 潜在解放(ウィンドホークIV)
+              - name: 潜在解放(エレメンタルマスターII)
+              - name: 潜在解放(エレメンタルマスターIII)
+              - name: 潜在解放(エレメンタルマスターX)
+              - name: 潜在解放(カーディナルII)
+              - name: 潜在解放(シャドウクロスV)
+              - name: 潜在解放(スピリットハンドラーV)
+              - name: 潜在解放(スピリットハンドラーXII)
+              - name: 潜在解放(ソウルアセティックII)
+              - name: 潜在解放(ソウルアセティックXIII)
+              - name: 潜在解放(ドラゴンナイトV)
+              - name: 潜在解放(トルバドゥール&トルヴェールIII)
+              - name: 潜在解放(トルバドゥール&トルヴェールVIII)
+              - name: 潜在解放(ナイトウォッチX)
+              - name: 潜在解放(バイオロIII)
+              - name: 潜在解放(バイオロXII)
+              - name: 潜在解放(ハイパーノービスIV)
+              - name: 潜在解放(ハイパーノービスXIII)
+              - name: 潜在解放(マイスターIV)
+              - name: 潜在解放(マイスターVI)
+              - name: 潜在解放(蜃気楼&不知火X)
+              - name: 潜在解放(蜃気楼&不知火XI)
+              - name: 潜在解放(天帝III)
+              - name: 潜在解放(天帝IX)
+          - slot: 3
+            refine: 0
+            enchant_list: #
+              - name: アルカナ
+              - name: シンソウの王
+              - name: 極限の魔力
+              - name: 悠遠なる天上の都
+          - slot: 2
+            refine: 0
+            enchant_list: #
+              - name: アルカナ
+              - name: シンソウの王
+              - name: 極限の魔力
+              - name: 覇王
+              - name: 暴走した魔力
+              - name: 大鷲の眼光
+              - name: 豪傑
+              - name: 真理の解放
+              - name: 魔弓の弦音
 
-  - name: 時間のサークレット(アリテア)
-    yomi: ジカンノサークレットアリテア
-    type: 上段
+
+  - name: ディヴィニトゥス・フィデス・モニーレ
+    yomi: ディヴィニトゥスフィデスモニーレ
+    desc: "物理・魔法攻撃命中時、一定確率で自分に発生している[狂乱]状態を回復する"
+    type: アクセサリー(2)
     slot: 1
     weapon_lv: 0
-    atk_or_def: 10
-    weight: 50
+    atk_or_def: 0
+    weight: 10
     required_lv: 200
-    required_job: アリテア
+    required_job: 4次職 拡張4次職
     capabilities:
-      - name: 破損しない
-        value: 1
-      - name: 一般耐性
-        value: 20
-      - name: ボス耐性
-        value: 20
-      - name: プレイヤー耐性
-        value: 13
-      - name: 全属性への物理ダメージ増加
-        value: 4
-        per_refine: 1
-      - name: 全属性への魔法ダメージ増加
-        value: 4
-        per_refine: 1
-      - name: スキル固定詠唱割合減少
-        skill: クローウェーブ
-        value: 100
-        at_refine: 7
-      - name: MAXHP増加
-        value: 10
-        at_refine: 7
-      - name: MAXSP増加
-        value: 10
-        at_refine: 7
-      - name: 全基本ステータス加算
-        value: 10
-        at_refine: 9
-      - name: スキルダメージ増加
-        skill: プライマルクロー
-        value: 1
-        per_lv: 10
-        at_refine: 9
-      - name: スキルダメージ増加
-        skill: フェラルクロー
-        value: 1
-        per_lv: 10
-        at_refine: 9
-      - name: スキルダメージ増加
-        skill: アルファクロー
-        value: 1
-        per_lv: 10
-        at_refine: 9
-      - name: スキルダメージ増加
-        skill: サベージランジ
-        value: 1
-        per_lv: 10
-        at_refine: 9
-      - name: スキルダメージ増加
-        skill: フレンジファング
-        value: 1
-        per_lv: 10
-        at_refine: 9
-      - name: POW加算
-        value: 20
-        at_refine: 10
-      - name: CRI加算
-        value: 25
-        at_refine: 10
-      - name: 全属性への物理ダメージ増加
-        value: 1
-        per_refine: 1
-        at_transcendence: 1
-      - name: 全属性への魔法ダメージ増加
-        value: 1
-        per_refine: 1
-        at_transcendence: 1
-      - name: MAXHP増加
+      - name: ASPD増加
         value: 15
-        at_refine: 10
-        at_transcendence: 1
-      - name: 聖属性耐性
-        value: 10
-        at_refine: 10
-        at_transcendence: 1
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 時間の注視者
-        capabilities:
-          - name: スキルディレイ減少
-            value: 20
-          - name: スキル使用可能
-            skill: ブレッシング
-            skill_lv: 10
-          - name: スキルダメージ増加
-            skill: プライマルクロー
-            value: 1
-            per_lv: 10
-          - name: スキルダメージ増加
-            skill: フェラルクロー
-            value: 1
-            per_lv: 10
-          - name: スキルダメージ増加
-            skill: アルファクロー
-            value: 1
-            per_lv: 10
-          - name: スキルダメージ増加
-            skill: サベージランジ
-            value: 1
-            per_lv: 10
-          - name: スキルダメージ増加
-            skill: フレンジファング
-            value: 1
-            per_lv: 10
+      - name: スキルディレイ減少
+        value: 15
+      - name: 必中
+        value: 25
+      - name: 詠唱が中断されない
+        value: 1
+      - name: プレイヤー耐性
+        value: 3
+      - name: 全サイズへの物理ダメージ増加
+        value: 15
+      - name: 全サイズへの魔法ダメージ増加
+        value: 15
+      - name: ATK加算
+        value: 1
+        per_lv: 1
+      - name: MATK加算
+        value: 1
+        per_lv: 1
+      - name: MAXHP加算
+        value: 50
+        per_lv: 1
+      - name: MAXSP加算
+        value: 5
+        per_lv: 1
+      - name: 物理ダメージ増加
+        value: 1
+        per_lv: 5
+      - name: 魔法ダメージ増加
+        value: 1
+        per_lv: 5
+      - name: 再使用待機時間減少
+        skill: フルスロットル
+        value: 10000
+        per_lv: 5
+    enchant: #
+      - name: スペシャルエンチャント（キョウ・ソラマメ）
+        slot_list: #
+          - slot: 4
+            refine: 0
+            enchant_list: #
+              - name: Def50%無視
+              - name: Mdef50%無視
+              - name: 潜在解放(アークメイジIII)
+              - name: 潜在解放(アビスチェイサーV)
+              - name: 潜在解放(アビスチェイサーVII)
+              - name: 潜在解放(アリテアVIII)
+              - name: 潜在解放(インクイジターII)
+              - name: 潜在解放(インペリアルガードV)
+              - name: 潜在解放(ウィンドホークIV)
+              - name: 潜在解放(エレメンタルマスターII)
+              - name: 潜在解放(エレメンタルマスターIII)
+              - name: 潜在解放(カーディナルII)
+              - name: 潜在解放(シャドウクロスV)
+              - name: 潜在解放(スピリットハンドラーXII)
+              - name: 潜在解放(ソウルアセティックII)
+              - name: 潜在解放(ドラゴンナイトV)
+              - name: 潜在解放(ドラゴンナイトXI)
+              - name: 潜在解放(トルバドゥール&トルヴェールIII)
+              - name: 潜在解放(ナイトウォッチX)
+              - name: 潜在解放(バイオロIII)
+              - name: 潜在解放(ハイパーノービスIV)
+              - name: 潜在解放(ハイパーノービスV)
+              - name: 潜在解放(マイスターVI)
+              - name: 潜在解放(天帝III)
+              - name: 潜在解放(蜃気楼&不知火XI)
+          - slot: 3
+            refine: 0
+            enchant_list: #
+              - name: 豊穣の女神
+              - name: 再生の炎
+              - name: 祈りの晩鐘
+          - slot: 2
+            refine: 0
+            enchant_list: #
+              - name: 覇王
+              - name: 暴走した魔力
+              - name: 大鷲の眼光
+              - name: 豪傑
+              - name: 真理の解放
+              - name: 豊穣の女神
+              - name: 再生の炎
+              - name: 魔弓の弦音
+
+  - name: セプルクルム・ホノリス・ロザリオ
+    yomi: セプルクルムホノリスロザリオ
+    desc: "物理・魔法攻撃命中時、一定確率で自分に発生している[抗毒血清]、[抗毒血清(YE)]の再使用待機時間を解除する"
+    type: アクセサリー(2)
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 10
+    required_lv: 200
+    required_job: 4次職 拡張4次職
+    capabilities:
+      - name: ASPD増加
+        value: 15
+      - name: スキルディレイ減少
+        value: 15
+      - name: 必中
+        value: 25
+      - name: 詠唱が中断されない
+        value: 1
+      - name: プレイヤー耐性
+        value: 3
+      - name: 全サイズへの物理ダメージ増加
+        value: 15
+      - name: 全サイズへの魔法ダメージ増加
+        value: 15
+      - name: ATK加算
+        value: 1
+        per_lv: 1
+      - name: MATK加算
+        value: 1
+        per_lv: 1
+      - name: MAXHP加算
+        value: 50
+        per_lv: 1
+      - name: MAXSP加算
+        value: 5
+        per_lv: 1
+      - name: 物理ダメージ増加
+        value: 1
+        per_lv: 5
+      - name: 魔法ダメージ増加
+        value: 1
+        per_lv: 5
+      - name: 再使用待機時間減少
+        skill: フルスロットル
+        value: 10000
+        per_lv: 5
+    enchant: #
+      - name: スペシャルエンチャント（キョウ・ジュウべえ）
+        slot_list: #
+          - slot: 4
+            refine: 0
+            enchant_list: #
+              - name: Def50%無視
+              - name: Mdef50%無視
+              - name: 潜在解放(アークメイジXIX)
+              - name: 潜在解放(アビスチェイサーIII)
+              - name: 潜在解放(アリテアXII)
+              - name: 潜在解放(インクイジターXIV)
+              - name: 潜在解放(インペリアルガードV)
+              - name: 潜在解放(ウィンドホークXX)
+              - name: 潜在解放(エレメンタルマスターII)
+              - name: 潜在解放(カーディナルXX)
+              - name: 潜在解放(シャドウクロスXVIII)
+              - name: 潜在解放(スピリットハンドラーXXIII)
+              - name: 潜在解放(ソウルアセティックII)
+              - name: 潜在解放(ドラゴンナイトV)
+              - name: 潜在解放(トルバドゥール&トルヴェールVIII)
+              - name: 潜在解放(ナイトウォッチXVII)
+              - name: 潜在解放(バイオロXI)
+              - name: 潜在解放(ハイパーノービスXXII)
+              - name: 潜在解放(マイスターXVII)
+              - name: 潜在解放(蜃気楼&不知火XXI)
+              - name: 潜在解放(天帝III)
+          - slot: 3
+            refine: 0
+            enchant_list: #
+              - name: 殺意の怨念
+              - name: 死の欲動
+              - name: 偽りの心臓
+          - slot: 2
+            refine: 0
+            enchant_list: #
+              - name: 覇王
+              - name: 暴走した魔力
+              - name: 大鷲の眼光
+              - name: 豪傑
+              - name: 真理の解放
+              - name: 殺意の怨念
+              - name: 死の欲動
+              - name: 魔弓の弦音
+
+
+  - name: ポエニテンティア・グロリオサ
+    yomi: ポエニテンティアグロリオサ
+    desc: "物理・魔法攻撃命中時、一定確率で自分に発生している[マスカレード:イグノアランス]状態を回復する"
+    type: アクセサリー(2)
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 10
+    required_lv: 200
+    required_job: 4次職 拡張4次職
+    capabilities:
+      - name: ASPD増加
+        value: 15
+      - name: スキルディレイ減少
+        value: 15
+      - name: 必中
+        value: 25
+      - name: 詠唱が中断されない
+        value: 1
+      - name: プレイヤー耐性
+        value: 3
+      - name: 全サイズへの物理ダメージ増加
+        value: 15
+      - name: 全サイズへの魔法ダメージ増加
+        value: 15
+      - name: ATK加算
+        value: 1
+        per_lv: 1
+      - name: MATK加算
+        value: 1
+        per_lv: 1
+      - name: MAXHP加算
+        value: 50
+        per_lv: 1
+      - name: MAXSP加算
+        value: 5
+        per_lv: 1
+      - name: 物理ダメージ増加
+        value: 1
+        per_lv: 5
+      - name: 魔法ダメージ増加
+        value: 1
+        per_lv: 5
+      - name: 再使用待機時間減少
+        skill: フルスロットル
+        value: 10000
+        per_lv: 5
+    enchant: #
+      - name: スペシャルエンチャント（キョウ・ジュウべえ）
+        slot_list: #
+          - slot: 4
+            refine: 0
+            enchant_list: #
+              - name: Def50%無視
+              - name: Mdef50%無視
+              - name: 潜在解放(アークメイジX)
+              - name: 潜在解放(アビスチェイサーIII)
+              - name: 潜在解放(アリテアIV)
+              - name: 潜在解放(インクイジターX)
+              - name: 潜在解放(インペリアルガードVI)
+              - name: 潜在解放(ウィンドホークXII)
+              - name: 潜在解放(エレメンタルマスターXX)
+              - name: 潜在解放(カーディナルV)
+              - name: 潜在解放(シャドウクロスIV)
+              - name: 潜在解放(スピリットハンドラーV)
+              - name: 潜在解放(ソウルアセティックXIII)
+              - name: 潜在解放(ドラゴンナイトV)
+              - name: 潜在解放(トルバドゥール&トルヴェールVIII)
+              - name: 潜在解放(ナイトウォッチIV)
+              - name: 潜在解放(バイオロXII)
+              - name: 潜在解放(ハイパーノービスXIII)
+              - name: 潜在解放(マイスターIV)
+              - name: 潜在解放(蜃気楼&不知火X)
+              - name: 潜在解放(天帝IX)
+          - slot: 3
+            refine: 0
+            enchant_list: #
+              - name: 英雄の凱歌
+              - name: 黒翼の使徒
+              - name: 悲哀の王宮
+          - slot: 2
+            refine: 0
+            enchant_list: #
+              - name: 覇王
+              - name: 暴走した魔力
+              - name: 大鷲の眼光
+              - name: 豪傑
+              - name: 真理の解放
+              - name: 英雄の凱歌
+              - name: 黒翼の使徒
+              - name: 魔弓の弦音
+
