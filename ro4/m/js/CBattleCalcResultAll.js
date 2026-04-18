@@ -688,7 +688,7 @@ function CBattleCalcResultAll () {
 		}
 
 		// 基本攻撃の攻撃間隔を追加攻撃の攻撃間隔として扱う
-		var appendInterval = resultWork.attackInterval;
+		var appendInterval = this.GetAttackInterval();
 
 		// 確率追撃は最小値を全加算（発動率等は考慮済み）
 		for (idx = 0; idx < this.appendResultArray.length; idx++) {
@@ -725,7 +725,7 @@ function CBattleCalcResultAll () {
 		}
 
 		// 基本攻撃の攻撃間隔を追加攻撃の攻撃間隔として扱う
-		var appendInterval = resultWork.attackInterval;
+		var appendInterval = this.GetAttackInterval();
 
 		for (idx = 0; idx < this.appendResultArray.length; idx++) {
 			resultWork = this.appendResultArray[idx];
@@ -767,7 +767,7 @@ function CBattleCalcResultAll () {
 		}
 
 		// 基本攻撃の攻撃間隔を追加攻撃の攻撃間隔として扱う
-		var appendInterval = resultWork.attackInterval;
+		var appendInterval = this.GetAttackInterval();
 
 		// 確率追撃は全発動を採用
 		for (idx = 0; idx < this.appendResultArray.length; idx++) {
@@ -815,7 +815,7 @@ function CBattleCalcResultAll () {
 		}
 
 		// 基本攻撃の攻撃間隔を追加攻撃の攻撃間隔として扱う
-		var appendInterval = (resultWork) ? resultWork.attackInterval : 0;
+		var appendInterval = (resultWork) ? this.GetAttackInterval() : 0;
 
 		// 確率追撃は最小値を全加算（発動率等は考慮済み）
 		for (idx = 0; idx < this.appendResultArray.length; idx++) {
@@ -853,7 +853,7 @@ function CBattleCalcResultAll () {
 		}
 
 		// 基本攻撃の攻撃間隔を追加攻撃の攻撃間隔として扱う
-		var appendInterval = (resultWork) ? resultWork.attackInterval : 0;
+		var appendInterval = (resultWork) ? this.GetAttackInterval() : 0;
 
 		for (idx = 0; idx < this.appendResultArray.length; idx++) {
 			resultWork = this.appendResultArray[idx];
@@ -896,7 +896,7 @@ function CBattleCalcResultAll () {
 		}
 
 		// 基本攻撃の攻撃間隔を追加攻撃の攻撃間隔として扱う
-		var appendInterval = (resultWork) ? resultWork.attackInterval : 0;
+		var appendInterval = (resultWork) ? this.GetAttackInterval() : 0;
 
 		// 確率追撃は全発動を採用
 		for (idx = 0; idx < this.appendResultArray.length; idx++) {

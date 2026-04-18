@@ -359,6 +359,21 @@ function AS_Calc(charaData, specData, mobData, attackMethodConfArray, battleCalc
 		}
 	}
 
+	/**
+	 * グレイシアシャード → グレイシアノヴァ
+	 */
+	if (n_A_ActiveSkill == SKILL_ID_GLACIER_SHARD) {
+		funcAddAS();
+		// スキルID
+		n_AS_SKILL[idx][0] = SKILL_ID_GLACIER_NOVA;
+		// 発動Lv
+		n_AS_SKILL[idx][1] = 1;
+		// 発動率
+		n_AS_SKILL[idx][2] = (attackMethodConfArray[0].GetOptionValue(0) == 1) ? 1000 : 0;
+		// オートスペルフラグ 0=通常. どこからも参照されないommitされたパラメータの可能性がある.
+		n_AS_SKILL[idx][3] = 0;
+	}
+
 
 	//----------------------------------------------------------------
 	// 通常攻撃時の、ウォーグストライク追撃効果

@@ -4422,6 +4422,20 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 				);
 				break;
 
+			/**
+			 * グレイシアシャード
+			 */
+			case SKILL_ID_GLACIER_SHARD:
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"グレイシアモノリス",
+					[
+						[0, "無し"],
+						[1, "有り"],
+					],
+					0
+				);
+				break;
+
 		}
 	}
 };
