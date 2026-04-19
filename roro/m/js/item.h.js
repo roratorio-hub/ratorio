@@ -479,7 +479,7 @@ CGlobalConstManager.DefineEnum(
 		"ITEM_SP_RESIST_ELM_UNDEAD",	// 69 不死属性耐性
 
 		"ITEM_SP_CRITICAL_DAMAGE_UP",		// 70 クリティカルダメージ増加
-		"ITEM_SP_REFLECT_PHYSICAL_DAMAGE",
+		"ITEM_SP_REFLECT_PHYSICAL_DAMAGE",	// 71 物理ダメージ反射
 		"ITEM_SP_LONGRANGE_CRI_PLUS",
 		"ITEM_SP_SKILL_CAST_TIME",			// 73 変動詠唱時間
 		"ITEM_SP_SKILL_DELAY_DOWN",			// 74 ディレイ
