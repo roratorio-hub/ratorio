@@ -12165,37 +12165,40 @@ function calcReceivedDamage(charaData, specData, mobData, attackMethodConfArray,
 		const energy_coat = Math.max(UsedSkillSearch(SKILL_ID_ENERGY_COAT), n_A_PassSkill7[50]);
 		wBHD = 6 * energy_coat;
 		w_HiDam = w_HiDam.map(damage => damage - Math.floor(damage * wBHD /100));
+	}
 
-		//--------------------------------
-		// ストーンスキンのダメージ軽減効果
-		//--------------------------------
+	/** 排他スキルによるダメージ減少効果 */
+	{
+		let ratio = 0;
+		let prefetch = 0;
 		if (TimeItemNumSearch(TIME_ITEM_ID_WOLF_HEZIN)) {
-			for (i = 0; i <= 6; i++) {
-				w_HiDam[i] -= Math.floor(w_HiDam[i] * 20 /100);
-			}
+			// ストーンスキン
+			ratio = Math.max(ratio, 20);
 		}
-
-		//--------------------------------
-		// 金剛のダメージ軽減効果
-		//--------------------------------
 		if (UsedSkillSearch(SKILL_ID_KONGO)) {
-			for(i=0;i<=6;i++) w_HiDam[i] -= Math.floor(w_HiDam[i] * 90 / 100);
+			// 金剛
+			ratio = Math.max(ratio, 90);
 		}
-
-		//--------------------------------
-		// 「サモナー　うずくまる」のダメージ軽減効果
-		//--------------------------------
 		if (UsedSkillSearch(SKILL_ID_UZUKUMARU)) {
-			// 特定の戦闘エリアでの補正
-			var rateWork = 80;
-			switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
-				case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
-					rateWork = 50;
-					break;
+			// うずくまる
+			if (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA] == MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM) {
+				ratio = Math.max(ratio, 50);
+			} else {
+				ratio = Math.max(ratio, 80);
 			}
-			for (i = 0; i <= 6; i++) {
-				w_HiDam[i] -= Math.floor(w_HiDam[i] * rateWork / 100);
-			}
+		}
+		prefetch = UsedSkillSearch(SKILL_ID_NATURE_PROTECTION);
+		if (prefetch > 0) {
+			// ネイチャープロテクション
+			ratio = Math.max(ratio, [0, 30, 45, 60, 80, 95][prefetch]);
+		}
+		prefetch = UsedSkillSearch(SKILL_ID_IRON_HOWLING);
+		if (prefetch > 0) {
+			// アイアンハウリング
+			ratio = Math.max(ratio, 15 + 5 * prefetch);
+		}
+		for (let i = 0; i <= 6; i++) {
+			w_HiDam[i] -= Math.floor(w_HiDam[i] * ratio / 100);
 		}
 	}
 
@@ -12410,6 +12413,7 @@ function calcReceivedMagicDamage(charaData, mobData, objCell){
 	/** スキルによる減少（排他的な効果） */
 	{
 		const candidate = [0];
+		let prefetch = 0;
 		// 金剛のダメージ軽減効果
 		if (UsedSkillSearch(SKILL_ID_KONGO) > 0) {
 			candidate.push(90);
@@ -12417,6 +12421,16 @@ function calcReceivedMagicDamage(charaData, mobData, objCell){
 		// うずくまる
 		if (UsedSkillSearch(SKILL_ID_UZUKUMARU) > 0) {
 			candidate.push(80);
+		}
+		prefetch = UsedSkillSearch(SKILL_ID_NATURE_PROTECTION);
+		if (prefetch > 0) {
+			// ネイチャープロテクション
+			candidate.push([0, 30, 45, 60, 80, 95][prefetch]);
+		}
+		prefetch = UsedSkillSearch(SKILL_ID_IRON_HOWLING);
+		if (prefetch > 0) {
+			// アイアンハウリング
+			candidate.push(15 + 5 * prefetch);
 		}
 		ratio = Math.min(95, Math.max(...candidate));
 		damage -= Math.floor(damage * ratio / 100);
