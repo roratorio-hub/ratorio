@@ -10,7 +10,7 @@ script_dir = os.path.dirname(os.path.abspath(__file__))
 result_list_all_files = []
 
 for filename in os.listdir(f"{script_dir}/config"):
-    if filename.endswith('druid.txt'):
+    if filename.endswith('druid-mitensei.txt'):
         file_path = os.path.join(f"{script_dir}/config", filename)
         with open(file_path, 'r', encoding='utf-8') as file:
             lines = file.readlines()
