@@ -40,8 +40,14 @@ function CBattleCalcResult () {
 	// 攻撃間隔
 	this.attackInterval = 0;
 
-	// 発生率率
+	// 発生率
 	this.actRate = 0;
+
+	// スキル発動までに必要なカウンター数
+	this.stackLimit = -1;
+
+	// スキルを使用するたびに蓄積されるカウンター数
+	this.stackIncrement = 0;
 
 	// 命中率
 	this.hitRate = 0;
@@ -143,7 +149,11 @@ function CBattleCalcResult () {
 
 		// オートスペルの場合は表記を追加
 		if (this.bAutoSpell) {
-			funcAddName("オートスペル");
+			if (this.stackLimit > -1) {
+				funcAddName("特殊発動");
+			} else {
+				funcAddName("オートスペル");
+			}
 		}
 
 		// スキル本体の名称

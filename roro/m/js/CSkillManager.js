@@ -203,6 +203,19 @@ function CSkillData() {
 
 		return specData[ITEM_SP_CRITICAL_DAMAGE_UP];
 	};
+
+	/**
+	 * スキルを発動させるために必要なカウンター上限
+	 * グラウンドブルームなどに設定する
+	 */
+	this.StackLimit = -1;
+
+	/**
+	 * スキルを1回使用するごとに蓄積するカウンターの数
+	 * アースドリルなどに設定する
+	 */
+	this.StackIncrement = 0;
+
 }
 
 /**
@@ -475,6 +488,24 @@ function CSkillManager() {
 		} else {
 			return this.dataArray[skillId].ground_installation;
 		}
+	}
+
+	/**
+	 * スキルを発動させるために必要なカウンター上限を返す. オーバーライドされない場合は -1 を返す.
+	 * @param {Number} skillId 
+	 * @returns {Number}
+	 */
+	this.GetStackLimit = function(skillId) {
+		return this.dataArray[skillId].StackLimit;
+	}
+
+	/**
+	 * スキルを1回使用するごとに蓄積するカウンターの数を返す. オーバーライドされない場合は 0 を返す.
+	 * @param {Number} skillId 
+	 * @returns {Number}
+	 */
+	this.GetStackIncrement = function(skillId) {
+		return this.dataArray[skillId].StackIncrement;
 	}
 
 	this.GetDataCount = function() {
@@ -45490,6 +45521,7 @@ function CSkillManager() {
 				}
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
+			this.StackIncrement = 1;
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 54;
 			}
@@ -45681,6 +45713,7 @@ function CSkillManager() {
 				}
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
+			this.StackIncrement = 1;
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 54;
 			}
@@ -46069,6 +46102,7 @@ function CSkillManager() {
 				}
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
+			this.StackIncrement = 2;
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 200;
 			}
@@ -46262,6 +46296,7 @@ function CSkillManager() {
 				}
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
+			this.StackIncrement = 1;
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 200;
 			}
@@ -46361,6 +46396,7 @@ function CSkillManager() {
 				}
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
+			this.StackIncrement = 2;
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 250;
 			}
@@ -46646,6 +46682,7 @@ function CSkillManager() {
 				ratio += 90 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
+			this.StackIncrement = 2;
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 300;
 			}
@@ -47105,6 +47142,7 @@ function CSkillManager() {
 				ratio += 36 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
+			this.StackLimit = 0;
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -47127,6 +47165,7 @@ function CSkillManager() {
 				ratio += 36 * GetTotalSpecStatus(MIG_PARAM_ID_INT);
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
+			this.StackLimit = 12;
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;

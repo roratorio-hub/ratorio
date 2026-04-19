@@ -94,8 +94,6 @@ var InstObjReleasedCount;//設置スキルオブジェクトの計算中に解�
 var InstObjIsApproximate;//概算モードフラグ（コールスタック安全のために、再帰階層が限界値を超えた場合に真になる）
 var InstObjFinalCount;//概算モードの際に用いる、処理中段時点までのHITの総数
 
-
-
 /**
  * 戦闘結果クラス（全体）.
  */
@@ -553,7 +551,7 @@ function CBattleCalcResultAll () {
 		var dmg = 0;
 		var resultWork = null;
 		var resultWorkArray = null;
-
+		let stackIncrement = 0;
 
 		// パッシブ系列はいずれか一つしか発動しないので、最小ダメージを採用する
 		resultWorkArray = [];
@@ -568,13 +566,19 @@ function CBattleCalcResultAll () {
 		// アクティブは最小値を全加算（発動率等は考慮済み）
 		for (idx = 0; idx < this.activeResultArray.length; idx++) {
 			resultWork = this.activeResultArray[idx];
+			stackIncrement += resultWork.stackIncrement;
 			dmg += GetArrayMin(resultWork.GetDamageSummaryMinPerAtk(true, false));
 		}
 
 		// 確率追撃は最小値を全加算（発動率等は考慮済み）
 		for (idx = 0; idx < this.appendResultArray.length; idx++) {
 			resultWork = this.appendResultArray[idx];
-			dmg += GetArrayMin(resultWork.GetDamageSummaryMinPerAtk(true, false));
+			let base_damage = GetArrayMin(resultWork.GetDamageSummaryMinPerAtk(true, false));
+			// カウンター蓄積型スキルの場合
+			if (stackIncrement > 0) {
+				base_damage = base_damage / (resultWork.stackLimit / stackIncrement + 1);
+			}
+			dmg += base_damage;
 		}
 
 
@@ -587,13 +591,10 @@ function CBattleCalcResultAll () {
 	 * @return 概算ダメージ（平均）
 	 */
 	this.GetDamageSummaryAvePerAtk = function () {
-
 		var idx = 0;
-
 		var dmg = 0;
 		var resultWork = null;
-
-
+		let stackIncrement = 0;
 
 		for (idx = 0; idx < this.passiveResultArray.length; idx++) {
 			resultWork = this.passiveResultArray[idx];
@@ -602,14 +603,19 @@ function CBattleCalcResultAll () {
 
 		for (idx = 0; idx < this.activeResultArray.length; idx++) {
 			resultWork = this.activeResultArray[idx];
+			stackIncrement += resultWork.stackIncrement;
 			dmg += GetArrayTotal(resultWork.GetDamageSummaryAvePerAtk(true)) * resultWork.actRate / 100;
 		}
 
 		for (idx = 0; idx < this.appendResultArray.length; idx++) {
 			resultWork = this.appendResultArray[idx];
-			dmg += GetArrayTotal(resultWork.GetDamageSummaryAvePerAtk(true)) * resultWork.actRate / 100;
+			let base_damage = GetArrayTotal(resultWork.GetDamageSummaryAvePerAtk(true)) * resultWork.actRate / 100;
+			// カウンター蓄積型スキルの場合
+			if (stackIncrement > 0) {
+				base_damage = base_damage / (resultWork.stackLimit / stackIncrement + 1);
+			}
+			dmg += base_damage;
 		}
-
 
 		return Math.floor(dmg);
 	};
@@ -619,13 +625,11 @@ function CBattleCalcResultAll () {
 	 * @return 概算ダメージ（最大）
 	 */
 	this.GetDamageSummaryMaxPerAtk = function () {
-
 		var idx = 0;
-
 		var dmg = 0;
 		var resultWork = null;
 		var resultWorkArray = null;
-
+		let stackIncrement = 0;
 
 		// パッシブ系列はいずれか一つしか発動しないので、最大ダメージを採用する
 		resultWorkArray = [];
@@ -640,15 +644,20 @@ function CBattleCalcResultAll () {
 		// アクティブは全発動を採用
 		for (idx = 0; idx < this.activeResultArray.length; idx++) {
 			resultWork = this.activeResultArray[idx];
+			stackIncrement += resultWork.stackIncrement;
 			dmg += GetArrayMax(resultWork.GetDamageSummaryMaxPerAtk(true));
 		}
 
 		// 確率追撃は全発動を採用
 		for (idx = 0; idx < this.appendResultArray.length; idx++) {
 			resultWork = this.appendResultArray[idx];
-			dmg += GetArrayMax(resultWork.GetDamageSummaryMaxPerAtk(true));
+			let base_damage = GetArrayMax(resultWork.GetDamageSummaryMaxPerAtk(true));
+			// カウンター蓄積型スキルの場合
+			if (stackIncrement > 0) {
+				base_damage = base_damage / (resultWork.stackLimit / stackIncrement + 1);
+			}
+			dmg += base_damage;
 		}
-
 
 		return Math.floor(dmg);
 	};
@@ -667,6 +676,7 @@ function CBattleCalcResultAll () {
 		var resultWork = null;
 		var resultWorkArray = null;
 		let hasChild = false;
+		let stackIncrement = 0;
 
 		// パッシブ系列はいずれか一つしか発動しないので、最小ダメージを採用する
 		resultWorkArray = [];
@@ -682,6 +692,7 @@ function CBattleCalcResultAll () {
 		// アクティブは最小値を全加算（発動率等は考慮済み）
 		for (idx = 0; idx < this.activeResultArray.length; idx++) {
 			resultWork = this.activeResultArray[idx];
+			stackIncrement += resultWork.stackIncrement;
 			hasChild = (resultWork.childResultArray.length > 0) ? true : false;
 			dmg += GetArrayMin(resultWork.GetDamageSummaryMinPerSec(
 				resultWork.castVary, resultWork.castFixed, resultWork.attackInterval, hasChild, false));
@@ -694,6 +705,10 @@ function CBattleCalcResultAll () {
 		for (idx = 0; idx < this.appendResultArray.length; idx++) {
 			resultWork = this.appendResultArray[idx];
 			hasChild = (resultWork.childResultArray.length > 0) ? true : false;
+			// カウンター蓄積型スキルの場合
+			if (stackIncrement > 0) {
+				appendInterval = appendInterval * resultWork.stackLimit / stackIncrement + 1;
+			}
 			dmg += GetArrayMin(resultWork.GetDamageSummaryMinPerSec(0, 0, appendInterval, hasChild, false));
 		}
 
@@ -710,6 +725,7 @@ function CBattleCalcResultAll () {
 		var dmg = 0;
 		var resultWork = null;
 		let hasChild = false;
+		let stackIncrement = 0;
 
 		for (idx = 0; idx < this.passiveResultArray.length; idx++) {
 			resultWork = this.passiveResultArray[idx];
@@ -719,6 +735,7 @@ function CBattleCalcResultAll () {
 
 		for (idx = 0; idx < this.activeResultArray.length; idx++) {
 			resultWork = this.activeResultArray[idx];
+			stackIncrement += resultWork.stackIncrement;
 			hasChild = (resultWork.childResultArray.length > 0) ? true : false;
 			dmg += GetArrayTotal(resultWork.GetDamageSummaryAvePerSec(
 				resultWork.castVary, resultWork.castFixed, resultWork.attackInterval, hasChild)) * resultWork.actRate / 100;
@@ -730,6 +747,10 @@ function CBattleCalcResultAll () {
 		for (idx = 0; idx < this.appendResultArray.length; idx++) {
 			resultWork = this.appendResultArray[idx];
 			hasChild = (resultWork.childResultArray.length > 0) ? true : false;
+			// カウンター蓄積型スキルの場合
+			if (stackIncrement > 0) {
+				appendInterval = appendInterval * resultWork.stackLimit / stackIncrement + 1;
+			}
 			dmg += GetArrayTotal(resultWork.GetDamageSummaryAvePerSec(0, 0, appendInterval, hasChild)) * resultWork.actRate / 100;
 		}
 
@@ -746,6 +767,7 @@ function CBattleCalcResultAll () {
 		var resultWork = null;
 		var resultWorkArray = null;
 		let hasChild = false;
+		let stackIncrement = 0;
 		
 		// パッシブ系列はいずれか一つしか発動しないので、最大ダメージを採用する
 		resultWorkArray = [];
@@ -761,6 +783,7 @@ function CBattleCalcResultAll () {
 		// アクティブは全発動を採用
 		for (idx = 0; idx < this.activeResultArray.length; idx++) {
 			resultWork = this.activeResultArray[idx];
+			stackIncrement += resultWork.stackIncrement;
 			hasChild = (resultWork.childResultArray.length > 0) ? true : false;
 			dmg += GetArrayMax(resultWork.GetDamageSummaryMaxPerSec(
 				resultWork.castVary, resultWork.castFixed, resultWork.attackInterval, hasChild));
@@ -773,6 +796,10 @@ function CBattleCalcResultAll () {
 		for (idx = 0; idx < this.appendResultArray.length; idx++) {
 			resultWork = this.appendResultArray[idx];
 			hasChild = (resultWork.childResultArray.length > 0) ? true : false;
+			// カウンター蓄積型スキルの場合
+			if (stackIncrement > 0) {
+				appendInterval = appendInterval * resultWork.stackLimit / stackIncrement + 1;
+			}
 			dmg += GetArrayMax(resultWork.GetDamageSummaryMaxPerSec(0, 0, appendInterval, hasChild));
 		}
 
@@ -794,6 +821,7 @@ function CBattleCalcResultAll () {
 		var resultWork = null;
 		var resultWorkArray = null;
 		let hasChild = false;
+		let stackIncrement = 0;
 
 		// パッシブ系列はいずれか一つしか発動しないので、最小ダメージを採用する
 		resultWorkArray = [];
@@ -809,6 +837,7 @@ function CBattleCalcResultAll () {
 		// アクティブは最小値を全加算（発動率等は考慮済み）
 		for (idx = 0; idx < this.activeResultArray.length; idx++) {
 			resultWork = this.activeResultArray[idx];
+			stackIncrement += resultWork.stackIncrement;
 			hasChild = (resultWork.childResultArray.length > 0) ? true : false;
 			dmg += GetArrayMin(resultWork.GetDamageSummaryMinPerSecActual(
 				resultWork.castVary, resultWork.castFixed, resultWork.attackInterval, hasChild, false));
@@ -821,6 +850,10 @@ function CBattleCalcResultAll () {
 		for (idx = 0; idx < this.appendResultArray.length; idx++) {
 			resultWork = this.appendResultArray[idx];
 			hasChild = (resultWork.childResultArray.length > 0) ? true : false;
+			// カウンター蓄積型スキルの場合
+			if (stackIncrement > 0) {
+				appendInterval = appendInterval * resultWork.stackLimit / stackIncrement + 1;
+			}
 			dmg += GetArrayMin(resultWork.GetDamageSummaryMinPerSecActual(0, 0, appendInterval, hasChild, false));
 		}
 
@@ -838,6 +871,7 @@ function CBattleCalcResultAll () {
 		var dmg = 0;
 		var resultWork = null;
 		let hasChild = false;
+		let stackIncrement = 0;
 
 		for (idx = 0; idx < this.passiveResultArray.length; idx++) {
 			resultWork = this.passiveResultArray[idx];
@@ -847,6 +881,7 @@ function CBattleCalcResultAll () {
 
 		for (idx = 0; idx < this.activeResultArray.length; idx++) {
 			resultWork = this.activeResultArray[idx];
+			stackIncrement += resultWork.stackIncrement;
 			hasChild = (resultWork.childResultArray.length > 0) ? true : false;
 			dmg += GetArrayTotal(resultWork.GetDamageSummaryAvePerSecActual(
 				resultWork.castVary, resultWork.castFixed, resultWork.attackInterval, hasChild)) * resultWork.actRate / 100;
@@ -858,6 +893,10 @@ function CBattleCalcResultAll () {
 		for (idx = 0; idx < this.appendResultArray.length; idx++) {
 			resultWork = this.appendResultArray[idx];
 			hasChild = (resultWork.childResultArray.length > 0) ? true : false;
+			// カウンター蓄積型スキルの場合
+			if (stackIncrement > 0) {
+				appendInterval = appendInterval * resultWork.stackLimit / stackIncrement + 1;
+			}
 			dmg += GetArrayTotal(resultWork.GetDamageSummaryAvePerSecActual(0, 0, appendInterval, hasChild)) * resultWork.actRate / 100;
 		}
 
@@ -875,6 +914,7 @@ function CBattleCalcResultAll () {
 		var resultWork = null;
 		var resultWorkArray = null;
 		let hasChild = false;
+		let stackIncrement = 0;
 		
 		// パッシブ系列はいずれか一つしか発動しないので、最大ダメージを採用する
 		resultWorkArray = [];
@@ -890,6 +930,7 @@ function CBattleCalcResultAll () {
 		// アクティブは全発動を採用
 		for (idx = 0; idx < this.activeResultArray.length; idx++) {
 			resultWork = this.activeResultArray[idx];
+			stackIncrement += resultWork.stackIncrement;
 			hasChild = (resultWork.childResultArray.length > 0) ? true : false;
 			dmg += GetArrayMax(resultWork.GetDamageSummaryMaxPerSecActual(
 				resultWork.castVary, resultWork.castFixed, resultWork.attackInterval, hasChild));
@@ -902,6 +943,10 @@ function CBattleCalcResultAll () {
 		for (idx = 0; idx < this.appendResultArray.length; idx++) {
 			resultWork = this.appendResultArray[idx];
 			hasChild = (resultWork.childResultArray.length > 0) ? true : false;
+			// カウンター蓄積型スキルの場合
+			if (stackIncrement > 0) {
+				appendInterval = appendInterval * resultWork.stackLimit / stackIncrement + 1;
+			}
 			dmg += GetArrayMax(resultWork.GetDamageSummaryMaxPerSecActual(0, 0, appendInterval, hasChild));
 		}
 

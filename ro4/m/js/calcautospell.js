@@ -369,11 +369,25 @@ function AS_Calc(charaData, specData, mobData, attackMethodConfArray, battleCalc
 		// 発動Lv
 		n_AS_SKILL[idx][1] = 1;
 		// 発動率
-		n_AS_SKILL[idx][2] = (attackMethodConfArray[0].GetOptionValue(0) == 1) ? 1000 : 0;
+		n_AS_SKILL[idx][2] = attackMethodConfArray[0].GetOptionValue(0) == 1 ? 1000 : 0;
 		// オートスペルフラグ 0=通常. どこからも参照されないommitされたパラメータの可能性がある.
 		n_AS_SKILL[idx][3] = 0;
 	}
 
+	/**
+	 * グラウンドブルーム
+	 */
+	if ([SKILL_ID_EARTH_STAMP,SKILL_ID_EARTH_DRILL,SKILL_ID_TERRA_HARVEST,SKILL_ID_TERRA_WAVE,SKILL_ID_SOLID_STOMP].includes(n_A_ActiveSkill)) {
+		funcAddAS();
+		// スキルID
+		n_AS_SKILL[idx][0] = SKILL_ID_GROUND_BLOOM;
+		// 発動Lv
+		n_AS_SKILL[idx][1] = 1;
+		// 発動率
+		n_AS_SKILL[idx][2] = attackMethodConfArray[0].GetOptionValue(0) == 1 ? 1000 : 0;
+		// オートスペルフラグ 0=通常. どこからも参照されないommitされたパラメータの可能性がある.
+		n_AS_SKILL[idx][3] = 0;
+	}
 
 	//----------------------------------------------------------------
 	// 通常攻撃時の、ウォーグストライク追撃効果

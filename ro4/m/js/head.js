@@ -612,7 +612,8 @@ function BattleCalc999(battleCalcInfo, charaData, specData, mobData, attackMetho
 		cloned.skillLv = n_AS_SKILL[idxAS][1];
 		cloned.actRate = n_AS_SKILL[idxAS][2] / 10;		// 千分率単位から百分率単位へ
 		// 確率追撃配列に追加する
-		battleCalcResultAll.AddAppendResult(undefined, BattleCalc999Body(cloned, charaData, specData, mobData, attackMethodConfArray, false));
+		const autospell_result = BattleCalc999Body(cloned, charaData, specData, mobData, attackMethodConfArray, false);
+		battleCalcResultAll.AddAppendResult(undefined, autospell_result);
 	}
 	// オートスペルフラグ OFF
 	n_AS_MODE = false;
@@ -657,6 +658,8 @@ function BattleCalc999Body(battleCalcInfo, charaData, specData, mobData, attackM
 	battleCalcResult.bAutoSpell = battleCalcInfo.bAutoSpell;
 	battleCalcResult.coolTime = battleCalcInfo.coolTime;
 	battleCalcResult.delaySkill = battleCalcInfo.delaySkill;
+	battleCalcResult.stackLimit = g_skillManager.GetStackLimit(battleCalcInfo.skillId);
+	battleCalcResult.stackIncrement = g_skillManager.GetStackIncrement(battleCalcInfo.skillId);
 
 	//----------------------------------------------------------------
 	//
@@ -7182,6 +7185,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 		case SKILL_ID_THUNDERING_CALL:
 		case SKILL_ID_EARTH_DRILL:
 		case SKILL_ID_EARTH_STAMP:
+		case SKILL_ID_GROUND_BLOOM:
 
 			// スキル使用条件の判定
 			n_Buki_Muri = !g_skillManager.MatchWeaponCondition(n_A_ActiveSkill, n_A_WeaponType);
