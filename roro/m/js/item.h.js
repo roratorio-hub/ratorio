@@ -1600,7 +1600,7 @@ function GetJobRestrictText(eqpflg) {
 		case 1000 + ITEM_EQPFLG_NONE:
 			return "転生職";
 		case 1000 + ITEM_EQPFLG_IGNORE_NOVICE_SERIES:
-			return "転生ソードマン系 転生マーチャント系 転生シーフ系 転生アーチャー系 転生マジシャン系";
+			return "転生1次職 上位2次職 3次職 4次職";
 		case 1000 + ITEM_EQPFLG_SERIES_SWORDMAN:
 			return "転生ソードマン系";
 		case 1000 + ITEM_EQPFLG_SERIES_THIEF_NINJA:
