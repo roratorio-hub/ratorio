@@ -49667,83 +49667,35 @@ DRUID:
     '1': 142
     '6': 144
     '7': 141
-    '8': 144
-    '61': 5
+    '8': 145
+    '61': 6
   additional_status:
     '1':
-      name: int
+      name: str
       add_value: 1
     '2':
       name: str
       add_value: 1
-    '3':
-      name: dex
-      add_value: 1
-    '4':
-      name: int
-      add_value: 1
-    '5':
-      name: dex
-      add_value: 1
-    '6':
-      name: str
-      add_value: 1
-    '7':
-      name: int
-      add_value: 1
-    '8':
-      name: int
-      add_value: 1
-    '9':
-      name: vit
-      add_value: 1
     '10':
-      name: int
+      name: dex
       add_value: 1
     '11':
       name: dex
-      add_value: 1
-    '12':
-      name: luk
-      add_value: 1
-    '13':
-      name: vit
-      add_value: 1
-    '16':
-      name: str
-      add_value: 1
-    '17':
-      name: agi
-      add_value: 1
-    '20':
-      name: str
       add_value: 1
     '21':
       name: int
       add_value: 1
     '22':
-      name: agi
+      name: vit
       add_value: 1
     '23':
-      name: agi
-      add_value: 1
-    '24':
-      name: int
-      add_value: 1
-    '25':
-      name: agi
-      add_value: 1
-    '26':
-      name: luk
-      add_value: 1
-    '28':
-      name: agi
+      name: str
       add_value: 1
     '29':
       name: int
       add_value: 1
     '30':
-      name: luk
+      name: dex
       add_value: 1
     '31':
       name: vit
@@ -49751,8 +49703,47 @@ DRUID:
     '32':
       name: agi
       add_value: 1
-    '33':
+    '40':
+      name: str
+      add_value: 1
+    '41':
+      name: dex
+      add_value: 1
+    '42':
+      name: int
+      add_value: 1
+    '43':
+      name: luk
+      add_value: 1
+    '50':
+      name: str
+      add_value: 1
+    '51':
+      name: dex
+      add_value: 1
+    '52':
+      name: int
+      add_value: 1
+    '53':
       name: vit
+      add_value: 1
+    '59':
+      name: str
+      add_value: 1
+    '60':
+      name: dex
+      add_value: 1
+    '61':
+      name: int
+      add_value: 1
+    '62':
+      name: int
+      add_value: 1
+    '63':
+      name: luk
+      add_value: 1
+    '64':
+      name: agi
       add_value: 1
   hp_basic_values:
     - 112
@@ -49991,10 +49982,10 @@ KARNOS:
   weight_correction: 0
   weapons_aspd:
     '0': 151
-    '1': 146
+    '1': 147
     '6': 145
     '7': 144
-    '8': 146
+    '8': 147
     '61': 5
   additional_status:
     '1':
@@ -50344,10 +50335,10 @@ ALITEA:
   job_type_name: fourth_job
   weight_correction: 0
   weapons_aspd:
-    '0': 150
+    '0': 151
     '1': 147
     '6': 146
-    '7': 143
+    '7': 144
     '8': 147
     '61': 5
   additional_status:

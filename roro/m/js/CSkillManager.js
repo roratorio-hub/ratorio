@@ -203,6 +203,19 @@ function CSkillData() {
 
 		return specData[ITEM_SP_CRITICAL_DAMAGE_UP];
 	};
+
+	/**
+	 * スキルを発動させるために必要なカウンター上限
+	 * グラウンドブルームなどに設定する
+	 */
+	this.StackLimit = -1;
+
+	/**
+	 * スキルを1回使用するごとに蓄積するカウンターの数
+	 * アースドリルなどに設定する
+	 */
+	this.StackIncrement = 0;
+
 }
 
 /**
@@ -475,6 +488,24 @@ function CSkillManager() {
 		} else {
 			return this.dataArray[skillId].ground_installation;
 		}
+	}
+
+	/**
+	 * スキルを発動させるために必要なカウンター上限を返す. オーバーライドされない場合は -1 を返す.
+	 * @param {Number} skillId 
+	 * @returns {Number}
+	 */
+	this.GetStackLimit = function(skillId) {
+		return this.dataArray[skillId].StackLimit;
+	}
+
+	/**
+	 * スキルを1回使用するごとに蓄積するカウンターの数を返す. オーバーライドされない場合は 0 を返す.
+	 * @param {Number} skillId 
+	 * @returns {Number}
+	 */
+	this.GetStackIncrement = function(skillId) {
+		return this.dataArray[skillId].StackIncrement;
 	}
 
 	this.GetDataCount = function() {
@@ -45490,6 +45521,7 @@ function CSkillManager() {
 				}
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
+			this.StackIncrement = 1;
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 54;
 			}
@@ -45681,6 +45713,7 @@ function CSkillManager() {
 				}
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
+			this.StackIncrement = 1;
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 54;
 			}
@@ -45824,7 +45857,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)ネイチャープロテクション";
+			this.name = "ネイチャープロテクション";
 			this.kana = "ネイチャャプロテクション";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -45849,7 +45882,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)アイアンハウリング";
+			this.name = "アイアンハウリング";
 			this.kana = "アイアンハウリング";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -45871,7 +45904,7 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)ウィンドヴェール";
+			this.name = "ウィンドヴェール";
 			this.kana = "ウィンドヴェェル";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -46069,6 +46102,7 @@ function CSkillManager() {
 				}
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
+			this.StackIncrement = 2;
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 200;
 			}
@@ -46262,6 +46296,7 @@ function CSkillManager() {
 				}
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
+			this.StackIncrement = 1;
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 200;
 			}
@@ -46361,6 +46396,7 @@ function CSkillManager() {
 				}
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
+			this.StackIncrement = 2;
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 250;
 			}
@@ -46646,6 +46682,7 @@ function CSkillManager() {
 				ratio += 90 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
+			this.StackIncrement = 2;
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 300;
 			}
@@ -47093,43 +47130,19 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)グレイシアノヴァ";
+			this.name = "(△)グレイシアノヴァ";
 			this.kana = "グレイシアノヴァ";
 			this.maxLv = 1;
-			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = CSkillData.RANGE_SHORT;
-			this.element = CSkillData.ELEMENT_VOID;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
+			this.range = CSkillData.RANGE_MAGIC;
+			this.element = CSkillData.ELEMENT_FORCE_WATER;
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
+				ratio += 10800;
+				ratio += 36 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
-			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
-				return 300;
-			}
-			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
-				return 0;
-			}
-			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
-				return 1000 + 200 * skillLv;
-			}
-			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
-				return 0;
-			}
-			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
-				return 1000 * skillLv;
-			}
-			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
-				return 500;
-			}
-			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
-				return 0;
-			}
-			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
-				return this._CriActRate100(skillLv, charaData, specData, mobData);
-			}
-			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
-				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
-			}
+			this.StackLimit = 0;
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -47140,43 +47153,19 @@ function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(×)グラウンドブルーム";
+			this.name = "(△)グラウンドブルーム";
 			this.kana = "グラウンドブルーム";
 			this.maxLv = 1;
-			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = CSkillData.RANGE_SHORT;
-			this.element = CSkillData.ELEMENT_VOID;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
+			this.range = CSkillData.RANGE_MAGIC;
+			this.element = CSkillData.ELEMENT_FORCE_EARTH;
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
+				ratio += 4500 + 4500 * skillLv;
+				ratio += 36 * GetTotalSpecStatus(MIG_PARAM_ID_INT);
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
-			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
-				return 300;
-			}
-			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
-				return 0;
-			}
-			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
-				return 1000 + 200 * skillLv;
-			}
-			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
-				return 0;
-			}
-			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
-				return 1000 * skillLv;
-			}
-			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
-				return 500;
-			}
-			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
-				return 0;
-			}
-			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
-				return this._CriActRate100(skillLv, charaData, specData, mobData);
-			}
-			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
-				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
-			}
+			this.StackLimit = 12;
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;

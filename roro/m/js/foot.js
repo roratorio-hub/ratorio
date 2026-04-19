@@ -14216,14 +14216,14 @@ function StAllCalc(){
 //================================================================================================================================
 
 
-		if(EquipNumSearch(535)
-			|| EquipNumSearch(1647)
-			|| EquipNumSearch(1718)
+		if(EquipNumSearch(ITEM_ID_VALKYRIE_MANT)
+			|| EquipNumSearch(ITEM_ID_AEGIR_MANT)
+			|| EquipNumSearch(ITEM_ID_VALKIRIE_CAPE)
 			|| CardNumSearch(CARD_ID_ENCHANT_ENERGY_IKUSAOTOME)){
-			var wVM = GetLowerJobSeriesID(n_A_JOB);
-			if(wHPVS==1 || wHPVS==2 || wHPVS==6){
-				n_tok[71] += 5;
-				n_tok[71] += n_A_SHOULDER_DEF_PLUS * 2;
+			let wHPVS = GetLowerJobSeriesID(n_A_JOB);
+			if ([JOB_SERIES_ID_SWORDMAN, JOB_SERIES_ID_THIEF, JOB_SERIES_ID_MERCHANT].includes(wHPVS)) {
+				n_tok[ITEM_SP_REFLECT_PHYSICAL_DAMAGE] += 5;
+				n_tok[ITEM_SP_REFLECT_PHYSICAL_DAMAGE] += n_A_SHOULDER_DEF_PLUS * 2;
 			}
 		}
 		if(TimeItemNumSearch(52)) n_tok[71] += n_A_SHIELD_DEF_PLUS * 3;

@@ -2680,9 +2680,9 @@
 		[1360,10,"(△)チョップチョップ","KR_CHOP_CHOP"],
 		[1361,10,"(△)タイフーンウィング","KR_TYPHOON_WING"],
 		[1362,5,"ネイチャーヴィゴール","KR_NATURE_VIGOUR"],
-		[1363,5,"(×)ネイチャープロテクション","KR_NATURE_PROTECTION"],
-		[1364,5,"(×)アイアンハウリング","KR_IRON_HOWLING"],
-		[1365,5,"(×)ウィンドヴェール","KR_WIND_VEIL"],
+		[1363,5,"ネイチャープロテクション","KR_NATURE_PROTECTION"],
+		[1364,5,"アイアンハウリング","KR_IRON_HOWLING"],
+		[1365,5,"ウィンドヴェール","KR_WIND_VEIL"],
 		[1366,5,"パルスオブマッドネス","AT_PULSE_OF_MADNESS"],
 		[1367,5,"フリップフラップ","AT_FLIP_FLAP"],
 		[1368,5,"シックスセンス","AT_SIXTH_SENSE"],
@@ -2710,8 +2710,8 @@
 		[1390,5,"ネイチャーハーモニー","AT_NATURE_HARMONY"],
 		[1391,5,"(△)グラビティホール","AT_GRAVITY_HOLE"],
 		[1392,10,"(△)サベージランジ","AT_SAVAGE_LUNGE"],
-		[1393,1,"(×)グレイシアノヴァ","AT_GLACIER_NOVA"],
-		[1394,1,"(×)グラウンドブルーム","AT_GROUND_BLOOM"],
+		[1393,1,"(△)グレイシアノヴァ","AT_GLACIER_NOVA"],
+		[1394,1,"(△)グラウンドブルーム","AT_GROUND_BLOOM"],
 		[1395,1,"ゼファーリンク","AT_ZEPHYR_LINK"],
 
 	/*

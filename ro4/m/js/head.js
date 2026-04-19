@@ -612,7 +612,8 @@ function BattleCalc999(battleCalcInfo, charaData, specData, mobData, attackMetho
 		cloned.skillLv = n_AS_SKILL[idxAS][1];
 		cloned.actRate = n_AS_SKILL[idxAS][2] / 10;		// 千分率単位から百分率単位へ
 		// 確率追撃配列に追加する
-		battleCalcResultAll.AddAppendResult(undefined, BattleCalc999Body(cloned, charaData, specData, mobData, attackMethodConfArray, false));
+		const autospell_result = BattleCalc999Body(cloned, charaData, specData, mobData, attackMethodConfArray, false);
+		battleCalcResultAll.AddAppendResult(undefined, autospell_result);
 	}
 	// オートスペルフラグ OFF
 	n_AS_MODE = false;
@@ -657,6 +658,8 @@ function BattleCalc999Body(battleCalcInfo, charaData, specData, mobData, attackM
 	battleCalcResult.bAutoSpell = battleCalcInfo.bAutoSpell;
 	battleCalcResult.coolTime = battleCalcInfo.coolTime;
 	battleCalcResult.delaySkill = battleCalcInfo.delaySkill;
+	battleCalcResult.stackLimit = g_skillManager.GetStackLimit(battleCalcInfo.skillId);
+	battleCalcResult.stackIncrement = g_skillManager.GetStackIncrement(battleCalcInfo.skillId);
 
 	//----------------------------------------------------------------
 	//
@@ -7166,6 +7169,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 		case SKILL_ID_SOLID_STOMP:
 		case SKILL_ID_CHILLING_BLAST:
 		case SKILL_ID_GRAVITY_HOLE:
+		case SKILL_ID_GLACIER_NOVA:
 		/** ドルイド */
 		case SKILL_ID_ICE_TOTEM:
 		case SKILL_ID_ICE_CLOUD:
@@ -7181,6 +7185,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 		case SKILL_ID_THUNDERING_CALL:
 		case SKILL_ID_EARTH_DRILL:
 		case SKILL_ID_EARTH_STAMP:
+		case SKILL_ID_GROUND_BLOOM:
 
 			// スキル使用条件の判定
 			n_Buki_Muri = !g_skillManager.MatchWeaponCondition(n_A_ActiveSkill, n_A_WeaponType);
@@ -11593,8 +11598,6 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 		HtmlCreateTextNode(funcDIG3PX(maxDmg, 0), objCell);
 	}
 
-
-
 	//----------------------------------------------------------------
 	//
 	// 攻撃回数部
@@ -11837,9 +11840,6 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 		HtmlCreateTextNode(funcDIG3PX(valueWork, 0), objCell);
 	}
 
-
-
-
 	//----------------------------------------------------------------
 	//
 	// 被ダメージ部（仮）
@@ -11918,330 +11918,7 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
 		refreshCheckboxArray[idx].dispatchEvent(new Event("change"));
 	}
 
-
-
-
-
 	return;
-
-
-
-
-
-
-
-
-
-
-
-	// 従来の表示
-
-
-	// 命中率が１００％未満の場合、必中ダメージがあれば追加表示
-	if(n_PerfectHIT_DMG > 0 && w_HIT_HYOUJI <100){
-		str_bSUBname += "<Font size=2>Miss時の必中ダメージ</Font>";
-		if(str_PerfectHIT_DMG == 0){
-			if(wActiveHitNum > 1){
-				var w = ROUNDDOWN(n_PerfectHIT_DMG / wActiveHitNum);
-				str_bSUB += __DIG3(w * wActiveHitNum) +"("+ __DIG3(w) +"×"+ wActiveHitNum +"Hit)";
-			}
-			else str_bSUB += __DIG3(n_PerfectHIT_DMG);
-		}else str_bSUB += str_PerfectHIT_DMG;
-	}
-
-
-	myInnerHtml("bSUBname",str_bSUBname,0);
-	myInnerHtml("bSUB",str_bSUB,0);
-	myInnerHtml("BattleHIT",w_HIT_HYOUJI,0);
-	myInnerHtml("BattlePerfectHIT",n_tok[ITEM_SP_PERFECT_ATTACK_UP],0);
-//	myInnerHtml("nm067","％",0);
-
-
-
-	// 二刀流の通常攻撃時の表示部分
-	if (n_Nitou && n_A_ActiveSkill == 0) {
-		myInnerHtml("BattleHIT",w_HIT_HYOUJI +"％(左手"+ w_HIT +"％)",0);
-//		myInnerHtml("nm067","",0);
-	}
-
-
-
-	// TODO : 謎処理　通常攻撃とグラビテーションフィールド以外
-	if(mobData[21]==6 && n_A_ActiveSkill != 0 && n_A_ActiveSkill != 325){
-		for(var i=0;i<=2;i++){
-			w_DMG[i] = 0;
-			g_damageTextArray[i] = ["Miss"];
-		}
-		myInnerHtml("MinATKnum","無理です",0);
-		myInnerHtml("AveATKnum","無理です",0);
-		myInnerHtml("MaxATKnum","無理です",0);
-		myInnerHtml("AveSecondATK","-",0);
-		myInnerHtml("AtkBaseExp","-",0);
-		myInnerHtml("AtkJobExp","-",0);
-		myInnerHtml("BattleTime","-",0);
-
-		return;
-	}
-
-
-
-	// スキル使用不可武器の場合の表示部分
-	if (n_Buki_Muri) {
-		n_Buki_Muri = false;
-		for(var i=0;i<=2;i++) w_DMG[i] = 0;
-		g_damageTextArray[0] = ["<B>この武器では</B>"];
-		g_damageTextArray[1] = ["<B>このスキルを</B>"];
-		g_damageTextArray[2] = ["<B>使用できません</B>"];
-		myInnerHtml("MinATKnum","-",0);
-		myInnerHtml("AveATKnum","-",0);
-		myInnerHtml("MaxATKnum","-",0);
-		myInnerHtml("AveSecondATK","-",0);
-		myInnerHtml("AtkBaseExp","-",0);
-		myInnerHtml("AtkJobExp","-",0);
-		myInnerHtml("BattleTime","-",0);
-
-		return;
-	}
-
-
-
-	g_AttackCount = [-1, -1, -1];
-
-	// 最小攻撃回数表示部の組み立て
-	if(w_DMG[2] > 0){
-
-		// 最小攻撃回数を算出
-		g_AttackCount[0] = Math.ceil(mobData[3] / w_DMG[2]);
-
-		// 最小攻撃回数が１万回未満ならば、そのまま表示
-		if(g_AttackCount[0] < 10000) {
-			myInnerHtml("MinATKnum",__DIG3(g_AttackCount[0]),0);
-		}
-		// １万回を超える場合は特殊表示
-		else {
-			myInnerHtml("MinATKnum",SubName[5],0);
-		}
-
-	}else{
-		myInnerHtml("MinATKnum","<Font size=2>計算不能<BR>(0ダメージなので)</Font>",0);
-	}
-
-
-
-	// 多段ＨＩＴスキルで１殺の場合、１殺できる確率を表示する
-	var w;
-	if(SG_Special_HITnum != 0){
-
-		if(w == 1){
-
-			var wHITnum;
-			var x;
-
-			wHITnum = SG_Special_HITnum;
-			x = (SG_Special_DMG[2] * wHITsuu - mobData[3]) / (SG_Special_DMG[2] * wHITsuu - SG_Special_DMG[0] * wHITsuu);
-
-			if(x > 1) x = 1;
-			if(x < 0) x = 0;
-
-			if(wHITnum == 2){
-				if(x < 0.5) x = 2 * x * x;
-				else x = 1 - 2 * (1-x) * (1-x);
-			}
-
-			if(wHITnum == 3){
-				if(x <(1/3)) x = 4.5 * Math.pow(x,3);
-				else if((1/3) <= x && x <(2/3)) x = 4.5 * (Math.pow(x,3) - 3 * Math.pow(x-1/3,3));
-				else if((2/3) <= x) x = 1 - 4.5 * Math.pow(1-x,3);
-			}
-
-			if(wHITnum >= 4){
-				var y = Math.sqrt(Math.pow(SG_Special_DMG[2]-SG_Special_DMG[0],2) / 12 * wHITnum);
-				x = (SG_Special_DMG[1] * wHITsuu - mobData[3]) / y;
-				if(x >= 0) x = 0.5+0.5*Math.sqrt(1-Math.exp(-2*Math.pow(x,2)/Math.PI));
-				else x = 0.5-0.5*Math.sqrt(1-Math.exp(-2*Math.pow(x,2)/Math.PI));
-			}
-
-			x = Math.floor(x * 10000) / 100;
-
-			myInnerHtml("MinATKnum","1(1回で倒せる確率"+ x +"%)",0);
-		}
-
-		SG_Special_HITnum = 0;
-	}
-
-
-
-	//----------------------------------------------------------------
-	// 経験値効率計算モード（SPMODE）の場合
-	//----------------------------------------------------------------
-	var atkCountAve = 0;
-	var battleTimeAve = 0;
-	var perexpBaseAve = 0;
-	var perexpJobAve = 0;
-
-	// 経験値効率計算モードの場合、かつ、確殺モードの場合
-	if(g_SPMODE_FLAG == 1 && g_SPMODE_KAKUSATSU_MODE == 1){
-
-		// 最少ダメージがモンスターのＨＰ以上となる場合、すなわち、確殺できる場合
-		if(w_DMG[0] >= mobData[3]){
-			g_SPMODE_MONSTER_RESULT[g_SPMODE_MONSTER_INDEX][SPMODE_MONSTER_RESULT_INDEX_RESULT_FLAG] = 1;
-			g_SPMODE_MONSTER_RESULT[g_SPMODE_MONSTER_INDEX][SPMODE_MONSTER_RESULT_INDEX_PEREXP_BASE] = mobData[15];
-			g_SPMODE_MONSTER_RESULT[g_SPMODE_MONSTER_INDEX][SPMODE_MONSTER_RESULT_INDEX_PEREXP_JOB] = mobData[16];
-			g_SPMODE_MONSTER_RESULT[g_SPMODE_MONSTER_INDEX][SPMODE_MONSTER_RESULT_INDEX_BATTLE_TIME] = wCast + wDelay;
-			g_SPMODE_MONSTER_RESULT[g_SPMODE_MONSTER_INDEX][SPMODE_MONSTER_RESULT_INDEX_HIT_RATE] = w_HIT_HYOUJI;
-			g_SPMODE_MONSTER_RESULT[g_SPMODE_MONSTER_INDEX][SPMODE_MONSTER_RESULT_INDEX_FLEE_RATE] = Math.floor((w_FLEE + (100 - w_FLEE) * charaData[CHARA_DATA_INDEX_LUCKY] / 100) * 100) / 100;
-		}
-
-		// 処理終了
-		return;
-	}
-
-	// 経験値効率計算モードの場合、かつ、確殺モードでない場合
-	else if(g_SPMODE_FLAG == 1){
-
-		// 平均ダメージが 0 より大きい場合のみ、計算を実施
-		while (w_DMG[1] > 0){
-
-			// 平均攻撃回数を算出
-			atkCountAve = Math.ceil(mobData[3] / w_DMG[1]);
-
-			// 平均戦闘時間を算出
-			battleTimeAve = (wCast + wDelay) * atkCountAve;
-			battleTimeAve = Math.floor(battleTimeAve * 100) / 100;
-
-			// 条件検査
-			// 平均戦闘時間が指定範囲外の場合、処理を抜ける
-			if (battleTimeAve < g_RankingConditionBattleTimeMin) {
-				break;
-			}
-			if (g_RankingConditionBattleTimeMax < battleTimeAve) {
-				break;
-			}
-
-			// 平均一撃経験値を算出し、結果配列に格納
-			perexpBaseAve = Math.round(mobData[15] / atkCountAve);
-			perexpJobAve = Math.round(mobData[16] / atkCountAve);
-
-			// 計算した結果を、結果配列に格納
-			g_SPMODE_MONSTER_RESULT[g_SPMODE_MONSTER_INDEX][SPMODE_MONSTER_RESULT_INDEX_RESULT_FLAG] = 1;
-			g_SPMODE_MONSTER_RESULT[g_SPMODE_MONSTER_INDEX][SPMODE_MONSTER_RESULT_INDEX_PEREXP_BASE] = perexpBaseAve;
-			g_SPMODE_MONSTER_RESULT[g_SPMODE_MONSTER_INDEX][SPMODE_MONSTER_RESULT_INDEX_PEREXP_JOB] = perexpJobAve;
-			g_SPMODE_MONSTER_RESULT[g_SPMODE_MONSTER_INDEX][SPMODE_MONSTER_RESULT_INDEX_BATTLE_TIME] = battleTimeAve;
-			g_SPMODE_MONSTER_RESULT[g_SPMODE_MONSTER_INDEX][SPMODE_MONSTER_RESULT_INDEX_HIT_RATE] = w_HIT_HYOUJI;
-			g_SPMODE_MONSTER_RESULT[g_SPMODE_MONSTER_INDEX][SPMODE_MONSTER_RESULT_INDEX_FLEE_RATE] = Math.floor((w_FLEE + (100 - w_FLEE) * charaData[CHARA_DATA_INDEX_LUCKY] / 100) * 100) / 100;
-
-			break;
-		}
-
-		// 処理終了
-		return;
-	}
-
-
-
-	// 最大攻撃回数表示部の組み立て
-	// 命中率が１００％未満の場合は、特殊表示
-	if(w_HIT_HYOUJI <100 && n_PerfectHIT_DMG == 0){
-		myInnerHtml("MaxATKnum","<Font size=2>計算不能<BR>(命中100未満なので)</Font>",0);
-	}
-	// 命中率が１００％の場合は、確殺を計算
-	else{
-		var wX = w_DMG[0];
-		if(w_HIT_HYOUJI <100) wX = n_PerfectHIT_DMG;
-		if(wX > 0){
-			g_AttackCount[2] = Math.ceil(mobData[3] / wX);
-			if(g_AttackCount[2]<10000) myInnerHtml("MaxATKnum",__DIG3(g_AttackCount[2]),0);
-			else myInnerHtml("MaxATKnum",SubName[5],0);
-		}else{
-			myInnerHtml("MaxATKnum","<Font size=2>計算不能<BR>(0ダメージなので)</Font>",0);
-		}
-	}
-
-
-
-	// 平均攻撃回数表示部の組み立て
-	// TODO : 詳細未解析
-	g_dps = 0;
-	if(w_DMG[1] > 0){
-		var check=0;
-		for(var j = 0; j < n_AS_SKILL.length; j++){
-			if(n_AS_SKILL[j][0] != -1) check = 1;
-		}
-		if((w_DMG[1] <w_DMG_AS_OverHP) || check == 0){
-			g_AttackCount[1] = Math.ceil(mobData[3] / w_DMG[1]);
-		}else{
-			g_AttackCount[1] = Math.ceil(mobData[3] / w_DMG_AS_OverHP);
-		}
-
-		if(g_AttackCount[1]<10000){
-			myInnerHtml("AtkBaseExp",__DIG3(Math.round(mobData[15] / g_AttackCount[1])) +"Exp",0);
-			myInnerHtml("AtkJobExp",__DIG3(Math.round(mobData[16] / g_AttackCount[1])) +"Exp",0);
-		}else{
-			myInnerHtml("AtkBaseExp",SubName[7],0);
-			myInnerHtml("AtkJobExp",SubName[7],0);
-		}
-
-		if(g_AttackCount[1]<10000){
-			myInnerHtml("AveATKnum",__DIG3(g_AttackCount[1]),0);
-			const n_AveATKnum = g_AttackCount[1];
-			var w2 = (wCast + wDelay) * n_AveATKnum;
-			w2 = Math.floor(w2 * 100) / 100;
-			if(n_Delay[0]) myInnerHtml("BattleTime","特殊",0);
-			else myInnerHtml("BattleTime",__DIG3(w2) + "秒",0);
-		}else{
-			myInnerHtml("AveATKnum",SubName[5],0);
-			myInnerHtml("BattleTime",SubName[6],0);
-		}
-
-		g_dps = 1 / (wCast + wDelay) * w_DMG[1];
-		g_dps *= 100;
-		g_dps = Math.round(g_dps);
-		g_dps /= 100;
-		if(n_Delay[0]) {
-			g_dps = -1;
-			myInnerHtml("AveSecondATK","特殊",0);
-		}
-		else myInnerHtml("AveSecondATK",__DIG3(g_dps),0);
-	}else{
-		myInnerHtml("AtkBaseExp","<Font size=2>計算不能</Font>",0);
-		myInnerHtml("AtkJobExp","<Font size=2>計算不能</Font>",0);
-		myInnerHtml("AveSecondATK","<Font size=2>計算不能<BR>(0ダメージなので)</Font>",0);
-		myInnerHtml("AveATKnum","<Font size=2>計算不能<BR>(0ダメージなので)</Font>",0);
-		myInnerHtml("BattleTime","<Font size=2>計算不能</Font>",0);
-	}
-
-
-
-	w = calcReceivedDamage(charaData, specData, mobData, attackMethodConfArray);
-	w = Math.round(w *(100-charaData[CHARA_DATA_INDEX_LUCKY]))/100;
-	w = Math.round(w *(100-w_FLEE))/100;
-
-	var agLv = Math.max(
-		0,
-		UsedSkillSearch(SKILL_ID_AUTO_GUARD),
-		g_confDataNizi[CCharaConfNizi.CONF_ID_AUTO_GUARD],
-		TimeItemNumSearch(70)
-	);
-
-	if (agLv > 0) {
-		w = Math.round(w * w_AG[agLv]) / 100;
-	}
-
-	if(n_A_WeaponType==3 && UsedSkillSearch(SKILL_ID_PARIYING)){
-		w = Math.round(w * (80- UsedSkillSearch(SKILL_ID_PARIYING) *3))/100;
-	}
-	if(UsedSkillSearch(SKILL_ID_REJECT_SWORD)){
-		w = Math.round(w * (100- UsedSkillSearch(SKILL_ID_REJECT_SWORD) *7.5))/100;
-	}
-
-	myInnerHtml("B_Ave2Atk",__DIG3(w)+"ダメージ",0);
-
-	g_receiveDamageAvoids = w;
-
-	if(n_A_ActiveSkill==441) {
-		myInnerHtml("B_Ave2Atk","-",0);
-	}
-
 }
 
 /**
@@ -12488,37 +12165,40 @@ function calcReceivedDamage(charaData, specData, mobData, attackMethodConfArray,
 		const energy_coat = Math.max(UsedSkillSearch(SKILL_ID_ENERGY_COAT), n_A_PassSkill7[50]);
 		wBHD = 6 * energy_coat;
 		w_HiDam = w_HiDam.map(damage => damage - Math.floor(damage * wBHD /100));
+	}
 
-		//--------------------------------
-		// ストーンスキンのダメージ軽減効果
-		//--------------------------------
+	/** 排他スキルによるダメージ減少効果 */
+	{
+		let ratio = 0;
+		let prefetch = 0;
 		if (TimeItemNumSearch(TIME_ITEM_ID_WOLF_HEZIN)) {
-			for (i = 0; i <= 6; i++) {
-				w_HiDam[i] -= Math.floor(w_HiDam[i] * 20 /100);
-			}
+			// ストーンスキン
+			ratio = Math.max(ratio, 20);
 		}
-
-		//--------------------------------
-		// 金剛のダメージ軽減効果
-		//--------------------------------
 		if (UsedSkillSearch(SKILL_ID_KONGO)) {
-			for(i=0;i<=6;i++) w_HiDam[i] -= Math.floor(w_HiDam[i] * 90 / 100);
+			// 金剛
+			ratio = Math.max(ratio, 90);
 		}
-
-		//--------------------------------
-		// 「サモナー　うずくまる」のダメージ軽減効果
-		//--------------------------------
 		if (UsedSkillSearch(SKILL_ID_UZUKUMARU)) {
-			// 特定の戦闘エリアでの補正
-			var rateWork = 80;
-			switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
-				case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
-					rateWork = 50;
-					break;
+			// うずくまる
+			if (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA] == MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM) {
+				ratio = Math.max(ratio, 50);
+			} else {
+				ratio = Math.max(ratio, 80);
 			}
-			for (i = 0; i <= 6; i++) {
-				w_HiDam[i] -= Math.floor(w_HiDam[i] * rateWork / 100);
-			}
+		}
+		prefetch = UsedSkillSearch(SKILL_ID_NATURE_PROTECTION);
+		if (prefetch > 0) {
+			// ネイチャープロテクション
+			ratio = Math.max(ratio, [0, 30, 45, 60, 80, 95][prefetch]);
+		}
+		prefetch = UsedSkillSearch(SKILL_ID_IRON_HOWLING);
+		if (prefetch > 0) {
+			// アイアンハウリング
+			ratio = Math.max(ratio, 15 + 5 * prefetch);
+		}
+		for (let i = 0; i <= 6; i++) {
+			w_HiDam[i] -= Math.floor(w_HiDam[i] * ratio / 100);
 		}
 	}
 
@@ -12733,6 +12413,7 @@ function calcReceivedMagicDamage(charaData, mobData, objCell){
 	/** スキルによる減少（排他的な効果） */
 	{
 		const candidate = [0];
+		let prefetch = 0;
 		// 金剛のダメージ軽減効果
 		if (UsedSkillSearch(SKILL_ID_KONGO) > 0) {
 			candidate.push(90);
@@ -12740,6 +12421,16 @@ function calcReceivedMagicDamage(charaData, mobData, objCell){
 		// うずくまる
 		if (UsedSkillSearch(SKILL_ID_UZUKUMARU) > 0) {
 			candidate.push(80);
+		}
+		prefetch = UsedSkillSearch(SKILL_ID_NATURE_PROTECTION);
+		if (prefetch > 0) {
+			// ネイチャープロテクション
+			candidate.push([0, 30, 45, 60, 80, 95][prefetch]);
+		}
+		prefetch = UsedSkillSearch(SKILL_ID_IRON_HOWLING);
+		if (prefetch > 0) {
+			// アイアンハウリング
+			candidate.push(15 + 5 * prefetch);
 		}
 		ratio = Math.min(95, Math.max(...candidate));
 		damage -= Math.floor(damage * ratio / 100);
