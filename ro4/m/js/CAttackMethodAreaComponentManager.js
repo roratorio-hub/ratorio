@@ -4422,6 +4422,39 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 				);
 				break;
 
+			/**
+			 * グレイシアシャード
+			 */
+			case SKILL_ID_GLACIER_SHARD:
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"グレイシアモノリス",
+					[
+						[0, "無し"],
+						[1, "有り"],
+					],
+					0
+				);
+				break;
+
+			/**
+			 * アーススタンプ
+			 * アースドリル
+			 */
+			case SKILL_ID_EARTH_STAMP:
+			case SKILL_ID_EARTH_DRILL:
+			case SKILL_ID_TERRA_HARVEST:
+			case SKILL_ID_TERRA_WAVE:
+			case SKILL_ID_SOLID_STOMP:
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"グラウンドグロウ",
+					[
+						[0, "無し"],
+						[1, "有り"],
+					],
+					0
+				);
+				break;
+
 		}
 	}
 };

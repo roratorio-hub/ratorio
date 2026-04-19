@@ -479,7 +479,7 @@ CGlobalConstManager.DefineEnum(
 		"ITEM_SP_RESIST_ELM_UNDEAD",	// 69 不死属性耐性
 
 		"ITEM_SP_CRITICAL_DAMAGE_UP",		// 70 クリティカルダメージ増加
-		"ITEM_SP_REFLECT_PHYSICAL_DAMAGE",
+		"ITEM_SP_REFLECT_PHYSICAL_DAMAGE",	// 71 物理ダメージ反射
 		"ITEM_SP_LONGRANGE_CRI_PLUS",
 		"ITEM_SP_SKILL_CAST_TIME",			// 73 変動詠唱時間
 		"ITEM_SP_SKILL_DELAY_DOWN",			// 74 ディレイ
@@ -1600,7 +1600,7 @@ function GetJobRestrictText(eqpflg) {
 		case 1000 + ITEM_EQPFLG_NONE:
 			return "転生職";
 		case 1000 + ITEM_EQPFLG_IGNORE_NOVICE_SERIES:
-			return "転生ソードマン系 転生マーチャント系 転生シーフ系 転生アーチャー系 転生マジシャン系";
+			return "転生1次職 上位2次職 3次職 4次職";
 		case 1000 + ITEM_EQPFLG_SERIES_SWORDMAN:
 			return "転生ソードマン系";
 		case 1000 + ITEM_EQPFLG_SERIES_THIEF_NINJA:
