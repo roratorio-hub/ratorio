@@ -50309,7 +50309,10 @@ KARNOS:
     ALL_FULL_THROTTLE:
       id: ALL_FULL_THROTTLE
       id_num: 5014
-  passive_skills: {}
+  passive_skills:
+    ALL_FULL_THROTTLE:
+      id: ALL_FULL_THROTTLE
+      id_num: 5014
   attack_skills: {}
   allow_equipment_weapons_type:
     - 0
@@ -50674,7 +50677,10 @@ ALITEA:
     ALL_FULL_THROTTLE:
       id: ALL_FULL_THROTTLE
       id_num: 5014
-  passive_skills: {}
+  passive_skills:
+    ALL_FULL_THROTTLE:
+      id: ALL_FULL_THROTTLE
+      id_num: 5014
   attack_skills: {}
   allow_equipment_weapons_type:
     - 0

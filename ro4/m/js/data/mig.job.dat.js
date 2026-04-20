@@ -1062,6 +1062,7 @@
 				SKILL_ID_NATURE_SHIELD,
 				SKILL_ID_NATURE_PROTECTION,
 				SKILL_ID_IRON_HOWLING,
+				SKILL_ID_FULLSLOT,
 			],[	// 攻撃スキル
 				0,
 				SKILL_ID_ICE_TOTEM,
@@ -1206,6 +1207,7 @@
 				SKILL_ID_FLIP_FLAP,
 				SKILL_ID_AERO_SYNC,
 				SKILL_ID_NATURE_HARMONY,
+				SKILL_ID_FULLSLOT,	/* リリース後に不足に気づいたのでカルノスの位置とズレている. 位置を揃えるにはセーブデータ構造のアップグレードが必要. */
 			],[	// 攻撃スキル
 				0,
 				SKILL_ID_ICE_TOTEM,
