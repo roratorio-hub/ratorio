@@ -1,10 +1,11 @@
 
 
 
+// ESModule 化済み。HTMLでは type="module" で読み込むこと。
 /**
  * インスタンスマネージャクラス.
  */
-function CInstanceManager () {
+export function CInstanceManager () {
 
 	// 登録済みの最大ＩＤ
 	this.idMax = 0;
@@ -80,3 +81,9 @@ function CInstanceManager () {
 		return list;
 	};
 }
+
+// ============================================================
+// 未移行ファイルとのグローバル互換ブロック
+// 他のJSファイルの ESModule 移行が完了したら削除する
+// ============================================================
+window.CInstanceManager = CInstanceManager;
