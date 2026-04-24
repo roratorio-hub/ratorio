@@ -1,22 +1,23 @@
+// ESModule 化済み。HTMLでは type="module" で読み込むこと。
 
 // ペットID指定のオフセット（カードと同じように指定するので、カードIDで実現しないぐらい大きな値を設定）
 // TODO: いずれ修正予定
-ITEM_SET_PET_ID_OFFSET = 100000;
+window.ITEM_SET_PET_ID_OFFSET = 100000;
 
 const ITEMSET_ID_LIMIT_WITH_ITEM = 200;
 const ITEMSET_ID_LIMIT_WITH_CARD = 200;
 
 // アイテムセット定義配列
-w_SE = new Array();
+window.w_SE = new Array();
 
 // アイテムIDからセットIDを検索するマップ
-ItemIdToSetIdMap = new Array();
+window.ItemIdToSetIdMap = new Array();
 
 // カードIDからセットIDを検索するマップ
-CardIdToSetIdMap = new Array();
+window.CardIdToSetIdMap = new Array();
 
 // ペットIDからセットIDを検索するマップ
-PetIdToSetIdMap = new Array();
+window.PetIdToSetIdMap = new Array();
 
 
 
@@ -220,3 +221,12 @@ function CheckAndApplyItemSetEquipping() {
 	n_A_Equip = modifiedItemIdArray;
 	n_A_card = modifiedCardIdArray;
 }
+
+// ============================================================
+// 未移行ファイルとのグローバル互換ブロック
+// 他のJSファイルの ESModule 移行が完了したら削除する
+// ============================================================
+window.ITEMSET_ID_LIMIT_WITH_ITEM    = ITEMSET_ID_LIMIT_WITH_ITEM;
+window.ITEMSET_ID_LIMIT_WITH_CARD    = ITEMSET_ID_LIMIT_WITH_CARD;
+window.GetItemSetMemberText          = GetItemSetMemberText;
+window.CheckAndApplyItemSetEquipping = CheckAndApplyItemSetEquipping;

@@ -1,3 +1,4 @@
+// ESModule 化済み。HTMLでは type="module" で読み込むこと。
 
 //----------------------------------------------------------------
 // データの要素番号
@@ -80,5 +81,11 @@ function SetUpSortKanaMonsterMap(dataArray) {
 
 
 // データ配列
-g_MonsterMapDataArray = [];
-g_MonsterMapCategoryDataArray = [];
+window.g_MonsterMapDataArray = [];
+window.g_MonsterMapCategoryDataArray = [];
+
+// ============================================================
+// 未移行ファイルとのグローバル互換ブロック
+// 他のJSファイルの ESModule 移行が完了したら削除する
+// ============================================================
+window.SetUpSortKanaMonsterMap = SetUpSortKanaMonsterMap;

@@ -1,3 +1,4 @@
+// ESModule 化済み。HTMLでは type="module" で読み込むこと。
 
 //----------------------------------------------------------------
 // データの要素番号
@@ -439,5 +440,10 @@ function GetRndOptDispName(spid) {
 
 
 
-g_rndOptArray = new Array();
+window.g_rndOptArray = new Array();
 
+// ============================================================
+// 未移行ファイルとのグローバル互換ブロック
+// 他のJSファイルの ESModule 移行が完了したら削除する
+// ============================================================
+window.GetRndOptDispName = GetRndOptDispName;

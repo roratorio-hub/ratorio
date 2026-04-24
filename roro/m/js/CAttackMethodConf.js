@@ -1,4 +1,4 @@
-
+// ESModule 化済み。HTMLでは type="module" で読み込むこと。
 
 
 //----------------------------------------------------------------
@@ -23,7 +23,7 @@ CGlobalConstManager.DefineEnum(
 /**
  * 攻撃手段設定クラス.
  */
-function CAttackMethodConf () {
+export function CAttackMethodConf () {
 
 	// スキルID
 	this.skillId = 0;
@@ -167,7 +167,9 @@ function CAttackMethodConf () {
 	};
 }
 
-
-
-
+// ============================================================
+// 未移行ファイルとのグローバル互換ブロック
+// 他のJSファイルの ESModule 移行が完了したら削除する
+// ============================================================
+window.CAttackMethodConf = CAttackMethodConf;
 

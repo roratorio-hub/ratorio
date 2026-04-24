@@ -1,3 +1,4 @@
+// ESModule 化済み。HTMLでは type="module" で読み込むこと。
 
 //----------------------------------------------------------------
 // データの要素番号
@@ -28,7 +29,7 @@ CGlobalConstManager.DefineEnum(
 
 
 // 時限アイテム定義配列
-ITEM_SP_TIME_OBJ = new Array();
+window.ITEM_SP_TIME_OBJ = new Array();
 
 // 時限アイテム整列データ配列
-ITEM_SP_TIME_OBJ_SORT = new Array();
+window.ITEM_SP_TIME_OBJ_SORT = new Array();

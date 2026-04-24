@@ -1,7 +1,8 @@
+// ESModule 化済み。HTMLでは type="module" で読み込むこと。
 /**
  * セーブデータの変換を行うクラス.
  */
-function CSaveDataConverter() {
+export function CSaveDataConverter() {
 
 }
 
@@ -312,3 +313,9 @@ CSaveDataConverter.ExtractDataTextMIG = function (dataText) {
 
 	return dataText;
 };
+
+// ============================================================
+// 未移行ファイルとのグローバル互換ブロック
+// 他のJSファイルの ESModule 移行が完了したら削除する
+// ============================================================
+window.CSaveDataConverter = CSaveDataConverter;

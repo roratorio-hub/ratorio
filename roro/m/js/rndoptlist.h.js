@@ -1,3 +1,4 @@
+// ESModule 化済み。HTMLでは type="module" で読み込むこと。
 
 //----------------------------------------------------------------
 // データの要素番号
@@ -12,5 +13,5 @@ CGlobalConstManager.DefineEnum(
 	1
 );
 
-g_rndOptListArray = new Array();
+window.g_rndOptListArray = new Array();
 

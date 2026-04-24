@@ -1,3 +1,4 @@
+// ESModule 化済み。HTMLでは type="module" で読み込むこと。
 
 //----------------------------------------------------------------
 // データの要素番号
@@ -298,3 +299,11 @@ function GetGrassTypeText(grassTypeId) {
 
 	return "エラー";
 }
+
+// ============================================================
+// 未移行ファイルとのグローバル互換ブロック
+// 他のJSファイルの ESModule 移行が完了したら削除する
+// ============================================================
+window.GetMonseterElmBasicType = GetMonseterElmBasicType;
+window.GetBossTypeText         = GetBossTypeText;
+window.GetGrassTypeText        = GetGrassTypeText;

@@ -1,3 +1,4 @@
+// ESModule 化済み。HTMLでは type="module" で読み込むこと。
 
 //----------------------------------------------------------------
 // データの要素番号
@@ -40,7 +41,7 @@ CGlobalConstManager.DefineEnum(
 	var eqpRgnId = 0;
 	var rndOptIndex = 0;
 
-	g_equipRndOptTable = new Array();
+	window.g_equipRndOptTable = new Array();
 
 	for (eqpRgnId = 0; eqpRgnId < EQUIP_REGION_ID_COUNT; eqpRgnId++) {
 
@@ -56,7 +57,7 @@ CGlobalConstManager.DefineEnum(
 
 
 
-g_rndOptTypeArray = new Array();
+window.g_rndOptTypeArray = new Array();
 
 
 
@@ -93,5 +94,12 @@ function GetEquipRndOptTableValue(eqpRgnId, rndOptIndex) {
 	}
 }
 
+// ============================================================
+// 未移行ファイルとのグローバル互換ブロック
+// 他のJSファイルの ESModule 移行が完了したら削除する
+// ============================================================
+window.SetEquipRndOptTable      = SetEquipRndOptTable;
+window.GetEquipRndOptTableKind  = GetEquipRndOptTableKind;
+window.GetEquipRndOptTableValue = GetEquipRndOptTableValue;
 
 

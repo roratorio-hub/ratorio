@@ -1,3 +1,4 @@
+// ESModule 化済み。HTMLでは type="module" で読み込むこと。
 
 //----------------------------------------------------------------
 // データの要素番号
@@ -57,7 +58,7 @@ CGlobalConstManager.DefineEnum(
 
 
 
-AUTO_SPELL_ID_CUSTOM_BIAS = 20000;
+window.AUTO_SPELL_ID_CUSTOM_BIAS = 20000;
 
 
 
@@ -106,4 +107,10 @@ function GetAutoSpellTriggerText(triggerId) {
 
 	return "不明";
 }
+
+// ============================================================
+// 未移行ファイルとのグローバル互換ブロック
+// 他のJSファイルの ESModule 移行が完了したら削除する
+// ============================================================
+window.GetAutoSpellTriggerText = GetAutoSpellTriggerText;
 

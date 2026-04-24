@@ -1,3 +1,4 @@
+// ESModule 化済み。HTMLでは type="module" で読み込むこと。
 
 //----------------------------------------------------------------
 // データの要素番号
@@ -35,4 +36,4 @@ CGlobalConstManager.DefineEnum(
 
 
 // 矢データ配列
-ArrowOBJNew = new Array();
+window.ArrowOBJNew = new Array();

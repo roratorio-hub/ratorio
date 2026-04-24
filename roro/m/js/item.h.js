@@ -1,3 +1,4 @@
+// ESModule 化済み。HTMLでは type="module" で読み込むこと。
 
 //----------------------------------------------------------------
 // EnumItemDataIndex データの要素番号
@@ -3136,3 +3137,20 @@ function GetItemExplainText(spId, spValue) {
 
 	return textInfoArray;
 }
+
+// ============================================================
+// 未移行ファイルとのグローバル互換ブロック
+// 他のJSファイルの ESModule 移行が完了したら削除する
+// ============================================================
+window.GetItemKindNameText                  = GetItemKindNameText;
+window.IsDexBasedArms                       = IsDexBasedArms;
+window.IsEffectiveExceededRefinedAtkArms    = IsEffectiveExceededRefinedAtkArms;
+window.IsGunSeriesArms                      = IsGunSeriesArms;
+window.GetJobRestrictText                   = GetJobRestrictText;
+window.GetStrPenaltyAvoidStr                = GetStrPenaltyAvoidStr;
+window.GetEnchantTypeId                     = GetEnchantTypeId;
+window.GetRndOptTypeId                      = GetRndOptTypeId;
+window.GetSlotText                          = GetSlotText;
+window.GetMaxSlot                           = GetMaxSlot;
+window.GetItemSP                            = GetItemSP;
+window.GetItemExplainText                   = GetItemExplainText;

@@ -1,3 +1,4 @@
+// ESModule 化済み。HTMLでは type="module" で読み込むこと。
 
 //----------------------------------------------------------------
 // データの要素番号
@@ -31,4 +32,4 @@ CGlobalConstManager.DefineEnum(
 
 
 
-USABLE_SKILL_ID_CUSTOM_BIAS = 10000;
+window.USABLE_SKILL_ID_CUSTOM_BIAS = 10000;

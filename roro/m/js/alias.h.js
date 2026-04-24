@@ -1,3 +1,4 @@
+// ESModule 化済み。HTMLでは type="module" で読み込むこと。
 
 //----------------------------------------------------------------
 // データの要素番号
@@ -23,7 +24,7 @@ CGlobalConstManager.DefinePseudoEnum(
 
 
 // エイリアスデータ配列
-g_AliasDataArray = new Array();
+window.g_AliasDataArray = new Array();
 
 
 
@@ -44,3 +45,9 @@ function TranslateAlias (alias) {
 
 	return "";
 }
+
+// ============================================================
+// 未移行ファイルとのグローバル互換ブロック
+// 他のJSファイルの ESModule 移行が完了したら削除する
+// ============================================================
+window.TranslateAlias = TranslateAlias;

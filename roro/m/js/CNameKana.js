@@ -1,4 +1,4 @@
-
+// ESModule 化済み。HTMLでは type="module" で読み込むこと。
 
 
 
@@ -65,7 +65,7 @@ CGlobalConstManager.DefinePseudoEnum(
 /**
  * 名称仮名クラス.
  */
-function CNameKana (nameC, kanaC) {
+export function CNameKana (nameC, kanaC) {
 
 	/** 名称. */
 	this.name = (nameC ? nameC : "");
@@ -349,4 +349,10 @@ CNameKana.GetKanaCodeSub = function (baseCode, kanaType) {
 CNameKana.GetSortCode = function (kanaCode) {
 	return kanaCode.replace("z", "d").replace("y", "f").replace("v", "a").toUpperCase();
 };
+
+// ============================================================
+// 未移行ファイルとのグローバル互換ブロック
+// 他のJSファイルの ESModule 移行が完了したら削除する
+// ============================================================
+window.CNameKana = CNameKana;
 
