@@ -1,7 +1,8 @@
+// ESModule 化済み。HTMLでは type="module" で読み込むこと。
 /**
  * セーブデータユニット関連定数クラス.
  */
-class CSaveDataConst {
+export class CSaveDataConst {
 
 	/**
 	 * プロパティ名：タイプ値.
@@ -2142,3 +2143,9 @@ class CSaveDataConst {
 }
 // 定数を凍結
 Object.freeze(CSaveDataConst);
+
+// ============================================================
+// 未移行ファイルとのグローバル互換ブロック
+// 他のJSファイルの ESModule 移行が完了したら削除する
+// ============================================================
+window.CSaveDataConst = CSaveDataConst;

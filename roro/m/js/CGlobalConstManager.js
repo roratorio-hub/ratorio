@@ -1,7 +1,8 @@
+// ESModule 化済み。HTMLでは type="module" で読み込むこと。
 /**
  * 定数データ管理ユニットクラス.
  */
-function CConstVarManagementUnit () {
+export function CConstVarManagementUnit () {
 
 	// 定数名
 	this.name = "";
@@ -32,7 +33,7 @@ function CConstVarManagementUnit () {
 /**
  * 列挙型マネージャクラス.
  */
-function CGlobalEnumManager () {
+export function CGlobalEnumManager () {
 
 	// 列挙名
 	this.enumName = "";
@@ -336,7 +337,7 @@ function CGlobalEnumManager () {
 /**
  * 定数マネージャクラス.
  */
-function CGlobalConstManager () {
+export function CGlobalConstManager () {
 
 }
 
@@ -521,5 +522,13 @@ CGlobalConstManager.SearchMap = function (name) {
 	// ここに来るならば、一致なし
 	return null;
 };
+
+// ============================================================
+// 未移行ファイルとのグローバル互換ブロック
+// 他のJSファイルの ESModule 移行が完了したら削除する
+// ============================================================
+window.CConstVarManagementUnit = CConstVarManagementUnit;
+window.CGlobalEnumManager      = CGlobalEnumManager;
+window.CGlobalConstManager     = CGlobalConstManager;
 
 

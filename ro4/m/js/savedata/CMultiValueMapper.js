@@ -1,9 +1,10 @@
+// ESModule 化済み。HTMLでは type="module" で読み込むこと。
 /**
  * マルチバリューのマッピング管理クラス.
  * （同一のkeyに複数の値が設定されうるマップクラス）
  * （複数の値が設定された場合、値は配列でラッピングされて保持、取得される）
  */
-class CMultiValueMapper extends SKeyMap {
+export class CMultiValueMapper extends SKeyMap {
 	/**
 	 * コンストラクタ.
 	 */
@@ -39,3 +40,9 @@ class CMultiValueMapper extends SKeyMap {
 		return key;
 	}
 }
+
+// ============================================================
+// 未移行ファイルとのグローバル互換ブロック
+// 他のJSファイルの ESModule 移行が完了したら削除する
+// ============================================================
+window.CMultiValueMapper = CMultiValueMapper;

@@ -1,4 +1,5 @@
-class ModalWindow {
+// ESModule 化済み。HTMLでは type="module" で読み込むこと。
+export class ModalWindow {
     static createModal({ title = "", message = "", buttons = [] }) {
         return new Promise((resolve) => {
             // モーダルの背景
@@ -70,3 +71,9 @@ class ModalWindow {
         });
     }
 }
+
+// ============================================================
+// 未移行ファイルとのグローバル互換ブロック
+// 他のJSファイルの ESModule 移行が完了したら削除する
+// ============================================================
+window.ModalWindow = ModalWindow;

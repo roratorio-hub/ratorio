@@ -1,7 +1,8 @@
+// ESModule 化済み。HTMLでは type="module" で読み込むこと。
 /**
  * Extended Map class whose 'key' is forced as string.
  */
-class SKeyMap extends Map {
+export class SKeyMap extends Map {
 
 	/**
 	 * Constructor.
@@ -47,3 +48,9 @@ class SKeyMap extends Map {
 		return super.set("" + key, value);
 	}
 }
+
+// ============================================================
+// 未移行ファイルとのグローバル互換ブロック
+// 他のJSファイルの ESModule 移行が完了したら削除する
+// ============================================================
+window.SKeyMap = SKeyMap;

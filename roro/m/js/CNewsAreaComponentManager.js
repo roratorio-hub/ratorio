@@ -1,7 +1,8 @@
+// ESModule 化済み。HTMLでは type="module" で読み込むこと。
 /**
  * お知らせエリアコンポーネントマネージャクラス.
  */
-function CNewsAreaComponentManager () {
+export function CNewsAreaComponentManager () {
 
 }
 
@@ -310,6 +311,12 @@ CNewsAreaComponentManager.CloseArea = function () {
 
 // 初期構築処理
 CNewsAreaComponentManager.RebuildControls();
+
+// ============================================================
+// 未移行ファイルとのグローバル互換ブロック
+// 他のJSファイルの ESModule 移行が完了したら削除する
+// ============================================================
+window.CNewsAreaComponentManager = CNewsAreaComponentManager;
 
 
 

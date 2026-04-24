@@ -1,7 +1,8 @@
+// ESModule 化済み。HTMLでは type="module" で読み込むこと。
 /**
  * セーブデータユニットのタイプ値とクラスの対応を管理するクラス.
  */
-class CSaveDataUnitTypeManager {
+export class CSaveDataUnitTypeManager {
 
 	/**
 	 * タイプ値とクラスの関係を管理するシングルトンマッパ.
@@ -36,3 +37,9 @@ class CSaveDataUnitTypeManager {
 		return this.#mapper.get(type);
 	}
 }
+
+// ============================================================
+// 未移行ファイルとのグローバル互換ブロック
+// 他のJSファイルの ESModule 移行が完了したら削除する
+// ============================================================
+window.CSaveDataUnitTypeManager = CSaveDataUnitTypeManager;

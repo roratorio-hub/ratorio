@@ -1,8 +1,9 @@
 
+// ESModule 化済み。HTMLでは type="module" で読み込むこと。
 /**
  * 戦闘計算情報クラス.
  */
-function CBattleCalcInfo () {
+export function CBattleCalcInfo () {
 
 	// スキルID
 	this.skillId = 0;
@@ -117,7 +118,9 @@ function CBattleCalcInfo () {
 	};
 }
 
-
-
-
+// ============================================================
+// 未移行ファイルとのグローバル互換ブロック
+// 他のJSファイルの ESModule 移行が完了したら削除する
+// ============================================================
+window.CBattleCalcInfo = CBattleCalcInfo;
 

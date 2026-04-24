@@ -1,7 +1,8 @@
+// ESModule 化済み。HTMLでは type="module" で読み込むこと。
 /**
  * シングルトンのマッピング管理クラス.
  */
-class CSingletonMapper extends SKeyMap {
+export class CSingletonMapper extends SKeyMap {
 
 	/**
 	 * コンストラクタ.
@@ -27,3 +28,9 @@ class CSingletonMapper extends SKeyMap {
 		return key;
 	}
 }
+
+// ============================================================
+// 未移行ファイルとのグローバル互換ブロック
+// 他のJSファイルの ESModule 移行が完了したら削除する
+// ============================================================
+window.CSingletonMapper = CSingletonMapper;
