@@ -1,11 +1,19 @@
 /**
  * 低レイヤーのユーティリティ関数群
+ *
+ * [ESModule 移行メモ]
+ * このファイルは ESModule 形式に変換済み。
+ * このファイルを読み込む HTML の <script> タグを
+ *   <script type="module" src="...util.js"></script>
+ * に変更するまで、ブラウザ上では動作しない。
+ * このファイルの関数を使う他の JS ファイルは、
+ * 次のステップで import 文を追加する必要がある。
  */
 
-CONSOLE_LOG_LEVEL_NONE	= 0;
-CONSOLE_LOG_LEVEL_DEBUG	= 1;
-g_bStoreConsoleLog = false;
-g_storedConsoleLogArray = null;
+export const CONSOLE_LOG_LEVEL_NONE  = 0;
+export const CONSOLE_LOG_LEVEL_DEBUG = 1;
+export let g_bStoreConsoleLog      = false;
+export let g_storedConsoleLogArray = null;
 
 /************************************************************************************************
  *
@@ -16,7 +24,7 @@ g_storedConsoleLogArray = null;
  *-----------------------------------------------------------------------------------------------
  * @return 取得したＨＴＭＬオブジェクト
  ************************************************************************************************/
-function HtmlGetElementById(elementId) {
+export function HtmlGetElementById(elementId) {
 
 	return document.getElementById(elementId);
 }
@@ -31,7 +39,7 @@ function HtmlGetElementById(elementId) {
  *-----------------------------------------------------------------------------------------------
  * @return 生成したＨＴＭＬオブジェクト
  ************************************************************************************************/
-function HtmlCreateElement(elementType, objRoot) {
+export function HtmlCreateElement(elementType, objRoot) {
 
 	var objElement = null;
 
@@ -54,7 +62,7 @@ function HtmlCreateElement(elementType, objRoot) {
 *-----------------------------------------------------------------------------------------------
 * @return 生成したＨＴＭＬオブジェクト
 ************************************************************************************************/
-function HtmlCreateTextNode(textValue, objRoot) {
+export function HtmlCreateTextNode(textValue, objRoot) {
 
 	var objElement = null;
 
@@ -76,7 +84,7 @@ function HtmlCreateTextNode(textValue, objRoot) {
 * @param objRoot ルートオブジェクト
 *-----------------------------------------------------------------------------------------------
 ************************************************************************************************/
-function HtmlAppendTextNodeMulti(textArray, objRoot) {
+export function HtmlAppendTextNodeMulti(textArray, objRoot) {
 
 	var idx = 0;
 
@@ -101,7 +109,7 @@ function HtmlAppendTextNodeMulti(textArray, objRoot) {
 *-----------------------------------------------------------------------------------------------
 * @return 生成したＨＴＭＬオブジェクト（ＳＰＡＮ）
 ************************************************************************************************/
-function HtmlCreateTextSpan(textValue, objRoot, className) {
+export function HtmlCreateTextSpan(textValue, objRoot, className) {
 
 	var objSpan = null;
 	var objElement = null;
@@ -135,7 +143,7 @@ function HtmlCreateTextSpan(textValue, objRoot, className) {
 *-----------------------------------------------------------------------------------------------
 * @return 対象オブジェクト
 ************************************************************************************************/
-function HtmlSetAttribute(objElement, attrName, attrValue) {
+export function HtmlSetAttribute(objElement, attrName, attrValue) {
 
 	if (objElement != null) {
 		objElement.setAttribute(attrName, attrValue);
@@ -152,7 +160,7 @@ function HtmlSetAttribute(objElement, attrName, attrValue) {
  * @param objSelect 削除対象のセレクトボックス（null可）
  *-----------------------------------------------------------------------------------------------
  ************************************************************************************************/
-function HtmlRemoveOptionAll(objSelect) {
+export function HtmlRemoveOptionAll(objSelect) {
 
 	if (objSelect == null) {
 		return;
@@ -174,7 +182,7 @@ function HtmlRemoveOptionAll(objSelect) {
  *-----------------------------------------------------------------------------------------------
  * @return 生成したＯＰＴＩＯＮオブジェクト
  ************************************************************************************************/
-function HtmlCreateElementOption(optionValue, optionText, objSelect) {
+export function HtmlCreateElementOption(optionValue, optionText, objSelect) {
 
 	var objOption = null;
 	var objText = null;
@@ -205,7 +213,7 @@ function HtmlCreateElementOption(optionValue, optionText, objSelect) {
  *-----------------------------------------------------------------------------------------------
  * @param objParent 対象となるオブジェクト
  ************************************************************************************************/
-function HtmlRemoveAllChild(objParent) {
+export function HtmlRemoveAllChild(objParent) {
 
 	if (objParent == null) {
 		return;
@@ -228,7 +236,7 @@ function HtmlRemoveAllChild(objParent) {
  *-----------------------------------------------------------------------------------------------
  * @return 削除されたオブジェクト
  ************************************************************************************************/
-function HtmlRemoveFromParent(objChild) {
+export function HtmlRemoveFromParent(objChild) {
 
 	if (objChild == null) {
 		return;
@@ -254,7 +262,7 @@ function HtmlRemoveFromParent(objChild) {
 *-----------------------------------------------------------------------------------------------
 * @return 対象オブジェクト
 ************************************************************************************************/
-function HtmlGetAttribute(objTarget, attrName, valueWhenNull) {
+export function HtmlGetAttribute(objTarget, attrName, valueWhenNull) {
 
 	if (objTarget == null) {
 		return valueWhenNull;
@@ -271,7 +279,7 @@ function HtmlGetAttribute(objTarget, attrName, valueWhenNull) {
  * @param objID 対象となるオブジェクトの ID
  * @param valueWhenNull オブジェクトが null だった場合の値
  ************************************************************************************************/
-function HtmlGetObjectCheckedById(objID, valueWhenNull) {
+export function HtmlGetObjectCheckedById(objID, valueWhenNull) {
 
 	var objTarget = document.getElementById(objID);
 
@@ -291,7 +299,7 @@ function HtmlGetObjectCheckedById(objID, valueWhenNull) {
  * @param objID 対象となるオブジェクトの ID
  * @param bChecked チェック状態
  ************************************************************************************************/
- function HtmlSetObjectCheckedById(objID, bChecked) {
+export function HtmlSetObjectCheckedById(objID, bChecked) {
 
 	var objTarget = document.getElementById(objID);
 
@@ -311,7 +319,7 @@ function HtmlGetObjectCheckedById(objID, valueWhenNull) {
  * @param valueWhenNull オブジェクトが null だった場合の値
  * @param valueWhenNoGroups optgroup がなかった場合の値
  ************************************************************************************************/
-function HtmlGetSelectedOptgroup(objIDSelect, valueWhenNull, valueWhenNoGroups) {
+export function HtmlGetSelectedOptgroup(objIDSelect, valueWhenNull, valueWhenNoGroups) {
 
 	var objTarget = document.getElementById(objIDSelect);
 
@@ -353,7 +361,7 @@ function HtmlGetSelectedOptgroup(objIDSelect, valueWhenNull, valueWhenNoGroups) 
  * @param objID 対象となるオブジェクトの ID
  * @param valueWhenNull オブジェクトが null だった場合の値
  ************************************************************************************************/
-function HtmlGetObjectValueById(objID, valueWhenNull) {
+export function HtmlGetObjectValueById(objID, valueWhenNull) {
 
 	var objTarget = document.getElementById(objID);
 
@@ -373,7 +381,7 @@ function HtmlGetObjectValueById(objID, valueWhenNull) {
  * @param objID 対象となるオブジェクトの ID
  * @param valueWhenNull オブジェクトが null だった場合の値
  ************************************************************************************************/
-function HtmlGetObjectValueByIdAsInteger(objID, valueWhenNull) {
+export function HtmlGetObjectValueByIdAsInteger(objID, valueWhenNull) {
 
 	var value = HtmlGetObjectValueById(objID, valueWhenNull);
 
@@ -391,12 +399,12 @@ function HtmlGetObjectValueByIdAsInteger(objID, valueWhenNull) {
 }
 
 /**
- * ＨＴＭＬオブジェクトの value 値を設定する. valueがnullの場合は何もしない. 
+ * ＨＴＭＬオブジェクトの value 値を設定する. valueがnullの場合は何もしない.
  * @param {*} objID 対象となるオブジェクトの ID
  * @param {*} valutToSet 設定する値
  * @returns void
  */
-function HtmlSetObjectValueById(objID, valutToSet) {
+export function HtmlSetObjectValueById(objID, valutToSet) {
 	let objTarget = document.getElementById(objID);
 	if (objTarget == null) {
 		return;
@@ -410,9 +418,9 @@ function HtmlSetObjectValueById(objID, valutToSet) {
  * @param {string} selectId - select要素のID
  * @returns {{min: number, max: number} | null} 値の範囲、または要素が見つからない場合はnull
  */
-function getSelectValueRange(selectId) {
+export function getSelectValueRange(selectId) {
   const selectElement = document.getElementById(selectId);
-  
+
   // 指定されたIDの要素が見つからない場合はnullを返す
   if (!selectElement) {
     return null;
@@ -423,7 +431,7 @@ function getSelectValueRange(selectId) {
 
   // <option>要素のリストを取得
   const options = selectElement.options;
-  
+
   // 値を格納する配列を初期化
   const values = [];
 
@@ -458,7 +466,7 @@ function getSelectValueRange(selectId) {
  * @param valueMin 許容する最小値
  * @param valueMax 許容する最大値
  ************************************************************************************************/
-function HtmlModifyObjectValueIntoRange(objTarget, valueMin, valueMax) {
+export function HtmlModifyObjectValueIntoRange(objTarget, valueMin, valueMax) {
 
 	var value = 0;
 
@@ -494,7 +502,7 @@ function HtmlModifyObjectValueIntoRange(objTarget, valueMin, valueMax) {
  * @param {*} valutToSelect 設定する値
  * @returns 変更前の値、または、undefined
  */
-function HtmlSelectObjectValueAsInteger(objTarget, valutToSelect) {
+export function HtmlSelectObjectValueAsInteger(objTarget, valutToSelect) {
 
 	if (objTarget == null) {
 		return undefined;
@@ -532,7 +540,7 @@ function HtmlSelectObjectValueAsInteger(objTarget, valutToSelect) {
  *-----------------------------------------------------------------------------------------------
  * @param objID 対象となるオブジェクトの ID
  ************************************************************************************************/
-function HtmlCopyToClipboardById(objID) {
+export function HtmlCopyToClipboardById(objID) {
 
 	var objTarget = document.getElementById(objID);
 
@@ -554,7 +562,7 @@ function HtmlCopyToClipboardById(objID) {
  * @param funcName 関数名
  * @param argsArray 引数の配列
  ************************************************************************************************/
-function HtmlCallFunction(objID, funcName, argsArray) {
+export function HtmlCallFunction(objID, funcName, argsArray) {
 
 	var objTarget = document.getElementById(objID);
 	var objFunc = null;
@@ -583,7 +591,7 @@ function HtmlCallFunction(objID, funcName, argsArray) {
  * @param funcName 関数名
  * @param logText 出力内容
  ************************************************************************************************/
-function GetLogText(logText) {
+export function GetLogText(logText) {
 
 	var logTextResult = "";
 	var dtNow = null;
@@ -608,21 +616,21 @@ function GetLogText(logText) {
 
 /**
  * desc
- *  
- * @param {*} msg 
+ *
+ * @param {*} msg
  */
-function WriteConsoleLog(msg) {
+export function WriteConsoleLog(msg) {
 	console.log(GetLogText(msg));
 }
 
 /**
  * 数値を指定された最小値と最大値の間にクランプする
- * @param {number} value 
- * @param {number} min 
- * @param {number} max 
+ * @param {number} value
+ * @param {number} min
+ * @param {number} max
  * @returns {number} クランプされた値
  */
-function ValueRangeModify(value, min, max) {
+export function ValueRangeModify(value, min, max) {
 
 	if (isNaN(parseInt(value))) {
 		return min;
@@ -639,7 +647,7 @@ function ValueRangeModify(value, min, max) {
 	return value;
 }
 
-function SetStatefullData(dataid, datavalue) {
+export function SetStatefullData(dataid, datavalue) {
 
 	var objData = document.getElementById(dataid);
 
@@ -655,7 +663,7 @@ function SetStatefullData(dataid, datavalue) {
 	return valBefore;
 }
 
-function GetStatefullData(dataid, valueWhenNull) {
+export function GetStatefullData(dataid, valueWhenNull) {
 
 	var objData = document.getElementById(dataid);
 
@@ -680,7 +688,7 @@ function GetStatefullData(dataid, valueWhenNull) {
  * @param initValue 初期値
  * @return 生成した配列
  */
-function MallocArray(size, initValue) {
+export function MallocArray(size, initValue) {
 	var idx = 0;
 	var ary = null;
 	if (size < 1) {
@@ -695,12 +703,12 @@ function MallocArray(size, initValue) {
 
 /**
  * 等差数列を生成する
- * @param {number} start 
- * @param {number} step 
- * @param {number} length 
+ * @param {number} start
+ * @param {number} step
+ * @param {number} length
  * @returns {Array}
  */
-function createArithmeticSequence(start, step, length) {
+export function createArithmeticSequence(start, step, length) {
 	const result = [];
 	for (let i = 0; i < length; i++) {
 		result.push(start + i * step);
@@ -713,7 +721,7 @@ function createArithmeticSequence(start, step, length) {
  * @param arrayTarget 配列
  * @return ディープコピーした配列
  */
-function DeepCopyArray(arrayTarget) {
+export function DeepCopyArray(arrayTarget) {
 
 	var idx = 0;
 	var arrayCopied = null;
@@ -736,7 +744,7 @@ function DeepCopyArray(arrayTarget) {
  * @param value 値
  * @return 操作後の配列長
  */
-function ArrayPushIfExists(arrayTarget, value) {
+export function ArrayPushIfExists(arrayTarget, value) {
 	if (arrayTarget.indexOf(value) < 0) {
 		arrayTarget.push(value);
 	}
@@ -752,7 +760,7 @@ function ArrayPushIfExists(arrayTarget, value) {
  * @param bTypeExact データ型の一致も含むかのフラグ
  * @return true:一致、false:不一致
  */
-function IsEqualArrayItems(arrayA, arrayB, bOrderExact, bTypeExact) {
+export function IsEqualArrayItems(arrayA, arrayB, bOrderExact, bTypeExact) {
 
 	var idx = 0;
 	var idxA = 0;
@@ -842,7 +850,7 @@ function IsEqualArrayItems(arrayA, arrayB, bOrderExact, bTypeExact) {
  * @param varName 変数名
  * @return 値（未定義の場合は、undefined）
  */
-function GetVarValue(varName) {
+export function GetVarValue(varName) {
 	return Function(
 		"return " + "((typeof " + varName + ") != (typeof undefined))" + " ? " + varName + " : " + "undefined" + ";"
 	)();
@@ -852,7 +860,7 @@ function GetVarValue(varName) {
  * 文字列を解析して、数値を 3 桁区切りにする.
  * @param textOrg 対象となる文字列
  */
-function DivideDigits3(textOrg) {
+export function DivideDigits3(textOrg) {
 
 	var matchResult = null;
 
@@ -916,7 +924,7 @@ function DivideDigits3(textOrg) {
  * 文字列がデータURLの書式に適合しているかを判定する.
  * @param dataURL 対象となる文字列
  */
-function IsValidDataUrl(dataURL) {
+export function IsValidDataUrl(dataURL) {
 
 	// 下記のサイトを参考に作成
 	// https://url.spec.whatwg.org/#concept-basic-url-parser
@@ -966,7 +974,7 @@ function IsValidDataUrl(dataURL) {
  * @param indentCount 出力時のインデント数（通常は 0 で呼び出し）
  * @param bReadableMode 可読モードフラグ
  */
-function ExtractDataArray(dataArray, indentCount, bReadableMode) {
+export function ExtractDataArray(dataArray, indentCount, bReadableMode) {
 
 	var idx = 0;
 
@@ -1029,7 +1037,7 @@ function ExtractDataArray(dataArray, indentCount, bReadableMode) {
  * @param inputtedText 入力されたテキスト
  * @return エスケープされたテキスト
  */
-function EscapeInputtedText (inputtedText) {
+export function EscapeInputtedText (inputtedText) {
 
 	var idx = 0;
 
@@ -1073,13 +1081,13 @@ function EscapeInputtedText (inputtedText) {
 	}
 
 	return escapedText;
-};
+}
 
 /**
  * 配列の和を取得する.
  * @param targetArray 対象となる配列
  */
-function GetArrayTotal(targetArray) {
+export function GetArrayTotal(targetArray) {
 
 	if (!Array.isArray(targetArray)) {
 		return undefined;
@@ -1106,7 +1114,7 @@ function GetArrayTotal(targetArray) {
  * 配列の最大値を取得する.
  * @param targetArray 対象となる配列
  */
-function GetArrayMax(targetArray) {
+export function GetArrayMax(targetArray) {
 
 	if (!Array.isArray(targetArray)) {
 		return undefined;
@@ -1133,7 +1141,7 @@ function GetArrayMax(targetArray) {
  * 配列の最小値を取得する.
  * @param targetArray 対象となる配列
  */
-function GetArrayMin(targetArray) {
+export function GetArrayMin(targetArray) {
 
 	if (!Array.isArray(targetArray)) {
 		return undefined;
@@ -1161,7 +1169,7 @@ function GetArrayMin(targetArray) {
  * @param {BigInt} value 数値
  * @returns 32-bitに切り捨てた整数
  */
-function floorBigInt32 (value) {
+export function floorBigInt32 (value) {
 
 	// 数値として扱わない（透過させる）値
 	if ((value === null) || (value === undefined)) {
@@ -1189,7 +1197,7 @@ function floorBigInt32 (value) {
  * @param {BigInt} value 数値
  * @returns 40-bitに切り捨てた整数
  */
-function floorBigInt40 (value) {
+export function floorBigInt40 (value) {
 
 	// 数値として扱わない（透過させる）値
 	if ((value === null) || (value === undefined)) {
@@ -1217,21 +1225,21 @@ function floorBigInt40 (value) {
  * 実質的に何もしていませんが BigInt() を呼ぶ前にブレークポイントでワンテンポ待つと事象が抑えられるため
  * 本関数が同様の効果を発揮して状況が緩和される可能性があります
  * 問題が再現する場合は例外処理でカバーする方針です
- * 
+ *
  * TODO: この関数を真偽値から数値への変換に使っている場合は Number() への置き換えを検討してください。
- * @param {*} value 
- * @returns 
+ * @param {*} value
+ * @returns
  */
-function toSafeBigInt(value) {
+export function toSafeBigInt(value) {
 	try {
 	  // 入力値を BigInt に変換
 	  const result = BigInt(value);
-	  
+
 	  // 入力値と結果の一致を確認（文字列化して比較）
 	  if (typeof value !== "boolean" && value.toString() !== result.toString()) {
 		console.error(`値が一致しません: 入力(${value}) -> 変換後(${result})`);
 	  }
-	  
+
 	  return result;
 	} catch (error) {
 	  // 例外処理（エラー発生時のログや代替処理）
@@ -1245,9 +1253,9 @@ function toSafeBigInt(value) {
  * @param {string} elementID 更新する要素のID
  * @param {string} htmlString 子要素となるHTML文字列
  * @param {number} appendMode 0 のとき既存の子要素を消して新しい要素で置き換える. 0 以外のとき既存の子要素の末尾に新しい要素を追加する.
- * @returns 
+ * @returns
  */
-function myInnerHtml(elementID,htmlString,appendMode) {
+export function myInnerHtml(elementID,htmlString,appendMode) {
 	let element = document.getElementById(elementID);
 	if(appendMode == 0){
 		while(element.hasChildNodes()) {
@@ -1265,7 +1273,7 @@ function myInnerHtml(elementID,htmlString,appendMode) {
  * @param {number} nMin 開始する値
  * @param {number} nMax 終了する値
  */
-function BuildUpNumberSelect(objSelect, nMin, nMax) {
+export function BuildUpNumberSelect(objSelect, nMin, nMax) {
 	var idx = 0;
 	var n = 0;
 	for (idx = 0, n = nMin; n <= nMax; idx++, n++) {
@@ -1279,7 +1287,7 @@ function BuildUpNumberSelect(objSelect, nMin, nMax) {
  * @param {number} nMin 開始する値
  * @param {number} nMax 終了する値
  */
-function BuildUpNumberSelectWithZeroOff(objSelect, nMin, nMax) {
+export function BuildUpNumberSelectWithZeroOff(objSelect, nMin, nMax) {
 	var idx = 0;
 	var n = 0;
 	objSelect.options[0] = new Option("off", 0);
@@ -1287,3 +1295,58 @@ function BuildUpNumberSelectWithZeroOff(objSelect, nMin, nMax) {
 		objSelect.options[idx] = new Option(n, n);
 	}
 }
+
+// ============================================================
+// 未移行ファイルとのグローバル互換ブロック
+// 他のJSファイルの ESModule 移行が完了したら削除する
+// ============================================================
+window.CONSOLE_LOG_LEVEL_NONE          = CONSOLE_LOG_LEVEL_NONE;
+window.CONSOLE_LOG_LEVEL_DEBUG         = CONSOLE_LOG_LEVEL_DEBUG;
+window.g_bStoreConsoleLog              = g_bStoreConsoleLog;
+window.g_storedConsoleLogArray         = g_storedConsoleLogArray;
+window.HtmlGetElementById              = HtmlGetElementById;
+window.HtmlCreateElement               = HtmlCreateElement;
+window.HtmlCreateTextNode              = HtmlCreateTextNode;
+window.HtmlAppendTextNodeMulti         = HtmlAppendTextNodeMulti;
+window.HtmlCreateTextSpan              = HtmlCreateTextSpan;
+window.HtmlSetAttribute                = HtmlSetAttribute;
+window.HtmlRemoveOptionAll             = HtmlRemoveOptionAll;
+window.HtmlCreateElementOption         = HtmlCreateElementOption;
+window.HtmlRemoveAllChild              = HtmlRemoveAllChild;
+window.HtmlRemoveFromParent            = HtmlRemoveFromParent;
+window.HtmlGetAttribute                = HtmlGetAttribute;
+window.HtmlGetObjectCheckedById        = HtmlGetObjectCheckedById;
+window.HtmlSetObjectCheckedById        = HtmlSetObjectCheckedById;
+window.HtmlGetSelectedOptgroup         = HtmlGetSelectedOptgroup;
+window.HtmlGetObjectValueById          = HtmlGetObjectValueById;
+window.HtmlGetObjectValueByIdAsInteger = HtmlGetObjectValueByIdAsInteger;
+window.HtmlSetObjectValueById          = HtmlSetObjectValueById;
+window.getSelectValueRange             = getSelectValueRange;
+window.HtmlModifyObjectValueIntoRange  = HtmlModifyObjectValueIntoRange;
+window.HtmlSelectObjectValueAsInteger  = HtmlSelectObjectValueAsInteger;
+window.HtmlCopyToClipboardById         = HtmlCopyToClipboardById;
+window.HtmlCallFunction                = HtmlCallFunction;
+window.GetLogText                      = GetLogText;
+window.WriteConsoleLog                 = WriteConsoleLog;
+window.ValueRangeModify                = ValueRangeModify;
+window.SetStatefullData                = SetStatefullData;
+window.GetStatefullData                = GetStatefullData;
+window.MallocArray                     = MallocArray;
+window.createArithmeticSequence        = createArithmeticSequence;
+window.DeepCopyArray                   = DeepCopyArray;
+window.ArrayPushIfExists               = ArrayPushIfExists;
+window.IsEqualArrayItems               = IsEqualArrayItems;
+window.GetVarValue                     = GetVarValue;
+window.DivideDigits3                   = DivideDigits3;
+window.IsValidDataUrl                  = IsValidDataUrl;
+window.ExtractDataArray                = ExtractDataArray;
+window.EscapeInputtedText              = EscapeInputtedText;
+window.GetArrayTotal                   = GetArrayTotal;
+window.GetArrayMax                     = GetArrayMax;
+window.GetArrayMin                     = GetArrayMin;
+window.floorBigInt32                   = floorBigInt32;
+window.floorBigInt40                   = floorBigInt40;
+window.toSafeBigInt                    = toSafeBigInt;
+window.myInnerHtml                     = myInnerHtml;
+window.BuildUpNumberSelect             = BuildUpNumberSelect;
+window.BuildUpNumberSelectWithZeroOff  = BuildUpNumberSelectWithZeroOff;
