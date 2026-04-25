@@ -1,3 +1,4 @@
+// ESModule 化済み。HTMLでは type="module" で読み込むこと。
 /**
  * 各スキルの実質的な抽象クラスとして用いられるコンストラクタ関数.
  * CSkillManager.dataArray にインスタンスが格納され
@@ -165,7 +166,7 @@ function CSkillData() {
 	// クリティカル発生率を取得（0:発生しない、100:等倍、etc...）
 	this.CriActRate = function(skillLv, charaData, specData, mobData) {
 
-		if (UsedSkillSearch(SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_YUGO) > 0) {
+		if (UsedSkillSearch(window.SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_YUGO) > 0) {
 			return this._CriActRate100(skillLv, charaData, specData, mobData);
 		}
 
@@ -174,7 +175,7 @@ function CSkillData() {
 
 	this._CriActRate100 = function(skillLv, charaData, specData, mobData) {
 
-		if (UsedSkillSearch(SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_YUGO) > 0) {
+		if (UsedSkillSearch(window.SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_YUGO) > 0) {
 			if ((this.type & CSkillData.TYPE_PHYSICAL) == CSkillData.TYPE_PHYSICAL) {
 				return 100;
 			}
@@ -186,7 +187,7 @@ function CSkillData() {
 	// クリティカルダメージ上昇特性効果量を取得（0:無効、100:等倍、etc...）
 	this.CriDamageRate = function(skillLv, charaData, specData, mobData) {
 
-		if (UsedSkillSearch(SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_YUGO) > 0) {
+		if (UsedSkillSearch(window.SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_YUGO) > 0) {
 			return this._CriDamageRate100(skillLv, charaData, specData, mobData);
 		}
 
@@ -195,7 +196,7 @@ function CSkillData() {
 
 	this._CriDamageRate100 = function(skillLv, charaData, specData, mobData) {
 
-		if (UsedSkillSearch(SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_YUGO) > 0) {
+		if (UsedSkillSearch(window.SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_YUGO) > 0) {
 			if ((this.type & CSkillData.TYPE_PHYSICAL) == CSkillData.TYPE_PHYSICAL) {
 				return specData[ITEM_SP_CRITICAL_DAMAGE_UP] / 2;
 			}
@@ -522,7 +523,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 通常攻撃
 		// ----------------------------------------------------------------
-		SKILL_ID_TUZYO_KOGEKI = skillId;
+		window.SKILL_ID_TUZYO_KOGEKI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -549,7 +550,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 応急手当
 		// ----------------------------------------------------------------
-		SKILL_ID_OKYU_TEATE = skillId;
+		window.SKILL_ID_OKYU_TEATE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -572,7 +573,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 死んだふり
 		// ----------------------------------------------------------------
-		SKILL_ID_SHINDAFURI = skillId;
+		window.SKILL_ID_SHINDAFURI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -595,7 +596,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 剣修練
 		// ----------------------------------------------------------------
-		SKILL_ID_KEN_SHUREN = skillId;
+		window.SKILL_ID_KEN_SHUREN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -614,7 +615,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 両手剣修練
 		// ----------------------------------------------------------------
-		SKILL_ID_RYOUTKEN_SHUREN = skillId;
+		window.SKILL_ID_RYOUTKEN_SHUREN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -633,7 +634,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// HP回復力向上
 		// ----------------------------------------------------------------
-		SKILL_ID_HP_KAIFUKURYOKU_KOZYO = skillId;
+		window.SKILL_ID_HP_KAIFUKURYOKU_KOZYO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -652,7 +653,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// バッシュ
 		// ----------------------------------------------------------------
-		SKILL_ID_BASH = skillId;
+		window.SKILL_ID_BASH = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -680,7 +681,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// マグナムブレイク
 		// ----------------------------------------------------------------
-		SKILL_ID_MAGNUM_BREAK = skillId;
+		window.SKILL_ID_MAGNUM_BREAK = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -712,7 +713,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// プロボック
 		// ----------------------------------------------------------------
-		SKILL_ID_PROVOKE = skillId;
+		window.SKILL_ID_PROVOKE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -735,7 +736,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// インデュア
 		// ----------------------------------------------------------------
-		SKILL_ID_ENDURE = skillId;
+		window.SKILL_ID_ENDURE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -762,7 +763,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 移動時HP回復
 		// ----------------------------------------------------------------
-		SKILL_ID_IDOZI_HP_KAIFUKU = skillId;
+		window.SKILL_ID_IDOZI_HP_KAIFUKU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -781,7 +782,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 急所攻撃
 		// ----------------------------------------------------------------
-		SKILL_ID_KYUSHO_KOGEKI = skillId;
+		window.SKILL_ID_KYUSHO_KOGEKI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -800,7 +801,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// オートバーサーク
 		// ----------------------------------------------------------------
-		SKILL_ID_AUTO_BERSERK = skillId;
+		window.SKILL_ID_AUTO_BERSERK = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -819,7 +820,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ダブルアタック
 		// ----------------------------------------------------------------
-		SKILL_ID_DOUBLE_ATTACK = skillId;
+		window.SKILL_ID_DOUBLE_ATTACK = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -847,7 +848,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 回避率増加
 		// ----------------------------------------------------------------
-		SKILL_ID_KAIHIRITSU_ZOKA = skillId;
+		window.SKILL_ID_KAIHIRITSU_ZOKA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -866,7 +867,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// スティール
 		// ----------------------------------------------------------------
-		SKILL_ID_STEAL = skillId;
+		window.SKILL_ID_STEAL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -889,7 +890,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ハイディング
 		// ----------------------------------------------------------------
-		SKILL_ID_HIDING = skillId;
+		window.SKILL_ID_HIDING = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -912,7 +913,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// インベナム
 		// ----------------------------------------------------------------
-		SKILL_ID_ENVENOM = skillId;
+		window.SKILL_ID_ENVENOM = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -940,7 +941,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 解毒
 		// ----------------------------------------------------------------
-		SKILL_ID_GEDOKU = skillId;
+		window.SKILL_ID_GEDOKU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -963,7 +964,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 砂まき
 		// ----------------------------------------------------------------
-		SKILL_ID_SUNAMAKI = skillId;
+		window.SKILL_ID_SUNAMAKI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -991,7 +992,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// バックステップ
 		// ----------------------------------------------------------------
-		SKILL_ID_BACKSTEP = skillId;
+		window.SKILL_ID_BACKSTEP = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -1014,7 +1015,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 石拾い
 		// ----------------------------------------------------------------
-		SKILL_ID_ISHIHIROI = skillId;
+		window.SKILL_ID_ISHIHIROI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -1042,7 +1043,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 石投げ
 		// ----------------------------------------------------------------
-		SKILL_ID_ISHINAGE = skillId;
+		window.SKILL_ID_ISHINAGE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -1074,7 +1075,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ディバインプロテクション
 		// ----------------------------------------------------------------
-		SKILL_ID_DIVINE_PROTECTION = skillId;
+		window.SKILL_ID_DIVINE_PROTECTION = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -1093,7 +1094,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// デーモンベイン
 		// ----------------------------------------------------------------
-		SKILL_ID_DEMON_BANE = skillId;
+		window.SKILL_ID_DEMON_BANE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -1112,7 +1113,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ヒール
 		// ----------------------------------------------------------------
-		SKILL_ID_HEAL = skillId;
+		window.SKILL_ID_HEAL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -1144,7 +1145,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// キュアー
 		// ----------------------------------------------------------------
-		SKILL_ID_CURE = skillId;
+		window.SKILL_ID_CURE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -1172,7 +1173,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 速度増加
 		// ----------------------------------------------------------------
-		SKILL_ID_SOKUDO_ZOKA = skillId;
+		window.SKILL_ID_SOKUDO_ZOKA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -1204,7 +1205,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 速度減少
 		// ----------------------------------------------------------------
-		SKILL_ID_SOKUDO_GENSHO = skillId;
+		window.SKILL_ID_SOKUDO_GENSHO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -1236,7 +1237,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// シグナムクルシス
 		// ----------------------------------------------------------------
-		SKILL_ID_SIGNUM_CRUCIS = skillId;
+		window.SKILL_ID_SIGNUM_CRUCIS = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -1268,7 +1269,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// エンジェラス
 		// ----------------------------------------------------------------
-		SKILL_ID_ANGELUS = skillId;
+		window.SKILL_ID_ANGELUS = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -1300,7 +1301,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ブレッシング
 		// ----------------------------------------------------------------
-		SKILL_ID_BLESSING = skillId;
+		window.SKILL_ID_BLESSING = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -1324,7 +1325,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ニューマ
 		// ----------------------------------------------------------------
-		SKILL_ID_PNEUMA = skillId;
+		window.SKILL_ID_PNEUMA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -1348,7 +1349,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アクアベネディクタ
 		// ----------------------------------------------------------------
-		SKILL_ID_AQUA_BENEDICTA = skillId;
+		window.SKILL_ID_AQUA_BENEDICTA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -1380,7 +1381,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ルアフ
 		// ----------------------------------------------------------------
-		SKILL_ID_RUWACH = skillId;
+		window.SKILL_ID_RUWACH = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -1408,7 +1409,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// テレポート
 		// ----------------------------------------------------------------
-		SKILL_ID_TELEPORT = skillId;
+		window.SKILL_ID_TELEPORT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -1432,7 +1433,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ワープポータル
 		// ----------------------------------------------------------------
-		SKILL_ID_WARP_PORTAL = skillId;
+		window.SKILL_ID_WARP_PORTAL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -1460,7 +1461,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ホーリーライト
 		// ----------------------------------------------------------------
-		SKILL_ID_HOLY_LIGHT = skillId;
+		window.SKILL_ID_HOLY_LIGHT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -1492,7 +1493,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ふくろうの目
 		// ----------------------------------------------------------------
-		SKILL_ID_FUKURONO_ME = skillId;
+		window.SKILL_ID_FUKURONO_ME = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -1511,7 +1512,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ワシの目
 		// ----------------------------------------------------------------
-		SKILL_ID_WASHINO_ME = skillId;
+		window.SKILL_ID_WASHINO_ME = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -1530,7 +1531,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ダブルストレイフィング
 		// ----------------------------------------------------------------
-		SKILL_ID_DOUBLE_STRAFING = skillId;
+		window.SKILL_ID_DOUBLE_STRAFING = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -1562,7 +1563,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アローシャワー
 		// ----------------------------------------------------------------
-		SKILL_ID_ARROW_SHOWER = skillId;
+		window.SKILL_ID_ARROW_SHOWER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -1594,7 +1595,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 集中力向上
 		// ----------------------------------------------------------------
-		SKILL_ID_SHUCHURYOKU_KOZYO = skillId;
+		window.SKILL_ID_SHUCHURYOKU_KOZYO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -1622,7 +1623,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 矢作成
 		// ----------------------------------------------------------------
-		SKILL_ID_YA_SAKUSEI = skillId;
+		window.SKILL_ID_YA_SAKUSEI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -1646,7 +1647,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// チャージアロー
 		// ----------------------------------------------------------------
-		SKILL_ID_CHARGE_ARROW = skillId;
+		window.SKILL_ID_CHARGE_ARROW = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -1678,7 +1679,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// SP回復力向上
 		// ----------------------------------------------------------------
-		SKILL_ID_SP_KAIFUKURYOKU_KOZYO = skillId;
+		window.SKILL_ID_SP_KAIFUKURYOKU_KOZYO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -1697,7 +1698,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ナパームビート
 		// ----------------------------------------------------------------
-		SKILL_ID_NAPALM_BEAT = skillId;
+		window.SKILL_ID_NAPALM_BEAT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -1752,7 +1753,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ソウルストライク
 		// ----------------------------------------------------------------
-		SKILL_ID_SOUL_STRIKE = skillId;
+		window.SKILL_ID_SOUL_STRIKE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -1794,7 +1795,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// セイフティウォール
 		// ----------------------------------------------------------------
-		SKILL_ID_SAFETY_WALL = skillId;
+		window.SKILL_ID_SAFETY_WALL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -1827,7 +1828,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ストーンカース
 		// ----------------------------------------------------------------
-		SKILL_ID_STONE_CURSE = skillId;
+		window.SKILL_ID_STONE_CURSE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -1855,7 +1856,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// サイト
 		// ----------------------------------------------------------------
-		SKILL_ID_SIGHT = skillId;
+		window.SKILL_ID_SIGHT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -1883,7 +1884,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ファイアーボルト
 		// ----------------------------------------------------------------
-		SKILL_ID_FIRE_BOLT = skillId;
+		window.SKILL_ID_FIRE_BOLT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -1908,7 +1909,7 @@ function CSkillManager() {
 				pow = 100;
 
 				// 「ソーサラー 精霊スキル」の効果
-				seirei = charaDataManger.UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL);
+				seirei = charaDataManger.UsedSkillSearch(window.SKILL_ID_SERE_SUPPORT_SKILL);
 				if (seirei == 1) {
 					pow += Math.floor(charaDataManger.GetCharaJobLv() / 3);
 				}
@@ -1935,7 +1936,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ファイアーボール
 		// ----------------------------------------------------------------
-		SKILL_ID_FIRE_BALL = skillId;
+		window.SKILL_ID_FIRE_BALL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -1971,7 +1972,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ファイアーウォール
 		// ----------------------------------------------------------------
-		SKILL_ID_FIRE_WALL = skillId;
+		window.SKILL_ID_FIRE_WALL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -1996,7 +1997,7 @@ function CSkillManager() {
 				pow = 50;
 
 				// 「ソーサラー 精霊スキル」の効果
-				seirei = charaDataManger.UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL);
+				seirei = charaDataManger.UsedSkillSearch(window.SKILL_ID_SERE_SUPPORT_SKILL);
 				if (seirei == 1) {
 					pow += Math.floor(charaDataManger.GetCharaJobLv() / 3);
 				}
@@ -2027,7 +2028,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// コールドボルト
 		// ----------------------------------------------------------------
-		SKILL_ID_COLD_BOLT = skillId;
+		window.SKILL_ID_COLD_BOLT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -2052,7 +2053,7 @@ function CSkillManager() {
 				pow = 100;
 
 				// 「ソーサラー 精霊スキル」の効果
-				seirei = charaDataManger.UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL);
+				seirei = charaDataManger.UsedSkillSearch(window.SKILL_ID_SERE_SUPPORT_SKILL);
 				if (seirei == 10) {
 					pow += Math.floor(charaDataManger.GetCharaJobLv() / 3);
 				}
@@ -2079,7 +2080,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// フロストダイバー
 		// ----------------------------------------------------------------
-		SKILL_ID_FROST_DIVER = skillId;
+		window.SKILL_ID_FROST_DIVER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -2104,7 +2105,7 @@ function CSkillManager() {
 				pow = 100 + 10 * skillLv;
 
 				// 「ソーサラー 精霊スキル」の効果
-				seirei = charaDataManger.UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL);
+				seirei = charaDataManger.UsedSkillSearch(window.SKILL_ID_SERE_SUPPORT_SKILL);
 				if (seirei == 10) {
 					pow += Math.floor(charaDataManger.GetCharaJobLv() / 3);
 				}
@@ -2127,7 +2128,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ライトニングボルト
 		// ----------------------------------------------------------------
-		SKILL_ID_LIGHTNING_BOLT = skillId;
+		window.SKILL_ID_LIGHTNING_BOLT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -2152,7 +2153,7 @@ function CSkillManager() {
 				pow = 100;
 
 				// 「ソーサラー 精霊スキル」の効果
-				seirei = charaDataManger.UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL);
+				seirei = charaDataManger.UsedSkillSearch(window.SKILL_ID_SERE_SUPPORT_SKILL);
 				if (seirei == 19) {
 					pow += Math.floor(charaDataManger.GetCharaJobLv() / 3);
 				}
@@ -2179,7 +2180,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// サンダーストーム
 		// ----------------------------------------------------------------
-		SKILL_ID_THUNDER_STORM = skillId;
+		window.SKILL_ID_THUNDER_STORM = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -2204,7 +2205,7 @@ function CSkillManager() {
 				pow = 100;
 
 				// 「ソーサラー 精霊スキル」の効果
-				seirei = charaDataManger.UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL);
+				seirei = charaDataManger.UsedSkillSearch(window.SKILL_ID_SERE_SUPPORT_SKILL);
 				if (seirei == 19) {
 					pow += Math.floor(charaDataManger.GetCharaJobLv() / 3);
 				}
@@ -2231,7 +2232,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// エナジーコート
 		// ----------------------------------------------------------------
-		SKILL_ID_ENERGY_COAT = skillId;
+		window.SKILL_ID_ENERGY_COAT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -2263,7 +2264,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 所持限界量増加
 		// ----------------------------------------------------------------
-		SKILL_ID_SHOZIGENKAIRYO_ZOKA = skillId;
+		window.SKILL_ID_SHOZIGENKAIRYO_ZOKA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -2282,7 +2283,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ディスカウント
 		// ----------------------------------------------------------------
-		SKILL_ID_DISCOUNT = skillId;
+		window.SKILL_ID_DISCOUNT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -2301,7 +2302,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// オーバーチャージ
 		// ----------------------------------------------------------------
-		SKILL_ID_OVER_CHARGE = skillId;
+		window.SKILL_ID_OVER_CHARGE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -2320,7 +2321,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// プッシュカート
 		// ----------------------------------------------------------------
-		SKILL_ID_PUSH_CART = skillId;
+		window.SKILL_ID_PUSH_CART = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -2339,7 +2340,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アイテム鑑定
 		// ----------------------------------------------------------------
-		SKILL_ID_ITEM_KANTE = skillId;
+		window.SKILL_ID_ITEM_KANTE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -2363,7 +2364,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 露店開設
 		// ----------------------------------------------------------------
-		SKILL_ID_ROTEN_KAISETSU = skillId;
+		window.SKILL_ID_ROTEN_KAISETSU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -2387,7 +2388,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// メマーナイト
 		// ----------------------------------------------------------------
-		SKILL_ID_MAMMONITE = skillId;
+		window.SKILL_ID_MAMMONITE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -2415,7 +2416,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// カートレボリューション
 		// ----------------------------------------------------------------
-		SKILL_ID_CART_REVOLUTION = skillId;
+		window.SKILL_ID_CART_REVOLUTION = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -2443,7 +2444,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// チェンジカート
 		// ----------------------------------------------------------------
-		SKILL_ID_CHANGE_CART = skillId;
+		window.SKILL_ID_CHANGE_CART = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -2467,7 +2468,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ラウドボイス
 		// ----------------------------------------------------------------
-		SKILL_ID_LOUD_VOICE = skillId;
+		window.SKILL_ID_LOUD_VOICE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -2491,7 +2492,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 槍修練
 		// ----------------------------------------------------------------
-		SKILL_ID_YARI_SHUREN = skillId;
+		window.SKILL_ID_YARI_SHUREN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -2510,7 +2511,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ピアース
 		// ----------------------------------------------------------------
-		SKILL_ID_PIERCE = skillId;
+		window.SKILL_ID_PIERCE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -2537,7 +2538,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// スピアスタブ
 		// ----------------------------------------------------------------
-		SKILL_ID_SPEAR_STUB = skillId;
+		window.SKILL_ID_SPEAR_STUB = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -2565,7 +2566,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// スピアブーメラン
 		// ----------------------------------------------------------------
-		SKILL_ID_SPEAR_BOOMERANG = skillId;
+		window.SKILL_ID_SPEAR_BOOMERANG = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -2597,7 +2598,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ブランディッシュスピア
 		// ----------------------------------------------------------------
-		SKILL_ID_BRANDISH_SPEAR = skillId;
+		window.SKILL_ID_BRANDISH_SPEAR = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -2639,7 +2640,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ツーハンドクイッケン
 		// ----------------------------------------------------------------
-		SKILL_ID_TWOHAND_QUICKEN = skillId;
+		window.SKILL_ID_TWOHAND_QUICKEN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -2663,7 +2664,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// オートカウンター
 		// ----------------------------------------------------------------
-		SKILL_ID_AUTO_COUNTER = skillId;
+		window.SKILL_ID_AUTO_COUNTER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -2687,7 +2688,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ボウリングバッシュ
 		// ----------------------------------------------------------------
-		SKILL_ID_BOWLING_BASH = skillId;
+		window.SKILL_ID_BOWLING_BASH = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -2733,7 +2734,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ライディング
 		// ----------------------------------------------------------------
-		SKILL_ID_RIDING = skillId;
+		window.SKILL_ID_RIDING = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -2752,7 +2753,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 騎兵修練
 		// ----------------------------------------------------------------
-		SKILL_ID_KIHE_SHUREN = skillId;
+		window.SKILL_ID_KIHE_SHUREN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -2771,7 +2772,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 右手修練
 		// ----------------------------------------------------------------
-		SKILL_ID_MIGITE_SHUREN = skillId;
+		window.SKILL_ID_MIGITE_SHUREN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -2790,7 +2791,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 左手修練
 		// ----------------------------------------------------------------
-		SKILL_ID_HIDARITE_SHUREN = skillId;
+		window.SKILL_ID_HIDARITE_SHUREN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -2809,7 +2810,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// カタール修練
 		// ----------------------------------------------------------------
-		SKILL_ID_KATAR_SHUREN = skillId;
+		window.SKILL_ID_KATAR_SHUREN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -2828,7 +2829,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// クローキング
 		// ----------------------------------------------------------------
-		SKILL_ID_CLOAKING = skillId;
+		window.SKILL_ID_CLOAKING = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -2852,7 +2853,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ソニックブロー
 		// ----------------------------------------------------------------
-		SKILL_ID_SONIC_BLOW = skillId;
+		window.SKILL_ID_SONIC_BLOW = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -2877,7 +2878,7 @@ function CSkillManager() {
 				pow = 400 + 40 * skillLv;
 
 				// 「アサシンクロス エンチャントデッドリーポイズン」の効果（ペナルティ）
-				edp = charaDataManger.UsedSkillSearch(SKILL_ID_ENCHANT_DEADLY_POISON);
+				edp = charaDataManger.UsedSkillSearch(window.SKILL_ID_ENCHANT_DEADLY_POISON);
 				if (edp > 0) {
 					pow = Math.floor(pow / 2);
 				}
@@ -2900,7 +2901,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// グリムトゥース
 		// ----------------------------------------------------------------
-		SKILL_ID_GRIM_TOOTH = skillId;
+		window.SKILL_ID_GRIM_TOOTH = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -2928,7 +2929,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// エンチャントポイズン
 		// ----------------------------------------------------------------
-		SKILL_ID_ENCHANT_POISON = skillId;
+		window.SKILL_ID_ENCHANT_POISON = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -2952,7 +2953,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ポイズンリアクト(反撃)
 		// ----------------------------------------------------------------
-		SKILL_ID_POISON_REACT = skillId;
+		window.SKILL_ID_POISON_REACT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -2995,7 +2996,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ベナムダスト
 		// ----------------------------------------------------------------
-		SKILL_ID_VENOM_DUST = skillId;
+		window.SKILL_ID_VENOM_DUST = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -3019,7 +3020,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ベナムスプラッシャー
 		// ----------------------------------------------------------------
-		SKILL_ID_VENOM_SPLASHER = skillId;
+		window.SKILL_ID_VENOM_SPLASHER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -3057,7 +3058,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// メイス修練
 		// ----------------------------------------------------------------
-		SKILL_ID_MACE_SHUREN = skillId;
+		window.SKILL_ID_MACE_SHUREN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -3076,7 +3077,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// イムポシティオマヌス
 		// ----------------------------------------------------------------
-		SKILL_ID_IMPOSITIO_MANUS = skillId;
+		window.SKILL_ID_IMPOSITIO_MANUS = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -3104,7 +3105,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// サフラギウム
 		// ----------------------------------------------------------------
-		SKILL_ID_SUFFRAGIUM = skillId;
+		window.SKILL_ID_SUFFRAGIUM = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -3132,7 +3133,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アスペルシオ
 		// ----------------------------------------------------------------
-		SKILL_ID_ASPERSIO = skillId;
+		window.SKILL_ID_ASPERSIO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -3160,7 +3161,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 聖体降福
 		// ----------------------------------------------------------------
-		SKILL_ID_SEITAI_KOFUKU = skillId;
+		window.SKILL_ID_SEITAI_KOFUKU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -3184,7 +3185,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// サンクチュアリ
 		// ----------------------------------------------------------------
-		SKILL_ID_SANCTUARY = skillId;
+		window.SKILL_ID_SANCTUARY = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -3216,7 +3217,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// リカバリー
 		// ----------------------------------------------------------------
-		SKILL_ID_RECOVERY = skillId;
+		window.SKILL_ID_RECOVERY = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -3244,7 +3245,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// スローポイズン
 		// ----------------------------------------------------------------
-		SKILL_ID_SLOW_POISON = skillId;
+		window.SKILL_ID_SLOW_POISON = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -3268,7 +3269,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// リザレクション
 		// ----------------------------------------------------------------
-		SKILL_ID_RESURRECTION = skillId;
+		window.SKILL_ID_RESURRECTION = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -3304,7 +3305,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// キリエエレイソン
 		// ----------------------------------------------------------------
-		SKILL_ID_KYRIE_ELEISON = skillId;
+		window.SKILL_ID_KYRIE_ELEISON = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -3336,7 +3337,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// マグニフィカート
 		// ----------------------------------------------------------------
-		SKILL_ID_MAGNIFICAT = skillId;
+		window.SKILL_ID_MAGNIFICAT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -3368,7 +3369,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// グロリア
 		// ----------------------------------------------------------------
-		SKILL_ID_GLORIA = skillId;
+		window.SKILL_ID_GLORIA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -3396,7 +3397,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// レックスディビーナ
 		// ----------------------------------------------------------------
-		SKILL_ID_LEX_DIVINA = skillId;
+		window.SKILL_ID_LEX_DIVINA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -3424,7 +3425,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ターンアンデッド
 		// ----------------------------------------------------------------
-		SKILL_ID_TURN_UNDEAD = skillId;
+		window.SKILL_ID_TURN_UNDEAD = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -3460,7 +3461,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// レックスエーテルナ
 		// ----------------------------------------------------------------
-		SKILL_ID_LEX_AETERNA = skillId;
+		window.SKILL_ID_LEX_AETERNA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -3488,7 +3489,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// マグヌスエクソシズム
 		// ----------------------------------------------------------------
-		SKILL_ID_MAGNUS_EXORCISMUS = skillId;
+		window.SKILL_ID_MAGNUS_EXORCISMUS = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -3522,7 +3523,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// スキッドトラップ
 		// ----------------------------------------------------------------
-		SKILL_ID_SKID_TRAP = skillId;
+		window.SKILL_ID_SKID_TRAP = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -3550,7 +3551,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ランドマイン
 		// ----------------------------------------------------------------
-		SKILL_ID_LAND_MINE = skillId;
+		window.SKILL_ID_LAND_MINE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -3584,7 +3585,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アンクルスネア
 		// ----------------------------------------------------------------
-		SKILL_ID_ANKLESNARE = skillId;
+		window.SKILL_ID_ANKLESNARE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -3612,7 +3613,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// フラッシャー
 		// ----------------------------------------------------------------
-		SKILL_ID_FLASHER = skillId;
+		window.SKILL_ID_FLASHER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -3640,7 +3641,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ショックウェーブトラップ
 		// ----------------------------------------------------------------
-		SKILL_ID_SHOCKWAVE_TRAP = skillId;
+		window.SKILL_ID_SHOCKWAVE_TRAP = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -3668,7 +3669,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// サンドマン
 		// ----------------------------------------------------------------
-		SKILL_ID_SANDMAN = skillId;
+		window.SKILL_ID_SANDMAN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -3696,7 +3697,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// フリージングトラップ
 		// ----------------------------------------------------------------
-		SKILL_ID_FREEZING_TRAP = skillId;
+		window.SKILL_ID_FREEZING_TRAP = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -3729,7 +3730,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ブラストマイン
 		// ----------------------------------------------------------------
-		SKILL_ID_BLAST_MINE = skillId;
+		window.SKILL_ID_BLAST_MINE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -3763,7 +3764,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// クレイモアトラップ
 		// ----------------------------------------------------------------
-		SKILL_ID_CLAYMORE_TRAP = skillId;
+		window.SKILL_ID_CLAYMORE_TRAP = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -3797,7 +3798,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// リムーブトラップ
 		// ----------------------------------------------------------------
-		SKILL_ID_REMOVE_TRAP = skillId;
+		window.SKILL_ID_REMOVE_TRAP = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -3821,7 +3822,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// トーキーボックス
 		// ----------------------------------------------------------------
-		SKILL_ID_TALKIE_BOX = skillId;
+		window.SKILL_ID_TALKIE_BOX = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -3845,7 +3846,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ビーストベイン
 		// ----------------------------------------------------------------
-		SKILL_ID_BEAST_BANE = skillId;
+		window.SKILL_ID_BEAST_BANE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -3864,7 +3865,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ファルコンマスタリー
 		// ----------------------------------------------------------------
-		SKILL_ID_FALCON_MASTERY = skillId;
+		window.SKILL_ID_FALCON_MASTERY = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -3883,7 +3884,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ブリッツビート
 		// ----------------------------------------------------------------
-		SKILL_ID_BLITZ_BEAT = skillId;
+		window.SKILL_ID_BLITZ_BEAT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -3920,7 +3921,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// スチールクロウ
 		// ----------------------------------------------------------------
-		SKILL_ID_STEEL_CROW = skillId;
+		window.SKILL_ID_STEEL_CROW = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -3939,7 +3940,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ディテクティング
 		// ----------------------------------------------------------------
-		SKILL_ID_DETECTING = skillId;
+		window.SKILL_ID_DETECTING = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -3963,7 +3964,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// スプリングトラップ
 		// ----------------------------------------------------------------
-		SKILL_ID_SPRING_TRAP = skillId;
+		window.SKILL_ID_SPRING_TRAP = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -3987,7 +3988,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ファイアーピラー
 		// ----------------------------------------------------------------
-		SKILL_ID_FIRE_PILLAR = skillId;
+		window.SKILL_ID_FIRE_PILLAR = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -4028,7 +4029,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// モンスター情報
 		// ----------------------------------------------------------------
-		SKILL_ID_MONSTER_ZYOHO = skillId;
+		window.SKILL_ID_MONSTER_ZYOHO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -4052,7 +4053,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// サイトラッシャー
 		// ----------------------------------------------------------------
-		SKILL_ID_SIGHT_RASHER = skillId;
+		window.SKILL_ID_SIGHT_RASHER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -4088,7 +4089,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// メテオストーム
 		// ----------------------------------------------------------------
-		SKILL_ID_METEOR_STORM = skillId;
+		window.SKILL_ID_METEOR_STORM = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -4132,7 +4133,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ユピテルサンダー
 		// ----------------------------------------------------------------
-		SKILL_ID_JUPITER_THUNDER = skillId;
+		window.SKILL_ID_JUPITER_THUNDER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -4168,7 +4169,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ロードオブヴァーミリオン
 		// ----------------------------------------------------------------
-		SKILL_ID_LORD_OF_VERMILLION = skillId;
+		window.SKILL_ID_LORD_OF_VERMILLION = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -4204,7 +4205,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ウォーターボール
 		// ----------------------------------------------------------------
-		SKILL_ID_WATER_BALL = skillId;
+		window.SKILL_ID_WATER_BALL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -4254,7 +4255,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アイスウォール
 		// ----------------------------------------------------------------
-		SKILL_ID_ICE_WALL = skillId;
+		window.SKILL_ID_ICE_WALL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -4278,7 +4279,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// フロストノヴァ
 		// ----------------------------------------------------------------
-		SKILL_ID_FROST_NOVA = skillId;
+		window.SKILL_ID_FROST_NOVA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -4310,7 +4311,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ストームガスト
 		// ----------------------------------------------------------------
-		SKILL_ID_STORM_GUST = skillId;
+		window.SKILL_ID_STORM_GUST = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -4343,7 +4344,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アーススパイク
 		// ----------------------------------------------------------------
-		SKILL_ID_EARTH_SPIKE = skillId;
+		window.SKILL_ID_EARTH_SPIKE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -4368,7 +4369,7 @@ function CSkillManager() {
 				pow = 100;
 
 				// 「ソーサラー 精霊スキル」の効果
-				seirei = charaDataManger.UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL);
+				seirei = charaDataManger.UsedSkillSearch(window.SKILL_ID_SERE_SUPPORT_SKILL);
 				if (seirei == 28) {
 					pow += Math.floor(charaDataManger.GetCharaJobLv() / 3);
 				}
@@ -4395,7 +4396,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ヘヴンズドライブ
 		// ----------------------------------------------------------------
-		SKILL_ID_HEAVENS_DRIVE = skillId;
+		window.SKILL_ID_HEAVENS_DRIVE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -4420,7 +4421,7 @@ function CSkillManager() {
 				pow = 125;
 
 				// 「ソーサラー 精霊スキル」の効果
-				seirei = charaDataManger.UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL);
+				seirei = charaDataManger.UsedSkillSearch(window.SKILL_ID_SERE_SUPPORT_SKILL);
 				if (seirei == 28) {
 					pow += Math.floor(charaDataManger.GetCharaJobLv() / 3);
 				}
@@ -4451,7 +4452,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// クァグマイア
 		// ----------------------------------------------------------------
-		SKILL_ID_QUAGMIRE = skillId;
+		window.SKILL_ID_QUAGMIRE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -4479,7 +4480,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 鉄製造
 		// ----------------------------------------------------------------
-		SKILL_ID_TETSU_SEIZO = skillId;
+		window.SKILL_ID_TETSU_SEIZO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -4498,7 +4499,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 鋼鉄製造
 		// ----------------------------------------------------------------
-		SKILL_ID_KOTETSU_SEIZO = skillId;
+		window.SKILL_ID_KOTETSU_SEIZO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -4517,7 +4518,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 属性石製造
 		// ----------------------------------------------------------------
-		SKILL_ID_ZOKUSEISEKI_SEIZO = skillId;
+		window.SKILL_ID_ZOKUSEISEKI_SEIZO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -4536,7 +4537,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// オリデオコン研究
 		// ----------------------------------------------------------------
-		SKILL_ID_ORIDEOCON_KENKYU = skillId;
+		window.SKILL_ID_ORIDEOCON_KENKYU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -4555,7 +4556,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 短剣製作
 		// ----------------------------------------------------------------
-		SKILL_ID_TANKEN_SEISAKU = skillId;
+		window.SKILL_ID_TANKEN_SEISAKU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -4574,7 +4575,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 剣製作
 		// ----------------------------------------------------------------
-		SKILL_ID_KEN_SEISAKU = skillId;
+		window.SKILL_ID_KEN_SEISAKU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -4593,7 +4594,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 両手剣製作
 		// ----------------------------------------------------------------
-		SKILL_ID_RYOTEKEN_SEISAKU = skillId;
+		window.SKILL_ID_RYOTEKEN_SEISAKU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -4612,7 +4613,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 斧製作
 		// ----------------------------------------------------------------
-		SKILL_ID_ONO_SEISAKU = skillId;
+		window.SKILL_ID_ONO_SEISAKU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -4631,7 +4632,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// メイス製作
 		// ----------------------------------------------------------------
-		SKILL_ID_MACE_SEISAKU = skillId;
+		window.SKILL_ID_MACE_SEISAKU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -4650,7 +4651,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ナックル製作
 		// ----------------------------------------------------------------
-		SKILL_ID_KNUCKLE_SEISAKU = skillId;
+		window.SKILL_ID_KNUCKLE_SEISAKU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -4669,7 +4670,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 槍製作
 		// ----------------------------------------------------------------
-		SKILL_ID_YARI_SEISAKU = skillId;
+		window.SKILL_ID_YARI_SEISAKU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -4688,7 +4689,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ヒルトバインディング
 		// ----------------------------------------------------------------
-		SKILL_ID_HILT_BINDING = skillId;
+		window.SKILL_ID_HILT_BINDING = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -4707,7 +4708,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 鉱石発見
 		// ----------------------------------------------------------------
-		SKILL_ID_KOSEKI_HAKKEN = skillId;
+		window.SKILL_ID_KOSEKI_HAKKEN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -4726,7 +4727,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 武器研究
 		// ----------------------------------------------------------------
-		SKILL_ID_BUKI_KENKYU = skillId;
+		window.SKILL_ID_BUKI_KENKYU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -4745,7 +4746,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 武器修理
 		// ----------------------------------------------------------------
-		SKILL_ID_BUKI_SHURI = skillId;
+		window.SKILL_ID_BUKI_SHURI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -4773,7 +4774,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// スキンテンパリング
 		// ----------------------------------------------------------------
-		SKILL_ID_SKIN_TEMPERING = skillId;
+		window.SKILL_ID_SKIN_TEMPERING = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -4792,7 +4793,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ハンマーフォール
 		// ----------------------------------------------------------------
-		SKILL_ID_HAMMER_FALL = skillId;
+		window.SKILL_ID_HAMMER_FALL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -4816,7 +4817,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アドレナリンラッシュ
 		// ----------------------------------------------------------------
-		SKILL_ID_ADRENALINE_RUSH = skillId;
+		window.SKILL_ID_ADRENALINE_RUSH = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -4840,7 +4841,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ウェポンパーフェクション
 		// ----------------------------------------------------------------
-		SKILL_ID_WEAPON_PERFECTION = skillId;
+		window.SKILL_ID_WEAPON_PERFECTION = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -4864,7 +4865,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// オーバートラスト
 		// ----------------------------------------------------------------
-		SKILL_ID_OVER_TRUST = skillId;
+		window.SKILL_ID_OVER_TRUST = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -4888,7 +4889,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// マキシマイズパワー
 		// ----------------------------------------------------------------
-		SKILL_ID_MAXIMIZE_POWER = skillId;
+		window.SKILL_ID_MAXIMIZE_POWER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -4912,7 +4913,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// フェイス
 		// ----------------------------------------------------------------
-		SKILL_ID_FAITH = skillId;
+		window.SKILL_ID_FAITH = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -4931,7 +4932,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// オートガード
 		// ----------------------------------------------------------------
-		SKILL_ID_AUTO_GUARD = skillId;
+		window.SKILL_ID_AUTO_GUARD = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -4955,7 +4956,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// シールドチャージ
 		// ----------------------------------------------------------------
-		SKILL_ID_SHIELD_CHARGE = skillId;
+		window.SKILL_ID_SHIELD_CHARGE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -4983,7 +4984,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// シールドブーメラン
 		// ----------------------------------------------------------------
-		SKILL_ID_SHIELD_BOOMERANG = skillId;
+		window.SKILL_ID_SHIELD_BOOMERANG = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -5015,7 +5016,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// リフレクトシールド
 		// ----------------------------------------------------------------
-		SKILL_ID_REFLECT_SHIELD = skillId;
+		window.SKILL_ID_REFLECT_SHIELD = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -5039,7 +5040,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ホーリークロス
 		// ----------------------------------------------------------------
-		SKILL_ID_HOLY_CROSS = skillId;
+		window.SKILL_ID_HOLY_CROSS = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -5067,7 +5068,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// グランドクロス
 		// ----------------------------------------------------------------
-		SKILL_ID_GRAND_CROSS = skillId;
+		window.SKILL_ID_GRAND_CROSS = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -5103,7 +5104,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ディボーション
 		// ----------------------------------------------------------------
-		SKILL_ID_DEBOTION = skillId;
+		window.SKILL_ID_DEBOTION = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -5131,7 +5132,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// プロヴィデンス
 		// ----------------------------------------------------------------
-		SKILL_ID_PROVIDENCE = skillId;
+		window.SKILL_ID_PROVIDENCE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -5159,7 +5160,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ディフェンダー
 		// ----------------------------------------------------------------
-		SKILL_ID_DEFENDER = skillId;
+		window.SKILL_ID_DEFENDER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -5187,7 +5188,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// スピアクイッケン
 		// ----------------------------------------------------------------
-		SKILL_ID_SPEAR_QUICKEN = skillId;
+		window.SKILL_ID_SPEAR_QUICKEN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -5211,7 +5212,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// スナッチャー
 		// ----------------------------------------------------------------
-		SKILL_ID_SNATCHER = skillId;
+		window.SKILL_ID_SNATCHER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -5230,7 +5231,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// スティールコイン
 		// ----------------------------------------------------------------
-		SKILL_ID_STEAL_COIN = skillId;
+		window.SKILL_ID_STEAL_COIN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -5258,7 +5259,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// バックスタブ
 		// ----------------------------------------------------------------
-		SKILL_ID_BACK_STAB = skillId;
+		window.SKILL_ID_BACK_STAB = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -5291,7 +5292,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// トンネルドライブ
 		// ----------------------------------------------------------------
-		SKILL_ID_TUNNEL_DRIVE = skillId;
+		window.SKILL_ID_TUNNEL_DRIVE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -5310,7 +5311,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// サプライズアタック
 		// ----------------------------------------------------------------
-		SKILL_ID_SURPRISE_ATTACK = skillId;
+		window.SKILL_ID_SURPRISE_ATTACK = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -5343,7 +5344,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ストリップウェポン
 		// ----------------------------------------------------------------
-		SKILL_ID_STRIP_WEAPON = skillId;
+		window.SKILL_ID_STRIP_WEAPON = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -5397,7 +5398,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ストリップシールド
 		// ----------------------------------------------------------------
-		SKILL_ID_STRIP_SHIELD = skillId;
+		window.SKILL_ID_STRIP_SHIELD = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -5451,7 +5452,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ストリップアーマー
 		// ----------------------------------------------------------------
-		SKILL_ID_STRIP_ARMER = skillId;
+		window.SKILL_ID_STRIP_ARMER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -5505,7 +5506,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ストリップヘルム
 		// ----------------------------------------------------------------
-		SKILL_ID_STRIP_HELM = skillId;
+		window.SKILL_ID_STRIP_HELM = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -5559,7 +5560,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// インティミデイト
 		// ----------------------------------------------------------------
-		SKILL_ID_INTIMIDATE = skillId;
+		window.SKILL_ID_INTIMIDATE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -5591,7 +5592,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// グラフィティ
 		// ----------------------------------------------------------------
-		SKILL_ID_GRAPHITY = skillId;
+		window.SKILL_ID_GRAPHITY = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -5615,7 +5616,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// フラッググラフィティ
 		// ----------------------------------------------------------------
-		SKILL_ID_FLAG_GRAPHITY = skillId;
+		window.SKILL_ID_FLAG_GRAPHITY = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -5635,7 +5636,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// クリーナー
 		// ----------------------------------------------------------------
-		SKILL_ID_CLEANER = skillId;
+		window.SKILL_ID_CLEANER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -5655,7 +5656,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ギャングスターパラダイス
 		// ----------------------------------------------------------------
-		SKILL_ID_GANGSTAR_PARADISE = skillId;
+		window.SKILL_ID_GANGSTAR_PARADISE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -5674,7 +5675,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// コンパルションディスカウント
 		// ----------------------------------------------------------------
-		SKILL_ID_COMPULSION_DISCOUNT = skillId;
+		window.SKILL_ID_COMPULSION_DISCOUNT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -5693,7 +5694,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// クローンスキル
 		// ----------------------------------------------------------------
-		SKILL_ID_CLONE_SKILL = skillId;
+		window.SKILL_ID_CLONE_SKILL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -5712,7 +5713,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 鉄拳
 		// ----------------------------------------------------------------
-		SKILL_ID_TEKKEN = skillId;
+		window.SKILL_ID_TEKKEN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -5731,7 +5732,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 息吹
 		// ----------------------------------------------------------------
-		SKILL_ID_IBUKI = skillId;
+		window.SKILL_ID_IBUKI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -5750,7 +5751,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 気功(気弾数)
 		// ----------------------------------------------------------------
-		SKILL_ID_KIKO = skillId;
+		window.SKILL_ID_KIKO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -5778,7 +5779,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 気奪
 		// ----------------------------------------------------------------
-		SKILL_ID_KIDATSU = skillId;
+		window.SKILL_ID_KIDATSU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -5806,7 +5807,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 三段掌
 		// ----------------------------------------------------------------
-		SKILL_ID_SANDANSHO = skillId;
+		window.SKILL_ID_SANDANSHO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -5825,7 +5826,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 連打掌
 		// ----------------------------------------------------------------
-		SKILL_ID_RENDASHO = skillId;
+		window.SKILL_ID_RENDASHO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -5863,7 +5864,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 猛龍拳
 		// ----------------------------------------------------------------
-		SKILL_ID_MORYUKEN = skillId;
+		window.SKILL_ID_MORYUKEN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -5897,7 +5898,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 残影
 		// ----------------------------------------------------------------
-		SKILL_ID_ZANEI = skillId;
+		window.SKILL_ID_ZANEI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -5921,7 +5922,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 見切り
 		// ----------------------------------------------------------------
-		SKILL_ID_MIKIRI = skillId;
+		window.SKILL_ID_MIKIRI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -5940,7 +5941,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 指弾(Hit数=気功)
 		// ----------------------------------------------------------------
-		SKILL_ID_SHIDAN = skillId;
+		window.SKILL_ID_SHIDAN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -5997,7 +5998,7 @@ function CSkillManager() {
 				var kidan = 0;
 
 				// モンク系の自己支援
-				kidan = charaDataManger.UsedSkillSearch(SKILL_ID_KIKO);
+				kidan = charaDataManger.UsedSkillSearch(window.SKILL_ID_KIKO);
 
 				// 気功転移等による二次職支援
 				if (kidan == 0) {
@@ -6015,7 +6016,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 発勁
 		// ----------------------------------------------------------------
-		SKILL_ID_HAKKEI = skillId;
+		window.SKILL_ID_HAKKEI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -6052,7 +6053,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 白刃取り
 		// ----------------------------------------------------------------
-		SKILL_ID_SHIRAHADORI = skillId;
+		window.SKILL_ID_SHIRAHADORI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -6080,7 +6081,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 爆裂波動
 		// ----------------------------------------------------------------
-		SKILL_ID_BAKURETSU_HADO = skillId;
+		window.SKILL_ID_BAKURETSU_HADO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -6104,7 +6105,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 金剛
 		// ----------------------------------------------------------------
-		SKILL_ID_KONGO = skillId;
+		window.SKILL_ID_KONGO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -6132,7 +6133,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 阿修羅覇凰拳(SP調整可)
 		// ----------------------------------------------------------------
-		SKILL_ID_ASHURA_HAOKEN = skillId;
+		window.SKILL_ID_ASHURA_HAOKEN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -6169,7 +6170,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 楽器の練習
 		// ----------------------------------------------------------------
-		SKILL_ID_GAKKINO_RENSHU = skillId;
+		window.SKILL_ID_GAKKINO_RENSHU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -6187,7 +6188,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ミュージカルストライク
 		// ----------------------------------------------------------------
-		SKILL_ID_MUSICAL_STRIKE = skillId;
+		window.SKILL_ID_MUSICAL_STRIKE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -6223,7 +6224,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 不協和音
 		// ----------------------------------------------------------------
-		SKILL_ID_FUKYOWAON = skillId;
+		window.SKILL_ID_FUKYOWAON = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -6262,7 +6263,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 寒いジョーク
 		// ----------------------------------------------------------------
-		SKILL_ID_SAMUI_JOKE = skillId;
+		window.SKILL_ID_SAMUI_JOKE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -6290,7 +6291,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 口笛
 		// ----------------------------------------------------------------
-		SKILL_ID_KUCHIBUE = skillId;
+		window.SKILL_ID_KUCHIBUE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -6314,7 +6315,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 夕陽のアサシンクロス
 		// ----------------------------------------------------------------
-		SKILL_ID_YUHINO_ASSASINCROSS = skillId;
+		window.SKILL_ID_YUHINO_ASSASINCROSS = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -6338,7 +6339,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ブラギの詩
 		// ----------------------------------------------------------------
-		SKILL_ID_BRAGINO_UTA = skillId;
+		window.SKILL_ID_BRAGINO_UTA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -6362,7 +6363,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// イドゥンの林檎
 		// ----------------------------------------------------------------
-		SKILL_ID_IDUNNNO_RINGO = skillId;
+		window.SKILL_ID_IDUNNNO_RINGO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -6386,7 +6387,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ダンスの練習
 		// ----------------------------------------------------------------
-		SKILL_ID_DANCENO_RENSHU = skillId;
+		window.SKILL_ID_DANCENO_RENSHU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -6404,7 +6405,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 矢撃ち
 		// ----------------------------------------------------------------
-		SKILL_ID_YAUCHI = skillId;
+		window.SKILL_ID_YAUCHI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -6440,7 +6441,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 自分勝手なダンス
 		// ----------------------------------------------------------------
-		SKILL_ID_ZIBUNKATTENA_DANCE = skillId;
+		window.SKILL_ID_ZIBUNKATTENA_DANCE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -6464,7 +6465,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// スクリーム
 		// ----------------------------------------------------------------
-		SKILL_ID_SCREAM = skillId;
+		window.SKILL_ID_SCREAM = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -6492,7 +6493,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ハミング
 		// ----------------------------------------------------------------
-		SKILL_ID_HUMMING = skillId;
+		window.SKILL_ID_HUMMING = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -6516,7 +6517,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 私を忘れないで…
 		// ----------------------------------------------------------------
-		SKILL_ID_WATASHIWO_WASURENAIDE = skillId;
+		window.SKILL_ID_WATASHIWO_WASURENAIDE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -6540,7 +6541,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 幸運のキス
 		// ----------------------------------------------------------------
-		SKILL_ID_KOUNNO_KISS = skillId;
+		window.SKILL_ID_KOUNNO_KISS = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -6564,7 +6565,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// サービスフォーユー
 		// ----------------------------------------------------------------
-		SKILL_ID_SERVICE_FOR_YOU = skillId;
+		window.SKILL_ID_SERVICE_FOR_YOU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -6588,7 +6589,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アドリブ
 		// ----------------------------------------------------------------
-		SKILL_ID_ADLIB = skillId;
+		window.SKILL_ID_ADLIB = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -6612,7 +6613,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アンコール
 		// ----------------------------------------------------------------
-		SKILL_ID_ENCORE = skillId;
+		window.SKILL_ID_ENCORE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -6636,7 +6637,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 子守歌
 		// ----------------------------------------------------------------
-		SKILL_ID_KOMORIUTA = skillId;
+		window.SKILL_ID_KOMORIUTA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -6660,7 +6661,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ニヨルドの宴
 		// ----------------------------------------------------------------
-		SKILL_ID_NJORDNO_UTAGE = skillId;
+		window.SKILL_ID_NJORDNO_UTAGE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -6684,7 +6685,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 永遠の混沌
 		// ----------------------------------------------------------------
-		SKILL_ID_EIENNO_KONTON = skillId;
+		window.SKILL_ID_EIENNO_KONTON = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -6708,7 +6709,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 戦太鼓の響き
 		// ----------------------------------------------------------------
-		SKILL_ID_IKUSADAIKONO_HIBIKI = skillId;
+		window.SKILL_ID_IKUSADAIKONO_HIBIKI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -6732,7 +6733,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ニーベルングの指輪
 		// ----------------------------------------------------------------
-		SKILL_ID_NIBELUGENNO_YUBIWA = skillId;
+		window.SKILL_ID_NIBELUGENNO_YUBIWA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -6756,7 +6757,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ロキの叫び
 		// ----------------------------------------------------------------
-		SKILL_ID_LOKINO_SAKEBI = skillId;
+		window.SKILL_ID_LOKINO_SAKEBI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -6780,7 +6781,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 深淵の中に
 		// ----------------------------------------------------------------
-		SKILL_ID_SHINENNO_NAKANI = skillId;
+		window.SKILL_ID_SHINENNO_NAKANI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -6804,7 +6805,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 不死身のジークフリード
 		// ----------------------------------------------------------------
-		SKILL_ID_FUZIMINO_SIEGFRIED = skillId;
+		window.SKILL_ID_FUZIMINO_SIEGFRIED = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -6828,7 +6829,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アドバンスドブック
 		// ----------------------------------------------------------------
-		SKILL_ID_ADVANCED_BOOK = skillId;
+		window.SKILL_ID_ADVANCED_BOOK = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -6847,7 +6848,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// キャストキャンセル
 		// ----------------------------------------------------------------
-		SKILL_ID_CAST_CANCEL = skillId;
+		window.SKILL_ID_CAST_CANCEL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -6871,7 +6872,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// マジックロッド
 		// ----------------------------------------------------------------
-		SKILL_ID_MAGIC_ROD = skillId;
+		window.SKILL_ID_MAGIC_ROD = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -6903,7 +6904,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// スペルブレイカー
 		// ----------------------------------------------------------------
-		SKILL_ID_SPELL_BREAKER = skillId;
+		window.SKILL_ID_SPELL_BREAKER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -6931,7 +6932,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// フリーキャスト
 		// ----------------------------------------------------------------
-		SKILL_ID_FREE_CAST = skillId;
+		window.SKILL_ID_FREE_CAST = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -6950,7 +6951,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// オートマジシャンスペル
 		// ----------------------------------------------------------------
-		SKILL_ID_AUTO_MAGICIAN_SPELL = skillId;
+		window.SKILL_ID_AUTO_MAGICIAN_SPELL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -6982,7 +6983,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// フレイムランチャー
 		// ----------------------------------------------------------------
-		SKILL_ID_FLAME_LAUNCHER = skillId;
+		window.SKILL_ID_FLAME_LAUNCHER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -7014,7 +7015,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// フロストウェポン
 		// ----------------------------------------------------------------
-		SKILL_ID_FROST_WEAPON = skillId;
+		window.SKILL_ID_FROST_WEAPON = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -7046,7 +7047,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ライトニングローダー
 		// ----------------------------------------------------------------
-		SKILL_ID_LIGHTNING_LOADER = skillId;
+		window.SKILL_ID_LIGHTNING_LOADER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -7078,7 +7079,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// サイズミックウェポン
 		// ----------------------------------------------------------------
-		SKILL_ID_SEISMIC_WEAPON = skillId;
+		window.SKILL_ID_SEISMIC_WEAPON = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -7110,7 +7111,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ドラゴノロジー
 		// ----------------------------------------------------------------
-		SKILL_ID_DRAGONOLOGY = skillId;
+		window.SKILL_ID_DRAGONOLOGY = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -7129,7 +7130,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ボルケーノ
 		// ----------------------------------------------------------------
-		SKILL_ID_VOLCANO = skillId;
+		window.SKILL_ID_VOLCANO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -7161,7 +7162,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// デリュージ
 		// ----------------------------------------------------------------
-		SKILL_ID_DELUGE = skillId;
+		window.SKILL_ID_DELUGE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -7193,7 +7194,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// バイオレントゲイル
 		// ----------------------------------------------------------------
-		SKILL_ID_VIOLENT_GALE = skillId;
+		window.SKILL_ID_VIOLENT_GALE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -7225,7 +7226,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ランドプロテクター
 		// ----------------------------------------------------------------
-		SKILL_ID_LAND_PROTECTOR = skillId;
+		window.SKILL_ID_LAND_PROTECTOR = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -7257,7 +7258,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ディスペル
 		// ----------------------------------------------------------------
-		SKILL_ID_DISPELL = skillId;
+		window.SKILL_ID_DISPELL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -7285,7 +7286,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アブラカタブラ
 		// ----------------------------------------------------------------
-		SKILL_ID_ABRACADABRA = skillId;
+		window.SKILL_ID_ABRACADABRA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -7309,7 +7310,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 斧修練
 		// ----------------------------------------------------------------
-		SKILL_ID_ONO_SHUREN = skillId;
+		window.SKILL_ID_ONO_SHUREN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -7328,7 +7329,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ラーニングポーション
 		// ----------------------------------------------------------------
-		SKILL_ID_LEARNING_POTION = skillId;
+		window.SKILL_ID_LEARNING_POTION = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -7347,7 +7348,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ファーマシー
 		// ----------------------------------------------------------------
-		SKILL_ID_PHARMACY = skillId;
+		window.SKILL_ID_PHARMACY = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -7371,7 +7372,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アシッドテラー
 		// ----------------------------------------------------------------
-		SKILL_ID_ACID_TERROR = skillId;
+		window.SKILL_ID_ACID_TERROR = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -7404,7 +7405,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ポーションピッチャー
 		// ----------------------------------------------------------------
-		SKILL_ID_POTION_PITCHER = skillId;
+		window.SKILL_ID_POTION_PITCHER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -7432,7 +7433,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// バイオプラント
 		// ----------------------------------------------------------------
-		SKILL_ID_BIOPLANT = skillId;
+		window.SKILL_ID_BIOPLANT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -7464,7 +7465,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// スフィアーマイン
 		// ----------------------------------------------------------------
-		SKILL_ID_SPHERE_MINE = skillId;
+		window.SKILL_ID_SPHERE_MINE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -7496,7 +7497,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// デモンストレーション
 		// ----------------------------------------------------------------
-		SKILL_ID_DEMONSTRATION = skillId;
+		window.SKILL_ID_DEMONSTRATION = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -7529,7 +7530,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ケミカルウェポンチャージ
 		// ----------------------------------------------------------------
-		SKILL_ID_CHEMICAL_WEAPON_CHARGE = skillId;
+		window.SKILL_ID_CHEMICAL_WEAPON_CHARGE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -7561,7 +7562,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ケミカルシールドチャージ
 		// ----------------------------------------------------------------
-		SKILL_ID_CHEMICAL_SHIELD_CHARGE = skillId;
+		window.SKILL_ID_CHEMICAL_SHIELD_CHARGE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -7593,7 +7594,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ケミカルアーマーチャージ
 		// ----------------------------------------------------------------
-		SKILL_ID_CHEMICAL_ARMER_CHARGE = skillId;
+		window.SKILL_ID_CHEMICAL_ARMER_CHARGE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -7625,7 +7626,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ケミカルヘルムチャージ
 		// ----------------------------------------------------------------
-		SKILL_ID_CHEMICAL_HELM_CHARGE = skillId;
+		window.SKILL_ID_CHEMICAL_HELM_CHARGE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -7657,13 +7658,13 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 爆裂波動(Sノビ)
 		// ----------------------------------------------------------------
-		SKILL_ID_BAKURETSU_HADO_SUPER_NOVICE = skillId;
+		window.SKILL_ID_BAKURETSU_HADO_SUPER_NOVICE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.refId = SKILL_ID_BAKURETSU_HADO;
+			this.refId = window.SKILL_ID_BAKURETSU_HADO;
 			this.name = "爆裂波動(Sノビ)";
 			this.kana = "ハクレツハトウスウハアノオヒス";
 			this.maxLv = 1;
@@ -7682,7 +7683,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// オーラブレイド
 		// ----------------------------------------------------------------
-		SKILL_ID_AURA_BLADE = skillId;
+		window.SKILL_ID_AURA_BLADE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -7710,7 +7711,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// パリイング
 		// ----------------------------------------------------------------
-		SKILL_ID_PARIYING = skillId;
+		window.SKILL_ID_PARIYING = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -7734,7 +7735,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// コンセントレイション
 		// ----------------------------------------------------------------
-		SKILL_ID_CONCENTRATION = skillId;
+		window.SKILL_ID_CONCENTRATION = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -7758,7 +7759,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// テンションリラックス
 		// ----------------------------------------------------------------
-		SKILL_ID_TENTION_RELAX = skillId;
+		window.SKILL_ID_TENTION_RELAX = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -7782,7 +7783,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// バーサーク
 		// ----------------------------------------------------------------
-		SKILL_ID_BERSERK = skillId;
+		window.SKILL_ID_BERSERK = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -7806,7 +7807,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// スパイラルピアース
 		// ----------------------------------------------------------------
-		SKILL_ID_SPIRAL_PIERCE = skillId;
+		window.SKILL_ID_SPIRAL_PIERCE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -7846,7 +7847,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ヘッドクラッシュ
 		// ----------------------------------------------------------------
-		SKILL_ID_HEAD_CRUSH = skillId;
+		window.SKILL_ID_HEAD_CRUSH = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -7878,7 +7879,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ジョイントビート
 		// ----------------------------------------------------------------
-		SKILL_ID_JOINT_BEAT = skillId;
+		window.SKILL_ID_JOINT_BEAT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -7910,7 +7911,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// カタール研究
 		// ----------------------------------------------------------------
-		SKILL_ID_KATAR_KENKYU = skillId;
+		window.SKILL_ID_KATAR_KENKYU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -7929,7 +7930,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ソウルブレイカー
 		// ----------------------------------------------------------------
-		SKILL_ID_SOUL_BREAKER = skillId;
+		window.SKILL_ID_SOUL_BREAKER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -7955,7 +7956,7 @@ function CSkillManager() {
 				pow = 300 + 50 * skillLv;
 
 				// 「アサシンクロス エンチャントデッドリーポイズン」の効果（ペナルティ）
-				edp = charaDataManger.UsedSkillSearch(SKILL_ID_ENCHANT_DEADLY_POISON);
+				edp = charaDataManger.UsedSkillSearch(window.SKILL_ID_ENCHANT_DEADLY_POISON);
 				if (edp > 0) {
 					pow = Math.floor(pow / 2);
 				}
@@ -7978,7 +7979,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// メテオアサルト
 		// ----------------------------------------------------------------
-		SKILL_ID_METEOR_ASSALT = skillId;
+		window.SKILL_ID_METEOR_ASSALT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -8014,7 +8015,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// クリエイトデッドリーポイズン
 		// ----------------------------------------------------------------
-		SKILL_ID_CREATE_DEADLY_POISON = skillId;
+		window.SKILL_ID_CREATE_DEADLY_POISON = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -8042,7 +8043,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// (仮)エンチャントデッドリーポイズン
 		// ----------------------------------------------------------------
-		SKILL_ID_ENCHANT_DEADLY_POISON = skillId;
+		window.SKILL_ID_ENCHANT_DEADLY_POISON = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -8070,7 +8071,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アスムプティオ
 		// ----------------------------------------------------------------
-		SKILL_ID_ASSUMPTIO = skillId;
+		window.SKILL_ID_ASSUMPTIO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -8102,7 +8103,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// バジリカ
 		// ----------------------------------------------------------------
-		SKILL_ID_BASILICA = skillId;
+		window.SKILL_ID_BASILICA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -8134,7 +8135,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// メディタティオ
 		// ----------------------------------------------------------------
-		SKILL_ID_MEDITATIO = skillId;
+		window.SKILL_ID_MEDITATIO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -8153,7 +8154,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// トゥルーサイト
 		// ----------------------------------------------------------------
-		SKILL_ID_TRUE_SIGHT = skillId;
+		window.SKILL_ID_TRUE_SIGHT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -8181,7 +8182,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ファルコンアサルト
 		// ----------------------------------------------------------------
-		SKILL_ID_FALCON_ASSALT = skillId;
+		window.SKILL_ID_FALCON_ASSALT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -8218,7 +8219,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// シャープシューティング
 		// ----------------------------------------------------------------
-		SKILL_ID_SHARP_SHOOTING = skillId;
+		window.SKILL_ID_SHARP_SHOOTING = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -8261,7 +8262,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ウィンドウォーク
 		// ----------------------------------------------------------------
-		SKILL_ID_WIND_WALK = skillId;
+		window.SKILL_ID_WIND_WALK = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -8297,7 +8298,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ソウルドレイン
 		// ----------------------------------------------------------------
-		SKILL_ID_SOUL_DRAIN = skillId;
+		window.SKILL_ID_SOUL_DRAIN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -8316,7 +8317,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// マジッククラッシャー
 		// ----------------------------------------------------------------
-		SKILL_ID_MAGIC_CRUSHER = skillId;
+		window.SKILL_ID_MAGIC_CRUSHER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -8352,7 +8353,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 魔法力増幅
 		// ----------------------------------------------------------------
-		SKILL_ID_MAHORYOKU_ZOFUKU = skillId;
+		window.SKILL_ID_MAHORYOKU_ZOFUKU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -8380,7 +8381,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ナパームバルカン
 		// ----------------------------------------------------------------
-		SKILL_ID_NAPALM_VULKAN = skillId;
+		window.SKILL_ID_NAPALM_VULKAN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -8420,7 +8421,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// メルトダウン
 		// ----------------------------------------------------------------
-		SKILL_ID_MELTDOWN = skillId;
+		window.SKILL_ID_MELTDOWN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -8448,7 +8449,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// お金製造
 		// ----------------------------------------------------------------
-		SKILL_ID_OKANE_SEIZO = skillId;
+		window.SKILL_ID_OKANE_SEIZO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -8468,7 +8469,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 塊製造
 		// ----------------------------------------------------------------
-		SKILL_ID_KATAMARI_SEIZO = skillId;
+		window.SKILL_ID_KATAMARI_SEIZO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -8488,7 +8489,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// カートブースト
 		// ----------------------------------------------------------------
-		SKILL_ID_CART_BOOST_WS = skillId;
+		window.SKILL_ID_CART_BOOST_WS = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -8512,7 +8513,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 運命のタロットカード
 		// ----------------------------------------------------------------
-		SKILL_ID_UNMEINO_TALOTCARD = skillId;
+		window.SKILL_ID_UNMEINO_TALOTCARD = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -8536,7 +8537,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// プレッシャー
 		// ----------------------------------------------------------------
-		SKILL_ID_PRESSURE = skillId;
+		window.SKILL_ID_PRESSURE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -8573,7 +8574,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// サクリファイス
 		// ----------------------------------------------------------------
-		SKILL_ID_SACRIFICE = skillId;
+		window.SKILL_ID_SACRIFICE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -8602,7 +8603,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ゴスペル
 		// ----------------------------------------------------------------
-		SKILL_ID_GOSPEL = skillId;
+		window.SKILL_ID_GOSPEL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -8626,7 +8627,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// チェイスウォーク(STR+)
 		// ----------------------------------------------------------------
-		SKILL_ID_CHASEWALK = skillId;
+		window.SKILL_ID_CHASEWALK = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -8654,7 +8655,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// リジェクトソード
 		// ----------------------------------------------------------------
-		SKILL_ID_REJECT_SWORD = skillId;
+		window.SKILL_ID_REJECT_SWORD = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -8682,7 +8683,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 猛虎硬爬山
 		// ----------------------------------------------------------------
-		SKILL_ID_MOKOKOHAZAN = skillId;
+		window.SKILL_ID_MOKOKOHAZAN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -8718,7 +8719,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 伏虎拳
 		// ----------------------------------------------------------------
-		SKILL_ID_BUKKOKEN = skillId;
+		window.SKILL_ID_BUKKOKEN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -8752,7 +8753,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 連柱崩撃
 		// ----------------------------------------------------------------
-		SKILL_ID_RENCHUHOGEKI = skillId;
+		window.SKILL_ID_RENCHUHOGEKI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -8789,7 +8790,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ソウルコレクト
 		// ----------------------------------------------------------------
-		SKILL_ID_SOUL_COLECT = skillId;
+		window.SKILL_ID_SOUL_COLECT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -8809,7 +8810,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アローバルカン
 		// ----------------------------------------------------------------
-		SKILL_ID_ARRAW_VULKAN = skillId;
+		window.SKILL_ID_ARRAW_VULKAN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -8854,7 +8855,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 練気功
 		// ----------------------------------------------------------------
-		SKILL_ID_RENKIKO = skillId;
+		window.SKILL_ID_RENKIKO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -8882,7 +8883,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// マリオネットコントロール
 		// ----------------------------------------------------------------
-		SKILL_ID_MARIONET_CONTROL = skillId;
+		window.SKILL_ID_MARIONET_CONTROL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -8906,7 +8907,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ライフコンバージョン
 		// ----------------------------------------------------------------
-		SKILL_ID_LIFE_CONVERSION = skillId;
+		window.SKILL_ID_LIFE_CONVERSION = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -8926,7 +8927,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ソウルチェンジ
 		// ----------------------------------------------------------------
-		SKILL_ID_SOUL_CHANGE = skillId;
+		window.SKILL_ID_SOUL_CHANGE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -8958,7 +8959,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ソウルバーン
 		// ----------------------------------------------------------------
-		SKILL_ID_SOUL_BURN = skillId;
+		window.SKILL_ID_SOUL_BURN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -8986,7 +8987,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// マインドブレイカー
 		// ----------------------------------------------------------------
-		SKILL_ID_MIND_BREAKER = skillId;
+		window.SKILL_ID_MIND_BREAKER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -9014,7 +9015,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アルケミー
 		// ----------------------------------------------------------------
-		SKILL_ID_ALCHEMY = skillId;
+		window.SKILL_ID_ALCHEMY = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -9034,7 +9035,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ポーションシノプス
 		// ----------------------------------------------------------------
-		SKILL_ID_POTION_SYNAPSE = skillId;
+		window.SKILL_ID_POTION_SYNAPSE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -9054,7 +9055,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 連打掌修得時の三段掌ディレイ増加
 		// ----------------------------------------------------------------
-		SKILL_ID_SANDAN_DELAY_ZOKA = skillId;
+		window.SKILL_ID_SANDAN_DELAY_ZOKA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -9074,7 +9075,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// トマホーク投げ
 		// ----------------------------------------------------------------
-		SKILL_ID_TOMAHAWKNAGE = skillId;
+		window.SKILL_ID_TOMAHAWKNAGE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -9102,7 +9103,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// パルスストライク
 		// ----------------------------------------------------------------
-		SKILL_ID_PULSE_STRIKE = skillId;
+		window.SKILL_ID_PULSE_STRIKE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -9130,7 +9131,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// バーサクピッチャー
 		// ----------------------------------------------------------------
-		SKILL_ID_BERSERK_PITCHER = skillId;
+		window.SKILL_ID_BERSERK_PITCHER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -9158,13 +9159,13 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ティオアプチャギ(ダッシュ中)
 		// ----------------------------------------------------------------
-		SKILL_ID_TEIOAPUCHAGI_IN_DASH = skillId;
+		window.SKILL_ID_TEIOAPUCHAGI_IN_DASH = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.refId = SKILL_ID_TEIOAPUCHAGI;
+			this.refId = window.SKILL_ID_TEIOAPUCHAGI;
 			this.name = "ティオアプチャギ(ダッシュ中)";
 			this.kana = "テイオアフチヤキタツシユチユウ";
 			this.maxLv = 7;
@@ -9186,7 +9187,7 @@ function CSkillManager() {
 				pow = 4 * charaDataManger.GetCharaBaseLv();
 
 				// 「テコンキッド スパート状態」の効果
-				spurt = charaDataManger.UsedSkillSearch(SKILL_ID_SPURT_ZYOTAI);
+				spurt = charaDataManger.UsedSkillSearch(window.SKILL_ID_SPURT_ZYOTAI);
 				wpn = charaDataManger.GetWeaponType();
 				if ((spurt > 0) && (wpn == 0)) {
 					pow *= 2;
@@ -9202,7 +9203,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ベナムナイフ
 		// ----------------------------------------------------------------
-		SKILL_ID_VENOM_KNIFE = skillId;
+		window.SKILL_ID_VENOM_KNIFE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -9230,7 +9231,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ファンタズミックアロー
 		// ----------------------------------------------------------------
-		SKILL_ID_FANTASMIC_ARROW = skillId;
+		window.SKILL_ID_FANTASMIC_ARROW = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -9258,7 +9259,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// チャージアタック
 		// ----------------------------------------------------------------
-		SKILL_ID_CHARGE_ATTACK = skillId;
+		window.SKILL_ID_CHARGE_ATTACK = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -9290,7 +9291,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 無死亡ボーナス
 		// ----------------------------------------------------------------
-		SKILL_ID_SUPER_NOVICE_NODEAD_BONUS = skillId;
+		window.SKILL_ID_SUPER_NOVICE_NODEAD_BONUS = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -9310,7 +9311,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 結婚ステータス-1付与
 		// ----------------------------------------------------------------
-		SKILL_ID_MARIAGE_STATUS = skillId;
+		window.SKILL_ID_MARIAGE_STATUS = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -9330,7 +9331,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 製作スキルマスター数(達人の斧用)
 		// ----------------------------------------------------------------
-		SKILL_ID_SKILL_COUNT_CREATE_ARMS_MASTER = skillId;
+		window.SKILL_ID_SKILL_COUNT_CREATE_ARMS_MASTER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -9350,7 +9351,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ダークストライク
 		// ----------------------------------------------------------------
-		SKILL_ID_DARK_STRIKE = skillId;
+		window.SKILL_ID_DARK_STRIKE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -9392,7 +9393,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 予約313
 		// ----------------------------------------------------------------
-		SKILL_ID_RESERVED_313 = skillId;
+		window.SKILL_ID_RESERVED_313 = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -9412,7 +9413,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 予約314
 		// ----------------------------------------------------------------
-		SKILL_ID_RESERVED_314 = skillId;
+		window.SKILL_ID_RESERVED_314 = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -9432,7 +9433,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 予約315
 		// ----------------------------------------------------------------
-		SKILL_ID_RESERVED_315 = skillId;
+		window.SKILL_ID_RESERVED_315 = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -9452,7 +9453,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 予約316
 		// ----------------------------------------------------------------
-		SKILL_ID_RESERVED_316 = skillId;
+		window.SKILL_ID_RESERVED_316 = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -9472,7 +9473,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 温もり
 		// ----------------------------------------------------------------
-		SKILL_ID_NUKUMORI = skillId;
+		window.SKILL_ID_NUKUMORI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -9505,12 +9506,12 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 温もり(壁押付)
 		// ----------------------------------------------------------------
-		SKILL_ID_NUKUMORI_KABE = skillId;
+		window.SKILL_ID_NUKUMORI_KABE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.refId = SKILL_ID_NUKUMORI;
+			this.refId = window.SKILL_ID_NUKUMORI;
 			this.name = "温もり(壁押付)";
 			this.kana = "ヌクモリカヘオシツケ";
 			this.maxLv = 3;
@@ -9539,13 +9540,13 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ヘヴンズドライブ(盗作用Ex)
 		// ----------------------------------------------------------------
-		SKILL_ID_HEAVENS_DRIVE_FOR_CLONE = skillId;
+		window.SKILL_ID_HEAVENS_DRIVE_FOR_CLONE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.refId = SKILL_ID_HEAVENS_DRIVE;
+			this.refId = window.SKILL_ID_HEAVENS_DRIVE;
 			this.name = "ヘヴンズドライブ(盗作用Ex)";
 			this.kana = "ヘウンストライフトウサクヨウ";
 			this.maxLv = 10;
@@ -9565,7 +9566,7 @@ function CSkillManager() {
 				pow = 125;
 
 				// 「ソーサラー 精霊スキル」の効果
-				seirei = charaDataManger.UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL);
+				seirei = charaDataManger.UsedSkillSearch(window.SKILL_ID_SERE_SUPPORT_SKILL);
 				if (seirei == 28) {
 					pow += Math.floor(charaDataManger.GetCharaJobLv() / 3);
 				}
@@ -9596,13 +9597,13 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ウォーターボール(盗作用Ex)
 		// ----------------------------------------------------------------
-		SKILL_ID_WATER_BALL_FOR_CLONE = skillId;
+		window.SKILL_ID_WATER_BALL_FOR_CLONE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.refId = SKILL_ID_WATER_BALL;
+			this.refId = window.SKILL_ID_WATER_BALL;
 			this.name = "ウォーターボール(盗作用Ex)";
 			this.kana = "ウオオタアホオルトウサクヨウ";
 			this.maxLv = 10;
@@ -9647,13 +9648,13 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 阿修羅覇凰拳(MaxSP-1固定)
 		// ----------------------------------------------------------------
-		SKILL_ID_ASHURA_HAOKEN_SPKOTEI = skillId;
+		window.SKILL_ID_ASHURA_HAOKEN_SPKOTEI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.refId = SKILL_ID_ASHURA_HAOKEN;
+			this.refId = window.SKILL_ID_ASHURA_HAOKEN;
 			this.name = "阿修羅覇凰拳(MaxSP-1固定)";
 			this.kana = "アシユラハオウケンスヒリチユアルホイントコテイ";
 			this.maxLv = 5;
@@ -9685,7 +9686,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// メモライズ(5回制限未計算)
 		// ----------------------------------------------------------------
-		SKILL_ID_MEMORIZE = skillId;
+		window.SKILL_ID_MEMORIZE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -9713,7 +9714,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 予約323
 		// ----------------------------------------------------------------
-		SKILL_ID_RESERVED_323 = skillId;
+		window.SKILL_ID_RESERVED_323 = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -9733,7 +9734,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// シールドチェーン
 		// ----------------------------------------------------------------
-		SKILL_ID_SHIELD_CHAIN = skillId;
+		window.SKILL_ID_SHIELD_CHAIN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -9765,7 +9766,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// グラビテーションフィールド
 		// ----------------------------------------------------------------
-		SKILL_ID_GRAVITATION_FIELD = skillId;
+		window.SKILL_ID_GRAVITATION_FIELD = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -9798,7 +9799,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// カートターミネーション
 		// ----------------------------------------------------------------
-		SKILL_ID_CART_TERMINATION = skillId;
+		window.SKILL_ID_CART_TERMINATION = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -9826,7 +9827,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// オーバートラストマックス
 		// ----------------------------------------------------------------
-		SKILL_ID_OVER_TRUST_MAX = skillId;
+		window.SKILL_ID_OVER_TRUST_MAX = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -9850,7 +9851,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// (仮)アシッドデモンストレーション
 		// ----------------------------------------------------------------
-		SKILL_ID_ACID_DEMONSTRATION = skillId;
+		window.SKILL_ID_ACID_DEMONSTRATION = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -9891,7 +9892,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// タイリギ(蹴威力UP)
 		// ----------------------------------------------------------------
-		SKILL_ID_TAIRIGI = skillId;
+		window.SKILL_ID_TAIRIGI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -9923,7 +9924,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// フェオリチャギの構え
 		// ----------------------------------------------------------------
-		SKILL_ID_FEORICHAGINO_KAMAE = skillId;
+		window.SKILL_ID_FEORICHAGINO_KAMAE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -9947,7 +9948,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// フェオリチャギ
 		// ----------------------------------------------------------------
-		SKILL_ID_FEORICHAGI = skillId;
+		window.SKILL_ID_FEORICHAGI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -9976,7 +9977,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ネリョチャギの構え
 		// ----------------------------------------------------------------
-		SKILL_ID_NERYOCHAGINO_KAMAE = skillId;
+		window.SKILL_ID_NERYOCHAGINO_KAMAE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -10000,7 +10001,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ネリョチャギ
 		// ----------------------------------------------------------------
-		SKILL_ID_NERYOCHAGI = skillId;
+		window.SKILL_ID_NERYOCHAGI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -10029,7 +10030,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// トルリョチャギの構え
 		// ----------------------------------------------------------------
-		SKILL_ID_TORURYOCHAGINO_KAMAE = skillId;
+		window.SKILL_ID_TORURYOCHAGINO_KAMAE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -10053,7 +10054,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// トルリョチャギ
 		// ----------------------------------------------------------------
-		SKILL_ID_TORURYOCHAGI = skillId;
+		window.SKILL_ID_TORURYOCHAGI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -10082,7 +10083,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アプチャオルリギの構え
 		// ----------------------------------------------------------------
-		SKILL_ID_APUCHAORURIGINO_KAMAE = skillId;
+		window.SKILL_ID_APUCHAORURIGINO_KAMAE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -10106,7 +10107,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アプチャオルリギ
 		// ----------------------------------------------------------------
-		SKILL_ID_APUCHAORURIGI = skillId;
+		window.SKILL_ID_APUCHAORURIGI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -10135,7 +10136,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 落法(調整中)
 		// ----------------------------------------------------------------
-		SKILL_ID_RAKHO = skillId;
+		window.SKILL_ID_RAKHO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -10159,7 +10160,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ティオアプチャギ
 		// ----------------------------------------------------------------
-		SKILL_ID_TEIOAPUCHAGI = skillId;
+		window.SKILL_ID_TEIOAPUCHAGI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -10188,7 +10189,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 穏やかな休息
 		// ----------------------------------------------------------------
-		SKILL_ID_ODAYAKANA_KYUSOKU = skillId;
+		window.SKILL_ID_ODAYAKANA_KYUSOKU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -10207,7 +10208,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 楽しい休息
 		// ----------------------------------------------------------------
-		SKILL_ID_TANOSHI_KYUSOKU = skillId;
+		window.SKILL_ID_TANOSHI_KYUSOKU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -10226,7 +10227,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ファイト
 		// ----------------------------------------------------------------
-		SKILL_ID_FIGHT = skillId;
+		window.SKILL_ID_FIGHT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -10245,7 +10246,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ノピティギ
 		// ----------------------------------------------------------------
-		SKILL_ID_NOPITIGI = skillId;
+		window.SKILL_ID_NOPITIGI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -10273,7 +10274,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// テコンミッション
 		// ----------------------------------------------------------------
-		SKILL_ID_TAEGWON_MISSION = skillId;
+		window.SKILL_ID_TAEGWON_MISSION = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -10301,7 +10302,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// テコンランカー状態
 		// ----------------------------------------------------------------
-		SKILL_ID_TAEGWON_RANKER = skillId;
+		window.SKILL_ID_TAEGWON_RANKER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -10320,7 +10321,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 暖かい風
 		// ----------------------------------------------------------------
-		SKILL_ID_ATATAKAI_KAZE = skillId;
+		window.SKILL_ID_ATATAKAI_KAZE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -10344,7 +10345,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 太陽と月と星の感情
 		// ----------------------------------------------------------------
-		SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_KANZYO = skillId;
+		window.SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_KANZYO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -10372,7 +10373,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 太陽の温もり
 		// ----------------------------------------------------------------
-		SKILL_ID_TAIYONO_NUKUMORI = skillId;
+		window.SKILL_ID_TAIYONO_NUKUMORI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -10406,7 +10407,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 月の温もり
 		// ----------------------------------------------------------------
-		SKILL_ID_TSUKINO_NUKUMORI = skillId;
+		window.SKILL_ID_TSUKINO_NUKUMORI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -10440,7 +10441,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 星の温もり
 		// ----------------------------------------------------------------
-		SKILL_ID_HOSHINO_NUKUMORI = skillId;
+		window.SKILL_ID_HOSHINO_NUKUMORI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -10474,7 +10475,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 太陽と月と星の憎しみ
 		// ----------------------------------------------------------------
-		SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_NIKUSHIMI = skillId;
+		window.SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_NIKUSHIMI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -10502,7 +10503,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 太陽の怒り
 		// ----------------------------------------------------------------
-		SKILL_ID_TAIYONO_IKARI = skillId;
+		window.SKILL_ID_TAIYONO_IKARI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -10521,7 +10522,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 月の怒り
 		// ----------------------------------------------------------------
-		SKILL_ID_TSUKINO_IKARI = skillId;
+		window.SKILL_ID_TSUKINO_IKARI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -10540,7 +10541,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 星の怒り
 		// ----------------------------------------------------------------
-		SKILL_ID_HOSHINO_IKARI = skillId;
+		window.SKILL_ID_HOSHINO_IKARI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -10559,7 +10560,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 太陽の安楽
 		// ----------------------------------------------------------------
-		SKILL_ID_TAIYONO_ANRAKU = skillId;
+		window.SKILL_ID_TAIYONO_ANRAKU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -10583,7 +10584,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 月の安楽
 		// ----------------------------------------------------------------
-		SKILL_ID_TSUKINO_ANRAKU = skillId;
+		window.SKILL_ID_TSUKINO_ANRAKU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -10607,7 +10608,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 星の安楽
 		// ----------------------------------------------------------------
-		SKILL_ID_HOSHINO_ANRAKU = skillId;
+		window.SKILL_ID_HOSHINO_ANRAKU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -10631,7 +10632,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 太陽の祝福
 		// ----------------------------------------------------------------
-		SKILL_ID_TAIYONO_SHUKUFUKU = skillId;
+		window.SKILL_ID_TAIYONO_SHUKUFUKU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -10650,7 +10651,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 月の祝福
 		// ----------------------------------------------------------------
-		SKILL_ID_TSUKUNO_SHUKUFUKU = skillId;
+		window.SKILL_ID_TSUKUNO_SHUKUFUKU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -10669,7 +10670,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 星の祝福
 		// ----------------------------------------------------------------
-		SKILL_ID_HOSHINO_SHUKUFUKU = skillId;
+		window.SKILL_ID_HOSHINO_SHUKUFUKU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -10688,7 +10689,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 太陽と月と星の悪魔
 		// ----------------------------------------------------------------
-		SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_AKUMA = skillId;
+		window.SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_AKUMA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -10707,7 +10708,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 太陽と月と星の友
 		// ----------------------------------------------------------------
-		SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_TOMO = skillId;
+		window.SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_TOMO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -10726,7 +10727,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 太陽と月と星の知識
 		// ----------------------------------------------------------------
-		SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_CHISHIKI = skillId;
+		window.SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_CHISHIKI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -10745,7 +10746,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 太陽と月と星の融合
 		// ----------------------------------------------------------------
-		SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_YUGO = skillId;
+		window.SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_YUGO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -10769,7 +10770,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 太陽と月と星の奇跡
 		// ----------------------------------------------------------------
-		SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_KISEKI = skillId;
+		window.SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_KISEKI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -10789,7 +10790,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 太陽と月と星の天使
 		// ----------------------------------------------------------------
-		SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_TENSHI = skillId;
+		window.SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_TENSHI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -10809,7 +10810,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ～の祝福(経験値増加率)
 		// ----------------------------------------------------------------
-		SKILL_ID_SHUKUFUKU = skillId;
+		window.SKILL_ID_SHUKUFUKU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -10828,7 +10829,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// カイゼル
 		// ----------------------------------------------------------------
-		SKILL_ID_KAISEL = skillId;
+		window.SKILL_ID_KAISEL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -10856,7 +10857,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// カアヒ
 		// ----------------------------------------------------------------
-		SKILL_ID_KAAHI = skillId;
+		window.SKILL_ID_KAAHI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -10880,7 +10881,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// カウプ
 		// ----------------------------------------------------------------
-		SKILL_ID_KAUPU = skillId;
+		window.SKILL_ID_KAUPU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -10908,7 +10909,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// カイト
 		// ----------------------------------------------------------------
-		SKILL_ID_KAITO = skillId;
+		window.SKILL_ID_KAITO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -10936,7 +10937,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// カイナ
 		// ----------------------------------------------------------------
-		SKILL_ID_KAINA = skillId;
+		window.SKILL_ID_KAINA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -10954,7 +10955,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// エスティン
 		// ----------------------------------------------------------------
-		SKILL_ID_ESTIN = skillId;
+		window.SKILL_ID_ESTIN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -11005,7 +11006,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// エストン
 		// ----------------------------------------------------------------
-		SKILL_ID_ESTON = skillId;
+		window.SKILL_ID_ESTON = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -11051,7 +11052,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// エスマ
 		// ----------------------------------------------------------------
-		SKILL_ID_ESMA = skillId;
+		window.SKILL_ID_ESMA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -11092,7 +11093,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// エスウ
 		// ----------------------------------------------------------------
-		SKILL_ID_ESU = skillId;
+		window.SKILL_ID_ESU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -11120,7 +11121,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// エスカ
 		// ----------------------------------------------------------------
-		SKILL_ID_ESKA = skillId;
+		window.SKILL_ID_ESKA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -11148,7 +11149,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// エスク
 		// ----------------------------------------------------------------
-		SKILL_ID_ESKU = skillId;
+		window.SKILL_ID_ESKU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -11176,7 +11177,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// タイリギスパート状態(STR+状態)
 		// ----------------------------------------------------------------
-		SKILL_ID_SPURT_ZYOTAI = skillId;
+		window.SKILL_ID_SPURT_ZYOTAI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -11195,7 +11196,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 自分以外のPT人数(ファイト用)
 		// ----------------------------------------------------------------
-		SKILL_ID_ZIBUNIGAINO_PTNINZU_FOR_FIGHT = skillId;
+		window.SKILL_ID_ZIBUNIGAINO_PTNINZU_FOR_FIGHT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -11214,7 +11215,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ソニックアクセラレーション
 		// ----------------------------------------------------------------
-		SKILL_ID_SONIC_ACCELERATION = skillId;
+		window.SKILL_ID_SONIC_ACCELERATION = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -11233,7 +11234,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 寸勁
 		// ----------------------------------------------------------------
-		SKILL_ID_SUNKEI = skillId;
+		window.SKILL_ID_SUNKEI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -11266,7 +11267,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// クローズコンファイン
 		// ----------------------------------------------------------------
-		SKILL_ID_CLOSE_CONFINE = skillId;
+		window.SKILL_ID_CLOSE_CONFINE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -11290,13 +11291,13 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// シールドブーメラン(SL魂版)
 		// ----------------------------------------------------------------
-		SKILL_ID_SHIELD_BOOMERANG_TAMASHI = skillId;
+		window.SKILL_ID_SHIELD_BOOMERANG_TAMASHI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.refId = SKILL_ID_SHIELD_BOOMERANG;
+			this.refId = window.SKILL_ID_SHIELD_BOOMERANG;
 			this.name = "シールドブーメラン(SL魂版)";
 			this.kana = "シイルトフウメランソウルリンカアタマシイハン";
 			this.maxLv = 5;
@@ -11323,7 +11324,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// スーパーノービスの魂
 		// ----------------------------------------------------------------
-		SKILL_ID_SUPER_NOVICENO_TAMASHI = skillId;
+		window.SKILL_ID_SUPER_NOVICENO_TAMASHI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -11351,7 +11352,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ワンハンドクイッケン(SL魂)
 		// ----------------------------------------------------------------
-		SKILL_ID_ONEHAND_QUICKEN = skillId;
+		window.SKILL_ID_ONEHAND_QUICKEN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -11375,13 +11376,13 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ホーリーライト(SL魂版)
 		// ----------------------------------------------------------------
-		SKILL_ID_HOLY_LIGHT_TAMASHI = skillId;
+		window.SKILL_ID_HOLY_LIGHT_TAMASHI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.refId = SKILL_ID_HOLY_LIGHT;
+			this.refId = window.SKILL_ID_HOLY_LIGHT;
 			this.name = "ホーリーライト(SL魂版)";
 			this.kana = "ホオリイライトソウルリンカアタマシイハン";
 			this.maxLv = 1;
@@ -11408,13 +11409,13 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ソニックブロー(SL魂版)
 		// ----------------------------------------------------------------
-		SKILL_ID_SONIC_BLOW_TAMASHI = skillId;
+		window.SKILL_ID_SONIC_BLOW_TAMASHI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.refId = SKILL_ID_SONIC_BLOW;
+			this.refId = window.SKILL_ID_SONIC_BLOW;
 			this.name = "ソニックブロー(SL魂版)";
 			this.kana = "ソニツクフロオソウルリンカアタマシイハン";
 			this.maxLv = 10;
@@ -11434,7 +11435,7 @@ function CSkillManager() {
 				pow = 400 + 40 * skillLv;
 
 				// 「アサシンクロス エンチャントデッドリーポイズン」の効果（ペナルティ）
-				edp = charaDataManger.UsedSkillSearch(SKILL_ID_ENCHANT_DEADLY_POISON);
+				edp = charaDataManger.UsedSkillSearch(window.SKILL_ID_ENCHANT_DEADLY_POISON);
 				if (edp > 0) {
 					pow = Math.floor(pow / 2);
 				}
@@ -11460,7 +11461,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// フルアドレナリンラッシュ
 		// ----------------------------------------------------------------
-		SKILL_ID_FULL_ADRENALINE_RUSH = skillId;
+		window.SKILL_ID_FULL_ADRENALINE_RUSH = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -11484,7 +11485,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ハンターの魂
 		// ----------------------------------------------------------------
-		SKILL_ID_HUNTERNO_TAMASHI = skillId;
+		window.SKILL_ID_HUNTERNO_TAMASHI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -11512,7 +11513,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ビーストストレイフィング
 		// ----------------------------------------------------------------
-		SKILL_ID_BEAST_STRAIFING = skillId;
+		window.SKILL_ID_BEAST_STRAIFING = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -11545,7 +11546,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 転生一次職の魂
 		// ----------------------------------------------------------------
-		SKILL_ID_TENSE_ICHIZISHOKUNO_TAMASHI = skillId;
+		window.SKILL_ID_TENSE_ICHIZISHOKUNO_TAMASHI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -11573,7 +11574,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 投擲修練
 		// ----------------------------------------------------------------
-		SKILL_ID_TOTEKI_SHUREN = skillId;
+		window.SKILL_ID_TOTEKI_SHUREN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -11591,7 +11592,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 手裏剣投げ
 		// ----------------------------------------------------------------
-		SKILL_ID_SHURIKEN_NAGE = skillId;
+		window.SKILL_ID_SHURIKEN_NAGE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -11620,7 +11621,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 苦無投げ
 		// ----------------------------------------------------------------
-		SKILL_ID_KUNAI_NAGE = skillId;
+		window.SKILL_ID_KUNAI_NAGE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -11649,7 +11650,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 風魔手裏剣投げ
 		// ----------------------------------------------------------------
-		SKILL_ID_FUMASHURIKEN_NAGE = skillId;
+		window.SKILL_ID_FUMASHURIKEN_NAGE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -11689,7 +11690,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 銭投げ
 		// ----------------------------------------------------------------
-		SKILL_ID_ZENI_NAGE = skillId;
+		window.SKILL_ID_ZENI_NAGE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -11722,7 +11723,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 畳返し
 		// ----------------------------------------------------------------
-		SKILL_ID_TATAMI_GAESHI = skillId;
+		window.SKILL_ID_TATAMI_GAESHI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -11755,7 +11756,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 影跳び
 		// ----------------------------------------------------------------
-		SKILL_ID_KAGETOBI = skillId;
+		window.SKILL_ID_KAGETOBI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -11783,7 +11784,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 霞斬り
 		// ----------------------------------------------------------------
-		SKILL_ID_KASUMIGIRI = skillId;
+		window.SKILL_ID_KASUMIGIRI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -11811,7 +11812,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 影斬り
 		// ----------------------------------------------------------------
-		SKILL_ID_KAGEKIRI = skillId;
+		window.SKILL_ID_KAGEKIRI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -11847,7 +11848,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 空蝉
 		// ----------------------------------------------------------------
-		SKILL_ID_UTSUSEMI = skillId;
+		window.SKILL_ID_UTSUSEMI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -11875,7 +11876,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 影分身
 		// ----------------------------------------------------------------
-		SKILL_ID_KAGEBUNSHIN = skillId;
+		window.SKILL_ID_KAGEBUNSHIN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -11907,7 +11908,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 念
 		// ----------------------------------------------------------------
-		SKILL_ID_NEN = skillId;
+		window.SKILL_ID_NEN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -11935,7 +11936,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 一閃
 		// ----------------------------------------------------------------
-		SKILL_ID_ISSEN = skillId;
+		window.SKILL_ID_ISSEN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -11965,7 +11966,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 忍法修練
 		// ----------------------------------------------------------------
-		SKILL_ID_NINPO_SHUREN = skillId;
+		window.SKILL_ID_NINPO_SHUREN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -11983,7 +11984,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 紅炎華
 		// ----------------------------------------------------------------
-		SKILL_ID_KOUENKA = skillId;
+		window.SKILL_ID_KOUENKA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -12007,8 +12008,8 @@ function CSkillManager() {
 				pow = 90;
 
 				// 「影狼・朧 火符：炎天」の効果
-				if (charaDataManger.UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU) == ELM_ID_FIRE) {
-					pow += 20 * charaDataManger.UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
+				if (charaDataManger.UsedSkillSearch(window.SKILL_ID_FU_ELEMENT_OF_FU) == ELM_ID_FIRE) {
+					pow += 20 * charaDataManger.UsedSkillSearch(window.SKILL_ID_FU_COUNT_OF_FU);
 				}
 
 				return pow;
@@ -12029,7 +12030,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 火炎陣
 		// ----------------------------------------------------------------
-		SKILL_ID_KAENZIN = skillId;
+		window.SKILL_ID_KAENZIN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -12054,8 +12055,8 @@ function CSkillManager() {
 				pow = 50;
 
 				// 「影狼・朧 火符：炎天」の効果
-				if (charaDataManger.UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU) == ELM_ID_FIRE) {
-					pow += 20 * charaDataManger.UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
+				if (charaDataManger.UsedSkillSearch(window.SKILL_ID_FU_ELEMENT_OF_FU) == ELM_ID_FIRE) {
+					pow += 20 * charaDataManger.UsedSkillSearch(window.SKILL_ID_FU_COUNT_OF_FU);
 				}
 
 				return pow;
@@ -12080,7 +12081,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 龍炎陣
 		// ----------------------------------------------------------------
-		SKILL_ID_RYUENZIN = skillId;
+		window.SKILL_ID_RYUENZIN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -12105,8 +12106,8 @@ function CSkillManager() {
 				pow = 150 + 150 * skillLv;
 
 				// 「影狼・朧 火符：炎天」の効果
-				if (charaDataManger.UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU) == ELM_ID_FIRE) {
-					pow += 100 * charaDataManger.UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
+				if (charaDataManger.UsedSkillSearch(window.SKILL_ID_FU_ELEMENT_OF_FU) == ELM_ID_FIRE) {
+					pow += 100 * charaDataManger.UsedSkillSearch(window.SKILL_ID_FU_COUNT_OF_FU);
 				}
 
 				return pow;
@@ -12131,7 +12132,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 氷閃槍
 		// ----------------------------------------------------------------
-		SKILL_ID_HYOSENSO = skillId;
+		window.SKILL_ID_HYOSENSO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -12155,8 +12156,8 @@ function CSkillManager() {
 				pow = 70;
 
 				// 「影狼・朧 氷符：吹雪」の効果
-				if (charaDataManger.UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU) == ELM_ID_WATER) {
-					pow += 20 * charaDataManger.UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
+				if (charaDataManger.UsedSkillSearch(window.SKILL_ID_FU_ELEMENT_OF_FU) == ELM_ID_WATER) {
+					pow += 20 * charaDataManger.UsedSkillSearch(window.SKILL_ID_FU_COUNT_OF_FU);
 				}
 
 				return pow;
@@ -12177,7 +12178,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 水遁
 		// ----------------------------------------------------------------
-		SKILL_ID_SUITON = skillId;
+		window.SKILL_ID_SUITON = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -12209,7 +12210,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 氷柱落し
 		// ----------------------------------------------------------------
-		SKILL_ID_TSURARAOTOSHI = skillId;
+		window.SKILL_ID_TSURARAOTOSHI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -12233,8 +12234,8 @@ function CSkillManager() {
 				pow = 150 + 150 * skillLv;
 
 				// 「影狼・朧 氷符：吹雪」の効果
-				if (charaDataManger.UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU) == ELM_ID_WATER) {
-					pow += 100 * charaDataManger.UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
+				if (charaDataManger.UsedSkillSearch(window.SKILL_ID_FU_ELEMENT_OF_FU) == ELM_ID_WATER) {
+					pow += 100 * charaDataManger.UsedSkillSearch(window.SKILL_ID_FU_COUNT_OF_FU);
 				}
 
 				return pow;
@@ -12255,7 +12256,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 風刃
 		// ----------------------------------------------------------------
-		SKILL_ID_FUZIN = skillId;
+		window.SKILL_ID_FUZIN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -12279,8 +12280,8 @@ function CSkillManager() {
 				pow = 150;
 
 				// 「影狼・朧 風符：青嵐」の効果
-				if (charaDataManger.UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU) == ELM_ID_WIND) {
-					pow += 20 * charaDataManger.UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
+				if (charaDataManger.UsedSkillSearch(window.SKILL_ID_FU_ELEMENT_OF_FU) == ELM_ID_WIND) {
+					pow += 20 * charaDataManger.UsedSkillSearch(window.SKILL_ID_FU_COUNT_OF_FU);
 				}
 
 				return pow;
@@ -12301,7 +12302,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 雷撃砕
 		// ----------------------------------------------------------------
-		SKILL_ID_RAIGEKISAI = skillId;
+		window.SKILL_ID_RAIGEKISAI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -12325,8 +12326,8 @@ function CSkillManager() {
 				pow = 100 + 100 * skillLv;
 
 				// 「影狼・朧 風符：青嵐」の効果
-				if (charaDataManger.UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU) == ELM_ID_WIND) {
-					pow += 20 * charaDataManger.UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
+				if (charaDataManger.UsedSkillSearch(window.SKILL_ID_FU_ELEMENT_OF_FU) == ELM_ID_WIND) {
+					pow += 20 * charaDataManger.UsedSkillSearch(window.SKILL_ID_FU_COUNT_OF_FU);
 				}
 
 				return pow;
@@ -12343,7 +12344,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 朔風
 		// ----------------------------------------------------------------
-		SKILL_ID_SAKUFU = skillId;
+		window.SKILL_ID_SAKUFU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -12367,8 +12368,8 @@ function CSkillManager() {
 				pow = 100 + 100 * skillLv;
 
 				// 「影狼・朧 風符：青嵐」の効果
-				if (charaDataManger.UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU) == ELM_ID_WIND) {
-					pow += 100 * charaDataManger.UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
+				if (charaDataManger.UsedSkillSearch(window.SKILL_ID_FU_ELEMENT_OF_FU) == ELM_ID_WIND) {
+					pow += 100 * charaDataManger.UsedSkillSearch(window.SKILL_ID_FU_COUNT_OF_FU);
 				}
 
 				return pow;
@@ -12385,7 +12386,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// コインの枚数
 		// ----------------------------------------------------------------
-		SKILL_ID_COUNT_OF_COIN = skillId;
+		window.SKILL_ID_COUNT_OF_COIN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -12404,7 +12405,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// フライング
 		// ----------------------------------------------------------------
-		SKILL_ID_FLYING = skillId;
+		window.SKILL_ID_FLYING = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -12428,7 +12429,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// トリプルアクション
 		// ----------------------------------------------------------------
-		SKILL_ID_TRIPLE_ACTION = skillId;
+		window.SKILL_ID_TRIPLE_ACTION = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -12464,7 +12465,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ブルズアイ
 		// ----------------------------------------------------------------
-		SKILL_ID_BULLS_EYE = skillId;
+		window.SKILL_ID_BULLS_EYE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -12516,7 +12517,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// マッドネスキャンセラー
 		// ----------------------------------------------------------------
-		SKILL_ID_MADNESSS_CANCELER = skillId;
+		window.SKILL_ID_MADNESSS_CANCELER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -12548,7 +12549,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アジャストメント
 		// ----------------------------------------------------------------
-		SKILL_ID_ADJUSTMENT = skillId;
+		window.SKILL_ID_ADJUSTMENT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -12580,7 +12581,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// インクリージングアキュラシー
 		// ----------------------------------------------------------------
-		SKILL_ID_INCREASING_ACCURACY = skillId;
+		window.SKILL_ID_INCREASING_ACCURACY = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -12608,7 +12609,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// マジカルバレット
 		// ----------------------------------------------------------------
-		SKILL_ID_MAGICAL_BARRET = skillId;
+		window.SKILL_ID_MAGICAL_BARRET = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -12636,7 +12637,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// クラッカー
 		// ----------------------------------------------------------------
-		SKILL_ID_CRACKER = skillId;
+		window.SKILL_ID_CRACKER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -12664,7 +12665,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// シングルアクション
 		// ----------------------------------------------------------------
-		SKILL_ID_SINGLE_ACTION = skillId;
+		window.SKILL_ID_SINGLE_ACTION = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -12683,7 +12684,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// スネークアイ
 		// ----------------------------------------------------------------
-		SKILL_ID_SNAKE_EYE = skillId;
+		window.SKILL_ID_SNAKE_EYE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -12702,7 +12703,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// チェーンアクション
 		// ----------------------------------------------------------------
-		SKILL_ID_CHAIN_ACTION = skillId;
+		window.SKILL_ID_CHAIN_ACTION = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -12729,7 +12730,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ラピッドシャワー
 		// ----------------------------------------------------------------
-		SKILL_ID_RAPID_SHOWER = skillId;
+		window.SKILL_ID_RAPID_SHOWER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -12765,7 +12766,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// デスペラード
 		// ----------------------------------------------------------------
-		SKILL_ID_DEATHPERAD = skillId;
+		window.SKILL_ID_DEATHPERAD = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -12801,7 +12802,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// トラッキング
 		// ----------------------------------------------------------------
-		SKILL_ID_TRACKING = skillId;
+		window.SKILL_ID_TRACKING = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -12837,7 +12838,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ディスアーム
 		// ----------------------------------------------------------------
-		SKILL_ID_DISARM = skillId;
+		window.SKILL_ID_DISARM = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -12873,7 +12874,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ピアーシングショット
 		// ----------------------------------------------------------------
-		SKILL_ID_PIERCING_SHOT = skillId;
+		window.SKILL_ID_PIERCING_SHOT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -12924,7 +12925,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ガトリングフィーバー
 		// ----------------------------------------------------------------
-		SKILL_ID_GATLING_FEVER = skillId;
+		window.SKILL_ID_GATLING_FEVER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -12956,7 +12957,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ダスト
 		// ----------------------------------------------------------------
-		SKILL_ID_DUST = skillId;
+		window.SKILL_ID_DUST = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -12988,7 +12989,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// フルバスター
 		// ----------------------------------------------------------------
-		SKILL_ID_FULL_BASTER = skillId;
+		window.SKILL_ID_FULL_BASTER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -13020,7 +13021,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// スプレッドアタック
 		// ----------------------------------------------------------------
-		SKILL_ID_SPREAD_ATTACK = skillId;
+		window.SKILL_ID_SPREAD_ATTACK = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -13052,7 +13053,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// グラウンドドリフト
 		// ----------------------------------------------------------------
-		SKILL_ID_GROUND_DRIFT = skillId;
+		window.SKILL_ID_GROUND_DRIFT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -13088,13 +13089,13 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 一閃(MaxHP固定)
 		// ----------------------------------------------------------------
-		SKILL_ID_ISSEN_MAX = skillId;
+		window.SKILL_ID_ISSEN_MAX = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.refId = SKILL_ID_ISSEN;
+			this.refId = window.SKILL_ID_ISSEN;
 			this.name = "一閃(MaxHP固定)";
 			this.kana = "イツセンマツクスヒツトホイントコテイ";
 			this.maxLv = 10;
@@ -13119,7 +13120,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// エンチャントブレイド
 		// ----------------------------------------------------------------
-		SKILL_ID_ENCHANT_BLADE = skillId;
+		window.SKILL_ID_ENCHANT_BLADE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -13147,7 +13148,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ソニックウェーブ
 		// ----------------------------------------------------------------
-		SKILL_ID_SONIC_WAVE = skillId;
+		window.SKILL_ID_SONIC_WAVE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -13191,7 +13192,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// デスバウンド
 		// ----------------------------------------------------------------
-		SKILL_ID_DEATH_BOUND = skillId;
+		window.SKILL_ID_DEATH_BOUND = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -13234,7 +13235,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ハンドレッドスピア
 		// ----------------------------------------------------------------
-		SKILL_ID_HANDRED_SPEAR = skillId;
+		window.SKILL_ID_HANDRED_SPEAR = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -13249,7 +13250,7 @@ function CSkillManager() {
 			this.element = CSkillData.ELEMENT_VOID;
 			this.Power = function(skillLv, charaData, option) {
 				let ratio = 0;
-				if (UsedSkillSearch(SKILL_ID_DRAGONIC_AURA_STATE) > 1) {
+				if (UsedSkillSearch(window.SKILL_ID_DRAGONIC_AURA_STATE) > 1) {
 					// ドラゴニックオーラ状態の場合はダメージ倍率が増加する
 					ratio = 700 + 200 * skillLv;
 				}
@@ -13261,7 +13262,7 @@ function CSkillManager() {
 				}
 				ratio = Math.floor(ratio * (1 + (n_A_BaseLV - 100) / 200));
 				// スパイラルピアース習得Lv補正
-				ratio += 50 * Math.max(LearnedSkillSearch(SKILL_ID_SPIRAL_PIERCE), option.GetOptionValue(0));
+				ratio += 50 * Math.max(LearnedSkillSearch(window.SKILL_ID_SPIRAL_PIERCE), option.GetOptionValue(0));
 				// チャージングピアースがONの時、与えるダメージ + 50% x スキルレベル
 				ratio = ratio * (1 + 0.5 * option.GetOptionValue(2));
 				return ratio;
@@ -13288,7 +13289,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ウィンドカッター
 		// ----------------------------------------------------------------
-		SKILL_ID_WIND_CUTTER = skillId;
+		window.SKILL_ID_WIND_CUTTER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -13336,7 +13337,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ファントムスラスト
 		// ----------------------------------------------------------------
-		SKILL_ID_PHANTOM_SLAST = skillId;
+		window.SKILL_ID_PHANTOM_SLAST = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -13358,7 +13359,7 @@ function CSkillManager() {
 
 				// 基本式
 				pow = 50 * skillLv;
-				pow += 10 * Math.max(LearnedSkillSearch(SKILL_ID_YARI_SHUREN), UsedSkillSearch(SKILL_ID_YARI_SHUREN));
+				pow += 10 * Math.max(LearnedSkillSearch(window.SKILL_ID_YARI_SHUREN), UsedSkillSearch(window.SKILL_ID_YARI_SHUREN));
 
 				// ベースレベル補正
 				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 150);
@@ -13373,7 +13374,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// (仮)イグニッションブレイク
 		// ----------------------------------------------------------------
-		SKILL_ID_IGNITION_BREAK = skillId;
+		window.SKILL_ID_IGNITION_BREAK = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -13405,7 +13406,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ドラゴントレーニング
 		// ----------------------------------------------------------------
-		SKILL_ID_DRAGON_TRAINING = skillId;
+		window.SKILL_ID_DRAGON_TRAINING = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -13424,7 +13425,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ファイアードラゴンブレス
 		// ----------------------------------------------------------------
-		SKILL_ID_FIRE_DRAGON_BREATH = skillId;
+		window.SKILL_ID_FIRE_DRAGON_BREATH = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -13457,7 +13458,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ドラゴンハウリング
 		// ----------------------------------------------------------------
-		SKILL_ID_DRAGON_HOWLING = skillId;
+		window.SKILL_ID_DRAGON_HOWLING = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -13493,7 +13494,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ルーンマスタリー
 		// ----------------------------------------------------------------
-		SKILL_ID_RUNE_MASTERY = skillId;
+		window.SKILL_ID_RUNE_MASTERY = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -13512,7 +13513,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ジャイアントグロース
 		// ----------------------------------------------------------------
-		SKILL_ID_GIANT_GROWTH = skillId;
+		window.SKILL_ID_GIANT_GROWTH = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -13540,7 +13541,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// バイタリティアクティベーション
 		// ----------------------------------------------------------------
-		SKILL_ID_VITARITY_ACTIVATION = skillId;
+		window.SKILL_ID_VITARITY_ACTIVATION = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -13568,7 +13569,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ストームブラスト
 		// ----------------------------------------------------------------
-		SKILL_ID_STORM_BLAST = skillId;
+		window.SKILL_ID_STORM_BLAST = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -13586,7 +13587,7 @@ function CSkillManager() {
 			this.Power = function(skillLv, charaDataManger) {
 				let pow = 0;
 				// 基本式
-				const sklLvRuneMastery = Math.max(LearnedSkillSearch(SKILL_ID_RUNE_MASTERY), UsedSkillSearch(SKILL_ID_RUNE_MASTERY));
+				const sklLvRuneMastery = Math.max(LearnedSkillSearch(window.SKILL_ID_RUNE_MASTERY), UsedSkillSearch(window.SKILL_ID_RUNE_MASTERY));
 				pow += 100 * sklLvRuneMastery;
 				pow += 100 * Math.floor(charaDataManger.GetCharaInt() / 8);
 				return pow;
@@ -13607,7 +13608,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ストーンハードスキン
 		// ----------------------------------------------------------------
-		SKILL_ID_STONE_HARD_SKIN = skillId;
+		window.SKILL_ID_STONE_HARD_SKIN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -13639,7 +13640,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ファイティングスピリット
 		// ----------------------------------------------------------------
-		SKILL_ID_FIGHTING_SPIRIT = skillId;
+		window.SKILL_ID_FIGHTING_SPIRIT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -13663,7 +13664,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アバンダンス
 		// ----------------------------------------------------------------
-		SKILL_ID_AVANDANCE = skillId;
+		window.SKILL_ID_AVANDANCE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -13687,7 +13688,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// クラッシュストライク
 		// ----------------------------------------------------------------
-		SKILL_ID_CRUSH_STRIKE = skillId;
+		window.SKILL_ID_CRUSH_STRIKE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -13730,7 +13731,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// リフレッシュ
 		// ----------------------------------------------------------------
-		SKILL_ID_REFRESH = skillId;
+		window.SKILL_ID_REFRESH = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -13758,7 +13759,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ミレニアムシールド
 		// ----------------------------------------------------------------
-		SKILL_ID_MILLENNIUM_SHIELD = skillId;
+		window.SKILL_ID_MILLENNIUM_SHIELD = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -13786,7 +13787,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ベナムインプレス
 		// ----------------------------------------------------------------
-		SKILL_ID_VENOM_IMPRESS = skillId;
+		window.SKILL_ID_VENOM_IMPRESS = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -13827,7 +13828,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// クロスインパクト
 		// ----------------------------------------------------------------
-		SKILL_ID_CROSS_IMPACT = skillId;
+		window.SKILL_ID_CROSS_IMPACT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -13856,7 +13857,7 @@ function CSkillManager() {
 				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 120);
 
 				// 「アサシンクロス エンチャントデッドリーポイズン」の効果（ペナルティ）
-				edp = charaDataManger.UsedSkillSearch(SKILL_ID_ENCHANT_DEADLY_POISON);
+				edp = charaDataManger.UsedSkillSearch(window.SKILL_ID_ENCHANT_DEADLY_POISON);
 				if (edp > 0) {
 					pow = Math.floor(pow / 2);
 				}
@@ -13879,7 +13880,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ダークイリュージョン
 		// ----------------------------------------------------------------
-		SKILL_ID_DARK_ILLUSION = skillId;
+		window.SKILL_ID_DARK_ILLUSION = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -13911,7 +13912,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 新毒研究
 		// ----------------------------------------------------------------
-		SKILL_ID_SHINDOKU_KENKYU = skillId;
+		window.SKILL_ID_SHINDOKU_KENKYU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -13930,7 +13931,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 新毒製造
 		// ----------------------------------------------------------------
-		SKILL_ID_SHINDOKU_SEIZO = skillId;
+		window.SKILL_ID_SHINDOKU_SEIZO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -13958,7 +13959,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アンチドート
 		// ----------------------------------------------------------------
-		SKILL_ID_ANTIDOTE = skillId;
+		window.SKILL_ID_ANTIDOTE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -13982,7 +13983,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ポイズニングウェポン
 		// ----------------------------------------------------------------
-		SKILL_ID_POISONING_WEAPON = skillId;
+		window.SKILL_ID_POISONING_WEAPON = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -14019,7 +14020,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ベナムプレッシャー
 		// ----------------------------------------------------------------
-		SKILL_ID_VENOM_PRESSURE = skillId;
+		window.SKILL_ID_VENOM_PRESSURE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -14052,7 +14053,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ポイズンスモーク
 		// ----------------------------------------------------------------
-		SKILL_ID_POISON_SMOKE = skillId;
+		window.SKILL_ID_POISON_SMOKE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -14084,7 +14085,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ウェポンブロッキング
 		// ----------------------------------------------------------------
-		SKILL_ID_WEAPON_BLOCKING = skillId;
+		window.SKILL_ID_WEAPON_BLOCKING = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -14125,7 +14126,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// カウンタースラッシュ
 		// ----------------------------------------------------------------
-		SKILL_ID_COUNTER_SLASH = skillId;
+		window.SKILL_ID_COUNTER_SLASH = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -14158,7 +14159,7 @@ function CSkillManager() {
 				pow += 4 * charaDataManger.GetCharaJobLv();
 
 				// 「アサシンクロス エンチャントデッドリーポイズン」の効果（ペナルティ）
-				edp = charaDataManger.UsedSkillSearch(SKILL_ID_ENCHANT_DEADLY_POISON);
+				edp = charaDataManger.UsedSkillSearch(window.SKILL_ID_ENCHANT_DEADLY_POISON);
 				if (edp > 0) {
 					pow = Math.floor(pow / 2);
 				}
@@ -14177,7 +14178,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ウェポンクラッシュ
 		// ----------------------------------------------------------------
-		SKILL_ID_WEAPON_CRUSH = skillId;
+		window.SKILL_ID_WEAPON_CRUSH = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -14214,7 +14215,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// クローキングエクシード
 		// ----------------------------------------------------------------
-		SKILL_ID_CLOAKING_EXCEED = skillId;
+		window.SKILL_ID_CLOAKING_EXCEED = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -14246,7 +14247,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ファントムメナス
 		// ----------------------------------------------------------------
-		SKILL_ID_PHANTOM_MENUS = skillId;
+		window.SKILL_ID_PHANTOM_MENUS = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -14278,7 +14279,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ハルシネーションウォーク
 		// ----------------------------------------------------------------
-		SKILL_ID_HALLUCINATION_WALK = skillId;
+		window.SKILL_ID_HALLUCINATION_WALK = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -14306,7 +14307,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ローリングカッター
 		// ----------------------------------------------------------------
-		SKILL_ID_ROLLING_CUTTER = skillId;
+		window.SKILL_ID_ROLLING_CUTTER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -14334,7 +14335,7 @@ function CSkillManager() {
 				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 100);
 
 				// 「アサシンクロス エンチャントデッドリーポイズン」の効果（ペナルティ）
-				edp = charaDataManger.UsedSkillSearch(SKILL_ID_ENCHANT_DEADLY_POISON);
+				edp = charaDataManger.UsedSkillSearch(window.SKILL_ID_ENCHANT_DEADLY_POISON);
 				if (edp > 0) {
 					pow = Math.floor(pow / 2);
 				}
@@ -14353,7 +14354,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// クロスリッパースラッシャー
 		// ----------------------------------------------------------------
-		SKILL_ID_CROSS_RIPPER_SLASHER = skillId;
+		window.SKILL_ID_CROSS_RIPPER_SLASHER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -14386,7 +14387,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ジュデックス
 		// ----------------------------------------------------------------
-		SKILL_ID_JUDEX = skillId;
+		window.SKILL_ID_JUDEX = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -14431,7 +14432,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アンシラ
 		// ----------------------------------------------------------------
-		SKILL_ID_ANCILLA = skillId;
+		window.SKILL_ID_ANCILLA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -14463,7 +14464,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アドラムス
 		// ----------------------------------------------------------------
-		SKILL_ID_ADORAMUS = skillId;
+		window.SKILL_ID_ADORAMUS = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -14517,7 +14518,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// クレメンティア
 		// ----------------------------------------------------------------
-		SKILL_ID_CLEMENTIA = skillId;
+		window.SKILL_ID_CLEMENTIA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -14545,7 +14546,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// カントキャンディダス
 		// ----------------------------------------------------------------
-		SKILL_ID_CANTOCANDIDUS = skillId;
+		window.SKILL_ID_CANTOCANDIDUS = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -14573,7 +14574,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// コルセオヒール
 		// ----------------------------------------------------------------
-		SKILL_ID_COLUCEO_HEAL = skillId;
+		window.SKILL_ID_COLUCEO_HEAL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -14613,7 +14614,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// エピクレシス
 		// ----------------------------------------------------------------
-		SKILL_ID_EPICLESIS = skillId;
+		window.SKILL_ID_EPICLESIS = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -14653,7 +14654,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// プラエファティオ
 		// ----------------------------------------------------------------
-		SKILL_ID_PRAEFATIO = skillId;
+		window.SKILL_ID_PRAEFATIO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -14693,7 +14694,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// オラティオ
 		// ----------------------------------------------------------------
-		SKILL_ID_ORATIO = skillId;
+		window.SKILL_ID_ORATIO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -14729,7 +14730,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ラウダアグヌス
 		// ----------------------------------------------------------------
-		SKILL_ID_LAUDAAGNUS = skillId;
+		window.SKILL_ID_LAUDAAGNUS = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -14760,7 +14761,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ラウダラムス
 		// ----------------------------------------------------------------
-		SKILL_ID_LAUDARAMUS = skillId;
+		window.SKILL_ID_LAUDARAMUS = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -14791,7 +14792,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// (仮)エウカリスティカ
 		// ----------------------------------------------------------------
-		SKILL_ID_EUCHARISTICA = skillId;
+		window.SKILL_ID_EUCHARISTICA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -14810,7 +14811,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// レノヴァティオ
 		// ----------------------------------------------------------------
-		SKILL_ID_RENOVATIO = skillId;
+		window.SKILL_ID_RENOVATIO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -14846,7 +14847,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ハイネスヒール
 		// ----------------------------------------------------------------
-		SKILL_ID_HIGHNESS_HEAL = skillId;
+		window.SKILL_ID_HIGHNESS_HEAL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -14882,7 +14883,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// クリアランス
 		// ----------------------------------------------------------------
-		SKILL_ID_CLEARANCE = skillId;
+		window.SKILL_ID_CLEARANCE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -14918,7 +14919,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// エクスピアティオ
 		// ----------------------------------------------------------------
-		SKILL_ID_EXPIATIO = skillId;
+		window.SKILL_ID_EXPIATIO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -14945,7 +14946,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// デュプレライト
 		// ----------------------------------------------------------------
-		SKILL_ID_DUPLELIGHT = skillId;
+		window.SKILL_ID_DUPLELIGHT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -14985,7 +14986,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// シレンティウム
 		// ----------------------------------------------------------------
-		SKILL_ID_SILENTIUM = skillId;
+		window.SKILL_ID_SILENTIUM = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -15017,7 +15018,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// サクラメント
 		// ----------------------------------------------------------------
-		SKILL_ID_SECRAMENT = skillId;
+		window.SKILL_ID_SECRAMENT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -15049,7 +15050,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// レンジャーメイン
 		// ----------------------------------------------------------------
-		SKILL_ID_RANGER_MAIN = skillId;
+		window.SKILL_ID_RANGER_MAIN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -15068,7 +15069,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// カモフラージュ
 		// ----------------------------------------------------------------
-		SKILL_ID_CAMOUFLAGE = skillId;
+		window.SKILL_ID_CAMOUFLAGE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -15092,7 +15093,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// エイムドボルト
 		// ----------------------------------------------------------------
-		SKILL_ID_AIMED_BOLT = skillId;
+		window.SKILL_ID_AIMED_BOLT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -15140,7 +15141,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アローストーム
 		// ----------------------------------------------------------------
-		SKILL_ID_ARROW_STORM = skillId;
+		window.SKILL_ID_ARROW_STORM = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -15192,7 +15193,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// フィアーブリーズ
 		// ----------------------------------------------------------------
-		SKILL_ID_FEAR_BLEATH = skillId;
+		window.SKILL_ID_FEAR_BLEATH = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -15228,7 +15229,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// トラップ研究
 		// ----------------------------------------------------------------
-		SKILL_ID_TRAP_KENKYU = skillId;
+		window.SKILL_ID_TRAP_KENKYU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -15247,7 +15248,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// マゼンタトラップ
 		// ----------------------------------------------------------------
-		SKILL_ID_MAGENTA_TRAP = skillId;
+		window.SKILL_ID_MAGENTA_TRAP = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -15275,7 +15276,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// コバルトトラップ
 		// ----------------------------------------------------------------
-		SKILL_ID_COBALT_TRAP = skillId;
+		window.SKILL_ID_COBALT_TRAP = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -15303,7 +15304,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ヴェルデュールトラップ
 		// ----------------------------------------------------------------
-		SKILL_ID_VERDURE_TRAP = skillId;
+		window.SKILL_ID_VERDURE_TRAP = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -15331,7 +15332,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// メイズトラップ
 		// ----------------------------------------------------------------
-		SKILL_ID_MAZE_TRAP = skillId;
+		window.SKILL_ID_MAZE_TRAP = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -15359,7 +15360,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// クラスターボム
 		// ----------------------------------------------------------------
-		SKILL_ID_CLUSTER_BOMB = skillId;
+		window.SKILL_ID_CLUSTER_BOMB = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -15391,7 +15392,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// デトネイター
 		// ----------------------------------------------------------------
-		SKILL_ID_DETONATOR = skillId;
+		window.SKILL_ID_DETONATOR = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -15415,7 +15416,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ファイアリングトラップ
 		// ----------------------------------------------------------------
-		SKILL_ID_FIRING_TRAP = skillId;
+		window.SKILL_ID_FIRING_TRAP = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -15447,7 +15448,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アイスバウンドトラップ
 		// ----------------------------------------------------------------
-		SKILL_ID_ICEBOUND_TRAP = skillId;
+		window.SKILL_ID_ICEBOUND_TRAP = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -15479,7 +15480,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// エレクトリックショッカー
 		// ----------------------------------------------------------------
-		SKILL_ID_ELECTRIC_SHOCKER = skillId;
+		window.SKILL_ID_ELECTRIC_SHOCKER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -15507,7 +15508,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ウォーグマスタリー
 		// ----------------------------------------------------------------
-		SKILL_ID_WUG_MASTERY = skillId;
+		window.SKILL_ID_WUG_MASTERY = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -15539,7 +15540,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ウォーグバイト
 		// ----------------------------------------------------------------
-		SKILL_ID_WUG_BITE = skillId;
+		window.SKILL_ID_WUG_BITE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -15584,7 +15585,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// トゥースオブウォーグ
 		// ----------------------------------------------------------------
-		SKILL_ID_TOOTH_OF_WUG = skillId;
+		window.SKILL_ID_TOOTH_OF_WUG = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -15603,7 +15604,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ウォーグストライク
 		// ----------------------------------------------------------------
-		SKILL_ID_WUG_STRIKE = skillId;
+		window.SKILL_ID_WUG_STRIKE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -15631,7 +15632,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 鋭敏な嗅覚
 		// ----------------------------------------------------------------
-		SKILL_ID_EIBINNA_KYUKAKU = skillId;
+		window.SKILL_ID_EIBINNA_KYUKAKU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -15676,7 +15677,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ウォーグライダー
 		// ----------------------------------------------------------------
-		SKILL_ID_WUG_RIDER = skillId;
+		window.SKILL_ID_WUG_RIDER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -15704,7 +15705,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ウォーグダッシュ
 		// ----------------------------------------------------------------
-		SKILL_ID_WUG_DASH = skillId;
+		window.SKILL_ID_WUG_DASH = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -15732,7 +15733,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ホワイトインプリズン
 		// ----------------------------------------------------------------
-		SKILL_ID_WHITE_IN_PRISON = skillId;
+		window.SKILL_ID_WHITE_IN_PRISON = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -15769,7 +15770,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ソウルエクスパンション
 		// ----------------------------------------------------------------
-		SKILL_ID_SOUL_EXPANSION = skillId;
+		window.SKILL_ID_SOUL_EXPANSION = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -15818,7 +15819,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// フロストミスティ
 		// ----------------------------------------------------------------
-		SKILL_ID_FROST_MISTY = skillId;
+		window.SKILL_ID_FROST_MISTY = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -15875,7 +15876,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ジャックフロスト
 		// ----------------------------------------------------------------
-		SKILL_ID_JACK_FROST = skillId;
+		window.SKILL_ID_JACK_FROST = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -15924,7 +15925,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// マーシュオブアビス
 		// ----------------------------------------------------------------
-		SKILL_ID_MARSH_OF_ABYSS = skillId;
+		window.SKILL_ID_MARSH_OF_ABYSS = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -15973,7 +15974,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// リコグナイズドスペル
 		// ----------------------------------------------------------------
-		SKILL_ID_RECOGNIZED_SPELL = skillId;
+		window.SKILL_ID_RECOGNIZED_SPELL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -16013,7 +16014,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// シエナエクセクレイト
 		// ----------------------------------------------------------------
-		SKILL_ID_SIENNA_EXEXRATE = skillId;
+		window.SKILL_ID_SIENNA_EXEXRATE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -16045,7 +16046,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ラディウス
 		// ----------------------------------------------------------------
-		SKILL_ID_RADIUS = skillId;
+		window.SKILL_ID_RADIUS = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -16063,7 +16064,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ステイシス
 		// ----------------------------------------------------------------
-		SKILL_ID_STASIS = skillId;
+		window.SKILL_ID_STASIS = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -16121,7 +16122,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ドレインライフ
 		// ----------------------------------------------------------------
-		SKILL_ID_DRAIN_LIFE = skillId;
+		window.SKILL_ID_DRAIN_LIFE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -16169,7 +16170,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// クリムゾンロック
 		// ----------------------------------------------------------------
-		SKILL_ID_CRYMSON_ROCK = skillId;
+		window.SKILL_ID_CRYMSON_ROCK = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -16229,7 +16230,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ヘルインフェルノ
 		// ----------------------------------------------------------------
-		SKILL_ID_HELL_INFERNO = skillId;
+		window.SKILL_ID_HELL_INFERNO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -16261,7 +16262,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// コメット
 		// ----------------------------------------------------------------
-		SKILL_ID_COMMET = skillId;
+		window.SKILL_ID_COMMET = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -16310,7 +16311,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// チェーンライトニング
 		// ----------------------------------------------------------------
-		SKILL_ID_CHAIN_LIGHTNING = skillId;
+		window.SKILL_ID_CHAIN_LIGHTNING = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -16354,7 +16355,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アースストレイン
 		// ----------------------------------------------------------------
-		SKILL_ID_EARTH_STRAIN = skillId;
+		window.SKILL_ID_EARTH_STRAIN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -16411,7 +16412,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// テトラボルテックス
 		// ----------------------------------------------------------------
-		SKILL_ID_TETRA_BOLTEX = skillId;
+		window.SKILL_ID_TETRA_BOLTEX = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -16455,7 +16456,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// サモンファイアーボール
 		// ----------------------------------------------------------------
-		SKILL_ID_SUMMON_FIRE_BALL = skillId;
+		window.SKILL_ID_SUMMON_FIRE_BALL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -16502,7 +16503,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// サモンウォーターボール
 		// ----------------------------------------------------------------
-		SKILL_ID_SUMMON_WATER_BALL = skillId;
+		window.SKILL_ID_SUMMON_WATER_BALL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -16549,7 +16550,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// サモンボールライトニング
 		// ----------------------------------------------------------------
-		SKILL_ID_SUMMON_LIGHTNING_BALL = skillId;
+		window.SKILL_ID_SUMMON_LIGHTNING_BALL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -16596,7 +16597,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// サモンストーン
 		// ----------------------------------------------------------------
-		SKILL_ID_SUMMON_STONE = skillId;
+		window.SKILL_ID_SUMMON_STONE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -16643,7 +16644,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// リリース
 		// ----------------------------------------------------------------
-		SKILL_ID_RELEASE = skillId;
+		window.SKILL_ID_RELEASE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -16667,7 +16668,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// リーディングスペルブック
 		// ----------------------------------------------------------------
-		SKILL_ID_READING_SPELLBOOK = skillId;
+		window.SKILL_ID_READING_SPELLBOOK = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -16707,7 +16708,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// フリージングスペル
 		// ----------------------------------------------------------------
-		SKILL_ID_FREEZING_SPELL = skillId;
+		window.SKILL_ID_FREEZING_SPELL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -16726,7 +16727,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 斧鍛錬
 		// ----------------------------------------------------------------
-		SKILL_ID_ONO_SHUREN_MECHANIC = skillId;
+		window.SKILL_ID_ONO_SHUREN_MECHANIC = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -16745,7 +16746,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アックストルネード
 		// ----------------------------------------------------------------
-		SKILL_ID_AXE_TORNADE = skillId;
+		window.SKILL_ID_AXE_TORNADE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -16785,7 +16786,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アックスブーメラン
 		// ----------------------------------------------------------------
-		SKILL_ID_AXE_BOOMERANG = skillId;
+		window.SKILL_ID_AXE_BOOMERANG = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -16817,7 +16818,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// パワースイング
 		// ----------------------------------------------------------------
-		SKILL_ID_POWER_SWING = skillId;
+		window.SKILL_ID_POWER_SWING = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -16860,7 +16861,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 火と大地の研究
 		// ----------------------------------------------------------------
-		SKILL_ID_HITO_DAICHINO_KENKYU = skillId;
+		window.SKILL_ID_HITO_DAICHINO_KENKYU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -16879,7 +16880,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// FAW シルバースナイパー
 		// ----------------------------------------------------------------
-		SKILL_ID_FAW_SILVER_SNIPER = skillId;
+		window.SKILL_ID_FAW_SILVER_SNIPER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -16907,7 +16908,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// FAW マジックデコイ
 		// ----------------------------------------------------------------
-		SKILL_ID_FAW_MAGIC_DECOY = skillId;
+		window.SKILL_ID_FAW_MAGIC_DECOY = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -16935,7 +16936,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// FAW 解体
 		// ----------------------------------------------------------------
-		SKILL_ID_FAW_KAIZYO = skillId;
+		window.SKILL_ID_FAW_KAIZYO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -16963,7 +16964,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 魔導ギアライセンス
 		// ----------------------------------------------------------------
-		SKILL_ID_MADOGEAR_LICENSE = skillId;
+		window.SKILL_ID_MADOGEAR_LICENSE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -16982,7 +16983,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ブーストナックル
 		// ----------------------------------------------------------------
-		SKILL_ID_BOOST_KNUCKLE = skillId;
+		window.SKILL_ID_BOOST_KNUCKLE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -17022,7 +17023,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// パイルバンカー
 		// ----------------------------------------------------------------
-		SKILL_ID_PILE_BUNKER = skillId;
+		window.SKILL_ID_PILE_BUNKER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -17066,7 +17067,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// バルカンアーム
 		// ----------------------------------------------------------------
-		SKILL_ID_VULCAN_ARM = skillId;
+		window.SKILL_ID_VULCAN_ARM = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -17106,7 +17107,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// フレイムスローワー
 		// ----------------------------------------------------------------
-		SKILL_ID_FLAME_THROWER = skillId;
+		window.SKILL_ID_FLAME_THROWER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -17150,7 +17151,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// コールドスローワー
 		// ----------------------------------------------------------------
-		SKILL_ID_COLD_THROWER = skillId;
+		window.SKILL_ID_COLD_THROWER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -17194,7 +17195,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アームズキャノン
 		// ----------------------------------------------------------------
-		SKILL_ID_ARMS_CANNON = skillId;
+		window.SKILL_ID_ARMS_CANNON = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -17249,7 +17250,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アクセラレーション
 		// ----------------------------------------------------------------
-		SKILL_ID_ACCELARATION = skillId;
+		window.SKILL_ID_ACCELARATION = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -17273,7 +17274,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ホバーリング
 		// ----------------------------------------------------------------
-		SKILL_ID_HOVERING = skillId;
+		window.SKILL_ID_HOVERING = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -17297,7 +17298,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// フロントサイドスライド
 		// ----------------------------------------------------------------
-		SKILL_ID_FRONTSIDE_SLIDE = skillId;
+		window.SKILL_ID_FRONTSIDE_SLIDE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -17321,7 +17322,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// リアサイドスライド
 		// ----------------------------------------------------------------
-		SKILL_ID_REARSIDE_SLIDE = skillId;
+		window.SKILL_ID_REARSIDE_SLIDE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -17345,7 +17346,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// メインフレーム改造
 		// ----------------------------------------------------------------
-		SKILL_ID_MAINFRAME_KAIZO = skillId;
+		window.SKILL_ID_MAINFRAME_KAIZO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -17364,7 +17365,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// シェイプシフト
 		// ----------------------------------------------------------------
-		SKILL_ID_SHAPE_SHIFT = skillId;
+		window.SKILL_ID_SHAPE_SHIFT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -17396,7 +17397,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// インフラレッドスキャン
 		// ----------------------------------------------------------------
-		SKILL_ID_INFRARED_SCAN = skillId;
+		window.SKILL_ID_INFRARED_SCAN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -17424,7 +17425,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アナライズ
 		// ----------------------------------------------------------------
-		SKILL_ID_ANALYZE = skillId;
+		window.SKILL_ID_ANALYZE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -17456,7 +17457,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// セルフディストラクション
 		// ----------------------------------------------------------------
-		SKILL_ID_SELF_DESTRUCTION = skillId;
+		window.SKILL_ID_SELF_DESTRUCTION = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -17515,7 +17516,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// エマージェンシークール
 		// ----------------------------------------------------------------
-		SKILL_ID_EMERGENCY_COOL = skillId;
+		window.SKILL_ID_EMERGENCY_COOL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -17543,7 +17544,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// マグネティックフィールド
 		// ----------------------------------------------------------------
-		SKILL_ID_MAGNETIC_FIELD = skillId;
+		window.SKILL_ID_MAGNETIC_FIELD = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -17571,7 +17572,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ニュートラルバリアー
 		// ----------------------------------------------------------------
-		SKILL_ID_NUTRAL_BARRIER = skillId;
+		window.SKILL_ID_NUTRAL_BARRIER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -17599,7 +17600,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ステルスフィールド
 		// ----------------------------------------------------------------
-		SKILL_ID_STEALTH_FIELD = skillId;
+		window.SKILL_ID_STEALTH_FIELD = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -17627,7 +17628,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// リペア
 		// ----------------------------------------------------------------
-		SKILL_ID_REPEAR = skillId;
+		window.SKILL_ID_REPEAR = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -17659,7 +17660,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// キャノンスピア
 		// ----------------------------------------------------------------
-		SKILL_ID_CANNON_SPEAR = skillId;
+		window.SKILL_ID_CANNON_SPEAR = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -17699,7 +17700,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// バニシングポイント
 		// ----------------------------------------------------------------
-		SKILL_ID_BANISHING_POINT = skillId;
+		window.SKILL_ID_BANISHING_POINT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -17727,7 +17728,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// トランプル
 		// ----------------------------------------------------------------
-		SKILL_ID_TRUMPLE = skillId;
+		window.SKILL_ID_TRUMPLE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -17759,7 +17760,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// シールドプレス
 		// ----------------------------------------------------------------
-		SKILL_ID_SHIELD_PRESS = skillId;
+		window.SKILL_ID_SHIELD_PRESS = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -17791,7 +17792,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// リフレクトダメージ
 		// ----------------------------------------------------------------
-		SKILL_ID_REFLECT_DAMAGE = skillId;
+		window.SKILL_ID_REFLECT_DAMAGE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -17819,7 +17820,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ピンポイントアタック
 		// ----------------------------------------------------------------
-		SKILL_ID_PINGPOINT_ATTACK = skillId;
+		window.SKILL_ID_PINGPOINT_ATTACK = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -17872,7 +17873,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// フォースオブバンガード
 		// ----------------------------------------------------------------
-		SKILL_ID_FORCE_OF_BANGUARD = skillId;
+		window.SKILL_ID_FORCE_OF_BANGUARD = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -17904,7 +17905,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// レイジバーストアタック
 		// ----------------------------------------------------------------
-		SKILL_ID_RAGE_BURST_ATTACK = skillId;
+		window.SKILL_ID_RAGE_BURST_ATTACK = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -17937,7 +17938,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// シールドスペル
 		// ----------------------------------------------------------------
-		SKILL_ID_SHIELD_SPELL = skillId;
+		window.SKILL_ID_SHIELD_SPELL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -17969,7 +17970,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// イクシードブレイク
 		// ----------------------------------------------------------------
-		SKILL_ID_EXCEED_BREAK = skillId;
+		window.SKILL_ID_EXCEED_BREAK = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -18016,7 +18017,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// オーバーブランド
 		// ----------------------------------------------------------------
-		SKILL_ID_OVER_BLAND = skillId;
+		window.SKILL_ID_OVER_BLAND = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -18056,7 +18057,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// プレスティージ
 		// ----------------------------------------------------------------
-		SKILL_ID_PRESTAGE = skillId;
+		window.SKILL_ID_PRESTAGE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -18096,7 +18097,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// バンディング
 		// ----------------------------------------------------------------
-		SKILL_ID_BANDING = skillId;
+		window.SKILL_ID_BANDING = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -18120,7 +18121,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ムーンスラッシャー
 		// ----------------------------------------------------------------
-		SKILL_ID_MOON_SLUSHER = skillId;
+		window.SKILL_ID_MOON_SLUSHER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -18156,7 +18157,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// レイオブジェネシス
 		// ----------------------------------------------------------------
-		SKILL_ID_RAY_OF_GENESIS = skillId;
+		window.SKILL_ID_RAY_OF_GENESIS = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -18192,7 +18193,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// パイエティ
 		// ----------------------------------------------------------------
-		SKILL_ID_PIETY = skillId;
+		window.SKILL_ID_PIETY = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -18220,7 +18221,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アースドライブ
 		// ----------------------------------------------------------------
-		SKILL_ID_EARTH_DRIVE = skillId;
+		window.SKILL_ID_EARTH_DRIVE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -18264,7 +18265,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// (仮)ヘスペルスリット
 		// ----------------------------------------------------------------
-		SKILL_ID_HESPERUS_SLIT = skillId;
+		window.SKILL_ID_HESPERUS_SLIT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -18308,7 +18309,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// (仮)インスピレーション
 		// ----------------------------------------------------------------
-		SKILL_ID_INSPIRATION = skillId;
+		window.SKILL_ID_INSPIRATION = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -18348,7 +18349,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ボディペインティング
 		// ----------------------------------------------------------------
-		SKILL_ID_BODY_PAINTING = skillId;
+		window.SKILL_ID_BODY_PAINTING = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -18380,7 +18381,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// マスカレード-エナベーション
 		// ----------------------------------------------------------------
-		SKILL_ID_MASKARADE_INOVATION = skillId;
+		window.SKILL_ID_MASKARADE_INOVATION = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -18416,7 +18417,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// マスカレード-グルーミー
 		// ----------------------------------------------------------------
-		SKILL_ID_MASKARADE_GLOOMY = skillId;
+		window.SKILL_ID_MASKARADE_GLOOMY = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -18452,7 +18453,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// マスカレード-イグノアランス
 		// ----------------------------------------------------------------
-		SKILL_ID_MASKARADE_IGNORANCE = skillId;
+		window.SKILL_ID_MASKARADE_IGNORANCE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -18492,7 +18493,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// マスカレード-レイジネス
 		// ----------------------------------------------------------------
-		SKILL_ID_MASKARADE_RAGENESS = skillId;
+		window.SKILL_ID_MASKARADE_RAGENESS = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -18528,7 +18529,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// マスカレード-ウィークネス
 		// ----------------------------------------------------------------
-		SKILL_ID_MASKARADE_WEEKNESS = skillId;
+		window.SKILL_ID_MASKARADE_WEEKNESS = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -18577,7 +18578,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// マスカレード-アンラッキー
 		// ----------------------------------------------------------------
-		SKILL_ID_MASKARADE_UNLUCKY = skillId;
+		window.SKILL_ID_MASKARADE_UNLUCKY = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -18613,7 +18614,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// リプロデュース
 		// ----------------------------------------------------------------
-		SKILL_ID_REPORDUCE = skillId;
+		window.SKILL_ID_REPORDUCE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -18641,7 +18642,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// (仮)オートシャドウスペル
 		// ----------------------------------------------------------------
-		SKILL_ID_AUTO_SHADOW_SPELL = skillId;
+		window.SKILL_ID_AUTO_SHADOW_SPELL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -18669,7 +18670,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// シャドウフォーム
 		// ----------------------------------------------------------------
-		SKILL_ID_SHADOW_FORM = skillId;
+		window.SKILL_ID_SHADOW_FORM = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -18723,7 +18724,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// デッドリーインフェクト
 		// ----------------------------------------------------------------
-		SKILL_ID_DEADLY_INEFFECT = skillId;
+		window.SKILL_ID_DEADLY_INEFFECT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -18764,7 +18765,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// (仮)インビジビリティ
 		// ----------------------------------------------------------------
-		SKILL_ID_INVISIBILITY = skillId;
+		window.SKILL_ID_INVISIBILITY = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -18800,7 +18801,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// マンホール
 		// ----------------------------------------------------------------
-		SKILL_ID_MANHOLE = skillId;
+		window.SKILL_ID_MANHOLE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -18854,7 +18855,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ディメンションドア
 		// ----------------------------------------------------------------
-		SKILL_ID_DEMENSION_DOOR = skillId;
+		window.SKILL_ID_DEMENSION_DOOR = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -18886,7 +18887,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ブラッディラスト
 		// ----------------------------------------------------------------
-		SKILL_ID_BLOODY_LAST = skillId;
+		window.SKILL_ID_BLOODY_LAST = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -18918,7 +18919,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// フェイントボム
 		// ----------------------------------------------------------------
-		SKILL_ID_FAINT_BOMB = skillId;
+		window.SKILL_ID_FAINT_BOMB = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -18975,7 +18976,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// カオスパニック
 		// ----------------------------------------------------------------
-		SKILL_ID_CHAOS_PANIC = skillId;
+		window.SKILL_ID_CHAOS_PANIC = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -19007,7 +19008,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// メイルストーム
 		// ----------------------------------------------------------------
-		SKILL_ID_MAELSTORM = skillId;
+		window.SKILL_ID_MAELSTORM = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -19048,7 +19049,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// フェイタルメナス
 		// ----------------------------------------------------------------
-		SKILL_ID_FATAL_MENUS = skillId;
+		window.SKILL_ID_FATAL_MENUS = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -19088,7 +19089,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ストリップアクセサリー
 		// ----------------------------------------------------------------
-		SKILL_ID_STRIP_ACCESSARY = skillId;
+		window.SKILL_ID_STRIP_ACCESSARY = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -19137,7 +19138,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// トライアングルショット
 		// ----------------------------------------------------------------
-		SKILL_ID_TRIANGLE_SHOT = skillId;
+		window.SKILL_ID_TRIANGLE_SHOT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -19185,7 +19186,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 双龍脚
 		// ----------------------------------------------------------------
-		SKILL_ID_SORYUKYAKU = skillId;
+		window.SKILL_ID_SORYUKYAKU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -19241,7 +19242,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 天羅地網
 		// ----------------------------------------------------------------
-		SKILL_ID_TENRACHIMO = skillId;
+		window.SKILL_ID_TENRACHIMO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -19277,7 +19278,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 地雷震
 		// ----------------------------------------------------------------
-		SKILL_ID_ZIRAISHIN = skillId;
+		window.SKILL_ID_ZIRAISHIN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -19309,7 +19310,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 爆気散弾
 		// ----------------------------------------------------------------
-		SKILL_ID_BAKKISANDAN = skillId;
+		window.SKILL_ID_BAKKISANDAN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -19346,7 +19347,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 修羅身弾
 		// ----------------------------------------------------------------
-		SKILL_ID_SHURASHINDAN = skillId;
+		window.SKILL_ID_SHURASHINDAN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -19386,7 +19387,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 大纏崩捶
 		// ----------------------------------------------------------------
-		SKILL_ID_DAITENHOSUI = skillId;
+		window.SKILL_ID_DAITENHOSUI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -19427,7 +19428,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 號砲
 		// ----------------------------------------------------------------
-		SKILL_ID_GOHO = skillId;
+		window.SKILL_ID_GOHO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -19468,13 +19469,13 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 羅刹破凰撃(HPSP固定)
 		// ----------------------------------------------------------------
-		SKILL_ID_RASETSU_HAOGEKI_MAX = skillId;
+		window.SKILL_ID_RASETSU_HAOGEKI_MAX = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.refId = SKILL_ID_RASETSU_HAOGEKI;
+			this.refId = window.SKILL_ID_RASETSU_HAOGEKI;
 			this.name = "羅刹破凰撃(HPSP固定)";
 			this.kana = "ラセツハオウケキコテイ";
 			this.maxLv = 10;
@@ -19510,7 +19511,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 羅刹破凰撃(HPSP変動可)
 		// ----------------------------------------------------------------
-		SKILL_ID_RASETSU_HAOGEKI = skillId;
+		window.SKILL_ID_RASETSU_HAOGEKI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -19551,7 +19552,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 旋風腿
 		// ----------------------------------------------------------------
-		SKILL_ID_SENPUTAI = skillId;
+		window.SKILL_ID_SENPUTAI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -19591,7 +19592,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 呪縛陣
 		// ----------------------------------------------------------------
-		SKILL_ID_ZYUBAKUZIN = skillId;
+		window.SKILL_ID_ZYUBAKUZIN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -19623,7 +19624,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 閃電歩
 		// ----------------------------------------------------------------
-		SKILL_ID_SENDENPO = skillId;
+		window.SKILL_ID_SENDENPO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -19659,7 +19660,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 潜龍昇天(HPSP+爆裂状態)
 		// ----------------------------------------------------------------
-		SKILL_ID_SENRYU_SHOTEN = skillId;
+		window.SKILL_ID_SENRYU_SHOTEN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -19691,7 +19692,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 獅子吼
 		// ----------------------------------------------------------------
-		SKILL_ID_SISIKO = skillId;
+		window.SKILL_ID_SISIKO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -19739,7 +19740,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 雷光弾
 		// ----------------------------------------------------------------
-		SKILL_ID_RAIKODAN = skillId;
+		window.SKILL_ID_RAIKODAN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -19784,7 +19785,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 点穴 -黙-
 		// ----------------------------------------------------------------
-		SKILL_ID_TENKETSU_MOKU = skillId;
+		window.SKILL_ID_TENKETSU_MOKU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -19820,7 +19821,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 点穴 -快-
 		// ----------------------------------------------------------------
-		SKILL_ID_TENKETSU_KAI = skillId;
+		window.SKILL_ID_TENKETSU_KAI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -19848,7 +19849,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 点穴 -球-
 		// ----------------------------------------------------------------
-		SKILL_ID_TENKETSU_KYU = skillId;
+		window.SKILL_ID_TENKETSU_KYU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -19872,7 +19873,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 点穴 -反-
 		// ----------------------------------------------------------------
-		SKILL_ID_TENKETSU_HAN = skillId;
+		window.SKILL_ID_TENKETSU_HAN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -19896,7 +19897,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 点穴 -活-
 		// ----------------------------------------------------------------
-		SKILL_ID_TENKETSU_KATSU = skillId;
+		window.SKILL_ID_TENKETSU_KATSU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -19920,7 +19921,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 吸気功
 		// ----------------------------------------------------------------
-		SKILL_ID_KYUKIKO = skillId;
+		window.SKILL_ID_KYUKIKO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -19948,7 +19949,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 破碎柱
 		// ----------------------------------------------------------------
-		SKILL_ID_HASAICHU = skillId;
+		window.SKILL_ID_HASAICHU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -20002,7 +20003,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// レッスン
 		// ----------------------------------------------------------------
-		SKILL_ID_LESSON = skillId;
+		window.SKILL_ID_LESSON = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -20021,7 +20022,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 安らぎの子守唄
 		// ----------------------------------------------------------------
-		SKILL_ID_YASURAGINO_KOMORIUTA = skillId;
+		window.SKILL_ID_YASURAGINO_KOMORIUTA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -20061,7 +20062,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 地獄の歌
 		// ----------------------------------------------------------------
-		SKILL_ID_ZIGOKUNO_UTA = skillId;
+		window.SKILL_ID_ZIGOKUNO_UTA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -20101,7 +20102,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 不確定要素の言語
 		// ----------------------------------------------------------------
-		SKILL_ID_FUKAKUTEYOSONO_GENGO = skillId;
+		window.SKILL_ID_FUKAKUTEYOSONO_GENGO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -20141,7 +20142,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// メランコリー
 		// ----------------------------------------------------------------
-		SKILL_ID_MELANCHOLY = skillId;
+		window.SKILL_ID_MELANCHOLY = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -20181,7 +20182,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// セイレーンの声
 		// ----------------------------------------------------------------
-		SKILL_ID_SIRENNO_KOE = skillId;
+		window.SKILL_ID_SIRENNO_KOE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -20221,7 +20222,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 循環する自然の音
 		// ----------------------------------------------------------------
-		SKILL_ID_ZYUNKANSURU_SIZENNO_OTO = skillId;
+		window.SKILL_ID_ZYUNKANSURU_SIZENNO_OTO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -20261,7 +20262,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 生死の境で
 		// ----------------------------------------------------------------
-		SKILL_ID_SEISHINO_SAKAIDE = skillId;
+		window.SKILL_ID_SEISHINO_SAKAIDE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -20301,7 +20302,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 振動残響
 		// ----------------------------------------------------------------
-		SKILL_ID_SHINDOZANKYO = skillId;
+		window.SKILL_ID_SHINDOZANKYO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -20353,7 +20354,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ドミニオンインパルス
 		// ----------------------------------------------------------------
-		SKILL_ID_DOMINION_IMPULSE = skillId;
+		window.SKILL_ID_DOMINION_IMPULSE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -20393,7 +20394,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// メタリックサウンド
 		// ----------------------------------------------------------------
-		SKILL_ID_METALIC_SOUND = skillId;
+		window.SKILL_ID_METALIC_SOUND = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -20416,7 +20417,7 @@ function CSkillManager() {
 				// 基本式
 				pow = 120 * skillLv;
 				// 「ミンストレル・ワンダラー レッスン」の習得レベルによる補正
-				pow += 60 * Math.max(LearnedSkillSearch(SKILL_ID_LESSON), UsedSkillSearch(SKILL_ID_LESSON));
+				pow += 60 * Math.max(LearnedSkillSearch(window.SKILL_ID_LESSON), UsedSkillSearch(window.SKILL_ID_LESSON));
 				// ベースレベル補正
 				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 100);
 				// 「モンスター状態異常 睡眠」による補正
@@ -20445,7 +20446,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// シビアレインストーム
 		// ----------------------------------------------------------------
-		SKILL_ID_SEVERE_RAINSTORM = skillId;
+		window.SKILL_ID_SEVERE_RAINSTORM = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -20498,7 +20499,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 風車に向かって突撃
 		// ----------------------------------------------------------------
-		SKILL_ID_FUSHANIMUKATTE_TOTSUGEKI = skillId;
+		window.SKILL_ID_FUSHANIMUKATTE_TOTSUGEKI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -20530,7 +20531,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// エコーの歌
 		// ----------------------------------------------------------------
-		SKILL_ID_ECHONO_UTA = skillId;
+		window.SKILL_ID_ECHONO_UTA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -20562,7 +20563,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ハーモナイズ
 		// ----------------------------------------------------------------
-		SKILL_ID_HARMONIZE = skillId;
+		window.SKILL_ID_HARMONIZE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -20598,7 +20599,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 月明かりのセレナーデ
 		// ----------------------------------------------------------------
-		SKILL_ID_TSUKIAKARINO_SERENADE = skillId;
+		window.SKILL_ID_TSUKIAKARINO_SERENADE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -20638,7 +20639,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 恋人たちの為のシンフォニー
 		// ----------------------------------------------------------------
-		SKILL_ID_KOIBITOTACHINO_TAMENO_SYMPHONY = skillId;
+		window.SKILL_ID_KOIBITOTACHINO_TAMENO_SYMPHONY = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -20678,7 +20679,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// スイングダンス
 		// ----------------------------------------------------------------
-		SKILL_ID_SWING_DANCE = skillId;
+		window.SKILL_ID_SWING_DANCE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -20718,7 +20719,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// レーラズの霧
 		// ----------------------------------------------------------------
-		SKILL_ID_LERAORNO_TSUYU = skillId;
+		window.SKILL_ID_LERAORNO_TSUYU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -20758,7 +20759,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ビヨンドオブウォークライ
 		// ----------------------------------------------------------------
-		SKILL_ID_BEYOND_OF_WARCRY = skillId;
+		window.SKILL_ID_BEYOND_OF_WARCRY = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -20798,7 +20799,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// マナの歌
 		// ----------------------------------------------------------------
-		SKILL_ID_MANANO_UTA = skillId;
+		window.SKILL_ID_MANANO_UTA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -20838,7 +20839,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// メロディーオブシンク
 		// ----------------------------------------------------------------
-		SKILL_ID_MELODY_OF_THINK = skillId;
+		window.SKILL_ID_MELODY_OF_THINK = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -20878,7 +20879,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ダンスウィズウォーグ
 		// ----------------------------------------------------------------
-		SKILL_ID_DANCE_WITH_WUG = skillId;
+		window.SKILL_ID_DANCE_WITH_WUG = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -20918,7 +20919,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// フライデーナイトフィーバー
 		// ----------------------------------------------------------------
-		SKILL_ID_FRIDAY_NIGHT_FEVER = skillId;
+		window.SKILL_ID_FRIDAY_NIGHT_FEVER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -20958,7 +20959,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// サウンドオブディストラクション
 		// ----------------------------------------------------------------
-		SKILL_ID_SOUND_OF_DESTRUCTION = skillId;
+		window.SKILL_ID_SOUND_OF_DESTRUCTION = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -20998,7 +20999,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// エンドレスハミングボイス
 		// ----------------------------------------------------------------
-		SKILL_ID_ENDLESS_HUMMING_VOICE = skillId;
+		window.SKILL_ID_ENDLESS_HUMMING_VOICE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -21038,7 +21039,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// グレートエコー
 		// ----------------------------------------------------------------
-		SKILL_ID_GREAT_ECHO = skillId;
+		window.SKILL_ID_GREAT_ECHO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -21059,7 +21060,7 @@ function CSkillManager() {
 					// パートナーがいる場合
 					ratio *= 2;
 				}
-				ratio += 50 * Math.max(LearnedSkillSearch(SKILL_ID_LESSON), UsedSkillSearch(SKILL_ID_LESSON));
+				ratio += 50 * Math.max(LearnedSkillSearch(window.SKILL_ID_LESSON), UsedSkillSearch(window.SKILL_ID_LESSON));
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {
@@ -21084,7 +21085,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ファイアーウォーク
 		// ----------------------------------------------------------------
-		SKILL_ID_FIRE_WALK = skillId;
+		window.SKILL_ID_FIRE_WALK = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -21113,7 +21114,7 @@ function CSkillManager() {
 				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 100);
 
 				// 「ソーサラー 精霊スキル」の効果
-				seirei = charaDataManger.UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL);
+				seirei = charaDataManger.UsedSkillSearch(window.SKILL_ID_SERE_SUPPORT_SKILL);
 				if (seirei == 4) {
 					pow += Math.floor(charaDataManger.GetCharaJobLv() / 2);
 				}
@@ -21140,7 +21141,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// エレクトリックウォーク
 		// ----------------------------------------------------------------
-		SKILL_ID_ELECTRIC_WALK = skillId;
+		window.SKILL_ID_ELECTRIC_WALK = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -21169,7 +21170,7 @@ function CSkillManager() {
 				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 100);
 
 				// 「ソーサラー 精霊スキル」の効果
-				seirei = charaDataManger.UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL);
+				seirei = charaDataManger.UsedSkillSearch(window.SKILL_ID_SERE_SUPPORT_SKILL);
 				if (seirei == 22) {
 					pow += Math.floor(charaDataManger.GetCharaJobLv() / 2);
 				}
@@ -21196,7 +21197,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// スペルフィスト
 		// ----------------------------------------------------------------
-		SKILL_ID_SPELL_FIST = skillId;
+		window.SKILL_ID_SPELL_FIST = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -21228,7 +21229,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// バキュームエクストリーム
 		// ----------------------------------------------------------------
-		SKILL_ID_VACUUM_EXTREME = skillId;
+		window.SKILL_ID_VACUUM_EXTREME = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -21268,7 +21269,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// サイキックウェーブ
 		// ----------------------------------------------------------------
-		SKILL_ID_PSYCHIC_WAVE = skillId;
+		window.SKILL_ID_PSYCHIC_WAVE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -21329,7 +21330,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// クラウドキル
 		// ----------------------------------------------------------------
-		SKILL_ID_CLOUD_KILL = skillId;
+		window.SKILL_ID_CLOUD_KILL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -21367,7 +21368,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ポイズンバスター
 		// ----------------------------------------------------------------
-		SKILL_ID_POISON_BUSTER = skillId;
+		window.SKILL_ID_POISON_BUSTER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -21395,7 +21396,7 @@ function CSkillManager() {
 				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 120);
 
 				// 「ソーサラー 精霊スキル」の効果
-				seirei = charaDataManger.UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL);
+				seirei = charaDataManger.UsedSkillSearch(window.SKILL_ID_SERE_SUPPORT_SKILL);
 				if (seirei == 31) {
 					pow += Math.floor(charaDataManger.GetCharaJobLv() * 5);
 				}
@@ -21426,7 +21427,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ストライキング
 		// ----------------------------------------------------------------
-		SKILL_ID_STRIKING = skillId;
+		window.SKILL_ID_STRIKING = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -21466,7 +21467,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アースグレイヴ
 		// ----------------------------------------------------------------
-		SKILL_ID_EARTH_GRAVE = skillId;
+		window.SKILL_ID_EARTH_GRAVE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -21519,7 +21520,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ダイヤモンドダスト
 		// ----------------------------------------------------------------
-		SKILL_ID_DIAMOND_DUST = skillId;
+		window.SKILL_ID_DIAMOND_DUST = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -21572,7 +21573,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ウォーマー
 		// ----------------------------------------------------------------
-		SKILL_ID_WARMER = skillId;
+		window.SKILL_ID_WARMER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -21616,7 +21617,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ヴェラチュールスピアー
 		// ----------------------------------------------------------------
-		SKILL_ID_VERATURE_SPEAR = skillId;
+		window.SKILL_ID_VERATURE_SPEAR = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -21665,7 +21666,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アルージョ
 		// ----------------------------------------------------------------
-		SKILL_ID_ARRULLO = skillId;
+		window.SKILL_ID_ARRULLO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -21705,7 +21706,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// サモンアグニ
 		// ----------------------------------------------------------------
-		SKILL_ID_SUMMON_AGNI = skillId;
+		window.SKILL_ID_SUMMON_AGNI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -21745,7 +21746,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// サモンアクア
 		// ----------------------------------------------------------------
-		SKILL_ID_SUMMON_AQUA = skillId;
+		window.SKILL_ID_SUMMON_AQUA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -21785,7 +21786,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// サモンベントス
 		// ----------------------------------------------------------------
-		SKILL_ID_SUMMON_VENTOS = skillId;
+		window.SKILL_ID_SUMMON_VENTOS = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -21825,7 +21826,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// サモンテラ
 		// ----------------------------------------------------------------
-		SKILL_ID_SUMMON_TERA = skillId;
+		window.SKILL_ID_SUMMON_TERA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -21865,7 +21866,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// エレメンタルコントロール
 		// ----------------------------------------------------------------
-		SKILL_ID_ELEMENTAL_CONTROL = skillId;
+		window.SKILL_ID_ELEMENTAL_CONTROL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -21897,7 +21898,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// エレメンタルアクション
 		// ----------------------------------------------------------------
-		SKILL_ID_ELEMENTAL_ACTION = skillId;
+		window.SKILL_ID_ELEMENTAL_ACTION = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -21937,7 +21938,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// エレメンタルアナライシス
 		// ----------------------------------------------------------------
-		SKILL_ID_ELEMENTAL_ANALYSIS = skillId;
+		window.SKILL_ID_ELEMENTAL_ANALYSIS = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -21965,7 +21966,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// エレメンタルシンパシー
 		// ----------------------------------------------------------------
-		SKILL_ID_ELEMENTAL_SYMPASY = skillId;
+		window.SKILL_ID_ELEMENTAL_SYMPASY = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -21984,7 +21985,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// エレメンタルキュアー
 		// ----------------------------------------------------------------
-		SKILL_ID_ELEMENTAL_CURE = skillId;
+		window.SKILL_ID_ELEMENTAL_CURE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -22024,7 +22025,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ファイアーインシグニア
 		// ----------------------------------------------------------------
-		SKILL_ID_FIRE_INSIGNIA = skillId;
+		window.SKILL_ID_FIRE_INSIGNIA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -22043,7 +22044,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ウォーターインシグニア
 		// ----------------------------------------------------------------
-		SKILL_ID_WATER_INSIGNIA = skillId;
+		window.SKILL_ID_WATER_INSIGNIA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -22062,7 +22063,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ウィンドインシグニア
 		// ----------------------------------------------------------------
-		SKILL_ID_WIND_INSIGNIA = skillId;
+		window.SKILL_ID_WIND_INSIGNIA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -22081,7 +22082,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アースインシグニア
 		// ----------------------------------------------------------------
-		SKILL_ID_EARTH_INSIGNIA = skillId;
+		window.SKILL_ID_EARTH_INSIGNIA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -22100,7 +22101,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// パイロテクニック
 		// ----------------------------------------------------------------
-		SKILL_ID_PILO_TECHNIC = skillId;
+		window.SKILL_ID_PILO_TECHNIC = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -22119,7 +22120,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// サークルオブファイアー
 		// ----------------------------------------------------------------
-		SKILL_ID_CIRCLE_OF_FIRE = skillId;
+		window.SKILL_ID_CIRCLE_OF_FIRE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -22138,7 +22139,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ファイアーアロー
 		// ----------------------------------------------------------------
-		SKILL_ID_FIRE_ARROW = skillId;
+		window.SKILL_ID_FIRE_ARROW = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -22157,7 +22158,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ヒーター
 		// ----------------------------------------------------------------
-		SKILL_ID_HEATER = skillId;
+		window.SKILL_ID_HEATER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -22176,7 +22177,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ファイアークローク
 		// ----------------------------------------------------------------
-		SKILL_ID_FIRE_CLOAK = skillId;
+		window.SKILL_ID_FIRE_CLOAK = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -22195,7 +22196,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ファイアーボム
 		// ----------------------------------------------------------------
-		SKILL_ID_FIRE_BOMB = skillId;
+		window.SKILL_ID_FIRE_BOMB = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -22214,7 +22215,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// トロピック
 		// ----------------------------------------------------------------
-		SKILL_ID_TOROPIC = skillId;
+		window.SKILL_ID_TOROPIC = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -22233,7 +22234,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ファイアーマントル
 		// ----------------------------------------------------------------
-		SKILL_ID_FIRE_MANTLE = skillId;
+		window.SKILL_ID_FIRE_MANTLE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -22252,7 +22253,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ファイアーウェーブ
 		// ----------------------------------------------------------------
-		SKILL_ID_FIRE_WAVE = skillId;
+		window.SKILL_ID_FIRE_WAVE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -22271,7 +22272,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アクアプレイ
 		// ----------------------------------------------------------------
-		SKILL_ID_AQUA_PLAY = skillId;
+		window.SKILL_ID_AQUA_PLAY = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -22290,7 +22291,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ウォータースクリーン
 		// ----------------------------------------------------------------
-		SKILL_ID_WATER_SCREEN = skillId;
+		window.SKILL_ID_WATER_SCREEN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -22309,7 +22310,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アイスニードル
 		// ----------------------------------------------------------------
-		SKILL_ID_ICE_NEEDLE = skillId;
+		window.SKILL_ID_ICE_NEEDLE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -22328,7 +22329,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// クーラー
 		// ----------------------------------------------------------------
-		SKILL_ID_COOLER = skillId;
+		window.SKILL_ID_COOLER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -22347,7 +22348,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ウォータードロップ
 		// ----------------------------------------------------------------
-		SKILL_ID_WATER_DROP = skillId;
+		window.SKILL_ID_WATER_DROP = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -22366,7 +22367,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ウォータースクリュー
 		// ----------------------------------------------------------------
-		SKILL_ID_WATER_SCREW = skillId;
+		window.SKILL_ID_WATER_SCREW = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -22385,7 +22386,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// チリエア
 		// ----------------------------------------------------------------
-		SKILL_ID_CHILLY_AIR = skillId;
+		window.SKILL_ID_CHILLY_AIR = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -22404,7 +22405,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ウォーターバリア
 		// ----------------------------------------------------------------
-		SKILL_ID_WATER_BARRIER = skillId;
+		window.SKILL_ID_WATER_BARRIER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -22423,7 +22424,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// タイダルウェポン
 		// ----------------------------------------------------------------
-		SKILL_ID_TAIDAL_WEAPON = skillId;
+		window.SKILL_ID_TAIDAL_WEAPON = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -22442,7 +22443,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ガスト
 		// ----------------------------------------------------------------
-		SKILL_ID_GAST = skillId;
+		window.SKILL_ID_GAST = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -22461,7 +22462,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ウィンドステップ
 		// ----------------------------------------------------------------
-		SKILL_ID_WIND_STEP = skillId;
+		window.SKILL_ID_WIND_STEP = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -22480,7 +22481,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ウィンドスラッシュ
 		// ----------------------------------------------------------------
-		SKILL_ID_WIND_SLASH = skillId;
+		window.SKILL_ID_WIND_SLASH = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -22499,7 +22500,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ブラスト
 		// ----------------------------------------------------------------
-		SKILL_ID_BLAST = skillId;
+		window.SKILL_ID_BLAST = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -22518,7 +22519,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ウィンドカーテン
 		// ----------------------------------------------------------------
-		SKILL_ID_WIND_CURTAIN = skillId;
+		window.SKILL_ID_WIND_CURTAIN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -22537,7 +22538,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ハリケーンレイジ
 		// ----------------------------------------------------------------
-		SKILL_ID_HURRICANE_RAGE = skillId;
+		window.SKILL_ID_HURRICANE_RAGE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -22556,7 +22557,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ワイルドストーム
 		// ----------------------------------------------------------------
-		SKILL_ID_WILD_STORM = skillId;
+		window.SKILL_ID_WILD_STORM = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -22575,7 +22576,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ゼファー
 		// ----------------------------------------------------------------
-		SKILL_ID_XEPHER = skillId;
+		window.SKILL_ID_XEPHER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -22594,7 +22595,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// タイフーンミサイル
 		// ----------------------------------------------------------------
-		SKILL_ID_TAYPHOON_MISSILE = skillId;
+		window.SKILL_ID_TAYPHOON_MISSILE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -22613,7 +22614,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ペトロロジー
 		// ----------------------------------------------------------------
-		SKILL_ID_PETROLOGY = skillId;
+		window.SKILL_ID_PETROLOGY = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -22632,7 +22633,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ソリッドスキン
 		// ----------------------------------------------------------------
-		SKILL_ID_SOLID_SKIN = skillId;
+		window.SKILL_ID_SOLID_SKIN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -22651,7 +22652,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ストーンハンマー
 		// ----------------------------------------------------------------
-		SKILL_ID_STONE_HUMMER = skillId;
+		window.SKILL_ID_STONE_HUMMER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -22670,7 +22671,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// カーズドソイル
 		// ----------------------------------------------------------------
-		SKILL_ID_CURSED_SOIL = skillId;
+		window.SKILL_ID_CURSED_SOIL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -22689,7 +22690,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ストーンシールド
 		// ----------------------------------------------------------------
-		SKILL_ID_STONE_SHIELD = skillId;
+		window.SKILL_ID_STONE_SHIELD = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -22708,7 +22709,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ロッククラッシャー
 		// ----------------------------------------------------------------
-		SKILL_ID_ROCK_CRUSHER = skillId;
+		window.SKILL_ID_ROCK_CRUSHER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -22727,7 +22728,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アップヒーバル
 		// ----------------------------------------------------------------
-		SKILL_ID_UP_HIEBAL = skillId;
+		window.SKILL_ID_UP_HIEBAL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -22746,7 +22747,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// パワーオブガイア
 		// ----------------------------------------------------------------
-		SKILL_ID_POWER_OF_GAIA = skillId;
+		window.SKILL_ID_POWER_OF_GAIA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -22765,7 +22766,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ストーンレイン
 		// ----------------------------------------------------------------
-		SKILL_ID_STONE_RAIN = skillId;
+		window.SKILL_ID_STONE_RAIN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -22784,7 +22785,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 剣鍛錬
 		// ----------------------------------------------------------------
-		SKILL_ID_KEN_SHUREN_GENETIC = skillId;
+		window.SKILL_ID_KEN_SHUREN_GENETIC = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -22803,7 +22804,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// カート改造
 		// ----------------------------------------------------------------
-		SKILL_ID_CART_KAIZO = skillId;
+		window.SKILL_ID_CART_KAIZO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -22822,7 +22823,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// カートトルネード
 		// ----------------------------------------------------------------
-		SKILL_ID_CART_TORNADO = skillId;
+		window.SKILL_ID_CART_TORNADO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -22847,7 +22848,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// カートキャノン
 		// ----------------------------------------------------------------
-		SKILL_ID_CART_CANNON = skillId;
+		window.SKILL_ID_CART_CANNON = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -22871,7 +22872,7 @@ function CSkillManager() {
 
 				// 基本式
 				pow = 60 * skillLv;
-				powCart = 50 * Math.max(LearnedSkillSearch(SKILL_ID_CART_KAIZO), UsedSkillSearch(SKILL_ID_CART_KAIZO));
+				powCart = 50 * Math.max(LearnedSkillSearch(window.SKILL_ID_CART_KAIZO), UsedSkillSearch(window.SKILL_ID_CART_KAIZO));
 				powInt = charaDataManger.GetCharaInt() / 40;
 				pow += Math.floor(powCard * powInt);
 
@@ -22893,7 +22894,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 改造カートブースト
 		// ----------------------------------------------------------------
-		SKILL_ID_CART_BOOST_GENETIC = skillId;
+		window.SKILL_ID_CART_BOOST_GENETIC = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -22925,7 +22926,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// チェンジマテリアル
 		// ----------------------------------------------------------------
-		SKILL_ID_CHANGE_MATERIAL = skillId;
+		window.SKILL_ID_CHANGE_MATERIAL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -22949,7 +22950,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// スリングアイテム
 		// ----------------------------------------------------------------
-		SKILL_ID_SLING_ITEM = skillId;
+		window.SKILL_ID_SLING_ITEM = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -22994,7 +22995,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// スペシャルファーマシー
 		// ----------------------------------------------------------------
-		SKILL_ID_SPECIAL_PHARMACY = skillId;
+		window.SKILL_ID_SPECIAL_PHARMACY = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -23018,7 +23019,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ミックスクッキング
 		// ----------------------------------------------------------------
-		SKILL_ID_MIX_COOKING = skillId;
+		window.SKILL_ID_MIX_COOKING = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -23042,7 +23043,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 爆弾製造
 		// ----------------------------------------------------------------
-		SKILL_ID_BAKUDAN_SEIZO = skillId;
+		window.SKILL_ID_BAKUDAN_SEIZO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -23066,7 +23067,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ソーントラップ
 		// ----------------------------------------------------------------
-		SKILL_ID_THORN_TRAP = skillId;
+		window.SKILL_ID_THORN_TRAP = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -23107,7 +23108,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ソーンウォール
 		// ----------------------------------------------------------------
-		SKILL_ID_THORN_WALL = skillId;
+		window.SKILL_ID_THORN_WALL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -23143,7 +23144,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// クレイジーウィード
 		// ----------------------------------------------------------------
-		SKILL_ID_CRAZY_WEED = skillId;
+		window.SKILL_ID_CRAZY_WEED = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -23187,7 +23188,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ブラッドサッカー
 		// ----------------------------------------------------------------
-		SKILL_ID_BLOOD_SUCKER = skillId;
+		window.SKILL_ID_BLOOD_SUCKER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -23241,7 +23242,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ヘルズプラント
 		// ----------------------------------------------------------------
-		SKILL_ID_HELLS_PLANT = skillId;
+		window.SKILL_ID_HELLS_PLANT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -23274,7 +23275,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ハウリングオブマンドラゴラ
 		// ----------------------------------------------------------------
-		SKILL_ID_HOWLING_OF_MANDRAGORA = skillId;
+		window.SKILL_ID_HOWLING_OF_MANDRAGORA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -23314,7 +23315,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// スポアエクスプロージョン
 		// ----------------------------------------------------------------
-		SKILL_ID_SPORE_EXPLOSION = skillId;
+		window.SKILL_ID_SPORE_EXPLOSION = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -23346,7 +23347,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// デモニックファイアー
 		// ----------------------------------------------------------------
-		SKILL_ID_DEMONIC_FIRE = skillId;
+		window.SKILL_ID_DEMONIC_FIRE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -23380,7 +23381,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// (仮)ファイアーエクスパンション(Lv5)
 		// ----------------------------------------------------------------
-		SKILL_ID_FIRE_EXPANSION = skillId;
+		window.SKILL_ID_FIRE_EXPANSION = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -23421,7 +23422,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 魔導ギア
 		// ----------------------------------------------------------------
-		SKILL_ID_MADOGEAR = skillId;
+		window.SKILL_ID_MADOGEAR = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -23440,13 +23441,13 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// セルフディストラクション(HPSP固定)
 		// ----------------------------------------------------------------
-		SKILL_ID_SELF_DESTRUCTION_MAX = skillId;
+		window.SKILL_ID_SELF_DESTRUCTION_MAX = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.refId = SKILL_ID_SELF_DESTRUCTION;
+			this.refId = window.SKILL_ID_SELF_DESTRUCTION;
 			this.name = "セルフディストラクション(HPSP固定)";
 			this.kana = "セルフテイストラクシヨンコテイ";
 			this.maxLv = 3;
@@ -23500,7 +23501,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// デュプレライト(物理) グレイアムライト
 		// ----------------------------------------------------------------
-		SKILL_ID_GRAHAM_LIGHT = skillId;
+		window.SKILL_ID_GRAHAM_LIGHT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -23520,7 +23521,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// デュプレライト(魔法) ミリアムライト
 		// ----------------------------------------------------------------
-		SKILL_ID_MIRIAM_LIGHT = skillId;
+		window.SKILL_ID_MIRIAM_LIGHT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -23540,7 +23541,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// AS用設定魔法
 		// ----------------------------------------------------------------
-		SKILL_ID_MAGIC_SETTING_FOR_AUTO_SPELL = skillId;
+		window.SKILL_ID_MAGIC_SETTING_FOR_AUTO_SPELL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -23559,7 +23560,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// シールドスペル(ATK+)
 		// ----------------------------------------------------------------
-		SKILL_ID_SHIELD_SPELL_ATK_PLUS = skillId;
+		window.SKILL_ID_SHIELD_SPELL_ATK_PLUS = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -23578,7 +23579,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// シールドスペル(DEF+)
 		// ----------------------------------------------------------------
-		SKILL_ID_SHIELD_SPELL_DEF_PLUS = skillId;
+		window.SKILL_ID_SHIELD_SPELL_DEF_PLUS = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -23597,7 +23598,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ディフェンダーの習得Lv(プレスティージ用)
 		// ----------------------------------------------------------------
-		SKILL_ID_SKILL_LV_DEFENDER_FOR_PRESTAGE = skillId;
+		window.SKILL_ID_SKILL_LV_DEFENDER_FOR_PRESTAGE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -23616,7 +23617,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ASS用設定魔法
 		// ----------------------------------------------------------------
-		SKILL_ID_MAGIC_SETTING_FOR_AUTO_SHADOW_SPELL = skillId;
+		window.SKILL_ID_MAGIC_SETTING_FOR_AUTO_SHADOW_SPELL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -23635,7 +23636,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 全気注入
 		// ----------------------------------------------------------------
-		SKILL_ID_ZENKI_CHUNYU = skillId;
+		window.SKILL_ID_ZENKI_CHUNYU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -23663,7 +23664,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// セージの魂(魔法の習得Lv)
 		// ----------------------------------------------------------------
-		SKILL_ID_SAGENO_TAMASHI_MAHONO_SHUTOKU_LEVEL = skillId;
+		window.SKILL_ID_SAGENO_TAMASHI_MAHONO_SHUTOKU_LEVEL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -23682,7 +23683,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ハルシネーション効果後のASPD減
 		// ----------------------------------------------------------------
-		SKILL_ID_HALLUCINATION_WALKGONO_ASPD_GENSHO = skillId;
+		window.SKILL_ID_HALLUCINATION_WALKGONO_ASPD_GENSHO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -23701,7 +23702,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 自動狼
 		// ----------------------------------------------------------------
-		SKILL_ID_AUTO_WUG = skillId;
+		window.SKILL_ID_AUTO_WUG = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -23720,7 +23721,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// (特殊)EDP毒部分を消す[通常はoff]
 		// ----------------------------------------------------------------
-		SKILL_ID_CANCEL_EDP_POISON_ATTACK = skillId;
+		window.SKILL_ID_CANCEL_EDP_POISON_ATTACK = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -23739,12 +23740,12 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// シビアレインストーム(特殊)
 		// ----------------------------------------------------------------
-		SKILL_ID_SEVERE_RAINSTORM_EX = skillId;
+		window.SKILL_ID_SEVERE_RAINSTORM_EX = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.refId = SKILL_ID_SEVERE_RAINSTORM;
+			this.refId = window.SKILL_ID_SEVERE_RAINSTORM;
 			this.name = "シビアレインストーム(特殊)";
 			this.kana = "シヒアレインストオムトクシユ";
 			this.maxLv = 5;
@@ -23793,7 +23794,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ロイヤルガードの人数(バンディング用)
 		// ----------------------------------------------------------------
-		SKILL_ID_COUNT_OF_RG_FOR_BANDING = skillId;
+		window.SKILL_ID_COUNT_OF_RG_FOR_BANDING = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -23812,7 +23813,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ダブルキャスティング
 		// ----------------------------------------------------------------
-		SKILL_ID_DOUBLE_CASTING = skillId;
+		window.SKILL_ID_DOUBLE_CASTING = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -23844,7 +23845,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// シールドスペル(反射)
 		// ----------------------------------------------------------------
-		SKILL_ID_SHIELD_SPELL_REFLECT = skillId;
+		window.SKILL_ID_SHIELD_SPELL_REFLECT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -23863,7 +23864,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// マナリチャージ
 		// ----------------------------------------------------------------
-		SKILL_ID_MANA_RECHARGE = skillId;
+		window.SKILL_ID_MANA_RECHARGE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -23882,7 +23883,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// シールドスペルLv1(物理)
 		// ----------------------------------------------------------------
-		SKILL_ID_SHIELD_SPELL_LV_1 = skillId;
+		window.SKILL_ID_SHIELD_SPELL_LV_1 = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -23923,7 +23924,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// シールドスペルLv2(魔法)
 		// ----------------------------------------------------------------
-		SKILL_ID_SHIELD_SPELL_LV_2 = skillId;
+		window.SKILL_ID_SHIELD_SPELL_LV_2 = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -23964,7 +23965,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 致命的な傷
 		// ----------------------------------------------------------------
-		SKILL_ID_CHIMEITEKINA_KIZU = skillId;
+		window.SKILL_ID_CHIMEITEKINA_KIZU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -23988,7 +23989,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アイアンネイル用ATK+
 		// ----------------------------------------------------------------
-		SKILL_ID_ATK_FOR_IRON_NAIL = skillId;
+		window.SKILL_ID_ATK_FOR_IRON_NAIL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -24007,7 +24008,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ヘルジャッジメント
 		// ----------------------------------------------------------------
-		SKILL_ID_HELL_JUDGEMENT = skillId;
+		window.SKILL_ID_HELL_JUDGEMENT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -24031,7 +24032,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 闇雲
 		// ----------------------------------------------------------------
-		SKILL_ID_YAMIKUMO = skillId;
+		window.SKILL_ID_YAMIKUMO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -24055,7 +24056,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 右手鍛錬
 		// ----------------------------------------------------------------
-		SKILL_ID_MIGITE_TANREN = skillId;
+		window.SKILL_ID_MIGITE_TANREN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -24074,7 +24075,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 左手鍛錬
 		// ----------------------------------------------------------------
-		SKILL_ID_HIDARITE_TANREN = skillId;
+		window.SKILL_ID_HIDARITE_TANREN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -24093,7 +24094,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 十文字斬り
 		// ----------------------------------------------------------------
-		SKILL_ID_ZYUMONZIGIRI = skillId;
+		window.SKILL_ID_ZYUMONZIGIRI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -24137,7 +24138,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 黄泉返し
 		// ----------------------------------------------------------------
-		SKILL_ID_YOMIGAESHI = skillId;
+		window.SKILL_ID_YOMIGAESHI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -24169,7 +24170,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 爆裂苦無
 		// ----------------------------------------------------------------
-		SKILL_ID_BAKURETSU_KUNAI = skillId;
+		window.SKILL_ID_BAKURETSU_KUNAI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -24192,7 +24193,7 @@ function CSkillManager() {
 
 				// 基本式
 				pow = (50 + Math.floor(charaDataManger.GetCharaDex() / 4)) * skillLv;
-				pow *= 0.4 * charaDataManger.UsedSkillSearch(SKILL_ID_TOTEKI_SHUREN);
+				pow *= 0.4 * charaDataManger.UsedSkillSearch(window.SKILL_ID_TOTEKI_SHUREN);
 
 				// ベースレベル補正
 				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 120);
@@ -24222,7 +24223,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 八方苦無
 		// ----------------------------------------------------------------
-		SKILL_ID_HAPPO_KUNAI = skillId;
+		window.SKILL_ID_HAPPO_KUNAI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -24251,7 +24252,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 風魔手裏剣 -乱華-
 		// ----------------------------------------------------------------
-		SKILL_ID_FUMASHURIKEN_RANKA = skillId;
+		window.SKILL_ID_FUMASHURIKEN_RANKA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -24295,7 +24296,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 撒菱
 		// ----------------------------------------------------------------
-		SKILL_ID_MAKIBISHI = skillId;
+		window.SKILL_ID_MAKIBISHI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -24319,7 +24320,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// (仮)無茶投げ
 		// ----------------------------------------------------------------
-		SKILL_ID_MUCHANAGE = skillId;
+		window.SKILL_ID_MUCHANAGE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -24355,7 +24356,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 明鏡止水
 		// ----------------------------------------------------------------
-		SKILL_ID_MEIKYO_SHISUI = skillId;
+		window.SKILL_ID_MEIKYO_SHISUI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -24391,7 +24392,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 幻術-影武者-
 		// ----------------------------------------------------------------
-		SKILL_ID_GENZYUTSU_KAGEMUSHA = skillId;
+		window.SKILL_ID_GENZYUTSU_KAGEMUSHA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -24419,7 +24420,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 幻術-驚愕-
 		// ----------------------------------------------------------------
-		SKILL_ID_GENZYUTSU_KYOGAKU = skillId;
+		window.SKILL_ID_GENZYUTSU_KYOGAKU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -24468,7 +24469,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 幻術-呪殺-
 		// ----------------------------------------------------------------
-		SKILL_ID_GENZYUTSU_ZYUSATSU = skillId;
+		window.SKILL_ID_GENZYUTSU_ZYUSATSU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -24504,7 +24505,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 幻術-幻惑-
 		// ----------------------------------------------------------------
-		SKILL_ID_GENZYUTSU_GENWAKU = skillId;
+		window.SKILL_ID_GENZYUTSU_GENWAKU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -24540,7 +24541,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 十六夜
 		// ----------------------------------------------------------------
-		SKILL_ID_IZAYOI = skillId;
+		window.SKILL_ID_IZAYOI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -24576,7 +24577,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 火符：炎天
 		// ----------------------------------------------------------------
-		SKILL_ID_HIFU_ENTEN = skillId;
+		window.SKILL_ID_HIFU_ENTEN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -24608,7 +24609,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 氷符：吹雪
 		// ----------------------------------------------------------------
-		SKILL_ID_HYOFU_FUBUKI = skillId;
+		window.SKILL_ID_HYOFU_FUBUKI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -24640,7 +24641,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 風符：青嵐
 		// ----------------------------------------------------------------
-		SKILL_ID_FUFU_SEIRAN = skillId;
+		window.SKILL_ID_FUFU_SEIRAN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -24672,7 +24673,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 土符：剛塊
 		// ----------------------------------------------------------------
-		SKILL_ID_DOFU_GOKAI = skillId;
+		window.SKILL_ID_DOFU_GOKAI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -24704,7 +24705,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 術式-解放-
 		// ----------------------------------------------------------------
-		SKILL_ID_ZYUTSUSHIKI_KAIHO = skillId;
+		window.SKILL_ID_ZYUTSUSHIKI_KAIHO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -24725,7 +24726,7 @@ function CSkillManager() {
 				var pow = 0;
 
 				// 基本式
-				pow = 200 * charaDataManger.UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
+				pow = 200 * charaDataManger.UsedSkillSearch(window.SKILL_ID_FU_COUNT_OF_FU);
 
 				// ベースレベル補正
 				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 100);
@@ -24740,7 +24741,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 術式-展開-
 		// ----------------------------------------------------------------
-		SKILL_ID_ZYUTSUSHIKI_TENKAI = skillId;
+		window.SKILL_ID_ZYUTSUSHIKI_TENKAI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -24760,7 +24761,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 幻術-影踏み-
 		// ----------------------------------------------------------------
-		SKILL_ID_GENZYUTSU_KAGEFUMI = skillId;
+		window.SKILL_ID_GENZYUTSU_KAGEFUMI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -24788,7 +24789,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 幻術-虚無の影-
 		// ----------------------------------------------------------------
-		SKILL_ID_GENZYUTSU_KYOMUNOKAGE = skillId;
+		window.SKILL_ID_GENZYUTSU_KYOMUNOKAGE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -24828,7 +24829,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 幻術-分身-
 		// ----------------------------------------------------------------
-		SKILL_ID_GENZYUTSU_BUNSHIN = skillId;
+		window.SKILL_ID_GENZYUTSU_BUNSHIN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -24860,7 +24861,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 幻術-残月-
 		// ----------------------------------------------------------------
-		SKILL_ID_GENZYUTSU_ZANGETSU = skillId;
+		window.SKILL_ID_GENZYUTSU_ZANGETSU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -24900,7 +24901,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 幻術-紅月-
 		// ----------------------------------------------------------------
-		SKILL_ID_GENZYUTSU_KOUGETSU = skillId;
+		window.SKILL_ID_GENZYUTSU_KOUGETSU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -24936,7 +24937,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 幻術-朧幻想-
 		// ----------------------------------------------------------------
-		SKILL_ID_GENZYUTSU_OBOROGENSO = skillId;
+		window.SKILL_ID_GENZYUTSU_OBOROGENSO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -24977,7 +24978,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 符の属性
 		// ----------------------------------------------------------------
-		SKILL_ID_FU_ELEMENT_OF_FU = skillId;
+		window.SKILL_ID_FU_ELEMENT_OF_FU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -24996,7 +24997,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 符の数
 		// ----------------------------------------------------------------
-		SKILL_ID_FU_COUNT_OF_FU = skillId;
+		window.SKILL_ID_FU_COUNT_OF_FU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -25015,7 +25016,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 残月用HpSp設定(前Hp後Sp 偶=偶数 奇=奇数)
 		// ----------------------------------------------------------------
-		SKILL_ID_HPSPCONF_FOR_GENZYUTSU_ZANGETSU = skillId;
+		window.SKILL_ID_HPSPCONF_FOR_GENZYUTSU_ZANGETSU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -25034,7 +25035,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ウォータードラゴンブレス
 		// ----------------------------------------------------------------
-		SKILL_ID_WATER_DRAGON_BREATH = skillId;
+		window.SKILL_ID_WATER_DRAGON_BREATH = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -25067,7 +25068,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アンリミット
 		// ----------------------------------------------------------------
-		SKILL_ID_UNLIMIT = skillId;
+		window.SKILL_ID_UNLIMIT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -25116,7 +25117,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// オフェルトリウム
 		// ----------------------------------------------------------------
-		SKILL_ID_OFFERTORIUM = skillId;
+		window.SKILL_ID_OFFERTORIUM = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -25161,7 +25162,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ダーククロー
 		// ----------------------------------------------------------------
-		SKILL_ID_DARK_CRAW = skillId;
+		window.SKILL_ID_DARK_CRAW = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -25197,7 +25198,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// テレキネシスインテンス
 		// ----------------------------------------------------------------
-		SKILL_ID_TELECHINESIS_INSTENCE = skillId;
+		window.SKILL_ID_TELECHINESIS_INSTENCE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -25235,7 +25236,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 閃光連撃
 		// ----------------------------------------------------------------
-		SKILL_ID_SENKO_RENGEKI = skillId;
+		window.SKILL_ID_SENKO_RENGEKI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -25275,7 +25276,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// (仮)コンボ計算(三段～)
 		// ----------------------------------------------------------------
-		SKILL_ID_COMBO_SANDAN_MONK = skillId;
+		window.SKILL_ID_COMBO_SANDAN_MONK = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -25300,7 +25301,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// (仮)コンボ計算(三段～)
 		// ----------------------------------------------------------------
-		SKILL_ID_COMBO_SANDAN_CHAMP = skillId;
+		window.SKILL_ID_COMBO_SANDAN_CHAMP = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -25325,7 +25326,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// (仮)コンボ計算(双龍～)
 		// ----------------------------------------------------------------
-		SKILL_ID_COMBO_SORYUKYAKU = skillId;
+		window.SKILL_ID_COMBO_SORYUKYAKU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -25350,7 +25351,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// (仮)コンボ計算(～)
 		// ----------------------------------------------------------------
-		SKILL_ID_COMBO_RESERVED_803 = skillId;
+		window.SKILL_ID_COMBO_RESERVED_803 = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -25375,7 +25376,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// (仮)コンボ計算(～)
 		// ----------------------------------------------------------------
-		SKILL_ID_COMBO_RESERVED_804 = skillId;
+		window.SKILL_ID_COMBO_RESERVED_804 = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -25400,7 +25401,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// (仮)コンボ計算(～)
 		// ----------------------------------------------------------------
-		SKILL_ID_COMBO_RESERVED_805 = skillId;
+		window.SKILL_ID_COMBO_RESERVED_805 = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -25425,7 +25426,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// (仮)コンボ計算(～)
 		// ----------------------------------------------------------------
-		SKILL_ID_COMBO_RESERVED_806 = skillId;
+		window.SKILL_ID_COMBO_RESERVED_806 = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -25450,7 +25451,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// (仮)コンボ計算(～)
 		// ----------------------------------------------------------------
-		SKILL_ID_COMBO_RESERVED_807 = skillId;
+		window.SKILL_ID_COMBO_RESERVED_807 = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -25475,7 +25476,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// (仮)コンボ計算(～)
 		// ----------------------------------------------------------------
-		SKILL_ID_COMBO_RESERVED_808 = skillId;
+		window.SKILL_ID_COMBO_RESERVED_808 = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -25500,7 +25501,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// (仮)コンボ計算(～)
 		// ----------------------------------------------------------------
-		SKILL_ID_COMBO_RESERVED_809 = skillId;
+		window.SKILL_ID_COMBO_RESERVED_809 = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -25525,7 +25526,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// (仮)アースクエイク
 		// ----------------------------------------------------------------
-		SKILL_ID_EARTH_QUAKE = skillId;
+		window.SKILL_ID_EARTH_QUAKE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -25554,7 +25555,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// マグマイラプション
 		// ----------------------------------------------------------------
-		SKILL_ID_MAGMA_ILLUPTION = skillId;
+		window.SKILL_ID_MAGMA_ILLUPTION = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -25595,7 +25596,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// (仮)精霊
 		// ----------------------------------------------------------------
-		SKILL_ID_SERE = skillId;
+		window.SKILL_ID_SERE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -25614,7 +25615,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 精霊(モード)
 		// ----------------------------------------------------------------
-		SKILL_ID_SERE_MODE = skillId;
+		window.SKILL_ID_SERE_MODE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -25633,7 +25634,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// (仮)精霊(補助スキル)
 		// ----------------------------------------------------------------
-		SKILL_ID_SERE_SUPPORT_SKILL = skillId;
+		window.SKILL_ID_SERE_SUPPORT_SKILL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -25652,7 +25653,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// SホムのLv(パイロ用)
 		// ----------------------------------------------------------------
-		SKILL_ID_HOMLV_FOR_PYROCLASTIC = skillId;
+		window.SKILL_ID_HOMLV_FOR_PYROCLASTIC = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -25671,7 +25672,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// パイロクラスティック(Sホム)
 		// ----------------------------------------------------------------
-		SKILL_ID_PYROCLASTIC = skillId;
+		window.SKILL_ID_PYROCLASTIC = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -25699,7 +25700,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// オーバードブースト(Sホム)
 		// ----------------------------------------------------------------
-		SKILL_ID_OVERED_BOOST = skillId;
+		window.SKILL_ID_OVERED_BOOST = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -25727,7 +25728,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// (仮)グラニティックアーマー(Sホム)
 		// ----------------------------------------------------------------
-		SKILL_ID_GRANITIC_ARMOR = skillId;
+		window.SKILL_ID_GRANITIC_ARMOR = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -25755,7 +25756,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// (仮)ペインキラー(Sホム)
 		// ----------------------------------------------------------------
-		SKILL_ID_PAIN_KILLER = skillId;
+		window.SKILL_ID_PAIN_KILLER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -25783,7 +25784,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ディフェンス(ホム)
 		// ----------------------------------------------------------------
-		SKILL_ID_DEFENCE = skillId;
+		window.SKILL_ID_DEFENCE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -25807,7 +25808,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 閃光連撃終了直後状態(約1.6秒のATK+状態)
 		// ----------------------------------------------------------------
-		SKILL_ID_ATK_PLUS_AFTER_SENKO_RENGEKI = skillId;
+		window.SKILL_ID_ATK_PLUS_AFTER_SENKO_RENGEKI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -25826,7 +25827,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// リッチズコイン
 		// ----------------------------------------------------------------
-		SKILL_ID_RICHS_COIN = skillId;
+		window.SKILL_ID_RICHS_COIN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -25858,7 +25859,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// フォーリンエンジェル
 		// ----------------------------------------------------------------
-		SKILL_ID_FALLIN_ANGEL = skillId;
+		window.SKILL_ID_FALLIN_ANGEL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -25882,7 +25883,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// シャッターストーム
 		// ----------------------------------------------------------------
-		SKILL_ID_SHUTTER_STORM = skillId;
+		window.SKILL_ID_SHUTTER_STORM = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -25922,7 +25923,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// マススパイラル
 		// ----------------------------------------------------------------
-		SKILL_ID_MASS_SPIRAL = skillId;
+		window.SKILL_ID_MASS_SPIRAL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -25954,7 +25955,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// エターナルチェーン
 		// ----------------------------------------------------------------
-		SKILL_ID_ETERNAL_CHAIN = skillId;
+		window.SKILL_ID_ETERNAL_CHAIN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -25993,7 +25994,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ハウリングマイン
 		// ----------------------------------------------------------------
-		SKILL_ID_HOWLING_MINE = skillId;
+		window.SKILL_ID_HOWLING_MINE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -26029,7 +26030,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ファイアーレイン
 		// ----------------------------------------------------------------
-		SKILL_ID_FIRE_RAIN = skillId;
+		window.SKILL_ID_FIRE_RAIN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -26065,7 +26066,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// フリッカー
 		// ----------------------------------------------------------------
-		SKILL_ID_FRICKER = skillId;
+		window.SKILL_ID_FRICKER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -26089,7 +26090,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ファイアーダンス
 		// ----------------------------------------------------------------
-		SKILL_ID_FIRE_DANCE = skillId;
+		window.SKILL_ID_FIRE_DANCE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -26121,7 +26122,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// バニシングバスター
 		// ----------------------------------------------------------------
-		SKILL_ID_BUNISHING_BASTER = skillId;
+		window.SKILL_ID_BUNISHING_BASTER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -26165,7 +26166,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アンチマテリアルブラスト
 		// ----------------------------------------------------------------
-		SKILL_ID_UNTIMATERIAL_BLAST = skillId;
+		window.SKILL_ID_UNTIMATERIAL_BLAST = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -26209,7 +26210,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// クイックドローショット
 		// ----------------------------------------------------------------
-		SKILL_ID_QUICKDRAW_SHOT = skillId;
+		window.SKILL_ID_QUICKDRAW_SHOT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -26241,7 +26242,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ドラゴンテイル
 		// ----------------------------------------------------------------
-		SKILL_ID_DRAGON_TAIL = skillId;
+		window.SKILL_ID_DRAGON_TAIL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -26281,7 +26282,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ラウンドトリップ
 		// ----------------------------------------------------------------
-		SKILL_ID_ROUND_TRIP = skillId;
+		window.SKILL_ID_ROUND_TRIP = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -26321,7 +26322,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ヒートバレル
 		// ----------------------------------------------------------------
-		SKILL_ID_HEAT_BARREL = skillId;
+		window.SKILL_ID_HEAT_BARREL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -26357,7 +26358,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ヒートバレルのコイン枚数
 		// ----------------------------------------------------------------
-		SKILL_ID_HEAT_BARREL_COIN_COUNT = skillId;
+		window.SKILL_ID_HEAT_BARREL_COIN_COUNT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -26376,7 +26377,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// スラッグショット
 		// ----------------------------------------------------------------
-		SKILL_ID_SLUG_SHOT = skillId;
+		window.SKILL_ID_SLUG_SHOT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -26412,7 +26413,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ハンマーオブゴッド
 		// ----------------------------------------------------------------
-		SKILL_ID_HAMMER_OF_GOD = skillId;
+		window.SKILL_ID_HAMMER_OF_GOD = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -26448,7 +26449,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// クリムゾンマーカー
 		// ----------------------------------------------------------------
-		SKILL_ID_CRYMSON_MARKER = skillId;
+		window.SKILL_ID_CRYMSON_MARKER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -26476,7 +26477,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// プラチナムアルター
 		// ----------------------------------------------------------------
-		SKILL_ID_PLATINUM_ALTER = skillId;
+		window.SKILL_ID_PLATINUM_ALTER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -26504,7 +26505,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// プラチナムのコイン枚数
 		// ----------------------------------------------------------------
-		SKILL_ID_PLATINUM_ALTER_COIN_COUNT = skillId;
+		window.SKILL_ID_PLATINUM_ALTER_COIN_COUNT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -26523,7 +26524,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// バインドトラップ
 		// ----------------------------------------------------------------
-		SKILL_ID_BIND_TRAP = skillId;
+		window.SKILL_ID_BIND_TRAP = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -26567,13 +26568,13 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ハウリングマイン追撃
 		// ----------------------------------------------------------------
-		SKILL_ID_HOWLING_MINE_APPEND = skillId;
+		window.SKILL_ID_HOWLING_MINE_APPEND = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.refId = SKILL_ID_HOWLING_MINE;
+			this.refId = window.SKILL_ID_HOWLING_MINE;
 			this.name = "ハウリングマイン追撃";
 			this.kana = "ハウリンクマインツイケキ";
 			this.maxLv = 5;
@@ -26592,7 +26593,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// クイックドローショットの全追撃
 		// ----------------------------------------------------------------
-		SKILL_ID_AS_QUICKDRAW = skillId;
+		window.SKILL_ID_AS_QUICKDRAW = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -26611,7 +26612,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 基本スキル
 		// ----------------------------------------------------------------
-		SKILL_ID_KIHON_SKILL = skillId;
+		window.SKILL_ID_KIHON_SKILL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -26630,7 +26631,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// レディムプティオ
 		// ----------------------------------------------------------------
-		SKILL_ID_REDEMPTIO = skillId;
+		window.SKILL_ID_REDEMPTIO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -26658,7 +26659,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// サイトブラスター
 		// ----------------------------------------------------------------
-		SKILL_ID_SIGHT_BLASTER = skillId;
+		window.SKILL_ID_SIGHT_BLASTER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -26686,7 +26687,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// グリード
 		// ----------------------------------------------------------------
-		SKILL_ID_GREED = skillId;
+		window.SKILL_ID_GREED = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -26714,7 +26715,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// フェイクゼニー
 		// ----------------------------------------------------------------
-		SKILL_ID_FAKE_ZENY = skillId;
+		window.SKILL_ID_FAKE_ZENY = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -26733,7 +26734,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// オートガード（ダミー　※多重定義ミス）
 		// ----------------------------------------------------------------
-		SKILL_ID_AUTO_GUARD_DUMMY = skillId;
+		window.SKILL_ID_AUTO_GUARD_DUMMY = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -26757,7 +26758,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// シュリンク
 		// ----------------------------------------------------------------
-		SKILL_ID_SHRINK = skillId;
+		window.SKILL_ID_SHRINK = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -26781,7 +26782,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 気功転移
 		// ----------------------------------------------------------------
-		SKILL_ID_KIKO_TENI = skillId;
+		window.SKILL_ID_KIKO_TENI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -26813,7 +26814,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// クリエイトコンバータ
 		// ----------------------------------------------------------------
-		SKILL_ID_CREATE_CONVERTER = skillId;
+		window.SKILL_ID_CREATE_CONVERTER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -26837,7 +26838,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ファイアーエレメンタルチェンジ
 		// ----------------------------------------------------------------
-		SKILL_ID_FIRE_ELEMENTAL_CHANGE = skillId;
+		window.SKILL_ID_FIRE_ELEMENTAL_CHANGE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -26869,7 +26870,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ウォーターエレメンタルチェンジ
 		// ----------------------------------------------------------------
-		SKILL_ID_WATER_ELEMENTAL_CHANGE = skillId;
+		window.SKILL_ID_WATER_ELEMENTAL_CHANGE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -26901,7 +26902,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ウィンドエレメンタルチェンジ
 		// ----------------------------------------------------------------
-		SKILL_ID_WIND_ELEMENTAL_CHANGE = skillId;
+		window.SKILL_ID_WIND_ELEMENTAL_CHANGE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -26933,7 +26934,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アースエレメンタルチェンジ
 		// ----------------------------------------------------------------
-		SKILL_ID_EARTH_ELEMENTAL_CHANGE = skillId;
+		window.SKILL_ID_EARTH_ELEMENTAL_CHANGE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -26965,7 +26966,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 生命倫理
 		// ----------------------------------------------------------------
-		SKILL_ID_SEIMEI_RINRI = skillId;
+		window.SKILL_ID_SEIMEI_RINRI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -26984,7 +26985,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 安息
 		// ----------------------------------------------------------------
-		SKILL_ID_ANSOKU = skillId;
+		window.SKILL_ID_ANSOKU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -27008,7 +27009,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// コールホムンクルス
 		// ----------------------------------------------------------------
-		SKILL_ID_CALL_HOMUNCULUS = skillId;
+		window.SKILL_ID_CALL_HOMUNCULUS = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -27032,7 +27033,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// リザレクションホムンクルス
 		// ----------------------------------------------------------------
-		SKILL_ID_RESURRECTION_HOMUNCULUS = skillId;
+		window.SKILL_ID_RESURRECTION_HOMUNCULUS = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -27060,7 +27061,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ガンバンテイン
 		// ----------------------------------------------------------------
-		SKILL_ID_GANBANTEIN = skillId;
+		window.SKILL_ID_GANBANTEIN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -27092,7 +27093,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 武器精錬
 		// ----------------------------------------------------------------
-		SKILL_ID_BUKISEIREN = skillId;
+		window.SKILL_ID_BUKISEIREN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -27116,7 +27117,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// プレッシャー（重複）
 		// ----------------------------------------------------------------
-		SKILL_ID_PRESSURE_MISS = skillId;
+		window.SKILL_ID_PRESSURE_MISS = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -27148,7 +27149,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// フルストリップ
 		// ----------------------------------------------------------------
-		SKILL_ID_FULL_STRIP = skillId;
+		window.SKILL_ID_FULL_STRIP = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -27202,7 +27203,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// プリザーブ
 		// ----------------------------------------------------------------
-		SKILL_ID_PRESERVE = skillId;
+		window.SKILL_ID_PRESERVE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -27230,7 +27231,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 音楽専門家の熟練
 		// ----------------------------------------------------------------
-		SKILL_ID_SPECIALSINGER = skillId;
+		window.SKILL_ID_SPECIALSINGER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -27254,7 +27255,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ヘルモードの杖
 		// ----------------------------------------------------------------
-		SKILL_ID_HELLMODENO_TUE = skillId;
+		window.SKILL_ID_HELLMODENO_TUE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -27278,7 +27279,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 月明かりの下で
 		// ----------------------------------------------------------------
-		SKILL_ID_TSUKIAKARINO_SHITADE = skillId;
+		window.SKILL_ID_TSUKIAKARINO_SHITADE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -27302,7 +27303,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 生命力変換
 		// ----------------------------------------------------------------
-		SKILL_ID_SEIMEIRYOKU_HENKAN = skillId;
+		window.SKILL_ID_SEIMEIRYOKU_HENKAN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -27330,7 +27331,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// スパイダーウェブ
 		// ----------------------------------------------------------------
-		SKILL_ID_SPIDER_WEB = skillId;
+		window.SKILL_ID_SPIDER_WEB = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -27354,7 +27355,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ウォールオブフォグ
 		// ----------------------------------------------------------------
-		SKILL_ID_WALL_OF_FOG = skillId;
+		window.SKILL_ID_WALL_OF_FOG = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -27382,7 +27383,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// スリムポーションピッチャー
 		// ----------------------------------------------------------------
-		SKILL_ID_SLIMPOTION_PITCHER = skillId;
+		window.SKILL_ID_SLIMPOTION_PITCHER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -27414,7 +27415,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// フルケミカルチャージ
 		// ----------------------------------------------------------------
-		SKILL_ID_FULL_CHEMICAL_CHARGE = skillId;
+		window.SKILL_ID_FULL_CHEMICAL_CHARGE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -27446,7 +27447,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 植物栽培
 		// ----------------------------------------------------------------
-		SKILL_ID_SHOKUBUTSU_SAIBAI = skillId;
+		window.SKILL_ID_SHOKUBUTSU_SAIBAI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -27470,7 +27471,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ナイトの魂
 		// ----------------------------------------------------------------
-		SKILL_ID_KNIGHTNO_TAMASHI = skillId;
+		window.SKILL_ID_KNIGHTNO_TAMASHI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -27498,7 +27499,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アサシンの魂
 		// ----------------------------------------------------------------
-		SKILL_ID_ASSASINNO_TAMASHI = skillId;
+		window.SKILL_ID_ASSASINNO_TAMASHI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -27526,7 +27527,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// プリーストの魂
 		// ----------------------------------------------------------------
-		SKILL_ID_PRIESTNO_TAMASHI = skillId;
+		window.SKILL_ID_PRIESTNO_TAMASHI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -27554,7 +27555,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ハンターの魂
 		// ----------------------------------------------------------------
-		SKILL_ID_HUNTERNO_TAMASHI = skillId;
+		window.SKILL_ID_HUNTERNO_TAMASHI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -27582,7 +27583,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ウィザードの魂
 		// ----------------------------------------------------------------
-		SKILL_ID_WIZARDNO_TAMASHI = skillId;
+		window.SKILL_ID_WIZARDNO_TAMASHI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -27610,7 +27611,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ブラックスミスの魂
 		// ----------------------------------------------------------------
-		SKILL_ID_BLACKSMITHNO_TAMASHI = skillId;
+		window.SKILL_ID_BLACKSMITHNO_TAMASHI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -27638,7 +27639,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// クルセイダーの魂
 		// ----------------------------------------------------------------
-		SKILL_ID_CRUSADERNO_TAMASHI = skillId;
+		window.SKILL_ID_CRUSADERNO_TAMASHI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -27666,7 +27667,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ローグの魂
 		// ----------------------------------------------------------------
-		SKILL_ID_ROGUENO_TAMASHI = skillId;
+		window.SKILL_ID_ROGUENO_TAMASHI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -27694,7 +27695,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// モンクの魂
 		// ----------------------------------------------------------------
-		SKILL_ID_MONKNO_TAMASHI = skillId;
+		window.SKILL_ID_MONKNO_TAMASHI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -27722,7 +27723,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// バードとダンサーの魂
 		// ----------------------------------------------------------------
-		SKILL_ID_BARDTO_DANCERNO_TAMASHI = skillId;
+		window.SKILL_ID_BARDTO_DANCERNO_TAMASHI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -27750,7 +27751,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// セージの魂
 		// ----------------------------------------------------------------
-		SKILL_ID_SAGENO_TAMASHI = skillId;
+		window.SKILL_ID_SAGENO_TAMASHI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -27778,7 +27779,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アルケミストの魂
 		// ----------------------------------------------------------------
-		SKILL_ID_ALCHEMISTNO_TAMASHI = skillId;
+		window.SKILL_ID_ALCHEMISTNO_TAMASHI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -27806,7 +27807,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 拳聖の魂
 		// ----------------------------------------------------------------
-		SKILL_ID_KENSENO_TAMASHI = skillId;
+		window.SKILL_ID_KENSENO_TAMASHI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -27834,7 +27835,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ソウルリンカーの魂
 		// ----------------------------------------------------------------
-		SKILL_ID_SOULLINKERNO_TAMASHI = skillId;
+		window.SKILL_ID_SOULLINKERNO_TAMASHI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -27862,7 +27863,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// フリップザコイン
 		// ----------------------------------------------------------------
-		SKILL_ID_FLIP_THE_COIN = skillId;
+		window.SKILL_ID_FLIP_THE_COIN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -27886,7 +27887,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// キングスグレイス
 		// ----------------------------------------------------------------
-		SKILL_ID_KINGS_GRACE = skillId;
+		window.SKILL_ID_KINGS_GRACE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -27918,7 +27919,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// エスケープ
 		// ----------------------------------------------------------------
-		SKILL_ID_ESCAPE = skillId;
+		window.SKILL_ID_ESCAPE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -27959,7 +27960,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// フリッグの歌
 		// ----------------------------------------------------------------
-		SKILL_ID_FRIGNO_UTA = skillId;
+		window.SKILL_ID_FRIGNO_UTA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -28007,7 +28008,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// エレメンタルシールド
 		// ----------------------------------------------------------------
-		SKILL_ID_ELEMENTAL_SHIELD = skillId;
+		window.SKILL_ID_ELEMENTAL_SHIELD = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -28047,7 +28048,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// イリュージョンドーピング
 		// ----------------------------------------------------------------
-		SKILL_ID_ILLUSION_DOOPING = skillId;
+		window.SKILL_ID_ILLUSION_DOOPING = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -28088,7 +28089,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ダーククロス
 		// ----------------------------------------------------------------
-		SKILL_ID_DARK_CROSS = skillId;
+		window.SKILL_ID_DARK_CROSS = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -28116,13 +28117,13 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// インティミデイト(盗作用Ex)
 		// ----------------------------------------------------------------
-		SKILL_ID_INTIMIDATE_FOR_CLONE = skillId;
+		window.SKILL_ID_INTIMIDATE_FOR_CLONE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.refId = SKILL_ID_INTIMIDATE;
+			this.refId = window.SKILL_ID_INTIMIDATE;
 			this.name = "インティミデイト(盗作用Ex)";
 			this.kana = "インテイミテイトトウサクヨウ";
 			this.maxLv = 10;
@@ -28149,7 +28150,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// (仮)コンボ計算(ｼﾞｮｲﾝﾄ→SpP→ｿﾆｯｸ)
 		// ----------------------------------------------------------------
-		SKILL_ID_COMBO_GIGANTSET_JOINT_BEAT = skillId;
+		window.SKILL_ID_COMBO_GIGANTSET_JOINT_BEAT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -28174,7 +28175,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// (仮)コンボ計算(SpP→ｿﾆｯｸ)
 		// ----------------------------------------------------------------
-		SKILL_ID_COMBO_GIGANTSET_SPIRAL_PIERCE = skillId;
+		window.SKILL_ID_COMBO_GIGANTSET_SPIRAL_PIERCE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -28199,7 +28200,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// フルスロットル
 		// ----------------------------------------------------------------
-		SKILL_ID_FULLSLOT = skillId;
+		window.SKILL_ID_FULLSLOT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -28238,7 +28239,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ドラム基本スキル
 		// ----------------------------------------------------------------
-		SKILL_ID_DORAM_KIHON_SKILL = skillId;
+		window.SKILL_ID_DORAM_KIHON_SKILL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -28257,7 +28258,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// かみつく
 		// ----------------------------------------------------------------
-		SKILL_ID_KAMITSUKU = skillId;
+		window.SKILL_ID_KAMITSUKU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -28293,7 +28294,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// かくれる
 		// ----------------------------------------------------------------
-		SKILL_ID_KAKURERU = skillId;
+		window.SKILL_ID_KAKURERU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -28321,7 +28322,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ひっかく
 		// ----------------------------------------------------------------
-		SKILL_ID_HIKKAKU = skillId;
+		window.SKILL_ID_HIKKAKU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -28349,7 +28350,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// うずくまる
 		// ----------------------------------------------------------------
-		SKILL_ID_UZUKUMARU = skillId;
+		window.SKILL_ID_UZUKUMARU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -28390,7 +28391,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ニャンジャンプ
 		// ----------------------------------------------------------------
-		SKILL_ID_NYAN_JAMP = skillId;
+		window.SKILL_ID_NYAN_JAMP = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -28418,7 +28419,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// にゃん魂
 		// ----------------------------------------------------------------
-		SKILL_ID_NYAN_TAMASHI = skillId;
+		window.SKILL_ID_NYAN_TAMASHI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -28437,7 +28438,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ソウルアタック
 		// ----------------------------------------------------------------
-		SKILL_ID_SOUL_ATTACK = skillId;
+		window.SKILL_ID_SOUL_ATTACK = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -28456,7 +28457,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 新鮮なエビ
 		// ----------------------------------------------------------------
-		SKILL_ID_SHINSENNA_EBI = skillId;
+		window.SKILL_ID_SHINSENNA_EBI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -28484,7 +28485,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// エビ三昧
 		// ----------------------------------------------------------------
-		SKILL_ID_EBI_ZANMAI = skillId;
+		window.SKILL_ID_EBI_ZANMAI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -28520,7 +28521,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 大トロ
 		// ----------------------------------------------------------------
-		SKILL_ID_OTORO = skillId;
+		window.SKILL_ID_OTORO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -28560,7 +28561,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// マグロシールド
 		// ----------------------------------------------------------------
-		SKILL_ID_MAGURO_SHIELD = skillId;
+		window.SKILL_ID_MAGURO_SHIELD = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -28596,7 +28597,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 海の力
 		// ----------------------------------------------------------------
-		SKILL_ID_UMINO_CHIKARA = skillId;
+		window.SKILL_ID_UMINO_CHIKARA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -28615,7 +28616,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// シーフード系習得レベル合計
 		// ----------------------------------------------------------------
-		SKILL_ID_SEAFOOD_KEI_SHUTOKU_LEVEL_GOKEI = skillId;
+		window.SKILL_ID_SEAFOOD_KEI_SHUTOKU_LEVEL_GOKEI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -28634,7 +28635,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// グルーミング
 		// ----------------------------------------------------------------
-		SKILL_ID_GROOMING = skillId;
+		window.SKILL_ID_GROOMING = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -28662,7 +28663,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// のどを鳴らす
 		// ----------------------------------------------------------------
-		SKILL_ID_NODOWO_NARASU = skillId;
+		window.SKILL_ID_NODOWO_NARASU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -28698,7 +28699,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// エビパーティー
 		// ----------------------------------------------------------------
-		SKILL_ID_EBI_PARTY = skillId;
+		window.SKILL_ID_EBI_PARTY = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -28734,7 +28735,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 海の魂
 		// ----------------------------------------------------------------
-		SKILL_ID_UMINO_TAMASHI = skillId;
+		window.SKILL_ID_UMINO_TAMASHI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -28753,7 +28754,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// マタタビランス
 		// ----------------------------------------------------------------
-		SKILL_ID_MATATABI_LANCE = skillId;
+		window.SKILL_ID_MATATABI_LANCE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -28785,7 +28786,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// マタタビの根っこ
 		// ----------------------------------------------------------------
-		SKILL_ID_MATATABINO_NEKKO = skillId;
+		window.SKILL_ID_MATATABINO_NEKKO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -28817,7 +28818,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// イヌハッカメテオ
 		// ----------------------------------------------------------------
-		SKILL_ID_INUHAKKA_METEOR = skillId;
+		window.SKILL_ID_INUHAKKA_METEOR = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -28865,7 +28866,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// (×)イヌハッカシャワー
 		// ----------------------------------------------------------------
-		SKILL_ID_INUHAKKA_SHOWER = skillId;
+		window.SKILL_ID_INUHAKKA_SHOWER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -28907,7 +28908,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 大地の力
 		// ----------------------------------------------------------------
-		SKILL_ID_DAICHINO_CHIKARA = skillId;
+		window.SKILL_ID_DAICHINO_CHIKARA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -28926,7 +28927,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// プラント系習得レベル合計
 		// ----------------------------------------------------------------
-		SKILL_ID_PLANT_KEI_SHUTOKU_LEVEL_GOKEI = skillId;
+		window.SKILL_ID_PLANT_KEI_SHUTOKU_LEVEL_GOKEI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -28945,7 +28946,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// チャタリング
 		// ----------------------------------------------------------------
-		SKILL_ID_CHATTERING = skillId;
+		window.SKILL_ID_CHATTERING = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -28973,7 +28974,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ミャウミャウ
 		// ----------------------------------------------------------------
-		SKILL_ID_MYAUMYAU = skillId;
+		window.SKILL_ID_MYAUMYAU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -29005,7 +29006,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ニャングラス
 		// ----------------------------------------------------------------
-		SKILL_ID_NYAN_GRASS = skillId;
+		window.SKILL_ID_NYAN_GRASS = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -29047,7 +29048,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 大地の魂
 		// ----------------------------------------------------------------
-		SKILL_ID_DAICHINO_TAMASHI = skillId;
+		window.SKILL_ID_DAICHINO_TAMASHI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -29066,7 +29067,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ピッキ突き
 		// ----------------------------------------------------------------
-		SKILL_ID_PIKKI_TSUKI = skillId;
+		window.SKILL_ID_PIKKI_TSUKI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -29102,7 +29103,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アクラウスダッシュ
 		// ----------------------------------------------------------------
-		SKILL_ID_ARCLOUSE_DASH = skillId;
+		window.SKILL_ID_ARCLOUSE_DASH = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -29134,7 +29135,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// タロウの傷
 		// ----------------------------------------------------------------
-		SKILL_ID_TAROUNO_KIZU = skillId;
+		window.SKILL_ID_TAROUNO_KIZU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -29174,7 +29175,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// キャロットビート
 		// ----------------------------------------------------------------
-		SKILL_ID_CARROT_BEAT = skillId;
+		window.SKILL_ID_CARROT_BEAT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -29216,7 +29217,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 生命の力
 		// ----------------------------------------------------------------
-		SKILL_ID_SEIMEINO_CHIKARA = skillId;
+		window.SKILL_ID_SEIMEINO_CHIKARA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -29235,7 +29236,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アニマル系習得レベル合計
 		// ----------------------------------------------------------------
-		SKILL_ID_ANIMAL_KEI_SHUTOKU_LEVEL_GOKEI = skillId;
+		window.SKILL_ID_ANIMAL_KEI_SHUTOKU_LEVEL_GOKEI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -29254,7 +29255,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 警戒
 		// ----------------------------------------------------------------
-		SKILL_ID_KEIKAI = skillId;
+		window.SKILL_ID_KEIKAI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -29286,7 +29287,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 群れの力
 		// ----------------------------------------------------------------
-		SKILL_ID_MURENO_CHIKARA = skillId;
+		window.SKILL_ID_MURENO_CHIKARA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -29328,7 +29329,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// サベージの魂
 		// ----------------------------------------------------------------
-		SKILL_ID_SAVAGENO_TAMASHI = skillId;
+		window.SKILL_ID_SAVAGENO_TAMASHI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -29370,7 +29371,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 生命の魂
 		// ----------------------------------------------------------------
-		SKILL_ID_SEIMEINO_TAMASHI = skillId;
+		window.SKILL_ID_SEIMEINO_TAMASHI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -29389,7 +29390,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 大地の魂効果(ﾏﾀﾀﾋﾞの根っこ使用後のMATK＋)
 		// ----------------------------------------------------------------
-		SKILL_ID_DAICHINO_TAMASHI_KOKA_MATATABINO_NEKKO = skillId;
+		window.SKILL_ID_DAICHINO_TAMASHI_KOKA_MATATABINO_NEKKO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -29408,7 +29409,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 大地の魂効果(ｲﾇﾊｯｶｼｬﾜｰ使用後の完全回避＋)
 		// ----------------------------------------------------------------
-		SKILL_ID_DAICHINO_TAMASHI_KOKA_INUHAKKA_SHOWER = skillId;
+		window.SKILL_ID_DAICHINO_TAMASHI_KOKA_INUHAKKA_SHOWER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -29427,7 +29428,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 大地の魂効果(ニャングラス使用後のMATK＋)
 		// ----------------------------------------------------------------
-		SKILL_ID_DAICHINO_TAMASHI_KOKA_NYAN_GRASS = skillId;
+		window.SKILL_ID_DAICHINO_TAMASHI_KOKA_NYAN_GRASS = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -29446,7 +29447,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 生命の魂効果(残りHP)
 		// ----------------------------------------------------------------
-		SKILL_ID_SEIMEINO_TAMASHI_KOKA_NOKORI_HP = skillId;
+		window.SKILL_ID_SEIMEINO_TAMASHI_KOKA_NOKORI_HP = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -29465,7 +29466,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ブレイクスルー
 		// ----------------------------------------------------------------
-		SKILL_ID_BREAK_THROUGH = skillId;
+		window.SKILL_ID_BREAK_THROUGH = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -29484,7 +29485,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// トランセンデンス
 		// ----------------------------------------------------------------
-		SKILL_ID_TRANSCENDENCE = skillId;
+		window.SKILL_ID_TRANSCENDENCE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -29503,7 +29504,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 天使さま助けて
 		// ----------------------------------------------------------------
-		SKILL_ID_TENSHISAMA_TASUKETE = skillId;
+		window.SKILL_ID_TENSHISAMA_TASUKETE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -29527,7 +29528,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 太陽と月と星の記録
 		// ----------------------------------------------------------------
-		SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_KIROKU = skillId;
+		window.SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_KIROKU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -29555,7 +29556,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 太陽と月と星の浄化
 		// ----------------------------------------------------------------
-		SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_ZYOKA = skillId;
+		window.SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_ZYOKA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -29574,7 +29575,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 太陽の構え
 		// ----------------------------------------------------------------
-		SKILL_ID_TAIYONO_KAMAE = skillId;
+		window.SKILL_ID_TAIYONO_KAMAE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -29597,7 +29598,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 紅焔脚
 		// ----------------------------------------------------------------
-		SKILL_ID_KOEN_KYAKU = skillId;
+		window.SKILL_ID_KOEN_KYAKU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -29629,7 +29630,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 太陽爆発
 		// ----------------------------------------------------------------
-		SKILL_ID_TAIYO_BAKUHATSU = skillId;
+		window.SKILL_ID_TAIYO_BAKUHATSU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -29661,7 +29662,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 太陽の光
 		// ----------------------------------------------------------------
-		SKILL_ID_TAIYONO_HIKARI = skillId;
+		window.SKILL_ID_TAIYONO_HIKARI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -29698,7 +29699,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 月の構え
 		// ----------------------------------------------------------------
-		SKILL_ID_TSUKINO_KAMAE = skillId;
+		window.SKILL_ID_TSUKINO_KAMAE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -29722,7 +29723,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 朔月脚
 		// ----------------------------------------------------------------
-		SKILL_ID_SAKUGETSU_KYAKU = skillId;
+		window.SKILL_ID_SAKUGETSU_KYAKU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -29758,7 +29759,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 満月脚
 		// ----------------------------------------------------------------
-		SKILL_ID_MANGETSU_KYAKU = skillId;
+		window.SKILL_ID_MANGETSU_KYAKU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -29794,7 +29795,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 月の光
 		// ----------------------------------------------------------------
-		SKILL_ID_TSUKINO_HIKARI = skillId;
+		window.SKILL_ID_TSUKINO_HIKARI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -29831,7 +29832,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 星の構え
 		// ----------------------------------------------------------------
-		SKILL_ID_HOSHINO_KAMAE = skillId;
+		window.SKILL_ID_HOSHINO_KAMAE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -29855,7 +29856,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 閃光脚
 		// ----------------------------------------------------------------
-		SKILL_ID_SENKO_KYAKU = skillId;
+		window.SKILL_ID_SENKO_KYAKU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -29887,7 +29888,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 流星落下
 		// ----------------------------------------------------------------
-		SKILL_ID_RYUSE_RAKKA = skillId;
+		window.SKILL_ID_RYUSE_RAKKA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -29914,7 +29915,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 星の光
 		// ----------------------------------------------------------------
-		SKILL_ID_HOSHINO_HIKARI = skillId;
+		window.SKILL_ID_HOSHINO_HIKARI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -29951,7 +29952,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 宇宙の構え
 		// ----------------------------------------------------------------
-		SKILL_ID_UCHUNO_KAMAE = skillId;
+		window.SKILL_ID_UCHUNO_KAMAE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -29975,7 +29976,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 重力調節
 		// ----------------------------------------------------------------
-		SKILL_ID_ZYURYOKU_CHOSE = skillId;
+		window.SKILL_ID_ZYURYOKU_CHOSE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -30016,7 +30017,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 新星爆発
 		// ----------------------------------------------------------------
-		SKILL_ID_SHINSE_BAKUHATSU = skillId;
+		window.SKILL_ID_SHINSE_BAKUHATSU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -30052,7 +30053,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 星帝降臨
 		// ----------------------------------------------------------------
-		SKILL_ID_SEITE_KORIN = skillId;
+		window.SKILL_ID_SEITE_KORIN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -30097,7 +30098,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 創星の書
 		// ----------------------------------------------------------------
-		SKILL_ID_SOSENO_SHO = skillId;
+		window.SKILL_ID_SOSENO_SHO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -30130,7 +30131,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 次元の書
 		// ----------------------------------------------------------------
-		SKILL_ID_ZIGENNO_SHO = skillId;
+		window.SKILL_ID_ZIGENNO_SHO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -30162,7 +30163,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// エスハ
 		// ----------------------------------------------------------------
-		SKILL_ID_ESHA = skillId;
+		window.SKILL_ID_ESHA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -30202,7 +30203,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// エスパ
 		// ----------------------------------------------------------------
-		SKILL_ID_ESPA = skillId;
+		window.SKILL_ID_ESPA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -30238,7 +30239,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// エスフ
 		// ----------------------------------------------------------------
-		SKILL_ID_ESFU = skillId;
+		window.SKILL_ID_ESFU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -30274,7 +30275,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// カウト
 		// ----------------------------------------------------------------
-		SKILL_ID_KAUTO = skillId;
+		window.SKILL_ID_KAUTO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -30306,7 +30307,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 魂の蓄積
 		// ----------------------------------------------------------------
-		SKILL_ID_TAMASHINO_CHIKUSEKI = skillId;
+		window.SKILL_ID_TAMASHINO_CHIKUSEKI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -30342,7 +30343,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 魂の収穫
 		// ----------------------------------------------------------------
-		SKILL_ID_TAMASHINO_SHUKAKU = skillId;
+		window.SKILL_ID_TAMASHINO_SHUKAKU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -30378,7 +30379,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 魂の循環
 		// ----------------------------------------------------------------
-		SKILL_ID_TAMASHINO_ZYUNKAN = skillId;
+		window.SKILL_ID_TAMASHINO_ZYUNKAN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -30414,7 +30415,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 魂の連結
 		// ----------------------------------------------------------------
-		SKILL_ID_TAMASHINO_RENKETSU = skillId;
+		window.SKILL_ID_TAMASHINO_RENKETSU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -30454,7 +30455,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ソウルエナジー研究
 		// ----------------------------------------------------------------
-		SKILL_ID_SOUL_ENERGY_KENKYU = skillId;
+		window.SKILL_ID_SOUL_ENERGY_KENKYU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -30473,7 +30474,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 死霊憑依
 		// ----------------------------------------------------------------
-		SKILL_ID_SHIRYO_HYOI = skillId;
+		window.SKILL_ID_SHIRYO_HYOI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -30505,7 +30506,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 死霊爆発
 		// ----------------------------------------------------------------
-		SKILL_ID_SHIRYO_BAKUHATSU = skillId;
+		window.SKILL_ID_SHIRYO_BAKUHATSU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -30545,7 +30546,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 魂の分裂
 		// ----------------------------------------------------------------
-		SKILL_ID_TAMASHINO_BUNRETSU = skillId;
+		window.SKILL_ID_TAMASHINO_BUNRETSU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -30585,7 +30586,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 鷹の魂
 		// ----------------------------------------------------------------
-		SKILL_ID_TAKANO_TAMASHI = skillId;
+		window.SKILL_ID_TAKANO_TAMASHI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -30612,7 +30613,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 妖精の魂
 		// ----------------------------------------------------------------
-		SKILL_ID_YOSENO_TAMASHI = skillId;
+		window.SKILL_ID_YOSENO_TAMASHI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -30639,7 +30640,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 影の魂
 		// ----------------------------------------------------------------
-		SKILL_ID_KAGENO_TAMASHI = skillId;
+		window.SKILL_ID_KAGENO_TAMASHI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -30666,7 +30667,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ゴーレムの魂
 		// ----------------------------------------------------------------
-		SKILL_ID_GOLEMNO_TAMASHI = skillId;
+		window.SKILL_ID_GOLEMNO_TAMASHI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -30693,7 +30694,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 魂の崩壊
 		// ----------------------------------------------------------------
-		SKILL_ID_TAMASHINO_HOKAI = skillId;
+		window.SKILL_ID_TAMASHINO_HOKAI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -30733,7 +30734,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ソウルエナジーの個数
 		// ----------------------------------------------------------------
-		SKILL_ID_COUNT_OF_SOUL_ENERGY = skillId;
+		window.SKILL_ID_COUNT_OF_SOUL_ENERGY = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -30752,7 +30753,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 流星落下の計算方法
 		// ----------------------------------------------------------------
-		SKILL_ID_RYUSE_RAKKA_MODE = skillId;
+		window.SKILL_ID_RYUSE_RAKKA_MODE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -30771,7 +30772,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ピオニーマミー
 		// ----------------------------------------------------------------
-		SKILL_ID_PEONY_MAMY = skillId;
+		window.SKILL_ID_PEONY_MAMY = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -30794,7 +30795,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ぴしゃりハーブ
 		// ----------------------------------------------------------------
-		SKILL_ID_PISHARI_HERB = skillId;
+		window.SKILL_ID_PISHARI_HERB = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -30817,7 +30818,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 世界樹のほこり
 		// ----------------------------------------------------------------
-		SKILL_ID_SEKAIZYUNO_HOKORI = skillId;
+		window.SKILL_ID_SEKAIZYUNO_HOKORI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -30840,7 +30841,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// スノーフリップ
 		// ----------------------------------------------------------------
-		SKILL_ID_SNOW_FLIP = skillId;
+		window.SKILL_ID_SNOW_FLIP = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -30863,13 +30864,13 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 所持限界量増加Ｒ
 		// ----------------------------------------------------------------
-		SKILL_ID_SHOZIGENKAIRYO_ZOKA_R = skillId;
+		window.SKILL_ID_SHOZIGENKAIRYO_ZOKA_R = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.refId = SKILL_ID_SHOZIGENKAIRYO_ZOKA;
+			this.refId = window.SKILL_ID_SHOZIGENKAIRYO_ZOKA;
 			this.name = "所持限界量増加Ｒ";
 			this.kana = "シヨシケンカイリヨウソウカアアル";
 			this.maxLv = 10;
@@ -30883,7 +30884,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ヴァンパイアギフト
 		// ----------------------------------------------------------------
-		SKILL_ID_VAMPIRE_GIFT = skillId;
+		window.SKILL_ID_VAMPIRE_GIFT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -30907,7 +30908,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 魅惑のウィンク
 		// ----------------------------------------------------------------
-		SKILL_ID_MIWAKUNO_WINK = skillId;
+		window.SKILL_ID_MIWAKUNO_WINK = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -30930,7 +30931,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// シーフード系スキル（データ移行対応用ダミー定義）
 		// ----------------------------------------------------------------
-		SKILL_ID_SERIES_SEA_FOOD = skillId;
+		window.SKILL_ID_SERIES_SEA_FOOD = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -30947,7 +30948,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// プラント系スキル（データ移行対応用ダミー定義）
 		// ----------------------------------------------------------------
-		SKILL_ID_SERIES_PLANT = skillId;
+		window.SKILL_ID_SERIES_PLANT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -30964,7 +30965,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アニマル系スキル（データ移行対応用ダミー定義）
 		// ----------------------------------------------------------------
-		SKILL_ID_SERIES_ANIMAL = skillId;
+		window.SKILL_ID_SERIES_ANIMAL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -30981,7 +30982,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ストーンスキン
 		// ----------------------------------------------------------------
-		SKILL_ID_STONE_SKIN = skillId;
+		window.SKILL_ID_STONE_SKIN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -31004,7 +31005,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// クリティカルウーンズ
 		// ----------------------------------------------------------------
-		SKILL_ID_CRITICAL_WOUNDS = skillId;
+		window.SKILL_ID_CRITICAL_WOUNDS = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -31027,7 +31028,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// オーディンの力
 		// ----------------------------------------------------------------
-		SKILL_ID_ODINNO_CHIKARA = skillId;
+		window.SKILL_ID_ODINNO_CHIKARA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -31050,7 +31051,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 通常攻撃右手（ダメージ計算用ダミー定義）
 		// ----------------------------------------------------------------
-		SKILL_ID_TUZYO_KOGEKI_CALC_RIGHT = skillId;
+		window.SKILL_ID_TUZYO_KOGEKI_CALC_RIGHT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -31076,7 +31077,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 通常攻撃左手（ダメージ計算用ダミー定義）
 		// ----------------------------------------------------------------
-		SKILL_ID_TUZYO_KOGEKI_CALC_LEFT = skillId;
+		window.SKILL_ID_TUZYO_KOGEKI_CALC_LEFT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -31102,7 +31103,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// カタール追撃（ダメージ計算用ダミー定義）
 		// ----------------------------------------------------------------
-		SKILL_ID_TUZYO_KOGEKI_CALC_KATAR_APPEND = skillId;
+		window.SKILL_ID_TUZYO_KOGEKI_CALC_KATAR_APPEND = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -31128,7 +31129,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// サーヴァントウェポン
 		// ----------------------------------------------------------------
-		SKILL_ID_SERVANT_WEAPON = skillId;
+		window.SKILL_ID_SERVANT_WEAPON = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -31185,7 +31186,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// サーヴァントウェポン：サイン
 		// ----------------------------------------------------------------
-		SKILL_ID_SERVANT_WEAPON_SIGN = skillId;
+		window.SKILL_ID_SERVANT_WEAPON_SIGN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -31227,7 +31228,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// サーヴァントウェポン：ファントム
 		// ----------------------------------------------------------------
-		SKILL_ID_SERVANT_WEAPON_PHANTOM = skillId;
+		window.SKILL_ID_SERVANT_WEAPON_PHANTOM = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -31284,7 +31285,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// サーヴァントウェポン：デモリッション
 		// ----------------------------------------------------------------
-		SKILL_ID_SERVANT_WEAPON_DEMOLISION = skillId;
+		window.SKILL_ID_SERVANT_WEAPON_DEMOLISION = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -31341,7 +31342,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// チャージングピアース
 		// ----------------------------------------------------------------
-		SKILL_ID_CHARGING_PIERCE = skillId;
+		window.SKILL_ID_CHARGING_PIERCE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -31380,7 +31381,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ツーハンドディフェンディング
 		// ----------------------------------------------------------------
-		SKILL_ID_TWOHAND_DEFENDING = skillId;
+		window.SKILL_ID_TWOHAND_DEFENDING = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -31398,7 +31399,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ハックアンドスラッシャー
 		// ----------------------------------------------------------------
-		SKILL_ID_HACK_AND_SLASHER = skillId;
+		window.SKILL_ID_HACK_AND_SLASHER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -31463,7 +31464,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ドラゴニックオーラ
 		// ----------------------------------------------------------------
-		SKILL_ID_DRAGONIC_AURA = skillId;
+		window.SKILL_ID_DRAGONIC_AURA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -31511,7 +31512,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// マッドネスクラッシャー
 		// ----------------------------------------------------------------
-		SKILL_ID_MADNESS_CRUSHER = skillId;
+		window.SKILL_ID_MADNESS_CRUSHER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -31567,7 +31568,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ヴィゴール
 		// ----------------------------------------------------------------
-		SKILL_ID_VIGOR = skillId;
+		window.SKILL_ID_VIGOR = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -31606,7 +31607,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ストームスラッシュ
 		// ----------------------------------------------------------------
-		SKILL_ID_STORM_SLASH = skillId;
+		window.SKILL_ID_STORM_SLASH = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -31628,7 +31629,7 @@ function CSkillManager() {
 			this.Power = function(skillLv, charaDataManger, option) {       	// スキル倍率
 				let ratio = 0;
 				// ジャイアントグロース(スリサズルーンストーン)はスキル倍率だけでなく基礎ステータスにも影響を与えるので職固有自己支援で設定する
-				const state_giant_growth = UsedSkillSearch(SKILL_ID_GIANT_GROWTH) === 1;
+				const state_giant_growth = UsedSkillSearch(window.SKILL_ID_GIANT_GROWTH) === 1;
 				ratio += 1550 + 50 * skillLv;
 				ratio += 6 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
 				if (state_giant_growth) {
@@ -31671,7 +31672,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ダンシングナイフ
 		// ----------------------------------------------------------------
-		SKILL_ID_DANCING_KNIFE = skillId;
+		window.SKILL_ID_DANCING_KNIFE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -31718,7 +31719,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// サベージインパクト
 		// ----------------------------------------------------------------
-		SKILL_ID_SAVAGE_IMPACT = skillId;
+		window.SKILL_ID_SAVAGE_IMPACT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -31741,7 +31742,7 @@ function CSkillManager() {
 				let ratio = 0;
 				ratio = 500 + 100 * skillLv;
 				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-				if (UsedSkillSearch(SKILL_ID_SHADOW_EXCEED) > 0) {
+				if (UsedSkillSearch(window.SKILL_ID_SHADOW_EXCEED) > 0) {
 					ratio *= 2;
 				}
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
@@ -31769,7 +31770,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// シャドウセンス
 		// ----------------------------------------------------------------
-		SKILL_ID_SHADOW_SENSE = skillId;
+		window.SKILL_ID_SHADOW_SENSE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -31787,7 +31788,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// エターナルスラッシュ
 		// ----------------------------------------------------------------
-		SKILL_ID_ETERNAL_SLASH = skillId;
+		window.SKILL_ID_ETERNAL_SLASH = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -31808,7 +31809,7 @@ function CSkillManager() {
 				let ratio = 0;
 				ratio = 50 + 50 * skillLv;
 				ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-				if (UsedSkillSearch(SKILL_ID_SHADOW_EXCEED) > 0) {
+				if (UsedSkillSearch(window.SKILL_ID_SHADOW_EXCEED) > 0) {
 					// シャドウエクシード状態時、倍率２倍
 					ratio *= 2;
 				}
@@ -31841,7 +31842,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// エンチャンティングシャドウ
 		// ----------------------------------------------------------------
-		SKILL_ID_ENCHANTING_SHADOW = skillId;
+		window.SKILL_ID_ENCHANTING_SHADOW = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -31868,7 +31869,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ポテントベナム
 		// ----------------------------------------------------------------
-		SKILL_ID_POTENT_VENOM = skillId;
+		window.SKILL_ID_POTENT_VENOM = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -31895,7 +31896,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// シャドウエクシード
 		// ----------------------------------------------------------------
-		SKILL_ID_SHADOW_EXCEED = skillId;
+		window.SKILL_ID_SHADOW_EXCEED = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -31931,7 +31932,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// フェイタルシャドウクロー
 		// ----------------------------------------------------------------
-		SKILL_ID_FATAL_SHADOW_CRAW = skillId;
+		window.SKILL_ID_FATAL_SHADOW_CRAW = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -31987,7 +31988,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// シャドウスタブ
 		// ----------------------------------------------------------------
-		SKILL_ID_SHADOW_STAB = skillId;
+		window.SKILL_ID_SHADOW_STAB = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -32031,7 +32032,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// インパクトクレーター
 		// ----------------------------------------------------------------
-		SKILL_ID_IMPACT_CRATER = skillId;
+		window.SKILL_ID_IMPACT_CRATER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -32084,7 +32085,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// レパラティオ
 		// ----------------------------------------------------------------
-		SKILL_ID_REPARATIO = skillId;
+		window.SKILL_ID_REPARATIO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -32124,7 +32125,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// メディアリボトゥム
 		// ----------------------------------------------------------------
-		SKILL_ID_MEDIA_REBOTUM = skillId;
+		window.SKILL_ID_MEDIA_REBOTUM = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -32163,7 +32164,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 鈍器＆本修練
 		// ----------------------------------------------------------------
-		SKILL_ID_DONKI_HON_SHUREN = skillId;
+		window.SKILL_ID_DONKI_HON_SHUREN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -32181,7 +32182,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アルグトゥスヴィタ
 		// ----------------------------------------------------------------
-		SKILL_ID_ARUGUTUS_VITA = skillId;
+		window.SKILL_ID_ARUGUTUS_VITA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -32220,7 +32221,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アルグトゥステルム
 		// ----------------------------------------------------------------
-		SKILL_ID_ARUGUTUS_TERUM = skillId;
+		window.SKILL_ID_ARUGUTUS_TERUM = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -32259,7 +32260,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アルビトリウム
 		// ----------------------------------------------------------------
-		SKILL_ID_ARBITRIUM = skillId;
+		window.SKILL_ID_ARBITRIUM = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -32298,7 +32299,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// プレセンスアキエース
 		// ----------------------------------------------------------------
-		SKILL_ID_PRESENSE_AKYACE = skillId;
+		window.SKILL_ID_PRESENSE_AKYACE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -32337,7 +32338,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// フィドスアニムス
 		// ----------------------------------------------------------------
-		SKILL_ID_FIDOS_ANIMUS = skillId;
+		window.SKILL_ID_FIDOS_ANIMUS = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -32355,7 +32356,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// エフィリゴ
 		// ----------------------------------------------------------------
-		SKILL_ID_EFIRIGO = skillId;
+		window.SKILL_ID_EFIRIGO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -32373,7 +32374,7 @@ function CSkillManager() {
 			this.Power = function(skillLv, charaData, option, mobData) {			// スキル倍率
 				let ratio = 0;
 				// 鈍器＆本修練の補正Lv
-				const donki_hon_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_DONKI_HON_SHUREN), UsedSkillSearch(SKILL_ID_DONKI_HON_SHUREN));
+				const donki_hon_shuren_lv = Math.max(LearnedSkillSearch(window.SKILL_ID_DONKI_HON_SHUREN), UsedSkillSearch(window.SKILL_ID_DONKI_HON_SHUREN));
 				ratio = 4000 + 500 * skillLv;							// 基本倍率
 				ratio += 60 * GetTotalSpecStatus(MIG_PARAM_ID_POW);		// POW補正
 				ratio += (400 + 50 * skillLv) * donki_hon_shuren_lv;	// 鈍器＆本修練 補正
@@ -32414,7 +32415,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// コンペテンティア
 		// ----------------------------------------------------------------
-		SKILL_ID_CONPETENTIA = skillId;
+		window.SKILL_ID_CONPETENTIA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -32453,7 +32454,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ニューマティックプロセラ
 		// ----------------------------------------------------------------
-		SKILL_ID_NUMATIC_PROCERA = skillId;
+		window.SKILL_ID_NUMATIC_PROCERA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -32492,7 +32493,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ディレクティオヒール
 		// ----------------------------------------------------------------
-		SKILL_ID_DILECTIO_HEAL = skillId;
+		window.SKILL_ID_DILECTIO_HEAL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -32531,7 +32532,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// レリギオ
 		// ----------------------------------------------------------------
-		SKILL_ID_RERIGIO = skillId;
+		window.SKILL_ID_RERIGIO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -32570,7 +32571,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ベネディクトゥム
 		// ----------------------------------------------------------------
-		SKILL_ID_BENEDICTUM = skillId;
+		window.SKILL_ID_BENEDICTUM = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -32610,7 +32611,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ペティティオ
 		// ----------------------------------------------------------------
-		SKILL_ID_PETITIO = skillId;
+		window.SKILL_ID_PETITIO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -32629,7 +32630,7 @@ function CSkillManager() {
 			this.Power = function(skillLv, charaData, option, mobData) { // スキル倍率
 				// 計算式はこれで良いと判断しているが Lv1, 5, 10 のとき僅かな誤差があり小数点以下の扱いに未知のルールがありそう
 				let ratio = 0;
-				const donki_hon_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_DONKI_HON_SHUREN), UsedSkillSearch(SKILL_ID_DONKI_HON_SHUREN));
+				const donki_hon_shuren_lv = Math.max(LearnedSkillSearch(window.SKILL_ID_DONKI_HON_SHUREN), UsedSkillSearch(window.SKILL_ID_DONKI_HON_SHUREN));
 				// 基本倍率
 				ratio = 350 * skillLv;
 				// POW補正 検証済み
@@ -32673,7 +32674,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ペティティオ習得レベル
 		// ----------------------------------------------------------------
-		SKILL_ID_PETITIO_LEARNED = skillId;
+		window.SKILL_ID_PETITIO_LEARNED = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -32692,7 +32693,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// フレーメン
 		// ----------------------------------------------------------------
-		SKILL_ID_PHREMEN = skillId;
+		window.SKILL_ID_PHREMEN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -32728,7 +32729,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アドバンスドトラップ
 		// ----------------------------------------------------------------
-		SKILL_ID_ADVANCED_TRAP = skillId;
+		window.SKILL_ID_ADVANCED_TRAP = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -32746,7 +32747,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ウィンドサイン
 		// ----------------------------------------------------------------
-		SKILL_ID_WIND_SIGN = skillId;
+		window.SKILL_ID_WIND_SIGN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -32785,7 +32786,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 自然親和
 		// ----------------------------------------------------------------
-		SKILL_ID_SHIZEN_SHINWA = skillId;
+		window.SKILL_ID_SHIZEN_SHINWA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -32803,7 +32804,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ホークラッシュ
 		// ----------------------------------------------------------------
-		SKILL_ID_HAWK_RUSH = skillId;
+		window.SKILL_ID_HAWK_RUSH = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -32830,7 +32831,7 @@ function CSkillManager() {
 				// CON補正
 				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
 				// 自然親和補正
-				const shizen_shinwa_lv = Math.max(LearnedSkillSearch(SKILL_ID_SHIZEN_SHINWA), UsedSkillSearch(SKILL_ID_SHIZEN_SHINWA));
+				const shizen_shinwa_lv = Math.max(LearnedSkillSearch(window.SKILL_ID_SHIZEN_SHINWA), UsedSkillSearch(window.SKILL_ID_SHIZEN_SHINWA));
 				ratio *= (1 + 0.2 * shizen_shinwa_lv);
 				// ベースレベル補正
 				return Math.floor(ratio * n_A_BaseLV / 100);
@@ -32857,7 +32858,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ホークマスタリー
 		// ----------------------------------------------------------------
-		SKILL_ID_HAWK_MASTERY = skillId;
+		window.SKILL_ID_HAWK_MASTERY = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -32878,7 +32879,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// カラミティゲイル
 		// ----------------------------------------------------------------
-		SKILL_ID_CALAMITY_GALE = skillId;
+		window.SKILL_ID_CALAMITY_GALE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -32917,7 +32918,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ホークブーメラン
 		// ----------------------------------------------------------------
-		SKILL_ID_HAWK_BOOMERANG = skillId;
+		window.SKILL_ID_HAWK_BOOMERANG = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -32941,7 +32942,7 @@ function CSkillManager() {
 				// CON補正
 				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
 				// 自然親和補正
-				const shizen_shinwa_lv = Math.max(LearnedSkillSearch(SKILL_ID_SHIZEN_SHINWA), UsedSkillSearch(SKILL_ID_SHIZEN_SHINWA));
+				const shizen_shinwa_lv = Math.max(LearnedSkillSearch(window.SKILL_ID_SHIZEN_SHINWA), UsedSkillSearch(window.SKILL_ID_SHIZEN_SHINWA));
 				ratio *= (1 + 0.2 * shizen_shinwa_lv);
 				// ベースレベル補正
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);	
@@ -32979,7 +32980,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ゲイルストーム
 		// ----------------------------------------------------------------
-		SKILL_ID_GALE_STORM = skillId;
+		window.SKILL_ID_GALE_STORM = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -33009,7 +33010,7 @@ function CSkillManager() {
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				// カラミティゲイル状態は小数点以下に掛からない
 				// カラミティゲイル状態で Mob の種族が動物・魚介の場合ダメージ２倍
-				if (UsedSkillSearch(SKILL_ID_CALAMITY_GALE) > 0) {
+				if (UsedSkillSearch(window.SKILL_ID_CALAMITY_GALE) > 0) {
 					if ([RACE_ID_FISH, RACE_ID_ANIMAL].includes(mobData[MONSTER_DATA_INDEX_RACE])) {
 						ratio = Math.floor(ratio * 2.00);
 					}
@@ -33032,14 +33033,14 @@ function CSkillManager() {
 				return 500;
 			}
 			this.CriActRate = (skillLv, charaData, specData, mobData) => {
-				if (UsedSkillSearch(SKILL_ID_CALAMITY_GALE) > 0) {
+				if (UsedSkillSearch(window.SKILL_ID_CALAMITY_GALE) > 0) {
 					return this._CriActRate100(skillLv, charaData, specData, mobData);
 				} else {
 					return 0;
 				}
 			}
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {
-				if (UsedSkillSearch(SKILL_ID_CALAMITY_GALE) > 0) {
+				if (UsedSkillSearch(window.SKILL_ID_CALAMITY_GALE) > 0) {
 					return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 				} else {
 					return 0;
@@ -33052,7 +33053,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ディープブラインドトラップ
 		// ----------------------------------------------------------------
-		SKILL_ID_DEEP_BLIND_TRAP = skillId;
+		window.SKILL_ID_DEEP_BLIND_TRAP = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -33080,7 +33081,7 @@ function CSkillManager() {
 				ratio = ratio * n_A_BaseLV / 100;
 				// アドバンスドトラップ研究は小数点以下にも掛かる
 				// アドバンスドトラップ研究補正
-				const advanced_trap_lv = Math.max(LearnedSkillSearch(SKILL_ID_ADVANCED_TRAP), UsedSkillSearch(SKILL_ID_ADVANCED_TRAP));
+				const advanced_trap_lv = Math.max(LearnedSkillSearch(window.SKILL_ID_ADVANCED_TRAP), UsedSkillSearch(window.SKILL_ID_ADVANCED_TRAP));
 				ratio = Math.floor(ratio * (1 + 0.2 * advanced_trap_lv));
 				return ratio;
 			}
@@ -33096,7 +33097,7 @@ function CSkillManager() {
 			this.LifeTime = function(skillLv, charaDataManger) {
 				var nLifeTime = ([0, 57000, 27700, 12100, 5500, 3100])[skillLv];
 				// 補助スキルレベル取得
-				var sklLvSub = Math.max(LearnedSkillSearch(SKILL_ID_ADVANCED_TRAP), UsedSkillSearch(SKILL_ID_ADVANCED_TRAP));
+				var sklLvSub = Math.max(LearnedSkillSearch(window.SKILL_ID_ADVANCED_TRAP), UsedSkillSearch(window.SKILL_ID_ADVANCED_TRAP));
 				if (sklLvSub > 0) {
 					nLifeTime += 500 + (500 * sklLvSub);
 				}
@@ -33109,7 +33110,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ソリッドトラップ
 		// ----------------------------------------------------------------
-		SKILL_ID_SOLID_TRAP = skillId;
+		window.SKILL_ID_SOLID_TRAP = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -33137,7 +33138,7 @@ function CSkillManager() {
 				ratio = ratio * n_A_BaseLV / 100;
 				// アドバンスドトラップ研究は小数点以下にも掛かる
 				// アドバンスドトラップ研究補正
-				const advanced_trap_lv = Math.max(LearnedSkillSearch(SKILL_ID_ADVANCED_TRAP), UsedSkillSearch(SKILL_ID_ADVANCED_TRAP));
+				const advanced_trap_lv = Math.max(LearnedSkillSearch(window.SKILL_ID_ADVANCED_TRAP), UsedSkillSearch(window.SKILL_ID_ADVANCED_TRAP));
 				ratio = Math.floor(ratio * (1 + 0.2 * advanced_trap_lv));
 				return ratio;
 			}
@@ -33153,7 +33154,7 @@ function CSkillManager() {
 			this.LifeTime = function(skillLv, charaDataManger) {
 				var nLifeTime = ([0, 57000, 27700, 12100, 5500, 3100])[skillLv];
 				// 補助スキルレベル取得
-				var sklLvSub = Math.max(LearnedSkillSearch(SKILL_ID_ADVANCED_TRAP), UsedSkillSearch(SKILL_ID_ADVANCED_TRAP));
+				var sklLvSub = Math.max(LearnedSkillSearch(window.SKILL_ID_ADVANCED_TRAP), UsedSkillSearch(window.SKILL_ID_ADVANCED_TRAP));
 				if (sklLvSub > 0) {
 					nLifeTime += 500 + (500 * sklLvSub);
 				}
@@ -33166,7 +33167,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// スイフトトラップ
 		// ----------------------------------------------------------------
-		SKILL_ID_SWIFT_TRAP = skillId;
+		window.SKILL_ID_SWIFT_TRAP = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -33194,7 +33195,7 @@ function CSkillManager() {
 				ratio = ratio * n_A_BaseLV / 100;
 				// アドバンスドトラップ研究は小数点以下にも掛かる
 				// アドバンスドトラップ研究補正
-				const advanced_trap_lv = Math.max(LearnedSkillSearch(SKILL_ID_ADVANCED_TRAP), UsedSkillSearch(SKILL_ID_ADVANCED_TRAP));
+				const advanced_trap_lv = Math.max(LearnedSkillSearch(window.SKILL_ID_ADVANCED_TRAP), UsedSkillSearch(window.SKILL_ID_ADVANCED_TRAP));
 				ratio = Math.floor(ratio * (1 + 0.2 * advanced_trap_lv));
 				return ratio;
 			}
@@ -33210,7 +33211,7 @@ function CSkillManager() {
 			this.LifeTime = function(skillLv, charaDataManger) {
 				var nLifeTime = ([0, 57000, 27700, 12100, 5500, 3100])[skillLv];
 				// 補助スキルレベル取得
-				var sklLvSub = Math.max(LearnedSkillSearch(SKILL_ID_ADVANCED_TRAP), UsedSkillSearch(SKILL_ID_ADVANCED_TRAP));
+				var sklLvSub = Math.max(LearnedSkillSearch(window.SKILL_ID_ADVANCED_TRAP), UsedSkillSearch(window.SKILL_ID_ADVANCED_TRAP));
 				if (sklLvSub > 0) {
 					nLifeTime += 500 + (500 * sklLvSub);
 				}
@@ -33223,7 +33224,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// クレッシブボルト
 		// ----------------------------------------------------------------
-		SKILL_ID_CRESSIVE_VOLT = skillId;
+		window.SKILL_ID_CRESSIVE_VOLT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -33253,7 +33254,7 @@ function CSkillManager() {
 				ratio = Math.floor(ratio * [1.00, 1.10, 1.25, 1.50][option.GetOptionValue(0)]);
 				// カラミティゲイル状態は小数点以下に掛からないのでfloorのあとに計算する
 				// カラミティゲイル状態で 1.25 倍
-				if (UsedSkillSearch(SKILL_ID_CALAMITY_GALE) > 0) {
+				if (UsedSkillSearch(window.SKILL_ID_CALAMITY_GALE) > 0) {
 					ratio = Math.floor(ratio * 1.25);
 					// Mob の種族が魚介または動物の場合さらに 2.00 倍
 					if ([RACE_ID_FISH, RACE_ID_ANIMAL].includes(mobData[MONSTER_DATA_INDEX_RACE])) {
@@ -33290,7 +33291,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// フレイムトラップ
 		// ----------------------------------------------------------------
-		SKILL_ID_FLAME_TRAP = skillId;
+		window.SKILL_ID_FLAME_TRAP = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -33318,7 +33319,7 @@ function CSkillManager() {
 				ratio = ratio * n_A_BaseLV / 100;
 				// アドバンスドトラップ研究は小数点以下にも掛かる
 				// アドバンスドトラップ研究補正
-				const advanced_trap_lv = Math.max(LearnedSkillSearch(SKILL_ID_ADVANCED_TRAP), UsedSkillSearch(SKILL_ID_ADVANCED_TRAP));
+				const advanced_trap_lv = Math.max(LearnedSkillSearch(window.SKILL_ID_ADVANCED_TRAP), UsedSkillSearch(window.SKILL_ID_ADVANCED_TRAP));
 				ratio = Math.floor(ratio * (1 + 0.2 * advanced_trap_lv));
 				return ratio;
 			}
@@ -33334,7 +33335,7 @@ function CSkillManager() {
 			this.LifeTime = function(skillLv, charaDataManger) {
 				var nLifeTime = ([0, 57000, 27700, 12100, 5500, 3100])[skillLv];
 				// 補助スキルレベル取得
-				var sklLvSub = Math.max(LearnedSkillSearch(SKILL_ID_ADVANCED_TRAP), UsedSkillSearch(SKILL_ID_ADVANCED_TRAP));
+				var sklLvSub = Math.max(LearnedSkillSearch(window.SKILL_ID_ADVANCED_TRAP), UsedSkillSearch(window.SKILL_ID_ADVANCED_TRAP));
 				if (sklLvSub > 0) {
 					nLifeTime += 500 + (500 * sklLvSub);
 				}
@@ -33347,7 +33348,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// デッドリープロジェクション
 		// ----------------------------------------------------------------
-		SKILL_ID_DEADLY_PROJECTION = skillId;
+		window.SKILL_ID_DEADLY_PROJECTION = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -33383,7 +33384,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ディストラクティブハリケーン
 		// ----------------------------------------------------------------
-		SKILL_ID_DESTRACTIVE_HURRICANE = skillId;
+		window.SKILL_ID_DESTRACTIVE_HURRICANE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -33423,7 +33424,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// クライマックスハリケーン状態
 		// ----------------------------------------------------------------
-		SKILL_ID_CLIMAX_HURRICANE_STATE = skillId;
+		window.SKILL_ID_CLIMAX_HURRICANE_STATE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -33442,7 +33443,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// レインオブクリスタル
 		// ----------------------------------------------------------------
-		SKILL_ID_RAIN_OF_CRYSTAL = skillId;
+		window.SKILL_ID_RAIN_OF_CRYSTAL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -33481,7 +33482,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ミステリーイリュージョン
 		// ----------------------------------------------------------------
-		SKILL_ID_MYSTERY_ILLUSION = skillId;
+		window.SKILL_ID_MYSTERY_ILLUSION = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -33521,7 +33522,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// バイオレントクエイク
 		// ----------------------------------------------------------------
-		SKILL_ID_VIOLENT_QUAKE = skillId;
+		window.SKILL_ID_VIOLENT_QUAKE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -33561,7 +33562,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ソウルバルカンストライク
 		// ----------------------------------------------------------------
-		SKILL_ID_SOUL_VULKUN_STRIKE = skillId;
+		window.SKILL_ID_SOUL_VULKUN_STRIKE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -33594,7 +33595,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ストラタムトレマー
 		// ----------------------------------------------------------------
-		SKILL_ID_STRATUM_TREAMER = skillId;
+		window.SKILL_ID_STRATUM_TREAMER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -33633,7 +33634,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// オールブルーム
 		// ----------------------------------------------------------------
-		SKILL_ID_ALL_BLOOM = skillId;
+		window.SKILL_ID_ALL_BLOOM = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -33672,7 +33673,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// クリスタルインパクト
 		// ----------------------------------------------------------------
-		SKILL_ID_CRYSTAL_IMPACT = skillId;
+		window.SKILL_ID_CRYSTAL_IMPACT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -33711,7 +33712,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// トルネードストーム
 		// ----------------------------------------------------------------
-		SKILL_ID_TORNADE_STORM = skillId;
+		window.SKILL_ID_TORNADE_STORM = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -33750,7 +33751,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// フローラルフレアロード
 		// ----------------------------------------------------------------
-		SKILL_ID_FLORAL_FLARE_ROAD = skillId;
+		window.SKILL_ID_FLORAL_FLARE_ROAD = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -33789,7 +33790,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// クライマックス
 		// ----------------------------------------------------------------
-		SKILL_ID_CLIMAX = skillId;
+		window.SKILL_ID_CLIMAX = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -33828,7 +33829,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アストラルストライク
 		// ----------------------------------------------------------------
-		SKILL_ID_ASTRAL_STRIKE = skillId;
+		window.SKILL_ID_ASTRAL_STRIKE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -33867,7 +33868,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ロックダウン
 		// ----------------------------------------------------------------
-		SKILL_ID_ROCK_DOWN = skillId;
+		window.SKILL_ID_ROCK_DOWN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -33906,7 +33907,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ストームキャノン
 		// ----------------------------------------------------------------
-		SKILL_ID_STORM_CANNON = skillId;
+		window.SKILL_ID_STORM_CANNON = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -33945,7 +33946,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// クリムゾンアロー
 		// ----------------------------------------------------------------
-		SKILL_ID_CRYMSON_ARROW = skillId;
+		window.SKILL_ID_CRYMSON_ARROW = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -33984,7 +33985,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// フローズンスラッシュ
 		// ----------------------------------------------------------------
-		SKILL_ID_FROZEN_SLASH = skillId;
+		window.SKILL_ID_FROZEN_SLASH = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -34023,7 +34024,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 両手杖修練
 		// ----------------------------------------------------------------
-		SKILL_ID_RYOTETUSE_SHUREN = skillId;
+		window.SKILL_ID_RYOTETUSE_SHUREN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -34041,7 +34042,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アックスストンプ
 		// ----------------------------------------------------------------
-		SKILL_ID_AXE_STOMP = skillId;
+		window.SKILL_ID_AXE_STOMP = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -34093,7 +34094,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ラッシュクエイク
 		// ----------------------------------------------------------------
-		SKILL_ID_RUSH_QUAKE = skillId;
+		window.SKILL_ID_RUSH_QUAKE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -34143,7 +34144,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ラッシュ状態
 		// ----------------------------------------------------------------
-		SKILL_ID_RUSH_STATE = skillId;
+		window.SKILL_ID_RUSH_STATE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -34162,7 +34163,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 装置製造
 		// ----------------------------------------------------------------
-		SKILL_ID_SOCHI_SEIZO = skillId;
+		window.SKILL_ID_SOCHI_SEIZO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -34201,7 +34202,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 攻撃装置有効化
 		// ----------------------------------------------------------------
-		SKILL_ID_KOGEKI_SOCHI_YUKOKA = skillId;
+		window.SKILL_ID_KOGEKI_SOCHI_YUKOKA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -34255,7 +34256,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 防御装置有効化
 		// ----------------------------------------------------------------
-		SKILL_ID_BOGYO_SOCHI_YUKOKA = skillId;
+		window.SKILL_ID_BOGYO_SOCHI_YUKOKA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -34294,7 +34295,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ツーアックスディフェンディング
 		// ----------------------------------------------------------------
-		SKILL_ID_TWO_AXE_DEFENDING = skillId;
+		window.SKILL_ID_TWO_AXE_DEFENDING = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -34312,7 +34313,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ABRマスタリー
 		// ----------------------------------------------------------------
-		SKILL_ID_ABR_MASTERY = skillId;
+		window.SKILL_ID_ABR_MASTERY = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -34330,7 +34331,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ABR バトルウォリアー
 		// ----------------------------------------------------------------
-		SKILL_ID_ABR_BATTLE_WARRIER = skillId;
+		window.SKILL_ID_ABR_BATTLE_WARRIER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -34369,7 +34370,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ABR デュアルキャノン
 		// ----------------------------------------------------------------
-		SKILL_ID_ABR_DUAL_CANNON = skillId;
+		window.SKILL_ID_ABR_DUAL_CANNON = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -34408,7 +34409,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ABR マザーネット
 		// ----------------------------------------------------------------
-		SKILL_ID_ABR_MOTHER_NET = skillId;
+		window.SKILL_ID_ABR_MOTHER_NET = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -34447,7 +34448,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ABR インフィニティ
 		// ----------------------------------------------------------------
-		SKILL_ID_ABR_INFINITY = skillId;
+		window.SKILL_ID_ABR_INFINITY = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -34490,7 +34491,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ガードスタンス
 		// ----------------------------------------------------------------
-		SKILL_ID_GUARD_STANCE = skillId;
+		window.SKILL_ID_GUARD_STANCE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -34529,7 +34530,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ガーディアンシールド
 		// ----------------------------------------------------------------
-		SKILL_ID_GUARDIAN_SHIELD = skillId;
+		window.SKILL_ID_GUARDIAN_SHIELD = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -34568,7 +34569,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// リバウンドシールド
 		// ----------------------------------------------------------------
-		SKILL_ID_REBOUND_SHIELD = skillId;
+		window.SKILL_ID_REBOUND_SHIELD = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -34607,7 +34608,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 盾修練
 		// ----------------------------------------------------------------
-		SKILL_ID_TATE_SHUREN = skillId;
+		window.SKILL_ID_TATE_SHUREN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -34626,7 +34627,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 槍＆片手剣修練
 		// ----------------------------------------------------------------
-		SKILL_ID_YARI_KATATE_KEN_SHUREN = skillId;
+		window.SKILL_ID_YARI_KATATE_KEN_SHUREN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -34645,7 +34646,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アタックスタンス
 		// ----------------------------------------------------------------
-		SKILL_ID_ATTACK_STANCE = skillId;
+		window.SKILL_ID_ATTACK_STANCE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -34684,7 +34685,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アルティメットサクリファイス
 		// ----------------------------------------------------------------
-		SKILL_ID_ULTIMATE_SACRIFICE = skillId;
+		window.SKILL_ID_ULTIMATE_SACRIFICE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -34723,7 +34724,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ホーリーシールド
 		// ----------------------------------------------------------------
-		SKILL_ID_HOLY_SHIELD = skillId;
+		window.SKILL_ID_HOLY_SHIELD = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -34762,7 +34763,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// グランドジャッジメント
 		// ----------------------------------------------------------------
-		SKILL_ID_GRAND_JUDGEMENT = skillId;
+		window.SKILL_ID_GRAND_JUDGEMENT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -34774,7 +34775,7 @@ function CSkillManager() {
 			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_VOID;
 			this.WeaponCondition = function(weapon) {
-				const state_attack_stance = UsedSkillSearch(SKILL_ID_ATTACK_STANCE) > 0;
+				const state_attack_stance = UsedSkillSearch(window.SKILL_ID_ATTACK_STANCE) > 0;
 				const mutch_weapon = [ITEM_KIND_SPEAR,ITEM_KIND_SPEAR_2HAND].includes(n_A_WeaponType);
 				return state_attack_stance && mutch_weapon;
 			}
@@ -34815,7 +34816,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ジャッジメントクロス
 		// ----------------------------------------------------------------
-		SKILL_ID_JUDGEMENT_CROSS = skillId;
+		window.SKILL_ID_JUDGEMENT_CROSS = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -34854,7 +34855,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// シールドシューティング
 		// ----------------------------------------------------------------
-		SKILL_ID_SHIELD_SHOOTING = skillId;
+		window.SKILL_ID_SHIELD_SHOOTING = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -34868,7 +34869,7 @@ function CSkillManager() {
 			this.dispHitCount = 7;
 			this.WeaponCondition = function(weapon) {
 				const mutch_weapon = n_A_Equip[EQUIP_REGION_ID_SHIELD] !== ITEM_ID_NOEQUIP_SHIELD;
-				const state_attack_stance = UsedSkillSearch(SKILL_ID_ATTACK_STANCE) > 0;
+				const state_attack_stance = UsedSkillSearch(window.SKILL_ID_ATTACK_STANCE) > 0;
 				return mutch_weapon && state_attack_stance;
 			}
 			this.Power = function(skillLv, charaData, option) {
@@ -34876,7 +34877,7 @@ function CSkillManager() {
 				// 基本倍率
 				ratio = 1200 + 800 * skillLv;
 				// 修練補正
-				ratio += 40 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_TATE_SHUREN), UsedSkillSearch(SKILL_ID_TATE_SHUREN));
+				ratio += 40 * skillLv * Math.max(LearnedSkillSearch(window.SKILL_ID_TATE_SHUREN), UsedSkillSearch(window.SKILL_ID_TATE_SHUREN));
 				// 盾の精錬値・重量補正
 				ratio += n_A_SHIELD_DEF_PLUS * 200 + ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][ITEM_DATA_INDEX_WEIGHT];
 				// POW補正
@@ -34912,7 +34913,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// オーバースラッシュ
 		// ----------------------------------------------------------------
-		SKILL_ID_OVER_SLASH = skillId;
+		window.SKILL_ID_OVER_SLASH = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -34924,7 +34925,7 @@ function CSkillManager() {
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
 			this.WeaponCondition = function(weapon) {
-				const state_attack_stance = UsedSkillSearch(SKILL_ID_ATTACK_STANCE) > 0;
+				const state_attack_stance = UsedSkillSearch(window.SKILL_ID_ATTACK_STANCE) > 0;
 				return state_attack_stance;
 			}
 			this.hitCount = function(skillLv, option, weapon) {
@@ -34935,7 +34936,7 @@ function CSkillManager() {
 				// 基本倍率
 				ratio = 130 * skillLv;
 				// 修練補正
-				ratio += 12 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN), UsedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN));
+				ratio += 12 * skillLv * Math.max(LearnedSkillSearch(window.SKILL_ID_YARI_KATATE_KEN_SHUREN), UsedSkillSearch(window.SKILL_ID_YARI_KATATE_KEN_SHUREN));
 				// POW補正 
 				ratio += 7 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// ベースレベル補正
@@ -34969,7 +34970,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// クロスレイン
 		// ----------------------------------------------------------------
-		SKILL_ID_CROSS_RAIN = skillId;
+		window.SKILL_ID_CROSS_RAIN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -34984,8 +34985,8 @@ function CSkillManager() {
 			this.damageInterval = 300;
 			this.Power = function(skillLv, charaData, option) {
 				let ratio = 0;
-				const state_holy_shield = UsedSkillSearch(SKILL_ID_HOLY_SHIELD) > 0;
-				const yari_katate_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN), UsedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN));
+				const state_holy_shield = UsedSkillSearch(window.SKILL_ID_HOLY_SHIELD) > 0;
+				const yari_katate_shuren_lv = Math.max(LearnedSkillSearch(window.SKILL_ID_YARI_KATATE_KEN_SHUREN), UsedSkillSearch(window.SKILL_ID_YARI_KATATE_KEN_SHUREN));
 				if (state_holy_shield) {
 					ratio = 150 * skillLv;
 					ratio += 15 * skillLv * yari_katate_shuren_lv;
@@ -35026,7 +35027,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 短剣＆弓修練
 		// ----------------------------------------------------------------
-		SKILL_ID_TANKEN_YUMI_SHUREN = skillId;
+		window.SKILL_ID_TANKEN_YUMI_SHUREN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -35044,7 +35045,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 魔法剣修練
 		// ----------------------------------------------------------------
-		SKILL_ID_MAHOKEN_SHUREN = skillId;
+		window.SKILL_ID_MAHOKEN_SHUREN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -35062,7 +35063,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ストリップシャドウ
 		// ----------------------------------------------------------------
-		SKILL_ID_STRIP_SHADOW = skillId;
+		window.SKILL_ID_STRIP_SHADOW = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -35101,7 +35102,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アビスダガー
 		// ----------------------------------------------------------------
-		SKILL_ID_ABYSS_DAGGER = skillId;
+		window.SKILL_ID_ABYSS_DAGGER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -35153,7 +35154,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アンラッキーラッシュ
 		// ----------------------------------------------------------------
-		SKILL_ID_UNLUCKY_RUSH = skillId;
+		window.SKILL_ID_UNLUCKY_RUSH = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -35209,7 +35210,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// チェーンリアクションショット
 		// ----------------------------------------------------------------
-		SKILL_ID_CHAIN_REACTION_SHOT = skillId;
+		window.SKILL_ID_CHAIN_REACTION_SHOT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -35270,7 +35271,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// フロムジアビス
 		// ----------------------------------------------------------------
-		SKILL_ID_FROM_THE_ABYSS = skillId;
+		window.SKILL_ID_FROM_THE_ABYSS = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -35317,7 +35318,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アビススレイヤー
 		// ----------------------------------------------------------------
-		SKILL_ID_ABYSS_SLAYER = skillId;
+		window.SKILL_ID_ABYSS_SLAYER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -35356,7 +35357,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// オメガアビスストライク
 		// ----------------------------------------------------------------
-		SKILL_ID_OMEGA_ABYSS_STRIKE = skillId;
+		window.SKILL_ID_OMEGA_ABYSS_STRIKE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -35403,7 +35404,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// デフトスタブ
 		// ----------------------------------------------------------------
-		SKILL_ID_DEFT_STAB = skillId;
+		window.SKILL_ID_DEFT_STAB = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -35452,7 +35453,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アビススクエア
 		// ----------------------------------------------------------------
-		SKILL_ID_ABYSS_SQUARE = skillId;
+		window.SKILL_ID_ABYSS_SQUARE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -35499,7 +35500,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アビススクエア習得Lv
 		// ----------------------------------------------------------------
-		SKILL_ID_ABYSS_SQUARE_LEARNED_LEVEL = skillId;
+		window.SKILL_ID_ABYSS_SQUARE_LEARNED_LEVEL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -35517,7 +35518,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// フレンジショット
 		// ----------------------------------------------------------------
-		SKILL_ID_FLANGE_SHOT = skillId;
+		window.SKILL_ID_FLANGE_SHOT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -35580,7 +35581,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 強靭な信念
 		// ----------------------------------------------------------------
-		SKILL_ID_KYOZINNA_SHINNEN = skillId;
+		window.SKILL_ID_KYOZINNA_SHINNEN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -35620,7 +35621,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 堅固な信念
 		// ----------------------------------------------------------------
-		SKILL_ID_KENKONA_SHINNEN = skillId;
+		window.SKILL_ID_KENKONA_SHINNEN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -35668,7 +35669,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 信仰の意志
 		// ----------------------------------------------------------------
-		SKILL_ID_SHINKONO_ISHI = skillId;
+		window.SKILL_ID_SHINKONO_ISHI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -35687,7 +35688,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 聖油洗礼
 		// ----------------------------------------------------------------
-		SKILL_ID_SEYU_SENRE = skillId;
+		window.SKILL_ID_SEYU_SENRE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -35745,7 +35746,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 忠実な信念
 		// ----------------------------------------------------------------
-		SKILL_ID_CHUZITSUNA_SHINNEN = skillId;
+		window.SKILL_ID_CHUZITSUNA_SHINNEN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -35793,7 +35794,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 第一撃：烙印
 		// ----------------------------------------------------------------
-		SKILL_ID_DAIICHIGEKI_RAKUIN = skillId;
+		window.SKILL_ID_DAIICHIGEKI_RAKUIN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -35851,7 +35852,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 第一章：信念の力
 		// ----------------------------------------------------------------
-		SKILL_ID_DAIISSHO_SHINNENNO_CHIKARA = skillId;
+		window.SKILL_ID_DAIISSHO_SHINNENNO_CHIKARA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -35899,7 +35900,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 第三撃：断罪
 		// ----------------------------------------------------------------
-		SKILL_ID_DAISANGEKI_DANZAI = skillId;
+		window.SKILL_ID_DAISANGEKI_DANZAI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -35955,7 +35956,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 第三撃：滅火撃
 		// ----------------------------------------------------------------
-		SKILL_ID_DAISANGEKI_MEKKAGEKI = skillId;
+		window.SKILL_ID_DAISANGEKI_MEKKAGEKI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -35968,7 +35969,7 @@ function CSkillManager() {
 				return CSkillData.RANGE_SHORT;
 			}
 			this.hitCount = function(skillLv) {
-				const count = Math.ceil(UsedSkillSearch(SKILL_ID_KIKO) / 5);
+				const count = Math.ceil(UsedSkillSearch(window.SKILL_ID_KIKO) / 5);
 				return Math.max(1, count);
 			}
 			this.Power = function(skillLv, charaData, option) {
@@ -36019,7 +36020,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 第三撃：浄化
 		// ----------------------------------------------------------------
-		SKILL_ID_DAISANGEKI_ZYOKA = skillId;
+		window.SKILL_ID_DAISANGEKI_ZYOKA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -36080,7 +36081,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 第二撃：滅魔の火
 		// ----------------------------------------------------------------
-		SKILL_ID_DAINIGEKI_METSUMANO_HI = skillId;
+		window.SKILL_ID_DAINIGEKI_METSUMANO_HI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -36138,7 +36139,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 第二撃：信念
 		// ----------------------------------------------------------------
-		SKILL_ID_DAINIGEKI_SHINNEN = skillId;
+		window.SKILL_ID_DAINIGEKI_SHINNEN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -36199,7 +36200,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 第二撃：審判
 		// ----------------------------------------------------------------
-		SKILL_ID_DAINIGEKI_SHINPAN = skillId;
+		window.SKILL_ID_DAINIGEKI_SHINPAN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -36260,7 +36261,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 爆火神弾
 		// ----------------------------------------------------------------
-		SKILL_ID_BAKKA_SHINDAN = skillId;
+		window.SKILL_ID_BAKKA_SHINDAN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -36316,7 +36317,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 炎火滅魔神弾
 		// ----------------------------------------------------------------
-		SKILL_ID_ENKA_METSUMA_SHINDAN = skillId;
+		window.SKILL_ID_ENKA_METSUMA_SHINDAN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -36372,7 +36373,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 第二章：審判者
 		// ----------------------------------------------------------------
-		SKILL_ID_DAINISHO_SHIPANSHA = skillId;
+		window.SKILL_ID_DAINISHO_SHIPANSHA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -36411,7 +36412,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 最終章：滅魔の炎
 		// ----------------------------------------------------------------
-		SKILL_ID_SAISHUSHO_METSUMANO_HONO = skillId;
+		window.SKILL_ID_SAISHUSHO_METSUMANO_HONO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -36450,7 +36451,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ステージマナー
 		// ----------------------------------------------------------------
-		SKILL_ID_STAGE_MANNER = skillId;
+		window.SKILL_ID_STAGE_MANNER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -36468,7 +36469,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 回想
 		// ----------------------------------------------------------------
-		SKILL_ID_KAISO = skillId;
+		window.SKILL_ID_KAISO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -36515,7 +36516,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ミスティックシンフォニー
 		// ----------------------------------------------------------------
-		SKILL_ID_MYSTIC_SYMPHONY = skillId;
+		window.SKILL_ID_MYSTIC_SYMPHONY = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -36563,7 +36564,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ソナタオブクヴァシル
 		// ----------------------------------------------------------------
-		SKILL_ID_SONATA_OF_KUVASIL = skillId;
+		window.SKILL_ID_SONATA_OF_KUVASIL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -36610,7 +36611,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ロゼブロッサム
 		// ----------------------------------------------------------------
-		SKILL_ID_ROSE_BLOSSOM = skillId;
+		window.SKILL_ID_ROSE_BLOSSOM = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -36657,7 +36658,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// リズムシューティング
 		// ----------------------------------------------------------------
-		SKILL_ID_RHYTHM_SHOOTING = skillId;
+		window.SKILL_ID_RHYTHM_SHOOTING = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -36705,7 +36706,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// メタリックフューリー
 		// ----------------------------------------------------------------
-		SKILL_ID_METALIC_FURY = skillId;
+		window.SKILL_ID_METALIC_FURY = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -36730,7 +36731,7 @@ function CSkillManager() {
 			this.Power = function(skillLv) {
 				let ratio = 0;
 				// ステージマナー習得Lv
-				const stage_manner_lv = Math.max(LearnedSkillSearch(SKILL_ID_STAGE_MANNER), UsedSkillSearch(SKILL_ID_STAGE_MANNER));
+				const stage_manner_lv = Math.max(LearnedSkillSearch(window.SKILL_ID_STAGE_MANNER), UsedSkillSearch(window.SKILL_ID_STAGE_MANNER));
 				// 基本倍率
 				if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SOUND_BLEND]) {
 					// サウンドブレンド 有り
@@ -36763,7 +36764,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// サウンドブレンド
 		// ----------------------------------------------------------------
-		SKILL_ID_SOUND_BLEND = skillId;
+		window.SKILL_ID_SOUND_BLEND = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -36793,7 +36794,7 @@ function CSkillManager() {
 				// 基本倍率
 				let ratio = 2000 + 500 * skillLv;
 				// ステージマナー習得Lv
-				const stage_manner_lv = Math.max(LearnedSkillSearch(SKILL_ID_STAGE_MANNER), UsedSkillSearch(SKILL_ID_STAGE_MANNER));
+				const stage_manner_lv = Math.max(LearnedSkillSearch(window.SKILL_ID_STAGE_MANNER), UsedSkillSearch(window.SKILL_ID_STAGE_MANNER));
 				// SPL補正
 				ratio += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL) * stage_manner_lv;
 				// ベースレベル補正
@@ -36818,7 +36819,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ゲフェニアノクターン
 		// ----------------------------------------------------------------
-		SKILL_ID_GEFFENIA_NOCTURNE = skillId;
+		window.SKILL_ID_GEFFENIA_NOCTURNE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -36865,7 +36866,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ロキの気まぐれ
 		// ----------------------------------------------------------------
-		SKILL_ID_LOKINO_KIMAGURE = skillId;
+		window.SKILL_ID_LOKINO_KIMAGURE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -36912,7 +36913,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 鉱員のラプソディ
 		// ----------------------------------------------------------------
-		SKILL_ID_KOINNO_RHAPSODY = skillId;
+		window.SKILL_ID_KOINNO_RHAPSODY = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -36959,7 +36960,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ミュージカルインタールード
 		// ----------------------------------------------------------------
-		SKILL_ID_MUSICAL_INTERLUDE = skillId;
+		window.SKILL_ID_MUSICAL_INTERLUDE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -37006,7 +37007,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 夕焼けのセレナーデ
 		// ----------------------------------------------------------------
-		SKILL_ID_YUYAKENO_SERENADE = skillId;
+		window.SKILL_ID_YUYAKENO_SERENADE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -37053,7 +37054,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 死者たちへのレクイエム
 		// ----------------------------------------------------------------
-		SKILL_ID_SHISHATACHIHENO_REQUIEM = skillId;
+		window.SKILL_ID_SHISHATACHIHENO_REQUIEM = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -37100,7 +37101,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// プロンテラマーチ
 		// ----------------------------------------------------------------
-		SKILL_ID_PRONTERA_MARCH = skillId;
+		window.SKILL_ID_PRONTERA_MARCH = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -37147,7 +37148,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 魔法本修練
 		// ----------------------------------------------------------------
-		SKILL_ID_MAHO_HON_SHUREN = skillId;
+		window.SKILL_ID_MAHO_HON_SHUREN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -37165,7 +37166,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// スペルエンチャンティング
 		// ----------------------------------------------------------------
-		SKILL_ID_SPELL_ENCHANTING = skillId;
+		window.SKILL_ID_SPELL_ENCHANTING = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -37203,7 +37204,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アクティビティバーン
 		// ----------------------------------------------------------------
-		SKILL_ID_ACTIVITY_BURN = skillId;
+		window.SKILL_ID_ACTIVITY_BURN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -37251,7 +37252,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// インクリーシングアクティビティ
 		// ----------------------------------------------------------------
-		SKILL_ID_INCREASING_ACTIVITY = skillId;
+		window.SKILL_ID_INCREASING_ACTIVITY = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -37299,7 +37300,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ダイヤモンドストーム
 		// ----------------------------------------------------------------
-		SKILL_ID_DIAMOND_STORM = skillId;
+		window.SKILL_ID_DIAMOND_STORM = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -37336,7 +37337,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ライトニングランド
 		// ----------------------------------------------------------------
-		SKILL_ID_LIGHTNING_LAND = skillId;
+		window.SKILL_ID_LIGHTNING_LAND = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -37376,7 +37377,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ベナムスワンプ
 		// ----------------------------------------------------------------
-		SKILL_ID_VENOM_SWAMP = skillId;
+		window.SKILL_ID_VENOM_SWAMP = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -37416,7 +37417,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// コンフラグレーション
 		// ----------------------------------------------------------------
-		SKILL_ID_CONFLAGRATION = skillId;
+		window.SKILL_ID_CONFLAGRATION = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -37454,7 +37455,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// テラドライブ
 		// ----------------------------------------------------------------
-		SKILL_ID_TERA_DRIVE = skillId;
+		window.SKILL_ID_TERA_DRIVE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -37489,7 +37490,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// エレメンタルスピリットマスタリー
 		// ----------------------------------------------------------------
-		SKILL_ID_ELEMENTAL_SPIRIT_MASTERY = skillId;
+		window.SKILL_ID_ELEMENTAL_SPIRIT_MASTERY = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -37507,7 +37508,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// サモンアルドール
 		// ----------------------------------------------------------------
-		SKILL_ID_SUMMON_ALDOR = skillId;
+		window.SKILL_ID_SUMMON_ALDOR = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -37549,7 +37550,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// サモンディルビオ
 		// ----------------------------------------------------------------
-		SKILL_ID_SUMMON_DILBIO = skillId;
+		window.SKILL_ID_SUMMON_DILBIO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -37591,7 +37592,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// サモンプロセラ
 		// ----------------------------------------------------------------
-		SKILL_ID_SUMMON_PROCERA = skillId;
+		window.SKILL_ID_SUMMON_PROCERA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -37633,7 +37634,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// サモンテレモトゥス
 		// ----------------------------------------------------------------
-		SKILL_ID_SUMMON_TELEMOTUS = skillId;
+		window.SKILL_ID_SUMMON_TELEMOTUS = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -37675,7 +37676,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// サモンサーペンス
 		// ----------------------------------------------------------------
-		SKILL_ID_SUMMON_SERPENSE = skillId;
+		window.SKILL_ID_SUMMON_SERPENSE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -37717,7 +37718,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// エレメンタルバスター
 		// ----------------------------------------------------------------
-		SKILL_ID_ELEMENTAL_BASTER = skillId;
+		window.SKILL_ID_ELEMENTAL_BASTER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -37755,7 +37756,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// エレメンタルヴェール
 		// ----------------------------------------------------------------
-		SKILL_ID_ELEMENTAL_VEIL = skillId;
+		window.SKILL_ID_ELEMENTAL_VEIL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -37797,7 +37798,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// バイオニックファーマシー
 		// ----------------------------------------------------------------
-		SKILL_ID_BIONIC_PHARMACY = skillId;
+		window.SKILL_ID_BIONIC_PHARMACY = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -37818,7 +37819,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// バイオニックスマスタリー
 		// ----------------------------------------------------------------
-		SKILL_ID_BIONICS_MASTERY = skillId;
+		window.SKILL_ID_BIONICS_MASTERY = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -37837,7 +37838,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ホールフルケミカルチャージ
 		// ----------------------------------------------------------------
-		SKILL_ID_HALL_FULL_CHEMICAL_CHARGE = skillId;
+		window.SKILL_ID_HALL_FULL_CHEMICAL_CHARGE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -37876,7 +37877,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// フルシャドウチャージ
 		// ----------------------------------------------------------------
-		SKILL_ID_FULL_SHADOW_CHARGE = skillId;
+		window.SKILL_ID_FULL_SHADOW_CHARGE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -37915,7 +37916,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アシディファイドゾーン(水)
 		// ----------------------------------------------------------------
-		SKILL_ID_ACIDIFIED_ZONE_MIZU = skillId;
+		window.SKILL_ID_ACIDIFIED_ZONE_MIZU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -37949,7 +37950,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アシディファイドゾーン(地)
 		// ----------------------------------------------------------------
-		SKILL_ID_ACIDIFIED_ZONE_CHI = skillId;
+		window.SKILL_ID_ACIDIFIED_ZONE_CHI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -37983,7 +37984,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アシディファイドゾーン(火)
 		// ----------------------------------------------------------------
-		SKILL_ID_ACIDIFIED_ZONE_HI = skillId;
+		window.SKILL_ID_ACIDIFIED_ZONE_HI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -38017,7 +38018,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アシディファイドゾーン(風)
 		// ----------------------------------------------------------------
-		SKILL_ID_ACIDIFIED_ZONE_KAZE = skillId;
+		window.SKILL_ID_ACIDIFIED_ZONE_KAZE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -38050,7 +38051,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// クリエイトウドゥンウォリアー
 		// ----------------------------------------------------------------
-		SKILL_ID_CREATE_WOODEN_WARRIER = skillId;
+		window.SKILL_ID_CREATE_WOODEN_WARRIER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -38080,7 +38081,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// クリエイトウドゥンフェアリー
 		// ----------------------------------------------------------------
-		SKILL_ID_CREATE_WOODEN_FAIRY = skillId;
+		window.SKILL_ID_CREATE_WOODEN_FAIRY = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -38110,7 +38111,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// クリエイトクリーパー
 		// ----------------------------------------------------------------
-		SKILL_ID_CREATE_CREAPER = skillId;
+		window.SKILL_ID_CREATE_CREAPER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -38140,7 +38141,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// リサーチレポート
 		// ----------------------------------------------------------------
-		SKILL_ID_RESEARCH_REPORT = skillId;
+		window.SKILL_ID_RESEARCH_REPORT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -38179,7 +38180,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// クリエイトヘルツリー
 		// ----------------------------------------------------------------
-		SKILL_ID_CREATE_HELL_TREE = skillId;
+		window.SKILL_ID_CREATE_HELL_TREE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -38212,7 +38213,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ドラゴニックオーラ状態
 		// ----------------------------------------------------------------
-		SKILL_ID_DRAGONIC_AURA_STATE = skillId;
+		window.SKILL_ID_DRAGONIC_AURA_STATE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -38231,7 +38232,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 天気修練
 		// ----------------------------------------------------------------
-		SKILL_ID_TENKI_SHUREN = skillId;
+		window.SKILL_ID_TENKI_SHUREN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -38249,7 +38250,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 兵法修練
 		// ----------------------------------------------------------------
-		SKILL_ID_HYOHO_SHUREN = skillId;
+		window.SKILL_ID_HYOHO_SHUREN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -38267,7 +38268,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 天地一陽
 		// ----------------------------------------------------------------
-		SKILL_ID_TENCHI_ICHIYO = skillId;
+		window.SKILL_ID_TENCHI_ICHIYO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -38286,7 +38287,7 @@ function CSkillManager() {
 				// POW補正
 				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// 天気修練 補正
-				ratio += 5 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_TENKI_SHUREN), UsedSkillSearch(SKILL_ID_TENKI_SHUREN));
+				ratio += 5 * skillLv * Math.max(LearnedSkillSearch(window.SKILL_ID_TENKI_SHUREN), UsedSkillSearch(window.SKILL_ID_TENKI_SHUREN));
 				// ベースレベル補正
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
@@ -38315,7 +38316,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 太天一陽
 		// ----------------------------------------------------------------
-		SKILL_ID_TAITEN_ICHIYO = skillId;
+		window.SKILL_ID_TAITEN_ICHIYO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -38343,9 +38344,9 @@ function CSkillManager() {
 			}
 			this.CriActRate = (skillLv, charaData, specData, mobData) => {
 				// 正午、天気の身状態の場合のみ
-				if (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 2) {
+				if (UsedSkillSearch(window.SKILL_ID_UNKONO_ZYOTAI) == 2) {
 				}
-				else if (UsedSkillSearch(SKILL_ID_TENKINO_MI) >= 1) {
+				else if (UsedSkillSearch(window.SKILL_ID_TENKINO_MI) >= 1) {
 				}
 				else {
 					return 0;
@@ -38354,9 +38355,9 @@ function CSkillManager() {
 			}
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {
 				// 正午、天気の身状態の場合のみ
-				if (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 2) {
+				if (UsedSkillSearch(window.SKILL_ID_UNKONO_ZYOTAI) == 2) {
 				}
-				else if (UsedSkillSearch(SKILL_ID_TENKINO_MI) >= 1) {
+				else if (UsedSkillSearch(window.SKILL_ID_TENKINO_MI) >= 1) {
 				}
 				else {
 					return 0;
@@ -38370,7 +38371,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 天陽
 		// ----------------------------------------------------------------
-		SKILL_ID_TENYO = skillId;
+		window.SKILL_ID_TENYO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -38398,9 +38399,9 @@ function CSkillManager() {
 			}
 			this.CriActRate = (skillLv, charaData, specData, mobData) => {
 				// 日没、天気の身状態の場合のみ
-				if (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 3) {
+				if (UsedSkillSearch(window.SKILL_ID_UNKONO_ZYOTAI) == 3) {
 				}
-				else if (UsedSkillSearch(SKILL_ID_TENKINO_MI) >= 1) {
+				else if (UsedSkillSearch(window.SKILL_ID_TENKINO_MI) >= 1) {
 				}
 				else {
 					return 0;
@@ -38409,9 +38410,9 @@ function CSkillManager() {
 			}
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {
 				// 日没、天気の身状態の場合のみ
-				if (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 3) {
+				if (UsedSkillSearch(window.SKILL_ID_UNKONO_ZYOTAI) == 3) {
 				}
-				else if (UsedSkillSearch(SKILL_ID_TENKINO_MI) >= 1) {
+				else if (UsedSkillSearch(window.SKILL_ID_TENKINO_MI) >= 1) {
 				}
 				else {
 					return 0;
@@ -38425,7 +38426,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 天地一月
 		// ----------------------------------------------------------------
-		SKILL_ID_TENCHI_ICHIGETSU = skillId;
+		window.SKILL_ID_TENCHI_ICHIGETSU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -38444,7 +38445,7 @@ function CSkillManager() {
 				// POW補正
 				ratio += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// 天気修練 補正
-				ratio += 5 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_TENKI_SHUREN), UsedSkillSearch(SKILL_ID_TENKI_SHUREN));
+				ratio += 5 * skillLv * Math.max(LearnedSkillSearch(window.SKILL_ID_TENKI_SHUREN), UsedSkillSearch(window.SKILL_ID_TENKI_SHUREN));
 				// ベースレベル補正
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
@@ -38473,7 +38474,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 太天一月
 		// ----------------------------------------------------------------
-		SKILL_ID_TAITEN_ICHIGETSU = skillId;
+		window.SKILL_ID_TAITEN_ICHIGETSU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -38498,7 +38499,7 @@ function CSkillManager() {
 				// POW補正
 				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// 天気修練 補正
-				ratio += 5 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_TENKI_SHUREN), UsedSkillSearch(SKILL_ID_TENKI_SHUREN));
+				ratio += 5 * skillLv * Math.max(LearnedSkillSearch(window.SKILL_ID_TENKI_SHUREN), UsedSkillSearch(window.SKILL_ID_TENKI_SHUREN));
 				// ベースレベル補正
 				return Math.floor(ratio * n_A_BaseLV / 100);				
 			}
@@ -38524,7 +38525,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 天月
 		// ----------------------------------------------------------------
-		SKILL_ID_TENGETSU = skillId;
+		window.SKILL_ID_TENGETSU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -38550,7 +38551,7 @@ function CSkillManager() {
 				// POW補正
 				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// 天気修練 補正
-				ratio += 5 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_TENKI_SHUREN), UsedSkillSearch(SKILL_ID_TENKI_SHUREN));
+				ratio += 5 * skillLv * Math.max(LearnedSkillSearch(window.SKILL_ID_TENKI_SHUREN), UsedSkillSearch(window.SKILL_ID_TENKI_SHUREN));
 				// ベースレベル補正
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
@@ -38576,7 +38577,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 天地万星
 		// ----------------------------------------------------------------
-		SKILL_ID_TENCHI_BANSE = skillId;
+		window.SKILL_ID_TENCHI_BANSE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -38612,7 +38613,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 天命落星
 		// ----------------------------------------------------------------
-		SKILL_ID_TENME_RAKUSE = skillId;
+		window.SKILL_ID_TENME_RAKUSE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -38631,7 +38632,7 @@ function CSkillManager() {
 				// POW補正
 				ratio += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// 天気修練 補正
-				ratio += 5 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_TENKI_SHUREN), UsedSkillSearch(SKILL_ID_TENKI_SHUREN));
+				ratio += 5 * skillLv * Math.max(LearnedSkillSearch(window.SKILL_ID_TENKI_SHUREN), UsedSkillSearch(window.SKILL_ID_TENKI_SHUREN));
 				// ベースレベル補正
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
@@ -38660,7 +38661,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 天星
 		// ----------------------------------------------------------------
-		SKILL_ID_TENSE = skillId;
+		window.SKILL_ID_TENSE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -38678,7 +38679,7 @@ function CSkillManager() {
 				// 基本倍率
 				let ratio = 1050 + 150 * skillLv;
 				// 天気修練 補正
-				ratio += 5 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_TENKI_SHUREN), UsedSkillSearch(SKILL_ID_TENKI_SHUREN));
+				ratio += 5 * skillLv * Math.max(LearnedSkillSearch(window.SKILL_ID_TENKI_SHUREN), UsedSkillSearch(window.SKILL_ID_TENKI_SHUREN));
 				// POW補正
 				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// ベースレベル補正
@@ -38709,7 +38710,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 天羅万象
 		// ----------------------------------------------------------------
-		SKILL_ID_TENRA_BANSHO = skillId;
+		window.SKILL_ID_TENRA_BANSHO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -38751,7 +38752,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 天気の身
 		// ----------------------------------------------------------------
-		SKILL_ID_TENKINO_MI = skillId;
+		window.SKILL_ID_TENKINO_MI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -38790,7 +38791,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 運行の状態
 		// ----------------------------------------------------------------
-		SKILL_ID_UNKONO_ZYOTAI = skillId;
+		window.SKILL_ID_UNKONO_ZYOTAI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -38809,7 +38810,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 護符修練
 		// ----------------------------------------------------------------
-		SKILL_ID_GOFU_SHUREN = skillId;
+		window.SKILL_ID_GOFU_SHUREN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -38827,7 +38828,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 霊道術修練
 		// ----------------------------------------------------------------
-		SKILL_ID_REIDOZYUTSU_SHUREN = skillId;
+		window.SKILL_ID_REIDOZYUTSU_SHUREN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -38845,7 +38846,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 守護符
 		// ----------------------------------------------------------------
-		SKILL_ID_SHUGO_FU = skillId;
+		window.SKILL_ID_SHUGO_FU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -38881,7 +38882,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 武士符
 		// ----------------------------------------------------------------
-		SKILL_ID_BUSHI_FU = skillId;
+		window.SKILL_ID_BUSHI_FU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -38911,7 +38912,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 法師符
 		// ----------------------------------------------------------------
-		SKILL_ID_HOSHI_FU = skillId;
+		window.SKILL_ID_HOSHI_FU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -38941,7 +38942,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 護魂一身
 		// ----------------------------------------------------------------
-		SKILL_ID_GOKON_ISSHIN = skillId;
+		window.SKILL_ID_GOKON_ISSHIN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -38968,7 +38969,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 城隍堂
 		// ----------------------------------------------------------------
-		SKILL_ID_ZYOKODO = skillId;
+		window.SKILL_ID_ZYOKODO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -39004,7 +39005,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 五行符
 		// ----------------------------------------------------------------
-		SKILL_ID_GOGYO_FU = skillId;
+		window.SKILL_ID_GOGYO_FU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -39034,7 +39035,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 霊道符
 		// ----------------------------------------------------------------
-		SKILL_ID_REIDO_FU = skillId;
+		window.SKILL_ID_REIDO_FU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -39051,8 +39052,8 @@ function CSkillManager() {
 				let ratio = 0;
 				ratio = 5350 + 650 * skillLv;
 				ratio += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// 275パッチでは基礎倍率以外に変更無しを確認済み
-				const gofu_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_GOFU_SHUREN), UsedSkillSearch(SKILL_ID_GOFU_SHUREN));
-				const reidozyutsu_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_REIDOZYUTSU_SHUREN), UsedSkillSearch(SKILL_ID_REIDOZYUTSU_SHUREN));
+				const gofu_shuren_lv = Math.max(LearnedSkillSearch(window.SKILL_ID_GOFU_SHUREN), UsedSkillSearch(window.SKILL_ID_GOFU_SHUREN));
+				const reidozyutsu_shuren_lv = Math.max(LearnedSkillSearch(window.SKILL_ID_REIDOZYUTSU_SHUREN), UsedSkillSearch(window.SKILL_ID_REIDOZYUTSU_SHUREN));
 				ratio += 7 * skillLv * ( gofu_shuren_lv + reidozyutsu_shuren_lv );
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
@@ -39076,7 +39077,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 死霊浄化
 		// ----------------------------------------------------------------
-		SKILL_ID_SHIRYO_ZYOKA = skillId;
+		window.SKILL_ID_SHIRYO_ZYOKA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -39100,9 +39101,9 @@ function CSkillManager() {
 					ratio = 350 + 50 * skillLv;
 				}
 				ratio += GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				const reidozyutsu_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_REIDOZYUTSU_SHUREN), UsedSkillSearch(SKILL_ID_REIDOZYUTSU_SHUREN));
+				const reidozyutsu_shuren_lv = Math.max(LearnedSkillSearch(window.SKILL_ID_REIDOZYUTSU_SHUREN), UsedSkillSearch(window.SKILL_ID_REIDOZYUTSU_SHUREN));
 				ratio += 2 * reidozyutsu_shuren_lv;
-				ratio = ratio * UsedSkillSearch(SKILL_ID_COUNT_OF_SOUL_ENERGY);
+				ratio = ratio * UsedSkillSearch(window.SKILL_ID_COUNT_OF_SOUL_ENERGY);
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
 			}
@@ -39125,7 +39126,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 青龍符
 		// ----------------------------------------------------------------
-		SKILL_ID_SEIRYU_FU = skillId;
+		window.SKILL_ID_SEIRYU_FU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -39140,13 +39141,13 @@ function CSkillManager() {
 			}
 			this.Power = function(skillLv, charaData, option) {			// スキル倍率
 				let ratio = 0;
-				if (UsedSkillSearch(SKILL_ID_SHIHO_FU_ZYOTAI) >= 5) {
+				if (UsedSkillSearch(window.SKILL_ID_SHIHO_FU_ZYOTAI) >= 5) {
 					ratio = 5500 + 1000 * skillLv;
 				} else {
 					ratio = 4250 + 750 * skillLv;
 				}
 				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				ratio += 15 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_GOFU_SHUREN), UsedSkillSearch(SKILL_ID_GOFU_SHUREN));
+				ratio += 15 * skillLv * Math.max(LearnedSkillSearch(window.SKILL_ID_GOFU_SHUREN), UsedSkillSearch(window.SKILL_ID_GOFU_SHUREN));
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
 			}
@@ -39175,7 +39176,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 白虎符
 		// ----------------------------------------------------------------
-		SKILL_ID_BYAKKO_FU = skillId;
+		window.SKILL_ID_BYAKKO_FU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -39193,14 +39194,14 @@ function CSkillManager() {
 			}
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
-				if (UsedSkillSearch(SKILL_ID_SHIHO_FU_ZYOTAI) >= 5) {
+				if (UsedSkillSearch(window.SKILL_ID_SHIHO_FU_ZYOTAI) >= 5) {
 					// 公式発表並びに実測確認の結果によるとLv4だけ倍率が異常なので直値で指定しています
 					ratio = [0,4750,5250,5750,6200,6750][skillLv];
 				} else {
 					ratio = 3000 + 400 * skillLv;
 				}
 				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				ratio += 15 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_GOFU_SHUREN), UsedSkillSearch(SKILL_ID_GOFU_SHUREN));
+				ratio += 15 * skillLv * Math.max(LearnedSkillSearch(window.SKILL_ID_GOFU_SHUREN), UsedSkillSearch(window.SKILL_ID_GOFU_SHUREN));
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
 			}
@@ -39229,7 +39230,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 朱雀符
 		// ----------------------------------------------------------------
-		SKILL_ID_SUZAKU_FU = skillId;
+		window.SKILL_ID_SUZAKU_FU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -39247,13 +39248,13 @@ function CSkillManager() {
 			}
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
-				if (UsedSkillSearch(SKILL_ID_SHIHO_FU_ZYOTAI) >= 5) {
+				if (UsedSkillSearch(window.SKILL_ID_SHIHO_FU_ZYOTAI) >= 5) {
 					ratio = 5500 + 650 * skillLv;
 				} else {
 					ratio = 4250 + 500 * skillLv;
 				}
 				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				ratio += 15 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_GOFU_SHUREN), UsedSkillSearch(SKILL_ID_GOFU_SHUREN));
+				ratio += 15 * skillLv * Math.max(LearnedSkillSearch(window.SKILL_ID_GOFU_SHUREN), UsedSkillSearch(window.SKILL_ID_GOFU_SHUREN));
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
 			}
@@ -39282,7 +39283,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 玄武符
 		// ----------------------------------------------------------------
-		SKILL_ID_GENBU_FU = skillId;
+		window.SKILL_ID_GENBU_FU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -39300,14 +39301,14 @@ function CSkillManager() {
 			}
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
-				if (UsedSkillSearch(SKILL_ID_SHIHO_FU_ZYOTAI) >= 5) {
+				if (UsedSkillSearch(window.SKILL_ID_SHIHO_FU_ZYOTAI) >= 5) {
 					// 公式発表並びに実測確認の結果によるとLv4だけ倍率が異常なので直値で指定しています
 					ratio = [0,4750,5250,5750,6200,6750][skillLv];
 				} else {
 					ratio = 3000 + 400 * skillLv;
 				}
 				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				ratio += 15 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_GOFU_SHUREN), UsedSkillSearch(SKILL_ID_GOFU_SHUREN));
+				ratio += 15 * skillLv * Math.max(LearnedSkillSearch(window.SKILL_ID_GOFU_SHUREN), UsedSkillSearch(window.SKILL_ID_GOFU_SHUREN));
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
 			}
@@ -39336,7 +39337,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 四方神符
 		// ----------------------------------------------------------------
-		SKILL_ID_SHIHOZIN_FU = skillId;
+		window.SKILL_ID_SHIHOZIN_FU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -39350,13 +39351,13 @@ function CSkillManager() {
 				return option.GetOptionValue(0);
 			}
 			this.hitCount = function(skillLv) {
-				return 1 + Math.min(5, UsedSkillSearch(SKILL_ID_SHIHO_FU_ZYOTAI));
+				return 1 + Math.min(5, UsedSkillSearch(window.SKILL_ID_SHIHO_FU_ZYOTAI));
 			}
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				ratio = 500 + 50 * skillLv;
 				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				ratio += 15 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_GOFU_SHUREN), UsedSkillSearch(SKILL_ID_GOFU_SHUREN));
+				ratio += 15 * skillLv * Math.max(LearnedSkillSearch(window.SKILL_ID_GOFU_SHUREN), UsedSkillSearch(window.SKILL_ID_GOFU_SHUREN));
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
 			}
@@ -39382,7 +39383,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 四方五行陣
 		// ----------------------------------------------------------------
-		SKILL_ID_SHIHO_GOGYO_ZIN = skillId;
+		window.SKILL_ID_SHIHO_GOGYO_ZIN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -39400,8 +39401,8 @@ function CSkillManager() {
 				let ratio = 0;
 				ratio = 2200 + 600 * skillLv;
 				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				const gofu_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_GOFU_SHUREN), UsedSkillSearch(SKILL_ID_GOFU_SHUREN));
-				const reidozyutsu_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_REIDOZYUTSU_SHUREN), UsedSkillSearch(SKILL_ID_REIDOZYUTSU_SHUREN));
+				const gofu_shuren_lv = Math.max(LearnedSkillSearch(window.SKILL_ID_GOFU_SHUREN), UsedSkillSearch(window.SKILL_ID_GOFU_SHUREN));
+				const reidozyutsu_shuren_lv = Math.max(LearnedSkillSearch(window.SKILL_ID_REIDOZYUTSU_SHUREN), UsedSkillSearch(window.SKILL_ID_REIDOZYUTSU_SHUREN));
 				ratio += 15 * skillLv * ( gofu_shuren_lv + reidozyutsu_shuren_lv );
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
@@ -39434,7 +39435,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 天地神霊
 		// ----------------------------------------------------------------
-		SKILL_ID_TENCHI_SHINRE = skillId;
+		window.SKILL_ID_TENCHI_SHINRE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -39470,7 +39471,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 四方五行陣状態
 		// ----------------------------------------------------------------
-		SKILL_ID_SHIHO_FU_ZYOTAI = skillId;
+		window.SKILL_ID_SHIHO_FU_ZYOTAI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -39489,7 +39490,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// スピリットマスタリー
 		// ----------------------------------------------------------------
-		SKILL_ID_SPIRIT_MASTERY = skillId;
+		window.SKILL_ID_SPIRIT_MASTERY = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -39508,7 +39509,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 三霊一体
 		// ----------------------------------------------------------------
-		SKILL_ID_SANREI_ITTAI = skillId;
+		window.SKILL_ID_SANREI_ITTAI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -39547,7 +39548,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// にゃんブレッシング
 		// ----------------------------------------------------------------
-		SKILL_ID_NYAN_BRESSING = skillId;
+		window.SKILL_ID_NYAN_BRESSING = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -39587,7 +39588,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// マリンフェスティバル
 		// ----------------------------------------------------------------
-		SKILL_ID_MARIN_FESTIVAL = skillId;
+		window.SKILL_ID_MARIN_FESTIVAL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -39627,7 +39628,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// サンドフェスティバル
 		// ----------------------------------------------------------------
-		SKILL_ID_SAND_FESTIVAL = skillId;
+		window.SKILL_ID_SAND_FESTIVAL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -39666,7 +39667,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 独学 -戦闘学-
 		// ----------------------------------------------------------------
-		SKILL_ID_DOKUGAKU_SENTOGAKU = skillId;
+		window.SKILL_ID_DOKUGAKU_SENTOGAKU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -39685,7 +39686,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 独学 -魔導学-
 		// ----------------------------------------------------------------
-		SKILL_ID_DOKUGAKU_MADOGAKU = skillId;
+		window.SKILL_ID_DOKUGAKU_MADOGAKU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -39704,7 +39705,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// P.F.I
 		// ----------------------------------------------------------------
-		SKILL_ID_PFI = skillId;
+		window.SKILL_ID_PFI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -39722,7 +39723,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// グレネードマスタリー
 		// ----------------------------------------------------------------
-		SKILL_ID_GRENADE_MASTERY = skillId;
+		window.SKILL_ID_GRENADE_MASTERY = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -39740,7 +39741,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// インテンシブエイム
 		// ----------------------------------------------------------------
-		SKILL_ID_INTENSIVE_AIM = skillId;
+		window.SKILL_ID_INTENSIVE_AIM = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -39779,7 +39780,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ヒドゥンカード
 		// ----------------------------------------------------------------
-		SKILL_ID_HIDDEN_CARD = skillId;
+		window.SKILL_ID_HIDDEN_CARD = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -39818,7 +39819,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// オンリーワンバレット
 		// ----------------------------------------------------------------
-		SKILL_ID_ONLY_ONE_BULLET = skillId;
+		window.SKILL_ID_ONLY_ONE_BULLET = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -39863,7 +39864,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// スパイラルシューティング
 		// ----------------------------------------------------------------
-		SKILL_ID_SPIRAL_SHOOTING = skillId;
+		window.SKILL_ID_SPIRAL_SHOOTING = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -39908,7 +39909,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// マガジンフォーワン
 		// ----------------------------------------------------------------
-		SKILL_ID_MAGAZIN_FOR_ONE = skillId;
+		window.SKILL_ID_MAGAZIN_FOR_ONE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -39953,7 +39954,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ビジラントアットナイト
 		// ----------------------------------------------------------------
-		SKILL_ID_VIGILANT_AT_NIGHT = skillId;
+		window.SKILL_ID_VIGILANT_AT_NIGHT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -39992,7 +39993,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ワイルドファイア
 		// ----------------------------------------------------------------
-		SKILL_ID_WILD_FIRE = skillId;
+		window.SKILL_ID_WILD_FIRE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -40031,7 +40032,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// タイガースラッシュ
 		// ----------------------------------------------------------------
-		SKILL_ID_TIGER_SLASH = skillId;
+		window.SKILL_ID_TIGER_SLASH = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -40045,14 +40046,14 @@ function CSkillManager() {
 			this.dispHitCount = 2;
 			this.Power = function(skillLv, charaData, option) {
 				let ratio = 0;
-				const state_sanrei_ittai = UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0;
-				const state_tekko = Math.max(UsedSkillSearch(SKILL_ID_NYANTOMO_TEKKO),LearnedSkillSearch(SKILL_ID_NYANTOMO_TEKKO)) > 0;
+				const state_sanrei_ittai = UsedSkillSearch(window.SKILL_ID_SANREI_ITTAI) > 0;
+				const state_tekko = Math.max(UsedSkillSearch(window.SKILL_ID_NYANTOMO_TEKKO),LearnedSkillSearch(window.SKILL_ID_NYANTOMO_TEKKO)) > 0;
 				if (state_sanrei_ittai || state_tekko) {
 					ratio = 3500 + 500 * skillLv;
-					ratio += 150 * Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
+					ratio += 150 * Math.max(LearnedSkillSearch(window.SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(window.SKILL_ID_SPIRIT_MASTERY));
 				} else {
 					ratio = 2050 + 350 * skillLv;
-					ratio += 100 * Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
+					ratio += 100 * Math.max(LearnedSkillSearch(window.SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(window.SKILL_ID_SPIRIT_MASTERY));
 				}
 				// POW補正
 				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
@@ -40081,8 +40082,8 @@ function CSkillManager() {
 				return 500;
 			}
 			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
-				const state_sanrei_ittai = UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0;
-				const state_tekko = Math.max(UsedSkillSearch(SKILL_ID_NYANTOMO_TEKKO),LearnedSkillSearch(SKILL_ID_NYANTOMO_TEKKO)) > 0;
+				const state_sanrei_ittai = UsedSkillSearch(window.SKILL_ID_SANREI_ITTAI) > 0;
+				const state_tekko = Math.max(UsedSkillSearch(window.SKILL_ID_NYANTOMO_TEKKO),LearnedSkillSearch(window.SKILL_ID_NYANTOMO_TEKKO)) > 0;
 				if (state_sanrei_ittai || state_tekko) {
 					return this._CriActRate100(skillLv, charaData, specData, mobData);
 				}
@@ -40098,7 +40099,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// タイガーハウリング
 		// ----------------------------------------------------------------
-		SKILL_ID_TIGER_HOWLING = skillId;
+		window.SKILL_ID_TIGER_HOWLING = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -40134,7 +40135,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// タイガーストライク
 		// ----------------------------------------------------------------
-		SKILL_ID_TIGER_STRIKE = skillId;
+		window.SKILL_ID_TIGER_STRIKE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -40173,7 +40174,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// にゃん友 -鉄虎-
 		// ----------------------------------------------------------------
-		SKILL_ID_NYANTOMO_TEKKO = skillId;
+		window.SKILL_ID_NYANTOMO_TEKKO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -40192,7 +40193,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 影の舞
 		// ----------------------------------------------------------------
-		SKILL_ID_KAGE_NO_MAI = skillId;
+		window.SKILL_ID_KAGE_NO_MAI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -40231,7 +40232,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 影一閃
 		// ----------------------------------------------------------------
-		SKILL_ID_KAGE_ISSEN = skillId;
+		window.SKILL_ID_KAGE_ISSEN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -40246,7 +40247,7 @@ function CSkillManager() {
 			this.Power = function(skillLv, charaData, option) {
 				let ratio = 0;
 				// 影の舞の習得Lv
-				const kage_no_mai_lv = Math.max(LearnedSkillSearch(SKILL_ID_KAGE_NO_MAI), option.GetOptionValue(0));
+				const kage_no_mai_lv = Math.max(LearnedSkillSearch(window.SKILL_ID_KAGE_NO_MAI), option.GetOptionValue(0));
 				// ダメージ倍率
 				ratio = 500 + 50 * skillLv;				// 基礎倍率
 				ratio += 5 * skillLv * kage_no_mai_lv;	// 修練係数 検証済み
@@ -40287,7 +40288,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 影狩り
 		// ----------------------------------------------------------------
-		SKILL_ID_KAGE_GARI = skillId;
+		window.SKILL_ID_KAGE_GARI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -40303,7 +40304,7 @@ function CSkillManager() {
 				// ダメージ倍率
 				ratio = 7700 + 100 * skillLv;					// 基礎倍率
 				// 影一閃の習得Lv
-				const kage_issen_lv = Math.max(LearnedSkillSearch(SKILL_ID_KAGE_ISSEN), option.GetOptionValue(0));
+				const kage_issen_lv = Math.max(LearnedSkillSearch(window.SKILL_ID_KAGE_ISSEN), option.GetOptionValue(0));
 				ratio += 87 * skillLv * kage_issen_lv;			// 修練係数 検証済み
 				ratio += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);		// 特性ステータス
 				return Math.floor(ratio * n_A_BaseLV / 100);			// BaseLv補正
@@ -40336,7 +40337,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 幻術 -影縫い-
 		// ----------------------------------------------------------------
-		SKILL_ID_GENJUTSU_KAGE_NUI = skillId;
+		window.SKILL_ID_GENJUTSU_KAGE_NUI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -40388,7 +40389,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 風魔手裏剣 -掌握-
 		// ----------------------------------------------------------------
-		SKILL_ID_FUMASHURIKEN_SHOUAKU = skillId;
+		window.SKILL_ID_FUMASHURIKEN_SHOUAKU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -40427,7 +40428,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 風魔手裏剣 -構築-
 		// ----------------------------------------------------------------
-		SKILL_ID_FUMASHURIKEN_KOUCHIKU = skillId;
+		window.SKILL_ID_FUMASHURIKEN_KOUCHIKU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -40466,7 +40467,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ユピテルサンダーストーム
 		// ----------------------------------------------------------------
-		SKILL_ID_JUPITER_THUNDER_STORM = skillId;
+		window.SKILL_ID_JUPITER_THUNDER_STORM = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -40500,7 +40501,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ヘルズドライブ
 		// ----------------------------------------------------------------
-		SKILL_ID_HELLS_DRIVE = skillId;
+		window.SKILL_ID_HELLS_DRIVE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -40534,7 +40535,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ナパームバルカンストライク
 		// ----------------------------------------------------------------
-		SKILL_ID_NAPALM_VULKAN_STRIKE = skillId;
+		window.SKILL_ID_NAPALM_VULKAN_STRIKE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -40568,7 +40569,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// メテオストームバスター
 		// ----------------------------------------------------------------
-		SKILL_ID_METEOR_STORM_BUSTER = skillId;
+		window.SKILL_ID_METEOR_STORM_BUSTER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -40602,7 +40603,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ダブルボウリングバッシュ
 		// ----------------------------------------------------------------
-		SKILL_ID_DOUBLE_BOWLING_BASH = skillId;
+		window.SKILL_ID_DOUBLE_BOWLING_BASH = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -40619,8 +40620,8 @@ function CSkillManager() {
 			}
 			this.Power = function(skillLv, charaData, option) {
 				// 基本倍率
-				const sentogaku_lv = Math.max(LearnedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU), UsedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU));
-				const braking_limit_lv = UsedSkillSearch(SKILL_ID_BREAKING_LIMIT_STATE);
+				const sentogaku_lv = Math.max(LearnedSkillSearch(window.SKILL_ID_DOKUGAKU_SENTOGAKU), UsedSkillSearch(window.SKILL_ID_DOKUGAKU_SENTOGAKU));
+				const braking_limit_lv = UsedSkillSearch(window.SKILL_ID_BREAKING_LIMIT_STATE);
 				let ratio = 1350 + 50 * skillLv;																			// 基礎倍率
 				ratio += 3 * skillLv * sentogaku_lv;		// 習得済みスキル条件
 				ratio += 2 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// 特性ステータス補正
@@ -40654,7 +40655,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// メガソニックブロー
 		// ----------------------------------------------------------------
-		SKILL_ID_MEGA_SONIC_BLOW = skillId;
+		window.SKILL_ID_MEGA_SONIC_BLOW = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -40668,8 +40669,8 @@ function CSkillManager() {
 			this.dispHitCount = 8;
 			this.Power = function(skillLv, charaData, option) {
 				// 基本倍率
-				const sentogaku = Math.max(LearnedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU), UsedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU));
-				const breaking_limit_lv = UsedSkillSearch(SKILL_ID_BREAKING_LIMIT_STATE);
+				const sentogaku = Math.max(LearnedSkillSearch(window.SKILL_ID_DOKUGAKU_SENTOGAKU), UsedSkillSearch(window.SKILL_ID_DOKUGAKU_SENTOGAKU));
+				const breaking_limit_lv = UsedSkillSearch(window.SKILL_ID_BREAKING_LIMIT_STATE);
 				const state_enemy_hp_half = option.GetOptionValue(0) === 1; // 敵の残りHPが半分以下
 				let ratio = 4500 + 100 * skillLv;												// 基礎倍率
 				ratio += 5 * skillLv * sentogaku;		// 習得済みスキル条件
@@ -40716,7 +40717,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// スパークブラスター
 		// ----------------------------------------------------------------
-		SKILL_ID_SPARK_BLASTER = skillId;
+		window.SKILL_ID_SPARK_BLASTER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -40729,7 +40730,7 @@ function CSkillManager() {
 				return CSkillData.RANGE_LONG;
 			}
 			this.WeaponCondition = function(weapon) {
-				return (UsedSkillSearch(SKILL_ID_MADOGEAR) > 0);
+				return (UsedSkillSearch(window.SKILL_ID_MADOGEAR) > 0);
 			}
 			this.Power = function(skillLv, charaData, option) {
 				let ratio = 0;
@@ -40770,7 +40771,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// トリプルレーザー
 		// ----------------------------------------------------------------
-		SKILL_ID_TRIPLE_LASER = skillId;
+		window.SKILL_ID_TRIPLE_LASER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -40783,7 +40784,7 @@ function CSkillManager() {
 				return CSkillData.RANGE_LONG;
 			}
 			this.WeaponCondition = function(skillLv) {
-				return (UsedSkillSearch(SKILL_ID_MADOGEAR) > 0);
+				return (UsedSkillSearch(window.SKILL_ID_MADOGEAR) > 0);
 			}
 			this.hitCount = function(skillLv) {
 				return 3;
@@ -40829,7 +40830,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// エクスプロッシブパウダー
 		// ----------------------------------------------------------------
-		SKILL_ID_EXPLOSIVE_POWDER = skillId;
+		window.SKILL_ID_EXPLOSIVE_POWDER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -40843,7 +40844,7 @@ function CSkillManager() {
 			this.Power = function(skillLv, charaData, option) {
 				let ratio = 0;
 				// TODO: リサーチレポートはスキル倍率のみに影響を与えるので職固有自己支援からオプションへ移行する
-				const state_research_report = Math.max(UsedSkillSearch(SKILL_ID_RESEARCH_REPORT),option.GetOptionValue(0)) > 0;
+				const state_research_report = Math.max(UsedSkillSearch(window.SKILL_ID_RESEARCH_REPORT),option.GetOptionValue(0)) > 0;
 				if (state_research_report) {
 					ratio = 7750 + 1750 * skillLv;
 					ratio += 55 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
@@ -40881,7 +40882,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// メイヘミックソーンズ
 		// ----------------------------------------------------------------
-		SKILL_ID_MEYHEMIC_THORNS = skillId;
+		window.SKILL_ID_MEYHEMIC_THORNS = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -40926,7 +40927,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ドラゴニックブレス
 		// ----------------------------------------------------------------
-		SKILL_ID_DRAGONIC_BREATH = skillId;
+		window.SKILL_ID_DRAGONIC_BREATH = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -40942,11 +40943,11 @@ function CSkillManager() {
 			this.WeaponCondition = function(weapon) {
 				// 武器種ではなく騎乗状態によって判定される
 				// トレーニング未習得でもドラゴンに乗れるので LearnedSkillSearch に置き換えられない
-				return UsedSkillSearch(SKILL_ID_DRAGON_TRAINING) > 0;
+				return UsedSkillSearch(window.SKILL_ID_DRAGON_TRAINING) > 0;
 			}
 			this.Power = function(skillLv, charaData) {					// スキル倍率
 				let ratio = 0;
-				if (UsedSkillSearch(SKILL_ID_DRAGONIC_AURA_STATE) > 1) {
+				if (UsedSkillSearch(window.SKILL_ID_DRAGONIC_AURA_STATE) > 1) {
 					// ドラゴニックオーラ時
 					ratio = 3500 + 400 * skillLv;
 					ratio += 25 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
@@ -40990,7 +40991,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// マイティスマッシュ
 		// ----------------------------------------------------------------
-		SKILL_ID_MIGHTY_SMASH = skillId;
+		window.SKILL_ID_MIGHTY_SMASH = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -41011,7 +41012,7 @@ function CSkillManager() {
 			this.Power = function(skillLv, charaData, option) {
 				let ratio = 0;
 				// TODO: アックスストンプ状態はスキル倍率だけに影響するので職固有自己支援から攻撃手段オプションに移行する
-				const state_axe_stomp = Math.max(UsedSkillSearch(SKILL_ID_AXE_STOMP_STATUS), option.GetOptionValue(0)); 
+				const state_axe_stomp = Math.max(UsedSkillSearch(window.SKILL_ID_AXE_STOMP_STATUS), option.GetOptionValue(0)); 
 				// 基本倍率
 				if (state_axe_stomp === 1) {
 					// アックスストンプ状態の場合
@@ -41053,7 +41054,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アックスストンプ状態
 		// ----------------------------------------------------------------
-		SKILL_ID_AXE_STOMP_STATUS = skillId;
+		window.SKILL_ID_AXE_STOMP_STATUS = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -41072,7 +41073,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// シールドシューティング状態
 		// ----------------------------------------------------------------
-		SKILL_ID_SHIELD_SHOOTING_STATE = skillId;
+		window.SKILL_ID_SHIELD_SHOOTING_STATE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -41091,7 +41092,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// グランドジャッジメント状態
 		// ----------------------------------------------------------------
-		SKILL_ID_GRAND_JUDGEMENT_STATE = skillId;
+		window.SKILL_ID_GRAND_JUDGEMENT_STATE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -41109,7 +41110,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// にゃん友 -賢鹿-
 		// ----------------------------------------------------------------
-		SKILL_ID_NYANTOMO_KENROKU = skillId;
+		window.SKILL_ID_NYANTOMO_KENROKU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -41128,7 +41129,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ディアーキャノン
 		// ----------------------------------------------------------------
-		SKILL_ID_DEER_CANON = skillId;
+		window.SKILL_ID_DEER_CANON = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -41161,7 +41162,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ディアーブリーズ
 		// ----------------------------------------------------------------
-		SKILL_ID_DEER_BREEZE = skillId;
+		window.SKILL_ID_DEER_BREEZE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -41197,7 +41198,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ベーシックグレネード
 		// ----------------------------------------------------------------
-		SKILL_ID_BASIC_GRENADE = skillId;
+		window.SKILL_ID_BASIC_GRENADE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -41236,7 +41237,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ヘイスティファイアインザホール
 		// ----------------------------------------------------------------
-		SKILL_ID_HASTY_FIRE_IN_THE_HOLE = skillId;
+		window.SKILL_ID_HASTY_FIRE_IN_THE_HOLE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -41275,7 +41276,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// グレネーズドロッピング
 		// ----------------------------------------------------------------
-		SKILL_ID_GRENADES_DROPPING = skillId;
+		window.SKILL_ID_GRENADES_DROPPING = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -41314,7 +41315,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ミッションボンバード
 		// ----------------------------------------------------------------
-		SKILL_ID_MISSION_BOMBARD = skillId;
+		window.SKILL_ID_MISSION_BOMBARD = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -41353,7 +41354,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 赤炎砲
 		// ----------------------------------------------------------------
-		SKILL_ID_SEKIEN_HOU = skillId;
+		window.SKILL_ID_SEKIEN_HOU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -41392,7 +41393,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 冷血砲
 		// ----------------------------------------------------------------
-		SKILL_ID_REIKETSU_HOU = skillId;
+		window.SKILL_ID_REIKETSU_HOU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -41432,7 +41433,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 雷電砲
 		// ----------------------------------------------------------------
-		SKILL_ID_RAIDEN_HOU = skillId;
+		window.SKILL_ID_RAIDEN_HOU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -41472,7 +41473,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 金龍砲
 		// ----------------------------------------------------------------
-		SKILL_ID_KINNRYUU_HOU = skillId;
+		window.SKILL_ID_KINNRYUU_HOU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -41512,7 +41513,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 暗転砲
 		// ----------------------------------------------------------------
-		SKILL_ID_ANTEN_HOU = skillId;
+		window.SKILL_ID_ANTEN_HOU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -41551,7 +41552,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 幻術 -暗黒龍-
 		// ----------------------------------------------------------------
-		SKILL_ID_GENZYUTSU_ANKOKURYUU = skillId;
+		window.SKILL_ID_GENZYUTSU_ANKOKURYUU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -41590,7 +41591,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 暗転砲の習得Lv
 		// ----------------------------------------------------------------
-		SKILL_ID_ANTEN_HOU_LEARNED_LEVEL = skillId;
+		window.SKILL_ID_ANTEN_HOU_LEARNED_LEVEL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -41608,7 +41609,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 太陽と月と星の日 判定用
 		// ----------------------------------------------------------------
-		SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_HI = skillId;
+		window.SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_HI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -41627,7 +41628,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 影潜り
 		// ----------------------------------------------------------------
-		SKILL_ID_KAGEMOGURI = skillId;
+		window.SKILL_ID_KAGEMOGURI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -41666,7 +41667,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 影溶き
 		// ----------------------------------------------------------------
-		SKILL_ID_KAGETOKI = skillId;
+		window.SKILL_ID_KAGETOKI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -41705,7 +41706,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 苦無 -歪曲-
 		// ----------------------------------------------------------------
-		SKILL_ID_KUNAI_WAIKYOKU = skillId;
+		window.SKILL_ID_KUNAI_WAIKYOKU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -41744,7 +41745,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 苦無 -回転-
 		// ----------------------------------------------------------------
-		SKILL_ID_KUNAI_KAITEN = skillId;
+		window.SKILL_ID_KUNAI_KAITEN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -41783,7 +41784,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 苦無 -屈折-
 		// ----------------------------------------------------------------
-		SKILL_ID_KUNAI_KUSSETSU = skillId;
+		window.SKILL_ID_KUNAI_KUSSETSU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -41822,7 +41823,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 幻術 -苦無-
 		// ----------------------------------------------------------------
-		SKILL_ID_GENJUTSU_KUNAI = skillId;
+		window.SKILL_ID_GENJUTSU_KUNAI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -41861,7 +41862,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// シールドチェーンラッシュ
 		// ----------------------------------------------------------------
-		SKILL_ID_SHIELD_CHAIN_RUSH = skillId;
+		window.SKILL_ID_SHIELD_CHAIN_RUSH = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -41875,8 +41876,8 @@ function CSkillManager() {
 			this.dispHitCount = 5;
 			this.Power = function(skillLv, charaData, option) {
 				// 基本倍率
-				const sentogaku = Math.max(LearnedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU), UsedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU));
-				const breaking_limit_lv = UsedSkillSearch(SKILL_ID_BREAKING_LIMIT_STATE);
+				const sentogaku = Math.max(LearnedSkillSearch(window.SKILL_ID_DOKUGAKU_SENTOGAKU), UsedSkillSearch(window.SKILL_ID_DOKUGAKU_SENTOGAKU));
+				const breaking_limit_lv = UsedSkillSearch(window.SKILL_ID_BREAKING_LIMIT_STATE);
 				let ratio = 4300 + 200 * skillLv;											// 基礎倍率
 				ratio += 3 * skillLv * sentogaku;											// 習得済みスキル条件
 				ratio += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);									// 特性ステータス補正
@@ -41910,7 +41911,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// スパイラルピアースマックス
 		// ----------------------------------------------------------------
-		SKILL_ID_SPIRAL_PIERCE_MAX = skillId;
+		window.SKILL_ID_SPIRAL_PIERCE_MAX = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -41925,7 +41926,7 @@ function CSkillManager() {
 			this.Power = function(skillLv, charaData, option, mobData) {
 				// 基本倍率
 				let ratio = 4500 + 250 * skillLv;
-				const sentogaku = Math.max(LearnedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU), UsedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU));
+				const sentogaku = Math.max(LearnedSkillSearch(window.SKILL_ID_DOKUGAKU_SENTOGAKU), UsedSkillSearch(window.SKILL_ID_DOKUGAKU_SENTOGAKU));
 				ratio += 3 * skillLv * sentogaku;
 				// サイズ補正 (POWには掛からない)
 				const size_ratio = [
@@ -41940,7 +41941,7 @@ function CSkillManager() {
 				// 最終倍率
 				ratio *= [100, 101, 103, 105, 107, 109, 111, 113, 115, 120, 125][sentogaku] / 100;	// 独学補正
 				ratio = Math.floor(ratio);
-				const breaking_limit_lv = UsedSkillSearch(SKILL_ID_BREAKING_LIMIT_STATE);
+				const breaking_limit_lv = UsedSkillSearch(window.SKILL_ID_BREAKING_LIMIT_STATE);
 				ratio *= [100, 150][breaking_limit_lv] / 100;	// ブレイキングリミット補正
 				return Math.floor(ratio);
 			}
@@ -41966,7 +41967,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ジャックフロストノヴァ
 		// ----------------------------------------------------------------
-		SKILL_ID_JACK_FROST_NOVA = skillId;
+		window.SKILL_ID_JACK_FROST_NOVA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -42000,7 +42001,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// グラウンドグラビテーション
 		// ----------------------------------------------------------------
-		SKILL_ID_GROUND_GRAVITATION = skillId;
+		window.SKILL_ID_GROUND_GRAVITATION = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -42034,7 +42035,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ブレイキングリミット状態
 		// ----------------------------------------------------------------
-		SKILL_ID_BREAKING_LIMIT_STATE = skillId;
+		window.SKILL_ID_BREAKING_LIMIT_STATE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -42053,7 +42054,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ルールブレイク状態
 		// ----------------------------------------------------------------
-		SKILL_ID_RULE_BREAK_STATE = skillId;
+		window.SKILL_ID_RULE_BREAK_STATE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -42072,7 +42073,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// アビスダガー状態
 		// ----------------------------------------------------------------
-		SKILL_ID_ABYSS_DAGGER_STATE = skillId;
+		window.SKILL_ID_ABYSS_DAGGER_STATE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -42090,7 +42091,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// レインボーホーン
 		// ----------------------------------------------------------------
-		SKILL_ID_RAINBOW_HORN = skillId;
+		window.SKILL_ID_RAINBOW_HORN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -42132,7 +42133,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// タートルスプリンクラー
 		// ----------------------------------------------------------------
-		SKILL_ID_TURTLE_SPRINKLER = skillId;
+		window.SKILL_ID_TURTLE_SPRINKLER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -42168,7 +42169,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// タートルランページ
 		// ----------------------------------------------------------------
-		SKILL_ID_RURTLE_RAMPAGE = skillId;
+		window.SKILL_ID_RURTLE_RAMPAGE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -42207,7 +42208,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// にゃん友 -亀設-
 		// ----------------------------------------------------------------
-		SKILL_ID_NYANTOMO_KAMESETSU = skillId;
+		window.SKILL_ID_NYANTOMO_KAMESETSU = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -42226,7 +42227,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 蜃気楼分身
 		// ----------------------------------------------------------------
-		SKILL_ID_SHINKIRO_BUNSHIN = skillId;
+		window.SKILL_ID_SHINKIRO_BUNSHIN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -42266,7 +42267,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 悪夢消し
 		// ----------------------------------------------------------------
-		SKILL_ID_AKUMU_KESHI = skillId;
+		window.SKILL_ID_AKUMU_KESHI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -42306,7 +42307,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ブレイキングリミット
 		// ----------------------------------------------------------------
-		SKILL_ID_BREAKING_LIMIT = skillId;
+		window.SKILL_ID_BREAKING_LIMIT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -42346,7 +42347,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ルールブレイク
 		// ----------------------------------------------------------------
-		SKILL_ID_RULE_BREAK = skillId;
+		window.SKILL_ID_RULE_BREAK = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -42385,7 +42386,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// 流星落下(周辺追撃)
 		// ----------------------------------------------------------------
-		SKILL_ID_RYUSE_RAKKA_TSUIGEKI = skillId;
+		window.SKILL_ID_RYUSE_RAKKA_TSUIGEKI = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -42403,7 +42404,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// オートファイアリングランチャー
 		// ----------------------------------------------------------------
-		SKILL_ID_AUTO_FIRING_LAUNCHER = skillId;
+		window.SKILL_ID_AUTO_FIRING_LAUNCHER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -42442,7 +42443,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ベーシックグレネード 習得レベル
 		// ----------------------------------------------------------------
-		SKILL_ID_BASIC_GRENADE_LEARNED_LEVEL = skillId;
+		window.SKILL_ID_BASIC_GRENADE_LEARNED_LEVEL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -42460,7 +42461,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ヘイスティファイアインザホール 習得レベル
 		// ----------------------------------------------------------------
-		SKILL_ID_HASTY_FIRE_IN_THE_HOLE_LEARNED_LEVEL = skillId;
+		window.SKILL_ID_HASTY_FIRE_IN_THE_HOLE_LEARNED_LEVEL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -42478,7 +42479,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// グレネーズドロッピング 習得レベル
 		// ----------------------------------------------------------------
-		SKILL_ID_GRENADES_DROPPING_LEARNED_LEVEL = skillId;
+		window.SKILL_ID_GRENADES_DROPPING_LEARNED_LEVEL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -42496,7 +42497,7 @@ function CSkillManager() {
 		// ----------------------------------------------------------------
 		// グレネードフラグメント
 		// ----------------------------------------------------------------
-		SKILL_ID_GRENADE_FRAGMENT = skillId;
+		window.SKILL_ID_GRENADE_FRAGMENT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -42512,7 +42513,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** ゴールデントーン */
-		SKILL_ID_GOLDENE_TONE = skillId;
+		window.SKILL_ID_GOLDENE_TONE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -42543,7 +42544,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** テンパリング */
-		SKILL_ID_TEMPERING = skillId;
+		window.SKILL_ID_TEMPERING = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -42568,7 +42569,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** サイキックストリーム */
-		SKILL_ID_PSYCHIC_STREAM = skillId;
+		window.SKILL_ID_PSYCHIC_STREAM = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -42605,7 +42606,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** ワイルドウォーク */
-		SKILL_ID_WILD_WALK = skillId;
+		window.SKILL_ID_WILD_WALK = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -42627,8 +42628,8 @@ function CSkillManager() {
 			this.Power = function(skillLv, charaData) {       // スキル倍率
 				let ratio = -500 + 1000 * skillLv;
 				ratio += 30 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
-				const shizen_shinwa_lv = Math.max(LearnedSkillSearch(SKILL_ID_SHIZEN_SHINWA), UsedSkillSearch(SKILL_ID_SHIZEN_SHINWA));
-				const steel_crow_lv = Math.max(LearnedSkillSearch(SKILL_ID_STEEL_CROW), UsedSkillSearch(SKILL_ID_STEEL_CROW));
+				const shizen_shinwa_lv = Math.max(LearnedSkillSearch(window.SKILL_ID_SHIZEN_SHINWA), UsedSkillSearch(window.SKILL_ID_SHIZEN_SHINWA));
+				const steel_crow_lv = Math.max(LearnedSkillSearch(window.SKILL_ID_STEEL_CROW), UsedSkillSearch(window.SKILL_ID_STEEL_CROW));
 				ratio += 300 * (shizen_shinwa_lv + steel_crow_lv);
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
@@ -42664,7 +42665,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** ラッシュストライク */
-		SKILL_ID_RUSH_STRIKE = skillId;
+		window.SKILL_ID_RUSH_STRIKE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -42677,7 +42678,7 @@ function CSkillManager() {
 			this.element = CSkillData.ELEMENT_VOID;
 			this.WeaponCondition = function(weapon) {
 				// 魔導ギア搭乗はスキル倍率以外に追加ATKへの補正があるので職固有自己支援で設定する
-				const disarm_gear = UsedSkillSearch(SKILL_ID_MADOGEAR) === 0;
+				const disarm_gear = UsedSkillSearch(window.SKILL_ID_MADOGEAR) === 0;
 				const mutch_weapon = ITEM_KIND_AXE_2HAND === weapon;
 				return mutch_weapon && disarm_gear;
 			}
@@ -42718,7 +42719,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** パワフルスイング */
-		SKILL_ID_POWERFUL_SWING = skillId;
+		window.SKILL_ID_POWERFUL_SWING = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -42731,14 +42732,14 @@ function CSkillManager() {
 			this.element = CSkillData.ELEMENT_VOID;
 			this.WeaponCondition = function(weapon) {
 				// 魔導ギア搭乗はスキル倍率以外に追加ATKへの補正があるので職固有自己支援で設定する
-				const disarm_gear = UsedSkillSearch(SKILL_ID_MADOGEAR) === 0;
+				const disarm_gear = UsedSkillSearch(window.SKILL_ID_MADOGEAR) === 0;
 				const mutch_weapon = ITEM_KIND_AXE_2HAND === weapon;
 				return mutch_weapon && disarm_gear;
 			}
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				// TODO: アックスストンプ状態はスキル倍率だけに影響するので職固有自己支援から攻撃手段オプションに移行する
-				const state_axe_stomp = Math.max(UsedSkillSearch(SKILL_ID_AXE_STOMP_STATUS), option.GetOptionValue(0)); 
+				const state_axe_stomp = Math.max(UsedSkillSearch(window.SKILL_ID_AXE_STOMP_STATUS), option.GetOptionValue(0)); 
 				if (state_axe_stomp === 1) {
 					ratio += 11100 + 2700 * skillLv;
 					ratio += 82 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
@@ -42780,7 +42781,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** エナジーキャノネード */
-		SKILL_ID_ENERGY_CANNONADE = skillId;
+		window.SKILL_ID_ENERGY_CANNONADE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -42794,7 +42795,7 @@ function CSkillManager() {
 			// Def無視設定は head.js の _SUB_ApplyMonsterDefence にある
 			this.WeaponCondition = function(weapon) {
 				// 魔導ギア搭乗はスキル倍率以外に追加ATKへの補正があるので職固有自己支援で設定する
-				const armed_gear = UsedSkillSearch(SKILL_ID_MADOGEAR) === 1;
+				const armed_gear = UsedSkillSearch(window.SKILL_ID_MADOGEAR) === 1;
 				return armed_gear;
 			}
 			this.Power = function(skillLv, charaData) {       // スキル倍率
@@ -42834,7 +42835,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** ドラゴニックピアース */
-		SKILL_ID_DRAGONIC_PIERCE = skillId;
+		window.SKILL_ID_DRAGONIC_PIERCE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -42852,7 +42853,7 @@ function CSkillManager() {
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				// TODO: ドラゴニックオーラ状態はスキル倍率だけに影響するので職固有自己支援から攻撃手段オプションに移行する
-				const state_dragonic_aura = Math.max(UsedSkillSearch(SKILL_ID_DRAGONIC_AURA_STATE) - 1, option.GetOptionValue(0));
+				const state_dragonic_aura = Math.max(UsedSkillSearch(window.SKILL_ID_DRAGONIC_AURA_STATE) - 1, option.GetOptionValue(0));
 				if (state_dragonic_aura > 0) {
 					ratio += 4600 + 1000 * skillLv;
 					ratio += 32 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
@@ -42894,7 +42895,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** ワイルドショット */
-		SKILL_ID_WILD_SHOT = skillId;
+		window.SKILL_ID_WILD_SHOT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -42913,7 +42914,7 @@ function CSkillManager() {
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				// ヒドゥンカードはスキル倍率だけでなくP.Atkと遠距離ダメージに影響するので職固有自己支援で設定する
-				const state_hidden_card = Math.max(UsedSkillSearch(SKILL_ID_HIDDEN_CARD));
+				const state_hidden_card = Math.max(UsedSkillSearch(window.SKILL_ID_HIDDEN_CARD));
 				if (state_hidden_card > 0) {
 					ratio += 475 + 205 * skillLv;
 				} else {
@@ -42954,7 +42955,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** ミッドナイトフォーリン */
-		SKILL_ID_MIDNIGHT_FALLEN = skillId;
+		window.SKILL_ID_MIDNIGHT_FALLEN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -42974,7 +42975,7 @@ function CSkillManager() {
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				// ヒドゥンカードはスキル倍率だけでなくP.Atkと遠距離ダメージに影響するので職固有自己支援で設定する
-				const state_hidden_card = Math.max(UsedSkillSearch(SKILL_ID_HIDDEN_CARD));
+				const state_hidden_card = Math.max(UsedSkillSearch(window.SKILL_ID_HIDDEN_CARD));
 				if (state_hidden_card > 0) {
 					ratio += 925 + 235 * skillLv;
 				} else {
@@ -43017,7 +43018,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** リズミカルウェーブ */
-		SKILL_ID_RHYTHMICAL_WAVE = skillId;
+		window.SKILL_ID_RHYTHMICAL_WAVE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -43045,8 +43046,8 @@ function CSkillManager() {
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				// TODO: ミスティックシンフォニーはスキル倍率だけに影響するので職固有自己支援から攻撃方法オプションに移行する
-				const state_mystic_symphony = Math.max(UsedSkillSearch(SKILL_ID_MYSTIC_SYMPHONY), option.GetOptionValue(0));
-				const stage_manner_lv = Math.max(UsedSkillSearch(SKILL_ID_STAGE_MANNER), LearnedSkillSearch(SKILL_ID_STAGE_MANNER));
+				const state_mystic_symphony = Math.max(UsedSkillSearch(window.SKILL_ID_MYSTIC_SYMPHONY), option.GetOptionValue(0));
+				const stage_manner_lv = Math.max(UsedSkillSearch(window.SKILL_ID_STAGE_MANNER), LearnedSkillSearch(window.SKILL_ID_STAGE_MANNER));
 				if (state_mystic_symphony === 1) {
 					ratio += 4000 + 1000 * skillLv;
 					ratio += 6 * GetTotalSpecStatus(MIG_PARAM_ID_SPL) * stage_manner_lv;	// Spl係数 検証済み
@@ -43090,7 +43091,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** 天気身陽 */
-		SKILL_ID_SKY_SUN = skillId;
+		window.SKILL_ID_SKY_SUN = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -43105,7 +43106,7 @@ function CSkillManager() {
 			// Def無視設定は head.js の _SUB_ApplyMonsterDefence にある
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
-				const tenki_shuren_lv = Math.max(UsedSkillSearch(SKILL_ID_TENKI_SHUREN), LearnedSkillSearch(SKILL_ID_TENKI_SHUREN));
+				const tenki_shuren_lv = Math.max(UsedSkillSearch(window.SKILL_ID_TENKI_SHUREN), LearnedSkillSearch(window.SKILL_ID_TENKI_SHUREN));
 				ratio += 1250 + 50 * skillLv;
 				ratio += 10 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
 				ratio += 30 * skillLv * tenki_shuren_lv;	// 修練係数
@@ -43143,7 +43144,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** 天気身月 */
-		SKILL_ID_SKY_MOON = skillId;
+		window.SKILL_ID_SKY_MOON = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -43159,7 +43160,7 @@ function CSkillManager() {
 			// 天気の身はスキルの使用可否だけに影響するので制約条件をチェックしない
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
-				const tenki_shuren_lv = Math.max(UsedSkillSearch(SKILL_ID_TENKI_SHUREN), LearnedSkillSearch(SKILL_ID_TENKI_SHUREN));
+				const tenki_shuren_lv = Math.max(UsedSkillSearch(window.SKILL_ID_TENKI_SHUREN), LearnedSkillSearch(window.SKILL_ID_TENKI_SHUREN));
 				ratio += 3100 + 50 * skillLv;
 				ratio += 22 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
 				ratio += 66 * skillLv * tenki_shuren_lv;	// 修練係数
@@ -43199,7 +43200,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** 天星の行 */
-		SKILL_ID_STAR_LIGHT_KICK = skillId;
+		window.SKILL_ID_STAR_LIGHT_KICK = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -43213,7 +43214,7 @@ function CSkillManager() {
 			// 天気の身はスキルの使用可否だけに影響するので制約条件をチェックしない
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
-				const tenki_shuren_lv = Math.max(UsedSkillSearch(SKILL_ID_TENKI_SHUREN), LearnedSkillSearch(SKILL_ID_TENKI_SHUREN));
+				const tenki_shuren_lv = Math.max(UsedSkillSearch(window.SKILL_ID_TENKI_SHUREN), LearnedSkillSearch(window.SKILL_ID_TENKI_SHUREN));
 				ratio += 3100 + 50 * skillLv;
 				ratio += 22 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
 				ratio += 66 * skillLv * tenki_shuren_lv;	// 修練係数
@@ -43253,7 +43254,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** 烈火気弾 */
-		SKILL_ID_BLAZING_FLAME_BLAST = skillId;
+		window.SKILL_ID_BLAZING_FLAME_BLAST = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -43266,7 +43267,7 @@ function CSkillManager() {
 			this.element = CSkillData.ELEMENT_VOID;
 			this.WeaponCondition = function(weapon) {
 				// 爆裂波動状態はスキル倍率だけでなくCriにも影響するので職固有自己支援で設定する
-				const state_bakuretsu_hado = UsedSkillSearch(SKILL_ID_BAKURETSU_HADO) > 0;
+				const state_bakuretsu_hado = UsedSkillSearch(window.SKILL_ID_BAKURETSU_HADO) > 0;
 				return state_bakuretsu_hado;
 			}
 			// Def無視設定は _SUB_ApplyMonsterDefence にある
@@ -43314,7 +43315,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** タイガーバトリング */
-		SKILL_ID_CHUL_HO_BATTERING = skillId;
+		window.SKILL_ID_CHUL_HO_BATTERING = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -43327,7 +43328,7 @@ function CSkillManager() {
 			this.element = CSkillData.ELEMENT_VOID;
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
-				const spirit_mastery_lv = Math.max(UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY), LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
+				const spirit_mastery_lv = Math.max(UsedSkillSearch(window.SKILL_ID_SPIRIT_MASTERY), LearnedSkillSearch(window.SKILL_ID_SPIRIT_MASTERY));
 				ratio += 1475 + 325 * skillLv;
 				ratio += 15 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数未検証
 				ratio += 75 * spirit_mastery_lv;	// 修練係数未検証
@@ -43365,7 +43366,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** ディアースピリットパワー */
-		SKILL_ID_HYUN_ROK_SPIRIT_POWER = skillId;
+		window.SKILL_ID_HYUN_ROK_SPIRIT_POWER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -43381,7 +43382,7 @@ function CSkillManager() {
 			}
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
-				const spirit_mastery_lv = Math.max(UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY), LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
+				const spirit_mastery_lv = Math.max(UsedSkillSearch(window.SKILL_ID_SPIRIT_MASTERY), LearnedSkillSearch(window.SKILL_ID_SPIRIT_MASTERY));
 				ratio += 2650 + 650 * skillLv;
 				ratio += 30 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// Spl係数未検証
 				ratio += 180 * spirit_mastery_lv;	// 修練係数未検証
@@ -43421,7 +43422,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** ヒットアンドスライディング */
-		SKILL_ID_HIT_AND_SLIDING = skillId;
+		window.SKILL_ID_HIT_AND_SLIDING = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -43478,7 +43479,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** チェイシングブレイク */
-		SKILL_ID_CHASING_BREAK = skillId;
+		window.SKILL_ID_CHASING_BREAK = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -43535,7 +43536,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** チェイシングショット */
-		SKILL_ID_CHASING_SHOT = skillId;
+		window.SKILL_ID_CHASING_SHOT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -43594,7 +43595,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** アビスフレイム */
-		SKILL_ID_ABYSS_FLAME = skillId;
+		window.SKILL_ID_ABYSS_FLAME = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -43608,7 +43609,7 @@ function CSkillManager() {
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				const attack_area = option.GetOptionValue(0);
-				const mahoken_shuren_lv = Math.max(UsedSkillSearch(SKILL_ID_MAHOKEN_SHUREN), LearnedSkillSearch(SKILL_ID_MAHOKEN_SHUREN));
+				const mahoken_shuren_lv = Math.max(UsedSkillSearch(window.SKILL_ID_MAHOKEN_SHUREN), LearnedSkillSearch(window.SKILL_ID_MAHOKEN_SHUREN));
 				switch (attack_area) {
 					case 0:	// 対象周辺
 						ratio += 750 * skillLv;
@@ -43662,7 +43663,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** レイディアントスピア */
-		SKILL_ID_RADIANT_SPEAR = skillId;
+		window.SKILL_ID_RADIANT_SPEAR = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -43675,14 +43676,14 @@ function CSkillManager() {
 			this.element = CSkillData.ELEMENT_VOID;
 			this.WeaponCondition = function(weapon) {
 				const mutch_weapon = weapon === ITEM_KIND_SPEAR;
-				const state_attack_stance = UsedSkillSearch(SKILL_ID_ATTACK_STANCE) > 0;
+				const state_attack_stance = UsedSkillSearch(window.SKILL_ID_ATTACK_STANCE) > 0;
 				return mutch_weapon && state_attack_stance;
 			}
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				// TODO: グランドジャッジメント状態はスキル倍率のみに影響するため職固有自己支援から攻撃オプションへ移行する
-				const state_grand_judgement = Math.max(UsedSkillSearch(SKILL_ID_GRAND_JUDGEMENT_STATE), option.GetOptionValue(0)) === 1;
-				const yari_katate_shuren_lv = Math.max(UsedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN), LearnedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN));
+				const state_grand_judgement = Math.max(UsedSkillSearch(window.SKILL_ID_GRAND_JUDGEMENT_STATE), option.GetOptionValue(0)) === 1;
+				const yari_katate_shuren_lv = Math.max(UsedSkillSearch(window.SKILL_ID_YARI_KATATE_KEN_SHUREN), LearnedSkillSearch(window.SKILL_ID_YARI_KATATE_KEN_SHUREN));
 				if (state_grand_judgement) {
 					ratio += 1200 + 450 * skillLv;
 					ratio += 32 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
@@ -43725,7 +43726,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** インペリアルクロス */
-		SKILL_ID_IMPERIAL_CROSS = skillId;
+		window.SKILL_ID_IMPERIAL_CROSS = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -43737,14 +43738,14 @@ function CSkillManager() {
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
 			this.WeaponCondition = function(weapon) {
-				const state_attack_stance = UsedSkillSearch(SKILL_ID_ATTACK_STANCE) > 0;
+				const state_attack_stance = UsedSkillSearch(window.SKILL_ID_ATTACK_STANCE) > 0;
 				return state_attack_stance;
 			}
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				// TODO: グランドジャッジメント状態はスキル倍率のみに影響するため職固有自己支援から攻撃オプションへ移行する
-				const state_grand_judgement = Math.max(UsedSkillSearch(SKILL_ID_GRAND_JUDGEMENT_STATE), option.GetOptionValue(0)) === 1;
-				const yari_katate_shuren_lv = Math.max(UsedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN), LearnedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN));
+				const state_grand_judgement = Math.max(UsedSkillSearch(window.SKILL_ID_GRAND_JUDGEMENT_STATE), option.GetOptionValue(0)) === 1;
+				const yari_katate_shuren_lv = Math.max(UsedSkillSearch(window.SKILL_ID_YARI_KATATE_KEN_SHUREN), LearnedSkillSearch(window.SKILL_ID_YARI_KATATE_KEN_SHUREN));
 				if (state_grand_judgement) {
 					ratio += 1500 + 2700 * skillLv;
 					ratio += 82 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
@@ -43789,7 +43790,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** インペリアルプレッシャー */
-		SKILL_ID_IMPERIAL_PRESSURE = skillId;
+		window.SKILL_ID_IMPERIAL_PRESSURE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -43801,7 +43802,7 @@ function CSkillManager() {
 			this.range = CSkillData.RANGE_MAGIC;
 			this.dispHitCount = 2;
 			this.element = function(option) {
-				const state_guard_stance = UsedSkillSearch(SKILL_ID_GUARD_STANCE) > 0;
+				const state_guard_stance = UsedSkillSearch(window.SKILL_ID_GUARD_STANCE) > 0;
 				if (state_guard_stance) {
 					return CSkillData.ELEMENT_FORCE_HOLY;
 				} else {
@@ -43810,7 +43811,7 @@ function CSkillManager() {
 			}
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
-				const yari_katate_shuren_lv = Math.max(UsedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN), LearnedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN));
+				const yari_katate_shuren_lv = Math.max(UsedSkillSearch(window.SKILL_ID_YARI_KATATE_KEN_SHUREN), LearnedSkillSearch(window.SKILL_ID_YARI_KATATE_KEN_SHUREN));
 				ratio += -500 + 1000 * skillLv;
 				ratio += 30 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// Spl係数
 				ratio += 450 * yari_katate_shuren_lv;	// 修練係数
@@ -43850,7 +43851,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** クロススラッシュ */
-		SKILL_ID_CROSS_SLASH = skillId;
+		window.SKILL_ID_CROSS_SLASH = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -43864,7 +43865,7 @@ function CSkillManager() {
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				// TODO: シャドウエクシード状態はスキル倍率のみに影響するため職固有自己支援から攻撃オプションへ移行する
-				const state_shadow_exceed = Math.max(UsedSkillSearch(SKILL_ID_SHADOW_EXCEED), option.GetOptionValue(0)) > 0;
+				const state_shadow_exceed = Math.max(UsedSkillSearch(window.SKILL_ID_SHADOW_EXCEED), option.GetOptionValue(0)) > 0;
 				ratio += 50 + 50 * skillLv;
 				ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数 検証済み
 				if (state_shadow_exceed) {
@@ -43904,7 +43905,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** ディヴィヌスフロス */
-		SKILL_ID_DIVINUS_FLOS = skillId;
+		window.SKILL_ID_DIVINUS_FLOS = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -43924,7 +43925,7 @@ function CSkillManager() {
 			}
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
-				const fidos_animus_lv = Math.max(UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS), LearnedSkillSearch(SKILL_ID_FIDOS_ANIMUS));
+				const fidos_animus_lv = Math.max(UsedSkillSearch(window.SKILL_ID_FIDOS_ANIMUS), LearnedSkillSearch(window.SKILL_ID_FIDOS_ANIMUS));
 				ratio += 1000 + 1000 * skillLv;
 				ratio += 30 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// Spl係数 検証済み
 				ratio += 300 * fidos_animus_lv;	// 修練係数 検証済み
@@ -43964,7 +43965,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** ミステリーパウダー */
-		SKILL_ID_MYSTERY_POWDER = skillId;
+		window.SKILL_ID_MYSTERY_POWDER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -44015,7 +44016,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** ダストエクスプロージョン */
-		SKILL_ID_DUST_EXPLOSION = skillId;
+		window.SKILL_ID_DUST_EXPLOSION = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -44030,7 +44031,7 @@ function CSkillManager() {
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				// TODO: リサーチレポートはスキル倍率のみに影響するので職固有自己支援から攻撃オプションへ移行する
-				const state_research_report = Math.max(UsedSkillSearch(SKILL_ID_RESEARCH_REPORT), option.GetOptionValue(0)) === 1;
+				const state_research_report = Math.max(UsedSkillSearch(window.SKILL_ID_RESEARCH_REPORT), option.GetOptionValue(0)) === 1;
 				if (state_research_report) {
 					ratio += 7000 + 1900 * skillLv;
 					ratio += 55 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数 検証済み
@@ -44074,7 +44075,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** 四色符 */
-		SKILL_ID_FOUR_CHARM = skillId;
+		window.SKILL_ID_FOUR_CHARM = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -44111,7 +44112,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** オーバーカミングクライシス */
-		SKILL_ID_OVERCOMING_CRISIS = skillId;
+		window.SKILL_ID_OVERCOMING_CRISIS = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -44148,7 +44149,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** エナジーコンバージョン */
-		SKILL_ID_ENERGY_CONVERSION = skillId;
+		window.SKILL_ID_ENERGY_CONVERSION = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -44185,7 +44186,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** シェイプシフト：ウェアウルフ */
-		SKILL_ID_WEREWOLF = skillId;
+		window.SKILL_ID_WEREWOLF = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -44204,7 +44205,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** シェイプシフト：ウェアラプター */
-		SKILL_ID_WERERAPTOR = skillId;
+		window.SKILL_ID_WERERAPTOR = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -44223,7 +44224,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** ビースティノーズ */
-		SKILL_ID_BEASTY_NOSE = skillId;
+		window.SKILL_ID_BEASTY_NOSE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -44239,7 +44240,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** トゥルースオブアイス */
-		SKILL_ID_TRUTH_OF_ICE = skillId;
+		window.SKILL_ID_TRUTH_OF_ICE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -44261,7 +44262,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** トゥルースオブウィンド */
-		SKILL_ID_TRUTH_OF_WIND = skillId;
+		window.SKILL_ID_TRUTH_OF_WIND = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -44283,7 +44284,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** トゥルースオブアース */
-		SKILL_ID_TRUTH_OF_EARTH = skillId;
+		window.SKILL_ID_TRUTH_OF_EARTH = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -44306,7 +44307,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** ブラッドハウリング */
-		SKILL_ID_BLOOD_HOWLING = skillId;
+		window.SKILL_ID_BLOOD_HOWLING = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -44331,7 +44332,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** プリーニング */
-		SKILL_ID_PREENING = skillId;
+		window.SKILL_ID_PREENING = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -44356,7 +44357,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** シャープアイズ */
-		SKILL_ID_SHARPE_EYES = skillId;
+		window.SKILL_ID_SHARPE_EYES = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -44372,7 +44373,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** アイストーテム */
-		SKILL_ID_ICE_TOTEM = skillId;
+		window.SKILL_ID_ICE_TOTEM = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -44386,7 +44387,7 @@ function CSkillManager() {
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				ratio += 80 * skillLv;
-				if (UsedSkillSearch(SKILL_ID_TRUTH_OF_ICE) > 0) {
+				if (UsedSkillSearch(window.SKILL_ID_TRUTH_OF_ICE) > 0) {
 					ratio += 2 * n_A_INT;
 				}
 				return Math.floor(ratio * n_A_BaseLV / 100);
@@ -44417,7 +44418,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** カッティングウィンド */
-		SKILL_ID_CUTTING_WIND = skillId;
+		window.SKILL_ID_CUTTING_WIND = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -44431,7 +44432,7 @@ function CSkillManager() {
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				ratio += 80 * skillLv;
-				if (UsedSkillSearch(SKILL_ID_TRUTH_OF_WIND) > 0) {
+				if (UsedSkillSearch(window.SKILL_ID_TRUTH_OF_WIND) > 0) {
 					ratio += 2 * n_A_INT;
 				}
 				return Math.floor(ratio * n_A_BaseLV / 100);
@@ -44462,7 +44463,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** アースフラワー */
-		SKILL_ID_EARTH_FLOWER = skillId;
+		window.SKILL_ID_EARTH_FLOWER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -44476,7 +44477,7 @@ function CSkillManager() {
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				ratio += 80 * skillLv;
-				if (UsedSkillSearch(SKILL_ID_TRUTH_OF_EARTH) > 0) {
+				if (UsedSkillSearch(window.SKILL_ID_TRUTH_OF_EARTH) > 0) {
 					ratio += 2 * n_A_INT;
 				}
 				return Math.floor(ratio * n_A_BaseLV / 100);
@@ -44507,7 +44508,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** エンレイジウルフ */
-		SKILL_ID_ENRAGE_WOLF = skillId;
+		window.SKILL_ID_ENRAGE_WOLF = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -44544,7 +44545,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** エンレイジラプター */
-		SKILL_ID_ENRAGE_RAPTOR = skillId;
+		window.SKILL_ID_ENRAGE_RAPTOR = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -44581,7 +44582,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** アイスクラウド */
-		SKILL_ID_ICE_CLOUD = skillId;
+		window.SKILL_ID_ICE_CLOUD = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -44595,7 +44596,7 @@ function CSkillManager() {
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				ratio += 80 * skillLv;
-				if (UsedSkillSearch(SKILL_ID_TRUTH_OF_ICE) > 0) {
+				if (UsedSkillSearch(window.SKILL_ID_TRUTH_OF_ICE) > 0) {
 					ratio += 2 * n_A_INT;
 				}
 				return Math.floor(ratio * n_A_BaseLV / 100);
@@ -44626,7 +44627,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** ウィンドボム */
-		SKILL_ID_WIND_BOMB = skillId;
+		window.SKILL_ID_WIND_BOMB = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -44640,7 +44641,7 @@ function CSkillManager() {
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				ratio += 80 * skillLv;
-				if (UsedSkillSearch(SKILL_ID_TRUTH_OF_WIND) > 0) {
+				if (UsedSkillSearch(window.SKILL_ID_TRUTH_OF_WIND) > 0) {
 					ratio += 2 * n_A_INT;
 				}
 				return Math.floor(ratio * n_A_BaseLV / 100);
@@ -44671,7 +44672,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** アラウンドフラワー */
-		SKILL_ID_AROUND_FLOWER = skillId;
+		window.SKILL_ID_AROUND_FLOWER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -44685,7 +44686,7 @@ function CSkillManager() {
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				ratio += 80 * skillLv;
-				if (UsedSkillSearch(SKILL_ID_TRUTH_OF_EARTH) > 0) {
+				if (UsedSkillSearch(window.SKILL_ID_TRUTH_OF_EARTH) > 0) {
 					ratio += 2 * n_A_INT;
 				}
 				return Math.floor(ratio * n_A_BaseLV / 100);
@@ -44716,7 +44717,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** ノーマーシークロー */
-		SKILL_ID_NOMERCY_CLAW = skillId;
+		window.SKILL_ID_NOMERCY_CLAW = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -44730,7 +44731,7 @@ function CSkillManager() {
 			this.hitCount = 2;
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
-				if (UsedSkillSearch(SKILL_ID_ENRAGE_WOLF) > 0) {
+				if (UsedSkillSearch(window.SKILL_ID_ENRAGE_WOLF) > 0) {
 					ratio += 100 + 20 * skillLv;
 				} else {
 					ratio += 90 + 15 * skillLv;
@@ -44764,7 +44765,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** シューティングフェザー */
-		SKILL_ID_SHOOTING_FEATHER = skillId;
+		window.SKILL_ID_SHOOTING_FEATHER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -44778,7 +44779,7 @@ function CSkillManager() {
 			this.hitCount = 2;
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
-				if (UsedSkillSearch(SKILL_ID_ENRAGE_RAPTOR) > 0) {
+				if (UsedSkillSearch(window.SKILL_ID_ENRAGE_RAPTOR) > 0) {
 					ratio += 200 + 20 * skillLv;
 				} else {
 					ratio += 170 + 15 * skillLv;
@@ -44812,7 +44813,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** ネイチャーシールド */
-		SKILL_ID_NATURE_SHIELD = skillId;
+		window.SKILL_ID_NATURE_SHIELD = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -44849,7 +44850,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** ネイチャーロジック */
-		SKILL_ID_NATURE_LOGIC = skillId;
+		window.SKILL_ID_NATURE_LOGIC = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -44865,7 +44866,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** クルーエルバイト */
-		SKILL_ID_CRUEL_BITE = skillId;
+		window.SKILL_ID_CRUEL_BITE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -44879,7 +44880,7 @@ function CSkillManager() {
 			this.hitCount = 2;
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
-				if (UsedSkillSearch(SKILL_ID_ENRAGE_WOLF) > 0) {
+				if (UsedSkillSearch(window.SKILL_ID_ENRAGE_WOLF) > 0) {
 					ratio += 200 + 20 * skillLv;
 				} else {
 					ratio += 170 + 15 * skillLv;
@@ -44913,7 +44914,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** ローフライト */
-		SKILL_ID_LOW_FLIGHT = skillId;
+		window.SKILL_ID_LOW_FLIGHT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -44927,7 +44928,7 @@ function CSkillManager() {
 			this.hitCount = 2;
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
-				if (UsedSkillSearch(SKILL_ID_ENRAGE_RAPTOR) > 0) {
+				if (UsedSkillSearch(window.SKILL_ID_ENRAGE_RAPTOR) > 0) {
 					ratio += 200 + 20 * skillLv;
 				} else {
 					ratio += 170 + 15 * skillLv;
@@ -44961,7 +44962,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** ハンガー */
-		SKILL_ID_HUNGER = skillId;
+		window.SKILL_ID_HUNGER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -44975,7 +44976,7 @@ function CSkillManager() {
 			this.hitCount = 1;
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
-				if (UsedSkillSearch(SKILL_ID_ENRAGE_WOLF) > 0) {
+				if (UsedSkillSearch(window.SKILL_ID_ENRAGE_WOLF) > 0) {
 					ratio += 400 + 40 * skillLv;
 				} else {
 					ratio += 340 + 30 * skillLv;
@@ -45009,7 +45010,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** フリッキングトルネード */
-		SKILL_ID_FLICKING_TONADO = skillId;
+		window.SKILL_ID_FLICKING_TONADO = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -45023,7 +45024,7 @@ function CSkillManager() {
 			this.hitCount = 2;
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
-				if (UsedSkillSearch(SKILL_ID_ENRAGE_RAPTOR) > 0) {
+				if (UsedSkillSearch(window.SKILL_ID_ENRAGE_RAPTOR) > 0) {
 					ratio += 200 + 20 * skillLv;
 				} else {
 					ratio += 170 + 15 * skillLv;
@@ -45057,7 +45058,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** ダブルスラッシュ */
-		SKILL_ID_DOUBLE_SLASH = skillId;
+		window.SKILL_ID_DOUBLE_SLASH = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -45071,7 +45072,7 @@ function CSkillManager() {
 			this.hitCount = 2;
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
-				if (UsedSkillSearch(SKILL_ID_ENRAGE_WOLF) > 0) {
+				if (UsedSkillSearch(window.SKILL_ID_ENRAGE_WOLF) > 0) {
 					ratio += 1000 + 100 * skillLv;
 				} else {
 					ratio += 750 + 75 * skillLv;
@@ -45105,7 +45106,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** シャープンガスト */
-		SKILL_ID_SHARPEN_GUST = skillId;
+		window.SKILL_ID_SHARPEN_GUST = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -45119,7 +45120,7 @@ function CSkillManager() {
 			this.hitCount = 2;
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
-				if (UsedSkillSearch(SKILL_ID_ENRAGE_RAPTOR) > 0) {
+				if (UsedSkillSearch(window.SKILL_ID_ENRAGE_RAPTOR) > 0) {
 					ratio += 1000 + 100 * skillLv;
 				} else {
 					ratio += 750 + 75 * skillLv;
@@ -45153,7 +45154,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** ウルフインスティンクト */
-		SKILL_ID_WOLF_INSTINCT = skillId;
+		window.SKILL_ID_WOLF_INSTINCT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -45169,7 +45170,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** アイスピラー */
-		SKILL_ID_ICE_PILLAR = skillId;
+		window.SKILL_ID_ICE_PILLAR = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -45188,7 +45189,7 @@ function CSkillManager() {
 				let ratio = 0;
 				if (option.GetOptionValue(0) == 0) {
 					// 初撃
-					if (UsedSkillSearch(SKILL_ID_TRUTH_OF_ICE) > 0) {
+					if (UsedSkillSearch(window.SKILL_ID_TRUTH_OF_ICE) > 0) {
 						ratio += 2400 + 240 * skillLv;
 					} else {
 						ratio += 1840 + 200 * skillLv;
@@ -45227,7 +45228,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** サンダリングフォーカス */
-		SKILL_ID_THUNDERING_FOCUS = skillId;
+		window.SKILL_ID_THUNDERING_FOCUS = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -45245,7 +45246,7 @@ function CSkillManager() {
 					ratio += 5 * n_A_INT;
 				} else {
 					ratio += 2400 + 240 * skillLv;
-					if (UsedSkillSearch(SKILL_ID_TRUTH_OF_WIND) > 0) {
+					if (UsedSkillSearch(window.SKILL_ID_TRUTH_OF_WIND) > 0) {
 						ratio += 4 * n_A_INT;
 					}
 				}
@@ -45277,7 +45278,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** アースバド */
-		SKILL_ID_EARTH_BUD = skillId;
+		window.SKILL_ID_EARTH_BUD = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -45293,7 +45294,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** ナスティスラッシュ */
-		SKILL_ID_NASTY_SLASH = skillId;
+		window.SKILL_ID_NASTY_SLASH = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -45307,7 +45308,7 @@ function CSkillManager() {
 			this.hitCount = 2;
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
-				if (UsedSkillSearch(SKILL_ID_ENRAGE_WOLF) > 0) {
+				if (UsedSkillSearch(window.SKILL_ID_ENRAGE_WOLF) > 0) {
 					ratio += 1000 + 200 * skillLv;
 				} else {
 					ratio += 750 + 150 * skillLv;
@@ -45341,7 +45342,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** シャープンヘイル */
-		SKILL_ID_SHARPEN_HAIL = skillId;
+		window.SKILL_ID_SHARPEN_HAIL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -45355,7 +45356,7 @@ function CSkillManager() {
 			this.hitCount = 2;
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
-				if (UsedSkillSearch(SKILL_ID_ENRAGE_RAPTOR) > 0) {
+				if (UsedSkillSearch(window.SKILL_ID_ENRAGE_RAPTOR) > 0) {
 					ratio += 1000 + 100 * skillLv;
 				} else {
 					ratio += 750 + 75 * skillLv;
@@ -45389,7 +45390,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** ラプトリアルインスティンクト */
-		SKILL_ID_RAPTORIAL_INSTINCT = skillId;
+		window.SKILL_ID_RAPTORIAL_INSTINCT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -45406,7 +45407,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** アイススプラッシュ */
-		SKILL_ID_ICE_SPLASH = skillId;
+		window.SKILL_ID_ICE_SPLASH = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -45420,7 +45421,7 @@ function CSkillManager() {
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				ratio += 2400 + 240 * skillLv;
-				if (UsedSkillSearch(SKILL_ID_TRUTH_OF_ICE) > 0) {
+				if (UsedSkillSearch(window.SKILL_ID_TRUTH_OF_ICE) > 0) {
 					ratio += 4 * n_A_INT;
 				}
 				return Math.floor(ratio * n_A_BaseLV / 100);
@@ -45452,7 +45453,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** サンダリングオーブ */
-		SKILL_ID_THUNDERING_ORB = skillId;
+		window.SKILL_ID_THUNDERING_ORB = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -45470,7 +45471,7 @@ function CSkillManager() {
 					ratio += 5 * n_A_INT;
 				} else {
 					ratio += 2400 + 240 * skillLv;
-					if (UsedSkillSearch(SKILL_ID_TRUTH_OF_WIND) > 0) {
+					if (UsedSkillSearch(window.SKILL_ID_TRUTH_OF_WIND) > 0) {
 						ratio += 4 * n_A_INT;
 					}
 				}
@@ -45502,7 +45503,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** アースドリル */
-		SKILL_ID_EARTH_DRILL = skillId;
+		window.SKILL_ID_EARTH_DRILL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -45516,7 +45517,7 @@ function CSkillManager() {
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				ratio += 2400 + 240 * skillLv;
-				if (UsedSkillSearch(SKILL_ID_TRUTH_OF_EARTH) > 0) {
+				if (UsedSkillSearch(window.SKILL_ID_TRUTH_OF_EARTH) > 0) {
 					ratio += 4 * n_A_INT;
 				}
 				return Math.floor(ratio * n_A_BaseLV / 100);
@@ -45548,7 +45549,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** クローウェーブ */
-		SKILL_ID_CLAW_WAVE = skillId;
+		window.SKILL_ID_CLAW_WAVE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -45562,7 +45563,7 @@ function CSkillManager() {
 			this.hitCount = 2;
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
-				if (UsedSkillSearch(SKILL_ID_ENRAGE_WOLF) > 0) {
+				if (UsedSkillSearch(window.SKILL_ID_ENRAGE_WOLF) > 0) {
 					ratio += 1000 + 100 * skillLv;
 				} else {
 					ratio += 750 + 75 * skillLv;
@@ -45596,7 +45597,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** フェザースプリンクル */
-		SKILL_ID_FEATHER_SPRINKLE = skillId;
+		window.SKILL_ID_FEATHER_SPRINKLE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -45610,7 +45611,7 @@ function CSkillManager() {
 			this.hitCount = 2;
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
-				if (UsedSkillSearch(SKILL_ID_ENRAGE_RAPTOR) > 0) {
+				if (UsedSkillSearch(window.SKILL_ID_ENRAGE_RAPTOR) > 0) {
 					ratio += 1000 + 200 * skillLv;
 				} else {
 					ratio += 750 + 150 * skillLv;
@@ -45644,7 +45645,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** サンダリングコール */
-		SKILL_ID_THUNDERING_CALL = skillId;
+		window.SKILL_ID_THUNDERING_CALL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -45662,7 +45663,7 @@ function CSkillManager() {
 					ratio += 5 * n_A_INT;
 				} else {
 					ratio += 2400 + 240 * skillLv;
-					if (UsedSkillSearch(SKILL_ID_TRUTH_OF_WIND) > 0) {
+					if (UsedSkillSearch(window.SKILL_ID_TRUTH_OF_WIND) > 0) {
 						ratio += 4 * n_A_INT;
 					}
 				}
@@ -45694,7 +45695,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** アーススタンプ */
-		SKILL_ID_EARTH_STAMP = skillId;
+		window.SKILL_ID_EARTH_STAMP = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -45708,7 +45709,7 @@ function CSkillManager() {
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				ratio += 2400 + 240 * skillLv;
-				if (UsedSkillSearch(SKILL_ID_TRUTH_OF_EARTH) > 0) {
+				if (UsedSkillSearch(window.SKILL_ID_TRUTH_OF_EARTH) > 0) {
 					ratio += 4 * n_A_INT;
 				}
 				return Math.floor(ratio * n_A_BaseLV / 100);
@@ -45740,7 +45741,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** チョップチョップ */
-		SKILL_ID_CHOP_CHOP = skillId;
+		window.SKILL_ID_CHOP_CHOP = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -45754,7 +45755,7 @@ function CSkillManager() {
 			this.hitCount = 2;
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
-				if (UsedSkillSearch(SKILL_ID_ENRAGE_WOLF) > 0) {
+				if (UsedSkillSearch(window.SKILL_ID_ENRAGE_WOLF) > 0) {
 					ratio += 1000 + 100 * skillLv;
 				} else {
 					ratio += 750 + 75 * skillLv;
@@ -45788,7 +45789,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** タイフーンウィング */
-		SKILL_ID_TYPHOON_WING = skillId;
+		window.SKILL_ID_TYPHOON_WING = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -45802,7 +45803,7 @@ function CSkillManager() {
 			this.hitCount = 2;
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
-				if (UsedSkillSearch(SKILL_ID_ENRAGE_RAPTOR) > 0) {
+				if (UsedSkillSearch(window.SKILL_ID_ENRAGE_RAPTOR) > 0) {
 					ratio += 1000 + 100 * skillLv;
 				} else {
 					ratio += 750 + 75 * skillLv;
@@ -45836,7 +45837,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** ネイチャーヴィゴール */
-		SKILL_ID_NATURE_VIGOUR = skillId;
+		window.SKILL_ID_NATURE_VIGOUR = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -45852,7 +45853,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** ネイチャープロテクション */
-		SKILL_ID_NATURE_PROTECTION = skillId;
+		window.SKILL_ID_NATURE_PROTECTION = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -45877,7 +45878,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** アイアンハウリング */
-		SKILL_ID_IRON_HOWLING = skillId;
+		window.SKILL_ID_IRON_HOWLING = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -45899,7 +45900,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** ウィンドヴェール */
-		SKILL_ID_WIND_VEIL = skillId;
+		window.SKILL_ID_WIND_VEIL = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -45921,7 +45922,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** パルスオブマッドネス */
-		SKILL_ID_PULSE_OF_MADNESS = skillId;
+		window.SKILL_ID_PULSE_OF_MADNESS = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -45946,7 +45947,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** フリップフラップ */
-		SKILL_ID_FLIP_FLAP = skillId;
+		window.SKILL_ID_FLIP_FLAP = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -45968,7 +45969,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** シックスセンス */
-		SKILL_ID_SIXTH_SENSE = skillId;
+		window.SKILL_ID_SIXTH_SENSE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -45984,7 +45985,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** グレイシアモノリス */
-		SKILL_ID_GLACIER_MONOLITH = skillId;
+		window.SKILL_ID_GLACIER_MONOLITH = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -45998,7 +45999,7 @@ function CSkillManager() {
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				ratio += 5600 + 520 * skillLv;
-				if (UsedSkillSearch(SKILL_ID_TRUTH_OF_ICE) > 0) {
+				if (UsedSkillSearch(window.SKILL_ID_TRUTH_OF_ICE) > 0) {
 					ratio += 36 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 				}
 				return Math.floor(ratio * n_A_BaseLV / 100);
@@ -46029,7 +46030,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** ロアリングチャージ */
-		SKILL_ID_ROARING_CHARGE = skillId;
+		window.SKILL_ID_ROARING_CHARGE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -46045,13 +46046,13 @@ function CSkillManager() {
 				if (option.GetOptionValue(0) > 0) {
 					// サンダリングロッドマックス状態
 					ratio += 6500 + 1400 * skillLv;
-					if (UsedSkillSearch(SKILL_ID_TRUTH_OF_WIND) > 0) {
+					if (UsedSkillSearch(window.SKILL_ID_TRUTH_OF_WIND) > 0) {
 						ratio += 45 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 					}
 				} else {
 					// 通常状態
 					ratio += 4800 + 1200 * skillLv;
-					if (UsedSkillSearch(SKILL_ID_TRUTH_OF_WIND) > 0) {
+					if (UsedSkillSearch(window.SKILL_ID_TRUTH_OF_WIND) > 0) {
 						ratio += 36 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 					}
 				}
@@ -46083,7 +46084,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** テラハーベスト */
-		SKILL_ID_TERRA_HARVEST = skillId;
+		window.SKILL_ID_TERRA_HARVEST = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -46097,7 +46098,7 @@ function CSkillManager() {
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				ratio += 5600 + 520 * skillLv;
-				if (UsedSkillSearch(SKILL_ID_TRUTH_OF_EARTH) > 0) {
+				if (UsedSkillSearch(window.SKILL_ID_TRUTH_OF_EARTH) > 0) {
 					ratio += 36 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 				}
 				return Math.floor(ratio * n_A_BaseLV / 100);
@@ -46129,7 +46130,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** プライマルクロー */
-		SKILL_ID_PRIMAL_CLAW = skillId;
+		window.SKILL_ID_PRIMAL_CLAW = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -46187,7 +46188,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** ピニオンショット */
-		SKILL_ID_PINION_SHOT = skillId;
+		window.SKILL_ID_PINION_SHOT = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -46240,7 +46241,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** アルファフェーズ */
-		SKILL_ID_ALPHA_PHASE = skillId;
+		window.SKILL_ID_ALPHA_PHASE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -46277,7 +46278,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** グレイシアシャード */
-		SKILL_ID_GLACIER_SHARD = skillId;
+		window.SKILL_ID_GLACIER_SHARD = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -46291,7 +46292,7 @@ function CSkillManager() {
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				ratio += 5600 + 520 * skillLv;
-				if (UsedSkillSearch(SKILL_ID_TRUTH_OF_ICE) > 0) {
+				if (UsedSkillSearch(window.SKILL_ID_TRUTH_OF_ICE) > 0) {
 					ratio += 36 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 				}
 				return Math.floor(ratio * n_A_BaseLV / 100);
@@ -46323,7 +46324,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** ロアリングピアサー */
-		SKILL_ID_ROARING_PIERCER = skillId;
+		window.SKILL_ID_ROARING_PIERCER = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -46339,13 +46340,13 @@ function CSkillManager() {
 				if (option.GetOptionValue(0) > 0) {
 					// サンダリングロッドマックス状態
 					ratio += 7000 + 650 * skillLv;
-					if (UsedSkillSearch(SKILL_ID_TRUTH_OF_WIND) > 0) {
+					if (UsedSkillSearch(window.SKILL_ID_TRUTH_OF_WIND) > 0) {
 						ratio += 45 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 					}
 				} else {
 					// 通常状態
 					ratio += 5600 + 520 * skillLv;
-					if (UsedSkillSearch(SKILL_ID_TRUTH_OF_WIND) > 0) {
+					if (UsedSkillSearch(window.SKILL_ID_TRUTH_OF_WIND) > 0) {
 						ratio += 36 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 					}
 				}
@@ -46377,7 +46378,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** テラウェーブ */
-		SKILL_ID_TERRA_WAVE = skillId;
+		window.SKILL_ID_TERRA_WAVE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -46391,7 +46392,7 @@ function CSkillManager() {
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				ratio += 5600 + 520 * skillLv;
-				if (UsedSkillSearch(SKILL_ID_TRUTH_OF_EARTH) > 0) {
+				if (UsedSkillSearch(window.SKILL_ID_TRUTH_OF_EARTH) > 0) {
 					ratio += 36 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 				}
 				return Math.floor(ratio * n_A_BaseLV / 100);
@@ -46423,7 +46424,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** フェラルクロー */
-		SKILL_ID_FERAL_CLAW = skillId;
+		window.SKILL_ID_FERAL_CLAW = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -46481,7 +46482,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** クイールスピア */
-		SKILL_ID_QUILL_SPEAR = skillId;
+		window.SKILL_ID_QUILL_SPEAR = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -46534,7 +46535,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** エイペックスフェーズ */
-		SKILL_ID_APEX_PHASE = skillId;
+		window.SKILL_ID_APEX_PHASE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -46571,7 +46572,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** グレイシアストンプ */
-		SKILL_ID_GLACIER_STOMP = skillId;
+		window.SKILL_ID_GLACIER_STOMP = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -46585,7 +46586,7 @@ function CSkillManager() {
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				ratio += 4800 + 1200 * skillLv;
-				if (UsedSkillSearch(SKILL_ID_TRUTH_OF_ICE) > 0) {
+				if (UsedSkillSearch(window.SKILL_ID_TRUTH_OF_ICE) > 0) {
 					ratio += 36 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 				}
 				return Math.floor(ratio * n_A_BaseLV / 100);
@@ -46616,7 +46617,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** フューリアスストーム */
-		SKILL_ID_FURIOS_STORM = skillId;
+		window.SKILL_ID_FURIOS_STORM = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -46628,7 +46629,7 @@ function CSkillManager() {
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_WIND;
 			this.WeaponCondition = function(weapon) {
-				return (UsedSkillSearch(SKILL_ID_TRUTH_OF_WIND) > 0);
+				return (UsedSkillSearch(window.SKILL_ID_TRUTH_OF_WIND) > 0);
 			}
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
@@ -46662,7 +46663,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** ソリッドストンプ */
-		SKILL_ID_SOLID_STOMP = skillId;
+		window.SKILL_ID_SOLID_STOMP = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -46674,7 +46675,7 @@ function CSkillManager() {
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_EARTH;
 			this.WeaponCondition = function(weapon) {
-				return (UsedSkillSearch(SKILL_ID_TRUTH_OF_EARTH) > 0);
+				return (UsedSkillSearch(window.SKILL_ID_TRUTH_OF_EARTH) > 0);
 			}
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
@@ -46709,7 +46710,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** アルファクロー */
-		SKILL_ID_ALPHA_CLAW = skillId;
+		window.SKILL_ID_ALPHA_CLAW = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -46767,7 +46768,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** テンペストフラップ */
-		SKILL_ID_TEMPEST_FLAP = skillId;
+		window.SKILL_ID_TEMPEST_FLAP = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -46820,7 +46821,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** チリングブラスト */
-		SKILL_ID_CHILLING_BLAST = skillId;
+		window.SKILL_ID_CHILLING_BLAST = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -46832,7 +46833,7 @@ function CSkillManager() {
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_WATER;
 			this.WeaponCondition = function(weapon) {
-				return (UsedSkillSearch(SKILL_ID_TRUTH_OF_ICE) > 0);
+				return (UsedSkillSearch(window.SKILL_ID_TRUTH_OF_ICE) > 0);
 			}
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
@@ -46866,7 +46867,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** フレンジファング */
-		SKILL_ID_FRENZY_FANG = skillId;
+		window.SKILL_ID_FRENZY_FANG = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -46931,7 +46932,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** エアロシンク */
-		SKILL_ID_AERO_SYNC = skillId;
+		window.SKILL_ID_AERO_SYNC = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -46968,7 +46969,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** ネイチャーエイド */
-		SKILL_ID_NATURE_AID = skillId;
+		window.SKILL_ID_NATURE_AID = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -46984,7 +46985,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** ネイチャーハーモニー */
-		SKILL_ID_NATURE_HARMONY = skillId;
+		window.SKILL_ID_NATURE_HARMONY = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -47021,7 +47022,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** グラビティホール */
-		SKILL_ID_GRAVITY_HOLE = skillId;
+		window.SKILL_ID_GRAVITY_HOLE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -47067,7 +47068,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** サベージランジ */
-		SKILL_ID_SAVAGE_LUNGE = skillId;
+		window.SKILL_ID_SAVAGE_LUNGE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -47125,7 +47126,7 @@ function CSkillManager() {
 		skillId++;
 		
 		/** グレイシアノヴァ */
-		SKILL_ID_GLACIER_NOVA = skillId;
+		window.SKILL_ID_GLACIER_NOVA = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -47148,7 +47149,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** グラウンドブルーム */
-		SKILL_ID_GROUND_BLOOM = skillId;
+		window.SKILL_ID_GROUND_BLOOM = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -47171,7 +47172,7 @@ function CSkillManager() {
 		skillId++;
 
 		/** ゼファーリンク */
-		SKILL_ID_ZEPHYR_LINK = skillId;
+		window.SKILL_ID_ZEPHYR_LINK = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
@@ -47194,3 +47195,10 @@ function CSkillManager() {
 	this.Init();
 
 }
+
+// ============================================================
+// 未移行ファイルとのグローバル互換ブロック
+// 他のJSファイルの ESModule 移行が完了したら削除する
+// ============================================================
+window.CSkillData    = CSkillData;
+window.CSkillManager = CSkillManager;

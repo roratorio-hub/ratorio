@@ -36,6 +36,16 @@
 | 30 | `roro/m/js/CSaveDataConverter.js` | 2026-04-25 | `export function CSaveDataConverter`。window互換ブロック追加。`toSafeBigInt`/`floorBigInt32`はグローバル参照 |
 | 31 | `roro/m/js/CNameKana.js` | 2026-04-25 | `export function CNameKana`。window互換ブロック追加 |
 | 32 | `roro/m/js/item.h.js` | 2026-04-25 | サイドエフェクトモジュール。関数12個のwindow互換ブロック追加 |
+| 33 | `ro4/m/js/BuffMusicAndDance.js` | 2026-04-26 | `window.n_Skill3SW`, `window.n_A_PassSkill3` に変更。window互換ブロック追加（BUFF_CONF_MUSICAL_LIMIT, Click_Skill3SW, Skill3SW_2, Click_A3） |
+| 34 | `ro4/m/js/BuffJobSpecificSelf.js` | 2026-04-26 | `window.n_Skill1SW`, `window.n_A_PassSkill` に変更。window互換ブロック追加（BUFF_CONF_SELF_LIMIT, Click_PassSkillSW, Click_A1, UsedSkillSearch, UsedSkillSearchSubUsedOnly） |
+| 35 | `ro4/m/js/BuffGuildAndGospel.js` | 2026-04-26 | `window.n_Skill4SW`, `window.n_A_PassSkill4` に変更。window互換ブロック追加（BUFF_CONF_GUILD_LIMIT, Click_Skill4SW, Click_A4） |
+| 36 | `ro4/m/js/BuffItemAndFood.js` | 2026-04-26 | `window.n_Skill7SW`, `window.n_A_PassSkill7` に変更。window互換ブロック追加（BUFF_CONF_FOOD_LIMIT, ID_BUFF_*定数26個, Click_Skill7SW, Click_A7, Click_Food_Off, setAllStatusBuff, toggleAllStatus20） |
+| 37 | `ro4/m/js/BuffOtherCategory.js` | 2026-04-26 | `window.n_Skill8SW`, `window.n_A_PassSkill8` に変更。window互換ブロック追加（BUFF_CONF_OTHER_LIMIT, Click_Skill8SW, Click_A8, OnChangePetSelect, RefreshPetExplain） |
+| 38 | `roro/m/js/CSaveDataMappingManager.js` | 2026-04-26 | `function CSaveDataMappingManager`（静的クラス）。window互換ブロック追加 |
+| 39 | `roro/m/js/CItemInfoManager.js` | 2026-04-26 | `function CItemInfoManager`（静的クラス）。window互換ブロック追加 |
+| 40 | `ro4/m/js/CSaveDataManager.js` | 2026-04-26 | `class CSaveDataManager`。window互換ブロック追加 |
+| 41 | `ro4/m/js/CSaveController.js` | 2026-04-26 | `class CSaveController`。window互換ブロック追加 |
+| 42 | `roro/m/js/CSkillManager.js` | 2026-04-26 | `function CSkillData`, `function CSkillManager`。window互換ブロック追加 |
 
 ## HTML 対応済み
 
@@ -46,11 +56,12 @@
   - `CGlobalConstManager.js` → `type="module"`（前セッション）
   - `CBattleCalcInfo.js` → `type="module"`（前セッション）
   - `savedata/SKeyMap.js` 他5ファイル → `type="module"`（前セッション）
-  - 上記20ファイル（#13〜#32）→ `type="module"`（今セッション）
+  - 上記20ファイル（#13〜#32）→ `type="module"`（前セッション）
+  - #33〜#42 の10ファイル → `type="module"`（今セッション）
   - その他 ~50 の `<script>` タグ → `defer` 属性追加（前セッション）
 - `roro/other/itemlist.html`, `cardlist.html`, `monsterlist.html`, `petlist.html`, `exp.html`, `jobb.html`
 - `util/sortedEnchantCardIdArray.html`
-  - 上記8ファイル: 今セッション分20ファイルも `type="module"` に変更
+  - 上記8ファイル: #33〜#42 のうち CSkillManager.js・CItemInfoManager.js も `type="module"` に変更（今セッション）
 
 ## 移行方針（確定）
 
@@ -64,12 +75,10 @@
 
 ### ステップ3: 次の変換候補
 
-- `roro/m/js/CSaveDataMappingManager.js` — 依存確認要
-- `ro4/m/js/savedata/CSaveDataUnitBase.js` — 依存: `CSaveDataConverter`（移行済み）、`toSafeBigInt`・`floorBigInt32`（util.js またはグローバル参照）。所在確認済み次第変換可能
-- `roro/m/js/CConfBase.js`、`CConfBase2.js` — 依存確認要
-- `roro/m/js/CSkillManager.js` — 依存確認要
-- `roro/m/js/CItemInfoManager.js` — 依存確認要
-- `.dat.js` ファイル群（`alias.dat.js`, `item.dat.js`, `card.dat.js` 等）— 対応する `.h.js` が移行済みなので有力候補
+- `ro4/m/js/savedata/CSaveDataUnitBase.js` — BLOCKED: 全 CSaveDataUnit*.js が `class Foo extends CSaveDataUnitBase` をトップレベルで実行するため、先に全 Unit を移行しないと変換不可
+- `roro/m/js/CConfBase.js`、`CConfBase2.js` — BLOCKED: `CCharaConfIchizi.js` が `CCharaConfIchizi.prototype = new CConfBase()` をトップレベルで実行するため
+- `.dat.js` ファイル群（`alias.dat.js`, `item.dat.js`, `card.dat.js` 等）— CAUTION: foot.js より前に実行される defer スクリプトがトップレベルでグローバルを参照するため、変換後は module が defer より後に実行される問題あり
+- `roro/m/js/CSkillManager.js`, `roro/m/js/CItemInfoManager.js`, `roro/m/js/CSaveDataMappingManager.js` — 今セッションで移行済み
 
 ### ステップ4: window互換ブロックの削除タイミング
 
@@ -82,7 +91,7 @@ CSaveDataUnitBase.js 移行の前に確認すること。
 
 ## 参考
 
-- チェックリスト: `esmodule-migration-checklist.md`（プロジェクトルート）
+- チェックリスト: `解析メモ/esmodule-migration-checklist.md`
 - `type="module"` は暗黙 `defer` のため、他スクリプトに `defer` を付けることで実行順を保証
 - `ro4/m/calcx.html` には `<base href="../../roro/m/">` があるため `src="js/Xxx.js"` は `roro/m/js/Xxx.js` に解決される
 - `.h.js` サイドエフェクトモジュールでは `CGlobalConstManager.DefineEnum()` が内部で `Function(name + " = " + value + ";")()` を使うためEnumグローバルは自動的に `window` に登録される（strict mode でも動作する）

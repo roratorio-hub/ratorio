@@ -1,13 +1,13 @@
-"use strict"
+// ESModule 化済み。HTMLでは type="module" で読み込むこと。
 /**
  * 「職固有自己支援」のバフウィンドウ構築関数群
-*/ 
+*/
 
 const BUFF_CONF_SELF_LIMIT = 51;
 /** 職固有自己支援 設定値の配列 */
-let n_A_PassSkill = Array(BUFF_CONF_SELF_LIMIT).fill(0);
+window.n_A_PassSkill = Array(BUFF_CONF_SELF_LIMIT).fill(0);
 /** 職固有自己支援 ウィンドウ可視状態 */
-let n_Skill1SW = false;
+window.n_Skill1SW = false;
 
 /**
  * 職固有自己支援 チェックボックス生成
@@ -23,8 +23,8 @@ function Click_PassSkillSW(){
 				<span id="A1used"></span>
 			</TD></TR>
 		`;
-	n_Skill1SW = document.calcForm.A1_SKILLSW.checked;
-	if (n_Skill1SW) {
+	window.n_Skill1SW = document.calcForm.A1_SKILLSW.checked;
+	if (window.n_Skill1SW) {
 		let end = passiveSkillIdArray.length -1;
 		let str = table_header;
 		for (let i = 0; i <= end; i += 2) {
@@ -483,7 +483,7 @@ function Click_PassSkillSW(){
 		}
 		for (let i = 0; i < passiveSkillIdArray.length; i++) {
 				let wOBJ = document.getElementById("A_skill" + i);
-				wOBJ.value = n_A_PassSkill[i];
+				wOBJ.value = window.n_A_PassSkill[i];
 		}
 	} else {
 		let str = `
@@ -513,7 +513,7 @@ function Click_A1(recalc = false){
 	const passiveSkillIdArray = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, n_A_JOB).GetPassiveSkillIdArray();
 	const end = passiveSkillIdArray.length;
 	for (let i = 0; i < end; i++) {
-		if (n_A_PassSkill[i] != 0) {
+		if (window.n_A_PassSkill[i] != 0) {
 			sw = 1;
 			break;
 		}
@@ -780,11 +780,21 @@ function UsedSkillSearchSubUsedOnly(sklId) {
 	for (let idx = 0; idx < passiveSkillIdArray.length; idx++) {
 		if(passiveSkillIdArray[idx] == sklId) {
 			// 指定されたスキルIDが見つかったとき
-			if (n_A_PassSkill[idx] !== undefined && !isNaN(n_A_PassSkill[idx])) {
+			if (window.n_A_PassSkill[idx] !== undefined && !isNaN(window.n_A_PassSkill[idx])) {
 				// 該当のスキルLvがundefinedでもNaNでもなければ習得済みLvを返す
-				return n_A_PassSkill[idx];
+				return window.n_A_PassSkill[idx];
 			}
 		}
 	}
 	return 0;
 }
+
+// ============================================================
+// 未移行ファイルとのグローバル互換ブロック
+// 他のJSファイルの ESModule 移行が完了したら削除する
+// ============================================================
+window.BUFF_CONF_SELF_LIMIT           = BUFF_CONF_SELF_LIMIT;
+window.Click_PassSkillSW              = Click_PassSkillSW;
+window.Click_A1                       = Click_A1;
+window.UsedSkillSearch                = UsedSkillSearch;
+window.UsedSkillSearchSubUsedOnly     = UsedSkillSearchSubUsedOnly;

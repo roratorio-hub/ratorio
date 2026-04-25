@@ -1,20 +1,20 @@
-"use strict"
+// ESModule 化済み。HTMLでは type="module" で読み込むこと。
 /**
  * 画面下部の「ギルドスキル/ゴスペル/他」のバフウィンドウ構築関数群
-*/ 
+*/
 
 const BUFF_CONF_GUILD_LIMIT = 36;
 /** ギルドスキル/ゴスペル/他 設定値の配列 */
-let n_A_PassSkill4 = Array(BUFF_CONF_GUILD_LIMIT).fill(0);
+window.n_A_PassSkill4 = Array(BUFF_CONF_GUILD_LIMIT).fill(0);
 /** ギルドスキル/ゴスペル/他 ウィンドウ可視状態 */
-let n_Skill4SW = false;
+window.n_Skill4SW = false;
 
 /**
  * ギルドスキル/ゴスペル/他　を構築する
  */
 function Click_Skill4SW(){
-	n_Skill4SW = document.calcForm.A4_SKILLSW.checked;
-	if(n_Skill4SW){
+	window.n_Skill4SW = document.calcForm.A4_SKILLSW.checked;
+	if(window.n_Skill4SW){
 		let str;
 		str = '<TABLE Border style="white-space:nowrap;"><TR><TD id="A4TD" ColSpan="10" class="title"><input id="OBJID_CHECK_A4_SKILLSW" type="checkbox" name="A4_SKILLSW"onClick="Click_Skill4SW()"><label for="OBJID_CHECK_A4_SKILLSW">ギルドスキル/ゴスペル/他</label><span id="A4used"></span></TD></TR>';
 		str += '<TR><TD ColSpan="10">ギルドスキル</TD></TR>';
@@ -85,24 +85,24 @@ function Click_Skill4SW(){
 			selectBox5.options[i] = new Option(i,i);
 			selectBox6.options[i] = new Option(i,i);
 		}
-		document.calcForm.A4_Skill0.checked = n_A_PassSkill4[0];
-		document.calcForm.A4_Skill1.value = n_A_PassSkill4[1];
-		document.calcForm.A4_Skill2.value = n_A_PassSkill4[2];
-		document.calcForm.A4_Skill3.value = n_A_PassSkill4[3];
-		document.calcForm.A4_Skill4.value = n_A_PassSkill4[4];
-		document.calcForm.A4_Skill5.checked = n_A_PassSkill4[5];
-		document.calcForm.A4_Skill6.checked = n_A_PassSkill4[6];
-		document.calcForm.A4_Skill7.checked = n_A_PassSkill4[7];
-		document.calcForm.A4_Skill8.checked = n_A_PassSkill4[8];
-		document.calcForm.A4_Skill9.checked = n_A_PassSkill4[9];
-		document.calcForm.A4_Skill10.checked = n_A_PassSkill4[10];
-		document.calcForm.A4_Skill11.value = n_A_PassSkill4[11];
-		document.calcForm.A4_Skill30.value = n_A_PassSkill4[30];
-		document.calcForm.A4_Skill31.value = n_A_PassSkill4[31];
-		document.calcForm.A4_Skill32.value = n_A_PassSkill4[32];
-		document.calcForm.A4_Skill33.value = n_A_PassSkill4[33];
-		document.calcForm.A4_Skill34.value = n_A_PassSkill4[34];
-		document.calcForm.A4_Skill35.value = n_A_PassSkill4[35];
+		document.calcForm.A4_Skill0.checked = window.n_A_PassSkill4[0];
+		document.calcForm.A4_Skill1.value = window.n_A_PassSkill4[1];
+		document.calcForm.A4_Skill2.value = window.n_A_PassSkill4[2];
+		document.calcForm.A4_Skill3.value = window.n_A_PassSkill4[3];
+		document.calcForm.A4_Skill4.value = window.n_A_PassSkill4[4];
+		document.calcForm.A4_Skill5.checked = window.n_A_PassSkill4[5];
+		document.calcForm.A4_Skill6.checked = window.n_A_PassSkill4[6];
+		document.calcForm.A4_Skill7.checked = window.n_A_PassSkill4[7];
+		document.calcForm.A4_Skill8.checked = window.n_A_PassSkill4[8];
+		document.calcForm.A4_Skill9.checked = window.n_A_PassSkill4[9];
+		document.calcForm.A4_Skill10.checked = window.n_A_PassSkill4[10];
+		document.calcForm.A4_Skill11.value = window.n_A_PassSkill4[11];
+		document.calcForm.A4_Skill30.value = window.n_A_PassSkill4[30];
+		document.calcForm.A4_Skill31.value = window.n_A_PassSkill4[31];
+		document.calcForm.A4_Skill32.value = window.n_A_PassSkill4[32];
+		document.calcForm.A4_Skill33.value = window.n_A_PassSkill4[33];
+		document.calcForm.A4_Skill34.value = window.n_A_PassSkill4[34];
+		document.calcForm.A4_Skill35.value = window.n_A_PassSkill4[35];
 	} else {
 		let str;
 		str = '<TABLE Border><TR><TD id="A4TD" class="title"><input id="OBJID_CHECK_A4_SKILLSW" type="checkbox" name="A4_SKILLSW"onClick="Click_Skill4SW()"><label for="OBJID_CHECK_A4_SKILLSW">ギルドスキル/ゴスペル/他</label><span id="A4used"></span></TD></TR></TABLE>';
@@ -121,8 +121,8 @@ function Click_A4(recalc = false){
         AutoCalc("Click_A4");
     }
 	let sw=0;
-	for (let i = 0; i < n_A_PassSkill4.length; i++) {
-		if(n_A_PassSkill4[i] != 0){
+	for (let i = 0; i < window.n_A_PassSkill4.length; i++) {
+		if(window.n_A_PassSkill4[i] != 0){
 			sw = 1;
 			break;
 		}
@@ -135,3 +135,11 @@ function Click_A4(recalc = false){
 		myInnerHtml("A4used","　<B>使用中</B>",0);
 	}
 }
+
+// ============================================================
+// 未移行ファイルとのグローバル互換ブロック
+// 他のJSファイルの ESModule 移行が完了したら削除する
+// ============================================================
+window.BUFF_CONF_GUILD_LIMIT = BUFF_CONF_GUILD_LIMIT;
+window.Click_Skill4SW        = Click_Skill4SW;
+window.Click_A4              = Click_A4;

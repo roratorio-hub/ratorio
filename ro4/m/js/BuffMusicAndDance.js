@@ -1,21 +1,21 @@
-"use strict"
+// ESModule 化済み。HTMLでは type="module" で読み込むこと。
 /**
  * 画面下部の「演奏/踊り系スキル」のバフウィンドウ構築関数群
-*/ 
+*/
 
 const BUFF_CONF_MUSICAL_LIMIT = 47;
 /** 演奏・踊り系スキル ウィンドウ可視状態 */
-let n_Skill3SW = false;
+window.n_Skill3SW = false;
 /** 演奏・踊り系スキル スイッチ状態配列 */
 let SWs3sw = [0,0,0,0,0,0,0,0,0,0,0,0];
 /** 演奏・踊り系スキル 設定値 */
-let n_A_PassSkill3 = Array(BUFF_CONF_MUSICAL_LIMIT).fill(0);
+window.n_A_PassSkill3 = Array(BUFF_CONF_MUSICAL_LIMIT).fill(0);
 
 /**
  * 演奏・踊り系スキル を構築する
  */
 function Click_Skill3SW(){
-	n_Skill3SW = document.calcForm.A3_SKILLSW.checked;
+	window.n_Skill3SW = document.calcForm.A3_SKILLSW.checked;
 	const table_header = `
 			<TABLE Border class="tooltip-target" style="white-space:nowrap;" data-tooltip="これらの設定は「◯次職支援設定」および「プレイヤー状態異常設定」へ順次移動します。">
 			<TR><TD id="A3TD" ColSpan="6" class="title">
@@ -24,7 +24,7 @@ function Click_Skill3SW(){
 				<span id="A3used"></span>
 			</TD></TR>
 			`;
-	if (n_Skill3SW) {
+	if (window.n_Skill3SW) {
 		let str = `${table_header}
 			<TR><TD id="EN0_1"></TD><TD id="EN0_2"></TD><TD id="EN0_3"></TD><TD id="EN0_4"></TD><TD id="EN0_5"></TD><TD id="EN0_6"></TD></TR>
 			<TR><TD id="EN1_1"></TD><TD id="EN1_2"></TD><TD id="EN1_3"></TD><TD id="EN1_4"></TD><TD id="EN1_5"></TD><TD id="EN1_6"></TD></TR>
@@ -136,13 +136,13 @@ function Click_Skill3SW(){
 				selectBoxDex.options[i] = new Option(i,i);
 				selectBoxLuk.options[i] = new Option(i,i);
 		}
-		selectBoxStr.value = n_A_PassSkill3[12];
-		selectBoxAgi.value = n_A_PassSkill3[13];
-		selectBoxVit.value = n_A_PassSkill3[14];
-		selectBoxInt.value = n_A_PassSkill3[15];
-		selectBoxDex.value = n_A_PassSkill3[16];
-		selectBoxLuk.value = n_A_PassSkill3[17];
-		document.calcForm.A3_Skill11a.checked = n_A_PassSkill3[18];
+		selectBoxStr.value = window.n_A_PassSkill3[12];
+		selectBoxAgi.value = window.n_A_PassSkill3[13];
+		selectBoxVit.value = window.n_A_PassSkill3[14];
+		selectBoxInt.value = window.n_A_PassSkill3[15];
+		selectBoxDex.value = window.n_A_PassSkill3[16];
+		selectBoxLuk.value = window.n_A_PassSkill3[17];
+		document.calcForm.A3_Skill11a.checked = window.n_A_PassSkill3[18];
 		for (let i = 0; i <= 10; i++) {
 				document.calcForm.A3_Skill0_1.options[i] = new Option(i,i);
 				document.calcForm.A3_Skill1_1.options[i] = new Option(i,i);
@@ -158,21 +158,21 @@ function Click_Skill3SW(){
 				document.calcForm.A3_Skill9.options[i] = new Option(i,i);
 				document.calcForm.A3_Skill10.options[i] = new Option(i,i);
 		}
-		document.calcForm.A3_Skill0_1.value = n_A_PassSkill3[0];
-		document.calcForm.A3_Skill1_1.value = n_A_PassSkill3[1];
-		document.calcForm.A3_Skill2_1.value = n_A_PassSkill3[2];
-		document.calcForm.A3_Skill3_1.value = n_A_PassSkill3[3];
-		document.calcForm.A3_Skill4_1.value = n_A_PassSkill3[4];
-		document.calcForm.A3_Skill5_1.value = n_A_PassSkill3[5];
-		document.calcForm.A3_Skill6_1.value = n_A_PassSkill3[6];
-		document.calcForm.A3_Skill7.value = n_A_PassSkill3[7];
-		document.calcForm.A3_Skill8.value = n_A_PassSkill3[8];
-		document.calcForm.A3_Skill9.value = n_A_PassSkill3[9];
-		document.calcForm.A3_Skill10.value = n_A_PassSkill3[10];
-		document.calcForm.A3_Skill12_0.value = n_A_PassSkill3[19];
-		document.calcForm.A3_Skill13_0.value = n_A_PassSkill3[39];
-		document.calcForm.A3_Skill20.value = n_A_PassSkill3[11];
-		document.calcForm.A3_Skill42.value = n_A_PassSkill3[42];
+		document.calcForm.A3_Skill0_1.value = window.n_A_PassSkill3[0];
+		document.calcForm.A3_Skill1_1.value = window.n_A_PassSkill3[1];
+		document.calcForm.A3_Skill2_1.value = window.n_A_PassSkill3[2];
+		document.calcForm.A3_Skill3_1.value = window.n_A_PassSkill3[3];
+		document.calcForm.A3_Skill4_1.value = window.n_A_PassSkill3[4];
+		document.calcForm.A3_Skill5_1.value = window.n_A_PassSkill3[5];
+		document.calcForm.A3_Skill6_1.value = window.n_A_PassSkill3[6];
+		document.calcForm.A3_Skill7.value = window.n_A_PassSkill3[7];
+		document.calcForm.A3_Skill8.value = window.n_A_PassSkill3[8];
+		document.calcForm.A3_Skill9.value = window.n_A_PassSkill3[9];
+		document.calcForm.A3_Skill10.value = window.n_A_PassSkill3[10];
+		document.calcForm.A3_Skill12_0.value = window.n_A_PassSkill3[19];
+		document.calcForm.A3_Skill13_0.value = window.n_A_PassSkill3[39];
+		document.calcForm.A3_Skill20.value = window.n_A_PassSkill3[11];
+		document.calcForm.A3_Skill42.value = window.n_A_PassSkill3[42];
 		Skill3SW_2(false);
 	} else {
 		let str;
@@ -200,19 +200,19 @@ function Click_Skill3SW(){
  * @param {boolean} recalc true:変数変更後に再計算する / false:しない(default)
  */
 function Skill3SW_2(recalc = false){
-	n_A_PassSkill3[0] =  Number(document.calcForm.A3_Skill0_1.value);
-	n_A_PassSkill3[1] =  Number(document.calcForm.A3_Skill1_1.value);
-	n_A_PassSkill3[2] =  Number(document.calcForm.A3_Skill2_1.value);
-	n_A_PassSkill3[3] =  Number(document.calcForm.A3_Skill3_1.value);
-	n_A_PassSkill3[4] =  Number(document.calcForm.A3_Skill4_1.value);
-	n_A_PassSkill3[5] =  Number(document.calcForm.A3_Skill5_1.value);
-	n_A_PassSkill3[6] =  Number(document.calcForm.A3_Skill6_1.value);
-	n_A_PassSkill3[19] = Number(document.calcForm.A3_Skill12_0.value);
-	n_A_PassSkill3[39] = Number(document.calcForm.A3_Skill13_0.value);
-	if (n_A_PassSkill3[0] !== 0) {
+	window.n_A_PassSkill3[0] =  Number(document.calcForm.A3_Skill0_1.value);
+	window.n_A_PassSkill3[1] =  Number(document.calcForm.A3_Skill1_1.value);
+	window.n_A_PassSkill3[2] =  Number(document.calcForm.A3_Skill2_1.value);
+	window.n_A_PassSkill3[3] =  Number(document.calcForm.A3_Skill3_1.value);
+	window.n_A_PassSkill3[4] =  Number(document.calcForm.A3_Skill4_1.value);
+	window.n_A_PassSkill3[5] =  Number(document.calcForm.A3_Skill5_1.value);
+	window.n_A_PassSkill3[6] =  Number(document.calcForm.A3_Skill6_1.value);
+	window.n_A_PassSkill3[19] = Number(document.calcForm.A3_Skill12_0.value);
+	window.n_A_PassSkill3[39] = Number(document.calcForm.A3_Skill13_0.value);
+	if (window.n_A_PassSkill3[0] !== 0) {
 		if (SWs3sw[0] === 0) {
-			if (n_A_PassSkill3[30] === 0) {
-                n_A_PassSkill3[30] = 10;
+			if (window.n_A_PassSkill3[30] === 0) {
+                window.n_A_PassSkill3[30] = 10;
             }
 			myInnerHtml("EN0_3","バードのAGI<BR>バードのLUK",0);
 			myInnerHtml("EN0_4",'<select name="A3_Skill0_2"onChange="Click_A3(true)"></select><BR><select name="A3_Skill0_4"onChange="Click_A3(true)"></select>',0);
@@ -231,24 +231,24 @@ function Skill3SW_2(recalc = false){
                 selectBox3.options[i] = new Option(`${i * 30}～${i * 30 + 29}`, i);
             }
 			SWs3sw[0] = 1;
-			selectBox1.value = n_A_PassSkill3[20];
-			selectBox2.value = n_A_PassSkill3[30];
-			selectBox3.value = n_A_PassSkill3[28];
+			selectBox1.value = window.n_A_PassSkill3[20];
+			selectBox2.value = window.n_A_PassSkill3[30];
+			selectBox3.value = window.n_A_PassSkill3[28];
 		}
 	} else {
 		SWs3sw[0] = 0;
-		if (n_A_PassSkill3[30] === 10) {
-               n_A_PassSkill3[30] = 0;
+		if (window.n_A_PassSkill3[30] === 10) {
+               window.n_A_PassSkill3[30] = 0;
         }
 		myInnerHtml("EN0_3","-",0);
 		myInnerHtml("EN0_4","-",0);
 		myInnerHtml("EN0_5","",0);
 		myInnerHtml("EN0_6","",0);
 	}
-	if (n_A_PassSkill3[1] !== 0) {
+	if (window.n_A_PassSkill3[1] !== 0) {
 		if (SWs3sw[1] === 0) {
-			if (n_A_PassSkill3[31] === 0) {
-                   n_A_PassSkill3[31] = 10;
+			if (window.n_A_PassSkill3[31] === 0) {
+                   window.n_A_PassSkill3[31] = 10;
             }
 			myInnerHtml("EN1_3","バードのAGI",0);
 			myInnerHtml("EN1_4",'<select name="A3_Skill1_2"onChange="Click_A3(true)"></select>',0);
@@ -263,23 +263,23 @@ function Skill3SW_2(recalc = false){
                 selectBox2.options[i-1] = new Option(i, i);
             }
 			SWs3sw[1] = 1;
-			selectBox1.value = n_A_PassSkill3[21];
-			selectBox2.value = n_A_PassSkill3[31];
+			selectBox1.value = window.n_A_PassSkill3[21];
+			selectBox2.value = window.n_A_PassSkill3[31];
 		}
 	} else {
 		SWs3sw[1] = 0;
-		if (n_A_PassSkill3[31] === 10) {
-               n_A_PassSkill3[31] = 0;
+		if (window.n_A_PassSkill3[31] === 10) {
+               window.n_A_PassSkill3[31] = 0;
            }
 		myInnerHtml("EN1_3","-",0);
 		myInnerHtml("EN1_4","-",0);
 		myInnerHtml("EN1_5","",0);
 		myInnerHtml("EN1_6","",0);
 	}
-	if (n_A_PassSkill3[2] !== 0) {
+	if (window.n_A_PassSkill3[2] !== 0) {
 		if(SWs3sw[2] === 0) {
-			if (n_A_PassSkill3[32] === 0) {
-                n_A_PassSkill3[32] = 10;
+			if (window.n_A_PassSkill3[32] === 0) {
+                window.n_A_PassSkill3[32] = 10;
             }
 			myInnerHtml("EN2_3","バードのDEX",0);
 			myInnerHtml("EN2_4",'<select name="A3_Skill2_2"onChange="Click_A3(true)"></select>',0);
@@ -300,14 +300,14 @@ function Skill3SW_2(recalc = false){
                 selectBox3.options[i - 1] = new Option(i,i);
             }
 			SWs3sw[2] = 1;
-			selectBox1.value = n_A_PassSkill3[22];
-			selectBox2.value = n_A_PassSkill3[29];
-			selectBox3.value = n_A_PassSkill3[32];
+			selectBox1.value = window.n_A_PassSkill3[22];
+			selectBox2.value = window.n_A_PassSkill3[29];
+			selectBox3.value = window.n_A_PassSkill3[32];
 		}
 	}else{
 		SWs3sw[2] = 0;
-		if (n_A_PassSkill3[32] === 10) {
-               n_A_PassSkill3[32] = 0;
+		if (window.n_A_PassSkill3[32] === 10) {
+               window.n_A_PassSkill3[32] = 0;
            }
 		myInnerHtml("EN2_3","-",0);
 		myInnerHtml("EN2_4","-",0);
@@ -316,10 +316,10 @@ function Skill3SW_2(recalc = false){
 		myInnerHtml("EN2_7","",0);
 		myInnerHtml("EN2_8","",0);
 	}
-	if (n_A_PassSkill3[3] !== 0) {
+	if (window.n_A_PassSkill3[3] !== 0) {
 		if (SWs3sw[3] === 0) {
-			if (n_A_PassSkill3[33] == 0) {
-                n_A_PassSkill3[33] = 10;
+			if (window.n_A_PassSkill3[33] == 0) {
+                window.n_A_PassSkill3[33] = 10;
             }
 			myInnerHtml("EN3_3","バードのVIT",0);
 			myInnerHtml("EN3_4",'<select name="A3_Skill3_2"onChange="Click_A3(true)"></select>',0);
@@ -334,21 +334,21 @@ function Skill3SW_2(recalc = false){
                 selectBox2.options[i-1] = new Option(i,i);
             }
 			SWs3sw[3] = 1;
-			selectBox1.value = n_A_PassSkill3[23];
-			selectBox2.value = n_A_PassSkill3[33];
+			selectBox1.value = window.n_A_PassSkill3[23];
+			selectBox2.value = window.n_A_PassSkill3[33];
 		}
 	} else {
 		SWs3sw[3] = 0;
-		if(n_A_PassSkill3[33]==10) n_A_PassSkill3[33] = 0;
+		if(window.n_A_PassSkill3[33]==10) window.n_A_PassSkill3[33] = 0;
 		myInnerHtml("EN3_3","-",0);
 		myInnerHtml("EN3_4","-",0);
 		myInnerHtml("EN3_5","",0);
 		myInnerHtml("EN3_6","",0);
 	}
-	if (n_A_PassSkill3[4] !== 0) {
+	if (window.n_A_PassSkill3[4] !== 0) {
 		if (SWs3sw[4] === 0) {
-			if (n_A_PassSkill3[34] === 0) {
-                n_A_PassSkill3[34] = 10;
+			if (window.n_A_PassSkill3[34] === 0) {
+                window.n_A_PassSkill3[34] = 10;
             }
 			myInnerHtml("EN4_3","ダンサーのDEX",0);
 			myInnerHtml("EN4_4",'<select name="A3_Skill4_2"onChange="Click_A3(true)"></select>',0);
@@ -363,23 +363,23 @@ function Skill3SW_2(recalc = false){
                 selectBox2.options[i-1] = new Option(i,i);
             }
 			SWs3sw[4] = 1;
-			selectBox1.value = n_A_PassSkill3[24];
-			selectBox2.value = n_A_PassSkill3[34];
+			selectBox1.value = window.n_A_PassSkill3[24];
+			selectBox2.value = window.n_A_PassSkill3[34];
 		}
 	} else {
 		SWs3sw[4] = 0;
-		if (n_A_PassSkill3[34] === 10) {
-            n_A_PassSkill3[34] = 0;
+		if (window.n_A_PassSkill3[34] === 10) {
+            window.n_A_PassSkill3[34] = 0;
         }
 		myInnerHtml("EN4_3","-",0);
 		myInnerHtml("EN4_4","-",0);
 		myInnerHtml("EN4_5","",0);
 		myInnerHtml("EN4_6","",0);
 	}
-	if (n_A_PassSkill3[5] !== 0) {
+	if (window.n_A_PassSkill3[5] !== 0) {
 		if (SWs3sw[5] === 0) {
-			if (n_A_PassSkill3[35] === 0) {
-                n_A_PassSkill3[35] = 10;
+			if (window.n_A_PassSkill3[35] === 0) {
+                window.n_A_PassSkill3[35] = 10;
             }
 			myInnerHtml("EN5_3","ダンサーのLUK",0);
 			myInnerHtml("EN5_4",'<select name="A3_Skill5_2"onChange="Click_A3(true)"></select>',0);
@@ -394,23 +394,23 @@ function Skill3SW_2(recalc = false){
                 selectBox2.options[i-1] = new Option(i,i);
             }
 			SWs3sw[5] = 1;
-			selectBox1.value = n_A_PassSkill3[25];
-			selectBox2.value = n_A_PassSkill3[35];
+			selectBox1.value = window.n_A_PassSkill3[25];
+			selectBox2.value = window.n_A_PassSkill3[35];
 		}
 	} else {
 		SWs3sw[5] = 0;
-		if (n_A_PassSkill3[35] === 10) {
-            n_A_PassSkill3[35] = 0;
+		if (window.n_A_PassSkill3[35] === 10) {
+            window.n_A_PassSkill3[35] = 0;
         }
 		myInnerHtml("EN5_3","-",0);
 		myInnerHtml("EN5_4","-",0);
 		myInnerHtml("EN5_5","",0);
 		myInnerHtml("EN5_6","",0);
 	}
-	if (n_A_PassSkill3[6] !== 0) {
+	if (window.n_A_PassSkill3[6] !== 0) {
 		if (SWs3sw[6] === 0) {
-			if (n_A_PassSkill3[36] === 0) {
-                n_A_PassSkill3[36] = 10;
+			if (window.n_A_PassSkill3[36] === 0) {
+                window.n_A_PassSkill3[36] = 10;
             }
 			myInnerHtml("EN6_3","ダンサーのINT",0);
 			myInnerHtml("EN6_4",'<select name="A3_Skill6_2"onChange="Click_A3(true)"></select>',0);
@@ -425,25 +425,25 @@ function Skill3SW_2(recalc = false){
                 selectBox2.options[i-1] = new Option(i,i);
             }
 			SWs3sw[6] = 1;
-			selectBox1.value = n_A_PassSkill3[26];
-			selectBox2.value = n_A_PassSkill3[36];
+			selectBox1.value = window.n_A_PassSkill3[26];
+			selectBox2.value = window.n_A_PassSkill3[36];
 		}
 	} else {
 		SWs3sw[6] = 0;
-		if (n_A_PassSkill3[36] === 10) {
-            n_A_PassSkill3[36] = 0;
+		if (window.n_A_PassSkill3[36] === 10) {
+            window.n_A_PassSkill3[36] = 0;
         }
 		myInnerHtml("EN6_3","-",0);
 		myInnerHtml("EN6_4","-",0);
 		myInnerHtml("EN6_5","",0);
 		myInnerHtml("EN6_6","",0);
 	}
-	if (n_A_PassSkill3[19] !== 0) {
+	if (window.n_A_PassSkill3[19] !== 0) {
 		if(SWs3sw[7] !== 2) {
-			if (n_A_PassSkill3[46] === 0) {
-				n_A_PassSkill3[37] = 5;
-				n_A_PassSkill3[46] = 60;
-				n_A_PassSkill3[38] = 10;
+			if (window.n_A_PassSkill3[46] === 0) {
+				window.n_A_PassSkill3[37] = 5;
+				window.n_A_PassSkill3[46] = 60;
+				window.n_A_PassSkill3[38] = 10;
 			}
 			myInnerHtml("EN12_2",'<select name="A3_Skill12_1"onChange="Click_A3(true)"></select>',0);
 			myInnerHtml("EN12_3","ミン/ワンのJobLv",0);
@@ -462,60 +462,60 @@ function Skill3SW_2(recalc = false){
 			for (let i = 0; i <= 10; i++) {
                 selectBox3.options[i] = new Option(i,i);
             }
-			if (n_A_PassSkill3[37] > 5) {
-                n_A_PassSkill3[37] = 5;
+			if (window.n_A_PassSkill3[37] > 5) {
+                window.n_A_PassSkill3[37] = 5;
             }
-			selectBox1.value = n_A_PassSkill3[37];
-			selectBox2.value = n_A_PassSkill3[46];
-			selectBox3.value = n_A_PassSkill3[38];
+			selectBox1.value = window.n_A_PassSkill3[37];
+			selectBox2.value = window.n_A_PassSkill3[46];
+			selectBox3.value = window.n_A_PassSkill3[38];
 			SWs3sw[7] = 2;
 		}
 	} else {
 		SWs3sw[7] = 0;
-		n_A_PassSkill3[37] = 0;
-		n_A_PassSkill3[46] = 0;
-		n_A_PassSkill3[38] = 0;
+		window.n_A_PassSkill3[37] = 0;
+		window.n_A_PassSkill3[46] = 0;
+		window.n_A_PassSkill3[38] = 0;
 		myInnerHtml("EN12_2","",0);
 		myInnerHtml("EN12_3","<Font size=2>←風車などクリックで選択可</Font>",0);
 		myInnerHtml("EN12_4","",0);
 		myInnerHtml("EN12_5","",0);
 		myInnerHtml("EN12_6","",0);
 	}
-	if (n_A_PassSkill3[39] !== 0) {
+	if (window.n_A_PassSkill3[39] !== 0) {
 		if (SWs3sw[8] === 0) {
-			if (n_A_PassSkill3[41] === 0) {
-				n_A_PassSkill3[40] = 5;
-				n_A_PassSkill3[41] = 2;
+			if (window.n_A_PassSkill3[41] === 0) {
+				window.n_A_PassSkill3[40] = 5;
+				window.n_A_PassSkill3[41] = 2;
 			}
 			myInnerHtml("EN13_2",'<select name="A3_Skill13_1"onChange="Click_A3(true)"></select>',0);
 			for (let i = 1; i <= 5; i++) {
                 document.calcForm.A3_Skill13_1.options[i-1] = new Option(i,i);
             }
-			document.calcForm.A3_Skill13_1.value = n_A_PassSkill3[40];
-			if (n_A_PassSkill3[39] !== 1) {
+			document.calcForm.A3_Skill13_1.value = window.n_A_PassSkill3[40];
+			if (window.n_A_PassSkill3[39] !== 1) {
 				myInnerHtml("EN13_3","ミン/ワンの人数",0);
 				myInnerHtml("EN13_4",'<select name="A3_Skill13_2"onChange="Click_A3(true)"></select>',0);
 				for (let i = 2; i <= 12; i++) {
                     document.calcForm.A3_Skill13_2.options[i-2] = new Option(i,i);
                 }
-				if (n_A_PassSkill3[41] < 2) {
-                    n_A_PassSkill3[41] = 2;
+				if (window.n_A_PassSkill3[41] < 2) {
+                    window.n_A_PassSkill3[41] = 2;
                 }
-				document.calcForm.A3_Skill13_2.value = n_A_PassSkill3[41];
+				document.calcForm.A3_Skill13_2.value = window.n_A_PassSkill3[41];
 			} else {
 				myInnerHtml("EN13_3","ATK増加のタイプ(検証用)",0);
 				myInnerHtml("EN13_4",'<select name="A3_Skill13_2"onChange="Click_A3(true)"></select>',0);
 				document.calcForm.A3_Skill13_2.options[0] = new Option("アンドレC型(ほぼ確定)",3);
 				document.calcForm.A3_Skill13_2.options[1] = new Option("アンドレC型(ほぼ確定)",1);
 				document.calcForm.A3_Skill13_2.options[2] = new Option("アンドレC型(ほぼ確定)",2);
-				document.calcForm.A3_Skill13_2.value = n_A_PassSkill3[41];
+				document.calcForm.A3_Skill13_2.value = window.n_A_PassSkill3[41];
 			}
 			SWs3sw[8] = 0;
 		}
 	} else {
 		SWs3sw[8] = 0;
-		n_A_PassSkill3[40] = 0;
-		n_A_PassSkill3[41] = 0;
+		window.n_A_PassSkill3[40] = 0;
+		window.n_A_PassSkill3[41] = 0;
 		myInnerHtml("EN13_2","",0);
 		myInnerHtml("EN13_3","",0);
 		myInnerHtml("EN13_4","",0);
@@ -533,8 +533,8 @@ function Click_A3(recalc = false) {
 		AutoCalc("Click_A3");
 	}
 	let sw = 0;
-	for (let i = 0; i < n_A_PassSkill3.length; i++) {
-		if (n_A_PassSkill3[i] != 0){
+	for (let i = 0; i < window.n_A_PassSkill3.length; i++) {
+		if (window.n_A_PassSkill3[i] != 0){
 			if(!(20 <= i && i <= 36)) {
 				sw = 1;
 				break;
@@ -549,3 +549,12 @@ function Click_A3(recalc = false) {
 		myInnerHtml("A3used","　<B>使用中</B>",0);
 	}
 }
+
+// ============================================================
+// 未移行ファイルとのグローバル互換ブロック
+// 他のJSファイルの ESModule 移行が完了したら削除する
+// ============================================================
+window.BUFF_CONF_MUSICAL_LIMIT = BUFF_CONF_MUSICAL_LIMIT;
+window.Click_Skill3SW          = Click_Skill3SW;
+window.Skill3SW_2              = Skill3SW_2;
+window.Click_A3                = Click_A3;

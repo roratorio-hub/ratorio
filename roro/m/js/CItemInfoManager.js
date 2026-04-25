@@ -1,4 +1,4 @@
-
+// ESModule 化済み。HTMLでは type="module" で読み込むこと。
 /**
  * アイテム情報マネージャクラス.
  */
@@ -1419,5 +1419,11 @@ CItemInfoManager.AppendSetInfo = function (objRoot, dataIdToSetIdMap, bEnableTim
 		}
 	);
 };
+
+// ============================================================
+// 未移行ファイルとのグローバル互換ブロック
+// 他のJSファイルの ESModule 移行が完了したら削除する
+// ============================================================
+window.CItemInfoManager = CItemInfoManager;
 
 

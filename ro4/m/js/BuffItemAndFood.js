@@ -1,7 +1,7 @@
-"use strict"
+// ESModule 化済み。HTMLでは type="module" で読み込むこと。
 /**
  * 画面下部の「アイテム(食品/他)」のバフウィンドウ構築関数群
-*/ 
+*/
 
 /**
  * Note:
@@ -14,9 +14,9 @@
 /** アイテム・食品他 設定値の配列数 */
 const BUFF_CONF_FOOD_LIMIT = 53;
 /** アイテム・食品他 設定値の配列 */
-let n_A_PassSkill7 = Array(BUFF_CONF_FOOD_LIMIT).fill(0);
+window.n_A_PassSkill7 = Array(BUFF_CONF_FOOD_LIMIT).fill(0);
 /** アイテム・食品他 ウィンドウ可視状態 */
-let n_Skill7SW = false;
+window.n_Skill7SW = false;
 
 const ID_BUFF_FOOD_CHAGASHI = 0;
 const ID_BUFF_FOOD_AGEGASHI = 1;
@@ -62,7 +62,7 @@ function Click_Skill7SW(){
 
 	// 展開状態を取得
 	objInput = document.getElementById("OBJID_CHECK_A7_SKILLSW");
-	n_Skill7SW = objInput.checked;
+	window.n_Skill7SW = objInput.checked;
 	// ルートオブジェクト取得
 	objRoot = document.getElementById("OBJID_SP_SIEN05");
 	// ルートオブジェクト配下、全削除
@@ -77,7 +77,7 @@ function Click_Skill7SW(){
 	objTd = HtmlCreateElement("td", objTr);
 	objTd.setAttribute("id", "A7TD");
 	objTd.setAttribute("class", "title");
-	if (n_Skill7SW) {
+	if (window.n_Skill7SW) {
 		objTd.setAttribute("colspan", "6");
 	}
 	objInput = HtmlCreateElement("input", objTd);
@@ -85,7 +85,7 @@ function Click_Skill7SW(){
 	objInput.setAttribute("id", "OBJID_CHECK_A7_SKILLSW");
 	objInput.setAttribute("name", "A7_SKILLSW");
 	objInput.setAttribute("onclick", "Click_Skill7SW()");
-	if (n_Skill7SW) {
+	if (window.n_Skill7SW) {
 		objInput.setAttribute("checked", "checked");
 	}
 	objLabel = HtmlCreateElement("label", objTd);
@@ -94,7 +94,7 @@ function Click_Skill7SW(){
 	objSpan = HtmlCreateElement("span", objTd);
 	objSpan.setAttribute("id", "A7used");
 	// 展開表示でない場合は、処理終了
-	if (!n_Skill7SW) {
+	if (!window.n_Skill7SW) {
 		Click_A7(false);
 		return;
 	}
@@ -186,7 +186,7 @@ function Click_Skill7SW(){
                     for (let idxValue = 1; idxValue <= 10; idxValue++) {
                         HtmlCreateElementOption(idxValue, "+" + idxValue, objSelect);
                     }
-                    objSelect.value = n_A_PassSkill7[subInfoArray[idxKind][0]];
+                    objSelect.value = window.n_A_PassSkill7[subInfoArray[idxKind][0]];
                     HtmlCreateTextNode(" ", objTd);
                 }
                 objInput = HtmlCreateElement("input", objTd);
@@ -221,7 +221,7 @@ function Click_Skill7SW(){
                 objLabel = HtmlCreateElement("label", objTd);
                 objLabel.setAttribute("for", "OBJID_CHECK_A7_Skill15");
                 HtmlCreateTextNode("攻撃方法を追加する（魔女のスキルカード・攻撃魔法スクロール・イグドラシルの葉）", objLabel);
-                if (n_A_PassSkill7[15]) {
+                if (window.n_A_PassSkill7[15]) {
                     objInput.checked = "checked";
                 }
                 // +20 料理
@@ -248,7 +248,7 @@ function Click_Skill7SW(){
                     objLabel = HtmlCreateElement("label", objTd);
                     objLabel.setAttribute("for", "OBJID_CHECK_A7_Skill" + subInfoArray[idxKind][0]);
                     HtmlCreateTextNode(subInfoArray[idxKind][1] + "+20", objLabel);
-                    if (n_A_PassSkill7[subInfoArray[idxKind][0]]) {
+                    if (window.n_A_PassSkill7[subInfoArray[idxKind][0]]) {
                         objInput.checked = "checked";
                     }
                 }
@@ -276,7 +276,7 @@ function Click_Skill7SW(){
 				objLabel = HtmlCreateElement("label", objTd);
 				objLabel.setAttribute("for", "OBJID_CHECK_A7_Skill" + buildInfo[0]);
 				HtmlCreateTextNode(buildInfo[1], objLabel);
-				if (n_A_PassSkill7[buildInfo[0]]) {
+				if (window.n_A_PassSkill7[buildInfo[0]]) {
 					objInput.checked = "checked";
 				}
 			} else {
@@ -289,7 +289,7 @@ function Click_Skill7SW(){
 				for (let idxValue = 0; idxValue < buildInfo[2].length; idxValue++) {
 					HtmlCreateElementOption(idxValue, buildInfo[2][idxValue], objSelect);
 				}
-				objSelect.value = n_A_PassSkill7[buildInfo[0]];
+				objSelect.value = window.n_A_PassSkill7[buildInfo[0]];
 			}
 		}
 	}
@@ -326,7 +326,7 @@ function Click_Skill7SW(){
 			HtmlCreateElementOption(idxValue, optText, objSelect);
 		}
 		HtmlCreateElement("br", objTd);
-		objSelect.value = n_A_PassSkill7[subInfoArray[idxKind][0]];
+		objSelect.value = window.n_A_PassSkill7[subInfoArray[idxKind][0]];
 	}
 	objTd = HtmlCreateElement("td", objTr);
 	objSpan = HtmlCreateElement("span", objTd);
@@ -358,8 +358,8 @@ function Click_A7(recalc = false){
         AutoCalc("Click_A7");
     }
 	let sw=0;
-	for (let i = 0; i < n_A_PassSkill7.length; i++) {
-		if(n_A_PassSkill7[i] != 0){
+	for (let i = 0; i < window.n_A_PassSkill7.length; i++) {
+		if(window.n_A_PassSkill7[i] != 0){
 			sw = 1;
 			break;
 		}
@@ -419,3 +419,39 @@ function toggleAllStatus20() {
 		ID_BUFF_STATUS_20_LUK,
 	].forEach(n => document.getElementById(`OBJID_CHECK_A7_Skill${n}`).click());
 }
+
+// ============================================================
+// 未移行ファイルとのグローバル互換ブロック
+// 他のJSファイルの ESModule 移行が完了したら削除する
+// ============================================================
+window.BUFF_CONF_FOOD_LIMIT      = BUFF_CONF_FOOD_LIMIT;
+window.ID_BUFF_FOOD_CHAGASHI     = ID_BUFF_FOOD_CHAGASHI;
+window.ID_BUFF_FOOD_AGEGASHI     = ID_BUFF_FOOD_AGEGASHI;
+window.ID_BUFF_FOOD_NIJIOMOCHI   = ID_BUFF_FOOD_NIJIOMOCHI;
+window.ID_BUFF_STATUS_STR        = ID_BUFF_STATUS_STR;
+window.ID_BUFF_STATUS_AGI        = ID_BUFF_STATUS_AGI;
+window.ID_BUFF_STATUS_VIT        = ID_BUFF_STATUS_VIT;
+window.ID_BUFF_STATUS_INT        = ID_BUFF_STATUS_INT;
+window.ID_BUFF_STATUS_DEX        = ID_BUFF_STATUS_DEX;
+window.ID_BUFF_STATUS_LUK        = ID_BUFF_STATUS_LUK;
+window.ID_BUFF_BOX_URAMI         = ID_BUFF_BOX_URAMI;
+window.ID_BUFF_BOX_NEMUI         = ID_BUFF_BOX_NEMUI;
+window.ID_BUFF_POTION_COLD       = ID_BUFF_POTION_COLD;
+window.ID_BUFF_POTION_EARTH      = ID_BUFF_POTION_EARTH;
+window.ID_BUFF_POTION_FIRE       = ID_BUFF_POTION_FIRE;
+window.ID_BUFF_POTION_WIND       = ID_BUFF_POTION_WIND;
+window.ID_BUFF_MAJO_NO_SKILL_CARD = ID_BUFF_MAJO_NO_SKILL_CARD;
+window.ID_BUFF_STATUS_20_STR     = ID_BUFF_STATUS_20_STR;
+window.ID_BUFF_STATUS_20_AGI     = ID_BUFF_STATUS_20_AGI;
+window.ID_BUFF_STATUS_20_VIT     = ID_BUFF_STATUS_20_VIT;
+window.ID_BUFF_STATUS_20_INT     = ID_BUFF_STATUS_20_INT;
+window.ID_BUFF_STATUS_20_DEX     = ID_BUFF_STATUS_20_DEX;
+window.ID_BUFF_STATUS_20_LUK     = ID_BUFF_STATUS_20_LUK;
+window.ID_BUFF_MANUK_ISHI        = ID_BUFF_MANUK_ISHI;
+window.ID_BUFF_VESPER_HONEY      = ID_BUFF_VESPER_HONEY;
+window.ID_BUFF_SOUSHO_CARD       = ID_BUFF_SOUSHO_CARD;
+window.Click_Skill7SW            = Click_Skill7SW;
+window.Click_A7                  = Click_A7;
+window.Click_Food_Off            = Click_Food_Off;
+window.setAllStatusBuff          = setAllStatusBuff;
+window.toggleAllStatus20         = toggleAllStatus20;

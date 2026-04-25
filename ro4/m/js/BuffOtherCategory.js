@@ -1,14 +1,14 @@
-"use strict"
+// ESModule 化済み。HTMLでは type="module" で読み込むこと。
 /**
  * 画面下部の「その他の支援/設定」のバフウィンドウ構築関数群
-*/ 
+*/
 
 const BUFF_CONF_OTHER_LIMIT = 28;
 
 /** その他の支援/設定 設定値の配列 */
-let n_A_PassSkill8 = Array(BUFF_CONF_OTHER_LIMIT).fill(0);
+window.n_A_PassSkill8 = Array(BUFF_CONF_OTHER_LIMIT).fill(0);
 /** その他の支援/設定 ウィンドウ可視状態 */
-let n_Skill8SW = false;
+window.n_Skill8SW = false;
 
 /**
  * その他の支援/設定 を構築する
@@ -17,8 +17,8 @@ function Click_Skill8SW(){
 	let petId = 0;
 	let petDataArrayWork = null;
 	let objSelect = null;
-	n_Skill8SW = document.calcForm.A8_SKILLSW.checked;
-    if(n_Skill8SW){
+	window.n_Skill8SW = document.calcForm.A8_SKILLSW.checked;
+    if(window.n_Skill8SW){
 		let str;
 		str = '<TABLE Border style="white-space:nowrap;"><TR><TD id="A8TD" Colspan="2" class="title"><input id="OBJID_CHECK_A8_SKILLSW" type="checkbox" name="A8_SKILLSW"onClick="Click_Skill8SW()"><label for="OBJID_CHECK_A8_SKILLSW">その他の支援/設定 (暫定追加機能)</label><SPAN id="A8used"></SPAN></TD></TR>';
 		str += '<TR><TD>ペット：<select id="OBJID_SELECT_PET" name="A8_Skill0" onchange="StAllCalc(); OnChangePetSelect();"></select></TD><TD>親密度：<select id="OBJID_SELECT_PET_FRIENDLITY" name="A8_Skill17" onChange="StAllCalc(); Click_A8(true);"></select></TD></TR>';
@@ -123,22 +123,22 @@ function Click_Skill8SW(){
         } else {
             myInnerHtml("EN819",'<input id="OBJID_CHECK_A8_Skill19" type="checkbox" name="A8_Skill19"onClick="StAllCalc() | Click_A8(true)"><label for="OBJID_CHECK_A8_Skill19"><Font size=2>武器属性付与をアカデミーの看板型付与にする<BR>　（素手Atk部分にも武器属性付与が適用される）</Font></label>',0);
         }
-		document.calcForm.A8_Skill0.value = n_A_PassSkill8[0];
-		document.calcForm.A8_Skill1.value = n_A_PassSkill8[1];
-		document.calcForm.A8_Skill2.value = n_A_PassSkill8[2];
-		document.calcForm.A8_Skill3.value = n_A_PassSkill8[3];
-		document.calcForm.A8_Skill4.checked = n_A_PassSkill8[4];
-		document.calcForm.A8_Skill5.value = n_A_PassSkill8[5];
-		document.calcForm.A8_Skill6.value = n_A_PassSkill8[6];
-		document.calcForm.A8_Skill7.value = n_A_PassSkill8[7];
-		document.calcForm.A8_Skill12.value = n_A_PassSkill8[12];
-		document.calcForm.A8_Skill13.checked = n_A_PassSkill8[13];
-		document.calcForm.A8_Skill15.value = n_A_PassSkill8[15];
-		document.calcForm.A8_Skill16.checked = n_A_PassSkill8[16];
-		document.calcForm.A8_Skill17.value = n_A_PassSkill8[17];
-		document.calcForm.A8_Skill19.checked = n_A_PassSkill8[19];
-		document.calcForm.A8_Skill21.value = n_A_PassSkill8[21];
-		document.calcForm.A8_Skill22.value = n_A_PassSkill8[22];
+		document.calcForm.A8_Skill0.value = window.n_A_PassSkill8[0];
+		document.calcForm.A8_Skill1.value = window.n_A_PassSkill8[1];
+		document.calcForm.A8_Skill2.value = window.n_A_PassSkill8[2];
+		document.calcForm.A8_Skill3.value = window.n_A_PassSkill8[3];
+		document.calcForm.A8_Skill4.checked = window.n_A_PassSkill8[4];
+		document.calcForm.A8_Skill5.value = window.n_A_PassSkill8[5];
+		document.calcForm.A8_Skill6.value = window.n_A_PassSkill8[6];
+		document.calcForm.A8_Skill7.value = window.n_A_PassSkill8[7];
+		document.calcForm.A8_Skill12.value = window.n_A_PassSkill8[12];
+		document.calcForm.A8_Skill13.checked = window.n_A_PassSkill8[13];
+		document.calcForm.A8_Skill15.value = window.n_A_PassSkill8[15];
+		document.calcForm.A8_Skill16.checked = window.n_A_PassSkill8[16];
+		document.calcForm.A8_Skill17.value = window.n_A_PassSkill8[17];
+		document.calcForm.A8_Skill19.checked = window.n_A_PassSkill8[19];
+		document.calcForm.A8_Skill21.value = window.n_A_PassSkill8[21];
+		document.calcForm.A8_Skill22.value = window.n_A_PassSkill8[22];
 		// ペット説明更新
 		RefreshPetExplain();
     } else {
@@ -160,8 +160,8 @@ function Click_A8(recalc = false){
         AutoCalc("Click_A8");
     }
 	let sw=0;
-	for(let i = 0; i < n_A_PassSkill8.length; i++) {
-		if(n_A_PassSkill8[i] != 0){
+	for(let i = 0; i < window.n_A_PassSkill8.length; i++) {
+		if(window.n_A_PassSkill8[i] != 0){
 			sw = 1;
 			break;
 		}
@@ -209,3 +209,13 @@ function RefreshPetExplain() {
 	// セット情報追記
 	CItemInfoManager.AppendSetInfo(objSpan, PetIdToSetIdMap[petId], true);
 }
+
+// ============================================================
+// 未移行ファイルとのグローバル互換ブロック
+// 他のJSファイルの ESModule 移行が完了したら削除する
+// ============================================================
+window.BUFF_CONF_OTHER_LIMIT  = BUFF_CONF_OTHER_LIMIT;
+window.Click_Skill8SW         = Click_Skill8SW;
+window.Click_A8               = Click_A8;
+window.OnChangePetSelect      = OnChangePetSelect;
+window.RefreshPetExplain      = RefreshPetExplain;

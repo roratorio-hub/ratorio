@@ -7,5 +7,6 @@ util/__pycache__
 util/*monster.csv
 .clineignore
 .clinerules
+.claude/*.local.*
 memory-bank
 dist/
