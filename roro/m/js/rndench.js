@@ -7,7 +7,7 @@
  *-----------------------------------------------------------------------------------------------
  * @return true:対応 false:非対応
  ************************************************************************************************/
-function IsEnableRandomEnchant(itemId) {
+export function IsEnableRandomEnchant(itemId) {
 
 	var wpnlv = ItemObjNew[itemId][ITEM_DATA_INDEX_WPNLV];
 	var flag = (wpnlv * 10) % 10;
@@ -20,7 +20,6 @@ function IsEnableRandomEnchant(itemId) {
 	return (flag & 1) == 1;
 }
 
-
-
-
-
+if (typeof window !== 'undefined') {
+	window.IsEnableRandomEnchant = IsEnableRandomEnchant;
+}

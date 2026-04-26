@@ -1,11 +1,11 @@
 // モンスター状態異常設定の限界値
 // この数を超える場合は、セーブデータの拡張が必要
-MOB_CONF_DEBUF_LIMIT = 80;
+window.MOB_CONF_DEBUF_LIMIT = 80;
 
 // 初期化作業
-let n_B_IJYOU = [];
+window.n_B_IJYOU = [];
 
-MobConfDebufOBJ = new Array();
+window.MobConfDebufOBJ = new Array();
 
 InitMobConfDebufData();
 
@@ -13,11 +13,11 @@ InitMobConfDebufData();
 // モンスター状態異常データ定義用ダミー関数
 // （可読性を高める目的で使用する）
 //================================================================
-function MobConfDebufText(value) { return value; };
-function MobConfDebufControlType(value) { return value; };
-function MobConfDebufDefaultValue(value) { return value; };
-function MobConfDebufMinValue(value) { return value; };
-function MobConfDebufMaxValue(value) { return value; };
+export function MobConfDebufText(value) { return value; };
+export function MobConfDebufControlType(value) { return value; };
+export function MobConfDebufDefaultValue(value) { return value; };
+export function MobConfDebufMinValue(value) { return value; };
+export function MobConfDebufMaxValue(value) { return value; };
 
 //********************************************************************************************************************************
 //********************************************************************************************************************************
@@ -30,7 +30,7 @@ function MobConfDebufMaxValue(value) { return value; };
 /**
  * モンスター状態異常データを初期化（セットアップ）する.
  */
-function InitMobConfDebufData() {
+export function InitMobConfDebufData() {
 	let idx = 0;
 	let MobConfDebufId = 0;
 	let MobConfDebufData = new Array();
@@ -39,17 +39,17 @@ function InitMobConfDebufData() {
 	//----------------------------------------------------------------
 	// データインデックス定義
 	//----------------------------------------------------------------
-	MOB_CONF_DEBUF_DATA_INDEX_ID = indexdefiner++;
-	MOB_CONF_DEBUF_DATA_INDEX_TEXT = indexdefiner++;
-	MOB_CONF_DEBUF_DATA_INDEX_CONTROL_TYPE = indexdefiner++;
-	MOB_CONF_DEBUF_DATA_INDEX_DEFAULT_VALUE = indexdefiner++;
-	MOB_CONF_DEBUF_DATA_INDEX_MIN_VALUE = indexdefiner++;
-	MOB_CONF_DEBUF_DATA_INDEX_MAX_VALUE = indexdefiner++;
+	window.MOB_CONF_DEBUF_DATA_INDEX_ID = indexdefiner++;
+	window.MOB_CONF_DEBUF_DATA_INDEX_TEXT = indexdefiner++;
+	window.MOB_CONF_DEBUF_DATA_INDEX_CONTROL_TYPE = indexdefiner++;
+	window.MOB_CONF_DEBUF_DATA_INDEX_DEFAULT_VALUE = indexdefiner++;
+	window.MOB_CONF_DEBUF_DATA_INDEX_MIN_VALUE = indexdefiner++;
+	window.MOB_CONF_DEBUF_DATA_INDEX_MAX_VALUE = indexdefiner++;
 
 	//----------------------------------------------------------------
 	// データ定義　ここから
 	//----------------------------------------------------------------
-	MOB_CONF_DEBUF_ID_PROVOKE = MobConfDebufId;	// 0
+	window.MOB_CONF_DEBUF_ID_PROVOKE = MobConfDebufId;	// 0
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("プロボック(不死不可)"),
@@ -61,7 +61,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_QUAGMIRE = MobConfDebufId;	// 1
+	window.MOB_CONF_DEBUF_ID_QUAGMIRE = MobConfDebufId;	// 1
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("クァグマイア"),
@@ -73,7 +73,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_DOKU = MobConfDebufId;	// 2
+	window.MOB_CONF_DEBUF_ID_DOKU = MobConfDebufId;	// 2
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("毒"),
@@ -85,7 +85,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_KURAYAMI = MobConfDebufId;	// 3
+	window.MOB_CONF_DEBUF_ID_KURAYAMI = MobConfDebufId;	// 3
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("暗闇"),
@@ -97,7 +97,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_TOUKETSU = MobConfDebufId;	// 4
+	window.MOB_CONF_DEBUF_ID_TOUKETSU = MobConfDebufId;	// 4
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("凍結(不死不可)"),
@@ -109,7 +109,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_BLESSING = MobConfDebufId;	// 5
+	window.MOB_CONF_DEBUF_ID_BLESSING = MobConfDebufId;	// 5
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("ブレッシング(不死/悪魔)"),
@@ -121,7 +121,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_LEX_AETERNA = MobConfDebufId;	// 6
+	window.MOB_CONF_DEBUF_ID_LEX_AETERNA = MobConfDebufId;	// 6
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("レックスエーテルナ"),
@@ -133,7 +133,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_STUN = MobConfDebufId;	// 7
+	window.MOB_CONF_DEBUF_ID_STUN = MobConfDebufId;	// 7
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("スタン"),
@@ -145,7 +145,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_SUIMIN = MobConfDebufId;	// 8
+	window.MOB_CONF_DEBUF_ID_SUIMIN = MobConfDebufId;	// 8
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("睡眠"),
@@ -157,7 +157,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_SEKIKA = MobConfDebufId;	// 9
+	window.MOB_CONF_DEBUF_ID_SEKIKA = MobConfDebufId;	// 9
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("石化"),
@@ -169,7 +169,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_NOROI = MobConfDebufId;	// 10
+	window.MOB_CONF_DEBUF_ID_NOROI = MobConfDebufId;	// 10
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("呪い"),
@@ -181,7 +181,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_SOKUDO_GENSHO = MobConfDebufId;	// 11
+	window.MOB_CONF_DEBUF_ID_SOKUDO_GENSHO = MobConfDebufId;	// 11
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("速度減少"),
@@ -193,7 +193,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_SIGNUM_CRUCIS = MobConfDebufId;	// 12
+	window.MOB_CONF_DEBUF_ID_SIGNUM_CRUCIS = MobConfDebufId;	// 12
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("シグナムクルシス"),
@@ -205,7 +205,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_STRIP_WEAPON = MobConfDebufId;	// 13
+	window.MOB_CONF_DEBUF_ID_STRIP_WEAPON = MobConfDebufId;	// 13
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("ストリップウェポン"),
@@ -217,7 +217,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_STRIP_SHIELD = MobConfDebufId;	// 14
+	window.MOB_CONF_DEBUF_ID_STRIP_SHIELD = MobConfDebufId;	// 14
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("ストリップシールド"),
@@ -229,7 +229,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_STRIP_ARMOR = MobConfDebufId;	// 15
+	window.MOB_CONF_DEBUF_ID_STRIP_ARMOR = MobConfDebufId;	// 15
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("ストリップアーマー"),
@@ -241,7 +241,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_STRIP_HELM = MobConfDebufId;	// 16
+	window.MOB_CONF_DEBUF_ID_STRIP_HELM = MobConfDebufId;	// 16
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("ストリップヘルム"),
@@ -253,7 +253,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_SPIDER_WEB = MobConfDebufId;	// 17
+	window.MOB_CONF_DEBUF_ID_SPIDER_WEB = MobConfDebufId;	// 17
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("スパイダーウェブ"),
@@ -265,7 +265,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_MIND_BREAKER = MobConfDebufId;	// 18
+	window.MOB_CONF_DEBUF_ID_MIND_BREAKER = MobConfDebufId;	// 18
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("マインドブレイカー"),
@@ -277,7 +277,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_WATASHIWO_WASURENAIDE = MobConfDebufId;	// 19
+	window.MOB_CONF_DEBUF_ID_WATASHIWO_WASURENAIDE = MobConfDebufId;	// 19
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("私を忘れないで…(未)"),
@@ -289,7 +289,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_EIENNNO_KONTON = MobConfDebufId;	// 20
+	window.MOB_CONF_DEBUF_ID_EIENNNO_KONTON = MobConfDebufId;	// 20
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("永遠の混沌"),
@@ -301,7 +301,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_ESKA = MobConfDebufId;	// 21
+	window.MOB_CONF_DEBUF_ID_ESKA = MobConfDebufId;	// 21
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("エスカ"),
@@ -313,7 +313,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_ESKU = MobConfDebufId;	// 22
+	window.MOB_CONF_DEBUF_ID_ESKU = MobConfDebufId;	// 22
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("エスク"),
@@ -325,7 +325,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_ELEMENTAL_CHANGE = MobConfDebufId;	// 23
+	window.MOB_CONF_DEBUF_ID_ELEMENTAL_CHANGE = MobConfDebufId;	// 23
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("エレメンタルチェンジ"),
@@ -337,7 +337,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_FLYING = MobConfDebufId;	// 24
+	window.MOB_CONF_DEBUF_ID_FLYING = MobConfDebufId;	// 24
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("フライング"),
@@ -349,7 +349,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_VENOM_IMPRESS = MobConfDebufId;	// 25
+	window.MOB_CONF_DEBUF_ID_VENOM_IMPRESS = MobConfDebufId;	// 25
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("ベナムインプレス"),
@@ -361,7 +361,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_ENERVATION = MobConfDebufId;	// 26
+	window.MOB_CONF_DEBUF_ID_ENERVATION = MobConfDebufId;	// 26
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("エナベーション"),
@@ -373,7 +373,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_GROOMY = MobConfDebufId;	// 27
+	window.MOB_CONF_DEBUF_ID_GROOMY = MobConfDebufId;	// 27
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("(仮)グルーミー"),
@@ -385,7 +385,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_RAGENESS = MobConfDebufId;	// 28
+	window.MOB_CONF_DEBUF_ID_RAGENESS = MobConfDebufId;	// 28
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("レイジーネス"),
@@ -397,7 +397,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_WEEKNESS = MobConfDebufId;	// 29
+	window.MOB_CONF_DEBUF_ID_WEEKNESS = MobConfDebufId;	// 29
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("ウィークネス"),
@@ -409,7 +409,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_UNLUCKY = MobConfDebufId;	// 30
+	window.MOB_CONF_DEBUF_ID_UNLUCKY = MobConfDebufId;	// 30
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("アンラッキー"),
@@ -421,7 +421,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_ORATIO = MobConfDebufId;	//31
+	window.MOB_CONF_DEBUF_ID_ORATIO = MobConfDebufId;	//31
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("オラティオ"),
@@ -433,7 +433,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_HAKKA = MobConfDebufId;	// 32
+	window.MOB_CONF_DEBUF_ID_HAKKA = MobConfDebufId;	// 32
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("発火"),
@@ -445,7 +445,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_SURPRISE_ATTACK_EFFECT = MobConfDebufId;	// 33
+	window.MOB_CONF_DEBUF_ID_SURPRISE_ATTACK_EFFECT = MobConfDebufId;	// 33
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("サプライズアタック後の+20%"),
@@ -457,7 +457,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_HYOKETSU = MobConfDebufId;	// 34
+	window.MOB_CONF_DEBUF_ID_HYOKETSU = MobConfDebufId;	// 34
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("氷結(DEF-10%)"),
@@ -469,7 +469,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_REITO = MobConfDebufId;	// 35
+	window.MOB_CONF_DEBUF_ID_REITO = MobConfDebufId;	// 35
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("冷凍"),
@@ -481,7 +481,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_DARK_CRAW_EFFECT = MobConfDebufId;
+	window.MOB_CONF_DEBUF_ID_DARK_CRAW_EFFECT = MobConfDebufId;
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("ダーククロー後の状態"),
@@ -493,7 +493,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_ANALYSE = MobConfDebufId;
+	window.MOB_CONF_DEBUF_ID_ANALYSE = MobConfDebufId;
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("アナライズ"),
@@ -505,7 +505,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_WATER_BARRIER = MobConfDebufId;
+	window.MOB_CONF_DEBUF_ID_WATER_BARRIER = MobConfDebufId;
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("ウォーターバリア"),
@@ -517,7 +517,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_MAHI = MobConfDebufId;
+	window.MOB_CONF_DEBUF_ID_MAHI = MobConfDebufId;
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("麻痺"),
@@ -529,7 +529,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_RAKUIN_ZYOTAI = MobConfDebufId;
+	window.MOB_CONF_DEBUF_ID_RAKUIN_ZYOTAI = MobConfDebufId;
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("烙印状態"),
@@ -541,7 +541,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_STRIP_ACCESSARY = MobConfDebufId;
+	window.MOB_CONF_DEBUF_ID_STRIP_ACCESSARY = MobConfDebufId;
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("ストリップアクセサリー"),
@@ -553,7 +553,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_INUHAKKA_SHOWER = MobConfDebufId;
+	window.MOB_CONF_DEBUF_ID_INUHAKKA_SHOWER = MobConfDebufId;
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("(×)イヌハッカシャワー"),
@@ -565,7 +565,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_NYAN_GRASS = MobConfDebufId;
+	window.MOB_CONF_DEBUF_ID_NYAN_GRASS = MobConfDebufId;
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("ニャングラス"),
@@ -577,7 +577,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_TARONO_KIZU = MobConfDebufId;
+	window.MOB_CONF_DEBUF_ID_TARONO_KIZU = MobConfDebufId;
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("タロウの傷"),
@@ -589,7 +589,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_KAITO = MobConfDebufId;
+	window.MOB_CONF_DEBUF_ID_KAITO = MobConfDebufId;
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("カイト（ダメージ増加）"),
@@ -601,7 +601,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_SHIRYO_HYOI = MobConfDebufId;
+	window.MOB_CONF_DEBUF_ID_SHIRYO_HYOI = MobConfDebufId;
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("死霊憑依"),
@@ -613,7 +613,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_ADORAMUS_DEBUFF = MobConfDebufId;
+	window.MOB_CONF_DEBUF_ID_ADORAMUS_DEBUFF = MobConfDebufId;
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("アドラムス(AGI-)"),
@@ -625,7 +625,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_MARSH_OF_ABYSS = MobConfDebufId;
+	window.MOB_CONF_DEBUF_ID_MARSH_OF_ABYSS = MobConfDebufId;
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("マーシュオブアビス"),
@@ -637,7 +637,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_EARTH_DRIVE_DEBUFF = MobConfDebufId;
+	window.MOB_CONF_DEBUF_ID_EARTH_DRIVE_DEBUFF = MobConfDebufId;
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("アースドライブ(ASPD-/DEF-)"),
@@ -649,7 +649,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_QUAKE_DEBUFF = MobConfDebufId;
+	window.MOB_CONF_DEBUF_ID_QUAKE_DEBUFF = MobConfDebufId;
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("クエイク状態"),
@@ -661,7 +661,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_SEIYU_SENREI_DEBUFF = MobConfDebufId;
+	window.MOB_CONF_DEBUF_ID_SEIYU_SENREI_DEBUFF = MobConfDebufId;
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("(廃止)聖油洗礼状態"),
@@ -673,7 +673,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_SOUND_BLEND = MobConfDebufId;
+	window.MOB_CONF_DEBUF_ID_SOUND_BLEND = MobConfDebufId;
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("サウンドブレンド状態"),
@@ -685,7 +685,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_JACK_FROST_NOVA = MobConfDebufId;
+	window.MOB_CONF_DEBUF_ID_JACK_FROST_NOVA = MobConfDebufId;
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("ジャックフロストノヴァ状態"),
@@ -697,7 +697,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_CLIMAX_QUAKE = MobConfDebufId;
+	window.MOB_CONF_DEBUF_ID_CLIMAX_QUAKE = MobConfDebufId;
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("クライマックスクエイク状態"),
@@ -709,7 +709,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_CLIMAX_BLOOM = MobConfDebufId;
+	window.MOB_CONF_DEBUF_ID_CLIMAX_BLOOM = MobConfDebufId;
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("クライマックスブルーム状態"),
@@ -721,7 +721,7 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
-	MOB_CONF_DEBUF_ID_TOXIN_OF_MANDARA = MobConfDebufId;
+	window.MOB_CONF_DEBUF_ID_TOXIN_OF_MANDARA = MobConfDebufId;
 	MobConfDebufData = [
 		MobConfDebufId,
 		MobConfDebufText("トキシンオブマンドラ状態"),
@@ -809,7 +809,7 @@ function InitMobConfDebufData() {
 		MOB_CONF_DEBUF_ID_STRIP_HELM,				// Int-40%
 		MOB_CONF_DEBUF_ID_STRIP_ACCESSARY,			// Int-20%, Dex-20%, Luk-20%
 	];
-	MobConfDebufOBJ = DEBUF_ARRAY.map(debufId => MobConfDebufOBJ[debufId]);
+	window.MobConfDebufOBJ = DEBUF_ARRAY.map(debufId => MobConfDebufOBJ[debufId]);
 }
 
 /**
@@ -817,7 +817,7 @@ function InitMobConfDebufData() {
  * @param objRoot テーブルの親オブジェクト
  * @param bAsExpand 展開表示フラグ（true : 展開表示、false : ヘッダのみ）
  */
-function BuildUpMobConfDebufSelectArea(objRoot, bAsExpand) {
+export function BuildUpMobConfDebufSelectArea(objRoot, bAsExpand) {
 	let idx = 0;
 	let confId = 0;
 	let confText = "";
@@ -1006,7 +1006,7 @@ function BuildUpMobConfDebufSelectArea(objRoot, bAsExpand) {
 /**
  * モンスター状態異常設定欄の状態を同期させる（変数の値をコントロール部品へ反映）.
  */
-function SyncronizeMobConfDebufSettingsVarToCtrl() {
+export function SyncronizeMobConfDebufSettingsVarToCtrl() {
 
 	var idx = 0;
 	var confId = 0;
@@ -1071,7 +1071,7 @@ function SyncronizeMobConfDebufSettingsVarToCtrl() {
 /**
  * モンスター状態異常設定欄の状態を同期させる（コントロール部品の状態を変数へ反映）.
  */
-function SyncronizeMobConfDebufSettingsCtrlToVar() {
+export function SyncronizeMobConfDebufSettingsCtrlToVar() {
 
 	var idx = 0;
 	var confId = 0;
@@ -1138,7 +1138,7 @@ function SyncronizeMobConfDebufSettingsCtrlToVar() {
 /**
  * モンスター状態異常設定欄の展開スイッチクリックイベントハンドラ.
  */
-function OnClickMobConfDebufSwitch() {
+export function OnClickMobConfDebufSwitch() {
 
 	var bExpand = false;
 	var objInput = null;
@@ -1159,7 +1159,7 @@ function OnClickMobConfDebufSwitch() {
  * モンスター状態異常設定欄の設定値変更イベントハンドラ.
  * @param bCalc 再計算フラグ（true : 再計算する、false : 再計算しない）
  */
-function OnChangeMobConfDebuf(bCalc) {
+export function OnChangeMobConfDebuf(bCalc) {
 
 	// 設定の変更を変数に同期させる
 	SyncronizeMobConfDebufSettingsCtrlToVar();
@@ -1179,7 +1179,7 @@ function OnChangeMobConfDebuf(bCalc) {
 /**
  * モンスター状態異常設定テーブルのヘッダをリフレッシュする.
  */
-function RefreshMobConfDebufSelectAreaHeader() {
+export function RefreshMobConfDebufSelectAreaHeader() {
 
 	var bSet = false;
 	var bChecked = false;
@@ -1214,7 +1214,7 @@ function RefreshMobConfDebufSelectAreaHeader() {
 /**
  * モンスター状態異常設定欄の選択状態により、コントロールのCSSを変更する.
  */
-function RefreshMobConfDebufControlCSS() {
+export function RefreshMobConfDebufControlCSS() {
 
 	var idx = 0;
 	var confId = 0;
@@ -1298,4 +1298,20 @@ function RefreshMobConfDebufControlCSS() {
 			}
 		}
 	}
+}
+
+if (typeof window !== 'undefined') {
+	window.MobConfDebufText                       = MobConfDebufText;
+	window.MobConfDebufControlType                = MobConfDebufControlType;
+	window.MobConfDebufDefaultValue               = MobConfDebufDefaultValue;
+	window.MobConfDebufMinValue                   = MobConfDebufMinValue;
+	window.MobConfDebufMaxValue                   = MobConfDebufMaxValue;
+	window.InitMobConfDebufData                   = InitMobConfDebufData;
+	window.BuildUpMobConfDebufSelectArea          = BuildUpMobConfDebufSelectArea;
+	window.SyncronizeMobConfDebufSettingsVarToCtrl = SyncronizeMobConfDebufSettingsVarToCtrl;
+	window.SyncronizeMobConfDebufSettingsCtrlToVar = SyncronizeMobConfDebufSettingsCtrlToVar;
+	window.OnClickMobConfDebufSwitch              = OnClickMobConfDebufSwitch;
+	window.OnChangeMobConfDebuf                   = OnChangeMobConfDebuf;
+	window.RefreshMobConfDebufSelectAreaHeader    = RefreshMobConfDebufSelectAreaHeader;
+	window.RefreshMobConfDebufControlCSS          = RefreshMobConfDebufControlCSS;
 }

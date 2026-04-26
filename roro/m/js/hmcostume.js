@@ -9,7 +9,7 @@
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function ClearCostumeSlotAll(eqpRgnId) {
+export function ClearCostumeSlotAll(eqpRgnId) {
 
 	// 個別関数を全コール
 	ClearCostumeSlot(EQUIP_REGION_ID_HEAD_UNDER);
@@ -24,7 +24,7 @@ function ClearCostumeSlotAll(eqpRgnId) {
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function ClearCostumeSlot(eqpRgnId) {
+export function ClearCostumeSlot(eqpRgnId) {
 
 	// サブ関数をコール
 	switch (eqpRgnId) {
@@ -107,7 +107,7 @@ function __ClearCostumeSlot(objidPrifix) {
  * @param jobId 職業ID
  *-----------------------------------------------------------------------------------------------
  ************************************************************************************************/
-function RebuildCostumeSelect(eqpRgnId, itemId, jobId) {
+export function RebuildCostumeSelect(eqpRgnId, itemId, jobId) {
 
 	var objidPrifix = "";
 	var objSelect = null;
@@ -186,7 +186,7 @@ function RebuildCostumeSelect(eqpRgnId, itemId, jobId) {
 /**
  * 衣装スロットの再構築（衣装項目）.
  */
-function BuildUpCostumeSlotsCostume(eqpRgnId, itemId, objArySlots, jobId) {
+export function BuildUpCostumeSlotsCostume(eqpRgnId, itemId, objArySlots, jobId) {
 	// 職業IDが引数で渡されなかった時用のコード
 	if (typeof jobId === "undefined" || jobId === null) {
 		jobId = document.getElementById("OBJID_SELECT_JOB").value;
@@ -258,13 +258,13 @@ function BuildUpCostumeSlotsCostume(eqpRgnId, itemId, objArySlots, jobId) {
 /**
  * 衣装スロットの使用可否を設定する.
  */
-function SetCostumeSlotEnabilityAll() {
+export function SetCostumeSlotEnabilityAll() {
 
 	// 個別関数を全コール
 	SetCostumeSlotEnability(EQUIP_REGION_ID_HEAD_UNDER);
 }
 
-function SetCostumeSlotEnability(eqpRgnId) {
+export function SetCostumeSlotEnability(eqpRgnId) {
 
 	var strObjIdPrifix = "";
 
@@ -357,4 +357,13 @@ function __SetCostumeSlotEnability(objTarget, enabled) {
 	} else {
 		objTarget.style.visibility = "hidden";
 	}
+}
+
+if (typeof window !== 'undefined') {
+	window.ClearCostumeSlotAll           = ClearCostumeSlotAll;
+	window.ClearCostumeSlot              = ClearCostumeSlot;
+	window.RebuildCostumeSelect          = RebuildCostumeSelect;
+	window.BuildUpCostumeSlotsCostume    = BuildUpCostumeSlotsCostume;
+	window.SetCostumeSlotEnabilityAll    = SetCostumeSlotEnabilityAll;
+	window.SetCostumeSlotEnability       = SetCostumeSlotEnability;
 }

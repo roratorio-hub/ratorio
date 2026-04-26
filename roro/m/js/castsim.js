@@ -4,7 +4,7 @@
 
 
 
-function BuildUpCastSimSimulateArea(objRoot, bAsExpand) {
+export function BuildUpCastSimSimulateArea(objRoot, bAsExpand) {
 
 	var idx = 0;
 	var rowidx = 0;
@@ -484,7 +484,7 @@ function BuildUpCastSimSimulateArea(objRoot, bAsExpand) {
 }
 
 
-function SprintfTimeStrCastSim(timeInMillSecond) {
+export function SprintfTimeStrCastSim(timeInMillSecond) {
 
 	var digit = [
 		timeInMillSecond % 10,
@@ -500,7 +500,7 @@ function SprintfTimeStrCastSim(timeInMillSecond) {
 
 
 
-function OnClickCastSimSwitch() {
+export function OnClickCastSimSwitch() {
 
 	var bExpand = false;
 
@@ -533,7 +533,7 @@ function OnClickCastSimSwitch() {
 
 
 
-function OnClickCastSimRefresh() {
+export function OnClickCastSimRefresh() {
 
 	var bExpand = false;
 
@@ -564,7 +564,7 @@ function OnClickCastSimRefresh() {
 
 
 
-function OnChangeSkillCastSim() {
+export function OnChangeSkillCastSim() {
 
 	// 実行中の詠唱をすべて止める
 	g_castsimIntervalFunctionArray.forEach(
@@ -579,7 +579,7 @@ function OnChangeSkillCastSim() {
 
 
 
-function OnChangeSkillLvCastSim() {
+export function OnChangeSkillLvCastSim() {
 
 	// 実行中の詠唱をすべて止める
 	g_castsimIntervalFunctionArray.forEach(
@@ -594,7 +594,7 @@ function OnChangeSkillLvCastSim() {
 
 
 
-function RefreshCastSimSimulateArea(bRefreshLevelSelect) {
+export function RefreshCastSimSimulateArea(bRefreshLevelSelect) {
 
 	var idx = 0;
 	var rowidx = 0;
@@ -830,11 +830,11 @@ function RefreshCastSimSimulateArea(bRefreshLevelSelect) {
 
 
 
-g_castsimProgressIntervalArray = new Array();
-g_castsimIntervalFunctionArray = new Array();
+window.g_castsimProgressIntervalArray = new Array();
+window.g_castsimIntervalFunctionArray = new Array();
 
 
-function OnClickCastSimSimulateStart(rowidx, castTime, delayTime) {
+export function OnClickCastSimSimulateStart(rowidx, castTime, delayTime) {
 
 	var paramStr = "";
 
@@ -893,7 +893,7 @@ function OnClickCastSimSimulateStart(rowidx, castTime, delayTime) {
 
 
 
-function OnClickCastSimSimulateStartDelay(rowidx, castTime, delayTime) {
+export function OnClickCastSimSimulateStartDelay(rowidx, castTime, delayTime) {
 
 	var objProgress = null;
 	var countDownFunction = null;
@@ -937,7 +937,7 @@ function OnClickCastSimSimulateStartDelay(rowidx, castTime, delayTime) {
 
 
 
-function OnClickCastSimSimulateStop(rowidx, castTime, delayTime) {
+export function OnClickCastSimSimulateStop(rowidx, castTime, delayTime) {
 
 	var paramStr = "";
 
@@ -975,3 +975,16 @@ function OnClickCastSimSimulateStop(rowidx, castTime, delayTime) {
 
 
 
+
+if (typeof window !== 'undefined') {
+	window.BuildUpCastSimSimulateArea        = BuildUpCastSimSimulateArea;
+	window.SprintfTimeStrCastSim             = SprintfTimeStrCastSim;
+	window.OnClickCastSimSwitch              = OnClickCastSimSwitch;
+	window.OnClickCastSimRefresh             = OnClickCastSimRefresh;
+	window.OnChangeSkillCastSim              = OnChangeSkillCastSim;
+	window.OnChangeSkillLvCastSim            = OnChangeSkillLvCastSim;
+	window.RefreshCastSimSimulateArea        = RefreshCastSimSimulateArea;
+	window.OnClickCastSimSimulateStart       = OnClickCastSimSimulateStart;
+	window.OnClickCastSimSimulateStartDelay  = OnClickCastSimSimulateStartDelay;
+	window.OnClickCastSimSimulateStop        = OnClickCastSimSimulateStop;
+}

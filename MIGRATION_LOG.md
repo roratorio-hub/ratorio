@@ -46,6 +46,16 @@
 | 40 | `ro4/m/js/CSaveDataManager.js` | 2026-04-26 | `class CSaveDataManager`。window互換ブロック追加 |
 | 41 | `ro4/m/js/CSaveController.js` | 2026-04-26 | `class CSaveController`。window互換ブロック追加 |
 | 42 | `roro/m/js/CSkillManager.js` | 2026-04-26 | `function CSkillData`, `function CSkillManager`。window互換ブロック追加 |
+| 43 | `roro/m/js/rndench.js` | 2026-04-26 | `export function IsEnableRandomEnchant`。window互換ブロック追加 |
+| 44 | `roro/m/js/hmrndopt.js` | 2026-04-26 | 19関数を export。`spDefValue` 宣言漏れを `var` で修正。window互換ブロック追加 |
+| 45 | `roro/m/js/hmcostume.js` | 2026-04-26 | 6関数を export。window互換ブロック追加 |
+| 46 | `roro/m/js/castsim.js` | 2026-04-26 | 10関数を export。トップレベル `g_castsimProgressIntervalArray` 等 2変数を `window.*` 化。window互換ブロック追加 |
+| 47 | `ro4/m/js/calchistory.js` | 2026-04-26 | 副作用モジュール（jQuery ready のみ）。JS変更なし、HTMLタグのみ変更 |
+| 48 | `ro4/m/js/saveimage.js` | 2026-04-26 | 副作用モジュール（jQuery ready のみ）。JS変更なし、HTMLタグのみ変更 |
+| 49 | `roro/m/js/etc.js` | 2026-04-26 | `export const zokusei`, `export const weaponsize`。`weaponsize` は head.js も参照。window互換ブロック追加 |
+| 50 | `roro/m/js/quickcontrol.js` | 2026-04-26 | 11関数を export。`g_QuickControlSW` はモジュール内のみ（compat不要）。window互換ブロック追加 |
+| 51 | `roro/m/js/learnedskill.js` | 2026-04-26 | 5関数を export。`LEARNED_SKILL_MAX_COUNT`, `n_A_LearnedSkill` を `window.*` 化（equip.js が全体再代入）。window互換ブロック追加 |
+| 52 | `roro/m/js/mobconfdebuf.js` | 2026-04-26 | 13関数を export。`MOB_CONF_DEBUF_LIMIT`, `n_B_IJYOU`, `MobConfDebufOBJ` を `window.*` 化。`InitMobConfDebufData` 内の全 `MOB_CONF_DEBUF_*` 定数代入（113箇所）を `window.*` 化。`CConfBase.js` の DefineEnum に依存（テスト時も先にロード要）。window互換ブロック追加 |
 
 ## HTML 対応済み
 
@@ -57,7 +67,8 @@
   - `CBattleCalcInfo.js` → `type="module"`（前セッション）
   - `savedata/SKeyMap.js` 他5ファイル → `type="module"`（前セッション）
   - 上記20ファイル（#13〜#32）→ `type="module"`（前セッション）
-  - #33〜#42 の10ファイル → `type="module"`（今セッション）
+  - #33〜#42 の10ファイル → `type="module"`（前セッション）
+  - #43〜#52 の10ファイル → `type="module"`（今セッション）
   - その他 ~50 の `<script>` タグ → `defer` 属性追加（前セッション）
 - `roro/other/itemlist.html`, `cardlist.html`, `monsterlist.html`, `petlist.html`, `exp.html`, `jobb.html`
 - `util/sortedEnchantCardIdArray.html`
@@ -86,20 +97,15 @@
 
 | 優先 | ファイル | 理由 |
 |------|---------|------|
-| 1 | `roro/m/js/rndench.js` | 純粋な関数定義のみ。共有状態なし |
-| 2 | `roro/m/js/hmrndopt.js` | 純粋な関数定義のみ |
-| 3 | `roro/m/js/hmcostume.js` | 純粋な関数定義のみ |
-| 4 | `roro/m/js/castsim.js` | 純粋な関数定義のみ |
-| 5 | `ro4/m/js/calchistory.js` | `$(function(){})` のみ。グローバル公開なし |
-| 6 | `ro4/m/js/saveimage.js` | `$(function(){})` + `generateImage()`。compat 1件 |
-| 7 | `roro/m/js/etc.js` | `const zokusei`。foot.js(L1411)が参照 → `window.zokusei` compat必要 |
-| 8 | `roro/m/js/quickcontrol.js` | `var g_QuickControlSW` はモジュール内のみ使用。他ファイルから参照なし |
-| 9 | `roro/m/js/learnedskill.js` | 未宣言変数3つ（`LEARNED_SKILL_MAX_COUNT`, `n_A_LearnedSkill`, `n_SkillSWLearned`）→ `window.*`化。foot.js は再代入しない |
-| 10 | `roro/m/js/mobconfdebuf.js` | 未宣言変数 `MOB_CONF_DEBUF_LIMIT`, `n_B_IJYOU`, `MobConfDebufOBJ` → `window.*`化。**foot.js L30455 が `n_B_IJYOU = Array(...).fill(0)` で配列全体を再代入** → Buff ファイルと同じ `window.n_B_IJYOU` パターン必須 |
+~~上記10ファイルは 2026-04-26 に移行済み（#43〜#52）~~
 
-次セッション10ファイルの続き（+2〜+3）:
-- `roro/m/js/mobconfbuf.js` — `n_B_KYOUKA`（foot.js L30453 が再代入）
-- `roro/m/js/mobconfplayer.js` — `n_B_TAISEI`（foot.js L30451 が再代入）
+### 次の変換候補（次セッション用）
+
+| 優先 | ファイル | 注意点 |
+|------|---------|--------|
+| 1 | `roro/m/js/mobconfbuf.js` | `n_B_KYOUKA`（foot.js L30453 が全体再代入）→ `window.*` 化 |
+| 2 | `roro/m/js/mobconfplayer.js` | `n_B_TAISEI`（foot.js L30451 が全体再代入）→ `window.*` 化 |
+| 3〜N | その他 `hmjob.js`, `hmautospell.js`, `hmcard.js`, `hmequip.js`, `hmlearnedskill.js`, `hmchara.js`, `hmmob.js` 等 | 要内容確認 |
 
 ### BLOCKED ファイル群
 

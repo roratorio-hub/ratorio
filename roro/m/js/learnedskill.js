@@ -2,10 +2,10 @@
  * 習得スキル欄の生成・更新・サーチなどの関数群
  */
 let n_SkillSWLearned = false;
-LEARNED_SKILL_MAX_COUNT = 200;
-n_A_LearnedSkill = new Array();
+window.LEARNED_SKILL_MAX_COUNT = 200;
+window.n_A_LearnedSkill = new Array();
 for (let dmyidx = 0; dmyidx < LEARNED_SKILL_MAX_COUNT; dmyidx++) {
-	n_A_LearnedSkill[dmyidx] = 0;
+	window.n_A_LearnedSkill[dmyidx] = 0;
 }
 
 /**
@@ -13,7 +13,7 @@ for (let dmyidx = 0; dmyidx < LEARNED_SKILL_MAX_COUNT; dmyidx++) {
  * @param {Number} skillId 取得したいスキルのID
  * @returns {Number} スキルLv
  */
-function LearnedSkillSearch(skillId) {
+export function LearnedSkillSearch(skillId) {
 	// 設定可能な全ての習得スキルを取得する
 	const learnSkillIdArray = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, n_A_JOB).GetLearnSkillIdArray();
 	for (let idx = 0; idx < learnSkillIdArray.length; idx++) {
@@ -33,7 +33,7 @@ function LearnedSkillSearch(skillId) {
  * 習得スキル欄を生成する
  * @returns 
  */
-function OnClickSkillSWLearned(){
+export function OnClickSkillSWLearned(){
 	let objSW = null;
 	let objRoot = null;
 	let objTable = null;
@@ -220,7 +220,7 @@ function OnClickSkillSWLearned(){
  * @param {Number} skillId  
  * @returns {boolean} true:装備している / false:装備していない
  */
-function IsLearnedSkillTarget (skillId) {
+export function IsLearnedSkillTarget (skillId) {
 	let idx = 0;
 	let itemId = 0;
 	let cardId = 0;
@@ -263,7 +263,7 @@ function IsLearnedSkillTarget (skillId) {
  * 判定関数として内部でIsLearnedSkillTargetを呼び出す
  * @returns 
  */
-function UpdateLearnedSkillSettingColoring() {
+export function UpdateLearnedSkillSettingColoring() {
 	let idx = 0;
 	let learnSkillIdArray = null;
 	let skillId = 0;
@@ -299,7 +299,7 @@ function UpdateLearnedSkillSettingColoring() {
  * @param {*} changedIdx 
  * @param {*} newValue 
  */
-function RefreshSkillColumnHeaderLearned(objSelect, changedIdx, newValue) {
+export function RefreshSkillColumnHeaderLearned(objSelect, changedIdx, newValue) {
 	if (0 <= changedIdx) {
 		n_A_LearnedSkill[changedIdx] = parseInt(newValue);
 		AutoCalc("RefreshSkillColumnHeaderLearned");
@@ -332,4 +332,12 @@ function RefreshSkillColumnHeaderLearned(objSelect, changedIdx, newValue) {
 	}
 	objText = document.createTextNode(sUsedText);
 	objUsedText.appendChild(objText);
+}
+
+if (typeof window !== 'undefined') {
+	window.LearnedSkillSearch                = LearnedSkillSearch;
+	window.OnClickSkillSWLearned             = OnClickSkillSWLearned;
+	window.IsLearnedSkillTarget              = IsLearnedSkillTarget;
+	window.UpdateLearnedSkillSettingColoring = UpdateLearnedSkillSettingColoring;
+	window.RefreshSkillColumnHeaderLearned   = RefreshSkillColumnHeaderLearned;
 }

@@ -1,5 +1,5 @@
 /** 属性相性テーブル */
-const zokusei = [];
+export const zokusei = [];
 // 無属性に対する属性相性
 zokusei[1] = [0,0,0,0,0,0,0,0,-75,0];
 zokusei[2] = [0,0,0,0,0,0,0,0,-100,0];
@@ -52,7 +52,7 @@ zokusei[93] = [0,-25,-25,75,0,-100,100,-100,50,-100];
 zokusei[94] = [0,-50,-50,100,0,-100,100,-100,75,-100];
 
 /** 武器サイズ相性 */
-const weaponsize = [
+export const weaponsize = [
     [1 ,1 ,1 ],
     [1 ,0.75,0.5 ],
     [0.75,1 ,0.75],
@@ -77,3 +77,8 @@ const weaponsize = [
     [1 ,1 ,1 ],
     [1 ,1 ,1 ],
 ];
+
+if (typeof window !== 'undefined') {
+	window.zokusei   = zokusei;
+	window.weaponsize = weaponsize;
+}
