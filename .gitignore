@@ -10,3 +10,8 @@ util/*monster.csv
 .claude/*.local.*
 memory-bank
 dist/
+CLAUDE.md
+tests/.vitest-attachments/**
+tests/node_modules/**
+tests/roro/__screenshots__/**
+
