@@ -1,4 +1,4 @@
-function UpdateMobDataHtml(monsterId, mobData) {
+export function UpdateMobDataHtml(monsterId, mobData) {
 
 	var idx = 0;
 	var val = 0;
@@ -392,4 +392,8 @@ function UpdateMobDataHtml(monsterId, mobData) {
 	// 管理クラスに設定
 	CMonsterMapAreaComponentManager.SetDispObject("OBJID_SPAN_MONSTER_SPECIALITY", objSpan);
 
+}
+
+if (typeof window !== 'undefined') {
+    window.UpdateMobDataHtml = UpdateMobDataHtml;
 }

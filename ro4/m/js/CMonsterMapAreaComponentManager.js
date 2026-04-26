@@ -1,7 +1,7 @@
 /**
  * モンスターマップエリアコンポーネントマネージャクラス.
  */
-function CMonsterMapAreaComponentManager () {
+export function CMonsterMapAreaComponentManager () {
 }
 
 // カテゴリ選択セレクト
@@ -34,6 +34,8 @@ CMonsterMapAreaComponentManager.RebuildControls = function () {
 	var objTbody = null;
 	var objTr = null;
 	var objTd = null;
+	var objInput = null;
+	var objLabel = null;
 	var objSelect = null;
 	var objSpan = null;
 
@@ -672,3 +674,6 @@ CMonsterMapAreaComponentManager.updateMonsterSuggest = function (monsterId) {
         objDiv.setAttribute("data-tooltip", message);
     }
 };
+if (typeof window !== 'undefined') {
+    window.CMonsterMapAreaComponentManager = CMonsterMapAreaComponentManager;
+}

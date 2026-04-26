@@ -7,7 +7,7 @@
 //================================================================================================
 //================================================================================================
 
-function OnClickBrowserMigrationSwitch() {
+export function OnClickBrowserMigrationSwitch() {
 
 	var idx = 0;
 
@@ -28,6 +28,7 @@ function OnClickBrowserMigrationSwitch() {
 	var objTextArea = null;
 	var objFont = null;
 	var objLabel = null;
+	var objRoot = null;
 
 
 
@@ -429,7 +430,7 @@ function OnClickBrowserMigrationSwitch() {
 
 
 
-function RefreshBrowserMigrationHeader(objSelect, changedIdx, newValue) {
+export function RefreshBrowserMigrationHeader(objSelect, changedIdx, newValue) {
 
 	var switchChecked = false;
 
@@ -451,17 +452,17 @@ function RefreshBrowserMigrationHeader(objSelect, changedIdx, newValue) {
 }
 
 
-function OnClickBrowserMigrationRadio() {
+export function OnClickBrowserMigrationRadio() {
 	RefreshBrowserMigrationDisableStates();
 }
 
-function OnClickBrowserMigrationCheckLock() {
+export function OnClickBrowserMigrationCheckLock() {
 	RefreshBrowserMigrationDisableStates();
 }
 
 
 
-function RefreshBrowserMigrationDisableStates() {
+export function RefreshBrowserMigrationDisableStates() {
 
 	var bOutput = true;
 	var objInput = null;
@@ -566,7 +567,7 @@ function RefreshBrowserMigrationDisableStates() {
 }
 
 
-function OnClickBrowserMigrationOutputAllData() {
+export function OnClickBrowserMigrationOutputAllData() {
 
 	var idx = 0;
 
@@ -600,7 +601,7 @@ function OnClickBrowserMigrationOutputAllData() {
 
 
 
-function OnClickBrowserMigrationCopyData() {
+export function OnClickBrowserMigrationCopyData() {
 
 	var objTextArea = null;
 
@@ -621,7 +622,7 @@ function OnClickBrowserMigrationCopyData() {
 
 
 
-function OnClickBrowserMigrationApplyData() {
+export function OnClickBrowserMigrationApplyData() {
 
 	var idx = 0;
 
@@ -706,4 +707,15 @@ function OnClickBrowserMigrationApplyData() {
 	document.body.style.display = "none";
 	window.scrollTo(0, 0);
 	window.location.reload();
+}
+
+if (typeof window !== 'undefined') {
+    window.OnClickBrowserMigrationSwitch      = OnClickBrowserMigrationSwitch;
+    window.RefreshBrowserMigrationHeader      = RefreshBrowserMigrationHeader;
+    window.OnClickBrowserMigrationRadio       = OnClickBrowserMigrationRadio;
+    window.OnClickBrowserMigrationCheckLock   = OnClickBrowserMigrationCheckLock;
+    window.RefreshBrowserMigrationDisableStates = RefreshBrowserMigrationDisableStates;
+    window.OnClickBrowserMigrationOutputAllData = OnClickBrowserMigrationOutputAllData;
+    window.OnClickBrowserMigrationCopyData    = OnClickBrowserMigrationCopyData;
+    window.OnClickBrowserMigrationApplyData   = OnClickBrowserMigrationApplyData;
 }

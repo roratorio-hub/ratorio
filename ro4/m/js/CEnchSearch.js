@@ -1,4 +1,4 @@
-class enchSearch {
+export class enchSearch {
     //エンチャント検索
     constructor(){
             this.enchidItemidList = [];
@@ -324,3 +324,6 @@ class enchSearch {
     new enchSearch();
 })();
 */
+if (typeof window !== 'undefined') {
+    window.enchSearch = enchSearch;
+}

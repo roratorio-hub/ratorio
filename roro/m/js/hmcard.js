@@ -1,5 +1,5 @@
 
-CardShortObj =[
+window.CardShortObj =[
 	 [
 	 	"カードショートカット",
 	 	0,
@@ -317,7 +317,7 @@ CardShortObj =[
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function ClearCardSlotAll() {
+export function ClearCardSlotAll() {
 
 	// 個別関数を全コール
 	ClearCardSlot(EQUIP_REGION_ID_ARMS);
@@ -342,7 +342,7 @@ function ClearCardSlotAll() {
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function ClearCardSlot(eqpRgnId) {
+export function ClearCardSlot(eqpRgnId) {
 
 	var objidPrifix = "";
 	var idxArrayToClear = new Array();
@@ -480,7 +480,7 @@ function __ClearCardSlot(objidPrifix, idxArrayToClear) {
  * @param itemId 変更後のアイテムＩＤ
  *-----------------------------------------------------------------------------------------------
  ************************************************************************************************/
-function RebuildCardSelect(eqpRgnId, itemId) {
+export function RebuildCardSelect(eqpRgnId, itemId) {
 
 	var objidPrifix = "";
 	var objSelect = null;
@@ -634,7 +634,7 @@ if (!_ENCH_LIST_MIG) {
  * @param {*} enchInfoArrayAllSlotsBefore これまでに、収集されたデータの配列（アップグレードの判定に使用）
  * @returns 
  */
-function RebuildCardSelectSubCollectEnchListData(enchListId, enchInfoArrayAllSlotsBefore) {
+export function RebuildCardSelectSubCollectEnchListData(enchListId, enchInfoArrayAllSlotsBefore) {
 	var idx = 0;
 	var idxSlot = 0;
 	var idxEnchList = 0;
@@ -777,13 +777,13 @@ function RebuildCardSelectSubCollectEnchListData(enchListId, enchInfoArrayAllSlo
 	return enchInfoArrayAllSlots;
 }
 
-function RebuildCardSelectSubCollectEnchListDataSubUpgradeShinennoKairo(enchInfoArrayBefore, resultArray, enchListId, paramsObject) {
+export function RebuildCardSelectSubCollectEnchListDataSubUpgradeShinennoKairo(enchInfoArrayBefore, resultArray, enchListId, paramsObject) {
 
 	var idx = 0;
 
 	var funcPushNotExist = function (cardIdF) {
 
-		for (idxF = 0; idxF < resultArray.length; idxF++) {
+		for (var idxF = 0; idxF < resultArray.length; idxF++) {
 			if (resultArray[idxF][1] == cardIdF) {
 				return;
 			}
@@ -849,13 +849,13 @@ function RebuildCardSelectSubCollectEnchListDataSubUpgradeShinennoKairo(enchInfo
 	}
 }
 
-function RebuildCardSelectSubCollectEnchListDataSubUpgradeShinentaiBuki(enchInfoArrayBefore, resultArray, enchListId, paramsObject) {
+export function RebuildCardSelectSubCollectEnchListDataSubUpgradeShinentaiBuki(enchInfoArrayBefore, resultArray, enchListId, paramsObject) {
 
 	var idx = 0;
 
 	var funcPushNotExist = function (cardIdF) {
 
-		for (idxF = 0; idxF < resultArray.length; idxF++) {
+		for (var idxF = 0; idxF < resultArray.length; idxF++) {
 			if (resultArray[idxF][1] == cardIdF) {
 				return;
 			}
@@ -897,7 +897,7 @@ function RebuildCardSelectSubCollectEnchListDataSubUpgradeShinentaiBuki(enchInfo
 }
 
 
-function RebuildCardSelectSubSortCollectedEnchListData(enchInfoArrayAllSlots) {
+export function RebuildCardSelectSubSortCollectedEnchListData(enchInfoArrayAllSlots) {
 
 	var idx = 0;
 	var idxSlot = 0;
@@ -949,7 +949,7 @@ function RebuildCardSelectSubSortCollectedEnchListData(enchInfoArrayAllSlots) {
  * @param {*} enchantTypeId 
  * @param {*} objArySlots 
  */
-function BuildUpCardSlotsCard(eqpRgnId, itemId, enchantTypeId, objArySlots) {
+export function BuildUpCardSlotsCard(eqpRgnId, itemId, enchantTypeId, objArySlots) {
 
 	var idx = 0;
 	var slotidx = 0;
@@ -1090,7 +1090,7 @@ function BuildUpCardSlotsCard(eqpRgnId, itemId, enchantTypeId, objArySlots) {
 /**
  * カードスロットの再構築（エンチャント項目）.
  */
-function BuildUpCardSlotsEnchant(enchantTypeId, objArySlots) {
+export function BuildUpCardSlotsEnchant(enchantTypeId, objArySlots) {
 
 	// エンチャントスロットデータを取得
 	var enchantSlotData = n_EnchantType[enchantTypeId];
@@ -1146,7 +1146,7 @@ function BuildUpCardSlotsEnchant(enchantTypeId, objArySlots) {
  * @param {*} enchInfoArray カード・エンチャント情報の配列
  * @param {*} objArySlots Selectオブジェクトの配列
  */
-function BuildUpCardSlotsMIG(eqpRgnId, itemId, enchInfoArray, objArySlots) {
+export function BuildUpCardSlotsMIG(eqpRgnId, itemId, enchInfoArray, objArySlots) {
 
 	var idx = 0;
 	var idxSlot = 0;
@@ -1383,7 +1383,7 @@ function BuildUpCardSlotsMIG(eqpRgnId, itemId, enchInfoArray, objArySlots) {
 /**
  * カードスロットの使用可否を設定する.
  */
-function SetCardSlotEnabilityAll() {
+export function SetCardSlotEnabilityAll() {
 
 	// 個別関数を全コール
 	SetCardSlotEnability(EQUIP_REGION_ID_ARMS);
@@ -1404,7 +1404,7 @@ function SetCardSlotEnabilityAll() {
  * @param {*} eqpRgnId 
  * @returns 
  */
-function SetCardSlotEnability(eqpRgnId) {
+export function SetCardSlotEnability(eqpRgnId) {
 	var strObjIdPrifix = "";
 	var idx = 0;
 	var strObjId = "";
@@ -1496,7 +1496,7 @@ function __SetCardSlotEnability(objTarget, enabled) {
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function ApplyCardShort(eqpRgnId, objidPrifix) {
+export function ApplyCardShort(eqpRgnId, objidPrifix) {
 
 	var idx = 0;
 	var idxOption = 0;
@@ -1577,4 +1577,20 @@ function ApplyCardShort(eqpRgnId, objidPrifix) {
 
 	// 検索可能リスト更新
 	LoadSelect2();
+}
+
+if (typeof window !== 'undefined') {
+    window.ClearCardSlotAll                                          = ClearCardSlotAll;
+    window.ClearCardSlot                                             = ClearCardSlot;
+    window.RebuildCardSelect                                         = RebuildCardSelect;
+    window.RebuildCardSelectSubCollectEnchListData                   = RebuildCardSelectSubCollectEnchListData;
+    window.RebuildCardSelectSubCollectEnchListDataSubUpgradeShinennoKairo = RebuildCardSelectSubCollectEnchListDataSubUpgradeShinennoKairo;
+    window.RebuildCardSelectSubCollectEnchListDataSubUpgradeShinentaiBuki = RebuildCardSelectSubCollectEnchListDataSubUpgradeShinentaiBuki;
+    window.RebuildCardSelectSubSortCollectedEnchListData             = RebuildCardSelectSubSortCollectedEnchListData;
+    window.BuildUpCardSlotsCard                                      = BuildUpCardSlotsCard;
+    window.BuildUpCardSlotsEnchant                                   = BuildUpCardSlotsEnchant;
+    window.BuildUpCardSlotsMIG                                       = BuildUpCardSlotsMIG;
+    window.SetCardSlotEnabilityAll                                   = SetCardSlotEnabilityAll;
+    window.SetCardSlotEnability                                      = SetCardSlotEnability;
+    window.ApplyCardShort                                            = ApplyCardShort;
 }

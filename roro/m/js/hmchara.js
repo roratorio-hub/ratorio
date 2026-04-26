@@ -1,4 +1,4 @@
-function IsUnconfirmedHP(jobId, level) {
+export function IsUnconfirmedHP(jobId, level) {
 
 	var hpspArray = GetUnconfirmedHPSPArray();
 
@@ -13,7 +13,7 @@ function IsUnconfirmedHP(jobId, level) {
 	return (hpspArray[jobId][0].indexOf(level) != -1);
 }
 
-function IsUnconfirmedSP(jobId, level) {
+export function IsUnconfirmedSP(jobId, level) {
 
 	var hpspArray = GetUnconfirmedHPSPArray();
 
@@ -29,7 +29,7 @@ function IsUnconfirmedSP(jobId, level) {
 }
 
 
-function UpdateCharaDataHtml(charaData, specData) {
+export function UpdateCharaDataHtml(charaData, specData) {
 
 	var idx = 0;
 	var val = 0;
@@ -272,3 +272,9 @@ function UpdateCharaDataHtml(charaData, specData) {
 
 
 
+
+if (typeof window !== 'undefined') {
+    window.IsUnconfirmedHP     = IsUnconfirmedHP;
+    window.IsUnconfirmedSP     = IsUnconfirmedSP;
+    window.UpdateCharaDataHtml = UpdateCharaDataHtml;
+}

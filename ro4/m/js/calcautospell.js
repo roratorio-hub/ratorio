@@ -1,18 +1,18 @@
 /* オートスペル設定　最大数 */
-AUTO_SPELL_SETTING_COUNT = 20;
+window.AUTO_SPELL_SETTING_COUNT = 20;
 /* オートスペル系スキル　最大数 */
-AUTO_SPELL_SKILL_COUNT_MAX = 40;
+window.AUTO_SPELL_SKILL_COUNT_MAX = 40;
 /* オートスペル発動率（千分率） */
-AUTO_SPELL_PROB_ARRAY = [];
+window.AUTO_SPELL_PROB_ARRAY = [];
 /* オブジェクトＩＤのオフセット（オートスペル　スキルＩＤ） */
-OBJID_OFFSET_AS_SKILL_ID = 100;	
+window.OBJID_OFFSET_AS_SKILL_ID = 100;	
 /* オブジェクトＩＤのオフセット（オートスペル　スキルレベル） */
-OBJID_OFFSET_AS_SKILL_LV = 200;		
+window.OBJID_OFFSET_AS_SKILL_LV = 200;		
 /* オブジェクトＩＤのオフセット（オートスペル　スキル発動率） */
-OBJID_OFFSET_AS_SKILL_PROB = 300;		
+window.OBJID_OFFSET_AS_SKILL_PROB = 300;		
 
 
-for (idx = 0, inc = 1; idx <= 1000; idx += inc) {
+for (var idx = 0, inc = 1; idx <= 1000; idx += inc) {
 	AUTO_SPELL_PROB_ARRAY.push(idx);
 
 	if (idx == 10) {
@@ -23,9 +23,9 @@ for (idx = 0, inc = 1; idx <= 1000; idx += inc) {
 	}
 }
 
-n_AS_SKILL = new Array();
-n_AS_DMG = new Array();
-n_AS_DMG_OverHP = new Array();
+window.n_AS_SKILL = new Array();
+window.n_AS_DMG = new Array();
+window.n_AS_DMG_OverHP = new Array();
 for (var idx = 0; idx < AUTO_SPELL_SKILL_COUNT_MAX; idx++) {
 	n_AS_DMG[idx] = new Array();
 	n_AS_DMG_OverHP[idx] = new Array();
@@ -40,14 +40,25 @@ for (var idx = 0; idx < AUTO_SPELL_SKILL_COUNT_MAX; idx++) {
  * @param {*} battleCalcInfo 
  * @returns 
  */
-function AS_Calc(charaData, specData, mobData, attackMethodConfArray, battleCalcInfo){
+export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, battleCalcInfo){
 
 	var idx = 0;
 
 	var skillLv = 0;
 	var skillLvSub = 0;
 	var skillLvOld = 0;
+	var skillLvWug = 0;
+	var skillLvBlitz = 0;
+	var skillLvQuickDraw = 0;
+	var skillLvChainAction = 0;
+	var skillLvDoubleCasting = 0;
+	var skillLvEffectOfSagenoTamashi = 0;
+	var skillLvEternalChain = 0;
 	var skillKind = 0;
+	var sereKind = 0;
+	var sereMode = 0;
+	var Lv = 0;
+	var itemCount = 0;
 	var attackMethodConfArrayAS = null;
 	var clonedCalcInfo = null;
 	var battleCalcResultAll = null;
@@ -1104,7 +1115,7 @@ function AS_Calc(charaData, specData, mobData, attackMethodConfArray, battleCalc
 /**
  * 
  */
-function AS_PLUS(){
+export function AS_PLUS(){
 	w_DMG_AS_OverHP = w_DMG[1];
 	if(!n_AS_check_3dan){
 		for(var j = 0; j < n_AS_DMG.length; j++){
@@ -1128,7 +1139,7 @@ function AS_PLUS(){
 /**
  * オートスペル設定欄の展開（再構築）.
  */
-function OnClickExtractSettingAutoSpell(){
+export function OnClickExtractSettingAutoSpell(){
 	var objRoot = null;
 	var objTable = null;
 	var objTbody = null;
@@ -1201,7 +1212,7 @@ function OnClickExtractSettingAutoSpell(){
  * オートスペル設定欄の展開構築.
  * @param {*} objTbody 構築対象のＴＢＯＤＹ要素
  */
-function BuildUpSettingHtmlAutoSpell(objTbody) {
+export function BuildUpSettingHtmlAutoSpell(objTbody) {
 	var str = "";
 
 
@@ -1376,7 +1387,7 @@ function BuildUpSettingHtmlAutoSpell(objTbody) {
  * オートスペル設定　設定変更イベントハンドラ.
  * @param {*} bCalculate 再計算フラグ
  */
-function OnChangeSettingAutoSpell(bCalculate){
+export function OnChangeSettingAutoSpell(bCalculate){
 
 	// 再計算フラグが指定されている場合は、再計算を行う
 	if (bCalculate) AutoCalc("OnChangeSettingAutoSpell");
@@ -1406,7 +1417,7 @@ function OnChangeSettingAutoSpell(bCalculate){
 /**
  * オートスペルの簡易設定を行う
  */
-function OnClickEasySetUpAutoSpell(){
+export function OnClickEasySetUpAutoSpell(){
 
 	var idx = 0;
 
@@ -1685,4 +1696,12 @@ function OnClickEasySetUpAutoSpell(){
 
 	// オートスペル設定変更イベントを実行
 	OnChangeSettingAutoSpell(true);
+}
+if (typeof window !== 'undefined') {
+    window.AS_Calc                         = AS_Calc;
+    window.AS_PLUS                         = AS_PLUS;
+    window.OnClickExtractSettingAutoSpell  = OnClickExtractSettingAutoSpell;
+    window.BuildUpSettingHtmlAutoSpell     = BuildUpSettingHtmlAutoSpell;
+    window.OnChangeSettingAutoSpell        = OnChangeSettingAutoSpell;
+    window.OnClickEasySetUpAutoSpell       = OnClickEasySetUpAutoSpell;
 }

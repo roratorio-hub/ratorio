@@ -2,12 +2,12 @@
 
 // 対プレイヤー設定の限界値
 // この数を超える場合は、セーブデータの拡張が必要
-MOB_CONF_PLAYER_LIMIT = 54;
+window.MOB_CONF_PLAYER_LIMIT = 54;
 
 // 初期化作業
-let n_B_TAISEI = [];
+window.n_B_TAISEI = [];
 
-MobConfPlayerOBJ = new Array();
+window.MobConfPlayerOBJ = new Array();
 
 InitMobConfPlayerData();
 
@@ -19,11 +19,11 @@ InitMobConfPlayerData();
 // 対プレイヤーデータ定義用ダミー関数
 // （可読性を高める目的で使用する）
 //================================================================
-function MobConfPlayerText(value) { return value; };
-function MobConfPlayerControlType(value) { return value; };
-function MobConfPlayerDefaultValue(value) { return value; };
-function MobConfPlayerMinValue(value) { return value; };
-function MobConfPlayerMaxValue(value) { return value; };
+export function MobConfPlayerText(value) { return value; };
+export function MobConfPlayerControlType(value) { return value; };
+export function MobConfPlayerDefaultValue(value) { return value; };
+export function MobConfPlayerMinValue(value) { return value; };
+export function MobConfPlayerMaxValue(value) { return value; };
 
 
 
@@ -40,7 +40,7 @@ function MobConfPlayerMaxValue(value) { return value; };
 /**
  * 対プレイヤーデータを初期化（セットアップ）する.
  */
-function InitMobConfPlayerData() {
+export function InitMobConfPlayerData() {
 
 	var idx = 0;
 
@@ -55,19 +55,19 @@ function InitMobConfPlayerData() {
 	//----------------------------------------------------------------
 	// データインデックス定義
 	//----------------------------------------------------------------
-	MOB_CONF_PLAYER_DATA_INDEX_ID = indexdefiner++;
-	MOB_CONF_PLAYER_DATA_INDEX_TEXT = indexdefiner++;
-	MOB_CONF_PLAYER_DATA_INDEX_CONTROL_TYPE = indexdefiner++;
-	MOB_CONF_PLAYER_DATA_INDEX_DEFAULT_VALUE = indexdefiner++;
-	MOB_CONF_PLAYER_DATA_INDEX_MIN_VALUE = indexdefiner++;
-	MOB_CONF_PLAYER_DATA_INDEX_MAX_VALUE = indexdefiner++;
+	window.MOB_CONF_PLAYER_DATA_INDEX_ID = indexdefiner++;
+	window.MOB_CONF_PLAYER_DATA_INDEX_TEXT = indexdefiner++;
+	window.MOB_CONF_PLAYER_DATA_INDEX_CONTROL_TYPE = indexdefiner++;
+	window.MOB_CONF_PLAYER_DATA_INDEX_DEFAULT_VALUE = indexdefiner++;
+	window.MOB_CONF_PLAYER_DATA_INDEX_MIN_VALUE = indexdefiner++;
+	window.MOB_CONF_PLAYER_DATA_INDEX_MAX_VALUE = indexdefiner++;
 
 
 
 	//----------------------------------------------------------------
 	// データ定義　ここから
 	//----------------------------------------------------------------
-	MOB_CONF_PLAYER_ID_MAXHP = MobConfPlayerId;
+	window.MOB_CONF_PLAYER_ID_MAXHP = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
 		MobConfPlayerText("MaxHP"),
@@ -81,7 +81,7 @@ function InitMobConfPlayerData() {
 
 
 
-	MOB_CONF_PLAYER_ID_DEF_DIV = MobConfPlayerId;
+	window.MOB_CONF_PLAYER_ID_DEF_DIV = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
 		MobConfPlayerText("DEF(除算)"),
@@ -95,7 +95,7 @@ function InitMobConfPlayerData() {
 
 
 
-	MOB_CONF_PLAYER_ID_DEF_MINUS = MobConfPlayerId;
+	window.MOB_CONF_PLAYER_ID_DEF_MINUS = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
 		MobConfPlayerText("DEF(減算)"),
@@ -109,7 +109,7 @@ function InitMobConfPlayerData() {
 
 
 
-	MOB_CONF_PLAYER_ID_MDEF_DIV = MobConfPlayerId;
+	window.MOB_CONF_PLAYER_ID_MDEF_DIV = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
 		MobConfPlayerText("MDEF(除算)"),
@@ -123,7 +123,7 @@ function InitMobConfPlayerData() {
 
 
 
-	MOB_CONF_PLAYER_ID_MDEF_MINUS = MobConfPlayerId;
+	window.MOB_CONF_PLAYER_ID_MDEF_MINUS = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
 		MobConfPlayerText("MDEF(減算)"),
@@ -137,7 +137,7 @@ function InitMobConfPlayerData() {
 
 
 
-	MOB_CONF_PLAYER_ID_FLEE = MobConfPlayerId;
+	window.MOB_CONF_PLAYER_ID_FLEE = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
 		MobConfPlayerText("FLEE"),
@@ -151,7 +151,7 @@ function InitMobConfPlayerData() {
 
 
 
-	MOB_CONF_PLAYER_ID_LUCKY = MobConfPlayerId;
+	window.MOB_CONF_PLAYER_ID_LUCKY = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
 		MobConfPlayerText("完全回避"),
@@ -165,7 +165,7 @@ function InitMobConfPlayerData() {
 
 
 
-	MOB_CONF_PLAYER_ID_ZOKUSEI = MobConfPlayerId;	// 7
+	window.MOB_CONF_PLAYER_ID_ZOKUSEI = MobConfPlayerId;	// 7
 	MobConfPlayerData = [
 		MobConfPlayerId,
 		MobConfPlayerText("属性"),
@@ -179,7 +179,7 @@ function InitMobConfPlayerData() {
 
 
 
-	MOB_CONF_PLAYER_ID_NINGEN_KEI_TAISEI = MobConfPlayerId;	// 8
+	window.MOB_CONF_PLAYER_ID_NINGEN_KEI_TAISEI = MobConfPlayerId;	// 8
 	MobConfPlayerData = [
 		MobConfPlayerId,
 		MobConfPlayerText("人間形耐性"),
@@ -193,7 +193,7 @@ function InitMobConfPlayerData() {
 
 
 
-	MOB_CONF_PLAYER_ID_CHUGATA_TAISEI = MobConfPlayerId;	// 9
+	window.MOB_CONF_PLAYER_ID_CHUGATA_TAISEI = MobConfPlayerId;	// 9
 	MobConfPlayerData = [
 		MobConfPlayerId,
 		MobConfPlayerText("中型耐性"),
@@ -207,7 +207,7 @@ function InitMobConfPlayerData() {
 
 
 
-	MOB_CONF_PLAYER_ID_ENKYORI_BUTSURI_TAISEI = MobConfPlayerId;	// 10
+	window.MOB_CONF_PLAYER_ID_ENKYORI_BUTSURI_TAISEI = MobConfPlayerId;	// 10
 	MobConfPlayerData = [
 		MobConfPlayerId,
 		MobConfPlayerText("遠距離物理耐性"),
@@ -221,7 +221,7 @@ function InitMobConfPlayerData() {
 
 
 
-	MOB_CONF_PLAYER_ID_MU_ZOKUSEI_TAISEI = MobConfPlayerId;
+	window.MOB_CONF_PLAYER_ID_MU_ZOKUSEI_TAISEI = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
 		MobConfPlayerText("無属性耐性"),
@@ -235,7 +235,7 @@ function InitMobConfPlayerData() {
 
 
 
-	MOB_CONF_PLAYER_ID_MIZU_ZOKUSEI_TAISEI = MobConfPlayerId;
+	window.MOB_CONF_PLAYER_ID_MIZU_ZOKUSEI_TAISEI = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
 		MobConfPlayerText("水属性耐性"),
@@ -249,7 +249,7 @@ function InitMobConfPlayerData() {
 
 
 
-	MOB_CONF_PLAYER_ID_CHI_ZOKUSEI_TAISEI = MobConfPlayerId;
+	window.MOB_CONF_PLAYER_ID_CHI_ZOKUSEI_TAISEI = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
 		MobConfPlayerText("地属性耐性"),
@@ -263,7 +263,7 @@ function InitMobConfPlayerData() {
 
 
 
-	MOB_CONF_PLAYER_ID_HI_ZOKUSEI_TAISEI = MobConfPlayerId;
+	window.MOB_CONF_PLAYER_ID_HI_ZOKUSEI_TAISEI = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
 		MobConfPlayerText("火属性耐性"),
@@ -277,7 +277,7 @@ function InitMobConfPlayerData() {
 
 
 
-	MOB_CONF_PLAYER_ID_KAZE_ZOKUSEI_TAISEI = MobConfPlayerId;
+	window.MOB_CONF_PLAYER_ID_KAZE_ZOKUSEI_TAISEI = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
 		MobConfPlayerText("風属性耐性"),
@@ -291,7 +291,7 @@ function InitMobConfPlayerData() {
 
 
 
-	MOB_CONF_PLAYER_ID_DOKU_ZOKUSEI_TAISEI = MobConfPlayerId;
+	window.MOB_CONF_PLAYER_ID_DOKU_ZOKUSEI_TAISEI = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
 		MobConfPlayerText("毒属性耐性"),
@@ -305,7 +305,7 @@ function InitMobConfPlayerData() {
 
 
 
-	MOB_CONF_PLAYER_ID_SEI_ZOKUSEI_TAISEI = MobConfPlayerId;
+	window.MOB_CONF_PLAYER_ID_SEI_ZOKUSEI_TAISEI = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
 		MobConfPlayerText("聖属性耐性"),
@@ -319,7 +319,7 @@ function InitMobConfPlayerData() {
 
 
 
-	MOB_CONF_PLAYER_ID_YAMI_ZOKUSEI_TAISEI = MobConfPlayerId;
+	window.MOB_CONF_PLAYER_ID_YAMI_ZOKUSEI_TAISEI = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
 		MobConfPlayerText("闇属性耐性"),
@@ -333,7 +333,7 @@ function InitMobConfPlayerData() {
 
 
 
-	MOB_CONF_PLAYER_ID_NEN_ZOKUSEI_TAISEI = MobConfPlayerId;
+	window.MOB_CONF_PLAYER_ID_NEN_ZOKUSEI_TAISEI = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
 		MobConfPlayerText("念属性耐性"),
@@ -347,7 +347,7 @@ function InitMobConfPlayerData() {
 
 
 
-	MOB_CONF_PLAYER_ID_FUSHI_ZOKUSEI_TAISEI = MobConfPlayerId;
+	window.MOB_CONF_PLAYER_ID_FUSHI_ZOKUSEI_TAISEI = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
 		MobConfPlayerText("不死属性耐性"),
@@ -361,7 +361,7 @@ function InitMobConfPlayerData() {
 
 
 
-	MOB_CONF_PLAYER_ID_IPPAN_MONSTER_TAISEI = MobConfPlayerId;
+	window.MOB_CONF_PLAYER_ID_IPPAN_MONSTER_TAISEI = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
 		MobConfPlayerText("一般モンスター耐性"),
@@ -375,7 +375,7 @@ function InitMobConfPlayerData() {
 
 
 
-	MOB_CONF_PLAYER_ID_ZOKUSEI_MONSTER_TAISEI = MobConfPlayerId;
+	window.MOB_CONF_PLAYER_ID_ZOKUSEI_MONSTER_TAISEI = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
 		MobConfPlayerText("属性モンスター耐性"),
@@ -389,7 +389,7 @@ function InitMobConfPlayerData() {
 
 
 
-	MOB_CONF_PLAYER_ID_BUTSURI_TAISEI = MobConfPlayerId;
+	window.MOB_CONF_PLAYER_ID_BUTSURI_TAISEI = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
 		MobConfPlayerText("物理耐性"),
@@ -403,7 +403,7 @@ function InitMobConfPlayerData() {
 
 
 
-	MOB_CONF_PLAYER_ID_MAHOU_TAISEI = MobConfPlayerId;
+	window.MOB_CONF_PLAYER_ID_MAHOU_TAISEI = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
 		MobConfPlayerText("(×)魔法耐性"),
@@ -417,7 +417,7 @@ function InitMobConfPlayerData() {
 
 
 
-	MOB_CONF_PLAYER_ID_DORAM_KEI_TAISEI = MobConfPlayerId;
+	window.MOB_CONF_PLAYER_ID_DORAM_KEI_TAISEI = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
 		MobConfPlayerText("ドラム形耐性"),
@@ -431,7 +431,7 @@ function InitMobConfPlayerData() {
 
 
 
-	MOB_CONF_PLAYER_ID_ENERGY_COAT = MobConfPlayerId;
+	window.MOB_CONF_PLAYER_ID_ENERGY_COAT = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
 		MobConfPlayerText("(△)エナジーコート"),
@@ -445,7 +445,7 @@ function InitMobConfPlayerData() {
 
 
 
-	MOB_CONF_PLAYER_ID_HANSHA_1 = MobConfPlayerId;
+	window.MOB_CONF_PLAYER_ID_HANSHA_1 = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
 		MobConfPlayerText("(×)反射1"),
@@ -459,7 +459,7 @@ function InitMobConfPlayerData() {
 
 
 
-	MOB_CONF_PLAYER_ID_HANSHA_2 = MobConfPlayerId;
+	window.MOB_CONF_PLAYER_ID_HANSHA_2 = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
 		MobConfPlayerText("(×)反射2"),
@@ -473,7 +473,7 @@ function InitMobConfPlayerData() {
 
 
 
-	MOB_CONF_PLAYER_ID_BASE_LV = MobConfPlayerId;
+	window.MOB_CONF_PLAYER_ID_BASE_LV = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
 		MobConfPlayerText("BaseLv"),
@@ -487,7 +487,7 @@ function InitMobConfPlayerData() {
 
 
 
-	MOB_CONF_PLAYER_ID_STR = MobConfPlayerId;
+	window.MOB_CONF_PLAYER_ID_STR = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
 		MobConfPlayerText("(×)STR"),
@@ -501,7 +501,7 @@ function InitMobConfPlayerData() {
 
 
 
-	MOB_CONF_PLAYER_ID_AGI = MobConfPlayerId;
+	window.MOB_CONF_PLAYER_ID_AGI = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
 		MobConfPlayerText("(×)AGI"),
@@ -515,7 +515,7 @@ function InitMobConfPlayerData() {
 
 
 
-	MOB_CONF_PLAYER_ID_VIT = MobConfPlayerId;
+	window.MOB_CONF_PLAYER_ID_VIT = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
 		MobConfPlayerText("VIT"),
@@ -529,7 +529,7 @@ function InitMobConfPlayerData() {
 
 
 
-	MOB_CONF_PLAYER_ID_INT = MobConfPlayerId;
+	window.MOB_CONF_PLAYER_ID_INT = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
 		MobConfPlayerText("(×)INT"),
@@ -543,7 +543,7 @@ function InitMobConfPlayerData() {
 
 
 
-	MOB_CONF_PLAYER_ID_DEX = MobConfPlayerId;
+	window.MOB_CONF_PLAYER_ID_DEX = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
 		MobConfPlayerText("(×)DEX"),
@@ -557,7 +557,7 @@ function InitMobConfPlayerData() {
 
 
 
-	MOB_CONF_PLAYER_ID_LUK = MobConfPlayerId;
+	window.MOB_CONF_PLAYER_ID_LUK = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
 		MobConfPlayerText("(×)LUK"),
@@ -571,7 +571,7 @@ function InitMobConfPlayerData() {
 
 
 
-	MOB_CONF_PLAYER_ID_SHOZIZYURYO_GENZAI = MobConfPlayerId;
+	window.MOB_CONF_PLAYER_ID_SHOZIZYURYO_GENZAI = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
 		MobConfPlayerText("(△)所持重量(現在)"),
@@ -585,7 +585,7 @@ function InitMobConfPlayerData() {
 
 
 
-	MOB_CONF_PLAYER_ID_SHOZIZYURYO_SAIDAI = MobConfPlayerId;
+	window.MOB_CONF_PLAYER_ID_SHOZIZYURYO_SAIDAI = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
 		MobConfPlayerText("(×)所持重量(最大)"),
@@ -599,20 +599,20 @@ function InitMobConfPlayerData() {
 
 
 
-	MOB_CONF_PLAYER_ID_SENTO_AREA_NONE = 0;
-	MOB_CONF_PLAYER_ID_SENTO_AREA_GVG = 1;
-	MOB_CONF_PLAYER_ID_SENTO_AREA_PVP = 2;
-	MOB_CONF_PLAYER_ID_SENTO_AREA_URDR = 3;
-	MOB_CONF_PLAYER_ID_SENTO_AREA_YE = 4;
-	MOB_CONF_PLAYER_ID_SENTO_AREA_MH = 5;
-	MOB_CONF_PLAYER_ID_SENTO_AREA_GVG_TE = 6;
-	MOB_CONF_PLAYER_ID_SENTO_AREA_YE_GVG_TE = 7;
-	MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM = 8;
-	MOB_CONF_PLAYER_ID_SENTO_AREA_YE_SHINKIRO = 9;
+	window.MOB_CONF_PLAYER_ID_SENTO_AREA_NONE = 0;
+	window.MOB_CONF_PLAYER_ID_SENTO_AREA_GVG = 1;
+	window.MOB_CONF_PLAYER_ID_SENTO_AREA_PVP = 2;
+	window.MOB_CONF_PLAYER_ID_SENTO_AREA_URDR = 3;
+	window.MOB_CONF_PLAYER_ID_SENTO_AREA_YE = 4;
+	window.MOB_CONF_PLAYER_ID_SENTO_AREA_MH = 5;
+	window.MOB_CONF_PLAYER_ID_SENTO_AREA_GVG_TE = 6;
+	window.MOB_CONF_PLAYER_ID_SENTO_AREA_YE_GVG_TE = 7;
+	window.MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM = 8;
+	window.MOB_CONF_PLAYER_ID_SENTO_AREA_YE_SHINKIRO = 9;
 
 
 
-	MOB_CONF_PLAYER_ID_SENTO_AREA = MobConfPlayerId;
+	window.MOB_CONF_PLAYER_ID_SENTO_AREA = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
 		MobConfPlayerText("戦闘エリア"),
@@ -626,7 +626,7 @@ function InitMobConfPlayerData() {
 
 
 
-	MOB_CONF_PLAYER_ID_KOGATA_TAISEI = MobConfPlayerId;
+	window.MOB_CONF_PLAYER_ID_KOGATA_TAISEI = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
 		MobConfPlayerText("小型耐性"),
@@ -640,10 +640,10 @@ function InitMobConfPlayerData() {
 
 
 
-	MOB_CONF_PLAYER_ID_SHUZOKU_HUMAN = 0;
-	MOB_CONF_PLAYER_ID_SHUZOKU_DORAM = 1;
+	window.MOB_CONF_PLAYER_ID_SHUZOKU_HUMAN = 0;
+	window.MOB_CONF_PLAYER_ID_SHUZOKU_DORAM = 1;
 
-	MOB_CONF_PLAYER_ID_SHUZOKU = MobConfPlayerId;
+	window.MOB_CONF_PLAYER_ID_SHUZOKU = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
 		MobConfPlayerText("種族"),
@@ -657,7 +657,7 @@ function InitMobConfPlayerData() {
 
 
 
-	MOB_CONF_PLAYER_ID_RES = MobConfPlayerId;
+	window.MOB_CONF_PLAYER_ID_RES = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
 		MobConfPlayerText("RES"),
@@ -671,7 +671,7 @@ function InitMobConfPlayerData() {
 
 
 
-	MOB_CONF_PLAYER_ID_MRES = MobConfPlayerId;
+	window.MOB_CONF_PLAYER_ID_MRES = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
 		MobConfPlayerText("MRES"),
@@ -755,7 +755,7 @@ function InitMobConfPlayerData() {
 	MobConfPlayerOBJSorted[MobConfPlayerOBJSorted.length] = MobConfPlayerOBJ[MOB_CONF_PLAYER_ID_HANSHA_2];
 	MobConfPlayerOBJSorted[MobConfPlayerOBJSorted.length] = MobConfPlayerOBJ[MOB_CONF_PLAYER_ID_SHOZIZYURYO_GENZAI];
 	MobConfPlayerOBJSorted[MobConfPlayerOBJSorted.length] = MobConfPlayerOBJ[MOB_CONF_PLAYER_ID_SHOZIZYURYO_SAIDAI];
-	MobConfPlayerOBJ = MobConfPlayerOBJSorted;
+	window.MobConfPlayerOBJ = MobConfPlayerOBJSorted;
 
 }
 
@@ -768,7 +768,7 @@ function InitMobConfPlayerData() {
  * @param objRoot テーブルの親オブジェクト
  * @param bAsExpand 展開表示フラグ（true : 展開表示、false : ヘッダのみ）
  */
-function BuildUpMobConfPlayerSelectArea(objRoot, bAsExpand) {
+export function BuildUpMobConfPlayerSelectArea(objRoot, bAsExpand) {
 
 	var idx = 0;
 	var confId = 0;
@@ -1052,7 +1052,7 @@ function BuildUpMobConfPlayerSelectArea(objRoot, bAsExpand) {
 /**
  * 対プレイヤー設定欄の状態を同期させる（変数の値をコントロール部品へ反映）.
  */
-function SyncronizeMobConfPlayerSettingsVarToCtrl() {
+export function SyncronizeMobConfPlayerSettingsVarToCtrl() {
 
 	var idx = 0;
 	var confId = 0;
@@ -1131,7 +1131,7 @@ function SyncronizeMobConfPlayerSettingsVarToCtrl() {
 /**
  * 対プレイヤー設定欄の状態を同期させる（コントロール部品の状態を変数へ反映）.
  */
-function SyncronizeMobConfPlayerSettingsCtrlToVar() {
+export function SyncronizeMobConfPlayerSettingsCtrlToVar() {
 
 	var idx = 0;
 	var confId = 0;
@@ -1212,7 +1212,7 @@ function SyncronizeMobConfPlayerSettingsCtrlToVar() {
 /**
  * 対プレイヤー設定欄の展開スイッチクリックイベントハンドラ.
  */
-function OnClickMobConfPlayerSwitch() {
+export function OnClickMobConfPlayerSwitch() {
 
 	var bExpand = false;
 	var objInput = null;
@@ -1237,7 +1237,7 @@ function OnClickMobConfPlayerSwitch() {
  * 対プレイヤー設定欄の設定値変更イベントハンドラ.
  * @param bCalc 再計算フラグ（true : 再計算する、false : 再計算しない）
  */
-function OnChangeMobConfPlayer(bCalc) {
+export function OnChangeMobConfPlayer(bCalc) {
 
 	// 設定の変更を変数に同期させる
 	SyncronizeMobConfPlayerSettingsCtrlToVar();
@@ -1261,7 +1261,7 @@ function OnChangeMobConfPlayer(bCalc) {
 /**
  * 対プレイヤー設定テーブルのヘッダをリフレッシュする.
  */
-function RefreshMobConfPlayerSelectAreaHeader() {
+export function RefreshMobConfPlayerSelectAreaHeader() {
 
 	var bSet = false;
 	var bChecked = false;
@@ -1304,7 +1304,7 @@ function RefreshMobConfPlayerSelectAreaHeader() {
 /**
  * 対プレイヤー設定欄の選択状態により、コントロールのCSSを変更する.
  */
-function RefreshMobConfPlayerControlCSS() {
+export function RefreshMobConfPlayerControlCSS() {
 
 	var idx = 0;
 	var confId = 0;
@@ -1398,4 +1398,20 @@ function RefreshMobConfPlayerControlCSS() {
 			}
 		}
 	}
+}
+
+if (typeof window !== 'undefined') {
+    window.MobConfPlayerText                          = MobConfPlayerText;
+    window.MobConfPlayerControlType                   = MobConfPlayerControlType;
+    window.MobConfPlayerDefaultValue                  = MobConfPlayerDefaultValue;
+    window.MobConfPlayerMinValue                      = MobConfPlayerMinValue;
+    window.MobConfPlayerMaxValue                      = MobConfPlayerMaxValue;
+    window.InitMobConfPlayerData                      = InitMobConfPlayerData;
+    window.BuildUpMobConfPlayerSelectArea             = BuildUpMobConfPlayerSelectArea;
+    window.SyncronizeMobConfPlayerSettingsVarToCtrl   = SyncronizeMobConfPlayerSettingsVarToCtrl;
+    window.SyncronizeMobConfPlayerSettingsCtrlToVar   = SyncronizeMobConfPlayerSettingsCtrlToVar;
+    window.OnClickMobConfPlayerSwitch                 = OnClickMobConfPlayerSwitch;
+    window.OnChangeMobConfPlayer                      = OnChangeMobConfPlayer;
+    window.RefreshMobConfPlayerSelectAreaHeader       = RefreshMobConfPlayerSelectAreaHeader;
+    window.RefreshMobConfPlayerControlCSS             = RefreshMobConfPlayerControlCSS;
 }

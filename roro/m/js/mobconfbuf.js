@@ -2,12 +2,12 @@
 
 // モンスター状態強化設定の限界値
 // この数を超える場合は、セーブデータの拡張が必要
-MOB_CONF_BUF_LIMIT = 80;
+window.MOB_CONF_BUF_LIMIT = 80;
 
 // 初期化作業
-let n_B_KYOUKA = [];
+window.n_B_KYOUKA = [];
 
-MobConfBufOBJ = new Array();
+window.MobConfBufOBJ = new Array();
 
 InitMobConfBufData();
 
@@ -19,11 +19,11 @@ InitMobConfBufData();
 // モンスター状態強化データ定義用ダミー関数
 // （可読性を高める目的で使用する）
 //================================================================
-function MobConfBufText(value) { return value; };
-function MobConfBufControlType(value) { return value; };
-function MobConfBufDefaultValue(value) { return value; };
-function MobConfBufMinValue(value) { return value; };
-function MobConfBufMaxValue(value) { return value; };
+export function MobConfBufText(value) { return value; };
+export function MobConfBufControlType(value) { return value; };
+export function MobConfBufDefaultValue(value) { return value; };
+export function MobConfBufMinValue(value) { return value; };
+export function MobConfBufMaxValue(value) { return value; };
 
 
 
@@ -40,7 +40,7 @@ function MobConfBufMaxValue(value) { return value; };
 /**
  * モンスター状態強化データを初期化（セットアップ）する.
  */
-function InitMobConfBufData() {
+export function InitMobConfBufData() {
 
 	var idx = 0;
 
@@ -55,19 +55,19 @@ function InitMobConfBufData() {
 	//----------------------------------------------------------------
 	// データインデックス定義
 	//----------------------------------------------------------------
-	MOB_CONF_BUF_DATA_INDEX_ID = indexdefiner++;
-	MOB_CONF_BUF_DATA_INDEX_TEXT = indexdefiner++;
-	MOB_CONF_BUF_DATA_INDEX_CONTROL_TYPE = indexdefiner++;
-	MOB_CONF_BUF_DATA_INDEX_DEFAULT_VALUE = indexdefiner++;
-	MOB_CONF_BUF_DATA_INDEX_MIN_VALUE = indexdefiner++;
-	MOB_CONF_BUF_DATA_INDEX_MAX_VALUE = indexdefiner++;
+	window.MOB_CONF_BUF_DATA_INDEX_ID = indexdefiner++;
+	window.MOB_CONF_BUF_DATA_INDEX_TEXT = indexdefiner++;
+	window.MOB_CONF_BUF_DATA_INDEX_CONTROL_TYPE = indexdefiner++;
+	window.MOB_CONF_BUF_DATA_INDEX_DEFAULT_VALUE = indexdefiner++;
+	window.MOB_CONF_BUF_DATA_INDEX_MIN_VALUE = indexdefiner++;
+	window.MOB_CONF_BUF_DATA_INDEX_MAX_VALUE = indexdefiner++;
 
 
 
 	//----------------------------------------------------------------
 	// データ定義　ここから
 	//----------------------------------------------------------------
-	MOB_CONF_BUF_ID_SOKUDO_ZOKA = MobConfBufId;
+	window.MOB_CONF_BUF_ID_SOKUDO_ZOKA = MobConfBufId;
 	MobConfBufData = [
 		MobConfBufId,
 		MobConfBufText("速度増加"),
@@ -81,7 +81,7 @@ function InitMobConfBufData() {
 
 
 
-	MOB_CONF_BUF_ID_ASSUMPTIO = MobConfBufId;
+	window.MOB_CONF_BUF_ID_ASSUMPTIO = MobConfBufId;
 	MobConfBufData = [
 		MobConfBufId,
 		MobConfBufText("アスムプティオ"),
@@ -95,7 +95,7 @@ function InitMobConfBufData() {
 
 
 
-	MOB_CONF_BUF_ID_ADRENALINE_RUSH = MobConfBufId;
+	window.MOB_CONF_BUF_ID_ADRENALINE_RUSH = MobConfBufId;
 	MobConfBufData = [
 		MobConfBufId,
 		MobConfBufText("(×)アドレナリンラッシュ"),
@@ -109,7 +109,7 @@ function InitMobConfBufData() {
 
 
 
-	MOB_CONF_BUF_ID_MAXIMIZE_POWER = MobConfBufId;
+	window.MOB_CONF_BUF_ID_MAXIMIZE_POWER = MobConfBufId;
 	MobConfBufData = [
 		MobConfBufId,
 		MobConfBufText("マキシマイズパワー"),
@@ -123,7 +123,7 @@ function InitMobConfBufData() {
 
 
 
-	MOB_CONF_BUF_ID_RUSH_ATTACK = MobConfBufId;
+	window.MOB_CONF_BUF_ID_RUSH_ATTACK = MobConfBufId;
 	MobConfBufData = [
 		MobConfBufId,
 		MobConfBufText("ラッシュアタック(ATK3倍 HIT2倍)"),
@@ -137,7 +137,7 @@ function InitMobConfBufData() {
 
 
 
-	MOB_CONF_BUF_ID_SOKUDO_KYOKA = MobConfBufId;
+	window.MOB_CONF_BUF_ID_SOKUDO_KYOKA = MobConfBufId;
 	MobConfBufData = [
 		MobConfBufId,
 		MobConfBufText("速度強化(FLEE2倍)"),
@@ -151,7 +151,7 @@ function InitMobConfBufData() {
 
 
 
-	MOB_CONF_BUF_ID_ZOKUSEI_HENKA = MobConfBufId;
+	window.MOB_CONF_BUF_ID_ZOKUSEI_HENKA = MobConfBufId;
 	MobConfBufData = [
 		MobConfBufId,
 		MobConfBufText("属性変化"),
@@ -165,7 +165,7 @@ function InitMobConfBufData() {
 
 
 
-	MOB_CONF_BUF_ID_STONE_SKIN = MobConfBufId;
+	window.MOB_CONF_BUF_ID_STONE_SKIN = MobConfBufId;
 	MobConfBufData = [
 		MobConfBufId,
 		MobConfBufText("ストーンスキン"),
@@ -179,7 +179,7 @@ function InitMobConfBufData() {
 
 
 
-	MOB_CONF_BUF_ID_ANTI_MAGIC = MobConfBufId;
+	window.MOB_CONF_BUF_ID_ANTI_MAGIC = MobConfBufId;
 	MobConfBufData = [
 		MobConfBufId,
 		MobConfBufText("(△)アンチマジック"),
@@ -193,7 +193,7 @@ function InitMobConfBufData() {
 
 
 
-	MOB_CONF_BUF_ID_KEEPING = MobConfBufId;
+	window.MOB_CONF_BUF_ID_KEEPING = MobConfBufId;
 	MobConfBufData = [
 		MobConfBufId,
 		MobConfBufText("キーピング"),
@@ -207,7 +207,7 @@ function InitMobConfBufData() {
 
 
 
-	MOB_CONF_BUF_ID_DEFENDER = MobConfBufId;
+	window.MOB_CONF_BUF_ID_DEFENDER = MobConfBufId;
 	MobConfBufData = [
 		MobConfBufId,
 		MobConfBufText("ディフェンダー(特殊=耐性87.5%(スリーパー等))"),
@@ -221,7 +221,7 @@ function InitMobConfBufData() {
 
 
 
-	MOB_CONF_BUF_ID_REBIRTH = MobConfBufId;
+	window.MOB_CONF_BUF_ID_REBIRTH = MobConfBufId;
 	MobConfBufData = [
 		MobConfBufId,
 		MobConfBufText("リバース状態(復活後) (カブキはLV2/エリオットは3)"),
@@ -235,7 +235,7 @@ function InitMobConfBufData() {
 
 
 
-	MOB_CONF_BUF_ID_DAMAGE_DIVIDE = MobConfBufId;
+	window.MOB_CONF_BUF_ID_DAMAGE_DIVIDE = MobConfBufId;
 	MobConfBufData = [
 		MobConfBufId,
 		MobConfBufText("ダメージ減衰"),
@@ -249,7 +249,7 @@ function InitMobConfBufData() {
 
 
 
-	MOB_CONF_BUF_ID_MAX_PAIN = MobConfBufId;
+	window.MOB_CONF_BUF_ID_MAX_PAIN = MobConfBufId;
 	MobConfBufData = [
 		MobConfBufId,
 		MobConfBufText("マックスペイン"),
@@ -303,7 +303,7 @@ function InitMobConfBufData() {
 	MobConfBufOBJSorted[MobConfBufOBJSorted.length] = MobConfBufOBJ[MOB_CONF_BUF_ID_DEFENDER];
 	MobConfBufOBJSorted[MobConfBufOBJSorted.length] = MobConfBufOBJ[MOB_CONF_BUF_ID_REBIRTH];
 	MobConfBufOBJSorted[MobConfBufOBJSorted.length] = MobConfBufOBJ[MOB_CONF_BUF_ID_MAX_PAIN];
-	MobConfBufOBJ = MobConfBufOBJSorted;
+	window.MobConfBufOBJ = MobConfBufOBJSorted;
 
 }
 
@@ -316,7 +316,7 @@ function InitMobConfBufData() {
  * @param objRoot テーブルの親オブジェクト
  * @param bAsExpand 展開表示フラグ（true : 展開表示、false : ヘッダのみ）
  */
-function BuildUpMobConfBufSelectArea(objRoot, bAsExpand) {
+export function BuildUpMobConfBufSelectArea(objRoot, bAsExpand) {
 
 	var idx = 0;
 	var confId = 0;
@@ -628,7 +628,7 @@ function BuildUpMobConfBufSelectArea(objRoot, bAsExpand) {
 /**
  * モンスター状態強化設定欄の状態を同期させる（変数の値をコントロール部品へ反映）.
  */
-function SyncronizeMobConfBufSettingsVarToCtrl() {
+export function SyncronizeMobConfBufSettingsVarToCtrl() {
 
 	var idx = 0;
 	var confId = 0;
@@ -707,7 +707,7 @@ function SyncronizeMobConfBufSettingsVarToCtrl() {
 /**
  * モンスター状態強化設定欄の状態を同期させる（コントロール部品の状態を変数へ反映）.
  */
-function SyncronizeMobConfBufSettingsCtrlToVar() {
+export function SyncronizeMobConfBufSettingsCtrlToVar() {
 
 	var idx = 0;
 	var confId = 0;
@@ -788,7 +788,7 @@ function SyncronizeMobConfBufSettingsCtrlToVar() {
 /**
  * モンスター状態強化設定欄の展開スイッチクリックイベントハンドラ.
  */
-function OnClickMobConfBufSwitch() {
+export function OnClickMobConfBufSwitch() {
 
 	var bExpand = false;
 	var objInput = null;
@@ -813,7 +813,7 @@ function OnClickMobConfBufSwitch() {
  * モンスター状態強化設定欄の設定値変更イベントハンドラ.
  * @param bCalc 再計算フラグ（true : 再計算する、false : 再計算しない）
  */
-function OnChangeMobConfBuf(bCalc) {
+export function OnChangeMobConfBuf(bCalc) {
 
 	// 設定の変更を変数に同期させる
 	SyncronizeMobConfBufSettingsCtrlToVar();
@@ -838,7 +838,7 @@ function OnChangeMobConfBuf(bCalc) {
 /**
  * モンスター状態強化設定テーブルのヘッダをリフレッシュする.
  */
-function RefreshMobConfBufSelectAreaHeader() {
+export function RefreshMobConfBufSelectAreaHeader() {
 
 	var bSet = false;
 	var bChecked = false;
@@ -881,7 +881,7 @@ function RefreshMobConfBufSelectAreaHeader() {
 /**
  * モンスター状態強化設定欄の選択状態により、コントロールのCSSを変更する.
  */
-function RefreshMobConfBufControlCSS() {
+export function RefreshMobConfBufControlCSS() {
 
 	var idx = 0;
 	var confId = 0;
@@ -977,3 +977,19 @@ function RefreshMobConfBufControlCSS() {
 	}
 }
 
+
+if (typeof window !== 'undefined') {
+    window.MobConfBufText                         = MobConfBufText;
+    window.MobConfBufControlType                  = MobConfBufControlType;
+    window.MobConfBufDefaultValue                 = MobConfBufDefaultValue;
+    window.MobConfBufMinValue                     = MobConfBufMinValue;
+    window.MobConfBufMaxValue                     = MobConfBufMaxValue;
+    window.InitMobConfBufData                     = InitMobConfBufData;
+    window.BuildUpMobConfBufSelectArea            = BuildUpMobConfBufSelectArea;
+    window.SyncronizeMobConfBufSettingsVarToCtrl  = SyncronizeMobConfBufSettingsVarToCtrl;
+    window.SyncronizeMobConfBufSettingsCtrlToVar  = SyncronizeMobConfBufSettingsCtrlToVar;
+    window.OnClickMobConfBufSwitch                = OnClickMobConfBufSwitch;
+    window.OnChangeMobConfBuf                     = OnChangeMobConfBuf;
+    window.RefreshMobConfBufSelectAreaHeader      = RefreshMobConfBufSelectAreaHeader;
+    window.RefreshMobConfBufControlCSS            = RefreshMobConfBufControlCSS;
+}

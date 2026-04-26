@@ -56,6 +56,16 @@
 | 50 | `roro/m/js/quickcontrol.js` | 2026-04-26 | 11関数を export。`g_QuickControlSW` はモジュール内のみ（compat不要）。window互換ブロック追加 |
 | 51 | `roro/m/js/learnedskill.js` | 2026-04-26 | 5関数を export。`LEARNED_SKILL_MAX_COUNT`, `n_A_LearnedSkill` を `window.*` 化（equip.js が全体再代入）。window互換ブロック追加 |
 | 52 | `roro/m/js/mobconfdebuf.js` | 2026-04-26 | 13関数を export。`MOB_CONF_DEBUF_LIMIT`, `n_B_IJYOU`, `MobConfDebufOBJ` を `window.*` 化。`InitMobConfDebufData` 内の全 `MOB_CONF_DEBUF_*` 定数代入（113箇所）を `window.*` 化。`CConfBase.js` の DefineEnum に依存（テスト時も先にロード要）。window互換ブロック追加 |
+| 53 | `roro/m/js/hmchara.js` | 2026-04-27 | 3関数（IsUnconfirmedHP, IsUnconfirmedSP, UpdateCharaDataHtml）を export。window互換ブロック追加 |
+| 54 | `roro/m/js/hmmob.js` | 2026-04-27 | 1関数（UpdateMobDataHtml）を export。window互換ブロック追加 |
+| 55 | `roro/m/js/browsermigration.js` | 2026-04-27 | 8関数を export。`objRoot` 宣言漏れを `var` で修正。HTMLの `<!--...-->` コメントを解除して `type="module"` に変更。window互換ブロック追加 |
+| 56 | `ro4/m/js/CEnchSearch.js` | 2026-04-27 | `export class enchSearch`。window互換ブロック追加 |
+| 57 | `roro/m/js/mobconfbuf.js` | 2026-04-27 | 13関数を export。`MOB_CONF_BUF_LIMIT`, `n_B_KYOUKA`（foot.js が全体再代入）, `MobConfBufOBJ` を `window.*` 化。`InitMobConfBufData` 内の全 `MOB_CONF_BUF_*` 定数代入（21箇所）を `window.*` 化。window互換ブロック追加 |
+| 58 | `roro/m/js/mobconfplayer.js` | 2026-04-27 | 13関数を export。`MOB_CONF_PLAYER_LIMIT`, `n_B_TAISEI`（foot.js が全体再代入）, `MobConfPlayerOBJ` を `window.*` 化。`InitMobConfPlayerData` 内の全 `MOB_CONF_PLAYER_*` 定数代入（60箇所）を `window.*` 化。window互換ブロック追加 |
+| 59 | `ro4/m/js/hmjob.js` | 2026-04-27 | 30関数を export。14個のトップレベル未宣言グローバル（g_pureStatus, g_STR 等）を `window.*` 化。`with(document.calcForm)` 3ブロックを `var _f = document.calcForm;` + 明示参照に変換。`GetTStatusPoint` 内の `stPoint` 宣言漏れを `var` で修正。window互換ブロック追加 |
+| 60 | `ro4/m/js/calcautospell.js` | 2026-04-27 | 6関数を export。9個のトップレベル未宣言グローバルを `window.*` 化。`AS_Calc` 内の undeclared vars（skillLvWug, skillLvBlitz, skillLvQuickDraw, skillLvChainAction, skillLvDoubleCasting, skillLvEffectOfSagenoTamashi, skillLvEternalChain, sereKind, sereMode, Lv, itemCount）を `var` 宣言追加。window互換ブロック追加 |
+| 61 | `roro/m/js/hmcard.js` | 2026-04-27 | 13関数を export。`CardShortObj` を `window.*` 化（モジュール評価時に CARD_ID_* 定数を参照するため動的 import テストパターン採用）。`funcPushNotExist` 内の `idxF` 宣言漏れを `var` で修正（2箇所）。window互換ブロック追加 |
+| 62 | `ro4/m/js/CMonsterMapAreaComponentManager.js` | 2026-04-27 | `export function CMonsterMapAreaComponentManager`。`RebuildControls` 内の `objInput`, `objLabel` 宣言漏れを `var` で修正。window互換ブロック追加 |
 
 ## HTML 対応済み
 
@@ -68,7 +78,8 @@
   - `savedata/SKeyMap.js` 他5ファイル → `type="module"`（前セッション）
   - 上記20ファイル（#13〜#32）→ `type="module"`（前セッション）
   - #33〜#42 の10ファイル → `type="module"`（前セッション）
-  - #43〜#52 の10ファイル → `type="module"`（今セッション）
+  - #43〜#52 の10ファイル → `type="module"`（前セッション）
+  - #53〜#62 の10ファイル → `type="module"`（今セッション）。`browsermigration.js` はコメントアウトを解除して追加
   - その他 ~50 の `<script>` タグ → `defer` 属性追加（前セッション）
 - `roro/other/itemlist.html`, `cardlist.html`, `monsterlist.html`, `petlist.html`, `exp.html`, `jobb.html`
 - `util/sortedEnchantCardIdArray.html`
@@ -101,11 +112,14 @@
 
 ### 次の変換候補（次セッション用）
 
+~~上記10ファイルは 2026-04-27 に移行済み（#53〜#62）~~
+
 | 優先 | ファイル | 注意点 |
 |------|---------|--------|
-| 1 | `roro/m/js/mobconfbuf.js` | `n_B_KYOUKA`（foot.js L30453 が全体再代入）→ `window.*` 化 |
-| 2 | `roro/m/js/mobconfplayer.js` | `n_B_TAISEI`（foot.js L30451 が全体再代入）→ `window.*` 化 |
-| 3〜N | その他 `hmjob.js`, `hmautospell.js`, `hmcard.js`, `hmequip.js`, `hmlearnedskill.js`, `hmchara.js`, `hmmob.js` 等 | 要内容確認 |
+| 1 | `roro/m/js/hmautospell.js` | HTMLでコメントアウト中。内容確認が必要 |
+| 2 | `roro/m/js/hmequip.js` | HTMLでコメントアウト中。内容確認が必要 |
+| 3 | `roro/m/js/hmlearnedskill.js` | HTMLでコメントアウト中。内容確認が必要 |
+| 4〜N | その他未移行ファイル | equip.js, spmode.js, slotpager.js 等（defer のまま残存） |
 
 ### BLOCKED ファイル群
 
