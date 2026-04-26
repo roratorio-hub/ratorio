@@ -71,14 +71,53 @@
 4. 対応 HTML の `<script src="...">` を `type="module"` に変更（`defer` は不要、module は暗黙 defer）
 5. ファイル名に `debug` / `migration` を含むファイルは優先度低・除外
 
+## 棚卸し（2026-04-26時点）
+
+### 残りファイル数
+
+- `ro4/m/calcx.html` の `type="text/javascript" defer` タグ: **147件**（third-party/debug含む）
+- アプリケーションJS のうち移行対象（推定）: **~90ファイル**
+  - うち BLOCKED（下記参照）: ~43ファイル
+  - うち移行可能（即着手可）: ~47ファイル
+
+### 即着手可能（次の10ファイル候補）
+
+影響の少ない順：
+
+| 優先 | ファイル | 理由 |
+|------|---------|------|
+| 1 | `roro/m/js/rndench.js` | 純粋な関数定義のみ。共有状態なし |
+| 2 | `roro/m/js/hmrndopt.js` | 純粋な関数定義のみ |
+| 3 | `roro/m/js/hmcostume.js` | 純粋な関数定義のみ |
+| 4 | `roro/m/js/castsim.js` | 純粋な関数定義のみ |
+| 5 | `ro4/m/js/calchistory.js` | `$(function(){})` のみ。グローバル公開なし |
+| 6 | `ro4/m/js/saveimage.js` | `$(function(){})` + `generateImage()`。compat 1件 |
+| 7 | `roro/m/js/etc.js` | `const zokusei`。foot.js(L1411)が参照 → `window.zokusei` compat必要 |
+| 8 | `roro/m/js/quickcontrol.js` | `var g_QuickControlSW` はモジュール内のみ使用。他ファイルから参照なし |
+| 9 | `roro/m/js/learnedskill.js` | 未宣言変数3つ（`LEARNED_SKILL_MAX_COUNT`, `n_A_LearnedSkill`, `n_SkillSWLearned`）→ `window.*`化。foot.js は再代入しない |
+| 10 | `roro/m/js/mobconfdebuf.js` | 未宣言変数 `MOB_CONF_DEBUF_LIMIT`, `n_B_IJYOU`, `MobConfDebufOBJ` → `window.*`化。**foot.js L30455 が `n_B_IJYOU = Array(...).fill(0)` で配列全体を再代入** → Buff ファイルと同じ `window.n_B_IJYOU` パターン必須 |
+
+次セッション10ファイルの続き（+2〜+3）:
+- `roro/m/js/mobconfbuf.js` — `n_B_KYOUKA`（foot.js L30453 が再代入）
+- `roro/m/js/mobconfplayer.js` — `n_B_TAISEI`（foot.js L30451 が再代入）
+
+### BLOCKED ファイル群
+
+| 理由 | ファイル |
+|------|---------|
+| **継承チェーン（CConfBase）** 12ファイル | `CConfBase.js`, `CConfBase2.js`, `CCharaConfIchizi.js`, `CCharaConfNizi.js`, `CCharaConfSanzi.js`, `CCharaConfYozi.js`, `CCharaConfDebuff.js`, `CCharaConfCustomStatus.js`, `CCharaConfCustomAtk.js`, `CCharaConfCustomDef.js`, `CCharaConfCustomSkill.js`, `CCharaConfCustomSpecStatus.js` — トップレベルで `.prototype = new CConfBase()` 実行 |
+| **継承チェーン（CSaveDataUnitBase）** 30ファイル | `CSaveDataUnitBase.js` 本体 + 全 `CSaveDataUnit*.js`（29ファイル）— `class Foo extends CSaveDataUnitBase` をトップレベルで実行 |
+| **CMobConfInput.js** | `CMobConfInputAreaComponentManager.prototype = new CConfBase2()` at line 222 — CConfBase2 の移行待ち |
+| **`.dat.js` IIFE ファイル群** ~15ファイル | `(function(){ g_xxx = [...] })()` パターン。defer より module が後に実行されるため、foot.js 起動時に未初期化になる危険あり |
+
 ## 次回やること
 
 ### ステップ3: 次の変換候補
 
+- 上記「即着手可能」の10ファイルを順次変換する
 - `ro4/m/js/savedata/CSaveDataUnitBase.js` — BLOCKED: 全 CSaveDataUnit*.js が `class Foo extends CSaveDataUnitBase` をトップレベルで実行するため、先に全 Unit を移行しないと変換不可
 - `roro/m/js/CConfBase.js`、`CConfBase2.js` — BLOCKED: `CCharaConfIchizi.js` が `CCharaConfIchizi.prototype = new CConfBase()` をトップレベルで実行するため
 - `.dat.js` ファイル群（`alias.dat.js`, `item.dat.js`, `card.dat.js` 等）— CAUTION: foot.js より前に実行される defer スクリプトがトップレベルでグローバルを参照するため、変換後は module が defer より後に実行される問題あり
-- `roro/m/js/CSkillManager.js`, `roro/m/js/CItemInfoManager.js`, `roro/m/js/CSaveDataMappingManager.js` — 今セッションで移行済み
 
 ### ステップ4: window互換ブロックの削除タイミング
 
