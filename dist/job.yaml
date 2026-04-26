@@ -49959,6 +49959,7 @@ DRUID:
   attack_skills: {}
   allow_equipment_weapons_type:
     - 0
+    - 1
     - 90
     - 134
     - 179
@@ -50316,6 +50317,7 @@ KARNOS:
   attack_skills: {}
   allow_equipment_weapons_type:
     - 0
+    - 1
     - 90
     - 134
     - 179
@@ -50684,6 +50686,7 @@ ALITEA:
   attack_skills: {}
   allow_equipment_weapons_type:
     - 0
+    - 1
     - 90
     - 134
     - 178
