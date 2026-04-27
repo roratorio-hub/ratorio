@@ -194,11 +194,14 @@ export function RefreshQuickControlHeaderLearned(objSelect, changedIdx, newValue
 
 export function OnInputQuickControlItemPack() {
 
+	var idx = 0;
 	var bEquipable = false;
 
 	var itemPackId = 0;
 	var itemPackItems = null;
 	var itemPackItemsKind = 0;
+	var itemId = 0;
+	var itemRefine = 0;
 	var itemText = "";
 
 	var objSpan = null;
@@ -376,6 +379,7 @@ export function OnClickQuickControlSetItemPack() {
 export function OnClickQuickControlSetItemPackSubForItem(itemId, itemRefine) {
 
 	var idx = 0;
+	var idxSlot = 0;
 
 	var bEquipable = false;
 	var targetObjIdEquip = "";

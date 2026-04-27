@@ -4,7 +4,7 @@
  * @param {Array} mobData 
  * @returns {Array} mobData
  */
-function GetMobDataBasicAttribute(monsterId, mobData){
+export function GetMobDataBasicAttribute(monsterId, mobData){
 
 //================================================================================================
 // 基本情報の取得
@@ -161,7 +161,7 @@ function GetMobDataBasicAttribute(monsterId, mobData){
  * @param {Array} mobData 
  * @returns {Array} mobData
  */
-function GetMobDataParameters(monsterId, mobData){
+export function GetMobDataParameters(monsterId, mobData){
 	let idx = 0;
 	let bufLv = 0;
 	let val = 0;
@@ -544,9 +544,9 @@ function GetMobDataParameters(monsterId, mobData){
 	}
 
 	// TODO: これどうしよう
-	B_Original_DEF = mobData[MONSTER_DATA_INDEX_DEF_DIV];
-	B_Total_DEF = mobData[MONSTER_DATA_INDEX_DEF_DIV] + mobData[MONSTER_DATA_EXTRA_INDEX_DEF_MINUS_MIN];
-	B_Total_MDEF = mobData[MONSTER_DATA_INDEX_MDEF_DIV] + mobData[MONSTER_DATA_EXTRA_INDEX_MDEF_MINUS];
+	window.B_Original_DEF = mobData[MONSTER_DATA_INDEX_DEF_DIV];
+	window.B_Total_DEF = mobData[MONSTER_DATA_INDEX_DEF_DIV] + mobData[MONSTER_DATA_EXTRA_INDEX_DEF_MINUS_MIN];
+	window.B_Total_MDEF = mobData[MONSTER_DATA_INDEX_MDEF_DIV] + mobData[MONSTER_DATA_EXTRA_INDEX_MDEF_MINUS];
 
 //================================================================================================
 // 除算ＤＥＦの補正
@@ -572,7 +572,7 @@ function GetMobDataParameters(monsterId, mobData){
 	//================================
 	if (wDEF != 0) {
 		mobData[MONSTER_DATA_INDEX_DEF_DIV] += ROUNDDOWN(mobData[MONSTER_DATA_INDEX_DEF_DIV] * wDEF / 100);
-		B_Total_DEF += ROUNDDOWN(B_Total_DEF * wDEF / 100);
+		window.B_Total_DEF += ROUNDDOWN(window.B_Total_DEF * wDEF / 100);
 	}
 
 	wDEF = 0;
@@ -742,7 +742,7 @@ function GetMobDataParameters(monsterId, mobData){
 
 	if (wDEF != 0) {
 		mobData[MONSTER_DATA_INDEX_DEF_DIV] += ROUNDDOWN(mobData[MONSTER_DATA_INDEX_DEF_DIV] * wDEF / 100);
-		B_Total_DEF += ROUNDDOWN(B_Total_DEF * wDEF / 100);
+		window.B_Total_DEF += ROUNDDOWN(window.B_Total_DEF * wDEF / 100);
 	}
 
 	wDEF = 0;
@@ -778,7 +778,7 @@ function GetMobDataParameters(monsterId, mobData){
 
 	if (wDEF != 0) {
 		mobData[MONSTER_DATA_INDEX_DEF_DIV] += ROUNDDOWN(mobData[MONSTER_DATA_INDEX_DEF_DIV] * wDEF / 100);
-		B_Total_DEF += ROUNDDOWN(B_Total_DEF * wDEF / 100);
+		window.B_Total_DEF += ROUNDDOWN(window.B_Total_DEF * wDEF / 100);
 	}
 
 	//----------------------------------------------------------------
@@ -824,7 +824,7 @@ function GetMobDataParameters(monsterId, mobData){
 
 	if (wDEF != 0) {
 		mobData[MONSTER_DATA_INDEX_DEF_DIV] += ROUNDDOWN(mobData[MONSTER_DATA_INDEX_DEF_DIV] * wDEF / 100);
-		B_Total_DEF += ROUNDDOWN(B_Total_DEF * wDEF / 100);
+		window.B_Total_DEF += ROUNDDOWN(window.B_Total_DEF * wDEF / 100);
 	}
 
 //================================================================================================
@@ -903,7 +903,7 @@ function GetMobDataParameters(monsterId, mobData){
 
 	if (wMDEF != 0){
 		mobData[MONSTER_DATA_INDEX_MDEF_DIV] += ROUNDDOWN(mobData[MONSTER_DATA_INDEX_MDEF_DIV] * wMDEF / 100);
-		B_Total_MDEF += Math.floor(B_Total_MDEF * wMDEF / 100);
+		window.B_Total_MDEF += Math.floor(window.B_Total_MDEF * wMDEF / 100);
 	}
 
 	//----------------------------------------------------------------
@@ -938,7 +938,7 @@ function GetMobDataParameters(monsterId, mobData){
 
 	if (wMDEF != 0){
 		mobData[MONSTER_DATA_INDEX_MDEF_DIV] += ROUNDDOWN(mobData[MONSTER_DATA_INDEX_MDEF_DIV] * wMDEF / 100);
-		B_Total_MDEF += Math.floor(B_Total_MDEF * wMDEF / 100);
+		window.B_Total_MDEF += Math.floor(window.B_Total_MDEF * wMDEF / 100);
 	}
 
 	wMDEF = 0;
@@ -1052,7 +1052,7 @@ function GetMobDataParameters(monsterId, mobData){
 
 	if (wMDEF != 0){
 		mobData[MONSTER_DATA_INDEX_MDEF_DIV] += ROUNDDOWN(mobData[MONSTER_DATA_INDEX_MDEF_DIV] * wMDEF / 100);
-		B_Total_MDEF += Math.floor(B_Total_MDEF * wMDEF / 100);
+		window.B_Total_MDEF += Math.floor(window.B_Total_MDEF * wMDEF / 100);
 	}
 
 	//----------------------------------------------------------------
@@ -1371,4 +1371,9 @@ function GetMobDataParameters(monsterId, mobData){
 	}
 
 	return mobData;
+}
+
+if (typeof window !== 'undefined') {
+    window.GetMobDataBasicAttribute = GetMobDataBasicAttribute;
+    window.GetMobDataParameters     = GetMobDataParameters;
 }

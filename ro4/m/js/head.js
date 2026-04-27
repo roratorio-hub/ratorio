@@ -146,9 +146,9 @@ let n_DEATH_BOUND = [0,0,0,0];
 /** 計算機設定. index = 2 のセーブデータ数しか使われていない. 削除候補 */
 let n_CONFIG = [0,33,19];
 /** 対象の除算DEF */
-let B_Total_DEF = 0;
+var B_Total_DEF = 0;
 /** 対象の除算MDEF */
-let B_Total_MDEF = 0;
+var B_Total_MDEF = 0;
 /** オートスペルに関連して所要攻撃回数を計算するための中間変数. */
 let w_DMG_AS_OverHP = 0;
 /** ダメージ配列 */

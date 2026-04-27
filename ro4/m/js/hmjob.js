@@ -1747,7 +1747,7 @@ export function migrateOtherJob(jobId) {
  * OBJID_SELECT_JOB の状態が変更された時に呼び出されるエントリ関数
  * @param {string} jobId
  */
-function OnChangeJob(jobId) {
+export function OnChangeJob(jobId) {
 	if (document.getElementById("OBJID_CHK_MIGRATE_SETTING").checked) {
 		migrateOtherJob(jobId);
 	} else {
@@ -1789,4 +1789,5 @@ if (typeof window !== 'undefined') {
     window.ApplyPAtkLeftHandPenalty     = ApplyPAtkLeftHandPenalty;
     window.ApplySpecModify              = ApplySpecModify;
     window.migrateOtherJob              = migrateOtherJob;
+    window.OnChangeJob                  = OnChangeJob;
 }

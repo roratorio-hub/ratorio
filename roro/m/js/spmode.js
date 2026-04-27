@@ -12,13 +12,13 @@
 //================================================================================================
 var const_identifier = 0;
 
-SPMODE_MONSTER_RESULT_INDEX_MONSTER_INDEX =		const_identifier++;
-SPMODE_MONSTER_RESULT_INDEX_RESULT_FLAG =		const_identifier++;
-SPMODE_MONSTER_RESULT_INDEX_PEREXP_BASE =		const_identifier++;
-SPMODE_MONSTER_RESULT_INDEX_PEREXP_JOB =		const_identifier++;
-SPMODE_MONSTER_RESULT_INDEX_BATTLE_TIME =		const_identifier++;
-SPMODE_MONSTER_RESULT_INDEX_HIT_RATE =			const_identifier++;
-SPMODE_MONSTER_RESULT_INDEX_FLEE_RATE =			const_identifier++;
+window.SPMODE_MONSTER_RESULT_INDEX_MONSTER_INDEX =		const_identifier++;
+window.SPMODE_MONSTER_RESULT_INDEX_RESULT_FLAG =		const_identifier++;
+window.SPMODE_MONSTER_RESULT_INDEX_PEREXP_BASE =		const_identifier++;
+window.SPMODE_MONSTER_RESULT_INDEX_PEREXP_JOB =		const_identifier++;
+window.SPMODE_MONSTER_RESULT_INDEX_BATTLE_TIME =		const_identifier++;
+window.SPMODE_MONSTER_RESULT_INDEX_HIT_RATE =			const_identifier++;
+window.SPMODE_MONSTER_RESULT_INDEX_FLEE_RATE =			const_identifier++;
 
 
 
@@ -30,22 +30,22 @@ SPMODE_MONSTER_RESULT_INDEX_FLEE_RATE =			const_identifier++;
 //================================================================================================
 
 // SPMODE 処理中であるかのフラグ
-g_SPMODE_FLAG = 0;
+window.g_SPMODE_FLAG = 0;
 
 // SPMODE でのモンスターごとの演算結果
-g_SPMODE_MONSTER_RESULT = new Array();
+window.g_SPMODE_MONSTER_RESULT = new Array();
 
 // SPMODE で処理中のモンスターのインデックス（IDとは限らない）
-g_SPMODE_MONSTER_INDEX = 0;
+window.g_SPMODE_MONSTER_INDEX = 0;
 
 // SPMODE が確殺モードであるかのフラグ
-g_SPMODE_KAKUSATSU_MODE = 0;
+window.g_SPMODE_KAKUSATSU_MODE = 0;
 
 // SPMODE で抽出対象とする戦闘時間の最小値
-g_RankingConditionBattleTimeMin = 0;
+window.g_RankingConditionBattleTimeMin = 0;
 
 // SPMODE で抽出対象とする戦闘時間の最大値
-g_RankingConditionBattleTimeMax = 0;
+window.g_RankingConditionBattleTimeMax = 0;
 
 
 
@@ -61,7 +61,7 @@ g_RankingConditionBattleTimeMax = 0;
  * SPMODE による計算の実行
  * 2025-04-12 使用されていない可能性がある
  */
-function calcSP() {
+export function calcSP() {
 
 
 
@@ -309,7 +309,7 @@ function calcSP() {
  * SPモードボタン　クリックイベントハンドラ.
  * 2025-04-12 使用されていない可能性がある
  */
-function OnClickSPMode() {
+export function OnClickSPMode() {
 
 	var dispFlag = 0;
 
@@ -400,4 +400,9 @@ function OnClickSPMode() {
 	HtmlCreateTextNode("※確殺モード：最小与ダメージ1発で倒せる敵のみ。命中100%で計算。", objRoot);
 	HtmlCreateElement("br", objRoot);
 	HtmlCreateTextNode("※通常モード：平均与ダメージ1発の経験値ランキング。Miss込み。", objRoot);
+}
+
+if (typeof window !== 'undefined') {
+    window.calcSP        = calcSP;
+    window.OnClickSPMode = OnClickSPMode;
 }

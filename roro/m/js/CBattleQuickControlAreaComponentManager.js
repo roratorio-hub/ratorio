@@ -1,7 +1,7 @@
 /**
  * 時限アイテムエリアコンポーネントマネージャクラス.
  */
-function CBattleQuickControlAreaComponentManager () {
+export function CBattleQuickControlAreaComponentManager () {
 
 }
 
@@ -55,6 +55,7 @@ CBattleQuickControlAreaComponentManager.RebuildControls = function () {
 
 	// 設定欄を初期化
 	objRoot = document.getElementById("ID_BATTLE_QUICK_CONTROL_AREA");
+	if (!objRoot) return;
 	HtmlRemoveAllChild(objRoot);
 
 	// 設定欄テーブルを再構築
@@ -367,3 +368,7 @@ CBattleQuickControlAreaComponentManager.RebuildControls();
 
 
 
+
+if (typeof window !== 'undefined') {
+    window.CBattleQuickControlAreaComponentManager = CBattleQuickControlAreaComponentManager;
+}

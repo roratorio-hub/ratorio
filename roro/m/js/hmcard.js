@@ -1511,6 +1511,7 @@ export function ApplyCardShort(eqpRgnId, objidPrifix) {
 	var slotCountLooped = 0;
 
 	var objSelect = null;
+	var objSelect1 = null;
 	var objOption = null;
 
 	// 変更後のカードショートカットのインデックスを取得

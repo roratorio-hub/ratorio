@@ -382,7 +382,7 @@ CAttackMethodData.GetSkillIdFromFullId = function (fullId) {
 /**
  * 攻撃手段エリアコンポーネントマネージャクラス.
  */
-function CAttackMethodAreaComponentManager () {
+export function CAttackMethodAreaComponentManager () {
 
 }
 
@@ -1393,6 +1393,7 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArray = function (
 	var attackMethodOptListWork = null;
 	var attackMethodOptDataWork = null;
 
+	var bufLv = 0;
 	var skillId = 0;
 	var skillLv = 0;
 	var skillLvMax = 0;
@@ -4551,3 +4552,6 @@ CAttackMethodAreaComponentManager.CreateNoticeBlock = function () {
 
 
 
+if (typeof window !== 'undefined') {
+    window.CAttackMethodAreaComponentManager = CAttackMethodAreaComponentManager;
+}

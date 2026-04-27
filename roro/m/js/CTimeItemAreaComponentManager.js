@@ -1,7 +1,7 @@
 /**
  * 時限アイテムエリアコンポーネントマネージャクラス.
  */
-function CTimeItemAreaComponentManager () {
+export function CTimeItemAreaComponentManager () {
 
 }
 
@@ -49,6 +49,7 @@ CTimeItemAreaComponentManager.RebuildControls = function () {
 
 	// 設定欄を初期化
 	objRoot = document.getElementById("ID_TIME_ITEM_AREA");
+	if (!objRoot) return;
 	HtmlRemoveAllChild(objRoot);
 
 	// 設定欄テーブルを再構築
@@ -350,3 +351,7 @@ CTimeItemAreaComponentManager.RebuildControls();
 
 
 
+
+if (typeof window !== 'undefined') {
+    window.CTimeItemAreaComponentManager = CTimeItemAreaComponentManager;
+}

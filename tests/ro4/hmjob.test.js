@@ -30,6 +30,7 @@ import {
     ApplyPAtkLeftHandPenalty,
     ApplySpecModify,
     migrateOtherJob,
+    OnChangeJob,
 } from '../../ro4/m/js/hmjob.js';
 
 describe('hmjob', () => {
@@ -48,6 +49,7 @@ describe('hmjob', () => {
         expect(typeof GetMobMres).toBe('function');
         expect(typeof ApplySpecModify).toBe('function');
         expect(typeof migrateOtherJob).toBe('function');
+        expect(typeof OnChangeJob).toBe('function');
     });
 
     it('window compat ブロックで主要関数が window に設定される', () => {
@@ -56,6 +58,8 @@ describe('hmjob', () => {
         expect(window.GetPAtk).toBe(GetPAtk);
         expect(window.GetMobRes).toBe(GetMobRes);
         expect(window.ApplySpecModify).toBe(ApplySpecModify);
+        expect(window.migrateOtherJob).toBe(migrateOtherJob);
+        expect(window.OnChangeJob).toBe(OnChangeJob);
     });
 
     it('window.g_pureStatus が配列として設定される', () => {

@@ -2,7 +2,7 @@
 /**
  * シャドウ装備コントローラクラス.
  */
-class CShadowEquipController {
+export class CShadowEquipController {
 
 	/**
 	 * 装備箇所名：武器（右手）.
@@ -121,6 +121,7 @@ class CShadowEquipController {
 
 		// ルート要素の取得
 		const objRoot = document.getElementById("OBJID_SHADOW_EQUIPS_MIG");
+		if (!objRoot) return;
 
 		// 装備ブロックのリスト
 		const equipBlockList = objRoot.querySelectorAll(":scope .equip-block");
@@ -612,5 +613,9 @@ class CShadowEquipController {
 
 }
 
-g_shadowEquipController = new CShadowEquipController();
-g_shadowEquipController.initializeHTML();
+window.g_shadowEquipController = new CShadowEquipController();
+window.g_shadowEquipController.initializeHTML();
+
+if (typeof window !== 'undefined') {
+    window.CShadowEquipController = CShadowEquipController;
+}

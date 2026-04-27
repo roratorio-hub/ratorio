@@ -68,4 +68,11 @@ describe('hmcard', () => {
     it('window.CardShortObj が配列として設定される', () => {
         expect(Array.isArray(window.CardShortObj)).toBe(true);
     });
+
+    it('ApplyCardShort: objSelect1 宣言漏れの回帰確認', () => {
+        // ESM strict mode では var 宣言のない変数への代入が即 ReferenceError になる。
+        // objSelect1 が idx==1 のループ本体で初めて代入されるため宣言が必要。
+        const src = ApplyCardShort.toString();
+        expect(src).toContain('var objSelect1');
+    });
 });

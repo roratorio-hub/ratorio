@@ -346,9 +346,9 @@ class CSaveController {
 
 			// chartdata をシリアライズ
 			let chartData = null;
-			if (g_Chart !== undefined && g_Chart !== null && Chart !== false) {
+			if (window.g_Chart !== undefined && window.g_Chart !== null && Chart !== false) {
 				if (confirm("【重要】クリップデータを保存しますか？")) {
-					chartData = this.#serializeChartData(g_Chart);
+					chartData = this.#serializeChartData(window.g_Chart);
 					if (chartData.length > 4000) {
 						if (!confirm("【重要】URLが長くなりアドレスバーから読み込めない恐れがあります。\n\nURL入力ボタンからなら読み込めます。このままクリップデータを保存しますか？")) {
 							chartData = null;
@@ -540,7 +540,7 @@ class CSaveController {
 			}
 			else {
 				// ほしいのはChartのdataだけなので、そこだけJSONにする
-				return JSON.stringify(g_Chart.data);
+				return JSON.stringify(window.g_Chart.data);
 			}
 		} catch (error) {
 			console.warn("チャートデータのシリアライズに失敗しました:", error);
@@ -555,8 +555,8 @@ class CSaveController {
 	 */
 	static #restoreChartDisplay () {
 
-		if (!g_Chart || typeof g_Chart !== 'object') {
-			console.log("[Chart] g_Chart is not a valid object, type:", typeof g_Chart);
+		if (!window.g_Chart || typeof window.g_Chart !== 'object') {
+			console.log("[Chart] window.g_Chart is not a valid object, type:", typeof window.g_Chart);
 			return;
 		}
 
@@ -595,9 +595,9 @@ class CSaveController {
 					}
 				}
 				
-				// 既存の g_Chart インスタンスも破棄
-				if (g_Chart && typeof g_Chart.destroy === 'function') {
-					g_Chart.destroy();
+				// 既存の window.g_Chart インスタンスも破棄
+				if (window.g_Chart && typeof window.g_Chart.destroy === 'function') {
+					window.g_Chart.destroy();
 				}
 			}
 			canvas.remove();
@@ -611,24 +611,24 @@ class CSaveController {
 		let chartOptions = {};
 
 		// Chart.js の構造に対応
-		if (g_Chart.config && g_Chart.config._config) {
+		if (window.g_Chart.config && window.g_Chart.config._config) {
 			// Chart.js インスタンスの構造
-			const _config = g_Chart.config._config;
+			const _config = window.g_Chart.config._config;
 			chartType = _config.type || 'line';
 			chartDataObj = this.#normalizeChartData(_config.data);
 			chartOptions = _config.options || {};
-		} else if (g_Chart.type && g_Chart.data) {
+		} else if (window.g_Chart.type && window.g_Chart.data) {
 			// シンプルな config オブジェクト
-			chartType = g_Chart.type;
-			chartDataObj = this.#normalizeChartData(g_Chart.data);
-			chartOptions = g_Chart.options || {};
-		} else if (g_Chart.data) {
+			chartType = window.g_Chart.type;
+			chartDataObj = this.#normalizeChartData(window.g_Chart.data);
+			chartOptions = window.g_Chart.options || {};
+		} else if (window.g_Chart.data) {
 			// データのみの場合
-			chartDataObj = this.#normalizeChartData(g_Chart.data);
+			chartDataObj = this.#normalizeChartData(window.g_Chart.data);
 		}
 
 		if (!chartDataObj) {
-			console.warn("[Chart] no data found in g_Chart, g_Chart keys:", Object.keys(g_Chart));
+			console.warn("[Chart] no data found in window.g_Chart, window.g_Chart keys:", Object.keys(window.g_Chart));
 			return;
 		}
 
@@ -638,7 +638,7 @@ class CSaveController {
 			if (typeof obj === 'function') return undefined;
 			if (typeof obj !== 'object') return obj;
 			if (obj instanceof Node || obj instanceof Window) return undefined;
-			if (obj === g_Chart) return undefined;
+			if (obj === window.g_Chart) return undefined;
 			if (Array.isArray(obj)) {
 				return obj.map(v => sanitizeForChart(v, depth + 1)).filter(v => v !== undefined);
 			}
@@ -651,7 +651,7 @@ class CSaveController {
 					continue;
 				}
 				// remove Chart instances and DOM
-				if (v && (v instanceof Node || v === g_Chart || v.canvas)) {
+				if (v && (v instanceof Node || v === window.g_Chart || v.canvas)) {
 					continue;
 				}
 				// convert BigInt to string
@@ -866,7 +866,7 @@ class CSaveController {
 		    	chart.data.datasets[3].data.push(isNaN(cycle) ? 0 : cycle);
 		    	chart.update();
 				hideLoadingIndicator();
-		    	g_Chart = chart;
+		    	window.g_Chart = chart;
 		    });
 		    $("#history_reset").click(e => {
 		    	chart.data.labels = [];
@@ -877,7 +877,7 @@ class CSaveController {
 		    	chart.data.datasets[3].data = [];
 		    	target = 0;
 		    	chart.update();
-		    	g_Chart = null;
+		    	window.g_Chart = null;
 		    });
 		    $("#history_list").click(e => {
 		    	$("#history_graph").insertBefore("#clip_modal_table");
@@ -919,7 +919,7 @@ class CSaveController {
 		      data.datasets[0].metadata[index]["memo"] = e.target.value;
 		      chart.update();
 		      reload_history_table();
-		      g_Chart = chart;
+		      window.g_Chart = chart;
 		    });
 		    $(document).on("blur", "input.clip_memo", (e) => {
 		      $(e.target).toggle();
@@ -932,7 +932,7 @@ class CSaveController {
 		        flip_clip(index, index - 1);
 		        chart.update();
 		        reload_history_table();
-		        g_Chart = chart;
+		        window.g_Chart = chart;
 		      }
 		    });
 		    $(document).on("click", ".down_clip", (e) => {
@@ -942,7 +942,7 @@ class CSaveController {
 		        flip_clip(index, index + 1);
 		        chart.update();
 		        reload_history_table();
-		        g_Chart = chart;
+		        window.g_Chart = chart;
 		      }
 		    });
 		    $(document).on("click", ".remove_clip", (e) => {
@@ -956,7 +956,7 @@ class CSaveController {
 		      data.datasets[3].data.splice(index, 1);
 		      chart.update();
 		      reload_history_table();
-		      g_Chart = chart;
+		      window.g_Chart = chart;
 		    });
 		    $("#clip_modal").on("modal:before-close", () => {
 		      $("#history_graph").appendTo("#history_container");
@@ -965,7 +965,7 @@ class CSaveController {
 			chart.data = chartDataObj;
 			data = chartDataObj;
 	    	chart.update();
-			g_Chart = chart;
+			window.g_Chart = chart;
 
 		};
 		buildForm();
@@ -1138,7 +1138,7 @@ class CSaveController {
 			// chartdata があれば復元
 			if (chartData && chartData.length > 1) {
 				if (CSaveController.bJSON) {
-					g_Chart = JSON.parse(chartData, (key, value) => {
+					window.g_Chart = JSON.parse(chartData, (key, value) => {
 						if (typeof value === 'string' && /^\d+$/.test(value)) {
 							// leave numeric-looking strings as-is (no BigInt conversion here)
 						}
@@ -1148,8 +1148,8 @@ class CSaveController {
 				else {
 					// Chartのデータはchart.dataのみに絞っているのでこれだけでよい
 					let param = JSON.parse(chartData);
-					g_Chart = {};
-					g_Chart.data = param;
+					window.g_Chart = {};
+					window.g_Chart.data = param;
 				}
 				// チャートの復元
 				CSaveController.#restoreChartDisplay();

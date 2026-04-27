@@ -181,7 +181,7 @@ div.clip_memo {
       const cycle = parseFloat($(btlrslt_damage_details.get(cycle_index)).text().replaceAll(",", ""));
       chart.data.datasets[3].data.push(isNaN(cycle) ? 0 : cycle);
       chart.update();
-      g_Chart = chart;
+      window.g_Chart = chart;
     });
     $("#history_reset").click(e => {
       chart.data.labels = [];
@@ -192,7 +192,7 @@ div.clip_memo {
       chart.data.datasets[3].data = [];
       target = 0;
       chart.update();
-      g_Chart = null;
+      window.g_Chart = null;
     });
     $("#history_list").click(e => {
       $("#history_graph").insertBefore("#clip_modal_table");
@@ -234,7 +234,7 @@ div.clip_memo {
       data.datasets[0].metadata[index]["memo"] = e.target.value;
       chart.update();
       reload_history_table();
-      g_Chart = chart;
+      window.g_Chart = chart;
     });
     $(document).on("blur", "input.clip_memo", (e) => {
       $(e.target).toggle();
@@ -247,7 +247,7 @@ div.clip_memo {
         flip_clip(index, index - 1);
         chart.update();
         reload_history_table();
-        g_Chart = chart;
+        window.g_Chart = chart;
       }
     });
     $(document).on("click", ".down_clip", (e) => {
@@ -257,7 +257,7 @@ div.clip_memo {
         flip_clip(index, index + 1);
         chart.update();
         reload_history_table();
-        g_Chart = chart;
+        window.g_Chart = chart;
       }
     });
     $(document).on("click", ".remove_clip", (e) => {
@@ -271,7 +271,7 @@ div.clip_memo {
       data.datasets[3].data.splice(index, 1);
       chart.update();
       reload_history_table();
-      g_Chart = chart;
+      window.g_Chart = chart;
     });
     $("#clip_modal").on("modal:before-close", () => {
       $("#history_graph").appendTo("#history_container");
@@ -279,5 +279,5 @@ div.clip_memo {
   };
   buildForm();
 });
-var g_Chart;
+window.g_Chart = null;
 

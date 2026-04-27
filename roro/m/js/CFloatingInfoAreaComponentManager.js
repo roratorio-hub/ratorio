@@ -25,7 +25,7 @@ CGlobalConstManager.DefineEnum(
  * フローティング情報の種類のテキストを取得する.
  * @param infoId フローティング情報ID
  */
-function GetFloatingInfoText(infoId) {
+export function GetFloatingInfoText(infoId) {
 
 	switch (infoId) {
 
@@ -52,7 +52,7 @@ function GetFloatingInfoText(infoId) {
 /**
  * フローティング情報エリア情報ユニット.
  */
-function CFloatingInfoAreaInfoUnit () {
+export function CFloatingInfoAreaInfoUnit () {
 
 	// 選択中の情報ＩＤ
 	this.selectedInfoId = FLOATING_INFO_ID_NONE;
@@ -68,7 +68,7 @@ function CFloatingInfoAreaInfoUnit () {
 /**
  * フローティング情報エリアコンポーネントマネージャクラス.
  */
-function CFloatingInfoAreaComponentManager () {
+export function CFloatingInfoAreaComponentManager () {
 
 }
 
@@ -194,6 +194,7 @@ CFloatingInfoAreaComponentManager.RebuildControls = function () {
 
 	// 設定欄を初期化
 	objRoot = document.getElementById("ID_FLOATING_INFO_AREA");
+	if (!objRoot) return;
 	HtmlRemoveAllChild(objRoot);
 
 	// 設定欄テーブルを再構築
@@ -1396,3 +1397,8 @@ CFloatingInfoAreaComponentManager.RebuildControls();
 
 
 
+if (typeof window !== 'undefined') {
+    window.CFloatingInfoAreaComponentManager = CFloatingInfoAreaComponentManager;
+    window.GetFloatingInfoText               = GetFloatingInfoText;
+    window.CFloatingInfoAreaInfoUnit         = CFloatingInfoAreaInfoUnit;
+}

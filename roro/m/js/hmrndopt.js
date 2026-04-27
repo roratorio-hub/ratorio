@@ -45,6 +45,7 @@ export function RebuildRndOptSelect(eqpRgnId, itemId) {
 	var objIdKind = "";
 	var objIdValue = "";
 
+	var objRoot = null;
 	var objRndOptKind = null;
 	var objRndOptValue = null;
 
@@ -608,6 +609,7 @@ export function GetRndOptValue(eqpRgnId, spid, invalidItemIdArray, bListUp) {
 	var spDefRefineBy = 0;		// 精錬値が上がる度に条件
 
 	var spValPureStatus = 0;	// 純粋なステータスによる上昇量
+	var spValToCorrect = 0;		// 追加すべきＳＰ定義値
 
 	var spVal = 0;
 	var listUpArray = new Array();

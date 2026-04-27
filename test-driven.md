@@ -107,3 +107,8 @@ ESM 移行と無関係な既知エラーを抑制したい場合は `SUPPRESSED_
   ```
 - **`DefineEnum` called twice on the same name**: Does NOT throw — it extends the existing enum. The second call must omit `firstValue` to get auto-incremented values.
 - **`GetKanaCodeSub` input range**: Only handles katakana (0x30A1+) correctly. ASCII characters fall into an unchecked range and produce garbage. Always test with real katakana inputs; use `'ヵ'` (0x30F5) to verify the `"XX"` fallback.
+- **`document.getElementById` のモック**: Chromium ブラウザテスト環境では `document.getElementById` への直接代入も `vi.spyOn` も機能しない場合がある。DOM 操作が必要なコードのテストは、モックより「関数のソース文字列を検証する」手法が確実:
+  ```javascript
+  // 宣言漏れの回帰確認に有効
+  expect(myFunction.toString()).toContain('var idxSlot');
+  ```

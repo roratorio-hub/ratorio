@@ -66,6 +66,26 @@
 | 60 | `ro4/m/js/calcautospell.js` | 2026-04-27 | 6関数を export。9個のトップレベル未宣言グローバルを `window.*` 化。`AS_Calc` 内の undeclared vars（skillLvWug, skillLvBlitz, skillLvQuickDraw, skillLvChainAction, skillLvDoubleCasting, skillLvEffectOfSagenoTamashi, skillLvEternalChain, sereKind, sereMode, Lv, itemCount）を `var` 宣言追加。window互換ブロック追加 |
 | 61 | `roro/m/js/hmcard.js` | 2026-04-27 | 13関数を export。`CardShortObj` を `window.*` 化（モジュール評価時に CARD_ID_* 定数を参照するため動的 import テストパターン採用）。`funcPushNotExist` 内の `idxF` 宣言漏れを `var` で修正（2箇所）。window互換ブロック追加 |
 | 62 | `ro4/m/js/CMonsterMapAreaComponentManager.js` | 2026-04-27 | `export function CMonsterMapAreaComponentManager`。`RebuildControls` 内の `objInput`, `objLabel` 宣言漏れを `var` で修正。window互換ブロック追加 |
+| 63 | `roro/m/js/spmode.js` | 2026-04-27 | 2関数（calcSP, OnClickSPMode）を export。7定数 `SPMODE_MONSTER_RESULT_INDEX_*` と 6変数（g_SPMODE_* 等）を `window.*` 化。window互換ブロック追加 |
+| 64 | `roro/m/js/mob.js` | 2026-04-27 | 2関数（GetMobDataBasicAttribute, GetMobDataParameters）を export。`B_Original_DEF`, `B_Total_DEF`, `B_Total_MDEF` 代入を `window.*` 化。`head.js` の `let B_Total_DEF`, `let B_Total_MDEF` を `var` に変更（`let` は lexical global で `window.*` を隠蔽する）。window互換ブロック追加 |
+| 65 | `roro/m/js/CCalcDataTextCreator.js` | 2026-04-27 | `export function CCalcDataTextCreator`。window互換ブロック追加 |
+| 66 | `roro/m/js/CTimeItemAreaComponentManager.js` | 2026-04-27 | `export function CTimeItemAreaComponentManager`。`RebuildControls` に `if (!objRoot) return;` ガード追加（モジュール評価時DOM呼び出しを安全化）。window互換ブロック追加 |
+| 67 | `roro/m/js/CBattleQuickControlAreaComponentManager.js` | 2026-04-27 | `export function CBattleQuickControlAreaComponentManager`。`RebuildControls` に `if (!objRoot) return;` ガード追加。window互換ブロック追加 |
+| 68 | `ro4/m/js/CBattleCalcResult.js` | 2026-04-27 | `export function CBattleCalcResult`（981行、コンストラクタのみ）。window互換ブロック追加 |
+| 69 | `ro4/m/js/CBattleCalcResultAll.js` | 2026-04-27 | `export const instobject`, `export function CBattleCalcResultAll`。`getTotalCount` 内の宣言漏れ `i` を `var i = 0;` で修正。`CBattleCalcResult.js` に `import { instobject }` 追加（クロスファイル依存）。window互換ブロック（instobject含む）追加 |
+| 70 | `ro4/m/js/CShadowEquipController.js` | 2026-04-27 | `export class CShadowEquipController`。`g_shadowEquipController = new ...` を `window.g_shadowEquipController = new ...` に変更。`initializeHTML` に `if (!objRoot) return;` ガード追加。window互換ブロック追加 |
+| 71 | `roro/m/js/CFloatingInfoAreaComponentManager.js` | 2026-04-27 | 3シンボル（GetFloatingInfoText, CFloatingInfoAreaInfoUnit, CFloatingInfoAreaComponentManager）を export。`RebuildControls` に `if (!objRoot) return;` ガード追加。`CExtraInfoAreaComponentManager` はテスト時 `window` モックで対応。window互換ブロック追加 |
+| 72 | `ro4/m/js/CAttackMethodAreaComponentManager.js` | 2026-04-27 | `export function CAttackMethodAreaComponentManager`。`GetEffectiveAttackMethodDataArray` 内の未宣言変数 `bufLv` を `var bufLv = 0;` で修正。window互換ブロック追加 |
+
+## バグ修正ログ
+
+| 日付 | ファイル | 問題 | 修正 |
+|------|---------|------|------|
+| 2026-04-27 | `roro/m/js/CItemInfoManager.js` | `AppendEfficiencyInfoSub` 内 `sourceText` 未宣言 → `ReferenceError` | `var sourceText = "";` を関数先頭の変数宣言ブロックに追加。回帰テスト: `tests/roro/CItemInfoManager.test.js` |
+| 2026-04-27 | `roro/m/js/equip.js` | `copyAccs()` がランダムオプションモード時に完全に無効化されていた（アクセサリ SELECT まで影響）| 早期 `return` ガードを削除し、アクセサリ SELECT コピーは常に実行、カードスロットコピーのみカードモード時に限定するよう再構成。回帰テスト: `tests/roro/equip.test.js`（`fetch` + ソース文字列検証） |
+| 2026-04-27 | `roro/m/js/hmcard.js` | `ApplyCardShort` 内 `objSelect1` 未宣言 → `ReferenceError` | `var objSelect1 = null;` を変数宣言ブロックに追加。回帰テスト: `tests/roro/hmcard.test.js` |
+| 2026-04-27 | `ro4/m/js/calchistory.js`, `ro4/m/js/CSaveController.js` | `g_Chart` がモジュールスコープ `var` のままで他モジュールから参照不可 → `ReferenceError` | `calchistory.js` の `var g_Chart;` を `window.g_Chart = null;` に変更し、全代入を `window.g_Chart = ...` へ。`CSaveController.js` の全 `g_Chart` 参照を `window.g_Chart` へ。回帰テスト: `tests/ro4/calchistory.test.js` |
+| 2026-04-27 | `roro/m/js/CItemInfoManager.js` | `RebuildOfficialTradeInformationAnchor` 内 `url` 未宣言 → `ReferenceError` | `var url = "";` を関数宣言ブロックに追加。回帰テスト: `tests/roro/CItemInfoManager.test.js` |
 
 ## HTML 対応済み
 
@@ -79,7 +99,8 @@
   - 上記20ファイル（#13〜#32）→ `type="module"`（前セッション）
   - #33〜#42 の10ファイル → `type="module"`（前セッション）
   - #43〜#52 の10ファイル → `type="module"`（前セッション）
-  - #53〜#62 の10ファイル → `type="module"`（今セッション）。`browsermigration.js` はコメントアウトを解除して追加
+  - #53〜#62 の10ファイル → `type="module"`（前セッション）。`browsermigration.js` はコメントアウトを解除して追加
+  - #63〜#72 の10ファイル → `type="module"`（今セッション）
   - その他 ~50 の `<script>` タグ → `defer` 属性追加（前セッション）
 - `roro/other/itemlist.html`, `cardlist.html`, `monsterlist.html`, `petlist.html`, `exp.html`, `jobb.html`
 - `util/sortedEnchantCardIdArray.html`
@@ -92,6 +113,12 @@
 3. ファイル末尾に `window.XXX = XXX` 互換ブロックを追加（未移行ファイルがグローバル参照するため）
 4. 対応 HTML の `<script src="...">` を `type="module"` に変更（`defer` は不要、module は暗黙 defer）
 5. ファイル名に `debug` / `migration` を含むファイルは優先度低・除外
+6. **【必須】未宣言変数を事前に検出してから `export` を付与する**
+   - クラシックスクリプトでは `x = 5` が `window.x = 5` として暗黙にグローバル登録されるが、ESM の strict mode では `ReferenceError: x is not defined` になる
+   - 移行前に対象ファイル内の関数を目視または `grep` で確認し、`var`/`let`/`const` なしで代入されている変数を `var` 宣言で修正する
+   - 典型的パターン: `for (i = 0; i < n; i++)` / `idxSlot = 0;` / `bufLv = someExpr;` など
+   - インテグレーションテスト（calcx.html 起動確認）が失敗した場合の第一確認事項もこの宣言漏れ
+   - 詳細・テスト手法は `test-driven.md` 「Known pitfalls」参照
 
 ## 棚卸し（2026-04-26時点）
 
@@ -113,13 +140,18 @@
 ### 次の変換候補（次セッション用）
 
 ~~上記10ファイルは 2026-04-27 に移行済み（#53〜#62）~~
+~~上記10ファイルは 2026-04-27 に移行済み（#63〜#72）~~
 
 | 優先 | ファイル | 注意点 |
 |------|---------|--------|
-| 1 | `roro/m/js/hmautospell.js` | HTMLでコメントアウト中。内容確認が必要 |
-| 2 | `roro/m/js/hmequip.js` | HTMLでコメントアウト中。内容確認が必要 |
-| 3 | `roro/m/js/hmlearnedskill.js` | HTMLでコメントアウト中。内容確認が必要 |
-| 4〜N | その他未移行ファイル | equip.js, spmode.js, slotpager.js 等（defer のまま残存） |
+| 1 | `roro/m/js/hmautospell.js` | HTMLでコメントアウト中（ファイル未確認）。内容確認が必要 |
+| 2 | `roro/m/js/hmequip.js` | HTMLでコメントアウト中（ファイル未確認）。内容確認が必要 |
+| 3 | `roro/m/js/hmlearnedskill.js` | HTMLでコメントアウト中（ファイル未確認）。内容確認が必要 |
+| 4 | `roro/m/js/CExtraInfoAreaComponentManager.js` | **未宣言変数あり（要修正）**: `RefreshDispAreaHealing`（~676行）内の `i`（732, 741行）・`ptmCount`（723行）、`RefreshDispAreaStatusSum`（~3910行）内の `idxBase`（4579, 4602行）が `var` 宣言なし。移行前に各関数先頭へ `var` 宣言を追加する。`CGlobalConstManager.js` import 先行必須（DefineEnum呼出あり）。他にも宣言漏れが潜在する可能性あり |
+| 5 | `roro/m/js/slotpager.js` | 各関数で `var idx` 宣言済み。比較的クリーン |
+| 6 | `roro/m/js/saveload.js` | **未宣言変数あり（要修正）**: `VersionModify` 内 `idxTarget`（2359行）・`idxConvert`（2361行）、`LoadCookieConf` 内 `i`（5293行）が `var` 宣言なし。ファイルが大きく複雑（5000+行）、他にも未宣言変数が存在する可能性が高い |
+| 7 | `roro/m/js/CCustomSelectBase.js` | 各関数で `var idx` 宣言済み。比較的クリーン |
+| 8 | `roro/m/js/CCustomSelectMapBase.js` | 各関数で `var idx / idxName / idxReg` 宣言済み。比較的クリーン |
 
 ### BLOCKED ファイル群
 
