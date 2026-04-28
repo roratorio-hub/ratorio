@@ -1,3 +1,5 @@
+﻿// ESModule 化済み。HTMLでは type="module" で読み込むこと。
+
 // ★★　VersionModify() 関数の修正も忘れずに　★★
 
 // CURRENT_VERSION = 11;	// ラトリオ様からフォーク
@@ -43,7 +45,7 @@
 // CURRENT_VERSION = 51;	// ウルフオーブエンチャント定義対応
 // CURRENT_VERSION = 52;	// Lv240解放
 // CURRENT_VERSION = 53;	// 特性ステータスセーブ対応
-CURRENT_VERSION = 54;	// 対人データの拡張対応
+window.CURRENT_VERSION = 54;	// 対人データの拡張対応
 // 旧データ構造は、最大でバージョン 99 まで
 
 /**
@@ -65,10 +67,10 @@ function GetSaveDataVersion(saveDataStr) {
 }
 
 // 対プレイヤー設定用バイアス
-SAVE_DATA_BIAS_CONF_PLAYER_500 = 500;
+window.SAVE_DATA_BIAS_CONF_PLAYER_500 = 500;
 
 // 対プレイヤー設定バイアス調整対象インデックス配列
-BIAS_TARGET_INDEX_ARRAY_CONF_PLAYER_500 = [
+window.BIAS_TARGET_INDEX_ARRAY_CONF_PLAYER_500 = [
 	MOB_CONF_PLAYER_ID_NINGEN_KEI_TAISEI,
 	MOB_CONF_PLAYER_ID_CHUGATA_TAISEI,
 	MOB_CONF_PLAYER_ID_ENKYORI_BUTSURI_TAISEI,
@@ -99,10 +101,11 @@ BIAS_TARGET_INDEX_ARRAY_CONF_PLAYER_500 = [
 function SaveButton(){
 
 	var expireDateString = "";
+	var calcForm = document.calcForm;
 
-	with(document.calcForm){
+	{
 
-		var SaveNum = eval(A_SaveSlot.value);
+		var SaveNum = eval(calcForm.A_SaveSlot.value);
 
 		SaveDataAll[SaveNum] = "" + SaveSystem();
 
@@ -111,7 +114,7 @@ function SaveButton(){
 			var w2 = document.calcForm.URL_TEXT.value;
 			if(w == "delete" && w2 == "delete") SaveDataAll[SaveNum] = "ZZZZ";
 
-//			if(w == "delete all" && w2 == "delete all" && eval(A_youshi.checked)){
+//			if(w == "delete all" && w2 == "delete all" && eval(calcForm.A_youshi.checked)){
 
 			if(w == "delete all" && w2 == "delete all"){
 				localStorage.ROratorioDOM_SaveName = "";
@@ -164,7 +167,7 @@ function SaveButton(){
 		}
 
 		LoadCookie3();
-		A_SaveSlot.value = SaveNum;
+		calcForm.A_SaveSlot.value = SaveNum;
 	}
 }
 
@@ -214,7 +217,7 @@ function URLOUT(){
 	var w = location.href.split("?");
 
 	with(document.calcForm){
-		URL_TEXT.value = w[0] +"?"+ SaveSystem();
+		calcForm.URL_TEXT.value = w[0] +"?"+ SaveSystem();
 	}
 }
 */
@@ -238,7 +241,7 @@ function SaveSystem(funcSaveDataModify = null){
 	saveDataMappingArray = CSaveDataMappingManager.GetMappingArray(CURRENT_VERSION);
 
 	// セーブデータの初期化
-	SaveData = new Array();
+	var SaveData = new Array();
 	for (idx = 0; idx < saveDataMappingArray.length; idx++) {
 		SaveData[idx] = 0;
 	}
@@ -248,8 +251,9 @@ function SaveSystem(funcSaveDataModify = null){
 		jobId = document.getElementById("OBJID_SELECT_JOB").value;
 	}
 	let jobData = JobMap.getById(jobId);
+	var calcForm = document.calcForm;
 
-	with(document.calcForm){
+	{
 
 		//----------------------------------------------------------------
 		// [0000 - 0000] バージョン情報
@@ -263,20 +267,20 @@ function SaveSystem(funcSaveDataModify = null){
 
 		// 基本情報
 		SaveData[1] = jobData.getMigIdNum();
-		SaveData[2] = eval(A_BaseLV.value);
-		SaveData[3] = eval(A_JobLV.value);
-		SaveData[4] = eval(A_STR.value);
-		SaveData[5] = eval(A_AGI.value);
-		SaveData[6] = eval(A_VIT.value);
-		SaveData[7] = eval(A_DEX.value);
-		SaveData[8] = eval(A_INT.value);
-		SaveData[9] = eval(A_LUK.value);
+		SaveData[2] = eval(calcForm.A_BaseLV.value);
+		SaveData[3] = eval(calcForm.A_JobLV.value);
+		SaveData[4] = eval(calcForm.A_STR.value);
+		SaveData[5] = eval(calcForm.A_AGI.value);
+		SaveData[6] = eval(calcForm.A_VIT.value);
+		SaveData[7] = eval(calcForm.A_DEX.value);
+		SaveData[8] = eval(calcForm.A_INT.value);
+		SaveData[9] = eval(calcForm.A_LUK.value);
 
 		// 敵ＩＤ
 		SaveData[10] = CMonsterMapAreaComponentManager.GetMonsterId();
 
 		// 自動レベル調整
-		SaveData[11] = eval(BLVauto.checked);
+		SaveData[11] = eval(calcForm.BLVauto.checked);
 
 		// 矢、弾丸
 		if (GetLowerJobSeriesID(n_A_JOB) == JOB_SERIES_ID_THIEF
@@ -286,15 +290,15 @@ function SaveSystem(funcSaveDataModify = null){
 		}
 
 		// 速度ＰＯＴ
-		SaveData[13] = eval(A_SpeedPOT.value);
+		SaveData[13] = eval(calcForm.A_SpeedPOT.value);
 
 		//----------------------------------------------------------------
 		// [0014 - 0074] 装備情報
 		//----------------------------------------------------------------
 
 		// 右手武器情報
-		SaveData[14] = eval(A_Weapon_zokusei.value);
-		SaveData[15] = eval(A_Weapon_ATKplus.value);
+		SaveData[14] = eval(calcForm.A_Weapon_zokusei.value);
+		SaveData[15] = eval(calcForm.A_Weapon_ATKplus.value);
 		SaveData[16] = GetStatefullData("DATA_OBJID_ARMS_RIGHT", 0);
 		SaveData[17] = GetStatefullData("DATA_OBJID_ARMS_RIGHT_CARD_1", 0);
 		SaveData[18] = GetStatefullData("DATA_OBJID_ARMS_RIGHT_CARD_2", 0);
@@ -303,7 +307,7 @@ function SaveSystem(funcSaveDataModify = null){
 
 		// 左手武器情報（二刀流時のみ）
 		if (n_Nitou) {
-			SaveData[21] = eval(A_Weapon2_ATKplus.value);
+			SaveData[21] = eval(calcForm.A_Weapon2_ATKplus.value);
 			SaveData[22] = GetStatefullData("DATA_OBJID_ARMS_LEFT", 0);
 			SaveData[23] = GetStatefullData("DATA_OBJID_ARMS_LEFT_CARD_1", 0);
 			SaveData[24] = GetStatefullData("DATA_OBJID_ARMS_LEFT_CARD_2", 0);
@@ -313,7 +317,7 @@ function SaveSystem(funcSaveDataModify = null){
 
 		// 盾情報
 		else{
-			SaveData[21] = eval(A_SHIELD_DEF_PLUS.value);
+			SaveData[21] = eval(calcForm.A_SHIELD_DEF_PLUS.value);
 			SaveData[22] = GetStatefullData("DATA_OBJID_SHIELD", 0);
 			SaveData[23] = GetStatefullData("DATA_OBJID_SHIELD_CARD_1", 0);
 			SaveData[24] = GetStatefullData("DATA_OBJID_SHIELD_CARD_2", 0);
@@ -322,7 +326,7 @@ function SaveSystem(funcSaveDataModify = null){
 		}
 
 		// 頭上段情報
-		SaveData[27] = eval(A_HEAD_DEF_PLUS.value);
+		SaveData[27] = eval(calcForm.A_HEAD_DEF_PLUS.value);
 		SaveData[28] = GetStatefullData("DATA_OBJID_HEAD_TOP", 0);
 		SaveData[29] = GetStatefullData("DATA_OBJID_HEAD_TOP_CARD_1", 0);
 		SaveData[30] = GetStatefullData("DATA_OBJID_HEAD_TOP_CARD_2", 0);
@@ -346,7 +350,7 @@ function SaveSystem(funcSaveDataModify = null){
 		SaveData[44] = GetStatefullData("DATA_OBJID_HEAD_UNDER_CARD_4", 0);
 
 		// 体防具情報
-		SaveData[45] = eval(A_BODY_DEF_PLUS.value);
+		SaveData[45] = eval(calcForm.A_BODY_DEF_PLUS.value);
 		SaveData[46] = GetStatefullData("DATA_OBJID_BODY", 0);
 		SaveData[47] = GetStatefullData("DATA_OBJID_BODY_CARD_1", 0);
 		SaveData[48] = GetStatefullData("DATA_OBJID_BODY_CARD_2", 0);
@@ -354,7 +358,7 @@ function SaveSystem(funcSaveDataModify = null){
 		SaveData[50] = GetStatefullData("DATA_OBJID_BODY_CARD_4", 0);
 
 		// 肩防具情報
-		SaveData[51] = eval(A_SHOULDER_DEF_PLUS.value);
+		SaveData[51] = eval(calcForm.A_SHOULDER_DEF_PLUS.value);
 		SaveData[52] = GetStatefullData("DATA_OBJID_SHOULDER", 0);
 		SaveData[53] = GetStatefullData("DATA_OBJID_SHOULDER_CARD_1", 0);
 		SaveData[54] = GetStatefullData("DATA_OBJID_SHOULDER_CARD_2", 0);
@@ -362,7 +366,7 @@ function SaveSystem(funcSaveDataModify = null){
 		SaveData[56] = GetStatefullData("DATA_OBJID_SHOULDER_CARD_4", 0);
 
 		// 靴防具情報
-		SaveData[57] = eval(A_SHOES_DEF_PLUS.value);
+		SaveData[57] = eval(calcForm.A_SHOES_DEF_PLUS.value);
 		SaveData[58] = GetStatefullData("DATA_OBJID_SHOES", 0);
 		SaveData[59] = GetStatefullData("DATA_OBJID_SHOES_CARD_1", 0);
 		SaveData[60] = GetStatefullData("DATA_OBJID_SHOES_CARD_2", 0);
@@ -462,7 +466,7 @@ function SaveSystem(funcSaveDataModify = null){
 		//----------------------------------------------------------------
 		// [0606 - 0608] 未使用（旧衣装）
 		//----------------------------------------------------------------
-//		SaveData[608] = eval(A_isyou3.value);
+//		SaveData[608] = eval(calcForm.A_isyou3.value);
 
 
 		//----------------------------------------------------------------
@@ -3706,10 +3710,11 @@ function VersionModify(saveDataArray) {
  * もう使うことはない
  */
 function LoadButton(){
+	var calcForm = document.calcForm;
 
-	with(document.calcForm){
+	{
 
-		var SaveNum = eval(A_SaveSlot.value);
+		var SaveNum = eval(calcForm.A_SaveSlot.value);
 
 		DecodeUrl(SaveDataAll[SaveNum]);
 
@@ -3883,6 +3888,7 @@ function DecodeUrl(loadDataUrl){
 	var objidKind = "";
 	var objidValue = "";
 	var objSelect = null;
+	var eqpRgn = 0;
 
 
 
@@ -3990,14 +3996,14 @@ function DecodeUrl(loadDataUrl){
 		return;
 	}
 
+	var calcForm = document.calcForm;
 
-
-	with(document.calcForm){
+	{
 
 		//----------------------------------------------------------------
 		// 職業の読み込み
 		//----------------------------------------------------------------
-		A_JOB.value = SaveData[1];
+		calcForm.A_JOB.value = SaveData[1];
 		changeJobSettings(SaveData[1]);
 
 		// レベル補正（旧データ対応？）
@@ -4022,14 +4028,14 @@ function DecodeUrl(loadDataUrl){
 		//----------------------------------------------------------------
 		// 基本情報の読み込み
 		//----------------------------------------------------------------
-		A_BaseLV.value = SaveData[2];
-		A_JobLV.value = SaveData[3];
-		A_STR.value = SaveData[4];
-		A_AGI.value = SaveData[5];
-		A_VIT.value = SaveData[6];
-		A_DEX.value = SaveData[7];
-		A_INT.value = SaveData[8];
-		A_LUK.value = SaveData[9];
+		calcForm.A_BaseLV.value = SaveData[2];
+		calcForm.A_JobLV.value = SaveData[3];
+		calcForm.A_STR.value = SaveData[4];
+		calcForm.A_AGI.value = SaveData[5];
+		calcForm.A_VIT.value = SaveData[6];
+		calcForm.A_DEX.value = SaveData[7];
+		calcForm.A_INT.value = SaveData[8];
+		calcForm.A_LUK.value = SaveData[9];
 
 
 		//----------------------------------------------------------------
@@ -4048,7 +4054,7 @@ function DecodeUrl(loadDataUrl){
 		if (SaveData[0] == 0) {
 			SaveData[11] = 1;
 		}
-		BLVauto.checked = SaveData[11];
+		calcForm.BLVauto.checked = SaveData[11];
 
 
 		//----------------------------------------------------------------
@@ -4075,7 +4081,7 @@ function DecodeUrl(loadDataUrl){
 			&& ItemObjNew[SaveData[22]][ITEM_DATA_INDEX_KIND] != 61
 			&& ItemObjNew[SaveData[22]][ITEM_DATA_INDEX_KIND] != 0) {
 
-			A_Weapon2Type.value = ItemObjNew[SaveData[22]][ITEM_DATA_INDEX_KIND];
+			calcForm.A_Weapon2Type.value = ItemObjNew[SaveData[22]][ITEM_DATA_INDEX_KIND];
 			OnChangeArmsTypeLeft(ItemObjNew[SaveData[22]][ITEM_DATA_INDEX_KIND]);
 		}
 
@@ -4083,7 +4089,7 @@ function DecodeUrl(loadDataUrl){
 				&& ItemObjNew[SaveData[22]][ITEM_DATA_INDEX_KIND] != 61
 				&& ItemObjNew[SaveData[22]][ITEM_DATA_INDEX_KIND] != 0) {
 
-			A_Weapon2Type.value = ItemObjNew[SaveData[22]][ITEM_DATA_INDEX_KIND];
+			calcForm.A_Weapon2Type.value = ItemObjNew[SaveData[22]][ITEM_DATA_INDEX_KIND];
 			OnChangeArmsTypeLeft(ItemObjNew[SaveData[22]][ITEM_DATA_INDEX_KIND]);
 		}
 
@@ -4097,14 +4103,14 @@ function DecodeUrl(loadDataUrl){
 		//----------------------------------------------------------------
 		// 速度ＰＯＴの読み込み
 		//----------------------------------------------------------------
-		A_SpeedPOT.value = SaveData[13];
+		calcForm.A_SpeedPOT.value = SaveData[13];
 
 
 		//----------------------------------------------------------------
 		// 右手武器の読み込み
 		//----------------------------------------------------------------
-		A_Weapon_zokusei.value = SaveData[14];
-		A_Weapon_ATKplus.value = SaveData[15];
+		calcForm.A_Weapon_zokusei.value = SaveData[14];
+		calcForm.A_Weapon_ATKplus.value = SaveData[15];
 
 		objidPrifix = "OBJID_ARMS_RIGHT";
 		eqpRgn = EQUIP_REGION_ID_ARMS;
@@ -4138,7 +4144,7 @@ function DecodeUrl(loadDataUrl){
 		// 左手武器の読み込み（二刀流時のみ）
 		//----------------------------------------------------------------
 		if (n_Nitou) {
-			A_Weapon2_ATKplus.value = SaveData[21];
+			calcForm.A_Weapon2_ATKplus.value = SaveData[21];
 
 			objidPrifix = "OBJID_ARMS_LEFT";
 			eqpRgn = EQUIP_REGION_ID_ARMS_LEFT;
@@ -4173,7 +4179,7 @@ function DecodeUrl(loadDataUrl){
 		// 盾の読み込み
 		//----------------------------------------------------------------
 		else {
-			A_SHIELD_DEF_PLUS.value = SaveData[21];
+			calcForm.A_SHIELD_DEF_PLUS.value = SaveData[21];
 
 			objidPrifix = "OBJID_SHIELD";
 			eqpRgn = EQUIP_REGION_ID_SHIELD;
@@ -4207,7 +4213,7 @@ function DecodeUrl(loadDataUrl){
 		//----------------------------------------------------------------
 		// 頭上段の読み込み
 		//----------------------------------------------------------------
-		A_HEAD_DEF_PLUS.value = SaveData[27];
+		calcForm.A_HEAD_DEF_PLUS.value = SaveData[27];
 
 		objidPrifix = "OBJID_HEAD_TOP";
 		eqpRgn = EQUIP_REGION_ID_HEAD_TOP;
@@ -4302,7 +4308,7 @@ function DecodeUrl(loadDataUrl){
 		//----------------------------------------------------------------
 		// 体防具の読み込み
 		//----------------------------------------------------------------
-		A_BODY_DEF_PLUS.value = SaveData[45];
+		calcForm.A_BODY_DEF_PLUS.value = SaveData[45];
 
 		objidPrifix = "OBJID_BODY";
 		eqpRgn = EQUIP_REGION_ID_BODY;
@@ -4335,7 +4341,7 @@ function DecodeUrl(loadDataUrl){
 		//----------------------------------------------------------------
 		// 肩防具の読み込み
 		//----------------------------------------------------------------
-		A_SHOULDER_DEF_PLUS.value = SaveData[51];
+		calcForm.A_SHOULDER_DEF_PLUS.value = SaveData[51];
 
 		objidPrifix = "OBJID_SHOULDER";
 		eqpRgn = EQUIP_REGION_ID_SHOULDER;
@@ -4368,7 +4374,7 @@ function DecodeUrl(loadDataUrl){
 		//----------------------------------------------------------------
 		// 靴防具の読み込み
 		//----------------------------------------------------------------
-		A_SHOES_DEF_PLUS.value = SaveData[57];
+		calcForm.A_SHOES_DEF_PLUS.value = SaveData[57];
 
 		objidPrifix = "OBJID_SHOES";
 		eqpRgn = EQUIP_REGION_ID_SHOES;
@@ -4506,7 +4512,7 @@ function DecodeUrl(loadDataUrl){
 				var wOBJ = document.getElementById("A_skill" + idx);
 
 				// 最大レベルで制限すると、直接選択肢を生成してるケースなどで異常が起きるため、補正なしにロールバック
-				wOBJ.value = SaveData[75 + idx];
+				calcForm.wOBJ.value = SaveData[75 + idx];
 			}
 		}
 
@@ -4522,7 +4528,7 @@ function DecodeUrl(loadDataUrl){
 		//----------------------------------------------------------------
 		// 未使用（旧養子情報）
 		//----------------------------------------------------------------
-//		A_youshi.checked = SaveData[275];
+//		calcForm.A_youshi.checked = SaveData[275];
 
 
 		//----------------------------------------------------------------
@@ -4572,7 +4578,7 @@ function DecodeUrl(loadDataUrl){
 		//----------------------------------------------------------------
 		// 衣装の読み込み
 		//----------------------------------------------------------------
-//		A_isyou3.value = SaveData[608];
+//		calcForm.A_isyou3.value = SaveData[608];
 
 
 		//----------------------------------------------------------------
@@ -4998,7 +5004,7 @@ function LoadCookie3(){
 	var ch = 0;
 
 	// 初期化
-	SaveDataAll = new Array();
+	window.SaveDataAll = new Array();
 	for (idx = 0; idx <= 500; idx++) {
 		SaveDataAll[idx] = "ZZZZ";
 	}
@@ -5017,7 +5023,7 @@ function LoadCookie3(){
 		wStr = SaveData[idx].substr(searchIndex + searchKey.length, SaveData[idx].length);
 
 		// 読み込みデータを分割して、セーブデータに変換
-		SaveDataAll = wStr.split("?");
+		window.SaveDataAll = wStr.split("?");
 
 		ch = 1;
 		break;
@@ -5032,7 +5038,7 @@ function LoadCookie3(){
 
 
 			// 読み込みデータを分割して、セーブデータに変換
-			SaveDataAll = wStr.split("?");
+			window.SaveDataAll = wStr.split("?");
 		}
 
 		ch = 2;
@@ -5155,7 +5161,7 @@ function SaveCookieConf(){
 
 
 	var kirikae = 0;
-	SaveData = new Array();
+	var SaveData = new Array();
 
 	var wSaveNum = eval(document.calcForm.A_SaveSlot.value);
 
@@ -5231,7 +5237,7 @@ function SaveCookieConf(){
 			// 名前の保存
 			if(localStorage.ROratorioDOM_SaveName){
 				var wStrX = localStorage.ROratorioDOM_SaveName;
-				SaveNameAll = wStrX.split("|");
+				window.SaveNameAll = wStrX.split("|");
 			}
 
 			myInnerHtml("DELHTML",'　　<input type="text" name="SAVE_NAME" value="名前入力可能" size=30>　　<Font size=2><A Href="del2.html">セーブ削除</A></Font>',0);
@@ -5283,7 +5289,11 @@ function SaveCookieConf(){
  */
 function LoadCookieConf(){
 
-	SaveData = new Array();
+	var SaveData = new Array();
+	var wStr = "";
+	var wLCF = 0;
+	var i = 0;
+
 	SaveData = document.cookie.split(";");
 	wStr = "";
 	wLCF = 0;
@@ -5340,7 +5350,7 @@ function LoadCookieConf(){
 			// 名前の読み込み
 			if(localStorage.ROratorioDOM_SaveName){
 				var wStrX = localStorage.ROratorioDOM_SaveName;
-				SaveNameAll = wStrX.split("|");
+				window.SaveNameAll = wStrX.split("|");
 			}
 			myInnerHtml("DELHTML",'　　<input type="text" name="SAVE_NAME" value="名前入力可能" size=30>　　<Font size=2><A Href="del2.html">セーブ削除</A></Font>',0);
 		}
@@ -5388,7 +5398,7 @@ function aaa(wnum){
 	for(var i=0;i<wnum;i++) wa += "a";
 	return wa;
 }
-n_NtoS2 =["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","0","1","2","3","4","5","6","7","8","9"];
+var n_NtoS2 =["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","0","1","2","3","4","5","6","7","8","9"];
 
 function NumA(wstr){
 	for(var i=2;i<wstr.length;i++){
@@ -5651,3 +5661,29 @@ function MagicDamageCalcPatternSurbey() {
 
 }
 */
+
+
+
+if (typeof window !== 'undefined') {
+	window.GetSaveDataVersion = GetSaveDataVersion;
+	window.SaveButton = SaveButton;
+	window.GetExpireDateString = GetExpireDateString;
+	window.GetExpireDateStringToDelete = GetExpireDateStringToDelete;
+	window.GetExpireDateStringSub = GetExpireDateStringSub;
+	window.SaveSystem = SaveSystem;
+	window.VersionModify = VersionModify;
+	window.LoadButton = LoadButton;
+	window.URLIN = URLIN;
+	window.AdaptSaveDataStrSize = AdaptSaveDataStrSize;
+	window.DecodeUrl = DecodeUrl;
+	window.LoadCookie3 = LoadCookie3;
+	window.SaveCookieConf = SaveCookieConf;
+	window.LoadCookieConf = LoadCookieConf;
+	window.SaveDataChange = SaveDataChange;
+	window.aaa = aaa;
+	window.NumA = NumA;
+	window.NtoS2 = NtoS2;
+	window.StoNx = StoNx;
+	window.StoN2 = StoN2;
+	window.OnClickUrlIn = OnClickUrlIn;
+}

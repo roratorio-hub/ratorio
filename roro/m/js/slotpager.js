@@ -1,21 +1,23 @@
+﻿// ESModule 化済み。HTMLでは type="module" で読み込むこと。
+
 //================================================================================================
 //
 // 定数定義
 //
 //================================================================================================
 
-SLOTPAGER_MODE_CARD = 0;
-SLOTPAGER_MODE_RNDENCH = 1;
-SLOTPAGER_MODE_RNDOPT = 1;		// 1 のエイリアス
+window.SLOTPAGER_MODE_CARD = 0;
+window.SLOTPAGER_MODE_RNDENCH = 1;
+window.SLOTPAGER_MODE_RNDOPT = 1;		// 1 のエイリアス
 
-SLOT_INDEX_CARD_MIN = 1;
-SLOT_INDEX_CARD_MAX = 4;
+window.SLOT_INDEX_CARD_MIN = 1;
+window.SLOT_INDEX_CARD_MAX = 4;
 
-SLOT_INDEX_COSTUME_MIN = 1;
-SLOT_INDEX_COSTUME_MAX = 1;
+window.SLOT_INDEX_COSTUME_MIN = 1;
+window.SLOT_INDEX_COSTUME_MAX = 1;
 
-SLOT_INDEX_RNDENCH_MIN = 1;
-SLOT_INDEX_RNDENCH_MAX = 5;
+window.SLOT_INDEX_RNDENCH_MIN = 1;
+window.SLOT_INDEX_RNDENCH_MAX = 5;
 
 
 //================================================================================================
@@ -1370,4 +1372,46 @@ function LoadSlotStateRndEnch(eqpRgnId) {
 		rndOptValue = GetEquipRndOptTableValue(eqpRgnId, idx);
 		HtmlSetObjectValueById(objIdValue, rndOptValue);
 	}
+}
+
+
+
+if (typeof window !== 'undefined') {
+	window.GetSlotMode = GetSlotMode;
+	window.OnClickSlotModeButton = OnClickSlotModeButton;
+	window.SaveSlotStateCardAll = SaveSlotStateCardAll;
+	window.SaveSlotStateCard = SaveSlotStateCard;
+	window.__SaveSlotStateCard = __SaveSlotStateCard;
+	window.BreakSlotOfCardAll = BreakSlotOfCardAll;
+	window.BreakSlotOfCard = BreakSlotOfCard;
+	window.__BreakSlotOfCard = __BreakSlotOfCard;
+	window.__BreakSlotOfCardShort = __BreakSlotOfCardShort;
+	window.RebuildSlotAsCardAll = RebuildSlotAsCardAll;
+	window.RebuildSlotAsCard = RebuildSlotAsCard;
+	window.__RebuildSlotAsCard = __RebuildSlotAsCard;
+	window.__RebuildSlotAsCardShort = __RebuildSlotAsCardShort;
+	window.LoadSlotStateCardAll = LoadSlotStateCardAll;
+	window.LoadSlotStateCard = LoadSlotStateCard;
+	window.__LoadSlotStateCard = __LoadSlotStateCard;
+	window.SaveSlotStateCostumeAll = SaveSlotStateCostumeAll;
+	window.SaveSlotStateCostume = SaveSlotStateCostume;
+	window.__SaveSlotStateCostume = __SaveSlotStateCostume;
+	window.BreakSlotOfCostumeAll = BreakSlotOfCostumeAll;
+	window.BreakSlotOfCostume = BreakSlotOfCostume;
+	window.__BreakSlotOfCostume = __BreakSlotOfCostume;
+	window.RebuildSlotAsCostumeAll = RebuildSlotAsCostumeAll;
+	window.RebuildSlotAsCostume = RebuildSlotAsCostume;
+	window.__RebuildSlotAsCostume = __RebuildSlotAsCostume;
+	window.LoadSlotStateCostumeAll = LoadSlotStateCostumeAll;
+	window.LoadSlotStateCostume = LoadSlotStateCostume;
+	window.__LoadSlotStateCostume = __LoadSlotStateCostume;
+	window.SaveSlotStateRndEnchAll = SaveSlotStateRndEnchAll;
+	window.SaveSlotStateRndEnch = SaveSlotStateRndEnch;
+	window.BreakSlotOfRndEnchAll = BreakSlotOfRndEnchAll;
+	window.BreakSlotOfRndEnch = BreakSlotOfRndEnch;
+	window.RebuildSlotAsRndEnchAll = RebuildSlotAsRndEnchAll;
+	window.RebuildSlotAsRndEnch = RebuildSlotAsRndEnch;
+	window.__RebuildSlotAsRndEnch = __RebuildSlotAsRndEnch;
+	window.LoadSlotStateRndEnchAll = LoadSlotStateRndEnchAll;
+	window.LoadSlotStateRndEnch = LoadSlotStateRndEnch;
 }

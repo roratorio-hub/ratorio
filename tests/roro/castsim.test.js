@@ -44,4 +44,10 @@ describe('castsim', () => {
     it('SprintfTimeStrCastSim: 500ms → "0.50"', () => {
         expect(SprintfTimeStrCastSim(500)).toBe('0.50');
     });
+
+    it('RefreshCastSimSimulateArea: lv / objOption 宣言漏れの回帰確認', () => {
+        const src = RefreshCastSimSimulateArea.toString();
+        expect(src).toContain('var lv');
+        expect(src).toContain('var objOption');
+    });
 });

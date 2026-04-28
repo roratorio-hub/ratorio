@@ -612,11 +612,14 @@ export function RefreshCastSimSimulateArea(bRefreshLevelSelect) {
 
 	var lifeTimeVal = 0;
 
+	var lv = 0;
+
 	var objTd = null;
 	var objText = null;
 	var objSelect = null;
 	var objInput = null;
 	var objProgress = null;
+	var objOption = null;
 
 
 

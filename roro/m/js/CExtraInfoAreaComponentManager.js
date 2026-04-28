@@ -1,3 +1,6 @@
+// ESModule 化済み。HTMLでは type="module" で読み込むこと。
+import { CGlobalConstManager } from './CGlobalConstManager.js';
+
 //----------------------------------------------------------------
 // 拡張情報の種類
 //----------------------------------------------------------------
@@ -64,7 +67,7 @@ CGlobalConstManager.DefineEnum(
  * 拡張情報の種類のテキストを取得する.
  * @param infoId 拡張情報ID
  */
-function GetExtraInfoText(infoId) {
+export function GetExtraInfoText(infoId) {
 
 	switch (infoId) {
 	case EXTRA_INFO_ID_NONE:
@@ -126,7 +129,7 @@ function GetExtraInfoText(infoId) {
 /**
  * 拡張情報エリアコンポーネントマネージャクラス.
  */
-function CExtraInfoAreaComponentManager () {
+export function CExtraInfoAreaComponentManager () {
 
 	// マネージャクラスのインスタンスＩＤ
 	this.managerInstanceId = CExtraInfoAreaComponentManager.instanceManager.registerInstance(this);
@@ -674,10 +677,12 @@ function CExtraInfoAreaComponentManager () {
 	 * 拡張情報の表示欄を更新する（ヒール回復力）.
 	 */
 	this.RefreshDispAreaHealing = function () {
+		var i = 0;
 		var lv = 0;
 		var lvMax = 0;
 		var healType = 0;
 		var healTarget = 0;
+		var ptmCount = 0;
 		var valueMinArray = [];
 		var valueMaxArray = [];
 		var valueText = "";
@@ -865,6 +870,7 @@ function CExtraInfoAreaComponentManager () {
 		var objTbody = null;
 		var objTr = null;
 		var objTd = null;
+		var objSelect = null;
 
 		var learnSkillIdArray = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, n_A_JOB).GetLearnSkillIdArray();
 
@@ -969,6 +975,7 @@ function CExtraInfoAreaComponentManager () {
 		var typeText = "";
 		var valueText = "";
 		var valueTextArrayHP = null;
+		var valueTextArraySP = null;
 
 		var objRoot = null;
 		var objTable = null;
@@ -1127,6 +1134,7 @@ function CExtraInfoAreaComponentManager () {
 		var objTbody = null;
 		var objTr = null;
 		var objTd = null;
+		var objSelect = null;
 
 		var learnSkillIdArray = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, n_A_JOB).GetLearnSkillIdArray();
 
@@ -2993,6 +3001,7 @@ function CExtraInfoAreaComponentManager () {
 
 		var value = 0;
 		var valueText = "";
+		var spanClassName = "";
 		var funcSelectData = null;
 		var loopDataArrayGeneral = 0;
 		var loopDataArrayActive = 0;
@@ -3352,6 +3361,7 @@ function CExtraInfoAreaComponentManager () {
 		var objTbody = null;
 		var objTr = null;
 		var objTd = null;
+		var objSelect = null;
 
 
 
@@ -3799,6 +3809,7 @@ function CExtraInfoAreaComponentManager () {
 		var objTbody = null;
 		var objTr = null;
 		var objTd = null;
+		var objSelect = null;
 
 
 
@@ -3947,6 +3958,12 @@ function CExtraInfoAreaComponentManager () {
 		var bRestArray = null;
 		var baseNumArray = null;
 		var text = "";
+		var paramArray = null;
+		var loopInfoCheck = null;
+		var selectedTargetId = 0;
+		var idxBase = 0;
+		var remainPlus = 0;
+		var remainMinus = 0;
 
 		var objRoot = null;
 		var objTable = null;
@@ -5008,6 +5025,7 @@ else {
 		var objTbody = null;
 		var objTr = null;
 		var objTd = null;
+		var objSelect = null;
 
 
 
@@ -5055,12 +5073,15 @@ else {
 		var idx = 0;
 
 		var dispKind = 0;
+		var value = 0;
 
 		var jobBonusArray = null;
 		var dispInfoArray = null;
 		var dispInfoArrayArray = null;
 		var dispValue = "";
 		var valueObjectClassName = "";
+		var confval = 0;
+		var itemCount = 0;
 
 		var funcCreateDispValueText = function (valueF, bAddPlusSignF, bPercentF) {
 
@@ -5157,6 +5178,7 @@ else {
 		var objTbody = null;
 		var objTr = null;
 		var objTd = null;
+		var objSpan = null;
 
 
 
@@ -5948,4 +5970,9 @@ CExtraInfoAreaComponentManager.testes = function () {
 */
 
 
+
+if (typeof window !== 'undefined') {
+	window.GetExtraInfoText = GetExtraInfoText;
+	window.CExtraInfoAreaComponentManager = CExtraInfoAreaComponentManager;
+}
 

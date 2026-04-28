@@ -18,6 +18,13 @@ $(function () {
 });
 
 function generateImage() {
+  var regist_elm_vanity;
+  var elm_ratio;
+  var regist_ratio;
+  var idx;
+  var tpl;
+  var div;
+  var dd;
   const v = (selector) => {
     return $(selector).val() || $(selector).text();
   }
@@ -31,8 +38,8 @@ function generateImage() {
     return t(selector);
   }
   const ench_count = (selector, is_weapon = false) => {
-    count = 0;
-    for (i = 1; i < 5; i++) {
+    let count = 0;
+    for (let i = 1; i < 5; i++) {
       const card_id = v(`#DATA_${selector}_CARD_${i}`)
       if (i == 1 || is_weapon) {
         if (CARD_KIND_ENCHANT == CardObjNew[card_id][1]) {
@@ -60,7 +67,7 @@ function generateImage() {
       text += `[★${transcendence}] `;
     }
     text += equip_name + " ( ";
-    enchants = [];
+    let enchants = [];
     [1, 2, 3, 4].forEach(v => {
       const card_id = t(`#DATA_${selector}_CARD_${v}`);
       enchants.push(card_id == 0 ? "-" : CardObjNew[card_id][2]);
@@ -73,8 +80,8 @@ function generateImage() {
     return g_equipRndOptTable[id].filter(v=>{return v[0]>0}).length>0? "exists" : "";
   }
   const randopt = (id) => {
-    text = "[ ";
-    options = []
+    let text = "[ ";
+    let options = []
     g_equipRndOptTable[id].forEach(value => {
       if (value[0] != 0) {
         options.push(GetRndOptDispName(g_rndOptArray[value[0]][RND_OPT_DATA_INDEX_SPID]) + " " + value[1])
@@ -96,12 +103,12 @@ function generateImage() {
     const shadow_name = ItemObjNew[shadow_id][8];
     const opt_info = g_shadowEquipController.getRndOptInfoArray(selector)
 
-    text = "";
+    let text = "";
     if (refined != 0) {
       text += `+${refined} `;
     }
     text += shadow_name + " ( ";
-    options = []
+    let options = []
     opt_info.forEach(value => {
       if (value[0] != 0) {
         options.push(GetRndOptDispName(g_rndOptArray[value[0]][RND_OPT_DATA_INDEX_SPID]) + " " + value[1])
@@ -597,8 +604,12 @@ function generateImage() {
     div.append(tpl);
     $(".content").append(div);
     dd = $("#equip dd");
-    for (i = 0; i < dd.length; i++) {
+    for (var i = 0; i < dd.length; i++) {
       $(dd[i]).text($(dd[i]).text().replace(/ *\(\+\d+以上\)/g, ""))
       $(dd[i]).text($(dd[i]).text().replace(/【習】/g, ""))
     }
+}
+
+if (typeof window !== 'undefined') {
+    window.generateImage = generateImage;
 }

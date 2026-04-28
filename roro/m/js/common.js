@@ -1,3 +1,6 @@
+﻿// ESModule 化済み。HTMLでは type="module" で読み込むこと。
+import { CGlobalConstManager } from './CGlobalConstManager.js';
+
 //================================================================================================
 //================================================================================================
 //====
@@ -677,116 +680,114 @@ CGlobalConstManager.DefinePseudoEnum(
 // カード部位のインデックス
 const_identifier = 0;
 
-CARD_REGION_ID_ARMS_RIGHT_1	 = const_identifier++;	// 0 右手
-CARD_REGION_ID_ARMS_RIGHT_2	 = const_identifier++;	// 1
-CARD_REGION_ID_ARMS_RIGHT_3	 = const_identifier++;	// 2
-CARD_REGION_ID_ARMS_RIGHT_4	 = const_identifier++;	// 3
-CARD_REGION_ID_ARMS_LEFT_1	 = const_identifier++;	// 4 左手
-CARD_REGION_ID_ARMS_LEFT_2	 = const_identifier++;	// 5
-CARD_REGION_ID_ARMS_LEFT_3	 = const_identifier++;	// 6
-CARD_REGION_ID_ARMS_LEFT_4	 = const_identifier++;	// 7
-CARD_REGION_ID_HEAD_TOP		 = const_identifier++;	// 8	
-CARD_REGION_ID_HEAD_MID		 = const_identifier++;	// 9
-CARD_REGION_ID_SHIELD		 = const_identifier++;	// 10
-CARD_REGION_ID_BODY			 = const_identifier++;	// 11
-CARD_REGION_ID_SHOULDER		 = const_identifier++;	// 12
-CARD_REGION_ID_SHOES		 = const_identifier++;	// 13
-CARD_REGION_ID_ACCESSARY_1	 = const_identifier++;	// 14
-CARD_REGION_ID_ACCESSARY_2	 = const_identifier++;	// 15
-CARD_REGION_ID_HEAD_UNDER	 = const_identifier++;	// 16
+window.CARD_REGION_ID_ARMS_RIGHT_1	 = const_identifier++;	// 0 右手
+window.CARD_REGION_ID_ARMS_RIGHT_2	 = const_identifier++;	// 1
+window.CARD_REGION_ID_ARMS_RIGHT_3	 = const_identifier++;	// 2
+window.CARD_REGION_ID_ARMS_RIGHT_4	 = const_identifier++;	// 3
+window.CARD_REGION_ID_ARMS_LEFT_1	 = const_identifier++;	// 4 左手
+window.CARD_REGION_ID_ARMS_LEFT_2	 = const_identifier++;	// 5
+window.CARD_REGION_ID_ARMS_LEFT_3	 = const_identifier++;	// 6
+window.CARD_REGION_ID_ARMS_LEFT_4	 = const_identifier++;	// 7
+window.CARD_REGION_ID_HEAD_TOP		 = const_identifier++;	// 8	
+window.CARD_REGION_ID_HEAD_MID		 = const_identifier++;	// 9
+window.CARD_REGION_ID_SHIELD		 = const_identifier++;	// 10
+window.CARD_REGION_ID_BODY			 = const_identifier++;	// 11
+window.CARD_REGION_ID_SHOULDER		 = const_identifier++;	// 12
+window.CARD_REGION_ID_SHOES		 = const_identifier++;	// 13
+window.CARD_REGION_ID_ACCESSARY_1	 = const_identifier++;	// 14
+window.CARD_REGION_ID_ACCESSARY_2	 = const_identifier++;	// 15
+window.CARD_REGION_ID_HEAD_UNDER	 = const_identifier++;	// 16
 
 const_identifier = 26;
 
-CARD_REGION_ID_ENCHANT_HEAD_TOP_1		 = const_identifier++;	// 26
-CARD_REGION_ID_ENCHANT_HEAD_TOP_2		 = const_identifier++;	// 27
-CARD_REGION_ID_ENCHANT_HEAD_TOP_3		 = const_identifier++;	// 28
-CARD_REGION_ID_ENCHANT_HEAD_MID_1		 = const_identifier++;	// 29
-CARD_REGION_ID_ENCHANT_HEAD_MID_2		 = const_identifier++;	// 30
-CARD_REGION_ID_ENCHANT_HEAD_MID_3		 = const_identifier++;	// 31
+window.CARD_REGION_ID_ENCHANT_HEAD_TOP_1		 = const_identifier++;	// 26
+window.CARD_REGION_ID_ENCHANT_HEAD_TOP_2		 = const_identifier++;	// 27
+window.CARD_REGION_ID_ENCHANT_HEAD_TOP_3		 = const_identifier++;	// 28
+window.CARD_REGION_ID_ENCHANT_HEAD_MID_1		 = const_identifier++;	// 29
+window.CARD_REGION_ID_ENCHANT_HEAD_MID_2		 = const_identifier++;	// 30
+window.CARD_REGION_ID_ENCHANT_HEAD_MID_3		 = const_identifier++;	// 31
 
 const_identifier = 33;
 
-CARD_REGION_ID_ENCHANT_HEAD_UNDER_1		 = const_identifier++;	// 33
-CARD_REGION_ID_ENCHANT_HEAD_UNDER_2		 = const_identifier++;	// 34
-CARD_REGION_ID_ENCHANT_HEAD_UNDER_3		 = const_identifier++;	// 35
-CARD_REGION_ID_ENCHANT_SHIELD_1			 = const_identifier++;	// 36
-CARD_REGION_ID_ENCHANT_SHIELD_2			 = const_identifier++;	// 37
-CARD_REGION_ID_ENCHANT_SHIELD_3			 = const_identifier++;	// 38
-CARD_REGION_ID_ENCHANT_BODY_1			 = const_identifier++;	// 39
-CARD_REGION_ID_ENCHANT_BODY_2			 = const_identifier++;	// 40
-CARD_REGION_ID_ENCHANT_BODY_3			 = const_identifier++;	// 41
-CARD_REGION_ID_ENCHANT_SHOULDER_1		 = const_identifier++;	// 42
-CARD_REGION_ID_ENCHANT_SHOULDER_2		 = const_identifier++;	// 43
-CARD_REGION_ID_ENCHANT_SHOULDER_3		 = const_identifier++;	// 44
-CARD_REGION_ID_ENCHANT_SHOES_1			 = const_identifier++;	// 45
-CARD_REGION_ID_ENCHANT_SHOES_2			 = const_identifier++;	// 46
-CARD_REGION_ID_ENCHANT_SHOES_3			 = const_identifier++;	// 47
-CARD_REGION_ID_ENCHANT_ACCESSARY_1_1	 = const_identifier++;	// 48
-CARD_REGION_ID_ENCHANT_ACCESSARY_1_2	 = const_identifier++;	// 49
-CARD_REGION_ID_ENCHANT_ACCESSARY_1_3	 = const_identifier++;	// 50
-CARD_REGION_ID_ENCHANT_ACCESSARY_2_1	 = const_identifier++;	// 51
-CARD_REGION_ID_ENCHANT_ACCESSARY_2_2	 = const_identifier++;	// 52
-CARD_REGION_ID_ENCHANT_ACCESSARY_2_3	 = const_identifier++;	// 53
+window.CARD_REGION_ID_ENCHANT_HEAD_UNDER_1		 = const_identifier++;	// 33
+window.CARD_REGION_ID_ENCHANT_HEAD_UNDER_2		 = const_identifier++;	// 34
+window.CARD_REGION_ID_ENCHANT_HEAD_UNDER_3		 = const_identifier++;	// 35
+window.CARD_REGION_ID_ENCHANT_SHIELD_1			 = const_identifier++;	// 36
+window.CARD_REGION_ID_ENCHANT_SHIELD_2			 = const_identifier++;	// 37
+window.CARD_REGION_ID_ENCHANT_SHIELD_3			 = const_identifier++;	// 38
+window.CARD_REGION_ID_ENCHANT_BODY_1			 = const_identifier++;	// 39
+window.CARD_REGION_ID_ENCHANT_BODY_2			 = const_identifier++;	// 40
+window.CARD_REGION_ID_ENCHANT_BODY_3			 = const_identifier++;	// 41
+window.CARD_REGION_ID_ENCHANT_SHOULDER_1		 = const_identifier++;	// 42
+window.CARD_REGION_ID_ENCHANT_SHOULDER_2		 = const_identifier++;	// 43
+window.CARD_REGION_ID_ENCHANT_SHOULDER_3		 = const_identifier++;	// 44
+window.CARD_REGION_ID_ENCHANT_SHOES_1			 = const_identifier++;	// 45
+window.CARD_REGION_ID_ENCHANT_SHOES_2			 = const_identifier++;	// 46
+window.CARD_REGION_ID_ENCHANT_SHOES_3			 = const_identifier++;	// 47
+window.CARD_REGION_ID_ENCHANT_ACCESSARY_1_1	 = const_identifier++;	// 48
+window.CARD_REGION_ID_ENCHANT_ACCESSARY_1_2	 = const_identifier++;	// 49
+window.CARD_REGION_ID_ENCHANT_ACCESSARY_1_3	 = const_identifier++;	// 50
+window.CARD_REGION_ID_ENCHANT_ACCESSARY_2_1	 = const_identifier++;	// 51
+window.CARD_REGION_ID_ENCHANT_ACCESSARY_2_2	 = const_identifier++;	// 52
+window.CARD_REGION_ID_ENCHANT_ACCESSARY_2_3	 = const_identifier++;	// 53
 
-CARD_REGION_ID_SHADOW_ARMS_RIGHT_1 = const_identifier++;	// 54
-CARD_REGION_ID_SHADOW_ARMS_RIGHT_2 = const_identifier++;
-CARD_REGION_ID_SHADOW_ARMS_RIGHT_3 = const_identifier++;
-CARD_REGION_ID_SHADOW_SHIELD_1 = const_identifier++;
-CARD_REGION_ID_SHADOW_SHIELD_2 = const_identifier++;
-CARD_REGION_ID_SHADOW_SHIELD_3 = const_identifier++;
-CARD_REGION_ID_SHADOW_ENCHANT_BODY_1 = const_identifier++;	// 60
-CARD_REGION_ID_SHADOW_ENCHANT_BODY_2 = const_identifier++;
-CARD_REGION_ID_SHADOW_ENCHANT_BODY_3 = const_identifier++;
-CARD_REGION_ID_SHADOW_ENCHANT_SHOES_1 = const_identifier++;
-CARD_REGION_ID_SHADOW_ENCHANT_SHOES_2 = const_identifier++;
-CARD_REGION_ID_SHADOW_ENCHANT_SHOES_3 = const_identifier++;
-CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY1_1 = const_identifier++;
-CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY1_2 = const_identifier++;
-CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY1_3 = const_identifier++;
-CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY2_1 = const_identifier++;
-CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY2_2 = const_identifier++;	// 70
-CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY2_3 = const_identifier++;
+window.CARD_REGION_ID_SHADOW_ARMS_RIGHT_1 = const_identifier++;	// 54
+window.CARD_REGION_ID_SHADOW_ARMS_RIGHT_2 = const_identifier++;
+window.CARD_REGION_ID_SHADOW_ARMS_RIGHT_3 = const_identifier++;
+window.CARD_REGION_ID_SHADOW_SHIELD_1 = const_identifier++;
+window.CARD_REGION_ID_SHADOW_SHIELD_2 = const_identifier++;
+window.CARD_REGION_ID_SHADOW_SHIELD_3 = const_identifier++;
+window.CARD_REGION_ID_SHADOW_ENCHANT_BODY_1 = const_identifier++;	// 60
+window.CARD_REGION_ID_SHADOW_ENCHANT_BODY_2 = const_identifier++;
+window.CARD_REGION_ID_SHADOW_ENCHANT_BODY_3 = const_identifier++;
+window.CARD_REGION_ID_SHADOW_ENCHANT_SHOES_1 = const_identifier++;
+window.CARD_REGION_ID_SHADOW_ENCHANT_SHOES_2 = const_identifier++;
+window.CARD_REGION_ID_SHADOW_ENCHANT_SHOES_3 = const_identifier++;
+window.CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY1_1 = const_identifier++;
+window.CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY1_2 = const_identifier++;
+window.CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY1_3 = const_identifier++;
+window.CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY2_1 = const_identifier++;
+window.CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY2_2 = const_identifier++;	// 70
+window.CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY2_3 = const_identifier++;
 
-CARD_REGION_ID_COUNT		 = const_identifier;
+window.CARD_REGION_ID_COUNT		 = const_identifier;
 
 // [CARD_REGION_ID_COUNT] ～ [99] まで、セット効果定義で使用
 // CheckAndApplyItemSetEquipping() 関数を参照のこと
 
 const_identifier = -1;
 
-CARD_REGION_ID_ANY						 = const_identifier--;
-CARD_REGION_ID_ARMS_RIGHT_ANY			 = const_identifier--;
-CARD_REGION_ID_ARMS_LEFT_ANY			 = const_identifier--;
-CARD_REGION_ID_HEAD_TOP_ANY				 = const_identifier--;
-CARD_REGION_ID_HEAD_MID_ANY				 = const_identifier--;
-CARD_REGION_ID_HEAD_UNDER_ANY			 = const_identifier--;
-CARD_REGION_ID_SHIELD_ANY				 = const_identifier--;
-CARD_REGION_ID_BODY_ANY					 = const_identifier--;
-CARD_REGION_ID_SHOULDER_ANY				 = const_identifier--;
-CARD_REGION_ID_SHOES_ANY				 = const_identifier--;
-CARD_REGION_ID_ACCESSARY_ANY			 = const_identifier--;
-CARD_REGION_ID_ACCESSARY_1_ANY			 = const_identifier--;
-CARD_REGION_ID_ACCESSARY_2_ANY			 = const_identifier--;
+window.CARD_REGION_ID_ANY						 = const_identifier--;
+window.CARD_REGION_ID_ARMS_RIGHT_ANY			 = const_identifier--;
+window.CARD_REGION_ID_ARMS_LEFT_ANY			 = const_identifier--;
+window.CARD_REGION_ID_HEAD_TOP_ANY				 = const_identifier--;
+window.CARD_REGION_ID_HEAD_MID_ANY				 = const_identifier--;
+window.CARD_REGION_ID_HEAD_UNDER_ANY			 = const_identifier--;
+window.CARD_REGION_ID_SHIELD_ANY				 = const_identifier--;
+window.CARD_REGION_ID_BODY_ANY					 = const_identifier--;
+window.CARD_REGION_ID_SHOULDER_ANY				 = const_identifier--;
+window.CARD_REGION_ID_SHOES_ANY				 = const_identifier--;
+window.CARD_REGION_ID_ACCESSARY_ANY			 = const_identifier--;
+window.CARD_REGION_ID_ACCESSARY_1_ANY			 = const_identifier--;
+window.CARD_REGION_ID_ACCESSARY_2_ANY			 = const_identifier--;
 
 //衣装部位のインデックス
 const_identifier = -1;
 
-COSTUME_REGION_ID_ANY			 = const_identifier--;
-COSTUME_REGION_ID_ARMS_RIGHT	 = const_identifier++;
-COSTUME_REGION_ID_ARMS_LEFT		 = const_identifier++;
-COSTUME_REGION_ID_HEAD_TOP		 = const_identifier++;
-COSTUME_REGION_ID_HEAD_MID		 = const_identifier++;
-COSTUME_REGION_ID_HEAD_UNDER	 = const_identifier++;
-COSTUME_REGION_ID_SHIELD		 = const_identifier++;
-COSTUME_REGION_ID_BODY			 = const_identifier++;
-COSTUME_REGION_ID_SHOULDER		 = const_identifier++;
-COSTUME_REGION_ID_SHOES			 = const_identifier++;
-COSTUME_REGION_ID_ACCESSARY_1	 = const_identifier++;
-COSTUME_REGION_ID_ACCESSARY_2	 = const_identifier++;
+window.COSTUME_REGION_ID_ANY			 = const_identifier--;
+window.COSTUME_REGION_ID_ARMS_RIGHT	 = const_identifier++;
+window.COSTUME_REGION_ID_ARMS_LEFT		 = const_identifier++;
+window.COSTUME_REGION_ID_HEAD_TOP		 = const_identifier++;
+window.COSTUME_REGION_ID_HEAD_MID		 = const_identifier++;
+window.COSTUME_REGION_ID_HEAD_UNDER	 = const_identifier++;
+window.COSTUME_REGION_ID_SHIELD		 = const_identifier++;
+window.COSTUME_REGION_ID_BODY			 = const_identifier++;
+window.COSTUME_REGION_ID_SHOULDER		 = const_identifier++;
+window.COSTUME_REGION_ID_SHOES			 = const_identifier++;
+window.COSTUME_REGION_ID_ACCESSARY_1	 = const_identifier++;
+window.COSTUME_REGION_ID_ACCESSARY_2	 = const_identifier++;
 
-COSTUME_REGION_ID_COUNT		 = const_identifier;
-
-
+window.COSTUME_REGION_ID_COUNT		 = const_identifier;
 
 
 
@@ -794,5 +795,20 @@ COSTUME_REGION_ID_COUNT		 = const_identifier;
 
 
 
-COLOR_CODE_TABLE_HEADER_IS_SET = "#ff7777";
-COLOR_CODE_TABLE_HEADER_IS_NOT_SET = "#ddddff";
+
+
+window.COLOR_CODE_TABLE_HEADER_IS_SET = "#ff7777";
+window.COLOR_CODE_TABLE_HEADER_IS_NOT_SET = "#ddddff";
+
+
+
+if (typeof window !== 'undefined') {
+	window.GetConstDataKindText = GetConstDataKindText;
+	window.GetParamText = GetParamText;
+	window.GetRaceText = GetRaceText;
+	window.GetElementText = GetElementText;
+	window.GetMonsterElementText = GetMonsterElementText;
+	window.GetSizeText = GetSizeText;
+	window.GetStateText = GetStateText;
+	window.GetFriendlityText = GetFriendlityText;
+}

@@ -15,7 +15,7 @@
 	<!-- アイコン -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
 
-	<!-- Webpack -->
+	<!-- Webpack EMS化不要 -->
 	<script type="text/javascript" defer src="../../dist/bundle.js"></script>
 
 	<!-- サイト共通系ファイル -->
@@ -23,19 +23,19 @@
 	<script type="module" src="../../ro4/m/js/CModalWindow.js"></script>
 
 	<!-- デバッグ定義 -->
-	<!-- 非デバッグ環境でも読み込む -->
+	<!-- 非デバッグ環境でも読み込む EMS化不要 -->
 	<script type="text/javascript" defer src="../../ro4/DEBUG.js"></script>
 
 	<!-- 共通系 javascript ファイル -->
 	<script type="module" src="js/CInstanceManager.js"></script>
 	<script type="module" src="js/CGlobalConstManager.js"></script>
 	<script type="module" src="js/CNameKana.js"></script>
-	<script type="text/javascript" defer src="js/CCustomSelectBase.js"></script>
-	<script type="text/javascript" defer src="js/CCustomSelectMapBase.js"></script>
-	<script type="text/javascript" defer src="js/CCustomSelectMapCategory.js"></script>
-	<script type="text/javascript" defer src="js/CCustomSelectMapMap.js"></script>
-	<script type="text/javascript" defer src="js/CCustomSelectMapMonster.js"></script>
-	<script type="text/javascript" defer src="js/common.js"></script>
+	<script type="module" src="js/CCustomSelectBase.js"></script>
+	<script type="module" src="js/CCustomSelectMapBase.js"></script>
+	<script type="module" src="js/CCustomSelectMapCategory.js"></script>
+	<script type="module" src="js/CCustomSelectMapMap.js"></script>
+	<script type="module" src="js/CCustomSelectMapMonster.js"></script>
+	<script type="module" src="js/common.js"></script>
 	<script type="module" src="js/etc.js"></script>
 
 	<!-- データ定義系 javascript ファイル -->
@@ -111,7 +111,7 @@
 	<script type="module" src="js/rndench.js"></script>
 	<script type="text/javascript" defer src="js/equip.js"></script>
 	<script type="module" src="js/learnedskill.js"></script>
-	<script type="text/javascript" defer src="js/slotpager.js"></script>
+	<script type="module" src="js/slotpager.js"></script>
 	<script type="module" src="js/spmode.js"></script>
 	<script type="module" src="js/quickcontrol.js"></script>
 
@@ -2035,7 +2035,7 @@
 <!-- 機能処理系 javascript ファイル -->
 <script type="module" src="js/CTimeItemAreaComponentManager.js"></script>
 <script type="module" src="js/CBattleQuickControlAreaComponentManager.js"></script>
-<script type="text/javascript" defer src="js/CExtraInfoAreaComponentManager.js"></script>
+<script type="module" src="js/CExtraInfoAreaComponentManager.js"></script>
 <script type="module" src="js/CFloatingInfoAreaComponentManager.js"></script>
 <script type="module" src="js/CCalcDataTextCreator.js"></script>
 
@@ -2046,12 +2046,13 @@
 <script type="module" src="../../ro4/m/js/CBattleCalcInfo.js"></script>
 <script type="module" src="../../ro4/m/js/CBattleCalcResult.js"></script>
 <script type="module" src="../../ro4/m/js/CBattleCalcResultAll.js"></script>
+<!-- head.js 重いのでESM化は後回し -->
 <script type="text/javascript" defer src="../../ro4/m/js/head.js"></script>
 
 <!-- セーブデータ管理系 javascript ファイル -->
 <script type="module" src="js/CSaveDataMappingManager.js"></script>
 <script type="module" src="js/CSaveDataConverter.js"></script>
-<script type="text/javascript" defer src="js/saveload.js"></script>
+<script type="module" src="js/saveload.js"></script>
 <script type="module" src="../../ro4/m/js/savedata/SKeyMap.js"></script>
 <script type="module" src="../../ro4/m/js/savedata/CSingletonMapper.js"></script>
 <script type="module" src="../../ro4/m/js/savedata/CMultiValueMapper.js"></script>
@@ -2105,7 +2106,7 @@
 <!-- 機能処理系 javascript ファイル （この辺の順序整理したい）-->
 <script type="module" src="../../ro4/m/js/CAttackMethodAreaComponentManager.js"></script>
 
-<!-- メイン処理系 javascript ファイル -->
+<!-- メイン処理系 javascript ファイル 重いのでESM化は後回し -->
 <script type="text/javascript" defer src="js/foot.js"></script>
 
 <!-- 左メニュー用 javascript ファイル -->

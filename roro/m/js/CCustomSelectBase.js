@@ -3,10 +3,11 @@
 
 
 
+// ESModule 化済み。HTMLでは type="module" で読み込むこと。
 /**
  * カスタムセレクトクラス（基底）.
  */
-function CCustomSelectBase () {
+export function CCustomSelectBase () {
 
 	// インスタンスID名
 	this.instanceIdName = "";
@@ -1267,6 +1268,8 @@ CCustomSelectBase.OnDblClickSearchResult = function (instanceIdName) {
 CCustomSelectBase.OnClickApplyButton = function (instanceIdName) {
 
 	var objInstance = null;
+	var select_id = null;
+	var select2_obj_class = "";
 
 	objInstance = CCustomSelectBase.instanceMap.get(instanceIdName);
 	objInstance.OnClickApplyButton();
@@ -1274,11 +1277,15 @@ CCustomSelectBase.OnClickApplyButton = function (instanceIdName) {
 	/* select2の見た目を更新するため追加処理 */
 	select_id = objInstance.selectedDataId;
 	select2_obj_class = ".OBJID_" + objInstance.instanceIdName;
-	$(select2_obj_class).val(select_id).trigger('change');	
+	$(select2_obj_class).val(select_id).trigger('change');
 };
 
-
-
-
+// ============================================================
+// 未移行ファイルとのグローバル互換ブロック
+// 他のJSファイルの ESModule 移行が完了したら削除する
+// ============================================================
+if (typeof window !== 'undefined') {
+    window.CCustomSelectBase = CCustomSelectBase;
+}
 
 

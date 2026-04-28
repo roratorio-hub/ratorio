@@ -3,10 +3,13 @@
 
 
 
+// ESModule 化済み。HTMLでは type="module" で読み込むこと。
+import { CCustomSelectBase } from './CCustomSelectBase.js';
+
 /**
  * カスタムセレクトクラス（マップ基底）.
  */
-function CCustomSelectMapBase () {
+export function CCustomSelectMapBase () {
 
 
 
@@ -273,6 +276,12 @@ CCustomSelectMapBase.SortById = function (objA, objB) {
 
 	return 0;
 };
+
+
+
+if (typeof window !== 'undefined') {
+	window.CCustomSelectMapBase = CCustomSelectMapBase;
+}
 
 
 
