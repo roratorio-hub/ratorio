@@ -1,4 +1,4 @@
-
+﻿
 
 
 
@@ -7,11 +7,11 @@
 // 移行後は common などに移動するもの
 
 // TODO: とりあえず
-MIG_SKILL_ID_ANY = -1;
-MIG_ITEM_ID_ANY = -1;
-MIG_CARD_ID_ANY = -1;
-MIG_ARROW_ID_ANY = -1;
-MIG_COSTUME_ID_ANY = -1;
+window.MIG_SKILL_ID_ANY = -1;
+window.MIG_ITEM_ID_ANY = -1;
+window.MIG_CARD_ID_ANY = -1;
+window.MIG_ARROW_ID_ANY = -1;
+window.MIG_COSTUME_ID_ANY = -1;
 
 
 
@@ -3598,4 +3598,20 @@ function MigGetEquipRegionByCardKind(cardId, jobId) {
 
 	return candidateRegionIdArray;
 }
-
+if (typeof window !== 'undefined') {
+	window.MigGetItemSpTagArrayByOldSpID  = MigGetItemSpTagArrayByOldSpID;
+	window.MigGetGeneralErrorText         = MigGetGeneralErrorText;
+	window.MigIsErrorText                 = MigIsErrorText;
+	window.MigGetSeriesedJobIdArray       = MigGetSeriesedJobIdArray;
+	window.MigGetJobSeriesName            = MigGetJobSeriesName;
+	window.MigGetParamText                = MigGetParamText;
+	window.MigGetEquipRegionText          = MigGetEquipRegionText;
+	window.MigGetItemTypeText             = MigGetItemTypeText;
+	window.MigGetItemPositionText         = MigGetItemPositionText;
+	window.MigIsArmsItemType              = MigIsArmsItemType;
+	window.MigGetRaceText                 = MigGetRaceText;
+	window.MigGetProbText                 = MigGetProbText;
+	window.MigGetBorderFlagText           = MigGetBorderFlagText;
+	window.MigGetEquipRegionByItemKind    = MigGetEquipRegionByItemKind;
+	window.MigGetEquipRegionByCardKind    = MigGetEquipRegionByCardKind;
+}

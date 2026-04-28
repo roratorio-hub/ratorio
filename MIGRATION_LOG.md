@@ -123,6 +123,10 @@
 | 155 | `roro/m/js/pet.dat.js` | 2026-04-29 | Pattern B。`PET_ID_*` 97定数＋`PET_OBJ` データ配列を `window.*` 化。HTMLタグ変更 |
 | 156 | `roro/m/js/usableskill.dat.js` | 2026-04-29 | Pattern B。`USABEL_SKILL_ID_*` 193定数＋`InsertSkill` データ配列を `window.*` 化。HTMLタグ変更 |
 | 157 | `roro/m/js/timeitem.dat.js` | 2026-04-29 | Pattern A/B 混合。`TIME_ITEM_ID_*` 281定数を `window.*` 化（Pattern B）、`ITEM_SP_TIME_OBJ`/`ITEM_SP_TIME_OBJ_SORT` は Pattern A（h.js 済み）。HTMLタグ変更 |
+| 158 | `ro4/m/js/data/mig.job.dat.js` | 2026-04-29 | Pattern B。`MIG_JOB_ID_*` 89定数を `window.*` 化。HTMLタグ変更 |
+| 159 | `roro/m/js/data/mig.enchlist.dat.js` | 2026-04-29 | Pattern B。`MIG_ENCH_LIST_ID_SHINENNO_KAIRO_UPGRADE`/`MIG_ENCH_LIST_ID_SHINENTAIBUKI_UPGRADE` 2定数を `window.*` 化。残りは g_constDataManager プロパティチェーン代入（安全）。HTMLタグ変更 |
+| 160 | `ro4/m/js/data/mig.job.h.js` | 2026-04-29 | `JOB_ID_ANY`・`JOB_SERIES_ID_*`（25定数）・`g_unconfirmedHPSPArray` を `window.*` 化（計27）。23関数の window 互換ブロック追加（GetJobName, GetLowerJobSeriesID 等）。HTMLタグ変更 |
+| 161 | `roro/m/js/data/mig.itemsp.h.js` | 2026-04-29 | `MIG_SKILL_ID_ANY`/`MIG_ITEM_ID_ANY`/`MIG_CARD_ID_ANY`/`MIG_ARROW_ID_ANY`/`MIG_COSTUME_ID_ANY` を `window.*` 化（計5）。15関数の window 互換ブロック追加（MigGetItemSpTagArrayByOldSpID 等）。HTMLタグ変更 |
 
 ## バグ修正ログ
 
@@ -165,6 +169,7 @@
   - #134 `frame.js` → `type="module"`（2026-04-29、`ro4/m/calcx.html` line 2113）
   - #135 `CConfBase.js` + #136 `CConfBase2.js` + #137–#146 CCharaConf* 10ファイル + #147 `CMobConfInput.js`（計13ファイル）→ `type="module"`（2026-04-29）
   - #148–#157 の10ファイル（alias.dat.js, chara.dat.js, rndopt.dat.js, monster.toughness.dat.js, autospell.dat.js, monstermap.dat.js, arrow.dat.js, pet.dat.js, usableskill.dat.js, timeitem.dat.js）→ `type="module"`（2026-04-29）
+  - #158–#161 の4ファイル（mig.job.dat.js, mig.enchlist.dat.js, mig.job.h.js, mig.itemsp.h.js）→ `type="module"`（2026-04-29）
   - その他 ~50 の `<script>` タグ → `defer` 属性追加（前セッション）
 - `roro/other/itemlist.html`, `cardlist.html`, `monsterlist.html`, `petlist.html`, `exp.html`, `jobb.html`
 - `util/sortedEnchantCardIdArray.html`
@@ -191,8 +196,8 @@
 | グループ | ファイル | 行数 | ステータス |
 |---------|---------|------|-----------|
 | 小型 IIFE dat | `chara.dat.js`, `pet.dat.js`, `rndopt.dat.js`, `monster.toughness.dat.js`, `usableskill.dat.js`, `autospell.dat.js`, `monstermap.dat.js`, `timeitem.dat.js`, `alias.dat.js`, `arrow.dat.js` | 140〜714行 | **完了（#148–#157, 2026-04-29）** |
-| 中型 IIFE dat | `mig.job.dat.js`, `mig.enchlist.dat.js` | 1268〜1624行 | 次セッション候補 |
-| 中型 h.js | `mig.job.h.js`, `mig.itemsp.h.js` | 2934〜3601行 | 次セッション候補 |
+| 中型 IIFE dat | `mig.job.dat.js`, `mig.enchlist.dat.js` | 1268〜1624行 | **完了（#158–#159, 2026-04-29）** |
+| 中型 h.js | `mig.job.h.js`, `mig.itemsp.h.js` | 2934〜3601行 | **完了（#160–#161, 2026-04-29）** |
 | 中型 APP | `equip.js`, `chara.js` | 1905, 11894行 | **BLOCKED（後述）** |
 | **巨大ファイル** | **`ro4/m/js/head.js`**, **`roro/m/js/foot.js`** | **22445, 30765行** | 要戦略（後述） |
 | 廃止/未使用 | `hmautospell.js`, `hmequip.js`, `hmlearnedskill.js`, `CItemSPSearch.js` | — | ファイルが存在しない（`_draft` にのみ存在）。HTML のコメントアウトをそのまま維持 |

@@ -1,4 +1,4 @@
-//================================================================================================
+﻿//================================================================================================
 //================================================================================================
 //====
 //==== ジョブ定義
@@ -121,38 +121,38 @@ CGlobalConstManager.DefineEnum(
 );
 
 // Enum に登録するとマズイので
-JOB_ID_ANY = -1;
+window.JOB_ID_ANY = -1;
 
 // 職業系統
-JOB_SERIES_ID_NOVICE		= 0;
-JOB_SERIES_ID_SUPERNOVICE	= 20;
+window.JOB_SERIES_ID_NOVICE		= 0;
+window.JOB_SERIES_ID_SUPERNOVICE	= 20;
 
-JOB_SERIES_ID_SWORDMAN		= 1;
-JOB_SERIES_ID_THIEF			= 2;
-JOB_SERIES_ID_ACOLYTE		= 3;
-JOB_SERIES_ID_ARCHER		= 4;
-JOB_SERIES_ID_MAGICIAN		= 5;
-JOB_SERIES_ID_MERCHANT		= 6;
+window.JOB_SERIES_ID_SWORDMAN		= 1;
+window.JOB_SERIES_ID_THIEF			= 2;
+window.JOB_SERIES_ID_ACOLYTE		= 3;
+window.JOB_SERIES_ID_ARCHER		= 4;
+window.JOB_SERIES_ID_MAGICIAN		= 5;
+window.JOB_SERIES_ID_MERCHANT		= 6;
 
-JOB_SERIES_ID_KNIGHT		= 7;
-JOB_SERIES_ID_ASSASIN		= 8;
-JOB_SERIES_ID_PRIEST		= 9;
-JOB_SERIES_ID_HUNTER		= 10;
-JOB_SERIES_ID_WIZARD		= 11;
-JOB_SERIES_ID_BLACKSMITH	= 12;
-JOB_SERIES_ID_CRUSADER		= 13;
-JOB_SERIES_ID_ROGUE			= 14;
-JOB_SERIES_ID_MONK			= 15;
-JOB_SERIES_ID_BARD			= 16;
-JOB_SERIES_ID_DANCER		= 17;
-JOB_SERIES_ID_SAGE			= 18;
-JOB_SERIES_ID_ALCHEMIST		= 19;
+window.JOB_SERIES_ID_KNIGHT		= 7;
+window.JOB_SERIES_ID_ASSASIN		= 8;
+window.JOB_SERIES_ID_PRIEST		= 9;
+window.JOB_SERIES_ID_HUNTER		= 10;
+window.JOB_SERIES_ID_WIZARD		= 11;
+window.JOB_SERIES_ID_BLACKSMITH	= 12;
+window.JOB_SERIES_ID_CRUSADER		= 13;
+window.JOB_SERIES_ID_ROGUE			= 14;
+window.JOB_SERIES_ID_MONK			= 15;
+window.JOB_SERIES_ID_BARD			= 16;
+window.JOB_SERIES_ID_DANCER		= 17;
+window.JOB_SERIES_ID_SAGE			= 18;
+window.JOB_SERIES_ID_ALCHEMIST		= 19;
 
-JOB_SERIES_ID_TAEGKUON		= 41;
-JOB_SERIES_ID_NINJA			= 44;
-JOB_SERIES_ID_GUNSLINGER	= 45;
+window.JOB_SERIES_ID_TAEGKUON		= 41;
+window.JOB_SERIES_ID_NINJA			= 44;
+window.JOB_SERIES_ID_GUNSLINGER	= 45;
 
-JOB_SERIES_ID_SUMMONER		= 51;
+window.JOB_SERIES_ID_SUMMONER		= 51;
 
 /**
  * ジョブ名を取得する.
@@ -2500,7 +2500,7 @@ function GetJobExpTable(tableId) {
  * 実測確認出来た BaseLv は取り除いてください
  * @returns
  */
-g_unconfirmedHPSPArray = null;
+window.g_unconfirmedHPSPArray = null;
 function GetUnconfirmedHPSPArray() {
 	if (!g_unconfirmedHPSPArray) {
 
@@ -2932,4 +2932,29 @@ function UpgradeJobTo4th() {
 			alert(msg);
 		}, 0);
 	}, 0);
+}
+if (typeof window !== 'undefined') {
+	window.GetJobName                = GetJobName;
+	window.GetLowerJobSeriesID       = GetLowerJobSeriesID;
+	window.GetHigherJobSeriesID      = GetHigherJobSeriesID;
+	window.IsDoramJob                = IsDoramJob;
+	window.IsYojiJob                 = IsYojiJob;
+	window.IsDualArmsJob             = IsDualArmsJob;
+	window.IsSameJobClass            = IsSameJobClass;
+	window.IsSameJobGroup            = IsSameJobGroup;
+	window.GetBaseLevelMin           = GetBaseLevelMin;
+	window.GetBaseLevelMax           = GetBaseLevelMax;
+	window.GetJobLevelMax            = GetJobLevelMax;
+	window.GetStatusMax              = GetStatusMax;
+	window.IsReincarnatedJob         = IsReincarnatedJob;
+	window.IsUsableHSPJob            = IsUsableHSPJob;
+	window.IsUsableBSPJob            = IsUsableBSPJob;
+	window.GetJobBonus               = GetJobBonus;
+	window.GetHPBase                 = GetHPBase;
+	window.GetSPBase                 = GetSPBase;
+	window.GetBaseExpTable           = GetBaseExpTable;
+	window.GetJobExpTable            = GetJobExpTable;
+	window.GetUnconfirmedHPSPArray   = GetUnconfirmedHPSPArray;
+	window.IsMatchJobRestrict        = IsMatchJobRestrict;
+	window.UpgradeJobTo4th           = UpgradeJobTo4th;
 }
