@@ -25,6 +25,28 @@ describe('calchistory', () => {
     });
 });
 
+describe('calchistory (source checks)', () => {
+    let src = '';
+
+    beforeAll(async () => {
+        const url = new URL('../../ro4/m/js/calchistory.js', import.meta.url);
+        const res = await fetch(url);
+        src = await res.text();
+    });
+
+    it('reload_history_table: body 宣言漏れの回帰確認', () => {
+        expect(src).toContain('let body =');
+    });
+
+    it('reload_history_table: for ループ内 i 宣言漏れの回帰確認', () => {
+        expect(src).toContain('for (let i = 0');
+    });
+
+    it('history_clip ハンドラ: memo 宣言漏れの回帰確認', () => {
+        expect(src).toContain('const memo = prompt');
+    });
+});
+
 describe('CSaveController (source checks)', () => {
     let src = '';
 

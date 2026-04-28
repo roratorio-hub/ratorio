@@ -1,3 +1,4 @@
+import { CGlobalConstManager } from '../CGlobalConstManager.js';
 
 //----------------------------------------------------------------
 // データの要素番号
@@ -27,7 +28,7 @@ CGlobalConstManager.DefineEnum(
  * 状態異常データマネージャクラス.
  * @param dataArrayC 設定する状態異常データ配列
  */
-function CMigStateData (dataArrayC) {
+export function CMigStateData (dataArrayC) {
 
 	// データ配列
 	this.dataArray = null;
@@ -70,4 +71,7 @@ function CMigStateData (dataArrayC) {
 		return this.nameKanaArray;
 	};
 
+}
+if (typeof window !== 'undefined') {
+    window.CMigStateData = CMigStateData;
 }

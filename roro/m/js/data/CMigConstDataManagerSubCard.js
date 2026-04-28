@@ -1,7 +1,8 @@
+import { CMigConstDataManagerSubBase } from './CMigConstDataManagerSubBase.js';
 /**
  * カードデータマネージャクラス.
  */
-function CMigConstDataManagerSubCard () {
+export function CMigConstDataManagerSubCard () {
 
 	//----------------
 	// 継承定義は、クラス本体の次に記述
@@ -64,3 +65,6 @@ function CMigConstDataManagerSubCard () {
 
 }
 CMigConstDataManagerSubCard.prototype = new CMigConstDataManagerSubBase();
+if (typeof window !== 'undefined') {
+    window.CMigConstDataManagerSubCard = CMigConstDataManagerSubCard;
+}

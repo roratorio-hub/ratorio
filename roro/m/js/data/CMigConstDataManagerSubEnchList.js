@@ -1,7 +1,8 @@
+import { CMigConstDataManagerSubBase } from './CMigConstDataManagerSubBase.js';
 /**
  * エンチャントリストデータマネージャクラス.
  */
-function CMigConstDataManagerSubEnchList () {
+export function CMigConstDataManagerSubEnchList () {
 
 	// エンチャント効果の並び順定義配列
 	this.sortedEnchantCardIdArray = [];
@@ -64,3 +65,6 @@ function CMigConstDataManagerSubEnchList () {
 
 }
 CMigConstDataManagerSubEnchList.prototype = new CMigConstDataManagerSubBase();
+if (typeof window !== 'undefined') {
+    window.CMigConstDataManagerSubEnchList = CMigConstDataManagerSubEnchList;
+}

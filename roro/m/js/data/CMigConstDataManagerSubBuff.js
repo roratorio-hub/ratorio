@@ -1,7 +1,8 @@
+import { CMigConstDataManagerSubBase } from './CMigConstDataManagerSubBase.js';
 /**
  * バフデータマネージャクラス.
  */
-function CMigConstDataManagerSubBuff () {
+export function CMigConstDataManagerSubBuff () {
 
 	//----------------
 	// 継承定義は、クラス本体の次に記述
@@ -30,3 +31,6 @@ function CMigConstDataManagerSubBuff () {
 
 }
 CMigConstDataManagerSubBuff.prototype = new CMigConstDataManagerSubBase();
+if (typeof window !== 'undefined') {
+    window.CMigConstDataManagerSubBuff = CMigConstDataManagerSubBuff;
+}

@@ -2,7 +2,7 @@
 /**
  * 定義済みデータ管理クラス.
  */
-function CMigConstDataManager () {
+export function CMigConstDataManager () {
 
 	// 職業用データマネージャ
 	this.jobDataManager = null;
@@ -167,4 +167,8 @@ function CMigConstDataManager () {
 
 
 	this.Initialize();
+}
+
+if (typeof window !== 'undefined') {
+    window.CMigConstDataManager = CMigConstDataManager;
 }

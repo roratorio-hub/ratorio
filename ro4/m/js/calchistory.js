@@ -163,7 +163,7 @@ div.clip_memo {
       calc();
       const metadata = { "memo": "", "url": CSaveController.encodeToURL() };
       if ($("#clip_with_memo").prop('checked')) {
-        memo = prompt("clipメモ");
+        const memo = prompt("clipメモ");
         if (memo) metadata["memo"] = memo;
       }
       chart.data.labels.push(chart.data.labels.length + 1);
@@ -213,8 +213,8 @@ div.clip_memo {
     }
     const reload_history_table = () => {
       $("#clip_modal_table tbody *").remove();
-      body = ""
-      for (i = 0; i < data.labels.length; i++) {
+      let body = ""
+      for (let i = 0; i < data.labels.length; i++) {
         body += `<tr>
                   <td class="col no">${data.labels[i].toLocaleString()}</td>
                   <td class="col">${data.datasets[0].data[i].toLocaleString()}</td>

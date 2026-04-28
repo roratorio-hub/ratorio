@@ -1,7 +1,8 @@
+import { CMigConstDataManagerSubBase } from './CMigConstDataManagerSubBase.js';
 /**
  * 職業データマネージャクラス.
  */
-function CMigConstDataManagerSubJob () {
+export function CMigConstDataManagerSubJob () {
 
 	//----------------
 	// 継承定義は、クラス本体の次に記述
@@ -28,3 +29,6 @@ function CMigConstDataManagerSubJob () {
 
 }
 CMigConstDataManagerSubJob.prototype = new CMigConstDataManagerSubBase();
+if (typeof window !== 'undefined') {
+    window.CMigConstDataManagerSubJob = CMigConstDataManagerSubJob;
+}

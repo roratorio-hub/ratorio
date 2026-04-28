@@ -1,7 +1,8 @@
+import { CMigConstDataManagerSubBase } from './CMigConstDataManagerSubBase.js';
 /**
  * 矢データマネージャクラス.
  */
-function CMigConstDataManagerSubArrow () {
+export function CMigConstDataManagerSubArrow () {
 
 	//----------------
 	// 継承定義は、クラス本体の次に記述
@@ -73,3 +74,6 @@ function CMigConstDataManagerSubArrow () {
 
 }
 CMigConstDataManagerSubArrow.prototype = new CMigConstDataManagerSubBase();
+if (typeof window !== 'undefined') {
+    window.CMigConstDataManagerSubArrow = CMigConstDataManagerSubArrow;
+}

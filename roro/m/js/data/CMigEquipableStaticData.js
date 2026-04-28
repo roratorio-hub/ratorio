@@ -2,7 +2,7 @@
  * 装備可能品固定データクラス.
  * @param dataArrayC 設定するデータ配列（省略可）
  */
-function CMigEquipableStaticData (dataArrayC) {
+export function CMigEquipableStaticData (dataArrayC) {
 
 	// 属性マップ
 	this.attrMap = null;
@@ -112,4 +112,7 @@ function CMigEquipableStaticData (dataArrayC) {
 
 		return arrayData;
 	};
+}
+if (typeof window !== 'undefined') {
+    window.CMigEquipableStaticData = CMigEquipableStaticData;
 }

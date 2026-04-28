@@ -85,6 +85,24 @@
 | 79 | `roro/m/js/slotpager.js` | 2026-04-27 | サイドエフェクトモジュール。9箇所のトップレベル定数（SLOTPAGER_MODE_*等）を `window.*` 化。37関数 window互換ブロック追加 |
 | 80 | `roro/m/js/CExtraInfoAreaComponentManager.js` | 2026-04-27 | `export function GetExtraInfoText`, `export function CExtraInfoAreaComponentManager`。14変数の宣言漏れ（i, ptmCount, valueTextArraySP, paramArray, loopInfoCheck, selectedTargetId, idxBase, remainPlus, remainMinus, confval, itemCount）を `var` 修正。window互換ブロック追加 |
 | 81 | `roro/m/js/saveload.js` | 2026-04-27 | サイドエフェクトモジュール（5600行超の大型ファイル）。`with(document.calcForm)` 4ブロックを `var calcForm = document.calcForm;` + 明示参照に変換（ESM strict mode で `with` は SyntaxError）。`n_NtoS2`/`eqpRgn`/`SaveData`/`wStr`/`wLCF`/`i` 宣言漏れを `var` 修正。`SaveDataAll`/`SaveNameAll` を `window.*` 化（cross-function 共有）。`URLOUT` はコメント内で未定義のため compat から除外。22関数 window互換ブロック追加。`ro4/m/calcx.html` は `<base href="../../roro/m/">` タグにより `src="js/saveload.js"` が `roro/m/js/saveload.js` を指す |
+| 82 | `roro/m/js/data/CMigEquipableSpTag.js` | 2026-04-28 | `export function CMigEquipableSpTag`。window互換ブロック追加 |
+| 83 | `roro/m/js/data/CMigEquipableStaticData.js` | 2026-04-28 | `export function CMigEquipableStaticData`。window互換ブロック追加 |
+| 84 | `roro/m/js/data/CMigEquipableSpData.js` | 2026-04-28 | 3シンボル（CMigEquipableSpDataAttributeMatchingCore, CMigEquipableSpDataAttributeMatcher, CMigEquipableSpData）を export。window互換ブロック追加 |
+| 85 | `roro/m/js/data/CMigJobData.js` | 2026-04-28 | `export function CMigJobData`。`import { CGlobalConstManager }` 追加（DefineEnum をトップレベルで呼び出すため）。window互換ブロック追加 |
+| 86 | `roro/m/js/data/CMigStateData.js` | 2026-04-28 | `export function CMigStateData`。`import { CGlobalConstManager }` 追加。window互換ブロック追加 |
+| 87 | `roro/m/js/data/CMigEquipableData.js` | 2026-04-28 | `export function CMigEquipableData`。`import { CGlobalConstManager }` 追加。window互換ブロック追加 |
+| 88 | `roro/m/js/data/CMigConstDataManagerSubBase.js` | 2026-04-28 | `export function CMigConstDataManagerSubBase`。window互換ブロック追加 |
+| 89 | `roro/m/js/data/CMigConstDataManagerSubJob.js` | 2026-04-28 | `export function CMigConstDataManagerSubJob`。`import { CMigConstDataManagerSubBase }` 追加。`CMigConstDataManagerSubJob.prototype = new CMigConstDataManagerSubBase()` でプロトタイプチェーン確立。window互換ブロック追加 |
+| 90 | `roro/m/js/data/CMigConstDataManagerSubState.js` | 2026-04-28 | 同上パターン（CMigStateData を dataObjectClass に使用） |
+| 91 | `roro/m/js/data/CMigConstDataManagerSubBuff.js` | 2026-04-28 | 同上パターン（CMigEquipableData を dataObjectClass に使用） |
+| 92 | `roro/m/js/data/CMigConstDataManagerSubMonster.js` | 2026-04-28 | 同上パターン |
+| 93 | `roro/m/js/data/CMigConstDataManagerSubArrow.js` | 2026-04-28 | 同上パターン |
+| 94 | `roro/m/js/data/CMigConstDataManagerSubItem.js` | 2026-04-28 | 同上パターン |
+| 95 | `roro/m/js/data/CMigConstDataManagerSubCard.js` | 2026-04-28 | 同上パターン |
+| 96 | `roro/m/js/data/CMigConstDataManagerSubEnchList.js` | 2026-04-28 | 同上パターン |
+| 97 | `roro/m/js/data/CMigConstDataManagerSubRndOpt.js` | 2026-04-28 | 同上パターン |
+| 98 | `roro/m/js/data/CMigConstDataManager.js` | 2026-04-28 | `export function CMigConstDataManager`。window互換ブロック追加 |
+| 99 | `ro4/m/js/saveload.js` | 2026-04-28 | 10関数を export（OnClickSaveSaveData 等）。`ConvertDataTextMIG` 内 `saveDataMappingArrayCurrent` 宣言漏れを `let` で修正。window互換ブロック追加 |
 
 ## バグ修正ログ
 
@@ -102,6 +120,9 @@
 | 2026-04-28 | `roro/m/js/CExtraInfoAreaComponentManager.js` | `RefreshDispAreaEffectiveSp` 内 `objSpan` 未宣言 → `ReferenceError`（`RebuildDispAreaEffectiveSp` の `objSelect` 修正後に顕在化。元々の既存バグ） | `var objSpan = null;` を DOM 変数宣言ブロックに追加。回帰テスト: `tests/roro/CExtraInfoAreaComponentManager.test.js` |
 | 2026-04-28 | `roro/m/js/CExtraInfoAreaComponentManager.js` | `RefreshDispAreaCastAndDelay` 内 `spanClassName` 未宣言 → `ReferenceError` / `RefreshDispAreaEffectiveSp` 内 `value` 未宣言 → `ReferenceError` | 全 Rebuild/Refresh 関数を一括スキャンし `var spanClassName = "";` / `var value = 0;` を追加。回帰テスト追加 |
 | 2026-04-28 | `roro/m/js/castsim.js` | `RefreshCastSimSimulateArea` 内 `lv` / `objOption` 未宣言 → `ReferenceError`（スキル選択変更時） | `var lv = 0;` / `var objOption = null;` を関数先頭に追加。回帰テスト: `tests/roro/castsim.test.js` |
+| 2026-04-28 | `ro4/m/js/saveload.js` | `ConvertDataTextMIG` 内 `saveDataMappingArrayCurrent` 未宣言 → ESM strict mode で `ReferenceError`（旧形式セーブデータ変換時） | `let saveDataMappingArrayCurrent = null;` を関数先頭の変数宣言ブロックに追加。回帰テスト: `tests/ro4/saveload.test.js` |
+| 2026-04-28 | `ro4/m/js/calchistory.js` | `reload_history_table` 内 `body` / `i` 未宣言 → `ReferenceError`（Listボタンクリック時。ESM移行#47 時点から潜在していたバグ） | `let body = ""` / `for (let i = 0; ...)` に変更。回帰テスト: `tests/ro4/calchistory.test.js` |
+| 2026-04-28 | `ro4/m/js/calchistory.js` | `history_clip` クリックハンドラ内 `memo` 未宣言 → `ReferenceError`（clip_with_memoチェック時） | `memo = prompt(...)` → `const memo = prompt(...)` に変更。回帰テスト追加 |
 
 ## HTML 対応済み
 
@@ -118,6 +139,7 @@
   - #53〜#62 の10ファイル → `type="module"`（前セッション）。`browsermigration.js` はコメントアウトを解除して追加
   - #63〜#72 の10ファイル → `type="module"`（2026-04-27）
   - #73〜#81 の9ファイル → `type="module"`（2026-04-27）
+  - #82〜#99 の18ファイル（CMig* 17ファイル + ro4/m/js/saveload.js）→ `type="module"`（2026-04-28）
   - その他 ~50 の `<script>` タグ → `defer` 属性追加（前セッション）
 - `roro/other/itemlist.html`, `cardlist.html`, `monsterlist.html`, `petlist.html`, `exp.html`, `jobb.html`
 - `util/sortedEnchantCardIdArray.html`
@@ -159,6 +181,7 @@
 ~~上記10ファイルは 2026-04-27 に移行済み（#53〜#62）~~
 ~~上記10ファイルは 2026-04-27 に移行済み（#63〜#72）~~
 ~~上記9ファイルは 2026-04-27 に移行済み（#73〜#81）~~
+~~上記18ファイルは 2026-04-28 に移行済み（#82〜#99）~~
 
 | 優先 | ファイル | 注意点 |
 |------|---------|--------|

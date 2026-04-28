@@ -1,7 +1,8 @@
+import { CMigConstDataManagerSubBase } from './CMigConstDataManagerSubBase.js';
 /**
  * 状態異常データマネージャクラス.
  */
-function CMigConstDataManagerSubState () {
+export function CMigConstDataManagerSubState () {
 
 	//----------------
 	// 継承定義は、クラス本体の次に記述
@@ -28,3 +29,6 @@ function CMigConstDataManagerSubState () {
 
 }
 CMigConstDataManagerSubState.prototype = new CMigConstDataManagerSubBase();
+if (typeof window !== 'undefined') {
+    window.CMigConstDataManagerSubState = CMigConstDataManagerSubState;
+}

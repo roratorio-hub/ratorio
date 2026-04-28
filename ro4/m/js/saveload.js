@@ -3,7 +3,7 @@
 /**
  * セーブボタン押下イベントハンドラ.
  */
-function OnClickSaveSaveData () {
+export function OnClickSaveSaveData () {
 	// 必要情報の取得
 	const inputtedName = HtmlGetObjectValueById("OBJID_INPUT_SAVE_NAME_MIG", "");
 	const dataIndex = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_SAVE_DATA_MIG", 0);
@@ -32,7 +32,7 @@ function OnClickSaveSaveData () {
  * Cookieに保存されているセーブデータをクリップボードにコピーする関数
  * 不具合報告用に
  */
-function OnClickClipboardSaveData() {
+export function OnClickClipboardSaveData() {
 	const dataIndex = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_SAVE_DATA_MIG", 0);
 	const savedata = CSaveController.getSaveData(dataIndex);
 	if (savedata[1].length == 0) {
@@ -52,7 +52,7 @@ function OnClickClipboardSaveData() {
 /**
  * ロードボタン押下イベントハンドラ.
  */
-function OnClickLoadSaveData () {
+export function OnClickLoadSaveData () {
 	// 必要情報の取得
 	const dataIndex = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_SAVE_DATA_MIG", 0);
 	const saveName = CSaveController.getDisplayName(dataIndex);
@@ -80,7 +80,7 @@ function OnClickLoadSaveData () {
 /**
  * 削除ボタン押下イベントハンドラ.
  */
-function OnClickDeleteSaveData () {
+export function OnClickDeleteSaveData () {
 	// 必要情報の取得
 	const dataIndex = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_SAVE_DATA_MIG", 0);
 	const saveName = CSaveController.getDisplayName(dataIndex);
@@ -101,7 +101,7 @@ function OnClickDeleteSaveData () {
 /**
  * URL出力ボタン押下イベントハンドラ.
  */
-function OnClickUrlOutMIG () {
+export function OnClickUrlOutMIG () {
 
 	// データURLの生成
 	const dataURL = CSaveController.encodeToURL(true);
@@ -124,7 +124,7 @@ function OnClickUrlOutMIG () {
 /**
  * URL入力ボタン押下イベントハンドラ.
  */
-function OnClickUrlInMIG () {
+export function OnClickUrlInMIG () {
 	// インジケーター表示
 	showLoadingIndicator();
 	setTimeout(() => {
@@ -148,13 +148,14 @@ function OnClickUrlInMIG () {
 /**
  * セーブデータ形式を新形式へ変換する（旧DecodeURLの一部）.
  */
-function ConvertDataTextMIG(loadDataUrl) {
+export function ConvertDataTextMIG(loadDataUrl) {
 
 	let idx = 0;
 	let pos = 0;
 
 	let saveDataStrExtracted = "";
 	let saveDataMappingArray = null;
+	let saveDataMappingArrayCurrent = null;
 
 	let versionTarget = 0;
 	let saveDataArray = new Array();
@@ -282,7 +283,7 @@ function ConvertDataTextMIG(loadDataUrl) {
  * @param 展開済みセーブデータ文字列
  * @return データ長が合わせられたセーブデータ文字列
  */
-function AdaptSaveDataStrSizeMIG(saveDataStrExtracted) {
+export function AdaptSaveDataStrSizeMIG(saveDataStrExtracted) {
 
 	var idx = 0;
 
@@ -327,7 +328,7 @@ function AdaptSaveDataStrSizeMIG(saveDataStrExtracted) {
  * @param {string} wstr 旧形式のデータURL文字列
  * @returns 展開後のデータURL文字列
  */
-function SaveDataChangeMIG (wstr) {
+export function SaveDataChangeMIG (wstr) {
 
 	let regNum = /^(\D*)(\d+)(.*?)$/;
 
@@ -351,7 +352,20 @@ function SaveDataChangeMIG (wstr) {
 /**
  * 確認ダイアログの表示・非表示状態を変更する
  */
-function OnClickConfirmDialogSwitch() {
+export function OnClickConfirmDialogSwitch() {
 	const status = $("#OBJID_SWITCH_CONFIRM_DIALOG").prop("checked") ? 1 : 0;
 	CSaveController.setSettingProp(CSaveDataConst.propNameConfirmDialogSwitch, status);
+}
+
+if (typeof window !== 'undefined') {
+    window.OnClickSaveSaveData = OnClickSaveSaveData;
+    window.OnClickClipboardSaveData = OnClickClipboardSaveData;
+    window.OnClickLoadSaveData = OnClickLoadSaveData;
+    window.OnClickDeleteSaveData = OnClickDeleteSaveData;
+    window.OnClickUrlOutMIG = OnClickUrlOutMIG;
+    window.OnClickUrlInMIG = OnClickUrlInMIG;
+    window.ConvertDataTextMIG = ConvertDataTextMIG;
+    window.AdaptSaveDataStrSizeMIG = AdaptSaveDataStrSizeMIG;
+    window.SaveDataChangeMIG = SaveDataChangeMIG;
+    window.OnClickConfirmDialogSwitch = OnClickConfirmDialogSwitch;
 }

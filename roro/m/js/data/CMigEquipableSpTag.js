@@ -2,7 +2,7 @@
  * 装備可能品SPタグクラス.
  * @param dataArrayC 設定するデータ配列（省略可）
  */
-function CMigEquipableSpTag (dataArrayC) {
+export function CMigEquipableSpTag (dataArrayC) {
 
 	// SPID
 	this.spid = 0;
@@ -463,4 +463,7 @@ function CMigEquipableSpTag (dataArrayC) {
 		return arrayData;
 	};
 
+}
+if (typeof window !== 'undefined') {
+    window.CMigEquipableSpTag = CMigEquipableSpTag;
 }

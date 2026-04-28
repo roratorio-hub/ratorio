@@ -5,7 +5,7 @@
  * @param attrIdC 設定する属性ID（省略可）
  * @param attrValueArrayC 設定する属性値配列（省略可）
  */
-function CMigEquipableSpDataAttributeMatchingCore (spidC, attrIdC, attrValueArrayC) {
+export function CMigEquipableSpDataAttributeMatchingCore (spidC, attrIdC, attrValueArrayC) {
 
 	// SPID
 	this.spid = spidC ? spidC : 0;
@@ -23,7 +23,7 @@ function CMigEquipableSpDataAttributeMatchingCore (spidC, attrIdC, attrValueArra
  * @param attrIdC 設定する属性ID（省略可）
  * @param attrValueArrayC 設定する属性値配列（省略可）
  */
-function CMigEquipableSpDataAttributeMatcher (matchingCoreArrayC) {
+export function CMigEquipableSpDataAttributeMatcher (matchingCoreArrayC) {
 
 	// マッチングコアの配列
 	this.matchingCoreArray = matchingCoreArrayC ? matchingCoreArrayC : [];
@@ -37,7 +37,7 @@ function CMigEquipableSpDataAttributeMatcher (matchingCoreArrayC) {
  * 装備可能品SPデータクラス.
  * @param dataArrayC 設定するデータ配列（省略可）
  */
-function CMigEquipableSpData (dataArrayC) {
+export function CMigEquipableSpData (dataArrayC) {
 
 	// SPタグ
 	this.spTag = null;
@@ -420,4 +420,10 @@ function CMigEquipableSpData (dataArrayC) {
 		return spDataArray;
 	};
 
+}
+
+if (typeof window !== 'undefined') {
+    window.CMigEquipableSpDataAttributeMatchingCore = CMigEquipableSpDataAttributeMatchingCore;
+    window.CMigEquipableSpDataAttributeMatcher = CMigEquipableSpDataAttributeMatcher;
+    window.CMigEquipableSpData = CMigEquipableSpData;
 }

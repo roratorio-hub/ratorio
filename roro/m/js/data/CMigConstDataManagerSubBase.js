@@ -11,7 +11,7 @@
 /**
  * データマネージャ基底クラス.
  */
-function CMigConstDataManagerSubBase () {
+export function CMigConstDataManagerSubBase () {
 
 	// データオブジェクトのクラス
 	this.dataObjectClass = null;
@@ -282,4 +282,7 @@ function CMigConstDataManagerSubBase () {
 
 		return this.registeredIdArray.slice();
 	};
+}
+if (typeof window !== 'undefined') {
+    window.CMigConstDataManagerSubBase = CMigConstDataManagerSubBase;
 }
