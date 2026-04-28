@@ -1,8 +1,9 @@
+import { CSaveDataUnitBase } from './CSaveDataUnitBase.js';
 /**
  * 「武器属性付与」「その他の支援/設定」情報クラス
  *  TODO: 単純なBUFFレベルではなく、もっと複雑なデータ構造をしているが未対応
  */
-class CSaveDataUnitCharaBuff extends CSaveDataUnitBase {
+export class CSaveDataUnitCharaBuff extends CSaveDataUnitBase {
 
     /**
      * タイプ値.
@@ -73,4 +74,8 @@ class CSaveDataUnitCharaBuff extends CSaveDataUnitBase {
         // それ以外は、共用の判定処理を利用
         return this.isEmptyUnit_CtrlFlag0();
     }
+}
+
+if (typeof window !== 'undefined') {
+    window.CSaveDataUnitCharaBuff = CSaveDataUnitCharaBuff;
 }

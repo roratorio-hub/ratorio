@@ -1,8 +1,9 @@
+import { CSaveDataUnitBase } from './CSaveDataUnitBase.js';
 /**
  * 「演奏/踊り系スキル」情報クラス
  * TODO: 単純なBUFFレベルではなく、もっと複雑なデータ構造をしているが未対応
  */
-class CSaveDataUnitSkillBuffMusic extends CSaveDataUnitBase {
+export class CSaveDataUnitSkillBuffMusic extends CSaveDataUnitBase {
 
     /**
      * タイプ値.
@@ -67,4 +68,8 @@ class CSaveDataUnitSkillBuffMusic extends CSaveDataUnitBase {
         // 共用の判定処理を利用
         return this.isEmptyUnit_CtrlFlag0();
     }
+}
+
+if (typeof window !== 'undefined') {
+    window.CSaveDataUnitSkillBuffMusic = CSaveDataUnitSkillBuffMusic;
 }

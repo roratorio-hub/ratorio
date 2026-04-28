@@ -1,7 +1,8 @@
+import { CSaveDataUnitBase } from './CSaveDataUnitBase.js';
 /**
  * 「セーブデータユニットのバージョン」を表現するクラス
  */
-class CSaveDataUnitVersion extends CSaveDataUnitBase {
+export class CSaveDataUnitVersion extends CSaveDataUnitBase {
 
     /**
      * タイプ値.
@@ -32,4 +33,8 @@ class CSaveDataUnitVersion extends CSaveDataUnitBase {
     isEmptyUnit () {
         return false;
     }
+}
+
+if (typeof window !== 'undefined') {
+    window.CSaveDataUnitVersion = CSaveDataUnitVersion;
 }

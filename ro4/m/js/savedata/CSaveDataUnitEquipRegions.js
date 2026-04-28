@@ -1,8 +1,9 @@
+import { CSaveDataUnitBase } from './CSaveDataUnitBase.js';
 /**
  * 「装備箇所」情報クラス
  * シャドウ装備は管理対象外
  */
-class CSaveDataUnitEquipRegions extends CSaveDataUnitBase {
+export class CSaveDataUnitEquipRegions extends CSaveDataUnitBase {
 
     /**
      * タイプ値.
@@ -87,4 +88,8 @@ class CSaveDataUnitEquipRegions extends CSaveDataUnitBase {
         // 共用の判定処理を利用
         return this.isEmptyUnit_CtrlFlag0();
     }
+}
+
+if (typeof window !== 'undefined') {
+    window.CSaveDataUnitEquipRegions = CSaveDataUnitEquipRegions;
 }

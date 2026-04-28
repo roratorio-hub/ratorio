@@ -1,8 +1,9 @@
+import { CSaveDataUnitBase } from './CSaveDataUnitBase.js';
 /**
  * 「性能カスタマイズ（特化）」情報クラス
  *  TODO: 今は存在しない設定欄なので使われているのか確認が必要
  */
-class CSaveDataUnitCharaConfSpecialize extends CSaveDataUnitBase {
+export class CSaveDataUnitCharaConfSpecialize extends CSaveDataUnitBase {
 
     /**
      * タイプ値.
@@ -273,4 +274,8 @@ class CSaveDataUnitCharaConfSpecialize extends CSaveDataUnitBase {
         // 共用の判定処理を利用
         return this.isEmptyUnit_CtrlFlag0();
     }
+}
+
+if (typeof window !== 'undefined') {
+    window.CSaveDataUnitCharaConfSpecialize = CSaveDataUnitCharaConfSpecialize;
 }

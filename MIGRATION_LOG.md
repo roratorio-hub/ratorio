@@ -103,6 +103,11 @@
 | 97 | `roro/m/js/data/CMigConstDataManagerSubRndOpt.js` | 2026-04-28 | 同上パターン |
 | 98 | `roro/m/js/data/CMigConstDataManager.js` | 2026-04-28 | `export function CMigConstDataManager`。window互換ブロック追加 |
 | 99 | `ro4/m/js/saveload.js` | 2026-04-28 | 10関数を export（OnClickSaveSaveData 等）。`ConvertDataTextMIG` 内 `saveDataMappingArrayCurrent` 宣言漏れを `let` で修正。window互換ブロック追加 |
+| 100 | `ro4/m/js/global.js` | 2026-04-28 | トップレベル `let`/`const` 24変数を `window.*` 化（ESM `let` はモジュールスコープ限定のため）。`ResetConfDataAllMIG`, `__DIG3` を export。`g_skillManager`, `g_constDataManager` 等を `window.*` 化。window互換ブロック追加 |
+| 101 | `ro4/m/js/savedata/CSaveDataUnitBase.js` | 2026-04-28 | `export class CSaveDataUnitBase`。window互換ブロック追加 |
+| 102–131 | `ro4/m/js/savedata/CSaveDataUnit{AttackConf,AutoSpells,Chara,CharaBuff,CharaConfBasic,CharaConfSkill,CharaConfSpecBasic,CharaConfSpecialize,CharaDebuff,EquipArrow,EquipRegions,Equipable,ItemBuff,LearnedSkills,Mob,MobBuff,MobConfInput,MobConfPlayer,MobConfPlayer2,MobDebuff,Settings,SkillBuff1st,SkillBuff2nd,SkillBuff3rd,SkillBuff4th,SkillBuffGuild,SkillBuffMusic,SkillBuffSelf,TimeBuff,Version}.js` | 2026-04-28 | 30ファイルをバッチESM化。各ファイルに `import { CSaveDataUnitBase } from './CSaveDataUnitBase.js'` 追加・`export class` 化・window互換ブロック追加 |
+| 132 | `ro4/m/js/savedata/CSaveDataUnit.js` | 2026-04-28 | 30個の `const SAVE_DATA_UNIT_TYPE_*` を `window.*` 化（`CSaveDataManager.js`（ESM）等がグローバル参照するため）。export 宣言・window互換ブロックは不要（window.* 代入のみ） |
+| 133 | `ro4/m/js/savedata/CSaveDataUnitParse.js` | 2026-04-28 | `import { CSaveDataUnitBase }` 追加・`export class CSaveDataUnitParse extends CSaveDataUnitBase`。private class fields（`#parsedUnitArray`, `#typeValueMin`）はそのまま維持。window互換ブロック追加 |
 
 ## バグ修正ログ
 
@@ -140,6 +145,8 @@
   - #63〜#72 の10ファイル → `type="module"`（2026-04-27）
   - #73〜#81 の9ファイル → `type="module"`（2026-04-27）
   - #82〜#99 の18ファイル（CMig* 17ファイル + ro4/m/js/saveload.js）→ `type="module"`（2026-04-28）
+  - #100 `global.js` → `type="module"`（2026-04-28）
+  - #101 `CSaveDataUnitBase.js` + #102–#131 CSaveDataUnit 30サブクラス + #132 `CSaveDataUnit.js` + #133 `CSaveDataUnitParse.js`（計33ファイル）→ `type="module"`（2026-04-28）
   - その他 ~50 の `<script>` タグ → `defer` 属性追加（前セッション）
 - `roro/other/itemlist.html`, `cardlist.html`, `monsterlist.html`, `petlist.html`, `exp.html`, `jobb.html`
 - `util/sortedEnchantCardIdArray.html`
@@ -194,7 +201,7 @@
 | 理由 | ファイル |
 |------|---------|
 | **継承チェーン（CConfBase）** 12ファイル | `CConfBase.js`, `CConfBase2.js`, `CCharaConfIchizi.js`, `CCharaConfNizi.js`, `CCharaConfSanzi.js`, `CCharaConfYozi.js`, `CCharaConfDebuff.js`, `CCharaConfCustomStatus.js`, `CCharaConfCustomAtk.js`, `CCharaConfCustomDef.js`, `CCharaConfCustomSkill.js`, `CCharaConfCustomSpecStatus.js` — トップレベルで `.prototype = new CConfBase()` 実行 |
-| **継承チェーン（CSaveDataUnitBase）** 30ファイル | `CSaveDataUnitBase.js` 本体 + 全 `CSaveDataUnit*.js`（29ファイル）— `class Foo extends CSaveDataUnitBase` をトップレベルで実行 |
+| ~~**継承チェーン（CSaveDataUnitBase）** 30ファイル~~ | ~~`CSaveDataUnitBase.js` 本体 + 全 `CSaveDataUnit*.js`（29ファイル）— `class Foo extends CSaveDataUnitBase` をトップレベルで実行~~  → **2026-04-28 解決済み**（#101〜#133） |
 | **CMobConfInput.js** | `CMobConfInputAreaComponentManager.prototype = new CConfBase2()` at line 222 — CConfBase2 の移行待ち |
 | **`.dat.js` IIFE ファイル群** ~15ファイル | `(function(){ g_xxx = [...] })()` パターン。defer より module が後に実行されるため、foot.js 起動時に未初期化になる危険あり |
 
@@ -203,7 +210,7 @@
 ### ステップ3: 次の変換候補
 
 - 上記「即着手可能」の10ファイルを順次変換する
-- `ro4/m/js/savedata/CSaveDataUnitBase.js` — BLOCKED: 全 CSaveDataUnit*.js が `class Foo extends CSaveDataUnitBase` をトップレベルで実行するため、先に全 Unit を移行しないと変換不可
+- ~~`ro4/m/js/savedata/CSaveDataUnitBase.js` — BLOCKED~~ → **2026-04-28 解決済み**（#101〜#133）
 - `roro/m/js/CConfBase.js`、`CConfBase2.js` — BLOCKED: `CCharaConfIchizi.js` が `CCharaConfIchizi.prototype = new CConfBase()` をトップレベルで実行するため
 - `.dat.js` ファイル群（`alias.dat.js`, `item.dat.js`, `card.dat.js` 等）— CAUTION: foot.js より前に実行される defer スクリプトがトップレベルでグローバルを参照するため、変換後は module が defer より後に実行される問題あり
 

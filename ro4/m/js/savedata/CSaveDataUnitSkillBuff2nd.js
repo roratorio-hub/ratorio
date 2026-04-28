@@ -1,7 +1,8 @@
+import { CSaveDataUnitBase } from './CSaveDataUnitBase.js';
 /**
  * 「二次職支援設定」情報クラス
  */
-class CSaveDataUnitSkillBuff2nd extends CSaveDataUnitBase {
+export class CSaveDataUnitSkillBuff2nd extends CSaveDataUnitBase {
 
     /**
      * タイプ値.
@@ -65,4 +66,8 @@ class CSaveDataUnitSkillBuff2nd extends CSaveDataUnitBase {
         // 共用の判定処理を利用
         return this.isEmptyUnit_CtrlFlag0();
     }
+}
+
+if (typeof window !== 'undefined') {
+    window.CSaveDataUnitSkillBuff2nd = CSaveDataUnitSkillBuff2nd;
 }

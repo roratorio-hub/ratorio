@@ -1,7 +1,8 @@
+import { CSaveDataUnitBase } from './CSaveDataUnitBase.js';
 /**
  * 「習得スキル」情報クラス
  */
-class CSaveDataUnitLearnedSkills extends CSaveDataUnitBase {
+export class CSaveDataUnitLearnedSkills extends CSaveDataUnitBase {
 
     /**
      * タイプ値.
@@ -65,4 +66,8 @@ class CSaveDataUnitLearnedSkills extends CSaveDataUnitBase {
         // 共用の判定処理を利用
         return this.isEmptyUnit_CtrlFlag0();
     }
+}
+
+if (typeof window !== 'undefined') {
+    window.CSaveDataUnitLearnedSkills = CSaveDataUnitLearnedSkills;
 }

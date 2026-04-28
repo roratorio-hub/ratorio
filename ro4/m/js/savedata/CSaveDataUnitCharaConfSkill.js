@@ -1,7 +1,8 @@
+import { CSaveDataUnitBase } from './CSaveDataUnitBase.js';
 /**
  * 「性能カスタマイズ（スキル関連）」情報クラス
  */
-class CSaveDataUnitCharaConfSkill extends CSaveDataUnitBase {
+export class CSaveDataUnitCharaConfSkill extends CSaveDataUnitBase {
 
     /**
      * タイプ値.
@@ -105,4 +106,8 @@ class CSaveDataUnitCharaConfSkill extends CSaveDataUnitBase {
         // 共用の判定処理を利用
         return this.isEmptyUnit_CtrlFlag0();
     }
+}
+
+if (typeof window !== 'undefined') {
+    window.CSaveDataUnitCharaConfSkill = CSaveDataUnitCharaConfSkill;
 }

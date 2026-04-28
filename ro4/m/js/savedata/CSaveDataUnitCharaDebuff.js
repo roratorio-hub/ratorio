@@ -1,7 +1,8 @@
+import { CSaveDataUnitBase } from './CSaveDataUnitBase.js';
 /**
  * 「その他の支援/設定」の「自キャラクターがかけられた状態異常」情報クラス
  */
-class CSaveDataUnitCharaDebuff extends CSaveDataUnitBase {
+export class CSaveDataUnitCharaDebuff extends CSaveDataUnitBase {
 
     /**
      * タイプ値.
@@ -65,4 +66,8 @@ class CSaveDataUnitCharaDebuff extends CSaveDataUnitBase {
         // 共用の判定処理を利用
         return this.isEmptyUnit_CtrlFlag0();
     }
+}
+
+if (typeof window !== 'undefined') {
+    window.CSaveDataUnitCharaDebuff = CSaveDataUnitCharaDebuff;
 }

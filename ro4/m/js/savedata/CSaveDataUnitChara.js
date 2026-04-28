@@ -1,7 +1,8 @@
+import { CSaveDataUnitBase } from './CSaveDataUnitBase.js';
 /**
  * 「基本ステータス」「特性ステータス」情報クラス
  */
-class CSaveDataUnitChara extends CSaveDataUnitBase {
+export class CSaveDataUnitChara extends CSaveDataUnitBase {
 
     /**
      * タイプ値.
@@ -82,4 +83,8 @@ class CSaveDataUnitChara extends CSaveDataUnitBase {
     isEmptyUnit () {
         return false;
     }
+}
+
+if (typeof window !== 'undefined') {
+    window.CSaveDataUnitChara = CSaveDataUnitChara;
 }

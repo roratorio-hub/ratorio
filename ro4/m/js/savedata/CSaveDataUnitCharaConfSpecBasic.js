@@ -1,8 +1,9 @@
+import { CSaveDataUnitBase } from './CSaveDataUnitBase.js';
 /**
  * 「性能カスタマイズ（特性ステータス）」情報クラス
  * TODO: CSaveDataUnitCharaConfBasic と役割重複している可能性あり確認が必要
  */
-class CSaveDataUnitCharaConfSpecBasic extends CSaveDataUnitBase {
+export class CSaveDataUnitCharaConfSpecBasic extends CSaveDataUnitBase {
 
     /**
      * タイプ値.
@@ -111,4 +112,8 @@ class CSaveDataUnitCharaConfSpecBasic extends CSaveDataUnitBase {
         // 共用の判定処理を利用
         return this.isEmptyUnit_CtrlFlag0();
     }
+}
+
+if (typeof window !== 'undefined') {
+    window.CSaveDataUnitCharaConfSpecBasic = CSaveDataUnitCharaConfSpecBasic;
 }

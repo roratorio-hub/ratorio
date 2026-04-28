@@ -1,7 +1,8 @@
+import { CSaveDataUnitBase } from './CSaveDataUnitBase.js';
 /**
  * 「武器＆防具/カード」情報クラス
  */
-class CSaveDataUnitEquipable extends CSaveDataUnitBase {
+export class CSaveDataUnitEquipable extends CSaveDataUnitBase {
 
     /**
      * タイプ値.
@@ -303,4 +304,8 @@ class CSaveDataUnitEquipable extends CSaveDataUnitBase {
         return super.encodeToURL(dataTextWork, bitOffset);
     }
 
+}
+
+if (typeof window !== 'undefined') {
+    window.CSaveDataUnitEquipable = CSaveDataUnitEquipable;
 }

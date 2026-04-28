@@ -1,7 +1,8 @@
+import { CSaveDataUnitBase } from './CSaveDataUnitBase.js';
 /**
  * 「アイテム(食品/他)」情報クラス
  */
-class CSaveDataUnitItemBuff extends CSaveDataUnitBase {
+export class CSaveDataUnitItemBuff extends CSaveDataUnitBase {
 
     /**
      * タイプ値.
@@ -94,4 +95,8 @@ class CSaveDataUnitItemBuff extends CSaveDataUnitBase {
         // 共用の判定処理を利用
         return this.isEmptyUnit_CtrlFlag0();
     }
+}
+
+if (typeof window !== 'undefined') {
+    window.CSaveDataUnitItemBuff = CSaveDataUnitItemBuff;
 }

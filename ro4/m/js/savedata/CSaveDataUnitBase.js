@@ -1,7 +1,7 @@
 /**
  * セーブデータユニットクラス：基底.
  */
-class CSaveDataUnitBase {
+export class CSaveDataUnitBase {
 
 	/**
 	 * 処理順に並んだプロパティ名（継承プロパティ含む）.
@@ -455,4 +455,8 @@ class CSaveDataUnitBase {
 		}
 		return true;
 	}
+}
+
+if (typeof window !== 'undefined') {
+    window.CSaveDataUnitBase = CSaveDataUnitBase;
 }

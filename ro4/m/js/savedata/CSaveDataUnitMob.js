@@ -1,7 +1,8 @@
+import { CSaveDataUnitBase } from './CSaveDataUnitBase.js';
 /**
  * 「モンスター」情報クラス
  */
-class CSaveDataUnitMob extends CSaveDataUnitBase {
+export class CSaveDataUnitMob extends CSaveDataUnitBase {
 
     /**
      * タイプ値.
@@ -70,4 +71,8 @@ class CSaveDataUnitMob extends CSaveDataUnitBase {
     isEmptyUnit () {
         return false;
     }
+}
+
+if (typeof window !== 'undefined') {
+    window.CSaveDataUnitMob = CSaveDataUnitMob;
 }

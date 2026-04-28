@@ -1,7 +1,8 @@
+import { CSaveDataUnitBase } from './CSaveDataUnitBase.js';
 /**
  * 「対プレイヤー設定」情報クラス
  */
-class CSaveDataUnitMobConfPlayer2 extends CSaveDataUnitBase {
+export class CSaveDataUnitMobConfPlayer2 extends CSaveDataUnitBase {
 
     /**
      * タイプ値.
@@ -227,4 +228,8 @@ class CSaveDataUnitMobConfPlayer2 extends CSaveDataUnitBase {
         // 共用の判定処理を利用
         return this.isEmptyUnit_CtrlFlag0();
     }
+}
+
+if (typeof window !== 'undefined') {
+    window.CSaveDataUnitMobConfPlayer2 = CSaveDataUnitMobConfPlayer2;
 }

@@ -1,7 +1,8 @@
+import { CSaveDataUnitBase } from './CSaveDataUnitBase.js';
 /**
  * 「モンスター状態異常設定」情報クラス
  */
-class CSaveDataUnitMobDebuff extends CSaveDataUnitBase {
+export class CSaveDataUnitMobDebuff extends CSaveDataUnitBase {
 
     /**
      * タイプ値.
@@ -66,4 +67,8 @@ class CSaveDataUnitMobDebuff extends CSaveDataUnitBase {
         // 共用の判定処理を利用
         return this.isEmptyUnit_CtrlFlag0();
     }
+}
+
+if (typeof window !== 'undefined') {
+    window.CSaveDataUnitMobDebuff = CSaveDataUnitMobDebuff;
 }

@@ -1,7 +1,8 @@
+import { CSaveDataUnitBase } from './CSaveDataUnitBase.js';
 /**
  * 「モンスター手入力設定」情報クラス
  */
-class CSaveDataUnitMobConfInput extends CSaveDataUnitBase {
+export class CSaveDataUnitMobConfInput extends CSaveDataUnitBase {
 
     /**
      * タイプ値.
@@ -192,4 +193,8 @@ class CSaveDataUnitMobConfInput extends CSaveDataUnitBase {
         // ここに来るならば、すべての設定がデフォルトのまま
         return true;
     }
+}
+
+if (typeof window !== 'undefined') {
+    window.CSaveDataUnitMobConfInput = CSaveDataUnitMobConfInput;
 }

@@ -1,8 +1,10 @@
+import { CSaveDataUnitBase } from './CSaveDataUnitBase.js';
+
 /**
  * セーブデータユニットクラス：パース開始用.
  * （他とは異なる特殊な構造、特殊な扱い）
  */
-class CSaveDataUnitParse extends CSaveDataUnitBase {
+export class CSaveDataUnitParse extends CSaveDataUnitBase {
 	/**
 	 * 許容されるタイプ値の最小値.
 	 */
@@ -842,4 +844,8 @@ class CSaveDataUnitParse extends CSaveDataUnitBase {
 		}
 		return dataTextWork;
 	}
+}
+
+if (typeof window !== 'undefined') {
+    window.CSaveDataUnitParse = CSaveDataUnitParse;
 }

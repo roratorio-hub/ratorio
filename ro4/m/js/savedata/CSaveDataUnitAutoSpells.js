@@ -1,7 +1,8 @@
+import { CSaveDataUnitBase } from './CSaveDataUnitBase.js';
 /**
  * 「オートスペル設定」情報クラス
  */
-class CSaveDataUnitAutoSpells extends CSaveDataUnitBase {
+export class CSaveDataUnitAutoSpells extends CSaveDataUnitBase {
 
     /**
      * タイプ値.
@@ -74,4 +75,8 @@ class CSaveDataUnitAutoSpells extends CSaveDataUnitBase {
         // 共用の判定処理を利用
         return this.isEmptyUnit_CtrlFlag0();
     }
+}
+
+if (typeof window !== 'undefined') {
+    window.CSaveDataUnitAutoSpells = CSaveDataUnitAutoSpells;
 }

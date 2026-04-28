@@ -1,7 +1,8 @@
+import { CSaveDataUnitBase } from './CSaveDataUnitBase.js';
 /**
  * 「アイテム時限効果」情報クラス
  */
-class CSaveDataUnitTimeBuff extends CSaveDataUnitBase {
+export class CSaveDataUnitTimeBuff extends CSaveDataUnitBase {
 
     /**
      * タイプ値.
@@ -65,4 +66,8 @@ class CSaveDataUnitTimeBuff extends CSaveDataUnitBase {
         // 共用の判定処理を利用
         return this.isEmptyUnit_CtrlFlag0();
     }
+}
+
+if (typeof window !== 'undefined') {
+    window.CSaveDataUnitTimeBuff = CSaveDataUnitTimeBuff;
 }

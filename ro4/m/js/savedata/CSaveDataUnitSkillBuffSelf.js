@@ -1,7 +1,8 @@
+import { CSaveDataUnitBase } from './CSaveDataUnitBase.js';
 /**
  * 「職固有自己支援・パッシブ持続系」情報クラス
  */
-class CSaveDataUnitSkillBuffSelf extends CSaveDataUnitBase {
+export class CSaveDataUnitSkillBuffSelf extends CSaveDataUnitBase {
 
     /**
      * タイプ値.
@@ -65,4 +66,8 @@ class CSaveDataUnitSkillBuffSelf extends CSaveDataUnitBase {
         // 共用の判定処理を利用
         return this.isEmptyUnit_CtrlFlag0();
     }
+}
+
+if (typeof window !== 'undefined') {
+    window.CSaveDataUnitSkillBuffSelf = CSaveDataUnitSkillBuffSelf;
 }

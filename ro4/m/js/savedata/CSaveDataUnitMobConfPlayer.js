@@ -1,8 +1,9 @@
+import { CSaveDataUnitBase } from './CSaveDataUnitBase.js';
 /**
  * 「対プレイヤー設定」情報クラス
  * 旧セーブデータから変換する時だけ使われている
  */
-class CSaveDataUnitMobConfPlayer extends CSaveDataUnitBase {
+export class CSaveDataUnitMobConfPlayer extends CSaveDataUnitBase {
 
     /**
      * タイプ値.
@@ -228,4 +229,8 @@ class CSaveDataUnitMobConfPlayer extends CSaveDataUnitBase {
         // 共用の判定処理を利用
         return this.isEmptyUnit_CtrlFlag0();
     }
+}
+
+if (typeof window !== 'undefined') {
+    window.CSaveDataUnitMobConfPlayer = CSaveDataUnitMobConfPlayer;
 }

@@ -1,7 +1,8 @@
+import { CSaveDataUnitBase } from './CSaveDataUnitBase.js';
 /**
  * 「モンスター状態強化設定」情報クラス
  */
-class CSaveDataUnitMobBuff extends CSaveDataUnitBase {
+export class CSaveDataUnitMobBuff extends CSaveDataUnitBase {
 
     /**
      * タイプ値.
@@ -66,4 +67,8 @@ class CSaveDataUnitMobBuff extends CSaveDataUnitBase {
         // 共用の判定処理を利用
         return this.isEmptyUnit_CtrlFlag0();
     }
+}
+
+if (typeof window !== 'undefined') {
+    window.CSaveDataUnitMobBuff = CSaveDataUnitMobBuff;
 }

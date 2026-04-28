@@ -1,8 +1,9 @@
+import { CSaveDataUnitBase } from './CSaveDataUnitBase.js';
 /**
  * 「ギルドスキル/ゴスペル/他」情報クラス
  * TODO: 単純なBUFFレベルではなく、もっと複雑なデータ構造をしているが未対応
  */
-class CSaveDataUnitSkillBuffGuild extends CSaveDataUnitBase {
+export class CSaveDataUnitSkillBuffGuild extends CSaveDataUnitBase {
 
     /**
      * タイプ値.
@@ -66,4 +67,8 @@ class CSaveDataUnitSkillBuffGuild extends CSaveDataUnitBase {
         // 共用の判定処理を利用
         return this.isEmptyUnit_CtrlFlag0();
     }
+}
+
+if (typeof window !== 'undefined') {
+    window.CSaveDataUnitSkillBuffGuild = CSaveDataUnitSkillBuffGuild;
 }
