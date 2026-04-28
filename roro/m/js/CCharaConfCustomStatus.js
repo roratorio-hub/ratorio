@@ -1,4 +1,5 @@
-function CCharaConfCustomStatus(confArray) {
+import { CConfBase } from './CConfBase.js';
+export function CCharaConfCustomStatus(confArray) {
 
 	// 継承定義
 	CCharaConfCustomStatus.prototype = new CConfBase();
@@ -483,6 +484,8 @@ function CCharaConfCustomStatus(confArray) {
 	 * （継承先でオーバーライドすること）
 	 */
 	this.BuildUpSelectAreaSubForSpecial = function (objTd, confData) {
+		var objSelect = null;
+		var objOption = null;
 
 		var index = 0;
 
@@ -598,4 +601,8 @@ function CCharaConfCustomStatus(confArray) {
 
 
 
+}
+
+if (typeof window !== 'undefined') {
+    window.CCharaConfCustomStatus = CCharaConfCustomStatus;
 }

@@ -108,6 +108,11 @@
 | 102–131 | `ro4/m/js/savedata/CSaveDataUnit{AttackConf,AutoSpells,Chara,CharaBuff,CharaConfBasic,CharaConfSkill,CharaConfSpecBasic,CharaConfSpecialize,CharaDebuff,EquipArrow,EquipRegions,Equipable,ItemBuff,LearnedSkills,Mob,MobBuff,MobConfInput,MobConfPlayer,MobConfPlayer2,MobDebuff,Settings,SkillBuff1st,SkillBuff2nd,SkillBuff3rd,SkillBuff4th,SkillBuffGuild,SkillBuffMusic,SkillBuffSelf,TimeBuff,Version}.js` | 2026-04-28 | 30ファイルをバッチESM化。各ファイルに `import { CSaveDataUnitBase } from './CSaveDataUnitBase.js'` 追加・`export class` 化・window互換ブロック追加 |
 | 132 | `ro4/m/js/savedata/CSaveDataUnit.js` | 2026-04-28 | 30個の `const SAVE_DATA_UNIT_TYPE_*` を `window.*` 化（`CSaveDataManager.js`（ESM）等がグローバル参照するため）。export 宣言・window互換ブロックは不要（window.* 代入のみ） |
 | 133 | `ro4/m/js/savedata/CSaveDataUnitParse.js` | 2026-04-28 | `import { CSaveDataUnitBase }` 追加・`export class CSaveDataUnitParse extends CSaveDataUnitBase`。private class fields（`#parsedUnitArray`, `#typeValueMin`）はそのまま維持。window互換ブロック追加 |
+| 134 | `roro/frame.js` | 2026-04-29 | `export function SwitchBGColor`。トップレベル `g_BGColorSwitch` を `window.g_BGColorSwitch` に変更。window互換ブロック追加 |
+| 135 | `roro/m/js/CConfBase.js` | 2026-04-29 | `export function CTargetData`, `export function CConfBase`。window互換ブロック追加 |
+| 136 | `roro/m/js/CConfBase2.js` | 2026-04-29 | 5シンボル（CConfBaseSelectData, CConfBaseConfData, CConfBaseRegisterParam, CConfBaseManagementParam, CConfBase2）を export。window互換ブロック追加 |
+| 137–146 | `roro/m/js/CCharaConf{Ichizi,Nizi,Sanzi,Yozi,Debuff,CustomStatus,CustomAtk,CustomDef,CustomSkill,CustomSpecStatus}.js` | 2026-04-29 | 10ファイルをバッチ ESM 化。各ファイルに `import { CConfBase } from './CConfBase.js'` 追加・`export function/class` 化・`var objSelect/objOption` 宣言追加（6ファイル）・window互換ブロック追加。`CCharaConfDebuff.js` は `class extends CConfBase` パターン |
+| 147 | `roro/m/js/CMobConfInput.js` | 2026-04-29 | `import { CGlobalConstManager }`, `import { CConfBase2, ... }` 追加。5シンボルを export。トップレベル `g_dataManagerMobConfInput` を `window.*` 化。`EncodeData` 内 `value` / `InputModifyProtect` 内 `idx` 宣言漏れを `var` 修正。window互換ブロック追加。テストはソーステキスト検証（IIFE が SIZE_ID_SMALL 等に依存するため直接 import 不可） |
 
 ## バグ修正ログ
 
@@ -147,6 +152,8 @@
   - #82〜#99 の18ファイル（CMig* 17ファイル + ro4/m/js/saveload.js）→ `type="module"`（2026-04-28）
   - #100 `global.js` → `type="module"`（2026-04-28）
   - #101 `CSaveDataUnitBase.js` + #102–#131 CSaveDataUnit 30サブクラス + #132 `CSaveDataUnit.js` + #133 `CSaveDataUnitParse.js`（計33ファイル）→ `type="module"`（2026-04-28）
+  - #134 `frame.js` → `type="module"`（2026-04-29、`ro4/m/calcx.html` line 2113）
+  - #135 `CConfBase.js` + #136 `CConfBase2.js` + #137–#146 CCharaConf* 10ファイル + #147 `CMobConfInput.js`（計13ファイル）→ `type="module"`（2026-04-29）
   - その他 ~50 の `<script>` タグ → `defer` 属性追加（前セッション）
 - `roro/other/itemlist.html`, `cardlist.html`, `monsterlist.html`, `petlist.html`, `exp.html`, `jobb.html`
 - `util/sortedEnchantCardIdArray.html`
@@ -200,9 +207,9 @@
 
 | 理由 | ファイル |
 |------|---------|
-| **継承チェーン（CConfBase）** 12ファイル | `CConfBase.js`, `CConfBase2.js`, `CCharaConfIchizi.js`, `CCharaConfNizi.js`, `CCharaConfSanzi.js`, `CCharaConfYozi.js`, `CCharaConfDebuff.js`, `CCharaConfCustomStatus.js`, `CCharaConfCustomAtk.js`, `CCharaConfCustomDef.js`, `CCharaConfCustomSkill.js`, `CCharaConfCustomSpecStatus.js` — トップレベルで `.prototype = new CConfBase()` 実行 |
+| ~~**継承チェーン（CConfBase）** 12ファイル~~ | ~~`CConfBase.js` 等~~ → **2026-04-29 解決済み**（#135〜#146）。`prototype = new CConfBase()` はコンストラクタ本体内のため ESM 化に問題なし |
 | ~~**継承チェーン（CSaveDataUnitBase）** 30ファイル~~ | ~~`CSaveDataUnitBase.js` 本体 + 全 `CSaveDataUnit*.js`（29ファイル）— `class Foo extends CSaveDataUnitBase` をトップレベルで実行~~  → **2026-04-28 解決済み**（#101〜#133） |
-| **CMobConfInput.js** | `CMobConfInputAreaComponentManager.prototype = new CConfBase2()` at line 222 — CConfBase2 の移行待ち |
+| ~~**CMobConfInput.js**~~ | ~~CConfBase2 の移行待ち~~ → **2026-04-29 解決済み**（#147） |
 | **`.dat.js` IIFE ファイル群** ~15ファイル | `(function(){ g_xxx = [...] })()` パターン。defer より module が後に実行されるため、foot.js 起動時に未初期化になる危険あり |
 
 ## 次回やること

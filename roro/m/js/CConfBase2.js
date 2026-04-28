@@ -2,7 +2,7 @@
 /**
  * 選択肢データクラス.
  */
-function CConfBaseSelectData() {
+export function CConfBaseSelectData() {
 
 	/** 値. */
 	this.value = 0;
@@ -38,7 +38,7 @@ function CConfBaseSelectData() {
 /**
  * 設定データクラス.
  */
-function CConfBaseConfData() {
+export function CConfBaseConfData() {
 
 	/** ＩＤ. */
 	this.id = 0;
@@ -214,7 +214,7 @@ function CConfBaseConfData() {
 /**
  * データ登録パラメータクラス.
  */
-function CConfBaseRegisterParam() {
+export function CConfBaseRegisterParam() {
 
 	/** 列挙定数名. */
 	this.enumName = "";
@@ -250,7 +250,7 @@ function CConfBaseRegisterParam() {
 /**
  * 設定管理パラメータクラス.
  */
-function CConfBaseManagementParam () {
+export function CConfBaseManagementParam () {
 
 	/** アクティブな設定の配列インデックス. */
 	this.activeIndex = 0;
@@ -312,7 +312,7 @@ function CConfBaseManagementParam () {
  * 設定欄クラス.
  * （モンスター手入力以降の新規）
  */
-function CConfBase2(confMngParam) {
+export function CConfBase2(confMngParam) {
 
 
 
@@ -1361,4 +1361,11 @@ function CConfBase2(confMngParam) {
 			}
 		}
 	}
+}
+if (typeof window !== 'undefined') {
+    window.CConfBaseSelectData = CConfBaseSelectData;
+    window.CConfBaseConfData = CConfBaseConfData;
+    window.CConfBaseRegisterParam = CConfBaseRegisterParam;
+    window.CConfBaseManagementParam = CConfBaseManagementParam;
+    window.CConfBase2 = CConfBase2;
 }

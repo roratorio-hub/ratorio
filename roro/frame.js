@@ -1,8 +1,8 @@
 let last_updated = ""; // last_updatedを初期化
 
 // 背景色切替
-g_BGColorSwitch = false;
-function SwitchBGColor() {
+window.g_BGColorSwitch = false;
+export function SwitchBGColor() {
 	var index  = 0;
 	var objBodies = null;
 	var objBody = null;
@@ -129,3 +129,7 @@ fetch('../date.json')
       }
     })
   });
+
+if (typeof window !== 'undefined') {
+    window.SwitchBGColor = SwitchBGColor;
+}

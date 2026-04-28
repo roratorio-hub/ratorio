@@ -1,3 +1,5 @@
+import { CGlobalConstManager } from './CGlobalConstManager.js';
+import { CConfBase2, CConfBaseSelectData, CConfBaseConfData, CConfBaseRegisterParam, CConfBaseManagementParam } from './CConfBase2.js';
 
 // パラメータID定義
 CGlobalConstManager.DefineEnum(
@@ -32,7 +34,7 @@ CGlobalConstManager.DefineEnum(
 	1
 );
 
-function CMobConfInputData() {
+export function CMobConfInputData() {
 
 	/** データ配列. */
 	this.dataArray = new Array();
@@ -150,7 +152,7 @@ CGlobalConstManager.DefineEnum(
 );
 
 // データ管理インスタンス
-g_dataManagerMobConfInput = null;
+window.g_dataManagerMobConfInput = null;
 
 // 初期化
 (function () {
@@ -158,7 +160,7 @@ g_dataManagerMobConfInput = null;
 	var idx = 0;
 
 	// データ管理インスタンス生成
-	g_dataManagerMobConfInput = new CConfBaseManagementParam();
+	window.g_dataManagerMobConfInput = new CConfBaseManagementParam();
 
 	// デフォルトデータ作成
 	g_dataManagerMobConfInput.confDataArray = new Array();
@@ -177,7 +179,7 @@ g_dataManagerMobConfInput = null;
  * モンスター手入力データを取得する（アクティブな設定限定）.
  * @param confIndex 設定インデックス
  */
-function GetMobConfInput(confIndex) {
+export function GetMobConfInput(confIndex) {
 
 	var confData = null;
 
@@ -190,7 +192,7 @@ function GetMobConfInput(confIndex) {
  * モンスター手入力データを設定する（アクティブな設定限定）.
  * @param confIndex 設定インデックス
  */
-function SetMobConfInput(confIndex, value) {
+export function SetMobConfInput(confIndex, value) {
 
 	var confData = null;
 
@@ -202,7 +204,7 @@ function SetMobConfInput(confIndex, value) {
 /**
  * モンスター手入力データのアクティブな設定インデックスを設定する.
  */
-function SetActiveIndexMobConfInput(activeIndex) {
+export function SetActiveIndexMobConfInput(activeIndex) {
 
 	if (activeIndex < 0) {
 		return;
@@ -217,7 +219,7 @@ function SetActiveIndexMobConfInput(activeIndex) {
 
 
 
-function CMobConfInputAreaComponentManager(confMngParam) {
+export function CMobConfInputAreaComponentManager(confMngParam) {
 	// 継承定義
 	CMobConfInputAreaComponentManager.prototype = new CConfBase2();
 	// 基底クラスのコンストラクタ呼び出し
@@ -856,6 +858,7 @@ function CMobConfInputAreaComponentManager(confMngParam) {
 		var confId = 0;
 		var confIndex = 0;
 		var mappedIndex = 0;
+		var value = 0;
 		// 名称変換
 		converted = encodeURI(confData.GetData(MOB_CONF_INPUT_DATA_INDEX_NAME));
 		lengthText = "000" + converted.length;
@@ -1297,6 +1300,7 @@ function CMobConfInputAreaComponentManager(confMngParam) {
 	 */
 	this.InputModifyProtect = function (objClass, objInput) {
 
+		var idx = 0;
 		var bProtect = false;
 
 		if (objInput.checked) {
@@ -1491,3 +1495,11 @@ function CMobConfInputAreaComponentManager(confMngParam) {
 CMobConfInputAreaComponentManager.InputModifyCodeInOutCommon = function (objClass, objInput) {
 	// 処理不要
 };
+
+if (typeof window !== 'undefined') {
+    window.CMobConfInputData = CMobConfInputData;
+    window.GetMobConfInput = GetMobConfInput;
+    window.SetMobConfInput = SetMobConfInput;
+    window.SetActiveIndexMobConfInput = SetActiveIndexMobConfInput;
+    window.CMobConfInputAreaComponentManager = CMobConfInputAreaComponentManager;
+}

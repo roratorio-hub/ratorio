@@ -25,7 +25,7 @@ CGlobalConstManager.DefineEnum(
 /**
  * データ管理用クラス.
  */
-function CTargetData(instanceNo, objThis, objRoot, objSwitch, objHeader) {
+export function CTargetData(instanceNo, objThis, objRoot, objSwitch, objHeader) {
 	this.instanceNo = instanceNo;
 	this.objThis = objThis;
 	this.objRoot = objRoot;
@@ -36,7 +36,7 @@ function CTargetData(instanceNo, objThis, objRoot, objSwitch, objHeader) {
 /**
  * 設定欄クラス.
  */
-function CConfBase(confArray) {
+export function CConfBase(confArray) {
 
 	// 設定の限界値
 	// この数を超える場合は、セーブデータの拡張が必要
@@ -737,4 +737,8 @@ function CConfBase(confArray) {
 		this.RefreshSelectAreaHeader();
 		this.RefreshControlCSS();
 	}
+}
+if (typeof window !== 'undefined') {
+    window.CTargetData = CTargetData;
+    window.CConfBase = CConfBase;
 }

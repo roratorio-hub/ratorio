@@ -1,4 +1,5 @@
-function CCharaConfCustomSkill(confArray) {
+import { CConfBase } from './CConfBase.js';
+export function CCharaConfCustomSkill(confArray) {
 
 	// 継承定義
 	CCharaConfCustomSkill.prototype = new CConfBase();
@@ -331,6 +332,8 @@ function CCharaConfCustomSkill(confArray) {
 	 * （継承先でオーバーライドすること）
 	 */
 	this.BuildUpSelectAreaSubForSpecial = function (objTd, confData) {
+		var objSelect = null;
+		var objOption = null;
 
 		var index = 0;
 
@@ -448,4 +451,7 @@ function CCharaConfCustomSkill(confArray) {
 
 
 
+}
+if (typeof window !== 'undefined') {
+    window.CCharaConfCustomSkill = CCharaConfCustomSkill;
 }
