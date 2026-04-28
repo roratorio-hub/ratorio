@@ -113,6 +113,16 @@
 | 136 | `roro/m/js/CConfBase2.js` | 2026-04-29 | 5シンボル（CConfBaseSelectData, CConfBaseConfData, CConfBaseRegisterParam, CConfBaseManagementParam, CConfBase2）を export。window互換ブロック追加 |
 | 137–146 | `roro/m/js/CCharaConf{Ichizi,Nizi,Sanzi,Yozi,Debuff,CustomStatus,CustomAtk,CustomDef,CustomSkill,CustomSpecStatus}.js` | 2026-04-29 | 10ファイルをバッチ ESM 化。各ファイルに `import { CConfBase } from './CConfBase.js'` 追加・`export function/class` 化・`var objSelect/objOption` 宣言追加（6ファイル）・window互換ブロック追加。`CCharaConfDebuff.js` は `class extends CConfBase` パターン |
 | 147 | `roro/m/js/CMobConfInput.js` | 2026-04-29 | `import { CGlobalConstManager }`, `import { CConfBase2, ... }` 追加。5シンボルを export。トップレベル `g_dataManagerMobConfInput` を `window.*` 化。`EncodeData` 内 `value` / `InputModifyProtect` 内 `idx` 宣言漏れを `var` 修正。window互換ブロック追加。テストはソーステキスト検証（IIFE が SIZE_ID_SMALL 等に依存するため直接 import 不可） |
+| 148 | `roro/m/js/alias.dat.js` | 2026-04-29 | Pattern A（`window.g_AliasDataArray` は alias.h.js 済み）。コード変更なし。HTMLタグのみ変更 |
+| 149 | `roro/m/js/chara.dat.js` | 2026-04-29 | Pattern B。`g_hpBaseTable`/`g_spBaseTable` を `window.*` 化（2変数）。HTMLタグ変更 |
+| 150 | `roro/m/js/rndopt.dat.js` | 2026-04-29 | Pattern A（`window.g_rndOptArray` は rndopt.h.js 済み）。コード変更なし。HTMLタグのみ変更 |
+| 151 | `roro/m/js/monster.toughness.dat.js` | 2026-04-29 | クラスファイル（IIFE なし）。`window.MonsterToughness = MonsterToughness` compat ブロック追加。HTMLタグ変更 |
+| 152 | `roro/m/js/autospell.dat.js` | 2026-04-29 | Pattern B。`AS_ID_*` 237定数＋`AutoSpellSkill` データ配列を `window.*` 化。HTMLタグ変更 |
+| 153 | `roro/m/js/monstermap.dat.js` | 2026-04-29 | Pattern A/B 混合。`MONSTER_MAP_ID_*` 6定数を `window.*` 化（Pattern B）、`g_MonsterMapDataArray`/`g_MonsterMapCategoryDataArray` は Pattern A（h.js 済み）。HTMLタグ変更 |
+| 154 | `roro/m/js/arrow.dat.js` | 2026-04-29 | Pattern B。`ARROW_ID_*` 41定数を `window.*` 化。`ArrowOBJNew` は Pattern A（h.js 済み）。HTMLタグ変更 |
+| 155 | `roro/m/js/pet.dat.js` | 2026-04-29 | Pattern B。`PET_ID_*` 97定数＋`PET_OBJ` データ配列を `window.*` 化。HTMLタグ変更 |
+| 156 | `roro/m/js/usableskill.dat.js` | 2026-04-29 | Pattern B。`USABEL_SKILL_ID_*` 193定数＋`InsertSkill` データ配列を `window.*` 化。HTMLタグ変更 |
+| 157 | `roro/m/js/timeitem.dat.js` | 2026-04-29 | Pattern A/B 混合。`TIME_ITEM_ID_*` 281定数を `window.*` 化（Pattern B）、`ITEM_SP_TIME_OBJ`/`ITEM_SP_TIME_OBJ_SORT` は Pattern A（h.js 済み）。HTMLタグ変更 |
 
 ## バグ修正ログ
 
@@ -154,6 +164,7 @@
   - #101 `CSaveDataUnitBase.js` + #102–#131 CSaveDataUnit 30サブクラス + #132 `CSaveDataUnit.js` + #133 `CSaveDataUnitParse.js`（計33ファイル）→ `type="module"`（2026-04-28）
   - #134 `frame.js` → `type="module"`（2026-04-29、`ro4/m/calcx.html` line 2113）
   - #135 `CConfBase.js` + #136 `CConfBase2.js` + #137–#146 CCharaConf* 10ファイル + #147 `CMobConfInput.js`（計13ファイル）→ `type="module"`（2026-04-29）
+  - #148–#157 の10ファイル（alias.dat.js, chara.dat.js, rndopt.dat.js, monster.toughness.dat.js, autospell.dat.js, monstermap.dat.js, arrow.dat.js, pet.dat.js, usableskill.dat.js, timeitem.dat.js）→ `type="module"`（2026-04-29）
   - その他 ~50 の `<script>` タグ → `defer` 属性追加（前セッション）
 - `roro/other/itemlist.html`, `cardlist.html`, `monsterlist.html`, `petlist.html`, `exp.html`, `jobb.html`
 - `util/sortedEnchantCardIdArray.html`
@@ -173,44 +184,107 @@
    - インテグレーションテスト（calcx.html 起動確認）が失敗した場合の第一確認事項もこの宣言漏れ
    - 詳細・テスト手法は `test-driven.md` 「Known pitfalls」参照
 
-## 棚卸し（2026-04-26時点）
+## 棚卸し（2026-04-29 更新）
 
-### 残りファイル数
+### 残り移行対象ファイル一覧
 
-- `ro4/m/calcx.html` の `type="text/javascript" defer` タグ: **147件**（third-party/debug含む）
-- アプリケーションJS のうち移行対象（推定）: **~90ファイル**
-  - うち BLOCKED（下記参照）: ~43ファイル
-  - うち移行可能（即着手可）: ~47ファイル
+| グループ | ファイル | 行数 | ステータス |
+|---------|---------|------|-----------|
+| 小型 IIFE dat | `chara.dat.js`, `pet.dat.js`, `rndopt.dat.js`, `monster.toughness.dat.js`, `usableskill.dat.js`, `autospell.dat.js`, `monstermap.dat.js`, `timeitem.dat.js`, `alias.dat.js`, `arrow.dat.js` | 140〜714行 | **完了（#148–#157, 2026-04-29）** |
+| 中型 IIFE dat | `mig.job.dat.js`, `mig.enchlist.dat.js` | 1268〜1624行 | 次セッション候補 |
+| 中型 h.js | `mig.job.h.js`, `mig.itemsp.h.js` | 2934〜3601行 | 次セッション候補 |
+| 中型 APP | `equip.js`, `chara.js` | 1905, 11894行 | **BLOCKED（後述）** |
+| **巨大ファイル** | **`ro4/m/js/head.js`**, **`roro/m/js/foot.js`** | **22445, 30765行** | 要戦略（後述） |
+| 廃止/未使用 | `hmautospell.js`, `hmequip.js`, `hmlearnedskill.js`, `CItemSPSearch.js` | — | ファイルが存在しない（`_draft` にのみ存在）。HTML のコメントアウトをそのまま維持 |
 
-### 即着手可能（次の10ファイル候補）
+---
 
-影響の少ない順：
+### `.dat.js` IIFE ファイルの移行方針（確定）
 
-| 優先 | ファイル | 理由 |
-|------|---------|------|
-~~上記10ファイルは 2026-04-26 に移行済み（#43〜#52）~~
+**パターン A: 列挙定数の上書き（ほぼ全ての `.dat.js`）**
 
-### 次の変換候補（次セッション用）
+```javascript
+// classic (sloppy) での動作
+(function () {
+    PET_ID_ALICE = 1;  // → window.PET_ID_ALICE が存在していれば書き込み成功
+})();
+```
 
-~~上記10ファイルは 2026-04-27 に移行済み（#53〜#62）~~
-~~上記10ファイルは 2026-04-27 に移行済み（#63〜#72）~~
-~~上記9ファイルは 2026-04-27 に移行済み（#73〜#81）~~
-~~上記18ファイルは 2026-04-28 に移行済み（#82〜#99）~~
+対応する `.h.js`（例: `pet.h.js` #19）が `DefineEnum` で `window.PET_ID_ALICE = 0` を設定済みなので、ESM strict mode でも同じ裸名代入が **そのまま動く**。
 
-| 優先 | ファイル | 注意点 |
-|------|---------|--------|
-| 1 | `roro/m/js/hmautospell.js` | HTMLでコメントアウト中（ファイル未確認）。内容確認が必要 |
-| 2 | `roro/m/js/hmequip.js` | HTMLでコメントアウト中（ファイル未確認）。内容確認が必要 |
-| 3 | `roro/m/js/hmlearnedskill.js` | HTMLでコメントアウト中（ファイル未確認）。内容確認が必要 |
+→ **対応不要。HTML タグを `type="module"` に変えるだけ。**
 
-### BLOCKED ファイル群
+**パターン B: 初回代入（`chara.dat.js` 等）**
+
+```javascript
+(function () {
+    g_hpBaseTable = [...];  // window にも local にも未宣言 → strict mode で ReferenceError
+})();
+```
+
+→ **`window.g_hpBaseTable = [...]` に変更する必要あり**
+
+---
+
+### `equip.js` の移行ブロッカー（2026-04-29 確認）
+
+`equip.js` には `with(document.calcForm)` ブロックが 2 箇所あり（line 245, 1457）、ESM strict mode では `with` は **SyntaxError** のため直接移行不可。
+
+**必要な事前作業:**
+1. `with(document.calcForm)` ブロックを `const calcForm = document.calcForm;` + 明示プロパティ参照に変換（`hmjob.js` #59 と同じパターン）
+2. `g_bSuperNoviceFullWeapon`（foot.js の関数内 bare assignment で作られる）を `window.*` 初期化
+3. `IsLearnedEffectEquipable` 内の `setIndexArray` / `setIndex` / `setDataId` 宣言漏れを `var` 修正
+4. 上記完了後に通常の ESM 化手順
+
+---
+
+### `head.js` / `foot.js` の移行戦略（2026-04-29 策定）
+
+#### なぜ難しいか
+
+| 問題 | 内容 |
+|------|------|
+| `head.js` のトップレベル `let` 宣言 84 個 | classic script では global declarative env に入り他ファイルから参照可能。ESM 化するとモジュールスコープに落ちて **他ファイルから見えなくなる** |
+| 30765行 / 22445行 という巨大ファイル | 関数本体内の未宣言変数スキャンに時間がかかる |
+| `foot.js` の役割 | `DOMContentLoaded` トリガーの初期化コード群。Init/Calc/Refresh 等が密結合 |
+
+#### なぜ分割しないのか
+
+- 63〜82 の関数が互いに直接呼び合っており、分割境界が不明確
+- 分割によって生じる `import` ループや循環依存のリスクが高い
+- 分割自体がバグ導入につながる恐れがある
+
+#### 推奨する移行手順（`head.js`）
+
+1. **事前スキャン**: 全 84 個のトップレベル `let` 宣言を列挙し、他ファイルから参照されているものを特定する
+2. **`let` → `window.*` 変換**: 他ファイルから参照されるものを `window.X = value` に変更。内部専用のものは `let` のまま（モジュールスコープで完結）
+3. **関数内未宣言変数スキャン**: `esm-global-scope-audit.md` の手順で実施
+4. **ESM 化**: `export` は不要（side-effect module として `type="module"` に変更するのみ）
+
+#### 推奨する移行手順（`foot.js`）
+
+1. トップレベルに `let/var` 宣言は 0 個なので `let` 変換は不要
+2. 関数内未宣言変数スキャン（30765行 × undeclared scan）
+3. **ESM 化**: 同上
+
+#### 優先順位
+
+```
+先: 残り小〜中型ファイルを全部消化（本セッション〜次2セッション程度）
+後: head.js → foot.js の順
+理由: head.js の変数が foot.js の関数から参照されているため、head.js を先に片付けた方が foot.js のスキャンが楽になる
+```
+
+---
+
+### BLOCKED ファイル群（最新）
 
 | 理由 | ファイル |
 |------|---------|
-| ~~**継承チェーン（CConfBase）** 12ファイル~~ | ~~`CConfBase.js` 等~~ → **2026-04-29 解決済み**（#135〜#146）。`prototype = new CConfBase()` はコンストラクタ本体内のため ESM 化に問題なし |
-| ~~**継承チェーン（CSaveDataUnitBase）** 30ファイル~~ | ~~`CSaveDataUnitBase.js` 本体 + 全 `CSaveDataUnit*.js`（29ファイル）— `class Foo extends CSaveDataUnitBase` をトップレベルで実行~~  → **2026-04-28 解決済み**（#101〜#133） |
-| ~~**CMobConfInput.js**~~ | ~~CConfBase2 の移行待ち~~ → **2026-04-29 解決済み**（#147） |
-| **`.dat.js` IIFE ファイル群** ~15ファイル | `(function(){ g_xxx = [...] })()` パターン。defer より module が後に実行されるため、foot.js 起動時に未初期化になる危険あり |
+| ~~**継承チェーン（CConfBase）** 12ファイル~~ | → **2026-04-29 解決済み**（#135〜#146） |
+| ~~**継承チェーン（CSaveDataUnitBase）** 30ファイル~~ | → **2026-04-28 解決済み**（#101〜#133） |
+| ~~**CMobConfInput.js**~~ | → **2026-04-29 解決済み**（#147） |
+| **`head.js` / `foot.js`** | トップレベル `let` 84 個の `window.*` 変換 + 全関数スキャンが必要。別途戦略に従い対処 |
 
 ## 次回やること
 

@@ -1,12 +1,12 @@
-(function () {
+﻿(function () {
 
-	MONSTER_MAP_ID_MAP_ALL = 0;
-	MONSTER_MAP_ID_MVP_MONSTER = 1;
+	window.MONSTER_MAP_ID_MAP_ALL = 0;
+	window.MONSTER_MAP_ID_MVP_MONSTER = 1;
 
-	MONSTER_MAP_ID_CATEGORY_ALL = 0;
-	MONSTER_MAP_ID_CATEGORY_MEMORIAL_DUNGEON = 1;
+	window.MONSTER_MAP_ID_CATEGORY_ALL = 0;
+	window.MONSTER_MAP_ID_CATEGORY_MEMORIAL_DUNGEON = 1;
 
-	g_MonsterMapDataArray = [
+	window.g_MonsterMapDataArray = [
 		[0,0,[["全マップ","A1"]],[]],
 		[1,0,[["MVPモンスター","J5J5J5"],["MVPモンスター","0M0V0PG5J5C3D1A1"]],[
 			31,38,45,54,56,57,61,101,156,175,176,206,207,212,225,228,245,256,281,294,332,333,343,356,363,370,371,372,373,374,375,395,399,411,422,428,435,440,
@@ -531,7 +531,7 @@
 	parse 関数をオーバーライドして後方互換性を確保してください
 	*/
 
-	g_MonsterMapCategoryDataArray = [
+	window.g_MonsterMapCategoryDataArray = [
 		[0,2,[["全地域","A1"]],[]],
 		[1,2,[["メモリアルダンジョン","A1A1"]],[]],
 		[2,2,[["プロンテラ周辺","y3I5J5D4I1C2h2A3F4J5"]],[2,3,4,5,6,7,8,9,10,11,12,13]],

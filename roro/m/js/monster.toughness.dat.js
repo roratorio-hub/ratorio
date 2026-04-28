@@ -322,3 +322,7 @@ class MonsterToughness {
         return MonsterToughness.notificationMessages.get(code) ?? "";
     }
 }
+
+if (typeof window !== 'undefined') {
+    window.MonsterToughness = MonsterToughness;
+}
