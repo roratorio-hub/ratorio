@@ -4,7 +4,7 @@
 /**
  * インスタンスマネージャクラス.
  */
-function CInstanceManager () {
+export function CInstanceManager () {
 
 	// 登録済みの最大ＩＤ
 	this.idMax = 0;
@@ -79,4 +79,8 @@ function CInstanceManager () {
 
 		return list;
 	};
+}
+
+if (typeof window !== 'undefined') {
+	window.CInstanceManager = CInstanceManager;
 }

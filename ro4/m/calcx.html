@@ -20,14 +20,14 @@
 
 	<!-- サイト共通系ファイル -->
 	<script type="text/javascript" src="../common/js/util.js"></script>
-	<script type="text/javascript" src="../../ro4/m/js/CModalWindow.js"></script>
+	<script type="module" src="../../ro4/m/js/CModalWindow.js"></script>
 
 	<!-- デバッグ定義 -->
 	<!-- 非デバッグ環境でも読み込む -->
 	<script type="text/javascript" src="../../ro4/DEBUG.js"></script>
 
 	<!-- 共通系 javascript ファイル -->
-	<script type="text/javascript" src="js/CInstanceManager.js"></script>
+	<script type="module" src="js/CInstanceManager.js"></script>
 	<script type="text/javascript" src="js/CGlobalConstManager.js"></script>
 	<script type="text/javascript" src="js/CNameKana.js"></script>
 	<script type="text/javascript" src="js/CCustomSelectBase.js"></script>
@@ -36,7 +36,7 @@
 	<script type="text/javascript" src="js/CCustomSelectMapMap.js"></script>
 	<script type="text/javascript" src="js/CCustomSelectMapMonster.js"></script>
 	<script type="text/javascript" src="js/common.js"></script>
-	<script type="text/javascript" src="js/etc.js"></script>
+	<script type="module" src="js/etc.js"></script>
 
 	<!-- データ定義系 javascript ファイル -->
 	<script type="text/javascript" src="js/alias.h.js"></script>
@@ -157,7 +157,7 @@
 	<!--
 	<script type="text/javascript" src="js/hmlearnedskill.js"></script>
 -->
-	<script type="text/javascript" src="js/hmchara.js"></script>
+	<script type="module" src="js/hmchara.js"></script>
 	<script type="text/javascript" src="js/hmmob.js"></script>
 
 	<!-- その他、機能系 javascript ファイル -->
@@ -165,7 +165,7 @@
 	<!--
 	<script type="text/javascript" src="js/browsermigration.js"></script>
 -->
-	<script type="text/javascript" src="../../ro4/m/js/CEnchSearch.js"></script>
+	<script type="module" src="../../ro4/m/js/CEnchSearch.js"></script>
 	<!--
 	<script type="text/javascript" src="../../ro4/m/js/CItemSPSearch.js"></script>
 -->
@@ -188,7 +188,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.2/jquery.modal.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.2/jquery.modal.min.css" />
-	<script type="text/javascript" src="../../ro4/m/js/calchistory.js"></script>
+	<script type="module" src="../../ro4/m/js/calchistory.js"></script>
 	<!-- 更新履歴通知トースト -->
 	<script src="https://cdn.jsdelivr.net/npm/jquery-toast-plugin@1.3.2/dist/jquery.toast.min.js"></script>
 	<link href="https://cdn.jsdelivr.net/npm/jquery-toast-plugin@1.3.2/dist/jquery.toast.min.css" rel="stylesheet">
@@ -2037,15 +2037,15 @@
 <!-- 機能処理系 javascript ファイル -->
 <script type="text/javascript" src="js/CTimeItemAreaComponentManager.js"></script>
 <script type="text/javascript" src="js/CBattleQuickControlAreaComponentManager.js"></script>
-<script type="text/javascript" src="js/CExtraInfoAreaComponentManager.js"></script>
-<script type="text/javascript" src="js/CFloatingInfoAreaComponentManager.js"></script>
-<script type="text/javascript" src="js/CCalcDataTextCreator.js"></script>
+<script defer src="js/CExtraInfoAreaComponentManager.js"></script>
+<script defer src="js/CFloatingInfoAreaComponentManager.js"></script>
+<script type="module" src="js/CCalcDataTextCreator.js"></script>
 
 <!-- [MIG] 操作処理系 javascript ファイル -->
 <script type="text/javascript" src="../../ro4/m/js/CShadowEquipController.js"></script>
 
 <!-- メイン処理系 javascript ファイル -->
-<script type="text/javascript" src="../../ro4/m/js/CBattleCalcInfo.js"></script>
+<script type="module" src="../../ro4/m/js/CBattleCalcInfo.js"></script>
 <script type="text/javascript" src="../../ro4/m/js/CBattleCalcResult.js"></script>
 <script type="text/javascript" src="../../ro4/m/js/CBattleCalcResultAll.js"></script>
 <script type="text/javascript" src="../../ro4/m/js/head.js"></script>
@@ -2100,9 +2100,9 @@
 <!-- バフ設定系 javascript ファイル -->
 <script type="text/javascript" src="../../ro4/m/js/BuffMusicAndDance.js"></script>
 <script type="text/javascript" src="../../ro4/m/js/BuffJobSpecificSelf.js"></script>
-<script type="text/javascript" src="../../ro4/m/js/BuffGuildAndGospel.js"></script>
+<script type="module" src="../../ro4/m/js/BuffGuildAndGospel.js"></script>
 <script type="text/javascript" src="../../ro4/m/js/BuffItemAndFood.js"></script>
-<script type="text/javascript" src="../../ro4/m/js/BuffOtherCategory.js"></script>
+<script type="module" src="../../ro4/m/js/BuffOtherCategory.js"></script>
 
 <!-- 機能処理系 javascript ファイル （この辺の順序整理したい）-->
 <script type="text/javascript" src="../../ro4/m/js/CAttackMethodAreaComponentManager.js"></script>

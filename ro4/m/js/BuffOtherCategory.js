@@ -3,21 +3,22 @@
  * 画面下部の「その他の支援/設定」のバフウィンドウ構築関数群
 */ 
 
-const BUFF_CONF_OTHER_LIMIT = 28;
+export const BUFF_CONF_OTHER_LIMIT = 28;
 
 /** その他の支援/設定 設定値の配列 */
-let n_A_PassSkill8 = Array(BUFF_CONF_OTHER_LIMIT).fill(0);
+export let n_A_PassSkill8 = Array(BUFF_CONF_OTHER_LIMIT).fill(0);
 /** その他の支援/設定 ウィンドウ可視状態 */
-let n_Skill8SW = false;
+export let n_Skill8SW = false;
 
 /**
  * その他の支援/設定 を構築する
  */
-function Click_Skill8SW(){
+export function Click_Skill8SW(){
 	let petId = 0;
 	let petDataArrayWork = null;
 	let objSelect = null;
 	n_Skill8SW = document.calcForm.A8_SKILLSW.checked;
+	if (typeof window !== 'undefined') window.n_Skill8SW = n_Skill8SW;
     if(n_Skill8SW){
 		let str;
 		str = '<TABLE Border style="white-space:nowrap;"><TR><TD id="A8TD" Colspan="2" class="title"><input id="OBJID_CHECK_A8_SKILLSW" type="checkbox" name="A8_SKILLSW"onClick="Click_Skill8SW()"><label for="OBJID_CHECK_A8_SKILLSW">その他の支援/設定 (暫定追加機能)</label><SPAN id="A8used"></SPAN></TD></TR>';
@@ -155,7 +156,7 @@ function Click_Skill8SW(){
  * その他の支援/設定 (暫定追加機能)の変更を反映する
  * @param {boolean} recalc true:変数変更後に再計算する / false:しない(default)
  */
-function Click_A8(recalc = false){
+export function Click_A8(recalc = false){
 	if(recalc) {
         AutoCalc("Click_A8");
     }
@@ -179,7 +180,7 @@ function Click_A8(recalc = false){
  * その他の支援/設定 > ペット の変更イベント.
  * 内部で Click_A8() を呼び出す
  */
-function OnChangePetSelect() {
+export function OnChangePetSelect() {
 	// ペット説明更新
 	RefreshPetExplain();
 	// 攻撃方法更新
@@ -192,7 +193,7 @@ function OnChangePetSelect() {
  * ペットの効果説明欄を再生成する
  * @returns 
  */
-function RefreshPetExplain() {
+export function RefreshPetExplain() {
 	let petId = 0;
 	let objSpan = null;
 	// 説明欄オブジェクトを取得
@@ -208,4 +209,14 @@ function RefreshPetExplain() {
 	CItemInfoManager.AppendEfficiencyInfoSub(objSpan, CONST_DATA_KIND_PET, petId, true);
 	// セット情報追記
 	CItemInfoManager.AppendSetInfo(objSpan, PetIdToSetIdMap[petId], true);
+}
+
+if (typeof window !== 'undefined') {
+    window.BUFF_CONF_OTHER_LIMIT = BUFF_CONF_OTHER_LIMIT;
+    window.n_A_PassSkill8 = n_A_PassSkill8;
+    window.n_Skill8SW = n_Skill8SW;
+    window.Click_Skill8SW = Click_Skill8SW;
+    window.Click_A8 = Click_A8;
+    window.OnChangePetSelect = OnChangePetSelect;
+    window.RefreshPetExplain = RefreshPetExplain;
 }

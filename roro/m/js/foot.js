@@ -30454,7 +30454,7 @@ function Init(jobId){
 	// モンスター状態異常 の初期化
 	n_B_IJYOU = Array(MOB_CONF_DEBUF_LIMIT).fill(0);
 	// ギルドスキル/ゴスペル/他 の初期化
-	n_A_PassSkill4 = Array(BUFF_CONF_GUILD_LIMIT).fill(0);
+	n_A_PassSkill4.fill(0);
 	// アイテム・食品他 の初期化
 	n_A_PassSkill7 = Array(BUFF_CONF_FOOD_LIMIT).fill(0);
 	// 演奏・踊り系スキル の初期化
@@ -30462,7 +30462,7 @@ function Init(jobId){
 	// 職固有自己支援 の初期化
 	n_A_PassSkill = Array(BUFF_CONF_SELF_LIMIT).fill(0);
 	// その他の支援/設定 の初期化
-	n_A_PassSkill8 = Array(BUFF_CONF_OTHER_LIMIT).fill(0);
+	n_A_PassSkill8.fill(0);
 
 	// オートスペル設定
 	n_A_PassSkill5 = new Array();

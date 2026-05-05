@@ -2,7 +2,7 @@
 /**
  * 計算データテキスト作成クラス.
  */
-function CCalcDataTextCreator () {
+export function CCalcDataTextCreator () {
 
 }
 
@@ -230,4 +230,8 @@ CCalcDataTextCreator.GetDataText = function (dataObject) {
 
 	return dataText;
 };
+
+if (typeof window !== 'undefined') {
+    window.CCalcDataTextCreator = CCalcDataTextCreator;
+}
 
