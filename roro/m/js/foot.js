@@ -30456,11 +30456,11 @@ function Init(jobId){
 	// ギルドスキル/ゴスペル/他 の初期化
 	n_A_PassSkill4.fill(0);
 	// アイテム・食品他 の初期化
-	n_A_PassSkill7 = Array(BUFF_CONF_FOOD_LIMIT).fill(0);
+	n_A_PassSkill7.fill(0);
 	// 演奏・踊り系スキル の初期化
-	n_A_PassSkill3 = Array(BUFF_CONF_MUSICAL_LIMIT).fill(0);
+	n_A_PassSkill3.fill(0);
 	// 職固有自己支援 の初期化
-	n_A_PassSkill = Array(BUFF_CONF_SELF_LIMIT).fill(0);
+	n_A_PassSkill.fill(0);
 	// その他の支援/設定 の初期化
 	n_A_PassSkill8.fill(0);
 

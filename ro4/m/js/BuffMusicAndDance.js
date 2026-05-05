@@ -16,6 +16,7 @@ export let n_A_PassSkill3 = Array(BUFF_CONF_MUSICAL_LIMIT).fill(0);
  */
 export function Click_Skill3SW(){
 	n_Skill3SW = document.calcForm.A3_SKILLSW.checked;
+	if (typeof window !== 'undefined') window.n_Skill3SW = n_Skill3SW;
 	const table_header = `
 			<TABLE Border class="tooltip-target" style="white-space:nowrap;" data-tooltip="これらの設定は「◯次職支援設定」および「プレイヤー状態異常設定」へ順次移動します。">
 			<TR><TD id="A3TD" ColSpan="6" class="title">

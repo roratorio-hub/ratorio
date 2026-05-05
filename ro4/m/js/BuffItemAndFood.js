@@ -63,6 +63,7 @@ export function Click_Skill7SW(){
 	// 展開状態を取得
 	objInput = document.getElementById("OBJID_CHECK_A7_SKILLSW");
 	n_Skill7SW = objInput.checked;
+	if (typeof window !== 'undefined') window.n_Skill7SW = n_Skill7SW;
 	// ルートオブジェクト取得
 	objRoot = document.getElementById("OBJID_SP_SIEN05");
 	// ルートオブジェクト配下、全削除

@@ -1,5 +1,18 @@
-import { describe, it, expect } from 'vitest';
-import { CShadowEquipController, g_shadowEquipController } from '@ro4/CShadowEquipController.js';
+import { describe, it, expect, vi, beforeAll } from 'vitest';
+
+let CShadowEquipController: any;
+let g_shadowEquipController: any;
+
+beforeAll(async () => {
+    const mockRoot = {
+        querySelectorAll: vi.fn().mockReturnValue([]),
+        querySelector: vi.fn().mockReturnValue(null),
+    };
+    vi.spyOn(document, 'getElementById').mockReturnValue(mockRoot as any);
+    const mod = await import('@ro4/CShadowEquipController.js');
+    CShadowEquipController = mod.CShadowEquipController;
+    g_shadowEquipController = mod.g_shadowEquipController;
+});
 
 describe('CShadowEquipController.js', () => {
     describe('エクスポート確認', () => {

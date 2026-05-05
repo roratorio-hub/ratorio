@@ -24,6 +24,7 @@ export function Click_PassSkillSW(){
 			</TD></TR>
 		`;
 	n_Skill1SW = document.calcForm.A1_SKILLSW.checked;
+	if (typeof window !== 'undefined') window.n_Skill1SW = n_Skill1SW;
 	if (n_Skill1SW) {
 		let end = passiveSkillIdArray.length -1;
 		let str = table_header;
