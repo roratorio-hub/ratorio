@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../common.css" type="text/css">
 	<link rel="stylesheet" href="../m/calcx.css" type="text/css">
 	<link rel="stylesheet" href="../../ro4/m/calcx.css" type="text/css">
-	<script type="text/javascript" src="../../roro/m/js/etc.js"></script>
+	<script type="module" src="../../roro/m/js/etc.js"></script>
 	<script type="text/javascript" src="../../jquery/jquery.min.js"></script>
     <style type="text/css">
     td{white-space:nowrap;text-align:right;}
@@ -78,7 +78,8 @@
     </body>
     <script language="JavaScript" src="../frame.js"></script>
     <script language="JavaScript" src="../common/js/util.js"></script>
-    <script language="JavaScript"><!--
+    <script>
+window.addEventListener('DOMContentLoaded', function() {
 
     for(var j=1;j<=4;j++){
         for(var i=0;i<=9;i++){
@@ -117,6 +118,7 @@
         k=0;
     }
     
-    // --></script>
+}); // DOMContentLoaded
+    </script>
     </HTML>
     

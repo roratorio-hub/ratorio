@@ -336,7 +336,7 @@ function CGlobalEnumManager () {
 /**
  * 定数マネージャクラス.
  */
-function CGlobalConstManager () {
+export function CGlobalConstManager () {
 
 }
 
@@ -523,3 +523,7 @@ CGlobalConstManager.SearchMap = function (name) {
 };
 
 
+
+if (typeof window !== 'undefined') {
+	window.CGlobalConstManager = CGlobalConstManager;
+}

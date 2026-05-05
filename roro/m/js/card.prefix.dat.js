@@ -1,4 +1,4 @@
-class CardPrefix {
+export class CardPrefix {
   constructor() {
     this.card_prefix = [
     ["ポリン", "ラッキ", ""],
@@ -1415,5 +1415,9 @@ class CardPrefix {
   get_suffix(idx) {
     return this.card_prefix[idx][2];
   }
+}
+
+if (typeof window !== 'undefined') {
+    window.CardPrefix = CardPrefix;
 }
 

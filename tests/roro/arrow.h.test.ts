@@ -1,0 +1,35 @@
+import { describe, it, expect } from 'vitest';
+import '@roro/CGlobalConstManager.js';
+import { ArrowOBJNew } from '@roro/arrow.h.js';
+
+describe('arrow.h.js', () => {
+    describe('DefineEnum 副作用確認', () => {
+        it('ARROW_DATA_INDEX_ID が 0 に定義される', () => {
+            expect((globalThis as any).ARROW_DATA_INDEX_ID).toBe(0);
+        });
+        it('ARROW_DATA_INDEX_SPBEGIN が 5 に定義される', () => {
+            expect((globalThis as any).ARROW_DATA_INDEX_SPBEGIN).toBe(5);
+        });
+        it('ARROW_KIND_NONE が 0 に定義される', () => {
+            expect((globalThis as any).ARROW_KIND_NONE).toBe(0);
+        });
+        it('ARROW_KIND_ARROW が 1 に定義される', () => {
+            expect((globalThis as any).ARROW_KIND_ARROW).toBe(1);
+        });
+        it('ARROW_KIND_BULLET が 2 に定義される', () => {
+            expect((globalThis as any).ARROW_KIND_BULLET).toBe(2);
+        });
+    });
+
+    describe('エクスポート確認', () => {
+        it('ArrowOBJNew がエクスポートされている', () => {
+            expect(Array.isArray(ArrowOBJNew)).toBe(true);
+        });
+    });
+
+    describe('window互換確認', () => {
+        it('window.ArrowOBJNew が設定されている', () => {
+            expect((window as any).ArrowOBJNew).toBe(ArrowOBJNew);
+        });
+    });
+});
