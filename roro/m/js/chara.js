@@ -11770,7 +11770,9 @@ function GetStatusModifyHitPlus() {
 	}
 
 	/** ドルイド「シャープアイズ」による Hit + 効果 */
-	val += 5 * LearnedSkillSearch(SKILL_ID_SHARPE_EYES);
+	if (UsedSkillSearch(SKILL_ID_WERERAPTOR) == 1) {
+		val += 5 * LearnedSkillSearch(SKILL_ID_SHARPE_EYES);
+	}
 
 	/** ドルイド「ブラッドハウリング」による Hit + 効果 */
 	val += 10 * UsedSkillSearch(SKILL_ID_BLOOD_HOWLING);

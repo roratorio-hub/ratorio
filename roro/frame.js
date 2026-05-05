@@ -72,7 +72,6 @@ fetch('../date.json')
           <li class="menu-item"><span class="menu-title"><a href="https://discord.gg/wcKE7PkQ9x">Discord</a></span></li>
 
 		  <li class="menu-header" style="padding-top: 10px"><span>Link</span></li>
-          <li class="menu-item"><span class="menu-title"><a href="https://roratorio-hinanjo.net/roro/main/main.html">ROラトリオ避難所</a></span></li>
           <li class="menu-item"><span class="menu-title"><a href="http://roratorio.2-d.jp/ro/">ROラトリオ</a></span></li>
 
 		  <li class="menu-header" style="padding-top: 20px"><span>Updated</span></li>
