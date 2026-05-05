@@ -3,16 +3,16 @@
  * 「職固有自己支援」のバフウィンドウ構築関数群
 */ 
 
-const BUFF_CONF_SELF_LIMIT = 51;
+export const BUFF_CONF_SELF_LIMIT = 51;
 /** 職固有自己支援 設定値の配列 */
-let n_A_PassSkill = Array(BUFF_CONF_SELF_LIMIT).fill(0);
+export let n_A_PassSkill = Array(BUFF_CONF_SELF_LIMIT).fill(0);
 /** 職固有自己支援 ウィンドウ可視状態 */
-let n_Skill1SW = false;
+export let n_Skill1SW = false;
 
 /**
  * 職固有自己支援 チェックボックス生成
  */
-function Click_PassSkillSW(){
+export function Click_PassSkillSW(){
 	let idx = 0;
 	let passiveSkillIdArray = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, n_A_JOB).GetPassiveSkillIdArray();
 	let table_header = `
@@ -505,7 +505,7 @@ function Click_PassSkillSW(){
  * 職固有自己支援の設定変更を反映する
  * @param {boolean} recalc true:変数変更後に再計算する / false:しない(default)
  */
-function Click_A1(recalc = false){
+export function Click_A1(recalc = false){
 	if (recalc) {
 		AutoCalc("Click_A1");
 	}
@@ -534,7 +534,7 @@ function Click_A1(recalc = false){
  * @param {*} bOnlyUsed true: 時限アイテム効果等も検索する / false: 職業スキルだけを検索する(default)
  * @returns 設定されているLv
  */
-function UsedSkillSearch(sklId, bOnlyUsed = false) {
+export function UsedSkillSearch(sklId, bOnlyUsed = false) {
 	let sklLv = 0;
 	let effectivLvArray = [0];
 	let bAvoidRecalc = false;
@@ -774,7 +774,7 @@ function UsedSkillSearch(sklId, bOnlyUsed = false) {
  * @param {Number} sklId 確認するスキル
  * @returns {Number} 設定されているLv. 異常な値がセットされている場合は何も返さない.
  */
-function UsedSkillSearchSubUsedOnly(sklId) {
+export function UsedSkillSearchSubUsedOnly(sklId) {
 	// 設定可能な全ての職固有自己支援スキルを取得する
 	const passiveSkillIdArray = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, n_A_JOB).GetPassiveSkillIdArray();
 	for (let idx = 0; idx < passiveSkillIdArray.length; idx++) {
@@ -787,4 +787,14 @@ function UsedSkillSearchSubUsedOnly(sklId) {
 		}
 	}
 	return 0;
+}
+
+if (typeof window !== 'undefined') {
+    window.BUFF_CONF_SELF_LIMIT = BUFF_CONF_SELF_LIMIT;
+    window.n_A_PassSkill = n_A_PassSkill;
+    window.n_Skill1SW = n_Skill1SW;
+    window.Click_PassSkillSW = Click_PassSkillSW;
+    window.Click_A1 = Click_A1;
+    window.UsedSkillSearch = UsedSkillSearch;
+    window.UsedSkillSearchSubUsedOnly = UsedSkillSearchSubUsedOnly;
 }

@@ -12,43 +12,43 @@
  */
 
 /** アイテム・食品他 設定値の配列数 */
-const BUFF_CONF_FOOD_LIMIT = 53;
+export const BUFF_CONF_FOOD_LIMIT = 53;
 /** アイテム・食品他 設定値の配列 */
-let n_A_PassSkill7 = Array(BUFF_CONF_FOOD_LIMIT).fill(0);
+export let n_A_PassSkill7 = Array(BUFF_CONF_FOOD_LIMIT).fill(0);
 /** アイテム・食品他 ウィンドウ可視状態 */
-let n_Skill7SW = false;
+export let n_Skill7SW = false;
 
-const ID_BUFF_FOOD_CHAGASHI = 0;
-const ID_BUFF_FOOD_AGEGASHI = 1;
-const ID_BUFF_FOOD_NIJIOMOCHI = 2;
-const ID_BUFF_STATUS_STR = 3;
-const ID_BUFF_STATUS_AGI = 4;
-const ID_BUFF_STATUS_VIT = 5;
-const ID_BUFF_STATUS_INT = 6;
-const ID_BUFF_STATUS_DEX = 7;
-const ID_BUFF_STATUS_LUK = 8;
-const ID_BUFF_BOX_URAMI = 9;
-const ID_BUFF_BOX_NEMUI = 10;
-const ID_BUFF_POTION_COLD = 11;
-const ID_BUFF_POTION_EARTH = 12;
-const ID_BUFF_POTION_FIRE = 13;
-const ID_BUFF_POTION_WIND = 14;
-const ID_BUFF_MAJO_NO_SKILL_CARD = 15;
-const ID_BUFF_STATUS_20_STR = 16;
-const ID_BUFF_STATUS_20_AGI = 17;
-const ID_BUFF_STATUS_20_VIT = 18;
-const ID_BUFF_STATUS_20_INT = 19;
-const ID_BUFF_STATUS_20_DEX = 20;
-const ID_BUFF_STATUS_20_LUK = 21;
-const ID_BUFF_MANUK_ISHI = 31;
-const ID_BUFF_VESPER_HONEY = 34;
-const ID_BUFF_SOUSHO_CARD = 52;
+export const ID_BUFF_FOOD_CHAGASHI = 0;
+export const ID_BUFF_FOOD_AGEGASHI = 1;
+export const ID_BUFF_FOOD_NIJIOMOCHI = 2;
+export const ID_BUFF_STATUS_STR = 3;
+export const ID_BUFF_STATUS_AGI = 4;
+export const ID_BUFF_STATUS_VIT = 5;
+export const ID_BUFF_STATUS_INT = 6;
+export const ID_BUFF_STATUS_DEX = 7;
+export const ID_BUFF_STATUS_LUK = 8;
+export const ID_BUFF_BOX_URAMI = 9;
+export const ID_BUFF_BOX_NEMUI = 10;
+export const ID_BUFF_POTION_COLD = 11;
+export const ID_BUFF_POTION_EARTH = 12;
+export const ID_BUFF_POTION_FIRE = 13;
+export const ID_BUFF_POTION_WIND = 14;
+export const ID_BUFF_MAJO_NO_SKILL_CARD = 15;
+export const ID_BUFF_STATUS_20_STR = 16;
+export const ID_BUFF_STATUS_20_AGI = 17;
+export const ID_BUFF_STATUS_20_VIT = 18;
+export const ID_BUFF_STATUS_20_INT = 19;
+export const ID_BUFF_STATUS_20_DEX = 20;
+export const ID_BUFF_STATUS_20_LUK = 21;
+export const ID_BUFF_MANUK_ISHI = 31;
+export const ID_BUFF_VESPER_HONEY = 34;
+export const ID_BUFF_SOUSHO_CARD = 52;
 
 /**
  * アイテム・食品他 を構築する
  * @returns 
  */
-function Click_Skill7SW(){
+export function Click_Skill7SW(){
 	let objRoot = null;
 	let objTable = null;
 	let objTbody = null;
@@ -353,7 +353,7 @@ function Click_Skill7SW(){
  * アイテム(食品/他)の変更を反映する
  * @param {*} n 再計算フラグ（n = 1 再計算する）
  */
-function Click_A7(recalc = false){
+export function Click_A7(recalc = false){
 	if(recalc) {
         AutoCalc("Click_A7");
     }
@@ -376,7 +376,7 @@ function Click_A7(recalc = false){
 /**
  * アイテム・食品他 > 全解除 ボタンのクリックイベント
  */
-function Click_Food_Off(){
+export function Click_Food_Off(){
 	document.calcForm.A7_Skill3.value = 0;
 	document.calcForm.A7_Skill4.value = 0;
 	document.calcForm.A7_Skill5.value = 0;
@@ -394,7 +394,7 @@ function Click_Food_Off(){
  * 「基礎ステータス+食品」のドロップダウンリストに一括で任意の値を設定する
  * @param {number} value 
  */
-function setAllStatusBuff(value){
+export function setAllStatusBuff(value){
 	[
 		ID_BUFF_STATUS_STR,
 		ID_BUFF_STATUS_AGI,
@@ -409,7 +409,7 @@ function setAllStatusBuff(value){
 /**
  * 「基礎ステータス+20」のチェックボックスを一括で切り替える
  */
-function toggleAllStatus20() {
+export function toggleAllStatus20() {
 	[
 		ID_BUFF_STATUS_20_STR,
 		ID_BUFF_STATUS_20_AGI,
@@ -418,4 +418,40 @@ function toggleAllStatus20() {
 		ID_BUFF_STATUS_20_DEX,
 		ID_BUFF_STATUS_20_LUK,
 	].forEach(n => document.getElementById(`OBJID_CHECK_A7_Skill${n}`).click());
+}
+
+if (typeof window !== 'undefined') {
+    window.BUFF_CONF_FOOD_LIMIT = BUFF_CONF_FOOD_LIMIT;
+    window.n_A_PassSkill7 = n_A_PassSkill7;
+    window.n_Skill7SW = n_Skill7SW;
+    window.ID_BUFF_FOOD_CHAGASHI = ID_BUFF_FOOD_CHAGASHI;
+    window.ID_BUFF_FOOD_AGEGASHI = ID_BUFF_FOOD_AGEGASHI;
+    window.ID_BUFF_FOOD_NIJIOMOCHI = ID_BUFF_FOOD_NIJIOMOCHI;
+    window.ID_BUFF_STATUS_STR = ID_BUFF_STATUS_STR;
+    window.ID_BUFF_STATUS_AGI = ID_BUFF_STATUS_AGI;
+    window.ID_BUFF_STATUS_VIT = ID_BUFF_STATUS_VIT;
+    window.ID_BUFF_STATUS_INT = ID_BUFF_STATUS_INT;
+    window.ID_BUFF_STATUS_DEX = ID_BUFF_STATUS_DEX;
+    window.ID_BUFF_STATUS_LUK = ID_BUFF_STATUS_LUK;
+    window.ID_BUFF_BOX_URAMI = ID_BUFF_BOX_URAMI;
+    window.ID_BUFF_BOX_NEMUI = ID_BUFF_BOX_NEMUI;
+    window.ID_BUFF_POTION_COLD = ID_BUFF_POTION_COLD;
+    window.ID_BUFF_POTION_EARTH = ID_BUFF_POTION_EARTH;
+    window.ID_BUFF_POTION_FIRE = ID_BUFF_POTION_FIRE;
+    window.ID_BUFF_POTION_WIND = ID_BUFF_POTION_WIND;
+    window.ID_BUFF_MAJO_NO_SKILL_CARD = ID_BUFF_MAJO_NO_SKILL_CARD;
+    window.ID_BUFF_STATUS_20_STR = ID_BUFF_STATUS_20_STR;
+    window.ID_BUFF_STATUS_20_AGI = ID_BUFF_STATUS_20_AGI;
+    window.ID_BUFF_STATUS_20_VIT = ID_BUFF_STATUS_20_VIT;
+    window.ID_BUFF_STATUS_20_INT = ID_BUFF_STATUS_20_INT;
+    window.ID_BUFF_STATUS_20_DEX = ID_BUFF_STATUS_20_DEX;
+    window.ID_BUFF_STATUS_20_LUK = ID_BUFF_STATUS_20_LUK;
+    window.ID_BUFF_MANUK_ISHI = ID_BUFF_MANUK_ISHI;
+    window.ID_BUFF_VESPER_HONEY = ID_BUFF_VESPER_HONEY;
+    window.ID_BUFF_SOUSHO_CARD = ID_BUFF_SOUSHO_CARD;
+    window.Click_Skill7SW = Click_Skill7SW;
+    window.Click_A7 = Click_A7;
+    window.Click_Food_Off = Click_Food_Off;
+    window.setAllStatusBuff = setAllStatusBuff;
+    window.toggleAllStatus20 = toggleAllStatus20;
 }

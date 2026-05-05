@@ -2,7 +2,7 @@
 /**
  * シャドウ装備コントローラクラス.
  */
-class CShadowEquipController {
+export class CShadowEquipController {
 
 	/**
 	 * 装備箇所名：武器（右手）.
@@ -612,5 +612,10 @@ class CShadowEquipController {
 
 }
 
-g_shadowEquipController = new CShadowEquipController();
+export const g_shadowEquipController = new CShadowEquipController();
+
+if (typeof window !== 'undefined') {
+    window.CShadowEquipController = CShadowEquipController;
+    window.g_shadowEquipController = g_shadowEquipController;
+}
 g_shadowEquipController.initializeHTML();
