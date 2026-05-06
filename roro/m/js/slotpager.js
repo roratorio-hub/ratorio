@@ -4,18 +4,18 @@
 //
 //================================================================================================
 
-SLOTPAGER_MODE_CARD = 0;
-SLOTPAGER_MODE_RNDENCH = 1;
-SLOTPAGER_MODE_RNDOPT = 1;		// 1 のエイリアス
+export const SLOTPAGER_MODE_CARD = 0;
+export const SLOTPAGER_MODE_RNDENCH = 1;
+export const SLOTPAGER_MODE_RNDOPT = 1;		// 1 のエイリアス
 
-SLOT_INDEX_CARD_MIN = 1;
-SLOT_INDEX_CARD_MAX = 4;
+export const SLOT_INDEX_CARD_MIN = 1;
+export const SLOT_INDEX_CARD_MAX = 4;
 
-SLOT_INDEX_COSTUME_MIN = 1;
-SLOT_INDEX_COSTUME_MAX = 1;
+export const SLOT_INDEX_COSTUME_MIN = 1;
+export const SLOT_INDEX_COSTUME_MAX = 1;
 
-SLOT_INDEX_RNDENCH_MIN = 1;
-SLOT_INDEX_RNDENCH_MAX = 5;
+export const SLOT_INDEX_RNDENCH_MIN = 1;
+export const SLOT_INDEX_RNDENCH_MAX = 5;
 
 
 //================================================================================================
@@ -41,7 +41,7 @@ SLOT_INDEX_RNDENCH_MAX = 5;
  *-----------------------------------------------------------------------------------------------
  * @return 現在のスロットモード
  ************************************************************************************************/
-function GetSlotMode() {
+export function GetSlotMode() {
 	return parseInt(GetStatefullData("DATA_OBJID_SLOT_MODE_BUTTON", 0));
 }
 
@@ -54,7 +54,7 @@ function GetSlotMode() {
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function OnClickSlotModeButton(jobId) {
+export function OnClickSlotModeButton(jobId) {
 	// 職業IDが引数で渡されなかった時用のコード
 	if (typeof jobId === "undefined" || jobId === null) {
 		const selectJobElem = document.getElementById("OBJID_SELECT_JOB");
@@ -135,7 +135,7 @@ function OnClickSlotModeButton(jobId) {
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function SaveSlotStateCardAll() {
+export function SaveSlotStateCardAll() {
 
 	// 個別関数を全コール
 	SaveSlotStateCard(EQUIP_REGION_ID_ARMS);
@@ -168,7 +168,7 @@ function SaveSlotStateCardAll() {
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function SaveSlotStateCard(eqpRgnId) {
+export function SaveSlotStateCard(eqpRgnId) {
 
 	const EQUIP_REGION = {
 		[EQUIP_REGION_ID_ARMS]:"OBJID_ARMS_RIGHT",
@@ -202,7 +202,7 @@ function SaveSlotStateCard(eqpRgnId) {
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function __SaveSlotStateCard(objidPrefix) {
+export function __SaveSlotStateCard(objidPrefix) {
 
 	var idx = 0;
 	var strObjId = "";
@@ -250,7 +250,7 @@ function __SaveSlotStateCard(objidPrefix) {
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function BreakSlotOfCardAll() {
+export function BreakSlotOfCardAll() {
 
 	// 個別関数を全コール
 	BreakSlotOfCard(EQUIP_REGION_ID_ARMS);
@@ -275,7 +275,7 @@ function BreakSlotOfCardAll() {
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function BreakSlotOfCard(eqpRgnId) {
+export function BreakSlotOfCard(eqpRgnId) {
 
 	// サブ関数をコール
 	switch (eqpRgnId) {
@@ -345,7 +345,7 @@ function BreakSlotOfCard(eqpRgnId) {
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function __BreakSlotOfCard(objidPrifix) {
+export function __BreakSlotOfCard(objidPrifix) {
 
 	var idx = 0;
 	var strObjId = "";
@@ -366,7 +366,7 @@ function __BreakSlotOfCard(objidPrifix) {
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function __BreakSlotOfCardShort(objidPrifix) {
+export function __BreakSlotOfCardShort(objidPrifix) {
 
 	var strObjId = "";
 
@@ -382,7 +382,7 @@ function __BreakSlotOfCardShort(objidPrifix) {
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function RebuildSlotAsCardAll() {
+export function RebuildSlotAsCardAll() {
 
 	// 個別関数を全コール
 	RebuildSlotAsCard(EQUIP_REGION_ID_ARMS);
@@ -407,7 +407,7 @@ function RebuildSlotAsCardAll() {
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function RebuildSlotAsCard(eqpRgnId) {
+export function RebuildSlotAsCard(eqpRgnId) {
 
 	// サブ関数をコール
 	switch (eqpRgnId) {
@@ -478,7 +478,7 @@ function RebuildSlotAsCard(eqpRgnId) {
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function __RebuildSlotAsCard(eqpRgnId, objidPrifix) {
+export function __RebuildSlotAsCard(eqpRgnId, objidPrifix) {
 
 	var objRoot = null;
 	var objTd = null;
@@ -525,7 +525,7 @@ function __RebuildSlotAsCard(eqpRgnId, objidPrifix) {
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function __RebuildSlotAsCardShort(eqpRgnId, objidPrifix) {
+export function __RebuildSlotAsCardShort(eqpRgnId, objidPrifix) {
 
 	var strOnChange = "";
 	strOnChange = "ApplyCardShort(" + eqpRgnId + ", \"" + objidPrifix + "\")";
@@ -589,7 +589,7 @@ function __RebuildSlotAsCardShort(eqpRgnId, objidPrifix) {
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function LoadSlotStateCardAll() {
+export function LoadSlotStateCardAll() {
 
 	// 個別関数を全コール
 	LoadSlotStateCard(EQUIP_REGION_ID_ARMS);
@@ -614,7 +614,7 @@ function LoadSlotStateCardAll() {
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function LoadSlotStateCard(eqpRgnId) {
+export function LoadSlotStateCard(eqpRgnId) {
 
 	// サブ関数をコール
 	switch (eqpRgnId) {
@@ -673,7 +673,7 @@ function LoadSlotStateCard(eqpRgnId) {
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function __LoadSlotStateCard(objidPrifix) {
+export function __LoadSlotStateCard(objidPrifix) {
 
 	var idx = 0;
 	var valueOfObject = 0;
@@ -693,7 +693,7 @@ function __LoadSlotStateCard(objidPrifix) {
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function SaveSlotStateCostumeAll() {
+export function SaveSlotStateCostumeAll() {
 
 	// 個別関数を全コール
 	SaveSlotStateCostume(EQUIP_REGION_ID_HEAD_UNDER);
@@ -708,7 +708,7 @@ function SaveSlotStateCostumeAll() {
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function SaveSlotStateCostume(eqpRgnId) {
+export function SaveSlotStateCostume(eqpRgnId) {
 
 	// サブ関数をコール
 	switch (eqpRgnId) {
@@ -767,7 +767,7 @@ function SaveSlotStateCostume(eqpRgnId) {
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function __SaveSlotStateCostume(objidPrefix) {
+export function __SaveSlotStateCostume(objidPrefix) {
 
 	var idx = 0;
 	var strObjId = "";
@@ -789,7 +789,7 @@ function __SaveSlotStateCostume(objidPrefix) {
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function BreakSlotOfCostumeAll() {
+export function BreakSlotOfCostumeAll() {
 
 	// 個別関数を全コール
 	BreakSlotOfCostume(EQUIP_REGION_ID_HEAD_UNDER);
@@ -804,7 +804,7 @@ function BreakSlotOfCostumeAll() {
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function BreakSlotOfCostume(eqpRgnId) {
+export function BreakSlotOfCostume(eqpRgnId) {
 
 	// サブ関数をコール
 	switch (eqpRgnId) {
@@ -863,7 +863,7 @@ function BreakSlotOfCostume(eqpRgnId) {
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function __BreakSlotOfCostume(objidPrifix) {
+export function __BreakSlotOfCostume(objidPrifix) {
 
 	var idx = 0;
 	var strObjId = "";
@@ -884,7 +884,7 @@ function __BreakSlotOfCostume(objidPrifix) {
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function RebuildSlotAsCostumeAll(jobId) {
+export function RebuildSlotAsCostumeAll(jobId) {
 	// 個別関数を全コール
 	RebuildSlotAsCostume(EQUIP_REGION_ID_HEAD_UNDER, jobId);
 }
@@ -899,7 +899,7 @@ function RebuildSlotAsCostumeAll(jobId) {
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function RebuildSlotAsCostume(eqpRgnId, jobId) {
+export function RebuildSlotAsCostume(eqpRgnId, jobId) {
 	// 職業IDが引数で渡されなかった時用のコード
 	if (typeof jobId === "undefined" || jobId === null) {
 		jobId = document.getElementById("OBJID_SELECT_JOB").value;
@@ -964,7 +964,7 @@ function RebuildSlotAsCostume(eqpRgnId, jobId) {
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function __RebuildSlotAsCostume(eqpRgnId, objidPrifix, jobId) {
+export function __RebuildSlotAsCostume(eqpRgnId, objidPrifix, jobId) {
 
 	var objRoot = null;
 	var objTd = null;
@@ -1006,7 +1006,7 @@ function __RebuildSlotAsCostume(eqpRgnId, objidPrifix, jobId) {
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function LoadSlotStateCostumeAll() {
+export function LoadSlotStateCostumeAll() {
 
 	// 個別関数を全コール
 	LoadSlotStateCostume(EQUIP_REGION_ID_HEAD_UNDER);
@@ -1021,7 +1021,7 @@ function LoadSlotStateCostumeAll() {
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function LoadSlotStateCostume(eqpRgnId) {
+export function LoadSlotStateCostume(eqpRgnId) {
 
 	// サブ関数をコール
 	switch (eqpRgnId) {
@@ -1080,7 +1080,7 @@ function LoadSlotStateCostume(eqpRgnId) {
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function __LoadSlotStateCostume(objidPrifix) {
+export function __LoadSlotStateCostume(objidPrifix) {
 
 	var idx = 0;
 	var valueOfObject = 0;
@@ -1100,7 +1100,7 @@ function __LoadSlotStateCostume(objidPrifix) {
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function SaveSlotStateRndEnchAll() {
+export function SaveSlotStateRndEnchAll() {
 
 	// 個別関数を全コール
 	SaveSlotStateRndEnch(EQUIP_REGION_ID_ARMS);
@@ -1125,7 +1125,7 @@ function SaveSlotStateRndEnchAll() {
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function SaveSlotStateRndEnch(eqpRgnId) {
+export function SaveSlotStateRndEnch(eqpRgnId) {
 
 	var idx = 0;
 
@@ -1159,7 +1159,7 @@ function SaveSlotStateRndEnch(eqpRgnId) {
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function BreakSlotOfRndEnchAll() {
+export function BreakSlotOfRndEnchAll() {
 
 	// 個別関数を全コール
 	BreakSlotOfRndEnch(EQUIP_REGION_ID_ARMS);
@@ -1184,7 +1184,7 @@ function BreakSlotOfRndEnchAll() {
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function BreakSlotOfRndEnch(eqpRgnId) {
+export function BreakSlotOfRndEnch(eqpRgnId) {
 
 
 	var idx = 0;
@@ -1217,7 +1217,7 @@ function BreakSlotOfRndEnch(eqpRgnId) {
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function RebuildSlotAsRndEnchAll() {
+export function RebuildSlotAsRndEnchAll() {
 
 	// 個別関数を全コール
 	RebuildSlotAsRndEnch(EQUIP_REGION_ID_ARMS);
@@ -1242,7 +1242,7 @@ function RebuildSlotAsRndEnchAll() {
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function RebuildSlotAsRndEnch(eqpRgnId) {
+export function RebuildSlotAsRndEnch(eqpRgnId) {
 
 	// サブ関数をコール
 	switch (eqpRgnId) {
@@ -1301,7 +1301,7 @@ function RebuildSlotAsRndEnch(eqpRgnId) {
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function __RebuildSlotAsRndEnch(eqpRgnId, objidPrifix) {
+export function __RebuildSlotAsRndEnch(eqpRgnId, objidPrifix) {
 
 	RebuildRndOptSelect(eqpRgnId, GetStatefullData("DATA_" + objidPrifix, 0));
 }
@@ -1315,7 +1315,7 @@ function __RebuildSlotAsRndEnch(eqpRgnId, objidPrifix) {
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function LoadSlotStateRndEnchAll() {
+export function LoadSlotStateRndEnchAll() {
 
 	// 個別関数を全コール
 	LoadSlotStateRndEnch(EQUIP_REGION_ID_ARMS);
@@ -1340,7 +1340,7 @@ function LoadSlotStateRndEnchAll() {
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function LoadSlotStateRndEnch(eqpRgnId) {
+export function LoadSlotStateRndEnch(eqpRgnId) {
 
 	var idx = 0;
 
@@ -1370,4 +1370,53 @@ function LoadSlotStateRndEnch(eqpRgnId) {
 		rndOptValue = GetEquipRndOptTableValue(eqpRgnId, idx);
 		HtmlSetObjectValueById(objIdValue, rndOptValue);
 	}
+}
+
+if (typeof window !== 'undefined') {
+    window.SLOTPAGER_MODE_CARD = SLOTPAGER_MODE_CARD;
+    window.SLOTPAGER_MODE_RNDENCH = SLOTPAGER_MODE_RNDENCH;
+    window.SLOTPAGER_MODE_RNDOPT = SLOTPAGER_MODE_RNDOPT;
+    window.SLOT_INDEX_CARD_MIN = SLOT_INDEX_CARD_MIN;
+    window.SLOT_INDEX_CARD_MAX = SLOT_INDEX_CARD_MAX;
+    window.SLOT_INDEX_COSTUME_MIN = SLOT_INDEX_COSTUME_MIN;
+    window.SLOT_INDEX_COSTUME_MAX = SLOT_INDEX_COSTUME_MAX;
+    window.SLOT_INDEX_RNDENCH_MIN = SLOT_INDEX_RNDENCH_MIN;
+    window.SLOT_INDEX_RNDENCH_MAX = SLOT_INDEX_RNDENCH_MAX;
+    window.GetSlotMode = GetSlotMode;
+    window.OnClickSlotModeButton = OnClickSlotModeButton;
+    window.SaveSlotStateCardAll = SaveSlotStateCardAll;
+    window.SaveSlotStateCard = SaveSlotStateCard;
+    window.__SaveSlotStateCard = __SaveSlotStateCard;
+    window.BreakSlotOfCardAll = BreakSlotOfCardAll;
+    window.BreakSlotOfCard = BreakSlotOfCard;
+    window.__BreakSlotOfCard = __BreakSlotOfCard;
+    window.__BreakSlotOfCardShort = __BreakSlotOfCardShort;
+    window.RebuildSlotAsCardAll = RebuildSlotAsCardAll;
+    window.RebuildSlotAsCard = RebuildSlotAsCard;
+    window.__RebuildSlotAsCard = __RebuildSlotAsCard;
+    window.__RebuildSlotAsCardShort = __RebuildSlotAsCardShort;
+    window.LoadSlotStateCardAll = LoadSlotStateCardAll;
+    window.LoadSlotStateCard = LoadSlotStateCard;
+    window.__LoadSlotStateCard = __LoadSlotStateCard;
+    window.SaveSlotStateCostumeAll = SaveSlotStateCostumeAll;
+    window.SaveSlotStateCostume = SaveSlotStateCostume;
+    window.__SaveSlotStateCostume = __SaveSlotStateCostume;
+    window.BreakSlotOfCostumeAll = BreakSlotOfCostumeAll;
+    window.BreakSlotOfCostume = BreakSlotOfCostume;
+    window.__BreakSlotOfCostume = __BreakSlotOfCostume;
+    window.RebuildSlotAsCostumeAll = RebuildSlotAsCostumeAll;
+    window.RebuildSlotAsCostume = RebuildSlotAsCostume;
+    window.__RebuildSlotAsCostume = __RebuildSlotAsCostume;
+    window.LoadSlotStateCostumeAll = LoadSlotStateCostumeAll;
+    window.LoadSlotStateCostume = LoadSlotStateCostume;
+    window.__LoadSlotStateCostume = __LoadSlotStateCostume;
+    window.SaveSlotStateRndEnchAll = SaveSlotStateRndEnchAll;
+    window.SaveSlotStateRndEnch = SaveSlotStateRndEnch;
+    window.BreakSlotOfRndEnchAll = BreakSlotOfRndEnchAll;
+    window.BreakSlotOfRndEnch = BreakSlotOfRndEnch;
+    window.RebuildSlotAsRndEnchAll = RebuildSlotAsRndEnchAll;
+    window.RebuildSlotAsRndEnch = RebuildSlotAsRndEnch;
+    window.__RebuildSlotAsRndEnch = __RebuildSlotAsRndEnch;
+    window.LoadSlotStateRndEnchAll = LoadSlotStateRndEnchAll;
+    window.LoadSlotStateRndEnch = LoadSlotStateRndEnch;
 }

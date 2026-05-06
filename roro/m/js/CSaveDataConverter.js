@@ -1,7 +1,7 @@
 /**
  * セーブデータの変換を行うクラス.
  */
-function CSaveDataConverter() {
+export function CSaveDataConverter() {
 
 }
 
@@ -312,3 +312,7 @@ CSaveDataConverter.ExtractDataTextMIG = function (dataText) {
 
 	return dataText;
 };
+
+if (typeof window !== 'undefined') {
+    window.CSaveDataConverter = CSaveDataConverter;
+}

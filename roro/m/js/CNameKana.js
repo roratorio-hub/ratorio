@@ -3,6 +3,8 @@
 
 
 
+import { CGlobalConstManager } from './CGlobalConstManager.js';
+
 //----------------------------------------------------------------
 // 仮名種別
 //----------------------------------------------------------------
@@ -65,7 +67,7 @@ CGlobalConstManager.DefinePseudoEnum(
 /**
  * 名称仮名クラス.
  */
-function CNameKana (nameC, kanaC) {
+export function CNameKana (nameC, kanaC) {
 
 	/** 名称. */
 	this.name = (nameC ? nameC : "");
@@ -350,3 +352,7 @@ CNameKana.GetSortCode = function (kanaCode) {
 	return kanaCode.replace("z", "d").replace("y", "f").replace("v", "a").toUpperCase();
 };
 
+
+if (typeof window !== 'undefined') {
+    window.CNameKana = CNameKana;
+}

@@ -2,7 +2,7 @@
 /**
  * 戦闘結果クラス.
  */
-function CBattleCalcResult () {
+export function CBattleCalcResult () {
 
 	// スキルID
 	this.skillId = 0;
@@ -979,3 +979,7 @@ function CBattleCalcResult () {
 
 
 
+
+if (typeof window !== 'undefined') {
+    window.CBattleCalcResult = CBattleCalcResult;
+}

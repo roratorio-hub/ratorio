@@ -1,35 +1,29 @@
 /**
- * ro4/m/calcx.html 起動統合テスト
+ * ro4/m/calcx.html 統合テスト
  *
- * 目的:
- *   ESM 移行によって window.XXX グローバルへの依存が壊れていないかを検出する。
- *   例) file1.js を ESM 化したことで file2.js が参照しているグローバルが消え、
- *       `ReferenceError: SomeGlobal is not defined` が発生するケースを捕捉する。
+ * テストスイート:
+ *   1. 起動テスト         — ページロード・ユーザー操作で未捕捉 JS 例外が発生しないことを確認
+ *   2. セーブデータ復元   — 本番（GitHub Pages）と同一セーブデータを読み込み UI 値を比較
  *
- * 検出対象:
- *   - 未捕捉 JavaScript 例外 (pageerror)
- *     = `ReferenceError` / `TypeError` 等の ESM グローバル破壊を直接示すエラー
- *   - 未処理 Promise rejection (unhandledrejection)
- *     = Promise チェーン内で発生した ReferenceError 等。Playwright の pageerror
- *       では拾えない場合があるため、addInitScript で直接収集する。
+ * セーブデータ復元テストで検出できる主なバグ:
+ *   - Pattern A バリアント: let X（classic script）と window.X の乖離
+ *     例: n_A_Arrow が head.js の let バインディングを読んで矢の選択値がズレる
+ *   - Pattern B: 非ESMスクリプトが export let 配列を差し替えて習得スキル表示が消える
  *
- * 検出対象外 (意図的に除外):
- *   - console.error() ログ (エラー処理コードが意図的に出力するものが多く誤検知が多い)
- *   - ネットワークリソースの読み込み失敗 (CDN 等のサービス状態に依存するため)
+ * 本番サイトへのアクセスが必要なテストはオフライン環境では自動スキップされる。
  */
 
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
-import { chromium, type Browser } from 'playwright';
+import { chromium, type Browser, type Page } from 'playwright';
 import { createServer, type Server } from 'node:http';
-import { createReadStream, existsSync } from 'node:fs';
+import { createReadStream, existsSync, readFileSync } from 'node:fs';
 import { extname, join, normalize } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-// ─── 静的ファイルサーバー ────────────────────────────────────────────────────
-// <base href="../../roro/m/"> に対応するため、プロジェクトルートを配信する。
-// file:// では ESM type="module" の CORS 制限が発生するため HTTP サーバーが必須。
-
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
+
+// ─── 静的ファイルサーバー ────────────────────────────────────────────────────
+
 const PROJECT_ROOT = join(__dirname, '../..');
 
 const CONTENT_TYPES: Record<string, string> = {
@@ -52,32 +46,147 @@ const CONTENT_TYPES: Record<string, string> = {
 function createStaticServer(root: string): Server {
     return createServer((req, res) => {
         const urlPath = decodeURIComponent((req.url ?? '/').split('?')[0]);
-        // パストラバーサル防止
         const safe = normalize(urlPath).replace(/^(\.\.[/\\])+/, '');
         const filePath = join(root, safe);
-
         if (!filePath.startsWith(root) || !existsSync(filePath)) {
             res.writeHead(404, { 'Content-Type': 'text/plain' });
             res.end(`Not found: ${urlPath}`);
             return;
         }
-
         const ext = extname(filePath).toLowerCase();
-        const contentType = CONTENT_TYPES[ext] ?? 'application/octet-stream';
-        res.writeHead(200, { 'Content-Type': contentType });
+        res.writeHead(200, { 'Content-Type': CONTENT_TYPES[ext] ?? 'application/octet-stream' });
         createReadStream(filePath).pipe(res);
     });
 }
 
-// ─── 既知エラーの抑制 ────────────────────────────────────────────────────────
-// ESM 移行とは無関係な既知エラーを除外するパターン。
-// 新しい既知エラーを見つけたらコメント付きで追加すること。
+// ─── セーブデータフィクスチャ ─────────────────────────────────────────────────
+
+const PRODUCTION_BASE = 'https://roratorio-hub.github.io/ratorio/ro4/m/calcx.html';
+const FIXTURES_PATH = join(__dirname, 'fixtures/sample-savedata.md');
+
+/** フィクスチャファイルから本番URLのリストを読み込む */
+function loadSaveDataEntries(): Array<{ label: string; prodUrl: string; query: string }> {
+    if (!existsSync(FIXTURES_PATH)) return [];
+    return readFileSync(FIXTURES_PATH, 'utf-8')
+        .split('\n')
+        .map((line) => line.trim())
+        .filter((line) => line.length > 0 && !line.startsWith('#'))
+        .map((url, i) => {
+            const qi = url.indexOf('?');
+            return {
+                label: `fixture[${i}]`,
+                prodUrl: url,
+                query: qi >= 0 ? url.slice(qi + 1) : '',
+            };
+        })
+        .filter(({ query }) => query.length > 0);
+}
+
+// ─── UI スナップショット ───────────────────────────────────────────────────────
+/**
+ * セーブデータ復元後のキー要素の値を一括取得する。
+ *
+ * フィールドと検出対象バグの対応:
+ *   job, baseLv, jobLv  — sanity check（save data がそもそも読み込まれたか）
+ *   str〜luk            — 基本ステータス（save data 復元の広域カバレッジ）
+ *   arrow               — Pattern A: n_A_Arrow の window.X / bare X 乖離を検出
+ *   learnedSkillHeaderBg— Pattern B: n_A_LearnedSkill 配列差し替えを検出
+ *                         "#ddddff"=スキル未設定（全0）/ "#ff7777"=スキル設定あり
+ */
+type UiSnapshot = {
+    job: string;
+    baseLv: string;
+    jobLv: string;
+    str: string;
+    agi: string;
+    vit: string;
+    int: string;
+    dex: string;
+    luk: string;
+    arrow: string;
+    learnedSkillHeaderBg: string;
+};
+
+async function captureUiSnapshot(page: Page): Promise<UiSnapshot> {
+    // セーブデータ復元は networkidle 後も数フレーム遅延する場合があるため、
+    // 職業値がデフォルト（"0"）から変化するまで最大 3 秒待つ。
+    await page.waitForFunction(
+        () => {
+            const job = document.getElementById('OBJID_SELECT_JOB') as HTMLSelectElement | null;
+            return job !== null && job.value !== '' && job.value !== '0';
+        },
+        { timeout: 3000 }
+    ).catch(() => { /* タイムアウト時はそのまま読む（データなし URL の場合も想定） */ });
+
+    return page.evaluate((): UiSnapshot => {
+        const val = (id: string): string =>
+            (document.getElementById(id) as HTMLInputElement | HTMLSelectElement | null)?.value ?? '';
+        const attr = (id: string, a: string): string =>
+            document.getElementById(id)?.getAttribute(a) ?? '';
+        return {
+            job:   val('OBJID_SELECT_JOB'),
+            baseLv: val('OBJID_SELECT_BASE_LEVEL'),
+            jobLv:  val('OBJID_SELECT_JOB_LEVEL'),
+            str:   val('OBJID_SELECT_STATUS_STR'),
+            agi:   val('OBJID_SELECT_STATUS_AGI'),
+            vit:   val('OBJID_SELECT_STATUS_VIT'),
+            int:   val('OBJID_SELECT_STATUS_INT'),
+            dex:   val('OBJID_SELECT_STATUS_DEX'),
+            luk:   val('OBJID_SELECT_STATUS_LUK'),
+            // 矢: CCustomSelectBase が動的生成する <select id="OBJID_SELECT_ARROW">
+            arrow: val('OBJID_SELECT_ARROW'),
+            // 習得スキルヘッダ: learnedskill.js が RefreshSkillColumnHeaderLearned で設定
+            learnedSkillHeaderBg: attr('OBJID_SKILL_COLUMN_HEADER_LEARNED', 'bgcolor'),
+        };
+    });
+}
+
+// ─── 例外収集ヘルパー ─────────────────────────────────────────────────────────
+
 const SUPPRESSED_ERROR_PATTERNS: RegExp[] = [
-    // 例: /some known non-esm error/i,
+    // ESM 移行と無関係な既知エラーをここに追加する（コメント必須）
 ];
 
 function isSuppressed(message: string): boolean {
     return SUPPRESSED_ERROR_PATTERNS.some((re) => re.test(message));
+}
+
+/**
+ * ページを開いて setupFn を実行し、発生した未捕捉 JS 例外をすべて返す。
+ * pageerror と unhandledrejection の両方を収集する。
+ */
+async function collectPageErrors(
+    browser: Browser,
+    setupFn: (page: Page) => Promise<void>
+): Promise<string[]> {
+    const context = await browser.newContext();
+    const page = await context.newPage();
+    const errors: string[] = [];
+
+    page.on('pageerror', (err) => {
+        if (!isSuppressed(err.message)) errors.push(`[pageerror] ${err.message}`);
+    });
+
+    // Playwright の pageerror では拾えない unhandledrejection をページ内で直接収集する
+    await page.addInitScript(() => {
+        (window as any).__pendingRejections = [];
+        window.addEventListener('unhandledrejection', (event) => {
+            const msg = (event.reason as any)?.message ?? String(event.reason);
+            (window as any).__pendingRejections.push(msg);
+        });
+    });
+
+    await setupFn(page);
+
+    const rejections: string[] = await page.evaluate(
+        () => (window as any).__pendingRejections ?? []
+    );
+    for (const msg of rejections) {
+        if (!isSuppressed(msg)) errors.push(`[unhandledrejection] ${msg}`);
+    }
+
+    await context.close();
+    return errors;
 }
 
 // ─── テストセットアップ ──────────────────────────────────────────────────────
@@ -102,59 +211,111 @@ afterAll(async () => {
     );
 });
 
-// ─── テスト本体 ──────────────────────────────────────────────────────────────
+// ─── スイート 1: 起動テスト ──────────────────────────────────────────────────
 
 describe('ro4/m/calcx.html 起動テスト', () => {
     it('スクリプト読み込みと初期化で未捕捉 JS 例外が発生しない', async () => {
-        const context = await browser.newContext();
-        const page = await context.newPage();
-
-        const pageErrors: string[] = [];
-
-        // 未捕捉例外を収集 (ReferenceError: X is not defined 等)
-        page.on('pageerror', (err) => {
-            if (!isSuppressed(err.message)) {
-                pageErrors.push(`[pageerror] ${err.message}`);
-            }
-        });
-
-        // Promise 内の未処理 rejection を直接収集する。
-        // Playwright の pageerror は networkidle 解決後に非同期発生する unhandledrejection を
-        // 拾えない場合があるため、addInitScript でページ内リスナーを埋め込む。
-        await page.addInitScript(() => {
-            (window as any).__pendingRejections = [];
-            window.addEventListener('unhandledrejection', (event) => {
-                const msg = (event.reason as any)?.message ?? String(event.reason);
-                (window as any).__pendingRejections.push(msg);
+        const errors = await collectPageErrors(browser, async (page) => {
+            await page.goto(`${baseUrl}/ro4/m/calcx.html`, {
+                waitUntil: 'networkidle',
+                timeout: 60000,
             });
+            await page.waitForTimeout(500);
         });
+        expect(errors, formatErrorMsg('ページロード中', errors)).toHaveLength(0);
+    });
 
-        // networkidle: type="module" と defer スクリプトの混在 + CDN リソース。
-        // すべて完了(または失敗)し、500ms ネットワーク無通信になるまで待つ。
-        await page.goto(`${baseUrl}/ro4/m/calcx.html`, {
-            waitUntil: 'networkidle',
-            timeout: 60000,
+    // 職業変更は equip.js・learnedskill.js 等の初期化コードをトリガーする。
+    // ESM 移行で壊れた場合に ReferenceError として現れることがあるため検出する。
+    it('職業変更操作で未捕捉 JS 例外が発生しない', async () => {
+        const errors = await collectPageErrors(browser, async (page) => {
+            await page.goto(`${baseUrl}/ro4/m/calcx.html`, {
+                waitUntil: 'networkidle',
+                timeout: 60000,
+            });
+            await page.selectOption('#OBJID_SELECT_JOB', { index: 1 });
+            await page.waitForTimeout(500);
+            await page.selectOption('#OBJID_SELECT_JOB', { index: 0 });
+            await page.waitForTimeout(300);
         });
+        expect(errors, formatErrorMsg('職業変更操作中', errors)).toHaveLength(0);
+    });
 
-        // networkidle 解決後に非同期発生するエラー (unhandledrejection 等) を待つ。
-        await page.waitForTimeout(500);
-
-        // ページ内で収集した unhandledrejection を pageErrors にマージ
-        const rejections: string[] = await page.evaluate(
-            () => (window as any).__pendingRejections ?? []
-        );
-        for (const msg of rejections) {
-            if (!isSuppressed(msg)) {
-                pageErrors.push(`[unhandledrejection] ${msg}`);
-            }
+    // セーブデータを URL から読み込む操作をトリガーする。
+    // fixtures に URL がある場合のみ実行する（1 件目を代表として使用）。
+    it('セーブデータ URL 読み込みで未捕捉 JS 例外が発生しない', async () => {
+        const entries = loadSaveDataEntries();
+        if (entries.length === 0) {
+            console.warn('fixtures/sample-savedata.md にエントリがないためスキップ');
+            return;
         }
-
-        await context.close();
-
-        expect(
-            pageErrors,
-            `ページロード中に未捕捉 JS 例外が ${pageErrors.length} 件発生しました:\n` +
-                pageErrors.join('\n')
-        ).toHaveLength(0);
+        const { query } = entries[0];
+        const errors = await collectPageErrors(browser, async (page) => {
+            await page.goto(`${baseUrl}/ro4/m/calcx.html?${query}`, {
+                waitUntil: 'networkidle',
+                timeout: 60000,
+            });
+            await page.waitForTimeout(500);
+        });
+        expect(errors, formatErrorMsg('セーブデータ読み込み中', errors)).toHaveLength(0);
     });
 });
+
+// ─── スイート 2: セーブデータ復元精度テスト ──────────────────────────────────
+//
+// 手動テスト手順（本番 URL → ローカル URL → 目視比較）を自動化したもの。
+// フィクスチャの各 URL について本番とローカルの UI 値を比較する。
+// 本番サイトへのアクセスが不可な場合は自動スキップ。
+
+describe('セーブデータ復元精度テスト（本番 vs ESM移行環境）', () => {
+    const entries = loadSaveDataEntries();
+
+    if (entries.length === 0) {
+        it('フィクスチャなし（fixtures/sample-savedata.md に URL を追加してください）', () => {
+            console.warn('sample-savedata.md にエントリがないためスキップ');
+        });
+    }
+
+    for (const { label, prodUrl, query } of entries) {
+        it(`${label}: 本番と同一の UI 値が復元される`, async () => {
+            // ── 本番から期待値を取得 ─────────────────────────────────────
+            let prodSnapshot: UiSnapshot;
+            try {
+                const prodContext = await browser.newContext();
+                const prodPage = await prodContext.newPage();
+                await prodPage.goto(prodUrl, { waitUntil: 'networkidle', timeout: 30000 });
+                prodSnapshot = await captureUiSnapshot(prodPage);
+                await prodContext.close();
+            } catch {
+                console.warn(`本番サイトへのアクセスに失敗したためスキップ: ${label}`);
+                return;
+            }
+
+            // ── ローカルで同一セーブデータを読み込み ─────────────────────
+            const localContext = await browser.newContext();
+            const localPage = await localContext.newPage();
+            await localPage.goto(`${baseUrl}/ro4/m/calcx.html?${query}`, {
+                waitUntil: 'networkidle',
+                timeout: 60000,
+            });
+            const localSnapshot = await captureUiSnapshot(localPage);
+            await localContext.close();
+
+            // ── 比較 ─────────────────────────────────────────────────────
+            expect(localSnapshot, [
+                `ESM移行環境のUI値が本番と異なります (${label})`,
+                '考えられる原因:',
+                '  Pattern A バリアント — window.X と bare X の乖離（例: n_A_Arrow）',
+                '  Pattern B — 非ESMスクリプトによる配列差し替え（例: n_A_LearnedSkill）',
+                `本番:   ${JSON.stringify(prodSnapshot!)}`,
+                `ローカル: ${JSON.stringify(localSnapshot)}`,
+            ].join('\n')).toEqual(prodSnapshot);
+        });
+    }
+});
+
+// ─── ユーティリティ ───────────────────────────────────────────────────────────
+
+function formatErrorMsg(context: string, errors: string[]): string {
+    return `${context}に未捕捉 JS 例外が ${errors.length} 件発生しました:\n${errors.join('\n')}`;
+}

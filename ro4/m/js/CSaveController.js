@@ -1,7 +1,7 @@
 /**
  * 計算機メインコントローラクラス.
  */
-class CSaveController {
+export class CSaveController {
 
 	/**
 	 * ストレージタイプ（ローカルストレージ）.
@@ -865,7 +865,7 @@ class CSaveController {
 		    	chart.data.datasets[3].data.push(isNaN(cycle) ? 0 : cycle);
 		    	chart.update();
 				hideLoadingIndicator();
-		    	g_Chart = chart;
+		    	window.g_Chart = chart;
 		    });
 		    $("#history_reset").click(e => {
 		    	chart.data.labels = [];
@@ -876,7 +876,7 @@ class CSaveController {
 		    	chart.data.datasets[3].data = [];
 		    	target = 0;
 		    	chart.update();
-		    	g_Chart = null;
+		    	window.g_Chart = null;
 		    });
 		    $("#history_list").click(e => {
 		    	$("#history_graph").insertBefore("#clip_modal_table");
@@ -918,7 +918,7 @@ class CSaveController {
 		      data.datasets[0].metadata[index]["memo"] = e.target.value;
 		      chart.update();
 		      reload_history_table();
-		      g_Chart = chart;
+		      window.g_Chart = chart;
 		    });
 		    $(document).on("blur", "input.clip_memo", (e) => {
 		      $(e.target).toggle();
@@ -931,7 +931,7 @@ class CSaveController {
 		        flip_clip(index, index - 1);
 		        chart.update();
 		        reload_history_table();
-		        g_Chart = chart;
+		        window.g_Chart = chart;
 		      }
 		    });
 		    $(document).on("click", ".down_clip", (e) => {
@@ -941,7 +941,7 @@ class CSaveController {
 		        flip_clip(index, index + 1);
 		        chart.update();
 		        reload_history_table();
-		        g_Chart = chart;
+		        window.g_Chart = chart;
 		      }
 		    });
 		    $(document).on("click", ".remove_clip", (e) => {
@@ -955,7 +955,7 @@ class CSaveController {
 		      data.datasets[3].data.splice(index, 1);
 		      chart.update();
 		      reload_history_table();
-		      g_Chart = chart;
+		      window.g_Chart = chart;
 		    });
 		    $("#clip_modal").on("modal:before-close", () => {
 		      $("#history_graph").appendTo("#history_container");
@@ -964,7 +964,7 @@ class CSaveController {
 			chart.data = chartDataObj;
 			data = chartDataObj;
 	    	chart.update();
-			g_Chart = chart;
+			window.g_Chart = chart;
 
 		};
 		buildForm();
@@ -1137,7 +1137,7 @@ class CSaveController {
 			// chartdata があれば復元
 			if (chartData && chartData.length > 1) {
 				if (CSaveController.bJSON) {
-					g_Chart = JSON.parse(chartData, (key, value) => {
+					window.g_Chart = JSON.parse(chartData, (key, value) => {
 						if (typeof value === 'string' && /^\d+$/.test(value)) {
 							// leave numeric-looking strings as-is (no BigInt conversion here)
 						}
@@ -1147,8 +1147,8 @@ class CSaveController {
 				else {
 					// Chartのデータはchart.dataのみに絞っているのでこれだけでよい
 					let param = JSON.parse(chartData);
-					g_Chart = {};
-					g_Chart.data = param;
+					window.g_Chart = {};
+					window.g_Chart.data = param;
 				}
 				// チャートの復元
 				CSaveController.#restoreChartDisplay();
@@ -1412,4 +1412,8 @@ class CSaveController {
 		input.click();
 	}
 
+}
+
+if (typeof window !== 'undefined') {
+    window.CSaveController = CSaveController;
 }

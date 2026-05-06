@@ -112,7 +112,6 @@ function changeJobSettings(jobId) {
 		g_shadowEquipController.rebuildAll();
 	}
 	// 習得スキルの初期化
-	n_A_LearnedSkill = new Array();
 	for (var dmyidx = 0; dmyidx < LEARNED_SKILL_MAX_COUNT; dmyidx++) {
 		n_A_LearnedSkill[dmyidx] = 0;
 	}

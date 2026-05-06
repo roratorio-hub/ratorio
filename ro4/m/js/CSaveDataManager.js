@@ -1,7 +1,7 @@
 /**
  * セーブデータマネージャクラス.
  */
-class CSaveDataManager {
+export class CSaveDataManager {
 
 	/**
 	 * プロパティに対応するHTMLオブジェクトIDのマップ（Map< type, Map< propName, objectID > >）.
@@ -800,7 +800,7 @@ class CSaveDataManager {
 
 		// グローバル変数の初期化（移行対応変数のみ）
 		ResetConfDataAllMIG(false);
-		n_A_Arrow = 0;		// 再ロード時のバグ対応
+		window.n_A_Arrow = 0;		// 再ロード時のバグ対応
 
 		// 必要な情報を収集する
 		const idxMap = new SKeyMap();
@@ -1011,13 +1011,13 @@ class CSaveDataManager {
 		// 画面表示リフレッシュ処理（既存移植）
 		OnClickSkillSWLearned();
 		if(arrowArray[0] === undefined){
-			n_A_Arrow = 0;
+			window.n_A_Arrow = 0;
 		}
 		else{
-			n_A_Arrow = (arrowArray[0] - 1);
+			window.n_A_Arrow = (arrowArray[0] - 1);
 		}
 		const obj_select_arrow = document.getElementById("OBJID_SELECT_ARROW")
-		HtmlSelectObjectValueAsInteger(obj_select_arrow, n_A_Arrow);
+		HtmlSelectObjectValueAsInteger(obj_select_arrow, window.n_A_Arrow);
 		Click_A8(false);	// BuffChara（旧：支援スキル８（その他の支援/設定））
 		Click_A1(false);	// BuffSelf
 		g_objCharaConfIchizi.OnSaveDataLoaded();
@@ -2145,4 +2145,8 @@ class CSaveDataManager {
 		//  攻撃手段の設定設定を変更
 		CAttackMethodAreaComponentManager.SetAttackMethodConf(attackMethodConf);
 	}
+}
+
+if (typeof window !== 'undefined') {
+    window.CSaveDataManager = CSaveDataManager;
 }
