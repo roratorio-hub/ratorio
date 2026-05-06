@@ -22014,7 +22014,9 @@ function GetAdditionalAspdPercent() {
     }
 
 	/** ドルイド「ビースティノーズ」による攻撃速度 + 効果 */
-	tmp_percent += LearnedSkillSearch(SKILL_ID_BEASTY_NOSE);
+	if (UsedSkillSearch(SKILL_ID_WEREWOLF) == 1) {
+		tmp_percent += LearnedSkillSearch(SKILL_ID_BEASTY_NOSE);
+	}
 
     //----------------------------------------------------------------
     // 「星帝　星の構え」の効果
