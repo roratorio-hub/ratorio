@@ -1,5 +1,5 @@
 
-
+import { CGlobalConstManager } from './CGlobalConstManager.js';
 
 //----------------------------------------------------------------
 // 攻撃手段の種別
@@ -23,7 +23,7 @@ CGlobalConstManager.DefineEnum(
 /**
  * 攻撃手段設定クラス.
  */
-function CAttackMethodConf () {
+export function CAttackMethodConf () {
 
 	// スキルID
 	this.skillId = 0;
@@ -167,7 +167,7 @@ function CAttackMethodConf () {
 	};
 }
 
-
-
-
+if (typeof window !== 'undefined') {
+    window.CAttackMethodConf = CAttackMethodConf;
+}
 
