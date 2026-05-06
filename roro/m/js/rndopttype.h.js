@@ -1,4 +1,6 @@
 
+import { CGlobalConstManager } from './CGlobalConstManager.js';
+
 //----------------------------------------------------------------
 // データの要素番号
 //----------------------------------------------------------------
@@ -35,32 +37,22 @@ CGlobalConstManager.DefineEnum(
 
 
 // ランダムオプション設定状況テーブル初期化
-(function () {
+export let g_equipRndOptTable = new Array();
 
-	var eqpRgnId = 0;
-	var rndOptIndex = 0;
+for (let eqpRgnId = 0; eqpRgnId < EQUIP_REGION_ID_COUNT; eqpRgnId++) {
 
-	g_equipRndOptTable = new Array();
+	g_equipRndOptTable[eqpRgnId] = new Array();
 
-	for (eqpRgnId = 0; eqpRgnId < EQUIP_REGION_ID_COUNT; eqpRgnId++) {
+	for (let rndOptIndex = 0; rndOptIndex < RND_OPT_SLOT_COUNT; rndOptIndex++) {
 
-		g_equipRndOptTable[eqpRgnId] = new Array();
+		g_equipRndOptTable[eqpRgnId][rndOptIndex] = [0, 0];
 
-		for (rndOptIndex = 0; rndOptIndex < RND_OPT_SLOT_COUNT; rndOptIndex++) {
-
-			g_equipRndOptTable[eqpRgnId][rndOptIndex] = [0, 0];
-
-		}
 	}
-})();
+}
 
 
 
-g_rndOptTypeArray = new Array();
-
-
-
-function SetEquipRndOptTable(eqpRgnId, rndOptIndex, rndOptId, rndOptValue) {
+export function SetEquipRndOptTable(eqpRgnId, rndOptIndex, rndOptId, rndOptValue) {
 
 	if (rndOptId < 0) {
 		g_equipRndOptTable[eqpRgnId][rndOptIndex][1] = rndOptValue;
@@ -71,7 +63,7 @@ function SetEquipRndOptTable(eqpRgnId, rndOptIndex, rndOptId, rndOptValue) {
 	}
 }
 
-function GetEquipRndOptTableKind(eqpRgnId, rndOptIndex) {
+export function GetEquipRndOptTableKind(eqpRgnId, rndOptIndex) {
 
 	// TODO: 次世代版のシャドウ装備対応　暫定措置
 	try {
@@ -82,7 +74,7 @@ function GetEquipRndOptTableKind(eqpRgnId, rndOptIndex) {
 	}
 }
 
-function GetEquipRndOptTableValue(eqpRgnId, rndOptIndex) {
+export function GetEquipRndOptTableValue(eqpRgnId, rndOptIndex) {
 
 	// TODO: 次世代版のシャドウ装備対応　暫定措置
 	try {
@@ -95,3 +87,9 @@ function GetEquipRndOptTableValue(eqpRgnId, rndOptIndex) {
 
 
 
+if (typeof window !== 'undefined') {
+	window.g_equipRndOptTable = g_equipRndOptTable;
+	window.SetEquipRndOptTable = SetEquipRndOptTable;
+	window.GetEquipRndOptTableKind = GetEquipRndOptTableKind;
+	window.GetEquipRndOptTableValue = GetEquipRndOptTableValue;
+}
