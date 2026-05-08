@@ -1,5 +1,8 @@
 
 import { CGlobalConstManager } from './CGlobalConstManager.js';
+import { CNameKana } from './CNameKana.js';
+import { g_MonsterMapDataArray, g_MonsterMapCategoryDataArray } from './monstermap.dat.js';
+export { g_MonsterMapDataArray, g_MonsterMapCategoryDataArray } from './monstermap.dat.js';
 
 //----------------------------------------------------------------
 // データの要素番号
@@ -81,9 +84,8 @@ export function SetUpSortKanaMonsterMap(dataArray) {
 
 
 
-// データ配列
-export const g_MonsterMapDataArray = [];
-export const g_MonsterMapCategoryDataArray = [];
+SetUpSortKanaMonsterMap(g_MonsterMapDataArray);
+SetUpSortKanaMonsterMap(g_MonsterMapCategoryDataArray);
 
 if (typeof window !== 'undefined') {
     window.g_MonsterMapDataArray = g_MonsterMapDataArray;

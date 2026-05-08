@@ -441,10 +441,8 @@ export function GetRndOptDispName(spid) {
 
 
 
-export const g_rndOptArray = new Array();
 
 if (typeof window !== 'undefined') {
     window.GetRndOptDispName = GetRndOptDispName;
-    window.g_rndOptArray = g_rndOptArray;
 }
 

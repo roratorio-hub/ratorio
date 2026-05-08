@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import '@roro/CGlobalConstManager.js';
-import { GetRndOptDispName, g_rndOptArray } from '@roro/rndopt.h.js';
+import { GetRndOptDispName } from '@roro/rndopt.h.js';
 
 describe('rndopt.h.js', () => {
     describe('DefineEnum 副作用確認', () => {
@@ -25,17 +25,11 @@ describe('rndopt.h.js', () => {
         it('GetRndOptDispName が関数', () => {
             expect(typeof GetRndOptDispName).toBe('function');
         });
-        it('g_rndOptArray が配列', () => {
-            expect(Array.isArray(g_rndOptArray)).toBe(true);
-        });
     });
 
     describe('window互換確認', () => {
         it('window.GetRndOptDispName が設定されている', () => {
             expect((window as any).GetRndOptDispName).toBe(GetRndOptDispName);
-        });
-        it('window.g_rndOptArray が設定されている', () => {
-            expect((window as any).g_rndOptArray).toBe(g_rndOptArray);
         });
     });
 });

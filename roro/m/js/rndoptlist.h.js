@@ -14,9 +14,5 @@ CGlobalConstManager.DefineEnum(
 	1
 );
 
-export const g_rndOptListArray = new Array();
 
-if (typeof window !== 'undefined') {
-	window.g_rndOptListArray = g_rndOptListArray;
-}
 
