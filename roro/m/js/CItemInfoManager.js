@@ -2,7 +2,7 @@
 /**
  * アイテム情報マネージャクラス.
  */
-function CItemInfoManager () {
+export function CItemInfoManager () {
 
 }
 
@@ -669,6 +669,7 @@ CItemInfoManager.RebuildOfficialTradeInformationAnchor = function (kindId, dataI
 	var dataOfficialId = 0;
 	var dataName = "";
 	var dataSlot = 0;
+	var url = "";
 
 	var objA = null;
 
@@ -1141,6 +1142,7 @@ CItemInfoManager.AppendEfficiencyInfoSub = function (objRoot, dataKind, dataId, 
 	var textInfoArray = null;
 	var splittedText = "";
 	var splittedTextArray = null;
+	var sourceText = "";
 	var timeItemData = null;
 	var srcDataArray = null;
 	var colorNameMatcher = null;
@@ -1420,4 +1422,6 @@ CItemInfoManager.AppendSetInfo = function (objRoot, dataIdToSetIdMap, bEnableTim
 	);
 };
 
-
+if (typeof window !== 'undefined') {
+	window.CItemInfoManager = CItemInfoManager;
+}

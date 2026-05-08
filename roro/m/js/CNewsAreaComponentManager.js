@@ -1,7 +1,7 @@
 /**
  * お知らせエリアコンポーネントマネージャクラス.
  */
-function CNewsAreaComponentManager () {
+export function CNewsAreaComponentManager () {
 
 }
 
@@ -311,5 +311,6 @@ CNewsAreaComponentManager.CloseArea = function () {
 // 初期構築処理
 CNewsAreaComponentManager.RebuildControls();
 
-
-
+if (typeof window !== 'undefined') {
+	window.CNewsAreaComponentManager = CNewsAreaComponentManager;
+}
