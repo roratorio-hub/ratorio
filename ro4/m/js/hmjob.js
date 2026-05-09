@@ -157,6 +157,11 @@ function CalcStatusPoint(bIgnoreAutoCalc) {
 		for (var blv = 1; blv <= blvSelected; blv++) {
 			stPointEarned += GetEarningStatusPoint(blv);
 		}
+		if (IsYojiJob(migJobIdNum)) {
+			for (blv = blvSelected; (stTSPointEarned < stTSPointUsed) && (blv <= blvSelected); blv++) {
+				stTSPointEarned = GetEarningTSStatusPoint(blv);
+			}
+		}
 	}
 	// レベルの自動計算をする場合
 	else {
@@ -188,7 +193,7 @@ function CalcStatusPoint(bIgnoreAutoCalc) {
 	let bPointCap = CSaveController.getSettingProp(CSaveDataConst.propNamePointCap);
 	if (bPointCap) {
 		// ステータスポイントを超えていたら値を戻す
-		if ((stPointEarned - stPointUsed) < 0) {
+		if (((stPointEarned - stPointUsed) < 0) || ((stTSPointEarned - stTSPointUsed) < 0)) {
 			with(document.calcForm) {
 				A_STR.value = g_STR;
 				A_AGI.value = g_AGI;
