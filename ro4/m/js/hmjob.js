@@ -1,22 +1,22 @@
-g_pureStatus = [];
-g_bonusStatus = [];
+export let g_pureStatus = [];
+export let g_bonusStatus = [];
 
 // 設定値の保存領域
-g_STR = 0;
-g_AGI = 0;
-g_VIT = 0;
-g_INT = 0;
-g_DEX = 0;
-g_LUK = 0;
-g_POW = 0;
-g_STA = 0;
-g_WIS = 0;
-g_SPL = 0;
-g_CON = 0;
-g_CRT = 0;
+export let g_STR = 0;
+export let g_AGI = 0;
+export let g_VIT = 0;
+export let g_INT = 0;
+export let g_DEX = 0;
+export let g_LUK = 0;
+export let g_POW = 0;
+export let g_STA = 0;
+export let g_WIS = 0;
+export let g_SPL = 0;
+export let g_CON = 0;
+export let g_CRT = 0;
 
 
-function RebuildStatusSelect(jobId) {
+export function RebuildStatusSelect(jobId) {
 	// 職業IDが引数で渡されなかった時用のコード
 	if (typeof jobId === "undefined" || jobId === null) {
 		jobId = document.getElementById("OBJID_SELECT_JOB").value;
@@ -83,37 +83,36 @@ function RebuildStatusSelect(jobId) {
  * ステータスポイントを計算する
  * @param bIgnoreAutoCalc 自動計算回避フラグ
  */
-function CalcStatusPoint(bIgnoreAutoCalc) {
+export function CalcStatusPoint(bIgnoreAutoCalc) {
 
-	with(document.calcForm) {
-		// ベースレベルの自動計算チェックボックスの状態を取得
-		if (BLVauto.checked == 0) {
-			bIgnoreAutoCalc = true;
-		}
-
-		// 職業ＩＤを取得する
-		var selectJob = document.getElementById("OBJID_SELECT_JOB");
-		var jobId = selectJob.value;
-
-		// ベースレベルを取得する
-		var blvSelected = eval(A_BaseLV.value);
-
-		// ステータス値を取得する
-		var stValSTR = eval(A_STR.value);
-		var stValAGI = eval(A_AGI.value);
-		var stValVIT = eval(A_VIT.value);
-		var stValINT = eval(A_INT.value);
-		var stValDEX = eval(A_DEX.value);
-		var stValLUK = eval(A_LUK.value);
-
-		// 特性ステータス値を取得する
-		var stValPOW = eval(A_POW.value);
-		var stValSTA = eval(A_STA.value);
-		var stValWIS = eval(A_WIS.value);
-		var stValSPL = eval(A_SPL.value);
-		var stValCON = eval(A_CON.value);
-		var stValCRT = eval(A_CRT.value);
+	const _cf = document.calcForm;
+	// ベースレベルの自動計算チェックボックスの状態を取得
+	if (_cf.BLVauto.checked == 0) {
+		bIgnoreAutoCalc = true;
 	}
+
+	// 職業ＩＤを取得する
+	var selectJob = document.getElementById("OBJID_SELECT_JOB");
+	var jobId = selectJob.value;
+
+	// ベースレベルを取得する
+	var blvSelected = eval(_cf.A_BaseLV.value);
+
+	// ステータス値を取得する
+	var stValSTR = eval(_cf.A_STR.value);
+	var stValAGI = eval(_cf.A_AGI.value);
+	var stValVIT = eval(_cf.A_VIT.value);
+	var stValINT = eval(_cf.A_INT.value);
+	var stValDEX = eval(_cf.A_DEX.value);
+	var stValLUK = eval(_cf.A_LUK.value);
+
+	// 特性ステータス値を取得する
+	var stValPOW = eval(_cf.A_POW.value);
+	var stValSTA = eval(_cf.A_STA.value);
+	var stValWIS = eval(_cf.A_WIS.value);
+	var stValSPL = eval(_cf.A_SPL.value);
+	var stValCON = eval(_cf.A_CON.value);
+	var stValCRT = eval(_cf.A_CRT.value);
 
 	const jobData = JobMap.getById(jobId);
 	const migJobIdNum = jobData.getMigIdNum();
@@ -194,75 +193,71 @@ function CalcStatusPoint(bIgnoreAutoCalc) {
 	if (bPointCap) {
 		// ステータスポイントを超えていたら値を戻す
 		if (((stPointEarned - stPointUsed) < 0) || ((stTSPointEarned - stTSPointUsed) < 0)) {
-			with(document.calcForm) {
-				A_STR.value = g_STR;
-				A_AGI.value = g_AGI;
-				A_VIT.value = g_VIT;
-				A_INT.value = g_INT;
-				A_DEX.value = g_DEX;
-				A_LUK.value = g_LUK;
-				A_POW.value = g_POW;
-				A_STA.value = g_STA;
-				A_WIS.value = g_WIS;
-				A_SPL.value = g_SPL;
-				A_CON.value = g_CON;
-				A_CRT.value = g_CRT;
-			}
+			_cf.A_STR.value = g_STR;
+				_cf.A_AGI.value = g_AGI;
+				_cf.A_VIT.value = g_VIT;
+				_cf.A_INT.value = g_INT;
+				_cf.A_DEX.value = g_DEX;
+				_cf.A_LUK.value = g_LUK;
+				_cf.A_POW.value = g_POW;
+				_cf.A_STA.value = g_STA;
+				_cf.A_WIS.value = g_WIS;
+				_cf.A_SPL.value = g_SPL;
+				_cf.A_CON.value = g_CON;
+				_cf.A_CRT.value = g_CRT;
 			CalcStatusPoint(true);
 			return;
 		}
 		else {
 			// 空白の箇所は初期値に戻す
-			with (document.calcForm) {
-				if (A_STR.value == "") {
-					A_STR.value = 1;
+			if (_cf.A_STR.value == "") {
+					_cf.A_STR.value = 1;
 					stValSTR = 1;
 				}
-				if (A_AGI.value == "") {
-					A_AGI.value = 1;
+				if (_cf.A_AGI.value == "") {
+					_cf.A_AGI.value = 1;
 					stValAGI = 1;
 				}
-				if (A_VIT.value == "") {
-					A_VIT.value = 1;
+				if (_cf.A_VIT.value == "") {
+					_cf.A_VIT.value = 1;
 					stValVIT = 1;
 				}
-				if (A_INT.value == "") {
-					A_INT.value = 1;
+				if (_cf.A_INT.value == "") {
+					_cf.A_INT.value = 1;
 					stValINT = 1;
 				}
-				if (A_DEX.value == "") {
-					A_DEX.value = 1;
+				if (_cf.A_DEX.value == "") {
+					_cf.A_DEX.value = 1;
 					stValDEX = 1;
 				}
-				if (A_LUK.value == "") {
-					A_LUK.value = 1;
+				if (_cf.A_LUK.value == "") {
+					_cf.A_LUK.value = 1;
 					stValLUK = 1;
 				}
-				if (A_POW.value == "") {
-					A_POW.value = 0;
+				if (_cf.A_POW.value == "") {
+					_cf.A_POW.value = 0;
 					stValPOW = 0;
 				}
-				if (A_STA.value == "") {
-					A_STA.value = 0;
+				if (_cf.A_STA.value == "") {
+					_cf.A_STA.value = 0;
 					stValSTA = 0;
 				}
-				if (A_WIS.value == "") {
-					A_WIS.value = 0;
+				if (_cf.A_WIS.value == "") {
+					_cf.A_WIS.value = 0;
 					stValWIS = 0;
 				}
-				if (A_SPL.value == "") {
-					A_SPL.value = 0;
+				if (_cf.A_SPL.value == "") {
+					_cf.A_SPL.value = 0;
 					stValSPL = 0;
 				}
-				if (A_CON.value == "") {
-					A_CON.value = 0;
+				if (_cf.A_CON.value == "") {
+					_cf.A_CON.value = 0;
 					stValCON = 0;
 				}
-				if (A_CRT.value == "") {
-					A_CRT.value = 0;
+				if (_cf.A_CRT.value == "") {
+					_cf.A_CRT.value = 0;
 					stValCRT = 0;
 				}
-			}
 		}
 	}
 	g_STR = stValSTR;
@@ -277,6 +272,11 @@ function CalcStatusPoint(bIgnoreAutoCalc) {
 	g_SPL = stValSPL;
 	g_CON = stValCON;
 	g_CRT = stValCRT;
+	// Pattern A: window sync
+	window.g_STR = g_STR; window.g_AGI = g_AGI; window.g_VIT = g_VIT;
+	window.g_INT = g_INT; window.g_DEX = g_DEX; window.g_LUK = g_LUK;
+	window.g_POW = g_POW; window.g_STA = g_STA; window.g_WIS = g_WIS;
+	window.g_SPL = g_SPL; window.g_CON = g_CON; window.g_CRT = g_CRT;
 
 	myInnerHtml("A_STPOINT", stPointEarned - stPointUsed, 0);
 	myInnerHtml("OBJID_SPAN_STATUS_T_STATUS_POINT", stTSPointEarned - stTSPointUsed, 0);
@@ -284,6 +284,7 @@ function CalcStatusPoint(bIgnoreAutoCalc) {
 	// 特性ステータス仮処理
 	// とりあえず、グローバル空間を汚す
 	g_pureStatus = [];
+	window.g_pureStatus = g_pureStatus;
 	g_pureStatus[MIG_PARAM_ID_POW] = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_STATUS_POW", 0);
 	g_pureStatus[MIG_PARAM_ID_STA] = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_STATUS_STA", 0);
 	g_pureStatus[MIG_PARAM_ID_WIS] = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_STATUS_WIS", 0);
@@ -297,7 +298,7 @@ function CalcStatusPoint(bIgnoreAutoCalc) {
  * @param statusValue ステータス値
  * @return 必要コスト
  */
-function GetStatusIncrementCost(statusValue) {
+export function GetStatusIncrementCost(statusValue) {
 	if(statusValue <= 100) return Math.floor((statusValue - 2) /10) + 2;
 	if(statusValue <= 105) return 16;
 	if(statusValue <= 110) return 20;
@@ -312,7 +313,7 @@ function GetStatusIncrementCost(statusValue) {
  * @param statusValue ステータス値
  * @return 必要コストの相和
  */
-function GetStatusTotalCost(statusValue) {
+export function GetStatusTotalCost(statusValue) {
 
 	var statusPoint = 0;
 
@@ -329,7 +330,7 @@ function GetStatusTotalCost(statusValue) {
  * @param baseLevel ベースレベル
  * @return 獲得ステー足すポイント
  */
-function GetEarningStatusPoint(baseLevel) {
+export function GetEarningStatusPoint(baseLevel) {
 
 	if (baseLevel <= 1) {
 		return 0;
@@ -382,7 +383,7 @@ function GetEarningStatusPoint(baseLevel) {
 /**
  * ステータス補正を画面出力する.
  */
-function DisplayStatusBonusAll(baseLv, valSTR, valAGI, valVIT, valINT, valDEX, valLUK, valPOW, valSTA, valWIS, valSPL, valCON, valCRT) {
+export function DisplayStatusBonusAll(baseLv, valSTR, valAGI, valVIT, valINT, valDEX, valLUK, valPOW, valSTA, valWIS, valSPL, valCON, valCRT) {
 
 	var valWork = 0;
 	var objStatus = null;
@@ -453,7 +454,7 @@ function DisplayStatusBonusAll(baseLv, valSTR, valAGI, valVIT, valINT, valDEX, v
 /**
  * 導出ステータスを画面出力する.
  */
-function DisplayReferStatusAll() {
+export function DisplayReferStatusAll() {
 
 	var valWork = 0;
 	var objStatus = null;
@@ -496,7 +497,7 @@ function DisplayReferStatusAll() {
  * 純粋な基本ステータスの全合計を取得する.
  * @reutnr 純粋な基本ステータスの全合計
  */
-function GetTotalPureBasicStatus() {
+export function GetTotalPureBasicStatus() {
 	return (SU_STR + SU_AGI + SU_VIT + SU_DEX + SU_INT + SU_LUK);
 }
 
@@ -506,12 +507,13 @@ function GetTotalPureBasicStatus() {
 //
 //================================================================================================================================
 
-function StoreSpecStatusBonusAll(valPOW, valSTA, valWIS, valSPL, valCON, valCRT) {
+export function StoreSpecStatusBonusAll(valPOW, valSTA, valWIS, valSPL, valCON, valCRT) {
 
 	var value = 0;
 
 	// とりあえず、グローバル空間を汚す
 	g_bonusStatus = [];
+	window.g_bonusStatus = g_bonusStatus;
 	g_bonusStatus[MIG_PARAM_ID_POW] = valPOW;
 	g_bonusStatus[MIG_PARAM_ID_STA] = valSTA;
 	g_bonusStatus[MIG_PARAM_ID_WIS] = valWIS;
@@ -534,7 +536,7 @@ function StoreSpecStatusBonusAll(valPOW, valSTA, valWIS, valSPL, valCON, valCRT)
  * @param {*} paramId MIG_PARAM_ID_{POW|STA|WIS|SPL|CON|CRT}
  * @returns 
  */
-function GetTotalSpecStatus(paramId) {
+export function GetTotalSpecStatus(paramId) {
 
 	var value = 0;
 
@@ -557,7 +559,7 @@ function GetTotalSpecStatus(paramId) {
  * @param baseLevel ベースレベル
  * @return 獲得ステータスポイント
  */
-function GetEarningTSStatusPoint (baseLv) {
+export function GetEarningTSStatusPoint (baseLv) {
 	var stPoint = 0;
 	if (baseLv < 200) {
 		return 0;
@@ -568,7 +570,8 @@ function GetEarningTSStatusPoint (baseLv) {
 	return stPoint;
 }
 
-function GetTStatusPoint(baseLv) {
+export function GetTStatusPoint(baseLv) {
+	var stPoint;
 	stPoint = GetEarningTSStatusPoint(baseLv);
 	// 消費ポイントを計算
 	stPoint -= g_pureStatus[MIG_PARAM_ID_POW];
@@ -584,7 +587,7 @@ function GetTStatusPoint(baseLv) {
 /**
  * 四次特性ステータス適用関数.
  */
-function ApplySpecStatusModifications(charaData, n_tok) {
+export function ApplySpecStatusModifications(charaData, n_tok) {
 	charaData[CHARA_DATA_INDEX_STATUS_ATK] += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 
 	charaData[CHARA_DATA_INDEX_HIT] += 2 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
@@ -592,7 +595,7 @@ function ApplySpecStatusModifications(charaData, n_tok) {
 }
 
 // 元の処理の構造上、同時に処理できないもの
-function ApplySpecStatusModifyMATK(charaData, n_tok) {
+export function ApplySpecStatusModifyMATK(charaData, n_tok) {
 	charaData[CHARA_DATA_INDEX_STATUS_MATK] += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 }
 
@@ -602,7 +605,7 @@ function ApplySpecStatusModifyMATK(charaData, n_tok) {
  * 最終P.Atkを取得する
  * @returns 
  */
-function GetPAtk() {
+export function GetPAtk() {
 	let value = 0;
 	let sklLv = 0;
 	let bufLv = 0;
@@ -713,7 +716,7 @@ function GetPAtk() {
 	return value;
 }
 
-function GetSMatk() {
+export function GetSMatk() {
 
 	var value = 0;
 	var sklLv = 0;
@@ -844,7 +847,7 @@ function GetSMatk() {
 	return value;
 }
 
-function GetCRate() {
+export function GetCRate() {
 
 	var value = 0;
 	var bufLv = 0;
@@ -879,7 +882,7 @@ function GetCRate() {
  * 最終RESを取得する
  * @returns RESの値
  */
-function GetRes() {
+export function GetRes() {
 	let value = 0;
 	let sklLv = 0;
 	let bufLv = 0;
@@ -929,7 +932,7 @@ function GetRes() {
  * 最終MRESを取得する
  * @returns 
  */
-function GetMres() {
+export function GetMres() {
 	let value = 0;
 	let bufLv = 0;
 	// ステータス値
@@ -952,7 +955,7 @@ function GetMres() {
  * 最終的なH.Plusを取得する
  * @returns 
  */
-function GetHPlus() {
+export function GetHPlus() {
 	let value = 0;
 	let sklLv = 0;
 	// ステータス値
@@ -979,7 +982,7 @@ function GetHPlus() {
  * @param {*} mobData 
  * @returns 
  */
-function GetMobRes(mobData) {
+export function GetMobRes(mobData) {
 	let value = 0;
 	let bufLv = 0;
 
@@ -1017,7 +1020,7 @@ function GetMobRes(mobData) {
 	return value;
 }
 
-function GetMobMres(mobData) {
+export function GetMobMres(mobData) {
 
 	var value = 0;
 	var bufLv = 0;
@@ -1051,7 +1054,7 @@ function GetMobMres(mobData) {
 /**
  * 導出特性ステータス P.Atk による物理ダメージ増幅効果の適用.
  */
-function ApplyPAtkAmplify(dmg) {
+export function ApplyPAtkAmplify(dmg) {
 
 	var patk = 0;
 	var amped = 0;
@@ -1071,7 +1074,7 @@ function ApplyPAtkAmplify(dmg) {
 /**
  * 導出特性ステータス S.Matk による魔法ダメージ増幅効果の適用.
  */
-function ApplySMatkAmplify(dmg) {
+export function ApplySMatkAmplify(dmg) {
 
 	var smatk = 0;
 	var amped = 0;
@@ -1091,7 +1094,7 @@ function ApplySMatkAmplify(dmg) {
 /**
  * 導出特性ステータス C.Rate によるクリティカルダメージ増幅効果の適用.
  */
-function ApplyCRateAmplify(criDmgRate) {
+export function ApplyCRateAmplify(criDmgRate) {
 
 	var crate = 0;
 	var amped = 0;
@@ -1113,7 +1116,7 @@ function ApplyCRateAmplify(criDmgRate) {
 /**
  * 導出特性ステータス Res によるダメージ減衰効果の適用.
  */
-function ApplyResResist(mobData, dmg) {
+export function ApplyResResist(mobData, dmg) {
 	var res = 0;
 	var resistedRatio = 0;
 	var resisted = 0;
@@ -1134,7 +1137,7 @@ function ApplyResResist(mobData, dmg) {
 /**
  * 導出特性ステータス Mres によるダメージ減衰効果の適用.
  */
-function ApplyMresResist(mobData, dmg) {
+export function ApplyMresResist(mobData, dmg) {
 
 	var mres = 0;
 	var resistedRatio = 0;
@@ -1162,7 +1165,7 @@ function ApplyMresResist(mobData, dmg) {
 /**
  * 左手ステータスATKのP.Atkペナルティ
  */
-function ApplyPAtkLeftHandPenalty(charaData, specData, mobData, dmg) {
+export function ApplyPAtkLeftHandPenalty(charaData, specData, mobData, dmg) {
 
 	// TODO: 何かおかしい
 	return dmg;
@@ -1185,7 +1188,7 @@ function ApplyPAtkLeftHandPenalty(charaData, specData, mobData, dmg) {
  * @remarks foot.js を移植したくなかったため、無理やり分離した
  * @remarks ただ、呼び出し側も途中で追加計算していたりするため、特性ごとに個別に呼び出し処理をかかないといけない
  */
-function ApplySpecModify(spid, spVal) {
+export function ApplySpecModify(spid, spVal) {
 
 	var sklLv = 0;
 	var bufLv = 0;
@@ -1709,7 +1712,7 @@ function ApplySpecModify(spid, spVal) {
  * ステータス、装備、その他の設定を維持したまま任意の職に変更する
  * @param {string} jobId
  */
-function migrateOtherJob(jobId) {
+export function migrateOtherJob(jobId) {
 	let jobData = JobMap.getById(jobId);
 
 	const recentJobMigId = n_A_JOB;
@@ -1725,7 +1728,7 @@ function migrateOtherJob(jobId) {
 	showLoadingIndicator();
 	setTimeout(() => {
 		// 変更後の職業の二刀流可能性に合わせる
-		n_Nitou = IsDualArmsJob(jobData.getMigIdNum());
+		window.n_Nitou = IsDualArmsJob(jobData.getMigIdNum());
 		// TODO: 暫定対処　旧形式の保存処理呼び出し
 		// 「プレイヤー状態異常設定」のように旧形式に存在しなかった入力項目は維持できないということ
 		dataURL = SaveSystem(funcModifySaveData);
@@ -1734,9 +1737,9 @@ function migrateOtherJob(jobId) {
 		// 異なる職業系列へ変更する場合
 		if (!IsSameJobGroup(jobData.getMigIdNum(), recentJobMigId)) {
 			// 習得スキルの初期化
-			n_A_LearnedSkill = new Array();
+			window.n_A_LearnedSkill = new Array();
 			for (let dmyidx = 0; dmyidx < LEARNED_SKILL_MAX_COUNT; dmyidx++) {
-				n_A_LearnedSkill[dmyidx] = 0;
+				window.n_A_LearnedSkill[dmyidx] = 0;
 			}
 			OnClickSkillSWLearned();
 			// 職固有自己支援・パッシブ持続系の初期化
@@ -1757,7 +1760,7 @@ function migrateOtherJob(jobId) {
  * OBJID_SELECT_JOB の状態が変更された時に呼び出されるエントリ関数
  * @param {string} jobId
  */
-function OnChangeJob(jobId) {
+export function OnChangeJob(jobId) {
 	if (document.getElementById("OBJID_CHK_MIGRATE_SETTING").checked) {
 		migrateOtherJob(jobId);
 	} else {
@@ -1766,4 +1769,52 @@ function OnChangeJob(jobId) {
 		CalcStatusPoint(false);
 		AutoCalc();
 	}
+}
+
+if (typeof window !== 'undefined') {
+	window.g_pureStatus = g_pureStatus;
+	window.g_bonusStatus = g_bonusStatus;
+	window.g_STR = g_STR;
+	window.g_AGI = g_AGI;
+	window.g_VIT = g_VIT;
+	window.g_INT = g_INT;
+	window.g_DEX = g_DEX;
+	window.g_LUK = g_LUK;
+	window.g_POW = g_POW;
+	window.g_STA = g_STA;
+	window.g_WIS = g_WIS;
+	window.g_SPL = g_SPL;
+	window.g_CON = g_CON;
+	window.g_CRT = g_CRT;
+	window.RebuildStatusSelect = RebuildStatusSelect;
+	window.CalcStatusPoint = CalcStatusPoint;
+	window.GetStatusIncrementCost = GetStatusIncrementCost;
+	window.GetStatusTotalCost = GetStatusTotalCost;
+	window.GetEarningStatusPoint = GetEarningStatusPoint;
+	window.DisplayStatusBonusAll = DisplayStatusBonusAll;
+	window.DisplayReferStatusAll = DisplayReferStatusAll;
+	window.GetTotalPureBasicStatus = GetTotalPureBasicStatus;
+	window.StoreSpecStatusBonusAll = StoreSpecStatusBonusAll;
+	window.GetTotalSpecStatus = GetTotalSpecStatus;
+	window.GetEarningTSStatusPoint = GetEarningTSStatusPoint;
+	window.GetTStatusPoint = GetTStatusPoint;
+	window.ApplySpecStatusModifications = ApplySpecStatusModifications;
+	window.ApplySpecStatusModifyMATK = ApplySpecStatusModifyMATK;
+	window.GetPAtk = GetPAtk;
+	window.GetSMatk = GetSMatk;
+	window.GetCRate = GetCRate;
+	window.GetRes = GetRes;
+	window.GetMres = GetMres;
+	window.GetHPlus = GetHPlus;
+	window.GetMobRes = GetMobRes;
+	window.GetMobMres = GetMobMres;
+	window.ApplyPAtkAmplify = ApplyPAtkAmplify;
+	window.ApplySMatkAmplify = ApplySMatkAmplify;
+	window.ApplyCRateAmplify = ApplyCRateAmplify;
+	window.ApplyResResist = ApplyResResist;
+	window.ApplyMresResist = ApplyMresResist;
+	window.ApplyPAtkLeftHandPenalty = ApplyPAtkLeftHandPenalty;
+	window.ApplySpecModify = ApplySpecModify;
+	window.migrateOtherJob = migrateOtherJob;
+	window.OnChangeJob = OnChangeJob;
 }
