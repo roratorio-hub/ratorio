@@ -10323,62 +10323,7 @@ function BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArr
 	var battleTimeAve = 0;
 	var perexpBaseAve = 0;
 	var perexpJobAve = 0;
-	// 経験値効率計算モードの場合、かつ、確殺モードの場合
-	if(g_SPMODE_FLAG == 1 && g_SPMODE_KAKUSATSU_MODE == 1){
 
-		// 最少ダメージがモンスターのＨＰ以上となる場合、すなわち、確殺できる場合
-		if(w_DMG[0] >= mobData[3]){
-			g_SPMODE_MONSTER_RESULT[g_SPMODE_MONSTER_INDEX][SPMODE_MONSTER_RESULT_INDEX_RESULT_FLAG] = 1;
-			g_SPMODE_MONSTER_RESULT[g_SPMODE_MONSTER_INDEX][SPMODE_MONSTER_RESULT_INDEX_PEREXP_BASE] = mobData[15];
-			g_SPMODE_MONSTER_RESULT[g_SPMODE_MONSTER_INDEX][SPMODE_MONSTER_RESULT_INDEX_PEREXP_JOB] = mobData[16];
-			g_SPMODE_MONSTER_RESULT[g_SPMODE_MONSTER_INDEX][SPMODE_MONSTER_RESULT_INDEX_BATTLE_TIME] = wCast + wDelay;
-			g_SPMODE_MONSTER_RESULT[g_SPMODE_MONSTER_INDEX][SPMODE_MONSTER_RESULT_INDEX_HIT_RATE] = w_HIT_HYOUJI;
-			g_SPMODE_MONSTER_RESULT[g_SPMODE_MONSTER_INDEX][SPMODE_MONSTER_RESULT_INDEX_FLEE_RATE] = Math.floor((w_FLEE + (100 - w_FLEE) * charaData[CHARA_DATA_INDEX_LUCKY] / 100) * 100) / 100;
-		}
-
-		// 処理終了
-		return;
-	}
-	// 経験値効率計算モードの場合、かつ、確殺モードでない場合
-	else if(g_SPMODE_FLAG == 1){
-
-		// 平均ダメージが 0 より大きい場合のみ、計算を実施
-		while (w_DMG[1] > 0){
-
-			// 平均攻撃回数を算出
-			atkCountAve = Math.ceil(mobData[3] / w_DMG[1]);
-
-			// 平均戦闘時間を算出
-			battleTimeAve = (wCast + wDelay) * atkCountAve;
-			battleTimeAve = Math.floor(battleTimeAve * 100) / 100;
-
-			// 条件検査
-			// 平均戦闘時間が指定範囲外の場合、処理を抜ける
-			if (battleTimeAve < g_RankingConditionBattleTimeMin) {
-				break;
-			}
-			if (g_RankingConditionBattleTimeMax < battleTimeAve) {
-				break;
-			}
-
-			// 平均一撃経験値を算出し、結果配列に格納
-			perexpBaseAve = Math.round(mobData[15] / atkCountAve);
-			perexpJobAve = Math.round(mobData[16] / atkCountAve);
-
-			// 計算した結果を、結果配列に格納
-			g_SPMODE_MONSTER_RESULT[g_SPMODE_MONSTER_INDEX][SPMODE_MONSTER_RESULT_INDEX_RESULT_FLAG] = 1;
-			g_SPMODE_MONSTER_RESULT[g_SPMODE_MONSTER_INDEX][SPMODE_MONSTER_RESULT_INDEX_PEREXP_BASE] = perexpBaseAve;
-			g_SPMODE_MONSTER_RESULT[g_SPMODE_MONSTER_INDEX][SPMODE_MONSTER_RESULT_INDEX_PEREXP_JOB] = perexpJobAve;
-			g_SPMODE_MONSTER_RESULT[g_SPMODE_MONSTER_INDEX][SPMODE_MONSTER_RESULT_INDEX_BATTLE_TIME] = battleTimeAve;
-			g_SPMODE_MONSTER_RESULT[g_SPMODE_MONSTER_INDEX][SPMODE_MONSTER_RESULT_INDEX_HIT_RATE] = w_HIT_HYOUJI;
-			g_SPMODE_MONSTER_RESULT[g_SPMODE_MONSTER_INDEX][SPMODE_MONSTER_RESULT_INDEX_FLEE_RATE] = Math.floor((w_FLEE + (100 - w_FLEE) * charaData[CHARA_DATA_INDEX_LUCKY] / 100) * 100) / 100;
-
-			break;
-		}
-
-		// 処理終了
-		return;
-	}
 	// 最大攻撃回数表示部の組み立て
 	// 命中率が１００％未満の場合は、特殊表示
 	if(w_HIT_HYOUJI <100 && n_PerfectHIT_DMG == 0){

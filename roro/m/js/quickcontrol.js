@@ -1,5 +1,5 @@
 
-var g_QuickControlSW = false;
+export let g_QuickControlSW = false;
 
 //================================================================================================
 //================================================================================================
@@ -9,7 +9,7 @@ var g_QuickControlSW = false;
 //================================================================================================
 //================================================================================================
 
-function OnClickQuickControlSW(){
+export function OnClickQuickControlSW(){
 
 	var objSW = null;
 
@@ -35,6 +35,7 @@ function OnClickQuickControlSW(){
 	// チェックボックスのチェック状態を取得
 	objSW = document.getElementById("OBJID_QUICK_CONTROL_EXTRACT_CHECKBOX");
 	g_QuickControlSW = objSW.checked;
+	if (typeof window !== 'undefined') window.g_QuickControlSW = g_QuickControlSW;
 
 
 
@@ -149,7 +150,7 @@ function OnClickQuickControlSW(){
 
 
 
-function RefreshQuickControlHeaderLearned(objSelect, changedIdx, newValue) {
+export function RefreshQuickControlHeaderLearned(objSelect, changedIdx, newValue) {
 
 /*
 	// 背景設定
@@ -192,7 +193,7 @@ function RefreshQuickControlHeaderLearned(objSelect, changedIdx, newValue) {
 
 
 
-function OnInputQuickControlItemPack() {
+export function OnInputQuickControlItemPack() {
 
 	var bEquipable = false;
 
@@ -200,6 +201,9 @@ function OnInputQuickControlItemPack() {
 	var itemPackItems = null;
 	var itemPackItemsKind = 0;
 	var itemText = "";
+	var idx = 0;
+	var itemId = 0;
+	var itemRefine = 0;
 
 	var objSpan = null;
 	var objSpanCannotEquip = null;
@@ -298,7 +302,7 @@ function OnInputQuickControlItemPack() {
  * 職パッケなどの装備セットを入力する便利機能
  * @returns 
  */
-function OnClickQuickControlSetItemPack() {
+export function OnClickQuickControlSetItemPack() {
 	let idx = 0;
 	let itemPackId = 0;
 	let itemPackItems = null;
@@ -373,7 +377,7 @@ function OnClickQuickControlSetItemPack() {
 	LoadSelect2();
 }
 
-function OnClickQuickControlSetItemPackSubForItem(itemId, itemRefine) {
+export function OnClickQuickControlSetItemPackSubForItem(itemId, itemRefine) {
 
 	var idx = 0;
 
@@ -534,13 +538,13 @@ function OnClickQuickControlSetItemPackSubForItem(itemId, itemRefine) {
 	case ITEM_KIND_GRENADEGUN:
 		OnClickQuickControlSetItemPackSubForClearEquipAllSub("OBJID_SHIELD", EQUIP_REGION_ID_SHIELD);
 		HtmlSetObjectValueById("OBJID_SHIELD_REFINE", 0);
-		for (idxSlot = SLOT_INDEX_CARD_MIN; idxSlot <= SLOT_INDEX_CARD_MAX; idxSlot++) {
+		for (var idxSlot = SLOT_INDEX_CARD_MIN; idxSlot <= SLOT_INDEX_CARD_MAX; idxSlot++) {
 			OnClickQuickControlSetItemPackSubForClearCardAllSub("OBJID_SHIELD" + "_CARD_" + idxSlot);
 		}
 	}
 }
 
-function OnClickQuickControlSetItemPackSubForCard(cardId) {
+export function OnClickQuickControlSetItemPackSubForCard(cardId) {
 
 	var idx = 0;
 
@@ -605,7 +609,7 @@ function OnClickQuickControlSetItemPackSubForCard(cardId) {
 /**
  * シャドウ装備を全てクリアする
  */
-function OnClickQuickControlSetItemPackSubForClearShadowEquipAll() {
+export function OnClickQuickControlSetItemPackSubForClearShadowEquipAll() {
 	const target = [
 		'OBJID_SHADOW_WEAPON',
 		'OBJID_SHADOW_SHIELD',
@@ -622,7 +626,7 @@ function OnClickQuickControlSetItemPackSubForClearShadowEquipAll() {
 	}
 }
 
-function OnClickQuickControlSetItemPackSubForClearEquipAll() {
+export function OnClickQuickControlSetItemPackSubForClearEquipAll() {
 
 	// 左手：武器種別リセット　→　装備変更
 	HtmlSetObjectValueById("OBJID_ARMS_TYPE_LEFT", ITEM_KIND_NONE);
@@ -648,7 +652,7 @@ function OnClickQuickControlSetItemPackSubForClearEquipAll() {
 	OnClickQuickControlSetItemPackSubForClearEquipAllSub("OBJID_ACCESSARY_2", EQUIP_REGION_ID_ACCESSARY_2);
 }
 
-function OnClickQuickControlSetItemPackSubForClearEquipAllSub(objId, eqprgn) {
+export function OnClickQuickControlSetItemPackSubForClearEquipAllSub(objId, eqprgn) {
 
 	var objSelect = null;
 	var itemId = 0;
@@ -660,7 +664,7 @@ function OnClickQuickControlSetItemPackSubForClearEquipAllSub(objId, eqprgn) {
 	OnChangeEquip(eqprgn, itemId);
 }
 
-function OnClickQuickControlSetItemPackSubForClearRefineAll() {
+export function OnClickQuickControlSetItemPackSubForClearRefineAll() {
 
 	// 左手
 	HtmlSetObjectValueById("OBJID_ARMS_LEFT_REFINE", 0);
@@ -677,7 +681,7 @@ function OnClickQuickControlSetItemPackSubForClearRefineAll() {
 	HtmlSetObjectValueById("OBJID_SHOES_REFINE", 0);
 }
 
-function OnClickQuickControlSetItemPackSubForClearCardAll() {
+export function OnClickQuickControlSetItemPackSubForClearCardAll() {
 
 	var objIdBaseList = [
 		"OBJID_ARMS_LEFT", "OBJID_ARMS_RIGHT",
@@ -696,7 +700,7 @@ function OnClickQuickControlSetItemPackSubForClearCardAll() {
 	}
 }
 
-function OnClickQuickControlSetItemPackSubForClearCardAllSub(objId) {
+export function OnClickQuickControlSetItemPackSubForClearCardAllSub(objId) {
 
 	var objSelect = null;
 	var cardId = 0;
@@ -706,4 +710,20 @@ function OnClickQuickControlSetItemPackSubForClearCardAllSub(objId) {
 
 	HtmlSetObjectValueById(objId, cardId);
 	OnChangeCard(cardId);
+}
+
+if (typeof window !== 'undefined') {
+    window.g_QuickControlSW = g_QuickControlSW;
+    window.OnClickQuickControlSW = OnClickQuickControlSW;
+    window.RefreshQuickControlHeaderLearned = RefreshQuickControlHeaderLearned;
+    window.OnInputQuickControlItemPack = OnInputQuickControlItemPack;
+    window.OnClickQuickControlSetItemPack = OnClickQuickControlSetItemPack;
+    window.OnClickQuickControlSetItemPackSubForItem = OnClickQuickControlSetItemPackSubForItem;
+    window.OnClickQuickControlSetItemPackSubForCard = OnClickQuickControlSetItemPackSubForCard;
+    window.OnClickQuickControlSetItemPackSubForClearShadowEquipAll = OnClickQuickControlSetItemPackSubForClearShadowEquipAll;
+    window.OnClickQuickControlSetItemPackSubForClearEquipAll = OnClickQuickControlSetItemPackSubForClearEquipAll;
+    window.OnClickQuickControlSetItemPackSubForClearEquipAllSub = OnClickQuickControlSetItemPackSubForClearEquipAllSub;
+    window.OnClickQuickControlSetItemPackSubForClearRefineAll = OnClickQuickControlSetItemPackSubForClearRefineAll;
+    window.OnClickQuickControlSetItemPackSubForClearCardAll = OnClickQuickControlSetItemPackSubForClearCardAll;
+    window.OnClickQuickControlSetItemPackSubForClearCardAllSub = OnClickQuickControlSetItemPackSubForClearCardAllSub;
 }

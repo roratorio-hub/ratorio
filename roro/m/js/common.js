@@ -1,3 +1,5 @@
+import { CGlobalConstManager } from './CGlobalConstManager.js';
+
 //================================================================================================
 //================================================================================================
 //====
@@ -212,7 +214,7 @@ CGlobalConstManager.DefineEnum(
  * 定義済みデータ種別のテキストを取得する.
  * @param kindId 定義済みデータ種別ID
  */
-function GetConstDataKindText(kindId) {
+export function GetConstDataKindText(kindId) {
 
 	switch (kindId) {
 
@@ -318,7 +320,7 @@ function GetConstDataKindText(kindId) {
  * パラメータ名のテキストを取得する.
  * @param paramId パラメータID
  */
-function GetParamText(paramId) {
+export function GetParamText(paramId) {
 
 	switch (paramId) {
 	case PARAM_STR:
@@ -348,7 +350,7 @@ function GetParamText(paramId) {
  * 種族名のテキストを取得する.
  * @param raceId 種族ID
  */
-function GetRaceText(raceId) {
+export function GetRaceText(raceId) {
 
 	switch (raceId) {
 	case RACE_ID_SOLID:
@@ -389,7 +391,7 @@ function GetRaceText(raceId) {
  * 属性名のテキストを取得する.
  * @param elmId 属性ID
  */
-function GetElementText(elmId) {
+export function GetElementText(elmId) {
 
 	switch (elmId) {
 	case ELM_ID_VANITY:
@@ -430,7 +432,7 @@ function GetElementText(elmId) {
  * モンスター属性のテキストを取得する.
  * @param モンスター属性ＩＤ
  */
-function GetMonsterElementText(monsterElmId) {
+export function GetMonsterElementText(monsterElmId) {
 
 	var elmId = Math.floor(monsterElmId / 10);
 	var elmLv = monsterElmId % 10;
@@ -442,7 +444,7 @@ function GetMonsterElementText(monsterElmId) {
  * サイズ名のテキストを取得する.
  * @param sizeId サイズID
  */
-function GetSizeText(sizeId) {
+export function GetSizeText(sizeId) {
 
 	switch (sizeId) {
 	case SIZE_ID_SMALL:
@@ -463,7 +465,7 @@ function GetSizeText(sizeId) {
  * 状態異常名のテキストを取得する.
  * @param stateId 状態異常ID
  */
-function GetStateText(stateId) {
+export function GetStateText(stateId) {
 
 	switch (stateId) {
 	case STATE_ID_POISON:
@@ -567,7 +569,7 @@ function GetStateText(stateId) {
  * 親密度のテキストを取得する.
  * @param friendlityId 親密度ID
  */
-function GetFriendlityText(friendlityId) {
+export function GetFriendlityText(friendlityId) {
 
 	switch (friendlityId) {
 	case FRIENDLITY_ID_AUTO:
@@ -620,7 +622,7 @@ function GetFriendlityText(friendlityId) {
 //================================================================================================
 //================================================================================================
 
-var const_identifier = 0;
+let const_identifier = 0;
 
 // 装備部位のインデックス
 const_identifier = 0;
@@ -677,116 +679,114 @@ CGlobalConstManager.DefinePseudoEnum(
 // カード部位のインデックス
 const_identifier = 0;
 
-CARD_REGION_ID_ARMS_RIGHT_1	 = const_identifier++;	// 0 右手
-CARD_REGION_ID_ARMS_RIGHT_2	 = const_identifier++;	// 1
-CARD_REGION_ID_ARMS_RIGHT_3	 = const_identifier++;	// 2
-CARD_REGION_ID_ARMS_RIGHT_4	 = const_identifier++;	// 3
-CARD_REGION_ID_ARMS_LEFT_1	 = const_identifier++;	// 4 左手
-CARD_REGION_ID_ARMS_LEFT_2	 = const_identifier++;	// 5
-CARD_REGION_ID_ARMS_LEFT_3	 = const_identifier++;	// 6
-CARD_REGION_ID_ARMS_LEFT_4	 = const_identifier++;	// 7
-CARD_REGION_ID_HEAD_TOP		 = const_identifier++;	// 8	
-CARD_REGION_ID_HEAD_MID		 = const_identifier++;	// 9
-CARD_REGION_ID_SHIELD		 = const_identifier++;	// 10
-CARD_REGION_ID_BODY			 = const_identifier++;	// 11
-CARD_REGION_ID_SHOULDER		 = const_identifier++;	// 12
-CARD_REGION_ID_SHOES		 = const_identifier++;	// 13
-CARD_REGION_ID_ACCESSARY_1	 = const_identifier++;	// 14
-CARD_REGION_ID_ACCESSARY_2	 = const_identifier++;	// 15
-CARD_REGION_ID_HEAD_UNDER	 = const_identifier++;	// 16
+export const CARD_REGION_ID_ARMS_RIGHT_1	 = const_identifier++;	// 0 右手
+export const CARD_REGION_ID_ARMS_RIGHT_2	 = const_identifier++;	// 1
+export const CARD_REGION_ID_ARMS_RIGHT_3	 = const_identifier++;	// 2
+export const CARD_REGION_ID_ARMS_RIGHT_4	 = const_identifier++;	// 3
+export const CARD_REGION_ID_ARMS_LEFT_1	 = const_identifier++;	// 4 左手
+export const CARD_REGION_ID_ARMS_LEFT_2	 = const_identifier++;	// 5
+export const CARD_REGION_ID_ARMS_LEFT_3	 = const_identifier++;	// 6
+export const CARD_REGION_ID_ARMS_LEFT_4	 = const_identifier++;	// 7
+export const CARD_REGION_ID_HEAD_TOP		 = const_identifier++;	// 8
+export const CARD_REGION_ID_HEAD_MID		 = const_identifier++;	// 9
+export const CARD_REGION_ID_SHIELD		 = const_identifier++;	// 10
+export const CARD_REGION_ID_BODY			 = const_identifier++;	// 11
+export const CARD_REGION_ID_SHOULDER		 = const_identifier++;	// 12
+export const CARD_REGION_ID_SHOES		 = const_identifier++;	// 13
+export const CARD_REGION_ID_ACCESSARY_1	 = const_identifier++;	// 14
+export const CARD_REGION_ID_ACCESSARY_2	 = const_identifier++;	// 15
+export const CARD_REGION_ID_HEAD_UNDER	 = const_identifier++;	// 16
 
 const_identifier = 26;
 
-CARD_REGION_ID_ENCHANT_HEAD_TOP_1		 = const_identifier++;	// 26
-CARD_REGION_ID_ENCHANT_HEAD_TOP_2		 = const_identifier++;	// 27
-CARD_REGION_ID_ENCHANT_HEAD_TOP_3		 = const_identifier++;	// 28
-CARD_REGION_ID_ENCHANT_HEAD_MID_1		 = const_identifier++;	// 29
-CARD_REGION_ID_ENCHANT_HEAD_MID_2		 = const_identifier++;	// 30
-CARD_REGION_ID_ENCHANT_HEAD_MID_3		 = const_identifier++;	// 31
+export const CARD_REGION_ID_ENCHANT_HEAD_TOP_1		 = const_identifier++;	// 26
+export const CARD_REGION_ID_ENCHANT_HEAD_TOP_2		 = const_identifier++;	// 27
+export const CARD_REGION_ID_ENCHANT_HEAD_TOP_3		 = const_identifier++;	// 28
+export const CARD_REGION_ID_ENCHANT_HEAD_MID_1		 = const_identifier++;	// 29
+export const CARD_REGION_ID_ENCHANT_HEAD_MID_2		 = const_identifier++;	// 30
+export const CARD_REGION_ID_ENCHANT_HEAD_MID_3		 = const_identifier++;	// 31
 
 const_identifier = 33;
 
-CARD_REGION_ID_ENCHANT_HEAD_UNDER_1		 = const_identifier++;	// 33
-CARD_REGION_ID_ENCHANT_HEAD_UNDER_2		 = const_identifier++;	// 34
-CARD_REGION_ID_ENCHANT_HEAD_UNDER_3		 = const_identifier++;	// 35
-CARD_REGION_ID_ENCHANT_SHIELD_1			 = const_identifier++;	// 36
-CARD_REGION_ID_ENCHANT_SHIELD_2			 = const_identifier++;	// 37
-CARD_REGION_ID_ENCHANT_SHIELD_3			 = const_identifier++;	// 38
-CARD_REGION_ID_ENCHANT_BODY_1			 = const_identifier++;	// 39
-CARD_REGION_ID_ENCHANT_BODY_2			 = const_identifier++;	// 40
-CARD_REGION_ID_ENCHANT_BODY_3			 = const_identifier++;	// 41
-CARD_REGION_ID_ENCHANT_SHOULDER_1		 = const_identifier++;	// 42
-CARD_REGION_ID_ENCHANT_SHOULDER_2		 = const_identifier++;	// 43
-CARD_REGION_ID_ENCHANT_SHOULDER_3		 = const_identifier++;	// 44
-CARD_REGION_ID_ENCHANT_SHOES_1			 = const_identifier++;	// 45
-CARD_REGION_ID_ENCHANT_SHOES_2			 = const_identifier++;	// 46
-CARD_REGION_ID_ENCHANT_SHOES_3			 = const_identifier++;	// 47
-CARD_REGION_ID_ENCHANT_ACCESSARY_1_1	 = const_identifier++;	// 48
-CARD_REGION_ID_ENCHANT_ACCESSARY_1_2	 = const_identifier++;	// 49
-CARD_REGION_ID_ENCHANT_ACCESSARY_1_3	 = const_identifier++;	// 50
-CARD_REGION_ID_ENCHANT_ACCESSARY_2_1	 = const_identifier++;	// 51
-CARD_REGION_ID_ENCHANT_ACCESSARY_2_2	 = const_identifier++;	// 52
-CARD_REGION_ID_ENCHANT_ACCESSARY_2_3	 = const_identifier++;	// 53
+export const CARD_REGION_ID_ENCHANT_HEAD_UNDER_1		 = const_identifier++;	// 33
+export const CARD_REGION_ID_ENCHANT_HEAD_UNDER_2		 = const_identifier++;	// 34
+export const CARD_REGION_ID_ENCHANT_HEAD_UNDER_3		 = const_identifier++;	// 35
+export const CARD_REGION_ID_ENCHANT_SHIELD_1			 = const_identifier++;	// 36
+export const CARD_REGION_ID_ENCHANT_SHIELD_2			 = const_identifier++;	// 37
+export const CARD_REGION_ID_ENCHANT_SHIELD_3			 = const_identifier++;	// 38
+export const CARD_REGION_ID_ENCHANT_BODY_1			 = const_identifier++;	// 39
+export const CARD_REGION_ID_ENCHANT_BODY_2			 = const_identifier++;	// 40
+export const CARD_REGION_ID_ENCHANT_BODY_3			 = const_identifier++;	// 41
+export const CARD_REGION_ID_ENCHANT_SHOULDER_1		 = const_identifier++;	// 42
+export const CARD_REGION_ID_ENCHANT_SHOULDER_2		 = const_identifier++;	// 43
+export const CARD_REGION_ID_ENCHANT_SHOULDER_3		 = const_identifier++;	// 44
+export const CARD_REGION_ID_ENCHANT_SHOES_1			 = const_identifier++;	// 45
+export const CARD_REGION_ID_ENCHANT_SHOES_2			 = const_identifier++;	// 46
+export const CARD_REGION_ID_ENCHANT_SHOES_3			 = const_identifier++;	// 47
+export const CARD_REGION_ID_ENCHANT_ACCESSARY_1_1	 = const_identifier++;	// 48
+export const CARD_REGION_ID_ENCHANT_ACCESSARY_1_2	 = const_identifier++;	// 49
+export const CARD_REGION_ID_ENCHANT_ACCESSARY_1_3	 = const_identifier++;	// 50
+export const CARD_REGION_ID_ENCHANT_ACCESSARY_2_1	 = const_identifier++;	// 51
+export const CARD_REGION_ID_ENCHANT_ACCESSARY_2_2	 = const_identifier++;	// 52
+export const CARD_REGION_ID_ENCHANT_ACCESSARY_2_3	 = const_identifier++;	// 53
 
-CARD_REGION_ID_SHADOW_ARMS_RIGHT_1 = const_identifier++;	// 54
-CARD_REGION_ID_SHADOW_ARMS_RIGHT_2 = const_identifier++;
-CARD_REGION_ID_SHADOW_ARMS_RIGHT_3 = const_identifier++;
-CARD_REGION_ID_SHADOW_SHIELD_1 = const_identifier++;
-CARD_REGION_ID_SHADOW_SHIELD_2 = const_identifier++;
-CARD_REGION_ID_SHADOW_SHIELD_3 = const_identifier++;
-CARD_REGION_ID_SHADOW_ENCHANT_BODY_1 = const_identifier++;	// 60
-CARD_REGION_ID_SHADOW_ENCHANT_BODY_2 = const_identifier++;
-CARD_REGION_ID_SHADOW_ENCHANT_BODY_3 = const_identifier++;
-CARD_REGION_ID_SHADOW_ENCHANT_SHOES_1 = const_identifier++;
-CARD_REGION_ID_SHADOW_ENCHANT_SHOES_2 = const_identifier++;
-CARD_REGION_ID_SHADOW_ENCHANT_SHOES_3 = const_identifier++;
-CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY1_1 = const_identifier++;
-CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY1_2 = const_identifier++;
-CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY1_3 = const_identifier++;
-CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY2_1 = const_identifier++;
-CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY2_2 = const_identifier++;	// 70
-CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY2_3 = const_identifier++;
+export const CARD_REGION_ID_SHADOW_ARMS_RIGHT_1 = const_identifier++;	// 54
+export const CARD_REGION_ID_SHADOW_ARMS_RIGHT_2 = const_identifier++;
+export const CARD_REGION_ID_SHADOW_ARMS_RIGHT_3 = const_identifier++;
+export const CARD_REGION_ID_SHADOW_SHIELD_1 = const_identifier++;
+export const CARD_REGION_ID_SHADOW_SHIELD_2 = const_identifier++;
+export const CARD_REGION_ID_SHADOW_SHIELD_3 = const_identifier++;
+export const CARD_REGION_ID_SHADOW_ENCHANT_BODY_1 = const_identifier++;	// 60
+export const CARD_REGION_ID_SHADOW_ENCHANT_BODY_2 = const_identifier++;
+export const CARD_REGION_ID_SHADOW_ENCHANT_BODY_3 = const_identifier++;
+export const CARD_REGION_ID_SHADOW_ENCHANT_SHOES_1 = const_identifier++;
+export const CARD_REGION_ID_SHADOW_ENCHANT_SHOES_2 = const_identifier++;
+export const CARD_REGION_ID_SHADOW_ENCHANT_SHOES_3 = const_identifier++;
+export const CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY1_1 = const_identifier++;
+export const CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY1_2 = const_identifier++;
+export const CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY1_3 = const_identifier++;
+export const CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY2_1 = const_identifier++;
+export const CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY2_2 = const_identifier++;	// 70
+export const CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY2_3 = const_identifier++;
 
-CARD_REGION_ID_COUNT		 = const_identifier;
+export const CARD_REGION_ID_COUNT		 = const_identifier;
 
 // [CARD_REGION_ID_COUNT] ～ [99] まで、セット効果定義で使用
 // CheckAndApplyItemSetEquipping() 関数を参照のこと
 
 const_identifier = -1;
 
-CARD_REGION_ID_ANY						 = const_identifier--;
-CARD_REGION_ID_ARMS_RIGHT_ANY			 = const_identifier--;
-CARD_REGION_ID_ARMS_LEFT_ANY			 = const_identifier--;
-CARD_REGION_ID_HEAD_TOP_ANY				 = const_identifier--;
-CARD_REGION_ID_HEAD_MID_ANY				 = const_identifier--;
-CARD_REGION_ID_HEAD_UNDER_ANY			 = const_identifier--;
-CARD_REGION_ID_SHIELD_ANY				 = const_identifier--;
-CARD_REGION_ID_BODY_ANY					 = const_identifier--;
-CARD_REGION_ID_SHOULDER_ANY				 = const_identifier--;
-CARD_REGION_ID_SHOES_ANY				 = const_identifier--;
-CARD_REGION_ID_ACCESSARY_ANY			 = const_identifier--;
-CARD_REGION_ID_ACCESSARY_1_ANY			 = const_identifier--;
-CARD_REGION_ID_ACCESSARY_2_ANY			 = const_identifier--;
+export const CARD_REGION_ID_ANY						 = const_identifier--;
+export const CARD_REGION_ID_ARMS_RIGHT_ANY			 = const_identifier--;
+export const CARD_REGION_ID_ARMS_LEFT_ANY			 = const_identifier--;
+export const CARD_REGION_ID_HEAD_TOP_ANY				 = const_identifier--;
+export const CARD_REGION_ID_HEAD_MID_ANY				 = const_identifier--;
+export const CARD_REGION_ID_HEAD_UNDER_ANY			 = const_identifier--;
+export const CARD_REGION_ID_SHIELD_ANY				 = const_identifier--;
+export const CARD_REGION_ID_BODY_ANY					 = const_identifier--;
+export const CARD_REGION_ID_SHOULDER_ANY				 = const_identifier--;
+export const CARD_REGION_ID_SHOES_ANY				 = const_identifier--;
+export const CARD_REGION_ID_ACCESSARY_ANY			 = const_identifier--;
+export const CARD_REGION_ID_ACCESSARY_1_ANY			 = const_identifier--;
+export const CARD_REGION_ID_ACCESSARY_2_ANY			 = const_identifier--;
 
 //衣装部位のインデックス
 const_identifier = -1;
 
-COSTUME_REGION_ID_ANY			 = const_identifier--;
-COSTUME_REGION_ID_ARMS_RIGHT	 = const_identifier++;
-COSTUME_REGION_ID_ARMS_LEFT		 = const_identifier++;
-COSTUME_REGION_ID_HEAD_TOP		 = const_identifier++;
-COSTUME_REGION_ID_HEAD_MID		 = const_identifier++;
-COSTUME_REGION_ID_HEAD_UNDER	 = const_identifier++;
-COSTUME_REGION_ID_SHIELD		 = const_identifier++;
-COSTUME_REGION_ID_BODY			 = const_identifier++;
-COSTUME_REGION_ID_SHOULDER		 = const_identifier++;
-COSTUME_REGION_ID_SHOES			 = const_identifier++;
-COSTUME_REGION_ID_ACCESSARY_1	 = const_identifier++;
-COSTUME_REGION_ID_ACCESSARY_2	 = const_identifier++;
+export const COSTUME_REGION_ID_ANY			 = const_identifier--;
+export const COSTUME_REGION_ID_ARMS_RIGHT	 = const_identifier++;
+export const COSTUME_REGION_ID_ARMS_LEFT		 = const_identifier++;
+export const COSTUME_REGION_ID_HEAD_TOP		 = const_identifier++;
+export const COSTUME_REGION_ID_HEAD_MID		 = const_identifier++;
+export const COSTUME_REGION_ID_HEAD_UNDER	 = const_identifier++;
+export const COSTUME_REGION_ID_SHIELD		 = const_identifier++;
+export const COSTUME_REGION_ID_BODY			 = const_identifier++;
+export const COSTUME_REGION_ID_SHOULDER		 = const_identifier++;
+export const COSTUME_REGION_ID_SHOES			 = const_identifier++;
+export const COSTUME_REGION_ID_ACCESSARY_1	 = const_identifier++;
+export const COSTUME_REGION_ID_ACCESSARY_2	 = const_identifier++;
 
-COSTUME_REGION_ID_COUNT		 = const_identifier;
-
-
+export const COSTUME_REGION_ID_COUNT		 = const_identifier;
 
 
 
@@ -794,5 +794,109 @@ COSTUME_REGION_ID_COUNT		 = const_identifier;
 
 
 
-COLOR_CODE_TABLE_HEADER_IS_SET = "#ff7777";
-COLOR_CODE_TABLE_HEADER_IS_NOT_SET = "#ddddff";
+
+
+export const COLOR_CODE_TABLE_HEADER_IS_SET = "#ff7777";
+export const COLOR_CODE_TABLE_HEADER_IS_NOT_SET = "#ddddff";
+
+if (typeof window !== 'undefined') {
+	window.GetConstDataKindText = GetConstDataKindText;
+	window.GetParamText = GetParamText;
+	window.GetRaceText = GetRaceText;
+	window.GetElementText = GetElementText;
+	window.GetMonsterElementText = GetMonsterElementText;
+	window.GetSizeText = GetSizeText;
+	window.GetStateText = GetStateText;
+	window.GetFriendlityText = GetFriendlityText;
+	window.CARD_REGION_ID_ARMS_RIGHT_1 = CARD_REGION_ID_ARMS_RIGHT_1;
+	window.CARD_REGION_ID_ARMS_RIGHT_2 = CARD_REGION_ID_ARMS_RIGHT_2;
+	window.CARD_REGION_ID_ARMS_RIGHT_3 = CARD_REGION_ID_ARMS_RIGHT_3;
+	window.CARD_REGION_ID_ARMS_RIGHT_4 = CARD_REGION_ID_ARMS_RIGHT_4;
+	window.CARD_REGION_ID_ARMS_LEFT_1 = CARD_REGION_ID_ARMS_LEFT_1;
+	window.CARD_REGION_ID_ARMS_LEFT_2 = CARD_REGION_ID_ARMS_LEFT_2;
+	window.CARD_REGION_ID_ARMS_LEFT_3 = CARD_REGION_ID_ARMS_LEFT_3;
+	window.CARD_REGION_ID_ARMS_LEFT_4 = CARD_REGION_ID_ARMS_LEFT_4;
+	window.CARD_REGION_ID_HEAD_TOP = CARD_REGION_ID_HEAD_TOP;
+	window.CARD_REGION_ID_HEAD_MID = CARD_REGION_ID_HEAD_MID;
+	window.CARD_REGION_ID_SHIELD = CARD_REGION_ID_SHIELD;
+	window.CARD_REGION_ID_BODY = CARD_REGION_ID_BODY;
+	window.CARD_REGION_ID_SHOULDER = CARD_REGION_ID_SHOULDER;
+	window.CARD_REGION_ID_SHOES = CARD_REGION_ID_SHOES;
+	window.CARD_REGION_ID_ACCESSARY_1 = CARD_REGION_ID_ACCESSARY_1;
+	window.CARD_REGION_ID_ACCESSARY_2 = CARD_REGION_ID_ACCESSARY_2;
+	window.CARD_REGION_ID_HEAD_UNDER = CARD_REGION_ID_HEAD_UNDER;
+	window.CARD_REGION_ID_ENCHANT_HEAD_TOP_1 = CARD_REGION_ID_ENCHANT_HEAD_TOP_1;
+	window.CARD_REGION_ID_ENCHANT_HEAD_TOP_2 = CARD_REGION_ID_ENCHANT_HEAD_TOP_2;
+	window.CARD_REGION_ID_ENCHANT_HEAD_TOP_3 = CARD_REGION_ID_ENCHANT_HEAD_TOP_3;
+	window.CARD_REGION_ID_ENCHANT_HEAD_MID_1 = CARD_REGION_ID_ENCHANT_HEAD_MID_1;
+	window.CARD_REGION_ID_ENCHANT_HEAD_MID_2 = CARD_REGION_ID_ENCHANT_HEAD_MID_2;
+	window.CARD_REGION_ID_ENCHANT_HEAD_MID_3 = CARD_REGION_ID_ENCHANT_HEAD_MID_3;
+	window.CARD_REGION_ID_ENCHANT_HEAD_UNDER_1 = CARD_REGION_ID_ENCHANT_HEAD_UNDER_1;
+	window.CARD_REGION_ID_ENCHANT_HEAD_UNDER_2 = CARD_REGION_ID_ENCHANT_HEAD_UNDER_2;
+	window.CARD_REGION_ID_ENCHANT_HEAD_UNDER_3 = CARD_REGION_ID_ENCHANT_HEAD_UNDER_3;
+	window.CARD_REGION_ID_ENCHANT_SHIELD_1 = CARD_REGION_ID_ENCHANT_SHIELD_1;
+	window.CARD_REGION_ID_ENCHANT_SHIELD_2 = CARD_REGION_ID_ENCHANT_SHIELD_2;
+	window.CARD_REGION_ID_ENCHANT_SHIELD_3 = CARD_REGION_ID_ENCHANT_SHIELD_3;
+	window.CARD_REGION_ID_ENCHANT_BODY_1 = CARD_REGION_ID_ENCHANT_BODY_1;
+	window.CARD_REGION_ID_ENCHANT_BODY_2 = CARD_REGION_ID_ENCHANT_BODY_2;
+	window.CARD_REGION_ID_ENCHANT_BODY_3 = CARD_REGION_ID_ENCHANT_BODY_3;
+	window.CARD_REGION_ID_ENCHANT_SHOULDER_1 = CARD_REGION_ID_ENCHANT_SHOULDER_1;
+	window.CARD_REGION_ID_ENCHANT_SHOULDER_2 = CARD_REGION_ID_ENCHANT_SHOULDER_2;
+	window.CARD_REGION_ID_ENCHANT_SHOULDER_3 = CARD_REGION_ID_ENCHANT_SHOULDER_3;
+	window.CARD_REGION_ID_ENCHANT_SHOES_1 = CARD_REGION_ID_ENCHANT_SHOES_1;
+	window.CARD_REGION_ID_ENCHANT_SHOES_2 = CARD_REGION_ID_ENCHANT_SHOES_2;
+	window.CARD_REGION_ID_ENCHANT_SHOES_3 = CARD_REGION_ID_ENCHANT_SHOES_3;
+	window.CARD_REGION_ID_ENCHANT_ACCESSARY_1_1 = CARD_REGION_ID_ENCHANT_ACCESSARY_1_1;
+	window.CARD_REGION_ID_ENCHANT_ACCESSARY_1_2 = CARD_REGION_ID_ENCHANT_ACCESSARY_1_2;
+	window.CARD_REGION_ID_ENCHANT_ACCESSARY_1_3 = CARD_REGION_ID_ENCHANT_ACCESSARY_1_3;
+	window.CARD_REGION_ID_ENCHANT_ACCESSARY_2_1 = CARD_REGION_ID_ENCHANT_ACCESSARY_2_1;
+	window.CARD_REGION_ID_ENCHANT_ACCESSARY_2_2 = CARD_REGION_ID_ENCHANT_ACCESSARY_2_2;
+	window.CARD_REGION_ID_ENCHANT_ACCESSARY_2_3 = CARD_REGION_ID_ENCHANT_ACCESSARY_2_3;
+	window.CARD_REGION_ID_SHADOW_ARMS_RIGHT_1 = CARD_REGION_ID_SHADOW_ARMS_RIGHT_1;
+	window.CARD_REGION_ID_SHADOW_ARMS_RIGHT_2 = CARD_REGION_ID_SHADOW_ARMS_RIGHT_2;
+	window.CARD_REGION_ID_SHADOW_ARMS_RIGHT_3 = CARD_REGION_ID_SHADOW_ARMS_RIGHT_3;
+	window.CARD_REGION_ID_SHADOW_SHIELD_1 = CARD_REGION_ID_SHADOW_SHIELD_1;
+	window.CARD_REGION_ID_SHADOW_SHIELD_2 = CARD_REGION_ID_SHADOW_SHIELD_2;
+	window.CARD_REGION_ID_SHADOW_SHIELD_3 = CARD_REGION_ID_SHADOW_SHIELD_3;
+	window.CARD_REGION_ID_SHADOW_ENCHANT_BODY_1 = CARD_REGION_ID_SHADOW_ENCHANT_BODY_1;
+	window.CARD_REGION_ID_SHADOW_ENCHANT_BODY_2 = CARD_REGION_ID_SHADOW_ENCHANT_BODY_2;
+	window.CARD_REGION_ID_SHADOW_ENCHANT_BODY_3 = CARD_REGION_ID_SHADOW_ENCHANT_BODY_3;
+	window.CARD_REGION_ID_SHADOW_ENCHANT_SHOES_1 = CARD_REGION_ID_SHADOW_ENCHANT_SHOES_1;
+	window.CARD_REGION_ID_SHADOW_ENCHANT_SHOES_2 = CARD_REGION_ID_SHADOW_ENCHANT_SHOES_2;
+	window.CARD_REGION_ID_SHADOW_ENCHANT_SHOES_3 = CARD_REGION_ID_SHADOW_ENCHANT_SHOES_3;
+	window.CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY1_1 = CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY1_1;
+	window.CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY1_2 = CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY1_2;
+	window.CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY1_3 = CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY1_3;
+	window.CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY2_1 = CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY2_1;
+	window.CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY2_2 = CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY2_2;
+	window.CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY2_3 = CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY2_3;
+	window.CARD_REGION_ID_COUNT = CARD_REGION_ID_COUNT;
+	window.CARD_REGION_ID_ANY = CARD_REGION_ID_ANY;
+	window.CARD_REGION_ID_ARMS_RIGHT_ANY = CARD_REGION_ID_ARMS_RIGHT_ANY;
+	window.CARD_REGION_ID_ARMS_LEFT_ANY = CARD_REGION_ID_ARMS_LEFT_ANY;
+	window.CARD_REGION_ID_HEAD_TOP_ANY = CARD_REGION_ID_HEAD_TOP_ANY;
+	window.CARD_REGION_ID_HEAD_MID_ANY = CARD_REGION_ID_HEAD_MID_ANY;
+	window.CARD_REGION_ID_HEAD_UNDER_ANY = CARD_REGION_ID_HEAD_UNDER_ANY;
+	window.CARD_REGION_ID_SHIELD_ANY = CARD_REGION_ID_SHIELD_ANY;
+	window.CARD_REGION_ID_BODY_ANY = CARD_REGION_ID_BODY_ANY;
+	window.CARD_REGION_ID_SHOULDER_ANY = CARD_REGION_ID_SHOULDER_ANY;
+	window.CARD_REGION_ID_SHOES_ANY = CARD_REGION_ID_SHOES_ANY;
+	window.CARD_REGION_ID_ACCESSARY_ANY = CARD_REGION_ID_ACCESSARY_ANY;
+	window.CARD_REGION_ID_ACCESSARY_1_ANY = CARD_REGION_ID_ACCESSARY_1_ANY;
+	window.CARD_REGION_ID_ACCESSARY_2_ANY = CARD_REGION_ID_ACCESSARY_2_ANY;
+	window.COSTUME_REGION_ID_ANY = COSTUME_REGION_ID_ANY;
+	window.COSTUME_REGION_ID_ARMS_RIGHT = COSTUME_REGION_ID_ARMS_RIGHT;
+	window.COSTUME_REGION_ID_ARMS_LEFT = COSTUME_REGION_ID_ARMS_LEFT;
+	window.COSTUME_REGION_ID_HEAD_TOP = COSTUME_REGION_ID_HEAD_TOP;
+	window.COSTUME_REGION_ID_HEAD_MID = COSTUME_REGION_ID_HEAD_MID;
+	window.COSTUME_REGION_ID_HEAD_UNDER = COSTUME_REGION_ID_HEAD_UNDER;
+	window.COSTUME_REGION_ID_SHIELD = COSTUME_REGION_ID_SHIELD;
+	window.COSTUME_REGION_ID_BODY = COSTUME_REGION_ID_BODY;
+	window.COSTUME_REGION_ID_SHOULDER = COSTUME_REGION_ID_SHOULDER;
+	window.COSTUME_REGION_ID_SHOES = COSTUME_REGION_ID_SHOES;
+	window.COSTUME_REGION_ID_ACCESSARY_1 = COSTUME_REGION_ID_ACCESSARY_1;
+	window.COSTUME_REGION_ID_ACCESSARY_2 = COSTUME_REGION_ID_ACCESSARY_2;
+	window.COSTUME_REGION_ID_COUNT = COSTUME_REGION_ID_COUNT;
+	window.COLOR_CODE_TABLE_HEADER_IS_SET = COLOR_CODE_TABLE_HEADER_IS_SET;
+	window.COLOR_CODE_TABLE_HEADER_IS_NOT_SET = COLOR_CODE_TABLE_HEADER_IS_NOT_SET;
+}

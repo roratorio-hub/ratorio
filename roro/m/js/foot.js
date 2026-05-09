@@ -1102,21 +1102,7 @@ function StAllCalc(){
 	//----------------------------------------------------------------
 	// モンスターＩＤの取得
 	//----------------------------------------------------------------
-	if (g_SPMODE_FLAG == 0) {
-		monsterId = CMonsterMapAreaComponentManager.GetMonsterId();
-	}
-	else {
-		monsterId = g_SPMODE_MONSTER_INDEX;
-	}
-
-	//----------------------------------------------------------------
-	// モンスターデータの更新
-	//----------------------------------------------------------------
-/*
-	if (g_SPMODE_FLAG == 0) {
-		mobData = UpdateMobData(monsterId, mobData);
-	}
-*/
+	monsterId = CMonsterMapAreaComponentManager.GetMonsterId();
 
 	//----------------------------------------------------------------
 	// モンスター基本特性取得
@@ -1124,15 +1110,6 @@ function StAllCalc(){
 	GetMobDataBasicAttribute(monsterId, mobData);
 
 	SET_ZOKUSEI(mobData, attackMethodConfArray);
-
-/*
-	if(g_SPMODE_FLAG == 0){
-		for(i=0;i<=22;i++) mobData[i] = MonsterObjNew[B_Enemy.value][i];
-	}
-	if(g_SPMODE_FLAG == 1){
-		for(i=0;i<=22;i++) mobData[i] = MonsterObjNew[g_SPMODE_MONSTER_INDEX][i];
-	}
-*/
 
 //================================================================================================
 // 装備特性値の取得
@@ -14429,9 +14406,7 @@ function StAllCalc(){
 		//----------------------------------------------------------------
 		// キャラクターデータ画面表示更新
 		//----------------------------------------------------------------
-		if (g_SPMODE_FLAG == 0) {
-			UpdateCharaDataHtml(charaData, n_tok);
-		}
+		UpdateCharaDataHtml(charaData, n_tok);
 
 		//----------------------------------------------------------------
 		// モンスターパラメータ取得
@@ -14441,10 +14416,8 @@ function StAllCalc(){
 		//----------------------------------------------------------------
 		// モンスターデータ画面表示更新
 		//----------------------------------------------------------------
-		if (g_SPMODE_FLAG == 0) {
-			UpdateMobDataHtml(monsterId, mobData);
-			UpdateCharaDataHtml(charaData, n_tok);
-		}
+		UpdateMobDataHtml(monsterId, mobData);
+		UpdateCharaDataHtml(charaData, n_tok);
 
 //================================================================================================
 // グローバル変数の準備
@@ -30671,8 +30644,6 @@ function Init(jobId){
 	}
 	catch (err) {
 	}
-
-//	OnClickBrowserMigrationSwitch();
 
 	CItemInfoManager.RebuildControls();
 
