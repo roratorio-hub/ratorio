@@ -1665,12 +1665,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
 				break;
 
 			case SKILL_ID_EARTH_DRIVE:
-				if (_APPLY_UPDATE_LV200) {
-					wActiveHitNum = 1;
-				}
-				else {
-					wActiveHitNum = 5;
-				}
+				wActiveHitNum = 1;
 				wCast = 1000;
 				n_Delay[2] = 1000;
 				n_Delay[7] = 8000 - 1000 * n_A_ActiveSkillLV;
@@ -8683,7 +8678,7 @@ function GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfAr
 	if(UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 17) w -= 30;
 
 	// 魔道ギアに搭乗していない場合（Lv200解放アップデートで制限解除）
-	if ((_APPLY_UPDATE_LV200) || (UsedSkillSearch(SKILL_ID_MADOGEAR) == 0)) {
+	{
 		// オーバートラストマックス
 		if (UsedSkillSearch(SKILL_ID_OVER_TRUST_MAX)){
 			w += 20 * UsedSkillSearch(SKILL_ID_OVER_TRUST_MAX);
@@ -8781,12 +8776,6 @@ function GetBattlerMatkPercentUp(mobData) {
  * @return 適用後のダメージ
  */
 function ApplyMagicalSpecializeMonster(charaData, specData, mobData, dmg) {
-// 今後の仕様変更用に、検証処理自体は残しておく
-/*
-if (_MAGIC_CALC_INSPECTION) {
-	return ApplyMagicalSpecializeMonsterMod20211014(charaData, specData, mobData, dmg);
-}
-*/
 	// 2021/11/17 に特定した順序で計算する
 	dmg = ApplyMagicalSpecializeMonster20211117(charaData, specData, mobData, dmg);
 	// 特性ステータス対応
@@ -9654,45 +9643,17 @@ candidate = MonsterGroupObj[MONSTER_GROUP_ID_JOR_RAISE1].concat(MonsterGroupObj[
 		wX += confval;
 	}
 
-	// TODO: データ移行過渡処理
-	// 計算したSP効果を、移行前のデータ形式に変換して、加算する
-	if (IsEnableMigrationBlockTransit()) {
-		var idxMap = 0;
-		var candidateMapIdArray = null;
-		var spTag = null;
-		// 当該モンスターの出現するマップIDを収集
-		candidateMapIdArray = [];
-		for (idxMap = 0; idxMap < g_MonsterMapDataArray.length; idxMap++) {
-			if (g_MonsterMapDataArray[idxMap][MONSTER_MAP_DATA_INDEX_DATA_ARRAY].indexOf(mobData[MONSTER_DATA_INDEX_ID]) >= 0) {
-				candidateMapIdArray.push(g_MonsterMapDataArray[idxMap][MONSTER_MAP_DATA_INDEX_ID]);
+	//--------------------------------
+	// グラストヘイムアビス特化
+	//--------------------------------
+	if(NumSearch(mobData[MONSTER_DATA_INDEX_ID], MonsterGroupObj[MONSTER_GROUP_ID_GLASTHEIM_ABYSS]) == 1){
+		if (EquipNumSearch(ITEM_ID_SHIROKISHINO_MANT) > 0) {
+			wX += 10;
+			if (n_A_SHOULDER_DEF_PLUS >= 5) {
+				wX += 15;
 			}
-		}
-		// すべての出現マップをループ
-		for (idxMap = 0; idxMap < candidateMapIdArray.length; idxMap++) {
-			spTag = new CMigEquipableSpTag()
-				.SetSpId(MIG_EQUIPABLE_SP_EFFECT_ID_ATTACK_DAMAGE)
-				.AddAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_METHOD, MIG_METHOD_ID_MAGICAL)
-				.AddAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_TIMING, MIG_TIMING_ID_BY_ATTACK)
-				.AddAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_MAP_MONSTER, candidateMapIdArray[idxMap])
-				.SetAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_VALUE_UNIT, MIG_VALUE_UNIT_ID_PERCENT);
-			wX += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-			wX += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-		}
-	}
-	// 移行前データでの処理（移行完了まで必要）
-	else {
-		//--------------------------------
-		// グラストヘイムアビス特化
-		//--------------------------------
-		if(NumSearch(mobData[MONSTER_DATA_INDEX_ID], MonsterGroupObj[MONSTER_GROUP_ID_GLASTHEIM_ABYSS]) == 1){
-			if (EquipNumSearch(ITEM_ID_SHIROKISHINO_MANT) > 0) {
-				wX += 10;
-				if (n_A_SHOULDER_DEF_PLUS >= 5) {
-					wX += 15;
-				}
-				if (n_A_SHOULDER_DEF_PLUS >= 7) {
-					wX += 15;
-				}
+			if (n_A_SHOULDER_DEF_PLUS >= 7) {
+				wX += 15;
 			}
 		}
 	}
@@ -12800,54 +12761,8 @@ function BattleHiDamMaxPain(charaData, specData, mobData, attackMethodConfArray,
 	wBHD = GetEquippedTotalSPCardAndElse(3000+mobData[0]);
 	wBHD += GetEquippedTotalSPEquip(3000+mobData[0]);
 
-	// TODO: データ移行過渡処理
-	// 計算したSP効果を、移行前のデータ形式に変換して、加算する
-	if (IsEnableMigrationBlockTransit()) {
-
-		var idxMap = 0;
-
-		var candidateMapIdArray = null;
-
-		var spTag = null;
-
-		// 当該モンスターの出現するマップIDを収集
-		candidateMapIdArray = [];
-
-		for (idxMap = 0; idxMap < g_MonsterMapDataArray.length; idxMap++) {
-			if (g_MonsterMapDataArray[idxMap][MONSTER_MAP_DATA_INDEX_DATA_ARRAY].indexOf(mobData[0]) >= 0) {
-				candidateMapIdArray.push(g_MonsterMapDataArray[idxMap][MONSTER_MAP_DATA_INDEX_ID]);
-			}
-		}
-
-		// すべての出現マップをループ
-		for (idxMap = 0; idxMap < candidateMapIdArray.length; idxMap++) {
-
-			spTag = new CMigEquipableSpTag()
-				.SetSpId(MIG_EQUIPABLE_SP_EFFECT_ID_RECEIVE_DAMAGE)
-				.AddAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_MAP_MONSTER, candidateMapIdArray[idxMap])
-				.SetAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_VALUE_UNIT, MIG_VALUE_UNIT_ID_PERCENT);
-
-			wBHD += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-			wBHD += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-
-			spTag = new CMigEquipableSpTag()
-				.SetSpId(MIG_EQUIPABLE_SP_EFFECT_ID_RECEIVE_DAMAGE_OLD)
-				.AddAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_MAP_MONSTER, candidateMapIdArray[idxMap])
-				.SetAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_VALUE_UNIT, MIG_VALUE_UNIT_ID_PERCENT);
-
-			wBHD += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-			wBHD += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-		}
-	}
-	// 移行前データでの処理（移行完了まで必要）
-	else {
-
-	}
-
 	// Lv200解放アップデートでの、上限値新設への対応
-	if (_APPLY_UPDATE_LV200) {
-		wBHD = Math.min(95, wBHD);
-	}
+	wBHD = Math.min(95, wBHD);
 
 	for (idx = 0; idx < w_HiDam.length; idx++) {
 		w_HiDam[idx] -= Math.floor(w_HiDam[idx] * wBHD /100);
@@ -14197,24 +14112,7 @@ function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, m
 
 
 
-	// TODO: データ移行過渡処理
-	// 計算したSP効果を、移行前のデータ形式に変換して、加算する
-	if (IsEnableMigrationBlockTransit()) {
 
-		var spTag = null;
-
-		// 移行時のデータ整合性のためだけの判定、本来は不要で中の処理だけ行えばよい
-		if ((g_skillManager.GetSkillType(n_A_ActiveSkill) & CSkillData.TYPE_MAGICAL) == CSkillData.TYPE_MAGICAL) {
-
-			spTag = new CMigEquipableSpTag()
-				.SetSpId(MIG_EQUIPABLE_SP_EFFECT_ID_ATTACK_DAMAGE)
-				.AddAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_SKILL, g_skillManager.GetBaseSkillId(n_A_ActiveSkill))
-				.SetAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_VALUE_UNIT, MIG_VALUE_UNIT_ID_PERCENT);
-
-			wX += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-			wX += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-		}
-	}
 
 
 //********************************************************************************************************************************
@@ -14488,7 +14386,7 @@ function GetSizeModify(mobData, wSC_Size) {
 
 	// 自己ウェポンパーフェクション使用時の、全型１００％補正（魔導ギア搭乗時を除く、Lv200解放アップデートで制限解除）
 	if (UsedSkillSearch(SKILL_ID_WEAPON_PERFECTION)) {
-		if ((_APPLY_UPDATE_LV200) || (UsedSkillSearch(SKILL_ID_MADOGEAR) == 0)) wSC_Size = 1;
+		wSC_Size = 1;
 	}
 
 	// 支援ウェポンパーフェクション使用時の、全型１００％補正
@@ -14681,24 +14579,7 @@ function GetSizeModify(mobData, wSC_Size) {
 
 
 
-	// TODO: データ移行過渡処理
-	// 計算したSP効果を、移行前のデータ形式に変換して、加算する
-	if (IsEnableMigrationBlockTransit()) {
 
-		var spTag = null;
-
-		spTag = new CMigEquipableSpTag()
-			.SetSpId(MIG_EQUIPABLE_SP_EFFECT_ID_PERFECTION);
-
-		if (0 < g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_MAX)) {
-			wSC_Size = 1;
-			n_tok[ITEM_SP_SIZE_PERFECTION] = Math.max(n_tok[ITEM_SP_SIZE_PERFECTION], wSC_Size);
-		}
-		else if (0 < g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_MAX)) {
-			wSC_Size = 1;
-			n_tok[ITEM_SP_SIZE_PERFECTION] = Math.max(n_tok[ITEM_SP_SIZE_PERFECTION], wSC_Size);
-		}
-	}
 
 
 
@@ -15117,9 +14998,7 @@ function calc() {
 	var mobData = null;
 	var attackMethodConfArray = null;
 
-	if (_TEST_SETTINGS_APPLYING) {
-		return;
-	}
+
 
 	str_bSUBname = "";
 	str_bSUB = "";
@@ -18083,47 +17962,7 @@ candidate = MonsterGroupObj[MONSTER_GROUP_ID_JOR_RAISE1].concat(MonsterGroupObj[
 		w += confval;
 	}
 
-	// TODO: データ移行過渡処理
-	// 計算したSP効果を、移行前のデータ形式に変換して、加算する
-	if (IsEnableMigrationBlockTransit()) {
 
-		var idxMap = 0;
-
-		var candidateMapIdArray = null;
-
-		var spTag = null;
-
-		// 当該モンスターの出現するマップIDを収集
-		candidateMapIdArray = [];
-
-		for (idxMap = 0; idxMap < g_MonsterMapDataArray.length; idxMap++) {
-			if (g_MonsterMapDataArray[idxMap][MONSTER_MAP_DATA_INDEX_DATA_ARRAY].indexOf(mobData[0]) >= 0) {
-				candidateMapIdArray.push(g_MonsterMapDataArray[idxMap][MONSTER_MAP_DATA_INDEX_ID]);
-			}
-		}
-
-		// すべての出現マップをループ
-		for (idxMap = 0; idxMap < candidateMapIdArray.length; idxMap++) {
-
-			spTag = new CMigEquipableSpTag()
-				.SetSpId(MIG_EQUIPABLE_SP_EFFECT_ID_ATTACK_DAMAGE)
-				.AddAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_METHOD, MIG_METHOD_ID_PHYSICAL)
-				.AddAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_TIMING, MIG_TIMING_ID_BY_ATTACK)
-				.AddAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_MAP_MONSTER, candidateMapIdArray[idxMap])
-				.SetAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_VALUE_UNIT, MIG_VALUE_UNIT_ID_PERCENT);
-
-			w += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-			w += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-
-			spTag = new CMigEquipableSpTag()
-				.SetSpId(MIG_EQUIPABLE_SP_EFFECT_ID_ATTACK_DAMAGE_OLD)
-				.AddAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_MAP_MONSTER, candidateMapIdArray[idxMap])
-				.SetAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_VALUE_UNIT, MIG_VALUE_UNIT_ID_PERCENT);
-
-			w += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-			w += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-		}
-	}
 
 	// 移行前データでの処理（移行完了まで必要）
 	else {
@@ -21496,20 +21335,7 @@ function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, 
 	// 装備自体の当該スキル強化値、カード自体の当該スキル強化値を適用する
 	w1 += GetEquippedTotalSPEquip(5000 + n_A_ActiveSkill) + GetEquippedTotalSPCardAndElse(5000 + n_A_ActiveSkill)
 
-	// TODO: データ移行過渡処理
-	// 計算したSP効果を、移行前のデータ形式に変換して、加算する
-	if (IsEnableMigrationBlockTransit()) {
 
-		var spTag = null;
-
-		spTag = new CMigEquipableSpTag()
-			.SetSpId(MIG_EQUIPABLE_SP_EFFECT_ID_ATTACK_DAMAGE)
-			.AddAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_SKILL, g_skillManager.GetBaseSkillId(n_A_ActiveSkill))
-			.SetAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_VALUE_UNIT, MIG_VALUE_UNIT_ID_PERCENT);
-
-		w1 += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-		w1 += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-	}
 
 //********************************************************************************************************************************
 //********************************************************************************************************************************

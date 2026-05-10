@@ -542,17 +542,6 @@ function RebuildCardSelect(eqpRgnId, itemId) {
 	}
 
 
-if (!_ENCH_LIST_MIG) {
-	// エンチャントタイプＩＤを取得
-	var wpnlv = 0;
-	var enchantTypeId = 0;
-
-	if (ItemObjNew[itemId] != undefined) {
-		wpnlv = ItemObjNew[itemId][ITEM_DATA_INDEX_WPNLV];
-		enchantTypeId = Math.floor(wpnlv / 10) % 10000;
-	}
-}
-
 	//----------------------------------------------------------------
 	// カード欄の再構築
 	//----------------------------------------------------------------
@@ -572,7 +561,6 @@ if (!_ENCH_LIST_MIG) {
 
 
 
-if (_ENCH_LIST_MIG) {
 
 	// エンチャント情報の収集
 	var idx = 0;
@@ -614,17 +602,6 @@ if (_ENCH_LIST_MIG) {
 
 	// 選択肢の構築
 	BuildUpCardSlotsMIG(eqpRgnId, itemId, enchInfoArrayAllSlotsResult, objArySlots);
-}
-
-
-if (!_ENCH_LIST_MIG) {
-
-	// カード項目の追加
-	BuildUpCardSlotsCard(eqpRgnId, itemId, enchantTypeId, objArySlots);
-
-	// エンチャント項目の追加
-	BuildUpCardSlotsEnchant(enchantTypeId, objArySlots);
-}
 
 }
 
@@ -919,11 +896,6 @@ function RebuildCardSelectSubSortCollectedEnchListData(enchInfoArrayAllSlots) {
 
 			// 該当がない場合は、後ろに設定する
 			if (enchInfoArray[idx][3] < 0) {
-
-				// デバッグ時はログ出力
-				if (_DEBUG) {
-					WriteConsoleLog("エンチャント並び順未定義" + " : " + "cardId == " + EnumCardId.GetDefinedName(enchInfoArray[idx][1]));
-				}
 
 				enchInfoArray[idx][3] = g_constDataManager.enchListDataManager.sortedEnchantCardIdArray.length + idx;
 			}

@@ -4705,7 +4705,6 @@ function CExtraInfoAreaComponentManager () {
 		magicalValueArray[3] = ["", n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_PLAYER_DORAM]];
 		magicalValueArray[4] = ["", magicalValueArray[0][1] + magicalValueArray[3][1]];
 
-if (_APPLY_UPDATE_LV200) {
 		resistValueArray[0] = ["", n_tok[ITEM_SP_RESIST_PLAYER_ALL]];
 		resistOverArray[0] = Math.max(0, n_tok_no_limit[ITEM_SP_RESIST_PLAYER_ALL] - n_tok[ITEM_SP_RESIST_PLAYER_ALL]);
 
@@ -4720,14 +4719,6 @@ if (_APPLY_UPDATE_LV200) {
 
 		resistValueArray[4] = ["", Math.min(95, resistValueArray[0][1] + resistValueArray[3][1])];
 		resistOverArray[4] = Math.max(0, resistValueArray[0][1] + resistValueArray[3][1] - 95) + resistOverArray[0] + resistOverArray[3];
-}
-else {
-		resistValueArray[0] = ["", n_tok[ITEM_SP_RESIST_PLAYER_ALL]];
-		resistValueArray[1] = ["", n_tok[ITEM_SP_RESIST_PLAYER_HUMAN] + n_tok[ITEM_SP_RESIST_RACE_HUMAN]];
-		resistValueArray[2] = ["", resistValueArray[0][1] + resistValueArray[1][1]];
-		resistValueArray[3] = ["", n_tok[ITEM_SP_RESIST_PLAYER_DORAM]];
-		resistValueArray[4] = ["", resistValueArray[0][1] + resistValueArray[3][1]];
-}
 
 		for (idx = 0; idx < 5; idx++) {
 			physicalValueArray[idx][0] = funcSelectClassName(physicalValueArray[idx][1], "CSSCLS_EXTRA_INFO_DISP_TABLE_SPEC_VALUE_BLUE", "", "CSSCLS_EXTRA_INFO_DISP_TABLE_SPEC_VALUE_RED")

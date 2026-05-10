@@ -159,14 +159,6 @@ function CheckAndApplyItemSetEquipping() {
 					break;
 				}
 
-				// TODO: データ移行過渡処理
-				// 移行後データに定義がある場合は、処理打ち切り
-				if (IsEnableMigrationBlockTransit()) {
-					// 移行データが定義されているものは、処理打ち切り
-					if (g_constDataManager.itemDataManager.GetRegisteredIdArray().indexOf(dataId) >= 0) {
-						break;
-					}
-				}
 			}
 
 			// ペット指定の場合

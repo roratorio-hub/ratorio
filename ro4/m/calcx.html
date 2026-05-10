@@ -22,10 +22,6 @@
 	<script type="text/javascript" src="../common/js/util.js"></script>
 	<script type="module" src="../../ro4/m/js/CModalWindow.js"></script>
 
-	<!-- デバッグ定義 -->
-	<!-- 非デバッグ環境でも読み込む -->
-	<script type="text/javascript" src="../../ro4/DEBUG.js"></script>
-
 	<!-- 共通系 javascript ファイル -->
 	<script type="module" src="js/CInstanceManager.js"></script>
 	<script type="module" src="js/CGlobalConstManager.js"></script>
@@ -2105,19 +2101,5 @@
 
 <!-- 左メニュー用 javascript ファイル -->
 <script defer src="../frame.js"></script>
-
-<!-- デバッグ系、データ移行系 javascript ファイル -->
-<!-- 非デバッグ環境では読み込まない。リリース時にはコメントアウトすること -->
-<!--
-<script defer src="js/debug/CDebugUtil.js"></script>
-<script defer src="js/debug/CReverseCoder.js"></script>
-<script defer src="js/debug/CDatCoder.js"></script>
-<script defer src="js/debug/CFileOutputManager.js"></script>
-<script defer src="js/debug/CDebugAreaComponentManager.js"></script>
-
-<script defer src="js/migration/debug/parse/CMigParserAreaComponentManager.js"></script>
-<script defer src="js/migration/debug/test/CMigTestAreaComponentManager.js"></script>
-<script defer src="js/migration/mig.test.js"></script>
--->
 
 </html>

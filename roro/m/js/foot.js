@@ -356,47 +356,6 @@ function UpdateEquipItemDataByHtml() {
 		funcSetRndOptTable(EQUIP_REGION_ID_SHADOW_ACCESSARY_2, CShadowEquipController.EQPRGN_NAME_ACCESSORY_2);
 	}
 
-	// TODO: データ移行過渡処理
-	// 移行後の通常処理（追加で行う）
-	if (IsEnableMigrationBlockNewProcess()) {
-
-		charaData = g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN);
-
-		charaData.ChangeEquip(MIG_EQUIP_REGION_ID_ARMS_RIGHT, CONST_DATA_KIND_ITEM, 0, HtmlGetObjectValueByIdAsInteger("OBJID_ARMS_RIGHT", 0), 0);
-		charaData.SetRefined(MIG_EQUIP_REGION_ID_ARMS_RIGHT, HtmlGetObjectValueByIdAsInteger("OBJID_ARMS_RIGHT_REFINE", 0));
-
-		if (n_Nitou) {
-			charaData.ChangeEquip(MIG_EQUIP_REGION_ID_ARMS_LEFT, CONST_DATA_KIND_ITEM, 0, HtmlGetObjectValueByIdAsInteger("OBJID_ARMS_LEFT", 0), 0);
-			charaData.SetRefined(MIG_EQUIP_REGION_ID_ARMS_LEFT, HtmlGetObjectValueByIdAsInteger("OBJID_ARMS_LEFT_REFINE", 0));
-
-			charaData.ChangeEquip(MIG_EQUIP_REGION_ID_SHIELD, CONST_DATA_KIND_ITEM, 0, 0, 0);
-			charaData.SetRefined(MIG_EQUIP_REGION_ID_SHIELD, 0);
-		}
-		else {
-			charaData.ChangeEquip(MIG_EQUIP_REGION_ID_ARMS_LEFT, CONST_DATA_KIND_ITEM, 0, 0, 0);
-			charaData.SetRefined(MIG_EQUIP_REGION_ID_ARMS_LEFT, 0);
-
-			charaData.ChangeEquip(MIG_EQUIP_REGION_ID_SHIELD, CONST_DATA_KIND_ITEM, 0, HtmlGetObjectValueByIdAsInteger("OBJID_SHIELD", 0), 0);
-			charaData.SetRefined(MIG_EQUIP_REGION_ID_SHIELD, HtmlGetObjectValueByIdAsInteger("OBJID_SHIELD_REFINE", 0));
-		}
-
-		charaData.ChangeEquip(MIG_EQUIP_REGION_ID_HEAD_TOP, CONST_DATA_KIND_ITEM, 0, HtmlGetObjectValueByIdAsInteger("OBJID_HEAD_TOP", 0), 0);
-		charaData.ChangeEquip(MIG_EQUIP_REGION_ID_HEAD_MID, CONST_DATA_KIND_ITEM, 0, HtmlGetObjectValueByIdAsInteger("OBJID_HEAD_MID", 0), 0);
-		charaData.ChangeEquip(MIG_EQUIP_REGION_ID_HEAD_UNDER, CONST_DATA_KIND_ITEM, 0, HtmlGetObjectValueByIdAsInteger("OBJID_HEAD_UNDER", 0), 0);
-		charaData.ChangeEquip(MIG_EQUIP_REGION_ID_BODY, CONST_DATA_KIND_ITEM, 0, HtmlGetObjectValueByIdAsInteger("OBJID_BODY", 0), 0);
-		charaData.ChangeEquip(MIG_EQUIP_REGION_ID_SHOULDER, CONST_DATA_KIND_ITEM, 0, HtmlGetObjectValueByIdAsInteger("OBJID_SHOULDER", 0), 0);
-		charaData.ChangeEquip(MIG_EQUIP_REGION_ID_FOOT, CONST_DATA_KIND_ITEM, 0, HtmlGetObjectValueByIdAsInteger("OBJID_SHOES", 0), 0);
-		charaData.ChangeEquip(MIG_EQUIP_REGION_ID_ACCESSORY_1, CONST_DATA_KIND_ITEM, 0, HtmlGetObjectValueByIdAsInteger("OBJID_ACCESSARY_1", 0), 0);
-		charaData.ChangeEquip(MIG_EQUIP_REGION_ID_ACCESSORY_2, CONST_DATA_KIND_ITEM, 0, HtmlGetObjectValueByIdAsInteger("OBJID_ACCESSARY_2", 0), 0);
-		charaData.ChangeEquip(MIG_EQUIP_REGION_ID_COSTUME_HEAD_TOP, CONST_DATA_KIND_ITEM, 0, 0, 0);
-		charaData.ChangeEquip(MIG_EQUIP_REGION_ID_COSTUME_HEAD_MID, CONST_DATA_KIND_ITEM, 0, 0, 0);
-		charaData.ChangeEquip(MIG_EQUIP_REGION_ID_COSTUME_HEAD_UNDER, CONST_DATA_KIND_ITEM, 0, HtmlGetObjectValueByIdAsInteger("A_isyou3", 0), 0);
-
-		charaData.SetRefined(MIG_EQUIP_REGION_ID_HEAD_TOP, HtmlGetObjectValueByIdAsInteger("OBJID_HEAD_TOP_REFINE", 0));
-		charaData.SetRefined(MIG_EQUIP_REGION_ID_BODY, HtmlGetObjectValueByIdAsInteger("OBJID_BODY_REFINE", 0));
-		charaData.SetRefined(MIG_EQUIP_REGION_ID_SHOULDER, HtmlGetObjectValueByIdAsInteger("OBJID_SHOULDER_REFINE", 0));
-		charaData.SetRefined(MIG_EQUIP_REGION_ID_FOOT, HtmlGetObjectValueByIdAsInteger("OBJID_SHOES_REFINE", 0));
-	}
 
 }
 
@@ -503,80 +462,6 @@ function UpdateEquipCardDataByHtml() {
 	n_A_card[CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY2_2] = GetStatefullData("DATA_OBJID_SHADOW_ACCESSARY-2_CARD_3", 0);
 	n_A_card[CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY2_3] = GetStatefullData("DATA_OBJID_SHADOW_ACCESSARY-2_CARD_4", 0);
 
-	// TODO: データ移行過渡処理
-	// 移行後の通常処理（追加で行う）
-	if (IsEnableMigrationBlockNewProcess()) {
-
-		charaData = g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN);
-
-		charaData.ChangeEquip(MIG_EQUIP_REGION_ID_ARMS_RIGHT, CONST_DATA_KIND_CARD, 0, GetStatefullData("DATA_OBJID_ARMS_RIGHT_CARD_1", 0), 0);
-		charaData.ChangeEquip(MIG_EQUIP_REGION_ID_ARMS_RIGHT, CONST_DATA_KIND_CARD, 1, GetStatefullData("DATA_OBJID_ARMS_RIGHT_CARD_2", 0), 0);
-		charaData.ChangeEquip(MIG_EQUIP_REGION_ID_ARMS_RIGHT, CONST_DATA_KIND_CARD, 2, GetStatefullData("DATA_OBJID_ARMS_RIGHT_CARD_3", 0), 0);
-		charaData.ChangeEquip(MIG_EQUIP_REGION_ID_ARMS_RIGHT, CONST_DATA_KIND_CARD, 3, GetStatefullData("DATA_OBJID_ARMS_RIGHT_CARD_4", 0), 0);
-
-		if (n_Nitou) {
-			charaData.ChangeEquip(MIG_EQUIP_REGION_ID_ARMS_LEFT, CONST_DATA_KIND_CARD, 0, GetStatefullData("DATA_OBJID_ARMS_LEFT_CARD_1", 0), 0);
-			charaData.ChangeEquip(MIG_EQUIP_REGION_ID_ARMS_LEFT, CONST_DATA_KIND_CARD, 1, GetStatefullData("DATA_OBJID_ARMS_LEFT_CARD_2", 0), 0);
-			charaData.ChangeEquip(MIG_EQUIP_REGION_ID_ARMS_LEFT, CONST_DATA_KIND_CARD, 2, GetStatefullData("DATA_OBJID_ARMS_LEFT_CARD_3", 0), 0);
-			charaData.ChangeEquip(MIG_EQUIP_REGION_ID_ARMS_LEFT, CONST_DATA_KIND_CARD, 3, GetStatefullData("DATA_OBJID_ARMS_LEFT_CARD_4", 0), 0);
-
-			charaData.ChangeEquip(MIG_EQUIP_REGION_ID_SHIELD, CONST_DATA_KIND_CARD, 0, 0, 0);
-			charaData.ChangeEquip(MIG_EQUIP_REGION_ID_SHIELD, CONST_DATA_KIND_CARD, 1, 0, 0);
-			charaData.ChangeEquip(MIG_EQUIP_REGION_ID_SHIELD, CONST_DATA_KIND_CARD, 2, 0, 0);
-			charaData.ChangeEquip(MIG_EQUIP_REGION_ID_SHIELD, CONST_DATA_KIND_CARD, 3, 0, 0);
-		}
-		else {
-			charaData.ChangeEquip(MIG_EQUIP_REGION_ID_ARMS_LEFT, CONST_DATA_KIND_CARD, 0, 0, 0);
-			charaData.ChangeEquip(MIG_EQUIP_REGION_ID_ARMS_LEFT, CONST_DATA_KIND_CARD, 1, 0, 0);
-			charaData.ChangeEquip(MIG_EQUIP_REGION_ID_ARMS_LEFT, CONST_DATA_KIND_CARD, 2, 0, 0);
-			charaData.ChangeEquip(MIG_EQUIP_REGION_ID_ARMS_LEFT, CONST_DATA_KIND_CARD, 3, 0, 0);
-
-			charaData.ChangeEquip(MIG_EQUIP_REGION_ID_SHIELD, CONST_DATA_KIND_CARD, 0, GetStatefullData("DATA_OBJID_SHIELD_CARD_1", 0), 0);
-			charaData.ChangeEquip(MIG_EQUIP_REGION_ID_SHIELD, CONST_DATA_KIND_CARD, 1, GetStatefullData("DATA_OBJID_SHIELD_CARD_1", 0), 0);
-			charaData.ChangeEquip(MIG_EQUIP_REGION_ID_SHIELD, CONST_DATA_KIND_CARD, 2, GetStatefullData("DATA_OBJID_SHIELD_CARD_1", 0), 0);
-			charaData.ChangeEquip(MIG_EQUIP_REGION_ID_SHIELD, CONST_DATA_KIND_CARD, 3, GetStatefullData("DATA_OBJID_SHIELD_CARD_1", 0), 0);
-		}
-
-		charaData.ChangeEquip(MIG_EQUIP_REGION_ID_HEAD_TOP, CONST_DATA_KIND_CARD, 0, GetStatefullData("DATA_OBJID_HEAD_TOP_CARD_1", 0), 0);
-		charaData.ChangeEquip(MIG_EQUIP_REGION_ID_HEAD_TOP, CONST_DATA_KIND_CARD, 1, GetStatefullData("DATA_OBJID_HEAD_TOP_CARD_2", 0), 0);
-		charaData.ChangeEquip(MIG_EQUIP_REGION_ID_HEAD_TOP, CONST_DATA_KIND_CARD, 2, GetStatefullData("DATA_OBJID_HEAD_TOP_CARD_3", 0), 0);
-		charaData.ChangeEquip(MIG_EQUIP_REGION_ID_HEAD_TOP, CONST_DATA_KIND_CARD, 3, GetStatefullData("DATA_OBJID_HEAD_TOP_CARD_4", 0), 0);
-
-		charaData.ChangeEquip(MIG_EQUIP_REGION_ID_HEAD_MID, CONST_DATA_KIND_CARD, 0, GetStatefullData("DATA_OBJID_HEAD_MID_CARD_1", 0), 0);
-		charaData.ChangeEquip(MIG_EQUIP_REGION_ID_HEAD_MID, CONST_DATA_KIND_CARD, 1, GetStatefullData("DATA_OBJID_HEAD_MID_CARD_2", 0), 0);
-		charaData.ChangeEquip(MIG_EQUIP_REGION_ID_HEAD_MID, CONST_DATA_KIND_CARD, 2, GetStatefullData("DATA_OBJID_HEAD_MID_CARD_3", 0), 0);
-		charaData.ChangeEquip(MIG_EQUIP_REGION_ID_HEAD_MID, CONST_DATA_KIND_CARD, 3, GetStatefullData("DATA_OBJID_HEAD_MID_CARD_4", 0), 0);
-
-		charaData.ChangeEquip(MIG_EQUIP_REGION_ID_HEAD_UNDER, CONST_DATA_KIND_CARD, 0, GetStatefullData("DATA_OBJID_HEAD_UNDER_CARD_1", 0), 0);
-		charaData.ChangeEquip(MIG_EQUIP_REGION_ID_HEAD_UNDER, CONST_DATA_KIND_CARD, 1, GetStatefullData("DATA_OBJID_HEAD_UNDER_CARD_2", 0), 0);
-		charaData.ChangeEquip(MIG_EQUIP_REGION_ID_HEAD_UNDER, CONST_DATA_KIND_CARD, 2, GetStatefullData("DATA_OBJID_HEAD_UNDER_CARD_3", 0), 0);
-		charaData.ChangeEquip(MIG_EQUIP_REGION_ID_HEAD_UNDER, CONST_DATA_KIND_CARD, 3, GetStatefullData("DATA_OBJID_HEAD_UNDER_CARD_4", 0), 0);
-
-		charaData.ChangeEquip(MIG_EQUIP_REGION_ID_BODY, CONST_DATA_KIND_CARD, 0, GetStatefullData("DATA_OBJID_BODY_CARD_1", 0), 0);
-		charaData.ChangeEquip(MIG_EQUIP_REGION_ID_BODY, CONST_DATA_KIND_CARD, 1, GetStatefullData("DATA_OBJID_BODY_CARD_2", 0), 0);
-		charaData.ChangeEquip(MIG_EQUIP_REGION_ID_BODY, CONST_DATA_KIND_CARD, 2, GetStatefullData("DATA_OBJID_BODY_CARD_3", 0), 0);
-		charaData.ChangeEquip(MIG_EQUIP_REGION_ID_BODY, CONST_DATA_KIND_CARD, 3, GetStatefullData("DATA_OBJID_BODY_CARD_4", 0), 0);
-
-		charaData.ChangeEquip(MIG_EQUIP_REGION_ID_SHOULDER, CONST_DATA_KIND_CARD, 0, GetStatefullData("DATA_OBJID_SHOULDER_CARD_1", 0), 0);
-		charaData.ChangeEquip(MIG_EQUIP_REGION_ID_SHOULDER, CONST_DATA_KIND_CARD, 1, GetStatefullData("DATA_OBJID_SHOULDER_CARD_2", 0), 0);
-		charaData.ChangeEquip(MIG_EQUIP_REGION_ID_SHOULDER, CONST_DATA_KIND_CARD, 2, GetStatefullData("DATA_OBJID_SHOULDER_CARD_3", 0), 0);
-		charaData.ChangeEquip(MIG_EQUIP_REGION_ID_SHOULDER, CONST_DATA_KIND_CARD, 3, GetStatefullData("DATA_OBJID_SHOULDER_CARD_4", 0), 0);
-
-		charaData.ChangeEquip(MIG_EQUIP_REGION_ID_FOOT, CONST_DATA_KIND_CARD, 0, GetStatefullData("DATA_OBJID_SHOES_CARD_1", 0), 0);
-		charaData.ChangeEquip(MIG_EQUIP_REGION_ID_FOOT, CONST_DATA_KIND_CARD, 1, GetStatefullData("DATA_OBJID_SHOES_CARD_2", 0), 0);
-		charaData.ChangeEquip(MIG_EQUIP_REGION_ID_FOOT, CONST_DATA_KIND_CARD, 2, GetStatefullData("DATA_OBJID_SHOES_CARD_3", 0), 0);
-		charaData.ChangeEquip(MIG_EQUIP_REGION_ID_FOOT, CONST_DATA_KIND_CARD, 3, GetStatefullData("DATA_OBJID_SHOES_CARD_4", 0), 0);
-
-		charaData.ChangeEquip(MIG_EQUIP_REGION_ID_ACCESSORY_1, CONST_DATA_KIND_CARD, 0, GetStatefullData("DATA_OBJID_ACCESSARY_1_CARD_1", 0), 0);
-		charaData.ChangeEquip(MIG_EQUIP_REGION_ID_ACCESSORY_1, CONST_DATA_KIND_CARD, 1, GetStatefullData("DATA_OBJID_ACCESSARY_1_CARD_2", 0), 0);
-		charaData.ChangeEquip(MIG_EQUIP_REGION_ID_ACCESSORY_1, CONST_DATA_KIND_CARD, 2, GetStatefullData("DATA_OBJID_ACCESSARY_1_CARD_3", 0), 0);
-		charaData.ChangeEquip(MIG_EQUIP_REGION_ID_ACCESSORY_1, CONST_DATA_KIND_CARD, 3, GetStatefullData("DATA_OBJID_ACCESSARY_1_CARD_4", 0), 0);
-
-		charaData.ChangeEquip(MIG_EQUIP_REGION_ID_ACCESSORY_2, CONST_DATA_KIND_CARD, 0, GetStatefullData("DATA_OBJID_ACCESSARY_2_CARD_1", 0), 0);
-		charaData.ChangeEquip(MIG_EQUIP_REGION_ID_ACCESSORY_2, CONST_DATA_KIND_CARD, 1, GetStatefullData("DATA_OBJID_ACCESSARY_2_CARD_2", 0), 0);
-		charaData.ChangeEquip(MIG_EQUIP_REGION_ID_ACCESSORY_2, CONST_DATA_KIND_CARD, 2, GetStatefullData("DATA_OBJID_ACCESSARY_2_CARD_3", 0), 0);
-		charaData.ChangeEquip(MIG_EQUIP_REGION_ID_ACCESSORY_2, CONST_DATA_KIND_CARD, 3, GetStatefullData("DATA_OBJID_ACCESSARY_2_CARD_4", 0), 0);
-	}
 }
 
 function UpdateEquipCostumeDataByHtml() {
@@ -631,9 +516,6 @@ function StAllCalc(){
 	var cardCountAccessary1 = 0;
 	var cardCountAccessary2 = 0;
 
-	if (_TEST_SETTINGS_APPLYING) {
-		return [null, null, null, null];
-	}
 
 	with(document.calcForm){
 
@@ -660,18 +542,6 @@ function StAllCalc(){
 		SU_INT = n_A_INT;
 		SU_LUK = n_A_LUK;
 
-		// TODO: データ移行過渡処理
-		// 移行後の通常処理（追加で行う）
-		if (IsEnableMigrationBlockNewProcess()) {
-			g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).SetParam(MIG_PARAM_ID_BASE_LV, n_A_BaseLV);
-			g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).SetParam(MIG_PARAM_ID_JOB_LV, n_A_JobLV);
-			g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).SetParam(MIG_PARAM_ID_STR, n_A_STR);
-			g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).SetParam(MIG_PARAM_ID_AGI, n_A_AGI);
-			g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).SetParam(MIG_PARAM_ID_VIT, n_A_VIT);
-			g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).SetParam(MIG_PARAM_ID_INT, n_A_INT);
-			g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).SetParam(MIG_PARAM_ID_DEX, n_A_DEX);
-			g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).SetParam(MIG_PARAM_ID_LUK, n_A_LUK);
-		}
 
 		n_A_SpeedPOT = eval(A_SpeedPOT.value);
 
@@ -722,23 +592,11 @@ function StAllCalc(){
 
 		attackMethodConfArray = [attackMethodConf];
 
-
 		n_A_WeaponLV = Math.floor(ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS]][ITEM_DATA_INDEX_WPNLV] % 10);
 
-		// TODO: データ移行過渡処理
-		// 計算したSP効果を、移行前のデータ形式に変換して、置き換える
-		if (IsEnableMigrationBlockTransit()) {
-			if (g_constDataManager.itemDataManager.GetRegisteredIdArray().indexOf(n_A_Equip[EQUIP_REGION_ID_ARMS])) {
-				n_A_Weapon_ATK = g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetEquipAtkRight();
-			}
-		}
-
 		// 従来の処理
-		else {
-			n_A_Weapon_ATK = ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS]][ITEM_DATA_INDEX_POWER];
-		}
-
-
+		n_A_Weapon_ATK = ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS]][ITEM_DATA_INDEX_POWER];
+		
 		n_A_Weapon_ATKplus = eval(A_Weapon_ATKplus.value);
 		n_A_WeaponLV_seirenATK = 0;
 		n_A_WeaponLV_Minplus = 0;
@@ -773,18 +631,7 @@ function StAllCalc(){
 		if (n_Nitou) {
 			n_A_Weapon2LV = Math.floor(ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS_LEFT]][ITEM_DATA_INDEX_WPNLV] % 10);
 
-			// TODO: データ移行過渡処理
-			// 計算したSP効果を、移行前のデータ形式に変換して、置き換える
-			if (IsEnableMigrationBlockTransit()) {
-				if (g_constDataManager.itemDataManager.GetRegisteredIdArray().indexOf(n_A_Equip[EQUIP_REGION_ID_ARMS_LEFT])) {
-					n_A_Weapon2_ATK = g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetEquipAtkLeft();
-				}
-			}
-
-			// 従来の処理
-			else {
-				n_A_Weapon2_ATK = ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS_LEFT]][ITEM_DATA_INDEX_POWER];
-			}
+			n_A_Weapon2_ATK = ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS_LEFT]][ITEM_DATA_INDEX_POWER];
 
 			n_A_Weapon2_ATKplus = eval(document.calcForm.A_Weapon2_ATKplus.value);
 			n_A_Weapon2LV_seirenATK = 0;
@@ -1115,12 +962,6 @@ function StAllCalc(){
 // 装備特性値の取得
 //================================================================================================
 
-	// TODO: データ移行過渡処理
-	// 移行後の通常処理（追加で行う）
-	// すべての装備のSP効果を計算する
-	if (IsEnableMigrationBlockNewProcess()) {
-		g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).CalcEffectiveSpData();
-	}
 
 	// 特性値を初期化
 	// TODO: 配列長　直打ち
@@ -1138,206 +979,8 @@ function StAllCalc(){
 		n_tok[idx] += GetEquippedTotalSPCostume(idx);
 
 
-		// TODO: データ移行過渡処理
-		// 計算したSP効果を、移行前のデータ形式に変換して、加算する
-		if (IsEnableMigrationBlockTransit()) {
-
-			var idxArray = 0;
-			var spTag = null;
-			var spTagArray = MigGetItemSpTagArrayByOldSpID(idx);
-			var ignoreAttrArray = null;
-			var n_tokWork = 0;
-			var itemDataWork = null;
-
-			// 固有の処理
-			switch (idx) {
-
-			// TODO: 攻撃属性は、処理変更で一時的に旧方式のまま対応させる
-/*
-			// 攻撃属性は中途半端な対応になっているので、状況を判別して細かく制御する
-			case ITEM_SP_ELEMENTAL:
-			case ITEM_SP_ARMS_ELEMENT:
-
-				// 移行済みデータでの定義を最初に選定
-				n_tok[idx] = g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetEquipAttackElement();
-				if (n_tok[idx] === undefined) {
-					n_tok[idx] = ELM_ID_VANITY;
-				}
-				continue;
-*/
-
-			// 防御属性は個別対応になっているが、計算データ出力用に、こちらでも取得しておく
-			case ITEM_SP_BODY_ELEMENT:
-
-				// 移行済みデータでの定義を最初に選定
-				n_tok[idx] = g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetEquipDefenseElement();
-				if (n_tok[idx] === undefined) {
-					n_tok[idx] = ELM_ID_VANITY;
-				}
-				continue;
-
-			// 両手杖属性
-			case ITEM_SP_STUFF2HAND:
-				if (n_A_Equip[EQUIP_REGION_ID_ARMS]) {
-
-					// 移行済みデータで、両手杖として定義されている場合は、フラグを立てる
-					itemDataWork = g_constDataManager.GetDataObject(CONST_DATA_KIND_ITEM, n_A_Equip[EQUIP_REGION_ID_ARMS]);
-
-					if (itemDataWork) {
-						if (itemDataWork.GetStaticDataOf(MIG_EQUIPABLE_SP_STATIC_ID_TYPE, MIG_ITEM_TYPE_NONE) == MIG_ITEM_TYPE_STUFF_2HAND) {
-							n_tok[idx] = 1;
-						}
-					}
-				}
-				continue;
-
-			// DEF貫通（防御計算自体しない）は、変数の値がフラグのように使われているので、個別処理
-			case ITEM_SP_PENETRATE_DEF:
-
-				// 最大の値を採用する
-				n_tokWork = 0;
-
-				// ボスも貫通できるケース
-				spTag = new CMigEquipableSpTag()
-						.SetSpId(MIG_EQUIPABLE_SP_EFFECT_ID_PENETRATE_DEF)
-						.AddAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_PARAM, MIG_PARAM_ID_DEF)
-						.AddAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_BOSS, MIG_BOSS_ID_BOSS)
-						;
-
-				n_tokWork = Math.max(n_tokWork, 10 * g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_MAX));
-				n_tokWork = Math.max(n_tokWork, 10 * g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_MAX));
-
-				spTag = new CMigEquipableSpTag()
-						.SetSpId(MIG_EQUIPABLE_SP_EFFECT_ID_PENETRATE_DEF_V2)
-						.AddAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_PARAM, MIG_PARAM_ID_DEF)
-						.AddAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_BOSS, MIG_BOSS_ID_BOSS)
-						;
-
-				n_tokWork = Math.max(n_tokWork, 10 * g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_MAX));
-				n_tokWork = Math.max(n_tokWork, 10 * g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_MAX));
-
-
-				// 一般のみ貫通できるケース
-				spTag = new CMigEquipableSpTag()
-						.SetSpId(MIG_EQUIPABLE_SP_EFFECT_ID_PENETRATE_DEF)
-						.AddAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_PARAM, MIG_PARAM_ID_DEF)
-						.AddAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_BOSS, MIG_BOSS_ID_NORMAL)
-						;
-
-				n_tokWork = Math.max(n_tokWork, 1 * g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_MAX));
-				n_tokWork = Math.max(n_tokWork, 1 * g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_MAX));
-
-				spTag = new CMigEquipableSpTag()
-						.SetSpId(MIG_EQUIPABLE_SP_EFFECT_ID_PENETRATE_DEF_V2)
-						.AddAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_PARAM, MIG_PARAM_ID_DEF)
-						.AddAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_BOSS, MIG_BOSS_ID_NORMAL)
-						;
-
-				n_tokWork = Math.max(n_tokWork, 1 * g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_MAX));
-				n_tokWork = Math.max(n_tokWork, 1 * g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_MAX));
-
-				// 値を設定して、この spid の処理は終了
-				n_tok[idx] = n_tokWork;
-				continue;
-			}
-
-			// 共通の処理
-			if (spTagArray) {
-
-				// 無視する属性の配列を調整
-				ignoreAttrArray = [];
-
-				switch (idx) {
-				case ITEM_SP_PHYSICAL_DAMAGE_UP_RACE_HUMAN_NOT_PLAYER:
-				case ITEM_SP_MAGICAL_DAMAGE_UP_RACE_HUMAN_NOT_PLAYER:
-				case ITEM_SP_RESIST_RACE_HUMAN_NOT_PLAYER:
-					break;
-
-				default:
-					ignoreAttrArray.push(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_DISEFFECT_TARGET);
-
-				}
-
-				// データ取得ループ
-				for (idxArray = 0; idxArray < spTagArray.length; idxArray++) {
-
-					n_tokWork = 0;
-
-					// 一部の旧SPIDは、取得元の調整が必要
-					switch (idx) {
-
-					case ITEM_SP_STR_PLUS:
-					case ITEM_SP_AGI_PLUS:
-					case ITEM_SP_VIT_PLUS:
-					case ITEM_SP_INT_PLUS:
-					case ITEM_SP_DEX_PLUS:
-					case ITEM_SP_LUK_PLUS:
-						n_tokWork += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSpValue(spTagArray[idxArray], ignoreAttrArray, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-						break;
-
-					case ITEM_SP_ALLSTATUS_PLUS:
-						n_tokWork += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetPlaneSpValue(spTagArray[idxArray], ignoreAttrArray, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-						n_tok[ITEM_SP_ALLSTATUS_PLUS_FOR_SET] += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSpValue(spTagArray[idxArray], ignoreAttrArray, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-						n_tok[ITEM_SP_ALLSTATUS_PLUS_FOR_SET] -= g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetPlaneSpValue(spTagArray[idxArray], ignoreAttrArray, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-						break;
-
-					case ITEM_SP_STR_PLUS_FOR_SET:
-					case ITEM_SP_AGI_PLUS_FOR_SET:
-					case ITEM_SP_VIT_PLUS_FOR_SET:
-					case ITEM_SP_INT_PLUS_FOR_SET:
-					case ITEM_SP_DEX_PLUS_FOR_SET:
-					case ITEM_SP_LUK_PLUS_FOR_SET:
-					case ITEM_SP_ALLSTATUS_PLUS_FOR_SET:
-						n_tokWork += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSetSpValue(spTagArray[idxArray], ignoreAttrArray, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-						break;
-
-					default:
-						n_tokWork += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSpValue(spTagArray[idxArray], ignoreAttrArray, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-						n_tokWork += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSetSpValue(spTagArray[idxArray], ignoreAttrArray, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-						break;
-
-					}
-
-					// 一部のSPIDは、反転が必要
-					switch (spTagArray[idxArray].GetSpId()) {
-					case MIG_EQUIPABLE_SP_EFFECT_ID_SKILL_DELAY:
-					case MIG_EQUIPABLE_SP_EFFECT_ID_SKILL_COST:
-					case MIG_EQUIPABLE_SP_EFFECT_ID_RECEIVE_DAMAGE:
-					case MIG_EQUIPABLE_SP_EFFECT_ID_RECEIVE_DAMAGE_OLD:
-						n_tok[idx] -= n_tokWork;
-						break;
-
-					default:
-						n_tok[idx] += n_tokWork;
-						break;
-					}
-				}
-
-			}
-		}
 	}
 
-	// TODO: データ移行過渡処理
-	// 計算したSP効果を、移行前のデータ形式に変換して、加算する
-	if (IsEnableMigrationBlockTransit()) {
-
-		// 武器固有のMATK（処理の都合上、これだけ上書き）
-		n_tok[ITEM_SP_MATK_PLUS_TYPE_WEAPON] = g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetEquipMatk();
-
-		// 武器固有のMDEF
-		n_tok[ITEM_SP_MDEF_PLUS] += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetEquipMdef();
-
-
-		// 破損可否
-		var unbreakableCount = 0;
-		EnumEquipRegionId.For(
-			function (idxF, nameF, valueF) {
-				unbreakableCount += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetBreakable(valueF);
-			}
-		);
-		n_tok[ITEM_SP_UNBREAKABLE] = unbreakableCount;
-
-	}
 
 //================================================================================================
 // プレイヤー防御属性の導出
@@ -1539,19 +1182,6 @@ function StAllCalc(){
 	maxHpPlus += GetEquippedTotalSPEquip(ITEM_SP_VIT_PLUS);
 	maxHpPlus += GetEquippedTotalSPEquip(ITEM_SP_ALLSTATUS_PLUS);
 
-	if (IsEnableMigrationBlockTransit()) {
-
-		var spTagVit = new CMigEquipableSpTag()
-			.SetSpId(MIG_EQUIPABLE_SP_EFFECT_ID_PARAM)
-			.AddAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_PARAM, MIG_PARAM_ID_VIT);
-
-		var spTagAll = new CMigEquipableSpTag()
-			.SetSpId(MIG_EQUIPABLE_SP_EFFECT_ID_PARAM)
-			.AddAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_PARAM, MIG_PARAM_ID_ALL_STATUS);
-
-		maxHpPlus += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetPlaneSpValue(spTagVit, null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-		maxHpPlus += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetPlaneSpValue(spTagAll, null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-	}
 
 	// 装備追加効果、支援効果
 	maxHpPlus += GetStatusModifyMaxHpPlus();
@@ -1670,19 +1300,6 @@ function StAllCalc(){
 	maxSpPlus += GetEquippedTotalSPEquip(ITEM_SP_INT_PLUS);
 	maxSpPlus += GetEquippedTotalSPEquip(ITEM_SP_ALLSTATUS_PLUS);
 
-	if (IsEnableMigrationBlockTransit()) {
-
-		var spTagInt = new CMigEquipableSpTag()
-			.SetSpId(MIG_EQUIPABLE_SP_EFFECT_ID_PARAM)
-			.AddAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_PARAM, MIG_PARAM_ID_INT);
-
-		var spTagAll = new CMigEquipableSpTag()
-			.SetSpId(MIG_EQUIPABLE_SP_EFFECT_ID_PARAM)
-			.AddAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_PARAM, MIG_PARAM_ID_ALL_STATUS);
-
-		maxSpPlus += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetPlaneSpValue(spTagInt, null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-		maxSpPlus += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetPlaneSpValue(spTagAll, null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-	}
 
 	// 装備追加効果、支援効果
 	maxSpPlus += GetStatusModifyMaxSpPlus();
@@ -1727,25 +1344,9 @@ function StAllCalc(){
 
 	// 防具の基本Ｄｅｆ
 
-	// TODO: データ移行過渡処理
-	// 計算したSP効果を、移行前のデータ形式に変換して、加算する
-	if (IsEnableMigrationBlockTransit()) {
-		armorDef += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetEquipDef();
-	}
-
 	// 従来の処理
-	else {
-		for (idx = EQUIP_REGION_ID_HEAD_TOP; idx <= EQUIP_REGION_ID_ACCESSARY_2; idx++) {
-
-			// TODO: データ移行過渡処理
-			if (IsEnableMigrationBlockTransit()) {
-				if (g_constDataManager.itemDataManager.GetRegisteredIdArray().indexOf(n_A_Equip[idx]) >= 0) {
-					continue;
-				}
-			}
-
-			armorDef += ItemObjNew[n_A_Equip[idx]][ITEM_DATA_INDEX_POWER];
-		}
+	for (idx = EQUIP_REGION_ID_HEAD_TOP; idx <= EQUIP_REGION_ID_ACCESSARY_2; idx++) {
+		armorDef += ItemObjNew[n_A_Equip[idx]][ITEM_DATA_INDEX_POWER];
 	}
 
 	//----------------------------------------------------------------
@@ -4714,10 +4315,8 @@ function StAllCalc(){
 				//----------------------------------------------------------------
 				// 「二次職支援　フルアドレナリンラッシュ」の効果
 				//----------------------------------------------------------------
-				if ((_APPLY_UPDATE_LV200) || (UsedSkillSearch(SKILL_ID_MADOGEAR) == 0)) {
-					if (ASPDch == 0 && UsedSkillSearch(SKILL_ID_FULL_ADRENALINE_RUSH)) {
-						ASPDch = 30;
-					}
+				if (ASPDch == 0 && UsedSkillSearch(SKILL_ID_FULL_ADRENALINE_RUSH)) {
+					ASPDch = 30;
 				}
 				//----------------------------------------------------------------
 				// 「時限アイテム　フルアドレナリンラッシュ」の効果
@@ -4781,7 +4380,7 @@ function StAllCalc(){
 			if (g_confDataNizi[CCharaConfNizi.CONF_ID_ADRENALINE_RUSH] >= 1) {
 				if (g_confDataDebuff[CCharaConfDebuff.CONF_ID_QUAGMIRE] === 0 && g_confDataDebuff[CCharaConfDebuff.CONF_ID_DECAGI] === 0) {
 					// クァグマイア または 速度減少 が掛かっていないとき
-					if ((_APPLY_UPDATE_LV200) || (UsedSkillSearch(SKILL_ID_MADOGEAR) === 0)) {
+					{
 						if(g_confDataNizi[CCharaConfNizi.CONF_ID_ADRENALINE_RUSH] == 2){
 							if(n_A_WeaponType != 10 && !(17 <= n_A_WeaponType && n_A_WeaponType <= 21)){
 								ASPDch = 20;
@@ -14476,22 +14075,6 @@ function StAllCalc(){
 			n_tok[23] = 1;
 		}
 
-		// TODO: データ移行過渡処理
-		// 計算したSP効果を、移行前のデータ形式に変換して、加算する
-		if (IsEnableMigrationBlockTransit()) {
-
-			var spTag = null;
-
-			spTag = new CMigEquipableSpTag()
-				.SetSpId(MIG_EQUIPABLE_SP_EFFECT_ID_KIRI_EFFECT);
-
-			if (0 < g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_MAX)) {
-				n_tok[23] = 1;
-			}
-			else if (0 < g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_MAX)) {
-				n_tok[23] = 1;
-			}
-		}
 
 		if((n_tok[23] >= 1 && NumSearch(n_A_ActiveSkill,n_SP_SKILL) == 0)
 			|| n_A_ActiveSkill == 193) {
@@ -14617,13 +14200,11 @@ function StAllCalc(){
 			return false;
 		};
 
-		if (_APPLY_UPDATE_LV200) {
-			for (idx = 0; idx < n_tok.length; idx++) {
-				n_tok_no_limit[idx] = n_tok[idx];
+		for (idx = 0; idx < n_tok.length; idx++) {
+			n_tok_no_limit[idx] = n_tok[idx];
 
-				if (funcIsLimitSpIDUpTo95(idx)) {
-					n_tok[idx] = Math.min(95, n_tok[idx]);
-				}
+			if (funcIsLimitSpIDUpTo95(idx)) {
+				n_tok[idx] = Math.min(95, n_tok[idx]);
 			}
 		}
 
@@ -15116,10 +14697,8 @@ function getCompleteAvoidance() {
     if (lucky < 0) {
         lucky = 0;
     }
-    if (_APPLY_UPDATE_LV200) {
-        g_lucky_over = Math.max(0, Math.round(lucky * 10 - 950) / 10);
-        lucky = Math.min(95, lucky);
-    }
+    g_lucky_over = Math.max(0, Math.round(lucky * 10 - 950) / 10);
+    lucky = Math.min(95, lucky);
 
     return lucky;
 }
@@ -15785,18 +15364,6 @@ function getFixedCastTimeReductionRate() {
         chkary.push(confval);
     }
 
-    // TODO: データ移行過渡処理
-    // 計算したSP効果を、移行前のデータ形式に変換して、加算する
-    if (IsEnableMigrationBlockTransit()) {
-        let spTag = null;
-        spTag = new CMigEquipableSpTag()
-            .SetSpId(MIG_EQUIPABLE_SP_EFFECT_ID_FIXED_TIME)
-            .SetAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_VALUE_UNIT, MIG_VALUE_UNIT_ID_PERCENT);
-
-        // 反転が必要なので注意
-        chkary.push((0 - g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_MIN)));
-        chkary.push((0 - g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_MIN)));
-    }
 
     // 最大値のみ有効
     n_A_Kotei_Cast_Keigen = Math.max(...chkary);
@@ -23126,20 +22693,6 @@ function GetCastScalingOfSkillForCastTimeVary(skillId) {
 	 */
 	scaling += 20 * g_confDataDebuff[CCharaConfDebuff.CONF_ID_SLOW_CAST];
 
-	// TODO: データ移行過渡処理
-	// 計算したSP効果を、移行前のデータ形式に変換して、加算する
-	if (IsEnableMigrationBlockTransit()) {
-
-		var spTag = null;
-
-		spTag = new CMigEquipableSpTag()
-			.SetSpId(MIG_EQUIPABLE_SP_EFFECT_ID_CAST_TIME)
-			.AddAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_SKILL, g_skillManager.GetBaseSkillId(skillId))
-			.SetAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_VALUE_UNIT, MIG_VALUE_UNIT_ID_PERCENT);
-
-		scaling += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-		scaling += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-	}
 
 	return scaling;
 }
@@ -23305,19 +22858,6 @@ function GetCastFixOfSkillForCastTimeVary(skillId) {
 		castfix -= 100 * confval;
 	}
 
-	// TODO: データ移行過渡処理
-	// 計算したSP効果を、移行前のデータ形式に変換して、加算する
-	if (IsEnableMigrationBlockTransit()) {
-
-		var spTag = null;
-
-		spTag = new CMigEquipableSpTag()
-			.SetSpId(MIG_EQUIPABLE_SP_EFFECT_ID_CAST_TIME)
-			.AddAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_SKILL, g_skillManager.GetBaseSkillId(skillId))
-
-		castfix += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-		castfix += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-	}
 
 	return castfix;
 }
@@ -23542,20 +23082,6 @@ function GetCastScalingOfSkillForCastTimeFixed(skillId) {
 		scaling -= confval;
 	}
 
-	// TODO: データ移行過渡処理
-	// 計算したSP効果を、移行前のデータ形式に変換して、加算する
-	if (IsEnableMigrationBlockTransit()) {
-
-		var spTag = null;
-
-		spTag = new CMigEquipableSpTag()
-			.SetSpId(MIG_EQUIPABLE_SP_EFFECT_ID_FIXED_TIME)
-			.AddAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_SKILL, g_skillManager.GetBaseSkillId(skillId))
-			.SetAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_VALUE_UNIT, MIG_VALUE_UNIT_ID_PERCENT);
-
-		scaling += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-		scaling += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-	}
 
 	return scaling;
 }
@@ -23646,19 +23172,6 @@ function GetCastFixOfSkillForCastTimeFixed(skillId) {
 		castfix -= 100 * confval;
 	}
 
-	// TODO: データ移行過渡処理
-	// 計算したSP効果を、移行前のデータ形式に変換して、加算する
-	if (IsEnableMigrationBlockTransit()) {
-
-		var spTag = null;
-
-		spTag = new CMigEquipableSpTag()
-			.SetSpId(MIG_EQUIPABLE_SP_EFFECT_ID_FIXED_TIME)
-			.AddAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_SKILL, g_skillManager.GetBaseSkillId(skillId))
-
-		castfix += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-		castfix += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-	}
 
 	return castfix;
 }
@@ -25142,19 +24655,6 @@ function GetCoolFixOfSkill(skillId) {
 		coolfix -= 100 * confval;
 	}
 
-	// TODO: データ移行過渡処理
-	// 計算したSP効果を、移行前のデータ形式に変換して、加算する
-	if (IsEnableMigrationBlockTransit()) {
-
-		var spTag = null;
-
-		spTag = new CMigEquipableSpTag()
-			.SetSpId(MIG_EQUIPABLE_SP_EFFECT_ID_COOL_TIME)
-			.AddAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_SKILL, g_skillManager.GetBaseSkillId(skillId))
-
-		coolfix += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-		coolfix += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-	}
 
 	return coolfix;
 }
@@ -25195,20 +24695,6 @@ function GetCostScalingOfSkill(skillId) {
 
 
 
-	// TODO: データ移行過渡処理
-	// 計算したSP効果を、移行前のデータ形式に変換して、加算する
-	if (IsEnableMigrationBlockTransit()) {
-
-		var spTag = null;
-
-		spTag = new CMigEquipableSpTag()
-			.SetSpId(MIG_EQUIPABLE_SP_EFFECT_ID_SKILL_COST)
-			.AddAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_SKILL, g_skillManager.GetBaseSkillId(skillId))
-			.SetAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_VALUE_UNIT, MIG_VALUE_UNIT_ID_PERCENT);
-
-		scaling += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-		scaling += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-	}
 
 
 
@@ -25641,19 +25127,6 @@ function GetCostFixOfSkill(skillId) {
 
 
 
-	// TODO: データ移行過渡処理
-	// 計算したSP効果を、移行前のデータ形式に変換して、加算する
-	if (IsEnableMigrationBlockTransit()) {
-
-		var spTag = null;
-
-		spTag = new CMigEquipableSpTag()
-			.SetSpId(MIG_EQUIPABLE_SP_EFFECT_ID_SKILL_COST)
-			.AddAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_SKILL, g_skillManager.GetBaseSkillId(skillId))
-
-		costfix += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-		costfix += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSetSpValue(spTag, null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-	}
 
 
 
@@ -25753,48 +25226,6 @@ function StPlusCalc() {
 	wSPC_DEX += GetEquippedTotalSPEquipExact(5) + wSPCall;
 	wSPC_LUK += GetEquippedTotalSPEquipExact(6) + wSPCall;
 
-	// TODO: データ移行過渡処理
-	// 計算したSP効果を、移行前のデータ形式に変換して、加算する
-	if (IsEnableMigrationBlockTransit()) {
-		var idxArray = 0;
-		var wSPCallMIG = 0;
-		var spTagStrArrayAll = MigGetItemSpTagArrayByOldSpID(ITEM_SP_ALLSTATUS_PLUS);
-		var spTagStrArrayStr = MigGetItemSpTagArrayByOldSpID(ITEM_SP_STR_PLUS);
-		var spTagStrArrayAgi = MigGetItemSpTagArrayByOldSpID(ITEM_SP_AGI_PLUS);
-		var spTagStrArrayVit = MigGetItemSpTagArrayByOldSpID(ITEM_SP_VIT_PLUS);
-		var spTagStrArrayInt = MigGetItemSpTagArrayByOldSpID(ITEM_SP_INT_PLUS);
-		var spTagStrArrayDex = MigGetItemSpTagArrayByOldSpID(ITEM_SP_DEX_PLUS);
-		var spTagStrArrayLuk = MigGetItemSpTagArrayByOldSpID(ITEM_SP_LUK_PLUS);
-
-		for (idxArray = 0; idxArray < spTagStrArrayAll.length; idxArray++) {
-			wSPCallMIG += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetPlaneSpValue(spTagStrArrayAll[idxArray], null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-		}
-		wSPC_STR += wSPCallMIG;
-		wSPC_AGI += wSPCallMIG;
-		wSPC_VIT += wSPCallMIG;
-		wSPC_INT += wSPCallMIG;
-		wSPC_DEX += wSPCallMIG;
-		wSPC_LUK += wSPCallMIG;
-
-		for (idxArray = 0; idxArray < spTagStrArrayStr.length; idxArray++) {
-			wSPC_STR += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetPlaneSpValue(spTagStrArrayStr[idxArray], null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-		}
-		for (idxArray = 0; idxArray < spTagStrArrayAgi.length; idxArray++) {
-			wSPC_AGI += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetPlaneSpValue(spTagStrArrayAgi[idxArray], null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-		}
-		for (idxArray = 0; idxArray < spTagStrArrayVit.length; idxArray++) {
-			wSPC_VIT += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetPlaneSpValue(spTagStrArrayVit[idxArray], null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-		}
-		for (idxArray = 0; idxArray < spTagStrArrayInt.length; idxArray++) {
-			wSPC_INT += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetPlaneSpValue(spTagStrArrayInt[idxArray], null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-		}
-		for (idxArray = 0; idxArray < spTagStrArrayDex.length; idxArray++) {
-			wSPC_DEX += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetPlaneSpValue(spTagStrArrayDex[idxArray], null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-		}
-		for (idxArray = 0; idxArray < spTagStrArrayLuk.length; idxArray++) {
-			wSPC_LUK += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetPlaneSpValue(spTagStrArrayLuk[idxArray], null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-		}
-	}
 
 	//----------------------------------------------------------------
 	// 「ふくろうの目」の、ＤＥＸ＋効果
@@ -25804,7 +25235,7 @@ function StPlusCalc() {
 	//----------------------------------------------------------------
 	// 「ラウドボイス」の、ＳＴＲ＋効果
 	//----------------------------------------------------------------
-	if ((UsedSkillSearch(SKILL_ID_LOUD_VOICE) && ((_APPLY_UPDATE_LV200) || UsedSkillSearch(SKILL_ID_MADOGEAR) == 0))
+	if (UsedSkillSearch(SKILL_ID_LOUD_VOICE)
 		|| (g_confDataIchizi[CCharaConfIchizi.CONF_ID_LOUD_VOICE] >= 1)
 		|| TimeItemNumSearch(TIME_ITEM_ID_KOKKOCHAN)
 		|| TimeItemNumSearch(TIME_ITEM_ID_RUDO_MASK)
@@ -27886,62 +27317,6 @@ function StPlusCalc() {
 	wSPC_DEX += GetEquippedTotalSPCardAndElse(ITEM_SP_DEX_PLUS_FOR_SET) + wSPCall2;
 	wSPC_LUK += GetEquippedTotalSPCardAndElse(ITEM_SP_LUK_PLUS_FOR_SET) + wSPCall2;
 
-	// TODO: データ移行過渡処理
-	// 計算したSP効果を、移行前のデータ形式に変換して、加算する
-	if (IsEnableMigrationBlockTransit()) {
-		var idxArray = 0;
-		var wSPCallMIG = 0;
-		var spTagStrArrayAll = MigGetItemSpTagArrayByOldSpID(ITEM_SP_ALLSTATUS_PLUS);
-		var spTagStrArrayStr = MigGetItemSpTagArrayByOldSpID(ITEM_SP_STR_PLUS);
-		var spTagStrArrayAgi = MigGetItemSpTagArrayByOldSpID(ITEM_SP_AGI_PLUS);
-		var spTagStrArrayVit = MigGetItemSpTagArrayByOldSpID(ITEM_SP_VIT_PLUS);
-		var spTagStrArrayInt = MigGetItemSpTagArrayByOldSpID(ITEM_SP_INT_PLUS);
-		var spTagStrArrayDex = MigGetItemSpTagArrayByOldSpID(ITEM_SP_DEX_PLUS);
-		var spTagStrArrayLuk = MigGetItemSpTagArrayByOldSpID(ITEM_SP_LUK_PLUS);
-
-		for (idxArray = 0; idxArray < spTagStrArrayAll.length; idxArray++) {
-			wSPCallMIG += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSpValue(spTagStrArrayAll[idxArray], null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-			wSPCallMIG += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSetSpValue(spTagStrArrayAll[idxArray], null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-			wSPCallMIG -= g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetPlaneSpValue(spTagStrArrayAll[idxArray], null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-		}
-		wSPC_STR += wSPCallMIG;
-		wSPC_AGI += wSPCallMIG;
-		wSPC_VIT += wSPCallMIG;
-		wSPC_INT += wSPCallMIG;
-		wSPC_DEX += wSPCallMIG;
-		wSPC_LUK += wSPCallMIG;
-
-		for (idxArray = 0; idxArray < spTagStrArrayStr.length; idxArray++) {
-			wSPC_STR += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSpValue(spTagStrArrayStr[idxArray], null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-			wSPC_STR += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSetSpValue(spTagStrArrayStr[idxArray], null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-			wSPC_STR -= g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetPlaneSpValue(spTagStrArrayStr[idxArray], null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-		}
-		for (idxArray = 0; idxArray < spTagStrArrayAgi.length; idxArray++) {
-			wSPC_AGI += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSpValue(spTagStrArrayAgi[idxArray], null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-			wSPC_AGI += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSetSpValue(spTagStrArrayAgi[idxArray], null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-			wSPC_AGI -= g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetPlaneSpValue(spTagStrArrayAgi[idxArray], null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-		}
-		for (idxArray = 0; idxArray < spTagStrArrayVit.length; idxArray++) {
-			wSPC_VIT += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSpValue(spTagStrArrayVit[idxArray], null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-			wSPC_VIT += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSetSpValue(spTagStrArrayVit[idxArray], null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-			wSPC_VIT -= g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetPlaneSpValue(spTagStrArrayVit[idxArray], null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-		}
-		for (idxArray = 0; idxArray < spTagStrArrayInt.length; idxArray++) {
-			wSPC_INT += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSpValue(spTagStrArrayInt[idxArray], null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-			wSPC_INT += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSetSpValue(spTagStrArrayInt[idxArray], null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-			wSPC_INT -= g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetPlaneSpValue(spTagStrArrayInt[idxArray], null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-		}
-		for (idxArray = 0; idxArray < spTagStrArrayDex.length; idxArray++) {
-			wSPC_DEX += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSpValue(spTagStrArrayDex[idxArray], null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-			wSPC_DEX += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSetSpValue(spTagStrArrayDex[idxArray], null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-			wSPC_DEX -= g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetPlaneSpValue(spTagStrArrayDex[idxArray], null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-		}
-		for (idxArray = 0; idxArray < spTagStrArrayLuk.length; idxArray++) {
-			wSPC_LUK += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSpValue(spTagStrArrayLuk[idxArray], null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-			wSPC_LUK += g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetSetSpValue(spTagStrArrayLuk[idxArray], null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-			wSPC_LUK -= g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetPlaneSpValue(spTagStrArrayLuk[idxArray], null, MIG_EFFECTIVE_SP_CALC_MODE_SUM);
-		}
-	}
 
 	//----------------------------------------------------------------
 	// ランダムエンチャント効果
@@ -28507,12 +27882,6 @@ function GetEquippedTotalSPEquipSub(spid, bListUp, bExact) {
 
 
 
-	// TODO: データ移行過渡処理
-	// 移行後の通常処理（追加で行う）
-	if (IsEnableMigrationBlockTransit()) {
-		// 移行データが定義されているものは、打ち消されるＩＤの配列に追加する
-		invalidItemIdArray = invalidItemIdArray.concat(g_constDataManager.itemDataManager.GetRegisteredIdArray());
-	}
 
 
 
@@ -28767,12 +28136,6 @@ function GetEquippedTotalSPShadowSub(spid, bListUp, bExact) {
 
 
 
-	// TODO: データ移行過渡処理
-	// 移行後の通常処理（追加で行う）
-	if (IsEnableMigrationBlockTransit()) {
-		// 移行データが定義されているものは、打ち消されるＩＤの配列に追加する
-		invalidItemIdArray = invalidItemIdArray.concat(g_constDataManager.itemDataManager.GetRegisteredIdArray());
-	}
 
 
 
@@ -30128,12 +29491,6 @@ function InitJobInfo(jobId) {
 		jobId = document.getElementById("OBJID_SELECT_JOB").value;
 	}
 
-	// TODO: データ移行過渡処理
-	// 移行後の通常処理（追加で行う）
-	if (IsEnableMigrationBlockNewProcess()) {
-		let jobData = JobMap.getById(jobId);
-		g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).SetJob(jobData.getMigIdNum());
-	}
 }
 
 /**

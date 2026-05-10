@@ -136,14 +136,6 @@ function EquipNumSearch(itemId, rgnId) {
 function EquipNumSearchMIG(itemId, rgnId) {
 	var eqpnum = EquipNumSearch(itemId, rgnId);
 
-	// 既存機能の処理速度への影響を考慮して、この判定順序
-	// 移行後は、この関数自体が不要になる想定
-	if (eqpnum > 0) {
-		if (IsMigrationedItemId(itemId)) {
-			return 0;
-		}
-	}
-
 	return eqpnum;
 }
 
@@ -864,27 +856,16 @@ function GetStatusModifyBodyElement() {
 	// 基本処理
 	//----------------------------------------------------------------
 
-	// TODO: データ移行過渡処理
-	if (IsEnableMigrationBlockTransit()) {
-		val = g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetEquipDefenseElement();
-		if (val === undefined) {
-			val = ELM_ID_VANITY;
-		}
+	// 装備中の単純カード効果を検索
+	val = GetEquippedTotalSPCardAndElse(ITEM_SP_BODY_ELEMENT);
+	if (val != ELM_ID_VANITY) {
+		return val;
 	}
 
-	else {
-
-		// 装備中の単純カード効果を検索
-		val = GetEquippedTotalSPCardAndElse(ITEM_SP_BODY_ELEMENT);
-		if (val != ELM_ID_VANITY) {
-			return val;
-		}
-
-		// カード効果がなければ、装備固有の単純効果を検索
-		val = GetEquippedTotalSPEquip(ITEM_SP_BODY_ELEMENT);
-		if (val != ELM_ID_VANITY) {
-			return val;
-		}
+	// カード効果がなければ、装備固有の単純効果を検索
+	val = GetEquippedTotalSPEquip(ITEM_SP_BODY_ELEMENT);
+	if (val != ELM_ID_VANITY) {
+		return val;
 	}
 
 	//----------------------------------------------------------------

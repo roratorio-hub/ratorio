@@ -10,8 +10,6 @@ declare global {
     var g_dataManagerMobConfInput: any;
     // eslint-disable-next-line no-var
     var n_B_TAISEI: number[];
-    // eslint-disable-next-line no-var
-    var _APPLY_UPDATE_LV200: boolean;
 }
 
 /**
@@ -163,10 +161,6 @@ export function loadRo4Dependencies(): void {
     }
     if (typeof globalThis.n_B_TAISEI === 'undefined') {
         globalThis.n_B_TAISEI = Array(10).fill(0);
-    }
-    // スキル200レベル以上のアップデート適用フラグ
-    if (typeof (globalThis as any)._APPLY_UPDATE_LV200 === 'undefined') {
-        (globalThis as any)._APPLY_UPDATE_LV200 = false;
     }
 
     // 5. ro4の基本ファイルをロード

@@ -183,13 +183,7 @@ CItemInfoManager.RebuildControls = function () {
 	objTr = HtmlCreateElement("tr", objTbody);
 
 	objTd = HtmlCreateElement("td", objTr);
-	// TODO: データ移行過渡処理
-	if (IsEnableMigrationBlockNewProcess()) {
-		objTd.setAttribute("rowspan", 3);
-	}
-	else {
-		objTd.setAttribute("rowspan", 2);
-	}
+	objTd.setAttribute("rowspan", 2);
 	objSelect = HtmlCreateElement("select", objTd);
 	objSelect.setAttribute("id", "OBJID_SELECT_ITEM_INFO_ITEM");
 	objSelect.setAttribute("onchange", "CItemInfoManager.OnChangeSelectItem()");
@@ -234,24 +228,6 @@ CItemInfoManager.RebuildControls = function () {
 	//----------------------------------------------------------------
 	// 公式ツール検索（将来対応）
 	//----------------------------------------------------------------
-	// TODO: データ移行過渡処理
-	if (IsEnableMigrationBlockNewProcess()) {
-		objTr = HtmlCreateElement("tr", objTbody);
-
-		objTd = HtmlCreateElement("td", objTr);
-		objSelect = HtmlCreateElement("select", objTd);
-		objSelect.setAttribute("id", "OBJID_SELECT_ITEM_INFO_TRADE_WORLD");
-		objSelect.setAttribute("onchange", "CItemInfoManager.OnChangeWorldSelect()");
-		HtmlCreateElementOption(13, "Breidablik", objSelect);
-		HtmlCreateElementOption(15, "Noatun", objSelect);
-		HtmlSetObjectValueById("OBJID_SELECT_ITEM_INFO_TRADE_WORLD", CItemInfoManager.tradeWorld);
-
-
-		objTd = HtmlCreateElement("td", objTr);
-		objA = HtmlCreateElement("a", objTd);
-		objA.setAttribute("id", "OBJID_A_ITEM_INFO_OPEN_OFFICIAL_TRADE_INFOMATION");
-		objA.setAttribute("target", "_blank");
-	}
 
 
 
@@ -673,10 +649,7 @@ CItemInfoManager.RebuildOfficialTradeInformationAnchor = function (kindId, dataI
 
 	var objA = null;
 
-	// TODO: データ移行過渡処理
-	if (!IsEnableMigrationBlockNewProcess()) {
-		return;
-	}
+	return;
 
 	// 指定なしの場合は、アンカーの URL をクリアする
 	if (dataId == 0) {

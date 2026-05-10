@@ -16732,7 +16732,7 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = (_APPLY_UPDATE_LV200 ? "斧鍛錬" : "斧修練");
+			this.name = "斧鍛錬";
 			this.kana = "オノシユウレン";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_PASSIVE;
@@ -22790,7 +22790,7 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = (_APPLY_UPDATE_LV200 ? "剣鍛錬" : "剣修練");
+			this.name = "剣鍛錬";
 			this.kana = "ケンシユウレンシエネテイツク";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_PASSIVE;
@@ -22899,7 +22899,7 @@ function CSkillManager() {
 			CSkillData.call(this);
 
 			this.id = skillId;
-			this.name = (_APPLY_UPDATE_LV200 ? "改造カートブースト" : "カートブースト");
+			this.name = "改造カートブースト";
 			this.kana = "カアトフウストシエネテイツク";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE;

@@ -792,12 +792,6 @@ function RebuildCardSelectSubSortCollectedEnchListData(enchInfoArrayAllSlots) {
 
 			// 該当がない場合は、後ろに設定する
 			if (enchInfoArray[idx][3] < 0) {
-
-				// デバッグ時はログ出力
-				if (_DEBUG) {
-					WriteConsoleLog("エンチャント並び順未定義" + " : " + "cardId == " + EnumCardId.GetDefinedName(enchInfoArray[idx][1]));
-				}
-
 				enchInfoArray[idx][3] = g_constDataManager.enchListDataManager.sortedEnchantCardIdArray.length + idx;
 			}
 		}

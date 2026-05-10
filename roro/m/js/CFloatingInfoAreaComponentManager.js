@@ -1203,7 +1203,6 @@ CFloatingInfoAreaComponentManager.RefreshDispAreaStatus = function (idxArea) {
 	objTd.setAttribute("class", "CSSCLS_FLOATING_INFO_ALIGN_CENTER")
 	HtmlCreateTextSpan(CFloatingInfoAreaComponentManager.charaData[CHARA_DATA_INDEX_DISP_LUCKY], objTd, CFloatingInfoAreaComponentManager.fontSizeClassName);
 
-if (_APPLY_UPDATE_LV200) {
 	if (g_lucky_over > 0) {
 
 		objTr = HtmlCreateElement("tr", objTbody);
@@ -1229,9 +1228,6 @@ if (_APPLY_UPDATE_LV200) {
 		objTd.setAttribute("class", "CSSCLS_FLOATING_INFO_ALIGN_CENTER")
 		HtmlCreateTextSpan("[" + textWork + "]", objTd, CFloatingInfoAreaComponentManager.fontSizeClassName);
 	}
-}
-
-
 
 	// ASPD
 	objTr = HtmlCreateElement("tr", objTbody);
