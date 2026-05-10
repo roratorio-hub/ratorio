@@ -1,87 +1,127 @@
-(function () {
+export const ARROW_ID_NONE = 0;
+export const ARROW_ID_YA = 1;
+export const ARROW_ID_TETSUNO_YA = 2;
+export const ARROW_ID_KOTETSUNO_YA = 3;
+export const ARROW_ID_ORIDEOKONNO_YA = 4;
+export const ARROW_ID_KARYUDONO_YA = 5;
+export const ARROW_ID_ELFNO_YA = 6;
+export const ARROW_ID_SUISHONO_YA = 7;
+export const ARROW_ID_GANSEKINO_YA = 8;
+export const ARROW_ID_HONOONO_YA = 9;
+export const ARROW_ID_KAZENO_YA = 10;
+export const ARROW_ID_SABITA_YA = 11;
+export const ARROW_ID_GINNO_YA = 12;
+export const ARROW_ID_HAMAYA = 13;
+export const ARROW_ID_SEINARU_YA = 14;
+export const ARROW_ID_KAGEYA = 15;
+export const ARROW_ID_MUKEINO_YA = 16;
+export const ARROW_ID_ZOKUSE_ZIDO_YA_ATK30 = 17;
+export const ARROW_ID_SURUDOI_YA = 18;
+export const ARROW_ID_CURSE_ARROW = 19;
+export const ARROW_ID_SILENCE_ARROW = 20;
+export const ARROW_ID_SLEEP_ARROW = 21;
+export const ARROW_ID_FLASH_ARROW = 22;
+export const ARROW_ID_KORINO_YA = 23;
+export const ARROW_ID_DOKUYA = 24;
+export const ARROW_ID_ATK1NO_YA = 25;
+export const ARROW_ID_BULLET = 26;
+export const ARROW_ID_BLOOD_BULLET_C = 27;
+export const ARROW_ID_AP_BULLET = 28;
+export const ARROW_ID_ICE_BULLET = 29;
+export const ARROW_ID_FREEZING_BULLET = 30;
+export const ARROW_ID_MAGICAL_STONE_BULLET = 31;
+export const ARROW_ID_FLARE_BULLET = 32;
+export const ARROW_ID_BLAZE_BULLET = 33;
+export const ARROW_ID_LIGHTNING_BULLET = 34;
+export const ARROW_ID_ELECTRIC_BULLET = 35;
+export const ARROW_ID_POISON_BULLET = 36;
+export const ARROW_ID_SILVER_BULLET_C = 37;
+export const ARROW_ID_SUNCTFIED_BULLET = 38;
+export const ARROW_ID_BLIND_BULLET = 39;
 
-	ARROW_ID_NONE = 0;
-	ARROW_ID_YA = 1;
-	ARROW_ID_TETSUNO_YA = 2;
-	ARROW_ID_KOTETSUNO_YA = 3;
-	ARROW_ID_ORIDEOKONNO_YA = 4;
-	ARROW_ID_KARYUDONO_YA = 5;
-	ARROW_ID_ELFNO_YA = 6;
-	ARROW_ID_SUISHONO_YA = 7;
-	ARROW_ID_GANSEKINO_YA = 8;
-	ARROW_ID_HONOONO_YA = 9;
-	ARROW_ID_KAZENO_YA = 10;
-	ARROW_ID_SABITA_YA = 11;
-	ARROW_ID_GINNO_YA = 12;
-	ARROW_ID_HAMAYA = 13;
-	ARROW_ID_SEINARU_YA = 14;
-	ARROW_ID_KAGEYA = 15;
-	ARROW_ID_MUKEINO_YA = 16;
-	ARROW_ID_ZOKUSE_ZIDO_YA_ATK30 = 17;
-	ARROW_ID_SURUDOI_YA = 18;
-	ARROW_ID_CURSE_ARROW = 19;
-	ARROW_ID_SILENCE_ARROW = 20;
-	ARROW_ID_SLEEP_ARROW = 21;
-	ARROW_ID_FLASH_ARROW = 22;
-	ARROW_ID_KORINO_YA = 23;
-	ARROW_ID_DOKUYA = 24;
-	ARROW_ID_ATK1NO_YA = 25;
-	ARROW_ID_BULLET = 26;
-	ARROW_ID_BLOOD_BULLET_C = 27;
-	ARROW_ID_AP_BULLET = 28;
-	ARROW_ID_ICE_BULLET = 29;
-	ARROW_ID_FREEZING_BULLET = 30;
-	ARROW_ID_MAGICAL_STONE_BULLET = 31;
-	ARROW_ID_FLARE_BULLET = 32;
-	ARROW_ID_BLAZE_BULLET = 33;
-	ARROW_ID_LIGHTNING_BULLET = 34;
-	ARROW_ID_ELECTRIC_BULLET = 35;
-	ARROW_ID_POISON_BULLET = 36;
-	ARROW_ID_SILVER_BULLET_C = 37;
-	ARROW_ID_SUNCTFIED_BULLET = 38;
-	ARROW_ID_BLIND_BULLET = 39;
+export const ArrowOBJNew = [
+	[0,"なし","００ナシ",0,"",20,0,0],
+	[1,"矢","００１ヤ",1,"",17,25,20,0,0],
+	[2,"鉄の矢","００２テツノヤ",1,"",17,30,20,0,0],
+	[3,"鋼鉄の矢","００３コウテツノヤ",1,"",17,40,20,0,0],
+	[4,"オリデオコンの矢","００４オリテオコンノヤ",1,"",17,50,20,0,0],
+	[5,"狩人の矢","００５カリユウトノヤ",1,"",17,35,20,0,0],
+	[6,"エルフの矢","００６エルフノヤ",1,"",17,45,20,0,0],
+	[7,"水晶の矢","００７スイシヨウノヤ",1,"",17,30,20,1,0],
+	[8,"岩石の矢","００８カンセキノヤ",1,"",17,30,20,2,0],
+	[9,"炎の矢","００９ホノオノヤ",1,"",17,30,20,3,0],
+	[10,"風の矢","０１０カセノヤ",1,"",17,30,20,4,0],
+	[11,"錆びた矢","０１１サヒタヤ",1,"",17,30,20,5,0],
+	[12,"銀の矢","０１２キンノヤ",1,"",17,30,20,6,0],
+	[13,"破魔矢","０１３ハマヤ",1,"",17,50,20,6,0],
+	[14,"聖なる矢","０１４セイナルヤ",1,"",17,50,20,6,0],
+	[15,"影矢","０１５カケヤ",1,"",17,30,20,7,0],
+	[16,"無形の矢","０１６ムケイノヤ",1,"",17,30,20,8,0],
+	[17,"属性自動(Atk30)","０１７ソクセイシトウノヤ",1,"",17,30,20,0,0],
+	[18,"鋭い矢","０１８スルトイヤ",1,"",17,10,20,0,10,20,0],
+	[19,"カースアロー","０１９カアスアロオ",1,"低確率で対象を呪い状態にする",17,1,20,0,0],
+	[20,"サイレンスアロー","０２０サイレンスアロオ",1,"低確率で対象を沈黙状態にする",17,1,20,0,0],
+	[21,"スリープアロー","０２１スリイフアロオ",1,"低確率で対象を睡眠状態にする",17,1,20,0,0],
+	[22,"フラッシュアロー","０２２フラツシユアロオ",1,"低確率で対象を暗黒状態にする",17,1,20,0,0],
+	[23,"氷の矢","０２３コオリノヤ",1,"低確率で対象を氷化状態にする",17,1,20,1,0],
+	[24,"毒矢","０２４トクヤ",1,"低確率で対象を毒状態にする",17,1,20,5,0],
+	[25,"Atk1の矢","０２５アタツク１ノヤ",1,"",17,1,20,0,0],
+	[26,"バレット","１０１ハレツト",2,"",17,25,20,0,0],
+	[27,"ブラッドバレットC","１０２フラツトハレツトシイ",2,"",17,30,20,0,0],
+	[28,"APバレット","１０３エイヒイハレツト",2,"",17,50,20,0,0],
+	[29,"アイスバレット","１０４アイスハレツト",2,"",17,20,20,1,0],
+	[30,"フリージングバレット","１０５フリイシンクハレツト",2,"",17,40,20,1,0],
+	[31,"マジカルストーンバレット","１０６マシカルストオンハレツト",2,"",17,40,20,2,0],
+	[32,"フレアバレット","１０７フレアハレツト",2,"",17,20,20,3,0],
+	[33,"ブレイズバレット","１０８フレイスハレツト",2,"",17,40,20,3,0],
+	[34,"ライトニングバレット","１０９ライトニンクハレツト",2,"",17,20,20,4,0],
+	[35,"エレクトリックバレット","１１０エレクトリツクハレツト",2,"",17,40,20,4,0],
+	[36,"ポイズンバレット","１１１ホイスンハレツト",2,"",17,20,20,5,0],
+	[37,"シルバーバレットC","１１２シルハアハレツトシイ",2,"",17,15,20,6,0],
+	[38,"サンクタファイドバレット","１１３サンクタフアイトハレツト",2,"",17,40,20,6,0],
+	[39,"ブラインドバレット","１１４フライントハレツト",2,"",17,20,20,7,0],
+];
 
-	ArrowOBJNew = [
-		[0,"なし","００ナシ",0,"",20,0,0],
-		[1,"矢","００１ヤ",1,"",17,25,20,0,0],
-		[2,"鉄の矢","００２テツノヤ",1,"",17,30,20,0,0],
-		[3,"鋼鉄の矢","００３コウテツノヤ",1,"",17,40,20,0,0],
-		[4,"オリデオコンの矢","００４オリテオコンノヤ",1,"",17,50,20,0,0],
-		[5,"狩人の矢","００５カリユウトノヤ",1,"",17,35,20,0,0],
-		[6,"エルフの矢","００６エルフノヤ",1,"",17,45,20,0,0],
-		[7,"水晶の矢","００７スイシヨウノヤ",1,"",17,30,20,1,0],
-		[8,"岩石の矢","００８カンセキノヤ",1,"",17,30,20,2,0],
-		[9,"炎の矢","００９ホノオノヤ",1,"",17,30,20,3,0],
-		[10,"風の矢","０１０カセノヤ",1,"",17,30,20,4,0],
-		[11,"錆びた矢","０１１サヒタヤ",1,"",17,30,20,5,0],
-		[12,"銀の矢","０１２キンノヤ",1,"",17,30,20,6,0],
-		[13,"破魔矢","０１３ハマヤ",1,"",17,50,20,6,0],
-		[14,"聖なる矢","０１４セイナルヤ",1,"",17,50,20,6,0],
-		[15,"影矢","０１５カケヤ",1,"",17,30,20,7,0],
-		[16,"無形の矢","０１６ムケイノヤ",1,"",17,30,20,8,0],
-		[17,"属性自動(Atk30)","０１７ソクセイシトウノヤ",1,"",17,30,20,0,0],
-		[18,"鋭い矢","０１８スルトイヤ",1,"",17,10,20,0,10,20,0],
-		[19,"カースアロー","０１９カアスアロオ",1,"低確率で対象を呪い状態にする",17,1,20,0,0],
-		[20,"サイレンスアロー","０２０サイレンスアロオ",1,"低確率で対象を沈黙状態にする",17,1,20,0,0],
-		[21,"スリープアロー","０２１スリイフアロオ",1,"低確率で対象を睡眠状態にする",17,1,20,0,0],
-		[22,"フラッシュアロー","０２２フラツシユアロオ",1,"低確率で対象を暗黒状態にする",17,1,20,0,0],
-		[23,"氷の矢","０２３コオリノヤ",1,"低確率で対象を氷化状態にする",17,1,20,1,0],
-		[24,"毒矢","０２４トクヤ",1,"低確率で対象を毒状態にする",17,1,20,5,0],
-		[25,"Atk1の矢","０２５アタツク１ノヤ",1,"",17,1,20,0,0],
-		[26,"バレット","１０１ハレツト",2,"",17,25,20,0,0],
-		[27,"ブラッドバレットC","１０２フラツトハレツトシイ",2,"",17,30,20,0,0],
-		[28,"APバレット","１０３エイヒイハレツト",2,"",17,50,20,0,0],
-		[29,"アイスバレット","１０４アイスハレツト",2,"",17,20,20,1,0],
-		[30,"フリージングバレット","１０５フリイシンクハレツト",2,"",17,40,20,1,0],
-		[31,"マジカルストーンバレット","１０６マシカルストオンハレツト",2,"",17,40,20,2,0],
-		[32,"フレアバレット","１０７フレアハレツト",2,"",17,20,20,3,0],
-		[33,"ブレイズバレット","１０８フレイスハレツト",2,"",17,40,20,3,0],
-		[34,"ライトニングバレット","１０９ライトニンクハレツト",2,"",17,20,20,4,0],
-		[35,"エレクトリックバレット","１１０エレクトリツクハレツト",2,"",17,40,20,4,0],
-		[36,"ポイズンバレット","１１１ホイスンハレツト",2,"",17,20,20,5,0],
-		[37,"シルバーバレットC","１１２シルハアハレツトシイ",2,"",17,15,20,6,0],
-		[38,"サンクタファイドバレット","１１３サンクタフアイトハレツト",2,"",17,40,20,6,0],
-		[39,"ブラインドバレット","１１４フライントハレツト",2,"",17,20,20,7,0],
-	];
-
-})();
+if (typeof window !== 'undefined') {
+	window.ARROW_ID_NONE = ARROW_ID_NONE;
+	window.ARROW_ID_YA = ARROW_ID_YA;
+	window.ARROW_ID_TETSUNO_YA = ARROW_ID_TETSUNO_YA;
+	window.ARROW_ID_KOTETSUNO_YA = ARROW_ID_KOTETSUNO_YA;
+	window.ARROW_ID_ORIDEOKONNO_YA = ARROW_ID_ORIDEOKONNO_YA;
+	window.ARROW_ID_KARYUDONO_YA = ARROW_ID_KARYUDONO_YA;
+	window.ARROW_ID_ELFNO_YA = ARROW_ID_ELFNO_YA;
+	window.ARROW_ID_SUISHONO_YA = ARROW_ID_SUISHONO_YA;
+	window.ARROW_ID_GANSEKINO_YA = ARROW_ID_GANSEKINO_YA;
+	window.ARROW_ID_HONOONO_YA = ARROW_ID_HONOONO_YA;
+	window.ARROW_ID_KAZENO_YA = ARROW_ID_KAZENO_YA;
+	window.ARROW_ID_SABITA_YA = ARROW_ID_SABITA_YA;
+	window.ARROW_ID_GINNO_YA = ARROW_ID_GINNO_YA;
+	window.ARROW_ID_HAMAYA = ARROW_ID_HAMAYA;
+	window.ARROW_ID_SEINARU_YA = ARROW_ID_SEINARU_YA;
+	window.ARROW_ID_KAGEYA = ARROW_ID_KAGEYA;
+	window.ARROW_ID_MUKEINO_YA = ARROW_ID_MUKEINO_YA;
+	window.ARROW_ID_ZOKUSE_ZIDO_YA_ATK30 = ARROW_ID_ZOKUSE_ZIDO_YA_ATK30;
+	window.ARROW_ID_SURUDOI_YA = ARROW_ID_SURUDOI_YA;
+	window.ARROW_ID_CURSE_ARROW = ARROW_ID_CURSE_ARROW;
+	window.ARROW_ID_SILENCE_ARROW = ARROW_ID_SILENCE_ARROW;
+	window.ARROW_ID_SLEEP_ARROW = ARROW_ID_SLEEP_ARROW;
+	window.ARROW_ID_FLASH_ARROW = ARROW_ID_FLASH_ARROW;
+	window.ARROW_ID_KORINO_YA = ARROW_ID_KORINO_YA;
+	window.ARROW_ID_DOKUYA = ARROW_ID_DOKUYA;
+	window.ARROW_ID_ATK1NO_YA = ARROW_ID_ATK1NO_YA;
+	window.ARROW_ID_BULLET = ARROW_ID_BULLET;
+	window.ARROW_ID_BLOOD_BULLET_C = ARROW_ID_BLOOD_BULLET_C;
+	window.ARROW_ID_AP_BULLET = ARROW_ID_AP_BULLET;
+	window.ARROW_ID_ICE_BULLET = ARROW_ID_ICE_BULLET;
+	window.ARROW_ID_FREEZING_BULLET = ARROW_ID_FREEZING_BULLET;
+	window.ARROW_ID_MAGICAL_STONE_BULLET = ARROW_ID_MAGICAL_STONE_BULLET;
+	window.ARROW_ID_FLARE_BULLET = ARROW_ID_FLARE_BULLET;
+	window.ARROW_ID_BLAZE_BULLET = ARROW_ID_BLAZE_BULLET;
+	window.ARROW_ID_LIGHTNING_BULLET = ARROW_ID_LIGHTNING_BULLET;
+	window.ARROW_ID_ELECTRIC_BULLET = ARROW_ID_ELECTRIC_BULLET;
+	window.ARROW_ID_POISON_BULLET = ARROW_ID_POISON_BULLET;
+	window.ARROW_ID_SILVER_BULLET_C = ARROW_ID_SILVER_BULLET_C;
+	window.ARROW_ID_SUNCTFIED_BULLET = ARROW_ID_SUNCTFIED_BULLET;
+	window.ARROW_ID_BLIND_BULLET = ARROW_ID_BLIND_BULLET;
+	window.ArrowOBJNew = ArrowOBJNew;
+}

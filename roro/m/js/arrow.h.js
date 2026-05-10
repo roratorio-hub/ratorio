@@ -34,11 +34,3 @@ CGlobalConstManager.DefineEnum(
 	1
 );
 
-
-
-// 矢データ配列
-export const ArrowOBJNew = new Array();
-
-if (typeof window !== 'undefined') {
-	window.ArrowOBJNew = ArrowOBJNew;
-}

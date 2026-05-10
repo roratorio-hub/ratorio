@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import '@roro/CGlobalConstManager.js';
-import { ArrowOBJNew } from '@roro/arrow.h.js';
+import '@roro/arrow.h.js';
 
 describe('arrow.h.js', () => {
     describe('DefineEnum 副作用確認', () => {
@@ -18,18 +18,6 @@ describe('arrow.h.js', () => {
         });
         it('ARROW_KIND_BULLET が 2 に定義される', () => {
             expect((globalThis as any).ARROW_KIND_BULLET).toBe(2);
-        });
-    });
-
-    describe('エクスポート確認', () => {
-        it('ArrowOBJNew がエクスポートされている', () => {
-            expect(Array.isArray(ArrowOBJNew)).toBe(true);
-        });
-    });
-
-    describe('window互換確認', () => {
-        it('window.ArrowOBJNew が設定されている', () => {
-            expect((window as any).ArrowOBJNew).toBe(ArrowOBJNew);
         });
     });
 });
