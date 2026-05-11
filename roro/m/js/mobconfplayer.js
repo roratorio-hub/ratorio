@@ -2,15 +2,77 @@
 
 // 対プレイヤー設定の限界値
 // この数を超える場合は、セーブデータの拡張が必要
-MOB_CONF_PLAYER_LIMIT = 54;
+export const MOB_CONF_PLAYER_LIMIT = 54;
 
 // 初期化作業
-let n_B_TAISEI = [];
+export let n_B_TAISEI = [];
 
-MobConfPlayerOBJ = new Array();
+export let MobConfPlayerOBJ = new Array();
+
+export let MOB_CONF_PLAYER_DATA_INDEX_ID;
+export let MOB_CONF_PLAYER_DATA_INDEX_TEXT;
+export let MOB_CONF_PLAYER_DATA_INDEX_CONTROL_TYPE;
+export let MOB_CONF_PLAYER_DATA_INDEX_DEFAULT_VALUE;
+export let MOB_CONF_PLAYER_DATA_INDEX_MIN_VALUE;
+export let MOB_CONF_PLAYER_DATA_INDEX_MAX_VALUE;
+
+export let MOB_CONF_PLAYER_ID_MAXHP;
+export let MOB_CONF_PLAYER_ID_DEF_DIV;
+export let MOB_CONF_PLAYER_ID_DEF_MINUS;
+export let MOB_CONF_PLAYER_ID_MDEF_DIV;
+export let MOB_CONF_PLAYER_ID_MDEF_MINUS;
+export let MOB_CONF_PLAYER_ID_FLEE;
+export let MOB_CONF_PLAYER_ID_LUCKY;
+export let MOB_CONF_PLAYER_ID_ZOKUSEI;
+export let MOB_CONF_PLAYER_ID_NINGEN_KEI_TAISEI;
+export let MOB_CONF_PLAYER_ID_CHUGATA_TAISEI;
+export let MOB_CONF_PLAYER_ID_ENKYORI_BUTSURI_TAISEI;
+export let MOB_CONF_PLAYER_ID_MU_ZOKUSEI_TAISEI;
+export let MOB_CONF_PLAYER_ID_MIZU_ZOKUSEI_TAISEI;
+export let MOB_CONF_PLAYER_ID_CHI_ZOKUSEI_TAISEI;
+export let MOB_CONF_PLAYER_ID_HI_ZOKUSEI_TAISEI;
+export let MOB_CONF_PLAYER_ID_KAZE_ZOKUSEI_TAISEI;
+export let MOB_CONF_PLAYER_ID_DOKU_ZOKUSEI_TAISEI;
+export let MOB_CONF_PLAYER_ID_SEI_ZOKUSEI_TAISEI;
+export let MOB_CONF_PLAYER_ID_YAMI_ZOKUSEI_TAISEI;
+export let MOB_CONF_PLAYER_ID_NEN_ZOKUSEI_TAISEI;
+export let MOB_CONF_PLAYER_ID_FUSHI_ZOKUSEI_TAISEI;
+export let MOB_CONF_PLAYER_ID_IPPAN_MONSTER_TAISEI;
+export let MOB_CONF_PLAYER_ID_ZOKUSEI_MONSTER_TAISEI;
+export let MOB_CONF_PLAYER_ID_BUTSURI_TAISEI;
+export let MOB_CONF_PLAYER_ID_MAHOU_TAISEI;
+export let MOB_CONF_PLAYER_ID_DORAM_KEI_TAISEI;
+export let MOB_CONF_PLAYER_ID_ENERGY_COAT;
+export let MOB_CONF_PLAYER_ID_HANSHA_1;
+export let MOB_CONF_PLAYER_ID_HANSHA_2;
+export let MOB_CONF_PLAYER_ID_BASE_LV;
+export let MOB_CONF_PLAYER_ID_STR;
+export let MOB_CONF_PLAYER_ID_AGI;
+export let MOB_CONF_PLAYER_ID_VIT;
+export let MOB_CONF_PLAYER_ID_INT;
+export let MOB_CONF_PLAYER_ID_DEX;
+export let MOB_CONF_PLAYER_ID_LUK;
+export let MOB_CONF_PLAYER_ID_SHOZIZYURYO_GENZAI;
+export let MOB_CONF_PLAYER_ID_SHOZIZYURYO_SAIDAI;
+export let MOB_CONF_PLAYER_ID_SENTO_AREA_NONE;
+export let MOB_CONF_PLAYER_ID_SENTO_AREA_GVG;
+export let MOB_CONF_PLAYER_ID_SENTO_AREA_PVP;
+export let MOB_CONF_PLAYER_ID_SENTO_AREA_URDR;
+export let MOB_CONF_PLAYER_ID_SENTO_AREA_YE;
+export let MOB_CONF_PLAYER_ID_SENTO_AREA_MH;
+export let MOB_CONF_PLAYER_ID_SENTO_AREA_GVG_TE;
+export let MOB_CONF_PLAYER_ID_SENTO_AREA_YE_GVG_TE;
+export let MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM;
+export let MOB_CONF_PLAYER_ID_SENTO_AREA_YE_SHINKIRO;
+export let MOB_CONF_PLAYER_ID_SENTO_AREA;
+export let MOB_CONF_PLAYER_ID_KOGATA_TAISEI;
+export let MOB_CONF_PLAYER_ID_SHUZOKU_HUMAN;
+export let MOB_CONF_PLAYER_ID_SHUZOKU_DORAM;
+export let MOB_CONF_PLAYER_ID_SHUZOKU;
+export let MOB_CONF_PLAYER_ID_RES;
+export let MOB_CONF_PLAYER_ID_MRES;
 
 InitMobConfPlayerData();
-
 
 
 
@@ -24,7 +86,6 @@ function MobConfPlayerControlType(value) { return value; };
 function MobConfPlayerDefaultValue(value) { return value; };
 function MobConfPlayerMinValue(value) { return value; };
 function MobConfPlayerMaxValue(value) { return value; };
-
 
 
 
@@ -762,13 +823,12 @@ function InitMobConfPlayerData() {
 
 
 
-
 /**
  * 対プレイヤー設定テーブルを構築する.
  * @param objRoot テーブルの親オブジェクト
  * @param bAsExpand 展開表示フラグ（true : 展開表示、false : ヘッダのみ）
  */
-function BuildUpMobConfPlayerSelectArea(objRoot, bAsExpand) {
+export function BuildUpMobConfPlayerSelectArea(objRoot, bAsExpand) {
 
 	var idx = 0;
 	var confId = 0;
@@ -1048,11 +1108,10 @@ function BuildUpMobConfPlayerSelectArea(objRoot, bAsExpand) {
 
 
 
-
 /**
  * 対プレイヤー設定欄の状態を同期させる（変数の値をコントロール部品へ反映）.
  */
-function SyncronizeMobConfPlayerSettingsVarToCtrl() {
+export function SyncronizeMobConfPlayerSettingsVarToCtrl() {
 
 	var idx = 0;
 	var confId = 0;
@@ -1127,11 +1186,10 @@ function SyncronizeMobConfPlayerSettingsVarToCtrl() {
 
 
 
-
 /**
  * 対プレイヤー設定欄の状態を同期させる（コントロール部品の状態を変数へ反映）.
  */
-function SyncronizeMobConfPlayerSettingsCtrlToVar() {
+export function SyncronizeMobConfPlayerSettingsCtrlToVar() {
 
 	var idx = 0;
 	var confId = 0;
@@ -1208,11 +1266,10 @@ function SyncronizeMobConfPlayerSettingsCtrlToVar() {
 
 
 
-
 /**
  * 対プレイヤー設定欄の展開スイッチクリックイベントハンドラ.
  */
-function OnClickMobConfPlayerSwitch() {
+export function OnClickMobConfPlayerSwitch() {
 
 	var bExpand = false;
 	var objInput = null;
@@ -1232,12 +1289,11 @@ function OnClickMobConfPlayerSwitch() {
 
 
 
-
 /**
  * 対プレイヤー設定欄の設定値変更イベントハンドラ.
  * @param bCalc 再計算フラグ（true : 再計算する、false : 再計算しない）
  */
-function OnChangeMobConfPlayer(bCalc) {
+export function OnChangeMobConfPlayer(bCalc) {
 
 	// 設定の変更を変数に同期させる
 	SyncronizeMobConfPlayerSettingsCtrlToVar();
@@ -1257,11 +1313,10 @@ function OnChangeMobConfPlayer(bCalc) {
 
 
 
-
 /**
  * 対プレイヤー設定テーブルのヘッダをリフレッシュする.
  */
-function RefreshMobConfPlayerSelectAreaHeader() {
+export function RefreshMobConfPlayerSelectAreaHeader() {
 
 	var bSet = false;
 	var bChecked = false;
@@ -1300,11 +1355,10 @@ function RefreshMobConfPlayerSelectAreaHeader() {
 
 
 
-
 /**
  * 対プレイヤー設定欄の選択状態により、コントロールのCSSを変更する.
  */
-function RefreshMobConfPlayerControlCSS() {
+export function RefreshMobConfPlayerControlCSS() {
 
 	var idx = 0;
 	var confId = 0;
@@ -1398,4 +1452,78 @@ function RefreshMobConfPlayerControlCSS() {
 			}
 		}
 	}
+}
+
+if (typeof window !== 'undefined') {
+	window.MOB_CONF_PLAYER_LIMIT = MOB_CONF_PLAYER_LIMIT;
+	window.n_B_TAISEI = n_B_TAISEI;
+	window.MobConfPlayerOBJ = MobConfPlayerOBJ;
+	window.MOB_CONF_PLAYER_DATA_INDEX_ID = MOB_CONF_PLAYER_DATA_INDEX_ID;
+	window.MOB_CONF_PLAYER_DATA_INDEX_TEXT = MOB_CONF_PLAYER_DATA_INDEX_TEXT;
+	window.MOB_CONF_PLAYER_DATA_INDEX_CONTROL_TYPE = MOB_CONF_PLAYER_DATA_INDEX_CONTROL_TYPE;
+	window.MOB_CONF_PLAYER_DATA_INDEX_DEFAULT_VALUE = MOB_CONF_PLAYER_DATA_INDEX_DEFAULT_VALUE;
+	window.MOB_CONF_PLAYER_DATA_INDEX_MIN_VALUE = MOB_CONF_PLAYER_DATA_INDEX_MIN_VALUE;
+	window.MOB_CONF_PLAYER_DATA_INDEX_MAX_VALUE = MOB_CONF_PLAYER_DATA_INDEX_MAX_VALUE;
+	window.MOB_CONF_PLAYER_ID_MAXHP = MOB_CONF_PLAYER_ID_MAXHP;
+	window.MOB_CONF_PLAYER_ID_DEF_DIV = MOB_CONF_PLAYER_ID_DEF_DIV;
+	window.MOB_CONF_PLAYER_ID_DEF_MINUS = MOB_CONF_PLAYER_ID_DEF_MINUS;
+	window.MOB_CONF_PLAYER_ID_MDEF_DIV = MOB_CONF_PLAYER_ID_MDEF_DIV;
+	window.MOB_CONF_PLAYER_ID_MDEF_MINUS = MOB_CONF_PLAYER_ID_MDEF_MINUS;
+	window.MOB_CONF_PLAYER_ID_FLEE = MOB_CONF_PLAYER_ID_FLEE;
+	window.MOB_CONF_PLAYER_ID_LUCKY = MOB_CONF_PLAYER_ID_LUCKY;
+	window.MOB_CONF_PLAYER_ID_ZOKUSEI = MOB_CONF_PLAYER_ID_ZOKUSEI;
+	window.MOB_CONF_PLAYER_ID_NINGEN_KEI_TAISEI = MOB_CONF_PLAYER_ID_NINGEN_KEI_TAISEI;
+	window.MOB_CONF_PLAYER_ID_CHUGATA_TAISEI = MOB_CONF_PLAYER_ID_CHUGATA_TAISEI;
+	window.MOB_CONF_PLAYER_ID_ENKYORI_BUTSURI_TAISEI = MOB_CONF_PLAYER_ID_ENKYORI_BUTSURI_TAISEI;
+	window.MOB_CONF_PLAYER_ID_MU_ZOKUSEI_TAISEI = MOB_CONF_PLAYER_ID_MU_ZOKUSEI_TAISEI;
+	window.MOB_CONF_PLAYER_ID_MIZU_ZOKUSEI_TAISEI = MOB_CONF_PLAYER_ID_MIZU_ZOKUSEI_TAISEI;
+	window.MOB_CONF_PLAYER_ID_CHI_ZOKUSEI_TAISEI = MOB_CONF_PLAYER_ID_CHI_ZOKUSEI_TAISEI;
+	window.MOB_CONF_PLAYER_ID_HI_ZOKUSEI_TAISEI = MOB_CONF_PLAYER_ID_HI_ZOKUSEI_TAISEI;
+	window.MOB_CONF_PLAYER_ID_KAZE_ZOKUSEI_TAISEI = MOB_CONF_PLAYER_ID_KAZE_ZOKUSEI_TAISEI;
+	window.MOB_CONF_PLAYER_ID_DOKU_ZOKUSEI_TAISEI = MOB_CONF_PLAYER_ID_DOKU_ZOKUSEI_TAISEI;
+	window.MOB_CONF_PLAYER_ID_SEI_ZOKUSEI_TAISEI = MOB_CONF_PLAYER_ID_SEI_ZOKUSEI_TAISEI;
+	window.MOB_CONF_PLAYER_ID_YAMI_ZOKUSEI_TAISEI = MOB_CONF_PLAYER_ID_YAMI_ZOKUSEI_TAISEI;
+	window.MOB_CONF_PLAYER_ID_NEN_ZOKUSEI_TAISEI = MOB_CONF_PLAYER_ID_NEN_ZOKUSEI_TAISEI;
+	window.MOB_CONF_PLAYER_ID_FUSHI_ZOKUSEI_TAISEI = MOB_CONF_PLAYER_ID_FUSHI_ZOKUSEI_TAISEI;
+	window.MOB_CONF_PLAYER_ID_IPPAN_MONSTER_TAISEI = MOB_CONF_PLAYER_ID_IPPAN_MONSTER_TAISEI;
+	window.MOB_CONF_PLAYER_ID_ZOKUSEI_MONSTER_TAISEI = MOB_CONF_PLAYER_ID_ZOKUSEI_MONSTER_TAISEI;
+	window.MOB_CONF_PLAYER_ID_BUTSURI_TAISEI = MOB_CONF_PLAYER_ID_BUTSURI_TAISEI;
+	window.MOB_CONF_PLAYER_ID_MAHOU_TAISEI = MOB_CONF_PLAYER_ID_MAHOU_TAISEI;
+	window.MOB_CONF_PLAYER_ID_DORAM_KEI_TAISEI = MOB_CONF_PLAYER_ID_DORAM_KEI_TAISEI;
+	window.MOB_CONF_PLAYER_ID_ENERGY_COAT = MOB_CONF_PLAYER_ID_ENERGY_COAT;
+	window.MOB_CONF_PLAYER_ID_HANSHA_1 = MOB_CONF_PLAYER_ID_HANSHA_1;
+	window.MOB_CONF_PLAYER_ID_HANSHA_2 = MOB_CONF_PLAYER_ID_HANSHA_2;
+	window.MOB_CONF_PLAYER_ID_BASE_LV = MOB_CONF_PLAYER_ID_BASE_LV;
+	window.MOB_CONF_PLAYER_ID_STR = MOB_CONF_PLAYER_ID_STR;
+	window.MOB_CONF_PLAYER_ID_AGI = MOB_CONF_PLAYER_ID_AGI;
+	window.MOB_CONF_PLAYER_ID_VIT = MOB_CONF_PLAYER_ID_VIT;
+	window.MOB_CONF_PLAYER_ID_INT = MOB_CONF_PLAYER_ID_INT;
+	window.MOB_CONF_PLAYER_ID_DEX = MOB_CONF_PLAYER_ID_DEX;
+	window.MOB_CONF_PLAYER_ID_LUK = MOB_CONF_PLAYER_ID_LUK;
+	window.MOB_CONF_PLAYER_ID_SHOZIZYURYO_GENZAI = MOB_CONF_PLAYER_ID_SHOZIZYURYO_GENZAI;
+	window.MOB_CONF_PLAYER_ID_SHOZIZYURYO_SAIDAI = MOB_CONF_PLAYER_ID_SHOZIZYURYO_SAIDAI;
+	window.MOB_CONF_PLAYER_ID_SENTO_AREA_NONE = MOB_CONF_PLAYER_ID_SENTO_AREA_NONE;
+	window.MOB_CONF_PLAYER_ID_SENTO_AREA_GVG = MOB_CONF_PLAYER_ID_SENTO_AREA_GVG;
+	window.MOB_CONF_PLAYER_ID_SENTO_AREA_PVP = MOB_CONF_PLAYER_ID_SENTO_AREA_PVP;
+	window.MOB_CONF_PLAYER_ID_SENTO_AREA_URDR = MOB_CONF_PLAYER_ID_SENTO_AREA_URDR;
+	window.MOB_CONF_PLAYER_ID_SENTO_AREA_YE = MOB_CONF_PLAYER_ID_SENTO_AREA_YE;
+	window.MOB_CONF_PLAYER_ID_SENTO_AREA_MH = MOB_CONF_PLAYER_ID_SENTO_AREA_MH;
+	window.MOB_CONF_PLAYER_ID_SENTO_AREA_GVG_TE = MOB_CONF_PLAYER_ID_SENTO_AREA_GVG_TE;
+	window.MOB_CONF_PLAYER_ID_SENTO_AREA_YE_GVG_TE = MOB_CONF_PLAYER_ID_SENTO_AREA_YE_GVG_TE;
+	window.MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM = MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM;
+	window.MOB_CONF_PLAYER_ID_SENTO_AREA_YE_SHINKIRO = MOB_CONF_PLAYER_ID_SENTO_AREA_YE_SHINKIRO;
+	window.MOB_CONF_PLAYER_ID_SENTO_AREA = MOB_CONF_PLAYER_ID_SENTO_AREA;
+	window.MOB_CONF_PLAYER_ID_KOGATA_TAISEI = MOB_CONF_PLAYER_ID_KOGATA_TAISEI;
+	window.MOB_CONF_PLAYER_ID_SHUZOKU_HUMAN = MOB_CONF_PLAYER_ID_SHUZOKU_HUMAN;
+	window.MOB_CONF_PLAYER_ID_SHUZOKU_DORAM = MOB_CONF_PLAYER_ID_SHUZOKU_DORAM;
+	window.MOB_CONF_PLAYER_ID_SHUZOKU = MOB_CONF_PLAYER_ID_SHUZOKU;
+	window.MOB_CONF_PLAYER_ID_RES = MOB_CONF_PLAYER_ID_RES;
+	window.MOB_CONF_PLAYER_ID_MRES = MOB_CONF_PLAYER_ID_MRES;
+	window.BuildUpMobConfPlayerSelectArea = BuildUpMobConfPlayerSelectArea;
+	window.SyncronizeMobConfPlayerSettingsVarToCtrl = SyncronizeMobConfPlayerSettingsVarToCtrl;
+	window.SyncronizeMobConfPlayerSettingsCtrlToVar = SyncronizeMobConfPlayerSettingsCtrlToVar;
+	window.OnClickMobConfPlayerSwitch = OnClickMobConfPlayerSwitch;
+	window.OnChangeMobConfPlayer = OnChangeMobConfPlayer;
+	window.RefreshMobConfPlayerSelectAreaHeader = RefreshMobConfPlayerSelectAreaHeader;
+	window.RefreshMobConfPlayerControlCSS = RefreshMobConfPlayerControlCSS;
 }

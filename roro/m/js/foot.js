@@ -29780,11 +29780,11 @@ function Init(jobId){
 	}
 
 	// 対プレイヤー設定 の初期化
-	n_B_TAISEI = Array(MOB_CONF_PLAYER_LIMIT).fill(0);
+	n_B_TAISEI.fill(0);
 	// モンスター状態強化 の初期化
-	n_B_KYOUKA = Array(MOB_CONF_BUF_LIMIT).fill(0);
+	n_B_KYOUKA.fill(0);
 	// モンスター状態異常 の初期化
-	n_B_IJYOU = Array(MOB_CONF_DEBUF_LIMIT).fill(0);
+	n_B_IJYOU.fill(0);
 	// ギルドスキル/ゴスペル/他 の初期化
 	n_A_PassSkill4.fill(0);
 	// アイテム・食品他 の初期化
