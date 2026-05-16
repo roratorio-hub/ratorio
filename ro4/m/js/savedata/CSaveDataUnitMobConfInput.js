@@ -1,7 +1,9 @@
+import { CSaveDataUnitBase } from './CSaveDataUnitBase.js';
+import { CSaveDataConst } from './CSaveDataConst.js';
 /**
  * 「モンスター手入力設定」情報クラス
  */
-class CSaveDataUnitMobConfInput extends CSaveDataUnitBase {
+export class CSaveDataUnitMobConfInput extends CSaveDataUnitBase {
 
     /**
      * タイプ値.

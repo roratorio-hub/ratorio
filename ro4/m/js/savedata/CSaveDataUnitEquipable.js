@@ -1,7 +1,10 @@
+import { CSaveDataUnitBase } from './CSaveDataUnitBase.js';
+import { CSaveDataConst } from './CSaveDataConst.js';
+import { CSaveDataPropInfo } from './CSaveDataPropInfo.js';
 /**
  * 「武器＆防具/カード」情報クラス
  */
-class CSaveDataUnitEquipable extends CSaveDataUnitBase {
+export class CSaveDataUnitEquipable extends CSaveDataUnitBase {
 
     /**
      * タイプ値.

@@ -1,9 +1,11 @@
+import { CSaveDataUnitBase } from './CSaveDataUnitBase.js';
+import { CSaveDataConst } from './CSaveDataConst.js';
 /**
  * 計算機の挙動に関する設定を保持するクラス
  * 本クラスは単体で用いられるのでparse時のデータ長不足に特に注意を払う必要があります
  * 他のCSaveDataUnitクラスは複数のクラスと連結された文字列をparseするのでデータ長不足になる可能性が低いです
  */
-class CSaveDataUnitSettings extends CSaveDataUnitBase {
+export class CSaveDataUnitSettings extends CSaveDataUnitBase {
 
     /**
      * タイプ値.

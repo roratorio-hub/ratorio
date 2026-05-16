@@ -1,7 +1,12 @@
+import { CSaveDataConverter } from '../../../../roro/m/js/CSaveDataConverter.js';
+import { CSaveDataConst } from './CSaveDataConst.js';
+import { CSaveDataPropInfo } from './CSaveDataPropInfo.js';
+import { CSingletonMapper } from './CSingletonMapper.js';
+import { CMultiValueMapper } from './CMultiValueMapper.js';
 /**
  * セーブデータユニットクラス：基底.
  */
-class CSaveDataUnitBase {
+export class CSaveDataUnitBase {
 
 	/**
 	 * 処理順に並んだプロパティ名（継承プロパティ含む）.

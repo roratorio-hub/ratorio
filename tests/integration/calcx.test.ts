@@ -314,6 +314,96 @@ describe('セーブデータ復元精度テスト（本番 vs ESM移行環境）
     }
 });
 
+// ─── スイート 3: URL セーブ/ロード 往復テスト ─────────────────────────────────
+//
+// テスト手順:
+//   1. OBJID_INPUT_URL_IN_MIG にセーブデータURLを入力
+//   2. OBJID_BUTTON_URL_IN_MIG をクリック（ロード）
+//   3. OBJID_BUTTON_URL_OUT_MIG をクリック（URL出力）
+//   4. OBJID_INPUT_URL_OUT_MIG の出力クエリが入力クエリと一致するか確認
+//
+// このテストで検出できる主なバグ:
+//   - encodeToURL が失敗して空文字を返す（try/catch で飲み込まれたエラー）
+//   - セーブデータの一部が欠損・変質してエンコード結果が変わる
+//   - import 漏れにより CSaveDataUnitXxx が undefined になる
+
+describe('URL セーブ/ロード 往復テスト', () => {
+    const entries = loadSaveDataEntries();
+
+    if (entries.length === 0) {
+        it('フィクスチャなし（fixtures/sample-savedata.md に URL を追加してください）', () => {
+            console.warn('sample-savedata.md にエントリがないためスキップ');
+        });
+    }
+
+    for (const { label, query } of entries) {
+        it(`${label}: URL入力 → URL出力 でクエリ文字列が変質しない`, async () => {
+            const context = await browser.newContext();
+            const page = await context.newPage();
+            const errors: string[] = [];
+
+            page.on('pageerror', (err) => {
+                if (!isSuppressed(err.message)) errors.push(`[pageerror] ${err.message}`);
+            });
+
+            // クリップデータ保存の confirm ダイアログを自動キャンセル
+            page.on('dialog', async (dialog) => { await dialog.dismiss(); });
+
+            await page.goto(`${baseUrl}/ro4/m/calcx.html`, {
+                waitUntil: 'networkidle',
+                timeout: 60000,
+            });
+
+            // セーブ/ロードセクションを展開（折りたたみチェックボックス）
+            await page.check('#OBJID_SWITCH_SAVE_CTRL_MIG');
+            await page.waitForSelector('#OBJID_INPUT_URL_IN_MIG', { state: 'visible', timeout: 5000 });
+
+            // 1. URL入力欄にセーブデータURLをセット
+            await page.fill(
+                '#OBJID_INPUT_URL_IN_MIG',
+                `${baseUrl}/ro4/m/calcx.html?${query}`,
+            );
+
+            // 2. URL入力ボタンをクリック（内部で setTimeout を使用）
+            await page.click('#OBJID_BUTTON_URL_IN_MIG');
+
+            // ロード完了を待機（職業値がデフォルト "0" から変化するまで）
+            await page.waitForFunction(
+                () => {
+                    const job = document.getElementById('OBJID_SELECT_JOB') as HTMLSelectElement | null;
+                    return job !== null && job.value !== '' && job.value !== '0';
+                },
+                { timeout: 10000 },
+            ).catch(() => { /* 職業未設定のセーブデータの場合はそのまま続行 */ });
+
+            // 3. URL出力ボタンをクリック
+            await page.click('#OBJID_BUTTON_URL_OUT_MIG');
+
+            // 出力URLを取得
+            const outputUrl = await page.inputValue('#OBJID_INPUT_URL_OUT_MIG');
+            const outputQuery = outputUrl.split('?')[1] ?? '';
+
+            await context.close();
+
+            // JS例外がないことを確認
+            expect(errors, formatErrorMsg('URL往復テスト中', errors)).toHaveLength(0);
+
+            // 出力クエリが空でないことを確認（encodeToURL の失敗を検出）
+            expect(
+                outputQuery,
+                'URL出力が空です（encodeToURL が失敗した可能性 — ブラウザコンソールのエラーを確認してください）',
+            ).not.toBe('');
+
+            // 入力クエリと出力クエリが一致することを確認
+            expect(outputQuery, [
+                `セーブデータが変質しています (${label})`,
+                `入力: ${query.slice(0, 80)}...`,
+                `出力: ${outputQuery.slice(0, 80)}...`,
+            ].join('\n')).toBe(query);
+        });
+    }
+});
+
 // ─── ユーティリティ ───────────────────────────────────────────────────────────
 
 function formatErrorMsg(context: string, errors: string[]): string {

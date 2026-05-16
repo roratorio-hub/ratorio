@@ -1,7 +1,10 @@
+import { CSaveDataUnitBase } from './CSaveDataUnitBase.js';
+import { CSaveDataConst } from './CSaveDataConst.js';
+import { CSaveDataPropInfo } from './CSaveDataPropInfo.js';
 /**
  * 「モンスター」情報クラス
  */
-class CSaveDataUnitMob extends CSaveDataUnitBase {
+export class CSaveDataUnitMob extends CSaveDataUnitBase {
 
     /**
      * タイプ値.

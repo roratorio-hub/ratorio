@@ -1,7 +1,9 @@
+import { CSaveDataUnitBase } from './CSaveDataUnitBase.js';
+import { CSaveDataConst } from './CSaveDataConst.js';
 /**
  * 「矢」情報クラス
  */
-class CSaveDataUnitEquipArrow extends CSaveDataUnitBase {
+export class CSaveDataUnitEquipArrow extends CSaveDataUnitBase {
 
     /**
      * タイプ値.

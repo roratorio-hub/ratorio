@@ -1,3 +1,11 @@
+import { CSaveDataConverter } from '../../../roro/m/js/CSaveDataConverter.js';
+import { CSingletonMapper } from './savedata/CSingletonMapper.js';
+import { CMultiValueMapper } from './savedata/CMultiValueMapper.js';
+import { CSaveDataPropInfo } from './savedata/CSaveDataPropInfo.js';
+import { CSaveDataUnitTypeManager } from './savedata/CSaveDataUnitTypeManager.js';
+import { CSaveDataUnitParse } from './savedata/CSaveDataUnitParse.js';
+import { SAVE_DATA_UNIT_TYPE_SETTINGS } from './savedata/CSaveDataUnit.js';
+
 /**
  * 計算機メインコントローラクラス.
  */

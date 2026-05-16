@@ -1,8 +1,10 @@
+import { CSaveDataUnitBase } from './CSaveDataUnitBase.js';
+import { CSaveDataConst } from './CSaveDataConst.js';
 /**
  * 「武器属性付与」「その他の支援/設定」情報クラス
  *  TODO: 単純なBUFFレベルではなく、もっと複雑なデータ構造をしているが未対応
  */
-class CSaveDataUnitCharaBuff extends CSaveDataUnitBase {
+export class CSaveDataUnitCharaBuff extends CSaveDataUnitBase {
 
     /**
      * タイプ値.

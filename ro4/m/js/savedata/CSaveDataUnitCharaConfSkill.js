@@ -1,7 +1,9 @@
+import { CSaveDataUnitBase } from './CSaveDataUnitBase.js';
+import { CSaveDataConst } from './CSaveDataConst.js';
 /**
  * 「性能カスタマイズ（スキル関連）」情報クラス
  */
-class CSaveDataUnitCharaConfSkill extends CSaveDataUnitBase {
+export class CSaveDataUnitCharaConfSkill extends CSaveDataUnitBase {
 
     /**
      * タイプ値.

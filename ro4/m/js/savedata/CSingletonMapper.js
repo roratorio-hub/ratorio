@@ -1,7 +1,8 @@
+import { SKeyMap } from './SKeyMap.js';
 /**
  * シングルトンのマッピング管理クラス.
  */
-class CSingletonMapper extends SKeyMap {
+export class CSingletonMapper extends SKeyMap {
 
 	/**
 	 * コンストラクタ.

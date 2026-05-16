@@ -1,3 +1,5 @@
+import { CSaveDataConst } from './savedata/CSaveDataConst.js';
+
 // 旧データ構造は、最大でバージョン 99 まで
 
 /**

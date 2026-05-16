@@ -1,8 +1,10 @@
+import { CSaveDataUnitBase } from './CSaveDataUnitBase.js';
+import { CSaveDataConst } from './CSaveDataConst.js';
 /**
  * 「性能カスタマイズ（特性ステータス）」情報クラス
  * TODO: CSaveDataUnitCharaConfBasic と役割重複している可能性あり確認が必要
  */
-class CSaveDataUnitCharaConfSpecBasic extends CSaveDataUnitBase {
+export class CSaveDataUnitCharaConfSpecBasic extends CSaveDataUnitBase {
 
     /**
      * タイプ値.
