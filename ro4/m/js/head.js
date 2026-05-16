@@ -1,3 +1,5 @@
+import { CGlobalConstManager } from '../../../roro/m/js/CGlobalConstManager.js';
+
 "use strict";
 
 // データ収集用
@@ -243,52 +245,54 @@ let resistValueArrayOver = 0;
 let bodyElmRatioArray = 0;
 /** 属性倍率　耐性を考慮した最終的な値 */
 let finalRatioArray = 0;
+/** 武器属性（foot.js も読み書きするグローバル変数） */
+let n_A_Weapon_zokusei = 0;
 /** 変動詠唱 0 を達成するために必要な DEX */
-const CAST_PARAM_BORDER = 265;
+export const CAST_PARAM_BORDER = 265;
 /** オートガードによるダメージ減衰率 */
-const w_AG = [100,95,90,86,82,79,76,74,72,71,70];
+export const w_AG = [100,95,90,86,82,79,76,74,72,71,70];
 /** 手裏剣の種類 */
-const SyurikenOBJ = [ [10,0,"手裏剣"] ,[30,0,"雨雲の手裏剣"] ,[45,0,"閃光の手裏剣"] ,[70,0,"鋭刃の手裏剣"] ,[100,0,"棘針の手裏剣"] ,[110,0,"星ヒトデ"] ];
+export const SyurikenOBJ = [ [10,0,"手裏剣"] ,[30,0,"雨雲の手裏剣"] ,[45,0,"閃光の手裏剣"] ,[70,0,"鋭刃の手裏剣"] ,[100,0,"棘針の手裏剣"] ,[110,0,"星ヒトデ"] ];
 /** 苦無の種類 */
-const KunaiOBJ = [ [30,3,"烈火の苦無"] ,[30,1,"氷柱の苦無"] ,[30,4,"狂風の苦無"] ,[30,2,"黒土の苦無"] ,[30,5,"猛毒の苦無"] ,[50,0,"スルメイカ"] ,[50,0,"トビウオ"] ];
+export const KunaiOBJ = [ [30,3,"烈火の苦無"] ,[30,1,"氷柱の苦無"] ,[30,4,"狂風の苦無"] ,[30,2,"黒土の苦無"] ,[30,5,"猛毒の苦無"] ,[50,0,"スルメイカ"] ,[50,0,"トビウオ"] ];
 /** キャノンボールの種類 */
-const CanonOBJ = [ [100,0,"キャノンボール"], [250,0,"アイアンキャノンボール"], [120,6,"ホーリーキャノンボール"], [120,7,"ダークキャノンボール"], [120,8,"ソウルキャノンボール"], [120,ELM_ID_WATER,"アイスキャノンボール"], [120,ELM_ID_EARTH,"ストーンキャノンボール"], [120,ELM_ID_FIRE,"フレアキャノンボール"], [120,ELM_ID_WIND,"ライトニングキャノンボール"] ];
+export const CanonOBJ = [ [100,0,"キャノンボール"], [250,0,"アイアンキャノンボール"], [120,6,"ホーリーキャノンボール"], [120,7,"ダークキャノンボール"], [120,8,"ソウルキャノンボール"], [120,ELM_ID_WATER,"アイスキャノンボール"], [120,ELM_ID_EARTH,"ストーンキャノンボール"], [120,ELM_ID_FIRE,"フレアキャノンボール"], [120,ELM_ID_WIND,"ライトニングキャノンボール"] ];
 /** 文字列定数 */
-const SubName = ["％","秒","ダメージ","クリティカルダメージ","クリティカル(発動率)","10000回以上","計測不能","計算外","×","詠唱時間","なし","あり"];
+export const SubName = ["％","秒","ダメージ","クリティカルダメージ","クリティカル(発動率)","10000回以上","計測不能","計算外","×","詠唱時間","なし","あり"];
 /** シールドスペル：ATK加算値 */
-const n_SieldSpDum = ["off","on",20,35,40,50,60,75,80,85,90,95,98,100,105,110,120,130,140,150,170];
+export const n_SieldSpDum = ["off","on",20,35,40,50,60,75,80,85,90,95,98,100,105,110,120,130,140,150,170];
 /** シールドスペル：ATK加算値（これは順序が違うので注意）*/
-const n_SieldSp = ["off","on",20,35,40,50,60,75,80,85,90,95,98,105,110,120,130,150,100,140,170];
+export const n_SieldSp = ["off","on",20,35,40,50,60,75,80,85,90,95,98,105,110,120,130,150,100,140,170];
 /** シールドスペル：順序が違う配列を並び替えるために使われる index 値 */
-const n_SieldSpNum = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12, 18, 13, 14, 15, 16, 19, 17, 20];
+export const n_SieldSpNum = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12, 18, 13, 14, 15, 16, 19, 17, 20];
 /** 修練が乗らないスキルID */
-const n_SP_SKILL = [66,159,162,193,197,244,248,263,321,324,328,384,394,395,405,423,432,438,554,669,723,738,768,769,810, SKILL_ID_ZYURYOKU_CHOSE];
+export const n_SP_SKILL = [66,159,162,193,197,244,248,263,321,324,328,384,394,395,405,423,432,438,554,669,723,738,768,769,810, SKILL_ID_ZYURYOKU_CHOSE];
 /** 回復スキル種類：ヒール */
-const HEALTYPE_HEAL = 0;
+export const HEALTYPE_HEAL = 0;
 /** 回復スキル種類：ハイネスヒール */
-const HEALTYPE_HIGHNESS = 1;
+export const HEALTYPE_HIGHNESS = 1;
 /** 回復スキル種類：サンクチュアリ */
-const HEALTYPE_SANCTUARY = 2;
+export const HEALTYPE_SANCTUARY = 2;
 /** 回復スキル種類：新鮮なエビ */
-const HEALTYPE_SHINSENNA_EBI = 3;
+export const HEALTYPE_SHINSENNA_EBI = 3;
 /** 回復スキル種類：エビ三昧 */
-const HEALTYPE_EBI_ZANMAI = 4;
+export const HEALTYPE_EBI_ZANMAI = 4;
 /** 回復スキル種類：コルセオヒール */
-const HEALTYPE_COLUCEO_HEAL = 5;
+export const HEALTYPE_COLUCEO_HEAL = 5;
 /** 回復スキル種類：ディレクティオヒール */
-const HEALTYPE_DILECTIO_HEAL = 6;
+export const HEALTYPE_DILECTIO_HEAL = 6;
 /** 回復スキル種類：タートルスプリンクラー */
-const HEALTYPE_TURTLE_SPRINKLER = 7;
+export const HEALTYPE_TURTLE_SPRINKLER = 7;
 /** 回復スキル種類：守護符 */
-const HEALTYPE_SHUGO_FU = 8;
+export const HEALTYPE_SHUGO_FU = 8;
 /** 回復スキル種類：城隍堂 */
-const HEALTYPE_ZYOKODO = 9;
+export const HEALTYPE_ZYOKODO = 9;
 /** 回復スキル対象：自分 */
-const HEAL_TARGETTYPE_SELF = 0;
+export const HEAL_TARGETTYPE_SELF = 0;
 /** 回復スキル対象：他人 */
-const HEAL_TARGETTYPE_PLAYER = 1;
+export const HEAL_TARGETTYPE_PLAYER = 1;
 /** 回復スキル対象：モンスター */
-const HEAL_TARGETTYPE_ENEMY = 2;
+export const HEAL_TARGETTYPE_ENEMY = 2;
 
 /**
  * ダメージ計算本体　エントリ関数.
@@ -300,7 +304,7 @@ const HEAL_TARGETTYPE_ENEMY = 2;
  * @param attackMethodConfArray 攻撃手段設定データ配列
  * @return 全戦闘結果情報インスタンス（CBattleCalcResultAll クラスのインスタンス）
  */
-function BattleCalc999(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray) {
+export function BattleCalc999(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray) {
 	let idx = 0;
 	let idxChild = 0;
 	let idxAS = 0;
@@ -630,7 +634,7 @@ function BattleCalc999(battleCalcInfo, charaData, specData, mobData, attackMetho
  * @param {*} bLeft 
  * @returns 
  */
-function BattleCalc999Body(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, bLeft) {
+export function BattleCalc999Body(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, bLeft) {
 	let idx = 0;
 	let idxUnit = 0;
 	let battleCalcResult = null;
@@ -904,7 +908,7 @@ function BattleCalc999Body(battleCalcInfo, charaData, specData, mobData, attackM
  * @param {*} bLeft 
  * @returns 
  */
-function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
 	let ret = null;
 	let dmgMin = Number.MAX_VALUE;
 	let dmgMax = 0;
@@ -8543,7 +8547,7 @@ function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, attackM
  * @param {*} bLeft 
  * @returns 
  */
-function BattleCalcSubDamagePhysicalCommon(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, skillId, dmgUnit, dmgAmp, hitCountArrat, dividedHitCount, bCri, bLeft) {
+export function BattleCalcSubDamagePhysicalCommon(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, skillId, dmgUnit, dmgAmp, hitCountArrat, dividedHitCount, bCri, bLeft) {
 	var idx = 0;
 	var dmgUnitResult = null;
 	var dmgPerfect = 0;
@@ -8623,7 +8627,7 @@ function BattleCalcSubDamagePhysicalCommon(battleCalcInfo, charaData, specData, 
  * @param {*} attackMethodConfArray 
  * @returns {Number} 加算される倍率％
  */
-function GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray) {
+export function GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray) {
 	let sklLv = 0;
 	/** 最終的に加算される倍率％ */
 	let w = 0;
@@ -8733,7 +8737,7 @@ function GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfAr
  * @param {*} wJ 適用前のダメージ倍率
  * @returns 適用後のダメージ倍率
  */
-function ATKbaiJYOUSAN(wJ) {
+export function ATKbaiJYOUSAN(wJ) {
 	var w = 100;
 	const katar_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_KATAR_KENKYU), UsedSkillSearch(SKILL_ID_KATAR_KENKYU));
 	if(n_A_WeaponType == 11 && katar_shuren_lv) {
@@ -8754,7 +8758,7 @@ function ATKbaiJYOUSAN(wJ) {
  * @param {*} mobData 対象に応じて倍率を返す場合のパラメータ。無作為に処理する場合は null / undefined でも良い。
  * @returns 加算されるスキル倍率（１００分率）
  */
-function GetBattlerMatkPercentUp(mobData) {
+export function GetBattlerMatkPercentUp(mobData) {
 	var w = 0;
 	// 支援マインドブレイカー
 	if(g_confDataNizi[CCharaConfNizi.CONF_ID_SHIEN_MIND_BREAKER]) {
@@ -8775,7 +8779,7 @@ function GetBattlerMatkPercentUp(mobData) {
  * @param dmg ダメージ
  * @return 適用後のダメージ
  */
-function ApplyMagicalSpecializeMonster(charaData, specData, mobData, dmg) {
+export function ApplyMagicalSpecializeMonster(charaData, specData, mobData, dmg) {
 	// 2021/11/17 に特定した順序で計算する
 	dmg = ApplyMagicalSpecializeMonster20211117(charaData, specData, mobData, dmg);
 	// 特性ステータス対応
@@ -8902,7 +8906,7 @@ function ApplyMagicalSpecializeMonsterMod20211014(charaData, specData, mobData, 
  * @param dmg ダメージ
  * @return 適用後のダメージ
  */
-function ApplyMagicalSpecializeMonster20211117(charaData, specData, mobData, dmg) {
+export function ApplyMagicalSpecializeMonster20211117(charaData, specData, mobData, dmg) {
 	var idxChar = 0;
 	var dmgResult = 0;
 	var patternStr = "";
@@ -8956,7 +8960,7 @@ function ApplyMagicalSpecializeMonster20211117(charaData, specData, mobData, dmg
  * @param {*} dmg 
  * @returns 
  */
-function ApplyMagicalSpecializeMonsterMod20211014SubMagicalDamageUp(charaData, specData, mobData, dmg) {
+export function ApplyMagicalSpecializeMonsterMod20211014SubMagicalDamageUp(charaData, specData, mobData, dmg) {
 	if (n_tok[ITEM_SP_MAGICAL_DAMAGE_UP]) {
 		dmg = Math.floor(dmg * (100 + n_tok[ITEM_SP_MAGICAL_DAMAGE_UP]) / 100);
 	}
@@ -8971,7 +8975,7 @@ function ApplyMagicalSpecializeMonsterMod20211014SubMagicalDamageUp(charaData, s
  * @param {*} dmg 
  * @returns 
  */
-function ApplyMagicalSpecializeMonsterMod20211014SubSpiderWebModify(charaData, specData, mobData, dmg) {
+export function ApplyMagicalSpecializeMonsterMod20211014SubSpiderWebModify(charaData, specData, mobData, dmg) {
 	var wX = GetSpiderWebDamageRatio();
 	if (wX != 0) {
 		dmg = Math.floor(dmg * (100 + wX) / 100);
@@ -8988,7 +8992,7 @@ function ApplyMagicalSpecializeMonsterMod20211014SubSpiderWebModify(charaData, s
  * @param {*} dmg 
  * @returns 
  */
-function ApplyMagicalSpecializeMonsterMod20211014SubSpecializeMap(charaData, specData, mobData, dmg) {
+export function ApplyMagicalSpecializeMonsterMod20211014SubSpecializeMap(charaData, specData, mobData, dmg) {
 	/** モンスターグループの合成配列 */
 	let candidate = [];
 	var wX = 0;
@@ -9671,7 +9675,7 @@ candidate = MonsterGroupObj[MONSTER_GROUP_ID_JOR_RAISE1].concat(MonsterGroupObj[
  * @param {*} dmg 
  * @returns 
  */
-function ApplyMagicalSpecializeMonsterMod20211014SubSpecializeRace(charaData, specData, mobData, dmg) {
+export function ApplyMagicalSpecializeMonsterMod20211014SubSpecializeRace(charaData, specData, mobData, dmg) {
 	var wX = 0;
 	// 対プレイヤーでない場合
 	if (mobData[MONSTER_DATA_INDEX_ID] != MONSTER_ID_PLAYER) {
@@ -9713,7 +9717,7 @@ function ApplyMagicalSpecializeMonsterMod20211014SubSpecializeRace(charaData, sp
  * @param {*} dmg 
  * @returns 
  */
-function ApplyMagicalSpecializeMonsterMod20211014SubSpecializeSize(charaData, specData, mobData, dmg) {
+export function ApplyMagicalSpecializeMonsterMod20211014SubSpecializeSize(charaData, specData, mobData, dmg) {
 	var wX = 0;
 	// 対プレイヤーでない場合
 	if (mobData[MONSTER_DATA_INDEX_ID] != MONSTER_ID_PLAYER) {
@@ -9748,7 +9752,7 @@ function ApplyMagicalSpecializeMonsterMod20211014SubSpecializeSize(charaData, sp
  * @param {*} dmg 
  * @returns 
  */
-function ApplyMagicalSpecializeMonsterMod20211014SubSpecializeMonsterElement(charaData, specData, mobData, dmg) {
+export function ApplyMagicalSpecializeMonsterMod20211014SubSpecializeMonsterElement(charaData, specData, mobData, dmg) {
 	var wX = 0;
 	wX = n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_MONSTER_ELM_VANITY + Math.floor(mobData[MONSTER_DATA_INDEX_ELEMENT] / 10)];
 	if(wX != 0) {
@@ -9765,7 +9769,7 @@ function ApplyMagicalSpecializeMonsterMod20211014SubSpecializeMonsterElement(cha
  * @param {*} dmg 
  * @returns 
  */
-function ApplyMagicalSpecializeMonsterMod20211014SubSpecializeMagicElement(charaData, specData, mobData, dmg) {
+export function ApplyMagicalSpecializeMonsterMod20211014SubSpecializeMagicElement(charaData, specData, mobData, dmg) {
 	var wX = 0;
 	// 魔法スキルの場合、処理の途中で武器属性がスキルによって上書きされる
 	if(n_A_Weapon_zokusei >= 0){
@@ -9785,7 +9789,7 @@ function ApplyMagicalSpecializeMonsterMod20211014SubSpecializeMagicElement(chara
  * @param {*} dmg 
  * @returns 
  */
-function ApplyMagicalSpecializeMonsterMod20211014SubSpecializeBossType(charaData, specData, mobData, dmg) {
+export function ApplyMagicalSpecializeMonsterMod20211014SubSpecializeBossType(charaData, specData, mobData, dmg) {
 	var wX = 0;
 	// ボス特化
 	if(mobData[MONSTER_DATA_INDEX_BOSS_TYPE] == 1){
@@ -9812,7 +9816,7 @@ function ApplyMagicalSpecializeMonsterMod20211014SubSpecializeBossType(charaData
  * @param dmg ダメージ
  * @return 適用後のダメージ
  */
-function ApplyResistElement(mobData, dmg) {
+export function ApplyResistElement(mobData, dmg) {
 	var wX = 0;
 	var bufLv = 0;
 	// 敵が対プレイヤーの場合、対プレイヤー設定欄のサイズ耐性を適用
@@ -9911,7 +9915,7 @@ function ApplyResistElement(mobData, dmg) {
  * @param {*} w_Tai_DMG 
  * @returns 
  */
-function BaiTaisei_A_SP(w_Tai_DMG) {
+export function BaiTaisei_A_SP(w_Tai_DMG) {
 	var wX = n_tok[ITEM_SP_RESIST_SIZE_MEDIUM];
 	if(n_A_PassSkill8[13] == 1) wX = n_tok[ITEM_SP_RESIST_SIZE_SMALL];
 	w_Tai_DMG -= ROUNDDOWN(w_Tai_DMG * wX / 100);
@@ -9929,7 +9933,7 @@ function BaiTaisei_A_SP(w_Tai_DMG) {
  * @param dmg ダメージ
  * @return 適用後のダメージ
  */
-function ApplyRegistPVPNormal(mobData, dmg) {
+export function ApplyRegistPVPNormal(mobData, dmg) {
 	var wX = 0;
 	// 敵が対プレイヤーの場合、対プレイヤー設定欄の人間orドラム形耐性を適用
 	if(mobData[0] == MONSTER_ID_PLAYER) {
@@ -9955,7 +9959,7 @@ function ApplyRegistPVPNormal(mobData, dmg) {
  * @param {*} w_Tai_DMG 
  * @returns 
  */
-function BaiTaisei_C(mobData, w_Tai_DMG) {
+export function BaiTaisei_C(mobData, w_Tai_DMG) {
 	var wX = 0;
 	if(mobData[0] == MONSTER_ID_PLAYER) wX += n_B_TAISEI[MOB_CONF_PLAYER_ID_NINGEN_KEI_TAISEI];
 	w_Tai_DMG -= ROUNDDOWN(w_Tai_DMG * wX / 100);
@@ -9967,7 +9971,7 @@ function BaiTaisei_C(mobData, w_Tai_DMG) {
  * @param dmg ダメージ
  * @return 適用後のダメージ
  */
-function ApplyRegistPVPEnergyCoat(mobData, dmg) {
+export function ApplyRegistPVPEnergyCoat(mobData, dmg) {
 	var wX = 0;
 	// 敵が対プレイヤーの場合、対プレイヤー設定欄のエナジーコート効果を適用
 	if(mobData[0] == MONSTER_ID_PLAYER) {
@@ -9983,7 +9987,7 @@ function ApplyRegistPVPEnergyCoat(mobData, dmg) {
  * @param {*} w_Tai_DMG 
  * @returns 
  */
-function BaiTaisei_E(mobData, w_Tai_DMG) {
+export function BaiTaisei_E(mobData, w_Tai_DMG) {
 	var wX = 0;
 	if(n_Enekyori == 1){
 		wX = 0;
@@ -10001,7 +10005,7 @@ function BaiTaisei_E(mobData, w_Tai_DMG) {
  * @param w_WHO 対象
  * @param ptmCount PT人数
  */
-function HealCalc(HealLv,HealType,wMinMax,w_WHO,ptmCount) {
+export function HealCalc(HealLv,HealType,wMinMax,w_WHO,ptmCount) {
 	const learnedHealLv = Math.max(1, LearnedSkillSearch(SKILL_ID_HEAL));
 	var wHeal = 0;
 	// H.Plus
@@ -10164,7 +10168,7 @@ function HealCalc(HealLv,HealType,wMinMax,w_WHO,ptmCount) {
  * @param {*} attackMethodConfArray 
  * @returns 
  */
-function BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray) {
+export function BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray) {
 	// 命中率が１００％未満の場合、必中ダメージがあれば追加表示
 	if(n_PerfectHIT_DMG > 0 && w_HIT_HYOUJI <100){
 		str_bSUBname += "<Font size=2>Miss時の必中ダメージ</Font>";
@@ -10421,7 +10425,7 @@ function OnClickTabBTLRSLT(tabIndex) {
  * @param {*} battleCalcResultAll 
  * @returns 
  */
-function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConfArray, battleCalcResultAll) {
+export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConfArray, battleCalcResultAll) {
 
 	// パート定義名
 	const PART_ID_STR_BASE = "BTLRSLT_PART_BASE";
@@ -11836,7 +11840,7 @@ function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConf
  * @param {*} objCell 
  * @returns {number} 回避率を考慮しない被ダメージ
  */
-function calcReceivedDamage(charaData, specData, mobData, attackMethodConfArray, objCell = null){
+export function calcReceivedDamage(charaData, specData, mobData, attackMethodConfArray, objCell = null){
 	w_HiDam = new Array();
 	let idx = 0;
 	let mobMaxATK = mobData[MONSTER_DATA_EXTRA_INDEX_ATK_MAX];
@@ -12246,7 +12250,7 @@ function calcReceivedDamage(charaData, specData, mobData, attackMethodConfArray,
  * @param {*} mobData 
  * @param {*} objCell 
  */
-function calcReceivedMagicDamage(charaData, mobData, objCell){
+export function calcReceivedMagicDamage(charaData, mobData, objCell){
 	let mobMinMATK = mobData[MONSTER_DATA_EXTRA_INDEX_MATK_MIN];
 	let mobMaxMATK = mobData[MONSTER_DATA_EXTRA_INDEX_MATK_MAX];
 	let damage = (mobMinMATK + mobMaxMATK) / 2;
@@ -12363,7 +12367,7 @@ function calcReceivedMagicDamage(charaData, mobData, objCell){
  * @param {number} mobID
  * @returns {number} 耐性値
  */
-function getResistanceOfEnvironment(mobID) {
+export function getResistanceOfEnvironment(mobID) {
 	let result = 0;
 
 	// 任意のモンスターIDを指定する耐性
@@ -12750,7 +12754,7 @@ function getResistanceOfEnvironment(mobID) {
  * @param {*} objCell 
  * @returns 
  */
-function BattleHiDamMaxPain(charaData, specData, mobData, attackMethodConfArray, painATK, objCell = null){
+export function BattleHiDamMaxPain(charaData, specData, mobData, attackMethodConfArray, painATK, objCell = null){
 
 	var idx = 0;
 
@@ -12886,7 +12890,7 @@ function BattleHiDamMaxPain(charaData, specData, mobData, attackMethodConfArray,
  * @param wBMC ダメージ
  * @return 適用後のダメージ
  */
-function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData) {
+export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData) {
 
 	var valueWork = 0;
 
@@ -14131,7 +14135,7 @@ function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, m
  * @param wBMC ダメージ
  * @return 適用後のダメージ
  */
-function ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, wBMC) {
+export function ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, wBMC) {
 
 	var w_MDEF = mobData[14];
 	var w_MDEF2 = n_B_MDEF2;
@@ -14269,7 +14273,7 @@ function ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData,
  * @param カードID
  * @return 倍率
  */
-function ApplyMagicalSkillDamageRatioChangeSubArcanaCard(cardid) {
+export function ApplyMagicalSkillDamageRatioChangeSubArcanaCard(cardid) {
 	let vartmp = 0;
 
 	let cardCountArmsRight	 = CardNumSearch(cardid, CARD_REGION_ID_ARMS_RIGHT_ANY);
@@ -14309,7 +14313,7 @@ function ApplyMagicalSkillDamageRatioChangeSubArcanaCard(cardid) {
  * @param {*} specData 
  * @param {*} mobData 
  */
-function RebuildActiveSkillRatioInfo(battleCalcInfo, charaData, specData, mobData) {
+export function RebuildActiveSkillRatioInfo(battleCalcInfo, charaData, specData, mobData) {
 
 	var ratioPhysical = 0;
 	var ratioMagical = 0;
@@ -14347,7 +14351,7 @@ function RebuildActiveSkillRatioInfo(battleCalcInfo, charaData, specData, mobDat
  * @param {*} mobData 
  * @param {*} wRatio 
  */
-function RebuildSizeModifyRatioInfo(battleCalcInfo, charaData, specData, mobData, wRatio) {
+export function RebuildSizeModifyRatioInfo(battleCalcInfo, charaData, specData, mobData, wRatio) {
 	if (!battleCalcInfo) {
 		battleCalcInfo = new CBattleCalcInfo();
 		battleCalcInfo.skillId = n_A_ActiveSkill;
@@ -14368,7 +14372,7 @@ function RebuildSizeModifyRatioInfo(battleCalcInfo, charaData, specData, mobData
  * @param wSC_Size サイズ補正倍率の基礎値
  * @returns 最終サイズ補正倍率
  */
-function GetSizeModify(mobData, wSC_Size) {
+export function GetSizeModify(mobData, wSC_Size) {
 	// ペコ・グリフォン搭乗時の、槍装備による、中型の１００％補正
 	// UsedSkillSearch の騎兵修練で搭乗状態をON/OFFしているので LernedSkillSearch に置き換えられない
 	if (UsedSkillSearch(SKILL_ID_KIHE_SHUREN) > 0) {
@@ -14599,7 +14603,7 @@ function GetSizeModify(mobData, wSC_Size) {
  * @param {*} mobData 
  * @returns 
  */
-function GetBaseRateSandansho(mobData) {
+export function GetBaseRateSandansho(mobData) {
 	let sklLv = 0;
 	let rate = 0;
 	sklLv = Math.max(LearnedSkillSearch(SKILL_ID_SANDANSHO), UsedSkillSearch(SKILL_ID_SANDANSHO));
@@ -14614,7 +14618,7 @@ function GetBaseRateSandansho(mobData) {
  * @param {*} mobData 
  * @returns 
  */
-function GetBaseRateFearBleath(mobData) {
+export function GetBaseRateFearBleath(mobData) {
 
 	var aBaserate = [0, 20, 20, 35, 45, 50];		// 基本発動率
 
@@ -14633,7 +14637,7 @@ function GetBaseRateFearBleath(mobData) {
  * @param {*} mobData 
  * @returns 
  */
-function GetBaseRateDA(mobData) {
+export function GetBaseRateDA(mobData) {
 
 	var rate = 0;
 
@@ -14660,7 +14664,7 @@ function GetBaseRateDA(mobData) {
  * @param {*} mobData 
  * @returns 
  */
-function GetActRateSandansho(skillId, mobData) {
+export function GetActRateSandansho(skillId, mobData) {
 
 	switch (skillId) {
 	case SKILL_ID_TUZYO_KOGEKI:
@@ -14681,7 +14685,7 @@ function GetActRateSandansho(skillId, mobData) {
  * @param {*} mobData 
  * @returns 
  */
-function GetActHitRateSandansho(skillId, mobData) {
+export function GetActHitRateSandansho(skillId, mobData) {
 	return GetActRateSandansho(skillId, mobData) * w_HIT / 100;
 }
 
@@ -14691,7 +14695,7 @@ function GetActHitRateSandansho(skillId, mobData) {
  * @param {*} mobData 
  * @returns 
  */
-function GetActRateFearBleath(skillId, mobData) {
+export function GetActRateFearBleath(skillId, mobData) {
 
 	var rate = 0;
 
@@ -14708,7 +14712,7 @@ function GetActRateFearBleath(skillId, mobData) {
  * @param {*} mobData 
  * @returns 
  */
-function GetActHitRateFearBleath(skillId, mobData) {
+export function GetActHitRateFearBleath(skillId, mobData) {
 
 	var rate = GetActRateFearBleath(skillId, mobData);
 
@@ -14726,7 +14730,7 @@ function GetActHitRateFearBleath(skillId, mobData) {
  * @param {*} mobData 
  * @returns 
  */
-function GetActRateDA(skillId, mobData) {
+export function GetActRateDA(skillId, mobData) {
 
 	var rate = 0;
 
@@ -14743,7 +14747,7 @@ function GetActRateDA(skillId, mobData) {
  * @param {*} mobData 
  * @returns 
  */
-function GetActHitRateDA(skillId, mobData) {
+export function GetActHitRateDA(skillId, mobData) {
 
 	var rate = GetActRateDA(skillId, mobData);
 
@@ -14761,7 +14765,7 @@ function GetActHitRateDA(skillId, mobData) {
  * @param {*} mobData 
  * @returns 
  */
-function GetActRateCritical(skillId, mobData) {
+export function GetActRateCritical(skillId, mobData) {
 
 	var rate = 0;
 
@@ -14776,7 +14780,7 @@ function GetActRateCritical(skillId, mobData) {
  * @param {*} mobData 
  * @returns 
  */
-function GetActHitRateCritical(skillId, mobData) {
+export function GetActHitRateCritical(skillId, mobData) {
 
 	var rate = GetActRateCritical(skillId, mobData);
 
@@ -14794,7 +14798,7 @@ function GetActHitRateCritical(skillId, mobData) {
  * @param {*} mobData 
  * @returns 
  */
-function GetActRateNormal(skillId, mobData) {
+export function GetActRateNormal(skillId, mobData) {
 
 	var rate = 0;
 
@@ -14809,7 +14813,7 @@ function GetActRateNormal(skillId, mobData) {
  * @param {*} mobData 
  * @returns 
  */
-function GetActHitRateNormal(skillId, mobData) {
+export function GetActHitRateNormal(skillId, mobData) {
 
 	var rate = GetActRateNormal(skillId, mobData);
 
@@ -14827,7 +14831,7 @@ function GetActHitRateNormal(skillId, mobData) {
  * @param {*} mobData 
  * @returns 
  */
-function GetActHitRateAll(skillId, mobData) {
+export function GetActHitRateAll(skillId, mobData) {
 
 	var rate = 0;
 
@@ -14855,7 +14859,7 @@ function GetActHitRateAll(skillId, mobData) {
  * @param {*} mobData 
  * @returns ATK増加率％
  */
-function GetIkariPow(mobData) {
+export function GetIkariPow(mobData) {
 	// ○○の怒り系によるＡＴＫ増加効果
 	var bEffective = false;
 	var pow = 0;
@@ -14938,7 +14942,7 @@ function GetIkariPow(mobData) {
  * 		CAttackMethodAreaComponentManager.OnChangeAttackMethodOption: 攻撃手段オプション
  * 			CAttackMethodAreaComponentManager.OnChangeAttackMethod	: 自動計算のON/OFF
  */
-function AutoCalc(callFrom) {
+export function AutoCalc(callFrom) {
 	// 自動設定が有効の場合のみ、再計算する
 	var autoCalcFlag = HtmlGetObjectValueByIdAsInteger("OBJID_INPUT_ATTACK_METHOD_AUTO_CALC", 0);
 	switch (autoCalcFlag) {
@@ -14986,7 +14990,7 @@ function AutoCalc(callFrom) {
  * ダメージ計算　命中・クリティカル・耐性などを計算して最終ダメージを算出する
  * @returns 
  */
-function calc() {
+export function calc() {
 	var w_EnkyoriSkill = [40,41,44,71,84,72,118,159,192,199,207,244,259,260,261,263,271,272,275,292,302,306,307,324,328,384,394,395,391,396,405,418,419,423,428,430,431,432,435,436,437,438,440,447,497,498,513,542,549,551,552,553,569,570,574,612,613,623,642,723,738,741,769,794];
 	var w_MagicSkill = [37,46,47,51,52,53,54,55,56,57,122,124,125,126,127,128,130,131,132,133,407,408,409,410,411,412,413,414,415,476,478,518,519,520,527,528,529,530,531,532,662,663,666,667,658,659];
 	var idx = 0;
@@ -15785,7 +15789,7 @@ function calc() {
  * @param {*} bLeft 
  * @returns 
  */
-function GetWeaponAtk(strdex, strBonus, armsType, armsLv, armsAtk, sizeModify,
+export function GetWeaponAtk(strdex, strBonus, armsType, armsLv, armsAtk, sizeModify,
 						refineAtk, exRefineAtkMin, exRefineAtkMax, tsuchifuAtkRate,
 						atkSkillId, mobData, bCri, bEQ, bGX, bLeft) {
 
@@ -16147,7 +16151,7 @@ g_appliedAppendDamage = (appendDamageRate > 0);
  * @param {*} dmg ダメージ
  * @returns 適用後のダメージ
  */
-function _SUB_ApplyMonsterDefence(mobData, dmg){
+export function _SUB_ApplyMonsterDefence(mobData, dmg){
 
 	var bPenetrate = false;
 
@@ -16228,7 +16232,7 @@ function _SUB_ApplyMonsterDefence(mobData, dmg){
  * @param {*} lefthand 二刀左手フラグ（0以外:二刀左手、0:その他）
  * @returns 適用後のダメージ
  */
-function ApplyMonsterDefence(mobData, dmg, lefthand) {
+export function ApplyMonsterDefence(mobData, dmg, lefthand) {
 	// モンスターの防御力を適用
 	dmg = _SUB_ApplyMonsterDefence(mobData, dmg);
 	if(dmg < 1) dmg = 0;
@@ -16271,7 +16275,7 @@ function ApplyMonsterDefence(mobData, dmg, lefthand) {
  * @param {*} bArmsLeft 
  * @returns 
  */
-function TYPE_SYUUREN(mobData, attackMethodConfArray, bArmsLeft){
+export function TYPE_SYUUREN(mobData, attackMethodConfArray, bArmsLeft){
 	if(NumSearch(n_A_ActiveSkill,n_SP_SKILL) != 0) return 0;
 	var w = 0;
 	//----------------------------------------------------------------
@@ -16523,7 +16527,7 @@ function TYPE_SYUUREN(mobData, attackMethodConfArray, bArmsLeft){
  * @param {*} elmIdDefault
  * @returns 
  */
-function GetArmsElementBySPData(itemRegionIdArray, cardRegionIdArray, elmIdDefault = ELM_ID_VANITY) {
+export function GetArmsElementBySPData(itemRegionIdArray, cardRegionIdArray, elmIdDefault = ELM_ID_VANITY) {
 	var idx = 0;
 	var idxRegion = 0;
 	var itemId = 0;
@@ -16572,7 +16576,7 @@ function GetArmsElementBySPData(itemRegionIdArray, cardRegionIdArray, elmIdDefau
  * @param {*} mobData 
  * @param {*} attackMethodConfArray 
  */
-function SET_ZOKUSEI(mobData, attackMethodConfArray) {
+export function SET_ZOKUSEI(mobData, attackMethodConfArray) {
 	var itemRegionIdArray = null;
 	var cardRegionIdArray = null;
 	var bApplyArrowElement = false;
@@ -16844,7 +16848,7 @@ function SET_ZOKUSEI(mobData, attackMethodConfArray) {
  * @param {*} elmId 属性ＩＤ
  * @returns 
  */
-function ApplyElementRatio(mobData, wpnAtk, elmId){
+export function ApplyElementRatio(mobData, wpnAtk, elmId){
 
 	var elmRatio = zokusei[mobData[18]][elmId];
 
@@ -16882,7 +16886,7 @@ function ApplyElementRatio(mobData, wpnAtk, elmId){
  * HIT補正を取得する.
  * @return HIT補正値
  */
-function GetHitModify(){
+export function GetHitModify(){
 
 	var value = 0;
 
@@ -16953,7 +16957,7 @@ function GetHitModify(){
  * @param {*} attackMethodConfArray 
  * @returns 必中ダメージ
  */
-function GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray) {
+export function GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray) {
 	var w999 = 0;
 	// 素手、かつ、スパート状態の場合、特定スキルに必中攻撃力を追加
 	if (n_A_WeaponType == ITEM_KIND_NONE && UsedSkillSearch(SKILL_ID_TAIRIGI)) {
@@ -17088,7 +17092,7 @@ function GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray
  * @param mobData 相手データ
  * @return 適用後のダメージ
  */
-function ApplyHitJudgeElementRatio(skillId, dam, mobData) {
+export function ApplyHitJudgeElementRatio(skillId, dam, mobData) {
 
 	switch (skillId) {
 
@@ -17124,7 +17128,7 @@ function ApplyHitJudgeElementRatio(skillId, dam, mobData) {
  * @param {*} dmg 適用する前のダメージ
  * @returns 適用後のダメージ
  */
-function ApplyPhysicalSpecializeMonster(charaData, specData, mobData, dmg) {
+export function ApplyPhysicalSpecializeMonster(charaData, specData, mobData, dmg) {
 	/** モンスターグループの合成配列 */
 	let candidate = [];
 	//--------------------------------
@@ -18031,7 +18035,7 @@ candidate = MonsterGroupObj[MONSTER_GROUP_ID_JOR_RAISE1].concat(MonsterGroupObj[
 /**
  * 命中物理攻撃で与えるダメージ＋◯％
  */
-function ApplyPhysicalDamageUpExcludingCritical(dmg) {
+export function ApplyPhysicalDamageUpExcludingCritical(dmg) {
 	// 除外スキル
 	const excludeSkillList = [
 		SKILL_ID_SHIELD_BOOMERANG,
@@ -18057,7 +18061,7 @@ function ApplyPhysicalDamageUpExcludingCritical(dmg) {
  * スパイダーウェブ状態系ダメージ追加倍率を取得する.
  * @returns 
  */
-function GetSpiderWebDamageRatio() {
+export function GetSpiderWebDamageRatio() {
 
 	var w=0;
 
@@ -18070,7 +18074,7 @@ function GetSpiderWebDamageRatio() {
  * 属性場によるダメージ追加倍率を取得する.
  * @returns 
  */
-function GetElementFieldDamageRatio() {
+export function GetElementFieldDamageRatio() {
 
 	var w = 0;
 
@@ -18104,7 +18108,7 @@ function GetElementFieldDamageRatio() {
  * @param {*} bCri true: クリティカルである / false: クリティカルではない
  * @returns 適用後のダメージ
  */
-function ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, dmg, bCri) {
+export function ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, dmg, bCri) {
 	var criDmgUp = 0;
 	// TODO : 謎判定　ウォーグ系スキル
 	if (n_A_ActiveSkill==511 || n_A_ActiveSkill==513 || n_A_ActiveSkill==516) {
@@ -18163,7 +18167,7 @@ function ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, 
  * @param {*} mobData 
  * @returns 適用後のダメージ
  */
-function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData) {
+export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData) {
 
 //********************************************************************************************************************************
 //********************************************************************************************************************************
@@ -21360,7 +21364,7 @@ function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, 
  * @param {*} bLeft 
  * @returns 適用後のダメージ
  */
-function ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, dmg, dmgType, bCri, bLeft) {
+export function ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, dmg, dmgType, bCri, bLeft) {
 	var w1 = 0;
 	var bEffective = false;
 	var powWork = 0;
@@ -21497,7 +21501,7 @@ function ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData
  * @param {*} cardid カードID
  * @returns 倍率
  */
-function ApplyPhysicalSkillDamageRatioChangeSubArcanaCard(cardid) {
+export function ApplyPhysicalSkillDamageRatioChangeSubArcanaCard(cardid) {
 	let vartmp = 0;
 
 	let cardCountArmsRight	 = CardNumSearch(cardid, CARD_REGION_ID_ARMS_RIGHT_ANY);
@@ -21536,7 +21540,7 @@ function ApplyPhysicalSkillDamageRatioChangeSubArcanaCard(cardid) {
  * @param {*} dmg ダメージ
  * @returns 適用後のダメージ
  */
-function ApplyLexAeterna(mobData, dmg) {
+export function ApplyLexAeterna(mobData, dmg) {
 
 	// TODO : 謎判定
 	if(!n_AS_MODE){
@@ -21576,7 +21580,7 @@ function ApplyLexAeterna(mobData, dmg) {
  * @param {*} dmgNormal 
  * @returns ダメージ期待値
  */
-function CalcMeanDamage(skillId, charaData, specData, mobData, attackMethodConfArray, dmgSandansho, dmgFearBleath, dmgCritical, dmgNormal) {
+export function CalcMeanDamage(skillId, charaData, specData, mobData, attackMethodConfArray, dmgSandansho, dmgFearBleath, dmgCritical, dmgNormal) {
 
 	// 三段掌　ダメージ倍率期待値
 	var meanDmgSandansho = GetActHitRateSandansho(skillId, mobData) * dmgSandansho;
@@ -21614,7 +21618,7 @@ function CalcMeanDamage(skillId, charaData, specData, mobData, attackMethodConfA
  * @param {*} dmg ダメージ
  * @returns ダメージ期待値
  */
-function CalcMeanDamageLeftHand(skillId, mobData, dmg) {
+export function CalcMeanDamageLeftHand(skillId, mobData, dmg) {
 
 	var meanDmgNormal = dmg * (100 - GetActHitRateSandansho(skillId, mobData)) * w_HIT / 100 / 100;
 	var meanDmgAll = meanDmgNormal;
@@ -21633,7 +21637,7 @@ function CalcMeanDamageLeftHand(skillId, mobData, dmg) {
  * @param {*} x_HIT 
  * @returns 固定追加攻撃力
  */
-function GetFixedAppendAtk(skillId, charaData, specData, mobData, w_DAM, ch_MAXMIN, x_HIT){
+export function GetFixedAppendAtk(skillId, charaData, specData, mobData, w_DAM, ch_MAXMIN, x_HIT){
 
 	var atkAuraBlade = 0;
 	var atkEnchantBlade = 0;
@@ -21713,7 +21717,7 @@ function GetFixedAppendAtk(skillId, charaData, specData, mobData, w_DAM, ch_MAXM
  *詠唱時間とディレイを計算し、表示部を組み立てる
  * @param {*} mobData 
  */
-function BuildCastAndDelayHtml(mobData){
+export function BuildCastAndDelayHtml(mobData){
 	BuildCastAndDelayHtmlMIG(mobData);
 }
 
@@ -21721,7 +21725,7 @@ function BuildCastAndDelayHtml(mobData){
  * 詠唱時間とディレイを計算し、引数の戦闘結果に格納する
  * @param {*} mobData 
  */
-function BuildCastAndDelayHtmlMIG(mobData){
+export function BuildCastAndDelayHtmlMIG(mobData){
 
 	var scaling = 0;
 	var spTag = null;
@@ -21907,7 +21911,7 @@ g_attackIntervalTemp ??= n_Delay[w];
 /**
  * 属性倍率の簡易表示HTMLを描画する
  */
-function BuildResistElementTinyHtml(){
+export function BuildResistElementTinyHtml(){
 	// 聖  95%[過 3%]  100%  5%
 	resistValueArray = [];      // 属性耐性  95
 	bodyElmRatioArray = [];     // 属性倍率  100
@@ -21967,7 +21971,7 @@ function BuildResistElementTinyHtml(){
  * @param {*} dmg ダメージ
  * @returns 適用後のダメージ
  */
-function ApplyAttackDamageAmplify(mobData, dmg){
+export function ApplyAttackDamageAmplify(mobData, dmg){
 
 	var dmgAmp = 0;
 
@@ -22145,7 +22149,7 @@ function ApplyAttackDamageAmplify(mobData, dmg){
  * @param {*} dmg ダメージ
  * @returns 適用後のダメージ
  */
-function DamageModifierOfArea(mobData, dmg) {
+export function DamageModifierOfArea(mobData, dmg) {
 	var dmgAmp = 0;
 
 	// ★★★★　注意　★★★★
@@ -22213,4 +22217,202 @@ function DamageModifierOfArea(mobData, dmg) {
 	}
 
 	return dmg;
+}
+
+if (typeof window !== 'undefined') {
+    Object.defineProperties(window, {
+        SaveDataAll: { get: () => SaveDataAll, set: v => { SaveDataAll = v; }, configurable: true },
+        SaveNameAll: { get: () => SaveNameAll, set: v => { SaveNameAll = v; }, configurable: true },
+        n_SiegeMode: { get: () => n_SiegeMode, set: v => { n_SiegeMode = v; }, configurable: true },
+        n_A_BaseLV: { get: () => n_A_BaseLV, set: v => { n_A_BaseLV = v; }, configurable: true },
+        n_Enekyori: { get: () => n_Enekyori, set: v => { n_Enekyori = v; }, configurable: true },
+        wLAch: { get: () => wLAch, set: v => { wLAch = v; }, configurable: true },
+        TyouEnkakuSousa3dan: { get: () => TyouEnkakuSousa3dan, set: v => { TyouEnkakuSousa3dan = v; }, configurable: true },
+        str_bSUBname: { get: () => str_bSUBname, set: v => { str_bSUBname = v; }, configurable: true },
+        str_bSUB: { get: () => str_bSUB, set: v => { str_bSUB = v; }, configurable: true },
+        cast_kotei: { get: () => cast_kotei, set: v => { cast_kotei = v; }, configurable: true },
+        n_PerfectHIT_DMG: { get: () => n_PerfectHIT_DMG, set: v => { n_PerfectHIT_DMG = v; }, configurable: true },
+        n_Delay: { get: () => n_Delay, set: v => { n_Delay = v; }, configurable: true },
+        wDelay: { get: () => wDelay, set: v => { wDelay = v; }, configurable: true },
+        n_KoteiCast: { get: () => n_KoteiCast, set: v => { n_KoteiCast = v; }, configurable: true },
+        wCast: { get: () => wCast, set: v => { wCast = v; }, configurable: true },
+        wbairitu: { get: () => wbairitu, set: v => { wbairitu = v; }, configurable: true },
+        n_A_ActiveSkill: { get: () => n_A_ActiveSkill, set: v => { n_A_ActiveSkill = v; }, configurable: true },
+        n_A_ActiveSkillLV: { get: () => n_A_ActiveSkillLV, set: v => { n_A_ActiveSkillLV = v; }, configurable: true },
+        n_tok: { get: () => n_tok, set: v => { n_tok = v; }, configurable: true },
+        n_tok_no_limit: { get: () => n_tok_no_limit, set: v => { n_tok_no_limit = v; }, configurable: true },
+        first_check: { get: () => first_check, set: v => { first_check = v; }, configurable: true },
+        str_PerfectHIT_DMG: { get: () => str_PerfectHIT_DMG, set: v => { str_PerfectHIT_DMG = v; }, configurable: true },
+        w_DMG: { get: () => w_DMG, set: v => { w_DMG = v; }, configurable: true },
+        Last_DMG_A: { get: () => Last_DMG_A, set: v => { Last_DMG_A = v; }, configurable: true },
+        Last_DMG_B: { get: () => Last_DMG_B, set: v => { Last_DMG_B = v; }, configurable: true },
+        n_Buki_Muri: { get: () => n_Buki_Muri, set: v => { n_Buki_Muri = v; }, configurable: true },
+        g_bSkillNoDamage: { get: () => g_bSkillNoDamage, set: v => { g_bSkillNoDamage = v; }, configurable: true },
+        n_Heal_MATK: { get: () => n_Heal_MATK, set: v => { n_Heal_MATK = v; }, configurable: true },
+        directSubtractionMdef: { get: () => directSubtractionMdef, set: v => { directSubtractionMdef = v; }, configurable: true },
+        n_AS_MODE: { get: () => n_AS_MODE, set: v => { n_AS_MODE = v; }, configurable: true },
+        n_AS_HIT: { get: () => n_AS_HIT, set: v => { n_AS_HIT = v; }, configurable: true },
+        BK_Weapon_zokusei: { get: () => BK_Weapon_zokusei, set: v => { BK_Weapon_zokusei = v; }, configurable: true },
+        option_count: { get: () => option_count, set: v => { option_count = v; }, configurable: true },
+        n_AS_check_3dan: { get: () => n_AS_check_3dan, set: v => { n_AS_check_3dan = v; }, configurable: true },
+        n_A_Kotei_Cast_Keigen: { get: () => n_A_Kotei_Cast_Keigen, set: v => { n_A_Kotei_Cast_Keigen = v; }, configurable: true },
+        n_DEATH_BOUND: { get: () => n_DEATH_BOUND, set: v => { n_DEATH_BOUND = v; }, configurable: true },
+        n_CONFIG: { get: () => n_CONFIG, set: v => { n_CONFIG = v; }, configurable: true },
+        B_Total_DEF: { get: () => B_Total_DEF, set: v => { B_Total_DEF = v; }, configurable: true },
+        B_Total_MDEF: { get: () => B_Total_MDEF, set: v => { B_Total_MDEF = v; }, configurable: true },
+        w_DMG_AS_OverHP: { get: () => w_DMG_AS_OverHP, set: v => { w_DMG_AS_OverHP = v; }, configurable: true },
+        n_A_DMG: { get: () => n_A_DMG, set: v => { n_A_DMG = v; }, configurable: true },
+        n_A_DMG_GX: { get: () => n_A_DMG_GX, set: v => { n_A_DMG_GX = v; }, configurable: true },
+        n_A_DMG_QUAKE: { get: () => n_A_DMG_QUAKE, set: v => { n_A_DMG_QUAKE = v; }, configurable: true },
+        BK_n_A_DMG_Wolf: { get: () => BK_n_A_DMG_Wolf, set: v => { BK_n_A_DMG_Wolf = v; }, configurable: true },
+        BK_n_A_DMG2: { get: () => BK_n_A_DMG2, set: v => { BK_n_A_DMG2 = v; }, configurable: true },
+        n_A_QUAKE_KIRI: { get: () => n_A_QUAKE_KIRI, set: v => { n_A_QUAKE_KIRI = v; }, configurable: true },
+        n_A_GX_HANDO: { get: () => n_A_GX_HANDO, set: v => { n_A_GX_HANDO = v; }, configurable: true },
+        SG_Special_HITnum: { get: () => SG_Special_HITnum, set: v => { SG_Special_HITnum = v; }, configurable: true },
+        wHITsuu: { get: () => wHITsuu, set: v => { wHITsuu = v; }, configurable: true },
+        wActiveHitNum: { get: () => wActiveHitNum, set: v => { wActiveHitNum = v; }, configurable: true },
+        n_bunkatuHIT: { get: () => n_bunkatuHIT, set: v => { n_bunkatuHIT = v; }, configurable: true },
+        SG_Special_DMG: { get: () => SG_Special_DMG, set: v => { SG_Special_DMG = v; }, configurable: true },
+        n_A_Arrow: { get: () => n_A_Arrow, set: v => { n_A_Arrow = v; }, configurable: true },
+        cardCount: { get: () => cardCount, set: v => { cardCount = v; }, configurable: true },
+        delayDownForDisp: { get: () => delayDownForDisp, set: v => { delayDownForDisp = v; }, configurable: true },
+        aspdRaw: { get: () => aspdRaw, set: v => { aspdRaw = v; }, configurable: true },
+        g_damageTextArray: { get: () => g_damageTextArray, set: v => { g_damageTextArray = v; }, configurable: true },
+        g_wHITsuu_Array: { get: () => g_wHITsuu_Array, set: v => { g_wHITsuu_Array = v; }, configurable: true },
+        g_perfectHitRate: { get: () => g_perfectHitRate, set: v => { g_perfectHitRate = v; }, configurable: true },
+        g_bUnknownCasts: { get: () => g_bUnknownCasts, set: v => { g_bUnknownCasts = v; }, configurable: true },
+        g_bDefinedDamageIntervals: { get: () => g_bDefinedDamageIntervals, set: v => { g_bDefinedDamageIntervals = v; }, configurable: true },
+        w_HIT: { get: () => w_HIT, set: v => { w_HIT = v; }, configurable: true },
+        w_HIT_HYOUJI: { get: () => w_HIT_HYOUJI, set: v => { w_HIT_HYOUJI = v; }, configurable: true },
+        w_Cri: { get: () => w_Cri, set: v => { w_Cri = v; }, configurable: true },
+        w_FLEE: { get: () => w_FLEE, set: v => { w_FLEE = v; }, configurable: true },
+        itemCountRight: { get: () => itemCountRight, set: v => { itemCountRight = v; }, configurable: true },
+        itemCountLeft: { get: () => itemCountLeft, set: v => { itemCountLeft = v; }, configurable: true },
+        wCSize: { get: () => wCSize, set: v => { wCSize = v; }, configurable: true },
+        w_STRDEX: { get: () => w_STRDEX, set: v => { w_STRDEX = v; }, configurable: true },
+        n_A_CriATK: { get: () => n_A_CriATK, set: v => { n_A_CriATK = v; }, configurable: true },
+        g_appliedAppendDamage: { get: () => g_appliedAppendDamage, set: v => { g_appliedAppendDamage = v; }, configurable: true },
+        g_wCastTemp: { get: () => g_wCastTemp, set: v => { g_wCastTemp = v; }, configurable: true },
+        g_wCastFixedTemp: { get: () => g_wCastFixedTemp, set: v => { g_wCastFixedTemp = v; }, configurable: true },
+        g_attackIntervalTemp: { get: () => g_attackIntervalTemp, set: v => { g_attackIntervalTemp = v; }, configurable: true },
+        g_AttackCount: { get: () => g_AttackCount, set: v => { g_AttackCount = v; }, configurable: true },
+        g_dps: { get: () => g_dps, set: v => { g_dps = v; }, configurable: true },
+        w_HiDam: { get: () => w_HiDam, set: v => { w_HiDam = v; }, configurable: true },
+        wRef1: { get: () => wRef1, set: v => { wRef1 = v; }, configurable: true },
+        wRef2: { get: () => wRef2, set: v => { wRef2 = v; }, configurable: true },
+        wRef3: { get: () => wRef3, set: v => { wRef3 = v; }, configurable: true },
+        g_receiveDamageAverage: { get: () => g_receiveDamageAverage, set: v => { g_receiveDamageAverage = v; }, configurable: true },
+        g_receiveDamageAvoids: { get: () => g_receiveDamageAvoids, set: v => { g_receiveDamageAvoids = v; }, configurable: true },
+        resistValueArray: { get: () => resistValueArray, set: v => { resistValueArray = v; }, configurable: true },
+        resistValueArrayOver: { get: () => resistValueArrayOver, set: v => { resistValueArrayOver = v; }, configurable: true },
+        bodyElmRatioArray: { get: () => bodyElmRatioArray, set: v => { bodyElmRatioArray = v; }, configurable: true },
+        finalRatioArray: { get: () => finalRatioArray, set: v => { finalRatioArray = v; }, configurable: true },
+        n_A_Weapon_zokusei: { get: () => n_A_Weapon_zokusei, set: v => { n_A_Weapon_zokusei = v; }, configurable: true },
+    });
+
+    Object.assign(window, {
+        CAST_PARAM_BORDER,
+        w_AG,
+        SyurikenOBJ,
+        KunaiOBJ,
+        CanonOBJ,
+        SubName,
+        n_SieldSpDum,
+        n_SieldSp,
+        n_SieldSpNum,
+        n_SP_SKILL,
+        HEALTYPE_HEAL,
+        HEALTYPE_HIGHNESS,
+        HEALTYPE_SANCTUARY,
+        HEALTYPE_SHINSENNA_EBI,
+        HEALTYPE_EBI_ZANMAI,
+        HEALTYPE_COLUCEO_HEAL,
+        HEALTYPE_DILECTIO_HEAL,
+        HEALTYPE_TURTLE_SPRINKLER,
+        HEALTYPE_SHUGO_FU,
+        HEALTYPE_ZYOKODO,
+        HEAL_TARGETTYPE_SELF,
+        HEAL_TARGETTYPE_PLAYER,
+        HEAL_TARGETTYPE_ENEMY,
+        BattleCalc999,
+        BattleCalc999Body,
+        BattleCalc999Core,
+        BattleCalcSubDamagePhysicalCommon,
+        GetBattlerAtkPercentUp,
+        ATKbaiJYOUSAN,
+        GetBattlerMatkPercentUp,
+        ApplyMagicalSpecializeMonster,
+        ApplyMagicalSpecializeMonster20211117,
+        ApplyMagicalSpecializeMonsterMod20211014SubMagicalDamageUp,
+        ApplyMagicalSpecializeMonsterMod20211014SubSpiderWebModify,
+        ApplyMagicalSpecializeMonsterMod20211014SubSpecializeMap,
+        ApplyMagicalSpecializeMonsterMod20211014SubSpecializeRace,
+        ApplyMagicalSpecializeMonsterMod20211014SubSpecializeSize,
+        ApplyMagicalSpecializeMonsterMod20211014SubSpecializeMonsterElement,
+        ApplyMagicalSpecializeMonsterMod20211014SubSpecializeMagicElement,
+        ApplyMagicalSpecializeMonsterMod20211014SubSpecializeBossType,
+        ApplyResistElement,
+        BaiTaisei_A_SP,
+        ApplyRegistPVPNormal,
+        BaiTaisei_C,
+        ApplyRegistPVPEnergyCoat,
+        BaiTaisei_E,
+        HealCalc,
+        BuildBattleResultHtml,
+        BuildBattleResultHtmlMIG,
+        calcReceivedDamage,
+        calcReceivedMagicDamage,
+        getResistanceOfEnvironment,
+        BattleHiDamMaxPain,
+        GetMagicalSkillDamageRatioChange,
+        ApplyMagicalSkillDamageRatioChange,
+        ApplyMagicalSkillDamageRatioChangeSubArcanaCard,
+        RebuildActiveSkillRatioInfo,
+        RebuildSizeModifyRatioInfo,
+        GetSizeModify,
+        GetBaseRateSandansho,
+        GetBaseRateFearBleath,
+        GetBaseRateDA,
+        GetActRateSandansho,
+        GetActHitRateSandansho,
+        GetActRateFearBleath,
+        GetActHitRateFearBleath,
+        GetActRateDA,
+        GetActHitRateDA,
+        GetActRateCritical,
+        GetActHitRateCritical,
+        GetActRateNormal,
+        GetActHitRateNormal,
+        GetActHitRateAll,
+        GetIkariPow,
+        AutoCalc,
+        calc,
+        GetWeaponAtk,
+        _SUB_ApplyMonsterDefence,
+        ApplyMonsterDefence,
+        TYPE_SYUUREN,
+        GetArmsElementBySPData,
+        SET_ZOKUSEI,
+        ApplyElementRatio,
+        GetHitModify,
+        GetPerfectHitDamage,
+        ApplyHitJudgeElementRatio,
+        ApplyPhysicalSpecializeMonster,
+        ApplyPhysicalDamageUpExcludingCritical,
+        GetSpiderWebDamageRatio,
+        GetElementFieldDamageRatio,
+        ApplyPhysicalDamageRatio,
+        GetPhysicalSkillDamageRatioChange,
+        ApplyPhysicalSkillDamageRatioChange,
+        ApplyPhysicalSkillDamageRatioChangeSubArcanaCard,
+        ApplyLexAeterna,
+        CalcMeanDamage,
+        CalcMeanDamageLeftHand,
+        GetFixedAppendAtk,
+        BuildCastAndDelayHtml,
+        BuildCastAndDelayHtmlMIG,
+        BuildResistElementTinyHtml,
+        ApplyAttackDamageAmplify,
+        DamageModifierOfArea,
+    });
 }
