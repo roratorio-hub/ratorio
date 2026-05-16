@@ -46,6 +46,7 @@
 CURRENT_VERSION = 54;	// 対人データの拡張対応
 // 旧データ構造は、最大でバージョン 99 まで
 
+
 /**
  * セーブデータのバージョンを取得する.
  * @param saveDataStr セーブデータ文字列（未加工）
@@ -3816,6 +3817,7 @@ function DecodeUrl(loadDataUrl){
 	var saveDataMappingArrayCurrent = null;
 
 	var versionTarget = 0;
+	var eqpRgn = 0;
 
 	var SaveData = new Array();
 
@@ -5285,12 +5287,12 @@ function LoadCookieConf(){
 
 	SaveData = new Array();
 	SaveData = document.cookie.split(";");
-	wStr = "";
-	wLCF = 0;
+	var wStr = "";
+	var wLCF = 0;
 
 	var confstr = "";
 
-	for(i = 0; SaveData[i]; i++){
+	for(var i = 0; SaveData[i]; i++){
 
 		// クッキー情報の文字列から前方の余白を抜く
 		confstr = SaveData[i];

@@ -1,4 +1,5 @@
 import { CGlobalConstManager } from './CGlobalConstManager.js';
+import { CExtraInfoAreaComponentManager } from './CExtraInfoAreaComponentManager.js';
 
 
 

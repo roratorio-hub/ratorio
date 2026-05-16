@@ -1,4 +1,6 @@
 
+import { ITEM_SET_PET_ID_OFFSET } from './itemset.h.js';
+
 export const ItemIdToSetIdMap = new Array();
 
 	/*

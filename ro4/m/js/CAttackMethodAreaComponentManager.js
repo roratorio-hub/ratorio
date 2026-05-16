@@ -1,6 +1,4 @@
-
-
-
+import { CGlobalConstManager } from '../../../roro/m/js/CGlobalConstManager.js';
 //----------------------------------------------------------------
 // オプションリストの種別
 //----------------------------------------------------------------
@@ -382,7 +380,7 @@ CAttackMethodData.GetSkillIdFromFullId = function (fullId) {
 /**
  * 攻撃手段エリアコンポーネントマネージャクラス.
  */
-function CAttackMethodAreaComponentManager () {
+export function CAttackMethodAreaComponentManager () {
 
 }
 
@@ -1378,6 +1376,7 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArray = function (
 	var collectAttrArray = null;
 	var collectedArray = null;
 	var collectedArrayArray = null;
+	var bufLv = 0;
 	var collectedIdArray = null;
 	var collectedLevelArray = null;
 	var collectedMultiplyArray = null;
@@ -4412,6 +4411,10 @@ CAttackMethodAreaComponentManager.CreateNoticeBlock = function () {
 // 初期構築処理
 // TODO: 現状、呼び出しに任せる
 // CAttackMethodAreaComponentManager.RebuildControls();
+
+if (typeof window !== 'undefined') {
+	window.CAttackMethodAreaComponentManager = CAttackMethodAreaComponentManager;
+}
 
 
 
