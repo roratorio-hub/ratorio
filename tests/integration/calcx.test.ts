@@ -145,6 +145,8 @@ async function captureUiSnapshot(page: Page): Promise<UiSnapshot> {
 
 const SUPPRESSED_ERROR_PATTERNS: RegExp[] = [
     // ESM 移行と無関係な既知エラーをここに追加する（コメント必須）
+    // calchistory.js が使用する Chart.js を CDN から取得できないテスト環境で発生する。ESM 移行と無関係。
+    /Chart is not defined/,
 ];
 
 function isSuppressed(message: string): boolean {
