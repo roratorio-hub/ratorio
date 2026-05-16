@@ -1,5 +1,5 @@
 
-CardShortObj =[
+export const CardShortObj =[
 	 [
 	 	"カードショートカット",
 	 	0,
@@ -317,7 +317,7 @@ CardShortObj =[
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function ClearCardSlotAll() {
+export function ClearCardSlotAll() {
 
 	// 個別関数を全コール
 	ClearCardSlot(EQUIP_REGION_ID_ARMS);
@@ -342,7 +342,7 @@ function ClearCardSlotAll() {
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function ClearCardSlot(eqpRgnId) {
+export function ClearCardSlot(eqpRgnId) {
 
 	var objidPrifix = "";
 	var idxArrayToClear = new Array();
@@ -480,7 +480,7 @@ function __ClearCardSlot(objidPrifix, idxArrayToClear) {
  * @param itemId 変更後のアイテムＩＤ
  *-----------------------------------------------------------------------------------------------
  ************************************************************************************************/
-function RebuildCardSelect(eqpRgnId, itemId) {
+export function RebuildCardSelect(eqpRgnId, itemId) {
 
 	var objidPrifix = "";
 	var objSelect = null;
@@ -611,7 +611,7 @@ function RebuildCardSelect(eqpRgnId, itemId) {
  * @param {*} enchInfoArrayAllSlotsBefore これまでに、収集されたデータの配列（アップグレードの判定に使用）
  * @returns 
  */
-function RebuildCardSelectSubCollectEnchListData(enchListId, enchInfoArrayAllSlotsBefore) {
+export function RebuildCardSelectSubCollectEnchListData(enchListId, enchInfoArrayAllSlotsBefore) {
 	var idx = 0;
 	var idxSlot = 0;
 	var idxEnchList = 0;
@@ -760,6 +760,7 @@ function RebuildCardSelectSubCollectEnchListDataSubUpgradeShinennoKairo(enchInfo
 
 	var funcPushNotExist = function (cardIdF) {
 
+		var idxF = 0;
 		for (idxF = 0; idxF < resultArray.length; idxF++) {
 			if (resultArray[idxF][1] == cardIdF) {
 				return;
@@ -832,6 +833,7 @@ function RebuildCardSelectSubCollectEnchListDataSubUpgradeShinentaiBuki(enchInfo
 
 	var funcPushNotExist = function (cardIdF) {
 
+		var idxF = 0;
 		for (idxF = 0; idxF < resultArray.length; idxF++) {
 			if (resultArray[idxF][1] == cardIdF) {
 				return;
@@ -1355,7 +1357,7 @@ function BuildUpCardSlotsMIG(eqpRgnId, itemId, enchInfoArray, objArySlots) {
 /**
  * カードスロットの使用可否を設定する.
  */
-function SetCardSlotEnabilityAll() {
+export function SetCardSlotEnabilityAll() {
 
 	// 個別関数を全コール
 	SetCardSlotEnability(EQUIP_REGION_ID_ARMS);
@@ -1376,7 +1378,7 @@ function SetCardSlotEnabilityAll() {
  * @param {*} eqpRgnId 
  * @returns 
  */
-function SetCardSlotEnability(eqpRgnId) {
+export function SetCardSlotEnability(eqpRgnId) {
 	var strObjIdPrifix = "";
 	var idx = 0;
 	var strObjId = "";
@@ -1468,7 +1470,7 @@ function __SetCardSlotEnability(objTarget, enabled) {
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function ApplyCardShort(eqpRgnId, objidPrifix) {
+export function ApplyCardShort(eqpRgnId, objidPrifix) {
 
 	var idx = 0;
 	var idxOption = 0;
@@ -1483,6 +1485,7 @@ function ApplyCardShort(eqpRgnId, objidPrifix) {
 	var slotCountLooped = 0;
 
 	var objSelect = null;
+	var objSelect1 = null;
 	var objOption = null;
 
 	// 変更後のカードショートカットのインデックスを取得
@@ -1549,4 +1552,15 @@ function ApplyCardShort(eqpRgnId, objidPrifix) {
 
 	// 検索可能リスト更新
 	LoadSelect2();
+}
+
+if (typeof window !== 'undefined') {
+	window.CardShortObj = CardShortObj;
+	window.ClearCardSlotAll = ClearCardSlotAll;
+	window.ClearCardSlot = ClearCardSlot;
+	window.RebuildCardSelect = RebuildCardSelect;
+	window.RebuildCardSelectSubCollectEnchListData = RebuildCardSelectSubCollectEnchListData;
+	window.SetCardSlotEnabilityAll = SetCardSlotEnabilityAll;
+	window.SetCardSlotEnability = SetCardSlotEnability;
+	window.ApplyCardShort = ApplyCardShort;
 }

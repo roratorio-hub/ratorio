@@ -1,22 +1,10 @@
 
 // ペットID指定のオフセット（カードと同じように指定するので、カードIDで実現しないぐらい大きな値を設定）
 // TODO: いずれ修正予定
-ITEM_SET_PET_ID_OFFSET = 100000;
+export const ITEM_SET_PET_ID_OFFSET = 100000;
 
-const ITEMSET_ID_LIMIT_WITH_ITEM = 200;
-const ITEMSET_ID_LIMIT_WITH_CARD = 200;
-
-// アイテムセット定義配列
-w_SE = new Array();
-
-// アイテムIDからセットIDを検索するマップ
-ItemIdToSetIdMap = new Array();
-
-// カードIDからセットIDを検索するマップ
-CardIdToSetIdMap = new Array();
-
-// ペットIDからセットIDを検索するマップ
-PetIdToSetIdMap = new Array();
+export const ITEMSET_ID_LIMIT_WITH_ITEM = 200;
+export const ITEMSET_ID_LIMIT_WITH_CARD = 200;
 
 
 
@@ -25,7 +13,7 @@ PetIdToSetIdMap = new Array();
  * @param setId セットID
  * @return 構成メンバーのテキスト
  */
-function GetItemSetMemberText(setId){
+export function GetItemSetMemberText(setId){
 
 	var idxMember = 0;
 
@@ -39,7 +27,7 @@ function GetItemSetMemberText(setId){
 
 
 	// セット定義データ取得
-	setData = w_SE[setId];
+	setData = window.w_SE[setId];
 
 	for (idxMember = 1; idxMember < setData.length; idxMember++) {
 
@@ -103,7 +91,7 @@ function GetItemSetMemberText(setId){
 /**
  * セットの装備状況を検査し、適用する.
  */
-function CheckAndApplyItemSetEquipping() {
+export function CheckAndApplyItemSetEquipping() {
 
 	var idx = 0;
 	var idxMember = 0;
@@ -128,10 +116,10 @@ function CheckAndApplyItemSetEquipping() {
 	modifiedCardIdArray = n_A_card.slice(0, CARD_REGION_ID_COUNT);
 
 	// すべてのセット定義をループ
-	for (idx = 0; idx < w_SE.length; idx++) {
+	for (idx = 0; idx < window.w_SE.length; idx++) {
 
 		// セット定義データ取得
-		setData = w_SE[idx];
+		setData = window.w_SE[idx];
 
 		// 無効な定義はスキップ
 		if (setData.length <= 1) {
@@ -209,6 +197,18 @@ function CheckAndApplyItemSetEquipping() {
 	}
 
 	// 補正した配列を、本来の配列に設定
-	n_A_Equip = modifiedItemIdArray;
-	n_A_card = modifiedCardIdArray;
+	window.n_A_Equip = modifiedItemIdArray;
+	window.n_A_card = modifiedCardIdArray;
+}
+
+if (typeof window !== 'undefined') {
+	window.ITEM_SET_PET_ID_OFFSET = ITEM_SET_PET_ID_OFFSET;
+	window.ITEMSET_ID_LIMIT_WITH_ITEM = ITEMSET_ID_LIMIT_WITH_ITEM;
+	window.ITEMSET_ID_LIMIT_WITH_CARD = ITEMSET_ID_LIMIT_WITH_CARD;
+	window.w_SE = new Array();
+	window.ItemIdToSetIdMap = new Array();
+	window.CardIdToSetIdMap = new Array();
+	window.PetIdToSetIdMap = new Array();
+	window.GetItemSetMemberText = GetItemSetMemberText;
+	window.CheckAndApplyItemSetEquipping = CheckAndApplyItemSetEquipping;
 }

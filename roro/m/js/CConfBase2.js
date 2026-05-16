@@ -991,6 +991,7 @@ export function CConfBase2(confMngParam) {
 		var controlValueMin = 0;
 		var controlValueMax = 0;
 		var funcInputModify = null;
+		var mappedIndex = 0;
 
 		var activeConfData = null;
 
