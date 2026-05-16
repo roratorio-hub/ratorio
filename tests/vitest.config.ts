@@ -11,6 +11,11 @@ export default defineConfig({
             provider: 'v8',
             exclude: ['node_modules', '**/*.config.ts'],
         },
+        poolOptions: {
+            forks: {
+                maxForks: 4,
+            },
+        },
     },
     resolve: {
         alias: {

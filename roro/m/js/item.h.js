@@ -1,4 +1,3 @@
-
 import { CGlobalConstManager } from './CGlobalConstManager.js';
 
 //----------------------------------------------------------------

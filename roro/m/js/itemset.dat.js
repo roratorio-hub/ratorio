@@ -1,13 +1,12 @@
-(function () {
 
-	ItemIdToSetIdMap = new Array();
+export const ItemIdToSetIdMap = new Array();
 
 	/*
 	ToDo : usachoco
 	s_SE の初期化でリレーション定義するとインデックスがわかりにくいので
 	new Array(); しておいて後からインデックス指定して挿入したほうが良い
 	*/
-	w_SE = [
+export const w_SE = [
 		[],
 		[737,436,475],
 		[737,436,477],
@@ -3778,7 +3777,7 @@
 
 
 
-	CardIdToSetIdMap = new Array();
+export const CardIdToSetIdMap = new Array();
 
 	CardIdToSetIdMap[7] = [1157];
 	CardIdToSetIdMap[9] = [1151];
@@ -4638,7 +4637,7 @@
 	CardIdToSetIdMap[2739] = [2389];
 	CardIdToSetIdMap[2741] = [2390];
 
-	PetIdToSetIdMap = new Array();
+export const PetIdToSetIdMap = new Array();
 	PetIdToSetIdMap[1] = [1439];
 	PetIdToSetIdMap[10] = [1438];
 	PetIdToSetIdMap[13] = [1437];
@@ -6830,5 +6829,9 @@
 
 	// itemset はセーブデータに書き出されないので
 	// 現実的な範囲において itemsetID の上限値を気にする必要はありません
-})();
-
+if (typeof window !== 'undefined') {
+    window.ItemIdToSetIdMap = ItemIdToSetIdMap;
+    window.w_SE = w_SE;
+    window.CardIdToSetIdMap = CardIdToSetIdMap;
+    window.PetIdToSetIdMap = PetIdToSetIdMap;
+}
