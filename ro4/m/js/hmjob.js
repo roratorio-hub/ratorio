@@ -1192,6 +1192,7 @@ export function ApplySpecModify(spid, spVal) {
 
 	var sklLv = 0;
 	var bufLv = 0;
+	var itemCount = 0;
 	var valWork = 0;
 	var arrayWork = null;
 

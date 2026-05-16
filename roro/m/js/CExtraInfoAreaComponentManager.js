@@ -129,6 +129,7 @@ export function GetExtraInfoText(infoId) {
  * 拡張情報エリアコンポーネントマネージャクラス.
  */
 export function CExtraInfoAreaComponentManager () {
+	var itemCount = 0, sklLv = 0;
 
 	// マネージャクラスのインスタンスＩＤ
 	this.managerInstanceId = CExtraInfoAreaComponentManager.instanceManager.registerInstance(this);

@@ -14,6 +14,7 @@ export let n_Skill1SW = false;
  */
 export function Click_PassSkillSW(){
 	let idx = 0;
+	var i = 0;
 	let passiveSkillIdArray = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, n_A_JOB).GetPassiveSkillIdArray();
 	let table_header = `
 		<TABLE Border class="tooltip-target" data-tooltip="パッシブスキル等は今後削除する予定です。代わりに習得スキル欄を使ってください。">

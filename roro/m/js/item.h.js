@@ -1843,6 +1843,7 @@ export function GetItemSP(itemId, spid) {
  * @return 説明テキスト
  */
 export function GetItemExplainText(spId, spValue) {
+	var idx = 0;
 
 	let condTextEquipmentLocation = "";
 	let condTextTranscendence = "";

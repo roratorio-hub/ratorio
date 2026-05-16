@@ -1414,6 +1414,7 @@ export function OnChangeSettingAutoSpell(bCalculate){
 export function OnClickEasySetUpAutoSpell(){
 
 	var idx = 0;
+	var cardCount = 0;
 
 	var objSelect = null;
 

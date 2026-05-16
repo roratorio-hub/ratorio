@@ -93,7 +93,7 @@ export function ResetConfDataAllMIG (bAsOnLoad) {
 
 	// 処理整理途上のため、ここで必要
 	if (!bAsOnLoad) {
-		n_B_TAISEI = Array(n_B_TAISEI.length).fill(0);
+		n_B_TAISEI.fill(0);
 
 		// データ管理インスタンス生成
 		g_dataManagerMobConfInput.ResetDataAll();

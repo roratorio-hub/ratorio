@@ -8993,6 +8993,7 @@ export function ApplyMagicalSpecializeMonsterMod20211014SubSpiderWebModify(chara
  * @returns 
  */
 export function ApplyMagicalSpecializeMonsterMod20211014SubSpecializeMap(charaData, specData, mobData, dmg) {
+	var cardCount = 0, confval = 0;
 	/** モンスターグループの合成配列 */
 	let candidate = [];
 	var wX = 0;
@@ -11841,6 +11842,7 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
  * @returns {number} 回避率を考慮しない被ダメージ
  */
 export function calcReceivedDamage(charaData, specData, mobData, attackMethodConfArray, objCell = null){
+	var sklLv = 0;
 	w_HiDam = new Array();
 	let idx = 0;
 	let mobMaxATK = mobData[MONSTER_DATA_EXTRA_INDEX_ATK_MAX];
@@ -12368,6 +12370,7 @@ export function calcReceivedMagicDamage(charaData, mobData, objCell){
  * @returns {number} 耐性値
  */
 export function getResistanceOfEnvironment(mobID) {
+	var confval = 0;
 	let result = 0;
 
 	// 任意のモンスターIDを指定する耐性
@@ -12893,6 +12896,7 @@ export function BattleHiDamMaxPain(charaData, specData, mobData, attackMethodCon
 export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData) {
 
 	var valueWork = 0;
+	var itemCount = 0, cardCount = 0, confval = 0;
 
 	var wX = 0;
 
@@ -14373,6 +14377,7 @@ export function RebuildSizeModifyRatioInfo(battleCalcInfo, charaData, specData, 
  * @returns 最終サイズ補正倍率
  */
 export function GetSizeModify(mobData, wSC_Size) {
+	var itemCount = 0;
 	// ペコ・グリフォン搭乗時の、槍装備による、中型の１００％補正
 	// UsedSkillSearch の騎兵修練で搭乗状態をON/OFFしているので LernedSkillSearch に置き換えられない
 	if (UsedSkillSearch(SKILL_ID_KIHE_SHUREN) > 0) {
@@ -16277,7 +16282,7 @@ export function ApplyMonsterDefence(mobData, dmg, lefthand) {
  */
 export function TYPE_SYUUREN(mobData, attackMethodConfArray, bArmsLeft){
 	if(NumSearch(n_A_ActiveSkill,n_SP_SKILL) != 0) return 0;
-	var w = 0;
+	var w = 0, i = 0;
 	//----------------------------------------------------------------
 	// 「武器ごとの一般修練系」の効果
 	//----------------------------------------------------------------
@@ -17129,6 +17134,7 @@ export function ApplyHitJudgeElementRatio(skillId, dam, mobData) {
  * @returns 適用後のダメージ
  */
 export function ApplyPhysicalSpecializeMonster(charaData, specData, mobData, dmg) {
+	var cardCount = 0, confval = 0;
 	/** モンスターグループの合成配列 */
 	let candidate = [];
 	//--------------------------------
@@ -18168,6 +18174,7 @@ export function ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mo
  * @returns 適用後のダメージ
  */
 export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData) {
+	var cardCount = 0, confval = 0;
 
 //********************************************************************************************************************************
 //********************************************************************************************************************************
@@ -21912,6 +21919,7 @@ g_attackIntervalTemp ??= n_Delay[w];
  * 属性倍率の簡易表示HTMLを描画する
  */
 export function BuildResistElementTinyHtml(){
+	var idx = 0;
 	// 聖  95%[過 3%]  100%  5%
 	resistValueArray = [];      // 属性耐性  95
 	bodyElmRatioArray = [];     // 属性倍率  100

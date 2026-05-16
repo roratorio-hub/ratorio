@@ -622,7 +622,7 @@ export class CSaveDataUnitParse extends CSaveDataUnitBase {
 			];
 
 			const signValueArray = [];
-			for (idx = 0; idx < n_B_TAISEI.length; idx++) {
+			for (let idx = 0; idx < n_B_TAISEI.length; idx++) {
 
 				let converted = saveDataArrayOld[850 + idx];
 				if (BIAS_TARGET_INDEX_ARRAY_CONF_PLAYER_500.indexOf(idx) >= 0) {
@@ -829,7 +829,7 @@ export class CSaveDataUnitParse extends CSaveDataUnitBase {
 			];
 
 			const signValueArray = [];
-			for (idx = 0; idx < n_B_TAISEI.length; idx++) {
+			for (let idx = 0; idx < n_B_TAISEI.length; idx++) {
 
 				let converted = saveDataArrayOld[1881 + idx];
 				if (idx == 0) {

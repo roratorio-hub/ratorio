@@ -4531,6 +4531,7 @@ export function GetStatusModifyMaxHpPlus() {
  * @returns 増加量の%値
  */
 export function GetStatusModifyMaxHpUp() {
+	let idx = 0;
 	let val = 0;
 	let vartmp = 0;
 	let itemCount = 0;
@@ -9468,6 +9469,7 @@ export function GetStatusModifyDefDivUp() {
  */
 export function GetStatusModifyMdefDivPlus(bIgnoreBuff) {
 
+	var idx = 0;
 	var val = 0;
 
 	var vartmp = 0, varary = [];
