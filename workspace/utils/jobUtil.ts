@@ -1503,6 +1503,7 @@ async function parseJobDat(src: string): Promise<{ id: number; name: string; isR
             return arr;
         }
     };
+    sandboxBase.window = sandboxBase;  // window.XXX = YYY → sandboxBase.XXX = YYY
     const sandbox = new Proxy(sandboxBase, {
         get(target, prop) {
             if (typeof prop === 'symbol') {
