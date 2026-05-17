@@ -4,6 +4,11 @@
  * テストスイート:
  *   1. 起動テスト         — ページロード・ユーザー操作で未捕捉 JS 例外が発生しないことを確認
  *   2. セーブデータ復元   — 本番（GitHub Pages）と同一セーブデータを読み込み UI 値を比較
+ *   3. URL 往復テスト     — 新形式フィクスチャのみ。ロード後に出力してもクエリが変質しないことを確認
+ *
+ * フィクスチャ:
+ *   fixtures/sample-savedata-new.md — 新形式（ro4 形式）URL。スイート 2・3 両方で使用。
+ *   fixtures/sample-savedata-old.md — 旧形式（roro 形式）URL。スイート 2 のみ使用。
  *
  * セーブデータ復元テストで検出できる主なバグ:
  *   - Pattern A バリアント: let X（classic script）と window.X の乖離
@@ -62,25 +67,35 @@ function createStaticServer(root: string): Server {
 // ─── セーブデータフィクスチャ ─────────────────────────────────────────────────
 
 const PRODUCTION_BASE = 'https://roratorio-hub.github.io/ratorio/ro4/m/calcx.html';
-const FIXTURES_PATH = join(__dirname, 'fixtures/sample-savedata.md');
+const FIXTURES_NEW_PATH = join(__dirname, 'fixtures/sample-savedata-new.md');
+const FIXTURES_OLD_PATH = join(__dirname, 'fixtures/sample-savedata-old.md');
+
+type FixtureEntry = { label: string; prodUrl: string; query: string };
 
 /** フィクスチャファイルから本番URLのリストを読み込む */
-function loadSaveDataEntries(): Array<{ label: string; prodUrl: string; query: string }> {
-    if (!existsSync(FIXTURES_PATH)) return [];
-    return readFileSync(FIXTURES_PATH, 'utf-8')
+function loadSaveDataEntries(filePath: string, prefix: string): FixtureEntry[] {
+    if (!existsSync(filePath)) return [];
+    return readFileSync(filePath, 'utf-8')
         .split('\n')
         .map((line) => line.trim())
         .filter((line) => line.length > 0 && !line.startsWith('#'))
         .map((url, i) => {
             const qi = url.indexOf('?');
             return {
-                label: `fixture[${i}]`,
+                label: `${prefix}[${i}]`,
                 prodUrl: url,
                 query: qi >= 0 ? url.slice(qi + 1) : '',
             };
         })
         .filter(({ query }) => query.length > 0);
 }
+
+// 新形式: 比較 + 往復テスト両方の対象
+const entriesNew = loadSaveDataEntries(FIXTURES_NEW_PATH, 'new');
+// 旧形式: 比較テストのみの対象
+const entriesOld = loadSaveDataEntries(FIXTURES_OLD_PATH, 'old');
+// 全フィクスチャ（スイート 1・2 で使用）
+const allEntries = [...entriesNew, ...entriesOld];
 
 // ─── UI スナップショット ───────────────────────────────────────────────────────
 /**
@@ -244,14 +259,13 @@ describe('ro4/m/calcx.html 起動テスト', () => {
     });
 
     // セーブデータを URL から読み込む操作をトリガーする。
-    // fixtures に URL がある場合のみ実行する（1 件目を代表として使用）。
+    // フィクスチャに URL がある場合のみ実行する（1 件目を代表として使用）。
     it('セーブデータ URL 読み込みで未捕捉 JS 例外が発生しない', async () => {
-        const entries = loadSaveDataEntries();
-        if (entries.length === 0) {
-            console.warn('fixtures/sample-savedata.md にエントリがないためスキップ');
+        if (allEntries.length === 0) {
+            console.warn('フィクスチャにエントリがないためスキップ');
             return;
         }
-        const { query } = entries[0];
+        const { query } = allEntries[0];
         const errors = await collectPageErrors(browser, async (page) => {
             await page.goto(`${baseUrl}/ro4/m/calcx.html?${query}`, {
                 waitUntil: 'networkidle',
@@ -266,19 +280,17 @@ describe('ro4/m/calcx.html 起動テスト', () => {
 // ─── スイート 2: セーブデータ復元精度テスト ──────────────────────────────────
 //
 // 手動テスト手順（本番 URL → ローカル URL → 目視比較）を自動化したもの。
-// フィクスチャの各 URL について本番とローカルの UI 値を比較する。
+// 新形式・旧形式の全フィクスチャについて本番とローカルの UI 値を比較する。
 // 本番サイトへのアクセスが不可な場合は自動スキップ。
 
 describe('セーブデータ復元精度テスト（本番 vs ESM移行環境）', () => {
-    const entries = loadSaveDataEntries();
-
-    if (entries.length === 0) {
-        it('フィクスチャなし（fixtures/sample-savedata.md に URL を追加してください）', () => {
-            console.warn('sample-savedata.md にエントリがないためスキップ');
+    if (allEntries.length === 0) {
+        it('フィクスチャなし（fixtures/sample-savedata-new.md または -old.md に URL を追加してください）', () => {
+            console.warn('フィクスチャにエントリがないためスキップ');
         });
     }
 
-    for (const { label, prodUrl, query } of entries) {
+    for (const { label, prodUrl, query } of allEntries) {
         it(`${label}: 本番と同一の UI 値が復元される`, async () => {
             // ── 本番から期待値を取得 ─────────────────────────────────────
             let prodSnapshot: UiSnapshot;
@@ -316,7 +328,7 @@ describe('セーブデータ復元精度テスト（本番 vs ESM移行環境）
     }
 });
 
-// ─── スイート 3: URL セーブ/ロード 往復テスト ─────────────────────────────────
+// ─── スイート 3: URL セーブ/ロード 往復テスト（新形式のみ）────────────────────
 //
 // テスト手順:
 //   1. OBJID_INPUT_URL_IN_MIG にセーブデータURLを入力
@@ -324,21 +336,22 @@ describe('セーブデータ復元精度テスト（本番 vs ESM移行環境）
 //   3. OBJID_BUTTON_URL_OUT_MIG をクリック（URL出力）
 //   4. OBJID_INPUT_URL_OUT_MIG の出力クエリが入力クエリと一致するか確認
 //
+// 旧形式フィクスチャは読み込み後に新形式へ変換されるためセーブデータが変質する。
+// このテストは新形式フィクスチャ（sample-savedata-new.md）のみを対象とする。
+//
 // このテストで検出できる主なバグ:
 //   - encodeToURL が失敗して空文字を返す（try/catch で飲み込まれたエラー）
 //   - セーブデータの一部が欠損・変質してエンコード結果が変わる
 //   - import 漏れにより CSaveDataUnitXxx が undefined になる
 
-describe('URL セーブ/ロード 往復テスト', () => {
-    const entries = loadSaveDataEntries();
-
-    if (entries.length === 0) {
-        it('フィクスチャなし（fixtures/sample-savedata.md に URL を追加してください）', () => {
-            console.warn('sample-savedata.md にエントリがないためスキップ');
+describe('URL セーブ/ロード 往復テスト（新形式フィクスチャのみ）', () => {
+    if (entriesNew.length === 0) {
+        it('フィクスチャなし（fixtures/sample-savedata-new.md に URL を追加してください）', () => {
+            console.warn('sample-savedata-new.md にエントリがないためスキップ');
         });
     }
 
-    for (const { label, query } of entries) {
+    for (const { label, query } of entriesNew) {
         it(`${label}: URL入力 → URL出力 でクエリ文字列が変質しない`, async () => {
             const context = await browser.newContext();
             const page = await context.newPage();
