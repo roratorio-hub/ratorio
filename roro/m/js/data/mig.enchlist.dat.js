@@ -1559,6 +1559,7 @@
 	window.g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5476].push(883);
 	window.g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5477].push(883);
 	window.g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5478].push(883);
+	window.g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5678].push(883);
 	window.g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5488].push(882);
 	window.g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5490].push(881);
 	window.g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5550].push(883);
