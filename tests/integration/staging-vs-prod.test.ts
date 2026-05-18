@@ -422,20 +422,25 @@ type Interaction = { label: string; fn: (page: Page) => Promise<void> };
  */
 const STANDARD_INTERACTIONS: Interaction[] = [
     {
-        label: '基本レベル変更（index 10）',
+        // OBJID_SELECT_BASE_LEVEL は <input type="number"> のため fill() を使う
+        label: '基本レベル変更（100）',
         fn: async (page) => {
-            await page.selectOption('#OBJID_SELECT_BASE_LEVEL', { index: 10 });
+            await page.fill('#OBJID_SELECT_BASE_LEVEL', '100');
+            await page.dispatchEvent('#OBJID_SELECT_BASE_LEVEL', 'change');
             await page.waitForTimeout(400);
         },
     },
     {
-        label: '職業レベル変更（index 5）',
+        // OBJID_SELECT_JOB_LEVEL は <input type="number"> のため fill() を使う
+        label: '職業レベル変更（10）',
         fn: async (page) => {
-            await page.selectOption('#OBJID_SELECT_JOB_LEVEL', { index: 5 });
+            await page.fill('#OBJID_SELECT_JOB_LEVEL', '10');
+            await page.dispatchEvent('#OBJID_SELECT_JOB_LEVEL', 'change');
             await page.waitForTimeout(400);
         },
     },
     {
+        // OBJID_SELECT_JOB は <select> のため selectOption() を使う
         label: '職業変更（index 2）',
         fn: async (page) => {
             await page.selectOption('#OBJID_SELECT_JOB', { index: 2 });

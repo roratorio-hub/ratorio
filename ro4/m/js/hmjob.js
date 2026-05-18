@@ -14,6 +14,7 @@ export let g_WIS = 0;
 export let g_SPL = 0;
 export let g_CON = 0;
 export let g_CRT = 0;
+export let g_BaseLV = 0;
 
 
 export function RebuildStatusSelect(jobId) {
@@ -205,6 +206,7 @@ export function CalcStatusPoint(bIgnoreAutoCalc) {
 				_cf.A_SPL.value = g_SPL;
 				_cf.A_CON.value = g_CON;
 				_cf.A_CRT.value = g_CRT;
+				_cf.A_BaseLV.value = g_BaseLV;
 			CalcStatusPoint(true);
 			return;
 		}
@@ -272,11 +274,13 @@ export function CalcStatusPoint(bIgnoreAutoCalc) {
 	g_SPL = stValSPL;
 	g_CON = stValCON;
 	g_CRT = stValCRT;
+	g_BaseLV = Number(_cf.A_BaseLV.value);
 	// Pattern A: window sync
 	window.g_STR = g_STR; window.g_AGI = g_AGI; window.g_VIT = g_VIT;
 	window.g_INT = g_INT; window.g_DEX = g_DEX; window.g_LUK = g_LUK;
 	window.g_POW = g_POW; window.g_STA = g_STA; window.g_WIS = g_WIS;
 	window.g_SPL = g_SPL; window.g_CON = g_CON; window.g_CRT = g_CRT;
+	window.g_BaseLV = g_BaseLV;
 
 	myInnerHtml("A_STPOINT", stPointEarned - stPointUsed, 0);
 	myInnerHtml("OBJID_SPAN_STATUS_T_STATUS_POINT", stTSPointEarned - stTSPointUsed, 0);
