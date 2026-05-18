@@ -370,19 +370,19 @@ export function SaveSystem(funcSaveDataModify = null){
 		SaveData[63] = 0;
 
 		// アクセサリ１情報
-		SaveData[64] = GetStatefullData("DATA_OBJID_ACCESSARY_1", 0);
-		SaveData[65] = GetStatefullData("DATA_OBJID_ACCESSARY_1_CARD_1", 0);
-		SaveData[66] = GetStatefullData("DATA_OBJID_ACCESSARY_1_CARD_2", 0);
-		SaveData[67] = GetStatefullData("DATA_OBJID_ACCESSARY_1_CARD_3", 0);
-		SaveData[68] = GetStatefullData("DATA_OBJID_ACCESSARY_1_CARD_4", 0);
+		SaveData[64] = GetStatefullData("DATA_OBJID_ACCESSORY_1", 0);
+		SaveData[65] = GetStatefullData("DATA_OBJID_ACCESSORY_1_CARD_1", 0);
+		SaveData[66] = GetStatefullData("DATA_OBJID_ACCESSORY_1_CARD_2", 0);
+		SaveData[67] = GetStatefullData("DATA_OBJID_ACCESSORY_1_CARD_3", 0);
+		SaveData[68] = GetStatefullData("DATA_OBJID_ACCESSORY_1_CARD_4", 0);
 		SaveData[69] = 0;
 
 		// アクセサリ２情報
-		SaveData[70] = GetStatefullData("DATA_OBJID_ACCESSARY_2", 0);
-		SaveData[71] = GetStatefullData("DATA_OBJID_ACCESSARY_2_CARD_1", 0);
-		SaveData[72] = GetStatefullData("DATA_OBJID_ACCESSARY_2_CARD_2", 0);
-		SaveData[73] = GetStatefullData("DATA_OBJID_ACCESSARY_2_CARD_3", 0);
-		SaveData[74] = GetStatefullData("DATA_OBJID_ACCESSARY_2_CARD_4", 0);
+		SaveData[70] = GetStatefullData("DATA_OBJID_ACCESSORY_2", 0);
+		SaveData[71] = GetStatefullData("DATA_OBJID_ACCESSORY_2_CARD_1", 0);
+		SaveData[72] = GetStatefullData("DATA_OBJID_ACCESSORY_2_CARD_2", 0);
+		SaveData[73] = GetStatefullData("DATA_OBJID_ACCESSORY_2_CARD_3", 0);
+		SaveData[74] = GetStatefullData("DATA_OBJID_ACCESSORY_2_CARD_4", 0);
 
 
 		//----------------------------------------------------------------
@@ -625,8 +625,8 @@ export function SaveSystem(funcSaveDataModify = null){
 				EQUIP_REGION_ID_BODY,
 				EQUIP_REGION_ID_SHOULDER,
 				EQUIP_REGION_ID_SHOES,
-				EQUIP_REGION_ID_ACCESSARY_1,
-				EQUIP_REGION_ID_ACCESSARY_2,
+				EQUIP_REGION_ID_ACCESSORY_1,
+				EQUIP_REGION_ID_ACCESSORY_2,
 			];
 		}
 		else {
@@ -639,8 +639,8 @@ export function SaveSystem(funcSaveDataModify = null){
 				EQUIP_REGION_ID_BODY,
 				EQUIP_REGION_ID_SHOULDER,
 				EQUIP_REGION_ID_SHOES,
-				EQUIP_REGION_ID_ACCESSARY_1,
-				EQUIP_REGION_ID_ACCESSARY_2,
+				EQUIP_REGION_ID_ACCESSORY_1,
+				EQUIP_REGION_ID_ACCESSORY_2,
 			];
 		}
 
@@ -757,10 +757,10 @@ export function SaveSystem(funcSaveDataModify = null){
 				case "SHOES":
 					idxOffset = 1809;
 					break;
-				case "ACCESSARY_1":
+				case "ACCESSORY_1":
 					idxOffset = 1813;
 					break;
-				case "ACCESSARY_2":
+				case "ACCESSORY_2":
 					idxOffset = 1817;
 					break;
 
@@ -4400,8 +4400,8 @@ export function DecodeUrl(loadDataUrl){
 		//----------------------------------------------------------------
 		// アクセサリ１の読み込み
 		//----------------------------------------------------------------
-		objidPrifix = "OBJID_ACCESSARY_1";
-		eqpRgn = EQUIP_REGION_ID_ACCESSARY_1;
+		objidPrifix = "OBJID_ACCESSORY_1";
+		eqpRgn = EQUIP_REGION_ID_ACCESSORY_1;
 		idxEquip = 64;
 		idxCard = 65;
 		idxEnchList = 1813;
@@ -4413,7 +4413,7 @@ export function DecodeUrl(loadDataUrl){
 		// スロット欄の更新
 		if (GetSlotMode() == SLOTPAGER_MODE_CARD) {
 			RebuildCardSelect(eqpRgn, SaveData[idxEquip]);
-			SetCardSlotEnability(EQUIP_REGION_ID_ACCESSARY_1);
+			SetCardSlotEnability(EQUIP_REGION_ID_ACCESSORY_1);
 		}
 		else {
 			RebuildRndOptSelect(eqpRgn, SaveData[idxEquip]);
@@ -4431,8 +4431,8 @@ export function DecodeUrl(loadDataUrl){
 		//----------------------------------------------------------------
 		// アクセサリ２の読み込み
 		//----------------------------------------------------------------
-		objidPrifix = "OBJID_ACCESSARY_2";
-		eqpRgn = EQUIP_REGION_ID_ACCESSARY_2;
+		objidPrifix = "OBJID_ACCESSORY_2";
+		eqpRgn = EQUIP_REGION_ID_ACCESSORY_2;
 		idxEquip = 70;
 		idxCard = 71;
 		idxEnchList = 1817;
@@ -4444,7 +4444,7 @@ export function DecodeUrl(loadDataUrl){
 		// スロット欄の更新
 		if (GetSlotMode() == SLOTPAGER_MODE_CARD) {
 			RebuildCardSelect(eqpRgn, SaveData[idxEquip]);
-			SetCardSlotEnability(EQUIP_REGION_ID_ACCESSARY_2);
+			SetCardSlotEnability(EQUIP_REGION_ID_ACCESSORY_2);
 		}
 		else {
 			RebuildRndOptSelect(eqpRgn, SaveData[idxEquip]);
@@ -4725,8 +4725,8 @@ export function DecodeUrl(loadDataUrl){
 				EQUIP_REGION_ID_BODY,
 				EQUIP_REGION_ID_SHOULDER,
 				EQUIP_REGION_ID_SHOES,
-				EQUIP_REGION_ID_ACCESSARY_1,
-				EQUIP_REGION_ID_ACCESSARY_2,
+				EQUIP_REGION_ID_ACCESSORY_1,
+				EQUIP_REGION_ID_ACCESSORY_2,
 			];
 		}
 		else if ((IsSameJobClass(JOB_ID_KAGERO) || IsSameJobClass(JOB_ID_OBORO))
@@ -4742,8 +4742,8 @@ export function DecodeUrl(loadDataUrl){
 				EQUIP_REGION_ID_BODY,
 				EQUIP_REGION_ID_SHOULDER,
 				EQUIP_REGION_ID_SHOES,
-				EQUIP_REGION_ID_ACCESSARY_1,
-				EQUIP_REGION_ID_ACCESSARY_2,
+				EQUIP_REGION_ID_ACCESSORY_1,
+				EQUIP_REGION_ID_ACCESSORY_2,
 			];
 		}
 		else {
@@ -4756,8 +4756,8 @@ export function DecodeUrl(loadDataUrl){
 				EQUIP_REGION_ID_BODY,
 				EQUIP_REGION_ID_SHOULDER,
 				EQUIP_REGION_ID_SHOES,
-				EQUIP_REGION_ID_ACCESSARY_1,
-				EQUIP_REGION_ID_ACCESSARY_2,
+				EQUIP_REGION_ID_ACCESSORY_1,
+				EQUIP_REGION_ID_ACCESSORY_2,
 			];
 		}
 

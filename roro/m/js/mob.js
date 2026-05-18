@@ -466,7 +466,7 @@ export function GetMobDataParameters(monsterId, mobData){
 	//----------------------------------------------------------------
 	// 「モンスター状態異常　ストリップアクセサリー」の効果
 	//----------------------------------------------------------------
-	if (n_B_IJYOU[MOB_CONF_DEBUF_ID_STRIP_ACCESSARY]) {
+	if (n_B_IJYOU[MOB_CONF_DEBUF_ID_STRIP_ACCESSORY]) {
 		mobData[MONSTER_DATA_INDEX_INT] -= Math.floor(mobData[MONSTER_DATA_INDEX_INT] * 20 / 100);
 		mobData[MONSTER_DATA_INDEX_DEX] -= Math.floor(mobData[MONSTER_DATA_INDEX_DEX] * 20 / 100);
 		mobData[MONSTER_DATA_INDEX_LUK] -= Math.floor(mobData[MONSTER_DATA_INDEX_LUK] * 20 / 100);

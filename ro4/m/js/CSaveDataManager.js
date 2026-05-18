@@ -80,8 +80,8 @@ export class CSaveDataManager {
 				[CSaveDataConst.propNameEqpRgnBody, "OBJID_BODY"],
 				[CSaveDataConst.propNameEqpRgnShoulder, "OBJID_SHOULDER"],
 				[CSaveDataConst.propNameEqpRgnFoot, "OBJID_SHOES"],
-				[CSaveDataConst.propNameEqpRgnAccessory1, "OBJID_ACCESSARY_1"],
-				[CSaveDataConst.propNameEqpRgnAccessory2, "OBJID_ACCESSARY_2"],
+				[CSaveDataConst.propNameEqpRgnAccessory1, "OBJID_ACCESSORY_1"],
+				[CSaveDataConst.propNameEqpRgnAccessory2, "OBJID_ACCESSORY_2"],
 
 // TODO: 現状、矢は特殊処理
 				[CSaveDataConst.propNameEqpRgnArrow, "OBJID_SELECT_ARROW"],
@@ -474,8 +474,8 @@ export class CSaveDataManager {
 			[MIG_EQUIP_REGION_ID_BODY]: "OBJID_BODY",
 			[MIG_EQUIP_REGION_ID_SHOULDER]: "OBJID_SHOULDER",
 			[MIG_EQUIP_REGION_ID_FOOT]: "OBJID_SHOES",
-			[MIG_EQUIP_REGION_ID_ACCESSORY_1]: "OBJID_ACCESSARY_1",
-			[MIG_EQUIP_REGION_ID_ACCESSORY_2]: "OBJID_ACCESSARY_2",
+			[MIG_EQUIP_REGION_ID_ACCESSORY_1]: "OBJID_ACCESSORY_1",
+			[MIG_EQUIP_REGION_ID_ACCESSORY_2]: "OBJID_ACCESSORY_2",
 		};
 		// 精錬値マップ
 		const refineMap = {
@@ -582,8 +582,8 @@ export class CSaveDataManager {
 			EQUIP_REGION_ID_SHADOW_ARMS_LEFT,
 			EQUIP_REGION_ID_SHADOW_BODY,
 			EQUIP_REGION_ID_SHADOW_FOOT,
-			EQUIP_REGION_ID_SHADOW_ACCESSARY_1,
-			EQUIP_REGION_ID_SHADOW_ACCESSARY_2,
+			EQUIP_REGION_ID_SHADOW_ACCESSORY_1,
+			EQUIP_REGION_ID_SHADOW_ACCESSORY_2,
 		];
 		// シャドウ装備の連想配列キー
 		const eqpRgnKey = {
@@ -591,8 +591,8 @@ export class CSaveDataManager {
 			[EQUIP_REGION_ID_SHADOW_ARMS_LEFT]: "OBJID_SHADOW_SHIELD_CARD_",
 			[EQUIP_REGION_ID_SHADOW_BODY]: "OBJID_SHADOW_BODY_CARD_",
 			[EQUIP_REGION_ID_SHADOW_FOOT]: "OBJID_SHADOW_SHOES_CARD_",
-			[EQUIP_REGION_ID_SHADOW_ACCESSARY_1]: "OBJID_SHADOW_ACCESSARY-1_CARD_",
-			[EQUIP_REGION_ID_SHADOW_ACCESSARY_2]: "OBJID_SHADOW_ACCESSARY-2_CARD_",
+			[EQUIP_REGION_ID_SHADOW_ACCESSORY_1]: "OBJID_SHADOW_ACCESSORY-1_CARD_",
+			[EQUIP_REGION_ID_SHADOW_ACCESSORY_2]: "OBJID_SHADOW_ACCESSORY-2_CARD_",
 		}
 		// 装備箇所 判定用 データユニット
 		const saveDataUnitEqpRgn = this.#setupRegionUnit(CSaveDataConst.eqpRgnKindShadow);
@@ -656,10 +656,10 @@ export class CSaveDataManager {
 				case EQUIP_REGION_ID_SHADOW_FOOT:
 					propName = CSaveDataConst.propNameEqpRgnFoot;
 					break;
-				case EQUIP_REGION_ID_SHADOW_ACCESSARY_1:
+				case EQUIP_REGION_ID_SHADOW_ACCESSORY_1:
 					propName = CSaveDataConst.propNameEqpRgnAccessory1;
 					break;
-				case EQUIP_REGION_ID_SHADOW_ACCESSARY_2:
+				case EQUIP_REGION_ID_SHADOW_ACCESSORY_2:
 					propName = CSaveDataConst.propNameEqpRgnAccessory2;
 					break;
 				// 上記以外はNG
@@ -1212,8 +1212,8 @@ export class CSaveDataManager {
 					[CSaveDataConst.propNameEqpRgnBody, EQUIP_REGION_ID_BODY],
 					[CSaveDataConst.propNameEqpRgnShoulder, EQUIP_REGION_ID_SHOULDER],
 					[CSaveDataConst.propNameEqpRgnFoot, EQUIP_REGION_ID_SHOES],
-					[CSaveDataConst.propNameEqpRgnAccessory1, EQUIP_REGION_ID_ACCESSARY_1],
-					[CSaveDataConst.propNameEqpRgnAccessory2, EQUIP_REGION_ID_ACCESSARY_2],
+					[CSaveDataConst.propNameEqpRgnAccessory1, EQUIP_REGION_ID_ACCESSORY_1],
+					[CSaveDataConst.propNameEqpRgnAccessory2, EQUIP_REGION_ID_ACCESSORY_2],
 				])
 			],
 		]);

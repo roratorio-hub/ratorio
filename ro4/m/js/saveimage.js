@@ -571,12 +571,12 @@ export function generateImage() {
         <dd class="randopt ${randopt_exists(EQUIP_REGION_ID_SHOES)}">${randopt(EQUIP_REGION_ID_SHOES)}</dd>
         <dd class="shadow ${shadow_exists("eqprgn-foot")}">${shadow("eqprgn-foot")}</dd>
         <dt>【アクセサリー(1)】</dt>
-        <dd class="ench${ench_count("OBJID_ACCESSARY_1")}">${equip("OBJID_ACCESSARY_1")}</dd>
-        <dd class="randopt ${randopt_exists(EQUIP_REGION_ID_ACCESSARY_1)}">${randopt(EQUIP_REGION_ID_ACCESSARY_1)}</dd>
+        <dd class="ench${ench_count("OBJID_ACCESSORY_1")}">${equip("OBJID_ACCESSORY_1")}</dd>
+        <dd class="randopt ${randopt_exists(EQUIP_REGION_ID_ACCESSORY_1)}">${randopt(EQUIP_REGION_ID_ACCESSORY_1)}</dd>
         <dd class="shadow ${shadow_exists("eqprgn-accessory-1")}">${shadow("eqprgn-accessory-1")}</dd>
         <dt>【アクセサリー(2)】</dt>
-        <dd class="ench${ench_count("OBJID_ACCESSARY_2")}">${equip("OBJID_ACCESSARY_2")}</dd>
-        <dd class="randopt ${randopt_exists(EQUIP_REGION_ID_ACCESSARY_2)}">${randopt(EQUIP_REGION_ID_ACCESSARY_2)}</dd>
+        <dd class="ench${ench_count("OBJID_ACCESSORY_2")}">${equip("OBJID_ACCESSORY_2")}</dd>
+        <dd class="randopt ${randopt_exists(EQUIP_REGION_ID_ACCESSORY_2)}">${randopt(EQUIP_REGION_ID_ACCESSORY_2)}</dd>
         <dd class="shadow ${shadow_exists("eqprgn-accessory-2")}">${shadow("eqprgn-accessory-2")}</dd>
       </dl>
 

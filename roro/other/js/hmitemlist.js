@@ -21,7 +21,7 @@ function SetUpSelects() {
 		HtmlCreateElementOption(kind, GetItemKindNameText(kind), objSelect);
 	}
 	// その他防具項目の追加
-	for (kind = ITEM_KIND_BODY; kind <= ITEM_KIND_ACCESSARY_ON2; kind++) {
+	for (kind = ITEM_KIND_BODY; kind <= ITEM_KIND_ACCESSORY_ON2; kind++) {
 		HtmlCreateElementOption(kind, GetItemKindNameText(kind), objSelect);
 	}
 	// 武器すべて、防具すべての追加
@@ -33,8 +33,8 @@ function SetUpSelects() {
 		ITEM_KIND_SHADOW_ARMS_LEFT,
 		ITEM_KIND_SHADOW_BODY,
 		ITEM_KIND_SHADOW_FOOT,
-		ITEM_KIND_SHADOW_ACCESSARY_ON1,
-		ITEM_KIND_SHADOW_ACCESSARY_ON2,
+		ITEM_KIND_SHADOW_ACCESSORY_ON1,
+		ITEM_KIND_SHADOW_ACCESSORY_ON2,
 		];
 	for (const kind of kind_list) {
 		HtmlCreateElementOption(kind, GetItemKindNameText(kind), objSelect);
@@ -203,7 +203,7 @@ function BuildUpItemList() {
 			if (itemData[ITEM_DATA_INDEX_KIND] < ITEM_KIND_HEAD_TOP) {
 				continue;
 			}
-			if (itemData[ITEM_DATA_INDEX_KIND] > ITEM_KIND_ACCESSARY_ON2) {
+			if (itemData[ITEM_DATA_INDEX_KIND] > ITEM_KIND_ACCESSORY_ON2) {
 				continue;
 			}
 		} else {	// 特定の種類

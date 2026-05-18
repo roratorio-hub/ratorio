@@ -12,8 +12,8 @@ export class enchSearch {
                     '#OBJID_BODY',
                     '#OBJID_SHOULDER',
                     '#OBJID_SHOES',
-                    '#OBJID_ACCESSARY_1',
-                    '#OBJID_ACCESSARY_2',
+                    '#OBJID_ACCESSORY_1',
+                    '#OBJID_ACCESSORY_2',
             ];
             this.itemIds = g_constDataManager.enchListDataManager.reverseResolveArrayItemId;//ratorioから取得
             this.CardObjNew = CardObjNew;//ratorioから取得
