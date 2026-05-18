@@ -7,7 +7,8 @@
         "test:run": "vitest run",
         "test:coverage": "vitest run --coverage",
         "test:ui": "vitest --ui",
-        "test:integration": "vitest run --config vitest.integration.config.ts"
+        "test:integration": "vitest run --config vitest.integration.config.ts",
+        "test:staging-diff": "vitest run --config vitest.staging.config.ts"
     },
     "engines": {
         "node": ">=20.0.0",
