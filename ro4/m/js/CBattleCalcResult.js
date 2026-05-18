@@ -1,4 +1,6 @@
 
+import { instobject } from './CBattleCalcResultAll.js';
+
 /**
  * 戦闘結果クラス.
  */

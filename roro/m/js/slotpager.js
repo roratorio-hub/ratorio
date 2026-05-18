@@ -147,15 +147,15 @@ export function SaveSlotStateCardAll() {
 	SaveSlotStateCard(EQUIP_REGION_ID_BODY);
 	SaveSlotStateCard(EQUIP_REGION_ID_SHOULDER);
 	SaveSlotStateCard(EQUIP_REGION_ID_SHOES);
-	SaveSlotStateCard(EQUIP_REGION_ID_ACCESSARY_1);
-	SaveSlotStateCard(EQUIP_REGION_ID_ACCESSARY_2);
+	SaveSlotStateCard(EQUIP_REGION_ID_ACCESSORY_1);
+	SaveSlotStateCard(EQUIP_REGION_ID_ACCESSORY_2);
 
 	SaveSlotStateCard(EQUIP_REGION_ID_SHADOW_ARMS_RIGHT);
 	SaveSlotStateCard(EQUIP_REGION_ID_SHADOW_ARMS_LEFT);
 	SaveSlotStateCard(EQUIP_REGION_ID_SHADOW_BODY);
 	SaveSlotStateCard(EQUIP_REGION_ID_SHADOW_FOOT);
-	SaveSlotStateCard(EQUIP_REGION_ID_SHADOW_ACCESSARY_1);
-	SaveSlotStateCard(EQUIP_REGION_ID_SHADOW_ACCESSARY_2);
+	SaveSlotStateCard(EQUIP_REGION_ID_SHADOW_ACCESSORY_1);
+	SaveSlotStateCard(EQUIP_REGION_ID_SHADOW_ACCESSORY_2);
 	
 }
 
@@ -180,14 +180,14 @@ export function SaveSlotStateCard(eqpRgnId) {
 		[EQUIP_REGION_ID_BODY]:"OBJID_BODY",
 		[EQUIP_REGION_ID_SHOULDER]:"OBJID_SHOULDER",
 		[EQUIP_REGION_ID_SHOES]:"OBJID_SHOES",
-		[EQUIP_REGION_ID_ACCESSARY_1]:"OBJID_ACCESSARY_1",
-		[EQUIP_REGION_ID_ACCESSARY_2]:"OBJID_ACCESSARY_2",
+		[EQUIP_REGION_ID_ACCESSORY_1]:"OBJID_ACCESSORY_1",
+		[EQUIP_REGION_ID_ACCESSORY_2]:"OBJID_ACCESSORY_2",
 		[EQUIP_REGION_ID_SHADOW_ARMS_RIGHT]:"OBJID_SHADOW_ARMS_RIGHT",
 		[EQUIP_REGION_ID_SHADOW_ARMS_LEFT]:"OBJID_SHADOW_SHIELD",
 		[EQUIP_REGION_ID_SHADOW_BODY]:"OBJID_SHADOW_BODY",
 		[EQUIP_REGION_ID_SHADOW_FOOT]:"OBJID_SHADOW_SHOES",
-		[EQUIP_REGION_ID_SHADOW_ACCESSARY_1]:"OBJID_SHADOW_ACCESSARY-1",
-		[EQUIP_REGION_ID_SHADOW_ACCESSARY_2]:"OBJID_SHADOW_ACCESSARY-2",
+		[EQUIP_REGION_ID_SHADOW_ACCESSORY_1]:"OBJID_SHADOW_ACCESSORY-1",
+		[EQUIP_REGION_ID_SHADOW_ACCESSORY_2]:"OBJID_SHADOW_ACCESSORY-2",
 	}
 
 	__SaveSlotStateCard(EQUIP_REGION[eqpRgnId]);
@@ -262,8 +262,8 @@ export function BreakSlotOfCardAll() {
 	BreakSlotOfCard(EQUIP_REGION_ID_BODY);
 	BreakSlotOfCard(EQUIP_REGION_ID_SHOULDER);
 	BreakSlotOfCard(EQUIP_REGION_ID_SHOES);
-	BreakSlotOfCard(EQUIP_REGION_ID_ACCESSARY_1);
-	BreakSlotOfCard(EQUIP_REGION_ID_ACCESSARY_2);
+	BreakSlotOfCard(EQUIP_REGION_ID_ACCESSORY_1);
+	BreakSlotOfCard(EQUIP_REGION_ID_ACCESSORY_2);
 }
 
 /************************************************************************************************
@@ -324,14 +324,14 @@ export function BreakSlotOfCard(eqpRgnId) {
 		__BreakSlotOfCardShort("OBJID_SHOES");
 		break;
 
-	case EQUIP_REGION_ID_ACCESSARY_1:
-		__BreakSlotOfCard("OBJID_ACCESSARY_1");
-		__BreakSlotOfCardShort("OBJID_ACCESSARY_1");
+	case EQUIP_REGION_ID_ACCESSORY_1:
+		__BreakSlotOfCard("OBJID_ACCESSORY_1");
+		__BreakSlotOfCardShort("OBJID_ACCESSORY_1");
 		break;
 
-	case EQUIP_REGION_ID_ACCESSARY_2:
-		__BreakSlotOfCard("OBJID_ACCESSARY_2");
-		__BreakSlotOfCardShort("OBJID_ACCESSARY_2");
+	case EQUIP_REGION_ID_ACCESSORY_2:
+		__BreakSlotOfCard("OBJID_ACCESSORY_2");
+		__BreakSlotOfCardShort("OBJID_ACCESSORY_2");
 		break;
 	}
 }
@@ -394,8 +394,8 @@ export function RebuildSlotAsCardAll() {
 	RebuildSlotAsCard(EQUIP_REGION_ID_BODY);
 	RebuildSlotAsCard(EQUIP_REGION_ID_SHOULDER);
 	RebuildSlotAsCard(EQUIP_REGION_ID_SHOES);
-	RebuildSlotAsCard(EQUIP_REGION_ID_ACCESSARY_1);
-	RebuildSlotAsCard(EQUIP_REGION_ID_ACCESSARY_2);
+	RebuildSlotAsCard(EQUIP_REGION_ID_ACCESSORY_1);
+	RebuildSlotAsCard(EQUIP_REGION_ID_ACCESSORY_2);
 }
 
 /************************************************************************************************
@@ -456,14 +456,14 @@ export function RebuildSlotAsCard(eqpRgnId) {
 		__RebuildSlotAsCardShort(eqpRgnId, "OBJID_SHOES");
 		break;
 
-	case EQUIP_REGION_ID_ACCESSARY_1:
-		__RebuildSlotAsCard(eqpRgnId, "OBJID_ACCESSARY_1");
-		__RebuildSlotAsCardShort(eqpRgnId, "OBJID_ACCESSARY_1");
+	case EQUIP_REGION_ID_ACCESSORY_1:
+		__RebuildSlotAsCard(eqpRgnId, "OBJID_ACCESSORY_1");
+		__RebuildSlotAsCardShort(eqpRgnId, "OBJID_ACCESSORY_1");
 		break;
 
-	case EQUIP_REGION_ID_ACCESSARY_2:
-		__RebuildSlotAsCard(eqpRgnId, "OBJID_ACCESSARY_2");
-		__RebuildSlotAsCardShort(eqpRgnId, "OBJID_ACCESSARY_2");
+	case EQUIP_REGION_ID_ACCESSORY_2:
+		__RebuildSlotAsCard(eqpRgnId, "OBJID_ACCESSORY_2");
+		__RebuildSlotAsCardShort(eqpRgnId, "OBJID_ACCESSORY_2");
 		break;
 	}
 }
@@ -601,8 +601,8 @@ export function LoadSlotStateCardAll() {
 	LoadSlotStateCard(EQUIP_REGION_ID_BODY);
 	LoadSlotStateCard(EQUIP_REGION_ID_SHOULDER);
 	LoadSlotStateCard(EQUIP_REGION_ID_SHOES);
-	LoadSlotStateCard(EQUIP_REGION_ID_ACCESSARY_1);
-	LoadSlotStateCard(EQUIP_REGION_ID_ACCESSARY_2);
+	LoadSlotStateCard(EQUIP_REGION_ID_ACCESSORY_1);
+	LoadSlotStateCard(EQUIP_REGION_ID_ACCESSORY_2);
 }
 
 /************************************************************************************************
@@ -654,12 +654,12 @@ export function LoadSlotStateCard(eqpRgnId) {
 		__LoadSlotStateCard("OBJID_SHOES");
 		break;
 
-	case EQUIP_REGION_ID_ACCESSARY_1:
-		__LoadSlotStateCard("OBJID_ACCESSARY_1");
+	case EQUIP_REGION_ID_ACCESSORY_1:
+		__LoadSlotStateCard("OBJID_ACCESSORY_1");
 		break;
 
-	case EQUIP_REGION_ID_ACCESSARY_2:
-		__LoadSlotStateCard("OBJID_ACCESSARY_2");
+	case EQUIP_REGION_ID_ACCESSORY_2:
+		__LoadSlotStateCard("OBJID_ACCESSORY_2");
 		break;
 	}
 }
@@ -748,12 +748,12 @@ export function SaveSlotStateCostume(eqpRgnId) {
 		__SaveSlotStateCostume("OBJID_SHOES");
 		break;
 
-	case EQUIP_REGION_ID_ACCESSARY_1:
-		__SaveSlotStateCostume("OBJID_ACCESSARY_1");
+	case EQUIP_REGION_ID_ACCESSORY_1:
+		__SaveSlotStateCostume("OBJID_ACCESSORY_1");
 		break;
 
-	case EQUIP_REGION_ID_ACCESSARY_2:
-		__SaveSlotStateCostume("OBJID_ACCESSARY_2");
+	case EQUIP_REGION_ID_ACCESSORY_2:
+		__SaveSlotStateCostume("OBJID_ACCESSORY_2");
 		break;
 	}
 }
@@ -844,12 +844,12 @@ export function BreakSlotOfCostume(eqpRgnId) {
 		__BreakSlotOfCostume("OBJID_SHOES");
 		break;
 
-	case EQUIP_REGION_ID_ACCESSARY_1:
-		__BreakSlotOfCostume("OBJID_ACCESSARY_1");
+	case EQUIP_REGION_ID_ACCESSORY_1:
+		__BreakSlotOfCostume("OBJID_ACCESSORY_1");
 		break;
 
-	case EQUIP_REGION_ID_ACCESSARY_2:
-		__BreakSlotOfCostume("OBJID_ACCESSARY_2");
+	case EQUIP_REGION_ID_ACCESSORY_2:
+		__BreakSlotOfCostume("OBJID_ACCESSORY_2");
 		break;
 	}
 }
@@ -943,12 +943,12 @@ export function RebuildSlotAsCostume(eqpRgnId, jobId) {
 		__RebuildSlotAsCostume(eqpRgnId, "OBJID_SHOES", jobId);
 		break;
 
-	case EQUIP_REGION_ID_ACCESSARY_1:
-		__RebuildSlotAsCostume(eqpRgnId, "OBJID_ACCESSARY_1", jobId);
+	case EQUIP_REGION_ID_ACCESSORY_1:
+		__RebuildSlotAsCostume(eqpRgnId, "OBJID_ACCESSORY_1", jobId);
 		break;
 
-	case EQUIP_REGION_ID_ACCESSARY_2:
-		__RebuildSlotAsCostume(eqpRgnId, "OBJID_ACCESSARY_2", jobId);
+	case EQUIP_REGION_ID_ACCESSORY_2:
+		__RebuildSlotAsCostume(eqpRgnId, "OBJID_ACCESSORY_2", jobId);
 		break;
 	}
 }
@@ -1061,12 +1061,12 @@ export function LoadSlotStateCostume(eqpRgnId) {
 		__LoadSlotStateCostume("OBJID_SHOES");
 		break;
 
-	case EQUIP_REGION_ID_ACCESSARY_1:
-		__LoadSlotStateCostume("OBJID_ACCESSARY_1");
+	case EQUIP_REGION_ID_ACCESSORY_1:
+		__LoadSlotStateCostume("OBJID_ACCESSORY_1");
 		break;
 
-	case EQUIP_REGION_ID_ACCESSARY_2:
-		__LoadSlotStateCostume("OBJID_ACCESSARY_2");
+	case EQUIP_REGION_ID_ACCESSORY_2:
+		__LoadSlotStateCostume("OBJID_ACCESSORY_2");
 		break;
 	}
 }
@@ -1112,8 +1112,8 @@ export function SaveSlotStateRndEnchAll() {
 	SaveSlotStateRndEnch(EQUIP_REGION_ID_BODY);
 	SaveSlotStateRndEnch(EQUIP_REGION_ID_SHOULDER);
 	SaveSlotStateRndEnch(EQUIP_REGION_ID_SHOES);
-	SaveSlotStateRndEnch(EQUIP_REGION_ID_ACCESSARY_1);
-	SaveSlotStateRndEnch(EQUIP_REGION_ID_ACCESSARY_2);
+	SaveSlotStateRndEnch(EQUIP_REGION_ID_ACCESSORY_1);
+	SaveSlotStateRndEnch(EQUIP_REGION_ID_ACCESSORY_2);
 }
 
 /************************************************************************************************
@@ -1171,8 +1171,8 @@ export function BreakSlotOfRndEnchAll() {
 	BreakSlotOfRndEnch(EQUIP_REGION_ID_BODY);
 	BreakSlotOfRndEnch(EQUIP_REGION_ID_SHOULDER);
 	BreakSlotOfRndEnch(EQUIP_REGION_ID_SHOES);
-	BreakSlotOfRndEnch(EQUIP_REGION_ID_ACCESSARY_1);
-	BreakSlotOfRndEnch(EQUIP_REGION_ID_ACCESSARY_2);
+	BreakSlotOfRndEnch(EQUIP_REGION_ID_ACCESSORY_1);
+	BreakSlotOfRndEnch(EQUIP_REGION_ID_ACCESSORY_2);
 }
 
 /************************************************************************************************
@@ -1229,8 +1229,8 @@ export function RebuildSlotAsRndEnchAll() {
 	RebuildSlotAsRndEnch(EQUIP_REGION_ID_BODY);
 	RebuildSlotAsRndEnch(EQUIP_REGION_ID_SHOULDER);
 	RebuildSlotAsRndEnch(EQUIP_REGION_ID_SHOES);
-	RebuildSlotAsRndEnch(EQUIP_REGION_ID_ACCESSARY_1);
-	RebuildSlotAsRndEnch(EQUIP_REGION_ID_ACCESSARY_2);
+	RebuildSlotAsRndEnch(EQUIP_REGION_ID_ACCESSORY_1);
+	RebuildSlotAsRndEnch(EQUIP_REGION_ID_ACCESSORY_2);
 }
 
 /************************************************************************************************
@@ -1282,12 +1282,12 @@ export function RebuildSlotAsRndEnch(eqpRgnId) {
 		__RebuildSlotAsRndEnch(eqpRgnId, "OBJID_SHOES");
 		break;
 
-	case EQUIP_REGION_ID_ACCESSARY_1:
-		__RebuildSlotAsRndEnch(eqpRgnId, "OBJID_ACCESSARY_1");
+	case EQUIP_REGION_ID_ACCESSORY_1:
+		__RebuildSlotAsRndEnch(eqpRgnId, "OBJID_ACCESSORY_1");
 		break;
 
-	case EQUIP_REGION_ID_ACCESSARY_2:
-		__RebuildSlotAsRndEnch(eqpRgnId, "OBJID_ACCESSARY_2");
+	case EQUIP_REGION_ID_ACCESSORY_2:
+		__RebuildSlotAsRndEnch(eqpRgnId, "OBJID_ACCESSORY_2");
 		break;
 	}
 }
@@ -1327,8 +1327,8 @@ export function LoadSlotStateRndEnchAll() {
 	LoadSlotStateRndEnch(EQUIP_REGION_ID_BODY);
 	LoadSlotStateRndEnch(EQUIP_REGION_ID_SHOULDER);
 	LoadSlotStateRndEnch(EQUIP_REGION_ID_SHOES);
-	LoadSlotStateRndEnch(EQUIP_REGION_ID_ACCESSARY_1);
-	LoadSlotStateRndEnch(EQUIP_REGION_ID_ACCESSARY_2);
+	LoadSlotStateRndEnch(EQUIP_REGION_ID_ACCESSORY_1);
+	LoadSlotStateRndEnch(EQUIP_REGION_ID_ACCESSORY_2);
 }
 
 /************************************************************************************************

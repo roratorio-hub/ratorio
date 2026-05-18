@@ -141,9 +141,9 @@ function exportRtxDataObject(): RtxData {
         // 靴
         dataObject = getRecursiveItemValueById(dataObject, "shoes" as const, "OBJID_SHOES", "OBJID_EQUIP_REGION_ID_SHOES");
         // アクセサリー1
-        dataObject = getRecursiveItemValueById(dataObject, "accessory1" as const, "OBJID_ACCESSARY_1", "OBJID_EQUIP_REGION_ID_ACCESSARY_1"); // calcx.htmlでACCESS"A"RY のスペルミスがある
+        dataObject = getRecursiveItemValueById(dataObject, "accessory1" as const, "OBJID_ACCESSORY_1", "OBJID_EQUIP_REGION_ID_ACCESSORY_1");
         // アクセサリー2
-        dataObject = getRecursiveItemValueById(dataObject, "accessory2" as const, "OBJID_ACCESSARY_2", "OBJID_EQUIP_REGION_ID_ACCESSARY_2"); // calcx.htmlでACCESS"A"RY のスペルミスがある
+        dataObject = getRecursiveItemValueById(dataObject, "accessory2" as const, "OBJID_ACCESSORY_2", "OBJID_EQUIP_REGION_ID_ACCESSORY_2");
     }
 
     // 習得スキル

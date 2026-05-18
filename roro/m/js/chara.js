@@ -232,29 +232,29 @@ export function CardNumSearch(cardId, rgnId) {
 			if (cardId == n_A_card[CARD_REGION_ID_ENCHANT_SHOES_3]) cardNum += 1;
 			break;
 
-		case CARD_REGION_ID_ACCESSARY_ANY:
-			if (cardId == n_A_card[CARD_REGION_ID_ACCESSARY_1]) cardNum += 1;
-			if (cardId == n_A_card[CARD_REGION_ID_ENCHANT_ACCESSARY_1_1]) cardNum += 1;
-			if (cardId == n_A_card[CARD_REGION_ID_ENCHANT_ACCESSARY_1_2]) cardNum += 1;
-			if (cardId == n_A_card[CARD_REGION_ID_ENCHANT_ACCESSARY_1_3]) cardNum += 1;
-			if (cardId == n_A_card[CARD_REGION_ID_ACCESSARY_2]) cardNum += 1;
-			if (cardId == n_A_card[CARD_REGION_ID_ENCHANT_ACCESSARY_2_1]) cardNum += 1;
-			if (cardId == n_A_card[CARD_REGION_ID_ENCHANT_ACCESSARY_2_2]) cardNum += 1;
-			if (cardId == n_A_card[CARD_REGION_ID_ENCHANT_ACCESSARY_2_3]) cardNum += 1;
+		case CARD_REGION_ID_ACCESSORY_ANY:
+			if (cardId == n_A_card[CARD_REGION_ID_ACCESSORY_1]) cardNum += 1;
+			if (cardId == n_A_card[CARD_REGION_ID_ENCHANT_ACCESSORY_1_1]) cardNum += 1;
+			if (cardId == n_A_card[CARD_REGION_ID_ENCHANT_ACCESSORY_1_2]) cardNum += 1;
+			if (cardId == n_A_card[CARD_REGION_ID_ENCHANT_ACCESSORY_1_3]) cardNum += 1;
+			if (cardId == n_A_card[CARD_REGION_ID_ACCESSORY_2]) cardNum += 1;
+			if (cardId == n_A_card[CARD_REGION_ID_ENCHANT_ACCESSORY_2_1]) cardNum += 1;
+			if (cardId == n_A_card[CARD_REGION_ID_ENCHANT_ACCESSORY_2_2]) cardNum += 1;
+			if (cardId == n_A_card[CARD_REGION_ID_ENCHANT_ACCESSORY_2_3]) cardNum += 1;
 			break;
 
-		case CARD_REGION_ID_ACCESSARY_1_ANY:
-			if (cardId == n_A_card[CARD_REGION_ID_ACCESSARY_1]) cardNum += 1;
-			if (cardId == n_A_card[CARD_REGION_ID_ENCHANT_ACCESSARY_1_1]) cardNum += 1;
-			if (cardId == n_A_card[CARD_REGION_ID_ENCHANT_ACCESSARY_1_2]) cardNum += 1;
-			if (cardId == n_A_card[CARD_REGION_ID_ENCHANT_ACCESSARY_1_3]) cardNum += 1;
+		case CARD_REGION_ID_ACCESSORY_1_ANY:
+			if (cardId == n_A_card[CARD_REGION_ID_ACCESSORY_1]) cardNum += 1;
+			if (cardId == n_A_card[CARD_REGION_ID_ENCHANT_ACCESSORY_1_1]) cardNum += 1;
+			if (cardId == n_A_card[CARD_REGION_ID_ENCHANT_ACCESSORY_1_2]) cardNum += 1;
+			if (cardId == n_A_card[CARD_REGION_ID_ENCHANT_ACCESSORY_1_3]) cardNum += 1;
 			break;
 
-		case CARD_REGION_ID_ACCESSARY_2_ANY:
-			if (cardId == n_A_card[CARD_REGION_ID_ACCESSARY_2]) cardNum += 1;
-			if (cardId == n_A_card[CARD_REGION_ID_ENCHANT_ACCESSARY_2_1]) cardNum += 1;
-			if (cardId == n_A_card[CARD_REGION_ID_ENCHANT_ACCESSARY_2_2]) cardNum += 1;
-			if (cardId == n_A_card[CARD_REGION_ID_ENCHANT_ACCESSARY_2_3]) cardNum += 1;
+		case CARD_REGION_ID_ACCESSORY_2_ANY:
+			if (cardId == n_A_card[CARD_REGION_ID_ACCESSORY_2]) cardNum += 1;
+			if (cardId == n_A_card[CARD_REGION_ID_ENCHANT_ACCESSORY_2_1]) cardNum += 1;
+			if (cardId == n_A_card[CARD_REGION_ID_ENCHANT_ACCESSORY_2_2]) cardNum += 1;
+			if (cardId == n_A_card[CARD_REGION_ID_ENCHANT_ACCESSORY_2_3]) cardNum += 1;
 			break;
 		}
 	}
@@ -2571,7 +2571,7 @@ export function GetStatusModifyAtkPlus() {
 	//----------------------------------------------------------------
 	// 「リングオブジュピター」の、素ＬＵＫによる効果
 	//----------------------------------------------------------------
-	if ((itemCount = EquipNumSearch(ITEM_ID_RING_OF_JUPITER, EQUIP_REGION_ID_ACCESSARY_1)) > 0) {
+	if ((itemCount = EquipNumSearch(ITEM_ID_RING_OF_JUPITER, EQUIP_REGION_ID_ACCESSORY_1)) > 0) {
 		val += 15 * Math.floor(SU_LUK / 10) * itemCount;
 	}
 
@@ -3655,12 +3655,12 @@ export function GetStatusModifyMaxHpPlus() {
 	let itemCountRight = 0, itemCountLeft = 0;
 	let itemCountHeadTop = 0, itemCountHeadMid = 0, itemCountHeadUnder = 0;
 	let itemCountShield = 0, itemCountBody = 0, itemCountShoulder = 0, itemCountShoes = 0;
-	let itemCountAccessary1 = 0, itemCountAccessary2 = 0;
+	let itemCountAccessory1 = 0, itemCountAccessory2 = 0;
 	let cardCount = 0;
 	let cardCountRight = 0, cardCountLeft = 0;
 	let cardCountHeadTop = 0, cardCountHeadMid = 0, cardCountHeadUnder = 0;
 	let cardCountShield = 0, cardCountBody = 0, cardCountShoulder = 0, cardCountShoes = 0;
-	let cardCountAccessary1 = 0, cardCountAccessary2 = 0;
+	let cardCountAccessory1 = 0, cardCountAccessory2 = 0;
 	let sklLv = 0;
 	let bufLv = 0;
 	let bufferJobLv = 0, bufferSkillLv = 0;
@@ -4536,7 +4536,7 @@ export function GetStatusModifyMaxHpUp() {
 	let vartmp = 0;
 	let itemCount = 0;
 	let itemCountRight = 0, itemCountLeft = 0;
-	let itemCountAccessary2 = 0;
+	let itemCountAccessory2 = 0;
 	let cardCount = 0;
 	let sklLv = 0;
 	let bufLv = 0;
@@ -5511,9 +5511,9 @@ export function GetStatusModifyMaxHpUp() {
 	//----------------------------------------------------------------
 	// 「猛炎と白魔の指輪」の、効果
 	//----------------------------------------------------------------
-	itemCountAccessary2 = EquipNumSearch(ITEM_ID_MOENTO_HAKUMANO_YUBIWA, EQUIP_REGION_ID_ACCESSARY_2);
-	if (itemCountAccessary2 > 0) {
-		val += 15 * itemCountAccessary2;
+	itemCountAccessory2 = EquipNumSearch(ITEM_ID_MOENTO_HAKUMANO_YUBIWA, EQUIP_REGION_ID_ACCESSORY_2);
+	if (itemCountAccessory2 > 0) {
+		val += 15 * itemCountAccessory2;
 	}
 
 	//----------------------------------------------------------------
@@ -5663,7 +5663,7 @@ export function GetStatusModifyMaxHpUp() {
 	//----------------------------------------------------------------
 	// 「リングオブジュピター」の、素ＶＩＴによる効果
 	//----------------------------------------------------------------
-	if ((itemCount = EquipNumSearch(ITEM_ID_RING_OF_JUPITER, EQUIP_REGION_ID_ACCESSARY_2)) > 0) {
+	if ((itemCount = EquipNumSearch(ITEM_ID_RING_OF_JUPITER, EQUIP_REGION_ID_ACCESSORY_2)) > 0) {
 		val += 2 * Math.floor(SU_VIT / 10) * itemCount;
 	}
 
@@ -6694,12 +6694,12 @@ export function GetStatusModifyMaxSpPlus() {
 	var itemCountRight = 0, itemCountLeft = 0;
 	var itemCountHeadTop = 0, itemCountHeadMid = 0, itemCountHeadUnder = 0;
 	var itemCountShield = 0, itemCountBody = 0, itemCountShoulder = 0, itemCountShoes = 0;
-	var itemCountAccessary1 = 0, itemCountAccessary2 = 0;
+	var itemCountAccessory1 = 0, itemCountAccessory2 = 0;
 	var cardCount = 0;
 	var cardCountRight = 0, cardCountLeft = 0;
 	var cardCountHeadTop = 0, cardCountHeadMid = 0, cardCountHeadUnder = 0;
 	var cardCountShield = 0, cardCountBody = 0, cardCountShoulder = 0, cardCountShoes = 0;
-	var cardCountAccessary1 = 0, cardCountAccessary2 = 0;
+	var cardCountAccessory1 = 0, cardCountAccessory2 = 0;
 	var sklLv = 0;
 	var bufLv = 0;
 	var bufferJobLv = 0, bufferSkillLv = 0;
@@ -7356,7 +7356,7 @@ export function GetStatusModifyMaxSpUp() {
 	let vartmp = 0;
 	let itemCount = 0;
 	let itemCountRight = 0, itemCountLeft = 0;
-	let itemCountAccessary1 = 0;
+	let itemCountAccessory1 = 0;
 	let cardCount = 0;
 	let cardCountHeadTop = 0, cardCountHeadMid = 0;
 	let sklLv = 0;
@@ -7996,9 +7996,9 @@ export function GetStatusModifyMaxSpUp() {
 	//----------------------------------------------------------------
 	// 「猛炎と白魔の指輪」の、効果
 	//----------------------------------------------------------------
-	itemCountAccessary1 = EquipNumSearch(ITEM_ID_MOENTO_HAKUMANO_YUBIWA, EQUIP_REGION_ID_ACCESSARY_1);
-	if (itemCountAccessary1 > 0) {
-		val += 15 * itemCountAccessary1;
+	itemCountAccessory1 = EquipNumSearch(ITEM_ID_MOENTO_HAKUMANO_YUBIWA, EQUIP_REGION_ID_ACCESSORY_1);
+	if (itemCountAccessory1 > 0) {
+		val += 15 * itemCountAccessory1;
 	}
 
 	//----------------------------------------------------------------
@@ -8132,7 +8132,7 @@ export function GetStatusModifyMaxSpUp() {
 	//----------------------------------------------------------------
 	// 「リングオブジュピター」の、素ＶＩＴによる効果
 	//----------------------------------------------------------------
-	if ((itemCount = EquipNumSearch(ITEM_ID_RING_OF_JUPITER, EQUIP_REGION_ID_ACCESSARY_2)) > 0) {
+	if ((itemCount = EquipNumSearch(ITEM_ID_RING_OF_JUPITER, EQUIP_REGION_ID_ACCESSORY_2)) > 0) {
 		val += 2 * Math.floor(SU_VIT / 10) * itemCount;
 	}
 
@@ -8739,12 +8739,12 @@ export function GetStatusModifyDefDivPlus() {
 	var itemCountRight = 0, itemCountLeft = 0;
 	var itemCountHeadTop = 0, itemCountHeadMid = 0, itemCountHeadUnder = 0;
 	var itemCountShield = 0, itemCountBody = 0, itemCountShoulder = 0, itemCountShoes = 0;
-	var itemCountAccessary1 = 0, itemCountAccessary2 = 0;
+	var itemCountAccessory1 = 0, itemCountAccessory2 = 0;
 	var cardCount = 0;
 	var cardCountRight = 0, cardCountLeft = 0;
 	var cardCountHeadTop = 0, cardCountHeadMid = 0, cardCountHeadUnder = 0;
 	var cardCountShield = 0, cardCountBody = 0, cardCountShoulder = 0, cardCountShoes = 0;
-	var cardCountAccessary1 = 0, cardCountAccessary2 = 0;
+	var cardCountAccessory1 = 0, cardCountAccessory2 = 0;
 	var sklLv = 0;
 	var bufLv = 0;
 	var bufferJobLv = 0, bufferSkillLv = 0;
@@ -8995,7 +8995,7 @@ export function GetStatusModifyDefDivPlus() {
 	//----------------------------------------------------------------
 	// 「リングオブジュピター」の、素ＶＩＴによる効果
 	//----------------------------------------------------------------
-	if ((itemCount = EquipNumSearch(ITEM_ID_RING_OF_JUPITER, EQUIP_REGION_ID_ACCESSARY_2)) > 0) {
+	if ((itemCount = EquipNumSearch(ITEM_ID_RING_OF_JUPITER, EQUIP_REGION_ID_ACCESSORY_2)) > 0) {
 		if (SU_VIT >= 125) {
 			val += 300 * itemCount;
 		}
@@ -9477,12 +9477,12 @@ export function GetStatusModifyMdefDivPlus(bIgnoreBuff) {
 	var itemCountRight = 0, itemCountLeft = 0;
 	var itemCountHeadTop = 0, itemCountHeadMid = 0, itemCountHeadUnder = 0;
 	var itemCountShield = 0, itemCountBody = 0, itemCountShoulder = 0, itemCountShoes = 0;
-	var itemCountAccessary1 = 0, itemCountAccessary2 = 0;
+	var itemCountAccessory1 = 0, itemCountAccessory2 = 0;
 	var cardCount = 0;
 	var cardCountRight = 0, cardCountLeft = 0;
 	var cardCountHeadTop = 0, cardCountHeadMid = 0, cardCountHeadUnder = 0;
 	var cardCountShield = 0, cardCountBody = 0, cardCountShoulder = 0, cardCountShoes = 0;
-	var cardCountAccessary1 = 0, cardCountAccessary2 = 0;
+	var cardCountAccessory1 = 0, cardCountAccessory2 = 0;
 	var sklLv = 0;
 	var bufLv = 0;
 	var bufferJobLv = 0, bufferSkillLv = 0;
@@ -9741,7 +9741,7 @@ export function GetStatusModifyMdefDivPlus(bIgnoreBuff) {
 	//----------------------------------------------------------------
 	// 「リングオブジュピター」の、素ＶＩＴによる効果
 	//----------------------------------------------------------------
-	if ((itemCount = EquipNumSearch(ITEM_ID_RING_OF_JUPITER, EQUIP_REGION_ID_ACCESSARY_2)) > 0) {
+	if ((itemCount = EquipNumSearch(ITEM_ID_RING_OF_JUPITER, EQUIP_REGION_ID_ACCESSORY_2)) > 0) {
 		if (SU_VIT >= 125) {
 			val += 50 * itemCount;
 		}
@@ -11832,12 +11832,12 @@ export function GetStatusModifyTEMPPlus() {
 	var itemCountRight = 0, itemCountLeft = 0;
 	var itemCountHeadTop = 0, itemCountHeadMid = 0, itemCountHeadUnder = 0;
 	var itemCountShield = 0, itemCountBody = 0, itemCountShoulder = 0, itemCountShoes = 0;
-	var itemCountAccessary1 = 0, itemCountAccessary2 = 0;
+	var itemCountAccessory1 = 0, itemCountAccessory2 = 0;
 	var cardCount = 0;
 	var cardCountRight = 0, cardCountLeft = 0;
 	var cardCountHeadTop = 0, cardCountHeadMid = 0, cardCountHeadUnder = 0;
 	var cardCountShield = 0, cardCountBody = 0, cardCountShoulder = 0, cardCountShoes = 0;
-	var cardCountAccessary1 = 0, cardCountAccessary2 = 0;
+	var cardCountAccessory1 = 0, cardCountAccessory2 = 0;
 	var sklLv = 0;
 	var bufLv = 0;
 	var bufferJobLv = 0, bufferSkillLv = 0;

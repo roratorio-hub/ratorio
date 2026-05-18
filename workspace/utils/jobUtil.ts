@@ -818,7 +818,7 @@ async function parseJobDat(src: string): Promise<{ id: number; name: string; isR
         SKILL_ID_CHAOS_PANIC: 604,
         SKILL_ID_MAELSTORM: 605,
         SKILL_ID_FATAL_MENUS: 606,
-        SKILL_ID_STRIP_ACCESSARY: 607,
+        SKILL_ID_STRIP_ACCESSORY: 607,
         SKILL_ID_TRIANGLE_SHOT: 608,
         SKILL_ID_SORYUKYAKU: 609,
         SKILL_ID_TENRACHIMO: 610,

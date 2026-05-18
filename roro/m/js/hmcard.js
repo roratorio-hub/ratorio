@@ -329,8 +329,8 @@ export function ClearCardSlotAll() {
 	ClearCardSlot(EQUIP_REGION_ID_BODY);
 	ClearCardSlot(EQUIP_REGION_ID_SHOULDER);
 	ClearCardSlot(EQUIP_REGION_ID_SHOES);
-	ClearCardSlot(EQUIP_REGION_ID_ACCESSARY_1);
-	ClearCardSlot(EQUIP_REGION_ID_ACCESSARY_2);
+	ClearCardSlot(EQUIP_REGION_ID_ACCESSORY_1);
+	ClearCardSlot(EQUIP_REGION_ID_ACCESSORY_2);
 }
 
 /************************************************************************************************
@@ -420,20 +420,20 @@ export function ClearCardSlot(eqpRgnId) {
 		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_SHOES_3);
 		break;
 
-	case EQUIP_REGION_ID_ACCESSARY_1:
-		objidPrifix = "OBJID_ACCESSARY_1";
-		idxArrayToClear.push(CARD_REGION_ID_ACCESSARY_1);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_ACCESSARY_1_1);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_ACCESSARY_1_2);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_ACCESSARY_1_3);
+	case EQUIP_REGION_ID_ACCESSORY_1:
+		objidPrifix = "OBJID_ACCESSORY_1";
+		idxArrayToClear.push(CARD_REGION_ID_ACCESSORY_1);
+		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_ACCESSORY_1_1);
+		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_ACCESSORY_1_2);
+		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_ACCESSORY_1_3);
 		break;
 
-	case EQUIP_REGION_ID_ACCESSARY_2:
-		objidPrifix = "OBJID_ACCESSARY_2";
-		idxArrayToClear.push(CARD_REGION_ID_ACCESSARY_2);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_ACCESSARY_2_1);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_ACCESSARY_2_2);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_ACCESSARY_2_3);
+	case EQUIP_REGION_ID_ACCESSORY_2:
+		objidPrifix = "OBJID_ACCESSORY_2";
+		idxArrayToClear.push(CARD_REGION_ID_ACCESSORY_2);
+		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_ACCESSORY_2_1);
+		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_ACCESSORY_2_2);
+		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_ACCESSORY_2_3);
 		break;
 
 	default:
@@ -528,12 +528,12 @@ export function RebuildCardSelect(eqpRgnId, itemId) {
 		objidPrifix = "OBJID_SHOES";
 		break;
 
-	case EQUIP_REGION_ID_ACCESSARY_1:
-		objidPrifix = "OBJID_ACCESSARY_1";
+	case EQUIP_REGION_ID_ACCESSORY_1:
+		objidPrifix = "OBJID_ACCESSORY_1";
 		break;
 
-	case EQUIP_REGION_ID_ACCESSARY_2:
-		objidPrifix = "OBJID_ACCESSARY_2";
+	case EQUIP_REGION_ID_ACCESSORY_2:
+		objidPrifix = "OBJID_ACCESSORY_2";
 		break;
 	}
 	objSelect = HtmlGetElementById(objidPrifix);
@@ -1029,18 +1029,18 @@ function BuildUpCardSlotsCard(eqpRgnId, itemId, enchantTypeId, objArySlots) {
 				cardIdSelected = n_A_card[CARD_REGION_ID_SHOES];
 				break;
 
-			case EQUIP_REGION_ID_ACCESSARY_1:
+			case EQUIP_REGION_ID_ACCESSORY_1:
 				// TODO: コードの役割分担を考えると本当は card.dat.js 末尾で処理したほうが良い
-				cardSortObjTarget = CardSortOBJ[CARD_KIND_ACCESSARY].concat(CardSortOBJ[CARD_KIND_ACCESSARY_ON1]);
+				cardSortObjTarget = CardSortOBJ[CARD_KIND_ACCESSORY].concat(CardSortOBJ[CARD_KIND_ACCESSORY_ON1]);
 				cardSortObjTarget = Array.from(new Set(cardSortObjTarget));
-				cardIdSelected = n_A_card[CARD_REGION_ID_ACCESSARY_1];
+				cardIdSelected = n_A_card[CARD_REGION_ID_ACCESSORY_1];
 				break;
 
-			case EQUIP_REGION_ID_ACCESSARY_2:
+			case EQUIP_REGION_ID_ACCESSORY_2:
 				// TODO: コードの役割分担を考えると本当は card.dat.js 末尾で処理したほうが良い
-				cardSortObjTarget = CardSortOBJ[CARD_KIND_ACCESSARY].concat(CardSortOBJ[CARD_KIND_ACCESSARY_ON2]);
+				cardSortObjTarget = CardSortOBJ[CARD_KIND_ACCESSORY].concat(CardSortOBJ[CARD_KIND_ACCESSORY_ON2]);
 				cardSortObjTarget = Array.from(new Set(cardSortObjTarget));
-				cardIdSelected = n_A_card[CARD_REGION_ID_ACCESSARY_2];
+				cardIdSelected = n_A_card[CARD_REGION_ID_ACCESSORY_2];
 				break;
 		}
 
@@ -1322,18 +1322,18 @@ function BuildUpCardSlotsMIG(eqpRgnId, itemId, enchInfoArray, objArySlots) {
 			cardIdSelected = n_A_card[CARD_REGION_ID_SHOES];
 			break;
 
-		case EQUIP_REGION_ID_ACCESSARY_1:
+		case EQUIP_REGION_ID_ACCESSORY_1:
 			// TODO: コードの役割分担を考えると本当は card.dat.js 末尾で処理したほうが良い
-			cardSortObjTarget = CardSortOBJ[CARD_KIND_ACCESSARY].concat(CardSortOBJ[CARD_KIND_ACCESSARY_ON1]);
+			cardSortObjTarget = CardSortOBJ[CARD_KIND_ACCESSORY].concat(CardSortOBJ[CARD_KIND_ACCESSORY_ON1]);
 			cardSortObjTarget = Array.from(new Set(cardSortObjTarget));
-			cardIdSelected = n_A_card[CARD_REGION_ID_ACCESSARY_1];
+			cardIdSelected = n_A_card[CARD_REGION_ID_ACCESSORY_1];
 			break;
 
-		case EQUIP_REGION_ID_ACCESSARY_2:
+		case EQUIP_REGION_ID_ACCESSORY_2:
 			// TODO: コードの役割分担を考えると本当は card.dat.js 末尾で処理したほうが良い
-			cardSortObjTarget = CardSortOBJ[CARD_KIND_ACCESSARY].concat(CardSortOBJ[CARD_KIND_ACCESSARY_ON2]);
+			cardSortObjTarget = CardSortOBJ[CARD_KIND_ACCESSORY].concat(CardSortOBJ[CARD_KIND_ACCESSORY_ON2]);
 			cardSortObjTarget = Array.from(new Set(cardSortObjTarget));
-			cardIdSelected = n_A_card[CARD_REGION_ID_ACCESSARY_2];
+			cardIdSelected = n_A_card[CARD_REGION_ID_ACCESSORY_2];
 			break;
 
 		}
@@ -1369,8 +1369,8 @@ export function SetCardSlotEnabilityAll() {
 	SetCardSlotEnability(EQUIP_REGION_ID_BODY);
 	SetCardSlotEnability(EQUIP_REGION_ID_SHOULDER);
 	SetCardSlotEnability(EQUIP_REGION_ID_SHOES);
-	SetCardSlotEnability(EQUIP_REGION_ID_ACCESSARY_1);
-	SetCardSlotEnability(EQUIP_REGION_ID_ACCESSARY_2);
+	SetCardSlotEnability(EQUIP_REGION_ID_ACCESSORY_1);
+	SetCardSlotEnability(EQUIP_REGION_ID_ACCESSORY_2);
 }
 
 /**
@@ -1413,11 +1413,11 @@ export function SetCardSlotEnability(eqpRgnId) {
 		case EQUIP_REGION_ID_SHOES:
 			strObjIdPrifix = "OBJID_SHOES";
 			break;
-		case EQUIP_REGION_ID_ACCESSARY_1:
-			strObjIdPrifix = "OBJID_ACCESSARY_1";
+		case EQUIP_REGION_ID_ACCESSORY_1:
+			strObjIdPrifix = "OBJID_ACCESSORY_1";
 			break;
-		case EQUIP_REGION_ID_ACCESSARY_2:
-			strObjIdPrifix = "OBJID_ACCESSARY_2";
+		case EQUIP_REGION_ID_ACCESSORY_2:
+			strObjIdPrifix = "OBJID_ACCESSORY_2";
 			break;
 		default:
 			return;

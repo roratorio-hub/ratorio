@@ -477,19 +477,19 @@ export function OnClickQuickControlSetItemPackSubForItem(itemId, itemRefine) {
 		eqpRegion = EQUIP_REGION_ID_SHOES;
 		break;
 
-	case ITEM_KIND_ACCESSARY:
-		targetObjIdEquip = "OBJID_ACCESSARY_1";
-		eqpRegion = EQUIP_REGION_ID_ACCESSARY_1;
+	case ITEM_KIND_ACCESSORY:
+		targetObjIdEquip = "OBJID_ACCESSORY_1";
+		eqpRegion = EQUIP_REGION_ID_ACCESSORY_1;
 		break;
 
-	case ITEM_KIND_ACCESSARY_ON1:
-		targetObjIdEquip = "OBJID_ACCESSARY_1";
-		eqpRegion = EQUIP_REGION_ID_ACCESSARY_1;
+	case ITEM_KIND_ACCESSORY_ON1:
+		targetObjIdEquip = "OBJID_ACCESSORY_1";
+		eqpRegion = EQUIP_REGION_ID_ACCESSORY_1;
 		break;
 
-	case ITEM_KIND_ACCESSARY_ON2:
-		targetObjIdEquip = "OBJID_ACCESSARY_2";
-		eqpRegion = EQUIP_REGION_ID_ACCESSARY_2;
+	case ITEM_KIND_ACCESSORY_ON2:
+		targetObjIdEquip = "OBJID_ACCESSORY_2";
+		eqpRegion = EQUIP_REGION_ID_ACCESSORY_2;
 		break;
 
 	}
@@ -581,8 +581,8 @@ export function OnClickQuickControlSetItemPackSubForCard(cardId) {
 		targetObjIdCard = "OBJID_SHOES_CARD_1";
 		break;
 
-	case CARD_KIND_ACCESSARY:
-		targetObjIdCard = "OBJID_ACCESSARY_1_CARD_1";
+	case CARD_KIND_ACCESSORY:
+		targetObjIdCard = "OBJID_ACCESSORY_1_CARD_1";
 		break;
 	}
 	objSelect = document.getElementById(targetObjIdCard);
@@ -648,8 +648,8 @@ export function OnClickQuickControlSetItemPackSubForClearEquipAll() {
 	OnClickQuickControlSetItemPackSubForClearEquipAllSub("OBJID_SHOULDER", EQUIP_REGION_ID_SHOULDER);
 	OnClickQuickControlSetItemPackSubForClearEquipAllSub("OBJID_SHOES", EQUIP_REGION_ID_SHOES);
 
-	OnClickQuickControlSetItemPackSubForClearEquipAllSub("OBJID_ACCESSARY_1", EQUIP_REGION_ID_ACCESSARY_1);
-	OnClickQuickControlSetItemPackSubForClearEquipAllSub("OBJID_ACCESSARY_2", EQUIP_REGION_ID_ACCESSARY_2);
+	OnClickQuickControlSetItemPackSubForClearEquipAllSub("OBJID_ACCESSORY_1", EQUIP_REGION_ID_ACCESSORY_1);
+	OnClickQuickControlSetItemPackSubForClearEquipAllSub("OBJID_ACCESSORY_2", EQUIP_REGION_ID_ACCESSORY_2);
 }
 
 export function OnClickQuickControlSetItemPackSubForClearEquipAllSub(objId, eqprgn) {
@@ -687,7 +687,7 @@ export function OnClickQuickControlSetItemPackSubForClearCardAll() {
 		"OBJID_ARMS_LEFT", "OBJID_ARMS_RIGHT",
 		"OBJID_HEAD_TOP", "OBJID_HEAD_MID", "OBJID_HEAD_UNDER",
 		"OBJID_BODY", "OBJID_SHIELD", "OBJID_SHOULDER", "OBJID_SHOES",
-		"OBJID_ACCESSARY_1", "OBJID_ACCESSARY_2",
+		"OBJID_ACCESSORY_1", "OBJID_ACCESSORY_2",
 	];
 
 	var idx = 0;

@@ -92,9 +92,9 @@ CGlobalConstManager.DefineEnum(
 		"ITEM_KIND_SHIELD",
 		"ITEM_KIND_SHOULDER",
 		"ITEM_KIND_FOOT",
-		"ITEM_KIND_ACCESSARY",
-		"ITEM_KIND_ACCESSARY_ON1",
-		"ITEM_KIND_ACCESSARY_ON2",
+		"ITEM_KIND_ACCESSORY",
+		"ITEM_KIND_ACCESSORY_ON1",
+		"ITEM_KIND_ACCESSORY_ON2",
 	],
 	60,
 	1
@@ -117,9 +117,9 @@ CGlobalConstManager.DefineEnum(
 		"ITEM_KIND_SHADOW_SHIELD",			
 		"ITEM_KIND_SHADOW_SHOULDER",
 		"ITEM_KIND_SHADOW_FOOT",			// 80 シャドウシューズ
-		"ITEM_KIND_SHADOW_ACCESSARY",
-		"ITEM_KIND_SHADOW_ACCESSARY_ON1",	// 82 シャドウアクセサリー１
-		"ITEM_KIND_SHADOW_ACCESSARY_ON2",	// 83 シャドウアクセサリー２
+		"ITEM_KIND_SHADOW_ACCESSORY",
+		"ITEM_KIND_SHADOW_ACCESSORY_ON1",	// 82 シャドウアクセサリー１
+		"ITEM_KIND_SHADOW_ACCESSORY_ON2",	// 83 シャドウアクセサリー２
 	],
 	70,
 	1
@@ -562,7 +562,7 @@ CGlobalConstManager.DefineEnum(
 		"ITEM_SP_APPEND_STATE_BREAK_SHIELD",
 		"ITEM_SP_APPEND_STATE_BREAK_SHOULDER",
 		"ITEM_SP_APPEND_STATE_BREAK_SHOES",
-		"ITEM_SP_APPEND_STATE_BREAK_ACCESSARY",
+		"ITEM_SP_APPEND_STATE_BREAK_ACCESSORY",
 		"ITEM_SP_PHYSICAL_RESIST_SIZE_SMALL",
 		"ITEM_SP_PHYSICAL_RESIST_SIZE_MEDIUM",
 		"ITEM_SP_PHYSICAL_RESIST_SIZE_LARGE",
@@ -584,7 +584,7 @@ CGlobalConstManager.DefineEnum(
 		"ITEM_SP_RESIST_STATE_BREAK_SHIELD",	// 163 
 		"ITEM_SP_RESIST_STATE_BREAK_SHOULDER",	// 164 
 		"ITEM_SP_RESIST_STATE_BREAK_SHOES",		// 165 
-		"ITEM_SP_RESIST_STATE_BREAK_ACCESSARY",	// 166 
+		"ITEM_SP_RESIST_STATE_BREAK_ACCESSORY",	// 166 
 		"ITEM_SP_DAMAGE_UP_EXCLUDING_CRITICAL",	// 167 命中物理攻撃で与えるダメージ+◯%
 		"ITEM_SP_RESERVED_168",				// 未使用（168）
 		"ITEM_SP_RESERVED_169",				// 未使用（169）
@@ -1208,7 +1208,7 @@ CGlobalConstManager.DefinePseudoEnum(
 		"ITEM_SP_EQUIPMENT_LOCATION_BODY",		//  1 * 10^18
 		"ITEM_SP_EQUIPMENT_LOCATION_SHOULDER",	//  2 * 10^18
 		"ITEM_SP_EQUIPMENT_LOCATION_SHOES",		//  3 * 10^18
-		"ITEM_SP_EQUIPMENT_LOCATION_ACCESSARY",	//  4 * 10^18
+		"ITEM_SP_EQUIPMENT_LOCATION_ACCESSORY",	//  4 * 10^18
 		"ITEM_SP_EQUIPMENT_LOCATION_HEAD_MID",	//  5 * 10^18
 	],
 	100000000000000000n,
@@ -1280,11 +1280,11 @@ export function GetItemKindNameText(kindId) {
 			return "肩にかける物";
 		case ITEM_KIND_FOOT:
 			return "靴";
-		case ITEM_KIND_ACCESSARY:
+		case ITEM_KIND_ACCESSORY:
 			return "アクセサリ";
-		case ITEM_KIND_ACCESSARY_ON1:
+		case ITEM_KIND_ACCESSORY_ON1:
 			return "アクセサリ(1)";
-		case ITEM_KIND_ACCESSARY_ON2:
+		case ITEM_KIND_ACCESSORY_ON2:
 			return "アクセサリ(2)";
 		case ITEM_KIND_SHADOW_ARMS_RIGHT:
 			return "シャドウウェポン";
@@ -1294,9 +1294,9 @@ export function GetItemKindNameText(kindId) {
 			return "シャドウアーマー";
 		case ITEM_KIND_SHADOW_FOOT:
 			return "シャドウシューズ";
-		case ITEM_KIND_SHADOW_ACCESSARY_ON1:
+		case ITEM_KIND_SHADOW_ACCESSORY_ON1:
 			return "シャドウアクセサリ(1)";
-		case ITEM_KIND_SHADOW_ACCESSARY_ON2:
+		case ITEM_KIND_SHADOW_ACCESSORY_ON2:
 			return "シャドウアクセサリ(2)";
 	}
 	return "不明";
@@ -1883,7 +1883,7 @@ export function GetItemExplainText(spId, spValue) {
             case toSafeBigInt(ITEM_SP_EQUIPMENT_LOCATION_SHOES) / baseFlag:  
                 condTextEquipmentLocation = "靴";  
                 break;
-            case toSafeBigInt(ITEM_SP_EQUIPMENT_LOCATION_ACCESSARY) / baseFlag:  
+            case toSafeBigInt(ITEM_SP_EQUIPMENT_LOCATION_ACCESSORY) / baseFlag:  
                 condTextEquipmentLocation = "アクセサリー";  
                 break;  
             case toSafeBigInt(ITEM_SP_EQUIPMENT_LOCATION_HEAD_MID) / baseFlag:  
@@ -2479,7 +2479,7 @@ export function GetItemExplainText(spId, spValue) {
 		case ITEM_SP_APPEND_STATE_BREAK_SHIELD:
 		case ITEM_SP_APPEND_STATE_BREAK_SHOULDER:
 		case ITEM_SP_APPEND_STATE_BREAK_SHOES:
-		case ITEM_SP_APPEND_STATE_BREAK_ACCESSARY:
+		case ITEM_SP_APPEND_STATE_BREAK_ACCESSORY:
 			textInfoArray.push(["", "物理攻撃時、" + spValue + "%の確率で敵を" + GetStateText(spId - ITEM_SP_APPEND_STATE_POISON) + "にする"]);
 			break;
 
@@ -2500,7 +2500,7 @@ export function GetItemExplainText(spId, spValue) {
 		case ITEM_SP_RESIST_STATE_BREAK_SHIELD:
 		case ITEM_SP_RESIST_STATE_BREAK_SHOULDER:
 		case ITEM_SP_RESIST_STATE_BREAK_SHOES:
-		case ITEM_SP_RESIST_STATE_BREAK_ACCESSARY:
+		case ITEM_SP_RESIST_STATE_BREAK_ACCESSORY:
 			textInfoArray.push(["", "状態異常 " + GetStateText(spId - ITEM_SP_RESIST_STATE_POISON) + " に対する耐性 + " + spValue + "%"]);
 			break;
 		
