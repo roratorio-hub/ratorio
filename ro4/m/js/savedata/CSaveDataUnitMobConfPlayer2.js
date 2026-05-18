@@ -1,7 +1,9 @@
+import { CSaveDataUnitBase } from './CSaveDataUnitBase.js';
+import { CSaveDataConst } from './CSaveDataConst.js';
 /**
  * 「対プレイヤー設定」情報クラス
  */
-class CSaveDataUnitMobConfPlayer2 extends CSaveDataUnitBase {
+export class CSaveDataUnitMobConfPlayer2 extends CSaveDataUnitBase {
 
     /**
      * タイプ値.

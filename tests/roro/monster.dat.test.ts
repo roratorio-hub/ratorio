@@ -1,0 +1,25 @@
+import { describe, it, expect } from 'vitest';
+import {
+    MONSTER_ID_ARCANGELING,
+    MONSTER_ID_ARCHER_SKELETON,
+    MONSTER_ID_MARYOKUBOSOSHITA_ZYOKYU_RGAN_QUEST,
+    MonsterObjNew,
+} from '@roro/monster.dat.js';
+
+describe('monster.dat.js', () => {
+    describe('エクスポート確認', () => {
+        it('MONSTER_ID_ARCANGELING が 0',                              () => expect(MONSTER_ID_ARCANGELING).toBe(0));
+        it('MONSTER_ID_ARCHER_SKELETON が 1',                         () => expect(MONSTER_ID_ARCHER_SKELETON).toBe(1));
+        it('MONSTER_ID_MARYOKUBOSOSHITA_ZYOKYU_RGAN_QUEST が 1771',   () => expect(MONSTER_ID_MARYOKUBOSOSHITA_ZYOKYU_RGAN_QUEST).toBe(1771));
+        it('MonsterObjNew が配列',                                     () => expect(Array.isArray(MonsterObjNew)).toBe(true));
+        it('MonsterObjNew が 2404 件',                                 () => expect(MonsterObjNew).toHaveLength(2404));
+        it('MonsterObjNew[0][0] が 0',                                () => expect(MonsterObjNew[0][0]).toBe(0));
+        it('MonsterObjNew[1][0] が 1',                                () => expect(MonsterObjNew[1][0]).toBe(1));
+    });
+
+    describe('window互換確認', () => {
+        it('window.MONSTER_ID_ARCANGELING',                              () => expect((window as any).MONSTER_ID_ARCANGELING).toBe(MONSTER_ID_ARCANGELING));
+        it('window.MONSTER_ID_MARYOKUBOSOSHITA_ZYOKYU_RGAN_QUEST',      () => expect((window as any).MONSTER_ID_MARYOKUBOSOSHITA_ZYOKYU_RGAN_QUEST).toBe(MONSTER_ID_MARYOKUBOSOSHITA_ZYOKYU_RGAN_QUEST));
+        it('window.MonsterObjNew',                                       () => expect((window as any).MonsterObjNew).toBe(MonsterObjNew));
+    });
+});

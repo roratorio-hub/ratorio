@@ -2,7 +2,7 @@
 /**
  * 戦闘計算情報クラス.
  */
-function CBattleCalcInfo () {
+export function CBattleCalcInfo () {
 
 	// スキルID
 	this.skillId = 0;
@@ -117,7 +117,7 @@ function CBattleCalcInfo () {
 	};
 }
 
-
-
-
+if (typeof window !== 'undefined') {
+    window.CBattleCalcInfo = CBattleCalcInfo;
+}
 

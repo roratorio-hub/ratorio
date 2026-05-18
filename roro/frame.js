@@ -1,12 +1,12 @@
 let last_updated = ""; // last_updatedを初期化
 
 // 背景色切替
-g_BGColorSwitch = false;
+window.g_BGColorSwitch = false;
 function SwitchBGColor() {
 	var index  = 0;
 	var objBodies = null;
 	var objBody = null;
-	g_BGColorSwitch = !g_BGColorSwitch;
+	window.g_BGColorSwitch = !window.g_BGColorSwitch;
 	objBodies = document.getElementsByTagName("body");
 	for (index = 0; index < objBodies.length; index++) {
 		objBody = objBodies[index];
@@ -128,3 +128,4 @@ fetch('../date.json')
       }
     })
   });
+if (typeof window !== 'undefined') { Object.assign(window, { SwitchBGColor }); }

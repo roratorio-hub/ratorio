@@ -1,8 +1,10 @@
+import { CSaveDataUnitBase } from './CSaveDataUnitBase.js';
+import { CSaveDataConst } from './CSaveDataConst.js';
 /**
  * 「演奏/踊り系スキル」情報クラス
  * TODO: 単純なBUFFレベルではなく、もっと複雑なデータ構造をしているが未対応
  */
-class CSaveDataUnitSkillBuffMusic extends CSaveDataUnitBase {
+export class CSaveDataUnitSkillBuffMusic extends CSaveDataUnitBase {
 
     /**
      * タイプ値.

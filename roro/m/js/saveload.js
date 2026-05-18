@@ -43,15 +43,16 @@
 // CURRENT_VERSION = 51;	// ウルフオーブエンチャント定義対応
 // CURRENT_VERSION = 52;	// Lv240解放
 // CURRENT_VERSION = 53;	// 特性ステータスセーブ対応
-CURRENT_VERSION = 54;	// 対人データの拡張対応
+window.CURRENT_VERSION = 54;	// 対人データの拡張対応
 // 旧データ構造は、最大でバージョン 99 まで
+
 
 /**
  * セーブデータのバージョンを取得する.
  * @param saveDataStr セーブデータ文字列（未加工）
  * @return バージョン
  */
-function GetSaveDataVersion(saveDataStr) {
+export function GetSaveDataVersion(saveDataStr) {
 
 	var versionStr = 0;
 
@@ -65,10 +66,10 @@ function GetSaveDataVersion(saveDataStr) {
 }
 
 // 対プレイヤー設定用バイアス
-SAVE_DATA_BIAS_CONF_PLAYER_500 = 500;
+window.SAVE_DATA_BIAS_CONF_PLAYER_500 = 500;
 
 // 対プレイヤー設定バイアス調整対象インデックス配列
-BIAS_TARGET_INDEX_ARRAY_CONF_PLAYER_500 = [
+window.BIAS_TARGET_INDEX_ARRAY_CONF_PLAYER_500 = [
 	MOB_CONF_PLAYER_ID_NINGEN_KEI_TAISEI,
 	MOB_CONF_PLAYER_ID_CHUGATA_TAISEI,
 	MOB_CONF_PLAYER_ID_ENKYORI_BUTSURI_TAISEI,
@@ -96,13 +97,12 @@ BIAS_TARGET_INDEX_ARRAY_CONF_PLAYER_500 = [
 	MOB_CONF_PLAYER_ID_KOGATA_TAISEI,
 ];
 
-function SaveButton(){
+export function SaveButton(){
 
 	var expireDateString = "";
 
-	with(document.calcForm){
 
-		var SaveNum = eval(A_SaveSlot.value);
+		var SaveNum = eval(document.calcForm.A_SaveSlot.value);
 
 		SaveDataAll[SaveNum] = "" + SaveSystem();
 
@@ -111,7 +111,7 @@ function SaveButton(){
 			var w2 = document.calcForm.URL_TEXT.value;
 			if(w == "delete" && w2 == "delete") SaveDataAll[SaveNum] = "ZZZZ";
 
-//			if(w == "delete all" && w2 == "delete all" && eval(A_youshi.checked)){
+//			if(w == "delete all" && w2 == "delete all" && eval(document.calcForm.A_youshi.checked)){
 
 			if(w == "delete all" && w2 == "delete all"){
 				localStorage.ROratorioDOM_SaveName = "";
@@ -164,15 +164,14 @@ function SaveButton(){
 		}
 
 		LoadCookie3();
-		A_SaveSlot.value = SaveNum;
+		document.calcForm.A_SaveSlot.value = SaveNum;
 	}
-}
 
 /**
  * Cookie の有効期限を示す文字列を取得する.
  * @param dtBase 有効期限の基準日付
  */
-function GetExpireDateString(dtBase) {
+export function GetExpireDateString(dtBase) {
 
 	if (dtBase === undefined) {
 		dtBase = new Date();
@@ -185,7 +184,7 @@ function GetExpireDateString(dtBase) {
  * Cookie の有効期限を示す文字列を取得する（削除用）.
  * @param dtBase 有効期限の基準日付
  */
-function GetExpireDateStringToDelete(dtBase) {
+export function GetExpireDateStringToDelete(dtBase) {
 
 	if (dtBase === undefined) {
 		dtBase = new Date();
@@ -198,7 +197,7 @@ function GetExpireDateStringToDelete(dtBase) {
  * Cookie の有効期限を示す文字列を取得する（処理本体）.
  * @param dtBase 有効期限の基準日付
  */
-function GetExpireDateStringSub(dtBase, daysToExpire) {
+export function GetExpireDateStringSub(dtBase, daysToExpire) {
 
 	var dtExpire = null;
 
@@ -222,8 +221,9 @@ function URLOUT(){
 /**
  * データＵＲＬを生成する.
  */
-function SaveSystem(funcSaveDataModify = null){
+export function SaveSystem(funcSaveDataModify = null){
 	var idx = 0;
+	var SaveData = null;
 	var idxLoop = 0;
 	var idxOffset = 0;
 	var loopInfoArray = null;
@@ -249,7 +249,6 @@ function SaveSystem(funcSaveDataModify = null){
 	}
 	let jobData = JobMap.getById(jobId);
 
-	with(document.calcForm){
 
 		//----------------------------------------------------------------
 		// [0000 - 0000] バージョン情報
@@ -263,20 +262,20 @@ function SaveSystem(funcSaveDataModify = null){
 
 		// 基本情報
 		SaveData[1] = jobData.getMigIdNum();
-		SaveData[2] = eval(A_BaseLV.value);
-		SaveData[3] = eval(A_JobLV.value);
-		SaveData[4] = eval(A_STR.value);
-		SaveData[5] = eval(A_AGI.value);
-		SaveData[6] = eval(A_VIT.value);
-		SaveData[7] = eval(A_DEX.value);
-		SaveData[8] = eval(A_INT.value);
-		SaveData[9] = eval(A_LUK.value);
+		SaveData[2] = eval(document.calcForm.A_BaseLV.value);
+		SaveData[3] = eval(document.calcForm.A_JobLV.value);
+		SaveData[4] = eval(document.calcForm.A_STR.value);
+		SaveData[5] = eval(document.calcForm.A_AGI.value);
+		SaveData[6] = eval(document.calcForm.A_VIT.value);
+		SaveData[7] = eval(document.calcForm.A_DEX.value);
+		SaveData[8] = eval(document.calcForm.A_INT.value);
+		SaveData[9] = eval(document.calcForm.A_LUK.value);
 
 		// 敵ＩＤ
 		SaveData[10] = CMonsterMapAreaComponentManager.GetMonsterId();
 
 		// 自動レベル調整
-		SaveData[11] = eval(BLVauto.checked);
+		SaveData[11] = eval(document.calcForm.BLVauto.checked);
 
 		// 矢、弾丸
 		if (GetLowerJobSeriesID(n_A_JOB) == JOB_SERIES_ID_THIEF
@@ -286,15 +285,15 @@ function SaveSystem(funcSaveDataModify = null){
 		}
 
 		// 速度ＰＯＴ
-		SaveData[13] = eval(A_SpeedPOT.value);
+		SaveData[13] = eval(document.calcForm.A_SpeedPOT.value);
 
 		//----------------------------------------------------------------
 		// [0014 - 0074] 装備情報
 		//----------------------------------------------------------------
 
 		// 右手武器情報
-		SaveData[14] = eval(A_Weapon_zokusei.value);
-		SaveData[15] = eval(A_Weapon_ATKplus.value);
+		SaveData[14] = eval(document.calcForm.A_Weapon_zokusei.value);
+		SaveData[15] = eval(document.calcForm.A_Weapon_ATKplus.value);
 		SaveData[16] = GetStatefullData("DATA_OBJID_ARMS_RIGHT", 0);
 		SaveData[17] = GetStatefullData("DATA_OBJID_ARMS_RIGHT_CARD_1", 0);
 		SaveData[18] = GetStatefullData("DATA_OBJID_ARMS_RIGHT_CARD_2", 0);
@@ -303,7 +302,7 @@ function SaveSystem(funcSaveDataModify = null){
 
 		// 左手武器情報（二刀流時のみ）
 		if (n_Nitou) {
-			SaveData[21] = eval(A_Weapon2_ATKplus.value);
+			SaveData[21] = eval(document.calcForm.A_Weapon2_ATKplus.value);
 			SaveData[22] = GetStatefullData("DATA_OBJID_ARMS_LEFT", 0);
 			SaveData[23] = GetStatefullData("DATA_OBJID_ARMS_LEFT_CARD_1", 0);
 			SaveData[24] = GetStatefullData("DATA_OBJID_ARMS_LEFT_CARD_2", 0);
@@ -313,7 +312,7 @@ function SaveSystem(funcSaveDataModify = null){
 
 		// 盾情報
 		else{
-			SaveData[21] = eval(A_SHIELD_DEF_PLUS.value);
+			SaveData[21] = eval(document.calcForm.A_SHIELD_DEF_PLUS.value);
 			SaveData[22] = GetStatefullData("DATA_OBJID_SHIELD", 0);
 			SaveData[23] = GetStatefullData("DATA_OBJID_SHIELD_CARD_1", 0);
 			SaveData[24] = GetStatefullData("DATA_OBJID_SHIELD_CARD_2", 0);
@@ -322,7 +321,7 @@ function SaveSystem(funcSaveDataModify = null){
 		}
 
 		// 頭上段情報
-		SaveData[27] = eval(A_HEAD_DEF_PLUS.value);
+		SaveData[27] = eval(document.calcForm.A_HEAD_DEF_PLUS.value);
 		SaveData[28] = GetStatefullData("DATA_OBJID_HEAD_TOP", 0);
 		SaveData[29] = GetStatefullData("DATA_OBJID_HEAD_TOP_CARD_1", 0);
 		SaveData[30] = GetStatefullData("DATA_OBJID_HEAD_TOP_CARD_2", 0);
@@ -346,7 +345,7 @@ function SaveSystem(funcSaveDataModify = null){
 		SaveData[44] = GetStatefullData("DATA_OBJID_HEAD_UNDER_CARD_4", 0);
 
 		// 体防具情報
-		SaveData[45] = eval(A_BODY_DEF_PLUS.value);
+		SaveData[45] = eval(document.calcForm.A_BODY_DEF_PLUS.value);
 		SaveData[46] = GetStatefullData("DATA_OBJID_BODY", 0);
 		SaveData[47] = GetStatefullData("DATA_OBJID_BODY_CARD_1", 0);
 		SaveData[48] = GetStatefullData("DATA_OBJID_BODY_CARD_2", 0);
@@ -354,7 +353,7 @@ function SaveSystem(funcSaveDataModify = null){
 		SaveData[50] = GetStatefullData("DATA_OBJID_BODY_CARD_4", 0);
 
 		// 肩防具情報
-		SaveData[51] = eval(A_SHOULDER_DEF_PLUS.value);
+		SaveData[51] = eval(document.calcForm.A_SHOULDER_DEF_PLUS.value);
 		SaveData[52] = GetStatefullData("DATA_OBJID_SHOULDER", 0);
 		SaveData[53] = GetStatefullData("DATA_OBJID_SHOULDER_CARD_1", 0);
 		SaveData[54] = GetStatefullData("DATA_OBJID_SHOULDER_CARD_2", 0);
@@ -362,7 +361,7 @@ function SaveSystem(funcSaveDataModify = null){
 		SaveData[56] = GetStatefullData("DATA_OBJID_SHOULDER_CARD_4", 0);
 
 		// 靴防具情報
-		SaveData[57] = eval(A_SHOES_DEF_PLUS.value);
+		SaveData[57] = eval(document.calcForm.A_SHOES_DEF_PLUS.value);
 		SaveData[58] = GetStatefullData("DATA_OBJID_SHOES", 0);
 		SaveData[59] = GetStatefullData("DATA_OBJID_SHOES_CARD_1", 0);
 		SaveData[60] = GetStatefullData("DATA_OBJID_SHOES_CARD_2", 0);
@@ -462,7 +461,7 @@ function SaveSystem(funcSaveDataModify = null){
 		//----------------------------------------------------------------
 		// [0606 - 0608] 未使用（旧衣装）
 		//----------------------------------------------------------------
-//		SaveData[608] = eval(A_isyou3.value);
+//		SaveData[608] = eval(document.calcForm.A_isyou3.value);
 
 
 		//----------------------------------------------------------------
@@ -822,7 +821,6 @@ function SaveSystem(funcSaveDataModify = null){
 		}
 
 
-	}
 
 	//----------------------------------------------------------------
 	// 外部関数によるデータ補正
@@ -852,11 +850,13 @@ function SaveSystem(funcSaveDataModify = null){
 	return NumA(SaveData);
 }
 
-function VersionModify(saveDataArray) {
+export function VersionModify(saveDataArray) {
 
 	var idx = 0;
 	var idxOld = 0;
 	var idxNew = 0;
+	var idxTarget = 0;
+	var idxConvert = 0;
 	var regionLength = 0;
 	var val = 0;
 	var valueOld = 0;
@@ -3705,11 +3705,10 @@ function VersionModify(saveDataArray) {
  * 避難所の安定版に存在した「ロード」ボタンから呼び出される関数
  * もう使うことはない
  */
-function LoadButton(){
+export function LoadButton(){
 
-	with(document.calcForm){
 
-		var SaveNum = eval(A_SaveSlot.value);
+		var SaveNum = eval(document.calcForm.A_SaveSlot.value);
 
 		DecodeUrl(SaveDataAll[SaveNum]);
 
@@ -3717,7 +3716,6 @@ function LoadButton(){
 			if(SaveNameAll[SaveNum] != "ZZZZ") document.calcForm.SAVE_NAME.value = SaveNameAll[SaveNum];
 			else document.calcForm.SAVE_NAME.value = "名前入力可能";
 		}
-	}
 }
 
 /**
@@ -3726,7 +3724,7 @@ function LoadButton(){
  * @param {} strUrl 
  * @returns 
  */
-function URLIN(strUrl){
+export function URLIN(strUrl){
 
 	var splittedArray = null;
 
@@ -3750,7 +3748,7 @@ function URLIN(strUrl){
  * @param 展開済みセーブデータ文字列
  * @return データ長が合わせられたセーブデータ文字列
  */
-function AdaptSaveDataStrSize(saveDataStrExtracted) {
+export function AdaptSaveDataStrSize(saveDataStrExtracted) {
 
 	var idx = 0;
 
@@ -3795,7 +3793,7 @@ function AdaptSaveDataStrSize(saveDataStrExtracted) {
  * 旧バージョンのロード処理で使われていた関数
  * もう使われることはない
  */
-function DecodeUrl(loadDataUrl){
+export function DecodeUrl(loadDataUrl){
 
 	var idx = 0;
 	var idxLoop = 0;
@@ -3816,6 +3814,8 @@ function DecodeUrl(loadDataUrl){
 	var saveDataMappingArrayCurrent = null;
 
 	var versionTarget = 0;
+	var eqpRgn = 0;
+	var attackMethodConf = null;
 
 	var SaveData = new Array();
 
@@ -3992,12 +3992,11 @@ function DecodeUrl(loadDataUrl){
 
 
 
-	with(document.calcForm){
 
 		//----------------------------------------------------------------
 		// 職業の読み込み
 		//----------------------------------------------------------------
-		A_JOB.value = SaveData[1];
+		document.calcForm.A_JOB.value = SaveData[1];
 		changeJobSettings(SaveData[1]);
 
 		// レベル補正（旧データ対応？）
@@ -4022,14 +4021,14 @@ function DecodeUrl(loadDataUrl){
 		//----------------------------------------------------------------
 		// 基本情報の読み込み
 		//----------------------------------------------------------------
-		A_BaseLV.value = SaveData[2];
-		A_JobLV.value = SaveData[3];
-		A_STR.value = SaveData[4];
-		A_AGI.value = SaveData[5];
-		A_VIT.value = SaveData[6];
-		A_DEX.value = SaveData[7];
-		A_INT.value = SaveData[8];
-		A_LUK.value = SaveData[9];
+		document.calcForm.A_BaseLV.value = SaveData[2];
+		document.calcForm.A_JobLV.value = SaveData[3];
+		document.calcForm.A_STR.value = SaveData[4];
+		document.calcForm.A_AGI.value = SaveData[5];
+		document.calcForm.A_VIT.value = SaveData[6];
+		document.calcForm.A_DEX.value = SaveData[7];
+		document.calcForm.A_INT.value = SaveData[8];
+		document.calcForm.A_LUK.value = SaveData[9];
 
 
 		//----------------------------------------------------------------
@@ -4048,7 +4047,7 @@ function DecodeUrl(loadDataUrl){
 		if (SaveData[0] == 0) {
 			SaveData[11] = 1;
 		}
-		BLVauto.checked = SaveData[11];
+		document.calcForm.BLVauto.checked = SaveData[11];
 
 
 		//----------------------------------------------------------------
@@ -4075,7 +4074,7 @@ function DecodeUrl(loadDataUrl){
 			&& ItemObjNew[SaveData[22]][ITEM_DATA_INDEX_KIND] != 61
 			&& ItemObjNew[SaveData[22]][ITEM_DATA_INDEX_KIND] != 0) {
 
-			A_Weapon2Type.value = ItemObjNew[SaveData[22]][ITEM_DATA_INDEX_KIND];
+			document.calcForm.A_Weapon2Type.value = ItemObjNew[SaveData[22]][ITEM_DATA_INDEX_KIND];
 			OnChangeArmsTypeLeft(ItemObjNew[SaveData[22]][ITEM_DATA_INDEX_KIND]);
 		}
 
@@ -4083,7 +4082,7 @@ function DecodeUrl(loadDataUrl){
 				&& ItemObjNew[SaveData[22]][ITEM_DATA_INDEX_KIND] != 61
 				&& ItemObjNew[SaveData[22]][ITEM_DATA_INDEX_KIND] != 0) {
 
-			A_Weapon2Type.value = ItemObjNew[SaveData[22]][ITEM_DATA_INDEX_KIND];
+			document.calcForm.A_Weapon2Type.value = ItemObjNew[SaveData[22]][ITEM_DATA_INDEX_KIND];
 			OnChangeArmsTypeLeft(ItemObjNew[SaveData[22]][ITEM_DATA_INDEX_KIND]);
 		}
 
@@ -4097,14 +4096,14 @@ function DecodeUrl(loadDataUrl){
 		//----------------------------------------------------------------
 		// 速度ＰＯＴの読み込み
 		//----------------------------------------------------------------
-		A_SpeedPOT.value = SaveData[13];
+		document.calcForm.A_SpeedPOT.value = SaveData[13];
 
 
 		//----------------------------------------------------------------
 		// 右手武器の読み込み
 		//----------------------------------------------------------------
-		A_Weapon_zokusei.value = SaveData[14];
-		A_Weapon_ATKplus.value = SaveData[15];
+		document.calcForm.A_Weapon_zokusei.value = SaveData[14];
+		document.calcForm.A_Weapon_ATKplus.value = SaveData[15];
 
 		objidPrifix = "OBJID_ARMS_RIGHT";
 		eqpRgn = EQUIP_REGION_ID_ARMS;
@@ -4138,7 +4137,7 @@ function DecodeUrl(loadDataUrl){
 		// 左手武器の読み込み（二刀流時のみ）
 		//----------------------------------------------------------------
 		if (n_Nitou) {
-			A_Weapon2_ATKplus.value = SaveData[21];
+			document.calcForm.A_Weapon2_ATKplus.value = SaveData[21];
 
 			objidPrifix = "OBJID_ARMS_LEFT";
 			eqpRgn = EQUIP_REGION_ID_ARMS_LEFT;
@@ -4173,7 +4172,7 @@ function DecodeUrl(loadDataUrl){
 		// 盾の読み込み
 		//----------------------------------------------------------------
 		else {
-			A_SHIELD_DEF_PLUS.value = SaveData[21];
+			document.calcForm.A_SHIELD_DEF_PLUS.value = SaveData[21];
 
 			objidPrifix = "OBJID_SHIELD";
 			eqpRgn = EQUIP_REGION_ID_SHIELD;
@@ -4207,7 +4206,7 @@ function DecodeUrl(loadDataUrl){
 		//----------------------------------------------------------------
 		// 頭上段の読み込み
 		//----------------------------------------------------------------
-		A_HEAD_DEF_PLUS.value = SaveData[27];
+		document.calcForm.A_HEAD_DEF_PLUS.value = SaveData[27];
 
 		objidPrifix = "OBJID_HEAD_TOP";
 		eqpRgn = EQUIP_REGION_ID_HEAD_TOP;
@@ -4302,7 +4301,7 @@ function DecodeUrl(loadDataUrl){
 		//----------------------------------------------------------------
 		// 体防具の読み込み
 		//----------------------------------------------------------------
-		A_BODY_DEF_PLUS.value = SaveData[45];
+		document.calcForm.A_BODY_DEF_PLUS.value = SaveData[45];
 
 		objidPrifix = "OBJID_BODY";
 		eqpRgn = EQUIP_REGION_ID_BODY;
@@ -4335,7 +4334,7 @@ function DecodeUrl(loadDataUrl){
 		//----------------------------------------------------------------
 		// 肩防具の読み込み
 		//----------------------------------------------------------------
-		A_SHOULDER_DEF_PLUS.value = SaveData[51];
+		document.calcForm.A_SHOULDER_DEF_PLUS.value = SaveData[51];
 
 		objidPrifix = "OBJID_SHOULDER";
 		eqpRgn = EQUIP_REGION_ID_SHOULDER;
@@ -4368,7 +4367,7 @@ function DecodeUrl(loadDataUrl){
 		//----------------------------------------------------------------
 		// 靴防具の読み込み
 		//----------------------------------------------------------------
-		A_SHOES_DEF_PLUS.value = SaveData[57];
+		document.calcForm.A_SHOES_DEF_PLUS.value = SaveData[57];
 
 		objidPrifix = "OBJID_SHOES";
 		eqpRgn = EQUIP_REGION_ID_SHOES;
@@ -4522,7 +4521,7 @@ function DecodeUrl(loadDataUrl){
 		//----------------------------------------------------------------
 		// 未使用（旧養子情報）
 		//----------------------------------------------------------------
-//		A_youshi.checked = SaveData[275];
+//		document.calcForm.A_youshi.checked = SaveData[275];
 
 
 		//----------------------------------------------------------------
@@ -4572,7 +4571,7 @@ function DecodeUrl(loadDataUrl){
 		//----------------------------------------------------------------
 		// 衣装の読み込み
 		//----------------------------------------------------------------
-//		A_isyou3.value = SaveData[608];
+//		document.calcForm.A_isyou3.value = SaveData[608];
 
 
 		//----------------------------------------------------------------
@@ -4902,7 +4901,6 @@ function DecodeUrl(loadDataUrl){
 		// TODO: これいる？
 		StAllCalc();
 
-	}
 
 
 
@@ -4967,7 +4965,7 @@ function DecodeUrl(loadDataUrl){
 
 }
 
-function LoadCookie3(){
+export function LoadCookie3(){
 
 	if (!document.calcForm.A_SaveSlot) {
 		return;
@@ -4998,7 +4996,7 @@ function LoadCookie3(){
 	var ch = 0;
 
 	// 初期化
-	SaveDataAll = new Array();
+	window.SaveDataAll = new Array();
 	for (idx = 0; idx <= 500; idx++) {
 		SaveDataAll[idx] = "ZZZZ";
 	}
@@ -5017,7 +5015,7 @@ function LoadCookie3(){
 		wStr = SaveData[idx].substr(searchIndex + searchKey.length, SaveData[idx].length);
 
 		// 読み込みデータを分割して、セーブデータに変換
-		SaveDataAll = wStr.split("?");
+		window.SaveDataAll = wStr.split("?");
 
 		ch = 1;
 		break;
@@ -5032,7 +5030,7 @@ function LoadCookie3(){
 
 
 			// 読み込みデータを分割して、セーブデータに変換
-			SaveDataAll = wStr.split("?");
+			window.SaveDataAll = wStr.split("?");
 		}
 
 		ch = 2;
@@ -5148,14 +5146,14 @@ if ((ch == 0 && SaveData.length > 1)
 /**
  * 計算機の設定を保存する.
  */
-function SaveCookieConf(){
+export function SaveCookieConf(){
 
 	var expireDateString = "";
 
 
 
 	var kirikae = 0;
-	SaveData = new Array();
+	var SaveData = new Array();
 
 	var wSaveNum = eval(document.calcForm.A_SaveSlot.value);
 
@@ -5231,7 +5229,7 @@ function SaveCookieConf(){
 			// 名前の保存
 			if(localStorage.ROratorioDOM_SaveName){
 				var wStrX = localStorage.ROratorioDOM_SaveName;
-				SaveNameAll = wStrX.split("|");
+				window.SaveNameAll = wStrX.split("|");
 			}
 
 			myInnerHtml("DELHTML",'　　<input type="text" name="SAVE_NAME" value="名前入力可能" size=30>　　<Font size=2><A Href="del2.html">セーブ削除</A></Font>',0);
@@ -5281,16 +5279,16 @@ function SaveCookieConf(){
 /**
  * 計算機の設定を読み込む.
  */
-function LoadCookieConf(){
+export function LoadCookieConf(){
 
-	SaveData = new Array();
+	var SaveData = new Array();
 	SaveData = document.cookie.split(";");
-	wStr = "";
-	wLCF = 0;
+	var wStr = "";
+	var wLCF = 0;
 
 	var confstr = "";
 
-	for(i = 0; SaveData[i]; i++){
+	for(var i = 0; SaveData[i]; i++){
 
 		// クッキー情報の文字列から前方の余白を抜く
 		confstr = SaveData[i];
@@ -5340,7 +5338,7 @@ function LoadCookieConf(){
 			// 名前の読み込み
 			if(localStorage.ROratorioDOM_SaveName){
 				var wStrX = localStorage.ROratorioDOM_SaveName;
-				SaveNameAll = wStrX.split("|");
+				window.SaveNameAll = wStrX.split("|");
 			}
 			myInnerHtml("DELHTML",'　　<input type="text" name="SAVE_NAME" value="名前入力可能" size=30>　　<Font size=2><A Href="del2.html">セーブ削除</A></Font>',0);
 		}
@@ -5351,7 +5349,7 @@ function LoadCookieConf(){
 	}
 }
 
-function SaveDataChange(wstr){
+export function SaveDataChange(wstr){
 	var mozi = new Array();
 	for(var i=0;i<wstr.length;i++) mozi[i] = wstr.charAt(i);
 	for(i=0;i<wstr.length;i++){
@@ -5383,14 +5381,14 @@ function SaveDataChange(wstr){
 	return wx;
 }
 
-function aaa(wnum){
+export function aaa(wnum){
 	var wa = "";
 	for(var i=0;i<wnum;i++) wa += "a";
 	return wa;
 }
-n_NtoS2 =["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","0","1","2","3","4","5","6","7","8","9"];
+window.n_NtoS2 =["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","0","1","2","3","4","5","6","7","8","9"];
 
-function NumA(wstr){
+export function NumA(wstr){
 	for(var i=2;i<wstr.length;i++){
 		if(wstr[i] == "aaa") wstr[i] = 3;
 		if(wstr[i] == "aa") wstr[i] = 2;
@@ -5411,7 +5409,7 @@ function NumA(wstr){
 	return strx;
 }
 
-function NtoS2(n,keta){
+export function NtoS2(n,keta){
 	var strX = "";
 	if(keta == 3){
 		strX += n_NtoS2[Math.floor(n / 3844)];
@@ -5426,12 +5424,12 @@ function NtoS2(n,keta){
 	return strX;
 }
 
-function StoNx(n){
+export function StoNx(n){
 	n += "";
 	for(var i=0;i<=61;i++) if(n == n_NtoS2[i]) return i;
 }
 
-function StoN2(n){
+export function StoN2(n){
 	n += "";
 	var keta = n.length;
 	if(keta == 3){
@@ -5458,196 +5456,34 @@ function StoN2(n){
  * もう使うことは無い
  * @usa
  */
-function OnClickUrlIn() {
-
-// 今後の仕様変更用に、検証処理自体は残しておく
-/*
-if (_MAGIC_CALC_INSPECTION) {
-	MagicDamageCalcPatternSurbey();
-	return;
-}
-*/
+export function OnClickUrlIn() {
 	var strUrl = "";
 	strUrl = HtmlGetObjectValueById("OBJID_URL_IN", "");
 	URLIN(strUrl);
 }
 
-// 魔法特化計算順序検証用
-
-// 特定できたので、コメントアウト中
-/*
-g_expectedDmgResult = undefined;
-g_matchPatternArray = null;
-g_matchResultArray = null;
-g_missMatchPatternArray = null;
-g_missMatchResultArray = null;
-g_missMatchPatternNotExpectedArray = null;
-g_missMatchResultNotExpectedArray = null;
-g_matchPatternArrayAll = null;
-g_matchResultArrayAll = null;
-g_missMatchPatternArrayAll = null;
-g_missMatchResultArrayAll = null;
-g_missMatchPatternNotExpectedArrayAll = null;
-g_missMatchResultNotExpectedArrayAll = null;
-g_notCandidatePatternArrayAll = null;
-g_candidateResultArrayAll = null;
-
-function MagicDamageCalcPatternSurbey() {
-
-	var idx = 0;
-	var idxResult = 0;
-	var idxAll = 0;
-
-	var indexOfPattern = 0;
-	var indexOfResult = 0;
-
-
-
-	g_matchPatternArrayAll = [];
-	g_matchResultArrayAll = [];
-	g_missMatchPatternArrayAll = [];
-	g_missMatchResultArrayAll = [];
-	g_missMatchPatternNotExpectedArrayAll = [];
-	g_missMatchResultNotExpectedArrayAll = [];
-	g_notCandidatePatternArrayAll = [];
-	g_candidateResultArrayAll = [];
-
-
-
-	// ミスマッチテスト
-	for (idx = 0; idx < g_urlListMissMatch.length; idx++) {
-
-		WriteConsoleLog("ミスマッチパターン " + (idx + 1) + " / " + g_urlListMissMatch.length + "　開始");
-
-		if (Array.isArray(g_urlListMissMatch[idx])) {
-
-			// 期待される値の設定
-			g_expectedDmgResult = g_urlListMissMatch[idx][0];
-
-			// URL入力
-			URLIN(g_urlListMissMatch[idx][1]);
-		}
-		else {
-
-			// 期待される値の設定
-			g_expectedDmgResult = undefined;
-
-			// URL入力
-			URLIN(g_urlListMissMatch[idx]);
-		}
-
-		// 初回処理の場合、期待通りにミスマッチだったものを登録
-		if (idx == 0) {
-			for (idxResult = 0; idxResult < g_missMatchResultArray.length; idxResult++) {
-				g_missMatchPatternArrayAll.push(g_missMatchResultArray[idxResult][0]);
-				g_missMatchResultArrayAll.push([g_missMatchResultArray[idxResult][0], [g_missMatchResultArray[idxResult][1]]]);
-			}
-		}
-
-		// ２件目以降は、初回処理で期待通りにミスマッチだったものをベースに、
-		// 今回の処理で、期待されたミスマッチが起きなかったものを除外していく
-		else {
-
-			// 前回までの処理すべてで、期待通りにミスマッチしている配列を走査
-			for (idxResult = 0; idxResult < g_missMatchPatternArrayAll.length; idxResult++) {
-
-				// その配列の要素が、今回の処理でも、期待通りにミスマッチしているかを判定
-				indexOfPattern = g_missMatchPatternArray.indexOf(g_missMatchPatternArrayAll[idxResult]);
-
-				// 期待通りにミスマッチしていなかった場合は、配列の当該要素を除去する
-				if (indexOfPattern < 0) {
-					g_missMatchPatternArrayAll.splice(idxResult, 1);
-					g_missMatchResultArrayAll.splice(idxResult, 1);
-					idxResult--;
-				}
-
-				// 期待通りにミスマッチしていた場合は、データを追記しておく
-				else {
-					g_missMatchResultArrayAll[idxResult][1].push(g_missMatchResultArray[indexOfPattern][1]);
-				}
-			}
-		}
-	}
-
-
-
-	// マッチテスト
-	for (idx = 0; idx < g_urlListMatch.length; idx++) {
-
-		WriteConsoleLog("マッチパターン " + (idx + 1) + " / " + g_urlListMatch.length + "　開始");
-
-		if (Array.isArray(g_urlListMatch[idx])) {
-
-			// 期待される値の設定
-			g_expectedDmgResult = g_urlListMatch[idx][0];
-
-			// URL入力
-			URLIN(g_urlListMatch[idx][1]);
-		}
-		else {
-
-			// 期待される値の設定
-			g_expectedDmgResult = undefined;
-
-			// URL入力
-			URLIN(g_urlListMatch[idx]);
-		}
-
-		// 初回処理の場合、期待通りにマッチだったものを登録
-		if (idx == 0) {
-			for (idxResult = 0; idxResult < g_matchResultArray.length; idxResult++) {
-
-				// 期待通りにミスマッチしている配列に含まれない場合は、登録しない
-				if (g_missMatchPatternArrayAll.indexOf(g_matchResultArray[idxResult][0]) < 0) {
-					continue;
-				}
-
-				g_matchPatternArrayAll.push(g_matchResultArray[idxResult][0]);
-				g_matchResultArrayAll.push([g_matchResultArray[idxResult][0], [g_matchResultArray[idxResult][1]]]);
-			}
-		}
-
-		// ２件目以降は、初回処理で期待通りにマッチだったものをベースに、
-		// 今回の処理で、期待されたマッチが起きなかったものを除外していく
-		else {
-
-			// 前回までの処理すべてで、期待通りにマッチしている配列を走査
-			for (idxResult = 0; idxResult < g_matchPatternArrayAll.length; idxResult++) {
-
-				// その配列の要素が、今回の処理でも、期待通りにマッチしているかを判定
-				indexOfPattern = g_matchPatternArray.indexOf(g_matchPatternArrayAll[idxResult]);
-
-				// 期待通りにマッチしていなかった場合は、配列の当該要素を除去する
-				if (indexOfPattern < 0) {
-					g_matchPatternArrayAll.splice(idxResult, 1);
-					g_matchResultArrayAll.splice(idxResult, 1);
-					idxResult--;
-				}
-
-				// 期待通りにマッチしていた場合は、データを追記しておく
-				else {
-					g_matchResultArrayAll[idxResult][1].push(g_matchResultArray[indexOfPattern][1]);
-				}
-			}
-		}
-	}
-
-
-
-	// 結果を合成
-	g_candidateResultArrayAll = g_missMatchResultArrayAll.concat(g_matchResultArrayAll);
-
-
-
-	// 結果表示
-	if (g_candidateResultArrayAll.length != 0) {
-
-		WriteConsoleLog("----魔法ダメージ　適正化候補（" + DivideDigits3("" + g_candidateResultArrayAll.length) + " パターン）----");
-
-		for (idx = 0; idx < g_candidateResultArrayAll.length; idx++) {
-			WriteConsoleLog("　パターン：" + g_candidateResultArrayAll[idx][0] + "　　値：" + DivideDigits3("" + g_candidateResultArrayAll[idx][1].join("/")));
-		}
-	}
-
+if (typeof window !== 'undefined') {
+	Object.assign(window, {
+		GetSaveDataVersion,
+		SaveButton,
+		GetExpireDateString,
+		GetExpireDateStringToDelete,
+		GetExpireDateStringSub,
+		SaveSystem,
+		VersionModify,
+		LoadButton,
+		URLIN,
+		AdaptSaveDataStrSize,
+		DecodeUrl,
+		LoadCookie3,
+		SaveCookieConf,
+		LoadCookieConf,
+		SaveDataChange,
+		aaa,
+		NumA,
+		NtoS2,
+		StoNx,
+		StoN2,
+		OnClickUrlIn,
+	});
 }
-*/

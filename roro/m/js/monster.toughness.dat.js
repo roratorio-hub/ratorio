@@ -1,4 +1,4 @@
-class MonsterToughness {
+export class MonsterToughness {
     /** ダメージ等倍 */
     static DAMPING_NONE = 0;
     /** ダメージ 1/5 バリカタ */
@@ -321,4 +321,8 @@ class MonsterToughness {
     static getNotification(code) {
         return MonsterToughness.notificationMessages.get(code) ?? "";
     }
+}
+
+if (typeof window !== 'undefined') {
+    window.MonsterToughness = MonsterToughness;
 }

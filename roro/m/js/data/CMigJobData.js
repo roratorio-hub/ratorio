@@ -1,4 +1,6 @@
 
+import { CGlobalConstManager } from '../CGlobalConstManager.js';
+
 //----------------------------------------------------------------
 // データの要素番号
 //----------------------------------------------------------------
@@ -36,7 +38,7 @@ CGlobalConstManager.DefineEnum(
  * 職業データクラス.
  * @param dataArrayC 設定するデータ配列
  */
-function CMigJobData (dataArrayC) {
+export function CMigJobData (dataArrayC) {
 
 	// データ配列
 	this.dataArray = null;
@@ -241,3 +243,5 @@ function CMigJobData (dataArrayC) {
 
 
 }
+
+if (typeof window !== 'undefined') { window.CMigJobData = CMigJobData; }

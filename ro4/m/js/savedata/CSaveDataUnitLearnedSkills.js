@@ -1,7 +1,9 @@
+import { CSaveDataUnitBase } from './CSaveDataUnitBase.js';
+import { CSaveDataConst } from './CSaveDataConst.js';
 /**
  * 「習得スキル」情報クラス
  */
-class CSaveDataUnitLearnedSkills extends CSaveDataUnitBase {
+export class CSaveDataUnitLearnedSkills extends CSaveDataUnitBase {
 
     /**
      * タイプ値.

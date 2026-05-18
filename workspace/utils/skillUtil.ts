@@ -149,10 +149,13 @@ async function parseSkillDat(src: string): Promise<{ migIdNum: number, level: nu
         return [];
     }
 
-    // sandbox を作ってファイルを評価（IIFE 内で未宣言代入される SkillObjNew を sandbox に作らせる）
+    // ESM 移行後は export キーワードを除去してから評価し、window を sandbox に向けることで
+    // 末尾の Object.assign(window, {...}) 経由で SkillObjNew を取り出す
+    const strippedCode = code.replace(/^export\s+/gm, '');
     const sandbox: Record<string, any> = {};
+    sandbox.window = sandbox;
     vm.createContext(sandbox);
-    new vm.Script(code, { filename: src }).runInContext(sandbox);
+    new vm.Script(strippedCode, { filename: src }).runInContext(sandbox);
 
     const arr = sandbox.SkillObjNew;
     if (!Array.isArray(arr)) {

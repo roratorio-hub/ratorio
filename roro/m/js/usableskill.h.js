@@ -1,4 +1,6 @@
 
+import { CGlobalConstManager } from './CGlobalConstManager.js';
+
 //----------------------------------------------------------------
 // データの要素番号
 //----------------------------------------------------------------
@@ -31,4 +33,8 @@ CGlobalConstManager.DefineEnum(
 
 
 
-USABLE_SKILL_ID_CUSTOM_BIAS = 10000;
+export const USABLE_SKILL_ID_CUSTOM_BIAS = 10000;
+
+if (typeof window !== 'undefined') {
+	window.USABLE_SKILL_ID_CUSTOM_BIAS = USABLE_SKILL_ID_CUSTOM_BIAS;
+}

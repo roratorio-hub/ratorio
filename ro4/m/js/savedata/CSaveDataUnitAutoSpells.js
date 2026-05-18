@@ -1,7 +1,9 @@
+import { CSaveDataUnitBase } from './CSaveDataUnitBase.js';
+import { CSaveDataConst } from './CSaveDataConst.js';
 /**
  * 「オートスペル設定」情報クラス
  */
-class CSaveDataUnitAutoSpells extends CSaveDataUnitBase {
+export class CSaveDataUnitAutoSpells extends CSaveDataUnitBase {
 
     /**
      * タイプ値.

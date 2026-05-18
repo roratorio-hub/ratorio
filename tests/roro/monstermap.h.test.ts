@@ -1,0 +1,50 @@
+import { describe, it, expect } from 'vitest';
+import '@roro/CGlobalConstManager.js';
+import { SetUpSortKanaMonsterMap, g_MonsterMapDataArray, g_MonsterMapCategoryDataArray } from '@roro/monstermap.h.js';
+
+describe('monstermap.h.js', () => {
+    describe('DefineEnum 副作用確認', () => {
+        it('MONSTER_MAP_DATA_INDEX_ID が 0 に定義される', () => {
+            expect((globalThis as any).MONSTER_MAP_DATA_INDEX_ID).toBe(0);
+        });
+        it('MONSTER_MAP_DATA_INDEX_KIND が 1 に定義される', () => {
+            expect((globalThis as any).MONSTER_MAP_DATA_INDEX_KIND).toBe(1);
+        });
+        it('MONSTER_MAP_DATA_INDEX_NAME_KANA_ARRAY が 2 に定義される', () => {
+            expect((globalThis as any).MONSTER_MAP_DATA_INDEX_NAME_KANA_ARRAY).toBe(2);
+        });
+        it('MONSTER_MAP_KIND_MAP が 0 に定義される', () => {
+            expect((globalThis as any).MONSTER_MAP_KIND_MAP).toBe(0);
+        });
+        it('MONSTER_MAP_KIND_MEMORIAL_DUNGEON が 1 に定義される', () => {
+            expect((globalThis as any).MONSTER_MAP_KIND_MEMORIAL_DUNGEON).toBe(1);
+        });
+        it('MONSTER_MAP_KIND_CATEGORY が 2 に定義される', () => {
+            expect((globalThis as any).MONSTER_MAP_KIND_CATEGORY).toBe(2);
+        });
+    });
+
+    describe('エクスポート確認', () => {
+        it('SetUpSortKanaMonsterMap が関数', () => {
+            expect(typeof SetUpSortKanaMonsterMap).toBe('function');
+        });
+        it('g_MonsterMapDataArray が配列', () => {
+            expect(Array.isArray(g_MonsterMapDataArray)).toBe(true);
+        });
+        it('g_MonsterMapCategoryDataArray が配列', () => {
+            expect(Array.isArray(g_MonsterMapCategoryDataArray)).toBe(true);
+        });
+    });
+
+    describe('window互換確認', () => {
+        it('window.g_MonsterMapDataArray が設定されている', () => {
+            expect((window as any).g_MonsterMapDataArray).toBe(g_MonsterMapDataArray);
+        });
+        it('window.g_MonsterMapCategoryDataArray が設定されている', () => {
+            expect((window as any).g_MonsterMapCategoryDataArray).toBe(g_MonsterMapCategoryDataArray);
+        });
+        it('window.SetUpSortKanaMonsterMap が設定されている', () => {
+            expect((window as any).SetUpSortKanaMonsterMap).toBe(SetUpSortKanaMonsterMap);
+        });
+    });
+});

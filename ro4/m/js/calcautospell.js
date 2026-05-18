@@ -1,18 +1,18 @@
 /* オートスペル設定　最大数 */
-AUTO_SPELL_SETTING_COUNT = 20;
+export const AUTO_SPELL_SETTING_COUNT = 20;
 /* オートスペル系スキル　最大数 */
-AUTO_SPELL_SKILL_COUNT_MAX = 40;
+export const AUTO_SPELL_SKILL_COUNT_MAX = 40;
 /* オートスペル発動率（千分率） */
-AUTO_SPELL_PROB_ARRAY = [];
+export let AUTO_SPELL_PROB_ARRAY = [];
 /* オブジェクトＩＤのオフセット（オートスペル　スキルＩＤ） */
-OBJID_OFFSET_AS_SKILL_ID = 100;	
+export const OBJID_OFFSET_AS_SKILL_ID = 100;
 /* オブジェクトＩＤのオフセット（オートスペル　スキルレベル） */
-OBJID_OFFSET_AS_SKILL_LV = 200;		
+export const OBJID_OFFSET_AS_SKILL_LV = 200;
 /* オブジェクトＩＤのオフセット（オートスペル　スキル発動率） */
-OBJID_OFFSET_AS_SKILL_PROB = 300;		
+export const OBJID_OFFSET_AS_SKILL_PROB = 300;
 
 
-for (idx = 0, inc = 1; idx <= 1000; idx += inc) {
+for (let idx = 0, inc = 1; idx <= 1000; idx += inc) {
 	AUTO_SPELL_PROB_ARRAY.push(idx);
 
 	if (idx == 10) {
@@ -23,9 +23,9 @@ for (idx = 0, inc = 1; idx <= 1000; idx += inc) {
 	}
 }
 
-n_AS_SKILL = new Array();
-n_AS_DMG = new Array();
-n_AS_DMG_OverHP = new Array();
+export let n_AS_SKILL = new Array();
+export let n_AS_DMG = new Array();
+export let n_AS_DMG_OverHP = new Array();
 for (var idx = 0; idx < AUTO_SPELL_SKILL_COUNT_MAX; idx++) {
 	n_AS_DMG[idx] = new Array();
 	n_AS_DMG_OverHP[idx] = new Array();
@@ -40,7 +40,7 @@ for (var idx = 0; idx < AUTO_SPELL_SKILL_COUNT_MAX; idx++) {
  * @param {*} battleCalcInfo 
  * @returns 
  */
-function AS_Calc(charaData, specData, mobData, attackMethodConfArray, battleCalcInfo){
+export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, battleCalcInfo){
 
 	var idx = 0;
 
@@ -51,6 +51,9 @@ function AS_Calc(charaData, specData, mobData, attackMethodConfArray, battleCalc
 	var attackMethodConfArrayAS = null;
 	var clonedCalcInfo = null;
 	var battleCalcResultAll = null;
+	var skillLvWug, skillLvBlitz, itemCount;
+	var skillLvQuickDraw, skillLvChainAction, skillLvEternalChain;
+	var sereKind, sereMode, skillLvDoubleCasting, skillLvEffectOfSagenoTamashi;
 
 	var funcAddAS = function () {
 		n_AS_SKILL.push([]);
@@ -61,6 +64,7 @@ function AS_Calc(charaData, specData, mobData, attackMethodConfArray, battleCalc
 
 	// 初期化
 	n_AS_SKILL = [];
+	window.n_AS_SKILL = n_AS_SKILL;
 
 	for (var idx = 0; idx < AUTO_SPELL_SKILL_COUNT_MAX; idx++){
 		n_AS_DMG[idx][0] = 0;
@@ -1104,7 +1108,8 @@ function AS_Calc(charaData, specData, mobData, attackMethodConfArray, battleCalc
 /**
  * 
  */
-function AS_PLUS(){
+export function AS_PLUS(){
+	var w_DMG_AS_OverHP;
 	w_DMG_AS_OverHP = w_DMG[1];
 	if(!n_AS_check_3dan){
 		for(var j = 0; j < n_AS_DMG.length; j++){
@@ -1128,7 +1133,7 @@ function AS_PLUS(){
 /**
  * オートスペル設定欄の展開（再構築）.
  */
-function OnClickExtractSettingAutoSpell(){
+export function OnClickExtractSettingAutoSpell(){
 	var objRoot = null;
 	var objTable = null;
 	var objTbody = null;
@@ -1201,7 +1206,7 @@ function OnClickExtractSettingAutoSpell(){
  * オートスペル設定欄の展開構築.
  * @param {*} objTbody 構築対象のＴＢＯＤＹ要素
  */
-function BuildUpSettingHtmlAutoSpell(objTbody) {
+export function BuildUpSettingHtmlAutoSpell(objTbody) {
 	var str = "";
 
 
@@ -1376,7 +1381,7 @@ function BuildUpSettingHtmlAutoSpell(objTbody) {
  * オートスペル設定　設定変更イベントハンドラ.
  * @param {*} bCalculate 再計算フラグ
  */
-function OnChangeSettingAutoSpell(bCalculate){
+export function OnChangeSettingAutoSpell(bCalculate){
 
 	// 再計算フラグが指定されている場合は、再計算を行う
 	if (bCalculate) AutoCalc("OnChangeSettingAutoSpell");
@@ -1406,9 +1411,10 @@ function OnChangeSettingAutoSpell(bCalculate){
 /**
  * オートスペルの簡易設定を行う
  */
-function OnClickEasySetUpAutoSpell(){
+export function OnClickEasySetUpAutoSpell(){
 
 	var idx = 0;
+	var cardCount = 0;
 
 	var objSelect = null;
 
@@ -1685,4 +1691,22 @@ function OnClickEasySetUpAutoSpell(){
 
 	// オートスペル設定変更イベントを実行
 	OnChangeSettingAutoSpell(true);
+}
+
+if (typeof window !== 'undefined') {
+	window.AUTO_SPELL_SETTING_COUNT = AUTO_SPELL_SETTING_COUNT;
+	window.AUTO_SPELL_SKILL_COUNT_MAX = AUTO_SPELL_SKILL_COUNT_MAX;
+	window.AUTO_SPELL_PROB_ARRAY = AUTO_SPELL_PROB_ARRAY;
+	window.OBJID_OFFSET_AS_SKILL_ID = OBJID_OFFSET_AS_SKILL_ID;
+	window.OBJID_OFFSET_AS_SKILL_LV = OBJID_OFFSET_AS_SKILL_LV;
+	window.OBJID_OFFSET_AS_SKILL_PROB = OBJID_OFFSET_AS_SKILL_PROB;
+	window.n_AS_SKILL = n_AS_SKILL;
+	window.n_AS_DMG = n_AS_DMG;
+	window.n_AS_DMG_OverHP = n_AS_DMG_OverHP;
+	window.AS_Calc = AS_Calc;
+	window.AS_PLUS = AS_PLUS;
+	window.OnClickExtractSettingAutoSpell = OnClickExtractSettingAutoSpell;
+	window.BuildUpSettingHtmlAutoSpell = BuildUpSettingHtmlAutoSpell;
+	window.OnChangeSettingAutoSpell = OnChangeSettingAutoSpell;
+	window.OnClickEasySetUpAutoSpell = OnClickEasySetUpAutoSpell;
 }

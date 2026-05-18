@@ -1,7 +1,11 @@
+import { CCustomSelectMapCategory } from '../../../roro/m/js/CCustomSelectMapCategory.js';
+import { CCustomSelectMapMap } from '../../../roro/m/js/CCustomSelectMapMap.js';
+import { CCustomSelectMapMonster } from '../../../roro/m/js/CCustomSelectMapMonster.js';
+
 /**
  * モンスターマップエリアコンポーネントマネージャクラス.
  */
-function CMonsterMapAreaComponentManager () {
+export function CMonsterMapAreaComponentManager () {
 }
 
 // カテゴリ選択セレクト
@@ -36,6 +40,9 @@ CMonsterMapAreaComponentManager.RebuildControls = function () {
 	var objTd = null;
 	var objSelect = null;
 	var objSpan = null;
+
+	var objInput = null;
+	var objLabel = null;
 
 	var objTableChild = null;
 	var objTbodyChild = null;
@@ -672,3 +679,7 @@ CMonsterMapAreaComponentManager.updateMonsterSuggest = function (monsterId) {
         objDiv.setAttribute("data-tooltip", message);
     }
 };
+
+if (typeof window !== 'undefined') {
+	window.CMonsterMapAreaComponentManager = CMonsterMapAreaComponentManager;
+}

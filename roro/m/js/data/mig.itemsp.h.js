@@ -1,3 +1,5 @@
+import { CGlobalConstManager } from '../CGlobalConstManager.js';
+
 
 
 
@@ -7,11 +9,11 @@
 // 移行後は common などに移動するもの
 
 // TODO: とりあえず
-MIG_SKILL_ID_ANY = -1;
-MIG_ITEM_ID_ANY = -1;
-MIG_CARD_ID_ANY = -1;
-MIG_ARROW_ID_ANY = -1;
-MIG_COSTUME_ID_ANY = -1;
+window.MIG_SKILL_ID_ANY = -1;
+window.MIG_ITEM_ID_ANY = -1;
+window.MIG_CARD_ID_ANY = -1;
+window.MIG_ARROW_ID_ANY = -1;
+window.MIG_COSTUME_ID_ANY = -1;
 
 
 
@@ -3599,3 +3601,22 @@ function MigGetEquipRegionByCardKind(cardId, jobId) {
 	return candidateRegionIdArray;
 }
 
+if (typeof window !== 'undefined') {
+	Object.assign(window, {
+		MigGetItemSpTagArrayByOldSpID,
+		MigGetGeneralErrorText,
+		MigIsErrorText,
+		MigGetSeriesedJobIdArray,
+		MigGetJobSeriesName,
+		MigGetParamText,
+		MigGetEquipRegionText,
+		MigGetItemTypeText,
+		MigGetItemPositionText,
+		MigIsArmsItemType,
+		MigGetRaceText,
+		MigGetProbText,
+		MigGetBorderFlagText,
+		MigGetEquipRegionByItemKind,
+		MigGetEquipRegionByCardKind,
+	});
+}

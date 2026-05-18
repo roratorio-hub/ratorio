@@ -1,7 +1,9 @@
+import { CCustomSelectBase } from './CCustomSelectBase.js';
+
 /**
  * カスタムセレクトクラス（モンスター）.
  */
-function CCustomSelectMapMonster (instanceIdNameC, mapSelectC) {
+export function CCustomSelectMapMonster (instanceIdNameC, mapSelectC) {
 
 	// 再計算フラグ
 	this.bRecalculate = false;
@@ -50,6 +52,8 @@ function CCustomSelectMapMonster (instanceIdNameC, mapSelectC) {
 		var dataIdArray = null;
 		var dataName = 0;
 		var candidateDataId = 0;
+		var sortKeyIndex = 0;
+		var funcGetLabel = null;
 
 
 
@@ -400,3 +404,7 @@ function CCustomSelectMapMonster (instanceIdNameC, mapSelectC) {
 }
 
 CCustomSelectMapMonster.prototype = new CCustomSelectBase();
+
+if (typeof window !== 'undefined') {
+    window.CCustomSelectMapMonster = CCustomSelectMapMonster;
+}

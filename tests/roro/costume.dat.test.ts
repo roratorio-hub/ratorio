@@ -1,0 +1,34 @@
+import { describe, it, expect } from 'vitest';
+import { COSTUME_ID_HEAD_UNDER_NONE, COSTUME_ID_BEGINNER_BO, CostumeOBJ } from '@roro/costume.dat.js';
+
+describe('costume.dat.js', () => {
+    describe('エクスポート確認', () => {
+        it('COSTUME_ID_HEAD_UNDER_NONE が 0', () => {
+            expect(COSTUME_ID_HEAD_UNDER_NONE).toBe(0);
+        });
+        it('COSTUME_ID_BEGINNER_BO が 1', () => {
+            expect(COSTUME_ID_BEGINNER_BO).toBe(1);
+        });
+        it('CostumeOBJ が配列', () => {
+            expect(Array.isArray(CostumeOBJ)).toBe(true);
+        });
+        it('CostumeOBJ が 2 件', () => {
+            expect(CostumeOBJ).toHaveLength(2);
+        });
+        it('CostumeOBJ[0][0] が 0（衣装なし）', () => {
+            expect(CostumeOBJ[0][0]).toBe(0);
+        });
+    });
+
+    describe('window互換確認', () => {
+        it('window.COSTUME_ID_HEAD_UNDER_NONE が設定されている', () => {
+            expect((window as any).COSTUME_ID_HEAD_UNDER_NONE).toBe(COSTUME_ID_HEAD_UNDER_NONE);
+        });
+        it('window.COSTUME_ID_BEGINNER_BO が設定されている', () => {
+            expect((window as any).COSTUME_ID_BEGINNER_BO).toBe(COSTUME_ID_BEGINNER_BO);
+        });
+        it('window.CostumeOBJ が設定されている', () => {
+            expect((window as any).CostumeOBJ).toBe(CostumeOBJ);
+        });
+    });
+});

@@ -1,9 +1,9 @@
 
 // カテゴリ選択セレクト
-g_customSelectCategory = new CCustomSelectMapCategory("MONSTER_MAP_CATEGORY");
+window.g_customSelectCategory = new CCustomSelectMapCategory("MONSTER_MAP_CATEGORY");
 
 // マップ選択セレクト
-g_customSelectMap = new CCustomSelectMapMap("MONSTER_MAP_MAP", g_customSelectCategory);
+window.g_customSelectMap = new CCustomSelectMapMap("MONSTER_MAP_MAP", g_customSelectCategory);
 g_customSelectMap.AddOnChangeSelectDataExtraHandller(RefreshMonsterList, null);
 
 
@@ -168,6 +168,7 @@ function RefreshMonsterList() {
 
 	var selectedMapId = 0;
 	var dataArraySorted = null;
+	var dataIdArray = null;
 	var monsterData = null;
 
 	var paramText = "";
@@ -660,3 +661,4 @@ function IsMatchCondMonsterList(monsterData, condRace, condElm, condSize) {
 
 	return true;
 }
+if (typeof window !== 'undefined') { Object.assign(window, { __DIG3, InitMonsterListSelectArea, RefreshMonsterList, IsMatchCondMonsterList }); }

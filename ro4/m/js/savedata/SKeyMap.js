@@ -1,7 +1,7 @@
 /**
  * Extended Map class whose 'key' is forced as string.
  */
-class SKeyMap extends Map {
+export class SKeyMap extends Map {
 
 	/**
 	 * Constructor.

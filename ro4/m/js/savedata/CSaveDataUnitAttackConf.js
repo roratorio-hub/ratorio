@@ -1,7 +1,9 @@
+import { CSaveDataUnitBase } from './CSaveDataUnitBase.js';
+import { CSaveDataConst } from './CSaveDataConst.js';
 /**
  * 「攻撃方法」情報クラス
  */
-class CSaveDataUnitAttackConf extends CSaveDataUnitBase {
+export class CSaveDataUnitAttackConf extends CSaveDataUnitBase {
 
     /**
      * タイプ値.

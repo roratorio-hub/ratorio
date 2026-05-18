@@ -1,7 +1,7 @@
 /**
  * モンスターデータマネージャクラス.
  */
-function CMigConstDataManagerSubMonster () {
+export function CMigConstDataManagerSubMonster () {
 
 	//----------------
 	// 継承定義は、クラス本体の次に記述
@@ -58,3 +58,4 @@ function CMigConstDataManagerSubMonster () {
 
 }
 CMigConstDataManagerSubMonster.prototype = new CMigConstDataManagerSubBase();
+if (typeof window !== 'undefined') { window.CMigConstDataManagerSubMonster = CMigConstDataManagerSubMonster; }

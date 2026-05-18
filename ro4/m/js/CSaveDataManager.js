@@ -1,7 +1,46 @@
+import { CSaveDataConst } from './savedata/CSaveDataConst.js';
+import { CSaveDataUnitTypeManager } from './savedata/CSaveDataUnitTypeManager.js';
+import { CSaveDataUnitParse } from './savedata/CSaveDataUnitParse.js';
+import { SKeyMap } from './savedata/SKeyMap.js';
+import { CSingletonMapper } from './savedata/CSingletonMapper.js';
+import { CMultiValueMapper } from './savedata/CMultiValueMapper.js';
+import {
+	SAVE_DATA_UNIT_TYPE_VERSION,
+	SAVE_DATA_UNIT_TYPE_CHARA,
+	SAVE_DATA_UNIT_TYPE_EQUIPABLE,
+	SAVE_DATA_UNIT_TYPE_EQUIP_REGIONS,
+	SAVE_DATA_UNIT_TYPE_LEARNED_SKILLS,
+	SAVE_DATA_UNIT_TYPE_CHARA_BUFF,
+	SAVE_DATA_UNIT_TYPE_SKILL_BUFF_SELF,
+	SAVE_DATA_UNIT_TYPE_SKILL_BUFF_1ST,
+	SAVE_DATA_UNIT_TYPE_SKILL_BUFF_2ND,
+	SAVE_DATA_UNIT_TYPE_SKILL_BUFF_3RD,
+	SAVE_DATA_UNIT_TYPE_SKILL_BUFF_4TH,
+	SAVE_DATA_UNIT_TYPE_SKILL_BUFF_MUSIC,
+	SAVE_DATA_UNIT_TYPE_SKILL_BUFF_GUILD,
+	SAVE_DATA_UNIT_TYPE_ITEM_BUFF,
+	SAVE_DATA_UNIT_TYPE_TIME_BUFF,
+	SAVE_DATA_UNIT_TYPE_AUTO_SPELLS,
+	SAVE_DATA_UNIT_TYPE_CHARA_DEBUFF,
+	SAVE_DATA_UNIT_TYPE_CHARA_CONF_BASIC,
+	SAVE_DATA_UNIT_TYPE_CHARA_CONF_SPECIALIZE,
+	SAVE_DATA_UNIT_TYPE_CHARA_CONF_SKILL,
+	SAVE_DATA_UNIT_TYPE_MOB,
+	SAVE_DATA_UNIT_TYPE_MOB_CONF_PLAYER,
+	SAVE_DATA_UNIT_TYPE_MOB_CONF_PLAYER2,
+	SAVE_DATA_UNIT_TYPE_MOB_CONF_INPUT,
+	SAVE_DATA_UNIT_TYPE_MOB_BUFF,
+	SAVE_DATA_UNIT_TYPE_MOB_DEBUFF,
+	SAVE_DATA_UNIT_TYPE_ATTACK_CONF,
+	SAVE_DATA_UNIT_TYPE_SETTINGS,
+	SAVE_DATA_UNIT_TYPE_CHARA_CONF_SPEC_BASIC,
+	SAVE_DATA_UNIT_TYPE_EQUIP_ARROW,
+} from './savedata/CSaveDataUnit.js';
+
 /**
  * セーブデータマネージャクラス.
  */
-class CSaveDataManager {
+export class CSaveDataManager {
 
 	/**
 	 * プロパティに対応するHTMLオブジェクトIDのマップ（Map< type, Map< propName, objectID > >）.
@@ -800,7 +839,7 @@ class CSaveDataManager {
 
 		// グローバル変数の初期化（移行対応変数のみ）
 		ResetConfDataAllMIG(false);
-		n_A_Arrow = 0;		// 再ロード時のバグ対応
+		window.n_A_Arrow = 0;		// 再ロード時のバグ対応
 
 		// 必要な情報を収集する
 		const idxMap = new SKeyMap();
@@ -1011,13 +1050,13 @@ class CSaveDataManager {
 		// 画面表示リフレッシュ処理（既存移植）
 		OnClickSkillSWLearned();
 		if(arrowArray[0] === undefined){
-			n_A_Arrow = 0;
+			window.n_A_Arrow = 0;
 		}
 		else{
-			n_A_Arrow = (arrowArray[0] - 1);
+			window.n_A_Arrow = (arrowArray[0] - 1);
 		}
 		const obj_select_arrow = document.getElementById("OBJID_SELECT_ARROW")
-		HtmlSelectObjectValueAsInteger(obj_select_arrow, n_A_Arrow);
+		HtmlSelectObjectValueAsInteger(obj_select_arrow, window.n_A_Arrow);
 		Click_A8(false);	// BuffChara（旧：支援スキル８（その他の支援/設定））
 		Click_A1(false);	// BuffSelf
 		g_objCharaConfIchizi.OnSaveDataLoaded();
@@ -2145,4 +2184,8 @@ class CSaveDataManager {
 		//  攻撃手段の設定設定を変更
 		CAttackMethodAreaComponentManager.SetAttackMethodConf(attackMethodConf);
 	}
+}
+
+if (typeof window !== 'undefined') {
+    window.CSaveDataManager = CSaveDataManager;
 }

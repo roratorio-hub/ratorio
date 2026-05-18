@@ -1,4 +1,4 @@
-class ModalWindow {
+export class ModalWindow {
     static createModal({ title = "", message = "", buttons = [] }) {
         return new Promise((resolve) => {
             // モーダルの背景
@@ -69,4 +69,8 @@ class ModalWindow {
             document.body.appendChild(modalOverlay);
         });
     }
+}
+
+if (typeof window !== 'undefined') {
+    window.ModalWindow = ModalWindow;
 }

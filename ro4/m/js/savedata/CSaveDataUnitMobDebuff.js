@@ -1,7 +1,9 @@
+import { CSaveDataUnitBase } from './CSaveDataUnitBase.js';
+import { CSaveDataConst } from './CSaveDataConst.js';
 /**
  * 「モンスター状態異常設定」情報クラス
  */
-class CSaveDataUnitMobDebuff extends CSaveDataUnitBase {
+export class CSaveDataUnitMobDebuff extends CSaveDataUnitBase {
 
     /**
      * タイプ値.

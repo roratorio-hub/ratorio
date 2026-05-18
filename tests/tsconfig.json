@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+        "target": "es2020",
+        "module": "esnext",
+        "moduleResolution": "bundler",
+        "lib": ["ES2020", "DOM"],
+        "types": ["vitest/globals", "node"],
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "resolveJsonModule": true,
+        "noEmit": true,
+        "paths": {
+            "@roro/*": ["../roro/m/js/*"],
+            "@ro4/*": ["../ro4/m/js/*"],
+            "@helpers/*": ["./helpers/*"]
+        }
+    },
+    "include": [
+        "**/*.ts",
+        "**/*.d.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}

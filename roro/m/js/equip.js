@@ -1,8 +1,12 @@
+var g_bSuperNoviceFullWeapon;
+var n_A_WeaponType;
+var n_A_Weapon2Type;
+
 /**
  * ステータスや装備などを初期化して職業変更する
  * @param {string} jobId
  */
-function changeJobSettings(jobId) {
+export function changeJobSettings(jobId) {
 	const selectJobElem = document.getElementById("OBJID_SELECT_JOB");
 	if (selectJobElem) {
 		// 職業IDが引数で渡されなかった時用のコード
@@ -79,7 +83,7 @@ function changeJobSettings(jobId) {
 	g_bSuperNoviceFullWeapon = undefined;
 	// 二刀流状態の解除
 	if (n_Nitou) {
-		n_Nitou = false;
+		window.n_Nitou = false;
 	}
 	OnChangeArmsTypeLeft(ITEM_KIND_NONE);
 
@@ -112,7 +116,6 @@ function changeJobSettings(jobId) {
 		g_shadowEquipController.rebuildAll();
 	}
 	// 習得スキルの初期化
-	n_A_LearnedSkill = new Array();
 	for (var dmyidx = 0; dmyidx < LEARNED_SKILL_MAX_COUNT; dmyidx++) {
 		n_A_LearnedSkill[dmyidx] = 0;
 	}
@@ -136,7 +139,7 @@ function changeJobSettings(jobId) {
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function OnChangeArmsTypeRight(itemKind){
+export function OnChangeArmsTypeRight(itemKind){
 
 	var idx = 0;
 
@@ -153,6 +156,7 @@ function OnChangeArmsTypeRight(itemKind){
 	// 武器種別の設定
 	HtmlSetObjectValueById("OBJID_ARMS_TYPE_RIGHT", itemKind);
 	n_A_WeaponType = itemKind;
+	window.n_A_WeaponType = n_A_WeaponType;
 
 
 
@@ -242,7 +246,8 @@ function OnChangeArmsTypeRight(itemKind){
 	// 右手装備情報のクリア
 	ClearEquip(EQUIP_REGION_ID_ARMS);
 
-	with(document.calcForm){
+	{
+		const _cf = document.calcForm;
 
 		// 右手装備欄の再構築
 		RebuildArmsRightSelect();
@@ -261,29 +266,29 @@ function OnChangeArmsTypeRight(itemKind){
 
 			myInnerHtml("A_SobWeaponName","",0);
 
-			HtmlRemoveOptionAll(OBJID_ARMS_LEFT);
-			OBJID_ARMS_LEFT.options[0] = new Option(ItemObjNew[ITEM_ID_SUDE][ITEM_DATA_INDEX_NAME], ITEM_ID_SUDE);
+			HtmlRemoveOptionAll(_cf.OBJID_ARMS_LEFT);
+			_cf.OBJID_ARMS_LEFT.options[0] = new Option(ItemObjNew[ITEM_ID_SUDE][ITEM_DATA_INDEX_NAME], ITEM_ID_SUDE);
 
 			// 二刀流が解除される場合は、左手装備をクリア
 			if (n_Nitou) {
 				OnChangeArmsTypeLeft(ITEM_KIND_NONE);
 			}
 
-			n_Nitou = false;
+			window.n_Nitou = false;
 
 			// 左手武器欄を無効化する
-			A_Weapon2_ATKplus.disabled = true;
-			A_Weapon2_ATKplus.style.visibility = "hidden";
+			_cf.A_Weapon2_ATKplus.disabled = true;
+			_cf.A_Weapon2_ATKplus.style.visibility = "hidden";
 
-			OBJID_ARMS_LEFT.disabled = true;
-			OBJID_ARMS_LEFT.style.visibility = "hidden";
+			_cf.OBJID_ARMS_LEFT.disabled = true;
+			_cf.OBJID_ARMS_LEFT.style.visibility = "hidden";
 
 			// 盾欄を有効化する
-			A_SHIELD_DEF_PLUS.disabled = false;
-			A_SHIELD_DEF_PLUS.style.visibility = "visible";
+			_cf.A_SHIELD_DEF_PLUS.disabled = false;
+			_cf.A_SHIELD_DEF_PLUS.style.visibility = "visible";
 
-			OBJID_SHIELD.disabled = false;
-			OBJID_SHIELD.style.visibility = "visible";
+			_cf.OBJID_SHIELD.disabled = false;
+			_cf.OBJID_SHIELD.style.visibility = "visible";
 
 		}
 
@@ -293,7 +298,7 @@ function OnChangeArmsTypeRight(itemKind){
 		}
 
 		// 装備を更新（選択セレクトボックスの先頭要素）
-		OnChangeEquip(EQUIP_REGION_ID_ARMS, parseInt(eval(OBJID_ARMS_RIGHT.value)));
+		OnChangeEquip(EQUIP_REGION_ID_ARMS, parseInt(eval(_cf.OBJID_ARMS_RIGHT.value)));
 
 		// 使用可否の更新
 		if (GetSlotMode() == SLOTPAGER_MODE_CARD) {
@@ -323,7 +328,7 @@ function OnChangeArmsTypeRight(itemKind){
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function RebuildArmsRightSelect() {
+export function RebuildArmsRightSelect() {
 
 	var idx = 0;
 	var itemId = 0;
@@ -379,7 +384,7 @@ function RebuildArmsRightSelect() {
 	}
 }
 
-function GetFlagAppendedItemName(targetId) {
+export function GetFlagAppendedItemName(targetId) {
 
 	var baseName = "";
 
@@ -388,7 +393,7 @@ function GetFlagAppendedItemName(targetId) {
 	return (IsLearnedEffectEquipable(CONST_DATA_KIND_ITEM, targetId)) ? ("【習】" + baseName) : baseName;
 }
 
-function GetFlagAppendedCardName(targetId) {
+export function GetFlagAppendedCardName(targetId) {
 
 	var baseName = "";
 
@@ -397,10 +402,11 @@ function GetFlagAppendedCardName(targetId) {
 	return (IsLearnedEffectEquipable(CONST_DATA_KIND_CARD, targetId)) ? ("【習】" + baseName) : baseName;
 }
 
-function IsLearnedEffectEquipable(dataKind, targetId) {
+export function IsLearnedEffectEquipable(dataKind, targetId) {
 
 	var idx = 0;
 	var idxSet = 0;
+	var setIndexArray; var setIndex; var setDataId;
 
 	// アイテム単品を判定
 	if (dataKind == CONST_DATA_KIND_ITEM) {
@@ -466,7 +472,7 @@ function IsLearnedEffectEquipable(dataKind, targetId) {
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function OnChangeArmsTypeLeft(itemKind){
+export function OnChangeArmsTypeLeft(itemKind){
 
 	var idx = 0;
 
@@ -489,6 +495,7 @@ function OnChangeArmsTypeLeft(itemKind){
 	// 武器種別の設定
 	HtmlSetObjectValueById("OBJID_ARMS_TYPE_LEFT", itemKind);
 	n_A_Weapon2Type = itemKind;
+	window.n_A_Weapon2Type = n_A_Weapon2Type;
 
 	// 対象セレクトボックスの取得
 	objSelectLeft = document.getElementById("OBJID_ARMS_LEFT");
@@ -527,7 +534,7 @@ function OnChangeArmsTypeLeft(itemKind){
 		objArrayToHidden.push(objSelectShiledRefine);
 		objArrayToHidden.push(objSelectShiledTranscendence);
 
-		n_Nitou = true;
+		window.n_Nitou = true;
 	}
 
 	// 二刀流解除の場合
@@ -550,7 +557,7 @@ function OnChangeArmsTypeLeft(itemKind){
 		objArrayToVisible.push(objSelectShiledRefine);
 		objArrayToVisible.push(objSelectShiledTranscendence);
 
-		n_Nitou = false;
+		window.n_Nitou = false;
 	}
 
 	for (idx = 0; idx < objArrayToVisible.length; idx++) {
@@ -615,7 +622,7 @@ function OnChangeArmsTypeLeft(itemKind){
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function RebuildArmsLeftSelect() {
+export function RebuildArmsLeftSelect() {
 
 	var objLeft = null;
 	var optName = "";
@@ -625,6 +632,7 @@ function RebuildArmsLeftSelect() {
 	// 左手武器種別の取得
 	//--------------------------------
 	n_A_Weapon2Type = HtmlGetObjectValueById("OBJID_ARMS_TYPE_LEFT", 0);
+	window.n_A_Weapon2Type = n_A_Weapon2Type;
 
 
 	//--------------------------------
@@ -703,7 +711,7 @@ function RebuildArmsLeftSelect() {
  *-----------------------------------------------------------------------------------------------
  *-----------------------------------------------------------------------------------------------
  ************************************************************************************************/
-function OnChangeRefined() {
+export function OnChangeRefined() {
 
 	// ステータス全計算
 	StAllCalc();
@@ -724,7 +732,7 @@ function OnChangeRefined() {
  * @param itemId 変更後のアイテムＩＤ
  *-----------------------------------------------------------------------------------------------
  ************************************************************************************************/
-function OnChangeEquip(eqpRgnId, itemId) {
+export function OnChangeEquip(eqpRgnId, itemId) {
 
 	// エンチャント設定のクリア
 	ClearEnchantOnChangeEquip(eqpRgnId, itemId);
@@ -778,7 +786,7 @@ function OnChangeEquip(eqpRgnId, itemId) {
  * @param itemId 変更後のアイテムＩＤ
  *-----------------------------------------------------------------------------------------------
  ************************************************************************************************/
-function ClearEnchantOnChangeEquip(eqpRgnId, itemId) {
+export function ClearEnchantOnChangeEquip(eqpRgnId, itemId) {
 
 	var targetidx = 0;
 	var slotidx = 0;
@@ -916,7 +924,7 @@ function ClearEnchantOnChangeEquip(eqpRgnId, itemId) {
 
 
 
-function UpdateStatefullDataOnChangeEquip(eqpRgnId) {
+export function UpdateStatefullDataOnChangeEquip(eqpRgnId) {
 
 	var idx = 0;
 	var strObjId = "";
@@ -1008,7 +1016,7 @@ function UpdateStatefullDataOnChangeEquip(eqpRgnId) {
  * 一部の装備の特殊効果を発動させられる習得スキルを保持している場合に
  * 習得スキル一覧のタイトルバーに注記を表示する 
  */
-function UpdateLearnedSkillNotice () {
+export function UpdateLearnedSkillNotice () {
 	let itemId = 0;
 	let spidx = 0;
 	let skillId = 0;
@@ -1042,7 +1050,7 @@ function UpdateLearnedSkillNotice () {
 	// 全てのカードを走査し、習得スキル設定対象がないかをチェック
 	if (!bEquipped) {
 		for (let idx = 0; idx < n_A_card.length; idx++) {
-			cardId = n_A_card[idx];
+			let cardId = n_A_card[idx];
 			spidx = CARD_DATA_INDEX_SPBEGIN;
 			while (CardObjNew[cardId][spidx] != ITEM_SP_END) {
 				if (CardObjNew[cardId][spidx] == ITEM_SP_LEARNED_SKILL_EFFECT) {
@@ -1078,7 +1086,7 @@ function UpdateLearnedSkillNotice () {
 /**
  * 左右武器入れ替えイベントハンドラ.
  */
-function OnClickSwapArms() {
+export function OnClickSwapArms() {
 
 	var idx = 0;
 
@@ -1216,7 +1224,7 @@ function OnClickSwapArms() {
 /**
  * カード変更イベントハンドラ.
  */
-function OnChangeCard(cardId) {
+export function OnChangeCard(cardId) {
 
 	SaveSlotStateCardAll();
 
@@ -1243,7 +1251,7 @@ function OnChangeCard(cardId) {
 /**
  * 衣装変更イベントハンドラ.
  */
-function OnChangeCostume(costumeId) {
+export function OnChangeCostume(costumeId) {
 	SaveSlotStateCostumeAll();
 	StAllCalc();
 	CItemInfoManager.OnChangeEquip(CONST_DATA_KIND_COSTUME, costumeId);
@@ -1256,7 +1264,7 @@ function OnChangeCostume(costumeId) {
 /**
  * ランダムエンチャント変更イベントハンドラ.
  */
-function OnChangeRandomEnchant() {
+export function OnChangeRandomEnchant() {
 	SaveSlotStateRndEnchAll();
 	StAllCalc();
 }
@@ -1267,7 +1275,7 @@ function OnChangeRandomEnchant() {
 
 
 
-function sort(work) {
+export function sort(work) {
 	for(var i=1;work[i]!="EOF";i++){
 		for(var k=i;k>0;k--){
 			if(ItemObjNew[work[k-1]][ITEM_DATA_INDEX_KANA] > ItemObjNew[work[k]][ITEM_DATA_INDEX_KANA]){
@@ -1292,7 +1300,7 @@ function sort(work) {
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function RebuildArmorsSelect() {
+export function RebuildArmorsSelect() {
 
 	var idx = 0;
 	var idxItem = 0;
@@ -1453,35 +1461,37 @@ function RebuildArmorsSelect() {
  * もう使われていない可能性がある
  * @returns 
  */
-function WeaponSet2(){
-	with(document.calcForm){
+export function WeaponSet2(){
+	{
+		const _cf = document.calcForm;
+		var i;
 		InitJobInfo();
 
-		HtmlRemoveOptionAll(A_head1);
-		HtmlRemoveOptionAll(A_head2);
-		HtmlRemoveOptionAll(A_head3);
-		HtmlRemoveOptionAll(A_left);
-		HtmlRemoveOptionAll(A_body);
-		HtmlRemoveOptionAll(A_shoulder);
-		HtmlRemoveOptionAll(A_shoes);
-		HtmlRemoveOptionAll(A_acces1);
-		HtmlRemoveOptionAll(A_acces2);
+		HtmlRemoveOptionAll(_cf.A_head1);
+		HtmlRemoveOptionAll(_cf.A_head2);
+		HtmlRemoveOptionAll(_cf.A_head3);
+		HtmlRemoveOptionAll(_cf.A_left);
+		HtmlRemoveOptionAll(_cf.A_body);
+		HtmlRemoveOptionAll(_cf.A_shoulder);
+		HtmlRemoveOptionAll(_cf.A_shoes);
+		HtmlRemoveOptionAll(_cf.A_acces1);
+		HtmlRemoveOptionAll(_cf.A_acces2);
 
 
-		if(first_check == 0){
-			first_check = 1;
-			A_head1.options[0] = new Option(ItemObjNew[142][ITEM_DATA_INDEX_NAME],ItemObjNew[142][ITEM_DATA_INDEX_ID]);
-			A_head2.options[0] = new Option(ItemObjNew[243][ITEM_DATA_INDEX_NAME],ItemObjNew[243][ITEM_DATA_INDEX_ID]);
-			A_head3.options[0] = new Option(ItemObjNew[268][ITEM_DATA_INDEX_NAME],ItemObjNew[268][ITEM_DATA_INDEX_ID]);
-			A_left.options[0] = new Option(ItemObjNew[305][ITEM_DATA_INDEX_NAME],ItemObjNew[305][ITEM_DATA_INDEX_ID]);
-			A_body.options[0] = new Option(ItemObjNew[279][ITEM_DATA_INDEX_NAME],ItemObjNew[279][ITEM_DATA_INDEX_ID]);
-			A_shoulder.options[0] = new Option(ItemObjNew[311][ITEM_DATA_INDEX_NAME],ItemObjNew[311][ITEM_DATA_INDEX_ID]);
-			A_shoes.options[0] = new Option(ItemObjNew[317][ITEM_DATA_INDEX_NAME],ItemObjNew[317][ITEM_DATA_INDEX_ID]);
-			A_acces1.options[0] = new Option(ItemObjNew[326][ITEM_DATA_INDEX_NAME],ItemObjNew[326][ITEM_DATA_INDEX_ID]);
-			A_acces2.options[0] = new Option(ItemObjNew[326][ITEM_DATA_INDEX_NAME],ItemObjNew[326][ITEM_DATA_INDEX_ID]);
+		if(_cf.first_check == 0){
+			_cf.first_check = 1;
+			_cf.A_head1.options[0] = new Option(ItemObjNew[142][ITEM_DATA_INDEX_NAME],ItemObjNew[142][ITEM_DATA_INDEX_ID]);
+			_cf.A_head2.options[0] = new Option(ItemObjNew[243][ITEM_DATA_INDEX_NAME],ItemObjNew[243][ITEM_DATA_INDEX_ID]);
+			_cf.A_head3.options[0] = new Option(ItemObjNew[268][ITEM_DATA_INDEX_NAME],ItemObjNew[268][ITEM_DATA_INDEX_ID]);
+			_cf.A_left.options[0] = new Option(ItemObjNew[305][ITEM_DATA_INDEX_NAME],ItemObjNew[305][ITEM_DATA_INDEX_ID]);
+			_cf.A_body.options[0] = new Option(ItemObjNew[279][ITEM_DATA_INDEX_NAME],ItemObjNew[279][ITEM_DATA_INDEX_ID]);
+			_cf.A_shoulder.options[0] = new Option(ItemObjNew[311][ITEM_DATA_INDEX_NAME],ItemObjNew[311][ITEM_DATA_INDEX_ID]);
+			_cf.A_shoes.options[0] = new Option(ItemObjNew[317][ITEM_DATA_INDEX_NAME],ItemObjNew[317][ITEM_DATA_INDEX_ID]);
+			_cf.A_acces1.options[0] = new Option(ItemObjNew[326][ITEM_DATA_INDEX_NAME],ItemObjNew[326][ITEM_DATA_INDEX_ID]);
+			_cf.A_acces2.options[0] = new Option(ItemObjNew[326][ITEM_DATA_INDEX_NAME],ItemObjNew[326][ITEM_DATA_INDEX_ID]);
 			return;
 		}
-		first_check = 2;
+		_cf.first_check = 2;
 		var workB = new Array();
 		for(i=0;i<=8;i++) workB[i] = new Array();
 		var wsj = new Array();
@@ -1541,63 +1551,63 @@ function WeaponSet2(){
 			z = workB[0][i];
 			itemId = ItemObjNew[z][ITEM_DATA_INDEX_ID];
 			itemName = GetFlagAppendedItemName(z);
-			HtmlCreateElementOption(itemId, itemName, A_head1);
+			HtmlCreateElementOption(itemId, itemName, _cf.A_head1);
 		}
 
 		for(i=0;i<wsj[1];i++){
 			z = workB[1][i];
 			itemId = ItemObjNew[z][ITEM_DATA_INDEX_ID];
 			itemName = GetFlagAppendedItemName(z);
-			HtmlCreateElementOption(itemId, itemName, A_head2);
+			HtmlCreateElementOption(itemId, itemName, _cf.A_head2);
 		}
 
 		for(i=0;i<wsj[2];i++){
 			z = workB[2][i];
 			itemId = ItemObjNew[z][ITEM_DATA_INDEX_ID];
 			itemName = GetFlagAppendedItemName(z);
-			HtmlCreateElementOption(itemId, itemName, A_head3);
+			HtmlCreateElementOption(itemId, itemName, _cf.A_head3);
 		}
 
 		for(i=0;i<wsj[3];i++){
 			z = workB[3][i];
 			itemId = ItemObjNew[z][ITEM_DATA_INDEX_ID];
 			itemName = GetFlagAppendedItemName(z);
-			HtmlCreateElementOption(itemId, itemName, A_left);
+			HtmlCreateElementOption(itemId, itemName, _cf.A_left);
 		}
 
 		for(i=0;i<wsj[4];i++){
 			z = workB[4][i];
 			itemId = ItemObjNew[z][ITEM_DATA_INDEX_ID];
 			itemName = GetFlagAppendedItemName(z);
-			HtmlCreateElementOption(itemId, itemName, A_body);
+			HtmlCreateElementOption(itemId, itemName, _cf.A_body);
 		}
 
 		for(i=0;i<wsj[5];i++){
 			z = workB[5][i];
 			itemId = ItemObjNew[z][ITEM_DATA_INDEX_ID];
 			itemName = GetFlagAppendedItemName(z);
-			HtmlCreateElementOption(itemId, itemName, A_shoulder);
+			HtmlCreateElementOption(itemId, itemName, _cf.A_shoulder);
 		}
 
 		for(i=0;i<wsj[6];i++){
 			z = workB[6][i];
 			itemId = ItemObjNew[z][ITEM_DATA_INDEX_ID];
 			itemName = GetFlagAppendedItemName(z);
-			HtmlCreateElementOption(itemId, itemName, A_shoes);
+			HtmlCreateElementOption(itemId, itemName, _cf.A_shoes);
 		}
 
 		for(i=0;i<wsj[7];i++){
 			z = workB[7][i];
 			itemId = ItemObjNew[z][ITEM_DATA_INDEX_ID];
 			itemName = GetFlagAppendedItemName(z);
-			HtmlCreateElementOption(itemId, itemName, A_acces1);
+			HtmlCreateElementOption(itemId, itemName, _cf.A_acces1);
 		}
 
 		for(i=0;i<wsj[8];i++){
 			z = workB[8][i];
 			itemId = ItemObjNew[z][ITEM_DATA_INDEX_ID];
 			itemName = GetFlagAppendedItemName(z);
-			HtmlCreateElementOption(itemId, itemName, A_acces2);
+			HtmlCreateElementOption(itemId, itemName, _cf.A_acces2);
 		}
 	}
 }
@@ -1614,7 +1624,7 @@ function WeaponSet2(){
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function InitEquipDefaultAll() {
+export function InitEquipDefaultAll() {
 
 	// 個別関数を全コール
 	InitEquipDefault(EQUIP_REGION_ID_ARMS);
@@ -1639,7 +1649,7 @@ function InitEquipDefaultAll() {
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function InitEquipDefault(eqpRgnId) {
+export function InitEquipDefault(eqpRgnId) {
 
 	// サブ関数をコール
 	switch (eqpRgnId) {
@@ -1699,7 +1709,7 @@ function InitEquipDefault(eqpRgnId) {
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function __InitEquipDefault(objidPrifix, itemId) {
+export function __InitEquipDefault(objidPrifix, itemId) {
 
 	var objSelect = null;
 
@@ -1722,7 +1732,7 @@ function __InitEquipDefault(objidPrifix, itemId) {
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function ClearEquipAll() {
+export function ClearEquipAll() {
 
 	// 個別関数を全コール
 	ClearEquip(EQUIP_REGION_ID_ARMS);
@@ -1747,7 +1757,7 @@ function ClearEquipAll() {
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function ClearEquip(eqpRgnId) {
+export function ClearEquip(eqpRgnId) {
 
 	// サブ関数をコール
 	switch (eqpRgnId) {
@@ -1808,7 +1818,7 @@ function ClearEquip(eqpRgnId) {
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-function __ClearEquip(eqpRgnId, objidPrifix, itemId) {
+export function __ClearEquip(eqpRgnId, objidPrifix, itemId) {
 
 	// エンチャント設定のクリア
 	ClearEnchantOnChangeEquip(eqpRgnId, itemId);
@@ -1853,7 +1863,7 @@ function __ClearEquip(eqpRgnId, objidPrifix, itemId) {
  *-----------------------------------------------------------------------------------------------
  * @return true:遠距離攻撃, false:遠距離でない
  ************************************************************************************************/
-function IsLongRange(itemId) {
+export function IsLongRange(itemId) {
 
 	var wpntype = 0;
 	wpntype = ItemObjNew[itemId][ITEM_DATA_INDEX_KIND];
@@ -1885,7 +1895,7 @@ function IsLongRange(itemId) {
 	return false;
 }
 
-function copyAccs(from, to){
+export function copyAccs(from, to){
 	// ランダムオプション入力中はelementがないので処理できない
 	// 中途半端になるので何もしないようにする
 	if (GetSlotMode() != SLOTPAGER_MODE_CARD) {
@@ -1907,4 +1917,35 @@ function copyAccs(from, to){
 			$(`${id_to}_CARD_${i}`).prop("selectedIndex", 0).change();
 		})
 	}
+}
+
+if (typeof window !== 'undefined') {
+	window.changeJobSettings = changeJobSettings;
+	window.OnChangeArmsTypeRight = OnChangeArmsTypeRight;
+	window.RebuildArmsRightSelect = RebuildArmsRightSelect;
+	window.GetFlagAppendedItemName = GetFlagAppendedItemName;
+	window.GetFlagAppendedCardName = GetFlagAppendedCardName;
+	window.IsLearnedEffectEquipable = IsLearnedEffectEquipable;
+	window.OnChangeArmsTypeLeft = OnChangeArmsTypeLeft;
+	window.RebuildArmsLeftSelect = RebuildArmsLeftSelect;
+	window.OnChangeRefined = OnChangeRefined;
+	window.OnChangeEquip = OnChangeEquip;
+	window.ClearEnchantOnChangeEquip = ClearEnchantOnChangeEquip;
+	window.UpdateStatefullDataOnChangeEquip = UpdateStatefullDataOnChangeEquip;
+	window.UpdateLearnedSkillNotice = UpdateLearnedSkillNotice;
+	window.OnClickSwapArms = OnClickSwapArms;
+	window.OnChangeCard = OnChangeCard;
+	window.OnChangeCostume = OnChangeCostume;
+	window.OnChangeRandomEnchant = OnChangeRandomEnchant;
+	window.sort = sort;
+	window.RebuildArmorsSelect = RebuildArmorsSelect;
+	window.WeaponSet2 = WeaponSet2;
+	window.InitEquipDefaultAll = InitEquipDefaultAll;
+	window.InitEquipDefault = InitEquipDefault;
+	window.__InitEquipDefault = __InitEquipDefault;
+	window.ClearEquipAll = ClearEquipAll;
+	window.ClearEquip = ClearEquip;
+	window.__ClearEquip = __ClearEquip;
+	window.IsLongRange = IsLongRange;
+	window.copyAccs = copyAccs;
 }

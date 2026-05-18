@@ -1,4 +1,5 @@
-
+import { CGlobalConstManager } from './CGlobalConstManager.js';
+import { CExtraInfoAreaComponentManager } from './CExtraInfoAreaComponentManager.js';
 
 
 
@@ -25,7 +26,7 @@ CGlobalConstManager.DefineEnum(
  * フローティング情報の種類のテキストを取得する.
  * @param infoId フローティング情報ID
  */
-function GetFloatingInfoText(infoId) {
+export function GetFloatingInfoText(infoId) {
 
 	switch (infoId) {
 
@@ -52,7 +53,7 @@ function GetFloatingInfoText(infoId) {
 /**
  * フローティング情報エリア情報ユニット.
  */
-function CFloatingInfoAreaInfoUnit () {
+export function CFloatingInfoAreaInfoUnit () {
 
 	// 選択中の情報ＩＤ
 	this.selectedInfoId = FLOATING_INFO_ID_NONE;
@@ -68,7 +69,7 @@ function CFloatingInfoAreaInfoUnit () {
 /**
  * フローティング情報エリアコンポーネントマネージャクラス.
  */
-function CFloatingInfoAreaComponentManager () {
+export function CFloatingInfoAreaComponentManager () {
 
 }
 
@@ -1203,7 +1204,6 @@ CFloatingInfoAreaComponentManager.RefreshDispAreaStatus = function (idxArea) {
 	objTd.setAttribute("class", "CSSCLS_FLOATING_INFO_ALIGN_CENTER")
 	HtmlCreateTextSpan(CFloatingInfoAreaComponentManager.charaData[CHARA_DATA_INDEX_DISP_LUCKY], objTd, CFloatingInfoAreaComponentManager.fontSizeClassName);
 
-if (_APPLY_UPDATE_LV200) {
 	if (g_lucky_over > 0) {
 
 		objTr = HtmlCreateElement("tr", objTbody);
@@ -1229,9 +1229,6 @@ if (_APPLY_UPDATE_LV200) {
 		objTd.setAttribute("class", "CSSCLS_FLOATING_INFO_ALIGN_CENTER")
 		HtmlCreateTextSpan("[" + textWork + "]", objTd, CFloatingInfoAreaComponentManager.fontSizeClassName);
 	}
-}
-
-
 
 	// ASPD
 	objTr = HtmlCreateElement("tr", objTbody);
@@ -1393,6 +1390,12 @@ CFloatingInfoAreaComponentManager.LoadFromLocalStorage = function () {
 
 // 初期構築処理
 CFloatingInfoAreaComponentManager.RebuildControls();
+
+if (typeof window !== 'undefined') {
+    window.GetFloatingInfoText = GetFloatingInfoText;
+    window.CFloatingInfoAreaInfoUnit = CFloatingInfoAreaInfoUnit;
+    window.CFloatingInfoAreaComponentManager = CFloatingInfoAreaComponentManager;
+}
 
 
 

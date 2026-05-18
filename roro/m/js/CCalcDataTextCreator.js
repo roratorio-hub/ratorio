@@ -2,7 +2,7 @@
 /**
  * 計算データテキスト作成クラス.
  */
-function CCalcDataTextCreator () {
+export function CCalcDataTextCreator () {
 
 }
 
@@ -152,19 +152,6 @@ CCalcDataTextCreator.CreateCalcDataText = function (testLabel) {
 
 	textResult += ("\r\n").repeat(1);
 
-	// デバッグフラグ系
-	/*
-	textResult += "_DEBUG = " + _DEBUG + ";\r\n";
-	textResult += "_DATA_CREATE_MODE = " + _DATA_CREATE_MODE + ";\r\n";
-	textResult += "_DATA_PARSE_MODE = " + _DATA_PARSE_MODE + ";\r\n";
-	textResult += "_DATA_MIGRATION_MODE = " + _DATA_MIGRATION_MODE + ";\r\n";
-	textResult += "_ENABLE_MIGRATION_BLOCK_NEW_PROCESS = " + _ENABLE_MIGRATION_BLOCK_NEW_PROCESS + ";\r\n";
-	textResult += "_ENABLE_MIGRATION_BLOCK_TRANSIT = " + _ENABLE_MIGRATION_BLOCK_TRANSIT + ";\r\n";
-	textResult += "_TEST_SETTINGS_APPLYING = " + _TEST_SETTINGS_APPLYING + ";\r\n";
-
-	textResult += ("\r\n").repeat(3);
-	*/
-
 	// 全ての収集データに適用
 
 	EnumCharaDataIndex.For(funcLooperCharaData);
@@ -230,4 +217,8 @@ CCalcDataTextCreator.GetDataText = function (dataObject) {
 
 	return dataText;
 };
+
+if (typeof window !== 'undefined') {
+    window.CCalcDataTextCreator = CCalcDataTextCreator;
+}
 

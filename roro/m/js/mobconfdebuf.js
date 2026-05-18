@@ -1,11 +1,78 @@
 // モンスター状態異常設定の限界値
 // この数を超える場合は、セーブデータの拡張が必要
-MOB_CONF_DEBUF_LIMIT = 80;
+export const MOB_CONF_DEBUF_LIMIT = 80;
+
+// データインデックス変数（InitMobConfDebufData で初期化）
+export let MOB_CONF_DEBUF_DATA_INDEX_ID;
+export let MOB_CONF_DEBUF_DATA_INDEX_TEXT;
+export let MOB_CONF_DEBUF_DATA_INDEX_CONTROL_TYPE;
+export let MOB_CONF_DEBUF_DATA_INDEX_DEFAULT_VALUE;
+export let MOB_CONF_DEBUF_DATA_INDEX_MIN_VALUE;
+export let MOB_CONF_DEBUF_DATA_INDEX_MAX_VALUE;
+
+// ID変数（InitMobConfDebufData で初期化）
+export let MOB_CONF_DEBUF_ID_PROVOKE;
+export let MOB_CONF_DEBUF_ID_QUAGMIRE;
+export let MOB_CONF_DEBUF_ID_DOKU;
+export let MOB_CONF_DEBUF_ID_KURAYAMI;
+export let MOB_CONF_DEBUF_ID_TOUKETSU;
+export let MOB_CONF_DEBUF_ID_BLESSING;
+export let MOB_CONF_DEBUF_ID_LEX_AETERNA;
+export let MOB_CONF_DEBUF_ID_STUN;
+export let MOB_CONF_DEBUF_ID_SUIMIN;
+export let MOB_CONF_DEBUF_ID_SEKIKA;
+export let MOB_CONF_DEBUF_ID_NOROI;
+export let MOB_CONF_DEBUF_ID_SOKUDO_GENSHO;
+export let MOB_CONF_DEBUF_ID_SIGNUM_CRUCIS;
+export let MOB_CONF_DEBUF_ID_STRIP_WEAPON;
+export let MOB_CONF_DEBUF_ID_STRIP_SHIELD;
+export let MOB_CONF_DEBUF_ID_STRIP_ARMOR;
+export let MOB_CONF_DEBUF_ID_STRIP_HELM;
+export let MOB_CONF_DEBUF_ID_SPIDER_WEB;
+export let MOB_CONF_DEBUF_ID_MIND_BREAKER;
+export let MOB_CONF_DEBUF_ID_WATASHIWO_WASURENAIDE;
+export let MOB_CONF_DEBUF_ID_EIENNNO_KONTON;
+export let MOB_CONF_DEBUF_ID_ESKA;
+export let MOB_CONF_DEBUF_ID_ESKU;
+export let MOB_CONF_DEBUF_ID_ELEMENTAL_CHANGE;
+export let MOB_CONF_DEBUF_ID_FLYING;
+export let MOB_CONF_DEBUF_ID_VENOM_IMPRESS;
+export let MOB_CONF_DEBUF_ID_ENERVATION;
+export let MOB_CONF_DEBUF_ID_GROOMY;
+export let MOB_CONF_DEBUF_ID_RAGENESS;
+export let MOB_CONF_DEBUF_ID_WEEKNESS;
+export let MOB_CONF_DEBUF_ID_UNLUCKY;
+export let MOB_CONF_DEBUF_ID_ORATIO;
+export let MOB_CONF_DEBUF_ID_HAKKA;
+export let MOB_CONF_DEBUF_ID_SURPRISE_ATTACK_EFFECT;
+export let MOB_CONF_DEBUF_ID_HYOKETSU;
+export let MOB_CONF_DEBUF_ID_REITO;
+export let MOB_CONF_DEBUF_ID_DARK_CRAW_EFFECT;
+export let MOB_CONF_DEBUF_ID_ANALYSE;
+export let MOB_CONF_DEBUF_ID_WATER_BARRIER;
+export let MOB_CONF_DEBUF_ID_MAHI;
+export let MOB_CONF_DEBUF_ID_RAKUIN_ZYOTAI;
+export let MOB_CONF_DEBUF_ID_STRIP_ACCESSARY;
+export let MOB_CONF_DEBUF_ID_INUHAKKA_SHOWER;
+export let MOB_CONF_DEBUF_ID_NYAN_GRASS;
+export let MOB_CONF_DEBUF_ID_TARONO_KIZU;
+export let MOB_CONF_DEBUF_ID_KAITO;
+export let MOB_CONF_DEBUF_ID_SHIRYO_HYOI;
+export let MOB_CONF_DEBUF_ID_ADORAMUS_DEBUFF;
+export let MOB_CONF_DEBUF_ID_MARSH_OF_ABYSS;
+export let MOB_CONF_DEBUF_ID_EARTH_DRIVE_DEBUFF;
+export let MOB_CONF_DEBUF_ID_QUAKE_DEBUFF;
+export let MOB_CONF_DEBUF_ID_SEIYU_SENREI_DEBUFF;
+export let MOB_CONF_DEBUF_ID_SOUND_BLEND;
+export let MOB_CONF_DEBUF_ID_JACK_FROST_NOVA;
+export let MOB_CONF_DEBUF_ID_CLIMAX_QUAKE;
+export let MOB_CONF_DEBUF_ID_CLIMAX_BLOOM;
+export let MOB_CONF_DEBUF_ID_TOXIN_OF_MANDARA;
 
 // 初期化作業
-let n_B_IJYOU = [];
+export let n_B_IJYOU = [];
 
-MobConfDebufOBJ = new Array();
+export let MobConfDebufOBJ = new Array();
 
 InitMobConfDebufData();
 
@@ -817,7 +884,7 @@ function InitMobConfDebufData() {
  * @param objRoot テーブルの親オブジェクト
  * @param bAsExpand 展開表示フラグ（true : 展開表示、false : ヘッダのみ）
  */
-function BuildUpMobConfDebufSelectArea(objRoot, bAsExpand) {
+export function BuildUpMobConfDebufSelectArea(objRoot, bAsExpand) {
 	let idx = 0;
 	let confId = 0;
 	let confText = "";
@@ -1006,7 +1073,7 @@ function BuildUpMobConfDebufSelectArea(objRoot, bAsExpand) {
 /**
  * モンスター状態異常設定欄の状態を同期させる（変数の値をコントロール部品へ反映）.
  */
-function SyncronizeMobConfDebufSettingsVarToCtrl() {
+export function SyncronizeMobConfDebufSettingsVarToCtrl() {
 
 	var idx = 0;
 	var confId = 0;
@@ -1071,7 +1138,7 @@ function SyncronizeMobConfDebufSettingsVarToCtrl() {
 /**
  * モンスター状態異常設定欄の状態を同期させる（コントロール部品の状態を変数へ反映）.
  */
-function SyncronizeMobConfDebufSettingsCtrlToVar() {
+export function SyncronizeMobConfDebufSettingsCtrlToVar() {
 
 	var idx = 0;
 	var confId = 0;
@@ -1138,7 +1205,7 @@ function SyncronizeMobConfDebufSettingsCtrlToVar() {
 /**
  * モンスター状態異常設定欄の展開スイッチクリックイベントハンドラ.
  */
-function OnClickMobConfDebufSwitch() {
+export function OnClickMobConfDebufSwitch() {
 
 	var bExpand = false;
 	var objInput = null;
@@ -1159,7 +1226,7 @@ function OnClickMobConfDebufSwitch() {
  * モンスター状態異常設定欄の設定値変更イベントハンドラ.
  * @param bCalc 再計算フラグ（true : 再計算する、false : 再計算しない）
  */
-function OnChangeMobConfDebuf(bCalc) {
+export function OnChangeMobConfDebuf(bCalc) {
 
 	// 設定の変更を変数に同期させる
 	SyncronizeMobConfDebufSettingsCtrlToVar();
@@ -1179,7 +1246,7 @@ function OnChangeMobConfDebuf(bCalc) {
 /**
  * モンスター状態異常設定テーブルのヘッダをリフレッシュする.
  */
-function RefreshMobConfDebufSelectAreaHeader() {
+export function RefreshMobConfDebufSelectAreaHeader() {
 
 	var bSet = false;
 	var bChecked = false;
@@ -1214,7 +1281,7 @@ function RefreshMobConfDebufSelectAreaHeader() {
 /**
  * モンスター状態異常設定欄の選択状態により、コントロールのCSSを変更する.
  */
-function RefreshMobConfDebufControlCSS() {
+export function RefreshMobConfDebufControlCSS() {
 
 	var idx = 0;
 	var confId = 0;
@@ -1298,4 +1365,80 @@ function RefreshMobConfDebufControlCSS() {
 			}
 		}
 	}
+}
+
+if (typeof window !== 'undefined') {
+	window.MOB_CONF_DEBUF_LIMIT = MOB_CONF_DEBUF_LIMIT;
+	window.n_B_IJYOU = n_B_IJYOU;
+	window.MobConfDebufOBJ = MobConfDebufOBJ;
+	window.MOB_CONF_DEBUF_DATA_INDEX_ID = MOB_CONF_DEBUF_DATA_INDEX_ID;
+	window.MOB_CONF_DEBUF_DATA_INDEX_TEXT = MOB_CONF_DEBUF_DATA_INDEX_TEXT;
+	window.MOB_CONF_DEBUF_DATA_INDEX_CONTROL_TYPE = MOB_CONF_DEBUF_DATA_INDEX_CONTROL_TYPE;
+	window.MOB_CONF_DEBUF_DATA_INDEX_DEFAULT_VALUE = MOB_CONF_DEBUF_DATA_INDEX_DEFAULT_VALUE;
+	window.MOB_CONF_DEBUF_DATA_INDEX_MIN_VALUE = MOB_CONF_DEBUF_DATA_INDEX_MIN_VALUE;
+	window.MOB_CONF_DEBUF_DATA_INDEX_MAX_VALUE = MOB_CONF_DEBUF_DATA_INDEX_MAX_VALUE;
+	window.MOB_CONF_DEBUF_ID_PROVOKE = MOB_CONF_DEBUF_ID_PROVOKE;
+	window.MOB_CONF_DEBUF_ID_QUAGMIRE = MOB_CONF_DEBUF_ID_QUAGMIRE;
+	window.MOB_CONF_DEBUF_ID_DOKU = MOB_CONF_DEBUF_ID_DOKU;
+	window.MOB_CONF_DEBUF_ID_KURAYAMI = MOB_CONF_DEBUF_ID_KURAYAMI;
+	window.MOB_CONF_DEBUF_ID_TOUKETSU = MOB_CONF_DEBUF_ID_TOUKETSU;
+	window.MOB_CONF_DEBUF_ID_BLESSING = MOB_CONF_DEBUF_ID_BLESSING;
+	window.MOB_CONF_DEBUF_ID_LEX_AETERNA = MOB_CONF_DEBUF_ID_LEX_AETERNA;
+	window.MOB_CONF_DEBUF_ID_STUN = MOB_CONF_DEBUF_ID_STUN;
+	window.MOB_CONF_DEBUF_ID_SUIMIN = MOB_CONF_DEBUF_ID_SUIMIN;
+	window.MOB_CONF_DEBUF_ID_SEKIKA = MOB_CONF_DEBUF_ID_SEKIKA;
+	window.MOB_CONF_DEBUF_ID_NOROI = MOB_CONF_DEBUF_ID_NOROI;
+	window.MOB_CONF_DEBUF_ID_SOKUDO_GENSHO = MOB_CONF_DEBUF_ID_SOKUDO_GENSHO;
+	window.MOB_CONF_DEBUF_ID_SIGNUM_CRUCIS = MOB_CONF_DEBUF_ID_SIGNUM_CRUCIS;
+	window.MOB_CONF_DEBUF_ID_STRIP_WEAPON = MOB_CONF_DEBUF_ID_STRIP_WEAPON;
+	window.MOB_CONF_DEBUF_ID_STRIP_SHIELD = MOB_CONF_DEBUF_ID_STRIP_SHIELD;
+	window.MOB_CONF_DEBUF_ID_STRIP_ARMOR = MOB_CONF_DEBUF_ID_STRIP_ARMOR;
+	window.MOB_CONF_DEBUF_ID_STRIP_HELM = MOB_CONF_DEBUF_ID_STRIP_HELM;
+	window.MOB_CONF_DEBUF_ID_SPIDER_WEB = MOB_CONF_DEBUF_ID_SPIDER_WEB;
+	window.MOB_CONF_DEBUF_ID_MIND_BREAKER = MOB_CONF_DEBUF_ID_MIND_BREAKER;
+	window.MOB_CONF_DEBUF_ID_WATASHIWO_WASURENAIDE = MOB_CONF_DEBUF_ID_WATASHIWO_WASURENAIDE;
+	window.MOB_CONF_DEBUF_ID_EIENNNO_KONTON = MOB_CONF_DEBUF_ID_EIENNNO_KONTON;
+	window.MOB_CONF_DEBUF_ID_ESKA = MOB_CONF_DEBUF_ID_ESKA;
+	window.MOB_CONF_DEBUF_ID_ESKU = MOB_CONF_DEBUF_ID_ESKU;
+	window.MOB_CONF_DEBUF_ID_ELEMENTAL_CHANGE = MOB_CONF_DEBUF_ID_ELEMENTAL_CHANGE;
+	window.MOB_CONF_DEBUF_ID_FLYING = MOB_CONF_DEBUF_ID_FLYING;
+	window.MOB_CONF_DEBUF_ID_VENOM_IMPRESS = MOB_CONF_DEBUF_ID_VENOM_IMPRESS;
+	window.MOB_CONF_DEBUF_ID_ENERVATION = MOB_CONF_DEBUF_ID_ENERVATION;
+	window.MOB_CONF_DEBUF_ID_GROOMY = MOB_CONF_DEBUF_ID_GROOMY;
+	window.MOB_CONF_DEBUF_ID_RAGENESS = MOB_CONF_DEBUF_ID_RAGENESS;
+	window.MOB_CONF_DEBUF_ID_WEEKNESS = MOB_CONF_DEBUF_ID_WEEKNESS;
+	window.MOB_CONF_DEBUF_ID_UNLUCKY = MOB_CONF_DEBUF_ID_UNLUCKY;
+	window.MOB_CONF_DEBUF_ID_ORATIO = MOB_CONF_DEBUF_ID_ORATIO;
+	window.MOB_CONF_DEBUF_ID_HAKKA = MOB_CONF_DEBUF_ID_HAKKA;
+	window.MOB_CONF_DEBUF_ID_SURPRISE_ATTACK_EFFECT = MOB_CONF_DEBUF_ID_SURPRISE_ATTACK_EFFECT;
+	window.MOB_CONF_DEBUF_ID_HYOKETSU = MOB_CONF_DEBUF_ID_HYOKETSU;
+	window.MOB_CONF_DEBUF_ID_REITO = MOB_CONF_DEBUF_ID_REITO;
+	window.MOB_CONF_DEBUF_ID_DARK_CRAW_EFFECT = MOB_CONF_DEBUF_ID_DARK_CRAW_EFFECT;
+	window.MOB_CONF_DEBUF_ID_ANALYSE = MOB_CONF_DEBUF_ID_ANALYSE;
+	window.MOB_CONF_DEBUF_ID_WATER_BARRIER = MOB_CONF_DEBUF_ID_WATER_BARRIER;
+	window.MOB_CONF_DEBUF_ID_MAHI = MOB_CONF_DEBUF_ID_MAHI;
+	window.MOB_CONF_DEBUF_ID_RAKUIN_ZYOTAI = MOB_CONF_DEBUF_ID_RAKUIN_ZYOTAI;
+	window.MOB_CONF_DEBUF_ID_STRIP_ACCESSARY = MOB_CONF_DEBUF_ID_STRIP_ACCESSARY;
+	window.MOB_CONF_DEBUF_ID_INUHAKKA_SHOWER = MOB_CONF_DEBUF_ID_INUHAKKA_SHOWER;
+	window.MOB_CONF_DEBUF_ID_NYAN_GRASS = MOB_CONF_DEBUF_ID_NYAN_GRASS;
+	window.MOB_CONF_DEBUF_ID_TARONO_KIZU = MOB_CONF_DEBUF_ID_TARONO_KIZU;
+	window.MOB_CONF_DEBUF_ID_KAITO = MOB_CONF_DEBUF_ID_KAITO;
+	window.MOB_CONF_DEBUF_ID_SHIRYO_HYOI = MOB_CONF_DEBUF_ID_SHIRYO_HYOI;
+	window.MOB_CONF_DEBUF_ID_ADORAMUS_DEBUFF = MOB_CONF_DEBUF_ID_ADORAMUS_DEBUFF;
+	window.MOB_CONF_DEBUF_ID_MARSH_OF_ABYSS = MOB_CONF_DEBUF_ID_MARSH_OF_ABYSS;
+	window.MOB_CONF_DEBUF_ID_EARTH_DRIVE_DEBUFF = MOB_CONF_DEBUF_ID_EARTH_DRIVE_DEBUFF;
+	window.MOB_CONF_DEBUF_ID_QUAKE_DEBUFF = MOB_CONF_DEBUF_ID_QUAKE_DEBUFF;
+	window.MOB_CONF_DEBUF_ID_SEIYU_SENREI_DEBUFF = MOB_CONF_DEBUF_ID_SEIYU_SENREI_DEBUFF;
+	window.MOB_CONF_DEBUF_ID_SOUND_BLEND = MOB_CONF_DEBUF_ID_SOUND_BLEND;
+	window.MOB_CONF_DEBUF_ID_JACK_FROST_NOVA = MOB_CONF_DEBUF_ID_JACK_FROST_NOVA;
+	window.MOB_CONF_DEBUF_ID_CLIMAX_QUAKE = MOB_CONF_DEBUF_ID_CLIMAX_QUAKE;
+	window.MOB_CONF_DEBUF_ID_CLIMAX_BLOOM = MOB_CONF_DEBUF_ID_CLIMAX_BLOOM;
+	window.MOB_CONF_DEBUF_ID_TOXIN_OF_MANDARA = MOB_CONF_DEBUF_ID_TOXIN_OF_MANDARA;
+	window.BuildUpMobConfDebufSelectArea = BuildUpMobConfDebufSelectArea;
+	window.SyncronizeMobConfDebufSettingsVarToCtrl = SyncronizeMobConfDebufSettingsVarToCtrl;
+	window.SyncronizeMobConfDebufSettingsCtrlToVar = SyncronizeMobConfDebufSettingsCtrlToVar;
+	window.OnClickMobConfDebufSwitch = OnClickMobConfDebufSwitch;
+	window.OnChangeMobConfDebuf = OnChangeMobConfDebuf;
+	window.RefreshMobConfDebufSelectAreaHeader = RefreshMobConfDebufSelectAreaHeader;
+	window.RefreshMobConfDebufControlCSS = RefreshMobConfDebufControlCSS;
 }

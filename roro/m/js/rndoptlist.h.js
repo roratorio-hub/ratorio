@@ -1,4 +1,6 @@
 
+import { CGlobalConstManager } from './CGlobalConstManager.js';
+
 //----------------------------------------------------------------
 // データの要素番号
 //----------------------------------------------------------------
@@ -12,5 +14,5 @@ CGlobalConstManager.DefineEnum(
 	1
 );
 
-g_rndOptListArray = new Array();
+
 
