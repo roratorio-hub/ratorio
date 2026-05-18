@@ -1,5 +1,6 @@
-"use strict"
-class CCharaConfDebuff extends CConfBase {
+import { CConfBase } from './CConfBase.js';
+
+export class CCharaConfDebuff extends CConfBase {
 	constructor(confArray) {
 		// 親クラスのコンストラクタ呼び出し
 		super(confArray);
@@ -300,4 +301,8 @@ class CCharaConfDebuff extends CConfBase {
 		this.confDataObj = displayOrder.map(id => this.confDataObj[id]);
 	}
 
+}
+
+if (typeof window !== 'undefined') {
+	window.CCharaConfDebuff = CCharaConfDebuff;
 }

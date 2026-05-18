@@ -1,5 +1,5 @@
 
-g_ExpTableInfoArray = [
+window.g_ExpTableInfoArray = [
 	// [表示名, レベル表記名, 参照テーブル番号, テーブル内要素番号, 最小レベル, 最大レベル]
 	["BaseExp", "BaseLv", 0, BASE_EXP_TABLE_ID_NORMAL, GetBaseLevelMin(JOB_ID_NOVICE), GetBaseLevelMax(JOB_ID_NOVICE)],
 	["BaseExp 転生/サモナー", "BaseLv", 0, BASE_EXP_TABLE_ID_REINCANATED, GetBaseLevelMin(JOB_ID_HI_NOVICE), GetBaseLevelMax(JOB_ID_HI_NOVICE)],
@@ -377,4 +377,4 @@ function GetCommaFormatedNumber(value) {
 	// 配列をカンマで結合し、符号をつけて返す
 	return (value < 0 ? "-" : "") + digitsArray.join(",");
 }
-
+if (typeof window !== 'undefined') { Object.assign(window, { OnLoadExpTable, RefreshExpTable, GetCommaFormatedNumber }); }

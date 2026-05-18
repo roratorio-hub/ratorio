@@ -1,4 +1,6 @@
-function CCharaConfSanzi(confArray) {
+import { CConfBase } from './CConfBase.js';
+
+export function CCharaConfSanzi(confArray) {
 	// 継承定義
 	CCharaConfSanzi.prototype = new CConfBase();
 	// 基底クラスのコンストラクタ呼び出し
@@ -568,6 +570,7 @@ function CCharaConfSanzi(confArray) {
 		var confId = confData[CConfBase.CONF_DATA_INDEX_ID];
 		var controlId = this.GetControlIdString(this.instanceNo, confId);
 		var controlType = confData[CConfBase.CONF_DATA_INDEX_CONTROL_TYPE];
+		var objSelect; var objOption;
 
 		// 個別に実装する
 		switch (confId) {
@@ -640,3 +643,5 @@ function CCharaConfSanzi(confArray) {
 	// 初期化実行
 	this.InitData();
 }
+
+if (typeof window !== 'undefined') { window.CCharaConfSanzi = CCharaConfSanzi; }

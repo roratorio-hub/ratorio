@@ -1,4 +1,6 @@
-function CCharaConfYozi(confArray) {
+import { CConfBase } from './CConfBase.js';
+
+export function CCharaConfYozi(confArray) {
 	// 継承定義
 	CCharaConfYozi.prototype = new CConfBase();
 	// 基底クラスのコンストラクタ呼び出し
@@ -414,4 +416,8 @@ function CCharaConfYozi(confArray) {
 
 	// 初期化実行
 	this.InitData();
+}
+
+if (typeof window !== 'undefined') {
+	window.CCharaConfYozi = CCharaConfYozi;
 }

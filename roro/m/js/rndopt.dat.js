@@ -1,6 +1,4 @@
-(function () {
-
-	g_rndOptArray = [
+export const g_rndOptArray = [
 		[0,0,0,0,1,0],
 		[1,1,0,200,1,0],
 		[2,2,0,200,1,0],
@@ -275,6 +273,8 @@
 		[271,233,0,3,1,0],
 		[272,234,0,3,1,0],
 		[273,235,0,3,1,0],
-	];
+];
 
-})();
+if (typeof window !== 'undefined') {
+	window.g_rndOptArray = g_rndOptArray;
+}

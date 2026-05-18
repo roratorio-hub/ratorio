@@ -1,7 +1,7 @@
 /**
  * セーブデータのマッピングを管理するクラス.
  */
-function CSaveDataMappingManager() {
+export function CSaveDataMappingManager() {
 
 }
 
@@ -1225,4 +1225,6 @@ CSaveDataMappingManager.__GetMappingArrayMobConfPlayer2 = function (version) {
 	return mappingArray;
 };
 
-
+if (typeof window !== 'undefined') {
+    window.CSaveDataMappingManager = CSaveDataMappingManager;
+}

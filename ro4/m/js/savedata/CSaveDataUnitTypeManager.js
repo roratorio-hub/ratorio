@@ -1,7 +1,8 @@
+import { CSingletonMapper } from './CSingletonMapper.js';
 /**
  * セーブデータユニットのタイプ値とクラスの対応を管理するクラス.
  */
-class CSaveDataUnitTypeManager {
+export class CSaveDataUnitTypeManager {
 
 	/**
 	 * タイプ値とクラスの関係を管理するシングルトンマッパ.

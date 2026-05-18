@@ -3,10 +3,12 @@
 
 
 
+import { CCustomSelectBase } from './CCustomSelectBase.js';
+
 /**
  * カスタムセレクトクラス（マップ基底）.
  */
-function CCustomSelectMapBase () {
+export function CCustomSelectMapBase () {
 
 
 
@@ -274,9 +276,9 @@ CCustomSelectMapBase.SortById = function (objA, objB) {
 	return 0;
 };
 
-
-
-
+if (typeof window !== 'undefined') {
+    window.CCustomSelectMapBase = CCustomSelectMapBase;
+}
 
 
 

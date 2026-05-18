@@ -1,4 +1,6 @@
 
+import { CGlobalConstManager } from '../CGlobalConstManager.js';
+
 /*
 
 	『データソース配列』と『データオブジェクト配列』の２種類を持つ。
@@ -11,7 +13,7 @@
 /**
  * データマネージャ基底クラス.
  */
-function CMigConstDataManagerSubBase () {
+export function CMigConstDataManagerSubBase () {
 
 	// データオブジェクトのクラス
 	this.dataObjectClass = null;
@@ -283,3 +285,4 @@ function CMigConstDataManagerSubBase () {
 		return this.registeredIdArray.slice();
 	};
 }
+if (typeof window !== 'undefined') { window.CMigConstDataManagerSubBase = CMigConstDataManagerSubBase; }

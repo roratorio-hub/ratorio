@@ -1,4 +1,6 @@
-function CCharaConfCustomDef(confArray) {
+import { CConfBase } from './CConfBase.js';
+
+export function CCharaConfCustomDef(confArray) {
 
 	// 継承定義
 	CCharaConfCustomDef.prototype = new CConfBase();
@@ -292,6 +294,8 @@ function CCharaConfCustomDef(confArray) {
 		var confId = confData[CConfBase.CONF_DATA_INDEX_ID];
 		var controlId = this.GetControlIdString(this.instanceNo, confId);
 		var controlType = confData[CConfBase.CONF_DATA_INDEX_CONTROL_TYPE];
+		var objSelect;
+		var objOption;
 
 		// 個別に実装する
 		switch (confId) {
@@ -401,4 +405,8 @@ function CCharaConfCustomDef(confArray) {
 
 
 
+}
+
+if (typeof window !== 'undefined') {
+	window.CCharaConfCustomDef = CCharaConfCustomDef;
 }

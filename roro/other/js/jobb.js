@@ -198,3 +198,4 @@ function RefreshJobBonusTableSub(objRoot, jobBonusArrayArray, lvBegin, lvMax) {
 	// フッタ行追加
 	funcAddLabelRow();
 }
+if (typeof window !== 'undefined') { Object.assign(window, { OnLoadJobBonusTable, RefreshJobBonusTable, RefreshJobBonusTableSub }); }

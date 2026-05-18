@@ -1,4 +1,9 @@
 
+import { CGlobalConstManager } from './CGlobalConstManager.js';
+import { CNameKana } from './CNameKana.js';
+import { g_MonsterMapDataArray, g_MonsterMapCategoryDataArray } from './monstermap.dat.js';
+export { g_MonsterMapDataArray, g_MonsterMapCategoryDataArray } from './monstermap.dat.js';
+
 //----------------------------------------------------------------
 // データの要素番号
 //----------------------------------------------------------------
@@ -56,7 +61,7 @@ CGlobalConstManager.DefinePseudoEnum(
  * データ配列のソート仮名を設定する.
  * @param dataArray データ配列
  */
-function SetUpSortKanaMonsterMap(dataArray) {
+export function SetUpSortKanaMonsterMap(dataArray) {
 
 	var idx = 0;
 	var idxName = 0;
@@ -79,6 +84,11 @@ function SetUpSortKanaMonsterMap(dataArray) {
 
 
 
-// データ配列
-g_MonsterMapDataArray = [];
-g_MonsterMapCategoryDataArray = [];
+SetUpSortKanaMonsterMap(g_MonsterMapDataArray);
+SetUpSortKanaMonsterMap(g_MonsterMapCategoryDataArray);
+
+if (typeof window !== 'undefined') {
+    window.g_MonsterMapDataArray = g_MonsterMapDataArray;
+    window.g_MonsterMapCategoryDataArray = g_MonsterMapCategoryDataArray;
+    window.SetUpSortKanaMonsterMap = SetUpSortKanaMonsterMap;
+}

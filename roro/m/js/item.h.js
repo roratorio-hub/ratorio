@@ -1,3 +1,4 @@
+import { CGlobalConstManager } from './CGlobalConstManager.js';
 
 //----------------------------------------------------------------
 // EnumItemDataIndex データの要素番号
@@ -1219,7 +1220,7 @@ CGlobalConstManager.DefinePseudoEnum(
  * @param kindId 種別ＩＤ
  * @return 種別名
  */
-function GetItemKindNameText(kindId) {
+export function GetItemKindNameText(kindId) {
 	switch (kindId) {
 		case ITEM_KIND_NONE:
 			return "素手";
@@ -1306,7 +1307,7 @@ function GetItemKindNameText(kindId) {
  * @param itemKind アイテム種別
  * @return true:DEXベース、false:STRベース
  */
-function IsDexBasedArms (itemKind) {
+export function IsDexBasedArms (itemKind) {
 
 	switch (itemKind) {
 
@@ -1330,7 +1331,7 @@ function IsDexBasedArms (itemKind) {
  * @param itemKind アイテム種別
  * @return true:適用される、false:適用されない
  */
-function IsEffectiveExceededRefinedAtkArms (itemKind) {
+export function IsEffectiveExceededRefinedAtkArms (itemKind) {
 
 	// 基本的には、STRベースの武器のみ適用
 	// ただし、楽器と鞭は、DEXベースだが適用される
@@ -1359,7 +1360,7 @@ function IsEffectiveExceededRefinedAtkArms (itemKind) {
  * @param itemKind アイテム種別
  * @return true:銃系列、false:銃以外
  */
-function IsGunSeriesArms (itemKind) {
+export function IsGunSeriesArms (itemKind) {
 
 	switch (itemKind) {
 
@@ -1380,7 +1381,7 @@ function IsGunSeriesArms (itemKind) {
  * @param eqpflg 装備フラグ
  * @return 職業制限テキスト
  */
-function GetJobRestrictText(eqpflg) {
+export function GetJobRestrictText(eqpflg) {
 
 	switch (eqpflg) {
 		case ITEM_EQPFLG_NONE:
@@ -1725,7 +1726,7 @@ function GetJobRestrictText(eqpflg) {
  * @param wpnlv 武器レベル
  * @returns ペナルティ回避STR
  */
-function GetStrPenaltyAvoidStr(atk, wpnlv) {
+export function GetStrPenaltyAvoidStr(atk, wpnlv) {
 	var penaValue = Math.floor(atk * 2 / 3);
 	var wlvBonus = 4 / (Math.floor(wpnlv) % 10);
 	var needStr = Math.ceil(Math.sqrt(penaValue / wlvBonus)) * 10;
@@ -1738,7 +1739,7 @@ function GetStrPenaltyAvoidStr(atk, wpnlv) {
  * @param wpnlv 武器レベル（当該データに合成しているので）
  * @returns エンチャントタイプID
  */
-function GetEnchantTypeId(wpnlv) {
+export function GetEnchantTypeId(wpnlv) {
 	return Math.floor(wpnlv / 10) % 10000;
 }
 
@@ -1747,7 +1748,7 @@ function GetEnchantTypeId(wpnlv) {
  * @param wpnlv 武器レベル（当該データに合成しているので）
  * @returns ランダムオプションタイプID
  */
-function GetRndOptTypeId(wpnlv) {
+export function GetRndOptTypeId(wpnlv) {
 	return Math.floor(wpnlv / 10 / 10000);
 }
 
@@ -1756,7 +1757,7 @@ function GetRndOptTypeId(wpnlv) {
  * @param slotValue スロット定義値
  * @returns スロット数テキスト
  */
-function GetSlotText(slotValue) {
+export function GetSlotText(slotValue) {
 
 	var slotValueWork = 0;
 	var slotText = "";
@@ -1792,7 +1793,7 @@ function GetSlotText(slotValue) {
  * @param slotValue スロット定義値
  * @returns 最大スロット数
  */
-function GetMaxSlot(slotValue) {
+export function GetMaxSlot(slotValue) {
 
 	var slotValueWork = 0;
 	var slotCount = 0;
@@ -1818,7 +1819,7 @@ function GetMaxSlot(slotValue) {
 }
 
 // TODO: 削除予定
-function GetItemSP(itemId, spid) {
+export function GetItemSP(itemId, spid) {
 
 	var idx = 0;
 	var itemData = ItemObjNew[itemId];
@@ -1841,7 +1842,8 @@ function GetItemSP(itemId, spid) {
  * @param spValue SP値
  * @return 説明テキスト
  */
-function GetItemExplainText(spId, spValue) {
+export function GetItemExplainText(spId, spValue) {
+	var idx = 0;
 
 	let condTextEquipmentLocation = "";
 	let condTextTranscendence = "";
@@ -3135,4 +3137,19 @@ function GetItemExplainText(spId, spValue) {
 
 
 	return textInfoArray;
+}
+
+if (typeof window !== 'undefined') {
+	window.GetItemKindNameText = GetItemKindNameText;
+	window.IsDexBasedArms = IsDexBasedArms;
+	window.IsEffectiveExceededRefinedAtkArms = IsEffectiveExceededRefinedAtkArms;
+	window.IsGunSeriesArms = IsGunSeriesArms;
+	window.GetJobRestrictText = GetJobRestrictText;
+	window.GetStrPenaltyAvoidStr = GetStrPenaltyAvoidStr;
+	window.GetEnchantTypeId = GetEnchantTypeId;
+	window.GetRndOptTypeId = GetRndOptTypeId;
+	window.GetSlotText = GetSlotText;
+	window.GetMaxSlot = GetMaxSlot;
+	window.GetItemSP = GetItemSP;
+	window.GetItemExplainText = GetItemExplainText;
 }

@@ -1,8 +1,10 @@
+import { CSaveDataUnitBase } from './CSaveDataUnitBase.js';
+import { CSaveDataConst } from './CSaveDataConst.js';
 /**
  * 「対プレイヤー設定」情報クラス
  * 旧セーブデータから変換する時だけ使われている
  */
-class CSaveDataUnitMobConfPlayer extends CSaveDataUnitBase {
+export class CSaveDataUnitMobConfPlayer extends CSaveDataUnitBase {
 
     /**
      * タイプ値.

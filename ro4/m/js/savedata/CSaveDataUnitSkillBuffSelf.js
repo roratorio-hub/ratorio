@@ -1,7 +1,9 @@
+import { CSaveDataUnitBase } from './CSaveDataUnitBase.js';
+import { CSaveDataConst } from './CSaveDataConst.js';
 /**
  * 「職固有自己支援・パッシブ持続系」情報クラス
  */
-class CSaveDataUnitSkillBuffSelf extends CSaveDataUnitBase {
+export class CSaveDataUnitSkillBuffSelf extends CSaveDataUnitBase {
 
     /**
      * タイプ値.

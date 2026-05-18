@@ -1,7 +1,9 @@
+import { CSaveDataUnitBase } from './CSaveDataUnitBase.js';
+import { CSaveDataConst } from './CSaveDataConst.js';
 /**
  * 「基本ステータス」「特性ステータス」情報クラス
  */
-class CSaveDataUnitChara extends CSaveDataUnitBase {
+export class CSaveDataUnitChara extends CSaveDataUnitBase {
 
     /**
      * タイプ値.

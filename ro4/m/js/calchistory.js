@@ -163,7 +163,7 @@ div.clip_memo {
       calc();
       const metadata = { "memo": "", "url": CSaveController.encodeToURL() };
       if ($("#clip_with_memo").prop('checked')) {
-        memo = prompt("clipメモ");
+        let memo = prompt("clipメモ");
         if (memo) metadata["memo"] = memo;
       }
       chart.data.labels.push(chart.data.labels.length + 1);
@@ -182,6 +182,7 @@ div.clip_memo {
       chart.data.datasets[3].data.push(isNaN(cycle) ? 0 : cycle);
       chart.update();
       g_Chart = chart;
+      if (typeof window !== 'undefined') window.g_Chart = g_Chart;
     });
     $("#history_reset").click(e => {
       chart.data.labels = [];
@@ -193,6 +194,7 @@ div.clip_memo {
       target = 0;
       chart.update();
       g_Chart = null;
+      if (typeof window !== 'undefined') window.g_Chart = g_Chart;
     });
     $("#history_list").click(e => {
       $("#history_graph").insertBefore("#clip_modal_table");
@@ -213,8 +215,8 @@ div.clip_memo {
     }
     const reload_history_table = () => {
       $("#clip_modal_table tbody *").remove();
-      body = ""
-      for (i = 0; i < data.labels.length; i++) {
+      let body = ""
+      for (let i = 0; i < data.labels.length; i++) {
         body += `<tr>
                   <td class="col no">${data.labels[i].toLocaleString()}</td>
                   <td class="col">${data.datasets[0].data[i].toLocaleString()}</td>
@@ -235,6 +237,7 @@ div.clip_memo {
       chart.update();
       reload_history_table();
       g_Chart = chart;
+      if (typeof window !== 'undefined') window.g_Chart = g_Chart;
     });
     $(document).on("blur", "input.clip_memo", (e) => {
       $(e.target).toggle();
@@ -279,5 +282,9 @@ div.clip_memo {
   };
   buildForm();
 });
-var g_Chart;
+export let g_Chart;
+
+if (typeof window !== 'undefined') {
+    window.g_Chart = g_Chart;
+}
 

@@ -1,7 +1,9 @@
+import { CSaveDataUnitBase } from './CSaveDataUnitBase.js';
+import { CSaveDataConst } from './CSaveDataConst.js';
 /**
  * 「二次職支援設定」情報クラス
  */
-class CSaveDataUnitSkillBuff2nd extends CSaveDataUnitBase {
+export class CSaveDataUnitSkillBuff2nd extends CSaveDataUnitBase {
 
     /**
      * タイプ値.

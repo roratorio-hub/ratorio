@@ -1,3 +1,5 @@
+import { CGlobalConstManager } from './CGlobalConstManager.js';
+import { CInstanceManager } from './CInstanceManager.js';
 //----------------------------------------------------------------
 // 拡張情報の種類
 //----------------------------------------------------------------
@@ -64,7 +66,7 @@ CGlobalConstManager.DefineEnum(
  * 拡張情報の種類のテキストを取得する.
  * @param infoId 拡張情報ID
  */
-function GetExtraInfoText(infoId) {
+export function GetExtraInfoText(infoId) {
 
 	switch (infoId) {
 	case EXTRA_INFO_ID_NONE:
@@ -126,7 +128,8 @@ function GetExtraInfoText(infoId) {
 /**
  * 拡張情報エリアコンポーネントマネージャクラス.
  */
-function CExtraInfoAreaComponentManager () {
+export function CExtraInfoAreaComponentManager () {
+	var itemCount = 0, sklLv = 0;
 
 	// マネージャクラスのインスタンスＩＤ
 	this.managerInstanceId = CExtraInfoAreaComponentManager.instanceManager.registerInstance(this);
@@ -674,10 +677,12 @@ function CExtraInfoAreaComponentManager () {
 	 * 拡張情報の表示欄を更新する（ヒール回復力）.
 	 */
 	this.RefreshDispAreaHealing = function () {
+		var i = 0;
 		var lv = 0;
 		var lvMax = 0;
 		var healType = 0;
 		var healTarget = 0;
+		var ptmCount = 0;
 		var valueMinArray = [];
 		var valueMaxArray = [];
 		var valueText = "";
@@ -865,6 +870,7 @@ function CExtraInfoAreaComponentManager () {
 		var objTbody = null;
 		var objTr = null;
 		var objTd = null;
+		var objSelect = null;
 
 		var learnSkillIdArray = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, n_A_JOB).GetLearnSkillIdArray();
 
@@ -969,6 +975,7 @@ function CExtraInfoAreaComponentManager () {
 		var typeText = "";
 		var valueText = "";
 		var valueTextArrayHP = null;
+		var valueTextArraySP = null;
 
 		var objRoot = null;
 		var objTable = null;
@@ -1127,6 +1134,7 @@ function CExtraInfoAreaComponentManager () {
 		var objTbody = null;
 		var objTr = null;
 		var objTd = null;
+		var objSelect = null;
 
 		var learnSkillIdArray = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, n_A_JOB).GetLearnSkillIdArray();
 
@@ -2996,6 +3004,7 @@ function CExtraInfoAreaComponentManager () {
 		var funcSelectData = null;
 		var loopDataArrayGeneral = 0;
 		var loopDataArrayActive = 0;
+		var spanClassName = "";
 
 		var objRoot = null;
 		var objTable = null;
@@ -3352,6 +3361,7 @@ function CExtraInfoAreaComponentManager () {
 		var objTbody = null;
 		var objTr = null;
 		var objTd = null;
+		var objSelect = null;
 
 
 
@@ -3799,6 +3809,7 @@ function CExtraInfoAreaComponentManager () {
 		var objTbody = null;
 		var objTr = null;
 		var objTd = null;
+		var objSelect = null;
 
 
 
@@ -3914,6 +3925,7 @@ function CExtraInfoAreaComponentManager () {
 	this.RefreshDispAreaStatusSum = function () {
 
 		var idx = 0;
+		var idxBase = 0;
 		var idxLoopInfo = 0;
 		var idxEffective = 0;
 		var idxEffectivePrev = 0;
@@ -3972,6 +3984,11 @@ function CExtraInfoAreaComponentManager () {
 		};
 
 		var loopInfo = null;
+		var loopInfoCheck = null;
+		var paramArray = null;
+		var selectedTargetId = 0;
+		var remainPlus = 0;
+		var remainMinus = 0;
 
 		var loopInfoArrayWork = null;
 		var loopInfoArrayWorkAll = null;
@@ -4705,7 +4722,6 @@ function CExtraInfoAreaComponentManager () {
 		magicalValueArray[3] = ["", n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_PLAYER_DORAM]];
 		magicalValueArray[4] = ["", magicalValueArray[0][1] + magicalValueArray[3][1]];
 
-if (_APPLY_UPDATE_LV200) {
 		resistValueArray[0] = ["", n_tok[ITEM_SP_RESIST_PLAYER_ALL]];
 		resistOverArray[0] = Math.max(0, n_tok_no_limit[ITEM_SP_RESIST_PLAYER_ALL] - n_tok[ITEM_SP_RESIST_PLAYER_ALL]);
 
@@ -4720,14 +4736,6 @@ if (_APPLY_UPDATE_LV200) {
 
 		resistValueArray[4] = ["", Math.min(95, resistValueArray[0][1] + resistValueArray[3][1])];
 		resistOverArray[4] = Math.max(0, resistValueArray[0][1] + resistValueArray[3][1] - 95) + resistOverArray[0] + resistOverArray[3];
-}
-else {
-		resistValueArray[0] = ["", n_tok[ITEM_SP_RESIST_PLAYER_ALL]];
-		resistValueArray[1] = ["", n_tok[ITEM_SP_RESIST_PLAYER_HUMAN] + n_tok[ITEM_SP_RESIST_RACE_HUMAN]];
-		resistValueArray[2] = ["", resistValueArray[0][1] + resistValueArray[1][1]];
-		resistValueArray[3] = ["", n_tok[ITEM_SP_RESIST_PLAYER_DORAM]];
-		resistValueArray[4] = ["", resistValueArray[0][1] + resistValueArray[3][1]];
-}
 
 		for (idx = 0; idx < 5; idx++) {
 			physicalValueArray[idx][0] = funcSelectClassName(physicalValueArray[idx][1], "CSSCLS_EXTRA_INFO_DISP_TABLE_SPEC_VALUE_BLUE", "", "CSSCLS_EXTRA_INFO_DISP_TABLE_SPEC_VALUE_RED")
@@ -5002,12 +5010,14 @@ else {
 		var idx = 0;
 
 		var targetArray = null;
+		var value = 0;
 
 		var objRoot = null;
 		var objTable = null;
 		var objTbody = null;
 		var objTr = null;
 		var objTd = null;
+		var objSelect = null;
 
 
 
@@ -5061,6 +5071,10 @@ else {
 		var dispInfoArrayArray = null;
 		var dispValue = "";
 		var valueObjectClassName = "";
+		var value = 0;
+		var confval = 0;
+		var bufLv = 0;
+		var objSpan = null;
 
 		var funcCreateDispValueText = function (valueF, bAddPlusSignF, bPercentF) {
 
@@ -5841,7 +5855,10 @@ CExtraInfoAreaComponentManager.RefreshDispAreaAll = function () {
 	}
 };
 
-
+if (typeof window !== 'undefined') {
+	window.GetExtraInfoText = GetExtraInfoText;
+	window.CExtraInfoAreaComponentManager = CExtraInfoAreaComponentManager;
+}
 
 /*
 CExtraInfoAreaComponentManager.testes = function () {

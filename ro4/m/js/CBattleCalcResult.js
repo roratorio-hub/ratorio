@@ -2,7 +2,7 @@
 /**
  * 戦闘結果クラス.
  */
-function CBattleCalcResult () {
+export function CBattleCalcResult () {
 
 	// スキルID
 	this.skillId = 0;
@@ -918,7 +918,7 @@ function CBattleCalcResult () {
 		}
 		else {
 			// 設置スキルではない場合：従来通り割り算
-			actInterval = castVary + castFixed + attackInterval;
+			var actInterval = castVary + castFixed + attackInterval;
 			var hits = actInterval > 0 ? (1 / actInterval) : 1;
 			hitsMin = hitsMax = hitsAve = hits;
 		}
@@ -979,3 +979,7 @@ function CBattleCalcResult () {
 
 
 
+
+if (typeof window !== 'undefined') {
+    window.CBattleCalcResult = CBattleCalcResult;
+}

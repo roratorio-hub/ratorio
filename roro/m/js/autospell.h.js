@@ -1,4 +1,6 @@
 
+import { CGlobalConstManager } from './CGlobalConstManager.js';
+
 //----------------------------------------------------------------
 // データの要素番号
 //----------------------------------------------------------------
@@ -57,7 +59,7 @@ CGlobalConstManager.DefineEnum(
 
 
 
-AUTO_SPELL_ID_CUSTOM_BIAS = 20000;
+export const AUTO_SPELL_ID_CUSTOM_BIAS = 20000;
 
 
 
@@ -67,7 +69,7 @@ AUTO_SPELL_ID_CUSTOM_BIAS = 20000;
  * オートスペル発動トリガのテキストを取得する.
  * @param triggerId 発動トリガＩＤ
  */
-function GetAutoSpellTriggerText(triggerId) {
+export function GetAutoSpellTriggerText(triggerId) {
 	switch (triggerId) {
 	case AUTO_SPELL_TRIGGER_UNKNOWN:
 		return "特定条件の時";
@@ -107,3 +109,7 @@ function GetAutoSpellTriggerText(triggerId) {
 	return "不明";
 }
 
+if (typeof window !== 'undefined') {
+    window.AUTO_SPELL_ID_CUSTOM_BIAS = AUTO_SPELL_ID_CUSTOM_BIAS;
+    window.GetAutoSpellTriggerText = GetAutoSpellTriggerText;
+}

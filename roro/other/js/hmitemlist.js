@@ -64,6 +64,23 @@ function getItemList(itemlist, seachword) {
 	var spDataArray;
 	var textInfoArray;
 	var spText;
+	var idxData = 0;
+	var idxSp = 0;
+	var idxText = 0;
+	var idxSlot = 0;
+	var idxEnchList = 0;
+	var idxInfo = 0;
+	var itemData = null;
+	var enchListIdArray = null;
+	var enchInfoArrayAllSlotsResult = null;
+	var enchListId = 0;
+	var enchInfoArrayAllSlots = null;
+	var enchInfoText = "";
+	var enchInfoArray = null;
+	var enchListIdLast = -1;
+	var enchInfo = null;
+	var enchId = 0;
+	var enchData = null;
 	// 名前で一致するものを先に検索する
 	let retList = itemlist.filter((item) => String(item[ITEM_DATA_INDEX_NAME]).includes(seachword));
 	// アイテムSPとエンチャで検索する
@@ -151,6 +168,8 @@ function BuildUpItemList() {
 	let enchInfoText = "";
 	let enchInfo = null;
 	let enchListIdLast = 0;
+	let enchId = 0;
+	let enchData = null;
 	let colspanSP = 0;
 	let rowspanName = 0;
 	let rowCountEnchInfo = 0;
@@ -667,4 +686,11 @@ function OnChangeSlotRestrict() {
 function OnChangeShowEnchantInfo() {
 	// 一覧テーブルを再構築
 	BuildUpItemList();
+}
+if (typeof window !== 'undefined') {
+	Object.assign(window, {
+		OnLoadItemList, SetUpSelects, getItemList, BuildUpItemList,
+		GetElmTextForItemList, OnChangeKindRestrict, OnChangeJobRestrict,
+		OnChnageShowSP, OnChangeSortCondition, OnChangeSlotRestrict, OnChangeShowEnchantInfo,
+	});
 }

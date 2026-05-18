@@ -3,10 +3,12 @@
 
 
 
+import { CCustomSelectMapBase } from './CCustomSelectMapBase.js';
+
 /**
  * カスタムセレクトクラス（マップ地域）.
  */
-function CCustomSelectMapCategory (instanceIdNameC) {
+export function CCustomSelectMapCategory (instanceIdNameC) {
 
 
 
@@ -106,6 +108,10 @@ function CCustomSelectMapCategory (instanceIdNameC) {
 }
 
 CCustomSelectMapCategory.prototype = new CCustomSelectMapBase();
+
+if (typeof window !== 'undefined') {
+    window.CCustomSelectMapCategory = CCustomSelectMapCategory;
+}
 
 
 

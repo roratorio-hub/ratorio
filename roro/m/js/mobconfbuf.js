@@ -2,12 +2,36 @@
 
 // モンスター状態強化設定の限界値
 // この数を超える場合は、セーブデータの拡張が必要
-MOB_CONF_BUF_LIMIT = 80;
+export const MOB_CONF_BUF_LIMIT = 80;
+
+// データインデックス変数（InitMobConfBufData で初期化）
+export let MOB_CONF_BUF_DATA_INDEX_ID;
+export let MOB_CONF_BUF_DATA_INDEX_TEXT;
+export let MOB_CONF_BUF_DATA_INDEX_CONTROL_TYPE;
+export let MOB_CONF_BUF_DATA_INDEX_DEFAULT_VALUE;
+export let MOB_CONF_BUF_DATA_INDEX_MIN_VALUE;
+export let MOB_CONF_BUF_DATA_INDEX_MAX_VALUE;
+
+// ID変数（InitMobConfBufData で初期化）
+export let MOB_CONF_BUF_ID_SOKUDO_ZOKA;
+export let MOB_CONF_BUF_ID_ASSUMPTIO;
+export let MOB_CONF_BUF_ID_ADRENALINE_RUSH;
+export let MOB_CONF_BUF_ID_MAXIMIZE_POWER;
+export let MOB_CONF_BUF_ID_RUSH_ATTACK;
+export let MOB_CONF_BUF_ID_SOKUDO_KYOKA;
+export let MOB_CONF_BUF_ID_ZOKUSEI_HENKA;
+export let MOB_CONF_BUF_ID_STONE_SKIN;
+export let MOB_CONF_BUF_ID_ANTI_MAGIC;
+export let MOB_CONF_BUF_ID_KEEPING;
+export let MOB_CONF_BUF_ID_DEFENDER;
+export let MOB_CONF_BUF_ID_REBIRTH;
+export let MOB_CONF_BUF_ID_DAMAGE_DIVIDE;
+export let MOB_CONF_BUF_ID_MAX_PAIN;
 
 // 初期化作業
-let n_B_KYOUKA = [];
+export let n_B_KYOUKA = [];
 
-MobConfBufOBJ = new Array();
+export let MobConfBufOBJ = new Array();
 
 InitMobConfBufData();
 
@@ -316,7 +340,7 @@ function InitMobConfBufData() {
  * @param objRoot テーブルの親オブジェクト
  * @param bAsExpand 展開表示フラグ（true : 展開表示、false : ヘッダのみ）
  */
-function BuildUpMobConfBufSelectArea(objRoot, bAsExpand) {
+export function BuildUpMobConfBufSelectArea(objRoot, bAsExpand) {
 
 	var idx = 0;
 	var confId = 0;
@@ -628,7 +652,7 @@ function BuildUpMobConfBufSelectArea(objRoot, bAsExpand) {
 /**
  * モンスター状態強化設定欄の状態を同期させる（変数の値をコントロール部品へ反映）.
  */
-function SyncronizeMobConfBufSettingsVarToCtrl() {
+export function SyncronizeMobConfBufSettingsVarToCtrl() {
 
 	var idx = 0;
 	var confId = 0;
@@ -707,7 +731,7 @@ function SyncronizeMobConfBufSettingsVarToCtrl() {
 /**
  * モンスター状態強化設定欄の状態を同期させる（コントロール部品の状態を変数へ反映）.
  */
-function SyncronizeMobConfBufSettingsCtrlToVar() {
+export function SyncronizeMobConfBufSettingsCtrlToVar() {
 
 	var idx = 0;
 	var confId = 0;
@@ -788,7 +812,7 @@ function SyncronizeMobConfBufSettingsCtrlToVar() {
 /**
  * モンスター状態強化設定欄の展開スイッチクリックイベントハンドラ.
  */
-function OnClickMobConfBufSwitch() {
+export function OnClickMobConfBufSwitch() {
 
 	var bExpand = false;
 	var objInput = null;
@@ -813,7 +837,7 @@ function OnClickMobConfBufSwitch() {
  * モンスター状態強化設定欄の設定値変更イベントハンドラ.
  * @param bCalc 再計算フラグ（true : 再計算する、false : 再計算しない）
  */
-function OnChangeMobConfBuf(bCalc) {
+export function OnChangeMobConfBuf(bCalc) {
 
 	// 設定の変更を変数に同期させる
 	SyncronizeMobConfBufSettingsCtrlToVar();
@@ -838,7 +862,7 @@ function OnChangeMobConfBuf(bCalc) {
 /**
  * モンスター状態強化設定テーブルのヘッダをリフレッシュする.
  */
-function RefreshMobConfBufSelectAreaHeader() {
+export function RefreshMobConfBufSelectAreaHeader() {
 
 	var bSet = false;
 	var bChecked = false;
@@ -881,7 +905,7 @@ function RefreshMobConfBufSelectAreaHeader() {
 /**
  * モンスター状態強化設定欄の選択状態により、コントロールのCSSを変更する.
  */
-function RefreshMobConfBufControlCSS() {
+export function RefreshMobConfBufControlCSS() {
 
 	var idx = 0;
 	var confId = 0;
@@ -977,3 +1001,35 @@ function RefreshMobConfBufControlCSS() {
 	}
 }
 
+if (typeof window !== 'undefined') {
+	window.MOB_CONF_BUF_LIMIT = MOB_CONF_BUF_LIMIT;
+	window.n_B_KYOUKA = n_B_KYOUKA;
+	window.MobConfBufOBJ = MobConfBufOBJ;
+	window.MOB_CONF_BUF_DATA_INDEX_ID = MOB_CONF_BUF_DATA_INDEX_ID;
+	window.MOB_CONF_BUF_DATA_INDEX_TEXT = MOB_CONF_BUF_DATA_INDEX_TEXT;
+	window.MOB_CONF_BUF_DATA_INDEX_CONTROL_TYPE = MOB_CONF_BUF_DATA_INDEX_CONTROL_TYPE;
+	window.MOB_CONF_BUF_DATA_INDEX_DEFAULT_VALUE = MOB_CONF_BUF_DATA_INDEX_DEFAULT_VALUE;
+	window.MOB_CONF_BUF_DATA_INDEX_MIN_VALUE = MOB_CONF_BUF_DATA_INDEX_MIN_VALUE;
+	window.MOB_CONF_BUF_DATA_INDEX_MAX_VALUE = MOB_CONF_BUF_DATA_INDEX_MAX_VALUE;
+	window.MOB_CONF_BUF_ID_SOKUDO_ZOKA = MOB_CONF_BUF_ID_SOKUDO_ZOKA;
+	window.MOB_CONF_BUF_ID_ASSUMPTIO = MOB_CONF_BUF_ID_ASSUMPTIO;
+	window.MOB_CONF_BUF_ID_ADRENALINE_RUSH = MOB_CONF_BUF_ID_ADRENALINE_RUSH;
+	window.MOB_CONF_BUF_ID_MAXIMIZE_POWER = MOB_CONF_BUF_ID_MAXIMIZE_POWER;
+	window.MOB_CONF_BUF_ID_RUSH_ATTACK = MOB_CONF_BUF_ID_RUSH_ATTACK;
+	window.MOB_CONF_BUF_ID_SOKUDO_KYOKA = MOB_CONF_BUF_ID_SOKUDO_KYOKA;
+	window.MOB_CONF_BUF_ID_ZOKUSEI_HENKA = MOB_CONF_BUF_ID_ZOKUSEI_HENKA;
+	window.MOB_CONF_BUF_ID_STONE_SKIN = MOB_CONF_BUF_ID_STONE_SKIN;
+	window.MOB_CONF_BUF_ID_ANTI_MAGIC = MOB_CONF_BUF_ID_ANTI_MAGIC;
+	window.MOB_CONF_BUF_ID_KEEPING = MOB_CONF_BUF_ID_KEEPING;
+	window.MOB_CONF_BUF_ID_DEFENDER = MOB_CONF_BUF_ID_DEFENDER;
+	window.MOB_CONF_BUF_ID_REBIRTH = MOB_CONF_BUF_ID_REBIRTH;
+	window.MOB_CONF_BUF_ID_DAMAGE_DIVIDE = MOB_CONF_BUF_ID_DAMAGE_DIVIDE;
+	window.MOB_CONF_BUF_ID_MAX_PAIN = MOB_CONF_BUF_ID_MAX_PAIN;
+	window.BuildUpMobConfBufSelectArea = BuildUpMobConfBufSelectArea;
+	window.SyncronizeMobConfBufSettingsVarToCtrl = SyncronizeMobConfBufSettingsVarToCtrl;
+	window.SyncronizeMobConfBufSettingsCtrlToVar = SyncronizeMobConfBufSettingsCtrlToVar;
+	window.OnClickMobConfBufSwitch = OnClickMobConfBufSwitch;
+	window.OnChangeMobConfBuf = OnChangeMobConfBuf;
+	window.RefreshMobConfBufSelectAreaHeader = RefreshMobConfBufSelectAreaHeader;
+	window.RefreshMobConfBufControlCSS = RefreshMobConfBufControlCSS;
+}

@@ -1,7 +1,9 @@
+import { CSaveDataUnitBase } from './CSaveDataUnitBase.js';
+import { CSaveDataConst } from './CSaveDataConst.js';
 /**
  * 「その他の支援/設定」の「自キャラクターがかけられた状態異常」情報クラス
  */
-class CSaveDataUnitCharaDebuff extends CSaveDataUnitBase {
+export class CSaveDataUnitCharaDebuff extends CSaveDataUnitBase {
 
     /**
      * タイプ値.

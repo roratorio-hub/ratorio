@@ -3,10 +3,12 @@
 
 
 
+import { CCustomSelectMapBase } from './CCustomSelectMapBase.js';
+
 /**
  * カスタムセレクトクラス（マップ）.
  */
-function CCustomSelectMapMap (instanceIdNameC, categorySelectC) {
+export function CCustomSelectMapMap (instanceIdNameC, categorySelectC) {
 
 	// カテゴリ選択セレクトクラスのインスタンス
 	this.categorySelect = null;
@@ -183,6 +185,10 @@ function CCustomSelectMapMap (instanceIdNameC, categorySelectC) {
 }
 
 CCustomSelectMapMap.prototype = new CCustomSelectMapBase();
+
+if (typeof window !== 'undefined') {
+    window.CCustomSelectMapMap = CCustomSelectMapMap;
+}
 
 
 

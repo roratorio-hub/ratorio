@@ -1,9 +1,10 @@
+import { SKeyMap } from './SKeyMap.js';
 /**
  * マルチバリューのマッピング管理クラス.
  * （同一のkeyに複数の値が設定されうるマップクラス）
  * （複数の値が設定された場合、値は配列でラッピングされて保持、取得される）
  */
-class CMultiValueMapper extends SKeyMap {
+export class CMultiValueMapper extends SKeyMap {
 	/**
 	 * コンストラクタ.
 	 */
