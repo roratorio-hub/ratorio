@@ -117,7 +117,7 @@ declare global {
     let STATE_ID_BREAK_SHIELD: number;
     let STATE_ID_BREAK_SHOULDER: number;
     let STATE_ID_BREAK_FOOT: number;
-    let STATE_ID_BREAK_ACCESSARY: number;
+    let STATE_ID_BREAK_ACCESSORY: number;
     let STATE_R_ID_CHILLED: number;
     let STATE_R_ID_ICED: number;
     let STATE_R_ID_IGNITION: number;

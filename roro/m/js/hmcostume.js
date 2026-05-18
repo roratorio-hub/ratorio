@@ -64,12 +64,12 @@ export function ClearCostumeSlot(eqpRgnId) {
 		__ClearCostumeSlot("OBJID_SHOES");
 		break;
 
-	case EQUIP_REGION_ID_ACCESSARY_1:
-		__ClearCostumeSlot("OBJID_ACCESSARY_1");
+	case EQUIP_REGION_ID_ACCESSORY_1:
+		__ClearCostumeSlot("OBJID_ACCESSORY_1");
 		break;
 
-	case EQUIP_REGION_ID_ACCESSARY_2:
-		__ClearCostumeSlot("OBJID_ACCESSARY_2");
+	case EQUIP_REGION_ID_ACCESSORY_2:
+		__ClearCostumeSlot("OBJID_ACCESSORY_2");
 		break;
 	}
 }
@@ -155,12 +155,12 @@ export function RebuildCostumeSelect(eqpRgnId, itemId, jobId) {
 		objidPrifix = "OBJID_SHOES";
 		break;
 
-	case EQUIP_REGION_ID_ACCESSARY_1:
-		objidPrifix = "OBJID_ACCESSARY_1";
+	case EQUIP_REGION_ID_ACCESSORY_1:
+		objidPrifix = "OBJID_ACCESSORY_1";
 		break;
 
-	case EQUIP_REGION_ID_ACCESSARY_2:
-		objidPrifix = "OBJID_ACCESSARY_2";
+	case EQUIP_REGION_ID_ACCESSORY_2:
+		objidPrifix = "OBJID_ACCESSORY_2";
 		break;
 	}
 	objSelect = HtmlGetElementById(objidPrifix);
@@ -311,12 +311,12 @@ export function SetCostumeSlotEnability(eqpRgnId) {
 		strObjIdPrifix = "OBJID_SHOES";
 		break;
 
-	case EQUIP_REGION_ID_ACCESSARY_1:
-		strObjIdPrifix = "OBJID_ACCESSARY_1";
+	case EQUIP_REGION_ID_ACCESSORY_1:
+		strObjIdPrifix = "OBJID_ACCESSORY_1";
 		break;
 
-	case EQUIP_REGION_ID_ACCESSARY_2:
-		strObjIdPrifix = "OBJID_ACCESSARY_2";
+	case EQUIP_REGION_ID_ACCESSORY_2:
+		strObjIdPrifix = "OBJID_ACCESSORY_2";
 		break;
 	}
 

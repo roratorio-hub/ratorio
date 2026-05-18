@@ -25,7 +25,7 @@ function SetUpSelectCardType(){
 	HtmlCreateElementOption(CARD_KIND_BODY, "鎧カード", objSelect);
 	HtmlCreateElementOption(CARD_KIND_SHOULDER, "肩カード", objSelect);
 	HtmlCreateElementOption(CARD_KIND_FOOT, "靴カード", objSelect);
-	HtmlCreateElementOption(CARD_KIND_ACCESSARY, "アクセサリカード", objSelect);
+	HtmlCreateElementOption(CARD_KIND_ACCESSORY, "アクセサリカード", objSelect);
 	HtmlCreateElementOption(CARD_KIND_ANY, "全部位カード", objSelect);
 	HtmlCreateElementOption(CARD_KIND_ENCHANT, "エンチャント効果", objSelect);
 	objSelect.value = CARD_KIND_ARMS;
@@ -88,9 +88,9 @@ function PivotData(selectedCardKind) {
 				case CARD_KIND_BODY:
 				case CARD_KIND_SHOULDER:
 				case CARD_KIND_FOOT:
-				case CARD_KIND_ACCESSARY:
-				case CARD_KIND_ACCESSARY_ON1:
-				case CARD_KIND_ACCESSARY_ON2:
+				case CARD_KIND_ACCESSORY:
+				case CARD_KIND_ACCESSORY_ON1:
+				case CARD_KIND_ACCESSORY_ON2:
 				case CARD_KIND_ENCHANT:
 				case CARD_KIND_ANY:
 					break;
@@ -106,9 +106,9 @@ function PivotData(selectedCardKind) {
 				if (selectedCardKind !== CARD_KIND_HEAD) {
 					continue;
 				}
-			} else if ([CARD_KIND_ACCESSARY, CARD_KIND_ACCESSARY_ON1, CARD_KIND_ACCESSARY_ON2].includes(CARD_KIND)) {
+			} else if ([CARD_KIND_ACCESSORY, CARD_KIND_ACCESSORY_ON1, CARD_KIND_ACCESSORY_ON2].includes(CARD_KIND)) {
 			// アクセサリーの場合
-				if (selectedCardKind !== CARD_KIND_ACCESSARY) {
+				if (selectedCardKind !== CARD_KIND_ACCESSORY) {
 					continue;
 				}
 			} else if (CARD_KIND != selectedCardKind) {
@@ -365,13 +365,13 @@ function DispData(selectedCardKind, cardDataArray) {
 				case CARD_KIND_FOOT:
 					partName = "靴";
 					break;
-				case CARD_KIND_ACCESSARY:
+				case CARD_KIND_ACCESSORY:
 					partName = "アクセサリー";
 					break;
-				case CARD_KIND_ACCESSARY_ON1:
+				case CARD_KIND_ACCESSORY_ON1:
 					partName = "アクセサリー(1)";
 					break;
-				case CARD_KIND_ACCESSARY_ON2:
+				case CARD_KIND_ACCESSORY_ON2:
 					partName = "アクセサリー(2)";
 					break;
 				case CARD_KIND_ENCHANT:

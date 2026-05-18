@@ -19088,7 +19088,7 @@ export function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ストリップアクセサリー
 		// ----------------------------------------------------------------
-		window.SKILL_ID_STRIP_ACCESSARY = skillId;
+		window.SKILL_ID_STRIP_ACCESSORY = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);

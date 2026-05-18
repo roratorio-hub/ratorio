@@ -13,8 +13,8 @@ describe('costume.h.js', () => {
         it('COSTUME_KIND_NONE が 0 に定義される', () => {
             expect((globalThis as any).COSTUME_KIND_NONE).toBe(0);
         });
-        it('COSTUME_KIND_ACCESSARY が 9 に定義される', () => {
-            expect((globalThis as any).COSTUME_KIND_ACCESSARY).toBe(9);
+        it('COSTUME_KIND_ACCESSORY が 9 に定義される', () => {
+            expect((globalThis as any).COSTUME_KIND_ACCESSORY).toBe(9);
         });
     });
 });

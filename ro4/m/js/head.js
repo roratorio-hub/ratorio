@@ -14288,8 +14288,8 @@ export function ApplyMagicalSkillDamageRatioChangeSubArcanaCard(cardid) {
 	let cardCountBody		 = CardNumSearch(cardid, CARD_REGION_ID_BODY_ANY);
 	let cardCountShoulder	 = CardNumSearch(cardid, CARD_REGION_ID_SHOULDER_ANY);
 	let cardCountShoes		 = CardNumSearch(cardid, CARD_REGION_ID_SHOES_ANY);
-	let cardCountAccessary1	 = CardNumSearch(cardid, CARD_REGION_ID_ACCESSARY_1_ANY);
-	let cardCountAccessary2	 = CardNumSearch(cardid, CARD_REGION_ID_ACCESSARY_2_ANY);
+	let cardCountAccessory1	 = CardNumSearch(cardid, CARD_REGION_ID_ACCESSORY_1_ANY);
+	let cardCountAccessory2	 = CardNumSearch(cardid, CARD_REGION_ID_ACCESSORY_2_ANY);
 
 	vartmp += 1 * n_A_Weapon_ATKplus * cardCountArmsRight;
 	vartmp += 1 * n_A_Weapon2_ATKplus * cardCountArmsLeft;
@@ -18439,24 +18439,24 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	// 「破戒僧の数珠」の、「双龍脚」強化
 	//----------------------------------------------------------------
 	if(n_A_ActiveSkill == 609){
-		if(n_A_Equip[EQUIP_REGION_ID_ACCESSARY_1] == 2525)w1 += ROUNDDOWN(n_A_BaseLV / 15) * 2;
-		if(n_A_Equip[EQUIP_REGION_ID_ACCESSARY_2] == 2525)w1 += ROUNDDOWN(n_A_BaseLV / 15) * 2;
+		if(n_A_Equip[EQUIP_REGION_ID_ACCESSORY_1] == 2525)w1 += ROUNDDOWN(n_A_BaseLV / 15) * 2;
+		if(n_A_Equip[EQUIP_REGION_ID_ACCESSORY_2] == 2525)w1 += ROUNDDOWN(n_A_BaseLV / 15) * 2;
 	}
 
 	//----------------------------------------------------------------
 	// 「破戒僧の数珠」の、「天羅地網」強化
 	//----------------------------------------------------------------
 	if(n_A_ActiveSkill == 610){
-		if(n_A_Equip[EQUIP_REGION_ID_ACCESSARY_1] == 2525)w1 += ROUNDDOWN(n_A_BaseLV / 30) * 2;
-		if(n_A_Equip[EQUIP_REGION_ID_ACCESSARY_2] == 2525)w1 += ROUNDDOWN(n_A_BaseLV / 30) * 2;
+		if(n_A_Equip[EQUIP_REGION_ID_ACCESSORY_1] == 2525)w1 += ROUNDDOWN(n_A_BaseLV / 30) * 2;
+		if(n_A_Equip[EQUIP_REGION_ID_ACCESSORY_2] == 2525)w1 += ROUNDDOWN(n_A_BaseLV / 30) * 2;
 	}
 
 	//----------------------------------------------------------------
 	// 「破戒僧の数珠」の、「修羅身弾」強化
 	//----------------------------------------------------------------
 	if(n_A_ActiveSkill == 613){
-		if(n_A_Equip[EQUIP_REGION_ID_ACCESSARY_1] == 2525)w1 += ROUNDDOWN(n_A_BaseLV / 20) * 2;
-		if(n_A_Equip[EQUIP_REGION_ID_ACCESSARY_2] == 2525)w1 += ROUNDDOWN(n_A_BaseLV / 20) * 2;
+		if(n_A_Equip[EQUIP_REGION_ID_ACCESSORY_1] == 2525)w1 += ROUNDDOWN(n_A_BaseLV / 20) * 2;
+		if(n_A_Equip[EQUIP_REGION_ID_ACCESSORY_2] == 2525)w1 += ROUNDDOWN(n_A_BaseLV / 20) * 2;
 	}
 
 	//----------------------------------------------------------------
@@ -20102,7 +20102,7 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	// 「古龍ジラントカード」の、「ウォータードラゴンブレス」強化
 	//----------------------------------------------------------------
 	if(n_A_ActiveSkill == SKILL_ID_WATER_DRAGON_BREATH) {
-		if ((itemCount = CardNumSearch(CARD_ID_KORYU_ZIRANT, CARD_REGION_ID_ACCESSARY_1_ANY)) > 0) {
+		if ((itemCount = CardNumSearch(CARD_ID_KORYU_ZIRANT, CARD_REGION_ID_ACCESSORY_1_ANY)) > 0) {
 			w1 += 50 * itemCount;
 		}
 	}
@@ -20111,7 +20111,7 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	// 「古龍ジラントカード」の、「ファイアードラゴンブレス」強化
 	//----------------------------------------------------------------
 	if(n_A_ActiveSkill == SKILL_ID_FIRE_DRAGON_BREATH) {
-		if ((itemCount = CardNumSearch(CARD_ID_KORYU_ZIRANT, CARD_REGION_ID_ACCESSARY_2_ANY)) > 0) {
+		if ((itemCount = CardNumSearch(CARD_ID_KORYU_ZIRANT, CARD_REGION_ID_ACCESSORY_2_ANY)) > 0) {
 			w1 += 50 * itemCount;
 		}
 	}
@@ -21519,8 +21519,8 @@ export function ApplyPhysicalSkillDamageRatioChangeSubArcanaCard(cardid) {
 	let cardCountBody		 = CardNumSearch(cardid, CARD_REGION_ID_BODY_ANY);
 	let cardCountShoulder	 = CardNumSearch(cardid, CARD_REGION_ID_SHOULDER_ANY);
 	let cardCountShoes		 = CardNumSearch(cardid, CARD_REGION_ID_SHOES_ANY);
-	let cardCountAccessary1	 = CardNumSearch(cardid, CARD_REGION_ID_ACCESSARY_1_ANY);
-	let cardCountAccessary2	 = CardNumSearch(cardid, CARD_REGION_ID_ACCESSARY_2_ANY);
+	let cardCountAccessory1	 = CardNumSearch(cardid, CARD_REGION_ID_ACCESSORY_1_ANY);
+	let cardCountAccessory2	 = CardNumSearch(cardid, CARD_REGION_ID_ACCESSORY_2_ANY);
 
 	vartmp += 1 * n_A_Weapon_ATKplus * cardCountArmsRight;
 	vartmp += 1 * n_A_Weapon2_ATKplus * cardCountArmsLeft;
