@@ -142,7 +142,6 @@ div.clip_memo {
             let url = chart.data.datasets[0].metadata[Math.abs(dataX)]["url"];
             CSaveController.loadFromURL(url);
             CItemInfoManager.OnClickExtractSwitch();
-            LoadSelect2();
           }
         }
       }
@@ -161,6 +160,7 @@ div.clip_memo {
       const mgr = CSaveController.getSaveDataManagerCur();
       mgr.ReCalcManager();
       calc();
+      LoadSelect2();
       const metadata = { "memo": "", "url": CSaveController.encodeToURL() };
       if ($("#clip_with_memo").prop('checked')) {
         let memo = prompt("clipメモ");
