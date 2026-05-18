@@ -1,7 +1,7 @@
 /**
  * 設置スキル計算用クラス
  */
-const instobject = class {
+export const instobject = class {
 	constructor() {
 		this.depth = 0;
 		this.maxcount = 0;
