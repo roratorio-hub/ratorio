@@ -1,4 +1,6 @@
 
+import { CGlobalConstManager } from '../CGlobalConstManager.js';
+
 //----------------------------------------------------------------
 // データの要素番号
 //----------------------------------------------------------------
@@ -40,7 +42,7 @@ CGlobalConstManager.DefineEnum(
  * 装備可能品データクラス.
  * @param dataArrayC 設定するアイテムデータ配列
  */
-function CMigEquipableData (dataArrayC) {
+export function CMigEquipableData (dataArrayC) {
 
 	// データ配列
 	this.dataArray = null;
@@ -164,3 +166,4 @@ function CMigEquipableData (dataArrayC) {
 
 
 }
+if (typeof window !== 'undefined') { window.CMigEquipableData = CMigEquipableData; }

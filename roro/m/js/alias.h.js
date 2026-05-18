@@ -1,4 +1,7 @@
 
+import { CGlobalConstManager } from './CGlobalConstManager.js';
+import { g_AliasDataArray } from './alias.dat.js';
+
 //----------------------------------------------------------------
 // データの要素番号
 //----------------------------------------------------------------
@@ -22,17 +25,12 @@ CGlobalConstManager.DefinePseudoEnum(
 
 
 
-// エイリアスデータ配列
-g_AliasDataArray = new Array();
-
-
-
 /**
  * エイリアスを変換する.
  * @param alias エイリアス
  * @return 変換後の文字列（該当なしの場合は、空文字列）
  */
-function TranslateAlias (alias) {
+export function TranslateAlias (alias) {
 
 	var idx = 0;
 
@@ -43,4 +41,8 @@ function TranslateAlias (alias) {
 	}
 
 	return "";
+}
+
+if (typeof window !== 'undefined') {
+	window.TranslateAlias = TranslateAlias;
 }

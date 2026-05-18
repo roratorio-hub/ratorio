@@ -1,7 +1,7 @@
 /**
  * アイテムデータマネージャクラス.
  */
-function CMigConstDataManagerSubItem () {
+export function CMigConstDataManagerSubItem () {
 
 	//----------------
 	// 継承定義は、クラス本体の次に記述
@@ -163,3 +163,4 @@ function CMigConstDataManagerSubItem () {
 
 }
 CMigConstDataManagerSubItem.prototype = new CMigConstDataManagerSubBase();
+if (typeof window !== 'undefined') { window.CMigConstDataManagerSubItem = CMigConstDataManagerSubItem; }

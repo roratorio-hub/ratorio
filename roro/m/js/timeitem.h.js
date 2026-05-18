@@ -1,4 +1,6 @@
 
+import { CGlobalConstManager } from './CGlobalConstManager.js';
+
 //----------------------------------------------------------------
 // データの要素番号
 //----------------------------------------------------------------
@@ -28,7 +30,12 @@ CGlobalConstManager.DefineEnum(
 
 
 // 時限アイテム定義配列
-ITEM_SP_TIME_OBJ = new Array();
+export const ITEM_SP_TIME_OBJ = new Array();
 
 // 時限アイテム整列データ配列
-ITEM_SP_TIME_OBJ_SORT = new Array();
+export const ITEM_SP_TIME_OBJ_SORT = new Array();
+
+if (typeof window !== 'undefined') {
+    window.ITEM_SP_TIME_OBJ = ITEM_SP_TIME_OBJ;
+    window.ITEM_SP_TIME_OBJ_SORT = ITEM_SP_TIME_OBJ_SORT;
+}

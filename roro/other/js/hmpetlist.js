@@ -75,8 +75,8 @@ function DispData(petDataArray) {
 		petData = petDataArray[idx];
 		petId = petData[PET_DATA_INDEX_ID];
 		if (condition) {
-			hit = petDataArray[idx][PET_DATA_INDEX_NAME].includes(condition);
-			tmp = document.createElement("span");
+			var hit = petDataArray[idx][PET_DATA_INDEX_NAME].includes(condition);
+			var tmp = document.createElement("span");
 			CItemInfoManager.RebuildInfoTableSubCardDetail(tmp, petId, false);
 			hit = hit || tmp.textContent.includes(condition);
 			if(!hit) continue;
@@ -110,6 +110,7 @@ function DispData(petDataArray) {
 		// 説明追記
 		CItemInfoManager.AppendEfficiencyInfoSub(objTd, CONST_DATA_KIND_PET, petId, true);
 		// セット情報追記
-		CItemInfoManager.AppendSetInfo(objTd, PetIdToSetIdMap[petId], true);		
+		CItemInfoManager.AppendSetInfo(objTd, PetIdToSetIdMap[petId], true);
 	}
 }
+if (typeof window !== 'undefined') { Object.assign(window, { OnLoadPetList, RefreshPetListTable, PivotData, DispData }); }

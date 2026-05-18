@@ -1,8 +1,10 @@
+import { CSaveDataUnitBase } from './CSaveDataUnitBase.js';
+import { CSaveDataConst } from './CSaveDataConst.js';
 /**
  * 「装備箇所」情報クラス
  * シャドウ装備は管理対象外
  */
-class CSaveDataUnitEquipRegions extends CSaveDataUnitBase {
+export class CSaveDataUnitEquipRegions extends CSaveDataUnitBase {
 
     /**
      * タイプ値.

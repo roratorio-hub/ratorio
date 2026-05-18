@@ -4,7 +4,7 @@
  * @param {Array} mobData 
  * @returns {Array} mobData
  */
-function GetMobDataBasicAttribute(monsterId, mobData){
+export function GetMobDataBasicAttribute(monsterId, mobData){
 
 //================================================================================================
 // 基本情報の取得
@@ -161,13 +161,16 @@ function GetMobDataBasicAttribute(monsterId, mobData){
  * @param {Array} mobData 
  * @returns {Array} mobData
  */
-function GetMobDataParameters(monsterId, mobData){
+export function GetMobDataParameters(monsterId, mobData){
 	let idx = 0;
 	let bufLv = 0;
 	let val = 0;
 	let ratio = 0;
 	let qmVal = 0;
 	let qmValLimit = 0;
+	var B_Original_DEF = 0;
+	var B_Total_DEF = 0;
+	var B_Total_MDEF = 0;
 
 	//----------------------------------------------------------------
 	// 一般パラメータ部分のコピー
@@ -1371,4 +1374,9 @@ function GetMobDataParameters(monsterId, mobData){
 	}
 
 	return mobData;
+}
+
+if (typeof window !== 'undefined') {
+    window.GetMobDataBasicAttribute = GetMobDataBasicAttribute;
+    window.GetMobDataParameters = GetMobDataParameters;
 }

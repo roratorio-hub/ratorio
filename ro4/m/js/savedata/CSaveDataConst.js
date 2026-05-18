@@ -1,7 +1,7 @@
 /**
  * セーブデータユニット関連定数クラス.
  */
-class CSaveDataConst {
+export class CSaveDataConst {
 
 	/**
 	 * プロパティ名：タイプ値.
@@ -2142,3 +2142,5 @@ class CSaveDataConst {
 }
 // 定数を凍結
 Object.freeze(CSaveDataConst);
+
+Object.assign(window, { CSaveDataConst });

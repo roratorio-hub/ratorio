@@ -1,7 +1,9 @@
+import { CSaveDataUnitBase } from './CSaveDataUnitBase.js';
+import { CSaveDataConst } from './CSaveDataConst.js';
 /**
  * 「セーブデータユニットのバージョン」を表現するクラス
  */
-class CSaveDataUnitVersion extends CSaveDataUnitBase {
+export class CSaveDataUnitVersion extends CSaveDataUnitBase {
 
     /**
      * タイプ値.

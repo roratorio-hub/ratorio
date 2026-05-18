@@ -1,4 +1,6 @@
 
+import { CGlobalConstManager } from './CGlobalConstManager.js';
+
 //----------------------------------------------------------------
 // データの要素番号
 //----------------------------------------------------------------
@@ -38,7 +40,7 @@ CGlobalConstManager.DefineEnum(
  * @param spid SPID
  : @return ランダムオプションの表示名
  */
-function GetRndOptDispName(spid) {
+export function GetRndOptDispName(spid) {
 	switch (spid) {
 
 	case ITEM_SP_NONE:
@@ -439,5 +441,8 @@ function GetRndOptDispName(spid) {
 
 
 
-g_rndOptArray = new Array();
+
+if (typeof window !== 'undefined') {
+    window.GetRndOptDispName = GetRndOptDispName;
+}
 

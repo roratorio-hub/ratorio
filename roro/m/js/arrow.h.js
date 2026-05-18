@@ -1,4 +1,6 @@
 
+import { CGlobalConstManager } from './CGlobalConstManager.js';
+
 //----------------------------------------------------------------
 // データの要素番号
 //----------------------------------------------------------------
@@ -32,7 +34,3 @@ CGlobalConstManager.DefineEnum(
 	1
 );
 
-
-
-// 矢データ配列
-ArrowOBJNew = new Array();

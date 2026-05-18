@@ -1,7 +1,7 @@
 /**
  * セーブデータプロパティ情報クラス.
  */
-class CSaveDataPropInfo {
+export class CSaveDataPropInfo {
 
 	/**
 	 * プロパティの名称.

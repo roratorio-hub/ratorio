@@ -1,7 +1,7 @@
 /**
  * 時限アイテムエリアコンポーネントマネージャクラス.
  */
-function CBattleQuickControlAreaComponentManager () {
+export function CBattleQuickControlAreaComponentManager () {
 
 }
 
@@ -365,5 +365,6 @@ CBattleQuickControlAreaComponentManager.CloseArea = function () {
 // 初期構築処理
 CBattleQuickControlAreaComponentManager.RebuildControls();
 
-
-
+if (typeof window !== 'undefined') {
+	window.CBattleQuickControlAreaComponentManager = CBattleQuickControlAreaComponentManager;
+}

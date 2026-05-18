@@ -3,19 +3,20 @@
  * 画面下部の「演奏/踊り系スキル」のバフウィンドウ構築関数群
 */ 
 
-const BUFF_CONF_MUSICAL_LIMIT = 47;
+export const BUFF_CONF_MUSICAL_LIMIT = 47;
 /** 演奏・踊り系スキル ウィンドウ可視状態 */
-let n_Skill3SW = false;
+export let n_Skill3SW = false;
 /** 演奏・踊り系スキル スイッチ状態配列 */
-let SWs3sw = [0,0,0,0,0,0,0,0,0,0,0,0];
+export let SWs3sw = [0,0,0,0,0,0,0,0,0,0,0,0];
 /** 演奏・踊り系スキル 設定値 */
-let n_A_PassSkill3 = Array(BUFF_CONF_MUSICAL_LIMIT).fill(0);
+export let n_A_PassSkill3 = Array(BUFF_CONF_MUSICAL_LIMIT).fill(0);
 
 /**
  * 演奏・踊り系スキル を構築する
  */
-function Click_Skill3SW(){
+export function Click_Skill3SW(){
 	n_Skill3SW = document.calcForm.A3_SKILLSW.checked;
+	if (typeof window !== 'undefined') window.n_Skill3SW = n_Skill3SW;
 	const table_header = `
 			<TABLE Border class="tooltip-target" style="white-space:nowrap;" data-tooltip="これらの設定は「◯次職支援設定」および「プレイヤー状態異常設定」へ順次移動します。">
 			<TR><TD id="A3TD" ColSpan="6" class="title">
@@ -199,7 +200,7 @@ function Click_Skill3SW(){
  * 変数変更後の再計算は内部で呼び出すClick_A3に任せている.
  * @param {boolean} recalc true:変数変更後に再計算する / false:しない(default)
  */
-function Skill3SW_2(recalc = false){
+export function Skill3SW_2(recalc = false){
 	n_A_PassSkill3[0] =  Number(document.calcForm.A3_Skill0_1.value);
 	n_A_PassSkill3[1] =  Number(document.calcForm.A3_Skill1_1.value);
 	n_A_PassSkill3[2] =  Number(document.calcForm.A3_Skill2_1.value);
@@ -528,7 +529,7 @@ function Skill3SW_2(recalc = false){
  * Skill3SW_2から呼ばれるケースとOnChangeイベントから直接呼ばれるケースがある.
  * @param {boolean} recalc true:変数変更後に再計算する / false:しない(default)
  */
-function Click_A3(recalc = false) {
+export function Click_A3(recalc = false) {
 	if (recalc) {
 		AutoCalc("Click_A3");
 	}
@@ -548,4 +549,14 @@ function Click_A3(recalc = false) {
 		document.getElementById('A3TD').style.backgroundColor = "#FF7777";
 		myInnerHtml("A3used","　<B>使用中</B>",0);
 	}
+}
+
+if (typeof window !== 'undefined') {
+    window.BUFF_CONF_MUSICAL_LIMIT = BUFF_CONF_MUSICAL_LIMIT;
+    window.n_Skill3SW = n_Skill3SW;
+    window.SWs3sw = SWs3sw;
+    window.n_A_PassSkill3 = n_A_PassSkill3;
+    window.Click_Skill3SW = Click_Skill3SW;
+    window.Skill3SW_2 = Skill3SW_2;
+    window.Click_A3 = Click_A3;
 }

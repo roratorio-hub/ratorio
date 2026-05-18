@@ -6,7 +6,7 @@
 /**
  * カスタムセレクトクラス（基底）.
  */
-function CCustomSelectBase () {
+export function CCustomSelectBase () {
 
 	// インスタンスID名
 	this.instanceIdName = "";
@@ -1272,13 +1272,13 @@ CCustomSelectBase.OnClickApplyButton = function (instanceIdName) {
 	objInstance.OnClickApplyButton();
 
 	/* select2の見た目を更新するため追加処理 */
-	select_id = objInstance.selectedDataId;
-	select2_obj_class = ".OBJID_" + objInstance.instanceIdName;
-	$(select2_obj_class).val(select_id).trigger('change');	
+	const select_id = objInstance.selectedDataId;
+	const select2_obj_class = ".OBJID_" + objInstance.instanceIdName;
+	$(select2_obj_class).val(select_id).trigger('change');
 };
 
-
-
-
+if (typeof window !== 'undefined') {
+    window.CCustomSelectBase = CCustomSelectBase;
+}
 
 

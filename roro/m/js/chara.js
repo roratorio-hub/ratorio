@@ -1,4 +1,6 @@
 
+import { CGlobalConstManager } from './CGlobalConstManager.js';
+
 // キャラクターデータインデックス
 CGlobalConstManager.DefineEnum(
 	"EnumCharaDataIndex",
@@ -110,7 +112,7 @@ CHARA_DATA_INDEX_COMBO_PARAM		= idx++;
  * @param {Number} rgnId  装備箇所ＩＤ（未指定時はすべて）
  * @returns {Number} 装備数
  */
-function EquipNumSearch(itemId, rgnId) {
+export function EquipNumSearch(itemId, rgnId) {
 	// 仮引数に未対応のブラウザ対策
 	if (rgnId == undefined) {
 		rgnId = EQUIP_REGION_ID_ANY;
@@ -133,16 +135,8 @@ function EquipNumSearch(itemId, rgnId) {
 }
 
 // TODO: データ移行過渡処理
-function EquipNumSearchMIG(itemId, rgnId) {
+export function EquipNumSearchMIG(itemId, rgnId) {
 	var eqpnum = EquipNumSearch(itemId, rgnId);
-
-	// 既存機能の処理速度への影響を考慮して、この判定順序
-	// 移行後は、この関数自体が不要になる想定
-	if (eqpnum > 0) {
-		if (IsMigrationedItemId(itemId)) {
-			return 0;
-		}
-	}
 
 	return eqpnum;
 }
@@ -153,7 +147,7 @@ function EquipNumSearchMIG(itemId, rgnId) {
  * @param rgnId  装備箇所ＩＤ（未指定時はすべて）
  * @returns 装備数
  */
-function CardNumSearch(cardId, rgnId) {
+export function CardNumSearch(cardId, rgnId) {
 //function CardNumSearch(cardId, rgnId = CARD_REGION_ID_ANY) {
 
 	// 仮引数に未対応のブラウザ対策
@@ -281,7 +275,7 @@ function CardNumSearch(cardId, rgnId) {
  * @param rgnId  装備箇所ＩＤ（未指定時はすべて）
  * @returns 装備数
  */
-function CostumeNumSearch(costumeId, rgnId) {
+export function CostumeNumSearch(costumeId, rgnId) {
 //function CostumeNumSearch(costumeId, rgnId == COSTUME_REGION_ID_ANY) {
 
 	// 仮引数に未対応のブラウザ対策
@@ -310,70 +304,70 @@ function CostumeNumSearch(costumeId, rgnId) {
 	return costumeNum;
 }
 
-EXBUF_ID_ENDURE							 =  1990001;
-EXBUF_ID_ASUMUPTIO						 =  2050000;
-EXBUF_ID_IDUNNNO_RINGO					 =  3030001;
-EXBUF_ID_IDUNNNO_RINGO_BUFFER_VITRANK	 =  3030002;
-EXBUF_ID_IDUNNNO_RINGO_BUFFER_SKILLLV	 =  3030003;
-EXBUF_ID_HUMMING						 =  3040001;
-EXBUF_ID_HUMMING_BUFFER_DEXRANK			 =  3040002;
-EXBUF_ID_HUMMING_BUFFER_SKILLLV			 =  3040003;
-EXBUF_ID_SERVICE_FOR_YOU				 =  3060001;
-EXBUF_ID_SERVICE_FOR_YOU_BUFFER_INTRANK	 =  3060002;
-EXBUF_ID_SERVICE_FOR_YOU_BUFFER_SKILLLV	 =  3060003;
-EXBUF_ID_IKUSADAIKONO_HIBIKI			 =  3090001;
-EXBUF_ID_FUSHANIMUKATTE_TOTSUGEKI		 =  3190101;
-EXBUF_ID_FUSHANIMUKATTE_TOTSUGEKI_BUFFER_JOBLV		 =  3190102;
-EXBUF_ID_FUSHANIMUKATTE_TOTSUGEKI_BUFFER_SKILLLV	 =  3190103;
-EXBUF_ID_ECHONO_UTA						 =  3190201;
-EXBUF_ID_ECHONO_UTA_BUFFER_JOBLV		 =  3190202;
-EXBUF_ID_ECHONO_UTA_BUFFER_SKILLLV		 =  3190203;
-EXBUF_ID_KOIBITOTACHINOTAMENO_SYMPHONY	 =  3190501;
-EXBUF_ID_KOIBITOTACHINOTAMENO_SYMPHONY_BUFFER_JOBLV			 =  3190502;
-EXBUF_ID_KOIBITOTACHINOTAMENO_SYMPHONY_BUFFER_SKILLLV		 =  3190503;
-EXBUF_ID_FRIGGNO_UTA					 =  3190700;
-EXBUF_ID_FRYDAY_NIGHT_FEVER				 =  3390100;
-EXBUF_ID_RELAZUNO_TSUYU					 =  3390301;
-EXBUF_ID_RELAZUNO_TSUYU_COUNT_OF_MINWAN	 =  3390302;
-EXBUF_ID_BEYOND_OF_WARCRAY				 =  3390401;
-EXBUF_ID_BEYOND_OF_WARCRAY_COUNT_OF_MINWAN			 =  3390401;
-EXBUF_ID_DANCE_WITH_WUG					 =  3390601;
-EXBUF_ID_DANCE_WITH_WUG_COUNT_OF_MINWAN	 =  3390602;
-EXBUF_ID_GOSPEL_HP_UP					 =  4060000;
-EXBUF_ID_GOSPEL_SP_UP					 =  4070000;
-EXBUF_ID_GOSPEL_HIT_FLEE_PLUS			 =  4090000;
-EXBUF_ID_DELUGE							 =  6000100;
-EXBUF_ID_ZYUTSUSHIKI_TENKAI				 =  6100000;
-EXBUF_ID_FIGHTING_SPIRIT				 =  6110000;
-EXBUF_ID_ODINNO_CHIKARA					 =  6120000;
-EXBUF_ID_ODINNO_EPICLESIS				 =  6130000;
-EXBUF_ID_HOM_S_PAINKILLER				 =  6210001;
-EXBUF_ID_HOM_S_PAINKILLER_HOM_LEVEL		 =  6210002;
-EXBUF_ID_CHATTERING						 =  6470001;
-EXBUF_ID_CHAGASHI						 =  7000000;
-EXBUF_ID_NIZIIRONO_OKASHI				 =  7020000;
-EXBUF_ID_URAMINO_HAKO					 =  7090000;
-EXBUF_ID_VITATA500						 =  7240000;
-EXBUF_ID_BUCHE_DE_NOEL					 =  7250000;
-EXBUF_ID_RUNEMIDGARTSSAN_OYATSU			 =  7260000;
-EXBUF_ID_SCHWARZWALDSAN_OYATSU			 =  7270000;
-EXBUF_ID_GUARANA_CANDY					 =  7350000;
-EXBUF_ID_YAKITOMOROKOSHI				 =  7360000;
-EXBUF_ID_HPZOKA_POTION					 =  7380000;
-EXBUF_ID_SPZOKA_POTION					 =  7390000;
-EXBUF_ID_SENTOYAKU						 =  7410000;
-EXBUF_ID_EVENT_BUF_ATK_PLUS				 =  7420000;
-EXBUF_ID_EVENT_BUF_HIT_PLUS				 =  7440000;
-EXBUF_ID_ORLEANS_FULLCOURSE				 =  7490000;
-EXBUF_ID_OTP_LOGIN_BONUS				 =  8220400;
-EXBUF_ID_CUSTOM_HIT_PLUS				 =  9100000;
-EXBUF_ID_CUSTOM_ATK_PLUS				 =  9170000;
-EXBUF_ID_CUSTOM_HP_PLUS					 = 10010000;
-EXBUF_ID_CUSTOM_HP_UP					 = 10030000;
-EXBUF_ID_CUSTOM_SP_PLUS					 = 10040000;
-EXBUF_ID_CUSTOM_SP_UP					 = 10060000;
-EXBUF_ID_CUSTOM_DEF_PLUS				 = 10070000;
-EXBUF_ID_CUSTOM_MDEF_PLUS				 = 10080000;
+export const EXBUF_ID_ENDURE =  1990001;
+export const EXBUF_ID_ASUMUPTIO =  2050000;
+export const EXBUF_ID_IDUNNNO_RINGO =  3030001;
+export const EXBUF_ID_IDUNNNO_RINGO_BUFFER_VITRANK =  3030002;
+export const EXBUF_ID_IDUNNNO_RINGO_BUFFER_SKILLLV =  3030003;
+export const EXBUF_ID_HUMMING =  3040001;
+export const EXBUF_ID_HUMMING_BUFFER_DEXRANK =  3040002;
+export const EXBUF_ID_HUMMING_BUFFER_SKILLLV =  3040003;
+export const EXBUF_ID_SERVICE_FOR_YOU =  3060001;
+export const EXBUF_ID_SERVICE_FOR_YOU_BUFFER_INTRANK =  3060002;
+export const EXBUF_ID_SERVICE_FOR_YOU_BUFFER_SKILLLV =  3060003;
+export const EXBUF_ID_IKUSADAIKONO_HIBIKI =  3090001;
+export const EXBUF_ID_FUSHANIMUKATTE_TOTSUGEKI =  3190101;
+export const EXBUF_ID_FUSHANIMUKATTE_TOTSUGEKI_BUFFER_JOBLV =  3190102;
+export const EXBUF_ID_FUSHANIMUKATTE_TOTSUGEKI_BUFFER_SKILLLV =  3190103;
+export const EXBUF_ID_ECHONO_UTA =  3190201;
+export const EXBUF_ID_ECHONO_UTA_BUFFER_JOBLV =  3190202;
+export const EXBUF_ID_ECHONO_UTA_BUFFER_SKILLLV =  3190203;
+export const EXBUF_ID_KOIBITOTACHINOTAMENO_SYMPHONY =  3190501;
+export const EXBUF_ID_KOIBITOTACHINOTAMENO_SYMPHONY_BUFFER_JOBLV =  3190502;
+export const EXBUF_ID_KOIBITOTACHINOTAMENO_SYMPHONY_BUFFER_SKILLLV =  3190503;
+export const EXBUF_ID_FRIGGNO_UTA =  3190700;
+export const EXBUF_ID_FRYDAY_NIGHT_FEVER =  3390100;
+export const EXBUF_ID_RELAZUNO_TSUYU =  3390301;
+export const EXBUF_ID_RELAZUNO_TSUYU_COUNT_OF_MINWAN =  3390302;
+export const EXBUF_ID_BEYOND_OF_WARCRAY =  3390401;
+export const EXBUF_ID_BEYOND_OF_WARCRAY_COUNT_OF_MINWAN =  3390401;
+export const EXBUF_ID_DANCE_WITH_WUG =  3390601;
+export const EXBUF_ID_DANCE_WITH_WUG_COUNT_OF_MINWAN =  3390602;
+export const EXBUF_ID_GOSPEL_HP_UP =  4060000;
+export const EXBUF_ID_GOSPEL_SP_UP =  4070000;
+export const EXBUF_ID_GOSPEL_HIT_FLEE_PLUS =  4090000;
+export const EXBUF_ID_DELUGE =  6000100;
+export const EXBUF_ID_ZYUTSUSHIKI_TENKAI =  6100000;
+export const EXBUF_ID_FIGHTING_SPIRIT =  6110000;
+export const EXBUF_ID_ODINNO_CHIKARA =  6120000;
+export const EXBUF_ID_ODINNO_EPICLESIS =  6130000;
+export const EXBUF_ID_HOM_S_PAINKILLER =  6210001;
+export const EXBUF_ID_HOM_S_PAINKILLER_HOM_LEVEL =  6210002;
+export const EXBUF_ID_CHATTERING =  6470001;
+export const EXBUF_ID_CHAGASHI =  7000000;
+export const EXBUF_ID_NIZIIRONO_OKASHI =  7020000;
+export const EXBUF_ID_URAMINO_HAKO =  7090000;
+export const EXBUF_ID_VITATA500 =  7240000;
+export const EXBUF_ID_BUCHE_DE_NOEL =  7250000;
+export const EXBUF_ID_RUNEMIDGARTSSAN_OYATSU =  7260000;
+export const EXBUF_ID_SCHWARZWALDSAN_OYATSU =  7270000;
+export const EXBUF_ID_GUARANA_CANDY =  7350000;
+export const EXBUF_ID_YAKITOMOROKOSHI =  7360000;
+export const EXBUF_ID_HPZOKA_POTION =  7380000;
+export const EXBUF_ID_SPZOKA_POTION =  7390000;
+export const EXBUF_ID_SENTOYAKU =  7410000;
+export const EXBUF_ID_EVENT_BUF_ATK_PLUS =  7420000;
+export const EXBUF_ID_EVENT_BUF_HIT_PLUS =  7440000;
+export const EXBUF_ID_ORLEANS_FULLCOURSE =  7490000;
+export const EXBUF_ID_OTP_LOGIN_BONUS =  8220400;
+export const EXBUF_ID_CUSTOM_HIT_PLUS =  9100000;
+export const EXBUF_ID_CUSTOM_ATK_PLUS =  9170000;
+export const EXBUF_ID_CUSTOM_HP_PLUS = 10010000;
+export const EXBUF_ID_CUSTOM_HP_UP = 10030000;
+export const EXBUF_ID_CUSTOM_SP_PLUS = 10040000;
+export const EXBUF_ID_CUSTOM_SP_UP = 10060000;
+export const EXBUF_ID_CUSTOM_DEF_PLUS = 10070000;
+export const EXBUF_ID_CUSTOM_MDEF_PLUS = 10080000;
 /**
  * 指定の外支援Ｂｕｆｆの効果値（レベル、補正値等）を取得する.
  * （自身の習得しているスキルは含まない）
@@ -381,7 +375,7 @@ EXBUF_ID_CUSTOM_MDEF_PLUS				 = 10080000;
  * @returns 効果値（レベル、補正値等）
  */
 
-function ExBuffNumSearch(exBufId) {
+export function ExBuffNumSearch(exBufId) {
 
 	var val = 0;
 	var confval = 0;
@@ -793,7 +787,7 @@ function ExBuffNumSearch(exBufId) {
  * @param timeItemId 時限アイテムＩＤ
  * @returns 使用数
  */
-function TimeItemNumSearch(timeItemId) {
+export function TimeItemNumSearch(timeItemId) {
 
 	var timeItemNum = 0;
 
@@ -811,7 +805,7 @@ function TimeItemNumSearch(timeItemId) {
 /**
  * 装備等によるステータスの追加補正値を取得する（防御属性）.
  */
-function GetStatusModifyBodyElement() {
+export function GetStatusModifyBodyElement() {
 
 	var val = ELM_ID_VANITY;
 	var itemCount = 0;
@@ -864,27 +858,16 @@ function GetStatusModifyBodyElement() {
 	// 基本処理
 	//----------------------------------------------------------------
 
-	// TODO: データ移行過渡処理
-	if (IsEnableMigrationBlockTransit()) {
-		val = g_charaDataManager.GetCharaData(MIG_CHARA_MANAGER_ID_MAIN).GetEquipDefenseElement();
-		if (val === undefined) {
-			val = ELM_ID_VANITY;
-		}
+	// 装備中の単純カード効果を検索
+	val = GetEquippedTotalSPCardAndElse(ITEM_SP_BODY_ELEMENT);
+	if (val != ELM_ID_VANITY) {
+		return val;
 	}
 
-	else {
-
-		// 装備中の単純カード効果を検索
-		val = GetEquippedTotalSPCardAndElse(ITEM_SP_BODY_ELEMENT);
-		if (val != ELM_ID_VANITY) {
-			return val;
-		}
-
-		// カード効果がなければ、装備固有の単純効果を検索
-		val = GetEquippedTotalSPEquip(ITEM_SP_BODY_ELEMENT);
-		if (val != ELM_ID_VANITY) {
-			return val;
-		}
+	// カード効果がなければ、装備固有の単純効果を検索
+	val = GetEquippedTotalSPEquip(ITEM_SP_BODY_ELEMENT);
+	if (val != ELM_ID_VANITY) {
+		return val;
 	}
 
 	//----------------------------------------------------------------
@@ -968,7 +951,7 @@ function GetStatusModifyBodyElement() {
  * 公式サイトで「装備Atk」と表記される追加補正値を取得する
  * @returns {Number} 追加される装備Atk
  */
-function GetStatusModifyAtkPlus() {
+export function GetStatusModifyAtkPlus() {
 	let idx = 0;
 	/** 最終的に追加される装備Atkの値 */
 	let val = 0;
@@ -3665,7 +3648,7 @@ function GetStatusModifyAtkPlus() {
 /**
 * 装備等によるステータスの追加補正値を取得する（ＭａｘＨＰ＋）.
 */
-function GetStatusModifyMaxHpPlus() {
+export function GetStatusModifyMaxHpPlus() {
 	let val = 0;
 	let vartmp = 0, varary = [];
 	let itemCount = 0;
@@ -4547,7 +4530,8 @@ function GetStatusModifyMaxHpPlus() {
  * 公式サイトで「MaxHP + ◯%」と表記されるMaxHPの増加量を取得する
  * @returns 増加量の%値
  */
-function GetStatusModifyMaxHpUp() {
+export function GetStatusModifyMaxHpUp() {
+	let idx = 0;
 	let val = 0;
 	let vartmp = 0;
 	let itemCount = 0;
@@ -6701,7 +6685,7 @@ function GetStatusModifyMaxHpUp() {
 /**
 * 装備等によるステータスの追加補正値を取得する（ＭａｘＳＰ＋）.
 */
-function GetStatusModifyMaxSpPlus() {
+export function GetStatusModifyMaxSpPlus() {
 
 	var val = 0;
 
@@ -7366,7 +7350,7 @@ function GetStatusModifyMaxSpPlus() {
  * 公式サイトで「MaxSP + ◯%」と表記される追加補正値を取得する
  * @returns {Number} MaxSPの増幅率%
  */
-function GetStatusModifyMaxSpUp() {
+export function GetStatusModifyMaxSpUp() {
 	/** 最終的にMaxSPが増幅される%の値 */
 	let val = 0;
 	let vartmp = 0;
@@ -8745,7 +8729,7 @@ function GetStatusModifyMaxSpUp() {
  * 公式サイトで「Def + ◯」と表記される
  * 装備等によるステータスの追加補正値を取得する（除算ＤＥＦ＋）.
  */
-function GetStatusModifyDefDivPlus() {
+export function GetStatusModifyDefDivPlus() {
 
 	var idx = 0;
 	var val = 0;
@@ -9350,7 +9334,7 @@ function GetStatusModifyDefDivPlus() {
 * 公式サイトで「装備Def + ◯%」と表記される除算Defの増幅%を取得する
 * @returns {number} 増幅率
 */
-function GetStatusModifyDefDivUp() {
+export function GetStatusModifyDefDivUp() {
 	let val = 0;
 	let sklLv = 0;
 	let bufLv = 0;
@@ -9483,8 +9467,9 @@ function GetStatusModifyDefDivUp() {
  * 公式サイトで「Mdef + ◯」と表記される
  * 装備等によるステータスの追加補正値を取得する（除算ＭＤＥＦ＋）.
  */
-function GetStatusModifyMdefDivPlus(bIgnoreBuff) {
+export function GetStatusModifyMdefDivPlus(bIgnoreBuff) {
 
+	var idx = 0;
 	var val = 0;
 
 	var vartmp = 0, varary = [];
@@ -10257,7 +10242,7 @@ function GetStatusModifyMdefDivPlus(bIgnoreBuff) {
 * 公式サイトで「装備Mdef + ◯%」と表記される
 * 装備等によるステータスの追加補正値を取得する（Ｍｄｅｆ％）.
 */
-function GetStatusModifyMdefDivUp(bIgnoreBuff) {
+export function GetStatusModifyMdefDivUp(bIgnoreBuff) {
 	let val = 0;
 	let itemCount = 0;
 	let sklLv = 0;
@@ -10347,7 +10332,7 @@ function GetStatusModifyMdefDivUp(bIgnoreBuff) {
  * 公式サイトで Hit + ◯ と表記される
  * 装備等によるステータスの追加補正値を取得する（ＨＩＴ＋）.
  */
-function GetStatusModifyHitPlus() {
+export function GetStatusModifyHitPlus() {
 	let idx = 0;
 	let val = 0;
 	let vartmp = 0;
@@ -11838,7 +11823,7 @@ function GetStatusModifyHitPlus() {
 /**
 * 装備等によるステータスの追加補正値を取得する（ＭａｘＨＰ％）.
 */
-function GetStatusModifyTEMPPlus() {
+export function GetStatusModifyTEMPPlus() {
 
 	var val = 0;
 
@@ -11857,40 +11842,93 @@ function GetStatusModifyTEMPPlus() {
 	var bufLv = 0;
 	var bufferJobLv = 0, bufferSkillLv = 0;
 
-
-//------------------------------------------------------------------------------------------------
-// 武器効果　ここから
-// ★武器は両手に装備される可能性（アサシン、影狼など）を考慮すること
-
-// ★武器は両手に装備される可能性（アサシン、影狼など）を考慮すること
-// 武器効果　ここまで
-//------------------------------------------------------------------------------------------------
-// 防具効果　ここから
-
-// 防具効果　ここまで
-//------------------------------------------------------------------------------------------------
-// カード効果　ここから
-
-// カード効果　ここまで
-//------------------------------------------------------------------------------------------------
-// エンチャント効果　ここから
-// ★エンチャントは、複数の装備部位に適用される可能性を考慮すること
-
-// ★エンチャントは、複数の装備部位に適用される可能性を考慮すること
-// エンチャント効果　ここまで
-//------------------------------------------------------------------------------------------------
-// 装備セット効果　ここから
-
-// 装備セット効果　ここまで
-//------------------------------------------------------------------------------------------------
-// 自己スキル効果ここから
-
-// 自己スキル効果　ここまで
-//------------------------------------------------------------------------------------------------
-// 支援スキル効果　ここから
-
 // 支援スキル効果　ここまで
 //------------------------------------------------------------------------------------------------
 
 	return val;
 }
+
+Object.assign(window, {
+	EXBUF_ID_ENDURE,
+	EXBUF_ID_ASUMUPTIO,
+	EXBUF_ID_IDUNNNO_RINGO,
+	EXBUF_ID_IDUNNNO_RINGO_BUFFER_VITRANK,
+	EXBUF_ID_IDUNNNO_RINGO_BUFFER_SKILLLV,
+	EXBUF_ID_HUMMING,
+	EXBUF_ID_HUMMING_BUFFER_DEXRANK,
+	EXBUF_ID_HUMMING_BUFFER_SKILLLV,
+	EXBUF_ID_SERVICE_FOR_YOU,
+	EXBUF_ID_SERVICE_FOR_YOU_BUFFER_INTRANK,
+	EXBUF_ID_SERVICE_FOR_YOU_BUFFER_SKILLLV,
+	EXBUF_ID_IKUSADAIKONO_HIBIKI,
+	EXBUF_ID_FUSHANIMUKATTE_TOTSUGEKI,
+	EXBUF_ID_FUSHANIMUKATTE_TOTSUGEKI_BUFFER_JOBLV,
+	EXBUF_ID_FUSHANIMUKATTE_TOTSUGEKI_BUFFER_SKILLLV,
+	EXBUF_ID_ECHONO_UTA,
+	EXBUF_ID_ECHONO_UTA_BUFFER_JOBLV,
+	EXBUF_ID_ECHONO_UTA_BUFFER_SKILLLV,
+	EXBUF_ID_KOIBITOTACHINOTAMENO_SYMPHONY,
+	EXBUF_ID_KOIBITOTACHINOTAMENO_SYMPHONY_BUFFER_JOBLV,
+	EXBUF_ID_KOIBITOTACHINOTAMENO_SYMPHONY_BUFFER_SKILLLV,
+	EXBUF_ID_FRIGGNO_UTA,
+	EXBUF_ID_FRYDAY_NIGHT_FEVER,
+	EXBUF_ID_RELAZUNO_TSUYU,
+	EXBUF_ID_RELAZUNO_TSUYU_COUNT_OF_MINWAN,
+	EXBUF_ID_BEYOND_OF_WARCRAY,
+	EXBUF_ID_BEYOND_OF_WARCRAY_COUNT_OF_MINWAN,
+	EXBUF_ID_DANCE_WITH_WUG,
+	EXBUF_ID_DANCE_WITH_WUG_COUNT_OF_MINWAN,
+	EXBUF_ID_GOSPEL_HP_UP,
+	EXBUF_ID_GOSPEL_SP_UP,
+	EXBUF_ID_GOSPEL_HIT_FLEE_PLUS,
+	EXBUF_ID_DELUGE,
+	EXBUF_ID_ZYUTSUSHIKI_TENKAI,
+	EXBUF_ID_FIGHTING_SPIRIT,
+	EXBUF_ID_ODINNO_CHIKARA,
+	EXBUF_ID_ODINNO_EPICLESIS,
+	EXBUF_ID_HOM_S_PAINKILLER,
+	EXBUF_ID_HOM_S_PAINKILLER_HOM_LEVEL,
+	EXBUF_ID_CHATTERING,
+	EXBUF_ID_CHAGASHI,
+	EXBUF_ID_NIZIIRONO_OKASHI,
+	EXBUF_ID_URAMINO_HAKO,
+	EXBUF_ID_VITATA500,
+	EXBUF_ID_BUCHE_DE_NOEL,
+	EXBUF_ID_RUNEMIDGARTSSAN_OYATSU,
+	EXBUF_ID_SCHWARZWALDSAN_OYATSU,
+	EXBUF_ID_GUARANA_CANDY,
+	EXBUF_ID_YAKITOMOROKOSHI,
+	EXBUF_ID_HPZOKA_POTION,
+	EXBUF_ID_SPZOKA_POTION,
+	EXBUF_ID_SENTOYAKU,
+	EXBUF_ID_EVENT_BUF_ATK_PLUS,
+	EXBUF_ID_EVENT_BUF_HIT_PLUS,
+	EXBUF_ID_ORLEANS_FULLCOURSE,
+	EXBUF_ID_OTP_LOGIN_BONUS,
+	EXBUF_ID_CUSTOM_HIT_PLUS,
+	EXBUF_ID_CUSTOM_ATK_PLUS,
+	EXBUF_ID_CUSTOM_HP_PLUS,
+	EXBUF_ID_CUSTOM_HP_UP,
+	EXBUF_ID_CUSTOM_SP_PLUS,
+	EXBUF_ID_CUSTOM_SP_UP,
+	EXBUF_ID_CUSTOM_DEF_PLUS,
+	EXBUF_ID_CUSTOM_MDEF_PLUS,
+	EquipNumSearch,
+	EquipNumSearchMIG,
+	CardNumSearch,
+	CostumeNumSearch,
+	ExBuffNumSearch,
+	TimeItemNumSearch,
+	GetStatusModifyBodyElement,
+	GetStatusModifyAtkPlus,
+	GetStatusModifyMaxHpPlus,
+	GetStatusModifyMaxHpUp,
+	GetStatusModifyMaxSpPlus,
+	GetStatusModifyMaxSpUp,
+	GetStatusModifyDefDivPlus,
+	GetStatusModifyDefDivUp,
+	GetStatusModifyMdefDivPlus,
+	GetStatusModifyMdefDivUp,
+	GetStatusModifyHitPlus,
+	GetStatusModifyTEMPPlus,
+});

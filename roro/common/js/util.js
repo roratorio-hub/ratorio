@@ -2,10 +2,10 @@
  * 低レイヤーのユーティリティ関数群
  */
 
-CONSOLE_LOG_LEVEL_NONE	= 0;
-CONSOLE_LOG_LEVEL_DEBUG	= 1;
-g_bStoreConsoleLog = false;
-g_storedConsoleLogArray = null;
+window.CONSOLE_LOG_LEVEL_NONE	= 0;
+window.CONSOLE_LOG_LEVEL_DEBUG	= 1;
+window.g_bStoreConsoleLog = false;
+window.g_storedConsoleLogArray = null;
 
 /************************************************************************************************
  *
@@ -1286,4 +1286,54 @@ function BuildUpNumberSelectWithZeroOff(objSelect, nMin, nMax) {
 	for (idx = 1, n = nMin; n <= nMax; idx++, n++) {
 		objSelect.options[idx] = new Option(n, n);
 	}
+}
+if (typeof window !== 'undefined') {
+	Object.assign(window, {
+		HtmlGetElementById,
+		HtmlCreateElement,
+		HtmlCreateTextNode,
+		HtmlAppendTextNodeMulti,
+		HtmlCreateTextSpan,
+		HtmlSetAttribute,
+		HtmlRemoveOptionAll,
+		HtmlCreateElementOption,
+		HtmlRemoveAllChild,
+		HtmlRemoveFromParent,
+		HtmlGetAttribute,
+		HtmlGetObjectCheckedById,
+		HtmlSetObjectCheckedById,
+		HtmlGetSelectedOptgroup,
+		HtmlGetObjectValueById,
+		HtmlGetObjectValueByIdAsInteger,
+		HtmlSetObjectValueById,
+		getSelectValueRange,
+		HtmlModifyObjectValueIntoRange,
+		HtmlSelectObjectValueAsInteger,
+		HtmlCopyToClipboardById,
+		HtmlCallFunction,
+		GetLogText,
+		WriteConsoleLog,
+		ValueRangeModify,
+		SetStatefullData,
+		GetStatefullData,
+		MallocArray,
+		createArithmeticSequence,
+		DeepCopyArray,
+		ArrayPushIfExists,
+		IsEqualArrayItems,
+		GetVarValue,
+		DivideDigits3,
+		IsValidDataUrl,
+		ExtractDataArray,
+		EscapeInputtedText,
+		GetArrayTotal,
+		GetArrayMax,
+		GetArrayMin,
+		floorBigInt32,
+		floorBigInt40,
+		toSafeBigInt,
+		myInnerHtml,
+		BuildUpNumberSelect,
+		BuildUpNumberSelectWithZeroOff,
+	});
 }

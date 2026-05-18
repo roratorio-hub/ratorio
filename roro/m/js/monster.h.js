@@ -1,4 +1,6 @@
 
+import { CGlobalConstManager } from './CGlobalConstManager.js';
+
 //----------------------------------------------------------------
 // データの要素番号
 //----------------------------------------------------------------
@@ -246,7 +248,7 @@ CGlobalConstManager.DefineEnum(
  * @param monsterElm モンスター属性
  * @return ベース属性（common.js で定義している属性ＩＤと一致）
  */
-function GetMonseterElmBasicType(monsterElm) {
+export function GetMonseterElmBasicType(monsterElm) {
 
 	return Math.floor(monsterElm / 10);
 }
@@ -258,7 +260,7 @@ function GetMonseterElmBasicType(monsterElm) {
  * @param bossTypeId BOSS属性ID
  * @return BOSS属性のテキスト
  */
-function GetBossTypeText(bossTypeId) {
+export function GetBossTypeText(bossTypeId) {
 
 	switch (bossTypeId) {
 	case MONSTER_BOSSTYPE_NONE:
@@ -279,7 +281,7 @@ function GetBossTypeText(bossTypeId) {
  * @param grassTypeId 草属性ID
  * @return 草属性のテキスト
  */
-function GetGrassTypeText(grassTypeId) {
+export function GetGrassTypeText(grassTypeId) {
 
 	switch (grassTypeId) {
 	case MONSTER_GRASSTYPE_NONE:
@@ -297,4 +299,10 @@ function GetGrassTypeText(grassTypeId) {
 	}
 
 	return "エラー";
+}
+
+if (typeof window !== 'undefined') {
+    window.GetMonseterElmBasicType = GetMonseterElmBasicType;
+    window.GetBossTypeText = GetBossTypeText;
+    window.GetGrassTypeText = GetGrassTypeText;
 }

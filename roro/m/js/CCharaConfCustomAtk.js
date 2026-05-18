@@ -1,4 +1,6 @@
-function CCharaConfCustomAtk(confArray) {
+import { CConfBase } from './CConfBase.js';
+
+export function CCharaConfCustomAtk(confArray) {
 
 	// 継承定義
 	CCharaConfCustomAtk.prototype = new CConfBase();
@@ -519,6 +521,8 @@ function CCharaConfCustomAtk(confArray) {
 		var confId = confData[CConfBase.CONF_DATA_INDEX_ID];
 		var controlId = this.GetControlIdString(this.instanceNo, confId);
 		var controlType = confData[CConfBase.CONF_DATA_INDEX_CONTROL_TYPE];
+		var objSelect;
+		var objOption;
 
 		// 個別に実装する
 		switch (confId) {
@@ -628,4 +632,8 @@ function CCharaConfCustomAtk(confArray) {
 
 
 
+}
+
+if (typeof window !== 'undefined') {
+	window.CCharaConfCustomAtk = CCharaConfCustomAtk;
 }

@@ -1,7 +1,9 @@
+import { CSaveDataUnitBase } from './CSaveDataUnitBase.js';
+import { CSaveDataConst } from './CSaveDataConst.js';
 /**
  * 「アイテム(食品/他)」情報クラス
  */
-class CSaveDataUnitItemBuff extends CSaveDataUnitBase {
+export class CSaveDataUnitItemBuff extends CSaveDataUnitBase {
 
     /**
      * タイプ値.

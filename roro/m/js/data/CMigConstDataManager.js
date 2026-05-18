@@ -1,8 +1,18 @@
 
+import { CMigConstDataManagerSubJob } from './CMigConstDataManagerSubJob.js';
+import { CMigConstDataManagerSubState } from './CMigConstDataManagerSubState.js';
+import { CMigConstDataManagerSubBuff } from './CMigConstDataManagerSubBuff.js';
+import { CMigConstDataManagerSubMonster } from './CMigConstDataManagerSubMonster.js';
+import { CMigConstDataManagerSubArrow } from './CMigConstDataManagerSubArrow.js';
+import { CMigConstDataManagerSubItem } from './CMigConstDataManagerSubItem.js';
+import { CMigConstDataManagerSubCard } from './CMigConstDataManagerSubCard.js';
+import { CMigConstDataManagerSubEnchList } from './CMigConstDataManagerSubEnchList.js';
+import { CMigConstDataManagerSubRndOpt } from './CMigConstDataManagerSubRndOpt.js';
+
 /**
  * 定義済みデータ管理クラス.
  */
-function CMigConstDataManager () {
+export function CMigConstDataManager () {
 
 	// 職業用データマネージャ
 	this.jobDataManager = null;
@@ -168,3 +178,4 @@ function CMigConstDataManager () {
 
 	this.Initialize();
 }
+if (typeof window !== 'undefined') { window.CMigConstDataManager = CMigConstDataManager; }

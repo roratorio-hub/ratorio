@@ -1,7 +1,9 @@
+import { CSaveDataUnitBase } from './CSaveDataUnitBase.js';
+import { CSaveDataConst } from './CSaveDataConst.js';
 /**
  * 「アイテム時限効果」情報クラス
  */
-class CSaveDataUnitTimeBuff extends CSaveDataUnitBase {
+export class CSaveDataUnitTimeBuff extends CSaveDataUnitBase {
 
     /**
      * タイプ値.
