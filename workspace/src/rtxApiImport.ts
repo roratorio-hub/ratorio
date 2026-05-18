@@ -167,8 +167,8 @@ async function importRtxDataObject(dataObject: RtxData): Promise<void> {
                     body: { prefix: "OBJID_BODY", rndopt: "OBJID_EQUIP_REGION_ID_BODY" },
                     shoulder: { prefix: "OBJID_SHOULDER", rndopt: "OBJID_EQUIP_REGION_ID_SHOULDER" },
                     shoes: { prefix: "OBJID_SHOES", rndopt: "OBJID_EQUIP_REGION_ID_SHOES" },
-                    accessory1: { prefix: "OBJID_ACCESSARY_1", rndopt: "OBJID_EQUIP_REGION_ID_ACCESSARY_1" }, // calcx.html の綴りに合わせる
-                    accessory2: { prefix: "OBJID_ACCESSARY_2", rndopt: "OBJID_EQUIP_REGION_ID_ACCESSARY_2" }  // calcx.html の綴りに合わせる
+                    accessory1: { prefix: "OBJID_ACCESSORY_1", rndopt: "OBJID_EQUIP_REGION_ID_ACCESSORY_1" },
+                    accessory2: { prefix: "OBJID_ACCESSORY_2", rndopt: "OBJID_EQUIP_REGION_ID_ACCESSORY_2" }
                 };
 
                 // arms_type_right 反映

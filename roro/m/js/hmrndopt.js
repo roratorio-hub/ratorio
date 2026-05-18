@@ -89,12 +89,12 @@ export function RebuildRndOptSelect(eqpRgnId, itemId) {
 		objIdRoot = "OBJID_SHOES";
 		break;
 
-	case EQUIP_REGION_ID_ACCESSARY_1:
-		objIdRoot = "OBJID_ACCESSARY_1";
+	case EQUIP_REGION_ID_ACCESSORY_1:
+		objIdRoot = "OBJID_ACCESSORY_1";
 		break;
 
-	case EQUIP_REGION_ID_ACCESSARY_2:
-		objIdRoot = "OBJID_ACCESSARY_2";
+	case EQUIP_REGION_ID_ACCESSORY_2:
+		objIdRoot = "OBJID_ACCESSORY_2";
 		break;
 	}
 
@@ -349,8 +349,8 @@ export function ClearRndOptSelectAll() {
 	ClearRndOptSelect(EQUIP_REGION_ID_BODY);
 	ClearRndOptSelect(EQUIP_REGION_ID_SHOULDER);
 	ClearRndOptSelect(EQUIP_REGION_ID_SHOES);
-	ClearRndOptSelect(EQUIP_REGION_ID_ACCESSARY_1);
-	ClearRndOptSelect(EQUIP_REGION_ID_ACCESSARY_2);
+	ClearRndOptSelect(EQUIP_REGION_ID_ACCESSORY_1);
+	ClearRndOptSelect(EQUIP_REGION_ID_ACCESSORY_2);
 }
 
 /************************************************************************************************
@@ -407,8 +407,8 @@ export function SetRndOptEnablityAll() {
 	SetRndOptEnablity(EQUIP_REGION_ID_BODY);
 	SetRndOptEnablity(EQUIP_REGION_ID_SHOULDER);
 	SetRndOptEnablity(EQUIP_REGION_ID_SHOES);
-	SetRndOptEnablity(EQUIP_REGION_ID_ACCESSARY_1);
-	SetRndOptEnablity(EQUIP_REGION_ID_ACCESSARY_2);
+	SetRndOptEnablity(EQUIP_REGION_ID_ACCESSORY_1);
+	SetRndOptEnablity(EQUIP_REGION_ID_ACCESSORY_2);
 }
 
 export function SetRndOptEnablity(eqpRgnId) {
@@ -532,16 +532,16 @@ export function GetRndOptTotalValue(spid, invalidItemIdArray, bListUp) {
 		listUpArray = listUpArray.concat(GetRndOptValue(EQUIP_REGION_ID_BODY, spid, invalidItemIdArray, bListUp));
 		listUpArray = listUpArray.concat(GetRndOptValue(EQUIP_REGION_ID_SHOULDER, spid, invalidItemIdArray, bListUp));
 		listUpArray = listUpArray.concat(GetRndOptValue(EQUIP_REGION_ID_SHOES, spid, invalidItemIdArray, bListUp));
-		listUpArray = listUpArray.concat(GetRndOptValue(EQUIP_REGION_ID_ACCESSARY_1, spid, invalidItemIdArray, bListUp));
-		listUpArray = listUpArray.concat(GetRndOptValue(EQUIP_REGION_ID_ACCESSARY_2, spid, invalidItemIdArray, bListUp));
+		listUpArray = listUpArray.concat(GetRndOptValue(EQUIP_REGION_ID_ACCESSORY_1, spid, invalidItemIdArray, bListUp));
+		listUpArray = listUpArray.concat(GetRndOptValue(EQUIP_REGION_ID_ACCESSORY_2, spid, invalidItemIdArray, bListUp));
 
 		if ((typeof g_shadowEquipController) !== "undefined") {
 			listUpArray = listUpArray.concat(GetRndOptValue(EQUIP_REGION_ID_SHADOW_ARMS_RIGHT, spid, invalidItemIdArray, bListUp));
 			listUpArray = listUpArray.concat(GetRndOptValue(EQUIP_REGION_ID_SHADOW_ARMS_LEFT, spid, invalidItemIdArray, bListUp));
 			listUpArray = listUpArray.concat(GetRndOptValue(EQUIP_REGION_ID_SHADOW_BODY, spid, invalidItemIdArray, bListUp));
 			listUpArray = listUpArray.concat(GetRndOptValue(EQUIP_REGION_ID_SHADOW_FOOT, spid, invalidItemIdArray, bListUp));
-			listUpArray = listUpArray.concat(GetRndOptValue(EQUIP_REGION_ID_SHADOW_ACCESSARY_1, spid, invalidItemIdArray, bListUp));
-			listUpArray = listUpArray.concat(GetRndOptValue(EQUIP_REGION_ID_SHADOW_ACCESSARY_2, spid, invalidItemIdArray, bListUp));
+			listUpArray = listUpArray.concat(GetRndOptValue(EQUIP_REGION_ID_SHADOW_ACCESSORY_1, spid, invalidItemIdArray, bListUp));
+			listUpArray = listUpArray.concat(GetRndOptValue(EQUIP_REGION_ID_SHADOW_ACCESSORY_2, spid, invalidItemIdArray, bListUp));
 		}
 	}
 
@@ -559,16 +559,16 @@ export function GetRndOptTotalValue(spid, invalidItemIdArray, bListUp) {
 		spVal += GetRndOptValue(EQUIP_REGION_ID_BODY, spid, invalidItemIdArray, bListUp);
 		spVal += GetRndOptValue(EQUIP_REGION_ID_SHOULDER, spid, invalidItemIdArray, bListUp);
 		spVal += GetRndOptValue(EQUIP_REGION_ID_SHOES, spid, invalidItemIdArray, bListUp);
-		spVal += GetRndOptValue(EQUIP_REGION_ID_ACCESSARY_1, spid, invalidItemIdArray, bListUp);
-		spVal += GetRndOptValue(EQUIP_REGION_ID_ACCESSARY_2, spid, invalidItemIdArray, bListUp);
+		spVal += GetRndOptValue(EQUIP_REGION_ID_ACCESSORY_1, spid, invalidItemIdArray, bListUp);
+		spVal += GetRndOptValue(EQUIP_REGION_ID_ACCESSORY_2, spid, invalidItemIdArray, bListUp);
 
 		if ((typeof g_shadowEquipController) !== "undefined") {
 			spVal += GetRndOptValue(EQUIP_REGION_ID_SHADOW_ARMS_RIGHT, spid, invalidItemIdArray, bListUp);
 			spVal += GetRndOptValue(EQUIP_REGION_ID_SHADOW_ARMS_LEFT, spid, invalidItemIdArray, bListUp);
 			spVal += GetRndOptValue(EQUIP_REGION_ID_SHADOW_BODY, spid, invalidItemIdArray, bListUp);
 			spVal += GetRndOptValue(EQUIP_REGION_ID_SHADOW_FOOT, spid, invalidItemIdArray, bListUp);
-			spVal += GetRndOptValue(EQUIP_REGION_ID_SHADOW_ACCESSARY_1, spid, invalidItemIdArray, bListUp);
-			spVal += GetRndOptValue(EQUIP_REGION_ID_SHADOW_ACCESSARY_2, spid, invalidItemIdArray, bListUp);
+			spVal += GetRndOptValue(EQUIP_REGION_ID_SHADOW_ACCESSORY_1, spid, invalidItemIdArray, bListUp);
+			spVal += GetRndOptValue(EQUIP_REGION_ID_SHADOW_ACCESSORY_2, spid, invalidItemIdArray, bListUp);
 		}
 	}
 
@@ -667,8 +667,8 @@ export function GetRndOptValue(eqpRgnId, spid, invalidItemIdArray, bListUp) {
 		case EQUIP_REGION_ID_SHADOW_ARMS_LEFT:
 		case EQUIP_REGION_ID_SHADOW_BODY:
 		case EQUIP_REGION_ID_SHADOW_FOOT:
-		case EQUIP_REGION_ID_SHADOW_ACCESSARY_1:
-		case EQUIP_REGION_ID_SHADOW_ACCESSARY_2:
+		case EQUIP_REGION_ID_SHADOW_ACCESSORY_1:
+		case EQUIP_REGION_ID_SHADOW_ACCESSORY_2:
 			eqpRefined = g_refinedArray[eqpRgnId];
 			if (!eqpRefined) {
 				eqpRefined = 0;

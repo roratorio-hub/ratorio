@@ -166,8 +166,8 @@ export class CShadowEquipController {
 			ITEM_KIND_SHADOW_ARMS_LEFT,
 			ITEM_KIND_SHADOW_BODY,
 			ITEM_KIND_SHADOW_FOOT,
-			ITEM_KIND_SHADOW_ACCESSARY_ON1,
-			ITEM_KIND_SHADOW_ACCESSARY_ON2,
+			ITEM_KIND_SHADOW_ACCESSORY_ON1,
+			ITEM_KIND_SHADOW_ACCESSORY_ON2,
 		];
 
 		// 装備可能なアイテム配列を用意する
@@ -192,8 +192,8 @@ export class CShadowEquipController {
 		equipableCount += this.#rebuildBlock(this.constructor.EQPRGN_NAME_ARMS_LEFT, itemIdArrayByKind[ITEM_KIND_SHADOW_ARMS_LEFT]);
 		equipableCount += this.#rebuildBlock(this.constructor.EQPRGN_NAME_BODY, itemIdArrayByKind[ITEM_KIND_SHADOW_BODY]);
 		equipableCount += this.#rebuildBlock(this.constructor.EQPRGN_NAME_FOOT, itemIdArrayByKind[ITEM_KIND_SHADOW_FOOT]);
-		equipableCount += this.#rebuildBlock(this.constructor.EQPRGN_NAME_ACCESSORY_1, itemIdArrayByKind[ITEM_KIND_SHADOW_ACCESSARY_ON1]);
-		equipableCount += this.#rebuildBlock(this.constructor.EQPRGN_NAME_ACCESSORY_2, itemIdArrayByKind[ITEM_KIND_SHADOW_ACCESSARY_ON2]);
+		equipableCount += this.#rebuildBlock(this.constructor.EQPRGN_NAME_ACCESSORY_1, itemIdArrayByKind[ITEM_KIND_SHADOW_ACCESSORY_ON1]);
+		equipableCount += this.#rebuildBlock(this.constructor.EQPRGN_NAME_ACCESSORY_2, itemIdArrayByKind[ITEM_KIND_SHADOW_ACCESSORY_ON2]);
 
 		// シャドウ装備が一切装備できない場合は、全体を非表示にする
 		const objRoot = document.getElementById("OBJID_SHADOW_EQUIPS_MIG");

@@ -1685,7 +1685,7 @@ function MigGetItemSpTagArrayByOldSpID (spid) {
 	case ITEM_SP_APPEND_STATE_BREAK_SHIELD:
 	case ITEM_SP_APPEND_STATE_BREAK_SHOULDER:
 	case ITEM_SP_APPEND_STATE_BREAK_SHOES:
-	case ITEM_SP_APPEND_STATE_BREAK_ACCESSARY:
+	case ITEM_SP_APPEND_STATE_BREAK_ACCESSORY:
 		return [
 			new CMigEquipableSpTag()
 			.SetSpId(MIG_EQUIPABLE_SP_EFFECT_ID_STATE)
@@ -1709,7 +1709,7 @@ function MigGetItemSpTagArrayByOldSpID (spid) {
 	case ITEM_SP_RESIST_STATE_BREAK_SHIELD:
 	case ITEM_SP_RESIST_STATE_BREAK_SHOULDER:
 	case ITEM_SP_RESIST_STATE_BREAK_SHOES:
-	case ITEM_SP_RESIST_STATE_BREAK_ACCESSARY:
+	case ITEM_SP_RESIST_STATE_BREAK_ACCESSORY:
 		return [
 			new CMigEquipableSpTag()
 			.SetSpId(MIG_EQUIPABLE_SP_EFFECT_ID_RESIST)
@@ -3420,13 +3420,13 @@ function MigGetEquipRegionByItemKind(itemId, jobId) {
 		case ITEM_KIND_FOOT:
 			candidateRegionIdArray = [MIG_EQUIP_REGION_ID_FOOT];
 			break;
-		case ITEM_KIND_ACCESSARY:
+		case ITEM_KIND_ACCESSORY:
 			candidateRegionIdArray = [MIG_EQUIP_REGION_ID_ACCESSORY_1, MIG_EQUIP_REGION_ID_ACCESSORY_2];
 			break;
-		case ITEM_KIND_ACCESSARY_ON1:
+		case ITEM_KIND_ACCESSORY_ON1:
 			candidateRegionIdArray = [MIG_EQUIP_REGION_ID_ACCESSORY_1];
 			break;
-		case ITEM_KIND_ACCESSARY_ON2:
+		case ITEM_KIND_ACCESSORY_ON2:
 			candidateRegionIdArray = [MIG_EQUIP_REGION_ID_ACCESSORY_2];
 			break;
 
@@ -3577,13 +3577,13 @@ function MigGetEquipRegionByCardKind(cardId, jobId) {
 		case CARD_KIND_FOOT:
 			candidateRegionIdArray = [MIG_EQUIP_REGION_ID_FOOT];
 			break;
-		case CARD_KIND_ACCESSARY:
+		case CARD_KIND_ACCESSORY:
 			candidateRegionIdArray = [MIG_EQUIP_REGION_ID_ACCESSORY_1, MIG_EQUIP_REGION_ID_ACCESSORY_2];
 			break;
-		case CARD_KIND_ACCESSARY_ON1:
+		case CARD_KIND_ACCESSORY_ON1:
 			candidateRegionIdArray = [MIG_EQUIP_REGION_ID_ACCESSORY_1];
 			break;
-		case CARD_KIND_ACCESSARY_ON2:
+		case CARD_KIND_ACCESSORY_ON2:
 			candidateRegionIdArray = [MIG_EQUIP_REGION_ID_ACCESSORY_2];
 			break;
 

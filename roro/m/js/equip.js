@@ -868,18 +868,18 @@ export function ClearEnchantOnChangeEquip(eqpRgnId, itemId) {
 		cardRegionIdArrayToClear.push(CARD_REGION_ID_ENCHANT_SHOES_3);
 		break;
 
-	case EQUIP_REGION_ID_ACCESSARY_1:
-		cardRegionIdArrayToClear.push(CARD_REGION_ID_ACCESSARY_1);
-		cardRegionIdArrayToClear.push(CARD_REGION_ID_ENCHANT_ACCESSARY_1_1);
-		cardRegionIdArrayToClear.push(CARD_REGION_ID_ENCHANT_ACCESSARY_1_2);
-		cardRegionIdArrayToClear.push(CARD_REGION_ID_ENCHANT_ACCESSARY_1_3);
+	case EQUIP_REGION_ID_ACCESSORY_1:
+		cardRegionIdArrayToClear.push(CARD_REGION_ID_ACCESSORY_1);
+		cardRegionIdArrayToClear.push(CARD_REGION_ID_ENCHANT_ACCESSORY_1_1);
+		cardRegionIdArrayToClear.push(CARD_REGION_ID_ENCHANT_ACCESSORY_1_2);
+		cardRegionIdArrayToClear.push(CARD_REGION_ID_ENCHANT_ACCESSORY_1_3);
 		break;
 
-	case EQUIP_REGION_ID_ACCESSARY_2:
-		cardRegionIdArrayToClear.push(CARD_REGION_ID_ACCESSARY_2);
-		cardRegionIdArrayToClear.push(CARD_REGION_ID_ENCHANT_ACCESSARY_2_1);
-		cardRegionIdArrayToClear.push(CARD_REGION_ID_ENCHANT_ACCESSARY_2_2);
-		cardRegionIdArrayToClear.push(CARD_REGION_ID_ENCHANT_ACCESSARY_2_3);
+	case EQUIP_REGION_ID_ACCESSORY_2:
+		cardRegionIdArrayToClear.push(CARD_REGION_ID_ACCESSORY_2);
+		cardRegionIdArrayToClear.push(CARD_REGION_ID_ENCHANT_ACCESSORY_2_1);
+		cardRegionIdArrayToClear.push(CARD_REGION_ID_ENCHANT_ACCESSORY_2_2);
+		cardRegionIdArrayToClear.push(CARD_REGION_ID_ENCHANT_ACCESSORY_2_3);
 		break;
 	}
 
@@ -977,12 +977,12 @@ export function UpdateStatefullDataOnChangeEquip(eqpRgnId) {
 		strObjId = "OBJID_SHOES";
 		break;
 
-	case EQUIP_REGION_ID_ACCESSARY_1:
-		strObjId = "OBJID_ACCESSARY_1";
+	case EQUIP_REGION_ID_ACCESSORY_1:
+		strObjId = "OBJID_ACCESSORY_1";
 		break;
 
-	case EQUIP_REGION_ID_ACCESSARY_2:
-		strObjId = "OBJID_ACCESSARY_2";
+	case EQUIP_REGION_ID_ACCESSORY_2:
+		strObjId = "OBJID_ACCESSORY_2";
 		break;
 	}
 
@@ -1317,7 +1317,7 @@ export function RebuildArmorsSelect() {
 
 
 	// アイテム ID 抽出用配列を初期化
-	for (idx = EQUIP_REGION_ID_HEAD_TOP; idx <= EQUIP_REGION_ID_ACCESSARY_2; idx++) {
+	for (idx = EQUIP_REGION_ID_HEAD_TOP; idx <= EQUIP_REGION_ID_ACCESSORY_2; idx++) {
 		itemIdArrayEquipable[idx] = new Array();
 	}
 
@@ -1330,12 +1330,12 @@ export function RebuildArmorsSelect() {
 	objSelectArray[EQUIP_REGION_ID_BODY] = document.getElementById("OBJID_BODY");
 	objSelectArray[EQUIP_REGION_ID_SHOULDER] = document.getElementById("OBJID_SHOULDER");
 	objSelectArray[EQUIP_REGION_ID_SHOES] = document.getElementById("OBJID_SHOES");
-	objSelectArray[EQUIP_REGION_ID_ACCESSARY_1] = document.getElementById("OBJID_ACCESSARY_1");
-	objSelectArray[EQUIP_REGION_ID_ACCESSARY_2] = document.getElementById("OBJID_ACCESSARY_2");
+	objSelectArray[EQUIP_REGION_ID_ACCESSORY_1] = document.getElementById("OBJID_ACCESSORY_1");
+	objSelectArray[EQUIP_REGION_ID_ACCESSORY_2] = document.getElementById("OBJID_ACCESSORY_2");
 
 
 	// セレクトボックスの要素を全削除
-	for (idx = EQUIP_REGION_ID_HEAD_TOP; idx <= EQUIP_REGION_ID_ACCESSARY_2; idx++) {
+	for (idx = EQUIP_REGION_ID_HEAD_TOP; idx <= EQUIP_REGION_ID_ACCESSORY_2; idx++) {
 		HtmlRemoveOptionAll(objSelectArray[idx]);
 	}
 
@@ -1411,24 +1411,24 @@ export function RebuildArmorsSelect() {
 			itemIdArrayEquipable[EQUIP_REGION_ID_SHOES].push(itemId);
 			break;
 
-		case ITEM_KIND_ACCESSARY:
-			itemIdArrayEquipable[EQUIP_REGION_ID_ACCESSARY_1].push(itemId);
-			itemIdArrayEquipable[EQUIP_REGION_ID_ACCESSARY_2].push(itemId);
+		case ITEM_KIND_ACCESSORY:
+			itemIdArrayEquipable[EQUIP_REGION_ID_ACCESSORY_1].push(itemId);
+			itemIdArrayEquipable[EQUIP_REGION_ID_ACCESSORY_2].push(itemId);
 			break;
 
-		case ITEM_KIND_ACCESSARY_ON1:
-			itemIdArrayEquipable[EQUIP_REGION_ID_ACCESSARY_1].push(itemId);
+		case ITEM_KIND_ACCESSORY_ON1:
+			itemIdArrayEquipable[EQUIP_REGION_ID_ACCESSORY_1].push(itemId);
 			break;
 
-		case ITEM_KIND_ACCESSARY_ON2:
-			itemIdArrayEquipable[EQUIP_REGION_ID_ACCESSARY_2].push(itemId);
+		case ITEM_KIND_ACCESSORY_ON2:
+			itemIdArrayEquipable[EQUIP_REGION_ID_ACCESSORY_2].push(itemId);
 			break;
 		}
 	}
 
 
 	// 抽出したリストを読み仮名ソート実行
-	for (idx = EQUIP_REGION_ID_HEAD_TOP; idx <= EQUIP_REGION_ID_ACCESSARY_2; idx++) {
+	for (idx = EQUIP_REGION_ID_HEAD_TOP; idx <= EQUIP_REGION_ID_ACCESSORY_2; idx++) {
 		itemIdArrayEquipable[idx].sort(
 			function(a, b) {
 				if (ItemObjNew[a][ITEM_DATA_INDEX_KANA] < ItemObjNew[b][ITEM_DATA_INDEX_KANA]) return -1;
@@ -1440,7 +1440,7 @@ export function RebuildArmorsSelect() {
 
 
 	// セレクトボックスにアイテムを追加
-	for (idx = EQUIP_REGION_ID_HEAD_TOP; idx <= EQUIP_REGION_ID_ACCESSARY_2; idx++) {
+	for (idx = EQUIP_REGION_ID_HEAD_TOP; idx <= EQUIP_REGION_ID_ACCESSORY_2; idx++) {
 
 		for (idxItem = 0; idxItem < itemIdArrayEquipable[idx].length; idxItem++) {
 
@@ -1636,8 +1636,8 @@ export function InitEquipDefaultAll() {
 	InitEquipDefault(EQUIP_REGION_ID_BODY);
 	InitEquipDefault(EQUIP_REGION_ID_SHOULDER);
 	InitEquipDefault(EQUIP_REGION_ID_SHOES);
-	InitEquipDefault(EQUIP_REGION_ID_ACCESSARY_1);
-	InitEquipDefault(EQUIP_REGION_ID_ACCESSARY_2);
+	InitEquipDefault(EQUIP_REGION_ID_ACCESSORY_1);
+	InitEquipDefault(EQUIP_REGION_ID_ACCESSORY_2);
 }
 
 /************************************************************************************************
@@ -1689,12 +1689,12 @@ export function InitEquipDefault(eqpRgnId) {
 		__InitEquipDefault("OBJID_SHOES", ITEM_ID_NOEQUIP_SHOES);
 		break;
 
-	case EQUIP_REGION_ID_ACCESSARY_1:
-		__InitEquipDefault("OBJID_ACCESSARY_1", ITEM_ID_NOEQUIP_ACCESSARY);
+	case EQUIP_REGION_ID_ACCESSORY_1:
+		__InitEquipDefault("OBJID_ACCESSORY_1", ITEM_ID_NOEQUIP_ACCESSORY);
 		break;
 
-	case EQUIP_REGION_ID_ACCESSARY_2:
-		__InitEquipDefault("OBJID_ACCESSARY_2", ITEM_ID_NOEQUIP_ACCESSARY);
+	case EQUIP_REGION_ID_ACCESSORY_2:
+		__InitEquipDefault("OBJID_ACCESSORY_2", ITEM_ID_NOEQUIP_ACCESSORY);
 		break;
 	}
 }
@@ -1744,8 +1744,8 @@ export function ClearEquipAll() {
 	ClearEquip(EQUIP_REGION_ID_BODY);
 	ClearEquip(EQUIP_REGION_ID_SHOULDER);
 	ClearEquip(EQUIP_REGION_ID_SHOES);
-	ClearEquip(EQUIP_REGION_ID_ACCESSARY_1);
-	ClearEquip(EQUIP_REGION_ID_ACCESSARY_2);
+	ClearEquip(EQUIP_REGION_ID_ACCESSORY_1);
+	ClearEquip(EQUIP_REGION_ID_ACCESSORY_2);
 }
 
 /************************************************************************************************
@@ -1797,12 +1797,12 @@ export function ClearEquip(eqpRgnId) {
 		__ClearEquip(eqpRgnId, "OBJID_SHOES", ITEM_ID_NOEQUIP_SHOES);
 		break;
 
-	case EQUIP_REGION_ID_ACCESSARY_1:
-		__ClearEquip(eqpRgnId, "OBJID_ACCESSARY_1", ITEM_ID_NOEQUIP_ACCESSARY);
+	case EQUIP_REGION_ID_ACCESSORY_1:
+		__ClearEquip(eqpRgnId, "OBJID_ACCESSORY_1", ITEM_ID_NOEQUIP_ACCESSORY);
 		break;
 
-	case EQUIP_REGION_ID_ACCESSARY_2:
-		__ClearEquip(eqpRgnId, "OBJID_ACCESSARY_2", ITEM_ID_NOEQUIP_ACCESSARY);
+	case EQUIP_REGION_ID_ACCESSORY_2:
+		__ClearEquip(eqpRgnId, "OBJID_ACCESSORY_2", ITEM_ID_NOEQUIP_ACCESSORY);
 		break;
 	}
 }
@@ -1902,8 +1902,8 @@ export function copyAccs(from, to){
 		return;
 	}
 
-	const id_from = "#OBJID_ACCESSARY_"+from;
-	const id_to = "#OBJID_ACCESSARY_"+to;
+	const id_from = "#OBJID_ACCESSORY_"+from;
+	const id_to = "#OBJID_ACCESSORY_"+to;
 	const accs_from = $(id_from).val();
 
 	if ($(`${id_to} option[value=${accs_from}]`).length>0) {

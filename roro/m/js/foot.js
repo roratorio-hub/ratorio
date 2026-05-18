@@ -80,7 +80,7 @@ export function RefreshSuperNoviceFullWeapon(bFull) {
 
 
 	// 現在の装備状況をもとに、設定変更後の装備可否を判定し、ItemID を特定しておく
-	for (idx = EQUIP_REGION_ID_ARMS; idx <= EQUIP_REGION_ID_ACCESSARY_2; idx++) {
+	for (idx = EQUIP_REGION_ID_ARMS; idx <= EQUIP_REGION_ID_ACCESSORY_2; idx++) {
 
 		// 現在装備している ItemID を取得
 		itemId = n_A_Equip[idx];
@@ -159,20 +159,20 @@ export function RefreshSuperNoviceFullWeapon(bFull) {
 				n_A_card[CARD_REGION_ID_ENCHANT_SHOES_3],
 			];
 			break;
-		case EQUIP_REGION_ID_ACCESSARY_1:
+		case EQUIP_REGION_ID_ACCESSORY_1:
 			cardIdArrayArray[idx] = [
-				n_A_card[CARD_REGION_ID_ACCESSARY_1],
-				n_A_card[CARD_REGION_ID_ENCHANT_ACCESSARY_1_1],
-				n_A_card[CARD_REGION_ID_ENCHANT_ACCESSARY_1_2],
-				n_A_card[CARD_REGION_ID_ENCHANT_ACCESSARY_1_3],
+				n_A_card[CARD_REGION_ID_ACCESSORY_1],
+				n_A_card[CARD_REGION_ID_ENCHANT_ACCESSORY_1_1],
+				n_A_card[CARD_REGION_ID_ENCHANT_ACCESSORY_1_2],
+				n_A_card[CARD_REGION_ID_ENCHANT_ACCESSORY_1_3],
 			];
 			break;
-		case EQUIP_REGION_ID_ACCESSARY_2:
+		case EQUIP_REGION_ID_ACCESSORY_2:
 			cardIdArrayArray[idx] = [
-				n_A_card[CARD_REGION_ID_ACCESSARY_2],
-				n_A_card[CARD_REGION_ID_ENCHANT_ACCESSARY_2_1],
-				n_A_card[CARD_REGION_ID_ENCHANT_ACCESSARY_2_2],
-				n_A_card[CARD_REGION_ID_ENCHANT_ACCESSARY_2_3],
+				n_A_card[CARD_REGION_ID_ACCESSORY_2],
+				n_A_card[CARD_REGION_ID_ENCHANT_ACCESSORY_2_1],
+				n_A_card[CARD_REGION_ID_ENCHANT_ACCESSORY_2_2],
+				n_A_card[CARD_REGION_ID_ENCHANT_ACCESSORY_2_3],
 			];
 			break;
 		default:
@@ -251,7 +251,7 @@ export function RefreshSuperNoviceFullWeapon(bFull) {
 
 
 	// 装備状況を復元する
-	for (idx = EQUIP_REGION_ID_ARMS; idx <= EQUIP_REGION_ID_ACCESSARY_2; idx++) {
+	for (idx = EQUIP_REGION_ID_ARMS; idx <= EQUIP_REGION_ID_ACCESSORY_2; idx++) {
 
 		switch (idx) {
 
@@ -291,12 +291,12 @@ export function RefreshSuperNoviceFullWeapon(bFull) {
 			strObjId = "OBJID_SHOES";
 			break;
 
-		case EQUIP_REGION_ID_ACCESSARY_1:
-			strObjId = "OBJID_ACCESSARY_1";
+		case EQUIP_REGION_ID_ACCESSORY_1:
+			strObjId = "OBJID_ACCESSORY_1";
 			break;
 
-		case EQUIP_REGION_ID_ACCESSARY_2:
-			strObjId = "OBJID_ACCESSARY_2";
+		case EQUIP_REGION_ID_ACCESSORY_2:
+			strObjId = "OBJID_ACCESSORY_2";
 			break;
 		}
 
@@ -344,8 +344,8 @@ export function UpdateEquipItemDataByHtml() {
 	n_A_Equip[EQUIP_REGION_ID_BODY]			 = HtmlGetObjectValueByIdAsInteger("OBJID_BODY", 0);
 	n_A_Equip[EQUIP_REGION_ID_SHOULDER]		 = HtmlGetObjectValueByIdAsInteger("OBJID_SHOULDER", 0);
 	n_A_Equip[EQUIP_REGION_ID_SHOES]		 = HtmlGetObjectValueByIdAsInteger("OBJID_SHOES", 0);
-	n_A_Equip[EQUIP_REGION_ID_ACCESSARY_1]	 = HtmlGetObjectValueByIdAsInteger("OBJID_ACCESSARY_1", 0);
-	n_A_Equip[EQUIP_REGION_ID_ACCESSARY_2]	 = HtmlGetObjectValueByIdAsInteger("OBJID_ACCESSARY_2", 0);
+	n_A_Equip[EQUIP_REGION_ID_ACCESSORY_1]	 = HtmlGetObjectValueByIdAsInteger("OBJID_ACCESSORY_1", 0);
+	n_A_Equip[EQUIP_REGION_ID_ACCESSORY_2]	 = HtmlGetObjectValueByIdAsInteger("OBJID_ACCESSORY_2", 0);
 	n_A_Equip[EQUIP_REGION_ID_COSTUME_HEAD_UNDER] = HtmlGetObjectValueByIdAsInteger("A_isyou3", 0);
 
 	// 各種精錬値
@@ -365,15 +365,15 @@ export function UpdateEquipItemDataByHtml() {
 		g_itemIdArray[EQUIP_REGION_ID_SHADOW_ARMS_LEFT] = g_shadowEquipController.getEquippedID(CShadowEquipController.EQPRGN_NAME_ARMS_LEFT);
 		g_itemIdArray[EQUIP_REGION_ID_SHADOW_BODY] = g_shadowEquipController.getEquippedID(CShadowEquipController.EQPRGN_NAME_BODY);
 		g_itemIdArray[EQUIP_REGION_ID_SHADOW_FOOT] = g_shadowEquipController.getEquippedID(CShadowEquipController.EQPRGN_NAME_FOOT);
-		g_itemIdArray[EQUIP_REGION_ID_SHADOW_ACCESSARY_1] = g_shadowEquipController.getEquippedID(CShadowEquipController.EQPRGN_NAME_ACCESSORY_1);
-		g_itemIdArray[EQUIP_REGION_ID_SHADOW_ACCESSARY_2] = g_shadowEquipController.getEquippedID(CShadowEquipController.EQPRGN_NAME_ACCESSORY_2);
+		g_itemIdArray[EQUIP_REGION_ID_SHADOW_ACCESSORY_1] = g_shadowEquipController.getEquippedID(CShadowEquipController.EQPRGN_NAME_ACCESSORY_1);
+		g_itemIdArray[EQUIP_REGION_ID_SHADOW_ACCESSORY_2] = g_shadowEquipController.getEquippedID(CShadowEquipController.EQPRGN_NAME_ACCESSORY_2);
 
 		g_refinedArray[EQUIP_REGION_ID_SHADOW_ARMS_RIGHT] = g_shadowEquipController.getRefined(CShadowEquipController.EQPRGN_NAME_ARMS_RIGHT);
 		g_refinedArray[EQUIP_REGION_ID_SHADOW_ARMS_LEFT] = g_shadowEquipController.getRefined(CShadowEquipController.EQPRGN_NAME_ARMS_LEFT);
 		g_refinedArray[EQUIP_REGION_ID_SHADOW_BODY] = g_shadowEquipController.getRefined(CShadowEquipController.EQPRGN_NAME_BODY);
 		g_refinedArray[EQUIP_REGION_ID_SHADOW_FOOT] = g_shadowEquipController.getRefined(CShadowEquipController.EQPRGN_NAME_FOOT);
-		g_refinedArray[EQUIP_REGION_ID_SHADOW_ACCESSARY_1] = g_shadowEquipController.getRefined(CShadowEquipController.EQPRGN_NAME_ACCESSORY_1);
-		g_refinedArray[EQUIP_REGION_ID_SHADOW_ACCESSARY_2] = g_shadowEquipController.getRefined(CShadowEquipController.EQPRGN_NAME_ACCESSORY_2);
+		g_refinedArray[EQUIP_REGION_ID_SHADOW_ACCESSORY_1] = g_shadowEquipController.getRefined(CShadowEquipController.EQPRGN_NAME_ACCESSORY_1);
+		g_refinedArray[EQUIP_REGION_ID_SHADOW_ACCESSORY_2] = g_shadowEquipController.getRefined(CShadowEquipController.EQPRGN_NAME_ACCESSORY_2);
 
 		const funcSetRndOptTable = (eqpRgnIdF, eqpRgnNameF) => {
 			const rndOptInfoArrayF = g_shadowEquipController.getRndOptInfoArray(eqpRgnNameF);
@@ -385,8 +385,8 @@ export function UpdateEquipItemDataByHtml() {
 		funcSetRndOptTable(EQUIP_REGION_ID_SHADOW_ARMS_LEFT, CShadowEquipController.EQPRGN_NAME_ARMS_LEFT);
 		funcSetRndOptTable(EQUIP_REGION_ID_SHADOW_BODY, CShadowEquipController.EQPRGN_NAME_BODY);
 		funcSetRndOptTable(EQUIP_REGION_ID_SHADOW_FOOT, CShadowEquipController.EQPRGN_NAME_FOOT);
-		funcSetRndOptTable(EQUIP_REGION_ID_SHADOW_ACCESSARY_1, CShadowEquipController.EQPRGN_NAME_ACCESSORY_1);
-		funcSetRndOptTable(EQUIP_REGION_ID_SHADOW_ACCESSARY_2, CShadowEquipController.EQPRGN_NAME_ACCESSORY_2);
+		funcSetRndOptTable(EQUIP_REGION_ID_SHADOW_ACCESSORY_1, CShadowEquipController.EQPRGN_NAME_ACCESSORY_1);
+		funcSetRndOptTable(EQUIP_REGION_ID_SHADOW_ACCESSORY_2, CShadowEquipController.EQPRGN_NAME_ACCESSORY_2);
 	}
 
 
@@ -427,8 +427,8 @@ export function UpdateEquipCardDataByHtml() {
 	n_A_card[CARD_REGION_ID_BODY]		 = GetStatefullData("DATA_OBJID_BODY_CARD_1", 0);
 	n_A_card[CARD_REGION_ID_SHOULDER]	 = GetStatefullData("DATA_OBJID_SHOULDER_CARD_1", 0);
 	n_A_card[CARD_REGION_ID_SHOES]		 = GetStatefullData("DATA_OBJID_SHOES_CARD_1", 0);
-	n_A_card[CARD_REGION_ID_ACCESSARY_1] = GetStatefullData("DATA_OBJID_ACCESSARY_1_CARD_1", 0);
-	n_A_card[CARD_REGION_ID_ACCESSARY_2] = GetStatefullData("DATA_OBJID_ACCESSARY_2_CARD_1", 0);
+	n_A_card[CARD_REGION_ID_ACCESSORY_1] = GetStatefullData("DATA_OBJID_ACCESSORY_1_CARD_1", 0);
+	n_A_card[CARD_REGION_ID_ACCESSORY_2] = GetStatefullData("DATA_OBJID_ACCESSORY_2_CARD_1", 0);
 
 	// 頭上段エンチャント
 	n_A_card[CARD_REGION_ID_ENCHANT_HEAD_TOP_1] = GetStatefullData("DATA_OBJID_HEAD_TOP_CARD_2", 0);
@@ -466,14 +466,14 @@ export function UpdateEquipCardDataByHtml() {
 	n_A_card[CARD_REGION_ID_ENCHANT_SHOES_3] = GetStatefullData("DATA_OBJID_SHOES_CARD_4", 0);
 
 	// アクセ１エンチャント
-	n_A_card[CARD_REGION_ID_ENCHANT_ACCESSARY_1_1] = GetStatefullData("DATA_OBJID_ACCESSARY_1_CARD_2", 0);
-	n_A_card[CARD_REGION_ID_ENCHANT_ACCESSARY_1_2] = GetStatefullData("DATA_OBJID_ACCESSARY_1_CARD_3", 0);
-	n_A_card[CARD_REGION_ID_ENCHANT_ACCESSARY_1_3] = GetStatefullData("DATA_OBJID_ACCESSARY_1_CARD_4", 0);
+	n_A_card[CARD_REGION_ID_ENCHANT_ACCESSORY_1_1] = GetStatefullData("DATA_OBJID_ACCESSORY_1_CARD_2", 0);
+	n_A_card[CARD_REGION_ID_ENCHANT_ACCESSORY_1_2] = GetStatefullData("DATA_OBJID_ACCESSORY_1_CARD_3", 0);
+	n_A_card[CARD_REGION_ID_ENCHANT_ACCESSORY_1_3] = GetStatefullData("DATA_OBJID_ACCESSORY_1_CARD_4", 0);
 
 	// アクセ２エンチャント
-	n_A_card[CARD_REGION_ID_ENCHANT_ACCESSARY_2_1] = GetStatefullData("DATA_OBJID_ACCESSARY_2_CARD_2", 0);
-	n_A_card[CARD_REGION_ID_ENCHANT_ACCESSARY_2_2] = GetStatefullData("DATA_OBJID_ACCESSARY_2_CARD_3", 0);
-	n_A_card[CARD_REGION_ID_ENCHANT_ACCESSARY_2_3] = GetStatefullData("DATA_OBJID_ACCESSARY_2_CARD_4", 0);
+	n_A_card[CARD_REGION_ID_ENCHANT_ACCESSORY_2_1] = GetStatefullData("DATA_OBJID_ACCESSORY_2_CARD_2", 0);
+	n_A_card[CARD_REGION_ID_ENCHANT_ACCESSORY_2_2] = GetStatefullData("DATA_OBJID_ACCESSORY_2_CARD_3", 0);
+	n_A_card[CARD_REGION_ID_ENCHANT_ACCESSORY_2_3] = GetStatefullData("DATA_OBJID_ACCESSORY_2_CARD_4", 0);
 
 	// シャドウ装備エンチャント
 	n_A_card[CARD_REGION_ID_SHADOW_ARMS_RIGHT_1] = GetStatefullData("DATA_OBJID_SHADOW_ARMS_RIGHT_CARD_2", 0);
@@ -488,12 +488,12 @@ export function UpdateEquipCardDataByHtml() {
 	n_A_card[CARD_REGION_ID_SHADOW_ENCHANT_SHOES_1] = GetStatefullData("DATA_OBJID_SHADOW_SHOES_CARD_2", 0);
 	n_A_card[CARD_REGION_ID_SHADOW_ENCHANT_SHOES_2] = GetStatefullData("DATA_OBJID_SHADOW_SHOES_CARD_3", 0);
 	n_A_card[CARD_REGION_ID_SHADOW_ENCHANT_SHOES_3] = GetStatefullData("DATA_OBJID_SHADOW_SHOES_CARD_4", 0);
-	n_A_card[CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY1_1] = GetStatefullData("DATA_OBJID_SHADOW_ACCESSARY-1_CARD_2", 0);
-	n_A_card[CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY1_2] = GetStatefullData("DATA_OBJID_SHADOW_ACCESSARY-1_CARD_3", 0);
-	n_A_card[CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY1_3] = GetStatefullData("DATA_OBJID_SHADOW_ACCESSARY-1_CARD_4", 0);
-	n_A_card[CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY2_1] = GetStatefullData("DATA_OBJID_SHADOW_ACCESSARY-2_CARD_2", 0);
-	n_A_card[CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY2_2] = GetStatefullData("DATA_OBJID_SHADOW_ACCESSARY-2_CARD_3", 0);
-	n_A_card[CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY2_3] = GetStatefullData("DATA_OBJID_SHADOW_ACCESSARY-2_CARD_4", 0);
+	n_A_card[CARD_REGION_ID_SHADOW_ENCHANT_ACCESSORY1_1] = GetStatefullData("DATA_OBJID_SHADOW_ACCESSORY-1_CARD_2", 0);
+	n_A_card[CARD_REGION_ID_SHADOW_ENCHANT_ACCESSORY1_2] = GetStatefullData("DATA_OBJID_SHADOW_ACCESSORY-1_CARD_3", 0);
+	n_A_card[CARD_REGION_ID_SHADOW_ENCHANT_ACCESSORY1_3] = GetStatefullData("DATA_OBJID_SHADOW_ACCESSORY-1_CARD_4", 0);
+	n_A_card[CARD_REGION_ID_SHADOW_ENCHANT_ACCESSORY2_1] = GetStatefullData("DATA_OBJID_SHADOW_ACCESSORY-2_CARD_2", 0);
+	n_A_card[CARD_REGION_ID_SHADOW_ENCHANT_ACCESSORY2_2] = GetStatefullData("DATA_OBJID_SHADOW_ACCESSORY-2_CARD_3", 0);
+	n_A_card[CARD_REGION_ID_SHADOW_ENCHANT_ACCESSORY2_3] = GetStatefullData("DATA_OBJID_SHADOW_ACCESSORY-2_CARD_4", 0);
 
 }
 
@@ -535,8 +535,8 @@ export function StAllCalc(){
 	var itemCount = 0;
 	var itemCountRight = 0;
 	var itemCountLeft = 0;
-	var itemCountAccessary1 = 0;
-	var itemCountAccessary2 = 0;
+	var itemCountAccessory1 = 0;
+	var itemCountAccessory2 = 0;
 
 	var cardCount = 0;
 	var cardcount = 0;
@@ -548,8 +548,8 @@ export function StAllCalc(){
 	var cardCountBody = 0;
 	var cardCountShoulder = 0;
 	var cardCountShoes = 0;
-	var cardCountAccessary1 = 0;
-	var cardCountAccessary2 = 0;
+	var cardCountAccessory1 = 0;
+	var cardCountAccessory2 = 0;
 
 
 	const calcForm = document.calcForm;
@@ -1379,7 +1379,7 @@ export function StAllCalc(){
 	// 防具の基本Ｄｅｆ
 
 	// 従来の処理
-	for (idx = EQUIP_REGION_ID_HEAD_TOP; idx <= EQUIP_REGION_ID_ACCESSARY_2; idx++) {
+	for (idx = EQUIP_REGION_ID_HEAD_TOP; idx <= EQUIP_REGION_ID_ACCESSORY_2; idx++) {
 		armorDef += ItemObjNew[n_A_Equip[idx]][ITEM_DATA_INDEX_POWER];
 	}
 
@@ -2517,7 +2517,7 @@ export function StAllCalc(){
 	    //----------------------------------------------------------------
 	    // 「リングオブジュピター」の、素ＬＵＫによる効果
 	    //----------------------------------------------------------------
-	    if ((itemCount = EquipNumSearch(ITEM_ID_RING_OF_JUPITER, EQUIP_REGION_ID_ACCESSARY_1)) > 0) {
+	    if ((itemCount = EquipNumSearch(ITEM_ID_RING_OF_JUPITER, EQUIP_REGION_ID_ACCESSORY_1)) > 0) {
 	        w += 15 * Math.floor(SU_LUK / 10) * itemCount;
 	    }
 
@@ -4022,7 +4022,7 @@ export function StAllCalc(){
 		//----------------------------------------------------------------
 		// 「リングオブヴィーナス」の、素ＡＧＩによる効果
 		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_RING_OF_VENUS, EQUIP_REGION_ID_ACCESSARY_2)) > 0) {
+		if ((itemCount = EquipNumSearch(ITEM_ID_RING_OF_VENUS, EQUIP_REGION_ID_ACCESSORY_2)) > 0) {
 			w += 1 * Math.floor(SU_AGI / 10) * itemCount;
 		}
 
@@ -6645,7 +6645,7 @@ export function StAllCalc(){
 		//----------------------------------------------------------------
 		// 「リングオブヴィーナス」の、素ＤＥＸによる効果
 		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_RING_OF_VENUS, EQUIP_REGION_ID_ACCESSARY_1)) > 0) {
+		if ((itemCount = EquipNumSearch(ITEM_ID_RING_OF_VENUS, EQUIP_REGION_ID_ACCESSORY_1)) > 0) {
 			n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += 1 * Math.floor(SU_DEX / 10) * itemCount;
 		}
 
@@ -7713,7 +7713,7 @@ export function StAllCalc(){
 		//----------------------------------------------------------------
 		// 「リングオブジュピター」の、素ＬＵＫによる効果
 		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_RING_OF_JUPITER, EQUIP_REGION_ID_ACCESSARY_1)) > 0) {
+		if ((itemCount = EquipNumSearch(ITEM_ID_RING_OF_JUPITER, EQUIP_REGION_ID_ACCESSORY_1)) > 0) {
 			if (SU_LUK >= 125) {
 				n_tok[26] += 15 * itemCount;
 			}
@@ -8732,7 +8732,7 @@ export function StAllCalc(){
 		//----------------------------------------------------------------
 		// 「リングオブヴィーナス」の、素ＡＧＩによる効果
 		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_RING_OF_VENUS, EQUIP_REGION_ID_ACCESSARY_2)) > 0) {
+		if ((itemCount = EquipNumSearch(ITEM_ID_RING_OF_VENUS, EQUIP_REGION_ID_ACCESSORY_2)) > 0) {
 			n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP] += 1 * Math.floor(SU_AGI / 10) * itemCount;
 		}
 
@@ -9529,7 +9529,7 @@ export function StAllCalc(){
 		//----------------------------------------------------------------
 		// 「リングオブジュピター」の、素ＶＩＴによる効果
 		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_RING_OF_JUPITER, EQUIP_REGION_ID_ACCESSARY_2)) > 0) {
+		if ((itemCount = EquipNumSearch(ITEM_ID_RING_OF_JUPITER, EQUIP_REGION_ID_ACCESSORY_2)) > 0) {
 			if (SU_VIT >= 125) {
 				n_tok[243] += 3 * itemCount;
 			}
@@ -12699,7 +12699,7 @@ export function StAllCalc(){
 		//----------------------------------------------------------------
 		// 「リングオブジュピター」の、素ＬＵＫによる効果
 		//----------------------------------------------------------------
-		if ((itemCount = EquipNumSearch(ITEM_ID_RING_OF_JUPITER, EQUIP_REGION_ID_ACCESSARY_1)) > 0) {
+		if ((itemCount = EquipNumSearch(ITEM_ID_RING_OF_JUPITER, EQUIP_REGION_ID_ACCESSORY_1)) > 0) {
 			if (SU_LUK >= 125) {
 				n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_BOSS] += 15 * itemCount;
 			}
@@ -14754,8 +14754,8 @@ export function getFixedCastTimeReductionRate() {
     let cardCountShield = 0;
     let cardCountShoulder = 0;
     let cardCountShoes = 0;
-    let cardCountAccessary1 = 0;
-    let cardCountAccessary2 = 0;
+    let cardCountAccessory1 = 0;
+    let cardCountAccessory2 = 0;
 
     // ペット効果用
     const petId = n_A_PassSkill8[0];
@@ -15091,8 +15091,8 @@ export function getFixedCastTimeReductionRate() {
     cardCountShield = CardNumSearch(CARD_ID_ENCHANT_Q_CAST_FIXED, CARD_REGION_ID_SHIELD_ANY);
     cardCountShoulder = CardNumSearch(CARD_ID_ENCHANT_Q_CAST_FIXED, CARD_REGION_ID_SHOULDER_ANY);
     cardCountShoes = CardNumSearch(CARD_ID_ENCHANT_Q_CAST_FIXED, CARD_REGION_ID_SHOES_ANY);
-    cardCountAccessary1 = CardNumSearch(CARD_ID_ENCHANT_Q_CAST_FIXED, CARD_REGION_ID_ACCESSARY_1_ANY);
-    cardCountAccessary2 = CardNumSearch(CARD_ID_ENCHANT_Q_CAST_FIXED, CARD_REGION_ID_ACCESSARY_2_ANY);
+    cardCountAccessory1 = CardNumSearch(CARD_ID_ENCHANT_Q_CAST_FIXED, CARD_REGION_ID_ACCESSORY_1_ANY);
+    cardCountAccessory2 = CardNumSearch(CARD_ID_ENCHANT_Q_CAST_FIXED, CARD_REGION_ID_ACCESSORY_2_ANY);
 
     if (cardCountBody > 0) {
         if (n_A_BODY_DEF_PLUS >= 8) {
@@ -15134,12 +15134,12 @@ export function getFixedCastTimeReductionRate() {
         }
     }
 
-    if (cardCountAccessary1 > 0) {
+    if (cardCountAccessory1 > 0) {
         // 精錬不可なので 20% 一択
         chkary.push(20);
     }
 
-    if (cardCountAccessary2 > 0) {
+    if (cardCountAccessory2 > 0) {
         // 精錬不可なので 20% 一択
         chkary.push(20);
     }
@@ -15147,7 +15147,7 @@ export function getFixedCastTimeReductionRate() {
     //----------------------------------------------------------------
     // 「リングオブヴィーナス」の、素ＤＥＸによる効果
     //----------------------------------------------------------------
-    if (EquipNumSearch(ITEM_ID_RING_OF_VENUS, EQUIP_REGION_ID_ACCESSARY_1) > 0) {
+    if (EquipNumSearch(ITEM_ID_RING_OF_VENUS, EQUIP_REGION_ID_ACCESSORY_1) > 0) {
         if (SU_DEX >= 125) {
             chkary.push(70);
         }
@@ -16293,7 +16293,7 @@ export function ApplyResistBadStatus() {
     //----------------------------------------------------------------
     // 「リングオブヴィーナス」の、素ＤＥＸによる効果
     //----------------------------------------------------------------
-    if ((itemCount = EquipNumSearch(ITEM_ID_RING_OF_VENUS, EQUIP_REGION_ID_ACCESSARY_1)) > 0) {
+    if ((itemCount = EquipNumSearch(ITEM_ID_RING_OF_VENUS, EQUIP_REGION_ID_ACCESSORY_1)) > 0) {
         n_tok[ITEM_SP_RESIST_STATE_STUN] += 3 * Math.floor(SU_DEX / 10) * itemCount;
     }
 
@@ -16854,7 +16854,7 @@ export function ApplyAdditionalResistElement() {
     //----------------------------------------------------------------
     // 「リングオブヴィーナス」の、素ＤＥＸによる効果
     //----------------------------------------------------------------
-    if ((itemCount = EquipNumSearch(ITEM_ID_RING_OF_VENUS, EQUIP_REGION_ID_ACCESSARY_1)) > 0) {
+    if ((itemCount = EquipNumSearch(ITEM_ID_RING_OF_VENUS, EQUIP_REGION_ID_ACCESSORY_1)) > 0) {
         if (SU_DEX >= 125) {
             n_tok[ITEM_SP_RESIST_ELM_FIRE] += 5 * itemCount;
             n_tok[ITEM_SP_RESIST_ELM_WATER] += 5 * itemCount;
@@ -17791,7 +17791,7 @@ export function ApplyHealRecoveryUp() {
  * @returns {Number}
  */
 export function getDelayTimeReductionRate() {
-	var sklLv = 0, skllv = 0, itemCount = 0, itemCountAccessary1 = 0, bufLv = 0, cardCount = 0;
+	var sklLv = 0, skllv = 0, itemCount = 0, itemCountAccessory1 = 0, bufLv = 0, cardCount = 0;
 	var cardCountRight = 0, cardCountLeft = 0, cardCountHeadTop = 0;
 	var cardCountShield = 0, cardCountBody = 0, cardCountShoulder = 0, cardCountShoes = 0;
 
@@ -17989,9 +17989,9 @@ export function getDelayTimeReductionRate() {
     //----------------------------------------------------------------
     // 「猛炎と白魔の指輪」の、効果
     //----------------------------------------------------------------
-    itemCountAccessary1 = EquipNumSearch(ITEM_ID_MOENTO_HAKUMANO_YUBIWA, EQUIP_REGION_ID_ACCESSARY_1);
-    if (itemCountAccessary1 > 0) {
-        delay_time_reduction += 15 * itemCountAccessary1;
+    itemCountAccessory1 = EquipNumSearch(ITEM_ID_MOENTO_HAKUMANO_YUBIWA, EQUIP_REGION_ID_ACCESSORY_1);
+    if (itemCountAccessory1 > 0) {
+        delay_time_reduction += 15 * itemCountAccessory1;
     }
     //----------------------------------------------------------------
     // 「巡礼者の靴」の、スキル習得による効果
@@ -18282,7 +18282,7 @@ export function getDelayTimeReductionRate() {
     //----------------------------------------------------------------
     // 「リングオブヴィーナス」の、素ＡＧＩによる効果
     //----------------------------------------------------------------
-    if ((itemCount = EquipNumSearch(ITEM_ID_RING_OF_VENUS, EQUIP_REGION_ID_ACCESSARY_2)) > 0) {
+    if ((itemCount = EquipNumSearch(ITEM_ID_RING_OF_VENUS, EQUIP_REGION_ID_ACCESSORY_2)) > 0) {
         if (SU_AGI >= 125) {
             delay_time_reduction += 25 * itemCount;
         }
@@ -18634,7 +18634,7 @@ export function getDelayTimeReductionRate() {
  * @returns {Number}
  */
 export function getVariableCastTimeRate() {
-	var idx, sklLv = 0, itemCount = 0, itemCountAccessary2 = 0, bufLv = 0, cardCount = 0;
+	var idx, sklLv = 0, itemCount = 0, itemCountAccessory2 = 0, bufLv = 0, cardCount = 0;
 	var cardCountRight = 0, cardCountLeft = 0, cardCountHeadTop = 0;
 	var cardCountShield = 0, cardCountBody = 0, cardCountShoulder = 0, cardCountShoes = 0;
     // 詠唱ステータスから残余詠唱時間の割合を計算する
@@ -19020,9 +19020,9 @@ export function getVariableCastTimeRate() {
     //----------------------------------------------------------------
     // 「猛炎と白魔の指輪」の、効果
     //----------------------------------------------------------------
-    itemCountAccessary2 = EquipNumSearch(ITEM_ID_MOENTO_HAKUMANO_YUBIWA, EQUIP_REGION_ID_ACCESSARY_2);
-    if (itemCountAccessary2 > 0) {
-        reduction_rate -= 15 * itemCountAccessary2;
+    itemCountAccessory2 = EquipNumSearch(ITEM_ID_MOENTO_HAKUMANO_YUBIWA, EQUIP_REGION_ID_ACCESSORY_2);
+    if (itemCountAccessory2 > 0) {
+        reduction_rate -= 15 * itemCountAccessory2;
     }
 
     //----------------------------------------------------------------
@@ -23466,7 +23466,7 @@ export function GetCoolFixOfSkill(skillId) {
 	// （装備部位限定であるのに注意）
 	//----------------------------------------------------------------
 	if (skillId == SKILL_ID_FIRE_DRAGON_BREATH) {
-		eqpnum = EquipNumSearch(ITEM_ID_MOENTO_HAKUMANO_YUBIWA, EQUIP_REGION_ID_ACCESSARY_2);
+		eqpnum = EquipNumSearch(ITEM_ID_MOENTO_HAKUMANO_YUBIWA, EQUIP_REGION_ID_ACCESSORY_2);
 		if (eqpnum > 0) {
 			coolfix -= 500 * eqpnum;
 		}
@@ -23477,7 +23477,7 @@ export function GetCoolFixOfSkill(skillId) {
 	// （装備部位限定であるのに注意）
 	//----------------------------------------------------------------
 	if (skillId == SKILL_ID_WATER_DRAGON_BREATH) {
-		eqpnum = EquipNumSearch(ITEM_ID_MOENTO_HAKUMANO_YUBIWA, EQUIP_REGION_ID_ACCESSARY_1);
+		eqpnum = EquipNumSearch(ITEM_ID_MOENTO_HAKUMANO_YUBIWA, EQUIP_REGION_ID_ACCESSORY_1);
 		if (eqpnum > 0) {
 			coolfix -= 500 * eqpnum;
 		}
@@ -25202,8 +25202,8 @@ export function StPlusCalc() {
 	let itemCount = 0;
 	let itemCountRight = 0;
 	let itemCountLeft = 0;
-	let itemCountAccessary1 = 0;
-	let itemCountAccessary2 = 0;
+	let itemCountAccessory1 = 0;
+	let itemCountAccessory2 = 0;
 	let cardCount = 0;
 	let cardCountRight = 0;
 	let cardCountLeft = 0;
@@ -25213,8 +25213,8 @@ export function StPlusCalc() {
 	let cardCountBody = 0;
 	let cardCountShoulder = 0;
 	let cardCountShoes = 0;
-	let cardCountAccessary1 = 0;
-	let cardCountAccessary2 = 0;
+	let cardCountAccessory1 = 0;
+	let cardCountAccessory2 = 0;
 
 	let prefetch = 0;
 
@@ -28243,8 +28243,8 @@ export function GetEquippedSPSubShadow(spid, invalidItemIdArray, bListUp, bExact
 		EQUIP_REGION_ID_SHADOW_ARMS_LEFT,
 		EQUIP_REGION_ID_SHADOW_BODY,
 		EQUIP_REGION_ID_SHADOW_FOOT,
-		EQUIP_REGION_ID_SHADOW_ACCESSARY_1,
-		EQUIP_REGION_ID_SHADOW_ACCESSARY_2,
+		EQUIP_REGION_ID_SHADOW_ACCESSORY_1,
+		EQUIP_REGION_ID_SHADOW_ACCESSORY_2,
 	]
 
 	for (let idx = 0; idx < eqprgnIDs.length; idx++) {
@@ -28579,16 +28579,16 @@ export function GetEquippedSPSubSPCardAndElse(spid, invalidCardIdArray, bListUp)
 				eqpRefined = typeof g_refinedArray != "undefined" ? g_refinedArray[EQUIP_REGION_ID_SHADOW_FOOT]: 0;
 				break;
 			
-			case CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY1_1:
-			case CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY1_2:
-			case CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY1_3:
-				eqpRefined = typeof g_refinedArray != "undefined" ? g_refinedArray[EQUIP_REGION_ID_SHADOW_ACCESSARY_1]: 0;
+			case CARD_REGION_ID_SHADOW_ENCHANT_ACCESSORY1_1:
+			case CARD_REGION_ID_SHADOW_ENCHANT_ACCESSORY1_2:
+			case CARD_REGION_ID_SHADOW_ENCHANT_ACCESSORY1_3:
+				eqpRefined = typeof g_refinedArray != "undefined" ? g_refinedArray[EQUIP_REGION_ID_SHADOW_ACCESSORY_1]: 0;
 				break;
 			
-			case CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY2_1:
-			case CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY2_2:
-			case CARD_REGION_ID_SHADOW_ENCHANT_ACCESSARY2_3:
-				eqpRefined = typeof g_refinedArray != "undefined" ? g_refinedArray[EQUIP_REGION_ID_SHADOW_ACCESSARY_2]: 0;
+			case CARD_REGION_ID_SHADOW_ENCHANT_ACCESSORY2_1:
+			case CARD_REGION_ID_SHADOW_ENCHANT_ACCESSORY2_2:
+			case CARD_REGION_ID_SHADOW_ENCHANT_ACCESSORY2_3:
+				eqpRefined = typeof g_refinedArray != "undefined" ? g_refinedArray[EQUIP_REGION_ID_SHADOW_ACCESSORY_2]: 0;
 				break;
 				
 			default:
@@ -29057,7 +29057,7 @@ export function GetEquippedTotalSPCostume(spid) {
 
 
 	// 全ての装備箇所をループ
-	for(eqpRegionId = 0; eqpRegionId <= COSTUME_REGION_ID_ACCESSARY_2; eqpRegionId++) {
+	for(eqpRegionId = 0; eqpRegionId <= COSTUME_REGION_ID_ACCESSORY_2; eqpRegionId++) {
 
 		// 装備データからアイテムデータを取得
 		costumeData = CostumeOBJ[n_A_costume[eqpRegionId]];
@@ -29519,14 +29519,14 @@ export function CheckSpDefEquipmentLocation(spDefRemain, location) {
 				break;
 			case 4:	// アクセサリー
 				switch(location) {
-					case CARD_REGION_ID_ACCESSARY_1:
-					case CARD_REGION_ID_ENCHANT_ACCESSARY_1_1:
-					case CARD_REGION_ID_ENCHANT_ACCESSARY_1_2:
-					case CARD_REGION_ID_ENCHANT_ACCESSARY_1_3:
-					case CARD_REGION_ID_ACCESSARY_2:
-					case CARD_REGION_ID_ENCHANT_ACCESSARY_2_1:
-					case CARD_REGION_ID_ENCHANT_ACCESSARY_2_2:
-					case CARD_REGION_ID_ENCHANT_ACCESSARY_2_3:
+					case CARD_REGION_ID_ACCESSORY_1:
+					case CARD_REGION_ID_ENCHANT_ACCESSORY_1_1:
+					case CARD_REGION_ID_ENCHANT_ACCESSORY_1_2:
+					case CARD_REGION_ID_ENCHANT_ACCESSORY_1_3:
+					case CARD_REGION_ID_ACCESSORY_2:
+					case CARD_REGION_ID_ENCHANT_ACCESSORY_2_1:
+					case CARD_REGION_ID_ENCHANT_ACCESSORY_2_2:
+					case CARD_REGION_ID_ENCHANT_ACCESSORY_2_3:
 						return parseInt(spDefRemain % baseFlag);
 				}
 				break;
@@ -29693,8 +29693,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_BODY);
 		UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_SHOULDER);
 		UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_SHOES);
-		UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_ACCESSARY_1);
-		UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_ACCESSARY_2);
+		UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_ACCESSORY_1);
+		UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_ACCESSORY_2);
 
 		if (document.getElementById("OBJID_SAVE_BLOCK_MIG")) {
 			CSaveController.LoadFromLocalStorageMIG();
