@@ -3072,46 +3072,46 @@ export function GetItemExplainText(spId, spValue) {
 
 			else if (ITEM_SP_SKILL_CAST_TIME_OFFSET <= spId && spId < ITEM_SP_SKILL_CAST_TIME_OFFSET + 2000){
 				if(spValue > 0) {
-					textInfoArray.push(["", "["+ SkillObjNew[spId - ITEM_SP_SKILL_CAST_TIME_OFFSET][SKILL_DATA_INDEX_NAME] + "]の詠唱時間 " + spValue + "%減少"]);
+					textInfoArray.push(["", "["+ SkillObjNew[spId - ITEM_SP_SKILL_CAST_TIME_OFFSET][SKILL_DATA_INDEX_NAME] + "]の変動詠唱時間 - " + spValue + "%"]);
 				}
 				else {
-					textInfoArray.push(["", "["+ SkillObjNew[spId - ITEM_SP_SKILL_CAST_TIME_OFFSET][SKILL_DATA_INDEX_NAME] + "]の詠唱時間 " + (-1 * spValue) + "%増加"]);
+					textInfoArray.push(["", "["+ SkillObjNew[spId - ITEM_SP_SKILL_CAST_TIME_OFFSET][SKILL_DATA_INDEX_NAME] + "]の変動詠唱時間 + " + (-1 * spValue) + "%"]);
 				}
 			}
 
 			else if (ITEM_SP_SKILL_CAST_MINUS_OFFSET <= spId && spId < ITEM_SP_SKILL_CAST_MINUS_OFFSET + 2000){
 				if(spValue > 0) {
-					textInfoArray.push(["", "["+ SkillObjNew[spId - ITEM_SP_SKILL_CAST_MINUS_OFFSET][SKILL_DATA_INDEX_NAME] + "]の詠唱時間 " + (spValue / 1000) + "秒減少"]);
+					textInfoArray.push(["", "["+ SkillObjNew[spId - ITEM_SP_SKILL_CAST_MINUS_OFFSET][SKILL_DATA_INDEX_NAME] + "]の変動詠唱時間 - " + (spValue / 1000) + "秒"]);
 				}
 				else {
-					textInfoArray.push(["", "["+ SkillObjNew[spId - ITEM_SP_SKILL_CAST_MINUS_OFFSET][SKILL_DATA_INDEX_NAME] + "]の詠唱時間 " + (-1 * spValue / 1000) + "秒増加"]);
+					textInfoArray.push(["", "["+ SkillObjNew[spId - ITEM_SP_SKILL_CAST_MINUS_OFFSET][SKILL_DATA_INDEX_NAME] + "]の変動詠唱時間 + " + (-1 * spValue / 1000) + "秒"]);
 				}
 			}
 
 			else if (ITEM_SP_SKILL_FIXED_TIME_OFFSET <= spId && spId < ITEM_SP_SKILL_FIXED_TIME_OFFSET + 2000){
 				if(spValue > 0) {
-					textInfoArray.push(["", "["+ SkillObjNew[spId - ITEM_SP_SKILL_FIXED_TIME_OFFSET][SKILL_DATA_INDEX_NAME] + "]の固定詠唱時間 " + spValue + "%減少"]);
+					textInfoArray.push(["", "["+ SkillObjNew[spId - ITEM_SP_SKILL_FIXED_TIME_OFFSET][SKILL_DATA_INDEX_NAME] + "]の固定詠唱時間 - " + spValue + "%"]);
 				}
 				else {
-					textInfoArray.push(["", "["+ SkillObjNew[spId - ITEM_SP_SKILL_FIXED_TIME_OFFSET][SKILL_DATA_INDEX_NAME] + "]の固定詠唱時間 " + (-1 * spValue) + "%増加"]);
+					textInfoArray.push(["", "["+ SkillObjNew[spId - ITEM_SP_SKILL_FIXED_TIME_OFFSET][SKILL_DATA_INDEX_NAME] + "]の固定詠唱時間 + " + (-1 * spValue) + "%"]);
 				}
 			}
 
 			else if (ITEM_SP_SKILL_FIXED_MINUS_OFFSET <= spId && spId < ITEM_SP_SKILL_FIXED_MINUS_OFFSET + 2000){
 				if(spValue > 0) {
-					textInfoArray.push(["", "["+ SkillObjNew[spId - ITEM_SP_SKILL_FIXED_MINUS_OFFSET][SKILL_DATA_INDEX_NAME] + "]の固定詠唱時間 " + (spValue / 1000) + "秒減少"]);
+					textInfoArray.push(["", "["+ SkillObjNew[spId - ITEM_SP_SKILL_FIXED_MINUS_OFFSET][SKILL_DATA_INDEX_NAME] + "]の固定詠唱時間 - " + (spValue / 1000) + "秒"]);
 				}
 				else {
-					textInfoArray.push(["", "["+ SkillObjNew[spId - ITEM_SP_SKILL_FIXED_MINUS_OFFSET][SKILL_DATA_INDEX_NAME] + "]の固定詠唱時間 " + (-1 * spValue / 1000) + "秒増加"]);
+					textInfoArray.push(["", "["+ SkillObjNew[spId - ITEM_SP_SKILL_FIXED_MINUS_OFFSET][SKILL_DATA_INDEX_NAME] + "]の固定詠唱時間 + " + (-1 * spValue / 1000) + "秒"]);
 				}
 			}
 
 			else if (ITEM_SP_SKILL_COOL_MINUS_OFFSET <= spId && spId < ITEM_SP_SKILL_COOL_MINUS_OFFSET + 2000){
 				if(spValue > 0) {
-					textInfoArray.push(["", "["+ SkillObjNew[spId - ITEM_SP_SKILL_COOL_MINUS_OFFSET][SKILL_DATA_INDEX_NAME] + "]のクールタイム " + (spValue / 1000) + "秒減少"]);
+					textInfoArray.push(["", "["+ SkillObjNew[spId - ITEM_SP_SKILL_COOL_MINUS_OFFSET][SKILL_DATA_INDEX_NAME] + "]の再使用待機時間 - " + (spValue / 1000) + "秒"]);
 				}
 				else {
-					textInfoArray.push(["", "["+ SkillObjNew[spId - ITEM_SP_SKILL_COOL_MINUS_OFFSET][SKILL_DATA_INDEX_NAME] + "]のクールタイム " + (-1 * spValue / 1000) + "秒増加"]);
+					textInfoArray.push(["", "["+ SkillObjNew[spId - ITEM_SP_SKILL_COOL_MINUS_OFFSET][SKILL_DATA_INDEX_NAME] + "]の再使用待機時間 + " + (-1 * spValue / 1000) + "秒"]);
 				}
 			}
 
