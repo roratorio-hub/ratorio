@@ -86,15 +86,18 @@ if __name__ == "__main__":
         #  mig.enchlist.dat.js
         # ------------------------------------------------------
         if 'enchant' in item_info:
+            enchant_ids_for_item = []
             for enchant in item_info['enchant']:
                 enchant_id += 1
                 try:
                     record = buildEnchantRecord(base_id, enchant_id, enchant)
-                except:
-                    print(f"{item_info['name']} のエンチャント定義に問題があります")
-                mig_enchlist_dat_js.append(record)
-                record = f'g_constDataManager.enchListDataManager.reverseResolveArrayItemId[{base_id}] = [{enchant_id}];'
-                mig_enchlist_dat_js.append(record)
+                    mig_enchlist_dat_js.append(record)
+                    enchant_ids_for_item.append(enchant_id)
+                except Exception as e:
+                    print(f"{item_info['name']} のエンチャント定義に問題があります: {e}")
+            if enchant_ids_for_item:
+                ids_str = ','.join(str(i) for i in enchant_ids_for_item)
+                mig_enchlist_dat_js.append(f'g_constDataManager.enchListDataManager.reverseResolveArrayItemId[{base_id}] = [{ids_str}];')
 
     OUTPUT_FILE = [
         ('item.dat.js', item_dat_js),
