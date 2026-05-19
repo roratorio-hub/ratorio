@@ -295,7 +295,7 @@ def buildCapabilityRecord(capability):
     at_status = 0
     if 'at_status_100' in capability:
         at_status = AT_STATUS_100_CODE[capability['at_status_100']]
-    if 'at_status_110' in capability:
+    elif 'at_status_110' in capability:
         at_status = AT_STATUS_110_CODE[capability['at_status_110']]
     elif 'at_status_130' in capability:
         at_status = AT_STATUS_130_CODE[capability['at_status_130']]
