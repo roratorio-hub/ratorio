@@ -1,26 +1,6 @@
 card_list:
-  - name: 魔弓の弦音
-    yomi: マキュウノツルネ
-    desc: "物理攻撃命中時、一定確率で10秒間、Hit + 150、攻撃速度 + 100%、[セシル=ディモン]に変身"
-    type: エンチャント
-
-  - name: 潜在解放(ウィンドホークXX)
-    yomi: センザイカイホウウィンドホーク20
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 豪傑
-        capabilities:
-          - name: 再使用待機時間減少
-            skill: ホークブーメラン
-            value: 300
-          - name: 再使用待機時間減少
-            skill: ホークラッシュ
-            value: 300
-
-  - name: 潜在解放(カーディナルXX)
-    yomi: センザイカイホウカーディナル20
+  - name: 潜在解放(アリテアXVIII)
+    yomi: センザイカイホウ(アリテア18)
     type: エンチャント
     set_list:
       - set:
@@ -28,35 +8,10 @@ card_list:
           - card_name: 真理の解放
         capabilities:
           - name: 再使用待機時間減少
-            skill: ディヴィヌスフロス
             value: 200
-
-  - name: 潜在解放(シャドウクロスXVIII)
-    yomi: センザイカイホウシャドウクロス18
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 豪傑
-        capabilities:
-          - name: 再使用待機時間減少
-            skill: クロススラッシュ
-            value: 100
-
-  - name: 潜在解放(ナイトウォッチXVII)
-    yomi: センザイカイホウナイトウォッチ17
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 豪傑
-        capabilities:
-          - name: 再使用待機時間減少
-            skill: ミッドナイトフォーリン
-            value: 300
-
-  - name: 潜在解放(ハイパーノービスXXII)
-    yomi: センザイカイホウハイパーノービス22
+            skill: フューリアスストーム
+  - name: 潜在解放(トルバドゥール&トルヴェールXVI)
+    yomi: センザイカイホウ(トルバドゥールアンドトルヴェール16)
     type: エンチャント
     set_list:
       - set:
@@ -64,41 +19,5 @@ card_list:
           - card_name: 真理の解放
         capabilities:
           - name: 再使用待機時間減少
-            skill: ジャックフロストノヴァ
-            value: 2000
-
-  - name: 潜在解放(マイスターXVII)
-    yomi: センザイカイホウマイスター17
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 豪傑
-        capabilities:
-          - name: 再使用待機時間減少
-            skill: パワフルスイング
             value: 100
-
-  - name: 潜在解放(蜃気楼&不知火XXI)
-    yomi: センザイカイホウシンキロウフシラヌイ21
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 豪傑
-        capabilities:
-          - name: 再使用待機時間減少
-            skill: 苦無 -回転-
-            value: 1000
-
-  - name: 潜在解放(エレメンタルマスターXX)
-    yomi: センザイカイホウエレメンタルマスター20
-    desc: "物理攻撃命中時、一定確率で敵を中心にオートスペル[ダイヤモンドストーム]が習得Lvで発動"
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 真理の解放
-        capabilities:
-          - name: 破損しない
-            value: 1
+            skill: リズミカルウェーブ

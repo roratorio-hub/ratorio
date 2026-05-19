@@ -2822,7 +2822,7 @@ export function GetItemExplainText(spId, spValue) {
 			break;
 
 		case ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_ALL:
-			textInfoArray.push(["", "物理攻撃時、全てのサイズのモンスターに与えるダメージ" + sign + spValue + "%。"]);
+			textInfoArray.push(["", "物理攻撃時、小・中・大型モンスターに与えるダメージ" + sign + spValue + "%。"]);
 			break;
 
 		case ITEM_SP_PHYSICAL_DAMAGE_UP_RACE_ALL:
@@ -2852,7 +2852,7 @@ export function GetItemExplainText(spId, spValue) {
 			break;
 
 		case ITEM_SP_MAGICAL_DAMAGE_UP_SIZE_ALL:
-			textInfoArray.push(["", "魔法攻撃時、全てのサイズのモンスターに与えるダメージ" + sign + spValue + "%。"]);
+			textInfoArray.push(["", "魔法攻撃時、小・中・大型モンスターに与えるダメージ" + sign + spValue + "%。"]);
 			break;
 
 		case ITEM_SP_MAGICAL_DAMAGE_UP_RACE_ALL:
