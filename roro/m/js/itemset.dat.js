@@ -6828,6 +6828,10 @@ export const PetIdToSetIdMap = new Array();
 	CardIdToSetIdMap[4281] = [3473,];
 	CardIdToSetIdMap[1245] = CardIdToSetIdMap[1245].concat([3467, 3470, 3473]);
 	CardIdToSetIdMap[1348] = CardIdToSetIdMap[1348].concat([3466, 3468, 3469, 3471, 3472]);
+	w_SE[3474] = [-4284,-4283,-1245,];    // 潜在解放(アリテアXVIII) + 真理の解放
+	CardIdToSetIdMap[4283] = [3474,];
+	w_SE[3475] = [-4286,-4285,-1245,];    // 潜在解放(トルバドゥール&トルヴェールXVI) + 真理の解放
+	CardIdToSetIdMap[4285] = [3475,];
 
 	// itemset はセーブデータに書き出されないので
 	// 現実的な範囲において itemsetID の上限値を気にする必要はありません
