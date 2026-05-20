@@ -11773,6 +11773,14 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 	objCell.classList.add("BTLRSLT_TAB_RESULT");
 	objCell.classList.add("CSSCLS_BTLRSLT_HEADER");
 	funcAppendCheckbox(objCell, partIdStr, "平均被ダメージ（仮）", uncheckedMap.get(partIdStr), funcOnChangeChkPart);
+	{
+		const objLabel = objCell.querySelector(`label[for="${partIdStr}"]`);
+		HtmlRemoveAllChild(objLabel);
+		const objLink = HtmlCreateElement("a", objLabel);
+		objLink.setAttribute("href", "https://github.com/roratorio-hub/ratorio/wiki/received_damage");
+		objLink.setAttribute("target", "_blank");
+		HtmlCreateTextNode("平均被ダメージ（仮）", objLink);
+	}
 
 	//----------------
 	// 物理ダメージ
@@ -11781,10 +11789,28 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 	objCell.style.gridColumn = "1 / 3";
 	objCell.classList.add("BTLRSLT_TAB_RESULT");
 	objCell.classList.add(partIdStr);
-	const enemy_attack_method_physical = HtmlCreateElement("select", objCell);
-	enemy_attack_method_physical.setAttribute("id", "OBJID_ENEMY_ATTACK_METHOD_PHYSICAL");
-	HtmlCreateElementOption(0, "通常攻撃", enemy_attack_method_physical);
-	HtmlCreateElementOption(1, "ヘルジャッジメント Lv10", enemy_attack_method_physical);
+	HtmlCreateTextNode("物理", objCell);
+	const enemy_skill_ratio = HtmlCreateElement("input", objCell);
+	enemy_skill_ratio.setAttribute("id", "OBJID_ENEMY_SKILL_RATIO");
+	enemy_skill_ratio.setAttribute("type", "number");
+	enemy_skill_ratio.setAttribute("min", "100");
+	enemy_skill_ratio.setAttribute("max", "10000");
+	enemy_skill_ratio.setAttribute("placeholder", "倍率(100-10000)");
+	enemy_skill_ratio.value = "100";
+	HtmlCreateTextNode("%", objCell);
+	const enemy_skill_element = HtmlCreateElement("select", objCell);
+	enemy_skill_element.setAttribute("id", "OBJID_ENEMY_SKILL_ELEMENT");
+	HtmlCreateElementOption(-1,            "属性なし", enemy_skill_element);
+	HtmlCreateElementOption(ELM_ID_VANITY, "無属性", enemy_skill_element);
+	HtmlCreateElementOption(ELM_ID_WATER,  "水属性", enemy_skill_element);
+	HtmlCreateElementOption(ELM_ID_EARTH,  "地属性", enemy_skill_element);
+	HtmlCreateElementOption(ELM_ID_FIRE,   "火属性", enemy_skill_element);
+	HtmlCreateElementOption(ELM_ID_WIND,   "風属性", enemy_skill_element);
+	HtmlCreateElementOption(ELM_ID_POISON, "毒属性", enemy_skill_element);
+	HtmlCreateElementOption(ELM_ID_HOLY,   "聖属性", enemy_skill_element);
+	HtmlCreateElementOption(ELM_ID_DARK,   "闇属性", enemy_skill_element);
+	HtmlCreateElementOption(ELM_ID_PSYCO,  "念属性", enemy_skill_element);
+	HtmlCreateElementOption(ELM_ID_UNDEAD, "不死属性", enemy_skill_element);
 
 	const objPhysicalDamageView = HtmlCreateElement("div", objGridDmg);
 	objPhysicalDamageView.setAttribute("id", "OBJID_RECEIVED_DAMAGE_PHYSICAL");
@@ -11793,7 +11819,10 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 	objPhysicalDamageView.classList.add("CSSCLS_BTLRSLT_VALUE");
 	if (n_B_KYOUKA[MOB_CONF_BUF_ID_MAX_PAIN] == 0) {
 		calcReceivedDamage(charaData, specData, mobData, attackMethodConfArray, objPhysicalDamageView);
-		enemy_attack_method_physical.addEventListener("change", () => {
+		enemy_skill_ratio.addEventListener("change", () => {
+			calcReceivedDamage(charaData, specData, mobData, attackMethodConfArray, objPhysicalDamageView);
+		});
+		enemy_skill_element.addEventListener("change", () => {
 			calcReceivedDamage(charaData, specData, mobData, attackMethodConfArray, objPhysicalDamageView);
 		});
 	} else {
@@ -11807,12 +11836,27 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 	objCell.style.gridColumn = "1 / 3";
 	objCell.classList.add("BTLRSLT_TAB_RESULT");
 	objCell.classList.add(partIdStr);
-	const enemy_attack_method_magical = HtmlCreateElement("select", objCell);
-	enemy_attack_method_magical.setAttribute("id", "OBJID_ENEMY_ATTACK_METHOD_MAGICAL");
-	HtmlCreateElementOption(0, "ファイアーボルト Lv1", enemy_attack_method_magical);
-	HtmlCreateElementOption(1, "アースクエイク Lv10", enemy_attack_method_magical);
-	HtmlCreateElementOption(2, "ﾃﾄﾗﾎﾞﾙﾃｯｸｽ(強)", enemy_attack_method_magical);
-	HtmlCreateElementOption(3, "Mﾚｲｵﾌﾞｼﾞｪﾈｼｽ(強)", enemy_attack_method_magical);
+	HtmlCreateTextNode("魔法", objCell);
+	const enemy_magic_skill_ratio = HtmlCreateElement("input", objCell);
+	enemy_magic_skill_ratio.setAttribute("id", "OBJID_ENEMY_MAGIC_SKILL_RATIO");
+	enemy_magic_skill_ratio.setAttribute("type", "number");
+	enemy_magic_skill_ratio.setAttribute("min", "100");
+	enemy_magic_skill_ratio.setAttribute("max", "10000");
+	enemy_magic_skill_ratio.setAttribute("placeholder", "倍率(100-10000)");
+	enemy_magic_skill_ratio.value = "100";
+	HtmlCreateTextNode("%", objCell);
+	const enemy_magic_skill_element = HtmlCreateElement("select", objCell);
+	enemy_magic_skill_element.setAttribute("id", "OBJID_ENEMY_MAGIC_SKILL_ELEMENT");
+	HtmlCreateElementOption(ELM_ID_VANITY, "無属性", enemy_magic_skill_element);
+	HtmlCreateElementOption(ELM_ID_WATER,  "水属性", enemy_magic_skill_element);
+	HtmlCreateElementOption(ELM_ID_EARTH,  "地属性", enemy_magic_skill_element);
+	HtmlCreateElementOption(ELM_ID_FIRE,   "火属性", enemy_magic_skill_element);
+	HtmlCreateElementOption(ELM_ID_WIND,   "風属性", enemy_magic_skill_element);
+	HtmlCreateElementOption(ELM_ID_POISON, "毒属性", enemy_magic_skill_element);
+	HtmlCreateElementOption(ELM_ID_HOLY,   "聖属性", enemy_magic_skill_element);
+	HtmlCreateElementOption(ELM_ID_DARK,   "闇属性", enemy_magic_skill_element);
+	HtmlCreateElementOption(ELM_ID_PSYCO,  "念属性", enemy_magic_skill_element);
+	HtmlCreateElementOption(ELM_ID_UNDEAD, "不死属性", enemy_magic_skill_element);
 
 	const objMagicalDamageView = HtmlCreateElement("div", objGridDmg);
 	objMagicalDamageView.setAttribute("id", "OBJID_RECEIVED_DAMAGE_MAGICAL");
@@ -11820,7 +11864,10 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 	objMagicalDamageView.classList.add(partIdStr);
 	objMagicalDamageView.classList.add("CSSCLS_BTLRSLT_VALUE");
 	calcReceivedMagicDamage(charaData, mobData, objMagicalDamageView);
-	enemy_attack_method_magical.addEventListener("change", () => {
+	enemy_magic_skill_ratio.addEventListener("change", () => {
+		calcReceivedMagicDamage(charaData, mobData, objMagicalDamageView);
+	});
+	enemy_magic_skill_element.addEventListener("change", () => {
 		calcReceivedMagicDamage(charaData, mobData, objMagicalDamageView);
 	});
 
@@ -11845,8 +11892,10 @@ export function calcReceivedDamage(charaData, specData, mobData, attackMethodCon
 	var sklLv = 0;
 	w_HiDam = new Array();
 	let idx = 0;
+	/* ATK依存攻撃力: ボス耐性などの減衰を受ける */
 	let mobMaxATK = mobData[MONSTER_DATA_EXTRA_INDEX_ATK_MAX];
 	let mobMinATK = mobData[MONSTER_DATA_EXTRA_INDEX_ATK_MIN];
+	/* STR依存攻撃力 ボス耐性などの減衰を受けない */
 	let mobStATK = mobData[MONSTER_DATA_INDEX_LEVEL] * 2;
 	if(mobData[MONSTER_DATA_INDEX_QUALIFIED] == 1){
 		mobStATK = mobData[MONSTER_DATA_INDEX_LEVEL] + mobData[MONSTER_DATA_INDEX_STR];
@@ -11869,16 +11918,15 @@ export function calcReceivedDamage(charaData, specData, mobData, attackMethodCon
 		for(var i=0;i<=6;i++) w_HiDam[i] = mobMaxATK;
 	}
 	
-	const SKILL_RATIO = [
-		[100, ELM_ID_VANITY],	// 通常攻撃
-		[1000, ELM_ID_VANITY],	// ヘルジャッジ Lv10
-	]
-	const enemy_attack_method = document.getElementById("OBJID_ENEMY_ATTACK_METHOD_PHYSICAL");
-	if (!enemy_attack_method) {
+	const enemy_skill_ratio_elm = document.getElementById("OBJID_ENEMY_SKILL_RATIO");
+	const enemy_skill_element_elm = document.getElementById("OBJID_ENEMY_SKILL_ELEMENT");
+	if (!enemy_skill_ratio_elm || !enemy_skill_element_elm) {
 		return;
 	}
-	const skill_index = Number(enemy_attack_method.value);
-	w_HiDam = w_HiDam.map(damage => Math.floor(damage * SKILL_RATIO[skill_index][0] / 100));
+	const skill_ratio = Math.min(10000, Math.max(100, Number(enemy_skill_ratio_elm.value) || 100));
+	const attack_elemental = Number(enemy_skill_element_elm.value);
+	w_HiDam = w_HiDam.map(damage => Math.floor(damage * skill_ratio / 100));
+	mobStATK = Math.floor(mobStATK * skill_ratio / 100);
 
 	/** ダメージ耐性値 */
 	let wBHD;
@@ -11909,12 +11957,8 @@ export function calcReceivedDamage(charaData, specData, mobData, attackMethodCon
 		w_HiDam = w_HiDam.map(damage => damage - Math.floor(damage * wBHD /100));
 	}
 
-	/** 
-	 * 属性相性 
-	 * 通常攻撃は念鎧で防げないので条件判定する
-	*/
-	const attack_elemental = SKILL_RATIO[skill_index][1];
-	if (skill_index > 0) {
+	/** 属性相性: VOID攻撃（通常攻撃）はスキップ。無属性(ELM_ID_VANITY)は適用する */
+	if (attack_elemental >= ELM_ID_VANITY) {
 		wBHD = zokusei[n_A_BodyZokusei * 10 + 1][attack_elemental] + 100;
 		w_HiDam = w_HiDam.map(damage => Math.floor(damage * wBHD /100));
 	}
@@ -11924,7 +11968,8 @@ export function calcReceivedDamage(charaData, specData, mobData, attackMethodCon
 	 * 属性耐性
 	 */
 	{
-		wBHD = n_tok[ ITEM_SP_RESIST_ELM_VANITY + attack_elemental ];
+		const elm_for_resist = (attack_elemental >= ELM_ID_VANITY) ? attack_elemental : ELM_ID_VANITY;
+		wBHD = n_tok[ ITEM_SP_RESIST_ELM_VANITY + elm_for_resist ];
 		wBHD = Math.min(95, wBHD);
 		w_HiDam = w_HiDam.map(damage => damage - Math.floor(damage * wBHD /100));
 	}
@@ -12258,17 +12303,14 @@ export function calcReceivedMagicDamage(charaData, mobData, objCell){
 	let damage = (mobMinMATK + mobMaxMATK) / 2;
 	let ratio = 0;
 
-	/**
-	 * TODO: この辺にMOBスキル倍率計算を入れる
-	 */
-	const SKILL_RATIO = [
-		[100, ELM_ID_FIRE],	// ファイアーボルト
-		[5500, ELM_ID_VANITY],	// アースクエイク Lv10
-		[10000, ELM_ID_VANITY],	// ﾃﾄﾗﾎﾞﾙﾃｯｸｽ(強)
-		[16000, ELM_ID_HOLY], // Mﾚｲｵﾌﾞｼﾞｪﾈｼｽ(強)
-	]
-	const skill_index = Number(document.getElementById("OBJID_ENEMY_ATTACK_METHOD_MAGICAL").value);
-	damage = Math.floor(damage * SKILL_RATIO[skill_index][0] / 100);
+	const enemy_magic_skill_ratio_elm = document.getElementById("OBJID_ENEMY_MAGIC_SKILL_RATIO");
+	const enemy_magic_skill_element_elm = document.getElementById("OBJID_ENEMY_MAGIC_SKILL_ELEMENT");
+	if (!enemy_magic_skill_ratio_elm || !enemy_magic_skill_element_elm) {
+		return;
+	}
+	const skill_ratio = Math.min(10000, Math.max(100, Number(enemy_magic_skill_ratio_elm.value) || 100));
+	const attack_elemental = Number(enemy_magic_skill_element_elm.value);
+	damage = Math.floor(damage * skill_ratio / 100);
 
 	/** モンスター耐性 */
 	damage -= Math.floor(damage * getResistanceOfEnvironment(mobData[0]) / 100);
@@ -12284,7 +12326,6 @@ export function calcReceivedMagicDamage(charaData, mobData, objCell){
 	damage -= Math.floor(damage * ratio / 100);
 
 	/** 属性相性 */
-	const attack_elemental = SKILL_RATIO[skill_index][1];
 	ratio = zokusei[n_A_BodyZokusei * 10 + 1][attack_elemental] + 100;
 	damage = Math.floor(damage * ratio / 100);
 
