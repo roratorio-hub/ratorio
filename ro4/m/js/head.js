@@ -11808,7 +11808,7 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 	HtmlCreateElementOption(ELM_ID_WIND,   "風属性", enemy_skill_element);
 	HtmlCreateElementOption(ELM_ID_POISON, "毒属性", enemy_skill_element);
 	HtmlCreateElementOption(ELM_ID_HOLY,   "聖属性", enemy_skill_element);
-	HtmlCreateElementOption(ELM_ID_DARK,   "暗属性", enemy_skill_element);
+	HtmlCreateElementOption(ELM_ID_DARK,   "闇属性", enemy_skill_element);
 	HtmlCreateElementOption(ELM_ID_PSYCO,  "念属性", enemy_skill_element);
 	HtmlCreateElementOption(ELM_ID_UNDEAD, "不死属性", enemy_skill_element);
 
@@ -11854,7 +11854,7 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 	HtmlCreateElementOption(ELM_ID_WIND,   "風属性", enemy_magic_skill_element);
 	HtmlCreateElementOption(ELM_ID_POISON, "毒属性", enemy_magic_skill_element);
 	HtmlCreateElementOption(ELM_ID_HOLY,   "聖属性", enemy_magic_skill_element);
-	HtmlCreateElementOption(ELM_ID_DARK,   "暗属性", enemy_magic_skill_element);
+	HtmlCreateElementOption(ELM_ID_DARK,   "闇属性", enemy_magic_skill_element);
 	HtmlCreateElementOption(ELM_ID_PSYCO,  "念属性", enemy_magic_skill_element);
 	HtmlCreateElementOption(ELM_ID_UNDEAD, "不死属性", enemy_magic_skill_element);
 
