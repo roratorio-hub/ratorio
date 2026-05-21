@@ -11794,8 +11794,8 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 	enemy_skill_ratio.setAttribute("id", "OBJID_ENEMY_SKILL_RATIO");
 	enemy_skill_ratio.setAttribute("type", "number");
 	enemy_skill_ratio.setAttribute("min", "100");
-	enemy_skill_ratio.setAttribute("max", "10000");
-	enemy_skill_ratio.setAttribute("placeholder", "倍率(100-10000)");
+	enemy_skill_ratio.setAttribute("max", "60000");
+	enemy_skill_ratio.setAttribute("placeholder", "倍率(100-60000)");
 	enemy_skill_ratio.value = "100";
 	HtmlCreateTextNode("%", objCell);
 	const enemy_skill_element = HtmlCreateElement("select", objCell);
@@ -11841,8 +11841,8 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 	enemy_magic_skill_ratio.setAttribute("id", "OBJID_ENEMY_MAGIC_SKILL_RATIO");
 	enemy_magic_skill_ratio.setAttribute("type", "number");
 	enemy_magic_skill_ratio.setAttribute("min", "100");
-	enemy_magic_skill_ratio.setAttribute("max", "10000");
-	enemy_magic_skill_ratio.setAttribute("placeholder", "倍率(100-10000)");
+	enemy_magic_skill_ratio.setAttribute("max", "60000");
+	enemy_magic_skill_ratio.setAttribute("placeholder", "倍率(100-60000)");
 	enemy_magic_skill_ratio.value = "100";
 	HtmlCreateTextNode("%", objCell);
 	const enemy_magic_skill_element = HtmlCreateElement("select", objCell);
@@ -11923,7 +11923,7 @@ export function calcReceivedDamage(charaData, specData, mobData, attackMethodCon
 	if (!enemy_skill_ratio_elm || !enemy_skill_element_elm) {
 		return;
 	}
-	const skill_ratio = Math.min(10000, Math.max(100, Number(enemy_skill_ratio_elm.value) || 100));
+	const skill_ratio = Math.min(60000, Math.max(100, Number(enemy_skill_ratio_elm.value) || 100));
 	const attack_elemental = Number(enemy_skill_element_elm.value);
 	w_HiDam = w_HiDam.map(damage => Math.floor(damage * skill_ratio / 100));
 	mobStATK = Math.floor(mobStATK * skill_ratio / 100);
@@ -12308,7 +12308,7 @@ export function calcReceivedMagicDamage(charaData, mobData, objCell){
 	if (!enemy_magic_skill_ratio_elm || !enemy_magic_skill_element_elm) {
 		return;
 	}
-	const skill_ratio = Math.min(10000, Math.max(100, Number(enemy_magic_skill_ratio_elm.value) || 100));
+	const skill_ratio = Math.min(60000, Math.max(100, Number(enemy_magic_skill_ratio_elm.value) || 100));
 	const attack_elemental = Number(enemy_magic_skill_element_elm.value);
 	damage = Math.floor(damage * skill_ratio / 100);
 
