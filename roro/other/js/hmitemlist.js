@@ -1,3 +1,18 @@
+// === AUTO-GENERATED IMPORTS ===
+import '../../../ro4/m/js/data/mig.job.h.js';
+import '../../m/js/card.h.js';
+import '../../m/js/data/mig.itemsp.h.js';
+import { g_constDataManager } from '../../../ro4/m/js/global.js';
+import { CItemInfoManager } from '../../m/js/CItemInfoManager.js';
+import { CardObjNew } from '../../m/js/card.dat.js';
+import { GetElementText } from '../../m/js/common.js';
+import { RebuildCardSelectSubCollectEnchListData } from '../../m/js/hmcard.js';
+import { ItemObjNew } from '../../m/js/item.dat.js';
+import {
+         GetItemExplainText, GetItemKindNameText, GetJobRestrictText, GetSlotText,
+         GetStrPenaltyAvoidStr
+} from '../../m/js/item.h.js';
+// === END AUTO-GENERATED IMPORTS ===
 function OnLoadItemList() {
 	SetUpSelects();
 	BuildUpItemList();

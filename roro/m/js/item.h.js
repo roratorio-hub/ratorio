@@ -1,4 +1,15 @@
 import { CGlobalConstManager } from './CGlobalConstManager.js';
+// === AUTO-GENERATED IMPORTS ===
+import './monster.h.js';
+import './skill.h.js';
+import './usableskill.h.js';
+import { AutoSpellSkill } from './autospell.dat.js';
+import { GetAutoSpellTriggerText } from './autospell.h.js';
+import { GetElementText, GetRaceText, GetSizeText, GetStateText } from './common.js';
+import { MonsterObjNew } from './monster.dat.js';
+import { SkillObjNew } from './skill.dat.js';
+import { InsertSkill } from './usableskill.dat.js';
+// === END AUTO-GENERATED IMPORTS ===
 
 //----------------------------------------------------------------
 // EnumItemDataIndex データの要素番号

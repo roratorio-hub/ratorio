@@ -1,3 +1,15 @@
+// === AUTO-GENERATED IMPORTS ===
+import './common.js';
+import './rndoptlist.h.js';
+import { OnChangeRandomEnchant } from './equip.js';
+import { ItemObjNew } from './item.dat.js';
+import { GetRndOptTypeId } from './item.h.js';
+import { g_rndOptArray } from './rndopt.dat.js';
+import { GetRndOptDispName } from './rndopt.h.js';
+import { g_rndOptListArray } from './rndoptlist.dat.js';
+import { g_rndOptTypeArray } from './rndopttype.dat.js';
+import { GetEquipRndOptTableKind, GetEquipRndOptTableValue, SetEquipRndOptTable } from './rndopttype.h.js';
+// === END AUTO-GENERATED IMPORTS ===
 
 
 

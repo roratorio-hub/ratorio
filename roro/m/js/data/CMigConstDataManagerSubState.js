@@ -1,3 +1,7 @@
+// === AUTO-GENERATED IMPORTS ===
+import { CMigConstDataManagerSubBase } from './CMigConstDataManagerSubBase.js';
+import { CMigStateData } from './CMigStateData.js';
+// === END AUTO-GENERATED IMPORTS ===
 /**
  * 状態異常データマネージャクラス.
  */

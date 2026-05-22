@@ -1,3 +1,17 @@
+// === AUTO-GENERATED IMPORTS ===
+import './card.h.js';
+import './common.js';
+import './item.h.js';
+import './itempack.h.js';
+import { CardObjNew } from './card.dat.js';
+import { OnChangeArmsTypeLeft, OnChangeArmsTypeRight, OnChangeCard, OnChangeEquip } from './equip.js';
+import { ItemObjNew } from './item.dat.js';
+import {
+         ITEM_PACK_ID_CLEAR_CARD_ALL, ITEM_PACK_ID_CLEAR_EQUIP_ALL,
+         ITEM_PACK_ID_CLEAR_REFINE_ALL, ITEM_PACK_ID_CLEAR_SHADOW_ALL, ItemPackOBJ
+} from './itempack.dat.js';
+import { GetSlotMode, OnClickSlotModeButton } from './slotpager.js';
+// === END AUTO-GENERATED IMPORTS ===
 
 export let g_QuickControlSW = false;
 

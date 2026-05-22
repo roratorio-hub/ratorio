@@ -1,5 +1,9 @@
 import { CGlobalConstManager } from './CGlobalConstManager.js';
 import { CExtraInfoAreaComponentManager } from './CExtraInfoAreaComponentManager.js';
+// === AUTO-GENERATED IMPORTS ===
+import './chara.js';
+import { g_timeItemConf } from '../../../ro4/m/js/global.js';
+// === END AUTO-GENERATED IMPORTS ===
 
 
 

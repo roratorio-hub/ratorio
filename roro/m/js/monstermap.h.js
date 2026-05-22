@@ -2,6 +2,9 @@
 import { CGlobalConstManager } from './CGlobalConstManager.js';
 import { CNameKana } from './CNameKana.js';
 import { g_MonsterMapDataArray, g_MonsterMapCategoryDataArray } from './monstermap.dat.js';
+// === AUTO-GENERATED IMPORTS ===
+import './CNameKana.js';
+// === END AUTO-GENERATED IMPORTS ===
 export { g_MonsterMapDataArray, g_MonsterMapCategoryDataArray } from './monstermap.dat.js';
 
 //----------------------------------------------------------------

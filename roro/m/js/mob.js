@@ -1,3 +1,11 @@
+// === AUTO-GENERATED IMPORTS ===
+import './common.js';
+import './item.h.js';
+import { CARD_ID_CATHERINE_KARON_MVP } from './card.dat.js';
+import { CardNumSearch, TimeItemNumSearch } from './chara.js';
+import { MONSTER_ID_MONSTER_TENYURYOKU, MONSTER_ID_PLAYER, MonsterObjNew } from './monster.dat.js';
+import { GetMonseterElmBasicType } from './monster.h.js';
+// === END AUTO-GENERATED IMPORTS ===
 /**
  * モンスター基本情報を取得する
  * @param {number} monsterId 

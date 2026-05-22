@@ -1,3 +1,6 @@
+// === AUTO-GENERATED IMPORTS ===
+import { CItemInfoManager } from '../../../roro/m/js/CItemInfoManager.js';
+// === END AUTO-GENERATED IMPORTS ===
 $(function () {
   const buildForm = () => {
 	let test = document.getElementById("history_graph");

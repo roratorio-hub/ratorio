@@ -1,3 +1,10 @@
+// === AUTO-GENERATED IMPORTS ===
+import '../CNameKana.js';
+import '../item.h.js';
+import { CMigConstDataManagerSubBase } from './CMigConstDataManagerSubBase.js';
+import { CMigEquipableData } from './CMigEquipableData.js';
+import { ItemObjNew } from '../item.dat.js';
+// === END AUTO-GENERATED IMPORTS ===
 /**
  * アイテムデータマネージャクラス.
  */

@@ -1,3 +1,24 @@
+// === AUTO-GENERATED IMPORTS ===
+import './autospell.h.js';
+import './item.h.js';
+import './usableskill.h.js';
+import { g_constDataManager, g_skillManager } from '../../../ro4/m/js/global.js';
+import { CSkillData } from './CSkillManager.js';
+import { AutoSpellSkill } from './autospell.dat.js';
+import { CardNumSearch, EquipNumSearch } from './chara.js';
+import { COLOR_CODE_TABLE_HEADER_IS_NOT_SET } from './common.js';
+import {
+         InsertSkill, USABEL_SKILL_ID_COLO_BOLT_5, USABEL_SKILL_ID_DEMONIC_FIRE_3,
+         USABEL_SKILL_ID_EARTH_SPIKE_5, USABEL_SKILL_ID_FIRE_BALL_5,
+         USABEL_SKILL_ID_FIRE_BOLT_5, USABEL_SKILL_ID_FIRE_WALL_5,
+         USABEL_SKILL_ID_FROST_DIVER_5, USABEL_SKILL_ID_GRAND_CROSS_10,
+         USABEL_SKILL_ID_HEAL_10, USABEL_SKILL_ID_HELL_INFERNO_3, USABEL_SKILL_ID_JUDEX_3,
+         USABEL_SKILL_ID_LIGHTNING_BOLT_5, USABEL_SKILL_ID_MAGMA_ILLUPTION_3,
+         USABEL_SKILL_ID_METALIC_SOUND_3, USABEL_SKILL_ID_METEOR_STORM_5,
+         USABEL_SKILL_ID_PSYCHIC_WAVE_3, USABEL_SKILL_ID_RESERECTION_BY_YGGDRASILLNO_HA,
+         USABEL_SKILL_ID_SOUL_STRIKE_5, USABEL_SKILL_ID_TEIOAPUCHAGI_7
+} from './usableskill.dat.js';
+// === END AUTO-GENERATED IMPORTS ===
 
 
 

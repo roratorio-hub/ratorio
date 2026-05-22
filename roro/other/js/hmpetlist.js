@@ -1,3 +1,9 @@
+// === AUTO-GENERATED IMPORTS ===
+import '../../m/js/common.js';
+import '../../m/js/pet.h.js';
+import { CItemInfoManager } from '../../m/js/CItemInfoManager.js';
+import { PET_OBJ } from '../../m/js/pet.dat.js';
+// === END AUTO-GENERATED IMPORTS ===
 // 初期処理の実行
 function OnLoadPetList () {
 	RefreshPetListTable();

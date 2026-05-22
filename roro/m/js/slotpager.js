@@ -1,3 +1,8 @@
+// === AUTO-GENERATED IMPORTS ===
+import './common.js';
+import { g_charaData } from '../../../ro4/m/js/global.js';
+import { GetEquipRndOptTableKind, GetEquipRndOptTableValue, SetEquipRndOptTable } from './rndopttype.h.js';
+// === END AUTO-GENERATED IMPORTS ===
 //================================================================================================
 //
 // 定数定義

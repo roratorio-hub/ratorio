@@ -1,3 +1,7 @@
+// === AUTO-GENERATED IMPORTS ===
+import { CSkillManager } from '../../../roro/m/js/CSkillManager.js';
+import { CMigConstDataManager } from '../../../roro/m/js/data/CMigConstDataManager.js';
+// === END AUTO-GENERATED IMPORTS ===
 "use strict";
 
 /** 一次職支援　設定値配列 */

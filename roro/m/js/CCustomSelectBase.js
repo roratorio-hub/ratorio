@@ -1,3 +1,6 @@
+// === AUTO-GENERATED IMPORTS ===
+import { CNameKana } from './CNameKana.js';
+// === END AUTO-GENERATED IMPORTS ===
 
 
 

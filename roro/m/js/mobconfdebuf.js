@@ -1,3 +1,7 @@
+// === AUTO-GENERATED IMPORTS ===
+import './CConfBase.js';
+import { COLOR_CODE_TABLE_HEADER_IS_NOT_SET, COLOR_CODE_TABLE_HEADER_IS_SET } from './common.js';
+// === END AUTO-GENERATED IMPORTS ===
 // モンスター状態異常設定の限界値
 // この数を超える場合は、セーブデータの拡張が必要
 export const MOB_CONF_DEBUF_LIMIT = 80;

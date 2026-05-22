@@ -1,3 +1,43 @@
+// === AUTO-GENERATED IMPORTS ===
+import './data/mig.job.h.js';
+import { g_constDataManager } from './global.js';
+import { AutoCalc, n_SieldSp, n_SieldSpDum, n_SieldSpNum } from './head.js';
+import { CCharaConfIchizi } from '../../../roro/m/js/CCharaConfIchizi.js';
+import { CCharaConfNizi } from '../../../roro/m/js/CCharaConfNizi.js';
+import { CCharaConfSanzi } from '../../../roro/m/js/CCharaConfSanzi.js';
+import {
+         CARD_ID_HENI_CHIMERA_GALENSIS, CARD_ID_KONTONNO_SIDEWINDER, CARD_ID_SIDEWINDER,
+         CARD_SET_ID_ENCHANT_SHINRINO_KAIHO_SENZAI_SPELL_FIST_1
+} from '../../../roro/m/js/card.dat.js';
+import { CardNumSearch, EquipNumSearch, TimeItemNumSearch } from '../../../roro/m/js/chara.js';
+import { CARD_REGION_ID_HEAD_TOP_ANY } from '../../../roro/m/js/common.js';
+import {
+         ITEM_ID_CIRCUIT_BOARD_OS, ITEM_ID_HIYOKOCHAN, ITEM_ID_HIYOKOCHAN_RENTAL,
+         ITEM_ID_NEIGAN, ITEM_ID_STUFF_OF_PUFFY, ITEM_ID_TOTONO_SHO,
+         ITEM_ID_TOTONO_SHO_T1, ITEM_ID_ZINBAORI, ITEM_SET_ID_SAMAYOUMONONO_HAORI_KASA,
+         ITEM_SET_ID_VALENTINE_BO_HANTAIHANO_AKASHI
+} from '../../../roro/m/js/item.dat.js';
+import { IsGunSeriesArms } from '../../../roro/m/js/item.h.js';
+import { LearnedSkillSearch } from '../../../roro/m/js/learnedskill.js';
+import { SkillObjNew } from '../../../roro/m/js/skill.dat.js';
+import {
+         SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_0,
+         SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_10,
+         SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_100,
+         SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_51,
+         SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_81
+} from '../../../roro/m/js/skill.h.js';
+import {
+         TIME_ITEM_ID_BLUE_RIBBON, TIME_ITEM_ID_DARK_TRIAD,
+         TIME_ITEM_ID_ENCHANT_GOKETSU_SENZAI_KAIHO_SHADOW_CHASER_2,
+         TIME_ITEM_ID_ENCHANT_GOKETSU_SENZAI_KAIHO_WIND_HAWK_3,
+         TIME_ITEM_ID_GULARUSION_UNLIMIT,
+         TIME_ITEM_ID_ILLUSION_ANCIENT_DUGGER_TELECHINESIS_INSTENCE,
+         TIME_ITEM_ID_JITTER_BUG, TIME_ITEM_ID_LEASER_OF_EAGLE_TRUE_SIGHT,
+         TIME_ITEM_ID_TRAVELER_RING_GOKETSU, TIME_ITEM_ID_TRIANGLE_DISASTER,
+         TIME_ITEM_ID_URUNO_KAGO, TIME_ITEM_ID_VNDER_CANMER_SHUCHURYOKU_KOZYO
+} from '../../../roro/m/js/timeitem.dat.js';
+// === END AUTO-GENERATED IMPORTS ===
 "use strict"
 /**
  * 「職固有自己支援」のバフウィンドウ構築関数群

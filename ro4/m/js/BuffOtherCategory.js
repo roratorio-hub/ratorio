@@ -1,3 +1,10 @@
+// === AUTO-GENERATED IMPORTS ===
+import '../../../roro/m/js/pet.h.js';
+import { AutoCalc } from './head.js';
+import { CItemInfoManager } from '../../../roro/m/js/CItemInfoManager.js';
+import { GetFriendlityText } from '../../../roro/m/js/common.js';
+import { PET_OBJ } from '../../../roro/m/js/pet.dat.js';
+// === END AUTO-GENERATED IMPORTS ===
 "use strict"
 /**
  * 画面下部の「その他の支援/設定」のバフウィンドウ構築関数群

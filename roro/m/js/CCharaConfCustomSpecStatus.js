@@ -1,4 +1,9 @@
 import { CConfBase } from './CConfBase.js';
+// === AUTO-GENERATED IMPORTS ===
+import './CConfBase.js';
+import { CUSTOM_CONF_SPEC_LIMIT } from '../../../ro4/m/js/global.js';
+import { CCharaConfCustomStatus } from './CCharaConfCustomStatus.js';
+// === END AUTO-GENERATED IMPORTS ===
 
 export function CCharaConfCustomSpecStatus(confArray) {
 

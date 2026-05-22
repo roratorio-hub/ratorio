@@ -1,3 +1,12 @@
+// === AUTO-GENERATED IMPORTS ===
+import './card.h.js';
+import './item.h.js';
+import './pet.h.js';
+import { CARD_ID_NONE, CardObjNew } from './card.dat.js';
+import { CARD_REGION_ID_COUNT } from './common.js';
+import { ITEM_ID_NOEQUIP_SET, ItemObjNew } from './item.dat.js';
+import { PET_OBJ } from './pet.dat.js';
+// === END AUTO-GENERATED IMPORTS ===
 
 // ペットID指定のオフセット（カードと同じように指定するので、カードIDで実現しないぐらい大きな値を設定）
 // TODO: いずれ修正予定

@@ -1,3 +1,12 @@
+// === AUTO-GENERATED IMPORTS ===
+import './item.h.js';
+import './monster.h.js';
+import {
+         GetStatusModifyDefDivPlus, GetStatusModifyDefDivUp, GetStatusModifyHitPlus,
+         GetStatusModifyMaxHpPlus, GetStatusModifyMaxHpUp, GetStatusModifyMaxSpPlus,
+         GetStatusModifyMaxSpUp, GetStatusModifyMdefDivPlus, GetStatusModifyMdefDivUp
+} from './chara.js';
+// === END AUTO-GENERATED IMPORTS ===
 
 /**
  * 計算データテキスト作成クラス.

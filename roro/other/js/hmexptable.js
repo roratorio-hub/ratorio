@@ -1,3 +1,8 @@
+// === AUTO-GENERATED IMPORTS ===
+import '../../../ro4/m/js/data/mig.job.h.js';
+import '../../m/js/monster.h.js';
+import { MonsterObjNew } from '../../m/js/monster.dat.js';
+// === END AUTO-GENERATED IMPORTS ===
 
 window.g_ExpTableInfoArray = [
 	// [表示名, レベル表記名, 参照テーブル番号, テーブル内要素番号, 最小レベル, 最大レベル]

@@ -1,4 +1,9 @@
 import { CGlobalConstManager } from '../../../../roro/m/js/CGlobalConstManager.js';
+// === AUTO-GENERATED IMPORTS ===
+import '../../../../roro/m/js/common.js';
+import '../../../../roro/m/js/item.h.js';
+import { ItemObjNew } from '../../../../roro/m/js/item.dat.js';
+// === END AUTO-GENERATED IMPORTS ===
 
 //================================================================================================
 //================================================================================================

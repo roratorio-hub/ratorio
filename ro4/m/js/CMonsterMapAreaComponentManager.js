@@ -1,6 +1,9 @@
 import { CCustomSelectMapCategory } from '../../../roro/m/js/CCustomSelectMapCategory.js';
 import { CCustomSelectMapMap } from '../../../roro/m/js/CCustomSelectMapMap.js';
 import { CCustomSelectMapMonster } from '../../../roro/m/js/CCustomSelectMapMonster.js';
+// === AUTO-GENERATED IMPORTS ===
+import { MonsterToughness } from '../../../roro/m/js/monster.toughness.dat.js';
+// === END AUTO-GENERATED IMPORTS ===
 
 /**
  * モンスターマップエリアコンポーネントマネージャクラス.

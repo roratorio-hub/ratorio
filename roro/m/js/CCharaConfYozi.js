@@ -1,4 +1,7 @@
 import { CConfBase } from './CConfBase.js';
+// === AUTO-GENERATED IMPORTS ===
+import './CConfBase.js';
+// === END AUTO-GENERATED IMPORTS ===
 
 export function CCharaConfYozi(confArray) {
 	// 継承定義

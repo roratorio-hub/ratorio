@@ -1,3 +1,6 @@
+// === AUTO-GENERATED IMPORTS ===
+import { AutoCalc } from './head.js';
+// === END AUTO-GENERATED IMPORTS ===
 "use strict"
 /**
  * 画面下部の「演奏/踊り系スキル」のバフウィンドウ構築関数群

@@ -1,4 +1,33 @@
 import { CGlobalConstManager } from '../../../roro/m/js/CGlobalConstManager.js';
+// === AUTO-GENERATED IMPORTS ===
+import '../../../roro/m/js/common.js';
+import '../../../roro/m/js/item.h.js';
+import { n_A_PassSkill7 } from './BuffItemAndFood.js';
+import { UsedSkillSearch } from './BuffJobSpecificSelf.js';
+import { CSaveController } from './CSaveController.js';
+import { g_constDataManager, g_skillManager } from './global.js';
+import { AutoCalc, CanonOBJ, KunaiOBJ, SyurikenOBJ, calc } from './head.js';
+import { CSaveDataConst } from './savedata/CSaveDataConst.js';
+import { CAttackMethodConf } from '../../../roro/m/js/CAttackMethodConf.js';
+import { CCharaConfYozi } from '../../../roro/m/js/CCharaConfYozi.js';
+import { AutoSpellSkill } from '../../../roro/m/js/autospell.dat.js';
+import { AUTO_SPELL_ID_CUSTOM_BIAS } from '../../../roro/m/js/autospell.h.js';
+import { CardNumSearch, EquipNumSearch } from '../../../roro/m/js/chara.js';
+import { LearnedSkillSearch } from '../../../roro/m/js/learnedskill.js';
+import {
+         InsertSkill, USABEL_SKILL_ID_COLO_BOLT_5, USABEL_SKILL_ID_DEMONIC_FIRE_3,
+         USABEL_SKILL_ID_EARTH_SPIKE_5, USABEL_SKILL_ID_FIRE_BALL_5,
+         USABEL_SKILL_ID_FIRE_BOLT_5, USABEL_SKILL_ID_FIRE_WALL_5,
+         USABEL_SKILL_ID_FROST_DIVER_5, USABEL_SKILL_ID_GRAND_CROSS_10,
+         USABEL_SKILL_ID_HEAL_10, USABEL_SKILL_ID_HELL_INFERNO_3, USABEL_SKILL_ID_JUDEX_3,
+         USABEL_SKILL_ID_KOGEKI_SOCHI_YUKOKA_5, USABEL_SKILL_ID_LIGHTNING_BOLT_5,
+         USABEL_SKILL_ID_MAGMA_ILLUPTION_3, USABEL_SKILL_ID_METALIC_SOUND_3,
+         USABEL_SKILL_ID_METEOR_STORM_5, USABEL_SKILL_ID_PSYCHIC_WAVE_3,
+         USABEL_SKILL_ID_RESERECTION_BY_YGGDRASILLNO_HA, USABEL_SKILL_ID_SOUL_STRIKE_5,
+         USABEL_SKILL_ID_TEIOAPUCHAGI_7
+} from '../../../roro/m/js/usableskill.dat.js';
+import { USABLE_SKILL_ID_CUSTOM_BIAS } from '../../../roro/m/js/usableskill.h.js';
+// === END AUTO-GENERATED IMPORTS ===
 //----------------------------------------------------------------
 // オプションリストの種別
 //----------------------------------------------------------------

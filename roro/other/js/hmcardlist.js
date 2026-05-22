@@ -1,3 +1,31 @@
+// === AUTO-GENERATED IMPORTS ===
+import '../../m/js/card.h.js';
+import '../../m/js/common.js';
+import '../../m/js/data/mig.itemsp.h.js';
+import { g_constDataManager } from '../../../ro4/m/js/global.js';
+import { CItemInfoManager } from '../../m/js/CItemInfoManager.js';
+import {
+         CARD_ID_ENCHANT_ARMS_ELEMENT_DARK, CARD_ID_ENCHANT_ARMS_ELEMENT_EARTH,
+         CARD_ID_ENCHANT_ARMS_ELEMENT_FIRE, CARD_ID_ENCHANT_ARMS_ELEMENT_HOLY,
+         CARD_ID_ENCHANT_ARMS_ELEMENT_POISON, CARD_ID_ENCHANT_ARMS_ELEMENT_PSYCO,
+         CARD_ID_ENCHANT_ARMS_ELEMENT_WATER, CARD_ID_ENCHANT_ARMS_ELEMENT_WIND,
+         CARD_ID_ENCHANT_BOSOSHITA_MARYOKU, CARD_ID_ENCHANT_DELAY_DOWN_15,
+         CARD_ID_ENCHANT_GOKETSU, CARD_ID_ENCHANT_HAO, CARD_ID_ENCHANT_KOGEKISOKUDO_4,
+         CARD_ID_ENCHANT_KOSOKU, CARD_ID_ENCHANT_KUMANO_CHIKARA,
+         CARD_ID_ENCHANT_KYOGEKI_4, CARD_ID_ENCHANT_KYOGEKI_5, CARD_ID_ENCHANT_MARYOKU_4,
+         CARD_ID_ENCHANT_MDEF_10, CARD_ID_ENCHANT_MEIKYU_4,
+         CARD_ID_ENCHANT_OWASHINO_GANKO, CARD_ID_ENCHANT_SATSUINO_ONNEN,
+         CARD_ID_ENCHANT_SHINO_YOKUDO, CARD_ID_ENCHANT_SHINRINO_KAIHO,
+         CARD_ID_ENCHANT_SPECIAL_AGI, CARD_ID_ENCHANT_SPECIAL_DEX,
+         CARD_ID_ENCHANT_SPECIAL_INT, CARD_ID_ENCHANT_SPECIAL_LUK,
+         CARD_ID_ENCHANT_SPECIAL_STR, CARD_ID_ENCHANT_SPECIAL_VIT,
+         CARD_ID_ENCHANT_TOSHI_10, CARD_ID_ENCHANT_ZOFUKU_4, CARD_ID_ENCHANT_ZOFUKU_5,
+         CardObjNew
+} from '../../m/js/card.dat.js';
+import { CardPrefix } from '../../m/js/card.prefix.dat.js';
+import { ItemObjNew } from '../../m/js/item.dat.js';
+import { GetItemKindNameText } from '../../m/js/item.h.js';
+// === END AUTO-GENERATED IMPORTS ===
 // 定数定義
 window.CARD_KIND_DMY_FOR_ALL = -1;
 

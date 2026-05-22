@@ -1,3 +1,7 @@
+// === AUTO-GENERATED IMPORTS ===
+import './chara.js';
+import './item.h.js';
+// === END AUTO-GENERATED IMPORTS ===
 export function IsUnconfirmedHP(jobId, level) {
 
 	var hpspArray = GetUnconfirmedHPSPArray();

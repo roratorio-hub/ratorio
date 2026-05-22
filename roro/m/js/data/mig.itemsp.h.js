@@ -1,4 +1,11 @@
 import { CGlobalConstManager } from '../CGlobalConstManager.js';
+// === AUTO-GENERATED IMPORTS ===
+import '../card.h.js';
+import '../common.js';
+import '../item.h.js';
+import { CardObjNew } from '../card.dat.js';
+import { ItemObjNew } from '../item.dat.js';
+// === END AUTO-GENERATED IMPORTS ===
 
 
 

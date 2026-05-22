@@ -1,3 +1,15 @@
+// === AUTO-GENERATED IMPORTS ===
+import './monster.h.js';
+import { CMonsterMapAreaComponentManager } from '../../../ro4/m/js/CMonsterMapAreaComponentManager.js';
+import { __DIG3 } from '../../../ro4/m/js/global.js';
+import { GetMobMres, GetMobRes } from '../../../ro4/m/js/hmjob.js';
+import { GetMonsterElementText, GetRaceText, GetSizeText } from './common.js';
+import {
+         MOB_CONF_PLAYER_ID_SHUZOKU, MOB_CONF_PLAYER_ID_SHUZOKU_DORAM,
+         MOB_CONF_PLAYER_ID_SHUZOKU_HUMAN, n_B_TAISEI
+} from './mobconfplayer.js';
+import { MONSTER_ID_PLAYER, MonsterObjNew } from './monster.dat.js';
+// === END AUTO-GENERATED IMPORTS ===
 export function UpdateMobDataHtml(monsterId, mobData) {
 
 	var idx = 0;

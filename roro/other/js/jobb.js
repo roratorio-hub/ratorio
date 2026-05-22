@@ -1,3 +1,7 @@
+// === AUTO-GENERATED IMPORTS ===
+import '../../../ro4/m/js/data/mig.job.h.js';
+import '../../m/js/data/mig.itemsp.h.js';
+// === END AUTO-GENERATED IMPORTS ===
 function OnLoadJobBonusTable() {
 
 	var jobId = 0;

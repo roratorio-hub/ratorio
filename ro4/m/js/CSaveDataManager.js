@@ -36,6 +36,40 @@ import {
 	SAVE_DATA_UNIT_TYPE_CHARA_CONF_SPEC_BASIC,
 	SAVE_DATA_UNIT_TYPE_EQUIP_ARROW,
 } from './savedata/CSaveDataUnit.js';
+// === AUTO-GENERATED IMPORTS ===
+import './data/mig.job.h.js';
+import '../../../roro/m/js/common.js';
+import '../../../roro/m/js/data/mig.itemsp.h.js';
+import '../../../roro/m/js/item.h.js';
+import { CMonsterMapAreaComponentManager } from './CMonsterMapAreaComponentManager.js';
+import { CShadowEquipController, g_shadowEquipController } from './CShadowEquipController.js';
+import {
+         OBJID_OFFSET_AS_SKILL_ID, OBJID_OFFSET_AS_SKILL_LV, OBJID_OFFSET_AS_SKILL_PROB,
+         OnChangeSettingAutoSpell
+} from './calcautospell.js';
+import {
+         ResetConfDataAllMIG, g_charaData, g_confDataCustomSkillMIG,
+         g_confDataCustomSpecStatusMIG, g_confDataCustomStatusMIG, g_confDataSpecMIG,
+         g_timeItemConf
+} from './global.js';
+import { CalcStatusPoint } from './hmjob.js';
+import { CAttackMethodConf } from '../../../roro/m/js/CAttackMethodConf.js';
+import { CBattleQuickControlAreaComponentManager } from '../../../roro/m/js/CBattleQuickControlAreaComponentManager.js';
+import { CItemInfoManager } from '../../../roro/m/js/CItemInfoManager.js';
+import { SetActiveIndexMobConfInput, SetMobConfInput } from '../../../roro/m/js/CMobConfInput.js';
+import { CTimeItemAreaComponentManager } from '../../../roro/m/js/CTimeItemAreaComponentManager.js';
+import { OnChangeArmsTypeLeft, OnChangeArmsTypeRight, changeJobSettings } from '../../../roro/m/js/equip.js';
+import { RebuildCardSelect, SetCardSlotEnability } from '../../../roro/m/js/hmcard.js';
+import { RebuildRndOptSelect, SetRndOptEnablity } from '../../../roro/m/js/hmrndopt.js';
+import { ItemObjNew } from '../../../roro/m/js/item.dat.js';
+import { OnClickSkillSWLearned } from '../../../roro/m/js/learnedskill.js';
+import { RefreshMobConfBufControlCSS, RefreshMobConfBufSelectAreaHeader, n_B_KYOUKA } from '../../../roro/m/js/mobconfbuf.js';
+import { RefreshMobConfDebufControlCSS, RefreshMobConfDebufSelectAreaHeader, n_B_IJYOU } from '../../../roro/m/js/mobconfdebuf.js';
+import { RefreshMobConfPlayerControlCSS, RefreshMobConfPlayerSelectAreaHeader, n_B_TAISEI } from '../../../roro/m/js/mobconfplayer.js';
+import { GetEquipRndOptTableKind, GetEquipRndOptTableValue, SetEquipRndOptTable } from '../../../roro/m/js/rndopttype.h.js';
+import { SaveSystem } from '../../../roro/m/js/saveload.js';
+import { GetSlotMode } from '../../../roro/m/js/slotpager.js';
+// === END AUTO-GENERATED IMPORTS ===
 
 /**
  * セーブデータマネージャクラス.

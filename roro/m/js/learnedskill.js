@@ -1,3 +1,14 @@
+// === AUTO-GENERATED IMPORTS ===
+import './card.h.js';
+import './common.js';
+import './item.h.js';
+import './skill.h.js';
+import { g_constDataManager } from '../../../ro4/m/js/global.js';
+import { CardObjNew } from './card.dat.js';
+import { UpdateLearnedSkillNotice } from './equip.js';
+import { ItemObjNew } from './item.dat.js';
+import { SkillObjNew } from './skill.dat.js';
+// === END AUTO-GENERATED IMPORTS ===
 /**
  * 習得スキル欄の生成・更新・サーチなどの関数群
  */

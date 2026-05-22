@@ -1,3 +1,7 @@
+// === AUTO-GENERATED IMPORTS ===
+import './mig.itemsp.h.js';
+import { CMigEquipableSpTag } from './CMigEquipableSpTag.js';
+// === END AUTO-GENERATED IMPORTS ===
 
 /**
  * 装備可能品SPデータ適合検査マッチングコアクラス.

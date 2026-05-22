@@ -1,3 +1,7 @@
+// === AUTO-GENERATED IMPORTS ===
+import './CConfBase.js';
+import { COLOR_CODE_TABLE_HEADER_IS_NOT_SET, COLOR_CODE_TABLE_HEADER_IS_SET } from './common.js';
+// === END AUTO-GENERATED IMPORTS ===
 
 
 // 対プレイヤー設定の限界値

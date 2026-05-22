@@ -1,5 +1,8 @@
 
 import { CGlobalConstManager } from '../CGlobalConstManager.js';
+// === AUTO-GENERATED IMPORTS ===
+import { CNameKana } from '../CNameKana.js';
+// === END AUTO-GENERATED IMPORTS ===
 
 //----------------------------------------------------------------
 // データの要素番号

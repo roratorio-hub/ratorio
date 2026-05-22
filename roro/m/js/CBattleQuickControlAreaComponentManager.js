@@ -1,3 +1,8 @@
+// === AUTO-GENERATED IMPORTS ===
+import './timeitem.h.js';
+import { g_timeItemConf, g_timeItemConfEffective } from '../../../ro4/m/js/global.js';
+import { CTimeItemAreaComponentManager } from './CTimeItemAreaComponentManager.js';
+// === END AUTO-GENERATED IMPORTS ===
 /**
  * 時限アイテムエリアコンポーネントマネージャクラス.
  */

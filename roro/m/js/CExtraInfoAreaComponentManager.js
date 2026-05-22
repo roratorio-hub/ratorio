@@ -1,5 +1,35 @@
 import { CGlobalConstManager } from './CGlobalConstManager.js';
 import { CInstanceManager } from './CInstanceManager.js';
+// === AUTO-GENERATED IMPORTS ===
+import '../../../ro4/m/js/data/mig.job.h.js';
+import './card.h.js';
+import './item.h.js';
+import './monster.h.js';
+import './skill.h.js';
+import { CMonsterMapAreaComponentManager } from '../../../ro4/m/js/CMonsterMapAreaComponentManager.js';
+import { g_constDataManager, g_skillManager } from '../../../ro4/m/js/global.js';
+import { CCharaConfCustomSpecStatus } from './CCharaConfCustomSpecStatus.js';
+import { CCharaConfYozi } from './CCharaConfYozi.js';
+import {
+         CARD_ID_GOPINICH, CARD_ID_OSEN_SARETA_DARK_LORD, CARD_ID_SHINKAINO_DEVIAS,
+         CardObjNew
+} from './card.dat.js';
+import { EquipNumSearch } from './chara.js';
+import { GetElementText, GetParamText, GetRaceText, GetSizeText, GetStateText } from './common.js';
+import { zokusei } from './etc.js';
+import { GetRndOptTotalValue } from './hmrndopt.js';
+import {
+         ITEM_ID_AZI_DAHAKANO_KAWA, ITEM_ID_BOTONO_SCARF, ITEM_ID_EUROPA_ROBE,
+         ITEM_ID_GUARDIAN_OF_SOUL, ITEM_ID_GWIBERNO_KAWA, ITEM_ID_HAKKEINO_FUZYU,
+         ITEM_ID_IMPERIAL_GLORY, ITEM_ID_KODAIRYUNO_HOKAN, ITEM_ID_LINDWURMNO_KAWA,
+         ITEM_ID_LORD_OF_ROYALS, ITEM_ID_MARRACONO_KAWA, ITEM_ID_RADOONNO_KAWA,
+         ITEM_ID_REIZOKUNO_KUBIWA, ITEM_ID_SAITANNO_HOKAN, ITEM_ID_SUNADOKENO_NECKLACE,
+         ITEM_ID_TUPOONNO_KAWA, ItemObjNew
+} from './item.dat.js';
+import { LearnedSkillSearch } from './learnedskill.js';
+import { MonsterObjNew } from './monster.dat.js';
+import { SkillObjNew } from './skill.dat.js';
+// === END AUTO-GENERATED IMPORTS ===
 //----------------------------------------------------------------
 // 拡張情報の種類
 //----------------------------------------------------------------

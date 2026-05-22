@@ -1,3 +1,12 @@
+// === AUTO-GENERATED IMPORTS ===
+import '../../m/js/monstermap.h.js';
+import { CCustomSelectMapCategory } from '../../m/js/CCustomSelectMapCategory.js';
+import { CCustomSelectMapMap } from '../../m/js/CCustomSelectMapMap.js';
+import { GetElementText, GetMonsterElementText, GetRaceText, GetSizeText } from '../../m/js/common.js';
+import { MonsterObjNew } from '../../m/js/monster.dat.js';
+import { GetMonseterElmBasicType } from '../../m/js/monster.h.js';
+import { MONSTER_MAP_ID_MAP_ALL, g_MonsterMapDataArray } from '../../m/js/monstermap.dat.js';
+// === END AUTO-GENERATED IMPORTS ===
 
 // カテゴリ選択セレクト
 window.g_customSelectCategory = new CCustomSelectMapCategory("MONSTER_MAP_CATEGORY");

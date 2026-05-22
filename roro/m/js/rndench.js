@@ -1,3 +1,7 @@
+// === AUTO-GENERATED IMPORTS ===
+import { ItemObjNew } from './item.dat.js';
+import { GetRndOptTypeId } from './item.h.js';
+// === END AUTO-GENERATED IMPORTS ===
 
 /************************************************************************************************
  *

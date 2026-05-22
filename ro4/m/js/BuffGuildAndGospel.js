@@ -1,3 +1,8 @@
+// === AUTO-GENERATED IMPORTS ===
+import '../../../roro/m/js/skill.h.js';
+import { AutoCalc } from './head.js';
+import { SkillObjNew } from '../../../roro/m/js/skill.dat.js';
+// === END AUTO-GENERATED IMPORTS ===
 "use strict"
 /**
  * 画面下部の「ギルドスキル/ゴスペル/他」のバフウィンドウ構築関数群

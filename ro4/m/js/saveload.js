@@ -1,4 +1,13 @@
 import { CSaveDataConst } from './savedata/CSaveDataConst.js';
+// === AUTO-GENERATED IMPORTS ===
+import { ModalWindow } from './CModalWindow.js';
+import { CSaveController } from './CSaveController.js';
+import { g_skillManager } from './global.js';
+import { CItemInfoManager } from '../../../roro/m/js/CItemInfoManager.js';
+import { CSaveDataConverter } from '../../../roro/m/js/CSaveDataConverter.js';
+import { CSaveDataMappingManager } from '../../../roro/m/js/CSaveDataMappingManager.js';
+import { GetSaveDataVersion, VersionModify } from '../../../roro/m/js/saveload.js';
+// === END AUTO-GENERATED IMPORTS ===
 
 // 旧データ構造は、最大でバージョン 99 まで
 

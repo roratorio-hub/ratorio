@@ -1,4 +1,7 @@
 import { CGlobalConstManager } from './CGlobalConstManager.js';
+// === AUTO-GENERATED IMPORTS ===
+import { COLOR_CODE_TABLE_HEADER_IS_NOT_SET, COLOR_CODE_TABLE_HEADER_IS_SET } from './common.js';
+// === END AUTO-GENERATED IMPORTS ===
 
 // コントロール種別定義
 CGlobalConstManager.DefineEnum(

@@ -1,3 +1,6 @@
+// === AUTO-GENERATED IMPORTS ===
+import '../../../roro/m/js/monster.h.js';
+// === END AUTO-GENERATED IMPORTS ===
 /**
  * 設置スキル計算用クラス
  */

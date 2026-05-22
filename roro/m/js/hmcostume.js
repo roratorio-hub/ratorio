@@ -1,3 +1,8 @@
+// === AUTO-GENERATED IMPORTS ===
+import './costume.h.js';
+import { COSTUME_REGION_ID_HEAD_UNDER } from './common.js';
+import { CostumeOBJ } from './costume.dat.js';
+// === END AUTO-GENERATED IMPORTS ===
 
 
 

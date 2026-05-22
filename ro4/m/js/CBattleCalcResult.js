@@ -1,5 +1,8 @@
 
 import { instobject } from './CBattleCalcResultAll.js';
+// === AUTO-GENERATED IMPORTS ===
+import { g_skillManager } from './global.js';
+// === END AUTO-GENERATED IMPORTS ===
 
 /**
  * 戦闘結果クラス.

@@ -2,6 +2,11 @@
 import { CGlobalConstManager } from './CGlobalConstManager.js';
 import { CConfBaseSelectData, CConfBaseConfData, CConfBaseRegisterParam, CConfBaseManagementParam, CConfBase2 } from './CConfBase2.js';
 import { CSaveDataConverter } from './CSaveDataConverter.js';
+// === AUTO-GENERATED IMPORTS ===
+import './CConfBase.js';
+import { GetMonsterElementText, GetRaceText, GetSizeText } from './common.js';
+import { GetBossTypeText, GetGrassTypeText } from './monster.h.js';
+// === END AUTO-GENERATED IMPORTS ===
 
 // パラメータID定義
 CGlobalConstManager.DefineEnum(

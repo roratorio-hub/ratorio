@@ -4,6 +4,9 @@
 
 
 import { CCustomSelectBase } from './CCustomSelectBase.js';
+// === AUTO-GENERATED IMPORTS ===
+import './CNameKana.js';
+// === END AUTO-GENERATED IMPORTS ===
 
 /**
  * カスタムセレクトクラス（マップ基底）.

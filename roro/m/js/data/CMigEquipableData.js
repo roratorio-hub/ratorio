@@ -1,5 +1,10 @@
 
 import { CGlobalConstManager } from '../CGlobalConstManager.js';
+// === AUTO-GENERATED IMPORTS ===
+import { CNameKana } from '../CNameKana.js';
+import { CMigEquipableSpData } from './CMigEquipableSpData.js';
+import { CMigEquipableStaticData } from './CMigEquipableStaticData.js';
+// === END AUTO-GENERATED IMPORTS ===
 
 //----------------------------------------------------------------
 // データの要素番号
