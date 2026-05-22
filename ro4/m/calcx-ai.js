@@ -4,6 +4,10 @@ import { CreateMLCEngine } from "https://esm.run/@mlc-ai/web-llm";
 // AI ラトリオ RAG ロジック（キーワード検索版）
 // ===============================
 
+// このスクリプト自身のディレクトリを基準にURLを解決する
+// （本番・staging など環境によらず正しいパスになる）
+const BASE_URL = new URL(".", import.meta.url).href;
+
 console.log("calcx-ai.js 読み込み完了");
 
 // ===============================
@@ -42,7 +46,7 @@ async function loadRagData() {
     aiLog("items データを読み込み中…");
     try {
         // マニフェストから分割ファイルのリストを取得する
-        const manifestRes = await fetch("/ro4/m/items_manifest.json");
+        const manifestRes = await fetch(`${BASE_URL}items_manifest.json`);
         if (!manifestRes.ok) {
             throw new Error(`マニフェスト取得失敗: ${manifestRes.status}`);
         }
@@ -52,7 +56,7 @@ async function loadRagData() {
         // 全パーツを並列取得して結合する
         const parts = await Promise.all(
             manifest.parts.map(async (fname) => {
-                const res = await fetch(`/ro4/m/${fname}`);
+                const res = await fetch(`${BASE_URL}${fname}`);
                 if (!res.ok) throw new Error(`${fname} の取得失敗: ${res.status}`);
                 return res.json();
             })
