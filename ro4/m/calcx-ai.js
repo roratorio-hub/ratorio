@@ -981,7 +981,7 @@ async function applyEquipmentSuggestions() {
         // カード（通常カード）: description の「装備 : xxx」から装備先を判定して enchantQueue に追加
         if (type === "カード") {
             const cardId = findCardIdByName(r.item.displayname);
-            if (!cardId) {
+            if (cardId == null) {
                 aiLog(`[提案のみ] ${r.item.displayname}（CardObjNew未収録）`);
                 continue;
             }
