@@ -922,7 +922,6 @@ export function SaveSystem(funcSaveDataModify = null){
 		}
 
 
-
 	//----------------------------------------------------------------
 	// 外部関数によるデータ補正
 	//----------------------------------------------------------------
@@ -1947,7 +1946,6 @@ export function VersionModify(saveDataArray) {
 				saveDataArray[1060 + 25] = saveDataArray[75 + 5];
 			}
 		}
-
 
 
 		//----------------------------------------------------------------
@@ -3976,7 +3974,6 @@ export function DecodeUrl(loadDataUrl){
 	};
 
 
-
 	var msg = "";
 	var bFlag = false;
 
@@ -3984,7 +3981,6 @@ export function DecodeUrl(loadDataUrl){
 	var objidKind = "";
 	var objidValue = "";
 	var objSelect = null;
-
 
 
 	//----------------------------------------------------------------
@@ -4079,7 +4075,6 @@ export function DecodeUrl(loadDataUrl){
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 対応職業チェック（四次対応で平行稼働するため）
 	//----------------------------------------------------------------
@@ -4090,8 +4085,6 @@ export function DecodeUrl(loadDataUrl){
 		alert(msg);
 		return;
 	}
-
-
 
 
 		//----------------------------------------------------------------
@@ -4560,14 +4553,12 @@ export function DecodeUrl(loadDataUrl){
 		}
 
 
-
 		//----------------------------------------------------------------
 		// 衣装系の読み込み
 		//----------------------------------------------------------------
 		for (idx = 0; idx < n_A_costume.length; idx++) {
 			n_A_costume[idx] = SaveData[1680 + idx];
 		}
-
 
 
 		//----------------------------------------------------------------
@@ -4956,13 +4947,11 @@ export function DecodeUrl(loadDataUrl){
 		}
 
 
-
 		//----------------------------------------------------------------
 		// ステータスを再計算
 		//----------------------------------------------------------------
 		CalcStatusPoint(true);
 		StAllCalc();
-
 
 
 		//----------------------------------------------------------------
@@ -4998,12 +4987,8 @@ export function DecodeUrl(loadDataUrl){
 		CAttackMethodAreaComponentManager.SetAttackMethodConf(attackMethodConf);
 
 
-
 		// TODO: これいる？
 		StAllCalc();
-
-
-
 
 
 	OnClickSkillSWLearned();
@@ -5054,7 +5039,6 @@ export function DecodeUrl(loadDataUrl){
 	CExtraInfoAreaComponentManager.ClearStoredValueAll(true);
 
 
-
 	//----------------------------------------------------------------
 	// 表示モード切替
 	//----------------------------------------------------------------
@@ -5082,7 +5066,6 @@ export function LoadCookie3(){
 	// クッキーからセーブデータを読み込む
 	var SaveData = new Array();
 	SaveData = document.cookie.split(";");
-
 
 
 	// 余白をトリム
@@ -5136,8 +5119,6 @@ export function LoadCookie3(){
 
 		ch = 2;
 	}
-
-
 
 
 // セーブデータが消える問題の調査用
@@ -5199,7 +5180,6 @@ if ((ch == 0 && SaveData.length > 1)
 }
 
 
-
 	// セーブスロットの表示を調整する
 	for (var i = 1; i <= n_CONFIG[2]; i++) {
 
@@ -5250,7 +5230,6 @@ if ((ch == 0 && SaveData.length > 1)
 export function SaveCookieConf(){
 
 	var expireDateString = "";
-
 
 
 	var kirikae = 0;
@@ -5564,27 +5543,5 @@ export function OnClickUrlIn() {
 }
 
 if (typeof window !== 'undefined') {
-	Object.assign(window, {
-		GetSaveDataVersion,
-		SaveButton,
-		GetExpireDateString,
-		GetExpireDateStringToDelete,
-		GetExpireDateStringSub,
-		SaveSystem,
-		VersionModify,
-		LoadButton,
-		URLIN,
-		AdaptSaveDataStrSize,
-		DecodeUrl,
-		LoadCookie3,
-		SaveCookieConf,
-		LoadCookieConf,
-		SaveDataChange,
-		aaa,
-		NumA,
-		NtoS2,
-		StoNx,
-		StoN2,
-		OnClickUrlIn,
-	});
+	Object.assign(window, { SaveSystem, aaa });
 }

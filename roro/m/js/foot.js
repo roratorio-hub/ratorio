@@ -818,7 +818,6 @@ export function RefreshSuperNoviceFullWeapon(bFull) {
 	};
 
 
-
 	// 変化がない場合は処理しない
 	if (g_bSuperNoviceFullWeapon === bFull) {
 		return;
@@ -826,7 +825,6 @@ export function RefreshSuperNoviceFullWeapon(bFull) {
 
 
 	g_bSuperNoviceFullWeapon = bFull;
-
 
 
 	// 現在の装備状況をもとに、設定変更後の装備可否を判定し、ItemID を特定しておく
@@ -970,7 +968,6 @@ export function RefreshSuperNoviceFullWeapon(bFull) {
 	}
 
 
-
 	// 武器種別をクリア
 	objSelect = document.getElementById("OBJID_ARMS_TYPE_RIGHT");
 	HtmlRemoveOptionAll(objSelect);
@@ -997,7 +994,6 @@ export function RefreshSuperNoviceFullWeapon(bFull) {
 
 	// 防具セレクトボックスを再構築
 	RebuildArmorsSelect();
-
 
 
 	// 装備状況を復元する
@@ -1331,7 +1327,6 @@ export function StAllCalc(){
 		n_A_SpeedPOT = eval(calcForm.A_SpeedPOT.value);
 
 
-
 		//----------------------------------------------------------------
 		// 特性パラメタを取得する
 		//----------------------------------------------------------------
@@ -1457,13 +1452,11 @@ export function StAllCalc(){
 		UpdateEquipCardDataByHtml();
 
 
-
 		//----------------------------------------------------------------
 		// 装着衣装を取得する
 		//----------------------------------------------------------------
 
 		UpdateEquipCostumeDataByHtml();
-
 
 
 		var passiveSkillIdArray = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, n_A_JOB).GetPassiveSkillIdArray();
@@ -1704,14 +1697,12 @@ export function StAllCalc(){
 		}
 
 
-
 		//----------------------------------------------------------------
 		// アイテムセットの装備状況を確認し、適用する
 		//----------------------------------------------------------------
 
 		// これまでの通常処理
 		CheckAndApplyItemSetEquipping();
-
 
 
 		switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
@@ -4919,10 +4910,6 @@ export function StAllCalc(){
 		}
 
 
-
-
-
-
 		if(SU_DEX >= 110 && CardNumSearch(709)) w += 7;
 
 		if(CardNumSearch(830)){
@@ -5379,7 +5366,6 @@ export function StAllCalc(){
 		}
 
 
-
 		//----------------------------------------------------------------
 		// 「性能カスタマイズ」の、効果
 		//----------------------------------------------------------------
@@ -5387,7 +5373,6 @@ export function StAllCalc(){
 		if (confval != 0) {
 			aspdPlusValue += confval;
 		}
-
 
 
 		//----------------------------------------------------------------
@@ -5444,12 +5429,10 @@ export function StAllCalc(){
 		}
 
 
-
 		// TODO: 四次対応
 		for (idx = ITEM_SP_ASPD_PLUS; idx <= ITEM_SP_ASPD_PLUS; idx++) {
 			aspdPlusValue = ApplySpecModify(idx, aspdPlusValue);
 		}
-
 
 
 		// 拡張表示用にデータを保存
@@ -5459,14 +5442,12 @@ export function StAllCalc(){
 		aspd += aspdPlusValue;
 
 
-
 		//----------------------------------------------------------------
 		// 「ジェネティック　オーバードブースト」の、効果（ASPDを増加ではなく固定する）
 		//----------------------------------------------------------------
 		if (UsedSkillSearch(SKILL_ID_OVERED_BOOST) > 0) {
 			aspd = 179 + 2 * UsedSkillSearch(SKILL_ID_OVERED_BOOST);
 		}
-
 
 
 		// 範囲外補正
@@ -5483,10 +5464,6 @@ export function StAllCalc(){
 		// 計算した結果をキャラクターデータに保存
 		//----------------------------------------------------------------
 		charaData[CHARA_DATA_INDEX_ASPD] = aspd;
-
-
-
-
 
 
 //================================================================================================================================
@@ -5586,7 +5563,6 @@ export function StAllCalc(){
 		}
 
 
-
 		//----------------------------------------------------------------
 		// 「三次職支援　エビパーティー」の効果
 		//----------------------------------------------------------------
@@ -5596,10 +5572,8 @@ export function StAllCalc(){
 		}
 
 
-
 		if(n_A_PassSkill7[25]) w += 3;
 		if(n_A_PassSkill7[23]) w += 20;
-
 
 
 		//----------------------------------------------------------------
@@ -5617,9 +5591,6 @@ export function StAllCalc(){
 		}
 
 
-
-
-
 		//----------------------------------------------------------------
 		// 「性能カスタマイズ」の、効果
 		//----------------------------------------------------------------
@@ -5627,9 +5598,6 @@ export function StAllCalc(){
 		if (confval != 0) {
 			w += confval;
 		}
-
-
-
 
 
 		var w2 = Math.floor(n_A_VIT /5);
@@ -5643,10 +5611,6 @@ export function StAllCalc(){
 		// 計算した結果をキャラクターデータに保存
 		//----------------------------------------------------------------
 		charaData[CHARA_DATA_INDEX_HPR] = hpr;
-
-
-
-
 
 
 //================================================================================================================================
@@ -5731,7 +5695,6 @@ export function StAllCalc(){
 		}
 
 
-
 		//----------------------------------------------------------------
 		// 「ハイプリースト　メディタティオ」の効果
 		//----------------------------------------------------------------
@@ -5789,9 +5752,6 @@ export function StAllCalc(){
 		}
 
 
-
-
-
 		spr += ROUNDDOWN(spr * w / 100);
 		if(n_A_INT>=120) spr += Math.floor((n_A_INT-120)/2) +4;
 		if(g_confDataDebuff[CCharaConfDebuff.CONF_ID_POISON]) spr = 0;
@@ -5810,10 +5770,6 @@ export function StAllCalc(){
 		}
 
 
-
-
-
-
 //================================================================================================================================
 //================================================================================================================================
 //====
@@ -5829,7 +5785,6 @@ export function StAllCalc(){
 			n_tok[idx] += GetRndOptTotalValue(idx, null, false);
 			// n_tok[idx] += GetRndEnchValue(idx);
 		}
-
 
 
 		//----------------------------------------------------------------
@@ -6088,9 +6043,6 @@ export function StAllCalc(){
 		}
 
 
-
-
-
 		//----------------------------------------------------------------
 		// 「性能カスタマイズ」の、効果
 		//----------------------------------------------------------------
@@ -6098,9 +6050,6 @@ export function StAllCalc(){
 		if (confval != 0) {
 			n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP_PLAYER_ALL] += confval;
 		}
-
-
-
 
 
 //================================================================================================================================
@@ -6120,16 +6069,12 @@ export function StAllCalc(){
 		}
 
 
-
 		//----------------------------------------------------------------
 		// 人間種族の種族特性
 		//----------------------------------------------------------------
 		if (!IsDoramJob(n_A_JOB)) {
 			n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP_PLAYER_DORAM] += 10;
 		}
-
-
-
 
 
 //================================================================================================================================
@@ -6147,9 +6092,6 @@ export function StAllCalc(){
 			n_tok[idx] += GetRndOptTotalValue(idx, null, false);
 			// n_tok[idx] += GetRndEnchValue(idx);
 		}
-
-
-
 
 
 //================================================================================================================================
@@ -6517,7 +6459,6 @@ export function StAllCalc(){
 		}
 
 
-
 		//----------------------------------------------------------------
 		// 「一碧剣」の、過剰精錬による強化
 		//----------------------------------------------------------------
@@ -6571,7 +6512,6 @@ export function StAllCalc(){
 		}
 
 
-
 		//----------------------------------------------------------------
 		// 「死霊魔術師のニット帽」の、精錬による効果
 		//----------------------------------------------------------------
@@ -6583,7 +6523,6 @@ export function StAllCalc(){
 
 			n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP_RACE_UNDEAD] += vartmp * itemCount;
 		}
-
 
 
 		//----------------------------------------------------------------
@@ -6604,7 +6543,6 @@ export function StAllCalc(){
 		}
 
 
-
 		//----------------------------------------------------------------
 		// 「深淵のドレス」の、精錬による効果
 		//----------------------------------------------------------------
@@ -6618,7 +6556,6 @@ export function StAllCalc(){
 			n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP_RACE_UNDEAD] += vartmp * itemCount;
 			n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP_RACE_DEMON] += vartmp * itemCount;
 		}
-
 
 
 		//----------------------------------------------------------------
@@ -6674,7 +6611,6 @@ export function StAllCalc(){
 		}
 
 
-
 		//----------------------------------------------------------------
 		// 「キングスガード」の、精錬による効果
 		//----------------------------------------------------------------
@@ -6686,7 +6622,6 @@ export function StAllCalc(){
 
 			n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP_RACE_UNDEAD] += vartmp * itemCount;
 		}
-
 
 
 		//----------------------------------------------------------------
@@ -6785,9 +6720,6 @@ export function StAllCalc(){
 		}
 
 
-
-
-
 		//----------------------------------------------------------------
 		// 「性能カスタマイズ」の、効果
 		//----------------------------------------------------------------
@@ -6808,14 +6740,12 @@ export function StAllCalc(){
 		}
 
 
-
 		if (n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP_RACE_ALL] != 0) {
 			for (i = ITEM_SP_PHYSICAL_DAMAGE_UP_RACE_SOLID; i <= ITEM_SP_PHYSICAL_DAMAGE_UP_RACE_DRAGON; i++) {
 				n_tok[i] += n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP_RACE_ALL];
 			}
 			n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP_PLAYER_DORAM] += n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP_RACE_ALL];
 		}
-
 
 
 //================================================================================================================================
@@ -8281,9 +8211,6 @@ export function StAllCalc(){
 		}		
 
 
-
-
-
 //================================================================================================================================
 //================================================================================================================================
 //====
@@ -8523,11 +8450,6 @@ export function StAllCalc(){
 		}
 
 
-
-
-
-
-
 		//----------------------------------------------------------------
 		// 「性能カスタマイズ」の、効果
 		//----------------------------------------------------------------
@@ -8535,7 +8457,6 @@ export function StAllCalc(){
 		if (confval != 0) {
 			n_tok[26] += confval;
 		}
-
 
 
 //================================================================================================================================
@@ -8555,9 +8476,6 @@ export function StAllCalc(){
 		}
 
 
-
-
-
 		//----------------------------------------------------------------
 		// 「性能カスタマイズ」の、効果
 		//----------------------------------------------------------------
@@ -8565,9 +8483,6 @@ export function StAllCalc(){
 		if (confval != 0) {
 			n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP_NOTBOSS] += confval;
 		}
-
-
-
 
 
 //================================================================================================================================
@@ -9741,7 +9656,6 @@ export function StAllCalc(){
 		}
 
 
-
 		if(n_A_WeaponType == 9 || n_A_WeaponType == 12){
 			if(EquipNumSearch(2500)) n_tok[242] += 2 * n_A_Weapon_ATKplus;
 		}
@@ -9792,9 +9706,6 @@ export function StAllCalc(){
 		}
 
 
-
-
-
 		//----------------------------------------------------------------
 		// 「性能カスタマイズ」の、効果
 		//----------------------------------------------------------------
@@ -9802,9 +9713,6 @@ export function StAllCalc(){
 		if (confval != 0) {
 			n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_PLAYER_ALL] += confval;
 		}
-
-
-
 
 
 //================================================================================================================================
@@ -9824,9 +9732,6 @@ export function StAllCalc(){
 		}
 
 
-
-
-
 //================================================================================================================================
 //================================================================================================================================
 //====
@@ -9842,9 +9747,6 @@ export function StAllCalc(){
 			n_tok[idx] += GetRndOptTotalValue(idx, null, false);
 			// n_tok[idx] += GetRndEnchValue(idx);
 		}
-
-
-
 
 
 //================================================================================================================================
@@ -9954,7 +9856,6 @@ export function StAllCalc(){
 		}
 
 
-
 		//----------------------------------------------------------------
 		// 「死霊魔術師のニット帽」の、精錬による効果
 		//----------------------------------------------------------------
@@ -9994,7 +9895,6 @@ export function StAllCalc(){
 		}
 
 
-
 		//----------------------------------------------------------------
 		// 「猟乱杖」の、過剰精錬による効果
 		//----------------------------------------------------------------
@@ -10010,7 +9910,6 @@ export function StAllCalc(){
 		}
 
 
-
 		//----------------------------------------------------------------
 		// 「キングスガード」の、精錬による効果
 		//----------------------------------------------------------------
@@ -10022,7 +9921,6 @@ export function StAllCalc(){
 
 			n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_RACE_UNDEAD] += vartmp * itemCount;
 		}
-
 
 
 		//----------------------------------------------------------------
@@ -10040,7 +9938,6 @@ export function StAllCalc(){
 		}
 
 
-
 		//----------------------------------------------------------------
 		// 「勇者のブローチ」の、職業による効果
 		//----------------------------------------------------------------
@@ -10049,7 +9946,6 @@ export function StAllCalc(){
 				n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_RACE_ALL] += 5 * itemCount;
 			}
 		}
-
 
 
 		//----------------------------------------------------------------
@@ -10066,14 +9962,12 @@ export function StAllCalc(){
 		}
 
 
-
 		//----------------------------------------------------------------
 		// 「あざといケロケロカッパ」の、スキル習得による効果
 		//----------------------------------------------------------------
 		if ((itemCount = EquipNumSearchMIG(ITEM_ID_AZATOI_KEROKERO_KAPPA)) > 0) {
 			n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_RACE_ALL] += 8 * LearnedSkillSearch(SKILL_ID_NYAN_GRASS) * itemCount;
 		}
-
 
 
 		//----------------------------------------------------------------
@@ -10131,7 +10025,6 @@ export function StAllCalc(){
 		}
 
 
-
 		//----------------------------------------------------------------
 		// 「性能カスタマイズ」の、効果
 		//----------------------------------------------------------------
@@ -10144,7 +10037,6 @@ export function StAllCalc(){
 		}
 
 
-
 		// TODO: 四次対応
 		for (idx = ITEM_SP_MAGICAL_DAMAGE_UP_RACE_SOLID; idx <= ITEM_SP_MAGICAL_DAMAGE_UP_RACE_DRAGON; idx++) {
 			n_tok[idx] = ApplySpecModify(idx, n_tok[idx]);
@@ -10152,9 +10044,6 @@ export function StAllCalc(){
 		for (idx = ITEM_SP_MAGICAL_DAMAGE_UP_RACE_HUMAN_NOT_PLAYER; idx <= ITEM_SP_MAGICAL_DAMAGE_UP_RACE_HUMAN_NOT_PLAYER; idx++) {
 			n_tok[idx] = ApplySpecModify(idx, n_tok[idx]);
 		}
-
-
-
 
 
 //================================================================================================================================
@@ -10172,7 +10061,6 @@ export function StAllCalc(){
 			n_tok[idx] += GetRndOptTotalValue(idx, null, false);
 			// n_tok[idx] += GetRndEnchValue(idx);
 		}
-
 
 
 		if(n_A_BODY_DEF_PLUS >= 6 && (EquipNumSearch(2223) || EquipNumSearch(2224))){
@@ -10302,9 +10190,6 @@ export function StAllCalc(){
 		}
 
 
-
-
-
 		//----------------------------------------------------------------
 		// 「性能カスタマイズ」の、効果
 		//----------------------------------------------------------------
@@ -10312,9 +10197,6 @@ export function StAllCalc(){
 		if (confval != 0) {
 			n_tok[243] += confval;
 		}
-
-
-
 
 
 //================================================================================================================================
@@ -10332,7 +10214,6 @@ export function StAllCalc(){
 			n_tok[idx] += GetRndOptTotalValue(idx, null, false);
 			// n_tok[idx] += GetRndEnchValue(idx);
 		}
-
 
 
 		//----------------------------------------------------------------
@@ -10372,9 +10253,6 @@ export function StAllCalc(){
 		}
 
 
-
-
-
 //================================================================================================================================
 //================================================================================================================================
 //====
@@ -10390,9 +10268,6 @@ export function StAllCalc(){
 			n_tok[idx] += GetRndOptTotalValue(idx, null, false);
 			// n_tok[idx] += GetRndEnchValue(idx);
 		}
-
-
-
 
 
 //================================================================================================================================
@@ -10420,7 +10295,6 @@ export function StAllCalc(){
 			// TODO: 正確には物理ダメージのみだが、計算機での被弾ダメージ計算は物理だけなので、とりあえず
 			n_tok[ITEM_SP_RESIST_RACE_HUMAN_NOT_PLAYER] -= 10;
 		}
-
 
 
 		if(CardNumSearch(452) && GetLowerJobSeriesID(n_A_JOB)==3){
@@ -10870,8 +10744,6 @@ export function StAllCalc(){
 		}
 
 
-
-
 		if (n_tok[ITEM_SP_RESIST_RACE_ALL] != 0) {
 			for (i = ITEM_SP_RESIST_RACE_SOLID; i <= ITEM_SP_RESIST_RACE_DRAGON; i++) {
 				n_tok[i] += n_tok[ITEM_SP_RESIST_RACE_ALL];
@@ -10934,8 +10806,6 @@ export function StAllCalc(){
 			n_tok[idx] += GetRndOptTotalValue(idx, null, false);
 			// n_tok[idx] += GetRndEnchValue(idx);
 		}
-
-
 
 
 		if(EquipNumSearch(624)) n_tok[ITEM_SP_RESIST_SIZE_MEDIUM] += n_A_Weapon_ATKplus;
@@ -11040,9 +10910,6 @@ export function StAllCalc(){
 		}
 
 
-
-
-
 		//----------------------------------------------------------------
 		// 「性能カスタマイズ」の、効果
 		//----------------------------------------------------------------
@@ -11054,18 +10921,12 @@ export function StAllCalc(){
 		}
 
 
-
-
-
 		// TODO: 四次対応
 
 		// サイズ物理耐性
 		for (i = ITEM_SP_PHYSICAL_RESIST_SIZE_SMALL; i <= ITEM_SP_PHYSICAL_RESIST_SIZE_LARGE; i++) {
 			n_tok[i] = ApplySpecModify(i, n_tok[i]);
 		}
-
-
-
 
 
 //================================================================================================================================
@@ -11257,9 +11118,6 @@ export function StAllCalc(){
 		}
 
 
-
-
-
 		//----------------------------------------------------------------
 		// 「性能カスタマイズ」の、効果
 		//----------------------------------------------------------------
@@ -11267,9 +11125,6 @@ export function StAllCalc(){
 		if (confval != 0) {
 			n_tok[ITEM_SP_RESIST_LONGRANGE] += confval;
 		}
-
-
-
 
 
 //================================================================================================================================
@@ -11509,9 +11364,6 @@ export function StAllCalc(){
 		}
 
 
-
-
-
 //================================================================================================================================
 //================================================================================================================================
 //====
@@ -11527,7 +11379,6 @@ export function StAllCalc(){
 			n_tok[idx] += GetRndOptTotalValue(idx, null, false);
 			// n_tok[idx] += GetRndEnchValue(idx);
 		}
-
 
 
 		//----------------------------------------------------------------
@@ -11605,9 +11456,6 @@ export function StAllCalc(){
 				n_tok[ITEM_SP_RESIST_NOTBOSS] += 20 * itemCount;
 			}
 		}
-
-
-
 
 
 		//----------------------------------------------------------------
@@ -12007,10 +11855,6 @@ export function StAllCalc(){
 		}
 
 
-
-
-
-
 		//----------------------------------------------------------------
 		// 「性能カスタマイズ」の、効果
 		//----------------------------------------------------------------
@@ -12018,9 +11862,6 @@ export function StAllCalc(){
 		if (confval != 0) {
 			n_tok[ITEM_SP_IGNORE_DEF_RACE_ALL] += confval;
 		}
-
-
-
 
 
 //================================================================================================================================
@@ -12189,8 +12030,6 @@ export function StAllCalc(){
 		}
 
 
-
-
 		if(n_A_WeaponType==9) n_tok[295] += 2 * CardNumSearch(466);
 		if(mobData[20]==1 && CardNumSearch(425)) n_tok[297] += 30 * CardNumSearch(425);
 		if(EquipNumSearch(936)) n_tok[295] += (n_A_Weapon_ATKplus * 1);
@@ -12209,9 +12048,6 @@ export function StAllCalc(){
 		if(EquipNumSearch(2429)) n_tok[295] += 8 * Math.floor(n_A_Weapon_ATKplus / 3);
 
 
-
-
-
 		//----------------------------------------------------------------
 		// 「性能カスタマイズ」の、効果
 		//----------------------------------------------------------------
@@ -12219,9 +12055,6 @@ export function StAllCalc(){
 		if (confval != 0) {
 			n_tok[ITEM_SP_IGNORE_MDEF_RACE_ALL] += confval;
 		}
-
-
-
 
 
 		//if(mobData[20] == 1) n_tok[295] += n_tok[297];
@@ -12234,7 +12067,6 @@ export function StAllCalc(){
 			if(n_A_Weapon_ATKplus >= 7) n_tok[317] += 15;
 		}
 		n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] += n_tok[320+mobData[19]];
-
 
 
 //================================================================================================================================
@@ -12257,9 +12089,6 @@ export function StAllCalc(){
 		}
 
 
-
-
-
 		//----------------------------------------------------------------
 		// 「性能カスタマイズ」の、効果
 		//----------------------------------------------------------------
@@ -12271,9 +12100,6 @@ export function StAllCalc(){
 		}
 
 
-
-
-
 //================================================================================================================================
 //================================================================================================================================
 //====
@@ -12281,9 +12107,6 @@ export function StAllCalc(){
 //====
 //================================================================================================================================
 //================================================================================================================================
-
-
-
 
 
 		//----------------------------------------------------------------
@@ -13172,8 +12995,6 @@ export function StAllCalc(){
 		}
 
 
-
-
 		//----------------------------------------------------------------
 		// 「性能カスタマイズ」の、効果
 		//----------------------------------------------------------------
@@ -13188,9 +13009,6 @@ export function StAllCalc(){
 		for (idx = ITEM_SP_MAGICAL_DAMAGE_UP_MONSTER_ELM_VANITY; idx <= ITEM_SP_MAGICAL_DAMAGE_UP_MONSTER_ELM_UNDEAD; idx++) {
 			n_tok[idx] = ApplySpecModify(idx, n_tok[idx]);
 		}
-
-
-
 
 
 //================================================================================================================================
@@ -13216,7 +13034,6 @@ export function StAllCalc(){
 		}
 
 
-
 		//----------------------------------------------------------------
 		// 「戦乙女の雫」の、スキル習得による強化
 		//----------------------------------------------------------------
@@ -13225,7 +13042,6 @@ export function StAllCalc(){
 			n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_SIZE_MEDIUM] += 3 * LearnedSkillSearch(SKILL_ID_IMPOSITIO_MANUS) * itemCount;
 			n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_SIZE_LARGE] += 3 * LearnedSkillSearch(SKILL_ID_IMPOSITIO_MANUS) * itemCount;
 		}
-
 
 
 		//----------------------------------------------------------------
@@ -13238,7 +13054,6 @@ export function StAllCalc(){
 		}
 
 
-
 		//----------------------------------------------------------------
 		// 「オウルバロンのマント　エクスキューショナーカード」の、過剰精錬による効果
 		//----------------------------------------------------------------
@@ -13247,7 +13062,6 @@ export function StAllCalc(){
 				n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_SIZE_LARGE] += 25 * itemCount;
 			}
 		}
-
 
 
 		//----------------------------------------------------------------
@@ -13260,7 +13074,6 @@ export function StAllCalc(){
 		}
 
 
-
 		//----------------------------------------------------------------
 		// 「オウルバロンのマント　ミスティルティンカード」の、過剰精錬による効果
 		//----------------------------------------------------------------
@@ -13271,7 +13084,6 @@ export function StAllCalc(){
 		}
 
 
-
 		//----------------------------------------------------------------
 		// 「ロードオブロイヤルズ」の、素ＳＴＲと素ＩＮＴによる効果
 		//----------------------------------------------------------------
@@ -13280,7 +13092,6 @@ export function StAllCalc(){
 			n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_SIZE_MEDIUM] += 4 * ROUNDDOWN((SU_STR + SU_INT) / 50) * itemCount;
 			n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_SIZE_LARGE] += 4 * ROUNDDOWN((SU_STR + SU_INT) / 50) * itemCount;
 		}
-
 
 
 		//----------------------------------------------------------------
@@ -13300,7 +13111,6 @@ export function StAllCalc(){
 			n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_SIZE_MEDIUM] += 7 * LearnedSkillSearch(SKILL_ID_STRIKING) * itemCount;
 			n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_SIZE_LARGE] += 7 * LearnedSkillSearch(SKILL_ID_STRIKING) * itemCount;
 		}
-
 
 
 		//----------------------------------------------------------------
@@ -13342,9 +13152,6 @@ export function StAllCalc(){
 		}
 
 
-
-
-
 		//----------------------------------------------------------------
 		// 「性能カスタマイズ」の、効果
 		//----------------------------------------------------------------
@@ -13359,9 +13166,6 @@ export function StAllCalc(){
 		for (idx = ITEM_SP_MAGICAL_DAMAGE_UP_SIZE_SMALL; idx <= ITEM_SP_MAGICAL_DAMAGE_UP_SIZE_LARGE; idx++) {
 			n_tok[idx] = ApplySpecModify(idx, n_tok[idx]);
 		}
-
-
-
 
 
 //================================================================================================================================
@@ -13492,10 +13296,6 @@ export function StAllCalc(){
 		}
 
 
-
-
-
-
 		//----------------------------------------------------------------
 		// 「性能カスタマイズ」の、効果
 		//----------------------------------------------------------------
@@ -13503,7 +13303,6 @@ export function StAllCalc(){
 		if (confval != 0) {
 			n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_BOSS] += confval;
 		}
-
 
 
 //================================================================================================================================
@@ -13523,10 +13322,6 @@ export function StAllCalc(){
 		}
 
 
-
-
-
-
 		//----------------------------------------------------------------
 		// 「メタルピック」の、スキル習得による効果
 		//----------------------------------------------------------------
@@ -13535,9 +13330,6 @@ export function StAllCalc(){
 				n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_NOTBOSS] += 10 * itemCount;
 			}
 		}
-
-
-
 
 
 		//----------------------------------------------------------------
@@ -13569,7 +13361,6 @@ export function StAllCalc(){
 		for (idx = ITEM_SP_PERFECT_ATTACK_UP; idx <= ITEM_SP_PERFECT_ATTACK_UP; idx++) {
 			n_tok[idx] += GetRndOptTotalValue(idx, null, false);
 		}
-
 
 
 		//----------------------------------------------------------------
@@ -14126,10 +13917,6 @@ export function StAllCalc(){
 		}
 
 
-
-
-
-
 		//----------------------------------------------------------------
 		// 「性能カスタマイズ」の、効果
 		//----------------------------------------------------------------
@@ -14137,7 +13924,6 @@ export function StAllCalc(){
 		if (confval != 0) {
 			n_tok[ITEM_SP_PERFECT_ATTACK_UP] += confval;
 		}
-
 
 
 		// TODO: 四次対応
@@ -14284,7 +14070,6 @@ export function StAllCalc(){
 		}
 
 
-
 		//----------------------------------------------------------------
 		// 「職業カードセット　アコライトセット」の、職業による効果
 		//----------------------------------------------------------------
@@ -14303,7 +14088,6 @@ export function StAllCalc(){
 				n_tok[ITEM_SP_EXP_UP_RACE_ANIMAL] += 5;
 			}
 		}
-
 
 
 		//----------------------------------------------------------------
@@ -14427,7 +14211,6 @@ export function StAllCalc(){
 		}
 
 
-
 		//----------------------------------------------------------------
 		// 「ソイガの書　アルマイア＝デュンゼカードセット」の、精錬による効果
 		//----------------------------------------------------------------
@@ -14549,7 +14332,6 @@ export function StAllCalc(){
 		}
 
 
-
 		//----------------------------------------------------------------
 		// 「チュンイーの霊」の、職業による効果
 		//----------------------------------------------------------------
@@ -14558,12 +14340,6 @@ export function StAllCalc(){
 				n_tok[ITEM_SP_EXP_UP_ALL] += 5 * itemCount;
 			}
 		}
-
-
-
-
-
-
 
 
 //================================================================================================================================
@@ -14619,7 +14395,6 @@ export function StAllCalc(){
 		}
 
 
-
 //================================================================================================================================
 //================================================================================================================================
 //====
@@ -14635,7 +14410,6 @@ export function StAllCalc(){
 			n_tok[idx] += GetRndOptTotalValue(idx, null, false);
 			// n_tok[idx] += GetRndEnchValue(idx);
 		}
-
 
 
 		//----------------------------------------------------------------
@@ -14655,7 +14429,6 @@ export function StAllCalc(){
 				n_tok[ITEM_SP_WEAPON_ATK_UP] += 25 * itemCount;
 			}
 		}
-
 
 
 		//----------------------------------------------------------------
@@ -14685,7 +14458,6 @@ export function StAllCalc(){
 			n_tok[ITEM_SP_WEAPON_ATK_UP] += 30;
 			break;
 		}
-
 
 
 		//----------------------------------------------------------------
@@ -14767,7 +14539,6 @@ export function StAllCalc(){
 			n_tok[idx] += GetRndOptTotalValue(idx, null, false);
 			// n_tok[idx] += GetRndEnchValue(idx);
 		}
-
 
 
 		//----------------------------------------------------------------
@@ -14992,7 +14763,6 @@ export function StAllCalc(){
 		}
 
 		// TODO: 攻撃手段更新、ここにいれられないか
-
 
 
 		// TODO: ステータス欄注意喚起
@@ -24011,7 +23781,6 @@ export function GetCastScalingOfSkillForCastTimeForce(skillId) {
 	var scaling = 100;
 
 
-
 	//----------------------------------------------------------------
 	// 「ワークキャップ」の「グリード」短縮
 	//----------------------------------------------------------------
@@ -24021,7 +23790,6 @@ export function GetCastScalingOfSkillForCastTimeForce(skillId) {
 			scaling -= 100 * eqpnum;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -24037,7 +23805,6 @@ export function GetCastScalingOfSkillForCastTimeForce(skillId) {
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「青い炎の杖　アビスゴーストセット」の「魔法力増幅」短縮
 	//----------------------------------------------------------------
@@ -24047,7 +23814,6 @@ export function GetCastScalingOfSkillForCastTimeForce(skillId) {
 			scaling -= 50 * eqpnum;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -24075,7 +23841,6 @@ export function GetCastScalingOfSkillForCastTimeForce(skillId) {
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「ゾディアック　巨蟹宮のマント」セットの「グリード」短縮
 	//----------------------------------------------------------------
@@ -24087,7 +23852,6 @@ export function GetCastScalingOfSkillForCastTimeForce(skillId) {
 			}
 		}
 	}
-
 
 
 	return scaling;
@@ -24104,7 +23868,6 @@ export function GetCastScalingOfSkillForCastTimeForce(skillId) {
 export function GetCastFixOfSkillForCastTimeForce(skillId) {
 
 	var castfix = 0;
-
 
 
 	return castfix;
@@ -25485,7 +25248,6 @@ export function GetCostScalingOfSkill(skillId) {
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「性能カスタマイズ」の、効果
 	//----------------------------------------------------------------
@@ -25493,12 +25255,6 @@ export function GetCostScalingOfSkill(skillId) {
 	if (confval != 0) {
 		scaling -= confval;
 	}
-
-
-
-
-
-
 
 
 	return scaling;
@@ -25538,7 +25294,6 @@ export function GetCostFixOfSkill(skillId) {
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「冷気の魔道書」の「ダイヤモンドダスト」消費増加（ペナルティ）
 	//----------------------------------------------------------------
@@ -25548,7 +25303,6 @@ export function GetCostFixOfSkill(skillId) {
 			costfix += 5 * n_A_Weapon_ATKplus * eqpnum;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -25562,7 +25316,6 @@ export function GetCostFixOfSkill(skillId) {
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「回復の光」の「コルセオヒール」消費増加（ペナルティ）
 	//----------------------------------------------------------------
@@ -25572,7 +25325,6 @@ export function GetCostFixOfSkill(skillId) {
 			costfix += 12 * n_A_Weapon_ATKplus * eqpnum;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -25586,7 +25338,6 @@ export function GetCostFixOfSkill(skillId) {
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「カタパルト」の「トライアングルショット」消費増加（ペナルティ）
 	//----------------------------------------------------------------
@@ -25596,7 +25347,6 @@ export function GetCostFixOfSkill(skillId) {
 			costfix += 2 * n_A_Weapon_ATKplus * eqpnum;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -25610,7 +25360,6 @@ export function GetCostFixOfSkill(skillId) {
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「メディカルブーツ」の「コルセオヒール」消費減少
 	//----------------------------------------------------------------
@@ -25620,7 +25369,6 @@ export function GetCostFixOfSkill(skillId) {
 			costfix -= 5 * n_A_SHOES_DEF_PLUS * eqpnum;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -25634,7 +25382,6 @@ export function GetCostFixOfSkill(skillId) {
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「メディカルブーツ　回復の光セット」の「コルセオヒール」消費減少
 	//----------------------------------------------------------------
@@ -25644,7 +25391,6 @@ export function GetCostFixOfSkill(skillId) {
 			costfix -= 10 * n_A_Weapon_ATKplus * eqpnum;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -25658,7 +25404,6 @@ export function GetCostFixOfSkill(skillId) {
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「マジカルフェザー」の「ホーリーライト」消費増加（ペナルティ）
 	//----------------------------------------------------------------
@@ -25668,7 +25413,6 @@ export function GetCostFixOfSkill(skillId) {
 			costfix += 15 * LearnedSkillSearch(SKILL_ID_IMPOSITIO_MANUS) * eqpnum;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -25684,7 +25428,6 @@ export function GetCostFixOfSkill(skillId) {
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「アルティメットモードチェンジャー　ペオースプレートセット」の「ウィンドカッター」消費減少
 	//----------------------------------------------------------------
@@ -25696,7 +25439,6 @@ export function GetCostFixOfSkill(skillId) {
 			}
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -25712,7 +25454,6 @@ export function GetCostFixOfSkill(skillId) {
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「ケミカルグローブ」の「カートトルネード」消費減少
 	//----------------------------------------------------------------
@@ -25722,7 +25463,6 @@ export function GetCostFixOfSkill(skillId) {
 			costfix -= 1 * LearnedSkillSearch(SKILL_ID_CART_KAIZO) * eqpnum;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -25738,7 +25478,6 @@ export function GetCostFixOfSkill(skillId) {
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「シールドリング」の「アースドライブ」消費減少
 	//----------------------------------------------------------------
@@ -25750,7 +25489,6 @@ export function GetCostFixOfSkill(skillId) {
 			}
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -25768,7 +25506,6 @@ export function GetCostFixOfSkill(skillId) {
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「スナイピングシューズ」の、「カモフラージュ」消費減少
 	//----------------------------------------------------------------
@@ -25779,7 +25516,6 @@ export function GetCostFixOfSkill(skillId) {
 			}
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -25794,7 +25530,6 @@ export function GetCostFixOfSkill(skillId) {
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「悪鬼羅刹の指輪」の、「修羅身弾」消費減少
 	//----------------------------------------------------------------
@@ -25805,7 +25540,6 @@ export function GetCostFixOfSkill(skillId) {
 			}
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -25820,7 +25554,6 @@ export function GetCostFixOfSkill(skillId) {
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「ゲフェニア氷の魔道具」の、「コメット」消費減少
 	//----------------------------------------------------------------
@@ -25831,7 +25564,6 @@ export function GetCostFixOfSkill(skillId) {
 			}
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -25846,7 +25578,6 @@ export function GetCostFixOfSkill(skillId) {
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「知覚増幅リング」の、「サイキックウェーブ」消費減少
 	//----------------------------------------------------------------
@@ -25857,7 +25588,6 @@ export function GetCostFixOfSkill(skillId) {
 			}
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -25873,7 +25603,6 @@ export function GetCostFixOfSkill(skillId) {
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「リングオブパズズ」の、「チェーンライトニング」消費減少
 	//----------------------------------------------------------------
@@ -25885,7 +25614,6 @@ export function GetCostFixOfSkill(skillId) {
 			}
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -25901,7 +25629,6 @@ export function GetCostFixOfSkill(skillId) {
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「きらきらニャンニャンチョーカー」の、「マタタビランス」消費減少
 	//----------------------------------------------------------------
@@ -25915,9 +25642,6 @@ export function GetCostFixOfSkill(skillId) {
 	}
 
 
-
-
-
 	//----------------------------------------------------------------
 	// 「性能カスタマイズ」の、効果
 	//----------------------------------------------------------------
@@ -25925,14 +25649,6 @@ export function GetCostFixOfSkill(skillId) {
 	if (confval != 0) {
 		costfix -= confval;
 	}
-
-
-
-
-
-
-
-
 
 
 	return costfix;
@@ -28534,7 +28250,6 @@ export function StPlusCalc() {
 	}
 
 
-
 	// 「砂時計のネックレス」の効果（ペナルティ）
 	if ((itemCount = EquipNumSearch(ITEM_ID_SUNADOKENO_NECKLACE)) > 0) {
 		confval = Math.min(6, Math.floor(n_A_JobLV / 5)) * itemCount;
@@ -28685,14 +28400,9 @@ export function GetEquippedTotalSPEquipSub(spid, bListUp, bExact) {
 		.concat(GetEquippedSPValueArrayCardAndElse(ITEM_SP_INVALIDATE_ITEM_SP));
 
 
-
-
-
-
 	if (invalidItemIdArray.length == 0) {
 		invalidItemIdArray = null;
 	}
-
 
 
 	return GetEquippedSPSubEquip(spid, invalidItemIdArray, bListUp, bExact);
@@ -28743,7 +28453,6 @@ export function GetEquippedSPSubEquip(spid, invalidItemIdArray, bListUp, bExact)
 
 	var spValToCorrect = 0;
 	var listUpArray = new Array();
-
 
 
 	// 全ての装備箇所をループ
@@ -28940,14 +28649,9 @@ export function GetEquippedTotalSPShadowSub(spid, bListUp, bExact) {
 		.concat(GetEquippedSPValueArrayCardAndElse(ITEM_SP_INVALIDATE_ITEM_SP));
 
 
-
-
-
-
 	if (invalidItemIdArray.length == 0) {
 		invalidItemIdArray = null;
 	}
-
 
 
 	return GetEquippedSPSubShadow(spid, invalidItemIdArray, bListUp, bExact);
@@ -28984,7 +28688,6 @@ export function GetEquippedSPSubShadow(spid, invalidItemIdArray, bListUp, bExact
 
 	var spValToCorrect = 0;
 	var listUpArray = new Array();
-
 
 
 	// 全ての装備箇所をループ
@@ -29646,7 +29349,6 @@ export function GetEquippedSPSubSPPet(spid, invalidPetIdArray, bListUp) {
 	var listUpArray = new Array();
 
 
-
 	// 装備中のペットデータから、ペットデータを取得
 	petId = n_A_PassSkill8[0];
 	petData = PET_OBJ[petId];
@@ -29665,7 +29367,6 @@ export function GetEquippedSPSubSPPet(spid, invalidPetIdArray, bListUp) {
 			}
 		}
 	}
-
 
 
 	// 精錬値は０
@@ -29767,7 +29468,6 @@ export function GetEquippedSPSubSPPet(spid, invalidPetIdArray, bListUp) {
 	}
 
 
-
 	// 結果を戻す
 	if (bListUp) {
 		return listUpArray
@@ -29803,7 +29503,6 @@ export function GetEquippedTotalSPCostume(spid) {
 	var pureStatusValue = [SU_STR, SU_AGI, SU_VIT, SU_INT, SU_DEX, SU_LUK];
 	var spVal = 0;
 	var costumeData = 0;
-
 
 
 	// 全ての装備箇所をループ
@@ -30724,19 +30423,16 @@ export function Init(jobId){
 	CTimeItemAreaComponentManager.CloseArea();
 
 
-
 	//--------------------------------
 	// 攻撃方法欄の初期化
 	//--------------------------------
 	CAttackMethodAreaComponentManager.RebuildControls();
 
 
-
 	//--------------------------------
 	// 戦闘クイック調整欄の初期化
 	//--------------------------------
 	CBattleQuickControlAreaComponentManager.CloseArea();
-
 
 
 	//--------------------------------
@@ -30763,9 +30459,6 @@ export function Init(jobId){
 	g_objCharaConfCustomSpecStatus.BuildUpSelectArea(document.getElementById("OBJID_TD_CHARA_CONF_CUSTOM_SPECSTATUS"), false);
 
 
-
-
-
 //	document.calcForm.B_IJYOUSW.checked = 0;
 	BuildUpMobConfDebufSelectArea(document.getElementById("OBJID_TD_MOB_CONF_DEBUF"), false);
 	RefreshMobConfDebufSelectAreaHeader();
@@ -30785,7 +30478,6 @@ export function Init(jobId){
 	RefreshMobConfInputSelectAreaHeader();
 	RefreshMobConfInputControlCSS();
 */
-
 
 
 	OnClickQuickControlSW();
@@ -30990,22 +30682,7 @@ if (typeof window !== 'undefined') {
     Object.assign(window, {
         SpeedPotName,
         RefreshSuperNoviceFullWeapon,
-        UpdateEquipItemDataByHtml,
-        UpdateEquipCardDataByHtml,
-        UpdateEquipCostumeDataByHtml,
         StAllCalc,
-        getCompleteAvoidance,
-        getFixedCastTimeReductionRate,
-        getFlee,
-        ApplyResistBadStatus,
-        ApplyAdditionalResistElement,
-        ApplyHealRecoveryUp,
-        getDelayTimeReductionRate,
-        getVariableCastTimeRate,
-        getSPCostReductionRate,
-        getCriticalDamageRate,
-        GetAdditionalAspdPercent,
-        GetAdditionalCriticalRate,
         GetCastScalingOfSkillForCastTimeVary,
         GetCastFixOfSkillForCastTimeVary,
         GetCastScalingOfSkillForCastTimeFixed,
@@ -31016,21 +30693,12 @@ if (typeof window !== 'undefined') {
         GetCoolFixOfSkill,
         GetCostScalingOfSkill,
         GetCostFixOfSkill,
-        StPlusCalc,
         GetEquippedTotalSPEquip,
-        GetEquippedTotalSPEquipExact,
         GetEquippedSPListEquip,
-        GetEquippedTotalSPEquipSub,
         GetEquippedSPValueArrayEquip,
-        GetEquippedSPSubEquip,
-        GetEquippedTotalSPShadowSub,
-        GetEquippedSPSubShadow,
         GetEquippedTotalSPCardAndElse,
         GetEquippedSPListCardAndElse,
         GetEquippedSPValueArrayCardAndElse,
-        GetEquippedSPSubSPCardAndElse,
-        GetEquippedSPSubSPPet,
-        GetEquippedTotalSPCostume,
         GetEquippedTotalSPArrow,
         IsMatchSpDefId,
         CheckSpDefFriendlyOver,
@@ -31038,19 +30706,11 @@ if (typeof window !== 'undefined') {
         CheckSpDefJobRestrict,
         CheckSpDefPureStatus,
         CheckSpDefRefineOver,
-        CheckSpDefTransendenceOver,
-        CheckSpDefEquipmentLocation,
         InitJobInfo,
         NumSearch,
         NumSearch2,
-        EquipNumSearchFurubitaHead,
         EquipNumSearchFurubitaSet,
         ROUNDDOWN,
-        ROUNDUP,
-        LoadSaveDataToCalculator,
         Init,
-        OnClickSimulateCastTimeStart,
-        OnStartCountDelayTime,
-        OnClickSimulateCastTimeStop,
-    });
+});
 }

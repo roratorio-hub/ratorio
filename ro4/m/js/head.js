@@ -3826,7 +3826,6 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 		// ↑おそらく、別の場所で処理可能
 
 
-
 		//--------------------------------
 		// オートスペルの発動を適用
 		//--------------------------------
@@ -6594,7 +6593,6 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 		directSubtractionMdef = false;
 		wbairitu = 100;
 		n_bunkatuHIT = 0;
-
 
 
 		// 四次スキル以降の属性設定共通処理
@@ -10691,7 +10689,6 @@ function OnClickTabBTLRSLT(tabIndex) {
 	objGridDmg.classList.remove("CSSFLG_BTLRSLT_TAB_RESULT");
 
 
-
 	switch (tabIndex) {
 	case 0:
 		objGridDmg.classList.add("CSSFLG_BTLRSLT_TAB_ALL");
@@ -10976,11 +10973,8 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 		};
 
 
-
-
 		// クリティカル率を取得
 		criRateF = battleCalcResultF.criRate;
-
 
 
 		//----------------
@@ -11129,9 +11123,6 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 	};
 
 
-
-
-
 	//----------------------------------------------------------------
 	//
 	// ブロックごとの展開状態を保持
@@ -11150,9 +11141,6 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 	refreshCheckboxArray = [];
 
 
-
-
-
 	//----------------------------------------------------------------
 	//
 	// 全体リセット
@@ -11164,7 +11152,6 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 	objGridDmg.innerHTML = "";
 	objGridTiny = document.getElementById("OBJID_DIV_BATTLE_RESULT_TINY");
 	objGridTiny.innerHTML = "";
-
 
 
 	//----------------------------------------------------------------
@@ -11267,7 +11254,6 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 	//----------------------------------------------------------------
 
 	partIdStr = PART_ID_STR_CAST;
-
 
 
 	// TODO: 詠唱時間等未実測スキル対応
@@ -11528,7 +11514,6 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 
 		funcRenderResultTinyHtml(objGridTiny, "攻撃間隔", funcDIG3PXSecondCompact(battleCalcResult.castVary + battleCalcResult.castFixed + battleCalcResult.attackInterval, 2));
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -11939,7 +11924,6 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 		objCell.classList.add("CSSCLS_BTLRSLT_VALUE");
 		HtmlCreateTextNode(funcDIG3PXSecond(valueWork, 2), objCell);
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -13183,7 +13167,6 @@ export function BattleHiDamMaxPain(charaData, specData, mobData, attackMethodCon
 	}
 
 
-
 	for(i=0;i<=6;i++){
 		if(w_HiDam[i] <1) w_HiDam[i]=1;
 	}
@@ -13203,7 +13186,6 @@ export function BattleHiDamMaxPain(charaData, specData, mobData, attackMethodCon
 	wRef1 = new Array();
 	wRef2 = new Array();
 	wRef3 = new Array();
-
 
 
 	var w_sp_rs=1;
@@ -13441,9 +13423,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 	}
 
 
-
-
-
 	//----------------------------------------------------------------
 	// 「古びたミンストレルソングの帽子」の、「振動残響」強化
 	// 「古びたバレリーナの髪飾り」の、「振動残響」強化
@@ -13477,7 +13456,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「精霊王の指輪」の、「アースグレイヴ」「ダイヤモンドダスト」強化
 	//----------------------------------------------------------------
@@ -13486,14 +13464,12 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「エメラルドイヤリング」の、「メタリックサウンド」強化
 	//----------------------------------------------------------------
 	if(n_A_ActiveSkill == 641) {
 		wX += ROUNDDOWN(n_A_BaseLV / 5) * 2 * EquipNumSearch(ITEM_ID_EMERALDEARRING);
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -13511,7 +13487,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「アヴェンジャーウィザードスタッフ」の、「コメット」強化
 	//----------------------------------------------------------------
@@ -13522,7 +13497,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 			}
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -13565,7 +13539,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「マジカルリング」の、「ファイアーボルト」強化
 	// 「マジカルリング」の、「コールドボルト」強化
@@ -13581,8 +13554,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 			wX += 1 * ROUNDDOWN(n_A_BaseLV / 5) * EquipNumSearch(ITEM_ID_MAGICAL_RING);
 		}
 	}
-
-
 
 
 	//----------------------------------------------------------------
@@ -13605,7 +13576,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 			}
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -13636,7 +13606,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「神魔バフォメットの角」の、「デュプレライト（魔法）」強化
 	//----------------------------------------------------------------
@@ -13645,7 +13614,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 			wX += 10 * n_A_HEAD_DEF_PLUS * itemCount;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -13661,7 +13629,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 			wX += vartmp * itemCount;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -13718,7 +13685,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「星のカード」の、「ソウルエクスパンション」強化
 	//----------------------------------------------------------------
@@ -13741,7 +13707,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「マッターキメラカード」の、「ファイアーボルト」強化
 	// 「マッターキメラカード」の、「ライトニングボルト」強化
@@ -13758,7 +13723,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「戦乙女の雫」の、「マグヌスエクソシズム」強化
 	//----------------------------------------------------------------
@@ -13767,7 +13731,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 			wX += 3 * ROUNDDOWN(n_A_BaseLV / 2) * itemCount;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -13782,7 +13745,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「精霊のマント」の、「サイキックウェーブ」強化
 	//----------------------------------------------------------------
@@ -13791,7 +13753,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 			wX += 3 * n_A_SHOULDER_DEF_PLUS * itemCount;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -13809,7 +13770,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「特選葉のお守り」の、「イヌハッカメテオ」強化
 	//----------------------------------------------------------------
@@ -13818,7 +13778,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 			wX += 1 * ROUNDDOWN(n_A_BaseLV / 10) * itemCount;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -13837,7 +13796,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「サラの幻影カード」の、「ヘルインフェルノ」強化
 	//----------------------------------------------------------------
@@ -13847,7 +13805,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 			wX += 10 * n_A_HEAD_DEF_PLUS * cardCountHeadTop;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -13860,7 +13817,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「トラベラーシューズ」の、「メタリックサウンド」強化
 	//----------------------------------------------------------------
@@ -13869,7 +13825,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 			wX += 10 * LearnedSkillSearch(SKILL_ID_MELANCHOLY) * itemCount;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -13891,7 +13846,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「イリュージョン黙示録」の、「ヘルインフェルノ」強化
 	//----------------------------------------------------------------
@@ -13904,7 +13858,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「勇者のブローチ　勇者のジャッジメントローブセット」の、「アドラムス」強化
 	//----------------------------------------------------------------
@@ -13915,7 +13868,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「勇者のブローチ　勇者のジャッジメントローブセット」の、「ジュデックス」強化
 	//----------------------------------------------------------------
@@ -13924,7 +13876,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 			wX += 5 * n_A_BODY_DEF_PLUS * itemCount;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -13946,7 +13897,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「エルヴィラブーツ」の、「ライトニングボルト」強化
 	//----------------------------------------------------------------
@@ -13955,7 +13905,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 			wX += 3 * n_A_SHOES_DEF_PLUS * itemCount;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -13968,7 +13917,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「虹色のねこじゃらし　ブラッディナイトカードセット」の、「ヘルインフェルノ」強化
 	//----------------------------------------------------------------
@@ -13977,7 +13925,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 			wX += 10 * n_A_Weapon_ATKplus * itemCount;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -13992,7 +13939,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「イリュージョンタブレット」の、「ジュデックス」強化
 	//----------------------------------------------------------------
@@ -14003,7 +13949,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 			}
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -14020,7 +13965,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「ふわふわタンポポシューズ」の、「イヌハッカメテオ」強化
 	//----------------------------------------------------------------
@@ -14031,7 +13975,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「ゲフェニア氷の魔道具」の、「ストームガスト」強化
 	//----------------------------------------------------------------
@@ -14040,7 +13983,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 			wX += 2 * ROUNDDOWN(n_A_BaseLV / 3) * itemCount;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -14055,7 +13997,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「ゲフェニア氷の魔道具」の、「フロストミスティ」強化
 	//----------------------------------------------------------------
@@ -14068,7 +14009,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「ゲフェニア氷の魔道具」の、「ジャックフロスト」強化
 	//----------------------------------------------------------------
@@ -14079,7 +14019,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 			}
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -14095,7 +14034,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「ウルティオ-OS」の、「デュプレライト（魔法）」強化
 	//----------------------------------------------------------------
@@ -14109,7 +14047,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「MH-P89-OS」の、「振動残響」強化
 	//----------------------------------------------------------------
@@ -14121,7 +14058,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 			wX += 1 * Math.floor(n_A_BaseLV / 2) * itemCountLeft;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -14144,7 +14080,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「ディオ・アネモスカード」の、「サンダーストーム」強化
 	//----------------------------------------------------------------
@@ -14154,7 +14089,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 			wX += 2 * Math.floor(n_A_BaseLV / 3) * cardCount;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -14167,7 +14101,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「不死鳥のねこじゃらし　ミュータントドラゴンカードセット」の、「メテオストーム」強化
 	//----------------------------------------------------------------
@@ -14176,7 +14109,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 			wX += 10 * n_A_Weapon_ATKplus * itemCount;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -14191,7 +14123,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「あざといケロケロカッパ」の、「イヌハッカメテオ」強化
 	//----------------------------------------------------------------
@@ -14200,7 +14131,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 			wX += 10 * LearnedSkillSearch(SKILL_ID_MYAUMYAU) * itemCount;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -14231,7 +14161,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「インペリアルパニッシュメントローブ」の、「クリムゾンロック」強化
 	//----------------------------------------------------------------
@@ -14245,7 +14174,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「グレースパニッシュメントローブ」の、「クリムゾンロック」強化
 	//----------------------------------------------------------------
@@ -14257,7 +14185,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 			}
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -14290,7 +14217,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 			wX += 10 * LearnedSkillSearch(SKILL_ID_NYAN_GRASS) * itemCount;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -14332,7 +14258,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「虹色のねこじゃらし　封印されたストームナイトカードセット」の、「ダイヤモンドダスト」強化
 	//----------------------------------------------------------------
@@ -14345,7 +14270,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「不死鳥のねこじゃらし　封印されたボイタタカードセット」の、「クリムゾンロック」強化
 	//----------------------------------------------------------------
@@ -14356,7 +14280,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 			}
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -14378,7 +14301,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「ゾディアック　特選ドラムケープセット」の、「プラント系スキル」強化
 	//----------------------------------------------------------------
@@ -14391,7 +14313,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 			}
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -14407,13 +14328,9 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 	}
 
 
-
 	//★★★★★★★★★★★★★★★★★★★
 	//★★★★ roro 側にも反映のこと ★★★★
 	//★★★★★★★★★★★★★★★★★★★
-
-
-
 
 
 	//----------------------------------------------------------------
@@ -14424,7 +14341,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 			wX += 50;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -14444,17 +14360,10 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 戦闘計算情報に保持されているダメージ増幅の適用
 	//----------------------------------------------------------------
 	wX += battleCalcInfo.dmgAmpRate;
-
-
-
-
-
-
 
 
 //********************************************************************************************************************************
@@ -14513,7 +14422,6 @@ export function ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, sp
 	}
 
 
-
 	// 特定のスキルを除いて、レックスエーテルナ効果を適用
 	switch (n_A_ActiveSkill) {
 	case 583:	// レイオブジェネシス
@@ -14530,14 +14438,11 @@ export function ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, sp
 	wBMC2 = ApplyRegistPVPEnergyCoat(mobData, wBMC2);
 
 
-
 	// 魔法ダメージ倍率強化を取得
 	wX = GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData);
 
 
-
 	wBMC2 = ROUNDDOWN(wBMC2 * (100 + wX) / 100);
-
 
 
 	// 冷凍状態での、風属性魔法ダメージ増加の適用
@@ -14565,11 +14470,9 @@ export function ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, sp
 	}
 
 
-
 	// 属性倍率を適用
 	wBMC2 = ApplyElementRatio(mobData, wBMC2,n_A_Weapon_zokusei);
 	wBMC2 = Math.floor(wBMC2);
-
 
 
 	// TODO : 謎補正　スペルフィスト？
@@ -14585,7 +14488,6 @@ export function ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, sp
 	}
 
 
-
 	// ストーンスキンによる、魔法ダメージ増加効果の適用
 	if(n_B_KYOUKA[7] && n_Enekyori == 2) {
 		wBMC2 += Math.floor(wBMC2 * (20 * n_B_KYOUKA[7]) / 100);
@@ -14593,7 +14495,6 @@ export function ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, sp
 
 	// ダメージカット効果の適用
 	wBMC2 = ApplyAttackDamageAmplify(mobData, wBMC2);
-
 
 
 	// ロードオブヴァーミリオンの多段ＨＩＴ補正（ＭＤＥＦ１０分の１適用？）
@@ -14909,7 +14810,6 @@ export function GetSizeModify(mobData, wSC_Size) {
 	}
 
 
-
 	// 特性
 	if (n_tok[ITEM_SP_SIZE_PERFECTION] > 0) {
 		wSC_Size = 1;
@@ -14919,11 +14819,6 @@ export function GetSizeModify(mobData, wSC_Size) {
 	else if (wSC_Size > 0) {
 		n_tok[ITEM_SP_SIZE_PERFECTION] = wSC_Size;
 	}
-
-
-
-
-
 
 
 	return wSC_Size;
@@ -15340,7 +15235,6 @@ export function calc() {
 	var specData = null;
 	var mobData = null;
 	var attackMethodConfArray = null;
-
 
 
 	str_bSUBname = "";
@@ -16151,7 +16045,6 @@ export function GetWeaponAtk(strdex, strBonus, armsType, armsLv, armsAtk, sizeMo
 	var wpnAtkArrayGX = [0, 0, 0];
 
 
-
 	//----------------------------------------------------------------
 	//
 	// 基礎となる武器ATKの算出
@@ -16166,7 +16059,6 @@ export function GetWeaponAtk(strdex, strBonus, armsType, armsLv, armsAtk, sizeMo
 
 	// 基礎武器ATKの算出（STRペナルティ込み）
 	wpnAtkBase = Math.max(0, armsAtkActual - strPenalty);
-
 
 
 	//----------------------------------------------------------------
@@ -16240,7 +16132,6 @@ export function GetWeaponAtk(strdex, strBonus, armsType, armsLv, armsAtk, sizeMo
 	wpnAtkArray[1] = (wpnAtkArray[0] + wpnAtkArray[2]) / 2;
 
 
-
 	//----------------------------------------------------------------
 	//
 	// 実武器ATKの算出
@@ -16279,7 +16170,6 @@ export function GetWeaponAtk(strdex, strBonus, armsType, armsLv, armsAtk, sizeMo
 	}
 
 
-
 	// TODO: ↓実態は「武器攻撃力＋○○％」なのでは？
 
 	//----------------------------------------------------------------
@@ -16291,7 +16181,6 @@ export function GetWeaponAtk(strdex, strBonus, armsType, armsLv, armsAtk, sizeMo
 			wpnAtkArray[idx] = Math.floor((wpnAtkArray[idx]* (100 + effectValue)) / 100);
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -16463,7 +16352,6 @@ g_appliedAppendDamage = (appendDamageRate > 0);
 	}
 
 
-
 	//----------------------------------------------------------------
 	//
 	// 矢ATKを算出・加算、装備ATK増加効果を加算
@@ -16477,7 +16365,6 @@ g_appliedAppendDamage = (appendDamageRate > 0);
 	for (idx = 0; idx < wpnAtkArray.length; idx++) {
 		wpnAtkArray[idx] += atkArrow + n_tok[ITEM_SP_ATK_PLUS];
 	}
-
 
 
 	return wpnAtkArray;
@@ -17234,7 +17121,6 @@ export function GetHitModify(){
 	value += 2 * Math.max(LearnedSkillSearch(SKILL_ID_BUKI_KENKYU), UsedSkillSearch(SKILL_ID_BUKI_KENKYU));
 
 
-
 	// その他のスキルによる効果
 	switch (n_A_ActiveSkill) {
 
@@ -17282,7 +17168,6 @@ export function GetHitModify(){
 		value += 3 * n_A_ActiveSkillLV;
 		break;
 	}
-
 
 
 	return value;
@@ -17514,7 +17399,6 @@ export function ApplyPhysicalSpecializeMonster(charaData, specData, mobData, dmg
 	dmg = Math.floor(dmg * w / 100);
 
 
-
 	//--------------------------------
 	// サイズ特化
 	//--------------------------------
@@ -17549,13 +17433,11 @@ export function ApplyPhysicalSpecializeMonster(charaData, specData, mobData, dmg
 	dmg = Math.floor(dmg * w / 100);
 
 
-
 	//--------------------------------
 	// 属性特化
 	//--------------------------------
 	w = n_tok[40+Math.floor(mobData[18] / 10)];
 	dmg = Math.floor(dmg * (100+w) /100);
-
 
 
 	var w = 100;
@@ -18307,7 +18189,6 @@ candidate = MonsterGroupObj[MONSTER_GROUP_ID_JOR_RAISE1].concat(MonsterGroupObj[
 	}
 
 
-
 	// 移行前データでの処理（移行完了まで必要）
 	else {
 
@@ -18834,14 +18715,12 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「貴族の仮面」の、「サクリファイス」強化
 	//----------------------------------------------------------------
 	if(n_A_ActiveSkill == 284) {
 		w1 += 2 * n_A_BaseLV * EquipNumSearch(ITEM_ID_KIZOKUNO_KAMEN);
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -18856,7 +18735,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 			if (n_A_Weapon_ATKplus >= 7) w1 += 200;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -18936,7 +18814,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「サファイアリスト」の、装備効果
 	//----------------------------------------------------------------
@@ -18966,7 +18843,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「元素のタオルセット」の、「アローストーム」「シビアレインストーム」強化
 	//----------------------------------------------------------------
@@ -18988,7 +18864,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 			w1 += 5 * n_A_Weapon_ATKplus;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -19077,7 +18952,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「試験管ヘアバンド」の、「カートキャノン」強化
 	//----------------------------------------------------------------
@@ -19097,7 +18971,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 			if (n_A_HEAD_DEF_PLUS >= 8) w1 += 20;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -19149,7 +19022,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「布都御魂」の、「黄泉返し」強化
 	//----------------------------------------------------------------
@@ -19161,7 +19033,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 			w1 += 2 * n_A_Weapon2_ATKplus;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -19221,7 +19092,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「シャドウリング」の、「バックスタブ」強化
 	//----------------------------------------------------------------
@@ -19238,7 +19108,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 			w1 += ROUNDDOWN(n_A_BaseLV / 3) * 1;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -19310,7 +19179,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「バイオプロテクターセット」の、「スポアエクスプロージョン」強化
 	//----------------------------------------------------------------
@@ -19319,7 +19187,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 			w1 += 5 * n_A_HEAD_DEF_PLUS;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -19346,7 +19213,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 			w1 += 1 * n_A_Weapon_ATKplus;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -19424,7 +19290,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「ギガントブーツ　アックスセット」の、「カートターミネーション」強化
 	//----------------------------------------------------------------
@@ -19464,7 +19329,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「セイヴザキング」の、騎兵修練【未習得】時における、「グランドクロス」強化
 	// 「セイヴザキング」の、騎兵修練【未習得】時における、「バッシュ」強化
@@ -19481,7 +19345,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 		}
 
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -19521,7 +19384,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「神魔バフォメットの角」の、「デュプレライト（物理）」強化
 	//----------------------------------------------------------------
@@ -19543,7 +19405,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 			}
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -19575,7 +19436,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「勇者の靴　達人の剣　セット」の、「バッシュ」強化
 	//----------------------------------------------------------------
@@ -19597,7 +19457,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「業風石　ゲラドリア　セット」の、「ウィンドカッター」強化
 	//----------------------------------------------------------------
@@ -19611,7 +19470,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 			}
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -19640,7 +19498,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「執行者のシューズ」の、「メテオアサルト」強化
 	//----------------------------------------------------------------
@@ -19660,7 +19517,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 			}
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -19686,7 +19542,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 			}
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -19724,7 +19579,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「深淵の王の指輪」の、「クロスリッパースラッシャー」強化
 	//----------------------------------------------------------------
@@ -19752,7 +19606,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 			w1 += n_A_SHIELD_DEF_PLUS * 20;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -19822,7 +19675,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「ケミカルグローブ」の、「カートレボリューション」強化
 	//----------------------------------------------------------------
@@ -19843,7 +19695,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	if(n_A_ActiveSkill == SKILL_ID_CART_TORNADO) {
 		w1 += 2 * ROUNDDOWN(n_A_BaseLV / 30) * EquipNumSearch(ITEM_ID_CHEMICAL_GLOVE);
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -19889,7 +19740,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「スナイピングベール」の、「マススパイラル」強化
 	//----------------------------------------------------------------
@@ -19922,7 +19772,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 			}
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -20002,7 +19851,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「灰羽のブーツ　黒羽スーツセット」の、「クラスターボム」強化
 	//----------------------------------------------------------------
@@ -20066,7 +19914,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「物影」の、「影斬り」強化
 	//----------------------------------------------------------------
@@ -20092,7 +19939,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「大自然のギター」の、「アローバルカン」強化
 	// 「大自然のロープ」の、「アローバルカン」強化
@@ -20107,7 +19953,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 			if (n_A_Weapon_ATKplus >= 9) w1 += 50;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -20141,7 +19986,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「鉱員のリュック」の、「マグマイラプション」強化
 	//----------------------------------------------------------------
@@ -20150,7 +19994,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 			w1 += 10 * n_A_SHOULDER_DEF_PLUS * itemCount;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -20166,7 +20009,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「スカラバハイヒール　ドゥルガーセット」の、「ローリングカッター」強化
 	//----------------------------------------------------------------
@@ -20180,7 +20022,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 			w1 += vartmp * itemCount;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -20211,7 +20052,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「悪魔の手」の、「獅子吼」強化
 	//----------------------------------------------------------------
@@ -20227,7 +20067,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「不死鳥の冠」の、「オーバーブランド」強化
 	//----------------------------------------------------------------
@@ -20241,7 +20080,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 			}
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -20263,7 +20101,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「特選ウサギのお守り」の、「キャロットビート」強化
 	//----------------------------------------------------------------
@@ -20272,7 +20109,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 			w1 += 1 * ROUNDDOWN(n_A_BaseLV / 10) * itemCount;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -20285,7 +20121,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「イリュージョン名射手のりんご」の、「ダブルストレイフィング」強化
 	//----------------------------------------------------------------
@@ -20296,7 +20131,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 			}
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -20322,7 +20156,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「イリュージョンポールアクス」の、「スパイラルピアース」強化
 	//----------------------------------------------------------------
@@ -20333,7 +20166,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 			}
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -20348,7 +20180,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「インペリアルブーツ」の、「バニシングポイント」強化
 	//----------------------------------------------------------------
@@ -20357,7 +20188,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 			w1 += 10 * LearnedSkillSearch(SKILL_ID_CANNON_SPEAR) * itemCount;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -20370,7 +20200,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「勇者のブローチ　勇者のジャッジメントローブセット」の、「双龍脚」強化
 	//----------------------------------------------------------------
@@ -20379,7 +20208,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 			w1 += 5 * n_A_BODY_DEF_PLUS * itemCount;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -20392,7 +20220,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「勇者のブローチ　勇者のプレートセット」の、「バニシングポイント」強化
 	//----------------------------------------------------------------
@@ -20403,7 +20230,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「勇者のブローチ　勇者のプレートセット」の、「ストームブラスト」強化
 	//----------------------------------------------------------------
@@ -20412,7 +20238,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 			w1 += 5 * n_A_BODY_DEF_PLUS * itemCount;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -20429,7 +20254,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 		}
 
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -20449,7 +20273,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 			w1 += 50 * itemCount;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -20475,7 +20298,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「イリュージョン熱血鉢巻き」の、「天羅地網」強化
 	//----------------------------------------------------------------
@@ -20486,7 +20308,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 			}
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -20501,7 +20322,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「螺旋風魔の宝珠」の、「風魔手裏剣-乱華-」強化
 	//----------------------------------------------------------------
@@ -20512,7 +20332,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 			}
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -20601,7 +20420,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「ウルティオ-OS」の、「デュプレライト（物理）」強化
 	//----------------------------------------------------------------
@@ -20613,7 +20431,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 			w1 += 7 * n_A_BaseLV * itemCountLeft;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -20629,7 +20446,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「MH-P89-OS」の、「振動残響」強化
 	//----------------------------------------------------------------
@@ -20641,7 +20457,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 			w1 += 1 * Math.floor(n_A_BaseLV / 2) * itemCountLeft;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -20662,7 +20477,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「ハートハンター・Mベラレカード」の、「ラピッドシャワー」強化
 	//----------------------------------------------------------------
@@ -20679,7 +20493,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 			}
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -20710,7 +20523,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「不調和の思念体シューズ　シャープスター　セット」の、「シャープシューティング」強化
 	//----------------------------------------------------------------
@@ -20730,7 +20542,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 			w1 += 2 * n_A_BaseLV * itemCount;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -20754,7 +20565,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「ビリー・コスルリースカード」の、「インベナム」強化
 	//----------------------------------------------------------------
@@ -20764,7 +20574,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 			w1 += 2 * n_A_BaseLV * cardCount;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -20778,7 +20587,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「ユメヒメカード」の、「アローシャワー」強化
 	//----------------------------------------------------------------
@@ -20788,7 +20596,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 			w1 += 2 * n_A_BaseLV * cardCount;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -20802,7 +20609,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「イリュージョンミリタリーブーツ」の、「アックスブーメラン」強化
 	//----------------------------------------------------------------
@@ -20812,7 +20618,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 			w1 += 20 * LearnedSkillSearch(SKILL_ID_AXE_BOOMERANG) * itemCount;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -20828,7 +20633,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 			w1 += 2 * LearnedSkillSearch(SKILL_ID_FRIGNO_UTA) * itemCount;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -20856,7 +20660,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「氷炎悪神の刃鎌」の、「メナーナイト」強化
 	//----------------------------------------------------------------
@@ -20870,7 +20673,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「追撃者のシューズ」の、「フェイタルメナス」強化
 	//----------------------------------------------------------------
@@ -20881,7 +20683,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 			w1 += 10 * LearnedSkillSearch(SKILL_ID_KEN_SHUREN_GENETIC) * itemCount;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -20898,7 +20699,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「試験管ブーツ」の、「カートトルネード」強化
 	//----------------------------------------------------------------
@@ -20908,7 +20708,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 			w1 += 10 * LearnedSkillSearch(SKILL_ID_CRAZY_WEED) * itemCount;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -20930,8 +20729,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 			w1 += 20 * LearnedSkillSearch(SKILL_ID_AXE_BOOMERANG) * itemCount;
 		}
 	}
-
-
 
 
 	//----------------------------------------------------------------
@@ -20965,7 +20762,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「天魔外道の外套」の、「獅子吼」強化
 	//----------------------------------------------------------------
@@ -20975,7 +20771,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 			w1 += 15 * LearnedSkillSearch(SKILL_ID_BAKKISANDAN) * itemCount;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -20999,7 +20794,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「ポルックスリング」の、「温もり」強化
 	//----------------------------------------------------------------
@@ -21013,7 +20807,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「科学者のマント」の、「スポアエクスプロージョン」強化
 	//----------------------------------------------------------------
@@ -21023,7 +20816,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 			w1 += 20 * LearnedSkillSearch(SKILL_ID_FIRE_EXPANSION) * itemCount;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -21052,7 +20844,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 			}
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -21086,7 +20877,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「エリュマントスの皮」の、「アローストーム」強化
 	//----------------------------------------------------------------
@@ -21096,7 +20886,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 			w1 += 1 * LearnedSkillSearch(SKILL_ID_AIMED_BOLT) * itemCount;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -21120,7 +20909,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「インペリアルクルシフォームスーツ」の、「十文字斬り」強化
 	//----------------------------------------------------------------
@@ -21142,7 +20930,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「グロトネリーア」の、「トライアングルショット」強化
 	//----------------------------------------------------------------
@@ -21152,7 +20939,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 			w1 += 50 * LearnedSkillSearch(SKILL_ID_MAELSTORM) * itemCount;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -21166,7 +20952,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「山岳ヘルメット」の、「パワースイング」強化
 	//----------------------------------------------------------------
@@ -21175,7 +20960,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 			w1 += 1 * SU_VIT;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -21191,7 +20975,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「グレースアーティススーツ」の、「ボウリングバッシュ」強化
 	//----------------------------------------------------------------
@@ -21203,7 +20986,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 			}
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -21219,7 +21001,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「グレースコンフィデンシャルメイル」の、「ソニックウェーブ」強化
 	//----------------------------------------------------------------
@@ -21231,7 +21012,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 			}
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -21253,7 +21033,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 			w1 += 30 * LearnedSkillSearch(SKILL_ID_CROSS_IMPACT) * itemCount;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -21397,7 +21176,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「エンドオブザワールド」の、「カウンタースラッシュ」強化
 	//----------------------------------------------------------------
@@ -21419,7 +21197,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 「シンフルオパールリング」の、「温もり」強化
 	//----------------------------------------------------------------
@@ -21429,7 +21206,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 			w1 += 100 * itemCount;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -21443,7 +21219,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 			}
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -21469,7 +21244,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 			}
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -21499,13 +21273,9 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//★★★★★★★★★★★★★★★★★★★
 	//★★★★ roro 側にも反映のこと ★★★★
 	//★★★★★★★★★★★★★★★★★★★
-
-
-
 
 
 	//----------------------------------------------------------------
@@ -21514,9 +21284,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	if(n_A_ActiveSkill == SKILL_ID_CART_REVOLUTION) {
 		w1 += 50 * CardNumSearch(549);
 	}
-
-
-
 
 
 	//----------------------------------------------------------------
@@ -21649,9 +21416,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
-
-
 	//----------------------------------------------------------------
 	// 「性能カスタマイズ欄」の、「○○スキルで攻撃時ダメージ上昇」強化
 	//----------------------------------------------------------------
@@ -21669,17 +21433,14 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 戦闘計算情報に保持されているダメージ増幅の適用
 	//----------------------------------------------------------------
 	w1 += battleCalcInfo.dmgAmpRate;
 
 
-
 	// 装備自体の当該スキル強化値、カード自体の当該スキル強化値を適用する
 	w1 += GetEquippedTotalSPEquip(5000 + n_A_ActiveSkill) + GetEquippedTotalSPCardAndElse(5000 + n_A_ActiveSkill)
-
 
 
 //********************************************************************************************************************************
@@ -22121,7 +21882,6 @@ g_wCastTemp ??= wCast / 1000;;
 g_wCastFixedTemp ??= wCastFixed / 1000;
 
 
-
 	//----------------------------------------------------------------
 	// 変動詠唱時間に固定詠唱時間を加算
 	//----------------------------------------------------------------
@@ -22130,7 +21890,6 @@ g_wCastFixedTemp ??= wCastFixed / 1000;
 	wCast = wCast / 1000;
 
 	if(n_Delay[5] > 0) wCast = 0;
-
 
 
 	//----------------------------------------------------------------
@@ -22245,7 +22004,6 @@ g_wCastFixedTemp ??= wCastFixed / 1000;
 	}
 
 
-
 g_attackIntervalTemp ??= n_Delay[w];
 }
 
@@ -22318,14 +22076,12 @@ export function ApplyAttackDamageAmplify(mobData, dmg){
 	var dmgAmp = 0;
 
 
-
 	// ★★★★　注意　★★★★
 	//
 	// 戦闘エリアによる補正は、被ダメージ用の関数も存在する（この下）
 	// 当該処理を変更した際は、そちらも変更すること
 	//
 	// ★★★★　注意　★★★★
-
 
 
 	// 戦闘エリアによる補正
@@ -22654,15 +22410,7 @@ if (typeof window !== 'undefined') {
 
     Object.assign(window, {
         CAST_PARAM_BORDER,
-        w_AG,
-        SyurikenOBJ,
-        KunaiOBJ,
-        CanonOBJ,
-        SubName,
-        n_SieldSpDum,
         n_SieldSp,
-        n_SieldSpNum,
-        n_SP_SKILL,
         HEALTYPE_HEAL,
         HEALTYPE_HIGHNESS,
         HEALTYPE_SANCTUARY,
@@ -22675,86 +22423,11 @@ if (typeof window !== 'undefined') {
         HEALTYPE_ZYOKODO,
         HEAL_TARGETTYPE_SELF,
         HEAL_TARGETTYPE_PLAYER,
-        HEAL_TARGETTYPE_ENEMY,
-        BattleCalc999,
-        BattleCalc999Body,
-        BattleCalc999Core,
-        BattleCalcSubDamagePhysicalCommon,
-        GetBattlerAtkPercentUp,
-        ATKbaiJYOUSAN,
-        GetBattlerMatkPercentUp,
-        ApplyMagicalSpecializeMonster,
-        ApplyMagicalSpecializeMonster20211117,
-        ApplyMagicalSpecializeMonsterMod20211014SubMagicalDamageUp,
-        ApplyMagicalSpecializeMonsterMod20211014SubSpiderWebModify,
-        ApplyMagicalSpecializeMonsterMod20211014SubSpecializeMap,
-        ApplyMagicalSpecializeMonsterMod20211014SubSpecializeRace,
-        ApplyMagicalSpecializeMonsterMod20211014SubSpecializeSize,
-        ApplyMagicalSpecializeMonsterMod20211014SubSpecializeMonsterElement,
-        ApplyMagicalSpecializeMonsterMod20211014SubSpecializeMagicElement,
-        ApplyMagicalSpecializeMonsterMod20211014SubSpecializeBossType,
-        ApplyResistElement,
-        BaiTaisei_A_SP,
-        ApplyRegistPVPNormal,
-        BaiTaisei_C,
-        ApplyRegistPVPEnergyCoat,
-        BaiTaisei_E,
         HealCalc,
-        BuildBattleResultHtml,
-        BuildBattleResultHtmlMIG,
-        calcReceivedDamage,
-        calcReceivedMagicDamage,
-        getResistanceOfEnvironment,
-        BattleHiDamMaxPain,
-        GetMagicalSkillDamageRatioChange,
-        ApplyMagicalSkillDamageRatioChange,
-        ApplyMagicalSkillDamageRatioChangeSubArcanaCard,
-        RebuildActiveSkillRatioInfo,
-        RebuildSizeModifyRatioInfo,
-        GetSizeModify,
-        GetBaseRateSandansho,
-        GetBaseRateFearBleath,
-        GetBaseRateDA,
         GetActRateSandansho,
-        GetActHitRateSandansho,
-        GetActRateFearBleath,
-        GetActHitRateFearBleath,
-        GetActRateDA,
-        GetActHitRateDA,
         GetActRateCritical,
-        GetActHitRateCritical,
-        GetActRateNormal,
-        GetActHitRateNormal,
-        GetActHitRateAll,
-        GetIkariPow,
         AutoCalc,
         calc,
-        GetWeaponAtk,
-        _SUB_ApplyMonsterDefence,
-        ApplyMonsterDefence,
-        TYPE_SYUUREN,
-        GetArmsElementBySPData,
-        SET_ZOKUSEI,
-        ApplyElementRatio,
-        GetHitModify,
-        GetPerfectHitDamage,
-        ApplyHitJudgeElementRatio,
         ApplyPhysicalSpecializeMonster,
-        ApplyPhysicalDamageUpExcludingCritical,
-        GetSpiderWebDamageRatio,
-        GetElementFieldDamageRatio,
-        ApplyPhysicalDamageRatio,
-        GetPhysicalSkillDamageRatioChange,
-        ApplyPhysicalSkillDamageRatioChange,
-        ApplyPhysicalSkillDamageRatioChangeSubArcanaCard,
-        ApplyLexAeterna,
-        CalcMeanDamage,
-        CalcMeanDamageLeftHand,
-        GetFixedAppendAtk,
-        BuildCastAndDelayHtml,
-        BuildCastAndDelayHtmlMIG,
-        BuildResistElementTinyHtml,
-        ApplyAttackDamageAmplify,
-        DamageModifierOfArea,
-    });
+});
 }

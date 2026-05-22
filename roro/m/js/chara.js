@@ -713,7 +713,6 @@ export function ExBuffNumSearch(exBufId) {
 	}
 
 
-
 	switch (exBufId) {
 
 	// 支援イドゥンの林檎
@@ -854,7 +853,6 @@ export function ExBuffNumSearch(exBufId) {
 	}
 
 
-
 	switch (exBufId) {
 
 	// 支援ゴスペル　ＨＰアップ
@@ -874,7 +872,6 @@ export function ExBuffNumSearch(exBufId) {
 
 
 	}
-
 
 
 	switch (exBufId) {
@@ -924,7 +921,6 @@ export function ExBuffNumSearch(exBufId) {
 		exBufNum = g_confDataSanzi[CCharaConfSanzi.CONF_ID_CHATTERING];
 		break;
 	}
-
 
 
 	switch (exBufId) {
@@ -1007,7 +1003,6 @@ export function ExBuffNumSearch(exBufId) {
 	}
 
 
-
 	switch (exBufId) {
 
 	// ＯＴＰログインボーナス支援
@@ -1016,7 +1011,6 @@ export function ExBuffNumSearch(exBufId) {
 		break;
 
 	}
-
 
 
 	switch (exBufId) {
@@ -1086,7 +1080,6 @@ export function ExBuffNumSearch(exBufId) {
 		break;
 
 	}
-
 
 
 	return exBufNum;
@@ -7015,8 +7008,6 @@ export function GetStatusModifyMaxSpPlus() {
 	var bufferJobLv = 0, bufferSkillLv = 0;
 
 
-
-
 	//----------------------------------------------------------------
 	// ランダムエンチャント効果
 	//----------------------------------------------------------------
@@ -9801,7 +9792,6 @@ export function GetStatusModifyMdefDivPlus(bIgnoreBuff) {
 	let prefetch = 0;
 
 
-
 	//----------------------------------------------------------------
 	// ランダムエンチャント効果
 	//----------------------------------------------------------------
@@ -12158,87 +12148,4 @@ export function GetStatusModifyTEMPPlus() {
 	return val;
 }
 
-Object.assign(window, {
-	EXBUF_ID_ENDURE,
-	EXBUF_ID_ASUMUPTIO,
-	EXBUF_ID_IDUNNNO_RINGO,
-	EXBUF_ID_IDUNNNO_RINGO_BUFFER_VITRANK,
-	EXBUF_ID_IDUNNNO_RINGO_BUFFER_SKILLLV,
-	EXBUF_ID_HUMMING,
-	EXBUF_ID_HUMMING_BUFFER_DEXRANK,
-	EXBUF_ID_HUMMING_BUFFER_SKILLLV,
-	EXBUF_ID_SERVICE_FOR_YOU,
-	EXBUF_ID_SERVICE_FOR_YOU_BUFFER_INTRANK,
-	EXBUF_ID_SERVICE_FOR_YOU_BUFFER_SKILLLV,
-	EXBUF_ID_IKUSADAIKONO_HIBIKI,
-	EXBUF_ID_FUSHANIMUKATTE_TOTSUGEKI,
-	EXBUF_ID_FUSHANIMUKATTE_TOTSUGEKI_BUFFER_JOBLV,
-	EXBUF_ID_FUSHANIMUKATTE_TOTSUGEKI_BUFFER_SKILLLV,
-	EXBUF_ID_ECHONO_UTA,
-	EXBUF_ID_ECHONO_UTA_BUFFER_JOBLV,
-	EXBUF_ID_ECHONO_UTA_BUFFER_SKILLLV,
-	EXBUF_ID_KOIBITOTACHINOTAMENO_SYMPHONY,
-	EXBUF_ID_KOIBITOTACHINOTAMENO_SYMPHONY_BUFFER_JOBLV,
-	EXBUF_ID_KOIBITOTACHINOTAMENO_SYMPHONY_BUFFER_SKILLLV,
-	EXBUF_ID_FRIGGNO_UTA,
-	EXBUF_ID_FRYDAY_NIGHT_FEVER,
-	EXBUF_ID_RELAZUNO_TSUYU,
-	EXBUF_ID_RELAZUNO_TSUYU_COUNT_OF_MINWAN,
-	EXBUF_ID_BEYOND_OF_WARCRAY,
-	EXBUF_ID_BEYOND_OF_WARCRAY_COUNT_OF_MINWAN,
-	EXBUF_ID_DANCE_WITH_WUG,
-	EXBUF_ID_DANCE_WITH_WUG_COUNT_OF_MINWAN,
-	EXBUF_ID_GOSPEL_HP_UP,
-	EXBUF_ID_GOSPEL_SP_UP,
-	EXBUF_ID_GOSPEL_HIT_FLEE_PLUS,
-	EXBUF_ID_DELUGE,
-	EXBUF_ID_ZYUTSUSHIKI_TENKAI,
-	EXBUF_ID_FIGHTING_SPIRIT,
-	EXBUF_ID_ODINNO_CHIKARA,
-	EXBUF_ID_ODINNO_EPICLESIS,
-	EXBUF_ID_HOM_S_PAINKILLER,
-	EXBUF_ID_HOM_S_PAINKILLER_HOM_LEVEL,
-	EXBUF_ID_CHATTERING,
-	EXBUF_ID_CHAGASHI,
-	EXBUF_ID_NIZIIRONO_OKASHI,
-	EXBUF_ID_URAMINO_HAKO,
-	EXBUF_ID_VITATA500,
-	EXBUF_ID_BUCHE_DE_NOEL,
-	EXBUF_ID_RUNEMIDGARTSSAN_OYATSU,
-	EXBUF_ID_SCHWARZWALDSAN_OYATSU,
-	EXBUF_ID_GUARANA_CANDY,
-	EXBUF_ID_YAKITOMOROKOSHI,
-	EXBUF_ID_HPZOKA_POTION,
-	EXBUF_ID_SPZOKA_POTION,
-	EXBUF_ID_SENTOYAKU,
-	EXBUF_ID_EVENT_BUF_ATK_PLUS,
-	EXBUF_ID_EVENT_BUF_HIT_PLUS,
-	EXBUF_ID_ORLEANS_FULLCOURSE,
-	EXBUF_ID_OTP_LOGIN_BONUS,
-	EXBUF_ID_CUSTOM_HIT_PLUS,
-	EXBUF_ID_CUSTOM_ATK_PLUS,
-	EXBUF_ID_CUSTOM_HP_PLUS,
-	EXBUF_ID_CUSTOM_HP_UP,
-	EXBUF_ID_CUSTOM_SP_PLUS,
-	EXBUF_ID_CUSTOM_SP_UP,
-	EXBUF_ID_CUSTOM_DEF_PLUS,
-	EXBUF_ID_CUSTOM_MDEF_PLUS,
-	EquipNumSearch,
-	EquipNumSearchMIG,
-	CardNumSearch,
-	CostumeNumSearch,
-	ExBuffNumSearch,
-	TimeItemNumSearch,
-	GetStatusModifyBodyElement,
-	GetStatusModifyAtkPlus,
-	GetStatusModifyMaxHpPlus,
-	GetStatusModifyMaxHpUp,
-	GetStatusModifyMaxSpPlus,
-	GetStatusModifyMaxSpUp,
-	GetStatusModifyDefDivPlus,
-	GetStatusModifyDefDivUp,
-	GetStatusModifyMdefDivPlus,
-	GetStatusModifyMdefDivUp,
-	GetStatusModifyHitPlus,
-	GetStatusModifyTEMPPlus,
-});
+Object.assign(window, { EquipNumSearch, CardNumSearch, TimeItemNumSearch });
