@@ -1777,6 +1777,41 @@ export function OnChangeJob(jobId) {
 	}
 }
 
+/**
+ * debounceユーティリティ。最後の呼び出しから delay ms 後に fn を実行する。
+ * @param {Function} fn 遅延実行する関数
+ * @param {number} delay 遅延時間（ミリ秒）
+ * @returns {Function} debounce済みの関数
+ */
+function _debounce(fn, delay) {
+	let timer = null;
+	return function() {
+		clearTimeout(timer);
+		timer = setTimeout(fn, delay);
+	};
+}
+
+/**
+ * BaseLV 入力の onChange ハンドラ（debounce済み）。
+ * calcx.html の A_BaseLV フィールドから呼び出される。
+ */
+const OnChangeBaseLV = _debounce(function() {
+	CalcStatusPoint(true);
+	StAllCalc();
+	CAttackMethodAreaComponentManager.RebuildControls();
+	AutoCalc();
+}, 200);
+
+/**
+ * ステータス入力の onChange ハンドラ（debounce済み）。
+ * calcx.html の A_STR〜A_CRT フィールドから呼び出される。
+ */
+const OnChangeStatus = _debounce(function() {
+	CalcStatusPoint(false);
+	StAllCalc();
+	AutoCalc();
+}, 200);
+
 if (typeof window !== 'undefined') {
 	window.g_pureStatus = g_pureStatus;
 	window.g_bonusStatus = g_bonusStatus;
@@ -1823,4 +1858,6 @@ if (typeof window !== 'undefined') {
 	window.ApplySpecModify = ApplySpecModify;
 	window.migrateOtherJob = migrateOtherJob;
 	window.OnChangeJob = OnChangeJob;
+	window.OnChangeBaseLV = OnChangeBaseLV;
+	window.OnChangeStatus = OnChangeStatus;
 }
