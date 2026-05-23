@@ -83,8 +83,9 @@ export function RebuildStatusSelect(jobId) {
 /**
  * ステータスポイントを計算する
  * @param bIgnoreAutoCalc 自動計算回避フラグ
+ * @param bIgnorePointCap ポイントキャップチェックをスキップするフラグ（ロード時に使用）
  */
-export function CalcStatusPoint(bIgnoreAutoCalc) {
+export function CalcStatusPoint(bIgnoreAutoCalc, bIgnorePointCap = false) {
 
 	const _cf = document.calcForm;
 	// ベースレベルの自動計算チェックボックスの状態を取得
@@ -189,9 +190,9 @@ export function CalcStatusPoint(bIgnoreAutoCalc) {
 		document.calcForm.A_BaseLV.value = blv - 1;
 	}
 
-	// ポイントキャップをチェック
+	// ポイントキャップをチェック（ロード時はスキップ）
 	let bPointCap = CSaveController.getSettingProp(CSaveDataConst.propNamePointCap);
-	if (bPointCap) {
+	if (bPointCap && !bIgnorePointCap) {
 		// ステータスポイントを超えていたら値を戻す
 		if (((stPointEarned - stPointUsed) < 0) || ((stTSPointEarned - stTSPointUsed) < 0)) {
 			_cf.A_STR.value = g_STR;
@@ -207,7 +208,7 @@ export function CalcStatusPoint(bIgnoreAutoCalc) {
 				_cf.A_CON.value = g_CON;
 				_cf.A_CRT.value = g_CRT;
 				_cf.A_BaseLV.value = g_BaseLV;
-			CalcStatusPoint(true);
+			CalcStatusPoint(true, true);
 			return;
 		}
 		else {
