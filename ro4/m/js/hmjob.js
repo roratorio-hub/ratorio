@@ -100,8 +100,9 @@ export function RebuildStatusSelect(jobId) {
 /**
  * ステータスポイントを計算する
  * @param bIgnoreAutoCalc 自動計算回避フラグ
+ * @param bIgnorePointCap ポイントキャップチェックをスキップするフラグ（ロード時に使用）
  */
-export function CalcStatusPoint(bIgnoreAutoCalc) {
+export function CalcStatusPoint(bIgnoreAutoCalc, bIgnorePointCap = false) {
 
 	const _cf = document.calcForm;
 	// ベースレベルの自動計算チェックボックスの状態を取得
@@ -206,9 +207,9 @@ export function CalcStatusPoint(bIgnoreAutoCalc) {
 		document.calcForm.A_BaseLV.value = blv - 1;
 	}
 
-	// ポイントキャップをチェック
+	// ポイントキャップをチェック（ロード時はスキップ）
 	let bPointCap = CSaveController.getSettingProp(CSaveDataConst.propNamePointCap);
-	if (bPointCap) {
+	if (bPointCap && !bIgnorePointCap) {
 		// ステータスポイントを超えていたら値を戻す
 		if (((stPointEarned - stPointUsed) < 0) || ((stTSPointEarned - stTSPointUsed) < 0)) {
 			_cf.A_STR.value = g_STR;
@@ -224,7 +225,7 @@ export function CalcStatusPoint(bIgnoreAutoCalc) {
 				_cf.A_CON.value = g_CON;
 				_cf.A_CRT.value = g_CRT;
 				_cf.A_BaseLV.value = g_BaseLV;
-			CalcStatusPoint(true);
+			CalcStatusPoint(true, true);
 			return;
 		}
 		else {
@@ -1793,6 +1794,41 @@ export function OnChangeJob(jobId) {
 	}
 }
 
+/**
+ * debounceユーティリティ。最後の呼び出しから delay ms 後に fn を実行する。
+ * @param {Function} fn 遅延実行する関数
+ * @param {number} delay 遅延時間（ミリ秒）
+ * @returns {Function} debounce済みの関数
+ */
+function _debounce(fn, delay) {
+	let timer = null;
+	return function() {
+		clearTimeout(timer);
+		timer = setTimeout(fn, delay);
+	};
+}
+
+/**
+ * BaseLV 入力の onChange ハンドラ（debounce済み）。
+ * calcx.html の A_BaseLV フィールドから呼び出される。
+ */
+const OnChangeBaseLV = _debounce(function() {
+	CalcStatusPoint(true);
+	StAllCalc();
+	CAttackMethodAreaComponentManager.RebuildControls();
+	AutoCalc();
+}, 200);
+
+/**
+ * ステータス入力の onChange ハンドラ（debounce済み）。
+ * calcx.html の A_STR〜A_CRT フィールドから呼び出される。
+ */
+const OnChangeStatus = _debounce(function() {
+	CalcStatusPoint(false);
+	StAllCalc();
+	AutoCalc();
+}, 200);
+
 if (typeof window !== 'undefined') {
 	window.g_pureStatus = g_pureStatus;
 	window.g_bonusStatus = g_bonusStatus;
@@ -1839,4 +1875,6 @@ if (typeof window !== 'undefined') {
 	window.ApplySpecModify = ApplySpecModify;
 	window.migrateOtherJob = migrateOtherJob;
 	window.OnChangeJob = OnChangeJob;
+	window.OnChangeBaseLV = OnChangeBaseLV;
+	window.OnChangeStatus = OnChangeStatus;
 }

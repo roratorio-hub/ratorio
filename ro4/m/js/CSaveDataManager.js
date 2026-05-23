@@ -1116,8 +1116,8 @@ export class CSaveDataManager {
 		RefreshMobConfDebufSelectAreaHeader();
 		RefreshMobConfDebufControlCSS();
 
-		// ステータス再計算
-		CalcStatusPoint(true);
+		// ステータス再計算（ロード時はポイントキャップチェックをスキップ）
+		CalcStatusPoint(true, true);
 		StAllCalc();
 
 		// 攻撃手段読み込み
