@@ -14294,6 +14294,7 @@ export function StAllCalc(){
  */
 export function getCompleteAvoidance() {
     let lucky = 0;
+    let vartmp = 0;
     let itemCount = 0;
     let cardCount = 0;
     let cardCountRight = 0;
@@ -15420,6 +15421,7 @@ export function getFlee() {
 	var idx, sklLv = 0, confval = 0, itemCount = 0, cardCount = 0;
 	var cardCountRight = 0, cardCountLeft = 0, cardCountHeadTop = 0;
 	var cardCountShield = 0, cardCountBody = 0, cardCountShoulder = 0, cardCountShoes = 0;
+	let vartmp = 0;
 	let prefetch = 0;
     let flee = 0;
 
@@ -17228,6 +17230,7 @@ export function ApplyAdditionalResistElement() {
  */
 export function ApplyHealRecoveryUp() {
 	var idx, sklLv = 0, itemCount = 0, bufLv = 0, cardCount = 0, cardCountRight = 0, cardCountLeft = 0;
+	let vartmp = 0;
     // USED : ヒール系スキルを受けた時のHP回復量
     // USING: ヒール系スキルを使った時のHP回復量
 
@@ -17794,6 +17797,7 @@ export function getDelayTimeReductionRate() {
 	var sklLv = 0, skllv = 0, itemCount = 0, itemCountAccessory1 = 0, bufLv = 0, cardCount = 0;
 	var cardCountRight = 0, cardCountLeft = 0, cardCountHeadTop = 0;
 	var cardCountShield = 0, cardCountBody = 0, cardCountShoulder = 0, cardCountShoes = 0;
+	let vartmp = 0;
 
     let delay_time_reduction = 0;
     n_tok[ITEM_SP_SKILL_DELAY_DOWN] += GetRndOptTotalValue(ITEM_SP_SKILL_DELAY_DOWN, null, false);
@@ -18637,6 +18641,7 @@ export function getVariableCastTimeRate() {
 	var idx, sklLv = 0, itemCount = 0, itemCountAccessory2 = 0, bufLv = 0, cardCount = 0;
 	var cardCountRight = 0, cardCountLeft = 0, cardCountHeadTop = 0;
 	var cardCountShield = 0, cardCountBody = 0, cardCountShoulder = 0, cardCountShoes = 0;
+	let vartmp = 0;
     // 詠唱ステータスから残余詠唱時間の割合を計算する
 	const casting_status = Math.max(0, n_A_DEX) + Math.max(0, n_A_INT) / 2;
     let cast_common = 1 - Math.sqrt(casting_status / CAST_PARAM_BORDER);
@@ -19546,7 +19551,7 @@ export function getVariableCastTimeRate() {
  * @returns {Number}
  */
 export function getSPCostReductionRate() {
-	var bufLv = 0, itemCount = 0;
+	var bufLv = 0, itemCount = 0, vartmp = 0;
     let cost_reduction = n_tok[ITEM_SP_COST_DOWN];
 
     //----------------------------------------------------------------
@@ -19861,7 +19866,7 @@ export function getSPCostReductionRate() {
  * @returns {Number}
  */
 export function getCriticalDamageRate() {
-	var bufLv = 0, itemCount = 0, cardCount = 0;
+	var bufLv = 0, itemCount = 0, cardCount = 0, vartmp = 0;
 	var cardCountRight = 0, cardCountLeft = 0, cardCountHeadTop = 0;
 	var cardCountShield = 0, cardCountBody = 0, cardCountShoulder = 0, cardCountShoes = 0;
     let damage_ratio = n_tok[ITEM_SP_CRITICAL_DAMAGE_UP];
