@@ -77,9 +77,6 @@ describe('hmjob.js', () => {
         it('window.CalcStatusPoint が設定されている', () => {
             expect((window as any).CalcStatusPoint).toBe(CalcStatusPoint);
         });
-        it('window.OnChangeJob が設定されている', () => {
-            expect((window as any).OnChangeJob).toBe(OnChangeJob);
-        });
     });
 
     describe('スモークコール（ReferenceError検出）', () => {

@@ -146,6 +146,5 @@ export function Click_A4(recalc = false){
 if (typeof window !== 'undefined') {
     window.n_A_PassSkill4 = n_A_PassSkill4;
     window.n_Skill4SW = n_Skill4SW;
-    window.Click_Skill4SW = Click_Skill4SW;
     window.Click_A4 = Click_A4;
 }

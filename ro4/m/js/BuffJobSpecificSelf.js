@@ -835,7 +835,6 @@ export function UsedSkillSearchSubUsedOnly(sklId) {
 if (typeof window !== 'undefined') {
     window.n_A_PassSkill = n_A_PassSkill;
     window.n_Skill1SW = n_Skill1SW;
-    window.Click_PassSkillSW = Click_PassSkillSW;
     window.Click_A1 = Click_A1;
     window.UsedSkillSearch = UsedSkillSearch;
 }

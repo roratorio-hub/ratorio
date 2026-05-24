@@ -3,7 +3,7 @@ import { GetJobBonus, GetJobLevelMax, GetJobName } from '../../../ro4/m/js/data/
 import '../../m/js/data/mig.itemsp.h.js';
 import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlGetObjectValueByIdAsInteger } from '../../common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
-function OnLoadJobBonusTable() {
+export function OnLoadJobBonusTable() {
 
 	var jobId = 0;
 
@@ -30,7 +30,7 @@ function OnLoadJobBonusTable() {
 }
 
 
-function RefreshJobBonusTable() {
+export function RefreshJobBonusTable() {
 
 	var idx = 0;
 
@@ -199,4 +199,3 @@ export function RefreshJobBonusTableSub(objRoot, jobBonusArrayArray, lvBegin, lv
 	// フッタ行追加
 	funcAddLabelRow();
 }
-if (typeof window !== 'undefined') { Object.assign(window, { OnLoadJobBonusTable, RefreshJobBonusTable }); }

@@ -45,14 +45,4 @@ describe('quickcontrol.js', () => {
         }
     });
 
-    describe('window互換確認', () => {
-        const windowNames = [
-            'OnClickQuickControlSW',
-        ];
-        for (const name of windowNames) {
-            it(`window.${name} が設定されている`, () => {
-                expect(typeof (window as any)[name]).toBe('function');
-            });
-        }
-    });
 });

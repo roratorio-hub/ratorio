@@ -1287,6 +1287,3 @@ export function BuildUpNumberSelectWithZeroOff(objSelect, nMin, nMax) {
 		objSelect.options[idx] = new Option(n, n);
 	}
 }
-if (typeof window !== 'undefined') {
-	Object.assign(window, { HtmlSetObjectValueById, HtmlCopyToClipboardById });
-}

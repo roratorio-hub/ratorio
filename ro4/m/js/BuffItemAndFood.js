@@ -430,6 +430,5 @@ if (typeof window !== 'undefined') {
     window.n_Skill7SW = n_Skill7SW;
     window.ID_BUFF_MANUK_ISHI = ID_BUFF_MANUK_ISHI;
     window.ID_BUFF_VESPER_HONEY = ID_BUFF_VESPER_HONEY;
-    window.Click_Skill7SW = Click_Skill7SW;
     window.Click_A7 = Click_A7;
 }

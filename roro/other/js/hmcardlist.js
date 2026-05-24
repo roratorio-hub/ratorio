@@ -31,7 +31,7 @@ import { HtmlRemoveOptionAll, HtmlCreateElementOption, HtmlRemoveAllChild } from
 window.CARD_KIND_DMY_FOR_ALL = -1;
 
 // 初期処理の実行
-function OnLoadCardList () {
+export function OnLoadCardList () {
 	SetUpSelectCardType();
 	RefreshCardListTable();
 }
@@ -63,7 +63,7 @@ export function SetUpSelectCardType(){
 /**
  * カード一覧テーブルを更新する.
  */
-function RefreshCardListTable(){
+export function RefreshCardListTable(){
 	var objSelect = null;
 	var selectedCardKind = 0;
 	var cardDataArray = null;
@@ -476,12 +476,12 @@ export function DispData(selectedCardKind, cardDataArray) {
 	}
 }
 
-function OnChangeKindRestrict() {
+export function OnChangeKindRestrict() {
 	// 一覧テーブルを再構築
 	RefreshCardListTable();
 }
 
-function OnChangeShowEnchantInfo() {
+export function OnChangeShowEnchantInfo() {
 	// 一覧テーブルを再構築
 	RefreshCardListTable();
 }
@@ -817,10 +817,6 @@ export function RebuildCardSelectSubSortCollectedEnchListData(enchInfoArrayAllSl
 }
 if (typeof window !== 'undefined') {
 	Object.assign(window, {
-		OnLoadCardList,
-		RefreshCardListTable,
-		OnChangeKindRestrict,
-		OnChangeShowEnchantInfo,
 		RebuildCardSelectSubCollectEnchListDataSubUpgradeShinennoKairo,
 		RebuildCardSelectSubCollectEnchListDataSubUpgradeShinentaiBuki,
 		RebuildCardSelectSubSortCollectedEnchListData,

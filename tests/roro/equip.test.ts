@@ -85,9 +85,6 @@ describe('equip.js', () => {
 
     describe('window互換確認', () => {
         it('window.changeJobSettings が設定されている', () => { expect(typeof (window as any).changeJobSettings).toBe('function'); });
-        it('window.OnChangeArmsTypeRight が設定されている', () => { expect(typeof (window as any).OnChangeArmsTypeRight).toBe('function'); });
-        it('window.OnChangeEquip が設定されている', () => { expect(typeof (window as any).OnChangeEquip).toBe('function'); });
-        it('window.copyAccs が設定されている', () => { expect(typeof (window as any).copyAccs).toBe('function'); });
     });
 
     describe('呼び出しテスト', () => {

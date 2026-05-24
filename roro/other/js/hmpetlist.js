@@ -6,14 +6,14 @@ import { PET_OBJ } from '../../m/js/pet.dat.js';
 import { HtmlRemoveAllChild } from '../../common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
 // 初期処理の実行
-function OnLoadPetList () {
+export function OnLoadPetList () {
 	RefreshPetListTable();
 }
 
 /**
  * ペット一覧テーブルを更新する.
  */
-function RefreshPetListTable(){
+export function RefreshPetListTable(){
 	var petDataArray = null;
 	// データを抽出する
 	petDataArray = PivotData();
@@ -120,4 +120,3 @@ export function DispData(petDataArray) {
 		CItemInfoManager.AppendSetInfo(objTd, PetIdToSetIdMap[petId], true);
 	}
 }
-if (typeof window !== 'undefined') { Object.assign(window, { OnLoadPetList, RefreshPetListTable }); }

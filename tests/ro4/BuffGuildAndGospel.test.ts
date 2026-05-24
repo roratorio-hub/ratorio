@@ -40,9 +40,7 @@ describe('BuffGuildAndGospel.js', () => {
             expect((window as any).n_Skill4SW).toBe(n_Skill4SW);
         });
 
-        it('window.Click_Skill4SW が設定されている', () => {
-            expect((window as any).Click_Skill4SW).toBe(Click_Skill4SW);
-        });
+
 
         it('window.Click_A4 が設定されている', () => {
             expect((window as any).Click_A4).toBe(Click_A4);

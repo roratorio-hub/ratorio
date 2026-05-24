@@ -1812,7 +1812,7 @@ function _debounce(fn, delay) {
  * BaseLV 入力の onChange ハンドラ（debounce済み）。
  * calcx.html の A_BaseLV フィールドから呼び出される。
  */
-const OnChangeBaseLV = _debounce(function() {
+export const OnChangeBaseLV = _debounce(function() {
 	CalcStatusPoint(true);
 	StAllCalc();
 	CAttackMethodAreaComponentManager.RebuildControls();
@@ -1823,7 +1823,7 @@ const OnChangeBaseLV = _debounce(function() {
  * ステータス入力の onChange ハンドラ（debounce済み）。
  * calcx.html の A_STR〜A_CRT フィールドから呼び出される。
  */
-const OnChangeStatus = _debounce(function() {
+export const OnChangeStatus = _debounce(function() {
 	CalcStatusPoint(false);
 	StAllCalc();
 	AutoCalc();
@@ -1835,7 +1835,4 @@ if (typeof window !== 'undefined') {
 	window.GetTotalPureBasicStatus = GetTotalPureBasicStatus;
 	window.GetTotalSpecStatus = GetTotalSpecStatus;
 	window.ApplySpecModify = ApplySpecModify;
-	window.OnChangeJob = OnChangeJob;
-	window.OnChangeBaseLV = OnChangeBaseLV;
-	window.OnChangeStatus = OnChangeStatus;
 }

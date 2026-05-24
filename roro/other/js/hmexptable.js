@@ -32,7 +32,7 @@ window.g_ExpTableInfoArray = [
 ];
 
 
-function OnLoadExpTable() {
+export function OnLoadExpTable() {
 
 	var idx = 0;
 
@@ -77,7 +77,7 @@ function OnLoadExpTable() {
 }
 
 
-function RefreshExpTable() {
+export function RefreshExpTable() {
 
 	var idx = 0;
 
@@ -379,4 +379,4 @@ export function GetCommaFormatedNumber(value) {
 	// 配列をカンマで結合し、符号をつけて返す
 	return (value < 0 ? "-" : "") + digitsArray.join(",");
 }
-if (typeof window !== 'undefined') { Object.assign(window, { OnLoadExpTable, RefreshExpTable }); }
+

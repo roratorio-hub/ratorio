@@ -34,7 +34,7 @@ function __DIG3(value) {
 /**
  * 初期化処理.
  */
-function InitMonsterListSelectArea() {
+export function InitMonsterListSelectArea() {
 
 	var idx = 0;
 
@@ -162,7 +162,7 @@ function InitMonsterListSelectArea() {
 /**
  * モンスターリストの更新.
  */
-function RefreshMonsterList() {
+export function RefreshMonsterList() {
 
 	var idx = 0;
 
@@ -651,4 +651,4 @@ export function IsMatchCondMonsterList(monsterData, condRace, condElm, condSize)
 
 	return true;
 }
-if (typeof window !== 'undefined') { Object.assign(window, { InitMonsterListSelectArea, RefreshMonsterList }); }
+

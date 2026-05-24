@@ -85,14 +85,8 @@ describe('saveload.js', () => {
     });
 
     describe('window互換確認', () => {
-        it('window.OnClickSaveSaveData が設定されている', () => {
-            expect((window as any).OnClickSaveSaveData).toBe(OnClickSaveSaveData);
-        });
         it('window.ConvertDataTextMIG が設定されている', () => {
             expect((window as any).ConvertDataTextMIG).toBe(ConvertDataTextMIG);
-        });
-        it('window.OnClickConfirmDialogSwitch が設定されている', () => {
-            expect((window as any).OnClickConfirmDialogSwitch).toBe(OnClickConfirmDialogSwitch);
         });
     });
 });

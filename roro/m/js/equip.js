@@ -1927,8 +1927,4 @@ export function copyAccs(from, to){
 
 if (typeof window !== 'undefined') {
 	window.changeJobSettings = changeJobSettings;
-	window.OnChangeArmsTypeRight = OnChangeArmsTypeRight;
-	window.OnChangeRefined = OnChangeRefined;
-	window.OnChangeEquip = OnChangeEquip;
-	window.copyAccs = copyAccs;
 }

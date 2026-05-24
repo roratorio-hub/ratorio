@@ -50,9 +50,6 @@ describe('BuffOtherCategory.js', () => {
             expect((window as any).n_Skill8SW).toBe(n_Skill8SW);
         });
 
-        it('window.Click_Skill8SW が設定されている', () => {
-            expect((window as any).Click_Skill8SW).toBe(Click_Skill8SW);
-        });
 
         it('window.Click_A8 が設定されている', () => {
             expect((window as any).Click_A8).toBe(Click_A8);

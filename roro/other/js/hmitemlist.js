@@ -14,7 +14,7 @@ import {
 } from '../../m/js/item.h.js';
 import { HtmlRemoveOptionAll, HtmlCreateElementOption, HtmlRemoveAllChild } from '../../common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
-function OnLoadItemList() {
+export function OnLoadItemList() {
 	SetUpSelects();
 	BuildUpItemList();
 }
@@ -157,7 +157,7 @@ export function getItemList(itemlist, seachword) {
 /**
  * 表示するアイテム一覧を更新する
  */
-function BuildUpItemList() {
+export function BuildUpItemList() {
 	let idxSlot = 0;
 	let idxEnchList = 0;
 	let idxInfo = 0;
@@ -668,7 +668,7 @@ export function GetElmTextForItemList(itemData) {
 /**
  * 武器種を変更したときに呼び出される
  */
-function OnChangeKindRestrict() {
+export function OnChangeKindRestrict() {
 	// 一覧テーブルを再構築
 	BuildUpItemList();
 }
@@ -676,12 +676,12 @@ function OnChangeKindRestrict() {
 /**
  * 職業を変更したときに呼び出される
  */
-function OnChangeJobRestrict() {
+export function OnChangeJobRestrict() {
 	// 一覧テーブルを再構築
 	BuildUpItemList();
 }
 
-function OnChnageShowSP() {
+export function OnChnageShowSP() {
 	// 一覧テーブルを再構築
 	BuildUpItemList();
 }
@@ -689,29 +689,17 @@ function OnChnageShowSP() {
 /**
  * 並び順を変更したときに呼び出される
  */
-function OnChangeSortCondition() {
+export function OnChangeSortCondition() {
 	// 一覧テーブルを再構築
 	BuildUpItemList();
 }
 
-function OnChangeSlotRestrict() {
+export function OnChangeSlotRestrict() {
 	// 一覧テーブルを再構築
 	BuildUpItemList();
 }
 
-function OnChangeShowEnchantInfo() {
+export function OnChangeShowEnchantInfo() {
 	// 一覧テーブルを再構築
 	BuildUpItemList();
-}
-if (typeof window !== 'undefined') {
-	Object.assign(window, {
-		OnLoadItemList,
-		BuildUpItemList,
-		OnChangeKindRestrict,
-		OnChangeJobRestrict,
-		OnChnageShowSP,
-		OnChangeSortCondition,
-		OnChangeSlotRestrict,
-		OnChangeShowEnchantInfo,
-});
 }

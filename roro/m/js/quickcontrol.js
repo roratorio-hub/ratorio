@@ -716,6 +716,4 @@ export function OnClickQuickControlSetItemPackSubForClearCardAllSub(objId) {
 	OnChangeCard(cardId);
 }
 
-if (typeof window !== 'undefined') {
-    window.OnClickQuickControlSW = OnClickQuickControlSW;
-}
+

@@ -368,12 +368,6 @@ export function OnClickConfirmDialogSwitch() {
 }
 
 if (typeof window !== 'undefined') {
-    window.OnClickSaveSaveData = OnClickSaveSaveData;
-    window.OnClickClipboardSaveData = OnClickClipboardSaveData;
-    window.OnClickLoadSaveData = OnClickLoadSaveData;
-    window.OnClickDeleteSaveData = OnClickDeleteSaveData;
     window.OnClickUrlOutMIG = OnClickUrlOutMIG;
-    window.OnClickUrlInMIG = OnClickUrlInMIG;
     window.ConvertDataTextMIG = ConvertDataTextMIG;
-    window.OnClickConfirmDialogSwitch = OnClickConfirmDialogSwitch;
 }
