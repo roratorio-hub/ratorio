@@ -4,6 +4,7 @@ import { AutoCalc } from './head.js';
 import { CItemInfoManager } from '../../../roro/m/js/CItemInfoManager.js';
 import { GetFriendlityText } from '../../../roro/m/js/common.js';
 import { PET_OBJ } from '../../../roro/m/js/pet.dat.js';
+import { HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueByIdAsInteger, myInnerHtml } from '../../../roro/common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
 "use strict"
 /**

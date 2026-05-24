@@ -6,6 +6,7 @@ import {
          GetStatusModifyMaxHpPlus, GetStatusModifyMaxHpUp, GetStatusModifyMaxSpPlus,
          GetStatusModifyMaxSpUp, GetStatusModifyMdefDivPlus, GetStatusModifyMdefDivUp
 } from './chara.js';
+import { HtmlGetObjectValueByIdAsInteger } from '../../common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
 
 /**

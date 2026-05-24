@@ -165,7 +165,7 @@ window.JOB_SERIES_ID_SUMMONER		= 51;
  * ジョブ名を取得する.
  * @param jobId ジョブＩＤ
  */
-function GetJobName(jobId) {
+export function GetJobName(jobId) {
 	return g_constDataManager.GetName(CONST_DATA_KIND_JOB, jobId);
 }
 
@@ -173,7 +173,7 @@ function GetJobName(jobId) {
  * 一次職業系統を取得する.
  * @return 職業系統ＩＤ（０～
  */
-function GetLowerJobSeriesID(jobID){
+export function GetLowerJobSeriesID(jobID){
 
 	// 一次職の場合は、そのまま返す
 	if (jobID <= JOB_ID_MARCHANT) {
@@ -301,7 +301,6 @@ function GetLowerJobSeriesID(jobID){
 	}
 
 
-
 	// TODO : 謎
 	return 7;
 }
@@ -310,7 +309,7 @@ function GetLowerJobSeriesID(jobID){
  * 二次職業系統を取得する.
  * @return 職業系統ＩＤ（０～
  */
-function GetHigherJobSeriesID(jobID) {
+export function GetHigherJobSeriesID(jobID) {
 
 	switch (jobID) {
 
@@ -401,7 +400,6 @@ function GetHigherJobSeriesID(jobID) {
 	}
 
 
-
 	return 0;
 }
 
@@ -409,7 +407,7 @@ function GetHigherJobSeriesID(jobID) {
  * 対象の職業がドラム族かを判定する.
  * @return true : ドラム族, false : 人間
  */
-function IsDoramJob(jobID) {
+export function IsDoramJob(jobID) {
 
 	switch (jobID) {
 		case JOB_ID_SUMMONER:
@@ -424,7 +422,7 @@ function IsDoramJob(jobID) {
  * 対象の職業が４次職かを判定する.
  * @return true: ４次職, false: ４次職ではない
  */
-function IsYojiJob(jobID) {
+export function IsYojiJob(jobID) {
 	switch (jobID) {
 		case MIG_JOB_ID_DRAGON_KNIGHT:
 		case MIG_JOB_ID_SHADOW_CROSS:
@@ -456,7 +454,7 @@ function IsYojiJob(jobID) {
  * 対象の職業が二刀流可能かを判定する.
  * @return true : 可能, false : 不可
  */
-function IsDualArmsJob(jobID) {
+export function IsDualArmsJob(jobID) {
 
 	if (GetHigherJobSeriesID(jobID) == JOB_SERIES_ID_ASSASIN) {
 		return true;
@@ -480,15 +478,13 @@ function IsDualArmsJob(jobID) {
  * @return true : 同一, false : 同一でない
  * @remarks 現状、三次職IDを渡して、四次職IDを含めた一致判定をするために用いる。
  */
-function IsSameJobClass(jobIdTarget, jobIdCheck = n_A_JOB) {
+export function IsSameJobClass(jobIdTarget, jobIdCheck = n_A_JOB) {
 
 	var jobIdArrayCheck = [];
 
 
-
 	// 判定配列に判定対象自身を追加
 	jobIdArrayCheck.push(jobIdCheck);
-
 
 
 	// 判定対象が四次職の場合は、該当する三次職業も判定対象に追加する
@@ -586,7 +582,7 @@ function IsSameJobClass(jobIdTarget, jobIdCheck = n_A_JOB) {
  * @param {Number} current_job
  * @returns true / false
  */
-function IsSameJobGroup(target_job, current_job = n_A_JOB) {
+export function IsSameJobGroup(target_job, current_job = n_A_JOB) {
 	const job_series = [
 		[MIG_JOB_ID_SWORDMAN, MIG_JOB_ID_HI_SWORDMAN, MIG_JOB_ID_KNIGHT, MIG_JOB_ID_LORDKNIGHT, MIG_JOB_ID_RUNEKNIGHT, MIG_JOB_ID_DRAGON_KNIGHT],
 		[MIG_JOB_ID_SWORDMAN, MIG_JOB_ID_HI_SWORDMAN, MIG_JOB_ID_CRUSADER, MIG_JOB_ID_PALADIN, MIG_JOB_ID_ROYALGUARD, MIG_JOB_ID_IMPERIAL_GUARD],
@@ -624,7 +620,7 @@ function IsSameJobGroup(target_job, current_job = n_A_JOB) {
  * しかし HP/SP 配列のオフセットとして今も利用されているので廃止することはできない.
  * @param jobId ジョブＩＤ
  */
-function GetBaseLevelMin(jobId) {
+export function GetBaseLevelMin(jobId) {
 
 	// 最小レベルの設定
 	switch (jobId) {
@@ -690,7 +686,7 @@ function GetBaseLevelMin(jobId) {
  * ベースレベルの最大値を取得する.
  * @param jobId ジョブＩＤ
  */
-function GetBaseLevelMax(jobId) {
+export function GetBaseLevelMax(jobId) {
 
 	// 最大レベルの設定
 	switch (jobId) {
@@ -752,7 +748,7 @@ function GetBaseLevelMax(jobId) {
  * ジョブレベルの最大値を取得する.
  * @param jobId ジョブＩＤ
  */
-function GetJobLevelMax(jobId) {
+export function GetJobLevelMax(jobId) {
 
 	switch (jobId) {
 		case JOB_ID_NOVICE:
@@ -868,7 +864,7 @@ function GetJobLevelMax(jobId) {
  * @param jobId ジョブＩＤ
  * @param bChild 養子フラグ
  */
-function GetStatusMax(jobId, bChild) {
+export function GetStatusMax(jobId, bChild) {
 
 	if (bChild) {
 		switch (jobId) {
@@ -992,7 +988,7 @@ function GetStatusMax(jobId, bChild) {
  * 転生フラグを取得する.
  * @param jobId ジョブＩＤ
  */
-function IsReincarnatedJob(jobId) {
+export function IsReincarnatedJob(jobId) {
 
 	switch (jobId) {
 
@@ -1057,7 +1053,7 @@ function IsReincarnatedJob(jobId) {
  * ハイスピードポーションが使用できる職業かを判定する.
  * @param jobId ジョブＩＤ
  */
-function IsUsableHSPJob(jobId) {
+export function IsUsableHSPJob(jobId) {
 
 	// 使用できない職業
 	switch (jobId) {
@@ -1081,7 +1077,7 @@ function IsUsableHSPJob(jobId) {
  * バーサークポーションが使用できる職業かを判定する.
  * @param jobId ジョブＩＤ
  */
-function IsUsableBSPJob(jobId) {
+export function IsUsableBSPJob(jobId) {
 
 	// 使用できる下位職業系統
 	switch (GetLowerJobSeriesID(jobId)) {
@@ -1115,7 +1111,7 @@ function IsUsableBSPJob(jobId) {
  * @param jobLv ジョブレベル
  * @return パラメータごとのジョブボーナス配列
  */
-function GetJobBonus(jobId, jobLv) {
+export function GetJobBonus(jobId, jobLv) {
 	return g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, jobId).GetJobBonus(jobLv);
 }
 
@@ -1125,7 +1121,7 @@ function GetJobBonus(jobId, jobLv) {
  * @param baseLv ベースレベル
  * @param bChild 養子フラグ
  */
-function GetHPBase(jobId, baseLv, bChild) {
+export function GetHPBase(jobId, baseLv, bChild) {
 	// 基礎値の取得
 	var lvOffset = baseLv - Math.max(1, GetBaseLevelMin(jobId));
 	var maxhp = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, jobId).GetHPBase(baseLv);
@@ -1149,12 +1145,11 @@ function GetHPBase(jobId, baseLv, bChild) {
  * @param baseLv ベースレベル
  * @param bChild 養子フラグ
  */
-function GetSPBase(jobId, baseLv, bChild) {
+export function GetSPBase(jobId, baseLv, bChild) {
 
 	// 基礎値の取得
 	var lvOffset = baseLv - Math.max(1, GetBaseLevelMin(jobId));
 	var maxsp = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, jobId).GetSPBase(baseLv);
-
 
 
 	// 各種補正の適用
@@ -1242,7 +1237,7 @@ CGlobalConstManager.DefineEnum(
  * @param tableId 経験値テーブルID
  * @return 経験値テーブル（配列）
  */
-function GetBaseExpTable(tableId) {
+export function GetBaseExpTable(tableId) {
 	let expTable = null;
 	// テーブルIDで定義を切り替え
 	switch (tableId) {
@@ -1694,7 +1689,7 @@ function GetBaseExpTable(tableId) {
  * @param tableId 経験値テーブルID
  * @return 経験値テーブル（配列）
  */
-function GetJobExpTable(tableId) {
+export function GetJobExpTable(tableId) {
 	let expTable = null;
 	// テーブルIDで定義を切り替え
 	switch (tableId) {
@@ -2508,7 +2503,7 @@ function GetJobExpTable(tableId) {
  * @returns
  */
 let g_unconfirmedHPSPArray = null;
-function GetUnconfirmedHPSPArray() {
+export function GetUnconfirmedHPSPArray() {
 	if (!g_unconfirmedHPSPArray) {
 
 		g_unconfirmedHPSPArray = new Array();
@@ -2742,7 +2737,7 @@ function GetUnconfirmedHPSPArray() {
  * @param jobId 検査対象の職業ＩＤ
  * @return 適合検査結果 true / false
  */
-function IsMatchJobRestrict(itemId, jobId) {
+export function IsMatchJobRestrict(itemId, jobId) {
 
 	var idx = 0;
 	var eqpflg = ItemObjNew[itemId][ITEM_DATA_INDEX_EQPFLG];
@@ -2832,7 +2827,7 @@ function IsMatchJobRestrict(itemId, jobId) {
  * @deprecated
  * @remarks migrateOtherJobへ移行
 */
-function UpgradeJobTo4th() {
+export function UpgradeJobTo4th() {
 	var msg = "";
 	var jobId4th = 0;
 	var dataURL = "";
@@ -2942,29 +2937,5 @@ function UpgradeJobTo4th() {
 }
 
 if (typeof window !== 'undefined') {
-	Object.assign(window, {
-		GetJobName,
-		GetLowerJobSeriesID,
-		GetHigherJobSeriesID,
-		IsDoramJob,
-		IsYojiJob,
-		IsDualArmsJob,
-		IsSameJobClass,
-		IsSameJobGroup,
-		GetBaseLevelMin,
-		GetBaseLevelMax,
-		GetJobLevelMax,
-		GetStatusMax,
-		IsReincarnatedJob,
-		IsUsableHSPJob,
-		IsUsableBSPJob,
-		GetJobBonus,
-		GetHPBase,
-		GetSPBase,
-		GetBaseExpTable,
-		GetJobExpTable,
-		GetUnconfirmedHPSPArray,
-		IsMatchJobRestrict,
-		UpgradeJobTo4th,
-	});
+	Object.assign(window, { GetJobName });
 }

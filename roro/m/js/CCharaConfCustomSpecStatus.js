@@ -3,6 +3,7 @@ import { CConfBase } from './CConfBase.js';
 import './CConfBase.js';
 import { CUSTOM_CONF_SPEC_LIMIT } from '../../../ro4/m/js/global.js';
 import { CCharaConfCustomStatus } from './CCharaConfCustomStatus.js';
+import { HtmlCreateElementOption } from '../../common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
 
 export function CCharaConfCustomSpecStatus(confArray) {

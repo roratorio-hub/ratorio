@@ -1,7 +1,15 @@
 import { CGlobalConstManager } from './CGlobalConstManager.js';
 import { CInstanceManager } from './CInstanceManager.js';
 // === AUTO-GENERATED IMPORTS ===
-import '../../../ro4/m/js/data/mig.job.h.js';
+import {
+         GetBaseExpTable,
+         GetBaseLevelMax,
+         GetJobBonus,
+         GetJobExpTable,
+         GetJobLevelMax,
+         GetStatusMax,
+         IsSameJobClass
+} from '../../../ro4/m/js/data/mig.job.h.js';
 import './card.h.js';
 import './item.h.js';
 import './monster.h.js';
@@ -15,6 +23,12 @@ import {
          CardObjNew
 } from './card.dat.js';
 import { EquipNumSearch } from './chara.js';
+import {
+         CAST_PARAM_BORDER, HEALTYPE_COLUCEO_HEAL, HEALTYPE_DILECTIO_HEAL,
+         HEALTYPE_EBI_ZANMAI, HEALTYPE_HEAL, HEALTYPE_HIGHNESS, HEALTYPE_SANCTUARY,
+         HEALTYPE_SHINSENNA_EBI, HEALTYPE_SHUGO_FU, HEALTYPE_TURTLE_SPRINKLER,
+         HEALTYPE_ZYOKODO, HEAL_TARGETTYPE_PLAYER, HEAL_TARGETTYPE_SELF, HealCalc
+} from '../../../ro4/m/js/head.js';
 import { GetElementText, GetParamText, GetRaceText, GetSizeText, GetStateText } from './common.js';
 import { zokusei } from './etc.js';
 import { GetRndOptTotalValue } from './hmrndopt.js';
@@ -29,6 +43,7 @@ import {
 import { LearnedSkillSearch } from './learnedskill.js';
 import { MonsterObjNew } from './monster.dat.js';
 import { SkillObjNew } from './skill.dat.js';
+import { HtmlCreateElement, HtmlCreateTextSpan, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById, DivideDigits3 } from '../../common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
 //----------------------------------------------------------------
 // 拡張情報の種類

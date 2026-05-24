@@ -8,6 +8,7 @@ import { CardObjNew } from './card.dat.js';
 import { UpdateLearnedSkillNotice } from './equip.js';
 import { ItemObjNew } from './item.dat.js';
 import { SkillObjNew } from './skill.dat.js';
+import { HtmlCreateElement, HtmlCreateTextNode } from '../../common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
 /**
  * 習得スキル欄の生成・更新・サーチなどの関数群

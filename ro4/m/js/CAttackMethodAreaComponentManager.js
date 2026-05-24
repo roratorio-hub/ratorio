@@ -27,6 +27,8 @@ import {
          USABEL_SKILL_ID_TEIOAPUCHAGI_7
 } from '../../../roro/m/js/usableskill.dat.js';
 import { USABLE_SKILL_ID_CUSTOM_BIAS } from '../../../roro/m/js/usableskill.h.js';
+import { GetHigherJobSeriesID, GetLowerJobSeriesID, IsSameJobClass } from './data/mig.job.h.js';
+import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectCheckedById, HtmlSetObjectCheckedById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById } from '../../../roro/common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
 //----------------------------------------------------------------
 // オプションリストの種別

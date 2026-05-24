@@ -9,9 +9,11 @@ vi.hoisted(() => {
         style: {},
     };
     (document as any).getElementById = () => mockEl;
-    (globalThis as any).HtmlRemoveAllChild = () => {};
-    (globalThis as any).HtmlCreateElement = () => mockEl;
-    (globalThis as any).HtmlCreateTextNode = () => {};
+});
+
+vi.mock('../../roro/common/js/util.js', async (importActual) => {
+    const actual = await importActual<any>();
+    return { ...actual, HtmlRemoveAllChild: () => {} };
 });
 
 import { CNewsAreaComponentManager } from '@roro/CNewsAreaComponentManager.js';

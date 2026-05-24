@@ -1,3 +1,6 @@
+// === AUTO-GENERATED IMPORTS ===
+import { toSafeBigInt } from '../../common/js/util.js';
+// === END AUTO-GENERATED IMPORTS ===
 /**
  * 定数データ管理ユニットクラス.
  */

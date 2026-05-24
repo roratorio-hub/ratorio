@@ -1,5 +1,16 @@
 // === AUTO-GENERATED IMPORTS ===
-import '../../../ro4/m/js/data/mig.job.h.js';
+import {
+         GetHPBase,
+         GetHigherJobSeriesID,
+         GetJobBonus,
+         GetLowerJobSeriesID,
+         GetSPBase,
+         IsDoramJob,
+         IsMatchJobRestrict,
+         IsSameJobClass,
+         IsUsableBSPJob,
+         IsUsableHSPJob
+} from '../../../ro4/m/js/data/mig.job.h.js';
 import './arrow.h.js';
 import './card.h.js';
 import './costume.h.js';
@@ -747,6 +758,7 @@ import {
          TIME_ITEM_ID_VNDER_CANMER_SHUCHURYOKU_KOZYO, TIME_ITEM_ID_WOLF_HEZIN,
          TIME_ITEM_ID_ZETSUBONO_KAMI_MOROCC_CARD
 } from './timeitem.dat.js';
+import { HtmlCreateElement, HtmlCreateTextNode, HtmlRemoveOptionAll, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById, SetStatefullData, GetStatefullData, toSafeBigInt, myInnerHtml } from '../../common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
 /**
  * 計算機の初期化コードが記述されたエントリーポイント

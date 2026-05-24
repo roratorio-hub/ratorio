@@ -14,6 +14,15 @@ import {
 } from '../../../roro/m/js/item.dat.js';
 import { LEARNED_SKILL_MAX_COUNT, LearnedSkillSearch, OnClickSkillSWLearned } from '../../../roro/m/js/learnedskill.js';
 import { MOB_CONF_DEBUF_ID_JACK_FROST_NOVA, MOB_CONF_DEBUF_ID_TOXIN_OF_MANDARA, n_B_IJYOU } from '../../../roro/m/js/mobconfdebuf.js';
+import { CSaveDataConst } from './savedata/CSaveDataConst.js';
+import {
+         GetStatusMax,
+         IsDualArmsJob,
+         IsReincarnatedJob,
+         IsSameJobGroup,
+         IsYojiJob
+} from './data/mig.job.h.js';
+import { HtmlGetObjectValueByIdAsInteger, ValueRangeModify, myInnerHtml } from '../../../roro/common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
 export let g_pureStatus = [];
 export let g_bonusStatus = [];

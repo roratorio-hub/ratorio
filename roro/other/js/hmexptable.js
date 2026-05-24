@@ -1,7 +1,14 @@
 // === AUTO-GENERATED IMPORTS ===
-import '../../../ro4/m/js/data/mig.job.h.js';
+import {
+         GetBaseExpTable,
+         GetBaseLevelMax,
+         GetBaseLevelMin,
+         GetJobExpTable,
+         GetJobLevelMax
+} from '../../../ro4/m/js/data/mig.job.h.js';
 import '../../m/js/monster.h.js';
 import { MonsterObjNew } from '../../m/js/monster.dat.js';
+import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueByIdAsInteger } from '../../common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
 
 window.g_ExpTableInfoArray = [
@@ -25,7 +32,6 @@ window.g_ExpTableInfoArray = [
 ];
 
 
-
 function OnLoadExpTable() {
 
 	var idx = 0;
@@ -45,7 +51,6 @@ function OnLoadExpTable() {
 	}
 
 
-
 	// モンスターの読み仮名順ソート
 	monsterObjSorted = MonsterObjNew.slice();
 	monsterObjSorted.sort(
@@ -55,7 +60,6 @@ function OnLoadExpTable() {
 			return 0;
 		}
 	);
-
 
 
 	// モンスター選択セレクトボックスを構築
@@ -68,11 +72,9 @@ function OnLoadExpTable() {
 	}
 
 
-
 	// 初期表示
 	RefreshExpTable();
 }
-
 
 
 function RefreshExpTable() {
@@ -116,7 +118,6 @@ function RefreshExpTable() {
 	var objTdSub = null;
 
 
-
 	// 入力情報を取得
 	tableKind = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_TABLE_KIND", 0);
 	monsterId = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_MONSTER", 0);
@@ -145,7 +146,6 @@ function RefreshExpTable() {
 
 	// 対象となる経験値を取得
 	monsterTargetExp = (tableInfo[2] == 0) ? monsterBaseExp : monsterJobExp;
-
 
 
 	// 経験値配列を用意
@@ -203,7 +203,6 @@ function RefreshExpTable() {
 	}
 
 
-
 	// モンスター情報テーブルの更新
 	objDiv = document.getElementById("OBJID_DIV_MONSTER_DATA");
 	HtmlRemoveAllChild(objDiv);
@@ -236,7 +235,6 @@ function RefreshExpTable() {
 
 	objTd = HtmlCreateElement("td", objTr);
 	HtmlCreateTextNode(GetCommaFormatedNumber(monsterJobExp), objTd);
-
 
 
 	// 結果テーブルの構築
@@ -350,8 +348,7 @@ function RefreshExpTable() {
 }
 
 
-
-function GetCommaFormatedNumber(value) {
+export function GetCommaFormatedNumber(value) {
 
 	var absValue = 0;
 	var digitsStr = "";
@@ -382,4 +379,4 @@ function GetCommaFormatedNumber(value) {
 	// 配列をカンマで結合し、符号をつけて返す
 	return (value < 0 ? "-" : "") + digitsArray.join(",");
 }
-if (typeof window !== 'undefined') { Object.assign(window, { OnLoadExpTable, RefreshExpTable, GetCommaFormatedNumber }); }
+if (typeof window !== 'undefined') { Object.assign(window, { OnLoadExpTable, RefreshExpTable }); }

@@ -12,8 +12,11 @@ vi.hoisted(() => {
         className: '',
         options: [],
         selectedIndex: 0,
+        querySelectorAll: () => [],
+        querySelector: () => null,
+        addEventListener: () => {},
     };
-    (document as any).getElementById = () => mockEl;
+    vi.spyOn(document, 'getElementById').mockReturnValue(mockEl as any);
     (document as any).createElement = () => mockEl;
     (globalThis as any).HtmlRemoveAllChild = () => {};
     (globalThis as any).HtmlCreateElement = () => mockEl;
@@ -33,6 +36,26 @@ vi.hoisted(() => {
         GetMaxLv: () => 10,
         GetSkillId: () => 0,
     };
+});
+
+vi.mock('../../roro/common/js/util.js', async (importActual) => {
+    const actual = await importActual<any>();
+    return { ...actual, HtmlRemoveAllChild: () => {} };
+});
+
+vi.mock('@roro/monstermap.dat.js', async (importActual) => {
+    const actual = await importActual<any>();
+    return {
+        ...actual,
+        MONSTER_MAP_ID_MAP_ALL: -1,
+        get g_MonsterMapDataArray() { return []; },
+        get g_MonsterMapCategoryDataArray() { return []; },
+    };
+});
+
+vi.mock('@roro/monster.dat.js', async (importActual) => {
+    const actual = await importActual<any>();
+    return { ...actual, get MonsterObjNew() { return []; } };
 });
 
 import '@roro/CGlobalConstManager.js';

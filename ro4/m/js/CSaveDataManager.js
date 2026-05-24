@@ -37,7 +37,14 @@ import {
 	SAVE_DATA_UNIT_TYPE_EQUIP_ARROW,
 } from './savedata/CSaveDataUnit.js';
 // === AUTO-GENERATED IMPORTS ===
-import './data/mig.job.h.js';
+import {
+         GetBaseLevelMax,
+         GetBaseLevelMin,
+         GetJobLevelMax,
+         GetStatusMax,
+         IsMatchJobRestrict,
+         IsSameJobClass
+} from './data/mig.job.h.js';
 import '../../../roro/m/js/common.js';
 import '../../../roro/m/js/data/mig.itemsp.h.js';
 import '../../../roro/m/js/item.h.js';
@@ -69,6 +76,7 @@ import { RefreshMobConfPlayerControlCSS, RefreshMobConfPlayerSelectAreaHeader, n
 import { GetEquipRndOptTableKind, GetEquipRndOptTableValue, SetEquipRndOptTable } from '../../../roro/m/js/rndopttype.h.js';
 import { SaveSystem } from '../../../roro/m/js/saveload.js';
 import { GetSlotMode } from '../../../roro/m/js/slotpager.js';
+import { HtmlGetObjectValueByIdAsInteger, HtmlSetObjectCheckedById, HtmlSetObjectValueById, HtmlSelectObjectValueAsInteger, SetStatefullData, floorBigInt32, floorBigInt40 } from '../../../roro/common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
 
 /**

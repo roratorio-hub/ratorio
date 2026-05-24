@@ -1,6 +1,12 @@
 import { CGlobalConstManager } from '../../../roro/m/js/CGlobalConstManager.js';
 // === AUTO-GENERATED IMPORTS ===
-import './data/mig.job.h.js';
+import {
+         GetHigherJobSeriesID,
+         GetJobLevelMax,
+         GetLowerJobSeriesID,
+         IsDoramJob,
+         IsSameJobClass
+} from './data/mig.job.h.js';
 import '../../../roro/m/js/card.h.js';
 import '../../../roro/m/js/data/mig.itemsp.h.js';
 import { CBattleCalcInfo } from './CBattleCalcInfo.js';
@@ -291,6 +297,8 @@ import {
          TIME_ITEM_ID_SANGAKU_HELMET, TIME_ITEM_ID_VOLCARING, TIME_ITEM_ID_WOLF_HEZIN,
          TIME_ITEM_ID_ZETSUBONO_KAMI_MOROCC_CARD
 } from '../../../roro/m/js/timeitem.dat.js';
+import { CSaveDataConst } from './savedata/CSaveDataConst.js';
+import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueByIdAsInteger, myInnerHtml } from '../../../roro/common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
 
 "use strict";
@@ -22409,21 +22417,7 @@ if (typeof window !== 'undefined') {
     });
 
     Object.assign(window, {
-        CAST_PARAM_BORDER,
         n_SieldSp,
-        HEALTYPE_HEAL,
-        HEALTYPE_HIGHNESS,
-        HEALTYPE_SANCTUARY,
-        HEALTYPE_SHINSENNA_EBI,
-        HEALTYPE_EBI_ZANMAI,
-        HEALTYPE_COLUCEO_HEAL,
-        HEALTYPE_DILECTIO_HEAL,
-        HEALTYPE_TURTLE_SPRINKLER,
-        HEALTYPE_SHUGO_FU,
-        HEALTYPE_ZYOKODO,
-        HEAL_TARGETTYPE_SELF,
-        HEAL_TARGETTYPE_PLAYER,
-        HealCalc,
         GetActRateSandansho,
         GetActRateCritical,
         AutoCalc,

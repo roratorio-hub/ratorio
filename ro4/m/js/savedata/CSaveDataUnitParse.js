@@ -55,6 +55,7 @@ import {
          MOB_CONF_PLAYER_ID_VIT, MOB_CONF_PLAYER_ID_YAMI_ZOKUSEI_TAISEI,
          MOB_CONF_PLAYER_ID_ZOKUSEI_MONSTER_TAISEI, n_B_TAISEI
 } from '../../../../roro/m/js/mobconfplayer.js';
+import { GetHigherJobSeriesID, GetLowerJobSeriesID } from '../data/mig.job.h.js';
 // === END AUTO-GENERATED IMPORTS ===
 /**
  * セーブデータユニットクラス：パース開始用.

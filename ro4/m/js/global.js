@@ -1,6 +1,7 @@
 // === AUTO-GENERATED IMPORTS ===
 import { CSkillManager } from '../../../roro/m/js/CSkillManager.js';
 import { CMigConstDataManager } from '../../../roro/m/js/data/CMigConstDataManager.js';
+import { HtmlGetObjectCheckedById, MallocArray, DivideDigits3 } from '../../../roro/common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
 "use strict";
 

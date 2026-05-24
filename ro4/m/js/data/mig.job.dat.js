@@ -1,3 +1,6 @@
+// === AUTO-GENERATED IMPORTS ===
+import { createArithmeticSequence } from '../../../../roro/common/js/util.js';
+// === END AUTO-GENERATED IMPORTS ===
 
 window.MIG_JOB_ID_NOVICE = 0;
 window.MIG_JOB_ID_SWORDMAN = 1;

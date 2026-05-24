@@ -1,5 +1,6 @@
 // === AUTO-GENERATED IMPORTS ===
 import '../../../roro/m/js/monster.h.js';
+import { GetArrayTotal, GetArrayMax, GetArrayMin } from '../../../roro/common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
 /**
  * 設置スキル計算用クラス

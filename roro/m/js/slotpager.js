@@ -2,6 +2,7 @@
 import './common.js';
 import { g_charaData } from '../../../ro4/m/js/global.js';
 import { GetEquipRndOptTableKind, GetEquipRndOptTableValue, SetEquipRndOptTable } from './rndopttype.h.js';
+import { HtmlGetElementById, HtmlCreateElement, HtmlSetAttribute, HtmlCreateElementOption, HtmlRemoveFromParent, HtmlGetSelectedOptgroup, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById, SetStatefullData, GetStatefullData } from '../../common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
 //================================================================================================
 //

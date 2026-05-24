@@ -1,6 +1,7 @@
 // === AUTO-GENERATED IMPORTS ===
 import './CConfBase.js';
 import { COLOR_CODE_TABLE_HEADER_IS_NOT_SET, COLOR_CODE_TABLE_HEADER_IS_SET } from './common.js';
+import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectCheckedById, ValueRangeModify } from '../../common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
 
 

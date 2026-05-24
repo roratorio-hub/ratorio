@@ -2,6 +2,7 @@
 import '../../../roro/m/js/skill.h.js';
 import { AutoCalc } from './head.js';
 import { SkillObjNew } from '../../../roro/m/js/skill.dat.js';
+import { myInnerHtml } from '../../../roro/common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
 "use strict"
 /**

@@ -2,6 +2,7 @@ import { CConfBase } from './CConfBase.js';
 // === AUTO-GENERATED IMPORTS ===
 import './CConfBase.js';
 import { CUSTOM_CONF_ATK_LIMIT } from '../../../ro4/m/js/global.js';
+import { HtmlCreateElementOption } from '../../common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
 
 export function CCharaConfCustomAtk(confArray) {

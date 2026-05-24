@@ -1,6 +1,6 @@
 // === AUTO-GENERATED IMPORTS ===
 import './card.h.js';
-import './data/mig.itemsp.h.js';
+import { MigGetBorderFlagText } from './data/mig.itemsp.h.js';
 import { g_constDataManager } from '../../../ro4/m/js/global.js';
 import {
          CARD_ID_ARCHER_SKELETON, CARD_ID_ENCHANT_ARMS_ELEMENT_DARK,
@@ -54,6 +54,7 @@ import {
          ITEM_ID_KAITEI_SHINDENNO_ZAIHO_CARD_ENCHANTABLE, ITEM_ID_RUNE_HELM, ItemObjNew
 } from './item.dat.js';
 import { GetMaxSlot } from './item.h.js';
+import { HtmlGetElementById, HtmlCreateElement, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueById, HtmlSetObjectValueById, SetStatefullData } from '../../common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
 
 export const CardShortObj =[

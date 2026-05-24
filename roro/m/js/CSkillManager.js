@@ -1,5 +1,6 @@
 // === AUTO-GENERATED IMPORTS ===
 import './common.js';
+import { HtmlGetObjectValueByIdAsInteger } from '../../common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
 /**
  * 各スキルの実質的な抽象クラスとして用いられるコンストラクタ関数.

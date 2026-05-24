@@ -9,6 +9,7 @@ import { GetRndOptDispName } from './rndopt.h.js';
 import { g_rndOptListArray } from './rndoptlist.dat.js';
 import { g_rndOptTypeArray } from './rndopttype.dat.js';
 import { GetEquipRndOptTableKind, GetEquipRndOptTableValue, SetEquipRndOptTable } from './rndopttype.h.js';
+import { HtmlGetElementById, HtmlCreateElement, HtmlSetAttribute, HtmlRemoveOptionAll, HtmlCreateElementOption, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById } from '../../common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
 
 

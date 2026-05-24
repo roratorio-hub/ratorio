@@ -3,6 +3,9 @@ import { CExtraInfoAreaComponentManager } from './CExtraInfoAreaComponentManager
 // === AUTO-GENERATED IMPORTS ===
 import './chara.js';
 import { g_timeItemConf } from '../../../ro4/m/js/global.js';
+import { CSaveDataConst } from '../../../ro4/m/js/savedata/CSaveDataConst.js';
+import { GetJobName } from '../../../ro4/m/js/data/mig.job.h.js';
+import { HtmlCreateElement, HtmlCreateTextSpan, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectCheckedById, HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger } from '../../common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
 
 

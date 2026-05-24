@@ -15,6 +15,8 @@ import {
 } from './item.dat.js';
 import { GetItemExplainText, GetSlotText, GetStrPenaltyAvoidStr } from './item.h.js';
 import { PET_OBJ } from './pet.dat.js';
+import { CSaveDataConst } from '../../../ro4/m/js/savedata/CSaveDataConst.js';
+import { HtmlCreateElement, HtmlCreateTextNode, HtmlRemoveOptionAll, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById } from '../../common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
 
 /**

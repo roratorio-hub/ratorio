@@ -1,5 +1,6 @@
 // === AUTO-GENERATED IMPORTS ===
 import { CNameKana } from './CNameKana.js';
+import { HtmlCreateElement, HtmlCreateTextNode, HtmlAppendTextNodeMulti, HtmlRemoveAllChild, EscapeInputtedText } from '../../common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
 
 

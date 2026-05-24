@@ -1,5 +1,6 @@
 // === AUTO-GENERATED IMPORTS ===
 import { AutoCalc } from './head.js';
+import { myInnerHtml } from '../../../roro/common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
 "use strict"
 /**

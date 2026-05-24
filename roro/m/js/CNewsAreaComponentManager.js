@@ -1,3 +1,6 @@
+// === AUTO-GENERATED IMPORTS ===
+import { HtmlCreateElement, HtmlCreateTextNode, HtmlRemoveAllChild } from '../../common/js/util.js';
+// === END AUTO-GENERATED IMPORTS ===
 /**
  * お知らせエリアコンポーネントマネージャクラス.
  */

@@ -622,21 +622,13 @@ def build_cycle_safe_imports(all_files: list, symbol_map: dict,
     循環依存を回避した安全な import セットを 2 パスで計算する。
 
     Pass 1: 全ファイルの既存（手書き）import グラフを構築
-    Pass 2: 各ファイルの計画 import を計算し、循環辺・前方 import はスキップ
-
-    前方 import: HTML で早い位置に現れるファイルが遅い位置のファイルを import すること。
-    ESM はモジュールを1度だけ評価するため、前方 import があると依存先が
-    中間スクリプトよりも先に評価されてしまい、未初期化参照エラーになる。
+    Pass 2: 各ファイルの計画 import を計算し、循環辺はスキップ
 
     Returns:
         safe: {fpath: (safe_named: {src→syms}, safe_side: set)}
         content_map: {fpath: content_stripped}  # AUTO-GENERATED 除去済み
     """
     all_resolved = {f.resolve() for f in all_files}
-
-    # HTML ロード順マップを構築（前方 import 検出用）
-    html_pos = build_html_position_map()
-    print(f'HTML ロード順マップ: {len(html_pos)} エントリ')
 
     # 全ファイルの window 代入・bare 代入シンボルを収集（ESM バインディング問題防止）
     print('window 代入・bare 代入シンボルを収集中...')
@@ -664,12 +656,14 @@ def build_cycle_safe_imports(all_files: list, symbol_map: dict,
         imported = extract_import_file_paths(content, fpath)
         existing_graph[fpath.resolve()] = imported & all_resolved
 
-    # ── Pass 2: 計画 import を計算し、循環辺・前方 import をスキップしながら追加
-    print('計画 import を計算中（循環依存チェック・前方 import チェック込み）...')
+    # ── Pass 2: 計画 import を計算し、循環辺をスキップしながら追加
+    # 前方 import（HTML順で早いファイルが遅いファイルを import）は ESM では問題ない:
+    # ESM はモジュールグラフを解決してから評価するため、import 先が先に評価される。
+    # 唯一の本当の制約は循環依存のみ（`is_reachable` で検出済み）。
+    print('計画 import を計算中（循環依存チェック込み）...')
     full_graph: dict = {fp: set(s) for fp, s in existing_graph.items()}
     safe: dict = {}
     total_skipped_cycle = 0
-    total_skipped_forward = 0
 
     for fpath in all_files:
         fp = fpath.resolve()
@@ -690,29 +684,18 @@ def build_cycle_safe_imports(all_files: list, symbol_map: dict,
         safe_named: dict = {}
         safe_side: set = set()
 
-        # 名前付き import: 循環・前方 import を作らないものだけ追加
+        # 名前付き import: 循環を作らないものだけ追加
         for src_file, syms in named.items():
             sfp = src_file.resolve()
-            # 前方 import チェック: fp が sfp より HTML で前にある場合はスキップ
-            fp_pos = html_pos.get(fp)
-            sfp_pos = html_pos.get(sfp)
-            if fp_pos is not None and sfp_pos is not None and fp_pos < sfp_pos:
-                total_skipped_forward += 1
-                continue
             if not is_reachable(full_graph, sfp, fp):
                 full_graph[fp].add(sfp)
                 safe_named[src_file] = syms
             else:
                 total_skipped_cycle += 1
 
-        # サイドエフェクト import: 循環・前方 import を作らないものだけ追加
+        # サイドエフェクト import: 循環を作らないものだけ追加
         for src_file in side:
             sfp = src_file.resolve()
-            fp_pos = html_pos.get(fp)
-            sfp_pos = html_pos.get(sfp)
-            if fp_pos is not None and sfp_pos is not None and fp_pos < sfp_pos:
-                total_skipped_forward += 1
-                continue
             if not is_reachable(full_graph, sfp, fp):
                 full_graph[fp].add(sfp)
                 safe_side.add(src_file)
@@ -722,7 +705,6 @@ def build_cycle_safe_imports(all_files: list, symbol_map: dict,
         safe[fpath] = (safe_named, safe_side)
 
     print(f'  循環スキップ: {total_skipped_cycle} エッジ')
-    print(f'  前方 import スキップ: {total_skipped_forward} エッジ')
     return safe, content_map
 
 

@@ -3,6 +3,7 @@ import { CCustomSelectMapMap } from '../../../roro/m/js/CCustomSelectMapMap.js';
 import { CCustomSelectMapMonster } from '../../../roro/m/js/CCustomSelectMapMonster.js';
 // === AUTO-GENERATED IMPORTS ===
 import { MonsterToughness } from '../../../roro/m/js/monster.toughness.dat.js';
+import { HtmlCreateElement, HtmlCreateTextNode, HtmlRemoveAllChild } from '../../../roro/common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
 
 /**

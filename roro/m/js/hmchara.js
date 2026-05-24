@@ -1,6 +1,8 @@
 // === AUTO-GENERATED IMPORTS ===
 import './chara.js';
 import './item.h.js';
+import { GetUnconfirmedHPSPArray } from '../../../ro4/m/js/data/mig.job.h.js';
+import { HtmlCreateTextSpan, HtmlRemoveAllChild } from '../../common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
 export function IsUnconfirmedHP(jobId, level) {
 

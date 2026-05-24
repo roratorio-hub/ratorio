@@ -1,5 +1,6 @@
-import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { IsUnconfirmedHP, IsUnconfirmedSP, UpdateCharaDataHtml } from '@roro/hmchara.js';
+import '@ro4/data/mig.job.dat.js';
 
 describe('hmchara.js', () => {
     describe('エクスポート確認', () => {
@@ -30,21 +31,11 @@ describe('hmchara.js', () => {
         });
     });
 
-    // IsUnconfirmedHP / IsUnconfirmedSP は GetUnconfirmedHPSPArray() グローバルに依存する。
-    // テスト用モック: index 0 = undefined（配列でない）、index 1 = HP[50,99] / SP[10,20]
+    // JOB_ID_GILOTINCROSS = 47: HP/SP未確認レベル [186,187,188,189,191,193,195,196,197,198]
+    // JOB_ID_NOVICE = 0: エントリなし（undefined）
     describe('IsUnconfirmedHP', () => {
-        beforeEach(() => {
-            (globalThis as any).GetUnconfirmedHPSPArray = () => [
-                undefined,
-                [[50, 99], [10, 20]],
-            ];
-        });
-        afterEach(() => {
-            delete (globalThis as any).GetUnconfirmedHPSPArray;
-        });
-
         it('jobId が配列長以上なら true を返す', () => {
-            expect(IsUnconfirmedHP(99, 1)).toBe(true);
+            expect(IsUnconfirmedHP(9999, 1)).toBe(true);
         });
 
         it('hpspArray[jobId] が配列でなければ false を返す', () => {
@@ -52,27 +43,17 @@ describe('hmchara.js', () => {
         });
 
         it('level が HP 配列内にあれば true を返す', () => {
-            expect(IsUnconfirmedHP(1, 50)).toBe(true);
+            expect(IsUnconfirmedHP(47, 186)).toBe(true);
         });
 
         it('level が HP 配列にない場合は false を返す', () => {
-            expect(IsUnconfirmedHP(1, 1)).toBe(false);
+            expect(IsUnconfirmedHP(47, 1)).toBe(false);
         });
     });
 
     describe('IsUnconfirmedSP', () => {
-        beforeEach(() => {
-            (globalThis as any).GetUnconfirmedHPSPArray = () => [
-                undefined,
-                [[50, 99], [10, 20]],
-            ];
-        });
-        afterEach(() => {
-            delete (globalThis as any).GetUnconfirmedHPSPArray;
-        });
-
         it('jobId が配列長以上なら true を返す', () => {
-            expect(IsUnconfirmedSP(99, 1)).toBe(true);
+            expect(IsUnconfirmedSP(9999, 1)).toBe(true);
         });
 
         it('hpspArray[jobId] が配列でなければ false を返す', () => {
@@ -80,11 +61,11 @@ describe('hmchara.js', () => {
         });
 
         it('level が SP 配列内にあれば true を返す', () => {
-            expect(IsUnconfirmedSP(1, 10)).toBe(true);
+            expect(IsUnconfirmedSP(47, 186)).toBe(true);
         });
 
         it('level が SP 配列にない場合は false を返す', () => {
-            expect(IsUnconfirmedSP(1, 99)).toBe(false);
+            expect(IsUnconfirmedSP(47, 1)).toBe(false);
         });
     });
 });

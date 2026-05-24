@@ -10,20 +10,11 @@ vi.hoisted(() => {
         focus: () => {},
     };
     (document as any).getElementById = () => mockEl;
-    (globalThis as any).HtmlRemoveAllChild = () => {};
-    (globalThis as any).HtmlCreateElement = () => mockEl;
-    (globalThis as any).HtmlCreateTextNode = () => {};
-    (globalThis as any).HtmlCreateElementOption = () => {};
-    (globalThis as any).HtmlSetObjectValueById = () => {};
-    (globalThis as any).HtmlGetObjectValueByIdAsInteger = () => 0;
-    (globalThis as any).AutoCalc = () => {};
-    (globalThis as any).CustomizeSelect2Specify = () => {};
-    (globalThis as any).g_timeItemConf = [];
-    (globalThis as any).g_timeItemConfEffective = [];
-    (globalThis as any).ITEM_SP_TIME_OBJ_SORT = [];
-    (globalThis as any).ITEM_SP_TIME_OBJ = [];
-    (globalThis as any).CBattleQuickControlAreaComponentManager = { RebuildControls: () => {} };
-    (globalThis as any).$ = () => ({ hasClass: () => false, select2: () => {}, addClass: () => {}, removeClass: () => {} });
+});
+
+vi.mock('../../roro/common/js/util.js', async (importActual) => {
+    const actual = await importActual<any>();
+    return { ...actual, HtmlRemoveAllChild: () => {} };
 });
 
 import { CTimeItemAreaComponentManager } from '@roro/CTimeItemAreaComponentManager.js';

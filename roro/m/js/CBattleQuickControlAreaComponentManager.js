@@ -2,6 +2,7 @@
 import './timeitem.h.js';
 import { g_timeItemConf, g_timeItemConfEffective } from '../../../ro4/m/js/global.js';
 import { CTimeItemAreaComponentManager } from './CTimeItemAreaComponentManager.js';
+import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById } from '../../common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
 /**
  * 時限アイテムエリアコンポーネントマネージャクラス.

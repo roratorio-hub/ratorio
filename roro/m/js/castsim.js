@@ -18,6 +18,8 @@ import {
          USABEL_SKILL_ID_PSYCHIC_WAVE_3, USABEL_SKILL_ID_RESERECTION_BY_YGGDRASILLNO_HA,
          USABEL_SKILL_ID_SOUL_STRIKE_5, USABEL_SKILL_ID_TEIOAPUCHAGI_7
 } from './usableskill.dat.js';
+import { GetHigherJobSeriesID, GetLowerJobSeriesID } from '../../../ro4/m/js/data/mig.job.h.js';
+import { HtmlCreateElement, HtmlCreateTextNode, HtmlRemoveOptionAll, HtmlCreateElementOption, HtmlRemoveAllChild } from '../../common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
 
 

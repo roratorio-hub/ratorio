@@ -16,14 +16,26 @@ vi.hoisted(() => {
     };
     (document as any).getElementById = () => mockEl;
     (document as any).createElement = () => mockEl;
-    (globalThis as any).HtmlRemoveAllChild = () => {};
-    (globalThis as any).HtmlCreateElement = () => mockEl;
-    (globalThis as any).HtmlCreateTextNode = () => {};
-    (globalThis as any).HtmlGetObjectValueByIdAsInteger = () => 0;
-    (globalThis as any).HtmlGetObjectValueById = () => '';
-    (globalThis as any).HtmlGetElementById = () => mockEl;
-    (globalThis as any).HtmlSetObjectValueById = () => {};
-    (globalThis as any).HtmlCreateTextSpan = () => {};
+});
+
+vi.mock('../../roro/common/js/util.js', async (importActual) => {
+    const actual = await importActual<any>();
+    return { ...actual, HtmlRemoveAllChild: () => {} };
+});
+
+vi.mock('@roro/monstermap.dat.js', async (importActual) => {
+    const actual = await importActual<any>();
+    return {
+        ...actual,
+        MONSTER_MAP_ID_MAP_ALL: -1,
+        get g_MonsterMapDataArray() { return []; },
+        get g_MonsterMapCategoryDataArray() { return []; },
+    };
+});
+
+vi.mock('@roro/monster.dat.js', async (importActual) => {
+    const actual = await importActual<any>();
+    return { ...actual, get MonsterObjNew() { return []; } };
 });
 
 import '@roro/CGlobalConstManager.js';

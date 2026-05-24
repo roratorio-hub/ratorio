@@ -1,7 +1,7 @@
 
 import { CGlobalConstManager } from './CGlobalConstManager.js';
 // === AUTO-GENERATED IMPORTS ===
-import '../../../ro4/m/js/data/mig.job.h.js';
+import { GetHigherJobSeriesID, GetLowerJobSeriesID, IsSameJobClass } from '../../../ro4/m/js/data/mig.job.h.js';
 import './item.h.js';
 import { g_timeItemConf, g_timeItemConfEffective } from '../../../ro4/m/js/global.js';
 import {
@@ -12147,5 +12147,3 @@ export function GetStatusModifyTEMPPlus() {
 
 	return val;
 }
-
-Object.assign(window, { EquipNumSearch, CardNumSearch, TimeItemNumSearch });

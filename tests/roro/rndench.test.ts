@@ -1,5 +1,19 @@
-import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { vi, describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { IsEnableRandomEnchant } from '@roro/rndench.js';
+
+const mockRefs = vi.hoisted(() => ({
+    itemObjNew: [] as any[],
+    getRndOptTypeId: (_: number) => 0,
+}));
+
+vi.mock('@roro/item.dat.js', () => ({
+    get ItemObjNew() { return mockRefs.itemObjNew; },
+}));
+
+vi.mock('@roro/item.h.js', async (importActual) => {
+    const actual = await importActual<any>();
+    return { ...actual, get GetRndOptTypeId() { return mockRefs.getRndOptTypeId; } };
+});
 
 describe('rndench.js', () => {
     describe('エクスポート確認', () => {
@@ -17,45 +31,32 @@ describe('rndench.js', () => {
     describe('IsEnableRandomEnchant の動作', () => {
         beforeEach(() => {
             (globalThis as any).ITEM_DATA_INDEX_WPNLV = 2;
-            (globalThis as any).ItemObjNew = [];
-            (globalThis as any).GetRndOptTypeId = (wpnlv: number) => 0;
+            mockRefs.getRndOptTypeId = () => 0;
+            mockRefs.itemObjNew = [];
         });
         afterEach(() => {
             delete (globalThis as any).ITEM_DATA_INDEX_WPNLV;
-            delete (globalThis as any).ItemObjNew;
-            delete (globalThis as any).GetRndOptTypeId;
         });
 
         it('GetRndOptTypeId が 1 以上なら true を返す', () => {
-            (globalThis as any).GetRndOptTypeId = () => 1;
+            mockRefs.getRndOptTypeId = () => 1;
             const item: any[] = [];
-            item[2] = 11; // wpnlv=11 → (11*10)%10=0, flag&1=0 → false if not for GetRndOptTypeId
-            (globalThis as any).ItemObjNew = [undefined, undefined, undefined];
-            (globalThis as any).ItemObjNew[0] = item;
+            item[2] = 11; // ITEM_DATA_INDEX_WPNLV=2, wpnlv=11
+            mockRefs.itemObjNew = [item];
             expect(IsEnableRandomEnchant(0)).toBe(true);
         });
 
         it('wpnlv の最下位ビットが 1 なら true を返す', () => {
-            (globalThis as any).GetRndOptTypeId = () => 0;
             const item: any[] = [];
-            item[2] = 11; // wpnlv=11 → (11*10)%10=0... wait
-            // Actually: wpnlv * 10 % 10 gives the fractional digit
-            // wpnlv=1 → 10%10=0, but flag=(1*10)%10=0...
-            // Let me use wpnlv=0.1... but these are integers
-            // For integer wpnlv: (wpnlv * 10) % 10 = 0 always
-            // So flag is always 0 for integer wpnlv
-            // flag & 1 = 0 always → false
-            const item2: any[] = [];
-            item2[2] = 5;
-            (globalThis as any).ItemObjNew = [item2];
+            item[2] = 5;
+            mockRefs.itemObjNew = [item];
             expect(IsEnableRandomEnchant(0)).toBe(false);
         });
 
         it('GetRndOptTypeId が 0 かつ flag が 0 なら false を返す', () => {
-            (globalThis as any).GetRndOptTypeId = () => 0;
             const item: any[] = [];
             item[2] = 10;
-            (globalThis as any).ItemObjNew = [item];
+            mockRefs.itemObjNew = [item];
             expect(IsEnableRandomEnchant(0)).toBe(false);
         });
     });

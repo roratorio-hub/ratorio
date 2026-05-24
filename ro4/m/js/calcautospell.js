@@ -1,5 +1,5 @@
 // === AUTO-GENERATED IMPORTS ===
-import './data/mig.job.h.js';
+import { GetHigherJobSeriesID, GetLowerJobSeriesID } from './data/mig.job.h.js';
 import '../../../roro/m/js/autospell.h.js';
 import '../../../roro/m/js/card.h.js';
 import '../../../roro/m/js/common.js';
@@ -7,6 +7,7 @@ import '../../../roro/m/js/item.h.js';
 import '../../../roro/m/js/skill.h.js';
 import { AutoSpellSkill } from '../../../roro/m/js/autospell.dat.js';
 import { CARD_ID_GRIFFIN, CARD_ID_NAGUSAMERUMONO, CardObjNew } from '../../../roro/m/js/card.dat.js';
+import { CardNumSearch, EquipNumSearch, TimeItemNumSearch } from '../../../roro/m/js/chara.js';
 import {
          ITEM_ID_FURUBITA_MEISAIUSAGI, ITEM_ID_GLORIOUS_CLAW, ITEM_ID_MAGICAL_BLADE,
          ITEM_ID_SHINIGAMINO_MEIBO, ITEM_ID_SORATOBU_GARAPAGO, ITEM_ID_TORIKAINO_YOBIKO,
@@ -17,6 +18,7 @@ import {
          SERE_SUPPORT_SKILL_ID_EARTH_CARE, SERE_SUPPORT_SKILL_ID_FLAME_TECHNIQUE,
          SERE_SUPPORT_SKILL_ID_GRACE_BREEZE, SkillObjNew
 } from '../../../roro/m/js/skill.dat.js';
+import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, myInnerHtml } from '../../../roro/common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
 /* オートスペル設定　最大数 */
 export const AUTO_SPELL_SETTING_COUNT = 20;

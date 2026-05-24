@@ -2,6 +2,7 @@
 import { instobject } from './CBattleCalcResultAll.js';
 // === AUTO-GENERATED IMPORTS ===
 import { g_skillManager } from './global.js';
+import { GetArrayMax, GetArrayMin } from '../../../roro/common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
 
 /**

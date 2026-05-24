@@ -1,5 +1,12 @@
 // === AUTO-GENERATED IMPORTS ===
-import '../../../ro4/m/js/data/mig.job.h.js';
+import {
+         GetHigherJobSeriesID,
+         GetLowerJobSeriesID,
+         IsMatchJobRestrict,
+         IsSameJobClass,
+         IsUsableBSPJob,
+         IsUsableHSPJob
+} from '../../../ro4/m/js/data/mig.job.h.js';
 import './arrow.h.js';
 import './card.h.js';
 import './skill.h.js';
@@ -37,6 +44,7 @@ import {
 import { GetItemKindNameText, GetItemSP } from './item.h.js';
 import { GetEquipRndOptTableKind, GetEquipRndOptTableValue, SetEquipRndOptTable } from './rndopttype.h.js';
 import { SkillObjNew } from './skill.dat.js';
+import { HtmlGetElementById, HtmlCreateElement, HtmlCreateTextNode, HtmlRemoveOptionAll, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlRemoveFromParent, HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById, SetStatefullData, myInnerHtml } from '../../common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
 var g_bSuperNoviceFullWeapon;
 var n_A_WeaponType;

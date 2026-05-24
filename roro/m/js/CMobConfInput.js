@@ -6,6 +6,7 @@ import { CSaveDataConverter } from './CSaveDataConverter.js';
 import './CConfBase.js';
 import { GetMonsterElementText, GetRaceText, GetSizeText } from './common.js';
 import { GetBossTypeText, GetGrassTypeText } from './monster.h.js';
+import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById, HtmlCopyToClipboardById } from '../../common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
 
 // パラメータID定義

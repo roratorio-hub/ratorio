@@ -25,6 +25,7 @@ import {
 import { CardPrefix } from '../../m/js/card.prefix.dat.js';
 import { ItemObjNew } from '../../m/js/item.dat.js';
 import { GetItemKindNameText } from '../../m/js/item.h.js';
+import { HtmlRemoveOptionAll, HtmlCreateElementOption, HtmlRemoveAllChild } from '../../common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
 // 定数定義
 window.CARD_KIND_DMY_FOR_ALL = -1;
@@ -38,7 +39,7 @@ function OnLoadCardList () {
 /**
  * カード種別選択セレクトボックスを構築する.
  */
-function SetUpSelectCardType(){
+export function SetUpSelectCardType(){
 	var idx = 0;
 	var objSelect = null;
 	// 選択欄のオブジェクトを取得
@@ -92,7 +93,7 @@ function RefreshCardListTable(){
  * @param selectedCardKind 抽出条件（選択されたカード種別）
  * @return 抽出された CardData の配列
  */
-function PivotData(selectedCardKind) {
+export function PivotData(selectedCardKind) {
 	var idx = 0;
 	var cardDataArray = null;
 	let CARD_KIND = 0;
@@ -162,7 +163,7 @@ function PivotData(selectedCardKind) {
 	return cardDataArray;
 }
 
-function GetItemToEnchInfoMapAllEnchList() {
+export function GetItemToEnchInfoMapAllEnchList() {
 	var idxItem = 0;
 	var idxEnchList = 0;
 	var idxSlot = 0;
@@ -213,7 +214,7 @@ function GetItemToEnchInfoMapAllEnchList() {
  * @param selectedCardKind 抽出条件（選択されたカード種別）
  * @param cardDataArray 抽出された CardData の配列
  */
-function DispData(selectedCardKind, cardDataArray) {
+export function DispData(selectedCardKind, cardDataArray) {
 	let idx = 0;
 	let idxKind = 0;
 	let idxEnchList = 0;
@@ -486,29 +487,6 @@ function OnChangeShowEnchantInfo() {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*
 	以下、slotpager.js からコピペ。
 */
@@ -532,7 +510,6 @@ window.SLOT_INDEX_RNDENCH_MAX = 5;
 */
 
 
-
 /*
  * エンチャントリストデータを収集する.
  * @param enchListId 収集対象のエンチャントリストID
@@ -549,7 +526,6 @@ function RebuildCardSelectSubCollectEnchListData(enchListId, enchInfoArrayAllSlo
 
 	var enchInfoArray = null;
 	var enchInfoArrayAllSlots = null;
-
 
 
 	var funcTargetIdCollector = function (enchListIdF, slotF, spDataF, paramsF) {
@@ -652,8 +628,6 @@ function RebuildCardSelectSubCollectEnchListData(enchListId, enchInfoArrayAllSlo
 	};
 
 
-
-
 	// データ収集用配列用意
 	enchInfoArrayAllSlots = [];
 	for (idxSlot = 0; idxSlot < (SLOT_INDEX_CARD_MAX - SLOT_INDEX_CARD_MIN + 1); idxSlot++) {
@@ -681,12 +655,11 @@ function RebuildCardSelectSubCollectEnchListData(enchListId, enchInfoArrayAllSlo
 	RebuildCardSelectSubSortCollectedEnchListData(enchInfoArrayAllSlots);
 
 
-
 	// 収集したデータを返す
 	return enchInfoArrayAllSlots;
 }
 
-function RebuildCardSelectSubCollectEnchListDataSubUpgradeShinennoKairo(enchInfoArrayBefore, resultArray, enchListId, paramsObject) {
+export function RebuildCardSelectSubCollectEnchListDataSubUpgradeShinennoKairo(enchInfoArrayBefore, resultArray, enchListId, paramsObject) {
 
 	var idx = 0;
 
@@ -758,7 +731,7 @@ function RebuildCardSelectSubCollectEnchListDataSubUpgradeShinennoKairo(enchInfo
 	}
 }
 
-function RebuildCardSelectSubCollectEnchListDataSubUpgradeShinentaiBuki(enchInfoArrayBefore, resultArray, enchListId, paramsObject) {
+export function RebuildCardSelectSubCollectEnchListDataSubUpgradeShinentaiBuki(enchInfoArrayBefore, resultArray, enchListId, paramsObject) {
 
 	var idx = 0;
 
@@ -806,7 +779,7 @@ function RebuildCardSelectSubCollectEnchListDataSubUpgradeShinentaiBuki(enchInfo
 }
 
 
-function RebuildCardSelectSubSortCollectedEnchListData(enchInfoArrayAllSlots) {
+export function RebuildCardSelectSubSortCollectedEnchListData(enchInfoArrayAllSlots) {
 
 	var idx = 0;
 	var idxSlot = 0;
@@ -844,11 +817,12 @@ function RebuildCardSelectSubSortCollectedEnchListData(enchInfoArrayAllSlots) {
 }
 if (typeof window !== 'undefined') {
 	Object.assign(window, {
-		OnLoadCardList, SetUpSelectCardType, RefreshCardListTable, PivotData,
-		GetItemToEnchInfoMapAllEnchList, DispData, OnChangeKindRestrict, OnChangeShowEnchantInfo,
-		RebuildCardSelectSubCollectEnchListData,
+		OnLoadCardList,
+		RefreshCardListTable,
+		OnChangeKindRestrict,
+		OnChangeShowEnchantInfo,
 		RebuildCardSelectSubCollectEnchListDataSubUpgradeShinennoKairo,
 		RebuildCardSelectSubCollectEnchListDataSubUpgradeShinentaiBuki,
 		RebuildCardSelectSubSortCollectedEnchListData,
-	});
+});
 }

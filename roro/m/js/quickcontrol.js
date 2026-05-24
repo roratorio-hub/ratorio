@@ -11,6 +11,8 @@ import {
          ITEM_PACK_ID_CLEAR_REFINE_ALL, ITEM_PACK_ID_CLEAR_SHADOW_ALL, ItemPackOBJ
 } from './itempack.dat.js';
 import { GetSlotMode, OnClickSlotModeButton } from './slotpager.js';
+import { IsMatchJobRestrict } from '../../../ro4/m/js/data/mig.job.h.js';
+import { HtmlCreateElement, HtmlCreateTextNode, HtmlRemoveAllChild, HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById } from '../../common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
 
 export let g_QuickControlSW = false;

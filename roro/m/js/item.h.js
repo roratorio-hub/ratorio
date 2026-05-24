@@ -9,6 +9,7 @@ import { GetElementText, GetRaceText, GetSizeText, GetStateText } from './common
 import { MonsterObjNew } from './monster.dat.js';
 import { SkillObjNew } from './skill.dat.js';
 import { InsertSkill } from './usableskill.dat.js';
+import { toSafeBigInt } from '../../common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
 
 //----------------------------------------------------------------

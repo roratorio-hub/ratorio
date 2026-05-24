@@ -1,5 +1,5 @@
 // === AUTO-GENERATED IMPORTS ===
-import '../../../ro4/m/js/data/mig.job.h.js';
+import { GetHigherJobSeriesID, GetJobName, GetLowerJobSeriesID, IsSameJobClass } from '../../../ro4/m/js/data/mig.job.h.js';
 import { CMonsterMapAreaComponentManager } from '../../../ro4/m/js/CMonsterMapAreaComponentManager.js';
 import {
          AUTO_SPELL_PROB_ARRAY, AUTO_SPELL_SETTING_COUNT, OBJID_OFFSET_AS_SKILL_ID,
@@ -98,6 +98,7 @@ import {
 } from './timeitem.dat.js';
 import { InsertSkill } from './usableskill.dat.js';
 import { USABLE_SKILL_ID_CUSTOM_BIAS } from './usableskill.h.js';
+import { HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById, SetStatefullData, GetStatefullData, MallocArray, myInnerHtml } from '../../common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
 // ★★　VersionModify() 関数の修正も忘れずに　★★
 
@@ -5543,5 +5544,5 @@ export function OnClickUrlIn() {
 }
 
 if (typeof window !== 'undefined') {
-	Object.assign(window, { SaveSystem, aaa });
+	Object.assign(window, { SaveSystem });
 }

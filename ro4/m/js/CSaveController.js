@@ -11,6 +11,8 @@ import { calc } from './head.js';
 import { CItemInfoManager } from '../../../roro/m/js/CItemInfoManager.js';
 import { n_B_KYOUKA } from '../../../roro/m/js/mobconfbuf.js';
 import { n_B_IJYOU } from '../../../roro/m/js/mobconfdebuf.js';
+import { GetJobName } from './data/mig.job.h.js';
+import { floorBigInt32 } from '../../../roro/common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
 
 /**

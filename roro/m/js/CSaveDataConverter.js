@@ -1,3 +1,6 @@
+// === AUTO-GENERATED IMPORTS ===
+import { floorBigInt32, toSafeBigInt } from '../../common/js/util.js';
+// === END AUTO-GENERATED IMPORTS ===
 /**
  * セーブデータの変換を行うクラス.
  */

@@ -196,8 +196,13 @@ def can_remove_from_window(sym: str, source_file: Path, analysis: dict) -> bool:
         # Not an exported symbol → can't verify, be conservative (keep)
         return False
 
+    # The file that defines the symbol uses it without importing → skip it too
+    defining_file = sym_source[sym]
+
     for fpath in all_files:
         if fpath == source_file:
+            continue
+        if fpath == defining_file:
             continue
         stripped = file_stripped.get(fpath, '')
         if not stripped:

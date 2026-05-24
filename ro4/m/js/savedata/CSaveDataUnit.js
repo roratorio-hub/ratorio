@@ -182,5 +182,3 @@ export const SAVE_DATA_UNIT_TYPE_CHARA_CONF_SPEC_BASIC = CSaveDataUnitTypeManage
  * セーブデータユニットクラス：矢.
  */
 export const SAVE_DATA_UNIT_TYPE_EQUIP_ARROW = CSaveDataUnitTypeManager.register(CSaveDataUnitEquipArrow);
-
-Object.assign(window, { CSaveDataUnitTypeManager });

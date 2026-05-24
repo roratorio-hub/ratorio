@@ -9,6 +9,7 @@ import {
          MOB_CONF_PLAYER_ID_SHUZOKU_HUMAN, n_B_TAISEI
 } from './mobconfplayer.js';
 import { MONSTER_ID_PLAYER, MonsterObjNew } from './monster.dat.js';
+import { HtmlCreateElement } from '../../common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
 export function UpdateMobDataHtml(monsterId, mobData) {
 
