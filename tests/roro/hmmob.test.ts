@@ -32,10 +32,4 @@ describe('hmmob.js', () => {
             expect(typeof UpdateMobDataHtml).toBe('function');
         });
     });
-
-    describe('window互換確認', () => {
-        it('window.UpdateMobDataHtml が設定されている', () => {
-            expect((window as any).UpdateMobDataHtml).toBe(UpdateMobDataHtml);
-        });
-    });
 });

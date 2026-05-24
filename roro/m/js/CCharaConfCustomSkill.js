@@ -11,10 +11,8 @@ export function CCharaConfCustomSkill(confArray) {
 	CCharaConfCustomSkill.prototype = new CConfBase();
 
 
-
 	// 基底クラスのコンストラクタ呼び出し
 	CConfBase.call(this, confArray);
-
 
 
 	// 設定の限界値
@@ -22,17 +20,12 @@ export function CCharaConfCustomSkill(confArray) {
 	this.confCountLimit = CUSTOM_CONF_SKILL_LIMIT;
 
 
-
 	// 設定欄の横方向項目数
 	this.itemInRow = 1;
 
 
-
 	// 設定欄のラベル
 	this.confLabel = "性能カスタマイズ（スキル関連）";
-
-
-
 
 
 	//********************************************************************************************************************************
@@ -56,10 +49,8 @@ export function CCharaConfCustomSkill(confArray) {
 		var confDataOBJSorted = new Array();
 
 
-
 		// 基底クラスのセットアップ処理を実行
 		CCharaConfCustomSkill.prototype.InitData.call(this);
-
 
 
 		//----------------------------------------------------------------
@@ -78,7 +69,6 @@ export function CCharaConfCustomSkill(confArray) {
 		confId++;
 
 
-
 		CCharaConfCustomSkill.CONF_ID_SKILL_DAMAGE_UP = confId;
 		confData = [
 			confId,
@@ -90,7 +80,6 @@ export function CCharaConfCustomSkill(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
 
 
 		CCharaConfCustomSkill.CONF_ID_HEAL_UP_USING = confId;
@@ -106,7 +95,6 @@ export function CCharaConfCustomSkill(confArray) {
 		confId++;
 
 
-
 		CCharaConfCustomSkill.CONF_ID_HEAL_UP_USED = confId;
 		confData = [
 			confId,
@@ -118,7 +106,6 @@ export function CCharaConfCustomSkill(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
 
 
 		CCharaConfCustomSkill.CONF_ID_SKILL_CAST_DOWN = confId;
@@ -134,7 +121,6 @@ export function CCharaConfCustomSkill(confArray) {
 		confId++;
 
 
-
 		CCharaConfCustomSkill.CONF_ID_SKILL_CAST_MINUS = confId;
 		confData = [
 			confId,
@@ -146,7 +132,6 @@ export function CCharaConfCustomSkill(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
 
 
 		CCharaConfCustomSkill.CONF_ID_SKILL_CAST_DOWN_FIXED = confId;
@@ -162,7 +147,6 @@ export function CCharaConfCustomSkill(confArray) {
 		confId++;
 
 
-
 		CCharaConfCustomSkill.CONF_ID_SKILL_CAST_MINUS_FIXED = confId;
 		confData = [
 			confId,
@@ -174,7 +158,6 @@ export function CCharaConfCustomSkill(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
 
 
 		CCharaConfCustomSkill.CONF_ID_SKILL_COOL_DOWN = confId;
@@ -190,7 +173,6 @@ export function CCharaConfCustomSkill(confArray) {
 		confId++;
 
 
-
 		CCharaConfCustomSkill.CONF_ID_SKILL_COOL_MINUS = confId;
 		confData = [
 			confId,
@@ -202,7 +184,6 @@ export function CCharaConfCustomSkill(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
 
 
 		CCharaConfCustomSkill.CONF_ID_SKILL_DAMAGE_UP_BASE_LEVEL_BY = confId;
@@ -218,7 +199,6 @@ export function CCharaConfCustomSkill(confArray) {
 		confId++;
 
 
-
 		CCharaConfCustomSkill.CONF_ID_SKILL_COST_MINUS = confId;
 		confData = [
 			confId,
@@ -230,7 +210,6 @@ export function CCharaConfCustomSkill(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
 
 
 		CCharaConfCustomSkill.CONF_ID_SKILL_COST_DOWN = confId;
@@ -246,12 +225,6 @@ export function CCharaConfCustomSkill(confArray) {
 		confId++;
 
 
-
-
-
-
-
-
 		CCharaConfCustomSkill.CONF_ID_NOTICE_SIGNED = confId;
 		confData = [
 			confId,
@@ -263,7 +236,6 @@ export function CCharaConfCustomSkill(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
 
 
 		CCharaConfCustomSkill.CONF_ID_BLANK = confId;
@@ -279,7 +251,6 @@ export function CCharaConfCustomSkill(confArray) {
 		confId++;
 
 
-
 		//----------------------------------------------------------------
 		// データ定義数チェック
 		//----------------------------------------------------------------
@@ -287,7 +258,6 @@ export function CCharaConfCustomSkill(confArray) {
 			alert("性能カスタマイズ　定義数超過");
 			return;
 		}
-
 
 
 		//----------------------------------------------------------------
@@ -301,7 +271,6 @@ export function CCharaConfCustomSkill(confArray) {
 				this.confArray[idx] = 0;
 			}
 		}
-
 
 
 		//----------------------------------------------------------------
@@ -328,9 +297,6 @@ export function CCharaConfCustomSkill(confArray) {
 		this.confDataObj = confDataOBJSorted;
 
 	}
-
-
-
 
 
 	/**
@@ -374,7 +340,6 @@ export function CCharaConfCustomSkill(confArray) {
 			break;
 
 
-
 		// 各種短縮（秒）
 		case CCharaConfCustomSkill.CONF_ID_SKILL_CAST_MINUS:
 		case CCharaConfCustomSkill.CONF_ID_SKILL_CAST_MINUS_FIXED:
@@ -402,7 +367,6 @@ export function CCharaConfCustomSkill(confArray) {
 				objSelect.setAttribute(`${this.dataRtxAttributeIdPrefix}-displayname`, confData[CConfBase.CONF_DATA_INDEX_TEXT]);
 			}
 			break;
-
 
 
 		// ベースレベル条件
@@ -435,7 +399,6 @@ export function CCharaConfCustomSkill(confArray) {
 	}
 
 
-
 	/**
 	 * 設定値を取得する.
 	 * @param id 取得する設定のID
@@ -449,16 +412,9 @@ export function CCharaConfCustomSkill(confArray) {
 	}
 
 
-
-
-
 	// 初期化実行
 	this.InitData();
 
 
-
 }
 
-if (typeof window !== 'undefined') {
-	window.CCharaConfCustomSkill = CCharaConfCustomSkill;
-}

@@ -27,12 +27,6 @@ describe('CCustomSelectMapCategory.js', () => {
         });
     });
 
-    describe('window互換確認', () => {
-        it('window.CCustomSelectMapCategory が設定されている', () => {
-            expect((window as any).CCustomSelectMapCategory).toBe(CCustomSelectMapCategory);
-        });
-    });
-
     describe('インスタンスメソッド確認', () => {
         let obj: any;
         beforeAll(() => {

@@ -11,7 +11,6 @@ export function CTimeItemAreaComponentManager () {
 }
 
 
-
 /**
  * 画面部品を再構築する.
  */
@@ -43,13 +42,11 @@ CTimeItemAreaComponentManager.RebuildControls = function () {
 	var objLabel = null;
 
 
-
 	// チェックボックスのチェック状態を取得
 	objSwitch = document.getElementById("OBJID_TIME_ITEM_AREA_EXTRACT_CHECKBOX");
 	if (objSwitch) {
 		switchChecked = objSwitch.checked;
 	}
-
 
 
 	// 設定欄を初期化
@@ -64,7 +61,6 @@ CTimeItemAreaComponentManager.RebuildControls = function () {
 
 	objTbody = document.createElement("tbody");
 	objTable.appendChild(objTbody);
-
 
 
 	// ヘッダ部分を構築
@@ -97,7 +93,6 @@ CTimeItemAreaComponentManager.RebuildControls = function () {
 	objLabel.setAttribute("class", "CSSCLS_CONF_USING_MESSAGE_USING");
 
 
-
 	// 設定欄のヘッダ部分をリフレッシュ（着色処理等）
 	CTimeItemAreaComponentManager.RefreshTimeItemAreaHeader();
 
@@ -105,7 +100,6 @@ CTimeItemAreaComponentManager.RebuildControls = function () {
 	if (!switchChecked) {
 		return;
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -152,7 +146,6 @@ CTimeItemAreaComponentManager.RebuildControls = function () {
 	HtmlCreateTextNode("発動率と効果時間は計算に入れていません。設定すれば常時発動状態です。", objSpan);
 
 };
-
 
 
 /**
@@ -216,7 +209,6 @@ CTimeItemAreaComponentManager.OnChangeConf = function (idxConf, dataId) {
 };
 
 
-
 /**
  * ヘッダ部品を再設定する.
  */
@@ -251,7 +243,6 @@ CTimeItemAreaComponentManager.RefreshTimeItemAreaHeader = function () {
 };
 
 
-
 /**
  * コントロール部品の CSS を再設定する.
  */
@@ -279,7 +270,6 @@ CTimeItemAreaComponentManager.RefreshControlCSS = function () {
 };
 
 
-
 /**
  * 設定欄を開く.
  */
@@ -298,7 +288,6 @@ CTimeItemAreaComponentManager.OpenArea = function () {
 };
 
 
-
 /**
  * 設定欄を閉じる.
  */
@@ -315,7 +304,6 @@ CTimeItemAreaComponentManager.CloseArea = function () {
 	// 再構築する
 	CTimeItemAreaComponentManager.RebuildControls();
 };
-
 
 
 /**
@@ -349,11 +337,7 @@ CTimeItemAreaComponentManager.FocusArea = function (idxConf, bForceOpen) {
 };
 
 
-
 // 初期構築処理
 CTimeItemAreaComponentManager.RebuildControls();
 
-if (typeof window !== 'undefined') {
-	window.CTimeItemAreaComponentManager = CTimeItemAreaComponentManager;
-}
 

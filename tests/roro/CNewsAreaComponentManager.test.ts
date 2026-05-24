@@ -39,10 +39,4 @@ describe('CNewsAreaComponentManager.js', () => {
             expect(typeof CNewsAreaComponentManager.CloseArea).toBe('function');
         });
     });
-
-    describe('window互換確認', () => {
-        it('window.CNewsAreaComponentManager が設定されている', () => {
-            expect((window as any).CNewsAreaComponentManager).toBe(CNewsAreaComponentManager);
-        });
-    });
 });

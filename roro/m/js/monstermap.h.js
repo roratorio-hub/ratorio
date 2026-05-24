@@ -32,7 +32,6 @@ CGlobalConstManager.DefinePseudoEnum(
 );
 
 
-
 //----------------------------------------------------------------
 // マップ種別ＩＤ定義
 //----------------------------------------------------------------
@@ -55,9 +54,6 @@ CGlobalConstManager.DefinePseudoEnum(
 	EnumMonsterMapKind.Count,
 	1
 );
-
-
-
 
 
 /**
@@ -84,14 +80,6 @@ export function SetUpSortKanaMonsterMap(dataArray) {
 }
 
 
-
-
-
 SetUpSortKanaMonsterMap(g_MonsterMapDataArray);
 SetUpSortKanaMonsterMap(g_MonsterMapCategoryDataArray);
 
-if (typeof window !== 'undefined') {
-    window.g_MonsterMapDataArray = g_MonsterMapDataArray;
-    window.g_MonsterMapCategoryDataArray = g_MonsterMapCategoryDataArray;
-    window.SetUpSortKanaMonsterMap = SetUpSortKanaMonsterMap;
-}

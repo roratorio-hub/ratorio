@@ -631,7 +631,6 @@ export class CShadowEquipController {
 export const g_shadowEquipController = new CShadowEquipController();
 
 if (typeof window !== 'undefined') {
-    window.CShadowEquipController = CShadowEquipController;
     window.g_shadowEquipController = g_shadowEquipController;
 }
 g_shadowEquipController.initializeHTML();

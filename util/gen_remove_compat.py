@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
 """
-gen_remove_compat.py - Remove Object.assign(window, {...}) compat blocks.
+gen_remove_compat.py - Remove window compat blocks (Object.assign and individual assignments).
 
 A symbol can be removed from the compat block ONLY if every file that uses it
 either already imports it (via ESM) or is the file that defines it.
 HTML inline event handler symbols are always kept on window regardless.
 
-Object.defineProperties blocks and direct window.X = X assignments are NOT touched.
+Handles:
+  - Object.assign(window, { F1, F2, ... }) blocks
+  - Individual window.X = X; re-export lines in top-level if (typeof window) blocks
+  - Object.defineProperties blocks are NOT touched
 
 Usage:
   python3 util/gen_remove_compat.py           # dry-run
@@ -19,6 +22,8 @@ import sys
 from pathlib import Path
 
 BASE = Path(__file__).parent.parent  # /workspace/ratorio
+
+WORKSPACE_INTERFACE_DTS = BASE / 'workspace/src/common.d.ts'
 
 HTML_FILES = [
     BASE / 'ro4/m/calcx.html',
@@ -59,6 +64,17 @@ def collect_html_handler_symbols() -> set:
                     must_keep.add(name)
 
     return must_keep
+
+
+def collect_workspace_interface_symbols() -> set:
+    """Collect symbol names declared in workspace/src/common.d.ts (window interface)."""
+    keep = set()
+    if not WORKSPACE_INTERFACE_DTS.exists():
+        return keep
+    content = WORKSPACE_INTERFACE_DTS.read_text(encoding='utf-8')
+    for m in re.finditer(r'declare\s+(?:function|let|class)\s+([A-Za-z_]\w*)', content):
+        keep.add(m.group(1))
+    return keep
 
 
 # ---------------------------------------------------------------------------
@@ -132,12 +148,8 @@ def sym_used_in_file(sym: str, stripped: str) -> bool:
 
 def build_usage_analysis(all_files: list) -> dict:
     """
-    For each exported symbol, determine:
-    - Which file exports it
-    - Which other files USE it (bare reference, not window.X)
-    - Which files have a proper ESM import for it
-
-    Returns: { symbol: { 'source': Path, 'users': set[Path], 'importers': set[Path] } }
+    Build export map, import map, and per-file used-symbol sets.
+    Returns: dict with sym_source, file_imports, file_used_exported, all_files.
     """
     # Step 1: build export map
     sym_source: dict[str, Path] = {}
@@ -153,67 +165,86 @@ def build_usage_analysis(all_files: list) -> dict:
             if len(sym) >= MIN_SYM_LEN:
                 sym_source[sym] = fpath
 
-    # Step 2: for each file, get imports and check usage
+    # Step 2: for each file, collect imports and bare identifier usage
     file_imports: dict[Path, set] = {}
-    file_stripped: dict[Path, str] = {}
+    file_used_exported: dict[Path, set] = {}
+    exported_sym_set = set(sym_source.keys())
+    _IDENT_RE = re.compile(r'(?<![.\w$])([A-Za-z_][A-Za-z0-9_]{3,})(?![\w$])')
+
     for fpath in all_files:
         try:
             content = fpath.read_text(encoding='utf-8')
         except Exception:
             file_imports[fpath] = set()
-            file_stripped[fpath] = ''
+            file_used_exported[fpath] = set()
             continue
         file_imports[fpath] = get_file_imports(content)
-        file_stripped[fpath] = strip_comments_and_strings(content)
+        stripped = strip_comments_and_strings(content)
+        # Remove import lines to avoid counting import names as usage
+        stripped_no_import = re.sub(r'^import\s+[^\n]+\n', '', stripped, flags=re.MULTILINE)
+        used = set(_IDENT_RE.findall(stripped_no_import))
+        file_used_exported[fpath] = used & exported_sym_set
 
-    # Step 3: build usage map per symbol
-    # Only check symbols that appear in compat blocks (we'll call this per-block)
-    # Return the full data structures for per-symbol queries
     return {
         'sym_source': sym_source,
         'file_imports': file_imports,
-        'file_stripped': file_stripped,
+        'file_used_exported': file_used_exported,
         'all_files': all_files,
     }
 
 
-def can_remove_from_window(sym: str, source_file: Path, analysis: dict) -> bool:
+def precompute_removable(analysis: dict, html_handlers: set) -> set:
     """
-    Return True if `sym` (exported from source_file) can be removed from
-    source_file's window compat block.
-
-    A symbol can be removed if every file that uses it (as a bare identifier,
-    not window.X) either:
-      - Imports it via ESM from source_file (or anywhere)
-      - Is the source_file itself
+    Precompute the set of symbols that can be safely removed from window.
+    A symbol can be removed if every file that uses it (bare reference) imports it.
     """
     sym_source = analysis['sym_source']
     file_imports = analysis['file_imports']
-    file_stripped = analysis['file_stripped']
+    file_used_exported = analysis['file_used_exported']
+    all_files = analysis['all_files']
+
+    # sym → set of files using it without import
+    sym_unimported: dict[str, set] = {sym: set() for sym in sym_source}
+
+    for fpath in all_files:
+        used = file_used_exported.get(fpath, set())
+        imported = file_imports.get(fpath, set())
+        for sym in used - imported:
+            if sym not in sym_source:
+                continue
+            src = sym_source[sym]
+            if src != fpath:
+                sym_unimported[sym].add(fpath)
+
+    removable = {
+        sym for sym, blockers in sym_unimported.items()
+        if not blockers and sym not in html_handlers
+    }
+    print(f'  Removable symbols: {len(removable)} / {len(sym_source)} total exported')
+    return removable
+
+
+def can_remove_from_window(sym: str, source_file: Path, analysis: dict,
+                            removable: set = None) -> bool:
+    """Return True if sym can be removed. Uses precomputed set if provided."""
+    if removable is not None:
+        return sym in removable
+    # Fallback: legacy per-symbol check
+    sym_source = analysis['sym_source']
+    file_imports = analysis['file_imports']
+    file_used_exported = analysis['file_used_exported']
     all_files = analysis['all_files']
 
     if sym not in sym_source:
-        # Not an exported symbol → can't verify, be conservative (keep)
         return False
-
-    # The file that defines the symbol uses it without importing → skip it too
-    defining_file = sym_source[sym]
 
     for fpath in all_files:
         if fpath == source_file:
             continue
-        if fpath == defining_file:
+        if sym not in file_used_exported.get(fpath, set()):
             continue
-        stripped = file_stripped.get(fpath, '')
-        if not stripped:
-            continue
-        if not sym_used_in_file(sym, stripped):
-            continue
-        # This file uses the symbol — does it import it?
         if sym not in file_imports.get(fpath, set()):
-            # Uses it but doesn't import it → still needs window access
             return False
-
     return True
 
 
@@ -309,20 +340,117 @@ def remove_empty_if_wrappers(content: str) -> str:
 
 
 # ---------------------------------------------------------------------------
+# Individual window.X = X assignment processing
+# ---------------------------------------------------------------------------
+
+_TOP_LEVEL_IF_RE = re.compile(
+    r'^if\s*\(\s*typeof\s+window\s*!==\s*[\'"]undefined[\'"]\s*\)\s*\{',
+    re.MULTILINE
+)
+_WINDOW_REEXPORT_LINE_RE = re.compile(
+    r'^(\s*)window\.([A-Za-z_][A-Za-z0-9_]{3,})\s*=\s*\2\s*;[ \t]*$',
+    re.MULTILINE
+)
+
+
+def find_top_level_if_blocks(content: str) -> list:
+    """Find top-level if (typeof window !== 'undefined') { ... } blocks at column 0."""
+    results = []
+    for m in _TOP_LEVEL_IF_RE.finditer(content):
+        block_start = m.start()
+        brace_open = content.find('{', m.start())
+        depth = 1
+        pos = brace_open + 1
+        while pos < len(content) and depth > 0:
+            c = content[pos]
+            if c == '{':
+                depth += 1
+            elif c == '}':
+                depth -= 1
+            pos += 1
+        results.append((block_start, pos))
+    return results
+
+
+def process_individual_assigns(
+    fpath: Path, content: str,
+    html_handlers: set, analysis: dict, removable: set = None
+) -> tuple:
+    """
+    Remove window.X = X; re-export lines (same name both sides) from top-level
+    if (typeof window) blocks when all consumers already import the symbol.
+    Returns (new_content, n_removed, removed_syms_sample).
+    """
+    # Collect positions of top-level blocks to restrict processing scope
+    top_blocks = find_top_level_if_blocks(content)
+    if not top_blocks:
+        return content, 0, []
+
+    def in_top_block(pos):
+        return any(start <= pos < end for start, end in top_blocks)
+
+    removed_syms = []
+    # Process from the end to preserve offsets
+    matches = list(_WINDOW_REEXPORT_LINE_RE.finditer(content))
+    new_content = content
+
+    offset = 0
+    for m in matches:
+        sym = m.group(2)
+        actual_start = m.start() + offset
+        actual_end = m.end() + offset
+
+        if not in_top_block(m.start()):
+            continue
+        if sym in html_handlers:
+            continue
+        if not can_remove_from_window(sym, fpath, analysis, removable):
+            continue
+
+        # Remove this line (including trailing newline if present)
+        line_start = actual_start
+        line_end = actual_end
+        # Include trailing newline
+        if line_end < len(new_content) and new_content[line_end] == '\n':
+            line_end += 1
+        # Also remove leading newline if the removed line leaves a blank
+        new_content = new_content[:line_start] + new_content[line_end:]
+        offset -= (line_end - line_start)
+        removed_syms.append(sym)
+
+    return new_content, len(removed_syms), removed_syms[:6]
+
+
+# ---------------------------------------------------------------------------
 # Main processing
 # ---------------------------------------------------------------------------
 
-def process_file(fpath: Path, html_handlers: set, analysis: dict, apply: bool, verbose: bool) -> bool:
+def process_file(fpath: Path, html_handlers: set, analysis: dict, apply: bool, verbose: bool,
+                  removable: set = None) -> bool:
     content = fpath.read_text(encoding='utf-8')
-    if 'Object.assign(window' not in content:
-        return False
-
-    blocks = find_object_assign_blocks(content)
-    if not blocks:
+    has_object_assign = 'Object.assign(window' in content
+    has_individual = bool(_WINDOW_REEXPORT_LINE_RE.search(content))
+    if not has_object_assign and not has_individual:
         return False
 
     changed = False
     new_content = content
+
+    # --- Pass 1: individual window.X = X; lines ---
+    if has_individual:
+        new_content2, n_removed, sample = process_individual_assigns(
+            fpath, new_content, html_handlers, analysis, removable
+        )
+        if n_removed > 0:
+            changed = True
+            new_content = new_content2
+            if verbose or not apply:
+                rel = fpath.relative_to(BASE)
+                print(f'  REMOVE-LINES {rel}: {n_removed} lines'
+                      f' (e.g. {sample})')
+
+    # --- Pass 2: Object.assign(window, {...}) blocks ---
+    blocks = find_object_assign_blocks(new_content) if has_object_assign else []
 
     for (start, end, syms_str) in reversed(blocks):
         syms = parse_syms(syms_str)
@@ -334,7 +462,7 @@ def process_file(fpath: Path, html_handlers: set, analysis: dict, apply: bool, v
         for sym in syms:
             if sym in html_handlers:
                 kept.append(sym)
-            elif can_remove_from_window(sym, fpath, analysis):
+            elif can_remove_from_window(sym, fpath, analysis, removable):
                 removed.append(sym)
             else:
                 kept.append(sym)  # still needed via window
@@ -386,6 +514,12 @@ def main():
     print('Collecting HTML inline handler symbols...')
     html_handlers = collect_html_handler_symbols()
     print(f'  HTML handlers ({len(html_handlers)}): {sorted(html_handlers)}')
+
+    print('Collecting workspace/ interface symbols...')
+    ws_interface = collect_workspace_interface_symbols()
+    print(f'  Workspace interface ({len(ws_interface)}): {sorted(ws_interface)}')
+    html_handlers = html_handlers | ws_interface
+    print(f'  Combined keep-set: {len(html_handlers)} symbols')
     print()
 
     js_files = get_js_files()
@@ -394,10 +528,14 @@ def main():
     print(f'  Exported symbols indexed: {len(analysis["sym_source"])}')
     print()
 
+    print('Precomputing removable symbols...')
+    removable = precompute_removable(analysis, html_handlers)
+    print()
+
     print('Processing compat blocks...')
     n_changed = 0
     for fpath in js_files:
-        if process_file(fpath, html_handlers, analysis, apply, verbose):
+        if process_file(fpath, html_handlers, analysis, apply, verbose, removable):
             n_changed += 1
 
     print()

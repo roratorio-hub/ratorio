@@ -91,12 +91,6 @@ describe('saveload.js', () => {
         it('window.ConvertDataTextMIG が設定されている', () => {
             expect((window as any).ConvertDataTextMIG).toBe(ConvertDataTextMIG);
         });
-        it('window.AdaptSaveDataStrSizeMIG が設定されている', () => {
-            expect((window as any).AdaptSaveDataStrSizeMIG).toBe(AdaptSaveDataStrSizeMIG);
-        });
-        it('window.SaveDataChangeMIG が設定されている', () => {
-            expect((window as any).SaveDataChangeMIG).toBe(SaveDataChangeMIG);
-        });
         it('window.OnClickConfirmDialogSwitch が設定されている', () => {
             expect((window as any).OnClickConfirmDialogSwitch).toBe(OnClickConfirmDialogSwitch);
         });

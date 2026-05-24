@@ -26,11 +26,7 @@ describe('CMobConfInput', () => {
 	});
 
 	describe('window互換', () => {
-		it('window.CMobConfInputData', () => expect((window as any).CMobConfInputData).toBe(CMobConfInputData));
-		it('window.CMobConfInputAreaComponentManager', () => expect((window as any).CMobConfInputAreaComponentManager).toBe(CMobConfInputAreaComponentManager));
 		it('window.GetMobConfInput', () => expect((window as any).GetMobConfInput).toBe(GetMobConfInput));
-		it('window.SetMobConfInput', () => expect((window as any).SetMobConfInput).toBe(SetMobConfInput));
-		it('window.SetActiveIndexMobConfInput', () => expect((window as any).SetActiveIndexMobConfInput).toBe(SetActiveIndexMobConfInput));
 		it('window.g_dataManagerMobConfInput', () => expect((window as any).g_dataManagerMobConfInput).toBe(g_dataManagerMobConfInput));
 	});
 

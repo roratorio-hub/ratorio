@@ -124,17 +124,8 @@ describe('global.js', () => {
     });
 
     describe('window互換確認', () => {
-        it('window.TIME_ITEM_CONF_COUNT が設定されている', () => {
-            expect((window as any).TIME_ITEM_CONF_COUNT).toBe(20);
-        });
-        it('window.g_timeItemConf が設定されている', () => {
-            expect((window as any).g_timeItemConf).toBe(g_timeItemConf);
-        });
         it('window.g_confDataCustomStatusMIG が設定されている', () => {
             expect(Array.isArray((window as any).g_confDataCustomStatusMIG)).toBe(true);
-        });
-        it('window.ResetConfDataAllMIG が設定されている', () => {
-            expect((window as any).ResetConfDataAllMIG).toBe(ResetConfDataAllMIG);
         });
         it('window.__DIG3 が設定されている', () => {
             expect((window as any).__DIG3).toBe(__DIG3);

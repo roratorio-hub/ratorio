@@ -52,27 +52,16 @@ describe('hmrndopt.js', () => {
     });
 
     describe('window互換確認', () => {
-        // window互換ブロック: 19関数
         const windowNames = [
-            'GetObjectPrefixRndOpt',
             'GetObjectIdRndOptKindTD',
             'GetObjectIdRndOptKind',
             'GetObjectIdRndOptValueTD',
             'GetObjectIdRndOptValue',
             'RebuildRndOptSelect',
-            'CreateRndOptKind',
-            'CreateRndOptValue',
-            'SetUpRndOptKind',
             'SetUpRndOptValue',
-            'OnChangeRndOptKind',
-            'ClearRndOptSelectAll',
-            'ClearRndOptSelect',
             'SetRndOptEnablityAll',
             'SetRndOptEnablity',
-            'IsEffectiveRndOptSelect',
-            'SetObjectUsable',
             'GetRndOptTotalValue',
-            'GetRndOptValue',
         ];
         for (const name of windowNames) {
             it(`window.${name} が設定されている`, () => {

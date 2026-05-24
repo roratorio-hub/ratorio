@@ -100,22 +100,4 @@ describe('CConfBase2.js', () => {
             });
         });
     });
-
-    describe('window互換確認', () => {
-        it('window.CConfBaseSelectData が設定されている', () => {
-            expect((window as any).CConfBaseSelectData).toBe(CConfBaseSelectData);
-        });
-        it('window.CConfBaseConfData が設定されている', () => {
-            expect((window as any).CConfBaseConfData).toBe(CConfBaseConfData);
-        });
-        it('window.CConfBaseRegisterParam が設定されている', () => {
-            expect((window as any).CConfBaseRegisterParam).toBe(CConfBaseRegisterParam);
-        });
-        it('window.CConfBaseManagementParam が設定されている', () => {
-            expect((window as any).CConfBaseManagementParam).toBe(CConfBaseManagementParam);
-        });
-        it('window.CConfBase2 が設定されている', () => {
-            expect((window as any).CConfBase2).toBe(CConfBase2);
-        });
-    });
 });

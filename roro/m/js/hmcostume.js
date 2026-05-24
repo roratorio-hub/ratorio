@@ -6,7 +6,6 @@ import { HtmlGetElementById, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlSe
 // === END AUTO-GENERATED IMPORTS ===
 
 
-
 /************************************************************************************************
  *
  * 衣装選択状態をクリアする（すべて）.
@@ -100,9 +99,6 @@ export function __ClearCostumeSlot(objidPrifix) {
 }
 
 
-
-
-
 /************************************************************************************************
  *
  * 衣装選択セレクト再構築.
@@ -119,7 +115,6 @@ export function RebuildCostumeSelect(eqpRgnId, itemId, jobId) {
 	var objSelect = null;
 	var idx = 0;
 	var objArySlots = new Array();
-
 
 
 	// 装備か所ごとに対応するオブジェクトを取得
@@ -366,12 +361,6 @@ export function __SetCostumeSlotEnability(objTarget, enabled) {
 }
 
 if (typeof window !== 'undefined') {
-    window.ClearCostumeSlotAll = ClearCostumeSlotAll;
-    window.ClearCostumeSlot = ClearCostumeSlot;
-    window.__ClearCostumeSlot = __ClearCostumeSlot;
     window.RebuildCostumeSelect = RebuildCostumeSelect;
-    window.BuildUpCostumeSlotsCostume = BuildUpCostumeSlotsCostume;
     window.SetCostumeSlotEnabilityAll = SetCostumeSlotEnabilityAll;
-    window.SetCostumeSlotEnability = SetCostumeSlotEnability;
-    window.__SetCostumeSlotEnability = __SetCostumeSlotEnability;
 }

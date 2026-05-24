@@ -18,7 +18,6 @@ CGlobalConstManager.DefineEnum(
 );
 
 
-
 //----------------------------------------------------------------
 // オプションスロットインデックス
 //----------------------------------------------------------------
@@ -38,7 +37,6 @@ CGlobalConstManager.DefineEnum(
 );
 
 
-
 // ランダムオプション設定状況テーブル初期化
 export let g_equipRndOptTable = new Array();
 
@@ -52,7 +50,6 @@ for (let eqpRgnId = 0; eqpRgnId < EQUIP_REGION_ID_COUNT; eqpRgnId++) {
 
 	}
 }
-
 
 
 export function SetEquipRndOptTable(eqpRgnId, rndOptIndex, rndOptId, rndOptValue) {
@@ -89,10 +86,3 @@ export function GetEquipRndOptTableValue(eqpRgnId, rndOptIndex) {
 }
 
 
-
-if (typeof window !== 'undefined') {
-	window.g_equipRndOptTable = g_equipRndOptTable;
-	window.SetEquipRndOptTable = SetEquipRndOptTable;
-	window.GetEquipRndOptTableKind = GetEquipRndOptTableKind;
-	window.GetEquipRndOptTableValue = GetEquipRndOptTableValue;
-}

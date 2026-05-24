@@ -78,7 +78,6 @@ CGlobalConstManager.DefineEnum(
 );
 
 
-
 //----------------------------------------------------------------
 // モンスター属性
 //----------------------------------------------------------------
@@ -203,7 +202,6 @@ CGlobalConstManager.DefineEnum(
 );
 
 
-
 //----------------------------------------------------------------
 // モンスターBOSS属性
 //----------------------------------------------------------------
@@ -216,7 +214,6 @@ CGlobalConstManager.DefineEnum(
 	0,
 	1
 );
-
 
 
 //----------------------------------------------------------------
@@ -243,9 +240,6 @@ CGlobalConstManager.DefineEnum(
 );
 
 
-
-
-
 /**
  * モンスター属性のベース属性（水地火風など）を取得する.
  * @param monsterElm モンスター属性
@@ -255,7 +249,6 @@ export function GetMonseterElmBasicType(monsterElm) {
 
 	return Math.floor(monsterElm / 10);
 }
-
 
 
 /**
@@ -276,7 +269,6 @@ export function GetBossTypeText(bossTypeId) {
 
 	return "エラー";
 }
-
 
 
 /**
@@ -306,6 +298,4 @@ export function GetGrassTypeText(grassTypeId) {
 
 if (typeof window !== 'undefined') {
     window.GetMonseterElmBasicType = GetMonseterElmBasicType;
-    window.GetBossTypeText = GetBossTypeText;
-    window.GetGrassTypeText = GetGrassTypeText;
 }

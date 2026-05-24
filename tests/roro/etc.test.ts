@@ -17,9 +17,6 @@ describe('etc.js', () => {
         it('window.zokusei が設定されている', () => {
             expect((window as any).zokusei).toBe(zokusei);
         });
-        it('window.weaponsize が設定されている', () => {
-            expect((window as any).weaponsize).toBe(weaponsize);
-        });
     });
 
     describe('データ確認', () => {

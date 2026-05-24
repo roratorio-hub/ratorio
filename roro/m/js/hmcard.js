@@ -243,8 +243,6 @@ export const CardShortObj =[
 	 ],
 
 
-
-
 	 [
 	 	"アチャスケ　2枚",
 	 	CARD_ID_ARCHER_SKELETON,
@@ -546,7 +544,6 @@ export function RebuildCardSelect(eqpRgnId, itemId) {
 	var objArySlots = new Array();
 
 
-
 	// 装備か所ごとに対応するオブジェクトを取得
 	switch (eqpRgnId) {
 
@@ -618,8 +615,6 @@ export function RebuildCardSelect(eqpRgnId, itemId) {
 	}
 
 
-
-
 	// エンチャント情報の収集
 	var idx = 0;
 	var idxSlot = 0;
@@ -631,7 +626,6 @@ export function RebuildCardSelect(eqpRgnId, itemId) {
 
 	var enchInfoArrayAllSlots = null;
 	var enchInfoArrayAllSlotsResult = null;
-
 
 
 	// 結果用配列用意
@@ -654,8 +648,6 @@ export function RebuildCardSelect(eqpRgnId, itemId) {
 			enchInfoArrayAllSlotsResult[idxSlot] = enchInfoArrayAllSlotsResult[idxSlot].concat(enchInfoArrayAllSlots[idxSlot]);
 		}
 	}
-
-
 
 
 	// 選択肢の構築
@@ -778,8 +770,6 @@ export function RebuildCardSelectSubCollectEnchListData(enchListId, enchInfoArra
 	};
 
 
-
-
 	// データ収集用配列用意
 	enchInfoArrayAllSlots = [];
 	for (idxSlot = 0; idxSlot < (SLOT_INDEX_CARD_MAX - SLOT_INDEX_CARD_MIN + 1); idxSlot++) {
@@ -805,7 +795,6 @@ export function RebuildCardSelectSubCollectEnchListData(enchListId, enchInfoArra
 	// この時点で、当該エンチャントリストのデータは収集が完了している
 	// エンチャントの並び順定義に従って、エンチャント効果の順番をソートする
 	RebuildCardSelectSubSortCollectedEnchListData(enchInfoArrayAllSlots);
-
 
 
 	// 収集したデータを返す
@@ -1028,7 +1017,6 @@ function BuildUpCardSlotsCard(eqpRgnId, itemId, enchantTypeId, objArySlots) {
 				continue;
 			}
 		}
-
 
 
 		// 装備箇所に応じたカードデータの追加
@@ -1322,7 +1310,6 @@ function BuildUpCardSlotsMIG(eqpRgnId, itemId, enchInfoArray, objArySlots) {
 		}
 
 
-
 		// 装備箇所に応じたカードデータの追加
 		switch (eqpRgnId) {
 
@@ -1614,11 +1601,9 @@ export function ApplyCardShort(eqpRgnId, objidPrifix) {
 
 if (typeof window !== 'undefined') {
 	window.CardShortObj = CardShortObj;
-	window.ClearCardSlotAll = ClearCardSlotAll;
 	window.ClearCardSlot = ClearCardSlot;
 	window.RebuildCardSelect = RebuildCardSelect;
 	window.RebuildCardSelectSubCollectEnchListData = RebuildCardSelectSubCollectEnchListData;
 	window.SetCardSlotEnabilityAll = SetCardSlotEnabilityAll;
 	window.SetCardSlotEnability = SetCardSlotEnability;
-	window.ApplyCardShort = ApplyCardShort;
 }

@@ -83,7 +83,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 	};
 
 
-
 	// 初期化
 	n_AS_SKILL = [];
 	window.n_AS_SKILL = n_AS_SKILL;
@@ -98,7 +97,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 	}
 
 	idx = 0;
-
 
 
 	//----------------------------------------------------------------
@@ -923,7 +921,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 					n_AS_SKILL[idx][3] = 0;
 
 
-
 					// ダブルキャスティング効果の適用
 					switch (n_AS_SKILL[idx][0]) {
 
@@ -1007,7 +1004,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 
 			// オートスペルフラグは、一般オートスペル
 			n_AS_SKILL[idx][3] = 0;
-
 
 
 			// ダブルキャスティングの効果
@@ -1261,7 +1257,6 @@ export function BuildUpSettingHtmlAutoSpell(objTbody) {
 	objInput.setAttribute("onClick", "OnClickEasySetUpAutoSpell()");
 
 
-
 	//----------------------------------------------------------------
 	// 設定行
 	//----------------------------------------------------------------
@@ -1457,7 +1452,6 @@ export function OnClickEasySetUpAutoSpell(){
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 装備のオートスペルを設定する
 	//----------------------------------------------------------------
@@ -1496,7 +1490,6 @@ export function OnClickEasySetUpAutoSpell(){
 		asIdArray[asidx] = asId;
 		asidx++;
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -1547,7 +1540,6 @@ export function OnClickEasySetUpAutoSpell(){
 			asidx++;
 		}
 	}
-
 
 
 	//================================================================
@@ -1658,8 +1650,6 @@ export function OnClickEasySetUpAutoSpell(){
 	}
 
 
-
-
 	//================================================================
 	//
 	// 最終的なオートスペルで設定を構築
@@ -1715,20 +1705,3 @@ export function OnClickEasySetUpAutoSpell(){
 	OnChangeSettingAutoSpell(true);
 }
 
-if (typeof window !== 'undefined') {
-	window.AUTO_SPELL_SETTING_COUNT = AUTO_SPELL_SETTING_COUNT;
-	window.AUTO_SPELL_SKILL_COUNT_MAX = AUTO_SPELL_SKILL_COUNT_MAX;
-	window.AUTO_SPELL_PROB_ARRAY = AUTO_SPELL_PROB_ARRAY;
-	window.OBJID_OFFSET_AS_SKILL_ID = OBJID_OFFSET_AS_SKILL_ID;
-	window.OBJID_OFFSET_AS_SKILL_LV = OBJID_OFFSET_AS_SKILL_LV;
-	window.OBJID_OFFSET_AS_SKILL_PROB = OBJID_OFFSET_AS_SKILL_PROB;
-	window.n_AS_SKILL = n_AS_SKILL;
-	window.n_AS_DMG = n_AS_DMG;
-	window.n_AS_DMG_OverHP = n_AS_DMG_OverHP;
-	window.AS_Calc = AS_Calc;
-	window.AS_PLUS = AS_PLUS;
-	window.OnClickExtractSettingAutoSpell = OnClickExtractSettingAutoSpell;
-	window.BuildUpSettingHtmlAutoSpell = BuildUpSettingHtmlAutoSpell;
-	window.OnChangeSettingAutoSpell = OnChangeSettingAutoSpell;
-	window.OnClickEasySetUpAutoSpell = OnClickEasySetUpAutoSpell;
-}

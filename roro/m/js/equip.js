@@ -177,7 +177,6 @@ export function changeJobSettings(jobId) {
 }
 
 
-
 /************************************************************************************************
  *
  * 右手武器の武器種別変更イベントハンドラ
@@ -205,7 +204,6 @@ export function OnChangeArmsTypeRight(itemKind){
 	HtmlSetObjectValueById("OBJID_ARMS_TYPE_RIGHT", itemKind);
 	n_A_WeaponType = itemKind;
 	window.n_A_WeaponType = n_A_WeaponType;
-
 
 
 	// 矢リストを再構築する
@@ -251,7 +249,6 @@ export function OnChangeArmsTypeRight(itemKind){
 	);
 
 
-
 	// 矢セレクトボックスを調整する
 	objSelectArrow = document.getElementById("OBJID_SELECT_ARROW");
 
@@ -288,7 +285,6 @@ export function OnChangeArmsTypeRight(itemKind){
 		// セレクトボックスを削除する
 		HtmlRemoveFromParent(objSelectArrow);
 	}
-
 
 
 	// 右手装備情報のクリア
@@ -365,7 +361,6 @@ export function OnChangeArmsTypeRight(itemKind){
 		CItemInfoManager.OnChangeEquip(CONST_DATA_KIND_ITEM, n_A_Equip[EQUIP_REGION_ID_ARMS]);
 	}
 }
-
 
 
 /************************************************************************************************
@@ -509,8 +504,6 @@ export function IsLearnedEffectEquipable(dataKind, targetId) {
 }
 
 
-
-
 /************************************************************************************************
  *
  * 左手武器の武器種別変更イベントハンドラ
@@ -539,7 +532,6 @@ export function OnChangeArmsTypeLeft(itemKind){
 	var objInput = null;
 
 
-
 	// 武器種別の設定
 	HtmlSetObjectValueById("OBJID_ARMS_TYPE_LEFT", itemKind);
 	n_A_Weapon2Type = itemKind;
@@ -560,7 +552,6 @@ export function OnChangeArmsTypeLeft(itemKind){
 	// 左手装備、および、盾装備の、情報クリア
 	ClearEquip(EQUIP_REGION_ID_ARMS_LEFT);
 	ClearEquip(EQUIP_REGION_ID_SHIELD);
-
 
 
 	// 装備欄の調整
@@ -625,7 +616,6 @@ export function OnChangeArmsTypeLeft(itemKind){
 	}
 
 
-
 	// 左右武器入れ替えボタンを削除
 	objSpan = document.getElementById("OBJID_SPAN_SWAP_ARMS");
 	HtmlRemoveAllChild(objSpan);
@@ -659,7 +649,6 @@ export function OnChangeArmsTypeLeft(itemKind){
 		// SetEnchSlotsEnablity();
 	}
 }
-
 
 
 /************************************************************************************************
@@ -751,7 +740,6 @@ export function RebuildArmsLeftSelect() {
 }
 
 
-
 /************************************************************************************************
  *
  * 精錬値変更イベントハンドラ.
@@ -768,7 +756,6 @@ export function OnChangeRefined() {
 	CAttackMethodAreaComponentManager.RebuildControls();
 
 }
-
 
 
 /************************************************************************************************
@@ -971,7 +958,6 @@ export function ClearEnchantOnChangeEquip(eqpRgnId, itemId) {
 }
 
 
-
 export function UpdateStatefullDataOnChangeEquip(eqpRgnId) {
 
 	var idx = 0;
@@ -1130,7 +1116,6 @@ export function UpdateLearnedSkillNotice () {
 }
 
 
-
 /**
  * 左右武器入れ替えイベントハンドラ.
  */
@@ -1268,7 +1253,6 @@ export function OnClickSwapArms() {
 }
 
 
-
 /**
  * カード変更イベントハンドラ.
  */
@@ -1293,9 +1277,6 @@ export function OnChangeCard(cardId) {
 }
 
 
-
-
-
 /**
  * 衣装変更イベントハンドラ.
  */
@@ -1306,9 +1287,6 @@ export function OnChangeCostume(costumeId) {
  }
 
 
-
-
-
 /**
  * ランダムエンチャント変更イベントハンドラ.
  */
@@ -1316,11 +1294,6 @@ export function OnChangeRandomEnchant() {
 	SaveSlotStateRndEnchAll();
 	StAllCalc();
 }
-
-
-
-
-
 
 
 export function sort(work) {
@@ -1335,9 +1308,6 @@ export function sort(work) {
 	}
 	return work;
 }
-
-
-
 
 
 /************************************************************************************************
@@ -1361,7 +1331,6 @@ export function RebuildArmorsSelect() {
 	var itemIdArrayEquipable = new Array();
 
 	var objSelectArray = new Array();
-
 
 
 	// アイテム ID 抽出用配列を初期化
@@ -1501,8 +1470,6 @@ export function RebuildArmorsSelect() {
 		}
 	}
 }
-
-
 
 
 /**
@@ -1661,9 +1628,6 @@ export function WeaponSet2(){
 }
 
 
-
-
-
 /************************************************************************************************
  *
  * 装備欄をデフォルトセットアップする（すべて）.
@@ -1767,9 +1731,6 @@ export function __InitEquipDefault(objidPrifix, itemId) {
 	HtmlCreateElementOption(itemId, ItemObjNew[itemId][ITEM_DATA_INDEX_NAME], objSelect);
 	HtmlSetObjectValueById(itemId);
 }
-
-
-
 
 
 /************************************************************************************************
@@ -1899,9 +1860,6 @@ export function __ClearEquip(eqpRgnId, objidPrifix, itemId) {
 }
 
 
-
-
-
 /************************************************************************************************
  *
  * 指定の装備が遠距離攻撃かを判定する.
@@ -1970,30 +1928,7 @@ export function copyAccs(from, to){
 if (typeof window !== 'undefined') {
 	window.changeJobSettings = changeJobSettings;
 	window.OnChangeArmsTypeRight = OnChangeArmsTypeRight;
-	window.RebuildArmsRightSelect = RebuildArmsRightSelect;
-	window.GetFlagAppendedItemName = GetFlagAppendedItemName;
-	window.GetFlagAppendedCardName = GetFlagAppendedCardName;
-	window.IsLearnedEffectEquipable = IsLearnedEffectEquipable;
-	window.OnChangeArmsTypeLeft = OnChangeArmsTypeLeft;
-	window.RebuildArmsLeftSelect = RebuildArmsLeftSelect;
 	window.OnChangeRefined = OnChangeRefined;
 	window.OnChangeEquip = OnChangeEquip;
-	window.ClearEnchantOnChangeEquip = ClearEnchantOnChangeEquip;
-	window.UpdateStatefullDataOnChangeEquip = UpdateStatefullDataOnChangeEquip;
-	window.UpdateLearnedSkillNotice = UpdateLearnedSkillNotice;
-	window.OnClickSwapArms = OnClickSwapArms;
-	window.OnChangeCard = OnChangeCard;
-	window.OnChangeCostume = OnChangeCostume;
-	window.OnChangeRandomEnchant = OnChangeRandomEnchant;
-	window.sort = sort;
-	window.RebuildArmorsSelect = RebuildArmorsSelect;
-	window.WeaponSet2 = WeaponSet2;
-	window.InitEquipDefaultAll = InitEquipDefaultAll;
-	window.InitEquipDefault = InitEquipDefault;
-	window.__InitEquipDefault = __InitEquipDefault;
-	window.ClearEquipAll = ClearEquipAll;
-	window.ClearEquip = ClearEquip;
-	window.__ClearEquip = __ClearEquip;
-	window.IsLongRange = IsLongRange;
 	window.copyAccs = copyAccs;
 }

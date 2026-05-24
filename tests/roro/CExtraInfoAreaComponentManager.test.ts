@@ -65,7 +65,6 @@ describe('CExtraInfoAreaComponentManager.js', () => {
     });
 
     describe('window互換確認', () => {
-        it('window.GetExtraInfoText', () => expect((window as any).GetExtraInfoText).toBe(GetExtraInfoText));
         it('window.CExtraInfoAreaComponentManager', () => expect((window as any).CExtraInfoAreaComponentManager).toBe(CExtraInfoAreaComponentManager));
     });
 });

@@ -83,10 +83,4 @@ describe('CSaveDataManager.js', () => {
             expect(typeof CSaveDataManager).toBe('function');
         });
     });
-
-    describe('window互換確認', () => {
-        it('window.CSaveDataManager が設定されている', () => {
-            expect((window as any).CSaveDataManager).toBe(CSaveDataManager);
-        });
-    });
 });

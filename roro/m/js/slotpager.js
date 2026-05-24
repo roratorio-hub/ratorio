@@ -31,8 +31,6 @@ export const SLOT_INDEX_RNDENCH_MAX = 5;
 //================================================================================================
 
 
-
-
 //================================================================================================
 //
 // 処理
@@ -1199,7 +1197,6 @@ export function BreakSlotOfRndEnch(eqpRgnId) {
 	var objIdValueTD = "";
 
 
-
 	for (idx = 0; idx < RND_OPT_SLOT_COUNT; idx++) {
 
 		// ランダムオプション種別
@@ -1384,45 +1381,11 @@ if (typeof window !== 'undefined') {
     window.SLOTPAGER_MODE_RNDOPT = SLOTPAGER_MODE_RNDOPT;
     window.SLOT_INDEX_CARD_MIN = SLOT_INDEX_CARD_MIN;
     window.SLOT_INDEX_CARD_MAX = SLOT_INDEX_CARD_MAX;
-    window.SLOT_INDEX_COSTUME_MIN = SLOT_INDEX_COSTUME_MIN;
-    window.SLOT_INDEX_COSTUME_MAX = SLOT_INDEX_COSTUME_MAX;
-    window.SLOT_INDEX_RNDENCH_MIN = SLOT_INDEX_RNDENCH_MIN;
-    window.SLOT_INDEX_RNDENCH_MAX = SLOT_INDEX_RNDENCH_MAX;
     window.GetSlotMode = GetSlotMode;
     window.OnClickSlotModeButton = OnClickSlotModeButton;
     window.SaveSlotStateCardAll = SaveSlotStateCardAll;
     window.SaveSlotStateCard = SaveSlotStateCard;
-    window.__SaveSlotStateCard = __SaveSlotStateCard;
-    window.BreakSlotOfCardAll = BreakSlotOfCardAll;
-    window.BreakSlotOfCard = BreakSlotOfCard;
-    window.__BreakSlotOfCard = __BreakSlotOfCard;
-    window.__BreakSlotOfCardShort = __BreakSlotOfCardShort;
-    window.RebuildSlotAsCardAll = RebuildSlotAsCardAll;
-    window.RebuildSlotAsCard = RebuildSlotAsCard;
-    window.__RebuildSlotAsCard = __RebuildSlotAsCard;
-    window.__RebuildSlotAsCardShort = __RebuildSlotAsCardShort;
-    window.LoadSlotStateCardAll = LoadSlotStateCardAll;
-    window.LoadSlotStateCard = LoadSlotStateCard;
-    window.__LoadSlotStateCard = __LoadSlotStateCard;
     window.SaveSlotStateCostumeAll = SaveSlotStateCostumeAll;
-    window.SaveSlotStateCostume = SaveSlotStateCostume;
-    window.__SaveSlotStateCostume = __SaveSlotStateCostume;
-    window.BreakSlotOfCostumeAll = BreakSlotOfCostumeAll;
-    window.BreakSlotOfCostume = BreakSlotOfCostume;
-    window.__BreakSlotOfCostume = __BreakSlotOfCostume;
-    window.RebuildSlotAsCostumeAll = RebuildSlotAsCostumeAll;
-    window.RebuildSlotAsCostume = RebuildSlotAsCostume;
-    window.__RebuildSlotAsCostume = __RebuildSlotAsCostume;
-    window.LoadSlotStateCostumeAll = LoadSlotStateCostumeAll;
-    window.LoadSlotStateCostume = LoadSlotStateCostume;
-    window.__LoadSlotStateCostume = __LoadSlotStateCostume;
     window.SaveSlotStateRndEnchAll = SaveSlotStateRndEnchAll;
     window.SaveSlotStateRndEnch = SaveSlotStateRndEnch;
-    window.BreakSlotOfRndEnchAll = BreakSlotOfRndEnchAll;
-    window.BreakSlotOfRndEnch = BreakSlotOfRndEnch;
-    window.RebuildSlotAsRndEnchAll = RebuildSlotAsRndEnchAll;
-    window.RebuildSlotAsRndEnch = RebuildSlotAsRndEnch;
-    window.__RebuildSlotAsRndEnch = __RebuildSlotAsRndEnch;
-    window.LoadSlotStateRndEnchAll = LoadSlotStateRndEnchAll;
-    window.LoadSlotStateRndEnch = LoadSlotStateRndEnch;
 }

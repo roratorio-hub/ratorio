@@ -13,7 +13,6 @@ import { HtmlGetElementById, HtmlCreateElement, HtmlSetAttribute, HtmlRemoveOpti
 // === END AUTO-GENERATED IMPORTS ===
 
 
-
 export function GetObjectPrefixRndOpt(eqpRgnId) {
 	return "OBJID_" + EnumEquipRegionId.GetDefinedName(eqpRgnId);
 }
@@ -33,7 +32,6 @@ export function GetObjectIdRndOptValueTD(eqpRgnId, slotIndex) {
 export function GetObjectIdRndOptValue(eqpRgnId, slotIndex) {
 	return GetObjectPrefixRndOpt(eqpRgnId) + "_RNDOPT_VALUE_" + slotIndex;
 }
-
 
 
 /************************************************************************************************
@@ -61,7 +59,6 @@ export function RebuildRndOptSelect(eqpRgnId, itemId) {
 	var objRndOptKind = null;
 	var objRndOptValue = null;
 	var objRoot = null;
-
 
 
 	switch (eqpRgnId) {
@@ -114,7 +111,6 @@ export function RebuildRndOptSelect(eqpRgnId, itemId) {
 	objRoot = HtmlGetElementById(objIdRoot + "_SLOT_ROOT");
 
 
-
 	// ランダムオプションタイプIDを取得する
 	rndOptTypeId = GetRndOptTypeId(ItemObjNew[itemId][ITEM_DATA_INDEX_WPNLV]);
 
@@ -133,7 +129,6 @@ export function RebuildRndOptSelect(eqpRgnId, itemId) {
 		// オブジェクトIDを取得する
 		objIdKind = GetObjectIdRndOptKind(eqpRgnId, idx)
 		objIdValue = GetObjectIdRndOptValue(eqpRgnId, idx)
-
 
 
 		//--------------------------------
@@ -157,7 +152,6 @@ export function RebuildRndOptSelect(eqpRgnId, itemId) {
 			// 再構築したデフォルト値を、選択している値として取得
 			rndOptId = HtmlGetObjectValueByIdAsInteger(objIdKind, 0);
 		}
-
 
 
 		//--------------------------------
@@ -229,7 +223,6 @@ export function CreateRndOptValue(objRoot, eqpRgnId, slotIndex) {
 
 	return objSelect;
 }
-
 
 
 export function SetUpRndOptKind(objRndOpt, rndOptListId) {
@@ -338,10 +331,6 @@ export function OnChangeRndOptKind(eqpRgnId, slotIndex) {
 }
 
 
-
-
-
-
 /************************************************************************************************
  *
  * ランダムオプション選択状態をクリアする.
@@ -383,7 +372,6 @@ export function ClearRndOptSelect(eqpRgnId) {
 	var objIdValue = "";
 
 
-
 	for (idx = 0; idx < RND_OPT_SLOT_COUNT; idx++) {
 
 		// ランダムオプション種別
@@ -398,14 +386,6 @@ export function ClearRndOptSelect(eqpRgnId) {
 		SetEquipRndOptTable(eqpRgnId, idx, 0, 0);
 	}
 }
-
-
-
-
-
-
-
-
 
 
 export function SetRndOptEnablityAll() {
@@ -438,7 +418,6 @@ export function SetRndOptEnablity(eqpRgnId) {
 
 	var bEnchantableBase = false;
 	var bEnchantableSlot = false;
-
 
 
 	// 基本的な使用可否判定
@@ -519,13 +498,6 @@ export function SetObjectUsable(objTarget, enabled) {
 }
 
 
-
-
-
-
-
-
-
 export function GetRndOptTotalValue(spid, invalidItemIdArray, bListUp) {
 
 	var spVal = 0;
@@ -596,7 +568,6 @@ export function GetRndOptTotalValue(spid, invalidItemIdArray, bListUp) {
 }
 
 
-
 export function GetRndOptValue(eqpRgnId, spid, invalidItemIdArray, bListUp) {
 
 	var idx = 0;
@@ -628,7 +599,6 @@ export function GetRndOptValue(eqpRgnId, spid, invalidItemIdArray, bListUp) {
 	var listUpArray = new Array();
 
 
-
 	// 全てのオプションスロットをループ
 	for (idx = 0; idx < RND_OPT_SLOT_COUNT; idx++) {
 
@@ -640,7 +610,6 @@ export function GetRndOptValue(eqpRgnId, spid, invalidItemIdArray, bListUp) {
 
 		// ランダムオプション値
 		rndOptValue = GetEquipRndOptTableValue(eqpRgnId, idx);
-
 
 
 		//--------------------------------
@@ -692,7 +661,6 @@ export function GetRndOptValue(eqpRgnId, spid, invalidItemIdArray, bListUp) {
 			eqpRefined = 0;
 
 		}
-
 
 
 		//--------------------------------
@@ -779,7 +747,6 @@ export function GetRndOptValue(eqpRgnId, spid, invalidItemIdArray, bListUp) {
 		}
 
 
-
 		//--------------------------------
 		// 集計
 		//--------------------------------
@@ -806,23 +773,13 @@ export function GetRndOptValue(eqpRgnId, spid, invalidItemIdArray, bListUp) {
 }
 
 if (typeof window !== 'undefined') {
-    window.GetObjectPrefixRndOpt = GetObjectPrefixRndOpt;
     window.GetObjectIdRndOptKindTD = GetObjectIdRndOptKindTD;
     window.GetObjectIdRndOptKind = GetObjectIdRndOptKind;
     window.GetObjectIdRndOptValueTD = GetObjectIdRndOptValueTD;
     window.GetObjectIdRndOptValue = GetObjectIdRndOptValue;
     window.RebuildRndOptSelect = RebuildRndOptSelect;
-    window.CreateRndOptKind = CreateRndOptKind;
-    window.CreateRndOptValue = CreateRndOptValue;
-    window.SetUpRndOptKind = SetUpRndOptKind;
     window.SetUpRndOptValue = SetUpRndOptValue;
-    window.OnChangeRndOptKind = OnChangeRndOptKind;
-    window.ClearRndOptSelectAll = ClearRndOptSelectAll;
-    window.ClearRndOptSelect = ClearRndOptSelect;
     window.SetRndOptEnablityAll = SetRndOptEnablityAll;
     window.SetRndOptEnablity = SetRndOptEnablity;
-    window.IsEffectiveRndOptSelect = IsEffectiveRndOptSelect;
-    window.SetObjectUsable = SetObjectUsable;
     window.GetRndOptTotalValue = GetRndOptTotalValue;
-    window.GetRndOptValue = GetRndOptValue;
 }

@@ -42,10 +42,6 @@ describe('BuffOtherCategory.js', () => {
     });
 
     describe('window互換確認', () => {
-        it('window.BUFF_CONF_OTHER_LIMIT が設定されている', () => {
-            expect((window as any).BUFF_CONF_OTHER_LIMIT).toBe(BUFF_CONF_OTHER_LIMIT);
-        });
-
         it('window.n_A_PassSkill8 が設定されている', () => {
             expect((window as any).n_A_PassSkill8).toBe(n_A_PassSkill8);
         });
@@ -62,12 +58,5 @@ describe('BuffOtherCategory.js', () => {
             expect((window as any).Click_A8).toBe(Click_A8);
         });
 
-        it('window.OnChangePetSelect が設定されている', () => {
-            expect((window as any).OnChangePetSelect).toBe(OnChangePetSelect);
-        });
-
-        it('window.RefreshPetExplain が設定されている', () => {
-            expect((window as any).RefreshPetExplain).toBe(RefreshPetExplain);
-        });
     });
 });

@@ -17,7 +17,6 @@ export function CCalcDataTextCreator () {
 }
 
 
-
 /**
  * 参照するキャラクターデータ.
  */
@@ -39,7 +38,6 @@ CCalcDataTextCreator.refMobData = null;
 CCalcDataTextCreator.refBattleData = null;
 
 
-
 /**
  * 計算データテキストを指定のオブジェクトの value プロパティに設定する.
  */
@@ -48,7 +46,6 @@ CCalcDataTextCreator.SetCalcDataTextObjectValue = function (objTarget) {
 		objTarget.value = CCalcDataTextCreator.CreateCalcDataText();
 	}
 };
-
 
 
 /**
@@ -197,10 +194,8 @@ CCalcDataTextCreator.CreateCalcDataText = function (testLabel) {
 	textResult += ("\r\n").repeat(3);
 
 
-
 	return textResult;
 };
-
 
 
 /**
@@ -228,7 +223,4 @@ CCalcDataTextCreator.GetDataText = function (dataObject) {
 	return dataText;
 };
 
-if (typeof window !== 'undefined') {
-    window.CCalcDataTextCreator = CCalcDataTextCreator;
-}
 

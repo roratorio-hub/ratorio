@@ -488,7 +488,6 @@ export function CConfBase(confArray) {
 		var objInput = null;
 
 
-
 		// 設定定義をループして、設定欄の状態をもとに変数を同期
 		for (idx = 0; idx < this.confDataObj.length; idx++) {
 
@@ -496,7 +495,6 @@ export function CConfBase(confArray) {
 
 			controlId = this.GetControlIdString(this.instanceNo, confId);
 			controlType = this.confDataObj[idx][CConfBase.CONF_DATA_INDEX_CONTROL_TYPE];
-
 
 
 			switch (controlType) {
@@ -512,7 +510,6 @@ export function CConfBase(confArray) {
 				break;
 
 
-
 			// 設定方法がチェック方式の場合
 			case CONTROL_TYPE_CHECKBOX:
 			case CONTROL_TYPE_CHECKBOX_SPECIAL:
@@ -520,7 +517,6 @@ export function CConfBase(confArray) {
 				this.confArray[confId] = HtmlGetObjectCheckedById(controlId, false);
 
 				break;
-
 
 
 			// 設定方法が数値入力方式の場合
@@ -537,7 +533,6 @@ export function CConfBase(confArray) {
 				objInput.value = this.confArray[confId];
 
 				break;
-
 
 
 			// 設定方法が特殊方式の場合
@@ -745,6 +740,5 @@ export function CConfBase(confArray) {
 }
 
 if (typeof window !== 'undefined') {
-    window.CTargetData = CTargetData;
     window.CConfBase = CConfBase;
 }

@@ -138,7 +138,6 @@ export function CMobConfInputData() {
 }
 
 
-
 // コードバージョン
 CGlobalConstManager.DefineEnum(
 	"EnumMobConfInputVersion",
@@ -224,7 +223,6 @@ export function SetActiveIndexMobConfInput(activeIndex) {
 
 	g_dataManagerMobConfInput.activeIndex = activeIndex;
 }
-
 
 
 export function CMobConfInputAreaComponentManager(confMngParam) {
@@ -699,7 +697,6 @@ export function CMobConfInputAreaComponentManager(confMngParam) {
 		this.confDataObj = confDataOBJSorted;
 
 
-
 		//----------------------------------------------------------------
 		// コード変換対象配列
 		//----------------------------------------------------------------
@@ -761,7 +758,6 @@ export function CMobConfInputAreaComponentManager(confMngParam) {
 		objA.setAttribute("target", "_blank");
 		HtmlCreateTextNode("使い方の説明はこちら", objA);
 	};
-
 
 
 	/**
@@ -852,7 +848,6 @@ export function CMobConfInputAreaComponentManager(confMngParam) {
 	};
 
 
-
 	/**
 	 * 単一データをエンコードする.
 	 * @param confData 設定データ
@@ -889,7 +884,6 @@ export function CMobConfInputAreaComponentManager(confMngParam) {
 		}
 		return convertedAll;
 	};
-
 
 
 	/**
@@ -950,7 +944,6 @@ export function CMobConfInputAreaComponentManager(confMngParam) {
 
 		return inputData;
 	};
-
 
 
 	/**
@@ -1242,7 +1235,6 @@ export function CMobConfInputAreaComponentManager(confMngParam) {
 	};
 
 
-
 	/**
 	 * 変数の値を元にコントロールをリフレッシュする.
 	 */
@@ -1270,7 +1262,6 @@ export function CMobConfInputAreaComponentManager(confMngParam) {
 	};
 
 
-
 	/**
 	 * OnChange リスナ関数（データ選択用）.
 	 * @param objClass クラスのインスタンスオブジェクト
@@ -1283,7 +1274,6 @@ export function CMobConfInputAreaComponentManager(confMngParam) {
 		var dataNo = 0;
 
 		var objCtrl = null;
-
 
 
 		// 選択番号を取得
@@ -1299,7 +1289,6 @@ export function CMobConfInputAreaComponentManager(confMngParam) {
 		// 値変更を適用（その過程で補正関数も呼ばれる）
 		objClass.ApplyValueChanged(true);
 	};
-
 
 
 	/**
@@ -1366,7 +1355,6 @@ export function CMobConfInputAreaComponentManager(confMngParam) {
 	};
 
 
-
 	/**
 	 * 共通クリア関数.
 	 * @param objId オブジェクトＩＤ
@@ -1382,7 +1370,6 @@ export function CMobConfInputAreaComponentManager(confMngParam) {
 	CMobConfInputAreaComponentManager.CopyValueCommon = function (instanceNo, controlId) {
 		HtmlCopyToClipboardById(controlId);
 	};
-
 
 
 	/**
@@ -1421,7 +1408,6 @@ export function CMobConfInputAreaComponentManager(confMngParam) {
 	};
 
 
-
 	/**
 	 * 設定欄の状態を同期させる（コントロール部品の状態を変数へ反映）.
 	 * @remark オーバーライド
@@ -1434,7 +1420,6 @@ export function CMobConfInputAreaComponentManager(confMngParam) {
 		// データ選択セレクトボックスをリフレッシュする
 		this.RefreshSelectOptions();
 	};
-
 
 
 	/**
@@ -1488,12 +1473,7 @@ export function CMobConfInputAreaComponentManager(confMngParam) {
 	this.InitData();
 
 
-
 }
-
-
-
-
 
 
 /**
@@ -1506,10 +1486,6 @@ CMobConfInputAreaComponentManager.InputModifyCodeInOutCommon = function (objClas
 };
 
 if (typeof window !== 'undefined') {
-	window.CMobConfInputData = CMobConfInputData;
-	window.CMobConfInputAreaComponentManager = CMobConfInputAreaComponentManager;
 	window.GetMobConfInput = GetMobConfInput;
-	window.SetMobConfInput = SetMobConfInput;
-	window.SetActiveIndexMobConfInput = SetActiveIndexMobConfInput;
 	window.g_dataManagerMobConfInput = g_dataManagerMobConfInput;
 }

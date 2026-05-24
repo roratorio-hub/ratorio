@@ -24,7 +24,4 @@ export function IsEnableRandomEnchant(itemId) {
 	return (flag & 1) == 1;
 }
 
-if (typeof window !== 'undefined') {
-	window.IsEnableRandomEnchant = IsEnableRandomEnchant;
-}
 

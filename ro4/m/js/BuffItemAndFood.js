@@ -426,37 +426,10 @@ export function toggleAllStatus20() {
 }
 
 if (typeof window !== 'undefined') {
-    window.BUFF_CONF_FOOD_LIMIT = BUFF_CONF_FOOD_LIMIT;
     window.n_A_PassSkill7 = n_A_PassSkill7;
     window.n_Skill7SW = n_Skill7SW;
-    window.ID_BUFF_FOOD_CHAGASHI = ID_BUFF_FOOD_CHAGASHI;
-    window.ID_BUFF_FOOD_AGEGASHI = ID_BUFF_FOOD_AGEGASHI;
-    window.ID_BUFF_FOOD_NIJIOMOCHI = ID_BUFF_FOOD_NIJIOMOCHI;
-    window.ID_BUFF_STATUS_STR = ID_BUFF_STATUS_STR;
-    window.ID_BUFF_STATUS_AGI = ID_BUFF_STATUS_AGI;
-    window.ID_BUFF_STATUS_VIT = ID_BUFF_STATUS_VIT;
-    window.ID_BUFF_STATUS_INT = ID_BUFF_STATUS_INT;
-    window.ID_BUFF_STATUS_DEX = ID_BUFF_STATUS_DEX;
-    window.ID_BUFF_STATUS_LUK = ID_BUFF_STATUS_LUK;
-    window.ID_BUFF_BOX_URAMI = ID_BUFF_BOX_URAMI;
-    window.ID_BUFF_BOX_NEMUI = ID_BUFF_BOX_NEMUI;
-    window.ID_BUFF_POTION_COLD = ID_BUFF_POTION_COLD;
-    window.ID_BUFF_POTION_EARTH = ID_BUFF_POTION_EARTH;
-    window.ID_BUFF_POTION_FIRE = ID_BUFF_POTION_FIRE;
-    window.ID_BUFF_POTION_WIND = ID_BUFF_POTION_WIND;
-    window.ID_BUFF_MAJO_NO_SKILL_CARD = ID_BUFF_MAJO_NO_SKILL_CARD;
-    window.ID_BUFF_STATUS_20_STR = ID_BUFF_STATUS_20_STR;
-    window.ID_BUFF_STATUS_20_AGI = ID_BUFF_STATUS_20_AGI;
-    window.ID_BUFF_STATUS_20_VIT = ID_BUFF_STATUS_20_VIT;
-    window.ID_BUFF_STATUS_20_INT = ID_BUFF_STATUS_20_INT;
-    window.ID_BUFF_STATUS_20_DEX = ID_BUFF_STATUS_20_DEX;
-    window.ID_BUFF_STATUS_20_LUK = ID_BUFF_STATUS_20_LUK;
     window.ID_BUFF_MANUK_ISHI = ID_BUFF_MANUK_ISHI;
     window.ID_BUFF_VESPER_HONEY = ID_BUFF_VESPER_HONEY;
-    window.ID_BUFF_SOUSHO_CARD = ID_BUFF_SOUSHO_CARD;
     window.Click_Skill7SW = Click_Skill7SW;
     window.Click_A7 = Click_A7;
-    window.Click_Food_Off = Click_Food_Off;
-    window.setAllStatusBuff = setAllStatusBuff;
-    window.toggleAllStatus20 = toggleAllStatus20;
 }

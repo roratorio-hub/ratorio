@@ -1384,7 +1384,4 @@ export function GetMobDataParameters(monsterId, mobData){
 	return mobData;
 }
 
-if (typeof window !== 'undefined') {
-    window.GetMobDataBasicAttribute = GetMobDataBasicAttribute;
-    window.GetMobDataParameters = GetMobDataParameters;
-}
+

@@ -404,7 +404,6 @@ export class CSaveDataManager {
 	}
 
 
-
 	/**
 	 * 計算機の状態を採取して状態を更新する.
 	 */
@@ -1024,7 +1023,6 @@ export class CSaveDataManager {
 		funcCallApplyBuffLv(this, SAVE_DATA_UNIT_TYPE_MOB_DEBUFF, n_B_IJYOU);
 
 
-
 		// TODO: 構造変更後、撤去予定
 
 		// グローバル変数のデータ調整
@@ -1085,8 +1083,6 @@ export class CSaveDataManager {
 		g_confDataCustomSkill.splice(1, spliceArray.length, ...spliceArray);
 		spliceArray = g_confDataCustomSpecStatusMIG.slice(0, 24);
 		g_confDataCustomSpecStatus.splice(1, spliceArray.length, ...spliceArray);
-
-
 
 
 		// 画面表示リフレッシュ処理（既存移植）
@@ -2228,6 +2224,4 @@ export class CSaveDataManager {
 	}
 }
 
-if (typeof window !== 'undefined') {
-    window.CSaveDataManager = CSaveDataManager;
-}
+

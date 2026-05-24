@@ -326,6 +326,3 @@ export class MonsterToughness {
     }
 }
 
-if (typeof window !== 'undefined') {
-    window.MonsterToughness = MonsterToughness;
-}

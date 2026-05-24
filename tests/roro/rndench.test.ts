@@ -22,12 +22,6 @@ describe('rndench.js', () => {
         });
     });
 
-    describe('window互換確認', () => {
-        it('window.IsEnableRandomEnchant が設定されている', () => {
-            expect((window as any).IsEnableRandomEnchant).toBe(IsEnableRandomEnchant);
-        });
-    });
-
     describe('IsEnableRandomEnchant の動作', () => {
         beforeEach(() => {
             (globalThis as any).ITEM_DATA_INDEX_WPNLV = 2;

@@ -86,16 +86,8 @@ describe('equip.js', () => {
     describe('window互換確認', () => {
         it('window.changeJobSettings が設定されている', () => { expect(typeof (window as any).changeJobSettings).toBe('function'); });
         it('window.OnChangeArmsTypeRight が設定されている', () => { expect(typeof (window as any).OnChangeArmsTypeRight).toBe('function'); });
-        it('window.OnChangeArmsTypeLeft が設定されている', () => { expect(typeof (window as any).OnChangeArmsTypeLeft).toBe('function'); });
         it('window.OnChangeEquip が設定されている', () => { expect(typeof (window as any).OnChangeEquip).toBe('function'); });
-        it('window.OnChangeCard が設定されている', () => { expect(typeof (window as any).OnChangeCard).toBe('function'); });
-        it('window.GetFlagAppendedItemName が設定されている', () => { expect(typeof (window as any).GetFlagAppendedItemName).toBe('function'); });
-        it('window.GetFlagAppendedCardName が設定されている', () => { expect(typeof (window as any).GetFlagAppendedCardName).toBe('function'); });
-        it('window.IsLongRange が設定されている', () => { expect(typeof (window as any).IsLongRange).toBe('function'); });
-        it('window.InitEquipDefaultAll が設定されている', () => { expect(typeof (window as any).InitEquipDefaultAll).toBe('function'); });
-        it('window.ClearEquipAll が設定されている', () => { expect(typeof (window as any).ClearEquipAll).toBe('function'); });
         it('window.copyAccs が設定されている', () => { expect(typeof (window as any).copyAccs).toBe('function'); });
-        it('window.UpdateLearnedSkillNotice が設定されている', () => { expect(typeof (window as any).UpdateLearnedSkillNotice).toBe('function'); });
     });
 
     describe('呼び出しテスト', () => {

@@ -142,7 +142,6 @@ export function UpdateMobDataHtml(monsterId, mobData) {
 		bColorReverse = paramArray[idx][2];
 
 
-
 		switch (paramId) {
 			// 特性ステータス対応
 			case MONSTER_DATA_INDEX_RES:
@@ -239,7 +238,6 @@ export function UpdateMobDataHtml(monsterId, mobData) {
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 種族欄
 	//----------------------------------------------------------------
@@ -280,7 +278,6 @@ export function UpdateMobDataHtml(monsterId, mobData) {
 	CMonsterMapAreaComponentManager.SetDispObject("OBJID_SPAN_MONSTER_RACE", objSpan);
 
 
-
 	//----------------------------------------------------------------
 	// 属性欄
 	//----------------------------------------------------------------
@@ -301,7 +298,6 @@ export function UpdateMobDataHtml(monsterId, mobData) {
 
 	// 管理クラスに設定
 	CMonsterMapAreaComponentManager.SetDispObject("OBJID_SPAN_MONSTER_ELEMENT", objSpan);
-
 
 
 	//----------------------------------------------------------------
@@ -343,7 +339,6 @@ export function UpdateMobDataHtml(monsterId, mobData) {
 
 	// 管理クラスに設定
 	CMonsterMapAreaComponentManager.SetDispObject("OBJID_SPAN_MONSTER_SIZE", objSpan);
-
 
 
 	//----------------------------------------------------------------
@@ -407,6 +402,4 @@ export function UpdateMobDataHtml(monsterId, mobData) {
 
 }
 
-if (typeof window !== 'undefined') {
-    window.UpdateMobDataHtml = UpdateMobDataHtml;
-}
+

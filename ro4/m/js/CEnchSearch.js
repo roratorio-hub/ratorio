@@ -331,6 +331,3 @@ export class enchSearch {
 })();
 */
 
-if (typeof window !== 'undefined') {
-    window.enchSearch = enchSearch;
-}

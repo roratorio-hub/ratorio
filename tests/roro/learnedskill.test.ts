@@ -36,9 +36,9 @@ describe('learnedskill.js', () => {
 
     describe('window互換確認', () => {
         const names = [
-            'n_SkillSWLearned', 'LEARNED_SKILL_MAX_COUNT', 'n_A_LearnedSkill',
-            'LearnedSkillSearch', 'OnClickSkillSWLearned', 'IsLearnedSkillTarget',
-            'UpdateLearnedSkillSettingColoring', 'RefreshSkillColumnHeaderLearned',
+            'LEARNED_SKILL_MAX_COUNT', 'n_A_LearnedSkill',
+            'LearnedSkillSearch', 'OnClickSkillSWLearned',
+            'UpdateLearnedSkillSettingColoring',
         ];
         for (const name of names) {
             it(`window.${name} が設定されている`, () => {

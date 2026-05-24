@@ -43,12 +43,6 @@ describe('CCustomSelectMapMap.js', () => {
         });
     });
 
-    describe('window互換確認', () => {
-        it('window.CCustomSelectMapMap が設定されている', () => {
-            expect((window as any).CCustomSelectMapMap).toBe(CCustomSelectMapMap);
-        });
-    });
-
     describe('インスタンスメソッド確認', () => {
         let obj: any;
         beforeAll(() => {

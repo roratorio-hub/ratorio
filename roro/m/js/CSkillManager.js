@@ -34488,9 +34488,6 @@ export function CSkillManager() {
 		skillId++;
 
 
-
-
-
 		// ----------------------------------------------------------------
 		// ガードスタンス
 		// ----------------------------------------------------------------
@@ -37181,7 +37178,6 @@ export function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
-
 
 
 			this.CostFixed = function(skillLv, charaDataManger) {
@@ -47199,7 +47195,4 @@ export function CSkillManager() {
 
 }
 
-if (typeof window !== 'undefined') {
-    window.CSkillData = CSkillData;
-    window.CSkillManager = CSkillManager;
-}
+

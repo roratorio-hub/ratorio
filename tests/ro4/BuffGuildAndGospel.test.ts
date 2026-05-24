@@ -32,10 +32,6 @@ describe('BuffGuildAndGospel.js', () => {
     });
 
     describe('window互換確認', () => {
-        it('window.BUFF_CONF_GUILD_LIMIT が設定されている', () => {
-            expect((window as any).BUFF_CONF_GUILD_LIMIT).toBe(BUFF_CONF_GUILD_LIMIT);
-        });
-
         it('window.n_A_PassSkill4 が設定されている', () => {
             expect((window as any).n_A_PassSkill4).toBe(n_A_PassSkill4);
         });

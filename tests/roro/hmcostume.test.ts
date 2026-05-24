@@ -21,9 +21,8 @@ describe('hmcostume.js', () => {
 
     describe('window互換確認', () => {
         const names = [
-            'ClearCostumeSlotAll', 'ClearCostumeSlot', '__ClearCostumeSlot',
-            'RebuildCostumeSelect', 'BuildUpCostumeSlotsCostume',
-            'SetCostumeSlotEnabilityAll', 'SetCostumeSlotEnability', '__SetCostumeSlotEnability',
+            'RebuildCostumeSelect',
+            'SetCostumeSlotEnabilityAll',
         ];
         for (const name of names) {
             it(`window.${name} が設定されている`, () => {

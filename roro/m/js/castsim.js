@@ -23,10 +23,6 @@ import { HtmlCreateElement, HtmlCreateTextNode, HtmlRemoveOptionAll, HtmlCreateE
 // === END AUTO-GENERATED IMPORTS ===
 
 
-
-
-
-
 export function BuildUpCastSimSimulateArea(objRoot, bAsExpand) {
 
 	var idx = 0;
@@ -59,10 +55,8 @@ export function BuildUpCastSimSimulateArea(objRoot, bAsExpand) {
 	var objLabel = null;
 
 
-
 	// 引数のルートオブジェクト配下を一度全削除
 	HtmlRemoveAllChild(objRoot);
-
 
 
 	// シミュレートエリアのテーブル生成
@@ -72,8 +66,6 @@ export function BuildUpCastSimSimulateArea(objRoot, bAsExpand) {
 
 	objTbody = document.createElement("tbody");
 	objTable.appendChild(objTbody);
-
-
 
 
 	// シミュレートテーブルのヘッダ部分を生成
@@ -110,12 +102,10 @@ export function BuildUpCastSimSimulateArea(objRoot, bAsExpand) {
 	objTd.appendChild(objInput);
 
 
-
 	// 展開表示でなければ、終了
 	if (!bAsExpand) {
 		return;
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -501,7 +491,6 @@ export function BuildUpCastSimSimulateArea(objRoot, bAsExpand) {
 	}
 
 
-
 	// 表示内容の更新
 	RefreshCastSimSimulateArea();
 }
@@ -520,16 +509,12 @@ export function SprintfTimeStrCastSim(timeInMillSecond) {
 }
 
 
-
-
-
 export function OnClickCastSimSwitch() {
 
 	var bExpand = false;
 
 	var objRoot = null;
 	var objInput = null;
-
 
 
 	// 実行中の詠唱をすべて止める
@@ -540,10 +525,8 @@ export function OnClickCastSimSwitch() {
 	);
 
 
-
 	objRoot = document.getElementById("OBJID_TD_CASTSIM");
 	objInput = document.getElementById("OBJID_CONTROL_CASTSIM_SWITCH");
-
 
 
 	// 展開スイッチの状態を取得
@@ -555,13 +538,11 @@ export function OnClickCastSimSwitch() {
 }
 
 
-
 export function OnClickCastSimRefresh() {
 
 	var bExpand = false;
 
 	var objInput = null;
-
 
 
 	// 実行中の詠唱をすべて止める
@@ -572,11 +553,9 @@ export function OnClickCastSimRefresh() {
 	);
 
 
-
 	// 展開スイッチの状態を取得
 	objInput = document.getElementById("OBJID_CONTROL_CASTSIM_SWITCH");
 	bExpand = objInput.checked;
-
 
 
 	// 表示内容の更新
@@ -584,7 +563,6 @@ export function OnClickCastSimRefresh() {
 		RefreshCastSimSimulateArea(true);
 	}
 }
-
 
 
 export function OnChangeSkillCastSim() {
@@ -601,7 +579,6 @@ export function OnChangeSkillCastSim() {
 }
 
 
-
 export function OnChangeSkillLvCastSim() {
 
 	// 実行中の詠唱をすべて止める
@@ -614,7 +591,6 @@ export function OnChangeSkillLvCastSim() {
 	// 表示内容の更新
 	RefreshCastSimSimulateArea(false);
 }
-
 
 
 export function RefreshCastSimSimulateArea(bRefreshLevelSelect) {
@@ -644,7 +620,6 @@ export function RefreshCastSimSimulateArea(bRefreshLevelSelect) {
 	var objProgress = null;
 
 
-
 	for (rowidx = 0; rowidx < 10; rowidx++) {
 
 		// スキルＩＤの取得
@@ -666,11 +641,9 @@ export function RefreshCastSimSimulateArea(bRefreshLevelSelect) {
 		}
 
 
-
 		// スキルレベルの取得
 		objSelect = document.getElementById("OBJID_CONTROL_CAST_SIM_LEVEL_SELECT_" + rowidx);
 		skillLv = parseInt(objSelect.value);
-
 
 
 		costVal = 0;
@@ -693,14 +666,12 @@ export function RefreshCastSimSimulateArea(bRefreshLevelSelect) {
 		objTd.appendChild(objText);
 
 
-
 		// 消費ＡＰの欄を生成
 		objTd = document.getElementById("OBJID_TD_CAST_SIM_COSTAP_" + rowidx);
 		HtmlRemoveAllChild(objTd);
 		costAPVal = g_skillManager.GetCostAP(skillId, skillLv, null);
 		objText = document.createTextNode(costAPVal);
 		objTd.appendChild(objText);
-
 
 
 		// 変動詠唱の欄を生成
@@ -721,7 +692,6 @@ export function RefreshCastSimSimulateArea(bRefreshLevelSelect) {
 
 		objText = document.createTextNode(timeStr);
 		objTd.appendChild(objText);
-
 
 
 		// 固定詠唱の欄の更新
@@ -747,7 +717,6 @@ export function RefreshCastSimSimulateArea(bRefreshLevelSelect) {
 
 		objText = document.createTextNode(timeStr);
 		objTd.appendChild(objText);
-
 
 
 		// 強制詠唱の欄の更新
@@ -792,7 +761,6 @@ export function RefreshCastSimSimulateArea(bRefreshLevelSelect) {
 		objTd.style.color = (delayTime > lifeTimeVal) ? "red" : "black";
 
 
-
 		// クールタイムの欄を生成
 		objTd = document.getElementById("OBJID_TD_CAST_SIM_COOL_TIME_" + rowidx);
 		HtmlRemoveAllChild(objTd);
@@ -829,7 +797,6 @@ export function RefreshCastSimSimulateArea(bRefreshLevelSelect) {
 		objTd.appendChild(objText);
 
 
-
 		// シミュレートの欄を生成
 		paramStr = rowidx;
 		paramStr += ", " + castTime;
@@ -846,15 +813,6 @@ export function RefreshCastSimSimulateArea(bRefreshLevelSelect) {
 }
 
 
-
-
-
-
-
-
-
-
-
 export let g_castsimProgressIntervalArray = new Array();
 export let g_castsimIntervalFunctionArray = new Array();
 
@@ -869,11 +827,9 @@ export function OnClickCastSimSimulateStart(rowidx, castTime, delayTime) {
 	var countUpFunction = null;
 
 
-
 	// 更新間隔設定の取得
 	objSelect = document.getElementById("OBJID_SELECT_CASTSIM_INTERVAL");
 	g_castsimProgressIntervalArray[rowidx] = parseInt(objSelect.value);
-
 
 
 	// 詠唱ボタンの設定更新
@@ -885,12 +841,10 @@ export function OnClickCastSimSimulateStart(rowidx, castTime, delayTime) {
 	objInput.setAttribute("onClick", "OnClickCastSimSimulateStop(" + paramStr + ")");
 
 
-
 	// プログレスバーの設定更新
 	objProgress = document.getElementById("OBJID_PROGRESS_CAST_SIM_SIMULATE_" + rowidx);
 	objProgress.setAttribute("max", castTime);
 	objProgress.setAttribute("value", 0);
-
 
 
 	// カウントアップ関数を定義
@@ -909,13 +863,9 @@ export function OnClickCastSimSimulateStart(rowidx, castTime, delayTime) {
 	};
 
 
-
 	// カウントアップ関数を登録
 	g_castsimIntervalFunctionArray[rowidx] = setInterval(countUpFunction, g_castsimProgressIntervalArray[rowidx]);
 }
-
-
-
 
 
 export function OnClickCastSimSimulateStartDelay(rowidx, castTime, delayTime) {
@@ -924,17 +874,14 @@ export function OnClickCastSimSimulateStartDelay(rowidx, castTime, delayTime) {
 	var countDownFunction = null;
 
 
-
 	// カウントアップ関数をクリア
 	clearInterval(g_castsimIntervalFunctionArray[rowidx]);
-
 
 
 	// プログレスバーの設定を再設定
 	objProgress = document.getElementById("OBJID_PROGRESS_CAST_SIM_SIMULATE_" + rowidx);
 	objProgress.setAttribute("max", delayTime);
 	objProgress.setAttribute("value", delayTime);
-
 
 
 	// カウントダウン関数を定義
@@ -953,13 +900,9 @@ export function OnClickCastSimSimulateStartDelay(rowidx, castTime, delayTime) {
 	};
 
 
-
 	// カウントダウン関数を登録
 	g_castsimIntervalFunctionArray[rowidx] = setInterval(countDownFunction, g_castsimProgressIntervalArray[rowidx]);
 }
-
-
-
 
 
 export function OnClickCastSimSimulateStop(rowidx, castTime, delayTime) {
@@ -969,10 +912,8 @@ export function OnClickCastSimSimulateStop(rowidx, castTime, delayTime) {
 	var objInput = null;
 
 
-
 	// カウント関数をクリア
 	clearInterval(g_castsimIntervalFunctionArray[rowidx]);
-
 
 
 	// ボタンの設定更新
@@ -983,31 +924,5 @@ export function OnClickCastSimSimulateStop(rowidx, castTime, delayTime) {
 	paramStr += ", " + delayTime;
 	objInput.setAttribute("onClick", "OnClickCastSimSimulateStart(" + paramStr + ")");
 }
-
-if (typeof window !== 'undefined') {
-	window.g_castsimProgressIntervalArray = g_castsimProgressIntervalArray;
-	window.g_castsimIntervalFunctionArray = g_castsimIntervalFunctionArray;
-	window.BuildUpCastSimSimulateArea = BuildUpCastSimSimulateArea;
-	window.SprintfTimeStrCastSim = SprintfTimeStrCastSim;
-	window.OnClickCastSimSwitch = OnClickCastSimSwitch;
-	window.OnClickCastSimRefresh = OnClickCastSimRefresh;
-	window.OnChangeSkillCastSim = OnChangeSkillCastSim;
-	window.OnChangeSkillLvCastSim = OnChangeSkillLvCastSim;
-	window.RefreshCastSimSimulateArea = RefreshCastSimSimulateArea;
-	window.OnClickCastSimSimulateStart = OnClickCastSimSimulateStart;
-	window.OnClickCastSimSimulateStartDelay = OnClickCastSimSimulateStartDelay;
-	window.OnClickCastSimSimulateStop = OnClickCastSimSimulateStop;
-}
-
-
-
-
-
-
-
-
-
-
-
 
 

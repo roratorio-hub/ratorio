@@ -37,12 +37,6 @@ describe('CCustomSelectMapMonster.js', () => {
         });
     });
 
-    describe('window互換確認', () => {
-        it('window.CCustomSelectMapMonster が設定されている', () => {
-            expect((window as any).CCustomSelectMapMonster).toBe(CCustomSelectMapMonster);
-        });
-    });
-
     describe('インスタンスメソッド確認', () => {
         let obj: any;
         beforeAll(() => {

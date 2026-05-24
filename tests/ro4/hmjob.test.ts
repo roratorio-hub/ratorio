@@ -74,12 +74,6 @@ describe('hmjob.js', () => {
     });
 
     describe('window互換確認', () => {
-        it('window.g_STR が設定されている', () => {
-            expect((window as any).g_STR).toBe(g_STR);
-        });
-        it('window.g_pureStatus が設定されている', () => {
-            expect((window as any).g_pureStatus).toBe(g_pureStatus);
-        });
         it('window.CalcStatusPoint が設定されている', () => {
             expect((window as any).CalcStatusPoint).toBe(CalcStatusPoint);
         });

@@ -3147,21 +3147,7 @@ export function GetItemExplainText(spId, spValue) {
 	}
 
 
-
 	return textInfoArray;
 }
 
-if (typeof window !== 'undefined') {
-	window.GetItemKindNameText = GetItemKindNameText;
-	window.IsDexBasedArms = IsDexBasedArms;
-	window.IsEffectiveExceededRefinedAtkArms = IsEffectiveExceededRefinedAtkArms;
-	window.IsGunSeriesArms = IsGunSeriesArms;
-	window.GetJobRestrictText = GetJobRestrictText;
-	window.GetStrPenaltyAvoidStr = GetStrPenaltyAvoidStr;
-	window.GetEnchantTypeId = GetEnchantTypeId;
-	window.GetRndOptTypeId = GetRndOptTypeId;
-	window.GetSlotText = GetSlotText;
-	window.GetMaxSlot = GetMaxSlot;
-	window.GetItemSP = GetItemSP;
-	window.GetItemExplainText = GetItemExplainText;
-}
+

@@ -51,10 +51,4 @@ describe('CFloatingInfoAreaComponentManager.js', () => {
         it('RefreshDispAreaAll が関数', () => { expect(typeof CFloatingInfoAreaComponentManager.RefreshDispAreaAll).toBe('function'); });
         it('LoadFromLocalStorage が関数', () => { expect(typeof CFloatingInfoAreaComponentManager.LoadFromLocalStorage).toBe('function'); });
     });
-
-    describe('window互換確認', () => {
-        it('window.GetFloatingInfoText が設定されている', () => { expect(typeof (window as any).GetFloatingInfoText).toBe('function'); });
-        it('window.CFloatingInfoAreaInfoUnit が設定されている', () => { expect(typeof (window as any).CFloatingInfoAreaInfoUnit).toBe('function'); });
-        it('window.CFloatingInfoAreaComponentManager が設定されている', () => { expect(typeof (window as any).CFloatingInfoAreaComponentManager).toBe('function'); });
-    });
 });

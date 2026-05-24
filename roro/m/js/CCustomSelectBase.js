@@ -4,9 +4,6 @@ import { HtmlCreateElement, HtmlCreateTextNode, HtmlAppendTextNodeMulti, HtmlRem
 // === END AUTO-GENERATED IMPORTS ===
 
 
-
-
-
 /**
  * カスタムセレクトクラス（基底）.
  */
@@ -71,7 +68,6 @@ export function CCustomSelectBase () {
 
 	// 検索結果適用ボタンコントロール
 	this.objApplyButton = null;
-
 
 
 	/**
@@ -141,14 +137,12 @@ export function CCustomSelectBase () {
 		this.RebuildSelectData();
 
 
-
 		// オブジェクト設定
 		this.objRoot.appendChild(this.objSelectData);
 		this.objRoot.appendChild(this.objExtractSwitch);
 		this.objRoot.appendChild(this.objExtractRoot);
 
 	};
-
 
 
 	/**
@@ -158,7 +152,6 @@ export function CCustomSelectBase () {
 	this.GetRootObject = function () {
 		return this.objRoot;
 	};
-
 
 
 	/**
@@ -227,7 +220,6 @@ export function CCustomSelectBase () {
 	};
 
 
-
 	/**
 	 * 展開状態を変更する.
 	 * @param bExtract 展開フラグ
@@ -261,9 +253,6 @@ export function CCustomSelectBase () {
 		this.RebuildInputSearch();
 
 	};
-
-
-
 
 
 	/**
@@ -355,7 +344,6 @@ export function CCustomSelectBase () {
 		// 選択されたデータを更新
 		this.selectedDataId = parseInt(this.objSelectData.value, 10);
 	};
-
 
 
 	/**
@@ -507,7 +495,6 @@ export function CCustomSelectBase () {
 		objTd.appendChild(this.objApplyButton);
 
 	};
-
 
 
 	/**
@@ -698,7 +685,6 @@ export function CCustomSelectBase () {
 	};
 
 
-
 	/**
 	 * 閉じるボタンのクリックイベントハンドラ呼び出しスクリプトを取得する.
 	 * @return ハンドラ呼び出しスクリプト
@@ -740,7 +726,6 @@ export function CCustomSelectBase () {
 		// 展開状態を閉じる
 		this.ChangeExtractState(false);
 	};
-
 
 
 	/**
@@ -818,8 +803,6 @@ export function CCustomSelectBase () {
 		// 検索結果コントロールを再構築
 		this.RebuildSearchResult();
 	};
-
-
 
 
 	/**
@@ -902,8 +885,6 @@ export function CCustomSelectBase () {
 		// 検索結果コントロールを再構築
 		this.RebuildSearchResult();
 	};
-
-
 
 
 	/**
@@ -1009,7 +990,6 @@ export function CCustomSelectBase () {
 	};
 
 
-
 	/**
 	 * 検索結果適用ボタンのクリックイベントハンドラ呼び出しスクリプトを取得する.
 	 * @return ハンドラ呼び出しスクリプト
@@ -1108,10 +1088,7 @@ export function CCustomSelectBase () {
 	};
 
 
-
-
 }
-
 
 
 // インスタンスマップ
@@ -1280,9 +1257,5 @@ CCustomSelectBase.OnClickApplyButton = function (instanceIdName) {
 	const select2_obj_class = ".OBJID_" + objInstance.instanceIdName;
 	$(select2_obj_class).val(select_id).trigger('change');
 };
-
-if (typeof window !== 'undefined') {
-    window.CCustomSelectBase = CCustomSelectBase;
-}
 
 

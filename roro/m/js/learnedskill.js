@@ -347,12 +347,9 @@ export function RefreshSkillColumnHeaderLearned(objSelect, changedIdx, newValue)
 }
 
 if (typeof window !== 'undefined') {
-    window.n_SkillSWLearned = n_SkillSWLearned;
     window.LEARNED_SKILL_MAX_COUNT = LEARNED_SKILL_MAX_COUNT;
     window.n_A_LearnedSkill = n_A_LearnedSkill;
     window.LearnedSkillSearch = LearnedSkillSearch;
     window.OnClickSkillSWLearned = OnClickSkillSWLearned;
-    window.IsLearnedSkillTarget = IsLearnedSkillTarget;
     window.UpdateLearnedSkillSettingColoring = UpdateLearnedSkillSettingColoring;
-    window.RefreshSkillColumnHeaderLearned = RefreshSkillColumnHeaderLearned;
 }

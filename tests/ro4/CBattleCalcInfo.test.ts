@@ -9,12 +9,6 @@ describe('CBattleCalcInfo.js', () => {
         });
     });
 
-    describe('window互換確認', () => {
-        it('window.CBattleCalcInfo が設定されている', () => {
-            expect((window as any).CBattleCalcInfo).toBe(CBattleCalcInfo);
-        });
-    });
-
     describe('インスタンス動作', () => {
         it('インスタンスが生成できる', () => {
             const info = new (CBattleCalcInfo as any)();

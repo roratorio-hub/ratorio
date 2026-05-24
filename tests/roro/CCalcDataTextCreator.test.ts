@@ -33,12 +33,6 @@ describe('CCalcDataTextCreator.js', () => {
         });
     });
 
-    describe('window互換確認', () => {
-        it('window.CCalcDataTextCreator が設定されている', () => {
-            expect((window as any).CCalcDataTextCreator).toBe(CCalcDataTextCreator);
-        });
-    });
-
     describe('GetDataText の動作', () => {
         it('数値はそのまま返す', () => {
             expect((CCalcDataTextCreator as any).GetDataText(42)).toBe(42);

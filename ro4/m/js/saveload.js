@@ -281,7 +281,6 @@ export function ConvertDataTextMIG(loadDataUrl) {
 	if(saveDataArray[278] == 0) saveDataArray[278] = 1;
 
 
-
 	// バージョン補正（新形式の初期バージョン）
 	saveDataArray[0] = 101;
 
@@ -376,7 +375,5 @@ if (typeof window !== 'undefined') {
     window.OnClickUrlOutMIG = OnClickUrlOutMIG;
     window.OnClickUrlInMIG = OnClickUrlInMIG;
     window.ConvertDataTextMIG = ConvertDataTextMIG;
-    window.AdaptSaveDataStrSizeMIG = AdaptSaveDataStrSizeMIG;
-    window.SaveDataChangeMIG = SaveDataChangeMIG;
     window.OnClickConfirmDialogSwitch = OnClickConfirmDialogSwitch;
 }

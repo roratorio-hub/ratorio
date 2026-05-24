@@ -444,7 +444,6 @@ export function DisplayStatusBonusAll(baseLv, valSTR, valAGI, valVIT, valINT, va
 	objStatus.innerHTML = ((valLUK >= 0) ? "+" : "") + valLUK;
 
 
-
 	// 特性ステータス対応
 
 	// POW
@@ -470,7 +469,6 @@ export function DisplayStatusBonusAll(baseLv, valSTR, valAGI, valVIT, valINT, va
 	// CRT
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_BONUS_CRT");
 	objStatus.innerHTML = ((valCRT >= 0) ? "+" : "") + valCRT;
-
 
 
 	// 導出ステータス
@@ -884,7 +882,6 @@ export function GetCRate() {
 	var bufLv = 0;
 
 
-
 	// ステータス値
 	value += Math.floor(GetTotalSpecStatus(MIG_PARAM_ID_CRT) / 3);
 
@@ -901,7 +898,6 @@ export function GetCRate() {
 	if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_PRESENSE_AKYACE]) > 0) {
 		value += 5 * bufLv;
 	}
-
 
 
 	return value;
@@ -1098,7 +1094,6 @@ export function ApplyPAtkAmplify(dmg) {
 	amped = (dmg * (100 + patk)) / 100;
 
 
-
 	return amped;
 }
 
@@ -1135,10 +1130,8 @@ export function ApplyCRateAmplify(criDmgRate) {
 	crate = GetCRate();
 
 
-
 	// 増幅後のクリティカルダメージ増幅量を計算
 	amped = criDmgRate + crate;
-
 
 
 	return amped;
@@ -1179,7 +1172,6 @@ export function ApplyMresResist(mobData, dmg) {
 	mres = GetMobMres(mobData);
 
 
-
 	// 実測との誤差から、減少量を計算→小数切り捨て→元ダメージから減算、という順序の模様
 
 	// 減衰率の計算
@@ -1187,7 +1179,6 @@ export function ApplyMresResist(mobData, dmg) {
 
 	// 減衰ダメージを計算
 	resisted = Math.floor(dmg * resistedRatio);
-
 
 
 	return (dmg - resisted);
@@ -1839,50 +1830,11 @@ const OnChangeStatus = _debounce(function() {
 }, 200);
 
 if (typeof window !== 'undefined') {
-	window.g_pureStatus = g_pureStatus;
-	window.g_bonusStatus = g_bonusStatus;
-	window.g_STR = g_STR;
-	window.g_AGI = g_AGI;
-	window.g_VIT = g_VIT;
-	window.g_INT = g_INT;
-	window.g_DEX = g_DEX;
-	window.g_LUK = g_LUK;
-	window.g_POW = g_POW;
-	window.g_STA = g_STA;
-	window.g_WIS = g_WIS;
-	window.g_SPL = g_SPL;
-	window.g_CON = g_CON;
-	window.g_CRT = g_CRT;
 	window.RebuildStatusSelect = RebuildStatusSelect;
 	window.CalcStatusPoint = CalcStatusPoint;
-	window.GetStatusIncrementCost = GetStatusIncrementCost;
-	window.GetStatusTotalCost = GetStatusTotalCost;
-	window.GetEarningStatusPoint = GetEarningStatusPoint;
-	window.DisplayStatusBonusAll = DisplayStatusBonusAll;
-	window.DisplayReferStatusAll = DisplayReferStatusAll;
 	window.GetTotalPureBasicStatus = GetTotalPureBasicStatus;
-	window.StoreSpecStatusBonusAll = StoreSpecStatusBonusAll;
 	window.GetTotalSpecStatus = GetTotalSpecStatus;
-	window.GetEarningTSStatusPoint = GetEarningTSStatusPoint;
-	window.GetTStatusPoint = GetTStatusPoint;
-	window.ApplySpecStatusModifications = ApplySpecStatusModifications;
-	window.ApplySpecStatusModifyMATK = ApplySpecStatusModifyMATK;
-	window.GetPAtk = GetPAtk;
-	window.GetSMatk = GetSMatk;
-	window.GetCRate = GetCRate;
-	window.GetRes = GetRes;
-	window.GetMres = GetMres;
-	window.GetHPlus = GetHPlus;
-	window.GetMobRes = GetMobRes;
-	window.GetMobMres = GetMobMres;
-	window.ApplyPAtkAmplify = ApplyPAtkAmplify;
-	window.ApplySMatkAmplify = ApplySMatkAmplify;
-	window.ApplyCRateAmplify = ApplyCRateAmplify;
-	window.ApplyResResist = ApplyResResist;
-	window.ApplyMresResist = ApplyMresResist;
-	window.ApplyPAtkLeftHandPenalty = ApplyPAtkLeftHandPenalty;
 	window.ApplySpecModify = ApplySpecModify;
-	window.migrateOtherJob = migrateOtherJob;
 	window.OnChangeJob = OnChangeJob;
 	window.OnChangeBaseLV = OnChangeBaseLV;
 	window.OnChangeStatus = OnChangeStatus;

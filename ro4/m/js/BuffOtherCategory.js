@@ -220,11 +220,8 @@ export function RefreshPetExplain() {
 }
 
 if (typeof window !== 'undefined') {
-    window.BUFF_CONF_OTHER_LIMIT = BUFF_CONF_OTHER_LIMIT;
     window.n_A_PassSkill8 = n_A_PassSkill8;
     window.n_Skill8SW = n_Skill8SW;
     window.Click_Skill8SW = Click_Skill8SW;
     window.Click_A8 = Click_A8;
-    window.OnChangePetSelect = OnChangePetSelect;
-    window.RefreshPetExplain = RefreshPetExplain;
 }

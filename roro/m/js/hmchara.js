@@ -51,9 +51,6 @@ export function UpdateCharaDataHtml(charaData, specData) {
 	var mobDataOriginal = new Array();
 
 
-
-
-
 	//----------------------------------------------------------------
 	// ＡＴＫ
 	//----------------------------------------------------------------
@@ -76,7 +73,6 @@ export function UpdateCharaDataHtml(charaData, specData) {
 	objSpan.appendChild(objText);
 
 
-
 	//----------------------------------------------------------------
 	// ＭａｘＨＰ
 	//----------------------------------------------------------------
@@ -91,7 +87,6 @@ export function UpdateCharaDataHtml(charaData, specData) {
 	objSpan = document.getElementById("OBJID_SPAN_CHARA_MAXHP");
 	HtmlRemoveAllChild(objSpan);
 	objSpan.appendChild(objText);
-
 
 
 	//----------------------------------------------------------------
@@ -110,7 +105,6 @@ export function UpdateCharaDataHtml(charaData, specData) {
 	objSpan.appendChild(objText);
 
 
-
 	//----------------------------------------------------------------
 	// ＤＥＦ
 	//----------------------------------------------------------------
@@ -121,7 +115,6 @@ export function UpdateCharaDataHtml(charaData, specData) {
 	HtmlRemoveAllChild(objSpan);
 	objText = document.createTextNode(charaData[CHARA_DATA_INDEX_DEF_MINUS] + "+" + charaData[CHARA_DATA_INDEX_DEF_DIV]);
 	objSpan.appendChild(objText);
-
 
 
 	//----------------------------------------------------------------
@@ -136,7 +129,6 @@ export function UpdateCharaDataHtml(charaData, specData) {
 	objSpan.appendChild(objText);
 
 
-
 	//----------------------------------------------------------------
 	// ＨＩＴ
 	//----------------------------------------------------------------
@@ -148,7 +140,6 @@ export function UpdateCharaDataHtml(charaData, specData) {
 	objSpan.appendChild(objText);
 
 
-
 	//----------------------------------------------------------------
 	// ＦＬＥＥ
 	//----------------------------------------------------------------
@@ -158,7 +149,6 @@ export function UpdateCharaDataHtml(charaData, specData) {
 	HtmlRemoveAllChild(objSpan);
 	objText = document.createTextNode(charaData[CHARA_DATA_INDEX_FLEE]);
 	objSpan.appendChild(objText);
-
 
 
 	//----------------------------------------------------------------
@@ -186,7 +176,6 @@ export function UpdateCharaDataHtml(charaData, specData) {
 	}
 
 
-
 	//----------------------------------------------------------------
 	// クリティカル
 	//----------------------------------------------------------------
@@ -196,7 +185,6 @@ export function UpdateCharaDataHtml(charaData, specData) {
 	HtmlRemoveAllChild(objSpan);
 	objText = document.createTextNode(charaData[CHARA_DATA_INDEX_CRI]);
 	objSpan.appendChild(objText);
-
 
 
 	//----------------------------------------------------------------
@@ -219,7 +207,6 @@ export function UpdateCharaDataHtml(charaData, specData) {
 	objSpan.appendChild(objText);
 
 
-
 	//----------------------------------------------------------------
 	// ＡＳＰＤ
 	//----------------------------------------------------------------
@@ -232,7 +219,6 @@ export function UpdateCharaDataHtml(charaData, specData) {
 	objSpan.appendChild(objText);
 
 
-
 	//----------------------------------------------------------------
 	// ＨＰ回復力
 	//----------------------------------------------------------------
@@ -242,7 +228,6 @@ export function UpdateCharaDataHtml(charaData, specData) {
 	HtmlRemoveAllChild(objSpan);
 	objText = document.createTextNode(charaData[CHARA_DATA_INDEX_HPR]);
 	objSpan.appendChild(objText);
-
 
 
 	//----------------------------------------------------------------
@@ -261,22 +246,6 @@ export function UpdateCharaDataHtml(charaData, specData) {
 	objSpan.appendChild(objText);
 
 
-
-
-
-
-
 }
-
-if (typeof window !== 'undefined') {
-    window.IsUnconfirmedHP = IsUnconfirmedHP;
-    window.IsUnconfirmedSP = IsUnconfirmedSP;
-    window.UpdateCharaDataHtml = UpdateCharaDataHtml;
-}
-
-
-
-
-
 
 

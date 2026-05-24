@@ -41,9 +41,6 @@ export let MobConfBufOBJ = new Array();
 InitMobConfBufData();
 
 
-
-
-
 //================================================================
 // モンスター状態強化データ定義用ダミー関数
 // （可読性を高める目的で使用する）
@@ -53,9 +50,6 @@ function MobConfBufControlType(value) { return value; };
 function MobConfBufDefaultValue(value) { return value; };
 function MobConfBufMinValue(value) { return value; };
 function MobConfBufMaxValue(value) { return value; };
-
-
-
 
 
 //********************************************************************************************************************************
@@ -80,7 +74,6 @@ function InitMobConfBufData() {
 	var indexdefiner = 0;
 
 
-
 	//----------------------------------------------------------------
 	// データインデックス定義
 	//----------------------------------------------------------------
@@ -90,7 +83,6 @@ function InitMobConfBufData() {
 	MOB_CONF_BUF_DATA_INDEX_DEFAULT_VALUE = indexdefiner++;
 	MOB_CONF_BUF_DATA_INDEX_MIN_VALUE = indexdefiner++;
 	MOB_CONF_BUF_DATA_INDEX_MAX_VALUE = indexdefiner++;
-
 
 
 	//----------------------------------------------------------------
@@ -109,7 +101,6 @@ function InitMobConfBufData() {
 	MobConfBufId++;
 
 
-
 	MOB_CONF_BUF_ID_ASSUMPTIO = MobConfBufId;
 	MobConfBufData = [
 		MobConfBufId,
@@ -121,7 +112,6 @@ function InitMobConfBufData() {
 	];
 	MobConfBufOBJ[MobConfBufId] = MobConfBufData;
 	MobConfBufId++;
-
 
 
 	MOB_CONF_BUF_ID_ADRENALINE_RUSH = MobConfBufId;
@@ -137,7 +127,6 @@ function InitMobConfBufData() {
 	MobConfBufId++;
 
 
-
 	MOB_CONF_BUF_ID_MAXIMIZE_POWER = MobConfBufId;
 	MobConfBufData = [
 		MobConfBufId,
@@ -149,7 +138,6 @@ function InitMobConfBufData() {
 	];
 	MobConfBufOBJ[MobConfBufId] = MobConfBufData;
 	MobConfBufId++;
-
 
 
 	MOB_CONF_BUF_ID_RUSH_ATTACK = MobConfBufId;
@@ -165,7 +153,6 @@ function InitMobConfBufData() {
 	MobConfBufId++;
 
 
-
 	MOB_CONF_BUF_ID_SOKUDO_KYOKA = MobConfBufId;
 	MobConfBufData = [
 		MobConfBufId,
@@ -177,7 +164,6 @@ function InitMobConfBufData() {
 	];
 	MobConfBufOBJ[MobConfBufId] = MobConfBufData;
 	MobConfBufId++;
-
 
 
 	MOB_CONF_BUF_ID_ZOKUSEI_HENKA = MobConfBufId;
@@ -193,7 +179,6 @@ function InitMobConfBufData() {
 	MobConfBufId++;
 
 
-
 	MOB_CONF_BUF_ID_STONE_SKIN = MobConfBufId;
 	MobConfBufData = [
 		MobConfBufId,
@@ -205,7 +190,6 @@ function InitMobConfBufData() {
 	];
 	MobConfBufOBJ[MobConfBufId] = MobConfBufData;
 	MobConfBufId++;
-
 
 
 	MOB_CONF_BUF_ID_ANTI_MAGIC = MobConfBufId;
@@ -221,7 +205,6 @@ function InitMobConfBufData() {
 	MobConfBufId++;
 
 
-
 	MOB_CONF_BUF_ID_KEEPING = MobConfBufId;
 	MobConfBufData = [
 		MobConfBufId,
@@ -233,7 +216,6 @@ function InitMobConfBufData() {
 	];
 	MobConfBufOBJ[MobConfBufId] = MobConfBufData;
 	MobConfBufId++;
-
 
 
 	MOB_CONF_BUF_ID_DEFENDER = MobConfBufId;
@@ -249,7 +231,6 @@ function InitMobConfBufData() {
 	MobConfBufId++;
 
 
-
 	MOB_CONF_BUF_ID_REBIRTH = MobConfBufId;
 	MobConfBufData = [
 		MobConfBufId,
@@ -263,7 +244,6 @@ function InitMobConfBufData() {
 	MobConfBufId++;
 
 
-
 	MOB_CONF_BUF_ID_DAMAGE_DIVIDE = MobConfBufId;
 	MobConfBufData = [
 		MobConfBufId,
@@ -275,7 +255,6 @@ function InitMobConfBufData() {
 	];
 	MobConfBufOBJ[MobConfBufId] = MobConfBufData;
 	MobConfBufId++;
-
 
 
 	MOB_CONF_BUF_ID_MAX_PAIN = MobConfBufId;
@@ -299,7 +278,6 @@ function InitMobConfBufData() {
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 状態強化設定変数配列を初期化
 	//----------------------------------------------------------------
@@ -311,7 +289,6 @@ function InitMobConfBufData() {
 			n_B_KYOUKA[idx] = 0;
 		}
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -335,9 +312,6 @@ function InitMobConfBufData() {
 	MobConfBufOBJ = MobConfBufOBJSorted;
 
 }
-
-
-
 
 
 /**
@@ -368,7 +342,6 @@ export function BuildUpMobConfBufSelectArea(objRoot, bAsExpand) {
 	var objLabel = null;
 
 
-
 	// 引数のルートオブジェクト配下を一度全削除
 	HtmlRemoveAllChild(objRoot);
 
@@ -380,7 +353,6 @@ export function BuildUpMobConfBufSelectArea(objRoot, bAsExpand) {
 
 	objTbody = document.createElement("tbody");
 	objTable.appendChild(objTbody);
-
 
 
 	// 設定欄テーブルのヘッダ部分を生成
@@ -407,7 +379,6 @@ export function BuildUpMobConfBufSelectArea(objRoot, bAsExpand) {
 	HtmlCreateTextNode("モンスター状態強化設定", objLabel);
 
 
-
 	// 展開表示でなければ、ヘッダだけ更新して終了
 	if (!bAsExpand) {
 		// ヘッダ更新
@@ -417,7 +388,6 @@ export function BuildUpMobConfBufSelectArea(objRoot, bAsExpand) {
 	}
 
 
-
 	// モンスター状態強化設定定義をループして、設定欄を構築する
 	for (idx = 0; idx < MobConfBufOBJ.length; idx++) {
 
@@ -425,11 +395,9 @@ export function BuildUpMobConfBufSelectArea(objRoot, bAsExpand) {
 		confId = MobConfBufOBJ[idx][MOB_CONF_BUF_DATA_INDEX_ID];
 
 
-
 		// 設定欄用のテーブル行を生成
 		objTr = document.createElement("tr");
 		objTbody.appendChild(objTr);
-
 
 
 		// 表示名の欄を生成
@@ -441,13 +409,11 @@ export function BuildUpMobConfBufSelectArea(objRoot, bAsExpand) {
 		objTd.appendChild(objText);
 
 
-
 		// 設定値の欄を生成
 		objTd = document.createElement("td");
 		objTr.appendChild(objTd);
 
 		controlType = MobConfBufOBJ[idx][MOB_CONF_BUF_DATA_INDEX_CONTROL_TYPE];
-
 
 
 		// 設定方法が数値選択方式の場合
@@ -473,7 +439,6 @@ export function BuildUpMobConfBufSelectArea(objRoot, bAsExpand) {
 			break;
 
 
-
 		// 設定方法がチェック方式の場合
 		case CONTROL_TYPE_CHECKBOX:
 
@@ -492,7 +457,6 @@ export function BuildUpMobConfBufSelectArea(objRoot, bAsExpand) {
 			break;
 
 
-
 		// 設定方法が数値入力方式の場合
 		case CONTROL_TYPE_TEXTBOX_NUMBER:
 
@@ -508,7 +472,6 @@ export function BuildUpMobConfBufSelectArea(objRoot, bAsExpand) {
 			objInput.setAttribute("value", MobConfBufOBJ[idx][MOB_CONF_BUF_DATA_INDEX_DEFAULT_VALUE]);
 
 			break;
-
 
 
 		// 設定方法が特殊方式の場合
@@ -587,7 +550,6 @@ export function BuildUpMobConfBufSelectArea(objRoot, bAsExpand) {
 				break;
 
 
-
 			// ディフェンダー
 			case MOB_CONF_BUF_ID_DEFENDER:
 
@@ -609,7 +571,6 @@ export function BuildUpMobConfBufSelectArea(objRoot, bAsExpand) {
 				objSelect.setAttribute("value", MobConfBufOBJ[idx][MOB_CONF_BUF_DATA_INDEX_DEFAULT_VALUE]);
 
 				break;
-
 
 
 			// ダメージ減衰
@@ -642,16 +603,12 @@ export function BuildUpMobConfBufSelectArea(objRoot, bAsExpand) {
 	}
 
 
-
 	// 変数の値をもとに、設定欄の各コントロールを同期
 	SyncronizeMobConfBufSettingsVarToCtrl();
 
 	// ヘッダ更新
 	RefreshMobConfBufSelectAreaHeader();
 }
-
-
-
 
 
 /**
@@ -668,13 +625,11 @@ export function SyncronizeMobConfBufSettingsVarToCtrl() {
 	var objInput = null;
 
 
-
 	// モンスター状態強化設定定義をループして、設定欄の状態を同期
 	for (idx = 0; idx < MobConfBufOBJ.length; idx++) {
 
 		confId = MobConfBufOBJ[idx][MOB_CONF_BUF_DATA_INDEX_ID];
 		controlType = MobConfBufOBJ[idx][MOB_CONF_BUF_DATA_INDEX_CONTROL_TYPE];
-
 
 
 		switch (controlType) {
@@ -687,7 +642,6 @@ export function SyncronizeMobConfBufSettingsVarToCtrl() {
 			objSelect.value = n_B_KYOUKA[confId];
 
 			break;
-
 
 
 		// 設定方法がチェック方式の場合
@@ -706,7 +660,6 @@ export function SyncronizeMobConfBufSettingsVarToCtrl() {
 			break;
 
 
-
 		// 設定方法が数値入力方式の場合
 		case CONTROL_TYPE_TEXTBOX_NUMBER:
 		case CONTROL_TYPE_TEXTBOX_SPECIAL:
@@ -715,7 +668,6 @@ export function SyncronizeMobConfBufSettingsVarToCtrl() {
 			objInput.value = n_B_KYOUKA[confId];
 
 			break;
-
 
 
 		// 設定方法が特殊方式の場合
@@ -728,9 +680,6 @@ export function SyncronizeMobConfBufSettingsVarToCtrl() {
 		}
 	}
 }
-
-
-
 
 
 /**
@@ -750,13 +699,11 @@ export function SyncronizeMobConfBufSettingsCtrlToVar() {
 	var objInput = null;
 
 
-
 	// モンスター状態強化設定定義をループして、設定欄の状態をもとに変数を同期
 	for (idx = 0; idx < MobConfBufOBJ.length; idx++) {
 
 		confId = MobConfBufOBJ[idx][MOB_CONF_BUF_DATA_INDEX_ID];
 		controlType = MobConfBufOBJ[idx][MOB_CONF_BUF_DATA_INDEX_CONTROL_TYPE];
-
 
 
 		switch (controlType) {
@@ -771,7 +718,6 @@ export function SyncronizeMobConfBufSettingsCtrlToVar() {
 			break;
 
 
-
 		// 設定方法がチェック方式の場合
 		case CONTROL_TYPE_CHECKBOX:
 		case CONTROL_TYPE_CHECKBOX_SPECIAL:
@@ -779,7 +725,6 @@ export function SyncronizeMobConfBufSettingsCtrlToVar() {
 			n_B_KYOUKA[confId] = HtmlGetObjectCheckedById("OBJID_INPUT_MOB_CONF_BUF_" + confId, false);
 
 			break;
-
 
 
 		// 設定方法が数値入力方式の場合
@@ -798,7 +743,6 @@ export function SyncronizeMobConfBufSettingsCtrlToVar() {
 			break;
 
 
-
 		// 設定方法が特殊方式の場合
 		case CONTROL_TYPE_SPECIAL:
 
@@ -809,9 +753,6 @@ export function SyncronizeMobConfBufSettingsCtrlToVar() {
 		}
 	}
 }
-
-
-
 
 
 /**
@@ -833,9 +774,6 @@ export function OnClickMobConfBufSwitch() {
 		RefreshMobConfBufControlCSS();
 	}
 }
-
-
-
 
 
 /**
@@ -861,9 +799,6 @@ export function OnChangeMobConfBuf(bCalc) {
 }
 
 
-
-
-
 /**
  * モンスター状態強化設定テーブルのヘッダをリフレッシュする.
  */
@@ -879,7 +814,6 @@ export function RefreshMobConfBufSelectAreaHeader() {
 	var objTd = null;
 
 
-
 	// モンスター状態強化設定定義をループして、設定欄の状態を検査
 	for (idx = 0; idx < MobConfBufOBJ.length; idx++) {
 
@@ -892,7 +826,6 @@ export function RefreshMobConfBufSelectAreaHeader() {
 	}
 
 
-
 	// 設定状況に応じて、ヘッダ部分の表示を更新
 	objTd = document.getElementById("OBJID_TD_MOB_CONF_BUF_HEADER");
 	if (bSet) {
@@ -902,9 +835,6 @@ export function RefreshMobConfBufSelectAreaHeader() {
 		objTd.setAttribute("bgcolor", COLOR_CODE_TABLE_HEADER_IS_NOT_SET);
 	}
 }
-
-
-
 
 
 /**
@@ -921,13 +851,11 @@ export function RefreshMobConfBufControlCSS() {
 	var objInput = null;
 
 
-
 	// モンスター状態強化設定定義をループして、設定欄の状態をもとに変数を同期
 	for (idx = 0; idx < MobConfBufOBJ.length; idx++) {
 
 		confId = MobConfBufOBJ[idx][MOB_CONF_BUF_DATA_INDEX_ID];
 		controlType = MobConfBufOBJ[idx][MOB_CONF_BUF_DATA_INDEX_CONTROL_TYPE];
-
 
 
 		switch (controlType) {
@@ -949,7 +877,6 @@ export function RefreshMobConfBufControlCSS() {
 			}
 
 			break;
-
 
 
 		// 設定方法がチェック方式の場合
@@ -974,7 +901,6 @@ export function RefreshMobConfBufControlCSS() {
 			break;
 
 
-
 		// 設定方法が数値入力方式の場合
 		case CONTROL_TYPE_TEXTBOX_NUMBER:
 		case CONTROL_TYPE_TEXTBOX_SPECIAL:
@@ -994,7 +920,6 @@ export function RefreshMobConfBufControlCSS() {
 			break;
 
 
-
 		// 設定方法が特殊方式の場合
 		case CONTROL_TYPE_SPECIAL:
 
@@ -1007,34 +932,13 @@ export function RefreshMobConfBufControlCSS() {
 }
 
 if (typeof window !== 'undefined') {
-	window.MOB_CONF_BUF_LIMIT = MOB_CONF_BUF_LIMIT;
 	window.n_B_KYOUKA = n_B_KYOUKA;
-	window.MobConfBufOBJ = MobConfBufOBJ;
-	window.MOB_CONF_BUF_DATA_INDEX_ID = MOB_CONF_BUF_DATA_INDEX_ID;
-	window.MOB_CONF_BUF_DATA_INDEX_TEXT = MOB_CONF_BUF_DATA_INDEX_TEXT;
-	window.MOB_CONF_BUF_DATA_INDEX_CONTROL_TYPE = MOB_CONF_BUF_DATA_INDEX_CONTROL_TYPE;
-	window.MOB_CONF_BUF_DATA_INDEX_DEFAULT_VALUE = MOB_CONF_BUF_DATA_INDEX_DEFAULT_VALUE;
-	window.MOB_CONF_BUF_DATA_INDEX_MIN_VALUE = MOB_CONF_BUF_DATA_INDEX_MIN_VALUE;
-	window.MOB_CONF_BUF_DATA_INDEX_MAX_VALUE = MOB_CONF_BUF_DATA_INDEX_MAX_VALUE;
 	window.MOB_CONF_BUF_ID_SOKUDO_ZOKA = MOB_CONF_BUF_ID_SOKUDO_ZOKA;
 	window.MOB_CONF_BUF_ID_ASSUMPTIO = MOB_CONF_BUF_ID_ASSUMPTIO;
-	window.MOB_CONF_BUF_ID_ADRENALINE_RUSH = MOB_CONF_BUF_ID_ADRENALINE_RUSH;
 	window.MOB_CONF_BUF_ID_MAXIMIZE_POWER = MOB_CONF_BUF_ID_MAXIMIZE_POWER;
 	window.MOB_CONF_BUF_ID_RUSH_ATTACK = MOB_CONF_BUF_ID_RUSH_ATTACK;
 	window.MOB_CONF_BUF_ID_SOKUDO_KYOKA = MOB_CONF_BUF_ID_SOKUDO_KYOKA;
 	window.MOB_CONF_BUF_ID_ZOKUSEI_HENKA = MOB_CONF_BUF_ID_ZOKUSEI_HENKA;
-	window.MOB_CONF_BUF_ID_STONE_SKIN = MOB_CONF_BUF_ID_STONE_SKIN;
-	window.MOB_CONF_BUF_ID_ANTI_MAGIC = MOB_CONF_BUF_ID_ANTI_MAGIC;
 	window.MOB_CONF_BUF_ID_KEEPING = MOB_CONF_BUF_ID_KEEPING;
-	window.MOB_CONF_BUF_ID_DEFENDER = MOB_CONF_BUF_ID_DEFENDER;
 	window.MOB_CONF_BUF_ID_REBIRTH = MOB_CONF_BUF_ID_REBIRTH;
-	window.MOB_CONF_BUF_ID_DAMAGE_DIVIDE = MOB_CONF_BUF_ID_DAMAGE_DIVIDE;
-	window.MOB_CONF_BUF_ID_MAX_PAIN = MOB_CONF_BUF_ID_MAX_PAIN;
-	window.BuildUpMobConfBufSelectArea = BuildUpMobConfBufSelectArea;
-	window.SyncronizeMobConfBufSettingsVarToCtrl = SyncronizeMobConfBufSettingsVarToCtrl;
-	window.SyncronizeMobConfBufSettingsCtrlToVar = SyncronizeMobConfBufSettingsCtrlToVar;
-	window.OnClickMobConfBufSwitch = OnClickMobConfBufSwitch;
-	window.OnChangeMobConfBuf = OnChangeMobConfBuf;
-	window.RefreshMobConfBufSelectAreaHeader = RefreshMobConfBufSelectAreaHeader;
-	window.RefreshMobConfBufControlCSS = RefreshMobConfBufControlCSS;
 }

@@ -17,20 +17,6 @@ describe('hmchara.js', () => {
         });
     });
 
-    describe('window互換確認', () => {
-        it('window.IsUnconfirmedHP が設定されている', () => {
-            expect((window as any).IsUnconfirmedHP).toBe(IsUnconfirmedHP);
-        });
-
-        it('window.IsUnconfirmedSP が設定されている', () => {
-            expect((window as any).IsUnconfirmedSP).toBe(IsUnconfirmedSP);
-        });
-
-        it('window.UpdateCharaDataHtml が設定されている', () => {
-            expect((window as any).UpdateCharaDataHtml).toBe(UpdateCharaDataHtml);
-        });
-    });
-
     // JOB_ID_GILOTINCROSS = 47: HP/SP未確認レベル [186,187,188,189,191,193,195,196,197,198]
     // JOB_ID_NOVICE = 0: エントリなし（undefined）
     describe('IsUnconfirmedHP', () => {

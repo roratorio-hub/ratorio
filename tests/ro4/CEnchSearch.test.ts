@@ -25,10 +25,4 @@ describe('CEnchSearch.js', () => {
             expect(typeof enchSearch.prototype.quickControlExtractCheckboxChange).toBe('function');
         });
     });
-
-    describe('window互換確認', () => {
-        it('window.enchSearch が設定されている', () => {
-            expect((window as any).enchSearch).toBe(enchSearch);
-        });
-    });
 });

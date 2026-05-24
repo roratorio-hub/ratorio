@@ -49,10 +49,4 @@ describe('CTimeItemAreaComponentManager.js', () => {
             expect(typeof CTimeItemAreaComponentManager.FocusArea).toBe('function');
         });
     });
-
-    describe('window互換確認', () => {
-        it('window.CTimeItemAreaComponentManager が設定されている', () => {
-            expect((window as any).CTimeItemAreaComponentManager).toBe(CTimeItemAreaComponentManager);
-        });
-    });
 });

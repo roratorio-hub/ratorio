@@ -14,12 +14,6 @@ describe('monster.toughness.dat.js', () => {
         });
     });
 
-    describe('window互換確認', () => {
-        it('window.MonsterToughness が設定されている', () => {
-            expect((window as any).MonsterToughness).toBe(MonsterToughness);
-        });
-    });
-
     describe('静的フィールド確認', () => {
         it('DAMPING_NONE が 0', () => expect(MonsterToughness.DAMPING_NONE).toBe(0));
         it('DAMPING_5 が 1', () => expect(MonsterToughness.DAMPING_5).toBe(1));

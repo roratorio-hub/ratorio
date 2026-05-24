@@ -55,13 +55,11 @@ describe('hmcard', () => {
 
 	describe('window互換', () => {
 		it('window.CardShortObj', () => expect((window as any).CardShortObj).toBe(CardShortObj));
-		it('window.ClearCardSlotAll', () => expect((window as any).ClearCardSlotAll).toBe(ClearCardSlotAll));
 		it('window.ClearCardSlot', () => expect((window as any).ClearCardSlot).toBe(ClearCardSlot));
 		it('window.RebuildCardSelect', () => expect((window as any).RebuildCardSelect).toBe(RebuildCardSelect));
 		it('window.RebuildCardSelectSubCollectEnchListData', () => expect((window as any).RebuildCardSelectSubCollectEnchListData).toBe(RebuildCardSelectSubCollectEnchListData));
 		it('window.SetCardSlotEnabilityAll', () => expect((window as any).SetCardSlotEnabilityAll).toBe(SetCardSlotEnabilityAll));
 		it('window.SetCardSlotEnability', () => expect((window as any).SetCardSlotEnability).toBe(SetCardSlotEnability));
-		it('window.ApplyCardShort', () => expect((window as any).ApplyCardShort).toBe(ApplyCardShort));
 	});
 
 	describe('CardShortObj 内容確認', () => {

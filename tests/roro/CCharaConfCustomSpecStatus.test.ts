@@ -43,10 +43,4 @@ describe('CCharaConfCustomSpecStatus.js', () => {
             it('GetHeaderIdString が関数', () => { expect(typeof inst.GetHeaderIdString).toBe('function'); });
         });
     });
-
-    describe('window互換確認', () => {
-        it('window.CCharaConfCustomSpecStatus が設定されている', () => {
-            expect((window as any).CCharaConfCustomSpecStatus).toBe(CCharaConfCustomSpecStatus);
-        });
-    });
 });

@@ -22,7 +22,6 @@ CGlobalConstManager.DefineEnum(
 );
 
 
-
 //----------------------------------------------------------------
 // 特殊フラグ
 //----------------------------------------------------------------
@@ -35,7 +34,6 @@ CGlobalConstManager.DefineEnum(
 	0,
 	1
 );
-
 
 
 /**
@@ -442,10 +440,4 @@ export function GetRndOptDispName(spid) {
 	return "";
 }
 
-
-
-
-if (typeof window !== 'undefined') {
-    window.GetRndOptDispName = GetRndOptDispName;
-}
 

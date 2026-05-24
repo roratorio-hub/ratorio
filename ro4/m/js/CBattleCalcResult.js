@@ -86,7 +86,6 @@ export function CBattleCalcResult () {
 	this.childResultArray = null;
 
 
-
 	/**
 	 * 無名イニシャライザ.
 	 */
@@ -127,7 +126,6 @@ export function CBattleCalcResult () {
 	}).call(this);
 
 
-
 	/**
 	 * スキル名の取得.
 	 * @return スキル名
@@ -145,7 +143,6 @@ export function CBattleCalcResult () {
 				nameText += nameF;
 			}
 		};
-
 
 
 		// 親スキル指定がある場合は、親スキルの名称を追加
@@ -170,7 +167,6 @@ export function CBattleCalcResult () {
 		funcAddName(nameWork);
 
 
-
 		return nameText;
 	};
 
@@ -181,9 +177,6 @@ export function CBattleCalcResult () {
 	this.AddChild = function (resultChild) {
 		this.childResultArray.push(resultChild.Clone());
 	};
-
-
-
 
 
 	/**
@@ -199,9 +192,6 @@ export function CBattleCalcResult () {
 
 		return "（計算不能）";
 	};
-
-
-
 
 
 	/**
@@ -372,7 +362,6 @@ export function CBattleCalcResult () {
 	};
 
 
-
 	/**
 	 * 概算ダメージ（一撃最小）の取得.
 	 * @param bIgnoreActRate 発生率を無視して計算するフラグ
@@ -385,7 +374,6 @@ export function CBattleCalcResult () {
 
 		var dmg = 0;
 		var dmgArray = null;
-
 
 
 		// 発生率が 100% 未満の場合、未発生（0 ダメージ）が最小
@@ -409,7 +397,6 @@ export function CBattleCalcResult () {
 		else {
 			dmg = this.dmgUnitArray[0][0] * Math.max(1, this.hitCountArray[0][0]);
 		}
-
 
 
 		// 子要素の、最小ダメージを取得し、加算する
@@ -437,7 +424,6 @@ export function CBattleCalcResult () {
 		var dmgArray = null;
 
 
-
 		// 通常ダメージ
 		dmg += Math.floor(this.dmgUnitArray[0][1] * Math.max(1, this.hitCountArray[0][1]) * (100 - this.criRate) / 100 * this.hitRate / 100);
 
@@ -446,7 +432,6 @@ export function CBattleCalcResult () {
 
 		// 配列に格納
 		dmgArray = [dmg];
-
 
 
 		// 子要素
@@ -473,7 +458,6 @@ export function CBattleCalcResult () {
 		var dmgArray = null;
 
 
-
 		// 全最大ダメージを取得
 		dmgArray = [];
 
@@ -487,7 +471,6 @@ export function CBattleCalcResult () {
 		dmg = GetArrayMax(dmgArray);
 
 
-
 		// 子要素の、最大ダメージを取得し、加算する
 		if (bCollectChild) {
 			for (idx = 0; idx < this.childResultArray.length; idx++) {
@@ -498,7 +481,6 @@ export function CBattleCalcResult () {
 
 		return [dmg];
 	};
-
 
 
 	/**
@@ -663,7 +645,6 @@ export function CBattleCalcResult () {
 	};
 
 
-
 	/**
 	 * 概算ダメージ（秒間最小・実際）の取得.
 	 * 1秒間に実際に打てる回数を考慮した計算
@@ -793,7 +774,6 @@ export function CBattleCalcResult () {
 
 		return [dmg];
 	};
-
 
 
 	/**
@@ -933,7 +913,6 @@ export function CBattleCalcResult () {
 	}
 
 
-
 	/**
 	 * 複製する.
 	 * @return 複製されたインスタンス
@@ -982,10 +961,3 @@ export function CBattleCalcResult () {
 }
 
 
-
-
-
-
-if (typeof window !== 'undefined') {
-    window.CBattleCalcResult = CBattleCalcResult;
-}
