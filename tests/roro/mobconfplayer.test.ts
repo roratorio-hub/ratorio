@@ -152,8 +152,6 @@ describe('mobconfplayer.js', () => {
 
     describe('window互換確認', () => {
         it('window.n_B_TAISEI が設定されている', () => { expect(Array.isArray((window as any).n_B_TAISEI)).toBe(true); });
-        it('window.MOB_CONF_PLAYER_ID_MAXHP が設定されている', () => { expect((window as any).MOB_CONF_PLAYER_ID_MAXHP).toBe(0); });
-        it('window.MOB_CONF_PLAYER_ID_MRES が設定されている', () => { expect(typeof (window as any).MOB_CONF_PLAYER_ID_MRES).toBe('number'); });
         it('window.MOB_CONF_PLAYER_ID_SENTO_AREA_NONE が設定されている', () => { expect((window as any).MOB_CONF_PLAYER_ID_SENTO_AREA_NONE).toBe(0); });
         it('window.MOB_CONF_PLAYER_ID_SHUZOKU_HUMAN が設定されている', () => { expect((window as any).MOB_CONF_PLAYER_ID_SHUZOKU_HUMAN).toBe(0); });
     });

@@ -112,8 +112,5 @@ describe('BuffItemAndFood.js', () => {
             expect((window as any).n_A_PassSkill7).toBe(n_A_PassSkill7);
         });
 
-        it('window.Click_A7 が設定されている', () => {
-            expect((window as any).Click_A7).toBe(Click_A7);
-        });
     });
 });

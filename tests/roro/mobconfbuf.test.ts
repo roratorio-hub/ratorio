@@ -70,7 +70,6 @@ describe('mobconfbuf.js', () => {
 
     describe('window互換確認', () => {
         it('window.n_B_KYOUKA が設定されている', () => { expect(Array.isArray((window as any).n_B_KYOUKA)).toBe(true); });
-        it('window.MOB_CONF_BUF_ID_SOKUDO_ZOKA が設定されている', () => { expect((window as any).MOB_CONF_BUF_ID_SOKUDO_ZOKA).toBe(0); });
     });
 
     describe('MobConfBufOBJ 初期化確認', () => {

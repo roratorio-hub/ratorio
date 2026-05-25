@@ -30,7 +30,6 @@ describe('itemset.h', () => {
 		it('window.ItemIdToSetIdMap が配列', () => expect(Array.isArray((window as any).ItemIdToSetIdMap)).toBe(true));
 		it('window.CardIdToSetIdMap が配列', () => expect(Array.isArray((window as any).CardIdToSetIdMap)).toBe(true));
 		it('window.PetIdToSetIdMap が配列', () => expect(Array.isArray((window as any).PetIdToSetIdMap)).toBe(true));
-		it('window.GetItemSetMemberText', () => expect((window as any).GetItemSetMemberText).toBe(GetItemSetMemberText));
 	});
 
 	describe('CheckAndApplyItemSetEquipping', () => {

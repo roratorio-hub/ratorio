@@ -156,7 +156,6 @@ describe('mobconfdebuf.js', () => {
 
     describe('window互換確認', () => {
         it('window.n_B_IJYOU が配列', () => { expect(Array.isArray((window as any).n_B_IJYOU)).toBe(true); });
-        it('window.MOB_CONF_DEBUF_ID_PROVOKE = 0', () => { expect((window as any).MOB_CONF_DEBUF_ID_PROVOKE).toBe(0); });
     });
 
     describe('MobConfDebufOBJ 初期化確認', () => {

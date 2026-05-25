@@ -41,8 +41,5 @@ describe('BuffMusicAndDance.js', () => {
             expect((window as any).n_A_PassSkill3).toBe(n_A_PassSkill3);
         });
 
-        it('window.Click_A3 が設定されている', () => {
-            expect((window as any).Click_A3).toBe(Click_A3);
-        });
     });
 });

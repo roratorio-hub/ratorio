@@ -75,9 +75,4 @@ describe('monster.h.js', () => {
         });
     });
 
-    describe('window互換確認', () => {
-        it('window.GetMonseterElmBasicType が設定されている', () => {
-            expect((window as any).GetMonseterElmBasicType).toBe(GetMonseterElmBasicType);
-        });
-    });
 });

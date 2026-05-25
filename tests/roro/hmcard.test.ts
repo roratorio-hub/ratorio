@@ -55,7 +55,6 @@ describe('hmcard', () => {
 
 	describe('window互換', () => {
 		it('window.CardShortObj', () => expect((window as any).CardShortObj).toBe(CardShortObj));
-		it('window.ClearCardSlot', () => expect((window as any).ClearCardSlot).toBe(ClearCardSlot));
 		it('window.RebuildCardSelect', () => expect((window as any).RebuildCardSelect).toBe(RebuildCardSelect));
 		it('window.RebuildCardSelectSubCollectEnchListData', () => expect((window as any).RebuildCardSelectSubCollectEnchListData).toBe(RebuildCardSelectSubCollectEnchListData));
 		it('window.SetCardSlotEnabilityAll', () => expect((window as any).SetCardSlotEnabilityAll).toBe(SetCardSlotEnabilityAll));

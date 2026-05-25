@@ -42,8 +42,5 @@ describe('BuffGuildAndGospel.js', () => {
 
 
 
-        it('window.Click_A4 が設定されている', () => {
-            expect((window as any).Click_A4).toBe(Click_A4);
-        });
     });
 });

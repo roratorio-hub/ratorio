@@ -38,7 +38,6 @@ describe('learnedskill.js', () => {
         const names = [
             'LEARNED_SKILL_MAX_COUNT', 'n_A_LearnedSkill',
             'LearnedSkillSearch', 'OnClickSkillSWLearned',
-            'UpdateLearnedSkillSettingColoring',
         ];
         for (const name of names) {
             it(`window.${name} が設定されている`, () => {

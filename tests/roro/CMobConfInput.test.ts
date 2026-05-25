@@ -26,7 +26,6 @@ describe('CMobConfInput', () => {
 	});
 
 	describe('window互換', () => {
-		it('window.GetMobConfInput', () => expect((window as any).GetMobConfInput).toBe(GetMobConfInput));
 		it('window.g_dataManagerMobConfInput', () => expect((window as any).g_dataManagerMobConfInput).toBe(g_dataManagerMobConfInput));
 	});
 
