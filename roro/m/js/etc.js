@@ -78,6 +78,4 @@ export const weaponsize = [
     [1 ,1 ,1 ],
 ];
 
-if (typeof window !== 'undefined') {
-    window.zokusei = zokusei;
-}
+

@@ -198,6 +198,3 @@ export function CCharaConfIchizi(confArray) {
 	this.InitData();
 }
 
-if (typeof window !== 'undefined') {
-	window.CCharaConfIchizi = CCharaConfIchizi;
-}

@@ -1603,7 +1603,6 @@ if (typeof window !== 'undefined') {
 	window.CardShortObj = CardShortObj;
 	window.ClearCardSlot = ClearCardSlot;
 	window.RebuildCardSelect = RebuildCardSelect;
-	window.RebuildCardSelectSubCollectEnchListData = RebuildCardSelectSubCollectEnchListData;
 	window.SetCardSlotEnabilityAll = SetCardSlotEnabilityAll;
 	window.SetCardSlotEnability = SetCardSlotEnability;
 }

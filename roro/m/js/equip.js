@@ -1,16 +1,18 @@
 // === AUTO-GENERATED IMPORTS ===
-import {
-         GetHigherJobSeriesID,
-         GetLowerJobSeriesID,
-         IsMatchJobRestrict,
-         IsSameJobClass,
-         IsUsableBSPJob,
-         IsUsableHSPJob
-} from '../../../ro4/m/js/data/mig.job.h.js';
 import './arrow.h.js';
 import './card.h.js';
 import './skill.h.js';
+import {
+         GetHigherJobSeriesID, GetLowerJobSeriesID, IsMatchJobRestrict, IsSameJobClass,
+         IsUsableBSPJob, IsUsableHSPJob
+} from '../../../ro4/m/js/data/mig.job.h.js';
 import { g_constDataManager } from '../../../ro4/m/js/global.js';
+import {
+         HtmlCreateElement, HtmlCreateElementOption, HtmlCreateTextNode,
+         HtmlGetElementById, HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger,
+         HtmlRemoveAllChild, HtmlRemoveFromParent, HtmlRemoveOptionAll,
+         HtmlSetObjectValueById, SetStatefullData, myInnerHtml
+} from '../../common/js/util.js';
 import { ARROW_ID_NONE, ArrowOBJNew } from './arrow.dat.js';
 import { CARD_ID_NONE, CardObjNew } from './card.dat.js';
 import {
@@ -44,7 +46,10 @@ import {
 import { GetItemKindNameText, GetItemSP } from './item.h.js';
 import { GetEquipRndOptTableKind, GetEquipRndOptTableValue, SetEquipRndOptTable } from './rndopttype.h.js';
 import { SkillObjNew } from './skill.dat.js';
-import { HtmlGetElementById, HtmlCreateElement, HtmlCreateTextNode, HtmlRemoveOptionAll, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlRemoveFromParent, HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById, SetStatefullData, myInnerHtml } from '../../common/js/util.js';
+import {
+         GetSlotMode, OnClickSlotModeButton, SaveSlotStateCard, SaveSlotStateCardAll,
+         SaveSlotStateCostumeAll, SaveSlotStateRndEnch, SaveSlotStateRndEnchAll
+} from './slotpager.js';
 // === END AUTO-GENERATED IMPORTS ===
 var g_bSuperNoviceFullWeapon;
 var n_A_WeaponType;

@@ -306,6 +306,4 @@ export class CCharaConfDebuff extends CConfBase {
 
 }
 
-if (typeof window !== 'undefined') {
-	window.CCharaConfDebuff = CCharaConfDebuff;
-}
+

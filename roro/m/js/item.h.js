@@ -1,15 +1,18 @@
 import { CGlobalConstManager } from './CGlobalConstManager.js';
 // === AUTO-GENERATED IMPORTS ===
+import './card.h.js';
 import './monster.h.js';
 import './skill.h.js';
 import './usableskill.h.js';
+import { toSafeBigInt } from '../../common/js/util.js';
 import { AutoSpellSkill } from './autospell.dat.js';
 import { GetAutoSpellTriggerText } from './autospell.h.js';
+import { CardObjNew } from './card.dat.js';
 import { GetElementText, GetRaceText, GetSizeText, GetStateText } from './common.js';
+import { ItemObjNew } from './item.dat.js';
 import { MonsterObjNew } from './monster.dat.js';
 import { SkillObjNew } from './skill.dat.js';
 import { InsertSkill } from './usableskill.dat.js';
-import { toSafeBigInt } from '../../common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
 
 //----------------------------------------------------------------

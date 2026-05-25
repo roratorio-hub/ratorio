@@ -1381,11 +1381,4 @@ if (typeof window !== 'undefined') {
     window.SLOTPAGER_MODE_RNDOPT = SLOTPAGER_MODE_RNDOPT;
     window.SLOT_INDEX_CARD_MIN = SLOT_INDEX_CARD_MIN;
     window.SLOT_INDEX_CARD_MAX = SLOT_INDEX_CARD_MAX;
-    window.GetSlotMode = GetSlotMode;
-    window.OnClickSlotModeButton = OnClickSlotModeButton;
-    window.SaveSlotStateCardAll = SaveSlotStateCardAll;
-    window.SaveSlotStateCard = SaveSlotStateCard;
-    window.SaveSlotStateCostumeAll = SaveSlotStateCostumeAll;
-    window.SaveSlotStateRndEnchAll = SaveSlotStateRndEnchAll;
-    window.SaveSlotStateRndEnch = SaveSlotStateRndEnch;
 }

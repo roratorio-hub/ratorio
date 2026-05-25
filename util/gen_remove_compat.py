@@ -149,7 +149,7 @@ def sym_used_in_file(sym: str, stripped: str) -> bool:
 def build_usage_analysis(all_files: list) -> dict:
     """
     Build export map, import map, and per-file used-symbol sets.
-    Returns: dict with sym_source, file_imports, file_used_exported, all_files.
+    Returns: dict with sym_source, file_imports, file_used_exported, file_local_defs, all_files.
     """
     # Step 1: build export map
     sym_source: dict[str, Path] = {}
@@ -165,9 +165,10 @@ def build_usage_analysis(all_files: list) -> dict:
             if len(sym) >= MIN_SYM_LEN:
                 sym_source[sym] = fpath
 
-    # Step 2: for each file, collect imports and bare identifier usage
+    # Step 2: for each file, collect imports, bare identifier usage, and local definitions
     file_imports: dict[Path, set] = {}
     file_used_exported: dict[Path, set] = {}
+    file_local_defs: dict[Path, set] = {}
     exported_sym_set = set(sym_source.keys())
     _IDENT_RE = re.compile(r'(?<![.\w$])([A-Za-z_][A-Za-z0-9_]{3,})(?![\w$])')
 
@@ -177,6 +178,7 @@ def build_usage_analysis(all_files: list) -> dict:
         except Exception:
             file_imports[fpath] = set()
             file_used_exported[fpath] = set()
+            file_local_defs[fpath] = set()
             continue
         file_imports[fpath] = get_file_imports(content)
         stripped = strip_comments_and_strings(content)
@@ -184,11 +186,18 @@ def build_usage_analysis(all_files: list) -> dict:
         stripped_no_import = re.sub(r'^import\s+[^\n]+\n', '', stripped, flags=re.MULTILINE)
         used = set(_IDENT_RE.findall(stripped_no_import))
         file_used_exported[fpath] = used & exported_sym_set
+        # Collect non-exported local declarations (function/class)
+        all_decls = set(re.findall(r'\b(?:function\*?|class)\s+([A-Za-z_]\w*)', stripped))
+        exported_names = set(re.findall(
+            r'\bexport\s+(?:async\s+)?(?:function\*?|class|const|let|var)\s+([A-Za-z_]\w*)', stripped
+        ))
+        file_local_defs[fpath] = {d for d in (all_decls - exported_names) if len(d) >= MIN_SYM_LEN}
 
     return {
         'sym_source': sym_source,
         'file_imports': file_imports,
         'file_used_exported': file_used_exported,
+        'file_local_defs': file_local_defs,
         'all_files': all_files,
     }
 
@@ -201,6 +210,7 @@ def precompute_removable(analysis: dict, html_handlers: set) -> set:
     sym_source = analysis['sym_source']
     file_imports = analysis['file_imports']
     file_used_exported = analysis['file_used_exported']
+    file_local_defs = analysis.get('file_local_defs', {})
     all_files = analysis['all_files']
 
     # sym → set of files using it without import
@@ -209,12 +219,16 @@ def precompute_removable(analysis: dict, html_handlers: set) -> set:
     for fpath in all_files:
         used = file_used_exported.get(fpath, set())
         imported = file_imports.get(fpath, set())
+        local_defs = file_local_defs.get(fpath, set())
         for sym in used - imported:
             if sym not in sym_source:
                 continue
             src = sym_source[sym]
-            if src != fpath:
-                sym_unimported[sym].add(fpath)
+            if src == fpath:
+                continue
+            if sym in local_defs:
+                continue  # file has its own local (non-exported) definition — not a consumer
+            sym_unimported[sym].add(fpath)
 
     removable = {
         sym for sym, blockers in sym_unimported.items()

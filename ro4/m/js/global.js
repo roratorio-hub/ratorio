@@ -157,5 +157,4 @@ if (typeof window !== 'undefined') {
     window.g_confDataCustomDef = g_confDataCustomDef;
     window.g_confDataCustomSkill = g_confDataCustomSkill;
     window.g_confDataCustomSpecStatus = g_confDataCustomSpecStatus;
-    window.__DIG3 = __DIG3;
 }

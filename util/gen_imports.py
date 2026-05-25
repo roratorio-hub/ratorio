@@ -647,14 +647,17 @@ def build_cycle_safe_imports(all_files: list, symbol_map: dict,
             existing_graph[fpath.resolve()] = set()
             continue
 
+        # グラフ構築は AUTO-GENERATED を含む元コンテンツで行う（force でも同様）
+        # → AUTO-GENERATED 内の import 辺を残すことで循環依存を正しく検出できる
+        imported = extract_import_file_paths(content, fpath)
+        existing_graph[fpath.resolve()] = imported & all_resolved
+
         if force:
-            # --force: AUTO-GENERATED ブロックを除去して手書き import のみを残す
+            # compute_planned_imports 用: AUTO-GENERATED ブロックを除去したコンテンツを保存
             content = strip_auto_generated(content)
         # else: AUTO-GENERATED ブロックも含めてグラフに入れる（再生成しないため）
 
         content_map[fpath] = content
-        imported = extract_import_file_paths(content, fpath)
-        existing_graph[fpath.resolve()] = imported & all_resolved
 
     # ── Pass 2: 計画 import を計算し、循環辺をスキップしながら追加
     # 前方 import（HTML順で早いファイルが遅いファイルを import）は ESM では問題ない:

@@ -4216,6 +4216,4 @@ export const MonsterObjNew = [
 		*/
 
 	];
-if (typeof window !== 'undefined') {
-    window.MONSTER_ID_PLAYER = MONSTER_ID_PLAYER;
-}
+

@@ -296,6 +296,3 @@ export function GetGrassTypeText(grassTypeId) {
 	return "エラー";
 }
 
-if (typeof window !== 'undefined') {
-    window.GetMonseterElmBasicType = GetMonseterElmBasicType;
-}

@@ -61,7 +61,6 @@ describe('hmrndopt.js', () => {
             'SetUpRndOptValue',
             'SetRndOptEnablityAll',
             'SetRndOptEnablity',
-            'GetRndOptTotalValue',
         ];
         for (const name of windowNames) {
             it(`window.${name} が設定されている`, () => {

@@ -1,9 +1,16 @@
 
 import { CGlobalConstManager } from './CGlobalConstManager.js';
 // === AUTO-GENERATED IMPORTS ===
-import { GetHigherJobSeriesID, GetLowerJobSeriesID, IsSameJobClass } from '../../../ro4/m/js/data/mig.job.h.js';
 import './item.h.js';
+import { GetHigherJobSeriesID, GetLowerJobSeriesID, IsSameJobClass } from '../../../ro4/m/js/data/mig.job.h.js';
 import { g_timeItemConf, g_timeItemConfEffective } from '../../../ro4/m/js/global.js';
+import { CCharaConfCustomAtk } from './CCharaConfCustomAtk.js';
+import { CCharaConfCustomDef } from './CCharaConfCustomDef.js';
+import { CCharaConfCustomStatus } from './CCharaConfCustomStatus.js';
+import { CCharaConfDebuff } from './CCharaConfDebuff.js';
+import { CCharaConfIchizi } from './CCharaConfIchizi.js';
+import { CCharaConfNizi } from './CCharaConfNizi.js';
+import { CCharaConfSanzi } from './CCharaConfSanzi.js';
 import {
          CARD_ID_AGAVE, CARD_ID_ALFOSIO_BASIL, CARD_ID_APOCALYPSE, CARD_ID_AQUARIUS,
          CARD_ID_ARCH_BISHOP_MARGARETTE_MVP, CARD_ID_ARCLOUSE, CARD_ID_ARIES,
@@ -76,6 +83,7 @@ import {
          CARD_REGION_ID_SHOULDER_ANY, COSTUME_REGION_ID_ANY
 } from './common.js';
 import { COSTUME_ID_BEGINNER_BO } from './costume.dat.js';
+import { GetRndOptTotalValue } from './hmrndopt.js';
 import {
          ITEM_ID_10SHUNEN_KINEN_BADGE, ITEM_ID_ACADEMY_BADGE, ITEM_ID_ACOLYTE_FIGURE,
          ITEM_ID_AEGIR_SHOES, ITEM_ID_AGENT_KATAR, ITEM_ID_AGRICULTURAL_CLOTH,
@@ -300,6 +308,13 @@ import {
          ITEM_SET_ID_YUSHANO_KUTSU_TATSUZINNO_ONO_S2, ItemObjNew
 } from './item.dat.js';
 import { LearnedSkillSearch } from './learnedskill.js';
+import {
+         MOB_CONF_PLAYER_ID_SENTO_AREA, MOB_CONF_PLAYER_ID_SENTO_AREA_GVG,
+         MOB_CONF_PLAYER_ID_SENTO_AREA_GVG_TE, MOB_CONF_PLAYER_ID_SENTO_AREA_NONE,
+         MOB_CONF_PLAYER_ID_SENTO_AREA_YE, MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM,
+         MOB_CONF_PLAYER_ID_SENTO_AREA_YE_GVG_TE,
+         MOB_CONF_PLAYER_ID_SENTO_AREA_YE_SHINKIRO, n_B_TAISEI
+} from './mobconfplayer.js';
 import {
          SERE_SUPPORT_SKILL_ID_CRYSTAL_ARMOR, SERE_SUPPORT_SKILL_ID_EYES_OF_STORM,
          SERE_SUPPORT_SKILL_ID_FLAME_ARMOR, SERE_SUPPORT_SKILL_ID_POISON_SHIELD,

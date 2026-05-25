@@ -1,24 +1,26 @@
 import { CGlobalConstManager } from '../../../roro/m/js/CGlobalConstManager.js';
 // === AUTO-GENERATED IMPORTS ===
-import {
-         GetHigherJobSeriesID,
-         GetJobLevelMax,
-         GetLowerJobSeriesID,
-         IsDoramJob,
-         IsSameJobClass
-} from './data/mig.job.h.js';
 import '../../../roro/m/js/card.h.js';
 import '../../../roro/m/js/data/mig.itemsp.h.js';
 import { CBattleCalcInfo } from './CBattleCalcInfo.js';
 import { CBattleCalcResult } from './CBattleCalcResult.js';
 import { CBattleCalcResultAll } from './CBattleCalcResultAll.js';
 import { AS_Calc, AS_PLUS, AUTO_SPELL_SETTING_COUNT, OBJID_OFFSET_AS_SKILL_ID, n_AS_SKILL } from './calcautospell.js';
+import {
+         GetHigherJobSeriesID, GetJobLevelMax, GetLowerJobSeriesID, IsDoramJob,
+         IsSameJobClass
+} from './data/mig.job.h.js';
 import { __DIG3, g_constDataManager, g_skillManager } from './global.js';
 import {
          ApplyCRateAmplify, ApplyMresResist, ApplyPAtkAmplify, ApplyPAtkLeftHandPenalty,
          ApplyResResist, ApplySMatkAmplify, GetHPlus, GetMres, GetPAtk, GetRes,
          GetTotalSpecStatus
 } from './hmjob.js';
+import { CSaveDataConst } from './savedata/CSaveDataConst.js';
+import {
+         HtmlCreateElement, HtmlCreateElementOption, HtmlCreateTextNode,
+         HtmlGetObjectValueByIdAsInteger, HtmlRemoveAllChild, myInnerHtml
+} from '../../../roro/common/js/util.js';
 import { CCalcDataTextCreator } from '../../../roro/m/js/CCalcDataTextCreator.js';
 import { CCharaConfCustomAtk } from '../../../roro/m/js/CCharaConfCustomAtk.js';
 import { CCharaConfCustomDef } from '../../../roro/m/js/CCharaConfCustomDef.js';
@@ -297,8 +299,6 @@ import {
          TIME_ITEM_ID_SANGAKU_HELMET, TIME_ITEM_ID_VOLCARING, TIME_ITEM_ID_WOLF_HEZIN,
          TIME_ITEM_ID_ZETSUBONO_KAMI_MOROCC_CARD
 } from '../../../roro/m/js/timeitem.dat.js';
-import { CSaveDataConst } from './savedata/CSaveDataConst.js';
-import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueByIdAsInteger, myInnerHtml } from '../../../roro/common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
 
 "use strict";

@@ -1,6 +1,11 @@
 // === AUTO-GENERATED IMPORTS ===
 import './common.js';
 import './rndoptlist.h.js';
+import {
+         HtmlCreateElement, HtmlCreateElementOption, HtmlGetElementById,
+         HtmlGetObjectValueByIdAsInteger, HtmlRemoveOptionAll, HtmlSetAttribute,
+         HtmlSetObjectValueById
+} from '../../common/js/util.js';
 import { OnChangeRandomEnchant } from './equip.js';
 import { ItemObjNew } from './item.dat.js';
 import { GetRndOptTypeId } from './item.h.js';
@@ -9,7 +14,6 @@ import { GetRndOptDispName } from './rndopt.h.js';
 import { g_rndOptListArray } from './rndoptlist.dat.js';
 import { g_rndOptTypeArray } from './rndopttype.dat.js';
 import { GetEquipRndOptTableKind, GetEquipRndOptTableValue, SetEquipRndOptTable } from './rndopttype.h.js';
-import { HtmlGetElementById, HtmlCreateElement, HtmlSetAttribute, HtmlRemoveOptionAll, HtmlCreateElementOption, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById } from '../../common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
 
 
@@ -781,5 +785,4 @@ if (typeof window !== 'undefined') {
     window.SetUpRndOptValue = SetUpRndOptValue;
     window.SetRndOptEnablityAll = SetRndOptEnablityAll;
     window.SetRndOptEnablity = SetRndOptEnablity;
-    window.GetRndOptTotalValue = GetRndOptTotalValue;
 }

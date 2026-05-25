@@ -1,6 +1,22 @@
 // === AUTO-GENERATED IMPORTS ===
 import './common.js';
+import './data/mig.itemsp.h.js';
+import './item.h.js';
 import { HtmlGetObjectValueByIdAsInteger } from '../../common/js/util.js';
+import { CCharaConfNizi } from './CCharaConfNizi.js';
+import { ITEM_ID_NOEQUIP_SHIELD, ItemObjNew } from './item.dat.js';
+import {
+         MOB_CONF_DEBUF_ID_LEX_AETERNA, MOB_CONF_DEBUF_ID_SHIRYO_HYOI,
+         MOB_CONF_DEBUF_ID_SOUND_BLEND, MOB_CONF_DEBUF_ID_SUIMIN, n_B_IJYOU
+} from './mobconfdebuf.js';
+import {
+         MOB_CONF_PLAYER_ID_SENTO_AREA, MOB_CONF_PLAYER_ID_SENTO_AREA_YE,
+         MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM,
+         MOB_CONF_PLAYER_ID_SENTO_AREA_YE_GVG_TE,
+         MOB_CONF_PLAYER_ID_SENTO_AREA_YE_SHINKIRO, n_B_TAISEI
+} from './mobconfplayer.js';
+import { MONSTER_ID_PLAYER } from './monster.dat.js';
+import { GetMonseterElmBasicType } from './monster.h.js';
 // === END AUTO-GENERATED IMPORTS ===
 /**
  * 各スキルの実質的な抽象クラスとして用いられるコンストラクタ関数.
