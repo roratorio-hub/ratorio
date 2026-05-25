@@ -2,6 +2,7 @@
 import { GetJobBonus, GetJobLevelMax, GetJobName } from '../../../ro4/m/js/data/mig.job.h.js';
 import '../../m/js/data/mig.itemsp.h.js';
 import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlGetObjectValueByIdAsInteger } from '../../common/js/util.js';
+import { MIG_JOB_ID_NOVICE, MIG_JOB_ID_SPIRIT_HANDLER } from '../../../ro4/m/js/data/mig.job.dat.js';
 // === END AUTO-GENERATED IMPORTS ===
 export function OnLoadJobBonusTable() {
 

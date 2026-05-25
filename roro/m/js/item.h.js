@@ -13,6 +13,7 @@ import { ItemObjNew } from './item.dat.js';
 import { MonsterObjNew } from './monster.dat.js';
 import { SkillObjNew } from './skill.dat.js';
 import { InsertSkill } from './usableskill.dat.js';
+import { GetJobName } from '../../../ro4/m/js/data/mig.job.h.js';
 // === END AUTO-GENERATED IMPORTS ===
 
 //----------------------------------------------------------------

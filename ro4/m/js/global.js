@@ -2,6 +2,8 @@
 import { CSkillManager } from '../../../roro/m/js/CSkillManager.js';
 import { CMigConstDataManager } from '../../../roro/m/js/data/CMigConstDataManager.js';
 import { HtmlGetObjectCheckedById, MallocArray, DivideDigits3 } from '../../../roro/common/js/util.js';
+import { n_B_TAISEI } from '../../../roro/m/js/mobconfplayer.js';
+import { g_dataManagerMobConfInput } from '../../../roro/m/js/CMobConfInput.js';
 // === END AUTO-GENERATED IMPORTS ===
 "use strict";
 
@@ -113,12 +115,6 @@ export function ResetConfDataAllMIG (bAsOnLoad) {
 		[Array(53).fill(0), Array(53).fill(0), Array(53).fill(0)],
 	];
 	g_confDataCustomSkillMIG = Array(12).fill(0);
-	if (typeof window !== 'undefined') {
-		window.g_confDataCustomStatusMIG = g_confDataCustomStatusMIG;
-		window.g_confDataCustomSpecStatusMIG = g_confDataCustomSpecStatusMIG;
-		window.g_confDataSpecMIG = g_confDataSpecMIG;
-		window.g_confDataCustomSkillMIG = g_confDataCustomSkillMIG;
-	}
 }
 ResetConfDataAllMIG(true);
 

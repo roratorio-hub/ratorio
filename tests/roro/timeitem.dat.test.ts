@@ -19,9 +19,4 @@ describe('timeitem.dat.js', () => {
         it('ITEM_SP_TIME_OBJ_SORT が配列',              () => expect(Array.isArray(ITEM_SP_TIME_OBJ_SORT)).toBe(true));
         it('ITEM_SP_TIME_OBJ_SORT の先頭が 0',          () => expect(ITEM_SP_TIME_OBJ_SORT[0]).toBe(0));
     });
-
-    describe('window互換確認', () => {
-        it('window.ITEM_SP_TIME_OBJ',                   () => expect((window as any).ITEM_SP_TIME_OBJ).toBe(ITEM_SP_TIME_OBJ));
-        it('window.ITEM_SP_TIME_OBJ_SORT',              () => expect((window as any).ITEM_SP_TIME_OBJ_SORT).toBe(ITEM_SP_TIME_OBJ_SORT));
-    });
 });

@@ -68,4 +68,3 @@ export function CMigConstDataManagerSubEnchList () {
 
 }
 CMigConstDataManagerSubEnchList.prototype = new CMigConstDataManagerSubBase();
-if (typeof window !== 'undefined') { window.CMigConstDataManagerSubEnchList = CMigConstDataManagerSubEnchList; }

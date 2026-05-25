@@ -48,8 +48,13 @@ import { GetEquipRndOptTableKind, GetEquipRndOptTableValue, SetEquipRndOptTable 
 import { SkillObjNew } from './skill.dat.js';
 import {
          GetSlotMode, OnClickSlotModeButton, SaveSlotStateCard, SaveSlotStateCardAll,
-         SaveSlotStateCostumeAll, SaveSlotStateRndEnch, SaveSlotStateRndEnchAll
+         SaveSlotStateCostumeAll, SaveSlotStateRndEnch, SaveSlotStateRndEnchAll,
+         SLOTPAGER_MODE_CARD, SLOTPAGER_MODE_RNDENCH
 } from './slotpager.js';
+import { ClearCardSlot, RebuildCardSelect, SetCardSlotEnability } from './hmcard.js';
+import { LEARNED_SKILL_MAX_COUNT, n_A_LearnedSkill, OnClickSkillSWLearned, UpdateLearnedSkillSettingColoring } from './learnedskill.js';
+import { GetObjectIdRndOptKind, GetObjectIdRndOptValue, RebuildRndOptSelect, SetRndOptEnablity, SetRndOptEnablityAll, SetUpRndOptValue } from './hmrndopt.js';
+import { CItemInfoManager } from './CItemInfoManager.js';
 // === END AUTO-GENERATED IMPORTS ===
 var g_bSuperNoviceFullWeapon;
 var n_A_WeaponType;
@@ -1928,8 +1933,4 @@ export function copyAccs(from, to){
 			$(`${id_to}_CARD_${i}`).prop("selectedIndex", 0).change();
 		})
 	}
-}
-
-if (typeof window !== 'undefined') {
-	window.changeJobSettings = changeJobSettings;
 }

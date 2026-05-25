@@ -83,10 +83,6 @@ describe('equip.js', () => {
         it('copyAccs が関数', () => { expect(typeof copyAccs).toBe('function'); });
     });
 
-    describe('window互換確認', () => {
-        it('window.changeJobSettings が設定されている', () => { expect(typeof (window as any).changeJobSettings).toBe('function'); });
-    });
-
     describe('呼び出しテスト', () => {
         // sort: ItemObjNew の KANA フィールドで挿入ソートする純粋関数に近い処理
         it('sort がカナ順に配列を並べ替える', () => {

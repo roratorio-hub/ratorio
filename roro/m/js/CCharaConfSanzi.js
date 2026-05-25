@@ -648,4 +648,3 @@ export function CCharaConfSanzi(confArray) {
 	this.InitData();
 }
 
-if (typeof window !== 'undefined') { window.CCharaConfSanzi = CCharaConfSanzi; }

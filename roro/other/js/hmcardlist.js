@@ -25,6 +25,8 @@ import {
 import { CardPrefix } from '../../m/js/card.prefix.dat.js';
 import { ItemObjNew } from '../../m/js/item.dat.js';
 import { GetItemKindNameText } from '../../m/js/item.h.js';
+import { MIG_ENCH_LIST_ID_SHINENNO_KAIRO_UPGRADE, MIG_ENCH_LIST_ID_SHINENTAIBUKI_UPGRADE } from '../../m/js/data/mig.enchlist.dat.js';
+import { SLOT_INDEX_CARD_MIN, SLOT_INDEX_CARD_MAX } from '../../m/js/slotpager.js';
 import { HtmlRemoveOptionAll, HtmlCreateElementOption, HtmlRemoveAllChild } from '../../common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
 // 定数定義

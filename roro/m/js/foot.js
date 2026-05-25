@@ -18,6 +18,7 @@ import './data/mig.itemsp.h.js';
 import './monster.h.js';
 import './pet.h.js';
 import './timeitem.h.js';
+import { ITEM_SP_TIME_OBJ } from './timeitem.dat.js';
 import { Click_Skill4SW, n_A_PassSkill4 } from '../../../ro4/m/js/BuffGuildAndGospel.js';
 import { Click_Skill7SW, n_A_PassSkill7 } from '../../../ro4/m/js/BuffItemAndFood.js';
 import { Click_PassSkillSW, UsedSkillSearch, n_A_PassSkill } from '../../../ro4/m/js/BuffJobSpecificSelf.js';

@@ -123,9 +123,4 @@ describe('global.js', () => {
         });
     });
 
-    describe('window互換確認', () => {
-        it('window.g_confDataCustomStatusMIG が設定されている', () => {
-            expect(Array.isArray((window as any).g_confDataCustomStatusMIG)).toBe(true);
-        });
-    });
 });

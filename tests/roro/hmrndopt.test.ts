@@ -51,24 +51,6 @@ describe('hmrndopt.js', () => {
         }
     });
 
-    describe('window互換確認', () => {
-        const windowNames = [
-            'GetObjectIdRndOptKindTD',
-            'GetObjectIdRndOptKind',
-            'GetObjectIdRndOptValueTD',
-            'GetObjectIdRndOptValue',
-            'RebuildRndOptSelect',
-            'SetUpRndOptValue',
-            'SetRndOptEnablityAll',
-            'SetRndOptEnablity',
-        ];
-        for (const name of windowNames) {
-            it(`window.${name} が設定されている`, () => {
-                expect(typeof (window as any)[name]).toBe('function');
-            });
-        }
-    });
-
     describe('コアロジック確認', () => {
         beforeAll(() => {
             // IsEffectiveRndOptSelect, SetObjectUsable 用の最低限モック不要

@@ -776,13 +776,4 @@ export function GetRndOptValue(eqpRgnId, spid, invalidItemIdArray, bListUp) {
 	}
 }
 
-if (typeof window !== 'undefined') {
-    window.GetObjectIdRndOptKindTD = GetObjectIdRndOptKindTD;
-    window.GetObjectIdRndOptKind = GetObjectIdRndOptKind;
-    window.GetObjectIdRndOptValueTD = GetObjectIdRndOptValueTD;
-    window.GetObjectIdRndOptValue = GetObjectIdRndOptValue;
-    window.RebuildRndOptSelect = RebuildRndOptSelect;
-    window.SetUpRndOptValue = SetUpRndOptValue;
-    window.SetRndOptEnablityAll = SetRndOptEnablityAll;
-    window.SetRndOptEnablity = SetRndOptEnablity;
-}
+

@@ -1484,8 +1484,3 @@ export function CMobConfInputAreaComponentManager(confMngParam) {
 CMobConfInputAreaComponentManager.InputModifyCodeInOutCommon = function (objClass, objInput) {
 	// 処理不要
 };
-
-if (typeof window !== 'undefined') {
-	window.GetMobConfInput = GetMobConfInput;
-	window.g_dataManagerMobConfInput = g_dataManagerMobConfInput;
-}

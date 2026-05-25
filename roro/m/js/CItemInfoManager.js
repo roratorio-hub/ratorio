@@ -17,6 +17,8 @@ import { GetItemExplainText, GetSlotText, GetStrPenaltyAvoidStr } from './item.h
 import { PET_OBJ } from './pet.dat.js';
 import { CSaveDataConst } from '../../../ro4/m/js/savedata/CSaveDataConst.js';
 import { HtmlCreateElement, HtmlCreateTextNode, HtmlRemoveOptionAll, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById } from '../../common/js/util.js';
+import './timeitem.h.js';
+import { ITEM_SP_TIME_OBJ } from './timeitem.dat.js';
 // === END AUTO-GENERATED IMPORTS ===
 
 /**
@@ -1414,7 +1416,3 @@ CItemInfoManager.AppendSetInfo = function (objRoot, dataIdToSetIdMap, bEnableTim
 		}
 	);
 };
-
-if (typeof window !== 'undefined') {
-	window.CItemInfoManager = CItemInfoManager;
-}

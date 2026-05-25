@@ -117,10 +117,4 @@ describe('CItemInfoManager.js', () => {
             expect(CItemInfoManager.SplitOptionId('item_42')).toEqual(['item', '42']);
         });
     });
-
-    describe('window互換確認', () => {
-        it('window.CItemInfoManager が設定されている', () => {
-            expect((window as any).CItemInfoManager).toBe(CItemInfoManager);
-        });
-    });
 });

@@ -151,10 +151,4 @@ describe('CAttackMethodAreaComponentManager.js', () => {
             expect(typeof CAttackMethodAreaComponentManager.CreateNoticeBlock).toBe('function');
         });
     });
-
-    describe('window互換確認', () => {
-        it('window.CAttackMethodAreaComponentManager が設定されている', () => {
-            expect((window as any).CAttackMethodAreaComponentManager).toBe(CAttackMethodAreaComponentManager);
-        });
-    });
 });

@@ -170,4 +170,3 @@ export function CMigConstDataManagerSubItem () {
 
 }
 CMigConstDataManagerSubItem.prototype = new CMigConstDataManagerSubBase();
-if (typeof window !== 'undefined') { window.CMigConstDataManagerSubItem = CMigConstDataManagerSubItem; }

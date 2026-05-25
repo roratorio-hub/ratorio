@@ -9,6 +9,7 @@ import {
 import '../../m/js/monster.h.js';
 import { MonsterObjNew } from '../../m/js/monster.dat.js';
 import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueByIdAsInteger } from '../../common/js/util.js';
+import { MIG_JOB_ID_DRAGON_KNIGHT } from '../../../ro4/m/js/data/mig.job.dat.js';
 // === END AUTO-GENERATED IMPORTS ===
 
 window.g_ExpTableInfoArray = [

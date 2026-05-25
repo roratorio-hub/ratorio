@@ -711,8 +711,3 @@ ITEM_SP_TIME_OBJ_SORT.push(336);
  * CSaveDataUnitTimeBuffで各IDの領域に 9 bit確保されています
  * 512 以上のIDを定義したければ領域を拡張してください
  */
-
-if (typeof window !== 'undefined') {
-	window.ITEM_SP_TIME_OBJ = ITEM_SP_TIME_OBJ;
-	window.ITEM_SP_TIME_OBJ_SORT = ITEM_SP_TIME_OBJ_SORT;
-}

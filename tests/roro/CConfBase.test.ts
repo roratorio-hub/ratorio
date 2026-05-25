@@ -58,9 +58,4 @@ describe('CConfBase.js', () => {
         });
     });
 
-    describe('window互換確認', () => {
-        it('window.CConfBase が設定されている', () => {
-            expect((window as any).CConfBase).toBe(CConfBase);
-        });
-    });
 });

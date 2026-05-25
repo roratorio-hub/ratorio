@@ -299,6 +299,7 @@ import {
          TIME_ITEM_ID_SANGAKU_HELMET, TIME_ITEM_ID_VOLCARING, TIME_ITEM_ID_WOLF_HEZIN,
          TIME_ITEM_ID_ZETSUBONO_KAMI_MOROCC_CARD
 } from '../../../roro/m/js/timeitem.dat.js';
+import { MIG_JOB_ID_SHADOW_CROSS } from './data/mig.job.dat.js';
 // === END AUTO-GENERATED IMPORTS ===
 
 "use strict";

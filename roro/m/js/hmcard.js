@@ -54,6 +54,8 @@ import {
          ITEM_ID_KAITEI_SHINDENNO_ZAIHO_CARD_ENCHANTABLE, ITEM_ID_RUNE_HELM, ItemObjNew
 } from './item.dat.js';
 import { GetMaxSlot } from './item.h.js';
+import { MIG_ENCH_LIST_ID_SHINENNO_KAIRO_UPGRADE, MIG_ENCH_LIST_ID_SHINENTAIBUKI_UPGRADE } from './data/mig.enchlist.dat.js';
+import { SLOT_INDEX_CARD_MIN, SLOT_INDEX_CARD_MAX } from './slotpager.js';
 import { HtmlGetElementById, HtmlCreateElement, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueById, HtmlSetObjectValueById, SetStatefullData } from '../../common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
 
@@ -1599,10 +1601,4 @@ export function ApplyCardShort(eqpRgnId, objidPrifix) {
 	LoadSelect2();
 }
 
-if (typeof window !== 'undefined') {
-	window.CardShortObj = CardShortObj;
-	window.ClearCardSlot = ClearCardSlot;
-	window.RebuildCardSelect = RebuildCardSelect;
-	window.SetCardSlotEnabilityAll = SetCardSlotEnabilityAll;
-	window.SetCardSlotEnability = SetCardSlotEnability;
-}
+

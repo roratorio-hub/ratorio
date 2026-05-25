@@ -1,5 +1,6 @@
 // === AUTO-GENERATED IMPORTS ===
 import './timeitem.h.js';
+import { ITEM_SP_TIME_OBJ, ITEM_SP_TIME_OBJ_SORT } from './timeitem.dat.js';
 import { g_timeItemConf, g_timeItemConfEffective } from '../../../ro4/m/js/global.js';
 import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById } from '../../common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===

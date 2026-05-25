@@ -80,4 +80,3 @@ export function CMigConstDataManagerSubArrow () {
 
 }
 CMigConstDataManagerSubArrow.prototype = new CMigConstDataManagerSubBase();
-if (typeof window !== 'undefined') { window.CMigConstDataManagerSubArrow = CMigConstDataManagerSubArrow; }

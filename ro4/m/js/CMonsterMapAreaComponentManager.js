@@ -685,5 +685,5 @@ CMonsterMapAreaComponentManager.updateMonsterSuggest = function (monsterId) {
 };
 
 if (typeof window !== 'undefined') {
-	window.CMonsterMapAreaComponentManager = CMonsterMapAreaComponentManager;
+    window.CMonsterMapAreaComponentManager = CMonsterMapAreaComponentManager;
 }

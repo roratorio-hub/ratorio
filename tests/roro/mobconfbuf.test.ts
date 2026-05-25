@@ -68,10 +68,6 @@ describe('mobconfbuf.js', () => {
         it('RefreshMobConfBufControlCSS が関数', () => { expect(typeof RefreshMobConfBufControlCSS).toBe('function'); });
     });
 
-    describe('window互換確認', () => {
-        it('window.n_B_KYOUKA が設定されている', () => { expect(Array.isArray((window as any).n_B_KYOUKA)).toBe(true); });
-    });
-
     describe('MobConfBufOBJ 初期化確認', () => {
         it('MobConfBufOBJ が 14 件', () => { expect(MobConfBufOBJ.length).toBe(14); });
         it('n_B_KYOUKA が長さ MOB_CONF_BUF_LIMIT の配列', () => { expect(n_B_KYOUKA.length).toBe(MOB_CONF_BUF_LIMIT); });

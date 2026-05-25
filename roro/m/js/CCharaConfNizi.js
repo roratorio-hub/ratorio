@@ -592,4 +592,3 @@ export function CCharaConfNizi(confArray) {
 	this.InitData();
 }
 
-if (typeof window !== 'undefined') { window.CCharaConfNizi = CCharaConfNizi; }

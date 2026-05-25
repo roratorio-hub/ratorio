@@ -181,4 +181,3 @@ export function CMigConstDataManager () {
 
 	this.Initialize();
 }
-if (typeof window !== 'undefined') { window.CMigConstDataManager = CMigConstDataManager; }

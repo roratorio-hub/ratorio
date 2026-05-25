@@ -150,12 +150,6 @@ describe('mobconfplayer.js', () => {
         it('RefreshMobConfPlayerControlCSS が関数', () => { expect(typeof RefreshMobConfPlayerControlCSS).toBe('function'); });
     });
 
-    describe('window互換確認', () => {
-        it('window.n_B_TAISEI が設定されている', () => { expect(Array.isArray((window as any).n_B_TAISEI)).toBe(true); });
-        it('window.MOB_CONF_PLAYER_ID_SENTO_AREA_NONE が設定されている', () => { expect((window as any).MOB_CONF_PLAYER_ID_SENTO_AREA_NONE).toBe(0); });
-        it('window.MOB_CONF_PLAYER_ID_SHUZOKU_HUMAN が設定されている', () => { expect((window as any).MOB_CONF_PLAYER_ID_SHUZOKU_HUMAN).toBe(0); });
-    });
-
     describe('MobConfPlayerOBJ 初期化確認', () => {
         it('MobConfPlayerOBJ が 43 件', () => { expect(MobConfPlayerOBJ.length).toBe(43); });
         it('n_B_TAISEI が長さ MOB_CONF_PLAYER_LIMIT の配列', () => { expect(n_B_TAISEI.length).toBe(MOB_CONF_PLAYER_LIMIT); });

@@ -36,12 +36,6 @@ describe('alias.h.js', () => {
         });
     });
 
-    describe('window互換確認', () => {
-        it('window.TranslateAlias が設定されている', () => {
-            expect((window as any).TranslateAlias).toBe(TranslateAlias);
-        });
-    });
-
     describe('TranslateAlias ロジック確認', () => {
         it('"GD" → "ゲフェン地下ダンジョン"', () => {
             expect(TranslateAlias('GD')).toBe('ゲフェン地下ダンジョン');

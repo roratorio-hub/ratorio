@@ -54,10 +54,4 @@ describe('CBattleQuickControlAreaComponentManager.js', () => {
             expect(typeof CBattleQuickControlAreaComponentManager.CloseArea).toBe('function');
         });
     });
-
-    describe('window互換確認', () => {
-        it('window.CBattleQuickControlAreaComponentManager が設定されている', () => {
-            expect((window as any).CBattleQuickControlAreaComponentManager).toBe(CBattleQuickControlAreaComponentManager);
-        });
-    });
 });

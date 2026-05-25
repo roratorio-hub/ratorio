@@ -32,4 +32,3 @@ export function CMigConstDataManagerSubJob () {
 
 }
 CMigConstDataManagerSubJob.prototype = new CMigConstDataManagerSubBase();
-if (typeof window !== 'undefined') { window.CMigConstDataManagerSubJob = CMigConstDataManagerSubJob; }

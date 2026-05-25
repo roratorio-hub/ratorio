@@ -29,6 +29,7 @@ import {
 import { USABLE_SKILL_ID_CUSTOM_BIAS } from '../../../roro/m/js/usableskill.h.js';
 import { GetHigherJobSeriesID, GetLowerJobSeriesID, IsSameJobClass } from './data/mig.job.h.js';
 import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectCheckedById, HtmlSetObjectCheckedById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById } from '../../../roro/common/js/util.js';
+import { MIG_JOB_ID_BIOLO, MIG_JOB_ID_DRAGON_KNIGHT, MIG_JOB_ID_MEISTER, MIG_JOB_ID_SPIRIT_HANDLER } from './data/mig.job.dat.js';
 // === END AUTO-GENERATED IMPORTS ===
 //----------------------------------------------------------------
 // オプションリストの種別
@@ -4444,7 +4445,7 @@ CAttackMethodAreaComponentManager.CreateNoticeBlock = function () {
 // CAttackMethodAreaComponentManager.RebuildControls();
 
 if (typeof window !== 'undefined') {
-	window.CAttackMethodAreaComponentManager = CAttackMethodAreaComponentManager;
+    window.CAttackMethodAreaComponentManager = CAttackMethodAreaComponentManager;
 }
 
 

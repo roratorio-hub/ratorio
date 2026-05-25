@@ -66,7 +66,7 @@ import {
          ITEM_ID_THIEF_FIGURE, ItemObjNew
 } from './item.dat.js';
 import { GetEnchantTypeId } from './item.h.js';
-import { OnClickSkillSWLearned } from './learnedskill.js';
+import { OnClickSkillSWLearned, n_A_LearnedSkill } from './learnedskill.js';
 import { RefreshMobConfBufControlCSS, RefreshMobConfBufSelectAreaHeader, n_B_KYOUKA } from './mobconfbuf.js';
 import {
          MOB_CONF_DEBUF_ID_RAKUIN_ZYOTAI, RefreshMobConfDebufControlCSS,
@@ -90,7 +90,7 @@ import {
 } from './mobconfplayer.js';
 import { MONSTER_MAP_ID_CATEGORY_ALL, MONSTER_MAP_ID_MAP_ALL } from './monstermap.dat.js';
 import { GetEquipRndOptTableKind, GetEquipRndOptTableValue, SetEquipRndOptTable } from './rndopttype.h.js';
-import { GetSlotMode, OnClickSlotModeButton } from './slotpager.js';
+import { GetSlotMode, OnClickSlotModeButton, SLOTPAGER_MODE_CARD, SLOTPAGER_MODE_RNDOPT, SLOT_INDEX_CARD_MIN, SLOT_INDEX_CARD_MAX } from './slotpager.js';
 import {
          TIME_ITEM_ID_BOSOSHITA_MARYOKU, TIME_ITEM_ID_KOGAI, TIME_ITEM_ID_KOSOKU,
          TIME_ITEM_ID_KOUUNNA_HI, TIME_ITEM_ID_KUMANO_CHIKARA,

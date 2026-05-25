@@ -36,4 +36,3 @@ export function CMigConstDataManagerSubRndOpt () {
 
 }
 CMigConstDataManagerSubRndOpt.prototype = new CMigConstDataManagerSubBase();
-if (typeof window !== 'undefined') { window.CMigConstDataManagerSubRndOpt = CMigConstDataManagerSubRndOpt; }

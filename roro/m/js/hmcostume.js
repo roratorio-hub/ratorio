@@ -360,7 +360,4 @@ export function __SetCostumeSlotEnability(objTarget, enabled) {
 	}
 }
 
-if (typeof window !== 'undefined') {
-    window.RebuildCostumeSelect = RebuildCostumeSelect;
-    window.SetCostumeSlotEnabilityAll = SetCostumeSlotEnabilityAll;
-}
+

@@ -63,8 +63,4 @@ describe('CExtraInfoAreaComponentManager.js', () => {
         it('RebuildDispAreaAll が関数', () => expect(typeof CExtraInfoAreaComponentManager.RebuildDispAreaAll).toBe('function'));
         it('RefreshDispAreaAll が関数', () => expect(typeof CExtraInfoAreaComponentManager.RefreshDispAreaAll).toBe('function'));
     });
-
-    describe('window互換確認', () => {
-        it('window.CExtraInfoAreaComponentManager', () => expect((window as any).CExtraInfoAreaComponentManager).toBe(CExtraInfoAreaComponentManager));
-    });
 });

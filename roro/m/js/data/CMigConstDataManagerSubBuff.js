@@ -34,4 +34,3 @@ export function CMigConstDataManagerSubBuff () {
 
 }
 CMigConstDataManagerSubBuff.prototype = new CMigConstDataManagerSubBase();
-if (typeof window !== 'undefined') { window.CMigConstDataManagerSubBuff = CMigConstDataManagerSubBuff; }

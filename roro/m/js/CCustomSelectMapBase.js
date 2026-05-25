@@ -4,6 +4,7 @@
 import { CCustomSelectBase } from './CCustomSelectBase.js';
 // === AUTO-GENERATED IMPORTS ===
 import './CNameKana.js';
+import { TranslateAlias } from './alias.h.js';
 import { HtmlRemoveOptionAll, HtmlCreateElementOption } from '../../common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
 

@@ -3,6 +3,9 @@ import './common.js';
 import { g_charaData } from '../../../ro4/m/js/global.js';
 import { GetEquipRndOptTableKind, GetEquipRndOptTableValue, SetEquipRndOptTable } from './rndopttype.h.js';
 import { HtmlGetElementById, HtmlCreateElement, HtmlSetAttribute, HtmlCreateElementOption, HtmlRemoveFromParent, HtmlGetSelectedOptgroup, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById, SetStatefullData, GetStatefullData } from '../../common/js/util.js';
+import { CardShortObj, RebuildCardSelect, SetCardSlotEnabilityAll } from './hmcard.js';
+import { RebuildCostumeSelect, SetCostumeSlotEnabilityAll } from './hmcostume.js';
+import { GetObjectIdRndOptKind, GetObjectIdRndOptKindTD, GetObjectIdRndOptValue, GetObjectIdRndOptValueTD, RebuildRndOptSelect, SetRndOptEnablityAll, SetUpRndOptValue } from './hmrndopt.js';
 // === END AUTO-GENERATED IMPORTS ===
 //================================================================================================
 //
@@ -1375,10 +1378,4 @@ export function LoadSlotStateRndEnch(eqpRgnId) {
 	}
 }
 
-if (typeof window !== 'undefined') {
-    window.SLOTPAGER_MODE_CARD = SLOTPAGER_MODE_CARD;
-    window.SLOTPAGER_MODE_RNDENCH = SLOTPAGER_MODE_RNDENCH;
-    window.SLOTPAGER_MODE_RNDOPT = SLOTPAGER_MODE_RNDOPT;
-    window.SLOT_INDEX_CARD_MIN = SLOT_INDEX_CARD_MIN;
-    window.SLOT_INDEX_CARD_MAX = SLOT_INDEX_CARD_MAX;
-}
+

@@ -35,32 +35,8 @@ describe('learnedskill.js', () => {
     });
 
     describe('window互換確認', () => {
-        const names = [
-            'LEARNED_SKILL_MAX_COUNT', 'n_A_LearnedSkill',
-            'LearnedSkillSearch', 'OnClickSkillSWLearned',
-        ];
-        for (const name of names) {
-            it(`window.${name} が設定されている`, () => {
-                expect((window as any)[name]).not.toBeUndefined();
-            });
-        }
-    });
-
-    // Pattern B 検出テスト:
-    // 非ESMスクリプト（equip.js等）が `n_A_LearnedSkill = new Array()` で配列ごと差し替えると
-    // ESMバインディングと window.n_A_LearnedSkill が乖離し、learnedskill.js 側が常に0を読む。
-    describe('Pattern B: ESMバインディングとwindow参照の同一性', () => {
-        it('n_A_LearnedSkill と window.n_A_LearnedSkill は同一オブジェクト', () => {
-            // この等価性が壊れると equip.js 等の書き込みが learnedskill.js に届かない
-            expect(n_A_LearnedSkill).toBe((window as any).n_A_LearnedSkill);
-        });
-
-        it('window.n_A_LearnedSkill への要素書き込みがESMバインディング側に反映される', () => {
-            const arr: number[] = (window as any).n_A_LearnedSkill;
-            const original = arr[0];
-            arr[0] = 999;
-            expect(n_A_LearnedSkill[0]).toBe(999);
-            arr[0] = original;
+        it('window.LearnedSkillSearch が設定されている', () => {
+            expect((window as any).LearnedSkillSearch).toBe(LearnedSkillSearch);
         });
     });
 });

@@ -154,10 +154,6 @@ describe('mobconfdebuf.js', () => {
         it('RefreshMobConfDebufControlCSS が関数', () => { expect(typeof RefreshMobConfDebufControlCSS).toBe('function'); });
     });
 
-    describe('window互換確認', () => {
-        it('window.n_B_IJYOU が配列', () => { expect(Array.isArray((window as any).n_B_IJYOU)).toBe(true); });
-    });
-
     describe('MobConfDebufOBJ 初期化確認', () => {
         it('n_B_IJYOU が長さ MOB_CONF_DEBUF_LIMIT の配列', () => { expect(n_B_IJYOU.length).toBe(MOB_CONF_DEBUF_LIMIT); });
     });

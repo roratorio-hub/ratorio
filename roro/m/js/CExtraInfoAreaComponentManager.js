@@ -44,6 +44,7 @@ import { LearnedSkillSearch } from './learnedskill.js';
 import { MonsterObjNew } from './monster.dat.js';
 import { SkillObjNew } from './skill.dat.js';
 import { HtmlCreateElement, HtmlCreateTextSpan, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById, DivideDigits3 } from '../../common/js/util.js';
+import { MIG_JOB_ID_SOUL_ASCETIC, MIG_JOB_ID_SPIRIT_HANDLER } from '../../../ro4/m/js/data/mig.job.dat.js';
 // === END AUTO-GENERATED IMPORTS ===
 //----------------------------------------------------------------
 // 拡張情報の種類
@@ -5784,10 +5785,6 @@ CExtraInfoAreaComponentManager.RefreshDispAreaAll = function () {
 	}
 };
 
-if (typeof window !== 'undefined') {
-	window.CExtraInfoAreaComponentManager = CExtraInfoAreaComponentManager;
-}
-
 /*
 CExtraInfoAreaComponentManager.testes = function () {
 
@@ -5891,4 +5888,7 @@ CExtraInfoAreaComponentManager.testes = function () {
 };
 */
 
+if (typeof window !== 'undefined') {
+    window.CExtraInfoAreaComponentManager = CExtraInfoAreaComponentManager;
+}
 

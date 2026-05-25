@@ -10,9 +10,10 @@ import {
          ITEM_PACK_ID_CLEAR_CARD_ALL, ITEM_PACK_ID_CLEAR_EQUIP_ALL,
          ITEM_PACK_ID_CLEAR_REFINE_ALL, ITEM_PACK_ID_CLEAR_SHADOW_ALL, ItemPackOBJ
 } from './itempack.dat.js';
-import { GetSlotMode, OnClickSlotModeButton } from './slotpager.js';
+import { GetSlotMode, OnClickSlotModeButton, SLOTPAGER_MODE_RNDENCH, SLOT_INDEX_CARD_MIN, SLOT_INDEX_CARD_MAX } from './slotpager.js';
 import { IsMatchJobRestrict } from '../../../ro4/m/js/data/mig.job.h.js';
 import { HtmlCreateElement, HtmlCreateTextNode, HtmlRemoveAllChild, HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById } from '../../common/js/util.js';
+import { n_A_LearnedSkill } from './learnedskill.js';
 // === END AUTO-GENERATED IMPORTS ===
 
 export let g_QuickControlSW = false;
@@ -50,7 +51,6 @@ export function OnClickQuickControlSW(){
 	// チェックボックスのチェック状態を取得
 	objSW = document.getElementById("OBJID_QUICK_CONTROL_EXTRACT_CHECKBOX");
 	g_QuickControlSW = objSW.checked;
-	if (typeof window !== 'undefined') window.g_QuickControlSW = g_QuickControlSW;
 
 
 	// 設定欄を初期化

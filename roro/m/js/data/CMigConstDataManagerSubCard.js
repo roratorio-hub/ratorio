@@ -70,4 +70,3 @@ export function CMigConstDataManagerSubCard () {
 
 }
 CMigConstDataManagerSubCard.prototype = new CMigConstDataManagerSubBase();
-if (typeof window !== 'undefined') { window.CMigConstDataManagerSubCard = CMigConstDataManagerSubCard; }

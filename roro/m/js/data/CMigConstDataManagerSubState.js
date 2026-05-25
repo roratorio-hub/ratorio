@@ -32,4 +32,3 @@ export function CMigConstDataManagerSubState () {
 
 }
 CMigConstDataManagerSubState.prototype = new CMigConstDataManagerSubBase();
-if (typeof window !== 'undefined') { window.CMigConstDataManagerSubState = CMigConstDataManagerSubState; }

@@ -53,13 +53,6 @@ describe('hmcard', () => {
 		it('ApplyCardShort が関数', () => expect(typeof ApplyCardShort).toBe('function'));
 	});
 
-	describe('window互換', () => {
-		it('window.CardShortObj', () => expect((window as any).CardShortObj).toBe(CardShortObj));
-		it('window.RebuildCardSelect', () => expect((window as any).RebuildCardSelect).toBe(RebuildCardSelect));
-it('window.SetCardSlotEnabilityAll', () => expect((window as any).SetCardSlotEnabilityAll).toBe(SetCardSlotEnabilityAll));
-		it('window.SetCardSlotEnability', () => expect((window as any).SetCardSlotEnability).toBe(SetCardSlotEnability));
-	});
-
 	describe('CardShortObj 内容確認', () => {
 		it('各エントリは配列', () => {
 			CardShortObj.forEach((entry: any) => expect(Array.isArray(entry)).toBe(true));

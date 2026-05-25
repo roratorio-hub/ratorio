@@ -1,5 +1,6 @@
 // === AUTO-GENERATED IMPORTS ===
 import './timeitem.h.js';
+import { ITEM_SP_TIME_OBJ } from './timeitem.dat.js';
 import { g_timeItemConf, g_timeItemConfEffective } from '../../../ro4/m/js/global.js';
 import { CTimeItemAreaComponentManager } from './CTimeItemAreaComponentManager.js';
 import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById } from '../../common/js/util.js';
@@ -368,9 +369,9 @@ CBattleQuickControlAreaComponentManager.CloseArea = function () {
 
 
 
+if (typeof window !== 'undefined') {
+    window.CBattleQuickControlAreaComponentManager = CBattleQuickControlAreaComponentManager;
+}
+
 // 初期構築処理
 CBattleQuickControlAreaComponentManager.RebuildControls();
-
-if (typeof window !== 'undefined') {
-	window.CBattleQuickControlAreaComponentManager = CBattleQuickControlAreaComponentManager;
-}

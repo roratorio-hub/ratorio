@@ -69,13 +69,13 @@ import { OnChangeArmsTypeLeft, OnChangeArmsTypeRight, changeJobSettings } from '
 import { RebuildCardSelect, SetCardSlotEnability } from '../../../roro/m/js/hmcard.js';
 import { RebuildRndOptSelect, SetRndOptEnablity } from '../../../roro/m/js/hmrndopt.js';
 import { ItemObjNew } from '../../../roro/m/js/item.dat.js';
-import { OnClickSkillSWLearned } from '../../../roro/m/js/learnedskill.js';
+import { OnClickSkillSWLearned, n_A_LearnedSkill } from '../../../roro/m/js/learnedskill.js';
 import { RefreshMobConfBufControlCSS, RefreshMobConfBufSelectAreaHeader, n_B_KYOUKA } from '../../../roro/m/js/mobconfbuf.js';
 import { RefreshMobConfDebufControlCSS, RefreshMobConfDebufSelectAreaHeader, n_B_IJYOU } from '../../../roro/m/js/mobconfdebuf.js';
 import { RefreshMobConfPlayerControlCSS, RefreshMobConfPlayerSelectAreaHeader, n_B_TAISEI } from '../../../roro/m/js/mobconfplayer.js';
 import { GetEquipRndOptTableKind, GetEquipRndOptTableValue, SetEquipRndOptTable } from '../../../roro/m/js/rndopttype.h.js';
 import { SaveSystem } from '../../../roro/m/js/saveload.js';
-import { GetSlotMode } from '../../../roro/m/js/slotpager.js';
+import { GetSlotMode, SLOTPAGER_MODE_CARD, SLOT_INDEX_CARD_MIN } from '../../../roro/m/js/slotpager.js';
 import { HtmlGetObjectValueByIdAsInteger, HtmlSetObjectCheckedById, HtmlSetObjectValueById, HtmlSelectObjectValueAsInteger, SetStatefullData, floorBigInt32, floorBigInt40 } from '../../../roro/common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
 

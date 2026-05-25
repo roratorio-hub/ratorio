@@ -76,4 +76,3 @@ export function CMigStateData (dataArrayC) {
 	};
 
 }
-if (typeof window !== 'undefined') { window.CMigStateData = CMigStateData; }

@@ -247,5 +247,3 @@ export function CMigJobData (dataArrayC) {
 
 
 }
-
-if (typeof window !== 'undefined') { window.CMigJobData = CMigJobData; }

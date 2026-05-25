@@ -171,4 +171,3 @@ export function CMigEquipableData (dataArrayC) {
 
 
 }
-if (typeof window !== 'undefined') { window.CMigEquipableData = CMigEquipableData; }

@@ -55,15 +55,4 @@ describe('slotpager.js', () => {
         }
     });
 
-    describe('window互換確認', () => {
-        const names = [
-            'SLOTPAGER_MODE_CARD', 'SLOTPAGER_MODE_RNDENCH', 'SLOTPAGER_MODE_RNDOPT',
-            'SLOT_INDEX_CARD_MIN', 'SLOT_INDEX_CARD_MAX',
-        ];
-        for (const name of names) {
-            it(`window.${name} が設定されている`, () => {
-                expect(typeof (window as any)[name]).not.toBe('undefined');
-            });
-        }
-    });
 });

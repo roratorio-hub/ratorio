@@ -64,4 +64,3 @@ export function CMigConstDataManagerSubMonster () {
 
 }
 CMigConstDataManagerSubMonster.prototype = new CMigConstDataManagerSubBase();
-if (typeof window !== 'undefined') { window.CMigConstDataManagerSubMonster = CMigConstDataManagerSubMonster; }
