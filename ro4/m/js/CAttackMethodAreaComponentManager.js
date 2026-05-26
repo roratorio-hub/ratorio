@@ -45,9 +45,6 @@ CGlobalConstManager.DefineEnum(
 );
 
 
-
-
-
 /**
  * 攻撃手段オプションデータクラス.
  */
@@ -61,7 +58,6 @@ function CAttackMethodOptionData(valueC, labelC) {
 
 	// 後続のオプションリスト
 	this.nextOptionList = null;
-
 
 
 	/**
@@ -81,7 +77,6 @@ function CAttackMethodOptionData(valueC, labelC) {
 	};
 
 
-
 	/**
 	 * ラベルを設定する.
 	 * @param label ラベル
@@ -97,7 +92,6 @@ function CAttackMethodOptionData(valueC, labelC) {
 	this.GetLabel = function () {
 		return this.label;
 	};
-
 
 
 	/**
@@ -116,7 +110,6 @@ function CAttackMethodOptionData(valueC, labelC) {
 		return this.nextOptionList;
 	};
 }
-
 
 
 /**
@@ -143,7 +136,6 @@ function CAttackMethodOptionList() {
 	this.nextOptionList = null;
 
 
-
 	/**
 	 * 種別を設定する.
 	 * @param type 種別
@@ -161,7 +153,6 @@ function CAttackMethodOptionList() {
 	};
 
 
-
 	/**
 	 * ラベルを設定する.
 	 * @param label ラベル
@@ -177,7 +168,6 @@ function CAttackMethodOptionList() {
 	this.GetLabel = function () {
 		return this.label;
 	};
-
 
 
 	/**
@@ -210,7 +200,6 @@ function CAttackMethodOptionList() {
 	};
 
 
-
 	/**
 	 * デフォルトで選択されるオプションデータの値を設定する.
 	 * @param defaultOptionDataValue デフォルトで選択されるオプションデータの値
@@ -228,7 +217,6 @@ function CAttackMethodOptionList() {
 	};
 
 
-
 	/**
 	 * html 部品の attribute 配列を設定する.
 	 * @param htmlAttrArrayArray 種別
@@ -244,7 +232,6 @@ function CAttackMethodOptionList() {
 	this.GetHtmlAttrArrayArray = function () {
 		return this.htmlAttrArrayArray;
 	};
-
 
 
 	/**
@@ -265,7 +252,6 @@ function CAttackMethodOptionList() {
 }
 
 
-
 /**
  * 攻撃手段データクラス.
  */
@@ -279,7 +265,6 @@ function CAttackMethodData() {
 
 	// 後続のオプションリスト
 	this.nextOptionList = null;
-
 
 
 	/**
@@ -309,7 +294,6 @@ function CAttackMethodData() {
 	};
 
 
-
 	/**
 	 * スキルIDを設定する.
 	 * @param skillId スキルID
@@ -327,7 +311,6 @@ function CAttackMethodData() {
 	};
 
 
-
 	/**
 	 * ソース種別を設定する.
 	 * @param sourceType ソース種別
@@ -343,7 +326,6 @@ function CAttackMethodData() {
 	this.GetSourceType = function () {
 		return this.sourceType;
 	};
-
 
 
 	/**
@@ -367,7 +349,6 @@ function CAttackMethodData() {
 
 		return dispName;
 	};
-
 
 
 	/**
@@ -458,7 +439,6 @@ CAttackMethodAreaComponentManager.RebuildControls = function () {
 	objTbody = HtmlCreateElement("tbody", objTable);
 
 
-
 	//--------------------------------
 	// ヘッダ部分を構築
 	//--------------------------------
@@ -467,7 +447,6 @@ CAttackMethodAreaComponentManager.RebuildControls = function () {
 	objTd = HtmlCreateElement("td", objTr);
 	objTd.setAttribute("class", "CSSCLS_INFO_HEADER");
 	HtmlCreateTextNode("攻撃方法", objTd);
-
 
 
 	//--------------------------------
@@ -484,7 +463,6 @@ CAttackMethodAreaComponentManager.RebuildControls = function () {
 	//--------------------------------
 	objTr = HtmlCreateElement("tr", objTbody);
 	objTr.setAttribute("id", "OBJID_TR_ATTACK_METHOD_NOTICE");
-
 
 
 	//--------------------------------
@@ -504,7 +482,6 @@ CAttackMethodAreaComponentManager.RebuildControls = function () {
 	objTr = HtmlCreateElement("tr", objTbody);
 	objTd = HtmlCreateElement("td", objTr);
 	objTd.setAttribute("id", "OBJID_TD_CALC_BUTTON_NOTICE");
-
 
 
 	//--------------------------------
@@ -533,7 +510,6 @@ CAttackMethodAreaComponentManager.RefreshControls = function () {
 	var objCtrl = null;
 	var objActive = null;
 	var objNoticeBlock = null;
-
 
 
 	//--------------------------------
@@ -565,14 +541,12 @@ CAttackMethodAreaComponentManager.RefreshControls = function () {
 	}
 
 
-
 	//--------------------------------
 	// 現在のアクティブオブジェクトを保持
 	//--------------------------------
 
 	// 再構築でフォーカスが失われてしまうため
 	objActive = document.activeElement;
-
 
 
 	//--------------------------------
@@ -582,7 +556,6 @@ CAttackMethodAreaComponentManager.RefreshControls = function () {
 	// ルートオブジェクト配下を全削除
 	objRoot = document.getElementById("OBJID_TD_ATTACK_METHOD_ROOT");
 	HtmlRemoveAllChild(objRoot);
-
 
 
 	//--------------------------------
@@ -599,7 +572,6 @@ CAttackMethodAreaComponentManager.RefreshControls = function () {
 	objTd.appendChild(CAttackMethodAreaComponentManager.selectObjectArray[0]);
 	objTd = HtmlCreateElement("td", objTr);
 	objTd.appendChild(CAttackMethodAreaComponentManager.selectObjectArray[1]);
-
 
 
 	//--------------------------------
@@ -638,9 +610,6 @@ CAttackMethodAreaComponentManager.RefreshControls = function () {
 	}
 
 
-
-
-
 	//--------------------------------
 	// 補足説明（ルート要素が異なるので注意）
 	//--------------------------------
@@ -671,7 +640,6 @@ CAttackMethodAreaComponentManager.RefreshControls = function () {
 	}
 
 
-
 	//--------------------------------
 	// オブジェクトのアクティブ状態の復元
 	//--------------------------------
@@ -693,7 +661,6 @@ CAttackMethodAreaComponentManager.RebuildAttackMethodSelect = function () {
 	var attackMethodOptList = null;
 
 
-
 	// 選択状態を取得する
 	selectedValueArray = CAttackMethodAreaComponentManager.GetSelectedValueArray();
 
@@ -703,7 +670,6 @@ CAttackMethodAreaComponentManager.RebuildAttackMethodSelect = function () {
 	// ラベル部品、選択部品のオブジェクト配列を初期化
 	CAttackMethodAreaComponentManager.labelObjectArray = [];
 	CAttackMethodAreaComponentManager.selectObjectArray = [];
-
 
 
 	// 攻撃手段選択部品の再構築
@@ -719,10 +685,8 @@ CAttackMethodAreaComponentManager.RebuildAttackMethodSelect = function () {
 	CAttackMethodAreaComponentManager.RebuildAttackMethodSelectSubOption(1, attackMethodOptList, selectedValueArray);
 
 
-
 	// 選択部品のリフレッシュ
 	CAttackMethodAreaComponentManager.RefreshControls();
-
 
 
 	// 再計算はしない
@@ -774,10 +738,9 @@ CAttackMethodAreaComponentManager.RebuildAttackMethodSelectSubCreateMethodSelect
 	var objSelect = null;
 
 
-
 	// セレクトボックスを生成
 	objSelect = HtmlCreateElement("select", null);
-	objSelect.setAttribute("onchange", "CAttackMethodAreaComponentManager.OnChangeAttackMethod()");
+	objSelect.addEventListener('change', () => CAttackMethodAreaComponentManager.OnChangeAttackMethod());
 
 	// 設定候補検索用の変数を初期化
 	candidateId = -1;
@@ -894,7 +857,6 @@ CAttackMethodAreaComponentManager.RebuildAttackMethodSelectSubOptionSubCreate = 
 	var objSelect = null;
 
 
-
 	// タイプに従ったオブジェクト生成
 	switch (attackMethodOptList.GetType()) {
 
@@ -916,8 +878,7 @@ CAttackMethodAreaComponentManager.RebuildAttackMethodSelectSubOptionSubCreate = 
 	}
 
 	// change イベントハンドラ設定
-	objSelect.setAttribute("onchange", "CAttackMethodAreaComponentManager.OnChangeAttackMethodOption(" + objectIndex + ")");
-
+	objSelect.addEventListener('change', () => CAttackMethodAreaComponentManager.OnChangeAttackMethodOption(objectIndex));
 
 
 	// タイプに従った内容の生成
@@ -1028,7 +989,6 @@ CAttackMethodAreaComponentManager.RebuildAttackMethodSelectSubOptionSubCreate = 
 		objSelect.value = valueToRestore;
 		break;
 	}
-
 
 
 	// 生成したオブジェクトを返す
@@ -1415,10 +1375,8 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArray = function (
 	var effectiveMultiply = 0;
 
 
-
 	// 結果用配列を用意
 	attackMethodDataArray = [];
-
 
 
 	//--------------------------------
@@ -1461,7 +1419,6 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArray = function (
 		// デフォルトとして選択されるデータを設定
 		attackMethodOptList.SetDefaultOptionDataValue(levelArray[levelArray.length - 1]);
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -1558,7 +1515,6 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArray = function (
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 装備等によるオートスペルスキルの追加（従来の処理だが、移行完了まで必要）
 	//----------------------------------------------------------------
@@ -1648,22 +1604,16 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArray = function (
 	}
 
 
-
-
-
-
 	//----------------------------------------------------------------
 	// データ元種別含めて、完全に同一の攻撃手段があった場合は、最もレベルが高いもののみを残す
 	//----------------------------------------------------------------
 	CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubDistinctData(attackMethodDataArray);
 
 
-
 	//----------------------------------------------------------------
 	// 攻撃手段ごとの追加のオプション設定を追加する
 	//----------------------------------------------------------------
 	CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOptions(attackMethodDataArray);
-
 
 
 	// 結果を返す
@@ -1685,7 +1635,6 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubDistinctDa
 	var attackMethodOptListWork = null;
 	var bExistAllFore = false;
 	var bExistAllBack = false;
-
 
 
 	for (idxFore = 0; idxFore < attackMethodDataArray.length; idxFore++) {
@@ -3326,7 +3275,6 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 				break;
 
 
-
 			//----------------------------------------------------------------
 			// サモナー：ピッキ突き
 			//----------------------------------------------------------------
@@ -4366,10 +4314,8 @@ CAttackMethodAreaComponentManager.CreateNoticeBlock = function () {
 	var objA = null;
 
 
-
 	// 攻撃手段設定を取得
 	attackMethodConf = CAttackMethodAreaComponentManager.GetAttackMethodConf();
-
 
 
 	// スキルIDで処理分岐
@@ -4429,12 +4375,10 @@ CAttackMethodAreaComponentManager.CreateNoticeBlock = function () {
 	}
 
 
-
 	// 文字サイズの調整
 	if (objSpan) {
 		objSpan.setAttribute("style", "font-size : smaller");
 	}
-
 
 
 	return objSpan;
@@ -4447,6 +4391,3 @@ CAttackMethodAreaComponentManager.CreateNoticeBlock = function () {
 if (typeof window !== 'undefined') {
     window.CAttackMethodAreaComponentManager = CAttackMethodAreaComponentManager;
 }
-
-
-

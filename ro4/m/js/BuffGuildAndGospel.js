@@ -14,13 +14,13 @@ export const BUFF_CONF_GUILD_LIMIT = 36;
 export let n_A_PassSkill4 = Array(BUFF_CONF_GUILD_LIMIT).fill(0);
 /** ギルドスキル/ゴスペル/他 ウィンドウ可視状態 */
 export let n_Skill4SW = false;
+export function setN_Skill4SW(v) { n_Skill4SW = v; }
 
 /**
  * ギルドスキル/ゴスペル/他　を構築する
  */
 export function Click_Skill4SW(){
 	n_Skill4SW = document.calcForm.A4_SKILLSW.checked;
-	if (typeof window !== 'undefined') window.n_Skill4SW = n_Skill4SW;
 	if(n_Skill4SW){
 		let str;
 		str = '<TABLE Border style="white-space:nowrap;"><TR><TD id="A4TD" ColSpan="10" class="title"><input id="OBJID_CHECK_A4_SKILLSW" type="checkbox" name="A4_SKILLSW"onClick="Click_Skill4SW()"><label for="OBJID_CHECK_A4_SKILLSW">ギルドスキル/ゴスペル/他</label><span id="A4used"></span></TD></TR>';
@@ -145,6 +145,4 @@ export function Click_A4(recalc = false){
 
 if (typeof window !== 'undefined') {
     window.n_A_PassSkill4 = n_A_PassSkill4;
-    window.n_Skill4SW = n_Skill4SW;
-    window.Click_A4 = Click_A4;
 }

@@ -49,6 +49,7 @@ export const BUFF_CONF_SELF_LIMIT = 51;
 export let n_A_PassSkill = Array(BUFF_CONF_SELF_LIMIT).fill(0);
 /** 職固有自己支援 ウィンドウ可視状態 */
 export let n_Skill1SW = false;
+export function setN_Skill1SW(v) { n_Skill1SW = v; }
 
 /**
  * 職固有自己支援 チェックボックス生成
@@ -66,7 +67,6 @@ export function Click_PassSkillSW(){
 			</TD></TR>
 		`;
 	n_Skill1SW = document.calcForm.A1_SKILLSW.checked;
-	if (typeof window !== 'undefined') window.n_Skill1SW = n_Skill1SW;
 	if (n_Skill1SW) {
 		let end = passiveSkillIdArray.length -1;
 		let str = table_header;
@@ -834,7 +834,5 @@ export function UsedSkillSearchSubUsedOnly(sklId) {
 
 if (typeof window !== 'undefined') {
     window.n_A_PassSkill = n_A_PassSkill;
-    window.n_Skill1SW = n_Skill1SW;
-    window.Click_A1 = Click_A1;
     window.UsedSkillSearch = UsedSkillSearch;
 }

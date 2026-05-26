@@ -99,6 +99,11 @@ import {
 import { InsertSkill } from './usableskill.dat.js';
 import { USABLE_SKILL_ID_CUSTOM_BIAS } from './usableskill.h.js';
 import { HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById, SetStatefullData, GetStatefullData, MallocArray, myInnerHtml } from '../../common/js/util.js';
+import { Click_A1, n_A_PassSkill, n_Skill1SW } from '../../../ro4/m/js/BuffJobSpecificSelf.js';
+import { Click_A3 } from '../../../ro4/m/js/BuffMusicAndDance.js';
+import { Click_A4 } from '../../../ro4/m/js/BuffGuildAndGospel.js';
+import { Click_A7 } from '../../../ro4/m/js/BuffItemAndFood.js';
+import { Click_A8 } from '../../../ro4/m/js/BuffOtherCategory.js';
 // === END AUTO-GENERATED IMPORTS ===
 // ★★　VersionModify() 関数の修正も忘れずに　★★
 

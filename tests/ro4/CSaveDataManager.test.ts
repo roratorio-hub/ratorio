@@ -2,6 +2,9 @@ import { describe, it, expect, vi } from 'vitest';
 
 // CSaveDataManagerの静的フィールド初期化に必要なグローバルをimport前に設定する
 vi.hoisted(() => {
+    // Phase 3b で CSaveDataManager が CAttackMethodAreaComponentManager を import するようになり
+    // 連鎖的に calchistory.js の $(function(){...}) が呼ばれるため $ をモック
+    (globalThis as any).$ = (_fn: any) => {};
     const mockEl = {
         checked: false,
         appendChild: () => {},

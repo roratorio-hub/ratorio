@@ -19,11 +19,11 @@ import './monster.h.js';
 import './pet.h.js';
 import './timeitem.h.js';
 import { ITEM_SP_TIME_OBJ } from './timeitem.dat.js';
-import { Click_Skill4SW, n_A_PassSkill4 } from '../../../ro4/m/js/BuffGuildAndGospel.js';
-import { Click_Skill7SW, n_A_PassSkill7 } from '../../../ro4/m/js/BuffItemAndFood.js';
-import { Click_PassSkillSW, UsedSkillSearch, n_A_PassSkill } from '../../../ro4/m/js/BuffJobSpecificSelf.js';
-import { Click_Skill3SW, n_A_PassSkill3 } from '../../../ro4/m/js/BuffMusicAndDance.js';
-import { Click_Skill8SW, n_A_PassSkill8 } from '../../../ro4/m/js/BuffOtherCategory.js';
+import { Click_Skill4SW, n_A_PassSkill4, n_Skill4SW, setN_Skill4SW } from '../../../ro4/m/js/BuffGuildAndGospel.js';
+import { Click_Skill7SW, n_A_PassSkill7, n_Skill7SW, setN_Skill7SW } from '../../../ro4/m/js/BuffItemAndFood.js';
+import { Click_PassSkillSW, UsedSkillSearch, n_A_PassSkill, n_Skill1SW, setN_Skill1SW } from '../../../ro4/m/js/BuffJobSpecificSelf.js';
+import { Click_Skill3SW, n_A_PassSkill3, n_Skill3SW, setN_Skill3SW } from '../../../ro4/m/js/BuffMusicAndDance.js';
+import { Click_Skill8SW, n_A_PassSkill8, n_Skill8SW, setN_Skill8SW } from '../../../ro4/m/js/BuffOtherCategory.js';
 import { CAttackMethodAreaComponentManager } from '../../../ro4/m/js/CAttackMethodAreaComponentManager.js';
 import { enchSearch } from '../../../ro4/m/js/CEnchSearch.js';
 import { CMonsterMapAreaComponentManager } from '../../../ro4/m/js/CMonsterMapAreaComponentManager.js';
@@ -30380,11 +30380,11 @@ export function Init(jobId){
 	InitEquipDefaultAll();
 	ClearEquipAll();
 
-	window.n_Skill1SW = false;
-	window.n_Skill3SW = false;
-	window.n_Skill4SW = false;
-	window.n_Skill7SW = false;
-	window.n_Skill8SW = false;
+	setN_Skill1SW(false);
+	setN_Skill3SW(false);
+	setN_Skill4SW(false);
+	setN_Skill7SW(false);
+	setN_Skill8SW(false);
 	document.calcForm.A1_SKILLSW.checked = 0;
 
 	//--------------------------------

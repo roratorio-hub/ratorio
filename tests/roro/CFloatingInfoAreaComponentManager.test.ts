@@ -2,7 +2,11 @@ import { vi, describe, it, expect } from 'vitest';
 
 // vi.hoisted でモジュールロード前に DOM を準備する（静的インポート時に RebuildControls が実行されるため）
 vi.hoisted(() => {
-    document.body.innerHTML = '<div id="ID_FLOATING_INFO_AREA"></div>';
+    // Phase 3b 以降、import チェーンが CShadowEquipController.initializeHTML() に到達する。
+    // OBJID_SHADOW_EQUIPS_MIG 要素が DOM にないと querySelectorAll で失敗するため追加。
+    // また calchistory.js の $(function(){...}) もモックが必要。
+    (globalThis as any).$ = (_fn: any) => {};
+    document.body.innerHTML = '<div id="ID_FLOATING_INFO_AREA"></div><div id="OBJID_SHADOW_EQUIPS_MIG"></div><div id="ID_TIME_ITEM_AREA"></div><div id="ID_BATTLE_QUICK_CONTROL_AREA"></div>';
 });
 
 vi.mock('../../roro/common/js/util.js', async (importActual) => {

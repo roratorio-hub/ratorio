@@ -342,7 +342,7 @@ export function CExtraInfoAreaComponentManager () {
 
 		objSelect = HtmlCreateElement("select", objTdChild);
 		objSelect.setAttribute("id", "OBJID_SELECT_EXTRA_INFO_" + this.managerInstanceId);
-		objSelect.setAttribute("onchange", "CExtraInfoAreaComponentManager.OnChangeInfo(" + this.managerInstanceId + ")");
+		objSelect.addEventListener('change', () => CExtraInfoAreaComponentManager.OnChangeInfo(this.managerInstanceId));
 
 		for (idx = 0; idx < optArray.length; idx++) {
 			HtmlCreateElementOption(optArray[idx], GetExtraInfoText(optArray[idx]), objSelect);
@@ -651,7 +651,7 @@ export function CExtraInfoAreaComponentManager () {
 		objTd = HtmlCreateElement("td", objTr);
 		objSelect = HtmlCreateElement("select", objTd);
 		objSelect.setAttribute("id", "OBJID_SELECT_EXTRA_INFO_HEAL_TYPE_" + this.managerInstanceId);
-		objSelect.setAttribute("onChange", "CExtraInfoAreaComponentManager.RefreshDispArea(" + this.managerInstanceId + ")");
+		objSelect.addEventListener('change', () => CExtraInfoAreaComponentManager.RefreshDispArea(this.managerInstanceId));
 		for (idx = 0; idx < healTypeArray.length; idx++) {
 			HtmlCreateElementOption(healTypeArray[idx][0], SkillObjNew[healTypeArray[idx][1]][SKILL_DATA_INDEX_NAME], objSelect);
 		}
@@ -667,7 +667,7 @@ export function CExtraInfoAreaComponentManager () {
 			objTd = HtmlCreateElement("td", objTr);
 			objSelect = HtmlCreateElement("select", objTd);
 			objSelect.setAttribute("id", "OBJID_SELECT_EXTRA_INFO_HEAL_PTM_COUNT_" + this.managerInstanceId);
-			objSelect.setAttribute("onChange", "CExtraInfoAreaComponentManager.RefreshDispArea(" + this.managerInstanceId + ")");
+			objSelect.addEventListener('change', () => CExtraInfoAreaComponentManager.RefreshDispArea(this.managerInstanceId));
 			for (idx = 1; idx <= 12; idx++) {
 				HtmlCreateElementOption(idx, idx, objSelect);
 			}
@@ -683,7 +683,7 @@ export function CExtraInfoAreaComponentManager () {
 		objTd = HtmlCreateElement("td", objTr);
 		objSelect = HtmlCreateElement("select", objTd);
 		objSelect.setAttribute("id", "OBJID_SELECT_EXTRA_INFO_HEAL_TARGET_" + this.managerInstanceId);
-		objSelect.setAttribute("onChange", "CExtraInfoAreaComponentManager.RefreshDispArea(" + this.managerInstanceId + ")");
+		objSelect.addEventListener('change', () => CExtraInfoAreaComponentManager.RefreshDispArea(this.managerInstanceId));
 		for (idx = 0; idx < healTargetArray.length; idx++) {
 			HtmlCreateElementOption(healTargetArray[idx][0], healTargetArray[idx][1], objSelect);
 		}
@@ -923,7 +923,7 @@ export function CExtraInfoAreaComponentManager () {
 			objTd = HtmlCreateElement("td", objTr);
 			objSelect = HtmlCreateElement("select", objTd);
 			objSelect.setAttribute("id", "OBJID_SELECT_EXTRA_INFO_HPR_UP_LV_" + this.managerInstanceId);
-			objSelect.setAttribute("onChange", "CExtraInfoAreaComponentManager.RefreshDispArea(" + this.managerInstanceId + ")");
+			objSelect.addEventListener('change', () => CExtraInfoAreaComponentManager.RefreshDispArea(this.managerInstanceId));
 			for (idx = 0; idx <= g_skillManager.GetMaxLv(SKILL_ID_HP_KAIFUKURYOKU_KOZYO); idx++) {
 				HtmlCreateElementOption(idx, "Lv" + idx, objSelect);
 			}
@@ -944,7 +944,7 @@ export function CExtraInfoAreaComponentManager () {
 			objTd = HtmlCreateElement("td", objTr);
 			objSelect = HtmlCreateElement("select", objTd);
 			objSelect.setAttribute("id", "OBJID_SELECT_EXTRA_INFO_SPR_UP_LV_" + this.managerInstanceId);
-			objSelect.setAttribute("onChange", "CExtraInfoAreaComponentManager.RefreshDispArea(" + this.managerInstanceId + ")");
+			objSelect.addEventListener('change', () => CExtraInfoAreaComponentManager.RefreshDispArea(this.managerInstanceId));
 			for (idx = 0; idx <= g_skillManager.GetMaxLv(SKILL_ID_SP_KAIFUKURYOKU_KOZYO); idx++) {
 				HtmlCreateElementOption(idx, "Lv" + idx, objSelect);
 			}
@@ -965,7 +965,7 @@ export function CExtraInfoAreaComponentManager () {
 			objTd = HtmlCreateElement("td", objTr);
 			objSelect = HtmlCreateElement("select", objTd);
 			objSelect.setAttribute("id", "OBJID_SELECT_EXTRA_INFO_IBUKI_LV_" + this.managerInstanceId);
-			objSelect.setAttribute("onChange", "CExtraInfoAreaComponentManager.RefreshDispArea(" + this.managerInstanceId + ")");
+			objSelect.addEventListener('change', () => CExtraInfoAreaComponentManager.RefreshDispArea(this.managerInstanceId));
 			for (idx = 0; idx <= g_skillManager.GetMaxLv(SKILL_ID_IBUKI); idx++) {
 				HtmlCreateElementOption(idx, "Lv" + idx, objSelect);
 			}
@@ -1178,7 +1178,7 @@ export function CExtraInfoAreaComponentManager () {
 			objTd = HtmlCreateElement("td", objTr);
 			objSelect = HtmlCreateElement("select", objTd);
 			objSelect.setAttribute("id", "OBJID_SELECT_EXTRA_INFO_CAPACITY_UP_LV_" + this.managerInstanceId);
-			objSelect.setAttribute("onChange", "CExtraInfoAreaComponentManager.RefreshDispArea(" + this.managerInstanceId + ")");
+			objSelect.addEventListener('change', () => CExtraInfoAreaComponentManager.RefreshDispArea(this.managerInstanceId));
 			for (idx = 0; idx <= g_skillManager.GetMaxLv(SKILL_ID_SHOZIGENKAIRYO_ZOKA); idx++) {
 				HtmlCreateElementOption(idx, "Lv" + idx, objSelect);
 			}
@@ -1194,7 +1194,7 @@ export function CExtraInfoAreaComponentManager () {
 		objTd = HtmlCreateElement("td", objTr);
 		objSelect = HtmlCreateElement("select", objTd);
 		objSelect.setAttribute("id", "OBJID_SELECT_EXTRA_INFO_CAPACITY_UP_R_LV_" + this.managerInstanceId);
-		objSelect.setAttribute("onChange", "CExtraInfoAreaComponentManager.RefreshDispArea(" + this.managerInstanceId + ")");
+		objSelect.addEventListener('change', () => CExtraInfoAreaComponentManager.RefreshDispArea(this.managerInstanceId));
 		for (idx = 0; idx <= g_skillManager.GetMaxLv(SKILL_ID_SHOZIGENKAIRYO_ZOKA_R); idx++) {
 			HtmlCreateElementOption(idx, "Lv" + idx, objSelect);
 		}
@@ -3361,7 +3361,7 @@ export function CExtraInfoAreaComponentManager () {
 		objTd = HtmlCreateElement("td", objTr);
 		objSelect = HtmlCreateElement("select", objTd);
 		objSelect.setAttribute("id", "OBJID_SELECT_EXTRA_INFO_BASE_EXP_GAUGE_" + this.managerInstanceId);
-		objSelect.setAttribute("onChange", "CExtraInfoAreaComponentManager.RefreshDispArea(" + this.managerInstanceId + ")");
+		objSelect.addEventListener('change', () => CExtraInfoAreaComponentManager.RefreshDispArea(this.managerInstanceId));
 		for (idx = 0; idx < 1000; idx++) {
 			HtmlCreateElementOption(idx, Math.floor(idx / 10) + "." + (idx % 10), objSelect);
 		}
@@ -3383,7 +3383,7 @@ export function CExtraInfoAreaComponentManager () {
 		else {
 			objSelect = HtmlCreateElement("select", objTd);
 			objSelect.setAttribute("id", "OBJID_SELECT_EXTRA_INFO_BASE_LV_FOCUS_" + this.managerInstanceId);
-			objSelect.setAttribute("onChange", "CExtraInfoAreaComponentManager.RefreshDispArea(" + this.managerInstanceId + ")");
+			objSelect.addEventListener('change', () => CExtraInfoAreaComponentManager.RefreshDispArea(this.managerInstanceId));
 			for (idx = n_A_BaseLV + 1; idx <= lvMax; idx++) {
 				HtmlCreateElementOption(idx, "Lv" + idx, objSelect);
 			}
@@ -3403,7 +3403,7 @@ export function CExtraInfoAreaComponentManager () {
 		objTd = HtmlCreateElement("td", objTr);
 		objSelect = HtmlCreateElement("select", objTd);
 		objSelect.setAttribute("id", "OBJID_SELECT_EXTRA_INFO_JOB_EXP_GAUGE_" + this.managerInstanceId);
-		objSelect.setAttribute("onChange", "CExtraInfoAreaComponentManager.RefreshDispArea(" + this.managerInstanceId + ")");
+		objSelect.addEventListener('change', () => CExtraInfoAreaComponentManager.RefreshDispArea(this.managerInstanceId));
 		for (idx = 0; idx < 1000; idx++) {
 			HtmlCreateElementOption(idx, Math.floor(idx / 10) + "." + (idx % 10), objSelect);
 		}
@@ -3425,7 +3425,7 @@ export function CExtraInfoAreaComponentManager () {
 		else {
 			objSelect = HtmlCreateElement("select", objTd);
 			objSelect.setAttribute("id", "OBJID_SELECT_EXTRA_INFO_JOB_LV_FOCUS_" + this.managerInstanceId);
-			objSelect.setAttribute("onChange", "CExtraInfoAreaComponentManager.RefreshDispArea(" + this.managerInstanceId + ")");
+			objSelect.addEventListener('change', () => CExtraInfoAreaComponentManager.RefreshDispArea(this.managerInstanceId));
 			for (idx = n_A_JobLV + 1; idx <= lvMax; idx++) {
 				HtmlCreateElementOption(idx, "Lv" + idx, objSelect);
 			}
@@ -3795,7 +3795,7 @@ export function CExtraInfoAreaComponentManager () {
 		objTd = HtmlCreateElement("td", objTr);
 		objSelect = HtmlCreateElement("select", objTd);
 		objSelect.setAttribute("id", "OBJID_SELECT_EXTRA_INFO_STATUS_SUM_DISP_KIND_" + this.managerInstanceId);
-		objSelect.setAttribute("onChange", "CExtraInfoAreaComponentManager.RebuildAndRefreshDispArea(" + this.managerInstanceId + ")");
+		objSelect.addEventListener('change', () => CExtraInfoAreaComponentManager.RebuildAndRefreshDispArea(this.managerInstanceId));
 		HtmlCreateElementOption(EXTRA_INFO_STATUS_SUM_KIND_MAZYONO_SKILL_CARD, "魔女のスキルカード", objSelect);
 		HtmlCreateElementOption(EXTRA_INFO_STATUS_SUM_KIND_ALL_ITEM_AND_CARD, "アイテム／カード全般", objSelect);
 		this.RestoreSelectedValue("OBJID_SELECT_EXTRA_INFO_STATUS_SUM_DISP_KIND_" + this.managerInstanceId, EXTRA_INFO_STATUS_SUM_KIND_MAZYONO_SKILL_CARD);
@@ -3814,7 +3814,7 @@ export function CExtraInfoAreaComponentManager () {
 			objTd = HtmlCreateElement("td", objTr);
 			objSelect = HtmlCreateElement("select", objTd);
 			objSelect.setAttribute("id", "OBJID_SELECT_EXTRA_INFO_STATUS_SUM_COND_TABLE_KIND_" + this.managerInstanceId);
-			objSelect.setAttribute("onChange", "CExtraInfoAreaComponentManager.RefreshDispArea(" + this.managerInstanceId + ")");
+			objSelect.addEventListener('change', () => CExtraInfoAreaComponentManager.RefreshDispArea(this.managerInstanceId));
 			HtmlCreateElementOption(0, "そのスキルが使える数値", objSelect);
 			HtmlCreateElementOption(1, "単純な倍数の数値", objSelect);
 			this.RestoreSelectedValue("OBJID_SELECT_EXTRA_INFO_STATUS_SUM_COND_TABLE_KIND_" + this.managerInstanceId, 0);
@@ -3860,7 +3860,7 @@ export function CExtraInfoAreaComponentManager () {
 			objTd = HtmlCreateElement("td", objTr);
 			objSelect = HtmlCreateElement("select", objTd);
 			objSelect.setAttribute("id", "OBJID_SELECT_EXTRA_INFO_STATUS_SUM_TARGET_ITEM_KIND_" + this.managerInstanceId);
-			objSelect.setAttribute("onChange", "CExtraInfoAreaComponentManager.RefreshDispArea(" + this.managerInstanceId + ")");
+			objSelect.addEventListener('change', () => CExtraInfoAreaComponentManager.RefreshDispArea(this.managerInstanceId));
 			for (idx = 0; idx < targetArray.length; idx++) {
 				HtmlCreateElementOption(targetArray[idx][0], targetArray[idx][1], objSelect);
 			}
@@ -4985,7 +4985,7 @@ export function CExtraInfoAreaComponentManager () {
 		objTd = HtmlCreateElement("td", objTr);
 		objSelect = HtmlCreateElement("select", objTd);
 		objSelect.setAttribute("id", "OBJID_SELECT_EXTRA_INFO_EFFECTIVE_SP_DISP_KIND_" + this.managerInstanceId);
-		objSelect.setAttribute("onChange", "CExtraInfoAreaComponentManager.RebuildAndRefreshDispArea(" + this.managerInstanceId + ")");
+		objSelect.addEventListener('change', () => CExtraInfoAreaComponentManager.RebuildAndRefreshDispArea(this.managerInstanceId));
 		HtmlCreateElementOption(EXTRA_INFO_EFFECTIVE_SP_KIND_STATUS_BASIC, "基本ステータス", objSelect);
 		HtmlCreateElementOption(EXTRA_INFO_EFFECTIVE_SP_KIND_STATUS_SPECIAL, "特性ステータス", objSelect);
 		HtmlCreateElementOption(EXTRA_INFO_EFFECTIVE_SP_KIND_STATUS_EXTRA, "拡張ステータス", objSelect);

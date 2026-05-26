@@ -1,7 +1,22 @@
 import { vi, describe, it, expect } from 'vitest';
 
 vi.hoisted(() => {
-    (document as any).getElementById = () => null;
+    // Phase 3b で hmjob.js が CAttackMethodAreaComponentManager を import するようになり
+    // 連鎖的に CShadowEquipController.initializeHTML() が呼ばれる。
+    // getElementById が null を返すと querySelectorAll で失敗するため mockEl を返す。
+    // また calchistory.js の $(function(){...}) もモックが必要。
+    (globalThis as any).$ = (_fn: any) => {};
+    const mockEl = {
+        querySelectorAll: () => [],
+        querySelector: () => null,
+        appendChild: () => {},
+        setAttribute: () => {},
+        removeAttribute: () => {},
+        getAttribute: () => null,
+        addEventListener: () => {},
+        style: {},
+    };
+    (document as any).getElementById = () => mockEl;
 });
 
 vi.mock('../../roro/common/js/util.js', async (importActual) => {

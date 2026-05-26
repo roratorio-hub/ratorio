@@ -77,6 +77,12 @@ import { GetEquipRndOptTableKind, GetEquipRndOptTableValue, SetEquipRndOptTable 
 import { SaveSystem } from '../../../roro/m/js/saveload.js';
 import { GetSlotMode, SLOTPAGER_MODE_CARD, SLOT_INDEX_CARD_MIN } from '../../../roro/m/js/slotpager.js';
 import { HtmlGetObjectValueByIdAsInteger, HtmlSetObjectCheckedById, HtmlSetObjectValueById, HtmlSelectObjectValueAsInteger, SetStatefullData, floorBigInt32, floorBigInt40 } from '../../../roro/common/js/util.js';
+import { Click_A1, n_A_PassSkill } from './BuffJobSpecificSelf.js';
+import { Click_A3, n_A_PassSkill3 } from './BuffMusicAndDance.js';
+import { Click_A4, n_A_PassSkill4 } from './BuffGuildAndGospel.js';
+import { Click_A7, n_A_PassSkill7 } from './BuffItemAndFood.js';
+import { Click_A8, n_A_PassSkill8 } from './BuffOtherCategory.js';
+import { CAttackMethodAreaComponentManager } from './CAttackMethodAreaComponentManager.js';
 // === END AUTO-GENERATED IMPORTS ===
 
 /**

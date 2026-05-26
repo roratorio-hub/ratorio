@@ -1,4 +1,22 @@
-import { describe, it, expect, beforeAll, afterAll } from 'vitest';
+import { vi, describe, it, expect, beforeAll, afterAll } from 'vitest';
+
+vi.hoisted(() => {
+    // Phase 3b で hmjob.js が CAttackMethodAreaComponentManager を import するようになり
+    // 連鎖的に calchistory.js の $(function(){...}) と CShadowEquipController.initializeHTML() が呼ばれる
+    (globalThis as any).$ = (_fn: any) => {};
+    const mockEl = {
+        querySelectorAll: () => [],
+        querySelector: () => null,
+        appendChild: () => {},
+        setAttribute: () => {},
+        removeAttribute: () => {},
+        getAttribute: () => null,
+        addEventListener: () => {},
+        style: {},
+        value: 0,
+    };
+    (document as any).getElementById = () => mockEl;
+});
 import {
     g_pureStatus, g_bonusStatus,
     g_STR, g_AGI, g_VIT, g_INT, g_DEX, g_LUK,

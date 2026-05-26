@@ -19,6 +19,7 @@ import {
 import { LEARNED_SKILL_MAX_COUNT, LearnedSkillSearch, OnClickSkillSWLearned } from '../../../roro/m/js/learnedskill.js';
 import { MOB_CONF_DEBUF_ID_JACK_FROST_NOVA, MOB_CONF_DEBUF_ID_TOXIN_OF_MANDARA, n_B_IJYOU } from '../../../roro/m/js/mobconfdebuf.js';
 // === END AUTO-GENERATED IMPORTS ===
+import { CAttackMethodAreaComponentManager } from './CAttackMethodAreaComponentManager.js';
 export let g_pureStatus = [];
 export let g_bonusStatus = [];
 

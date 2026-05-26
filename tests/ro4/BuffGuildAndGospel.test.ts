@@ -35,12 +35,6 @@ describe('BuffGuildAndGospel.js', () => {
         it('window.n_A_PassSkill4 が設定されている', () => {
             expect((window as any).n_A_PassSkill4).toBe(n_A_PassSkill4);
         });
-
-        it('window.n_Skill4SW が設定されている', () => {
-            expect((window as any).n_Skill4SW).toBe(n_Skill4SW);
-        });
-
-
-
+        // n_Skill4SW は Phase 3-sup で compat ブロック除去済み → window への設定なし
     });
 });

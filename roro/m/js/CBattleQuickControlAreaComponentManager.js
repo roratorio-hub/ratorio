@@ -13,7 +13,6 @@ export function CBattleQuickControlAreaComponentManager () {
 }
 
 
-
 /**
  * 画面部品を再構築する.
  */
@@ -47,9 +46,7 @@ CBattleQuickControlAreaComponentManager.RebuildControls = function () {
 	var objLabel = null;
 
 
-
 	colspan = 2;
-
 
 
 	// チェックボックスのチェック状態を取得
@@ -57,7 +54,6 @@ CBattleQuickControlAreaComponentManager.RebuildControls = function () {
 	if (objSwitch) {
 		switchChecked = objSwitch.checked;
 	}
-
 
 
 	// 設定欄を初期化
@@ -73,7 +69,6 @@ CBattleQuickControlAreaComponentManager.RebuildControls = function () {
 	objTable.appendChild(objTbody);
 
 
-
 	// ヘッダ部分を構築
 	objTr = document.createElement("tr");
 	objTbody.appendChild(objTr);
@@ -87,7 +82,7 @@ CBattleQuickControlAreaComponentManager.RebuildControls = function () {
 	objInput = document.createElement("input");
 	objInput.setAttribute("type", "checkbox");
 	objInput.setAttribute("id", "OBJID_BATTLE_QUICK_CONTROL_AREA_EXTRACT_CHECKBOX");
-	objInput.setAttribute("onclick", "CBattleQuickControlAreaComponentManager.OnClickExtractSwitch()");
+	objInput.addEventListener('click', () => CBattleQuickControlAreaComponentManager.OnClickExtractSwitch());
 	if (switchChecked) {
 		// 部品を再構築しているので、チェック状態の再設定が必要
 		objInput.setAttribute("checked", "checked");
@@ -105,7 +100,6 @@ CBattleQuickControlAreaComponentManager.RebuildControls = function () {
 	objLabel.setAttribute("class", "CSSCLS_CONF_USING_MESSAGE_USING");
 
 
-
 	// 設定欄のヘッダ部分をリフレッシュ（着色処理等）
 	CBattleQuickControlAreaComponentManager.RefreshBattleQuickControlAreaHeader();
 
@@ -113,7 +107,6 @@ CBattleQuickControlAreaComponentManager.RebuildControls = function () {
 	if (!switchChecked) {
 		return;
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -127,7 +120,7 @@ CBattleQuickControlAreaComponentManager.RebuildControls = function () {
 	objInput = HtmlCreateElement("input", objTd);
 	objInput.setAttribute("type", "button");
 	objInput.setAttribute("value", "設定欄を表示");
-	objInput.setAttribute("onclick", "CBattleQuickControlAreaComponentManager.OnClickFocusTimeItemArea()");
+	objInput.addEventListener('click', () => CBattleQuickControlAreaComponentManager.OnClickFocusTimeItemArea());
 
 	// 設定済みの時限効果が１つ以上存在する場合
 	if (g_timeItemConf.filter((value) => value > 0).length > 0) {
@@ -138,7 +131,7 @@ CBattleQuickControlAreaComponentManager.RebuildControls = function () {
 		objTd = HtmlCreateElement("td", objTr);
 		objSelect = HtmlCreateElement("select", objTd);
 		objSelect.setAttribute("id", "OBJID_SELECT_BATTLE_QUICK_CONTROL_TIME_ITEM_ALL");
-		objSelect.setAttribute("onchange", "CBattleQuickControlAreaComponentManager.AllSet(parseInt(this.value))");
+		objSelect.addEventListener('change', (e) => CBattleQuickControlAreaComponentManager.AllSet(parseInt(e.target.value)));
 		HtmlCreateElementOption(1, "ON", objSelect);
 		HtmlCreateElementOption(0, "OFF", objSelect);
 		objSelect.value = g_timeItemConfAllEffective;
@@ -164,7 +157,7 @@ CBattleQuickControlAreaComponentManager.RebuildControls = function () {
 		objTd = HtmlCreateElement("td", objTr);
 		objSelect = HtmlCreateElement("select", objTd);
 		objSelect.setAttribute("id", "OBJID_SELECT_BATTLE_QUICK_CONTROL_TIME_ITEM_" + idxRow);
-		objSelect.setAttribute("onchange", "CBattleQuickControlAreaComponentManager.OnChangeTimeItemEffective(" + idxRow + ", parseInt(this.value))");
+		((row) => objSelect.addEventListener('change', (e) => CBattleQuickControlAreaComponentManager.OnChangeTimeItemEffective(row, parseInt(e.target.value))))(idxRow);
 
 		HtmlCreateElementOption(1, "ON", objSelect);
 		HtmlCreateElementOption(0, "OFF", objSelect);
@@ -193,7 +186,6 @@ CBattleQuickControlAreaComponentManager.RebuildControls = function () {
 };
 
 
-
 /**
  * 展開チェックボックス切り替えイベントハンドラ.
  */
@@ -203,14 +195,12 @@ CBattleQuickControlAreaComponentManager.OnClickExtractSwitch = function () {
 };
 
 
-
 /**
  * 時限効果エリア表示イベントハンドラ.
  */
 CBattleQuickControlAreaComponentManager.OnClickFocusTimeItemArea = function () {
 	CTimeItemAreaComponentManager.FocusArea(0, true);
 };
-
 
 
 /**
@@ -242,7 +232,6 @@ CBattleQuickControlAreaComponentManager.OnChangeTimeItemEffective = function (id
 	// コントロール更新
 	CBattleQuickControlAreaComponentManager.RefreshControlCSS();
 };
-
 
 
 /**
@@ -278,7 +267,6 @@ CBattleQuickControlAreaComponentManager.RefreshBattleQuickControlAreaHeader = fu
 		HtmlRemoveAllChild(objMessage);
 	}
 };
-
 
 
 /**
@@ -330,7 +318,6 @@ CBattleQuickControlAreaComponentManager.AllSet = function (flg) {
 };
 
 
-
 /**
  * 設定欄を開く.
  */
@@ -347,7 +334,6 @@ CBattleQuickControlAreaComponentManager.OpenArea = function () {
 	// 再構築する
 	CBattleQuickControlAreaComponentManager.RebuildControls();
 };
-
 
 
 /**
@@ -367,11 +353,6 @@ CBattleQuickControlAreaComponentManager.CloseArea = function () {
 	CBattleQuickControlAreaComponentManager.RebuildControls();
 };
 
-
-
-if (typeof window !== 'undefined') {
-    window.CBattleQuickControlAreaComponentManager = CBattleQuickControlAreaComponentManager;
-}
 
 // 初期構築処理
 CBattleQuickControlAreaComponentManager.RebuildControls();

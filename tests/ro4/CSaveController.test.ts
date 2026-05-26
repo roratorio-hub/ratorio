@@ -1,6 +1,8 @@
 import { vi, describe, it, expect } from 'vitest';
 
 vi.hoisted(() => {
+    // CSaveController→calchistory.js が $(function(){...}) を呼ぶため $ をモック
+    (globalThis as any).$ = (_fn: any) => {};
     const mockEl = {
         checked: false,
         appendChild: () => {},
