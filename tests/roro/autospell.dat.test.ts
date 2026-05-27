@@ -16,4 +16,11 @@ describe('autospell.dat.js', () => {
         it('AutoSpellSkill[0][0] が 0',       () => expect(AutoSpellSkill[0][0]).toBe(0));
         it('AutoSpellSkill[248][0] が 248（最後）', () => expect(AutoSpellSkill[248][0]).toBe(248));
     });
+
+    describe('window互換確認', () => {
+        it('window.AS_ID_0',                   () => expect((window as any).AS_ID_0).toBe(AS_ID_0));
+        it('window.AS_ID_HEAL_1',              () => expect((window as any).AS_ID_HEAL_1).toBe(AS_ID_HEAL_1));
+        it('window.AS_ID_CHAIN_LIGHTNING_5',   () => expect((window as any).AS_ID_CHAIN_LIGHTNING_5).toBe(AS_ID_CHAIN_LIGHTNING_5));
+        it('window.AutoSpellSkill',            () => expect((window as any).AutoSpellSkill).toBe(AutoSpellSkill));
+    });
 });

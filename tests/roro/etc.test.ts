@@ -13,6 +13,15 @@ describe('etc.js', () => {
         });
     });
 
+    describe('window互換確認', () => {
+        it('window.zokusei が設定されている', () => {
+            expect((window as any).zokusei).toBe(zokusei);
+        });
+        it('window.weaponsize が設定されている', () => {
+            expect((window as any).weaponsize).toBe(weaponsize);
+        });
+    });
+
     describe('データ確認', () => {
         it('zokusei[11] が水属性データを持つ', () => {
             expect(Array.isArray(zokusei[11])).toBe(true);

@@ -21,6 +21,8 @@ describe('item.dat.js', () => {
     });
 
     describe('window互換確認', () => {
+        it('window.ITEM_ID_SUDE', () => expect((window as any).ITEM_ID_SUDE).toBe(ITEM_ID_SUDE));
+        it('window.ITEM_ID_KNIFE', () => expect((window as any).ITEM_ID_KNIFE).toBe(ITEM_ID_KNIFE));
         it('window.ItemObjNew', () => expect((window as any).ItemObjNew).toBe(ItemObjNew));
     });
 });

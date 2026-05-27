@@ -1,9 +1,4 @@
 import { CTargetData } from './CConfBase.js';
-// === AUTO-GENERATED IMPORTS ===
-import './CConfBase.js';
-import { COLOR_CODE_TABLE_HEADER_IS_NOT_SET, COLOR_CODE_TABLE_HEADER_IS_SET } from './common.js';
-import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectCheckedById, ValueRangeModify } from '../../common/js/util.js';
-// === END AUTO-GENERATED IMPORTS ===
 
 /**
  * 選択肢データクラス.
@@ -15,6 +10,7 @@ export function CConfBaseSelectData() {
 
 	/** テキスト. */
 	this.text = "";
+
 
 
 	/**
@@ -80,6 +76,7 @@ export function CConfBaseConfData() {
 
 	/** OnChange リスナ関数. */
 	this.funcOnChange = null;
+
 
 
 	/**
@@ -227,6 +224,7 @@ export function CConfBaseRegisterParam() {
 	this.data = "";
 
 
+
 	/**
 	 * 列挙定数名を設定する.
 	 * @param enumName 列挙定数名
@@ -260,6 +258,7 @@ export function CConfBaseManagementParam () {
 
 	/** 設定値を保持するオブジェクト（や配列）の配列 */
 	this.confDataArray = new Array();
+
 
 
 	/**
@@ -317,13 +316,18 @@ export function CConfBaseManagementParam () {
 export function CConfBase2(confMngParam) {
 
 
+
 	// 設定の限界値
 	// この数を超える場合は、セーブデータの拡張が必要
 	this.confCountLimit = 0;
 
 
+
 	// 設定欄の横方向項目数
 	this.itemInRow = 1;
+
+
+
 
 
 	// インスタンス番号
@@ -342,6 +346,9 @@ export function CConfBase2(confMngParam) {
 	this.confDataObj = new Array();
 
 
+
+
+
 	/**
 	 * 設定データを初期化（セットアップ）する.
 	 * （継承先でオーバーライドすること）
@@ -356,6 +363,9 @@ export function CConfBase2(confMngParam) {
 
 		return;
 	}
+
+
+
 
 
 	/**
@@ -380,6 +390,9 @@ export function CConfBase2(confMngParam) {
 	}
 
 
+
+
+
 	/**
 	 * 指定の設定ＩＤを持つ設定インデックスを取得する.
 	 * @param confId 設定ＩＤ
@@ -397,6 +410,7 @@ export function CConfBase2(confMngParam) {
 
 		return -1;
 	};
+
 
 
 	/**
@@ -443,6 +457,7 @@ export function CConfBase2(confMngParam) {
 		var objTdSub = null;
 
 
+
 		// 既に同一のクラスインスタンスがあるかを検索し、インスタンス番号を決定する
 		instanceNo = CConfBase2.targetArray.length;
 		for (idx = 0; idx < CConfBase2.targetArray.length; idx++) {
@@ -451,6 +466,7 @@ export function CConfBase2(confMngParam) {
 				break;
 			}
 		}
+
 
 
 		// 引数のルートオブジェクト配下を一度全削除
@@ -464,6 +480,7 @@ export function CConfBase2(confMngParam) {
 
 		objTbody = document.createElement("tbody");
 		objTable.appendChild(objTbody);
+
 
 
 		// 設定欄テーブルのヘッダ部分を生成
@@ -490,10 +507,12 @@ export function CConfBase2(confMngParam) {
 		HtmlCreateTextNode(this.confLabel, objLabel);
 
 
+
 		// インスタンスを登録
 		instanceData = new CTargetData(instanceNo, this, objRoot, objInput, objTd);
 		CConfBase2.targetArray[instanceNo] = instanceData;
 		this.instanceNo = instanceNo;
+
 
 
 		// 展開表示でなければ、ヘッダだけ更新して終了
@@ -505,8 +524,10 @@ export function CConfBase2(confMngParam) {
 		}
 
 
+
 		// ヘッダ構築
 		this.BuildUpSelectAreaSubHeader(objTbody);
+
 
 
 		// 設定定義をループして、設定欄を構築する
@@ -521,6 +542,7 @@ export function CConfBase2(confMngParam) {
 				objTr = document.createElement("tr");
 				objTbody.appendChild(objTr);
 			}
+
 
 
 			// 設定ＩＤを取得
@@ -549,9 +571,11 @@ export function CConfBase2(confMngParam) {
 			}
 
 
+
 			// 設定値の欄を生成
 			objTd = document.createElement("td");
 			objTr.appendChild(objTd);
+
 
 
 			switch (controlType) {
@@ -566,9 +590,11 @@ export function CConfBase2(confMngParam) {
 				break;
 
 
+
 			// ブランクの場合
 			case CONTROL_TYPE_DUMMY:
 				break;
+
 
 
 			// 設定方法が数値選択方式の場合
@@ -601,6 +627,7 @@ export function CConfBase2(confMngParam) {
 				break;
 
 
+
 			// 設定方法が選択方式の場合
 			case CONTROL_TYPE_SELECT:
 
@@ -621,6 +648,7 @@ export function CConfBase2(confMngParam) {
 				break;
 
 
+
 			// 設定方法がチェック方式の場合
 			case CONTROL_TYPE_CHECKBOX:
 
@@ -637,6 +665,7 @@ export function CConfBase2(confMngParam) {
 				}
 
 				break;
+
 
 
 			// 設定方法が数値入力方式の場合
@@ -656,6 +685,7 @@ export function CConfBase2(confMngParam) {
 				break;
 
 
+
 			// 設定方法がテキスト方式の場合
 			case CONTROL_TYPE_TEXT:
 
@@ -670,6 +700,7 @@ export function CConfBase2(confMngParam) {
 				objInput.setAttribute("value", confData.defaultValue);
 
 				break;
+
 
 
 			// 設定方法が数値入力方式の場合
@@ -692,6 +723,7 @@ export function CConfBase2(confMngParam) {
 				break;
 
 
+
 			// 設定方法が特殊方式の場合
 			case CONTROL_TYPE_SELECTBOX_SPECIAL:
 			case CONTROL_TYPE_CHECKBOX_SPECIAL:
@@ -703,6 +735,7 @@ export function CConfBase2(confMngParam) {
 			}
 
 
+
 			// 注意書きを追加
 			if (confData.notice.length > 0) {
 				HtmlCreateElement("br", objTd);
@@ -711,8 +744,10 @@ export function CConfBase2(confMngParam) {
 		}
 
 
+
 		// フッタ構築
 		this.BuildUpSelectAreaSubFooter(objTbody);
+
 
 
 		// 変数の値をもとに、設定欄の各コントロールを同期
@@ -753,6 +788,9 @@ export function CConfBase2(confMngParam) {
 	};
 
 
+
+
+
 	/**
 	 * 設定欄の状態を同期させる（変数の値をコントロール部品へ反映）.
 	 */
@@ -771,6 +809,7 @@ export function CConfBase2(confMngParam) {
 
 		var objSelect = null;
 		var objInput = null;
+
 
 
 		// 設定定義をループして、設定欄の状態を同期
@@ -805,6 +844,7 @@ export function CConfBase2(confMngParam) {
 				break;
 
 
+
 			// 設定方法がチェック方式の場合
 			case CONTROL_TYPE_CHECKBOX:
 			case CONTROL_TYPE_CHECKBOX_SPECIAL:
@@ -821,6 +861,7 @@ export function CConfBase2(confMngParam) {
 				break;
 
 
+
 			// 設定方法が数値入力方式の場合
 			case CONTROL_TYPE_TEXTBOX_NUMBER:
 			case CONTROL_TYPE_TEXTBOX_SPECIAL:
@@ -833,6 +874,7 @@ export function CConfBase2(confMngParam) {
 				break;
 
 
+
 			// 設定方法が特殊方式の場合
 			case CONTROL_TYPE_SPECIAL:
 
@@ -843,6 +885,9 @@ export function CConfBase2(confMngParam) {
 			}
 		}
 	}
+
+
+
 
 
 	/**
@@ -955,6 +1000,7 @@ export function CConfBase2(confMngParam) {
 		var objCtrl = null;
 
 
+
 		// 設定定義をループして、設定欄の状態をもとに変数を同期
 		for (idx = 0; idx < this.confDataObj.length; idx++) {
 
@@ -993,6 +1039,7 @@ export function CConfBase2(confMngParam) {
 				break;
 
 
+
 			// 設定方法がチェック方式の場合
 			case CONTROL_TYPE_CHECKBOX:
 			case CONTROL_TYPE_CHECKBOX_SPECIAL:
@@ -1001,6 +1048,7 @@ export function CConfBase2(confMngParam) {
 				activeConfData.SetData(mappedIndex, HtmlGetObjectCheckedById(controlId, false));
 
 				break;
+
 
 
 			// 設定方法がテキスト方式の場合
@@ -1015,6 +1063,7 @@ export function CConfBase2(confMngParam) {
 				activeConfData.SetData(mappedIndex, objCtrl.value);
 
 				break;
+
 
 
 			// 設定方法が数値入力方式の場合
@@ -1033,6 +1082,7 @@ export function CConfBase2(confMngParam) {
 				break;
 
 
+
 			// 設定方法が特殊方式の場合
 			case CONTROL_TYPE_SPECIAL:
 
@@ -1043,6 +1093,9 @@ export function CConfBase2(confMngParam) {
 			}
 		}
 	}
+
+
+
 
 
 	/**
@@ -1078,6 +1131,9 @@ export function CConfBase2(confMngParam) {
 			this.RefreshControlCSS(instanceData.instanceNo);
 		}
 	}
+
+
+
 
 
 	/**
@@ -1159,6 +1215,9 @@ export function CConfBase2(confMngParam) {
 	}
 
 
+
+
+
 	/**
 	 * 設定欄テーブルのヘッダをリフレッシュする.
 	 */
@@ -1175,6 +1234,7 @@ export function CConfBase2(confMngParam) {
 
 		var objSelect = null;
 		var objTd = null;
+
 
 
 		activeConfData = this.confMngParam.GetActiveConfData();
@@ -1194,6 +1254,9 @@ export function CConfBase2(confMngParam) {
 	}
 
 
+
+
+
 	/**
 	 * 設定欄の選択状態により、コントロールのCSSを変更する.
 	 */
@@ -1208,6 +1271,7 @@ export function CConfBase2(confMngParam) {
 
 		var objSelect = null;
 		var objInput = null;
+
 
 
 		// 設定定義をループして、設定欄の状態をもとに変数を同期
@@ -1243,6 +1307,7 @@ export function CConfBase2(confMngParam) {
 				break;
 
 
+
 			// 設定方法がチェック方式の場合
 			case CONTROL_TYPE_CHECKBOX:
 			case CONTROL_TYPE_CHECKBOX_SPECIAL:
@@ -1263,6 +1328,7 @@ export function CConfBase2(confMngParam) {
 				}
 
 				break;
+
 
 
 			// 設定方法が数値入力方式の場合
@@ -1286,6 +1352,7 @@ export function CConfBase2(confMngParam) {
 				break;
 
 
+
 			// 設定方法が特殊方式の場合
 			case CONTROL_TYPE_SPECIAL:
 
@@ -1298,3 +1365,10 @@ export function CConfBase2(confMngParam) {
 	}
 }
 
+if (typeof window !== 'undefined') {
+    window.CConfBaseSelectData = CConfBaseSelectData;
+    window.CConfBaseConfData = CConfBaseConfData;
+    window.CConfBaseRegisterParam = CConfBaseRegisterParam;
+    window.CConfBaseManagementParam = CConfBaseManagementParam;
+    window.CConfBase2 = CConfBase2;
+}

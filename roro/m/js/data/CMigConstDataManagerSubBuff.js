@@ -1,7 +1,3 @@
-// === AUTO-GENERATED IMPORTS ===
-import { CMigConstDataManagerSubBase } from './CMigConstDataManagerSubBase.js';
-import { CMigEquipableData } from './CMigEquipableData.js';
-// === END AUTO-GENERATED IMPORTS ===
 /**
  * バフデータマネージャクラス.
  */
@@ -34,3 +30,4 @@ export function CMigConstDataManagerSubBuff () {
 
 }
 CMigConstDataManagerSubBuff.prototype = new CMigConstDataManagerSubBase();
+if (typeof window !== 'undefined') { window.CMigConstDataManagerSubBuff = CMigConstDataManagerSubBuff; }

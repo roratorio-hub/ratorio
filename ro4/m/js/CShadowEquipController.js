@@ -1,19 +1,3 @@
-// === AUTO-GENERATED IMPORTS ===
-import '../../../roro/m/js/card.h.js';
-import '../../../roro/m/js/common.js';
-import { MigGetBorderFlagText } from '../../../roro/m/js/data/mig.itemsp.h.js';
-import '../../../roro/m/js/rndopttype.h.js';
-import { g_constDataManager } from './global.js';
-import { CARD_ID_NONE, CardObjNew } from '../../../roro/m/js/card.dat.js';
-import { OnChangeCard } from '../../../roro/m/js/equip.js';
-import { RebuildCardSelectSubCollectEnchListData } from '../../../roro/m/js/hmcard.js';
-import { SetUpRndOptKind, SetUpRndOptValue } from '../../../roro/m/js/hmrndopt.js';
-import { ItemObjNew, g_ItemIdArrayByKind } from '../../../roro/m/js/item.dat.js';
-import { GetRndOptTypeId } from '../../../roro/m/js/item.h.js';
-import { g_rndOptTypeArray } from '../../../roro/m/js/rndopttype.dat.js';
-import { IsMatchJobRestrict } from './data/mig.job.h.js';
-import { HtmlCreateElement, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlSelectObjectValueAsInteger } from '../../../roro/common/js/util.js';
-// === END AUTO-GENERATED IMPORTS ===
 
 /**
  * シャドウ装備コントローラクラス.
@@ -631,6 +615,7 @@ export class CShadowEquipController {
 export const g_shadowEquipController = new CShadowEquipController();
 
 if (typeof window !== 'undefined') {
+    window.CShadowEquipController = CShadowEquipController;
     window.g_shadowEquipController = g_shadowEquipController;
 }
 g_shadowEquipController.initializeHTML();

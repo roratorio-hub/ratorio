@@ -43,4 +43,10 @@ describe('CCustomSelectMapBase.js', () => {
             expect(typeof CCustomSelectMapBase.SortById).toBe('function');
         });
     });
+
+    describe('window互換確認', () => {
+        it('window.CCustomSelectMapBase が設定されている', () => {
+            expect((window as any).CCustomSelectMapBase).toBe(CCustomSelectMapBase);
+        });
+    });
 });

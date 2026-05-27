@@ -1,8 +1,6 @@
 import { vi, describe, it, expect } from 'vitest';
 
 vi.hoisted(() => {
-    // CAttackMethodAreaComponentManager→CSaveController→calchistory.js の $(function(){...}) をモック
-    (globalThis as any).$ = (_fn: any) => {};
     const mockEl = {
         checked: false,
         value: '0',
@@ -14,11 +12,8 @@ vi.hoisted(() => {
         className: '',
         options: [],
         selectedIndex: 0,
-        querySelectorAll: () => [],
-        querySelector: () => null,
-        addEventListener: () => {},
     };
-    vi.spyOn(document, 'getElementById').mockReturnValue(mockEl as any);
+    (document as any).getElementById = () => mockEl;
     (document as any).createElement = () => mockEl;
     (globalThis as any).HtmlRemoveAllChild = () => {};
     (globalThis as any).HtmlCreateElement = () => mockEl;
@@ -38,26 +33,6 @@ vi.hoisted(() => {
         GetMaxLv: () => 10,
         GetSkillId: () => 0,
     };
-});
-
-vi.mock('../../roro/common/js/util.js', async (importActual) => {
-    const actual = await importActual<any>();
-    return { ...actual, HtmlRemoveAllChild: () => {} };
-});
-
-vi.mock('@roro/monstermap.dat.js', async (importActual) => {
-    const actual = await importActual<any>();
-    return {
-        ...actual,
-        MONSTER_MAP_ID_MAP_ALL: -1,
-        get g_MonsterMapDataArray() { return []; },
-        get g_MonsterMapCategoryDataArray() { return []; },
-    };
-});
-
-vi.mock('@roro/monster.dat.js', async (importActual) => {
-    const actual = await importActual<any>();
-    return { ...actual, get MonsterObjNew() { return []; } };
 });
 
 import '@roro/CGlobalConstManager.js';
@@ -151,6 +126,12 @@ describe('CAttackMethodAreaComponentManager.js', () => {
         });
         it('CreateNoticeBlock が関数（DOM依存のため呼び出し不可）', () => {
             expect(typeof CAttackMethodAreaComponentManager.CreateNoticeBlock).toBe('function');
+        });
+    });
+
+    describe('window互換確認', () => {
+        it('window.CAttackMethodAreaComponentManager が設定されている', () => {
+            expect((window as any).CAttackMethodAreaComponentManager).toBe(CAttackMethodAreaComponentManager);
         });
     });
 });

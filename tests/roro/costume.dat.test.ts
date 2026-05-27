@@ -19,4 +19,16 @@ describe('costume.dat.js', () => {
             expect(CostumeOBJ[0][0]).toBe(0);
         });
     });
+
+    describe('window互換確認', () => {
+        it('window.COSTUME_ID_HEAD_UNDER_NONE が設定されている', () => {
+            expect((window as any).COSTUME_ID_HEAD_UNDER_NONE).toBe(COSTUME_ID_HEAD_UNDER_NONE);
+        });
+        it('window.COSTUME_ID_BEGINNER_BO が設定されている', () => {
+            expect((window as any).COSTUME_ID_BEGINNER_BO).toBe(COSTUME_ID_BEGINNER_BO);
+        });
+        it('window.CostumeOBJ が設定されている', () => {
+            expect((window as any).CostumeOBJ).toBe(CostumeOBJ);
+        });
+    });
 });

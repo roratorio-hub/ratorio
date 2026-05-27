@@ -55,4 +55,30 @@ describe('slotpager.js', () => {
         }
     });
 
+    describe('window互換確認', () => {
+        const names = [
+            'SLOTPAGER_MODE_CARD', 'SLOTPAGER_MODE_RNDENCH', 'SLOTPAGER_MODE_RNDOPT',
+            'SLOT_INDEX_CARD_MIN', 'SLOT_INDEX_CARD_MAX',
+            'SLOT_INDEX_COSTUME_MIN', 'SLOT_INDEX_COSTUME_MAX',
+            'SLOT_INDEX_RNDENCH_MIN', 'SLOT_INDEX_RNDENCH_MAX',
+            'GetSlotMode', 'OnClickSlotModeButton',
+            'SaveSlotStateCardAll', 'SaveSlotStateCard', '__SaveSlotStateCard',
+            'BreakSlotOfCardAll', 'BreakSlotOfCard', '__BreakSlotOfCard', '__BreakSlotOfCardShort',
+            'RebuildSlotAsCardAll', 'RebuildSlotAsCard', '__RebuildSlotAsCard', '__RebuildSlotAsCardShort',
+            'LoadSlotStateCardAll', 'LoadSlotStateCard', '__LoadSlotStateCard',
+            'SaveSlotStateCostumeAll', 'SaveSlotStateCostume', '__SaveSlotStateCostume',
+            'BreakSlotOfCostumeAll', 'BreakSlotOfCostume', '__BreakSlotOfCostume',
+            'RebuildSlotAsCostumeAll', 'RebuildSlotAsCostume', '__RebuildSlotAsCostume',
+            'LoadSlotStateCostumeAll', 'LoadSlotStateCostume', '__LoadSlotStateCostume',
+            'SaveSlotStateRndEnchAll', 'SaveSlotStateRndEnch',
+            'BreakSlotOfRndEnchAll', 'BreakSlotOfRndEnch',
+            'RebuildSlotAsRndEnchAll', 'RebuildSlotAsRndEnch', '__RebuildSlotAsRndEnch',
+            'LoadSlotStateRndEnchAll', 'LoadSlotStateRndEnch',
+        ];
+        for (const name of names) {
+            it(`window.${name} が設定されている`, () => {
+                expect(typeof (window as any)[name]).not.toBe('undefined');
+            });
+        }
+    });
 });

@@ -1,6 +1,3 @@
-// === AUTO-GENERATED IMPORTS ===
-import { floorBigInt32, toSafeBigInt } from '../../common/js/util.js';
-// === END AUTO-GENERATED IMPORTS ===
 /**
  * セーブデータの変換を行うクラス.
  */
@@ -150,6 +147,7 @@ CSaveDataConverter.ConvertStoNMIG = function (str) {
 };
 
 
+
 /**
  * マイナスが許容される数値を文字列に変換する.
  * @param value 変換する数値（負数可）
@@ -246,6 +244,7 @@ CSaveDataConverter.ConvertUnsignedToSigned = function (unsignedValue, convlen) {
 };
 
 
+
 /**
  * 文字表現データ文字列を圧縮する（移行用bigint対応版）.
  * @param dataText 文字表現データ文字列
@@ -314,4 +313,6 @@ CSaveDataConverter.ExtractDataTextMIG = function (dataText) {
 	return dataText;
 };
 
-
+if (typeof window !== 'undefined') {
+    window.CSaveDataConverter = CSaveDataConverter;
+}

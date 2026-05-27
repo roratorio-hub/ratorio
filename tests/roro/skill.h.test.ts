@@ -41,4 +41,13 @@ describe('skill.h.js', () => {
             expect(SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_0).toBe(0);
         });
     });
+
+    describe('window互換確認', () => {
+        it('window.SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_100 が設定されている', () => {
+            expect((window as any).SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_100).toBe(4);
+        });
+        it('window.SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_0 が設定されている', () => {
+            expect((window as any).SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_0).toBe(0);
+        });
+    });
 });

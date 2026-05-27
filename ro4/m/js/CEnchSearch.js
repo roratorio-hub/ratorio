@@ -1,9 +1,3 @@
-// === AUTO-GENERATED IMPORTS ===
-import '../../../roro/m/js/common.js';
-import { g_constDataManager } from './global.js';
-import { CardObjNew } from '../../../roro/m/js/card.dat.js';
-import { RebuildCardSelectSubCollectEnchListData } from '../../../roro/m/js/hmcard.js';
-// === END AUTO-GENERATED IMPORTS ===
 export class enchSearch {
     //エンチャント検索
     constructor(){
@@ -331,3 +325,6 @@ export class enchSearch {
 })();
 */
 
+if (typeof window !== 'undefined') {
+    window.enchSearch = enchSearch;
+}

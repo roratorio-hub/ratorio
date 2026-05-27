@@ -1,12 +1,3 @@
-// === AUTO-GENERATED IMPORTS ===
-import '../../../roro/m/js/pet.h.js';
-import { AutoCalc } from './head.js';
-import { CItemInfoManager } from '../../../roro/m/js/CItemInfoManager.js';
-import { GetFriendlityText } from '../../../roro/m/js/common.js';
-import { PET_OBJ } from '../../../roro/m/js/pet.dat.js';
-import { HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueByIdAsInteger, myInnerHtml } from '../../../roro/common/js/util.js';
-// === END AUTO-GENERATED IMPORTS ===
-import { CAttackMethodAreaComponentManager } from './CAttackMethodAreaComponentManager.js';
 "use strict"
 /**
  * 画面下部の「その他の支援/設定」のバフウィンドウ構築関数群
@@ -18,7 +9,6 @@ export const BUFF_CONF_OTHER_LIMIT = 28;
 export let n_A_PassSkill8 = Array(BUFF_CONF_OTHER_LIMIT).fill(0);
 /** その他の支援/設定 ウィンドウ可視状態 */
 export let n_Skill8SW = false;
-export function setN_Skill8SW(v) { n_Skill8SW = v; }
 
 /**
  * その他の支援/設定 を構築する
@@ -28,6 +18,7 @@ export function Click_Skill8SW(){
 	let petDataArrayWork = null;
 	let objSelect = null;
 	n_Skill8SW = document.calcForm.A8_SKILLSW.checked;
+	if (typeof window !== 'undefined') window.n_Skill8SW = n_Skill8SW;
     if(n_Skill8SW){
 		let str;
 		str = '<TABLE Border style="white-space:nowrap;"><TR><TD id="A8TD" Colspan="2" class="title"><input id="OBJID_CHECK_A8_SKILLSW" type="checkbox" name="A8_SKILLSW"onClick="Click_Skill8SW()"><label for="OBJID_CHECK_A8_SKILLSW">その他の支援/設定 (暫定追加機能)</label><SPAN id="A8used"></SPAN></TD></TR>';
@@ -221,5 +212,11 @@ export function RefreshPetExplain() {
 }
 
 if (typeof window !== 'undefined') {
+    window.BUFF_CONF_OTHER_LIMIT = BUFF_CONF_OTHER_LIMIT;
     window.n_A_PassSkill8 = n_A_PassSkill8;
+    window.n_Skill8SW = n_Skill8SW;
+    window.Click_Skill8SW = Click_Skill8SW;
+    window.Click_A8 = Click_A8;
+    window.OnChangePetSelect = OnChangePetSelect;
+    window.RefreshPetExplain = RefreshPetExplain;
 }

@@ -1,12 +1,10 @@
-// === AUTO-GENERATED IMPORTS ===
-import { HtmlCreateElement, HtmlCreateTextNode, HtmlRemoveAllChild } from '../../common/js/util.js';
-// === END AUTO-GENERATED IMPORTS ===
 /**
  * お知らせエリアコンポーネントマネージャクラス.
  */
 export function CNewsAreaComponentManager () {
 
 }
+
 
 
 /**
@@ -53,7 +51,9 @@ CNewsAreaComponentManager.RebuildControls = function () {
 	var objLiSub = null;
 
 
+
 	colspan = 2;
+
 
 
 	// チェックボックスのチェック状態を取得
@@ -61,6 +61,7 @@ CNewsAreaComponentManager.RebuildControls = function () {
 	if (objSwitch) {
 		switchChecked = objSwitch.checked;
 	}
+
 
 
 	// 設定欄を初期化
@@ -74,6 +75,7 @@ CNewsAreaComponentManager.RebuildControls = function () {
 
 	objTbody = document.createElement("tbody");
 	objTable.appendChild(objTbody);
+
 
 
 	// ヘッダ部分を構築
@@ -107,6 +109,7 @@ CNewsAreaComponentManager.RebuildControls = function () {
 //	objLabel.setAttribute("class", "CSSCLS_CONF_USING_MESSAGE_USING");
 
 
+
 	// 設定欄のヘッダ部分をリフレッシュ（着色処理等）
 	CNewsAreaComponentManager.RefreshBattleQuickControlAreaHeader();
 
@@ -114,6 +117,9 @@ CNewsAreaComponentManager.RebuildControls = function () {
 	if (!switchChecked) {
 		return;
 	}
+
+
+
 
 
 	//================================================================================================================================
@@ -163,6 +169,9 @@ CNewsAreaComponentManager.RebuildControls = function () {
 	objAnchor.setAttribute("href", "../kousin/patch20231128.html");
 	objAnchor.setAttribute("target", "_blank");
 	HtmlCreateTextNode("こちら", objAnchor);
+
+
+
 
 
 	//================================================================================================================================
@@ -215,6 +224,7 @@ CNewsAreaComponentManager.RebuildControls = function () {
 };
 
 
+
 /**
  * 展開チェックボックス切り替えイベントハンドラ.
  */
@@ -222,6 +232,7 @@ CNewsAreaComponentManager.OnClickExtractSwitch = function () {
 	// 再構築する
 	CNewsAreaComponentManager.RebuildControls();
 };
+
 
 
 /**
@@ -258,6 +269,7 @@ CNewsAreaComponentManager.RefreshBattleQuickControlAreaHeader = function () {
 };
 
 
+
 /**
  * 設定欄を開く.
  */
@@ -274,6 +286,7 @@ CNewsAreaComponentManager.OpenArea = function () {
 	// 再構築する
 	CNewsAreaComponentManager.RebuildControls();
 };
+
 
 
 /**
@@ -294,7 +307,10 @@ CNewsAreaComponentManager.CloseArea = function () {
 };
 
 
+
 // 初期構築処理
 CNewsAreaComponentManager.RebuildControls();
 
-
+if (typeof window !== 'undefined') {
+	window.CNewsAreaComponentManager = CNewsAreaComponentManager;
+}

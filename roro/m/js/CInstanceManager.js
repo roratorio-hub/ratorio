@@ -13,6 +13,7 @@ export function CInstanceManager () {
 	this.instanceInfoList = [];
 
 
+
 	/**
 	 * インスタンスを登録する.
 	 * @param objInstance 登録するインスタンス
@@ -80,4 +81,6 @@ export function CInstanceManager () {
 	};
 }
 
-
+if (typeof window !== 'undefined') {
+	window.CInstanceManager = CInstanceManager;
+}

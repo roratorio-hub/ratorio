@@ -1417,4 +1417,7 @@ export class CardPrefix {
   }
 }
 
+if (typeof window !== 'undefined') {
+    window.CardPrefix = CardPrefix;
+}
 

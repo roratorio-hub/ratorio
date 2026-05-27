@@ -9,11 +9,9 @@ vi.hoisted(() => {
         style: {},
     };
     (document as any).getElementById = () => mockEl;
-});
-
-vi.mock('../../roro/common/js/util.js', async (importActual) => {
-    const actual = await importActual<any>();
-    return { ...actual, HtmlRemoveAllChild: () => {} };
+    (globalThis as any).HtmlRemoveAllChild = () => {};
+    (globalThis as any).HtmlCreateElement = () => mockEl;
+    (globalThis as any).HtmlCreateTextNode = () => {};
 });
 
 import { CNewsAreaComponentManager } from '@roro/CNewsAreaComponentManager.js';
@@ -37,6 +35,12 @@ describe('CNewsAreaComponentManager.js', () => {
         });
         it('CloseArea が関数', () => {
             expect(typeof CNewsAreaComponentManager.CloseArea).toBe('function');
+        });
+    });
+
+    describe('window互換確認', () => {
+        it('window.CNewsAreaComponentManager が設定されている', () => {
+            expect((window as any).CNewsAreaComponentManager).toBe(CNewsAreaComponentManager);
         });
     });
 });

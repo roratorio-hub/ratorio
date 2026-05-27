@@ -1,36 +1,53 @@
-import { vi, describe, it, expect } from 'vitest';
-
-// vi.hoisted でモジュールロード前に DOM を準備する（静的インポート時に RebuildControls が実行されるため）
-vi.hoisted(() => {
-    // Phase 3b 以降、import チェーンが CShadowEquipController.initializeHTML() に到達する。
-    // OBJID_SHADOW_EQUIPS_MIG 要素が DOM にないと querySelectorAll で失敗するため追加。
-    // また calchistory.js の $(function(){...}) もモックが必要。
-    (globalThis as any).$ = (_fn: any) => {};
-    document.body.innerHTML = '<div id="ID_FLOATING_INFO_AREA"></div><div id="OBJID_SHADOW_EQUIPS_MIG"></div><div id="ID_TIME_ITEM_AREA"></div><div id="ID_BATTLE_QUICK_CONTROL_AREA"></div>';
-});
-
-vi.mock('../../roro/common/js/util.js', async (importActual) => {
-    const actual = await importActual<any>();
-    return { ...actual, HtmlRemoveAllChild: () => {} };
-});
-
-vi.mock('@roro/monstermap.dat.js', async (importActual) => {
-    const actual = await importActual<any>();
-    return {
-        ...actual,
-        MONSTER_MAP_ID_MAP_ALL: -1,
-        get g_MonsterMapDataArray() { return []; },
-        get g_MonsterMapCategoryDataArray() { return []; },
-    };
-});
-
-vi.mock('@roro/monster.dat.js', async (importActual) => {
-    const actual = await importActual<any>();
-    return { ...actual, get MonsterObjNew() { return []; } };
-});
-
+import { describe, it, expect, beforeAll } from 'vitest';
 import '/workspace/ratorio/roro/m/js/CGlobalConstManager.js';
-import { GetFloatingInfoText, CFloatingInfoAreaInfoUnit, CFloatingInfoAreaComponentManager } from '@roro/CFloatingInfoAreaComponentManager.js';
+
+// CFloatingInfoAreaComponentManager.js はモジュールロード時に以下を実行する:
+//   1. new CFloatingInfoAreaInfoUnit() × 7 → new CExtraInfoAreaComponentManager()
+//   2. CFloatingInfoAreaComponentManager.RebuildControls() → DOM 構築 + Html* ユーティリティ呼び出し
+// これらが動く状態にしてから動的インポートする。
+
+// CExtraInfoAreaComponentManager は未移行ファイルのため globalThis にモックを注入
+;(globalThis as any).CExtraInfoAreaComponentManager = function () {};
+;(globalThis as any).CExtraInfoAreaComponentManager.setReferData = () => {};
+;(globalThis as any).CExtraInfoAreaComponentManager.fontSizeClassName = '';
+
+// Html ユーティリティ（common.js 等）のモック
+// 実 DOM 要素を生成・追加するシンプル実装なので getElementById で後から参照できる
+;(globalThis as any).HtmlRemoveAllChild = (obj: Element | null) => {
+    if (!obj) return;
+    while (obj.firstChild) obj.removeChild(obj.firstChild);
+};
+;(globalThis as any).HtmlCreateElement = (tag: string, parent: Element | null) => {
+    const el = document.createElement(tag);
+    if (parent) parent.appendChild(el);
+    return el;
+};
+;(globalThis as any).HtmlCreateTextSpan = (text: string, parent: Element | null, _cls?: string) => {
+    const span = document.createElement('span');
+    if (parent) parent.appendChild(span);
+    return span;
+};
+;(globalThis as any).HtmlCreateElementOption = (value: any, _text: any, parent: Element | null) => {
+    const opt = document.createElement('option');
+    opt.value = String(value);
+    if (parent) parent.appendChild(opt);
+    return opt;
+};
+;(globalThis as any).HtmlCreateTextNode = () => {};
+
+// RebuildControls が getElementById("ID_FLOATING_INFO_AREA") を参照する
+document.body.innerHTML = '<div id="ID_FLOATING_INFO_AREA"></div>';
+
+let GetFloatingInfoText: any;
+let CFloatingInfoAreaInfoUnit: any;
+let CFloatingInfoAreaComponentManager: any;
+
+beforeAll(async () => {
+    const mod = await import('@roro/CFloatingInfoAreaComponentManager.js');
+    GetFloatingInfoText = mod.GetFloatingInfoText;
+    CFloatingInfoAreaInfoUnit = mod.CFloatingInfoAreaInfoUnit;
+    CFloatingInfoAreaComponentManager = mod.CFloatingInfoAreaComponentManager;
+});
 
 describe('CFloatingInfoAreaComponentManager.js', () => {
     describe('エクスポート確認', () => {
@@ -54,5 +71,11 @@ describe('CFloatingInfoAreaComponentManager.js', () => {
         it('RebuildControls が関数', () => { expect(typeof CFloatingInfoAreaComponentManager.RebuildControls).toBe('function'); });
         it('RefreshDispAreaAll が関数', () => { expect(typeof CFloatingInfoAreaComponentManager.RefreshDispAreaAll).toBe('function'); });
         it('LoadFromLocalStorage が関数', () => { expect(typeof CFloatingInfoAreaComponentManager.LoadFromLocalStorage).toBe('function'); });
+    });
+
+    describe('window互換確認', () => {
+        it('window.GetFloatingInfoText が設定されている', () => { expect(typeof (window as any).GetFloatingInfoText).toBe('function'); });
+        it('window.CFloatingInfoAreaInfoUnit が設定されている', () => { expect(typeof (window as any).CFloatingInfoAreaInfoUnit).toBe('function'); });
+        it('window.CFloatingInfoAreaComponentManager が設定されている', () => { expect(typeof (window as any).CFloatingInfoAreaComponentManager).toBe('function'); });
     });
 });

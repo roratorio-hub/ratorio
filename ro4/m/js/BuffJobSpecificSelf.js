@@ -1,68 +1,3 @@
-// === AUTO-GENERATED IMPORTS ===
-import { GetJobName } from './data/mig.job.h.js';
-import { g_constDataManager } from './global.js';
-import { AutoCalc, n_SieldSp, n_SieldSpDum, n_SieldSpNum } from './head.js';
-import { CCharaConfIchizi } from '../../../roro/m/js/CCharaConfIchizi.js';
-import { CCharaConfNizi } from '../../../roro/m/js/CCharaConfNizi.js';
-import { CCharaConfSanzi } from '../../../roro/m/js/CCharaConfSanzi.js';
-import {
-         CARD_ID_HENI_CHIMERA_GALENSIS, CARD_ID_KONTONNO_SIDEWINDER, CARD_ID_SIDEWINDER,
-         CARD_SET_ID_ENCHANT_SHINRINO_KAIHO_SENZAI_SPELL_FIST_1
-} from '../../../roro/m/js/card.dat.js';
-import { CardNumSearch, EquipNumSearch, TimeItemNumSearch } from '../../../roro/m/js/chara.js';
-import { CARD_REGION_ID_HEAD_TOP_ANY } from '../../../roro/m/js/common.js';
-import {
-         ITEM_ID_CIRCUIT_BOARD_OS, ITEM_ID_HIYOKOCHAN, ITEM_ID_HIYOKOCHAN_RENTAL,
-         ITEM_ID_NEIGAN, ITEM_ID_STUFF_OF_PUFFY, ITEM_ID_TOTONO_SHO,
-         ITEM_ID_TOTONO_SHO_T1, ITEM_ID_ZINBAORI, ITEM_SET_ID_SAMAYOUMONONO_HAORI_KASA,
-         ITEM_SET_ID_VALENTINE_BO_HANTAIHANO_AKASHI
-} from '../../../roro/m/js/item.dat.js';
-import { IsGunSeriesArms } from '../../../roro/m/js/item.h.js';
-import { LearnedSkillSearch } from '../../../roro/m/js/learnedskill.js';
-import { SkillObjNew } from '../../../roro/m/js/skill.dat.js';
-import {
-         SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_0,
-         SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_10,
-         SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_100,
-         SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_51,
-         SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_81
-} from '../../../roro/m/js/skill.h.js';
-import {
-         TIME_ITEM_ID_BLUE_RIBBON, TIME_ITEM_ID_DARK_TRIAD,
-         TIME_ITEM_ID_ENCHANT_GOKETSU_SENZAI_KAIHO_SHADOW_CHASER_2,
-         TIME_ITEM_ID_ENCHANT_GOKETSU_SENZAI_KAIHO_WIND_HAWK_3,
-         TIME_ITEM_ID_GULARUSION_UNLIMIT,
-         TIME_ITEM_ID_ILLUSION_ANCIENT_DUGGER_TELECHINESIS_INSTENCE,
-         TIME_ITEM_ID_JITTER_BUG, TIME_ITEM_ID_LEASER_OF_EAGLE_TRUE_SIGHT,
-         TIME_ITEM_ID_TRAVELER_RING_GOKETSU, TIME_ITEM_ID_TRIANGLE_DISASTER,
-         TIME_ITEM_ID_URUNO_KAGO, TIME_ITEM_ID_VNDER_CANMER_SHUCHURYOKU_KOZYO
-} from '../../../roro/m/js/timeitem.dat.js';
-import { HtmlCreateElement, HtmlCreateTextNode, HtmlRemoveOptionAll, HtmlCreateElementOption, myInnerHtml } from '../../../roro/common/js/util.js';
-import {
-         SKILL_ID_ABR_DUAL_CANNON, SKILL_ID_AS_QUICKDRAW, SKILL_ID_ATK_FOR_IRON_NAIL,
-         SKILL_ID_ATK_PLUS_AFTER_SENKO_RENGEKI, SKILL_ID_AURA_BLADE, SKILL_ID_BERSERK,
-         SKILL_ID_CAMOUFLAGE, SKILL_ID_CANCEL_EDP_POISON_ATTACK, SKILL_ID_CHAIN_ACTION,
-         SKILL_ID_COUNT_OF_RG_FOR_BANDING, SKILL_ID_DAICHINO_TAMASHI_KOKA_INUHAKKA_SHOWER,
-         SKILL_ID_DAICHINO_TAMASHI_KOKA_MATATABINO_NEKKO,
-         SKILL_ID_DAICHINO_TAMASHI_KOKA_NYAN_GRASS, SKILL_ID_DOUBLE_ATTACK,
-         SKILL_ID_DRAGONIC_AURA_STATE, SKILL_ID_DRAGON_TRAINING,
-         SKILL_ID_ELEMENTAL_SPIRIT_MASTERY, SKILL_ID_ENERGY_COAT, SKILL_ID_ETERNAL_CHAIN,
-         SKILL_ID_FIGHTING_SPIRIT, SKILL_ID_FU_ELEMENT_OF_FU,
-         SKILL_ID_HOMLV_FOR_PYROCLASTIC, SKILL_ID_HPSPCONF_FOR_GENZYUTSU_ZANGETSU,
-         SKILL_ID_KIHE_SHUREN, SKILL_ID_KIKO, SKILL_ID_KONGO, SKILL_ID_MADOGEAR,
-         SKILL_ID_MAGIC_SETTING_FOR_AUTO_SHADOW_SPELL,
-         SKILL_ID_MAGIC_SETTING_FOR_AUTO_SPELL, SKILL_ID_MAHORYOKU_ZOFUKU,
-         SKILL_ID_OVER_TRUST_MAX, SKILL_ID_RYUSE_RAKKA_MODE,
-         SKILL_ID_SAGENO_TAMASHI_MAHONO_SHUTOKU_LEVEL, SKILL_ID_SANDANSHO,
-         SKILL_ID_SEIMEINO_TAMASHI_KOKA_NOKORI_HP, SKILL_ID_SERE, SKILL_ID_SERE_MODE,
-         SKILL_ID_SERE_SUPPORT_SKILL, SKILL_ID_SHIELD_SPELL_ATK_PLUS,
-         SKILL_ID_SHIELD_SPELL_DEF_PLUS, SKILL_ID_SHIELD_SPELL_REFLECT,
-         SKILL_ID_SHIHO_FU_ZYOTAI, SKILL_ID_SHUCHURYOKU_KOZYO, SKILL_ID_SHUKUFUKU,
-         SKILL_ID_SUPER_NOVICENO_TAMASHI, SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_HI,
-         SKILL_ID_TELECHINESIS_INSTENCE, SKILL_ID_TRUE_SIGHT, SKILL_ID_UNKONO_ZYOTAI,
-         SKILL_ID_UNLIMIT
-} from '../../../roro/m/js/skill.dat.js';
-// === END AUTO-GENERATED IMPORTS ===
 "use strict"
 /**
  * 「職固有自己支援」のバフウィンドウ構築関数群
@@ -73,7 +8,6 @@ export const BUFF_CONF_SELF_LIMIT = 51;
 export let n_A_PassSkill = Array(BUFF_CONF_SELF_LIMIT).fill(0);
 /** 職固有自己支援 ウィンドウ可視状態 */
 export let n_Skill1SW = false;
-export function setN_Skill1SW(v) { n_Skill1SW = v; }
 
 /**
  * 職固有自己支援 チェックボックス生成
@@ -91,6 +25,7 @@ export function Click_PassSkillSW(){
 			</TD></TR>
 		`;
 	n_Skill1SW = document.calcForm.A1_SKILLSW.checked;
+	if (typeof window !== 'undefined') window.n_Skill1SW = n_Skill1SW;
 	if (n_Skill1SW) {
 		let end = passiveSkillIdArray.length -1;
 		let str = table_header;
@@ -857,6 +792,11 @@ export function UsedSkillSearchSubUsedOnly(sklId) {
 }
 
 if (typeof window !== 'undefined') {
+    window.BUFF_CONF_SELF_LIMIT = BUFF_CONF_SELF_LIMIT;
     window.n_A_PassSkill = n_A_PassSkill;
+    window.n_Skill1SW = n_Skill1SW;
+    window.Click_PassSkillSW = Click_PassSkillSW;
+    window.Click_A1 = Click_A1;
     window.UsedSkillSearch = UsedSkillSearch;
+    window.UsedSkillSearchSubUsedOnly = UsedSkillSearchSubUsedOnly;
 }

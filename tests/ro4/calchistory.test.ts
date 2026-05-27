@@ -22,5 +22,9 @@ describe('calchistory.js', () => {
         });
     });
 
-    // Phase 3-sup で window.g_Chart compat ブロックを削除したため window 互換テスト不要
+    describe('window互換確認', () => {
+        it('window.g_Chart が設定されている', () => {
+            expect('g_Chart' in (window as any)).toBe(true);
+        });
+    });
 });

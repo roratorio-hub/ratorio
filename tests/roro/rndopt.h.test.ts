@@ -26,4 +26,10 @@ describe('rndopt.h.js', () => {
             expect(typeof GetRndOptDispName).toBe('function');
         });
     });
+
+    describe('window互換確認', () => {
+        it('window.GetRndOptDispName が設定されている', () => {
+            expect((window as any).GetRndOptDispName).toBe(GetRndOptDispName);
+        });
+    });
 });

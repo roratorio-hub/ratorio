@@ -26,10 +26,15 @@ describe('itemset.h', () => {
 	});
 
 	describe('window互換', () => {
+		it('window.ITEM_SET_PET_ID_OFFSET', () => expect((window as any).ITEM_SET_PET_ID_OFFSET).toBe(ITEM_SET_PET_ID_OFFSET));
+		it('window.ITEMSET_ID_LIMIT_WITH_ITEM', () => expect((window as any).ITEMSET_ID_LIMIT_WITH_ITEM).toBe(200));
+		it('window.ITEMSET_ID_LIMIT_WITH_CARD', () => expect((window as any).ITEMSET_ID_LIMIT_WITH_CARD).toBe(200));
 		it('window.w_SE が配列', () => expect(Array.isArray((window as any).w_SE)).toBe(true));
 		it('window.ItemIdToSetIdMap が配列', () => expect(Array.isArray((window as any).ItemIdToSetIdMap)).toBe(true));
 		it('window.CardIdToSetIdMap が配列', () => expect(Array.isArray((window as any).CardIdToSetIdMap)).toBe(true));
 		it('window.PetIdToSetIdMap が配列', () => expect(Array.isArray((window as any).PetIdToSetIdMap)).toBe(true));
+		it('window.GetItemSetMemberText', () => expect((window as any).GetItemSetMemberText).toBe(GetItemSetMemberText));
+		it('window.CheckAndApplyItemSetEquipping', () => expect((window as any).CheckAndApplyItemSetEquipping).toBe(CheckAndApplyItemSetEquipping));
 	});
 
 	describe('CheckAndApplyItemSetEquipping', () => {

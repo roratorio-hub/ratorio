@@ -1,14 +1,9 @@
 
 
 
+
+
 import { CCustomSelectMapBase } from './CCustomSelectMapBase.js';
-// === AUTO-GENERATED IMPORTS ===
-import './monstermap.h.js';
-import {
-         MONSTER_MAP_ID_CATEGORY_ALL, MONSTER_MAP_ID_CATEGORY_MEMORIAL_DUNGEON,
-         g_MonsterMapCategoryDataArray, g_MonsterMapDataArray
-} from './monstermap.dat.js';
-// === END AUTO-GENERATED IMPORTS ===
 
 /**
  * カスタムセレクトクラス（マップ）.
@@ -17,6 +12,7 @@ export function CCustomSelectMapMap (instanceIdNameC, categorySelectC) {
 
 	// カテゴリ選択セレクトクラスのインスタンス
 	this.categorySelect = null;
+
 
 
 	/**
@@ -39,6 +35,7 @@ export function CCustomSelectMapMap (instanceIdNameC, categorySelectC) {
 	};
 
 
+
 	/**
 	 * データ取得関数.
 	 * @param dataId データID
@@ -47,6 +44,7 @@ export function CCustomSelectMapMap (instanceIdNameC, categorySelectC) {
 	this.GetMonsterMapData = function (dataId) {
 		return g_MonsterMapDataArray[dataId];
 	};
+
 
 
 	/**
@@ -87,8 +85,10 @@ export function CCustomSelectMapMap (instanceIdNameC, categorySelectC) {
 		var selectedCategoryData = null;
 
 
+
 		// 選択中のカテゴリを取得
 		selectedCategoryData = g_MonsterMapCategoryDataArray[this.categorySelect.GetSelectedDataId()];
+
 
 
 		// マップID取得
@@ -123,8 +123,10 @@ export function CCustomSelectMapMap (instanceIdNameC, categorySelectC) {
 		}
 
 
+
 		return true;
 	};
+
 
 
 	/**
@@ -136,6 +138,7 @@ export function CCustomSelectMapMap (instanceIdNameC, categorySelectC) {
 
 		var summaryArray = null;
 		var explainArray = null;
+
 
 
 		// 概要配列
@@ -170,9 +173,11 @@ export function CCustomSelectMapMap (instanceIdNameC, categorySelectC) {
 		];
 
 
+
 		// デフォルト処理関数で処理
 		this.RebuildHelpAreaSubDefault(summaryArray, explainArray, objRoot);
 	};
+
 
 
 	// イニシャライザ呼び出し
@@ -180,5 +185,12 @@ export function CCustomSelectMapMap (instanceIdNameC, categorySelectC) {
 }
 
 CCustomSelectMapMap.prototype = new CCustomSelectMapBase();
+
+if (typeof window !== 'undefined') {
+    window.CCustomSelectMapMap = CCustomSelectMapMap;
+}
+
+
+
 
 

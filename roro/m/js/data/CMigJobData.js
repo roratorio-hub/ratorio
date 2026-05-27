@@ -1,9 +1,5 @@
 
 import { CGlobalConstManager } from '../CGlobalConstManager.js';
-// === AUTO-GENERATED IMPORTS ===
-import { CNameKana } from '../CNameKana.js';
-import { GetBaseLevelMin } from '../../../../ro4/m/js/data/mig.job.h.js';
-// === END AUTO-GENERATED IMPORTS ===
 
 //----------------------------------------------------------------
 // データの要素番号
@@ -247,3 +243,5 @@ export function CMigJobData (dataArrayC) {
 
 
 }
+
+if (typeof window !== 'undefined') { window.CMigJobData = CMigJobData; }

@@ -9,6 +9,13 @@ describe('CInstanceManager', () => {
         });
     });
 
+    describe('window互換確認', () => {
+        it('window.CInstanceManager が設定されている', () => {
+            expect((window as any).CInstanceManager).toBeDefined();
+            expect((window as any).CInstanceManager).toBe(CInstanceManager);
+        });
+    });
+
     describe('registerInstance', () => {
         it('インスタンスを登録して正の数値IDを返す', () => {
             const manager = new (CInstanceManager as any)();

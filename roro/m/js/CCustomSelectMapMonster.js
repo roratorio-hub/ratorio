@@ -1,13 +1,4 @@
 import { CCustomSelectBase } from './CCustomSelectBase.js';
-// === AUTO-GENERATED IMPORTS ===
-import './monster.h.js';
-import './monstermap.h.js';
-import { HtmlCreateElementOption, HtmlRemoveOptionAll } from '../../common/js/util.js';
-import { TranslateAlias } from './alias.h.js';
-import { GetElementText, GetRaceText } from './common.js';
-import { MonsterObjNew } from './monster.dat.js';
-import { MONSTER_MAP_ID_MAP_ALL, g_MonsterMapDataArray } from './monstermap.dat.js';
-// === END AUTO-GENERATED IMPORTS ===
 
 /**
  * カスタムセレクトクラス（モンスター）.
@@ -65,6 +56,7 @@ export function CCustomSelectMapMonster (instanceIdNameC, mapSelectC) {
 		var funcGetLabel = null;
 
 
+
 		// 選択されたマップIDを取得
 		selectedMapId = this.mapSelect.GetSelectedDataId();
 
@@ -87,6 +79,7 @@ export function CCustomSelectMapMonster (instanceIdNameC, mapSelectC) {
 			}
 			break;
 		}
+
 
 
 		// ソートの key を特定する
@@ -174,6 +167,7 @@ export function CCustomSelectMapMonster (instanceIdNameC, mapSelectC) {
 		);
 
 
+
 		// 選択肢全削除
 		HtmlRemoveOptionAll(this.objSelectData);
 
@@ -252,6 +246,7 @@ export function CCustomSelectMapMonster (instanceIdNameC, mapSelectC) {
 		var explainArray = null;
 
 
+
 		// 概要配列
 		summaryArray = [
 			"選択されたマップに出現する「モンスター」を、さらに絞り込む機能です。",
@@ -283,6 +278,7 @@ export function CCustomSelectMapMonster (instanceIdNameC, mapSelectC) {
 				],
 			],
 		];
+
 
 
 		// デフォルト処理関数で処理
@@ -334,6 +330,7 @@ export function CCustomSelectMapMonster (instanceIdNameC, mapSelectC) {
 		var dataNameKana = null;
 		var dataName = 0;
 		var dataKana = 0;
+
 
 
 		// 選択肢全削除
@@ -408,3 +405,6 @@ export function CCustomSelectMapMonster (instanceIdNameC, mapSelectC) {
 
 CCustomSelectMapMonster.prototype = new CCustomSelectBase();
 
+if (typeof window !== 'undefined') {
+    window.CCustomSelectMapMonster = CCustomSelectMapMonster;
+}
