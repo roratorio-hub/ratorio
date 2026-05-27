@@ -1298,3 +1298,11 @@ export function CConfBase2(confMngParam) {
 	}
 }
 
+if (typeof window !== 'undefined') {
+    window.CConfBaseSelectData = CConfBaseSelectData;
+    window.CConfBaseConfData = CConfBaseConfData;
+    window.CConfBaseRegisterParam = CConfBaseRegisterParam;
+    window.CConfBaseManagementParam = CConfBaseManagementParam;
+    window.CConfBase2 = CConfBase2;
+}
+

@@ -739,3 +739,7 @@ export function CConfBase(confArray) {
 	}
 }
 
+if (typeof window !== 'undefined') {
+    window.CConfBase = CConfBase;
+}
+
