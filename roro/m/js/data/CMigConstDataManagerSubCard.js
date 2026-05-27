@@ -1,9 +1,3 @@
-// === AUTO-GENERATED IMPORTS ===
-import '../card.h.js';
-import { CardObjNew } from '../card.dat.js';
-import { CMigConstDataManagerSubBase } from './CMigConstDataManagerSubBase.js';
-import { CMigEquipableData } from './CMigEquipableData.js';
-// === END AUTO-GENERATED IMPORTS ===
 /**
  * カードデータマネージャクラス.
  */
@@ -70,3 +64,4 @@ export function CMigConstDataManagerSubCard () {
 
 }
 CMigConstDataManagerSubCard.prototype = new CMigConstDataManagerSubBase();
+if (typeof window !== 'undefined') { window.CMigConstDataManagerSubCard = CMigConstDataManagerSubCard; }

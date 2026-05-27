@@ -17,6 +17,7 @@ CGlobalConstManager.DefineEnum(
 );
 
 
+
 //----------------------------------------------------------------
 // 攻撃可否フラグ
 //----------------------------------------------------------------
@@ -31,6 +32,9 @@ CGlobalConstManager.DefineEnum(
 );
 
 
+
 export const USABLE_SKILL_ID_CUSTOM_BIAS = 10000;
 
-
+if (typeof window !== 'undefined') {
+	window.USABLE_SKILL_ID_CUSTOM_BIAS = USABLE_SKILL_ID_CUSTOM_BIAS;
+}

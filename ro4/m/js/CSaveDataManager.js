@@ -36,54 +36,6 @@ import {
 	SAVE_DATA_UNIT_TYPE_CHARA_CONF_SPEC_BASIC,
 	SAVE_DATA_UNIT_TYPE_EQUIP_ARROW,
 } from './savedata/CSaveDataUnit.js';
-// === AUTO-GENERATED IMPORTS ===
-import {
-         GetBaseLevelMax,
-         GetBaseLevelMin,
-         GetJobLevelMax,
-         GetStatusMax,
-         IsMatchJobRestrict,
-         IsSameJobClass
-} from './data/mig.job.h.js';
-import '../../../roro/m/js/common.js';
-import '../../../roro/m/js/data/mig.itemsp.h.js';
-import '../../../roro/m/js/item.h.js';
-import { CMonsterMapAreaComponentManager } from './CMonsterMapAreaComponentManager.js';
-import { CShadowEquipController, g_shadowEquipController } from './CShadowEquipController.js';
-import {
-         OBJID_OFFSET_AS_SKILL_ID, OBJID_OFFSET_AS_SKILL_LV, OBJID_OFFSET_AS_SKILL_PROB,
-         OnChangeSettingAutoSpell
-} from './calcautospell.js';
-import {
-         ResetConfDataAllMIG, g_charaData, g_confDataCustomSkillMIG,
-         g_confDataCustomSpecStatusMIG, g_confDataCustomStatusMIG, g_confDataSpecMIG,
-         g_timeItemConf
-} from './global.js';
-import { CalcStatusPoint } from './hmjob.js';
-import { CAttackMethodConf } from '../../../roro/m/js/CAttackMethodConf.js';
-import { CBattleQuickControlAreaComponentManager } from '../../../roro/m/js/CBattleQuickControlAreaComponentManager.js';
-import { CItemInfoManager } from '../../../roro/m/js/CItemInfoManager.js';
-import { SetActiveIndexMobConfInput, SetMobConfInput } from '../../../roro/m/js/CMobConfInput.js';
-import { CTimeItemAreaComponentManager } from '../../../roro/m/js/CTimeItemAreaComponentManager.js';
-import { OnChangeArmsTypeLeft, OnChangeArmsTypeRight, changeJobSettings } from '../../../roro/m/js/equip.js';
-import { RebuildCardSelect, SetCardSlotEnability } from '../../../roro/m/js/hmcard.js';
-import { RebuildRndOptSelect, SetRndOptEnablity } from '../../../roro/m/js/hmrndopt.js';
-import { ItemObjNew } from '../../../roro/m/js/item.dat.js';
-import { OnClickSkillSWLearned, n_A_LearnedSkill } from '../../../roro/m/js/learnedskill.js';
-import { RefreshMobConfBufControlCSS, RefreshMobConfBufSelectAreaHeader, n_B_KYOUKA } from '../../../roro/m/js/mobconfbuf.js';
-import { RefreshMobConfDebufControlCSS, RefreshMobConfDebufSelectAreaHeader, n_B_IJYOU } from '../../../roro/m/js/mobconfdebuf.js';
-import { RefreshMobConfPlayerControlCSS, RefreshMobConfPlayerSelectAreaHeader, n_B_TAISEI } from '../../../roro/m/js/mobconfplayer.js';
-import { GetEquipRndOptTableKind, GetEquipRndOptTableValue, SetEquipRndOptTable } from '../../../roro/m/js/rndopttype.h.js';
-import { SaveSystem } from '../../../roro/m/js/saveload.js';
-import { GetSlotMode, SLOTPAGER_MODE_CARD, SLOT_INDEX_CARD_MIN } from '../../../roro/m/js/slotpager.js';
-import { HtmlGetObjectValueByIdAsInteger, HtmlSetObjectCheckedById, HtmlSetObjectValueById, HtmlSelectObjectValueAsInteger, SetStatefullData, floorBigInt32, floorBigInt40 } from '../../../roro/common/js/util.js';
-import { Click_A1, n_A_PassSkill } from './BuffJobSpecificSelf.js';
-import { Click_A3, n_A_PassSkill3 } from './BuffMusicAndDance.js';
-import { Click_A4, n_A_PassSkill4 } from './BuffGuildAndGospel.js';
-import { Click_A7, n_A_PassSkill7 } from './BuffItemAndFood.js';
-import { Click_A8, n_A_PassSkill8 } from './BuffOtherCategory.js';
-import { CAttackMethodAreaComponentManager } from './CAttackMethodAreaComponentManager.js';
-// === END AUTO-GENERATED IMPORTS ===
 
 /**
  * セーブデータマネージャクラス.
@@ -408,6 +360,7 @@ export class CSaveDataManager {
 			return newUnit;
 		});
 	}
+
 
 
 	/**
@@ -1029,6 +982,7 @@ export class CSaveDataManager {
 		funcCallApplyBuffLv(this, SAVE_DATA_UNIT_TYPE_MOB_DEBUFF, n_B_IJYOU);
 
 
+
 		// TODO: 構造変更後、撤去予定
 
 		// グローバル変数のデータ調整
@@ -1089,6 +1043,8 @@ export class CSaveDataManager {
 		g_confDataCustomSkill.splice(1, spliceArray.length, ...spliceArray);
 		spliceArray = g_confDataCustomSpecStatusMIG.slice(0, 24);
 		g_confDataCustomSpecStatus.splice(1, spliceArray.length, ...spliceArray);
+
+
 
 
 		// 画面表示リフレッシュ処理（既存移植）
@@ -2230,4 +2186,6 @@ export class CSaveDataManager {
 	}
 }
 
-
+if (typeof window !== 'undefined') {
+    window.CSaveDataManager = CSaveDataManager;
+}

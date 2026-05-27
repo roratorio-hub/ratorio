@@ -8,6 +8,12 @@ describe('CBattleCalcResult.js', () => {
         });
     });
 
+    describe('window互換確認', () => {
+        it('window.CBattleCalcResult が設定されている', () => {
+            expect((window as any).CBattleCalcResult).toBe(CBattleCalcResult);
+        });
+    });
+
     describe('インスタンス初期値確認', () => {
         let obj: any;
         beforeEach(() => { obj = new CBattleCalcResult(); });

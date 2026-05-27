@@ -8,9 +8,6 @@ import { CMigConstDataManagerSubItem } from './CMigConstDataManagerSubItem.js';
 import { CMigConstDataManagerSubCard } from './CMigConstDataManagerSubCard.js';
 import { CMigConstDataManagerSubEnchList } from './CMigConstDataManagerSubEnchList.js';
 import { CMigConstDataManagerSubRndOpt } from './CMigConstDataManagerSubRndOpt.js';
-// === AUTO-GENERATED IMPORTS ===
-import '../common.js';
-// === END AUTO-GENERATED IMPORTS ===
 
 /**
  * 定義済みデータ管理クラス.
@@ -181,3 +178,4 @@ export function CMigConstDataManager () {
 
 	this.Initialize();
 }
+if (typeof window !== 'undefined') { window.CMigConstDataManager = CMigConstDataManager; }

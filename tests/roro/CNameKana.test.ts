@@ -9,6 +9,12 @@ describe('CNameKana.js', () => {
         });
     });
 
+    describe('window互換確認', () => {
+        it('window.CNameKana が設定されている', () => {
+            expect((window as any).CNameKana).toBe(CNameKana);
+        });
+    });
+
     describe('DefineEnum 副作用確認', () => {
         it('KANA_TYPE_NORMAL が定義されている', () => {
             expect((globalThis as any).KANA_TYPE_NORMAL).toBeDefined();

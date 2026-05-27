@@ -13,6 +13,12 @@ describe('CSaveDataConverter.js', () => {
         });
     });
 
+    describe('window互換確認', () => {
+        it('window.CSaveDataConverter が設定されている', () => {
+            expect((window as any).CSaveDataConverter).toBe(CSaveDataConverter);
+        });
+    });
+
     describe('静的プロパティ確認', () => {
         it('LetterMappingArray が配列', () => {
             expect(Array.isArray(CSaveDataConverter.LetterMappingArray)).toBe(true);

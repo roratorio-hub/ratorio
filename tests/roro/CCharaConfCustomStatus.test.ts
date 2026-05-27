@@ -35,4 +35,9 @@ describe('CCharaConfCustomStatus.js', () => {
         });
     });
 
+    describe('window互換確認', () => {
+        it('window.CCharaConfCustomStatus が設定されている', () => {
+            expect((window as any).CCharaConfCustomStatus).toBe(CCharaConfCustomStatus);
+        });
+    });
 });

@@ -1,8 +1,3 @@
-// === AUTO-GENERATED IMPORTS ===
-import './CConfBase.js';
-import { COLOR_CODE_TABLE_HEADER_IS_NOT_SET, COLOR_CODE_TABLE_HEADER_IS_SET } from './common.js';
-import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectCheckedById, ValueRangeModify } from '../../common/js/util.js';
-// === END AUTO-GENERATED IMPORTS ===
 
 
 // 対プレイヤー設定の限界値
@@ -80,6 +75,8 @@ export let MOB_CONF_PLAYER_ID_MRES;
 InitMobConfPlayerData();
 
 
+
+
 //================================================================
 // 対プレイヤーデータ定義用ダミー関数
 // （可読性を高める目的で使用する）
@@ -89,6 +86,8 @@ function MobConfPlayerControlType(value) { return value; };
 function MobConfPlayerDefaultValue(value) { return value; };
 function MobConfPlayerMinValue(value) { return value; };
 function MobConfPlayerMaxValue(value) { return value; };
+
+
 
 
 //********************************************************************************************************************************
@@ -113,6 +112,7 @@ function InitMobConfPlayerData() {
 	var indexdefiner = 0;
 
 
+
 	//----------------------------------------------------------------
 	// データインデックス定義
 	//----------------------------------------------------------------
@@ -122,6 +122,7 @@ function InitMobConfPlayerData() {
 	MOB_CONF_PLAYER_DATA_INDEX_DEFAULT_VALUE = indexdefiner++;
 	MOB_CONF_PLAYER_DATA_INDEX_MIN_VALUE = indexdefiner++;
 	MOB_CONF_PLAYER_DATA_INDEX_MAX_VALUE = indexdefiner++;
+
 
 
 	//----------------------------------------------------------------
@@ -140,6 +141,7 @@ function InitMobConfPlayerData() {
 	MobConfPlayerId++;
 
 
+
 	MOB_CONF_PLAYER_ID_DEF_DIV = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
@@ -151,6 +153,7 @@ function InitMobConfPlayerData() {
 	];
 	MobConfPlayerOBJ[MobConfPlayerId] = MobConfPlayerData;
 	MobConfPlayerId++;
+
 
 
 	MOB_CONF_PLAYER_ID_DEF_MINUS = MobConfPlayerId;
@@ -166,6 +169,7 @@ function InitMobConfPlayerData() {
 	MobConfPlayerId++;
 
 
+
 	MOB_CONF_PLAYER_ID_MDEF_DIV = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
@@ -177,6 +181,7 @@ function InitMobConfPlayerData() {
 	];
 	MobConfPlayerOBJ[MobConfPlayerId] = MobConfPlayerData;
 	MobConfPlayerId++;
+
 
 
 	MOB_CONF_PLAYER_ID_MDEF_MINUS = MobConfPlayerId;
@@ -192,6 +197,7 @@ function InitMobConfPlayerData() {
 	MobConfPlayerId++;
 
 
+
 	MOB_CONF_PLAYER_ID_FLEE = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
@@ -203,6 +209,7 @@ function InitMobConfPlayerData() {
 	];
 	MobConfPlayerOBJ[MobConfPlayerId] = MobConfPlayerData;
 	MobConfPlayerId++;
+
 
 
 	MOB_CONF_PLAYER_ID_LUCKY = MobConfPlayerId;
@@ -218,6 +225,7 @@ function InitMobConfPlayerData() {
 	MobConfPlayerId++;
 
 
+
 	MOB_CONF_PLAYER_ID_ZOKUSEI = MobConfPlayerId;	// 7
 	MobConfPlayerData = [
 		MobConfPlayerId,
@@ -229,6 +237,7 @@ function InitMobConfPlayerData() {
 	];
 	MobConfPlayerOBJ[MobConfPlayerId] = MobConfPlayerData;
 	MobConfPlayerId++;
+
 
 
 	MOB_CONF_PLAYER_ID_NINGEN_KEI_TAISEI = MobConfPlayerId;	// 8
@@ -244,6 +253,7 @@ function InitMobConfPlayerData() {
 	MobConfPlayerId++;
 
 
+
 	MOB_CONF_PLAYER_ID_CHUGATA_TAISEI = MobConfPlayerId;	// 9
 	MobConfPlayerData = [
 		MobConfPlayerId,
@@ -255,6 +265,7 @@ function InitMobConfPlayerData() {
 	];
 	MobConfPlayerOBJ[MobConfPlayerId] = MobConfPlayerData;
 	MobConfPlayerId++;
+
 
 
 	MOB_CONF_PLAYER_ID_ENKYORI_BUTSURI_TAISEI = MobConfPlayerId;	// 10
@@ -270,6 +281,7 @@ function InitMobConfPlayerData() {
 	MobConfPlayerId++;
 
 
+
 	MOB_CONF_PLAYER_ID_MU_ZOKUSEI_TAISEI = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
@@ -281,6 +293,7 @@ function InitMobConfPlayerData() {
 	];
 	MobConfPlayerOBJ[MobConfPlayerId] = MobConfPlayerData;
 	MobConfPlayerId++;
+
 
 
 	MOB_CONF_PLAYER_ID_MIZU_ZOKUSEI_TAISEI = MobConfPlayerId;
@@ -296,6 +309,7 @@ function InitMobConfPlayerData() {
 	MobConfPlayerId++;
 
 
+
 	MOB_CONF_PLAYER_ID_CHI_ZOKUSEI_TAISEI = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
@@ -307,6 +321,7 @@ function InitMobConfPlayerData() {
 	];
 	MobConfPlayerOBJ[MobConfPlayerId] = MobConfPlayerData;
 	MobConfPlayerId++;
+
 
 
 	MOB_CONF_PLAYER_ID_HI_ZOKUSEI_TAISEI = MobConfPlayerId;
@@ -322,6 +337,7 @@ function InitMobConfPlayerData() {
 	MobConfPlayerId++;
 
 
+
 	MOB_CONF_PLAYER_ID_KAZE_ZOKUSEI_TAISEI = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
@@ -333,6 +349,7 @@ function InitMobConfPlayerData() {
 	];
 	MobConfPlayerOBJ[MobConfPlayerId] = MobConfPlayerData;
 	MobConfPlayerId++;
+
 
 
 	MOB_CONF_PLAYER_ID_DOKU_ZOKUSEI_TAISEI = MobConfPlayerId;
@@ -348,6 +365,7 @@ function InitMobConfPlayerData() {
 	MobConfPlayerId++;
 
 
+
 	MOB_CONF_PLAYER_ID_SEI_ZOKUSEI_TAISEI = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
@@ -359,6 +377,7 @@ function InitMobConfPlayerData() {
 	];
 	MobConfPlayerOBJ[MobConfPlayerId] = MobConfPlayerData;
 	MobConfPlayerId++;
+
 
 
 	MOB_CONF_PLAYER_ID_YAMI_ZOKUSEI_TAISEI = MobConfPlayerId;
@@ -374,6 +393,7 @@ function InitMobConfPlayerData() {
 	MobConfPlayerId++;
 
 
+
 	MOB_CONF_PLAYER_ID_NEN_ZOKUSEI_TAISEI = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
@@ -385,6 +405,7 @@ function InitMobConfPlayerData() {
 	];
 	MobConfPlayerOBJ[MobConfPlayerId] = MobConfPlayerData;
 	MobConfPlayerId++;
+
 
 
 	MOB_CONF_PLAYER_ID_FUSHI_ZOKUSEI_TAISEI = MobConfPlayerId;
@@ -400,6 +421,7 @@ function InitMobConfPlayerData() {
 	MobConfPlayerId++;
 
 
+
 	MOB_CONF_PLAYER_ID_IPPAN_MONSTER_TAISEI = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
@@ -411,6 +433,7 @@ function InitMobConfPlayerData() {
 	];
 	MobConfPlayerOBJ[MobConfPlayerId] = MobConfPlayerData;
 	MobConfPlayerId++;
+
 
 
 	MOB_CONF_PLAYER_ID_ZOKUSEI_MONSTER_TAISEI = MobConfPlayerId;
@@ -426,6 +449,7 @@ function InitMobConfPlayerData() {
 	MobConfPlayerId++;
 
 
+
 	MOB_CONF_PLAYER_ID_BUTSURI_TAISEI = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
@@ -437,6 +461,7 @@ function InitMobConfPlayerData() {
 	];
 	MobConfPlayerOBJ[MobConfPlayerId] = MobConfPlayerData;
 	MobConfPlayerId++;
+
 
 
 	MOB_CONF_PLAYER_ID_MAHOU_TAISEI = MobConfPlayerId;
@@ -452,6 +477,7 @@ function InitMobConfPlayerData() {
 	MobConfPlayerId++;
 
 
+
 	MOB_CONF_PLAYER_ID_DORAM_KEI_TAISEI = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
@@ -463,6 +489,7 @@ function InitMobConfPlayerData() {
 	];
 	MobConfPlayerOBJ[MobConfPlayerId] = MobConfPlayerData;
 	MobConfPlayerId++;
+
 
 
 	MOB_CONF_PLAYER_ID_ENERGY_COAT = MobConfPlayerId;
@@ -478,6 +505,7 @@ function InitMobConfPlayerData() {
 	MobConfPlayerId++;
 
 
+
 	MOB_CONF_PLAYER_ID_HANSHA_1 = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
@@ -489,6 +517,7 @@ function InitMobConfPlayerData() {
 	];
 	MobConfPlayerOBJ[MobConfPlayerId] = MobConfPlayerData;
 	MobConfPlayerId++;
+
 
 
 	MOB_CONF_PLAYER_ID_HANSHA_2 = MobConfPlayerId;
@@ -504,6 +533,7 @@ function InitMobConfPlayerData() {
 	MobConfPlayerId++;
 
 
+
 	MOB_CONF_PLAYER_ID_BASE_LV = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
@@ -515,6 +545,7 @@ function InitMobConfPlayerData() {
 	];
 	MobConfPlayerOBJ[MobConfPlayerId] = MobConfPlayerData;
 	MobConfPlayerId++;
+
 
 
 	MOB_CONF_PLAYER_ID_STR = MobConfPlayerId;
@@ -530,6 +561,7 @@ function InitMobConfPlayerData() {
 	MobConfPlayerId++;
 
 
+
 	MOB_CONF_PLAYER_ID_AGI = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
@@ -541,6 +573,7 @@ function InitMobConfPlayerData() {
 	];
 	MobConfPlayerOBJ[MobConfPlayerId] = MobConfPlayerData;
 	MobConfPlayerId++;
+
 
 
 	MOB_CONF_PLAYER_ID_VIT = MobConfPlayerId;
@@ -556,6 +589,7 @@ function InitMobConfPlayerData() {
 	MobConfPlayerId++;
 
 
+
 	MOB_CONF_PLAYER_ID_INT = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
@@ -567,6 +601,7 @@ function InitMobConfPlayerData() {
 	];
 	MobConfPlayerOBJ[MobConfPlayerId] = MobConfPlayerData;
 	MobConfPlayerId++;
+
 
 
 	MOB_CONF_PLAYER_ID_DEX = MobConfPlayerId;
@@ -582,6 +617,7 @@ function InitMobConfPlayerData() {
 	MobConfPlayerId++;
 
 
+
 	MOB_CONF_PLAYER_ID_LUK = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
@@ -593,6 +629,7 @@ function InitMobConfPlayerData() {
 	];
 	MobConfPlayerOBJ[MobConfPlayerId] = MobConfPlayerData;
 	MobConfPlayerId++;
+
 
 
 	MOB_CONF_PLAYER_ID_SHOZIZYURYO_GENZAI = MobConfPlayerId;
@@ -608,6 +645,7 @@ function InitMobConfPlayerData() {
 	MobConfPlayerId++;
 
 
+
 	MOB_CONF_PLAYER_ID_SHOZIZYURYO_SAIDAI = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
@@ -621,6 +659,7 @@ function InitMobConfPlayerData() {
 	MobConfPlayerId++;
 
 
+
 	MOB_CONF_PLAYER_ID_SENTO_AREA_NONE = 0;
 	MOB_CONF_PLAYER_ID_SENTO_AREA_GVG = 1;
 	MOB_CONF_PLAYER_ID_SENTO_AREA_PVP = 2;
@@ -631,6 +670,7 @@ function InitMobConfPlayerData() {
 	MOB_CONF_PLAYER_ID_SENTO_AREA_YE_GVG_TE = 7;
 	MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM = 8;
 	MOB_CONF_PLAYER_ID_SENTO_AREA_YE_SHINKIRO = 9;
+
 
 
 	MOB_CONF_PLAYER_ID_SENTO_AREA = MobConfPlayerId;
@@ -646,6 +686,7 @@ function InitMobConfPlayerData() {
 	MobConfPlayerId++;
 
 
+
 	MOB_CONF_PLAYER_ID_KOGATA_TAISEI = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
@@ -657,6 +698,7 @@ function InitMobConfPlayerData() {
 	];
 	MobConfPlayerOBJ[MobConfPlayerId] = MobConfPlayerData;
 	MobConfPlayerId++;
+
 
 
 	MOB_CONF_PLAYER_ID_SHUZOKU_HUMAN = 0;
@@ -675,6 +717,7 @@ function InitMobConfPlayerData() {
 	MobConfPlayerId++;
 
 
+
 	MOB_CONF_PLAYER_ID_RES = MobConfPlayerId;
 	MobConfPlayerData = [
 		MobConfPlayerId,
@@ -686,6 +729,7 @@ function InitMobConfPlayerData() {
 	];
 	MobConfPlayerOBJ[MobConfPlayerId] = MobConfPlayerData;
 	MobConfPlayerId++;
+
 
 
 	MOB_CONF_PLAYER_ID_MRES = MobConfPlayerId;
@@ -701,12 +745,14 @@ function InitMobConfPlayerData() {
 	MobConfPlayerId++;
 
 
+
 	//----------------------------------------------------------------
 	// データ定義数チェック
 	//----------------------------------------------------------------
 	if (MOB_CONF_PLAYER_LIMIT < MobConfPlayerOBJ.length) {
 		alert("対プレイヤー設定　定義数超過");
 	}
+
 
 
 	//----------------------------------------------------------------
@@ -720,6 +766,7 @@ function InitMobConfPlayerData() {
 			n_B_TAISEI[idx] = 0;
 		}
 	}
+
 
 
 	//----------------------------------------------------------------
@@ -774,6 +821,8 @@ function InitMobConfPlayerData() {
 }
 
 
+
+
 /**
  * 対プレイヤー設定テーブルを構築する.
  * @param objRoot テーブルの親オブジェクト
@@ -802,6 +851,7 @@ export function BuildUpMobConfPlayerSelectArea(objRoot, bAsExpand) {
 	var objLabel = null;
 
 
+
 	// 引数のルートオブジェクト配下を一度全削除
 	HtmlRemoveAllChild(objRoot);
 
@@ -813,6 +863,7 @@ export function BuildUpMobConfPlayerSelectArea(objRoot, bAsExpand) {
 
 	objTbody = document.createElement("tbody");
 	objTable.appendChild(objTbody);
+
 
 
 	// 設定欄テーブルのヘッダ部分を生成
@@ -839,6 +890,7 @@ export function BuildUpMobConfPlayerSelectArea(objRoot, bAsExpand) {
 	HtmlCreateTextNode("対プレイヤー設定", objLabel);
 
 
+
 	// 展開表示でなければ、ヘッダだけ更新して終了
 	if (!bAsExpand) {
 		// ヘッダ更新
@@ -848,6 +900,7 @@ export function BuildUpMobConfPlayerSelectArea(objRoot, bAsExpand) {
 	}
 
 
+
 	// 対プレイヤー設定定義をループして、設定欄を構築する
 	for (idx = 0; idx < MobConfPlayerOBJ.length; idx++) {
 
@@ -855,9 +908,11 @@ export function BuildUpMobConfPlayerSelectArea(objRoot, bAsExpand) {
 		confId = MobConfPlayerOBJ[idx][MOB_CONF_PLAYER_DATA_INDEX_ID];
 
 
+
 		// 設定欄用のテーブル行を生成
 		objTr = document.createElement("tr");
 		objTbody.appendChild(objTr);
+
 
 
 		// 表示名の欄を生成
@@ -869,11 +924,13 @@ export function BuildUpMobConfPlayerSelectArea(objRoot, bAsExpand) {
 		objTd.appendChild(objText);
 
 
+
 		// 設定値の欄を生成
 		objTd = document.createElement("td");
 		objTr.appendChild(objTd);
 
 		controlType = MobConfPlayerOBJ[idx][MOB_CONF_PLAYER_DATA_INDEX_CONTROL_TYPE];
+
 
 
 		// 設定方法が数値選択方式の場合
@@ -899,6 +956,7 @@ export function BuildUpMobConfPlayerSelectArea(objRoot, bAsExpand) {
 			break;
 
 
+
 		// 設定方法がチェック方式の場合
 		case CONTROL_TYPE_CHECKBOX:
 
@@ -917,6 +975,7 @@ export function BuildUpMobConfPlayerSelectArea(objRoot, bAsExpand) {
 			break;
 
 
+
 		// 設定方法が数値入力方式の場合
 		case CONTROL_TYPE_TEXTBOX_NUMBER:
 
@@ -932,6 +991,7 @@ export function BuildUpMobConfPlayerSelectArea(objRoot, bAsExpand) {
 			objInput.setAttribute("value", MobConfPlayerOBJ[idx][MOB_CONF_PLAYER_DATA_INDEX_DEFAULT_VALUE]);
 
 			break;
+
 
 
 		// 設定方法が特殊方式の場合
@@ -1037,12 +1097,15 @@ export function BuildUpMobConfPlayerSelectArea(objRoot, bAsExpand) {
 	}
 
 
+
 	// 変数の値をもとに、設定欄の各コントロールを同期
 	SyncronizeMobConfPlayerSettingsVarToCtrl();
 
 	// ヘッダ更新
 	RefreshMobConfPlayerSelectAreaHeader();
 }
+
+
 
 
 /**
@@ -1059,11 +1122,13 @@ export function SyncronizeMobConfPlayerSettingsVarToCtrl() {
 	var objInput = null;
 
 
+
 	// 対プレイヤー設定定義をループして、設定欄の状態を同期
 	for (idx = 0; idx < MobConfPlayerOBJ.length; idx++) {
 
 		confId = MobConfPlayerOBJ[idx][MOB_CONF_PLAYER_DATA_INDEX_ID];
 		controlType = MobConfPlayerOBJ[idx][MOB_CONF_PLAYER_DATA_INDEX_CONTROL_TYPE];
+
 
 
 		switch (controlType) {
@@ -1076,6 +1141,7 @@ export function SyncronizeMobConfPlayerSettingsVarToCtrl() {
 			objSelect.value = n_B_TAISEI[confId];
 
 			break;
+
 
 
 		// 設定方法がチェック方式の場合
@@ -1094,6 +1160,7 @@ export function SyncronizeMobConfPlayerSettingsVarToCtrl() {
 			break;
 
 
+
 		// 設定方法が数値入力方式の場合
 		case CONTROL_TYPE_TEXTBOX_NUMBER:
 		case CONTROL_TYPE_TEXTBOX_SPECIAL:
@@ -1102,6 +1169,7 @@ export function SyncronizeMobConfPlayerSettingsVarToCtrl() {
 			objInput.value = n_B_TAISEI[confId];
 
 			break;
+
 
 
 		// 設定方法が特殊方式の場合
@@ -1114,6 +1182,8 @@ export function SyncronizeMobConfPlayerSettingsVarToCtrl() {
 		}
 	}
 }
+
+
 
 
 /**
@@ -1133,11 +1203,13 @@ export function SyncronizeMobConfPlayerSettingsCtrlToVar() {
 	var objInput = null;
 
 
+
 	// 対プレイヤー設定定義をループして、設定欄の状態をもとに変数を同期
 	for (idx = 0; idx < MobConfPlayerOBJ.length; idx++) {
 
 		confId = MobConfPlayerOBJ[idx][MOB_CONF_PLAYER_DATA_INDEX_ID];
 		controlType = MobConfPlayerOBJ[idx][MOB_CONF_PLAYER_DATA_INDEX_CONTROL_TYPE];
+
 
 
 		switch (controlType) {
@@ -1152,6 +1224,7 @@ export function SyncronizeMobConfPlayerSettingsCtrlToVar() {
 			break;
 
 
+
 		// 設定方法がチェック方式の場合
 		case CONTROL_TYPE_CHECKBOX:
 		case CONTROL_TYPE_CHECKBOX_SPECIAL:
@@ -1159,6 +1232,7 @@ export function SyncronizeMobConfPlayerSettingsCtrlToVar() {
 			n_B_TAISEI[confId] = HtmlGetObjectCheckedById("OBJID_INPUT_MOB_CONF_PLAYER_" + confId, false);
 
 			break;
+
 
 
 		// 設定方法が数値入力方式の場合
@@ -1177,6 +1251,7 @@ export function SyncronizeMobConfPlayerSettingsCtrlToVar() {
 			break;
 
 
+
 		// 設定方法が特殊方式の場合
 		case CONTROL_TYPE_SPECIAL:
 
@@ -1187,6 +1262,8 @@ export function SyncronizeMobConfPlayerSettingsCtrlToVar() {
 		}
 	}
 }
+
+
 
 
 /**
@@ -1208,6 +1285,8 @@ export function OnClickMobConfPlayerSwitch() {
 		RefreshMobConfPlayerControlCSS();
 	}
 }
+
+
 
 
 /**
@@ -1232,6 +1311,8 @@ export function OnChangeMobConfPlayer(bCalc) {
 }
 
 
+
+
 /**
  * 対プレイヤー設定テーブルのヘッダをリフレッシュする.
  */
@@ -1247,6 +1328,7 @@ export function RefreshMobConfPlayerSelectAreaHeader() {
 	var objTd = null;
 
 
+
 	// 対プレイヤー設定定義をループして、設定欄の状態を検査
 	for (idx = 0; idx < MobConfPlayerOBJ.length; idx++) {
 
@@ -1259,6 +1341,7 @@ export function RefreshMobConfPlayerSelectAreaHeader() {
 	}
 
 
+
 	// 設定状況に応じて、ヘッダ部分の表示を更新
 	objTd = document.getElementById("OBJID_TD_MOB_CONF_PLAYER_HEADER");
 	if (bSet) {
@@ -1268,6 +1351,8 @@ export function RefreshMobConfPlayerSelectAreaHeader() {
 		objTd.setAttribute("bgcolor", COLOR_CODE_TABLE_HEADER_IS_NOT_SET);
 	}
 }
+
+
 
 
 /**
@@ -1284,11 +1369,13 @@ export function RefreshMobConfPlayerControlCSS() {
 	var objInput = null;
 
 
+
 	// 対プレイヤー設定定義をループして、設定欄の状態をもとに変数を同期
 	for (idx = 0; idx < MobConfPlayerOBJ.length; idx++) {
 
 		confId = MobConfPlayerOBJ[idx][MOB_CONF_PLAYER_DATA_INDEX_ID];
 		controlType = MobConfPlayerOBJ[idx][MOB_CONF_PLAYER_DATA_INDEX_CONTROL_TYPE];
+
 
 
 		switch (controlType) {
@@ -1310,6 +1397,7 @@ export function RefreshMobConfPlayerControlCSS() {
 			}
 
 			break;
+
 
 
 		// 設定方法がチェック方式の場合
@@ -1334,6 +1422,7 @@ export function RefreshMobConfPlayerControlCSS() {
 			break;
 
 
+
 		// 設定方法が数値入力方式の場合
 		case CONTROL_TYPE_TEXTBOX_NUMBER:
 		case CONTROL_TYPE_TEXTBOX_SPECIAL:
@@ -1353,6 +1442,7 @@ export function RefreshMobConfPlayerControlCSS() {
 			break;
 
 
+
 		// 設定方法が特殊方式の場合
 		case CONTROL_TYPE_SPECIAL:
 
@@ -1364,4 +1454,76 @@ export function RefreshMobConfPlayerControlCSS() {
 	}
 }
 
-
+if (typeof window !== 'undefined') {
+	window.MOB_CONF_PLAYER_LIMIT = MOB_CONF_PLAYER_LIMIT;
+	window.n_B_TAISEI = n_B_TAISEI;
+	window.MobConfPlayerOBJ = MobConfPlayerOBJ;
+	window.MOB_CONF_PLAYER_DATA_INDEX_ID = MOB_CONF_PLAYER_DATA_INDEX_ID;
+	window.MOB_CONF_PLAYER_DATA_INDEX_TEXT = MOB_CONF_PLAYER_DATA_INDEX_TEXT;
+	window.MOB_CONF_PLAYER_DATA_INDEX_CONTROL_TYPE = MOB_CONF_PLAYER_DATA_INDEX_CONTROL_TYPE;
+	window.MOB_CONF_PLAYER_DATA_INDEX_DEFAULT_VALUE = MOB_CONF_PLAYER_DATA_INDEX_DEFAULT_VALUE;
+	window.MOB_CONF_PLAYER_DATA_INDEX_MIN_VALUE = MOB_CONF_PLAYER_DATA_INDEX_MIN_VALUE;
+	window.MOB_CONF_PLAYER_DATA_INDEX_MAX_VALUE = MOB_CONF_PLAYER_DATA_INDEX_MAX_VALUE;
+	window.MOB_CONF_PLAYER_ID_MAXHP = MOB_CONF_PLAYER_ID_MAXHP;
+	window.MOB_CONF_PLAYER_ID_DEF_DIV = MOB_CONF_PLAYER_ID_DEF_DIV;
+	window.MOB_CONF_PLAYER_ID_DEF_MINUS = MOB_CONF_PLAYER_ID_DEF_MINUS;
+	window.MOB_CONF_PLAYER_ID_MDEF_DIV = MOB_CONF_PLAYER_ID_MDEF_DIV;
+	window.MOB_CONF_PLAYER_ID_MDEF_MINUS = MOB_CONF_PLAYER_ID_MDEF_MINUS;
+	window.MOB_CONF_PLAYER_ID_FLEE = MOB_CONF_PLAYER_ID_FLEE;
+	window.MOB_CONF_PLAYER_ID_LUCKY = MOB_CONF_PLAYER_ID_LUCKY;
+	window.MOB_CONF_PLAYER_ID_ZOKUSEI = MOB_CONF_PLAYER_ID_ZOKUSEI;
+	window.MOB_CONF_PLAYER_ID_NINGEN_KEI_TAISEI = MOB_CONF_PLAYER_ID_NINGEN_KEI_TAISEI;
+	window.MOB_CONF_PLAYER_ID_CHUGATA_TAISEI = MOB_CONF_PLAYER_ID_CHUGATA_TAISEI;
+	window.MOB_CONF_PLAYER_ID_ENKYORI_BUTSURI_TAISEI = MOB_CONF_PLAYER_ID_ENKYORI_BUTSURI_TAISEI;
+	window.MOB_CONF_PLAYER_ID_MU_ZOKUSEI_TAISEI = MOB_CONF_PLAYER_ID_MU_ZOKUSEI_TAISEI;
+	window.MOB_CONF_PLAYER_ID_MIZU_ZOKUSEI_TAISEI = MOB_CONF_PLAYER_ID_MIZU_ZOKUSEI_TAISEI;
+	window.MOB_CONF_PLAYER_ID_CHI_ZOKUSEI_TAISEI = MOB_CONF_PLAYER_ID_CHI_ZOKUSEI_TAISEI;
+	window.MOB_CONF_PLAYER_ID_HI_ZOKUSEI_TAISEI = MOB_CONF_PLAYER_ID_HI_ZOKUSEI_TAISEI;
+	window.MOB_CONF_PLAYER_ID_KAZE_ZOKUSEI_TAISEI = MOB_CONF_PLAYER_ID_KAZE_ZOKUSEI_TAISEI;
+	window.MOB_CONF_PLAYER_ID_DOKU_ZOKUSEI_TAISEI = MOB_CONF_PLAYER_ID_DOKU_ZOKUSEI_TAISEI;
+	window.MOB_CONF_PLAYER_ID_SEI_ZOKUSEI_TAISEI = MOB_CONF_PLAYER_ID_SEI_ZOKUSEI_TAISEI;
+	window.MOB_CONF_PLAYER_ID_YAMI_ZOKUSEI_TAISEI = MOB_CONF_PLAYER_ID_YAMI_ZOKUSEI_TAISEI;
+	window.MOB_CONF_PLAYER_ID_NEN_ZOKUSEI_TAISEI = MOB_CONF_PLAYER_ID_NEN_ZOKUSEI_TAISEI;
+	window.MOB_CONF_PLAYER_ID_FUSHI_ZOKUSEI_TAISEI = MOB_CONF_PLAYER_ID_FUSHI_ZOKUSEI_TAISEI;
+	window.MOB_CONF_PLAYER_ID_IPPAN_MONSTER_TAISEI = MOB_CONF_PLAYER_ID_IPPAN_MONSTER_TAISEI;
+	window.MOB_CONF_PLAYER_ID_ZOKUSEI_MONSTER_TAISEI = MOB_CONF_PLAYER_ID_ZOKUSEI_MONSTER_TAISEI;
+	window.MOB_CONF_PLAYER_ID_BUTSURI_TAISEI = MOB_CONF_PLAYER_ID_BUTSURI_TAISEI;
+	window.MOB_CONF_PLAYER_ID_MAHOU_TAISEI = MOB_CONF_PLAYER_ID_MAHOU_TAISEI;
+	window.MOB_CONF_PLAYER_ID_DORAM_KEI_TAISEI = MOB_CONF_PLAYER_ID_DORAM_KEI_TAISEI;
+	window.MOB_CONF_PLAYER_ID_ENERGY_COAT = MOB_CONF_PLAYER_ID_ENERGY_COAT;
+	window.MOB_CONF_PLAYER_ID_HANSHA_1 = MOB_CONF_PLAYER_ID_HANSHA_1;
+	window.MOB_CONF_PLAYER_ID_HANSHA_2 = MOB_CONF_PLAYER_ID_HANSHA_2;
+	window.MOB_CONF_PLAYER_ID_BASE_LV = MOB_CONF_PLAYER_ID_BASE_LV;
+	window.MOB_CONF_PLAYER_ID_STR = MOB_CONF_PLAYER_ID_STR;
+	window.MOB_CONF_PLAYER_ID_AGI = MOB_CONF_PLAYER_ID_AGI;
+	window.MOB_CONF_PLAYER_ID_VIT = MOB_CONF_PLAYER_ID_VIT;
+	window.MOB_CONF_PLAYER_ID_INT = MOB_CONF_PLAYER_ID_INT;
+	window.MOB_CONF_PLAYER_ID_DEX = MOB_CONF_PLAYER_ID_DEX;
+	window.MOB_CONF_PLAYER_ID_LUK = MOB_CONF_PLAYER_ID_LUK;
+	window.MOB_CONF_PLAYER_ID_SHOZIZYURYO_GENZAI = MOB_CONF_PLAYER_ID_SHOZIZYURYO_GENZAI;
+	window.MOB_CONF_PLAYER_ID_SHOZIZYURYO_SAIDAI = MOB_CONF_PLAYER_ID_SHOZIZYURYO_SAIDAI;
+	window.MOB_CONF_PLAYER_ID_SENTO_AREA_NONE = MOB_CONF_PLAYER_ID_SENTO_AREA_NONE;
+	window.MOB_CONF_PLAYER_ID_SENTO_AREA_GVG = MOB_CONF_PLAYER_ID_SENTO_AREA_GVG;
+	window.MOB_CONF_PLAYER_ID_SENTO_AREA_PVP = MOB_CONF_PLAYER_ID_SENTO_AREA_PVP;
+	window.MOB_CONF_PLAYER_ID_SENTO_AREA_URDR = MOB_CONF_PLAYER_ID_SENTO_AREA_URDR;
+	window.MOB_CONF_PLAYER_ID_SENTO_AREA_YE = MOB_CONF_PLAYER_ID_SENTO_AREA_YE;
+	window.MOB_CONF_PLAYER_ID_SENTO_AREA_MH = MOB_CONF_PLAYER_ID_SENTO_AREA_MH;
+	window.MOB_CONF_PLAYER_ID_SENTO_AREA_GVG_TE = MOB_CONF_PLAYER_ID_SENTO_AREA_GVG_TE;
+	window.MOB_CONF_PLAYER_ID_SENTO_AREA_YE_GVG_TE = MOB_CONF_PLAYER_ID_SENTO_AREA_YE_GVG_TE;
+	window.MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM = MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM;
+	window.MOB_CONF_PLAYER_ID_SENTO_AREA_YE_SHINKIRO = MOB_CONF_PLAYER_ID_SENTO_AREA_YE_SHINKIRO;
+	window.MOB_CONF_PLAYER_ID_SENTO_AREA = MOB_CONF_PLAYER_ID_SENTO_AREA;
+	window.MOB_CONF_PLAYER_ID_KOGATA_TAISEI = MOB_CONF_PLAYER_ID_KOGATA_TAISEI;
+	window.MOB_CONF_PLAYER_ID_SHUZOKU_HUMAN = MOB_CONF_PLAYER_ID_SHUZOKU_HUMAN;
+	window.MOB_CONF_PLAYER_ID_SHUZOKU_DORAM = MOB_CONF_PLAYER_ID_SHUZOKU_DORAM;
+	window.MOB_CONF_PLAYER_ID_SHUZOKU = MOB_CONF_PLAYER_ID_SHUZOKU;
+	window.MOB_CONF_PLAYER_ID_RES = MOB_CONF_PLAYER_ID_RES;
+	window.MOB_CONF_PLAYER_ID_MRES = MOB_CONF_PLAYER_ID_MRES;
+	window.BuildUpMobConfPlayerSelectArea = BuildUpMobConfPlayerSelectArea;
+	window.SyncronizeMobConfPlayerSettingsVarToCtrl = SyncronizeMobConfPlayerSettingsVarToCtrl;
+	window.SyncronizeMobConfPlayerSettingsCtrlToVar = SyncronizeMobConfPlayerSettingsCtrlToVar;
+	window.OnClickMobConfPlayerSwitch = OnClickMobConfPlayerSwitch;
+	window.OnChangeMobConfPlayer = OnChangeMobConfPlayer;
+	window.RefreshMobConfPlayerSelectAreaHeader = RefreshMobConfPlayerSelectAreaHeader;
+	window.RefreshMobConfPlayerControlCSS = RefreshMobConfPlayerControlCSS;
+}

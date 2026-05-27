@@ -1,63 +1,3 @@
-// === AUTO-GENERATED IMPORTS ===
-import './card.h.js';
-import { MigGetBorderFlagText } from './data/mig.itemsp.h.js';
-import { g_constDataManager } from '../../../ro4/m/js/global.js';
-import {
-         CARD_ID_ARCHER_SKELETON, CARD_ID_ENCHANT_ARMS_ELEMENT_DARK,
-         CARD_ID_ENCHANT_ARMS_ELEMENT_EARTH, CARD_ID_ENCHANT_ARMS_ELEMENT_FIRE,
-         CARD_ID_ENCHANT_ARMS_ELEMENT_HOLY, CARD_ID_ENCHANT_ARMS_ELEMENT_POISON,
-         CARD_ID_ENCHANT_ARMS_ELEMENT_PSYCO, CARD_ID_ENCHANT_ARMS_ELEMENT_WATER,
-         CARD_ID_ENCHANT_ARMS_ELEMENT_WIND, CARD_ID_ENCHANT_BOSOSHITA_MARYOKU,
-         CARD_ID_ENCHANT_DELAY_DOWN_15, CARD_ID_ENCHANT_GOKETSU, CARD_ID_ENCHANT_HAO,
-         CARD_ID_ENCHANT_KOGEKISOKUDO_4, CARD_ID_ENCHANT_KOSOKU,
-         CARD_ID_ENCHANT_KUMANO_CHIKARA, CARD_ID_ENCHANT_KYOGEKI_4,
-         CARD_ID_ENCHANT_KYOGEKI_5, CARD_ID_ENCHANT_MARYOKU_4, CARD_ID_ENCHANT_MDEF_10,
-         CARD_ID_ENCHANT_MEIKYU_4, CARD_ID_ENCHANT_OWASHINO_GANKO,
-         CARD_ID_ENCHANT_SATSUINO_ONNEN, CARD_ID_ENCHANT_SHINO_YOKUDO,
-         CARD_ID_ENCHANT_SHINRINO_KAIHO, CARD_ID_ENCHANT_SPECIAL_AGI,
-         CARD_ID_ENCHANT_SPECIAL_DEX, CARD_ID_ENCHANT_SPECIAL_INT,
-         CARD_ID_ENCHANT_SPECIAL_LUK, CARD_ID_ENCHANT_SPECIAL_STR,
-         CARD_ID_ENCHANT_SPECIAL_VIT, CARD_ID_ENCHANT_TOSHI_10, CARD_ID_ENCHANT_ZOFUKU_4,
-         CARD_ID_ENCHANT_ZOFUKU_5, CARD_ID_GIGANTES, CARD_ID_MAGICAL_MONSTER_ELM_ALL_10UP,
-         CARD_ID_MAGICAL_RACE_ALL_10UP, CARD_ID_MAGICAL_SIZE_ALL_8UP, CARD_ID_MAX,
-         CARD_ID_NONE, CARD_ID_OSEN_SARETA_SAMAYOU_MONO,
-         CARD_ID_PHYSICAL_MONSTER_ELM_ALL_20UP, CARD_ID_PHYSICAL_RACE_ALL_20UP,
-         CARD_ID_PHYSICAL_SIZE_ALL_15UP, CARD_ID_POWERFUL_A_SKELETON,
-         CARD_ID_SHINENNO_KISHI, CardObjNew, CardSortOBJ
-} from './card.dat.js';
-import {
-         CARD_REGION_ID_ACCESSORY_1, CARD_REGION_ID_ACCESSORY_2,
-         CARD_REGION_ID_ARMS_LEFT_1, CARD_REGION_ID_ARMS_LEFT_2,
-         CARD_REGION_ID_ARMS_LEFT_3, CARD_REGION_ID_ARMS_LEFT_4,
-         CARD_REGION_ID_ARMS_RIGHT_1, CARD_REGION_ID_ARMS_RIGHT_2,
-         CARD_REGION_ID_ARMS_RIGHT_3, CARD_REGION_ID_ARMS_RIGHT_4, CARD_REGION_ID_BODY,
-         CARD_REGION_ID_ENCHANT_ACCESSORY_1_1, CARD_REGION_ID_ENCHANT_ACCESSORY_1_2,
-         CARD_REGION_ID_ENCHANT_ACCESSORY_1_3, CARD_REGION_ID_ENCHANT_ACCESSORY_2_1,
-         CARD_REGION_ID_ENCHANT_ACCESSORY_2_2, CARD_REGION_ID_ENCHANT_ACCESSORY_2_3,
-         CARD_REGION_ID_ENCHANT_BODY_1, CARD_REGION_ID_ENCHANT_BODY_2,
-         CARD_REGION_ID_ENCHANT_BODY_3, CARD_REGION_ID_ENCHANT_HEAD_MID_1,
-         CARD_REGION_ID_ENCHANT_HEAD_MID_2, CARD_REGION_ID_ENCHANT_HEAD_MID_3,
-         CARD_REGION_ID_ENCHANT_HEAD_TOP_1, CARD_REGION_ID_ENCHANT_HEAD_TOP_2,
-         CARD_REGION_ID_ENCHANT_HEAD_TOP_3, CARD_REGION_ID_ENCHANT_HEAD_UNDER_1,
-         CARD_REGION_ID_ENCHANT_HEAD_UNDER_2, CARD_REGION_ID_ENCHANT_HEAD_UNDER_3,
-         CARD_REGION_ID_ENCHANT_SHIELD_1, CARD_REGION_ID_ENCHANT_SHIELD_2,
-         CARD_REGION_ID_ENCHANT_SHIELD_3, CARD_REGION_ID_ENCHANT_SHOES_1,
-         CARD_REGION_ID_ENCHANT_SHOES_2, CARD_REGION_ID_ENCHANT_SHOES_3,
-         CARD_REGION_ID_ENCHANT_SHOULDER_1, CARD_REGION_ID_ENCHANT_SHOULDER_2,
-         CARD_REGION_ID_ENCHANT_SHOULDER_3, CARD_REGION_ID_HEAD_MID,
-         CARD_REGION_ID_HEAD_TOP, CARD_REGION_ID_SHIELD, CARD_REGION_ID_SHOES,
-         CARD_REGION_ID_SHOULDER
-} from './common.js';
-import { GetFlagAppendedCardName } from './equip.js';
-import {
-         ITEM_ID_ALPHA_CORE_CARD_ENCHANTABLE,
-         ITEM_ID_KAITEI_SHINDENNO_ZAIHO_CARD_ENCHANTABLE, ITEM_ID_RUNE_HELM, ItemObjNew
-} from './item.dat.js';
-import { GetMaxSlot } from './item.h.js';
-import { MIG_ENCH_LIST_ID_SHINENNO_KAIRO_UPGRADE, MIG_ENCH_LIST_ID_SHINENTAIBUKI_UPGRADE } from './data/mig.enchlist.dat.js';
-import { SLOT_INDEX_CARD_MIN, SLOT_INDEX_CARD_MAX } from './slotpager.js';
-import { HtmlGetElementById, HtmlCreateElement, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueById, HtmlSetObjectValueById, SetStatefullData } from '../../common/js/util.js';
-// === END AUTO-GENERATED IMPORTS ===
 
 export const CardShortObj =[
 	 [
@@ -243,6 +183,8 @@ export const CardShortObj =[
 	 	CARD_ID_MAGICAL_SIZE_ALL_8UP,
 	 	CARD_ID_MAGICAL_SIZE_ALL_8UP
 	 ],
+
+
 
 
 	 [
@@ -546,6 +488,7 @@ export function RebuildCardSelect(eqpRgnId, itemId) {
 	var objArySlots = new Array();
 
 
+
 	// 装備か所ごとに対応するオブジェクトを取得
 	switch (eqpRgnId) {
 
@@ -617,6 +560,8 @@ export function RebuildCardSelect(eqpRgnId, itemId) {
 	}
 
 
+
+
 	// エンチャント情報の収集
 	var idx = 0;
 	var idxSlot = 0;
@@ -628,6 +573,7 @@ export function RebuildCardSelect(eqpRgnId, itemId) {
 
 	var enchInfoArrayAllSlots = null;
 	var enchInfoArrayAllSlotsResult = null;
+
 
 
 	// 結果用配列用意
@@ -650,6 +596,8 @@ export function RebuildCardSelect(eqpRgnId, itemId) {
 			enchInfoArrayAllSlotsResult[idxSlot] = enchInfoArrayAllSlotsResult[idxSlot].concat(enchInfoArrayAllSlots[idxSlot]);
 		}
 	}
+
+
 
 
 	// 選択肢の構築
@@ -772,6 +720,8 @@ export function RebuildCardSelectSubCollectEnchListData(enchListId, enchInfoArra
 	};
 
 
+
+
 	// データ収集用配列用意
 	enchInfoArrayAllSlots = [];
 	for (idxSlot = 0; idxSlot < (SLOT_INDEX_CARD_MAX - SLOT_INDEX_CARD_MIN + 1); idxSlot++) {
@@ -797,6 +747,7 @@ export function RebuildCardSelectSubCollectEnchListData(enchListId, enchInfoArra
 	// この時点で、当該エンチャントリストのデータは収集が完了している
 	// エンチャントの並び順定義に従って、エンチャント効果の順番をソートする
 	RebuildCardSelectSubSortCollectedEnchListData(enchInfoArrayAllSlots);
+
 
 
 	// 収集したデータを返す
@@ -1019,6 +970,7 @@ function BuildUpCardSlotsCard(eqpRgnId, itemId, enchantTypeId, objArySlots) {
 				continue;
 			}
 		}
+
 
 
 		// 装備箇所に応じたカードデータの追加
@@ -1312,6 +1264,7 @@ function BuildUpCardSlotsMIG(eqpRgnId, itemId, enchInfoArray, objArySlots) {
 		}
 
 
+
 		// 装備箇所に応じたカードデータの追加
 		switch (eqpRgnId) {
 
@@ -1601,4 +1554,13 @@ export function ApplyCardShort(eqpRgnId, objidPrifix) {
 	LoadSelect2();
 }
 
-
+if (typeof window !== 'undefined') {
+	window.CardShortObj = CardShortObj;
+	window.ClearCardSlotAll = ClearCardSlotAll;
+	window.ClearCardSlot = ClearCardSlot;
+	window.RebuildCardSelect = RebuildCardSelect;
+	window.RebuildCardSelectSubCollectEnchListData = RebuildCardSelectSubCollectEnchListData;
+	window.SetCardSlotEnabilityAll = SetCardSlotEnabilityAll;
+	window.SetCardSlotEnability = SetCardSlotEnability;
+	window.ApplyCardShort = ApplyCardShort;
+}

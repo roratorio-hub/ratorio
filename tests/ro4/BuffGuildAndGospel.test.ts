@@ -32,9 +32,24 @@ describe('BuffGuildAndGospel.js', () => {
     });
 
     describe('window互換確認', () => {
+        it('window.BUFF_CONF_GUILD_LIMIT が設定されている', () => {
+            expect((window as any).BUFF_CONF_GUILD_LIMIT).toBe(BUFF_CONF_GUILD_LIMIT);
+        });
+
         it('window.n_A_PassSkill4 が設定されている', () => {
             expect((window as any).n_A_PassSkill4).toBe(n_A_PassSkill4);
         });
-        // n_Skill4SW は Phase 3-sup で compat ブロック除去済み → window への設定なし
+
+        it('window.n_Skill4SW が設定されている', () => {
+            expect((window as any).n_Skill4SW).toBe(n_Skill4SW);
+        });
+
+        it('window.Click_Skill4SW が設定されている', () => {
+            expect((window as any).Click_Skill4SW).toBe(Click_Skill4SW);
+        });
+
+        it('window.Click_A4 が設定されている', () => {
+            expect((window as any).Click_A4).toBe(Click_A4);
+        });
     });
 });

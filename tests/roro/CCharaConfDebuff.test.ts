@@ -53,4 +53,10 @@ describe('CCharaConfDebuff.js', () => {
             });
         });
     });
+
+    describe('window互換確認', () => {
+        it('window.CCharaConfDebuff が設定されている', () => {
+            expect((window as any).CCharaConfDebuff).toBe(CCharaConfDebuff);
+        });
+    });
 });

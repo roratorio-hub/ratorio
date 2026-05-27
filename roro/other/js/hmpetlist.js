@@ -1,19 +1,12 @@
-// === AUTO-GENERATED IMPORTS ===
-import '../../m/js/common.js';
-import '../../m/js/pet.h.js';
-import { CItemInfoManager } from '../../m/js/CItemInfoManager.js';
-import { PET_OBJ } from '../../m/js/pet.dat.js';
-import { HtmlRemoveAllChild } from '../../common/js/util.js';
-// === END AUTO-GENERATED IMPORTS ===
 // 初期処理の実行
-export function OnLoadPetList () {
+function OnLoadPetList () {
 	RefreshPetListTable();
 }
 
 /**
  * ペット一覧テーブルを更新する.
  */
-export function RefreshPetListTable(){
+function RefreshPetListTable(){
 	var petDataArray = null;
 	// データを抽出する
 	petDataArray = PivotData();
@@ -38,7 +31,7 @@ export function RefreshPetListTable(){
  * @param 
  * @return 抽出された PetData の配列
  */
-export function PivotData() {
+function PivotData() {
 	var idx = 0;
 	var petDataArray = null;
 	petDataArray = new Array();
@@ -54,7 +47,7 @@ export function PivotData() {
  * 抽出されたデータを表示する（リストテーブル生成）
  * @param petDataArray 抽出された PetData の配列
  */
-export function DispData(petDataArray) {
+function DispData(petDataArray) {
 	const condition = document.getElementById("F_CONDITION").value;	// 部分一致文字列を取得
 	let idx = 0;
 	let objRoot = null;
@@ -120,3 +113,4 @@ export function DispData(petDataArray) {
 		CItemInfoManager.AppendSetInfo(objTd, PetIdToSetIdMap[petId], true);
 	}
 }
+if (typeof window !== 'undefined') { Object.assign(window, { OnLoadPetList, RefreshPetListTable, PivotData, DispData }); }

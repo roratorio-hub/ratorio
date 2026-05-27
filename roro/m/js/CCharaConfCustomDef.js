@@ -1,9 +1,4 @@
 import { CConfBase } from './CConfBase.js';
-// === AUTO-GENERATED IMPORTS ===
-import './CConfBase.js';
-import { CUSTOM_CONF_DEF_LIMIT } from '../../../ro4/m/js/global.js';
-import { HtmlCreateElementOption } from '../../common/js/util.js';
-// === END AUTO-GENERATED IMPORTS ===
 
 export function CCharaConfCustomDef(confArray) {
 
@@ -11,8 +6,10 @@ export function CCharaConfCustomDef(confArray) {
 	CCharaConfCustomDef.prototype = new CConfBase();
 
 
+
 	// 基底クラスのコンストラクタ呼び出し
 	CConfBase.call(this, confArray);
+
 
 
 	// 設定の限界値
@@ -20,12 +17,17 @@ export function CCharaConfCustomDef(confArray) {
 	this.confCountLimit = CUSTOM_CONF_DEF_LIMIT;
 
 
+
 	// 設定欄の横方向項目数
 	this.itemInRow = 1;
 
 
+
 	// 設定欄のラベル
 	this.confLabel = "性能カスタマイズ（防御関連）";
+
+
+
 
 
 	//********************************************************************************************************************************
@@ -49,8 +51,10 @@ export function CCharaConfCustomDef(confArray) {
 		var confDataOBJSorted = new Array();
 
 
+
 		// 基底クラスのセットアップ処理を実行
 		CCharaConfCustomDef.prototype.InitData.call(this);
+
 
 
 		//----------------------------------------------------------------
@@ -69,6 +73,7 @@ export function CCharaConfCustomDef(confArray) {
 		confId++;
 
 
+
 		CCharaConfCustomDef.CONF_ID_DEF_PLUS = confId;
 		confData = [
 			confId,
@@ -80,6 +85,7 @@ export function CCharaConfCustomDef(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
+
 
 
 		CCharaConfCustomDef.CONF_ID_MDEF_PLUS = confId;
@@ -95,6 +101,7 @@ export function CCharaConfCustomDef(confArray) {
 		confId++;
 
 
+
 		CCharaConfCustomDef.CONF_ID_RESIST_RACE = confId;
 		confData = [
 			confId,
@@ -106,6 +113,7 @@ export function CCharaConfCustomDef(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
+
 
 
 		CCharaConfCustomDef.CONF_ID_RESIST_MONSTER_ELM = confId;
@@ -121,6 +129,7 @@ export function CCharaConfCustomDef(confArray) {
 		confId++;
 
 
+
 		CCharaConfCustomDef.CONF_ID_RESIST_ELM = confId;
 		confData = [
 			confId,
@@ -132,6 +141,7 @@ export function CCharaConfCustomDef(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
+
 
 
 		CCharaConfCustomDef.CONF_ID_RESIST_SIZE = confId;
@@ -147,6 +157,7 @@ export function CCharaConfCustomDef(confArray) {
 		confId++;
 
 
+
 		CCharaConfCustomDef.CONF_ID_RESIST_LONGRANGE = confId;
 		confData = [
 			confId,
@@ -158,6 +169,7 @@ export function CCharaConfCustomDef(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
+
 
 
 		CCharaConfCustomDef.CONF_ID_RESIST_PLAYER = confId;
@@ -173,6 +185,7 @@ export function CCharaConfCustomDef(confArray) {
 		confId++;
 
 
+
 		CCharaConfCustomDef.CONF_ID_RESIST_GROUP = confId;
 		confData = [
 			confId,
@@ -184,6 +197,7 @@ export function CCharaConfCustomDef(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
+
 
 
 		CCharaConfCustomDef.CONF_ID_RESIST_BOSS = confId;
@@ -199,6 +213,12 @@ export function CCharaConfCustomDef(confArray) {
 		confId++;
 
 
+
+
+
+
+
+
 		CCharaConfCustomDef.CONF_ID_BLANK = confId;
 		confData = [
 			confId,
@@ -212,6 +232,7 @@ export function CCharaConfCustomDef(confArray) {
 		confId++;
 
 
+
 		//----------------------------------------------------------------
 		// データ定義数チェック
 		//----------------------------------------------------------------
@@ -219,6 +240,7 @@ export function CCharaConfCustomDef(confArray) {
 			alert("性能カスタマイズ　定義数超過");
 			return;
 		}
+
 
 
 		//----------------------------------------------------------------
@@ -232,6 +254,7 @@ export function CCharaConfCustomDef(confArray) {
 				this.confArray[idx] = 0;
 			}
 		}
+
 
 
 		//----------------------------------------------------------------
@@ -255,6 +278,9 @@ export function CCharaConfCustomDef(confArray) {
 		this.confDataObj = confDataOBJSorted;
 
 	}
+
+
+
 
 
 	/**
@@ -298,6 +324,7 @@ export function CCharaConfCustomDef(confArray) {
 			break;
 
 
+
 		// 武器ATK、武器MATK
 		case CCharaConfCustomDef.CONF_ID_WEAPON_ATK:
 		case CCharaConfCustomDef.CONF_ID_WEAPON_MATK:
@@ -324,6 +351,7 @@ export function CCharaConfCustomDef(confArray) {
 				objSelect.setAttribute(`${this.dataRtxAttributeIdPrefix}-displayname`, confData[CConfBase.CONF_DATA_INDEX_TEXT]);
 			}
 			break;
+
 
 
 		// 武器Lv
@@ -355,6 +383,7 @@ export function CCharaConfCustomDef(confArray) {
 	}
 
 
+
 	/**
 	 * 設定値を取得する.
 	 * @param id 取得する設定のID
@@ -368,9 +397,16 @@ export function CCharaConfCustomDef(confArray) {
 	}
 
 
+
+
+
 	// 初期化実行
 	this.InitData();
 
 
+
 }
 
+if (typeof window !== 'undefined') {
+	window.CCharaConfCustomDef = CCharaConfCustomDef;
+}

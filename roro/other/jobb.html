@@ -59,7 +59,7 @@
 
 </head>
 
-<body style="overflow-y:auto">
+<body onload="OnLoadJobBonusTable()" style="overflow-y:auto">
 	<div class="wrapper">
 		<div class="side">
 			<span id="ID_FRAME"></span>
@@ -77,7 +77,7 @@
 
 						<div style="font-size : smaller;">
 							<label for="OBJID_SELECT_JOB">職業：</label>
-							<select id="OBJID_SELECT_JOB"></select>
+							<select id="OBJID_SELECT_JOB" onChange="RefreshJobBonusTable()"></select>
 						</div>
 
 						<div id="OBJID_JOB_BONUS_TABLE_WRAPPER" style="margin-top: 1em; display: flex; column-gap: 1em; align-items: start;">
@@ -95,7 +95,6 @@
 
 </body>
 
-<script type="module" src="js/eventsetup-jobb.js"></script>
 <script type="module" src="../frame.js"></script>
 
 </html>

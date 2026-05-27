@@ -77,4 +77,6 @@ export const g_rndOptListArray = [
 		[74,[0,10,163]],									// Cri+, SP減少
 ];
 
-
+if (typeof window !== 'undefined') {
+	window.g_rndOptListArray = g_rndOptListArray;
+}

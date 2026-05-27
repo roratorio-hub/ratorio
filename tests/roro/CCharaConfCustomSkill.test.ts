@@ -34,4 +34,10 @@ describe('CCharaConfCustomSkill.js', () => {
             it('GetHeaderIdString が関数', () => { expect(typeof inst.GetHeaderIdString).toBe('function'); });
         });
     });
+
+    describe('window互換確認', () => {
+        it('window.CCharaConfCustomSkill が設定されている', () => {
+            expect((window as any).CCharaConfCustomSkill).toBe(CCharaConfCustomSkill);
+        });
+    });
 });

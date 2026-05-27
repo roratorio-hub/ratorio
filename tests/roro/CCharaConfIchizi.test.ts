@@ -41,4 +41,10 @@ describe('CCharaConfIchizi.js', () => {
             });
         });
     });
+
+    describe('window互換確認', () => {
+        it('window.CCharaConfIchizi が設定されている', () => {
+            expect((window as any).CCharaConfIchizi).toBe(CCharaConfIchizi);
+        });
+    });
 });

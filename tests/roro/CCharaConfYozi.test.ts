@@ -38,4 +38,10 @@ describe('CCharaConfYozi.js', () => {
             });
         });
     });
+
+    describe('window互換確認', () => {
+        it('window.CCharaConfYozi が設定されている', () => {
+            expect((window as any).CCharaConfYozi).toBe(CCharaConfYozi);
+        });
+    });
 });

@@ -1,40 +1,3 @@
-// === AUTO-GENERATED IMPORTS ===
-import '../../../roro/m/js/common.js';
-import '../../../roro/m/js/data/mig.itemsp.h.js';
-import '../../../roro/m/js/item.h.js';
-import '../../../roro/m/js/monster.h.js';
-import { GetStatusMax, IsDualArmsJob, IsReincarnatedJob, IsSameJobGroup, IsYojiJob } from './data/mig.job.h.js';
-import { CSaveDataConst } from './savedata/CSaveDataConst.js';
-import { HtmlGetObjectValueByIdAsInteger, ValueRangeModify, myInnerHtml } from '../../../roro/common/js/util.js';
-import { CCharaConfCustomSpecStatus } from '../../../roro/m/js/CCharaConfCustomSpecStatus.js';
-import { CCharaConfNizi } from '../../../roro/m/js/CCharaConfNizi.js';
-import { CCharaConfYozi } from '../../../roro/m/js/CCharaConfYozi.js';
-import { EquipNumSearch } from '../../../roro/m/js/chara.js';
-import { changeJobSettings } from '../../../roro/m/js/equip.js';
-import { GetRndOptTotalValue } from '../../../roro/m/js/hmrndopt.js';
-import {
-         ITEM_ID_MICHINARU_SHUCHUNO_BOOTS, ITEM_ID_MICHINARU_SOZONO_BOOTS,
-         ITEM_ID_NOEQUIP_SHIELD
-} from '../../../roro/m/js/item.dat.js';
-import { LEARNED_SKILL_MAX_COUNT, LearnedSkillSearch, OnClickSkillSWLearned } from '../../../roro/m/js/learnedskill.js';
-import { MOB_CONF_DEBUF_ID_JACK_FROST_NOVA, MOB_CONF_DEBUF_ID_TOXIN_OF_MANDARA, n_B_IJYOU } from '../../../roro/m/js/mobconfdebuf.js';
-import {
-         SKILL_ID_ABYSS_SLAYER, SKILL_ID_ARUGUTUS_VITA, SKILL_ID_ATTACK_STANCE,
-         SKILL_ID_CHUZITSUNA_SHINNEN, SKILL_ID_CLIMAX_HURRICANE_STATE,
-         SKILL_ID_CONPETENTIA, SKILL_ID_DOKUGAKU_MADOGAKU, SKILL_ID_DOKUGAKU_SENTOGAKU,
-         SKILL_ID_DONKI_HON_SHUREN, SKILL_ID_FIDOS_ANIMUS, SKILL_ID_GOFU_SHUREN,
-         SKILL_ID_GUARD_STANCE, SKILL_ID_HIDDEN_CARD, SKILL_ID_HOLY_SHIELD,
-         SKILL_ID_HYOHO_SHUREN, SKILL_ID_INTENSIVE_AIM, SKILL_ID_KENKONA_SHINNEN,
-         SKILL_ID_KYOZINNA_SHINNEN, SKILL_ID_MAHOKEN_SHUREN, SKILL_ID_MAHO_HON_SHUREN,
-         SKILL_ID_PFI, SKILL_ID_POTENT_VENOM, SKILL_ID_PRESENSE_AKYACE,
-         SKILL_ID_RUSH_STATE, SKILL_ID_RYOTETUSE_SHUREN, SKILL_ID_SANREI_ITTAI,
-         SKILL_ID_SHADOW_SENSE, SKILL_ID_SHIHO_FU_ZYOTAI, SKILL_ID_SHIHO_GOGYO_ZIN,
-         SKILL_ID_SHINKONO_ISHI, SKILL_ID_SPIRIT_MASTERY, SKILL_ID_STAGE_MANNER,
-         SKILL_ID_TANKEN_YUMI_SHUREN, SKILL_ID_TATE_SHUREN, SKILL_ID_TWOHAND_DEFENDING,
-         SKILL_ID_TWO_AXE_DEFENDING, SKILL_ID_YARI_KATATE_KEN_SHUREN
-} from '../../../roro/m/js/skill.dat.js';
-// === END AUTO-GENERATED IMPORTS ===
-import { CAttackMethodAreaComponentManager } from './CAttackMethodAreaComponentManager.js';
 export let g_pureStatus = [];
 export let g_bonusStatus = [];
 
@@ -455,6 +418,7 @@ export function DisplayStatusBonusAll(baseLv, valSTR, valAGI, valVIT, valINT, va
 	objStatus.innerHTML = ((valLUK >= 0) ? "+" : "") + valLUK;
 
 
+
 	// 特性ステータス対応
 
 	// POW
@@ -480,6 +444,7 @@ export function DisplayStatusBonusAll(baseLv, valSTR, valAGI, valVIT, valINT, va
 	// CRT
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_BONUS_CRT");
 	objStatus.innerHTML = ((valCRT >= 0) ? "+" : "") + valCRT;
+
 
 
 	// 導出ステータス
@@ -893,6 +858,7 @@ export function GetCRate() {
 	var bufLv = 0;
 
 
+
 	// ステータス値
 	value += Math.floor(GetTotalSpecStatus(MIG_PARAM_ID_CRT) / 3);
 
@@ -909,6 +875,7 @@ export function GetCRate() {
 	if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_PRESENSE_AKYACE]) > 0) {
 		value += 5 * bufLv;
 	}
+
 
 
 	return value;
@@ -1105,6 +1072,7 @@ export function ApplyPAtkAmplify(dmg) {
 	amped = (dmg * (100 + patk)) / 100;
 
 
+
 	return amped;
 }
 
@@ -1141,8 +1109,10 @@ export function ApplyCRateAmplify(criDmgRate) {
 	crate = GetCRate();
 
 
+
 	// 増幅後のクリティカルダメージ増幅量を計算
 	amped = criDmgRate + crate;
+
 
 
 	return amped;
@@ -1183,6 +1153,7 @@ export function ApplyMresResist(mobData, dmg) {
 	mres = GetMobMres(mobData);
 
 
+
 	// 実測との誤差から、減少量を計算→小数切り捨て→元ダメージから減算、という順序の模様
 
 	// 減衰率の計算
@@ -1190,6 +1161,7 @@ export function ApplyMresResist(mobData, dmg) {
 
 	// 減衰ダメージを計算
 	resisted = Math.floor(dmg * resistedRatio);
+
 
 
 	return (dmg - resisted);
@@ -1823,7 +1795,7 @@ function _debounce(fn, delay) {
  * BaseLV 入力の onChange ハンドラ（debounce済み）。
  * calcx.html の A_BaseLV フィールドから呼び出される。
  */
-export const OnChangeBaseLV = _debounce(function() {
+const OnChangeBaseLV = _debounce(function() {
 	CalcStatusPoint(true);
 	StAllCalc();
 	CAttackMethodAreaComponentManager.RebuildControls();
@@ -1834,16 +1806,58 @@ export const OnChangeBaseLV = _debounce(function() {
  * ステータス入力の onChange ハンドラ（debounce済み）。
  * calcx.html の A_STR〜A_CRT フィールドから呼び出される。
  */
-export const OnChangeStatus = _debounce(function() {
+const OnChangeStatus = _debounce(function() {
 	CalcStatusPoint(false);
 	StAllCalc();
 	AutoCalc();
 }, 200);
 
 if (typeof window !== 'undefined') {
+	window.g_pureStatus = g_pureStatus;
+	window.g_bonusStatus = g_bonusStatus;
+	window.g_STR = g_STR;
+	window.g_AGI = g_AGI;
+	window.g_VIT = g_VIT;
+	window.g_INT = g_INT;
+	window.g_DEX = g_DEX;
+	window.g_LUK = g_LUK;
+	window.g_POW = g_POW;
+	window.g_STA = g_STA;
+	window.g_WIS = g_WIS;
+	window.g_SPL = g_SPL;
+	window.g_CON = g_CON;
+	window.g_CRT = g_CRT;
 	window.RebuildStatusSelect = RebuildStatusSelect;
 	window.CalcStatusPoint = CalcStatusPoint;
+	window.GetStatusIncrementCost = GetStatusIncrementCost;
+	window.GetStatusTotalCost = GetStatusTotalCost;
+	window.GetEarningStatusPoint = GetEarningStatusPoint;
+	window.DisplayStatusBonusAll = DisplayStatusBonusAll;
+	window.DisplayReferStatusAll = DisplayReferStatusAll;
 	window.GetTotalPureBasicStatus = GetTotalPureBasicStatus;
+	window.StoreSpecStatusBonusAll = StoreSpecStatusBonusAll;
 	window.GetTotalSpecStatus = GetTotalSpecStatus;
+	window.GetEarningTSStatusPoint = GetEarningTSStatusPoint;
+	window.GetTStatusPoint = GetTStatusPoint;
+	window.ApplySpecStatusModifications = ApplySpecStatusModifications;
+	window.ApplySpecStatusModifyMATK = ApplySpecStatusModifyMATK;
+	window.GetPAtk = GetPAtk;
+	window.GetSMatk = GetSMatk;
+	window.GetCRate = GetCRate;
+	window.GetRes = GetRes;
+	window.GetMres = GetMres;
+	window.GetHPlus = GetHPlus;
+	window.GetMobRes = GetMobRes;
+	window.GetMobMres = GetMobMres;
+	window.ApplyPAtkAmplify = ApplyPAtkAmplify;
+	window.ApplySMatkAmplify = ApplySMatkAmplify;
+	window.ApplyCRateAmplify = ApplyCRateAmplify;
+	window.ApplyResResist = ApplyResResist;
+	window.ApplyMresResist = ApplyMresResist;
+	window.ApplyPAtkLeftHandPenalty = ApplyPAtkLeftHandPenalty;
 	window.ApplySpecModify = ApplySpecModify;
+	window.migrateOtherJob = migrateOtherJob;
+	window.OnChangeJob = OnChangeJob;
+	window.OnChangeBaseLV = OnChangeBaseLV;
+	window.OnChangeStatus = OnChangeStatus;
 }

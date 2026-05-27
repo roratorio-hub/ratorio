@@ -1,8 +1,5 @@
 
 import { CGlobalConstManager } from './CGlobalConstManager.js';
-// === AUTO-GENERATED IMPORTS ===
-import './common.js';
-// === END AUTO-GENERATED IMPORTS ===
 
 //----------------------------------------------------------------
 // データの要素番号
@@ -16,6 +13,7 @@ CGlobalConstManager.DefineEnum(
 	0,
 	1
 );
+
 
 
 //----------------------------------------------------------------
@@ -37,6 +35,7 @@ CGlobalConstManager.DefineEnum(
 );
 
 
+
 // ランダムオプション設定状況テーブル初期化
 export let g_equipRndOptTable = new Array();
 
@@ -50,6 +49,7 @@ for (let eqpRgnId = 0; eqpRgnId < EQUIP_REGION_ID_COUNT; eqpRgnId++) {
 
 	}
 }
+
 
 
 export function SetEquipRndOptTable(eqpRgnId, rndOptIndex, rndOptId, rndOptValue) {
@@ -86,3 +86,10 @@ export function GetEquipRndOptTableValue(eqpRgnId, rndOptIndex) {
 }
 
 
+
+if (typeof window !== 'undefined') {
+	window.g_equipRndOptTable = g_equipRndOptTable;
+	window.SetEquipRndOptTable = SetEquipRndOptTable;
+	window.GetEquipRndOptTableKind = GetEquipRndOptTableKind;
+	window.GetEquipRndOptTableValue = GetEquipRndOptTableValue;
+}

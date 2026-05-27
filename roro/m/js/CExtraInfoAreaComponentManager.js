@@ -1,65 +1,5 @@
 import { CGlobalConstManager } from './CGlobalConstManager.js';
 import { CInstanceManager } from './CInstanceManager.js';
-// === AUTO-GENERATED IMPORTS ===
-import {
-         GetBaseExpTable,
-         GetBaseLevelMax,
-         GetJobBonus,
-         GetJobExpTable,
-         GetJobLevelMax,
-         GetStatusMax,
-         IsSameJobClass
-} from '../../../ro4/m/js/data/mig.job.h.js';
-import './card.h.js';
-import './item.h.js';
-import './monster.h.js';
-import './skill.h.js';
-import { CMonsterMapAreaComponentManager } from '../../../ro4/m/js/CMonsterMapAreaComponentManager.js';
-import { g_constDataManager, g_skillManager } from '../../../ro4/m/js/global.js';
-import { CCharaConfCustomSpecStatus } from './CCharaConfCustomSpecStatus.js';
-import { CCharaConfYozi } from './CCharaConfYozi.js';
-import {
-         CARD_ID_GOPINICH, CARD_ID_OSEN_SARETA_DARK_LORD, CARD_ID_SHINKAINO_DEVIAS,
-         CardObjNew
-} from './card.dat.js';
-import { EquipNumSearch } from './chara.js';
-import {
-         CAST_PARAM_BORDER, HEALTYPE_COLUCEO_HEAL, HEALTYPE_DILECTIO_HEAL,
-         HEALTYPE_EBI_ZANMAI, HEALTYPE_HEAL, HEALTYPE_HIGHNESS, HEALTYPE_SANCTUARY,
-         HEALTYPE_SHINSENNA_EBI, HEALTYPE_SHUGO_FU, HEALTYPE_TURTLE_SPRINKLER,
-         HEALTYPE_ZYOKODO, HEAL_TARGETTYPE_PLAYER, HEAL_TARGETTYPE_SELF, HealCalc
-} from '../../../ro4/m/js/head.js';
-import { GetElementText, GetParamText, GetRaceText, GetSizeText, GetStateText } from './common.js';
-import { zokusei } from './etc.js';
-import { GetRndOptTotalValue } from './hmrndopt.js';
-import {
-         ITEM_ID_AZI_DAHAKANO_KAWA, ITEM_ID_BOTONO_SCARF, ITEM_ID_EUROPA_ROBE,
-         ITEM_ID_GUARDIAN_OF_SOUL, ITEM_ID_GWIBERNO_KAWA, ITEM_ID_HAKKEINO_FUZYU,
-         ITEM_ID_IMPERIAL_GLORY, ITEM_ID_KODAIRYUNO_HOKAN, ITEM_ID_LINDWURMNO_KAWA,
-         ITEM_ID_LORD_OF_ROYALS, ITEM_ID_MARRACONO_KAWA, ITEM_ID_RADOONNO_KAWA,
-         ITEM_ID_REIZOKUNO_KUBIWA, ITEM_ID_SAITANNO_HOKAN, ITEM_ID_SUNADOKENO_NECKLACE,
-         ITEM_ID_TUPOONNO_KAWA, ItemObjNew
-} from './item.dat.js';
-import { LearnedSkillSearch } from './learnedskill.js';
-import { MonsterObjNew } from './monster.dat.js';
-import { SkillObjNew } from './skill.dat.js';
-import { HtmlCreateElement, HtmlCreateTextSpan, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById, DivideDigits3 } from '../../common/js/util.js';
-import { MIG_JOB_ID_SOUL_ASCETIC, MIG_JOB_ID_SPIRIT_HANDLER } from '../../../ro4/m/js/data/mig.job.dat.js';
-import {
-         SKILL_ID_ANTIDOTE, SKILL_ID_BENEDICTUM, SKILL_ID_COLUCEO_HEAL,
-         SKILL_ID_CONCENTRATION, SKILL_ID_DEMONIC_FIRE, SKILL_ID_DILECTIO_HEAL,
-         SKILL_ID_DRAGON_TRAINING, SKILL_ID_EBI_ZANMAI, SKILL_ID_GRAND_CROSS,
-         SKILL_ID_GRAPHITY, SKILL_ID_GRENADE_MASTERY, SKILL_ID_HEAL,
-         SKILL_ID_HELL_INFERNO, SKILL_ID_HIGHNESS_HEAL, SKILL_ID_HP_KAIFUKURYOKU_KOZYO,
-         SKILL_ID_IBUKI, SKILL_ID_JUDEX, SKILL_ID_KIHE_SHUREN, SKILL_ID_MAGMA_ILLUPTION,
-         SKILL_ID_MEDITATIO, SKILL_ID_METALIC_SOUND, SKILL_ID_PSYCHIC_WAVE,
-         SKILL_ID_REIDOZYUTSU_SHUREN, SKILL_ID_REMOVE_TRAP, SKILL_ID_RERIGIO,
-         SKILL_ID_SANCTUARY, SKILL_ID_SHINSENNA_EBI, SKILL_ID_SHOZIGENKAIRYO_ZOKA,
-         SKILL_ID_SHOZIGENKAIRYO_ZOKA_R, SKILL_ID_SHUGO_FU,
-         SKILL_ID_SP_KAIFUKURYOKU_KOZYO, SKILL_ID_TEIOAPUCHAGI, SKILL_ID_ZANEI,
-         SKILL_ID_ZYOKODO
-} from './skill.dat.js';
-// === END AUTO-GENERATED IMPORTS ===
 //----------------------------------------------------------------
 // 拡張情報の種類
 //----------------------------------------------------------------
@@ -119,6 +59,7 @@ CGlobalConstManager.DefineEnum(
 	0,
 	1
 );
+
 
 
 /**
@@ -181,6 +122,9 @@ export function GetExtraInfoText(infoId) {
 }
 
 
+
+
+
 /**
  * 拡張情報エリアコンポーネントマネージャクラス.
  */
@@ -195,6 +139,7 @@ export function CExtraInfoAreaComponentManager () {
 
 	// サブ要素の選択値マップ
 	this.selectedValueStore = new Map();
+
 
 
 	/**
@@ -257,6 +202,7 @@ export function CExtraInfoAreaComponentManager () {
 		];
 
 
+
 		// 維持する場合は、旧マップを保持
 		if (bPreserveStaticOptions) {
 			mapOld = this.selectedValueStore;
@@ -278,6 +224,7 @@ export function CExtraInfoAreaComponentManager () {
 		}
 
 	};
+
 
 
 	/**
@@ -320,6 +267,7 @@ export function CExtraInfoAreaComponentManager () {
 		];
 
 
+
 		// ルートオブジェクトを取得
 		objRoot = document.getElementById("ID_EXTRA_INFO_AREA_" + this.managerInstanceId);
 
@@ -327,6 +275,7 @@ export function CExtraInfoAreaComponentManager () {
 		if (!objRoot) {
 			return;
 		}
+
 
 
 		// 設定欄を初期化
@@ -339,6 +288,7 @@ export function CExtraInfoAreaComponentManager () {
 
 		objTbody = document.createElement("tbody");
 		objTable.appendChild(objTbody);
+
 
 
 		//----------------------------------------------------------------
@@ -356,13 +306,14 @@ export function CExtraInfoAreaComponentManager () {
 
 		objSelect = HtmlCreateElement("select", objTdChild);
 		objSelect.setAttribute("id", "OBJID_SELECT_EXTRA_INFO_" + this.managerInstanceId);
-		objSelect.addEventListener('change', () => CExtraInfoAreaComponentManager.OnChangeInfo(this.managerInstanceId));
+		objSelect.setAttribute("onchange", "CExtraInfoAreaComponentManager.OnChangeInfo(" + this.managerInstanceId + ")");
 
 		for (idx = 0; idx < optArray.length; idx++) {
 			HtmlCreateElementOption(optArray[idx], GetExtraInfoText(optArray[idx]), objSelect);
 		}
 
 		objSelect.value = this.selectedInfoId;
+
 
 
 		//----------------------------------------------------------------
@@ -373,9 +324,13 @@ export function CExtraInfoAreaComponentManager () {
 		objTd.setAttribute("id", "OBJID_TD_EXTRA_INFO_" + this.managerInstanceId);
 
 
+
 		// 初期表示
 		this.RebuildDispArea();
 	};
+
+
+
 
 
 	/**
@@ -400,6 +355,7 @@ export function CExtraInfoAreaComponentManager () {
 		// 再構築処理呼び出し
 		this.RebuildDispArea();
 	};
+
 
 
 	/**
@@ -479,10 +435,12 @@ export function CExtraInfoAreaComponentManager () {
 		}
 
 
+
 		// 初期表示
 		this.RefreshDispArea();
 
 	};
+
 
 
 	/**
@@ -563,6 +521,9 @@ export function CExtraInfoAreaComponentManager () {
 	};
 
 
+
+
+
 	//--------------------------------------------------------------------------------
 	// 各拡張情報ごとの表示欄構築関数ここから
 	//--------------------------------------------------------------------------------
@@ -585,6 +546,8 @@ export function CExtraInfoAreaComponentManager () {
 	this.RefreshDispAreaNone = function () {
 
 	};
+
+
 
 
 	/**
@@ -665,7 +628,7 @@ export function CExtraInfoAreaComponentManager () {
 		objTd = HtmlCreateElement("td", objTr);
 		objSelect = HtmlCreateElement("select", objTd);
 		objSelect.setAttribute("id", "OBJID_SELECT_EXTRA_INFO_HEAL_TYPE_" + this.managerInstanceId);
-		objSelect.addEventListener('change', () => CExtraInfoAreaComponentManager.RefreshDispArea(this.managerInstanceId));
+		objSelect.setAttribute("onChange", "CExtraInfoAreaComponentManager.RefreshDispArea(" + this.managerInstanceId + ")");
 		for (idx = 0; idx < healTypeArray.length; idx++) {
 			HtmlCreateElementOption(healTypeArray[idx][0], SkillObjNew[healTypeArray[idx][1]][SKILL_DATA_INDEX_NAME], objSelect);
 		}
@@ -681,7 +644,7 @@ export function CExtraInfoAreaComponentManager () {
 			objTd = HtmlCreateElement("td", objTr);
 			objSelect = HtmlCreateElement("select", objTd);
 			objSelect.setAttribute("id", "OBJID_SELECT_EXTRA_INFO_HEAL_PTM_COUNT_" + this.managerInstanceId);
-			objSelect.addEventListener('change', () => CExtraInfoAreaComponentManager.RefreshDispArea(this.managerInstanceId));
+			objSelect.setAttribute("onChange", "CExtraInfoAreaComponentManager.RefreshDispArea(" + this.managerInstanceId + ")");
 			for (idx = 1; idx <= 12; idx++) {
 				HtmlCreateElementOption(idx, idx, objSelect);
 			}
@@ -697,7 +660,7 @@ export function CExtraInfoAreaComponentManager () {
 		objTd = HtmlCreateElement("td", objTr);
 		objSelect = HtmlCreateElement("select", objTd);
 		objSelect.setAttribute("id", "OBJID_SELECT_EXTRA_INFO_HEAL_TARGET_" + this.managerInstanceId);
-		objSelect.addEventListener('change', () => CExtraInfoAreaComponentManager.RefreshDispArea(this.managerInstanceId));
+		objSelect.setAttribute("onChange", "CExtraInfoAreaComponentManager.RefreshDispArea(" + this.managerInstanceId + ")");
 		for (idx = 0; idx < healTargetArray.length; idx++) {
 			HtmlCreateElementOption(healTargetArray[idx][0], healTargetArray[idx][1], objSelect);
 		}
@@ -894,6 +857,7 @@ export function CExtraInfoAreaComponentManager () {
 	};
 
 
+
 	/**
 	 * 拡張情報の表示欄を構築する（回復力向上）.
 	 */
@@ -911,6 +875,7 @@ export function CExtraInfoAreaComponentManager () {
 		var learnSkillIdArray = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, n_A_JOB).GetLearnSkillIdArray();
 
 
+
 		// 指定の領域をクリア
 		objRoot = document.getElementById("OBJID_TD_EXTRA_INFO_" + this.managerInstanceId);
 		HtmlRemoveAllChild(objRoot);
@@ -919,6 +884,7 @@ export function CExtraInfoAreaComponentManager () {
 		objTable = HtmlCreateElement("table", objRoot);
 		objTable.setAttribute("style", "width : 100%;");
 		objTbody = HtmlCreateElement("tbody", objTable);
+
 
 
 		// セレクトボックスを構築
@@ -937,7 +903,7 @@ export function CExtraInfoAreaComponentManager () {
 			objTd = HtmlCreateElement("td", objTr);
 			objSelect = HtmlCreateElement("select", objTd);
 			objSelect.setAttribute("id", "OBJID_SELECT_EXTRA_INFO_HPR_UP_LV_" + this.managerInstanceId);
-			objSelect.addEventListener('change', () => CExtraInfoAreaComponentManager.RefreshDispArea(this.managerInstanceId));
+			objSelect.setAttribute("onChange", "CExtraInfoAreaComponentManager.RefreshDispArea(" + this.managerInstanceId + ")");
 			for (idx = 0; idx <= g_skillManager.GetMaxLv(SKILL_ID_HP_KAIFUKURYOKU_KOZYO); idx++) {
 				HtmlCreateElementOption(idx, "Lv" + idx, objSelect);
 			}
@@ -958,7 +924,7 @@ export function CExtraInfoAreaComponentManager () {
 			objTd = HtmlCreateElement("td", objTr);
 			objSelect = HtmlCreateElement("select", objTd);
 			objSelect.setAttribute("id", "OBJID_SELECT_EXTRA_INFO_SPR_UP_LV_" + this.managerInstanceId);
-			objSelect.addEventListener('change', () => CExtraInfoAreaComponentManager.RefreshDispArea(this.managerInstanceId));
+			objSelect.setAttribute("onChange", "CExtraInfoAreaComponentManager.RefreshDispArea(" + this.managerInstanceId + ")");
 			for (idx = 0; idx <= g_skillManager.GetMaxLv(SKILL_ID_SP_KAIFUKURYOKU_KOZYO); idx++) {
 				HtmlCreateElementOption(idx, "Lv" + idx, objSelect);
 			}
@@ -979,12 +945,13 @@ export function CExtraInfoAreaComponentManager () {
 			objTd = HtmlCreateElement("td", objTr);
 			objSelect = HtmlCreateElement("select", objTd);
 			objSelect.setAttribute("id", "OBJID_SELECT_EXTRA_INFO_IBUKI_LV_" + this.managerInstanceId);
-			objSelect.addEventListener('change', () => CExtraInfoAreaComponentManager.RefreshDispArea(this.managerInstanceId));
+			objSelect.setAttribute("onChange", "CExtraInfoAreaComponentManager.RefreshDispArea(" + this.managerInstanceId + ")");
 			for (idx = 0; idx <= g_skillManager.GetMaxLv(SKILL_ID_IBUKI); idx++) {
 				HtmlCreateElementOption(idx, "Lv" + idx, objSelect);
 			}
 			this.RestoreSelectedValue("OBJID_SELECT_EXTRA_INFO_IBUKI_LV_" + this.managerInstanceId, 0);
 		}
+
 
 
 		// 表示欄
@@ -1017,6 +984,7 @@ export function CExtraInfoAreaComponentManager () {
 		var objTd = null;
 
 
+
 		//--------------------------------
 		// 個別領域の選択値を保管
 		//--------------------------------
@@ -1024,6 +992,7 @@ export function CExtraInfoAreaComponentManager () {
 		this.StoreSelectedValue("OBJID_SELECT_EXTRA_INFO_HPR_UP_LV_" + this.managerInstanceId);
 		this.StoreSelectedValue("OBJID_SELECT_EXTRA_INFO_SPR_UP_LV_" + this.managerInstanceId);
 		this.StoreSelectedValue("OBJID_SELECT_EXTRA_INFO_IBUKI_LV_" + this.managerInstanceId);
+
 
 
 		//--------------------------------
@@ -1051,6 +1020,7 @@ export function CExtraInfoAreaComponentManager () {
 		}
 
 
+
 		//--------------------------------
 		// SP回復量計算
 		//--------------------------------
@@ -1074,6 +1044,8 @@ export function CExtraInfoAreaComponentManager () {
 			valueText = value + "/" + "10秒";
 			valueTextArraySP.push([typeText, valueText]);
 		}
+
+
 
 
 		//--------------------------------
@@ -1149,6 +1121,7 @@ export function CExtraInfoAreaComponentManager () {
 	};
 
 
+
 	/**
 	 * 拡張情報の表示欄を構築する（所持限界量）.
 	 */
@@ -1166,6 +1139,7 @@ export function CExtraInfoAreaComponentManager () {
 		var learnSkillIdArray = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, n_A_JOB).GetLearnSkillIdArray();
 
 
+
 		// 指定の領域をクリア
 		objRoot = document.getElementById("OBJID_TD_EXTRA_INFO_" + this.managerInstanceId);
 		HtmlRemoveAllChild(objRoot);
@@ -1174,6 +1148,7 @@ export function CExtraInfoAreaComponentManager () {
 		objTable = HtmlCreateElement("table", objRoot);
 		objTable.setAttribute("style", "width : 100%;");
 		objTbody = HtmlCreateElement("tbody", objTable);
+
 
 
 		// セレクトボックスを構築
@@ -1192,7 +1167,7 @@ export function CExtraInfoAreaComponentManager () {
 			objTd = HtmlCreateElement("td", objTr);
 			objSelect = HtmlCreateElement("select", objTd);
 			objSelect.setAttribute("id", "OBJID_SELECT_EXTRA_INFO_CAPACITY_UP_LV_" + this.managerInstanceId);
-			objSelect.addEventListener('change', () => CExtraInfoAreaComponentManager.RefreshDispArea(this.managerInstanceId));
+			objSelect.setAttribute("onChange", "CExtraInfoAreaComponentManager.RefreshDispArea(" + this.managerInstanceId + ")");
 			for (idx = 0; idx <= g_skillManager.GetMaxLv(SKILL_ID_SHOZIGENKAIRYO_ZOKA); idx++) {
 				HtmlCreateElementOption(idx, "Lv" + idx, objSelect);
 			}
@@ -1208,11 +1183,12 @@ export function CExtraInfoAreaComponentManager () {
 		objTd = HtmlCreateElement("td", objTr);
 		objSelect = HtmlCreateElement("select", objTd);
 		objSelect.setAttribute("id", "OBJID_SELECT_EXTRA_INFO_CAPACITY_UP_R_LV_" + this.managerInstanceId);
-		objSelect.addEventListener('change', () => CExtraInfoAreaComponentManager.RefreshDispArea(this.managerInstanceId));
+		objSelect.setAttribute("onChange", "CExtraInfoAreaComponentManager.RefreshDispArea(" + this.managerInstanceId + ")");
 		for (idx = 0; idx <= g_skillManager.GetMaxLv(SKILL_ID_SHOZIGENKAIRYO_ZOKA_R); idx++) {
 			HtmlCreateElementOption(idx, "Lv" + idx, objSelect);
 		}
 		this.RestoreSelectedValue("OBJID_SELECT_EXTRA_INFO_CAPACITY_UP_R_LV_" + this.managerInstanceId, 0);
+
 
 
 		// 表示欄
@@ -1304,6 +1280,7 @@ export function CExtraInfoAreaComponentManager () {
 	};
 
 
+
 	/**
 	 * 拡張情報の表示欄を構築する（属性倍率）.
 	 */
@@ -1318,6 +1295,7 @@ export function CExtraInfoAreaComponentManager () {
 		var objTd = null;
 
 
+
 		// 指定の領域をクリア
 		objRoot = document.getElementById("OBJID_TD_EXTRA_INFO_" + this.managerInstanceId);
 		HtmlRemoveAllChild(objRoot);
@@ -1326,6 +1304,7 @@ export function CExtraInfoAreaComponentManager () {
 		objTable = HtmlCreateElement("table", objRoot);
 		objTable.setAttribute("style", "width : 100%;");
 		objTbody = HtmlCreateElement("tbody", objTable);
+
 
 
 		// 表示欄
@@ -1361,6 +1340,7 @@ export function CExtraInfoAreaComponentManager () {
 		var objSpan = null;
 
 
+
 		//--------------------------------
 		// 属性倍率計算
 		//--------------------------------
@@ -1377,6 +1357,8 @@ export function CExtraInfoAreaComponentManager () {
 			bodyElmRatioArray[idx] = zokusei[n_A_BodyZokusei * 10 + 1][idx] + 100;
 			finalRatioArray[idx] = bodyElmRatioArray[idx] - Math.floor(resistValueArray[idx] * bodyElmRatioArray[idx]) / 100;
 		}
+
+
 
 
 		//--------------------------------
@@ -1473,6 +1455,7 @@ export function CExtraInfoAreaComponentManager () {
 	};
 
 
+
 	/**
 	 * 拡張情報の表示欄を構築する（物理特化）.
 	 */
@@ -1487,6 +1470,7 @@ export function CExtraInfoAreaComponentManager () {
 		var objTd = null;
 
 
+
 		// 指定の領域をクリア
 		objRoot = document.getElementById("OBJID_TD_EXTRA_INFO_" + this.managerInstanceId);
 		HtmlRemoveAllChild(objRoot);
@@ -1495,6 +1479,7 @@ export function CExtraInfoAreaComponentManager () {
 		objTable = HtmlCreateElement("table", objRoot);
 		objTable.setAttribute("style", "width : 100%;");
 		objTbody = HtmlCreateElement("tbody", objTable);
+
 
 
 		// 表示欄
@@ -1541,6 +1526,7 @@ export function CExtraInfoAreaComponentManager () {
 		var objTrChild = null;
 		var objTdChild = null;
 		var objSpan = null;
+
 
 
 		//--------------------------------
@@ -1673,6 +1659,9 @@ export function CExtraInfoAreaComponentManager () {
 		loopDataArray.push(["その他", 3, 1, 1, specArray]);
 
 
+
+
+
 		//--------------------------------
 		// HTML組み立て
 		//--------------------------------
@@ -1787,6 +1776,7 @@ export function CExtraInfoAreaComponentManager () {
 	};
 
 
+
 	/**
 	 * 拡張情報の表示欄を構築する（魔法特化）.
 	 */
@@ -1801,6 +1791,7 @@ export function CExtraInfoAreaComponentManager () {
 		var objTd = null;
 
 
+
 		// 指定の領域をクリア
 		objRoot = document.getElementById("OBJID_TD_EXTRA_INFO_" + this.managerInstanceId);
 		HtmlRemoveAllChild(objRoot);
@@ -1809,6 +1800,7 @@ export function CExtraInfoAreaComponentManager () {
 		objTable = HtmlCreateElement("table", objRoot);
 		objTable.setAttribute("style", "width : 100%;");
 		objTbody = HtmlCreateElement("tbody", objTable);
+
 
 
 		// 表示欄
@@ -1855,6 +1847,7 @@ export function CExtraInfoAreaComponentManager () {
 		var objTrChild = null;
 		var objTdChild = null;
 		var objSpan = null;
+
 
 
 		//--------------------------------
@@ -1982,6 +1975,9 @@ export function CExtraInfoAreaComponentManager () {
 		loopDataArray.push(["防御無視", 0, 4, 1, specArray]);
 
 
+
+
+
 		//--------------------------------
 		// HTML組み立て
 		//--------------------------------
@@ -2094,6 +2090,7 @@ export function CExtraInfoAreaComponentManager () {
 			}
 		}
 	};
+
 
 
 	/**
@@ -2473,6 +2470,7 @@ export function CExtraInfoAreaComponentManager () {
 	};
 
 
+
 	/**
 	 * 拡張情報の表示欄を構築する（状態異常耐性）.
 	 */
@@ -2569,6 +2567,7 @@ export function CExtraInfoAreaComponentManager () {
 		}
 
 
+
 		//--------------------------------
 		// HTML組み立て
 		//--------------------------------
@@ -2657,6 +2656,7 @@ export function CExtraInfoAreaComponentManager () {
 	};
 
 
+
 	/**
 	 * 拡張情報の表示欄を構築する（新状態異常耐性）.
 	 */
@@ -2671,6 +2671,7 @@ export function CExtraInfoAreaComponentManager () {
 		var objTd = null;
 
 
+
 		// 指定の領域をクリア
 		objRoot = document.getElementById("OBJID_TD_EXTRA_INFO_" + this.managerInstanceId);
 		HtmlRemoveAllChild(objRoot);
@@ -2679,6 +2680,7 @@ export function CExtraInfoAreaComponentManager () {
 		objTable = HtmlCreateElement("table", objRoot);
 		objTable.setAttribute("style", "width : 100%;");
 		objTbody = HtmlCreateElement("tbody", objTable);
+
 
 
 		// 表示欄
@@ -2711,6 +2713,7 @@ export function CExtraInfoAreaComponentManager () {
 		var objTr = null;
 		var objTd = null;
 		var objSpan = null;
+
 
 
 		//--------------------------------
@@ -2862,6 +2865,7 @@ export function CExtraInfoAreaComponentManager () {
 		}
 
 
+
 		//--------------------------------
 		// HTML組み立て
 		//--------------------------------
@@ -2953,6 +2957,7 @@ export function CExtraInfoAreaComponentManager () {
 	};
 
 
+
 	/**
 	 * 拡張情報の表示欄を構築する（詠唱/ディレイ）.
 	 */
@@ -2967,6 +2972,7 @@ export function CExtraInfoAreaComponentManager () {
 		var objTd = null;
 
 
+
 		// 指定の領域をクリア
 		objRoot = document.getElementById("OBJID_TD_EXTRA_INFO_" + this.managerInstanceId);
 		HtmlRemoveAllChild(objRoot);
@@ -2975,6 +2981,7 @@ export function CExtraInfoAreaComponentManager () {
 		objTable = HtmlCreateElement("table", objRoot);
 		objTable.setAttribute("style", "width : 100%;");
 		objTbody = HtmlCreateElement("tbody", objTable);
+
 
 
 		// 表示欄
@@ -3005,6 +3012,9 @@ export function CExtraInfoAreaComponentManager () {
 		var objTr = null;
 		var objTd = null;
 		var objSpan = null;
+
+
+
 
 
 		//--------------------------------
@@ -3259,6 +3269,9 @@ export function CExtraInfoAreaComponentManager () {
 		);
 
 
+
+
+
 		//--------------------------------
 		// HTML組み立て
 		//--------------------------------
@@ -3333,6 +3346,7 @@ export function CExtraInfoAreaComponentManager () {
 	};
 
 
+
 	/**
 	 * 拡張情報の表示欄を構築する（経験値）.
 	 */
@@ -3350,6 +3364,7 @@ export function CExtraInfoAreaComponentManager () {
 		var objSelect = null;
 
 
+
 		// 指定の領域をクリア
 		objRoot = document.getElementById("OBJID_TD_EXTRA_INFO_" + this.managerInstanceId);
 		HtmlRemoveAllChild(objRoot);
@@ -3358,6 +3373,7 @@ export function CExtraInfoAreaComponentManager () {
 		objTable = HtmlCreateElement("table", objRoot);
 		objTable.setAttribute("style", "width : 100%;");
 		objTbody = HtmlCreateElement("tbody", objTable);
+
 
 
 		// セレクトボックスを構築
@@ -3375,7 +3391,7 @@ export function CExtraInfoAreaComponentManager () {
 		objTd = HtmlCreateElement("td", objTr);
 		objSelect = HtmlCreateElement("select", objTd);
 		objSelect.setAttribute("id", "OBJID_SELECT_EXTRA_INFO_BASE_EXP_GAUGE_" + this.managerInstanceId);
-		objSelect.addEventListener('change', () => CExtraInfoAreaComponentManager.RefreshDispArea(this.managerInstanceId));
+		objSelect.setAttribute("onChange", "CExtraInfoAreaComponentManager.RefreshDispArea(" + this.managerInstanceId + ")");
 		for (idx = 0; idx < 1000; idx++) {
 			HtmlCreateElementOption(idx, Math.floor(idx / 10) + "." + (idx % 10), objSelect);
 		}
@@ -3397,7 +3413,7 @@ export function CExtraInfoAreaComponentManager () {
 		else {
 			objSelect = HtmlCreateElement("select", objTd);
 			objSelect.setAttribute("id", "OBJID_SELECT_EXTRA_INFO_BASE_LV_FOCUS_" + this.managerInstanceId);
-			objSelect.addEventListener('change', () => CExtraInfoAreaComponentManager.RefreshDispArea(this.managerInstanceId));
+			objSelect.setAttribute("onChange", "CExtraInfoAreaComponentManager.RefreshDispArea(" + this.managerInstanceId + ")");
 			for (idx = n_A_BaseLV + 1; idx <= lvMax; idx++) {
 				HtmlCreateElementOption(idx, "Lv" + idx, objSelect);
 			}
@@ -3417,7 +3433,7 @@ export function CExtraInfoAreaComponentManager () {
 		objTd = HtmlCreateElement("td", objTr);
 		objSelect = HtmlCreateElement("select", objTd);
 		objSelect.setAttribute("id", "OBJID_SELECT_EXTRA_INFO_JOB_EXP_GAUGE_" + this.managerInstanceId);
-		objSelect.addEventListener('change', () => CExtraInfoAreaComponentManager.RefreshDispArea(this.managerInstanceId));
+		objSelect.setAttribute("onChange", "CExtraInfoAreaComponentManager.RefreshDispArea(" + this.managerInstanceId + ")");
 		for (idx = 0; idx < 1000; idx++) {
 			HtmlCreateElementOption(idx, Math.floor(idx / 10) + "." + (idx % 10), objSelect);
 		}
@@ -3439,12 +3455,13 @@ export function CExtraInfoAreaComponentManager () {
 		else {
 			objSelect = HtmlCreateElement("select", objTd);
 			objSelect.setAttribute("id", "OBJID_SELECT_EXTRA_INFO_JOB_LV_FOCUS_" + this.managerInstanceId);
-			objSelect.addEventListener('change', () => CExtraInfoAreaComponentManager.RefreshDispArea(this.managerInstanceId));
+			objSelect.setAttribute("onChange", "CExtraInfoAreaComponentManager.RefreshDispArea(" + this.managerInstanceId + ")");
 			for (idx = n_A_JobLV + 1; idx <= lvMax; idx++) {
 				HtmlCreateElementOption(idx, "Lv" + idx, objSelect);
 			}
 			this.RestoreSelectedValue("OBJID_SELECT_EXTRA_INFO_JOB_LV_FOCUS_" + this.managerInstanceId, n_A_JobLV + 1);
 		}
+
 
 
 		// 表示欄
@@ -3496,6 +3513,7 @@ export function CExtraInfoAreaComponentManager () {
 		var objTd = null;
 
 
+
 		//--------------------------------
 		// 個別領域の選択値を保管
 		//--------------------------------
@@ -3504,6 +3522,7 @@ export function CExtraInfoAreaComponentManager () {
 		this.StoreSelectedValue("OBJID_SELECT_EXTRA_INFO_BASE_LV_FOCUS_" + this.managerInstanceId);
 		this.StoreSelectedValue("OBJID_SELECT_EXTRA_INFO_JOB_EXP_GAUGE_" + this.managerInstanceId);
 		this.StoreSelectedValue("OBJID_SELECT_EXTRA_INFO_JOB_LV_FOCUS_" + this.managerInstanceId);
+
 
 
 		//--------------------------------
@@ -3580,6 +3599,7 @@ export function CExtraInfoAreaComponentManager () {
 		}
 
 
+
 		//--------------------------------
 		// ジョブ経験値計算
 		//--------------------------------
@@ -3651,12 +3671,14 @@ export function CExtraInfoAreaComponentManager () {
 		}
 
 
+
 		//--------------------------------
 		// HTML組み立て
 		//--------------------------------
 
 		objRoot = document.getElementById("OBJID_TD_EXTRA_INFO_DISP_AREA_" + this.managerInstanceId);
 		HtmlRemoveAllChild(objRoot);
+
 
 
 		HtmlCreateElement("hr", objRoot);
@@ -3694,6 +3716,7 @@ export function CExtraInfoAreaComponentManager () {
 		objTd = HtmlCreateElement("td", objTr);
 		objTd.setAttribute("class", "CSSCLS_EXTRA_INFO_DISP_TABLE");
 		HtmlCreateTextSpan(DivideDigits3("" + CExtraInfoAreaComponentManager.mobData[MONSTER_DATA_INDEX_JOB_EXP]), objTd, CExtraInfoAreaComponentManager.fontSizeClassName);
+
 
 
 		HtmlCreateElement("hr", objRoot);
@@ -3771,6 +3794,7 @@ export function CExtraInfoAreaComponentManager () {
 	};
 
 
+
 	/**
 	 * 拡張情報の表示欄を構築する（ステータス合計）.
 	 */
@@ -3788,6 +3812,7 @@ export function CExtraInfoAreaComponentManager () {
 		var objSelect = null;
 
 
+
 		// 指定の領域をクリア
 		objRoot = document.getElementById("OBJID_TD_EXTRA_INFO_" + this.managerInstanceId);
 		HtmlRemoveAllChild(objRoot);
@@ -3796,6 +3821,7 @@ export function CExtraInfoAreaComponentManager () {
 		objTable = HtmlCreateElement("table", objRoot);
 		objTable.setAttribute("style", "width : 100%;");
 		objTbody = HtmlCreateElement("tbody", objTable);
+
 
 
 		// セレクトボックスを構築
@@ -3809,7 +3835,7 @@ export function CExtraInfoAreaComponentManager () {
 		objTd = HtmlCreateElement("td", objTr);
 		objSelect = HtmlCreateElement("select", objTd);
 		objSelect.setAttribute("id", "OBJID_SELECT_EXTRA_INFO_STATUS_SUM_DISP_KIND_" + this.managerInstanceId);
-		objSelect.addEventListener('change', () => CExtraInfoAreaComponentManager.RebuildAndRefreshDispArea(this.managerInstanceId));
+		objSelect.setAttribute("onChange", "CExtraInfoAreaComponentManager.RebuildAndRefreshDispArea(" + this.managerInstanceId + ")");
 		HtmlCreateElementOption(EXTRA_INFO_STATUS_SUM_KIND_MAZYONO_SKILL_CARD, "魔女のスキルカード", objSelect);
 		HtmlCreateElementOption(EXTRA_INFO_STATUS_SUM_KIND_ALL_ITEM_AND_CARD, "アイテム／カード全般", objSelect);
 		this.RestoreSelectedValue("OBJID_SELECT_EXTRA_INFO_STATUS_SUM_DISP_KIND_" + this.managerInstanceId, EXTRA_INFO_STATUS_SUM_KIND_MAZYONO_SKILL_CARD);
@@ -3828,7 +3854,7 @@ export function CExtraInfoAreaComponentManager () {
 			objTd = HtmlCreateElement("td", objTr);
 			objSelect = HtmlCreateElement("select", objTd);
 			objSelect.setAttribute("id", "OBJID_SELECT_EXTRA_INFO_STATUS_SUM_COND_TABLE_KIND_" + this.managerInstanceId);
-			objSelect.addEventListener('change', () => CExtraInfoAreaComponentManager.RefreshDispArea(this.managerInstanceId));
+			objSelect.setAttribute("onChange", "CExtraInfoAreaComponentManager.RefreshDispArea(" + this.managerInstanceId + ")");
 			HtmlCreateElementOption(0, "そのスキルが使える数値", objSelect);
 			HtmlCreateElementOption(1, "単純な倍数の数値", objSelect);
 			this.RestoreSelectedValue("OBJID_SELECT_EXTRA_INFO_STATUS_SUM_COND_TABLE_KIND_" + this.managerInstanceId, 0);
@@ -3874,7 +3900,7 @@ export function CExtraInfoAreaComponentManager () {
 			objTd = HtmlCreateElement("td", objTr);
 			objSelect = HtmlCreateElement("select", objTd);
 			objSelect.setAttribute("id", "OBJID_SELECT_EXTRA_INFO_STATUS_SUM_TARGET_ITEM_KIND_" + this.managerInstanceId);
-			objSelect.addEventListener('change', () => CExtraInfoAreaComponentManager.RefreshDispArea(this.managerInstanceId));
+			objSelect.setAttribute("onChange", "CExtraInfoAreaComponentManager.RefreshDispArea(" + this.managerInstanceId + ")");
 			for (idx = 0; idx < targetArray.length; idx++) {
 				HtmlCreateElementOption(targetArray[idx][0], targetArray[idx][1], objSelect);
 			}
@@ -3882,6 +3908,8 @@ export function CExtraInfoAreaComponentManager () {
 			break;
 
 		}
+
+
 
 
 		// 表示欄
@@ -4028,6 +4056,7 @@ export function CExtraInfoAreaComponentManager () {
 		];
 
 
+
 		//--------------------------------
 		// 個別領域の選択値を保管
 		//--------------------------------
@@ -4040,6 +4069,7 @@ export function CExtraInfoAreaComponentManager () {
 		dispKind = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_EXTRA_INFO_STATUS_SUM_DISP_KIND_" + this.managerInstanceId, 0);
 
 
+
 		//--------------------------------
 		// データ計算
 		//--------------------------------
@@ -4050,6 +4080,7 @@ export function CExtraInfoAreaComponentManager () {
 		// 全合計の最大値を決定する
 		// とりあえず 999
 		totalMax = Math.max(999, paramMax * 6);
+
 
 
 		switch (dispKind) {
@@ -4245,6 +4276,7 @@ export function CExtraInfoAreaComponentManager () {
 		}
 
 
+
 		//--------------------------------
 		// HTML組み立て
 		//--------------------------------
@@ -4304,6 +4336,7 @@ export function CExtraInfoAreaComponentManager () {
 				objTd = HtmlCreateElement("td", objTr);
 				HtmlCreateTextSpan("8", objTd, CExtraInfoAreaComponentManager.fontSizeClassName);
 			}
+
 
 
 			// ヘッダ行
@@ -4606,6 +4639,7 @@ export function CExtraInfoAreaComponentManager () {
 	};
 
 
+
 	/**
 	 * 拡張情報の表示欄を構築する（対人情報）.
 	 */
@@ -4620,6 +4654,7 @@ export function CExtraInfoAreaComponentManager () {
 		var objTd = null;
 
 
+
 		// 指定の領域をクリア
 		objRoot = document.getElementById("OBJID_TD_EXTRA_INFO_" + this.managerInstanceId);
 		HtmlRemoveAllChild(objRoot);
@@ -4628,6 +4663,7 @@ export function CExtraInfoAreaComponentManager () {
 		objTable = HtmlCreateElement("table", objRoot);
 		objTable.setAttribute("style", "width : 100%;");
 		objTbody = HtmlCreateElement("tbody", objTable);
+
 
 
 		// 表示欄
@@ -4673,6 +4709,7 @@ export function CExtraInfoAreaComponentManager () {
 		};
 
 
+
 		physicalValueArray[0] = ["", n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP_PLAYER_ALL]];
 		physicalValueArray[1] = ["", n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP_PLAYER_HUMAN] + n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP_RACE_HUMAN]];
 		physicalValueArray[2] = ["", physicalValueArray[0][1] + physicalValueArray[1][1]];
@@ -4707,6 +4744,7 @@ export function CExtraInfoAreaComponentManager () {
 		}
 
 
+
 		//--------------------------------
 		// HTML組み立て
 		//--------------------------------
@@ -4720,6 +4758,7 @@ export function CExtraInfoAreaComponentManager () {
 		objTable.setAttribute("class", "CSSCLS_EXTRA_INFO_DISP_TABLE");
 		objTable.setAttribute("style", "width : 100%;");
 		objTbody = HtmlCreateElement("tbody", objTable);
+
 
 
 		// 物理ヘッダ
@@ -4787,6 +4826,7 @@ export function CExtraInfoAreaComponentManager () {
 		HtmlCreateTextSpan(physicalValueArray[4][1] + "%", objSpan, CExtraInfoAreaComponentManager.fontSizeClassName);
 
 
+
 		// 魔法ヘッダ
 		objTr = HtmlCreateElement("tr", objTbody);
 
@@ -4850,6 +4890,7 @@ export function CExtraInfoAreaComponentManager () {
 		objSpan = HtmlCreateElement("span", objTd);
 		objSpan.setAttribute("class", magicalValueArray[4][0]);
 		HtmlCreateTextSpan(magicalValueArray[4][1] + "%", objSpan, CExtraInfoAreaComponentManager.fontSizeClassName);
+
 
 
 		// 耐性ヘッダ
@@ -4960,6 +5001,7 @@ export function CExtraInfoAreaComponentManager () {
 	};
 
 
+
 	/**
 	 * 拡張情報の表示欄を構築する（ステータス補正）.
 	 */
@@ -4978,6 +5020,7 @@ export function CExtraInfoAreaComponentManager () {
 		var objSelect = null;
 
 
+
 		// 指定の領域をクリア
 		objRoot = document.getElementById("OBJID_TD_EXTRA_INFO_" + this.managerInstanceId);
 		HtmlRemoveAllChild(objRoot);
@@ -4986,6 +5029,7 @@ export function CExtraInfoAreaComponentManager () {
 		objTable = HtmlCreateElement("table", objRoot);
 		objTable.setAttribute("style", "width : 100%;");
 		objTbody = HtmlCreateElement("tbody", objTable);
+
 
 
 		// セレクトボックスを構築
@@ -4999,7 +5043,7 @@ export function CExtraInfoAreaComponentManager () {
 		objTd = HtmlCreateElement("td", objTr);
 		objSelect = HtmlCreateElement("select", objTd);
 		objSelect.setAttribute("id", "OBJID_SELECT_EXTRA_INFO_EFFECTIVE_SP_DISP_KIND_" + this.managerInstanceId);
-		objSelect.addEventListener('change', () => CExtraInfoAreaComponentManager.RebuildAndRefreshDispArea(this.managerInstanceId));
+		objSelect.setAttribute("onChange", "CExtraInfoAreaComponentManager.RebuildAndRefreshDispArea(" + this.managerInstanceId + ")");
 		HtmlCreateElementOption(EXTRA_INFO_EFFECTIVE_SP_KIND_STATUS_BASIC, "基本ステータス", objSelect);
 		HtmlCreateElementOption(EXTRA_INFO_EFFECTIVE_SP_KIND_STATUS_SPECIAL, "特性ステータス", objSelect);
 		HtmlCreateElementOption(EXTRA_INFO_EFFECTIVE_SP_KIND_STATUS_EXTRA, "拡張ステータス", objSelect);
@@ -5129,6 +5173,7 @@ export function CExtraInfoAreaComponentManager () {
 		var objTd = null;
 
 
+
 		//--------------------------------
 		// 個別領域の選択値を保管
 		//--------------------------------
@@ -5137,6 +5182,7 @@ export function CExtraInfoAreaComponentManager () {
 
 		// 表示区分
 		dispKind = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_EXTRA_INFO_EFFECTIVE_SP_DISP_KIND_" + this.managerInstanceId, 0);
+
 
 
 		//--------------------------------
@@ -5324,6 +5370,7 @@ export function CExtraInfoAreaComponentManager () {
 			}
 
 
+
 			// 「砂時計のネックレス」の効果（ペナルティ）
 			if ((itemCount = EquipNumSearch(ITEM_ID_SUNADOKENO_NECKLACE)) > 0) {
 				confval = Math.min(6, Math.floor(n_A_JobLV / 5)) * itemCount;
@@ -5389,6 +5436,8 @@ export function CExtraInfoAreaComponentManager () {
 			if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_GRENADE_MASTERY), UsedSkillSearch(SKILL_ID_GRENADE_MASTERY))) > 0) {
 				wSPC_CON += sklLv
 			}
+
+
 
 
 			// ジョブボーナス取得
@@ -5636,6 +5685,7 @@ export function CExtraInfoAreaComponentManager () {
 }
 
 
+
 /**
  * 拡張情報エリアコンポーネントマネージャクラスのインスタンスマネージャ.
  */
@@ -5645,6 +5695,7 @@ CExtraInfoAreaComponentManager.instanceManager = new CInstanceManager();
  * フォントサイズクラス名.
  */
 CExtraInfoAreaComponentManager.fontSizeClassName = "";
+
 
 
 /**
@@ -5668,6 +5719,7 @@ CExtraInfoAreaComponentManager.mobData = null;
 CExtraInfoAreaComponentManager.dispDataMap = new Map();
 
 
+
 /**
  * 参照するデータを設定する.
  */
@@ -5676,6 +5728,7 @@ CExtraInfoAreaComponentManager.setReferData = function (charaData, specData, mob
 	CExtraInfoAreaComponentManager.specData = specData;
 	CExtraInfoAreaComponentManager.mobData = mobData;
 };
+
 
 
 /**
@@ -5692,6 +5745,7 @@ CExtraInfoAreaComponentManager.OnChangeInfo = function (instanceId) {
 	// メンバ関数のハンドラをコール
 	objManager.OnChangeInfo();
 };
+
 
 
 /**
@@ -5743,6 +5797,7 @@ CExtraInfoAreaComponentManager.RebuildAndRefreshDispArea = function (instanceId)
 };
 
 
+
 /**
  * すべての表示エリアの記憶している選択値をクリアする.
  * @param bPreserveStaticOptions 職業等に依存しないオプションを維持するかのフラグ
@@ -5761,6 +5816,7 @@ CExtraInfoAreaComponentManager.ClearStoredValueAll = function (bPreserveStaticOp
 		managerList[idx].ClearStoredValue(bPreserveStaticOptions);
 	}
 };
+
 
 
 /**
@@ -5798,6 +5854,11 @@ CExtraInfoAreaComponentManager.RefreshDispAreaAll = function () {
 		managerList[idx].RefreshDispArea();
 	}
 };
+
+if (typeof window !== 'undefined') {
+	window.GetExtraInfoText = GetExtraInfoText;
+	window.CExtraInfoAreaComponentManager = CExtraInfoAreaComponentManager;
+}
 
 /*
 CExtraInfoAreaComponentManager.testes = function () {
@@ -5852,6 +5913,7 @@ CExtraInfoAreaComponentManager.testes = function () {
 	};
 
 
+
 	for (idxBase = 0; idxBase < numArray.length; idxBase++) {
 
 		effective = [];
@@ -5902,7 +5964,5 @@ CExtraInfoAreaComponentManager.testes = function () {
 };
 */
 
-if (typeof window !== 'undefined') {
-    window.CExtraInfoAreaComponentManager = CExtraInfoAreaComponentManager;
-}
+
 

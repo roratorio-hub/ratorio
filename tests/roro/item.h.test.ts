@@ -51,6 +51,21 @@ describe('item.h', () => {
 		it('GetItemExplainText が関数', () => expect(typeof GetItemExplainText).toBe('function'));
 	});
 
+	describe('window互換', () => {
+		it('window.GetItemKindNameText', () => expect((window as any).GetItemKindNameText).toBe(GetItemKindNameText));
+		it('window.IsDexBasedArms', () => expect((window as any).IsDexBasedArms).toBe(IsDexBasedArms));
+		it('window.IsEffectiveExceededRefinedAtkArms', () => expect((window as any).IsEffectiveExceededRefinedAtkArms).toBe(IsEffectiveExceededRefinedAtkArms));
+		it('window.IsGunSeriesArms', () => expect((window as any).IsGunSeriesArms).toBe(IsGunSeriesArms));
+		it('window.GetJobRestrictText', () => expect((window as any).GetJobRestrictText).toBe(GetJobRestrictText));
+		it('window.GetStrPenaltyAvoidStr', () => expect((window as any).GetStrPenaltyAvoidStr).toBe(GetStrPenaltyAvoidStr));
+		it('window.GetEnchantTypeId', () => expect((window as any).GetEnchantTypeId).toBe(GetEnchantTypeId));
+		it('window.GetRndOptTypeId', () => expect((window as any).GetRndOptTypeId).toBe(GetRndOptTypeId));
+		it('window.GetSlotText', () => expect((window as any).GetSlotText).toBe(GetSlotText));
+		it('window.GetMaxSlot', () => expect((window as any).GetMaxSlot).toBe(GetMaxSlot));
+		it('window.GetItemSP', () => expect((window as any).GetItemSP).toBe(GetItemSP));
+		it('window.GetItemExplainText', () => expect((window as any).GetItemExplainText).toBe(GetItemExplainText));
+	});
+
 	describe('DefineEnum 副作用確認', () => {
 		it('ITEM_DATA_INDEX_ID が 0', () => expect((globalThis as any).ITEM_DATA_INDEX_ID).toBe(0));
 		it('ITEM_DATA_INDEX_NAME が 8', () => expect((globalThis as any).ITEM_DATA_INDEX_NAME).toBe(8));

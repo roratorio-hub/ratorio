@@ -1,7 +1,3 @@
-// === AUTO-GENERATED IMPORTS ===
-import { CMigConstDataManagerSubBase } from './CMigConstDataManagerSubBase.js';
-import { CMigEquipableData } from './CMigEquipableData.js';
-// === END AUTO-GENERATED IMPORTS ===
 /**
  * ランダムオプションデータマネージャクラス.
  */
@@ -36,3 +32,4 @@ export function CMigConstDataManagerSubRndOpt () {
 
 }
 CMigConstDataManagerSubRndOpt.prototype = new CMigConstDataManagerSubBase();
+if (typeof window !== 'undefined') { window.CMigConstDataManagerSubRndOpt = CMigConstDataManagerSubRndOpt; }

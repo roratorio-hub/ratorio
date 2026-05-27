@@ -13,4 +13,10 @@ describe('rndopt.dat.js', () => {
             expect(g_rndOptArray[0]).toEqual([0, 0, 0, 0, 1, 0]);
         });
     });
+
+    describe('window互換確認', () => {
+        it('window.g_rndOptArray が設定されている', () => {
+            expect((window as any).g_rndOptArray).toBe(g_rndOptArray);
+        });
+    });
 });

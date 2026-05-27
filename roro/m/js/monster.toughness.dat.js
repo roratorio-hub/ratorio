@@ -1,6 +1,3 @@
-// === AUTO-GENERATED IMPORTS ===
-import { MonsterObjNew } from './monster.dat.js';
-// === END AUTO-GENERATED IMPORTS ===
 export class MonsterToughness {
     /** ダメージ等倍 */
     static DAMPING_NONE = 0;
@@ -326,3 +323,6 @@ export class MonsterToughness {
     }
 }
 
+if (typeof window !== 'undefined') {
+    window.MonsterToughness = MonsterToughness;
+}

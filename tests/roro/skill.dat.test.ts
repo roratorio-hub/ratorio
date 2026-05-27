@@ -5,7 +5,6 @@ import {
     SKILL_ID_TUZYO_KOGEKI,
     SKILL_ID_OKYU_TEATE,
     SKILL_ID_ABYSS_DAGGER_STATE,
-    SKILL_ID_YARI_SHUREN,
     SkillObjNew,
 } from '@roro/skill.dat.js';
 
@@ -23,7 +22,10 @@ describe('skill.dat.js', () => {
     });
 
     describe('window互換確認', () => {
+        it('window.SERE_SUPPORT_SKILL_ID_PYRO_TECHNIC', () => expect((window as any).SERE_SUPPORT_SKILL_ID_PYRO_TECHNIC).toBe(SERE_SUPPORT_SKILL_ID_PYRO_TECHNIC));
+        it('window.SERE_SUPPORT_SKILL_ID_POISON_SHIELD', () => expect((window as any).SERE_SUPPORT_SKILL_ID_POISON_SHIELD).toBe(SERE_SUPPORT_SKILL_ID_POISON_SHIELD));
         it('window.SKILL_ID_TUZYO_KOGEKI',              () => expect((window as any).SKILL_ID_TUZYO_KOGEKI).toBe(SKILL_ID_TUZYO_KOGEKI));
-        it('window.SKILL_ID_YARI_SHUREN',               () => expect((window as any).SKILL_ID_YARI_SHUREN).toBe(SKILL_ID_YARI_SHUREN));
+        it('window.SKILL_ID_ABYSS_DAGGER_STATE',        () => expect((window as any).SKILL_ID_ABYSS_DAGGER_STATE).toBe(SKILL_ID_ABYSS_DAGGER_STATE));
+        it('window.SkillObjNew',                        () => expect((window as any).SkillObjNew).toBe(SkillObjNew));
     });
 });

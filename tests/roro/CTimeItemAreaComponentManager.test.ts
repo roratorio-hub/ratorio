@@ -10,11 +10,20 @@ vi.hoisted(() => {
         focus: () => {},
     };
     (document as any).getElementById = () => mockEl;
-});
-
-vi.mock('../../roro/common/js/util.js', async (importActual) => {
-    const actual = await importActual<any>();
-    return { ...actual, HtmlRemoveAllChild: () => {} };
+    (globalThis as any).HtmlRemoveAllChild = () => {};
+    (globalThis as any).HtmlCreateElement = () => mockEl;
+    (globalThis as any).HtmlCreateTextNode = () => {};
+    (globalThis as any).HtmlCreateElementOption = () => {};
+    (globalThis as any).HtmlSetObjectValueById = () => {};
+    (globalThis as any).HtmlGetObjectValueByIdAsInteger = () => 0;
+    (globalThis as any).AutoCalc = () => {};
+    (globalThis as any).CustomizeSelect2Specify = () => {};
+    (globalThis as any).g_timeItemConf = [];
+    (globalThis as any).g_timeItemConfEffective = [];
+    (globalThis as any).ITEM_SP_TIME_OBJ_SORT = [];
+    (globalThis as any).ITEM_SP_TIME_OBJ = [];
+    (globalThis as any).CBattleQuickControlAreaComponentManager = { RebuildControls: () => {} };
+    (globalThis as any).$ = () => ({ hasClass: () => false, select2: () => {}, addClass: () => {}, removeClass: () => {} });
 });
 
 import { CTimeItemAreaComponentManager } from '@roro/CTimeItemAreaComponentManager.js';
@@ -47,6 +56,12 @@ describe('CTimeItemAreaComponentManager.js', () => {
         });
         it('FocusArea が関数', () => {
             expect(typeof CTimeItemAreaComponentManager.FocusArea).toBe('function');
+        });
+    });
+
+    describe('window互換確認', () => {
+        it('window.CTimeItemAreaComponentManager が設定されている', () => {
+            expect((window as any).CTimeItemAreaComponentManager).toBe(CTimeItemAreaComponentManager);
         });
     });
 });

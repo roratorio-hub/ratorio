@@ -85,4 +85,10 @@ describe('CCustomSelectBase.js', () => {
             });
         }
     });
+
+    describe('window互換確認', () => {
+        it('window.CCustomSelectBase が設定されている', () => {
+            expect((window as any).CCustomSelectBase).toBe(CCustomSelectBase);
+        });
+    });
 });

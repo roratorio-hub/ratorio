@@ -19,4 +19,16 @@ describe('pet.dat.js', () => {
             expect(PET_OBJ).toHaveLength(112);
         });
     });
+
+    describe('window互換確認', () => {
+        it('window.PET_ID_NONE が設定されている', () => {
+            expect((window as any).PET_ID_NONE).toBe(PET_ID_NONE);
+        });
+        it('window.PET_ID_ALICE が設定されている', () => {
+            expect((window as any).PET_ID_ALICE).toBe(PET_ID_ALICE);
+        });
+        it('window.PET_OBJ が設定されている', () => {
+            expect((window as any).PET_OBJ).toBe(PET_OBJ);
+        });
+    });
 });

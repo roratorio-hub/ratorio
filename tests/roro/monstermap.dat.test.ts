@@ -38,4 +38,25 @@ describe('monstermap.dat.js', () => {
             expect(g_MonsterMapCategoryDataArray).toHaveLength(97);
         });
     });
+
+    describe('window互換確認', () => {
+        it('window.MONSTER_MAP_ID_MAP_ALL が設定されている', () => {
+            expect((window as any).MONSTER_MAP_ID_MAP_ALL).toBe(MONSTER_MAP_ID_MAP_ALL);
+        });
+        it('window.MONSTER_MAP_ID_MVP_MONSTER が設定されている', () => {
+            expect((window as any).MONSTER_MAP_ID_MVP_MONSTER).toBe(MONSTER_MAP_ID_MVP_MONSTER);
+        });
+        it('window.MONSTER_MAP_ID_CATEGORY_ALL が設定されている', () => {
+            expect((window as any).MONSTER_MAP_ID_CATEGORY_ALL).toBe(MONSTER_MAP_ID_CATEGORY_ALL);
+        });
+        it('window.MONSTER_MAP_ID_CATEGORY_MEMORIAL_DUNGEON が設定されている', () => {
+            expect((window as any).MONSTER_MAP_ID_CATEGORY_MEMORIAL_DUNGEON).toBe(MONSTER_MAP_ID_CATEGORY_MEMORIAL_DUNGEON);
+        });
+        it('window.g_MonsterMapDataArray が設定されている', () => {
+            expect((window as any).g_MonsterMapDataArray).toBe(g_MonsterMapDataArray);
+        });
+        it('window.g_MonsterMapCategoryDataArray が設定されている', () => {
+            expect((window as any).g_MonsterMapCategoryDataArray).toBe(g_MonsterMapCategoryDataArray);
+        });
+    });
 });

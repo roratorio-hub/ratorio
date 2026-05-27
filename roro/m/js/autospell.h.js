@@ -20,6 +20,7 @@ CGlobalConstManager.DefineEnum(
 );
 
 
+
 //----------------------------------------------------------------
 // 発動率定数
 //----------------------------------------------------------------
@@ -31,6 +32,7 @@ CGlobalConstManager.DefineEnum(
 	0,
 	1
 );
+
 
 
 //----------------------------------------------------------------
@@ -56,7 +58,11 @@ CGlobalConstManager.DefineEnum(
 );
 
 
+
 export const AUTO_SPELL_ID_CUSTOM_BIAS = 20000;
+
+
+
 
 
 /**
@@ -103,4 +109,7 @@ export function GetAutoSpellTriggerText(triggerId) {
 	return "不明";
 }
 
-
+if (typeof window !== 'undefined') {
+    window.AUTO_SPELL_ID_CUSTOM_BIAS = AUTO_SPELL_ID_CUSTOM_BIAS;
+    window.GetAutoSpellTriggerText = GetAutoSpellTriggerText;
+}

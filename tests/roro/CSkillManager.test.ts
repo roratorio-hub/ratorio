@@ -7,6 +7,11 @@ describe('CSkillManager.js', () => {
         it('CSkillManager が関数', () => expect(typeof CSkillManager).toBe('function'));
     });
 
+    describe('window互換確認', () => {
+        it('window.CSkillData が設定されている', () => expect((window as any).CSkillData).toBe(CSkillData));
+        it('window.CSkillManager が設定されている', () => expect((window as any).CSkillManager).toBe(CSkillManager));
+    });
+
     describe('CSkillData 静的プロパティ（インスタンス生成後に確定）', () => {
         // new CSkillData() を呼ぶことでコンストラクタ内の静的代入が実行される
         const _dummy = new CSkillData();

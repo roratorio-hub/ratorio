@@ -1,17 +1,18 @@
-import { vi, describe, it, expect, beforeAll } from 'vitest';
+import { describe, it, expect, beforeAll } from 'vitest';
 import { CCustomSelectBase } from '@roro/CCustomSelectBase.js';
 import { CCustomSelectMapBase } from '@roro/CCustomSelectMapBase.js';
 import { CCustomSelectMapCategory } from '@roro/CCustomSelectMapCategory.js';
 
-const mockCategoryRefs = vi.hoisted(() => ({ categoryArr: [] as any[] }));
-
-vi.mock('@roro/monstermap.dat.js', async (importActual) => {
-    const actual = await importActual<any>();
-    return { ...actual, get g_MonsterMapCategoryDataArray() { return mockCategoryRefs.categoryArr; } };
-});
-
 beforeAll(() => {
+    (globalThis as any).HtmlCreateElement = (tag: string, root: any) => {
+        const el = document.createElement(tag);
+        if (root) root.appendChild(el);
+        return el;
+    };
+    (globalThis as any).HtmlRemoveOptionAll = () => {};
+    (globalThis as any).HtmlCreateElementOption = () => {};
     (globalThis as any).TranslateAlias = () => '';
+    (globalThis as any).g_MonsterMapCategoryDataArray = [];
 });
 
 describe('CCustomSelectMapCategory.js', () => {
@@ -24,6 +25,12 @@ describe('CCustomSelectMapCategory.js', () => {
         });
         it('CCustomSelectBase を継承している', () => {
             expect(CCustomSelectMapCategory.prototype).toBeInstanceOf(CCustomSelectBase);
+        });
+    });
+
+    describe('window互換確認', () => {
+        it('window.CCustomSelectMapCategory が設定されている', () => {
+            expect((window as any).CCustomSelectMapCategory).toBe(CCustomSelectMapCategory);
         });
     });
 
@@ -46,14 +53,11 @@ describe('CCustomSelectMapCategory.js', () => {
             expect(obj.instanceIdName).toBe('TEST_CATEGORY');
         });
         it('RebuildSelectDataSubGetDataArray は g_MonsterMapCategoryDataArray を複製して返す', () => {
-            const prevSortId = obj.selectedSortId;
-            obj.selectedSortId = -1; // ソートをスキップ（SortByNameがmonstermap.h.jsに依存するため）
-            mockCategoryRefs.categoryArr = [{ id: 1 }, { id: 2 }];
+            (globalThis as any).g_MonsterMapCategoryDataArray = [{ id: 1 }, { id: 2 }];
             const result = obj.RebuildSelectDataSubGetDataArray();
             expect(Array.isArray(result)).toBe(true);
             expect(result).toHaveLength(2);
-            mockCategoryRefs.categoryArr = [];
-            obj.selectedSortId = prevSortId;
+            (globalThis as any).g_MonsterMapCategoryDataArray = [];
         });
         it('RebuildSelectDataSubDataFilter はデフォルトで true を返す', () => {
             expect(obj.RebuildSelectDataSubDataFilter({})).toBe(true);

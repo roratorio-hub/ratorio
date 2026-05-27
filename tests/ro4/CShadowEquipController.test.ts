@@ -40,6 +40,9 @@ describe('CShadowEquipController.js', () => {
     });
 
     describe('window互換確認', () => {
+        it('window.CShadowEquipController が設定されている', () => {
+            expect((window as any).CShadowEquipController).toBe(CShadowEquipController);
+        });
         it('window.g_shadowEquipController が設定されている', () => {
             expect((window as any).g_shadowEquipController).toBe(g_shadowEquipController);
         });

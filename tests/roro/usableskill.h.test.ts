@@ -23,4 +23,10 @@ describe('usableskill.h.js', () => {
             expect(USABLE_SKILL_ID_CUSTOM_BIAS).toBe(10000);
         });
     });
+
+    describe('window互換確認', () => {
+        it('window.USABLE_SKILL_ID_CUSTOM_BIAS が設定されている', () => {
+            expect((window as any).USABLE_SKILL_ID_CUSTOM_BIAS).toBe(10000);
+        });
+    });
 });

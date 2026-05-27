@@ -48,4 +48,9 @@ describe('chara.js', () => {
         });
     });
 
+    describe('window互換確認', () => {
+        it.each(exportedFunctions)('window.%s が設定されている', (name, fn) => {
+            expect((window as any)[name]).toBe(fn);
+        });
+    });
 });

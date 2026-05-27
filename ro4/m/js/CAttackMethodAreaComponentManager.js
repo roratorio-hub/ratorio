@@ -1,98 +1,4 @@
 import { CGlobalConstManager } from '../../../roro/m/js/CGlobalConstManager.js';
-// === AUTO-GENERATED IMPORTS ===
-import '../../../roro/m/js/common.js';
-import '../../../roro/m/js/item.h.js';
-import { n_A_PassSkill7 } from './BuffItemAndFood.js';
-import { UsedSkillSearch } from './BuffJobSpecificSelf.js';
-import { CSaveController } from './CSaveController.js';
-import { g_constDataManager, g_skillManager } from './global.js';
-import { AutoCalc, CanonOBJ, KunaiOBJ, SyurikenOBJ, calc } from './head.js';
-import { CSaveDataConst } from './savedata/CSaveDataConst.js';
-import { CAttackMethodConf } from '../../../roro/m/js/CAttackMethodConf.js';
-import { CCharaConfYozi } from '../../../roro/m/js/CCharaConfYozi.js';
-import { AutoSpellSkill } from '../../../roro/m/js/autospell.dat.js';
-import { AUTO_SPELL_ID_CUSTOM_BIAS } from '../../../roro/m/js/autospell.h.js';
-import { CardNumSearch, EquipNumSearch } from '../../../roro/m/js/chara.js';
-import { LearnedSkillSearch } from '../../../roro/m/js/learnedskill.js';
-import {
-         InsertSkill, USABEL_SKILL_ID_COLO_BOLT_5, USABEL_SKILL_ID_DEMONIC_FIRE_3,
-         USABEL_SKILL_ID_EARTH_SPIKE_5, USABEL_SKILL_ID_FIRE_BALL_5,
-         USABEL_SKILL_ID_FIRE_BOLT_5, USABEL_SKILL_ID_FIRE_WALL_5,
-         USABEL_SKILL_ID_FROST_DIVER_5, USABEL_SKILL_ID_GRAND_CROSS_10,
-         USABEL_SKILL_ID_HEAL_10, USABEL_SKILL_ID_HELL_INFERNO_3, USABEL_SKILL_ID_JUDEX_3,
-         USABEL_SKILL_ID_KOGEKI_SOCHI_YUKOKA_5, USABEL_SKILL_ID_LIGHTNING_BOLT_5,
-         USABEL_SKILL_ID_MAGMA_ILLUPTION_3, USABEL_SKILL_ID_METALIC_SOUND_3,
-         USABEL_SKILL_ID_METEOR_STORM_5, USABEL_SKILL_ID_PSYCHIC_WAVE_3,
-         USABEL_SKILL_ID_RESERECTION_BY_YGGDRASILLNO_HA, USABEL_SKILL_ID_SOUL_STRIKE_5,
-         USABEL_SKILL_ID_TEIOAPUCHAGI_7
-} from '../../../roro/m/js/usableskill.dat.js';
-import { USABLE_SKILL_ID_CUSTOM_BIAS } from '../../../roro/m/js/usableskill.h.js';
-import { GetHigherJobSeriesID, GetLowerJobSeriesID, IsSameJobClass } from './data/mig.job.h.js';
-import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectCheckedById, HtmlSetObjectCheckedById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById } from '../../../roro/common/js/util.js';
-import { MIG_JOB_ID_BIOLO, MIG_JOB_ID_DRAGON_KNIGHT, MIG_JOB_ID_MEISTER, MIG_JOB_ID_SPIRIT_HANDLER } from './data/mig.job.dat.js';
-import {
-         SKILL_ID_ABYSS_SQUARE, SKILL_ID_ACIDIFIED_ZONE_CHI, SKILL_ID_ACIDIFIED_ZONE_HI,
-         SKILL_ID_ACIDIFIED_ZONE_KAZE, SKILL_ID_ACIDIFIED_ZONE_MIZU,
-         SKILL_ID_ACID_DEMONSTRATION, SKILL_ID_ADORAMUS, SKILL_ID_AIMED_BOLT,
-         SKILL_ID_ALL_BLOOM, SKILL_ID_ANTEN_HOU, SKILL_ID_ARMS_CANNON,
-         SKILL_ID_ASHURA_HAOKEN, SKILL_ID_ASHURA_HAOKEN_SPKOTEI, SKILL_ID_ASTRAL_STRIKE,
-         SKILL_ID_AXE_BOOMERANG, SKILL_ID_AXE_TORNADE, SKILL_ID_BAKKISANDAN,
-         SKILL_ID_BANISHING_POINT, SKILL_ID_BASH, SKILL_ID_BASIC_GRENADE,
-         SKILL_ID_BEAST_STRAIFING, SKILL_ID_BIOPLANT, SKILL_ID_BUKKOKEN,
-         SKILL_ID_BYAKKO_FU, SKILL_ID_CART_CANNON, SKILL_ID_CART_KAIZO,
-         SKILL_ID_CART_REVOLUTION, SKILL_ID_CART_TERMINATION, SKILL_ID_CART_TORNADO,
-         SKILL_ID_CHAIN_LIGHTNING, SKILL_ID_CHARGE_ATTACK,
-         SKILL_ID_COMBO_GIGANTSET_JOINT_BEAT, SKILL_ID_COMBO_GIGANTSET_SPIRAL_PIERCE,
-         SKILL_ID_COMBO_SANDAN_CHAMP, SKILL_ID_COMBO_SANDAN_MONK,
-         SKILL_ID_COMBO_SORYUKYAKU, SKILL_ID_COMMET, SKILL_ID_CRAZY_WEED,
-         SKILL_ID_CRESSIVE_VOLT, SKILL_ID_CROSS_IMPACT, SKILL_ID_CROSS_RIPPER_SLASHER,
-         SKILL_ID_DAITENHOSUI, SKILL_ID_DARK_ILLUSION, SKILL_ID_DEATHPERAD,
-         SKILL_ID_DEER_BREEZE, SKILL_ID_DEER_CANON, SKILL_ID_DIAMOND_DUST,
-         SKILL_ID_DOUBLE_BOWLING_BASH, SKILL_ID_EARTH_GRAVE, SKILL_ID_EARTH_QUAKE,
-         SKILL_ID_EIBINNA_KYUKAKU, SKILL_ID_ELECTRIC_WALK, SKILL_ID_ETERNAL_SLASH,
-         SKILL_ID_EXPLOSIVE_POWDER, SKILL_ID_FIRE_DANCE, SKILL_ID_FIRE_DRAGON_BREATH,
-         SKILL_ID_FIRE_EXPANSION, SKILL_ID_FIRE_WALK, SKILL_ID_FROST_WEAPON,
-         SKILL_ID_FUMASHURIKEN_KOUCHIKU, SKILL_ID_FUMASHURIKEN_NAGE,
-         SKILL_ID_FUMASHURIKEN_RANKA, SKILL_ID_FUMASHURIKEN_SHOUAKU, SKILL_ID_GENBU_FU,
-         SKILL_ID_GENJUTSU_KAGE_NUI, SKILL_ID_GENJUTSU_KUNAI,
-         SKILL_ID_GENZYUTSU_ANKOKURYUU, SKILL_ID_GOHO, SKILL_ID_GREAT_ECHO,
-         SKILL_ID_GRENADES_DROPPING, SKILL_ID_GROUND_GRAVITATION, SKILL_ID_HAMMER_OF_GOD,
-         SKILL_ID_HANDRED_SPEAR, SKILL_ID_HAPPO_KUNAI, SKILL_ID_HASAICHU,
-         SKILL_ID_HASTY_FIRE_IN_THE_HOLE, SKILL_ID_HELLS_PLANT, SKILL_ID_IGNITION_BREAK,
-         SKILL_ID_IMPACT_CRATER, SKILL_ID_INUHAKKA_METEOR, SKILL_ID_ISSEN,
-         SKILL_ID_ISSEN_MAX, SKILL_ID_JACK_FROST, SKILL_ID_JACK_FROST_NOVA,
-         SKILL_ID_JOINT_BEAT, SKILL_ID_KAGE_GARI, SKILL_ID_KAGE_ISSEN,
-         SKILL_ID_KAGE_NO_MAI, SKILL_ID_KAMITSUKU, SKILL_ID_KINNRYUU_HOU,
-         SKILL_ID_KOEN_KYAKU, SKILL_ID_KOGEKI_SOCHI_YUKOKA, SKILL_ID_KUNAI_KAITEN,
-         SKILL_ID_KUNAI_NAGE, SKILL_ID_KUNAI_WAIKYOKU, SKILL_ID_LIGHTNING_LOADER,
-         SKILL_ID_MADNESS_CRUSHER, SKILL_ID_MAGAZIN_FOR_ONE, SKILL_ID_MEGA_SONIC_BLOW,
-         SKILL_ID_METEOR_STORM, SKILL_ID_MIGHTY_SMASH, SKILL_ID_MISSION_BOMBARD,
-         SKILL_ID_MOON_SLUSHER, SKILL_ID_MORYUKEN, SKILL_ID_MUCHANAGE,
-         SKILL_ID_NAPALM_BEAT, SKILL_ID_NAPALM_VULKAN, SKILL_ID_ONLY_ONE_BULLET,
-         SKILL_ID_OVER_BLAND, SKILL_ID_OVER_SLASH, SKILL_ID_PHANTOM_MENUS,
-         SKILL_ID_PIERCE, SKILL_ID_PIKKI_TSUKI, SKILL_ID_POWER_SWING,
-         SKILL_ID_PSYCHIC_WAVE, SKILL_ID_RAGE_BURST_ATTACK, SKILL_ID_RAIDEN_HOU,
-         SKILL_ID_RASETSU_HAOGEKI, SKILL_ID_RASETSU_HAOGEKI_MAX, SKILL_ID_REIDO_FU,
-         SKILL_ID_REIKETSU_HOU, SKILL_ID_RENCHUHOGEKI, SKILL_ID_RENDASHO,
-         SKILL_ID_ROUND_TRIP, SKILL_ID_RUWACH, SKILL_ID_SAVAGE_IMPACT, SKILL_ID_SEIRYU_FU,
-         SKILL_ID_SEISMIC_WEAPON, SKILL_ID_SEKIEN_HOU, SKILL_ID_SELF_DESTRUCTION,
-         SKILL_ID_SENKO_RENGEKI, SKILL_ID_SERVANT_WEAPON_DEMOLISION,
-         SKILL_ID_SERVANT_WEAPON_PHANTOM, SKILL_ID_SEVERE_RAINSTORM_EX,
-         SKILL_ID_SHADOW_STAB, SKILL_ID_SHIHOZIN_FU, SKILL_ID_SHIHO_GOGYO_ZIN,
-         SKILL_ID_SHINDOZANKYO, SKILL_ID_SHINSE_BAKUHATSU, SKILL_ID_SHIRYO_ZYOKA,
-         SKILL_ID_SHURASHINDAN, SKILL_ID_SHURIKEN_NAGE, SKILL_ID_SLING_ITEM,
-         SKILL_ID_SONIC_WAVE, SKILL_ID_SORYUKYAKU, SKILL_ID_SOUL_EXPANSION,
-         SKILL_ID_SPEAR_BOOMERANG, SKILL_ID_SPEAR_QUICKEN, SKILL_ID_SPELL_FIST,
-         SKILL_ID_SPIRAL_PIERCE, SKILL_ID_SPIRAL_SHOOTING, SKILL_ID_SPORE_EXPLOSION,
-         SKILL_ID_STORM_GUST, SKILL_ID_STRIKING, SKILL_ID_SUMMON_FIRE_BALL,
-         SKILL_ID_SUMMON_LIGHTNING_BALL, SKILL_ID_SUMMON_STONE,
-         SKILL_ID_SUMMON_WATER_BALL, SKILL_ID_SUZAKU_FU, SKILL_ID_TAITEN_ICHIGETSU,
-         SKILL_ID_TENGETSU, SKILL_ID_TENRACHIMO, SKILL_ID_TETRA_BOLTEX,
-         SKILL_ID_TUZYO_KOGEKI, SKILL_ID_VERATURE_SPEAR, SKILL_ID_VIGILANT_AT_NIGHT,
-         SKILL_ID_WATER_DRAGON_BREATH, SKILL_ID_WILD_FIRE, SKILL_ID_WUG_BITE,
-         SKILL_ID_YOMIGAESHI, SKILL_ID_ZIRAISHIN, SKILL_ID_ZYUMONZIGIRI
-} from '../../../roro/m/js/skill.dat.js';
-// === END AUTO-GENERATED IMPORTS ===
 //----------------------------------------------------------------
 // オプションリストの種別
 //----------------------------------------------------------------
@@ -105,6 +11,9 @@ CGlobalConstManager.DefineEnum(
 	0,
 	1
 );
+
+
+
 
 
 /**
@@ -120,6 +29,7 @@ function CAttackMethodOptionData(valueC, labelC) {
 
 	// 後続のオプションリスト
 	this.nextOptionList = null;
+
 
 
 	/**
@@ -139,6 +49,7 @@ function CAttackMethodOptionData(valueC, labelC) {
 	};
 
 
+
 	/**
 	 * ラベルを設定する.
 	 * @param label ラベル
@@ -154,6 +65,7 @@ function CAttackMethodOptionData(valueC, labelC) {
 	this.GetLabel = function () {
 		return this.label;
 	};
+
 
 
 	/**
@@ -172,6 +84,7 @@ function CAttackMethodOptionData(valueC, labelC) {
 		return this.nextOptionList;
 	};
 }
+
 
 
 /**
@@ -198,6 +111,7 @@ function CAttackMethodOptionList() {
 	this.nextOptionList = null;
 
 
+
 	/**
 	 * 種別を設定する.
 	 * @param type 種別
@@ -215,6 +129,7 @@ function CAttackMethodOptionList() {
 	};
 
 
+
 	/**
 	 * ラベルを設定する.
 	 * @param label ラベル
@@ -230,6 +145,7 @@ function CAttackMethodOptionList() {
 	this.GetLabel = function () {
 		return this.label;
 	};
+
 
 
 	/**
@@ -262,6 +178,7 @@ function CAttackMethodOptionList() {
 	};
 
 
+
 	/**
 	 * デフォルトで選択されるオプションデータの値を設定する.
 	 * @param defaultOptionDataValue デフォルトで選択されるオプションデータの値
@@ -279,6 +196,7 @@ function CAttackMethodOptionList() {
 	};
 
 
+
 	/**
 	 * html 部品の attribute 配列を設定する.
 	 * @param htmlAttrArrayArray 種別
@@ -294,6 +212,7 @@ function CAttackMethodOptionList() {
 	this.GetHtmlAttrArrayArray = function () {
 		return this.htmlAttrArrayArray;
 	};
+
 
 
 	/**
@@ -314,6 +233,7 @@ function CAttackMethodOptionList() {
 }
 
 
+
 /**
  * 攻撃手段データクラス.
  */
@@ -327,6 +247,7 @@ function CAttackMethodData() {
 
 	// 後続のオプションリスト
 	this.nextOptionList = null;
+
 
 
 	/**
@@ -356,6 +277,7 @@ function CAttackMethodData() {
 	};
 
 
+
 	/**
 	 * スキルIDを設定する.
 	 * @param skillId スキルID
@@ -373,6 +295,7 @@ function CAttackMethodData() {
 	};
 
 
+
 	/**
 	 * ソース種別を設定する.
 	 * @param sourceType ソース種別
@@ -388,6 +311,7 @@ function CAttackMethodData() {
 	this.GetSourceType = function () {
 		return this.sourceType;
 	};
+
 
 
 	/**
@@ -411,6 +335,7 @@ function CAttackMethodData() {
 
 		return dispName;
 	};
+
 
 
 	/**
@@ -501,6 +426,7 @@ CAttackMethodAreaComponentManager.RebuildControls = function () {
 	objTbody = HtmlCreateElement("tbody", objTable);
 
 
+
 	//--------------------------------
 	// ヘッダ部分を構築
 	//--------------------------------
@@ -509,6 +435,7 @@ CAttackMethodAreaComponentManager.RebuildControls = function () {
 	objTd = HtmlCreateElement("td", objTr);
 	objTd.setAttribute("class", "CSSCLS_INFO_HEADER");
 	HtmlCreateTextNode("攻撃方法", objTd);
+
 
 
 	//--------------------------------
@@ -525,6 +452,7 @@ CAttackMethodAreaComponentManager.RebuildControls = function () {
 	//--------------------------------
 	objTr = HtmlCreateElement("tr", objTbody);
 	objTr.setAttribute("id", "OBJID_TR_ATTACK_METHOD_NOTICE");
+
 
 
 	//--------------------------------
@@ -544,6 +472,7 @@ CAttackMethodAreaComponentManager.RebuildControls = function () {
 	objTr = HtmlCreateElement("tr", objTbody);
 	objTd = HtmlCreateElement("td", objTr);
 	objTd.setAttribute("id", "OBJID_TD_CALC_BUTTON_NOTICE");
+
 
 
 	//--------------------------------
@@ -572,6 +501,7 @@ CAttackMethodAreaComponentManager.RefreshControls = function () {
 	var objCtrl = null;
 	var objActive = null;
 	var objNoticeBlock = null;
+
 
 
 	//--------------------------------
@@ -603,12 +533,14 @@ CAttackMethodAreaComponentManager.RefreshControls = function () {
 	}
 
 
+
 	//--------------------------------
 	// 現在のアクティブオブジェクトを保持
 	//--------------------------------
 
 	// 再構築でフォーカスが失われてしまうため
 	objActive = document.activeElement;
+
 
 
 	//--------------------------------
@@ -618,6 +550,7 @@ CAttackMethodAreaComponentManager.RefreshControls = function () {
 	// ルートオブジェクト配下を全削除
 	objRoot = document.getElementById("OBJID_TD_ATTACK_METHOD_ROOT");
 	HtmlRemoveAllChild(objRoot);
+
 
 
 	//--------------------------------
@@ -634,6 +567,7 @@ CAttackMethodAreaComponentManager.RefreshControls = function () {
 	objTd.appendChild(CAttackMethodAreaComponentManager.selectObjectArray[0]);
 	objTd = HtmlCreateElement("td", objTr);
 	objTd.appendChild(CAttackMethodAreaComponentManager.selectObjectArray[1]);
+
 
 
 	//--------------------------------
@@ -672,6 +606,9 @@ CAttackMethodAreaComponentManager.RefreshControls = function () {
 	}
 
 
+
+
+
 	//--------------------------------
 	// 補足説明（ルート要素が異なるので注意）
 	//--------------------------------
@@ -702,6 +639,7 @@ CAttackMethodAreaComponentManager.RefreshControls = function () {
 	}
 
 
+
 	//--------------------------------
 	// オブジェクトのアクティブ状態の復元
 	//--------------------------------
@@ -723,6 +661,7 @@ CAttackMethodAreaComponentManager.RebuildAttackMethodSelect = function () {
 	var attackMethodOptList = null;
 
 
+
 	// 選択状態を取得する
 	selectedValueArray = CAttackMethodAreaComponentManager.GetSelectedValueArray();
 
@@ -732,6 +671,7 @@ CAttackMethodAreaComponentManager.RebuildAttackMethodSelect = function () {
 	// ラベル部品、選択部品のオブジェクト配列を初期化
 	CAttackMethodAreaComponentManager.labelObjectArray = [];
 	CAttackMethodAreaComponentManager.selectObjectArray = [];
+
 
 
 	// 攻撃手段選択部品の再構築
@@ -747,8 +687,10 @@ CAttackMethodAreaComponentManager.RebuildAttackMethodSelect = function () {
 	CAttackMethodAreaComponentManager.RebuildAttackMethodSelectSubOption(1, attackMethodOptList, selectedValueArray);
 
 
+
 	// 選択部品のリフレッシュ
 	CAttackMethodAreaComponentManager.RefreshControls();
+
 
 
 	// 再計算はしない
@@ -800,9 +742,10 @@ CAttackMethodAreaComponentManager.RebuildAttackMethodSelectSubCreateMethodSelect
 	var objSelect = null;
 
 
+
 	// セレクトボックスを生成
 	objSelect = HtmlCreateElement("select", null);
-	objSelect.addEventListener('change', () => CAttackMethodAreaComponentManager.OnChangeAttackMethod());
+	objSelect.setAttribute("onchange", "CAttackMethodAreaComponentManager.OnChangeAttackMethod()");
 
 	// 設定候補検索用の変数を初期化
 	candidateId = -1;
@@ -919,6 +862,7 @@ CAttackMethodAreaComponentManager.RebuildAttackMethodSelectSubOptionSubCreate = 
 	var objSelect = null;
 
 
+
 	// タイプに従ったオブジェクト生成
 	switch (attackMethodOptList.GetType()) {
 
@@ -940,7 +884,8 @@ CAttackMethodAreaComponentManager.RebuildAttackMethodSelectSubOptionSubCreate = 
 	}
 
 	// change イベントハンドラ設定
-	objSelect.addEventListener('change', () => CAttackMethodAreaComponentManager.OnChangeAttackMethodOption(objectIndex));
+	objSelect.setAttribute("onchange", "CAttackMethodAreaComponentManager.OnChangeAttackMethodOption(" + objectIndex + ")");
+
 
 
 	// タイプに従った内容の生成
@@ -1051,6 +996,7 @@ CAttackMethodAreaComponentManager.RebuildAttackMethodSelectSubOptionSubCreate = 
 		objSelect.value = valueToRestore;
 		break;
 	}
+
 
 
 	// 生成したオブジェクトを返す
@@ -1437,8 +1383,10 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArray = function (
 	var effectiveMultiply = 0;
 
 
+
 	// 結果用配列を用意
 	attackMethodDataArray = [];
+
 
 
 	//--------------------------------
@@ -1481,6 +1429,7 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArray = function (
 		// デフォルトとして選択されるデータを設定
 		attackMethodOptList.SetDefaultOptionDataValue(levelArray[levelArray.length - 1]);
 	}
+
 
 
 	//----------------------------------------------------------------
@@ -1577,6 +1526,7 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArray = function (
 	}
 
 
+
 	//----------------------------------------------------------------
 	// 装備等によるオートスペルスキルの追加（従来の処理だが、移行完了まで必要）
 	//----------------------------------------------------------------
@@ -1666,16 +1616,22 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArray = function (
 	}
 
 
+
+
+
+
 	//----------------------------------------------------------------
 	// データ元種別含めて、完全に同一の攻撃手段があった場合は、最もレベルが高いもののみを残す
 	//----------------------------------------------------------------
 	CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubDistinctData(attackMethodDataArray);
 
 
+
 	//----------------------------------------------------------------
 	// 攻撃手段ごとの追加のオプション設定を追加する
 	//----------------------------------------------------------------
 	CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOptions(attackMethodDataArray);
+
 
 
 	// 結果を返す
@@ -1697,6 +1653,7 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubDistinctDa
 	var attackMethodOptListWork = null;
 	var bExistAllFore = false;
 	var bExistAllBack = false;
+
 
 
 	for (idxFore = 0; idxFore < attackMethodDataArray.length; idxFore++) {
@@ -3337,6 +3294,7 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 				break;
 
 
+
 			//----------------------------------------------------------------
 			// サモナー：ピッキ突き
 			//----------------------------------------------------------------
@@ -4376,8 +4334,10 @@ CAttackMethodAreaComponentManager.CreateNoticeBlock = function () {
 	var objA = null;
 
 
+
 	// 攻撃手段設定を取得
 	attackMethodConf = CAttackMethodAreaComponentManager.GetAttackMethodConf();
+
 
 
 	// スキルIDで処理分岐
@@ -4437,10 +4397,12 @@ CAttackMethodAreaComponentManager.CreateNoticeBlock = function () {
 	}
 
 
+
 	// 文字サイズの調整
 	if (objSpan) {
 		objSpan.setAttribute("style", "font-size : smaller");
 	}
+
 
 
 	return objSpan;
@@ -4451,5 +4413,8 @@ CAttackMethodAreaComponentManager.CreateNoticeBlock = function () {
 // CAttackMethodAreaComponentManager.RebuildControls();
 
 if (typeof window !== 'undefined') {
-    window.CAttackMethodAreaComponentManager = CAttackMethodAreaComponentManager;
+	window.CAttackMethodAreaComponentManager = CAttackMethodAreaComponentManager;
 }
+
+
+

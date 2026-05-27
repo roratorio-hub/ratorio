@@ -1,14 +1,4 @@
 import { CSaveDataConst } from './savedata/CSaveDataConst.js';
-// === AUTO-GENERATED IMPORTS ===
-import { ModalWindow } from './CModalWindow.js';
-import { CSaveController } from './CSaveController.js';
-import { g_skillManager } from './global.js';
-import { CItemInfoManager } from '../../../roro/m/js/CItemInfoManager.js';
-import { CSaveDataConverter } from '../../../roro/m/js/CSaveDataConverter.js';
-import { CSaveDataMappingManager } from '../../../roro/m/js/CSaveDataMappingManager.js';
-import { GetSaveDataVersion, VersionModify } from '../../../roro/m/js/saveload.js';
-import { HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById, MallocArray } from '../../../roro/common/js/util.js';
-// === END AUTO-GENERATED IMPORTS ===
 
 // 旧データ構造は、最大でバージョン 99 まで
 
@@ -281,6 +271,7 @@ export function ConvertDataTextMIG(loadDataUrl) {
 	if(saveDataArray[278] == 0) saveDataArray[278] = 1;
 
 
+
 	// バージョン補正（新形式の初期バージョン）
 	saveDataArray[0] = 101;
 
@@ -368,6 +359,14 @@ export function OnClickConfirmDialogSwitch() {
 }
 
 if (typeof window !== 'undefined') {
+    window.OnClickSaveSaveData = OnClickSaveSaveData;
+    window.OnClickClipboardSaveData = OnClickClipboardSaveData;
+    window.OnClickLoadSaveData = OnClickLoadSaveData;
+    window.OnClickDeleteSaveData = OnClickDeleteSaveData;
     window.OnClickUrlOutMIG = OnClickUrlOutMIG;
+    window.OnClickUrlInMIG = OnClickUrlInMIG;
     window.ConvertDataTextMIG = ConvertDataTextMIG;
+    window.AdaptSaveDataStrSizeMIG = AdaptSaveDataStrSizeMIG;
+    window.SaveDataChangeMIG = SaveDataChangeMIG;
+    window.OnClickConfirmDialogSwitch = OnClickConfirmDialogSwitch;
 }

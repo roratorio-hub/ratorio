@@ -1,7 +1,3 @@
-// === AUTO-GENERATED IMPORTS ===
-import '../../../roro/m/js/monster.h.js';
-import { GetArrayTotal, GetArrayMax, GetArrayMin } from '../../../roro/common/js/util.js';
-// === END AUTO-GENERATED IMPORTS ===
 /**
  * 設置スキル計算用クラス
  */
@@ -119,6 +115,9 @@ export function CBattleCalcResultAll () {
 	this.mobData = null;
 
 
+
+
+
 	//================================================================
 	//
 	//
@@ -141,11 +140,17 @@ export function CBattleCalcResultAll () {
 	this.appendResultArray = null;
 
 
+
+
+
 	//================================================================
 	//
 	// 追加発動系
 	//
 	//================================================================
+
+
+
 
 
 	/**
@@ -163,6 +168,7 @@ export function CBattleCalcResultAll () {
 		this.appendResultArray = [];
 
 	}).call(this);
+
 
 
 	/**
@@ -213,6 +219,7 @@ export function CBattleCalcResultAll () {
 	};
 
 
+
 	/**
 	 * アクティブ攻撃の結果データを追加する.
 	 * @param skillIdParent 親となるスキルID（親がない場合は undefined）
@@ -259,6 +266,7 @@ export function CBattleCalcResultAll () {
 	this.GetActiveResultCount = function () {
 		return this.activeResultArray.length;
 	};
+
 
 
 	/**
@@ -309,6 +317,8 @@ export function CBattleCalcResultAll () {
 	};
 
 
+
+
 	/**
 	 * 攻撃間隔の取得.
 	 * @return 概算攻撃間隔
@@ -334,6 +344,7 @@ export function CBattleCalcResultAll () {
 	};
 
 
+
 	/**
 	 * １HITごとの攻撃間隔の取得.
 	 * @return １HITごとの攻撃間隔（秒）
@@ -351,6 +362,7 @@ export function CBattleCalcResultAll () {
 		// エラーの場合
 		return 0;
 	};
+
 
 
 	/**
@@ -372,6 +384,7 @@ export function CBattleCalcResultAll () {
 	};
 
 
+
 	/**
 	 * 変動＋固定詠唱時間の取得.
 	 * @return 変動＋固定詠唱時間（秒）
@@ -390,6 +403,7 @@ export function CBattleCalcResultAll () {
 		// 上記以外は、欠損値処理
 		return 0;
 	};
+
 
 
 	/**
@@ -445,6 +459,7 @@ export function CBattleCalcResultAll () {
 	};
 
 
+
 	/**
 	 * ディレイまたはクールタイムがオブジェクト維持時間より大きい場合に、その時間を返す.
 	 * @return ディレイまたはクールタイムがオブジェクト維持時間より大きい場合の時間（秒）
@@ -476,6 +491,7 @@ export function CBattleCalcResultAll () {
 	};
 
 
+
 	/**
 	 * ディレイを返す.
 	 * @return ディレイ（秒）
@@ -499,6 +515,7 @@ export function CBattleCalcResultAll () {
 	};
 
 
+
 	/**
 	 * クールタイムを返す.
 	 * @return クールタイム（秒）
@@ -520,6 +537,7 @@ export function CBattleCalcResultAll () {
 		// エラーの場合
 		return 0;
 	};
+
 
 
 	/**
@@ -562,6 +580,7 @@ export function CBattleCalcResultAll () {
 			}
 			dmg += base_damage;
 		}
+
 
 
 		return Math.floor(dmg);
@@ -642,6 +661,7 @@ export function CBattleCalcResultAll () {
 
 		return Math.floor(dmg);
 	};
+
 
 
 	/**
@@ -785,6 +805,7 @@ export function CBattleCalcResultAll () {
 
 		return Math.floor(dmg);
 	};
+
 
 
 	/**
@@ -933,6 +954,7 @@ export function CBattleCalcResultAll () {
 	};
 
 
+
 	/**
 	 * 概算攻撃回数（最小）の取得.
 	 * @return 概算攻撃回数（最小）
@@ -979,6 +1001,7 @@ export function CBattleCalcResultAll () {
 	};
 
 
+
 	/**
 	 * 概算攻撃秒数（最小）の取得.
 	 * @return 概算攻撃秒数（最小）
@@ -1023,6 +1046,7 @@ export function CBattleCalcResultAll () {
 
 		return Math.ceil(this.mobData[MONSTER_DATA_INDEX_HP] / dmg) * this.GetAttackInterval();
 	};
+
 
 
 	/**
@@ -1272,6 +1296,7 @@ export function CBattleCalcResultAll () {
 	};
 
 
+
 	/**
 	 * 概算経験値効率（Base、一撃平均）の取得.
 	 * @return 概算経験値効率（Base、一撃平均）
@@ -1333,6 +1358,9 @@ export function CBattleCalcResultAll () {
 	};
 
 
+
+
+
 	/**
 	 * 複製する.
 	 * @return 複製されたインスタンス
@@ -1370,4 +1398,7 @@ export function CBattleCalcResultAll () {
 	};
 }
 
+if (typeof window !== 'undefined') {
+    window.CBattleCalcResultAll = CBattleCalcResultAll;
+}
 
