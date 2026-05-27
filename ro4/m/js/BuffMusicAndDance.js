@@ -24,7 +24,7 @@ export function Click_Skill3SW(){
 	const table_header = `
 			<TABLE Border class="tooltip-target" style="white-space:nowrap;" data-tooltip="これらの設定は「◯次職支援設定」および「プレイヤー状態異常設定」へ順次移動します。">
 			<TR><TD id="A3TD" ColSpan="6" class="title">
-				<input id="OBJID_CHECK_A3_SKILLSW" type="checkbox" name="A3_SKILLSW" onClick="Click_Skill3SW()">
+				<input id="OBJID_CHECK_A3_SKILLSW" type="checkbox" name="A3_SKILLSW">
 				<label for="OBJID_CHECK_A3_SKILLSW">演奏/踊り系スキル</label>
 				<span id="A3used"></span>
 			</TD></TR>
@@ -47,6 +47,7 @@ export function Click_Skill3SW(){
 			<TR><TD colspan=4><span id="EN11_1"></span><span id="EN11_2"></span><span id="EN11_1a"></span></TD></TR></TABLE>
 			`;
 		myInnerHtml("SP_SIEN01", str, 0);
+		document.querySelector('[name="A3_SKILLSW"]')?.addEventListener('click', Click_Skill3SW);
 		document.calcForm.A3_SKILLSW.checked = true;
 		const name_CS3SW_SKILL = [
 			"(廃止)口笛",
@@ -184,13 +185,14 @@ export function Click_Skill3SW(){
 		str = `
 			<TABLE Border>
 			<TR><TD id="A3TD" class="title">
-				<input id="OBJID_CHECK_A3_SKILLSW" type="checkbox" name="A3_SKILLSW" onClick="Click_Skill3SW()">
+				<input id="OBJID_CHECK_A3_SKILLSW" type="checkbox" name="A3_SKILLSW">
 				<label for="OBJID_CHECK_A3_SKILLSW">演奏/踊り系スキル</label>
 				<span id="A3used"></span>
 			</TD></TR>
 			</TABLE>
 			`;
 		myInnerHtml("SP_SIEN01",str,0);
+		document.querySelector('[name="A3_SKILLSW"]')?.addEventListener('click', Click_Skill3SW);
 		document.calcForm.A3_SKILLSW.checked = false;
 		for (let i = 0; i <= 11; i++) {
                SWs3sw[i]=0;

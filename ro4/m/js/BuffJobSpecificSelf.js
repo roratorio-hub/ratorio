@@ -85,7 +85,7 @@ export function Click_PassSkillSW(){
 	let table_header = `
 		<TABLE Border class="tooltip-target" data-tooltip="パッシブスキル等は今後削除する予定です。代わりに習得スキル欄を使ってください。">
 			<TR><TD ColSpan="4" id="A1TD" Bgcolor="#DDDDFF" class="title">
-				<input id="OBJID_CHECK_A1_SKILL_SW" type="checkbox" name="A1_SKILLSW" onClick="Click_PassSkillSW()">
+				<input id="OBJID_CHECK_A1_SKILL_SW" type="checkbox" name="A1_SKILLSW">
 				<label for="OBJID_CHECK_A1_SKILL_SW">${GetJobName(n_A_JOB)}固有自己支援</label>
 				<span id="A1used"></span>
 			</TD></TR>
@@ -99,6 +99,7 @@ export function Click_PassSkillSW(){
 		}
 		str += '</TABLE>';
 		myInnerHtml("ID_PASS_SKILL",str,0);
+		document.querySelector('[name="A1_SKILLSW"]')?.addEventListener('click', Click_PassSkillSW);
 		document.calcForm.A1_SKILLSW.checked = true;
 		for (let i = 0; i <= end; i++) {
 				if (passiveSkillIdArray[i] == SKILL_ID_SHUCHURYOKU_KOZYO) {
@@ -556,13 +557,14 @@ export function Click_PassSkillSW(){
 		let str = `
 			<TABLE Border>
 				<TR><TD ColSpan="4" id="A1TD" Bgcolor="#DDDDFF" class="title">
-					<input id="OBJID_CHECK_A1_SKILL_SW" type="checkbox" name="A1_SKILLSW" onClick="Click_PassSkillSW()">
+					<input id="OBJID_CHECK_A1_SKILL_SW" type="checkbox" name="A1_SKILLSW">
 					<label for="OBJID_CHECK_A1_SKILL_SW">${GetJobName(n_A_JOB)}固有自己支援</label>
 					<span id="A1used"></span>
 				</TD></TR>
 			</TABLE>
 			`;
 		myInnerHtml("ID_PASS_SKILL",str,0);
+		document.querySelector('[name="A1_SKILLSW"]')?.addEventListener('click', Click_PassSkillSW);
 		document.calcForm.A1_SKILLSW.checked = false;
 	}
 	Click_A1(false);

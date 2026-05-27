@@ -1258,4 +1258,5 @@ CCustomSelectBase.OnClickApplyButton = function (instanceIdName) {
 	$(select2_obj_class).val(select_id).trigger('change');
 };
 
-
+/* window compat — dewindow フェーズで除去予定 */
+Object.assign(window, { CCustomSelectBase: CCustomSelectBase });

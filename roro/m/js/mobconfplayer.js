@@ -828,7 +828,7 @@ export function BuildUpMobConfPlayerSelectArea(objRoot, bAsExpand) {
 	objInput = document.createElement("input");
 	objInput.setAttribute("id", "OBJID_INPUT_MOB_CONF_PLAYER_SWITCH");
 	objInput.setAttribute("type", "checkbox");
-	objInput.setAttribute("onClick", "OnClickMobConfPlayerSwitch()");
+	objInput.addEventListener('click', OnClickMobConfPlayerSwitch);
 	if (bAsExpand) {
 		objInput.setAttribute("checked", "checked");
 	}

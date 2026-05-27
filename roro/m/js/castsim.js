@@ -81,7 +81,7 @@ export function BuildUpCastSimSimulateArea(objRoot, bAsExpand) {
 	objInput = document.createElement("input");
 	objInput.setAttribute("id", "OBJID_CONTROL_CASTSIM_SWITCH");
 	objInput.setAttribute("type", "checkbox");
-	objInput.setAttribute("onClick", "OnClickCastSimSwitch()");
+	objInput.addEventListener('click', OnClickCastSimSwitch);
 	if (bAsExpand) {
 		objInput.setAttribute("checked", "checked");
 	}
@@ -98,7 +98,7 @@ export function BuildUpCastSimSimulateArea(objRoot, bAsExpand) {
 	objInput.setAttribute("id", "OBJID_CONTROL_CASTSIM_REFRESH");
 	objInput.setAttribute("type", "button");
 	objInput.setAttribute("value", "更新");
-	objInput.setAttribute("onClick", "OnClickCastSimRefresh()");
+	objInput.addEventListener('click', OnClickCastSimRefresh);
 	objTd.appendChild(objInput);
 
 
@@ -803,7 +803,8 @@ export function RefreshCastSimSimulateArea(bRefreshLevelSelect) {
 		paramStr += ", " + delayTime;
 		objInput = document.getElementById("OBJID_BUTTON_CAST_SIM_SIMULATE_" + rowidx);
 		objInput.setAttribute("value", "詠唱!!");
-		objInput.setAttribute("onClick", "OnClickCastSimSimulateStart(" + paramStr + ")");
+		const _csRow = rowidx, _csCast = castTime, _csDelay = delayTime;
+		objInput.onclick = () => OnClickCastSimSimulateStart(_csRow, _csCast, _csDelay);
 
 		objProgress = document.getElementById("OBJID_PROGRESS_CAST_SIM_SIMULATE_" + rowidx);
 		objProgress.setAttribute("max", 0);
@@ -838,7 +839,7 @@ export function OnClickCastSimSimulateStart(rowidx, castTime, delayTime) {
 	paramStr = rowidx;
 	paramStr += ", " + castTime;
 	paramStr += ", " + delayTime;
-	objInput.setAttribute("onClick", "OnClickCastSimSimulateStop(" + paramStr + ")");
+	objInput.onclick = () => OnClickCastSimSimulateStop(rowidx, castTime, delayTime);
 
 
 	// プログレスバーの設定更新
@@ -922,7 +923,7 @@ export function OnClickCastSimSimulateStop(rowidx, castTime, delayTime) {
 	paramStr = rowidx;
 	paramStr += ", " + castTime;
 	paramStr += ", " + delayTime;
-	objInput.setAttribute("onClick", "OnClickCastSimSimulateStart(" + paramStr + ")");
+	objInput.onclick = () => OnClickCastSimSimulateStart(rowidx, castTime, delayTime);
 }
 
 

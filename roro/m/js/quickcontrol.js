@@ -82,7 +82,7 @@ export function OnClickQuickControlSW(){
 	objInput = document.createElement("input");
 	objInput.setAttribute("type", "checkbox");
 	objInput.setAttribute("id", "OBJID_QUICK_CONTROL_EXTRACT_CHECKBOX");
-	objInput.setAttribute("onClick", "OnClickQuickControlSW()");
+	objInput.addEventListener('click', OnClickQuickControlSW);
 	if (g_QuickControlSW) {
 		// 部品を再構築しているので、チェック状態の再設定が必要
 		objInput.setAttribute("checked", "checked");
@@ -122,7 +122,7 @@ export function OnClickQuickControlSW(){
 
 	objSelect = document.createElement("select");
 	objSelect.setAttribute("id", "OBJID_SELECT_QUICK_CONTROL_ITEMPACK");
-	objSelect.setAttribute("onInput", "OnInputQuickControlItemPack()");
+	objSelect.addEventListener('input', OnInputQuickControlItemPack);
 	objTd.appendChild(objSelect);
 
 	for (var idx = 0; idx < ItemPackOBJ.length; idx++) {
@@ -140,7 +140,7 @@ export function OnClickQuickControlSW(){
 	objInput = document.createElement("input");
 	objInput.setAttribute("type", "button");
 	objInput.setAttribute("value", "適用");
-	objInput.setAttribute("onClick", "OnClickQuickControlSetItemPack()");
+	objInput.addEventListener('click', OnClickQuickControlSetItemPack);
 	objTd.appendChild(objInput);
 
 	objTr = document.createElement("tr");

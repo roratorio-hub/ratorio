@@ -214,7 +214,7 @@ CFloatingInfoAreaComponentManager.RebuildControls = function () {
 	objInput = HtmlCreateElement("input", objDiv);
 	objInput.setAttribute("type", "checkbox");
 	objInput.setAttribute("id", "OBJID_FLOATING_INFO_AREA_EXTRACT_CHECKBOX");
-	objInput.setAttribute("onclick", "CFloatingInfoAreaComponentManager.OnClickExtractSwitch()");
+	objInput.addEventListener('click', () => CFloatingInfoAreaComponentManager.OnClickExtractSwitch());
 	objInput.setAttribute("style", "flex: 0 1 auto");
 	if (switchChecked) {
 		// 部品を再構築しているので、チェック状態の再設定が必要
@@ -277,7 +277,7 @@ CFloatingInfoAreaComponentManager.RebuildControls = function () {
 	objTdChild = HtmlCreateElement("td", objTrChild);
 	objSelect = HtmlCreateElement("select", objTdChild);
 	objSelect.setAttribute("id", "OBJID_SELECT_FLOATING_INFO_AREA_COUNT");
-	objSelect.setAttribute("onchange", "CFloatingInfoAreaComponentManager.OnChangeAreaCount()");
+	objSelect.addEventListener('change', () => CFloatingInfoAreaComponentManager.OnChangeAreaCount());
 
 	for (idx = 1; idx <= CFloatingInfoAreaComponentManager.areaCountMax; idx++) {
 		HtmlCreateElementOption(idx, idx, objSelect);
@@ -294,7 +294,7 @@ CFloatingInfoAreaComponentManager.RebuildControls = function () {
 	objTdChild = HtmlCreateElement("td", objTrChild);
 	objSelect = HtmlCreateElement("select", objTdChild);
 	objSelect.setAttribute("id", "OBJID_SELECT_FLOATING_INFO_AREA_FONT_SIZE");
-	objSelect.setAttribute("onchange", "CFloatingInfoAreaComponentManager.OnChangeFontSize()");
+	objSelect.addEventListener('change', () => CFloatingInfoAreaComponentManager.OnChangeFontSize());
 
 	HtmlCreateElementOption("CSSCLS_FLOATING_MENU_FONT_SIZE_8PX", "8px", objSelect);
 	HtmlCreateElementOption("CSSCLS_FLOATING_MENU_FONT_SIZE_9PX", "9px", objSelect);
@@ -340,7 +340,8 @@ CFloatingInfoAreaComponentManager.RebuildControls = function () {
 
 		objSelect = HtmlCreateElement("select", objTdChild);
 		objSelect.setAttribute("id", "OBJID_SELECT_FLOATING_INFO_" + idxArea);
-		objSelect.setAttribute("onchange", "CFloatingInfoAreaComponentManager.OnChangeInfo(" + idxArea + ")");
+		const _cfArea = idxArea;
+			objSelect.addEventListener('change', () => CFloatingInfoAreaComponentManager.OnChangeInfo(_cfArea));
 
 		for (idx = 0; idx < optArray.length; idx++) {
 			HtmlCreateElementOption(optArray[idx], GetFloatingInfoText(optArray[idx]), objSelect);

@@ -90,7 +90,7 @@ export function Click_Skill7SW(){
 	objInput.setAttribute("type", "checkbox");
 	objInput.setAttribute("id", "OBJID_CHECK_A7_SKILLSW");
 	objInput.setAttribute("name", "A7_SKILLSW");
-	objInput.setAttribute("onclick", "Click_Skill7SW()");
+	objInput.addEventListener('click', Click_Skill7SW);
 	if (n_Skill7SW) {
 		objInput.setAttribute("checked", "checked");
 	}

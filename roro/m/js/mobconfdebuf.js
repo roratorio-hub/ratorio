@@ -934,7 +934,7 @@ export function BuildUpMobConfDebufSelectArea(objRoot, bAsExpand) {
 	objInput = document.createElement("input");
 	objInput.setAttribute("id", "OBJID_INPUT_MOB_CONF_DEBUF_SWITCH");
 	objInput.setAttribute("type", "checkbox");
-	objInput.setAttribute("onClick", "OnClickMobConfDebufSwitch()");
+	objInput.addEventListener('click', OnClickMobConfDebufSwitch);
 	if (bAsExpand) {
 		objInput.setAttribute("checked", "checked");
 	}

@@ -1232,7 +1232,7 @@ export function OnClickExtractSettingAutoSpell(){
 	objTd.appendChild(objInput);
 	objInput.setAttribute("type", "checkbox");
 	objInput.setAttribute("id", "OBJID_EXTRACT_SETTING_AUTO_SPELL");
-	objInput.setAttribute("onClick", "OnClickExtractSettingAutoSpell()");
+	objInput.addEventListener('click', OnClickExtractSettingAutoSpell);
 	// ヘッダ行表示テキスト
 	objLabel = HtmlCreateElement("label", objTd);
 	objLabel.setAttribute("for", "OBJID_EXTRACT_SETTING_AUTO_SPELL");
@@ -1292,7 +1292,7 @@ export function BuildUpSettingHtmlAutoSpell(objTbody) {
 	objTd.appendChild(objInput);
 	objInput.setAttribute("type", "button");
 	objInput.setAttribute("value", "簡易設定");
-	objInput.setAttribute("onClick", "OnClickEasySetUpAutoSpell()");
+	objInput.addEventListener('click', OnClickEasySetUpAutoSpell);
 
 
 	//----------------------------------------------------------------

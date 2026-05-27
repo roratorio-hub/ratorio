@@ -173,7 +173,7 @@ CItemInfoManager.RebuildControls = function () {
 	objInput = document.createElement("input");
 	objInput.setAttribute("type", "checkbox");
 	objInput.setAttribute("id", "OBJID_ITEM_INFO_EXTRACT_CHECKBOX");
-	objInput.setAttribute("onclick", "CItemInfoManager.OnClickExtractSwitch()");
+	objInput.addEventListener('click', () => CItemInfoManager.OnClickExtractSwitch());
 	if (switchChecked) {
 		// 部品を再構築しているので、チェック状態の再設定が必要
 		objInput.setAttribute("checked", "checked");
@@ -208,7 +208,7 @@ CItemInfoManager.RebuildControls = function () {
 	objTd.setAttribute("rowspan", 2);
 	objSelect = HtmlCreateElement("select", objTd);
 	objSelect.setAttribute("id", "OBJID_SELECT_ITEM_INFO_ITEM");
-	objSelect.setAttribute("onchange", "CItemInfoManager.OnChangeSelectItem()");
+	objSelect.addEventListener('change', () => CItemInfoManager.OnChangeSelectItem());
 
 	objTd = HtmlCreateElement("td", objTr);
 	objTd.setAttribute("colspan", 2);
@@ -218,7 +218,7 @@ CItemInfoManager.RebuildControls = function () {
 	if (CItemInfoManager.AutoFlag) {
 		objInput.setAttribute("checked", "checked");
 	}
-	objInput.setAttribute("onchange", "CItemInfoManager.OnChangeCheckAutoFlag()");
+	objInput.addEventListener('change', () => CItemInfoManager.OnChangeCheckAutoFlag());
 
 	objLabel = HtmlCreateElement("label", objTd);
 	objLabel.setAttribute("for", "OBJID_CHECK_ITEM_INFO_AUTO_FLAG");
@@ -239,7 +239,7 @@ CItemInfoManager.RebuildControls = function () {
 	if (CItemInfoManager.ApplyAutoFocusFlag) {
 		objInput.setAttribute("checked", "checked");
 	}
-	objInput.setAttribute("onchange", "CItemInfoManager.OnChangeCheckApplyAutoFocusFlag()");
+	objInput.addEventListener('change', () => CItemInfoManager.OnChangeCheckApplyAutoFocusFlag());
 
 	objLabel = HtmlCreateElement("label", objTd);
 	objLabel.setAttribute("for", "OBJID_CHECK_ITEM_INFO_APPLY_AUTO_FOCUS_FLAG");
@@ -1294,7 +1294,8 @@ CItemInfoManager.AppendEfficiencyInfoSub = function (objRoot, dataKind, dataId, 
 			objInput = HtmlCreateElement("input", objRoot);
 			objInput.setAttribute("type", "button");
 			objInput.setAttribute("value", timeItemData[1] + " を設定する");
-			objInput.setAttribute("onclick", "CItemInfoManager.ApplyTimeItem(" + idx + ")");
+			const _ciIdx = idx;
+			objInput.addEventListener('click', () => CItemInfoManager.ApplyTimeItem(_ciIdx));
 
 			HtmlCreateElement("br", objRoot);
 		}

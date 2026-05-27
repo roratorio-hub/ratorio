@@ -230,6 +230,157 @@ describe('ro4/m/calcx.html 起動テスト', () => {
         expect(errors, formatErrorMsg('全設定欄展開操作中', errors)).toHaveLength(0);
     });
 
+    // スキルSW チェックボックスのクリック操作をトリガーする。
+    // dewindow フェーズで window への登録を除去した後、インライン onclick や
+    // setAttribute("onClick",...) の残留によって ReferenceError が発生するケースを検出する。
+    //
+    // 各 SW が 2 回クリックされることが重要:
+    //   1 回目: eventsetup.js が初期要素にアタッチしたリスナーが発火（DOM 再構築）
+    //   2 回目: 再構築後の新要素にリスナーが正しく再アタッチされているか確認
+    //
+    // 対象スイッチ:
+    //   - A1_SKILLSW: 職固有自己支援（BuffJobSpecificSelf.js / Click_PassSkillSW）
+    //   - A3_SKILLSW: 演奏/踊り系（BuffMusicAndDance.js / Click_Skill3SW）
+    //   - A4_SKILLSW: ギルドスキル/ゴスペル（BuffGuildAndGospel.js / Click_Skill4SW）
+    //   - A7_SKILLSW: アイテム/食品（BuffItemAndFood.js / Click_Skill7SW）
+    //   - A8_SKILLSW: その他支援（BuffOtherCategory.js / Click_Skill8SW）
+    //   - OBJID_SKILL_COLUMN_EXTRACT_CHECKBOX: 習得スキル欄（learnedskill.js / OnClickSkillSWLearned）
+    it('スキルSW チェックボックスのクリック操作で未捕捉 JS 例外が発生しない', async () => {
+        const errors = await collectPageErrors(browser, async (page) => {
+            page.on('dialog', (dialog) => dialog.dismiss().catch(() => {}));
+            await page.goto(`${baseUrl}/ro4/m/calcx.html`, {
+                waitUntil: 'networkidle',
+                timeout: 60000,
+            });
+            await page.waitForTimeout(500);
+
+            // 各スキル SW を ON→OFF とトグル（name 属性で特定できるもの）
+            // DOM 再構築後の要素に再アタッチが正しく行われているかを 2 回目クリックで確認する。
+            const nameSwNames = ['A1_SKILLSW', 'A3_SKILLSW', 'A4_SKILLSW', 'A7_SKILLSW', 'A8_SKILLSW'];
+            for (const swName of nameSwNames) {
+                await page.evaluate((name) => {
+                    document.querySelector<HTMLInputElement>(`[name="${name}"]`)?.click(); // OFF→ON
+                }, swName);
+                await page.waitForTimeout(200);
+                await page.evaluate((name) => {
+                    document.querySelector<HTMLInputElement>(`[name="${name}"]`)?.click(); // ON→OFF（再構築後）
+                }, swName);
+                await page.waitForTimeout(200);
+            }
+
+            // 習得スキル欄 SW を ON→OFF とトグル
+            // （初期化時に OnClickSkillSWLearned() が呼ばれ checkbox が生成されている）
+            await page.evaluate(() => {
+                (document.getElementById('OBJID_SKILL_COLUMN_EXTRACT_CHECKBOX') as HTMLInputElement | null)?.click();
+            });
+            await page.waitForTimeout(200);
+            await page.evaluate(() => {
+                (document.getElementById('OBJID_SKILL_COLUMN_EXTRACT_CHECKBOX') as HTMLInputElement | null)?.click();
+            });
+            await page.waitForTimeout(200);
+        });
+        expect(errors, formatErrorMsg('スキルSW クリック操作中', errors)).toHaveLength(0);
+    });
+
+    // OBJID_MONSTER_MAP_AREA のカテゴリ変更でマップリストがカスケード更新されることを確認。
+    // dewindow フェーズで CCustomSelectBase の onchange 属性を addEventListener に切り替えた後、
+    // カテゴリ変更 → マップリスト更新 / マップ変更 → モンスターリスト更新 の連鎖が壊れていないかを確認する。
+    it('モンスターマップ カテゴリ変更でマップリストがカスケード更新される', async () => {
+        const errors = await collectPageErrors(browser, async (page) => {
+            page.on('dialog', (dialog) => dialog.dismiss().catch(() => {}));
+            await page.goto(`${baseUrl}/ro4/m/calcx.html`, {
+                waitUntil: 'networkidle',
+                timeout: 60000,
+            });
+            await page.waitForTimeout(500);
+
+            // マップ指定エリアを展開する
+            await page.evaluate(() => {
+                const cb = document.getElementById('OBJID_MONSTER_MAP_AREA_EXTRACT_CHECKBOX') as HTMLInputElement | null;
+                if (cb && !cb.checked) cb.click();
+            });
+            await page.waitForTimeout(300);
+
+            // 展開後にカテゴリ選択の選択肢数とマップ選択の選択肢数を取得する
+            const result = await page.evaluate(() => {
+                const catSel = document.querySelector<HTMLSelectElement>('.OBJID_MONSTER_MAP_CATEGORY');
+                const mapSel = document.querySelector<HTMLSelectElement>('.OBJID_MONSTER_MAP_MAP');
+                const monSel = document.querySelector<HTMLSelectElement>('.OBJID_MONSTER_MAP_MONSTER');
+                if (!catSel || !mapSel || !monSel) {
+                    return { error: 'セレクト要素が見つからない', catLen: 0, mapLenBefore: 0, mapLenAfter: 0, monLenBefore: 0, monLenAfter: 0 };
+                }
+
+                // 初期マップ選択肢数（全地域のはず）
+                const mapLenBefore = mapSel.options.length;
+                const monLenBefore = monSel.options.length;
+
+                // カテゴリを 2 番目の選択肢に変更（全地域 以外の地域カテゴリ）
+                // カテゴリ選択肢が 2 つ以上なければスキップ
+                if (catSel.options.length < 2) {
+                    return { error: 'カテゴリ選択肢が不足', catLen: catSel.options.length, mapLenBefore, mapLenAfter: mapLenBefore, monLenBefore, monLenAfter: monLenBefore };
+                }
+
+                // 「全地域」以外のカテゴリを選択 — 最後の選択肢（特定地域）を使う
+                catSel.value = catSel.options[catSel.options.length - 1].value;
+                catSel.dispatchEvent(new Event('change', { bubbles: true }));
+
+                const mapLenAfter = mapSel.options.length;
+
+                // マップを 2 番目の選択肢に変更してモンスターリスト更新を確認
+                const monLenAfterCatChange = monSel.options.length;
+                if (mapSel.options.length >= 2) {
+                    mapSel.value = mapSel.options[mapSel.options.length - 1].value;
+                    mapSel.dispatchEvent(new Event('change', { bubbles: true }));
+                }
+                const monLenAfter = monSel.options.length;
+
+                return { error: null, catLen: catSel.options.length, mapLenBefore, mapLenAfter, monLenBefore, monLenAfter };
+            });
+
+            // カテゴリを絞り込んだらマップ選択肢が減っているはず
+            if (result.error) {
+                throw new Error(`カスケードテスト前提条件エラー: ${result.error}`);
+            }
+            expect(
+                result.mapLenAfter,
+                `カテゴリ変更後のマップ選択肢数 (${result.mapLenAfter}) が変更前 (${result.mapLenBefore}) 以下である必要がある`
+            ).toBeLessThan(result.mapLenBefore);
+        });
+        expect(errors, formatErrorMsg('モンスターマップカスケード操作中', errors)).toHaveLength(0);
+    });
+
+    // クイックコントロール欄を展開し、装備一括設定セレクトの input イベントで
+    // ReferenceError が発生しないことを確認する。
+    // dewindow フェーズで quickcontrol.js の onInput 属性を addEventListener に切り替えた後、
+    // OnInputQuickControlItemPack が window に露出していなくても動作することを確認する。
+    it('クイックコントロール 装備一括設定セレクト変更で未捕捉 JS 例外が発生しない', async () => {
+        const errors = await collectPageErrors(browser, async (page) => {
+            page.on('dialog', (dialog) => dialog.dismiss().catch(() => {}));
+            await page.goto(`${baseUrl}/ro4/m/calcx.html`, {
+                waitUntil: 'networkidle',
+                timeout: 60000,
+            });
+            await page.waitForTimeout(500);
+
+            // クイックコントロール欄を展開する
+            await page.evaluate(() => {
+                const cb = document.getElementById('OBJID_QUICK_CONTROL_EXTRACT_CHECKBOX') as HTMLInputElement | null;
+                if (cb && !cb.checked) cb.click();
+            });
+            await page.waitForTimeout(300);
+
+            // 装備一括設定セレクトに input イベントを発火する
+            await page.evaluate(() => {
+                const sel = document.getElementById('OBJID_SELECT_QUICK_CONTROL_ITEMPACK') as HTMLSelectElement | null;
+                if (sel) {
+                    sel.dispatchEvent(new Event('input', { bubbles: true }));
+                }
+            });
+            await page.waitForTimeout(200);
+        });
+        expect(errors, formatErrorMsg('クイックコントロール装備一括設定 input 操作中', errors)).toHaveLength(0);
+    });
+
     // セーブデータを URL から読み込む操作をトリガーする。
     // フィクスチャに URL がある場合のみ実行する（1 件目を代表として使用）。
     it('セーブデータ URL 読み込みで未捕捉 JS 例外が発生しない', async () => {

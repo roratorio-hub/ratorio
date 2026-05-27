@@ -772,17 +772,17 @@ export function CMobConfInputAreaComponentManager(confMngParam) {
 
 		this.BuildUpSelectAreaSubFooterSubCodeControl(
 			objTbody, "コード出力（選択）",
-			"CMobConfInputAreaComponentManager.OnClickCodeOutSelected(" + this.instanceNo + ", \"OBJID_INPUT_MOB_CONF_CODE_OUT_SELECTED\", \"OBJID_SPAN_MOB_CONF_CODE_CONTROL_INFO\")",
+			() => CMobConfInputAreaComponentManager.OnClickCodeOutSelected(this.instanceNo, "OBJID_INPUT_MOB_CONF_CODE_OUT_SELECTED", "OBJID_SPAN_MOB_CONF_CODE_CONTROL_INFO"),
 			"OBJID_INPUT_MOB_CONF_CODE_OUT_SELECTED");
 
 		this.BuildUpSelectAreaSubFooterSubCodeControl(
 			objTbody, "コード出力（全部）",
-			"CMobConfInputAreaComponentManager.OnClickCodeOutAll(" + this.instanceNo + ", \"OBJID_INPUT_MOB_CONF_CODE_OUT_ALL\", \"OBJID_SPAN_MOB_CONF_CODE_CONTROL_INFO\")",
+			() => CMobConfInputAreaComponentManager.OnClickCodeOutAll(this.instanceNo, "OBJID_INPUT_MOB_CONF_CODE_OUT_ALL", "OBJID_SPAN_MOB_CONF_CODE_CONTROL_INFO"),
 			"OBJID_INPUT_MOB_CONF_CODE_OUT_ALL");
 
 		this.BuildUpSelectAreaSubFooterSubCodeControl(
 			objTbody, "コード入力",
-			"CMobConfInputAreaComponentManager.OnClickCodeIn(" + this.instanceNo + ", \"OBJID_INPUT_MOB_CONF_CODE_IN\", \"OBJID_SPAN_MOB_CONF_CODE_CONTROL_INFO\")",
+			() => CMobConfInputAreaComponentManager.OnClickCodeIn(this.instanceNo, "OBJID_INPUT_MOB_CONF_CODE_IN", "OBJID_SPAN_MOB_CONF_CODE_CONTROL_INFO"),
 			"OBJID_INPUT_MOB_CONF_CODE_IN");
 
 		// 情報欄
@@ -815,7 +815,7 @@ export function CMobConfInputAreaComponentManager(confMngParam) {
 		objInput = HtmlCreateElement("input", objTd);
 		objInput.setAttribute("type", "button");
 		objInput.setAttribute("value", labelText);
-		objInput.setAttribute("onclick", labelFuncName);
+		objInput.addEventListener('click', labelFuncName);
 
 		objTd = HtmlCreateElement("td", objTr);
 		objInput = HtmlCreateElement("input", objTd);
@@ -836,7 +836,8 @@ export function CMobConfInputAreaComponentManager(confMngParam) {
 		objInput = HtmlCreateElement("input", objTdSub);
 		objInput.setAttribute("type", "button");
 		objInput.setAttribute("value", "クリア");
-		objInput.setAttribute("onclick", "CMobConfInputAreaComponentManager.ClearValueCommon(" + this.instanceNo + ", \"" + inputId + "\")");
+		objInput.addEventListener('click', () => CMobConfInputAreaComponentManager.ClearValueCommon(this.instanceNo, inputId));
+//		objInput.setAttribute("onclick", "CMobConfInputAreaComponentManager.ClearValueCommon(" + this.instanceNo + ", \"" + inputId + "\")");
 
 		objTdSub = HtmlCreateElement("td", objTrSub);
 		objTdSub.setAttribute("style", "text-align : center;");
@@ -844,7 +845,8 @@ export function CMobConfInputAreaComponentManager(confMngParam) {
 		objInput = HtmlCreateElement("input", objTdSub);
 		objInput.setAttribute("type", "button");
 		objInput.setAttribute("value", "コピー");
-		objInput.setAttribute("onclick", "CMobConfInputAreaComponentManager.CopyValueCommon(" + this.instanceNo + ", \"" + inputId + "\")");
+		objInput.addEventListener('click', () => CMobConfInputAreaComponentManager.CopyValueCommon(this.instanceNo, inputId));
+//		objInput.setAttribute("onclick", "CMobConfInputAreaComponentManager.CopyValueCommon(" + this.instanceNo + ", \"" + inputId + "\")");
 	};
 
 

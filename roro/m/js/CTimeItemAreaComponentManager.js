@@ -78,7 +78,7 @@ CTimeItemAreaComponentManager.RebuildControls = function () {
 	objInput = document.createElement("input");
 	objInput.setAttribute("type", "checkbox");
 	objInput.setAttribute("id", "OBJID_TIME_ITEM_AREA_EXTRACT_CHECKBOX");
-	objInput.setAttribute("onclick", "CTimeItemAreaComponentManager.OnClickExtractSwitch()");
+	objInput.addEventListener('click', () => CTimeItemAreaComponentManager.OnClickExtractSwitch());
 	if (switchChecked) {
 		// 部品を再構築しているので、チェック状態の再設定が必要
 		objInput.setAttribute("checked", "checked");
@@ -113,7 +113,8 @@ CTimeItemAreaComponentManager.RebuildControls = function () {
 		objTd = HtmlCreateElement("td", objTr);
 		objSelect = HtmlCreateElement("select", objTd);
 		objSelect.setAttribute("id", "OBJID_SELECT_TIME_ITEM_" + idxRow);
-		objSelect.setAttribute("onchange", "CTimeItemAreaComponentManager.OnChangeConf(" + idxRow + ", parseInt(this.value))");
+		const _ctRow = idxRow;
+		objSelect.addEventListener('change', (e) => CTimeItemAreaComponentManager.OnChangeConf(_ctRow, parseInt(e.target.value)));
 
 		for (idx = 0; idx < ITEM_SP_TIME_OBJ_SORT.length; idx++) {
 			timeData = ITEM_SP_TIME_OBJ[ITEM_SP_TIME_OBJ_SORT[idx]];

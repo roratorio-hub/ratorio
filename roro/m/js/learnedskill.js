@@ -96,7 +96,7 @@ export function OnClickSkillSWLearned(){
 	objInput = document.createElement("input");
 	objInput.setAttribute("type", "checkbox");
 	objInput.setAttribute("id", "OBJID_SKILL_COLUMN_EXTRACT_CHECKBOX");
-	objInput.setAttribute("onClick", "OnClickSkillSWLearned()");
+	objInput.addEventListener('click', OnClickSkillSWLearned);
 	if (n_SkillSWLearned) {
 		// 部品を再構築しているので、チェック状態の再設定が必要
 		objInput.setAttribute("checked", "checked");
