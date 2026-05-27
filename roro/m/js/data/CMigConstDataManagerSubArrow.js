@@ -1,10 +1,3 @@
-// === AUTO-GENERATED IMPORTS ===
-import '../CNameKana.js';
-import '../arrow.h.js';
-import { ArrowOBJNew } from '../arrow.dat.js';
-import { CMigConstDataManagerSubBase } from './CMigConstDataManagerSubBase.js';
-import { CMigEquipableData } from './CMigEquipableData.js';
-// === END AUTO-GENERATED IMPORTS ===
 /**
  * 矢データマネージャクラス.
  */
@@ -80,3 +73,4 @@ export function CMigConstDataManagerSubArrow () {
 
 }
 CMigConstDataManagerSubArrow.prototype = new CMigConstDataManagerSubBase();
+if (typeof window !== 'undefined') { window.CMigConstDataManagerSubArrow = CMigConstDataManagerSubArrow; }

@@ -1,25 +1,9 @@
-// === AUTO-GENERATED IMPORTS ===
-import { GetJobName, IsMatchJobRestrict } from '../../../ro4/m/js/data/mig.job.h.js';
-import '../../m/js/card.h.js';
-import { MigGetBorderFlagText } from '../../m/js/data/mig.itemsp.h.js';
-import { g_constDataManager } from '../../../ro4/m/js/global.js';
-import { CItemInfoManager } from '../../m/js/CItemInfoManager.js';
-import { CardObjNew } from '../../m/js/card.dat.js';
-import { GetElementText } from '../../m/js/common.js';
-import { RebuildCardSelectSubCollectEnchListData } from '../../m/js/hmcard.js';
-import { ItemObjNew } from '../../m/js/item.dat.js';
-import {
-         GetItemExplainText, GetItemKindNameText, GetJobRestrictText, GetSlotText,
-         GetStrPenaltyAvoidStr
-} from '../../m/js/item.h.js';
-import { HtmlRemoveOptionAll, HtmlCreateElementOption, HtmlRemoveAllChild } from '../../common/js/util.js';
-// === END AUTO-GENERATED IMPORTS ===
-export function OnLoadItemList() {
+function OnLoadItemList() {
 	SetUpSelects();
 	BuildUpItemList();
 }
 
-export function SetUpSelects() {
+function SetUpSelects() {
 	var kind = 0;
 	var objSelect = null;
 	//----------------------------------------------------------------
@@ -75,7 +59,7 @@ export function SetUpSelects() {
  * @param {String} seachword 検索ワード
  * @returns {Array}
  */
-export function getItemList(itemlist, seachword) {
+function getItemList(itemlist, seachword) {
 	if (seachword == "") return itemlist;
 	var spDataArray;
 	var textInfoArray;
@@ -157,7 +141,7 @@ export function getItemList(itemlist, seachword) {
 /**
  * 表示するアイテム一覧を更新する
  */
-export function BuildUpItemList() {
+function BuildUpItemList() {
 	let idxSlot = 0;
 	let idxEnchList = 0;
 	let idxInfo = 0;
@@ -652,7 +636,7 @@ export function BuildUpItemList() {
 
 }
 
-export function GetElmTextForItemList(itemData) {
+function GetElmTextForItemList(itemData) {
 
 	var idx = 0;
 
@@ -668,7 +652,7 @@ export function GetElmTextForItemList(itemData) {
 /**
  * 武器種を変更したときに呼び出される
  */
-export function OnChangeKindRestrict() {
+function OnChangeKindRestrict() {
 	// 一覧テーブルを再構築
 	BuildUpItemList();
 }
@@ -676,12 +660,12 @@ export function OnChangeKindRestrict() {
 /**
  * 職業を変更したときに呼び出される
  */
-export function OnChangeJobRestrict() {
+function OnChangeJobRestrict() {
 	// 一覧テーブルを再構築
 	BuildUpItemList();
 }
 
-export function OnChnageShowSP() {
+function OnChnageShowSP() {
 	// 一覧テーブルを再構築
 	BuildUpItemList();
 }
@@ -689,17 +673,24 @@ export function OnChnageShowSP() {
 /**
  * 並び順を変更したときに呼び出される
  */
-export function OnChangeSortCondition() {
+function OnChangeSortCondition() {
 	// 一覧テーブルを再構築
 	BuildUpItemList();
 }
 
-export function OnChangeSlotRestrict() {
+function OnChangeSlotRestrict() {
 	// 一覧テーブルを再構築
 	BuildUpItemList();
 }
 
-export function OnChangeShowEnchantInfo() {
+function OnChangeShowEnchantInfo() {
 	// 一覧テーブルを再構築
 	BuildUpItemList();
+}
+if (typeof window !== 'undefined') {
+	Object.assign(window, {
+		OnLoadItemList, SetUpSelects, getItemList, BuildUpItemList,
+		GetElmTextForItemList, OnChangeKindRestrict, OnChangeJobRestrict,
+		OnChnageShowSP, OnChangeSortCondition, OnChangeSlotRestrict, OnChangeShowEnchantInfo,
+	});
 }

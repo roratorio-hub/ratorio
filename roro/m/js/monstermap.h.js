@@ -2,9 +2,6 @@
 import { CGlobalConstManager } from './CGlobalConstManager.js';
 import { CNameKana } from './CNameKana.js';
 import { g_MonsterMapDataArray, g_MonsterMapCategoryDataArray } from './monstermap.dat.js';
-// === AUTO-GENERATED IMPORTS ===
-import './CNameKana.js';
-// === END AUTO-GENERATED IMPORTS ===
 export { g_MonsterMapDataArray, g_MonsterMapCategoryDataArray } from './monstermap.dat.js';
 
 //----------------------------------------------------------------
@@ -32,6 +29,7 @@ CGlobalConstManager.DefinePseudoEnum(
 );
 
 
+
 //----------------------------------------------------------------
 // マップ種別ＩＤ定義
 //----------------------------------------------------------------
@@ -54,6 +52,9 @@ CGlobalConstManager.DefinePseudoEnum(
 	EnumMonsterMapKind.Count,
 	1
 );
+
+
+
 
 
 /**
@@ -80,6 +81,14 @@ export function SetUpSortKanaMonsterMap(dataArray) {
 }
 
 
+
+
+
 SetUpSortKanaMonsterMap(g_MonsterMapDataArray);
 SetUpSortKanaMonsterMap(g_MonsterMapCategoryDataArray);
 
+if (typeof window !== 'undefined') {
+    window.g_MonsterMapDataArray = g_MonsterMapDataArray;
+    window.g_MonsterMapCategoryDataArray = g_MonsterMapCategoryDataArray;
+    window.SetUpSortKanaMonsterMap = SetUpSortKanaMonsterMap;
+}

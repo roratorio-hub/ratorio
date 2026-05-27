@@ -1,6 +1,8 @@
 
 
 
+
+
 import { CGlobalConstManager } from './CGlobalConstManager.js';
 
 //----------------------------------------------------------------
@@ -29,6 +31,9 @@ CGlobalConstManager.DefinePseudoEnum(
 );
 
 
+
+
+
 //----------------------------------------------------------------
 // データインデックス定義
 //----------------------------------------------------------------
@@ -53,6 +58,12 @@ CGlobalConstManager.DefinePseudoEnum(
 );
 
 
+
+
+
+
+
+
 /**
  * 名称仮名クラス.
  */
@@ -69,6 +80,7 @@ export function CNameKana (nameC, kanaC) {
 
 	/** ソートコード. */
 	this.sortCode = CNameKana.GetSortCode(this.kanaCode);
+
 
 
 	/**
@@ -92,6 +104,7 @@ export function CNameKana (nameC, kanaC) {
 }
 
 
+
 /**
  * 指定の仮名の仮名コードを取得する.
  * @param kana 仮名
@@ -113,6 +126,7 @@ CNameKana.GetKanaCode = function (kana) {
 	var handakuKanas = "パピプペポ";
 	var chouonKanas = "ー";
 	var spaceKanas = "　";
+
 
 
 	// １文字ずつ変換する
@@ -207,6 +221,7 @@ CNameKana.GetKanaCodeSub = function (baseCode, kanaType) {
 	var rrtRowLetter = "";
 
 
+
 	// ア～オ
 	if ((0x30A1 <= baseCode) && (baseCode <= 0x30AA)) {
 		letterIndex = Math.floor((baseCode - 0x30A1) / 2);
@@ -283,9 +298,11 @@ CNameKana.GetKanaCodeSub = function (baseCode, kanaType) {
 	}
 
 
+
 	// 行番号、列番号取得
 	rowIndex = Math.floor(letterIndex / 5);
 	columnIndex = (letterIndex % 5) + 1;
+
 
 
 	switch (kanaType) {
@@ -315,6 +332,7 @@ CNameKana.GetKanaCodeSub = function (baseCode, kanaType) {
 	}
 
 
+
 	// 行レター取得
 	rrtRowLetter = String.fromCharCode("A".charCodeAt(0) + rowIndex);
 	if (bAnotherLetter) {
@@ -335,3 +353,6 @@ CNameKana.GetSortCode = function (kanaCode) {
 };
 
 
+if (typeof window !== 'undefined') {
+    window.CNameKana = CNameKana;
+}

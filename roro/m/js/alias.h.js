@@ -24,6 +24,7 @@ CGlobalConstManager.DefinePseudoEnum(
 );
 
 
+
 /**
  * エイリアスを変換する.
  * @param alias エイリアス
@@ -42,4 +43,6 @@ export function TranslateAlias (alias) {
 	return "";
 }
 
-
+if (typeof window !== 'undefined') {
+	window.TranslateAlias = TranslateAlias;
+}

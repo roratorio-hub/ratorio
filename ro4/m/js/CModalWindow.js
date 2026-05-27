@@ -71,4 +71,6 @@ export class ModalWindow {
     }
 }
 
-
+if (typeof window !== 'undefined') {
+    window.ModalWindow = ModalWindow;
+}

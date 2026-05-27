@@ -1,17 +1,15 @@
 
 
 
+
+
 import { CCustomSelectBase } from './CCustomSelectBase.js';
-// === AUTO-GENERATED IMPORTS ===
-import './CNameKana.js';
-import { TranslateAlias } from './alias.h.js';
-import { HtmlRemoveOptionAll, HtmlCreateElementOption } from '../../common/js/util.js';
-// === END AUTO-GENERATED IMPORTS ===
 
 /**
  * カスタムセレクトクラス（マップ基底）.
  */
 export function CCustomSelectMapBase () {
+
 
 
 	/**
@@ -27,6 +25,7 @@ export function CCustomSelectMapBase () {
 	};
 
 
+
 	/**
 	 * データ選択コントロールを再構築する（処理本体）.
 	 * @remark 必要に応じて継承先でオーバーライドすること
@@ -40,6 +39,7 @@ export function CCustomSelectMapBase () {
 		var dataId = 0;
 		var dataName = 0;
 		var candidateDataId = 0;
+
 
 
 		// データ配列を取得
@@ -106,6 +106,7 @@ export function CCustomSelectMapBase () {
 	};
 
 
+
 	/**
 	 * ソート選択コントロールを再構築する（処理本体）.
 	 * @remark 必要に応じて継承先でオーバーライドすること
@@ -121,6 +122,7 @@ export function CCustomSelectMapBase () {
 		// 選択するIDを調整
 		this.selectedSortId = parseInt(this.objSelectSort.value, 10);
 	};
+
 
 
 	/**
@@ -146,6 +148,7 @@ export function CCustomSelectMapBase () {
 		var dataNameKana = null;
 		var dataName = 0;
 		var dataKana = 0;
+
 
 
 		// 選択肢全削除
@@ -244,6 +247,7 @@ export function CCustomSelectMapBase () {
 CCustomSelectMapBase.prototype = new CCustomSelectBase();
 
 
+
 /**
  * モンスターマップデータソート関数（五十音順）.
  */
@@ -271,5 +275,10 @@ CCustomSelectMapBase.SortById = function (objA, objB) {
 
 	return 0;
 };
+
+if (typeof window !== 'undefined') {
+    window.CCustomSelectMapBase = CCustomSelectMapBase;
+}
+
 
 

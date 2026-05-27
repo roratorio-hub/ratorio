@@ -59,7 +59,7 @@
 	<script type="text/javascript" src="../../jquery/jquery.min.js"></script>
 </head>
 
-<body style="overflow-y:auto">
+<body onload="OnLoadPetList()" style="overflow-y:auto">
 	<div class="wrapper">
 		<div class="side">
 			<span id="ID_FRAME"></span>
@@ -76,7 +76,7 @@
 										</td>
 										<td>
 											<input type="text" style="display:none">
-											<input id="F_CONDITION" type="text" placeholder="検索文字（部分一致）">
+											<input id="F_CONDITION" type="text" placeholder="検索文字（部分一致）" onChange="RefreshPetListTable()">
 										</td>
 									</tr>
 								</tbody>
@@ -99,7 +99,6 @@
 	</div>
 </body>
 
-<script type="module" src="js/eventsetup-petlist.js"></script>
 <script type="module" src="../frame.js"></script>
 
 </html>

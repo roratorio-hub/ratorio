@@ -1,10 +1,6 @@
 import { CCustomSelectMapCategory } from '../../../roro/m/js/CCustomSelectMapCategory.js';
 import { CCustomSelectMapMap } from '../../../roro/m/js/CCustomSelectMapMap.js';
 import { CCustomSelectMapMonster } from '../../../roro/m/js/CCustomSelectMapMonster.js';
-// === AUTO-GENERATED IMPORTS ===
-import { MonsterToughness } from '../../../roro/m/js/monster.toughness.dat.js';
-import { HtmlCreateElement, HtmlCreateTextNode, HtmlRemoveAllChild } from '../../../roro/common/js/util.js';
-// === END AUTO-GENERATED IMPORTS ===
 
 /**
  * モンスターマップエリアコンポーネントマネージャクラス.
@@ -54,6 +50,7 @@ CMonsterMapAreaComponentManager.RebuildControls = function () {
 	var objTdChild = null;
 
 
+
 	// チェックボックスのチェック状態を取得
 	objSwitch = document.getElementById("OBJID_MONSTER_MAP_AREA_EXTRACT_CHECKBOX");
 	if (objSwitch) {
@@ -61,11 +58,13 @@ CMonsterMapAreaComponentManager.RebuildControls = function () {
 	}
 
 
+
 	// ルートオブジェクトを取得
 	objRoot = document.getElementById("OBJID_TD_MONSTER_MAP_AREA");
 
 	// 設定欄を初期化
 	HtmlRemoveAllChild(objRoot);
+
 
 
 	// 設定欄テーブルを再構築
@@ -76,6 +75,7 @@ CMonsterMapAreaComponentManager.RebuildControls = function () {
 
 	objTbody = document.createElement("tbody");
 	objTable.appendChild(objTbody);
+
 
 
 	//----------------------------------------------------------------
@@ -104,7 +104,7 @@ CMonsterMapAreaComponentManager.RebuildControls = function () {
 	objInput = HtmlCreateElement("input", objTd);
 	objInput.setAttribute("type", "checkbox");
 	objInput.setAttribute("id", "OBJID_MONSTER_MAP_AREA_EXTRACT_CHECKBOX");
-	objInput.addEventListener('click', () => CMonsterMapAreaComponentManager.OnClickExtractSwitch());
+	objInput.setAttribute("onclick", "CMonsterMapAreaComponentManager.OnClickExtractSwitch()");
 	if (switchChecked) {
 		// 部品を再構築しているので、チェック状態の再設定が必要
 		objInput.setAttribute("checked", "checked");
@@ -113,6 +113,7 @@ CMonsterMapAreaComponentManager.RebuildControls = function () {
 	objLabel = HtmlCreateElement("label", objTd);
 	objLabel.setAttribute("for", "OBJID_MONSTER_MAP_AREA_EXTRACT_CHECKBOX");
 	HtmlCreateTextNode("マップ指定", objLabel);
+
 
 
 	//----------------------------------------------------------------
@@ -142,6 +143,7 @@ CMonsterMapAreaComponentManager.RebuildControls = function () {
 	objTd.appendChild(CMonsterMapAreaComponentManager.customSelectCategory.GetRootObject());
 
 
+
 	//----------------------------------------------------------------
 	// マップ選択
 	//----------------------------------------------------------------
@@ -167,6 +169,7 @@ CMonsterMapAreaComponentManager.RebuildControls = function () {
 	objTd.setAttribute("colspan", "3");
 
 	objTd.appendChild(CMonsterMapAreaComponentManager.customSelectMap.GetRootObject());
+
 
 
 	//----------------------------------------------------------------
@@ -248,6 +251,7 @@ CMonsterMapAreaComponentManager.RebuildControls = function () {
 	CMonsterMapAreaComponentManager.RefreshtDispObject("OBJID_SPAN_MONSTER_LEVEL");
 
 
+
 	//----------------------------------------------------------------
 	// ATK / BaseExp
 	//----------------------------------------------------------------
@@ -283,6 +287,7 @@ CMonsterMapAreaComponentManager.RebuildControls = function () {
 	objSpan.setAttribute("id", "OBJID_SPAN_MONSTER_BASE_EXP");
 
 	CMonsterMapAreaComponentManager.RefreshtDispObject("OBJID_SPAN_MONSTER_BASE_EXP");
+
 
 
 	//----------------------------------------------------------------
@@ -322,6 +327,7 @@ CMonsterMapAreaComponentManager.RebuildControls = function () {
 	CMonsterMapAreaComponentManager.RefreshtDispObject("OBJID_SPAN_MONSTER_JOB_EXP");
 
 
+
 	//----------------------------------------------------------------
 	// DEF(除算) / 種族
 	//----------------------------------------------------------------
@@ -352,6 +358,7 @@ CMonsterMapAreaComponentManager.RebuildControls = function () {
 	objSpan.setAttribute("id", "OBJID_SPAN_MONSTER_RACE");
 
 	CMonsterMapAreaComponentManager.RefreshtDispObject("OBJID_SPAN_MONSTER_RACE");
+
 
 
 	//----------------------------------------------------------------
@@ -386,6 +393,7 @@ CMonsterMapAreaComponentManager.RebuildControls = function () {
 	CMonsterMapAreaComponentManager.RefreshtDispObject("OBJID_SPAN_MONSTER_ELEMENT");
 
 
+
 	//----------------------------------------------------------------
 	// Res / サイズ
 	//----------------------------------------------------------------
@@ -416,6 +424,7 @@ CMonsterMapAreaComponentManager.RebuildControls = function () {
 	objSpan.setAttribute("id", "OBJID_SPAN_MONSTER_SIZE");
 
 	CMonsterMapAreaComponentManager.RefreshtDispObject("OBJID_SPAN_MONSTER_SIZE");
+
 
 
 	//----------------------------------------------------------------
@@ -450,6 +459,7 @@ CMonsterMapAreaComponentManager.RebuildControls = function () {
 	CMonsterMapAreaComponentManager.RefreshtDispObject("OBJID_SPAN_MONSTER_SPECIALITY");
 
 
+
 	//----------------------------------------------------------------
 	// MDEF(減算) / 必中HIT
 	//----------------------------------------------------------------
@@ -480,6 +490,7 @@ CMonsterMapAreaComponentManager.RebuildControls = function () {
 	objSpan.setAttribute("id", "OBJID_SPAN_MONSTER_100HIT");
 
 	CMonsterMapAreaComponentManager.RefreshtDispObject("OBJID_SPAN_MONSTER_100HIT");
+
 
 
 	//----------------------------------------------------------------
@@ -670,7 +681,5 @@ CMonsterMapAreaComponentManager.updateMonsterSuggest = function (monsterId) {
 };
 
 if (typeof window !== 'undefined') {
-    window.CMonsterMapAreaComponentManager = CMonsterMapAreaComponentManager;
+	window.CMonsterMapAreaComponentManager = CMonsterMapAreaComponentManager;
 }
-
-

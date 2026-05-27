@@ -1,7 +1,3 @@
-// === AUTO-GENERATED IMPORTS ===
-import { ItemObjNew } from './item.dat.js';
-import { GetRndOptTypeId } from './item.h.js';
-// === END AUTO-GENERATED IMPORTS ===
 
 /************************************************************************************************
  *
@@ -24,4 +20,7 @@ export function IsEnableRandomEnchant(itemId) {
 	return (flag & 1) == 1;
 }
 
+if (typeof window !== 'undefined') {
+	window.IsEnableRandomEnchant = IsEnableRandomEnchant;
+}
 

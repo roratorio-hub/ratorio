@@ -28,4 +28,6 @@ export const g_rndOptTypeArray = [
 	[26,[45,71,72,73,74]],	// フラッシュ武器改造プレート
 ];
 
-
+if (typeof window !== 'undefined') {
+	window.g_rndOptTypeArray = g_rndOptTypeArray;
+}
