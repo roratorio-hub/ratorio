@@ -71,12 +71,6 @@ describe('CSaveDataMappingManager.js', () => {
         }
     });
 
-    describe('window互換確認', () => {
-        it('window.CSaveDataMappingManager が設定されている', () => {
-            expect((window as any).CSaveDataMappingManager).toBe(CSaveDataMappingManager);
-        });
-    });
-
     describe('コアロジック確認', () => {
         it('GetMappingArray(1) が配列を返す', () => {
             expect(Array.isArray(CSaveDataMappingManager.GetMappingArray(1))).toBe(true);

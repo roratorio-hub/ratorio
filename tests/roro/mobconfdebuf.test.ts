@@ -154,17 +154,6 @@ describe('mobconfdebuf.js', () => {
         it('RefreshMobConfDebufControlCSS が関数', () => { expect(typeof RefreshMobConfDebufControlCSS).toBe('function'); });
     });
 
-    describe('window互換確認', () => {
-        it('window.MOB_CONF_DEBUF_LIMIT が 80', () => { expect((window as any).MOB_CONF_DEBUF_LIMIT).toBe(80); });
-        it('window.n_B_IJYOU が配列', () => { expect(Array.isArray((window as any).n_B_IJYOU)).toBe(true); });
-        it('window.MobConfDebufOBJ が配列', () => { expect(Array.isArray((window as any).MobConfDebufOBJ)).toBe(true); });
-        it('window.MOB_CONF_DEBUF_DATA_INDEX_ID = 0', () => { expect((window as any).MOB_CONF_DEBUF_DATA_INDEX_ID).toBe(0); });
-        it('window.MOB_CONF_DEBUF_ID_PROVOKE = 0', () => { expect((window as any).MOB_CONF_DEBUF_ID_PROVOKE).toBe(0); });
-        it('window.MOB_CONF_DEBUF_ID_TOXIN_OF_MANDARA = 56', () => { expect((window as any).MOB_CONF_DEBUF_ID_TOXIN_OF_MANDARA).toBe(56); });
-        it('window.BuildUpMobConfDebufSelectArea が関数', () => { expect(typeof (window as any).BuildUpMobConfDebufSelectArea).toBe('function'); });
-        it('window.OnChangeMobConfDebuf が関数', () => { expect(typeof (window as any).OnChangeMobConfDebuf).toBe('function'); });
-    });
-
     describe('MobConfDebufOBJ 初期化確認', () => {
         it('n_B_IJYOU が長さ MOB_CONF_DEBUF_LIMIT の配列', () => { expect(n_B_IJYOU.length).toBe(MOB_CONF_DEBUF_LIMIT); });
     });

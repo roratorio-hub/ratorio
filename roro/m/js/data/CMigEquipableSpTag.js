@@ -464,4 +464,3 @@ export function CMigEquipableSpTag (dataArrayC) {
 	};
 
 }
-if (typeof window !== 'undefined') { window.CMigEquipableSpTag = CMigEquipableSpTag; }

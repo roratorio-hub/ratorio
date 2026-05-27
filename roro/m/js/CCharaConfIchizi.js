@@ -1,4 +1,7 @@
 import { CConfBase } from './CConfBase.js';
+// === AUTO-GENERATED IMPORTS ===
+import './CConfBase.js';
+// === END AUTO-GENERATED IMPORTS ===
 
 export function CCharaConfIchizi(confArray) {
 	// 継承定義
@@ -195,6 +198,3 @@ export function CCharaConfIchizi(confArray) {
 	this.InitData();
 }
 
-if (typeof window !== 'undefined') {
-	window.CCharaConfIchizi = CCharaConfIchizi;
-}

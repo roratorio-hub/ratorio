@@ -150,24 +150,6 @@ describe('mobconfplayer.js', () => {
         it('RefreshMobConfPlayerControlCSS が関数', () => { expect(typeof RefreshMobConfPlayerControlCSS).toBe('function'); });
     });
 
-    describe('window互換確認', () => {
-        it('window.MOB_CONF_PLAYER_LIMIT が設定されている', () => { expect((window as any).MOB_CONF_PLAYER_LIMIT).toBe(54); });
-        it('window.n_B_TAISEI が設定されている', () => { expect(Array.isArray((window as any).n_B_TAISEI)).toBe(true); });
-        it('window.MobConfPlayerOBJ が設定されている', () => { expect(Array.isArray((window as any).MobConfPlayerOBJ)).toBe(true); });
-        it('window.MOB_CONF_PLAYER_DATA_INDEX_ID が設定されている', () => { expect((window as any).MOB_CONF_PLAYER_DATA_INDEX_ID).toBe(0); });
-        it('window.MOB_CONF_PLAYER_ID_MAXHP が設定されている', () => { expect((window as any).MOB_CONF_PLAYER_ID_MAXHP).toBe(0); });
-        it('window.MOB_CONF_PLAYER_ID_MRES が設定されている', () => { expect(typeof (window as any).MOB_CONF_PLAYER_ID_MRES).toBe('number'); });
-        it('window.MOB_CONF_PLAYER_ID_SENTO_AREA_NONE が設定されている', () => { expect((window as any).MOB_CONF_PLAYER_ID_SENTO_AREA_NONE).toBe(0); });
-        it('window.MOB_CONF_PLAYER_ID_SHUZOKU_HUMAN が設定されている', () => { expect((window as any).MOB_CONF_PLAYER_ID_SHUZOKU_HUMAN).toBe(0); });
-        it('window.BuildUpMobConfPlayerSelectArea が設定されている', () => { expect(typeof (window as any).BuildUpMobConfPlayerSelectArea).toBe('function'); });
-        it('window.SyncronizeMobConfPlayerSettingsVarToCtrl が設定されている', () => { expect(typeof (window as any).SyncronizeMobConfPlayerSettingsVarToCtrl).toBe('function'); });
-        it('window.SyncronizeMobConfPlayerSettingsCtrlToVar が設定されている', () => { expect(typeof (window as any).SyncronizeMobConfPlayerSettingsCtrlToVar).toBe('function'); });
-        it('window.OnClickMobConfPlayerSwitch が設定されている', () => { expect(typeof (window as any).OnClickMobConfPlayerSwitch).toBe('function'); });
-        it('window.OnChangeMobConfPlayer が設定されている', () => { expect(typeof (window as any).OnChangeMobConfPlayer).toBe('function'); });
-        it('window.RefreshMobConfPlayerSelectAreaHeader が設定されている', () => { expect(typeof (window as any).RefreshMobConfPlayerSelectAreaHeader).toBe('function'); });
-        it('window.RefreshMobConfPlayerControlCSS が設定されている', () => { expect(typeof (window as any).RefreshMobConfPlayerControlCSS).toBe('function'); });
-    });
-
     describe('MobConfPlayerOBJ 初期化確認', () => {
         it('MobConfPlayerOBJ が 43 件', () => { expect(MobConfPlayerOBJ.length).toBe(43); });
         it('n_B_TAISEI が長さ MOB_CONF_PLAYER_LIMIT の配列', () => { expect(n_B_TAISEI.length).toBe(MOB_CONF_PLAYER_LIMIT); });

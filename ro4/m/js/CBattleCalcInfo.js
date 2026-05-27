@@ -47,7 +47,6 @@ export function CBattleCalcInfo () {
 	this.dmgAmpRate = 0;
 
 
-
 	/**
 	 * 無名イニシャライザ.
 	 */
@@ -86,7 +85,6 @@ export function CBattleCalcInfo () {
 	}).call(this);
 
 
-
 	/**
 	 * 複製する.
 	 * @return 複製されたインスタンス
@@ -117,7 +115,4 @@ export function CBattleCalcInfo () {
 	};
 }
 
-if (typeof window !== 'undefined') {
-    window.CBattleCalcInfo = CBattleCalcInfo;
-}
 

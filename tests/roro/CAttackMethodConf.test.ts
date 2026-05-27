@@ -97,10 +97,4 @@ describe('CAttackMethodConf.js', () => {
             expect(obj.GetOptionValue(0)).toBe(1);
         });
     });
-
-    describe('window互換確認', () => {
-        it('window.CAttackMethodConf が設定されている', () => {
-            expect((window as any).CAttackMethodConf).toBe(CAttackMethodConf);
-        });
-    });
 });

@@ -149,9 +149,11 @@ async function parseSkillDat(src: string): Promise<{ migIdNum: number, level: nu
         return [];
     }
 
-    // ESM 移行後は export キーワードを除去してから評価し、window を sandbox に向けることで
-    // 末尾の Object.assign(window, {...}) 経由で SkillObjNew を取り出す
-    const strippedCode = code.replace(/^export\s+/gm, '');
+    // ESM 移行後は export キーワードを除去してから評価し、sandbox で SkillObjNew を取り出す。
+    // const/let → var に変換しないと VM sandbox のプロパティにならないため置換する。
+    const strippedCode = code
+        .replace(/^export\s+(const|let)\s+/gm, 'var ')
+        .replace(/^export\s+/gm, '');
     const sandbox: Record<string, any> = {};
     sandbox.window = sandbox;
     vm.createContext(sandbox);

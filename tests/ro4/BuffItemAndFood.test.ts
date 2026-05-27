@@ -1,4 +1,22 @@
-import { describe, it, expect } from 'vitest';
+import { vi, describe, it, expect } from 'vitest';
+
+vi.hoisted(() => {
+    // Phase 3b で BuffItemAndFood.js が CAttackMethodAreaComponentManager を import するようになり
+    // 連鎖的に calchistory.js の $(function(){...}) と CShadowEquipController.initializeHTML() が呼ばれる
+    (globalThis as any).$ = (_fn: any) => {};
+    const mockEl = {
+        querySelectorAll: () => [],
+        querySelector: () => null,
+        appendChild: () => {},
+        setAttribute: () => {},
+        removeAttribute: () => {},
+        getAttribute: () => null,
+        addEventListener: () => {},
+        style: {},
+        value: 0,
+    };
+    (document as any).getElementById = () => mockEl;
+});
 import {
     BUFF_CONF_FOOD_LIMIT,
     n_A_PassSkill7,
@@ -108,20 +126,9 @@ describe('BuffItemAndFood.js', () => {
     });
 
     describe('window互換確認', () => {
-        it('window.BUFF_CONF_FOOD_LIMIT が設定されている', () => {
-            expect((window as any).BUFF_CONF_FOOD_LIMIT).toBe(53);
-        });
         it('window.n_A_PassSkill7 が設定されている', () => {
             expect((window as any).n_A_PassSkill7).toBe(n_A_PassSkill7);
         });
-        it('window.ID_BUFF_SOUSHO_CARD が設定されている', () => {
-            expect((window as any).ID_BUFF_SOUSHO_CARD).toBe(52);
-        });
-        it('window.Click_Skill7SW が設定されている', () => {
-            expect((window as any).Click_Skill7SW).toBe(Click_Skill7SW);
-        });
-        it('window.Click_A7 が設定されている', () => {
-            expect((window as any).Click_A7).toBe(Click_A7);
-        });
+
     });
 });

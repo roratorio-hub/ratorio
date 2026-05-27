@@ -1,3 +1,13 @@
+// === AUTO-GENERATED IMPORTS ===
+import '../../m/js/monstermap.h.js';
+import { CCustomSelectMapCategory } from '../../m/js/CCustomSelectMapCategory.js';
+import { CCustomSelectMapMap } from '../../m/js/CCustomSelectMapMap.js';
+import { GetElementText, GetMonsterElementText, GetRaceText, GetSizeText } from '../../m/js/common.js';
+import { MonsterObjNew } from '../../m/js/monster.dat.js';
+import { GetMonseterElmBasicType } from '../../m/js/monster.h.js';
+import { MONSTER_MAP_ID_MAP_ALL, g_MonsterMapDataArray } from '../../m/js/monstermap.dat.js';
+import { HtmlRemoveOptionAll, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectCheckedById, DivideDigits3 } from '../../common/js/util.js';
+// === END AUTO-GENERATED IMPORTS ===
 
 // カテゴリ選択セレクト
 window.g_customSelectCategory = new CCustomSelectMapCategory("MONSTER_MAP_CATEGORY");
@@ -5,7 +15,6 @@ window.g_customSelectCategory = new CCustomSelectMapCategory("MONSTER_MAP_CATEGO
 // マップ選択セレクト
 window.g_customSelectMap = new CCustomSelectMapMap("MONSTER_MAP_MAP", g_customSelectCategory);
 g_customSelectMap.AddOnChangeSelectDataExtraHandller(RefreshMonsterList, null);
-
 
 
 /**
@@ -22,17 +31,15 @@ function __DIG3(value) {
 }
 
 
-
 /**
  * 初期化処理.
  */
-function InitMonsterListSelectArea() {
+export function InitMonsterListSelectArea() {
 
 	var idx = 0;
 
 	var objRoot = null;
 	var objSelect = null;
-
 
 
 	//----------------------------------------------------------------
@@ -41,7 +48,6 @@ function InitMonsterListSelectArea() {
 	objRoot = document.getElementById("OBJID_TD_MONSTER_MAP_CATEGORY");
 	HtmlRemoveAllChild(objRoot);
 	objRoot.appendChild(g_customSelectCategory.GetRootObject());
-
 
 
 	//----------------------------------------------------------------
@@ -53,7 +59,6 @@ function InitMonsterListSelectArea() {
 
 	// 初期値設定（適当にマップを選んで設定）
 	g_customSelectMap.ChangeSelectedDataId(336, true);
-
 
 
 	//----------------------------------------------------------------
@@ -86,7 +91,6 @@ function InitMonsterListSelectArea() {
 	HtmlCreateElementOption(MONSTER_DATA_INDEX_JOB_EXP, "JobExp順", objSelect);
 
 
-
 	//----------------------------------------------------------------
 	// 種族抽出
 	//----------------------------------------------------------------
@@ -100,7 +104,6 @@ function InitMonsterListSelectArea() {
 	for(idx = 0; idx < RACE_ID_COUNT; idx++) {
 		HtmlCreateElementOption(idx, GetRaceText(idx), objSelect);
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -118,7 +121,6 @@ function InitMonsterListSelectArea() {
 	}
 
 
-
 	//----------------------------------------------------------------
 	// サイズ別抽出
 	//----------------------------------------------------------------
@@ -132,7 +134,6 @@ function InitMonsterListSelectArea() {
 	for(idx = 0; idx < SIZE_ID_COUNT; idx++) {
 		HtmlCreateElementOption(idx, GetSizeText(idx), objSelect);
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -158,11 +159,10 @@ function InitMonsterListSelectArea() {
 }
 
 
-
 /**
  * モンスターリストの更新.
  */
-function RefreshMonsterList() {
+export function RefreshMonsterList() {
 
 	var idx = 0;
 
@@ -208,7 +208,6 @@ function RefreshMonsterList() {
 	condDesc = objInput.checked;
 
 
-
 	// 補正条件を取得
 	objSelect = document.getElementById("OBJID_SELECT_QM");
 	condQM = parseInt(objSelect.value);
@@ -218,7 +217,6 @@ function RefreshMonsterList() {
 
 	objInput = document.getElementById("OBJID_INPUT_ANTI_BLESS");
 	condAntiBless = objInput.checked;
-
 
 
 	// モンスター定義配列を複製
@@ -264,7 +262,6 @@ function RefreshMonsterList() {
 	}
 
 
-
 	// モンスターデータの補正
 	for (idx = 0; idx < dataArraySorted.length; idx++) {
 
@@ -305,11 +302,9 @@ function RefreshMonsterList() {
 	}
 
 
-
 	// ソートの key を特定する
 	objSelect = document.getElementById("OBJID_SELECT_SORT_KEY");
 	sortKeyIndex = parseInt(objSelect.value);
-
 
 
 	// ソート
@@ -359,8 +354,6 @@ function RefreshMonsterList() {
 	}
 
 
-
-
 	//------------------------------------------------------------------------------------------------
 	// 結果リストを更新
 	//------------------------------------------------------------------------------------------------
@@ -372,7 +365,6 @@ function RefreshMonsterList() {
 	// テーブル再構築
 	objTbody = document.createElement("tbody");
 	objTableResult.appendChild(objTbody);
-
 
 
 	for (idx = 0; idx < dataArraySorted.length; idx++) {
@@ -493,7 +485,6 @@ function RefreshMonsterList() {
 			objText = document.createTextNode("遠距離攻撃");
 			objTd.appendChild(objText);
 		}
-
 
 
 		// モンスターデータ行の追加
@@ -628,7 +619,6 @@ function RefreshMonsterList() {
 }
 
 
-
 /**
  * 抽出条件に適合しているかの判定.
  * @param monsterData モンスターデータ
@@ -636,7 +626,7 @@ function RefreshMonsterList() {
  * @param condElm 属性条件
  * @param condSize サイズ条件
  */
-function IsMatchCondMonsterList(monsterData, condRace, condElm, condSize) {
+export function IsMatchCondMonsterList(monsterData, condRace, condElm, condSize) {
 
 	// 種族条件
 	if (condRace != -1) {
@@ -661,4 +651,4 @@ function IsMatchCondMonsterList(monsterData, condRace, condElm, condSize) {
 
 	return true;
 }
-if (typeof window !== 'undefined') { Object.assign(window, { __DIG3, InitMonsterListSelectArea, RefreshMonsterList, IsMatchCondMonsterList }); }
+

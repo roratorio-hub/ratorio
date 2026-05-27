@@ -1,250 +1,85 @@
 item_list:
-  - name: コールオブテンペスタリー
-    yomi: コールオブテンペスタリー
-    type: 鎧
+  - name: エントワインドマジカルアックス
+    yomi: エントワインドマジカルアックス
+    type: 片手斧
     slot: 1
-    weapon_lv: 0
-    atk_or_def: 100
-    weight: 100
+    weapon_lv: 4
+    atk_or_def: 180
+    weight: 180
     required_lv: 200
     required_job: アリテア
     capabilities:
-      - name: プレイヤー耐性
-        value: 7
-      - name: スキルダメージ増加
+      - name: 武器のMATK
+        value: 110
+      - name: 全種族への物理ダメージ増加
+        value: 6
+        per_refine: 1
+      - name: 全種族への魔法ダメージ増加
+        value: 3
+        per_refine: 1
+      - name: スキル使用可能
         value: 1
-        per_lv: 10
-        skill: グレイシアモノリス
-      - name: スキルダメージ増加
+        at_refine: 7
+        skill: リザレクション
+        skill_lv: 4
+      - name: スキル使用可能
         value: 1
-        per_lv: 10
-        skill: グレイシアノヴァ
-      - name: スキルダメージ増加
-        value: 1
-        per_lv: 10
-        skill: グレイシアシャード
-      - name: スキルダメージ増加
-        value: 1
-        per_lv: 10
-        skill: グレイシアストンプ
-      - name: スキルダメージ増加
-        value: 1
-        per_lv: 10
-        skill: チリングブラスト
-      - name: スキルダメージ増加
-        value: 1
-        per_lv: 10
-        skill: ロアリングピアサー
-      - name: スキルダメージ増加
-        value: 1
-        per_lv: 10
-        skill: ロアリングチャージ
-      - name: スキルダメージ増加
-        value: 1
-        per_lv: 10
-        skill: フューリアスストーム
-      - name: スキルダメージ増加
-        value: 1
-        per_lv: 10
-        skill: テラウェーブ
-      - name: スキルダメージ増加
-        value: 1
-        per_lv: 10
-        skill: テラハーベスト
-      - name: スキルダメージ増加
-        value: 1
-        per_lv: 10
-        skill: ソリッドストンプ
-      - name: スキルダメージ増加
-        value: 1
-        per_lv: 10
-        skill: グラビティホール
-      - name: 小・中・大型モンスターへの魔法ダメージ増加
+        at_refine: 9
+        skill: クリアランス
+        skill_lv: 5
+      - name: 全種族への物理ダメージ増加
         value: 7
         per_refine: 1
-      - name: ASPD増加
-        value: 10
-        at_refine: 7
-      - name: 一般耐性
-        value: 5
-        at_refine: 7
-      - name: ボス耐性
-        value: 5
-        at_refine: 7
-      - name: 破損しない
-        value: 1
-        at_refine: 9
-      - name: 再使用待機時間減少
-        value: 1000
-        at_refine: 9
-        skill: サンダリングオーブ
-      - name: 全属性への魔法ダメージ増加
-        value: 15
-        at_refine: 10
-    enchant: #
-      - name: スペシャルエンチャント（オーブ）
-        slot_list: #
-          - slot: 4
-            refine: 0
-            enchant_list: #
-              - name: 潜在解放(アリテアXVIII)
-          - slot: 3
-            refine: 8
-            enchant_list: #
-              - name: 火属性付与(鎧)
-              - name: 水属性付与(鎧)
-              - name: 風属性付与(鎧)
-              - name: 地属性付与(鎧)
-              - name: 聖属性付与(鎧)
-              - name: 闇属性付与(鎧)
-              - name: 念属性付与(鎧)
-              - name: 毒属性付与(鎧)
-              - name: 不死属性付与(鎧)
-          - slot: 2
-            refine: 9
-            enchant_list: #
-              - name: スキルディレイ-15%
-              - name: 必中攻撃+25%
-              - name: 詠唱妨害不可
-              - name: 厄災の魔将
-
-  - name: ローリングアプローズ
-    yomi: ローリングアプローズ
-    type: 鎧
-    slot: 1
-    weapon_lv: 0
-    atk_or_def: 100
-    weight: 100
-    required_lv: 200
-    required_job: トルバドゥール トルヴェール
-    capabilities:
-      - name: プレイヤー耐性
-        value: 7
-      - name: スキルダメージ増加
-        value: 1
-        per_lv: 10
-        skill: サウンドブレンド
-      - name: スキルダメージ増加
-        value: 1
-        per_lv: 10
-        skill: メタリックフューリー
-      - name: スキルダメージ増加
-        value: 1
-        per_lv: 10
-        skill: リズミカルウェーブ
-      - name: 小・中・大型モンスターへの魔法ダメージ増加
+        at_transcendence: 1
+      - name: 全種族への魔法ダメージ増加
         value: 7
         per_refine: 1
-      - name: ASPD増加
+        at_transcendence: 1
+      - name: 全基本ステータス加算
         value: 10
-        at_refine: 7
-      - name: 一般耐性
-        value: 5
-        at_refine: 7
-      - name: ボス耐性
-        value: 5
-        at_refine: 7
-      - name: 破損しない
-        value: 1
-        at_refine: 9
-      - name: 再使用待機時間減少
-        value: 200
-        at_refine: 9
-        skill: メタリックサウンド
-      - name: 全属性への魔法ダメージ増加
-        value: 15
         at_refine: 10
-    enchant: #
-      - name: スペシャルエンチャント（オーブ）
-        slot_list: #
+        at_transcendence: 1
+    enchant:
+      - name: エントワインドマジカルエンチャント
+        slot_list:
           - slot: 4
             refine: 0
-            enchant_list: #
-              - name: 潜在解放(トルバドゥール&トルヴェールXVI)
-          - slot: 3
-            refine: 8
-            enchant_list: #
-              - name: 火属性付与(鎧)
-              - name: 水属性付与(鎧)
-              - name: 風属性付与(鎧)
-              - name: 地属性付与(鎧)
-              - name: 聖属性付与(鎧)
-              - name: 闇属性付与(鎧)
-              - name: 念属性付与(鎧)
-              - name: 毒属性付与(鎧)
-              - name: 不死属性付与(鎧)
-          - slot: 2
-            refine: 9
-            enchant_list: #
-              - name: スキルディレイ-15%
-              - name: 必中攻撃+25%
-              - name: 詠唱妨害不可
-              - name: 厄災の魔将
-
-  - name: ナイトメアチェーン
-    yomi: ナイトメアチェーン
-    type: 中段
-    slot: 0
-    weapon_lv: 0
-    atk_or_def: 0
-    weight: 10
-    required_lv: 100
-    required_job: 全ての職業
-    capabilities:
-      - name: プレイヤー耐性
-        value: 5
-      - name: 詠唱が中断されない
-        value: 1
-      - name: MDEF無視
-        value: 50
-      - name: 小・中・大型モンスターへの物理ダメージ増加
-        value: 10
-      - name: 小・中・大型モンスターへの魔法ダメージ増加
-        value: 10
-      - name: ATK加算
-        value: 1
-        per_lv: 1
-      - name: MATK加算
-        value: 1
-        per_lv: 1
-    enchant: #
-      - name: スペシャルエンチャント（ミオン）
-        slot_list: #
-          - slot: 4
-            refine: 0
-            enchant_list: #
-              - name: スキルディレイ-15%
-              - name: 固定詠唱時間-70%
-              - name: Def50%無視
-              - name: Mdef50%無視
+            enchant_list:
+              - name: Str+5
+              - name: Agi+5
+              - name: Vit+5
+              - name: Int+5
+              - name: Dex+5
+              - name: Luk+5
               - name: SpecialStr
               - name: SpecialAgi
               - name: SpecialVit
               - name: SpecialInt
               - name: SpecialDex
               - name: SpecialLuk
+              - name: 英雄の凱歌
+              - name: 起源の王
+              - name: 殺意の怨念
+              - name: 豊穣の女神
+              - name: 厄災の魔将
+              - name: 異境の統轄者
+              - name: 知識の探求者
+              - name: 最果ての支配者
           - slot: 3
             refine: 0
-            enchant_list: #
-              - name: MaxHP+15%
-              - name: MaxSP+15%
-              - name: Def50%無視
-              - name: Mdef50%無視
+            enchant_list:
+              - name: Str+5
+              - name: Agi+5
+              - name: Vit+5
+              - name: Int+5
+              - name: Dex+5
+              - name: Luk+5
               - name: SpecialStr
               - name: SpecialAgi
               - name: SpecialVit
               - name: SpecialInt
               - name: SpecialDex
               - name: SpecialLuk
-              - name: 厄災の魔将
-          - slot: 2
-            refine: 0
-            enchant_list: #
-              - name: Str+10
-              - name: Agi+10
-              - name: Vit+10
-              - name: Int+10
-              - name: Dex+10
-              - name: Luk+10
-              - name: 完全回避+3
-              - name: 暴走した魔力
+              - name: スキルオーブ(アリテアI)
+              - name: スキルオーブ(アリテアII)
+              - name: スキルオーブ(アリテアIII)

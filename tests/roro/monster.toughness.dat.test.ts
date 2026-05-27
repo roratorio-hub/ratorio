@@ -1,16 +1,16 @@
-import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { vi, describe, it, expect } from 'vitest';
 import { MonsterToughness } from '@roro/monster.toughness.dat.js';
+
+vi.mock('@roro/monster.dat.js', () => {
+    const arr: any[] = [];
+    arr[1] = [1, 'テストモンスター'];
+    return { MonsterObjNew: arr };
+});
 
 describe('monster.toughness.dat.js', () => {
     describe('エクスポート確認', () => {
         it('MonsterToughness がエクスポートされている', () => {
             expect(typeof MonsterToughness).toBe('function');
-        });
-    });
-
-    describe('window互換確認', () => {
-        it('window.MonsterToughness が設定されている', () => {
-            expect((window as any).MonsterToughness).toBe(MonsterToughness);
         });
     });
 
@@ -57,14 +57,6 @@ describe('monster.toughness.dat.js', () => {
     });
 
     describe('getMobName の動作', () => {
-        beforeEach(() => {
-            (globalThis as any).MonsterObjNew = [];
-            (globalThis as any).MonsterObjNew[1] = [1, 'テストモンスター'];
-        });
-        afterEach(() => {
-            delete (globalThis as any).MonsterObjNew;
-        });
-
         it('定義済みIDのモンスター名を返す', () => {
             expect(MonsterToughness.getMobName(1)).toBe('テストモンスター');
         });

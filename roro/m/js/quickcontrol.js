@@ -1,3 +1,20 @@
+// === AUTO-GENERATED IMPORTS ===
+import './card.h.js';
+import './common.js';
+import './item.h.js';
+import './itempack.h.js';
+import { CardObjNew } from './card.dat.js';
+import { OnChangeArmsTypeLeft, OnChangeArmsTypeRight, OnChangeCard, OnChangeEquip } from './equip.js';
+import { ItemObjNew } from './item.dat.js';
+import {
+         ITEM_PACK_ID_CLEAR_CARD_ALL, ITEM_PACK_ID_CLEAR_EQUIP_ALL,
+         ITEM_PACK_ID_CLEAR_REFINE_ALL, ITEM_PACK_ID_CLEAR_SHADOW_ALL, ItemPackOBJ
+} from './itempack.dat.js';
+import { GetSlotMode, OnClickSlotModeButton, SLOTPAGER_MODE_RNDENCH, SLOT_INDEX_CARD_MIN, SLOT_INDEX_CARD_MAX } from './slotpager.js';
+import { IsMatchJobRestrict } from '../../../ro4/m/js/data/mig.job.h.js';
+import { HtmlCreateElement, HtmlCreateTextNode, HtmlRemoveAllChild, HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById } from '../../common/js/util.js';
+import { n_A_LearnedSkill } from './learnedskill.js';
+// === END AUTO-GENERATED IMPORTS ===
 
 export let g_QuickControlSW = false;
 
@@ -31,12 +48,9 @@ export function OnClickQuickControlSW(){
 	var objInput = null;
 
 
-
 	// チェックボックスのチェック状態を取得
 	objSW = document.getElementById("OBJID_QUICK_CONTROL_EXTRACT_CHECKBOX");
 	g_QuickControlSW = objSW.checked;
-	if (typeof window !== 'undefined') window.g_QuickControlSW = g_QuickControlSW;
-
 
 
 	// 設定欄を初期化
@@ -52,7 +66,6 @@ export function OnClickQuickControlSW(){
 
 	objTbody = document.createElement("tbody");
 	objTable.appendChild(objTbody);
-
 
 
 	// 設定欄のヘッダ部分を構築
@@ -85,7 +98,6 @@ export function OnClickQuickControlSW(){
 	objTd.appendChild(objSpan);
 
 
-
 	// 設定欄のヘッダ部分をリフレッシュ（着色処理等）
 	RefreshQuickControlHeaderLearned(null, -1, 0);
 
@@ -93,7 +105,6 @@ export function OnClickQuickControlSW(){
 	if (!g_QuickControlSW) {
 		return;
 	}
-
 
 
 	// 装備一括設定欄
@@ -144,10 +155,8 @@ export function OnClickQuickControlSW(){
 	objTd.appendChild(objSpan);
 
 
-
 	OnInputQuickControlItemPack();
 }
-
 
 
 export function RefreshQuickControlHeaderLearned(objSelect, changedIdx, newValue) {
@@ -192,7 +201,6 @@ export function RefreshQuickControlHeaderLearned(objSelect, changedIdx, newValue
 }
 
 
-
 export function OnInputQuickControlItemPack() {
 
 	var bEquipable = false;
@@ -218,10 +226,8 @@ export function OnInputQuickControlItemPack() {
 	HtmlRemoveAllChild(objSpan);
 
 
-
 	// 職業情報の更新
 	InitJobInfo();
-
 
 
 	// 選択されたアイテムパックの ID を取得
@@ -389,7 +395,6 @@ export function OnClickQuickControlSetItemPackSubForItem(itemId, itemRefine) {
 	var objSelect = null;
 
 
-
 	// 構成要素が、装備可能かを検査
 	bEquipable = IsMatchJobRestrict(itemId, n_A_JOB);
 
@@ -554,7 +559,6 @@ export function OnClickQuickControlSetItemPackSubForCard(cardId) {
 	var objSelect = null;
 
 
-
 	// 構成要素ごとに、検査対象のセレクトボックスを特定する
 	switch (CardObjNew[cardId][CARD_DATA_INDEX_KIND]) {
 	case CARD_KIND_ARMS:
@@ -712,18 +716,4 @@ export function OnClickQuickControlSetItemPackSubForClearCardAllSub(objId) {
 	OnChangeCard(cardId);
 }
 
-if (typeof window !== 'undefined') {
-    window.g_QuickControlSW = g_QuickControlSW;
-    window.OnClickQuickControlSW = OnClickQuickControlSW;
-    window.RefreshQuickControlHeaderLearned = RefreshQuickControlHeaderLearned;
-    window.OnInputQuickControlItemPack = OnInputQuickControlItemPack;
-    window.OnClickQuickControlSetItemPack = OnClickQuickControlSetItemPack;
-    window.OnClickQuickControlSetItemPackSubForItem = OnClickQuickControlSetItemPackSubForItem;
-    window.OnClickQuickControlSetItemPackSubForCard = OnClickQuickControlSetItemPackSubForCard;
-    window.OnClickQuickControlSetItemPackSubForClearShadowEquipAll = OnClickQuickControlSetItemPackSubForClearShadowEquipAll;
-    window.OnClickQuickControlSetItemPackSubForClearEquipAll = OnClickQuickControlSetItemPackSubForClearEquipAll;
-    window.OnClickQuickControlSetItemPackSubForClearEquipAllSub = OnClickQuickControlSetItemPackSubForClearEquipAllSub;
-    window.OnClickQuickControlSetItemPackSubForClearRefineAll = OnClickQuickControlSetItemPackSubForClearRefineAll;
-    window.OnClickQuickControlSetItemPackSubForClearCardAll = OnClickQuickControlSetItemPackSubForClearCardAll;
-    window.OnClickQuickControlSetItemPackSubForClearCardAllSub = OnClickQuickControlSetItemPackSubForClearCardAllSub;
-}
+
