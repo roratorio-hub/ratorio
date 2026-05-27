@@ -45,6 +45,20 @@ import { MonsterObjNew } from './monster.dat.js';
 import { SkillObjNew } from './skill.dat.js';
 import { HtmlCreateElement, HtmlCreateTextSpan, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById, DivideDigits3 } from '../../common/js/util.js';
 import { MIG_JOB_ID_SOUL_ASCETIC, MIG_JOB_ID_SPIRIT_HANDLER } from '../../../ro4/m/js/data/mig.job.dat.js';
+import {
+         SKILL_ID_ANTIDOTE, SKILL_ID_BENEDICTUM, SKILL_ID_COLUCEO_HEAL,
+         SKILL_ID_CONCENTRATION, SKILL_ID_DEMONIC_FIRE, SKILL_ID_DILECTIO_HEAL,
+         SKILL_ID_DRAGON_TRAINING, SKILL_ID_EBI_ZANMAI, SKILL_ID_GRAND_CROSS,
+         SKILL_ID_GRAPHITY, SKILL_ID_GRENADE_MASTERY, SKILL_ID_HEAL,
+         SKILL_ID_HELL_INFERNO, SKILL_ID_HIGHNESS_HEAL, SKILL_ID_HP_KAIFUKURYOKU_KOZYO,
+         SKILL_ID_IBUKI, SKILL_ID_JUDEX, SKILL_ID_KIHE_SHUREN, SKILL_ID_MAGMA_ILLUPTION,
+         SKILL_ID_MEDITATIO, SKILL_ID_METALIC_SOUND, SKILL_ID_PSYCHIC_WAVE,
+         SKILL_ID_REIDOZYUTSU_SHUREN, SKILL_ID_REMOVE_TRAP, SKILL_ID_RERIGIO,
+         SKILL_ID_SANCTUARY, SKILL_ID_SHINSENNA_EBI, SKILL_ID_SHOZIGENKAIRYO_ZOKA,
+         SKILL_ID_SHOZIGENKAIRYO_ZOKA_R, SKILL_ID_SHUGO_FU,
+         SKILL_ID_SP_KAIFUKURYOKU_KOZYO, SKILL_ID_TEIOAPUCHAGI, SKILL_ID_ZANEI,
+         SKILL_ID_ZYOKODO
+} from './skill.dat.js';
 // === END AUTO-GENERATED IMPORTS ===
 //----------------------------------------------------------------
 // 拡張情報の種類

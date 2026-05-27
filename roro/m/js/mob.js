@@ -41,6 +41,7 @@ import {
 } from './mobconfplayer.js';
 import { CCharaConfNizi } from './CCharaConfNizi.js';
 import { CCharaConfSanzi } from './CCharaConfSanzi.js';
+import { SKILL_ID_EXPIATIO, SKILL_ID_HAKKEI } from './skill.dat.js';
 // === END AUTO-GENERATED IMPORTS ===
 /**
  * モンスター基本情報を取得する

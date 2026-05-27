@@ -174,6 +174,9 @@ def extract_local_declared_names(stripped: str) -> set:
 # window.X = ... パターン（代入のみ・比較演算子は除外）
 _WINDOW_ASSIGN_RE = re.compile(r'\bwindow\.(\w+)\s*=[^=]')
 
+# export const X（不変バインディング）
+_EXPORT_CONST_RE = re.compile(r'^export\s+const\s+(\w+)', re.MULTILINE)
+
 def extract_window_new_value_names(stripped: str) -> set:
     """コメント除去済みソースで window.X = <X 以外の式> と代入されているシンボル名を返す。
 
@@ -243,6 +246,7 @@ def build_global_window_assigned_set(all_files: list, symbol_map: dict) -> set:
 
     all_assigned: set = set()
     all_foreign_writes: set = set()
+    export_const_syms: set = set()
 
     for fpath in all_files:
         # このファイルが自身でエクスポートしているシンボル（自己参照の bare write は問題なし）
@@ -258,10 +262,19 @@ def build_global_window_assigned_set(all_files: list, symbol_map: dict) -> set:
 
         all_assigned |= extract_window_new_value_names(stripped)
 
+        # export const シンボルは不変バインディング — window.X = 新値があっても ESM import は安全
+        for m in _EXPORT_CONST_RE.finditer(stripped):
+            name = m.group(1)
+            if len(name) >= MIN_SYM_LEN:
+                export_const_syms.add(name)
+
         # 他ファイルのシンボルへの bare write → 全ファイルで import 禁止
         bare_writes = extract_bare_write_targets(stripped_no_import)
         foreign_writes = (bare_writes & set(sym_to_file.keys())) - own_syms
         all_foreign_writes |= foreign_writes
+
+    # export const バインディングは不変: 他ファイルの window 新値代入は ESM import に影響しない
+    all_assigned -= export_const_syms
 
     combined = all_assigned | all_foreign_writes
     print(f'  window 新値代入: {len(all_assigned)}, 他ファイルへの bare 代入: {len(all_foreign_writes)}, 合計: {len(combined)}')
