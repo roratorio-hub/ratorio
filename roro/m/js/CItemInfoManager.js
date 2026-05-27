@@ -1,3 +1,25 @@
+// === AUTO-GENERATED IMPORTS ===
+import './card.h.js';
+import './common.js';
+import './costume.h.js';
+import './pet.h.js';
+import { g_constDataManager } from '../../../ro4/m/js/global.js';
+import { CardObjNew } from './card.dat.js';
+import { COSTUME_ID_HEAD_UNDER_NONE, CostumeOBJ } from './costume.dat.js';
+import { GetFlagAppendedCardName, GetFlagAppendedItemName } from './equip.js';
+import {
+         ITEM_ID_NOEQUIP_ACCESSORY, ITEM_ID_NOEQUIP_BODY, ITEM_ID_NOEQUIP_HEAD_MID,
+         ITEM_ID_NOEQUIP_HEAD_TOP, ITEM_ID_NOEQUIP_HEAD_UNDER, ITEM_ID_NOEQUIP_SET,
+         ITEM_ID_NOEQUIP_SHIELD, ITEM_ID_NOEQUIP_SHOES, ITEM_ID_NOEQUIP_SHOULDER,
+         ITEM_ID_SUDE, ItemObjNew
+} from './item.dat.js';
+import { GetItemExplainText, GetSlotText, GetStrPenaltyAvoidStr } from './item.h.js';
+import { PET_OBJ } from './pet.dat.js';
+import { CSaveDataConst } from '../../../ro4/m/js/savedata/CSaveDataConst.js';
+import { HtmlCreateElement, HtmlCreateTextNode, HtmlRemoveOptionAll, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById } from '../../common/js/util.js';
+import './timeitem.h.js';
+import { ITEM_SP_TIME_OBJ } from './timeitem.dat.js';
+// === END AUTO-GENERATED IMPORTS ===
 
 /**
  * アイテム情報マネージャクラス.
@@ -1394,7 +1416,3 @@ CItemInfoManager.AppendSetInfo = function (objRoot, dataIdToSetIdMap, bEnableTim
 		}
 	);
 };
-
-if (typeof window !== 'undefined') {
-	window.CItemInfoManager = CItemInfoManager;
-}

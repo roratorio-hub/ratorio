@@ -1,4 +1,10 @@
 import { CConfBase } from './CConfBase.js';
+// === AUTO-GENERATED IMPORTS ===
+import './CConfBase.js';
+import { CUSTOM_CONF_SPEC_LIMIT } from '../../../ro4/m/js/global.js';
+import { CCharaConfCustomStatus } from './CCharaConfCustomStatus.js';
+import { HtmlCreateElementOption } from '../../common/js/util.js';
+// === END AUTO-GENERATED IMPORTS ===
 
 export function CCharaConfCustomSpecStatus(confArray) {
 
@@ -6,10 +12,8 @@ export function CCharaConfCustomSpecStatus(confArray) {
 	CCharaConfCustomSpecStatus.prototype = new CConfBase();
 
 
-
 	// 基底クラスのコンストラクタ呼び出し
 	CConfBase.call(this, confArray);
-
 
 
 	// 設定の限界値
@@ -17,17 +21,12 @@ export function CCharaConfCustomSpecStatus(confArray) {
 	this.confCountLimit = CUSTOM_CONF_SPEC_LIMIT;
 
 
-
 	// 設定欄の横方向項目数
 	this.itemInRow = 1;
 
 
-
 	// 設定欄のラベル
 	this.confLabel = "性能カスタマイズ（特性ステータス関連）";
-
-
-
 
 
 	//********************************************************************************************************************************
@@ -51,10 +50,8 @@ export function CCharaConfCustomSpecStatus(confArray) {
 		var confDataOBJSorted = new Array();
 
 
-
 		// 基底クラスのセットアップ処理を実行
 		CCharaConfCustomSpecStatus.prototype.InitData.call(this);
-
 
 
 		//----------------------------------------------------------------
@@ -73,7 +70,6 @@ export function CCharaConfCustomSpecStatus(confArray) {
 		confId++;
 
 
-
 		CCharaConfCustomSpecStatus.CONF_ID_POW_PLUS = confId;
 		confData = [
 			confId,
@@ -85,7 +81,6 @@ export function CCharaConfCustomSpecStatus(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
 
 
 		CCharaConfCustomSpecStatus.CONF_ID_STA_PLUS = confId;
@@ -101,7 +96,6 @@ export function CCharaConfCustomSpecStatus(confArray) {
 		confId++;
 
 
-
 		CCharaConfCustomSpecStatus.CONF_ID_WIS_PLUS = confId;
 		confData = [
 			confId,
@@ -113,7 +107,6 @@ export function CCharaConfCustomSpecStatus(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
 
 
 		CCharaConfCustomSpecStatus.CONF_ID_SPL_PLUS = confId;
@@ -129,7 +122,6 @@ export function CCharaConfCustomSpecStatus(confArray) {
 		confId++;
 
 
-
 		CCharaConfCustomSpecStatus.CONF_ID_CON_PLUS = confId;
 		confData = [
 			confId,
@@ -141,7 +133,6 @@ export function CCharaConfCustomSpecStatus(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
 
 
 		CCharaConfCustomSpecStatus.CONF_ID_CRT_PLUS = confId;
@@ -157,7 +148,6 @@ export function CCharaConfCustomSpecStatus(confArray) {
 		confId++;
 
 
-
 		CCharaConfCustomSpecStatus.CONF_ID_P_ATK_PLUS = confId;
 		confData = [
 			confId,
@@ -169,7 +159,6 @@ export function CCharaConfCustomSpecStatus(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
 
 
 		CCharaConfCustomSpecStatus.CONF_ID_S_MATK_PLUS = confId;
@@ -185,7 +174,6 @@ export function CCharaConfCustomSpecStatus(confArray) {
 		confId++;
 
 
-
 		CCharaConfCustomSpecStatus.CONF_ID_H_PLUS_PLUS = confId;
 		confData = [
 			confId,
@@ -197,7 +185,6 @@ export function CCharaConfCustomSpecStatus(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
 
 
 		CCharaConfCustomSpecStatus.CONF_ID_C_RATE_PLUS = confId;
@@ -213,7 +200,6 @@ export function CCharaConfCustomSpecStatus(confArray) {
 		confId++;
 
 
-
 		CCharaConfCustomSpecStatus.CONF_ID_RES_PLUS = confId;
 		confData = [
 			confId,
@@ -225,7 +211,6 @@ export function CCharaConfCustomSpecStatus(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
 
 
 		CCharaConfCustomSpecStatus.CONF_ID_MRES_PLUS = confId;
@@ -241,17 +226,6 @@ export function CCharaConfCustomSpecStatus(confArray) {
 		confId++;
 
 
-
-
-
-
-
-
-
-
-
-
-
 		CCharaConfCustomSpecStatus.CONF_ID_BLANK = confId;
 		confData = [
 			confId,
@@ -265,7 +239,6 @@ export function CCharaConfCustomSpecStatus(confArray) {
 		confId++;
 
 
-
 		//----------------------------------------------------------------
 		// データ定義数チェック
 		//----------------------------------------------------------------
@@ -273,7 +246,6 @@ export function CCharaConfCustomSpecStatus(confArray) {
 			alert("性能カスタマイズ　定義数超過");
 			return;
 		}
-
 
 
 		//----------------------------------------------------------------
@@ -287,7 +259,6 @@ export function CCharaConfCustomSpecStatus(confArray) {
 				this.confArray[idx] = 0;
 			}
 		}
-
 
 
 		//----------------------------------------------------------------
@@ -313,9 +284,6 @@ export function CCharaConfCustomSpecStatus(confArray) {
 		this.confDataObj = confDataOBJSorted;
 
 	}
-
-
-
 
 
 	/**
@@ -359,10 +327,8 @@ export function CCharaConfCustomSpecStatus(confArray) {
 			break;
 
 
-
 		}
 	}
-
 
 
 	/**
@@ -378,16 +344,10 @@ export function CCharaConfCustomSpecStatus(confArray) {
 	}
 
 
-
-
-
 	// 初期化実行
 	this.InitData();
 
 
-
 }
 
-if (typeof window !== 'undefined') {
-	window.CCharaConfCustomSpecStatus = CCharaConfCustomSpecStatus;
-}
+

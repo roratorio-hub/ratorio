@@ -1,6 +1,12 @@
 import { CGlobalConstManager } from './CGlobalConstManager.js';
 import { CExtraInfoAreaComponentManager } from './CExtraInfoAreaComponentManager.js';
-
+// === AUTO-GENERATED IMPORTS ===
+import './chara.js';
+import { g_timeItemConf } from '../../../ro4/m/js/global.js';
+import { CSaveDataConst } from '../../../ro4/m/js/savedata/CSaveDataConst.js';
+import { GetJobName } from '../../../ro4/m/js/data/mig.job.h.js';
+import { HtmlCreateElement, HtmlCreateTextSpan, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectCheckedById, HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger } from '../../common/js/util.js';
+// === END AUTO-GENERATED IMPORTS ===
 
 
 //----------------------------------------------------------------
@@ -19,7 +25,6 @@ CGlobalConstManager.DefineEnum(
 	0,
 	1
 );
-
 
 
 /**
@@ -47,9 +52,6 @@ export function GetFloatingInfoText(infoId) {
 }
 
 
-
-
-
 /**
  * フローティング情報エリア情報ユニット.
  */
@@ -63,16 +65,12 @@ export function CFloatingInfoAreaInfoUnit () {
 }
 
 
-
-
-
 /**
  * フローティング情報エリアコンポーネントマネージャクラス.
  */
 export function CFloatingInfoAreaComponentManager () {
 
 }
-
 
 
 /**
@@ -84,7 +82,6 @@ CFloatingInfoAreaComponentManager.areaCount = 1;
  * フォントサイズクラス名.
  */
 CFloatingInfoAreaComponentManager.fontSizeClassName = "";
-
 
 
 /**
@@ -101,12 +98,10 @@ CFloatingInfoAreaComponentManager.infoUnitArray = [
 ];
 
 
-
 /**
  * フローティング情報表示欄数（最大値）
  */
 CFloatingInfoAreaComponentManager.areaCountMax = CFloatingInfoAreaComponentManager.infoUnitArray.length;
-
 
 
 /**
@@ -125,7 +120,6 @@ CFloatingInfoAreaComponentManager.specData = null;
 CFloatingInfoAreaComponentManager.mobData = null;
 
 
-
 /**
  * 参照するデータを設定する.
  */
@@ -140,7 +134,6 @@ CFloatingInfoAreaComponentManager.setReferData = function (charaData, specData, 
 	// 関連マネージャにも設定する
 	CExtraInfoAreaComponentManager.setReferData(charaData, specData, mobData);
 };
-
 
 
 /**
@@ -184,13 +177,11 @@ CFloatingInfoAreaComponentManager.RebuildControls = function () {
 	];
 
 
-
 	// チェックボックスのチェック状態を取得
 	objSwitch = document.getElementById("OBJID_FLOATING_INFO_AREA_EXTRACT_CHECKBOX");
 	if (objSwitch) {
 		switchChecked = objSwitch.checked;
 	}
-
 
 
 	// 設定欄を初期化
@@ -204,7 +195,6 @@ CFloatingInfoAreaComponentManager.RebuildControls = function () {
 
 	objTbody = document.createElement("tbody");
 	objTable.appendChild(objTbody);
-
 
 
 	// ヘッダ部分を構築
@@ -259,7 +249,6 @@ CFloatingInfoAreaComponentManager.RebuildControls = function () {
 	HtmlCreateTextSpan("ページから分離", objSpan, "CSSCLS_FLOATING_INFO_AREA_DISP_BUTTON_TEXT");
 
 
-
 	// 設定欄のヘッダ部分をリフレッシュ（着色処理等）
 	CFloatingInfoAreaComponentManager.RefreshFloatingInfoAreaHeader();
 
@@ -267,7 +256,6 @@ CFloatingInfoAreaComponentManager.RebuildControls = function () {
 	if (!switchChecked) {
 		return;
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -335,7 +323,6 @@ CFloatingInfoAreaComponentManager.RebuildControls = function () {
 	objSelect.value = CFloatingInfoAreaComponentManager.fontSizeClassName;
 
 
-
 	//----------------------------------------------------------------
 	// セレクトボックス行
 	//----------------------------------------------------------------
@@ -363,7 +350,6 @@ CFloatingInfoAreaComponentManager.RebuildControls = function () {
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 表示行
 	//----------------------------------------------------------------
@@ -377,16 +363,13 @@ CFloatingInfoAreaComponentManager.RebuildControls = function () {
 	}
 
 
-
 	// 初期表示
 	CFloatingInfoAreaComponentManager.RebuildDispAreaAll();
-
 
 
 	// CSS 更新
 	CFloatingInfoAreaComponentManager.RefreshControlCSS();
 };
-
 
 
 /**
@@ -405,7 +388,6 @@ CFloatingInfoAreaComponentManager.OnClickExtractSwitch = function () {
 };
 
 
-
 /**
  * フローティング情報欄の数変更イベントハンドラ.
  */
@@ -418,7 +400,6 @@ CFloatingInfoAreaComponentManager.OnChangeAreaCount = function () {
 	// 全部品再構築処理呼び出し
 	CFloatingInfoAreaComponentManager.RebuildControls();
 };
-
 
 
 /**
@@ -435,7 +416,6 @@ CFloatingInfoAreaComponentManager.OnChangeInfo = function (idxArea) {
 	// 再構築処理呼び出し
 	CFloatingInfoAreaComponentManager.RebuildDispArea(idxArea);
 };
-
 
 
 /**
@@ -481,10 +461,8 @@ CFloatingInfoAreaComponentManager.RebuildDispArea = function (idxArea) {
 	}
 
 
-
 	// 初期表示
 	CFloatingInfoAreaComponentManager.RefreshDispArea(idxArea);
-
 
 
 	// ヘッダ更新
@@ -493,7 +471,6 @@ CFloatingInfoAreaComponentManager.RebuildDispArea = function (idxArea) {
 	// コントロール更新
 	CFloatingInfoAreaComponentManager.RefreshControlCSS();
 };
-
 
 
 /**
@@ -538,14 +515,12 @@ CFloatingInfoAreaComponentManager.RefreshDispArea = function (idxArea) {
 	}
 
 
-
 	// ヘッダ更新
 	CFloatingInfoAreaComponentManager.RefreshFloatingInfoAreaHeader();
 
 	// コントロール更新
 	CFloatingInfoAreaComponentManager.RefreshControlCSS();
 };
-
 
 
 /**
@@ -577,7 +552,6 @@ CFloatingInfoAreaComponentManager.RefreshFloatingInfoAreaHeader = function () {
 };
 
 
-
 /**
  * コントロール部品の CSS を再設定する.
  */
@@ -605,7 +579,6 @@ CFloatingInfoAreaComponentManager.RefreshControlCSS = function () {
 };
 
 
-
 /**
  * 設定欄を開く.
  */
@@ -624,7 +597,6 @@ CFloatingInfoAreaComponentManager.OpenArea = function () {
 };
 
 
-
 /**
  * 設定欄を閉じる.
  */
@@ -641,7 +613,6 @@ CFloatingInfoAreaComponentManager.CloseArea = function () {
 	// 再構築する
 	CFloatingInfoAreaComponentManager.RebuildControls();
 };
-
 
 
 /**
@@ -664,7 +635,6 @@ CFloatingInfoAreaComponentManager.OnChangeFontSize = function () {
 	// 再構築する
 	CFloatingInfoAreaComponentManager.RebuildControls();
 };
-
 
 
 /**
@@ -831,8 +801,6 @@ CFloatingInfoAreaComponentManager.FontSizeSelectToClass = function (select) {
 }
 
 
-
-
 //--------------------------------------------------------------------------------
 // 各フローティング情報ごとの表示欄構築関数ここから
 //--------------------------------------------------------------------------------
@@ -855,8 +823,6 @@ CFloatingInfoAreaComponentManager.RebuildDispAreaNone = function (idxArea) {
 CFloatingInfoAreaComponentManager.RefreshDispAreaNone = function (idxArea) {
 
 };
-
-
 
 
 /**
@@ -907,7 +873,6 @@ CFloatingInfoAreaComponentManager.RefreshDispAreaStatus = function (idxArea) {
 	objTable = HtmlCreateElement("table", objRoot);
 	objTable.setAttribute("style", "width : 100%;");
 	objTbody = HtmlCreateElement("tbody", objTable);
-
 
 
 	// 表示欄
@@ -1261,7 +1226,6 @@ CFloatingInfoAreaComponentManager.RefreshDispAreaStatus = function (idxArea) {
 };
 
 
-
 /**
  * フローティング情報の表示欄を構築する（拡張情報）.
  */
@@ -1298,7 +1262,6 @@ CFloatingInfoAreaComponentManager.RefreshDispAreaExtraInfo = function (idxArea) 
 };
 
 
-
 /**
  * フローティング情報の表示欄を構築する（注意事項）.
  */
@@ -1311,7 +1274,6 @@ CFloatingInfoAreaComponentManager.RebuildDispAreaNotice = function (idxArea) {
 	var objTbody = null;
 	var objTr = null;
 	var objTd = null;
-
 
 
 	// 指定の領域をクリア
@@ -1385,17 +1347,7 @@ CFloatingInfoAreaComponentManager.LoadFromLocalStorage = function () {
 //--------------------------------------------------------------------------------
 
 
-
-
-
 // 初期構築処理
 CFloatingInfoAreaComponentManager.RebuildControls();
-
-if (typeof window !== 'undefined') {
-    window.GetFloatingInfoText = GetFloatingInfoText;
-    window.CFloatingInfoAreaInfoUnit = CFloatingInfoAreaInfoUnit;
-    window.CFloatingInfoAreaComponentManager = CFloatingInfoAreaComponentManager;
-}
-
 
 

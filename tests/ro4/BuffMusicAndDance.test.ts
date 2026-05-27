@@ -37,20 +37,9 @@ describe('BuffMusicAndDance.js', () => {
     });
 
     describe('window互換確認', () => {
-        it('window.BUFF_CONF_MUSICAL_LIMIT が設定されている', () => {
-            expect((window as any).BUFF_CONF_MUSICAL_LIMIT).toBe(47);
-        });
         it('window.n_A_PassSkill3 が設定されている', () => {
             expect((window as any).n_A_PassSkill3).toBe(n_A_PassSkill3);
         });
-        it('window.Click_Skill3SW が設定されている', () => {
-            expect((window as any).Click_Skill3SW).toBe(Click_Skill3SW);
-        });
-        it('window.Skill3SW_2 が設定されている', () => {
-            expect((window as any).Skill3SW_2).toBe(Skill3SW_2);
-        });
-        it('window.Click_A3 が設定されている', () => {
-            expect((window as any).Click_A3).toBe(Click_A3);
-        });
+
     });
 });

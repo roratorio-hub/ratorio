@@ -41,13 +41,4 @@ describe('autospell.h.js', () => {
             expect(GetAutoSpellTriggerText(999)).toBe('不明');
         });
     });
-
-    describe('window互換確認', () => {
-        it('window.AUTO_SPELL_ID_CUSTOM_BIAS が設定されている', () => {
-            expect((window as any).AUTO_SPELL_ID_CUSTOM_BIAS).toBe(AUTO_SPELL_ID_CUSTOM_BIAS);
-        });
-        it('window.GetAutoSpellTriggerText が設定されている', () => {
-            expect((window as any).GetAutoSpellTriggerText).toBe(GetAutoSpellTriggerText);
-        });
-    });
 });

@@ -12,15 +12,11 @@ vi.hoisted(() => {
         value: 0,
     };
     (document as any).getElementById = () => mockEl;
-    (globalThis as any).HtmlRemoveAllChild = () => {};
-    (globalThis as any).HtmlCreateElement = () => mockEl;
-    (globalThis as any).HtmlCreateTextNode = () => {};
-    (globalThis as any).HtmlCreateElementOption = () => {};
-    (globalThis as any).HtmlSetObjectValueById = () => {};
-    (globalThis as any).HtmlGetObjectValueByIdAsInteger = () => 1;
-    (globalThis as any).g_timeItemConf = [];
-    (globalThis as any).g_timeItemConfEffective = [];
-    (globalThis as any).g_timeItemConfAllEffective = 1;
+});
+
+vi.mock('../../roro/common/js/util.js', async (importActual) => {
+    const actual = await importActual<any>();
+    return { ...actual, HtmlRemoveAllChild: () => {} };
 });
 
 import { CBattleQuickControlAreaComponentManager } from '@roro/CBattleQuickControlAreaComponentManager.js';
@@ -56,12 +52,6 @@ describe('CBattleQuickControlAreaComponentManager.js', () => {
         });
         it('CloseArea が関数', () => {
             expect(typeof CBattleQuickControlAreaComponentManager.CloseArea).toBe('function');
-        });
-    });
-
-    describe('window互換確認', () => {
-        it('window.CBattleQuickControlAreaComponentManager が設定されている', () => {
-            expect((window as any).CBattleQuickControlAreaComponentManager).toBe(CBattleQuickControlAreaComponentManager);
         });
     });
 });

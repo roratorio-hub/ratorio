@@ -14,10 +14,4 @@ describe('rndoptlist.dat.js', () => {
             expect(g_rndOptListArray[0]).toEqual([0, [0]]);
         });
     });
-
-    describe('window互換確認', () => {
-        it('window.g_rndOptListArray が設定されている', () => {
-            expect((window as any).g_rndOptListArray).toBe(g_rndOptListArray);
-        });
-    });
 });

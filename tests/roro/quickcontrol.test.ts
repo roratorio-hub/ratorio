@@ -45,30 +45,4 @@ describe('quickcontrol.js', () => {
         }
     });
 
-    describe('window互換確認', () => {
-        // window互換ブロック: g_QuickControlSW + 12関数 = 13エントリ
-        it('window.g_QuickControlSW が設定されている', () => {
-            expect((window as any).g_QuickControlSW).toBe(g_QuickControlSW);
-        });
-
-        const windowNames = [
-            'OnClickQuickControlSW',
-            'RefreshQuickControlHeaderLearned',
-            'OnInputQuickControlItemPack',
-            'OnClickQuickControlSetItemPack',
-            'OnClickQuickControlSetItemPackSubForItem',
-            'OnClickQuickControlSetItemPackSubForCard',
-            'OnClickQuickControlSetItemPackSubForClearShadowEquipAll',
-            'OnClickQuickControlSetItemPackSubForClearEquipAll',
-            'OnClickQuickControlSetItemPackSubForClearEquipAllSub',
-            'OnClickQuickControlSetItemPackSubForClearRefineAll',
-            'OnClickQuickControlSetItemPackSubForClearCardAll',
-            'OnClickQuickControlSetItemPackSubForClearCardAllSub',
-        ];
-        for (const name of windowNames) {
-            it(`window.${name} が設定されている`, () => {
-                expect(typeof (window as any)[name]).toBe('function');
-            });
-        }
-    });
 });

@@ -5,6 +5,16 @@ import { CSaveDataPropInfo } from './savedata/CSaveDataPropInfo.js';
 import { CSaveDataUnitTypeManager } from './savedata/CSaveDataUnitTypeManager.js';
 import { CSaveDataUnitParse } from './savedata/CSaveDataUnitParse.js';
 import { SAVE_DATA_UNIT_TYPE_SETTINGS } from './savedata/CSaveDataUnit.js';
+// === AUTO-GENERATED IMPORTS ===
+import { CSaveDataManager } from './CSaveDataManager.js';
+import { calc } from './head.js';
+import { CItemInfoManager } from '../../../roro/m/js/CItemInfoManager.js';
+import { n_B_KYOUKA } from '../../../roro/m/js/mobconfbuf.js';
+import { n_B_IJYOU } from '../../../roro/m/js/mobconfdebuf.js';
+import { GetJobName } from './data/mig.job.h.js';
+import { floorBigInt32 } from '../../../roro/common/js/util.js';
+import { g_Chart, setG_Chart } from './calchistory.js';
+// === END AUTO-GENERATED IMPORTS ===
 
 /**
  * 計算機メインコントローラクラス.
@@ -873,7 +883,7 @@ export class CSaveController {
 		    	chart.data.datasets[3].data.push(isNaN(cycle) ? 0 : cycle);
 		    	chart.update();
 				hideLoadingIndicator();
-		    	window.g_Chart = chart;
+		    	setG_Chart(chart);
 		    });
 		    $("#history_reset").click(e => {
 		    	chart.data.labels = [];
@@ -884,7 +894,7 @@ export class CSaveController {
 		    	chart.data.datasets[3].data = [];
 		    	target = 0;
 		    	chart.update();
-		    	window.g_Chart = null;
+		    	setG_Chart(null);
 		    });
 		    $("#history_list").click(e => {
 		    	$("#history_graph").insertBefore("#clip_modal_table");
@@ -926,7 +936,7 @@ export class CSaveController {
 		      data.datasets[0].metadata[index]["memo"] = e.target.value;
 		      chart.update();
 		      reload_history_table();
-		      window.g_Chart = chart;
+		      setG_Chart(chart);
 		    });
 		    $(document).on("blur", "input.clip_memo", (e) => {
 		      $(e.target).toggle();
@@ -939,7 +949,7 @@ export class CSaveController {
 		        flip_clip(index, index - 1);
 		        chart.update();
 		        reload_history_table();
-		        window.g_Chart = chart;
+		        setG_Chart(chart);
 		      }
 		    });
 		    $(document).on("click", ".down_clip", (e) => {
@@ -949,7 +959,7 @@ export class CSaveController {
 		        flip_clip(index, index + 1);
 		        chart.update();
 		        reload_history_table();
-		        window.g_Chart = chart;
+		        setG_Chart(chart);
 		      }
 		    });
 		    $(document).on("click", ".remove_clip", (e) => {
@@ -963,7 +973,7 @@ export class CSaveController {
 		      data.datasets[3].data.splice(index, 1);
 		      chart.update();
 		      reload_history_table();
-		      window.g_Chart = chart;
+		      setG_Chart(chart);
 		    });
 		    $("#clip_modal").on("modal:before-close", () => {
 		      $("#history_graph").appendTo("#history_container");
@@ -972,7 +982,7 @@ export class CSaveController {
 			chart.data = chartDataObj;
 			data = chartDataObj;
 	    	chart.update();
-			window.g_Chart = chart;
+			setG_Chart(chart);
 
 		};
 		buildForm();
@@ -1145,18 +1155,18 @@ export class CSaveController {
 			// chartdata があれば復元
 			if (chartData && chartData.length > 1) {
 				if (CSaveController.bJSON) {
-					window.g_Chart = JSON.parse(chartData, (key, value) => {
+					setG_Chart(JSON.parse(chartData, (key, value) => {
 						if (typeof value === 'string' && /^\d+$/.test(value)) {
 							// leave numeric-looking strings as-is (no BigInt conversion here)
 						}
 						return value;
-					});
+					}));
 				}
 				else {
 					// Chartのデータはchart.dataのみに絞っているのでこれだけでよい
 					let param = JSON.parse(chartData);
-					window.g_Chart = {};
-					window.g_Chart.data = param;
+					setG_Chart({});
+					g_Chart.data = param;
 				}
 				// チャートの復元
 				CSaveController.#restoreChartDisplay();

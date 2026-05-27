@@ -1528,9 +1528,14 @@ async function parseJobDat(src: string): Promise<{ id: number; name: string; isR
     });
     vm.createContext(sandbox);
 
+    // AUTO-GENERATED IMPORTS ブロックと export キーワードを除去（vm.Script はESM import を解釈できない）
+    const strippedCode = code
+        .replace(/\/\/ === AUTO-GENERATED IMPORTS ===[\s\S]*?\/\/ === END AUTO-GENERATED IMPORTS ===\n?/g, '')
+        .replace(/^export\s+/gm, '');
+
     // mig.job.dat.js を評価
     try {
-        new vm.Script(code, { filename: src }).runInContext(sandbox);
+        new vm.Script(strippedCode, { filename: src }).runInContext(sandbox);
     } catch (e) {
         console.warn(`スクリプト評価エラー: ${(e as Error).message}`);
         return [];

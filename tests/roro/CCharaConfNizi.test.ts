@@ -62,10 +62,4 @@ describe('CCharaConfNizi.js', () => {
             it('GetHeaderIdString が関数', () => { expect(typeof inst.GetHeaderIdString).toBe('function'); });
         });
     });
-
-    describe('window互換確認', () => {
-        it('window.CCharaConfNizi が設定されている', () => {
-            expect((window as any).CCharaConfNizi).toBe(CCharaConfNizi);
-        });
-    });
 });

@@ -1,3 +1,8 @@
+// === AUTO-GENERATED IMPORTS ===
+import { AutoCalc } from './head.js';
+import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, myInnerHtml } from '../../../roro/common/js/util.js';
+// === END AUTO-GENERATED IMPORTS ===
+import { CAttackMethodAreaComponentManager } from './CAttackMethodAreaComponentManager.js';
 "use strict"
 /**
  * 画面下部の「アイテム(食品/他)」のバフウィンドウ構築関数群
@@ -17,6 +22,7 @@ export const BUFF_CONF_FOOD_LIMIT = 53;
 export let n_A_PassSkill7 = Array(BUFF_CONF_FOOD_LIMIT).fill(0);
 /** アイテム・食品他 ウィンドウ可視状態 */
 export let n_Skill7SW = false;
+export function setN_Skill7SW(v) { n_Skill7SW = v; }
 
 export const ID_BUFF_FOOD_CHAGASHI = 0;
 export const ID_BUFF_FOOD_AGEGASHI = 1;
@@ -63,7 +69,6 @@ export function Click_Skill7SW(){
 	// 展開状態を取得
 	objInput = document.getElementById("OBJID_CHECK_A7_SKILLSW");
 	n_Skill7SW = objInput.checked;
-	if (typeof window !== 'undefined') window.n_Skill7SW = n_Skill7SW;
 	// ルートオブジェクト取得
 	objRoot = document.getElementById("OBJID_SP_SIEN05");
 	// ルートオブジェクト配下、全削除
@@ -218,7 +223,7 @@ export function Click_Skill7SW(){
                 objInput.setAttribute("type", "checkbox");
                 objInput.setAttribute("id", "OBJID_CHECK_A7_Skill15");
                 objInput.setAttribute("name", "A7_Skill15");
-                objInput.setAttribute("onclick", "StAllCalc(); Click_A7(true); CAttackMethodAreaComponentManager.RebuildControls();");
+                objInput.addEventListener('click', () => { window.StAllCalc(); Click_A7(true); CAttackMethodAreaComponentManager.RebuildControls(); });
                 objLabel = HtmlCreateElement("label", objTd);
                 objLabel.setAttribute("for", "OBJID_CHECK_A7_Skill15");
                 HtmlCreateTextNode("攻撃方法を追加する（魔女のスキルカード・攻撃魔法スクロール・イグドラシルの葉）", objLabel);
@@ -422,37 +427,7 @@ export function toggleAllStatus20() {
 }
 
 if (typeof window !== 'undefined') {
-    window.BUFF_CONF_FOOD_LIMIT = BUFF_CONF_FOOD_LIMIT;
     window.n_A_PassSkill7 = n_A_PassSkill7;
-    window.n_Skill7SW = n_Skill7SW;
-    window.ID_BUFF_FOOD_CHAGASHI = ID_BUFF_FOOD_CHAGASHI;
-    window.ID_BUFF_FOOD_AGEGASHI = ID_BUFF_FOOD_AGEGASHI;
-    window.ID_BUFF_FOOD_NIJIOMOCHI = ID_BUFF_FOOD_NIJIOMOCHI;
-    window.ID_BUFF_STATUS_STR = ID_BUFF_STATUS_STR;
-    window.ID_BUFF_STATUS_AGI = ID_BUFF_STATUS_AGI;
-    window.ID_BUFF_STATUS_VIT = ID_BUFF_STATUS_VIT;
-    window.ID_BUFF_STATUS_INT = ID_BUFF_STATUS_INT;
-    window.ID_BUFF_STATUS_DEX = ID_BUFF_STATUS_DEX;
-    window.ID_BUFF_STATUS_LUK = ID_BUFF_STATUS_LUK;
-    window.ID_BUFF_BOX_URAMI = ID_BUFF_BOX_URAMI;
-    window.ID_BUFF_BOX_NEMUI = ID_BUFF_BOX_NEMUI;
-    window.ID_BUFF_POTION_COLD = ID_BUFF_POTION_COLD;
-    window.ID_BUFF_POTION_EARTH = ID_BUFF_POTION_EARTH;
-    window.ID_BUFF_POTION_FIRE = ID_BUFF_POTION_FIRE;
-    window.ID_BUFF_POTION_WIND = ID_BUFF_POTION_WIND;
-    window.ID_BUFF_MAJO_NO_SKILL_CARD = ID_BUFF_MAJO_NO_SKILL_CARD;
-    window.ID_BUFF_STATUS_20_STR = ID_BUFF_STATUS_20_STR;
-    window.ID_BUFF_STATUS_20_AGI = ID_BUFF_STATUS_20_AGI;
-    window.ID_BUFF_STATUS_20_VIT = ID_BUFF_STATUS_20_VIT;
-    window.ID_BUFF_STATUS_20_INT = ID_BUFF_STATUS_20_INT;
-    window.ID_BUFF_STATUS_20_DEX = ID_BUFF_STATUS_20_DEX;
-    window.ID_BUFF_STATUS_20_LUK = ID_BUFF_STATUS_20_LUK;
     window.ID_BUFF_MANUK_ISHI = ID_BUFF_MANUK_ISHI;
     window.ID_BUFF_VESPER_HONEY = ID_BUFF_VESPER_HONEY;
-    window.ID_BUFF_SOUSHO_CARD = ID_BUFF_SOUSHO_CARD;
-    window.Click_Skill7SW = Click_Skill7SW;
-    window.Click_A7 = Click_A7;
-    window.Click_Food_Off = Click_Food_Off;
-    window.setAllStatusBuff = setAllStatusBuff;
-    window.toggleAllStatus20 = toggleAllStatus20;
 }

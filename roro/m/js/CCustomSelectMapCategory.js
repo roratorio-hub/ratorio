@@ -1,15 +1,15 @@
 
 
 
-
-
 import { CCustomSelectMapBase } from './CCustomSelectMapBase.js';
+// === AUTO-GENERATED IMPORTS ===
+import { g_MonsterMapCategoryDataArray } from './monstermap.dat.js';
+// === END AUTO-GENERATED IMPORTS ===
 
 /**
  * カスタムセレクトクラス（マップ地域）.
  */
 export function CCustomSelectMapCategory (instanceIdNameC) {
-
 
 
 	/**
@@ -20,7 +20,6 @@ export function CCustomSelectMapCategory (instanceIdNameC) {
 	this.GetMonsterMapData = function (dataId) {
 		return g_MonsterMapCategoryDataArray[dataId];
 	};
-
 
 
 	/**
@@ -51,7 +50,6 @@ export function CCustomSelectMapCategory (instanceIdNameC) {
 	};
 
 
-
 	/**
 	 * ヘルプエリアを再構築する（処理本体）.
 	 * @param objRoot ルートオブジェクト
@@ -61,7 +59,6 @@ export function CCustomSelectMapCategory (instanceIdNameC) {
 
 		var summaryArray = null;
 		var explainArray = null;
-
 
 
 		// 概要配列
@@ -96,11 +93,9 @@ export function CCustomSelectMapCategory (instanceIdNameC) {
 		];
 
 
-
 		// デフォルト処理関数で処理
 		this.RebuildHelpAreaSubDefault(summaryArray, explainArray, objRoot);
 	};
-
 
 
 	// イニシャライザ呼び出し
@@ -108,14 +103,5 @@ export function CCustomSelectMapCategory (instanceIdNameC) {
 }
 
 CCustomSelectMapCategory.prototype = new CCustomSelectMapBase();
-
-if (typeof window !== 'undefined') {
-    window.CCustomSelectMapCategory = CCustomSelectMapCategory;
-}
-
-
-
-
-
 
 

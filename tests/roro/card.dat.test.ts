@@ -26,12 +26,6 @@ describe('card.dat.js', () => {
     });
 
     describe('window互換確認', () => {
-        it('window.CARD_ID_NONE',                         () => expect((window as any).CARD_ID_NONE).toBe(CARD_ID_NONE));
-        it('window.CARD_ID_THE_CHIEF_KNIGHT_OF_ABYSS',   () => expect((window as any).CARD_ID_THE_CHIEF_KNIGHT_OF_ABYSS).toBe(CARD_ID_THE_CHIEF_KNIGHT_OF_ABYSS));
-        it('window.CARD_ID_MAX',                          () => expect((window as any).CARD_ID_MAX).toBe(CARD_ID_MAX));
         it('window.CardObjNew',                           () => expect((window as any).CardObjNew).toBe(CardObjNew));
-        it('window.CardSortOBJ',                          () => expect((window as any).CardSortOBJ).toBe(CardSortOBJ));
-        it('window.card_ordered_info',                    () => expect((window as any).card_ordered_info).toBe(card_ordered_info));
-        it('window.ordered_info_for_all',                 () => expect((window as any).ordered_info_for_all).toBe(ordered_info_for_all));
     });
 });

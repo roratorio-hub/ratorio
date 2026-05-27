@@ -1,3 +1,7 @@
+// === AUTO-GENERATED IMPORTS ===
+import { AutoCalc } from './head.js';
+import { myInnerHtml } from '../../../roro/common/js/util.js';
+// === END AUTO-GENERATED IMPORTS ===
 "use strict"
 /**
  * 画面下部の「演奏/踊り系スキル」のバフウィンドウ構築関数群
@@ -6,6 +10,7 @@
 export const BUFF_CONF_MUSICAL_LIMIT = 47;
 /** 演奏・踊り系スキル ウィンドウ可視状態 */
 export let n_Skill3SW = false;
+export function setN_Skill3SW(v) { n_Skill3SW = v; }
 /** 演奏・踊り系スキル スイッチ状態配列 */
 export let SWs3sw = [0,0,0,0,0,0,0,0,0,0,0,0];
 /** 演奏・踊り系スキル 設定値 */
@@ -16,7 +21,6 @@ export let n_A_PassSkill3 = Array(BUFF_CONF_MUSICAL_LIMIT).fill(0);
  */
 export function Click_Skill3SW(){
 	n_Skill3SW = document.calcForm.A3_SKILLSW.checked;
-	if (typeof window !== 'undefined') window.n_Skill3SW = n_Skill3SW;
 	const table_header = `
 			<TABLE Border class="tooltip-target" style="white-space:nowrap;" data-tooltip="これらの設定は「◯次職支援設定」および「プレイヤー状態異常設定」へ順次移動します。">
 			<TR><TD id="A3TD" ColSpan="6" class="title">
@@ -552,11 +556,5 @@ export function Click_A3(recalc = false) {
 }
 
 if (typeof window !== 'undefined') {
-    window.BUFF_CONF_MUSICAL_LIMIT = BUFF_CONF_MUSICAL_LIMIT;
-    window.n_Skill3SW = n_Skill3SW;
-    window.SWs3sw = SWs3sw;
     window.n_A_PassSkill3 = n_A_PassSkill3;
-    window.Click_Skill3SW = Click_Skill3SW;
-    window.Skill3SW_2 = Skill3SW_2;
-    window.Click_A3 = Click_A3;
 }

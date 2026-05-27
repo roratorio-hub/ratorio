@@ -34,10 +34,4 @@ describe('CCharaConfCustomDef.js', () => {
             it('GetHeaderIdString が関数', () => { expect(typeof inst.GetHeaderIdString).toBe('function'); });
         });
     });
-
-    describe('window互換確認', () => {
-        it('window.CCharaConfCustomDef が設定されている', () => {
-            expect((window as any).CCharaConfCustomDef).toBe(CCharaConfCustomDef);
-        });
-    });
 });

@@ -1,4 +1,9 @@
 import { CConfBase } from './CConfBase.js';
+// === AUTO-GENERATED IMPORTS ===
+import './CConfBase.js';
+import { CUSTOM_CONF_STATUS_LIMIT } from '../../../ro4/m/js/global.js';
+import { HtmlCreateElementOption } from '../../common/js/util.js';
+// === END AUTO-GENERATED IMPORTS ===
 
 export function CCharaConfCustomStatus(confArray) {
 
@@ -6,10 +11,8 @@ export function CCharaConfCustomStatus(confArray) {
 	CCharaConfCustomStatus.prototype = new CConfBase();
 
 
-
 	// 基底クラスのコンストラクタ呼び出し
 	CConfBase.call(this, confArray);
-
 
 
 	// 設定の限界値
@@ -17,17 +20,12 @@ export function CCharaConfCustomStatus(confArray) {
 	this.confCountLimit = CUSTOM_CONF_STATUS_LIMIT;
 
 
-
 	// 設定欄の横方向項目数
 	this.itemInRow = 1;
 
 
-
 	// 設定欄のラベル
 	this.confLabel = "性能カスタマイズ（ステータス関連）";
-
-
-
 
 
 	//********************************************************************************************************************************
@@ -51,10 +49,8 @@ export function CCharaConfCustomStatus(confArray) {
 		var confDataOBJSorted = new Array();
 
 
-
 		// 基底クラスのセットアップ処理を実行
 		CCharaConfCustomStatus.prototype.InitData.call(this);
-
 
 
 		//----------------------------------------------------------------
@@ -73,7 +69,6 @@ export function CCharaConfCustomStatus(confArray) {
 		confId++;
 
 
-
 		CCharaConfCustomStatus.CONF_ID_MAXHP_UP = confId;
 		confData = [
 			confId,
@@ -85,7 +80,6 @@ export function CCharaConfCustomStatus(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
 
 
 		CCharaConfCustomStatus.CONF_ID_MAXHP_PLUS = confId;
@@ -101,7 +95,6 @@ export function CCharaConfCustomStatus(confArray) {
 		confId++;
 
 
-
 		CCharaConfCustomStatus.CONF_ID_MAXSP_UP = confId;
 		confData = [
 			confId,
@@ -113,7 +106,6 @@ export function CCharaConfCustomStatus(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
 
 
 		CCharaConfCustomStatus.CONF_ID_MAXSP_PLUS = confId;
@@ -129,7 +121,6 @@ export function CCharaConfCustomStatus(confArray) {
 		confId++;
 
 
-
 		CCharaConfCustomStatus.CONF_ID_HPR_UP = confId;
 		confData = [
 			confId,
@@ -141,7 +132,6 @@ export function CCharaConfCustomStatus(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
 
 
 		CCharaConfCustomStatus.CONF_ID_SPR_UP = confId;
@@ -157,7 +147,6 @@ export function CCharaConfCustomStatus(confArray) {
 		confId++;
 
 
-
 		CCharaConfCustomStatus.CONF_ID_STR_PLUS = confId;
 		confData = [
 			confId,
@@ -169,7 +158,6 @@ export function CCharaConfCustomStatus(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
 
 
 		CCharaConfCustomStatus.CONF_ID_AGI_PLUS = confId;
@@ -185,7 +173,6 @@ export function CCharaConfCustomStatus(confArray) {
 		confId++;
 
 
-
 		CCharaConfCustomStatus.CONF_ID_VIT_PLUS = confId;
 		confData = [
 			confId,
@@ -197,7 +184,6 @@ export function CCharaConfCustomStatus(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
 
 
 		CCharaConfCustomStatus.CONF_ID_INT_PLUS = confId;
@@ -213,7 +199,6 @@ export function CCharaConfCustomStatus(confArray) {
 		confId++;
 
 
-
 		CCharaConfCustomStatus.CONF_ID_DEX_PLUS = confId;
 		confData = [
 			confId,
@@ -225,7 +210,6 @@ export function CCharaConfCustomStatus(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
 
 
 		CCharaConfCustomStatus.CONF_ID_LUK_PLUS = confId;
@@ -241,7 +225,6 @@ export function CCharaConfCustomStatus(confArray) {
 		confId++;
 
 
-
 		CCharaConfCustomStatus.CONF_ID_HIT_PLUS = confId;
 		confData = [
 			confId,
@@ -253,7 +236,6 @@ export function CCharaConfCustomStatus(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
 
 
 		CCharaConfCustomStatus.CONF_ID_FLEE_PLUS = confId;
@@ -269,7 +251,6 @@ export function CCharaConfCustomStatus(confArray) {
 		confId++;
 
 
-
 		CCharaConfCustomStatus.CONF_ID_CRI_PLUS = confId;
 		confData = [
 			confId,
@@ -281,7 +262,6 @@ export function CCharaConfCustomStatus(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
 
 
 		CCharaConfCustomStatus.CONF_ID_LUCKY_PLUS = confId;
@@ -297,7 +277,6 @@ export function CCharaConfCustomStatus(confArray) {
 		confId++;
 
 
-
 		CCharaConfCustomStatus.CONF_ID_ASPD_UP = confId;
 		confData = [
 			confId,
@@ -309,7 +288,6 @@ export function CCharaConfCustomStatus(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
 
 
 		CCharaConfCustomStatus.CONF_ID_ASPD_PLUS = confId;
@@ -325,7 +303,6 @@ export function CCharaConfCustomStatus(confArray) {
 		confId++;
 
 
-
 		CCharaConfCustomStatus.CONF_ID_CAST_DOWN = confId;
 		confData = [
 			confId,
@@ -337,7 +314,6 @@ export function CCharaConfCustomStatus(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
 
 
 		CCharaConfCustomStatus.CONF_ID_CAST_DOWN_FIXED = confId;
@@ -353,7 +329,6 @@ export function CCharaConfCustomStatus(confArray) {
 		confId++;
 
 
-
 		CCharaConfCustomStatus.CONF_ID_DELAY_DOWN = confId;
 		confData = [
 			confId,
@@ -365,7 +340,6 @@ export function CCharaConfCustomStatus(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
 
 
 		CCharaConfCustomStatus.CONF_ID_COST_DOWN = confId;
@@ -381,12 +355,6 @@ export function CCharaConfCustomStatus(confArray) {
 		confId++;
 
 
-
-
-
-
-
-
 		CCharaConfCustomStatus.CONF_ID_NOTICE_SIGNED = confId;
 		confData = [
 			confId,
@@ -398,7 +366,6 @@ export function CCharaConfCustomStatus(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
 
 
 		CCharaConfCustomStatus.CONF_ID_BLANK = confId;
@@ -414,7 +381,6 @@ export function CCharaConfCustomStatus(confArray) {
 		confId++;
 
 
-
 		//----------------------------------------------------------------
 		// データ定義数チェック
 		//----------------------------------------------------------------
@@ -422,7 +388,6 @@ export function CCharaConfCustomStatus(confArray) {
 			alert("性能カスタマイズ　定義数超過");
 			return;
 		}
-
 
 
 		//----------------------------------------------------------------
@@ -436,7 +401,6 @@ export function CCharaConfCustomStatus(confArray) {
 				this.confArray[idx] = 0;
 			}
 		}
-
 
 
 		//----------------------------------------------------------------
@@ -475,9 +439,6 @@ export function CCharaConfCustomStatus(confArray) {
 		this.confDataObj = confDataOBJSorted;
 
 	}
-
-
-
 
 
 	/**
@@ -521,7 +482,6 @@ export function CCharaConfCustomStatus(confArray) {
 			break;
 
 
-
 		// 武器ATK、武器MATK
 		case CCharaConfCustomStatus.CONF_ID_WEAPON_ATK:
 		case CCharaConfCustomStatus.CONF_ID_WEAPON_MATK:
@@ -548,7 +508,6 @@ export function CCharaConfCustomStatus(confArray) {
 				objSelect.setAttribute(`${this.dataRtxAttributeIdPrefix}-displayname`, confData[CConfBase.CONF_DATA_INDEX_TEXT]);
 			}
 			break;
-
 
 
 		// 武器Lv
@@ -580,7 +539,6 @@ export function CCharaConfCustomStatus(confArray) {
 	}
 
 
-
 	/**
 	 * 設定値を取得する.
 	 * @param id 取得する設定のID
@@ -594,16 +552,10 @@ export function CCharaConfCustomStatus(confArray) {
 	}
 
 
-
-
-
 	// 初期化実行
 	this.InitData();
 
 
-
 }
 
-if (typeof window !== 'undefined') {
-	window.CCharaConfCustomStatus = CCharaConfCustomStatus;
-}
+

@@ -8,12 +8,6 @@ describe('card.prefix.dat.js', () => {
         });
     });
 
-    describe('window互換確認', () => {
-        it('window.CardPrefix が設定されている', () => {
-            expect((window as any).CardPrefix).toBe(CardPrefix);
-        });
-    });
-
     describe('インスタンス動作', () => {
         it('インスタンスが生成できる', () => {
             expect(() => new CardPrefix()).not.toThrow();

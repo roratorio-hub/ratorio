@@ -68,28 +68,6 @@ describe('mobconfbuf.js', () => {
         it('RefreshMobConfBufControlCSS が関数', () => { expect(typeof RefreshMobConfBufControlCSS).toBe('function'); });
     });
 
-    describe('window互換確認', () => {
-        it('window.MOB_CONF_BUF_LIMIT が設定されている', () => { expect((window as any).MOB_CONF_BUF_LIMIT).toBe(80); });
-        it('window.n_B_KYOUKA が設定されている', () => { expect(Array.isArray((window as any).n_B_KYOUKA)).toBe(true); });
-        it('window.MobConfBufOBJ が設定されている', () => { expect(Array.isArray((window as any).MobConfBufOBJ)).toBe(true); });
-        it('window.MOB_CONF_BUF_DATA_INDEX_ID が設定されている', () => { expect((window as any).MOB_CONF_BUF_DATA_INDEX_ID).toBe(0); });
-        it('window.MOB_CONF_BUF_DATA_INDEX_TEXT が設定されている', () => { expect((window as any).MOB_CONF_BUF_DATA_INDEX_TEXT).toBe(1); });
-        it('window.MOB_CONF_BUF_DATA_INDEX_CONTROL_TYPE が設定されている', () => { expect((window as any).MOB_CONF_BUF_DATA_INDEX_CONTROL_TYPE).toBe(2); });
-        it('window.MOB_CONF_BUF_DATA_INDEX_DEFAULT_VALUE が設定されている', () => { expect((window as any).MOB_CONF_BUF_DATA_INDEX_DEFAULT_VALUE).toBe(3); });
-        it('window.MOB_CONF_BUF_DATA_INDEX_MIN_VALUE が設定されている', () => { expect((window as any).MOB_CONF_BUF_DATA_INDEX_MIN_VALUE).toBe(4); });
-        it('window.MOB_CONF_BUF_DATA_INDEX_MAX_VALUE が設定されている', () => { expect((window as any).MOB_CONF_BUF_DATA_INDEX_MAX_VALUE).toBe(5); });
-        it('window.MOB_CONF_BUF_ID_SOKUDO_ZOKA が設定されている', () => { expect((window as any).MOB_CONF_BUF_ID_SOKUDO_ZOKA).toBe(0); });
-        it('window.MOB_CONF_BUF_ID_DAMAGE_DIVIDE が設定されている', () => { expect(typeof (window as any).MOB_CONF_BUF_ID_DAMAGE_DIVIDE).toBe('number'); });
-        it('window.MOB_CONF_BUF_ID_MAX_PAIN が設定されている', () => { expect(typeof (window as any).MOB_CONF_BUF_ID_MAX_PAIN).toBe('number'); });
-        it('window.BuildUpMobConfBufSelectArea が設定されている', () => { expect(typeof (window as any).BuildUpMobConfBufSelectArea).toBe('function'); });
-        it('window.SyncronizeMobConfBufSettingsVarToCtrl が設定されている', () => { expect(typeof (window as any).SyncronizeMobConfBufSettingsVarToCtrl).toBe('function'); });
-        it('window.SyncronizeMobConfBufSettingsCtrlToVar が設定されている', () => { expect(typeof (window as any).SyncronizeMobConfBufSettingsCtrlToVar).toBe('function'); });
-        it('window.OnClickMobConfBufSwitch が設定されている', () => { expect(typeof (window as any).OnClickMobConfBufSwitch).toBe('function'); });
-        it('window.OnChangeMobConfBuf が設定されている', () => { expect(typeof (window as any).OnChangeMobConfBuf).toBe('function'); });
-        it('window.RefreshMobConfBufSelectAreaHeader が設定されている', () => { expect(typeof (window as any).RefreshMobConfBufSelectAreaHeader).toBe('function'); });
-        it('window.RefreshMobConfBufControlCSS が設定されている', () => { expect(typeof (window as any).RefreshMobConfBufControlCSS).toBe('function'); });
-    });
-
     describe('MobConfBufOBJ 初期化確認', () => {
         it('MobConfBufOBJ が 14 件', () => { expect(MobConfBufOBJ.length).toBe(14); });
         it('n_B_KYOUKA が長さ MOB_CONF_BUF_LIMIT の配列', () => { expect(n_B_KYOUKA.length).toBe(MOB_CONF_BUF_LIMIT); });

@@ -17,11 +17,4 @@ describe('usableskill.dat.js', () => {
         it('InsertSkill[1][0] が 1',           () => expect(InsertSkill[1][0]).toBe(1));
         it('InsertSkill[214][0] が 214（最後）', () => expect(InsertSkill[214][0]).toBe(214));
     });
-
-    describe('window互換確認', () => {
-        it('window.USABEL_SKILL_ID_NONE',    () => expect((window as any).USABEL_SKILL_ID_NONE).toBe(USABEL_SKILL_ID_NONE));
-        it('window.USABEL_SKILL_ID_COLD_BOLT_3', () => expect((window as any).USABEL_SKILL_ID_COLD_BOLT_3).toBe(USABEL_SKILL_ID_COLD_BOLT_3));
-        it('window.USABEL_SKILL_ID_GLORIA_5', () => expect((window as any).USABEL_SKILL_ID_GLORIA_5).toBe(USABEL_SKILL_ID_GLORIA_5));
-        it('window.InsertSkill',             () => expect((window as any).InsertSkill).toBe(InsertSkill));
-    });
 });

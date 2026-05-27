@@ -35,16 +35,4 @@ describe('monstermap.h.js', () => {
             expect(Array.isArray(g_MonsterMapCategoryDataArray)).toBe(true);
         });
     });
-
-    describe('window互換確認', () => {
-        it('window.g_MonsterMapDataArray が設定されている', () => {
-            expect((window as any).g_MonsterMapDataArray).toBe(g_MonsterMapDataArray);
-        });
-        it('window.g_MonsterMapCategoryDataArray が設定されている', () => {
-            expect((window as any).g_MonsterMapCategoryDataArray).toBe(g_MonsterMapCategoryDataArray);
-        });
-        it('window.SetUpSortKanaMonsterMap が設定されている', () => {
-            expect((window as any).SetUpSortKanaMonsterMap).toBe(SetUpSortKanaMonsterMap);
-        });
-    });
 });
