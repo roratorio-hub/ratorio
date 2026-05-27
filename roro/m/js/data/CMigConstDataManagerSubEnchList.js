@@ -1,3 +1,7 @@
+// === AUTO-GENERATED IMPORTS ===
+import { CMigConstDataManagerSubBase } from './CMigConstDataManagerSubBase.js';
+import { CMigEquipableData } from './CMigEquipableData.js';
+// === END AUTO-GENERATED IMPORTS ===
 /**
  * エンチャントリストデータマネージャクラス.
  */
@@ -64,4 +68,3 @@ export function CMigConstDataManagerSubEnchList () {
 
 }
 CMigConstDataManagerSubEnchList.prototype = new CMigConstDataManagerSubBase();
-if (typeof window !== 'undefined') { window.CMigConstDataManagerSubEnchList = CMigConstDataManagerSubEnchList; }

@@ -6,7 +6,6 @@ export function CSaveDataMappingManager() {
 }
 
 
-
 /**
  * マッピング配列を取得する.
  * @param version バージョン
@@ -77,7 +76,6 @@ CSaveDataMappingManager.GetMappingArray = function (version) {
 
 	return mappingArray;
 };
-
 
 
 /**
@@ -451,7 +449,6 @@ CSaveDataMappingManager.__GetMappingArrayAttackSetting = function (version) {
 			3, 3,
 		];
 	}
-
 
 
 	return mappingArray;
@@ -1225,6 +1222,4 @@ CSaveDataMappingManager.__GetMappingArrayMobConfPlayer2 = function (version) {
 	return mappingArray;
 };
 
-if (typeof window !== 'undefined') {
-    window.CSaveDataMappingManager = CSaveDataMappingManager;
-}
+

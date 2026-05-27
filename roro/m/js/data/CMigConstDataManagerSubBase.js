@@ -285,4 +285,3 @@ export function CMigConstDataManagerSubBase () {
 		return this.registeredIdArray.slice();
 	};
 }
-if (typeof window !== 'undefined') { window.CMigConstDataManagerSubBase = CMigConstDataManagerSubBase; }

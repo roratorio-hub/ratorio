@@ -3,6 +3,9 @@ import { CSaveDataConst } from './CSaveDataConst.js';
 import { CSaveDataPropInfo } from './CSaveDataPropInfo.js';
 import { CSingletonMapper } from './CSingletonMapper.js';
 import { CMultiValueMapper } from './CMultiValueMapper.js';
+// === AUTO-GENERATED IMPORTS ===
+import { floorBigInt32, toSafeBigInt } from '../../../../roro/common/js/util.js';
+// === END AUTO-GENERATED IMPORTS ===
 /**
  * セーブデータユニットクラス：基底.
  */

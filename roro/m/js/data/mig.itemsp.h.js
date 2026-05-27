@@ -1,21 +1,90 @@
 import { CGlobalConstManager } from '../CGlobalConstManager.js';
-
-
-
-
-
+// === AUTO-GENERATED IMPORTS ===
+import '../card.h.js';
+import '../common.js';
+import '../item.h.js';
+import { CardObjNew } from '../card.dat.js';
+import { ItemObjNew } from '../item.dat.js';
+import { IsDualArmsJob } from '../../../../ro4/m/js/data/mig.job.h.js';
+import {
+         MIG_JOB_ID_ACOLYTE,
+         MIG_JOB_ID_ALCHEMIST,
+         MIG_JOB_ID_ARCBISHOP,
+         MIG_JOB_ID_ARCHER,
+         MIG_JOB_ID_ASSASIN,
+         MIG_JOB_ID_ASSASINCROSS,
+         MIG_JOB_ID_BARD,
+         MIG_JOB_ID_BLACKSMITH,
+         MIG_JOB_ID_CHAMPION,
+         MIG_JOB_ID_CHASER,
+         MIG_JOB_ID_CREATOR,
+         MIG_JOB_ID_CROWN,
+         MIG_JOB_ID_CRUSADER,
+         MIG_JOB_ID_DANCER,
+         MIG_JOB_ID_GENETIC,
+         MIG_JOB_ID_GILOTINCROSS,
+         MIG_JOB_ID_GUNSLINGER,
+         MIG_JOB_ID_HIGHPRIEST,
+         MIG_JOB_ID_HIGHWIZARD,
+         MIG_JOB_ID_HI_ACOLYTE,
+         MIG_JOB_ID_HI_ARCHER,
+         MIG_JOB_ID_HI_MAGICIAN,
+         MIG_JOB_ID_HI_MARCHANT,
+         MIG_JOB_ID_HI_NOVICE,
+         MIG_JOB_ID_HI_SWORDMAN,
+         MIG_JOB_ID_HI_THIEF,
+         MIG_JOB_ID_HUNTER,
+         MIG_JOB_ID_KAGERO,
+         MIG_JOB_ID_KNIGHT,
+         MIG_JOB_ID_LORDKNIGHT,
+         MIG_JOB_ID_MAGICIAN,
+         MIG_JOB_ID_MARCHANT,
+         MIG_JOB_ID_MECHANIC,
+         MIG_JOB_ID_MINSTREL,
+         MIG_JOB_ID_MONK,
+         MIG_JOB_ID_NINJA,
+         MIG_JOB_ID_NOVICE,
+         MIG_JOB_ID_OBORO,
+         MIG_JOB_ID_PALADIN,
+         MIG_JOB_ID_PRIEST,
+         MIG_JOB_ID_PROFESSOR,
+         MIG_JOB_ID_RANGER,
+         MIG_JOB_ID_REBELLION,
+         MIG_JOB_ID_ROGUE,
+         MIG_JOB_ID_ROYALGUARD,
+         MIG_JOB_ID_RUNEKNIGHT,
+         MIG_JOB_ID_SAGE,
+         MIG_JOB_ID_SHADOWCHASER,
+         MIG_JOB_ID_SHURA,
+         MIG_JOB_ID_SNIPER,
+         MIG_JOB_ID_SORCERER,
+         MIG_JOB_ID_SOULLINKER,
+         MIG_JOB_ID_SOUL_REAPER,
+         MIG_JOB_ID_STARGRADIATOR,
+         MIG_JOB_ID_STAR_EMPEROR,
+         MIG_JOB_ID_SUMMONER,
+         MIG_JOB_ID_SUPERNOVICE,
+         MIG_JOB_ID_SUPERNOVICE_PLUS,
+         MIG_JOB_ID_SWORDMAN,
+         MIG_JOB_ID_TAEGWON,
+         MIG_JOB_ID_THIEF,
+         MIG_JOB_ID_WANDERER,
+         MIG_JOB_ID_WARLOCK,
+         MIG_JOB_ID_WHITESMITH,
+         MIG_JOB_ID_WIZARD,
+         MIG_JOB_ID_ZYPSY,
+} from '../../../../ro4/m/js/data/mig.job.id.js';
+import { CMigEquipableSpTag } from './CMigEquipableSpTag.js';
+// === END AUTO-GENERATED IMPORTS ===
 
 
 // 移行後は common などに移動するもの
 
-// TODO: とりあえず
-window.MIG_SKILL_ID_ANY = -1;
-window.MIG_ITEM_ID_ANY = -1;
-window.MIG_CARD_ID_ANY = -1;
-window.MIG_ARROW_ID_ANY = -1;
-window.MIG_COSTUME_ID_ANY = -1;
-
-
+export const MIG_SKILL_ID_ANY = -1;
+export const MIG_ITEM_ID_ANY = -1;
+export const MIG_CARD_ID_ANY = -1;
+export const MIG_ARROW_ID_ANY = -1;
+export const MIG_COSTUME_ID_ANY = -1;
 
 
 //----------------------------------------------------------------
@@ -403,7 +472,6 @@ CGlobalConstManager.DefineEnum(
 );
 
 
-
 //----------------------------------------------------------------
 // アイテム系列ＩＤ定義
 //----------------------------------------------------------------
@@ -477,7 +545,6 @@ CGlobalConstManager.DefineEnum(
 );
 
 
-
 //----------------------------------------------------------------
 // 精錬可否ＩＤ定義
 //----------------------------------------------------------------
@@ -544,11 +611,6 @@ CGlobalConstManager.DefinePseudoEnum(
 );
 
 
-
-
-
-
-
 CGlobalConstManager.DefinePseudoEnum(
 	"EnumMigPetId",
 	[
@@ -557,7 +619,6 @@ CGlobalConstManager.DefinePseudoEnum(
 	-1,
 	0
 );
-
 
 
 //----------------------------------------------------------------
@@ -801,14 +862,6 @@ CGlobalConstManager.DefinePseudoEnum(
 	EnumMigValueUnitId.Count,
 	1
 );
-
-
-
-
-
-
-
-
 
 
 //----------------------------------------------------------------
@@ -1058,20 +1111,9 @@ CGlobalConstManager.DefinePseudoEnum(
 );
 
 
-
-
-
-
-
-
-
-
-
-
-
 // 移行後は不要になるはずのもの
 
-function MigGetItemSpTagArrayByOldSpID (spid) {
+export function MigGetItemSpTagArrayByOldSpID (spid) {
 
 	// FOR_SET 系は、SpTag は同一だが、取得先（取得に使用する関数）が異なるので注意
 
@@ -2339,7 +2381,6 @@ function MigGetItemSpTagArrayByOldSpID (spid) {
 		];
 
 
-
 	// 第二期対応
 	case ITEM_SP_PERFECT_ATTACK_UP:
 		return [
@@ -2445,8 +2486,6 @@ function MigGetItemSpTagArrayByOldSpID (spid) {
 		];
 
 
-
-
 	// TODO: 将来的に変えるかも
 	case ITEM_SP_HEAL_UP_USING:
 		return [
@@ -2465,7 +2504,6 @@ function MigGetItemSpTagArrayByOldSpID (spid) {
 		];
 
 
-
 	// この関数では処理しない（別方式で個別対応する）もの
 	case ITEM_SP_ELEMENTAL:
 	case ITEM_SP_BODY_ELEMENT:
@@ -2478,7 +2516,6 @@ function MigGetItemSpTagArrayByOldSpID (spid) {
 	case ITEM_SP_AUTO_SPELL_LEVEL_UNSPECIFIED:
 	case ITEM_SP_AUTO_SPELL_HIDDEN_DETAIL:
 		break;
-
 
 
 	// TODO: 未対応
@@ -2531,18 +2568,8 @@ function MigGetItemSpTagArrayByOldSpID (spid) {
 	}
 
 
-
 	return null;
 }
-
-
-
-
-
-
-
-
-
 
 
 /**
@@ -2550,7 +2577,7 @@ function MigGetItemSpTagArrayByOldSpID (spid) {
  * @param text 判定対象テキスト
  * @return true:エラーを示すテキスト、false:正常なテキスト
  */
-function MigGetGeneralErrorText() {
+export function MigGetGeneralErrorText() {
 	return "エラー";
 }
 
@@ -2559,7 +2586,7 @@ function MigGetGeneralErrorText() {
  * @param text 判定対象テキスト
  * @return true:エラーを示すテキスト、false:正常なテキスト
  */
-function MigIsErrorText(text) {
+export function MigIsErrorText(text) {
 
 	if (text == MigGetGeneralErrorText()) {
 		return true;
@@ -2569,13 +2596,12 @@ function MigIsErrorText(text) {
 }
 
 
-
 /**
  * 職業系統に属する職業IDの配列を取得する.
  * @param jobSeriesId 職業系統ID
  * @return 職業IDの配列
  */
-function MigGetSeriesedJobIdArray(jobSeriesId) {
+export function MigGetSeriesedJobIdArray(jobSeriesId) {
 
 	switch (jobSeriesId) {
 	case MIG_JOB_SERIES_ID_NOVICE_SERIES:
@@ -2734,7 +2760,7 @@ function MigGetSeriesedJobIdArray(jobSeriesId) {
  * ジョブ系列名を取得する.
  * @param jobSeriesId ジョブ系列ＩＤ
  */
-function MigGetJobSeriesName(jobSeriesId) {
+export function MigGetJobSeriesName(jobSeriesId) {
 
 	var suffix = "";
 	var definedName = EnumMigJobSeriesId.GetDefinedName(jobSeriesId);
@@ -2899,7 +2925,7 @@ function MigGetJobSeriesName(jobSeriesId) {
  * @param paramId パラメータID
  * @return パラメータのテキスト
  */
-function MigGetParamText(paramId) {
+export function MigGetParamText(paramId) {
 
 	switch (paramId) {
 
@@ -2990,13 +3016,12 @@ function MigGetParamText(paramId) {
 }
 
 
-
 /**
  * 装備領域のテキストを取得する.
  * @param equipRegionId 装備領域ID
  * @return 装備領域のテキスト
  */
-function MigGetEquipRegionText(equipRegionId) {
+export function MigGetEquipRegionText(equipRegionId) {
 
 	switch (equipRegionId) {
 
@@ -3047,13 +3072,12 @@ function MigGetEquipRegionText(equipRegionId) {
 }
 
 
-
 /**
  * アイテム系列のテキストを取得する.
  * @param typeId 系列ＩＤ
  * @return アイテム系列のテキスト
  */
-function MigGetItemTypeText(typeId) {
+export function MigGetItemTypeText(typeId) {
 
 	switch (typeId) {
 
@@ -3162,13 +3186,12 @@ function MigGetItemTypeText(typeId) {
 }
 
 
-
 /**
  * アイテム位置のテキストを取得する.
  * @param positionId 位置ＩＤ
  * @return アイテム位置のテキスト
  */
-function MigGetItemPositionText(positionId) {
+export function MigGetItemPositionText(positionId) {
 
 	switch (positionId) {
 
@@ -3202,13 +3225,12 @@ function MigGetItemPositionText(positionId) {
 }
 
 
-
 /**
  * アイテム系列が武器であるかを判定する.
  * @param typeId 系列ＩＤ
  * @return true:武器、false:武器出ない
  */
-function MigIsArmsItemType(typeId) {
+export function MigIsArmsItemType(typeId) {
 
 	switch (typeId) {
 
@@ -3242,13 +3264,12 @@ function MigIsArmsItemType(typeId) {
 }
 
 
-
 /**
  * 種族名のテキストを取得する.
  * @param raceId 種族ID
  * @return 種族名のテキスト
  */
-function MigGetRaceText(raceId) {
+export function MigGetRaceText(raceId) {
 
 	switch (raceId) {
 	case RACE_ID_SOLID:
@@ -3286,13 +3307,12 @@ function MigGetRaceText(raceId) {
 }
 
 
-
 /**
  * 確率定数のテキストを取得する.
  * @param probId 確率定数ID
  * @return 確率定数のテキスト
  */
-function MigGetProbText(probId) {
+export function MigGetProbText(probId) {
 
 	switch (probId) {
 	case MIG_PROB_ID_CERTAIN:
@@ -3312,14 +3332,13 @@ function MigGetProbText(probId) {
 }
 
 
-
 /**
  * 境界値フラグのテキストを取得する.
  * @param flagId 境界値フラグID
  * @param bShort 短縮形フラグ
  * @return 境界値フラグのテキスト
  */
-function MigGetBorderFlagText(flagId, bShort) {
+export function MigGetBorderFlagText(flagId, bShort) {
 
 	switch (flagId) {
 
@@ -3344,14 +3363,13 @@ function MigGetBorderFlagText(flagId, bShort) {
 }
 
 
-
 /**
  * アイテムIDから、設定可能な装備領域の配列を取得する.
  * @param itemId アイテムID
  * @param jobId 職業ID（左手装備検証用）
  * @return 設定可能な装備領域の配列
  */
-function MigGetEquipRegionByItemKind(itemId, jobId) {
+export function MigGetEquipRegionByItemKind(itemId, jobId) {
 
 	var itemData = null;
 	var itemStaticDataType = 0;
@@ -3532,7 +3550,7 @@ function MigGetEquipRegionByItemKind(itemId, jobId) {
  * @param jobId 職業ID（左手装備検証用）
  * @return 設定可能な装備領域の配列
  */
-function MigGetEquipRegionByCardKind(cardId, jobId) {
+export function MigGetEquipRegionByCardKind(cardId, jobId) {
 
 	var cardData = null;
 	var candidateRegionIdArray = null;
@@ -3601,22 +3619,4 @@ function MigGetEquipRegionByCardKind(cardId, jobId) {
 	return candidateRegionIdArray;
 }
 
-if (typeof window !== 'undefined') {
-	Object.assign(window, {
-		MigGetItemSpTagArrayByOldSpID,
-		MigGetGeneralErrorText,
-		MigIsErrorText,
-		MigGetSeriesedJobIdArray,
-		MigGetJobSeriesName,
-		MigGetParamText,
-		MigGetEquipRegionText,
-		MigGetItemTypeText,
-		MigGetItemPositionText,
-		MigIsArmsItemType,
-		MigGetRaceText,
-		MigGetProbText,
-		MigGetBorderFlagText,
-		MigGetEquipRegionByItemKind,
-		MigGetEquipRegionByCardKind,
-	});
-}
+

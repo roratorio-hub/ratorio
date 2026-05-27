@@ -228,35 +228,25 @@
 										placeholder="名前入力可能（40文字まで）">
 									<button id="OBJID_BUTTON_IMAGE_SAVE_DATA_MIG" type="button">画像保存</button>
 
-									<button id="OBJID_BUTTON_LOAD_SAVE_DATA_MIG" type="button"
-										onclick="OnClickLoadSaveData()">ロード</button>
-									<button id="OBJID_BUTTON_SAVE_SAVE_DATA_MIG" type="button"
-										onclick="OnClickSaveSaveData()">セーブ</button>
-									<button id="OBJID_BUTTON_DELETE_SAVE_DATA_MIG" type="button"
-										onclick="OnClickDeleteSaveData()">削除</button>
-									<button id="OBJID_BUTTON_DEBUG_SAVE_DATA_MIG" type="button"
-										onclick="OnClickClipboardSaveData()">バグ報告用データ出力</button>
+									<button id="OBJID_BUTTON_LOAD_SAVE_DATA_MIG" type="button">ロード</button>
+									<button id="OBJID_BUTTON_SAVE_SAVE_DATA_MIG" type="button">セーブ</button>
+									<button id="OBJID_BUTTON_DELETE_SAVE_DATA_MIG" type="button">削除</button>
+									<button id="OBJID_BUTTON_DEBUG_SAVE_DATA_MIG" type="button">バグ報告用データ出力</button>
 
-									<button id="OBJID_BUTTON_URL_OUT_MIG" type="button"
-										onclick="OnClickUrlOutMIG()">URL出力</button>
+									<button id="OBJID_BUTTON_URL_OUT_MIG" type="button">URL出力</button>
 									<input id="OBJID_INPUT_URL_OUT_MIG" type="textbox" size="24">
-									<button id="OBJID_BUTTON_COPY_URL_OUT_MIG" type="button"
-										onclick="HtmlCopyToClipboardById('OBJID_INPUT_URL_OUT_MIG')">コピー</button>
+									<button id="OBJID_BUTTON_COPY_URL_OUT_MIG" type="button">コピー</button>
 
-									<button id="OBJID_BUTTON_URL_IN_MIG" type="button"
-										onclick="OnClickUrlInMIG()">URL入力</button>
+									<button id="OBJID_BUTTON_URL_IN_MIG" type="button">URL入力</button>
 									<input id="OBJID_INPUT_URL_IN_MIG" type="textbox" size="24">
-									<button id="OBJID_BUTTON_CLEAR_URL_IN_MIG" type="button"
-										onclick="HtmlSetObjectValueById('OBJID_INPUT_URL_IN_MIG', '')">クリア</button>
+									<button id="OBJID_BUTTON_CLEAR_URL_IN_MIG" type="button">クリア</button>
 
-									<button id="OBJID_BUTTON_EXPORT_ALL_DATA_MIG" type="button"
-										onclick="CSaveController.exportAllCharaData()">全データをエクスポート</button>
-									<button id="OBJID_BUTTON_IMPORT_ALL_DATA_MIG" type="button"
-										onclick="CSaveController.importAllCharaData()">全データをインポート</button>
+									<button id="OBJID_BUTTON_EXPORT_ALL_DATA_MIG" type="button">全データをエクスポート</button>
+									<button id="OBJID_BUTTON_IMPORT_ALL_DATA_MIG" type="button">全データをインポート</button>
 
 									<div id="OBJID_SWITCH_CONFIRM_DIALOG_BLOCK">
 										<input type="checkbox" id="OBJID_SWITCH_CONFIRM_DIALOG"
-											class="folding-switch-MIG" onclick="OnClickConfirmDialogSwitch()">
+											class="folding-switch-MIG">
 										<label for="OBJID_SWITCH_CONFIRM_DIALOG">操作時に確認する</label>
 									</div>
 
@@ -275,7 +265,7 @@
 							</div>
 						</div>
 						<div>
-							<button type="button" onclick="optInSavedata()" style="font-size: 1.4em;">🐱‍💻 データをラトリオHub開発チームへ提供する</button>
+							<button type="button" id="OBJID_BUTTON_OPT_IN_SAVEDATA" style="font-size: 1.4em;">🐱‍💻 データをラトリオHub開発チームへ提供する</button>
 						</div>
 						<!-- ボディ部 -->
 						<div style="display: grid; grid-template-columns: max-content auto; column-gap: 3%;">
@@ -302,40 +292,34 @@
 													<tr>
 														<td style="min-width: 4em; text-align:center;">BaseLV</td>
 														<td style="min-width: 7em;">
-															<input type="number" min="1" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_BASE_LEVEL" name="A_BaseLV" required
-																onChange="CalcStatusPoint(true) | StAllCalc() | CAttackMethodAreaComponentManager.RebuildControls() | AutoCalc()">
+															<input type="number" min="1" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_BASE_LEVEL" name="A_BaseLV" required>
 														</td>
 														<td style="min-width: 4em; text-align:center;">JobLV</td>
 														<td style="min-width: 7em;">
-															<input type="number" min="1" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_JOB_LEVEL" name="A_JobLV" required
-																onChange="StAllCalc() | AutoCalc()">
+															<input type="number" min="1" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_JOB_LEVEL" name="A_JobLV" required>
 														</td>
 
 														<td style="min-width: 4em; text-align:center;">職業</td>
 														<td style="min-width: 7em;"><select id="OBJID_SELECT_JOB"
-																name="A_JOB"
-																onChange="OnChangeJob(this.value)"></select></td>
+																name="A_JOB"></select></td>
 													</tr>
 
 													<tr>
 														<td style="text-align: center;">Str</td>
 														<td>
-															<input type="number" min="1" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_STATUS_STR" name="A_STR" required
-																onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()">
+															<input type="number" min="1" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_STATUS_STR" name="A_STR" required>
 															<span id="OBJID_SPAN_STATUS_BONUS_STR"></span>
 														</td>
 
 														<td style="text-align: center;">Agi</td>
 														<td>
-															<input type="number" min="1" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_STATUS_AGI" name="A_AGI" required
-																onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()">
+															<input type="number" min="1" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_STATUS_AGI" name="A_AGI" required>
 															<span id="OBJID_SPAN_STATUS_BONUS_AGI"></span>
 														</td>
 
 														<td style="text-align: center;">Vit</td>
 														<td>
-															<input type="number" min="1" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_STATUS_VIT" name="A_VIT" required
-																onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()">
+															<input type="number" min="1" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_STATUS_VIT" name="A_VIT" required>
 															<span id="OBJID_SPAN_STATUS_BONUS_VIT"></span>
 														</td>
 													</tr>
@@ -343,22 +327,19 @@
 													<tr>
 														<td style="text-align: center;">Int</td>
 														<td>
-															<input type="number" min="1" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_STATUS_INT" name="A_INT" required
-																onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()">
+															<input type="number" min="1" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_STATUS_INT" name="A_INT" required>
 															<span id="OBJID_SPAN_STATUS_BONUS_INT"></span>
 														</td>
 
 														<td style="text-align: center;">Dex</td>
 														<td>
-															<input type="number" min="1" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_STATUS_DEX" name="A_DEX" required
-																onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()">
+															<input type="number" min="1" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_STATUS_DEX" name="A_DEX" required>
 															<span id="OBJID_SPAN_STATUS_BONUS_DEX"></span>
 														</td>
 
 														<td style="text-align: center;">Luk</td>
 														<td>
-															<input type="number" min="1" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_STATUS_LUK" name="A_LUK" required
-																onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()">
+															<input type="number" min="1" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_STATUS_LUK" name="A_LUK" required>
 															<span id="OBJID_SPAN_STATUS_BONUS_LUK"></span>
 														</td>
 													</tr>
@@ -389,8 +370,7 @@
 															style="min-width: 4em; text-align:center; background-color: #ddddff;">
 															Pow</td>
 														<td style="min-width: 7em;">
-															<input type="number" min="0" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_STATUS_POW" name="A_POW" required
-																onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()">
+															<input type="number" min="0" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_STATUS_POW" name="A_POW" required>
 															<span id="OBJID_SPAN_STATUS_BONUS_POW"></span>
 														</td>
 
@@ -413,8 +393,7 @@
 														<td style="text-align:center; background-color: #ddddff;">Sta
 														</td>
 														<td>
-															<input type="number" min="0" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_STATUS_STA" name="A_STA" required
-																onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()">
+															<input type="number" min="0" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_STATUS_STA" name="A_STA" required>
 															<span id="OBJID_SPAN_STATUS_BONUS_STA"></span>
 														</td>
 
@@ -435,8 +414,7 @@
 														<td style="text-align:center; background-color: #ddddff;">Wis
 														</td>
 														<td>
-															<input type="number" min="0" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_STATUS_WIS" name="A_WIS" required
-																onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()">
+															<input type="number" min="0" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_STATUS_WIS" name="A_WIS" required>
 															<span id="OBJID_SPAN_STATUS_BONUS_WIS"></span>
 														</td>
 
@@ -451,8 +429,7 @@
 														<td style="text-align:center; background-color: #ddddff;">Spl
 														</td>
 														<td>
-															<input type="number" min="0" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_STATUS_SPL" name="A_SPL" required
-																onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()">
+															<input type="number" min="0" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_STATUS_SPL" name="A_SPL" required>
 															<span id="OBJID_SPAN_STATUS_BONUS_SPL"></span>
 														</td>
 
@@ -467,8 +444,7 @@
 														<td style="text-align:center; background-color: #ddddff;">Con
 														</td>
 														<td>
-															<input type="number" min="0" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_STATUS_CON" name="A_CON" required
-																onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()">
+															<input type="number" min="0" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_STATUS_CON" name="A_CON" required>
 															<span id="OBJID_SPAN_STATUS_BONUS_CON"></span>
 														</td>
 
@@ -484,8 +460,7 @@
 														<td style="text-align:center; background-color: #ddddff;">Crt
 														</td>
 														<td>
-															<input type="number" min="0" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_STATUS_CRT" name="A_CRT" required
-																onChange="CalcStatusPoint(false) | StAllCalc() | AutoCalc()">
+															<input type="number" min="0" max="1" step="1" inputmode="numeric" id="OBJID_SELECT_STATUS_CRT" name="A_CRT" required>
 															<span id="OBJID_SPAN_STATUS_BONUS_CRT"></span>
 														</td>
 													</tr>
@@ -618,8 +593,7 @@
 							<tr>
 								<td>
 									<span id="ID_QUICK_CONTROL">
-										<input type="checkbox" id="OBJID_QUICK_CONTROL_EXTRACT_CHECKBOX"
-											onclick="OnClickQuickControlSW()">
+										<input type="checkbox" id="OBJID_QUICK_CONTROL_EXTRACT_CHECKBOX">
 									</span>
 								</td>
 							</tr>
@@ -627,12 +601,11 @@
 							<tr>
 								<td>
 									<span id="nm026">スピードポーション：</span>
-									<select id="OBJID_SPEED_POT" name="A_SpeedPOT" onChange="StAllCalc() | AutoCalc()">
+									<select id="OBJID_SPEED_POT" name="A_SpeedPOT">
 									</select>
 									<br>
 									<span id="nm027">武器タイプ：</span>
-									<select id="OBJID_ARMS_TYPE_RIGHT" name="A_WeaponType"
-										onChange="OnChangeArmsTypeRight(this[this.selectedIndex].value) | StAllCalc() | AutoCalc()">
+									<select id="OBJID_ARMS_TYPE_RIGHT" name="A_WeaponType">
 									</select>
 									<span id="A_SobWeaponName"></span>
 									<span id="OBJID_SPAN_SELECT_ARROW"></span>
@@ -647,16 +620,14 @@
 										<tr>
 											<td ColSpan="3" Bgcolor="#DDDDFF">武器＆防具/カード</td>
 											<td ColSpan="10" Bgcolor="#DDDDFF">
-												<input type="button" id="OBJID_SLOT_MODE_BUTTON" value="入力欄切替"
-													onclick="OnClickSlotModeButton()">
+												<input type="button" id="OBJID_SLOT_MODE_BUTTON" value="入力欄切替">
 												カードの入力とランダムオプションの入力を切り替えます
 											</td>
 										</tr>
 										<!-- 右手装備 -->
 										<tr>
 											<td rowspan="2">
-												<select id="OBJID_ARMS_RIGHT_REFINE" name="A_Weapon_ATKplus"
-													onChange="OnChangeRefined() | AutoCalc()">
+												<select id="OBJID_ARMS_RIGHT_REFINE" name="A_Weapon_ATKplus">
 													<option value="0">+0
 													<option value="1">+1
 													<option value="2">+2
@@ -672,7 +643,7 @@
 											</td>
 											<td rowspan="2">
 												<select id="OBJID_ARMS_RIGHT_TRANSCENDENCE"
-													name="A_Weapon_Transcendence" onChange="StAllCalc() | AutoCalc()">
+													name="A_Weapon_Transcendence">
 													<option value="0">-
 													<option value="1">★1
 													<option value="2">★2
@@ -681,14 +652,12 @@
 												</select>
 											</td>
 											<td rowspan="2">
-												<select id="OBJID_ARMS_RIGHT"
-													onChange="OnChangeEquip(EQUIP_REGION_ID_ARMS, parseInt(this.value)) | AutoCalc()">
+												<select id="OBJID_ARMS_RIGHT">
 												</select>
 											</td>
 											<td colspan="2" style="white-space: nowrap;">
 												<span id="ID_A_HUYO_NAME">武器属性付与</span>
-												<select id="OBJID_SELECT_ARMS_ELEMENT" name="A_Weapon_zokusei"
-													onChange="AutoCalc()">
+												<select id="OBJID_SELECT_ARMS_ELEMENT" name="A_Weapon_zokusei">
 												</select>
 											</td>
 											<td colspan="8">
@@ -706,8 +675,7 @@
 										<!-- 左手装備 -->
 										<tr id="OBJID_ARMS_LEFT_SLOT_ROOT">
 											<td>
-												<select id="OBJID_ARMS_LEFT_REFINE" name="A_Weapon2_ATKplus"
-													onChange="OnChangeRefined() | AutoCalc()" disabled>
+												<select id="OBJID_ARMS_LEFT_REFINE" name="A_Weapon2_ATKplus" disabled>
 													<option value="0">+0
 													<option value="1">+1
 													<option value="2">+2
@@ -723,7 +691,7 @@
 											</td>
 											<td>
 												<select id="OBJID_ARMS_LEFT_TRANSCENDENCE"
-													name="A_Weapon2_Transcendence" onChange="StAllCalc() | AutoCalc()"
+													name="A_Weapon2_Transcendence"
 													disabled>
 													<option value="0">-
 													<option value="1">★1
@@ -733,8 +701,7 @@
 												</select>
 											</td>
 											<td>
-												<select id="OBJID_ARMS_LEFT"
-													onChange="OnChangeEquip(EQUIP_REGION_ID_ARMS_LEFT, parseInt(this.value)) | AutoCalc()">
+												<select id="OBJID_ARMS_LEFT">
 												</select>
 											</td>
 										</tr>
@@ -746,8 +713,7 @@
 										<!-- 頭上段装備 -->
 										<tr id="OBJID_HEAD_TOP_SLOT_ROOT">
 											<td>
-												<select id="OBJID_HEAD_TOP_REFINE" name="A_HEAD_DEF_PLUS"
-													onChange="OnChangeRefined() | AutoCalc()">
+												<select id="OBJID_HEAD_TOP_REFINE" name="A_HEAD_DEF_PLUS">
 													<option value="0">+0
 													<option value="1">+1
 													<option value="2">+2
@@ -763,7 +729,7 @@
 											</td>
 											<td>
 												<select id="OBJID_HEAD_TOP_TRANSCENDENCE"
-													name="A_HEAD_DEF_Transcendence" onChange="StAllCalc() | AutoCalc()">
+													name="A_HEAD_DEF_Transcendence">
 													<option value="0">-
 													<option value="1">★1
 													<option value="2">★2
@@ -772,8 +738,7 @@
 												</select>
 											</td>
 											<td>
-												<select id="OBJID_HEAD_TOP" name="A_head1"
-													onChange="OnChangeEquip(EQUIP_REGION_ID_HEAD_TOP, parseInt(this.value)) | AutoCalc()"></select>
+												<select id="OBJID_HEAD_TOP" name="A_head1"></select>
 											</td>
 										</tr>
 										<!-- パディング -->
@@ -788,8 +753,7 @@
 											<td>
 											</td>
 											<td>
-												<select id="OBJID_HEAD_MID" name="A_head2"
-													onChange="OnChangeEquip(EQUIP_REGION_ID_HEAD_MID, parseInt(this.value)) | AutoCalc()"></select>
+												<select id="OBJID_HEAD_MID" name="A_head2"></select>
 											</td>
 										</tr>
 										<!-- パディング -->
@@ -804,8 +768,7 @@
 											<td>
 											</td>
 											<td>
-												<select id="OBJID_HEAD_UNDER" name="A_head3"
-													onChange="OnChangeEquip(EQUIP_REGION_ID_HEAD_UNDER, parseInt(this.value)) | AutoCalc()"></select>
+												<select id="OBJID_HEAD_UNDER" name="A_head3"></select>
 											</td>
 										</tr>
 										<!-- パディング -->
@@ -816,8 +779,7 @@
 										<!-- 盾装備 -->
 										<tr id="OBJID_SHIELD_SLOT_ROOT">
 											<td id="ID_B4">
-												<select id="OBJID_SHIELD_REFINE" name="A_SHIELD_DEF_PLUS"
-													onChange="OnChangeRefined() | AutoCalc()">
+												<select id="OBJID_SHIELD_REFINE" name="A_SHIELD_DEF_PLUS">
 													<option value="0">+0
 													<option value="1">+1
 													<option value="2">+2
@@ -833,8 +795,7 @@
 											</td>
 											<td>
 												<select id="OBJID_SHIELD_TRANSCENDENCE"
-													name="A_SHIELD_DEF_Transcendence"
-													onChange="StAllCalc() | AutoCalc()">
+													name="A_SHIELD_DEF_Transcendence">
 													<option value="0">-
 													<option value="1">★1
 													<option value="2">★2
@@ -843,8 +804,7 @@
 												</select>
 											</td>
 											<td>
-												<select id="OBJID_SHIELD" name="A_left"
-													onChange="OnChangeEquip(EQUIP_REGION_ID_SHIELD, parseInt(this.value)) | AutoCalc()"></select>
+												<select id="OBJID_SHIELD" name="A_left"></select>
 											</td>
 										</tr>
 										<!-- パディング -->
@@ -855,8 +815,7 @@
 										<!-- 鎧装備 -->
 										<tr id="OBJID_BODY_SLOT_ROOT">
 											<td>
-												<select id="OBJID_BODY_REFINE" name="A_BODY_DEF_PLUS"
-													onChange="OnChangeRefined() | AutoCalc()">
+												<select id="OBJID_BODY_REFINE" name="A_BODY_DEF_PLUS">
 													<option value="0">+0
 													<option value="1">+1
 													<option value="2">+2
@@ -871,8 +830,7 @@
 												</select>
 											</td>
 											<td>
-												<select id="OBJID_BODY_TRANSCENDENCE" name="A_BODY_DEF_Transcendence"
-													onChange="StAllCalc() | AutoCalc()">
+												<select id="OBJID_BODY_TRANSCENDENCE" name="A_BODY_DEF_Transcendence">
 													<option value="0">-
 													<option value="1">★1
 													<option value="2">★2
@@ -881,8 +839,7 @@
 												</select>
 											</td>
 											<td>
-												<select id="OBJID_BODY" name="A_body"
-													onChange="OnChangeEquip(EQUIP_REGION_ID_BODY, parseInt(this.value)) | AutoCalc()"></select>
+												<select id="OBJID_BODY" name="A_body"></select>
 											</td>
 										</tr>
 										<!-- パディング -->
@@ -893,8 +850,7 @@
 										<!-- 肩装備 -->
 										<tr id="OBJID_SHOULDER_SLOT_ROOT">
 											<td>
-												<select id="OBJID_SHOULDER_REFINE" name="A_SHOULDER_DEF_PLUS"
-													onChange="OnChangeRefined() | AutoCalc()">
+												<select id="OBJID_SHOULDER_REFINE" name="A_SHOULDER_DEF_PLUS">
 													<option value="0">+0
 													<option value="1">+1
 													<option value="2">+2
@@ -910,8 +866,7 @@
 											</td>
 											<td>
 												<select id="OBJID_SHOULDER_TRANSCENDENCE"
-													name="A_SHOULDER_DEF_Transcendence"
-													onChange="StAllCalc() | AutoCalc()">
+													name="A_SHOULDER_DEF_Transcendence">
 													<option value="0">-
 													<option value="1">★1
 													<option value="2">★2
@@ -920,8 +875,7 @@
 												</select>
 											</td>
 											<td>
-												<select id="OBJID_SHOULDER" name="A_shoulder"
-													onChange="OnChangeEquip(EQUIP_REGION_ID_SHOULDER, parseInt(this.value)) | AutoCalc()"></select>
+												<select id="OBJID_SHOULDER" name="A_shoulder"></select>
 											</td>
 										</tr>
 										<!-- パディング -->
@@ -932,8 +886,7 @@
 										<!-- 靴装備 -->
 										<tr id="OBJID_SHOES_SLOT_ROOT">
 											<td>
-												<select id="OBJID_SHOES_REFINE" name="A_SHOES_DEF_PLUS"
-													onChange="OnChangeRefined() | AutoCalc()">
+												<select id="OBJID_SHOES_REFINE" name="A_SHOES_DEF_PLUS">
 													<option value="0">+0
 													<option value="1">+1
 													<option value="2">+2
@@ -948,8 +901,7 @@
 												</select>
 											</td>
 											<td>
-												<select id="OBJID_SHOES_TRANSCENDENCE" name="A_SHOES_DEF_Transcendence"
-													onChange="StAllCalc() | AutoCalc()">
+												<select id="OBJID_SHOES_TRANSCENDENCE" name="A_SHOES_DEF_Transcendence">
 													<option value="0">-
 													<option value="1">★1
 													<option value="2">★2
@@ -958,8 +910,7 @@
 												</select>
 											</td>
 											<td>
-												<select id="OBJID_SHOES" name="A_shoes"
-													onChange="OnChangeEquip(EQUIP_REGION_ID_SHOES, parseInt(this.value)) | AutoCalc()"></select>
+												<select id="OBJID_SHOES" name="A_shoes"></select>
 											</td>
 										</tr>
 										<!-- パディング -->
@@ -972,12 +923,10 @@
 											<td>
 											</td>
 											<td style="text-align:right">
-												<button type="button" id="OBJID_ACCESSORY_1_COPY"
-													onclick="copyAccs(1, 2)">↓</button>
+												<button type="button" id="OBJID_ACCESSORY_1_COPY">↓</button>
 											</td>
 											<td>
-												<select id="OBJID_ACCESSORY_1" name="A_acces1"
-													onChange="OnChangeEquip(EQUIP_REGION_ID_ACCESSORY_1, parseInt(this.value)) | AutoCalc()"></select>
+												<select id="OBJID_ACCESSORY_1" name="A_acces1"></select>
 											</td>
 										</tr>
 										<!-- パディング -->
@@ -990,12 +939,10 @@
 											<td>
 											</td>
 											<td style="text-align:right">
-												<button type="button" id="OBJID_ACCESSORY_2_COPY"
-													onclick="copyAccs(2, 1)">↑</button>
+												<button type="button" id="OBJID_ACCESSORY_2_COPY">↑</button>
 											</td>
 											<td>
-												<select id="OBJID_ACCESSORY_2" name="A_acces2"
-													onChange="OnChangeEquip(EQUIP_REGION_ID_ACCESSORY_2, parseInt(this.value)) | AutoCalc()"></select>
+												<select id="OBJID_ACCESSORY_2" name="A_acces2"></select>
 											</td>
 										</tr>
 									</table>
@@ -1029,8 +976,7 @@
 									<input type="checkbox" class="item-ctrl" checked>
 									<div class="item-conf">
 										<select class="item-refined" id="OBJID_SHADOW_WEAPON_REFINE"></select>
-										<select class="item-select" id="OBJID_SHADOW_WEAPON"
-											onChange="OnChangeEquip(EQUIP_REGION_ID_SHADOW_ARMS_RIGHT, parseInt(this.value))"></select>
+										<select class="item-select" id="OBJID_SHADOW_WEAPON"></select>
 									</div>
 
 									<input type="checkbox" class="rndopt-ctrl" checked>
@@ -1066,8 +1012,7 @@
 									<input type="checkbox" class="item-ctrl" checked>
 									<div class="item-conf">
 										<select class="item-refined" id="OBJID_SHADOW_SHIELD_REFINE"></select>
-										<select class="item-select" id="OBJID_SHADOW_SHIELD"
-											onChange="OnChangeEquip(EQUIP_REGION_ID_SHADOW_ARMS_LEFT, parseInt(this.value))"></select>
+										<select class="item-select" id="OBJID_SHADOW_SHIELD"></select>
 									</div>
 
 									<input type="checkbox" class="rndopt-ctrl" checked>
@@ -1247,8 +1192,7 @@
 									<input type="checkbox" class="item-ctrl" checked>
 									<div class="item-conf">
 										<select class="item-refined" id="OBJID_SHADOW_BODY_REFINE"></select>
-										<select class="item-select" id="OBJID_SHADOW_BODY"
-											onChange="OnChangeEquip(EQUIP_REGION_ID_SHADOW_BODY, parseInt(this.value))"></select>
+										<select class="item-select" id="OBJID_SHADOW_BODY"></select>
 									</div>
 
 									<input type="checkbox" class="rndopt-ctrl" checked>
@@ -1320,8 +1264,7 @@
 									<input type="checkbox" class="item-ctrl" checked>
 									<div class="item-conf">
 										<select class="item-refined" id="OBJID_SHADOW_SHOESE_REFINE"></select>
-										<select class="item-select" id="OBJID_SHADOW_SHOESE"
-											onChange="OnChangeEquip(EQUIP_REGION_ID_SHADOW_FOOT, parseInt(this.value))"></select>
+										<select class="item-select" id="OBJID_SHADOW_SHOESE"></select>
 									</div>
 
 									<input type="checkbox" class="rndopt-ctrl" checked>
@@ -1357,8 +1300,7 @@
 									<input type="checkbox" class="item-ctrl" checked>
 									<div class="item-conf">
 										<select class="item-refined" id="OBJID_SHADOW_ACCESSORY1_REFINE"></select>
-										<select class="item-select" id="OBJID_SHADOW_ACCESSORY1"
-											onChange="OnChangeEquip(EQUIP_REGION_ID_SHADOW_ACCESSORY_1, parseInt(this.value))"></select>
+										<select class="item-select" id="OBJID_SHADOW_ACCESSORY1"></select>
 									</div>
 
 									<input type="checkbox" class="rndopt-ctrl" checked>
@@ -1394,8 +1336,7 @@
 									<input type="checkbox" class="item-ctrl" checked>
 									<div class="item-conf">
 										<select class="item-refined" id="OBJID_SHADOW_ACCESSORY2_REFINE"></select>
-										<select class="item-select" id="OBJID_SHADOW_ACCESSORY2"
-											onChange="OnChangeEquip(EQUIP_REGION_ID_SHADOW_ACCESSORY_2, parseInt(this.value))"></select>
+										<select class="item-select" id="OBJID_SHADOW_ACCESSORY2"></select>
 									</div>
 
 									<input type="checkbox" class="rndopt-ctrl" checked>
@@ -1440,7 +1381,7 @@
 						<tbody>
 							<tr>
 								<td id="ID_PASS_SKILL">
-									<input type="checkbox" name="A1_SKILLSW" onclick="Click_PassSkillSW()">
+									<input type="checkbox" name="A1_SKILLSW">
 								</td>
 							</tr>
 						</tbody>
@@ -1506,14 +1447,12 @@
 									target="_blank">説明表示</a></span>
 							<div class="folding-block-body-MIG">
 								<div id="OBJID_ATTACK_SETTING_DIGIT3_MIG">
-									<input id="OBJID_CHECK_DIGIT3" type="checkbox"
-										onchange="CAttackMethodAreaComponentManager.OnChangeDigit3()">
+									<input id="OBJID_CHECK_DIGIT3" type="checkbox">
 									<label for="OBJID_CHECK_DIGIT3">3桁区切りで表示する</label>
 								</div>
 								<div id="OBJID_ATTACK_SETTING_AUTO_CALC_MIG">
 									<label for="OBJID_INPUT_ATTACK_METHOD_AUTO_CALC">自動再計算：</label>
-									<select id="OBJID_INPUT_ATTACK_METHOD_AUTO_CALC"
-										onchange="CAttackMethodAreaComponentManager.OnChangeAutoCalc()">
+									<select id="OBJID_INPUT_ATTACK_METHOD_AUTO_CALC">
 										<option value="0">攻撃方法変更時に自動で再計算しない</option>
 										<option value="1">攻撃方法変更時に自動で再計算する</option>
 										<option value="2">全ての項目変更時に自動で再計算しない</option>
@@ -1522,8 +1461,7 @@
 								</div>
 								<div id="OBJID_ATTACK_SETTING_ACTIVE_INTERVAL_MIG">
 									<label for="OBJID_SELECT_ACTIVE_INTERVAL">アクティブスキルの限界攻撃間隔：</label>
-									<select id="OBJID_SELECT_ACTIVE_INTERVAL" name="Conf01"
-										onchange="CAttackMethodAreaComponentManager.OnChangeAttackInterval()">
+									<select id="OBJID_SELECT_ACTIVE_INTERVAL" name="Conf01">
 										<option value="10">0.10秒(秒間10発)</option>
 										<option value="11">0.11秒(秒間9発)</option>
 										<option value="12">0.12秒(秒間8発)</option>
@@ -1540,8 +1478,7 @@
 								</div>
 								<div id="OBJID_ATTACK_SETTING_CASTSIM_INTERVAL_MIG">
 									<label for="OBJID_SELECT_CASTSIM_INTERVAL">詠唱イメージ更新間隔：</label>
-									<select id="OBJID_SELECT_CASTSIM_INTERVAL"
-										onchange="CAttackMethodAreaComponentManager.OnChangeCastSimInterval()">
+									<select id="OBJID_SELECT_CASTSIM_INTERVAL">
 										<option value="10" selected>10ミリ秒(最も滑らか)</option>
 										<option value="25">25ミリ秒</option>
 										<option value="50">50ミリ秒</option>
@@ -1550,13 +1487,11 @@
 									</select>
 								</div>
 								<div id="OBJID_ATTACK_SETTING_POINT_CAP_MIG">
-									<input id="OBJID_CHECK_POINT_CAP" type="checkbox"
-										onchange="CAttackMethodAreaComponentManager.OnChangePointCap()">
+									<input id="OBJID_CHECK_POINT_CAP" type="checkbox">
 									<label for="OBJID_CHECK_POINT_CAP">ポイントキャップを有効にする</label>
 								</div>
 								<div id="OBJID_ATTACK_SETTING_DPS_ACTUAL_MIG">
-									<input id="OBJID_CHECK_DPS_ACTUAL" type="checkbox"
-										onchange="CAttackMethodAreaComponentManager.OnChangeDpsActual()">
+									<input id="OBJID_CHECK_DPS_ACTUAL" type="checkbox">
 									<label for="OBJID_CHECK_DPS_ACTUAL">設置スキルの重ね置きDPSを計算に含める</label>
 								</div>
 							</div>
@@ -1749,7 +1684,7 @@
 						<tbody>
 							<tr>
 								<td id="SP_SIEN01">
-									<input type="checkbox" name="A3_SKILLSW" onclick="Click_Skill3SW()">
+									<input type="checkbox" name="A3_SKILLSW">
 								</td>
 							</tr>
 						</tbody>
@@ -1759,7 +1694,7 @@
 						<tbody>
 							<tr>
 								<td id="SP_SIEN02">
-									<input type="checkbox" name="A4_SKILLSW" onclick="Click_Skill4SW()">
+									<input type="checkbox" name="A4_SKILLSW">
 								</td>
 							</tr>
 						</tbody>
@@ -1778,8 +1713,7 @@
 						<tbody>
 							<tr>
 								<td id="OBJID_SP_SIEN05">
-									<input id="OBJID_CHECK_A7_SKILLSW" type="checkbox" name="A7_SKILLSW"
-										onclick="Click_Skill7SW()">
+									<input id="OBJID_CHECK_A7_SKILLSW" type="checkbox" name="A7_SKILLSW">
 								</td>
 							</tr>
 						</tbody>
@@ -1798,7 +1732,7 @@
 						<tbody>
 							<tr>
 								<td id="ID_ETC">
-									<input type="checkbox" name="A8_SKILLSW" onclick="Click_Skill8SW()">
+									<input type="checkbox" name="A8_SKILLSW">
 								</td>
 							</tr>
 						</tbody>
@@ -2050,7 +1984,7 @@
     <div id="ai-apply-section" style="display:none; margin-top:12px; padding:10px; border:1px solid #b0c4de; background:#f0f8ff; border-radius:6px;">
       <b>▼ 装備欄に反映するアイテム（※AI回答と一致しない場合があります）</b>
       <pre id="ai-apply-preview" style="margin:6px 0 8px; font-size:12px; white-space:pre-wrap;"></pre>
-      <button id="ai-apply" type="button" onclick="window.applyEquipmentSuggestions()">装備欄に反映する</button>
+      <button id="ai-apply" type="button">装備欄に反映する</button>
     </div>
     <h3>ログ</h3>
     <div id="ai-log" style="white-space:pre-wrap; background:#eee; padding:10px; height:150px; overflow-y:scroll; font-size:12px;"></div>
@@ -2164,6 +2098,7 @@ document.addEventListener("DOMContentLoaded", () => {
 <script type="module" src="js/foot.js"></script>
 
 <!-- 左メニュー用 javascript ファイル -->
+<script type="module" src="../../ro4/m/js/eventsetup.js"></script>
 <script type="module" src="../frame.js"></script>
 
 </html>

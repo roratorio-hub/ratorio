@@ -31,7 +31,6 @@ export class CSaveDataConst {
 	static propNameOptCode = "optCode";
 
 
-
 	/**
 	 * プロパティ名：職業ID.
 	 */
@@ -183,7 +182,6 @@ export class CSaveDataConst {
 	static propNameArrow = "equipArrow";
 
 
-
 	/**
 	 * プロパティ名：装備定義ID.
 	 * （作成した装備情報を識別するID。装備位置などから参照される）
@@ -296,7 +294,6 @@ export class CSaveDataConst {
 	static propNameRndOptValue5 = "rndOptValue5";
 
 
-
 	/**
 	 * プロパティ名：装備位置（右手武器）.
 	 */
@@ -358,12 +355,10 @@ export class CSaveDataConst {
 	static propNameEqpRgnArrow = "eqpRgnItemArrow";
 
 
-
 	/**
 	 * プロパティ名：属性付与.
 	 */
 	static propNameArmsElement = "armsElement";
-
 
 
 	/**
@@ -380,7 +375,6 @@ export class CSaveDataConst {
 	 * プロパティ名：BUFFレベル.
 	 */
 	static propNameBuffLv = "buffLv";
-
 
 
 	/**
@@ -409,7 +403,6 @@ export class CSaveDataConst {
 	static propNameSubBattlePot = "battlePot";
 
 
-
 	/**
 	 * プロパティ名：時限効果ID.
 	 */
@@ -419,7 +412,6 @@ export class CSaveDataConst {
 	 * サブプロパティ名：クイックOFF.
 	 */
 	static propNameSubQuickOff = "quickOff";
-
 
 
 	/**
@@ -436,7 +428,6 @@ export class CSaveDataConst {
 	 * プロパティ名：オートスペル発動率.
 	 */
 	static propNameAutoSpellProb = "autoSpellProb";
-
 
 
 	/**
@@ -879,7 +870,6 @@ export class CSaveDataConst {
 	 * サブプロパティ名：設定無効化.
 	 */
 	static propNameSubInvalidateSettings = "invalidateSettings";
-
 
 
 	/**
@@ -1408,7 +1398,6 @@ export class CSaveDataConst {
 	static propNameKiriEffect = "kiriEffect";
 
 
-
 	/**
 	 * プロパティ名：ダメージ上昇条件タイプ.
 	 */
@@ -1508,7 +1497,6 @@ export class CSaveDataConst {
 	 * プロパティ名：クールタイム減少（％）.
 	 */
 	static propNameSpecCoolTimeDown = "specCoolTimeDown";
-
 
 
 	/**
@@ -1782,7 +1770,6 @@ export class CSaveDataConst {
 	static propNameStRace = "stRace";
 
 
-
 	/**
 	 * プロパティ名：MobLv.
 	 */
@@ -1882,7 +1869,6 @@ export class CSaveDataConst {
 	 * プロパティ名：特性ステータス（Mres）.
 	 */
 	static propNameStMres = "stMres";
-
 
 
 	/**
@@ -2071,7 +2057,6 @@ export class CSaveDataConst {
 	static eqpRgnKindShadow = 3;
 
 
-
 	/**
 	 * プロパティ値：特化種別（攻撃｜物理）.
 	 */
@@ -2091,7 +2076,6 @@ export class CSaveDataConst {
 	 * プロパティ値：特化種別（防御｜すべて）.
 	 */
 	static specKindDefencekAny = 23;
-
 
 
 	/**
@@ -2142,5 +2126,3 @@ export class CSaveDataConst {
 }
 // 定数を凍結
 Object.freeze(CSaveDataConst);
-
-Object.assign(window, { CSaveDataConst });
