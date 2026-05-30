@@ -1,12 +1,14 @@
 // === AUTO-GENERATED IMPORTS ===
 import { AutoCalc } from './head.js';
 import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, myInnerHtml } from '../../../roro/common/js/util.js';
+import { n_A_PassSkill7, ID_BUFF_MANUK_ISHI, ID_BUFF_VESPER_HONEY } from './skillstate.js';
+export { n_A_PassSkill7 } from './skillstate.js';
 // === END AUTO-GENERATED IMPORTS ===
 import { CAttackMethodAreaComponentManager } from './CAttackMethodAreaComponentManager.js';
 "use strict"
 /**
  * 画面下部の「アイテム(食品/他)」のバフウィンドウ構築関数群
-*/ 
+*/
 
 /**
  * Note:
@@ -15,11 +17,6 @@ import { CAttackMethodAreaComponentManager } from './CAttackMethodAreaComponentM
  * ただし saveload.js が容易に変更できない書き方になっているから迂闊にセーブデータ領域を拡張してはいけない
  * 70 までは増やしてOK
  */
-
-/** アイテム・食品他 設定値の配列数 */
-export const BUFF_CONF_FOOD_LIMIT = 53;
-/** アイテム・食品他 設定値の配列 */
-export let n_A_PassSkill7 = Array(BUFF_CONF_FOOD_LIMIT).fill(0);
 /** アイテム・食品他 ウィンドウ可視状態 */
 export let n_Skill7SW = false;
 export function setN_Skill7SW(v) { n_Skill7SW = v; }
@@ -46,8 +43,7 @@ export const ID_BUFF_STATUS_20_VIT = 18;
 export const ID_BUFF_STATUS_20_INT = 19;
 export const ID_BUFF_STATUS_20_DEX = 20;
 export const ID_BUFF_STATUS_20_LUK = 21;
-export const ID_BUFF_MANUK_ISHI = 31;
-export const ID_BUFF_VESPER_HONEY = 34;
+export { ID_BUFF_MANUK_ISHI, ID_BUFF_VESPER_HONEY } from './skillstate.js';
 export const ID_BUFF_SOUSHO_CARD = 52;
 
 /**
@@ -426,8 +422,3 @@ export function toggleAllStatus20() {
 	].forEach(n => document.getElementById(`OBJID_CHECK_A7_Skill${n}`).click());
 }
 
-if (typeof window !== 'undefined') {
-    window.n_A_PassSkill7 = n_A_PassSkill7;
-    window.ID_BUFF_MANUK_ISHI = ID_BUFF_MANUK_ISHI;
-    window.ID_BUFF_VESPER_HONEY = ID_BUFF_VESPER_HONEY;
-}

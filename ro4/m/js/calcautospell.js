@@ -57,6 +57,7 @@ import {
          SKILL_ID_STORM_GUST, SKILL_ID_TENRACHIMO, SKILL_ID_TURN_UNDEAD,
          SKILL_ID_TUZYO_KOGEKI, SKILL_ID_WUG_BITE, SKILL_ID_WUG_STRIKE
 } from '../../../roro/m/js/skill.dat.js';
+import { UsedSkillSearch } from './skillstate.js';
 // === END AUTO-GENERATED IMPORTS ===
 /* オートスペル設定　最大数 */
 export const AUTO_SPELL_SETTING_COUNT = 20;

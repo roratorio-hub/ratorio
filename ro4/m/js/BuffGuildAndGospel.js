@@ -3,15 +3,14 @@ import '../../../roro/m/js/skill.h.js';
 import { AutoCalc } from './head.js';
 import { SkillObjNew } from '../../../roro/m/js/skill.dat.js';
 import { myInnerHtml } from '../../../roro/common/js/util.js';
+import { n_A_PassSkill4 } from './skillstate.js';
+export { n_A_PassSkill4 } from './skillstate.js';
 // === END AUTO-GENERATED IMPORTS ===
 "use strict"
 /**
  * 画面下部の「ギルドスキル/ゴスペル/他」のバフウィンドウ構築関数群
-*/ 
+*/
 
-export const BUFF_CONF_GUILD_LIMIT = 36;
-/** ギルドスキル/ゴスペル/他 設定値の配列 */
-export let n_A_PassSkill4 = Array(BUFF_CONF_GUILD_LIMIT).fill(0);
 /** ギルドスキル/ゴスペル/他 ウィンドウ可視状態 */
 export let n_Skill4SW = false;
 export function setN_Skill4SW(v) { n_Skill4SW = v; }
@@ -146,6 +145,6 @@ export function Click_A4(recalc = false){
 }
 
 if (typeof window !== 'undefined') {
-    window.n_A_PassSkill4 = n_A_PassSkill4;
     window.Click_A4 = Click_A4;
 }
+

@@ -33,6 +33,7 @@ import {
          SKILL_ID_TANKEN_YUMI_SHUREN, SKILL_ID_TATE_SHUREN, SKILL_ID_TWOHAND_DEFENDING,
          SKILL_ID_TWO_AXE_DEFENDING, SKILL_ID_YARI_KATATE_KEN_SHUREN
 } from '../../../roro/m/js/skill.dat.js';
+import { UsedSkillSearch, n_A_PassSkill, n_A_PassSkill8 } from './skillstate.js';
 // === END AUTO-GENERATED IMPORTS ===
 import { CAttackMethodAreaComponentManager } from './CAttackMethodAreaComponentManager.js';
 export let g_pureStatus = [];

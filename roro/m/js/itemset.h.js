@@ -6,6 +6,7 @@ import { CARD_ID_NONE, CardObjNew } from './card.dat.js';
 import { CARD_REGION_ID_COUNT } from './common.js';
 import { ITEM_ID_NOEQUIP_SET, ItemObjNew } from './item.dat.js';
 import { PET_OBJ } from './pet.dat.js';
+import { n_A_PassSkill8 } from '../../../ro4/m/js/skillstate.js';
 // === END AUTO-GENERATED IMPORTS ===
 
 // ペットID指定のオフセット（カードと同じように指定するので、カードIDで実現しないぐらい大きな値を設定）

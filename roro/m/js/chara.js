@@ -377,6 +377,7 @@ import {
          SKILL_ID_VACUUM_EXTREME, SKILL_ID_WASHINO_ME, SKILL_ID_WATER_DRAGON_BREATH,
          SKILL_ID_WEAPON_CRUSH, SKILL_ID_WUG_RIDER, SKILL_ID_YARI_SEISAKU
 } from './skill.dat.js';
+import { n_A_PassSkill3, n_A_PassSkill4, n_A_PassSkill7, n_A_PassSkill8, UsedSkillSearch } from '../../../ro4/m/js/skillstate.js';
 // === END AUTO-GENERATED IMPORTS ===
 
 // キャラクターデータインデックス

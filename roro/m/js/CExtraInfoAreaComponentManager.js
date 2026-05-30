@@ -59,6 +59,7 @@ import {
          SKILL_ID_SP_KAIFUKURYOKU_KOZYO, SKILL_ID_TEIOAPUCHAGI, SKILL_ID_ZANEI,
          SKILL_ID_ZYOKODO
 } from './skill.dat.js';
+import { UsedSkillSearch } from '../../../ro4/m/js/skillstate.js';
 // === END AUTO-GENERATED IMPORTS ===
 //----------------------------------------------------------------
 // 拡張情報の種類

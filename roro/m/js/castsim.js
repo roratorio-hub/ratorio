@@ -20,6 +20,7 @@ import {
 } from './usableskill.dat.js';
 import { GetHigherJobSeriesID, GetLowerJobSeriesID } from '../../../ro4/m/js/data/mig.job.h.js';
 import { HtmlCreateElement, HtmlCreateTextNode, HtmlRemoveOptionAll, HtmlCreateElementOption, HtmlRemoveAllChild } from '../../common/js/util.js';
+import { n_A_PassSkill7 } from '../../../ro4/m/js/skillstate.js';
 // === END AUTO-GENERATED IMPORTS ===
 
 

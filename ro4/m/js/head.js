@@ -511,6 +511,7 @@ import {
          SKILL_ID_ZIRAISHIN, SKILL_ID_ZYOKODO, SKILL_ID_ZYUMONZIGIRI,
          SKILL_ID_ZYURYOKU_CHOSE, SKILL_ID_ZYUTSUSHIKI_KAIHO
 } from '../../../roro/m/js/skill.dat.js';
+import { UsedSkillSearch, n_A_PassSkill3, n_A_PassSkill4, n_A_PassSkill7, n_A_PassSkill8, ID_BUFF_MANUK_ISHI, ID_BUFF_VESPER_HONEY } from './skillstate.js';
 // === END AUTO-GENERATED IMPORTS ===
 
 "use strict";
