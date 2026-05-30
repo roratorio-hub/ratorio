@@ -837,7 +837,6 @@ export function CMobConfInputAreaComponentManager(confMngParam) {
 		objInput.setAttribute("type", "button");
 		objInput.setAttribute("value", "クリア");
 		objInput.addEventListener('click', () => CMobConfInputAreaComponentManager.ClearValueCommon(this.instanceNo, inputId));
-//		objInput.setAttribute("onclick", "CMobConfInputAreaComponentManager.ClearValueCommon(" + this.instanceNo + ", \"" + inputId + "\")");
 
 		objTdSub = HtmlCreateElement("td", objTrSub);
 		objTdSub.setAttribute("style", "text-align : center;");
@@ -846,7 +845,6 @@ export function CMobConfInputAreaComponentManager(confMngParam) {
 		objInput.setAttribute("type", "button");
 		objInput.setAttribute("value", "コピー");
 		objInput.addEventListener('click', () => CMobConfInputAreaComponentManager.CopyValueCommon(this.instanceNo, inputId));
-//		objInput.setAttribute("onclick", "CMobConfInputAreaComponentManager.CopyValueCommon(" + this.instanceNo + ", \"" + inputId + "\")");
 	};
 
 

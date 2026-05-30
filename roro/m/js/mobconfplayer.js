@@ -883,7 +883,7 @@ export function BuildUpMobConfPlayerSelectArea(objRoot, bAsExpand) {
 			// 選択セレクトボックスを生成
 			objSelect = document.createElement("select");
 			objSelect.setAttribute("id", "OBJID_SELECT_MOB_CONF_PLAYER_" + confId);
-			objSelect.setAttribute("onChange", "OnChangeMobConfPlayer(true)");
+			objSelect.addEventListener('change', () => OnChangeMobConfPlayer(true));
 			objTd.appendChild(objSelect);
 
 			// 範囲定義に従い、セレクトオプションを生成
@@ -906,7 +906,7 @@ export function BuildUpMobConfPlayerSelectArea(objRoot, bAsExpand) {
 			objInput = document.createElement("input");
 			objInput.setAttribute("id", "OBJID_INPUT_MOB_CONF_PLAYER_" + confId);
 			objInput.setAttribute("type", "checkbox");
-			objInput.setAttribute("onChange", "OnChangeMobConfPlayer(true)");
+			objInput.addEventListener('change', () => OnChangeMobConfPlayer(true));
 			objTd.appendChild(objInput);
 
 			// 初期値設定
@@ -925,7 +925,7 @@ export function BuildUpMobConfPlayerSelectArea(objRoot, bAsExpand) {
 			objInput.setAttribute("type", "text");
 			objInput.setAttribute("id", "OBJID_INPUT_MOB_CONF_PLAYER_" + confId);
 			objInput.setAttribute("size", "6");
-			objInput.setAttribute("onChange", "OnChangeMobConfPlayer(true)");
+			objInput.addEventListener('change', () => OnChangeMobConfPlayer(true));
 			objTd.appendChild(objInput);
 
 			// 初期値設定
@@ -949,7 +949,7 @@ export function BuildUpMobConfPlayerSelectArea(objRoot, bAsExpand) {
 				// 属性選択セレクトボックスを生成
 				objSelect = document.createElement("select");
 				objSelect.setAttribute("id", "OBJID_SELECT_MOB_CONF_PLAYER_" + confId);
-				objSelect.setAttribute("onChange", "OnChangeMobConfPlayer(true)");
+				objSelect.addEventListener('change', () => OnChangeMobConfPlayer(true));
 				objTd.appendChild(objSelect);
 
 				objOption = HtmlCreateElementOption(0, "無1", objSelect);
@@ -974,7 +974,7 @@ export function BuildUpMobConfPlayerSelectArea(objRoot, bAsExpand) {
 				// 効果量選択セレクトボックスを生成
 				objSelect = document.createElement("select");
 				objSelect.setAttribute("id", "OBJID_SELECT_MOB_CONF_PLAYER_" + confId);
-				objSelect.setAttribute("onChange", "OnChangeMobConfPlayer(true)");
+				objSelect.addEventListener('change', () => OnChangeMobConfPlayer(true));
 				objTd.appendChild(objSelect);
 
 				objOption = HtmlCreateElementOption(0, "なし", objSelect);
@@ -995,7 +995,7 @@ export function BuildUpMobConfPlayerSelectArea(objRoot, bAsExpand) {
 				// 戦闘エリア選択セレクトボックスを生成
 				objSelect = document.createElement("select");
 				objSelect.setAttribute("id", "OBJID_SELECT_MOB_CONF_PLAYER_" + confId);
-				objSelect.setAttribute("onChange", "OnChangeMobConfPlayer(true)");
+				objSelect.addEventListener('change', () => OnChangeMobConfPlayer(true));
 				objTd.appendChild(objSelect);
 
 				objOption = HtmlCreateElementOption(MOB_CONF_PLAYER_ID_SENTO_AREA_NONE, "-", objSelect);
@@ -1020,7 +1020,7 @@ export function BuildUpMobConfPlayerSelectArea(objRoot, bAsExpand) {
 				// 種族選択セレクトボックスを生成
 				objSelect = document.createElement("select");
 				objSelect.setAttribute("id", "OBJID_SELECT_MOB_CONF_PLAYER_" + confId);
-				objSelect.setAttribute("onChange", "OnChangeMobConfPlayer(true)");
+				objSelect.addEventListener('change', () => OnChangeMobConfPlayer(true));
 				objTd.appendChild(objSelect);
 
 				objOption = HtmlCreateElementOption(MOB_CONF_PLAYER_ID_SHUZOKU_HUMAN, "人間", objSelect);

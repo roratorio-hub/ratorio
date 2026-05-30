@@ -43,6 +43,7 @@ import { CCharaConfNizi } from './CCharaConfNizi.js';
 import { CCharaConfSanzi } from './CCharaConfSanzi.js';
 import { SKILL_ID_EXPIATIO, SKILL_ID_HAKKEI } from './skill.dat.js';
 import { UsedSkillSearch, n_A_PassSkill3, n_A_PassSkill8 } from '../../../ro4/m/js/skillstate.js';
+import { GetMobConfInput } from './CMobConfInput.js';
 // === END AUTO-GENERATED IMPORTS ===
 /**
  * モンスター基本情報を取得する

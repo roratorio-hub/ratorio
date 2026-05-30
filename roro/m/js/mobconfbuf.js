@@ -423,7 +423,7 @@ export function BuildUpMobConfBufSelectArea(objRoot, bAsExpand) {
 			// 選択セレクトボックスを生成
 			objSelect = document.createElement("select");
 			objSelect.setAttribute("id", "OBJID_SELECT_MOB_CONF_BUF_" + confId);
-			objSelect.setAttribute("onChange", "OnChangeMobConfBuf(true)");
+			objSelect.addEventListener('change', () => OnChangeMobConfBuf(true));
 			objTd.appendChild(objSelect);
 
 			// 範囲定義に従い、セレクトオプションを生成
@@ -446,7 +446,7 @@ export function BuildUpMobConfBufSelectArea(objRoot, bAsExpand) {
 			objInput = document.createElement("input");
 			objInput.setAttribute("id", "OBJID_INPUT_MOB_CONF_BUF_" + confId);
 			objInput.setAttribute("type", "checkbox");
-			objInput.setAttribute("onChange", "OnChangeMobConfBuf(true)");
+			objInput.addEventListener('change', () => OnChangeMobConfBuf(true));
 			objTd.appendChild(objInput);
 
 			// 初期値設定
@@ -465,7 +465,7 @@ export function BuildUpMobConfBufSelectArea(objRoot, bAsExpand) {
 			objInput.setAttribute("type", "text");
 			objInput.setAttribute("id", "OBJID_INPUT_MOB_CONF_BUF_" + confId);
 			objInput.setAttribute("size", "6");
-			objInput.setAttribute("onChange", "OnChangeMobConfBuf(true)");
+			objInput.addEventListener('change', () => OnChangeMobConfBuf(true));
 			objTd.appendChild(objInput);
 
 			// 初期値設定
@@ -489,7 +489,7 @@ export function BuildUpMobConfBufSelectArea(objRoot, bAsExpand) {
 				// 属性選択セレクトボックスを生成
 				objSelect = document.createElement("select");
 				objSelect.setAttribute("id", "OBJID_SELECT_MOB_CONF_BUF_" + confId);
-				objSelect.setAttribute("onChange", "OnChangeMobConfBuf(true)");
+				objSelect.addEventListener('change', () => OnChangeMobConfBuf(true));
 				objTd.appendChild(objSelect);
 
 				objOption = HtmlCreateElementOption(0, "なし", objSelect);
@@ -556,7 +556,7 @@ export function BuildUpMobConfBufSelectArea(objRoot, bAsExpand) {
 				// レベル選択セレクトボックスを生成
 				objSelect = document.createElement("select");
 				objSelect.setAttribute("id", "OBJID_SELECT_MOB_CONF_BUF_" + confId);
-				objSelect.setAttribute("onChange", "OnChangeMobConfBuf(true)");
+				objSelect.addEventListener('change', () => OnChangeMobConfBuf(true));
 				objTd.appendChild(objSelect);
 
 				objOption = HtmlCreateElementOption(0, "0", objSelect);
@@ -579,7 +579,7 @@ export function BuildUpMobConfBufSelectArea(objRoot, bAsExpand) {
 				// レベル選択セレクトボックスを生成
 				objSelect = document.createElement("select");
 				objSelect.setAttribute("id", "OBJID_SELECT_MOB_CONF_BUF_" + confId);
-				objSelect.setAttribute("onChange", "OnChangeMobConfBuf(true)");
+				objSelect.addEventListener('change', () => OnChangeMobConfBuf(true));
 				objTd.appendChild(objSelect);
 
 				objOption = HtmlCreateElementOption(0, "等倍", objSelect);

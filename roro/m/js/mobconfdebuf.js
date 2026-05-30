@@ -985,7 +985,7 @@ export function BuildUpMobConfDebufSelectArea(objRoot, bAsExpand) {
 			// 選択セレクトボックスを生成
 			objSelect = document.createElement("select");
 			objSelect.setAttribute("id", "OBJID_SELECT_MOB_CONF_DEBUF_" + confId);
-			objSelect.setAttribute("onChange", "OnChangeMobConfDebuf(true)");
+			objSelect.addEventListener('change', () => OnChangeMobConfDebuf(true));
 			objTd.appendChild(objSelect);
 
 			// 範囲定義に従い、セレクトオプションを生成
@@ -1007,7 +1007,7 @@ export function BuildUpMobConfDebufSelectArea(objRoot, bAsExpand) {
 			objInput = document.createElement("input");
 			objInput.setAttribute("id", "OBJID_INPUT_MOB_CONF_DEBUF_" + confId);
 			objInput.setAttribute("type", "checkbox");
-			objInput.setAttribute("onChange", "OnChangeMobConfDebuf(true)");
+			objInput.addEventListener('change', () => OnChangeMobConfDebuf(true));
 			objTd.appendChild(objInput);
 
 			// 初期値設定
@@ -1025,7 +1025,7 @@ export function BuildUpMobConfDebufSelectArea(objRoot, bAsExpand) {
 			objInput.setAttribute("type", "text");
 			objInput.setAttribute("id", "OBJID_INPUT_MOB_CONF_DEBUF_" + confId);
 			objInput.setAttribute("size", "6");
-			objInput.setAttribute("onChange", "OnChangeMobConfDebuf(true)");
+			objInput.addEventListener('change', () => OnChangeMobConfDebuf(true));
 			objTd.appendChild(objInput);
 
 			// 初期値設定
@@ -1050,7 +1050,7 @@ export function BuildUpMobConfDebufSelectArea(objRoot, bAsExpand) {
 				// 選択セレクトボックスを生成
 				objSelect = document.createElement("select");
 				objSelect.setAttribute("id", "OBJID_SELECT_MOB_CONF_DEBUF_" + confId);
-				objSelect.setAttribute("onChange", "OnChangeMobConfDebuf(true)");
+				objSelect.addEventListener('change', () => OnChangeMobConfDebuf(true));
 				objTd.appendChild(objSelect);
 
 				for (var loopIdx = 0; loopIdx < textArray.length; loopIdx++) {

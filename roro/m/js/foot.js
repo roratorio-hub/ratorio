@@ -30670,7 +30670,7 @@ export function OnClickSimulateCastTimeStart(castTime, delayTime) {
 
 	objInput = document.getElementById("OBJID_BUTTON_SIMULATE_CAST_TIME");
 	objInput.setAttribute("value", "ｷｬﾝｾﾙ");
-	objInput.setAttribute("onClick", "OnClickSimulateCastTimeStop(" + castTime + ", " + delayTime + ")");
+	objInput.onclick = () => OnClickSimulateCastTimeStop(castTime, delayTime);
 
 	objProgress = document.getElementById("OBJID_PROGRESS_SIMULATE_CAST_TIME");
 	objProgress.setAttribute("max", castTime * 1000);
@@ -30737,7 +30737,7 @@ export function OnClickSimulateCastTimeStop(castTime, delayTime) {
 
 	objInput = document.getElementById("OBJID_BUTTON_SIMULATE_CAST_TIME");
 	objInput.setAttribute("value", "詠唱!!");
-	objInput.setAttribute("onClick", "OnClickSimulateCastTimeStart(" + castTime + ", " + delayTime + ")");
+	objInput.onclick = () => OnClickSimulateCastTimeStart(castTime, delayTime);
 }
 
 
