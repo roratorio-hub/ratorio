@@ -55,6 +55,7 @@ import { ClearCardSlot, RebuildCardSelect, SetCardSlotEnability } from './hmcard
 import { LEARNED_SKILL_MAX_COUNT, n_A_LearnedSkill, OnClickSkillSWLearned, UpdateLearnedSkillSettingColoring } from './learnedskill.js';
 import { GetObjectIdRndOptKind, GetObjectIdRndOptValue, RebuildRndOptSelect, SetRndOptEnablity, SetRndOptEnablityAll, SetUpRndOptValue } from './hmrndopt.js';
 import { CItemInfoManager } from './CItemInfoManager.js';
+import { g_extraInfoDataBridge } from './CExtraInfoDataBridge.js';
 // === END AUTO-GENERATED IMPORTS ===
 var g_bSuperNoviceFullWeapon;
 var n_A_WeaponType;
@@ -181,9 +182,9 @@ export function changeJobSettings(jobId) {
 	// 攻撃手段欄の初期化
 	CAttackMethodAreaComponentManager.RebuildControls();
 	// 拡張表示の選択値記憶のリセット
-	CExtraInfoAreaComponentManager.ClearStoredValueAll(true);
+	g_extraInfoDataBridge.clearStoredValueAll?.(true);
 	// 拡張表示の再構築
-	CExtraInfoAreaComponentManager.RebuildDispAreaAll();
+	g_extraInfoDataBridge.rebuildDispAreaAll?.();
 }
 
 

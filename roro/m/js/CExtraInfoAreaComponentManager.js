@@ -60,6 +60,7 @@ import {
          SKILL_ID_ZYOKODO
 } from './skill.dat.js';
 import { UsedSkillSearch } from '../../../ro4/m/js/skillstate.js';
+import { g_extraInfoDataBridge } from './CExtraInfoDataBridge.js';
 // === END AUTO-GENERATED IMPORTS ===
 //----------------------------------------------------------------
 // 拡張情報の種類
@@ -5676,6 +5677,9 @@ CExtraInfoAreaComponentManager.setReferData = function (charaData, specData, mob
 	CExtraInfoAreaComponentManager.charaData = charaData;
 	CExtraInfoAreaComponentManager.specData = specData;
 	CExtraInfoAreaComponentManager.mobData = mobData;
+	g_extraInfoDataBridge.charaData = charaData;
+	g_extraInfoDataBridge.specData = specData;
+	g_extraInfoDataBridge.mobData = mobData;
 };
 
 
@@ -5903,7 +5907,5 @@ CExtraInfoAreaComponentManager.testes = function () {
 };
 */
 
-if (typeof window !== 'undefined') {
-    window.CExtraInfoAreaComponentManager = CExtraInfoAreaComponentManager;
-}
-
+g_extraInfoDataBridge.clearStoredValueAll = (force) => CExtraInfoAreaComponentManager.ClearStoredValueAll(force);
+g_extraInfoDataBridge.rebuildDispAreaAll = () => CExtraInfoAreaComponentManager.RebuildDispAreaAll();

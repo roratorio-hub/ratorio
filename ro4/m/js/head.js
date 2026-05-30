@@ -512,6 +512,7 @@ import {
          SKILL_ID_ZYURYOKU_CHOSE, SKILL_ID_ZYUTSUSHIKI_KAIHO
 } from '../../../roro/m/js/skill.dat.js';
 import { UsedSkillSearch, n_A_PassSkill3, n_A_PassSkill4, n_A_PassSkill7, n_A_PassSkill8, ID_BUFF_MANUK_ISHI, ID_BUFF_VESPER_HONEY } from './skillstate.js';
+import { g_extraInfoDataBridge } from '../../../roro/m/js/CExtraInfoDataBridge.js';
 // === END AUTO-GENERATED IMPORTS ===
 
 "use strict";
@@ -11565,7 +11566,7 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 
 		// 簡易戦闘結果: "0秒(276)" or "0.03秒(256.5)"
 		var castText = funcDIG3PXSecondCompact(battleCalcResult.castVary, 2);
-		castText += `(${CExtraInfoAreaComponentManager.charaData[CHARA_DATA_INDEX_CAST_PARAM]})`;
+		castText += `(${g_extraInfoDataBridge.charaData[CHARA_DATA_INDEX_CAST_PARAM]})`;
 		funcRenderResultTinyHtml(objGridTiny, "詠唱", castText);
 
 		// 固定詠唱時間のみ

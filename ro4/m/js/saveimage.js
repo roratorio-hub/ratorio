@@ -8,6 +8,7 @@ import { ItemObjNew } from '../../../roro/m/js/item.dat.js';
 import { g_rndOptArray } from '../../../roro/m/js/rndopt.dat.js';
 import { GetRndOptDispName } from '../../../roro/m/js/rndopt.h.js';
 import { g_equipRndOptTable } from '../../../roro/m/js/rndopttype.h.js';
+import { g_extraInfoDataBridge } from '../../../roro/m/js/CExtraInfoDataBridge.js';
 // === END AUTO-GENERATED IMPORTS ===
 // sample
 // https://ragnarokonline.gungho.jp/campaign_event/campaign/baselv220cp-2.html#modal
@@ -503,19 +504,19 @@ export function generateImage() {
             <th>必中</th>
             <td>${g_perfectHitRate} %</td>
             <th>錐効果</th>
-            <td>${CExtraInfoAreaComponentManager.specData[ITEM_SP_KIRI_EFFECT] > 0 ? "あり" : "なし"}</td>
+            <td>${g_extraInfoDataBridge.specData[ITEM_SP_KIRI_EFFECT] > 0 ? "あり" : "なし"}</td>
           </tr>
           <tr>
             <th>Def無視</th>
-            <td>${CExtraInfoAreaComponentManager.specData[ITEM_SP_IGNORE_DEF_RACE_ALL] + CExtraInfoAreaComponentManager.specData[ITEM_SP_IGNORE_DEF_ALL]} %</td>
+            <td>${g_extraInfoDataBridge.specData[ITEM_SP_IGNORE_DEF_RACE_ALL] + g_extraInfoDataBridge.specData[ITEM_SP_IGNORE_DEF_ALL]} %</td>
             <th>Mdef無視</th>
-            <td>${CExtraInfoAreaComponentManager.specData[ITEM_SP_IGNORE_MDEF_RACE_ALL] + CExtraInfoAreaComponentManager.specData[ITEM_SP_IGNORE_MDEF_ALL]} %</td>
+            <td>${g_extraInfoDataBridge.specData[ITEM_SP_IGNORE_MDEF_RACE_ALL] + g_extraInfoDataBridge.specData[ITEM_SP_IGNORE_MDEF_ALL]} %</td>
           </tr>
           <tr>
             <th>ディレイ減</th>
             <td>${delayDownForDisp} %</td>
             <th>ステ無詠唱</th>
-            <td>${CExtraInfoAreaComponentManager.charaData[CHARA_DATA_INDEX_CAST_PARAM]} <span class="denom"> / 265<span></td>
+            <td>${g_extraInfoDataBridge.charaData[CHARA_DATA_INDEX_CAST_PARAM]} <span class="denom"> / 265<span></td>
           </tr>
         </tbody>
       </table>
