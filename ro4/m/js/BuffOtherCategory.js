@@ -7,6 +7,7 @@ import { PET_OBJ } from '../../../roro/m/js/pet.dat.js';
 import { HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueByIdAsInteger, myInnerHtml } from '../../../roro/common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
 import { CAttackMethodAreaComponentManager } from './CAttackMethodAreaComponentManager.js';
+import { CTimeItemAreaComponentManager } from '../../../roro/m/js/CTimeItemAreaComponentManager.js';
 "use strict"
 /**
  * 画面下部の「その他の支援/設定」のバフウィンドウ構築関数群
@@ -117,7 +118,8 @@ export function Click_Skill8SW(){
 		document.calcForm.A8_Skill21.options[2] = new Option("JobExpで受け取る", 2);
 		myInnerHtml("EN807",'<input id="OBJID_CHECK_A8_Skill4" type="checkbox" name="A8_Skill4"onClick="StAllCalc() | Click_A8(true)"><label for="OBJID_CHECK_A8_Skill4">結婚スパノビステータスALL+1付与</label>',0);
 		myInnerHtml("EN808",'<input id="OBJID_CHECK_A8_Skill13" type="checkbox" name="A8_Skill13"onClick="StAllCalc() | Click_A8(true)||RebuildStatusSelect()||CalcStatusPoint(true)"><label for="OBJID_CHECK_A8_Skill13">養子状態にする</label>',0);
-		myInnerHtml("EN809",'<font size="2" color="red">（時限性補助効果の設定は、「アイテム時限効果」設定欄へ移動しました）</font><input type="button" value="設定欄を表示" onclick="CTimeItemAreaComponentManager.FocusArea(0, true)">',0);
+		myInnerHtml("EN809",'<font size="2" color="red">（時限性補助効果の設定は、「アイテム時限効果」設定欄へ移動しました）</font><input type="button" value="設定欄を表示">',0);
+		document.querySelector('#EN809 input[type="button"]')?.addEventListener('click', () => CTimeItemAreaComponentManager.FocusArea(0, true));
 		myInnerHtml("EN810",'囲んでいる敵の数<select name="A8_Skill12" onChange="StAllCalc() | Click_A8(true)"></select>',0);
 		for (let i = 0; i <= 22; i++) {
             document.calcForm.A8_Skill12.options[i] = new Option(i + "匹", i);
@@ -224,4 +226,6 @@ export function RefreshPetExplain() {
 
 if (typeof window !== 'undefined') {
     window.n_A_PassSkill8 = n_A_PassSkill8;
+    window.Click_A8 = Click_A8;
+    window.OnChangePetSelect = OnChangePetSelect;
 }

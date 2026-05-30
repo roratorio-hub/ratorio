@@ -559,4 +559,6 @@ export function Click_A3(recalc = false) {
 
 if (typeof window !== 'undefined') {
     window.n_A_PassSkill3 = n_A_PassSkill3;
+    window.Skill3SW_2 = Skill3SW_2;
+    window.Click_A3 = Click_A3;
 }

@@ -776,4 +776,10 @@ export function GetRndOptValue(eqpRgnId, spid, invalidItemIdArray, bListUp) {
 	}
 }
 
+/* window compat — dewindow フェーズで除去予定 */
+if (typeof window !== 'undefined') {
+    Object.assign(window, {
+        OnChangeRndOptKind,
+    });
+}
 

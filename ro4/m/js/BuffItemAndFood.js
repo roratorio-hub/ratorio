@@ -187,7 +187,7 @@ export function Click_Skill7SW(){
                     objSelect = HtmlCreateElement("select", objTd);
                     objSelect.setAttribute("name", "A7_Skill" + subInfoArray[idxKind][0]);
 					objSelect.setAttribute("id", "OBJID_CHECK_A7_Skill" + subInfoArray[idxKind][0]);
-                    objSelect.setAttribute("onchange", "StAllCalc() | Click_A7(true)");
+                    objSelect.addEventListener('change', () => { window.StAllCalc(); Click_A7(true); });
                     HtmlCreateElementOption(0, subInfoArray[idxKind][1] + "+食品", objSelect);
                     for (let idxValue = 1; idxValue <= 10; idxValue++) {
                         HtmlCreateElementOption(idxValue, "+" + idxValue, objSelect);
@@ -199,19 +199,19 @@ export function Click_Skill7SW(){
                 objInput.setAttribute("type", "button");
                 objInput.setAttribute("id", "FOODOFF");
                 objInput.setAttribute("value", "全解除");
-                objInput.setAttribute("onclick", "Click_Food_Off() | StAllCalc()");
+                objInput.addEventListener('click', () => { Click_Food_Off(); window.StAllCalc(); });
                 HtmlCreateTextNode(" ", objTd);
                 objInput = HtmlCreateElement("input", objTd);
                 objInput.setAttribute("type", "button");
                 objInput.setAttribute("name", "NETCAFE3");
                 objInput.setAttribute("value", "ALL＋10");
-                objInput.setAttribute("onclick", "setAllStatusBuff(10) | StAllCalc()");
+                objInput.addEventListener('click', () => { setAllStatusBuff(10); window.StAllCalc(); });
                 HtmlCreateTextNode(" ", objTd);
                 objInput = HtmlCreateElement("input", objTd);
                 objInput.setAttribute("type", "button");
                 objInput.setAttribute("name", "NETCAFE3");
                 objInput.setAttribute("value", "ALL＋6");
-                objInput.setAttribute("onclick", "setAllStatusBuff(6) | StAllCalc()");
+                objInput.addEventListener('click', () => { setAllStatusBuff(6); window.StAllCalc(); });
                 HtmlCreateElement("br", objTd);
                 HtmlCreateTextNode("※ネットカフェ/エクラージュ/手紙の「ステータスALL+◯」は食品扱いで、同時に発動できない", objTd);
                 break;
@@ -250,7 +250,7 @@ export function Click_Skill7SW(){
                     objInput.setAttribute("type", "checkbox");
                     objInput.setAttribute("id", "OBJID_CHECK_A7_Skill" + subInfoArray[idxKind][0]);
                     objInput.setAttribute("name", "A7_Skill" + subInfoArray[idxKind][0]);
-                    objInput.setAttribute("onclick", "StAllCalc(); Click_A7(true);");
+                    objInput.addEventListener('click', () => { window.StAllCalc(); Click_A7(true); });
                     objLabel = HtmlCreateElement("label", objTd);
                     objLabel.setAttribute("for", "OBJID_CHECK_A7_Skill" + subInfoArray[idxKind][0]);
                     HtmlCreateTextNode(subInfoArray[idxKind][1] + "+20", objLabel);
@@ -262,7 +262,7 @@ export function Click_Skill7SW(){
                 objInput = HtmlCreateElement("input", objTd);
                 objInput.setAttribute("type", "button");
                 objInput.setAttribute("value", "ALL＋20");
-                objInput.setAttribute("onclick", "toggleAllStatus20() | StAllCalc()");
+                objInput.addEventListener('click', () => { toggleAllStatus20(); window.StAllCalc(); });
                 break;
 		}
 		objTr = HtmlCreateElement("tr", objTbody);
@@ -278,7 +278,7 @@ export function Click_Skill7SW(){
 				objInput.setAttribute("type", "checkbox");
 				objInput.setAttribute("id", "OBJID_CHECK_A7_Skill" + buildInfo[0]);
 				objInput.setAttribute("name", "A7_Skill" + buildInfo[0]);
-				objInput.setAttribute("onclick", "StAllCalc(); Click_A7(true);");
+				objInput.addEventListener('click', () => { window.StAllCalc(); Click_A7(true); });
 				objLabel = HtmlCreateElement("label", objTd);
 				objLabel.setAttribute("for", "OBJID_CHECK_A7_Skill" + buildInfo[0]);
 				HtmlCreateTextNode(buildInfo[1], objLabel);
@@ -291,7 +291,7 @@ export function Click_Skill7SW(){
 				HtmlCreateTextNode("　", objTd);
 				objSelect = HtmlCreateElement("select", objTd);
 				objSelect.setAttribute("name", "A7_Skill" + buildInfo[0]);
-				objSelect.setAttribute("onchange", "StAllCalc(); Click_A7(true);");
+				objSelect.addEventListener('change', () => { window.StAllCalc(); Click_A7(true); });
 				for (let idxValue = 0; idxValue < buildInfo[2].length; idxValue++) {
 					HtmlCreateElementOption(idxValue, buildInfo[2][idxValue], objSelect);
 				}
@@ -308,7 +308,7 @@ export function Click_Skill7SW(){
 	for (let idxKind = 0; idxKind < subInfoArray.length; idxKind++) {
 		objSelect = HtmlCreateElement("select", objTd);
 		objSelect.setAttribute("name", "A7_Skill" + subInfoArray[idxKind][0]);
-		objSelect.setAttribute("onchange", "StAllCalc(); Click_A7(true);");
+		objSelect.addEventListener('change', () => { window.StAllCalc(); Click_A7(true); });
 		HtmlCreateElementOption(0, "期間限定系[" + subInfoArray[idxKind][1] + "] なし", objSelect);
 		for (let idxValue = 1; idxValue <= 50; idxValue++) {
 			optText = subInfoArray[idxKind][1] + "+" + idxValue;

@@ -1,6 +1,6 @@
 // === AUTO-GENERATED IMPORTS ===
 import '../../../roro/m/js/card.h.js';
-import '../../../roro/m/js/common.js';
+import { GetElementText } from '../../../roro/m/js/common.js';
 import '../../../roro/m/js/item.h.js';
 import { CardObjNew } from '../../../roro/m/js/card.dat.js';
 import { zokusei } from '../../../roro/m/js/etc.js';

@@ -1313,7 +1313,7 @@ export function BuildUpSettingHtmlAutoSpell(objTbody) {
 		objSelect = document.createElement("select");
 		objTd.appendChild(objSelect);
 		objSelect.setAttribute("id", "OBJID_AS_SKILL_ID_" + (OBJID_OFFSET_AS_SKILL_ID + idx));
-		objSelect.setAttribute("onChange", "StAllCalc() | OnChangeSettingAutoSpell(true)");
+		objSelect.addEventListener('change', () => { window.StAllCalc(); OnChangeSettingAutoSpell(true); });
 
 		//----------------------------------------------------------------
 		// オートスペルをソートする
@@ -1397,7 +1397,7 @@ export function BuildUpSettingHtmlAutoSpell(objTbody) {
 		objSelect = document.createElement("select");
 		objTd.appendChild(objSelect);
 		objSelect.setAttribute("id", "OBJID_AS_SKILL_LV_" + (OBJID_OFFSET_AS_SKILL_LV + idx));
-		objSelect.setAttribute("onChange", "StAllCalc() | OnChangeSettingAutoSpell(true)");
+		objSelect.addEventListener('change', () => { window.StAllCalc(); OnChangeSettingAutoSpell(true); });
 
 		// Lv-, 1, 2, ... , 10 を設定
 		for (var lvidx = 0; lvidx <= 10; lvidx++) {
@@ -1417,7 +1417,7 @@ export function BuildUpSettingHtmlAutoSpell(objTbody) {
 		objSelect = document.createElement("select");
 		objTd.appendChild(objSelect);
 		objSelect.setAttribute("id", "OBJID_AS_SKILL_PROB_" + (OBJID_OFFSET_AS_SKILL_PROB + idx));
-		objSelect.setAttribute("onChange", "StAllCalc() | OnChangeSettingAutoSpell(true)");
+		objSelect.addEventListener('change', () => { window.StAllCalc(); OnChangeSettingAutoSpell(true); });
 
 		for (var probidx = 0; probidx < AUTO_SPELL_PROB_ARRAY.length; probidx++) {
 			optionText = (AUTO_SPELL_PROB_ARRAY[probidx] / 10) + "%";

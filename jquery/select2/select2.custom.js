@@ -127,9 +127,14 @@ const INIT_TRIGGER_LIST = [
     '#OBJID_ACCESSORY_2',
 ];
 $(function(){
-    $(INIT_TRIGGER_LIST.join(',')).on("select2:select", ()=>{
+    // select2 は内部で jQuery の .trigger('change') を呼ぶが、
+    // native addEventListener はその合成イベントを受信しない場合がある。
+    // select2:select 時に明示的に native change イベントを発火することで
+    // eventsetup.js の wire() ハンドラ（OnChangeJob / OnChangeEquip 等）を確実に動かす。
+    $(INIT_TRIGGER_LIST.join(',')).on("select2:select", function() {
+        this.dispatchEvent(new Event('change', { bubbles: true }));
         LoadSelect2();
-    })
+    });
 });
 
 // モンスター情報に Select2 を適用

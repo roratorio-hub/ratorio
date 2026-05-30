@@ -282,6 +282,79 @@ describe('ro4/m/calcx.html 起動テスト', () => {
         expect(errors, formatErrorMsg('スキルSW クリック操作中', errors)).toHaveLength(0);
     });
 
+    // 各スキルSW欄を展開した後、内部コントロール（セレクト・チェックボックス）を
+    // 操作して未捕捉 JS 例外が発生しないことを確認する。
+    // dewindow フェーズで以下の関数を window に露出していなかった問題の回帰テスト:
+    //   - Skill3SW_2 / Click_A3  (BuffMusicAndDance.js  — compat block 追加)
+    //   - Click_A4               (BuffGuildAndGospel.js — compat block 追加)
+    //   - Click_A7               (BuffItemAndFood.js    — addEventListener 変換)
+    //   - OnChangeSettingAutoSpell (calcautospell.js    — addEventListener 変換)
+    it('各スキルSW展開後の内部コントロール操作で未捕捉 JS 例外が発生しない', async () => {
+        const errors = await collectPageErrors(browser, async (page) => {
+            page.on('dialog', (dialog) => dialog.dismiss().catch(() => {}));
+            await page.goto(`${baseUrl}/ro4/m/calcx.html`, {
+                waitUntil: 'networkidle',
+                timeout: 60000,
+            });
+            await page.waitForTimeout(500);
+
+            // A3: 演奏/踊り系 — Skill3SW_2 / Click_A3
+            await page.evaluate(() => {
+                document.querySelector<HTMLInputElement>('[name="A3_SKILLSW"]')?.click();
+            });
+            await page.waitForTimeout(200);
+            await page.evaluate(() => {
+                // html_CS3SW_SKILL で挿入される select（Skill3SW_2 ハンドラ）
+                const sel = document.querySelector<HTMLSelectElement>('[name="A3_Skill0_1"]');
+                sel?.dispatchEvent(new Event('change', { bubbles: true }));
+                // Click_A3 ハンドラ
+                const sel2 = document.querySelector<HTMLSelectElement>('[name="A3_Skill7"]');
+                sel2?.dispatchEvent(new Event('change', { bubbles: true }));
+            });
+            await page.waitForTimeout(200);
+
+            // A4: ギルドスキル/ゴスペル — Click_A4
+            await page.evaluate(() => {
+                document.querySelector<HTMLInputElement>('[name="A4_SKILLSW"]')?.click();
+            });
+            await page.waitForTimeout(200);
+            await page.evaluate(() => {
+                // html_CS4SW_SKILL で挿入される select（Click_A4 ハンドラ）
+                const sel = document.querySelector<HTMLSelectElement>('[name="A4_Skill1"]');
+                sel?.dispatchEvent(new Event('change', { bubbles: true }));
+                // checkbox（Click_A4 ハンドラ）
+                const cb = document.querySelector<HTMLInputElement>('[name="A4_Skill0"]');
+                cb?.click();
+            });
+            await page.waitForTimeout(200);
+
+            // A7: アイテム/食品 — Click_A7
+            await page.evaluate(() => {
+                document.querySelector<HTMLInputElement>('[name="A7_SKILLSW"]')?.click();
+            });
+            await page.waitForTimeout(200);
+            await page.evaluate(() => {
+                // ステータス+食品セレクト（Click_A7 ハンドラ）
+                const sel = document.querySelector<HTMLSelectElement>('[name="A7_Skill20"]');
+                sel?.dispatchEvent(new Event('change', { bubbles: true }));
+            });
+            await page.waitForTimeout(200);
+
+            // オートスペル設定 — OnChangeSettingAutoSpell
+            await page.evaluate(() => {
+                (document.getElementById('OBJID_EXTRACT_SETTING_AUTO_SPELL') as HTMLInputElement | null)?.click();
+            });
+            await page.waitForTimeout(200);
+            await page.evaluate(() => {
+                // スキル選択セレクト（OnChangeSettingAutoSpell ハンドラ）
+                const sel = document.getElementById('OBJID_AS_SKILL_ID_100') as HTMLSelectElement | null;
+                sel?.dispatchEvent(new Event('change', { bubbles: true }));
+            });
+            await page.waitForTimeout(200);
+        });
+        expect(errors, formatErrorMsg('各スキルSW展開後 内部コントロール操作中', errors)).toHaveLength(0);
+    });
+
     // OBJID_MONSTER_MAP_AREA のカテゴリ変更でマップリストがカスケード更新されることを確認。
     // dewindow フェーズで CCustomSelectBase の onchange 属性を addEventListener に切り替えた後、
     // カテゴリ変更 → マップリスト更新 / マップ変更 → モンスターリスト更新 の連鎖が壊れていないかを確認する。
@@ -379,6 +452,92 @@ describe('ro4/m/calcx.html 起動テスト', () => {
             await page.waitForTimeout(200);
         });
         expect(errors, formatErrorMsg('クイックコントロール装備一括設定 input 操作中', errors)).toHaveLength(0);
+    });
+
+    // 詠唱シミュレータ欄を展開し、スキル選択セレクトの change イベントで
+    // ReferenceError が発生しないことを確認する。
+    // dewindow フェーズで castsim.js の onChange 属性を addEventListener に切り替えた後、
+    // OnChangeSkillCastSim / OnChangeSkillLvCastSim が window に露出していなくても
+    // 動作することを確認する。
+    it('詠唱シミュレータ スキル選択変更で未捕捉 JS 例外が発生しない', async () => {
+        const errors = await collectPageErrors(browser, async (page) => {
+            page.on('dialog', (dialog) => dialog.dismiss().catch(() => {}));
+            await page.goto(`${baseUrl}/ro4/m/calcx.html`, {
+                waitUntil: 'networkidle',
+                timeout: 60000,
+            });
+            await page.waitForTimeout(500);
+
+            // 詠唱シミュレータ欄を展開する（初期状態は折りたたまれている）
+            await page.evaluate(() => {
+                const cb = document.getElementById('OBJID_CONTROL_CASTSIM_SWITCH') as HTMLInputElement | null;
+                if (cb && !cb.checked) cb.click();
+            });
+            await page.waitForTimeout(300);
+
+            // スキル選択セレクト（0行目）に change イベントを発火する
+            await page.evaluate(() => {
+                const sel = document.getElementById('OBJID_CONTROL_CAST_SIM_SKILL_SELECT_0') as HTMLSelectElement | null;
+                if (sel) {
+                    sel.dispatchEvent(new Event('change', { bubbles: true }));
+                }
+            });
+            await page.waitForTimeout(200);
+
+            // レベル選択セレクト（0行目）に change イベントを発火する
+            await page.evaluate(() => {
+                const sel = document.getElementById('OBJID_CONTROL_CAST_SIM_LEVEL_SELECT_0') as HTMLSelectElement | null;
+                if (sel) {
+                    sel.dispatchEvent(new Event('change', { bubbles: true }));
+                }
+            });
+            await page.waitForTimeout(200);
+        });
+        expect(errors, formatErrorMsg('詠唱シミュレータ スキル選択変更中', errors)).toHaveLength(0);
+    });
+
+    // 「その他の支援/設定」スイッチを ON にして各種セレクト・チェックボックスを操作し、
+    // ReferenceError が発生しないことを確認する。
+    // dewindow フェーズで Click_A8 / OnChangePetSelect が window に露出していない問題を
+    // window compat block 追加で修正した後の回帰テスト。
+    it('その他の支援設定 ペット選択・各種セレクト変更で未捕捉 JS 例外が発生しない', async () => {
+        const errors = await collectPageErrors(browser, async (page) => {
+            page.on('dialog', (dialog) => dialog.dismiss().catch(() => {}));
+            await page.goto(`${baseUrl}/ro4/m/calcx.html`, {
+                waitUntil: 'networkidle',
+                timeout: 60000,
+            });
+            await page.waitForTimeout(500);
+
+            // 「その他の支援/設定」スイッチを ON にする
+            await page.evaluate(() => {
+                const cb = document.querySelector<HTMLInputElement>('[name="A8_SKILLSW"]');
+                if (cb && !cb.checked) cb.click();
+            });
+            await page.waitForTimeout(300);
+
+            // ペット選択セレクト（OnChangePetSelect）に change イベントを発火する
+            await page.evaluate(() => {
+                const sel = document.getElementById('OBJID_SELECT_PET') as HTMLSelectElement | null;
+                if (sel) sel.dispatchEvent(new Event('change', { bubbles: true }));
+            });
+            await page.waitForTimeout(200);
+
+            // 親密度セレクト（Click_A8）に change イベントを発火する
+            await page.evaluate(() => {
+                const sel = document.getElementById('OBJID_SELECT_PET_FRIENDLITY') as HTMLSelectElement | null;
+                if (sel) sel.dispatchEvent(new Event('change', { bubbles: true }));
+            });
+            await page.waitForTimeout(200);
+
+            // 「設定欄を表示」ボタン（CTimeItemAreaComponentManager.FocusArea）のクリック
+            await page.evaluate(() => {
+                const btn = document.querySelector<HTMLInputElement>('#EN809 input[type="button"]');
+                if (btn) btn.click();
+            });
+            await page.waitForTimeout(200);
+        });
+        expect(errors, formatErrorMsg('その他の支援設定 操作中', errors)).toHaveLength(0);
     });
 
     // セーブデータを URL から読み込む操作をトリガーする。

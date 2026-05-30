@@ -216,7 +216,7 @@ export function BuildUpCastSimSimulateArea(objRoot, bAsExpand) {
 
 		objSelect = document.createElement("select");
 		objSelect.setAttribute("id", "OBJID_CONTROL_CAST_SIM_SKILL_SELECT_" + rowidx);
-		objSelect.setAttribute("onChange", "OnChangeSkillCastSim()");
+		objSelect.addEventListener('change', OnChangeSkillCastSim);
 		objTd.appendChild(objSelect);
 
 		//----------------------------------------------------------------
@@ -415,7 +415,7 @@ export function BuildUpCastSimSimulateArea(objRoot, bAsExpand) {
 
 		objSelect = document.createElement("select");
 		objSelect.setAttribute("id", "OBJID_CONTROL_CAST_SIM_LEVEL_SELECT_" + rowidx);
-		objSelect.setAttribute("onChange", "OnChangeSkillLvCastSim()");
+		objSelect.addEventListener('change', OnChangeSkillLvCastSim);
 		objTd.appendChild(objSelect);
 
 		for (lv = 1; lv <= maxLv; lv++) {
