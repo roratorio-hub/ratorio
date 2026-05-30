@@ -758,6 +758,7 @@ export class CSaveController {
 			  datasets: [{
 			    label: "DPS",
 			    data: [],
+			    metadata: [],
 			    borderColor: "#005AFF",
 			    yAxisID: "y",
 			  }, {
@@ -906,7 +907,7 @@ export class CSaveController {
 		    const reload_history_table = () => {
 		      $("#clip_modal_table tbody *").remove();
 		      let body = ""
-		      for (i = 0; i < data.labels.length; i++) {
+		      for (let i = 0; i < data.labels.length; i++) {
 		        body += `<tr>
 		                  <td class="col no">${data.labels[i].toLocaleString()}</td>
 		                  <td class="col">${data.datasets[0].data[i].toLocaleString()}</td>
@@ -922,6 +923,7 @@ export class CSaveController {
 		      $(e.target).next("input").toggle().focus();
 		    });
 		    $(document).on("change", "input.clip_memo", (e) => {
+		      if (window.g_Chart !== chart) return;
 		      const index = e.target.closest("tr").rowIndex - 1;
 		      data.datasets[0].metadata[index]["memo"] = e.target.value;
 		      chart.update();
@@ -933,8 +935,9 @@ export class CSaveController {
 		      $(e.target).prev("div").toggle();
 		    });
 		    $(document).on("click", ".up_clip", (e) => {
+		      if (window.g_Chart !== chart) return;
 		      const row = e.target.closest("tr");
-		      if (row.previousElementSibling) {
+		      if (row && row.previousElementSibling) {
 		        const index = row.rowIndex - 1;
 		        flip_clip(index, index - 1);
 		        chart.update();
@@ -943,8 +946,9 @@ export class CSaveController {
 		      }
 		    });
 		    $(document).on("click", ".down_clip", (e) => {
+		      if (window.g_Chart !== chart) return;
 		      const row = e.target.closest("tr");
-		      if (row.nextElementSibling) {
+		      if (row && row.nextElementSibling) {
 		        const index = row.rowIndex - 1;
 		        flip_clip(index, index + 1);
 		        chart.update();
@@ -953,6 +957,7 @@ export class CSaveController {
 		      }
 		    });
 		    $(document).on("click", ".remove_clip", (e) => {
+		      if (window.g_Chart !== chart) return;
 		      const row = e.target.closest("tr");
 		      const index = row.rowIndex - 1;
 		      data.labels.pop();
