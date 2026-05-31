@@ -1,4 +1,8 @@
 import { CConfBase } from './CConfBase.js';
+// === AUTO-GENERATED IMPORTS ===
+import './CConfBase.js';
+import { HtmlCreateElementOption } from '../../common/js/util.js';
+// === END AUTO-GENERATED IMPORTS ===
 
 export function CCharaConfYozi(confArray) {
 	// 継承定義
@@ -26,10 +30,8 @@ export function CCharaConfYozi(confArray) {
 		var confDataOBJSorted = new Array();
 
 
-
 		// 基底クラスのセットアップ処理を実行
 		CCharaConfYozi.prototype.InitData.call(this);
-
 
 
 		//----------------------------------------------------------------
@@ -324,7 +326,6 @@ export function CCharaConfYozi(confArray) {
 		confId++;
 
 
-
 		//----------------------------------------------------------------
 		// データ定義数チェック
 		//----------------------------------------------------------------
@@ -332,7 +333,6 @@ export function CCharaConfYozi(confArray) {
 			alert("四次職支援設定　定義数超過");
 			return;
 		}
-
 
 
 		//----------------------------------------------------------------
@@ -345,7 +345,6 @@ export function CCharaConfYozi(confArray) {
 				this.confArray[idx] = 0;
 			}
 		}
-
 
 
 		//----------------------------------------------------------------
@@ -418,6 +417,3 @@ export function CCharaConfYozi(confArray) {
 	this.InitData();
 }
 
-if (typeof window !== 'undefined') {
-	window.CCharaConfYozi = CCharaConfYozi;
-}

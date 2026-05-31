@@ -965,12 +965,11 @@ async function applyEquipmentSuggestions() {
         const jobSelect = document.getElementById("OBJID_SELECT_JOB");
         if (jobSelect && jobSelect.value !== detectedJob.jobId) {
             aiLog(`[ジョブ変更] ${detectedJob.jobName}（id=${detectedJob.jobId}）に切り替えます`);
-            if (window.$) {
-                // select2: .trigger('change') で UI 再描画 + HTML onchange 発火 → OnChangeJob 呼び出し
-                window.$(jobSelect).val(detectedJob.jobId).trigger('change');
+            if (jobSelect.tomselect) {
+                jobSelect.tomselect.setValue(detectedJob.jobId);
             } else {
                 jobSelect.value = detectedJob.jobId;
-                if (window.OnChangeJob) window.OnChangeJob(detectedJob.jobId);
+                jobSelect.dispatchEvent(new Event('change', { bubbles: true }));
             }
             // 装備 select の再構築（changeJobSettings / Init）を待つ
             await new Promise(r => setTimeout(r, 150));
@@ -1063,9 +1062,8 @@ async function applyEquipmentSuggestions() {
             aiLog(`[装備不可] ${r.item.displayname} は現在のジョブで装備制限あり (gameId=${gameId})`);
             continue;
         }
-        // select2 対応: jQuery が使えるなら jQuery API を使用（el.value= だと select2 UI が更新されない）
-        if (window.$) {
-            window.$(el).val(gameId).trigger("change");
+        if (el.tomselect) {
+            el.tomselect.setValue(gameId);
         } else {
             el.value = gameId;
             el.dispatchEvent(new Event("change", { bubbles: true }));

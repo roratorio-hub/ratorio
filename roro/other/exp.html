@@ -63,7 +63,7 @@
 
 </head>
 
-<body onload="OnLoadExpTable()" style="overflow-y:auto">
+<body style="overflow-y:auto">
 	<div class="wrapper">
 		<div class="side">
 			<span id="ID_FRAME"></span>
@@ -84,7 +84,7 @@
                                         選択
                                     </td>
                                     <td>
-                                        <select id="OBJID_SELECT_TABLE_KIND" onChange="RefreshExpTable()">
+                                        <select id="OBJID_SELECT_TABLE_KIND">
                                         </select>
                                     </td>
 
@@ -92,7 +92,7 @@
                                         累計モンスターの選択
                                     </td>
                                     <td>
-                                        <select id="OBJID_SELECT_MONSTER" onChange="RefreshExpTable()">
+                                        <select id="OBJID_SELECT_MONSTER">
                                         </select>
                                     </td>
 
@@ -100,7 +100,7 @@
                                         経験値倍率
                                     </td>
                                     <td>
-                                        <input type="text" id="OBJID_INPUT_EXP_RATE" value="100" size="4" onChange="RefreshExpTable()" style="text-align : right;">%
+                                        <input type="text" id="OBJID_INPUT_EXP_RATE" value="100" size="4" style="text-align : right;">%
                                     </td>
 
                                 </tr>
@@ -142,6 +142,7 @@
 
 </body>
 
+<script type="module" src="js/eventsetup-exp.js"></script>
 <script type="module" src="../frame.js"></script>
 
 </html>

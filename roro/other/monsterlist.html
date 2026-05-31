@@ -62,9 +62,9 @@
 	<script type="module" src="../m/js/monstermap.dat.js"></script>
 
 	<script type="text/javascript" src="../../jquery/jquery.min.js"></script>
-	<link href="../../jquery/select2/select2.min.css" rel="stylesheet" />
-	<link href="../../jquery/select2/select2.custom.css" rel="stylesheet" />
-	<script src="../../jquery/select2/select2.min.js"></script>
+	<link href="../../lib/tom-select/tom-select.min.css" rel="stylesheet" />
+	<link href="../../lib/tom-select/tom-select.custom.css" rel="stylesheet" />
+	<script src="../../lib/tom-select/tom-select.min.js"></script>
 	<script type="module" src="js/hmmonsterlist.js"></script>
 
 	<style>
@@ -94,7 +94,7 @@
 		-->
 	</style>
 </head>
-<body onLoad="InitMonsterListSelectArea()">
+<body>
 
 	<div class="wrapper">
 		<div class="side">
@@ -114,39 +114,39 @@
 								一覧並べ替え
 							</td>
 							<td class="CSSCLS_OPTION_AREA_DISP">
-								<select id="OBJID_SELECT_SORT_KEY" onChange="RefreshMonsterList()">
+								<select id="OBJID_SELECT_SORT_KEY">
 								</select>
 							</td>
 							<td class="CSSCLS_OPTION_AREA_DISP">
 								<label for="OBJID_INPUT_DIGIT3">３桁区切り</label>
 							</td>
 							<td class="CSSCLS_OPTION_AREA_DISP">
-								<input type="checkbox" id="OBJID_INPUT_DIGIT3" onChange="RefreshMonsterList()">
+								<input type="checkbox" id="OBJID_INPUT_DIGIT3">
 							</td>
 							<td class="CSSCLS_OPTION_AREA_DISP">
 								<label for="OBJID_INPUT_DESC">降順表示</label>
 							</td>
 							<td class="CSSCLS_OPTION_AREA_DISP">
-								<input type="checkbox" id="OBJID_INPUT_DESC" onChange="RefreshMonsterList()">
+								<input type="checkbox" id="OBJID_INPUT_DESC">
 							</td>
 							<td class="CSSCLS_OPTION_AREA_STATE">
 								クァグマイア
 							</td>
 							<td class="CSSCLS_OPTION_AREA_STATE">
-								<select id="OBJID_SELECT_QM" onChange="RefreshMonsterList()">
+								<select id="OBJID_SELECT_QM">
 								</select>
 							</td>
 							<td class="CSSCLS_OPTION_AREA_STATE">
 								<label for="OBJID_INPUT_DARKNESS">暗闇</label>
 							</td>
 							<td class="CSSCLS_OPTION_AREA_STATE">
-								<input type="checkbox" id="OBJID_INPUT_DARKNESS" onChange="RefreshMonsterList()">
+								<input type="checkbox" id="OBJID_INPUT_DARKNESS">
 							</td>
 							<td class="CSSCLS_OPTION_AREA_STATE">
 								<label for="OBJID_INPUT_ANTI_BLESS">闇ブレス</label>
 							</td>
 							<td class="CSSCLS_OPTION_AREA_STATE">
-								<input type="checkbox" id="OBJID_INPUT_ANTI_BLESS" onChange="RefreshMonsterList()">
+								<input type="checkbox" id="OBJID_INPUT_ANTI_BLESS">
 							</td>
 						</tr>
 						<tr>
@@ -159,30 +159,30 @@
 								種族抽出
 							</td>
 							<td class="CSSCLS_OPTION_AREA_COND">
-								<select id="OBJID_SELECT_RACE" onChange="RefreshMonsterList()">
+								<select id="OBJID_SELECT_RACE">
 								</select>
 							</td>
 							<td class="CSSCLS_OPTION_AREA_COND">
 								属性抽出
 							</td>
 							<td class="CSSCLS_OPTION_AREA_COND">
-								<select id="OBJID_SELECT_ELEMENT" onChange="RefreshMonsterList()">
+								<select id="OBJID_SELECT_ELEMENT">
 								</select>
 							</td>
 							<td class="CSSCLS_OPTION_AREA_COND">
 								サイズ抽出
 							</td>
 							<td class="CSSCLS_OPTION_AREA_COND">
-								<select id="OBJID_SELECT_SIZE" onChange="RefreshMonsterList()">
+								<select id="OBJID_SELECT_SIZE">
 								</select>
 							</td>
 							<td class="CSSCLS_OPTION_AREA_COND">
 								抽出範囲
 							</td>
 							<td class="CSSCLS_OPTION_AREA_COND" colspan="5">
-								<input id="OBJID_INPUT_LOW" onChange="RefreshMonsterList()">
+								<input id="OBJID_INPUT_LOW">
 								～
-								<input id="OBJID_INPUT_HIGH" onChange="RefreshMonsterList()">
+								<input id="OBJID_INPUT_HIGH">
 								
 							</td>
 						</tr>
@@ -196,6 +196,7 @@
 	</div>
 </body>
 
+<script type="module" src="js/eventsetup-monsterlist.js"></script>
 <script type="module" src="../frame.js"></script>
 
 </html>

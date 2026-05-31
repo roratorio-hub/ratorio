@@ -59,19 +59,4 @@ describe('calcautospell.js', () => {
         it('OnChangeSettingAutoSpell が関数', () => { expect(typeof OnChangeSettingAutoSpell).toBe('function'); });
         it('OnClickEasySetUpAutoSpell が関数', () => { expect(typeof OnClickEasySetUpAutoSpell).toBe('function'); });
     });
-
-    describe('window互換確認', () => {
-        it('window.AUTO_SPELL_SETTING_COUNT が設定されている', () => {
-            expect((window as any).AUTO_SPELL_SETTING_COUNT).toBe(20);
-        });
-        it('window.AUTO_SPELL_PROB_ARRAY が設定されている', () => {
-            expect(Array.isArray((window as any).AUTO_SPELL_PROB_ARRAY)).toBe(true);
-        });
-        it('window.AS_Calc が設定されている', () => {
-            expect((window as any).AS_Calc).toBe(AS_Calc);
-        });
-        it('window.OnChangeSettingAutoSpell が設定されている', () => {
-            expect((window as any).OnChangeSettingAutoSpell).toBe(OnChangeSettingAutoSpell);
-        });
-    });
 });

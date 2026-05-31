@@ -36,15 +36,10 @@ describe('BuffJobSpecificSelf.js', () => {
     });
 
     describe('window互換確認', () => {
-        it('window.BUFF_CONF_SELF_LIMIT が設定されている', () => {
-            expect((window as any).BUFF_CONF_SELF_LIMIT).toBe(51);
-        });
         it('window.n_A_PassSkill が設定されている', () => {
             expect((window as any).n_A_PassSkill).toBe(n_A_PassSkill);
         });
-        it('window.Click_PassSkillSW が設定されている', () => {
-            expect((window as any).Click_PassSkillSW).toBe(Click_PassSkillSW);
-        });
+
         it('window.UsedSkillSearch が設定されている', () => {
             expect((window as any).UsedSkillSearch).toBe(UsedSkillSearch);
         });

@@ -1,3 +1,15 @@
+// === AUTO-GENERATED IMPORTS ===
+import './card.h.js';
+import './common.js';
+import './item.h.js';
+import './skill.h.js';
+import { g_constDataManager } from '../../../ro4/m/js/global.js';
+import { CardObjNew } from './card.dat.js';
+import { UpdateLearnedSkillNotice } from './equip.js';
+import { ItemObjNew } from './item.dat.js';
+import { SkillObjNew } from './skill.dat.js';
+import { HtmlCreateElement, HtmlCreateTextNode } from '../../common/js/util.js';
+// === END AUTO-GENERATED IMPORTS ===
 /**
  * 習得スキル欄の生成・更新・サーチなどの関数群
  */
@@ -84,7 +96,7 @@ export function OnClickSkillSWLearned(){
 	objInput = document.createElement("input");
 	objInput.setAttribute("type", "checkbox");
 	objInput.setAttribute("id", "OBJID_SKILL_COLUMN_EXTRACT_CHECKBOX");
-	objInput.setAttribute("onClick", "OnClickSkillSWLearned()");
+	objInput.addEventListener('click', OnClickSkillSWLearned);
 	if (n_SkillSWLearned) {
 		// 部品を再構築しているので、チェック状態の再設定が必要
 		objInput.setAttribute("checked", "checked");
@@ -186,7 +198,7 @@ export function OnClickSkillSWLearned(){
 		}
 		objSelect = document.createElement("select");
 		objSelect.setAttribute("id", "OBJID_SELECT_LEARNED_SKILL_LEVEL_" + idx);
-		objSelect.setAttribute("onChange", "RefreshSkillColumnHeaderLearned(this, " + idx + ", this.value)");
+		objSelect.addEventListener('change', (e) => RefreshSkillColumnHeaderLearned(e.target, idx, e.target.value));
 
 		// RTX API用の属性追加
 		const skillData = SkillMap.getByMigIdNum(skillId);
@@ -335,12 +347,5 @@ export function RefreshSkillColumnHeaderLearned(objSelect, changedIdx, newValue)
 }
 
 if (typeof window !== 'undefined') {
-    window.n_SkillSWLearned = n_SkillSWLearned;
-    window.LEARNED_SKILL_MAX_COUNT = LEARNED_SKILL_MAX_COUNT;
-    window.n_A_LearnedSkill = n_A_LearnedSkill;
     window.LearnedSkillSearch = LearnedSkillSearch;
-    window.OnClickSkillSWLearned = OnClickSkillSWLearned;
-    window.IsLearnedSkillTarget = IsLearnedSkillTarget;
-    window.UpdateLearnedSkillSettingColoring = UpdateLearnedSkillSettingColoring;
-    window.RefreshSkillColumnHeaderLearned = RefreshSkillColumnHeaderLearned;
 }

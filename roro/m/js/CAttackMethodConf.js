@@ -17,9 +17,6 @@ CGlobalConstManager.DefineEnum(
 );
 
 
-
-
-
 /**
  * 攻撃手段設定クラス.
  */
@@ -36,7 +33,6 @@ export function CAttackMethodConf () {
 
 	// オプション値配列
 	this.optionValueArray = [];
-
 
 
 	/**
@@ -56,7 +52,6 @@ export function CAttackMethodConf () {
 	};
 
 
-
 	/**
 	 * 攻撃手段ソース種別を設定する.
 	 * @param sourceType 攻撃手段ソース種別
@@ -74,7 +69,6 @@ export function CAttackMethodConf () {
 	};
 
 
-
 	/**
 	 * スキルレベルを設定する.
 	 * @param skillId スキルレベル
@@ -90,7 +84,6 @@ export function CAttackMethodConf () {
 	this.GetSkillLv = function () {
 		return this.skillLv;
 	};
-
 
 
 	/**
@@ -145,7 +138,6 @@ export function CAttackMethodConf () {
 	};
 
 
-
 	/**
 	 * 複製する.
 	 * @return 複製されたインスタンス
@@ -167,7 +159,4 @@ export function CAttackMethodConf () {
 	};
 }
 
-if (typeof window !== 'undefined') {
-    window.CAttackMethodConf = CAttackMethodConf;
-}
 

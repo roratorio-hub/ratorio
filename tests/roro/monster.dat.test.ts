@@ -16,10 +16,4 @@ describe('monster.dat.js', () => {
         it('MonsterObjNew[0][0] が 0',                                () => expect(MonsterObjNew[0][0]).toBe(0));
         it('MonsterObjNew[1][0] が 1',                                () => expect(MonsterObjNew[1][0]).toBe(1));
     });
-
-    describe('window互換確認', () => {
-        it('window.MONSTER_ID_ARCANGELING',                              () => expect((window as any).MONSTER_ID_ARCANGELING).toBe(MONSTER_ID_ARCANGELING));
-        it('window.MONSTER_ID_MARYOKUBOSOSHITA_ZYOKYU_RGAN_QUEST',      () => expect((window as any).MONSTER_ID_MARYOKUBOSOSHITA_ZYOKYU_RGAN_QUEST).toBe(MONSTER_ID_MARYOKUBOSOSHITA_ZYOKYU_RGAN_QUEST));
-        it('window.MonsterObjNew',                                       () => expect((window as any).MonsterObjNew).toBe(MonsterObjNew));
-    });
 });

@@ -1,23 +1,28 @@
+// === AUTO-GENERATED IMPORTS ===
+import '../../../roro/m/js/skill.h.js';
+import { AutoCalc } from './head.js';
+import { SkillObjNew } from '../../../roro/m/js/skill.dat.js';
+import { myInnerHtml } from '../../../roro/common/js/util.js';
+import { n_A_PassSkill4 } from './skillstate.js';
+export { n_A_PassSkill4 } from './skillstate.js';
+// === END AUTO-GENERATED IMPORTS ===
 "use strict"
 /**
  * 画面下部の「ギルドスキル/ゴスペル/他」のバフウィンドウ構築関数群
-*/ 
+*/
 
-export const BUFF_CONF_GUILD_LIMIT = 36;
-/** ギルドスキル/ゴスペル/他 設定値の配列 */
-export let n_A_PassSkill4 = Array(BUFF_CONF_GUILD_LIMIT).fill(0);
 /** ギルドスキル/ゴスペル/他 ウィンドウ可視状態 */
 export let n_Skill4SW = false;
+export function setN_Skill4SW(v) { n_Skill4SW = v; }
 
 /**
  * ギルドスキル/ゴスペル/他　を構築する
  */
 export function Click_Skill4SW(){
 	n_Skill4SW = document.calcForm.A4_SKILLSW.checked;
-	if (typeof window !== 'undefined') window.n_Skill4SW = n_Skill4SW;
 	if(n_Skill4SW){
 		let str;
-		str = '<TABLE Border style="white-space:nowrap;"><TR><TD id="A4TD" ColSpan="10" class="title"><input id="OBJID_CHECK_A4_SKILLSW" type="checkbox" name="A4_SKILLSW"onClick="Click_Skill4SW()"><label for="OBJID_CHECK_A4_SKILLSW">ギルドスキル/ゴスペル/他</label><span id="A4used"></span></TD></TR>';
+		str = '<TABLE Border style="white-space:nowrap;"><TR><TD id="A4TD" ColSpan="10" class="title"><input id="OBJID_CHECK_A4_SKILLSW" type="checkbox" name="A4_SKILLSW"><label for="OBJID_CHECK_A4_SKILLSW">ギルドスキル/ゴスペル/他</label><span id="A4used"></span></TD></TR>';
 		str += '<TR><TD ColSpan="10">ギルドスキル</TD></TR>';
 		str += '<TR><TD id="EN40_1"></TD><TD id="EN40_2"></TD><TD id="EN41_1"></TD><TD id="EN41_2"></TD><TD id="EN42_1"></TD><TD id="EN42_2"></TD></TR>';
 		str += '<TR><TD id="EN43_1"></TD><TD id="EN43_2"></TD><TD id="EN44_1"></TD><TD id="EN44_2"></TD></TR>';
@@ -30,6 +35,7 @@ export function Click_Skill4SW(){
 		str += '<TR><TD id="EN433_1"></TD><TD id="EN433_2"></TD><TD id="EN434_1"></TD><TD id="EN434_2"></TD><TD id="EN435_1"></TD><TD id="EN435_2"></TD></TR>';
 		str += '</TABLE>';
 		myInnerHtml("SP_SIEN02",str,0);
+		document.querySelector('[name="A4_SKILLSW"]')?.addEventListener('click', Click_Skill4SW);
 		document.calcForm.A4_SKILLSW.checked = true;
 		const name_CS4SW_SKILL = ["臨戦体勢","偉大なる指導力","栄光の傷","冷静な心","鋭い視線","ステータスALL+20","HP+100%","SP+100%","ATK+100%","HIT+50＆FLEE+50","被ダメージ半減"];
 		let html_CS4SW_SKILL = new Array();
@@ -106,8 +112,9 @@ export function Click_Skill4SW(){
 		document.calcForm.A4_Skill35.value = n_A_PassSkill4[35];
 	} else {
 		let str;
-		str = '<TABLE Border><TR><TD id="A4TD" class="title"><input id="OBJID_CHECK_A4_SKILLSW" type="checkbox" name="A4_SKILLSW"onClick="Click_Skill4SW()"><label for="OBJID_CHECK_A4_SKILLSW">ギルドスキル/ゴスペル/他</label><span id="A4used"></span></TD></TR></TABLE>';
+		str = '<TABLE Border><TR><TD id="A4TD" class="title"><input id="OBJID_CHECK_A4_SKILLSW" type="checkbox" name="A4_SKILLSW"><label for="OBJID_CHECK_A4_SKILLSW">ギルドスキル/ゴスペル/他</label><span id="A4used"></span></TD></TR></TABLE>';
 		myInnerHtml("SP_SIEN02",str,0);
+		document.querySelector('[name="A4_SKILLSW"]')?.addEventListener('click', Click_Skill4SW);
 		document.calcForm.A4_SKILLSW.checked = 0;
 	}
 	Click_A4(false);
@@ -138,9 +145,6 @@ export function Click_A4(recalc = false){
 }
 
 if (typeof window !== 'undefined') {
-    window.BUFF_CONF_GUILD_LIMIT = BUFF_CONF_GUILD_LIMIT;
-    window.n_A_PassSkill4 = n_A_PassSkill4;
-    window.n_Skill4SW = n_Skill4SW;
-    window.Click_Skill4SW = Click_Skill4SW;
     window.Click_A4 = Click_A4;
 }
+

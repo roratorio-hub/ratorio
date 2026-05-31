@@ -15,12 +15,6 @@ describe('alias.dat.js', () => {
             expect(g_AliasDataArray[0]).toEqual(['GD', 'ゲフェン地下ダンジョン']);
         });
     });
-
-    describe('window互換確認', () => {
-        it('window.g_AliasDataArray が設定されている', () => {
-            expect((window as any).g_AliasDataArray).toBe(g_AliasDataArray);
-        });
-    });
 });
 
 describe('alias.h.js', () => {
@@ -39,12 +33,6 @@ describe('alias.h.js', () => {
     describe('エクスポート確認', () => {
         it('TranslateAlias が関数', () => {
             expect(typeof TranslateAlias).toBe('function');
-        });
-    });
-
-    describe('window互換確認', () => {
-        it('window.TranslateAlias が設定されている', () => {
-            expect((window as any).TranslateAlias).toBe(TranslateAlias);
         });
     });
 

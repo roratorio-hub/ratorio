@@ -1,4 +1,10 @@
-function OnLoadJobBonusTable() {
+// === AUTO-GENERATED IMPORTS ===
+import { GetJobBonus, GetJobLevelMax, GetJobName } from '../../../ro4/m/js/data/mig.job.h.js';
+import '../../m/js/data/mig.itemsp.h.js';
+import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlGetObjectValueByIdAsInteger } from '../../common/js/util.js';
+import { MIG_JOB_ID_NOVICE, MIG_JOB_ID_SPIRIT_HANDLER } from '../../../ro4/m/js/data/mig.job.dat.js';
+// === END AUTO-GENERATED IMPORTS ===
+export function OnLoadJobBonusTable() {
 
 	var jobId = 0;
 
@@ -20,14 +26,12 @@ function OnLoadJobBonusTable() {
 	}
 
 
-
 	// 初期表示更新
 	RefreshJobBonusTable();
 }
 
 
-
-function RefreshJobBonusTable() {
+export function RefreshJobBonusTable() {
 
 	var idx = 0;
 
@@ -37,7 +41,6 @@ function RefreshJobBonusTable() {
 	var jobBonusArrayArray = null;
 
 	var objWrapper = null;
-
 
 
 	// 選択職業を取得
@@ -71,7 +74,7 @@ function RefreshJobBonusTable() {
 	}
 }
 
-function RefreshJobBonusTableSub(objRoot, jobBonusArrayArray, lvBegin, lvMax) {
+export function RefreshJobBonusTableSub(objRoot, jobBonusArrayArray, lvBegin, lvMax) {
 
 	var idx = 0;
 
@@ -137,7 +140,6 @@ function RefreshJobBonusTableSub(objRoot, jobBonusArrayArray, lvBegin, lvMax) {
 	};
 
 
-
 	// 表示開始レベルが、ジョブレベル上限を超えている場合は、テーブルを生成しない
 	if (lvBegin > lvMax) {
 		return;
@@ -198,4 +200,3 @@ function RefreshJobBonusTableSub(objRoot, jobBonusArrayArray, lvBegin, lvMax) {
 	// フッタ行追加
 	funcAddLabelRow();
 }
-if (typeof window !== 'undefined') { Object.assign(window, { OnLoadJobBonusTable, RefreshJobBonusTable, RefreshJobBonusTableSub }); }

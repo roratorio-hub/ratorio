@@ -1,3 +1,7 @@
+// === AUTO-GENERATED IMPORTS ===
+import { CMigConstDataManagerSubBase } from './CMigConstDataManagerSubBase.js';
+import { CMigJobData } from './CMigJobData.js';
+// === END AUTO-GENERATED IMPORTS ===
 /**
  * 職業データマネージャクラス.
  */
@@ -28,4 +32,3 @@ export function CMigConstDataManagerSubJob () {
 
 }
 CMigConstDataManagerSubJob.prototype = new CMigConstDataManagerSubBase();
-if (typeof window !== 'undefined') { window.CMigConstDataManagerSubJob = CMigConstDataManagerSubJob; }

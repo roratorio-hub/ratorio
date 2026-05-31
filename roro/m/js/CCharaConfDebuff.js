@@ -1,4 +1,7 @@
 import { CConfBase } from './CConfBase.js';
+// === AUTO-GENERATED IMPORTS ===
+import './CConfBase.js';
+// === END AUTO-GENERATED IMPORTS ===
 
 export class CCharaConfDebuff extends CConfBase {
 	constructor(confArray) {
@@ -303,6 +306,4 @@ export class CCharaConfDebuff extends CConfBase {
 
 }
 
-if (typeof window !== 'undefined') {
-	window.CCharaConfDebuff = CCharaConfDebuff;
-}
+

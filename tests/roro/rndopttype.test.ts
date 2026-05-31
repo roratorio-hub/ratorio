@@ -24,12 +24,6 @@ describe('rndopttype.dat.js', () => {
             expect(g_rndOptTypeArray).toHaveLength(27);
         });
     });
-
-    describe('window互換確認', () => {
-        it('window.g_rndOptTypeArray が設定されている', () => {
-            expect((window as any).g_rndOptTypeArray).toBe(g_rndOptTypeArray);
-        });
-    });
 });
 
 describe('rndopttype.h.js', () => {
@@ -72,21 +66,6 @@ describe('rndopttype.h.js', () => {
         });
         it('GetEquipRndOptTableValue が関数', () => {
             expect(typeof GetEquipRndOptTableValue).toBe('function');
-        });
-    });
-
-    describe('window互換確認', () => {
-        it('window.g_equipRndOptTable が設定されている', () => {
-            expect((window as any).g_equipRndOptTable).toBe(g_equipRndOptTable);
-        });
-        it('window.SetEquipRndOptTable が設定されている', () => {
-            expect((window as any).SetEquipRndOptTable).toBe(SetEquipRndOptTable);
-        });
-        it('window.GetEquipRndOptTableKind が設定されている', () => {
-            expect((window as any).GetEquipRndOptTableKind).toBe(GetEquipRndOptTableKind);
-        });
-        it('window.GetEquipRndOptTableValue が設定されている', () => {
-            expect((window as any).GetEquipRndOptTableValue).toBe(GetEquipRndOptTableValue);
         });
     });
 

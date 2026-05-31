@@ -102,10 +102,4 @@ describe('CMonsterMapAreaComponentManager.js', () => {
             expect(typeof CMonsterMapAreaComponentManager.updateMonsterSuggest).toBe('function');
         });
     });
-
-    describe('window互換確認', () => {
-        it('window.CMonsterMapAreaComponentManager が設定されている', () => {
-            expect((window as any).CMonsterMapAreaComponentManager).toBe(CMonsterMapAreaComponentManager);
-        });
-    });
 });

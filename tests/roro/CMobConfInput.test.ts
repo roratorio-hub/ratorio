@@ -25,15 +25,6 @@ describe('CMobConfInput', () => {
 		it('g_dataManagerMobConfInput が初期化済み', () => expect(g_dataManagerMobConfInput).not.toBeNull());
 	});
 
-	describe('window互換', () => {
-		it('window.CMobConfInputData', () => expect((window as any).CMobConfInputData).toBe(CMobConfInputData));
-		it('window.CMobConfInputAreaComponentManager', () => expect((window as any).CMobConfInputAreaComponentManager).toBe(CMobConfInputAreaComponentManager));
-		it('window.GetMobConfInput', () => expect((window as any).GetMobConfInput).toBe(GetMobConfInput));
-		it('window.SetMobConfInput', () => expect((window as any).SetMobConfInput).toBe(SetMobConfInput));
-		it('window.SetActiveIndexMobConfInput', () => expect((window as any).SetActiveIndexMobConfInput).toBe(SetActiveIndexMobConfInput));
-		it('window.g_dataManagerMobConfInput', () => expect((window as any).g_dataManagerMobConfInput).toBe(g_dataManagerMobConfInput));
-	});
-
 	describe('DefineEnum定数', () => {
 		it('MOB_CONF_INPUT_DATA_INDEX_PROTECT が 0', () => expect((globalThis as any).MOB_CONF_INPUT_DATA_INDEX_PROTECT).toBe(0));
 		it('MOB_CONF_INPUT_DATA_INDEX_NAME が 1', () => expect((globalThis as any).MOB_CONF_INPUT_DATA_INDEX_NAME).toBe(1));
