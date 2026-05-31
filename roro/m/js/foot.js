@@ -884,7 +884,6 @@ import {
          SKILL_ID_WUG_RIDER, SKILL_ID_YARI_SHUREN, SKILL_ID_YASURAGINO_KOMORIUTA,
          SKILL_ID_YOMIGAESHI, SKILL_ID_ZIRAISHIN, SKILL_ID_ZYUMONZIGIRI
 } from './skill.dat.js';
-import { LoadTomSelect } from '../../../lib/tom-select/tom-select.custom.js';
 // === END AUTO-GENERATED IMPORTS ===
 /**
  * 計算機の初期化コードが記述されたエントリーポイント
