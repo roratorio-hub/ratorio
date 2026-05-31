@@ -20,6 +20,7 @@
         "@vitest/ui": "^4.0.18",
         "happy-dom": "^20.6.3",
         "playwright": "^1.53.0",
+        "tom-select": "^2.6.1",
         "typescript": "^5.9.3",
         "vitest": "^4.0.18"
     }

@@ -30324,7 +30324,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			// URLロードがない場合は、ノービスを初期ジョブとして設定
 			changeJobSettings("NOVICE");
 			// 検索可能ドロップダウンリストのロード
-			LoadSelect2();
+			LoadTomSelect();
 		}
 
 		// 再計算

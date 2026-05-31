@@ -393,16 +393,20 @@ describe('ro4/m/calcx.html 起動テスト', () => {
                     return { error: 'カテゴリ選択肢が不足', catLen: catSel.options.length, mapLenBefore, mapLenAfter: mapLenBefore, monLenBefore, monLenAfter: monLenBefore };
                 }
 
-                // 「全地域」以外のカテゴリを選択 — 最後の選択肢（特定地域）を使う
-                catSel.value = catSel.options[catSel.options.length - 1].value;
+                // 「全地域」(value=0) 以外のカテゴリを選択。
+                // TomSelect は選択中の option を <select> 末尾へ移動するため、
+                // 位置（末尾）ではなく value で「特定地域」を判定して選ぶ。
+                const specificCats = Array.from(catSel.options).filter((o) => o.value !== '0');
+                catSel.value = specificCats[specificCats.length - 1].value;
                 catSel.dispatchEvent(new Event('change', { bubbles: true }));
 
                 const mapLenAfter = mapSel.options.length;
 
-                // マップを 2 番目の選択肢に変更してモンスターリスト更新を確認
+                // マップを「全マップ」(value=0) 以外に変更してモンスターリスト更新を確認
                 const monLenAfterCatChange = monSel.options.length;
-                if (mapSel.options.length >= 2) {
-                    mapSel.value = mapSel.options[mapSel.options.length - 1].value;
+                const specificMaps = Array.from(mapSel.options).filter((o) => o.value !== '0');
+                if (specificMaps.length >= 1) {
+                    mapSel.value = specificMaps[specificMaps.length - 1].value;
                     mapSel.dispatchEvent(new Event('change', { bubbles: true }));
                 }
                 const monLenAfter = monSel.options.length;

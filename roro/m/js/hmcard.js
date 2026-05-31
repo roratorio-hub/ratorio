@@ -1270,10 +1270,12 @@ function BuildUpCardSlotsMIG(eqpRgnId, itemId, enchInfoArray, objArySlots) {
 					var $enchSearch = $('#ench_search');
 					if ($enchSearch.length === 0) return;
 					// 同じエンチャントで検索中なら解除、そうでなければ検索
-					if ($enchSearch.val() === enchId) {
-						$enchSearch.val('').trigger('change').trigger('select2:select');
+					const enchSearchEl = $enchSearch[0];
+					if (enchSearchEl.tomselect) {
+						enchSearchEl.tomselect.setValue($enchSearch.val() === enchId ? '' : enchId);
 					} else {
-						$enchSearch.val(enchId).trigger('change').trigger('select2:select');
+						const newVal = $enchSearch.val() === enchId ? '' : enchId;
+						$enchSearch.val(newVal).trigger('change');
 					}
 				});
 				parent.appendChild(searchBtn);
@@ -1598,7 +1600,7 @@ export function ApplyCardShort(eqpRgnId, objidPrifix) {
 	CAttackMethodAreaComponentManager.RebuildControls();
 
 	// 検索可能リスト更新
-	LoadSelect2();
+	LoadTomSelect();
 }
 
 /* window compat — dewindow フェーズで除去予定 */

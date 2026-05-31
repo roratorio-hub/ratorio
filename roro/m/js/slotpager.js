@@ -131,7 +131,7 @@ export function OnClickSlotModeButton(jobId) {
 	}
 
 	// 検索可能リスト更新
-	LoadSelect2();
+	LoadTomSelect();
 }
 
 /************************************************************************************************

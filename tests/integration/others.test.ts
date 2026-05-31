@@ -41,7 +41,7 @@ function createStaticServer(root: string): Server {
 }
 
 const SUPPRESSED_ERROR_PATTERNS: RegExp[] = [
-    // select2 / jQuery CDN の読み込み失敗は対象外
+    // jQuery CDN の読み込み失敗は対象外
     /Failed to load resource/i,
 ];
 

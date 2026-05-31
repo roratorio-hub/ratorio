@@ -16,6 +16,30 @@ window.g_customSelectCategory = new CCustomSelectMapCategory("MONSTER_MAP_CATEGO
 window.g_customSelectMap = new CCustomSelectMapMap("MONSTER_MAP_MAP", g_customSelectCategory);
 g_customSelectMap.AddOnChangeSelectDataExtraHandller(RefreshMonsterList, null);
 
+// カテゴリ変更でマップの option がプログラム的に作り直されるため、
+// ラップしている TomSelect を再初期化して表示を同期する。
+// （RebuildSelectData より後に実行されるよう、ここで登録する）
+g_customSelectCategory.AddOnChangeSelectDataExtraHandller(() => {
+	ReinitTomSelect(g_customSelectMap.objSelectData);
+}, null);
+
+/**
+ * 指定 select の TomSelect を再初期化して表示を現在の option / value に同期する.
+ * destroy() は revertSettings.innerHTML を復元して value をリセットするため、
+ * 事前に現在の innerHTML / value を保存し、破棄後に書き戻してから再生成する。
+ */
+function ReinitTomSelect(el) {
+	if (!el) return;
+	const savedValue = el.value;
+	const savedHTML = el.innerHTML;
+	if (el.tomselect) {
+		el.tomselect.destroy();
+		el.innerHTML = savedHTML;
+		el.value = savedValue;
+	}
+	new TomSelect(el, { maxOptions: null });
+}
+
 
 /**
  * 3桁区切りの適用.
@@ -150,8 +174,7 @@ export function InitMonsterListSelectArea() {
 		HtmlCreateElementOption(idx, "Lv" + idx, objSelect);
 	}
 
-	$("#OBJID_TD_MONSTER_MAP_CATEGORY select").select2();
-	$("#OBJID_TD_MONSTER_MAP_MAP select").select2();
+	document.querySelectorAll('#OBJID_TD_MONSTER_MAP_CATEGORY select, #OBJID_TD_MONSTER_MAP_MAP select').forEach(ReinitTomSelect);
 	
 
 	// 表示更新

@@ -842,7 +842,7 @@ export class CSaveController {
 		    	    	CItemInfoManager.OnClickExtractSwitch();
 		    	    }
 					calc();
-					LoadSelect2();
+					LoadTomSelect();
 					hideLoadingIndicator();
 		    	  }
 		    	}
@@ -1153,7 +1153,7 @@ export class CSaveController {
 			calc();
 
 			// 検索可能ドロップダウンリストのロード
-			LoadSelect2();
+			LoadTomSelect();
 
 
 
@@ -1210,7 +1210,7 @@ export class CSaveController {
 			calc();
 
 			// 検索可能ドロップダウンリストのロード
-			LoadSelect2();
+			LoadTomSelect();
 		}
 	}
 

@@ -332,22 +332,22 @@ export function OnClickQuickControlSetItemPack() {
 		case ITEM_PACK_ID_CLEAR_SHADOW_ALL:
 			OnClickQuickControlSetItemPackSubForClearShadowEquipAll();
 			StAllCalc();
-			// select2化されていないのでLoadSelect2は不要
+			// TomSelect 化されていないので LoadTomSelect は不要
 			return;
 		case ITEM_PACK_ID_CLEAR_EQUIP_ALL:
 			OnClickQuickControlSetItemPackSubForClearEquipAll();
 			StAllCalc();
-			LoadSelect2();
+			LoadTomSelect();
 			return;
 		case ITEM_PACK_ID_CLEAR_REFINE_ALL:
 			OnClickQuickControlSetItemPackSubForClearRefineAll();
 			StAllCalc();
-			// select2化されていないのでLoadSelect2は不要
+			// TomSelect 化されていないので LoadTomSelect は不要
 			return;
 		case ITEM_PACK_ID_CLEAR_CARD_ALL:
 			OnClickQuickControlSetItemPackSubForClearCardAll();
 			StAllCalc();
-			LoadSelect2();
+			LoadTomSelect();
 			return;
 	}
 
@@ -380,7 +380,7 @@ export function OnClickQuickControlSetItemPack() {
 	StAllCalc();
 
 	// 検索可能リスト更新
-	LoadSelect2();
+	LoadTomSelect();
 }
 
 export function OnClickQuickControlSetItemPackSubForItem(itemId, itemRefine) {

@@ -166,7 +166,7 @@ div.clip_memo {
       const mgr = CSaveController.getSaveDataManagerCur();
       mgr.ReCalcManager();
       calc();
-      LoadSelect2();
+      LoadTomSelect();
       const metadata = { "memo": "", "url": CSaveController.encodeToURL() };
       if ($("#clip_with_memo").prop('checked')) {
         let memo = prompt("clipメモ");

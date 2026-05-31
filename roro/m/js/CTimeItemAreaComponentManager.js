@@ -124,15 +124,12 @@ CTimeItemAreaComponentManager.RebuildControls = function () {
 
 		objSelect.value = g_timeItemConf[idxRow];
 
-		// select2 対応
-		//console.log(`${'#OBJID_SELECT_TIME_ITEM_' + idxRow}.select2-hidden-accessible=${$('#OBJID_SELECT_TIME_ITEM_' + idxRow).hasClass('select2-hidden-accessible')}`);
-		if ($('#OBJID_SELECT_TIME_ITEM_' + idxRow).hasClass('select2-hidden-accessible')) {
-			// 親要素が削除→再生成されるためselect2も作り直す
-			$('#OBJID_SELECT_TIME_ITEM_' + idxRow).select2('destroy');
+		// TomSelect 対応: 親要素が削除→再生成されるため既存インスタンスを破棄して作り直す
+		const timeItemEl = document.getElementById('OBJID_SELECT_TIME_ITEM_' + idxRow);
+		if (timeItemEl.tomselect) {
+			timeItemEl.tomselect.destroy();
 		}
-		$('#OBJID_SELECT_TIME_ITEM_' + idxRow).select2();
-		// キーボード操作のイベントハンドラ設定
-		CustomizeSelect2Specify('#OBJID_SELECT_TIME_ITEM_' + idxRow);
+		new TomSelect(timeItemEl, { maxOptions: null });
 	}
 
 	// CSS 更新
