@@ -6832,6 +6832,14 @@ export const PetIdToSetIdMap = new Array();
 	CardIdToSetIdMap[4283] = [3474,];
 	w_SE[3475] = [-4286,-4285,-1245,];    // 潜在解放(トルバドゥール&トルヴェールXVI) + 真理の解放
 	CardIdToSetIdMap[4285] = [3475,];
+	w_SE[3476] = [5696,5695,-2417,];
+	ItemIdToSetIdMap[5695] = [3476,];
+	w_SE[3477] = [5699,5698,-3631,];
+	ItemIdToSetIdMap[5698] = [3477,];
+	w_SE[3478] = [5701,5700,-2889,];
+	ItemIdToSetIdMap[5700] = [3478,];
+
+	// <<< INSERT NEW DATA ABOVE THIS LINE >>>
 
 	// itemset はセーブデータに書き出されないので
 	// 現実的な範囲において itemsetID の上限値を気にする必要はありません
