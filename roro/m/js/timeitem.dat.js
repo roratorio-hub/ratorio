@@ -705,7 +705,9 @@ ITEM_SP_TIME_OBJ_SORT.push(335);
 // --- 2026-04-14 ---
 ITEM_SP_TIME_OBJ[336] = [336,"魔弓の弦音","Hit+150, 攻撃速度+100%",[[2,4266]],8,150,12,100,0];
 ITEM_SP_TIME_OBJ_SORT.push(336);
-
+//
+ITEM_SP_TIME_OBJ[337] = [337,"冥犬の共吠え","必中攻撃+50%, 命中物理攻撃で与えるダメージ+50%",[[2,4287]],86,50,167,50,0];
+ITEM_SP_TIME_OBJ_SORT.push(337);
 
 /**
  * CSaveDataUnitTimeBuffで各IDの領域に 9 bit確保されています
