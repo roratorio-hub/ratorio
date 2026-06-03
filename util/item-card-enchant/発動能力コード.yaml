@@ -334,6 +334,8 @@ capabilities:
     code: 289
   - name: DEF無視
     code: 293
+  - name: 一般モンスターのMDEF無視
+    code: 296
   - name: MDEF無視
     code: 298
   - name: 無属性魔法ダメージ増加

@@ -27984,13 +27984,10 @@ export function GetEquippedSPSubEquip(spid, invalidItemIdArray, bListUp, bExact)
 	var spDefBaseLvBy = 0;		// BaseLvが上がる度に条件
 	var spDefJobRestrict = 0;	// 職業制限
 	var spDefPureStatus = 0;	// 純粋なステータス条件
-	var spDefPureStatusBy = 0;	// 純粋なステータスが上がる度に条件
 	var spDefRefineOver = 0;	// 精錬値以上条件
 	var spDefRefineBy = 0;		// 精錬値が上がる度に条件
 
 	var pureStatusValue = [SU_STR, SU_AGI, SU_VIT, SU_INT, SU_DEX, SU_LUK];
-
-	var spValPureStatus = 0;	// 純粋なステータスによる上昇量
 
 	var spVal = 0;
 	var itemId = 0;
@@ -28061,11 +28058,23 @@ export function GetEquippedSPSubEquip(spid, invalidItemIdArray, bListUp, bExact)
 
 		// アイテムのＳＰ定義をループ検索
 		for (spDefIdx = 0; itemData[ ITEM_DATA_INDEX_SPBEGIN + spDefIdx ] != ITEM_SP_END; spDefIdx += 2) {
+			var spDefPureStatusBy = 0;	// 純粋なステータスが上がる度に条件
+			var spValPureStatus = 0;	// 純粋なステータスによる上昇量
 
 			// ＳＰの定義を取得
 			// spDefRemain は int の場合と BigInt の場合がある
 			spDefRemain = itemData[ ITEM_DATA_INDEX_SPBEGIN + spDefIdx ];
 			spDefValue = itemData[ ITEM_DATA_INDEX_SPBEGIN + spDefIdx + 1 ];
+
+			// 純粋なステータスが30上がる度に条件を取得
+			let base_flag = toSafeBigInt(ITEM_SP_PURE_STR_BY_30_OFFSET);
+			if (spDefRemain > base_flag) {
+				spDefPureStatusBy = parseInt(spDefRemain / base_flag);
+				if (1 <= spDefPureStatusBy && spDefPureStatusBy <= 6) {
+					spValPureStatus = Math.floor(pureStatusValue[spDefPureStatusBy - 1] / 30);
+				}
+				spDefRemain = parseInt(spDefRemain % base_flag);
+			}
 
 			// 超越段階を満たさない場合は、次へ
 			spDefRemain = CheckSpDefTransendenceOver(spDefRemain, eqpTranscendence);
@@ -28115,17 +28124,19 @@ export function GetEquippedSPSubEquip(spid, invalidItemIdArray, bListUp, bExact)
 			}
 
 			// 純粋なステータスが上がる度に条件を取得
-			spDefPureStatusBy = Math.floor(spDefRemain / ITEM_SP_PURE_STR_BY_10_OFFSET);
-			if (1 <= spDefPureStatusBy && spDefPureStatusBy <= 6) {
-				spValPureStatus = Math.floor(pureStatusValue[spDefPureStatusBy - 1] / 10);
+			if (spDefPureStatusBy == 0) {
+				spDefPureStatusBy = Math.floor(spDefRemain / ITEM_SP_PURE_STR_BY_10_OFFSET);
+				if (1 <= spDefPureStatusBy && spDefPureStatusBy <= 6) {
+					spValPureStatus = Math.floor(pureStatusValue[spDefPureStatusBy - 1] / 10);
+				}
+				else if (7 == spDefPureStatusBy) {
+					spValPureStatus = pureStatusValue[PARAM_DEX];
+				}
+				else if (8 == spDefPureStatusBy) {
+					spValPureStatus = pureStatusValue[PARAM_VIT];
+				}
+				spDefRemain = spDefRemain % ITEM_SP_PURE_STR_BY_10_OFFSET;
 			}
-			else if (7 == spDefPureStatusBy) {
-				spValPureStatus = pureStatusValue[PARAM_DEX];
-			}
-			else if (8 == spDefPureStatusBy) {
-				spValPureStatus = pureStatusValue[PARAM_VIT];
-			}
-			spDefRemain = spDefRemain % ITEM_SP_PURE_STR_BY_10_OFFSET;
 
 			// 精錬値以上条件を満たさない場合は、次へ
 			spDefRemain = CheckSpDefRefineOver(spDefRemain, eqpRefined);
@@ -28227,14 +28238,10 @@ export function GetEquippedSPSubShadow(spid, invalidItemIdArray, bListUp, bExact
 	var spDefBaseLvBy = 0;		// BaseLvが上がる度に条件
 	var spDefJobRestrict = 0;	// 職業制限
 	var spDefPureStatus = 0;	// 純粋なステータス条件
-	var spDefPureStatusBy = 0;	// 純粋なステータスが上がる度に条件
 	var spDefRefineOver = 0;	// 精錬値以上条件
 	var spDefRefineBy = 0;		// 精錬値が上がる度に条件
 
 	var pureStatusValue = [SU_STR, SU_AGI, SU_VIT, SU_INT, SU_DEX, SU_LUK];
-
-	var spValPureStatus = 0;	// 純粋なステータスによる上昇量
-
 	var spVal = 0;
 
 	var spValToCorrect = 0;
@@ -28280,10 +28287,24 @@ export function GetEquippedSPSubShadow(spid, invalidItemIdArray, bListUp, bExact
 
 		// アイテムのＳＰ定義をループ検索
 		for (spDefIdx = 0; itemData[ ITEM_DATA_INDEX_SPBEGIN + spDefIdx ] != ITEM_SP_END; spDefIdx += 2) {
+			var spDefPureStatusBy = 0;	// 純粋なステータスが上がる度に条件
+			var spValPureStatus = 0;	// 純粋なステータスによる上昇量
 
 			// ＳＰの定義を取得
 			spDefRemain = itemData[ ITEM_DATA_INDEX_SPBEGIN + spDefIdx ];
 			spDefValue = itemData[ ITEM_DATA_INDEX_SPBEGIN + spDefIdx + 1 ];
+
+			// 純粋なステータスが30上がる度に条件を取得
+			let base_flag = toSafeBigInt(ITEM_SP_PURE_STR_BY_30_OFFSET);
+			if (spDefRemain > base_flag) {
+				spDefPureStatusBy = parseInt(spDefRemain / base_flag);
+				if (1 <= spDefPureStatusBy && spDefPureStatusBy <= 6) {
+					spValPureStatus = Math.floor(pureStatusValue[spDefPureStatusBy - 1] / 30);
+				}
+				spDefRemain = parseInt(spDefRemain % base_flag);
+			}
+
+			// --- ここから下の spDefRemain は必ず Int 型 ---
 
 			// 完全一致条件が指定されている場合
 			if (bExact) {
@@ -28326,17 +28347,19 @@ export function GetEquippedSPSubShadow(spid, invalidItemIdArray, bListUp, bExact
 			}
 
 			// 純粋なステータスが上がる度に条件を取得
-			spDefPureStatusBy = Math.floor(spDefRemain / ITEM_SP_PURE_STR_BY_10_OFFSET);
-			if (1 <= spDefPureStatusBy && spDefPureStatusBy <= 6) {
-				spValPureStatus = Math.floor(pureStatusValue[spDefPureStatusBy - 1] / 10);
+			if (spDefPureStatusBy == 0) {
+				spDefPureStatusBy = Math.floor(spDefRemain / ITEM_SP_PURE_STR_BY_10_OFFSET);
+				if (1 <= spDefPureStatusBy && spDefPureStatusBy <= 6) {
+					spValPureStatus = Math.floor(pureStatusValue[spDefPureStatusBy - 1] / 10);
+				}
+				else if (7 == spDefPureStatusBy) {
+					spValPureStatus = pureStatusValue[PARAM_DEX];
+				}
+				else if (8 == spDefPureStatusBy) {
+					spValPureStatus = pureStatusValue[PARAM_VIT];
+				}
+				spDefRemain = spDefRemain % ITEM_SP_PURE_STR_BY_10_OFFSET;
 			}
-			else if (7 == spDefPureStatusBy) {
-				spValPureStatus = pureStatusValue[PARAM_DEX];
-			}
-			else if (8 == spDefPureStatusBy) {
-				spValPureStatus = pureStatusValue[PARAM_VIT];
-			}
-			spDefRemain = spDefRemain % ITEM_SP_PURE_STR_BY_10_OFFSET;
 
 			// 精錬値以上条件を満たさない場合は、次へ
 			spDefRemain = CheckSpDefRefineOver(spDefRemain, eqpRefined);
@@ -28481,11 +28504,9 @@ export function GetEquippedSPSubSPCardAndElse(spid, invalidCardIdArray, bListUp)
 	var spDefBaseLvBy = 0;		// BaseLvが上がる度に条件
 	var spDefJobRestrict = 0;	// 職業制限
 	var spDefPureStatus = 0;	// 純粋なステータス条件
-	var spDefPureStatusBy = 0;	// 純粋なステータスが上がる度に条件
 	var spDefRefineOver = 0;	// 精錬値以上条件
 	var spDefRefineBy = 0;		// 精錬値が上がる度に条件
 	var pureStatusValue = [SU_STR, SU_AGI, SU_VIT, SU_INT, SU_DEX, SU_LUK];
-	var spValPureStatus = 0;	// 純粋なステータスによる上昇量
 	var spValToCorrect = 0;
 	var listUpArray = new Array();
 	var petFuncReturn = null;
@@ -28603,11 +28624,23 @@ export function GetEquippedSPSubSPCardAndElse(spid, invalidCardIdArray, bListUp)
 
 		// カードのＳＰ定義をループ検索
 		for(spDefIdx = 0; cardData[CARD_DATA_INDEX_SPBEGIN + spDefIdx] != 0; spDefIdx += 2) {
+			var spDefPureStatusBy = 0;	// 純粋なステータスが上がる度に条件
+			var spValPureStatus = 0;	// 純粋なステータスによる上昇量
 
 			// ＳＰの定義を取得
 			// spDefRemain は int の場合と BigInt の場合がある
 			spDefRemain = cardData[ CARD_DATA_INDEX_SPBEGIN + spDefIdx ];
 			spDefValue = cardData[ CARD_DATA_INDEX_SPBEGIN + spDefIdx + 1 ];
+
+			// 純粋なステータスが30上がる度に条件を取得
+			let base_flag = toSafeBigInt(ITEM_SP_PURE_STR_BY_30_OFFSET);
+			if (spDefRemain > base_flag) {
+				spDefPureStatusBy = parseInt(spDefRemain / base_flag);
+				if (1 <= spDefPureStatusBy && spDefPureStatusBy <= 6) {
+					spValPureStatus = Math.floor(pureStatusValue[spDefPureStatusBy - 1] / 30);
+				}
+				spDefRemain = parseInt(spDefRemain % base_flag);
+			}
 
 			// 装備部位を満たさない場合は、次へ
 			spDefRemain = CheckSpDefEquipmentLocation(spDefRemain, cardRegionId);
@@ -28656,17 +28689,19 @@ export function GetEquippedSPSubSPCardAndElse(spid, invalidCardIdArray, bListUp)
 			}
 
 			// 純粋なステータスが上がる度に条件を取得
-			spDefPureStatusBy = Math.floor(spDefRemain / ITEM_SP_PURE_STR_BY_10_OFFSET);
-			if (1 <= spDefPureStatusBy && spDefPureStatusBy <= 6) {
-				spValPureStatus = Math.floor(pureStatusValue[spDefPureStatusBy - 1] / 10);
+			if (spDefPureStatusBy == 0) {
+				spDefPureStatusBy = Math.floor(spDefRemain / ITEM_SP_PURE_STR_BY_10_OFFSET);
+				if (1 <= spDefPureStatusBy && spDefPureStatusBy <= 6) {
+					spValPureStatus = Math.floor(pureStatusValue[spDefPureStatusBy - 1] / 10);
+				}
+				else if (7 == spDefPureStatusBy) {
+					spValPureStatus = pureStatusValue[PARAM_DEX];
+				}
+				else if (8 == spDefPureStatusBy) {
+					spValPureStatus = pureStatusValue[PARAM_VIT];
+				}
+				spDefRemain = spDefRemain % ITEM_SP_PURE_STR_BY_10_OFFSET;
 			}
-			else if (7 == spDefPureStatusBy) {
-				spValPureStatus = pureStatusValue[PARAM_DEX];
-			}
-			else if (8 == spDefPureStatusBy) {
-				spValPureStatus = pureStatusValue[PARAM_VIT];
-			}
-			spDefRemain = spDefRemain % ITEM_SP_PURE_STR_BY_10_OFFSET;
 
 			// 精錬値以上条件を満たさない場合は、次へ
 			spDefRemain = CheckSpDefRefineOver(spDefRemain, eqpRefined);
@@ -28750,11 +28785,23 @@ export function GetEquippedSPSubSPCardAndElse(spid, invalidCardIdArray, bListUp)
 
 		// ＳＰ定義をループ検索（とりあえず、カードの部分からコピー）
 		for(spDefIdx = 0; timeObj[TIME_ITEM_DATA_INDEX_SPBEGIN + spDefIdx] != 0; spDefIdx += 2) {
+			var spDefPureStatusBy = 0;	// 純粋なステータスが上がる度に条件
+			var spValPureStatus = 0;	// 純粋なステータスによる上昇量
 
 			// ＳＰの定義を取得
 			// spDefRemain は int の場合と BigInt の場合がある
 			spDefRemain = timeObj[ TIME_ITEM_DATA_INDEX_SPBEGIN + spDefIdx ];
 			spDefValue = timeObj[ TIME_ITEM_DATA_INDEX_SPBEGIN + spDefIdx + 1 ];
+
+			// 純粋なステータスが30上がる度に条件を取得
+			let base_flag = toSafeBigInt(ITEM_SP_PURE_STR_BY_30_OFFSET);
+			if (spDefRemain > base_flag) {
+				spDefPureStatusBy = parseInt(spDefRemain / base_flag);
+				if (1 <= spDefPureStatusBy && spDefPureStatusBy <= 6) {
+					spValPureStatus = Math.floor(pureStatusValue[spDefPureStatusBy - 1] / 30);
+				}
+				spDefRemain = parseInt(spDefRemain % base_flag);
+			}
 
 			// 超越段階を満たさない場合は、次へ
 			spDefRemain = CheckSpDefTransendenceOver(spDefRemain, eqpTranscendence);
@@ -28797,17 +28844,19 @@ export function GetEquippedSPSubSPCardAndElse(spid, invalidCardIdArray, bListUp)
 			}
 
 			// 純粋なステータスが上がる度に条件を取得
-			spDefPureStatusBy = Math.floor(spDefRemain / ITEM_SP_PURE_STR_BY_10_OFFSET);
-			if (1 <= spDefPureStatusBy && spDefPureStatusBy <= 6) {
-				spValPureStatus = Math.floor(pureStatusValue[spDefPureStatusBy - 1] / 10);
+			if (spDefPureStatusBy == 0) {
+				spDefPureStatusBy = Math.floor(spDefRemain / ITEM_SP_PURE_STR_BY_10_OFFSET);
+				if (1 <= spDefPureStatusBy && spDefPureStatusBy <= 6) {
+					spValPureStatus = Math.floor(pureStatusValue[spDefPureStatusBy - 1] / 10);
+				}
+				else if (7 == spDefPureStatusBy) {
+					spValPureStatus = pureStatusValue[PARAM_DEX];
+				}
+				else if (8 == spDefPureStatusBy) {
+					spValPureStatus = pureStatusValue[PARAM_VIT];
+				}
+				spDefRemain = spDefRemain % ITEM_SP_PURE_STR_BY_10_OFFSET;
 			}
-			else if (7 == spDefPureStatusBy) {
-				spValPureStatus = pureStatusValue[PARAM_DEX];
-			}
-			else if (8 == spDefPureStatusBy) {
-				spValPureStatus = pureStatusValue[PARAM_VIT];
-			}
-			spDefRemain = spDefRemain % ITEM_SP_PURE_STR_BY_10_OFFSET;
 
 			// 精錬値以上条件を満たさない場合は、次へ
 			spDefRemain = CheckSpDefRefineOver(spDefRemain, eqpRefined);
@@ -28890,13 +28939,9 @@ export function GetEquippedSPSubSPPet(spid, invalidPetIdArray, bListUp) {
 	var spDefBaseLvBy = 0;		// BaseLvが上がる度に条件
 	var spDefJobRestrict = 0;	// 職業制限
 	var spDefPureStatus = 0;	// 純粋なステータス条件
-	var spDefPureStatusBy = 0;	// 純粋なステータスが上がる度に条件
 	var spDefRefineOver = 0;	// 精錬値以上条件
 	var spDefRefineBy = 0;		// 精錬値が上がる度に条件
-
 	var pureStatusValue = [SU_STR, SU_AGI, SU_VIT, SU_INT, SU_DEX, SU_LUK];
-	var spValPureStatus = 0;
-
 	var spValToCorrect = 0;
 	var listUpArray = new Array();
 
@@ -28928,10 +28973,24 @@ export function GetEquippedSPSubSPPet(spid, invalidPetIdArray, bListUp) {
 
 	// ペットのＳＰ定義をループ検索
 	for (spDefIdx = 0; petData[PET_DATA_INDEX_SPBEGIN + spDefIdx] != 0; spDefIdx += 2) {
+		var spDefPureStatusBy = 0;	// 純粋なステータスが上がる度に条件
+		var spValPureStatus = 0;
 
 		// ＳＰの定義を取得
 		spDefRemain = petData[ PET_DATA_INDEX_SPBEGIN + spDefIdx ];
 		spDefValue = petData[ PET_DATA_INDEX_SPBEGIN + spDefIdx + 1 ];
+
+		// 純粋なステータスが30上がる度に条件を取得
+		let base_flag = toSafeBigInt(ITEM_SP_PURE_STR_BY_30_OFFSET);
+		if (spDefRemain > base_flag) {
+			spDefPureStatusBy = parseInt(spDefRemain / base_flag);
+			if (1 <= spDefPureStatusBy && spDefPureStatusBy <= 6) {
+				spValPureStatus = Math.floor(pureStatusValue[spDefPureStatusBy - 1] / 30);
+			}
+			spDefRemain = parseInt(spDefRemain % base_flag);
+		}
+
+		// --- ここから下の spDefRemain は必ず Int 型 ---
 
 		// ＳＰ定義ＩＤが一致しない場合は、次へ
 		if (!IsMatchSpDefId(spDefRemain, spid)) {
@@ -28967,17 +29026,19 @@ export function GetEquippedSPSubSPPet(spid, invalidPetIdArray, bListUp) {
 		}
 
 		// 純粋なステータスが上がる度に条件を取得
-		spDefPureStatusBy = Math.floor(spDefRemain / ITEM_SP_PURE_STR_BY_10_OFFSET);
-		if (1 <= spDefPureStatusBy && spDefPureStatusBy <= 6) {
-			spValPureStatus = Math.floor(pureStatusValue[spDefPureStatusBy - 1] / 10);
+		if (spDefPureStatusBy == 0) {
+			spDefPureStatusBy = Math.floor(spDefRemain / ITEM_SP_PURE_STR_BY_10_OFFSET);
+			if (1 <= spDefPureStatusBy && spDefPureStatusBy <= 6) {
+				spValPureStatus = Math.floor(pureStatusValue[spDefPureStatusBy - 1] / 10);
+			}
+			else if (7 == spDefPureStatusBy) {
+				spValPureStatus = pureStatusValue[PARAM_DEX];
+			}
+			else if (8 == spDefPureStatusBy) {
+				spValPureStatus = pureStatusValue[PARAM_VIT];
+			}
+			spDefRemain = spDefRemain % ITEM_SP_PURE_STR_BY_10_OFFSET;
 		}
-		else if (7 == spDefPureStatusBy) {
-			spValPureStatus = pureStatusValue[PARAM_DEX];
-		}
-		else if (8 == spDefPureStatusBy) {
-			spValPureStatus = pureStatusValue[PARAM_VIT];
-		}
-		spDefRemain = spDefRemain % ITEM_SP_PURE_STR_BY_10_OFFSET;
 
 		// 精錬値以上条件を満たさない場合は、次へ
 		spDefRemain = CheckSpDefRefineOver(spDefRemain, eqpRefined);
@@ -29346,6 +29407,11 @@ export function CheckSpDefBaseLvOver(spDefRemain) {
 		break;
 	case 6:
 		if (n_A_BaseLV < 260) {
+			return -1;
+		}
+		break;
+	case 7:
+		if (n_A_BaseLV < 165) {
 			return -1;
 		}
 		break;
