@@ -2078,6 +2078,9 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
     });
+    // モデル変更時に chatModel をリセット（次のクリック時に新モデルで再ロード）
+    const modelSel = document.getElementById("model-select");
+    if (modelSel) modelSel.addEventListener("change", () => { window.resetChatModel?.(); });
 });
 </script>
 <!-- ▲▲▲ AI 相談パネル（ここまで） ▲▲▲ -->
