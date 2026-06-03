@@ -690,13 +690,6 @@ export function GetRndOptValue(eqpRgnId, spid, invalidItemIdArray, bListUp) {
 		spDefRemain = rndOptSpId;
 		spDefValue = rndOptValue;
 
-		// 純粋なステータスが30上がる度に条件を取得
-		spDefPureStatusBy = Math.floor(spDefRemain / ITEM_SP_PURE_STR_BY_30_OFFSET);
-		if (1 <= spDefPureStatusBy && spDefPureStatusBy <= 6) {
-			spValPureStatus = Math.floor(pureStatusValue[spDefPureStatusBy - 1] / 10);
-		}
-		spDefRemain = spDefRemain % ITEM_SP_PURE_STR_BY_30_OFFSET;
-
 		// --- ここから下の spDefRemain は必ず Int 型 ---
 
 		// ＳＰ定義ＩＤが一致しない場合は、次へ
@@ -733,20 +726,17 @@ export function GetRndOptValue(eqpRgnId, spid, invalidItemIdArray, bListUp) {
 		}
 
 		// 純粋なステータスが上がる度に条件を取得
-		base_flag = ITEM_SP_PURE_STR_BY_10_OFFSET;
-		if (spDefRemain > base_flag) {
-			spDefPureStatusBy = Math.floor(spDefRemain / base_flag);
-			if (1 <= spDefPureStatusBy && spDefPureStatusBy <= 6) {
-				spValPureStatus = Math.floor(pureParamArray[spDefPureStatusBy - 1] / 10);
-			}
-			else if (7 == spDefPureStatusBy) {
-				spValPureStatus = pureStatusValue[PARAM_DEX];
-			}
-			else if (8 == spDefPureStatusBy) {
-				spValPureStatus = pureStatusValue[PARAM_VIT];
-			}
-			spDefRemain = spDefRemain % base_flag;
+		spDefPureStatusBy = Math.floor(spDefRemain / ITEM_SP_PURE_STR_BY_10_OFFSET);
+		if (1 <= spDefPureStatusBy && spDefPureStatusBy <= 6) {
+			spValPureStatus = Math.floor(pureParamArray[spDefPureStatusBy - 1] / 10);
 		}
+		else if (7 == spDefPureStatusBy) {
+			spValPureStatus = pureStatusValue[PARAM_DEX];
+		}
+		else if (8 == spDefPureStatusBy) {
+			spValPureStatus = pureStatusValue[PARAM_VIT];
+		}
+		spDefRemain = spDefRemain % ITEM_SP_PURE_STR_BY_10_OFFSET;
 
 		// 精錬値以上条件を満たさない場合は、次へ
 		spDefRemain = CheckSpDefRefineOver(spDefRemain, eqpRefined);
