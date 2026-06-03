@@ -47027,14 +47027,11 @@ export function CSkillManager() {
 			CSkillData.call(this);
 			this.id = skillId;
 			this.name = "(△)グラビティホール";
-			this.kana = "グラビティホホル";
+			this.kana = "グラビティホオル";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
-			this.element = function(option) {
-				// 2026-04-11 武器属性が適用されるとの検証報告あり
-				return option.GetOptionValue(0);
-			}
+			this.element = CSkillData.ELEMENT_FORCE_VANITY;
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				ratio += 10500 + 6000 * skillLv;
