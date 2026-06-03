@@ -4,7 +4,38 @@ import yaml
 
 ENCHANT     = 99
 
+RESTRICT_JOB_CODE = {
+	"RUNE_KNIGHT"       : 47,
+	"GUILLOTINE_CROSS"  : 48,
+	"ARCBISHOP"         : 49,
+	"RANGER"            : 50,
+	"WARLOCK"           : 51,
+	"MECHANIC"          : 52,
+	"ROYALGUARD"        : 53,
+	"SHADOWCHASER"      : 54,
+	"SHURA"             : 55,
+	"MINSTREL"          : 56,
+	"WANDERER"          : 57,
+	"SORCERER"          : 58,
+	"GENETIC"           : 59,
+	"KAGERO"            : 60,
+	"OBORO"             : 61,
+	"SUPERNOVICE_PLUS"  : 62,
+	"REBELLION"         : 63,
+	"SUMMONER"          : 64,
+	"STAR_EMPEROR"      : 65,
+	"SOUL_REAPER"       : 66,
+}
+
 PER_STATUS_10_CODE = {
+    'STR': 1,
+    'AGI': 2,
+    'VIT': 3,
+    'INT': 4,
+    'DEX': 5,
+    'LUK': 6,
+}
+PER_STATUS_30_CODE = {
     'STR': 1,
     'AGI': 2,
     'VIT': 3,
@@ -55,16 +86,18 @@ AT_SP_STATUS_50_CODE = {
 AT_BASE_LV_CODE = {
     170: 1,
     100: 2,
-     99: 3,
+     99: 3, # これだけ99"以下"のとき
     175: 4,
     250: 5,
     260: 6,
+    165: 7,
 }
 AT_EQUIP_LOCATION_CODE = {
     '鎧': 1,
     '肩にかける物': 2,
     '靴': 3,
     'アクセサリー': 4,
+    '兜中段': 5,
 }
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -292,6 +325,8 @@ def buildCapabilityRecord(capability):
     at_refine = int(capability['at_refine']) if 'at_refine' in capability else 0
     per_baselv = int(capability['per_lv']) if 'per_lv' in capability else 0
     per_status_10 = PER_STATUS_10_CODE[capability['per_status_10']] if 'per_status_10' in capability else 0
+    per_status_30 = PER_STATUS_30_CODE[capability['per_status_30']] if 'per_status_30' in capability else 0
+    job_restrict = RESTRICT_JOB_CODE[capability['job_restrict']] if 'job_restrict' in capability else 0
     at_status = 0
     if 'at_status_100' in capability:
         at_status = AT_STATUS_100_CODE[capability['at_status_100']]
@@ -330,11 +365,12 @@ def buildCapabilityRecord(capability):
                 capability_code += SKILL_CODE.get(capability['skill'])
             except:
                 print(f"{capability['skill']} が未定義です")
-    code = f"{at_equip_location:01d}"           # 〇〇部位に装備している時に発動する
-    code += f"{at_transcendence:01d}"            # 超越段階が n 以上の時に発動する
+    code = f"{per_status_30:01d}"               # 純粋なステータス x が30増加する度に発動する {x : 1=Str, 2=Agi, 3=Vit, 4=Int, 5=Dex, 6=Luk}
+    code += f"{at_equip_location:01d}"          # 〇〇部位に装備している時に発動する
+    code += f"{at_transcendence:01d}"           # 超越段階が n 以上の時に発動する
     code += f"{at_baselv:01d}"                  # ベースLvが n 以上のときに（Lv99は "以下" で判定）
     code += f"{per_baselv:02d}"                 # ベースLvが n 上がる度に発動する
-    code += f"00"                               # 特定の職業の場合に発動する（新規アイテムでは未だ登場しないためパース処理未実装）
+    code += f"{job_restrict:02d}"               # 特定の職業の場合に発動する
     code += f"{at_status:02d}"                  # 純粋なステータス x が n 以上の時に発動する
     code += f"{per_status_10:01d}"              # 純粋なステータス x が10増加する度に発動する {x : 1=Str, 2=Agi, 3=Vit, 4=Int, 5=Dex, 6=Luk}
     code += f"{at_refine:02d}"                  # 精錬値が n 以上の時に発動する
@@ -342,7 +378,7 @@ def buildCapabilityRecord(capability):
     code += f"{capability_code:05d}"            # 発動する効果ID
     code = int(code)
     # BigIntフラグ付与
-    if at_equip_location > 0 or at_transcendence > 0:
+    if at_equip_location > 0 or at_transcendence > 0 or per_status_30 > 0:
         code = f"{code}n"
 
     return f"{code},{value},"
