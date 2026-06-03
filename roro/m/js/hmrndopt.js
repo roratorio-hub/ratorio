@@ -690,6 +690,8 @@ export function GetRndOptValue(eqpRgnId, spid, invalidItemIdArray, bListUp) {
 		spDefRemain = rndOptSpId;
 		spDefValue = rndOptValue;
 
+		// --- ここから下の spDefRemain は必ず Int 型 ---
+
 		// ＳＰ定義ＩＤが一致しない場合は、次へ
 		if (!IsMatchSpDefId(spDefRemain, spid)) {
 			continue;
