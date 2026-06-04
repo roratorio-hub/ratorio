@@ -407,6 +407,21 @@ export function CCharaConfCustomAtk(confArray) {
 		confId++;
 
 
+
+		CCharaConfCustomAtk.CONF_ID_DAMAGE_UP_EXCLUDING_CRITICAL = confId;
+		confData = [
+			confId,
+			CConfBase.ConfText("命中物理攻撃で与えるダメージ+◯%"),
+			CConfBase.ConfControlType(CONTROL_TYPE_SELECTBOX_PERCENT),
+			CConfBase.ConfDefaultValue(0),
+			CConfBase.ConfMinValue(-300),
+			CConfBase.ConfMaxValue(300)
+		];
+		this.confDataObj[confId] = confData;
+		confId++;
+
+
+
 		//----------------------------------------------------------------
 		// データ定義数チェック
 		//----------------------------------------------------------------
@@ -448,6 +463,7 @@ export function CCharaConfCustomAtk(confArray) {
 		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfCustomAtk.CONF_ID_PHYSICAL_DAMAGE_UP_BOSS_AND_NOT_BOSS];
 		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfCustomAtk.CONF_ID_LONGRANGE_DAMAGE_UP];
 		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfCustomAtk.CONF_ID_CRITICAL_DAMAGE_UP];
+		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfCustomAtk.CONF_ID_DAMAGE_UP_EXCLUDING_CRITICAL];
 		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfCustomAtk.CONF_ID_PHYSICAL_DAMAGE_UP_ELM];
 		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfCustomAtk.CONF_ID_PERFECT_ATTACK];
 		confDataOBJSorted[confDataOBJSorted.length] = this.confDataObj[CCharaConfCustomAtk.CONF_ID_IGNORE_DEF_RACE_ALL];

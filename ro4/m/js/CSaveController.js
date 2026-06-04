@@ -363,7 +363,8 @@ export class CSaveController {
 
 			// chartdata をシリアライズ
 			let chartData = null;
-			if (g_Chart !== undefined && g_Chart !== null && Chart !== false) {
+			const hasClipData = g_Chart != null && g_Chart.data?.datasets?.[0]?.data?.length > 0;
+			if (hasClipData && Chart !== false) {
 				if (confirm("【重要】クリップデータを保存しますか？")) {
 					chartData = this.#serializeChartData(g_Chart);
 					if (chartData.length > 4000) {

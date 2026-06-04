@@ -1,5 +1,6 @@
 import { CSaveDataUnitBase } from './CSaveDataUnitBase.js';
 import { CSaveDataConst } from './CSaveDataConst.js';
+import { CSaveDataPropInfo } from './CSaveDataPropInfo.js';
 /**
  * 「性能カスタマイズ（特化）」情報クラス
  *  TODO: 今は存在しない設定欄なので使われているのか確認が必要
@@ -17,7 +18,19 @@ export class CSaveDataUnitCharaConfSpecialize extends CSaveDataUnitBase {
      * バージョン番号.
      */
     static get version () {
-        return 1;
+        return 2;
+    }
+
+    // オーバーライドされた parse 関数
+    parse (dataText, bitOffset) {
+        let nextOffset = super.parse(dataText, bitOffset);
+        if (this.getProp(CSaveDataConst.propNameVersion) == 1n) {
+            this.propInfoMap.delete(CSaveDataConst.propNameParseCtrlFlag);
+            this.propInfoMap.set(CSaveDataConst.propNameParseCtrlFlag, new CSaveDataPropInfo(CSaveDataConst.propNameParseCtrlFlag, 104));
+            this.parsedMap.clear();
+            nextOffset = super.parse(dataText, bitOffset);
+        }
+        return nextOffset;
     }
 
     /**
@@ -132,6 +145,8 @@ export class CSaveDataUnitCharaConfSpecialize extends CSaveDataUnitBase {
             CSaveDataConst.propNameSpecPlayerAll,
             CSaveDataConst.propNameIgnoreDefenceRaceAll,
             CSaveDataConst.propNameKiriEffect,
+            CSaveDataConst.propNameSpecDamageUpExcludingCriticalSign,
+            CSaveDataConst.propNameSpecDamageUpExcludingCritical,
         ];
     }
 
@@ -150,7 +165,7 @@ export class CSaveDataUnitCharaConfSpecialize extends CSaveDataUnitBase {
         // プロパティ定義情報の登録
         this.registerPropInfo(CSaveDataConst.instanceKind, 6);
         this.registerPropInfo(CSaveDataConst.propNameSubInvalidateSettings, 1);
-        this.registerPropInfo(CSaveDataConst.propNameParseCtrlFlag, 104);
+        this.registerPropInfo(CSaveDataConst.propNameParseCtrlFlag, 106);
         this.registerPropInfo(CSaveDataConst.propNameSpecDamageSign, 1);
         this.registerPropInfo(CSaveDataConst.propNameSpecDamage, CSaveDataConst.propBitsMaxAbs500);
         this.registerPropInfo(CSaveDataConst.propNameSpecCriticalDamageSign, 1);
@@ -255,6 +270,8 @@ export class CSaveDataUnitCharaConfSpecialize extends CSaveDataUnitBase {
         this.registerPropInfo(CSaveDataConst.propNameSpecPlayerAll, CSaveDataConst.propBitsMaxAbs500);
         this.registerPropInfo(CSaveDataConst.propNameIgnoreDefenceRaceAll, CSaveDataConst.propBitsMaxAbs100);
         this.registerPropInfo(CSaveDataConst.propNameKiriEffect, 1);
+        this.registerPropInfo(CSaveDataConst.propNameSpecDamageUpExcludingCriticalSign, 1);
+        this.registerPropInfo(CSaveDataConst.propNameSpecDamageUpExcludingCritical, CSaveDataConst.propBitsMaxAbs500);
     }
 
     /**

@@ -747,8 +747,8 @@ CGlobalConstManager.DefineEnum(
 		"ITEM_SP_IGNORE_DEF_RACE_ALL",
 		"ITEM_SP_IGNORE_RES_RACE_ALL",
 		"ITEM_SP_IGNORE_MDEF_ALL",					// 295 モンスターのMDEF無視
-		"ITEM_SP_IGNORE_MDEF_NOTBOSS",
-		"ITEM_SP_IGNORE_MDEF_BOSS",
+		"ITEM_SP_IGNORE_MDEF_NOTBOSS",				// 296 一般モンスターのMDEF無視
+		"ITEM_SP_IGNORE_MDEF_BOSS",					// 297 BOSSモンスターのMDEF無視
 		"ITEM_SP_IGNORE_MDEF_RACE_ALL",				// 298 全ての種族のMDEF無視
 		"ITEM_SP_IGNORE_MRES_RACE_ALL",				// 299 MRES無視
 
@@ -1187,7 +1187,7 @@ CGlobalConstManager.DefinePseudoEnum(
 
 		"ITEM_SP_BASE_LV_OVER_250_OFFSET",			// 5000000000000000
 		"ITEM_SP_BASE_LV_OVER_260_OFFSET",			// 6
-		"ITEM_SP_RESERVED_7000000000000000", 		// 7
+		"ITEM_SP_BASE_LV_OVER_165_OFFSET", 			// 7
 
 		// もう限界なので
 		"ITEM_SP_PET_FRIENDLY_OVER_HIGH",			// 8000000000000000 親しい
@@ -1229,6 +1229,21 @@ CGlobalConstManager.DefinePseudoEnum(
 	],
 	100000000000000000n,
 	100000000000000000n,
+);
+
+CGlobalConstManager.DefinePseudoEnum(
+	"EnumItemSpId",
+	[
+		// 純粋な◯◯が30上がる度に
+		"ITEM_SP_PURE_STR_BY_30_OFFSET",		// 1 * 10^19
+		"ITEM_SP_PURE_AGI_BY_30_OFFSET",
+		"ITEM_SP_PURE_VIT_BY_30_OFFSET",
+		"ITEM_SP_PURE_INT_BY_30_OFFSET",
+		"ITEM_SP_PURE_DEX_BY_30_OFFSET",
+		"ITEM_SP_PURE_LUK_BY_30_OFFSET",
+	],
+	1000000000000000000n,
+	1000000000000000000n,
 );
 
 /**
@@ -1870,22 +1885,33 @@ export function GetItemExplainText(spId, spValue) {
 	var condTextPureStatus = "";
 	var condTextRefineOver = "";
 	var condTextRefineBy = "";
-
 	var sign = "";
 	var skillName = "";
-
 	var funcWork = null;
 	var idArrayWork = null;
-
 	var textWork = "";
 	var textInfoArray = null;
+	var statusName = ["Str", "Agi", "Vit", "Int", "Dex", "Luk",];
+	var spStatusName = ["Pow", "Sta", "Wis", "Spl", "Con", "Crt"];
 
 	// 戻り値用テキスト配列
 	textInfoArray = new Array();
 
+	// 『純粋な○○が△△上がる度に』条件
+	let baseFlag = toSafeBigInt(ITEM_SP_PURE_STR_BY_30_OFFSET);
+	if (spId >= baseFlag) {
+		// BigInt の場合、小数点以下は自動的に切り捨てられる
+		var pureStatusBy = parseInt(spId / baseFlag);
+		if (1 <= pureStatusBy && pureStatusBy <= 6) {
+			// 論理的に_BY_10_OFFSETとは同時にセットされないはずなので上書きする
+			condTextPureStatus += "純粋な" + statusName[pureStatusBy - 1] +  "が30上がる度に、";
+		}
+		spId = parseInt(spId % baseFlag);
+	}
+
 	// 「〇〇に装備時」条件
 	let equipmentLocation = 0;
-	let baseFlag = toSafeBigInt(ITEM_SP_EQUIPMENT_LOCATION_BODY);
+	baseFlag = toSafeBigInt(ITEM_SP_EQUIPMENT_LOCATION_BODY);
 	if (spId >= baseFlag) {
 		// BigInt の場合、小数点以下は自動的に切り捨てられる
 		equipmentLocation = spId / baseFlag;
@@ -1962,7 +1988,6 @@ export function GetItemExplainText(spId, spValue) {
 	// 『BaseLvが○以上の時』条件
 	var baseLvOver = Math.floor(spId / ITEM_SP_BASE_LV_OVER_170_OFFSET);
 	var baseLvOverEffecct = spId % ITEM_SP_BASE_LV_OVER_170_OFFSET;
-
 	switch (baseLvOver) {
 	case 1:
 		condTextBaseLvOver = "BaseLvが170以上の時、追加で";
@@ -1982,36 +2007,30 @@ export function GetItemExplainText(spId, spValue) {
 	case 6:
 		condTextFriendlyOver = "BaseLvが260以上の時、追加で";
 		break;
+	case 7:
+		condTextFriendlyOver = "BaseLvが165以上の時、追加で";
+		break;
 	}
-
 	spId = baseLvOverEffecct;
 
 	// 『BaseLvが○上がる度に』条件
 	var baseLvBy = Math.floor(spId / ITEM_SP_BASE_LV_BY_1_OFFSET);
 	var baseLvByEffecct = spId % ITEM_SP_BASE_LV_BY_1_OFFSET;
-
 	if (baseLvBy > 0) {
 		condTextBaseLvBy = "BaseLvが" + baseLvBy + "上がる度に追加で";
 	}
-
 	spId = baseLvByEffecct;
 
 	// 職業限定
 	var jobRestrict = Math.floor(spId / ITEM_SP_JOB_RESTRICT_NOVICE_OFFSET) - 1;
-
 	if (jobRestrict >= 0) {
 		condTextJobRestrict += GetJobName(jobRestrict) + "系が装備時、";
 	}
-
 	spId = spId % ITEM_SP_JOB_RESTRICT_NOVICE_OFFSET;
 
 	// 『純粋な○○が△△以上の時』条件
-	var statusName = ["Str", "Agi", "Vit", "Int", "Dex", "Luk",];
-	var spStatusName = ["Pow", "Sta", "Wis", "Spl", "Con", "Crt"];
-
 	var pureStatus = Math.floor(spId / ITEM_SP_PURE_STR_90_OFFSET);
 	var pureStatusEffect = spId % ITEM_SP_PURE_STR_90_OFFSET;
-
 	if (1 <= pureStatus && pureStatus <= 6) {
 		condTextPureStatus += "純粋な" + statusName[pureStatus - 1] +  "が90以上の時、";
 	}
@@ -2042,13 +2061,11 @@ export function GetItemExplainText(spId, spValue) {
 	else if (55 <= pureStatus && pureStatus <= 60) {
 		condTextPureStatus += "純粋な" + spStatusName[pureStatus - 55] +  "が50以上の時、";
 	}
-	
 	spId = pureStatusEffect;
 
 	// 『純粋な○○が△△上がる度に』条件
 	var pureStatusBy = Math.floor(spId / ITEM_SP_PURE_STR_BY_10_OFFSET);
 	var pureStatusByEffect = spId % ITEM_SP_PURE_STR_BY_10_OFFSET;
-
 	if (1 <= pureStatusBy && pureStatusBy <= 6) {
 		condTextPureStatus += "純粋な" + statusName[pureStatusBy - 1] +  "が10上がる度に、";
 	}
@@ -2058,28 +2075,24 @@ export function GetItemExplainText(spId, spValue) {
 	else if (8 == pureStatusBy) {
 		condTextPureStatus += "純粋な" + statusName[PARAM_VIT] +  "が1上がる度に、";
 	}
-
 	spId = pureStatusByEffect;
 
 	// 『精錬値が○以上の時』条件
 	var refineOver = Math.floor(spId / ITEM_SP_REFINE_OVER_1_OFFSET);
 	var refineOverEffect = spId % ITEM_SP_REFINE_OVER_1_OFFSET;
-
 	if (refineOver > 0) {
 		condTextRefineOver = "精錬値が" + refineOver + "以上の時、";
 	}
-
 	spId = refineOverEffect;
 
 	// 『精錬値が○上がる度に』条件
 	var refineBy = Math.floor(spId / ITEM_SP_REFINE_BY_1_OFFSET);
 	var refineByEffecct = spId % ITEM_SP_REFINE_BY_1_OFFSET;
-
 	if (refineBy > 0) {
 		condTextRefineBy = "精錬値が" + refineBy + "上がる度に追加で";
 	}
-
 	spId = refineByEffecct;
+
 
 	// 条件文字列の組み立て
 	textInfoArray.push([

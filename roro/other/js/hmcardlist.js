@@ -50,6 +50,7 @@ export function SetUpSelectCardType(){
 	HtmlRemoveOptionAll(objSelect);
 	// 選択肢を追加
 	HtmlCreateElementOption(CARD_KIND_DMY_FOR_ALL, "全てのカード", objSelect);
+	HtmlCreateElementOption(CARD_KIND_ENCHANT, "エンチャント効果", objSelect);
 	HtmlCreateElementOption(CARD_KIND_ARMS, "武器カード", objSelect);
 	HtmlCreateElementOption(CARD_KIND_HEAD, "兜カード", objSelect);
 	HtmlCreateElementOption(CARD_KIND_SHIELD, "盾カード", objSelect);
@@ -58,8 +59,7 @@ export function SetUpSelectCardType(){
 	HtmlCreateElementOption(CARD_KIND_FOOT, "靴カード", objSelect);
 	HtmlCreateElementOption(CARD_KIND_ACCESSORY, "アクセサリカード", objSelect);
 	HtmlCreateElementOption(CARD_KIND_ANY, "全部位カード", objSelect);
-	HtmlCreateElementOption(CARD_KIND_ENCHANT, "エンチャント効果", objSelect);
-	objSelect.value = CARD_KIND_ARMS;
+//	objSelect.value = CARD_KIND_ARMS;
 }
 
 /**

@@ -500,7 +500,7 @@ export class CSaveDataUnitParse extends CSaveDataUnitBase {
 		[dataTextWork, bitOffset] = saveDataUnit.convertFromOldFormat(dataTextWork, bitOffset,
 			CSaveDataConst.specKindAttackPhysical,
 			((saveDataArrayOld[1610] > 0) ? 1 : 0),
-			((1n << 104n) - 1n),
+			((1n << 106n) - 1n),
 
 			...(convertedArrayAtk[5].flat()),
 			0, 0,
@@ -513,7 +513,8 @@ export class CSaveDataUnitParse extends CSaveDataUnitBase {
 			...(new Array(4).fill(0)), ...(convertedArrayAtk[9].flat()),
 			...(new Array(4).fill(0)), 0, 0,
 			convertedArrayAtk[12][1],
-			0
+			0,
+			...(convertedArrayAtk[27].flat())
 		);
 
 		//--------------------------------
@@ -523,7 +524,7 @@ export class CSaveDataUnitParse extends CSaveDataUnitBase {
 		[dataTextWork, bitOffset] = saveDataUnit.convertFromOldFormat(dataTextWork, bitOffset,
 			CSaveDataConst.specKindAttackMagical,
 			((saveDataArrayOld[1610] > 0) ? 1 : 0),
-			((1n << 104n) - 1n),
+			((1n << 106n) - 1n),
 
 			...(convertedArrayAtk[14].flat()),
 			0, 0,
@@ -536,7 +537,8 @@ export class CSaveDataUnitParse extends CSaveDataUnitBase {
 			...(new Array(4).fill(0)), 0, 0,
 			...(new Array(4).fill(0)), 0, 0,
 			convertedArrayAtk[19][1],
-			0
+			0,
+			0, 0
 		);
 
 		//--------------------------------
@@ -546,7 +548,7 @@ export class CSaveDataUnitParse extends CSaveDataUnitBase {
 		[dataTextWork, bitOffset] = saveDataUnit.convertFromOldFormat(dataTextWork, bitOffset,
 			CSaveDataConst.specKindAttackAny,
 			((saveDataArrayOld[1610] > 0) ? 1 : 0),
-			((1n << 104n) - 1n),
+			((1n << 106n) - 1n),
 
 			0, 0,
 			...(convertedArrayAtk[10].flat()),
@@ -559,7 +561,8 @@ export class CSaveDataUnitParse extends CSaveDataUnitBase {
 			...(new Array(6).fill(0)),
 			...(new Array(4).fill(0)), ...(convertedArrayAtk[20].flat()),
 			0,
-			0
+			0,
+			0, 0
 		);
 
 		//--------------------------------
@@ -569,7 +572,7 @@ export class CSaveDataUnitParse extends CSaveDataUnitBase {
 		[dataTextWork, bitOffset] = saveDataUnit.convertFromOldFormat(dataTextWork, bitOffset,
 			CSaveDataConst.specKindDefencekAny,
 			((saveDataArrayOld[1640] > 0) ? 1 : 0),
-			((1n << 104n) - 1n),
+			((1n << 106n) - 1n),
 
 			0, 0,
 			0, 0,
@@ -582,7 +585,8 @@ export class CSaveDataUnitParse extends CSaveDataUnitBase {
 			0, 0, ...(convertedArrayDef[7].flat()), 0, 0,
 			...(new Array(4).fill(0)), ...(convertedArrayDef[8].flat()),
 			0,
-			0
+			0,
+			0, 0
 		);
 
 		//--------------------------------
