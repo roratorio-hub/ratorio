@@ -1016,6 +1016,7 @@ export class CSaveDataManager {
 		spliceArray.push(g_confDataCustomStatusMIG[27]);
 		spliceArray.push(g_confDataSpecMIG[0][0][26]);
 		g_confDataCustomAtk.splice(1, spliceArray.length, ...spliceArray);
+		g_confDataCustomAtk.splice(27, 1, g_confDataSpecMIG[0][0][53]);
 
 		spliceArray = g_confDataCustomStatusMIG.slice(30, 32);
 		spliceArray.push(g_confDataSpecMIG[1][2][14]);

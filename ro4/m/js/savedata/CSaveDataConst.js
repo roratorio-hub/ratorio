@@ -1407,6 +1407,16 @@ export class CSaveDataConst {
 	 */
 	static propNameKiriEffect = "kiriEffect";
 
+	/**
+	 * プロパティ名：命中物理攻撃ダメージ上昇（符号）.
+	 */
+	static propNameSpecDamageUpExcludingCriticalSign = "specDamageUpExcludingCriticalSign";
+
+	/**
+	 * プロパティ名：命中物理攻撃ダメージ上昇.
+	 */
+	static propNameSpecDamageUpExcludingCritical = "specDamageUpExcludingCritical";
+
 
 
 	/**
