@@ -8971,6 +8971,11 @@ export function StAllCalc(){
 			n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP] += confval;
 		}
 
+		// 命中物理攻撃で与えるダメージ + ◯%
+		confval = g_objCharaConfCustomAtk.GetConf(CCharaConfCustomAtk.CONF_ID_DAMAGE_UP_EXCLUDING_CRITICAL);
+		if (confval != 0) {
+			n_tok[ITEM_SP_DAMAGE_UP_EXCLUDING_CRITICAL] += confval;
+		}
 		// クリティカル攻撃で与えるダメージ + ◯% を適用する
 		n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] = getCriticalDamageRate();
 
