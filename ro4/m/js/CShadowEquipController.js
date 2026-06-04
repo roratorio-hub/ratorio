@@ -288,6 +288,7 @@ export class CShadowEquipController {
 		if (objTarget.classList.contains("item-select")) {
 			const objEquipBlock = objTarget.closest(".equip-block");
 			this.#changeShadowItem(objEquipBlock, selectedValue);
+			SaveSlotStateCardAll();
 		}
 		// 精錬値変更イベントの場合
 		else if (objTarget.classList.contains("item-refined")) {
