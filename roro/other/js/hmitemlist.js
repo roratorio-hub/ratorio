@@ -1,3 +1,5 @@
+import { ItemPackageDat } from '../../m/js/item.package.dat.js';
+
 function OnLoadItemList() {
 	SetUpSelects();
 	BuildUpItemList();
@@ -12,6 +14,9 @@ function SetUpSelects() {
 	// 一度、全選択肢を削除
 	objSelect = document.getElementById("OBJID_SELECT_ITEM_KIND");
 	HtmlRemoveOptionAll(objSelect);
+	// 武器すべて、防具すべての追加
+	HtmlCreateElementOption(-9999, "すべての防具", objSelect);
+	HtmlCreateElementOption(-999, "すべての武器", objSelect);
 	// 武器項目の追加
 	for (kind = ITEM_KIND_KNIFE; kind <= ITEM_KIND_GRENADEGUN; kind++) {
 		HtmlCreateElementOption(kind, GetItemKindNameText(kind), objSelect);
@@ -24,9 +29,6 @@ function SetUpSelects() {
 	for (kind = ITEM_KIND_BODY; kind <= ITEM_KIND_ACCESSORY_ON2; kind++) {
 		HtmlCreateElementOption(kind, GetItemKindNameText(kind), objSelect);
 	}
-	// 武器すべて、防具すべての追加
-	HtmlCreateElementOption(-999, "すべての武器", objSelect);
-	HtmlCreateElementOption(-9999, "すべての防具", objSelect);
 	// シャドウの追加
 	const kind_list = [
 		ITEM_KIND_SHADOW_ARMS_RIGHT,
@@ -50,6 +52,15 @@ function SetUpSelects() {
 	// 職業の追加
 	for (kind = JOB_ID_NOVICE; kind < EnumJobId.Count; kind++) {
 		HtmlCreateElementOption(kind, GetJobName(kind), objSelect);
+	}
+	//----------------------------------------------------------------
+	// パッケージ選択セレクトボックスの初期化
+	//----------------------------------------------------------------
+	objSelect = document.getElementById("OBJID_SELECT_PACKAGE");
+	HtmlRemoveOptionAll(objSelect);
+	HtmlCreateElementOption(-1, "全て表示", objSelect);
+	for (const pkg of ItemPackageDat.List) {
+		HtmlCreateElementOption(pkg.id, pkg.name, objSelect);
 	}
 }
 
@@ -183,12 +194,24 @@ function BuildUpItemList() {
 	const condJob = parseInt(document.getElementById("OBJID_SELECT_JOB_RESTRICT").value);
 	const condSlot = document.getElementById("OBJID_INPUT_SLOT_RESTRICT").checked ? true : false;
 	const searchName = document.getElementById("F_CONDITION").value;
+	const condPackage = parseInt(document.getElementById("OBJID_SELECT_PACKAGE").value);
+
+	//----------------------------------------------------------------
+	// パッケージフィルタ
+	//----------------------------------------------------------------
+	let baseItemList;
+	if (condPackage === -1) {
+		baseItemList = ItemObjNew;
+	} else {
+		const pkg = ItemPackageDat.List.find(p => p.id === condPackage);
+		baseItemList = pkg ? pkg.itemIds.map(id => ItemObjNew[id]).filter(Boolean) : [];
+	}
 
 	//----------------------------------------------------------------
 	// 対象となるアイテムの抽出
 	//----------------------------------------------------------------
 	// 部分一致検索
-	const itemList = getItemList(ItemObjNew, searchName);
+	const itemList = getItemList(baseItemList, searchName);
 	for (itemId = 0; itemId < itemList.length; itemId++) {
 		const itemData = itemList[itemId];
 		// アイテム種別を検査
@@ -687,10 +710,16 @@ function OnChangeShowEnchantInfo() {
 	// 一覧テーブルを再構築
 	BuildUpItemList();
 }
+
+function OnChangePackageRestrict() {
+	BuildUpItemList();
+}
+
 if (typeof window !== 'undefined') {
 	Object.assign(window, {
 		OnLoadItemList, SetUpSelects, getItemList, BuildUpItemList,
 		GetElmTextForItemList, OnChangeKindRestrict, OnChangeJobRestrict,
 		OnChnageShowSP, OnChangeSortCondition, OnChangeSlotRestrict, OnChangeShowEnchantInfo,
+		OnChangePackageRestrict,
 	});
 }
