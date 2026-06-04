@@ -104,8 +104,8 @@ export function ResetConfDataAllMIG (bAsOnLoad) {
 	g_confDataCustomStatusMIG = Array(46).fill(0);
 	g_confDataCustomSpecStatusMIG = Array(12).fill(0);
 	g_confDataSpecMIG = [
-		[Array(53).fill(0), Array(53).fill(0), Array(53).fill(0)],
-		[Array(53).fill(0), Array(53).fill(0), Array(53).fill(0)],
+		[Array(54).fill(0), Array(54).fill(0), Array(54).fill(0)],
+		[Array(54).fill(0), Array(54).fill(0), Array(54).fill(0)],
 	];
 	g_confDataCustomSkillMIG = Array(12).fill(0);
 	if (typeof window !== 'undefined') {
