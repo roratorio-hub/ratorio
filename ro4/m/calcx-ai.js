@@ -2143,11 +2143,13 @@ async function askAI(userQuery) {
         const jobSelect = document.getElementById("OBJID_SELECT_JOB");
         if (jobSelect && jobSelect.value !== preDetectedJob.jobId) {
             aiLog(`[ジョブ変更（RAG前）] ${preDetectedJob.jobName}（${preDetectedJob.jobId}）`);
-            if (window.$) {
-                window.$(jobSelect).val(preDetectedJob.jobId).trigger("change");
+            // Tom Select は jQuery 合成 change を観測しないため select2 由来の .val().trigger("change") は不可。
+            // setValue() が native change を発火し OnChangeJob（eventsetup）まで駆動する（apply 側と統一）。
+            if (jobSelect.tomselect) {
+                jobSelect.tomselect.setValue(preDetectedJob.jobId);
             } else {
                 jobSelect.value = preDetectedJob.jobId;
-                if (window.OnChangeJob) window.OnChangeJob(preDetectedJob.jobId);
+                jobSelect.dispatchEvent(new Event('change', { bubbles: true }));
             }
             await new Promise(r => setTimeout(r, 300));
         }
@@ -2964,12 +2966,18 @@ async function applyEquipmentSuggestions() {
         }
         // 武器スロットの場合: OBJID_ARMS_RIGHT は現在選択中の武器タイプしか持たないため、
         // 武器の KIND に合わせて OnChangeArmsTypeRight を呼んで options を再構築する
-        if (objId === "OBJID_ARMS_RIGHT" && window.OnChangeArmsTypeRight && window.ItemObjNew) {
+        if (objId === "OBJID_ARMS_RIGHT" && window.ItemObjNew) {
             const itemData = window.ItemObjNew[parseInt(gameId)];
             if (itemData) {
                 const kind = itemData[1]; // ITEM_DATA_INDEX_KIND = 1
                 aiLog(`[武器タイプ変更] KIND=${kind} に設定して ${r.item.displayname} を装備可能にします`);
-                window.OnChangeArmsTypeRight(kind);
+                // 武器タイプ select に change を発火。eventsetup の OnChangeArmsTypeRight が options を
+                // 再構築し、INIT_TRIGGER 経由で Tom Select も再初期化される（dewindow: window 直呼び廃止）。
+                const armsTypeSel = document.getElementById("OBJID_ARMS_TYPE_RIGHT");
+                if (armsTypeSel) {
+                    armsTypeSel.value = String(kind);
+                    armsTypeSel.dispatchEvent(new Event("change", { bubbles: true }));
+                }
                 // options の再構築を待つ
                 await new Promise(res => setTimeout(res, 50));
             }
@@ -3050,8 +3058,9 @@ async function applyEquipmentSuggestions() {
                 aiLog(`[エンチャント非対応] ${r.item.displayname} → ${slotId} に該当オプションなし`);
                 continue;
             }
-            if (window.$) {
-                window.$(cardSel).val(cardIdStr).trigger("change");
+            // Tom Select は jQuery 合成 change を観測しないため setValue() を使う（装備反映側と統一）
+            if (cardSel.tomselect) {
+                cardSel.tomselect.setValue(cardIdStr);
             } else {
                 cardSel.value = cardIdStr;
                 cardSel.dispatchEvent(new Event("change", { bubbles: true }));
@@ -3138,5 +3147,8 @@ function buildApplyPreviewText() {
 window.askAI = askAI;
 window.initChatModel = initChatModel;
 window.resetChatModel = () => { chatModel = null; llmLoading = false; loadedModelName = null; };
-window.applyEquipmentSuggestions = applyEquipmentSuggestions;
 window.buildApplyPreviewText = buildApplyPreviewText;
+
+// 「装備欄に反映する」ボタンを配線（dewindow: calcx-ai.html の旧 onclick="window.applyEquipmentSuggestions()" の置換）。
+// calcx.html の eventsetup と同様に addEventListener で接続し、window 露出への依存を解消する。
+document.getElementById("ai-apply")?.addEventListener("click", () => applyEquipmentSuggestions());
