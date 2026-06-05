@@ -667,7 +667,7 @@ export function RebuildCardSelectSubCollectEnchListDataSubUpgradeShinennoKairo(e
 
 	var funcPushNotExist = function (cardIdF) {
 
-		for (idxF = 0; idxF < resultArray.length; idxF++) {
+		for (let idxF = 0; idxF < resultArray.length; idxF++) {
 			if (resultArray[idxF][1] == cardIdF) {
 				return;
 			}
@@ -739,7 +739,7 @@ export function RebuildCardSelectSubCollectEnchListDataSubUpgradeShinentaiBuki(e
 
 	var funcPushNotExist = function (cardIdF) {
 
-		for (idxF = 0; idxF < resultArray.length; idxF++) {
+		for (let idxF = 0; idxF < resultArray.length; idxF++) {
 			if (resultArray[idxF][1] == cardIdF) {
 				return;
 			}
