@@ -48,7 +48,6 @@ import {
     ClearEquip,
     __ClearEquip,
     IsLongRange,
-    copyAccs,
 } from '@roro/equip.js';
 
 describe('equip.js', () => {
@@ -80,7 +79,8 @@ describe('equip.js', () => {
         it('ClearEquip が関数', () => { expect(typeof ClearEquip).toBe('function'); });
         it('__ClearEquip が関数', () => { expect(typeof __ClearEquip).toBe('function'); });
         it('IsLongRange が関数', () => { expect(typeof IsLongRange).toBe('function'); });
-        it('copyAccs が関数', () => { expect(typeof copyAccs).toBe('function'); });
+        // copyAccs の動作テストは Tom Select 表示同期を含むため実ブラウザが必要。
+        // tests/integration/calcx.test.ts「アクセコピーで…Tom Select 表示が同期される」を参照。
     });
 
     describe('呼び出しテスト', () => {

@@ -1912,6 +1912,39 @@ export function IsLongRange(itemId) {
 	return false;
 }
 
+/**
+ * select の値を設定し、表示と change を同期させる。
+ *
+ * Tom Select 化された select は元 <select> への直接代入（jQuery .val() 含む）では
+ * UI が更新されないため、インスタンスがあれば setValue() を使う。
+ * setValue() は非 silent で native 'change' を発火するので、
+ * eventsetup.js の native listener / inline onchange / 再初期化リスナーがすべて駆動する。
+ * （select2 は jQuery の合成 change を購読していたため旧実装でも動いていたが、
+ *   Tom Select は native しか見ない＝Phase 3d リグレッション対策）
+ */
+function setSelectValueSynced(selector, value) {
+	const el = document.querySelector(selector);
+	if (!el) return;
+	if (el.tomselect) {
+		el.tomselect.setValue(value);
+	} else {
+		el.value = value;
+		el.dispatchEvent(new Event('change', { bubbles: true }));
+	}
+}
+
+/** select を selectedIndex で設定し、表示と change を同期させる（setSelectValueSynced の index 版）。 */
+function setSelectIndexSynced(selector, index) {
+	const el = document.querySelector(selector);
+	if (!el) return;
+	el.selectedIndex = index;
+	if (el.tomselect) {
+		el.tomselect.setValue(el.value);
+	} else {
+		el.dispatchEvent(new Event('change', { bubbles: true }));
+	}
+}
+
 export function copyAccs(from, to){
 	// ランダムオプション入力中はelementがないので処理できない
 	// 中途半端になるので何もしないようにする
@@ -1924,14 +1957,14 @@ export function copyAccs(from, to){
 	const accs_from = $(id_from).val();
 
 	if ($(`${id_to} option[value=${accs_from}]`).length>0) {
-		$(id_to).val(accs_from).change();
+		setSelectValueSynced(id_to, accs_from);
 		[1,2,3,4].forEach((i)=>{
-			$(`${id_to}_CARD_${i}`).prop("selectedIndex", $(`${id_from}_CARD_${i}`).prop("selectedIndex")).change();
+			setSelectIndexSynced(`${id_to}_CARD_${i}`, $(`${id_from}_CARD_${i}`).prop("selectedIndex"));
 		})
 	} else {
-		$(id_to).prop("selectedIndex", 0).change();
+		setSelectIndexSynced(id_to, 0);
 		[1,2,3,4].forEach((i)=>{
-			$(`${id_to}_CARD_${i}`).prop("selectedIndex", 0).change();
+			setSelectIndexSynced(`${id_to}_CARD_${i}`, 0);
 		})
 	}
 }

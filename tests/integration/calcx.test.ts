@@ -458,6 +458,76 @@ describe('ro4/m/calcx.html 起動テスト', () => {
         expect(errors, formatErrorMsg('クイックコントロール装備一括設定 input 操作中', errors)).toHaveLength(0);
     });
 
+    // アクセコピー（copyAccs）: アクセサリ1の選択をアクセサリ2へコピーした際、
+    // 元 <select> の値だけでなく Tom Select の「表示」まで同期されることを確認する。
+    //
+    // Phase 3d（select2 → Tom Select）以前は copyAccs が jQuery .val().change() で値を設定していた。
+    // select2 は jQuery 合成 change を購読していたため表示も更新されたが、Tom Select は native しか
+    // 観測しないため、値はコピーされても ts-control の表示が古いまま残る（= 今回のリグレッション）。
+    // このバグは値比較だけでは検出できず、ts-control の表示テキストまで突合する必要がある。
+    // happy-dom には Tom Select が無いため unit では再現不能 → 実ブラウザの integration で検証する。
+    it('アクセコピーでアクセサリ2の Tom Select 表示が同期される', async () => {
+        const context = await browser.newContext();
+        const page = await context.newPage();
+        try {
+            await page.goto(`${baseUrl}/ro4/m/calcx.html`, {
+                waitUntil: 'networkidle',
+                timeout: 60000,
+            });
+            // Tom Select の初期化完了を待つ
+            await page.waitForFunction(() => {
+                const a1 = document.querySelector('#OBJID_ACCESSORY_1') as (HTMLSelectElement & { tomselect?: unknown }) | null;
+                return !!(a1 && a1.tomselect);
+            }, { timeout: 10000 }).catch(() => {});
+
+            // アクセサリ1に「なし」以外の実アクセサリを Tom Select 経由で設定する
+            const picked = await page.evaluate(() => {
+                const a1 = document.querySelector('#OBJID_ACCESSORY_1') as (HTMLSelectElement & { tomselect?: { setValue(v: string): void } }) | null;
+                if (!a1 || !a1.tomselect) return null;
+                const opt = Array.from(a1.options).find((o) => o.value !== '' && o.value !== '0' && o.value !== a1.value);
+                if (!opt) return null;
+                a1.tomselect.setValue(opt.value);
+                return opt.value;
+            });
+            if (picked === null) {
+                console.warn('スキップ: アクセサリ選択肢を用意できない環境');
+                return;
+            }
+            await page.waitForTimeout(400);
+
+            // コピーボタン（アクセサリ1 → 2）をクリック（eventsetup.js の配線も同時に検証）
+            await page.evaluate(() => {
+                (document.getElementById('OBJID_ACCESSORY_1_COPY') as HTMLElement | null)?.click();
+            });
+            await page.waitForTimeout(400);
+
+            // アクセサリ1/2 の「元 select の値」と「Tom Select 表示テキスト」を取得
+            const result = await page.evaluate(() => {
+                const val = (id: string) => (document.getElementById(id) as HTMLSelectElement | null)?.value ?? '';
+                const ctrlText = (id: string) => document.getElementById(`${id}-ts-control`)?.textContent?.trim() ?? '';
+                return {
+                    a1Value: val('OBJID_ACCESSORY_1'),
+                    a2Value: val('OBJID_ACCESSORY_2'),
+                    a1Display: ctrlText('OBJID_ACCESSORY_1'),
+                    a2Display: ctrlText('OBJID_ACCESSORY_2'),
+                };
+            });
+
+            // 既定ジョブで選択アクセサリが保持されなかった場合は意味のある検証にならないのでスキップ
+            if (!result.a1Display) {
+                console.warn('スキップ: 既定ジョブで保持されるアクセサリを選択できなかった');
+                return;
+            }
+
+            // 値がコピーされている（旧実装でも通る部分のサニティチェック）
+            expect(result.a2Value).toBe(result.a1Value);
+            // 表示が同期されている（このバグで壊れていた本丸）
+            expect(result.a2Display).toBe(result.a1Display);
+        } finally {
+            await context.close();
+        }
+    });
+
     // 詠唱シミュレータ欄を展開し、スキル選択セレクトの change イベントで
     // ReferenceError が発生しないことを確認する。
     // dewindow フェーズで castsim.js の onChange 属性を addEventListener に切り替えた後、
