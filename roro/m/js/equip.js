@@ -1921,6 +1921,9 @@ export function IsLongRange(itemId) {
  * eventsetup.js の native listener / inline onchange / 再初期化リスナーがすべて駆動する。
  * （select2 は jQuery の合成 change を購読していたため旧実装でも動いていたが、
  *   Tom Select は native しか見ない＝Phase 3d リグレッション対策）
+ *
+ * 必ず「値」で指定すること。アクセサリ1と2ではカード候補リストの並び・件数が
+ * 一致しないため、selectedIndex でのコピーは index がズレて空選択になる。
  */
 function setSelectValueSynced(selector, value) {
 	const el = document.querySelector(selector);
@@ -1933,16 +1936,10 @@ function setSelectValueSynced(selector, value) {
 	}
 }
 
-/** select を selectedIndex で設定し、表示と change を同期させる（setSelectValueSynced の index 版）。 */
-function setSelectIndexSynced(selector, index) {
+/** select の「装備なし／カードなし」値（先頭オプション）を返す。 */
+function getNoneValue(selector) {
 	const el = document.querySelector(selector);
-	if (!el) return;
-	el.selectedIndex = index;
-	if (el.tomselect) {
-		el.tomselect.setValue(el.value);
-	} else {
-		el.dispatchEvent(new Event('change', { bubbles: true }));
-	}
+	return (el && el.options.length) ? el.options[0].value : '0';
 }
 
 export function copyAccs(from, to){
@@ -1957,14 +1954,18 @@ export function copyAccs(from, to){
 	const accs_from = $(id_from).val();
 
 	if ($(`${id_to} option[value=${accs_from}]`).length>0) {
+		// アクセサリ本体をコピー（OnChangeEquip がカード欄を再構築する）
 		setSelectValueSynced(id_to, accs_from);
+		// カードは「値」でコピーする（index 不可・上記コメント参照）
 		[1,2,3,4].forEach((i)=>{
-			setSelectIndexSynced(`${id_to}_CARD_${i}`, $(`${id_from}_CARD_${i}`).prop("selectedIndex"));
+			const fromEl = document.querySelector(`${id_from}_CARD_${i}`);
+			setSelectValueSynced(`${id_to}_CARD_${i}`, fromEl ? fromEl.value : getNoneValue(`${id_to}_CARD_${i}`));
 		})
 	} else {
-		setSelectIndexSynced(id_to, 0);
+		// ソースのアクセサリが対象に無い → 「装備なし」へリセット
+		setSelectValueSynced(id_to, getNoneValue(id_to));
 		[1,2,3,4].forEach((i)=>{
-			setSelectIndexSynced(`${id_to}_CARD_${i}`, 0);
+			setSelectValueSynced(`${id_to}_CARD_${i}`, getNoneValue(`${id_to}_CARD_${i}`));
 		})
 	}
 }

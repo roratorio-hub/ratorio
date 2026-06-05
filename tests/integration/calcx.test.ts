@@ -458,15 +458,16 @@ describe('ro4/m/calcx.html 起動テスト', () => {
         expect(errors, formatErrorMsg('クイックコントロール装備一括設定 input 操作中', errors)).toHaveLength(0);
     });
 
-    // アクセコピー（copyAccs）: アクセサリ1の選択をアクセサリ2へコピーした際、
+    // アクセコピー（copyAccs）: アクセサリ1の選択（本体＋カード）をアクセサリ2へコピーした際、
     // 元 <select> の値だけでなく Tom Select の「表示」まで同期されることを確認する。
     //
-    // Phase 3d（select2 → Tom Select）以前は copyAccs が jQuery .val().change() で値を設定していた。
-    // select2 は jQuery 合成 change を購読していたため表示も更新されたが、Tom Select は native しか
-    // 観測しないため、値はコピーされても ts-control の表示が古いまま残る（= 今回のリグレッション）。
-    // このバグは値比較だけでは検出できず、ts-control の表示テキストまで突合する必要がある。
+    // 検出対象の2バグ（いずれも Phase 3d: select2 → Tom Select 由来）:
+    //  (1) 本体: jQuery .val().change() は Tom Select の native change を駆動せず表示が古いまま残る。
+    //  (2) カード: selectedIndex でコピーしていたが、アクセサリ1と2でカード候補リストの並び・件数が
+    //      一致しないため index がズレて空選択（value="")になる。→ 値ベースのコピーで解消。
+    // いずれも値比較だけでは不十分で、ts-control の表示テキストまで突合する必要がある。
     // happy-dom には Tom Select が無いため unit では再現不能 → 実ブラウザの integration で検証する。
-    it('アクセコピーでアクセサリ2の Tom Select 表示が同期される', async () => {
+    it('アクセコピーで本体とカードが Tom Select 表示まで同期される', async () => {
         const context = await browser.newContext();
         const page = await context.newPage();
         try {
@@ -480,36 +481,45 @@ describe('ro4/m/calcx.html 起動テスト', () => {
                 return !!(a1 && a1.tomselect);
             }, { timeout: 10000 }).catch(() => {});
 
-            // アクセサリ1に「なし」以外の実アクセサリを Tom Select 経由で設定する
-            const picked = await page.evaluate(() => {
-                const a1 = document.querySelector('#OBJID_ACCESSORY_1') as (HTMLSelectElement & { tomselect?: { setValue(v: string): void } }) | null;
+            // アクセサリ1に「なし」以外の実アクセサリを設定し、可能ならカードも1枚セットする
+            const picked = await page.evaluate(async () => {
+                const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+                type Sel = HTMLSelectElement & { tomselect?: { setValue(v: string): void; options: Record<string, unknown> } };
+                const a1 = document.querySelector('#OBJID_ACCESSORY_1') as Sel | null;
                 if (!a1 || !a1.tomselect) return null;
                 const opt = Array.from(a1.options).find((o) => o.value !== '' && o.value !== '0' && o.value !== a1.value);
                 if (!opt) return null;
                 a1.tomselect.setValue(opt.value);
-                return opt.value;
+                await sleep(400);
+                // カード欄（CARD_1）があれば「なし」以外の1枚をセット
+                let cardSet = false;
+                const c1 = document.querySelector('#OBJID_ACCESSORY_1_CARD_1') as Sel | null;
+                if (c1 && c1.tomselect) {
+                    const cv = Object.keys(c1.tomselect.options).find((v) => v !== '' && v !== '0');
+                    if (cv) { c1.tomselect.setValue(cv); cardSet = true; await sleep(300); }
+                }
+                return { acc: opt.value, cardSet };
             });
             if (picked === null) {
                 console.warn('スキップ: アクセサリ選択肢を用意できない環境');
                 return;
             }
-            await page.waitForTimeout(400);
 
             // コピーボタン（アクセサリ1 → 2）をクリック（eventsetup.js の配線も同時に検証）
             await page.evaluate(() => {
                 (document.getElementById('OBJID_ACCESSORY_1_COPY') as HTMLElement | null)?.click();
             });
-            await page.waitForTimeout(400);
+            await page.waitForTimeout(500);
 
-            // アクセサリ1/2 の「元 select の値」と「Tom Select 表示テキスト」を取得
+            // アクセサリ1/2 本体・カードの「値」と「Tom Select 表示テキスト」を取得
             const result = await page.evaluate(() => {
                 const val = (id: string) => (document.getElementById(id) as HTMLSelectElement | null)?.value ?? '';
                 const ctrlText = (id: string) => document.getElementById(`${id}-ts-control`)?.textContent?.trim() ?? '';
                 return {
-                    a1Value: val('OBJID_ACCESSORY_1'),
-                    a2Value: val('OBJID_ACCESSORY_2'),
-                    a1Display: ctrlText('OBJID_ACCESSORY_1'),
-                    a2Display: ctrlText('OBJID_ACCESSORY_2'),
+                    a1Value: val('OBJID_ACCESSORY_1'), a2Value: val('OBJID_ACCESSORY_2'),
+                    a1Display: ctrlText('OBJID_ACCESSORY_1'), a2Display: ctrlText('OBJID_ACCESSORY_2'),
+                    c1Value: val('OBJID_ACCESSORY_1_CARD_1'), c2Value: val('OBJID_ACCESSORY_2_CARD_1'),
+                    c1Display: ctrlText('OBJID_ACCESSORY_1_CARD_1'), c2Display: ctrlText('OBJID_ACCESSORY_2_CARD_1'),
                 };
             });
 
@@ -519,10 +529,15 @@ describe('ro4/m/calcx.html 起動テスト', () => {
                 return;
             }
 
-            // 値がコピーされている（旧実装でも通る部分のサニティチェック）
+            // 本体: 値がコピーされ、表示も同期されている
             expect(result.a2Value).toBe(result.a1Value);
-            // 表示が同期されている（このバグで壊れていた本丸）
             expect(result.a2Display).toBe(result.a1Display);
+
+            // カード: セットできた場合のみ検証（本体の値ベースコピーと表示同期）
+            if (picked.cardSet && result.c1Value && result.c1Value !== '0') {
+                expect(result.c2Value).toBe(result.c1Value);
+                expect(result.c2Display).toBe(result.c1Display);
+            }
         } finally {
             await context.close();
         }
