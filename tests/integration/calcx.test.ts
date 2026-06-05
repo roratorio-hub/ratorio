@@ -355,6 +355,62 @@ describe('ro4/m/calcx.html 起動テスト', () => {
         expect(errors, formatErrorMsg('各スキルSW展開後 内部コントロール操作中', errors)).toHaveLength(0);
     });
 
+    // A1（職固有自己支援 / パッシブスキル欄）のスキルLv変更で未捕捉 JS 例外が出ないことを確認する。
+    // 上の「各スキルSW…」テストはデフォルト職にパッシブが無く A_skill 欄が生成されないため A1 を
+    // カバーできていなかった（Click_A1 が dewindow で未定義になっても検出できなかった）。
+    // Click_PassSkillSW が myInnerHtml で生成する <select id="A_skill*"> の onChange を
+    // addEventListener 化した変換を検証する。パッシブを持つ職を選んで A1 欄を展開し A_skill0 を変更する。
+    it('A1 パッシブスキル欄のスキルLv変更で未捕捉 JS 例外が発生しない', async () => {
+        let exercised = false;
+        const errors = await collectPageErrors(browser, async (page) => {
+            page.on('dialog', (dialog) => dialog.dismiss().catch(() => {}));
+            await page.goto(`${baseUrl}/ro4/m/calcx.html`, { waitUntil: 'networkidle', timeout: 60000 });
+            // 職業セレクトの option がロードされるまで待つ（vitest 環境では networkidle 後も
+            // データ反映が遅れて options が空のまま evaluate に入ることがある）
+            await page.waitForFunction(() => {
+                const j = document.getElementById('OBJID_SELECT_JOB') as HTMLSelectElement | null;
+                return !!(j && j.options.length > 1);
+            }, { timeout: 15000 }).catch(() => {});
+            await page.waitForTimeout(300);
+
+            exercised = await page.evaluate(async () => {
+                const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+                const job = document.getElementById('OBJID_SELECT_JOB') as (HTMLSelectElement & { tomselect?: { setValue(v: string): void } }) | null;
+                if (!job) return false;
+                // A1_SKILLSW を「チェック済み」状態にして A1 欄を展開する（Click_PassSkillSW が再構築）
+                const ensureA1Open = async () => {
+                    const sw = document.querySelector<HTMLInputElement>('[name="A1_SKILLSW"]');
+                    if (sw && !sw.checked) { sw.click(); await sleep(400); }
+                };
+                // 1次職はパッシブスキル（剣術修練等）を持つので候補にする。
+                // データに無い場合は全職から先頭30件にフォールバック。
+                const known = ['SWORDMAN', 'THIEF', 'MAGICIAN', 'ARCHER', 'MERCHANT', 'ACOLYTE'];
+                const present = known.filter((c) => Array.from(job.options).some((o) => o.value === c));
+                const tryJobs = present.length
+                    ? present
+                    : Array.from(job.options).map((o) => o.value).filter((v) => v && v !== '0').slice(0, 30);
+                for (const v of tryJobs) {
+                    if (job.tomselect) job.tomselect.setValue(v);
+                    else { job.value = v; job.dispatchEvent(new Event('change', { bubbles: true })); }
+                    await sleep(500);
+                    await ensureA1Open();
+                    const sel = document.getElementById('A_skill0') as HTMLSelectElement | null;
+                    if (sel && sel.options.length > 1) {
+                        sel.value = sel.options[1].value;
+                        sel.dispatchEvent(new Event('change', { bubbles: true }));  // → Click_A1(true)
+                        await sleep(200);
+                        return true;
+                    }
+                }
+                return false;
+            });
+        });
+        // A1 欄を実際に操作できたこと（パッシブ職で A_skill が生成され変更されたこと）を保証する。
+        // ここが false だとテスト前提が崩れ Click_A1 の検証になっていないため、明示的に失敗させる。
+        expect(exercised, 'A1 パッシブスキル欄を操作できなかった（テスト前提の不成立）').toBe(true);
+        expect(errors, formatErrorMsg('A1パッシブスキル欄操作中', errors)).toHaveLength(0);
+    });
+
     // OBJID_MONSTER_MAP_AREA のカテゴリ変更でマップリストがカスケード更新されることを確認。
     // dewindow フェーズで CCustomSelectBase の onchange 属性を addEventListener に切り替えた後、
     // カテゴリ変更 → マップリスト更新 / マップ変更 → モンスターリスト更新 の連鎖が壊れていないかを確認する。

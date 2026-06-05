@@ -107,7 +107,9 @@ export function Click_PassSkillSW(){
 				else {
 					myInnerHtml("P_Skill"+i,SkillObjNew[passiveSkillIdArray[i]][SKILL_DATA_INDEX_NAME],0);
 				}
-				myInnerHtml("P_Skill"+i+"s","<select name=A_skill"+i+" id=A_skill"+i+" onChange=Click_A1(true)></select>",0);
+				myInnerHtml("P_Skill"+i+"s","<select name=A_skill"+i+" id=A_skill"+i+"></select>",0);
+				// inline onChange=Click_A1(true) を addEventListener に変換（Click_A1 は dewindow 済みで bare 参照不可）
+				document.getElementById("A_skill"+i)?.addEventListener('change', () => Click_A1(true));
 		}
 		for (let j = 0; j <= end; j++) {
 				let w = passiveSkillIdArray[j];
