@@ -15,6 +15,12 @@ import { IsMatchJobRestrict } from './data/mig.job.h.js';
 import { HtmlCreateElement, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlSelectObjectValueAsInteger } from '../../../roro/common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
 
+// gen_imports.py は CShadowEquipController→slotpager→hmrndopt→CShadowEquipController の
+// 循環を検出して slotpager の import をスキップするが、SaveSlotStateCardAll は
+// onChangeShadow（runtime）でのみ参照され module 評価時には未使用のため循環は安全。
+// 自動生成ブロック外に手動で追加し、--force 再生成でも残るようにする。
+import { SaveSlotStateCardAll } from '../../../roro/m/js/slotpager.js';
+
 /**
  * シャドウ装備コントローラクラス.
  */
