@@ -454,7 +454,7 @@ export function DispData(selectedCardKind, cardDataArray) {
 						objTd = document.createElement("td");
 						objTr.appendChild(objTd);
 						// 取得したアイテムID->スロット情報のマップをループし、エンチャント情報テキストを生成
-						idxItem = 0;
+						idxItemF = 0;
 						itemToSlotInfoMapF.forEach(
 							function (valueFF, keyFF, mapFF) {
 								var itemDataFF = ItemObjNew[keyFF];

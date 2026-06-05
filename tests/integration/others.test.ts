@@ -126,3 +126,47 @@ describe('roro/other/ ページ起動テスト', () => {
         });
     }
 });
+
+// itemlist のパッケージ選択変更（OnChangePackageRestrict）で未捕捉 JS 例外が出ないことを確認する。
+// 起動テストはパッケージ select を操作しないため、inline onchange の eventsetup 化漏れ
+// （OnChangePackageRestrict の bare 参照）を検出できなかった。
+describe('roro/other/itemlist.html 操作テスト', () => {
+    it('パッケージ選択変更で未捕捉 JS 例外が発生しない', async () => {
+        const context = await browser.newContext();
+        const pg = await context.newPage();
+        const pageErrors: string[] = [];
+        pg.on('pageerror', (err) => {
+            if (!isSuppressed(err.message)) pageErrors.push(`[pageerror] ${err.message}`);
+        });
+        await pg.addInitScript(() => {
+            (window as any).__pendingRejections = [];
+            window.addEventListener('unhandledrejection', (event) => {
+                const msg = (event.reason as any)?.message ?? String(event.reason);
+                (window as any).__pendingRejections.push(msg);
+            });
+        });
+        await pg.goto(`${baseUrl}/roro/other/itemlist.html`, { waitUntil: 'networkidle', timeout: 60000 });
+        await pg.waitForTimeout(500);
+
+        const exercised = await pg.evaluate(() => {
+            const sel = document.getElementById('OBJID_SELECT_PACKAGE') as HTMLSelectElement | null;
+            if (!sel) return false;
+            if (sel.options.length > 1) sel.selectedIndex = 1;
+            sel.dispatchEvent(new Event('change', { bubbles: true }));  // → OnChangePackageRestrict
+            return true;
+        });
+        await pg.waitForTimeout(300);
+
+        const rejections: string[] = await pg.evaluate(() => (window as any).__pendingRejections ?? []);
+        for (const msg of rejections) {
+            if (!isSuppressed(msg)) pageErrors.push(`[unhandledrejection] ${msg}`);
+        }
+        await context.close();
+
+        expect(exercised, 'OBJID_SELECT_PACKAGE が見つからず検証できなかった').toBe(true);
+        expect(
+            pageErrors,
+            `パッケージ選択変更中に未捕捉 JS 例外が ${pageErrors.length} 件発生しました:\n${pageErrors.join('\n')}`
+        ).toHaveLength(0);
+    });
+});
