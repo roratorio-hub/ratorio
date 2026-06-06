@@ -1,1083 +1,165 @@
 card_list:
-  - name: 封印されたR001-ベスティア
-    yomi: フウインサレタアールゼロゼロイチベスティア
-    type: 鎧
+  - name: タナトスの記憶(怨望)
+    yomi: タナトスノキオク(オンボウ)
+    desc: "[天地崩壊]と共に装備時、[タナトスの記憶(怨望)カード]のオートスペル[ダーククロー]の発動率が上昇"
+    type: 武器
     capabilities:
-      - name: 物理ダメージ増加
-        value: 2
-        per_status_30: STR
-      - name: 物理ダメージ増加
+      - name: ATK加算
         value: 10
-        at_status_130: STR
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 知識の探求者
-        capabilities:
-          - name: MAXHP増加
-            value: 25
-
-  - name: 封印されたアイスホーン
-    yomi: フウインサレタアイスホーン
-    desc: "[Mジャックフロスト]で受けるダメージ-30%。"
-    type: 兜
-    capabilities:
-      - name: 水属性耐性
-        value: 5
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 異境の統轄者
-        capabilities:
-          - name: 水属性耐性
-            value: 10
-
-  - name: 封印されたイングリッド
-    yomi: フウインサレタイングリッド
-    type: アクセサリー
-    capabilities:
-      - name: MAXHP増加
-        value: 5
-      - name: 聖属性耐性
-        value: 5
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 異境の統轄者
-        capabilities:
-          - name: 完全回避
-            value: 5
-
-  - name: 封印されたヴェノムキメラ
-    yomi: フウインサレタヴェノムキメラ
-    type: 鎧
-    capabilities:
-      - name: 動物形への物理ダメージ増加
-        value: 5
-      - name: 昆虫形への物理ダメージ増加
-        value: 5
-      - name: 動物形への魔法ダメージ増加
-        value: 5
-      - name: 昆虫形への魔法ダメージ増加
-        value: 5
-      - name: 地属性への物理ダメージ増加
-        value: 5
-      - name: 毒属性への物理ダメージ増加
-        value: 5
-      - name: 地属性への魔法ダメージ増加
-        value: 5
-      - name: 毒属性への魔法ダメージ増加
-        value: 5
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 知識の探求者
-        capabilities:
-          - name: MAXHP増加
-            value: 25
-          - name: 動物形への物理ダメージ増加
-            value: 10
-          - name: 昆虫形への物理ダメージ増加
-            value: 10
-          - name: 動物形への魔法ダメージ増加
-            value: 10
-          - name: 昆虫形への魔法ダメージ増加
-            value: 10
-          - name: 地属性への物理ダメージ増加
-            value: 10
-          - name: 毒属性への物理ダメージ増加
-            value: 10
-          - name: 地属性への魔法ダメージ増加
-            value: 10
-          - name: 毒属性への魔法ダメージ増加
-            value: 10
-
-  - name: 封印されたウルトラリマキナ
-    yomi: フウインサレタウルトラリマキナ
-    type: 鎧
-    capabilities:
-      - name: 物理ダメージ増加
-        value: 2
-        per_status_30: DEX
-      - name: 物理ダメージ増加
+        per_refine: 1
+      - name: MATK加算
         value: 10
-        at_status_130: DEX
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 異境の統轄者
-        capabilities:
-          - name: MAXHP増加
-            value: 25
-
-  - name: 封印されたガイアポール
-    yomi: フウインサレタガイアポール
-    type: 靴
-    capabilities:
-      - name: 魔法ダメージ増加
-        value: 10
-      - name: MAXSP増加
-        value: -50
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 豊穣の女神
-        capabilities:
-          - name: 無形への魔法ダメージ増加
-            value: 20
-          - name: 植物形への魔法ダメージ増加
-            value: 20
-
-  - name: 封印されたグラトニー
-    yomi: フウインサレタグラトニー
-    desc: "[Mクラウドキル]で受けるダメージ-15%。"
-    type: 兜
-    capabilities:
-      - name: 地属性耐性
-        value: 5
-      - name: 闇属性耐性
-        value: 5
-      - name: スタン耐性
-        value: 15
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 厄災の魔将
-        capabilities:
-          - name: MAXHP増加
-            value: 5
-          - name: 地属性耐性
-            value: 10
-
-  - name: 封印されたゴブリンキング
-    yomi: フウインサレタゴブリンキング
-    type: 鎧
-    capabilities:
-      - name: クリティカルダメージ増加
-        value: 2
-        per_status_30: LUK
-      - name: クリティカルダメージ増加
-        value: 10
-        at_status_130: LUK
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 厄災の魔将
-        capabilities:
-          - name: MAXHP増加
-            value: 25
-
-  - name: 封印されたジュゴリアント
-    yomi: フウインサレタジュゴリアント
-    type: 兜
-    capabilities:
-      - name: FLEE加算
-        value: 3
         per_refine: 1
     set_list:
       - set:
         entity_list:
-          - card_name: 異境の統轄者
+          - card_name: 英雄の凱歌
         capabilities:
-          - name: スキル使用可能
-            value: 1
-            skill: クローキング
-            skill_lv: 3
-
-  - name: 封印されたバーニングファング
-    yomi: フウインサレタバーニングファング
-    type: 靴
-    capabilities:
-      - name: MAXHP増加
-        value: 5
-      - name: MAXSP増加
-        value: 5
-      - name: 地属性への物理ダメージ増加
-        value: 10
-      - name: 地属性への魔法ダメージ増加
-        value: 10
-      - name: 石化耐性
-        value: 15
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 豊穣の女神
-        capabilities:
-          - name: MAXHP増加
-            value: 15
-          - name: MAXSP増加
-            value: 15
-          - name: 地属性耐性
-            value: 10
-
-  - name: 封印されたビッグエッグリン
-    yomi: フウインサレタビッグエッグリン
-    type: 兜
-    capabilities:
-      - name: 全基本ステータス加算
-        value: 1
-        per_refine: 2
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 最果ての支配者
-        capabilities:
-          - name: 全基本ステータス加算
-            value: 5
-
-  - name: 封印されたブルガサリ
-    yomi: フウインサレタブルガサリ
-    desc: "[Mコメット]で受けるダメージ-30%。"
-    type: 兜
-    capabilities:
-      - name: 火属性耐性
-        value: 5
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 厄災の魔将
-        capabilities:
-          - name: 火属性耐性
-            value: 10
-
-  - name: 封印されたボーンデータルザウルス
-    yomi: フウインサレタボーンデータルザウルス
-    type: 肩にかける物
-    capabilities:
-      - name: 闇属性魔法ダメージ増加
-        value: 15
-      - name: 闇属性耐性
-        value: 25
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 異境の統轄者
-        capabilities:
-          - name: 魔法ダメージ増加
-            value: 10
-
-  - name: 封印されたヨルトゥス執行官
-    yomi: フウインサレタヨルトゥスシッコウカン
-    type: 武器
-    capabilities:
-      - name: 聖属性魔法ダメージ増加
-        value: 10
-      - name: 無属性魔法ダメージ増加
-        value: 10
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 異境の統轄者
-        capabilities:
-          - name: ASPD加算
-            value: 1
-          - name: 魔法ダメージ増加
-            value: 5
-
-  - name: 封印されたヨルトゥス調停官
-    yomi: フウインサレタヨルトゥスチョウテイカン
-    type: 武器
-    capabilities:
-      - name: 闇属性魔法ダメージ増加
-        value: 10
-      - name: 無属性魔法ダメージ増加
-        value: 10
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 異境の統轄者
-        capabilities:
-          - name: ASPD加算
-            value: 1
-          - name: 魔法ダメージ増加
-            value: 5
-
-  - name: 封印されたランドグリス
-    yomi: フウインサレタランドグリス
-    type: 武器
-    capabilities:
-      - name: 破損しない
-        value: 1
-      - name: 物理ダメージ増加
-        value: 5
-    set_list:
-      - set:
-        entity_list:
-          - item_name: 竜殺しの長剣
-        capabilities:
-          - name: 聖属性魔法ダメージ増加
-            value: 10
-            at_lv: 99
-          - name: スタン耐性
-            value: 10
-            at_lv: 99
-          - name: 沈黙耐性
-            value: 10
-            at_lv: 99
-          - name: 聖属性魔法ダメージ増加
-            value: 30
-            at_lv: 100
-          - name: スタン耐性
-            value: 25
-            at_lv: 100
-          - name: 沈黙耐性
-            value: 25
-            at_lv: 100
-      - set:
-        entity_list:
-          - card_name: 異境の統轄者
-        capabilities:
-          - name: 物理ダメージ増加
-            value: 15
-
-  - name: 封印されたルガンチーフクリーナー
-    yomi: フウインサレタルガンチーフクリーナー
-    desc: "物理攻撃命中時、一定確率で敵に与えたダメージの20%をHPとして吸収。[異境の統轄者]と共に装備時：物理攻撃でモンスターを倒した時HP+100、SP+10。"
-    type: 武器
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 異境の統轄者
-        capabilities:
-          - name: 近距離ダメージ増加
-            value: 10
-          - name: 遠距離ダメージ増加
-            value: 10
-
-  - name: 封印されたルニレ
-    yomi: フウインサレタルニレ
-    type: 鎧
-    capabilities:
-      - name: 魔法ダメージ増加
-        value: 2
-        per_status_30: INT
-      - name: 魔法ダメージ増加
-        value: 10
-        at_status_130: INT
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 異境の統轄者
-        capabilities:
-          - name: MAXHP増加
-            value: 25
-
-  - name: 封印されたレギンレイヴ
-    yomi: フウインサレタレギンレイヴ
-    type: 兜
-    capabilities:
-      - name: 火属性耐性
-        value: 5
-        at_equip_location: 兜中段
-      - name: 水属性耐性
-        value: 5
-        at_equip_location: 兜中段
-      - name: 闇属性耐性
-        value: 5
-        at_equip_location: 兜中段
-      - name: 不死属性耐性
-        value: 5
-        at_equip_location: 兜中段
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 異境の統轄者
-        capabilities:
-          - name: MAXHP増加
-            value: 5
-          - name: 闇属性耐性
-            value: 10
-
-  - name: 封印された変異キメラ・ザ・ワン
-    yomi: フウインサレタヘンイキメラザワン
-    type: 鎧
-    capabilities:
-      - name: 無形への物理ダメージ増加
-        value: 5
-      - name: 竜形への物理ダメージ増加
-        value: 5
-      - name: 火属性への物理ダメージ増加
-        value: 5
-      - name: 毒属性への物理ダメージ増加
-        value: 5
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 知識の探求者
-        capabilities:
-          - name: MAXHP増加
-            value: 25
-          - name: 無形への物理ダメージ増加
-            value: 10
-          - name: 竜形への物理ダメージ増加
-            value: 10
-          - name: 火属性への物理ダメージ増加
-            value: 10
-          - name: 毒属性への物理ダメージ増加
-            value: 10
-
-  - name: 封印された悪夢のピアメット
-    yomi: フウインサレタアクムノピアメット
-    type: 靴
-    capabilities:
-      - name: 魔法ダメージ増加
-        value: 10
-      - name: MAXSP増加
-        value: -50
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 異境の統轄者
-        capabilities:
-          - name: 不死形への魔法ダメージ増加
-            value: 20
-          - name: 悪魔形への魔法ダメージ増加
-            value: 20
-
-  - name: 封印された死の大魔女
-    yomi: フウインサレタシノダイマジョ
-    type: 靴
-    capabilities:
-      - name: 魔法ダメージ増加
-        value: 10
-      - name: MAXSP増加
-        value: -50
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 異境の統轄者
-        capabilities:
-          - name: 魚貝形への魔法ダメージ増加
-            value: 20
-          - name: 竜形への魔法ダメージ増加
-            value: 20
-
-  - name: 封印された死者の案内人
-    yomi: フウインサレタシシャノアンナイニン
-    type: 鎧
-    capabilities:
-      - name: 無形への物理ダメージ増加
-        value: 5
-      - name: 悪魔形への物理ダメージ増加
-        value: 5
-      - name: 火属性への物理ダメージ増加
-        value: 5
-      - name: 無属性への物理ダメージ増加
-        value: 5
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 異境の統轄者
-        capabilities:
-          - name: MAXHP増加
-            value: 25
-          - name: 無形への物理ダメージ増加
-            value: 10
-          - name: 悪魔形への物理ダメージ増加
-            value: 10
-          - name: 火属性への物理ダメージ増加
-            value: 10
-          - name: 無属性への物理ダメージ増加
-            value: 10
-
-  - name: 封印された無口なマヤー
-    yomi: フウインサレタムクチナマヤー
-    type: 靴
-    capabilities:
-      - name: 物理ダメージ増加
-        value: 10
-      - name: MAXSP増加
-        value: -50
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 厄災の魔将
-        capabilities:
-          - name: 植物形への物理ダメージ増加
-            value: 20
-          - name: 昆虫形への物理ダメージ増加
-            value: 20
-
-  - name: 封印された雪嵐天使ウミウシ
-    yomi: フウインサレタユキアラシテンシウミウシ
-    type: 靴
-    capabilities:
-      - name: 物理ダメージ増加
-        value: 10
-      - name: MAXSP増加
-        value: -50
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 異境の統轄者
-        capabilities:
-          - name: 魚貝形への物理ダメージ増加
-            value: 20
-          - name: 天使形への物理ダメージ増加
-            value: 20
-
-  - name: 封印されたマーガレッタ=ソリン（MVP）
-    yomi: フウインサレタマーガレッタソリン
-    desc: "物理・魔法攻撃を受けた時、一定確率でオートスペル[アスムプティオ]Lv5発動。"
-    type: 鎧
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 殺意の怨念
-        capabilities:
-          - name: MAXHP増加
-            value: 25
-
-  - name: 封印されたランデル=ロレンス（MVP）
-    yomi: フウインサレタランデルロレンス
-    type: 鎧
-    capabilities:
-      - name: MAXHP増加
-        value: 5
-      - name: MAXHP増加
-        value: 5
-        at_status_110: INT
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 殺意の怨念
-        capabilities:
-          - name: MAXHP増加
-            value: 30
-          - name: MAXHP増加
-            value: 5
-            at_status_110: INT
-
-  - name: 封印されたアルフォシオ=バジル（MVP）
-    yomi: フウインサレタアルフォシオバジル
-    type: 鎧
-    capabilities:
-      - name: FLEE加算
-        value: 5
-      - name: FLEE加算
-        value: 5
-        at_status_110: VIT
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 殺意の怨念
-        capabilities:
-          - name: FLEE加算
-            value: 20
-          - name: MAXHP増加
-            value: 25
-          - name: FLEE加算
-            value: 20
-            at_status_110: VIT
-
-  - name: 封印されたエミュール=プラメール（MVP）
-    yomi: フウインサレタエミュールプラメール
-    type: 鎧
-    capabilities:
-      - name: CRI加算
-        value: 5
-      - name: CRI加算
-        value: 5
-        at_status_110: STR
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 殺意の怨念
-        capabilities:
-          - name: CRI加算
-            value: 20
-          - name: MAXHP増加
-            value: 25
-          - name: CRI加算
-            value: 20
-            at_status_110: STR
-
-  - name: 封印されたエレメス=ガイル（MVP）
-    yomi: フウインサレタエレメスガイル
-    type: 肩にかける物
-    capabilities:
-      - name: スキル使用可能
-        value: 1
-        skill: クローキング
-        skill_lv: 1
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 殺意の怨念
-        capabilities:
-          - name: 水属性耐性
-            value: 25
-          - name: 地属性耐性
-            value: 25
-
-  - name: 封印されたガーティー=ウー（MVP）
-    yomi: フウインサレタガーティーウー
-    type: 鎧
-    capabilities:
-      - name: HIT加算
-        value: 5
-      - name: HIT加算
-        value: 5
-        at_status_110: LUK
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 殺意の怨念
-        capabilities:
-          - name: HIT加算
-            value: 20
-          - name: MAXHP増加
-            value: 25
-          - name: HIT加算
-            value: 20
-            at_status_110: LUK
-
-  - name: 封印されたセシル=ディモン（MVP）
-    yomi: フウインサレタセシルディモン
-    desc: "物理攻撃命中時、一定確率で敵に与えたダメージの20%をHPとして吸収。HP自然回復量-100%。"
-    type: 武器
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 殺意の怨念
-        capabilities:
-          - name: ボスへの物理ダメージ増加
-            value: 20
-
-  - name: 封印されたセリア=アルデ（MVP）
-    yomi: フウインサレタセリアアルデ
-    type: 鎧
-    capabilities:
-      - name: 魔法ダメージ増加
-        value: 3
-      - name: 魔法ダメージ増加
-        value: 3
-        at_status_110: DEX
-    set_list:
-      - set:
-        entity_list:
-          - item_name: 降霊術士のドレス
-        capabilities:
-          - name: スキル変動詠唱割合減少
-            value: 100
-            skill: サイキックウェーブ
-      - set:
-        entity_list:
-          - card_name: 殺意の怨念
-        capabilities:
-          - name: MAXHP増加
-            value: 25
-          - name: 魔法ダメージ増加
-            value: 4
-          - name: 魔法ダメージ増加
-            value: 4
-            at_status_110: DEX
-
-  - name: 封印されたチェン=リウ（MVP）
-    yomi: フウインサレタチェンリウ
-    type: 鎧
-    capabilities:
-      - name: 物理ダメージ増加
-        value: 3
-      - name: 物理ダメージ増加
-        value: 3
-        at_status_110: AGI
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 殺意の怨念
-        capabilities:
-          - name: MAXHP増加
-            value: 25
-          - name: 物理ダメージ増加
-            value: 4
-          - name: 物理ダメージ増加
-            value: 4
-            at_status_110: AGI
-
-  - name: 封印されたトレンティーニ（MVP）
-    yomi: フウインサレタトレンティーニ
-    type: 鎧
-    capabilities:
-      - name: FLEE加算
-        value: 5
-      - name: FLEE加算
-        value: 5
-        at_status_110: VIT
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 殺意の怨念
-        capabilities:
-          - name: FLEE加算
-            value: 20
-          - name: MAXHP増加
-            value: 25
-          - name: FLEE加算
-            value: 20
-            at_status_110: VIT
-
-  - name: 封印されたハワード=アルトアイゼン（MVP）
-    yomi: フウインサレタハワードアルトアイゼン
-    desc: "物理攻撃命中時、一定確率で敵の武器・防具を破壊。"
-    type: 武器
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 殺意の怨念
-        capabilities:
-          - name: 一般への物理ダメージ増加
-            value: 20
-
-  - name: 封印されたアークビショップマーガレッタ(MVP)
-    yomi: フウインサレタアークビショップマーガレッタ
-    desc: "追加で[ヒール]、[ハイネスヒール]、[コルセオヒール]使用時、一定確率で5秒間、<br>　ヒール系スキル使用時、HP回復量 + 30%<br>　モンスター[マーガレッタ=ソリン](アークビショップ)に変身"
-    type: 肩にかける物
-    capabilities:
-      - name: MAXHP増加
-        value: 5
-        job_restrict: ARCBISHOP
-      - name: ヒール系スキル使用時HP回復量増加
-        value: 5
-        job_restrict: ARCBISHOP
-      - name: 全基本ステータス加算
-        value: 5
-        at_lv: 165
-      - name: 全基本ステータス加算
-        value: 5
-        at_refine: 10
-    set_list:
-      - set:
-        entity_list:
-          - card_name: アークビショップマーガレッタ
-        capabilities:
-          - name: ヒール系スキル使用時HP回復量増加
-            value: 30
-
-  - name: 封印されたウォーロックカトリーヌ(MVP)
-    yomi: フウインサレタウォーロックカトリーヌ
-    desc: "追加で魔法攻撃命中時、一定確率で5秒間、<br>　Int + 30<br>　モンスター[カトリーヌ=ケイロン](ウォーロック)に変身"
-    type: 肩にかける物
-    capabilities:
-      - name: MDEF加算
-        value: 25
-        job_restrict: WARLOCK
-      - name: 魔法ダメージ増加
-        value: 5
-        job_restrict: WARLOCK
-      - name: 全基本ステータス加算
-        value: 5
-        at_lv: 165
-      - name: 全基本ステータス加算
-        value: 5
-        at_refine: 10
-    set_list:
-      - set:
-        entity_list:
-          - card_name: ウォーロックカトリーヌ
-        capabilities:
-          - name: INT加算
-            value: 30
-
-  - name: 封印されたカトリーヌ=ケイロン
-    yomi: フウインサレタカトリーヌケイロン
-    desc: "装備解除時SP-2000。<br>[ガーデンオブエデン]と共に装備時：装備解除時[テレキネシスインテンス]を解除する。"
-    type: 兜
-    capabilities:
-      - name: 一般モンスターのMDEF無視
-        value: 30
-    set_list:
-      - set:
-        entity_list:
-          - item_name: ガーデンオブエデン
-        capabilities:
-          - name: 再使用待機時間減少
-            value: 40000
-            skill: テレキネシスインテンス
-      - set:
-        entity_list:
-          - card_name: 殺意の怨念
-        capabilities:
+          - name: ATK加算
+            value: 2
+            per_lv: 1
           - name: MATK加算
+            value: 2
+            per_lv: 1
+
+  - name: タナトスの記憶(恐怖)
+    yomi: タナトスノキオク(キョウフ)
+    type: 鎧
+    capabilities:
+      - name: 天使形への魔法ダメージ増加
+        value: 4
+        per_refine: 1
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 英雄の凱歌
+        capabilities:
+          - name: MAXHP増加
+            value: 50
+          - name: 沈黙耐性
             value: 100
+      - set:
+        entity_list:
+          - card_name: 天地崩壊
+        capabilities:
+          - name: 天使形への魔法ダメージ増加
+            value: 40
 
-  - name: 封印されたギロチンクロスエレメス(MVP)
-    yomi: フウインサレタギロチンクロスエレメス
-    desc: "追加で物理攻撃命中時、一定確率で5秒間、<br>　Agi + 30<br>　モンスター[エレメス=ガイル](ギロチンクロス)に変身"
+  - name: タナトスの記憶(後悔)
+    yomi: タナトスノキオク(コウカイ)
+    desc: "[天地崩壊]と共に装備時、[ソニックブロー]で受けるダメージ-100%"
     type: 肩にかける物
     capabilities:
-      - name: 完全回避
-        value: 5
-        job_restrict: GUILLOTINE_CROSS
-      - name: 物理ダメージ増加
-        value: 5
-        job_restrict: GUILLOTINE_CROSS
-      - name: 全基本ステータス加算
-        value: 5
-        at_lv: 165
-      - name: 全基本ステータス加算
-        value: 5
-        at_refine: 10
+      - name: INT加算
+        value: 3
+        per_refine: 1
+      - name: 闇属性耐性
+        value: -3
+        per_refine: 1
     set_list:
       - set:
         entity_list:
-          - card_name: ギロチンクロスエレメス
+          - card_name: 英雄の凱歌
         capabilities:
-          - name: AGI加算
-            value: 30
-
-  - name: 封印されたジェネティックエミュール(MVP)
-    yomi: フウインサレタジェネティックエミュール
-    desc: "追加で物理攻撃を受けた時、一定確率で5秒間、<br>　Luk + 30<br>　モンスター[エミュール=プラメール](ジェネティック)に変身"
-    type: 肩にかける物
-    capabilities:
-      - name: FLEE加算
-        value: 5
-        job_restrict: GENETIC
-      - name: 物理ダメージ増加
-        value: 5
-        job_restrict: GENETIC
-      - name: 全基本ステータス加算
-        value: 5
-        at_lv: 165
-      - name: 全基本ステータス加算
-        value: 5
-        at_refine: 10
-    set_list:
+          - name: 闇属性耐性
+            value: -7
+            per_refine: 1
       - set:
         entity_list:
-          - card_name: ジェネティックエミュール
-        capabilities:
-          - name: LUK加算
-            value: 30
-
-  - name: 封印されたシャドウチェイサーガーティー(MVP)
-    yomi: フウインサレタシャドウチェイサーガーティー
-    desc: "追加で物理攻撃を受けた時、一定確率で5秒間、<br>　Agi + 30<br>　モンスター[ガーティー=ウー](シャドウチェイサー)に変身"
-    type: 肩にかける物
-    capabilities:
-      - name: 物理ダメージ増加
-        value: 5
-        job_restrict: SHADOWCHASER
-      - name: 魔法ダメージ増加
-        value: 5
-        job_restrict: SHADOWCHASER
-      - name: 全基本ステータス加算
-        value: 5
-        at_lv: 165
-      - name: 全基本ステータス加算
-        value: 5
-        at_refine: 10
-    set_list:
-      - set:
-        entity_list:
-          - card_name: シャドウチェイサーガーティー
-        capabilities:
-          - name: AGI加算
-            value: 30
-
-  - name: 封印されたソーサラーセリア(MVP)
-    yomi: フウインサレタソーサラーセリア
-    desc: "追加で魔法攻撃を受けた時、一定確率で5秒間、<br>　Int + 30<br>　モンスター[セリア=アルデ](ソーサラー)に変身"
-    type: 肩にかける物
-    capabilities:
-      - name: MAXHP増加
-        value: 5
-        job_restrict: SORCERER
-      - name: 魔法ダメージ増加
-        value: 5
-        job_restrict: SORCERER
-      - name: 全基本ステータス加算
-        value: 5
-        at_lv: 165
-      - name: 全基本ステータス加算
-        value: 5
-        at_refine: 10
-    set_list:
-      - set:
-        entity_list:
-          - card_name: ソーサラーセリア
-        capabilities:
-          - name: INT加算
-            value: 30
-
-  - name: 封印されたミンストレルアルフォシオ(MVP)
-    yomi: フウインサレタミンストレルアルフォシオ
-    desc: "追加で物理攻撃を受けた時、一定確率で5秒間、<br>　Dex + 30<br>　モンスター[アルフォシオ=バジル](ミンストレル)に変身"
-    type: 肩にかける物
-    capabilities:
-      - name: MAXHP増加
-        value: 5
-        job_restrict: MINSTREL
-      - name: MAXSP増加
-        value: 5
-        job_restrict: MINSTREL
-      - name: 全基本ステータス加算
-        value: 5
-        at_lv: 165
-      - name: 全基本ステータス加算
-        value: 5
-        at_refine: 10
-    set_list:
-      - set:
-        entity_list:
-          - card_name: ミンストレルアルフォシオ
-        capabilities:
-          - name: DEX加算
-            value: 30
-
-  - name: 封印されたメカニックハワード(MVP)
-    yomi: フウインサレタメカニックハワード
-    desc: "追加で物理攻撃命中時、一定確率で5秒間、<br>　Luk + 30<br>　モンスター[ハワード=アルトアイゼン](メカニック)に変身"
-    type: 肩にかける物
-    capabilities:
-      - name: HIT加算
-        value: 5
-        job_restrict: MECHANIC
-      - name: 物理ダメージ増加
-        value: 5
-        job_restrict: MECHANIC
-      - name: 全基本ステータス加算
-        value: 5
-        at_lv: 165
-      - name: 全基本ステータス加算
-        value: 5
-        at_refine: 10
-    set_list:
-      - set:
-        entity_list:
-          - card_name: メカニックハワード
-        capabilities:
-          - name: LUK加算
-            value: 30
-
-  - name: 封印されたルーンナイトセイレン(MVP)
-    yomi: フウインサレタルーンナイトセイレン
-    desc: "追加で物理攻撃命中時、一定確率で5秒間、<br>　Vit + 30<br>　モンスター[セイレン=ウィンザー](ルーンナイト)に変身"
-    type: 肩にかける物
-    capabilities:
-      - name: ASPD加算
-        value: 1
-        job_restrict: RUNE_KNIGHT
-      - name: 物理ダメージ増加
-        value: 5
-        job_restrict: RUNE_KNIGHT
-      - name: 全基本ステータス加算
-        value: 5
-        at_lv: 165
-      - name: 全基本ステータス加算
-        value: 5
-        at_refine: 10
-    set_list:
-      - set:
-        entity_list:
-          - card_name: ルーンナイトセイレン
-        capabilities:
-          - name: VIT加算
-            value: 30
-
-  - name: 封印されたレンジャーセシル(MVP)
-    yomi: フウインサレタレンジャーセシル
-    desc: "追加で物理攻撃命中時、一定確率で5秒間、<br>　Dex + 30<br>　モンスター[セシル=ディモン](レンジャー)に変身"
-    type: 肩にかける物
-    capabilities:
-      - name: CRI加算
-        value: 5
-        job_restrict: RANGER
-      - name: 遠距離ダメージ増加
-        value: 5
-        job_restrict: RANGER
-      - name: 全基本ステータス加算
-        value: 5
-        at_lv: 165
-      - name: 全基本ステータス加算
-        value: 5
-        at_refine: 10
-    set_list:
-      - set:
-        entity_list:
-          - card_name: レンジャーセシル
-        capabilities:
-          - name: DEX加算
-            value: 30
-
-  - name: 封印されたロイヤルガードランデル(MVP)
-    yomi: フウインサレタロイヤルガードランデル
-    desc: "追加で物理攻撃を受けた時、一定確率で5秒間、<br>　Vit + 30<br>　モンスター[ランデル=ロレンス](ロイヤルガード)に変身"
-    type: 肩にかける物
-    capabilities:
-      - name: DEF加算
-        value: 100
-        job_restrict: ROYALGUARD
-      - name: 物理ダメージ増加
-        value: 5
-        job_restrict: ROYALGUARD
-      - name: 全基本ステータス加算
-        value: 5
-        at_lv: 165
-      - name: 全基本ステータス加算
-        value: 5
-        at_refine: 10
-    set_list:
-      - set:
-        entity_list:
-          - card_name: ロイヤルガードランデル
-        capabilities:
-          - name: VIT加算
-            value: 30
-
-  - name: 封印されたワンダラートレンティーニ(MVP)
-    yomi: フウインサレタワンダラートレンティーニ
-    desc: "追加で物理攻撃を受けた時、一定確率で5秒間、<br>　Dex + 30<br>　モンスター[トレンティーニ](ワンダラー)に変身"
-    type: 肩にかける物
-    capabilities:
-      - name: MAXHP増加
-        value: 5
-        job_restrict: WANDERER
-      - name: MAXSP増加
-        value: 5
-        job_restrict: WANDERER
-      - name: 全基本ステータス加算
-        value: 5
-        at_lv: 165
-      - name: 全基本ステータス加算
-        value: 5
-        at_refine: 10
-    set_list:
-      - set:
-        entity_list:
-          - card_name: ワンダラートレンティーニ
-        capabilities:
-          - name: DEX加算
-            value: 30
-
-  - name: 封印された修羅チェン(MVP)
-    yomi: フウインサレタシュラチェン
-    desc: "追加で物理攻撃命中時、一定確率で5秒間、<br>　Str + 30<br>　モンスター[チェン=リウ](修羅)に変身"
-    type: 肩にかける物
-    capabilities:
-      - name: MAXHP増加
-        value: 5
-        job_restrict: SHURA
-      - name: 物理ダメージ増加
-        value: 5
-        job_restrict: SHURA
-      - name: 全基本ステータス加算
-        value: 5
-        at_lv: 165
-      - name: 全基本ステータス加算
-        value: 5
-        at_refine: 10
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 修羅チェン
-        capabilities:
-          - name: STR加算
-            value: 30
-      - set:
-        entity_list:
-          - card_name: 殺意の怨念
+          - card_name: 天地崩壊
         capabilities:
           - name: 無属性耐性
-            value: 25
+            value: -35
+
+  - name: タナトスの記憶(憤怒)
+    yomi: タナトスノキオク(フンヌ)
+    desc: "[天地崩壊]と共に装備時、[クリティカルスラッシュ]で受けるダメージ-100%"
+    type: 肩にかける物
+    capabilities:
+      - name: AGI加算
+        value: 3
+        per_refine: 1
+      - name: 風属性耐性
+        value: -3
+        per_refine: 1
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 英雄の凱歌
+        capabilities:
+          - name: 風属性耐性
+            value: -7
+            per_refine: 1
+      - set:
+        entity_list:
+          - card_name: 天地崩壊
+        capabilities:
+          - name: 無属性耐性
+            value: -35
+
+  - name: 破損したタナトスの記憶
+    yomi: ハソンシタタナトスノキオク
+    desc: "[英雄の凱歌]と共に装備時、物理攻撃命中時に一定確率で敵を5秒間[オブリビオンカース]状態にする。[天地崩壊]と共に装備時、[神力]状態になる確率が上昇、物理攻撃命中時に一定確率で敵に与えたダメージの3%をSPとして吸収。"
+    type: 兜
+    capabilities:
+      - name: サイズペナルティ無し
+        value: 1
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 英雄の凱歌
+        capabilities:
+          - name: 火属性耐性
+            value: -10
+          - name: 聖属性耐性
+            value: -10
+
+  - name: 封印された魔剣士タナトスの思念体
+    yomi: フウインサレタマケンシタナトスノシネンタイ
+    desc: "[天地崩壊]と共に装備時、[神力]状態になる確率が上昇"
+    type: 武器
+    capabilities:
+      - name: DEF加算
+        value: -30
+      - name: FLEE加算
+        value: -30
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 英雄の凱歌
+        capabilities:
+          - name: ATK加算
+            value: 1
+            per_lv: 2
+      - set:
+        entity_list:
+          - card_name: 天地崩壊
+        capabilities:
+          - name: ATK加算
+            value: 1
+            per_lv: 2
+
+  - name: 魔剣士タナトスの思念体
+    yomi: マケンシタナトスノシネンタイ
+    desc: "[英雄の凱歌]と共に装備時、一部のダメージを反射する効果で受けるダメージ-10%。[天地崩壊]と共に装備時、[神力]状態になる確率が上昇。"
+    type: 武器
+    capabilities:
+      - name: DEF加算
+        value: -30
+      - name: FLEE加算
+        value: -30
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 英雄の凱歌
+        capabilities:
+          - name: ATK加算
+            value: 1
+            per_lv: 1
+      - set:
+        entity_list:
+          - card_name: 天地崩壊
+        capabilities:
+          - name: ATK加算
+            value: 1
+            per_lv: 1
