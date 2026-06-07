@@ -275,6 +275,4 @@ export const g_rndOptArray = [
 		[273,235,0,3,1,0],
 ];
 
-if (typeof window !== 'undefined') {
-	window.g_rndOptArray = g_rndOptArray;
-}
+

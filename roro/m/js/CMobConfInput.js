@@ -2,6 +2,12 @@
 import { CGlobalConstManager } from './CGlobalConstManager.js';
 import { CConfBaseSelectData, CConfBaseConfData, CConfBaseRegisterParam, CConfBaseManagementParam, CConfBase2 } from './CConfBase2.js';
 import { CSaveDataConverter } from './CSaveDataConverter.js';
+// === AUTO-GENERATED IMPORTS ===
+import './CConfBase.js';
+import { GetMonsterElementText, GetRaceText, GetSizeText } from './common.js';
+import { GetBossTypeText, GetGrassTypeText } from './monster.h.js';
+import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById, HtmlCopyToClipboardById } from '../../common/js/util.js';
+// === END AUTO-GENERATED IMPORTS ===
 
 // パラメータID定義
 CGlobalConstManager.DefineEnum(
@@ -132,7 +138,6 @@ export function CMobConfInputData() {
 }
 
 
-
 // コードバージョン
 CGlobalConstManager.DefineEnum(
 	"EnumMobConfInputVersion",
@@ -218,7 +223,6 @@ export function SetActiveIndexMobConfInput(activeIndex) {
 
 	g_dataManagerMobConfInput.activeIndex = activeIndex;
 }
-
 
 
 export function CMobConfInputAreaComponentManager(confMngParam) {
@@ -693,7 +697,6 @@ export function CMobConfInputAreaComponentManager(confMngParam) {
 		this.confDataObj = confDataOBJSorted;
 
 
-
 		//----------------------------------------------------------------
 		// コード変換対象配列
 		//----------------------------------------------------------------
@@ -757,7 +760,6 @@ export function CMobConfInputAreaComponentManager(confMngParam) {
 	};
 
 
-
 	/**
 	 * 設定欄テーブルを構築する（サブ　フッタ部分構築用）.
 	 * （継承先でオーバーライドすること）
@@ -770,17 +772,17 @@ export function CMobConfInputAreaComponentManager(confMngParam) {
 
 		this.BuildUpSelectAreaSubFooterSubCodeControl(
 			objTbody, "コード出力（選択）",
-			"CMobConfInputAreaComponentManager.OnClickCodeOutSelected(" + this.instanceNo + ", \"OBJID_INPUT_MOB_CONF_CODE_OUT_SELECTED\", \"OBJID_SPAN_MOB_CONF_CODE_CONTROL_INFO\")",
+			() => CMobConfInputAreaComponentManager.OnClickCodeOutSelected(this.instanceNo, "OBJID_INPUT_MOB_CONF_CODE_OUT_SELECTED", "OBJID_SPAN_MOB_CONF_CODE_CONTROL_INFO"),
 			"OBJID_INPUT_MOB_CONF_CODE_OUT_SELECTED");
 
 		this.BuildUpSelectAreaSubFooterSubCodeControl(
 			objTbody, "コード出力（全部）",
-			"CMobConfInputAreaComponentManager.OnClickCodeOutAll(" + this.instanceNo + ", \"OBJID_INPUT_MOB_CONF_CODE_OUT_ALL\", \"OBJID_SPAN_MOB_CONF_CODE_CONTROL_INFO\")",
+			() => CMobConfInputAreaComponentManager.OnClickCodeOutAll(this.instanceNo, "OBJID_INPUT_MOB_CONF_CODE_OUT_ALL", "OBJID_SPAN_MOB_CONF_CODE_CONTROL_INFO"),
 			"OBJID_INPUT_MOB_CONF_CODE_OUT_ALL");
 
 		this.BuildUpSelectAreaSubFooterSubCodeControl(
 			objTbody, "コード入力",
-			"CMobConfInputAreaComponentManager.OnClickCodeIn(" + this.instanceNo + ", \"OBJID_INPUT_MOB_CONF_CODE_IN\", \"OBJID_SPAN_MOB_CONF_CODE_CONTROL_INFO\")",
+			() => CMobConfInputAreaComponentManager.OnClickCodeIn(this.instanceNo, "OBJID_INPUT_MOB_CONF_CODE_IN", "OBJID_SPAN_MOB_CONF_CODE_CONTROL_INFO"),
 			"OBJID_INPUT_MOB_CONF_CODE_IN");
 
 		// 情報欄
@@ -813,7 +815,7 @@ export function CMobConfInputAreaComponentManager(confMngParam) {
 		objInput = HtmlCreateElement("input", objTd);
 		objInput.setAttribute("type", "button");
 		objInput.setAttribute("value", labelText);
-		objInput.setAttribute("onclick", labelFuncName);
+		objInput.addEventListener('click', labelFuncName);
 
 		objTd = HtmlCreateElement("td", objTr);
 		objInput = HtmlCreateElement("input", objTd);
@@ -834,7 +836,7 @@ export function CMobConfInputAreaComponentManager(confMngParam) {
 		objInput = HtmlCreateElement("input", objTdSub);
 		objInput.setAttribute("type", "button");
 		objInput.setAttribute("value", "クリア");
-		objInput.setAttribute("onclick", "CMobConfInputAreaComponentManager.ClearValueCommon(" + this.instanceNo + ", \"" + inputId + "\")");
+		objInput.addEventListener('click', () => CMobConfInputAreaComponentManager.ClearValueCommon(this.instanceNo, inputId));
 
 		objTdSub = HtmlCreateElement("td", objTrSub);
 		objTdSub.setAttribute("style", "text-align : center;");
@@ -842,9 +844,8 @@ export function CMobConfInputAreaComponentManager(confMngParam) {
 		objInput = HtmlCreateElement("input", objTdSub);
 		objInput.setAttribute("type", "button");
 		objInput.setAttribute("value", "コピー");
-		objInput.setAttribute("onclick", "CMobConfInputAreaComponentManager.CopyValueCommon(" + this.instanceNo + ", \"" + inputId + "\")");
+		objInput.addEventListener('click', () => CMobConfInputAreaComponentManager.CopyValueCommon(this.instanceNo, inputId));
 	};
-
 
 
 	/**
@@ -883,7 +884,6 @@ export function CMobConfInputAreaComponentManager(confMngParam) {
 		}
 		return convertedAll;
 	};
-
 
 
 	/**
@@ -944,7 +944,6 @@ export function CMobConfInputAreaComponentManager(confMngParam) {
 
 		return inputData;
 	};
-
 
 
 	/**
@@ -1236,7 +1235,6 @@ export function CMobConfInputAreaComponentManager(confMngParam) {
 	};
 
 
-
 	/**
 	 * 変数の値を元にコントロールをリフレッシュする.
 	 */
@@ -1264,7 +1262,6 @@ export function CMobConfInputAreaComponentManager(confMngParam) {
 	};
 
 
-
 	/**
 	 * OnChange リスナ関数（データ選択用）.
 	 * @param objClass クラスのインスタンスオブジェクト
@@ -1277,7 +1274,6 @@ export function CMobConfInputAreaComponentManager(confMngParam) {
 		var dataNo = 0;
 
 		var objCtrl = null;
-
 
 
 		// 選択番号を取得
@@ -1293,7 +1289,6 @@ export function CMobConfInputAreaComponentManager(confMngParam) {
 		// 値変更を適用（その過程で補正関数も呼ばれる）
 		objClass.ApplyValueChanged(true);
 	};
-
 
 
 	/**
@@ -1360,7 +1355,6 @@ export function CMobConfInputAreaComponentManager(confMngParam) {
 	};
 
 
-
 	/**
 	 * 共通クリア関数.
 	 * @param objId オブジェクトＩＤ
@@ -1376,7 +1370,6 @@ export function CMobConfInputAreaComponentManager(confMngParam) {
 	CMobConfInputAreaComponentManager.CopyValueCommon = function (instanceNo, controlId) {
 		HtmlCopyToClipboardById(controlId);
 	};
-
 
 
 	/**
@@ -1415,7 +1408,6 @@ export function CMobConfInputAreaComponentManager(confMngParam) {
 	};
 
 
-
 	/**
 	 * 設定欄の状態を同期させる（コントロール部品の状態を変数へ反映）.
 	 * @remark オーバーライド
@@ -1428,7 +1420,6 @@ export function CMobConfInputAreaComponentManager(confMngParam) {
 		// データ選択セレクトボックスをリフレッシュする
 		this.RefreshSelectOptions();
 	};
-
 
 
 	/**
@@ -1482,12 +1473,7 @@ export function CMobConfInputAreaComponentManager(confMngParam) {
 	this.InitData();
 
 
-
 }
-
-
-
-
 
 
 /**
@@ -1498,12 +1484,3 @@ export function CMobConfInputAreaComponentManager(confMngParam) {
 CMobConfInputAreaComponentManager.InputModifyCodeInOutCommon = function (objClass, objInput) {
 	// 処理不要
 };
-
-if (typeof window !== 'undefined') {
-	window.CMobConfInputData = CMobConfInputData;
-	window.CMobConfInputAreaComponentManager = CMobConfInputAreaComponentManager;
-	window.GetMobConfInput = GetMobConfInput;
-	window.SetMobConfInput = SetMobConfInput;
-	window.SetActiveIndexMobConfInput = SetActiveIndexMobConfInput;
-	window.g_dataManagerMobConfInput = g_dataManagerMobConfInput;
-}

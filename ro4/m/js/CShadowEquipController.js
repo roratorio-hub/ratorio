@@ -1,3 +1,25 @@
+// === AUTO-GENERATED IMPORTS ===
+import '../../../roro/m/js/card.h.js';
+import '../../../roro/m/js/common.js';
+import { MigGetBorderFlagText } from '../../../roro/m/js/data/mig.itemsp.h.js';
+import '../../../roro/m/js/rndopttype.h.js';
+import { g_constDataManager } from './global.js';
+import { CARD_ID_NONE, CardObjNew } from '../../../roro/m/js/card.dat.js';
+import { OnChangeCard } from '../../../roro/m/js/equip.js';
+import { RebuildCardSelectSubCollectEnchListData } from '../../../roro/m/js/hmcard.js';
+import { SetUpRndOptKind, SetUpRndOptValue } from '../../../roro/m/js/hmrndopt.js';
+import { ItemObjNew, g_ItemIdArrayByKind } from '../../../roro/m/js/item.dat.js';
+import { GetRndOptTypeId } from '../../../roro/m/js/item.h.js';
+import { g_rndOptTypeArray } from '../../../roro/m/js/rndopttype.dat.js';
+import { IsMatchJobRestrict } from './data/mig.job.h.js';
+import { HtmlCreateElement, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlSelectObjectValueAsInteger } from '../../../roro/common/js/util.js';
+// === END AUTO-GENERATED IMPORTS ===
+
+// gen_imports.py は CShadowEquipController→slotpager→hmrndopt→CShadowEquipController の
+// 循環を検出して slotpager の import をスキップするが、SaveSlotStateCardAll は
+// onChangeShadow（runtime）でのみ参照され module 評価時には未使用のため循環は安全。
+// 自動生成ブロック外に手動で追加し、--force 再生成でも残るようにする。
+import { SaveSlotStateCardAll } from '../../../roro/m/js/slotpager.js';
 
 /**
  * シャドウ装備コントローラクラス.
@@ -616,7 +638,6 @@ export class CShadowEquipController {
 export const g_shadowEquipController = new CShadowEquipController();
 
 if (typeof window !== 'undefined') {
-    window.CShadowEquipController = CShadowEquipController;
     window.g_shadowEquipController = g_shadowEquipController;
 }
 g_shadowEquipController.initializeHTML();

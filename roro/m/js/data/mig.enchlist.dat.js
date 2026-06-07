@@ -1,5 +1,8 @@
 import { g_constDataManager } from '../../../../ro4/m/js/global.js';
 
+export const MIG_ENCH_LIST_ID_SHINENNO_KAIRO_UPGRADE = 469;
+export const MIG_ENCH_LIST_ID_SHINENTAIBUKI_UPGRADE = 470;
+
 	/*
 	ToDo : usachoco
 	enchListDataManager.* の初期化でリレーション定義するとインデックスがわかりにくいので
@@ -643,8 +646,6 @@ import { g_constDataManager } from '../../../../ro4/m/js/global.js';
 
 	g_constDataManager.enchListDataManager.upgradeTypeIdArray = [469,470];
 
-	window.MIG_ENCH_LIST_ID_SHINENNO_KAIRO_UPGRADE = 469;
-	window.MIG_ENCH_LIST_ID_SHINENTAIBUKI_UPGRADE = 470;
 
 	// --- usachoco 追加データ --------------------------
 	// 2023アニバパッケ

@@ -1,3 +1,6 @@
+// === AUTO-GENERATED IMPORTS ===
+import { CItemInfoManager } from '../../../roro/m/js/CItemInfoManager.js';
+// === END AUTO-GENERATED IMPORTS ===
 $(function () {
   const buildForm = () => {
 	let test = document.getElementById("history_graph");
@@ -163,7 +166,7 @@ div.clip_memo {
       const mgr = CSaveController.getSaveDataManagerCur();
       mgr.ReCalcManager();
       calc();
-      LoadSelect2();
+      LoadTomSelect();
       const metadata = { "memo": "", "url": CSaveController.encodeToURL() };
       if ($("#clip_with_memo").prop('checked')) {
         let memo = prompt("clipメモ");
@@ -185,7 +188,6 @@ div.clip_memo {
       chart.data.datasets[3].data.push(isNaN(cycle) ? 0 : cycle);
       chart.update();
       g_Chart = chart;
-      if (typeof window !== 'undefined') window.g_Chart = g_Chart;
     });
     $("#history_reset").click(e => {
       chart.data.labels = [];
@@ -197,7 +199,6 @@ div.clip_memo {
       target = 0;
       chart.update();
       g_Chart = null;
-      if (typeof window !== 'undefined') window.g_Chart = g_Chart;
     });
     $("#history_list").click(e => {
       $("#history_graph").insertBefore("#clip_modal_table");
@@ -241,7 +242,6 @@ div.clip_memo {
       chart.update();
       reload_history_table();
       g_Chart = chart;
-      if (typeof window !== 'undefined') window.g_Chart = g_Chart;
     });
     $(document).on("blur", "input.clip_memo", (e) => {
       $(e.target).toggle();
@@ -290,8 +290,5 @@ div.clip_memo {
   buildForm();
 });
 export let g_Chart;
-
-if (typeof window !== 'undefined') {
-    window.g_Chart = g_Chart;
-}
+export function setG_Chart(v) { g_Chart = v; }
 

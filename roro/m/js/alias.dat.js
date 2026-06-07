@@ -24,6 +24,4 @@ export const g_AliasDataArray = [
 	["ワムテ","ワームテール"],
 ];
 
-if (typeof window !== 'undefined') {
-	window.g_AliasDataArray = g_AliasDataArray;
-}
+

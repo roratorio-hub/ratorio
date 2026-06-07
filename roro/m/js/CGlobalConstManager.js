@@ -1,3 +1,6 @@
+// === AUTO-GENERATED IMPORTS ===
+import { toSafeBigInt } from '../../common/js/util.js';
+// === END AUTO-GENERATED IMPORTS ===
 /**
  * 定数データ管理ユニットクラス.
  */
@@ -8,7 +11,6 @@ function CConstVarManagementUnit () {
 
 	// 定数値
 	this.value = 0;
-
 
 
 	/**
@@ -26,7 +28,6 @@ function CConstVarManagementUnit () {
 		return mngUnit;
 	};
 }
-
 
 
 /**
@@ -50,13 +51,11 @@ function CGlobalEnumManager () {
 	this.pseudoArray = new Array();
 
 
-
 	// 列挙定数の数を取得する getter 定義
 	Object.defineProperty(this, "Count", { get : function () { return this.enumArray.length; } });
 
 	// 列挙定数の数を取得する getter 定義
 	Object.defineProperty(this, "CountPseudo", { get : function () { return this.pseudoArray.length; } });
-
 
 
 	/**
@@ -84,7 +83,6 @@ function CGlobalEnumManager () {
 		this.enumArray = new Array();
 		this.pseudoArray = new Array();
 	};
-
 
 
 	/**
@@ -163,7 +161,6 @@ function CGlobalEnumManager () {
 	};
 
 
-
 	/**
 	 * 列挙定数の定数名を取得する.
 	 * @param value 値
@@ -217,7 +214,6 @@ function CGlobalEnumManager () {
 	};
 
 
-
 	/**
 	 * 列挙定数の定数値を取得する.
 	 * @param name 定数名
@@ -269,7 +265,6 @@ function CGlobalEnumManager () {
 
 		return undefined;
 	};
-
 
 
 	/**
@@ -332,7 +327,6 @@ function CGlobalEnumManager () {
 }
 
 
-
 /**
  * 定数マネージャクラス.
  */
@@ -349,7 +343,6 @@ CGlobalConstManager.managementMap = new Array();
  * 定義済み定数名マップ.
  */
 CGlobalConstManager.nameMap = new Map();
-
 
 
 /**
@@ -469,7 +462,6 @@ CGlobalConstManager.DefineEnumSubCommon = function (mode, enumName, nameArray, f
 };
 
 
-
 /**
  * 定数定義を管理マップに登録する.
  * @param name 定数名
@@ -492,7 +484,6 @@ CGlobalConstManager.RegisterMap = function (name, value) {
 	// 追加
 	CGlobalConstManager.managementMap.push(mngUnit);
 };
-
 
 
 /**
@@ -523,7 +514,3 @@ CGlobalConstManager.SearchMap = function (name) {
 };
 
 
-
-if (typeof window !== 'undefined') {
-	window.CGlobalConstManager = CGlobalConstManager;
-}

@@ -1,3 +1,110 @@
+// === AUTO-GENERATED IMPORTS ===
+import { GetHigherJobSeriesID, GetJobName, GetLowerJobSeriesID, IsSameJobClass } from '../../../ro4/m/js/data/mig.job.h.js';
+import { CMonsterMapAreaComponentManager } from '../../../ro4/m/js/CMonsterMapAreaComponentManager.js';
+import {
+         AUTO_SPELL_PROB_ARRAY, AUTO_SPELL_SETTING_COUNT, OBJID_OFFSET_AS_SKILL_ID,
+         OBJID_OFFSET_AS_SKILL_LV, OBJID_OFFSET_AS_SKILL_PROB, OnChangeSettingAutoSpell
+} from '../../../ro4/m/js/calcautospell.js';
+import { g_charaData, g_constDataManager, g_skillManager, g_timeItemConf } from '../../../ro4/m/js/global.js';
+import { calc } from '../../../ro4/m/js/head.js';
+import { CalcStatusPoint } from '../../../ro4/m/js/hmjob.js';
+import { CAttackMethodConf } from './CAttackMethodConf.js';
+import { CBattleQuickControlAreaComponentManager } from './CBattleQuickControlAreaComponentManager.js';
+import { CExtraInfoAreaComponentManager } from './CExtraInfoAreaComponentManager.js';
+import { CItemInfoManager } from './CItemInfoManager.js';
+import { GetMobConfInput, SetActiveIndexMobConfInput, SetMobConfInput } from './CMobConfInput.js';
+import { CSaveDataConverter } from './CSaveDataConverter.js';
+import { CSaveDataMappingManager } from './CSaveDataMappingManager.js';
+import { CTimeItemAreaComponentManager } from './CTimeItemAreaComponentManager.js';
+import {
+         ARROW_ID_AP_BULLET, ARROW_ID_ATK1NO_YA, ARROW_ID_BLAZE_BULLET,
+         ARROW_ID_BLIND_BULLET, ARROW_ID_BLOOD_BULLET_C, ARROW_ID_BULLET,
+         ARROW_ID_CURSE_ARROW, ARROW_ID_DOKUYA, ARROW_ID_ELECTRIC_BULLET,
+         ARROW_ID_ELFNO_YA, ARROW_ID_FLARE_BULLET, ARROW_ID_FLASH_ARROW,
+         ARROW_ID_FREEZING_BULLET, ARROW_ID_GANSEKINO_YA, ARROW_ID_GINNO_YA,
+         ARROW_ID_HAMAYA, ARROW_ID_HONOONO_YA, ARROW_ID_ICE_BULLET, ARROW_ID_KAGEYA,
+         ARROW_ID_KARYUDONO_YA, ARROW_ID_KAZENO_YA, ARROW_ID_KORINO_YA,
+         ARROW_ID_KOTETSUNO_YA, ARROW_ID_LIGHTNING_BULLET, ARROW_ID_MAGICAL_STONE_BULLET,
+         ARROW_ID_MUKEINO_YA, ARROW_ID_NONE, ARROW_ID_ORIDEOKONNO_YA,
+         ARROW_ID_POISON_BULLET, ARROW_ID_SABITA_YA, ARROW_ID_SEINARU_YA,
+         ARROW_ID_SILENCE_ARROW, ARROW_ID_SILVER_BULLET_C, ARROW_ID_SLEEP_ARROW,
+         ARROW_ID_SUISHONO_YA, ARROW_ID_SUNCTFIED_BULLET, ARROW_ID_SURUDOI_YA,
+         ARROW_ID_TETSUNO_YA, ARROW_ID_YA, ARROW_ID_ZOKUSE_ZIDO_YA_ATK30
+} from './arrow.dat.js';
+import { AutoSpellSkill } from './autospell.dat.js';
+import { AUTO_SPELL_ID_CUSTOM_BIAS } from './autospell.h.js';
+import {
+         CARD_ID_ENCHANT_BOSOSHITA_MARYOKU, CARD_ID_ENCHANT_BOSOSHITA_MARYOKU_OLD,
+         CARD_ID_ENCHANT_DEATHPERIA, CARD_ID_ENCHANT_KOGAI, CARD_ID_ENCHANT_KOGAI_OLD,
+         CARD_ID_ENCHANT_KOSOKU, CARD_ID_ENCHANT_KOSOKU_OLD, CARD_ID_ENCHANT_KOUUNNA_HI,
+         CARD_ID_ENCHANT_KOUUNNA_HI_OLD, CARD_ID_ENCHANT_KUMANO_CHIKARA,
+         CARD_ID_ENCHANT_KUMANO_CHIKARA_OLD, CARD_ID_ENCHANT_OWASHINO_GANKO,
+         CARD_ID_ENCHANT_OWASHINO_GANKO_OLD, CARD_ID_ENCHANT_SACRED, CARD_ID_NONE
+} from './card.dat.js';
+import { COSTUME_REGION_ID_HEAD_UNDER } from './common.js';
+import { OnChangeArmsTypeLeft, OnChangeArmsTypeRight, changeJobSettings } from './equip.js';
+import { RebuildCardSelect, SetCardSlotEnability } from './hmcard.js';
+import { RebuildCostumeSelect, SetCostumeSlotEnability } from './hmcostume.js';
+import { RebuildRndOptSelect, SetRndOptEnablityAll } from './hmrndopt.js';
+import {
+         ITEM_ID_723, ITEM_ID_771, ITEM_ID_897, ITEM_ID_898, ITEM_ID_899, ITEM_ID_900,
+         ITEM_ID_901, ITEM_ID_902, ITEM_ID_903, ITEM_ID_904, ITEM_ID_905, ITEM_ID_906,
+         ITEM_ID_907, ITEM_ID_908, ITEM_ID_909, ITEM_ID_910, ITEM_ID_911, ITEM_ID_912,
+         ITEM_ID_913, ITEM_ID_914, ITEM_ID_915, ITEM_ID_916, ITEM_ID_917, ITEM_ID_918,
+         ITEM_ID_919, ITEM_ID_920, ITEM_ID_921, ITEM_ID_922, ITEM_ID_923, ITEM_ID_924,
+         ITEM_ID_925, ITEM_ID_926, ITEM_ID_927, ITEM_ID_928, ITEM_ID_929, ITEM_ID_930,
+         ITEM_ID_931, ITEM_ID_958, ITEM_ID_959, ITEM_ID_960, ITEM_ID_961, ITEM_ID_962,
+         ITEM_ID_963, ITEM_ID_964, ITEM_ID_965, ITEM_ID_966, ITEM_ID_967, ITEM_ID_968,
+         ITEM_ID_969, ITEM_ID_970, ITEM_ID_978, ITEM_ID_979, ITEM_ID_980, ITEM_ID_981,
+         ITEM_ID_982, ITEM_ID_983, ITEM_ID_984, ITEM_ID_ACOLYTE_FIGURE,
+         ITEM_ID_ANTIQUE_GATLINGGUN, ITEM_ID_ARCHER_FIGURE,
+         ITEM_ID_DATENSHISAINO_ANKOUGAITO, ITEM_ID_ILLUSION_COUNTER_DAGGER,
+         ITEM_ID_ILLUSION_GEKKOKEN, ITEM_ID_ILLUSION_MUKEKEN, ITEM_ID_KIRINO_YOTO,
+         ITEM_ID_KUCHITA_GARDEN_KNIFE, ITEM_ID_MADOSHINO_KIOKU, ITEM_ID_MAGICIAN_FIGURE,
+         ITEM_ID_MERCHANT_FIGURE, ITEM_ID_NOVICE_FIGURE, ITEM_ID_RIKUTO_SANRYAKU,
+         ITEM_ID_SHIRONO_KISHIDANNO_NEKOZYARASHI, ITEM_ID_SWORDMAN_FIGURE,
+         ITEM_ID_THIEF_FIGURE, ItemObjNew
+} from './item.dat.js';
+import { GetEnchantTypeId } from './item.h.js';
+import { OnClickSkillSWLearned, n_A_LearnedSkill } from './learnedskill.js';
+import { RefreshMobConfBufControlCSS, RefreshMobConfBufSelectAreaHeader, n_B_KYOUKA } from './mobconfbuf.js';
+import {
+         MOB_CONF_DEBUF_ID_RAKUIN_ZYOTAI, RefreshMobConfDebufControlCSS,
+         RefreshMobConfDebufSelectAreaHeader, n_B_IJYOU
+} from './mobconfdebuf.js';
+import {
+         MOB_CONF_PLAYER_ID_AGI, MOB_CONF_PLAYER_ID_BUTSURI_TAISEI,
+         MOB_CONF_PLAYER_ID_CHI_ZOKUSEI_TAISEI, MOB_CONF_PLAYER_ID_CHUGATA_TAISEI,
+         MOB_CONF_PLAYER_ID_DEX, MOB_CONF_PLAYER_ID_DOKU_ZOKUSEI_TAISEI,
+         MOB_CONF_PLAYER_ID_DORAM_KEI_TAISEI, MOB_CONF_PLAYER_ID_ENKYORI_BUTSURI_TAISEI,
+         MOB_CONF_PLAYER_ID_FUSHI_ZOKUSEI_TAISEI, MOB_CONF_PLAYER_ID_HI_ZOKUSEI_TAISEI,
+         MOB_CONF_PLAYER_ID_INT, MOB_CONF_PLAYER_ID_IPPAN_MONSTER_TAISEI,
+         MOB_CONF_PLAYER_ID_KAZE_ZOKUSEI_TAISEI, MOB_CONF_PLAYER_ID_KOGATA_TAISEI,
+         MOB_CONF_PLAYER_ID_LUK, MOB_CONF_PLAYER_ID_MAHOU_TAISEI,
+         MOB_CONF_PLAYER_ID_MIZU_ZOKUSEI_TAISEI, MOB_CONF_PLAYER_ID_MU_ZOKUSEI_TAISEI,
+         MOB_CONF_PLAYER_ID_NEN_ZOKUSEI_TAISEI, MOB_CONF_PLAYER_ID_NINGEN_KEI_TAISEI,
+         MOB_CONF_PLAYER_ID_SEI_ZOKUSEI_TAISEI, MOB_CONF_PLAYER_ID_STR,
+         MOB_CONF_PLAYER_ID_VIT, MOB_CONF_PLAYER_ID_YAMI_ZOKUSEI_TAISEI,
+         MOB_CONF_PLAYER_ID_ZOKUSEI_MONSTER_TAISEI, RefreshMobConfPlayerControlCSS,
+         RefreshMobConfPlayerSelectAreaHeader, n_B_TAISEI
+} from './mobconfplayer.js';
+import { MONSTER_MAP_ID_CATEGORY_ALL, MONSTER_MAP_ID_MAP_ALL } from './monstermap.dat.js';
+import { GetEquipRndOptTableKind, GetEquipRndOptTableValue, SetEquipRndOptTable } from './rndopttype.h.js';
+import { GetSlotMode, OnClickSlotModeButton, SLOTPAGER_MODE_CARD, SLOTPAGER_MODE_RNDOPT, SLOT_INDEX_CARD_MIN, SLOT_INDEX_CARD_MAX } from './slotpager.js';
+import {
+         TIME_ITEM_ID_BOSOSHITA_MARYOKU, TIME_ITEM_ID_KOGAI, TIME_ITEM_ID_KOSOKU,
+         TIME_ITEM_ID_KOUUNNA_HI, TIME_ITEM_ID_KUMANO_CHIKARA,
+         TIME_ITEM_ID_OWASHINO_GANKO
+} from './timeitem.dat.js';
+import { InsertSkill } from './usableskill.dat.js';
+import { USABLE_SKILL_ID_CUSTOM_BIAS } from './usableskill.h.js';
+import { HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById, SetStatefullData, GetStatefullData, MallocArray, myInnerHtml } from '../../common/js/util.js';
+import { Click_A1, n_A_PassSkill, n_Skill1SW } from '../../../ro4/m/js/BuffJobSpecificSelf.js';
+import { Click_A3, n_A_PassSkill3 } from '../../../ro4/m/js/BuffMusicAndDance.js';
+import { Click_A4, n_A_PassSkill4 } from '../../../ro4/m/js/BuffGuildAndGospel.js';
+import { Click_A7, n_A_PassSkill7 } from '../../../ro4/m/js/BuffItemAndFood.js';
+import { Click_A8, n_A_PassSkill8 } from '../../../ro4/m/js/BuffOtherCategory.js';
+// === END AUTO-GENERATED IMPORTS ===
 // ★★　VersionModify() 関数の修正も忘れずに　★★
 
 // CURRENT_VERSION = 11;	// ラトリオ様からフォーク
@@ -819,7 +926,6 @@ export function SaveSystem(funcSaveDataModify = null){
 
 			SaveData[1881 + idx] = valueWork;
 		}
-
 
 
 	//----------------------------------------------------------------
@@ -1846,7 +1952,6 @@ export function VersionModify(saveDataArray) {
 				saveDataArray[1060 + 25] = saveDataArray[75 + 5];
 			}
 		}
-
 
 
 		//----------------------------------------------------------------
@@ -3875,7 +3980,6 @@ export function DecodeUrl(loadDataUrl){
 	};
 
 
-
 	var msg = "";
 	var bFlag = false;
 
@@ -3883,7 +3987,6 @@ export function DecodeUrl(loadDataUrl){
 	var objidKind = "";
 	var objidValue = "";
 	var objSelect = null;
-
 
 
 	//----------------------------------------------------------------
@@ -3978,7 +4081,6 @@ export function DecodeUrl(loadDataUrl){
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 対応職業チェック（四次対応で平行稼働するため）
 	//----------------------------------------------------------------
@@ -3989,8 +4091,6 @@ export function DecodeUrl(loadDataUrl){
 		alert(msg);
 		return;
 	}
-
-
 
 
 		//----------------------------------------------------------------
@@ -4459,14 +4559,12 @@ export function DecodeUrl(loadDataUrl){
 		}
 
 
-
 		//----------------------------------------------------------------
 		// 衣装系の読み込み
 		//----------------------------------------------------------------
 		for (idx = 0; idx < n_A_costume.length; idx++) {
 			n_A_costume[idx] = SaveData[1680 + idx];
 		}
-
 
 
 		//----------------------------------------------------------------
@@ -4855,13 +4953,11 @@ export function DecodeUrl(loadDataUrl){
 		}
 
 
-
 		//----------------------------------------------------------------
 		// ステータスを再計算
 		//----------------------------------------------------------------
 		CalcStatusPoint(true);
 		StAllCalc();
-
 
 
 		//----------------------------------------------------------------
@@ -4897,12 +4993,8 @@ export function DecodeUrl(loadDataUrl){
 		CAttackMethodAreaComponentManager.SetAttackMethodConf(attackMethodConf);
 
 
-
 		// TODO: これいる？
 		StAllCalc();
-
-
-
 
 
 	OnClickSkillSWLearned();
@@ -4953,7 +5045,6 @@ export function DecodeUrl(loadDataUrl){
 	CExtraInfoAreaComponentManager.ClearStoredValueAll(true);
 
 
-
 	//----------------------------------------------------------------
 	// 表示モード切替
 	//----------------------------------------------------------------
@@ -4981,7 +5072,6 @@ export function LoadCookie3(){
 	// クッキーからセーブデータを読み込む
 	var SaveData = new Array();
 	SaveData = document.cookie.split(";");
-
 
 
 	// 余白をトリム
@@ -5035,8 +5125,6 @@ export function LoadCookie3(){
 
 		ch = 2;
 	}
-
-
 
 
 // セーブデータが消える問題の調査用
@@ -5098,7 +5186,6 @@ if ((ch == 0 && SaveData.length > 1)
 }
 
 
-
 	// セーブスロットの表示を調整する
 	for (var i = 1; i <= n_CONFIG[2]; i++) {
 
@@ -5149,7 +5236,6 @@ if ((ch == 0 && SaveData.length > 1)
 export function SaveCookieConf(){
 
 	var expireDateString = "";
-
 
 
 	var kirikae = 0;
@@ -5463,27 +5549,5 @@ export function OnClickUrlIn() {
 }
 
 if (typeof window !== 'undefined') {
-	Object.assign(window, {
-		GetSaveDataVersion,
-		SaveButton,
-		GetExpireDateString,
-		GetExpireDateStringToDelete,
-		GetExpireDateStringSub,
-		SaveSystem,
-		VersionModify,
-		LoadButton,
-		URLIN,
-		AdaptSaveDataStrSize,
-		DecodeUrl,
-		LoadCookie3,
-		SaveCookieConf,
-		LoadCookieConf,
-		SaveDataChange,
-		aaa,
-		NumA,
-		NtoS2,
-		StoNx,
-		StoN2,
-		OnClickUrlIn,
-	});
+	Object.assign(window, { SaveSystem });
 }

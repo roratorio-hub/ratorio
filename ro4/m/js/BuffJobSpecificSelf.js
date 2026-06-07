@@ -1,13 +1,78 @@
+// === AUTO-GENERATED IMPORTS ===
+import { GetJobName } from './data/mig.job.h.js';
+import { g_constDataManager } from './global.js';
+import { AutoCalc, n_SieldSp, n_SieldSpDum, n_SieldSpNum } from './head.js';
+import { CCharaConfIchizi } from '../../../roro/m/js/CCharaConfIchizi.js';
+import { CCharaConfNizi } from '../../../roro/m/js/CCharaConfNizi.js';
+import { CCharaConfSanzi } from '../../../roro/m/js/CCharaConfSanzi.js';
+import {
+         CARD_ID_HENI_CHIMERA_GALENSIS, CARD_ID_KONTONNO_SIDEWINDER, CARD_ID_SIDEWINDER,
+         CARD_SET_ID_ENCHANT_SHINRINO_KAIHO_SENZAI_SPELL_FIST_1
+} from '../../../roro/m/js/card.dat.js';
+import { CardNumSearch, EquipNumSearch, TimeItemNumSearch } from '../../../roro/m/js/chara.js';
+import { CARD_REGION_ID_HEAD_TOP_ANY } from '../../../roro/m/js/common.js';
+import {
+         ITEM_ID_CIRCUIT_BOARD_OS, ITEM_ID_HIYOKOCHAN, ITEM_ID_HIYOKOCHAN_RENTAL,
+         ITEM_ID_NEIGAN, ITEM_ID_STUFF_OF_PUFFY, ITEM_ID_TOTONO_SHO,
+         ITEM_ID_TOTONO_SHO_T1, ITEM_ID_ZINBAORI, ITEM_SET_ID_SAMAYOUMONONO_HAORI_KASA,
+         ITEM_SET_ID_VALENTINE_BO_HANTAIHANO_AKASHI
+} from '../../../roro/m/js/item.dat.js';
+import { IsGunSeriesArms } from '../../../roro/m/js/item.h.js';
+import { LearnedSkillSearch } from '../../../roro/m/js/learnedskill.js';
+import { SkillObjNew } from '../../../roro/m/js/skill.dat.js';
+import {
+         SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_0,
+         SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_10,
+         SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_100,
+         SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_51,
+         SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_81
+} from '../../../roro/m/js/skill.h.js';
+import {
+         TIME_ITEM_ID_BLUE_RIBBON, TIME_ITEM_ID_DARK_TRIAD,
+         TIME_ITEM_ID_ENCHANT_GOKETSU_SENZAI_KAIHO_SHADOW_CHASER_2,
+         TIME_ITEM_ID_ENCHANT_GOKETSU_SENZAI_KAIHO_WIND_HAWK_3,
+         TIME_ITEM_ID_GULARUSION_UNLIMIT,
+         TIME_ITEM_ID_ILLUSION_ANCIENT_DUGGER_TELECHINESIS_INSTENCE,
+         TIME_ITEM_ID_JITTER_BUG, TIME_ITEM_ID_LEASER_OF_EAGLE_TRUE_SIGHT,
+         TIME_ITEM_ID_TRAVELER_RING_GOKETSU, TIME_ITEM_ID_TRIANGLE_DISASTER,
+         TIME_ITEM_ID_URUNO_KAGO, TIME_ITEM_ID_VNDER_CANMER_SHUCHURYOKU_KOZYO
+} from '../../../roro/m/js/timeitem.dat.js';
+import { HtmlCreateElement, HtmlCreateTextNode, HtmlRemoveOptionAll, HtmlCreateElementOption, myInnerHtml } from '../../../roro/common/js/util.js';
+import { n_A_PassSkill, UsedSkillSearch, UsedSkillSearchSubUsedOnly } from './skillstate.js';
+export { n_A_PassSkill, UsedSkillSearch, UsedSkillSearchSubUsedOnly } from './skillstate.js';
+import {
+         SKILL_ID_ABR_DUAL_CANNON, SKILL_ID_AS_QUICKDRAW, SKILL_ID_ATK_FOR_IRON_NAIL,
+         SKILL_ID_ATK_PLUS_AFTER_SENKO_RENGEKI, SKILL_ID_AURA_BLADE, SKILL_ID_BERSERK,
+         SKILL_ID_CAMOUFLAGE, SKILL_ID_CANCEL_EDP_POISON_ATTACK, SKILL_ID_CHAIN_ACTION,
+         SKILL_ID_COUNT_OF_RG_FOR_BANDING, SKILL_ID_DAICHINO_TAMASHI_KOKA_INUHAKKA_SHOWER,
+         SKILL_ID_DAICHINO_TAMASHI_KOKA_MATATABINO_NEKKO,
+         SKILL_ID_DAICHINO_TAMASHI_KOKA_NYAN_GRASS, SKILL_ID_DOUBLE_ATTACK,
+         SKILL_ID_DRAGONIC_AURA_STATE, SKILL_ID_DRAGON_TRAINING,
+         SKILL_ID_ELEMENTAL_SPIRIT_MASTERY, SKILL_ID_ENERGY_COAT, SKILL_ID_ETERNAL_CHAIN,
+         SKILL_ID_FIGHTING_SPIRIT, SKILL_ID_FU_ELEMENT_OF_FU,
+         SKILL_ID_HOMLV_FOR_PYROCLASTIC, SKILL_ID_HPSPCONF_FOR_GENZYUTSU_ZANGETSU,
+         SKILL_ID_KIHE_SHUREN, SKILL_ID_KIKO, SKILL_ID_KONGO, SKILL_ID_MADOGEAR,
+         SKILL_ID_MAGIC_SETTING_FOR_AUTO_SHADOW_SPELL,
+         SKILL_ID_MAGIC_SETTING_FOR_AUTO_SPELL, SKILL_ID_MAHORYOKU_ZOFUKU,
+         SKILL_ID_OVER_TRUST_MAX, SKILL_ID_RYUSE_RAKKA_MODE,
+         SKILL_ID_SAGENO_TAMASHI_MAHONO_SHUTOKU_LEVEL, SKILL_ID_SANDANSHO,
+         SKILL_ID_SEIMEINO_TAMASHI_KOKA_NOKORI_HP, SKILL_ID_SERE, SKILL_ID_SERE_MODE,
+         SKILL_ID_SERE_SUPPORT_SKILL, SKILL_ID_SHIELD_SPELL_ATK_PLUS,
+         SKILL_ID_SHIELD_SPELL_DEF_PLUS, SKILL_ID_SHIELD_SPELL_REFLECT,
+         SKILL_ID_SHIHO_FU_ZYOTAI, SKILL_ID_SHUCHURYOKU_KOZYO, SKILL_ID_SHUKUFUKU,
+         SKILL_ID_SUPER_NOVICENO_TAMASHI, SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_HI,
+         SKILL_ID_TELECHINESIS_INSTENCE, SKILL_ID_TRUE_SIGHT, SKILL_ID_UNKONO_ZYOTAI,
+         SKILL_ID_UNLIMIT
+} from '../../../roro/m/js/skill.dat.js';
+// === END AUTO-GENERATED IMPORTS ===
 "use strict"
 /**
  * 「職固有自己支援」のバフウィンドウ構築関数群
 */ 
 
-export const BUFF_CONF_SELF_LIMIT = 51;
-/** 職固有自己支援 設定値の配列 */
-export let n_A_PassSkill = Array(BUFF_CONF_SELF_LIMIT).fill(0);
 /** 職固有自己支援 ウィンドウ可視状態 */
 export let n_Skill1SW = false;
+export function setN_Skill1SW(v) { n_Skill1SW = v; }
 
 /**
  * 職固有自己支援 チェックボックス生成
@@ -19,13 +84,12 @@ export function Click_PassSkillSW(){
 	let table_header = `
 		<TABLE Border class="tooltip-target" data-tooltip="パッシブスキル等は今後削除する予定です。代わりに習得スキル欄を使ってください。">
 			<TR><TD ColSpan="4" id="A1TD" Bgcolor="#DDDDFF" class="title">
-				<input id="OBJID_CHECK_A1_SKILL_SW" type="checkbox" name="A1_SKILLSW" onClick="Click_PassSkillSW()">
+				<input id="OBJID_CHECK_A1_SKILL_SW" type="checkbox" name="A1_SKILLSW">
 				<label for="OBJID_CHECK_A1_SKILL_SW">${GetJobName(n_A_JOB)}固有自己支援</label>
 				<span id="A1used"></span>
 			</TD></TR>
 		`;
 	n_Skill1SW = document.calcForm.A1_SKILLSW.checked;
-	if (typeof window !== 'undefined') window.n_Skill1SW = n_Skill1SW;
 	if (n_Skill1SW) {
 		let end = passiveSkillIdArray.length -1;
 		let str = table_header;
@@ -34,6 +98,7 @@ export function Click_PassSkillSW(){
 		}
 		str += '</TABLE>';
 		myInnerHtml("ID_PASS_SKILL",str,0);
+		document.querySelector('[name="A1_SKILLSW"]')?.addEventListener('click', Click_PassSkillSW);
 		document.calcForm.A1_SKILLSW.checked = true;
 		for (let i = 0; i <= end; i++) {
 				if (passiveSkillIdArray[i] == SKILL_ID_SHUCHURYOKU_KOZYO) {
@@ -42,7 +107,9 @@ export function Click_PassSkillSW(){
 				else {
 					myInnerHtml("P_Skill"+i,SkillObjNew[passiveSkillIdArray[i]][SKILL_DATA_INDEX_NAME],0);
 				}
-				myInnerHtml("P_Skill"+i+"s","<select name=A_skill"+i+" id=A_skill"+i+" onChange=Click_A1(true)></select>",0);
+				myInnerHtml("P_Skill"+i+"s","<select name=A_skill"+i+" id=A_skill"+i+"></select>",0);
+				// inline onChange=Click_A1(true) を addEventListener に変換（Click_A1 は dewindow 済みで bare 参照不可）
+				document.getElementById("A_skill"+i)?.addEventListener('change', () => Click_A1(true));
 		}
 		for (let j = 0; j <= end; j++) {
 				let w = passiveSkillIdArray[j];
@@ -491,13 +558,14 @@ export function Click_PassSkillSW(){
 		let str = `
 			<TABLE Border>
 				<TR><TD ColSpan="4" id="A1TD" Bgcolor="#DDDDFF" class="title">
-					<input id="OBJID_CHECK_A1_SKILL_SW" type="checkbox" name="A1_SKILLSW" onClick="Click_PassSkillSW()">
+					<input id="OBJID_CHECK_A1_SKILL_SW" type="checkbox" name="A1_SKILLSW">
 					<label for="OBJID_CHECK_A1_SKILL_SW">${GetJobName(n_A_JOB)}固有自己支援</label>
 					<span id="A1used"></span>
 				</TD></TR>
 			</TABLE>
 			`;
 		myInnerHtml("ID_PASS_SKILL",str,0);
+		document.querySelector('[name="A1_SKILLSW"]')?.addEventListener('click', Click_PassSkillSW);
 		document.calcForm.A1_SKILLSW.checked = false;
 	}
 	Click_A1(false);
@@ -529,274 +597,3 @@ export function Click_A1(recalc = false){
 	}
 }
 
-/**
- * 有効化されている「職固有自己支援」と「アイテム時限効果」の設定Lvを取得する
- * 「一次職支援設定」から「四次職支援設定」までの情報はサーチされない
- * @param {*} sklId 確認するスキル
- * @param {*} bOnlyUsed true: 時限アイテム効果等も検索する / false: 職業スキルだけを検索する(default)
- * @returns 設定されているLv
- */
-export function UsedSkillSearch(sklId, bOnlyUsed = false) {
-	let sklLv = 0;
-	let effectivLvArray = [0];
-	let bAvoidRecalc = false;
-	// スキル欄のみの場合
-	if (bOnlyUsed) {
-		return UsedSkillSearchSubUsedOnly(sklId);
-	}
-	// 時限アイテム欄等で指定するスキル
-	switch (sklId) {
-		// バーサーク
-		case SKILL_ID_BERSERK:
-			if (TimeItemNumSearch(35)) effectivLvArray.push(1);
-			if (TimeItemNumSearch(111)) effectivLvArray.push(1);
-			break;
-		// オーバートラストマックス
-		case SKILL_ID_OVER_TRUST_MAX:
-			if (TimeItemNumSearch(112)) effectivLvArray.push(5);
-			break;
-		// 魔法力増幅
-		case SKILL_ID_MAHORYOKU_ZOFUKU:
-			if ((sklLv = g_confDataNizi[CCharaConfNizi.CONF_ID_MAHORYOKU_ZOFUKU]) > 0) {
-				effectivLvArray.push(sklLv);
-			}
-			if (TimeItemNumSearch(113)) effectivLvArray.push(5);
-			break;
-		// オーラブレイド
-		case SKILL_ID_AURA_BLADE:
-			if ((sklLv = g_confDataNizi[CCharaConfNizi.CONF_ID_AURA_BLADE]) > 0) {
-				effectivLvArray.push(sklLv);
-			}
-			break;
-		// トゥルーサイト
-		case SKILL_ID_TRUE_SIGHT:
-			if (TimeItemNumSearch(TIME_ITEM_ID_LEASER_OF_EAGLE_TRUE_SIGHT)) {
-				effectivLvArray.push(2);
-			}
-			if (TimeItemNumSearch(TIME_ITEM_ID_JITTER_BUG)) {
-				effectivLvArray.push(1);
-			}
-			break;
-		// 金剛
-		case SKILL_ID_KONGO:
-			if ((sklLv = g_confDataNizi[CCharaConfNizi.CONF_ID_KONGO]) > 0) {
-				effectivLvArray.push(sklLv);
-			}
-			break;
-		// 集中力向上
-		case SKILL_ID_SHUCHURYOKU_KOZYO: {
-			let bufLv = g_confDataIchizi[CCharaConfIchizi.CONF_ID_SHUCHURYOKU_KOZYO];
-			if (TimeItemNumSearch(TIME_ITEM_ID_VNDER_CANMER_SHUCHURYOKU_KOZYO) > 0){
-				effectivLvArray.push(5);
-			} else if (bufLv > 0) {
-				effectivLvArray.push(bufLv);
-			} else if (TimeItemNumSearch(TIME_ITEM_ID_BLUE_RIBBON) > 0) {
-				effectivLvArray.push(2);
-			} else if (TimeItemNumSearch(4) > 0) {
-				effectivLvArray.push(1);
-			}
-			break;
-		}
-		// アンリミット
-		case SKILL_ID_UNLIMIT: {
-			let bufLv = g_confDataSanzi[CCharaConfSanzi.CONF_ID_UNLIMIT];
-			if (bufLv > 0) {
-				effectivLvArray.push(bufLv);
-			} else if (TimeItemNumSearch(TIME_ITEM_ID_GULARUSION_UNLIMIT) > 0) {
-				effectivLvArray.push(5);
-			} else if (TimeItemNumSearch(TIME_ITEM_ID_TRAVELER_RING_GOKETSU) > 0) {
-				effectivLvArray.push(5);
-			} else if (TimeItemNumSearch(TIME_ITEM_ID_DARK_TRIAD) > 0) {
-				effectivLvArray.push(5);
-			} else if (TimeItemNumSearch(TIME_ITEM_ID_URUNO_KAGO) > 0) {
-				effectivLvArray.push(5);
-			} else if (TimeItemNumSearch(TIME_ITEM_ID_ENCHANT_GOKETSU_SENZAI_KAIHO_WIND_HAWK_3) > 0) {
-				effectivLvArray.push(5);
-			} else if (TimeItemNumSearch(TIME_ITEM_ID_TRIANGLE_DISASTER) > 0) {
-				effectivLvArray.push(5);
-			} else if (TimeItemNumSearch(TIME_ITEM_ID_ENCHANT_GOKETSU_SENZAI_KAIHO_SHADOW_CHASER_2) > 0) {
-				effectivLvArray.push(5);
-			}		
-			break;
-		}
-		// テレキネシスインテンス
-		case SKILL_ID_TELECHINESIS_INSTENCE:
-			if (TimeItemNumSearch(TIME_ITEM_ID_ILLUSION_ANCIENT_DUGGER_TELECHINESIS_INSTENCE) > 0) {
-				effectivLvArray.push(3);
-			}
-			break;
-		// 三段掌
-		case SKILL_ID_SANDANSHO:
-
-			// 「陣羽織」による、追加発動効果
-			if (EquipNumSearch(ITEM_ID_ZINBAORI)) {
-
-				if (n_A_SHOULDER_DEF_PLUS >= 9) {
-					effectivLvArray.push(10);
-				}
-				else if (n_A_SHOULDER_DEF_PLUS >= 7) {
-					effectivLvArray.push(5);
-				}
-				else {
-					effectivLvArray.push(3);
-				}
-			}
-
-			// 「混沌のサイドワインダーカード」による、追加発動効果
-			if (CardNumSearch(CARD_ID_KONTONNO_SIDEWINDER)) {
-				effectivLvArray.push(5);
-			}
-
-			// 「変異キメラガレンシスカード」による、追加発動効果
-			if (CardNumSearch(CARD_ID_HENI_CHIMERA_GALENSIS, CARD_REGION_ID_HEAD_TOP_ANY)) {
-				effectivLvArray.push(n_A_HEAD_DEF_PLUS);
-			}
-			break;
-		// ダブルアタック
-		case SKILL_ID_DOUBLE_ATTACK:
-
-			// 「サイドワインダーカード」の効果
-			if (CardNumSearch(CARD_ID_SIDEWINDER)) {
-				effectivLvArray.push(1);
-			}
-
-			// 「ひよこちゃん」の効果
-			if (EquipNumSearch(ITEM_ID_HIYOKOCHAN)) {
-				effectivLvArray.push(2);
-			}
-
-			// 「[レンタル] ひよこちゃん」の効果
-			if (EquipNumSearch(ITEM_ID_HIYOKOCHAN_RENTAL)) {
-				effectivLvArray.push(2);
-			}
-
-			// 「バレンタイン帽　反対派の証セット」の効果
-			if (EquipNumSearch(ITEM_SET_ID_VALENTINE_BO_HANTAIHANO_AKASHI)) {
-				effectivLvArray.push(2);
-			}
-
-			// 「彷徨う者の羽織　傘セット」の効果
-			if (EquipNumSearch(ITEM_SET_ID_SAMAYOUMONONO_HAORI_KASA)) {
-				if (n_A_SHOULDER_DEF_PLUS >= 7) {
-					effectivLvArray.push(5);
-				}
-				else {
-					effectivLvArray.push(2);
-				}
-			}
-
-			// 「バレンタイン帽　反対派の証セット」の効果
-			if (EquipNumSearch(ITEM_ID_NEIGAN)) {
-				effectivLvArray.push(5);
-			}
-
-			// 「陣羽織」の効果
-			if (EquipNumSearch(ITEM_ID_ZINBAORI)) {
-				if (n_A_SHOULDER_DEF_PLUS >= 9) {
-					effectivLvArray.push(10);
-				}
-				else if (n_A_SHOULDER_DEF_PLUS >= 7) {
-					effectivLvArray.push(5);
-				}
-				else {
-					effectivLvArray.push(3);
-				}
-			}
-
-			// 「スタッフオブパフィ」の効果
-			if (EquipNumSearch(ITEM_ID_STUFF_OF_PUFFY)) {
-				if (n_A_Weapon_ATKplus >= 10) {
-					effectivLvArray.push(3);
-				}
-			}
-
-			// 「頭フィーリル　浮遊する賢者セット」の追加発動の効果
-			if (TimeItemNumSearch(71)) {
-				effectivLvArray.push(10);
-			}
-
-			// 「サーキットボード-OS」の効果
-			if (EquipNumSearch(ITEM_ID_CIRCUIT_BOARD_OS)) {
-				if (n_A_Weapon_ATKplus >= 10) {
-					effectivLvArray.push(10);
-				}
-			}
-
-			// 「トートの書」の効果
-			if (EquipNumSearch(ITEM_ID_TOTONO_SHO) || EquipNumSearch(ITEM_ID_TOTONO_SHO_T1)) {
-				effectivLvArray.push(10);
-			}
-
-			// 「潜在覚醒(スペルフィストI)」の効果
-			if (CardNumSearch(CARD_SET_ID_ENCHANT_SHINRINO_KAIHO_SENZAI_SPELL_FIST_1) > 0) {
-				effectivLvArray.push(10);
-			}
-
-			// 「分身」スキルの効果
-			if (g_confDataSanzi[CCharaConfSanzi.CONF_ID_BUNSHIN] > 0) {
-				effectivLvArray.push(2 * g_confDataSanzi[CCharaConfSanzi.CONF_ID_BUNSHIN]);
-			}
-
-			// 「チェーンアクション」スキルの効果
-			sklLv = Math.max(LearnedSkillSearch(SKILL_ID_CHAIN_ACTION), UsedSkillSearch(SKILL_ID_CHAIN_ACTION));
-			if ((n_A_WeaponType == ITEM_KIND_HANDGUN) && (sklLv > 0)) {
-				effectivLvArray.push(sklLv);
-			}
-
-			// 「エターナルチェーン」スキルの効果
-			sklLv = UsedSkillSearch(SKILL_ID_ETERNAL_CHAIN);
-			if (IsGunSeriesArms(n_A_WeaponType) && (sklLv > 0)) {
-				effectivLvArray.push(sklLv);
-			}
-
-			// 「ダブルアタック」スキルの効果
-			sklLv = Math.max(LearnedSkillSearch(SKILL_ID_DOUBLE_ATTACK), UsedSkillSearch(SKILL_ID_DOUBLE_ATTACK, true));
-			if ((n_A_WeaponType == ITEM_KIND_KNIFE) && (sklLv > 0)) {
-				effectivLvArray.push(sklLv);
-			}
-
-			// 再計算回避フラグを立てる
-			bAvoidRecalc = true;
-
-			break;
-	}
-	// 再計算回避フラグが立っていなければ、通常スキル欄を追加
-	if (!bAvoidRecalc) {
-		effectivLvArray.push(UsedSkillSearchSubUsedOnly(sklId));
-	}
-	// 最大レベルを返す
-	return effectivLvArray.reduce(
-		function(a, b) {
- 	   		return Math.max(a, b);
-		});
-}
-
-/**
- * 有効化されている「職固有自己支援」の設定Lvを取得する. 
- * @param {Number} sklId 確認するスキル
- * @returns {Number} 設定されているLv. 異常な値がセットされている場合は何も返さない.
- */
-export function UsedSkillSearchSubUsedOnly(sklId) {
-	// 設定可能な全ての職固有自己支援スキルを取得する
-	const passiveSkillIdArray = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, n_A_JOB).GetPassiveSkillIdArray();
-	for (let idx = 0; idx < passiveSkillIdArray.length; idx++) {
-		if(passiveSkillIdArray[idx] == sklId) {
-			// 指定されたスキルIDが見つかったとき
-			if (n_A_PassSkill[idx] !== undefined && !isNaN(n_A_PassSkill[idx])) {
-				// 該当のスキルLvがundefinedでもNaNでもなければ習得済みLvを返す
-				return n_A_PassSkill[idx];
-			}
-		}
-	}
-	return 0;
-}
-
-if (typeof window !== 'undefined') {
-    window.BUFF_CONF_SELF_LIMIT = BUFF_CONF_SELF_LIMIT;
-    window.n_A_PassSkill = n_A_PassSkill;
-    window.n_Skill1SW = n_Skill1SW;
-    window.Click_PassSkillSW = Click_PassSkillSW;
-    window.Click_A1 = Click_A1;
-    window.UsedSkillSearch = UsedSkillSearch;
-    window.UsedSkillSearchSubUsedOnly = UsedSkillSearchSubUsedOnly;
-}
