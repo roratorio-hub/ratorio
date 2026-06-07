@@ -1,3 +1,15 @@
+// === AUTO-GENERATED IMPORTS ===
+import '../../../roro/m/js/card.h.js';
+import { GetElementText } from '../../../roro/m/js/common.js';
+import '../../../roro/m/js/item.h.js';
+import { CardObjNew } from '../../../roro/m/js/card.dat.js';
+import { zokusei } from '../../../roro/m/js/etc.js';
+import { ItemObjNew } from '../../../roro/m/js/item.dat.js';
+import { g_rndOptArray } from '../../../roro/m/js/rndopt.dat.js';
+import { GetRndOptDispName } from '../../../roro/m/js/rndopt.h.js';
+import { g_equipRndOptTable } from '../../../roro/m/js/rndopttype.h.js';
+import { g_extraInfoDataBridge } from '../../../roro/m/js/CExtraInfoDataBridge.js';
+// === END AUTO-GENERATED IMPORTS ===
 // sample
 // https://ragnarokonline.gungho.jp/campaign_event/campaign/baselv220cp-2.html#modal
 // calcx.html?cx1cy1EtMmfo4Owqof.3M4X00cz11.32jYJlE0cz120022jAp3VvR1cz13.4fYl3cz14.4hj1cz15002Edw7Bot9w8cz16002yfJC0xiTd62cz170022j8nn3td2cz18.4fIm3cz19.32dhop8cz1a002GhcqRoQmQ6G8cz1b.4hM1cz1c.4hOacz1d00s0hPgX1h_1cz1e00c0jP1to02cz1f00s0jOfup0z0cz1g00c0jP2vq01cz1h00s0jPjsr0utcz1i.4mcA1Z_1127456b89a3cA128c0cA1vgfdejgh2cB1.sf_V___51d171n5n5nll5dldldl511cC1.ecR1.4S8cU1.cg003cW100Bcl3cZ121
@@ -492,19 +504,19 @@ export function generateImage() {
             <th>必中</th>
             <td>${g_perfectHitRate} %</td>
             <th>錐効果</th>
-            <td>${CExtraInfoAreaComponentManager.specData[ITEM_SP_KIRI_EFFECT] > 0 ? "あり" : "なし"}</td>
+            <td>${g_extraInfoDataBridge.specData[ITEM_SP_KIRI_EFFECT] > 0 ? "あり" : "なし"}</td>
           </tr>
           <tr>
             <th>Def無視</th>
-            <td>${CExtraInfoAreaComponentManager.specData[ITEM_SP_IGNORE_DEF_RACE_ALL] + CExtraInfoAreaComponentManager.specData[ITEM_SP_IGNORE_DEF_ALL]} %</td>
+            <td>${g_extraInfoDataBridge.specData[ITEM_SP_IGNORE_DEF_RACE_ALL] + g_extraInfoDataBridge.specData[ITEM_SP_IGNORE_DEF_ALL]} %</td>
             <th>Mdef無視</th>
-            <td>${CExtraInfoAreaComponentManager.specData[ITEM_SP_IGNORE_MDEF_RACE_ALL] + CExtraInfoAreaComponentManager.specData[ITEM_SP_IGNORE_MDEF_ALL]} %</td>
+            <td>${g_extraInfoDataBridge.specData[ITEM_SP_IGNORE_MDEF_RACE_ALL] + g_extraInfoDataBridge.specData[ITEM_SP_IGNORE_MDEF_ALL]} %</td>
           </tr>
           <tr>
             <th>ディレイ減</th>
             <td>${delayDownForDisp} %</td>
             <th>ステ無詠唱</th>
-            <td>${CExtraInfoAreaComponentManager.charaData[CHARA_DATA_INDEX_CAST_PARAM]} <span class="denom"> / 265<span></td>
+            <td>${g_extraInfoDataBridge.charaData[CHARA_DATA_INDEX_CAST_PARAM]} <span class="denom"> / 265<span></td>
           </tr>
         </tbody>
       </table>

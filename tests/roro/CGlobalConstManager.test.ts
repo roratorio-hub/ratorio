@@ -38,12 +38,6 @@ describe('CGlobalConstManager.js', () => {
         });
     });
 
-    describe('window互換確認', () => {
-        it('window.CGlobalConstManager が設定されている', () => {
-            expect((window as any).CGlobalConstManager).toBe(CGlobalConstManager);
-        });
-    });
-
     describe('DefineEnum の動作', () => {
         it('列挙定数を定義できる', () => {
             (CGlobalConstManager as any).DefineEnum('TEST_ENUM_A', ['TEST_A_X', 'TEST_A_Y', 'TEST_A_Z'], 0, 1);

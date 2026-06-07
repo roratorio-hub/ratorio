@@ -1,4 +1,8 @@
 import { CConfBase } from './CConfBase.js';
+// === AUTO-GENERATED IMPORTS ===
+import './CConfBase.js';
+import { HtmlCreateElementOption } from '../../common/js/util.js';
+// === END AUTO-GENERATED IMPORTS ===
 
 export function CCharaConfSanzi(confArray) {
 	// 継承定義
@@ -644,4 +648,3 @@ export function CCharaConfSanzi(confArray) {
 	this.InitData();
 }
 
-if (typeof window !== 'undefined') { window.CCharaConfSanzi = CCharaConfSanzi; }

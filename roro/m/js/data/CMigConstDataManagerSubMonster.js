@@ -1,3 +1,9 @@
+// === AUTO-GENERATED IMPORTS ===
+import '../monster.h.js';
+import { CMigConstDataManagerSubBase } from './CMigConstDataManagerSubBase.js';
+import { CMigEquipableData } from './CMigEquipableData.js';
+import { MonsterObjNew } from '../monster.dat.js';
+// === END AUTO-GENERATED IMPORTS ===
 /**
  * モンスターデータマネージャクラス.
  */
@@ -58,4 +64,3 @@ export function CMigConstDataManagerSubMonster () {
 
 }
 CMigConstDataManagerSubMonster.prototype = new CMigConstDataManagerSubBase();
-if (typeof window !== 'undefined') { window.CMigConstDataManagerSubMonster = CMigConstDataManagerSubMonster; }

@@ -1,8 +1,39 @@
+// === AUTO-GENERATED IMPORTS ===
+import '../../m/js/card.h.js';
+import '../../m/js/common.js';
+import '../../m/js/data/mig.itemsp.h.js';
+import { g_constDataManager } from '../../../ro4/m/js/global.js';
+import { CItemInfoManager } from '../../m/js/CItemInfoManager.js';
+import {
+         CARD_ID_ENCHANT_ARMS_ELEMENT_DARK, CARD_ID_ENCHANT_ARMS_ELEMENT_EARTH,
+         CARD_ID_ENCHANT_ARMS_ELEMENT_FIRE, CARD_ID_ENCHANT_ARMS_ELEMENT_HOLY,
+         CARD_ID_ENCHANT_ARMS_ELEMENT_POISON, CARD_ID_ENCHANT_ARMS_ELEMENT_PSYCO,
+         CARD_ID_ENCHANT_ARMS_ELEMENT_WATER, CARD_ID_ENCHANT_ARMS_ELEMENT_WIND,
+         CARD_ID_ENCHANT_BOSOSHITA_MARYOKU, CARD_ID_ENCHANT_DELAY_DOWN_15,
+         CARD_ID_ENCHANT_GOKETSU, CARD_ID_ENCHANT_HAO, CARD_ID_ENCHANT_KOGEKISOKUDO_4,
+         CARD_ID_ENCHANT_KOSOKU, CARD_ID_ENCHANT_KUMANO_CHIKARA,
+         CARD_ID_ENCHANT_KYOGEKI_4, CARD_ID_ENCHANT_KYOGEKI_5, CARD_ID_ENCHANT_MARYOKU_4,
+         CARD_ID_ENCHANT_MDEF_10, CARD_ID_ENCHANT_MEIKYU_4,
+         CARD_ID_ENCHANT_OWASHINO_GANKO, CARD_ID_ENCHANT_SATSUINO_ONNEN,
+         CARD_ID_ENCHANT_SHINO_YOKUDO, CARD_ID_ENCHANT_SHINRINO_KAIHO,
+         CARD_ID_ENCHANT_SPECIAL_AGI, CARD_ID_ENCHANT_SPECIAL_DEX,
+         CARD_ID_ENCHANT_SPECIAL_INT, CARD_ID_ENCHANT_SPECIAL_LUK,
+         CARD_ID_ENCHANT_SPECIAL_STR, CARD_ID_ENCHANT_SPECIAL_VIT,
+         CARD_ID_ENCHANT_TOSHI_10, CARD_ID_ENCHANT_ZOFUKU_4, CARD_ID_ENCHANT_ZOFUKU_5,
+         CardObjNew
+} from '../../m/js/card.dat.js';
+import { CardPrefix } from '../../m/js/card.prefix.dat.js';
+import { ItemObjNew } from '../../m/js/item.dat.js';
+import { GetItemKindNameText } from '../../m/js/item.h.js';
+import { MIG_ENCH_LIST_ID_SHINENNO_KAIRO_UPGRADE, MIG_ENCH_LIST_ID_SHINENTAIBUKI_UPGRADE } from '../../m/js/data/mig.enchlist.dat.js';
+import { SLOT_INDEX_CARD_MIN, SLOT_INDEX_CARD_MAX } from '../../m/js/slotpager.js';
+import { HtmlRemoveOptionAll, HtmlCreateElementOption, HtmlRemoveAllChild } from '../../common/js/util.js';
+// === END AUTO-GENERATED IMPORTS ===
 // 定数定義
 window.CARD_KIND_DMY_FOR_ALL = -1;
 
 // 初期処理の実行
-function OnLoadCardList () {
+export function OnLoadCardList () {
 	SetUpSelectCardType();
 	RefreshCardListTable();
 }
@@ -10,7 +41,7 @@ function OnLoadCardList () {
 /**
  * カード種別選択セレクトボックスを構築する.
  */
-function SetUpSelectCardType(){
+export function SetUpSelectCardType(){
 	var idx = 0;
 	var objSelect = null;
 	// 選択欄のオブジェクトを取得
@@ -34,7 +65,7 @@ function SetUpSelectCardType(){
 /**
  * カード一覧テーブルを更新する.
  */
-function RefreshCardListTable(){
+export function RefreshCardListTable(){
 	var objSelect = null;
 	var selectedCardKind = 0;
 	var cardDataArray = null;
@@ -64,7 +95,7 @@ function RefreshCardListTable(){
  * @param selectedCardKind 抽出条件（選択されたカード種別）
  * @return 抽出された CardData の配列
  */
-function PivotData(selectedCardKind) {
+export function PivotData(selectedCardKind) {
 	var idx = 0;
 	var cardDataArray = null;
 	let CARD_KIND = 0;
@@ -134,7 +165,7 @@ function PivotData(selectedCardKind) {
 	return cardDataArray;
 }
 
-function GetItemToEnchInfoMapAllEnchList() {
+export function GetItemToEnchInfoMapAllEnchList() {
 	var idxItem = 0;
 	var idxEnchList = 0;
 	var idxSlot = 0;
@@ -185,7 +216,7 @@ function GetItemToEnchInfoMapAllEnchList() {
  * @param selectedCardKind 抽出条件（選択されたカード種別）
  * @param cardDataArray 抽出された CardData の配列
  */
-function DispData(selectedCardKind, cardDataArray) {
+export function DispData(selectedCardKind, cardDataArray) {
 	let idx = 0;
 	let idxKind = 0;
 	let idxEnchList = 0;
@@ -423,7 +454,7 @@ function DispData(selectedCardKind, cardDataArray) {
 						objTd = document.createElement("td");
 						objTr.appendChild(objTd);
 						// 取得したアイテムID->スロット情報のマップをループし、エンチャント情報テキストを生成
-						idxItem = 0;
+						idxItemF = 0;
 						itemToSlotInfoMapF.forEach(
 							function (valueFF, keyFF, mapFF) {
 								var itemDataFF = ItemObjNew[keyFF];
@@ -447,38 +478,15 @@ function DispData(selectedCardKind, cardDataArray) {
 	}
 }
 
-function OnChangeKindRestrict() {
+export function OnChangeKindRestrict() {
 	// 一覧テーブルを再構築
 	RefreshCardListTable();
 }
 
-function OnChangeShowEnchantInfo() {
+export function OnChangeShowEnchantInfo() {
 	// 一覧テーブルを再構築
 	RefreshCardListTable();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /*
@@ -504,7 +512,6 @@ window.SLOT_INDEX_RNDENCH_MAX = 5;
 */
 
 
-
 /*
  * エンチャントリストデータを収集する.
  * @param enchListId 収集対象のエンチャントリストID
@@ -521,7 +528,6 @@ function RebuildCardSelectSubCollectEnchListData(enchListId, enchInfoArrayAllSlo
 
 	var enchInfoArray = null;
 	var enchInfoArrayAllSlots = null;
-
 
 
 	var funcTargetIdCollector = function (enchListIdF, slotF, spDataF, paramsF) {
@@ -624,8 +630,6 @@ function RebuildCardSelectSubCollectEnchListData(enchListId, enchInfoArrayAllSlo
 	};
 
 
-
-
 	// データ収集用配列用意
 	enchInfoArrayAllSlots = [];
 	for (idxSlot = 0; idxSlot < (SLOT_INDEX_CARD_MAX - SLOT_INDEX_CARD_MIN + 1); idxSlot++) {
@@ -653,18 +657,17 @@ function RebuildCardSelectSubCollectEnchListData(enchListId, enchInfoArrayAllSlo
 	RebuildCardSelectSubSortCollectedEnchListData(enchInfoArrayAllSlots);
 
 
-
 	// 収集したデータを返す
 	return enchInfoArrayAllSlots;
 }
 
-function RebuildCardSelectSubCollectEnchListDataSubUpgradeShinennoKairo(enchInfoArrayBefore, resultArray, enchListId, paramsObject) {
+export function RebuildCardSelectSubCollectEnchListDataSubUpgradeShinennoKairo(enchInfoArrayBefore, resultArray, enchListId, paramsObject) {
 
 	var idx = 0;
 
 	var funcPushNotExist = function (cardIdF) {
 
-		for (idxF = 0; idxF < resultArray.length; idxF++) {
+		for (let idxF = 0; idxF < resultArray.length; idxF++) {
 			if (resultArray[idxF][1] == cardIdF) {
 				return;
 			}
@@ -730,13 +733,13 @@ function RebuildCardSelectSubCollectEnchListDataSubUpgradeShinennoKairo(enchInfo
 	}
 }
 
-function RebuildCardSelectSubCollectEnchListDataSubUpgradeShinentaiBuki(enchInfoArrayBefore, resultArray, enchListId, paramsObject) {
+export function RebuildCardSelectSubCollectEnchListDataSubUpgradeShinentaiBuki(enchInfoArrayBefore, resultArray, enchListId, paramsObject) {
 
 	var idx = 0;
 
 	var funcPushNotExist = function (cardIdF) {
 
-		for (idxF = 0; idxF < resultArray.length; idxF++) {
+		for (let idxF = 0; idxF < resultArray.length; idxF++) {
 			if (resultArray[idxF][1] == cardIdF) {
 				return;
 			}
@@ -778,7 +781,7 @@ function RebuildCardSelectSubCollectEnchListDataSubUpgradeShinentaiBuki(enchInfo
 }
 
 
-function RebuildCardSelectSubSortCollectedEnchListData(enchInfoArrayAllSlots) {
+export function RebuildCardSelectSubSortCollectedEnchListData(enchInfoArrayAllSlots) {
 
 	var idx = 0;
 	var idxSlot = 0;
@@ -814,13 +817,4 @@ function RebuildCardSelectSubSortCollectedEnchListData(enchInfoArrayAllSlots) {
 		);
 	}
 }
-if (typeof window !== 'undefined') {
-	Object.assign(window, {
-		OnLoadCardList, SetUpSelectCardType, RefreshCardListTable, PivotData,
-		GetItemToEnchInfoMapAllEnchList, DispData, OnChangeKindRestrict, OnChangeShowEnchantInfo,
-		RebuildCardSelectSubCollectEnchListData,
-		RebuildCardSelectSubCollectEnchListDataSubUpgradeShinennoKairo,
-		RebuildCardSelectSubCollectEnchListDataSubUpgradeShinentaiBuki,
-		RebuildCardSelectSubSortCollectedEnchListData,
-	});
-}
+

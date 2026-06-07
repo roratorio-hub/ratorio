@@ -19,13 +19,4 @@ describe('chara.dat.js', () => {
             expect(g_spBaseTable.length).toBeGreaterThan(0);
         });
     });
-
-    describe('window互換確認', () => {
-        it('window.g_hpBaseTable が設定されている', () => {
-            expect((window as any).g_hpBaseTable).toBe(g_hpBaseTable);
-        });
-        it('window.g_spBaseTable が設定されている', () => {
-            expect((window as any).g_spBaseTable).toBe(g_spBaseTable);
-        });
-    });
 });

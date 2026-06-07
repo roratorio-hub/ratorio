@@ -30,12 +30,4 @@ describe('timeitem.h.js', () => {
         });
     });
 
-    describe('window互換確認', () => {
-        it('window.ITEM_SP_TIME_OBJ が設定されている', () => {
-            expect((window as any).ITEM_SP_TIME_OBJ).toBe(ITEM_SP_TIME_OBJ);
-        });
-        it('window.ITEM_SP_TIME_OBJ_SORT が設定されている', () => {
-            expect((window as any).ITEM_SP_TIME_OBJ_SORT).toBe(ITEM_SP_TIME_OBJ_SORT);
-        });
-    });
 });

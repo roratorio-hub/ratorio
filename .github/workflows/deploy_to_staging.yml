@@ -57,6 +57,7 @@ jobs:
         run: |
           # PR ブランチの内容を一時作業ディレクトリに移動する
           mkdir temp_dist
+          mv ./lib temp_dist/
           mv ./jquery temp_dist/
           mv ./ro4 temp_dist/
           mv ./roro temp_dist/

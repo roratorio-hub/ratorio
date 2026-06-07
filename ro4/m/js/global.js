@@ -1,3 +1,10 @@
+// === AUTO-GENERATED IMPORTS ===
+import { CSkillManager } from '../../../roro/m/js/CSkillManager.js';
+import { CMigConstDataManager } from '../../../roro/m/js/data/CMigConstDataManager.js';
+import { HtmlGetObjectCheckedById, MallocArray, DivideDigits3 } from '../../../roro/common/js/util.js';
+import { n_B_TAISEI } from '../../../roro/m/js/mobconfplayer.js';
+import { g_dataManagerMobConfInput } from '../../../roro/m/js/CMobConfInput.js';
+// === END AUTO-GENERATED IMPORTS ===
 "use strict";
 
 /** 一次職支援　設定値配列 */
@@ -108,12 +115,6 @@ export function ResetConfDataAllMIG (bAsOnLoad) {
 		[Array(54).fill(0), Array(54).fill(0), Array(54).fill(0)],
 	];
 	g_confDataCustomSkillMIG = Array(12).fill(0);
-	if (typeof window !== 'undefined') {
-		window.g_confDataCustomStatusMIG = g_confDataCustomStatusMIG;
-		window.g_confDataCustomSpecStatusMIG = g_confDataCustomSpecStatusMIG;
-		window.g_confDataSpecMIG = g_confDataSpecMIG;
-		window.g_confDataCustomSkillMIG = g_confDataCustomSkillMIG;
-	}
 }
 ResetConfDataAllMIG(true);
 
@@ -141,31 +142,15 @@ if (typeof window !== 'undefined') {
     window.g_objCharaConfSanzi = g_objCharaConfSanzi;
     window.g_objCharaConfYozi = g_objCharaConfYozi;
     window.g_objCharaConfDebuff = g_objCharaConfDebuff;
-    window.TIME_ITEM_CONF_COUNT = TIME_ITEM_CONF_COUNT;
-    window.g_timeItemConf = g_timeItemConf;
-    window.g_timeItemConfEffective = g_timeItemConfEffective;
     window.g_timeItemConfAllEffective = g_timeItemConfAllEffective;
-    window.g_skillManager = g_skillManager;
     window.n_Nitou = n_Nitou;
     window.n_NitouCalc = n_NitouCalc;
     window.g_VariableCastTimeRate = g_VariableCastTimeRate;
     window.costDownForDisp = costDownForDisp;
     window.g_constDataManager = g_constDataManager;
-    window.g_charaData = g_charaData;
-    window.CUSTOM_CONF_STATUS_LIMIT = CUSTOM_CONF_STATUS_LIMIT;
     window.g_confDataCustomStatus = g_confDataCustomStatus;
-    window.CUSTOM_CONF_ATK_LIMIT = CUSTOM_CONF_ATK_LIMIT;
     window.g_confDataCustomAtk = g_confDataCustomAtk;
-    window.CUSTOM_CONF_DEF_LIMIT = CUSTOM_CONF_DEF_LIMIT;
     window.g_confDataCustomDef = g_confDataCustomDef;
-    window.CUSTOM_CONF_SKILL_LIMIT = CUSTOM_CONF_SKILL_LIMIT;
     window.g_confDataCustomSkill = g_confDataCustomSkill;
-    window.CUSTOM_CONF_SPEC_LIMIT = CUSTOM_CONF_SPEC_LIMIT;
     window.g_confDataCustomSpecStatus = g_confDataCustomSpecStatus;
-    window.g_confDataCustomStatusMIG = g_confDataCustomStatusMIG;
-    window.g_confDataSpecMIG = g_confDataSpecMIG;
-    window.g_confDataCustomSkillMIG = g_confDataCustomSkillMIG;
-    window.g_confDataCustomSpecStatusMIG = g_confDataCustomSpecStatusMIG;
-    window.ResetConfDataAllMIG = ResetConfDataAllMIG;
-    window.__DIG3 = __DIG3;
 }

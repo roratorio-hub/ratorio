@@ -1,6 +1,7 @@
-
-
-
+// === AUTO-GENERATED IMPORTS ===
+import { CNameKana } from './CNameKana.js';
+import { HtmlCreateElement, HtmlCreateTextNode, HtmlAppendTextNodeMulti, HtmlRemoveAllChild, EscapeInputtedText } from '../../common/js/util.js';
+// === END AUTO-GENERATED IMPORTS ===
 
 
 /**
@@ -67,7 +68,6 @@ export function CCustomSelectBase () {
 
 	// 検索結果適用ボタンコントロール
 	this.objApplyButton = null;
-
 
 
 	/**
@@ -137,14 +137,12 @@ export function CCustomSelectBase () {
 		this.RebuildSelectData();
 
 
-
 		// オブジェクト設定
 		this.objRoot.appendChild(this.objSelectData);
 		this.objRoot.appendChild(this.objExtractSwitch);
 		this.objRoot.appendChild(this.objExtractRoot);
 
 	};
-
 
 
 	/**
@@ -154,7 +152,6 @@ export function CCustomSelectBase () {
 	this.GetRootObject = function () {
 		return this.objRoot;
 	};
-
 
 
 	/**
@@ -223,7 +220,6 @@ export function CCustomSelectBase () {
 	};
 
 
-
 	/**
 	 * 展開状態を変更する.
 	 * @param bExtract 展開フラグ
@@ -259,17 +255,6 @@ export function CCustomSelectBase () {
 	};
 
 
-
-
-
-	/**
-	 * データ選択コントロールの変更イベントハンドラ呼び出しスクリプトを取得する.
-	 * @return ハンドラ呼び出しスクリプト
-	 */
-	this.GetHandlerScriptOnChangeSelectData = function () {
-		return "CCustomSelectBase.OnChangeSelectData(\"" + this.instanceIdName + "\")";
-	};
-
 	/**
 	 * データ選択変更処理時に追加で呼び出されるイベントハンドラを追加する.
 	 * @param func イベントハンドラ
@@ -300,7 +285,7 @@ export function CCustomSelectBase () {
 
 		// オブジェクト生成
 		objSelect = HtmlCreateElement("select", null);
-		objSelect.setAttribute("onchange", this.GetHandlerScriptOnChangeSelectData());
+		objSelect.addEventListener("change", () => CCustomSelectBase.OnChangeSelectData(this.instanceIdName));
 		objSelect.setAttribute("class", "OBJID_" + this.instanceIdName);
 
 		// 構築したコントロールを返す
@@ -353,15 +338,6 @@ export function CCustomSelectBase () {
 	};
 
 
-
-	/**
-	 * 展開スイッチの変更イベントハンドラ呼び出しスクリプトを取得する.
-	 * @return ハンドラ呼び出しスクリプト
-	 */
-	this.GetHandlerScriptOnChangeExtractSwitch = function () {
-		return "CCustomSelectBase.OnChangeExtractSwitch(\"" + this.instanceIdName + "\")";
-	};
-
 	/**
 	 * 展開スイッチを生成する.
 	 * @return 構築したコントロールオブジェクト
@@ -373,7 +349,7 @@ export function CCustomSelectBase () {
 		objInput = HtmlCreateElement("input", null);
 		objInput.setAttribute("type", "button");
 		objInput.setAttribute("style", "margin-left : 8px;");
-		objInput.setAttribute("onclick", this.GetHandlerScriptOnChangeExtractSwitch());
+		objInput.addEventListener("click", () => CCustomSelectBase.OnChangeExtractSwitch(this.instanceIdName));
 
 		return objInput;
 	};
@@ -505,15 +481,6 @@ export function CCustomSelectBase () {
 	};
 
 
-
-	/**
-	 * ヘルプボタンのクリックイベントハンドラ呼び出しスクリプトを取得する.
-	 * @return ハンドラ呼び出しスクリプト
-	 */
-	this.GetHandlerScriptOnClickHelpButton = function () {
-		return "CCustomSelectBase.OnClickHelpButton(\"" + this.instanceIdName + "\")";
-	};
-
 	/**
 	 * ヘルプボタンを生成する.
 	 * @return 構築したコントロールオブジェクト
@@ -525,7 +492,7 @@ export function CCustomSelectBase () {
 		objInput = HtmlCreateElement("input", null);
 		objInput.setAttribute("type", "button");
 		objInput.setAttribute("value", "？");
-		objInput.setAttribute("onclick", this.GetHandlerScriptOnClickHelpButton());
+		objInput.addEventListener("click", () => CCustomSelectBase.OnClickHelpButton(this.instanceIdName));
 
 		return objInput;
 	};
@@ -594,7 +561,7 @@ export function CCustomSelectBase () {
 		objInput = HtmlCreateElement("input", objTd);
 		objInput.setAttribute("type", "button");
 		objInput.setAttribute("value", "×");
-		objInput.setAttribute("onclick", this.GetHandlerScriptOnClickHelpButton());
+		objInput.addEventListener("click", () => CCustomSelectBase.OnClickHelpButton(this.instanceIdName));
 
 		//--------------------------------
 		// 区切り線
@@ -694,15 +661,6 @@ export function CCustomSelectBase () {
 	};
 
 
-
-	/**
-	 * 閉じるボタンのクリックイベントハンドラ呼び出しスクリプトを取得する.
-	 * @return ハンドラ呼び出しスクリプト
-	 */
-	this.GetHandlerScriptOnClickCloseButton = function () {
-		return "CCustomSelectBase.OnClickCloseButton(\"" + this.instanceIdName + "\")";
-	};
-
 	/**
 	 * 閉じるボタンを生成する.
 	 * @return 構築したコントロールオブジェクト
@@ -714,7 +672,7 @@ export function CCustomSelectBase () {
 		objInput = HtmlCreateElement("input", null);
 		objInput.setAttribute("type", "button");
 		objInput.setAttribute("value", "×");
-		objInput.setAttribute("onclick", this.GetHandlerScriptOnClickCloseButton());
+		objInput.addEventListener("click", () => CCustomSelectBase.OnClickCloseButton(this.instanceIdName));
 
 		return objInput;
 	};
@@ -738,15 +696,6 @@ export function CCustomSelectBase () {
 	};
 
 
-
-	/**
-	 * ソート選択コントロールの変更イベントハンドラ呼び出しスクリプトを取得する.
-	 * @return ハンドラ呼び出しスクリプト
-	 */
-	this.GetHandlerScriptOnChangeSelectSort = function () {
-		return "CCustomSelectBase.OnChangeSelectSort(\"" + this.instanceIdName + "\")";
-	};
-
 	/**
 	 * ソート選択コントロールを生成する.
 	 * @return 構築したコントロールオブジェクト
@@ -768,7 +717,7 @@ export function CCustomSelectBase () {
 
 		// オブジェクト生成
 		objSelect = HtmlCreateElement("select", null);
-		objSelect.setAttribute("onchange", this.GetHandlerScriptOnChangeSelectSort());
+		objSelect.addEventListener("change", () => CCustomSelectBase.OnChangeSelectSort(this.instanceIdName));
 
 		// 構築したコントロールを返す
 		return objSelect;
@@ -816,16 +765,6 @@ export function CCustomSelectBase () {
 	};
 
 
-
-
-	/**
-	 * 検索入力コントロールの変更イベントハンドラ呼び出しスクリプトを取得する.
-	 * @return ハンドラ呼び出しスクリプト
-	 */
-	this.GetHandlerScriptOnInputInputSearch = function () {
-		return "CCustomSelectBase.OnInputInputSearch(\"" + this.instanceIdName + "\")";
-	};
-
 	/**
 	 * 検索入力コントロールを生成する.
 	 * @return 構築したコントロールオブジェクト
@@ -849,7 +788,7 @@ export function CCustomSelectBase () {
 		objInput = HtmlCreateElement("input", null);
 		objInput.setAttribute("type", "input");
 		objInput.setAttribute("size", "16");
-		objInput.setAttribute("oninput", this.GetHandlerScriptOnInputInputSearch());
+		objInput.addEventListener("input", () => CCustomSelectBase.OnInputInputSearch(this.instanceIdName));
 
 		// 構築したコントロールを返す
 		return objInput;
@@ -900,24 +839,6 @@ export function CCustomSelectBase () {
 	};
 
 
-
-
-	/**
-	 * 検索結果コントロールの変更イベントハンドラ呼び出しスクリプトを取得する.
-	 * @return ハンドラ呼び出しスクリプト
-	 */
-	this.GetHandlerScriptOnChangeSearchResult = function () {
-		return "CCustomSelectBase.OnChangeSearchResult(\"" + this.instanceIdName + "\")";
-	};
-
-	/**
-	 * 検索結果コントロールのダブルクリックイベントハンドラ呼び出しスクリプトを取得する.
-	 * @return ハンドラ呼び出しスクリプト
-	 */
-	this.GetHandlerScriptOnDblClickSearchResult = function () {
-		return "CCustomSelectBase.OnDblClickSearchResult(\"" + this.instanceIdName + "\")";
-	};
-
 	/**
 	 * 検索結果コントロールを生成する.
 	 * @return 構築したコントロールオブジェクト
@@ -940,8 +861,8 @@ export function CCustomSelectBase () {
 		// オブジェクト生成
 		objSelect = HtmlCreateElement("select", null);
 		objSelect.setAttribute("size", "5");
-		objSelect.setAttribute("onchange", this.GetHandlerScriptOnChangeSearchResult());
-		objSelect.setAttribute("ondblclick", this.GetHandlerScriptOnDblClickSearchResult());
+		objSelect.addEventListener("change", () => CCustomSelectBase.OnChangeSearchResult(this.instanceIdName));
+		objSelect.addEventListener("dblclick", () => CCustomSelectBase.OnDblClickSearchResult(this.instanceIdName));
 
 		// 構築したコントロールを返す
 		return objSelect;
@@ -1005,15 +926,6 @@ export function CCustomSelectBase () {
 	};
 
 
-
-	/**
-	 * 検索結果適用ボタンのクリックイベントハンドラ呼び出しスクリプトを取得する.
-	 * @return ハンドラ呼び出しスクリプト
-	 */
-	this.GetHandlerScriptOnClickApplyButton = function () {
-		return "CCustomSelectBase.OnClickApplyButton(\"" + this.instanceIdName + "\")";
-	};
-
 	/**
 	 * 検索結果適用ボタンを生成する.
 	 * @return 構築したコントロールオブジェクト
@@ -1036,7 +948,7 @@ export function CCustomSelectBase () {
 		objInput = HtmlCreateElement("input", null);
 		objInput.setAttribute("type", "button");
 		objInput.setAttribute("value", "適用");
-		objInput.setAttribute("onclick", this.GetHandlerScriptOnClickApplyButton());
+		objInput.addEventListener("click", () => CCustomSelectBase.OnClickApplyButton(this.instanceIdName));
 
 		return objInput;
 	};
@@ -1104,10 +1016,7 @@ export function CCustomSelectBase () {
 	};
 
 
-
-
 }
-
 
 
 // インスタンスマップ
@@ -1271,14 +1180,9 @@ CCustomSelectBase.OnClickApplyButton = function (instanceIdName) {
 	objInstance = CCustomSelectBase.instanceMap.get(instanceIdName);
 	objInstance.OnClickApplyButton();
 
-	/* select2の見た目を更新するため追加処理 */
+	/* TomSelect の表示を更新するため追加処理 */
 	const select_id = objInstance.selectedDataId;
-	const select2_obj_class = ".OBJID_" + objInstance.instanceIdName;
-	$(select2_obj_class).val(select_id).trigger('change');
+	const tomselect_obj_class = ".OBJID_" + objInstance.instanceIdName;
+	document.querySelectorAll(tomselect_obj_class).forEach(el => el.tomselect?.setValue(String(select_id)));
 };
-
-if (typeof window !== 'undefined') {
-    window.CCustomSelectBase = CCustomSelectBase;
-}
-
 

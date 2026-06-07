@@ -56,14 +56,21 @@ describe('CConfBase.js', () => {
                 expect(inst.GetHeaderIdString(3)).toBe('OBJID_CONTROL_CONF_3_HEADER');
             });
         });
+
+        describe('GetSwitchIdString の動作確認', () => {
+            it('インスタンス番号を含む文字列を返す', () => {
+                expect(inst.GetSwitchIdString(0)).toBe('OBJID_CONTROL_CONF_0_SWITCH');
+            });
+        });
     });
 
-    describe('window互換確認', () => {
-        it('window.CConfBase が設定されている', () => {
-            expect((window as any).CConfBase).toBe(CConfBase);
-        });
-        it('window.CTargetData が設定されている', () => {
-            expect((window as any).CTargetData).toBe(CTargetData);
+    describe('window グローバル登録', () => {
+        // onClick="CConfBase.OnClickSwitchHandler(...)" 形式のインライン文字列ハンドラは
+        // グローバルスコープで評価されるため window.CConfBase が必須。
+        // compat ブロックが誤って除去された場合に検出するためのリグレッションテスト。
+        it('window.CConfBase が登録されている', () => {
+            expect((globalThis as any).CConfBase).toBe(CConfBase);
         });
     });
+
 });

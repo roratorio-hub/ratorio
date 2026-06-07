@@ -1,7 +1,14 @@
+// === AUTO-GENERATED IMPORTS ===
+import { AutoCalc } from './head.js';
+import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, myInnerHtml } from '../../../roro/common/js/util.js';
+import { n_A_PassSkill7, ID_BUFF_MANUK_ISHI, ID_BUFF_VESPER_HONEY } from './skillstate.js';
+export { n_A_PassSkill7 } from './skillstate.js';
+// === END AUTO-GENERATED IMPORTS ===
+import { CAttackMethodAreaComponentManager } from './CAttackMethodAreaComponentManager.js';
 "use strict"
 /**
  * 画面下部の「アイテム(食品/他)」のバフウィンドウ構築関数群
-*/ 
+*/
 
 /**
  * Note:
@@ -10,13 +17,9 @@
  * ただし saveload.js が容易に変更できない書き方になっているから迂闊にセーブデータ領域を拡張してはいけない
  * 70 までは増やしてOK
  */
-
-/** アイテム・食品他 設定値の配列数 */
-export const BUFF_CONF_FOOD_LIMIT = 53;
-/** アイテム・食品他 設定値の配列 */
-export let n_A_PassSkill7 = Array(BUFF_CONF_FOOD_LIMIT).fill(0);
 /** アイテム・食品他 ウィンドウ可視状態 */
 export let n_Skill7SW = false;
+export function setN_Skill7SW(v) { n_Skill7SW = v; }
 
 export const ID_BUFF_FOOD_CHAGASHI = 0;
 export const ID_BUFF_FOOD_AGEGASHI = 1;
@@ -40,8 +43,7 @@ export const ID_BUFF_STATUS_20_VIT = 18;
 export const ID_BUFF_STATUS_20_INT = 19;
 export const ID_BUFF_STATUS_20_DEX = 20;
 export const ID_BUFF_STATUS_20_LUK = 21;
-export const ID_BUFF_MANUK_ISHI = 31;
-export const ID_BUFF_VESPER_HONEY = 34;
+export { ID_BUFF_MANUK_ISHI, ID_BUFF_VESPER_HONEY } from './skillstate.js';
 export const ID_BUFF_SOUSHO_CARD = 52;
 
 /**
@@ -63,7 +65,6 @@ export function Click_Skill7SW(){
 	// 展開状態を取得
 	objInput = document.getElementById("OBJID_CHECK_A7_SKILLSW");
 	n_Skill7SW = objInput.checked;
-	if (typeof window !== 'undefined') window.n_Skill7SW = n_Skill7SW;
 	// ルートオブジェクト取得
 	objRoot = document.getElementById("OBJID_SP_SIEN05");
 	// ルートオブジェクト配下、全削除
@@ -85,7 +86,7 @@ export function Click_Skill7SW(){
 	objInput.setAttribute("type", "checkbox");
 	objInput.setAttribute("id", "OBJID_CHECK_A7_SKILLSW");
 	objInput.setAttribute("name", "A7_SKILLSW");
-	objInput.setAttribute("onclick", "Click_Skill7SW()");
+	objInput.addEventListener('click', Click_Skill7SW);
 	if (n_Skill7SW) {
 		objInput.setAttribute("checked", "checked");
 	}
@@ -182,7 +183,7 @@ export function Click_Skill7SW(){
                     objSelect = HtmlCreateElement("select", objTd);
                     objSelect.setAttribute("name", "A7_Skill" + subInfoArray[idxKind][0]);
 					objSelect.setAttribute("id", "OBJID_CHECK_A7_Skill" + subInfoArray[idxKind][0]);
-                    objSelect.setAttribute("onchange", "StAllCalc() | Click_A7(true)");
+                    objSelect.addEventListener('change', () => { window.StAllCalc(); Click_A7(true); });
                     HtmlCreateElementOption(0, subInfoArray[idxKind][1] + "+食品", objSelect);
                     for (let idxValue = 1; idxValue <= 10; idxValue++) {
                         HtmlCreateElementOption(idxValue, "+" + idxValue, objSelect);
@@ -194,19 +195,19 @@ export function Click_Skill7SW(){
                 objInput.setAttribute("type", "button");
                 objInput.setAttribute("id", "FOODOFF");
                 objInput.setAttribute("value", "全解除");
-                objInput.setAttribute("onclick", "Click_Food_Off() | StAllCalc()");
+                objInput.addEventListener('click', () => { Click_Food_Off(); window.StAllCalc(); });
                 HtmlCreateTextNode(" ", objTd);
                 objInput = HtmlCreateElement("input", objTd);
                 objInput.setAttribute("type", "button");
                 objInput.setAttribute("name", "NETCAFE3");
                 objInput.setAttribute("value", "ALL＋10");
-                objInput.setAttribute("onclick", "setAllStatusBuff(10) | StAllCalc()");
+                objInput.addEventListener('click', () => { setAllStatusBuff(10); window.StAllCalc(); });
                 HtmlCreateTextNode(" ", objTd);
                 objInput = HtmlCreateElement("input", objTd);
                 objInput.setAttribute("type", "button");
                 objInput.setAttribute("name", "NETCAFE3");
                 objInput.setAttribute("value", "ALL＋6");
-                objInput.setAttribute("onclick", "setAllStatusBuff(6) | StAllCalc()");
+                objInput.addEventListener('click', () => { setAllStatusBuff(6); window.StAllCalc(); });
                 HtmlCreateElement("br", objTd);
                 HtmlCreateTextNode("※ネットカフェ/エクラージュ/手紙の「ステータスALL+◯」は食品扱いで、同時に発動できない", objTd);
                 break;
@@ -218,7 +219,7 @@ export function Click_Skill7SW(){
                 objInput.setAttribute("type", "checkbox");
                 objInput.setAttribute("id", "OBJID_CHECK_A7_Skill15");
                 objInput.setAttribute("name", "A7_Skill15");
-                objInput.setAttribute("onclick", "StAllCalc(); Click_A7(true); CAttackMethodAreaComponentManager.RebuildControls();");
+                objInput.addEventListener('click', () => { window.StAllCalc(); Click_A7(true); CAttackMethodAreaComponentManager.RebuildControls(); });
                 objLabel = HtmlCreateElement("label", objTd);
                 objLabel.setAttribute("for", "OBJID_CHECK_A7_Skill15");
                 HtmlCreateTextNode("攻撃方法を追加する（魔女のスキルカード・攻撃魔法スクロール・イグドラシルの葉）", objLabel);
@@ -245,7 +246,7 @@ export function Click_Skill7SW(){
                     objInput.setAttribute("type", "checkbox");
                     objInput.setAttribute("id", "OBJID_CHECK_A7_Skill" + subInfoArray[idxKind][0]);
                     objInput.setAttribute("name", "A7_Skill" + subInfoArray[idxKind][0]);
-                    objInput.setAttribute("onclick", "StAllCalc(); Click_A7(true);");
+                    objInput.addEventListener('click', () => { window.StAllCalc(); Click_A7(true); });
                     objLabel = HtmlCreateElement("label", objTd);
                     objLabel.setAttribute("for", "OBJID_CHECK_A7_Skill" + subInfoArray[idxKind][0]);
                     HtmlCreateTextNode(subInfoArray[idxKind][1] + "+20", objLabel);
@@ -257,7 +258,7 @@ export function Click_Skill7SW(){
                 objInput = HtmlCreateElement("input", objTd);
                 objInput.setAttribute("type", "button");
                 objInput.setAttribute("value", "ALL＋20");
-                objInput.setAttribute("onclick", "toggleAllStatus20() | StAllCalc()");
+                objInput.addEventListener('click', () => { toggleAllStatus20(); window.StAllCalc(); });
                 break;
 		}
 		objTr = HtmlCreateElement("tr", objTbody);
@@ -273,7 +274,7 @@ export function Click_Skill7SW(){
 				objInput.setAttribute("type", "checkbox");
 				objInput.setAttribute("id", "OBJID_CHECK_A7_Skill" + buildInfo[0]);
 				objInput.setAttribute("name", "A7_Skill" + buildInfo[0]);
-				objInput.setAttribute("onclick", "StAllCalc(); Click_A7(true);");
+				objInput.addEventListener('click', () => { window.StAllCalc(); Click_A7(true); });
 				objLabel = HtmlCreateElement("label", objTd);
 				objLabel.setAttribute("for", "OBJID_CHECK_A7_Skill" + buildInfo[0]);
 				HtmlCreateTextNode(buildInfo[1], objLabel);
@@ -286,7 +287,7 @@ export function Click_Skill7SW(){
 				HtmlCreateTextNode("　", objTd);
 				objSelect = HtmlCreateElement("select", objTd);
 				objSelect.setAttribute("name", "A7_Skill" + buildInfo[0]);
-				objSelect.setAttribute("onchange", "StAllCalc(); Click_A7(true);");
+				objSelect.addEventListener('change', () => { window.StAllCalc(); Click_A7(true); });
 				for (let idxValue = 0; idxValue < buildInfo[2].length; idxValue++) {
 					HtmlCreateElementOption(idxValue, buildInfo[2][idxValue], objSelect);
 				}
@@ -303,7 +304,7 @@ export function Click_Skill7SW(){
 	for (let idxKind = 0; idxKind < subInfoArray.length; idxKind++) {
 		objSelect = HtmlCreateElement("select", objTd);
 		objSelect.setAttribute("name", "A7_Skill" + subInfoArray[idxKind][0]);
-		objSelect.setAttribute("onchange", "StAllCalc(); Click_A7(true);");
+		objSelect.addEventListener('change', () => { window.StAllCalc(); Click_A7(true); });
 		HtmlCreateElementOption(0, "期間限定系[" + subInfoArray[idxKind][1] + "] なし", objSelect);
 		for (let idxValue = 1; idxValue <= 50; idxValue++) {
 			optText = subInfoArray[idxKind][1] + "+" + idxValue;
@@ -421,38 +422,3 @@ export function toggleAllStatus20() {
 	].forEach(n => document.getElementById(`OBJID_CHECK_A7_Skill${n}`).click());
 }
 
-if (typeof window !== 'undefined') {
-    window.BUFF_CONF_FOOD_LIMIT = BUFF_CONF_FOOD_LIMIT;
-    window.n_A_PassSkill7 = n_A_PassSkill7;
-    window.n_Skill7SW = n_Skill7SW;
-    window.ID_BUFF_FOOD_CHAGASHI = ID_BUFF_FOOD_CHAGASHI;
-    window.ID_BUFF_FOOD_AGEGASHI = ID_BUFF_FOOD_AGEGASHI;
-    window.ID_BUFF_FOOD_NIJIOMOCHI = ID_BUFF_FOOD_NIJIOMOCHI;
-    window.ID_BUFF_STATUS_STR = ID_BUFF_STATUS_STR;
-    window.ID_BUFF_STATUS_AGI = ID_BUFF_STATUS_AGI;
-    window.ID_BUFF_STATUS_VIT = ID_BUFF_STATUS_VIT;
-    window.ID_BUFF_STATUS_INT = ID_BUFF_STATUS_INT;
-    window.ID_BUFF_STATUS_DEX = ID_BUFF_STATUS_DEX;
-    window.ID_BUFF_STATUS_LUK = ID_BUFF_STATUS_LUK;
-    window.ID_BUFF_BOX_URAMI = ID_BUFF_BOX_URAMI;
-    window.ID_BUFF_BOX_NEMUI = ID_BUFF_BOX_NEMUI;
-    window.ID_BUFF_POTION_COLD = ID_BUFF_POTION_COLD;
-    window.ID_BUFF_POTION_EARTH = ID_BUFF_POTION_EARTH;
-    window.ID_BUFF_POTION_FIRE = ID_BUFF_POTION_FIRE;
-    window.ID_BUFF_POTION_WIND = ID_BUFF_POTION_WIND;
-    window.ID_BUFF_MAJO_NO_SKILL_CARD = ID_BUFF_MAJO_NO_SKILL_CARD;
-    window.ID_BUFF_STATUS_20_STR = ID_BUFF_STATUS_20_STR;
-    window.ID_BUFF_STATUS_20_AGI = ID_BUFF_STATUS_20_AGI;
-    window.ID_BUFF_STATUS_20_VIT = ID_BUFF_STATUS_20_VIT;
-    window.ID_BUFF_STATUS_20_INT = ID_BUFF_STATUS_20_INT;
-    window.ID_BUFF_STATUS_20_DEX = ID_BUFF_STATUS_20_DEX;
-    window.ID_BUFF_STATUS_20_LUK = ID_BUFF_STATUS_20_LUK;
-    window.ID_BUFF_MANUK_ISHI = ID_BUFF_MANUK_ISHI;
-    window.ID_BUFF_VESPER_HONEY = ID_BUFF_VESPER_HONEY;
-    window.ID_BUFF_SOUSHO_CARD = ID_BUFF_SOUSHO_CARD;
-    window.Click_Skill7SW = Click_Skill7SW;
-    window.Click_A7 = Click_A7;
-    window.Click_Food_Off = Click_Food_Off;
-    window.setAllStatusBuff = setAllStatusBuff;
-    window.toggleAllStatus20 = toggleAllStatus20;
-}

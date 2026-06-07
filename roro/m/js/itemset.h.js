@@ -1,3 +1,13 @@
+// === AUTO-GENERATED IMPORTS ===
+import './card.h.js';
+import './item.h.js';
+import './pet.h.js';
+import { CARD_ID_NONE, CardObjNew } from './card.dat.js';
+import { CARD_REGION_ID_COUNT } from './common.js';
+import { ITEM_ID_NOEQUIP_SET, ItemObjNew } from './item.dat.js';
+import { PET_OBJ } from './pet.dat.js';
+import { n_A_PassSkill8 } from '../../../ro4/m/js/skillstate.js';
+// === END AUTO-GENERATED IMPORTS ===
 
 // ペットID指定のオフセット（カードと同じように指定するので、カードIDで実現しないぐらい大きな値を設定）
 // TODO: いずれ修正予定
@@ -5,7 +15,6 @@ export const ITEM_SET_PET_ID_OFFSET = 100000;
 
 export const ITEMSET_ID_LIMIT_WITH_ITEM = 200;
 export const ITEMSET_ID_LIMIT_WITH_CARD = 200;
-
 
 
 /**
@@ -23,7 +32,6 @@ export function GetItemSetMemberText(setId){
 	var dataName = "";
 
 	var memberText = "";
-
 
 
 	// セット定義データ取得
@@ -85,7 +93,6 @@ export function GetItemSetMemberText(setId){
 
 	return memberText;
 }
-
 
 
 /**
@@ -202,13 +209,9 @@ export function CheckAndApplyItemSetEquipping() {
 }
 
 if (typeof window !== 'undefined') {
-	window.ITEM_SET_PET_ID_OFFSET = ITEM_SET_PET_ID_OFFSET;
-	window.ITEMSET_ID_LIMIT_WITH_ITEM = ITEMSET_ID_LIMIT_WITH_ITEM;
-	window.ITEMSET_ID_LIMIT_WITH_CARD = ITEMSET_ID_LIMIT_WITH_CARD;
 	window.w_SE = new Array();
 	window.ItemIdToSetIdMap = new Array();
 	window.CardIdToSetIdMap = new Array();
 	window.PetIdToSetIdMap = new Array();
 	window.GetItemSetMemberText = GetItemSetMemberText;
-	window.CheckAndApplyItemSetEquipping = CheckAndApplyItemSetEquipping;
 }

@@ -1,5 +1,8 @@
 
 import { CGlobalConstManager } from './CGlobalConstManager.js';
+// === AUTO-GENERATED IMPORTS ===
+import './item.h.js';
+// === END AUTO-GENERATED IMPORTS ===
 
 //----------------------------------------------------------------
 // データの要素番号
@@ -19,7 +22,6 @@ CGlobalConstManager.DefineEnum(
 );
 
 
-
 //----------------------------------------------------------------
 // 特殊フラグ
 //----------------------------------------------------------------
@@ -32,7 +34,6 @@ CGlobalConstManager.DefineEnum(
 	0,
 	1
 );
-
 
 
 /**
@@ -439,10 +440,4 @@ export function GetRndOptDispName(spid) {
 	return "";
 }
 
-
-
-
-if (typeof window !== 'undefined') {
-    window.GetRndOptDispName = GetRndOptDispName;
-}
 

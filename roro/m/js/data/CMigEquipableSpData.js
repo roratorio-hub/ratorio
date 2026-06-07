@@ -1,3 +1,7 @@
+// === AUTO-GENERATED IMPORTS ===
+import './mig.itemsp.h.js';
+import { CMigEquipableSpTag } from './CMigEquipableSpTag.js';
+// === END AUTO-GENERATED IMPORTS ===
 
 /**
  * 装備可能品SPデータ適合検査マッチングコアクラス.
@@ -16,7 +20,6 @@ export function CMigEquipableSpDataAttributeMatchingCore (spidC, attrIdC, attrVa
 	// 属性値配列
 	this.attrValueArray = attrValueArrayC ? attrValueArrayC.slice() : [];
 }
-if (typeof window !== 'undefined') { window.CMigEquipableSpDataAttributeMatchingCore = CMigEquipableSpDataAttributeMatchingCore; }
 
 /**
  * 装備可能品SPデータ適合検査条件クラス.
@@ -29,7 +32,6 @@ export function CMigEquipableSpDataAttributeMatcher (matchingCoreArrayC) {
 	// マッチングコアの配列
 	this.matchingCoreArray = matchingCoreArrayC ? matchingCoreArrayC : [];
 }
-if (typeof window !== 'undefined') { window.CMigEquipableSpDataAttributeMatcher = CMigEquipableSpDataAttributeMatcher; }
 
 
 
@@ -423,4 +425,3 @@ export function CMigEquipableSpData (dataArrayC) {
 	};
 
 }
-if (typeof window !== 'undefined') { window.CMigEquipableSpData = CMigEquipableSpData; }
