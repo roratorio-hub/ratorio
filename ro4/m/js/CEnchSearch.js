@@ -1,3 +1,9 @@
+// === AUTO-GENERATED IMPORTS ===
+import '../../../roro/m/js/common.js';
+import { g_constDataManager } from './global.js';
+import { CardObjNew } from '../../../roro/m/js/card.dat.js';
+import { RebuildCardSelectSubCollectEnchListData } from '../../../roro/m/js/hmcard.js';
+// === END AUTO-GENERATED IMPORTS ===
 export class enchSearch {
     //エンチャント検索
     constructor(){
@@ -75,8 +81,13 @@ export class enchSearch {
             
             if(mode === 'ench_id_reset'){
                     const enchSearchSelect = document.querySelector('#ench_search');
-                    enchSearchSelect.value = '';
-                    enchSearchSelect.dispatchEvent(new Event('change'));
+                    if(enchSearchSelect.tomselect){
+                            // TomSelect 化されている場合は API 経由で初期化（表示も同期）
+                            enchSearchSelect.tomselect.setValue('');
+                    } else {
+                            enchSearchSelect.value = '';
+                            enchSearchSelect.dispatchEvent(new Event('change'));
+                    }
             }
     }
 
@@ -128,9 +139,12 @@ export class enchSearch {
                             resOption.textContent = `【${name}】${hit_length}件 (選択する)`;
                             resSelect.addEventListener('change', ()=>{
                                     if(resSelect.value && select.value !== resSelect.value){
-                                            select.value = resSelect.value;
-                                            select.dispatchEvent(new Event('change'));
-                                            select.dispatchEvent(new Event('select2:select'));
+                                            if (select.tomselect) {
+                                                select.tomselect.setValue(resSelect.value);
+                                            } else {
+                                                select.value = resSelect.value;
+                                                select.dispatchEvent(new Event('change'));
+                                            }
                                     }
                             });
                             select.parentNode.setAttribute('style', 'position:relative; padding-top:30px;');
@@ -269,7 +283,7 @@ export class enchSearch {
     }
 
     selectJobChange(){
-            $('#OBJID_SELECT_JOB').on('select2:select', ()=>{
+            document.getElementById('OBJID_SELECT_JOB')?.addEventListener('change', ()=>{
                     this.resetEnchSearch('ench_id_reset');
                     this.armsTypeLeftChange();
             });
@@ -316,7 +330,9 @@ export class enchSearch {
             //左右武器入れ替えの下に検索メニューを挿入
             const targetElement = document.querySelector('#OBJID_SPAN_SWAP_ARMS');
             targetElement.parentNode.insertBefore(this.createSelect(), targetElement.nextElementSibling);
-            $('#ench_search').select2().on('select2:select', ()=>this.runEnchSearch() );
+            const enchSearchEl = document.getElementById('ench_search');
+            new TomSelect(enchSearchEl, { maxOptions: null });
+            enchSearchEl.addEventListener('change', ()=>this.runEnchSearch());
     }
 }
 /*
@@ -325,6 +341,3 @@ export class enchSearch {
 })();
 */
 
-if (typeof window !== 'undefined') {
-    window.enchSearch = enchSearch;
-}

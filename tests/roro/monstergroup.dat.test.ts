@@ -23,16 +23,4 @@ describe('monstergroup.dat.js', () => {
             expect(MonsterGroupObj).toHaveLength(66);
         });
     });
-
-    describe('window互換確認', () => {
-        it('window.MONSTER_GROUP_ID_MANUKU が設定されている', () => {
-            expect((window as any).MONSTER_GROUP_ID_MANUKU).toBe(MONSTER_GROUP_ID_MANUKU);
-        });
-        it('window.MONSTER_GROUP_ID_UKNW_RUIN が設定されている', () => {
-            expect((window as any).MONSTER_GROUP_ID_UKNW_RUIN).toBe(MONSTER_GROUP_ID_UKNW_RUIN);
-        });
-        it('window.MonsterGroupObj が設定されている', () => {
-            expect((window as any).MonsterGroupObj).toBe(MonsterGroupObj);
-        });
-    });
 });

@@ -2,6 +2,24 @@ import { describe, it, expect, vi } from 'vitest';
 
 // CSaveDataManagerの静的フィールド初期化に必要なグローバルをimport前に設定する
 vi.hoisted(() => {
+    // Phase 3b で CSaveDataManager が CAttackMethodAreaComponentManager を import するようになり
+    // 連鎖的に calchistory.js の $(function(){...}) が呼ばれるため $ をモック
+    (globalThis as any).$ = (_fn: any) => {};
+    const mockEl = {
+        checked: false,
+        appendChild: () => {},
+        setAttribute: () => {},
+        removeAttribute: () => {},
+        getAttribute: () => null,
+        style: { whiteSpace: '' },
+        dispatchEvent: () => {},
+        value: 0,
+        querySelectorAll: () => [],
+        querySelector: () => null,
+        addEventListener: () => {},
+    };
+    vi.spyOn(document, 'getElementById').mockReturnValue(mockEl as any);
+
     // CSaveDataConstをProxyで全プロパティを文字列で返すようにする
     (globalThis as any).CSaveDataConst = new Proxy({}, { get: (_t, p) => String(p) });
 
@@ -40,18 +58,32 @@ vi.hoisted(() => {
     }
 });
 
+vi.mock('../../roro/common/js/util.js', async (importActual) => {
+    const actual = await importActual<any>();
+    return { ...actual, HtmlRemoveAllChild: () => {} };
+});
+
+vi.mock('@roro/monstermap.dat.js', async (importActual) => {
+    const actual = await importActual<any>();
+    return {
+        ...actual,
+        MONSTER_MAP_ID_MAP_ALL: -1,
+        get g_MonsterMapDataArray() { return []; },
+        get g_MonsterMapCategoryDataArray() { return []; },
+    };
+});
+
+vi.mock('@roro/monster.dat.js', async (importActual) => {
+    const actual = await importActual<any>();
+    return { ...actual, get MonsterObjNew() { return []; } };
+});
+
 import { CSaveDataManager } from '@ro4/CSaveDataManager.js';
 
 describe('CSaveDataManager.js', () => {
     describe('エクスポート確認', () => {
         it('CSaveDataManager が関数（クラス）', () => {
             expect(typeof CSaveDataManager).toBe('function');
-        });
-    });
-
-    describe('window互換確認', () => {
-        it('window.CSaveDataManager が設定されている', () => {
-            expect((window as any).CSaveDataManager).toBe(CSaveDataManager);
         });
     });
 });

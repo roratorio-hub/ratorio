@@ -1,3 +1,64 @@
+// === AUTO-GENERATED IMPORTS ===
+import '../../../roro/m/js/autospell.h.js';
+import '../../../roro/m/js/card.h.js';
+import '../../../roro/m/js/common.js';
+import '../../../roro/m/js/item.h.js';
+import '../../../roro/m/js/skill.h.js';
+import { GetHigherJobSeriesID, GetLowerJobSeriesID } from './data/mig.job.h.js';
+import {
+         HtmlCreateElement, HtmlCreateElementOption, HtmlCreateTextNode,
+         HtmlRemoveAllChild, myInnerHtml
+} from '../../../roro/common/js/util.js';
+import { AutoSpellSkill } from '../../../roro/m/js/autospell.dat.js';
+import { CARD_ID_GRIFFIN, CARD_ID_NAGUSAMERUMONO, CardObjNew } from '../../../roro/m/js/card.dat.js';
+import { CardNumSearch, EquipNumSearch, TimeItemNumSearch } from '../../../roro/m/js/chara.js';
+import {
+         ITEM_ID_FURUBITA_MEISAIUSAGI, ITEM_ID_GLORIOUS_CLAW, ITEM_ID_MAGICAL_BLADE,
+         ITEM_ID_SHINIGAMINO_MEIBO, ITEM_ID_SORATOBU_GARAPAGO, ITEM_ID_TORIKAINO_YOBIKO,
+         ITEM_ID_ZYOO_FACEWORMNO_ASHI
+} from '../../../roro/m/js/item.dat.js';
+import { LearnedSkillSearch } from '../../../roro/m/js/learnedskill.js';
+import {
+         MOB_CONF_PLAYER_ID_SENTO_AREA, MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM,
+         n_B_TAISEI
+} from '../../../roro/m/js/mobconfplayer.js';
+import {
+         SERE_SUPPORT_SKILL_ID_COLD_FORCE, SERE_SUPPORT_SKILL_ID_DEEP_POISONING,
+         SERE_SUPPORT_SKILL_ID_EARTH_CARE, SERE_SUPPORT_SKILL_ID_FLAME_TECHNIQUE,
+         SERE_SUPPORT_SKILL_ID_GRACE_BREEZE, SkillObjNew
+} from '../../../roro/m/js/skill.dat.js';
+import {
+         SKILL_ID_ABYSS_SQUARE, SKILL_ID_ABYSS_SQUARE_LEARNED_LEVEL,
+         SKILL_ID_ASHURA_HAOKEN_SPKOTEI, SKILL_ID_AS_QUICKDRAW,
+         SKILL_ID_AUTO_MAGICIAN_SPELL, SKILL_ID_AUTO_SHADOW_SPELL, SKILL_ID_AUTO_WUG,
+         SKILL_ID_AXE_BOOMERANG, SKILL_ID_BASIC_GRENADE, SKILL_ID_BEAST_STRAIFING,
+         SKILL_ID_BLITZ_BEAT, SKILL_ID_BUKKOKEN, SKILL_ID_CHAIN_ACTION,
+         SKILL_ID_COLD_BOLT, SKILL_ID_COMBO_GIGANTSET_JOINT_BEAT,
+         SKILL_ID_COMBO_GIGANTSET_SPIRAL_PIERCE, SKILL_ID_COMBO_SANDAN_CHAMP,
+         SKILL_ID_COMBO_SANDAN_MONK, SKILL_ID_COMBO_SORYUKYAKU,
+         SKILL_ID_COUNT_OF_RG_FOR_BANDING, SKILL_ID_CROSS_IMPACT, SKILL_ID_CRYMSON_ROCK,
+         SKILL_ID_DAITENHOSUI, SKILL_ID_DARK_ILLUSION, SKILL_ID_DOUBLE_CASTING,
+         SKILL_ID_DOUBLE_STRAFING, SKILL_ID_DUPLELIGHT, SKILL_ID_EARTH_SPIKE,
+         SKILL_ID_EIBINNA_KYUKAKU, SKILL_ID_ETERNAL_CHAIN, SKILL_ID_FIRE_BOLT,
+         SKILL_ID_FROM_THE_ABYSS, SKILL_ID_GOHO, SKILL_ID_GRAHAM_LIGHT,
+         SKILL_ID_GRENADES_DROPPING, SKILL_ID_HANDRED_SPEAR,
+         SKILL_ID_HASTY_FIRE_IN_THE_HOLE, SKILL_ID_HELL_INFERNO, SKILL_ID_HESPERUS_SLIT,
+         SKILL_ID_INSPIRATION, SKILL_ID_JOINT_BEAT, SKILL_ID_LIGHTNING_BOLT,
+         SKILL_ID_MAGIC_SETTING_FOR_AUTO_SHADOW_SPELL,
+         SKILL_ID_MAGIC_SETTING_FOR_AUTO_SPELL, SKILL_ID_MIRIAM_LIGHT, SKILL_ID_MORYUKEN,
+         SKILL_ID_PETITIO, SKILL_ID_PETITIO_LEARNED, SKILL_ID_PINGPOINT_ATTACK,
+         SKILL_ID_POISON_BUSTER, SKILL_ID_POWER_SWING, SKILL_ID_QUICKDRAW_SHOT,
+         SKILL_ID_RASETSU_HAOGEKI_MAX, SKILL_ID_RENCHUHOGEKI, SKILL_ID_RENDASHO,
+         SKILL_ID_RYUSE_RAKKA, SKILL_ID_SAGENO_TAMASHI_MAHONO_SHUTOKU_LEVEL,
+         SKILL_ID_SANDANSHO, SKILL_ID_SENKO_RENGEKI, SKILL_ID_SERE, SKILL_ID_SERE_MODE,
+         SKILL_ID_SERE_SUPPORT_SKILL, SKILL_ID_SERVANT_WEAPON, SKILL_ID_SONIC_WAVE,
+         SKILL_ID_SORYUKYAKU, SKILL_ID_SOUL_EXPANSION, SKILL_ID_SOUL_STRIKE,
+         SKILL_ID_SPEAR_BOOMERANG, SKILL_ID_SPELL_FIST, SKILL_ID_SPIRAL_PIERCE,
+         SKILL_ID_STORM_GUST, SKILL_ID_TENRACHIMO, SKILL_ID_TURN_UNDEAD,
+         SKILL_ID_TUZYO_KOGEKI, SKILL_ID_WUG_BITE, SKILL_ID_WUG_STRIKE
+} from '../../../roro/m/js/skill.dat.js';
+import { UsedSkillSearch } from './skillstate.js';
+// === END AUTO-GENERATED IMPORTS ===
 /* オートスペル設定　最大数 */
 export const AUTO_SPELL_SETTING_COUNT = 20;
 /* オートスペル系スキル　最大数 */
@@ -61,7 +122,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 	};
 
 
-
 	// 初期化
 	n_AS_SKILL = [];
 	window.n_AS_SKILL = n_AS_SKILL;
@@ -76,7 +136,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 	}
 
 	idx = 0;
-
 
 
 	//----------------------------------------------------------------
@@ -901,7 +960,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 					n_AS_SKILL[idx][3] = 0;
 
 
-
 					// ダブルキャスティング効果の適用
 					switch (n_AS_SKILL[idx][0]) {
 
@@ -985,7 +1043,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 
 			// オートスペルフラグは、一般オートスペル
 			n_AS_SKILL[idx][3] = 0;
-
 
 
 			// ダブルキャスティングの効果
@@ -1176,7 +1233,7 @@ export function OnClickExtractSettingAutoSpell(){
 	objTd.appendChild(objInput);
 	objInput.setAttribute("type", "checkbox");
 	objInput.setAttribute("id", "OBJID_EXTRACT_SETTING_AUTO_SPELL");
-	objInput.setAttribute("onClick", "OnClickExtractSettingAutoSpell()");
+	objInput.addEventListener('click', OnClickExtractSettingAutoSpell);
 	// ヘッダ行表示テキスト
 	objLabel = HtmlCreateElement("label", objTd);
 	objLabel.setAttribute("for", "OBJID_EXTRACT_SETTING_AUTO_SPELL");
@@ -1236,8 +1293,7 @@ export function BuildUpSettingHtmlAutoSpell(objTbody) {
 	objTd.appendChild(objInput);
 	objInput.setAttribute("type", "button");
 	objInput.setAttribute("value", "簡易設定");
-	objInput.setAttribute("onClick", "OnClickEasySetUpAutoSpell()");
-
+	objInput.addEventListener('click', OnClickEasySetUpAutoSpell);
 
 
 	//----------------------------------------------------------------
@@ -1258,7 +1314,7 @@ export function BuildUpSettingHtmlAutoSpell(objTbody) {
 		objSelect = document.createElement("select");
 		objTd.appendChild(objSelect);
 		objSelect.setAttribute("id", "OBJID_AS_SKILL_ID_" + (OBJID_OFFSET_AS_SKILL_ID + idx));
-		objSelect.setAttribute("onChange", "StAllCalc() | OnChangeSettingAutoSpell(true)");
+		objSelect.addEventListener('change', () => { window.StAllCalc(); OnChangeSettingAutoSpell(true); });
 
 		//----------------------------------------------------------------
 		// オートスペルをソートする
@@ -1342,7 +1398,7 @@ export function BuildUpSettingHtmlAutoSpell(objTbody) {
 		objSelect = document.createElement("select");
 		objTd.appendChild(objSelect);
 		objSelect.setAttribute("id", "OBJID_AS_SKILL_LV_" + (OBJID_OFFSET_AS_SKILL_LV + idx));
-		objSelect.setAttribute("onChange", "StAllCalc() | OnChangeSettingAutoSpell(true)");
+		objSelect.addEventListener('change', () => { window.StAllCalc(); OnChangeSettingAutoSpell(true); });
 
 		// Lv-, 1, 2, ... , 10 を設定
 		for (var lvidx = 0; lvidx <= 10; lvidx++) {
@@ -1362,7 +1418,7 @@ export function BuildUpSettingHtmlAutoSpell(objTbody) {
 		objSelect = document.createElement("select");
 		objTd.appendChild(objSelect);
 		objSelect.setAttribute("id", "OBJID_AS_SKILL_PROB_" + (OBJID_OFFSET_AS_SKILL_PROB + idx));
-		objSelect.setAttribute("onChange", "StAllCalc() | OnChangeSettingAutoSpell(true)");
+		objSelect.addEventListener('change', () => { window.StAllCalc(); OnChangeSettingAutoSpell(true); });
 
 		for (var probidx = 0; probidx < AUTO_SPELL_PROB_ARRAY.length; probidx++) {
 			optionText = (AUTO_SPELL_PROB_ARRAY[probidx] / 10) + "%";
@@ -1435,7 +1491,6 @@ export function OnClickEasySetUpAutoSpell(){
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 装備のオートスペルを設定する
 	//----------------------------------------------------------------
@@ -1474,7 +1529,6 @@ export function OnClickEasySetUpAutoSpell(){
 		asIdArray[asidx] = asId;
 		asidx++;
 	}
-
 
 
 	//----------------------------------------------------------------
@@ -1525,7 +1579,6 @@ export function OnClickEasySetUpAutoSpell(){
 			asidx++;
 		}
 	}
-
 
 
 	//================================================================
@@ -1636,8 +1689,6 @@ export function OnClickEasySetUpAutoSpell(){
 	}
 
 
-
-
 	//================================================================
 	//
 	// 最終的なオートスペルで設定を構築
@@ -1693,20 +1744,3 @@ export function OnClickEasySetUpAutoSpell(){
 	OnChangeSettingAutoSpell(true);
 }
 
-if (typeof window !== 'undefined') {
-	window.AUTO_SPELL_SETTING_COUNT = AUTO_SPELL_SETTING_COUNT;
-	window.AUTO_SPELL_SKILL_COUNT_MAX = AUTO_SPELL_SKILL_COUNT_MAX;
-	window.AUTO_SPELL_PROB_ARRAY = AUTO_SPELL_PROB_ARRAY;
-	window.OBJID_OFFSET_AS_SKILL_ID = OBJID_OFFSET_AS_SKILL_ID;
-	window.OBJID_OFFSET_AS_SKILL_LV = OBJID_OFFSET_AS_SKILL_LV;
-	window.OBJID_OFFSET_AS_SKILL_PROB = OBJID_OFFSET_AS_SKILL_PROB;
-	window.n_AS_SKILL = n_AS_SKILL;
-	window.n_AS_DMG = n_AS_DMG;
-	window.n_AS_DMG_OverHP = n_AS_DMG_OverHP;
-	window.AS_Calc = AS_Calc;
-	window.AS_PLUS = AS_PLUS;
-	window.OnClickExtractSettingAutoSpell = OnClickExtractSettingAutoSpell;
-	window.BuildUpSettingHtmlAutoSpell = BuildUpSettingHtmlAutoSpell;
-	window.OnChangeSettingAutoSpell = OnChangeSettingAutoSpell;
-	window.OnClickEasySetUpAutoSpell = OnClickEasySetUpAutoSpell;
-}

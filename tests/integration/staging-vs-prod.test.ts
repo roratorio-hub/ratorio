@@ -99,8 +99,21 @@ function evalObjidSnapshot(page: Page): Promise<Record<string, string>> {
     return page.evaluate((): Record<string, string> => {
         const snapshot: Record<string, string> = {};
 
+        // Tom Select は元 select の id を継承して補助ノードを生成する
+        // （例: OBJID_ARMS_RIGHT-ts-control / -ts-dropdown / -ts-label）。
+        // これらは id が "OBJID_" で始まるため前方一致セレクタに混入するが、
+        // 本番(select2)側は "select2-" プレフィックスで対応物が無いため、
+        // 除外しないとステージング vs 本番が全フィクスチャで誤検知する。
+        const TS_GENERATED_ID = /-ts-(control|dropdown|label)$/;
+
+        // ステージング(phase1-2)にのみ存在する意図的な追加要素。
+        // 本番(master)が追従したら不要になるので、その際に削除すること。
+        const IGNORED_OBJIDS = new Set(['OBJID_BUTTON_OPT_IN_SAVEDATA']);
+
         document.querySelectorAll<HTMLElement>('[id^="OBJID_"]').forEach((el) => {
             const id = el.id;
+
+            if (TS_GENERATED_ID.test(id) || IGNORED_OBJIDS.has(id)) return;
 
             if (el instanceof HTMLInputElement) {
                 if (el.type === 'checkbox' || el.type === 'radio') {

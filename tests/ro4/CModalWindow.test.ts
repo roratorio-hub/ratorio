@@ -13,12 +13,6 @@ describe('CModalWindow.js', () => {
         });
     });
 
-    describe('window互換確認', () => {
-        it('window.ModalWindow が設定されている', () => {
-            expect((window as any).ModalWindow).toBe(ModalWindow);
-        });
-    });
-
     describe('createModal の動作', () => {
         afterEach(() => {
             document.body.innerHTML = '';

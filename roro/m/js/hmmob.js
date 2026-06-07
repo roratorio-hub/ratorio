@@ -1,3 +1,16 @@
+// === AUTO-GENERATED IMPORTS ===
+import './monster.h.js';
+import { CMonsterMapAreaComponentManager } from '../../../ro4/m/js/CMonsterMapAreaComponentManager.js';
+import { __DIG3 } from '../../../ro4/m/js/global.js';
+import { GetMobMres, GetMobRes } from '../../../ro4/m/js/hmjob.js';
+import { GetMonsterElementText, GetRaceText, GetSizeText } from './common.js';
+import {
+         MOB_CONF_PLAYER_ID_SHUZOKU, MOB_CONF_PLAYER_ID_SHUZOKU_DORAM,
+         MOB_CONF_PLAYER_ID_SHUZOKU_HUMAN, n_B_TAISEI
+} from './mobconfplayer.js';
+import { MONSTER_ID_PLAYER, MonsterObjNew } from './monster.dat.js';
+import { HtmlCreateElement } from '../../common/js/util.js';
+// === END AUTO-GENERATED IMPORTS ===
 export function UpdateMobDataHtml(monsterId, mobData) {
 
 	var idx = 0;
@@ -129,7 +142,6 @@ export function UpdateMobDataHtml(monsterId, mobData) {
 		bColorReverse = paramArray[idx][2];
 
 
-
 		switch (paramId) {
 			// 特性ステータス対応
 			case MONSTER_DATA_INDEX_RES:
@@ -226,7 +238,6 @@ export function UpdateMobDataHtml(monsterId, mobData) {
 	}
 
 
-
 	//----------------------------------------------------------------
 	// 種族欄
 	//----------------------------------------------------------------
@@ -267,7 +278,6 @@ export function UpdateMobDataHtml(monsterId, mobData) {
 	CMonsterMapAreaComponentManager.SetDispObject("OBJID_SPAN_MONSTER_RACE", objSpan);
 
 
-
 	//----------------------------------------------------------------
 	// 属性欄
 	//----------------------------------------------------------------
@@ -288,7 +298,6 @@ export function UpdateMobDataHtml(monsterId, mobData) {
 
 	// 管理クラスに設定
 	CMonsterMapAreaComponentManager.SetDispObject("OBJID_SPAN_MONSTER_ELEMENT", objSpan);
-
 
 
 	//----------------------------------------------------------------
@@ -330,7 +339,6 @@ export function UpdateMobDataHtml(monsterId, mobData) {
 
 	// 管理クラスに設定
 	CMonsterMapAreaComponentManager.SetDispObject("OBJID_SPAN_MONSTER_SIZE", objSpan);
-
 
 
 	//----------------------------------------------------------------
@@ -394,6 +402,4 @@ export function UpdateMobDataHtml(monsterId, mobData) {
 
 }
 
-if (typeof window !== 'undefined') {
-    window.UpdateMobDataHtml = UpdateMobDataHtml;
-}
+

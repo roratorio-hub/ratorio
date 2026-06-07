@@ -113,4 +113,3 @@ export function CMigEquipableStaticData (dataArrayC) {
 		return arrayData;
 	};
 }
-if (typeof window !== 'undefined') { window.CMigEquipableStaticData = CMigEquipableStaticData; }

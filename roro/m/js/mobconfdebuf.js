@@ -1,3 +1,8 @@
+// === AUTO-GENERATED IMPORTS ===
+import './CConfBase.js';
+import { COLOR_CODE_TABLE_HEADER_IS_NOT_SET, COLOR_CODE_TABLE_HEADER_IS_SET } from './common.js';
+import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectCheckedById, ValueRangeModify } from '../../common/js/util.js';
+// === END AUTO-GENERATED IMPORTS ===
 // モンスター状態異常設定の限界値
 // この数を超える場合は、セーブデータの拡張が必要
 export const MOB_CONF_DEBUF_LIMIT = 80;
@@ -929,7 +934,7 @@ export function BuildUpMobConfDebufSelectArea(objRoot, bAsExpand) {
 	objInput = document.createElement("input");
 	objInput.setAttribute("id", "OBJID_INPUT_MOB_CONF_DEBUF_SWITCH");
 	objInput.setAttribute("type", "checkbox");
-	objInput.setAttribute("onClick", "OnClickMobConfDebufSwitch()");
+	objInput.addEventListener('click', OnClickMobConfDebufSwitch);
 	if (bAsExpand) {
 		objInput.setAttribute("checked", "checked");
 	}
@@ -980,7 +985,7 @@ export function BuildUpMobConfDebufSelectArea(objRoot, bAsExpand) {
 			// 選択セレクトボックスを生成
 			objSelect = document.createElement("select");
 			objSelect.setAttribute("id", "OBJID_SELECT_MOB_CONF_DEBUF_" + confId);
-			objSelect.setAttribute("onChange", "OnChangeMobConfDebuf(true)");
+			objSelect.addEventListener('change', () => OnChangeMobConfDebuf(true));
 			objTd.appendChild(objSelect);
 
 			// 範囲定義に従い、セレクトオプションを生成
@@ -1002,7 +1007,7 @@ export function BuildUpMobConfDebufSelectArea(objRoot, bAsExpand) {
 			objInput = document.createElement("input");
 			objInput.setAttribute("id", "OBJID_INPUT_MOB_CONF_DEBUF_" + confId);
 			objInput.setAttribute("type", "checkbox");
-			objInput.setAttribute("onChange", "OnChangeMobConfDebuf(true)");
+			objInput.addEventListener('change', () => OnChangeMobConfDebuf(true));
 			objTd.appendChild(objInput);
 
 			// 初期値設定
@@ -1020,7 +1025,7 @@ export function BuildUpMobConfDebufSelectArea(objRoot, bAsExpand) {
 			objInput.setAttribute("type", "text");
 			objInput.setAttribute("id", "OBJID_INPUT_MOB_CONF_DEBUF_" + confId);
 			objInput.setAttribute("size", "6");
-			objInput.setAttribute("onChange", "OnChangeMobConfDebuf(true)");
+			objInput.addEventListener('change', () => OnChangeMobConfDebuf(true));
 			objTd.appendChild(objInput);
 
 			// 初期値設定
@@ -1045,7 +1050,7 @@ export function BuildUpMobConfDebufSelectArea(objRoot, bAsExpand) {
 				// 選択セレクトボックスを生成
 				objSelect = document.createElement("select");
 				objSelect.setAttribute("id", "OBJID_SELECT_MOB_CONF_DEBUF_" + confId);
-				objSelect.setAttribute("onChange", "OnChangeMobConfDebuf(true)");
+				objSelect.addEventListener('change', () => OnChangeMobConfDebuf(true));
 				objTd.appendChild(objSelect);
 
 				for (var loopIdx = 0; loopIdx < textArray.length; loopIdx++) {
@@ -1367,78 +1372,4 @@ export function RefreshMobConfDebufControlCSS() {
 	}
 }
 
-if (typeof window !== 'undefined') {
-	window.MOB_CONF_DEBUF_LIMIT = MOB_CONF_DEBUF_LIMIT;
-	window.n_B_IJYOU = n_B_IJYOU;
-	window.MobConfDebufOBJ = MobConfDebufOBJ;
-	window.MOB_CONF_DEBUF_DATA_INDEX_ID = MOB_CONF_DEBUF_DATA_INDEX_ID;
-	window.MOB_CONF_DEBUF_DATA_INDEX_TEXT = MOB_CONF_DEBUF_DATA_INDEX_TEXT;
-	window.MOB_CONF_DEBUF_DATA_INDEX_CONTROL_TYPE = MOB_CONF_DEBUF_DATA_INDEX_CONTROL_TYPE;
-	window.MOB_CONF_DEBUF_DATA_INDEX_DEFAULT_VALUE = MOB_CONF_DEBUF_DATA_INDEX_DEFAULT_VALUE;
-	window.MOB_CONF_DEBUF_DATA_INDEX_MIN_VALUE = MOB_CONF_DEBUF_DATA_INDEX_MIN_VALUE;
-	window.MOB_CONF_DEBUF_DATA_INDEX_MAX_VALUE = MOB_CONF_DEBUF_DATA_INDEX_MAX_VALUE;
-	window.MOB_CONF_DEBUF_ID_PROVOKE = MOB_CONF_DEBUF_ID_PROVOKE;
-	window.MOB_CONF_DEBUF_ID_QUAGMIRE = MOB_CONF_DEBUF_ID_QUAGMIRE;
-	window.MOB_CONF_DEBUF_ID_DOKU = MOB_CONF_DEBUF_ID_DOKU;
-	window.MOB_CONF_DEBUF_ID_KURAYAMI = MOB_CONF_DEBUF_ID_KURAYAMI;
-	window.MOB_CONF_DEBUF_ID_TOUKETSU = MOB_CONF_DEBUF_ID_TOUKETSU;
-	window.MOB_CONF_DEBUF_ID_BLESSING = MOB_CONF_DEBUF_ID_BLESSING;
-	window.MOB_CONF_DEBUF_ID_LEX_AETERNA = MOB_CONF_DEBUF_ID_LEX_AETERNA;
-	window.MOB_CONF_DEBUF_ID_STUN = MOB_CONF_DEBUF_ID_STUN;
-	window.MOB_CONF_DEBUF_ID_SUIMIN = MOB_CONF_DEBUF_ID_SUIMIN;
-	window.MOB_CONF_DEBUF_ID_SEKIKA = MOB_CONF_DEBUF_ID_SEKIKA;
-	window.MOB_CONF_DEBUF_ID_NOROI = MOB_CONF_DEBUF_ID_NOROI;
-	window.MOB_CONF_DEBUF_ID_SOKUDO_GENSHO = MOB_CONF_DEBUF_ID_SOKUDO_GENSHO;
-	window.MOB_CONF_DEBUF_ID_SIGNUM_CRUCIS = MOB_CONF_DEBUF_ID_SIGNUM_CRUCIS;
-	window.MOB_CONF_DEBUF_ID_STRIP_WEAPON = MOB_CONF_DEBUF_ID_STRIP_WEAPON;
-	window.MOB_CONF_DEBUF_ID_STRIP_SHIELD = MOB_CONF_DEBUF_ID_STRIP_SHIELD;
-	window.MOB_CONF_DEBUF_ID_STRIP_ARMOR = MOB_CONF_DEBUF_ID_STRIP_ARMOR;
-	window.MOB_CONF_DEBUF_ID_STRIP_HELM = MOB_CONF_DEBUF_ID_STRIP_HELM;
-	window.MOB_CONF_DEBUF_ID_SPIDER_WEB = MOB_CONF_DEBUF_ID_SPIDER_WEB;
-	window.MOB_CONF_DEBUF_ID_MIND_BREAKER = MOB_CONF_DEBUF_ID_MIND_BREAKER;
-	window.MOB_CONF_DEBUF_ID_WATASHIWO_WASURENAIDE = MOB_CONF_DEBUF_ID_WATASHIWO_WASURENAIDE;
-	window.MOB_CONF_DEBUF_ID_EIENNNO_KONTON = MOB_CONF_DEBUF_ID_EIENNNO_KONTON;
-	window.MOB_CONF_DEBUF_ID_ESKA = MOB_CONF_DEBUF_ID_ESKA;
-	window.MOB_CONF_DEBUF_ID_ESKU = MOB_CONF_DEBUF_ID_ESKU;
-	window.MOB_CONF_DEBUF_ID_ELEMENTAL_CHANGE = MOB_CONF_DEBUF_ID_ELEMENTAL_CHANGE;
-	window.MOB_CONF_DEBUF_ID_FLYING = MOB_CONF_DEBUF_ID_FLYING;
-	window.MOB_CONF_DEBUF_ID_VENOM_IMPRESS = MOB_CONF_DEBUF_ID_VENOM_IMPRESS;
-	window.MOB_CONF_DEBUF_ID_ENERVATION = MOB_CONF_DEBUF_ID_ENERVATION;
-	window.MOB_CONF_DEBUF_ID_GROOMY = MOB_CONF_DEBUF_ID_GROOMY;
-	window.MOB_CONF_DEBUF_ID_RAGENESS = MOB_CONF_DEBUF_ID_RAGENESS;
-	window.MOB_CONF_DEBUF_ID_WEEKNESS = MOB_CONF_DEBUF_ID_WEEKNESS;
-	window.MOB_CONF_DEBUF_ID_UNLUCKY = MOB_CONF_DEBUF_ID_UNLUCKY;
-	window.MOB_CONF_DEBUF_ID_ORATIO = MOB_CONF_DEBUF_ID_ORATIO;
-	window.MOB_CONF_DEBUF_ID_HAKKA = MOB_CONF_DEBUF_ID_HAKKA;
-	window.MOB_CONF_DEBUF_ID_SURPRISE_ATTACK_EFFECT = MOB_CONF_DEBUF_ID_SURPRISE_ATTACK_EFFECT;
-	window.MOB_CONF_DEBUF_ID_HYOKETSU = MOB_CONF_DEBUF_ID_HYOKETSU;
-	window.MOB_CONF_DEBUF_ID_REITO = MOB_CONF_DEBUF_ID_REITO;
-	window.MOB_CONF_DEBUF_ID_DARK_CRAW_EFFECT = MOB_CONF_DEBUF_ID_DARK_CRAW_EFFECT;
-	window.MOB_CONF_DEBUF_ID_ANALYSE = MOB_CONF_DEBUF_ID_ANALYSE;
-	window.MOB_CONF_DEBUF_ID_WATER_BARRIER = MOB_CONF_DEBUF_ID_WATER_BARRIER;
-	window.MOB_CONF_DEBUF_ID_MAHI = MOB_CONF_DEBUF_ID_MAHI;
-	window.MOB_CONF_DEBUF_ID_RAKUIN_ZYOTAI = MOB_CONF_DEBUF_ID_RAKUIN_ZYOTAI;
-	window.MOB_CONF_DEBUF_ID_STRIP_ACCESSORY = MOB_CONF_DEBUF_ID_STRIP_ACCESSORY;
-	window.MOB_CONF_DEBUF_ID_INUHAKKA_SHOWER = MOB_CONF_DEBUF_ID_INUHAKKA_SHOWER;
-	window.MOB_CONF_DEBUF_ID_NYAN_GRASS = MOB_CONF_DEBUF_ID_NYAN_GRASS;
-	window.MOB_CONF_DEBUF_ID_TARONO_KIZU = MOB_CONF_DEBUF_ID_TARONO_KIZU;
-	window.MOB_CONF_DEBUF_ID_KAITO = MOB_CONF_DEBUF_ID_KAITO;
-	window.MOB_CONF_DEBUF_ID_SHIRYO_HYOI = MOB_CONF_DEBUF_ID_SHIRYO_HYOI;
-	window.MOB_CONF_DEBUF_ID_ADORAMUS_DEBUFF = MOB_CONF_DEBUF_ID_ADORAMUS_DEBUFF;
-	window.MOB_CONF_DEBUF_ID_MARSH_OF_ABYSS = MOB_CONF_DEBUF_ID_MARSH_OF_ABYSS;
-	window.MOB_CONF_DEBUF_ID_EARTH_DRIVE_DEBUFF = MOB_CONF_DEBUF_ID_EARTH_DRIVE_DEBUFF;
-	window.MOB_CONF_DEBUF_ID_QUAKE_DEBUFF = MOB_CONF_DEBUF_ID_QUAKE_DEBUFF;
-	window.MOB_CONF_DEBUF_ID_SEIYU_SENREI_DEBUFF = MOB_CONF_DEBUF_ID_SEIYU_SENREI_DEBUFF;
-	window.MOB_CONF_DEBUF_ID_SOUND_BLEND = MOB_CONF_DEBUF_ID_SOUND_BLEND;
-	window.MOB_CONF_DEBUF_ID_JACK_FROST_NOVA = MOB_CONF_DEBUF_ID_JACK_FROST_NOVA;
-	window.MOB_CONF_DEBUF_ID_CLIMAX_QUAKE = MOB_CONF_DEBUF_ID_CLIMAX_QUAKE;
-	window.MOB_CONF_DEBUF_ID_CLIMAX_BLOOM = MOB_CONF_DEBUF_ID_CLIMAX_BLOOM;
-	window.MOB_CONF_DEBUF_ID_TOXIN_OF_MANDARA = MOB_CONF_DEBUF_ID_TOXIN_OF_MANDARA;
-	window.BuildUpMobConfDebufSelectArea = BuildUpMobConfDebufSelectArea;
-	window.SyncronizeMobConfDebufSettingsVarToCtrl = SyncronizeMobConfDebufSettingsVarToCtrl;
-	window.SyncronizeMobConfDebufSettingsCtrlToVar = SyncronizeMobConfDebufSettingsCtrlToVar;
-	window.OnClickMobConfDebufSwitch = OnClickMobConfDebufSwitch;
-	window.OnChangeMobConfDebuf = OnChangeMobConfDebuf;
-	window.RefreshMobConfDebufSelectAreaHeader = RefreshMobConfDebufSelectAreaHeader;
-	window.RefreshMobConfDebufControlCSS = RefreshMobConfDebufControlCSS;
-}
+

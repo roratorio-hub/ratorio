@@ -126,4 +126,54 @@ describe('roro/other/cardlist.html 起動テスト', () => {
                 pageErrors.join('\n')
         ).toHaveLength(0);
     });
+
+    // エンチャント情報表示パス（DispData のエンチャント対象一覧生成）で未捕捉 JS 例外が出ないことを確認する。
+    // 起動テストはこのパスを通らないため、idxItem 未宣言代入（ESM strict mode 違反）を検出できなかった。
+    // カード種別「エンチャント効果」を選び、エンチャント情報表示を ON にして DispData を通す。
+    it('エンチャント情報表示でカード一覧を生成しても未捕捉 JS 例外が発生しない', async () => {
+        const context = await browser.newContext();
+        const page = await context.newPage();
+        const pageErrors: string[] = [];
+        page.on('pageerror', (err) => {
+            if (!isSuppressed(err.message)) pageErrors.push(`[pageerror] ${err.message}`);
+        });
+        await page.addInitScript(() => {
+            (window as any).__pendingRejections = [];
+            window.addEventListener('unhandledrejection', (event) => {
+                const msg = (event.reason as any)?.message ?? String(event.reason);
+                (window as any).__pendingRejections.push(msg);
+            });
+        });
+        await page.goto(`${baseUrl}/roro/other/cardlist.html`, { waitUntil: 'networkidle', timeout: 60000 });
+        await page.waitForTimeout(500);
+
+        const exercised = await page.evaluate(async () => {
+            const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+            const kind = document.getElementById('OBJID_SELECT_CARD_KIND') as HTMLSelectElement | null;
+            const cb = document.getElementById('OBJID_INPUT_SHOW_ENCHANT_INFO') as HTMLInputElement | null;
+            if (!kind || !cb) return false;
+            // 「エンチャント効果」種別でないと DispData のエンチャント対象一覧生成（idxItemF）に到達しない
+            const opt = Array.from(kind.options).find((o) => o.text.includes('エンチャント効果'));
+            if (!opt) return false;
+            kind.value = opt.value;
+            kind.dispatchEvent(new Event('change', { bubbles: true }));
+            await sleep(400);
+            cb.checked = true;
+            cb.dispatchEvent(new Event('change', { bubbles: true }));  // → OnChangeShowEnchantInfo → DispData
+            await sleep(600);
+            return true;
+        });
+
+        const rejections: string[] = await page.evaluate(() => (window as any).__pendingRejections ?? []);
+        for (const msg of rejections) {
+            if (!isSuppressed(msg)) pageErrors.push(`[unhandledrejection] ${msg}`);
+        }
+        await context.close();
+
+        expect(exercised, 'エンチャント効果のカード種別が見つからず検証できなかった').toBe(true);
+        expect(
+            pageErrors,
+            `エンチャント情報表示中に未捕捉 JS 例外が ${pageErrors.length} 件発生しました:\n${pageErrors.join('\n')}`
+        ).toHaveLength(0);
+    });
 });

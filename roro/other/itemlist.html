@@ -77,7 +77,7 @@
 
 
 
-<body onload="OnLoadItemList()">
+<body>
 	<div class="wrapper">
 		<div class="side">
 			<span id="ID_FRAME"></span>
@@ -95,28 +95,27 @@
 							<tr>
 								<td>選択</td>
 								<td>
-									<select id="OBJID_SELECT_ITEM_KIND" onchange="OnChangeKindRestrict()">
+									<select id="OBJID_SELECT_ITEM_KIND">
 									</select>
 								</td>
 								<td>職業で抽出</td>
 								<td>
-									<select id="OBJID_SELECT_JOB_RESTRICT" onchange="OnChangeJobRestrict()">
+									<select id="OBJID_SELECT_JOB_RESTRICT">
 									</select>
 								</td>
 								<td>パッケージ</td>
 								<td>
-									<select id="OBJID_SELECT_PACKAGE" onchange="OnChangePackageRestrict()">
+									<select id="OBJID_SELECT_PACKAGE">
 									</select>
 								</td>
 								<td>検索</td>
 								<td>
 									<input type="text" style="display:none">
-									<input id="F_CONDITION" type="text" placeholder="検索文字（部分一致）"
-										onChange="BuildUpItemList()">
+									<input id="F_CONDITION" type="text" placeholder="検索文字（部分一致）">
 								</td>
 								<td>並べ替え</td>
 								<td>
-									<select id="OBJID_SELECT_SORT_ATTR" onchange="OnChangeSortCondition()">
+									<select id="OBJID_SELECT_SORT_ATTR">
 										<option value=4>武器LV
 										<option value=3>ATK/DEF
 										<option value=6>重量
@@ -133,26 +132,22 @@
 							<tr>
 								<td>オプション</td>
 								<td>
-									<input type="checkbox" id="OBJID_INPUT_SHOW_SP" name="F_SORT6"
-										onchange="OnChnageShowSP()">
+									<input type="checkbox" id="OBJID_INPUT_SHOW_SP" name="F_SORT6">
 									<label for="OBJID_INPUT_SHOW_SP">特殊効果を表示</label>
 									　
 								</td>
 								<td>
-									<input type="checkbox" id="OBJID_INPUT_SORT_DESC"
-										onchange="OnChangeSortCondition()">
+									<input type="checkbox" id="OBJID_INPUT_SORT_DESC">
 									<label for="OBJID_INPUT_SORT_DESC">降順表示</label>
 									　
 								</td>
 								<td>
-									<input type="checkbox" id="OBJID_INPUT_SLOT_RESTRICT"
-										onchange="OnChangeSlotRestrict()">
+									<input type="checkbox" id="OBJID_INPUT_SLOT_RESTRICT">
 									<label for="OBJID_INPUT_SLOT_RESTRICT">スロット0を表示しない</label>
 									　
 								</td>
 								<td>
-									<input type="checkbox" id="OBJID_INPUT_SHOW_ENCHANT_INFO"
-										onchange="OnChangeShowEnchantInfo()">
+									<input type="checkbox" id="OBJID_INPUT_SHOW_ENCHANT_INFO">
 									<label for="OBJID_INPUT_SHOW_ENCHANT_INFO">エンチャント情報を表示</label>
 									　
 								</td>
@@ -190,6 +185,7 @@
 
 
 
+<script type="module" src="js/eventsetup-itemlist.js"></script>
 <script type="module" src="../frame.js"></script>
 
 </html>

@@ -1,0 +1,27 @@
+/* Tom Select コンパクト表示カスタム CSS（Select2 に近いサイズ感・配色）
+   calcx.html / calcx-ai.html / monsterlist.html で共通利用する。
+   tom-select.min.css の後に読み込むこと。 */
+.ts-wrapper { display: inline-block !important; min-width: 60px; min-height: 0 !important; vertical-align: top; }
+.ts-control {
+    font-size: 13px !important;
+    height: 24px !important;
+    min-height: 0 !important;
+    max-height: 24px !important;
+    box-sizing: border-box !important;
+    padding: 2px 24px 2px 4px !important;
+    line-height: 20px !important;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    align-items: center;
+}
+.ts-control .items-placeholder { display: none; }
+.ts-wrapper:after { font-size: 10px; }
+.ts-dropdown { width: max-content !important; min-width: 100%; }
+.ts-dropdown .option { font-size: 13px; white-space: nowrap; }
+/* ハイライト中の選択肢の色を Select2 と同じにする */
+.ts-dropdown .active { background-color: #5897fb !important; color: #fff !important; }
+.ts-wrapper.disabled { display: none !important; }
+.ts-dropdown-content { max-height: 390px !important; }
+.dropdown-input-wrap { padding: 4px; }
+.dropdown-input { width: 100%; box-sizing: border-box; font-size: 13px; min-width: 8em; }

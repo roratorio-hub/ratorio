@@ -30,21 +30,6 @@ describe('castsim.js', () => {
         it('OnClickCastSimSimulateStop が関数', () => { expect(typeof OnClickCastSimSimulateStop).toBe('function'); });
     });
 
-    describe('window互換確認', () => {
-        it('window.g_castsimProgressIntervalArray が設定されている', () => { expect(Array.isArray((window as any).g_castsimProgressIntervalArray)).toBe(true); });
-        it('window.g_castsimIntervalFunctionArray が設定されている', () => { expect(Array.isArray((window as any).g_castsimIntervalFunctionArray)).toBe(true); });
-        it('window.BuildUpCastSimSimulateArea が設定されている', () => { expect(typeof (window as any).BuildUpCastSimSimulateArea).toBe('function'); });
-        it('window.SprintfTimeStrCastSim が設定されている', () => { expect(typeof (window as any).SprintfTimeStrCastSim).toBe('function'); });
-        it('window.OnClickCastSimSwitch が設定されている', () => { expect(typeof (window as any).OnClickCastSimSwitch).toBe('function'); });
-        it('window.OnClickCastSimRefresh が設定されている', () => { expect(typeof (window as any).OnClickCastSimRefresh).toBe('function'); });
-        it('window.OnChangeSkillCastSim が設定されている', () => { expect(typeof (window as any).OnChangeSkillCastSim).toBe('function'); });
-        it('window.OnChangeSkillLvCastSim が設定されている', () => { expect(typeof (window as any).OnChangeSkillLvCastSim).toBe('function'); });
-        it('window.RefreshCastSimSimulateArea が設定されている', () => { expect(typeof (window as any).RefreshCastSimSimulateArea).toBe('function'); });
-        it('window.OnClickCastSimSimulateStart が設定されている', () => { expect(typeof (window as any).OnClickCastSimSimulateStart).toBe('function'); });
-        it('window.OnClickCastSimSimulateStartDelay が設定されている', () => { expect(typeof (window as any).OnClickCastSimSimulateStartDelay).toBe('function'); });
-        it('window.OnClickCastSimSimulateStop が設定されている', () => { expect(typeof (window as any).OnClickCastSimSimulateStop).toBe('function'); });
-    });
-
     describe('SprintfTimeStrCastSim', () => {
         it('1000ms → "1.00"', () => { expect(SprintfTimeStrCastSim(1000)).toBe('1.00'); });
         it('500ms → "0.50"', () => { expect(SprintfTimeStrCastSim(500)).toBe('0.50'); });

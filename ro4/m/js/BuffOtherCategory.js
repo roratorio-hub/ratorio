@@ -1,14 +1,23 @@
+// === AUTO-GENERATED IMPORTS ===
+import '../../../roro/m/js/pet.h.js';
+import { AutoCalc } from './head.js';
+import { CItemInfoManager } from '../../../roro/m/js/CItemInfoManager.js';
+import { GetFriendlityText } from '../../../roro/m/js/common.js';
+import { PET_OBJ } from '../../../roro/m/js/pet.dat.js';
+import { HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueByIdAsInteger, myInnerHtml } from '../../../roro/common/js/util.js';
+import { n_A_PassSkill8 } from './skillstate.js';
+export { n_A_PassSkill8 } from './skillstate.js';
+// === END AUTO-GENERATED IMPORTS ===
+import { CAttackMethodAreaComponentManager } from './CAttackMethodAreaComponentManager.js';
+import { CTimeItemAreaComponentManager } from '../../../roro/m/js/CTimeItemAreaComponentManager.js';
 "use strict"
 /**
  * 画面下部の「その他の支援/設定」のバフウィンドウ構築関数群
-*/ 
+*/
 
-export const BUFF_CONF_OTHER_LIMIT = 28;
-
-/** その他の支援/設定 設定値の配列 */
-export let n_A_PassSkill8 = Array(BUFF_CONF_OTHER_LIMIT).fill(0);
 /** その他の支援/設定 ウィンドウ可視状態 */
 export let n_Skill8SW = false;
+export function setN_Skill8SW(v) { n_Skill8SW = v; }
 
 /**
  * その他の支援/設定 を構築する
@@ -18,10 +27,9 @@ export function Click_Skill8SW(){
 	let petDataArrayWork = null;
 	let objSelect = null;
 	n_Skill8SW = document.calcForm.A8_SKILLSW.checked;
-	if (typeof window !== 'undefined') window.n_Skill8SW = n_Skill8SW;
     if(n_Skill8SW){
 		let str;
-		str = '<TABLE Border style="white-space:nowrap;"><TR><TD id="A8TD" Colspan="2" class="title"><input id="OBJID_CHECK_A8_SKILLSW" type="checkbox" name="A8_SKILLSW"onClick="Click_Skill8SW()"><label for="OBJID_CHECK_A8_SKILLSW">その他の支援/設定 (暫定追加機能)</label><SPAN id="A8used"></SPAN></TD></TR>';
+		str = '<TABLE Border style="white-space:nowrap;"><TR><TD id="A8TD" Colspan="2" class="title"><input id="OBJID_CHECK_A8_SKILLSW" type="checkbox" name="A8_SKILLSW"><label for="OBJID_CHECK_A8_SKILLSW">その他の支援/設定 (暫定追加機能)</label><SPAN id="A8used"></SPAN></TD></TR>';
 		str += '<TR><TD>ペット：<select id="OBJID_SELECT_PET" name="A8_Skill0" onchange="StAllCalc(); OnChangePetSelect();"></select></TD><TD>親密度：<select id="OBJID_SELECT_PET_FRIENDLITY" name="A8_Skill17" onChange="StAllCalc(); Click_A8(true);"></select></TD></TR>';
 		str += '<TR><TD colspan="2"><SPAN id="OBJID_SPAN_PET_EXPLAIN"></SPAN></TD></TR>';
 		str += '<TR><TD id="EN801"></TD><TD id="EN802"></TD></TR>';
@@ -38,6 +46,7 @@ export function Click_Skill8SW(){
 		str += '</TABLE>';
 		
 		myInnerHtml("ID_ETC",str,0);
+		document.querySelector('[name="A8_SKILLSW"]')?.addEventListener('click', Click_Skill8SW);
 		document.calcForm.A8_SKILLSW.checked = true;
 		// ペットのセレクトボックスを構築
 		// ペットのデータを複製して読み仮名ソート
@@ -107,7 +116,8 @@ export function Click_Skill8SW(){
 		document.calcForm.A8_Skill21.options[2] = new Option("JobExpで受け取る", 2);
 		myInnerHtml("EN807",'<input id="OBJID_CHECK_A8_Skill4" type="checkbox" name="A8_Skill4"onClick="StAllCalc() | Click_A8(true)"><label for="OBJID_CHECK_A8_Skill4">結婚スパノビステータスALL+1付与</label>',0);
 		myInnerHtml("EN808",'<input id="OBJID_CHECK_A8_Skill13" type="checkbox" name="A8_Skill13"onClick="StAllCalc() | Click_A8(true)||RebuildStatusSelect()||CalcStatusPoint(true)"><label for="OBJID_CHECK_A8_Skill13">養子状態にする</label>',0);
-		myInnerHtml("EN809",'<font size="2" color="red">（時限性補助効果の設定は、「アイテム時限効果」設定欄へ移動しました）</font><input type="button" value="設定欄を表示" onclick="CTimeItemAreaComponentManager.FocusArea(0, true)">',0);
+		myInnerHtml("EN809",'<font size="2" color="red">（時限性補助効果の設定は、「アイテム時限効果」設定欄へ移動しました）</font><input type="button" value="設定欄を表示">',0);
+		document.querySelector('#EN809 input[type="button"]')?.addEventListener('click', () => CTimeItemAreaComponentManager.FocusArea(0, true));
 		myInnerHtml("EN810",'囲んでいる敵の数<select name="A8_Skill12" onChange="StAllCalc() | Click_A8(true)"></select>',0);
 		for (let i = 0; i <= 22; i++) {
             document.calcForm.A8_Skill12.options[i] = new Option(i + "匹", i);
@@ -144,9 +154,10 @@ export function Click_Skill8SW(){
 		RefreshPetExplain();
     } else {
 		let str;
-		str = '<TABLE Border><TR><TD id="A8TD" class="title"><input id="OBJID_CHECK_A8_SKILLSW" type="checkbox" name="A8_SKILLSW"onClick="Click_Skill8SW()"><label for="OBJID_CHECK_A8_SKILLSW">その他の支援/設定 (暫定追加機能)</label><SPAN id="A8used"></SPAN></TD></TR></TABLE>';
+		str = '<TABLE Border><TR><TD id="A8TD" class="title"><input id="OBJID_CHECK_A8_SKILLSW" type="checkbox" name="A8_SKILLSW"><label for="OBJID_CHECK_A8_SKILLSW">その他の支援/設定 (暫定追加機能)</label><SPAN id="A8used"></SPAN></TD></TR></TABLE>';
 		str += '';
 		myInnerHtml("ID_ETC",str,0);
+		document.querySelector('[name="A8_SKILLSW"]')?.addEventListener('click', Click_Skill8SW);
 		document.calcForm.A8_SKILLSW.checked = false;
     }
 	Click_A8(false);
@@ -212,11 +223,7 @@ export function RefreshPetExplain() {
 }
 
 if (typeof window !== 'undefined') {
-    window.BUFF_CONF_OTHER_LIMIT = BUFF_CONF_OTHER_LIMIT;
-    window.n_A_PassSkill8 = n_A_PassSkill8;
-    window.n_Skill8SW = n_Skill8SW;
-    window.Click_Skill8SW = Click_Skill8SW;
     window.Click_A8 = Click_A8;
     window.OnChangePetSelect = OnChangePetSelect;
-    window.RefreshPetExplain = RefreshPetExplain;
 }
+

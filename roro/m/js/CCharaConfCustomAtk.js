@@ -1,4 +1,9 @@
 import { CConfBase } from './CConfBase.js';
+// === AUTO-GENERATED IMPORTS ===
+import './CConfBase.js';
+import { CUSTOM_CONF_ATK_LIMIT } from '../../../ro4/m/js/global.js';
+import { HtmlCreateElementOption } from '../../common/js/util.js';
+// === END AUTO-GENERATED IMPORTS ===
 
 export function CCharaConfCustomAtk(confArray) {
 
@@ -6,10 +11,8 @@ export function CCharaConfCustomAtk(confArray) {
 	CCharaConfCustomAtk.prototype = new CConfBase();
 
 
-
 	// 基底クラスのコンストラクタ呼び出し
 	CConfBase.call(this, confArray);
-
 
 
 	// 設定の限界値
@@ -17,17 +20,12 @@ export function CCharaConfCustomAtk(confArray) {
 	this.confCountLimit = CUSTOM_CONF_ATK_LIMIT;
 
 
-
 	// 設定欄の横方向項目数
 	this.itemInRow = 1;
 
 
-
 	// 設定欄のラベル
 	this.confLabel = "性能カスタマイズ（攻撃関連）";
-
-
-
 
 
 	//********************************************************************************************************************************
@@ -51,10 +49,8 @@ export function CCharaConfCustomAtk(confArray) {
 		var confDataOBJSorted = new Array();
 
 
-
 		// 基底クラスのセットアップ処理を実行
 		CCharaConfCustomAtk.prototype.InitData.call(this);
-
 
 
 		//----------------------------------------------------------------
@@ -73,7 +69,6 @@ export function CCharaConfCustomAtk(confArray) {
 		confId++;
 
 
-
 		CCharaConfCustomAtk.CONF_ID_WEAPON_ATK = confId;
 		confData = [
 			confId,
@@ -85,7 +80,6 @@ export function CCharaConfCustomAtk(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
 
 
 		CCharaConfCustomAtk.CONF_ID_WEAPON_MATK = confId;
@@ -101,7 +95,6 @@ export function CCharaConfCustomAtk(confArray) {
 		confId++;
 
 
-
 		CCharaConfCustomAtk.CONF_ID_WEAPON_LEVEL = confId;
 		confData = [
 			confId,
@@ -113,7 +106,6 @@ export function CCharaConfCustomAtk(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
 
 
 		CCharaConfCustomAtk.CONF_ID_ATK_PLUS = confId;
@@ -129,7 +121,6 @@ export function CCharaConfCustomAtk(confArray) {
 		confId++;
 
 
-
 		CCharaConfCustomAtk.CONF_ID_PHYSICAL_DAMAGE_UP = confId;
 		confData = [
 			confId,
@@ -141,7 +132,6 @@ export function CCharaConfCustomAtk(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
 
 
 		CCharaConfCustomAtk.CONF_ID_PHYSICAL_DAMAGE_UP_RACE = confId;
@@ -157,7 +147,6 @@ export function CCharaConfCustomAtk(confArray) {
 		confId++;
 
 
-
 		CCharaConfCustomAtk.CONF_ID_PHYSICAL_DAMAGE_UP_MONSTER_ELM = confId;
 		confData = [
 			confId,
@@ -169,7 +158,6 @@ export function CCharaConfCustomAtk(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
 
 
 		CCharaConfCustomAtk.CONF_ID_PHYSICAL_DAMAGE_UP_SIZE = confId;
@@ -185,7 +173,6 @@ export function CCharaConfCustomAtk(confArray) {
 		confId++;
 
 
-
 		CCharaConfCustomAtk.CONF_ID_LONGRANGE_DAMAGE_UP = confId;
 		confData = [
 			confId,
@@ -197,7 +184,6 @@ export function CCharaConfCustomAtk(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
 
 
 		CCharaConfCustomAtk.CONF_ID_CRITICAL_DAMAGE_UP = confId;
@@ -213,7 +199,6 @@ export function CCharaConfCustomAtk(confArray) {
 		confId++;
 
 
-
 		CCharaConfCustomAtk.CONF_ID_PERFECT_ATTACK = confId;
 		confData = [
 			confId,
@@ -225,7 +210,6 @@ export function CCharaConfCustomAtk(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
 
 
 		CCharaConfCustomAtk.CONF_ID_IGNORE_DEF_RACE_ALL = confId;
@@ -241,7 +225,6 @@ export function CCharaConfCustomAtk(confArray) {
 		confId++;
 
 
-
 		CCharaConfCustomAtk.CONF_ID_MATK_PLUS = confId;
 		confData = [
 			confId,
@@ -253,7 +236,6 @@ export function CCharaConfCustomAtk(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
 
 
 		CCharaConfCustomAtk.CONF_ID_MAGICAL_DAMAGE_UP = confId;
@@ -269,7 +251,6 @@ export function CCharaConfCustomAtk(confArray) {
 		confId++;
 
 
-
 		CCharaConfCustomAtk.CONF_ID_MAGICAL_DAMAGE_UP_RACE = confId;
 		confData = [
 			confId,
@@ -281,7 +262,6 @@ export function CCharaConfCustomAtk(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
 
 
 		CCharaConfCustomAtk.CONF_ID_MAGICAL_DAMAGE_UP_MONSTER_ELM = confId;
@@ -297,7 +277,6 @@ export function CCharaConfCustomAtk(confArray) {
 		confId++;
 
 
-
 		CCharaConfCustomAtk.CONF_ID_MAGICAL_DAMAGE_UP_SIZE = confId;
 		confData = [
 			confId,
@@ -309,7 +288,6 @@ export function CCharaConfCustomAtk(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
 
 
 		CCharaConfCustomAtk.CONF_ID_MAGICAL_DAMAGE_UP_ELM = confId;
@@ -325,7 +303,6 @@ export function CCharaConfCustomAtk(confArray) {
 		confId++;
 
 
-
 		CCharaConfCustomAtk.CONF_ID_IGNORE_MDEF_RACE_ALL = confId;
 		confData = [
 			confId,
@@ -337,7 +314,6 @@ export function CCharaConfCustomAtk(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
 
 
 		CCharaConfCustomAtk.CONF_ID_DAMAGE_UP_PLAYER = confId;
@@ -353,7 +329,6 @@ export function CCharaConfCustomAtk(confArray) {
 		confId++;
 
 
-
 		CCharaConfCustomAtk.CONF_ID_GROUP_DAMAGE_UP = confId;
 		confData = [
 			confId,
@@ -365,7 +340,6 @@ export function CCharaConfCustomAtk(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
 
 
 		CCharaConfCustomAtk.CONF_ID_PHYSICAL_DAMAGE_UP_BOSS_AND_NOT_BOSS = confId;
@@ -381,7 +355,6 @@ export function CCharaConfCustomAtk(confArray) {
 		confId++;
 
 
-
 		CCharaConfCustomAtk.CONF_ID_MAGICAL_DAMAGE_UP_BOSS_AND_NOT_BOSS = confId;
 		confData = [
 			confId,
@@ -393,7 +366,6 @@ export function CCharaConfCustomAtk(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
 
 
 		CCharaConfCustomAtk.CONF_ID_WEAPON_ATK_UP = confId;
@@ -409,7 +381,6 @@ export function CCharaConfCustomAtk(confArray) {
 		confId++;
 
 
-
 		CCharaConfCustomAtk.CONF_ID_PHYSICAL_DAMAGE_UP_ELM = confId;
 		confData = [
 			confId,
@@ -421,12 +392,6 @@ export function CCharaConfCustomAtk(confArray) {
 		];
 		this.confDataObj[confId] = confData;
 		confId++;
-
-
-
-
-
-
 
 
 		CCharaConfCustomAtk.CONF_ID_BLANK = confId;
@@ -466,7 +431,6 @@ export function CCharaConfCustomAtk(confArray) {
 		}
 
 
-
 		//----------------------------------------------------------------
 		// 性能カスタマイズ変数配列を初期化
 		//----------------------------------------------------------------
@@ -478,7 +442,6 @@ export function CCharaConfCustomAtk(confArray) {
 				this.confArray[idx] = 0;
 			}
 		}
-
 
 
 		//----------------------------------------------------------------
@@ -522,9 +485,6 @@ export function CCharaConfCustomAtk(confArray) {
 	}
 
 
-
-
-
 	/**
 	 * 設定欄テーブルを構築する（サブ　特殊欄構築用）.
 	 * （継承先でオーバーライドすること）
@@ -566,7 +526,6 @@ export function CCharaConfCustomAtk(confArray) {
 			break;
 
 
-
 		// 武器ATK、武器MATK
 		case CCharaConfCustomAtk.CONF_ID_WEAPON_ATK:
 		case CCharaConfCustomAtk.CONF_ID_WEAPON_MATK:
@@ -593,7 +552,6 @@ export function CCharaConfCustomAtk(confArray) {
 				objSelect.setAttribute(`${this.dataRtxAttributeIdPrefix}-displayname`, confData[CConfBase.CONF_DATA_INDEX_TEXT]);
 			}
 			break;
-
 
 
 		// 武器Lv
@@ -625,7 +583,6 @@ export function CCharaConfCustomAtk(confArray) {
 	}
 
 
-
 	/**
 	 * 設定値を取得する.
 	 * @param id 取得する設定のID
@@ -639,16 +596,9 @@ export function CCharaConfCustomAtk(confArray) {
 	}
 
 
-
-
-
 	// 初期化実行
 	this.InitData();
 
 
-
 }
 
-if (typeof window !== 'undefined') {
-	window.CCharaConfCustomAtk = CCharaConfCustomAtk;
-}
