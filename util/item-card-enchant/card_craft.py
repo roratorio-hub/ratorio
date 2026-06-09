@@ -49,11 +49,13 @@ if __name__ == "__main__":
     card_dat_js = []
     itemset_dat_js = []
     mig_enchlist_dat_js = []
+    timeitem_dat_js = []
 
     # card.dat.js, itemset.dat.js, enchlist.dat.js で使われている最新の ID を取得する
     card_id = getLatestIdFromCard()
     itemset_id = getLatestIdFromItemSet()
     enchant_id = getLatestId(slotinfo_list)
+    time_item_id = getLatestTimeItemId()
     
     with open(f'{script_dir}/カード・エンチャント.yaml', 'r', encoding='utf-8') as f:
         config = yaml.safe_load(f)
@@ -78,14 +80,22 @@ if __name__ == "__main__":
         card_dat_js.append(record)
         if 'None' in record:
             print(f'エラー：{enchant_info["name"]} に空のデータが挿入されました')
-        
+
+        # 単体での時限発動効果の出力
+        for time_effect in enchant_info.get('time_effects', []):
+            time_item_id += 1
+            for line in buildTimeItemRecord(time_item_id, 2, base_id, time_effect):
+                timeitem_dat_js.append(line)
+
         # card.dat.js に記述すべきセット効果の出力
         if 'set_list' in enchant_info:
             card_to_set_record = f"CardIdToSetIdMap[{base_id}] = ["
             for set_info in enchant_info['set_list']:
                 card_id += 1
-                record  = f'CardObjNew[{card_id}] = [{card_id},100,0,"","",'
-                for capability in set_info['capabilities']:
+                set_card_id = card_id
+                set_desc = set_info.get('desc', '')
+                record  = f'CardObjNew[{card_id}] = [{card_id},100,0,"","{set_desc}",'
+                for capability in set_info.get('capabilities', []):
                     record += buildCapabilityRecord(capability)
                 record += "0];"
                 card_dat_js.append(record)
@@ -95,7 +105,7 @@ if __name__ == "__main__":
         # ------------------------------------------------------
         #  itemset.dat.js
         # ------------------------------------------------------
-                
+
                 # セット条件の出力
                 itemset_id += 1
                 record = f"w_SE[{itemset_id}] = [{card_id * -1},{base_id * -1},"
@@ -109,13 +119,20 @@ if __name__ == "__main__":
                 record += "];"
                 itemset_dat_js.append(record)
                 card_to_set_record += f"{itemset_id},"
-            # EOF                
+
+                # 時限発動効果の出力
+                for time_effect in set_info.get('time_effects', []):
+                    time_item_id += 1
+                    for line in buildTimeItemRecord(time_item_id, 2, set_card_id, time_effect):
+                        timeitem_dat_js.append(line)
+            # EOF
             card_to_set_record += f"];"
             itemset_dat_js.append(card_to_set_record)
 
     OUTPUT_FILE = [
         ('card.dat.js', card_dat_js),
         ('itemset.dat.js', itemset_dat_js),
+        ('timeitem.dat.js', timeitem_dat_js),
     ]
 
     for file_name, data_array in OUTPUT_FILE:
