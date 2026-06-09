@@ -58,6 +58,10 @@ CBattleQuickControlAreaComponentManager.RebuildControls = function () {
 
 	// 設定欄を初期化
 	objRoot = document.getElementById("ID_BATTLE_QUICK_CONTROL_AREA");
+	// この設定欄を持たないページ（roro/other/ 等）では構築をスキップする
+	if (!objRoot) {
+		return;
+	}
 	HtmlRemoveAllChild(objRoot);
 
 	// 設定欄テーブルを再構築

@@ -15,4 +15,3 @@ tests/.vitest-attachments/**
 tests/node_modules/**
 tests/roro/__screenshots__/**
 tests/.npmrc
-
