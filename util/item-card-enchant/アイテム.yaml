@@ -1,439 +1,2744 @@
 item_list:
-  - name: トゥーサイドウィング
-    yomi: トゥーサイドウィング
-    type: 中段
+  - name: 傲慢のエンジェリックヘルム(ドラゴンナイト)[1]
+    yomi: ゴウマンノエンジェリックヘルム(ドラゴンナイト)
+    type: 上段
     slot: 1
     weapon_lv: 0
-    atk_or_def: 2
-    weight: 10
-    required_lv: 100
-    required_job: 全ての職業
+    atk_or_def: 10
+    weight: 50
+    required_lv: 200
+    required_job: ドラゴンナイト
     capabilities:
-      - name: ATK加算
+      - name: 一般耐性
+        value: -20
+      - name: ボス耐性
+        value: -20
+      - name: プレイヤー耐性
+        value: -13
+      - name: 全属性への物理ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: MAXHP増加
+        value: 10
+        at_refine: 7
+      - name: MAXSP増加
+        value: 10
+        at_refine: 7
+      - name: スキル固定詠唱割合減少
+        value: 100
+        at_refine: 7
+        skill: ストーンハードスキン
+      - name: スキル固定詠唱割合減少
+        value: 100
+        at_refine: 7
+        skill: リフレッシュ
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 9
+      - name: スキルダメージ増加
         value: 1
-        per_lv: 1
-      - name: MATK加算
+        per_lv: 10
+        at_refine: 9
+        skill: ドラゴニックブレス
+      - name: スキルダメージ増加
         value: 1
-        per_lv: 1
+        per_lv: 10
+        at_refine: 9
+        skill: ドラゴニックオーラ
+      - name: POW加算
+        value: 20
+        at_refine: 10
+      - name: 必中
+        value: 25
+        at_refine: 10
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 毒属性耐性
+        value: -10
+        at_refine: 10
+        at_transcendence: 1
     set_list:
       - set:
         entity_list:
           - card_name: 天地崩壊
         capabilities:
-          - name: プレイヤー耐性
-            value: 5
-          - name: 聖属性耐性
-            value: 5
-          - name: 毒属性耐性
-            value: 5
-    enchant:
-      - name: スペシャルエンチャント（タロー）
-        slot_list:
-          - slot: 4
-            refine: 0
-            enchant_list:
-              - name: スキルディレイ-15%
-              - name: 必中攻撃+25%
-              - name: Def50%無視
-              - name: Mdef50%無視
-              - name: 詠唱妨害不可
-              - name: SpecialStr
-              - name: SpecialAgi
-              - name: SpecialVit
-              - name: SpecialInt
-              - name: SpecialDex
-              - name: SpecialLuk
-              - name: 英雄の凱歌
-              - name: 厄災の魔将
-          - slot: 3
-            refine: 0
-            enchant_list:
-              - name: MaxHP+15%
-              - name: MaxSP+15%
-              - name: Def50%無視
-              - name: Mdef50%無視
-              - name: SpecialStr
-              - name: SpecialAgi
-              - name: SpecialVit
-              - name: SpecialInt
-              - name: SpecialDex
-              - name: SpecialLuk
-              - name: 固定詠唱時間-70%
-          - slot: 2
-            refine: 0
-            enchant_list:
-              - name: Str+10
-              - name: Agi+10
-              - name: Vit+10
-              - name: Int+10
-              - name: Dex+10
-              - name: Luk+10
-              - name: 完全回避+3
-              - name: 天地崩壊
-      - name: ファロスエンチャント（ベテラン遺跡細工師）
-        slot_list:
-          - slot: 4
-            refine: 0
-            enchant_list:
-              - name: スキルディレイ-15%
-              - name: 必中攻撃+25%
-              - name: Def50%無視
-              - name: Mdef50%無視
-              - name: 詠唱妨害不可
-              - name: SpecialStr
-              - name: SpecialAgi
-              - name: SpecialVit
-              - name: SpecialInt
-              - name: SpecialDex
-              - name: SpecialLuk
-              - name: 英雄の凱歌
-              - name: 厄災の魔将
-              - name: 豊穣の女神
-              - name: 起源の王
-              - name: 殺意の怨念
-              - name: 異境の統轄者
-              - name: 知識の探求者
-              - name: 最果ての支配者
-              - name: シンソウの王
-          - slot: 3
-            refine: 0
-            enchant_list:
-              - name: MaxHP+15%
-              - name: MaxSP+15%
-              - name: Def50%無視
-              - name: Mdef50%無視
-              - name: SpecialStr
-              - name: SpecialAgi
-              - name: SpecialVit
-              - name: SpecialInt
-              - name: SpecialDex
-              - name: SpecialLuk
-              - name: 固定詠唱時間-70%
-              - name: 石化耐性
-
-  - name: プライモーディアルウェポンズ
-    yomi: プライモーディアルウェポンズ
-    type: 下段
-    slot: 0
-    weapon_lv: 0
-    atk_or_def: 0
-    weight: 10
-    required_lv: 100
-    required_job: 全ての職業
-    capabilities:
-      - name: プレイヤー耐性
-        value: 3
-      - name: 小・中・大型モンスターへの物理ダメージ増加
-        value: 15
-      - name: 小・中・大型モンスターへの魔法ダメージ増加
-        value: 15
-    enchant:
-      - name: スペシャルエンチャント（ミオン）
-        slot_list:
-          - slot: 4
-            refine: 0
-            enchant_list:
-              - name: 詠唱妨害不可
-              - name: シンソウの王
-              - name: 英雄の凱歌
-              - name: 起源の王
-              - name: 殺意の怨念
-              - name: 豊穣の女神
-              - name: 厄災の魔将
-              - name: 異境の統轄者
-              - name: 知識の探求者
-              - name: 最果ての支配者
-          - slot: 3
-            refine: 0
-            enchant_list:
-              - name: 固定詠唱時間-70%
-              - name: 祈りの晩鐘
-              - name: 時間の注視者
-              - name: 悲哀の王宮
-              - name: 悪霊の儀式
-          - slot: 2
-            refine: 0
-            enchant_list:
-              - name: 覇王
-              - name: 暴走した魔力
-              - name: 大鷲の眼光
-              - name: 豪傑
-              - name: 真理の解放
-
-  - name: セレスティアルマグナニミティ
-    yomi: セレスティアルマグナニミティ
-    type: アクセサリー(2)
-    slot: 1
-    weapon_lv: 0
-    atk_or_def: 0
-    weight: 10
-    required_lv: 200
-    required_job: 4次職 拡張4次職
-    capabilities:
-      - name: ASPD増加
-        value: 15
-      - name: プレイヤー耐性
-        value: 3
-      - name: ATK加算
-        value: 1
-        per_lv: 1
-      - name: MATK加算
-        value: 1
-        per_lv: 1
-      - name: MAXHP加算
-        value: 50
-        per_lv: 1
-      - name: MAXSP加算
-        value: 5
-        per_lv: 1
-      - name: 物理ダメージ増加
-        value: 1
-        per_lv: 5
-      - name: 魔法ダメージ増加
-        value: 1
-        per_lv: 5
-    set_list:
-      - set:
-        entity_list:
-          - card_name: セレスティアルピース
-        capabilities:
-          - name: CRI加算
-            value: 25
           - name: スキルディレイ減少
-            value: 15
-          - name: 必中
-            value: 25
-    enchant:
-      - name: スペシャルエンチャント（ミオン）
-        slot_list:
-          - slot: 4
-            refine: 0
-            enchant_list:
-              - name: Def50%無視
-              - name: Mdef50%無視
-              - name: 潜在解放(ドラゴンナイトV)
-              - name: 潜在解放(アークメイジIII)
-              - name: 潜在解放(アークメイジX)
-              - name: 潜在解放(ウィンドホークIV)
-              - name: 潜在解放(ウィンドホークXII)
-              - name: 潜在解放(マイスターIV)
-              - name: 潜在解放(マイスターVI)
-              - name: 潜在解放(シャドウクロスIV)
-              - name: 潜在解放(シャドウクロスV)
-              - name: 潜在解放(カーディナルII)
-              - name: 潜在解放(カーディナルV)
-              - name: 潜在解放(インペリアルガードV)
-              - name: 潜在解放(インペリアルガードVI)
-              - name: 潜在解放(エレメンタルマスターIII)
-              - name: 潜在解放(エレメンタルマスターX)
-              - name: 潜在解放(トルバドゥール&トルヴェールIII)
-              - name: 潜在解放(トルバドゥール&トルヴェールVIII)
-              - name: 潜在解放(バイオロIII)
-              - name: 潜在解放(バイオロXII)
-              - name: 潜在解放(アビスチェイサーIII)
-              - name: 潜在解放(アビスチェイサーV)
-              - name: 潜在解放(インクイジターII)
-              - name: 潜在解放(インクイジターX)
-              - name: 潜在解放(ソウルアセティックII)
-              - name: 潜在解放(ソウルアセティックXIII)
-              - name: 潜在解放(ナイトウォッチIV)
-              - name: 潜在解放(ナイトウォッチX)
-              - name: 潜在解放(蜃気楼&不知火X)
-              - name: 潜在解放(蜃気楼&不知火XI)
-              - name: 潜在解放(天帝III)
-              - name: 潜在解放(天帝IX)
-              - name: 潜在解放(スピリットハンドラーV)
-              - name: 潜在解放(スピリットハンドラーXII)
-              - name: 潜在解放(ハイパーノービスIV)
-              - name: 潜在解放(ハイパーノービスXIII)
-              - name: 潜在解放(アリテアIV)
-              - name: 潜在解放(アリテアVIII)
-              - name: 潜在解放(アリテアXII)
-          - slot: 3
-            refine: 0
-            enchant_list:
-              - name: 詠唱妨害不可
-              - name: セレスティアルピース
-          - slot: 2
-            refine: 0
-            enchant_list:
-              - name: 詠唱妨害不可
-              - name: 固定詠唱時間-70%
+            value: 20
+          - name: スキル使用可能
+            value: 1
+            skill: ブレッシング
+            skill_lv: 10
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: ドラゴニックブレス
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: ドラゴニックオーラ
 
-  - name: マグヌス・ドミヌス
-    yomi: マグヌス・ドミヌス
-    type: 肩にかける物
+  - name: 傲慢のエンジェリックヘルム(インペリアルガード)[1]
+    yomi: ゴウマンノエンジェリックヘルム(インペリアルガード)
+    type: 上段
     slot: 1
     weapon_lv: 0
-    atk_or_def: 38
-    weight: 40
+    atk_or_def: 10
+    weight: 50
     required_lv: 200
-    required_job: 4次職 拡張4次職
+    required_job: インペリアルガード
     capabilities:
       - name: 一般耐性
-        value: 5
+        value: -20
       - name: ボス耐性
-        value: 5
+        value: -20
       - name: プレイヤー耐性
-        value: 5
-      - name: MAXHP増加
-        value: 2
+        value: -13
+      - name: 全属性への物理ダメージ増加
+        value: 4
         per_refine: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: MAXHP増加
+        value: 10
+        at_refine: 7
       - name: MAXSP増加
-        value: 2
-        per_refine: 1
-      - name: SPL加算
-        value: 1
-        per_refine: 1
-      - name: スキルディレイ減少
-        value: 25
-        at_refine: 7
-      - name: 全属性への物理ダメージ増加
         value: 10
         at_refine: 7
-      - name: 全属性への魔法ダメージ増加
-        value: 10
+      - name: スキル固定詠唱割合減少
+        value: 100
         at_refine: 7
-      - name: ASPD増加
-        value: 20
-        at_refine: 9
-      - name: 全属性への物理ダメージ増加
-        value: 15
-        at_refine: 9
-      - name: 全属性への魔法ダメージ増加
-        value: 15
-        at_refine: 9
-      - name: 小・中・大型モンスターへの物理ダメージ増加
-        value: 15
-        at_refine: 10
-      - name: 小・中・大型モンスターへの魔法ダメージ増加
-        value: 15
-        at_refine: 10
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 根源への到達
-        capabilities:
-          - name: MDEF無視
-            value: 50
-    enchant:
-      - name: スペシャルエンチャント（ネコヤン）
-        slot_list:
-          - slot: 4
-            refine: 0
-            enchant_list:
-              - name: ニヒツ
-              - name: グロウファイア
-              - name: グロウウォーター
-              - name: グロウウィンド
-              - name: グロウアース
-              - name: グロウセイント
-              - name: グロウダークネス
-              - name: グロウテレキネシス
-              - name: グロウポイズン
-          - slot: 3
-            refine: 0
-            enchant_list:
-              - name: 英雄の凱歌
-              - name: 起源の王
-              - name: 殺意の怨念
-              - name: 豊穣の女神
-              - name: 厄災の魔将
-              - name: 異境の統轄者
-              - name: 知識の探求者
-              - name: 最果ての支配者
-              - name: 悪霊の儀式
-          - slot: 2
-            refine: 0
-            enchant_list:
-              - name: 覇王
-              - name: 暴走した魔力
-              - name: 大鷲の眼光
-              - name: 根源への到達
-
-  - name: ヴェスティギアサーベラス
-    yomi: ヴェスティギアサーベラス
-    type: 靴
-    slot: 1
-    weapon_lv: 0
-    atk_or_def: 20
-    weight: 60
-    required_lv: 200
-    required_job: 4次職 拡張4次職
-    capabilities:
-      - name: 一般耐性
-        value: 5
-      - name: ボス耐性
-        value: 5
-      - name: プレイヤー耐性
-        value: 10
-      - name: 物理ダメージ増加
-        value: 40
-      - name: 魔法ダメージ増加
-        value: 40
+        skill: インスピレーション
+      - name: スキル固定詠唱割合減少
+        value: 100
+        at_refine: 7
+        skill: プレスティージ
       - name: 全基本ステータス加算
-        value: 3
-        per_refine: 1
-      - name: MAXHP増加
-        value: 15
-        at_refine: 5
-      - name: スキルディレイ減少
-        value: 15
-        at_refine: 5
-      - name: MAXHP増加
-        value: 25
-        at_refine: 7
-      - name: スキルディレイ減少
-        value: 25
-        at_refine: 7
-      - name: 物理ダメージ増加
-        value: 30
+        value: 10
         at_refine: 9
-      - name: 魔法ダメージ増加
-        value: 30
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
         at_refine: 9
+        skill: オーバースラッシュ
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: グランドジャッジメント
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: シールドシューティング
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: レイディアントスピア
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: インペリアルクロス
+      - name: POW加算
+        value: 20
+        at_refine: 10
       - name: 必中
         value: 25
         at_refine: 10
       - name: 全属性への物理ダメージ増加
-        value: 15
-        at_refine: 10
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
       - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
         value: 15
         at_refine: 10
-      - name: 小・中・大型モンスターへの物理ダメージ増加
+        at_transcendence: 1
+      - name: 毒属性耐性
+        value: -10
+        at_refine: 10
+        at_transcendence: 1
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 天地崩壊
+        capabilities:
+          - name: スキルディレイ減少
+            value: 20
+          - name: スキル使用可能
+            value: 1
+            skill: ブレッシング
+            skill_lv: 10
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: オーバースラッシュ
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: グランドジャッジメント
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: シールドシューティング
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: レイディアントスピア
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: インペリアルクロス
+
+  - name: 傲慢のエンジェリックヘルム(マイスター)[1]
+    yomi: ゴウマンノエンジェリックヘルム(マイスター)
+    type: 上段
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 10
+    weight: 50
+    required_lv: 200
+    required_job: マイスター
+    capabilities:
+      - name: 一般耐性
+        value: -20
+      - name: ボス耐性
+        value: -20
+      - name: プレイヤー耐性
+        value: -13
+      - name: 全属性への物理ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: MAXHP増加
+        value: 10
+        at_refine: 7
+      - name: MAXSP増加
+        value: 10
+        at_refine: 7
+      - name: 再使用待機時間減少
+        value: 2000
+        at_refine: 7
+        skill: アックストルネード
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 9
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: アックスストンプ
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: マイティスマッシュ
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: ラッシュクエイク
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: ラッシュストライク
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: パワフルスイング
+      - name: POW加算
+        value: 20
+        at_refine: 10
+      - name: 必中
+        value: 25
+        at_refine: 10
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
         value: 15
         at_refine: 10
-      - name: 小・中・大型モンスターへの魔法ダメージ増加
+        at_transcendence: 1
+      - name: 毒属性耐性
+        value: -10
+        at_refine: 10
+        at_transcendence: 1
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 天地崩壊
+        capabilities:
+          - name: スキルディレイ減少
+            value: 20
+          - name: スキル使用可能
+            value: 1
+            skill: ブレッシング
+            skill_lv: 10
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: アックスストンプ
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: マイティスマッシュ
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: ラッシュクエイク
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: ラッシュストライク
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: パワフルスイング
+
+  - name: 傲慢のエンジェリックヘルム(バイオロ)[1]
+    yomi: ゴウマンノエンジェリックヘルム(バイオロ)
+    type: 上段
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 10
+    weight: 50
+    required_lv: 200
+    required_job: バイオロ
+    desc: 精錬値7以上の効果（クレイジーウィードの再使用待機時間減少）はグレースカルティベイションコート装備中かつ潜在覚醒(クレイジーウィードII)と豪傑のセット効果発動時には適用されない
+    capabilities:
+      - name: 一般耐性
+        value: -20
+      - name: ボス耐性
+        value: -20
+      - name: プレイヤー耐性
+        value: -13
+      - name: 全属性への物理ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: MAXHP増加
+        value: 10
+        at_refine: 7
+      - name: MAXSP増加
+        value: 10
+        at_refine: 7
+      - name: 再使用待機時間減少
+        value: 4500
+        at_refine: 7
+        skill: クレイジーウィード
+      - name: 再使用待機時間減少
+        value: 5000
+        at_refine: 7
+        skill: デモニックファイアー
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 9
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: エクスプロッシブパウダー
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: ミステリーパウダー
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: ダストエクスプロージョン
+      - name: POW加算
+        value: 20
+        at_refine: 10
+      - name: 必中
+        value: 25
+        at_refine: 10
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
         value: 15
         at_refine: 10
-    enchant:
-      - name: スペシャルエンチャント（ネコヤン）
-        slot_list:
-          - slot: 4
-            refine: 0
-            enchant_list:
-              - name: バーン
-              - name: ゲイル
-              - name: フラッド
-              - name: クレイ
-              - name: グラッジ
-              - name: ウーア
-              - name: ベノム
-              - name: デスペリア
-              - name: セイクレッド
-              - name: 詠唱妨害不可
-              - name: Def100%無視
-              - name: Mdef100%無視
-              - name: 厄災の魔将
-              - name: 異境の統轄者
-          - slot: 3
-            refine: 0
-            enchant_list:
-              - name: 豪傑
-              - name: 真理の解放
-          - slot: 2
-            refine: 0
-            enchant_list:
-              - name: 魔喰いの顎
-              - name: 冥犬の共吠え
+        at_transcendence: 1
+      - name: 毒属性耐性
+        value: -10
+        at_refine: 10
+        at_transcendence: 1
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 天地崩壊
+        capabilities:
+          - name: スキルディレイ減少
+            value: 20
+          - name: スキル使用可能
+            value: 1
+            skill: ブレッシング
+            skill_lv: 10
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: エクスプロッシブパウダー
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: ミステリーパウダー
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: ダストエクスプロージョン
+
+  - name: 傲慢のエンジェリックヘルム(シャドウクロス)[1]
+    yomi: ゴウマンノエンジェリックヘルム(シャドウクロス)
+    type: 上段
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 10
+    weight: 50
+    required_lv: 200
+    required_job: シャドウクロス
+    capabilities:
+      - name: 一般耐性
+        value: -20
+      - name: ボス耐性
+        value: -20
+      - name: プレイヤー耐性
+        value: -13
+      - name: 全属性への物理ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: MAXHP増加
+        value: 10
+        at_refine: 7
+      - name: MAXSP増加
+        value: 10
+        at_refine: 7
+      - name: 再使用待機時間減少
+        value: 2000
+        at_refine: 7
+        skill: ダークイリュージョン
+      - name: 再使用待機時間減少
+        value: 60000
+        at_refine: 7
+        skill: ダーククロー
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 9
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: ダンシングナイフ
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: シャドウスタブ
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: エターナルスラッシュ
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: フェイタルシャドウクロー
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: クロススラッシュ
+      - name: POW加算
+        value: 20
+        at_refine: 10
+      - name: 必中
+        value: 25
+        at_refine: 10
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 毒属性耐性
+        value: -10
+        at_refine: 10
+        at_transcendence: 1
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 天地崩壊
+        capabilities:
+          - name: スキルディレイ減少
+            value: 20
+          - name: スキル使用可能
+            value: 1
+            skill: ブレッシング
+            skill_lv: 10
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: ダンシングナイフ
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: シャドウスタブ
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: エターナルスラッシュ
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: フェイタルシャドウクロー
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: クロススラッシュ
+
+  - name: 傲慢のエンジェリックヘルム(アビスチェイサー)[1]
+    yomi: ゴウマンノエンジェリックヘルム(アビスチェイサー)
+    type: 上段
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 10
+    weight: 50
+    required_lv: 200
+    required_job: アビスチェイサー
+    capabilities:
+      - name: 一般耐性
+        value: -20
+      - name: ボス耐性
+        value: -20
+      - name: プレイヤー耐性
+        value: -13
+      - name: 全属性への物理ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: MAXHP増加
+        value: 10
+        at_refine: 7
+      - name: MAXSP増加
+        value: 10
+        at_refine: 7
+      - name: スキル変動詠唱割合減少
+        value: 100
+        at_refine: 7
+        skill: フェイントボム
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 9
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: アビスダガー
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: アンラッキーラッシュ
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: デフトスタブ
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: ヒットアンドスライディング
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: チェイシングブレイク
+      - name: POW加算
+        value: 20
+        at_refine: 10
+      - name: 必中
+        value: 25
+        at_refine: 10
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 毒属性耐性
+        value: -10
+        at_refine: 10
+        at_transcendence: 1
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 天地崩壊
+        capabilities:
+          - name: スキルディレイ減少
+            value: 20
+          - name: スキル使用可能
+            value: 1
+            skill: ブレッシング
+            skill_lv: 10
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: アビスダガー
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: アンラッキーラッシュ
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: デフトスタブ
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: ヒットアンドスライディング
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: チェイシングブレイク
+
+  - name: 傲慢のエンジェリックヘルム(カーディナル)[1]
+    yomi: ゴウマンノエンジェリックヘルム(カーディナル)
+    type: 上段
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 10
+    weight: 50
+    required_lv: 200
+    required_job: カーディナル
+    capabilities:
+      - name: 一般耐性
+        value: -20
+      - name: ボス耐性
+        value: -20
+      - name: プレイヤー耐性
+        value: -13
+      - name: 全属性への物理ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: MAXHP増加
+        value: 10
+        at_refine: 7
+      - name: MAXSP増加
+        value: 10
+        at_refine: 7
+      - name: 再使用待機時間減少
+        value: 1500
+        at_refine: 7
+        skill: オラティオ
+      - name: スキル固定詠唱割合減少
+        value: 100
+        at_refine: 7
+        skill: オラティオ
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 9
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: アルビトリウム
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: ニューマティックプロセラ
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: フレーメン
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: ディヴィヌスフロス
+      - name: SPL加算
+        value: 20
+        at_refine: 10
+      - name: MDEF無視
+        value: 50
+        at_refine: 10
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 毒属性耐性
+        value: -10
+        at_refine: 10
+        at_transcendence: 1
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 天地崩壊
+        capabilities:
+          - name: スキルディレイ減少
+            value: 20
+          - name: スキル使用可能
+            value: 1
+            skill: ブレッシング
+            skill_lv: 10
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: アルビトリウム
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: ニューマティックプロセラ
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: フレーメン
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: ディヴィヌスフロス
+
+  - name: 傲慢のエンジェリックヘルム(インクイジター)[1]
+    yomi: ゴウマンノエンジェリックヘルム(インクイジター)
+    type: 上段
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 10
+    weight: 50
+    required_lv: 200
+    required_job: インクイジター
+    desc: 精錬値7以上の効果（潜龍昇天の再使用待機時間減少）はグレース天地スーツとノブレスオブリージュのセット効果発動時には適用されない
+    capabilities:
+      - name: 一般耐性
+        value: -20
+      - name: ボス耐性
+        value: -20
+      - name: プレイヤー耐性
+        value: -13
+      - name: 全属性への物理ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: MAXHP増加
+        value: 10
+        at_refine: 7
+      - name: MAXSP増加
+        value: 10
+        at_refine: 7
+      - name: 再使用待機時間減少
+        value: 25000
+        at_refine: 7
+        skill: 潜龍昇天
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 9
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: 聖油洗礼
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: 爆火神弾
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: 炎火滅魔神弾
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: 烈火気弾
+      - name: POW加算
+        value: 20
+        at_refine: 10
+      - name: 必中
+        value: 25
+        at_refine: 10
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 毒属性耐性
+        value: -10
+        at_refine: 10
+        at_transcendence: 1
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 天地崩壊
+        capabilities:
+          - name: スキルディレイ減少
+            value: 20
+          - name: スキル使用可能
+            value: 1
+            skill: ブレッシング
+            skill_lv: 10
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: 聖油洗礼
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: 爆火神弾
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: 炎火滅魔神弾
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: 烈火気弾
+
+  - name: 傲慢のエンジェリックヘルム(アークメイジ)[1]
+    yomi: ゴウマンノエンジェリックヘルム(アークメイジ)
+    type: 上段
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 10
+    weight: 50
+    required_lv: 200
+    required_job: アークメイジ
+    desc: 精錬値7以上の効果（テレキネシスインテンスの固定詠唱・再使用待機時間減少）は装備解除時にテレキネシスインテンスが解除される
+    capabilities:
+      - name: 一般耐性
+        value: -20
+      - name: ボス耐性
+        value: -20
+      - name: プレイヤー耐性
+        value: -13
+      - name: 全属性への物理ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: MAXHP増加
+        value: 10
+        at_refine: 7
+      - name: MAXSP増加
+        value: 10
+        at_refine: 7
+      - name: スキル固定詠唱割合減少
+        value: 100
+        at_refine: 7
+        skill: テレキネシスインテンス
+      - name: 再使用待機時間減少
+        value: 185000
+        at_refine: 7
+        skill: テレキネシスインテンス
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 9
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: フローラルフレアロード
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: クリムゾンアロー
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: レインオブクリスタル
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: フローズンスラッシュ
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: トルネードストーム
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: ストームキャノン
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: ストラタムトレマー
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: ロックダウン
+      - name: SPL加算
+        value: 20
+        at_refine: 10
+      - name: MDEF無視
+        value: 50
+        at_refine: 10
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 毒属性耐性
+        value: -10
+        at_refine: 10
+        at_transcendence: 1
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 天地崩壊
+        capabilities:
+          - name: スキルディレイ減少
+            value: 20
+          - name: スキル使用可能
+            value: 1
+            skill: ブレッシング
+            skill_lv: 10
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: フローラルフレアロード
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: クリムゾンアロー
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: レインオブクリスタル
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: フローズンスラッシュ
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: トルネードストーム
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: ストームキャノン
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: ストラタムトレマー
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: ロックダウン
+
+  - name: 傲慢のエンジェリックヘルム(エレメンタルマスター)[1]
+    yomi: ゴウマンノエンジェリックヘルム(エレメンタルマスター)
+    type: 上段
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 10
+    weight: 50
+    required_lv: 200
+    required_job: エレメンタルマスター
+    capabilities:
+      - name: 一般耐性
+        value: -20
+      - name: ボス耐性
+        value: -20
+      - name: プレイヤー耐性
+        value: -13
+      - name: 全属性への物理ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: MAXHP増加
+        value: 10
+        at_refine: 7
+      - name: MAXSP増加
+        value: 10
+        at_refine: 7
+      - name: スキル固定詠唱割合減少
+        value: 100
+        at_refine: 7
+        skill: サモンアグニ
+      - name: スキル固定詠唱割合減少
+        value: 100
+        at_refine: 7
+        skill: サモンアクア
+      - name: スキル固定詠唱割合減少
+        value: 100
+        at_refine: 7
+        skill: サモンベントス
+      - name: スキル固定詠唱割合減少
+        value: 100
+        at_refine: 7
+        skill: サモンテラ
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 9
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: コンフラグレーション
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: ダイヤモンドストーム
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: ライトニングランド
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: テラドライブ
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: ベナムスワンプ
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: エレメンタルバスター
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: サイキックストリーム
+      - name: SPL加算
+        value: 20
+        at_refine: 10
+      - name: MDEF無視
+        value: 50
+        at_refine: 10
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 毒属性耐性
+        value: -10
+        at_refine: 10
+        at_transcendence: 1
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 天地崩壊
+        capabilities:
+          - name: スキルディレイ減少
+            value: 20
+          - name: スキル使用可能
+            value: 1
+            skill: ブレッシング
+            skill_lv: 10
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: コンフラグレーション
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: ダイヤモンドストーム
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: ライトニングランド
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: テラドライブ
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: ベナムスワンプ
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: エレメンタルバスター
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: サイキックストリーム
+
+  - name: 傲慢のエンジェリックヘルム(ウィンドホーク)[1]
+    yomi: ゴウマンノエンジェリックヘルム(ウィンドホーク)
+    type: 上段
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 10
+    weight: 50
+    required_lv: 200
+    required_job: ウィンドホーク
+    desc: 精錬値7以上の効果（アンリミットの固定詠唱・再使用待機時間減少）は装備解除時にアンリミットが解除される
+    capabilities:
+      - name: 一般耐性
+        value: -20
+      - name: ボス耐性
+        value: -20
+      - name: プレイヤー耐性
+        value: -13
+      - name: 全属性への物理ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: MAXHP増加
+        value: 10
+        at_refine: 7
+      - name: MAXSP増加
+        value: 10
+        at_refine: 7
+      - name: スキル固定詠唱割合減少
+        value: 100
+        at_refine: 7
+        skill: アンリミット
+      - name: 再使用待機時間減少
+        value: 240000
+        at_refine: 7
+        skill: アンリミット
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 9
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: ホークブーメラン
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: ホークラッシュ
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: ワイルドウォーク
+      - name: CON加算
+        value: 20
+        at_refine: 10
+      - name: CRI加算
+        value: 25
+        at_refine: 10
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 毒属性耐性
+        value: -10
+        at_refine: 10
+        at_transcendence: 1
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 天地崩壊
+        capabilities:
+          - name: スキルディレイ減少
+            value: 20
+          - name: スキル使用可能
+            value: 1
+            skill: ブレッシング
+            skill_lv: 10
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: ホークブーメラン
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: ホークラッシュ
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: ワイルドウォーク
+
+  - name: 傲慢のエンジェリックヘルム(トルバドゥール&トルヴェール)[1]
+    yomi: ゴウマンノエンジェリックヘルム(トルバドゥールアンドトルヴェール)
+    type: 上段
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 10
+    weight: 50
+    required_lv: 200
+    required_job: トルバドゥール トルヴェール
+    desc: "精錬値7以上: 楽器の練習習得時にダンスの練習が習得Lvで発動・ダンスの練習習得時に楽器の練習が習得Lvで発動・ブラギの詩習得時は楽器または鞭装備中に幸運のキスが習得Lvで使用可能・幸運のキス習得時は楽器または鞭装備中にブラギの詩が習得Lvで使用可能"
+    capabilities:
+      - name: 一般耐性
+        value: -20
+      - name: ボス耐性
+        value: -20
+      - name: プレイヤー耐性
+        value: -13
+      - name: 全属性への物理ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: MAXHP増加
+        value: 10
+        at_refine: 7
+      - name: MAXSP増加
+        value: 10
+        at_refine: 7
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 9
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: サウンドブレンド
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: メタリックフューリー
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: リズミカルウェーブ
+      - name: SPL加算
+        value: 20
+        at_refine: 10
+      - name: MDEF無視
+        value: 50
+        at_refine: 10
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 毒属性耐性
+        value: -10
+        at_refine: 10
+        at_transcendence: 1
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 天地崩壊
+        capabilities:
+          - name: スキルディレイ減少
+            value: 20
+          - name: スキル使用可能
+            value: 1
+            skill: ブレッシング
+            skill_lv: 10
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: サウンドブレンド
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: メタリックフューリー
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: リズミカルウェーブ
+
+  - name: 傲慢のエンジェリックヘルム(天帝)[1]
+    yomi: ゴウマンノエンジェリックヘルム(テンテイ)
+    type: 上段
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 10
+    weight: 50
+    required_lv: 200
+    required_job: 天帝
+    capabilities:
+      - name: 一般耐性
+        value: -20
+      - name: ボス耐性
+        value: -20
+      - name: プレイヤー耐性
+        value: -13
+      - name: 全属性への物理ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: MAXHP増加
+        value: 10
+        at_refine: 7
+      - name: MAXSP増加
+        value: 10
+        at_refine: 7
+      - name: スキルダメージ増加
+        value: 300
+        at_refine: 7
+        skill: 太陽の温もり
+      - name: スキルダメージ増加
+        value: 300
+        at_refine: 7
+        skill: 月の温もり
+      - name: スキルダメージ増加
+        value: 300
+        at_refine: 7
+        skill: 星の温もり
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 9
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: 天地一陽
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: 太天一陽
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: 天陽
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: 天地一月
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: 太天一月
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: 天月
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: 天羅万象
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: 天気身陽
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: 天気身月
+      - name: POW加算
+        value: 20
+        at_refine: 10
+      - name: CRI加算
+        value: 25
+        at_refine: 10
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 毒属性耐性
+        value: -10
+        at_refine: 10
+        at_transcendence: 1
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 天地崩壊
+        capabilities:
+          - name: スキルディレイ減少
+            value: 20
+          - name: スキル使用可能
+            value: 1
+            skill: ブレッシング
+            skill_lv: 10
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: 天地一陽
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: 太天一陽
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: 天陽
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: 天地一月
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: 太天一月
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: 天月
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: 天羅万象
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: 天気身陽
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: 天気身月
+
+  - name: 傲慢のエンジェリックヘルム(ソウルアセティック)[1]
+    yomi: ゴウマンノエンジェリックヘルム(ソウルアセティック)
+    type: 上段
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 10
+    weight: 50
+    required_lv: 200
+    required_job: ソウルアセティック
+    capabilities:
+      - name: 一般耐性
+        value: -20
+      - name: ボス耐性
+        value: -20
+      - name: プレイヤー耐性
+        value: -13
+      - name: 全属性への物理ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: MAXHP増加
+        value: 10
+        at_refine: 7
+      - name: MAXSP増加
+        value: 10
+        at_refine: 7
+      - name: スキル固定詠唱割合減少
+        value: 100
+        at_refine: 7
+        skill: ゴーレムの魂
+      - name: スキル固定詠唱割合減少
+        value: 100
+        at_refine: 7
+        skill: 影の魂
+      - name: スキル固定詠唱割合減少
+        value: 100
+        at_refine: 7
+        skill: 鷹の魂
+      - name: スキル固定詠唱割合減少
+        value: 100
+        at_refine: 7
+        skill: 妖精の魂
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 9
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: 青龍符
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: 白虎符
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: 朱雀符
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: 玄武符
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: 四方神符
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: 四方五行陣
+      - name: SPL加算
+        value: 20
+        at_refine: 10
+      - name: MDEF無視
+        value: 50
+        at_refine: 10
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 毒属性耐性
+        value: -10
+        at_refine: 10
+        at_transcendence: 1
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 天地崩壊
+        capabilities:
+          - name: スキルディレイ減少
+            value: 20
+          - name: スキル使用可能
+            value: 1
+            skill: ブレッシング
+            skill_lv: 10
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: 青龍符
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: 白虎符
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: 朱雀符
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: 玄武符
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: 四方神符
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: 四方五行陣
+
+  - name: 傲慢のエンジェリックヘルム(ナイトウォッチ)[1]
+    yomi: ゴウマンノエンジェリックヘルム(ナイトウォッチ)
+    type: 上段
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 10
+    weight: 50
+    required_lv: 200
+    required_job: ナイトウォッチ
+    capabilities:
+      - name: 一般耐性
+        value: -20
+      - name: ボス耐性
+        value: -20
+      - name: プレイヤー耐性
+        value: -13
+      - name: 全属性への物理ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: MAXHP増加
+        value: 10
+        at_refine: 7
+      - name: MAXSP増加
+        value: 10
+        at_refine: 7
+      - name: 再使用待機時間減少
+        value: 80000
+        at_refine: 7
+        skill: ヒートバレル
+      - name: 再使用待機時間減少
+        value: 3000
+        at_refine: 7
+        skill: リッチズコイン
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 9
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: スパイラルシューティング
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: ビジラントアットナイト
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: ワイルドファイア
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: ミッドナイトフォーリン
+      - name: CON加算
+        value: 20
+        at_refine: 10
+      - name: 必中
+        value: 25
+        at_refine: 10
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 毒属性耐性
+        value: -10
+        at_refine: 10
+        at_transcendence: 1
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 天地崩壊
+        capabilities:
+          - name: スキルディレイ減少
+            value: 20
+          - name: スキル使用可能
+            value: 1
+            skill: ブレッシング
+            skill_lv: 10
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: スパイラルシューティング
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: ビジラントアットナイト
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: ワイルドファイア
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: ミッドナイトフォーリン
+
+  - name: 傲慢のエンジェリックヘルム(蜃気楼&不知火)[1]
+    yomi: ゴウマンノエンジェリックヘルム(シンキロウアンドシラヌイ)
+    type: 上段
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 10
+    weight: 50
+    required_lv: 200
+    required_job: 蜃気楼 不知火
+    capabilities:
+      - name: 一般耐性
+        value: -20
+      - name: ボス耐性
+        value: -20
+      - name: プレイヤー耐性
+        value: -13
+      - name: 全属性への物理ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: MAXHP増加
+        value: 10
+        at_refine: 7
+      - name: MAXSP増加
+        value: 10
+        at_refine: 7
+      - name: 再使用待機時間減少
+        value: 30000
+        at_refine: 7
+        skill: 十六夜
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 9
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: 苦無 -歪曲-
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: 苦無 -回転-
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: 苦無 -屈折-
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: 幻術 -苦無-
+      - name: POW加算
+        value: 20
+        at_refine: 10
+      - name: 必中
+        value: 25
+        at_refine: 10
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 毒属性耐性
+        value: -10
+        at_refine: 10
+        at_transcendence: 1
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 天地崩壊
+        capabilities:
+          - name: スキルディレイ減少
+            value: 20
+          - name: スキル使用可能
+            value: 1
+            skill: ブレッシング
+            skill_lv: 10
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: 苦無 -歪曲-
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: 苦無 -回転-
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: 苦無 -屈折-
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: 幻術 -苦無-
+
+  - name: 傲慢のエンジェリックヘルム(ハイパーノービス)[1]
+    yomi: ゴウマンノエンジェリックヘルム(ハイパーノービス)
+    type: 上段
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 10
+    weight: 50
+    required_lv: 200
+    required_job: ハイパーノービス
+    desc: 精錬値7以上の効果（天使さま助けての再使用待機時間減少）はインペリアルアーティススーツまたはグレースアーティススーツ装備時には適用されない
+    capabilities:
+      - name: 一般耐性
+        value: -20
+      - name: ボス耐性
+        value: -20
+      - name: プレイヤー耐性
+        value: -13
+      - name: 全属性への物理ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: MAXHP増加
+        value: 10
+        at_refine: 7
+      - name: MAXSP増加
+        value: 10
+        at_refine: 7
+      - name: 再使用待機時間減少
+        value: 240000
+        at_refine: 7
+        skill: 天使さま助けて
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 9
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: ユピテルサンダーストーム
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: ヘルズドライブ
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: ナパームバルカンストライク
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: メテオストームバスター
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: グラウンドグラビテーション
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: ジャックフロストノヴァ
+      - name: SPL加算
+        value: 20
+        at_refine: 10
+      - name: MDEF無視
+        value: 50
+        at_refine: 10
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 毒属性耐性
+        value: -10
+        at_refine: 10
+        at_transcendence: 1
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 天地崩壊
+        capabilities:
+          - name: スキルディレイ減少
+            value: 20
+          - name: スキル使用可能
+            value: 1
+            skill: ブレッシング
+            skill_lv: 10
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: ユピテルサンダーストーム
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: ヘルズドライブ
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: ナパームバルカンストライク
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: メテオストームバスター
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: グラウンドグラビテーション
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: ジャックフロストノヴァ
+
+  - name: 傲慢のエンジェリックヘルム(スピリットハンドラー)[1]
+    yomi: ゴウマンノエンジェリックヘルム(スピリットハンドラー)
+    type: 上段
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 10
+    weight: 50
+    required_lv: 200
+    required_job: スピリットハンドラー
+    capabilities:
+      - name: 一般耐性
+        value: -20
+      - name: ボス耐性
+        value: -20
+      - name: プレイヤー耐性
+        value: -13
+      - name: 全属性への物理ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: MAXHP増加
+        value: 10
+        at_refine: 7
+      - name: MAXSP増加
+        value: 10
+        at_refine: 7
+      - name: スキル固定詠唱割合減少
+        value: 100
+        at_refine: 7
+        skill: タロウの傷
+      - name: スキル固定詠唱割合減少
+        value: 100
+        at_refine: 7
+        skill: 群れの力
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 9
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: タイガースラッシュ
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: タイガーハウリング
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: タイガーストライク
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: タイガーバトリング
+      - name: POW加算
+        value: 20
+        at_refine: 10
+      - name: CRI加算
+        value: 25
+        at_refine: 10
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 毒属性耐性
+        value: -10
+        at_refine: 10
+        at_transcendence: 1
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 天地崩壊
+        capabilities:
+          - name: スキルディレイ減少
+            value: 20
+          - name: スキル使用可能
+            value: 1
+            skill: ブレッシング
+            skill_lv: 10
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: タイガースラッシュ
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: タイガーハウリング
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: タイガーストライク
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: タイガーバトリング
+
+  - name: 傲慢のエンジェリックヘルム(アリテア)[1]
+    yomi: ゴウマンノエンジェリックヘルム(アリテア)
+    type: 上段
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 10
+    weight: 50
+    required_lv: 200
+    required_job: アリテア
+    capabilities:
+      - name: 一般耐性
+        value: -20
+      - name: ボス耐性
+        value: -20
+      - name: プレイヤー耐性
+        value: -13
+      - name: 全属性への物理ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 4
+        per_refine: 1
+      - name: MAXHP増加
+        value: 10
+        at_refine: 7
+      - name: MAXSP増加
+        value: 10
+        at_refine: 7
+      - name: スキル固定詠唱割合減少
+        value: 100
+        at_refine: 7
+        skill: フェザースプリンクル
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 9
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: ピニオンショット
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: クイールスピア
+      - name: スキルダメージ増加
+        value: 1
+        per_lv: 10
+        at_refine: 9
+        skill: テンペストフラップ
+      - name: CON加算
+        value: 20
+        at_refine: 10
+      - name: CRI加算
+        value: 25
+        at_refine: 10
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+      - name: MAXHP増加
+        value: 15
+        at_refine: 10
+        at_transcendence: 1
+      - name: 毒属性耐性
+        value: -10
+        at_refine: 10
+        at_transcendence: 1
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 天地崩壊
+        capabilities:
+          - name: スキルディレイ減少
+            value: 20
+          - name: スキル使用可能
+            value: 1
+            skill: ブレッシング
+            skill_lv: 10
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: ピニオンショット
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: クイールスピア
+          - name: スキルダメージ増加
+            value: 1
+            per_lv: 10
+            skill: テンペストフラップ
+
+  # === 覚醒シンフル系アクセサリー ===
+  - name: 覚醒シンフルルビーリング[1]
+    yomi: カクセイシンフルルビーリング
+    type: アクセサリー(1)
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 10
+    required_lv: 200
+    required_job: ドラゴンナイト
+    capabilities:
+      - name: POW加算
+        value: 10
+      - name: ASPD増加
+        value: 10
+      - name: 必中
+        value: 25
+      - name: 物理ダメージ増加
+        value: 10
+      - name: 魔法ダメージ増加
+        value: 10
+      - name: プレイヤー耐性
+        value: -3
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_lv: 10
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_lv: 10
+
+  - name: 覚醒シンフルルビーネックレス[1]
+    yomi: カクセイシンフルルビーネックレス
+    type: アクセサリー(1)
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 10
+    required_lv: 200
+    required_job: ナイトウォッチ
+    capabilities:
+      - name: CON加算
+        value: 10
+      - name: ASPD増加
+        value: 10
+      - name: 必中
+        value: 25
+      - name: 物理ダメージ増加
+        value: 10
+      - name: 魔法ダメージ増加
+        value: 10
+      - name: プレイヤー耐性
+        value: -3
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_lv: 10
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_lv: 10
+
+  - name: 覚醒シンフルエメラルドリング[1]
+    yomi: カクセイシンフルエメラルドリング
+    type: アクセサリー(1)
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 10
+    required_lv: 200
+    required_job: トルバドゥール トルヴェール
+    capabilities:
+      - name: CON加算
+        value: 10
+      - name: ASPD増加
+        value: 10
+      - name: 必中
+        value: 25
+      - name: 物理ダメージ増加
+        value: 10
+      - name: 魔法ダメージ増加
+        value: 10
+      - name: プレイヤー耐性
+        value: -3
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_lv: 10
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_lv: 10
+
+  - name: 覚醒シンフルトパーズリング[1]
+    yomi: カクセイシンフルトパーズリング
+    type: アクセサリー(1)
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 10
+    required_lv: 200
+    required_job: シャドウクロス
+    capabilities:
+      - name: POW加算
+        value: 10
+      - name: ASPD増加
+        value: 10
+      - name: 必中
+        value: 25
+      - name: 物理ダメージ増加
+        value: 10
+      - name: 魔法ダメージ増加
+        value: 10
+      - name: プレイヤー耐性
+        value: -3
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_lv: 10
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_lv: 10
+
+  - name: 覚醒シンフルトパーズネックレス[1]
+    yomi: カクセイシンフルトパーズネックレス
+    type: アクセサリー(1)
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 10
+    required_lv: 200
+    required_job: アビスチェイサー
+    capabilities:
+      - name: SPL加算
+        value: 10
+      - name: ASPD増加
+        value: 10
+      - name: 物理ダメージ増加
+        value: 10
+      - name: 魔法ダメージ増加
+        value: 10
+      - name: プレイヤー耐性
+        value: -3
+      - name: MDEF無視
+        value: 50
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_lv: 10
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_lv: 10
+
+  - name: 覚醒シンフルアメジストリング[1]
+    yomi: カクセイシンフルアメジストリング
+    type: アクセサリー(1)
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 10
+    required_lv: 200
+    required_job: 蜃気楼 不知火
+    capabilities:
+      - name: POW加算
+        value: 10
+      - name: ASPD増加
+        value: 10
+      - name: 必中
+        value: 25
+      - name: 物理ダメージ増加
+        value: 10
+      - name: 魔法ダメージ増加
+        value: 10
+      - name: プレイヤー耐性
+        value: -3
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_lv: 10
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_lv: 10
+
+  - name: 覚醒シンフルサファイアリング[1]
+    yomi: カクセイシンフルサファイアリング
+    type: アクセサリー(1)
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 10
+    required_lv: 200
+    required_job: バイオロ
+    capabilities:
+      - name: POW加算
+        value: 10
+      - name: ASPD増加
+        value: 10
+      - name: 必中
+        value: 25
+      - name: 物理ダメージ増加
+        value: 10
+      - name: 魔法ダメージ増加
+        value: 10
+      - name: プレイヤー耐性
+        value: -3
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_lv: 10
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_lv: 10
+
+  - name: 覚醒シンフルオパールリング[1]
+    yomi: カクセイシンフルオパールリング
+    type: アクセサリー(1)
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 10
+    required_lv: 200
+    required_job: 天帝
+    capabilities:
+      - name: POW加算
+        value: 10
+      - name: CRI加算
+        value: 25
+      - name: ASPD増加
+        value: 10
+      - name: 物理ダメージ増加
+        value: 10
+      - name: 魔法ダメージ増加
+        value: 10
+      - name: プレイヤー耐性
+        value: -3
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_lv: 10
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_lv: 10
+
+  - name: 覚醒シンフルオパールネックレス[1]
+    yomi: カクセイシンフルオパールネックレス
+    type: アクセサリー(1)
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 10
+    required_lv: 200
+    required_job: ソウルアセティック
+    capabilities:
+      - name: SPL加算
+        value: 10
+      - name: ASPD増加
+        value: 10
+      - name: 物理ダメージ増加
+        value: 10
+      - name: 魔法ダメージ増加
+        value: 10
+      - name: プレイヤー耐性
+        value: -3
+      - name: MDEF無視
+        value: 50
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_lv: 10
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_lv: 10
+
+  # === 覚醒ブリリアント系アクセサリー ===
+  - name: 覚醒ブリリアントルビーリング[1]
+    yomi: カクセイブリリアントルビーリング
+    type: アクセサリー(1)
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 10
+    required_lv: 200
+    required_job: インペリアルガード
+    capabilities:
+      - name: SPL加算
+        value: 10
+      - name: ASPD増加
+        value: 10
+      - name: 物理ダメージ増加
+        value: 10
+      - name: 魔法ダメージ増加
+        value: 10
+      - name: プレイヤー耐性
+        value: -3
+      - name: MDEF無視
+        value: 50
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_lv: 10
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_lv: 10
+
+  - name: 覚醒ブリリアントアメジストリング[1]
+    yomi: カクセイブリリアントアメジストリング
+    type: アクセサリー(1)
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 10
+    required_lv: 200
+    required_job: カーディナル
+    capabilities:
+      - name: SPL加算
+        value: 10
+      - name: ASPD増加
+        value: 10
+      - name: 物理ダメージ増加
+        value: 10
+      - name: 魔法ダメージ増加
+        value: 10
+      - name: プレイヤー耐性
+        value: -3
+      - name: MDEF無視
+        value: 50
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_lv: 10
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_lv: 10
+
+  - name: 覚醒ブリリアントアメジストネックレス[1]
+    yomi: カクセイブリリアントアメジストネックレス
+    type: アクセサリー(1)
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 10
+    required_lv: 200
+    required_job: インクイジター
+    capabilities:
+      - name: POW加算
+        value: 10
+      - name: CRI加算
+        value: 25
+      - name: ASPD増加
+        value: 10
+      - name: 物理ダメージ増加
+        value: 10
+      - name: 魔法ダメージ増加
+        value: 10
+      - name: プレイヤー耐性
+        value: -3
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_lv: 10
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_lv: 10
+
+  - name: 覚醒ブリリアントエメラルドリング[1]
+    yomi: カクセイブリリアントエメラルドリング
+    type: アクセサリー(1)
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 10
+    required_lv: 200
+    required_job: ウィンドホーク
+    capabilities:
+      - name: CON加算
+        value: 10
+      - name: CRI加算
+        value: 25
+      - name: ASPD増加
+        value: 10
+      - name: 物理ダメージ増加
+        value: 10
+      - name: 魔法ダメージ増加
+        value: 10
+      - name: プレイヤー耐性
+        value: -3
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_lv: 10
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_lv: 10
+
+  - name: 覚醒ブリリアントエメラルドネックレス[1]
+    yomi: カクセイブリリアントエメラルドネックレス
+    type: アクセサリー(1)
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 10
+    required_lv: 200
+    required_job: アリテア
+    capabilities:
+      - name: SPL加算
+        value: 10
+      - name: ASPD増加
+        value: 10
+      - name: 物理ダメージ増加
+        value: 10
+      - name: 魔法ダメージ増加
+        value: 10
+      - name: プレイヤー耐性
+        value: -3
+      - name: MDEF無視
+        value: 50
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_lv: 10
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_lv: 10
+
+  - name: 覚醒ブリリアントジルコンリング[1]
+    yomi: カクセイブリリアントジルコンリング
+    type: アクセサリー(1)
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 10
+    required_lv: 200
+    required_job: ハイパーノービス
+    capabilities:
+      - name: SPL加算
+        value: 10
+      - name: ASPD増加
+        value: 10
+      - name: 物理ダメージ増加
+        value: 10
+      - name: 魔法ダメージ増加
+        value: 10
+      - name: プレイヤー耐性
+        value: -3
+      - name: MDEF無視
+        value: 50
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_lv: 10
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_lv: 10
+
+  - name: 覚醒ブリリアントジルコンネックレス[1]
+    yomi: カクセイブリリアントジルコンネックレス
+    type: アクセサリー(1)
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 10
+    required_lv: 200
+    required_job: スピリットハンドラー
+    capabilities:
+      - name: POW加算
+        value: 10
+      - name: CRI加算
+        value: 25
+      - name: ASPD増加
+        value: 10
+      - name: 物理ダメージ増加
+        value: 10
+      - name: 魔法ダメージ増加
+        value: 10
+      - name: プレイヤー耐性
+        value: -3
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_lv: 10
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_lv: 10
+
+  - name: 覚醒ブリリアントサファイアリング[1]
+    yomi: カクセイブリリアントサファイアリング
+    type: アクセサリー(1)
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 10
+    required_lv: 200
+    required_job: マイスター
+    capabilities:
+      - name: POW加算
+        value: 10
+      - name: ASPD増加
+        value: 10
+      - name: 必中
+        value: 25
+      - name: 物理ダメージ増加
+        value: 10
+      - name: 魔法ダメージ増加
+        value: 10
+      - name: プレイヤー耐性
+        value: -3
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_lv: 10
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_lv: 10
+
+  - name: 覚醒ブリリアントアクアマリンリング[1]
+    yomi: カクセイブリリアントアクアマリンリング
+    type: アクセサリー(1)
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 10
+    required_lv: 200
+    required_job: アークメイジ
+    capabilities:
+      - name: SPL加算
+        value: 10
+      - name: ASPD増加
+        value: 10
+      - name: 物理ダメージ増加
+        value: 10
+      - name: 魔法ダメージ増加
+        value: 10
+      - name: プレイヤー耐性
+        value: -3
+      - name: MDEF無視
+        value: 50
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_lv: 10
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_lv: 10
+
+  - name: 覚醒ブリリアントアクアマリンネックレス[1]
+    yomi: カクセイブリリアントアクアマリンネックレス
+    type: アクセサリー(1)
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 10
+    required_lv: 200
+    required_job: エレメンタルマスター
+    capabilities:
+      - name: SPL加算
+        value: 10
+      - name: ASPD増加
+        value: 10
+      - name: 物理ダメージ増加
+        value: 10
+      - name: 魔法ダメージ増加
+        value: 10
+      - name: プレイヤー耐性
+        value: -3
+      - name: MDEF無視
+        value: 50
+      - name: 全属性への物理ダメージ増加
+        value: 1
+        per_lv: 10
+      - name: 全属性への魔法ダメージ増加
+        value: 1
+        per_lv: 10

@@ -327,6 +327,46 @@ capabilities:
     code: 296
   - name: MDEF無視
     code: 298
+  - name: 無形モンスターのDEF無視
+    code: 300
+  - name: 不死形モンスターのDEF無視
+    code: 301
+  - name: 動物形モンスターのDEF無視
+    code: 302
+  - name: 植物形モンスターのDEF無視
+    code: 303
+  - name: 昆虫形モンスターのDEF無視
+    code: 304
+  - name: 魚貝形モンスターのDEF無視
+    code: 305
+  - name: 悪魔形モンスターのDEF無視
+    code: 306
+  - name: 人間形モンスターのDEF無視
+    code: 307
+  - name: 天使形モンスターのDEF無視
+    code: 308
+  - name: 竜形モンスターのDEF無視
+    code: 309
+  - name: 無形モンスターのMDEF無視
+    code: 310
+  - name: 不死形モンスターのMDEF無視
+    code: 311
+  - name: 動物形モンスターのMDEF無視
+    code: 312
+  - name: 植物形モンスターのMDEF無視
+    code: 313
+  - name: 昆虫形モンスターのMDEF無視
+    code: 314
+  - name: 魚貝形モンスターのMDEF無視
+    code: 315
+  - name: 悪魔形モンスターのMDEF無視
+    code: 316
+  - name: 人間形モンスターのMDEF無視
+    code: 317
+  - name: 天使形モンスターのMDEF無視
+    code: 318
+  - name: 竜形モンスターのMDEF無視
+    code: 319
   - name: 無属性魔法ダメージ増加
     code: 340
   - name: 水属性魔法ダメージ増加

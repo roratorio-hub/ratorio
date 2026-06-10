@@ -196,6 +196,8 @@ import {
          CARD_SET_ID_ENCHANT_ZODIAC_ZINBAKYUNO_SHOES,
          CARD_SET_ID_ENCHANT_ZOFUKUSARETA_ENBO_SHINEN_ARMS_V1, CARD_SET_ID_JOBSET_ACOLYTE,
          CARD_SET_ID_JOBSET_ARCHER, CARD_SET_ID_JOBSET_MAGICIAN, CARD_SET_ID_JOBSET_SAGE,
+		 CARD_ID_PRIDE_CROW_BARON,CARD_ID_PRIDE_RUNAWAY_THANATOS,CARD_SET_ID_PRIDE_THANATOS_RESENT_EIYU,
+		 CARD_SET_ID_PRIDE_THANATOS_HORROR_EIYU,
          CardObjNew
 } from './card.dat.js';
 import { BuildUpCastSimSimulateArea } from './castsim.js';
@@ -707,7 +709,9 @@ import {
          ITEM_SET_ID_YUSHANO_KUTSU_TATSUZINNO_ONO,
          ITEM_SET_ID_YUSHANO_KUTSU_TATSUZINNO_ONO_S2,
          ITEM_SET_ID_YUSHANO_KUTSU_TATSUZINNO_TSUCHI,
-         ITEM_SET_ID_YUSHANO_KUTSU_TATSUZINNO_TSUCHI_S2, ItemObjNew
+         ITEM_SET_ID_YUSHANO_KUTSU_TATSUZINNO_TSUCHI_S2, 
+		 ITEM_ID_ANGELIC_HEALM_BIOLO,ITEM_ID_ANGELIC_HEALM_INQUISITOR,ITEM_ID_ANGELIC_HEALM_HYPERNOVICE,
+		 ItemObjNew
 } from './item.dat.js';
 import { GetItemKindNameText } from './item.h.js';
 import {
@@ -8045,6 +8049,10 @@ export function StAllCalc(){
 		if ((cardCount = CardNumSearch(CARD_ID_GOPINICH)) > 0) {
 			n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_ELM_WIND] += 3 * Math.floor((SU_STR + SU_INT + SU_DEX) / 10) * cardCount;
 		}
+		// 「傲慢な暴走したタナトス」カードの強化
+		if (CardNumSearch(CARD_ID_PRIDE_RUNAWAY_THANATOS) > 0) {
+			n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_ELM_PSYCO] += 3 * Math.floor((SU_STR + SU_INT + SU_DEX) / 10);
+		}
 
 		//----------------------------------------------------------------
 		// 「オークロードの鎧　オークロードカードセット」の、ベースレベルによる効果
@@ -13101,6 +13109,11 @@ export function StAllCalc(){
 		if ((cardCount = CardNumSearch(CARD_ID_GOPINICH)) > 0) {
 			n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_MONSTER_ELM_WIND] += 3 * Math.floor((SU_STR + SU_INT + SU_DEX) / 10) * cardCount;
 		}
+		// 「傲慢な暴走したタナトス」カードの強化
+		if (CardNumSearch(CARD_ID_PRIDE_RUNAWAY_THANATOS) > 0) {
+			n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_MONSTER_ELM_PSYCO] += 3 * Math.floor((SU_STR + SU_INT + SU_DEX) / 10);
+		}
+
 		//----------------------------------------------------------------
 		// 「汚染されたダークロードカード」の、素ステータスによる強化
 		//----------------------------------------------------------------
@@ -15934,6 +15947,11 @@ export function getFixedCastTimeReductionRate() {
         }
     }
 
+	// 兜中段に装備した「傲慢なクロウバロンカード」による固定詠唱-70%
+	if (CardNumSearch(CARD_ID_PRIDE_CROW_BARON, CARD_REGION_ID_HEAD_TOP) > 0) {
+        chkary.push(70);
+	}
+
     //----------------------------------------------------------------
     // 「英雄の凱歌　フェンリルカードセット」の、職業による強化
     //----------------------------------------------------------------
@@ -17760,6 +17778,15 @@ export function ApplyAdditionalResistElement() {
             n_tok[ITEM_SP_RESIST_ELM_HOLY] -= 30;
         }
     }
+
+    // 「傲慢なタナトスの怨望」カード + 「英雄の凱歌」エンチャントによる、肩の精錬値が1上がるたびに追加される効果
+	if (CardNumSearch(CARD_SET_ID_PRIDE_THANATOS_RESENT_EIYU) > 0) {
+		n_tok[ITEM_SP_RESIST_ELM_WATER] += 7 * n_A_SHOULDER_DEF_PLUS;
+	}
+    // 「傲慢なタナトスの恐怖」カード + 「英雄の凱歌」エンチャントによる、肩の精錬値が1上がるたびに追加される効果
+	if (CardNumSearch(CARD_SET_ID_PRIDE_THANATOS_HORROR_EIYU) > 0) {
+		n_tok[ITEM_SP_RESIST_ELM_POISON] += 7 * n_A_SHOULDER_DEF_PLUS;
+	}
 
     //----------------------------------------------------------------
     // 「ブラックスミス　スキンテンパリング」の効果
@@ -24045,8 +24072,10 @@ export function GetCoolFixOfSkill(skillId) {
 	if (skillId === SKILL_ID_SENRYU_SHOTEN) {
 		// グレース天地スーツ + ノブレスオブリージュを装備しているときに
 		if (EquipNumSearch(ITEM_SET_ID_NOBLESSE_OBLIGE_GRACE_TENCHI_SUIT) != 0) {
-			// 暴食のクラウン(インクイジター) か 時間のサークレット(インクイジター) を装備していて
-			if (EquipNumSearch(ITEM_ID_GLUTTONY_CROWN_INQUISITOR) != 0 || EquipNumSearch(ITEM_ID_CIRCLET_OF_TIME_INQUISITOR) != 0) {
+			// 暴食のクラウン(インクイジター) か 時間のサークレット(インクイジター) か傲慢のエンジェリックヘルム(インクイジター)を装備していて
+			if (EquipNumSearch(ITEM_ID_GLUTTONY_CROWN_INQUISITOR) != 0 
+				|| EquipNumSearch(ITEM_ID_CIRCLET_OF_TIME_INQUISITOR) != 0
+				|| EquipNumSearch(ITEM_ID_ANGELIC_HEALM_INQUISITOR) != 0) {
 				// 上段装備の精錬値が7以上のとき
 				if (n_A_HEAD_DEF_PLUS >= 7) {
 					coolfix += 25 * 1000;
@@ -24456,12 +24485,20 @@ export function GetCoolFixOfSkill(skillId) {
 				coolfix -= 4.5  * 1000;
 			}
 		}
-		// 競合する効果の打消し
-		if (EquipNumSearch(ITEM_ID_GLUTTONY_CROWN_BIOLO) > 0 && n_A_HEAD_DEF_PLUS >= 7) {
-			// 精錬値7以上の暴食のクラウン(バイオロ)を装備時
-			if (EquipNumSearch(ITEM_ID_GRACE_CULTIVATION_COAT) > 0 || CardNumSearch(CARD_SET_ID_ENCHANT_GOKETSU_SENZAI_KAKUSEI_CRAZY_WEED) > 0) {
-				// 「グレースカルティベイションコート」または「潜在覚醒(クレイジーウィード) 」を装備時
-				coolfix += 4.5  * 1000;
+		// 競合する効果の打消し: 精錬値7以上の対象装備 + Coat/Card の組み合わせ
+		// 同様の装備が追加される場合はここに ITEM_ID_* を追加する
+		const CRAZY_WEED_CONFLICT_ITEMS = [
+			ITEM_ID_GLUTTONY_CROWN_BIOLO,
+			ITEM_ID_ANGELIC_HEALM_BIOLO,
+		];
+		const hasCrazyWeedConflictTrigger =
+			EquipNumSearch(ITEM_ID_GRACE_CULTIVATION_COAT) > 0 ||
+			CardNumSearch(CARD_SET_ID_ENCHANT_GOKETSU_SENZAI_KAKUSEI_CRAZY_WEED) > 0;
+		if (hasCrazyWeedConflictTrigger && n_A_HEAD_DEF_PLUS >= 7) {
+			for (const itemId of CRAZY_WEED_CONFLICT_ITEMS) {
+				if (EquipNumSearch(itemId) > 0) {
+					coolfix += 4.5 * 1000;
+				}
 			}
 		}
 	}
@@ -24790,8 +24827,10 @@ export function GetCoolFixOfSkill(skillId) {
 		// 競合する効果の打ち消し
 		if (EquipNumSearch(ITEM_ID_IMPERIAL_ARTIS_SUIT) != 0 || EquipNumSearch(ITEM_ID_GRACE_ARTIS_SUIT) != 0) {
 			// 「インペリアルアーティススーツ」または「グレースアーティススーツ」を装備時
-			if (EquipNumSearch(ITEM_ID_CIRCLET_OF_TIME_HYPERNOVICE) != 0 || EquipNumSearch(ITEM_ID_GLUTTONY_CROWN_HYPER_NOVICE) != 0) {
-				// 「時間のサークレット(ハイパーノービス)」または「暴食のクラウン(ハイパーノービス)」を装備時
+			if (EquipNumSearch(ITEM_ID_CIRCLET_OF_TIME_HYPERNOVICE) != 0 
+				|| EquipNumSearch(ITEM_ID_GLUTTONY_CROWN_HYPER_NOVICE) != 0
+				|| EquipNumSearch(ITEM_ID_ANGELIC_HEALM_HYPERNOVICE) != 0) {
+				// 「時間のサークレット(ハイパーノービス)」または「暴食のクラウン(ハイパーノービス)」または「傲慢のエンジェリックヘルム」を装備時
 				if (n_A_HEAD_DEF_PLUS >= 7) {
 					// 精錬値が7以上のCT減少効果を打ち消し
 					coolfix += 240 * 1000;
@@ -30053,7 +30092,10 @@ export function CheckSpDefPureStatus(spDefRemain) {
 	const idxStatus = (spDefCondition - 1) % 6;									// ステータス識別用の添字 0 ～ 5 を得る
 	// 条件を満たす場合 true
 	let boolResult = false;
-	if (spDefCondition >= 55) {
+	if (spDefCondition >= 61) {
+		// 純粋な特性ステータスが110以上の場合 (1 - 6)
+		boolResult = pureSpStatusValue[idxStatus] >= 110;
+	} else if (spDefCondition >= 55) {
 		// 純粋な特性ステータスが50以上の場合 (55 - 60)
 		boolResult = pureSpStatusValue[idxStatus] >= 50;
 	} else if (spDefCondition >= 49) {

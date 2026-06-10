@@ -75,6 +75,14 @@ AT_SP_STATUS_100_CODE = {
     'CON': 47,
     'CRT': 48,
 }
+AT_SP_STATUS_110_CODE = {
+    'POW': 61,
+    'STA': 62,
+    'WIS': 63,
+    'SPL': 64,
+    'CON': 65,
+    'CRT': 66,
+}
 AT_SP_STATUS_50_CODE = {
     'POW': 55,
     'STA': 56,
@@ -304,6 +312,15 @@ def getTimeItemRecordArray(item_id):
     return matches
 
 
+def getLatestTimeItemId():
+    """timeitem.dat.js に定義されている最も大きい ITEM_SP_TIME_OBJ インデックスを返す"""
+    pattern = r'ITEM_SP_TIME_OBJ\[(\d+)\]'
+    with open(f'{script_dir}/../../roro/m/js/timeitem.dat.js', 'r', encoding='utf-8') as file:
+        js_code = file.read()
+    matches = re.findall(pattern, js_code)
+    return max([int(id) for id in matches])
+
+
 CAPABILITY_DICT = loadCapabilityDict()
 SKILL_CODE = loadSkillDict()
 USABLE_SKILL_CODE = loadUsableSkillDict()
@@ -336,6 +353,8 @@ def buildCapabilityRecord(capability):
         at_status = AT_STATUS_130_CODE[capability['at_status_130']]
     elif 'at_sp_status_100' in capability:
         at_status = AT_SP_STATUS_100_CODE[capability['at_sp_status_100']]
+    elif 'at_sp_status_110' in capability:
+        at_status = AT_SP_STATUS_110_CODE[capability['at_sp_status_110']]
     elif 'at_sp_status_50' in capability:
         at_status = AT_SP_STATUS_50_CODE[capability['at_sp_status_50']]
     at_baselv = 0
@@ -399,6 +418,29 @@ def buildEnchantRecord(item_id, enchant_id, enchant):
         record += f']]],,[]]]]]],'
     record += f']]],[]];'
     return record
+
+
+def buildTimeItemRecord(time_item_id, src_kind, src_id, time_effect):
+    """timeitem.dat.js の追記データ（複数行）を生成する
+
+    src_kind: 1=item.dat.js, 2=card.dat.js
+    src_id  : セット効果として生成した ItemObjNew / CardObjNew のID
+    戻り値  : [const行(省略可), データ行, SORT行] の文字列リスト
+    """
+    const_name = time_effect.get('const_name', '')
+    name = time_effect.get('name', '')
+    explain = time_effect.get('explain', '')
+
+    lines = []
+    if const_name:
+        lines.append(f'export const TIME_ITEM_ID_{const_name} = {time_item_id};')
+    record = f'ITEM_SP_TIME_OBJ[{time_item_id}] = [{time_item_id},"{name}","{explain}",[[{src_kind},{src_id}]],'
+    for cap in time_effect.get('capabilities', []):
+        record += buildCapabilityRecord(cap)
+    record += '0];'
+    lines.append(record)
+    lines.append(f'ITEM_SP_TIME_OBJ_SORT.push({time_item_id});')
+    return lines
 
 
 def buildEnchantRecord2(item_list, enchant_id, enchant):

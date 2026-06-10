@@ -16,6 +16,8 @@ export class MonsterToughness {
     static DAMPING_AMPLIFY = 16;
     /** ダメージ 1/1000 */
     static DAMPING_1000 = 32;
+    /** ダメージ 1/10000 */
+    static DAMPING_10000 = 64;
 
     /** 特性リスト */
     static ToughnessList = new Map([
@@ -282,6 +284,57 @@ export class MonsterToughness {
         ["強靭な深淵の騎士団長",MonsterToughness.DAMPING_100],
         ["強靭なハイインキュバス",MonsterToughness.DAMPING_100],
         ["強靭なハイサキュバス",MonsterToughness.DAMPING_100],
+        //
+        ["傲慢なブックオブデス（インフェルノ）",MonsterToughness.DAMPING_1000],
+        ["強靭な傲慢なブックオブデス(インフェルノ）",MonsterToughness.DAMPING_1000],
+        ["強靭な傲慢なクロウバロン(インフェルノ）",MonsterToughness.DAMPING_1000],
+        ["強靭な傲慢なエルディスト(インフェルノ）",MonsterToughness.DAMPING_1000],
+        ["強靭な傲慢な共感する者(インフェルノ）",MonsterToughness.DAMPING_1000],
+        ["強靭な傲慢な幸福を与える者(インフェルノ）",MonsterToughness.DAMPING_1000],
+        ["強靭な傲慢な監視する者(インフェルノ）",MonsterToughness.DAMPING_1000],
+        ["強靭な傲慢な祈る者(インフェルノ）",MonsterToughness.DAMPING_1000],
+        ["強靭な傲慢な執行する者(インフェルノ）",MonsterToughness.DAMPING_1000],
+        ["強靭な傲慢な保護する者(インフェルノ）",MonsterToughness.DAMPING_1000],
+        ["強靭な傲慢な微笑む者(インフェルノ）",MonsterToughness.DAMPING_1000],
+        ["強靭な傲慢な慰める者(インフェルノ）",MonsterToughness.DAMPING_1000],
+        ["強靭な傲慢なヴォイドミミック(インフェルノ）",MonsterToughness.DAMPING_1000],
+        ["傲慢なクロウバロン(インフェルノ）",MonsterToughness.DAMPING_1000],
+        ["傲慢なエルディスト（インフェルノ）",MonsterToughness.DAMPING_1000],
+        ["傲慢な共感する者(インフェルノ）",MonsterToughness.DAMPING_1000],
+        ["傲慢な共感する者（インフェルノ）（取り巻き）",MonsterToughness.DAMPING_1000],
+        ["傲慢な幸福を与える者(インフェルノ）",MonsterToughness.DAMPING_1000],
+        ["傲慢な幸福を与える者（インフェルノ）（取り巻き）",MonsterToughness.DAMPING_1000],
+        ["傲慢な監視する者(インフェルノ）",MonsterToughness.DAMPING_1000],
+        ["傲慢な監視する者（インフェルノ）（取り巻き）",MonsterToughness.DAMPING_1000],
+        ["傲慢な祈る者(インフェルノ）",MonsterToughness.DAMPING_1000],
+        ["傲慢な祈る者（インフェルノ）（取り巻き）",MonsterToughness.DAMPING_1000],
+        ["傲慢な執行する者(インフェルノ）",MonsterToughness.DAMPING_1000],
+        ["傲慢な執行する者（インフェルノ）（取り巻き）",MonsterToughness.DAMPING_1000],
+        ["傲慢な保護する者(インフェルノ）",MonsterToughness.DAMPING_1000],
+        ["傲慢な保護する者（インフェルノ）（取り巻き）",MonsterToughness.DAMPING_1000],
+        ["傲慢な微笑む者(インフェルノ）",MonsterToughness.DAMPING_1000],
+        ["傲慢な微笑む者（インフェルノ）（取り巻き）",MonsterToughness.DAMPING_1000],
+        ["傲慢な慰める者(インフェルノ）",MonsterToughness.DAMPING_1000],
+        ["傲慢な慰める者（インフェルノ）（取り巻き）",MonsterToughness.DAMPING_1000],
+        ["傲慢なタナトスの憤怒（インフェルノ）（取り巻き）",MonsterToughness.DAMPING_1000],
+        ["傲慢なタナトスの絶望（インフェルノ）（取り巻き）",MonsterToughness.DAMPING_1000],
+        ["傲慢なタナトスの苦悩（インフェルノ）（取り巻き）",MonsterToughness.DAMPING_1000],
+        ["傲慢なタナトスの恐怖（インフェルノ）（取り巻き）",MonsterToughness.DAMPING_1000],
+        ["傲慢なタナトスの悲しみ（インフェルノ）（取り巻き）",MonsterToughness.DAMPING_1000],
+        ["傲慢なタナトスの憎悪（インフェルノ）（取り巻き）",MonsterToughness.DAMPING_1000],
+        ["傲慢なタナトスの後悔（インフェルノ）（取り巻き）",MonsterToughness.DAMPING_1000],
+        ["傲慢なタナトスの怨望（インフェルノ）（取り巻き）",MonsterToughness.DAMPING_1000],
+        ["傲慢なヴォイドミミック(インフェルノ）",MonsterToughness.DAMPING_1000],
+        ["傲慢なタナトス(インフェルノ）",MonsterToughness.DAMPING_10000],
+        ["傲慢な暴走したタナトス(インフェルノ）",MonsterToughness.DAMPING_10000],
+        ["傲慢なタナトスの憤怒(インフェルノ）",MonsterToughness.DAMPING_10000],
+        ["傲慢なタナトスの絶望(インフェルノ）",MonsterToughness.DAMPING_10000],
+        ["傲慢なタナトスの苦悩(インフェルノ）",MonsterToughness.DAMPING_10000],
+        ["傲慢なタナトスの恐怖(インフェルノ）",MonsterToughness.DAMPING_10000],
+        ["傲慢なタナトスの悲しみ(インフェルノ）",MonsterToughness.DAMPING_10000],
+        ["傲慢なタナトスの憎悪(インフェルノ）",MonsterToughness.DAMPING_10000],
+        ["傲慢なタナトスの後悔(インフェルノ）",MonsterToughness.DAMPING_10000],
+        ["傲慢なタナトスの怨望(インフェルノ）",MonsterToughness.DAMPING_10000],
     ]);
 
     /** 通知メッセージのリスト */
@@ -290,6 +343,7 @@ export class MonsterToughness {
         [MonsterToughness.DAMPING_10, "受けるダメージを1/10に減少する"],
         [MonsterToughness.DAMPING_100, "受けるダメージを1/100に減少する"],
         [MonsterToughness.DAMPING_1000, "受けるダメージを1/1000に減少する"],
+        [MonsterToughness.DAMPING_10000, "受けるダメージを1/10000に減少する"],
         [MonsterToughness.DAMPING_5 | MonsterToughness.DAMPING_10, "受けるダメージを1/50に減少する"],
         [MonsterToughness.DAMPING_100 | MonsterToughness.DAMPING_AMPLIFY, "受けるダメージを1/100に減少する。ギミック発動中は更に減少する"],
         [MonsterToughness.DAMPING_10 | MonsterToughness.DAMPING_TIME_DECAY, "受けるダメージを1/10に減少する。規定の時間が過ぎると等倍になる。"],
