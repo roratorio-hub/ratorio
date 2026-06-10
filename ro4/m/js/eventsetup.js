@@ -42,7 +42,7 @@ wire('OBJID_BUTTON_OPT_IN_SAVEDATA',      'click', () => optInSavedata());
 
 // クイック設定・スロット切替
 wire('OBJID_QUICK_CONTROL_EXTRACT_CHECKBOX', 'click', OnClickQuickControlSW);
-wire('OBJID_SLOT_MODE_BUTTON',               'click', OnClickSlotModeButton);
+wire('OBJID_SLOT_MODE_BUTTON',               'click', () => OnClickSlotModeButton());
 
 // アクセサリコピー
 wire('OBJID_ACCESSORY_1_COPY', 'click', () => copyAccs(1, 2));

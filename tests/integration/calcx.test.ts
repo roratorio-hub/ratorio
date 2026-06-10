@@ -702,6 +702,27 @@ describe('ro4/m/calcx.html 起動テスト', () => {
         });
         expect(errors, formatErrorMsg('セーブデータ読み込み中', errors)).toHaveLength(0);
     });
+
+    // スロットモードボタンを2回クリックしてカード⇔ランダムオプション切替を往復する。
+    // eventsetup.js で wire(id, 'click', OnClickSlotModeButton) と直接渡すと
+    // MouseEvent が jobId に渡り JobMap.getById(MouseEvent) → undefined → TypeError が
+    // 発生するリグレッションを検出する。
+    it('スロットモードボタン カード→ランダムオプション→カード 往復で未捕捉 JS 例外が発生しない', async () => {
+        const errors = await collectPageErrors(browser, async (page) => {
+            await page.goto(`${baseUrl}/ro4/m/calcx.html`, {
+                waitUntil: 'networkidle',
+                timeout: 60000,
+            });
+            await page.waitForTimeout(500);
+            // 1回目クリック: カードモード → ランダムオプションモード
+            await page.click('#OBJID_SLOT_MODE_BUTTON');
+            await page.waitForTimeout(300);
+            // 2回目クリック: ランダムオプションモード → カードモード（ここで jobData が undefined になっていた）
+            await page.click('#OBJID_SLOT_MODE_BUTTON');
+            await page.waitForTimeout(300);
+        });
+        expect(errors, formatErrorMsg('スロットモードボタン往復操作中', errors)).toHaveLength(0);
+    });
 });
 
 // ─── スイート 2: URL セーブ/ロード 往復テスト（新形式のみ）────────────────────

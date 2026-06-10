@@ -29111,6 +29111,8 @@ export function GetEquippedSPSubSPCardAndElse(spid, invalidCardIdArray, bListUp)
 		// 装備中のカードデータから、カードデータを取得
 		cardId = n_A_card[cardRegionId];
 		cardData = CardObjNew[cardId];
+		// 別ブランチ等で追加されたカードIDが現在のデータに存在しない場合はスキップ
+		if (!cardData) continue;
 
 		// 効果が無効の装備でないかを検査
 		if (invalidCardIdArray) {
