@@ -196,6 +196,7 @@ import {
          CARD_SET_ID_ENCHANT_ZODIAC_ZINBAKYUNO_SHOES,
          CARD_SET_ID_ENCHANT_ZOFUKUSARETA_ENBO_SHINEN_ARMS_V1, CARD_SET_ID_JOBSET_ACOLYTE,
          CARD_SET_ID_JOBSET_ARCHER, CARD_SET_ID_JOBSET_MAGICIAN, CARD_SET_ID_JOBSET_SAGE,
+		 CARD_ID_PRIDE_CROW_BARON,CARD_ID_PRIDE_RUNAWAY_THANATOS,
          CardObjNew
 } from './card.dat.js';
 import { BuildUpCastSimSimulateArea } from './castsim.js';
@@ -8045,6 +8046,10 @@ export function StAllCalc(){
 		if ((cardCount = CardNumSearch(CARD_ID_GOPINICH)) > 0) {
 			n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_ELM_WIND] += 3 * Math.floor((SU_STR + SU_INT + SU_DEX) / 10) * cardCount;
 		}
+		// 「傲慢な暴走したタナトス」カードの強化
+		if (CardNumSearch(CARD_ID_PRIDE_RUNAWAY_THANATOS) > 0) {
+			n_tok[ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_ELM_PSYCO] += 3 * Math.floor((SU_STR + SU_INT + SU_DEX) / 10);
+		}
 
 		//----------------------------------------------------------------
 		// 「オークロードの鎧　オークロードカードセット」の、ベースレベルによる効果
@@ -13101,6 +13106,11 @@ export function StAllCalc(){
 		if ((cardCount = CardNumSearch(CARD_ID_GOPINICH)) > 0) {
 			n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_MONSTER_ELM_WIND] += 3 * Math.floor((SU_STR + SU_INT + SU_DEX) / 10) * cardCount;
 		}
+		// 「傲慢な暴走したタナトス」カードの強化
+		if (CardNumSearch(CARD_ID_PRIDE_RUNAWAY_THANATOS) > 0) {
+			n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_MONSTER_ELM_PSYCO] += 3 * Math.floor((SU_STR + SU_INT + SU_DEX) / 10);
+		}
+
 		//----------------------------------------------------------------
 		// 「汚染されたダークロードカード」の、素ステータスによる強化
 		//----------------------------------------------------------------
@@ -15934,6 +15944,11 @@ export function getFixedCastTimeReductionRate() {
         }
     }
 
+	// 兜中段に装備した「傲慢なクロウバロンカード」による固定詠唱-70%
+	if (CardNumSearch(CARD_ID_PRIDE_CROW_BARON, CARD_REGION_ID_HEAD_TOP) > 0) {
+        chkary.push(70);
+	}
+
     //----------------------------------------------------------------
     // 「英雄の凱歌　フェンリルカードセット」の、職業による強化
     //----------------------------------------------------------------
@@ -17760,6 +17775,9 @@ export function ApplyAdditionalResistElement() {
             n_tok[ITEM_SP_RESIST_ELM_HOLY] -= 30;
         }
     }
+
+    // 「傲慢なタナトスの怨望」カード + 「英雄の凱歌」エンチャントによる、肩の精錬値が1上がるたびに追加される効果
+	// TODO
 
     //----------------------------------------------------------------
     // 「ブラックスミス　スキンテンパリング」の効果

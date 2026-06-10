@@ -1,546 +1,434 @@
 card_list:
-  - name: 潜在解放(アークメイジXXII)
-    yomi: センザイカイホウアークメイジ22
-    type: エンチャント
+  - name: 傲慢な祈る者カード
+    yomi: オウマンナイノルモノカード
+    type: 兜
+    capabilities:
+      - name: 火属性への物理ダメージ増加
+        value: 30
+      - name: 火属性への魔法ダメージ増加
+        value: 30
+      - name: 竜形モンスターのDEF無視
+        value: 30
+
+  - name: 傲慢なヴォイドミミックカード
+    yomi: オウマンナヴォイドミミックカード
+    type: 兜
+    capabilities:
+      - name: 混乱耐性
+        value: 25
+        at_sp_status_50: WIS
+      - name: 凍結耐性
+        value: 25
+        at_sp_status_50: WIS
+      - name: スタン耐性
+        value: 50
+        at_sp_status_100: WIS
+      - name: 呪い耐性
+        value: 50
+        at_sp_status_100: WIS
+
+  - name: 傲慢な共感する者カード
+    yomi: オウマンナキョウカンスルモノカード
+    type: 兜
+    capabilities:
+      - name: 水属性への物理ダメージ増加
+        value: 30
+      - name: 水属性への魔法ダメージ増加
+        value: 30
+      - name: 魚貝形モンスターのDEF無視
+        value: 30
+
+  - name: 傲慢なクロウデュークカード
+    yomi: オウマンナクロウデュークカード
+    type: 兜
+    capabilities:
+      - name: 水属性魔法ダメージ増加
+        value: 5
+      - name: 地属性魔法ダメージ増加
+        value: 5
+      - name: 聖属性魔法ダメージ増加
+        value: 5
+      - name: 念属性魔法ダメージ増加
+        value: 5
+      - name: 不死属性魔法ダメージ増加
+        value: 5
+      - name: 詠唱が中断されない
+        value: 1
+        at_equip_location: 兜中段
+
+  - name: 傲慢なクロウバロンカード
+    yomi: オウマンナクロウバロンカード
+    desc: 兜上段に装備時、固定詠唱時間 - 70%
+    type: 兜
+    capabilities:
+      - name: 火属性魔法ダメージ増加
+        value: 5
+      - name: 風属性魔法ダメージ増加
+        value: 5
+      - name: 闇属性魔法ダメージ増加
+        value: 5
+      - name: 無属性魔法ダメージ増加
+        value: 5
+      - name: 毒属性魔法ダメージ増加
+        value: 5
+
+  - name: 傲慢な幸福を与える者カード
+    yomi: オウマンナコウフクヲアタエルモノカード
+    type: 兜
+    capabilities:
+      - name: 地属性への物理ダメージ増加
+        value: 30
+      - name: 地属性への魔法ダメージ増加
+        value: 30
+      - name: 昆虫形モンスターのDEF無視
+        value: 30
+
+  - name: 傲慢なタナトスカード
+    yomi: オウマンナタナトスカード
+    type: 兜
+    capabilities:
+      - name: 火属性耐性
+        value: 10
+      - name: 聖属性耐性
+        value: 10
+      - name: 相手の防御力が高いほど与えるダメージが増加
+        value: 1
     set_list:
       - set:
         entity_list:
-          - card_name: 真理の解放
+          - card_name: 英雄の凱歌
         capabilities:
-          - name: 再使用待機時間減少
-            value: -2000
-            skill: フローラルフレアロード
-          - name: 再使用待機時間減少
-            value: -2000
-            skill: トルネードストーム
-
-  - name: 潜在解放(アークメイジXXIII)
-    yomi: センザイカイホウアークメイジ23
-    type: エンチャント
-    set_list:
+          - name: MAXHP増加
+            value: 15
+          - name: 火属性耐性
+            value: 10
       - set:
         entity_list:
-          - card_name: 真理の解放
-        desc: 魔法攻撃命中時、一定確率で20秒間、[フローズンスラッシュ]、[ロックダウン]の固定詠唱時間 -100%
-        time_effects:
-          - const_name: LATENT_ARCMAGE_23
-            name: 潜在解放(アークメイジXXIII)
-            explain: 20秒間、[フローズンスラッシュ]、[ロックダウン]の固定詠唱時間 -100%
-            capabilities:
-              - name: スキル固定詠唱割合減少
-                value: -100
-                skill: フローズンスラッシュ
-              - name: スキル固定詠唱割合減少
-                value: -100
-                skill: ロックダウン
-
-  - name: 潜在解放(アビスチェイサーXX)
-    yomi: センザイカイホウアビスチェイサー20
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 豪傑
+          - card_name: 天地崩壊
         capabilities:
-          - name: 再使用待機時間減少
-            value: -100
-            skill: デフトスタブ
+          - name: 近距離ダメージ増加
+            value: 10
+          - name: 遠距離ダメージ増加
+            value: 10
+        desc: 物理攻撃命中時、一定確率で敵に与えたダメージの3%をSPとして吸収
 
-  - name: 潜在解放(アビスチェイサーXXI)
-    yomi: センザイカイホウアビスチェイサー21
-    type: エンチャント
+  - name: 傲慢なタナトスの憎悪カード
+    yomi: オウマンナタナトスノゾウオカード
+    type: 兜
+    capabilities:
+      - name: MAXSP増加
+        value: 15
+      - name: 地属性耐性
+        value: 15
+      - name: 念属性耐性
+        value: 15
+      - name: ノックバックしない
+        value: 1
     set_list:
       - set:
         entity_list:
-          - card_name: 豪傑
-        desc: 魔法攻撃命中時、一定確率で20秒間、[オメガアビスストライク]、[アビスフレイム]の固定詠唱時間 -100%
-        time_effects:
-          - const_name: LATENT_ABISCHASER_21
-            name: 潜在解放(アビスチェイサーXXI)
-            explain: 20秒間、[オメガアビスストライク]、[アビスフレイム]の固定詠唱時間 -100%
-            capabilities:
-              - name: スキル固定詠唱割合減少
-                value: -100
-                skill: オメガアビスストライク
-              - name: スキル固定詠唱割合減少
-                value: -100
-                skill: アビスフレイム
-
-  - name: 潜在解放(アリテアXX)
-    yomi: センザイカイホウアリテア20
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 豪傑
+          - card_name: 英雄の凱歌
         capabilities:
-          - name: 再使用待機時間減少
-            value: -100
-            skill: テンペストフラップ
-
-  - name: 潜在解放(アリテアXXI)
-    yomi: センザイカイホウアリテア21
-    type: エンチャント
-    set_list:
+          - name: スタン耐性
+            value: 50
       - set:
         entity_list:
-          - card_name: 真理の解放
-        desc: 魔法攻撃命中時、一定確率で20秒間、[ロアリングピアサー]、[ロアリングチャージ]、[フューリアスストーム]の固定詠唱時間 -100%
-        time_effects:
-          - const_name: LATENT_ARITEA_21
-            name: 潜在解放(アリテアXXI)
-            explain: 20秒間、[ロアリングピアサー]、[ロアリングチャージ]、[フューリアスストーム]の固定詠唱時間 -100%
-            capabilities:
-              - name: スキル固定詠唱割合減少
-                value: -100
-                skill: ロアリングピアサー
-              - name: スキル固定詠唱割合減少
-                value: -100
-                skill: ロアリングチャージ
-              - name: スキル固定詠唱割合減少
-                value: -100
-                skill: フューリアスストーム
-
-  - name: 潜在解放(インクイジターXVII)
-    yomi: センザイカイホウインクイジター17
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 豪傑
-        desc: 物理攻撃命中時、一定確率で20秒間、[烈火気弾]の固定詠唱時間 -100%
-        time_effects:
-          - const_name: LATENT_INQUISITOR_17
-            name: 潜在解放(インクイジターXVII)
-            explain: 20秒間、[烈火気弾]の固定詠唱時間 -100%
-            capabilities:
-              - name: スキル固定詠唱割合減少
-                value: -100
-                skill: 烈火気弾
-
-  - name: 潜在解放(インペリアルガードXIX)
-    yomi: センザイカイホウインペリアルガード19
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 豪傑
+          - card_name: 天地崩壊
         capabilities:
-          - name: 再使用待機時間減少
-            value: -200
-            skill: レイディアントスピア
+          - name: スタン耐性
+            value: 50
 
-  - name: 潜在解放(インペリアルガードXX)
-    yomi: センザイカイホウインペリアルガード20
-    type: エンチャント
+  - name: 傲慢な微笑む者カード
+    yomi: オウマンナホホエムモノカード
+    type: 兜
+    capabilities:
+      - name: 風属性への物理ダメージ増加
+        value: 30
+      - name: 風属性への魔法ダメージ増加
+        value: 30
+      - name: 動物形モンスターのDEF無視
+        value: 30
+
+  - name: 傲慢なタナトスの憤怒カード
+    yomi: オウマンナタナトスノフンヌカード
+    type: 鎧
+    capabilities:
+      - name: 物理ダメージ増加
+        value: 15
     set_list:
       - set:
         entity_list:
-          - card_name: 真理の解放
-        desc: 魔法攻撃命中時、一定確率で20秒間、[ジャッジメントクロス]、[インペリアルプレッシャー]の固定詠唱時間 -100%
-        time_effects:
-          - const_name: LATENT_IMPERIALGUARD_20
-            name: 潜在解放(インペリアルガードXX)
-            explain: 20秒間、[ジャッジメントクロス]、[インペリアルプレッシャー]の固定詠唱時間 -100%
-            capabilities:
-              - name: スキル固定詠唱割合減少
-                value: -100
-                skill: ジャッジメントクロス
-              - name: スキル固定詠唱割合減少
-                value: -100
-                skill: インペリアルプレッシャー
-
-  - name: 潜在解放(ウィンドホークXXI)
-    yomi: センザイカイホウウィンドホーク21
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 豪傑
-        desc: 物理攻撃命中時、一定確率で敵にオートスペル[ワイルドウォーク]が習得Lvで発動
-
-  - name: 潜在解放(ウィンドホークXXII)
-    yomi: センザイカイホウウィンドホーク22
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 豪傑
-        desc: 物理攻撃命中時、一定確率で20秒間、[クレッシブボルト]、[ゲイルストーム]の固定詠唱時間 -100%
-        time_effects:
-          - const_name: LATENT_WINDHAWK_22
-            name: 潜在解放(ウィンドホークXXII)
-            explain: 20秒間、[クレッシブボルト]、[ゲイルストーム]の固定詠唱時間 -100%
-            capabilities:
-              - name: スキル固定詠唱割合減少
-                value: -100
-                skill: クレッシブボルト
-              - name: スキル固定詠唱割合減少
-                value: -100
-                skill: ゲイルストーム
-
-  - name: 潜在解放(エレメンタルマスターXXI)
-    yomi: センザイカイホウエレメンタルマスター21
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 真理の解放
-        desc: 魔法攻撃命中時、一定確率で20秒間、[ダイヤモンドストーム]、[テラドライブ]の固定詠唱時間 -100%
-        time_effects:
-          - const_name: LATENT_ELEMENTALMASTER_21
-            name: 潜在解放(エレメンタルマスターXXI)
-            explain: 20秒間、[ダイヤモンドストーム]、[テラドライブ]の固定詠唱時間 -100%
-            capabilities:
-              - name: スキル固定詠唱割合減少
-                value: -100
-                skill: ダイヤモンドストーム
-              - name: スキル固定詠唱割合減少
-                value: -100
-                skill: テラドライブ
-
-  - name: 潜在解放(カーディナルXXI)
-    yomi: センザイカイホウカーディナル21
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 真理の解放
+          - card_name: 英雄の凱歌
         capabilities:
-          - name: 再使用待機時間減少
-            value: -300
-            skill: ディヴィヌスフロス
-
-  - name: 潜在解放(カーディナルXXII)
-    yomi: センザイカイホウカーディナル22
-    type: エンチャント
-    set_list:
+          - name: MAXHP増加
+            value: 50
+          - name: 物理ダメージ増加
+            value: 15
       - set:
         entity_list:
-          - card_name: 真理の解放
-        desc: 魔法攻撃命中時、一定確率で20秒間、[アルビトリウム]、[ニューマティックプロセラ]、[フレーメン]、[ディヴィヌスフロス]の固定詠唱時間 -100%
-        time_effects:
-          - const_name: LATENT_CARDINAL_22
-            name: 潜在解放(カーディナルXXII)
-            explain: 20秒間、[アルビトリウム]、[ニューマティックプロセラ]、[フレーメン]、[ディヴィヌスフロス]の固定詠唱時間 -100%
-            capabilities:
-              - name: スキル固定詠唱割合減少
-                value: -100
-                skill: アルビトリウム
-              - name: スキル固定詠唱割合減少
-                value: -100
-                skill: ニューマティックプロセラ
-              - name: スキル固定詠唱割合減少
-                value: -100
-                skill: フレーメン
-              - name: スキル固定詠唱割合減少
-                value: -100
-                skill: ディヴィヌスフロス
-
-  - name: 潜在解放(シャドウクロスXIX)
-    yomi: センザイカイホウシャドウクロス19
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 豪傑
+          - card_name: 天地崩壊
         capabilities:
-          - name: 再使用待機時間減少
-            value: -100
-            skill: クロススラッシュ
+          - name: 物理ダメージ増加
+            value: 15
+        time_effects:
+          - const_name: ARROGANT_TANTHOS_FURY_PERF_FLEE_SET
+            name: タナトスの憤怒 完全回避
+            explain: 物理攻撃命中時、一定確率で10秒間、完全回避 + 95
+            capabilities:
+              - name: 完全回避
+                value: 95
 
-  - name: 潜在解放(シャドウクロスXX)
-    yomi: センザイカイホウシャドウクロス20
-    type: エンチャント
+  - name: 傲慢な暴走したタナトスカード
+    yomi: オウマンナボウソウシタタナトスカード
+    desc: 純粋なStrとIntとDexの合計が10上がる度に追加で物理・魔法攻撃時、念属性モンスターに与えるダメージ + 3%
+    type: 鎧
     set_list:
       - set:
         entity_list:
-          - card_name: 豪傑
-        desc: "[クロススラッシュ]使用時、一定確率でAP回復量 +10"
-
-  - name: 潜在解放(シャドウクロスXXI)
-    yomi: センザイカイホウシャドウクロス21
-    type: エンチャント
-    set_list:
+          - card_name: 英雄の凱歌
+        desc: 絶対に新毒状態にならない
       - set:
         entity_list:
-          - card_name: 豪傑
+          - card_name: 天地崩壊
         capabilities:
-          - name: 再使用待機時間減少
-            value: -1000
-            skill: フェイタルシャドウクロー
+          - name: MAXHP増加
+            value: 50
+          - name: 闇属性耐性
+            value: 50
 
-  - name: 潜在解放(蜃気楼&不知火XXII)
-    yomi: センザイカイホウシンキロウシラヌイ22
-    type: エンチャント
+  - name: 傲慢なタナトスの怨望カード
+    yomi: オウマンナタナトスノエンボウカード
+    type: 肩にかける物
+    capabilities:
+      - name: STR加算
+        value: 3
+        per_refine: 1
+      - name: 水属性耐性
+        value: 3
+        per_refine: 1
     set_list:
       - set:
         entity_list:
-          - card_name: 豪傑
+          - card_name: 英雄の凱歌
         capabilities:
-          - name: 再使用待機時間減少
-            value: -200
-            skill: 苦無 -歪曲-
-
-  - name: 潜在解放(蜃気楼&不知火XXIII)
-    yomi: センザイカイホウシンキロウシラヌイ23
-    type: エンチャント
-    set_list:
+          - name: 水属性耐性
+            value: 7
+            per_refine: 1
       - set:
         entity_list:
-          - card_name: 豪傑
+          - card_name: 天地崩壊
         capabilities:
-          - name: 再使用待機時間減少
-            value: -100
-            skill: 幻術 -苦無-
+          - name: 無属性耐性
+            value: 35
+        desc: "[スパイラルピアース]で受けるダメージ - 100%"
 
-  - name: 潜在解放(蜃気楼&不知火XXIV)
-    yomi: センザイカイホウシンキロウシラヌイ24
-    type: エンチャント
+  - name: 傲慢なタナトスの恐怖カード
+    yomi: オウマンナタナトスノキョウフカード
+    type: 肩にかける物
+    capabilities:
+      - name: DEX加算
+        value: 3
+        per_refine: 1
+      - name: 毒属性耐性
+        value: 3
+        per_refine: 1
     set_list:
       - set:
         entity_list:
-          - card_name: 豪傑
-        desc: 物理攻撃命中時、一定確率で20秒間、[苦無 -歪曲-]の固定詠唱時間 -100%
-        time_effects:
-          - const_name: LATENT_SHINKIROMUZINA_24
-            name: 潜在解放(蜃気楼&不知火XXIV)
-            explain: 20秒間、[苦無 -歪曲-]の固定詠唱時間 -100%
-            capabilities:
-              - name: スキル固定詠唱割合減少
-                value: -100
-                skill: 苦無 -歪曲-
-
-  - name: 潜在解放(スピリットハンドラーXXIV)
-    yomi: センザイカイホウスピリットハンドラー24
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 豪傑
-        desc: 物理攻撃命中時、一定確率で20秒間、[タイガーバトリング]の固定詠唱時間 -100%
-        time_effects:
-          - const_name: LATENT_SPIRITHANDLER_24
-            name: 潜在解放(スピリットハンドラーXXIV)
-            explain: 20秒間、[タイガーバトリング]の固定詠唱時間 -100%
-            capabilities:
-              - name: スキル固定詠唱割合減少
-                value: -100
-                skill: タイガーバトリング
-
-  - name: 潜在解放(ソウルアセティックXVII)
-    yomi: センザイカイホウソウルアセティック17
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 真理の解放
-        desc: 魔法攻撃命中時、一定確率で20秒間、[青龍符]、[白虎符]、[朱雀符]、[玄武符]、[四方神符]、[死霊浄化]、[四方五行陣]の固定詠唱時間 -100%
-        time_effects:
-          - const_name: LATENT_SOULASCETIC_17
-            name: 潜在解放(ソウルアセティックXVII)
-            explain: 20秒間、[青龍符]、[白虎符]、[朱雀符]、[玄武符]、[四方神符]、[死霊浄化]、[四方五行陣]の固定詠唱時間 -100%
-            capabilities:
-              - name: スキル固定詠唱割合減少
-                value: -100
-                skill: 青龍符
-              - name: スキル固定詠唱割合減少
-                value: -100
-                skill: 白虎符
-              - name: スキル固定詠唱割合減少
-                value: -100
-                skill: 朱雀符
-              - name: スキル固定詠唱割合減少
-                value: -100
-                skill: 玄武符
-              - name: スキル固定詠唱割合減少
-                value: -100
-                skill: 四方神符
-              - name: スキル固定詠唱割合減少
-                value: -100
-                skill: 死霊浄化
-              - name: スキル固定詠唱割合減少
-                value: -100
-                skill: 四方五行陣
-
-  - name: 潜在解放(天帝XIV)
-    yomi: センザイカイホウテンテイ14
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 豪傑
+          - card_name: 英雄の凱歌
         capabilities:
-          - name: 再使用待機時間減少
-            value: -1000
-            skill: 太天一陽
-          - name: 再使用待機時間減少
-            value: -1000
-            skill: 天陽
-
-  - name: 潜在解放(天帝XV)
-    yomi: センザイカイホウテンテイ15
-    type: エンチャント
-    set_list:
+          - name: 毒属性耐性
+            value: 7
+            per_refine: 1
       - set:
         entity_list:
-          - card_name: 豪傑
-        desc: 物理攻撃命中時、一定確率で20秒間、[太天一月]、[天月]の固定詠唱時間 -100%
-        time_effects:
-          - const_name: LATENT_TENTEI_15
-            name: 潜在解放(天帝XV)
-            explain: 20秒間、[太天一月]、[天月]の固定詠唱時間 -100%
-            capabilities:
-              - name: スキル固定詠唱割合減少
-                value: -100
-                skill: 太天一月
-              - name: スキル固定詠唱割合減少
-                value: -100
-                skill: 天月
-
-  - name: 潜在解放(ドラゴンナイトXX)
-    yomi: センザイカイホウドラゴンナイト20
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 豪傑
-        desc: 物理攻撃命中時、一定確率で20秒間、[ドラゴニックブレス]の固定詠唱時間 -100%
-        time_effects:
-          - const_name: LATENT_DRAGONKNIGHT_20
-            name: 潜在解放(ドラゴンナイトXX)
-            explain: 20秒間、[ドラゴニックブレス]の固定詠唱時間 -100%
-            capabilities:
-              - name: スキル固定詠唱割合減少
-                value: -100
-                skill: ドラゴニックブレス
-
-  - name: 潜在解放(トルバドゥール&トルヴェールXVII)
-    yomi: センザイカイホウトルバドゥールトルヴェール17
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 豪傑
-        desc: 物理攻撃命中時、一定確率で20秒間、[リズムシューティング]、[ロゼブロッサム]の固定詠唱時間 -100%
-        time_effects:
-          - const_name: LATENT_TROUBADOUR_17
-            name: 潜在解放(トルバドゥール&トルヴェールXVII)
-            explain: 20秒間、[リズムシューティング]、[ロゼブロッサム]の固定詠唱時間 -100%
-            capabilities:
-              - name: スキル固定詠唱割合減少
-                value: -100
-                skill: リズムシューティング
-              - name: スキル固定詠唱割合減少
-                value: -100
-                skill: ロゼブロッサム
-
-  - name: 潜在解放(ナイトウォッチXVIII)
-    yomi: センザイカイホウナイトウォッチ18
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 豪傑
-        desc: 物理攻撃命中時、一定確率で20秒間、[オンリーワンバレット]、[スパイラルシューティング]の固定詠唱時間 -100%
-        time_effects:
-          - const_name: LATENT_NIGHTWATCH_18
-            name: 潜在解放(ナイトウォッチXVIII)
-            explain: 20秒間、[オンリーワンバレット]、[スパイラルシューティング]の固定詠唱時間 -100%
-            capabilities:
-              - name: スキル固定詠唱割合減少
-                value: -100
-                skill: オンリーワンバレット
-              - name: スキル固定詠唱割合減少
-                value: -100
-                skill: スパイラルシューティング
-
-  - name: 潜在解放(バイオロXIX)
-    yomi: センザイカイホウバイオロ19
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 豪傑
-        desc: 物理攻撃命中時、一定確率で20秒間、[メイヘミックソーンズ]の固定詠唱時間 -100%
-        time_effects:
-          - const_name: LATENT_BIOLO_19
-            name: 潜在解放(バイオロXIX)
-            explain: 20秒間、[メイヘミックソーンズ]の固定詠唱時間 -100%
-            capabilities:
-              - name: スキル固定詠唱割合減少
-                value: -100
-                skill: メイヘミックソーンズ
-
-  - name: 潜在解放(ハイパーノービスXXI)
-    yomi: センザイカイホウハイパーノービス21
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 真理の解放
+          - card_name: 天地崩壊
         capabilities:
-          - name: 再使用待機時間減少
-            value: -2000
-            skill: グラウンドグラビテーション
+          - name: 無属性耐性
+            value: 35
+        desc: "[Mセルフディストラクション]で受けるダメージ - 100%"
 
-  - name: 潜在解放(ハイパーノービスXXIII)
-    yomi: センザイカイホウハイパーノービス23
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 真理の解放
-        desc: 魔法攻撃命中時、一定確率で20秒間、[ユピテルサンダーストーム]、[ヘルズドライブ]、[ナパームバルカンストライク]の固定詠唱時間 -100%
-        time_effects:
-          - const_name: LATENT_HYPERNOVICE_23
-            name: 潜在解放(ハイパーノービスXXIII)
-            explain: 20秒間、[ユピテルサンダーストーム]、[ヘルズドライブ]、[ナパームバルカンストライク]の固定詠唱時間 -100%
-            capabilities:
-              - name: スキル固定詠唱割合減少
-                value: -100
-                skill: ユピテルサンダーストーム
-              - name: スキル固定詠唱割合減少
-                value: -100
-                skill: ヘルズドライブ
-              - name: スキル固定詠唱割合減少
-                value: -100
-                skill: ナパームバルカンストライク
-
-  - name: 潜在解放(マイスターXIX)
-    yomi: センザイカイホウマイスター19
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 豪傑
-        desc: 物理攻撃命中時、一定確率で20秒間、[スパークブラスター]、[トリプルレーザー]、[エナジーキャノネード]の固定詠唱時間 -100%
-        time_effects:
-          - const_name: LATENT_MEISTER_19
-            name: 潜在解放(マイスターXIX)
-            explain: 20秒間、[スパークブラスター]、[トリプルレーザー]、[エナジーキャノネード]の固定詠唱時間 -100%
-            capabilities:
-              - name: スキル固定詠唱割合減少
-                value: -100
-                skill: スパークブラスター
-              - name: スキル固定詠唱割合減少
-                value: -100
-                skill: トリプルレーザー
-              - name: スキル固定詠唱割合減少
-                value: -100
-                skill: エナジーキャノネード
-
-  - name: 潜在解放(マイスターXVIII)
-    yomi: センザイカイホウマイスター18
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 豪傑
+  - name: 傲慢なタナトスの絶望カード
+    yomi: オウマンナタナトスノゼツボウカード
+    type: 肩にかける物
+    capabilities:
+      - name: 物理ダメージ増加
+        value: 10
+      - name: 火属性耐性
+        value: 50
+    time_effects:
+      - const_name: ARROGANT_TANTHOS_DESPAIR_FIRE_PHY_ATK
+        name: タナトスの絶望 火属性物理攻撃力
+        explain: 物理攻撃命中時、一定確率で10秒間、火属性物理攻撃力 + 30%（精錬値が上がるほど発動率上昇）
         capabilities:
-          - name: 再使用待機時間減少
-            value: -100
-            skill: ラッシュストライク
-          - name: 再使用待機時間減少
-            value: -100
-            skill: パワフルスイング
+          - name: 火属性物理ダメージ増加
+            value: 30
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 英雄の凱歌
+        capabilities:
+          - name: 火属性耐性
+            value: 50
+        desc: 物理攻撃命中時、一定確率で敵に与えたダメージの3%をHPとして吸収
+      - set:
+        entity_list:
+          - card_name: 天地崩壊
+        capabilities:
+          - name: スキルディレイ減少
+            value: 15
+
+  - name: 傲慢なタナトスの悲しみカード
+    yomi: オウマンナタナトスノカナシミカード
+    type: 靴
+    capabilities:
+      - name: 魔法ダメージ増加
+        value: 10
+      - name: 無形への魔法ダメージ増加
+        value: 50
+      - name: 悪魔形への魔法ダメージ増加
+        value: 50
+      - name: MAXSP増加
+        value: -50
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 英雄の凱歌
+        capabilities:
+          - name: 魔法ダメージ増加
+            value: 10
+          - name: スキル使用可能
+            value: 1
+            skill: フロストミスティ
+            skill_lv: 3
+      - set:
+        entity_list:
+          - card_name: 天地崩壊
+        desc: 1秒毎にSP + 1%
+
+  - name: 傲慢なタナトスの苦悩カード
+    yomi: オウマンナタナトスノクノウカード
+    type: 靴
+    capabilities:
+      - name: スキルダメージ増加
+        value: 25
+        skill: ロアリングピアサー
+      - name: スキルダメージ増加
+        value: 25
+        skill: ロアリングチャージ
+      - name: スキルダメージ増加
+        value: 25
+        skill: フューリアスストーム
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 英雄の凱歌
+        capabilities:
+          - name: 風属性魔法ダメージ増加
+            value: 30
+      - set:
+        entity_list:
+          - card_name: 天地崩壊
+        time_effects:
+          - const_name: ARROGANT_TANTHOS_GRIEF_ROARING_SET
+            name: タナトスの苦悩 詠唱短縮
+            explain: 魔法攻撃命中時、一定確率で20秒間、ロアリングピアサー・ロアリングチャージ・フューリアスストームの固定詠唱時間 - 100%
+
+  - name: 傲慢なエルディストカード
+    yomi: オウマンナエルディストカード
+    type: アクセサリー
+    capabilities:
+      - name: 混乱耐性
+        value: 10
+        at_sp_status_50: WIS
+      - name: 凍結耐性
+        value: 10
+        at_sp_status_50: WIS
+      - name: 混乱耐性
+        value: 15
+        at_sp_status_100: WIS
+      - name: 凍結耐性
+        value: 15
+        at_sp_status_100: WIS
+
+  - name: 傲慢な監視する者カード
+    yomi: オウマンナカンシスルモノカード
+    type: アクセサリー
+    capabilities:
+      - name: 物理ダメージ増加
+        value: 2
+      - name: 魔法ダメージ増加
+        value: 2
+      - name: スキルディレイ減少
+        value: 10
+        at_sp_status_110: CON
+
+  - name: 傲慢な執行する者カード
+    yomi: オウマンナシッコウスルモノカード
+    type: アクセサリー
+    capabilities:
+      - name: 物理ダメージ増加
+        value: 4
+      - name: 必中
+        value: 15
+        at_sp_status_110: POW
+
+  - name: 傲慢なタナトスの後悔カード
+    yomi: オウマンナタナトスノコウカイカード
+    desc: 物理・魔法攻撃命中時、一定確率で自分に発生している[狂乱]状態を解除する
+    type: アクセサリー
+    capabilities:
+      - name: MAXSP増加
+        value: 15
+      - name: 魔法ダメージ増加
+        value: 15
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 英雄の凱歌
+        capabilities:
+          - name: MDEF無視
+            value: 50
+      - set:
+        entity_list:
+          - card_name: 天地崩壊
+        capabilities:
+          - name: 沈黙耐性
+            value: 100
+
+  - name: 傲慢な慰める者カード
+    yomi: オウマンナナグサメルモノカード
+    type: アクセサリー
+    capabilities:
+      - name: クリティカルダメージ増加
+        value: 4
+      - name: CRI加算
+        value: 30
+        at_sp_status_110: CRT
+
+  - name: 傲慢なブックオブデスカード
+    yomi: オウマンナブックオブデスカード
+    type: アクセサリー
+    capabilities:
+      - name: 睡眠耐性
+        value: 10
+        at_sp_status_50: STA
+      - name: 石化耐性
+        value: 10
+        at_sp_status_50: STA
+      - name: 睡眠耐性
+        value: 15
+        at_sp_status_100: STA
+      - name: 石化耐性
+        value: 15
+        at_sp_status_100: STA
+
+  - name: 傲慢な保護する者カード
+    yomi: オウマンナホゴスルモノカード
+    type: アクセサリー
+    capabilities:
+      - name: 魔法ダメージ増加
+        value: 4
+      - name: MDEF無視
+        value: 50
+        at_sp_status_110: SPL
