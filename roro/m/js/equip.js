@@ -961,7 +961,8 @@ export function ClearEnchantOnChangeEquip(eqpRgnId, itemId) {
 			cardRgnId = cardRegionIdArrayToClear[slotidx];
 
 			// 設定状況をクリア
-			if (CardObjNew[n_A_card[cardRgnId]][CARD_DATA_INDEX_KIND] == CARD_KIND_ENCHANT) {
+			const _cardEntry = CardObjNew[n_A_card[cardRgnId]];
+			if (_cardEntry && _cardEntry[CARD_DATA_INDEX_KIND] == CARD_KIND_ENCHANT) {
 				n_A_card[cardRgnId] = CARD_ID_NONE;
 			}
 		}
