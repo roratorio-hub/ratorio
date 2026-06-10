@@ -1051,6 +1051,12 @@ CGlobalConstManager.DefinePseudoEnum(
 		"ITEM_SP_PURE_CON_50_OFFSET",	// 59
 		"ITEM_SP_PURE_CRT_50_OFFSET",	// 60
 
+		"ITEM_SP_PURE_POW_110_OFFSET",	// 61 * 10^9
+		"ITEM_SP_PURE_STA_110_OFFSET",	// 62
+		"ITEM_SP_PURE_WIS_110_OFFSET",	// 63
+		"ITEM_SP_PURE_SPL_110_OFFSET",	// 64
+		"ITEM_SP_PURE_CON_110_OFFSET",	// 65
+		"ITEM_SP_PURE_CRT_110_OFFSET",	// 66
 	],
 	1000000000,
 	1000000000
@@ -2060,6 +2066,9 @@ export function GetItemExplainText(spId, spValue) {
 	}
 	else if (55 <= pureStatus && pureStatus <= 60) {
 		condTextPureStatus += "純粋な" + spStatusName[pureStatus - 55] +  "が50以上の時、";
+	}
+	else if (61 <= pureStatus && pureStatus <= 66) {
+		condTextPureStatus += "純粋な" + spStatusName[pureStatus - 61] +  "が110以上の時、";
 	}
 	spId = pureStatusEffect;
 

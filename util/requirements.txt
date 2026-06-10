@@ -1,2 +1,4 @@
 pyyaml
 pykakasi
+requests
+beautifulsoup4

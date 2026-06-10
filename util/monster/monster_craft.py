@@ -5,7 +5,7 @@ monstergroup.dat.js と monstermap.dat.js は手作業でやる想定
 
 import csv
 import os
-from craft_util import *
+from craft_util import getLatestMonsterId
 from pykakasi import kakasi
 
 ELEMENT_ID = {
