@@ -253,8 +253,8 @@ import {
 import { COSTUME_ID_BEGINNER_BO, CostumeOBJ } from './costume.dat.js';
 import {
          ClearEquipAll, InitEquipDefaultAll, IsLongRange, OnChangeArmsTypeRight,
-         OnChangeCard, OnChangeEquip, RebuildArmorsSelect,
-         UpdateStatefullDataOnChangeEquip, changeJobSettings
+         OnChangeCard, OnChangeEquip, RebuildArmorsSelect, SetSuperNoviceFullWeapon,
+         UpdateStatefullDataOnChangeEquip, changeJobSettings, g_bSuperNoviceFullWeapon
 } from './equip.js';
 import { zokusei } from './etc.js';
 import { ClearCardSlotAll, SetCardSlotEnabilityAll } from './hmcard.js';
@@ -930,7 +930,8 @@ let g_ITEM_SP_VIT_PLUS_PLANE_value_forCalcData = 0;
 let g_ITEM_SP_INT_PLUS_PLANE_value_forCalcData = 0;
 let g_ITEM_SP_DEX_PLUS_PLANE_value_forCalcData = 0;
 let g_ITEM_SP_LUK_PLUS_PLANE_value_forCalcData = 0;
-let g_bSuperNoviceFullWeapon = undefined;
+// g_bSuperNoviceFullWeapon は equip.js が所有（import 済みのライブバインディング）。
+// 書き込みは SetSuperNoviceFullWeapon 経由で行う。
 let g_objMobConfInput = null;
 
 export function RefreshSuperNoviceFullWeapon(bFull) {
@@ -965,7 +966,7 @@ export function RefreshSuperNoviceFullWeapon(bFull) {
 	}
 
 
-	g_bSuperNoviceFullWeapon = bFull;
+	SetSuperNoviceFullWeapon(bFull);
 
 
 	// 現在の装備状況をもとに、設定変更後の装備可否を判定し、ItemID を特定しておく
@@ -1197,6 +1198,13 @@ export function RefreshSuperNoviceFullWeapon(bFull) {
 
 		OnChangeCard(-1);
 	}
+
+	// 武器・防具セレクトボックスの option をプログラム的に作り直したため、
+	// ラップしている TomSelect の表示を再初期化して同期する。
+	// （通常のジョブ/武器種変更は select の 'change' イベント経由で
+	// tom-select.custom.js が自動再初期化するが、魂トグルは change を発火せず
+	// 直接 option を再構築するため、ここで明示的に呼ぶ必要がある）
+	LoadTomSelect();
 
 }
 
@@ -30930,7 +30938,6 @@ if (typeof window !== 'undefined') {
         g_ITEM_SP_INT_PLUS_PLANE_value_forCalcData: { get: () => g_ITEM_SP_INT_PLUS_PLANE_value_forCalcData, set: v => { g_ITEM_SP_INT_PLUS_PLANE_value_forCalcData = v; }, configurable: true },
         g_ITEM_SP_DEX_PLUS_PLANE_value_forCalcData: { get: () => g_ITEM_SP_DEX_PLUS_PLANE_value_forCalcData, set: v => { g_ITEM_SP_DEX_PLUS_PLANE_value_forCalcData = v; }, configurable: true },
         g_ITEM_SP_LUK_PLUS_PLANE_value_forCalcData: { get: () => g_ITEM_SP_LUK_PLUS_PLANE_value_forCalcData, set: v => { g_ITEM_SP_LUK_PLUS_PLANE_value_forCalcData = v; }, configurable: true },
-        g_bSuperNoviceFullWeapon: { get: () => g_bSuperNoviceFullWeapon, set: v => { g_bSuperNoviceFullWeapon = v; }, configurable: true },
         g_objMobConfInput: { get: () => g_objMobConfInput, set: v => { g_objMobConfInput = v; }, configurable: true },
         g_intervalFunctionSimulateCastTime: { get: () => g_intervalFunctionSimulateCastTime, set: v => { g_intervalFunctionSimulateCastTime = v; }, configurable: true },
         g_castProgressInterval: { get: () => g_castProgressInterval, set: v => { g_castProgressInterval = v; }, configurable: true },

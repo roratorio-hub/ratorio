@@ -57,9 +57,24 @@ import { GetObjectIdRndOptKind, GetObjectIdRndOptValue, RebuildRndOptSelect, Set
 import { CItemInfoManager } from './CItemInfoManager.js';
 import { g_extraInfoDataBridge } from './CExtraInfoDataBridge.js';
 // === END AUTO-GENERATED IMPORTS ===
-var g_bSuperNoviceFullWeapon;
+// スパノビの魂による装備制限解除フラグ。本モジュールが所有者。
+// 書き手は foot.js の RefreshSuperNoviceFullWeapon（SetSuperNoviceFullWeapon 経由）と
+// 当モジュールの changeJobSettings（職変更時に undefined へリセット）。
+// ESM 移行(#1394)で foot.js 側にも別個の宣言ができてしまい状態が分断していたため、
+// 単一の所有者へ統一して live binding で共有する。
+export var g_bSuperNoviceFullWeapon;
 var n_A_WeaponType;
 var n_A_Weapon2Type;
+
+/**
+ * スパノビの魂による装備制限解除フラグを設定する。
+ * foot.js など他モジュールは import したライブバインディングを直接代入できないため、
+ * このセッター経由で更新する。
+ * @param {boolean|undefined} bFull
+ */
+export function SetSuperNoviceFullWeapon(bFull) {
+	g_bSuperNoviceFullWeapon = bFull;
+}
 
 /**
  * ステータスや装備などを初期化して職業変更する
