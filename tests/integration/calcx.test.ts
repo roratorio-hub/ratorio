@@ -411,6 +411,76 @@ describe('ro4/m/calcx.html 起動テスト', () => {
         expect(errors, formatErrorMsg('A1パッシブスキル欄操作中', errors)).toHaveLength(0);
     });
 
+    // スーパーノービスの魂 ON で装備制限が解除されることを確認する。
+    // 回帰背景: スパノビの魂フラグ g_bSuperNoviceFullWeapon は foot.js（書き手・
+    // RefreshSuperNoviceFullWeapon）と equip.js（読み手・RebuildArmorsSelect 等）で
+    // 共有される必要があるが、ESM 移行(#1394)で両ファイルに別個のモジュールローカル変数が
+    // 宣言され状態が分断していた。結果 foot.js が値を立てても equip.js 側は undefined のままで
+    // 「魂を ON にしても効果が出ない」バグになっていた。
+    // ユニットでは foot.js が巨大で import できずクロスモジュール結線を検証できないため
+    // 実機（calcx.html）で「魂 ON → 頭装備の選択肢が増える」ことを確認する。
+    it('スーパーノービスの魂 ON で頭装備の選択肢が解禁される（魂フラグのクロスモジュール同期）', async () => {
+        let result: { found: boolean; headBefore: number; headAfter: number; tsBefore: number; tsAfter: number } =
+            { found: false, headBefore: 0, headAfter: 0, tsBefore: -1, tsAfter: -1 };
+        const errors = await collectPageErrors(browser, async (page) => {
+            page.on('dialog', (dialog) => dialog.dismiss().catch(() => {}));
+            await page.goto(`${baseUrl}/ro4/m/calcx.html`, { waitUntil: 'networkidle', timeout: 60000 });
+            await page.waitForFunction(() => {
+                const j = document.getElementById('OBJID_SELECT_JOB') as HTMLSelectElement | null;
+                return !!(j && j.options.length > 1);
+            }, { timeout: 15000 }).catch(() => {});
+            await page.waitForTimeout(300);
+
+            result = await page.evaluate(async () => {
+                const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+                const fail = { found: false, headBefore: 0, headAfter: 0 };
+                const job = document.getElementById('OBJID_SELECT_JOB') as
+                    (HTMLSelectElement & { tomselect?: { setValue(v: string): void } }) | null;
+                if (!job) return fail;
+                // スーパーノービス系の職を選ぶ（魂スキルを持つ職）
+                const snOpt = Array.from(job.options).find(
+                    (o) => o.text.includes('スーパーノービス') && o.value && o.value !== '0');
+                if (!snOpt) return fail;
+                if (job.tomselect) job.tomselect.setValue(snOpt.value);
+                else { job.value = snOpt.value; job.dispatchEvent(new Event('change', { bubbles: true })); }
+                await sleep(500);
+                // A1（職固有自己支援）欄を展開して魂スキルの select を生成させる
+                const sw = document.querySelector<HTMLInputElement>('[name="A1_SKILLSW"]');
+                if (sw && !sw.checked) { sw.click(); await sleep(500); }
+                // 魂スキルの select は inline onClick に RefreshSuperNoviceFullWeapon を持つ
+                const soulSel = document.querySelector<HTMLSelectElement>('[onclick*="RefreshSuperNoviceFullWeapon"]');
+                const headSel = document.getElementById('OBJID_HEAD_TOP') as
+                    (HTMLSelectElement & { tomselect?: { options: Record<string, unknown> } }) | null;
+                if (!soulSel || !headSel) return fail;
+                const tsCount = () => headSel.tomselect ? Object.keys(headSel.tomselect.options).length : -1;
+                const headBefore = headSel.options.length;
+                const tsBefore = tsCount();
+                // 魂を ON にする（value=1 + inline onClick 発火 → RefreshSuperNoviceFullWeapon(true)）
+                soulSel.value = '1';
+                soulSel.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+                await sleep(300);
+                const headAfter = headSel.options.length;
+                const tsAfter = tsCount();
+                return { found: true, headBefore, headAfter, tsBefore, tsAfter };
+            });
+        });
+        expect(result.found, 'スーパーノービス職/魂スキルの select を操作できなかった（テスト前提の不成立）').toBe(true);
+        // 魂 ON で職業制限のある頭装備が解禁され、選択肢数が増える（生の <select>）。
+        // バグ時は equip.js 側のフラグが更新されず増えない（headAfter === headBefore）。
+        expect(
+            result.headAfter,
+            `魂 ON で頭装備の選択肢が増えていない (before=${result.headBefore}, after=${result.headAfter})`,
+        ).toBeGreaterThan(result.headBefore);
+        // TomSelect でラップされた表示も再構築後に同期され、増えた選択肢を反映する。
+        // 同期漏れ時は TomSelect 内部の option 数が更新されず tsAfter === tsBefore のまま。
+        expect(result.tsBefore, 'OBJID_HEAD_TOP が TomSelect 化されていない（テスト前提の不成立）').toBeGreaterThan(0);
+        expect(
+            result.tsAfter,
+            `魂 ON 後に TomSelect 表示が同期されていない (tsBefore=${result.tsBefore}, tsAfter=${result.tsAfter}, 生select after=${result.headAfter})`,
+        ).toBe(result.headAfter);
+        expect(errors, formatErrorMsg('スパノビの魂 ON 操作中', errors)).toHaveLength(0);
+    });
+
     // OBJID_MONSTER_MAP_AREA のカテゴリ変更でマップリストがカスケード更新されることを確認。
     // dewindow フェーズで CCustomSelectBase の onchange 属性を addEventListener に切り替えた後、
     // カテゴリ変更 → マップリスト更新 / マップ変更 → モンスターリスト更新 の連鎖が壊れていないかを確認する。
