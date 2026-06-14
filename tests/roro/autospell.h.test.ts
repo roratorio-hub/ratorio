@@ -28,9 +28,6 @@ describe('autospell.h.js', () => {
         it('AUTO_SPELL_ID_CUSTOM_BIAS が 20000', () => {
             expect(AUTO_SPELL_ID_CUSTOM_BIAS).toBe(20000);
         });
-        it('GetAutoSpellTriggerText が関数', () => {
-            expect(typeof GetAutoSpellTriggerText).toBe('function');
-        });
         it('GetAutoSpellTriggerText(0) が特定条件の時', () => {
             expect(GetAutoSpellTriggerText(0)).toBe('特定条件の時');
         });

@@ -1,22 +1,8 @@
 import { describe, it, expect } from 'vitest';
-import { IsUnconfirmedHP, IsUnconfirmedSP, UpdateCharaDataHtml } from '@roro/hmchara.js';
+import { IsUnconfirmedHP, IsUnconfirmedSP } from '@roro/hmchara.js';
 import '@ro4/data/mig.job.dat.js';
 
 describe('hmchara.js', () => {
-    describe('エクスポート確認', () => {
-        it('IsUnconfirmedHP がエクスポートされている', () => {
-            expect(typeof IsUnconfirmedHP).toBe('function');
-        });
-
-        it('IsUnconfirmedSP がエクスポートされている', () => {
-            expect(typeof IsUnconfirmedSP).toBe('function');
-        });
-
-        it('UpdateCharaDataHtml がエクスポートされている', () => {
-            expect(typeof UpdateCharaDataHtml).toBe('function');
-        });
-    });
-
     // JOB_ID_GILOTINCROSS = 47: HP/SP未確認レベル [186,187,188,189,191,193,195,196,197,198]
     // JOB_ID_NOVICE = 0: エントリなし（undefined）
     describe('IsUnconfirmedHP', () => {

@@ -49,26 +49,17 @@ describe('monster.h.js', () => {
     });
 
     describe('エクスポート確認', () => {
-        it('GetMonseterElmBasicType が関数', () => {
-            expect(typeof GetMonseterElmBasicType).toBe('function');
-        });
         it('GetMonseterElmBasicType(11) が 1（水）', () => {
             expect(GetMonseterElmBasicType(11)).toBe(1);
         });
         it('GetMonseterElmBasicType(21) が 2（地）', () => {
             expect(GetMonseterElmBasicType(21)).toBe(2);
         });
-        it('GetBossTypeText が関数', () => {
-            expect(typeof GetBossTypeText).toBe('function');
-        });
         it('GetBossTypeText(0) が一般', () => {
             expect(GetBossTypeText(0)).toBe('一般');
         });
         it('GetBossTypeText(1) が BOSS', () => {
             expect(GetBossTypeText(1)).toBe('BOSS');
-        });
-        it('GetGrassTypeText が関数', () => {
-            expect(typeof GetGrassTypeText).toBe('function');
         });
         it('GetGrassTypeText(0) がなし', () => {
             expect(GetGrassTypeText(0)).toBe('なし');

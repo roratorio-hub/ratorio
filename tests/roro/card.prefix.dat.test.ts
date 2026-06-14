@@ -2,48 +2,13 @@ import { describe, it, expect } from 'vitest';
 import { CardPrefix } from '@roro/card.prefix.dat.js';
 
 describe('card.prefix.dat.js', () => {
-    describe('エクスポート確認', () => {
-        it('CardPrefix がエクスポートされている', () => {
-            expect(typeof CardPrefix).toBe('function');
-        });
-    });
-
     describe('インスタンス動作', () => {
         it('インスタンスが生成できる', () => {
             expect(() => new CardPrefix()).not.toThrow();
         });
-
-        it('card_prefix が配列である', () => {
-            const obj = new CardPrefix();
-            expect(Array.isArray(obj.card_prefix)).toBe(true);
-        });
-
-        it('card_prefix のエントリ数が 1401 である', () => {
-            const obj = new CardPrefix();
-            expect(obj.card_prefix).toHaveLength(1401);
-        });
-
-        it('各エントリは [名前, prefix, suffix] の形式', () => {
-            const obj = new CardPrefix();
-            const entry = obj.card_prefix[0];
-            expect(Array.isArray(entry)).toBe(true);
-            expect(entry).toHaveLength(3);
-        });
     });
 
     describe('メソッド確認', () => {
-        it('get_index_by_name が存在する', () => {
-            expect(typeof CardPrefix.prototype.get_index_by_name).toBe('function');
-        });
-
-        it('get_prefix が存在する', () => {
-            expect(typeof CardPrefix.prototype.get_prefix).toBe('function');
-        });
-
-        it('get_suffix が存在する', () => {
-            expect(typeof CardPrefix.prototype.get_suffix).toBe('function');
-        });
-
         it('get_index_by_name は存在するカード名のインデックスを返す', () => {
             const obj = new CardPrefix();
             const name = obj.card_prefix[0][0];

@@ -16,12 +16,6 @@ vi.mock('@roro/item.h.js', async (importActual) => {
 });
 
 describe('rndench.js', () => {
-    describe('エクスポート確認', () => {
-        it('IsEnableRandomEnchant がエクスポートされている', () => {
-            expect(typeof IsEnableRandomEnchant).toBe('function');
-        });
-    });
-
     describe('IsEnableRandomEnchant の動作', () => {
         beforeEach(() => {
             (globalThis as any).ITEM_DATA_INDEX_WPNLV = 2;

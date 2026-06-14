@@ -20,9 +20,6 @@ describe('common.js', () => {
         it('EQUIP_REGION_ID_ACCESSORY_2 が 10 に定義される', () => {
             expect((globalThis as any).EQUIP_REGION_ID_ACCESSORY_2).toBe(10);
         });
-        it('EnumEquipRegionId が定義される', () => {
-            expect(typeof (globalThis as any).EnumEquipRegionId).toBe('object');
-        });
         it('PARAM_STR が 0 に定義される', () => {
             expect((globalThis as any).PARAM_STR).toBe(0);
         });
@@ -38,24 +35,6 @@ describe('common.js', () => {
         it('FRIENDLITY_ID_AUTO が 0 に定義される', () => {
             expect((globalThis as any).FRIENDLITY_ID_AUTO).toBe(0);
         });
-    });
-
-    describe('エクスポート確認: 関数', () => {
-        const funcs = {
-            GetConstDataKindText,
-            GetParamText,
-            GetRaceText,
-            GetElementText,
-            GetMonsterElementText,
-            GetSizeText,
-            GetStateText,
-            GetFriendlityText,
-        };
-        for (const [name, fn] of Object.entries(funcs)) {
-            it(`${name} が関数`, () => {
-                expect(typeof fn).toBe('function');
-            });
-        }
     });
 
     describe('エクスポート確認: CARD_REGION_ID_*', () => {

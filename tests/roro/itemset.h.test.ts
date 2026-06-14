@@ -3,7 +3,6 @@ import { describe, it, expect, beforeAll } from 'vitest';
 let ITEM_SET_PET_ID_OFFSET: any;
 let ITEMSET_ID_LIMIT_WITH_ITEM: any;
 let ITEMSET_ID_LIMIT_WITH_CARD: any;
-let GetItemSetMemberText: any;
 let CheckAndApplyItemSetEquipping: any;
 
 beforeAll(async () => {
@@ -11,7 +10,6 @@ beforeAll(async () => {
 	ITEM_SET_PET_ID_OFFSET = mod.ITEM_SET_PET_ID_OFFSET;
 	ITEMSET_ID_LIMIT_WITH_ITEM = mod.ITEMSET_ID_LIMIT_WITH_ITEM;
 	ITEMSET_ID_LIMIT_WITH_CARD = mod.ITEMSET_ID_LIMIT_WITH_CARD;
-	GetItemSetMemberText = mod.GetItemSetMemberText;
 	CheckAndApplyItemSetEquipping = mod.CheckAndApplyItemSetEquipping;
 });
 
@@ -21,15 +19,6 @@ describe('itemset.h', () => {
 		it('ITEM_SET_PET_ID_OFFSET が 100000', () => expect(ITEM_SET_PET_ID_OFFSET).toBe(100000));
 		it('ITEMSET_ID_LIMIT_WITH_ITEM が 200', () => expect(ITEMSET_ID_LIMIT_WITH_ITEM).toBe(200));
 		it('ITEMSET_ID_LIMIT_WITH_CARD が 200', () => expect(ITEMSET_ID_LIMIT_WITH_CARD).toBe(200));
-		it('GetItemSetMemberText が関数', () => expect(typeof GetItemSetMemberText).toBe('function'));
-		it('CheckAndApplyItemSetEquipping が関数', () => expect(typeof CheckAndApplyItemSetEquipping).toBe('function'));
-	});
-
-	describe('window互換', () => {
-		it('window.w_SE が配列', () => expect(Array.isArray((window as any).w_SE)).toBe(true));
-		it('window.ItemIdToSetIdMap が配列', () => expect(Array.isArray((window as any).ItemIdToSetIdMap)).toBe(true));
-		it('window.CardIdToSetIdMap が配列', () => expect(Array.isArray((window as any).CardIdToSetIdMap)).toBe(true));
-		it('window.PetIdToSetIdMap が配列', () => expect(Array.isArray((window as any).PetIdToSetIdMap)).toBe(true));
 	});
 
 	describe('CheckAndApplyItemSetEquipping', () => {

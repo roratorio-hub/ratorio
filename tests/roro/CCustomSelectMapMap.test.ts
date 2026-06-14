@@ -49,21 +49,6 @@ describe('CCustomSelectMapMap.js', () => {
             obj = new CCustomSelectMapMap('TEST_MAP', makeMockCategorySelect());
         });
 
-        it('GetMonsterMapData が関数', () => {
-            expect(typeof obj.GetMonsterMapData).toBe('function');
-        });
-        it('RebuildSelectDataSubGetDataArray が関数', () => {
-            expect(typeof obj.RebuildSelectDataSubGetDataArray).toBe('function');
-        });
-        it('RebuildSelectDataSubDataFilter が関数', () => {
-            expect(typeof obj.RebuildSelectDataSubDataFilter).toBe('function');
-        });
-        it('RebuildHelpAreaSub が関数', () => {
-            expect(typeof obj.RebuildHelpAreaSub).toBe('function');
-        });
-        it('Initialize が関数', () => {
-            expect(typeof obj.Initialize).toBe('function');
-        });
         it('Initialize 後に instanceIdName が設定されている', () => {
             expect(obj.instanceIdName).toBe('TEST_MAP');
         });

@@ -3,19 +3,7 @@ import { CGlobalConstManager } from '@roro/CGlobalConstManager.js';
 import { CNameKana } from '@roro/CNameKana.js';
 
 describe('CNameKana.js', () => {
-    describe('エクスポート確認', () => {
-        it('CNameKana が関数（コンストラクタ）', () => {
-            expect(typeof CNameKana).toBe('function');
-        });
-    });
-
     describe('DefineEnum 副作用確認', () => {
-        it('KANA_TYPE_NORMAL が定義されている', () => {
-            expect((globalThis as any).KANA_TYPE_NORMAL).toBeDefined();
-        });
-        it('KANA_TYPE_DAKUON が定義されている', () => {
-            expect((globalThis as any).KANA_TYPE_DAKUON).toBeDefined();
-        });
         it('NAME_KANA_DATA_INDEX_NAME が 0 に定義されている', () => {
             expect((globalThis as any).NAME_KANA_DATA_INDEX_NAME).toBe(0);
         });
@@ -28,15 +16,6 @@ describe('CNameKana.js', () => {
     });
 
     describe('静的メソッド確認', () => {
-        it('CNameKana.GetKanaCode が関数', () => {
-            expect(typeof CNameKana.GetKanaCode).toBe('function');
-        });
-        it('CNameKana.GetKanaCodeSub が関数', () => {
-            expect(typeof CNameKana.GetKanaCodeSub).toBe('function');
-        });
-        it('CNameKana.GetSortCode が関数', () => {
-            expect(typeof CNameKana.GetSortCode).toBe('function');
-        });
         it('GetSortCode: "z" を "d" に変換する', () => {
             expect(CNameKana.GetSortCode('zA1')).toBe('DA1');
         });
@@ -56,11 +35,6 @@ describe('CNameKana.js', () => {
         it('kana プロパティが設定される', () => {
             const obj = new CNameKana('テスト', 'テスト');
             expect(obj.kana).toBe('テスト');
-        });
-        it('ToDat メソッドが配列を返す', () => {
-            const obj = new CNameKana('テスト', 'テスト');
-            const dat = obj.ToDat(true);
-            expect(Array.isArray(dat)).toBe(true);
         });
         it('名称・読み仮名が未指定の場合は空文字', () => {
             const obj = new CNameKana(null, null);

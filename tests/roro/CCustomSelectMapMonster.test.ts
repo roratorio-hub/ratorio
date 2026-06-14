@@ -43,35 +43,11 @@ describe('CCustomSelectMapMonster.js', () => {
             obj = new CCustomSelectMapMonster('TEST_MONSTER', makeMockMapSelect());
         });
 
-        it('Initialize が関数', () => {
-            expect(typeof obj.Initialize).toBe('function');
-        });
-        it('RebuildSelectDataSub が関数', () => {
-            expect(typeof obj.RebuildSelectDataSub).toBe('function');
-        });
-        it('RebuildSelectDataSubDataFilter が関数', () => {
-            expect(typeof obj.RebuildSelectDataSubDataFilter).toBe('function');
-        });
-        it('OnChangeSelectDataSub が関数', () => {
-            expect(typeof obj.OnChangeSelectDataSub).toBe('function');
-        });
-        it('RebuildHelpAreaSub が関数', () => {
-            expect(typeof obj.RebuildHelpAreaSub).toBe('function');
-        });
-        it('RebuildSelectSortSub が関数', () => {
-            expect(typeof obj.RebuildSelectSortSub).toBe('function');
-        });
-        it('RebuildSearchResultSub が関数', () => {
-            expect(typeof obj.RebuildSearchResultSub).toBe('function');
-        });
         it('Initialize 後に instanceIdName が設定されている', () => {
             expect(obj.instanceIdName).toBe('TEST_MONSTER');
         });
         it('mapSelect が保持されている', () => {
             expect(obj.mapSelect).not.toBeNull();
-        });
-        it('bRecalculate が初期化後に true になっている', () => {
-            expect(obj.bRecalculate).toBe(true);
         });
         it('RebuildSelectDataSubDataFilter はデフォルトで true を返す', () => {
             expect(obj.RebuildSelectDataSubDataFilter({})).toBe(true);

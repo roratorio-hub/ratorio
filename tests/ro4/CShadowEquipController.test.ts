@@ -8,7 +8,9 @@ beforeAll(async () => {
         querySelectorAll: vi.fn().mockReturnValue([]),
         querySelector: vi.fn().mockReturnValue(null),
     };
-    vi.spyOn(document, 'getElementById').mockReturnValue(mockRoot as any);
+    vi.spyOn(document, 'getElementById').mockImplementation((id) =>
+        id === 'OBJID_SHADOW_EQUIPS_MIG' ? (mockRoot as any) : null
+    );
     const mod = await import('@ro4/CShadowEquipController.js');
     CShadowEquipController = mod.CShadowEquipController;
     g_shadowEquipController = mod.g_shadowEquipController;
@@ -16,26 +18,8 @@ beforeAll(async () => {
 
 describe('CShadowEquipController.js', () => {
     describe('エクスポート確認', () => {
-        it('CShadowEquipController クラスがエクスポートされている', () => {
-            expect(typeof CShadowEquipController).toBe('function');
-        });
         it('g_shadowEquipController がインスタンスである', () => {
             expect(g_shadowEquipController).toBeInstanceOf(CShadowEquipController);
-        });
-    });
-
-    describe('静的 getter 確認', () => {
-        it('EQPRGN_NAME_ARMS_RIGHT が文字列', () => {
-            expect(typeof CShadowEquipController.EQPRGN_NAME_ARMS_RIGHT).toBe('string');
-        });
-        it('EQPRGN_NAME_ARMS_LEFT が文字列', () => {
-            expect(typeof CShadowEquipController.EQPRGN_NAME_ARMS_LEFT).toBe('string');
-        });
-        it('EQPRGN_NAME_HEAD_TOP が文字列', () => {
-            expect(typeof CShadowEquipController.EQPRGN_NAME_HEAD_TOP).toBe('string');
-        });
-        it('EQPRGN_NAME_BODY が文字列', () => {
-            expect(typeof CShadowEquipController.EQPRGN_NAME_BODY).toBe('string');
         });
     });
 

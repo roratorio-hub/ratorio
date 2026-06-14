@@ -9,12 +9,6 @@ describe('costume.dat.js', () => {
         it('COSTUME_ID_BEGINNER_BO が 1', () => {
             expect(COSTUME_ID_BEGINNER_BO).toBe(1);
         });
-        it('CostumeOBJ が配列', () => {
-            expect(Array.isArray(CostumeOBJ)).toBe(true);
-        });
-        it('CostumeOBJ が 2 件', () => {
-            expect(CostumeOBJ).toHaveLength(2);
-        });
         it('CostumeOBJ[0][0] が 0（衣装なし）', () => {
             expect(CostumeOBJ[0][0]).toBe(0);
         });

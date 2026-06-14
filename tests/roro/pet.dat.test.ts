@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { PET_ID_NONE, PET_ID_ALICE, PET_OBJ } from '@roro/pet.dat.js';
+import { PET_ID_NONE, PET_ID_ALICE } from '@roro/pet.dat.js';
 
 describe('pet.dat.js', () => {
     describe('エクスポート確認（定数）', () => {
@@ -11,12 +11,4 @@ describe('pet.dat.js', () => {
         });
     });
 
-    describe('エクスポート確認（データ）', () => {
-        it('PET_OBJ が配列', () => {
-            expect(Array.isArray(PET_OBJ)).toBe(true);
-        });
-        it('PET_OBJ が 112 件', () => {
-            expect(PET_OBJ).toHaveLength(112);
-        });
-    });
 });

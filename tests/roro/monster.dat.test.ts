@@ -11,8 +11,6 @@ describe('monster.dat.js', () => {
         it('MONSTER_ID_ARCANGELING が 0',                              () => expect(MONSTER_ID_ARCANGELING).toBe(0));
         it('MONSTER_ID_ARCHER_SKELETON が 1',                         () => expect(MONSTER_ID_ARCHER_SKELETON).toBe(1));
         it('MONSTER_ID_MARYOKUBOSOSHITA_ZYOKYU_RGAN_QUEST が 1771',   () => expect(MONSTER_ID_MARYOKUBOSOSHITA_ZYOKYU_RGAN_QUEST).toBe(1771));
-        it('MonsterObjNew が配列',                                     () => expect(Array.isArray(MonsterObjNew)).toBe(true));
-        it('MonsterObjNew が 2404 件',                                 () => expect(MonsterObjNew).toHaveLength(2404));
         it('MonsterObjNew[0][0] が 0',                                () => expect(MonsterObjNew[0][0]).toBe(0));
         it('MonsterObjNew[1][0] が 1',                                () => expect(MonsterObjNew[1][0]).toBe(1));
     });

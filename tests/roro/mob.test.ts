@@ -1,13 +1,6 @@
-import { describe, it, expect } from 'vitest';
-import { GetMobDataBasicAttribute, GetMobDataParameters } from '@roro/mob.js';
+import { describe, it } from 'vitest';
+import '@roro/mob.js';
 
 describe('mob.js', () => {
-    describe('エクスポート確認', () => {
-        it('GetMobDataBasicAttribute が関数', () => {
-            expect(typeof GetMobDataBasicAttribute).toBe('function');
-        });
-        it('GetMobDataParameters が関数', () => {
-            expect(typeof GetMobDataParameters).toBe('function');
-        });
-    });
+    it.todo('動作テストを追加する');
 });

@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import '@roro/CGlobalConstManager.js';
-import { GetRndOptDispName } from '@roro/rndopt.h.js';
+import '@roro/rndopt.h.js';
 
 describe('rndopt.h.js', () => {
     describe('DefineEnum 副作用確認', () => {
@@ -21,9 +21,4 @@ describe('rndopt.h.js', () => {
         });
     });
 
-    describe('エクスポート確認', () => {
-        it('GetRndOptDispName が関数', () => {
-            expect(typeof GetRndOptDispName).toBe('function');
-        });
-    });
 });
