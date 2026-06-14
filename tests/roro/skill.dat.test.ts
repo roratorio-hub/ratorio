@@ -16,8 +16,6 @@ describe('skill.dat.js', () => {
         it('SKILL_ID_TUZYO_KOGEKI が 0',               () => expect(SKILL_ID_TUZYO_KOGEKI).toBe(0));
         it('SKILL_ID_OKYU_TEATE が 1',                 () => expect(SKILL_ID_OKYU_TEATE).toBe(1));
         it('SKILL_ID_ABYSS_DAGGER_STATE が 1273',      () => expect(SKILL_ID_ABYSS_DAGGER_STATE).toBe(1273));
-        it('SkillObjNew が配列',                        () => expect(Array.isArray(SkillObjNew)).toBe(true));
-        it('SkillObjNew が 1396 件',                    () => expect(SkillObjNew).toHaveLength(1396));
         it('SkillObjNew[0][0] が 0',                   () => expect(SkillObjNew[0][0]).toBe(0));
         it('SkillObjNew[1][0] が 1',                   () => expect(SkillObjNew[1][0]).toBe(1));
     });

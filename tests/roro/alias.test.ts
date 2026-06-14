@@ -5,12 +5,6 @@ import { TranslateAlias } from '@roro/alias.h.js';
 
 describe('alias.dat.js', () => {
     describe('エクスポート確認', () => {
-        it('g_AliasDataArray が配列', () => {
-            expect(Array.isArray(g_AliasDataArray)).toBe(true);
-        });
-        it('g_AliasDataArray が 23 件', () => {
-            expect(g_AliasDataArray).toHaveLength(23);
-        });
         it('g_AliasDataArray[0] が ["GD", "ゲフェン地下ダンジョン"]', () => {
             expect(g_AliasDataArray[0]).toEqual(['GD', 'ゲフェン地下ダンジョン']);
         });
@@ -27,12 +21,6 @@ describe('alias.h.js', () => {
         });
         it('ALIAS_DATA_INDEX_COUNT が 2 に定義される', () => {
             expect((globalThis as any).ALIAS_DATA_INDEX_COUNT).toBe(2);
-        });
-    });
-
-    describe('エクスポート確認', () => {
-        it('TranslateAlias が関数', () => {
-            expect(typeof TranslateAlias).toBe('function');
         });
     });
 

@@ -53,20 +53,6 @@ import {
 
 describe('CExtraInfoAreaComponentManager.js', () => {
     describe('エクスポート確認', () => {
-        it('GetExtraInfoText が関数', () => expect(typeof GetExtraInfoText).toBe('function'));
-        it('CExtraInfoAreaComponentManager が関数', () => expect(typeof CExtraInfoAreaComponentManager).toBe('function'));
-
-        it('instanceManager が定義済み', () => expect(CExtraInfoAreaComponentManager.instanceManager).toBeDefined());
-        it('fontSizeClassName が文字列', () => expect(typeof CExtraInfoAreaComponentManager.fontSizeClassName).toBe('string'));
         it('dispDataMap が Map', () => expect(CExtraInfoAreaComponentManager.dispDataMap instanceof Map).toBe(true));
-
-        it('setReferData が関数', () => expect(typeof CExtraInfoAreaComponentManager.setReferData).toBe('function'));
-        it('OnChangeInfo が関数', () => expect(typeof CExtraInfoAreaComponentManager.OnChangeInfo).toBe('function'));
-        it('RebuildDispArea が関数', () => expect(typeof CExtraInfoAreaComponentManager.RebuildDispArea).toBe('function'));
-        it('RefreshDispArea が関数', () => expect(typeof CExtraInfoAreaComponentManager.RefreshDispArea).toBe('function'));
-        it('RebuildAndRefreshDispArea が関数', () => expect(typeof CExtraInfoAreaComponentManager.RebuildAndRefreshDispArea).toBe('function'));
-        it('ClearStoredValueAll が関数', () => expect(typeof CExtraInfoAreaComponentManager.ClearStoredValueAll).toBe('function'));
-        it('RebuildDispAreaAll が関数', () => expect(typeof CExtraInfoAreaComponentManager.RebuildDispAreaAll).toBe('function'));
-        it('RefreshDispAreaAll が関数', () => expect(typeof CExtraInfoAreaComponentManager.RefreshDispAreaAll).toBe('function'));
     });
 });

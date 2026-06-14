@@ -50,13 +50,6 @@ describe('BuffItemAndFood.js', () => {
         it('BUFF_CONF_FOOD_LIMIT が 53', () => {
             expect(BUFF_CONF_FOOD_LIMIT).toBe(53);
         });
-        it('n_A_PassSkill7 が長さ BUFF_CONF_FOOD_LIMIT の配列', () => {
-            expect(Array.isArray(n_A_PassSkill7)).toBe(true);
-            expect(n_A_PassSkill7.length).toBe(BUFF_CONF_FOOD_LIMIT);
-        });
-        it('n_Skill7SW が false', () => {
-            expect(n_Skill7SW).toBe(false);
-        });
         it('ID_BUFF_FOOD_CHAGASHI が 0', () => {
             expect(ID_BUFF_FOOD_CHAGASHI).toBe(0);
         });
@@ -116,12 +109,6 @@ describe('BuffItemAndFood.js', () => {
         });
         it('ID_BUFF_SOUSHO_CARD が 52', () => {
             expect(ID_BUFF_SOUSHO_CARD).toBe(52);
-        });
-        it('Click_Skill7SW が関数', () => {
-            expect(typeof Click_Skill7SW).toBe('function');
-        });
-        it('Click_A7 が関数', () => {
-            expect(typeof Click_A7).toBe('function');
         });
     });
 

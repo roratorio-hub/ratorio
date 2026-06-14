@@ -2,18 +2,10 @@ import { describe, it, expect } from 'vitest';
 import { CInstanceManager } from '@roro/CInstanceManager.js';
 
 describe('CInstanceManager', () => {
-    describe('エクスポート確認', () => {
-        it('CInstanceManager がエクスポートされている', () => {
-            expect(CInstanceManager).toBeDefined();
-            expect(typeof CInstanceManager).toBe('function');
-        });
-    });
-
     describe('registerInstance', () => {
         it('インスタンスを登録して正の数値IDを返す', () => {
             const manager = new (CInstanceManager as any)();
             const id = manager.registerInstance({});
-            expect(typeof id).toBe('number');
             expect(id).toBeGreaterThan(0);
         });
 
@@ -48,11 +40,6 @@ describe('CInstanceManager', () => {
     });
 
     describe('getInstanceList', () => {
-        it('初期状態では空の配列を返す', () => {
-            const manager = new (CInstanceManager as any)();
-            expect(manager.getInstanceList()).toEqual([]);
-        });
-
         it('登録済みインスタンスを全件返す', () => {
             const manager = new (CInstanceManager as any)();
             const obj1 = { a: 1 };

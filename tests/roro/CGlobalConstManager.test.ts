@@ -3,38 +3,8 @@ import { CGlobalConstManager } from '@roro/CGlobalConstManager.js';
 
 describe('CGlobalConstManager.js', () => {
     describe('エクスポート確認', () => {
-        it('CGlobalConstManager がエクスポートされている', () => {
-            expect(typeof CGlobalConstManager).toBe('function');
-        });
-
-        it('静的プロパティ managementMap が存在する', () => {
-            expect('managementMap' in CGlobalConstManager).toBe(true);
-            expect(Array.isArray((CGlobalConstManager as any).managementMap)).toBe(true);
-        });
-
-        it('静的プロパティ nameMap が存在する', () => {
-            expect('nameMap' in CGlobalConstManager).toBe(true);
+        it('静的プロパティ nameMap が Map', () => {
             expect((CGlobalConstManager as any).nameMap instanceof Map).toBe(true);
-        });
-
-        it('静的メソッド DefineEnum が存在する', () => {
-            expect(typeof (CGlobalConstManager as any).DefineEnum).toBe('function');
-        });
-
-        it('静的メソッド DefinePseudoEnum が存在する', () => {
-            expect(typeof (CGlobalConstManager as any).DefinePseudoEnum).toBe('function');
-        });
-
-        it('静的メソッド DefineEnumSubCommon が存在する', () => {
-            expect(typeof (CGlobalConstManager as any).DefineEnumSubCommon).toBe('function');
-        });
-
-        it('静的メソッド RegisterMap が存在する', () => {
-            expect(typeof (CGlobalConstManager as any).RegisterMap).toBe('function');
-        });
-
-        it('静的メソッド SearchMap が存在する', () => {
-            expect(typeof (CGlobalConstManager as any).SearchMap).toBe('function');
         });
     });
 

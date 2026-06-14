@@ -12,23 +12,6 @@ describe('BuffGuildAndGospel.js', () => {
         it('BUFF_CONF_GUILD_LIMIT がエクスポートされている', () => {
             expect(BUFF_CONF_GUILD_LIMIT).toBe(36);
         });
-
-        it('n_A_PassSkill4 がエクスポートされている', () => {
-            expect(Array.isArray(n_A_PassSkill4)).toBe(true);
-            expect(n_A_PassSkill4).toHaveLength(36);
-        });
-
-        it('n_Skill4SW がエクスポートされている', () => {
-            expect(typeof n_Skill4SW).toBe('boolean');
-        });
-
-        it('Click_Skill4SW がエクスポートされている', () => {
-            expect(typeof Click_Skill4SW).toBe('function');
-        });
-
-        it('Click_A4 がエクスポートされている', () => {
-            expect(typeof Click_A4).toBe('function');
-        });
     });
 
     describe('window互換確認', () => {

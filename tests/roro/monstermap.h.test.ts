@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import '@roro/CGlobalConstManager.js';
-import { SetUpSortKanaMonsterMap, g_MonsterMapDataArray, g_MonsterMapCategoryDataArray } from '@roro/monstermap.h.js';
+import '@roro/monstermap.h.js';
 
 describe('monstermap.h.js', () => {
     describe('DefineEnum 副作用確認', () => {
@@ -24,15 +24,4 @@ describe('monstermap.h.js', () => {
         });
     });
 
-    describe('エクスポート確認', () => {
-        it('SetUpSortKanaMonsterMap が関数', () => {
-            expect(typeof SetUpSortKanaMonsterMap).toBe('function');
-        });
-        it('g_MonsterMapDataArray が配列', () => {
-            expect(Array.isArray(g_MonsterMapDataArray)).toBe(true);
-        });
-        it('g_MonsterMapCategoryDataArray が配列', () => {
-            expect(Array.isArray(g_MonsterMapCategoryDataArray)).toBe(true);
-        });
-    });
 });

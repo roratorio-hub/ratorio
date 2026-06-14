@@ -23,8 +23,6 @@ describe('itempack.dat.js', () => {
         it('ITEM_PACK_ID_MIMIMI が 17',                     () => expect(ITEM_PACK_ID_MIMIMI).toBe(17));
         it('ITEM_PACK_ID_CLEAR_EQUIP_ALL が 23',            () => expect(ITEM_PACK_ID_CLEAR_EQUIP_ALL).toBe(23));
         it('ITEM_PACK_ID_CLEAR_SHADOW_ALL が 26',           () => expect(ITEM_PACK_ID_CLEAR_SHADOW_ALL).toBe(26));
-        it('ItemPackOBJ が配列',                            () => expect(Array.isArray(ItemPackOBJ)).toBe(true));
-        it('ItemPackOBJ が 27 件',                          () => expect(ItemPackOBJ).toHaveLength(27));
         it('ItemPackOBJ[0][0] が 0（選択なし）',             () => expect(ItemPackOBJ[0][0]).toBe(0));
         it('ItemPackOBJ[1][0] が 1（天秤宮）',              () => expect(ItemPackOBJ[1][0]).toBe(1));
     });

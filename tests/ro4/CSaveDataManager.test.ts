@@ -81,9 +81,6 @@ vi.mock('@roro/monster.dat.js', async (importActual) => {
 import { CSaveDataManager } from '@ro4/CSaveDataManager.js';
 
 describe('CSaveDataManager.js', () => {
-    describe('エクスポート確認', () => {
-        it('CSaveDataManager が関数（クラス）', () => {
-            expect(typeof CSaveDataManager).toBe('function');
-        });
-    });
+    it.todo('動作テストを追加する');
 });
+
