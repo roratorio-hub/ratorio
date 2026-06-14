@@ -251,7 +251,7 @@ export function BuildUpItemList() {
 		}
 		// 職業制限を検査
 		if (condJob != -1) {
-			if (!IsMatchJobRestrict(itemId, condJob)) {
+			if (!IsMatchJobRestrict(itemData[ITEM_DATA_INDEX_ID], condJob)) {
 				continue;
 			}
 		}
