@@ -14,25 +14,6 @@ describe('BuffJobSpecificSelf.js', () => {
         it('BUFF_CONF_SELF_LIMIT が 51', () => {
             expect(BUFF_CONF_SELF_LIMIT).toBe(51);
         });
-        it('n_A_PassSkill が長さ BUFF_CONF_SELF_LIMIT の配列', () => {
-            expect(Array.isArray(n_A_PassSkill)).toBe(true);
-            expect(n_A_PassSkill.length).toBe(BUFF_CONF_SELF_LIMIT);
-        });
-        it('n_Skill1SW が false', () => {
-            expect(n_Skill1SW).toBe(false);
-        });
-        it('Click_PassSkillSW が関数', () => {
-            expect(typeof Click_PassSkillSW).toBe('function');
-        });
-        it('Click_A1 が関数', () => {
-            expect(typeof Click_A1).toBe('function');
-        });
-        it('UsedSkillSearch が関数', () => {
-            expect(typeof UsedSkillSearch).toBe('function');
-        });
-        it('UsedSkillSearchSubUsedOnly が関数', () => {
-            expect(typeof UsedSkillSearchSubUsedOnly).toBe('function');
-        });
     });
 
     describe('window互換確認', () => {

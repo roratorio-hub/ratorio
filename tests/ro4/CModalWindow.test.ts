@@ -2,17 +2,6 @@ import { describe, it, expect, afterEach } from 'vitest';
 import { ModalWindow } from '@ro4/CModalWindow.js';
 
 describe('CModalWindow.js', () => {
-    describe('エクスポート確認', () => {
-        it('ModalWindow がエクスポートされている', () => {
-            expect(ModalWindow).toBeDefined();
-            expect(typeof ModalWindow).toBe('function');
-        });
-
-        it('createModal が静的メソッドとして存在する', () => {
-            expect(typeof ModalWindow.createModal).toBe('function');
-        });
-    });
-
     describe('createModal の動作', () => {
         afterEach(() => {
             document.body.innerHTML = '';

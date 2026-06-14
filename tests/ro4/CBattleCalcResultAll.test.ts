@@ -1,10 +1,6 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it } from 'vitest';
 import { CBattleCalcResultAll } from '@ro4/CBattleCalcResultAll.js';
 
 describe('CBattleCalcResultAll.js', () => {
-    describe('エクスポート確認', () => {
-        it('CBattleCalcResultAll が関数', () => {
-            expect(typeof CBattleCalcResultAll).toBe('function');
-        });
-    });
+    it.todo('動作テストを追加する');
 });

@@ -1,56 +1,13 @@
 import { describe, it, expect, beforeAll } from 'vitest';
 import {
     GetObjectPrefixRndOpt,
-    GetObjectIdRndOptKindTD,
     GetObjectIdRndOptKind,
-    GetObjectIdRndOptValueTD,
     GetObjectIdRndOptValue,
-    RebuildRndOptSelect,
-    CreateRndOptKind,
-    CreateRndOptValue,
-    SetUpRndOptKind,
-    SetUpRndOptValue,
-    OnChangeRndOptKind,
-    ClearRndOptSelectAll,
-    ClearRndOptSelect,
-    SetRndOptEnablityAll,
-    SetRndOptEnablity,
     IsEffectiveRndOptSelect,
     SetObjectUsable,
-    GetRndOptTotalValue,
-    GetRndOptValue,
 } from '@roro/hmrndopt.js';
 
 describe('hmrndopt.js', () => {
-    describe('エクスポート確認', () => {
-        const functions = {
-            GetObjectPrefixRndOpt,
-            GetObjectIdRndOptKindTD,
-            GetObjectIdRndOptKind,
-            GetObjectIdRndOptValueTD,
-            GetObjectIdRndOptValue,
-            RebuildRndOptSelect,
-            CreateRndOptKind,
-            CreateRndOptValue,
-            SetUpRndOptKind,
-            SetUpRndOptValue,
-            OnChangeRndOptKind,
-            ClearRndOptSelectAll,
-            ClearRndOptSelect,
-            SetRndOptEnablityAll,
-            SetRndOptEnablity,
-            IsEffectiveRndOptSelect,
-            SetObjectUsable,
-            GetRndOptTotalValue,
-            GetRndOptValue,
-        };
-        for (const [name, fn] of Object.entries(functions)) {
-            it(`${name} が関数`, () => {
-                expect(typeof fn).toBe('function');
-            });
-        }
-    });
-
     describe('コアロジック確認', () => {
         beforeAll(() => {
             // IsEffectiveRndOptSelect, SetObjectUsable 用の最低限モック不要

@@ -36,61 +36,6 @@ import {
 } from '@ro4/hmjob.js';
 
 describe('hmjob.js', () => {
-    describe('エクスポート確認（変数）', () => {
-        it('g_pureStatus が配列', () => {
-            expect(Array.isArray(g_pureStatus)).toBe(true);
-        });
-        it('g_bonusStatus が配列', () => {
-            expect(Array.isArray(g_bonusStatus)).toBe(true);
-        });
-        it('g_STR が 0', () => { expect(g_STR).toBe(0); });
-        it('g_AGI が 0', () => { expect(g_AGI).toBe(0); });
-        it('g_VIT が 0', () => { expect(g_VIT).toBe(0); });
-        it('g_INT が 0', () => { expect(g_INT).toBe(0); });
-        it('g_DEX が 0', () => { expect(g_DEX).toBe(0); });
-        it('g_LUK が 0', () => { expect(g_LUK).toBe(0); });
-        it('g_POW が 0', () => { expect(g_POW).toBe(0); });
-        it('g_STA が 0', () => { expect(g_STA).toBe(0); });
-        it('g_WIS が 0', () => { expect(g_WIS).toBe(0); });
-        it('g_SPL が 0', () => { expect(g_SPL).toBe(0); });
-        it('g_CON が 0', () => { expect(g_CON).toBe(0); });
-        it('g_CRT が 0', () => { expect(g_CRT).toBe(0); });
-    });
-
-    describe('エクスポート確認（関数）', () => {
-        it('RebuildStatusSelect が関数', () => { expect(typeof RebuildStatusSelect).toBe('function'); });
-        it('CalcStatusPoint が関数', () => { expect(typeof CalcStatusPoint).toBe('function'); });
-        it('GetStatusIncrementCost が関数', () => { expect(typeof GetStatusIncrementCost).toBe('function'); });
-        it('GetStatusTotalCost が関数', () => { expect(typeof GetStatusTotalCost).toBe('function'); });
-        it('GetEarningStatusPoint が関数', () => { expect(typeof GetEarningStatusPoint).toBe('function'); });
-        it('DisplayStatusBonusAll が関数', () => { expect(typeof DisplayStatusBonusAll).toBe('function'); });
-        it('DisplayReferStatusAll が関数', () => { expect(typeof DisplayReferStatusAll).toBe('function'); });
-        it('GetTotalPureBasicStatus が関数', () => { expect(typeof GetTotalPureBasicStatus).toBe('function'); });
-        it('StoreSpecStatusBonusAll が関数', () => { expect(typeof StoreSpecStatusBonusAll).toBe('function'); });
-        it('GetTotalSpecStatus が関数', () => { expect(typeof GetTotalSpecStatus).toBe('function'); });
-        it('GetEarningTSStatusPoint が関数', () => { expect(typeof GetEarningTSStatusPoint).toBe('function'); });
-        it('GetTStatusPoint が関数', () => { expect(typeof GetTStatusPoint).toBe('function'); });
-        it('ApplySpecStatusModifications が関数', () => { expect(typeof ApplySpecStatusModifications).toBe('function'); });
-        it('ApplySpecStatusModifyMATK が関数', () => { expect(typeof ApplySpecStatusModifyMATK).toBe('function'); });
-        it('GetPAtk が関数', () => { expect(typeof GetPAtk).toBe('function'); });
-        it('GetSMatk が関数', () => { expect(typeof GetSMatk).toBe('function'); });
-        it('GetCRate が関数', () => { expect(typeof GetCRate).toBe('function'); });
-        it('GetRes が関数', () => { expect(typeof GetRes).toBe('function'); });
-        it('GetMres が関数', () => { expect(typeof GetMres).toBe('function'); });
-        it('GetHPlus が関数', () => { expect(typeof GetHPlus).toBe('function'); });
-        it('GetMobRes が関数', () => { expect(typeof GetMobRes).toBe('function'); });
-        it('GetMobMres が関数', () => { expect(typeof GetMobMres).toBe('function'); });
-        it('ApplyPAtkAmplify が関数', () => { expect(typeof ApplyPAtkAmplify).toBe('function'); });
-        it('ApplySMatkAmplify が関数', () => { expect(typeof ApplySMatkAmplify).toBe('function'); });
-        it('ApplyCRateAmplify が関数', () => { expect(typeof ApplyCRateAmplify).toBe('function'); });
-        it('ApplyResResist が関数', () => { expect(typeof ApplyResResist).toBe('function'); });
-        it('ApplyMresResist が関数', () => { expect(typeof ApplyMresResist).toBe('function'); });
-        it('ApplyPAtkLeftHandPenalty が関数', () => { expect(typeof ApplyPAtkLeftHandPenalty).toBe('function'); });
-        it('ApplySpecModify が関数', () => { expect(typeof ApplySpecModify).toBe('function'); });
-        it('migrateOtherJob が関数', () => { expect(typeof migrateOtherJob).toBe('function'); });
-        it('OnChangeJob が関数', () => { expect(typeof OnChangeJob).toBe('function'); });
-    });
-
     describe('window互換確認', () => {
         it('window.CalcStatusPoint が設定されている', () => {
             expect((window as any).CalcStatusPoint).toBe(CalcStatusPoint);

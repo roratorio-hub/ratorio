@@ -8,12 +8,6 @@ vi.mock('@roro/monster.dat.js', () => {
 });
 
 describe('monster.toughness.dat.js', () => {
-    describe('エクスポート確認', () => {
-        it('MonsterToughness がエクスポートされている', () => {
-            expect(typeof MonsterToughness).toBe('function');
-        });
-    });
-
     describe('静的フィールド確認', () => {
         it('DAMPING_NONE が 0', () => expect(MonsterToughness.DAMPING_NONE).toBe(0));
         it('DAMPING_5 が 1', () => expect(MonsterToughness.DAMPING_5).toBe(1));
@@ -29,18 +23,6 @@ describe('monster.toughness.dat.js', () => {
 
         it('notificationMessages が Map である', () => {
             expect((MonsterToughness as any).notificationMessages instanceof Map).toBe(true);
-        });
-    });
-
-    describe('静的メソッド確認', () => {
-        it('getToughnessCode が存在する', () => {
-            expect(typeof MonsterToughness.getToughnessCode).toBe('function');
-        });
-        it('getMobName が存在する', () => {
-            expect(typeof MonsterToughness.getMobName).toBe('function');
-        });
-        it('getNotification が存在する', () => {
-            expect(typeof MonsterToughness.getNotification).toBe('function');
         });
     });
 

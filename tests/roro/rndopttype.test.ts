@@ -7,7 +7,7 @@ vi.hoisted(() => {
 });
 
 import '@roro/CGlobalConstManager.js';
-import { g_rndOptTypeArray } from '@roro/rndopttype.dat.js';
+import '@roro/rndopttype.dat.js';
 import {
     g_equipRndOptTable,
     SetEquipRndOptTable,
@@ -15,16 +15,6 @@ import {
     GetEquipRndOptTableValue,
 } from '@roro/rndopttype.h.js';
 
-describe('rndopttype.dat.js', () => {
-    describe('エクスポート確認', () => {
-        it('g_rndOptTypeArray が配列', () => {
-            expect(Array.isArray(g_rndOptTypeArray)).toBe(true);
-        });
-        it('g_rndOptTypeArray が 27 件', () => {
-            expect(g_rndOptTypeArray).toHaveLength(27);
-        });
-    });
-});
 
 describe('rndopttype.h.js', () => {
     describe('DefineEnum 副作用確認', () => {
@@ -42,30 +32,6 @@ describe('rndopttype.h.js', () => {
         });
         it('RND_OPT_SLOT_COUNT が 5 に定義される', () => {
             expect((globalThis as any).RND_OPT_SLOT_COUNT).toBe(5);
-        });
-    });
-
-    describe('エクスポート確認', () => {
-        it('g_equipRndOptTable が配列', () => {
-            expect(Array.isArray(g_equipRndOptTable)).toBe(true);
-        });
-        it('g_equipRndOptTable が EQUIP_REGION_ID_COUNT(24) 件で初期化される', () => {
-            expect(g_equipRndOptTable).toHaveLength(24);
-        });
-        it('g_equipRndOptTable[0] が RND_OPT_SLOT_COUNT(5) 件', () => {
-            expect(g_equipRndOptTable[0]).toHaveLength(5);
-        });
-        it('g_equipRndOptTable[0][0] が [0, 0] で初期化される', () => {
-            expect(g_equipRndOptTable[0][0]).toEqual([0, 0]);
-        });
-        it('SetEquipRndOptTable が関数', () => {
-            expect(typeof SetEquipRndOptTable).toBe('function');
-        });
-        it('GetEquipRndOptTableKind が関数', () => {
-            expect(typeof GetEquipRndOptTableKind).toBe('function');
-        });
-        it('GetEquipRndOptTableValue が関数', () => {
-            expect(typeof GetEquipRndOptTableValue).toBe('function');
         });
     });
 

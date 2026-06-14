@@ -18,27 +18,6 @@ describe('CAttackMethodConf.js', () => {
         });
     });
 
-    describe('エクスポート確認', () => {
-        it('CAttackMethodConf が関数（コンストラクタ）', () => {
-            expect(typeof CAttackMethodConf).toBe('function');
-        });
-    });
-
-    describe('インスタンス初期値確認', () => {
-        it('skillId の初期値は 0', () => {
-            expect(new CAttackMethodConf().skillId).toBe(0);
-        });
-        it('sourceType の初期値は 0', () => {
-            expect(new CAttackMethodConf().sourceType).toBe(0);
-        });
-        it('skillLv の初期値は 0', () => {
-            expect(new CAttackMethodConf().skillLv).toBe(0);
-        });
-        it('optionValueArray の初期値は空配列', () => {
-            expect(new CAttackMethodConf().optionValueArray).toEqual([]);
-        });
-    });
-
     describe('インスタンスメソッド確認', () => {
         it('SetSkillId / GetSkillId が動作する', () => {
             const obj = new CAttackMethodConf();

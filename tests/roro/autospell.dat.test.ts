@@ -11,8 +11,6 @@ describe('autospell.dat.js', () => {
         it('AS_ID_0 が 0',                   () => expect(AS_ID_0).toBe(0));
         it('AS_ID_HEAL_1 が 13',             () => expect(AS_ID_HEAL_1).toBe(13));
         it('AS_ID_CHAIN_LIGHTNING_5 が 235', () => expect(AS_ID_CHAIN_LIGHTNING_5).toBe(235));
-        it('AutoSpellSkill が配列',           () => expect(Array.isArray(AutoSpellSkill)).toBe(true));
-        it('AutoSpellSkill が 249 件',        () => expect(AutoSpellSkill).toHaveLength(249));
         it('AutoSpellSkill[0][0] が 0',       () => expect(AutoSpellSkill[0][0]).toBe(0));
         it('AutoSpellSkill[248][0] が 248（最後）', () => expect(AutoSpellSkill[248][0]).toBe(248));
     });

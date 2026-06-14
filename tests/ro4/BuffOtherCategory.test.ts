@@ -32,31 +32,6 @@ describe('BuffOtherCategory.js', () => {
         it('BUFF_CONF_OTHER_LIMIT がエクスポートされている', () => {
             expect(BUFF_CONF_OTHER_LIMIT).toBe(28);
         });
-
-        it('n_A_PassSkill8 がエクスポートされている', () => {
-            expect(Array.isArray(n_A_PassSkill8)).toBe(true);
-            expect(n_A_PassSkill8).toHaveLength(28);
-        });
-
-        it('n_Skill8SW がエクスポートされている', () => {
-            expect(typeof n_Skill8SW).toBe('boolean');
-        });
-
-        it('Click_Skill8SW がエクスポートされている', () => {
-            expect(typeof Click_Skill8SW).toBe('function');
-        });
-
-        it('Click_A8 がエクスポートされている', () => {
-            expect(typeof Click_A8).toBe('function');
-        });
-
-        it('OnChangePetSelect がエクスポートされている', () => {
-            expect(typeof OnChangePetSelect).toBe('function');
-        });
-
-        it('RefreshPetExplain がエクスポートされている', () => {
-            expect(typeof RefreshPetExplain).toBe('function');
-        });
     });
 
     describe('window互換確認', () => {

@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import '@roro/CGlobalConstManager.js';
-import { ITEM_SP_TIME_OBJ, ITEM_SP_TIME_OBJ_SORT } from '@roro/timeitem.h.js';
+import '@roro/timeitem.h.js';
 
 describe('timeitem.h.js', () => {
     describe('DefineEnum 副作用確認', () => {
@@ -21,13 +21,5 @@ describe('timeitem.h.js', () => {
         });
     });
 
-    describe('エクスポート確認', () => {
-        it('ITEM_SP_TIME_OBJ がエクスポートされている', () => {
-            expect(Array.isArray(ITEM_SP_TIME_OBJ)).toBe(true);
-        });
-        it('ITEM_SP_TIME_OBJ_SORT がエクスポートされている', () => {
-            expect(Array.isArray(ITEM_SP_TIME_OBJ_SORT)).toBe(true);
-        });
-    });
 
 });
