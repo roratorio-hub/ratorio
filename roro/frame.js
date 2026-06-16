@@ -1,3 +1,5 @@
+import { ShowToast } from "./common/js/toast.js";
+
 let last_updated = ""; // last_updatedを初期化
 
 // 背景色切替
@@ -51,7 +53,8 @@ fetch('../date.json')
 		  <li class="menu-header"><span>Main</span></li>
 		  <li class="menu-item"><span class="menu-title"><a href="../../ro4/m/calcx.html">計算機</a></span></li>
 		  <li class="menu-item"><span class="menu-title"><a href="../../ro4/m/calcx-ai.html">計算機(AIラトリオお試し版)</a></span></li>
-		  <li class="menu-item"><span class="menu-title"><a href="../../roro/other/itemlist.html">アイテム一覧</a></span></li>
+      <li class="menu-item"><span class="menu-title"><a href="../../roro/other/melonfes2026monsterdrop.html">メロン素材検索</a></span></li>
+      <li class="menu-item"><span class="menu-title"><a href="../../roro/other/itemlist.html">アイテム一覧</a></span></li>
 		  <li class="menu-item"><span class="menu-title"><a href="../../roro/other/cardlist.html">カード一覧</a></span></li>
 		  <li class="menu-item"><span class="menu-title"><a href="../../roro/other/petlist.html">ペット一覧</a></span></li>
 		  <li class="menu-item"><span class="menu-title"><a href="../../roro/other/monsterlist.html">モンスター一覧</a></span></li>
@@ -94,40 +97,55 @@ fetch('../date.json')
 </div>
 `;
 
-    $(function(){
-      $("#ID_FRAME").append(templ);
-      $(document).on("click", ".sidebar a.local, .update-toast a.local", (event)=>{
-        $('.modal-container iframe').attr("src",$(event.target).attr("href"));
-        $('.modal-container').toggleClass("active");
-        return false;
-      })
-      $(".modal-close").on("click", ()=>{
-        $('.modal-container').toggleClass("active");
-      })
-      $(document).on('click',function(e) {
-        if(!$(e.target).closest('.modal-body').length) {
-          $('.modal-container').removeClass('active');
+    RunOnDomReady(() => {
+      document.getElementById("ID_FRAME").insertAdjacentHTML("beforeend", templ);
+
+      document.addEventListener("click", (event) => {
+        const objLink = event.target.closest(".sidebar a.local, .update-toast a.local");
+        if (!objLink) {
+          return;
+        }
+        document.querySelector(".modal-container iframe").setAttribute("src", objLink.getAttribute("href"));
+        document.querySelector(".modal-container").classList.toggle("active");
+        event.preventDefault();
+      });
+
+      document.querySelector(".modal-close")?.addEventListener("click", () => {
+        document.querySelector(".modal-container").classList.toggle("active");
+      });
+
+      document.addEventListener("click", (event) => {
+        if (!event.target.closest(".modal-body")) {
+          document.querySelector(".modal-container").classList.remove("active");
         }
       });
+
       if (typeof CSaveController !== "undefined") {
         if (CSaveController.isAvailableBrowserStorage(CSaveController.STORAGE_TYPE_LOCALSTORAGE)) {
           const save_updated = localStorage.getItem("last_updated");
           if (save_updated < last_updated) {
-            $.toast({
+            ShowToast({
               heading: "前回アクセス以降に更新があります",
               text: '<span class="update-toast"><a href="https://github.com/roratorio-hub/ratorio/issues?q=label%3Arelease+" target="_blank">更新履歴</a> から詳細を確認してください</span>',
-              icon: "info",
               hideAfter: 5000,
-              position: 'bottom-center',
-              showHideTransition: 'slide',
               bgColor: "#00d1b2",
               textColor: "#000",
-              loader: false,
             });
           }
           localStorage.setItem("last_updated", last_updated);
         }
       }
-    })
+    });
   });
+
+// DOMContentLoaded が既に発火済みの場合にも対応する
+function RunOnDomReady(callback) {
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", callback);
+  }
+  else {
+    callback();
+  }
+}
+
 if (typeof window !== 'undefined') { Object.assign(window, { SwitchBGColor }); }
