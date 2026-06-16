@@ -68,6 +68,15 @@ export class ItemPackageDat {
         },
         {
             id: 7,
+            name: "ラグ缶2026 July",
+            itemIds: [
+                5760, // キングオブウェアウルフ
+                5761, // スターシアター
+                5762, // イクトゥスのロザリオ(銀)
+            ],
+        },
+        {
+            id: 8,
             name: "ラグ缶2026 June",
             itemIds: [
                 5691, // スタリー
@@ -76,7 +85,7 @@ export class ItemPackageDat {
             ],
         },
         {
-            id: 8,
+            id: 9,
             name: "ラグ缶2026 April",
             itemIds: [
                 5667, // ジュディス
@@ -85,7 +94,7 @@ export class ItemPackageDat {
             ],
         },
         {
-            id: 9,
+            id: 10,
             name: "ラグ缶2026 Spring",
             itemIds: [
                 5689, // ス・ロザリオ
@@ -93,7 +102,7 @@ export class ItemPackageDat {
                 5688, // ニトゥス
                 5687, // 覚醒創星
             ],
-        }
+        },
     ];
 }
 
