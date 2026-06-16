@@ -1,371 +1,43 @@
 enchant_list:
   - enchant: #
 
-    - name: 特異点タナトスタワーエンチャント
+    - name: 甘い匂いがする男(グループ4)
       item_list: #
-        - item_name: 傲慢のエンジェリックヘルム(ドラゴンナイト)
-        - item_name: 傲慢のエンジェリックヘルム(インペリアルガード)
-        - item_name: 傲慢のエンジェリックヘルム(マイスター)
-        - item_name: 傲慢のエンジェリックヘルム(バイオロ)
-        - item_name: 傲慢のエンジェリックヘルム(シャドウクロス)
-        - item_name: 傲慢のエンジェリックヘルム(アビスチェイサー)
-        - item_name: 傲慢のエンジェリックヘルム(カーディナル)
-        - item_name: 傲慢のエンジェリックヘルム(インクイジター)
-        - item_name: 傲慢のエンジェリックヘルム(アークメイジ)
-        - item_name: 傲慢のエンジェリックヘルム(エレメンタルマスター)
-        - item_name: 傲慢のエンジェリックヘルム(ウィンドホーク)
-        - item_name: 傲慢のエンジェリックヘルム(トルバドゥール&トルヴェール)
-        - item_name: 傲慢のエンジェリックヘルム(天帝)
-        - item_name: 傲慢のエンジェリックヘルム(ソウルアセティック)
-        - item_name: 傲慢のエンジェリックヘルム(ナイトウォッチ)
-        - item_name: 傲慢のエンジェリックヘルム(蜃気楼&不知火)
-        - item_name: 傲慢のエンジェリックヘルム(ハイパーノービス)
-        - item_name: 傲慢のエンジェリックヘルム(スピリットハンドラー)
-        - item_name: 傲慢のエンジェリックヘルム(アリテア)
+        - item_name: "[シャドウ] メロンウェポン"
+        - item_name: "[シャドウ] メロンシールド"
+        - item_name: "[シャドウ] メロンアーマー"
+        - item_name: "[シャドウ] メロンシューズ"
+        - item_name: "[シャドウ] メロンイヤリング"
+        - item_name: "[シャドウ] メロンペンダント"
       slot_list: #
         - slot: 4
           refine: 0
           enchant_list: #
-            - name: Str+7
-            - name: Agi+7
-            - name: Vit+7
-            - name: Int+7
-            - name: Dex+7
-            - name: Luk+7
-            - name: SpecialStr
-            - name: SpecialInt
-            - name: SpecialDex
-            - name: SpecialAgi
-            - name: SpecialVit
-            - name: SpecialLuk
-            - name: 潜在覚醒(イグニッションブレイクII)
-            - name: 潜在覚醒(ソニックウェーブI)
-            - name: 潜在覚醒(ハンドレッドスピアI)
-            - name: 潜在覚醒(インスピレーションI)
-            - name: 潜在覚醒(アースドライブI)
-            - name: 潜在覚醒(キャノンスピアI)
-            - name: 潜在覚醒(シールドプレスI)
-            - name: 潜在覚醒(バニシングポイントI)
-            - name: 潜在覚醒(ピンポイントアタックI)
-            - name: 潜在覚醒(アックストルネードI)
-            - name: 潜在覚醒(アックスブーメランI)
-            - name: 潜在覚醒(パワースイングI)
-            - name: 潜在覚醒(カートキャノンI)
-            - name: 潜在覚醒(カートトルネードI)
-            - name: 潜在覚醒(カウンタースラッシュI)
-            - name: 潜在覚醒(フェイタルメナスI)
-            - name: 潜在覚醒(フェイントボムI)
-            - name: 潜在覚醒(ジュデックスII)
-            - name: 潜在覚醒(アドラムスI)
-            - name: 潜在覚醒(獅子吼II)
-            - name: 潜在覚醒(爆気散弾I)
-            - name: 潜在覚醒(雷光弾I)
-            - name: 潜在覚醒(天羅地網I)
-            - name: 潜在覚醒(修羅身弾I)
-            - name: 潜在覚醒(クリムゾンロックI)
-            - name: 潜在覚醒(ソウルエクスパンションI)
-            - name: 潜在覚醒(アースストレインI)
-            - name: 潜在覚醒(ジャックフロストII)
-            - name: 潜在覚醒(ヘルインフェルノI)
-            - name: 潜在覚醒(チェーンライトニングI)
-            - name: 潜在覚醒(サイキックウェーブI)
-            - name: 潜在覚醒(ヴェラチュールスピアーI)
-            - name: 潜在覚醒(スペルフィストI)
-            - name: 潜在覚醒(ダイヤモンドダストII)
-            - name: 潜在覚醒(アローストームII)
-            - name: 潜在覚醒(エイムドボルトI)
-            - name: 潜在覚醒(メタリックサウンドI)
-            - name: 潜在覚醒(太陽爆発I)
-            - name: 潜在覚醒(満月脚II)
-            - name: 潜在覚醒(流星落下I)
-            - name: 潜在覚醒(星帝降臨I)
-            - name: 潜在覚醒(死霊爆発I)
-            - name: 潜在覚醒(エスパI)
-            - name: 潜在覚醒(エスフII)
-            - name: 潜在覚醒(ラウンドトリップI)
-            - name: 潜在覚醒(ファイアーレインI)
-            - name: 潜在覚醒(ドラゴンテイルI)
-            - name: 潜在覚醒(風魔手裏剣 -乱華-I)
-            - name: 潜在覚醒(十文字斬りI)
-            - name: 潜在覚醒(キャロットビートI)
-            - name: 潜在覚醒(サベージの魂II)
-            - name: 潜在覚醒(タロウの傷I)
-            - name: 潜在覚醒(フェザースプリンクルI)
-        - slot: 3
-          refine: 0
-          enchant_list: #
-            - name: Str+7
-            - name: Agi+7
-            - name: Vit+7
-            - name: Int+7
-            - name: Dex+7
-            - name: Luk+7
-            - name: SpecialStr
-            - name: SpecialInt
-            - name: SpecialDex
-            - name: SpecialAgi
-            - name: SpecialVit
-            - name: SpecialLuk
-            - name: 潜在解放(ドラゴンナイトX)
-            - name: 潜在解放(インペリアルガードXIX)
-            - name: 潜在解放(マイスターXVIII)
-            - name: 潜在解放(バイオロV)
-            - name: 潜在解放(シャドウクロスXIX)
-            - name: 潜在解放(アビスチェイサーII)
-            - name: 潜在解放(カーディナルXXI)
-            - name: 潜在解放(インクイジターXVI)
-            - name: 潜在解放(アークメイジXXII)
-            - name: 潜在解放(エレメンタルマスターXVI)
-            - name: 潜在解放(ウィンドホークIII)
-            - name: 潜在解放(トルバドゥール&トルヴェールXIII)
-            - name: 潜在解放(天帝XIV)
-            - name: 潜在解放(ソウルアセティックIV)
-            - name: 潜在解放(ナイトウォッチIX)
-            - name: 潜在解放(蜃気楼&不知火XXII)
-            - name: 潜在解放(アリテアXVII)
-            - name: 潜在解放(ハイパーノービスXXI)
-            - name: 潜在解放(スピリットハンドラーXXI)
-        - slot: 2
-          refine: 0
-          enchant_list: #
-            - name: Str+7
-            - name: Agi+7
-            - name: Vit+7
-            - name: Int+7
-            - name: Dex+7
-            - name: Luk+7
-            - name: SpecialStr
-            - name: SpecialInt
-            - name: SpecialDex
-            - name: SpecialAgi
-            - name: SpecialVit
-            - name: SpecialLuk
-            - name: 覇王
-            - name: 暴走した魔力
-            - name: 大鷲の眼光
-            - name: 豪傑
-            - name: 真理の解放
-            - name: 死の欲動
-            - name: 無念無想
+            - name: Str+3
+            - name: Agi+3
+            - name: Vit+3
+            - name: Int+3
+            - name: Dex+3
+            - name: Luk+3
+            - name: アルカナ
 
-    - name: 特異点タナトスタワーエンチャント(超越)
+    - name: 甘い匂いがする男(グループ5)
       item_list: #
-        - item_name: 傲慢のエンジェリックヘルム(ドラゴンナイト)
-        - item_name: 傲慢のエンジェリックヘルム(インペリアルガード)
-        - item_name: 傲慢のエンジェリックヘルム(マイスター)
-        - item_name: 傲慢のエンジェリックヘルム(バイオロ)
-        - item_name: 傲慢のエンジェリックヘルム(シャドウクロス)
-        - item_name: 傲慢のエンジェリックヘルム(アビスチェイサー)
-        - item_name: 傲慢のエンジェリックヘルム(カーディナル)
-        - item_name: 傲慢のエンジェリックヘルム(インクイジター)
-        - item_name: 傲慢のエンジェリックヘルム(アークメイジ)
-        - item_name: 傲慢のエンジェリックヘルム(エレメンタルマスター)
-        - item_name: 傲慢のエンジェリックヘルム(ウィンドホーク)
-        - item_name: 傲慢のエンジェリックヘルム(トルバドゥール&トルヴェール)
-        - item_name: 傲慢のエンジェリックヘルム(天帝)
-        - item_name: 傲慢のエンジェリックヘルム(ソウルアセティック)
-        - item_name: 傲慢のエンジェリックヘルム(ナイトウォッチ)
-        - item_name: 傲慢のエンジェリックヘルム(蜃気楼&不知火)
-        - item_name: 傲慢のエンジェリックヘルム(ハイパーノービス)
-        - item_name: 傲慢のエンジェリックヘルム(スピリットハンドラー)
-        - item_name: 傲慢のエンジェリックヘルム(アリテア)
-      slot_list: #
-        - slot: 4
-          refine: 9
-          enchant_list: #
-            - name: Str+7
-            - name: Agi+7
-            - name: Vit+7
-            - name: Int+7
-            - name: Dex+7
-            - name: Luk+7
-            - name: SpecialStr
-            - name: SpecialAgi
-            - name: SpecialVit
-            - name: SpecialInt
-            - name: SpecialDex
-            - name: SpecialLuk
-            - name: 潜在覚醒(イグニッションブレイクII)
-            - name: 潜在覚醒(ソニックウェーブI)
-            - name: 潜在覚醒(ハンドレッドスピアI)
-            - name: 潜在覚醒(インスピレーションI)
-            - name: 潜在覚醒(アースドライブI)
-            - name: 潜在覚醒(キャノンスピアI)
-            - name: 潜在覚醒(シールドプレスI)
-            - name: 潜在覚醒(バニシングポイントI)
-            - name: 潜在覚醒(ピンポイントアタックI)
-            - name: 潜在覚醒(アックストルネードI)
-            - name: 潜在覚醒(アックスブーメランI)
-            - name: 潜在覚醒(パワースイングI)
-            - name: 潜在覚醒(カートキャノンI)
-            - name: 潜在覚醒(カートトルネードI)
-            - name: 潜在覚醒(カウンタースラッシュI)
-            - name: 潜在覚醒(フェイタルメナスI)
-            - name: 潜在覚醒(フェイントボムI)
-            - name: 潜在覚醒(ジュデックスII)
-            - name: 潜在覚醒(アドラムスI)
-            - name: 潜在覚醒(獅子吼II)
-            - name: 潜在覚醒(爆気散弾I)
-            - name: 潜在覚醒(雷光弾I)
-            - name: 潜在覚醒(天羅地網I)
-            - name: 潜在覚醒(修羅身弾I)
-            - name: 潜在覚醒(クリムゾンロックI)
-            - name: 潜在覚醒(ソウルエクスパンションI)
-            - name: 潜在覚醒(アースストレインI)
-            - name: 潜在覚醒(ジャックフロストII)
-            - name: 潜在覚醒(ヘルインフェルノI)
-            - name: 潜在覚醒(チェーンライトニングI)
-            - name: 潜在覚醒(サイキックウェーブI)
-            - name: 潜在覚醒(ヴェラチュールスピアーI)
-            - name: 潜在覚醒(スペルフィストI)
-            - name: 潜在覚醒(ダイヤモンドダストII)
-            - name: 潜在覚醒(アローストームII)
-            - name: 潜在覚醒(エイムドボルトI)
-            - name: 潜在覚醒(メタリックサウンドI)
-            - name: 潜在覚醒(太陽爆発I)
-            - name: 潜在覚醒(満月脚II)
-            - name: 潜在覚醒(流星落下I)
-            - name: 潜在覚醒(星帝降臨I)
-            - name: 潜在覚醒(死霊爆発I)
-            - name: 潜在覚醒(エスパI)
-            - name: 潜在覚醒(エスフII)
-            - name: 潜在覚醒(ラウンドトリップI)
-            - name: 潜在覚醒(ファイアーレインI)
-            - name: 潜在覚醒(ドラゴンテイルI)
-            - name: 潜在覚醒(風魔手裏剣 -乱華-I)
-            - name: 潜在覚醒(十文字斬りI)
-            - name: 潜在覚醒(キャロットビートI)
-            - name: 潜在覚醒(サベージの魂II)
-            - name: 潜在覚醒(タロウの傷I)
-            - name: 潜在覚醒(フェザースプリンクルI)
-            - name: 潜在解放(ドラゴンナイトV)
-            - name: 潜在解放(インペリアルガードIV)
-            - name: 潜在解放(マイスターXVI)
-            - name: 潜在解放(バイオロXIV)
-            - name: 潜在解放(シャドウクロスXX)
-            - name: 潜在解放(アビスチェイサーXX)
-            - name: 潜在解放(カーディナルXIX)
-            - name: 潜在解放(インクイジターIV)
-            - name: 潜在解放(アークメイジXIII)
-            - name: 潜在解放(エレメンタルマスターXIII)
-            - name: 潜在解放(ウィンドホークXXI)
-            - name: 潜在解放(トルバドゥール&トルヴェールIX)
-            - name: 潜在解放(天帝XIII)
-            - name: 潜在解放(ソウルアセティックXV)
-            - name: 潜在解放(ナイトウォッチXI)
-            - name: 潜在解放(蜃気楼&不知火XXIII)
-            - name: 潜在解放(アリテアXX)
-            - name: 潜在解放(ハイパーノービスXIV)
-            - name: 潜在解放(スピリットハンドラーII)
-
-
-    - name: 特異点タナトスタワーエンチャント
-      item_list: #
-        - item_name: 覚醒シンフルルビーリング
-        - item_name: 覚醒シンフルルビーネックレス
-        - item_name: 覚醒シンフルエメラルドリング
-        - item_name: 覚醒シンフルトパーズリング
-        - item_name: 覚醒シンフルトパーズネックレス
-        - item_name: 覚醒シンフルアメジストリング
-        - item_name: 覚醒シンフルサファイアリング
-        - item_name: 覚醒シンフルオパールリング
-        - item_name: 覚醒シンフルオパールネックレス
-        - item_name: 覚醒ブリリアントルビーリング
-        - item_name: 覚醒ブリリアントアメジストリング
-        - item_name: 覚醒ブリリアントアメジストネックレス
-        - item_name: 覚醒ブリリアントエメラルドリング
-        - item_name: 覚醒ブリリアントエメラルドネックレス
-        - item_name: 覚醒ブリリアントジルコンリング
-        - item_name: 覚醒ブリリアントジルコンネックレス
-        - item_name: 覚醒ブリリアントサファイアリング
-        - item_name: 覚醒ブリリアントアクアマリンリング
-        - item_name: 覚醒ブリリアントアクアマリンネックレス
-        - item_name: 傲慢のエンジェリックヘルム(アリテア)
+        - item_name: "[シャドウ] プレミアメロンウェポン"
+        - item_name: "[シャドウ] プレミアメロンシールド"
+        - item_name: "[シャドウ] プレミアメロンアーマー"
+        - item_name: "[シャドウ] プレミアメロンシューズ"
+        - item_name: "[シャドウ] プレミアメロンイヤリング"
+        - item_name: "[シャドウ] プレミアメロンペンダント"
       slot_list: #
         - slot: 4
           refine: 0
           enchant_list: #
-            - name: Str+7
-            - name: Agi+7
-            - name: Vit+7
-            - name: Int+7
-            - name: Dex+7
-            - name: Luk+7
-            - name: SpecialStr
-            - name: SpecialInt
-            - name: SpecialDex
-            - name: SpecialAgi
-            - name: SpecialVit
-            - name: SpecialLuk
-            - name: 潜在解放(ドラゴンナイトXX)
-            - name: 潜在解放(インペリアルガードXX)
-            - name: 潜在解放(マイスターXIX)
-            - name: 潜在解放(バイオロXIX)
-            - name: 潜在解放(シャドウクロスXXI)
-            - name: 潜在解放(アビスチェイサーXXI)
-            - name: 潜在解放(カーディナルXXII)
-            - name: 潜在解放(インクイジターXVII)
-            - name: 潜在解放(アークメイジXXIII)
-            - name: 潜在解放(エレメンタルマスターXXI)
-            - name: 潜在解放(ウィンドホークXXII)
-            - name: 潜在解放(トルバドゥール&トルヴェールXVII)
-            - name: 潜在解放(天帝XV)
-            - name: 潜在解放(ソウルアセティックXVII)
-            - name: 潜在解放(ナイトウォッチXVIII)
-            - name: 潜在解放(蜃気楼&不知火XXIV)
-            - name: 潜在解放(アリテアXXI)
-            - name: 潜在解放(ハイパーノービスXXIII)
-            - name: 潜在解放(スピリットハンドラーXXIV)
-            - name: 英雄の凱歌
-            - name: 厄災の魔将
-            - name: 起源の王
-            - name: 殺意の怨念
-            - name: 豊穣の女神
-            - name: 異境の統轄者
-            - name: 知識の探求者
-            - name: 最果ての支配者
-        - slot: 3
-          refine: 0
-          enchant_list: #
-            - name: Str+7
-            - name: Agi+7
-            - name: Vit+7
-            - name: Int+7
-            - name: Dex+7
-            - name: Luk+7
-            - name: SpecialStr
-            - name: SpecialInt
-            - name: SpecialDex
-            - name: SpecialAgi
-            - name: SpecialVit
-            - name: SpecialLuk
-            - name: 天地崩壊
-            - name: 時間の注視者
-            - name: 悪霊の儀式
-        - slot: 2
-          refine: 0
-          enchant_list: #
-            - name: Str+7
-            - name: Agi+7
-            - name: Vit+7
-            - name: Int+7
-            - name: Dex+7
-            - name: Luk+7
-            - name: SpecialStr
-            - name: SpecialInt
-            - name: SpecialDex
-            - name: SpecialAgi
-            - name: SpecialVit
-            - name: SpecialLuk
-            - name: 魔獣の爪牙
-            - name: 根源への到達
-            - name: 蒼穹の覇者
-            - name: 不滅の肉体
-            - name: 叡知の王冠
-            - name: 天与の才
-            - name: 覇王
-            - name: 暴走した魔力
-            - name: 大鷲の眼光
-            - name: 豪傑
-            - name: 真理の解放
-            - name: 魔弓の弦音
+            - name: Str+3
+            - name: Agi+3
+            - name: Vit+3
+            - name: Int+3
+            - name: Dex+3
+            - name: Luk+3
+            - name: アルカナ
+            - name: 極限の魔力
