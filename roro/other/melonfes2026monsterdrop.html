@@ -1,0 +1,57 @@
+<html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+
+	<title>ゲフェンメロンフェスタ2026 モンスタードロップ検索</title>
+
+	<link rel="stylesheet" href="../common.css" type="text/css">
+	<link rel="stylesheet" href="../m/calcx.css" type="text/css">
+	<link rel="stylesheet" href="../../ro4/m/calcx.css" type="text/css">
+
+	<script type="module" src="../m/js/CGlobalConstManager.js"></script>
+	<script type="module" src="../m/js/CNameKana.js"></script>
+	<script type="module" src="../m/js/common.js"></script>
+	<script type="module" src="../m/js/monster.h.js"></script>
+	<script type="module" src="../m/js/monster.dat.js"></script>
+	<script type="module" src="../m/js/monstermap.h.js"></script>
+	<script type="module" src="../m/js/monstermap.dat.js"></script>
+
+	<script type="module" src="js/melonfes2026monsterdrop.dat.js"></script>
+	<script type="module" src="js/eventsetup-melonfes2026monsterdrop.js"></script>
+</head>
+<body>
+
+	<div class="wrapper">
+		<div class="side">
+			<span id="ID_FRAME"></span>
+		</div>
+		<div class="content">
+			<div style="padding: 20px 34px">
+				<p>
+					ゲフェンメロンフェスタ ～深淵からの贈り物 超特秀品 極～ のドロップアイテムから、入手可能なモンスターを検索できます。<br>
+					アイテム名・生息マップ名の一部を入力すると、部分一致するモンスターの一覧が表示されます。
+				</p>
+				<p style="display: flex; flex-wrap: wrap; align-items: center; gap: 1.5em;">
+					<span>
+						<label for="OBJID_INPUT_ITEM_SEARCH">アイテム名検索：</label>
+						<input type="text" id="OBJID_INPUT_ITEM_SEARCH" size="30">
+					</span>
+					<span>
+						<label for="OBJID_INPUT_MAP_SEARCH">生息マップ検索：</label>
+						<input type="text" id="OBJID_INPUT_MAP_SEARCH" size="30">
+					</span>
+					<span>
+						<label for="OBJID_INPUT_SORT_DESC">Lvで降順表示</label>
+						<input type="checkbox" id="OBJID_INPUT_SORT_DESC">
+					</span>
+				</p>
+				<table id="OBJID_TABLE_RESULT" border="1" style="font-size:small">
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+
+<script type="module" src="../frame.js"></script>
+
+</html>
