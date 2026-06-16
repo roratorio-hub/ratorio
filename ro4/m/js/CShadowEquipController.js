@@ -8,7 +8,7 @@ import { CARD_ID_NONE, CardObjNew } from '../../../roro/m/js/card.dat.js';
 import { OnChangeCard } from '../../../roro/m/js/equip.js';
 import { RebuildCardSelectSubCollectEnchListData } from '../../../roro/m/js/hmcard.js';
 import { SetUpRndOptKind, SetUpRndOptValue } from '../../../roro/m/js/hmrndopt.js';
-import { ItemObjNew, g_ItemIdArrayByKind } from '../../../roro/m/js/item.dat.js';
+import { ItemObjNew } from '../../../roro/m/js/item.dat.js';
 import { GetRndOptTypeId } from '../../../roro/m/js/item.h.js';
 import { g_rndOptTypeArray } from '../../../roro/m/js/rndopttype.dat.js';
 import { IsMatchJobRestrict } from './data/mig.job.h.js';
@@ -193,18 +193,38 @@ export class CShadowEquipController {
 		];
 
 		// 装備可能なアイテム配列を用意する
+		// TODO: ItemObjNew を kindId で振り分けて候補配列を作る処理は
+		// equip.js の RebuildArmorsSelect() にも同様のロジックが存在し、DRY 原則に違反している。
+		// 将来的には両者で共通のヘルパー関数（例: kindId 群を受け取り ItemObjNew から
+		// 候補配列を構築する関数）に切り出し、equip.js 側の改修も合わせて行うべき。
 		const itemIdArrayByKind = [];
-		for (let idx = 0; idx < kindIdArray.length; idx++) {
+		for (const kindId of kindIdArray) {
+			itemIdArrayByKind[kindId] = [];
+		}
 
-			const kindId = kindIdArray[idx];
-			const filtered = g_ItemIdArrayByKind[kindId].filter(
-				(itemId) => IsMatchJobRestrict(itemId, n_A_JOB)
-			);
+		for (const itemData of ItemObjNew) {
 
-			// 未選択を追加
-			filtered.unshift(0);
+			if (!itemData) {
+				continue;
+			}
 
-			itemIdArrayByKind[kindId] = filtered;
+			const itemId = itemData[ITEM_DATA_INDEX_ID];
+			const itemKind = itemData[ITEM_DATA_INDEX_KIND];
+
+			if (!itemIdArrayByKind[itemKind]) {
+				continue;
+			}
+
+			if (!IsMatchJobRestrict(itemId, n_A_JOB)) {
+				continue;
+			}
+
+			itemIdArrayByKind[itemKind].push(itemId);
+		}
+
+		// 各部位の先頭に未選択を追加
+		for (const kindId of kindIdArray) {
+			itemIdArrayByKind[kindId].unshift(0);
 		}
 
 		// 各部位を呼び出し
