@@ -53,7 +53,7 @@ fetch('../date.json')
 		  <li class="menu-header"><span>Main</span></li>
 		  <li class="menu-item"><span class="menu-title"><a href="../../ro4/m/calcx.html">計算機</a></span></li>
 		  <li class="menu-item"><span class="menu-title"><a href="../../ro4/m/calcx-ai.html">計算機(AIラトリオお試し版)</a></span></li>
-      <li class="menu-item"><span class="menu-title"><a href="../../roro/other/melonfes2026monsterdrop.html">メロンフェス</a></span></li>
+      <li class="menu-item"><span class="menu-title"><a href="../../roro/other/melonfes2026monsterdrop.html">メロン素材検索</a></span></li>
       <li class="menu-item"><span class="menu-title"><a href="../../roro/other/itemlist.html">アイテム一覧</a></span></li>
 		  <li class="menu-item"><span class="menu-title"><a href="../../roro/other/cardlist.html">カード一覧</a></span></li>
 		  <li class="menu-item"><span class="menu-title"><a href="../../roro/other/petlist.html">ペット一覧</a></span></li>
