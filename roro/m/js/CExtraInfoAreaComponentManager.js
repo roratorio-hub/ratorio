@@ -60,7 +60,7 @@ import {
          SKILL_ID_ZYOKODO
 } from './skill.dat.js';
 import { UsedSkillSearch } from '../../../ro4/m/js/skillstate.js';
-import { g_extraInfoDataBridge } from './CExtraInfoDataBridge.js';
+import { DISP_DATA_KEY_STRDEX_BONUS, g_extraInfoDataBridge } from './CExtraInfoDataBridge.js';
 // === END AUTO-GENERATED IMPORTS ===
 //----------------------------------------------------------------
 // 拡張情報の種類
@@ -5495,6 +5495,7 @@ export function CExtraInfoAreaComponentManager () {
 				["MaxHP", ITEM_SP_MAXHP_PLUS, ITEM_SP_MAXHP_UP],
 				["MaxSP", ITEM_SP_MAXSP_PLUS, ITEM_SP_MAXSP_UP],
 				["Atk/武器攻撃力", ITEM_SP_ATK_PLUS, ITEM_SP_WEAPON_ATK_UP],
+				["Atk(STRボーナス)", DISP_DATA_KEY_STRDEX_BONUS, ITEM_SP_NONE],
 				["Matk", ITEM_SP_MATK_PLUS_TYPE_NOT_WEAPON, ITEM_SP_NONE],
 				["除算Def", ITEM_SP_DEF_PLUS, ITEM_SP_DEF_UP],
 				["除算Mdef", ITEM_SP_MDEF_PLUS, ITEM_SP_MDEF_UP],
@@ -5832,4 +5833,5 @@ CExtraInfoAreaComponentManager.RefreshDispAreaAll = function () {
 
 g_extraInfoDataBridge.clearStoredValueAll = (force) => CExtraInfoAreaComponentManager.ClearStoredValueAll(force);
 g_extraInfoDataBridge.rebuildDispAreaAll = () => CExtraInfoAreaComponentManager.RebuildDispAreaAll();
+g_extraInfoDataBridge.setDispDataValue = (key, value) => CExtraInfoAreaComponentManager.dispDataMap.set(key, value);
 
