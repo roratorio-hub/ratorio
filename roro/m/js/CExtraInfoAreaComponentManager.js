@@ -5494,7 +5494,7 @@ export function CExtraInfoAreaComponentManager () {
 			dispInfoArrayArray = [
 				["MaxHP", ITEM_SP_MAXHP_PLUS, ITEM_SP_MAXHP_UP],
 				["MaxSP", ITEM_SP_MAXSP_PLUS, ITEM_SP_MAXSP_UP],
-				["Atk", ITEM_SP_ATK_PLUS, ITEM_SP_ATK_UP],
+				["Atk/武器攻撃力", ITEM_SP_ATK_PLUS, ITEM_SP_WEAPON_ATK_UP],
 				["Matk", ITEM_SP_MATK_PLUS_TYPE_NOT_WEAPON, ITEM_SP_NONE],
 				["除算Def", ITEM_SP_DEF_PLUS, ITEM_SP_DEF_UP],
 				["除算Mdef", ITEM_SP_MDEF_PLUS, ITEM_SP_MDEF_UP],
