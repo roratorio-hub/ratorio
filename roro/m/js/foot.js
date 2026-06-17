@@ -14631,6 +14631,11 @@ export function StAllCalc(){
 			n_tok[ITEM_SP_WEAPON_ATK_UP] += confval;
 		}
 
+		// 拡張表示用にデータを保存
+		// 土符はグランドクロスに影響を及ぼすが武器攻撃力%UPは影響を及ぼさないので個別に計算している
+		const weapon_atk_up = n_tok[ITEM_SP_WEAPON_ATK_UP] + Math.max(0, 10 * UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU));
+		CExtraInfoAreaComponentManager.dispDataMap.set(ITEM_SP_WEAPON_ATK_UP, weapon_atk_up);
+
 
 /**
  * ===========================================================================================
