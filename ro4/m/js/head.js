@@ -512,7 +512,7 @@ import {
          SKILL_ID_ZYURYOKU_CHOSE, SKILL_ID_ZYUTSUSHIKI_KAIHO
 } from '../../../roro/m/js/skill.dat.js';
 import { UsedSkillSearch, n_A_PassSkill3, n_A_PassSkill4, n_A_PassSkill7, n_A_PassSkill8, ID_BUFF_MANUK_ISHI, ID_BUFF_VESPER_HONEY } from './skillstate.js';
-import { g_extraInfoDataBridge } from '../../../roro/m/js/CExtraInfoDataBridge.js';
+import { DISP_DATA_KEY_STRDEX_BONUS, g_extraInfoDataBridge } from '../../../roro/m/js/CExtraInfoDataBridge.js';
 // === END AUTO-GENERATED IMPORTS ===
 
 "use strict";
@@ -16173,6 +16173,10 @@ export function calc() {
 	CCalcDataTextCreator.refBattleData[BATTLE_DATA_INDEX_RANGE_FLAG] = n_Enekyori;
 
 	CCalcDataTextCreator.refBattleData[BATTLE_DATA_INDEX_STRDEX_BONUS] = w_BONUS;
+	// StAllCalc() 内の RefreshDispAreaAll（foot.js）は w_BONUS 確定前に走るため、
+	// ここで再度リフレッシュして拡張情報パネルに最新値を反映する
+	g_extraInfoDataBridge.setDispDataValue?.(DISP_DATA_KEY_STRDEX_BONUS, w_BONUS);
+	g_extraInfoDataBridge.refreshFloatingDispAreaAll?.();
 
 	CCalcDataTextCreator.refBattleData[BATTLE_DATA_INDEX_SIZE_MODIFY] = wCSize;
 	CCalcDataTextCreator.refBattleData[BATTLE_DATA_INDEX_HIT_RATE] = w_HIT;
