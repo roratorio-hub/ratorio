@@ -31,8 +31,14 @@ vi.mock('@roro/monster.dat.js', async (importActual) => {
 
 import '/workspace/ratorio/roro/m/js/CGlobalConstManager.js';
 import { GetFloatingInfoText, CFloatingInfoAreaInfoUnit, CFloatingInfoAreaComponentManager } from '@roro/CFloatingInfoAreaComponentManager.js';
+import { g_extraInfoDataBridge } from '@roro/CExtraInfoDataBridge.js';
 
 describe('CFloatingInfoAreaComponentManager.js', () => {
-    it.todo('動作テストを追加する');
+    it('g_extraInfoDataBridge.refreshFloatingDispAreaAll は CFloatingInfoAreaComponentManager.RefreshDispAreaAll に中継される', () => {
+        const spy = vi.spyOn(CFloatingInfoAreaComponentManager, 'RefreshDispAreaAll');
+        g_extraInfoDataBridge.refreshFloatingDispAreaAll();
+        expect(spy).toHaveBeenCalledTimes(1);
+        spy.mockRestore();
+    });
 });
 

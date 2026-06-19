@@ -50,9 +50,17 @@ import {
     GetExtraInfoText,
     CExtraInfoAreaComponentManager,
 } from '@roro/CExtraInfoAreaComponentManager.js';
+import { DISP_DATA_KEY_STRDEX_BONUS, g_extraInfoDataBridge } from '@roro/CExtraInfoDataBridge.js';
 
 describe('CExtraInfoAreaComponentManager.js', () => {
     describe('エクスポート確認', () => {
         it('dispDataMap が Map', () => expect(CExtraInfoAreaComponentManager.dispDataMap instanceof Map).toBe(true));
+    });
+
+    describe('STRボーナス（dispDataMap 連携）', () => {
+        it('g_extraInfoDataBridge.setDispDataValue は head.js 等から dispDataMap への書き込みを中継する', () => {
+            g_extraInfoDataBridge.setDispDataValue(DISP_DATA_KEY_STRDEX_BONUS, 42);
+            expect(CExtraInfoAreaComponentManager.dispDataMap.get(DISP_DATA_KEY_STRDEX_BONUS)).toBe(42);
+        });
     });
 });

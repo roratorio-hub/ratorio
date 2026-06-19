@@ -1,5 +1,6 @@
 import { CGlobalConstManager } from './CGlobalConstManager.js';
 import { CExtraInfoAreaComponentManager } from './CExtraInfoAreaComponentManager.js';
+import { g_extraInfoDataBridge } from './CExtraInfoDataBridge.js';
 // === AUTO-GENERATED IMPORTS ===
 import './chara.js';
 import { g_timeItemConf } from '../../../ro4/m/js/global.js';
@@ -494,6 +495,8 @@ CFloatingInfoAreaComponentManager.RefreshDispAreaAll = function () {
 		CFloatingInfoAreaComponentManager.RefreshDispArea(idx);
 	}
 }
+
+g_extraInfoDataBridge.refreshFloatingDispAreaAll = () => CFloatingInfoAreaComponentManager.RefreshDispAreaAll();
 
 /**
  * 表示エリアを再表示する.
