@@ -4871,7 +4871,7 @@ export function GetStatusModifyMaxHpPlus() {
 	// 「オーバーカミングクライシス」の、効果
 	//----------------------------------------------------------------
 	if ((sklLv = UsedSkillSearch(SKILL_ID_OVERCOMING_CRISIS)) > 0) {
-		val += 20000;
+		val += 100000;
 	}
 
 // 自己スキル効果　ここまで

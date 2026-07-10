@@ -582,6 +582,7 @@ if (typeof window !== 'undefined' && window.g_constDataManager) {
 				SKILL_ID_RUSH_STRIKE,
 				SKILL_ID_POWERFUL_SWING,
 				SKILL_ID_ENERGY_CANNONADE,
+				SKILL_ID_KOGEKI_SOCHI_YUKOKA,
 			],
 			[0,1,56,66,70,71,72,73,74,75,78,79,82,83,84,85,86,90,91,92,93,112,126,151,164,179,192,196,197,198,204,206,999]],
 		[72,[["インペリアルガード","A2J5y4I2A1I3b1A1d5"]],1,11,1500,

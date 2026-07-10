@@ -1522,13 +1522,6 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArray = function (
 		]);
 	}
 
-	// 四次職支援「攻撃装置有効化」による効果
-	// オートスペルだと、遠距離攻撃でも加算されてしまうので、実情に合わなくなる
-	// （自身中心に毎秒ダメージなので、遠距離から攻撃している場合、ダメージは入らない）
-	if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_KOGEKI_SOCHI_YUKOKA]) > 0) {
-		usableSkillIdArray.push(USABEL_SKILL_ID_KOGEKI_SOCHI_YUKOKA_5);
-	}
-
 	for (idx = 0; idx < usableSkillIdArray.length; idx++) {
 
 		// アイテムのＳＰ定義値を取得（使用可能スキルＩＤが設定されている）
@@ -3452,24 +3445,6 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 				);
 				break;
 
-
-			//----------------------------------------------------------------
-			// シャドウクロス：シャドウスタブ
-			//----------------------------------------------------------------
-			case SKILL_ID_SHADOW_STAB:
-
-				// オプションリストを生成、追加
-				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-					"クローキングエクシード",
-					[
-						[0, "なし"],
-						[1, "あり"],
-					],
-					0
-				);
-				break;
-
-
 			//----------------------------------------------------------------
 			// シャドウクロス：インパクトクレーター
 			//----------------------------------------------------------------
@@ -4019,21 +3994,6 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 				break;
 
 			//----------------------------------------------------------------
-			// マイスター：攻撃装置有効化
-			//----------------------------------------------------------------
-			case SKILL_ID_KOGEKI_SOCHI_YUKOKA:
-				// オプションリストを生成、追加
-				attackMethodOptList = funcCreateOptionListAsInput(attackMethodOptList,
-					"マイスターのPOW",
-					[
-						["type", "number"],
-						["min", 0],
-						["max", 500],
-					],
-					0
-				);
-				break;
-			//----------------------------------------------------------------
 			// アークビショップ：アドラムス
 			//----------------------------------------------------------------
 			case SKILL_ID_ADORAMUS:
@@ -4335,6 +4295,18 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 					[
 						[0, "無し"],
 						[1, "有り"],
+					],
+					0
+				);
+				break;
+			
+			// 天星
+			case SKILL_ID_TENSE:
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"命中率",
+					[
+						[0, "全弾命中"],
+						[1, "半分"],
 					],
 					0
 				);

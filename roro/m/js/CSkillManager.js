@@ -556,7 +556,7 @@ export function CSkillData() {
 		return 1;
 	}
 	/** 分割ヒット数を取得する. オーバーライドされていない場合は 0 が返される. */
-	this.dispHitCount = function(skillLv, charaDataManger) {
+	this.dispHitCount = function(skillLv, charaDataManger, option) {
 		return 0;
 	}
 	/**
@@ -781,6 +781,7 @@ export function CSkillManager() {
 	 * @param {Number} skillId
 	 * @param {CAttackMethodConf} option
 	 * @param {Array} mobData
+	 * @param {Number} parentSkillId 追撃ダメージを持つスキルの呼び出し元スキルID
 	 * @returns CSkillData.ELEMENT_FORCE_VANITY (default)
 	 * 			| CSkillData.ELEMENT_VOID
 	 *			| CSkillData.ELEMENT_FORCE_WATER
@@ -794,9 +795,9 @@ export function CSkillManager() {
 	 *			| CSkillData.ELEMENT_FORCE_UNDEAD
 	 *			| CSkillData.ELEMENT_SPECIAL
 	 */
-	this.GetElement = function(skillId, option, mobData) {
+	this.GetElement = function(skillId, option, mobData, parentSkillId) {
 		if (typeof this.dataArray[skillId].element === "function") {
-			return this.dataArray[skillId].element(option, mobData);
+			return this.dataArray[skillId].element(option, mobData, parentSkillId);
 		} else {
 			return this.dataArray[skillId].element;
 		}
@@ -819,10 +820,11 @@ export function CSkillManager() {
 	 * @param {CAttackMethodConf} option 
 	 * @param {Array} mobData
 	 * @param {Number} weapon
+	 * @param {Number} parentSkillId 追撃ダメージを持つスキルの呼び出し元スキルID
 	 * @returns {Number} スキル倍率％
 	 */
-	this.GetPower = function(skillId, skillLv, charaDataManger, option, mobData, weapon) {
-		return this.dataArray[skillId].Power(skillLv, charaDataManger, option, mobData, weapon);
+	this.GetPower = function(skillId, skillLv, charaDataManger, option, mobData, weapon, parentSkillId) {
+		return this.dataArray[skillId].Power(skillLv, charaDataManger, option, mobData, weapon, parentSkillId);
 	}
 
 	/**
@@ -846,12 +848,14 @@ export function CSkillManager() {
 	/**
 	 * スキルの分割ヒット数を取得する. オーバーライドされていない場合は0が返される.
 	 * @param {Number} skillId 
+	 * @param {Array} charaData
+	 * @param {Array} option
 	 * @param {*} skillLv 
 	 * @returns 
 	 */
-	this.GetDividedHitCount = function(skillId, skillLv) {
+	this.GetDividedHitCount = function(skillId, skillLv, charaData, option) {
 		if (typeof this.dataArray[skillId].dispHitCount === "function") {
-			return this.dataArray[skillId].dispHitCount(skillLv);
+			return this.dataArray[skillId].dispHitCount(skillLv, charaData, option);
 		} else {
 			return this.dataArray[skillId].dispHitCount;
 		}
@@ -931,8 +935,8 @@ export function CSkillManager() {
 		return (this.dataArray[skillId].CriActRate(skillLv, charaData, specData, mobData) > 0);
 	}
 
-	this.GetCriActRate = function(skillId, skillLv, charaData, specData, mobData, option) {
-		return this.dataArray[skillId].CriActRate(skillLv, charaData, specData, mobData, option);
+	this.GetCriActRate = function(skillId, skillLv, charaData, specData, mobData, option, weapon) {
+		return this.dataArray[skillId].CriActRate(skillLv, charaData, specData, mobData, option, weapon);
 	}
 
 	this.CriDamageRate = function(skillId, skillLv, charaData, specData, mobData) {
@@ -32462,18 +32466,11 @@ export function CSkillManager() {
 			this.range = function(weapon) {
 				return CSkillData.RANGE_SHORT;
 			}
-			this.WeaponCondition = function(weapon) {
-				return (weapon === ITEM_KIND_KNIFE);
-			}
 			this.Power = function(skillLv, charaData, option) {			// スキル倍率
-				// 「エクシードの有無によらず」+6程度の誤差があるためスキル計算式以外の場所に問題があると考えられます
+				// +6程度の誤差があるためスキル計算式以外の場所に問題があると考えられます
 				let ratio = 0;
 				ratio = 500 + 500 * skillLv;
 				ratio += 10 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-				if (option.GetOptionValue(0) == 1) {
-					// クローキングエクシード状態の場合
-					ratio *= 2.5;
-				}
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
 			}
@@ -32484,7 +32481,7 @@ export function CSkillManager() {
 				return 1000 * skillLv;
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
-				return 500 * skillLv;
+				return 300 * skillLv;
 			}
 		};
 		this.dataArray[skillId] = skillData;
@@ -32827,7 +32824,9 @@ export function CSkillManager() {
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.element = CSkillData.ELEMENT_VOID;
-			this.range = CSkillData.RANGE_SHORT;
+			this.range = function(weapon) {
+				return (weapon === ITEM_KIND_CLUB) ? CSkillData.RANGE_LONG : CSkillData.RANGE_SHORT;
+			}
 			this.dispHitCount = 7;
 			this.WeaponCondition = function(weapon) {
 				return [ITEM_KIND_CLUB, ITEM_KIND_BOOK].includes(weapon);
@@ -34672,44 +34671,41 @@ export function CSkillManager() {
 			this.kana = "コウケキソウチユウコウカ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = function(weapon) {
-				return CSkillData.RANGE_SHORT;
-			}
+			this.element = CSkillData.ELEMENT_VOID;
+			this.range = CSkillData.RANGE_LONG;
 			this.Power = function(skillLv, charaData, option) {
 				let ratio = 0;
 				// 基本倍率
-				ratio = (300 * skillLv);
-				// POW補正（バフの術者であるマイスターのPOWを参照する）
-				ratio += 5 * option.GetOptionValue(0);
-				// ベースレベル補正（バフの被術者である自分のベースレベルを参照する）
+				ratio = 3300 + 1500 * skillLv;
+				// POW補正
+				ratio += 36 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				// ベースレベル補正
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
-			this.element = CSkillData.ELEMENT_VOID;
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
-				return 140;
+				return 250;
 			}
 			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
 				return 0;
 			}
 			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
-				return 2000;
+				return 2000 + 400 * skillLv;
 			}
 			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
-				return 0;
+				return 500;
 			}
 			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
-				return 0;
+				return 1000 * skillLv;
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
-				return 45000;
+				return 500;
 			}
-			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
-				return [0,240,180,120,90,60][skillLv] * 1000;
+			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
+				return this._CriActRate100(skillLv, charaData, specData, mobData);
 			}
-			this.damageInterval = function(skillLv) {
-				return 1000;
+			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
+				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
-			this.ground_installation = true;
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;
@@ -36190,12 +36186,10 @@ export function CSkillManager() {
 				return 0;
 			}
 			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
-				// return this._CriActRate100(skillLv, charaData, specData, mobData);
-				return 0;
+				return this._CriActRate100(skillLv, charaData, specData, mobData);
 			}
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
-				// return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
-				return 0;
+				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
 		};
 		this.dataArray[skillId] = skillData;
@@ -39085,7 +39079,7 @@ export function CSkillManager() {
 			this.ground_installation = true;
 			this.damageInterval = 300;
 			this.Power = function(skillLv, charaData, option) {
-				let ratio = 675 + 75 * skillLv;
+				let ratio = 2400 + 200 * skillLv;
 				// POW補正
 				ratio += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// 天気修練 補正
@@ -39129,6 +39123,10 @@ export function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.hitCount = function(skillLv, option) {
+				// 全弾命中ならx2倍
+				return option.GetOptionValue(0) == 0 ? 2 : 1;
+			}
 			this.dispHitCount = 3;
 			this.ground_installation = true;
 			this.damageInterval = 300;
@@ -39450,10 +39448,10 @@ export function CSkillManager() {
 				return 5000;
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
-				return 15000;
+				return 14000;
 			}
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
-				return 15 * 1000;
+				return 12 * 1000;
 			}
 		};
 		this.dataArray[skillId] = skillData;
@@ -39507,7 +39505,7 @@ export function CSkillManager() {
 			}
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
-				ratio = 5350 + 650 * skillLv;
+				ratio = 8250 + 750 * skillLv;
 				ratio += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// 275パッチでは基礎倍率以外に変更無しを確認済み
 				const gofu_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_GOFU_SHUREN), UsedSkillSearch(SKILL_ID_GOFU_SHUREN));
 				const reidozyutsu_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_REIDOZYUTSU_SHUREN), UsedSkillSearch(SKILL_ID_REIDOZYUTSU_SHUREN));
@@ -39599,9 +39597,9 @@ export function CSkillManager() {
 			this.Power = function(skillLv, charaData, option) {			// スキル倍率
 				let ratio = 0;
 				if (UsedSkillSearch(SKILL_ID_SHIHO_FU_ZYOTAI) >= 5) {
-					ratio = 5500 + 1000 * skillLv;
+					ratio = 11000 + 750 * skillLv;
 				} else {
-					ratio = 4250 + 750 * skillLv;
+					ratio = 7750 + 750 * skillLv;
 				}
 				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 				ratio += 15 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_GOFU_SHUREN), UsedSkillSearch(SKILL_ID_GOFU_SHUREN));
@@ -39652,10 +39650,9 @@ export function CSkillManager() {
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				if (UsedSkillSearch(SKILL_ID_SHIHO_FU_ZYOTAI) >= 5) {
-					// 公式発表並びに実測確認の結果によるとLv4だけ倍率が異常なので直値で指定しています
-					ratio = [0,4750,5250,5750,6200,6750][skillLv];
+					ratio = 7750 + 750 * skillLv;
 				} else {
-					ratio = 3000 + 400 * skillLv;
+					ratio = 6500 + 500 * skillLv;
 				}
 				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 				ratio += 15 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_GOFU_SHUREN), UsedSkillSearch(SKILL_ID_GOFU_SHUREN));
@@ -39706,9 +39703,9 @@ export function CSkillManager() {
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				if (UsedSkillSearch(SKILL_ID_SHIHO_FU_ZYOTAI) >= 5) {
-					ratio = 5500 + 650 * skillLv;
+					ratio = 9250 + 750 * skillLv;
 				} else {
-					ratio = 4250 + 500 * skillLv;
+					ratio = 7500 + 500 * skillLv;
 				}
 				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 				ratio += 15 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_GOFU_SHUREN), UsedSkillSearch(SKILL_ID_GOFU_SHUREN));
@@ -39759,10 +39756,9 @@ export function CSkillManager() {
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				if (UsedSkillSearch(SKILL_ID_SHIHO_FU_ZYOTAI) >= 5) {
-					// 公式発表並びに実測確認の結果によるとLv4だけ倍率が異常なので直値で指定しています
-					ratio = [0,4750,5250,5750,6200,6750][skillLv];
+					ratio = 7750 + 750 * skillLv;
 				} else {
-					ratio = 3000 + 400 * skillLv;
+					ratio = 6500 + 500 * skillLv;
 				}
 				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 				ratio += 15 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_GOFU_SHUREN), UsedSkillSearch(SKILL_ID_GOFU_SHUREN));
@@ -39856,7 +39852,7 @@ export function CSkillManager() {
 			}
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
-				ratio = 2200 + 600 * skillLv;
+				ratio = 4280 + 600 * skillLv;
 				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 				const gofu_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_GOFU_SHUREN), UsedSkillSearch(SKILL_ID_GOFU_SHUREN));
 				const reidozyutsu_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_REIDOZYUTSU_SHUREN), UsedSkillSearch(SKILL_ID_REIDOZYUTSU_SHUREN));
@@ -40287,6 +40283,24 @@ export function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.WeaponCondition = function(weapon) {
+				return [ITEM_KIND_HANDGUN,ITEM_KIND_RIFLE].includes(weapon);
+			}
+			this.Power = function(skillLv, charaData, option, mobData, weapon) {
+				let ratio = 0;
+				if (weapon == ITEM_KIND_HANDGUN) {
+					ratio = 6500 + 1000 * skillLv;
+				}
+				else if (weapon == ITEM_KIND_RIFLE) {
+					ratio = 3250 + 550 * skillLv;
+				}
+				// CON補正
+				ratio += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+				// 照準カウンター補正
+				ratio += (950 + 150 * skillLv) * option.GetOptionValue(0);
+				// ベースレベル補正
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 100;
 			}
@@ -40308,8 +40322,11 @@ export function CSkillManager() {
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
 			}
-			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
-				return this._CriActRate100(skillLv, charaData, specData, mobData);
+			this.CriActRate = (skillLv, charaData, specData, mobData, option, weapon) => {              // クリティカル発生率
+				if (weapon == ITEM_KIND_RIFLE) {
+					return this._CriActRate100(skillLv, charaData, specData, mobData);
+				}
+				return 0;
 			}
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
@@ -40461,6 +40478,17 @@ export function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.dispHitCount = 3;
+			this.WeaponCondition = function(weapon) {
+				return [ITEM_KIND_SHOTGUN,ITEM_KIND_GRENADEGUN].includes(weapon);
+			}
+			this.Power = function(skillLv, charaData, option, mobData, weapon) {
+				let ratio = 0;
+				ratio += 4150 + 650 * skillLv;
+				ratio += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+				ratio += (950 + 150 * n_A_ActiveSkillLV) * option.GetOptionValue(0);
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 230;
 			}
@@ -41192,8 +41220,8 @@ export function CSkillManager() {
 			this.Power = function(skillLv, charaData, option) {
 				let ratio = 0;
 				// スキル倍率
-				ratio = 4600 + 500 * skillLv;							// 基礎倍率
-				ratio += 32 * GetTotalSpecStatus(MIG_PARAM_ID_POW);		// 特性ステータス補正
+				ratio = 5200 + 800 * skillLv;							// 基礎倍率
+				ratio += 44 * GetTotalSpecStatus(MIG_PARAM_ID_POW);		// 特性ステータス補正
 				return Math.floor(ratio * n_A_BaseLV / 100);			// BaseLv補正
 			}
 			this.dispHitCount = function(skillLv) {
@@ -41248,8 +41276,8 @@ export function CSkillManager() {
 			}
 			this.Power = function(skillLv, charaData, option) {
 				let ratio = 0;
-				ratio = 1200 + 200 * skillLv;						// 基礎倍率
-				ratio += 8 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// 特性ステータス補正
+				ratio = 1100 + 500 * skillLv;						// 基礎倍率
+				ratio += 12 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// 特性ステータス補正
 				return Math.floor(ratio * n_A_BaseLV / 100);		// BaseLv補正
 			}
 			this.element = CSkillData.ELEMENT_VOID;
@@ -41665,7 +41693,21 @@ export function CSkillManager() {
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
-			this.element = CSkillData.ELEMENT_VOID;
+			this.element = function(option) {
+				const bullet_element = option.GetOptionValue(0);
+				return bullet_element > 0 ? bullet_element : CSkillData.ELEMENT_VOID;
+			}
+			this.dispHitCount = 2;
+			this.Power = function(skillLv, charaData, option, mobData, weapon) {
+				let ratio = 0;
+				// ダメージ倍率
+				ratio = 5450 + 600 * skillLv;					// 基本
+				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_CON);		// 特性ステータス補正
+				// グレネードマスタリー補正
+				const grenade_mastery_lv = Math.max(LearnedSkillSearch(SKILL_ID_GRENADE_MASTERY), UsedSkillSearch(SKILL_ID_GRENADE_MASTERY));
+				ratio += 50 * grenade_mastery_lv;
+				return Math.floor(ratio * n_A_BaseLV / 100);			// BaseLv補正
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 180;
 			}
@@ -41676,13 +41718,13 @@ export function CSkillManager() {
 				return 500 + 300 * skillLv;
 			}
 			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
-				return 500;
+				return 0;
 			}
 			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
 				return 1000 * skillLv;
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
-				return 500;
+				return 200;
 			}
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
@@ -41694,6 +41736,11 @@ export function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ヘイスティファイアインザホール
 		// ----------------------------------------------------------------
+		/*
+			実際には
+			指定セルの周辺5x5セルに2hit → 0.3秒後さらに2hit → 0.3秒後さらに2hit
+			なのでいまのダメージの表示方法は厳密ではないかもしれない
+		*/
 		window.SKILL_ID_HASTY_FIRE_IN_THE_HOLE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
@@ -41704,7 +41751,22 @@ export function CSkillManager() {
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
-			this.element = CSkillData.ELEMENT_VOID;
+			this.dispHitCount = 2;
+			this.hitCount = 3;
+			this.element = function(option) {
+				const bullet_element = option.GetOptionValue(0);
+				return bullet_element > 0 ? bullet_element : CSkillData.ELEMENT_VOID;
+			}
+			this.Power = function(skillLv, charaData, option, mobData, weapon) {
+				let ratio = 0;
+				// ダメージ倍率
+				ratio = 6250 + 600 * skillLv;							// 基本
+				ratio += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);		// 特性ステータス補正
+				// グレネードマスタリー補正
+				const grenade_mastery_lv = Math.max(LearnedSkillSearch(SKILL_ID_GRENADE_MASTERY), UsedSkillSearch(SKILL_ID_GRENADE_MASTERY));
+				ratio += 20 * grenade_mastery_lv;					 	// グレネードマスタリー補正
+				return Math.floor(ratio * n_A_BaseLV / 100);			// BaseLv補正
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 230;
 			}
@@ -41715,13 +41777,13 @@ export function CSkillManager() {
 				return 500 + 500 * skillLv;
 			}
 			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
-				return 500;
+				return 0;
 			}
 			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
 				return 1000 * skillLv;
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
-				return 3000;
+				return 1000;
 			}
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
@@ -41743,7 +41805,22 @@ export function CSkillManager() {
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
-			this.element = CSkillData.ELEMENT_VOID;
+			this.ground_installation = true;
+			this.damageInterval = 250;
+			this.element = function(option) {
+				const bullet_element = option.GetOptionValue(0);
+				return bullet_element > 0 ? bullet_element : CSkillData.ELEMENT_VOID;
+			}
+			this.Power = function(skillLv, charaData, option, mobData, weapon) {
+				let ratio = 0;
+				// ダメージ倍率
+				ratio = 2450 + 300 * skillLv;				// 基本
+				ratio += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);	// 特性ステータス補正
+				// グレネードマスタリー補正
+				const grenade_mastery_lv = Math.max(LearnedSkillSearch(SKILL_ID_GRENADE_MASTERY), UsedSkillSearch(SKILL_ID_GRENADE_MASTERY));
+				ratio += 30 * grenade_mastery_lv;					// グレネードマスタリー補正
+				return Math.floor(ratio * n_A_BaseLV / 100);			// BaseLv補正
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 230;
 			}
@@ -41754,7 +41831,7 @@ export function CSkillManager() {
 				return 3500 + 400 * skillLv;
 			}
 			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
-				return 500 + 200 * skillLv;
+				return 0;
 			}
 			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
 				return 5000;
@@ -41782,7 +41859,32 @@ export function CSkillManager() {
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
-			this.element = CSkillData.ELEMENT_VOID;
+			this.ground_installation = function(option) {
+				return option.GetOptionValue(1) == 1;
+			}
+			this.damageInterval = 250;
+			this.element = function(option) {
+				const bullet_element = option.GetOptionValue(0);
+				return bullet_element > 0 ? bullet_element : CSkillData.ELEMENT_VOID;
+			}
+			this.Power = function(skillLv, charaData, option, mobData, weapon, parentSkillId) {
+				let ratio = 0;
+				// グレネードマスタリー補正
+				const grenade_mastery_lv = Math.max(LearnedSkillSearch(SKILL_ID_GRENADE_MASTERY), UsedSkillSearch(SKILL_ID_GRENADE_MASTERY));
+				if (option.GetOptionValue(1) === 0) {
+					// 初撃
+					ratio = 17000 + 1150 * skillLv;						// 基本
+					ratio += 100 * grenade_mastery_lv;					// グレネードマスタリー補正
+				} else {
+					// 追撃
+					ratio = 14250 + 900 * skillLv;						// 基本
+					ratio += 30 * grenade_mastery_lv;					// グレネードマスタリー補正
+				}
+				// 特性ステータス補正
+				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+				// BaseLv補正
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 340;
 			}
@@ -41793,16 +41895,16 @@ export function CSkillManager() {
 				return 16000;
 			}
 			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
-				return 2000;
+				return 500;
 			}
 			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
 				return 5000;
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
-				return 2500 + 1000 * skillLv;
+				return 4500;
 			}
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
-				return (2 + skillLv) * 1000;
+				return 4000;
 			}
 		};
 		this.dataArray[skillId] = skillData;
@@ -42019,7 +42121,29 @@ export function CSkillManager() {
 			this.maxLv = 1;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
-			this.element = CSkillData.ELEMENT_FORCE_DARK;
+			this.dispHitCount = 4;	// 分割ヒット4
+			this.element = function(option, mobData, parentSkillId) {
+				if (parentSkillId == undefined) {
+					// 初撃
+					return CSkillData.ELEMENT_FORCE_DARK;
+				} else {
+					// 追撃
+					return CSkillData.ELEMENT_FORCE_FIRE;
+				}
+			}
+			this.Power = function(skillLv, charaData, option, mobData, weapon, parentSkillId) {
+				let ratio = 0;
+				if (parentSkillId == undefined) {
+					// 初撃
+					ratio = 27000;
+				} else {
+					// 追撃 
+					ratio = 17000;
+				}
+				ratio += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				ratio = Math.floor(ratio * n_A_BaseLV / 100);
+				return ratio;
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 410;
 			}
@@ -42291,6 +42415,17 @@ export function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.dispHitCount = 8;	// 分割ヒット8
+			this.Power = function(skillLv, charaData, option, mobData) {
+				let ratio = 52000;
+				ratio += 10 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				ratio = Math.floor(ratio * n_A_BaseLV / 100);
+				// 悪夢の場合
+				if (option.GetOptionValue(0) == 1) {
+					ratio *= 1.5;
+				}				
+				return ratio;
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 280;
 			}
@@ -42335,10 +42470,10 @@ export function CSkillManager() {
 				// 基本倍率
 				const sentogaku = Math.max(LearnedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU), UsedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU));
 				const breaking_limit_lv = UsedSkillSearch(SKILL_ID_BREAKING_LIMIT_STATE);
-				let ratio = 4300 + 200 * skillLv;											// 基礎倍率
+				let ratio = 9250 + 300 * skillLv;											// 基礎倍率
 				ratio += 3 * skillLv * sentogaku;											// 習得済みスキル条件
-				ratio += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);									// 特性ステータス補正
-				ratio *= n_A_BaseLV / 100;															// BaseLv補正
+				ratio += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);							// 特性ステータス補正
+				ratio *= n_A_BaseLV / 100;													// BaseLv補正
 				ratio = Math.floor(ratio);
 				// 最終倍率
 				ratio *= [100, 101, 103, 105, 107, 109, 111, 113, 115, 120, 125][sentogaku] / 100;	// 独学補正
@@ -42382,7 +42517,7 @@ export function CSkillManager() {
 			this.dispHitCount = 5;
 			this.Power = function(skillLv, charaData, option, mobData) {
 				// 基本倍率
-				let ratio = 4500 + 250 * skillLv;
+				let ratio = 10750 + 350 * skillLv;
 				const sentogaku = Math.max(LearnedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU), UsedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU));
 				ratio += 3 * skillLv * sentogaku;
 				// サイズ補正 (POWには掛からない)
@@ -42462,7 +42597,6 @@ export function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "グラウンドグラビテーション";
 			this.kana = "クラウントクラヒテエシヨン";
@@ -42470,6 +42604,37 @@ export function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_VANITY;
+			this.dispHitCount = function(skillLv, charaData, option) {
+				// 初撃なら分割2Hit
+				return option.GetOptionValue(0) == 0 ? 2 : 1;
+			}
+			this.ground_installation = function(option) {
+				return option.GetOptionValue(0) == 1;
+			}
+			this.damageInterval = 500;
+			this.Power = function(skillLv, charaData, option, mobData, weapon, parentSkillId) {
+				// ダメージ計算
+				let ratio = 0;
+				let madogaku = Math.max(LearnedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU), UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU));
+				if (option.GetOptionValue(0) === 0) {
+					// 初撃ダメージ計算が指定された場合 (独学補正は掛からない)
+					ratio = 850 + 50 * skillLv;											// 基礎倍率
+					ratio += 4 * skillLv * madogaku;										// 習得済みスキル条件
+					ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);						// 特性ステータス補正
+					ratio = Math.floor(ratio * n_A_BaseLV / 100);
+				} else {
+					// 基本倍率
+					ratio = 400 + 10 * skillLv;											// 基礎倍率
+					ratio += 2 * skillLv * madogaku;										// 習得済みスキル条件
+					ratio += 2 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);						// 特性ステータス補正
+					ratio = Math.floor(ratio * n_A_BaseLV / 100);
+					ratio = Math.floor(ratio * [100,101,103,105,107,109,111,113,115,120,125][madogaku] / 100);	// 独学補正
+				}
+				if (UsedSkillSearch(SKILL_ID_RULE_BREAK_STATE) > 0) {
+					ratio *= 3;
+				}
+				return Math.floor(ratio);
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 0;
 			}
@@ -42483,7 +42648,10 @@ export function CSkillManager() {
 				return 5000;
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {
-				return 5000;
+				return 3000;
+			}
+			this.LifeTime = function(skillLv, charaData) {
+				return 3000;
 			}
 		};
 		this.dataArray[skillId] = skillData;
@@ -43256,8 +43424,8 @@ export function CSkillManager() {
 				return armed_gear;
 			}
 			this.Power = function(skillLv, charaData) {       // スキル倍率
-				let ratio = 6150 + 1650 * skillLv;
-				ratio += 48 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
+				let ratio = 7000 + 2500 * skillLv;
+				ratio += 65 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
@@ -45675,7 +45843,7 @@ export function CSkillManager() {
 				return 1000;
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
-				return 7000;
+				return 8000;
 			}
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 7000;
