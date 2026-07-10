@@ -36196,12 +36196,10 @@ export function CSkillManager() {
 				return 0;
 			}
 			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
-				// return this._CriActRate100(skillLv, charaData, specData, mobData);
-				return 0;
+				return this._CriActRate100(skillLv, charaData, specData, mobData);
 			}
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
-				// return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
-				return 0;
+				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
 		};
 		this.dataArray[skillId] = skillData;
