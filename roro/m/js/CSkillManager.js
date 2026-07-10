@@ -39652,10 +39652,9 @@ export function CSkillManager() {
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				if (UsedSkillSearch(SKILL_ID_SHIHO_FU_ZYOTAI) >= 5) {
-					// 公式発表並びに実測確認の結果によるとLv4だけ倍率が異常なので直値で指定しています
-					ratio = [0,4750,5250,5750,6200,6750][skillLv];
+					ratio = 7750 + 750 * skillLv;
 				} else {
-					ratio = 3000 + 400 * skillLv;
+					ratio = 6500 + 500 * skillLv;
 				}
 				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 				ratio += 15 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_GOFU_SHUREN), UsedSkillSearch(SKILL_ID_GOFU_SHUREN));
