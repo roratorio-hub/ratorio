@@ -39079,7 +39079,7 @@ export function CSkillManager() {
 			this.ground_installation = true;
 			this.damageInterval = 300;
 			this.Power = function(skillLv, charaData, option) {
-				let ratio = 675 + 75 * skillLv;
+				let ratio = 2400 + 200 * skillLv;
 				// POW補正
 				ratio += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// 天気修練 補正
