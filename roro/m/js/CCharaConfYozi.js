@@ -359,7 +359,6 @@ export function CCharaConfYozi(confArray) {
 			CCharaConfYozi.CONF_ID_BENEDICTUM,
 			CCharaConfYozi.CONF_ID_CLIMAX_IMPACT,
 			CCharaConfYozi.CONF_ID_SPELL_ENCHANTING,
-			CCharaConfYozi.CONF_ID_KOGEKI_SOCHI_YUKOKA,
 			CCharaConfYozi.CONF_ID_BOGYO_SOCHI_YUKOKA,
 			CCharaConfYozi.CONF_ID_MUSICAL_INTERLUDE,
 			CCharaConfYozi.CONF_ID_YUYAKENO_SERENADE,

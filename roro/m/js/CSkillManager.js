@@ -34671,44 +34671,41 @@ export function CSkillManager() {
 			this.kana = "コウケキソウチユウコウカ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = function(weapon) {
-				return CSkillData.RANGE_SHORT;
-			}
+			this.element = CSkillData.ELEMENT_VOID;
+			this.range = CSkillData.RANGE_LONG;
 			this.Power = function(skillLv, charaData, option) {
 				let ratio = 0;
 				// 基本倍率
-				ratio = (300 * skillLv);
-				// POW補正（バフの術者であるマイスターのPOWを参照する）
-				ratio += 5 * option.GetOptionValue(0);
-				// ベースレベル補正（バフの被術者である自分のベースレベルを参照する）
+				ratio = 3300 + 1500 * skillLv;
+				// POW補正
+				ratio += 36 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				// ベースレベル補正
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
-			this.element = CSkillData.ELEMENT_VOID;
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
-				return 140;
+				return 250;
 			}
 			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
 				return 0;
 			}
 			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
-				return 2000;
+				return 2000 + 400 * skillLv;
 			}
 			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
-				return 0;
+				return 500;
 			}
 			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
-				return 0;
+				return 1000 * skillLv;
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
-				return 45000;
+				return 500;
 			}
-			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
-				return [0,240,180,120,90,60][skillLv] * 1000;
+			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
+				return this._CriActRate100(skillLv, charaData, specData, mobData);
 			}
-			this.damageInterval = function(skillLv) {
-				return 1000;
+			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
+				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
-			this.ground_installation = true;
 		};
 		this.dataArray[skillId] = skillData;
 		skillId++;

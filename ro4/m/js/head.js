@@ -3063,10 +3063,6 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				if (n_A_ActiveSkill === SKILL_ID_KOGEKI_SOCHI_YUKOKA) {
-					wCast = 0;
-					n_Delay[7] = 0;
-				}
 				// ダメージ算出に関する情報
 				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], mobData, n_A_WeaponType);
 				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_WeaponType);
