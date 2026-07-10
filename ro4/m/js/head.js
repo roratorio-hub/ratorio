@@ -2995,6 +2995,7 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			case SKILL_ID_MIDNIGHT_FALLEN: // ミッドナイトフォーリン
 			case SKILL_ID_ONLY_ONE_BULLET: // オンリーワンバレット
 			case SKILL_ID_WILD_FIRE: // ワイルドファイア
+			case SKILL_ID_BASIC_GRENADE: // ベーシックグレネード
 			/* 天帝 */
 			case SKILL_ID_SKY_SUN: // 天気身陽
 			case SKILL_ID_SKY_MOON: // 天気身月
@@ -3611,25 +3612,6 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				wActiveHitNum = 2;
 				break;
 
-			// 「ナイトウォッチ」スキル「ベーシックグレネード」
-			// 2025/01/25 もなこさん検証データとの誤差無しを確認ずみ
-			case SKILL_ID_BASIC_GRENADE: {
-				n_Enekyori = 1;	// 遠距離フラグ
-				wActiveHitNum = 2;	// 見た目2hit
-				// 詠唱時間など
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// ダメージ倍率
-				wbairitu = 3000 + 600 * n_A_ActiveSkillLV;					// 基本
-				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_CON);		// 特性ステータス補正
-				// グレネードマスタリー補正
-				const grenade_mastery_lv = Math.max(LearnedSkillSearch(SKILL_ID_GRENADE_MASTERY), UsedSkillSearch(SKILL_ID_GRENADE_MASTERY));
-				wbairitu += 50 * grenade_mastery_lv;
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);			// BaseLv補正
-				break;
-			}
 			// 「ナイトウォッチ」スキル「ヘイスティファイアインザホール」
 			// 2025/01/25 もなこさん検証データとの誤差無しを確認ずみ
 			case SKILL_ID_HASTY_FIRE_IN_THE_HOLE: {
@@ -17118,8 +17100,7 @@ export function SET_ZOKUSEI(mobData, attackMethodConfArray) {
 			n_A_Weapon_zokusei = ELM_ID_VANITY;
 			break;
 
-		// 「ベーシックグレネード」「ヘイスティファイアインザホール」「グレネーズドロッピング」「ミッションボンバード」はグレネードフラグメント属性、指定がなければ弾丸属性
-		case SKILL_ID_BASIC_GRENADE:
+		// 「ヘイスティファイアインザホール」「グレネーズドロッピング」「ミッションボンバード」はグレネードフラグメント属性、指定がなければ弾丸属性
 		case SKILL_ID_HASTY_FIRE_IN_THE_HOLE:
 		case SKILL_ID_GRENADES_DROPPING:
 		case SKILL_ID_MISSION_BOMBARD:
