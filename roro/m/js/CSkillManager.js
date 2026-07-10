@@ -42521,7 +42521,7 @@ export function CSkillManager() {
 			this.dispHitCount = 5;
 			this.Power = function(skillLv, charaData, option, mobData) {
 				// 基本倍率
-				let ratio = 4500 + 250 * skillLv;
+				let ratio = 10750 + 350 * skillLv;
 				const sentogaku = Math.max(LearnedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU), UsedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU));
 				ratio += 3 * skillLv * sentogaku;
 				// サイズ補正 (POWには掛からない)
