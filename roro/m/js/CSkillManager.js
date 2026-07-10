@@ -39507,7 +39507,7 @@ export function CSkillManager() {
 			}
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
-				ratio = 5350 + 650 * skillLv;
+				ratio = 8250 + 750 * skillLv;
 				ratio += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// 275パッチでは基礎倍率以外に変更無しを確認済み
 				const gofu_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_GOFU_SHUREN), UsedSkillSearch(SKILL_ID_GOFU_SHUREN));
 				const reidozyutsu_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_REIDOZYUTSU_SHUREN), UsedSkillSearch(SKILL_ID_REIDOZYUTSU_SHUREN));
