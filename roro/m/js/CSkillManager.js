@@ -42474,10 +42474,10 @@ export function CSkillManager() {
 				// 基本倍率
 				const sentogaku = Math.max(LearnedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU), UsedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU));
 				const breaking_limit_lv = UsedSkillSearch(SKILL_ID_BREAKING_LIMIT_STATE);
-				let ratio = 4300 + 200 * skillLv;											// 基礎倍率
+				let ratio = 9250 + 300 * skillLv;											// 基礎倍率
 				ratio += 3 * skillLv * sentogaku;											// 習得済みスキル条件
-				ratio += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);									// 特性ステータス補正
-				ratio *= n_A_BaseLV / 100;															// BaseLv補正
+				ratio += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);							// 特性ステータス補正
+				ratio *= n_A_BaseLV / 100;													// BaseLv補正
 				ratio = Math.floor(ratio);
 				// 最終倍率
 				ratio *= [100, 101, 103, 105, 107, 109, 111, 113, 115, 120, 125][sentogaku] / 100;	// 独学補正
