@@ -32831,7 +32831,9 @@ export function CSkillManager() {
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.element = CSkillData.ELEMENT_VOID;
-			this.range = CSkillData.RANGE_SHORT;
+			this.range = function(weapon) {
+				return (weapon === ITEM_KIND_CLUB) ? CSkillData.RANGE_LONG : CSkillData.RANGE_SHORT;
+			}
 			this.dispHitCount = 7;
 			this.WeaponCondition = function(weapon) {
 				return [ITEM_KIND_CLUB, ITEM_KIND_BOOK].includes(weapon);
