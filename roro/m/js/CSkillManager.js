@@ -41807,7 +41807,21 @@ export function CSkillManager() {
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
-			this.element = CSkillData.ELEMENT_VOID;
+			this.ground_installation = true;
+			this.damageInterval = 250;
+			this.element = function(option) {
+				return option.GetOptionValue(0);
+			}
+			this.Power = function(skillLv, charaData, option, mobData, weapon) {
+				let ratio = 0;
+				// ダメージ倍率
+				ratio = 2450 + 300 * skillLv;				// 基本
+				ratio += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);	// 特性ステータス補正
+				// グレネードマスタリー補正
+				const grenade_mastery_lv = Math.max(LearnedSkillSearch(SKILL_ID_GRENADE_MASTERY), UsedSkillSearch(SKILL_ID_GRENADE_MASTERY));
+				ratio += 30 * grenade_mastery_lv;					// グレネードマスタリー補正
+				return Math.floor(ratio * n_A_BaseLV / 100);			// BaseLv補正
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 230;
 			}
@@ -41818,7 +41832,7 @@ export function CSkillManager() {
 				return 3500 + 400 * skillLv;
 			}
 			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
-				return 500 + 200 * skillLv;
+				return 0;
 			}
 			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
 				return 5000;

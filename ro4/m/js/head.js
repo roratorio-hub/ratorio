@@ -2997,6 +2997,7 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			case SKILL_ID_WILD_FIRE: // ワイルドファイア
 			case SKILL_ID_BASIC_GRENADE: // ベーシックグレネード
 			case SKILL_ID_HASTY_FIRE_IN_THE_HOLE: // ヘイスティファイアインザホール
+			case SKILL_ID_GRENADES_DROPPING: // グレネーズドロッピング
 			/* 天帝 */
 			case SKILL_ID_SKY_SUN: // 天気身陽
 			case SKILL_ID_SKY_MOON: // 天気身月
@@ -3613,33 +3614,6 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				wActiveHitNum = 2;
 				break;
 
-			// 「ナイトウォッチ」スキル「グレネーズドロッピング」
-			// 2025/01/25 もなこさん検証データとの誤差無しを確認ずみ
-			case SKILL_ID_GRENADES_DROPPING: {
-				/*
-					ダメージセルがランダムに発生するので実際はこれよりも総ダメージが少なくなる
-					検証によれば平均9～10hitで最大13hitとのこと（試行回数20回）
-				*/
-				// 詠唱時間など
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// 遠距離フラグ
-				n_Enekyori = 1;	
-				// 設置スキル
-				g_bDefinedDamageIntervals = true;
-				n_Delay[5] = 250;		// ダメージ間隔
-				n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData); // オブジェクト存続時間
-				// ダメージ倍率
-				wbairitu = 1350 + 300 * n_A_ActiveSkillLV;					// 基本
-				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);		// 特性ステータス補正
-				// グレネードマスタリー補正
-				const grenade_mastery_lv = Math.max(LearnedSkillSearch(SKILL_ID_GRENADE_MASTERY), UsedSkillSearch(SKILL_ID_GRENADE_MASTERY));
-				wbairitu += 30 * grenade_mastery_lv;					 	// グレネードマスタリー補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);			// BaseLv補正
-				break;
-			}
 			// 「ナイトウォッチ」スキル「ミッションボンバード」
 			// 2025/01/25 もなこさん検証データとの誤差無しを確認ずみ
 			case SKILL_ID_MISSION_BOMBARD: {
@@ -17076,8 +17050,7 @@ export function SET_ZOKUSEI(mobData, attackMethodConfArray) {
 			n_A_Weapon_zokusei = ELM_ID_VANITY;
 			break;
 
-		// 「グレネーズドロッピング」「ミッションボンバード」はグレネードフラグメント属性、指定がなければ弾丸属性
-		case SKILL_ID_GRENADES_DROPPING:
+		// 「ミッションボンバード」はグレネードフラグメント属性、指定がなければ弾丸属性
 		case SKILL_ID_MISSION_BOMBARD:
 			// グレネードフラグメント属性
 			let grenade_flagment = attackMethodConfArray[0].GetOptionValue(0);
