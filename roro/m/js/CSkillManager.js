@@ -43420,8 +43420,8 @@ export function CSkillManager() {
 				return armed_gear;
 			}
 			this.Power = function(skillLv, charaData) {       // スキル倍率
-				let ratio = 6150 + 1650 * skillLv;
-				ratio += 48 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
+				let ratio = 7000 + 2500 * skillLv;
+				ratio += 65 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
