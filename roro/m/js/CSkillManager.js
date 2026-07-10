@@ -933,8 +933,8 @@ export function CSkillManager() {
 		return (this.dataArray[skillId].CriActRate(skillLv, charaData, specData, mobData) > 0);
 	}
 
-	this.GetCriActRate = function(skillId, skillLv, charaData, specData, mobData, option) {
-		return this.dataArray[skillId].CriActRate(skillLv, charaData, specData, mobData, option);
+	this.GetCriActRate = function(skillId, skillLv, charaData, specData, mobData, option, weapon) {
+		return this.dataArray[skillId].CriActRate(skillLv, charaData, specData, mobData, option, weapon);
 	}
 
 	this.CriDamageRate = function(skillId, skillLv, charaData, specData, mobData) {
@@ -40287,6 +40287,24 @@ export function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.WeaponCondition = function(weapon) {
+				return [ITEM_KIND_HANDGUN,ITEM_KIND_RIFLE].includes(weapon);
+			}
+			this.Power = function(skillLv, charaData, option, mobData, weapon) {
+				let ratio = 0;
+				if (weapon == ITEM_KIND_HANDGUN) {
+					ratio = 6500 + 1000 * skillLv;
+				}
+				else if (weapon == ITEM_KIND_RIFLE) {
+					ratio = 3250 + 550 * skillLv;
+				}
+				// CON補正
+				ratio += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+				// 照準カウンター補正
+				ratio += (950 + 150 * skillLv) * option.GetOptionValue(0);
+				// ベースレベル補正
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 100;
 			}
@@ -40308,8 +40326,11 @@ export function CSkillManager() {
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
 			}
-			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
-				return this._CriActRate100(skillLv, charaData, specData, mobData);
+			this.CriActRate = (skillLv, charaData, specData, mobData, option, weapon) => {              // クリティカル発生率
+				if (weapon == ITEM_KIND_RIFLE) {
+					return this._CriActRate100(skillLv, charaData, specData, mobData);
+				}
+				return 0;
 			}
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;

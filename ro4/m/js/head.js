@@ -1155,7 +1155,7 @@ export function BattleCalc999Body(battleCalcInfo, charaData, specData, mobData, 
 	let battleCalcResult = null;
 	let dmgUnitArray = null;
 	/** クリティカル発生フラグ true/false */
-	const bCri = (g_skillManager.GetCriActRate(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData, specData, mobData, attackMethodConfArray[0]) > 0);
+	const bCri = (g_skillManager.GetCriActRate(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData, specData, mobData, attackMethodConfArray[0], n_A_WeaponType) > 0);
 	// ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
 	//
 	// 呼び出し元から移植
@@ -2993,6 +2993,7 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			/* ナイトウォッチ */
 			case SKILL_ID_WILD_SHOT: // ワイルドショット
 			case SKILL_ID_MIDNIGHT_FALLEN: // ミッドナイトフォーリン
+			case SKILL_ID_ONLY_ONE_BULLET: // オンリーワンバレット
 			/* 天帝 */
 			case SKILL_ID_SKY_SUN: // 天気身陽
 			case SKILL_ID_SKY_MOON: // 天気身月
@@ -3338,38 +3339,6 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 						wHITsuu = 3;
 						break;
 				}
-				break;
-
-			//「ナイトウォッチ」スキル「オンリーワンバレット」
-			// 2025/01/25 もなこさん提供データに対して誤差なしを確認
-			case SKILL_ID_ONLY_ONE_BULLET:
-				// 詠唱時間など
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// 使用武器制限
-				if (n_A_WeaponType != ITEM_KIND_HANDGUN && n_A_WeaponType != ITEM_KIND_RIFLE) {
-					n_Buki_Muri = true
-					wbairitu = 0;
-					break;
-				}
-				// 遠距離属性
-				n_Enekyori = 1;
-				if (n_A_WeaponType == ITEM_KIND_HANDGUN) {
-					wbairitu = 6000 + 900 * n_A_ActiveSkillLV;
-					bCri = false; // クリティカルしない
-				}
-				else if (n_A_WeaponType == ITEM_KIND_RIFLE) {
-					wbairitu = 2800 + 500 * n_A_ActiveSkillLV;
-				}
-				// CON補正
-				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
-				// 照準カウンター補正
-				option_count = attackMethodConfArray[0].GetOptionValue(0);
-				wbairitu += option_count * (950 + 150 * n_A_ActiveSkillLV);
-				// ベースレベル補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 				break;
 
 			// 「ナイトウォッチ」スキル「スパイラルシューティング」
@@ -15544,7 +15513,7 @@ export function calc() {
 	w_Cri = charaData[CHARA_DATA_INDEX_CRI];
 
 	// スキルクリティカルの確率補正を適用したクリティカル率を取得
-	w_Cri = g_skillManager.GetCriActRate(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, specData, mobData, attackMethodConfArray[0]);
+	w_Cri = g_skillManager.GetCriActRate(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, specData, mobData, attackMethodConfArray[0], n_A_WeaponType);
 
 	// 敵のCRI耐性減算
 	w_Cri -= ((mobData[MONSTER_DATA_INDEX_LEVEL] / 150) + (mobData[MONSTER_DATA_INDEX_LUK] / 5));
