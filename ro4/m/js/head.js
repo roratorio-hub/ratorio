@@ -200,7 +200,8 @@ import {
          ITEM_SET_ID_YSF01_PLATE_FULLSET,
          ITEM_SET_ID_YUSHANO_BROACH_YUSHANO_JUDGEMENT_ROBE,
          ITEM_SET_ID_YUSHANO_BROACH_YUSHANO_PLATE,
-         ITEM_SET_ID_YUSHANO_KUTSU_TATSUZINNO_KEN, ItemObjNew
+         ITEM_SET_ID_YUSHANO_KUTSU_TATSUZINNO_KEN, ItemObjNew,
+		 ITEM_ID_ABANDONED_CLOAK,
 } from '../../../roro/m/js/item.dat.js';
 import { IsDexBasedArms, IsEffectiveExceededRefinedAtkArms, IsGunSeriesArms } from '../../../roro/m/js/item.h.js';
 import { LearnedSkillSearch } from '../../../roro/m/js/learnedskill.js';
@@ -9801,6 +9802,9 @@ export function ApplyMagicalSpecializeMonsterMod20211014SubSpecializeMap(charaDa
 		if ((cardCount = CardNumSearch(CARD_ID_DOKUTSU_CALMARING)) > 0) {
 			wX += 30 * cardCount;
 		}
+		if (EquipNumSearch(ITEM_ID_ABANDONED_CLOAK) > 0) {
+			wX += 30;
+		}
 	}
 
 	//--------------------------------
@@ -9809,6 +9813,9 @@ export function ApplyMagicalSpecializeMonsterMod20211014SubSpecializeMap(charaDa
 	if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_SUTERARETA_ANA_02]) == 1){
 		if ((cardCount = CardNumSearch(CARD_ID_TANGAN_DOLLOCARIS)) > 0) {
 			wX += 30 * cardCount;
+		}
+		if (EquipNumSearch(ITEM_ID_ABANDONED_CLOAK) > 0) {
+			wX += 30;
 		}
 	}
 
@@ -13013,6 +13020,14 @@ export function getResistanceOfEnvironment(mobID) {
 	// 凍て付いた鱗の氷河 耐性
 	if(NumSearch(mobID, MonsterGroupObj[MONSTER_GROUP_ID_JOR_BACK3]) == 1){
 		if (EquipNumSearch(ITEM_ID_AURORA_CURTAIN_ROBE) > 0) {
+			result += 60;
+		}
+	}
+	// 捨てられた穴 耐性
+	if (EquipNumSearch(ITEM_ID_ABANDONED_CLOAK) > 0) {
+		const condition01 = NumSearch(mobID, MonsterGroupObj[MONSTER_GROUP_ID_SUTERARETA_ANA_01]) == 1;
+		const condition02 = NumSearch(mobID, MonsterGroupObj[MONSTER_GROUP_ID_SUTERARETA_ANA_02]) == 1;
+		if (condition01 || condition02) {
 			result += 60;
 		}
 	}
@@ -18037,6 +18052,9 @@ export function ApplyPhysicalSpecializeMonster(charaData, specData, mobData, dmg
 		if ((cardCount = CardNumSearch(CARD_ID_DOKUTSU_CALMARING)) > 0) {
 			w += 30 * cardCount;
 		}
+		if (EquipNumSearch(ITEM_ID_ABANDONED_CLOAK) > 0) {
+			w += 30;
+		}
 	}
 
 	//--------------------------------
@@ -18045,6 +18063,9 @@ export function ApplyPhysicalSpecializeMonster(charaData, specData, mobData, dmg
 	if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_SUTERARETA_ANA_02]) == 1){
 		if ((cardCount = CardNumSearch(CARD_ID_TANGAN_DOLLOCARIS)) > 0) {
 			w += 30 * cardCount;
+		}
+		if (EquipNumSearch(ITEM_ID_ABANDONED_CLOAK) > 0) {
+			w += 30;
 		}
 	}
 
