@@ -39599,9 +39599,9 @@ export function CSkillManager() {
 			this.Power = function(skillLv, charaData, option) {			// スキル倍率
 				let ratio = 0;
 				if (UsedSkillSearch(SKILL_ID_SHIHO_FU_ZYOTAI) >= 5) {
-					ratio = 5500 + 1000 * skillLv;
+					ratio = 11000 + 750 * skillLv;
 				} else {
-					ratio = 4250 + 750 * skillLv;
+					ratio = 7750 + 750 * skillLv;
 				}
 				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 				ratio += 15 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_GOFU_SHUREN), UsedSkillSearch(SKILL_ID_GOFU_SHUREN));
