@@ -45675,7 +45675,7 @@ export function CSkillManager() {
 				return 1000;
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
-				return 7000;
+				return 8000;
 			}
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 7000;
