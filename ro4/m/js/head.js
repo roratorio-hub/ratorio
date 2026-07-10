@@ -7514,6 +7514,9 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 		case SKILL_ID_GROUND_BLOOM:
 		/** 蜃気楼・不知火 */
 		case SKILL_ID_GENZYUTSU_ANKOKURYUU:
+		/** ハイパーノービス */
+		case SKILL_ID_GROUND_GRAVITATION:
+
 			// スキル使用条件の判定
 			n_Buki_Muri = !g_skillManager.MatchWeaponCondition(n_A_ActiveSkill, n_A_WeaponType);
 			if (n_Buki_Muri) {
@@ -7531,7 +7534,7 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_WeaponType);
 			// ヒット数に関する情報
 			wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
-			wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
+			wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 			// 地面設置スキルの情報
 			g_bDefinedDamageIntervals = g_skillManager.IsGroundInstallation(n_A_ActiveSkill, attackMethodConfArray[0]);
 			if (g_bDefinedDamageIntervals) {
@@ -8660,45 +8663,7 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			wbairitu = Math.floor(wbairitu);
 			break;
 		}
-		// 「ハイパーノービス」スキル「グラウンドグラビテーション」
-		case SKILL_ID_GROUND_GRAVITATION: {
-			// 2024/09/19 実測値との誤差無しまたは誤差1を確認済み
-			// 後続の計算式による丸め誤差と判断しています
-			// 詠唱時間等
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// ダメージ計算
-			let madogaku = Math.max(LearnedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU), UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU));
-			if (attackMethodConfArray[0].GetOptionValue(0) === 0) {
-				// 初撃ダメージ計算が指定された場合 (独学補正は掛からない)
-				wbairitu = 600 + (50 * n_A_ActiveSkillLV);											// 基礎倍率
-				wbairitu += 4 * n_A_ActiveSkillLV * madogaku;	// 習得済みスキル条件
-				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);								// 特性ステータス補正
-				wbairitu *= n_A_BaseLV / 100;														// BaseLv補正
-				wbairitu = Math.floor(wbairitu);
-				wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK_STATE)] / 100;			// ルールブレイク補正
-				// 分割Hit数
-				wActiveHitNum = 2;
-			} else {
-				// 設置ダメージ計算が指定された場合
-				g_bDefinedDamageIntervals = true;
-				n_Delay[5] = 500;	// ダメージ間隔
-				n_Delay[6] = 5000;	// オブジェクト存続時間
-				// 基本倍率
-				wbairitu = 300 + (10 * n_A_ActiveSkillLV);							// 基礎倍率
-				wbairitu += 2 * n_A_ActiveSkillLV * madogaku;		// 習得済みスキル条件
-				wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);				// 特性ステータス補正
-				wbairitu *= n_A_BaseLV / 100;										// BaseLv補正
-				wbairitu = Math.floor(wbairitu);
-				wbairitu *= [100,101,103,105,107,109,111,113,115,120,125][madogaku] / 100;	// 独学補正
-				wbairitu = Math.floor(wbairitu);
-				wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK_STATE)] / 100;										// ルールブレイク補正
-			}
-			wbairitu = Math.floor(wbairitu);
-			break;
-		}
+		
 /*
 		case SKILL_ID_DUMMY:
 			// 使用武器制限

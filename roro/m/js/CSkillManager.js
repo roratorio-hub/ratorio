@@ -556,7 +556,7 @@ export function CSkillData() {
 		return 1;
 	}
 	/** 分割ヒット数を取得する. オーバーライドされていない場合は 0 が返される. */
-	this.dispHitCount = function(skillLv, charaDataManger) {
+	this.dispHitCount = function(skillLv, charaDataManger, option) {
 		return 0;
 	}
 	/**
@@ -848,12 +848,14 @@ export function CSkillManager() {
 	/**
 	 * スキルの分割ヒット数を取得する. オーバーライドされていない場合は0が返される.
 	 * @param {Number} skillId 
+	 * @param {Array} charaData
+	 * @param {Array} option
 	 * @param {*} skillLv 
 	 * @returns 
 	 */
-	this.GetDividedHitCount = function(skillId, skillLv) {
+	this.GetDividedHitCount = function(skillId, skillLv, charaData, option) {
 		if (typeof this.dataArray[skillId].dispHitCount === "function") {
-			return this.dataArray[skillId].dispHitCount(skillLv);
+			return this.dataArray[skillId].dispHitCount(skillLv, charaData, option);
 		} else {
 			return this.dataArray[skillId].dispHitCount;
 		}
@@ -42601,7 +42603,6 @@ export function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "グラウンドグラビテーション";
 			this.kana = "クラウントクラヒテエシヨン";
@@ -42609,6 +42610,37 @@ export function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_VANITY;
+			this.dispHitCount = function(skillLv, charaData, option) {
+				// 初撃なら分割2Hit
+				return option.GetOptionValue(0) == 0 ? 2 : 1;
+			}
+			this.ground_installation = function(option) {
+				return option.GetOptionValue(0) == 1;
+			}
+			this.damageInterval = 500;
+			this.Power = function(skillLv, charaData, option, mobData, weapon, parentSkillId) {
+				// ダメージ計算
+				let ratio = 0;
+				let madogaku = Math.max(LearnedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU), UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU));
+				if (option.GetOptionValue(0) === 0) {
+					// 初撃ダメージ計算が指定された場合 (独学補正は掛からない)
+					ratio = 850 + 50 * skillLv;											// 基礎倍率
+					ratio += 4 * skillLv * madogaku;										// 習得済みスキル条件
+					ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);						// 特性ステータス補正
+					ratio = Math.floor(ratio * n_A_BaseLV / 100);
+				} else {
+					// 基本倍率
+					ratio = 400 + 10 * skillLv;											// 基礎倍率
+					ratio += 2 * skillLv * madogaku;										// 習得済みスキル条件
+					ratio += 2 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);						// 特性ステータス補正
+					ratio = Math.floor(ratio * n_A_BaseLV / 100);
+					ratio = Math.floor(ratio * [100,101,103,105,107,109,111,113,115,120,125][madogaku] / 100);	// 独学補正
+				}
+				if (UsedSkillSearch(SKILL_ID_RULE_BREAK_STATE) > 0) {
+					ratio *= 3;
+				}
+				return Math.floor(ratio);
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 0;
 			}
@@ -42622,7 +42654,10 @@ export function CSkillManager() {
 				return 5000;
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {
-				return 5000;
+				return 3000;
+			}
+			this.LifeTime = function(skillLv, charaData) {
+				return 3000;
 			}
 		};
 		this.dataArray[skillId] = skillData;
