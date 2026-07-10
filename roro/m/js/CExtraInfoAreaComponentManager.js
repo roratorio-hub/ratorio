@@ -1263,6 +1263,10 @@ export function CExtraInfoAreaComponentManager () {
 				value += 500 + 200 * dragon_training_lv;
 			}
 		}
+		if (UsedSkillSearch(SKILL_ID_MADOGEAR) > 0) {
+			// 魔導ギアに搭乗中
+			value += 1500;
+		}
 
 		// 所持限界量増加
 		lv = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_EXTRA_INFO_CAPACITY_UP_LV_" + this.managerInstanceId, 0);
