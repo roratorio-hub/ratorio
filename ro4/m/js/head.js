@@ -2998,6 +2998,7 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			case SKILL_ID_BASIC_GRENADE: // ベーシックグレネード
 			case SKILL_ID_HASTY_FIRE_IN_THE_HOLE: // ヘイスティファイアインザホール
 			case SKILL_ID_GRENADES_DROPPING: // グレネーズドロッピング
+			case SKILL_ID_MISSION_BOMBARD: // ミッションボンバード
 			/* 天帝 */
 			case SKILL_ID_SKY_SUN: // 天気身陽
 			case SKILL_ID_SKY_MOON: // 天気身月
@@ -3076,7 +3077,7 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 					hitCountArray = [1, wHITsuu, 3];
 				}
 				// 地面設置スキルの情報
-				g_bDefinedDamageIntervals = g_skillManager.IsGroundInstallation(n_A_ActiveSkill);
+				g_bDefinedDamageIntervals = g_skillManager.IsGroundInstallation(n_A_ActiveSkill, attackMethodConfArray[0]);
 				if (g_bDefinedDamageIntervals) {
 					n_Delay[5] = g_skillManager.GetDamageInterval(n_A_ActiveSkill, n_A_ActiveSkillLV);
 					n_Delay[6] = g_skillManager.GetLifeTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
@@ -3613,41 +3614,6 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				// 分割ヒット
 				wActiveHitNum = 2;
 				break;
-
-			// 「ナイトウォッチ」スキル「ミッションボンバード」
-			// 2025/01/25 もなこさん検証データとの誤差無しを確認ずみ
-			case SKILL_ID_MISSION_BOMBARD: {
-				// 詠唱時間など
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// 遠距離フラグ
-				n_Enekyori = 1;
-				// グレネードマスタリー補正
-				const grenade_mastery_lv = Math.max(LearnedSkillSearch(SKILL_ID_GRENADE_MASTERY), UsedSkillSearch(SKILL_ID_GRENADE_MASTERY));
-				if (attackMethodConfArray[0].GetOptionValue(1) === 0) {
-				// 初撃
-					// ダメージ倍率
-					wbairitu = 2500 + 750 * n_A_ActiveSkillLV;					// 基本
-					wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_CON);		// 特性ステータス補正
-					wbairitu += 100 * grenade_mastery_lv;					 	// グレネードマスタリー補正
-
-				} else {
-				// 追撃
-					// 設置スキル
-					g_bDefinedDamageIntervals = true;
-					n_Delay[5] = 250;									// ダメージ間隔
-					n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);		// オブジェクト存続時間
-					// ダメージ倍率
-					wbairitu = 5000 + 1000 * n_A_ActiveSkillLV;					// 基本
-					wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_CON);		// 特性ステータス補正
-					wbairitu += 30 * grenade_mastery_lv;					 	// グレネードマスタリー補正
-				}
-				// BaseLv補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
-				break;
-			}
 
 			// 「アルケミスト」スキル「デモンストレーション」
 			case SKILL_ID_DEMONSTRATION:
@@ -17048,15 +17014,6 @@ export function SET_ZOKUSEI(mobData, attackMethodConfArray) {
 		// 「新星爆発」は、強制無属性
 		case SKILL_ID_SHINSE_BAKUHATSU:
 			n_A_Weapon_zokusei = ELM_ID_VANITY;
-			break;
-
-		// 「ミッションボンバード」はグレネードフラグメント属性、指定がなければ弾丸属性
-		case SKILL_ID_MISSION_BOMBARD:
-			// グレネードフラグメント属性
-			let grenade_flagment = attackMethodConfArray[0].GetOptionValue(0);
-			if (grenade_flagment > 0) {
-				n_A_Weapon_zokusei = grenade_flagment;
-			}
 			break;
 
 		default:

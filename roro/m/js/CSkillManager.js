@@ -41698,7 +41698,8 @@ export function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
 			this.element = function(option) {
-				return option.GetOptionValue(0);
+				const bullet_element = option.GetOptionValue(0);
+				return bullet_element > 0 ? bullet_element : CSkillData.ELEMENT_VOID;
 			}
 			this.dispHitCount = 2;
 			this.Power = function(skillLv, charaData, option, mobData, weapon) {
@@ -41757,7 +41758,8 @@ export function CSkillManager() {
 			this.dispHitCount = 2;
 			this.hitCount = 3;
 			this.element = function(option) {
-				return option.GetOptionValue(0);
+				const bullet_element = option.GetOptionValue(0);
+				return bullet_element > 0 ? bullet_element : CSkillData.ELEMENT_VOID;
 			}
 			this.Power = function(skillLv, charaData, option, mobData, weapon) {
 				let ratio = 0;
@@ -41810,7 +41812,8 @@ export function CSkillManager() {
 			this.ground_installation = true;
 			this.damageInterval = 250;
 			this.element = function(option) {
-				return option.GetOptionValue(0);
+				const bullet_element = option.GetOptionValue(0);
+				return bullet_element > 0 ? bullet_element : CSkillData.ELEMENT_VOID;
 			}
 			this.Power = function(skillLv, charaData, option, mobData, weapon) {
 				let ratio = 0;
@@ -41860,7 +41863,32 @@ export function CSkillManager() {
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
-			this.element = CSkillData.ELEMENT_VOID;
+			this.ground_installation = function(option) {
+				return option.GetOptionValue(1) == 1;
+			}
+			this.damageInterval = 250;
+			this.element = function(option) {
+				const bullet_element = option.GetOptionValue(0);
+				return bullet_element > 0 ? bullet_element : CSkillData.ELEMENT_VOID;
+			}
+			this.Power = function(skillLv, charaData, option, mobData, weapon, parentSkillId) {
+				let ratio = 0;
+				// グレネードマスタリー補正
+				const grenade_mastery_lv = Math.max(LearnedSkillSearch(SKILL_ID_GRENADE_MASTERY), UsedSkillSearch(SKILL_ID_GRENADE_MASTERY));
+				if (option.GetOptionValue(1) === 0) {
+					// 初撃
+					ratio = 17000 + 1150 * skillLv;						// 基本
+					ratio += 100 * grenade_mastery_lv;					// グレネードマスタリー補正
+				} else {
+					// 追撃
+					ratio = 14250 + 900 * skillLv;						// 基本
+					ratio += 30 * grenade_mastery_lv;					// グレネードマスタリー補正
+				}
+				// 特性ステータス補正
+				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+				// BaseLv補正
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 340;
 			}
@@ -41871,16 +41899,16 @@ export function CSkillManager() {
 				return 16000;
 			}
 			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
-				return 2000;
+				return 500;
 			}
 			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
 				return 5000;
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
-				return 2500 + 1000 * skillLv;
+				return 4500;
 			}
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
-				return (2 + skillLv) * 1000;
+				return 4000;
 			}
 		};
 		this.dataArray[skillId] = skillData;
