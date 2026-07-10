@@ -7673,7 +7673,8 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 		case SKILL_ID_EARTH_DRILL:
 		case SKILL_ID_EARTH_STAMP:
 		case SKILL_ID_GROUND_BLOOM:
-
+		/** 蜃気楼・不知火 */
+		case SKILL_ID_GENZYUTSU_ANKOKURYUU:
 			// スキル使用条件の判定
 			n_Buki_Muri = !g_skillManager.MatchWeaponCondition(n_A_ActiveSkill, n_A_WeaponType);
 			if (n_Buki_Muri) {
@@ -7686,8 +7687,8 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			// ダメージ算出に関する情報
-			n_A_Weapon_zokusei = g_skillManager.GetElement(battleCalcInfo.skillId, attackMethodConfArray[0], mobData);
-			wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], mobData, n_A_WeaponType);
+			n_A_Weapon_zokusei = g_skillManager.GetElement(battleCalcInfo.skillId, attackMethodConfArray[0], mobData, battleCalcInfo.parentSkillId);
+			wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], mobData, n_A_WeaponType, battleCalcInfo.parentSkillId);
 			n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_WeaponType);
 			// ヒット数に関する情報
 			wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
@@ -8764,28 +8765,6 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			}
 			break;
 		}
-		//「蜃気楼　不知火」スキル「幻術 -暗黒龍-」
-		// 2024/12/25 もなこさん提供データに対して誤差+3を確認
-		// 当スキルではなく魔法ダメージ計算の基本部分に誤差があると判断しています
-		case SKILL_ID_GENZYUTSU_ANKOKURYUU:
-			// 詠唱時間など
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// ダメージ倍率
-			wbairitu = 17000;											// 基本倍率
-			wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);		// 特性ステータス補正
-			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);			// BaseLv補正
-			if (battleCalcInfo.parentSkillId === undefined) {
-				// 初撃 闇属性
-			} else {
-				// 悪夢状態の追撃 火属性
-				n_A_Weapon_zokusei = ELM_ID_FIRE;
-			}
-			// 分割ヒット
-			wActiveHitNum = 4;
-			break;
 
 		// 「蜃気楼　不知火」スキル「影溶き」
 		// 2024/12/25 もなこさん提供データに対して誤差なしを確認

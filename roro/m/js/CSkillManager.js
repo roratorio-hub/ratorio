@@ -781,6 +781,7 @@ export function CSkillManager() {
 	 * @param {Number} skillId
 	 * @param {CAttackMethodConf} option
 	 * @param {Array} mobData
+	 * @param {Number} parentSkillId 追撃ダメージを持つスキルの呼び出し元スキルID
 	 * @returns CSkillData.ELEMENT_FORCE_VANITY (default)
 	 * 			| CSkillData.ELEMENT_VOID
 	 *			| CSkillData.ELEMENT_FORCE_WATER
@@ -794,9 +795,9 @@ export function CSkillManager() {
 	 *			| CSkillData.ELEMENT_FORCE_UNDEAD
 	 *			| CSkillData.ELEMENT_SPECIAL
 	 */
-	this.GetElement = function(skillId, option, mobData) {
+	this.GetElement = function(skillId, option, mobData, parentSkillId) {
 		if (typeof this.dataArray[skillId].element === "function") {
-			return this.dataArray[skillId].element(option, mobData);
+			return this.dataArray[skillId].element(option, mobData, parentSkillId);
 		} else {
 			return this.dataArray[skillId].element;
 		}
@@ -819,10 +820,11 @@ export function CSkillManager() {
 	 * @param {CAttackMethodConf} option 
 	 * @param {Array} mobData
 	 * @param {Number} weapon
+	 * @param {Number} parentSkillId 追撃ダメージを持つスキルの呼び出し元スキルID
 	 * @returns {Number} スキル倍率％
 	 */
-	this.GetPower = function(skillId, skillLv, charaDataManger, option, mobData, weapon) {
-		return this.dataArray[skillId].Power(skillLv, charaDataManger, option, mobData, weapon);
+	this.GetPower = function(skillId, skillLv, charaDataManger, option, mobData, weapon, parentSkillId) {
+		return this.dataArray[skillId].Power(skillLv, charaDataManger, option, mobData, weapon, parentSkillId);
 	}
 
 	/**
@@ -42017,7 +42019,29 @@ export function CSkillManager() {
 			this.maxLv = 1;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
-			this.element = CSkillData.ELEMENT_FORCE_DARK;
+			this.dispHitCount = 4;	// 分割ヒット4
+			this.element = function(option, mobData, parentSkillId) {
+				if (parentSkillId == undefined) {
+					// 初撃
+					return CSkillData.ELEMENT_FORCE_DARK;
+				} else {
+					// 追撃
+					return CSkillData.ELEMENT_FORCE_FIRE;
+				}
+			}
+			this.Power = function(skillLv, charaData, option, mobData, weapon, parentSkillId) {
+				let ratio = 0;
+				if (parentSkillId == undefined) {
+					// 初撃
+					ratio = 27000;
+				} else {
+					// 追撃 
+					ratio = 17000;
+				}
+				ratio += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				ratio = Math.floor(ratio * n_A_BaseLV / 100);
+				return ratio;
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 410;
 			}
@@ -42296,7 +42320,7 @@ export function CSkillManager() {
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				// 悪夢の場合
 				if (option.GetOptionValue(0) == 1) {
-					wbairitu *= 1.5;
+					ratio *= 1.5;
 				}				
 				return ratio;
 			}
