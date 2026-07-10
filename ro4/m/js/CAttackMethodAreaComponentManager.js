@@ -4299,6 +4299,18 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 					0
 				);
 				break;
+			
+			// 天星
+			case SKILL_ID_TENSE:
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"命中率",
+					[
+						[0, "全弾命中"],
+						[1, "半分"],
+					],
+					0
+				);
+				break;
 
 		}
 	}
