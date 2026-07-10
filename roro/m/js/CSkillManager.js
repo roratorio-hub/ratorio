@@ -41700,7 +41700,6 @@ export function CSkillManager() {
 			this.element = function(option) {
 				return option.GetOptionValue(0);
 			}
-			CSkillData.ELEMENT_VOID;
 			this.dispHitCount = 2;
 			this.Power = function(skillLv, charaData, option, mobData, weapon) {
 				let ratio = 0;
@@ -41740,6 +41739,11 @@ export function CSkillManager() {
 		// ----------------------------------------------------------------
 		// ヘイスティファイアインザホール
 		// ----------------------------------------------------------------
+		/*
+			実際には
+			指定セルの周辺5x5セルに2hit → 0.3秒後さらに2hit → 0.3秒後さらに2hit
+			なのでいまのダメージの表示方法は厳密ではないかもしれない
+		*/
 		window.SKILL_ID_HASTY_FIRE_IN_THE_HOLE = skillId;
 		skillData = new function() {
 			this.prototype = new CSkillData();
@@ -41750,7 +41754,21 @@ export function CSkillManager() {
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
-			this.element = CSkillData.ELEMENT_VOID;
+			this.dispHitCount = 2;
+			this.hitCount = 3;
+			this.element = function(option) {
+				return option.GetOptionValue(0);
+			}
+			this.Power = function(skillLv, charaData, option, mobData, weapon) {
+				let ratio = 0;
+				// ダメージ倍率
+				ratio = 6250 + 600 * skillLv;							// 基本
+				ratio += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);		// 特性ステータス補正
+				// グレネードマスタリー補正
+				const grenade_mastery_lv = Math.max(LearnedSkillSearch(SKILL_ID_GRENADE_MASTERY), UsedSkillSearch(SKILL_ID_GRENADE_MASTERY));
+				ratio += 20 * grenade_mastery_lv;					 	// グレネードマスタリー補正
+				return Math.floor(ratio * n_A_BaseLV / 100);			// BaseLv補正
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 230;
 			}
@@ -41761,13 +41779,13 @@ export function CSkillManager() {
 				return 500 + 500 * skillLv;
 			}
 			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
-				return 500;
+				return 0;
 			}
 			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
 				return 1000 * skillLv;
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
-				return 3000;
+				return 1000;
 			}
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
