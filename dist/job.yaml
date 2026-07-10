@@ -39217,6 +39217,9 @@ MEISTER:
     MT_MIGHTY_SMASH:
       id: MT_MIGHTY_SMASH
       id_num: 6004
+    MT_A_MACHINE:
+      id: MT_A_MACHINE
+      id_num: 5298
   allow_equipment_weapons_type:
     - 0
     - 1
