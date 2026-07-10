@@ -41216,8 +41216,8 @@ export function CSkillManager() {
 			this.Power = function(skillLv, charaData, option) {
 				let ratio = 0;
 				// スキル倍率
-				ratio = 4600 + 500 * skillLv;							// 基礎倍率
-				ratio += 32 * GetTotalSpecStatus(MIG_PARAM_ID_POW);		// 特性ステータス補正
+				ratio = 5200 + 800 * skillLv;							// 基礎倍率
+				ratio += 44 * GetTotalSpecStatus(MIG_PARAM_ID_POW);		// 特性ステータス補正
 				return Math.floor(ratio * n_A_BaseLV / 100);			// BaseLv補正
 			}
 			this.dispHitCount = function(skillLv) {
