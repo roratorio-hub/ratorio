@@ -39450,10 +39450,10 @@ export function CSkillManager() {
 				return 5000;
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
-				return 15000;
+				return 14000;
 			}
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
-				return 15 * 1000;
+				return 12 * 1000;
 			}
 		};
 		this.dataArray[skillId] = skillData;

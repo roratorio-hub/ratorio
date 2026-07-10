@@ -10629,7 +10629,7 @@ export function HealCalc(HealLv,HealType,wMinMax,w_WHO,ptmCount) {
 			wHeal = wHeal * (healUp + valHPlus) / 100 + wHealMatk;	// 基礎回復量
 			wHeal += 19 * LearnedSkillSearch(SKILL_ID_GOFU_SHUREN) * GetTotalSpecStatus(MIG_PARAM_ID_CRT);	// 修練と特性ステータスの補正
 			// 固定値に対するBaseLv補正
-			wHeal += [0, 5500, 9000, 13000, 17000, 21000][HealLv] * n_A_BaseLV / 100;
+			wHeal += [0, 6600, 10800, 15600, 20400, 25200][HealLv] * n_A_BaseLV / 100;
 			wHeal = Math.floor(wHeal);
 			break;
 	}
