@@ -32466,18 +32466,11 @@ export function CSkillManager() {
 			this.range = function(weapon) {
 				return CSkillData.RANGE_SHORT;
 			}
-			this.WeaponCondition = function(weapon) {
-				return (weapon === ITEM_KIND_KNIFE);
-			}
 			this.Power = function(skillLv, charaData, option) {			// スキル倍率
-				// 「エクシードの有無によらず」+6程度の誤差があるためスキル計算式以外の場所に問題があると考えられます
+				// +6程度の誤差があるためスキル計算式以外の場所に問題があると考えられます
 				let ratio = 0;
 				ratio = 500 + 500 * skillLv;
 				ratio += 10 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-				if (option.GetOptionValue(0) == 1) {
-					// クローキングエクシード状態の場合
-					ratio *= 2.5;
-				}
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
 			}
@@ -32488,7 +32481,7 @@ export function CSkillManager() {
 				return 1000 * skillLv;
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
-				return 500 * skillLv;
+				return 300 * skillLv;
 			}
 		};
 		this.dataArray[skillId] = skillData;
