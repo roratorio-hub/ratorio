@@ -2994,6 +2994,7 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			case SKILL_ID_WILD_SHOT: // ワイルドショット
 			case SKILL_ID_MIDNIGHT_FALLEN: // ミッドナイトフォーリン
 			case SKILL_ID_ONLY_ONE_BULLET: // オンリーワンバレット
+			case SKILL_ID_WILD_FIRE: // ワイルドファイア
 			/* 天帝 */
 			case SKILL_ID_SKY_SUN: // 天気身陽
 			case SKILL_ID_SKY_MOON: // 天気身月
@@ -3446,35 +3447,6 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				}
 				// ベースレベル補正
 				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
-				break;
-
-			//「ナイトウォッチ」スキル「ワイルドファイア」
-			// 2025/01/25 もなこさん提供データに対して誤差なしを確認
-			case SKILL_ID_WILD_FIRE:
-				// 詠唱時間など
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// 使用武器制限
-				if (n_A_WeaponType != ITEM_KIND_SHOTGUN && n_A_WeaponType != ITEM_KIND_GRENADEGUN) {
-					n_Buki_Muri = true
-					wbairitu = 0;
-					break;
-				}
-				// 遠距離属性
-				n_Enekyori = 1;
-				// 基礎倍率
-				wbairitu = 3700 + 600 * n_A_ActiveSkillLV;
-				// CON補正
-				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
-				// 照準カウンター補正
-				option_count = attackMethodConfArray[0].GetOptionValue(0);
-				wbairitu += option_count * (950 + 150 * n_A_ActiveSkillLV);
-				// ベースレベル補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
-				// 分割3ヒット
-				wActiveHitNum = 3;
 				break;
 
 			/*

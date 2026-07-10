@@ -40482,6 +40482,17 @@ export function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.dispHitCount = 3;
+			this.WeaponCondition = function(weapon) {
+				return [ITEM_KIND_SHOTGUN,ITEM_KIND_GRENADEGUN].includes(weapon);
+			}
+			this.Power = function(skillLv, charaData, option, mobData, weapon) {
+				let ratio = 0;
+				ratio += 4150 + 650 * skillLv;
+				ratio += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+				ratio += (950 + 150 * n_A_ActiveSkillLV) * option.GetOptionValue(0);
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 230;
 			}
