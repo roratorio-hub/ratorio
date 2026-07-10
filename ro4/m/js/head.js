@@ -3014,6 +3014,7 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			case SKILL_ID_KAGE_GARI:
 			case SKILL_ID_KAGE_ISSEN:
 			case SKILL_ID_GENJUTSU_KAGE_NUI:
+			case SKILL_ID_GENJUTSU_KUNAI:
 			/** ハイパーノービス */
 			case SKILL_ID_DOUBLE_BOWLING_BASH:
 			case SKILL_ID_MEGA_SONIC_BLOW:
@@ -3914,32 +3915,6 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				wbairitu += 20 * n_A_ActiveSkillLV * 5;												// 参照スキル習得Lv補正（前提スキル条件につき 5 で固定）
 				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);								// 特性ステータス補正
 				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);									// BaseLv補正
-				break;
-			}
-			// 「蜃気楼　不知火」スキル「幻術 -苦無-」
-			// 2024/12/25 もなこさん検証データとの誤差無しを確認ずみ
-			case SKILL_ID_GENJUTSU_KUNAI: {
-				// 遠距離フラグ
-				n_Enekyori = 1;
-				// 詠唱時間等
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// 属性
-				n_A_Weapon_zokusei = g_skillManager.GetElement(battleCalcInfo.skillId);
-				// ダメージ倍率
-				wbairitu = 23000;
-				// 特性ステータス補正
-				wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-				// BaseLv補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
-				// 悪夢の場合
-				if (attackMethodConfArray[0].GetOptionValue(0) == 1) {
-					wbairitu *= 1.5;
-				}			
-				// 分割ヒット数
-				wActiveHitNum = 8;
 				break;
 			}
 

@@ -42289,6 +42289,17 @@ export function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.dispHitCount = 8;	// 分割ヒット8
+			this.Power = function(skillLv, charaData, option, mobData) {
+				let ratio = 52000;
+				ratio += 10 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				ratio = Math.floor(ratio * n_A_BaseLV / 100);
+				// 悪夢の場合
+				if (option.GetOptionValue(0) == 1) {
+					wbairitu *= 1.5;
+				}				
+				return ratio;
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 280;
 			}
