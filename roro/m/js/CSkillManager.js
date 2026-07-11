@@ -37756,7 +37756,6 @@ export function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "ダイヤモンドストーム";
 			this.kana = "タイヤモントストオム";
@@ -37764,6 +37763,21 @@ export function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_WATER;
+			this.Power = function(skillLv, charaData, option, mobData, weapon, parentSkillId) {
+				let ratio = 0;
+				// ダメージ倍率
+				if (UsedSkillSearch(SKILL_ID_SERE) == 14) { // 14: 水 ディルビオ
+					// 四次精霊あり
+					ratio = 6000 + 1500 * skillLv;
+					ratio += 45 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				} else {
+					// 四次精霊なし
+					ratio = 4000 + 1000 * skillLv;
+					ratio += 30 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				}
+				// ベースレベル補正
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 400;
 			}

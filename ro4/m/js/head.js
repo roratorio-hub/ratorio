@@ -7360,6 +7360,7 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 		case SKILL_ID_METALIC_FURY: // メタリックフューリー
 		/** エレメンタルマスター */
 		case SKILL_ID_PSYCHIC_STREAM: // サイキックストリーム
+		case SKILL_ID_DIAMOND_STORM: 
 		/** ソウルアセティック */
 		case SKILL_ID_SEIRYU_FU:	// 青龍符
 		case SKILL_ID_BYAKKO_FU:	// 白虎符
@@ -8042,29 +8043,6 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			}
 			break;
 		}
-
-		// 「エレメンタルマスター」スキル「ダイヤモンドストーム」
-		case SKILL_ID_DIAMOND_STORM:
-			// 2024/08/27 実測
-			// 1～3程度の誤差が残りますが本計算式の問題ではなく後続の共通計算式の丸め誤差と考えています
-			// 詠唱時間等
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// ダメージ倍率
-			if (UsedSkillSearch(SKILL_ID_SERE) == 14) { // 14: 水 ディルビオ
-				// 四次精霊あり
-				wbairitu = [0,4500,6300,8400,10800,13500][n_A_ActiveSkillLV];
-				wbairitu += 45 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			} else {
-				// 四次精霊なし
-				wbairitu = [0,4500,5250,6000,6750,7500][n_A_ActiveSkillLV];
-				wbairitu += 25 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			}
-			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
-			break;
 
 		// 「エレメンタルマスター」スキル「テラドライブ」
 		case SKILL_ID_TERA_DRIVE:
