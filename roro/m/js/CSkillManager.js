@@ -42377,6 +42377,19 @@ export function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.dispHitCount = 3;
+			this.ground_installation = true;
+			this.damageInterval = 500;
+			this.Power = function(skillLv, charaData, option, mobData, weapon, parentSkillId) {
+				let ratio = 0;
+				// 苦無 -歪曲-の習得Lv
+				const kunai_waikyoku_lv = Math.max(LearnedSkillSearch(SKILL_ID_KUNAI_WAIKYOKU), option.GetOptionValue(0));
+				// ダメージ倍率
+				ratio = 2300 + 200 * skillLv;							// 基本倍率
+				ratio += 66 * skillLv * kunai_waikyoku_lv;				// 参照スキル習得Lv補正
+				ratio += 4 * GetTotalSpecStatus(MIG_PARAM_ID_POW);		// 特性ステータス補正
+				return Math.floor(ratio * n_A_BaseLV / 100);			// BaseLv補正
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 230;
 			}

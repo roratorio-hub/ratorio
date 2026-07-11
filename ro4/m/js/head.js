@@ -3024,6 +3024,7 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			case SKILL_ID_GENJUTSU_KAGE_NUI:
 			case SKILL_ID_GENJUTSU_KUNAI:
 			case SKILL_ID_KUNAI_WAIKYOKU:
+			case SKILL_ID_KUNAI_KAITEN:
 			/** ハイパーノービス */
 			case SKILL_ID_DOUBLE_BOWLING_BASH:
 			case SKILL_ID_MEGA_SONIC_BLOW:
@@ -3649,33 +3650,6 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				wActiveHitNum = 2;
 				break;
 
-			// 「蜃気楼　不知火」スキル「苦無 -回転-」
-			// 2024/12/25 もなこさん検証データとの誤差無しを確認ずみ
-			case SKILL_ID_KUNAI_KAITEN: {
-				// 遠距離フラグ
-				n_Enekyori = 1;
-				// 詠唱時間等
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// 設置型
-				g_bDefinedDamageIntervals = true;
-				n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);	// オブジェクト存続時間
-				n_Delay[5] = 500;	// ダメージ間隔
-				// 属性
-				n_A_Weapon_zokusei = g_skillManager.GetElement(battleCalcInfo.skillId);
-				// 苦無 -歪曲-の習得Lv
-				const kunai_waikyoku_lv = Math.max(LearnedSkillSearch(SKILL_ID_KUNAI_WAIKYOKU), attackMethodConfArray[0].GetOptionValue(0));
-				// ダメージ倍率
-				wbairitu = 1500 + 200 * n_A_ActiveSkillLV;					// 基本倍率
-				wbairitu += 50 * n_A_ActiveSkillLV * kunai_waikyoku_lv;		// 参照スキル習得Lv補正
-				wbairitu += 4 * GetTotalSpecStatus(MIG_PARAM_ID_POW);		// 特性ステータス補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);			// BaseLv補正
-				// 分割ヒット数
-				wActiveHitNum = 3;
-				break;
-			}
 			// 「蜃気楼　不知火」スキル「苦無 -屈折-」
 			// 2024/12/25 もなこさん検証データとの誤差無しを確認ずみ
 			case SKILL_ID_KUNAI_KUSSETSU: {
