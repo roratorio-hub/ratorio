@@ -20,7 +20,7 @@
         "date-fns": "^4.1.0",
         "date-fns-tz": "^3.2.0",
         "happy-dom": "^20.8.9",
-        "js-yaml": "^4.1.1",
+        "js-yaml": "^4.2.0",
         "ts-loader": "^9.5.4",
         "ts-node": "^10.9.2",
         "typescript": "^5.9.3",
