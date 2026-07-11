@@ -556,7 +556,7 @@ export function CSkillData() {
 		return 1;
 	}
 	/** 分割ヒット数を取得する. オーバーライドされていない場合は 0 が返される. */
-	this.dispHitCount = function(skillLv, charaDataManger, option) {
+	this.dispHitCount = function(skillLv, charaDataManger, option, parentSkillId) {
 		return 0;
 	}
 	/**
@@ -850,12 +850,13 @@ export function CSkillManager() {
 	 * @param {Number} skillId 
 	 * @param {Array} charaData
 	 * @param {Array} option
+	 * @param {Number} parentSkillId
 	 * @param {*} skillLv 
 	 * @returns 
 	 */
-	this.GetDividedHitCount = function(skillId, skillLv, charaData, option) {
+	this.GetDividedHitCount = function(skillId, skillLv, charaData, option, parentSkillId) {
 		if (typeof this.dataArray[skillId].dispHitCount === "function") {
-			return this.dataArray[skillId].dispHitCount(skillLv, charaData, option);
+			return this.dataArray[skillId].dispHitCount(skillLv, charaData, option, parentSkillId);
 		} else {
 			return this.dataArray[skillId].dispHitCount;
 		}
@@ -42315,6 +42316,28 @@ export function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.dispHitCount = function(skillLv, charaDataManger, option, parentSkillId) {
+				// 本体 分割2Hit 分身 分割3Hit
+				return parentSkillId == undefined ? 2 : 3;
+			}
+			this.Power = function(skillLv, charaData, option, mobData, weapon, parentSkillId) {
+				let ratio = 0;
+				// 苦無 -屈折-の習得Lv
+				const kunai_kussetsu_lv = Math.max(LearnedSkillSearch(SKILL_ID_KUNAI_KUSSETSU), option.GetOptionValue(1));
+				// ダメージ倍率
+				ratio = 6700 + 100 * skillLv;						// 基本倍率
+				ratio += 77 * skillLv * kunai_kussetsu_lv;			// 参照スキル習得Lv補正
+				ratio += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// 特性ステータス補正
+				ratio = Math.floor(ratio * n_A_BaseLV / 100);		// BaseLv補正
+				if (parentSkillId == undefined) {
+					// 本体
+					return ratio;
+				} else {
+					// 分身
+					ratio = Math.floor(ratio * 30 / 100);
+					return ratio * option.GetOptionValue(0);
+				}
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 280;
 			}

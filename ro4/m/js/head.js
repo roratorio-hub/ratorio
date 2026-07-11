@@ -3023,6 +3023,7 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			case SKILL_ID_KAGE_ISSEN:
 			case SKILL_ID_GENJUTSU_KAGE_NUI:
 			case SKILL_ID_GENJUTSU_KUNAI:
+			case SKILL_ID_KUNAI_WAIKYOKU:
 			/** ハイパーノービス */
 			case SKILL_ID_DOUBLE_BOWLING_BASH:
 			case SKILL_ID_MEGA_SONIC_BLOW:
@@ -3066,11 +3067,11 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				// ダメージ算出に関する情報
-				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], mobData, n_A_WeaponType);
+				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], mobData, n_A_WeaponType, battleCalcInfo.parentSkillId);
 				n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_WeaponType);
 				// ヒット数に関する情報
 				wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
-				wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
+				wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV ,charaData, attackMethodConfArray[0], battleCalcInfo.parentSkillId);
 				if (n_A_ActiveSkill === SKILL_ID_FLANGE_SHOT) {
 					hitCountArray = [1, wHITsuu, 3];
 				}
@@ -3648,35 +3649,6 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				wActiveHitNum = 2;
 				break;
 
-			// 「蜃気楼　不知火」スキル「苦無 -歪曲-」
-			// 2024/12/25 もなこさん検証データとの誤差無しを確認ずみ
-			case SKILL_ID_KUNAI_WAIKYOKU: {
-				// 遠距離フラグ
-				n_Enekyori = 1;
-				// 苦無 -屈折-の習得Lv
-				const kunai_kussetsu_lv = Math.max(LearnedSkillSearch(SKILL_ID_KUNAI_KUSSETSU), attackMethodConfArray[0].GetOptionValue(1));
-				// ダメージ倍率
-				wbairitu = 3900 + 100 * n_A_ActiveSkillLV;				// 基本倍率
-				wbairitu += 49 * n_A_ActiveSkillLV * kunai_kussetsu_lv;	// 参照スキル習得Lv補正
-				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// 特性ステータス補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);		// BaseLv補正
-				if (battleCalcInfo.parentSkillId === undefined) {
-				// 本体の攻撃
-					wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-					n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-					n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-					n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-					// 分割ヒット数
-					wActiveHitNum = 2;
-				} else {
-				// 分身の追撃
-					wbairitu = Math.floor(wbairitu * 30 / 100);									// 分身の威力は30%
-					wbairitu *= attackMethodConfArray[0].GetOptionValue(0);						// 分身の数
-					// 分割ヒット数
-					wActiveHitNum = 3;
-				}
-				break;
-			}
 			// 「蜃気楼　不知火」スキル「苦無 -回転-」
 			// 2024/12/25 もなこさん検証データとの誤差無しを確認ずみ
 			case SKILL_ID_KUNAI_KAITEN: {
