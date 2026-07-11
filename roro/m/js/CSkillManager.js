@@ -35682,9 +35682,9 @@ export function CSkillManager() {
 			this.Power = function(skillLv, charaData, option) {
 				let ratio = 0;
 				// 基本倍率
-				ratio = 2350 + 550 * skillLv;
+				ratio = 2275 + 625 * skillLv;
 				// CON補正
-				ratio += 17 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+				ratio += 18 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
 				// ベースレベル補正
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
