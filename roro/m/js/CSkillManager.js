@@ -556,7 +556,7 @@ export function CSkillData() {
 		return 1;
 	}
 	/** 分割ヒット数を取得する. オーバーライドされていない場合は 0 が返される. */
-	this.dispHitCount = function(skillLv, charaDataManger, option) {
+	this.dispHitCount = function(skillLv, charaDataManger, option, parentSkillId) {
 		return 0;
 	}
 	/**
@@ -850,12 +850,13 @@ export function CSkillManager() {
 	 * @param {Number} skillId 
 	 * @param {Array} charaData
 	 * @param {Array} option
+	 * @param {Number} parentSkillId
 	 * @param {*} skillLv 
 	 * @returns 
 	 */
-	this.GetDividedHitCount = function(skillId, skillLv, charaData, option) {
+	this.GetDividedHitCount = function(skillId, skillLv, charaData, option, parentSkillId) {
 		if (typeof this.dataArray[skillId].dispHitCount === "function") {
-			return this.dataArray[skillId].dispHitCount(skillLv, charaData, option);
+			return this.dataArray[skillId].dispHitCount(skillLv, charaData, option, parentSkillId);
 		} else {
 			return this.dataArray[skillId].dispHitCount;
 		}
@@ -35682,9 +35683,9 @@ export function CSkillManager() {
 			this.Power = function(skillLv, charaData, option) {
 				let ratio = 0;
 				// 基本倍率
-				ratio = 2350 + 550 * skillLv;
+				ratio = 2275 + 625 * skillLv;
 				// CON補正
-				ratio += 17 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+				ratio += 18 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
 				// ベースレベル補正
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
@@ -37755,7 +37756,6 @@ export function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "ダイヤモンドストーム";
 			this.kana = "タイヤモントストオム";
@@ -37763,6 +37763,21 @@ export function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_WATER;
+			this.Power = function(skillLv, charaData, option, mobData, weapon, parentSkillId) {
+				let ratio = 0;
+				// ダメージ倍率
+				if (UsedSkillSearch(SKILL_ID_SERE) == 14) { // 14: 水 ディルビオ
+					// 四次精霊あり
+					ratio = 6000 + 1500 * skillLv;
+					ratio += 45 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				} else {
+					// 四次精霊なし
+					ratio = 4000 + 1000 * skillLv;
+					ratio += 30 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				}
+				// ベースレベル補正
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 400;
 			}
@@ -37910,7 +37925,6 @@ export function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "テラドライブ";
 			this.kana = "テラトライフ";
@@ -37918,7 +37932,21 @@ export function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_EARTH;
-
+			this.Power = function(skillLv, charaData, option, mobData, weapon, parentSkillId) {
+				let ratio = 0;
+				// ダメージ倍率
+				if (UsedSkillSearch(SKILL_ID_SERE) == 16) { // 16: 地 テレモトゥス
+					// 四次精霊あり
+					ratio = 6000 + 1500 * skillLv;
+					ratio += 45 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				} else {
+					// 四次精霊なし
+					ratio = 4000 + 1000 * skillLv;
+					ratio += 30 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				}
+				// ベースレベル補正
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 400;
 			}
@@ -41377,7 +41405,24 @@ export function CSkillManager() {
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
+			this.dispHitCount = 2;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.Power = function(skillLv, charaData, option, mobData, weapon, parentSkillId) {
+				let ratio = 0;
+				if (UsedSkillSearch(SKILL_ID_RESEARCH_REPORT) > 0) {
+					// レポートあり
+					ratio = 3200 + 400 * skillLv;
+					// 特性ステータス補正
+					ratio += 24 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				} else {
+					// レポートなし
+					ratio = 2700 + 300 * skillLv;
+					// 特性ステータス補正
+					ratio += 19 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				}
+				// BaseLv補正
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 300;
 			}
@@ -42298,6 +42343,28 @@ export function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.dispHitCount = function(skillLv, charaDataManger, option, parentSkillId) {
+				// 本体 分割2Hit 分身 分割3Hit
+				return parentSkillId == undefined ? 2 : 3;
+			}
+			this.Power = function(skillLv, charaData, option, mobData, weapon, parentSkillId) {
+				let ratio = 0;
+				// 苦無 -屈折-の習得Lv
+				const kunai_kussetsu_lv = Math.max(LearnedSkillSearch(SKILL_ID_KUNAI_KUSSETSU), option.GetOptionValue(1));
+				// ダメージ倍率
+				ratio = 6700 + 100 * skillLv;						// 基本倍率
+				ratio += 77 * skillLv * kunai_kussetsu_lv;			// 参照スキル習得Lv補正
+				ratio += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// 特性ステータス補正
+				ratio = Math.floor(ratio * n_A_BaseLV / 100);		// BaseLv補正
+				if (parentSkillId == undefined) {
+					// 本体
+					return ratio;
+				} else {
+					// 分身
+					ratio = Math.floor(ratio * 30 / 100);
+					return ratio * option.GetOptionValue(0);
+				}
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 280;
 			}
@@ -42337,6 +42404,19 @@ export function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.dispHitCount = 3;
+			this.ground_installation = true;
+			this.damageInterval = 500;
+			this.Power = function(skillLv, charaData, option, mobData, weapon, parentSkillId) {
+				let ratio = 0;
+				// 苦無 -歪曲-の習得Lv
+				const kunai_waikyoku_lv = Math.max(LearnedSkillSearch(SKILL_ID_KUNAI_WAIKYOKU), option.GetOptionValue(0));
+				// ダメージ倍率
+				ratio = 2300 + 200 * skillLv;							// 基本倍率
+				ratio += 66 * skillLv * kunai_waikyoku_lv;				// 参照スキル習得Lv補正
+				ratio += 4 * GetTotalSpecStatus(MIG_PARAM_ID_POW);		// 特性ステータス補正
+				return Math.floor(ratio * n_A_BaseLV / 100);			// BaseLv補正
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 230;
 			}
@@ -42376,6 +42456,16 @@ export function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.ground_installation = true;
+			this.damageInterval = 250;
+			this.Power = function(skillLv, charaData, option, mobData, weapon, parentSkillId) {
+				let ratio = 0;
+				// ダメージ倍率
+				ratio = 750 + 50 * skillLv;							// 基本倍率
+				ratio += 25 * skillLv * 5;							// 参照スキル習得Lv補正（前提スキル条件につき 5 で固定）
+				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// 特性ステータス補正
+				return Math.floor(ratio * n_A_BaseLV / 100);		// BaseLv補正
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 190;
 			}
