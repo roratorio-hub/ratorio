@@ -41377,7 +41377,24 @@ export function CSkillManager() {
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
+			this.dispHitCount = 2;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.Power = function(skillLv, charaData, option, mobData, weapon, parentSkillId) {
+				let ratio = 0;
+				if (UsedSkillSearch(SKILL_ID_RESEARCH_REPORT) > 0) {
+					// レポートあり
+					ratio = 3200 + 400 * skillLv;
+					// 特性ステータス補正
+					ratio += 24 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				} else {
+					// レポートなし
+					ratio = 2700 + 300 * skillLv;
+					// 特性ステータス補正
+					ratio += 19 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				}
+				// BaseLv補正
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 300;
 			}

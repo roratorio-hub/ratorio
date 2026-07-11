@@ -3017,6 +3017,7 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			case SKILL_ID_EXPLOSIVE_POWDER: // 
 			case SKILL_ID_MYSTERY_POWDER: // 
 			case SKILL_ID_DUST_EXPLOSION: // 
+			case SKILL_ID_MEYHEMIC_THORNS: // メイヘミックソーンズ
 			/** 蜃気楼・不知火 */
 			case SKILL_ID_KAGE_GARI:
 			case SKILL_ID_KAGE_ISSEN:
@@ -3584,33 +3585,6 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);					// BaseLv補正
 				break;
 			}
-
-			// 「バイオロ」スキル「メイヘミックソーンズ」
-			// 2024/11/15 実測誤差なしを確認
-			case SKILL_ID_MEYHEMIC_THORNS:
-				// 詠唱時間など
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// 遠距離フラグ
-				n_Enekyori = 1;
-				if (UsedSkillSearch(SKILL_ID_RESEARCH_REPORT) > 0) {
-					// 基礎倍率
-					wbairitu = 2500 + 200 * n_A_ActiveSkillLV;
-					// 特性ステータス補正
-					wbairitu += 15 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-				} else {
-					// 基礎倍率
-					wbairitu = 2000 + 100 * n_A_ActiveSkillLV;
-					// 特性ステータス補正
-					wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-				}
-				// BaseLv補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
-				// 分割ヒット
-				wActiveHitNum = 2;
-				break;
 
 			// 「アルケミスト」スキル「デモンストレーション」
 			case SKILL_ID_DEMONSTRATION:
