@@ -1067,7 +1067,6 @@ export function BattleCalc999(battleCalcInfo, charaData, specData, mobData, atta
 		// 単発追撃系
 		switch (skillId) {
 			case SKILL_ID_METEOR_STORM_BUSTER:
-			case SKILL_ID_ARBITRIUM:
 			case SKILL_ID_CRYSTAL_IMPACT:
 			case SKILL_ID_CRYMSON_ARROW:
 			case SKILL_ID_ROSE_BLOSSOM:
@@ -2040,7 +2039,7 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				n_Delay[7] = 4500 - 500 * n_A_ActiveSkillLV;
 				// 基本倍率
 				// TODO: アックスストンプ状態はスキル倍率だけに影響するので職固有自己支援から攻撃手段オプションに移行する
-				const state_axe_stomp = Math.max(UsedSkillSearch(SKILL_ID_AXE_STOMP_STATUS), attackMethodConfArray[0].GetOptionValue(0)); 
+				const state_axe_stomp = attackMethodConfArray[0].GetOptionValue(0);
 				if (state_axe_stomp === 1) {
 					// アックスストンプ状態の場合
 					wbairitu = 230 + 230 * n_A_ActiveSkillLV;
@@ -2919,6 +2918,9 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			case SKILL_ID_GREAT_ECHO:	// グレートエコー
 			/* クラウン・ジプシー */
 			case SKILL_ID_ARRAW_VULKAN:	// アローバルカン
+			/* トルバドゥール・トルヴェール */
+			case SKILL_ID_ROSE_BLOSSOM:
+			case SKILL_ID_RHYTHM_SHOOTING:
 			/* バード */
 			case SKILL_ID_MUSICAL_STRIKE:	// ミュージカルストライク
 			/* ダンサー */
@@ -3085,90 +3087,6 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				}
 				break;
 
-			// 「トルバドゥール・トルヴェール」スキル「ロゼブロッサム」
-			// 2025-04-03 実測確認済み
-			case SKILL_ID_ROSE_BLOSSOM: {
-				// 弓・楽器・鞭装備状態のみ発動可能
-				if (![ITEM_KIND_BOW, ITEM_KIND_MUSICAL, ITEM_KIND_WHIP].includes(n_A_WeaponType)) {
-					wbairitu = 0;
-					n_Buki_Muri = true;
-					break;
-				}
-				// 距離属性
-				n_Enekyori = 1;
-				// ステージマナー習得Lv
-				const stage_manner_lv = Math.max(LearnedSkillSearch(SKILL_ID_STAGE_MANNER), UsedSkillSearch(SKILL_ID_STAGE_MANNER));
-				// 初段ＨＩＴの場合
-				if (battleCalcInfo.parentSkillId === undefined) {
-					// 詠唱時間等
-					wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-					n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-					n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-					n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-					// 基本倍率
-					if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SOUND_BLEND]) {
-						// サウンドブレンド 有り
-						wbairitu = 1250 + 350 * n_A_ActiveSkillLV;
-						wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_CON) * stage_manner_lv;
-					} else {
-						// サウンドブレンド 無し
-						wbairitu = 750 + 150 * n_A_ActiveSkillLV;
-						wbairitu += 1 * GetTotalSpecStatus(MIG_PARAM_ID_CON) * stage_manner_lv;
-					}
-					// 分割HIT数
-					wActiveHitNum = 2;
-				}
-				// 追撃の場合
-				else {
-					// 基本倍率
-					if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SOUND_BLEND]) {
-						// サウンドブレンド 有り
-						wbairitu = 2500 + 700 * n_A_ActiveSkillLV;
-						wbairitu += 4 * GetTotalSpecStatus(MIG_PARAM_ID_CON) * stage_manner_lv;
-					} else {
-						// サウンドブレンド 無し
-						wbairitu = 1250 + 350 * n_A_ActiveSkillLV;
-						wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_CON) * stage_manner_lv;
-					}
-				}
-				// ベースレベル補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
-				break;
-			}
-			// 「トルバドゥール・トルヴェール」スキル「リズムシューティング」
-			// 2025-04-03 実測確認済み
-			case SKILL_ID_RHYTHM_SHOOTING: {
-				// 弓・楽器・鞭装備状態のみ発動可能
-				if (![ITEM_KIND_BOW, ITEM_KIND_MUSICAL, ITEM_KIND_WHIP].includes(n_A_WeaponType)) {
-					wbairitu = 0;
-					n_Buki_Muri = true;
-					break;
-				}
-				// 距離属性
-				n_Enekyori = 1;
-				// 詠唱時間等
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// ステージマナー習得Lv
-				const stage_manner_lv = Math.max(LearnedSkillSearch(SKILL_ID_STAGE_MANNER), UsedSkillSearch(SKILL_ID_STAGE_MANNER));
-				// 基本倍率
-				if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SOUND_BLEND]) {
-					// サウンドブレンド 有り
-					wbairitu = 1250 + 350 * n_A_ActiveSkillLV;
-					wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_CON) * stage_manner_lv;
-				} else {
-					// サウンドブレンド 無し
-					wbairitu = 750 + 150 * n_A_ActiveSkillLV;
-					wbairitu += 1 * GetTotalSpecStatus(MIG_PARAM_ID_CON) * stage_manner_lv;
-				}
-				// ベースレベル補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
-				// ヒット数
-				wHITsuu = 3;
-				break;
-			}
 			// 「バイオロ」スキル「アシディファイドゾーン」
 			// 2024/11/15 初撃のダメージ誤差無しを確認済み
 			// 設置ダメージは全く合わないが実用性が薄いので調査優先度は低いと判断しこのまま静観します
@@ -7353,7 +7271,8 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 		case SKILL_ID_SHINDOZANKYO:	// 振動残響
 		/* アークビショップ */
 		case SKILL_ID_JUDEX:	// ジュデックス
-		case SKILL_ID_ADORAMUS:	// アドラムス		
+		case SKILL_ID_ADORAMUS:	// アドラムス
+		case SKILL_ID_ARBITRIUM: 
 		/** トルヴェール・トルバドゥール */
 		case SKILL_ID_RHYTHMICAL_WAVE: // リズミカルウェーブ
 		case SKILL_ID_SOUND_BLEND:	// サウンドブレンド
@@ -7372,6 +7291,7 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 		case SKILL_ID_REIDO_FU:		// 霊道符
 		/** スピリットハンドラー */
 		case SKILL_ID_HYUN_ROK_SPIRIT_POWER: // ディアースピリットパワー
+		case SKILL_ID_DEER_CANON:
 		/** アビスチェイサー */
 		case SKILL_ID_ABYSS_FLAME: // アビスフレイム
 		/** インペリアルガード */
@@ -7439,38 +7359,6 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			}
 			break;
 
-		// 「カーディナル」スキル「アルビトリウム」
-		// 2024/10/23 誤差無しを確認
-		case SKILL_ID_ARBITRIUM: {
-			// フィドスアニムス習得Lv
-			const fidos_animus_lv = Math.max(LearnedSkillSearch(SKILL_ID_FIDOS_ANIMUS), UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS));
-			// 初段ＨＩＴの場合
-			if (battleCalcInfo.parentSkillId === undefined) {
-				// 詠唱時間等
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// 基本倍率
-				wbairitu = 50 * n_A_ActiveSkillLV;
-				// フィドスアニムス補正
-				wbairitu += 4 * n_A_ActiveSkillLV * fidos_animus_lv;
-				// SPL補正
-				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			}
-			// 追撃として呼ばれている場合
-			else {
-				// 基本倍率
-				wbairitu = (450 * n_A_ActiveSkillLV);
-				// フィドスアニムス補正
-				wbairitu += 30 * n_A_ActiveSkillLV * fidos_animus_lv;
-				// SPL補正
-				wbairitu += 25 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			}
-			// ベースレベル補正
-			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
-			break;
-		}
 		// 「カーディナル」スキル「ニューマティックプロセラ」
 		// 2025-01-17 もなこさんから連携して頂いた情報との一致を確認
 		case SKILL_ID_NUMATIC_PROCERA: {
@@ -8296,47 +8184,6 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			wbairitu = Math.floor(wbairitu);
 			break;
 		}
-
-		/*
-			「スピリットハンドラー」スキル「ディアーキャノン」
-			2024/11/09 実測済み
-			SPL合計が奇数のときは誤差無しだが偶数のときに誤差が生じる
-			にゃん友習得時+5以上の誤差を確認
-			にゃん友未習得時+1以上の誤差を確認
-			このためスキル計算式自体は合っていてこの後の特性ステータス処理に誤りがあると判断しています
-		*/
-		case SKILL_ID_DEER_CANON:
-			// 詠唱時間等
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// スピリットハンドラーのレインボーホーン追加に伴い任意の属性を取れるように変更
-			if (attackMethodConfArray[0].optionValueArray.length == 0) {
-				// 属性未定義の場合
-				n_A_Weapon_zokusei = ELM_ID_VANITY;
-			} else {
-				n_A_Weapon_zokusei = attackMethodConfArray[0].GetOptionValue(0);
-			};
-			if (UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0 
-				|| UsedSkillSearch(SKILL_ID_NYANTOMO_KENROKU) > 0
-				|| LearnedSkillSearch(SKILL_ID_NYANTOMO_KENROKU) > 0
-				) {
-				// 基礎倍率
-				wbairitu = 5200 + 800 * n_A_ActiveSkillLV;
-				// スピリットマスタリー補正
-				wbairitu += 300 * Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
-			} else {
-				// 基礎倍率
-				wbairitu = 2400 + 300 * n_A_ActiveSkillLV;
-				// スピリットマスタリー補正
-				wbairitu += 125 * Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
-			}
-			// SPL補正
-			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			// ベースレベル補正
-			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
-			break;
 
 		/*
 			「スピリットハンドラー」スキル「ディアーブリーズ」
