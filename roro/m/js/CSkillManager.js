@@ -33399,22 +33399,14 @@ export function CSkillManager() {
 				// ワシの目の習得レベルは射程が伸びるだけでダメージ倍率に寄与しない
 				let ratio = 0;
 				// 基本倍率
-				ratio = 1000 + (100 * skillLv);
+				ratio = 2000 + 200 * skillLv;
 				// CON補正
-				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+				ratio += 10 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
 				// 自然親和補正
 				const shizen_shinwa_lv = Math.max(LearnedSkillSearch(SKILL_ID_SHIZEN_SHINWA), UsedSkillSearch(SKILL_ID_SHIZEN_SHINWA));
 				ratio *= (1 + 0.2 * shizen_shinwa_lv);
 				// ベースレベル補正
-				ratio = Math.floor(ratio * n_A_BaseLV / 100);	
-				// 種族特攻は小数点以下に掛からない
-				// 動物・魚貝形はダメージ倍率２倍
-				switch (mobData[MONSTER_DATA_INDEX_RACE]) {
-					case RACE_ID_ANIMAL:
-					case RACE_ID_FISH:
-						ratio = Math.floor(ratio * 2);	
-				}
-				return ratio;
+				return Math.floor(ratio * n_A_BaseLV / 100);	
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 170;
