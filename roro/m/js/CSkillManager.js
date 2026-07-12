@@ -37065,7 +37065,41 @@ export function CSkillManager() {
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
+			this.dispHitCount = function(skillLv, charaDataManger, option, parentSkillId) {
+				// 初撃 分割2Hit 追撃 分割なし
+				return parentSkillId == undefined ? 2 : 0;
+			}
 			this.element = CSkillData.ELEMENT_VOID;
+			this.WeaponCondition = function(weapon) {
+				return [ITEM_KIND_BOW, ITEM_KIND_MUSICAL, ITEM_KIND_WHIP].includes(weapon);
+			}
+			this.Power = function(skillLv, charaData, option, mobData, weapon, parentSkillId) {
+				let ratio = 0;
+				// ステージマナー習得Lv
+				const stage_manner_lv = Math.max(LearnedSkillSearch(SKILL_ID_STAGE_MANNER), UsedSkillSearch(SKILL_ID_STAGE_MANNER));
+				if (parentSkillId === undefined) {
+					// 初段ＨＩＴの場合
+					if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SOUND_BLEND]) {
+						// サウンドブレンド 有り
+						ratio = 1250 + 350 * skillLv;
+					} else {
+						// サウンドブレンド 無し
+						ratio = 750 + 150 * skillLv;
+					}
+					ratio += 2 * GetTotalSpecStatus(MIG_PARAM_ID_CON) * stage_manner_lv;
+				} else {
+					// 追撃の場合
+					if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SOUND_BLEND]) {
+						// サウンドブレンド 有り
+						ratio = 2500 + 700 * skillLv;
+					} else {
+						// サウンドブレンド 無し
+						ratio = 1250 + 350 * skillLv;
+					}
+					ratio += 4 * GetTotalSpecStatus(MIG_PARAM_ID_CON) * stage_manner_lv;
+				}
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 230;
 			}
