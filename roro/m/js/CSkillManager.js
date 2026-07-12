@@ -35323,20 +35323,19 @@ export function CSkillManager() {
 			this.element = CSkillData.ELEMENT_VOID;
 			this.dispHitCount = 7;
 			this.WeaponCondition = function(weapon) {
-				const mutch_weapon = n_A_Equip[EQUIP_REGION_ID_SHIELD] !== ITEM_ID_NOEQUIP_SHIELD;
-				const state_attack_stance = UsedSkillSearch(SKILL_ID_ATTACK_STANCE) > 0;
-				return mutch_weapon && state_attack_stance;
+				return n_A_Equip[EQUIP_REGION_ID_SHIELD] !== ITEM_ID_NOEQUIP_SHIELD;
 			}
 			this.Power = function(skillLv, charaData, option) {
 				let ratio = 0;
 				// 基本倍率
-				ratio = 1200 + 800 * skillLv;
+				ratio = 2600 + 800 * skillLv;
 				// 修練補正
-				ratio += 40 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_TATE_SHUREN), UsedSkillSearch(SKILL_ID_TATE_SHUREN));
+				ratio += 66 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_TATE_SHUREN), UsedSkillSearch(SKILL_ID_TATE_SHUREN));
 				// 盾の精錬値・重量補正
-				ratio += n_A_SHIELD_DEF_PLUS * 200 + ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][ITEM_DATA_INDEX_WEIGHT];
+				ratio += n_A_SHIELD_DEF_PLUS * 330;
+				ratio += ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][ITEM_DATA_INDEX_WEIGHT] * 2;
 				// POW補正
-				ratio += 32 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				ratio += 35 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// ベースレベル補正
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
