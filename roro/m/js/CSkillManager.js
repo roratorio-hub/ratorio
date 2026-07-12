@@ -41586,8 +41586,7 @@ export function CSkillManager() {
 			}
 			this.Power = function(skillLv, charaData, option) {
 				let ratio = 0;
-				// TODO: アックスストンプ状態はスキル倍率だけに影響するので職固有自己支援から攻撃手段オプションに移行する
-				const state_axe_stomp = Math.max(UsedSkillSearch(SKILL_ID_AXE_STOMP_STATUS), option.GetOptionValue(0)); 
+				const state_axe_stomp = option.GetOptionValue(0);
 				// 基本倍率
 				if (state_axe_stomp === 1) {
 					// アックスストンプ状態の場合
@@ -43437,10 +43436,7 @@ export function CSkillManager() {
 			this.range = CSkillData.RANGE_SHORT;			
 			this.element = CSkillData.ELEMENT_VOID;
 			this.WeaponCondition = function(weapon) {
-				// 魔導ギア搭乗はスキル倍率以外に追加ATKへの補正があるので職固有自己支援で設定する
-				const disarm_gear = UsedSkillSearch(SKILL_ID_MADOGEAR) === 0;
-				const mutch_weapon = ITEM_KIND_AXE_2HAND === weapon;
-				return mutch_weapon && disarm_gear;
+				return ITEM_KIND_AXE_2HAND === weapon;
 			}
 			this.Power = function(skillLv, charaData) {       // スキル倍率
 				let ratio = 9800 + 2000 * skillLv;
@@ -43491,15 +43487,11 @@ export function CSkillManager() {
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
 			this.WeaponCondition = function(weapon) {
-				// 魔導ギア搭乗はスキル倍率以外に追加ATKへの補正があるので職固有自己支援で設定する
-				const disarm_gear = UsedSkillSearch(SKILL_ID_MADOGEAR) === 0;
-				const mutch_weapon = ITEM_KIND_AXE_2HAND === weapon;
-				return mutch_weapon && disarm_gear;
+				return ITEM_KIND_AXE_2HAND === weapon;
 			}
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
-				// TODO: アックスストンプ状態はスキル倍率だけに影響するので職固有自己支援から攻撃手段オプションに移行する
-				const state_axe_stomp = Math.max(UsedSkillSearch(SKILL_ID_AXE_STOMP_STATUS), option.GetOptionValue(0)); 
+				const state_axe_stomp = option.GetOptionValue(0); 
 				if (state_axe_stomp === 1) {
 					ratio += 11100 + 2700 * skillLv;
 					ratio += 82 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数

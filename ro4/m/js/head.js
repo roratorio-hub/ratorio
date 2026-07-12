@@ -2040,7 +2040,7 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				n_Delay[7] = 4500 - 500 * n_A_ActiveSkillLV;
 				// 基本倍率
 				// TODO: アックスストンプ状態はスキル倍率だけに影響するので職固有自己支援から攻撃手段オプションに移行する
-				const state_axe_stomp = Math.max(UsedSkillSearch(SKILL_ID_AXE_STOMP_STATUS), attackMethodConfArray[0].GetOptionValue(0)); 
+				const state_axe_stomp = attackMethodConfArray[0].GetOptionValue(0);
 				if (state_axe_stomp === 1) {
 					// アックスストンプ状態の場合
 					wbairitu = 230 + 230 * n_A_ActiveSkillLV;
