@@ -16,14 +16,14 @@
         "pnpm": ">=10.0.0"
     },
     "devDependencies": {
-        "@types/node": "^22.0.0",
-        "@vitest/coverage-v8": "^4.0.18",
-        "@vitest/ui": "^4.0.18",
-        "eslint": "^10.4.1",
-        "happy-dom": "^20.6.3",
-        "playwright": "^1.53.0",
-        "tom-select": "^2.6.1",
-        "typescript": "^5.9.3",
-        "vitest": "^4.0.18"
+        "@types/node": "^26.1.1",
+        "@vitest/coverage-v8": "^4.1.10",
+        "@vitest/ui": "^4.1.10",
+        "eslint": "^10.7.0",
+        "happy-dom": "^20.10.6",
+        "playwright": "^1.61.1",
+        "tom-select": "^2.6.2",
+        "typescript": "^7.0.2",
+        "vitest": "^4.1.10"
     }
 }
