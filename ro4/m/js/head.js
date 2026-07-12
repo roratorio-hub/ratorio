@@ -2921,6 +2921,7 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			case SKILL_ID_ARRAW_VULKAN:	// アローバルカン
 			/* トルバドゥール・トルヴェール */
 			case SKILL_ID_ROSE_BLOSSOM:
+			case SKILL_ID_RHYTHM_SHOOTING:
 			/* バード */
 			case SKILL_ID_MUSICAL_STRIKE:	// ミュージカルストライク
 			/* ダンサー */
@@ -3087,40 +3088,6 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				}
 				break;
 
-			// 「トルバドゥール・トルヴェール」スキル「リズムシューティング」
-			// 2025-04-03 実測確認済み
-			case SKILL_ID_RHYTHM_SHOOTING: {
-				// 弓・楽器・鞭装備状態のみ発動可能
-				if (![ITEM_KIND_BOW, ITEM_KIND_MUSICAL, ITEM_KIND_WHIP].includes(n_A_WeaponType)) {
-					wbairitu = 0;
-					n_Buki_Muri = true;
-					break;
-				}
-				// 距離属性
-				n_Enekyori = 1;
-				// 詠唱時間等
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// ステージマナー習得Lv
-				const stage_manner_lv = Math.max(LearnedSkillSearch(SKILL_ID_STAGE_MANNER), UsedSkillSearch(SKILL_ID_STAGE_MANNER));
-				// 基本倍率
-				if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SOUND_BLEND]) {
-					// サウンドブレンド 有り
-					wbairitu = 1250 + 350 * n_A_ActiveSkillLV;
-					wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_CON) * stage_manner_lv;
-				} else {
-					// サウンドブレンド 無し
-					wbairitu = 750 + 150 * n_A_ActiveSkillLV;
-					wbairitu += 1 * GetTotalSpecStatus(MIG_PARAM_ID_CON) * stage_manner_lv;
-				}
-				// ベースレベル補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
-				// ヒット数
-				wHITsuu = 3;
-				break;
-			}
 			// 「バイオロ」スキル「アシディファイドゾーン」
 			// 2024/11/15 初撃のダメージ誤差無しを確認済み
 			// 設置ダメージは全く合わないが実用性が薄いので調査優先度は低いと判断しこのまま静観します

@@ -37145,8 +37145,28 @@ export function CSkillManager() {
 			this.kana = "リスムシユウテインク";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
+			this.hitCount = 3;
 			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.WeaponCondition = function(weapon) {
+				return [ITEM_KIND_BOW, ITEM_KIND_MUSICAL, ITEM_KIND_WHIP].includes(n_A_WeaponType);
+			}
+			this.Power = function(skillLv, charaData, option, mobData, weapon, parentSkillId) {
+				let ratio = 0;
+				// ステージマナー習得Lv
+				const stage_manner_lv = Math.max(LearnedSkillSearch(SKILL_ID_STAGE_MANNER), UsedSkillSearch(SKILL_ID_STAGE_MANNER));
+				// 基本倍率
+				if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SOUND_BLEND]) {
+					// サウンドブレンド 有り
+					ratio = 1250 + 350 * skillLv;
+				} else {
+					// サウンドブレンド 無し
+					ratio = 750 + 150 * skillLv;
+				}
+				ratio += 2 * GetTotalSpecStatus(MIG_PARAM_ID_CON) * stage_manner_lv;
+				// ベースレベル補正
+				return Math.floor(ratio * n_A_BaseLV / 100);				
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {    // 消費SP
 				return 110;
 			}
