@@ -47536,7 +47536,7 @@ export function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(△)テンペストフラップ";
+			this.name = "テンペストフラップ";
 			this.kana = "テンペストフラップ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -47544,8 +47544,8 @@ export function CSkillManager() {
 			this.element = CSkillData.ELEMENT_VOID;
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
-				ratio += 13500 + 1350 * skillLv;
-				ratio += 90 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+				ratio += 9000 + 2250 * skillLv;
+				ratio += 105 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
