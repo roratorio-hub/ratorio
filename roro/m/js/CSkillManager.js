@@ -47250,7 +47250,7 @@ export function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(△)クイールスピア";
+			this.name = "クイールスピア";
 			this.kana = "クイイルスピア";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -47258,8 +47258,8 @@ export function CSkillManager() {
 			this.element = CSkillData.ELEMENT_VOID;
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
-				ratio += 4500 + 450 * skillLv;
-				ratio += 30 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+				ratio += 4250 + 625 * skillLv;
+				ratio += 35 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
