@@ -7291,6 +7291,7 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 		case SKILL_ID_REIDO_FU:		// 霊道符
 		/** スピリットハンドラー */
 		case SKILL_ID_HYUN_ROK_SPIRIT_POWER: // ディアースピリットパワー
+		case SKILL_ID_DEER_CANON:
 		/** アビスチェイサー */
 		case SKILL_ID_ABYSS_FLAME: // アビスフレイム
 		/** インペリアルガード */
@@ -8183,47 +8184,6 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			wbairitu = Math.floor(wbairitu);
 			break;
 		}
-
-		/*
-			「スピリットハンドラー」スキル「ディアーキャノン」
-			2024/11/09 実測済み
-			SPL合計が奇数のときは誤差無しだが偶数のときに誤差が生じる
-			にゃん友習得時+5以上の誤差を確認
-			にゃん友未習得時+1以上の誤差を確認
-			このためスキル計算式自体は合っていてこの後の特性ステータス処理に誤りがあると判断しています
-		*/
-		case SKILL_ID_DEER_CANON:
-			// 詠唱時間等
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// スピリットハンドラーのレインボーホーン追加に伴い任意の属性を取れるように変更
-			if (attackMethodConfArray[0].optionValueArray.length == 0) {
-				// 属性未定義の場合
-				n_A_Weapon_zokusei = ELM_ID_VANITY;
-			} else {
-				n_A_Weapon_zokusei = attackMethodConfArray[0].GetOptionValue(0);
-			};
-			if (UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0 
-				|| UsedSkillSearch(SKILL_ID_NYANTOMO_KENROKU) > 0
-				|| LearnedSkillSearch(SKILL_ID_NYANTOMO_KENROKU) > 0
-				) {
-				// 基礎倍率
-				wbairitu = 5200 + 800 * n_A_ActiveSkillLV;
-				// スピリットマスタリー補正
-				wbairitu += 300 * Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
-			} else {
-				// 基礎倍率
-				wbairitu = 2400 + 300 * n_A_ActiveSkillLV;
-				// スピリットマスタリー補正
-				wbairitu += 125 * Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
-			}
-			// SPL補正
-			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			// ベースレベル補正
-			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
-			break;
 
 		/*
 			「スピリットハンドラー」スキル「ディアーブリーズ」

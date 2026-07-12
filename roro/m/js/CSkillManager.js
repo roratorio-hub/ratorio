@@ -41724,7 +41724,29 @@ export function CSkillManager() {
 			this.maxLv = 7;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
-			this.element = CSkillData.ELEMENT_SPECIAL;
+			this.element = function(option, mobData, parentSkillId) {
+				const rainbow_horn = option.GetOptionValue(0);
+				return rainbow_horn;
+			}
+			this.Power = function(skillLv, charaData, option, mobData, weapon, parentSkillId) {
+				let ratio = 0;
+				const condition_powerup = UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0
+										|| UsedSkillSearch(SKILL_ID_NYANTOMO_KENROKU) > 0
+										|| LearnedSkillSearch(SKILL_ID_NYANTOMO_KENROKU) > 0;
+				if (condition_powerup) {
+					// 強化状態
+					ratio = 6400 + 800 * skillLv;
+					ratio += 350 * Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
+				} else {
+					// 通常時
+					ratio = 4350 + 750 * skillLv;
+					ratio += 280 * Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
+				}
+				// SPL補正
+				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				// ベースレベル補正
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 110;
 			}
