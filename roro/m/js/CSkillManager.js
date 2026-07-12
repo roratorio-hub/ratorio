@@ -32730,6 +32730,17 @@ export function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_HOLY;
+			this.Power = function(skillLv, charaData, option, mobData, weapon, parentSkillId) {
+				let ratio = 0;
+				ratio = 3000 + 300 * skillLv;
+				// SPL補正
+				ratio += 30 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				// フィドスアニムス補正
+				const fidos_animus_lv = Math.max(LearnedSkillSearch(SKILL_ID_FIDOS_ANIMUS), UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS));
+				ratio += 300 * fidos_animus_lv;
+				// ベースレベル補正
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 440;
 			}

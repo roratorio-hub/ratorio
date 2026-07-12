@@ -1067,7 +1067,6 @@ export function BattleCalc999(battleCalcInfo, charaData, specData, mobData, atta
 		// 単発追撃系
 		switch (skillId) {
 			case SKILL_ID_METEOR_STORM_BUSTER:
-			case SKILL_ID_ARBITRIUM:
 			case SKILL_ID_CRYSTAL_IMPACT:
 			case SKILL_ID_CRYMSON_ARROW:
 			case SKILL_ID_ROSE_BLOSSOM:
@@ -7272,7 +7271,8 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 		case SKILL_ID_SHINDOZANKYO:	// 振動残響
 		/* アークビショップ */
 		case SKILL_ID_JUDEX:	// ジュデックス
-		case SKILL_ID_ADORAMUS:	// アドラムス		
+		case SKILL_ID_ADORAMUS:	// アドラムス
+		case SKILL_ID_ARBITRIUM: 
 		/** トルヴェール・トルバドゥール */
 		case SKILL_ID_RHYTHMICAL_WAVE: // リズミカルウェーブ
 		case SKILL_ID_SOUND_BLEND:	// サウンドブレンド
@@ -7358,38 +7358,6 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			}
 			break;
 
-		// 「カーディナル」スキル「アルビトリウム」
-		// 2024/10/23 誤差無しを確認
-		case SKILL_ID_ARBITRIUM: {
-			// フィドスアニムス習得Lv
-			const fidos_animus_lv = Math.max(LearnedSkillSearch(SKILL_ID_FIDOS_ANIMUS), UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS));
-			// 初段ＨＩＴの場合
-			if (battleCalcInfo.parentSkillId === undefined) {
-				// 詠唱時間等
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// 基本倍率
-				wbairitu = 50 * n_A_ActiveSkillLV;
-				// フィドスアニムス補正
-				wbairitu += 4 * n_A_ActiveSkillLV * fidos_animus_lv;
-				// SPL補正
-				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			}
-			// 追撃として呼ばれている場合
-			else {
-				// 基本倍率
-				wbairitu = (450 * n_A_ActiveSkillLV);
-				// フィドスアニムス補正
-				wbairitu += 30 * n_A_ActiveSkillLV * fidos_animus_lv;
-				// SPL補正
-				wbairitu += 25 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			}
-			// ベースレベル補正
-			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
-			break;
-		}
 		// 「カーディナル」スキル「ニューマティックプロセラ」
 		// 2025-01-17 もなこさんから連携して頂いた情報との一致を確認
 		case SKILL_ID_NUMATIC_PROCERA: {
