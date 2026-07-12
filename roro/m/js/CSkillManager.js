@@ -32730,6 +32730,17 @@ export function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_HOLY;
+			this.Power = function(skillLv, charaData, option, mobData, weapon, parentSkillId) {
+				let ratio = 0;
+				ratio = 3000 + 300 * skillLv;
+				// SPL補正
+				ratio += 30 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				// フィドスアニムス補正
+				const fidos_animus_lv = Math.max(LearnedSkillSearch(SKILL_ID_FIDOS_ANIMUS), UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS));
+				ratio += 300 * fidos_animus_lv;
+				// ベースレベル補正
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 440;
 			}
@@ -33399,22 +33410,14 @@ export function CSkillManager() {
 				// ワシの目の習得レベルは射程が伸びるだけでダメージ倍率に寄与しない
 				let ratio = 0;
 				// 基本倍率
-				ratio = 1000 + (100 * skillLv);
+				ratio = 2000 + 200 * skillLv;
 				// CON補正
-				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+				ratio += 10 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
 				// 自然親和補正
 				const shizen_shinwa_lv = Math.max(LearnedSkillSearch(SKILL_ID_SHIZEN_SHINWA), UsedSkillSearch(SKILL_ID_SHIZEN_SHINWA));
 				ratio *= (1 + 0.2 * shizen_shinwa_lv);
 				// ベースレベル補正
-				ratio = Math.floor(ratio * n_A_BaseLV / 100);	
-				// 種族特攻は小数点以下に掛からない
-				// 動物・魚貝形はダメージ倍率２倍
-				switch (mobData[MONSTER_DATA_INDEX_RACE]) {
-					case RACE_ID_ANIMAL:
-					case RACE_ID_FISH:
-						ratio = Math.floor(ratio * 2);	
-				}
-				return ratio;
+				return Math.floor(ratio * n_A_BaseLV / 100);	
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 170;
@@ -35237,9 +35240,9 @@ export function CSkillManager() {
 			this.Power = function(skillLv, charaData, option) {
 				let ratio = 0;
 				// 基本倍率
-				ratio = 7500 + 2250 * skillLv;
+				ratio = 10000 + 2900 * skillLv;
 				// POW補正
-				ratio += 100 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				ratio += 130 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// ベースレベル補正
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
@@ -35323,20 +35326,19 @@ export function CSkillManager() {
 			this.element = CSkillData.ELEMENT_VOID;
 			this.dispHitCount = 7;
 			this.WeaponCondition = function(weapon) {
-				const mutch_weapon = n_A_Equip[EQUIP_REGION_ID_SHIELD] !== ITEM_ID_NOEQUIP_SHIELD;
-				const state_attack_stance = UsedSkillSearch(SKILL_ID_ATTACK_STANCE) > 0;
-				return mutch_weapon && state_attack_stance;
+				return n_A_Equip[EQUIP_REGION_ID_SHIELD] !== ITEM_ID_NOEQUIP_SHIELD;
 			}
 			this.Power = function(skillLv, charaData, option) {
 				let ratio = 0;
 				// 基本倍率
-				ratio = 1200 + 800 * skillLv;
+				ratio = 2600 + 800 * skillLv;
 				// 修練補正
-				ratio += 40 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_TATE_SHUREN), UsedSkillSearch(SKILL_ID_TATE_SHUREN));
+				ratio += 66 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_TATE_SHUREN), UsedSkillSearch(SKILL_ID_TATE_SHUREN));
 				// 盾の精錬値・重量補正
-				ratio += n_A_SHIELD_DEF_PLUS * 200 + ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][ITEM_DATA_INDEX_WEIGHT];
+				ratio += n_A_SHIELD_DEF_PLUS * 330;
+				ratio += ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][ITEM_DATA_INDEX_WEIGHT] * 2;
 				// POW補正
-				ratio += 32 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				ratio += 35 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// ベースレベル補正
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
@@ -37074,7 +37076,41 @@ export function CSkillManager() {
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
+			this.dispHitCount = function(skillLv, charaDataManger, option, parentSkillId) {
+				// 初撃 分割2Hit 追撃 分割なし
+				return parentSkillId == undefined ? 2 : 0;
+			}
 			this.element = CSkillData.ELEMENT_VOID;
+			this.WeaponCondition = function(weapon) {
+				return [ITEM_KIND_BOW, ITEM_KIND_MUSICAL, ITEM_KIND_WHIP].includes(weapon);
+			}
+			this.Power = function(skillLv, charaData, option, mobData, weapon, parentSkillId) {
+				let ratio = 0;
+				// ステージマナー習得Lv
+				const stage_manner_lv = Math.max(LearnedSkillSearch(SKILL_ID_STAGE_MANNER), UsedSkillSearch(SKILL_ID_STAGE_MANNER));
+				if (parentSkillId === undefined) {
+					// 初段ＨＩＴの場合
+					if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SOUND_BLEND]) {
+						// サウンドブレンド 有り
+						ratio = 1250 + 350 * skillLv;
+					} else {
+						// サウンドブレンド 無し
+						ratio = 750 + 150 * skillLv;
+					}
+					ratio += 2 * GetTotalSpecStatus(MIG_PARAM_ID_CON) * stage_manner_lv;
+				} else {
+					// 追撃の場合
+					if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SOUND_BLEND]) {
+						// サウンドブレンド 有り
+						ratio = 2500 + 700 * skillLv;
+					} else {
+						// サウンドブレンド 無し
+						ratio = 1250 + 350 * skillLv;
+					}
+					ratio += 4 * GetTotalSpecStatus(MIG_PARAM_ID_CON) * stage_manner_lv;
+				}
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 230;
 			}
@@ -37120,8 +37156,28 @@ export function CSkillManager() {
 			this.kana = "リスムシユウテインク";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
+			this.hitCount = 3;
 			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.WeaponCondition = function(weapon) {
+				return [ITEM_KIND_BOW, ITEM_KIND_MUSICAL, ITEM_KIND_WHIP].includes(n_A_WeaponType);
+			}
+			this.Power = function(skillLv, charaData, option, mobData, weapon, parentSkillId) {
+				let ratio = 0;
+				// ステージマナー習得Lv
+				const stage_manner_lv = Math.max(LearnedSkillSearch(SKILL_ID_STAGE_MANNER), UsedSkillSearch(SKILL_ID_STAGE_MANNER));
+				// 基本倍率
+				if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SOUND_BLEND]) {
+					// サウンドブレンド 有り
+					ratio = 1250 + 350 * skillLv;
+				} else {
+					// サウンドブレンド 無し
+					ratio = 750 + 150 * skillLv;
+				}
+				ratio += 2 * GetTotalSpecStatus(MIG_PARAM_ID_CON) * stage_manner_lv;
+				// ベースレベル補正
+				return Math.floor(ratio * n_A_BaseLV / 100);				
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {    // 消費SP
 				return 110;
 			}
@@ -41541,8 +41597,7 @@ export function CSkillManager() {
 			}
 			this.Power = function(skillLv, charaData, option) {
 				let ratio = 0;
-				// TODO: アックスストンプ状態はスキル倍率だけに影響するので職固有自己支援から攻撃手段オプションに移行する
-				const state_axe_stomp = Math.max(UsedSkillSearch(SKILL_ID_AXE_STOMP_STATUS), option.GetOptionValue(0)); 
+				const state_axe_stomp = option.GetOptionValue(0);
 				// 基本倍率
 				if (state_axe_stomp === 1) {
 					// アックスストンプ状態の場合
@@ -41669,7 +41724,29 @@ export function CSkillManager() {
 			this.maxLv = 7;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
-			this.element = CSkillData.ELEMENT_SPECIAL;
+			this.element = function(option, mobData, parentSkillId) {
+				const rainbow_horn = option.GetOptionValue(0);
+				return rainbow_horn;
+			}
+			this.Power = function(skillLv, charaData, option, mobData, weapon, parentSkillId) {
+				let ratio = 0;
+				const condition_powerup = UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0
+										|| UsedSkillSearch(SKILL_ID_NYANTOMO_KENROKU) > 0
+										|| LearnedSkillSearch(SKILL_ID_NYANTOMO_KENROKU) > 0;
+				if (condition_powerup) {
+					// 強化状態
+					ratio = 6400 + 800 * skillLv;
+					ratio += 350 * Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
+				} else {
+					// 通常時
+					ratio = 4350 + 750 * skillLv;
+					ratio += 280 * Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
+				}
+				// SPL補正
+				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				// ベースレベル補正
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 110;
 			}
@@ -43392,10 +43469,7 @@ export function CSkillManager() {
 			this.range = CSkillData.RANGE_SHORT;			
 			this.element = CSkillData.ELEMENT_VOID;
 			this.WeaponCondition = function(weapon) {
-				// 魔導ギア搭乗はスキル倍率以外に追加ATKへの補正があるので職固有自己支援で設定する
-				const disarm_gear = UsedSkillSearch(SKILL_ID_MADOGEAR) === 0;
-				const mutch_weapon = ITEM_KIND_AXE_2HAND === weapon;
-				return mutch_weapon && disarm_gear;
+				return ITEM_KIND_AXE_2HAND === weapon;
 			}
 			this.Power = function(skillLv, charaData) {       // スキル倍率
 				let ratio = 9800 + 2000 * skillLv;
@@ -43446,15 +43520,11 @@ export function CSkillManager() {
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
 			this.WeaponCondition = function(weapon) {
-				// 魔導ギア搭乗はスキル倍率以外に追加ATKへの補正があるので職固有自己支援で設定する
-				const disarm_gear = UsedSkillSearch(SKILL_ID_MADOGEAR) === 0;
-				const mutch_weapon = ITEM_KIND_AXE_2HAND === weapon;
-				return mutch_weapon && disarm_gear;
+				return ITEM_KIND_AXE_2HAND === weapon;
 			}
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
-				// TODO: アックスストンプ状態はスキル倍率だけに影響するので職固有自己支援から攻撃手段オプションに移行する
-				const state_axe_stomp = Math.max(UsedSkillSearch(SKILL_ID_AXE_STOMP_STATUS), option.GetOptionValue(0)); 
+				const state_axe_stomp = option.GetOptionValue(0); 
 				if (state_axe_stomp === 1) {
 					ratio += 11100 + 2700 * skillLv;
 					ratio += 82 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
@@ -46908,7 +46978,7 @@ export function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(△)ピニオンショット";
+			this.name = "ピニオンショット";
 			this.kana = "ピニオンショット";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -46916,8 +46986,8 @@ export function CSkillManager() {
 			this.element = CSkillData.ELEMENT_VOID;
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
-				ratio += 6750 + 675 * skillLv;
-				ratio += 45 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+				ratio += 6350 + 925 * skillLv;
+				ratio += 52 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
@@ -47202,7 +47272,7 @@ export function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(△)クイールスピア";
+			this.name = "クイールスピア";
 			this.kana = "クイイルスピア";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -47210,8 +47280,8 @@ export function CSkillManager() {
 			this.element = CSkillData.ELEMENT_VOID;
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
-				ratio += 4500 + 450 * skillLv;
-				ratio += 30 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+				ratio += 4250 + 625 * skillLv;
+				ratio += 35 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
@@ -47488,7 +47558,7 @@ export function CSkillManager() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
 			this.id = skillId;
-			this.name = "(△)テンペストフラップ";
+			this.name = "テンペストフラップ";
 			this.kana = "テンペストフラップ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -47496,8 +47566,8 @@ export function CSkillManager() {
 			this.element = CSkillData.ELEMENT_VOID;
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
-				ratio += 13500 + 1350 * skillLv;
-				ratio += 90 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+				ratio += 9000 + 2250 * skillLv;
+				ratio += 105 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
