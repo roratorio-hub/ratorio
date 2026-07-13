@@ -7284,6 +7284,7 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 		/** アークメイジ */
 		case SKILL_ID_MYSTERY_ILLUSION:
 		case SKILL_ID_DESTRACTIVE_HURRICANE:
+		case SKILL_ID_VIOLENT_QUAKE:
 		/** ソウルアセティック */
 		case SKILL_ID_SEIRYU_FU:	// 青龍符
 		case SKILL_ID_BYAKKO_FU:	// 白虎符
@@ -7461,37 +7462,6 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			// ベースレベル補正
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
-			break;
-
-		// 「アークメイジ」スキル「バイオレントクエイク」
-		case SKILL_ID_VIOLENT_QUAKE:
-			// 詠唱時間等
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// オブジェクト存続時間
-			n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// ダメージ間隔
-			n_Delay[5] = 300;
-			g_bDefinedDamageIntervals = true;
-			// 基本倍率
-			wbairitu = 2000 + 200 * n_A_ActiveSkillLV;
-			// SPL補正
-			wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			// ベースレベル補正
-			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
-			// ダメージ増幅
-			switch (UsedSkillSearch(SKILL_ID_CLIMAX)) {
-				case 1:
-					battleCalcInfo.dmgAmpRate -= 50;
-					break;
-				case 3:
-					battleCalcInfo.dmgAmpRate += 50;
-					break;
-				case 4:
-					g_bSkillNoDamage = true;
-				}
 			break;
 
 		// 「アークメイジ」スキル「ソウルバルカンストライク」
@@ -13983,12 +13953,21 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 	const climaxLv = UsedSkillSearch(SKILL_ID_CLIMAX);
 	if (n_A_ActiveSkill == SKILL_ID_DESTRACTIVE_HURRICANE) {
 		if (climaxLv == 3) {
-			wX += 100
+			wX += 100;
 		}
 		if (climaxLv == 5) {
-			wX += 75
+			wX += 75;
 		}
 	}
+	if (n_A_ActiveSkill == SKILL_ID_VIOLENT_QUAKE) {
+		if (climaxLv == 1) {
+			wX -= 50;
+		}
+		if (climaxLv == 3) {
+			wX += 50;
+		}
+	}
+
 
 	//----------------------------------------------------------------
 	// 「性能カスタマイズ欄」の、「○○スキルで攻撃時ダメージ上昇」強化

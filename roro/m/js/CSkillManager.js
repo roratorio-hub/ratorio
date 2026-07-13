@@ -34016,7 +34016,6 @@ export function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "バイオレントクエイク";
 			this.kana = "ハイオレントクエイク";
@@ -34024,6 +34023,20 @@ export function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_EARTH;
+			this.ground_installation = true;
+			this.damageInterval = 300;
+			this.Power = function(skillLv, charaData, option, mobData, weapon, parentSkillId) {
+				let ratio = 0;
+				if (UsedSkillSearch(SKILL_ID_CLIMAX) == 4) {
+					return 0;
+				}
+				// 基本倍率
+				ratio = 6000 + 600 * skillLv;
+				// SPL補正
+				ratio += 30 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				// ベースレベル補正
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 410;
 			}
@@ -34043,7 +34056,7 @@ export function CSkillManager() {
 				return 3000;
 			}
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
-				return (10 + 2 * skillLv) * 300;
+				return 3000;
 			}
 		};
 		this.dataArray[skillId] = skillData;
