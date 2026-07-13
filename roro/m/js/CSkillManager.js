@@ -834,11 +834,12 @@ export function CSkillManager() {
 	 * @param {Number} skillLv 
 	 * @param {CAttackMethodConf} option 
 	 * @param {Number} weapon
+	 * @param {Number} parentSkillId
 	 * @returns {Number}
 	 */
-	this.GetHitCount = function(skillId, skillLv, option, weapon) {
+	this.GetHitCount = function(skillId, skillLv, option, weapon, parentSkillId) {
 		if (typeof this.dataArray[skillId].hitCount === "function") {
-			return this.dataArray[skillId].hitCount(skillLv, option, weapon);
+			return this.dataArray[skillId].hitCount(skillLv, option, weapon, parentSkillId);
 		} else {
 			return this.dataArray[skillId].hitCount;
 		}
@@ -34213,6 +34214,25 @@ export function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_WATER;
+			this.hitCount = function(skillLv, option, weapon, parentSkillId) {
+				const climax2 = (UsedSkillSearch(SKILL_ID_CLIMAX) == 2);
+				const firstDamage = (parentSkillId == undefined);
+				return (firstDamage && climax2) ? 2: 1;
+			}
+			this.Power = function(skillLv, charaData, option, mobData, weapon, parentSkillId) {
+				let ratio = 0;
+				if (parentSkillId == undefined) {
+					// 初撃
+					ratio = 4500 + 4500 * skillLv;
+					ratio += 90 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				} else {
+					// 追撃
+					ratio = 1500;
+					ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				}
+				// ベースレベル補正
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 330;
 			}

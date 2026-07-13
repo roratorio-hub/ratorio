@@ -7286,6 +7286,7 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 		case SKILL_ID_DESTRACTIVE_HURRICANE:
 		case SKILL_ID_VIOLENT_QUAKE:
 		case SKILL_ID_ALL_BLOOM:
+		case SKILL_ID_CRYSTAL_IMPACT:
 		/** ソウルアセティック */
 		case SKILL_ID_SEIRYU_FU:	// 青龍符
 		case SKILL_ID_BYAKKO_FU:	// 白虎符
@@ -7355,7 +7356,7 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			g_bSkillNoDamage = (wbairitu == 0);
 			n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_WeaponType);
 			// ヒット数に関する情報
-			wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
+			wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType, battleCalcInfo.parentSkillId);
 			wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 			// 地面設置スキルの情報
 			g_bDefinedDamageIntervals = g_skillManager.IsGroundInstallation(n_A_ActiveSkill, attackMethodConfArray[0]);
@@ -7502,48 +7503,6 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			// 分割Hit数
 			wActiveHitNum = 2;
-			break;
-
-		// 「アークメイジ」スキル「クリスタルインパクト」
-		case SKILL_ID_CRYSTAL_IMPACT:
-			// クライマックス状態のレベルを取得
-			let sklLvSub = UsedSkillSearch(SKILL_ID_CLIMAX);
-			// 初撃の場合
-			if (battleCalcInfo.parentSkillId === undefined) {
-				// 詠唱時間等
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// 基本倍率
-				wbairitu = 8500 + 2500 * n_A_ActiveSkillLV;
-				// SPL補正
-				wbairitu += 70 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				// クライマックス効果 Lv2, 3 は追撃部分に掛からない
-				switch (sklLvSub) {
-					case 2:
-						// ヒット数増加
-						wHITsuu = 2;
-						break;
-					case 3:
-						// ダメージ増幅
-						battleCalcInfo.dmgAmpRate += 50;
-						break;
-					}
-			}
-			// 追撃の場合
-			else {
-				// 基本倍率
-				wbairitu = 100;
-				// SPL補正
-				wbairitu += 1 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				// クライマックス効果 Lv4 は初撃部分に掛からない
-				if (sklLvSub == 4) {
-					battleCalcInfo.dmgAmpRate += 5000;
-				}
-			}
-			// ベースレベル補正
-			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
 		// 「アークメイジ」スキル「トルネードストーム」
@@ -13929,6 +13888,14 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 		}
 		if (climaxLv == 3) {
 			wX += 100;
+		}
+	}
+	if (n_A_ActiveSkill == SKILL_ID_CRYSTAL_IMPACT) {
+		if (battleCalcInfo.parentSkillId == undefined && climaxLv == 3) {
+			wX += 50;
+		}
+		if (battleCalcInfo.parentSkillId == SKILL_ID_CRYSTAL_IMPACT && climaxLv == 4) {
+			wX += 1000;
 		}
 	}
 
