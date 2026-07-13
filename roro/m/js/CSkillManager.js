@@ -43713,14 +43713,13 @@ export function CSkillManager() {
 			}
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
-				// TODO: ドラゴニックオーラ状態はスキル倍率だけに影響するので職固有自己支援から攻撃手段オプションに移行する
-				const state_dragonic_aura = Math.max(UsedSkillSearch(SKILL_ID_DRAGONIC_AURA_STATE) - 1, option.GetOptionValue(0));
-				if (state_dragonic_aura > 0) {
-					ratio += 4600 + 1000 * skillLv;
-					ratio += 32 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
+				const state_dragonic_aura = option.GetOptionValue(0);
+				if (state_dragonic_aura == 0) {
+					ratio += 5450 + 2150 * skillLv;
+					ratio += 54 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
 				} else {
-					ratio += 3550 + 850 * skillLv;
-					ratio += 26 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
+					ratio += 6900 + 2700 * skillLv;
+					ratio += 68 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
 				}
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
