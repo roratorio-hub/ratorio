@@ -41613,14 +41613,14 @@ export function CSkillManager() {
 					// ドラゴニックオーラ時
 					ratio = 3500 + 400 * skillLv;
 					ratio += 25 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-					ratio += charaData[CHARA_DATA_INDEX_MAXHP] / 250
-					ratio += charaData[CHARA_DATA_INDEX_MAXSP] / 10;
+					ratio += charaData[CHARA_DATA_INDEX_MAXHP] / 24
+					ratio += charaData[CHARA_DATA_INDEX_MAXSP] / 2;
 				} else {
 					// 通常時
 					ratio = 2750 + 325 * skillLv;
 					ratio += 20 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-					ratio += charaData[CHARA_DATA_INDEX_MAXHP] / 312.5
-					ratio += charaData[CHARA_DATA_INDEX_MAXSP] / 12.5;
+					ratio += charaData[CHARA_DATA_INDEX_MAXHP] / 30
+					ratio += charaData[CHARA_DATA_INDEX_MAXSP] / 2.5;
 				}
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
