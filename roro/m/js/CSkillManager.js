@@ -31887,13 +31887,8 @@ export function CSkillManager() {
 			}
 			this.Power = function(skillLv, charaData, option, mobData, weapon) { // スキル倍率
 				let ratio = 0;
-				if (weapon === ITEM_KIND_SWORD_2HAND) {
-					ratio = 2500 + 200 * skillLv;
-					ratio += 15 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
-				} else {
-					ratio = 1800 + 150 * skillLv;
-					ratio += 11 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
-				}
+				ratio = 2400 + 300 * skillLv;
+				ratio += 18 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
 			}
