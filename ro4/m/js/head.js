@@ -7281,6 +7281,8 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 		case SKILL_ID_PSYCHIC_STREAM: // サイキックストリーム
 		case SKILL_ID_DIAMOND_STORM: 
 		case SKILL_ID_TERA_DRIVE:
+		/** アークメイジ */
+		case SKILL_ID_MYSTERY_ILLUSION:
 		/** ソウルアセティック */
 		case SKILL_ID_SEIRYU_FU:	// 青龍符
 		case SKILL_ID_BYAKKO_FU:	// 白虎符
@@ -7489,26 +7491,6 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			wbairitu = 2000 + 200 * n_A_ActiveSkillLV;
 			// SPL補正
 			wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			// ベースレベル補正
-			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
-			break;
-
-		// 「アークメイジ」スキル「ミステリーイリュージョン」
-		case SKILL_ID_MYSTERY_ILLUSION:
-			// 詠唱時間等
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			g_bDefinedDamageIntervals = true;
-			// オブジェクト存続時間
-			n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// ダメージ間隔
-			n_Delay[5] = 300;
-			// 基本倍率
-			wbairitu = 900 + 300 * n_A_ActiveSkillLV;
-			// SPL補正
-			wbairitu += 8 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			// ベースレベル補正
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;

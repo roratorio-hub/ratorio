@@ -33950,7 +33950,6 @@ export function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "ミステリーイリュージョン";
 			this.kana = "ミステリイイリユウシヨン";
@@ -33958,6 +33957,17 @@ export function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_DARK;
+			this.ground_installation = true;
+			this.damageInterval = 300;
+			this.Power = function(skillLv, charaData, option, mobData, weapon, parentSkillId) {
+				let ratio = 0;
+				// 基本倍率
+				ratio = 1000 + 400 * skillLv;
+				// SPL補正
+				ratio += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				// ベースレベル補正
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 450;
 			}
