@@ -2673,6 +2673,10 @@ export function GetUnconfirmedHPSPArray() {
 			[196,198],
 			[196,198]
 		];
+		g_unconfirmedHPSPArray[MIG_JOB_ID_KARNOS] = [
+			[],[]
+		];
+		
 		// 四次
 		g_unconfirmedHPSPArray[MIG_JOB_ID_DRAGON_KNIGHT] = [
 			/* 等差数列の可能性が高いことがサンプリングから推測されるので未確認フラグを一括で削除
