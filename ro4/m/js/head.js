@@ -7285,6 +7285,7 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 		case SKILL_ID_MYSTERY_ILLUSION:
 		case SKILL_ID_DESTRACTIVE_HURRICANE:
 		case SKILL_ID_VIOLENT_QUAKE:
+		case SKILL_ID_ALL_BLOOM:
 		/** ソウルアセティック */
 		case SKILL_ID_SEIRYU_FU:	// 青龍符
 		case SKILL_ID_BYAKKO_FU:	// 白虎符
@@ -7501,51 +7502,6 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			// 分割Hit数
 			wActiveHitNum = 2;
-			break;
-
-		// 「アークメイジ」スキル「オールブルーム」
-		case SKILL_ID_ALL_BLOOM:
-			// クライマックスLv
-			const climaxLv = UsedSkillSearch(SKILL_ID_CLIMAX);
-			// 詠唱時間等
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// 追撃ダメージを確認する場合
-			if (climaxLv == 5 && attackMethodConfArray[0].GetOptionValue(0) == 1) {
-				// 基本倍率
-				wbairitu = 25000 + 5000 * n_A_ActiveSkillLV;
-			}
-			// 設置ダメージを確認する場合
-			else {
-				g_bDefinedDamageIntervals = true;
-				// オブジェクト存続時間
-				n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// ダメージ間隔
-				if (climaxLv == 1) {
-					n_Delay[5] = 150;
-				} else {
-					n_Delay[5] = 300;
-				}
-				// 基本倍率
-				wbairitu = 2000 + 200 * n_A_ActiveSkillLV;
-				// SPL補正
-				wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				// ベースレベル補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
-				// ダメージ増幅
-				switch (climaxLv) {
-					case 2:
-						battleCalcInfo.dmgAmpRate -= 50;
-						break;
-					case 3:
-						battleCalcInfo.dmgAmpRate += 50;
-						break;
-					case 4:
-						g_bSkillNoDamage = true;
-				}
-			}
 			break;
 
 		// 「アークメイジ」スキル「クリスタルインパクト」
@@ -13965,6 +13921,14 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 		}
 		if (climaxLv == 3) {
 			wX += 50;
+		}
+	}
+	if (n_A_ActiveSkill == SKILL_ID_ALL_BLOOM) {
+		if (climaxLv == 2) {
+			wX -= 50;
+		}
+		if (climaxLv == 3) {
+			wX += 100;
 		}
 	}
 

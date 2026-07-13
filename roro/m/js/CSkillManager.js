@@ -34148,6 +34148,32 @@ export function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_FIRE;
+			this.ground_installation = function(option) {
+				const NotClimax5 = UsedSkillSearch(SKILL_ID_CLIMAX) != 5;
+				const groundDamage = option.GetOptionValue(0) == 0;
+				return NotClimax5 || groundDamage;
+			}
+			this.damageInterval = function(skillLv) {
+				const climaxLv = UsedSkillSearch(SKILL_ID_CLIMAX);
+				return climaxLv == 1 ? 150: 300;
+			}
+			this.Power = function(skillLv, charaData, option, mobData, weapon, parentSkillId) {
+				const climaxLv = UsedSkillSearch(SKILL_ID_CLIMAX);
+				const additionalDamage = option.GetOptionValue(0) == 1;
+				if (climaxLv == 4) {
+					return 0;
+				}
+				if (climaxLv == 5 && additionalDamage) {
+					// 追撃ダメージ
+					return 50000 + 10000 * skillLv;
+				} else {
+					// 設置ダメージ
+					let ratio = 0;
+					ratio = 6000 + 600 * skillLv;
+					ratio += 30 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+					return Math.floor(ratio * n_A_BaseLV / 100);
+				}
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 450;
 			}
@@ -34167,7 +34193,7 @@ export function CSkillManager() {
 				return 3000;
 			}
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
-				return (10 + 2 * skillLv) * 300;
+				return 3000;
 			}
 		};
 		this.dataArray[skillId] = skillData;
