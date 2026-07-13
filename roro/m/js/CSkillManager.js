@@ -33852,7 +33852,6 @@ export function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "ディストラクティブハリケーン";
 			this.kana = "テイストラクテイフハリケエン";
@@ -33860,6 +33859,23 @@ export function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_WIND;
+			this.Power = function(skillLv, charaData, option, mobData, weapon, parentSkillId) {
+				let ratio = 0;
+				if (UsedSkillSearch(SKILL_ID_CLIMAX) == 4) {
+					return 0;
+				}
+				if (parentSkillId === undefined) {
+					// 初段ＨＩＴの場合
+					ratio = 4500 + 4500 * skillLv;
+					ratio += 90 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+					ratio = Math.floor(ratio * n_A_BaseLV / 100);
+				} else {
+					// クライマックスLv1 追撃の場合
+					// SPL補正とベースレベル補正は乗らない
+					ratio = 5000;
+				}
+				return ratio;
+			}			
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 360;
 			}

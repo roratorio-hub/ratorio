@@ -7283,6 +7283,7 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 		case SKILL_ID_TERA_DRIVE:
 		/** アークメイジ */
 		case SKILL_ID_MYSTERY_ILLUSION:
+		case SKILL_ID_DESTRACTIVE_HURRICANE:
 		/** ソウルアセティック */
 		case SKILL_ID_SEIRYU_FU:	// 青龍符
 		case SKILL_ID_BYAKKO_FU:	// 白虎符
@@ -7349,6 +7350,7 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			// ダメージ算出に関する情報
 			n_A_Weapon_zokusei = g_skillManager.GetElement(battleCalcInfo.skillId, attackMethodConfArray[0], mobData, battleCalcInfo.parentSkillId);
 			wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], mobData, n_A_WeaponType, battleCalcInfo.parentSkillId);
+			g_bSkillNoDamage = (wbairitu == 0);
 			n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_WeaponType);
 			// ヒット数に関する情報
 			wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
@@ -7439,40 +7441,6 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			wbairitu += 15 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			// ベースレベル補正
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
-			break;
-
-		// 「アークメイジ」スキル「ディストラクティブハリケーン」
-		case SKILL_ID_DESTRACTIVE_HURRICANE:
-			// 初段ＨＩＴの場合
-			if (battleCalcInfo.parentSkillId === undefined) {
-				// 詠唱時間等
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// 基本倍率
-				wbairitu = 8500 + 2500 * n_A_ActiveSkillLV;
-				// SPL補正
-				wbairitu += 70 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				// ベースレベル補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
-			}
-			// 追撃の場合
-			else {
-				// SPL補正とベースレベル補正は乗らない
-				wbairitu = 5000;
-			}
-			// ダメージ増幅
-			switch (UsedSkillSearch(SKILL_ID_CLIMAX)) {
-				case 3:
-					battleCalcInfo.dmgAmpRate += 100;
-					break;
-				case 5:
-					battleCalcInfo.dmgAmpRate += 50;
-					break;
-				case 4:
-					g_bSkillNoDamage = true;
-			}
 			break;
 
 		// 「アークメイジ」スキル「レインオブクリスタル」
@@ -14000,12 +13968,6 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 		}
 	}
 
-
-	//★★★★★★★★★★★★★★★★★★★
-	//★★★★ roro 側にも反映のこと ★★★★
-	//★★★★★★★★★★★★★★★★★★★
-
-
 	//----------------------------------------------------------------
 	// 「ミスティックシンフォニー」の、「サウンドブレンド」強化
 	//----------------------------------------------------------------
@@ -14015,6 +13977,18 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 		}
 	}
 
+	/**
+	 * アークメイジ「クライマックス」による四属性魔法強化
+	 */
+	const climaxLv = UsedSkillSearch(SKILL_ID_CLIMAX);
+	if (n_A_ActiveSkill == SKILL_ID_DESTRACTIVE_HURRICANE) {
+		if (climaxLv == 3) {
+			wX += 100
+		}
+		if (climaxLv == 5) {
+			wX += 75
+		}
+	}
 
 	//----------------------------------------------------------------
 	// 「性能カスタマイズ欄」の、「○○スキルで攻撃時ダメージ上昇」強化
