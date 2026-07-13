@@ -32505,17 +32505,10 @@ export function CSkillManager() {
 			this.range = function(weapon) {
 				return CSkillData.RANGE_SHORT;
 			}
-			this.WeaponCondition = function(weapon) {
-				return (weapon === ITEM_KIND_KATAR);
-			}
-			this.hitCount = function(skillLv, option) {
-				return option.GetOptionValue(0);
-			}
 			this.Power = function(skillLv, charaData, option) {			// スキル倍率
-				// Lv1 と Lv3 に +15 程度の誤差がありますが計算式に変更はないので改めて△表示はしません
 				let ratio = 0;
-				ratio = 50 + 50 * skillLv;
-				ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				ratio = 500 + 200 * skillLv;
+				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
 			}
@@ -32526,14 +32519,17 @@ export function CSkillManager() {
 				return 1000 * skillLv;
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {
-				return 500 * skillLv;
+				return 500;
 			}
 			this.LifeTime = function(skillLv, charaDataManger) {
-				// 自身を 10秒間、「カウンタースラッシュ」状態にする
-				return 10 * 1000;
+				return 0;
 			}
-			this.CriActRate = (skillLv, charaData, specData, mobData) => {
-				return this._CriActRate100(skillLv, charaData, specData, mobData) / 2;
+			this.CriActRate = (skillLv, charaData, specData, mobData, option, weapon) => {
+				if (weapon === ITEM_KIND_KATAR) {
+					return this._CriActRate100(skillLv, charaData, specData, mobData) / 2;
+				} else {
+					return 0;
+				}
 			}
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
