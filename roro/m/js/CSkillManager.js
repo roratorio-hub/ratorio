@@ -32092,8 +32092,8 @@ export function CSkillManager() {
 				let ratio = 0;
 				// ジャイアントグロース(スリサズルーンストーン)はスキル倍率だけでなく基礎ステータスにも影響を与えるので職固有自己支援で設定する
 				const state_giant_growth = UsedSkillSearch(SKILL_ID_GIANT_GROWTH) === 1;
-				ratio += 1550 + 50 * skillLv;
-				ratio += 6 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
+				ratio += 1850 + 50 * skillLv;
+				ratio += 7 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
 				if (state_giant_growth) {
 					ratio *= 2;
 				}
