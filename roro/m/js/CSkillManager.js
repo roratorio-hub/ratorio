@@ -31994,9 +31994,9 @@ export function CSkillManager() {
 				let ratio = 0;
 				const wpnLv = ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS]][ITEM_DATA_INDEX_WPNLV] % 10;
 				const weight = ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS]][ITEM_DATA_INDEX_WEIGHT];
-				ratio += 5700 + 1200 * skillLv;
+				ratio += 3850 + 3250 * skillLv;
 				ratio += weight * wpnLv;
-				ratio += (19 + 4 * skillLv) * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
+				ratio += (12 + 11 * skillLv) * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				// チャージングピアースがONの時、与えるダメージ + 10% x スキルレベル
 				ratio = ratio * (1 + 0.1 * option.GetOptionValue(0));
@@ -32018,7 +32018,7 @@ export function CSkillManager() {
 				return 1000 * skillLv;
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
-				return 500 * skillLv;
+				return 200 * skillLv;
 			}
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
