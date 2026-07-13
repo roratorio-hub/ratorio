@@ -7281,6 +7281,12 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 		case SKILL_ID_PSYCHIC_STREAM: // サイキックストリーム
 		case SKILL_ID_DIAMOND_STORM: 
 		case SKILL_ID_TERA_DRIVE:
+		/** アークメイジ */
+		case SKILL_ID_MYSTERY_ILLUSION:
+		case SKILL_ID_DESTRACTIVE_HURRICANE:
+		case SKILL_ID_VIOLENT_QUAKE:
+		case SKILL_ID_ALL_BLOOM:
+		case SKILL_ID_CRYSTAL_IMPACT:
 		/** ソウルアセティック */
 		case SKILL_ID_SEIRYU_FU:	// 青龍符
 		case SKILL_ID_BYAKKO_FU:	// 白虎符
@@ -7347,9 +7353,10 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			// ダメージ算出に関する情報
 			n_A_Weapon_zokusei = g_skillManager.GetElement(battleCalcInfo.skillId, attackMethodConfArray[0], mobData, battleCalcInfo.parentSkillId);
 			wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], mobData, n_A_WeaponType, battleCalcInfo.parentSkillId);
+			g_bSkillNoDamage = (wbairitu == 0);
 			n_Enekyori = g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_WeaponType);
 			// ヒット数に関する情報
-			wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
+			wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType, battleCalcInfo.parentSkillId);
 			wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 			// 地面設置スキルの情報
 			g_bDefinedDamageIntervals = g_skillManager.IsGroundInstallation(n_A_ActiveSkill, attackMethodConfArray[0]);
@@ -7439,40 +7446,6 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
-		// 「アークメイジ」スキル「ディストラクティブハリケーン」
-		case SKILL_ID_DESTRACTIVE_HURRICANE:
-			// 初段ＨＩＴの場合
-			if (battleCalcInfo.parentSkillId === undefined) {
-				// 詠唱時間等
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// 基本倍率
-				wbairitu = 8500 + 2500 * n_A_ActiveSkillLV;
-				// SPL補正
-				wbairitu += 70 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				// ベースレベル補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
-			}
-			// 追撃の場合
-			else {
-				// SPL補正とベースレベル補正は乗らない
-				wbairitu = 5000;
-			}
-			// ダメージ増幅
-			switch (UsedSkillSearch(SKILL_ID_CLIMAX)) {
-				case 3:
-					battleCalcInfo.dmgAmpRate += 100;
-					break;
-				case 5:
-					battleCalcInfo.dmgAmpRate += 50;
-					break;
-				case 4:
-					g_bSkillNoDamage = true;
-			}
-			break;
-
 		// 「アークメイジ」スキル「レインオブクリスタル」
 		case SKILL_ID_RAIN_OF_CRYSTAL:
 			// 詠唱時間等
@@ -7491,57 +7464,6 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			// ベースレベル補正
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
-			break;
-
-		// 「アークメイジ」スキル「ミステリーイリュージョン」
-		case SKILL_ID_MYSTERY_ILLUSION:
-			// 詠唱時間等
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			g_bDefinedDamageIntervals = true;
-			// オブジェクト存続時間
-			n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// ダメージ間隔
-			n_Delay[5] = 300;
-			// 基本倍率
-			wbairitu = 900 + 300 * n_A_ActiveSkillLV;
-			// SPL補正
-			wbairitu += 8 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			// ベースレベル補正
-			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
-			break;
-
-		// 「アークメイジ」スキル「バイオレントクエイク」
-		case SKILL_ID_VIOLENT_QUAKE:
-			// 詠唱時間等
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// オブジェクト存続時間
-			n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// ダメージ間隔
-			n_Delay[5] = 300;
-			g_bDefinedDamageIntervals = true;
-			// 基本倍率
-			wbairitu = 2000 + 200 * n_A_ActiveSkillLV;
-			// SPL補正
-			wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			// ベースレベル補正
-			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
-			// ダメージ増幅
-			switch (UsedSkillSearch(SKILL_ID_CLIMAX)) {
-				case 1:
-					battleCalcInfo.dmgAmpRate -= 50;
-					break;
-				case 3:
-					battleCalcInfo.dmgAmpRate += 50;
-					break;
-				case 4:
-					g_bSkillNoDamage = true;
-				}
 			break;
 
 		// 「アークメイジ」スキル「ソウルバルカンストライク」
@@ -7581,93 +7503,6 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			// 分割Hit数
 			wActiveHitNum = 2;
-			break;
-
-		// 「アークメイジ」スキル「オールブルーム」
-		case SKILL_ID_ALL_BLOOM:
-			// クライマックスLv
-			const climaxLv = UsedSkillSearch(SKILL_ID_CLIMAX);
-			// 詠唱時間等
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// 追撃ダメージを確認する場合
-			if (climaxLv == 5 && attackMethodConfArray[0].GetOptionValue(0) == 1) {
-				// 基本倍率
-				wbairitu = 25000 + 5000 * n_A_ActiveSkillLV;
-			}
-			// 設置ダメージを確認する場合
-			else {
-				g_bDefinedDamageIntervals = true;
-				// オブジェクト存続時間
-				n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// ダメージ間隔
-				if (climaxLv == 1) {
-					n_Delay[5] = 150;
-				} else {
-					n_Delay[5] = 300;
-				}
-				// 基本倍率
-				wbairitu = 2000 + 200 * n_A_ActiveSkillLV;
-				// SPL補正
-				wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				// ベースレベル補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
-				// ダメージ増幅
-				switch (climaxLv) {
-					case 2:
-						battleCalcInfo.dmgAmpRate -= 50;
-						break;
-					case 3:
-						battleCalcInfo.dmgAmpRate += 50;
-						break;
-					case 4:
-						g_bSkillNoDamage = true;
-				}
-			}
-			break;
-
-		// 「アークメイジ」スキル「クリスタルインパクト」
-		case SKILL_ID_CRYSTAL_IMPACT:
-			// クライマックス状態のレベルを取得
-			let sklLvSub = UsedSkillSearch(SKILL_ID_CLIMAX);
-			// 初撃の場合
-			if (battleCalcInfo.parentSkillId === undefined) {
-				// 詠唱時間等
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// 基本倍率
-				wbairitu = 8500 + 2500 * n_A_ActiveSkillLV;
-				// SPL補正
-				wbairitu += 70 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				// クライマックス効果 Lv2, 3 は追撃部分に掛からない
-				switch (sklLvSub) {
-					case 2:
-						// ヒット数増加
-						wHITsuu = 2;
-						break;
-					case 3:
-						// ダメージ増幅
-						battleCalcInfo.dmgAmpRate += 50;
-						break;
-					}
-			}
-			// 追撃の場合
-			else {
-				// 基本倍率
-				wbairitu = 100;
-				// SPL補正
-				wbairitu += 1 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				// クライマックス効果 Lv4 は初撃部分に掛からない
-				if (sklLvSub == 4) {
-					battleCalcInfo.dmgAmpRate += 5000;
-				}
-			}
-			// ベースレベル補正
-			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
 			break;
 
 		// 「アークメイジ」スキル「トルネードストーム」
@@ -14018,18 +13853,49 @@ export function GetMagicalSkillDamageRatioChange(battleCalcInfo, charaData, spec
 		}
 	}
 
-
-	//★★★★★★★★★★★★★★★★★★★
-	//★★★★ roro 側にも反映のこと ★★★★
-	//★★★★★★★★★★★★★★★★★★★
-
-
 	//----------------------------------------------------------------
 	// 「ミスティックシンフォニー」の、「サウンドブレンド」強化
 	//----------------------------------------------------------------
 	if (n_A_ActiveSkill == SKILL_ID_SOUND_BLEND) {
 		if (UsedSkillSearch(SKILL_ID_MYSTIC_SYMPHONY) > 0) {
 			wX += 50;
+		}
+	}
+
+	/**
+	 * アークメイジ「クライマックス」による四属性魔法強化
+	 */
+	const climaxLv = UsedSkillSearch(SKILL_ID_CLIMAX);
+	if (n_A_ActiveSkill == SKILL_ID_DESTRACTIVE_HURRICANE) {
+		if (climaxLv == 3) {
+			wX += 100;
+		}
+		if (climaxLv == 5) {
+			wX += 75;
+		}
+	}
+	if (n_A_ActiveSkill == SKILL_ID_VIOLENT_QUAKE) {
+		if (climaxLv == 1) {
+			wX -= 50;
+		}
+		if (climaxLv == 3) {
+			wX += 50;
+		}
+	}
+	if (n_A_ActiveSkill == SKILL_ID_ALL_BLOOM) {
+		if (climaxLv == 2) {
+			wX -= 50;
+		}
+		if (climaxLv == 3) {
+			wX += 100;
+		}
+	}
+	if (n_A_ActiveSkill == SKILL_ID_CRYSTAL_IMPACT) {
+		if (battleCalcInfo.parentSkillId == undefined && climaxLv == 3) {
+			wX += 50;
+		}
+		if (battleCalcInfo.parentSkillId == SKILL_ID_CRYSTAL_IMPACT && climaxLv == 4) {
+			wX += 1000;
 		}
 	}
 

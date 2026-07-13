@@ -834,11 +834,12 @@ export function CSkillManager() {
 	 * @param {Number} skillLv 
 	 * @param {CAttackMethodConf} option 
 	 * @param {Number} weapon
+	 * @param {Number} parentSkillId
 	 * @returns {Number}
 	 */
-	this.GetHitCount = function(skillId, skillLv, option, weapon) {
+	this.GetHitCount = function(skillId, skillLv, option, weapon, parentSkillId) {
 		if (typeof this.dataArray[skillId].hitCount === "function") {
-			return this.dataArray[skillId].hitCount(skillLv, option, weapon);
+			return this.dataArray[skillId].hitCount(skillLv, option, weapon, parentSkillId);
 		} else {
 			return this.dataArray[skillId].hitCount;
 		}
@@ -31886,13 +31887,8 @@ export function CSkillManager() {
 			}
 			this.Power = function(skillLv, charaData, option, mobData, weapon) { // スキル倍率
 				let ratio = 0;
-				if (weapon === ITEM_KIND_SWORD_2HAND) {
-					ratio = 2500 + 200 * skillLv;
-					ratio += 15 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
-				} else {
-					ratio = 1800 + 150 * skillLv;
-					ratio += 11 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
-				}
+				ratio = 2400 + 300 * skillLv;
+				ratio += 18 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
 			}
@@ -31945,9 +31941,9 @@ export function CSkillManager() {
 			}
 			this.Power = function(skillLv, charaData) {					// スキル倍率
 				let ratio = 0;
-				ratio = 7500 + 2250 * skillLv;
-				ratio += 100 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-				ratio = Math.floor(ratio * n_A_BaseLV / 100);	// Pow係数 未検証
+				ratio = 10000 + 2900 * skillLv;
+				ratio += 130 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
@@ -31998,9 +31994,9 @@ export function CSkillManager() {
 				let ratio = 0;
 				const wpnLv = ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS]][ITEM_DATA_INDEX_WPNLV] % 10;
 				const weight = ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS]][ITEM_DATA_INDEX_WEIGHT];
-				ratio += 5700 + 1200 * skillLv;
+				ratio += 3850 + 3250 * skillLv;
 				ratio += weight * wpnLv;
-				ratio += (19 + 4 * skillLv) * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
+				ratio += (12 + 11 * skillLv) * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				// チャージングピアースがONの時、与えるダメージ + 10% x スキルレベル
 				ratio = ratio * (1 + 0.1 * option.GetOptionValue(0));
@@ -32022,7 +32018,7 @@ export function CSkillManager() {
 				return 1000 * skillLv;
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
-				return 500 * skillLv;
+				return 200 * skillLv;
 			}
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
@@ -32096,8 +32092,8 @@ export function CSkillManager() {
 				let ratio = 0;
 				// ジャイアントグロース(スリサズルーンストーン)はスキル倍率だけでなく基礎ステータスにも影響を与えるので職固有自己支援で設定する
 				const state_giant_growth = UsedSkillSearch(SKILL_ID_GIANT_GROWTH) === 1;
-				ratio += 1550 + 50 * skillLv;
-				ratio += 6 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
+				ratio += 1850 + 50 * skillLv;
+				ratio += 7 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
 				if (state_giant_growth) {
 					ratio *= 2;
 				}
@@ -32504,17 +32500,10 @@ export function CSkillManager() {
 			this.range = function(weapon) {
 				return CSkillData.RANGE_SHORT;
 			}
-			this.WeaponCondition = function(weapon) {
-				return (weapon === ITEM_KIND_KATAR);
-			}
-			this.hitCount = function(skillLv, option) {
-				return option.GetOptionValue(0);
-			}
 			this.Power = function(skillLv, charaData, option) {			// スキル倍率
-				// Lv1 と Lv3 に +15 程度の誤差がありますが計算式に変更はないので改めて△表示はしません
 				let ratio = 0;
-				ratio = 50 + 50 * skillLv;
-				ratio += 1 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				ratio = 500 + 200 * skillLv;
+				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
 			}
@@ -32525,14 +32514,17 @@ export function CSkillManager() {
 				return 1000 * skillLv;
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {
-				return 500 * skillLv;
+				return 500;
 			}
 			this.LifeTime = function(skillLv, charaDataManger) {
-				// 自身を 10秒間、「カウンタースラッシュ」状態にする
-				return 10 * 1000;
+				return 0;
 			}
-			this.CriActRate = (skillLv, charaData, specData, mobData) => {
-				return this._CriActRate100(skillLv, charaData, specData, mobData) / 2;
+			this.CriActRate = (skillLv, charaData, specData, mobData, option, weapon) => {
+				if (weapon === ITEM_KIND_KATAR) {
+					return this._CriActRate100(skillLv, charaData, specData, mobData) / 2;
+				} else {
+					return 0;
+				}
 			}
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
@@ -33852,7 +33844,6 @@ export function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "ディストラクティブハリケーン";
 			this.kana = "テイストラクテイフハリケエン";
@@ -33860,6 +33851,23 @@ export function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_WIND;
+			this.Power = function(skillLv, charaData, option, mobData, weapon, parentSkillId) {
+				let ratio = 0;
+				if (UsedSkillSearch(SKILL_ID_CLIMAX) == 4) {
+					return 0;
+				}
+				if (parentSkillId === undefined) {
+					// 初段ＨＩＴの場合
+					ratio = 4500 + 4500 * skillLv;
+					ratio += 90 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+					ratio = Math.floor(ratio * n_A_BaseLV / 100);
+				} else {
+					// クライマックスLv1 追撃の場合
+					// SPL補正とベースレベル補正は乗らない
+					ratio = 5000;
+				}
+				return ratio;
+			}			
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 360;
 			}
@@ -33950,7 +33958,6 @@ export function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "ミステリーイリュージョン";
 			this.kana = "ミステリイイリユウシヨン";
@@ -33958,6 +33965,17 @@ export function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_DARK;
+			this.ground_installation = true;
+			this.damageInterval = 300;
+			this.Power = function(skillLv, charaData, option, mobData, weapon, parentSkillId) {
+				let ratio = 0;
+				// 基本倍率
+				ratio = 1000 + 400 * skillLv;
+				// SPL補正
+				ratio += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				// ベースレベル補正
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 450;
 			}
@@ -33990,7 +34008,6 @@ export function CSkillManager() {
 		skillData = new function() {
 			this.prototype = new CSkillData();
 			CSkillData.call(this);
-
 			this.id = skillId;
 			this.name = "バイオレントクエイク";
 			this.kana = "ハイオレントクエイク";
@@ -33998,6 +34015,20 @@ export function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_EARTH;
+			this.ground_installation = true;
+			this.damageInterval = 300;
+			this.Power = function(skillLv, charaData, option, mobData, weapon, parentSkillId) {
+				let ratio = 0;
+				if (UsedSkillSearch(SKILL_ID_CLIMAX) == 4) {
+					return 0;
+				}
+				// 基本倍率
+				ratio = 6000 + 600 * skillLv;
+				// SPL補正
+				ratio += 30 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				// ベースレベル補正
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 410;
 			}
@@ -34017,7 +34048,7 @@ export function CSkillManager() {
 				return 3000;
 			}
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
-				return (10 + 2 * skillLv) * 300;
+				return 3000;
 			}
 		};
 		this.dataArray[skillId] = skillData;
@@ -34109,6 +34140,32 @@ export function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_FIRE;
+			this.ground_installation = function(option) {
+				const NotClimax5 = UsedSkillSearch(SKILL_ID_CLIMAX) != 5;
+				const groundDamage = option.GetOptionValue(0) == 0;
+				return NotClimax5 || groundDamage;
+			}
+			this.damageInterval = function(skillLv) {
+				const climaxLv = UsedSkillSearch(SKILL_ID_CLIMAX);
+				return climaxLv == 1 ? 150: 300;
+			}
+			this.Power = function(skillLv, charaData, option, mobData, weapon, parentSkillId) {
+				const climaxLv = UsedSkillSearch(SKILL_ID_CLIMAX);
+				const additionalDamage = option.GetOptionValue(0) == 1;
+				if (climaxLv == 4) {
+					return 0;
+				}
+				if (climaxLv == 5 && additionalDamage) {
+					// 追撃ダメージ
+					return 50000 + 10000 * skillLv;
+				} else {
+					// 設置ダメージ
+					let ratio = 0;
+					ratio = 6000 + 600 * skillLv;
+					ratio += 30 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+					return Math.floor(ratio * n_A_BaseLV / 100);
+				}
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 450;
 			}
@@ -34128,7 +34185,7 @@ export function CSkillManager() {
 				return 3000;
 			}
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
-				return (10 + 2 * skillLv) * 300;
+				return 3000;
 			}
 		};
 		this.dataArray[skillId] = skillData;
@@ -34148,6 +34205,25 @@ export function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_WATER;
+			this.hitCount = function(skillLv, option, weapon, parentSkillId) {
+				const climax2 = (UsedSkillSearch(SKILL_ID_CLIMAX) == 2);
+				const firstDamage = (parentSkillId == undefined);
+				return (firstDamage && climax2) ? 2: 1;
+			}
+			this.Power = function(skillLv, charaData, option, mobData, weapon, parentSkillId) {
+				let ratio = 0;
+				if (parentSkillId == undefined) {
+					// 初撃
+					ratio = 4500 + 4500 * skillLv;
+					ratio += 90 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				} else {
+					// 追撃
+					ratio = 1500;
+					ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				}
+				// ベースレベル補正
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 330;
 			}
@@ -40618,22 +40694,16 @@ export function CSkillManager() {
 				const state_sanrei_ittai = UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0;
 				const state_tekko = Math.max(UsedSkillSearch(SKILL_ID_NYANTOMO_TEKKO),LearnedSkillSearch(SKILL_ID_NYANTOMO_TEKKO)) > 0;
 				if (state_sanrei_ittai || state_tekko) {
-					ratio = 3500 + 500 * skillLv;
-					ratio += 150 * Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
+					ratio = 5800 + 500 * skillLv;
+					ratio += 200 * Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
 				} else {
-					ratio = 2050 + 350 * skillLv;
-					ratio += 100 * Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
+					ratio = 4400 + 400 * skillLv;
+					ratio += 160 * Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
 				}
 				// POW補正
 				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// ベースレベル補正
 				return Math.floor(ratio * n_A_BaseLV / 100);				
-			}
-			this.CriActRate = (skillLv, charaData, specData, mobData) => {
-				return this._CriActRate100(skillLv, charaData, specData, mobData);
-			}
-			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {
-				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 100;
@@ -41537,14 +41607,14 @@ export function CSkillManager() {
 					// ドラゴニックオーラ時
 					ratio = 3500 + 400 * skillLv;
 					ratio += 25 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-					ratio += charaData[CHARA_DATA_INDEX_MAXHP] / 250
-					ratio += charaData[CHARA_DATA_INDEX_MAXSP] / 10;
+					ratio += charaData[CHARA_DATA_INDEX_MAXHP] / 24
+					ratio += charaData[CHARA_DATA_INDEX_MAXSP] / 2;
 				} else {
 					// 通常時
 					ratio = 2750 + 325 * skillLv;
 					ratio += 20 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-					ratio += charaData[CHARA_DATA_INDEX_MAXHP] / 312.5
-					ratio += charaData[CHARA_DATA_INDEX_MAXSP] / 12.5;
+					ratio += charaData[CHARA_DATA_INDEX_MAXHP] / 30
+					ratio += charaData[CHARA_DATA_INDEX_MAXSP] / 2.5;
 				}
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
@@ -43637,14 +43707,13 @@ export function CSkillManager() {
 			}
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
-				// TODO: ドラゴニックオーラ状態はスキル倍率だけに影響するので職固有自己支援から攻撃手段オプションに移行する
-				const state_dragonic_aura = Math.max(UsedSkillSearch(SKILL_ID_DRAGONIC_AURA_STATE) - 1, option.GetOptionValue(0));
-				if (state_dragonic_aura > 0) {
-					ratio += 4600 + 1000 * skillLv;
-					ratio += 32 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
+				const state_dragonic_aura = option.GetOptionValue(0);
+				if (state_dragonic_aura == 0) {
+					ratio += 5450 + 2150 * skillLv;
+					ratio += 54 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
 				} else {
-					ratio += 3550 + 850 * skillLv;
-					ratio += 26 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
+					ratio += 6900 + 2700 * skillLv;
+					ratio += 68 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数
 				}
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
