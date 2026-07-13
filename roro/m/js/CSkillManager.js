@@ -31941,9 +31941,9 @@ export function CSkillManager() {
 			}
 			this.Power = function(skillLv, charaData) {					// スキル倍率
 				let ratio = 0;
-				ratio = 7500 + 2250 * skillLv;
-				ratio += 100 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-				ratio = Math.floor(ratio * n_A_BaseLV / 100);	// Pow係数 未検証
+				ratio = 10000 + 2900 * skillLv;
+				ratio += 130 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
