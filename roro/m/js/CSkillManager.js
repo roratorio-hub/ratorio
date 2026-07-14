@@ -35412,9 +35412,9 @@ export function CSkillManager() {
 				ratio += 66 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_TATE_SHUREN), UsedSkillSearch(SKILL_ID_TATE_SHUREN));
 				// 盾の精錬値・重量補正
 				ratio += n_A_SHIELD_DEF_PLUS * 330;
-				ratio += ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][ITEM_DATA_INDEX_WEIGHT] * 2;
+				ratio += ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][ITEM_DATA_INDEX_WEIGHT];
 				// POW補正
-				ratio += 35 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				ratio += 44 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// ベースレベル補正
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
@@ -40842,7 +40842,23 @@ export function CSkillManager() {
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
-			this.element = CSkillData.ELEMENT_VOID;
+			this.element = CSkillData.ELEMENT_VOID; 
+			this.Power = function(skillLv, charaData, option, mobData, weapon, parentSkillId) {
+				let ratio = 0;
+				// 影狩りの習得Lv
+				const kage_gari_lv = option.GetOptionValue(1);
+				// ダメージ倍率
+				ratio = 4600 + 100 * skillLv;						// 基礎倍率
+				ratio += 56 * skillLv * kage_gari_lv;				// 修練係数 検証済み
+				ratio += 4 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// 特性ステータス補正
+				ratio = Math.floor(ratio * n_A_BaseLV / 100);		// BaseLv補正
+				if (parentSkillId == window.SKILL_ID_KAGE_NO_MAI) {
+					// 分身の攻撃
+					ratio = Math.floor(ratio * 30 / 100);			// 分身の威力は30%
+					ratio *= option.GetOptionValue(0);				// 分身の数
+				}
+				return ratio;
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 190;
 			}
@@ -42275,6 +42291,29 @@ export function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_DARK;
+			this.Power = function(skillLv, charaData, option, mobData, weapon, parentSkillId) {
+				let ratio = 0;
+				if (parentSkillId == undefined) {
+					// 本体の攻撃
+					ratio = 5750 + 350 * skillLv;						// 基本倍率
+					ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// spl補正
+					ratio = Math.floor(ratio * n_A_BaseLV / 100);		// BaseLv補正
+				} else {
+					// 暗転砲の習得Lv
+					const anten_hou_lv = Math.max(LearnedSkillSearch(SKILL_ID_ANTEN_HOU), UsedSkillSearch(SKILL_ID_ANTEN_HOU_LEARNED_LEVEL), skillLv);
+					// 分身の追撃
+					if (anten_hou_lv == 0) {
+						ratio = 0;
+					} else {
+						ratio = 5750 + 350 * anten_hou_lv;					// 基本倍率
+						ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// spl補正
+						ratio = Math.floor(ratio * n_A_BaseLV / 100);		// BaseLv補正
+						ratio = Math.floor(ratio * 30 / 100);				// 分身の威力は30%
+						ratio *= option.GetOptionValue(0);					// 分身の数
+					}
+				}
+				return ratio;
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 230;
 			}

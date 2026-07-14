@@ -1,6 +1,6 @@
 card_list:
-  - name: 潜在解放(アリテアXIX)
-    yomi: センザイカイホウアリテア19
+  - name: 潜在解放(ドラゴンナイトXXI)
+    yomi: センザイカイホウドラゴンナイト21
     type: エンチャント
     set_list:
       - set:
@@ -8,32 +8,5 @@ card_list:
           - card_name: 豪傑
         capabilities:
           - name: 再使用待機時間減少
-            skill: サベージランジ
-            value: 200
-
-  - name: 潜在解放(アークメイジXXI)
-    yomi: センザイカイホウアークメイジ21
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 真理の解放
-        capabilities:
-          - name: 再使用待機時間減少
-            skill: ソウルバルカンストライク
-            value: 300
-          - name: 再使用待機時間減少
-            skill: アストラルストライク
-            value: 200
-
-  - name: 潜在解放(インペリアルガードXVIII)
-    yomi: センザイカイホウインペリアルガード18
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 豪傑
-        capabilities:
-          - name: 再使用待機時間減少
-            skill: グランドジャッジメント
-            value: 200
+            skill: ドラゴニックブレス
+            value: 500
