@@ -1,6 +1,6 @@
 card_list:
-  - name: 潜在解放(ナイトウォッチXIX)
-    yomi: センザイカイホウナイトウォッチ19
+  - name: 潜在解放(ドラゴンナイトXXI)
+    yomi: センザイカイホウドラゴンナイト21
     type: エンチャント
     set_list:
       - set:
@@ -8,27 +8,5 @@ card_list:
           - card_name: 豪傑
         capabilities:
           - name: 再使用待機時間減少
-            skill: オンリーワンバレット
-            value: 200
-
-  - name: 潜在解放(アリテアXXII)
-    yomi: センザイカイホウアリテア22
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 真理の解放
-        capabilities:
-          - name: 再使用待機時間減少
-            skill: フューリアスストーム
-            value: 100
-
-  - name: ヴェルゼブブ
-    yomi: ヴェルゼブブ
-    desc: "BaseLv100以上の時、<br>　[Mクラウドキル]で受けるダメージ - 50%<br>　[生命力変換]Lv1使用可能"
-    type: ペット
-
-  - name: 呪殺のヒメルメズ
-    yomi: ジュサツノヒメルメズ
-    desc: "BaseLv100以上の時、<br>　[テトラボルテックス]で受けるダメージ - 50%<br>　[アンチマジック]Lv3使用可能"
-    type: ペット
+            skill: ドラゴニックブレス
+            value: 500

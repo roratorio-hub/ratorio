@@ -7189,7 +7189,9 @@ CardIdToSetIdMap[4463] = [3610,];
 	CardIdToSetIdMap[4515] = [3654,];
 	w_SE[3655] = [-4518,-4517,-1245,];
 	CardIdToSetIdMap[4517] = [3655,];
-	CardIdToSetIdMap[1348] = CardIdToSetIdMap[1348].concat([3654]);
+	w_SE[3661] = [-4520,-4519,-1348,];
+	CardIdToSetIdMap[4519] = [3661,];
+	CardIdToSetIdMap[1348] = CardIdToSetIdMap[1348].concat([3654,3661]);
 	CardIdToSetIdMap[1245] = CardIdToSetIdMap[1245].concat([3655]);
 	//
 	w_SE[3656] = [4236,4235,-(ITEM_SET_PET_ID_OFFSET + 112)]; // ヴェルゼブブ
@@ -7197,6 +7199,14 @@ CardIdToSetIdMap[4463] = [3610,];
 	PetIdToSetIdMap[112] = [3656];
 	PetIdToSetIdMap[113] = [3657];
 	ItemIdToSetIdMap[4235] = ItemIdToSetIdMap[4235].concat([3656, 3657]);
+	//
+	w_SE[3658] = [-3632,-3631,5780,];
+	w_SE[3659] = [-3632,-3631,5781,];
+	w_SE[3660] = [-3632,-3631,5782,];
+	ItemIdToSetIdMap[5780] = [3658];	// セレスティアルグレネードガン
+	ItemIdToSetIdMap[5781] = [3659];	// セレスティアルブレイド
+	ItemIdToSetIdMap[5782] = [3660];	// セレスティアルロッド
+	CardIdToSetIdMap[3631] = CardIdToSetIdMap[3631].concat([3658,3659,3660]);
 
 	// <<< INSERT NEW DATA ABOVE THIS LINE >>>
 
