@@ -40842,7 +40842,23 @@ export function CSkillManager() {
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
-			this.element = CSkillData.ELEMENT_VOID;
+			this.element = CSkillData.ELEMENT_VOID; 
+			this.Power = function(skillLv, charaData, option, mobData, weapon, parentSkillId) {
+				let ratio = 0;
+				// 影狩りの習得Lv
+				const kage_gari_lv = option.GetOptionValue(1);
+				// ダメージ倍率
+				ratio = 4600 + 100 * skillLv;						// 基礎倍率
+				ratio += 56 * skillLv * kage_gari_lv;				// 修練係数 検証済み
+				ratio += 4 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// 特性ステータス補正
+				ratio = Math.floor(ratio * n_A_BaseLV / 100);		// BaseLv補正
+				if (parentSkillId == window.SKILL_ID_KAGE_NO_MAI) {
+					// 分身の攻撃
+					ratio = Math.floor(ratio * 30 / 100);			// 分身の威力は30%
+					ratio *= option.GetOptionValue(0);				// 分身の数
+				}
+				return ratio;
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 190;
 			}
