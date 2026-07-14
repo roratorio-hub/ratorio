@@ -1009,7 +1009,7 @@ export const MIG_ENCH_LIST_ID_SHINENTAIBUKI_UPGRADE = 470;
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5189] = [669,728];	// ツインヘッド・ドラゴンブーツ
 	g_constDataManager.enchListDataManager.sourceArray[729] = [729,-1,0,0,[["スペシャルエンチャント(キョウ)","スペシャルエンチャント(キョウ)"]],[],[[[174,[50,[5232]]],,[[[178,[27,[2]]],,[[[187,[59,10],[60,4]],,[[[186,[51,[1348,1245,]]],,[]]]]]],]]],[]];
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5232] = [690,729];	// メサルティム
-	g_constDataManager.enchListDataManager.sourceArray[730] = [730,-1,0,0,[["スペシャルエンチャント(リチャード)グループ5","スペシャルエンチャント(リチャード)グループ5"]],[],[[[174,[50,[5212,5236,5323,5231,5363,5364,5385,5392,5235,5324,5278,5227,5403,5691,5692,5760,5761]]],,[[[178,[27,[2]]],,[[[187,[59,10],[60,4]],,[[[186,[51,[1247,1625,1179,1975,2043,2005,1813,2028,2311,2437,2668,1859,1860,1861,1862,1863,1864,1297,888,1303,1348,1245,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.sourceArray[730] = [730,-1,0,0,[["スペシャルエンチャント(リチャード)グループ5","スペシャルエンチャント(リチャード)グループ5"]],[],[[[174,[50,[5212,5236,5323,5231,5363,5364,5385,5392,5235,5324,5278,5227,5403,5691,5692,5760,5761,5778]]],,[[[178,[27,[2]]],,[[[187,[59,10],[60,4]],,[[[186,[51,[1247,1625,1179,1975,2043,2005,1813,2028,2311,2437,2668,1859,1860,1861,1862,1863,1864,1297,888,1303,1348,1245,]]],,[]]]]]],]]],[]];
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5212] = [675,730];	// がおがおタイガーパジャマ
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5236] = [693,730]; // 着ぐるみペタル(アルビノ)
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5323] = [703,730]; // ヘイトレッドダークネス
@@ -1119,35 +1119,13 @@ export const MIG_ENCH_LIST_ID_SHINENTAIBUKI_UPGRADE = 470;
 	g_constDataManager.enchListDataManager.sourceArray[763] = [763,-1,0,0,[["スペシャルエンチャント(モチモチ)","スペシャルエンチャント(モチモチ)"]],[],[[[174,[50,[5456]]],,[[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[665,670,675,680,685,689,659,599,660,661,662,663,2170,1247,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[665,670,675,680,685,689,659,599,660,661,662,663,1848,3000,]]],,[]]]]]],[[178,[27,[2]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[665,670,675,680,685,689,659,599,660,661,662,663,888,]]],,[]]]]]],]]],[]];
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5456] = [763,551];
 	// --- 2025-05-29 ---
-	g_constDataManager.enchListDataManager.sourceArray[764] = [764,-1,0,0,[["セレスティアルエンチャント","セレスティアルエンチャント上段"]],[],[[[174,[50,[5457]]],,[[[178,[27,[2]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[1297,888,1303,1348,1245,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[3541,3520,3529,3554,3535,3533,3527,3532,3544,3548,3522,3525,3539,3546,3558,3556,3537,3551,3521,3531,3555,3536,3534,3528,3532,3545,3550,3523,3526,3540,3560,3557,3538,3552,4187,4188,4189]]],,[]]]]]],[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[2597,2594,2651,3114,3139,2732,2797,3002,2801,2599,2994,2996,3014,2969,2973,3070,2904,2990,3498,3443,3492,2908,2647,2641,2653,3482,3500,3502,3488,3490,3494,3822,3234,3496,2975,3818,4229,4237,4254]]],,[]]]]]],]]],[]];
-	g_constDataManager.enchListDataManager.sourceArray[765] = [765,-1,0,0,[["セレスティアルエンチャント","セレスティアルエンチャント鎧"]],[],[[[174,[50,[5458,5459]]],,[[[178,[27,[2]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[1655,1656,1657,1658,1659,1660,1661,1662,1663,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[3541,3520,3529,3554,3535,3533,3527,3532,3544,3548,3522,3525,3539,3546,3558,3556,3537,3551,3521,3531,3555,3536,3534,3528,3532,3545,3550,3523,3526,3540,3560,3557,3538,3552,4187,4188,4189]]],,[]]]]]],]]],[]];
-	g_constDataManager.enchListDataManager.sourceArray[766] = [766,-1,0,0,[["セレスティアルエンチャント","セレスティアルエンチャント肩"]],[],[[[174,[50,[5461]]],,[[[178,[27,[2]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[3567,3568,3569,3570,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[3541,3520,3529,3554,3535,3533,3527,3532,3544,3548,3522,3525,3539,3546,3558,3556,3537,3551,3521,3531,3555,3536,3534,3528,3532,3545,3550,3523,3526,3540,3560,3557,3538,3552,4187,4188,4189]]],,[]]]]]],]]],[]];
-	g_constDataManager.enchListDataManager.sourceArray[767] = [767,-1,0,0,[["セレスティアルエンチャント","セレスティアルエンチャント靴"]],[],[[[174,[50,[5460]]],,[[[178,[27,[2]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[1297,888,1303,1348,1245,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[3541,3520,3529,3554,3535,3533,3527,3532,3544,3548,3522,3525,3539,3546,3558,3556,3537,3551,3521,3531,3555,3536,3534,3528,3532,3545,3550,3523,3526,3540,3560,3557,3538,3552,4187,4188,4189]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.sourceArray[764] = [764,-1,0,0,[["廃止","セレスティアルエンチャント上段"]],[],[[[174,[50,[5457]]],,[[[178,[27,[2]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[1297,888,1303,1348,1245,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[3541,3520,3529,3554,3535,3533,3527,3532,3544,3548,3522,3525,3539,3546,3558,3556,3537,3551,3521,3531,3555,3536,3534,3528,3532,3545,3550,3523,3526,3540,3560,3557,3538,3552,4187,4188,4189]]],,[]]]]]],[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[2597,2594,2651,3114,3139,2732,2797,3002,2801,2599,2994,2996,3014,2969,2973,3070,2904,2990,3498,3443,3492,2908,2647,2641,2653,3482,3500,3502,3488,3490,3494,3822,3234,3496,2975,3818,4229,4237,4254]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.sourceArray[765] = [765,-1,0,0,[["廃止","セレスティアルエンチャント鎧"]],[],[[[174,[50,[5458,5459]]],,[[[178,[27,[2]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[1655,1656,1657,1658,1659,1660,1661,1662,1663,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[3541,3520,3529,3554,3535,3533,3527,3532,3544,3548,3522,3525,3539,3546,3558,3556,3537,3551,3521,3531,3555,3536,3534,3528,3532,3545,3550,3523,3526,3540,3560,3557,3538,3552,4187,4188,4189]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.sourceArray[766] = [766,-1,0,0,[["廃止","セレスティアルエンチャント肩"]],[],[[[174,[50,[5461]]],,[[[178,[27,[2]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[3567,3568,3569,3570,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[3541,3520,3529,3554,3535,3533,3527,3532,3544,3548,3522,3525,3539,3546,3558,3556,3537,3551,3521,3531,3555,3536,3534,3528,3532,3545,3550,3523,3526,3540,3560,3557,3538,3552,4187,4188,4189]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.sourceArray[767] = [767,-1,0,0,[["廃止","セレスティアルエンチャント靴"]],[],[[[174,[50,[5460]]],,[[[178,[27,[2]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[1297,888,1303,1348,1245,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[3541,3520,3529,3554,3535,3533,3527,3532,3544,3548,3522,3525,3539,3546,3558,3556,3537,3551,3521,3531,3555,3536,3534,3528,3532,3545,3550,3523,3526,3540,3560,3557,3538,3552,4187,4188,4189]]],,[]]]]]],]]],[]];
 	g_constDataManager.enchListDataManager.sourceArray[768] = [768,-1,0,0,[["セレスティアルエンチャント","セレスティアルエンチャントアクセ"]],[],[[[174,[50,[5462]]],,[[[178,[27,[2]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[3561,1625,1425,1428,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[3541,3520,3529,3554,3535,3533,3527,3532,3544,3548,3522,3525,3539,3546,3558,3556,3537,3551,3521,3531,3555,3536,3534,3528,3532,3545,3550,3523,3526,3540,3560,3557,3538,3552,4187,4188,4189]]],,[]]]]]],[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[3008,2680,2799,3141,3006,2554,2998,2741,3010,2736,2992,2739,2906,3469,3441,2971,3336,3012,3439,3463,2979,3004,2734,3000,3465,3467,3471,2728,3461,3820,2977,3328,3475,3016,3473,4239,4247,4231]]],,[]]]]]],]]],[]];
-	g_constDataManager.enchListDataManager.sourceArray[769] = [769,-1,0,0,[["セレスティアルエンチャント","セレスティアルエンチャント武器"]],[],[[[174,[50,[5463,5464,5465,5466,5467,5468,5469,5470,5471,5472,5473,5474,5475,5476,5477,5478,5550,5552,5678]]],,[[[178,[27,[2]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[659,599,660,661,662,663,2211,2212,2213,2214,2215,2216,2217,2218,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[3541,3520,3529,3554,3535,3533,3527,3532,3544,3548,3522,3525,3539,3546,3558,3556,3537,3551,3521,3531,3555,3536,3534,3528,3532,3545,3550,3523,3526,3540,3560,3557,3538,3552,4187,4188,4189]]],,[]]]]]],[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[2526,2510,2518,2534,2524,2522,2516,2520,2528,2530,2532,2512,2514,2795,2900,2914,2793,2902,2910,3278,3238,3254,3298,3266,3262,3250,2520,3282,3290,3242,3246,3274,3286,3302,3306,3270,3294,4225,4235,4245]]],,[]]]]]],]]],[]];
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5457] = [764];
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5458] = [765];
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5459] = [765];
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5461] = [766];
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5460] = [767];
+	g_constDataManager.enchListDataManager.sourceArray[769] = [769,-1,0,0,[["廃止","セレスティアルエンチャント武器"]],[],[[[174,[50,[5463,5464,5465,5466,5467,5468,5469,5470,5471,5472,5473,5474,5475,5476,5477,5478,5550,5552,5678]]],,[[[178,[27,[2]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[659,599,660,661,662,663,2211,2212,2213,2214,2215,2216,2217,2218,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[3541,3520,3529,3554,3535,3533,3527,3532,3544,3548,3522,3525,3539,3546,3558,3556,3537,3551,3521,3531,3555,3536,3534,3528,3532,3545,3550,3523,3526,3540,3560,3557,3538,3552,4187,4188,4189]]],,[]]]]]],[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[2526,2510,2518,2534,2524,2522,2516,2520,2528,2530,2532,2512,2514,2795,2900,2914,2793,2902,2910,3278,3238,3254,3298,3266,3262,3250,2520,3282,3290,3242,3246,3274,3286,3302,3306,3270,3294,4225,4235,4245]]],,[]]]]]],]]],[]];
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5462] = [768];
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5463] = [769];
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5464] = [769];
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5465] = [769];
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5466] = [769];
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5467] = [769];
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5468] = [769];
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5469] = [769];
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5470] = [769];
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5471] = [769];
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5472] = [769];
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5473] = [769];
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5474] = [769];
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5475] = [769];
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5476] = [769];
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5477] = [769];
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5478] = [769];
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5678] = [769];
 	// --- 2025-06-03 ---
 	g_constDataManager.enchListDataManager.sourceArray[770] = [770,-1,0,0,[["スペシャルエンチャント(ミオン)","スペシャルエンチャント(ミオン)"]],[],[[[174,[50,[5479]]],,[[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[1247,1625,1425,1428,659,599,660,661,662,663,2311,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[1848,2657,1425,1428,659,599,660,661,662,663,1179,2656,]]],,[]]]]]],[[178,[27,[2]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[668,673,678,683,688,692,990,3609,]]],,[]]]]]],]]],[]];
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5479] = [770];
@@ -1162,7 +1140,7 @@ export const MIG_ENCH_LIST_ID_SHINENTAIBUKI_UPGRADE = 470;
 	// --- 2025-06-16 ---
 	g_constDataManager.enchListDataManager.sourceArray[775] = [775,-1,0,0,[["スペシャルエンチャント(ミオン)","スペシャルエンチャント(ミオン)"]],[],[[[174,[50,[5494]]],,[[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[3639,]]],,[]]]]]],]]],[]];
 	// 776 : ４次職下段共通エンチャント
-	g_constDataManager.enchListDataManager.sourceArray[776] = [776,-1,0,0,[["スペシャルエンチャント(ミオン)グループ2・グループ3","スペシャルエンチャント(ミオン)"]],[],[[[174,[50,[5455,5494,5535,5536,5539,5540,5554,5560,5561,5642,5645,5762]]],,[[[178,[27,[3]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[659,599,660,661,662,663,2145,2497,2498,3106,3519,]]],,[]]]]]],[[178,[27,[2]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[668,673,678,683,688,692,1179,1975,2005,1813,2028,2043,2311,2437,2668,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.sourceArray[776] = [776,-1,0,0,[["スペシャルエンチャント(ミオン)グループ2・グループ3","スペシャルエンチャント(ミオン)"]],[],[[[174,[50,[5455,5494,5535,5536,5539,5540,5554,5560,5561,5642,5645,5762,5779]]],,[[[178,[27,[3]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[659,599,660,661,662,663,2145,2497,2498,3106,3519,]]],,[]]]]]],[[178,[27,[2]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[668,673,678,683,688,692,1179,1975,2005,1813,2028,2043,2311,2437,2668,]]],,[]]]]]],]]],[]];
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5494] = [775, 776];	// 朱のリアリボン
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5455] = [762, 776];	// エクリプスマフラー
 	g_constDataManager.enchListDataManager.sourceArray[777] = [777,-1,0,0,[["スペシャルエンチャント(オーブ)","スペシャルエンチャント(オーブ)"]],[],[[[174,[50,[5495]]],,[[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[3641,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,8],[60,4]],,[[[186,[51,[1655,1656,1657,1658,1659,1660,1661,1662,1663,]]],,[]]]]]],[[178,[27,[2]]],,[[[187,[59,9],[60,4]],,[[[186,[51,[1247,1625,1179,]]],,[]]]]]],]]],[]];
@@ -1280,8 +1258,6 @@ export const MIG_ENCH_LIST_ID_SHINENTAIBUKI_UPGRADE = 470;
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5557] = [828,730];	// テオフィルス
 	g_constDataManager.enchListDataManager.sourceArray[829] = [829,-1,0,0,[["スペシャルエンチャント（オーブ）","スペシャルエンチャント（オーブ）"]],[],[[[174,[50,[5558]]],,[[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[3824,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,8],[60,4]],,[[[186,[51,[1655,1656,1657,1658,1659,1660,1661,1662,1663,]]],,[]]]]]],[[178,[27,[2]]],,[[[187,[59,9],[60,4]],,[[[186,[51,[1247,1625,1179,2043,]]],,[]]]]]],]]],[]];
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5558] = [829,730];	// グロズヌイ
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5550] = [769];	// セレスティアルツーハンドソード
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5552] = [769];	// セレスティアルガトリングガン
 	// --- 2025-11-11 ---
 	g_constDataManager.enchListDataManager.sourceArray[830] = [830,-1,0,0,[["スペシャルエンチャント（キョウ）","スペシャルエンチャント（キョウ）"]],[],[[[174,[50,[5559]]],,[[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[1247,1625,1425,1428,659,599,660,661,662,663,2005,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[1848,2657,1425,1428,659,599,660,661,662,663,1179,2738,]]],,[]]]]]],[[178,[27,[2]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[668,673,678,683,688,692,990,2499,]]],,[]]]]]],]]],[]];
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5559] = [830];	// アシャワヒシュタ
@@ -1543,29 +1519,8 @@ export const MIG_ENCH_LIST_ID_SHINENTAIBUKI_UPGRADE = 470;
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5428].push(888);
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5429].push(886);
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5454].push(890);
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5457].push(884);
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5461].push(885);
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5463].push(883);
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5464].push(883);
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5465].push(883);
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5466].push(883);
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5467].push(883);
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5468].push(883);
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5469].push(883);
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5470].push(883);
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5471].push(883);
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5472].push(883);
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5473].push(883);
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5474].push(883);
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5475].push(883);
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5476].push(883);
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5477].push(883);
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5478].push(883);
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5678].push(883);
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5488].push(882);
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5490].push(881);
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5550].push(883);
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5552].push(883);
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5640].push(890);
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5643].push(890);
 	// --- 2026-02-10 ---
@@ -1597,8 +1552,8 @@ export const MIG_ENCH_LIST_ID_SHINENTAIBUKI_UPGRADE = 470;
 	g_constDataManager.enchListDataManager.sourceArray[902] = [902,-1,0,0,[["スペシャルエンチャント（ミオン）","スペシャルエンチャント（ミオン）"]],[],[[[174,[50,[5669]]],,[[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[4185,]]],,[]]]]]],]]],[]];
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5669] = [902,776];	// ルインテンペスト
 	// --- 2026-04-14 ---
-	g_constDataManager.enchListDataManager.sourceArray[903] = [903,-1,0,0,[["スペシャルエンチャント（キョウ・ソラマメ）","スペシャルエンチャント（キョウ・ソラマメ）"]],[],[[[174,[50,[5687]]],,[[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[1425,1428,1381,1678,2098,2680,2728,4231,4239,4247,2739,3461,2998,3000,2799,2639,2741,3465,2554,3006,3016,3336,2906,3820,3008,3010,3467,3469,2736,3471,3012,3473,2979,3141,3328,3441,2971,3475,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[1381,1678,2098,2643,]]],,[]]]]]],[[178,[27,[2]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[1381,1678,2098,1297,888,1303,1348,1245,4266,]]],,[]]]]]],]]],[]];
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5687] = [903];
+	g_constDataManager.enchListDataManager.sourceArray[903] = [903,-1,0,0,[["スペシャルエンチャント（キョウ・ソラマメ）","スペシャルエンチャント（キョウ・ソラマメ）"]],[],[[[174,[50,[5687]]],,[[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[1425,1428,1381,1678,2098,2680,2728,4231,4239,4247,2739,3461,2998,3000,2799,2639,2741,3465,2554,3006,3016,3336,2906,3820,3008,3010,3467,3469,2736,3471,3012,3473,2979,3141,3328,3441,2971,3475,2986,3435,2988]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[1381,1678,2098,2643,]]],,[]]]]]],[[178,[27,[2]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[1381,1678,2098,1297,888,1303,1348,1245,4266,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5687] = [903];	// 覚醒創星石のアミュレット
 	g_constDataManager.enchListDataManager.sourceArray[904] = [904,-1,0,0,[["スペシャルエンチャント（キョウ・ソラマメ）","スペシャルエンチャント（キョウ・ソラマメ）"]],[],[[[174,[50,[5688]]],,[[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[1425,1428,2680,2992,2986,4239,2739,2998,2799,2639,2741,2554,3006,3336,2906,3008,3435,3010,3469,2736,3012,2988,3141,2971,3441,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[2028,2667,2662,]]],,[]]]]]],[[178,[27,[2]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[1297,888,1303,1348,1245,2028,2667,4266,]]],,[]]]]]],]]],[]];
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5688] = [904];
 	g_constDataManager.enchListDataManager.sourceArray[905] = [905,-1,0,0,[["スペシャルエンチャント（キョウ・ジュウべえ）","スペシャルエンチャント（キョウ・ジュウべえ）"]],[],[[[174,[50,[5689]]],,[[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[1425,1428,4144,2728,4247,4050,2998,4267,2639,4269,4271,4142,2906,3008,3467,4273,3334,4275,4277,4279,2971,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[1813,1450,3838,]]],,[]]]]]],[[178,[27,[2]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[1297,888,1303,1348,1245,1813,1450,4266,]]],,[]]]]]],]]],[]];
@@ -1690,6 +1645,54 @@ export const MIG_ENCH_LIST_ID_SHINENTAIBUKI_UPGRADE = 470;
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5773] = [924];
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5774] = [924];
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5775] = [291];
+//
+	g_constDataManager.enchListDataManager.sourceArray[925] = [925,-1,0,0,[["スペシャルエンチャント（オーブ）","スペシャルエンチャント（オーブ）"]],[],[[[174,[50,[5776]]],,[[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[4463,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,8],[60,4]],,[[[186,[51,[668,673,678,683,688,692,1247,1297,]]],,[]]]]]],[[178,[27,[2]]],,[[[187,[59,9],[60,4]],,[[[186,[51,[668,673,678,683,688,692,1247,1975,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5776] = [925,656,890]; // ポポリンサンバイザー
+	g_constDataManager.enchListDataManager.sourceArray[926] = [926,-1,0,0,[["スペシャルエンチャント（オーブ）","スペシャルエンチャント（オーブ）"]],[],[[[174,[50,[5777]]],,[[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[4254,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,8],[60,4]],,[[[186,[51,[668,673,678,683,688,692,1247,1297,]]],,[]]]]]],[[178,[27,[2]]],,[[[187,[59,9],[60,4]],,[[[186,[51,[668,673,678,683,688,692,1247,1975,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5777] = [926,656,890]; // パルスオブイグドラシル
+	g_constDataManager.enchListDataManager.sourceArray[927] = [927,-1,0,0,[["スペシャルエンチャント（オーブ）","スペシャルエンチャント（オーブ）"]],[],[[[174,[50,[5778]]],,[[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[4515,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,8],[60,4]],,[[[186,[51,[1655,1656,1657,1658,1659,1660,1661,1662,1663,]]],,[]]]]]],[[178,[27,[2]]],,[[[187,[59,9],[60,4]],,[[[186,[51,[1247,1625,1179,1975,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5778] = [927,730]; // ドーントレス
+	g_constDataManager.enchListDataManager.sourceArray[928] = [928,-1,0,0,[["スペシャルエンチャント（ミオン）","スペシャルエンチャント（ミオン）"]],[],[[[174,[50,[5779]]],,[[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[4517,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5779] = [928,776];	// フューリアスオーブ
+// セレスティアル装備のエンチャント拡張を見越して再定義
+	g_constDataManager.enchListDataManager.sourceArray[929] = [929,-1,0,0,[["セレス・グループ1","セレ武器グループ1"]],[],[[[174,[50,[5475,5476,5477,5474,5473,5467,5465,5466,5470,5471,5463,5469,5478,5464,5468,5472,5550,5552,5678,5780,5781,5782,]]],,[[[178,[27,[2]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[659,599,660,661,662,663,2211,2212,2213,2214,2215,2216,2217,2218,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.sourceArray[930] = [930,-1,0,0,[["セレス・グループ1","セレ上段グループ1"]],[],[[[174,[50,[5457,]]],,[[[178,[27,[2]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[1297,888,1303,1348,1245,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.sourceArray[931] = [931,-1,0,0,[["セレス・グループ1","セレ鎧グループ1"]],[],[[[174,[50,[5458,5459,]]],,[[[178,[27,[2]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[1655,1656,1657,1658,1659,1660,1661,1662,1663,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.sourceArray[932] = [932,-1,0,0,[["セレス・グループ1","セレ肩グループ1"]],[],[[[174,[50,[5461,]]],,[[[178,[27,[2]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[3567,3568,3569,3570,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.sourceArray[933] = [933,-1,0,0,[["セレス・グループ1","セレ靴グループ1"]],[],[[[174,[50,[5460,]]],,[[[178,[27,[2]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[1297,888,1303,1348,1245,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.sourceArray[934] = [934,-1,0,0,[["セレス・グループ3","セレ武器グループ3"]],[],[[[174,[50,[5475,5476,5477,5474,5473,5467,5465,5466,5470,5471,5463,5469,5478,5464,5468,5472,5550,5552,5678,5780,5781,5782,]]],,[[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[2510,3238,3845,2512,3242,3867,4225,4235,4245,2514,3246,3861,2516,3250,3841,2518,3254,3851,2520,3847,2522,3262,3857,2524,3266,3863,2902,3270,3893,2795,2925,3274,2526,3278,4519,2530,3282,3855,2528,2900,3286,3885,2532,3290,3873,2910,3294,3889,2534,3298,3871,2793,3306,3877,2914,3302,3881,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[3520,3521,3522,3523,4187,4188,4189,3525,3526,3527,3528,3529,3530,3531,3532,3533,3534,3535,3536,3537,3538,3539,3540,3541,3543,3544,3545,3546,3548,3549,3550,3551,3552,3554,3555,3556,3557,3558,3559,3560,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.sourceArray[935] = [935,-1,0,0,[["セレス・グループ3","セレ上段グループ3"]],[],[[[174,[50,[5457,]]],,[[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[2597,3332,3498,2594,3443,4401,2651,2730,3492,2908,3114,4463,2647,3139,4429,2641,2732,4425,2653,2797,4415,3002,3482,4042,2801,3500,4040,2599,3236,3502,2994,3488,4082,2996,3490,4058,3014,3494,2969,3433,3822,2973,3234,4435,3070,3496,2904,2975,4092,2990,3818,4457,4229,4237,4254,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[3541,3543,3520,3521,3529,3530,3531,3554,3555,3535,3536,3533,3534,3527,3528,3532,3544,3545,3548,3549,3550,3522,3523,3525,3526,3539,3540,3546,3558,3559,3560,3556,3557,3537,3538,3551,3552,4187,4188,4189,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.sourceArray[936] = [936,-1,0,0,[["セレス・グループ3","セレ鎧グループ3"]],[],[[[174,[50,[5458,]]],,[[[178,[27,[3]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[3541,3543,3520,3521,3529,3530,3531,3554,3555,3535,3536,3533,3534,3527,3528,3532,3544,3545,3548,3549,3550,3522,3523,3525,3526,3539,3540,3546,3558,3559,3560,3556,3557,3551,3552,4187,4188,4189,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.sourceArray[937] = [937,-1,0,0,[["セレス・グループ3","セレ猫鎧グループ3"]],[],[[[174,[50,[5459,]]],,[[[178,[27,[3]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[3537,3538,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.sourceArray[938] = [938,-1,0,0,[["セレス・グループ3","セレ肩靴グループ3"]],[],[[[174,[50,[5461,5460,]]],,[[[178,[27,[3]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[3541,3543,3520,3521,3529,3530,3531,3554,3555,3535,3536,3533,3534,3527,3528,3532,3544,3545,3548,3549,3550,3522,3523,3525,3526,3539,3540,3546,3558,3559,3560,3556,3557,3537,3538,3551,3552,4187,4188,4189,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5457] = [930,935,884];	// ダイアデム
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5458] = [931,936];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5459] = [931,937];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5460] = [933,938];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5461] = [932,938,885];	// マント
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5463] = [929,934,883];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5464] = [929,934,883];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5465] = [929,934,883];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5466] = [929,934,883];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5467] = [929,934,883];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5468] = [929,934,883];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5469] = [929,934,883];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5470] = [929,934,883];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5471] = [929,934,883];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5472] = [929,934,883];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5473] = [929,934,883];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5474] = [929,934,883];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5475] = [929,934,883];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5476] = [929,934,883];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5477] = [929,934,883];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5478] = [929,934,883];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5550] = [929,934,883];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5552] = [929,934,883];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5678] = [929,934,883];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5780] = [929,934,883];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5781] = [929,934,883];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5782] = [929,934,883];
+
 
 	// <<< INSERT NEW DATA ABOVE THIS LINE >>>
 
