@@ -7309,6 +7309,7 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 		case SKILL_ID_GROUND_BLOOM:
 		/** 蜃気楼・不知火 */
 		case SKILL_ID_GENZYUTSU_ANKOKURYUU:
+		case SKILL_ID_ANTEN_HOU:
 		/** ハイパーノービス */
 		case SKILL_ID_GROUND_GRAVITATION:
 
@@ -8063,41 +8064,6 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			} else {
 				// 分身の追撃 暗転砲
 				n_A_Weapon_zokusei = ELM_ID_DARK;							// 属性は闇固定
-				if (anten_hou_lv == 0) {
-					wbairitu = 0;
-				} else {
-					wbairitu = 5750 + 350 * anten_hou_lv;					// 基本倍率
-					wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// spl補正
-					wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);		// BaseLv補正
-					wbairitu = Math.floor(wbairitu * 30 / 100);				// 分身の威力は30%
-					wbairitu *= attackMethodConfArray[0].GetOptionValue(0);	// 分身の数
-					// 分割ヒット
-					wActiveHitNum = 4;
-				}
-			}
-			break;
-		}
-		/**
-		 * 「蜃気楼　不知火」スキル「暗転砲」
-		 * 2024/10/23 提供データとの誤差無しを確認
-		 */
-		case SKILL_ID_ANTEN_HOU:{
-			// 詠唱時間など
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			if (battleCalcInfo.parentSkillId === undefined) {
-				// 本体の攻撃
-				wbairitu = 5750 + 350 * n_A_ActiveSkillLV;				// 基本倍率
-				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// spl補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);		// BaseLv補正
-				// 分割ヒット
-				wActiveHitNum = 2;
-			} else {
-				// 暗転砲の習得Lv
-				const anten_hou_lv = Math.max(LearnedSkillSearch(SKILL_ID_ANTEN_HOU), UsedSkillSearch(SKILL_ID_ANTEN_HOU_LEARNED_LEVEL));
-				// 分身の追撃
 				if (anten_hou_lv == 0) {
 					wbairitu = 0;
 				} else {

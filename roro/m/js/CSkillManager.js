@@ -42291,6 +42291,29 @@ export function CSkillManager() {
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_DARK;
+			this.Power = function(skillLv, charaData, option, mobData, weapon, parentSkillId) {
+				let ratio = 0;
+				if (parentSkillId == undefined) {
+					// 本体の攻撃
+					ratio = 5750 + 350 * skillLv;						// 基本倍率
+					ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// spl補正
+					ratio = Math.floor(ratio * n_A_BaseLV / 100);		// BaseLv補正
+				} else {
+					// 暗転砲の習得Lv
+					const anten_hou_lv = Math.max(LearnedSkillSearch(SKILL_ID_ANTEN_HOU), UsedSkillSearch(SKILL_ID_ANTEN_HOU_LEARNED_LEVEL), skillLv);
+					// 分身の追撃
+					if (anten_hou_lv == 0) {
+						ratio = 0;
+					} else {
+						ratio = 5750 + 350 * anten_hou_lv;					// 基本倍率
+						ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// spl補正
+						ratio = Math.floor(ratio * n_A_BaseLV / 100);		// BaseLv補正
+						ratio = Math.floor(ratio * 30 / 100);				// 分身の威力は30%
+						ratio *= option.GetOptionValue(0);					// 分身の数
+					}
+				}
+				return ratio;
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 230;
 			}
