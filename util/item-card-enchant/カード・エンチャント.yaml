@@ -7,6 +7,39 @@ card_list:
         entity_list:
           - card_name: 豪傑
         capabilities:
-          - name: 再使用待機時間減少
+          - name: スキル固定詠唱ミリ秒減少
             skill: ドラゴニックブレス
             value: 500
+
+  - name: 潜在解放(インペリアルガードXXI)
+    yomi: センザイカイホウインペリアルガード21
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        capabilities:
+          - name: 再使用待機時間減少
+            skill: インペリアルクロス
+            value: 200
+
+  - name: 潜在解放(ソウルアセティックXVIII)
+    yomi: センザイカイホウソウルアセティック18
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 真理の解放
+        capabilities:
+          - name: 再使用待機時間減少
+            skill: 青龍符
+            value: 100
+          - name: 再使用待機時間減少
+            skill: 白虎符
+            value: 100
+          - name: 再使用待機時間減少
+            skill: 朱雀符
+            value: 100
+          - name: 再使用待機時間減少
+            skill: 玄武符
+            value: 100

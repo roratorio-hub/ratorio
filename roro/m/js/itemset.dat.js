@@ -7191,8 +7191,12 @@ CardIdToSetIdMap[4463] = [3610,];
 	CardIdToSetIdMap[4517] = [3655,];
 	w_SE[3661] = [-4520,-4519,-1348,];
 	CardIdToSetIdMap[4519] = [3661,];
-	CardIdToSetIdMap[1348] = CardIdToSetIdMap[1348].concat([3654,3661]);
-	CardIdToSetIdMap[1245] = CardIdToSetIdMap[1245].concat([3655]);
+	w_SE[3662] = [-4522,-4521,-1348,];
+	CardIdToSetIdMap[4521] = [3662,];
+	w_SE[3663] = [-4524,-4523,-1245,];
+	CardIdToSetIdMap[4523] = [3663,];
+	CardIdToSetIdMap[1348] = CardIdToSetIdMap[1348].concat([3654,3661,3662]);
+	CardIdToSetIdMap[1245] = CardIdToSetIdMap[1245].concat([3655,3663]);
 	//
 	w_SE[3656] = [4236,4235,-(ITEM_SET_PET_ID_OFFSET + 112)]; // ヴェルゼブブ
 	w_SE[3657] = [4236,4235,-(ITEM_SET_PET_ID_OFFSET + 113)]; // 呪殺のヒメルメズ
