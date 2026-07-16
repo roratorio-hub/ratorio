@@ -5,6 +5,7 @@ import '../../../roro/m/js/data/mig.itemsp.h.js';
 import { CBattleCalcInfo } from './CBattleCalcInfo.js';
 import { CBattleCalcResult } from './CBattleCalcResult.js';
 import { CBattleCalcResultAll } from './CBattleCalcResultAll.js';
+import { CReceivedDamageConfManager } from './CReceivedDamageConfManager.js';
 import { AS_Calc, AS_PLUS, AUTO_SPELL_SETTING_COUNT, OBJID_OFFSET_AS_SKILL_ID, n_AS_SKILL } from './calcautospell.js';
 import {
          GetHigherJobSeriesID, GetJobLevelMax, GetLowerJobSeriesID, IsDoramJob,
@@ -11506,14 +11507,16 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 	}
 	objCell.classList.add("BTLRSLT_TAB_RESULT");
 	objCell.classList.add("CSSCLS_BTLRSLT_HEADER");
-	funcAppendCheckbox(objCell, partIdStr, "平均被ダメージ（仮）", uncheckedMap.get(partIdStr), funcOnChangeChkPart);
+	objCell.classList.add("CSSCLS_BTLRSLT_RECEIVE_HEADER");
+	funcAppendCheckbox(objCell, partIdStr, "最大被ダメージ", uncheckedMap.get(partIdStr), funcOnChangeChkPart);
 	{
-		const objLabel = objCell.querySelector(`label[for="${partIdStr}"]`);
-		HtmlRemoveAllChild(objLabel);
-		const objLink = HtmlCreateElement("a", objLabel);
+		// 敵スキルの倍率・属性の参考情報へのリンク（タイトルのトグル操作と分離して右寄せ表示する）
+		const objLink = HtmlCreateElement("a", objCell);
 		objLink.setAttribute("href", "https://github.com/roratorio-hub/ratorio/wiki/received_damage");
 		objLink.setAttribute("target", "_blank");
-		HtmlCreateTextNode("平均被ダメージ（仮）", objLink);
+		objLink.setAttribute("title", "被ダメージ計算の使い方と、敵スキルの倍率・属性の参考情報（GitHub wiki）");
+		objLink.classList.add("CSSCLS_BTLRSLT_RECEIVE_HELP_LINK");
+		HtmlCreateTextNode("📖 敵スキルの倍率・属性を調べる", objLink);
 	}
 
 	//----------------
@@ -11551,17 +11554,6 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 	objPhysicalDamageView.classList.add("BTLRSLT_TAB_RESULT");
 	objPhysicalDamageView.classList.add(partIdStr);
 	objPhysicalDamageView.classList.add("CSSCLS_BTLRSLT_VALUE");
-	if (n_B_KYOUKA[MOB_CONF_BUF_ID_MAX_PAIN] == 0) {
-		calcReceivedDamage(charaData, specData, mobData, attackMethodConfArray, objPhysicalDamageView);
-		enemy_skill_ratio.addEventListener("change", () => {
-			calcReceivedDamage(charaData, specData, mobData, attackMethodConfArray, objPhysicalDamageView);
-		});
-		enemy_skill_element.addEventListener("change", () => {
-			calcReceivedDamage(charaData, specData, mobData, attackMethodConfArray, objPhysicalDamageView);
-		});
-	} else {
-		BattleHiDamMaxPain(charaData, specData, mobData, attackMethodConfArray, battleCalcResultAll.GetDamageSummaryAvePerAtk(), objPhysicalDamageView);
-	}
 
 	//----------------
 	// 魔法ダメージ
@@ -11597,6 +11589,27 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 	objMagicalDamageView.classList.add("BTLRSLT_TAB_RESULT");
 	objMagicalDamageView.classList.add(partIdStr);
 	objMagicalDamageView.classList.add("CSSCLS_BTLRSLT_VALUE");
+
+	//----------------
+	// 設定の復元と初期計算
+	//----------------
+
+	// 保存済みの被ダメージ計算設定を復元する（初回計算より前に行うこと）
+	CReceivedDamageConfManager.RestoreToControls();
+	CReceivedDamageConfManager.BindPersistence();
+
+	if (n_B_KYOUKA[MOB_CONF_BUF_ID_MAX_PAIN] == 0) {
+		calcReceivedDamage(charaData, specData, mobData, attackMethodConfArray, objPhysicalDamageView);
+		enemy_skill_ratio.addEventListener("change", () => {
+			calcReceivedDamage(charaData, specData, mobData, attackMethodConfArray, objPhysicalDamageView);
+		});
+		enemy_skill_element.addEventListener("change", () => {
+			calcReceivedDamage(charaData, specData, mobData, attackMethodConfArray, objPhysicalDamageView);
+		});
+	} else {
+		BattleHiDamMaxPain(charaData, specData, mobData, attackMethodConfArray, battleCalcResultAll.GetDamageSummaryAvePerAtk(), objPhysicalDamageView);
+	}
+
 	calcReceivedMagicDamage(charaData, mobData, objMagicalDamageView);
 	enemy_magic_skill_ratio.addEventListener("change", () => {
 		calcReceivedMagicDamage(charaData, mobData, objMagicalDamageView);
@@ -11919,9 +11932,11 @@ export function calcReceivedDamage(charaData, specData, mobData, attackMethodCon
 		w_HiDam[6] = Math.floor(w_HiDam[6]);
 	}
 
-	wBHD=0;
-	for(i = 0; i <= 6; i++) wBHD += w_HiDam[i];
-	wBHD = Math.round(wBHD / 7);
+	// wBHD=0;
+	// for(i = 0; i <= 6; i++) wBHD += w_HiDam[i];
+	// wBHD = Math.round(wBHD / 7);
+	// 壁目線では最大被ダメが知りたいはずなので平均は取らない
+	wBHD = w_HiDam[6];
 
 	/** 反射ダメージの計算 */
 	{
@@ -12032,9 +12047,11 @@ export function calcReceivedDamage(charaData, specData, mobData, attackMethodCon
  * @param {*} objCell 
  */
 export function calcReceivedMagicDamage(charaData, mobData, objCell){
-	let mobMinMATK = mobData[MONSTER_DATA_EXTRA_INDEX_MATK_MIN];
+	// let mobMinMATK = mobData[MONSTER_DATA_EXTRA_INDEX_MATK_MIN];
 	let mobMaxMATK = mobData[MONSTER_DATA_EXTRA_INDEX_MATK_MAX];
-	let damage = (mobMinMATK + mobMaxMATK) / 2;
+	//	let damage = (mobMinMATK + mobMaxMATK) / 2;
+	// 壁目線では最大被ダメを知りたいはずなので平均は取らない
+	let damage = mobMaxMATK;
 	let ratio = 0;
 
 	const enemy_magic_skill_ratio_elm = document.getElementById("OBJID_ENEMY_MAGIC_SKILL_RATIO");

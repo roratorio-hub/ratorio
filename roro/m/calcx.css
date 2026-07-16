@@ -433,6 +433,18 @@ td.CSSCLS_EXTRA_INFO_DISP_TABLE_SKILL_CARD_NG {
 	background-color : #ddddff;
 }
 
+/* 被ダメージヘッダー（タイトル左寄せ・参考情報リンク右寄せ） */
+.CSSCLS_BTLRSLT_RECEIVE_HEADER {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+}
+.CSSCLS_BTLRSLT_RECEIVE_HELP_LINK {
+	margin-left: auto;
+	font-size: small;
+	white-space: nowrap;
+}
+
 .CSSCLS_BTLRSLT_METHOD_LABEL, .CSSCLS_BTLRSLT_RAYING_LABEL {
 	background-color : #ddeedd;
 }
