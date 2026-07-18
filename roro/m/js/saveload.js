@@ -1,4 +1,5 @@
 // === AUTO-GENERATED IMPORTS ===
+import { g_attackMethodBridge } from './CAttackMethodDataBridge.js';
 import { GetHigherJobSeriesID, GetJobName, GetLowerJobSeriesID, IsSameJobClass } from '../../../ro4/m/js/data/mig.job.h.js';
 import { CMonsterMapAreaComponentManager } from '../../../ro4/m/js/CMonsterMapAreaComponentManager.js';
 import {
@@ -517,7 +518,7 @@ export function SaveSystem(funcSaveDataModify = null){
 		//----------------------------------------------------------------
 		// [0276 - 0285] 攻撃手段
 		//----------------------------------------------------------------
-		attackMethodConf = CAttackMethodAreaComponentManager.GetAttackMethodConf();
+		attackMethodConf = g_attackMethodBridge.getAttackMethodConf?.();
 
 		SaveData[276] = attackMethodConf.GetSkillId();
 		SaveData[277] = attackMethodConf.GetSourceType();
@@ -4965,7 +4966,7 @@ export function DecodeUrl(loadDataUrl){
 		//----------------------------------------------------------------
 
 		// 攻撃手段エリアコンポーネントの再構築
-		CAttackMethodAreaComponentManager.RebuildControls();
+		g_attackMethodBridge.rebuildControls?.();
 
 		// レベルが上限を超えている場合は、最大レベルに補正（設定ミスのバグ対応）
 		var maxLv = g_skillManager.GetMaxLv(parseInt(SaveData[276], 10));
@@ -4990,7 +4991,7 @@ export function DecodeUrl(loadDataUrl){
 		);
 
 		//  攻撃手段の設定設定を変更
-		CAttackMethodAreaComponentManager.SetAttackMethodConf(attackMethodConf);
+		g_attackMethodBridge.setAttackMethodConf?.(attackMethodConf);
 
 
 		// TODO: これいる？

@@ -1,4 +1,5 @@
 // === AUTO-GENERATED IMPORTS ===
+import { g_attackMethodBridge } from './CAttackMethodDataBridge.js';
 import './arrow.h.js';
 import './card.h.js';
 import './skill.h.js';
@@ -195,7 +196,7 @@ export function changeJobSettings(jobId) {
 	}
 	OnClickSkillSWLearned();
 	// 攻撃手段欄の初期化
-	CAttackMethodAreaComponentManager.RebuildControls();
+	g_attackMethodBridge.rebuildControls?.();
 	// 拡張表示の選択値記憶のリセット
 	g_extraInfoDataBridge.clearStoredValueAll?.(true);
 	// 拡張表示の再構築
@@ -383,7 +384,7 @@ export function OnChangeArmsTypeRight(itemKind){
 		}
 
 		// 攻撃手段の更新
-		CAttackMethodAreaComponentManager.RebuildControls();
+		g_attackMethodBridge.rebuildControls?.();
 
 		// アイテムデータ説明の更新
 		CItemInfoManager.OnChangeEquip(CONST_DATA_KIND_ITEM, n_A_Equip[EQUIP_REGION_ID_ARMS]);
@@ -792,7 +793,7 @@ export function OnChangeRefined() {
 	StAllCalc();
 
 	// 攻撃手段の更新
-	CAttackMethodAreaComponentManager.RebuildControls();
+	g_attackMethodBridge.rebuildControls?.();
 
 }
 
@@ -847,7 +848,7 @@ export function OnChangeEquip(eqpRgnId, itemId) {
 	UpdateLearnedSkillSettingColoring();
 
 	// 攻撃手段の更新
-	CAttackMethodAreaComponentManager.RebuildControls();
+	g_attackMethodBridge.rebuildControls?.();
 
 }
 
@@ -1313,7 +1314,7 @@ export function OnChangeCard(cardId) {
 	UpdateLearnedSkillSettingColoring();
 
 	// 攻撃手段の更新
-	CAttackMethodAreaComponentManager.RebuildControls();
+	g_attackMethodBridge.rebuildControls?.();
 }
 
 

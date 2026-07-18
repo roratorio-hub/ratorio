@@ -20,6 +20,10 @@ export function CCustomSelectMapMonster (instanceIdNameC, mapSelectC) {
 	// マップ選択セレクトクラスのインスタンス
 	this.mapSelect = null;
 
+	// モンスター選択時コールバック（CMonsterMapAreaComponentManager が登録する。
+	// 直接参照すると import 循環になるためコールバック経由で通知する）
+	this.onMonsterSelected = null;
+
 	/**
 	 * イニシャライザ.
 	 * @param instanceIdName インスタンスID名
@@ -234,7 +238,7 @@ export function CCustomSelectMapMonster (instanceIdNameC, mapSelectC) {
 		CCustomSelectMapMonster.prototype.OnChangeSelectDataSub.call(this);
 		// バリカタ情報をサジェストする
 		const monsterId = this.GetSelectedDataId();
-		CMonsterMapAreaComponentManager.updateMonsterSuggest(monsterId);
+		this.onMonsterSelected?.(monsterId);
 		// 再計算
 		if (this.bRecalculate) {
 			calc();

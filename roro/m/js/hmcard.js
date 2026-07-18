@@ -1,4 +1,5 @@
 // === AUTO-GENERATED IMPORTS ===
+import { g_attackMethodBridge } from './CAttackMethodDataBridge.js';
 import './card.h.js';
 import { MigGetBorderFlagText } from './data/mig.itemsp.h.js';
 import { g_constDataManager } from '../../../ro4/m/js/global.js';
@@ -1597,7 +1598,7 @@ export function ApplyCardShort(eqpRgnId, objidPrifix) {
 	StAllCalc();
 
 	// 攻撃手段の更新
-	CAttackMethodAreaComponentManager.RebuildControls();
+	g_attackMethodBridge.rebuildControls?.();
 
 	// 検索可能リスト更新
 	LoadTomSelect();

@@ -30,6 +30,7 @@ import { USABLE_SKILL_ID_CUSTOM_BIAS } from '../../../roro/m/js/usableskill.h.js
 import { GetHigherJobSeriesID, GetLowerJobSeriesID, IsSameJobClass } from './data/mig.job.h.js';
 import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectCheckedById, HtmlSetObjectCheckedById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById } from '../../../roro/common/js/util.js';
 import { MIG_JOB_ID_BIOLO, MIG_JOB_ID_DRAGON_KNIGHT, MIG_JOB_ID_MEISTER, MIG_JOB_ID_SPIRIT_HANDLER } from './data/mig.job.dat.js';
+import { g_attackMethodBridge } from '../../../roro/m/js/CAttackMethodDataBridge.js';
 import {
          SKILL_ID_ABYSS_SQUARE, SKILL_ID_ACIDIFIED_ZONE_CHI, SKILL_ID_ACIDIFIED_ZONE_HI,
          SKILL_ID_ACIDIFIED_ZONE_KAZE, SKILL_ID_ACIDIFIED_ZONE_MIZU,
@@ -4386,6 +4387,8 @@ CAttackMethodAreaComponentManager.CreateNoticeBlock = function () {
 // TODO: 現状、呼び出しに任せる
 // CAttackMethodAreaComponentManager.RebuildControls();
 
-if (typeof window !== 'undefined') {
-    window.CAttackMethodAreaComponentManager = CAttackMethodAreaComponentManager;
-}
+// roro 側ファイル（equip / hmcard / CConfBase / saveload）向けのブリッジ登録。
+// 直接 import は head.js への static import パスを生むため不可（reference.md 参照）
+g_attackMethodBridge.rebuildControls = () => CAttackMethodAreaComponentManager.RebuildControls();
+g_attackMethodBridge.getAttackMethodConf = () => CAttackMethodAreaComponentManager.GetAttackMethodConf();
+g_attackMethodBridge.setAttackMethodConf = (conf) => CAttackMethodAreaComponentManager.SetAttackMethodConf(conf);

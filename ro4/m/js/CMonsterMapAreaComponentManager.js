@@ -20,6 +20,9 @@ CMonsterMapAreaComponentManager.customSelectMap = new CCustomSelectMapMap("MONST
 
 // モンスター選択セレクト
 CMonsterMapAreaComponentManager.customSelectMonster = new CCustomSelectMapMonster("MONSTER_MAP_MONSTER", CMonsterMapAreaComponentManager.customSelectMap);
+// モンスター選択時のバリカタサジェスト更新（循環 import 回避のためコールバック登録）
+CMonsterMapAreaComponentManager.customSelectMonster.onMonsterSelected =
+	(monsterId) => CMonsterMapAreaComponentManager.updateMonsterSuggest(monsterId);
 
 // 表示データのマップ
 CMonsterMapAreaComponentManager.dispObjectMap = new Map();
@@ -669,8 +672,5 @@ CMonsterMapAreaComponentManager.updateMonsterSuggest = function (monsterId) {
     }
 };
 
-if (typeof window !== 'undefined') {
-    window.CMonsterMapAreaComponentManager = CMonsterMapAreaComponentManager;
-}
 
 

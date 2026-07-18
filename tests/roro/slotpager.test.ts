@@ -8,8 +8,7 @@ describe('slotpager.js', () => {
             (globalThis as any).AutoCalc = vi.fn();
             (globalThis as any).StAllCalc = vi.fn();
             (globalThis as any).LoadTomSelect = vi.fn();
-            // KEEP クラス（window compat 経由の bare global 参照）は unit 環境では未定義
-            (globalThis as any).CAttackMethodAreaComponentManager ??= { RebuildControls: () => {} };
+            // 3f-2: 攻撃手段エリアの再構築は g_attackMethodBridge 経由（未登録なら no-op）になった
         });
         afterEach(() => {
             document.body.innerHTML = '';
