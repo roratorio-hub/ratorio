@@ -27,6 +27,9 @@ export let delayDownForDisp = 0;
 export let aspdRaw = 0;
 export let n_A_Weapon_zokusei = 0;
 
+// ---- head.js が公開する静的データ（シールドスペル値テーブル）----
+export const n_SieldSp = ["off","on",20,35,40,50,60,75,80,85,90,95,98,105,110,120,130,150,100,140,170];
+
 // ---- head.js が公開する計算結果・状態（外部は読み取りのみ）----
 export let n_Enekyori = false;
 export let n_Delay = [0, 0, 0, 0, 0, 0, 0, 0];

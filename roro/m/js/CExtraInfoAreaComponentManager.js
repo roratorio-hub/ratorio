@@ -64,6 +64,13 @@ import {
 import { UsedSkillSearch } from '../../../ro4/m/js/skillstate.js';
 import { DISP_DATA_KEY_STRDEX_BONUS, g_extraInfoDataBridge } from './CExtraInfoDataBridge.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: foot.js 公開関数（foot-bridge 経由）
+import {
+         GetCastScalingOfSkillForCastTimeVary, GetCastFixOfSkillForCastTimeVary, GetCastScalingOfSkillForCastTimeFixed, GetCastFixOfSkillForCastTimeFixed,
+         GetCoolFixOfSkill, GetEquippedTotalSPCardAndElse,
+         GetEquippedTotalSPEquip,
+} from './foot-bridge.js';
+
 // C-6: 旧 head.js の window 経由共有スクラッチ変数（宣言忘れ関数の var-leak 対応・ファイルローカル化）
 let resistValueArray = [];
 let resistValueArrayOver = 0;

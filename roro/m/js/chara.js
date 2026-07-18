@@ -382,6 +382,11 @@ import {
 } from './skill.dat.js';
 import { n_A_PassSkill3, n_A_PassSkill4, n_A_PassSkill7, n_A_PassSkill8, UsedSkillSearch } from '../../../ro4/m/js/skillstate.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: foot.js 公開関数（foot-bridge 経由）
+import {
+         GetEquippedTotalSPEquip, GetEquippedTotalSPCardAndElse, GetEquippedTotalSPArrow, EquipNumSearchFurubitaSet,
+} from './foot-bridge.js';
+
 // C-6: 旧 head.js の window 経由共有スクラッチ変数（宣言忘れ関数の var-leak 対応・ファイルローカル化）
 let itemCountRight = 0;
 let itemCountLeft = 0;
@@ -390,6 +395,7 @@ let cardCount = 0;
 // C-6: ro4 側共有 state（旧 head.js window 変数）
 import {
          n_A_BaseLV, n_A_ActiveSkill, n_A_ActiveSkillLV, n_A_Weapon_zokusei,
+         n_SieldSp,
 } from '../../../ro4/m/js/ro4-state.js';
 
 // C-6: 共有 state（旧 foot.js window 変数）

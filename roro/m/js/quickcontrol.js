@@ -15,6 +15,12 @@ import { IsMatchJobRestrict } from '../../../ro4/m/js/data/mig.job.h.js';
 import { HtmlCreateElement, HtmlCreateTextNode, HtmlRemoveAllChild, HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById } from '../../common/js/util.js';
 import { n_A_LearnedSkill } from './learnedskill.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: foot.js 公開関数（foot-bridge 経由）
+import {
+         GetEquippedTotalSPEquip,
+         InitJobInfo,
+} from './foot-bridge.js';
+
 
 export let g_QuickControlSW = false;
 

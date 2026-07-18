@@ -58,10 +58,22 @@ import { GetObjectIdRndOptKind, GetObjectIdRndOptValue, RebuildRndOptSelect, Set
 import { CItemInfoManager } from './CItemInfoManager.js';
 import { g_extraInfoDataBridge } from './CExtraInfoDataBridge.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: head.js 公開関数（head-bridge 経由）
+import {
+         calc,
+} from '../../../ro4/m/js/head-bridge.js';
+
+// C-6: foot.js 公開関数（foot-bridge 経由）
+import {
+         Init,
+         InitJobInfo,
+} from './foot-bridge.js';
+
 // C-6: 共有 state（旧 foot.js window 変数）
 import {
          n_A_WeaponType, set_n_A_WeaponType, n_A_Weapon_Transcendence, n_A_Weapon2_Transcendence,
          n_A_Weapon_ATKplus, n_A_Weapon2_ATKplus,
+         SpeedPotName,
 } from './roro-state.js';
 
 // スパノビの魂による装備制限解除フラグ。本モジュールが所有者。

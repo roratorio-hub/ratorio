@@ -84,6 +84,11 @@ import { Click_A7, n_A_PassSkill7 } from './BuffItemAndFood.js';
 import { Click_A8, n_A_PassSkill8 } from './BuffOtherCategory.js';
 import { CAttackMethodAreaComponentManager } from './CAttackMethodAreaComponentManager.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: foot.js 公開関数（foot-bridge 経由）
+import {
+         RefreshSuperNoviceFullWeapon,
+} from '../../../roro/m/js/foot-bridge.js';
+
 // C-6: ro4 側共有 state（旧 head.js window 変数）
 import {
          n_A_Arrow, set_n_A_Arrow,

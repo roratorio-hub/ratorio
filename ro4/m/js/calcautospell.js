@@ -63,6 +63,16 @@ import {
 } from '../../../roro/m/js/skill.dat.js';
 import { UsedSkillSearch } from './skillstate.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: head.js 公開関数（head-bridge 経由）
+import {
+         GetActRateSandansho,
+} from './head-bridge.js';
+
+// C-6: foot.js 公開関数（foot-bridge 経由）
+import {
+         GetEquippedSPValueArrayEquip, GetEquippedSPValueArrayCardAndElse,
+} from '../../../roro/m/js/foot-bridge.js';
+
 // C-6: 旧 head.js の window 経由共有スクラッチ変数（宣言忘れ関数の var-leak 対応・ファイルローカル化）
 let itemCountRight = 0;
 let itemCountLeft = 0;

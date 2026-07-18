@@ -447,15 +447,16 @@ describe('ro4/m/calcx.html 起動テスト', () => {
                 // A1（職固有自己支援）欄を展開して魂スキルの select を生成させる
                 const sw = document.querySelector<HTMLInputElement>('[name="A1_SKILLSW"]');
                 if (sw && !sw.checked) { sw.click(); await sleep(500); }
-                // 魂スキルの select は inline onClick に RefreshSuperNoviceFullWeapon を持つ
-                const soulSel = document.querySelector<HTMLSelectElement>('[onclick*="RefreshSuperNoviceFullWeapon"]');
+                // 魂スキルの select は data-skill="super-novice-soul" を持つ
+                // （C-6 で inline onClick 属性 → addEventListener に変換されたため data 属性で特定する）
+                const soulSel = document.querySelector<HTMLSelectElement>('[data-skill="super-novice-soul"]');
                 const headSel = document.getElementById('OBJID_HEAD_TOP') as
                     (HTMLSelectElement & { tomselect?: { options: Record<string, unknown> } }) | null;
                 if (!soulSel || !headSel) return fail;
                 const tsCount = () => headSel.tomselect ? Object.keys(headSel.tomselect.options).length : -1;
                 const headBefore = headSel.options.length;
                 const tsBefore = tsCount();
-                // 魂を ON にする（value=1 + inline onClick 発火 → RefreshSuperNoviceFullWeapon(true)）
+                // 魂を ON にする（value=1 + click 発火 → RefreshSuperNoviceFullWeapon(true)）
                 soulSel.value = '1';
                 soulSel.dispatchEvent(new MouseEvent('click', { bubbles: true }));
                 await sleep(300);

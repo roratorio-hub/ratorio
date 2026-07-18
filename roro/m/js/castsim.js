@@ -22,6 +22,13 @@ import { GetHigherJobSeriesID, GetLowerJobSeriesID } from '../../../ro4/m/js/dat
 import { HtmlCreateElement, HtmlCreateTextNode, HtmlRemoveOptionAll, HtmlCreateElementOption, HtmlRemoveAllChild } from '../../common/js/util.js';
 import { n_A_PassSkill7 } from '../../../ro4/m/js/skillstate.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: foot.js 公開関数（foot-bridge 経由）
+import {
+         GetCastScalingOfSkillForCastTimeVary, GetCastFixOfSkillForCastTimeVary, GetCastScalingOfSkillForCastTimeFixed, GetCastFixOfSkillForCastTimeFixed,
+         GetCastScalingOfSkillForCastTimeForce, GetCastFixOfSkillForCastTimeForce, GetCoolFixOfSkill, GetCostScalingOfSkill,
+         GetCostFixOfSkill, GetEquippedSPValueArrayEquip, GetEquippedSPValueArrayCardAndElse,
+} from './foot-bridge.js';
+
 // C-6: ro4 側共有 state（旧 head.js window 変数）
 import {
          n_A_Kotei_Cast_Keigen, n_tok,

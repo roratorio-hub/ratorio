@@ -32,6 +32,9 @@ export function setItemSpIntPlusPlaneForCalcData(v) { g_ITEM_SP_INT_PLUS_PLANE_v
 export function setItemSpDexPlusPlaneForCalcData(v) { g_ITEM_SP_DEX_PLUS_PLANE_value_forCalcData = v; }
 export function setItemSpLukPlusPlaneForCalcData(v) { g_ITEM_SP_LUK_PLUS_PLANE_value_forCalcData = v; }
 
+// ---- foot.js が公開する静的データ ----
+export const SpeedPotName = ["なし","スピードアップポーション","ハイスピードポーション","バーサークポーション"];
+
 // ---- foot.js から移行した共有 state（C-6 一括移行分）----
 
 export let SU_STR = 0;

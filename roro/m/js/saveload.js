@@ -106,6 +106,11 @@ import { Click_A4, n_A_PassSkill4 } from '../../../ro4/m/js/BuffGuildAndGospel.j
 import { Click_A7, n_A_PassSkill7 } from '../../../ro4/m/js/BuffItemAndFood.js';
 import { Click_A8, n_A_PassSkill8 } from '../../../ro4/m/js/BuffOtherCategory.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: foot.js 公開関数（foot-bridge 経由）
+import {
+         RefreshSuperNoviceFullWeapon,
+} from './foot-bridge.js';
+
 // C-6: ro4 側共有 state（旧 head.js window 変数）
 import {
          SaveDataAll, set_SaveDataAll, SaveNameAll, set_SaveNameAll,

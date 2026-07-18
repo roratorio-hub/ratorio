@@ -8,6 +8,11 @@ import { GetElementText, GetRaceText } from './common.js';
 import { MonsterObjNew } from './monster.dat.js';
 import { MONSTER_MAP_ID_MAP_ALL, g_MonsterMapDataArray } from './monstermap.dat.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: head.js 公開関数（head-bridge 経由）
+import {
+         calc,
+} from '../../../ro4/m/js/head-bridge.js';
+
 
 /**
  * カスタムセレクトクラス（モンスター）.

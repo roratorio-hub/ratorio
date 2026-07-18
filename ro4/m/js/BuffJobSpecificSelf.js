@@ -1,7 +1,8 @@
 // === AUTO-GENERATED IMPORTS ===
 import { GetJobName } from './data/mig.job.h.js';
 import { g_constDataManager } from './global.js';
-import { AutoCalc, n_SieldSp, n_SieldSpDum, n_SieldSpNum } from './head.js';
+import { AutoCalc, n_SieldSpDum, n_SieldSpNum } from './head.js';
+import { n_SieldSp } from './ro4-state.js';
 import { CCharaConfIchizi } from '../../../roro/m/js/CCharaConfIchizi.js';
 import { CCharaConfNizi } from '../../../roro/m/js/CCharaConfNizi.js';
 import { CCharaConfSanzi } from '../../../roro/m/js/CCharaConfSanzi.js';
@@ -65,6 +66,13 @@ import {
          SKILL_ID_UNLIMIT
 } from '../../../roro/m/js/skill.dat.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: foot.js 公開関数（foot-bridge 経由）
+import {
+         NumSearch,
+         NumSearch2,
+         RefreshSuperNoviceFullWeapon,
+} from '../../../roro/m/js/foot-bridge.js';
+
 "use strict"
 /**
  * 「職固有自己支援」のバフウィンドウ構築関数群
@@ -129,7 +137,8 @@ export function Click_PassSkillSW(){
 				}
 				// スパノビの魂専用処理
 				if (w == SKILL_ID_SUPER_NOVICENO_TAMASHI) {
-					wOBJ.setAttribute("onClick", "RefreshSuperNoviceFullWeapon(parseInt(this.value) == 1)");
+					wOBJ.setAttribute("data-skill", "super-novice-soul");
+					wOBJ.addEventListener("click", (e) => RefreshSuperNoviceFullWeapon(parseInt(e.currentTarget.value) == 1));
 				}
 		}
 		var w = NumSearch2(SKILL_ID_ENERGY_COAT, passiveSkillIdArray);

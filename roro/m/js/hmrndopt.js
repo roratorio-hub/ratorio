@@ -15,6 +15,12 @@ import { g_rndOptListArray } from './rndoptlist.dat.js';
 import { g_rndOptTypeArray } from './rndopttype.dat.js';
 import { GetEquipRndOptTableKind, GetEquipRndOptTableValue, SetEquipRndOptTable } from './rndopttype.h.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: foot.js 公開関数（foot-bridge 経由）
+import {
+         IsMatchSpDefId, CheckSpDefFriendlyOver, CheckSpDefBaseLvOver, CheckSpDefJobRestrict,
+         CheckSpDefPureStatus, CheckSpDefRefineOver,
+} from './foot-bridge.js';
+
 // C-6: ro4 側共有 state（旧 head.js window 変数）
 import {
          n_A_BaseLV,

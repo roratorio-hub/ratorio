@@ -462,6 +462,16 @@ import {
          SKILL_ID_TRUTH_OF_WIND,
 } from './skill.dat.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: head.js 公開関数（head-bridge 経由）
+import {
+         GetActRateCritical,
+} from '../../../ro4/m/js/head-bridge.js';
+
+// C-6: foot.js 公開関数（foot-bridge 経由）
+import {
+         GetEquippedTotalSPArrow,
+} from './foot-bridge.js';
+
 // C-6: ro4 側共有 state（旧 head.js window 変数）
 import {
          n_A_BaseLV, n_A_ActiveSkillLV,

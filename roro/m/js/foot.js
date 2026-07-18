@@ -894,6 +894,8 @@ import {
          SKILL_ID_YOMIGAESHI, SKILL_ID_ZIRAISHIN, SKILL_ID_ZYUMONZIGIRI,
 } from './skill.dat.js';
 // === END AUTO-GENERATED IMPORTS ===
+import { __registerFootFunctions } from './foot-bridge.js';
+
 // C-6: 旧 head.js の window 経由共有スクラッチ変数（宣言忘れ関数の var-leak 対応・ファイルローカル化）
 let itemCountRight = 0;
 let itemCountLeft = 0;
@@ -935,6 +937,7 @@ import {
          n_B_MDEF2, set_n_B_MDEF2, n_A_costume, set_n_A_costume,
          n_A_PassSkill5, set_n_A_PassSkill5, g_itemIdArray, set_g_itemIdArray,
          g_refinedArray, set_g_refinedArray, g_objMobConfInput, set_g_objMobConfInput,
+         SpeedPotName,
 } from './roro-state.js';
 
 // C-6: 共有 state（roro-state.js へ段階移行中）
@@ -30406,7 +30409,6 @@ export function ROUNDUP(num){
 	return num;
 }
 
-const SpeedPotName = ["なし","スピードアップポーション","ハイスピードポーション","バーサークポーション"];
 const EnName =["なし","水","地","火","風","毒","聖","闇","念","死"];
 
 // 他の関数実行に先駆けて初期化される必要があるので load だとタイミングが遅い. DOMContentLoaded を指定する必要がある.
@@ -30905,44 +30907,49 @@ export function OnClickSimulateCastTimeStop(castTime, delayTime) {
 }
 
 
+// 外部ファイル向けの関数公開は foot-bridge.js 経由（C-6 後半・reference.md 参照）
+__registerFootFunctions({
+    RefreshSuperNoviceFullWeapon,
+    GetCastScalingOfSkillForCastTimeVary,
+    GetCastFixOfSkillForCastTimeVary,
+    GetCastScalingOfSkillForCastTimeFixed,
+    GetCastFixOfSkillForCastTimeFixed,
+    GetAdditionalFixedCastTime,
+    GetCastScalingOfSkillForCastTimeForce,
+    GetCastFixOfSkillForCastTimeForce,
+    GetCoolFixOfSkill,
+    GetCostScalingOfSkill,
+    GetCostFixOfSkill,
+    GetEquippedTotalSPEquip,
+    GetEquippedSPListEquip,
+    GetEquippedSPValueArrayEquip,
+    GetEquippedTotalSPCardAndElse,
+    GetEquippedSPListCardAndElse,
+    GetEquippedSPValueArrayCardAndElse,
+    GetEquippedTotalSPArrow,
+    IsMatchSpDefId,
+    CheckSpDefFriendlyOver,
+    CheckSpDefBaseLvOver,
+    CheckSpDefJobRestrict,
+    CheckSpDefPureStatus,
+    CheckSpDefRefineOver,
+    InitJobInfo,
+    NumSearch,
+    NumSearch2,
+    EquipNumSearchFurubitaSet,
+    ROUNDDOWN,
+    Init,
+});
+
 if (typeof window !== 'undefined') {
+    // 残存2変数: itemset.h.js が window 経由で書き込むため 3f-5 で解消予定
     Object.defineProperties(window, {
         n_A_Equip: { get: () => n_A_Equip, set: v => { n_A_Equip = v; }, configurable: true },
         n_A_card: { get: () => n_A_card, set: v => { n_A_card = v; }, configurable: true },
     });
 
     Object.assign(window, {
-        SpeedPotName,
-        RefreshSuperNoviceFullWeapon,
+        // Workspace I/F: workspace/src/rtxApiImport.ts が window 経由で呼ぶ（Phase 4 で解消）
         StAllCalc,
-        GetCastScalingOfSkillForCastTimeVary,
-        GetCastFixOfSkillForCastTimeVary,
-        GetCastScalingOfSkillForCastTimeFixed,
-        GetCastFixOfSkillForCastTimeFixed,
-        GetAdditionalFixedCastTime,
-        GetCastScalingOfSkillForCastTimeForce,
-        GetCastFixOfSkillForCastTimeForce,
-        GetCoolFixOfSkill,
-        GetCostScalingOfSkill,
-        GetCostFixOfSkill,
-        GetEquippedTotalSPEquip,
-        GetEquippedSPListEquip,
-        GetEquippedSPValueArrayEquip,
-        GetEquippedTotalSPCardAndElse,
-        GetEquippedSPListCardAndElse,
-        GetEquippedSPValueArrayCardAndElse,
-        GetEquippedTotalSPArrow,
-        IsMatchSpDefId,
-        CheckSpDefFriendlyOver,
-        CheckSpDefBaseLvOver,
-        CheckSpDefJobRestrict,
-        CheckSpDefPureStatus,
-        CheckSpDefRefineOver,
-        InitJobInfo,
-        NumSearch,
-        NumSearch2,
-        EquipNumSearchFurubitaSet,
-        ROUNDDOWN,
-        Init,
-});
+    });
 }

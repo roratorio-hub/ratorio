@@ -103,6 +103,11 @@ import {
          SKILL_ID_THUNDERING_FOCUS, SKILL_ID_THUNDERING_ORB,
 } from '../../../roro/m/js/skill.dat.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: foot.js 公開関数（foot-bridge 経由）
+import {
+         GetEquippedSPListEquip, GetEquippedSPValueArrayEquip, GetEquippedSPListCardAndElse, GetEquippedSPValueArrayCardAndElse,
+} from '../../../roro/m/js/foot-bridge.js';
+
 //----------------------------------------------------------------
 // オプションリストの種別
 //----------------------------------------------------------------

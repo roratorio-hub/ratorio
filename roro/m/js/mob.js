@@ -45,6 +45,11 @@ import { SKILL_ID_EXPIATIO, SKILL_ID_HAKKEI } from './skill.dat.js';
 import { UsedSkillSearch, n_A_PassSkill3, n_A_PassSkill8 } from '../../../ro4/m/js/skillstate.js';
 import { GetMobConfInput } from './CMobConfInput.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: foot.js 公開関数（foot-bridge 経由）
+import {
+         ROUNDDOWN,
+} from './foot-bridge.js';
+
 // C-6: 旧 head.js の window 経由共有スクラッチ変数（宣言忘れ関数の var-leak 対応・ファイルローカル化）
 let B_Total_DEF = 0;
 let B_Total_MDEF = 0;

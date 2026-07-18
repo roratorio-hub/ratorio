@@ -536,6 +536,15 @@ import {
 import { UsedSkillSearch, n_A_PassSkill3, n_A_PassSkill4, n_A_PassSkill7, n_A_PassSkill8, ID_BUFF_MANUK_ISHI, ID_BUFF_VESPER_HONEY } from './skillstate.js';
 import { DISP_DATA_KEY_STRDEX_BONUS, g_extraInfoDataBridge } from '../../../roro/m/js/CExtraInfoDataBridge.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: foot.js 公開関数（foot-bridge 経由。foot.js 直接 import は循環増悪のため不可）
+import {
+         GetCastScalingOfSkillForCastTimeVary, GetCastFixOfSkillForCastTimeVary, GetCastScalingOfSkillForCastTimeFixed, GetCastFixOfSkillForCastTimeFixed,
+         GetAdditionalFixedCastTime, GetCoolFixOfSkill, GetEquippedTotalSPEquip, GetEquippedTotalSPCardAndElse,
+         GetEquippedTotalSPArrow, NumSearch, ROUNDDOWN,
+} from '../../../roro/m/js/foot-bridge.js';
+
+import { __registerHeadFunctions } from './head-bridge.js';
+
 // C-6: 共有 state（ro4-state.js へ移行済み）
 import {
          SaveDataAll, set_SaveDataAll, SaveNameAll, set_SaveNameAll,
@@ -549,6 +558,7 @@ import {
          w_DMG, set_w_DMG, n_Heal_MATK, set_n_Heal_MATK,
          n_AS_check_3dan, set_n_AS_check_3dan, n_CONFIG, set_n_CONFIG,
          g_perfectHitRate, set_g_perfectHitRate, g_bDefinedDamageIntervals, set_g_bDefinedDamageIntervals,
+         n_SieldSp,
 } from './ro4-state.js';
 
 // C-6: 共有 state（旧 foot.js window 変数）
@@ -804,7 +814,6 @@ export const SubName = ["％","秒","ダメージ","クリティカルダメー�
 /** シールドスペル：ATK加算値 */
 export const n_SieldSpDum = ["off","on",20,35,40,50,60,75,80,85,90,95,98,100,105,110,120,130,140,150,170];
 /** シールドスペル：ATK加算値（これは順序が違うので注意）*/
-export const n_SieldSp = ["off","on",20,35,40,50,60,75,80,85,90,95,98,105,110,120,130,150,100,140,170];
 /** シールドスペル：順序が違う配列を並び替えるために使われる index 値 */
 export const n_SieldSpNum = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12, 18, 13, 14, 15, 16, 19, 17, 20];
 /** 修練が乗らないスキルID */
@@ -21856,14 +21865,17 @@ export function DamageModifierOfArea(mobData, dmg) {
 	return dmg;
 }
 
-if (typeof window !== 'undefined') {
-
-    Object.assign(window, {
-        n_SieldSp,
-        GetActRateSandansho,
-        GetActRateCritical,
-        AutoCalc,
-        calc,
-        ApplyPhysicalSpecializeMonster,
+// 外部ファイル向けの関数公開は head-bridge.js 経由（C-6 後半・reference.md 参照）
+__registerHeadFunctions({
+    GetActRateSandansho,
+    GetActRateCritical,
+    calc,
+    ApplyPhysicalSpecializeMonster,
 });
+
+if (typeof window !== 'undefined') {
+    Object.assign(window, {
+        // Workspace I/F: workspace/src/rtxApiImport.ts が window 経由で呼ぶ（Phase 4 で解消）
+        AutoCalc,
+    });
 }

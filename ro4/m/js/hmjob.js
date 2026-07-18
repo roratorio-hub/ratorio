@@ -37,6 +37,16 @@ import {
 } from '../../../roro/m/js/skill.dat.js';
 import { UsedSkillSearch, n_A_PassSkill, n_A_PassSkill8 } from './skillstate.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: head.js 公開関数（head-bridge 経由）
+import {
+         calc, ApplyPhysicalSpecializeMonster,
+} from './head-bridge.js';
+
+// C-6: foot.js 公開関数（foot-bridge 経由）
+import {
+         GetEquippedTotalSPEquip, GetEquippedTotalSPCardAndElse, InitJobInfo,
+} from '../../../roro/m/js/foot-bridge.js';
+
 // C-6: ro4 側共有 state（旧 head.js window 変数）
 import {
          n_A_ActiveSkill, n_A_ActiveSkillLV, n_tok,

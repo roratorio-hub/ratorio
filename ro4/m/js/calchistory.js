@@ -1,6 +1,11 @@
 // === AUTO-GENERATED IMPORTS ===
 import { CItemInfoManager } from '../../../roro/m/js/CItemInfoManager.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: head.js 公開関数（head-bridge 経由）
+import {
+         calc,
+} from './head-bridge.js';
+
 $(function () {
   const buildForm = () => {
 	let test = document.getElementById("history_graph");
