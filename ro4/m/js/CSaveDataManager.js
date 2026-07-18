@@ -84,6 +84,11 @@ import { Click_A7, n_A_PassSkill7 } from './BuffItemAndFood.js';
 import { Click_A8, n_A_PassSkill8 } from './BuffOtherCategory.js';
 import { CAttackMethodAreaComponentManager } from './CAttackMethodAreaComponentManager.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: ro4 側共有 state（旧 head.js window 変数）
+import {
+         n_A_Arrow, set_n_A_Arrow,
+} from './ro4-state.js';
+
 // C-6: 共有 state（旧 foot.js window 変数）
 import {
          n_A_HEAD_DEF_PLUS, n_A_BODY_DEF_PLUS, n_A_SHIELD_DEF_PLUS, n_A_SHOULDER_DEF_PLUS,
@@ -895,7 +900,7 @@ export class CSaveDataManager {
 
 		// グローバル変数の初期化（移行対応変数のみ）
 		ResetConfDataAllMIG(false);
-		window.n_A_Arrow = 0;		// 再ロード時のバグ対応
+		set_n_A_Arrow(0);		// 再ロード時のバグ対応
 
 		// 必要な情報を収集する
 		const idxMap = new SKeyMap();
@@ -1104,13 +1109,13 @@ export class CSaveDataManager {
 		// 画面表示リフレッシュ処理（既存移植）
 		OnClickSkillSWLearned();
 		if(arrowArray[0] === undefined){
-			window.n_A_Arrow = 0;
+			set_n_A_Arrow(0);
 		}
 		else{
-			window.n_A_Arrow = (arrowArray[0] - 1);
+			set_n_A_Arrow((arrowArray[0] - 1));
 		}
 		const obj_select_arrow = document.getElementById("OBJID_SELECT_ARROW")
-		HtmlSelectObjectValueAsInteger(obj_select_arrow, window.n_A_Arrow);
+		HtmlSelectObjectValueAsInteger(obj_select_arrow, n_A_Arrow);
 		Click_A8(false);	// BuffChara（旧：支援スキル８（その他の支援/設定））
 		Click_A1(false);	// BuffSelf
 		g_objCharaConfIchizi.OnSaveDataLoaded();

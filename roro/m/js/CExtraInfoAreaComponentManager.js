@@ -64,6 +64,18 @@ import {
 import { UsedSkillSearch } from '../../../ro4/m/js/skillstate.js';
 import { DISP_DATA_KEY_STRDEX_BONUS, g_extraInfoDataBridge } from './CExtraInfoDataBridge.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: 旧 head.js の window 経由共有スクラッチ変数（宣言忘れ関数の var-leak 対応・ファイルローカル化）
+let resistValueArray = [];
+let resistValueArrayOver = 0;
+let bodyElmRatioArray = 0;
+let finalRatioArray = 0;
+
+// C-6: ro4 側共有 state（旧 head.js window 変数）
+import {
+         n_A_ActiveSkill, n_A_Kotei_Cast_Keigen, delayDownForDisp, n_tok,
+         n_tok_no_limit,
+} from '../../../ro4/m/js/ro4-state.js';
+
 // C-6: 共有 state（旧 foot.js window 変数）
 import {
          SU_STR, SU_AGI, SU_VIT, SU_DEX,

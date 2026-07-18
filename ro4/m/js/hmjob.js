@@ -37,6 +37,11 @@ import {
 } from '../../../roro/m/js/skill.dat.js';
 import { UsedSkillSearch, n_A_PassSkill, n_A_PassSkill8 } from './skillstate.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: ro4 側共有 state（旧 head.js window 変数）
+import {
+         n_A_ActiveSkill, n_A_ActiveSkillLV, n_tok,
+} from './ro4-state.js';
+
 // C-6: 共有 state（旧 foot.js window 変数）
 import {
          SU_STR, SU_AGI, SU_VIT, SU_DEX,

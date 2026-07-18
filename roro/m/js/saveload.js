@@ -106,6 +106,12 @@ import { Click_A4, n_A_PassSkill4 } from '../../../ro4/m/js/BuffGuildAndGospel.j
 import { Click_A7, n_A_PassSkill7 } from '../../../ro4/m/js/BuffItemAndFood.js';
 import { Click_A8, n_A_PassSkill8 } from '../../../ro4/m/js/BuffOtherCategory.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: ro4 側共有 state（旧 head.js window 変数）
+import {
+         SaveDataAll, set_SaveDataAll, SaveNameAll, set_SaveNameAll,
+         n_CONFIG,
+} from '../../../ro4/m/js/ro4-state.js';
+
 // C-6: 共有 state（旧 foot.js window 変数）
 import {
          n_A_costume, n_A_PassSkill5, g_objMobConfInput,
@@ -5092,7 +5098,7 @@ export function LoadCookie3(){
 	var ch = 0;
 
 	// 初期化
-	window.SaveDataAll = new Array();
+	set_SaveDataAll(new Array());
 	for (idx = 0; idx <= 500; idx++) {
 		SaveDataAll[idx] = "ZZZZ";
 	}
@@ -5111,7 +5117,7 @@ export function LoadCookie3(){
 		wStr = SaveData[idx].substr(searchIndex + searchKey.length, SaveData[idx].length);
 
 		// 読み込みデータを分割して、セーブデータに変換
-		window.SaveDataAll = wStr.split("?");
+		set_SaveDataAll(wStr.split("?"));
 
 		ch = 1;
 		break;
@@ -5126,7 +5132,7 @@ export function LoadCookie3(){
 
 
 			// 読み込みデータを分割して、セーブデータに変換
-			window.SaveDataAll = wStr.split("?");
+			set_SaveDataAll(wStr.split("?"));
 		}
 
 		ch = 2;
@@ -5321,7 +5327,7 @@ export function SaveCookieConf(){
 			// 名前の保存
 			if(localStorage.ROratorioDOM_SaveName){
 				var wStrX = localStorage.ROratorioDOM_SaveName;
-				window.SaveNameAll = wStrX.split("|");
+				set_SaveNameAll(wStrX.split("|"));
 			}
 
 			myInnerHtml("DELHTML",'　　<input type="text" name="SAVE_NAME" value="名前入力可能" size=30>　　<Font size=2><A Href="del2.html">セーブ削除</A></Font>',0);
@@ -5430,7 +5436,7 @@ export function LoadCookieConf(){
 			// 名前の読み込み
 			if(localStorage.ROratorioDOM_SaveName){
 				var wStrX = localStorage.ROratorioDOM_SaveName;
-				window.SaveNameAll = wStrX.split("|");
+				set_SaveNameAll(wStrX.split("|"));
 			}
 			myInnerHtml("DELHTML",'　　<input type="text" name="SAVE_NAME" value="名前入力可能" size=30>　　<Font size=2><A Href="del2.html">セーブ削除</A></Font>',0);
 		}

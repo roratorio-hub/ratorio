@@ -462,6 +462,11 @@ import {
          SKILL_ID_TRUTH_OF_WIND,
 } from './skill.dat.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: ro4 側共有 state（旧 head.js window 変数）
+import {
+         n_A_BaseLV, n_A_ActiveSkillLV,
+} from '../../../ro4/m/js/ro4-state.js';
+
 // C-6: 共有 state（旧 foot.js window 変数）
 import {
          n_A_STR, n_A_AGI, n_A_DEX, n_A_INT,

@@ -63,6 +63,18 @@ import {
 } from '../../../roro/m/js/skill.dat.js';
 import { UsedSkillSearch } from './skillstate.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: 旧 head.js の window 経由共有スクラッチ変数（宣言忘れ関数の var-leak 対応・ファイルローカル化）
+let itemCountRight = 0;
+let itemCountLeft = 0;
+let cardCount = 0;
+let w_DMG_AS_OverHP = 0;
+
+// C-6: ro4 側共有 state（旧 head.js window 変数）
+import {
+         n_A_ActiveSkill, n_A_ActiveSkillLV, n_Enekyori, w_DMG,
+         n_AS_check_3dan,
+} from './ro4-state.js';
+
 // C-6: 共有 state（旧 foot.js window 変数）
 import {
          SU_LUK, n_A_JobLV, n_A_LUK, n_A_WeaponType,

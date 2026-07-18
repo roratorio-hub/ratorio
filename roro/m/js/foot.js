@@ -894,6 +894,21 @@ import {
          SKILL_ID_YOMIGAESHI, SKILL_ID_ZIRAISHIN, SKILL_ID_ZYUMONZIGIRI,
 } from './skill.dat.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: 旧 head.js の window 経由共有スクラッチ変数（宣言忘れ関数の var-leak 対応・ファイルローカル化）
+let itemCountRight = 0;
+let itemCountLeft = 0;
+let cardCount = 0;
+
+// C-6: ro4 側共有 state（旧 head.js window 変数）
+import {
+         SaveDataAll, set_n_SiegeMode, n_A_BaseLV, set_n_A_BaseLV,
+         n_A_ActiveSkill, set_n_A_ActiveSkill, n_A_ActiveSkillLV, set_n_A_ActiveSkillLV,
+         n_A_Kotei_Cast_Keigen, set_n_A_Kotei_Cast_Keigen, n_A_QUAKE_KIRI, set_n_A_QUAKE_KIRI,
+         n_A_Arrow, set_n_A_Arrow, set_delayDownForDisp, set_aspdRaw,
+         set_n_A_Weapon_zokusei, n_Enekyori, n_Delay, n_tok,
+         n_tok_no_limit, n_Heal_MATK,
+} from '../../../ro4/m/js/ro4-state.js';
+
 import {
          SU_STR, set_SU_STR, SU_AGI, set_SU_AGI,
          SU_VIT, set_SU_VIT, SU_DEX, set_SU_DEX,
@@ -1241,7 +1256,7 @@ export function UpdateEquipItemDataByHtml() {
 
 	set_n_A_WeaponType(eval(calcForm.A_WeaponType.value));
 	n_A_WeaponZokusei = eval(calcForm.A_Weapon_zokusei.value);
-	window.n_A_Arrow = parseInt(HtmlGetObjectValueById("OBJID_SELECT_ARROW", ARROW_ID_NONE));
+	set_n_A_Arrow(parseInt(HtmlGetObjectValueById("OBJID_SELECT_ARROW", ARROW_ID_NONE)));
 
 	// 装備部位配列初期化
 	for (var idx = 0; idx < EQUIP_REGION_ID_COUNT; idx++) {
@@ -1476,7 +1491,7 @@ export function StAllCalc(){
 		// 基本パラメタを取得する
 		//----------------------------------------------------------------
 
-		window.n_A_BaseLV = eval(calcForm.A_BaseLV.value);
+		set_n_A_BaseLV(eval(calcForm.A_BaseLV.value));
 		set_n_A_JobLV(eval(calcForm.A_JobLV.value));
 
 		set_n_A_STR(eval(calcForm.A_STR.value));
@@ -1537,8 +1552,8 @@ export function StAllCalc(){
 		//----------------------------------------------------------------
 		attackMethodConf = CAttackMethodAreaComponentManager.GetAttackMethodConf();
 
-		window.n_A_ActiveSkill = attackMethodConf.GetSkillId();
-		window.n_A_ActiveSkillLV = attackMethodConf.GetSkillLv();
+		set_n_A_ActiveSkill(attackMethodConf.GetSkillId());
+		set_n_A_ActiveSkillLV(attackMethodConf.GetSkillLv());
 
 		attackMethodConfArray = [attackMethodConf];
 
@@ -1883,11 +1898,11 @@ export function StAllCalc(){
 		case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
 		case MOB_CONF_PLAYER_ID_SENTO_AREA_MH:
 		case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_SHINKIRO:
-			window.n_SiegeMode = true;
+			set_n_SiegeMode(true);
 			break;
 
 		default:
-			window.n_SiegeMode = false;
+			set_n_SiegeMode(false);
 		}
 
 
@@ -5621,7 +5636,7 @@ export function StAllCalc(){
 
 
 		// 範囲外補正
-		window.aspdRaw = aspd;
+		set_aspdRaw(aspd);
 		if(n_A_BaseLV >= 100){
 			if(aspd > 193) aspd = 193;
 		}else{
@@ -14774,7 +14789,7 @@ export function StAllCalc(){
 	n_B_FLEE = mobData[MONSTER_DATA_EXTRA_INDEX_FLEE];
 
 		// 錐効果の計算
-		window.n_A_QUAKE_KIRI = 0;
+		set_n_A_QUAKE_KIRI(0);
 
 		//----------------------------------------------------------------
 		// 「古びた迷彩ウサギフード」の、＋１０精錬による、錐効果
@@ -14859,20 +14874,20 @@ export function StAllCalc(){
 				ignoreDef += n_tok[ITEM_SP_IGNORE_DEF_RACE_SOLID + mobData[MONSTER_DATA_INDEX_RACE]];
 
 				// 錐効果値を計算
-				window.n_A_QUAKE_KIRI = mobData[MONSTER_DATA_INDEX_DEF_DIV_IGNORE_BUFF] * (100 - ignoreDef) / 100.0 / 2;
+				set_n_A_QUAKE_KIRI(mobData[MONSTER_DATA_INDEX_DEF_DIV_IGNORE_BUFF] * (100 - ignoreDef) / 100.0 / 2);
 
 				// エクスピアティオの効果で補正する
 				if (n_A_QUAKE_KIRI > 0) {
 					if (g_confDataSanzi[CCharaConfSanzi.CONF_ID_EXPIATIO] > 0) {
-						n_A_QUAKE_KIRI -= (n_A_QUAKE_KIRI * ((20 * g_confDataSanzi[CCharaConfSanzi.CONF_ID_EXPIATIO]) / 100));
+						set_n_A_QUAKE_KIRI(n_A_QUAKE_KIRI - (n_A_QUAKE_KIRI * ((20 * g_confDataSanzi[CCharaConfSanzi.CONF_ID_EXPIATIO]) / 100)));
 					}
 					else if (UsedSkillSearch(SKILL_ID_EXPIATIO)) {
-						n_A_QUAKE_KIRI -= (n_A_QUAKE_KIRI * ((20 * UsedSkillSearch(SKILL_ID_EXPIATIO)) / 100));
+						set_n_A_QUAKE_KIRI(n_A_QUAKE_KIRI - (n_A_QUAKE_KIRI * ((20 * UsedSkillSearch(SKILL_ID_EXPIATIO)) / 100)));
 					}
 				}
 
 				// 負数だと、floor 処理での丸め仕様が違うようなので。また、IE では Math.sign() 未サポート
-				window.n_A_QUAKE_KIRI = (n_A_QUAKE_KIRI >= 0 ? 1 : -1) * Math.floor(Math.abs(n_A_QUAKE_KIRI));
+				set_n_A_QUAKE_KIRI((n_A_QUAKE_KIRI >= 0 ? 1 : -1) * Math.floor(Math.abs(n_A_QUAKE_KIRI)));
 
 				n_tok[17] += n_A_QUAKE_KIRI;
 			}
@@ -15453,7 +15468,7 @@ export function getCompleteAvoidance() {
  * @returns {Number}
  */
 export function getFixedCastTimeReductionRate() {
-    window.n_A_Kotei_Cast_Keigen = 0;
+    set_n_A_Kotei_Cast_Keigen(0);
     // チェック用変数初期化
     // （固定詠唱短縮効果は、加算等はされず、最大の効果のみが適用される）
     // （なので、ITEM_SP 定義を検索してやる方法では、共通化ができない）
@@ -16113,13 +16128,13 @@ export function getFixedCastTimeReductionRate() {
 
 
     // 最大値のみ有効
-    window.n_A_Kotei_Cast_Keigen = Math.max(...chkary);
+    set_n_A_Kotei_Cast_Keigen(Math.max(...chkary));
 
     /**
      * プレイヤー状態異常「氷結」の効果
      */
     if (g_confDataDebuff[CCharaConfDebuff.CONF_ID_FREEZING]) {
-        n_A_Kotei_Cast_Keigen -= 50;
+        set_n_A_Kotei_Cast_Keigen(n_A_Kotei_Cast_Keigen - 50);
     }
 
     return n_A_Kotei_Cast_Keigen;
@@ -19349,7 +19364,7 @@ export function getDelayTimeReductionRate() {
         delay_time_reduction += 10 + 2 * bufLv;
     }
 	// 拡張情報 > 詠唱/ディレイ 表示用に確保
-	window.delayDownForDisp = delay_time_reduction;
+	set_delayDownForDisp(delay_time_reduction);
 
     return Math.min(100, delay_time_reduction);
 }
@@ -30537,7 +30552,7 @@ export function Init(jobId){
 
 	var i, idx = 0, objInput = null;
 
-	window.n_A_BaseLV = 1;
+	set_n_A_BaseLV(1);
 	set_n_A_JobLV(1);
 
 	set_n_A_STR(1);
@@ -30555,7 +30570,7 @@ export function Init(jobId){
 	set_SU_LUK(n_A_LUK);
 
 	document.calcForm.A_Weapon_zokusei.value = 0;
-	window.n_A_Weapon_zokusei = 0;
+	set_n_A_Weapon_zokusei(0);
 	document.calcForm.A_Weapon_ATKplus.value = 0;
 	set_n_A_Weapon_ATKplus(0);
 	set_n_A_Weapon2_ATKplus(0);

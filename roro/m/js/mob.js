@@ -45,6 +45,15 @@ import { SKILL_ID_EXPIATIO, SKILL_ID_HAKKEI } from './skill.dat.js';
 import { UsedSkillSearch, n_A_PassSkill3, n_A_PassSkill8 } from '../../../ro4/m/js/skillstate.js';
 import { GetMobConfInput } from './CMobConfInput.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: 旧 head.js の window 経由共有スクラッチ変数（宣言忘れ関数の var-leak 対応・ファイルローカル化）
+let B_Total_DEF = 0;
+let B_Total_MDEF = 0;
+
+// C-6: ro4 側共有 state（旧 head.js window 変数）
+import {
+         n_SiegeMode, n_A_ActiveSkill, n_tok,
+} from '../../../ro4/m/js/ro4-state.js';
+
 // C-6: 共有 state（旧 foot.js window 変数）
 import {
          n_A_JobLV, n_A_INT,
