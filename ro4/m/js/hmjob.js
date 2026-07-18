@@ -37,6 +37,12 @@ import {
 } from '../../../roro/m/js/skill.dat.js';
 import { UsedSkillSearch, n_A_PassSkill, n_A_PassSkill8 } from './skillstate.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: 共有 state（旧 foot.js window 変数）
+import {
+         SU_STR, SU_AGI, SU_VIT, SU_DEX,
+         SU_INT, SU_LUK, n_A_WeaponType,
+} from '../../../roro/m/js/roro-state.js';
+
 import { CAttackMethodAreaComponentManager } from './CAttackMethodAreaComponentManager.js';
 export let g_pureStatus = [];
 export let g_bonusStatus = [];

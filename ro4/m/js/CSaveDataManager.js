@@ -84,6 +84,15 @@ import { Click_A7, n_A_PassSkill7 } from './BuffItemAndFood.js';
 import { Click_A8, n_A_PassSkill8 } from './BuffOtherCategory.js';
 import { CAttackMethodAreaComponentManager } from './CAttackMethodAreaComponentManager.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: 共有 state（旧 foot.js window 変数）
+import {
+         n_A_HEAD_DEF_PLUS, n_A_BODY_DEF_PLUS, n_A_SHIELD_DEF_PLUS, n_A_SHOULDER_DEF_PLUS,
+         n_A_SHOES_DEF_PLUS, n_A_Weapon_Transcendence, n_A_Weapon2_Transcendence, n_A_HEAD_DEF_Transcendence,
+         n_A_SHIELD_DEF_Transcendence, n_A_BODY_DEF_Transcendence, n_A_SHOULDER_DEF_Transcendence, n_A_SHOES_DEF_Transcendence,
+         n_A_Weapon_ATKplus, n_A_Weapon2_ATKplus, n_A_PassSkill5, g_itemIdArray,
+         g_refinedArray, g_objMobConfInput,
+} from '../../../roro/m/js/roro-state.js';
+
 
 /**
  * セーブデータマネージャクラス.

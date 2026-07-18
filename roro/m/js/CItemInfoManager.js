@@ -21,6 +21,11 @@ import { HtmlCreateElement, HtmlCreateTextNode, HtmlRemoveOptionAll, HtmlCreateE
 import './timeitem.h.js';
 import { ITEM_SP_TIME_OBJ } from './timeitem.dat.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: 共有 state（旧 foot.js window 変数）
+import {
+         n_A_costume, g_itemIdArray,
+} from './roro-state.js';
+
 
 /**
  * アイテム情報マネージャクラス.

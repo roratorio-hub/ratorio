@@ -63,6 +63,12 @@ import {
 } from '../../../roro/m/js/skill.dat.js';
 import { UsedSkillSearch } from './skillstate.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: 共有 state（旧 foot.js window 変数）
+import {
+         SU_LUK, n_A_JobLV, n_A_LUK, n_A_WeaponType,
+         n_A_HEAD_DEF_PLUS, n_A_Weapon_ATKplus, n_A_Weapon2_ATKplus, n_A_PassSkill5,
+} from '../../../roro/m/js/roro-state.js';
+
 /* オートスペル設定　最大数 */
 export const AUTO_SPELL_SETTING_COUNT = 20;
 /* オートスペル系スキル　最大数 */

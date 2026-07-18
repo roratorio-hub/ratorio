@@ -462,6 +462,12 @@ import {
          SKILL_ID_TRUTH_OF_WIND,
 } from './skill.dat.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: 共有 state（旧 foot.js window 変数）
+import {
+         n_A_STR, n_A_AGI, n_A_DEX, n_A_INT,
+         n_A_WeaponType, n_A_SHIELD_DEF_PLUS,
+} from './roro-state.js';
+
 
 // UsedSkillSearch は skillstate.js (ro4) から RegisterUsedSkillSearch で注入される。
 // 直接 import すると skillstate → global.js → 本ファイル（global.js がモジュール

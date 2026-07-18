@@ -382,6 +382,14 @@ import {
 } from './skill.dat.js';
 import { n_A_PassSkill3, n_A_PassSkill4, n_A_PassSkill7, n_A_PassSkill8, UsedSkillSearch } from '../../../ro4/m/js/skillstate.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: 共有 state（旧 foot.js window 変数）
+import {
+         SU_STR, SU_AGI, SU_VIT, SU_DEX,
+         SU_INT, SU_LUK, n_A_JobLV, n_A_WeaponType,
+         n_A_HEAD_DEF_PLUS, n_A_BODY_DEF_PLUS, n_A_SHIELD_DEF_PLUS, n_A_SHOULDER_DEF_PLUS,
+         n_A_SHOES_DEF_PLUS, n_A_Weapon_ATKplus, n_A_Weapon2_ATKplus, n_A_costume,
+} from './roro-state.js';
+
 
 // キャラクターデータインデックス
 CGlobalConstManager.DefineEnum(

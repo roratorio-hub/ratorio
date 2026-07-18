@@ -15,6 +15,14 @@ import { g_rndOptListArray } from './rndoptlist.dat.js';
 import { g_rndOptTypeArray } from './rndopttype.dat.js';
 import { GetEquipRndOptTableKind, GetEquipRndOptTableValue, SetEquipRndOptTable } from './rndopttype.h.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: 共有 state（旧 foot.js window 変数）
+import {
+         SU_STR, n_A_HEAD_DEF_PLUS, n_A_BODY_DEF_PLUS, n_A_SHIELD_DEF_PLUS,
+         n_A_SHOULDER_DEF_PLUS, n_A_SHOES_DEF_PLUS, n_A_Weapon_ATKplus, n_A_Weapon2_ATKplus,
+         g_refinedArray,
+         SU_AGI, SU_VIT, SU_DEX, SU_INT, SU_LUK,
+} from './roro-state.js';
+
 
 
 export function GetObjectPrefixRndOpt(eqpRgnId) {

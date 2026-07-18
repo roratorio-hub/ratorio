@@ -45,6 +45,11 @@ import { SKILL_ID_EXPIATIO, SKILL_ID_HAKKEI } from './skill.dat.js';
 import { UsedSkillSearch, n_A_PassSkill3, n_A_PassSkill8 } from '../../../ro4/m/js/skillstate.js';
 import { GetMobConfInput } from './CMobConfInput.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: 共有 state（旧 foot.js window 変数）
+import {
+         n_A_JobLV, n_A_INT,
+} from './roro-state.js';
+
 /**
  * モンスター基本情報を取得する
  * @param {number} monsterId 

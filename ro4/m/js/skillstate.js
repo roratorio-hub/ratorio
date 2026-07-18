@@ -36,6 +36,11 @@ import {
          SKILL_ID_UNLIMIT
 } from '../../../roro/m/js/skill.dat.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: 共有 state（旧 foot.js window 変数）
+import {
+         n_A_WeaponType, n_A_HEAD_DEF_PLUS, n_A_SHOULDER_DEF_PLUS, n_A_Weapon_ATKplus,
+} from '../../../roro/m/js/roro-state.js';
+
 "use strict"
 
 export const BUFF_CONF_SELF_LIMIT    = 51;

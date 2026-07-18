@@ -58,13 +58,18 @@ import { GetObjectIdRndOptKind, GetObjectIdRndOptValue, RebuildRndOptSelect, Set
 import { CItemInfoManager } from './CItemInfoManager.js';
 import { g_extraInfoDataBridge } from './CExtraInfoDataBridge.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: 共有 state（旧 foot.js window 変数）
+import {
+         n_A_WeaponType, set_n_A_WeaponType, n_A_Weapon_Transcendence, n_A_Weapon2_Transcendence,
+         n_A_Weapon_ATKplus, n_A_Weapon2_ATKplus,
+} from './roro-state.js';
+
 // スパノビの魂による装備制限解除フラグ。本モジュールが所有者。
 // 書き手は foot.js の RefreshSuperNoviceFullWeapon（SetSuperNoviceFullWeapon 経由）と
 // 当モジュールの changeJobSettings（職変更時に undefined へリセット）。
 // ESM 移行(#1394)で foot.js 側にも別個の宣言ができてしまい状態が分断していたため、
 // 単一の所有者へ統一して live binding で共有する。
 export var g_bSuperNoviceFullWeapon;
-var n_A_WeaponType;
 var n_A_Weapon2Type;
 
 /**
@@ -229,8 +234,7 @@ export function OnChangeArmsTypeRight(itemKind){
 
 	// 武器種別の設定
 	HtmlSetObjectValueById("OBJID_ARMS_TYPE_RIGHT", itemKind);
-	n_A_WeaponType = itemKind;
-	window.n_A_WeaponType = n_A_WeaponType;
+	set_n_A_WeaponType(itemKind);
 
 
 	// 矢リストを再構築する

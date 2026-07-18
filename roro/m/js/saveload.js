@@ -106,6 +106,11 @@ import { Click_A4, n_A_PassSkill4 } from '../../../ro4/m/js/BuffGuildAndGospel.j
 import { Click_A7, n_A_PassSkill7 } from '../../../ro4/m/js/BuffItemAndFood.js';
 import { Click_A8, n_A_PassSkill8 } from '../../../ro4/m/js/BuffOtherCategory.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: 共有 state（旧 foot.js window 変数）
+import {
+         n_A_costume, n_A_PassSkill5, g_objMobConfInput,
+} from './roro-state.js';
+
 // ★★　VersionModify() 関数の修正も忘れずに　★★
 
 // CURRENT_VERSION = 11;	// ラトリオ様からフォーク

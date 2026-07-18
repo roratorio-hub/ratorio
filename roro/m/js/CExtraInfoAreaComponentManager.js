@@ -64,6 +64,15 @@ import {
 import { UsedSkillSearch } from '../../../ro4/m/js/skillstate.js';
 import { DISP_DATA_KEY_STRDEX_BONUS, g_extraInfoDataBridge } from './CExtraInfoDataBridge.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: 共有 state（旧 foot.js window 変数）
+import {
+         SU_STR, SU_AGI, SU_VIT, SU_DEX,
+         SU_INT, SU_LUK, n_A_JobLV, n_A_AGI,
+         n_A_VIT, n_A_DEX, n_A_INT, n_A_LUK,
+         n_A_STA, n_A_WIS, n_A_SPL, n_A_CRT,
+         n_A_BodyZokusei,
+} from './roro-state.js';
+
 //----------------------------------------------------------------
 // 拡張情報の種類
 //----------------------------------------------------------------

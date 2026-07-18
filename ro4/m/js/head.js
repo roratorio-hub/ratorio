@@ -536,6 +536,18 @@ import {
 import { UsedSkillSearch, n_A_PassSkill3, n_A_PassSkill4, n_A_PassSkill7, n_A_PassSkill8, ID_BUFF_MANUK_ISHI, ID_BUFF_VESPER_HONEY } from './skillstate.js';
 import { DISP_DATA_KEY_STRDEX_BONUS, g_extraInfoDataBridge } from '../../../roro/m/js/CExtraInfoDataBridge.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: 共有 state（旧 foot.js window 変数）
+import {
+         SU_STR, n_A_JobLV, n_A_STR, n_A_AGI,
+         n_A_VIT, n_A_DEX, n_A_INT, n_A_LUK,
+         n_A_WeaponType, n_A_HEAD_DEF_PLUS, n_A_BODY_DEF_PLUS, n_A_SHIELD_DEF_PLUS,
+         n_A_SHOULDER_DEF_PLUS, n_A_SHOES_DEF_PLUS, n_A_WeaponLV, n_A_Weapon_ATK,
+         n_A_Weapon_ATKplus, n_A_WeaponLV_seirenATK, n_A_WeaponLV_Minplus, n_A_WeaponLV_Maxplus,
+         n_A_Weapon2LV, n_A_Weapon2_ATK, n_A_Weapon2_ATKplus, n_A_Weapon2LV_seirenATK,
+         n_A_Weapon2LV_Minplus, n_A_Weapon2LV_Maxplus, n_A_BodyZokusei, n_B_DEF2,
+         n_B_MDEF2, n_A_PassSkill5,
+} from '../../../roro/m/js/roro-state.js';
+
 
 "use strict";
 
