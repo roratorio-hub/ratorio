@@ -9,7 +9,13 @@ import { UpdateLearnedSkillNotice } from './equip.js';
 import { ItemObjNew } from './item.dat.js';
 import { SkillObjNew } from './skill.dat.js';
 import { HtmlCreateElement, HtmlCreateTextNode } from '../../common/js/util.js';
+import { RegisterLearnedSkillSearch } from './CSkillManager.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: 共有 state 追加分
+import {
+         n_A_JOB,
+} from './roro-state.js';
+
 /**
  * 習得スキル欄の生成・更新・サーチなどの関数群
  */
@@ -25,6 +31,9 @@ for (let dmyidx = 0; dmyidx < LEARNED_SKILL_MAX_COUNT; dmyidx++) {
  * @param {Number} skillId 取得したいスキルのID
  * @returns {Number} スキルLv
  */
+// CSkillManager のスキル計算式から呼べるように注入する（循環 import 回避）
+RegisterLearnedSkillSearch((...a) => LearnedSkillSearch(...a));
+
 export function LearnedSkillSearch(skillId) {
 	// 設定可能な全ての習得スキルを取得する
 	const learnSkillIdArray = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, n_A_JOB).GetLearnSkillIdArray();
@@ -358,5 +367,4 @@ export function RefreshSkillColumnHeaderLearned(objSelect, changedIdx, newValue,
 }
 
 if (typeof window !== 'undefined') {
-    window.LearnedSkillSearch = LearnedSkillSearch;
 }

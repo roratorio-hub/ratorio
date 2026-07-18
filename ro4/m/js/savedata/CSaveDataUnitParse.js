@@ -57,6 +57,16 @@ import {
 } from '../../../../roro/m/js/mobconfplayer.js';
 import { GetHigherJobSeriesID, GetLowerJobSeriesID } from '../data/mig.job.h.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: JOB 定数
+import {
+         JOB_SERIES_ID_GUNSLINGER, JOB_SERIES_ID_SUPERNOVICE,
+} from '../data/mig.job.h.js';
+
+// C-6: global.js 管理の共有 conf state
+import {
+         g_confDataCustomAtk, g_confDataCustomDef, g_confDataCustomSkill, g_confDataCustomStatus,
+} from '../global.js';
+
 /**
  * セーブデータユニットクラス：パース開始用.
  * （他とは異なる特殊な構造、特殊な扱い）

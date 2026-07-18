@@ -22,6 +22,16 @@ import { GetHigherJobSeriesID, GetLowerJobSeriesID } from '../../../ro4/m/js/dat
 import { HtmlCreateElement, HtmlCreateTextNode, HtmlRemoveOptionAll, HtmlCreateElementOption, HtmlRemoveAllChild } from '../../common/js/util.js';
 import { n_A_PassSkill7 } from '../../../ro4/m/js/skillstate.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: 共有 state 追加分
+import {
+         n_A_JOB,
+} from './roro-state.js';
+
+// C-6: global.js 管理の共有 conf state
+import {
+         g_VariableCastTimeRate,
+} from '../../../ro4/m/js/global.js';
+
 // C-6: foot.js 公開関数（foot-bridge 経由）
 import {
          GetCastScalingOfSkillForCastTimeVary, GetCastFixOfSkillForCastTimeVary, GetCastScalingOfSkillForCastTimeFixed, GetCastFixOfSkillForCastTimeFixed,

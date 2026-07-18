@@ -15,6 +15,11 @@ import { g_rndOptListArray } from './rndoptlist.dat.js';
 import { g_rndOptTypeArray } from './rndopttype.dat.js';
 import { GetEquipRndOptTableKind, GetEquipRndOptTableValue, SetEquipRndOptTable } from './rndopttype.h.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: global.js 管理の共有 conf state
+import {
+         n_Nitou,
+} from '../../../ro4/m/js/global.js';
+
 // C-6: foot.js 公開関数（foot-bridge 経由）
 import {
          IsMatchSpDefId, CheckSpDefFriendlyOver, CheckSpDefBaseLvOver, CheckSpDefJobRestrict,

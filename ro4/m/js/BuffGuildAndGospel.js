@@ -145,6 +145,9 @@ export function Click_A4(recalc = false){
 }
 
 if (typeof window !== 'undefined') {
-    window.Click_A4 = Click_A4;
 }
 
+/* window compat — myInnerHtml の HTML 文字列 inline handler が参照（addEventListener 化は今後の課題） */
+if (typeof window !== 'undefined') {
+    window.Click_A4 = Click_A4;
+}

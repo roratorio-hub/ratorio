@@ -8,6 +8,11 @@ import { HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueByIdAsIn
 import { n_A_PassSkill8 } from './skillstate.js';
 export { n_A_PassSkill8 } from './skillstate.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: 共有 state 追加分
+import {
+         n_A_JOB,
+} from '../../../roro/m/js/roro-state.js';
+
 import { CAttackMethodAreaComponentManager } from './CAttackMethodAreaComponentManager.js';
 import { CTimeItemAreaComponentManager } from '../../../roro/m/js/CTimeItemAreaComponentManager.js';
 "use strict"
@@ -223,7 +228,10 @@ export function RefreshPetExplain() {
 }
 
 if (typeof window !== 'undefined') {
+}
+
+/* window compat — myInnerHtml の HTML 文字列 inline handler が参照（addEventListener 化は今後の課題） */
+if (typeof window !== 'undefined') {
     window.Click_A8 = Click_A8;
     window.OnChangePetSelect = OnChangePetSelect;
 }
-

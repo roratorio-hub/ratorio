@@ -494,6 +494,15 @@ let UsedSkillSearch = () => {
 export function RegisterUsedSkillSearch(fn) {
 	UsedSkillSearch = fn;
 }
+
+// LearnedSkillSearch も同様に learnedskill.js から注入される
+// （learnedskill.js は global.js との循環に含まれるため直接 import 不可）
+let LearnedSkillSearch = () => {
+	throw new Error('LearnedSkillSearch is not registered (learnedskill.js 未ロード)');
+};
+export function RegisterLearnedSkillSearch(fn) {
+	LearnedSkillSearch = fn;
+}
 /**
  * 各スキルの実質的な抽象クラスとして用いられるコンストラクタ関数.
  * CSkillManager.dataArray にインスタンスが格納され

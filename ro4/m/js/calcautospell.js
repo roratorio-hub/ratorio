@@ -63,6 +63,16 @@ import {
 } from '../../../roro/m/js/skill.dat.js';
 import { UsedSkillSearch } from './skillstate.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: JOB 定数
+import {
+         JOB_SERIES_ID_SWORDMAN, JOB_SERIES_ID_PRIEST, JOB_SERIES_ID_SAGE,
+} from './data/mig.job.h.js';
+
+// C-6: 共有 state 追加分
+import {
+         n_A_JOB,
+} from '../../../roro/m/js/roro-state.js';
+
 // C-6: head.js 公開関数（head-bridge 経由）
 import {
          GetActRateSandansho,

@@ -4,6 +4,11 @@ import './item.h.js';
 import { GetUnconfirmedHPSPArray } from '../../../ro4/m/js/data/mig.job.h.js';
 import { HtmlCreateTextSpan, HtmlRemoveAllChild } from '../../common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: 共有 state 追加分
+import {
+         n_A_JOB, g_lucky_over,
+} from './roro-state.js';
+
 // C-6: ro4 側共有 state（旧 head.js window 変数）
 import {
          n_A_BaseLV,

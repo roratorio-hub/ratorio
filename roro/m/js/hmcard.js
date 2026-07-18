@@ -59,6 +59,11 @@ import { MIG_ENCH_LIST_ID_SHINENNO_KAIRO_UPGRADE, MIG_ENCH_LIST_ID_SHINENTAIBUKI
 import { SLOT_INDEX_CARD_MIN, SLOT_INDEX_CARD_MAX } from './slotpager.js';
 import { HtmlGetElementById, HtmlCreateElement, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueById, HtmlSetObjectValueById, SetStatefullData } from '../../common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: global.js 管理の共有 conf state
+import {
+         n_Nitou,
+} from '../../../ro4/m/js/global.js';
+
 
 export const CardShortObj =[
 	 [

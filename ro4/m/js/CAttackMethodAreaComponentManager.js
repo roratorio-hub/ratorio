@@ -103,6 +103,16 @@ import {
          SKILL_ID_THUNDERING_FOCUS, SKILL_ID_THUNDERING_ORB,
 } from '../../../roro/m/js/skill.dat.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: JOB 定数
+import {
+         JOB_SERIES_ID_ROGUE,
+} from './data/mig.job.h.js';
+
+// C-6: 共有 state 追加分
+import {
+         n_A_JOB,
+} from '../../../roro/m/js/roro-state.js';
+
 // C-6: foot.js 公開関数（foot-bridge 経由）
 import {
          GetEquippedSPListEquip, GetEquippedSPValueArrayEquip, GetEquippedSPListCardAndElse, GetEquippedSPValueArrayCardAndElse,

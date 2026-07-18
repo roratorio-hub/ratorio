@@ -15,6 +15,16 @@ import { IsMatchJobRestrict } from '../../../ro4/m/js/data/mig.job.h.js';
 import { HtmlCreateElement, HtmlCreateTextNode, HtmlRemoveAllChild, HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById } from '../../common/js/util.js';
 import { n_A_LearnedSkill } from './learnedskill.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: 共有 state 追加分
+import {
+         n_A_JOB,
+} from './roro-state.js';
+
+// C-6: global.js 管理の共有 conf state
+import {
+         n_Nitou,
+} from '../../../ro4/m/js/global.js';
+
 // C-6: foot.js 公開関数（foot-bridge 経由）
 import {
          GetEquippedTotalSPEquip,

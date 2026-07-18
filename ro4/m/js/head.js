@@ -536,6 +536,26 @@ import {
 import { UsedSkillSearch, n_A_PassSkill3, n_A_PassSkill4, n_A_PassSkill7, n_A_PassSkill8, ID_BUFF_MANUK_ISHI, ID_BUFF_VESPER_HONEY } from './skillstate.js';
 import { DISP_DATA_KEY_STRDEX_BONUS, g_extraInfoDataBridge } from '../../../roro/m/js/CExtraInfoDataBridge.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: JOB 定数
+import {
+         JOB_SERIES_ID_MONK, JOB_SERIES_ID_TAEGKUON,
+} from './data/mig.job.h.js';
+
+// C-6: 共有 state 追加分
+import {
+         n_A_JOB, n_A_MATK, BK_n_A_MATK, n_A_Weapon2Type,
+} from '../../../roro/m/js/roro-state.js';
+
+// C-6: global.js 管理の共有 conf state
+import {
+         g_confDataIchizi, g_confDataNizi, g_confDataSanzi, g_confDataDebuff,
+         g_objCharaConfCustomAtk, g_objCharaConfCustomDef, g_objCharaConfCustomSkill, n_Nitou,
+         g_VariableCastTimeRate,
+} from './global.js';
+
+// C-6: 旧 global.js window 変数（読み書きとも head.js 内のみ → 内部化）
+let n_NitouCalc = false;
+
 // C-6: foot.js 公開関数（foot-bridge 経由。foot.js 直接 import は循環増悪のため不可）
 import {
          GetCastScalingOfSkillForCastTimeVary, GetCastFixOfSkillForCastTimeVary, GetCastScalingOfSkillForCastTimeFixed, GetCastFixOfSkillForCastTimeFixed,

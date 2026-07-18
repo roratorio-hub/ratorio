@@ -37,6 +37,16 @@ import {
 } from '../../../roro/m/js/skill.dat.js';
 import { UsedSkillSearch, n_A_PassSkill, n_A_PassSkill8 } from './skillstate.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: 共有 state 追加分
+import {
+         n_A_JOB,
+} from '../../../roro/m/js/roro-state.js';
+
+// C-6: global.js 管理の共有 conf state
+import {
+         g_confDataNizi, g_confDataYozi, g_objCharaConfCustomSpecStatus,
+} from './global.js';
+
 // C-6: head.js 公開関数（head-bridge 経由）
 import {
          calc, ApplyPhysicalSpecializeMonster,
@@ -59,6 +69,7 @@ import {
 } from '../../../roro/m/js/roro-state.js';
 
 import { CAttackMethodAreaComponentManager } from './CAttackMethodAreaComponentManager.js';
+import { set_n_Nitou } from './global.js';
 export let g_pureStatus = [];
 export let g_bonusStatus = [];
 
@@ -1786,7 +1797,7 @@ export function migrateOtherJob(jobId) {
 	showLoadingIndicator();
 	setTimeout(() => {
 		// 変更後の職業の二刀流可能性に合わせる
-		window.n_Nitou = IsDualArmsJob(jobData.getMigIdNum());
+		set_n_Nitou(IsDualArmsJob(jobData.getMigIdNum()));
 		// TODO: 暫定対処　旧形式の保存処理呼び出し
 		// 「プレイヤー状態異常設定」のように旧形式に存在しなかった入力項目は維持できないということ
 		dataURL = SaveSystem(funcModifySaveData);

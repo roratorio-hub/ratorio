@@ -382,6 +382,25 @@ import {
 } from './skill.dat.js';
 import { n_A_PassSkill3, n_A_PassSkill4, n_A_PassSkill7, n_A_PassSkill8, UsedSkillSearch } from '../../../ro4/m/js/skillstate.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: JOB 定数
+import {
+         JOB_SERIES_ID_NOVICE, JOB_SERIES_ID_SWORDMAN, JOB_SERIES_ID_MAGICIAN, JOB_SERIES_ID_ARCHER,
+         JOB_SERIES_ID_ACOLYTE, JOB_SERIES_ID_MERCHANT, JOB_SERIES_ID_THIEF, JOB_SERIES_ID_PRIEST,
+         JOB_SERIES_ID_HUNTER, JOB_SERIES_ID_MONK, JOB_SERIES_ID_BARD, JOB_SERIES_ID_DANCER,
+         JOB_SERIES_ID_GUNSLINGER, JOB_SERIES_ID_NINJA, JOB_SERIES_ID_TAEGKUON,
+} from '../../../ro4/m/js/data/mig.job.h.js';
+
+// C-6: 共有 state 追加分
+import {
+         n_A_JOB, n_A_Weapon2Type,
+} from './roro-state.js';
+
+// C-6: global.js 管理の共有 conf state
+import {
+         g_confDataIchizi, g_confDataNizi, g_confDataSanzi, g_confDataDebuff,
+         g_objCharaConfCustomAtk, g_objCharaConfCustomDef, g_objCharaConfCustomStatus,
+} from '../../../ro4/m/js/global.js';
+
 // C-6: foot.js 公開関数（foot-bridge 経由）
 import {
          GetEquippedTotalSPEquip, GetEquippedTotalSPCardAndElse, GetEquippedTotalSPArrow, EquipNumSearchFurubitaSet,

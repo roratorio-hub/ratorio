@@ -557,7 +557,10 @@ export function Click_A3(recalc = false) {
 }
 
 if (typeof window !== 'undefined') {
-    window.Skill3SW_2 = Skill3SW_2;
-    window.Click_A3 = Click_A3;
 }
 
+/* window compat — myInnerHtml の HTML 文字列 inline handler が参照（addEventListener 化は今後の課題） */
+if (typeof window !== 'undefined') {
+    window.Click_A3 = Click_A3;
+    window.Skill3SW_2 = Skill3SW_2;
+}

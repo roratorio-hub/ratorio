@@ -1,4 +1,5 @@
 // === AUTO-GENERATED IMPORTS ===
+import { set_n_Nitou } from '../../../ro4/m/js/global.js';
 import { g_attackMethodBridge } from './CAttackMethodDataBridge.js';
 import './arrow.h.js';
 import './card.h.js';
@@ -58,6 +59,16 @@ import { GetObjectIdRndOptKind, GetObjectIdRndOptValue, RebuildRndOptSelect, Set
 import { CItemInfoManager } from './CItemInfoManager.js';
 import { g_extraInfoDataBridge } from './CExtraInfoDataBridge.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: JOB 定数
+import {
+         JOB_SERIES_ID_ARCHER, JOB_SERIES_ID_THIEF, JOB_SERIES_ID_GUNSLINGER, JOB_SERIES_ID_SUPERNOVICE,
+} from '../../../ro4/m/js/data/mig.job.h.js';
+
+// C-6: global.js 管理の共有 conf state
+import {
+         n_Nitou,
+} from '../../../ro4/m/js/global.js';
+
 // C-6: head.js 公開関数（head-bridge 経由）
 import {
          calc,
@@ -74,6 +85,7 @@ import {
          n_A_WeaponType, set_n_A_WeaponType, n_A_Weapon_Transcendence, n_A_Weapon2_Transcendence,
          n_A_Weapon_ATKplus, n_A_Weapon2_ATKplus,
          SpeedPotName,
+         n_A_JOB, set_n_A_JOB, n_A_Weapon2Type, set_n_A_Weapon2Type,
 } from './roro-state.js';
 
 // スパノビの魂による装備制限解除フラグ。本モジュールが所有者。
@@ -82,7 +94,6 @@ import {
 // ESM 移行(#1394)で foot.js 側にも別個の宣言ができてしまい状態が分断していたため、
 // 単一の所有者へ統一して live binding で共有する。
 export var g_bSuperNoviceFullWeapon;
-var n_A_Weapon2Type;
 
 /**
  * スパノビの魂による装備制限解除フラグを設定する。
@@ -111,7 +122,7 @@ export function changeJobSettings(jobId) {
 	let jobData = JobMap.getById(jobId);
 
 	// 移行中のため、MigIDをグローバル変数「n_A_JOB」を設定
-	window.n_A_JOB = jobData.getMigIdNum();
+	set_n_A_JOB(jobData.getMigIdNum());
 
 	// 職業情報の初期化
 	InitJobInfo(jobId);
@@ -175,7 +186,7 @@ export function changeJobSettings(jobId) {
 	g_bSuperNoviceFullWeapon = undefined;
 	// 二刀流状態の解除
 	if (n_Nitou) {
-		window.n_Nitou = false;
+		set_n_Nitou(false);
 	}
 	OnChangeArmsTypeLeft(ITEM_KIND_NONE);
 
@@ -363,7 +374,7 @@ export function OnChangeArmsTypeRight(itemKind){
 				OnChangeArmsTypeLeft(ITEM_KIND_NONE);
 			}
 
-			window.n_Nitou = false;
+			set_n_Nitou(false);
 
 			// 左手武器欄を無効化する
 			_cf.A_Weapon2_ATKplus.disabled = true;
@@ -590,8 +601,7 @@ export function OnChangeArmsTypeLeft(itemKind){
 
 	// 武器種別の設定
 	HtmlSetObjectValueById("OBJID_ARMS_TYPE_LEFT", itemKind);
-	n_A_Weapon2Type = itemKind;
-	window.n_A_Weapon2Type = n_A_Weapon2Type;
+	set_n_A_Weapon2Type(itemKind);
 
 	// 対象セレクトボックスの取得
 	objSelectLeft = document.getElementById("OBJID_ARMS_LEFT");
@@ -629,7 +639,7 @@ export function OnChangeArmsTypeLeft(itemKind){
 		objArrayToHidden.push(objSelectShiledRefine);
 		objArrayToHidden.push(objSelectShiledTranscendence);
 
-		window.n_Nitou = true;
+		set_n_Nitou(true);
 	}
 
 	// 二刀流解除の場合
@@ -652,7 +662,7 @@ export function OnChangeArmsTypeLeft(itemKind){
 		objArrayToVisible.push(objSelectShiledRefine);
 		objArrayToVisible.push(objSelectShiledTranscendence);
 
-		window.n_Nitou = false;
+		set_n_Nitou(false);
 	}
 
 	for (idx = 0; idx < objArrayToVisible.length; idx++) {
@@ -724,8 +734,7 @@ export function RebuildArmsLeftSelect() {
 	//--------------------------------
 	// 左手武器種別の取得
 	//--------------------------------
-	n_A_Weapon2Type = HtmlGetObjectValueById("OBJID_ARMS_TYPE_LEFT", 0);
-	window.n_A_Weapon2Type = n_A_Weapon2Type;
+	set_n_A_Weapon2Type(HtmlGetObjectValueById("OBJID_ARMS_TYPE_LEFT", 0));
 
 
 	//--------------------------------

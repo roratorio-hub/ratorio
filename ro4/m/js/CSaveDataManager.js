@@ -84,6 +84,20 @@ import { Click_A7, n_A_PassSkill7 } from './BuffItemAndFood.js';
 import { Click_A8, n_A_PassSkill8 } from './BuffOtherCategory.js';
 import { CAttackMethodAreaComponentManager } from './CAttackMethodAreaComponentManager.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: 共有 state 追加分
+import {
+         n_A_JOB,
+} from '../../../roro/m/js/roro-state.js';
+
+// C-6: global.js 管理の共有 conf state
+import {
+         g_confDataIchizi, g_confDataNizi, g_confDataSanzi, g_confDataYozi,
+         g_confDataDebuff, g_confDataCustomAtk, g_confDataCustomDef, g_confDataCustomSkill,
+         g_confDataCustomSpecStatus, g_confDataCustomStatus, g_objCharaConfIchizi, g_objCharaConfNizi,
+         g_objCharaConfSanzi, g_objCharaConfYozi, g_objCharaConfDebuff, g_objCharaConfCustomAtk,
+         g_objCharaConfCustomDef, g_objCharaConfCustomSkill, g_objCharaConfCustomSpecStatus, g_objCharaConfCustomStatus,
+} from './global.js';
+
 // C-6: foot.js 公開関数（foot-bridge 経由）
 import {
          RefreshSuperNoviceFullWeapon,

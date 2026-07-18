@@ -15,6 +15,11 @@ import { GetJobName } from './data/mig.job.h.js';
 import { floorBigInt32 } from '../../../roro/common/js/util.js';
 import { g_Chart, setG_Chart } from './calchistory.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: 共有 state 追加分
+import {
+         n_A_JOB,
+} from '../../../roro/m/js/roro-state.js';
+
 // C-6: ro4 側共有 state（旧 head.js window 変数）
 import {
          n_A_BaseLV,

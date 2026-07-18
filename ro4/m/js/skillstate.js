@@ -36,6 +36,16 @@ import {
          SKILL_ID_UNLIMIT
 } from '../../../roro/m/js/skill.dat.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: 共有 state 追加分
+import {
+         n_A_JOB,
+} from '../../../roro/m/js/roro-state.js';
+
+// C-6: global.js 管理の共有 conf state
+import {
+         g_confDataIchizi, g_confDataNizi, g_confDataSanzi,
+} from './global.js';
+
 // C-6: 共有 state（旧 foot.js window 変数）
 import {
          n_A_WeaponType, n_A_HEAD_DEF_PLUS, n_A_SHOULDER_DEF_PLUS, n_A_Weapon_ATKplus,

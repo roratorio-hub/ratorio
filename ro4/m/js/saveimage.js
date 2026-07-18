@@ -10,6 +10,11 @@ import { GetRndOptDispName } from '../../../roro/m/js/rndopt.h.js';
 import { g_equipRndOptTable } from '../../../roro/m/js/rndopttype.h.js';
 import { g_extraInfoDataBridge } from '../../../roro/m/js/CExtraInfoDataBridge.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: global.js 管理の共有 conf state
+import {
+         n_Nitou,
+} from './global.js';
+
 // C-6: ro4 側共有 state（旧 head.js window 変数）
 import {
          delayDownForDisp, n_tok, g_perfectHitRate,

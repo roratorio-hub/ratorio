@@ -138,3 +138,18 @@ export function set_n_A_PassSkill5(v) { n_A_PassSkill5 = v; }
 export function set_g_itemIdArray(v) { g_itemIdArray = v; }
 export function set_g_refinedArray(v) { g_refinedArray = v; }
 export function set_g_objMobConfInput(v) { g_objMobConfInput = v; }
+
+// ---- C-6 最終バッチ: 素の window プロパティだった共有変数 ----
+export let n_A_JOB = 0;
+export let n_A_MATK = [0, 0, 0];
+export let BK_n_A_MATK = [0, 0, 0];
+export let g_lucky_over = 0;
+export let n_CastCutForDisp = 0;
+export let n_A_Weapon2Type = 0;
+
+export function set_n_A_JOB(v) { n_A_JOB = v; }
+export function set_n_A_MATK(v) { n_A_MATK = v; }
+export function set_BK_n_A_MATK(v) { BK_n_A_MATK = v; }
+export function set_g_lucky_over(v) { g_lucky_over = v; }
+export function set_n_CastCutForDisp(v) { n_CastCutForDisp = v; }
+export function set_n_A_Weapon2Type(v) { n_A_Weapon2Type = v; }

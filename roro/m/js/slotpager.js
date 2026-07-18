@@ -8,6 +8,11 @@ import { OnChangeCard, OnChangeCostume } from './equip.js';
 import { RebuildCostumeSelect, SetCostumeSlotEnabilityAll } from './hmcostume.js';
 import { GetObjectIdRndOptKind, GetObjectIdRndOptKindTD, GetObjectIdRndOptValue, GetObjectIdRndOptValueTD, RebuildRndOptSelect, SetRndOptEnablityAll, SetUpRndOptValue } from './hmrndopt.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: global.js 管理の共有 conf state
+import {
+         n_Nitou,
+} from '../../../ro4/m/js/global.js';
+
 //================================================================================================
 //
 // 定数定義

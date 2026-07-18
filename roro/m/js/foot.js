@@ -894,6 +894,35 @@ import {
          SKILL_ID_YOMIGAESHI, SKILL_ID_ZIRAISHIN, SKILL_ID_ZYUMONZIGIRI,
 } from './skill.dat.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: JOB 定数（mig.job.h.js の export const 化に伴う）
+import {
+         JOB_SERIES_ID_NOVICE, JOB_SERIES_ID_SWORDMAN, JOB_SERIES_ID_MAGICIAN, JOB_SERIES_ID_ARCHER,
+         JOB_SERIES_ID_ACOLYTE, JOB_SERIES_ID_MERCHANT, JOB_SERIES_ID_THIEF, JOB_SERIES_ID_PRIEST,
+         JOB_SERIES_ID_WIZARD, JOB_SERIES_ID_BLACKSMITH, JOB_SERIES_ID_HUNTER, JOB_SERIES_ID_ASSASIN,
+         JOB_SERIES_ID_CRUSADER, JOB_SERIES_ID_MONK, JOB_SERIES_ID_ROGUE, JOB_SERIES_ID_BARD,
+         JOB_SERIES_ID_DANCER, JOB_SERIES_ID_GUNSLINGER, JOB_SERIES_ID_NINJA, JOB_SERIES_ID_TAEGKUON,
+         JOB_SERIES_ID_SUMMONER,
+} from '../../../ro4/m/js/data/mig.job.h.js';
+
+// C-6: global.js 管理の共有 conf state
+import {
+         g_confDataIchizi, set_g_confDataIchizi, g_confDataNizi,
+         set_g_confDataNizi, g_confDataSanzi, set_g_confDataSanzi,
+         g_confDataYozi, set_g_confDataYozi, g_confDataDebuff,
+         set_g_confDataDebuff, g_confDataCustomAtk, set_g_confDataCustomAtk,
+         g_confDataCustomDef, set_g_confDataCustomDef, g_confDataCustomSkill,
+         set_g_confDataCustomSkill, g_confDataCustomSpecStatus, set_g_confDataCustomSpecStatus,
+         g_confDataCustomStatus, set_g_confDataCustomStatus, g_objCharaConfIchizi,
+         set_g_objCharaConfIchizi, g_objCharaConfNizi, set_g_objCharaConfNizi,
+         g_objCharaConfSanzi, set_g_objCharaConfSanzi, g_objCharaConfYozi,
+         set_g_objCharaConfYozi, g_objCharaConfDebuff, set_g_objCharaConfDebuff,
+         n_Nitou, set_costDownForDisp, set_g_VariableCastTimeRate,
+         g_objCharaConfCustomAtk, set_g_objCharaConfCustomAtk, g_objCharaConfCustomDef,
+         set_g_objCharaConfCustomDef, g_objCharaConfCustomSkill, set_g_objCharaConfCustomSkill,
+         g_objCharaConfCustomSpecStatus, set_g_objCharaConfCustomSpecStatus, g_objCharaConfCustomStatus,
+         set_g_objCharaConfCustomStatus,
+} from '../../../ro4/m/js/global.js';
+
 import { __registerFootFunctions } from './foot-bridge.js';
 
 // C-6: 旧 head.js の window 経由共有スクラッチ変数（宣言忘れ関数の var-leak 対応・ファイルローカル化）
@@ -938,6 +967,7 @@ import {
          n_A_PassSkill5, set_n_A_PassSkill5, g_itemIdArray, set_g_itemIdArray,
          g_refinedArray, set_g_refinedArray, g_objMobConfInput, set_g_objMobConfInput,
          SpeedPotName,
+         n_A_JOB, n_A_MATK, set_n_A_MATK, BK_n_A_MATK, set_BK_n_A_MATK, set_g_lucky_over, set_n_CastCutForDisp, n_A_Weapon2Type,
 } from './roro-state.js';
 
 // C-6: 共有 state（roro-state.js へ段階移行中）
@@ -3973,7 +4003,7 @@ export function StAllCalc(){
 	    charaData[CHARA_DATA_INDEX_STATUS_MATK] = statusMatk;
 	    charaData[CHARA_DATA_INDEX_WEAPON_MATK] = weaponMatk;
 
-	    window.n_A_MATK = [0, 0, 0];
+	    set_n_A_MATK([0, 0, 0]);
 
 	    if (charaData[CHARA_DATA_INDEX_WEAPON_MATK] >= 1) {
 	        var wPENA = Math.floor(charaData[CHARA_DATA_INDEX_WEAPON_MATK] * 2 / 3) - Math.floor(Math.floor(n_A_INT / 5) * Math.floor(n_A_INT / 5) / n_A_WeaponLV);
@@ -4003,7 +4033,7 @@ export function StAllCalc(){
 
 	    n_A_MATK[0] += charaData[CHARA_DATA_INDEX_STATUS_MATK];
 	    n_A_MATK[2] += charaData[CHARA_DATA_INDEX_STATUS_MATK];
-	    window.BK_n_A_MATK = [0, 0, 0];
+	    set_BK_n_A_MATK([0, 0, 0]);
 	    BK_n_A_MATK[0] = n_A_MATK[0];
 	    BK_n_A_MATK[2] = n_A_MATK[2];
 
@@ -5695,7 +5725,7 @@ export function StAllCalc(){
 		charaData[CHARA_DATA_INDEX_CAST_PARAM] = Math.max(0, n_A_DEX) + Math.max(0, n_A_INT) / 2;
 
 		// 変動詠唱時間の割合減少効果を適用する
-		window.g_VariableCastTimeRate = getVariableCastTimeRate();
+		set_g_VariableCastTimeRate(getVariableCastTimeRate());
 
 		// 固定詠唱時間の軽減率をセットする
 		charaData[CHARA_DATA_INDEX_FIXED_TIME] = getFixedCastTimeReductionRate();
@@ -15457,7 +15487,7 @@ export function getCompleteAvoidance() {
     if (lucky < 0) {
         lucky = 0;
     }
-    window.g_lucky_over = Math.max(0, Math.round(lucky * 10 - 950) / 10);
+    set_g_lucky_over(Math.max(0, Math.round(lucky * 10 - 950) / 10));
     lucky = Math.min(95, lucky);
 
     return lucky;
@@ -20256,7 +20286,7 @@ export function getVariableCastTimeRate() {
     }
 
     // 表示用変数に退避
-    window.n_CastCutForDisp = reduction_rate;
+    set_n_CastCutForDisp(reduction_rate);
 
     // ステータスによる詠唱時間軽減率に、装備・ステータスによる軽減率を適用する
     reduction_rate = Math.max(0, reduction_rate);
@@ -20578,7 +20608,7 @@ export function getSPCostReductionRate() {
         cost_reduction += confval;
     }
 
-    window.costDownForDisp = cost_reduction;
+    set_costDownForDisp(cost_reduction);
     cost_reduction = Math.min(100, cost_reduction);
     cost_reduction = 100 - cost_reduction;
 
@@ -30624,7 +30654,7 @@ export function Init(jobId){
 	}
 
 	// プレイヤー状態異常設定
-	window.g_confDataDebuff = Array(50).fill(0);
+	set_g_confDataDebuff(Array(50).fill(0));
 
 	// 時限効果
 	for (idx = 0; idx < g_timeItemConf.length; idx++) {
@@ -30680,36 +30710,36 @@ export function Init(jobId){
 	//--------------------------------
 	// 一次職支援設定欄の初期化
 	//--------------------------------
-	window.g_confDataIchizi = new Array();
-	window.g_objCharaConfIchizi = new CCharaConfIchizi(g_confDataIchizi);
+	set_g_confDataIchizi(new Array());
+	set_g_objCharaConfIchizi(new CCharaConfIchizi(g_confDataIchizi));
 	g_objCharaConfIchizi.BuildUpSelectArea(document.getElementById("OBJID_TD_CHARA_CONF_ICHIZI"), false);
 
 	//--------------------------------
 	// 二次職支援設定欄の初期化
 	//--------------------------------
-	window.g_confDataNizi = new Array();
-	window.g_objCharaConfNizi = new CCharaConfNizi(g_confDataNizi);
+	set_g_confDataNizi(new Array());
+	set_g_objCharaConfNizi(new CCharaConfNizi(g_confDataNizi));
 	g_objCharaConfNizi.BuildUpSelectArea(document.getElementById("OBJID_TD_CHARA_CONF_NIZI"), false);
 
 	//--------------------------------
 	// 三次職支援設定欄の初期化
 	//--------------------------------
-	window.g_confDataSanzi = new Array();
-	window.g_objCharaConfSanzi = new CCharaConfSanzi(g_confDataSanzi);
+	set_g_confDataSanzi(new Array());
+	set_g_objCharaConfSanzi(new CCharaConfSanzi(g_confDataSanzi));
 	g_objCharaConfSanzi.BuildUpSelectArea(document.getElementById("OBJID_TD_CHARA_CONF_SANZI"), false);
 
 	//--------------------------------
 	// 四次職支援設定欄の初期化
 	//--------------------------------
-	window.g_confDataYozi = new Array();
-	window.g_objCharaConfYozi = new CCharaConfYozi(g_confDataYozi);
+	set_g_confDataYozi(new Array());
+	set_g_objCharaConfYozi(new CCharaConfYozi(g_confDataYozi));
 	g_objCharaConfYozi.BuildUpSelectArea(document.getElementById("OBJID_TD_CHARA_CONF_YOZI"), false);
 
 	//--------------------------------
 	// デバフ設定欄の初期化
 	//--------------------------------
-	window.g_confDataDebuff = new Array();
-	window.g_objCharaConfDebuff = new CCharaConfDebuff(g_confDataDebuff);
+	set_g_confDataDebuff(new Array());
+	set_g_objCharaConfDebuff(new CCharaConfDebuff(g_confDataDebuff));
 	g_objCharaConfDebuff.BuildUpSelectArea(document.getElementById("OBJID_TD_CHARA_CONF_DEBUFF"), false);
 
 	document.calcForm.A3_SKILLSW.checked = 0;
@@ -30746,24 +30776,24 @@ export function Init(jobId){
 	//--------------------------------
 	// 性能カスタマイズ欄の初期化
 	//--------------------------------
-	window.g_confDataCustomStatus = new Array();
-	window.g_objCharaConfCustomStatus = new CCharaConfCustomStatus(g_confDataCustomStatus);
+	set_g_confDataCustomStatus(new Array());
+	set_g_objCharaConfCustomStatus(new CCharaConfCustomStatus(g_confDataCustomStatus));
 	g_objCharaConfCustomStatus.BuildUpSelectArea(document.getElementById("OBJID_TD_CHARA_CONF_CUSTOM_STATUS"), false);
 
-	window.g_confDataCustomAtk = new Array();
-	window.g_objCharaConfCustomAtk = new CCharaConfCustomAtk(g_confDataCustomAtk);
+	set_g_confDataCustomAtk(new Array());
+	set_g_objCharaConfCustomAtk(new CCharaConfCustomAtk(g_confDataCustomAtk));
 	g_objCharaConfCustomAtk.BuildUpSelectArea(document.getElementById("OBJID_TD_CHARA_CONF_CUSTOM_ATK"), false);
 
-	window.g_confDataCustomDef = new Array();
-	window.g_objCharaConfCustomDef = new CCharaConfCustomDef(g_confDataCustomDef);
+	set_g_confDataCustomDef(new Array());
+	set_g_objCharaConfCustomDef(new CCharaConfCustomDef(g_confDataCustomDef));
 	g_objCharaConfCustomDef.BuildUpSelectArea(document.getElementById("OBJID_TD_CHARA_CONF_CUSTOM_DEF"), false);
 
-	window.g_confDataCustomSkill = new Array();
-	window.g_objCharaConfCustomSkill = new CCharaConfCustomSkill(g_confDataCustomSkill);
+	set_g_confDataCustomSkill(new Array());
+	set_g_objCharaConfCustomSkill(new CCharaConfCustomSkill(g_confDataCustomSkill));
 	g_objCharaConfCustomSkill.BuildUpSelectArea(document.getElementById("OBJID_TD_CHARA_CONF_CUSTOM_SKILL"), false);
 
-	window.g_confDataCustomSpecStatus = new Array();
-	window.g_objCharaConfCustomSpecStatus = new CCharaConfCustomSpecStatus(g_confDataCustomSpecStatus);
+	set_g_confDataCustomSpecStatus(new Array());
+	set_g_objCharaConfCustomSpecStatus(new CCharaConfCustomSpecStatus(g_confDataCustomSpecStatus));
 	g_objCharaConfCustomSpecStatus.BuildUpSelectArea(document.getElementById("OBJID_TD_CHARA_CONF_CUSTOM_SPECSTATUS"), false);
 
 
