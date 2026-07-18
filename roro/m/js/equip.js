@@ -292,7 +292,7 @@ export function OnChangeArmsTypeRight(itemKind){
 
 			objSelectArrow = document.createElement("select");
 			objSelectArrow.setAttribute("id", "OBJID_SELECT_ARROW");
-			objSelectArrow.setAttribute("onChange", "StAllCalc() | AutoCalc()");
+			objSelectArrow.addEventListener("change", () => { StAllCalc(); AutoCalc(); });
 			objRoot.appendChild(objSelectArrow);
 		}
 
@@ -324,12 +324,14 @@ export function OnChangeArmsTypeRight(itemKind){
 
 		if(GetHigherJobSeriesID(n_A_JOB) == 8 && itemKind != ITEM_KIND_KATAR){
 			if (!n_Nitou) {
-				myInnerHtml("A_SobWeaponName","　左手："+'<select id="OBJID_ARMS_TYPE_LEFT" name="A_Weapon2Type" onChange = "OnChangeArmsTypeLeft(this[this.selectedIndex].value) | StAllCalc() | AutoCalc()"> <option value="0">素手or盾<option value="1">短剣<option value="2">片手剣<option value="6">片手斧</select>',0);
+				myInnerHtml("A_SobWeaponName","　左手："+'<select id="OBJID_ARMS_TYPE_LEFT" name="A_Weapon2Type"> <option value="0">素手or盾<option value="1">短剣<option value="2">片手剣<option value="6">片手斧</select>',0);
+				__WireArmsTypeLeftSelect();
 			}
 		}
 		else if((IsSameJobClass(JOB_ID_KAGERO) || IsSameJobClass(JOB_ID_OBORO)) && (itemKind != ITEM_KIND_FUMA)){
 			if (!n_Nitou) {
-				myInnerHtml("A_SobWeaponName","　左手："+'<select id="OBJID_ARMS_TYPE_LEFT" name="A_Weapon2Type" onChange = "OnChangeArmsTypeLeft(this[this.selectedIndex].value) | StAllCalc() | AutoCalc()"> <option value=0>素手or盾<option value=1>短剣</select>',0);
+				myInnerHtml("A_SobWeaponName","　左手："+'<select id="OBJID_ARMS_TYPE_LEFT" name="A_Weapon2Type"> <option value=0>素手or盾<option value=1>短剣</select>',0);
+				__WireArmsTypeLeftSelect();
 			}
 		}
 		else{
@@ -386,6 +388,17 @@ export function OnChangeArmsTypeRight(itemKind){
 		// アイテムデータ説明の更新
 		CItemInfoManager.OnChangeEquip(CONST_DATA_KIND_ITEM, n_A_Equip[EQUIP_REGION_ID_ARMS]);
 	}
+}
+
+/**
+ * myInnerHtml で生成した左手武器種セレクトボックスに change リスナーを接続する.
+ */
+function __WireArmsTypeLeftSelect() {
+	const objSelect = document.getElementById("OBJID_ARMS_TYPE_LEFT");
+	if (objSelect == null) {
+		return;
+	}
+	objSelect.addEventListener("change", (e) => { OnChangeArmsTypeLeft(e.currentTarget.value); StAllCalc(); AutoCalc(); });
 }
 
 
@@ -1986,12 +1999,3 @@ export function copyAccs(from, to){
 	}
 }
 
-/* window compat — dewindow フェーズで除去予定 */
-if (typeof window !== 'undefined') {
-    Object.assign(window, {
-        OnChangeCard,
-        OnChangeCostume,
-        OnChangeArmsTypeLeft,
-        OnChangeRandomEnchant,
-    });
-}

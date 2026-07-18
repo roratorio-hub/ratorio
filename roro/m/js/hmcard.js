@@ -1603,11 +1603,5 @@ export function ApplyCardShort(eqpRgnId, objidPrifix) {
 	LoadTomSelect();
 }
 
-/* window compat — dewindow フェーズで除去予定 */
-if (typeof window !== 'undefined') {
-    Object.assign(window, {
-        ApplyCardShort,
-    });
-}
 
 

@@ -198,7 +198,7 @@ export function CreateRndOptKind(objRoot, eqpRgnId, slotIndex) {
 
 	objSelect = HtmlCreateElement("select", objTd);
 	HtmlSetAttribute(objSelect, "id", objIdKind);
-	HtmlSetAttribute(objSelect, "onChange", "OnChangeRndOptKind(" + eqpRgnId + ", " + slotIndex + ") | AutoCalc()");
+	objSelect.addEventListener("change", () => { OnChangeRndOptKind(eqpRgnId, slotIndex); AutoCalc(); });
 
 	return objSelect;
 }
@@ -223,7 +223,7 @@ export function CreateRndOptValue(objRoot, eqpRgnId, slotIndex) {
 
 	objSelect = HtmlCreateElement("select", objTd);
 	HtmlSetAttribute(objSelect, "id", objIdValue);
-	HtmlSetAttribute(objSelect, "onChange", "OnChangeRandomEnchant() | AutoCalc()");
+	objSelect.addEventListener("change", () => { OnChangeRandomEnchant(); AutoCalc(); });
 
 	return objSelect;
 }
@@ -778,10 +778,4 @@ export function GetRndOptValue(eqpRgnId, spid, invalidItemIdArray, bListUp) {
 	}
 }
 
-/* window compat — dewindow フェーズで除去予定 */
-if (typeof window !== 'undefined') {
-    Object.assign(window, {
-        OnChangeRndOptKind,
-    });
-}
 
