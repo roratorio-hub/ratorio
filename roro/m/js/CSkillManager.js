@@ -462,6 +462,17 @@ import {
          SKILL_ID_TRUTH_OF_WIND,
 } from './skill.dat.js';
 // === END AUTO-GENERATED IMPORTS ===
+
+// UsedSkillSearch は skillstate.js (ro4) から RegisterUsedSkillSearch で注入される。
+// 直接 import すると skillstate → global.js → 本ファイル（global.js がモジュール
+// レベルで new CSkillManager() = Init 実行）の循環により、モジュール評価順が変わり
+// TDZ ReferenceError や mig.enchlist.dat.js 等の順序依存クラッシュを誘発するため。
+let UsedSkillSearch = () => {
+	throw new Error('UsedSkillSearch is not registered (skillstate.js 未ロード)');
+};
+export function RegisterUsedSkillSearch(fn) {
+	UsedSkillSearch = fn;
+}
 /**
  * 各スキルの実質的な抽象クラスとして用いられるコンストラクタ関数.
  * CSkillManager.dataArray にインスタンスが格納され

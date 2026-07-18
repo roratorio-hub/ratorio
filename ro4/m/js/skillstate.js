@@ -1,5 +1,6 @@
 // === AUTO-GENERATED IMPORTS ===
 import { g_constDataManager } from './global.js';
+import { RegisterUsedSkillSearch } from '../../../roro/m/js/CSkillManager.js';
 import { CCharaConfIchizi } from '../../../roro/m/js/CCharaConfIchizi.js';
 import { CCharaConfNizi } from '../../../roro/m/js/CCharaConfNizi.js';
 import { CCharaConfSanzi } from '../../../roro/m/js/CCharaConfSanzi.js';
@@ -306,6 +307,9 @@ export function UsedSkillSearch(sklId, bOnlyUsed = false) {
  * @param {Number} sklId 確認するスキル
  * @returns {Number} 設定されているLv. 異常な値がセットされている場合は何も返さない.
  */
+// CSkillManager のスキル計算式から呼べるように注入する（循環 import 回避・上記 import 参照）
+RegisterUsedSkillSearch(UsedSkillSearch);
+
 export function UsedSkillSearchSubUsedOnly(sklId) {
 	// 設定可能な全ての職固有自己支援スキルを取得する
 	const passiveSkillIdArray = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, n_A_JOB).GetPassiveSkillIdArray();
@@ -321,7 +325,3 @@ export function UsedSkillSearchSubUsedOnly(sklId) {
 	return 0;
 }
 
-if (typeof window !== 'undefined') {
-    window.UsedSkillSearch = UsedSkillSearch;
-    window.n_A_PassSkill8 = n_A_PassSkill8;
-}

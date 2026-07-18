@@ -128,7 +128,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 
 	// 初期化
 	n_AS_SKILL = [];
-	window.n_AS_SKILL = n_AS_SKILL;
 
 	for (var idx = 0; idx < AUTO_SPELL_SKILL_COUNT_MAX; idx++){
 		n_AS_DMG[idx][0] = 0;
@@ -1318,7 +1317,7 @@ export function BuildUpSettingHtmlAutoSpell(objTbody) {
 		objSelect = document.createElement("select");
 		objTd.appendChild(objSelect);
 		objSelect.setAttribute("id", "OBJID_AS_SKILL_ID_" + (OBJID_OFFSET_AS_SKILL_ID + idx));
-		objSelect.addEventListener('change', () => { window.StAllCalc(); OnChangeSettingAutoSpell(true); });
+		objSelect.addEventListener('change', () => { StAllCalc(); OnChangeSettingAutoSpell(true); });
 
 		//----------------------------------------------------------------
 		// オートスペルをソートする
@@ -1402,7 +1401,7 @@ export function BuildUpSettingHtmlAutoSpell(objTbody) {
 		objSelect = document.createElement("select");
 		objTd.appendChild(objSelect);
 		objSelect.setAttribute("id", "OBJID_AS_SKILL_LV_" + (OBJID_OFFSET_AS_SKILL_LV + idx));
-		objSelect.addEventListener('change', () => { window.StAllCalc(); OnChangeSettingAutoSpell(true); });
+		objSelect.addEventListener('change', () => { StAllCalc(); OnChangeSettingAutoSpell(true); });
 
 		// Lv-, 1, 2, ... , 10 を設定
 		for (var lvidx = 0; lvidx <= 10; lvidx++) {
@@ -1422,7 +1421,7 @@ export function BuildUpSettingHtmlAutoSpell(objTbody) {
 		objSelect = document.createElement("select");
 		objTd.appendChild(objSelect);
 		objSelect.setAttribute("id", "OBJID_AS_SKILL_PROB_" + (OBJID_OFFSET_AS_SKILL_PROB + idx));
-		objSelect.addEventListener('change', () => { window.StAllCalc(); OnChangeSettingAutoSpell(true); });
+		objSelect.addEventListener('change', () => { StAllCalc(); OnChangeSettingAutoSpell(true); });
 
 		for (var probidx = 0; probidx < AUTO_SPELL_PROB_ARRAY.length; probidx++) {
 			optionText = (AUTO_SPELL_PROB_ARRAY[probidx] / 10) + "%";
