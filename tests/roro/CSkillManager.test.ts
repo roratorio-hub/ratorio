@@ -1,5 +1,10 @@
 import { describe, it, expect } from 'vitest';
 import { CSkillData, CSkillManager } from '@roro/CSkillManager.js';
+import {
+    SKILL_ID_TUZYO_KOGEKI,
+    SKILL_ID_OKYU_TEATE,
+    SKILL_ID_GLACIER_NOVA,
+} from '@roro/skill.dat.js';
 
 describe('CSkillManager.js', () => {
     describe('CSkillData 静的プロパティ（インスタンス生成後に確定）', () => {
@@ -47,9 +52,12 @@ describe('CSkillManager.js', () => {
         it('GetElement が呼び出し可能',    () => expect(() => sm.GetElement(0, null, null)).not.toThrow());
         it('GetHitCount が呼び出し可能',   () => expect(() => sm.GetHitCount(0, 1, null, 0)).not.toThrow());
 
-        it('window.SKILL_ID_TUZYO_KOGEKI が 0 に設定される',
-            () => expect((window as any).SKILL_ID_TUZYO_KOGEKI).toBe(0));
-        it('window.SKILL_ID_OKYU_TEATE が 1 に設定される',
-            () => expect((window as any).SKILL_ID_OKYU_TEATE).toBe(1));
+        // 3e-2: skill.dat.js の const が Init の登録位置と一致することを動作で検証
+        it('import した SKILL_ID_TUZYO_KOGEKI が通常攻撃の登録位置を指す',
+            () => expect(sm.GetSkillName(SKILL_ID_TUZYO_KOGEKI)).toBe('通常攻撃'));
+        it('import した SKILL_ID_OKYU_TEATE が応急手当の登録位置を指す',
+            () => expect(sm.GetSkillName(SKILL_ID_OKYU_TEATE)).toBe('応急手当'));
+        it('3e-2 で追加した const（SKILL_ID_GLACIER_NOVA）が正しい登録位置を指す',
+            () => expect(sm.GetSkillName(SKILL_ID_GLACIER_NOVA)).toBe('(△)グレイシアノヴァ'));
     });
 });

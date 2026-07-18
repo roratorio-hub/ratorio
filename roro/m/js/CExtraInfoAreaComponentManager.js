@@ -57,7 +57,9 @@ import {
          SKILL_ID_SANCTUARY, SKILL_ID_SHINSENNA_EBI, SKILL_ID_SHOZIGENKAIRYO_ZOKA,
          SKILL_ID_SHOZIGENKAIRYO_ZOKA_R, SKILL_ID_SHUGO_FU,
          SKILL_ID_SP_KAIFUKURYOKU_KOZYO, SKILL_ID_TEIOAPUCHAGI, SKILL_ID_ZANEI,
-         SKILL_ID_ZYOKODO
+         SKILL_ID_ZYOKODO,
+         SKILL_ID_TURTLE_SPRINKLER,
+         SKILL_ID_MADOGEAR,
 } from './skill.dat.js';
 import { UsedSkillSearch } from '../../../ro4/m/js/skillstate.js';
 import { DISP_DATA_KEY_STRDEX_BONUS, g_extraInfoDataBridge } from './CExtraInfoDataBridge.js';
