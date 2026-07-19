@@ -4,6 +4,16 @@ import { COSTUME_REGION_ID_HEAD_UNDER } from './common.js';
 import { CostumeOBJ } from './costume.dat.js';
 import { HtmlGetElementById, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlSetObjectValueById, SetStatefullData } from '../../common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: global.js 管理の共有 conf state
+import {
+         n_Nitou,
+} from '../../../ro4/m/js/global.js';
+
+// C-6: 共有 state（旧 foot.js window 変数）
+import {
+         n_A_costume,
+} from './roro-state.js';
+
 
 
 /************************************************************************************************

@@ -1,3 +1,4 @@
+import { g_attackMethodBridge } from './CAttackMethodDataBridge.js';
 import { CGlobalConstManager } from './CGlobalConstManager.js';
 // === AUTO-GENERATED IMPORTS ===
 import { COLOR_CODE_TABLE_HEADER_IS_NOT_SET, COLOR_CODE_TABLE_HEADER_IS_SET } from './common.js';
@@ -225,7 +226,7 @@ export function CConfBase(confArray) {
 		objInput = document.createElement("input");
 		objInput.setAttribute("id", this.GetSwitchIdString(instanceNo));
 		objInput.setAttribute("type", "checkbox");
-		objInput.setAttribute("onClick", "CConfBase.OnClickSwitchHandler("+ instanceNo + ")");
+		objInput.addEventListener("click", () => CConfBase.OnClickSwitchHandler(instanceNo));
 		if (bAsExpand) {
 			objInput.setAttribute("checked", "checked");
 		}
@@ -325,7 +326,7 @@ export function CConfBase(confArray) {
 					// 選択セレクトボックスを生成
 					objSelect = document.createElement("select");
 					objSelect.setAttribute("id", controlId);
-					objSelect.setAttribute("onChange", "CConfBase.OnChangeValueHandler(" + instanceNo + ", true)");
+					objSelect.addEventListener("change", () => CConfBase.OnChangeValueHandler(instanceNo, true));
 					objTd.appendChild(objSelect);
 					// 範囲定義に従い、セレクトオプションを生成
 					controlValueMin = this.confDataObj[idx][CConfBase.CONF_DATA_INDEX_MIN_VALUE];
@@ -350,7 +351,7 @@ export function CConfBase(confArray) {
 					objInput = document.createElement("input");
 					objInput.setAttribute("id", controlId);
 					objInput.setAttribute("type", "checkbox");
-					objInput.setAttribute("onChange", "CConfBase.OnChangeValueHandler(" + instanceNo + ", true)");
+					objInput.addEventListener("change", () => CConfBase.OnChangeValueHandler(instanceNo, true));
 					objTd.appendChild(objInput);
 
 					// 初期値設定
@@ -373,7 +374,7 @@ export function CConfBase(confArray) {
 					objInput.setAttribute("type", "text");
 					objInput.setAttribute("id", controlId);
 					objInput.setAttribute("size", "6");
-					objInput.setAttribute("onChange", "CConfBase.OnChangeValueHandler(" + instanceNo + ", true)");
+					objInput.addEventListener("change", () => CConfBase.OnChangeValueHandler(instanceNo, true));
 					objTd.appendChild(objInput);
 
 					// 初期値設定
@@ -594,7 +595,7 @@ export function CConfBase(confArray) {
 			}
 		}
 		// 攻撃手段の更新
-		CAttackMethodAreaComponentManager.RebuildControls();
+		g_attackMethodBridge.rebuildControls?.();
 	}
 
 	/**
@@ -739,7 +740,4 @@ export function CConfBase(confArray) {
 	}
 }
 
-if (typeof window !== 'undefined') {
-    window.CConfBase = CConfBase;
-}
 

@@ -1,4 +1,5 @@
 // === AUTO-GENERATED IMPORTS ===
+import { PetIdToSetIdMap } from '../../m/js/itemset.dat.js';
 import '../../m/js/common.js';
 import '../../m/js/pet.h.js';
 import { CItemInfoManager } from '../../m/js/CItemInfoManager.js';

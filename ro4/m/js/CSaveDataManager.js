@@ -1,3 +1,4 @@
+import { n_A_Equip } from '../../../roro/m/js/roro-state.js';
 import { CSaveDataConst } from './savedata/CSaveDataConst.js';
 import { CSaveDataUnitTypeManager } from './savedata/CSaveDataUnitTypeManager.js';
 import { CSaveDataUnitParse } from './savedata/CSaveDataUnitParse.js';
@@ -78,12 +79,44 @@ import { SaveSystem } from '../../../roro/m/js/saveload.js';
 import { GetSlotMode, SLOTPAGER_MODE_CARD, SLOT_INDEX_CARD_MIN } from '../../../roro/m/js/slotpager.js';
 import { HtmlGetObjectValueByIdAsInteger, HtmlSetObjectCheckedById, HtmlSetObjectValueById, HtmlSelectObjectValueAsInteger, SetStatefullData, floorBigInt32, floorBigInt40 } from '../../../roro/common/js/util.js';
 import { Click_A1, n_A_PassSkill } from './BuffJobSpecificSelf.js';
-import { Click_A3, n_A_PassSkill3 } from './BuffMusicAndDance.js';
 import { Click_A4, n_A_PassSkill4 } from './BuffGuildAndGospel.js';
 import { Click_A7, n_A_PassSkill7 } from './BuffItemAndFood.js';
 import { Click_A8, n_A_PassSkill8 } from './BuffOtherCategory.js';
 import { CAttackMethodAreaComponentManager } from './CAttackMethodAreaComponentManager.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: 共有 state 追加分
+import {
+         n_A_JOB,
+} from '../../../roro/m/js/roro-state.js';
+
+// C-6: global.js 管理の共有 conf state
+import {
+         g_confDataIchizi, g_confDataNizi, g_confDataSanzi, g_confDataYozi,
+         g_confDataDebuff, g_confDataCustomAtk, g_confDataCustomDef, g_confDataCustomSkill,
+         g_confDataCustomSpecStatus, g_confDataCustomStatus, g_objCharaConfIchizi, g_objCharaConfNizi,
+         g_objCharaConfSanzi, g_objCharaConfYozi, g_objCharaConfDebuff, g_objCharaConfCustomAtk,
+         g_objCharaConfCustomDef, g_objCharaConfCustomSkill, g_objCharaConfCustomSpecStatus, g_objCharaConfCustomStatus,
+} from './global.js';
+
+// C-6: foot.js 公開関数（foot-bridge 経由）
+import {
+         RefreshSuperNoviceFullWeapon,
+} from '../../../roro/m/js/foot-bridge.js';
+
+// C-6: ro4 側共有 state（旧 head.js window 変数）
+import {
+         n_A_Arrow, set_n_A_Arrow,
+} from './ro4-state.js';
+
+// C-6: 共有 state（旧 foot.js window 変数）
+import {
+         n_A_HEAD_DEF_PLUS, n_A_BODY_DEF_PLUS, n_A_SHIELD_DEF_PLUS, n_A_SHOULDER_DEF_PLUS,
+         n_A_SHOES_DEF_PLUS, n_A_Weapon_Transcendence, n_A_Weapon2_Transcendence, n_A_HEAD_DEF_Transcendence,
+         n_A_SHIELD_DEF_Transcendence, n_A_BODY_DEF_Transcendence, n_A_SHOULDER_DEF_Transcendence, n_A_SHOES_DEF_Transcendence,
+         n_A_Weapon_ATKplus, n_A_Weapon2_ATKplus, n_A_PassSkill5, g_itemIdArray,
+         g_refinedArray, g_objMobConfInput,
+} from '../../../roro/m/js/roro-state.js';
+
 
 /**
  * セーブデータマネージャクラス.
@@ -886,7 +919,7 @@ export class CSaveDataManager {
 
 		// グローバル変数の初期化（移行対応変数のみ）
 		ResetConfDataAllMIG(false);
-		window.n_A_Arrow = 0;		// 再ロード時のバグ対応
+		set_n_A_Arrow(0);		// 再ロード時のバグ対応
 
 		// 必要な情報を収集する
 		const idxMap = new SKeyMap();
@@ -1009,7 +1042,7 @@ export class CSaveDataManager {
 		funcCallApplyBuffLv(this, SAVE_DATA_UNIT_TYPE_CHARA_DEBUFF, g_confDataDebuff);
 		g_objCharaConfDebuff.RefreshSelectAreaHeader();
 		g_objCharaConfDebuff.RefreshControlCSS();
-		funcCallApplyBuffLv(this, SAVE_DATA_UNIT_TYPE_SKILL_BUFF_MUSIC, n_A_PassSkill3);
+		// SKILL_BUFF_MUSIC（演奏/踊り系スキル）は機能削除済み — ユニットのパースは互換のため残るが適用しない
 		funcCallApplyBuffLv(this, SAVE_DATA_UNIT_TYPE_SKILL_BUFF_GUILD, n_A_PassSkill4);
 		funcCallApplyCompositBuff(this, SAVE_DATA_UNIT_TYPE_ITEM_BUFF, n_A_PassSkill7);
 		funcCallApplyTimeBuffID(this, SAVE_DATA_UNIT_TYPE_TIME_BUFF, g_timeItemConf);
@@ -1095,20 +1128,19 @@ export class CSaveDataManager {
 		// 画面表示リフレッシュ処理（既存移植）
 		OnClickSkillSWLearned();
 		if(arrowArray[0] === undefined){
-			window.n_A_Arrow = 0;
+			set_n_A_Arrow(0);
 		}
 		else{
-			window.n_A_Arrow = (arrowArray[0] - 1);
+			set_n_A_Arrow((arrowArray[0] - 1));
 		}
 		const obj_select_arrow = document.getElementById("OBJID_SELECT_ARROW")
-		HtmlSelectObjectValueAsInteger(obj_select_arrow, window.n_A_Arrow);
+		HtmlSelectObjectValueAsInteger(obj_select_arrow, n_A_Arrow);
 		Click_A8(false);	// BuffChara（旧：支援スキル８（その他の支援/設定））
 		Click_A1(false);	// BuffSelf
 		g_objCharaConfIchizi.OnSaveDataLoaded();
 		g_objCharaConfNizi.OnSaveDataLoaded();
 		g_objCharaConfSanzi.OnSaveDataLoaded();
 		g_objCharaConfYozi.OnSaveDataLoaded();
-		Click_A3(false);	// BuffMusic
 		Click_A4(false);	// BuffGuild
 		Click_A7(false);	// BuffItem（旧：支援スキル７（アイテム（食品/他）））
 		CTimeItemAreaComponentManager.CloseArea();

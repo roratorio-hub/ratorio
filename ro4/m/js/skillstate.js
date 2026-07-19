@@ -1,5 +1,6 @@
 // === AUTO-GENERATED IMPORTS ===
 import { g_constDataManager } from './global.js';
+import { RegisterUsedSkillSearch } from '../../../roro/m/js/CSkillManager.js';
 import { CCharaConfIchizi } from '../../../roro/m/js/CCharaConfIchizi.js';
 import { CCharaConfNizi } from '../../../roro/m/js/CCharaConfNizi.js';
 import { CCharaConfSanzi } from '../../../roro/m/js/CCharaConfSanzi.js';
@@ -35,6 +36,21 @@ import {
          SKILL_ID_UNLIMIT
 } from '../../../roro/m/js/skill.dat.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: 共有 state 追加分
+import {
+         n_A_JOB,
+} from '../../../roro/m/js/roro-state.js';
+
+// C-6: global.js 管理の共有 conf state
+import {
+         g_confDataIchizi, g_confDataNizi, g_confDataSanzi,
+} from './global.js';
+
+// C-6: 共有 state（旧 foot.js window 変数）
+import {
+         n_A_WeaponType, n_A_HEAD_DEF_PLUS, n_A_SHOULDER_DEF_PLUS, n_A_Weapon_ATKplus,
+} from '../../../roro/m/js/roro-state.js';
+
 "use strict"
 
 export const BUFF_CONF_SELF_LIMIT    = 51;
@@ -45,7 +61,12 @@ export const BUFF_CONF_OTHER_LIMIT   = 28;
 
 /** 職固有自己支援 設定値の配列 */
 export let n_A_PassSkill  = Array(BUFF_CONF_SELF_LIMIT).fill(0);
-/** 一次職支援（音楽・ダンス） 設定値の配列 */
+/**
+ * 一次職支援（音楽・ダンス） 設定値の配列
+ * 「演奏/踊り系スキル」ウィンドウは機能削除済みのため常にゼロ固定。
+ * 旧セーブデータ（SaveData[448-508] / CSaveDataUnitSkillBuffMusic）の
+ * フォーマット互換（保存側の位置埋め）のためだけに残している。
+ */
 export let n_A_PassSkill3 = Array(BUFF_CONF_MUSICAL_LIMIT).fill(0);
 /** ギルド・ゴスペル 設定値の配列 */
 export let n_A_PassSkill4 = Array(BUFF_CONF_GUILD_LIMIT).fill(0);
@@ -306,6 +327,9 @@ export function UsedSkillSearch(sklId, bOnlyUsed = false) {
  * @param {Number} sklId 確認するスキル
  * @returns {Number} 設定されているLv. 異常な値がセットされている場合は何も返さない.
  */
+// CSkillManager のスキル計算式から呼べるように注入する（循環 import 回避・上記 import 参照）
+RegisterUsedSkillSearch(UsedSkillSearch);
+
 export function UsedSkillSearchSubUsedOnly(sklId) {
 	// 設定可能な全ての職固有自己支援スキルを取得する
 	const passiveSkillIdArray = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, n_A_JOB).GetPassiveSkillIdArray();
@@ -321,7 +345,3 @@ export function UsedSkillSearchSubUsedOnly(sklId) {
 	return 0;
 }
 
-if (typeof window !== 'undefined') {
-    window.UsedSkillSearch = UsedSkillSearch;
-    window.n_A_PassSkill8 = n_A_PassSkill8;
-}

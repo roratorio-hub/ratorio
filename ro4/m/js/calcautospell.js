@@ -1,4 +1,5 @@
 // === AUTO-GENERATED IMPORTS ===
+import { n_A_Equip, n_A_card } from '../../../roro/m/js/roro-state.js';
 import '../../../roro/m/js/autospell.h.js';
 import '../../../roro/m/js/card.h.js';
 import '../../../roro/m/js/common.js';
@@ -25,7 +26,11 @@ import {
 import {
          SERE_SUPPORT_SKILL_ID_COLD_FORCE, SERE_SUPPORT_SKILL_ID_DEEP_POISONING,
          SERE_SUPPORT_SKILL_ID_EARTH_CARE, SERE_SUPPORT_SKILL_ID_FLAME_TECHNIQUE,
-         SERE_SUPPORT_SKILL_ID_GRACE_BREEZE, SkillObjNew
+         SERE_SUPPORT_SKILL_ID_GRACE_BREEZE, SkillObjNew,
+         SKILL_ID_AUTO_FIRING_LAUNCHER, SKILL_ID_BASIC_GRENADE_LEARNED_LEVEL, SKILL_ID_EARTH_DRILL, SKILL_ID_EARTH_STAMP,
+         SKILL_ID_GLACIER_NOVA, SKILL_ID_GLACIER_SHARD, SKILL_ID_GRENADES_DROPPING_LEARNED_LEVEL, SKILL_ID_GROUND_BLOOM,
+         SKILL_ID_HASTY_FIRE_IN_THE_HOLE_LEARNED_LEVEL, SKILL_ID_RYUSE_RAKKA_TSUIGEKI, SKILL_ID_SOLID_STOMP, SKILL_ID_TERRA_HARVEST,
+         SKILL_ID_TERRA_WAVE,
 } from '../../../roro/m/js/skill.dat.js';
 import {
          SKILL_ID_ABYSS_SQUARE, SKILL_ID_ABYSS_SQUARE_LEARNED_LEVEL,
@@ -55,10 +60,48 @@ import {
          SKILL_ID_SORYUKYAKU, SKILL_ID_SOUL_EXPANSION, SKILL_ID_SOUL_STRIKE,
          SKILL_ID_SPEAR_BOOMERANG, SKILL_ID_SPELL_FIST, SKILL_ID_SPIRAL_PIERCE,
          SKILL_ID_STORM_GUST, SKILL_ID_TENRACHIMO, SKILL_ID_TURN_UNDEAD,
-         SKILL_ID_TUZYO_KOGEKI, SKILL_ID_WUG_BITE, SKILL_ID_WUG_STRIKE
+         SKILL_ID_TUZYO_KOGEKI, SKILL_ID_WUG_BITE, SKILL_ID_WUG_STRIKE,
 } from '../../../roro/m/js/skill.dat.js';
 import { UsedSkillSearch } from './skillstate.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: JOB 定数
+import {
+         JOB_SERIES_ID_SWORDMAN, JOB_SERIES_ID_PRIEST, JOB_SERIES_ID_SAGE,
+} from './data/mig.job.h.js';
+
+// C-6: 共有 state 追加分
+import {
+         n_A_JOB,
+} from '../../../roro/m/js/roro-state.js';
+
+// C-6: head.js 公開関数（head-bridge 経由）
+import {
+         GetActRateSandansho,
+} from './head-bridge.js';
+
+// C-6: foot.js 公開関数（foot-bridge 経由）
+import {
+         GetEquippedSPValueArrayEquip, GetEquippedSPValueArrayCardAndElse,
+} from '../../../roro/m/js/foot-bridge.js';
+
+// C-6: 旧 head.js の window 経由共有スクラッチ変数（宣言忘れ関数の var-leak 対応・ファイルローカル化）
+let itemCountRight = 0;
+let itemCountLeft = 0;
+let cardCount = 0;
+let w_DMG_AS_OverHP = 0;
+
+// C-6: ro4 側共有 state（旧 head.js window 変数）
+import {
+         n_A_ActiveSkill, n_A_ActiveSkillLV, n_Enekyori, w_DMG,
+         n_AS_check_3dan,
+} from './ro4-state.js';
+
+// C-6: 共有 state（旧 foot.js window 変数）
+import {
+         SU_LUK, n_A_JobLV, n_A_LUK, n_A_WeaponType,
+         n_A_HEAD_DEF_PLUS, n_A_Weapon_ATKplus, n_A_Weapon2_ATKplus, n_A_PassSkill5,
+} from '../../../roro/m/js/roro-state.js';
+
 /* オートスペル設定　最大数 */
 export const AUTO_SPELL_SETTING_COUNT = 20;
 /* オートスペル系スキル　最大数 */
@@ -124,7 +167,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 
 	// 初期化
 	n_AS_SKILL = [];
-	window.n_AS_SKILL = n_AS_SKILL;
 
 	for (var idx = 0; idx < AUTO_SPELL_SKILL_COUNT_MAX; idx++){
 		n_AS_DMG[idx][0] = 0;
@@ -1314,7 +1356,7 @@ export function BuildUpSettingHtmlAutoSpell(objTbody) {
 		objSelect = document.createElement("select");
 		objTd.appendChild(objSelect);
 		objSelect.setAttribute("id", "OBJID_AS_SKILL_ID_" + (OBJID_OFFSET_AS_SKILL_ID + idx));
-		objSelect.addEventListener('change', () => { window.StAllCalc(); OnChangeSettingAutoSpell(true); });
+		objSelect.addEventListener('change', () => { StAllCalc(); OnChangeSettingAutoSpell(true); });
 
 		//----------------------------------------------------------------
 		// オートスペルをソートする
@@ -1398,7 +1440,7 @@ export function BuildUpSettingHtmlAutoSpell(objTbody) {
 		objSelect = document.createElement("select");
 		objTd.appendChild(objSelect);
 		objSelect.setAttribute("id", "OBJID_AS_SKILL_LV_" + (OBJID_OFFSET_AS_SKILL_LV + idx));
-		objSelect.addEventListener('change', () => { window.StAllCalc(); OnChangeSettingAutoSpell(true); });
+		objSelect.addEventListener('change', () => { StAllCalc(); OnChangeSettingAutoSpell(true); });
 
 		// Lv-, 1, 2, ... , 10 を設定
 		for (var lvidx = 0; lvidx <= 10; lvidx++) {
@@ -1418,7 +1460,7 @@ export function BuildUpSettingHtmlAutoSpell(objTbody) {
 		objSelect = document.createElement("select");
 		objTd.appendChild(objSelect);
 		objSelect.setAttribute("id", "OBJID_AS_SKILL_PROB_" + (OBJID_OFFSET_AS_SKILL_PROB + idx));
-		objSelect.addEventListener('change', () => { window.StAllCalc(); OnChangeSettingAutoSpell(true); });
+		objSelect.addEventListener('change', () => { StAllCalc(); OnChangeSettingAutoSpell(true); });
 
 		for (var probidx = 0; probidx < AUTO_SPELL_PROB_ARRAY.length; probidx++) {
 			optionText = (AUTO_SPELL_PROB_ARRAY[probidx] / 10) + "%";

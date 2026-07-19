@@ -42,9 +42,33 @@ import {
 import { CCharaConfNizi } from './CCharaConfNizi.js';
 import { CCharaConfSanzi } from './CCharaConfSanzi.js';
 import { SKILL_ID_EXPIATIO, SKILL_ID_HAKKEI } from './skill.dat.js';
-import { UsedSkillSearch, n_A_PassSkill3, n_A_PassSkill8 } from '../../../ro4/m/js/skillstate.js';
+import { UsedSkillSearch, n_A_PassSkill8 } from '../../../ro4/m/js/skillstate.js';
 import { GetMobConfInput } from './CMobConfInput.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: global.js 管理の共有 conf state
+import {
+         g_confDataNizi, g_confDataSanzi,
+} from '../../../ro4/m/js/global.js';
+
+// C-6: foot.js 公開関数（foot-bridge 経由）
+import {
+         ROUNDDOWN,
+} from './foot-bridge.js';
+
+// C-6: 旧 head.js の window 経由共有スクラッチ変数（宣言忘れ関数の var-leak 対応・ファイルローカル化）
+let B_Total_DEF = 0;
+let B_Total_MDEF = 0;
+
+// C-6: ro4 側共有 state（旧 head.js window 変数）
+import {
+         n_SiegeMode, n_A_ActiveSkill, n_tok,
+} from '../../../ro4/m/js/ro4-state.js';
+
+// C-6: 共有 state（旧 foot.js window 変数）
+import {
+         n_A_JobLV, n_A_INT,
+} from './roro-state.js';
+
 /**
  * モンスター基本情報を取得する
  * @param {number} monsterId 
@@ -1409,16 +1433,6 @@ export function GetMobDataParameters(monsterId, mobData){
 		mobData[MONSTER_DATA_INDEX_JOB_EXP] = Math.floor(mobData[MONSTER_DATA_INDEX_JOB_EXP] * ratio / 100);
 	}
 
-	//----------------------------------------------------------------
-	// 「演奏/踊り系スキル　ニヨルドの宴」の効果
-	//----------------------------------------------------------------
-	if (n_A_PassSkill3[8]) {
-		if (mobData[MONSTER_DATA_INDEX_BOSS_TYPE] == MONSTER_BOSSTYPE_NONE) {
-			ratio = 125 + 11 * n_A_PassSkill3[8];
-			mobData[MONSTER_DATA_INDEX_BASE_EXP] = Math.floor(mobData[MONSTER_DATA_INDEX_BASE_EXP] * ratio / 100);
-			mobData[MONSTER_DATA_INDEX_JOB_EXP] = Math.floor(mobData[MONSTER_DATA_INDEX_JOB_EXP] * ratio / 100);
-		}
-	}
 
 	return mobData;
 }

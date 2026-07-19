@@ -8,6 +8,26 @@ import {
 } from './chara.js';
 import { HtmlGetObjectValueByIdAsInteger } from '../../common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: 共有 state（旧 foot.js window 変数）
+import {
+         SU_STR, SU_AGI, SU_VIT, SU_DEX,
+         SU_INT, SU_LUK, n_A_STR, n_A_AGI,
+         n_A_VIT, n_A_DEX, n_A_INT, n_A_LUK,
+} from './roro-state.js';
+
+// C-6: 共有 state（旧 foot.js window 変数）
+import {
+         g_ITEM_SP_FLEE_PLUS_value_forCalcData,
+         g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData,
+         g_ITEM_SP_ASPD_UP_value_forCalcData,
+         g_ITEM_SP_STR_PLUS_PLANE_value_forCalcData,
+         g_ITEM_SP_AGI_PLUS_PLANE_value_forCalcData,
+         g_ITEM_SP_VIT_PLUS_PLANE_value_forCalcData,
+         g_ITEM_SP_INT_PLUS_PLANE_value_forCalcData,
+         g_ITEM_SP_DEX_PLUS_PLANE_value_forCalcData,
+         g_ITEM_SP_LUK_PLUS_PLANE_value_forCalcData,
+} from './roro-state.js';
+
 
 /**
  * 計算データテキスト作成クラス.

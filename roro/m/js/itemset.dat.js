@@ -1,5 +1,7 @@
 
-import { ITEM_SET_PET_ID_OFFSET } from './itemset.h.js';
+// ペットID指定のオフセット（カードと同じように指定するので、カードIDで実現しないぐらい大きな値を設定）
+// 3f-5: itemset.h.js から移動（このファイルを依存ゼロのデータモジュールに保つため。itemset.h.js が再エクスポートする）
+export const ITEM_SET_PET_ID_OFFSET = 100000;
 
 export const ItemIdToSetIdMap = new Array();
 
@@ -7216,9 +7218,3 @@ CardIdToSetIdMap[4463] = [3610,];
 
 	// itemset はセーブデータに書き出されないので
 	// 現実的な範囲において itemsetID の上限値を気にする必要はありません
-if (typeof window !== 'undefined') {
-    window.ItemIdToSetIdMap = ItemIdToSetIdMap;
-    window.w_SE = w_SE;
-    window.CardIdToSetIdMap = CardIdToSetIdMap;
-    window.PetIdToSetIdMap = PetIdToSetIdMap;
-}

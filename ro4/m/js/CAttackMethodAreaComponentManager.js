@@ -24,12 +24,13 @@ import {
          USABEL_SKILL_ID_MAGMA_ILLUPTION_3, USABEL_SKILL_ID_METALIC_SOUND_3,
          USABEL_SKILL_ID_METEOR_STORM_5, USABEL_SKILL_ID_PSYCHIC_WAVE_3,
          USABEL_SKILL_ID_RESERECTION_BY_YGGDRASILLNO_HA, USABEL_SKILL_ID_SOUL_STRIKE_5,
-         USABEL_SKILL_ID_TEIOAPUCHAGI_7
-} from '../../../roro/m/js/usableskill.dat.js';
+         USABEL_SKILL_ID_TEIOAPUCHAGI_7,
+         } from '../../../roro/m/js/usableskill.dat.js';
 import { USABLE_SKILL_ID_CUSTOM_BIAS } from '../../../roro/m/js/usableskill.h.js';
 import { GetHigherJobSeriesID, GetLowerJobSeriesID, IsSameJobClass } from './data/mig.job.h.js';
 import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectCheckedById, HtmlSetObjectCheckedById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById } from '../../../roro/common/js/util.js';
 import { MIG_JOB_ID_BIOLO, MIG_JOB_ID_DRAGON_KNIGHT, MIG_JOB_ID_MEISTER, MIG_JOB_ID_SPIRIT_HANDLER } from './data/mig.job.dat.js';
+import { g_attackMethodBridge } from '../../../roro/m/js/CAttackMethodDataBridge.js';
 import {
          SKILL_ID_ABYSS_SQUARE, SKILL_ID_ACIDIFIED_ZONE_CHI, SKILL_ID_ACIDIFIED_ZONE_HI,
          SKILL_ID_ACIDIFIED_ZONE_KAZE, SKILL_ID_ACIDIFIED_ZONE_MIZU,
@@ -90,9 +91,33 @@ import {
          SKILL_ID_TENGETSU, SKILL_ID_TENRACHIMO, SKILL_ID_TETRA_BOLTEX,
          SKILL_ID_TUZYO_KOGEKI, SKILL_ID_VERATURE_SPEAR, SKILL_ID_VIGILANT_AT_NIGHT,
          SKILL_ID_WATER_DRAGON_BREATH, SKILL_ID_WILD_FIRE, SKILL_ID_WUG_BITE,
-         SKILL_ID_YOMIGAESHI, SKILL_ID_ZIRAISHIN, SKILL_ID_ZYUMONZIGIRI
+         SKILL_ID_YOMIGAESHI, SKILL_ID_ZIRAISHIN, SKILL_ID_ZYUMONZIGIRI,
+         SKILL_ID_ABYSS_FLAME, SKILL_ID_ALPHA_CLAW, SKILL_ID_BLAZING_FLAME_BLAST, SKILL_ID_CHASING_BREAK,
+         SKILL_ID_CHASING_SHOT, SKILL_ID_CROSS_SLASH, SKILL_ID_DIVINUS_FLOS, SKILL_ID_DRAGONIC_PIERCE,
+         SKILL_ID_DUST_EXPLOSION, SKILL_ID_EARTH_DRILL, SKILL_ID_EARTH_STAMP, SKILL_ID_FERAL_CLAW,
+         SKILL_ID_FRENZY_FANG, SKILL_ID_GLACIER_SHARD, SKILL_ID_HYUN_ROK_SPIRIT_POWER, SKILL_ID_ICE_PILLAR,
+         SKILL_ID_IMPERIAL_CROSS, SKILL_ID_PINION_SHOT, SKILL_ID_POWERFUL_SWING, SKILL_ID_PRIMAL_CLAW,
+         SKILL_ID_QUILL_SPEAR, SKILL_ID_RADIANT_SPEAR, SKILL_ID_RHYTHMICAL_WAVE, SKILL_ID_ROARING_CHARGE,
+         SKILL_ID_ROARING_PIERCER, SKILL_ID_SAVAGE_LUNGE, SKILL_ID_SOLID_STOMP, SKILL_ID_TEMPEST_FLAP,
+         SKILL_ID_TENSE, SKILL_ID_TERRA_HARVEST, SKILL_ID_TERRA_WAVE, SKILL_ID_THUNDERING_CALL,
+         SKILL_ID_THUNDERING_FOCUS, SKILL_ID_THUNDERING_ORB,
 } from '../../../roro/m/js/skill.dat.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: JOB 定数
+import {
+         JOB_SERIES_ID_ROGUE,
+} from './data/mig.job.h.js';
+
+// C-6: 共有 state 追加分
+import {
+         n_A_JOB,
+} from '../../../roro/m/js/roro-state.js';
+
+// C-6: foot.js 公開関数（foot-bridge 経由）
+import {
+         GetEquippedSPListEquip, GetEquippedSPValueArrayEquip, GetEquippedSPListCardAndElse, GetEquippedSPValueArrayCardAndElse,
+} from '../../../roro/m/js/foot-bridge.js';
+
 //----------------------------------------------------------------
 // オプションリストの種別
 //----------------------------------------------------------------
@@ -4377,6 +4402,8 @@ CAttackMethodAreaComponentManager.CreateNoticeBlock = function () {
 // TODO: 現状、呼び出しに任せる
 // CAttackMethodAreaComponentManager.RebuildControls();
 
-if (typeof window !== 'undefined') {
-    window.CAttackMethodAreaComponentManager = CAttackMethodAreaComponentManager;
-}
+// roro 側ファイル（equip / hmcard / CConfBase / saveload）向けのブリッジ登録。
+// 直接 import は head.js への static import パスを生むため不可（reference.md 参照）
+g_attackMethodBridge.rebuildControls = () => CAttackMethodAreaComponentManager.RebuildControls();
+g_attackMethodBridge.getAttackMethodConf = () => CAttackMethodAreaComponentManager.GetAttackMethodConf();
+g_attackMethodBridge.setAttackMethodConf = (conf) => CAttackMethodAreaComponentManager.SetAttackMethodConf(conf);

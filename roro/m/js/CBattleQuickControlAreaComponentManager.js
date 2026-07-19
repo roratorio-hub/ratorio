@@ -5,6 +5,11 @@ import { g_timeItemConf, g_timeItemConfEffective } from '../../../ro4/m/js/globa
 import { CTimeItemAreaComponentManager } from './CTimeItemAreaComponentManager.js';
 import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById } from '../../common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: head.js 公開関数（head-bridge 経由）
+import {
+         calc,
+} from '../../../ro4/m/js/head-bridge.js';
+
 /**
  * 時限アイテムエリアコンポーネントマネージャクラス.
  */

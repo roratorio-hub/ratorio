@@ -16,7 +16,6 @@ export default defineConfig({
             'ro4/BuffGuildAndGospel.test.ts',
             'ro4/BuffOtherCategory.test.ts',
             'ro4/BuffItemAndFood.test.ts',
-            'ro4/BuffMusicAndDance.test.ts',
         ],
         coverage: {
             provider: 'v8',

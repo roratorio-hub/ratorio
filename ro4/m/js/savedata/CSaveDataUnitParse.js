@@ -35,7 +35,7 @@ import {
 // === AUTO-GENERATED IMPORTS ===
 import '../../../../roro/m/js/item.h.js';
 import { CSaveDataConverter } from '../../../../roro/m/js/CSaveDataConverter.js';
-import { CSaveDataMappingManager } from '../../../../roro/m/js/CSaveDataMappingManager.js';
+import { CSaveDataMappingManager, CURRENT_VERSION } from '../../../../roro/m/js/CSaveDataMappingManager.js';
 import {
          ITEM_ID_ARROW_NONE, ITEM_ID_BULLET_NONE, ITEM_ID_ISHO_BEGINNER_BO,
          ITEM_ID_ISHO_NONE, ItemObjNew
@@ -57,6 +57,16 @@ import {
 } from '../../../../roro/m/js/mobconfplayer.js';
 import { GetHigherJobSeriesID, GetLowerJobSeriesID } from '../data/mig.job.h.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: JOB 定数
+import {
+         JOB_SERIES_ID_GUNSLINGER, JOB_SERIES_ID_SUPERNOVICE,
+} from '../data/mig.job.h.js';
+
+// C-6: global.js 管理の共有 conf state
+import {
+         g_confDataCustomAtk, g_confDataCustomDef, g_confDataCustomSkill, g_confDataCustomStatus,
+} from '../global.js';
+
 /**
  * セーブデータユニットクラス：パース開始用.
  * （他とは異なる特殊な構造、特殊な扱い）

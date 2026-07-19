@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import '/workspace/ratorio/roro/m/js/CGlobalConstManager.js';
 import {
     CConfBaseSelectData, CConfBaseConfData,
@@ -28,12 +28,25 @@ describe('CConfBase2.js', () => {
         });
     });
 
-    describe('window グローバル登録', () => {
-        // onClick="CConfBase2.OnClickSwitchHandler(...)" 形式のインライン文字列ハンドラは
-        // グローバルスコープで評価されるため window.CConfBase2 が必須。
-        // compat ブロックが誤って除去された場合に検出するためのリグレッションテスト。
-        it('window.CConfBase2 が登録されている', () => {
-            expect((globalThis as any).CConfBase2).toBe(CConfBase2);
+    // 3f-3: インライン文字列ハンドラ → addEventListener 化に伴い、
+    // window 登録のリグレッションテストをリスナー配線の behavior テストに置換
+    describe('スイッチの click 配線 (3f-3)', () => {
+        it('BuildUpSelectArea が生成したスイッチの click で OnClickSwitchHandler が呼ばれる', () => {
+            const mngParam = new CConfBaseManagementParam();
+            // ヘッダ更新（RefreshSelectAreaHeader）が参照するアクティブ設定データのスタブ
+            mngParam.SetActiveConfData({ IsDefaultValues: () => true });
+            const inst: any = new CConfBase2(mngParam);
+            inst.InitData();
+            const spy = vi.spyOn(CConfBase2 as any, 'OnClickSwitchHandler').mockImplementation(() => {});
+            const root = document.createElement('div');
+            document.body.appendChild(root);
+            inst.BuildUpSelectArea(root, false);
+            const sw = document.getElementById(inst.GetSwitchIdString(inst.instanceNo)) as HTMLElement;
+            expect(sw).not.toBeNull();
+            sw.click();
+            expect(spy).toHaveBeenCalledWith(inst.instanceNo);
+            spy.mockRestore();
+            document.body.innerHTML = '';
         });
     });
 });
