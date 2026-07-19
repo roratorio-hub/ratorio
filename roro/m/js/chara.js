@@ -381,7 +381,7 @@ import {
          SKILL_ID_VACUUM_EXTREME, SKILL_ID_WASHINO_ME, SKILL_ID_WATER_DRAGON_BREATH,
          SKILL_ID_WEAPON_CRUSH, SKILL_ID_WUG_RIDER, SKILL_ID_YARI_SEISAKU,
 } from './skill.dat.js';
-import { n_A_PassSkill3, n_A_PassSkill4, n_A_PassSkill7, n_A_PassSkill8, UsedSkillSearch } from '../../../ro4/m/js/skillstate.js';
+import { n_A_PassSkill4, n_A_PassSkill7, n_A_PassSkill8, UsedSkillSearch } from '../../../ro4/m/js/skillstate.js';
 // === END AUTO-GENERATED IMPORTS ===
 // C-6: JOB 定数
 import {
@@ -831,140 +831,36 @@ export function ExBuffNumSearch(exBufId) {
 
 	switch (exBufId) {
 
-	// 支援イドゥンの林檎
-	case EXBUF_ID_IDUNNNO_RINGO:
-		exBufNum = n_A_PassSkill3[3];
-		break;
 
-	// 支援イドゥンの林檎　支援者ＶＩＴランク
-	case EXBUF_ID_IDUNNNO_RINGO_BUFFER_VITRANK:
-		if (n_A_PassSkill3[3]) exBufNum = n_A_PassSkill3[23];
-		break;
 
-	// 支援イドゥンの林檎　支援者補助スキルレベル
-	case EXBUF_ID_IDUNNNO_RINGO_BUFFER_SKILLLV:
-		if (n_A_PassSkill3[3]) exBufNum = n_A_PassSkill3[33];
-		break;
 
-	// 支援ハミング
-	case EXBUF_ID_HUMMING:
-		exBufNum = n_A_PassSkill3[4];
-		break;
 
-	// 支援ハミング　支援者ＤＥＸランク
-	case EXBUF_ID_HUMMING_BUFFER_DEXRANK:
-		if (n_A_PassSkill3[3]) exBufNum = n_A_PassSkill3[24];
-		break;
 
-	// 支援ハミング　支援者補助スキルレベル
-	case EXBUF_ID_HUMMING_BUFFER_SKILLLV:
-		if (n_A_PassSkill3[3]) exBufNum = n_A_PassSkill3[34];
-		break;
 
-	// 支援サービスフォーユー
-	case EXBUF_ID_SERVICE_FOR_YOU:
-		exBufNum = n_A_PassSkill3[6];
-		break;
 
-	// 支援サービスフォーユー　支援者ＩＮＴランク
-	case EXBUF_ID_SERVICE_FOR_YOU_BUFFER_INTRANK:
-		if (n_A_PassSkill3[6]) exBufNum = n_A_PassSkill3[26];
-		break;
 
-	// 支援サービスフォーユー　支援者補助スキルレベル
-	case EXBUF_ID_SERVICE_FOR_YOU_BUFFER_SKILLLV:
-		if (n_A_PassSkill3[6]) exBufNum = n_A_PassSkill3[36];
-		break;
 
-	// 支援戦太鼓の響き
-	case EXBUF_ID_IKUSADAIKONO_HIBIKI:
-		exBufNum = n_A_PassSkill3[9];
-		break;
 
-	// 支援風車に向かって突撃
-	case EXBUF_ID_FUSHANIMUKATTE_TOTSUGEKI:
-		if (n_A_PassSkill3[19] == 1) exBufNum = n_A_PassSkill3[37];
-		break;
 
-	// 支援風車に向かって突撃　支援者ジョブレベル
-	case EXBUF_ID_FUSHANIMUKATTE_TOTSUGEKI_BUFFER_JOBLV:
-		if (n_A_PassSkill3[19] == 1) exBufNum = n_A_PassSkill3[46];
-		break;
 
-	// 支援風車に向かって突撃　支援者補助スキルレベル
-	case EXBUF_ID_FUSHANIMUKATTE_TOTSUGEKI_BUFFER_SKILLLV:
-		if (n_A_PassSkill3[19] == 1) exBufNum = n_A_PassSkill3[38];
-		break;
 
-	// 支援エコーの歌
-	case EXBUF_ID_ECHONO_UTA:
-		if (n_A_PassSkill3[19] == 2) exBufNum = n_A_PassSkill3[37];
-		break;
 
-	// 支援エコーの歌　支援者ジョブレベル
-	case EXBUF_ID_ECHONO_UTA_BUFFER_JOBLV:
-		if (n_A_PassSkill3[19] == 2) exBufNum = n_A_PassSkill3[46];
-		break;
 
-	// 支援エコーの歌　支援者補助スキルレベル
-	case EXBUF_ID_ECHONO_UTA_BUFFER_SKILLLV:
-		if (n_A_PassSkill3[19] == 2) exBufNum = n_A_PassSkill3[38];
-		break;
 
-	// 支援恋人たちのためのシンフォニー
-	case EXBUF_ID_KOIBITOTACHINOTAMENO_SYMPHONY:
-		if (n_A_PassSkill3[19] == 5) exBufNum = n_A_PassSkill3[37];
-		break;
 
-	// 支援恋人たちのためのシンフォニー　支援者ジョブレベル
-	case EXBUF_ID_KOIBITOTACHINOTAMENO_SYMPHONY_BUFFER_JOBLV:
-		if (n_A_PassSkill3[19] == 5) exBufNum = n_A_PassSkill3[46];
-		break;
 
-	// 支援恋人たちのためのシンフォニー　支援者補助スキルレベル
-	case EXBUF_ID_KOIBITOTACHINOTAMENO_SYMPHONY_BUFFER_SKILLLV:
-		if (n_A_PassSkill3[19] == 5) exBufNum = n_A_PassSkill3[38];
-		break;
 
 	// 支援フリッグの歌
 	case EXBUF_ID_FRIGGNO_UTA:
 		exBufNum = g_confDataSanzi[CCharaConfSanzi.CONF_ID_FRIGGNO_UTA];
 		break;
 
-	// 支援フライデーナイトフィーバー
-	case EXBUF_ID_FRYDAY_NIGHT_FEVER:
-		if (n_A_PassSkill3[39] == 1) exBufNum = n_A_PassSkill3[40];
-		break;
 
-	// 支援レーラズの霧
-	case EXBUF_ID_RELAZUNO_TSUYU:
-		if (n_A_PassSkill3[39] == 3) exBufNum = n_A_PassSkill3[40];
-		break;
 
-	// 支援レーラズの霧　ミンストレルワンダラーの数
-	case EXBUF_ID_RELAZUNO_TSUYU_COUNT_OF_MINWAN:
-		if (n_A_PassSkill3[39] == 3) exBufNum = n_A_PassSkill3[41];
-		break;
 
-	// 支援ビヨンドオブウォークライ（敵から）
-	case EXBUF_ID_BEYOND_OF_WARCRAY:
-		if (n_A_PassSkill3[39] == 4) exBufNum = n_A_PassSkill3[40];
-		break;
 
-	// 支援ビヨンドオブウォークライ（敵から）　ミンストレルワンダラーの数
-	case EXBUF_ID_BEYOND_OF_WARCRAY_COUNT_OF_MINWAN:
-		if (n_A_PassSkill3[39] == 4) exBufNum = n_A_PassSkill3[41];
-		break;
 
-	// 支援ダンスウィズウォーグ（レンジャー有）
-	case EXBUF_ID_DANCE_WITH_WUG:
-		if (n_A_PassSkill3[39] == 6) exBufNum = n_A_PassSkill3[40];
-		break;
 
-	// 支援ダンスウィズウォーグ（レンジャー有）　ミンストレルワンダラーの数
-	case EXBUF_ID_DANCE_WITH_WUG_COUNT_OF_MINWAN:
-		if (n_A_PassSkill3[39] == 6) exBufNum = n_A_PassSkill3[41];
-		break;
 
 	}
 

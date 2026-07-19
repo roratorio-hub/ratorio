@@ -36,7 +36,7 @@ export function Click_Skill8SW(){
     if(n_Skill8SW){
 		let str;
 		str = '<TABLE Border style="white-space:nowrap;"><TR><TD id="A8TD" Colspan="2" class="title"><input id="OBJID_CHECK_A8_SKILLSW" type="checkbox" name="A8_SKILLSW"><label for="OBJID_CHECK_A8_SKILLSW">その他の支援/設定 (暫定追加機能)</label><SPAN id="A8used"></SPAN></TD></TR>';
-		str += '<TR><TD>ペット：<select id="OBJID_SELECT_PET" name="A8_Skill0" onchange="StAllCalc(); OnChangePetSelect();"></select></TD><TD>親密度：<select id="OBJID_SELECT_PET_FRIENDLITY" name="A8_Skill17" onChange="StAllCalc(); Click_A8(true);"></select></TD></TR>';
+		str += '<TR><TD>ペット：<select id="OBJID_SELECT_PET" name="A8_Skill0"></select></TD><TD>親密度：<select id="OBJID_SELECT_PET_FRIENDLITY" name="A8_Skill17"></select></TD></TR>';
 		str += '<TR><TD colspan="2"><SPAN id="OBJID_SPAN_PET_EXPLAIN"></SPAN></TD></TR>';
 		str += '<TR><TD id="EN801"></TD><TD id="EN802"></TD></TR>';
 		str += '<TR><TD id="EN803"></TD><TD id="EN804"></TD></TR>';
@@ -75,71 +75,87 @@ export function Click_Skill8SW(){
 		for (let idx = FRIENDLITY_ID_AUTO; idx < FRIENDLITY_ID_COUNT; idx++) {
 			HtmlCreateElementOption(idx, GetFriendlityText(idx), objSelect);
 		}
-		myInnerHtml("EN801",'戦闘教範系<select name="A8_Skill1" onChange="StAllCalc() | Click_A8(true)"></select>',0);
+		myInnerHtml("EN801",'戦闘教範系<select name="A8_Skill1"></select>',0);
 		let w_name = ["なし","25","50","75","100","(125)","(150)"];
 		for (let i = 0; i <= 6; i++) {
             document.calcForm.A8_Skill1.options[i] = new Option(w_name[i],i);
         }
-		myInnerHtml("EN802",'Job教範系<select name="A8_Skill2" onChange="StAllCalc() | Click_A8(true)"></select>',0);
+		myInnerHtml("EN802",'Job教範系<select name="A8_Skill2"></select>',0);
 		w_name = ["なし","50","(75)","(100)"];
 		for (let i = 0; i <= 3; i++) {
             document.calcForm.A8_Skill2.options[i] = new Option(w_name[i],i);
         }
-		myInnerHtml("EN803",'ネットカフェ経験値UP<select name="A8_Skill3" onChange="StAllCalc() | Click_A8(true)"></select>',0);
+		myInnerHtml("EN803",'ネットカフェ経験値UP<select name="A8_Skill3"></select>',0);
 		document.calcForm.A8_Skill3.options[0] = new Option("-",0);
 		for (let i = 1; i <= 2; i++) {
 			let wy = 50 * i;
 			let wx = (100 + wy) / 100;
 			document.calcForm.A8_Skill3.options[i] = new Option("+"+ wy +"%("+ wx +"倍)",i);
 		}
-		myInnerHtml("EN804",'経験値増加キャンペーン<select name="A8_Skill7" onChange="StAllCalc() | Click_A8(true)"></select>',0);
+		myInnerHtml("EN804",'経験値増加キャンペーン<select name="A8_Skill7"></select>',0);
 		document.calcForm.A8_Skill7.options[0] = new Option("-",0);
 		for (let i = 1; i <= 8; i++){
 			let wy = 25 * i;
 			let wx = (100 + wy) / 100;
 			document.calcForm.A8_Skill7.options[i] = new Option(wx+"倍(+"+(25*i)+"%)",i);
 		}
-		myInnerHtml("EN822",'OTP<select name="A8_Skill22" onChange="StAllCalc() | Click_A8(true)"></select>',0);
+		myInnerHtml("EN822",'OTP<select name="A8_Skill22"></select>',0);
 		document.calcForm.A8_Skill22.options[0] = new Option("ログインボーナスなし",0);
 		document.calcForm.A8_Skill22.options[1] = new Option("ブロンズ(Exp+5%)",1);
 		document.calcForm.A8_Skill22.options[2] = new Option("シルバー(↑＋スピードポーション)",2);
 		document.calcForm.A8_Skill22.options[3] = new Option("ゴールド(↑＋Hit+10/Flee+10)",3);
 		document.calcForm.A8_Skill22.options[4] = new Option("レインボー(↑＋MaxHP+20%/MaxSP+20%)",4);
 		myInnerHtml("EN823",'←ジョンダパスはOTPレインボーです',0);
-		myInnerHtml("EN805",'公平PT人数<select name="A8_Skill5" onChange="StAllCalc() | Click_A8(true)"></select>', 0);
+		myInnerHtml("EN805",'公平PT人数<select name="A8_Skill5"></select>', 0);
 		document.calcForm.A8_Skill5.options[0] = new Option("-",0);
 		for (let i = 1; i <= 11; i++) {
             document.calcForm.A8_Skill5.options[i] = new Option((i+1)+"人", i);
         }
-		myInnerHtml("EN806",'共闘ボーナス<select name="A8_Skill6" onChange="StAllCalc() | Click_A8(true)"></select>', 0);
+		myInnerHtml("EN806",'共闘ボーナス<select name="A8_Skill6"></select>', 0);
 		document.calcForm.A8_Skill6.options[0] = new Option("-",0);
 		for (let i = 1; i <= 20; i++) {
             document.calcForm.A8_Skill6.options[i] = new Option("+"+ (i*25) +"%", i);
         }
-		myInnerHtml("EN821",'討伐クエストのExpを加算(1匹あたりの値)<select name="A8_Skill21" disabled="disabled" onChange="StAllCalc() | Click_A8(true)"></select>',0);
+		myInnerHtml("EN821",'討伐クエストのExpを加算(1匹あたりの値)<select name="A8_Skill21" disabled="disabled"></select>',0);
 		document.calcForm.A8_Skill21.options[0] = new Option("-",0);
 		document.calcForm.A8_Skill21.options[1] = new Option("BaseExpで受け取る", 1);
 		document.calcForm.A8_Skill21.options[2] = new Option("JobExpで受け取る", 2);
-		myInnerHtml("EN807",'<input id="OBJID_CHECK_A8_Skill4" type="checkbox" name="A8_Skill4"onClick="StAllCalc() | Click_A8(true)"><label for="OBJID_CHECK_A8_Skill4">結婚スパノビステータスALL+1付与</label>',0);
-		myInnerHtml("EN808",'<input id="OBJID_CHECK_A8_Skill13" type="checkbox" name="A8_Skill13"onClick="StAllCalc() | Click_A8(true)||RebuildStatusSelect()||CalcStatusPoint(true)"><label for="OBJID_CHECK_A8_Skill13">養子状態にする</label>',0);
+		myInnerHtml("EN807",'<input id="OBJID_CHECK_A8_Skill4" type="checkbox" name="A8_Skill4"><label for="OBJID_CHECK_A8_Skill4">結婚スパノビステータスALL+1付与</label>',0);
+		myInnerHtml("EN808",'<input id="OBJID_CHECK_A8_Skill13" type="checkbox" name="A8_Skill13"><label for="OBJID_CHECK_A8_Skill13">養子状態にする</label>',0);
 		myInnerHtml("EN809",'<font size="2" color="red">（時限性補助効果の設定は、「アイテム時限効果」設定欄へ移動しました）</font><input type="button" value="設定欄を表示">',0);
 		document.querySelector('#EN809 input[type="button"]')?.addEventListener('click', () => CTimeItemAreaComponentManager.FocusArea(0, true));
-		myInnerHtml("EN810",'囲んでいる敵の数<select name="A8_Skill12" onChange="StAllCalc() | Click_A8(true)"></select>',0);
+		myInnerHtml("EN810",'囲んでいる敵の数<select name="A8_Skill12"></select>',0);
 		for (let i = 0; i <= 22; i++) {
             document.calcForm.A8_Skill12.options[i] = new Option(i + "匹", i);
         }
 		myInnerHtml("EN812",'<Font size=2><B>攻城戦の設定は[対人プレイヤー設定]欄に移動</B></Font>',0);
-		myInnerHtml("EN813",'防衛値<select name="A8_Skill15" onChange="StAllCalc() | Click_A8(true)"></select><Font size=2>(攻城戦モード時のみ有効)</Font>',0);
+		myInnerHtml("EN813",'防衛値<select name="A8_Skill15"></select><Font size=2>(攻城戦モード時のみ有効)</Font>',0);
 		document.calcForm.A8_Skill15.options[0] = new Option("-",0);
 		for (let i = 1; i <= 20; i++) {
             document.calcForm.A8_Skill15.options[i] = new Option(i * 5, i);
         }
-		myInnerHtml("EN814",'<input id="OBJID_CHECK_A8_Skill16" type="checkbox" name="A8_Skill16"onClick="StAllCalc() | Click_A8(true)"><label for="OBJID_CHECK_A8_Skill16">クリティカル率を0にする</label>',0);
+		myInnerHtml("EN814",'<input id="OBJID_CHECK_A8_Skill16" type="checkbox" name="A8_Skill16"><label for="OBJID_CHECK_A8_Skill16">クリティカル率を0にする</label>',0);
 		if (41 <= n_A_JOB && n_A_JOB <= 43) {
-            myInnerHtml("EN819",'<input id="OBJID_CHECK_A8_Skill19" type="checkbox" name="A8_Skill19"onClick="StAllCalc() | Click_A8(true)"><label for="OBJID_CHECK_A8_Skill19"><Font size=2>暖かい風欄を他職からの武器属性付与にする<BR>　（素手Atk部分には武器属性付与が適用されない）</Font></label>',0);
+            myInnerHtml("EN819",'<input id="OBJID_CHECK_A8_Skill19" type="checkbox" name="A8_Skill19"><label for="OBJID_CHECK_A8_Skill19"><Font size=2>暖かい風欄を他職からの武器属性付与にする<BR>　（素手Atk部分には武器属性付与が適用されない）</Font></label>',0);
         } else {
-            myInnerHtml("EN819",'<input id="OBJID_CHECK_A8_Skill19" type="checkbox" name="A8_Skill19"onClick="StAllCalc() | Click_A8(true)"><label for="OBJID_CHECK_A8_Skill19"><Font size=2>武器属性付与をアカデミーの看板型付与にする<BR>　（素手Atk部分にも武器属性付与が適用される）</Font></label>',0);
+            myInnerHtml("EN819",'<input id="OBJID_CHECK_A8_Skill19" type="checkbox" name="A8_Skill19"><label for="OBJID_CHECK_A8_Skill19"><Font size=2>武器属性付与をアカデミーの看板型付与にする<BR>　（素手Atk部分にも武器属性付与が適用される）</Font></label>',0);
         }
+		// 旧 inline handler の代替配線。
+		// StAllCalc / RebuildStatusSelect / CalcStatusPoint は循環 import 回避のため
+		// window 経由で呼ぶ（foot.js / hmjob.js の workspace I/F compat — Phase 4 で解消予定）
+		document.calcForm.A8_Skill0.addEventListener("change", () => { window.StAllCalc(); OnChangePetSelect(); });
+		for (const idx of [1, 2, 3, 5, 6, 7, 12, 15, 17, 21, 22]) {
+			document.calcForm["A8_Skill" + idx].addEventListener("change", () => { window.StAllCalc(); Click_A8(true); });
+		}
+		for (const idx of [4, 16, 19]) {
+			document.calcForm["A8_Skill" + idx].addEventListener("click", () => { window.StAllCalc(); Click_A8(true); });
+		}
+		document.calcForm.A8_Skill13.addEventListener("click", () => {
+			window.StAllCalc();
+			Click_A8(true);
+			window.RebuildStatusSelect();
+			window.CalcStatusPoint(true);
+		});
 		document.calcForm.A8_Skill0.value = n_A_PassSkill8[0];
 		document.calcForm.A8_Skill1.value = n_A_PassSkill8[1];
 		document.calcForm.A8_Skill2.value = n_A_PassSkill8[2];
@@ -226,13 +242,4 @@ export function RefreshPetExplain() {
 	CItemInfoManager.AppendEfficiencyInfoSub(objSpan, CONST_DATA_KIND_PET, petId, true);
 	// セット情報追記
 	CItemInfoManager.AppendSetInfo(objSpan, PetIdToSetIdMap[petId], true);
-}
-
-if (typeof window !== 'undefined') {
-}
-
-/* window compat — myInnerHtml の HTML 文字列 inline handler が参照（addEventListener 化は今後の課題） */
-if (typeof window !== 'undefined') {
-    window.Click_A8 = Click_A8;
-    window.OnChangePetSelect = OnChangePetSelect;
 }

@@ -61,7 +61,12 @@ export const BUFF_CONF_OTHER_LIMIT   = 28;
 
 /** 職固有自己支援 設定値の配列 */
 export let n_A_PassSkill  = Array(BUFF_CONF_SELF_LIMIT).fill(0);
-/** 一次職支援（音楽・ダンス） 設定値の配列 */
+/**
+ * 一次職支援（音楽・ダンス） 設定値の配列
+ * 「演奏/踊り系スキル」ウィンドウは機能削除済みのため常にゼロ固定。
+ * 旧セーブデータ（SaveData[448-508] / CSaveDataUnitSkillBuffMusic）の
+ * フォーマット互換（保存側の位置埋め）のためだけに残している。
+ */
 export let n_A_PassSkill3 = Array(BUFF_CONF_MUSICAL_LIMIT).fill(0);
 /** ギルド・ゴスペル 設定値の配列 */
 export let n_A_PassSkill4 = Array(BUFF_CONF_GUILD_LIMIT).fill(0);

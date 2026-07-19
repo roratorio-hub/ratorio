@@ -240,7 +240,6 @@ describe('ro4/m/calcx.html 起動テスト', () => {
     //
     // 対象スイッチ:
     //   - A1_SKILLSW: 職固有自己支援（BuffJobSpecificSelf.js / Click_PassSkillSW）
-    //   - A3_SKILLSW: 演奏/踊り系（BuffMusicAndDance.js / Click_Skill3SW）
     //   - A4_SKILLSW: ギルドスキル/ゴスペル（BuffGuildAndGospel.js / Click_Skill4SW）
     //   - A7_SKILLSW: アイテム/食品（BuffItemAndFood.js / Click_Skill7SW）
     //   - A8_SKILLSW: その他支援（BuffOtherCategory.js / Click_Skill8SW）
@@ -256,7 +255,7 @@ describe('ro4/m/calcx.html 起動テスト', () => {
 
             // 各スキル SW を ON→OFF とトグル（name 属性で特定できるもの）
             // DOM 再構築後の要素に再アタッチが正しく行われているかを 2 回目クリックで確認する。
-            const nameSwNames = ['A1_SKILLSW', 'A3_SKILLSW', 'A4_SKILLSW', 'A7_SKILLSW', 'A8_SKILLSW'];
+            const nameSwNames = ['A1_SKILLSW', 'A4_SKILLSW', 'A7_SKILLSW', 'A8_SKILLSW'];
             for (const swName of nameSwNames) {
                 await page.evaluate((name) => {
                     document.querySelector<HTMLInputElement>(`[name="${name}"]`)?.click(); // OFF→ON
@@ -284,11 +283,12 @@ describe('ro4/m/calcx.html 起動テスト', () => {
 
     // 各スキルSW欄を展開した後、内部コントロール（セレクト・チェックボックス）を
     // 操作して未捕捉 JS 例外が発生しないことを確認する。
-    // dewindow フェーズで以下の関数を window に露出していなかった問題の回帰テスト:
-    //   - Skill3SW_2 / Click_A3  (BuffMusicAndDance.js  — compat block 追加)
-    //   - Click_A4               (BuffGuildAndGospel.js — compat block 追加)
+    // dewindow フェーズの addEventListener 変換の回帰テスト:
+    //   - Click_A4               (BuffGuildAndGospel.js — addEventListener 変換)
     //   - Click_A7               (BuffItemAndFood.js    — addEventListener 変換)
+    //   - Click_A8 / OnChangePetSelect (BuffOtherCategory.js — addEventListener 変換)
     //   - OnChangeSettingAutoSpell (calcautospell.js    — addEventListener 変換)
+    // ※ 演奏/踊り系（A3）は機能ごと削除済み
     it('各スキルSW展開後の内部コントロール操作で未捕捉 JS 例外が発生しない', async () => {
         const errors = await collectPageErrors(browser, async (page) => {
             page.on('dialog', (dialog) => dialog.dismiss().catch(() => {}));
@@ -297,21 +297,6 @@ describe('ro4/m/calcx.html 起動テスト', () => {
                 timeout: 60000,
             });
             await page.waitForTimeout(500);
-
-            // A3: 演奏/踊り系 — Skill3SW_2 / Click_A3
-            await page.evaluate(() => {
-                document.querySelector<HTMLInputElement>('[name="A3_SKILLSW"]')?.click();
-            });
-            await page.waitForTimeout(200);
-            await page.evaluate(() => {
-                // html_CS3SW_SKILL で挿入される select（Skill3SW_2 ハンドラ）
-                const sel = document.querySelector<HTMLSelectElement>('[name="A3_Skill0_1"]');
-                sel?.dispatchEvent(new Event('change', { bubbles: true }));
-                // Click_A3 ハンドラ
-                const sel2 = document.querySelector<HTMLSelectElement>('[name="A3_Skill7"]');
-                sel2?.dispatchEvent(new Event('change', { bubbles: true }));
-            });
-            await page.waitForTimeout(200);
 
             // A4: ギルドスキル/ゴスペル — Click_A4
             await page.evaluate(() => {
@@ -337,6 +322,27 @@ describe('ro4/m/calcx.html 起動テスト', () => {
                 // ステータス+食品セレクト（Click_A7 ハンドラ）
                 const sel = document.querySelector<HTMLSelectElement>('[name="A7_Skill20"]');
                 sel?.dispatchEvent(new Event('change', { bubbles: true }));
+            });
+            await page.waitForTimeout(200);
+
+            // A8: その他の支援/設定 — Click_A8 / OnChangePetSelect
+            await page.evaluate(() => {
+                document.querySelector<HTMLInputElement>('[name="A8_SKILLSW"]')?.click();
+            });
+            await page.waitForTimeout(200);
+            await page.evaluate(() => {
+                // ペットセレクト（OnChangePetSelect ハンドラ）
+                const pet = document.querySelector<HTMLSelectElement>('[name="A8_Skill0"]');
+                pet?.dispatchEvent(new Event('change', { bubbles: true }));
+                // 教範セレクト（Click_A8 ハンドラ）
+                const sel = document.querySelector<HTMLSelectElement>('[name="A8_Skill1"]');
+                sel?.dispatchEvent(new Event('change', { bubbles: true }));
+                // 結婚スパノビ checkbox（Click_A8 ハンドラ）
+                const cb = document.querySelector<HTMLInputElement>('[name="A8_Skill4"]');
+                cb?.click();
+                // 養子 checkbox（Click_A8 + RebuildStatusSelect + CalcStatusPoint ハンドラ）
+                const cb13 = document.querySelector<HTMLInputElement>('[name="A8_Skill13"]');
+                cb13?.click();
             });
             await page.waitForTimeout(200);
 
@@ -928,8 +934,13 @@ async function expandAllSections(page: Page): Promise<void> {
 function evalObjidSnapshot(page: Page): Promise<Record<string, string>> {
     return page.evaluate((): Record<string, string> => {
         const snapshot: Record<string, string> = {};
+        // 本番と意図的に乖離している要素（ローカル側で機能削除済み）。
+        // OBJID_CHECK_A3_SKILLSW: 演奏/踊り系スキル欄の削除に伴い本番にのみ存在する。
+        // 本番へデプロイされたらこの除外は不要になるので削除すること。
+        const INTENTIONAL_DIVERGENCE_IDS = new Set(['OBJID_CHECK_A3_SKILLSW']);
         document.querySelectorAll<HTMLElement>('[id^="OBJID_"]').forEach((el) => {
             const id = el.id;
+            if (INTENTIONAL_DIVERGENCE_IDS.has(id)) return;
             if (el instanceof HTMLInputElement) {
                 if (el.type === 'checkbox' || el.type === 'radio') {
                     snapshot[id] = el.checked ? 'true' : 'false';

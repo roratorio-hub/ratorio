@@ -79,7 +79,6 @@ import { SaveSystem } from '../../../roro/m/js/saveload.js';
 import { GetSlotMode, SLOTPAGER_MODE_CARD, SLOT_INDEX_CARD_MIN } from '../../../roro/m/js/slotpager.js';
 import { HtmlGetObjectValueByIdAsInteger, HtmlSetObjectCheckedById, HtmlSetObjectValueById, HtmlSelectObjectValueAsInteger, SetStatefullData, floorBigInt32, floorBigInt40 } from '../../../roro/common/js/util.js';
 import { Click_A1, n_A_PassSkill } from './BuffJobSpecificSelf.js';
-import { Click_A3, n_A_PassSkill3 } from './BuffMusicAndDance.js';
 import { Click_A4, n_A_PassSkill4 } from './BuffGuildAndGospel.js';
 import { Click_A7, n_A_PassSkill7 } from './BuffItemAndFood.js';
 import { Click_A8, n_A_PassSkill8 } from './BuffOtherCategory.js';
@@ -1043,7 +1042,7 @@ export class CSaveDataManager {
 		funcCallApplyBuffLv(this, SAVE_DATA_UNIT_TYPE_CHARA_DEBUFF, g_confDataDebuff);
 		g_objCharaConfDebuff.RefreshSelectAreaHeader();
 		g_objCharaConfDebuff.RefreshControlCSS();
-		funcCallApplyBuffLv(this, SAVE_DATA_UNIT_TYPE_SKILL_BUFF_MUSIC, n_A_PassSkill3);
+		// SKILL_BUFF_MUSIC（演奏/踊り系スキル）は機能削除済み — ユニットのパースは互換のため残るが適用しない
 		funcCallApplyBuffLv(this, SAVE_DATA_UNIT_TYPE_SKILL_BUFF_GUILD, n_A_PassSkill4);
 		funcCallApplyCompositBuff(this, SAVE_DATA_UNIT_TYPE_ITEM_BUFF, n_A_PassSkill7);
 		funcCallApplyTimeBuffID(this, SAVE_DATA_UNIT_TYPE_TIME_BUFF, g_timeItemConf);
@@ -1142,7 +1141,6 @@ export class CSaveDataManager {
 		g_objCharaConfNizi.OnSaveDataLoaded();
 		g_objCharaConfSanzi.OnSaveDataLoaded();
 		g_objCharaConfYozi.OnSaveDataLoaded();
-		Click_A3(false);	// BuffMusic
 		Click_A4(false);	// BuffGuild
 		Click_A7(false);	// BuffItem（旧：支援スキル７（アイテム（食品/他）））
 		CTimeItemAreaComponentManager.CloseArea();

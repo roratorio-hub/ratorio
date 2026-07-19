@@ -534,7 +534,7 @@ import {
          SKILL_ID_ZIRAISHIN, SKILL_ID_ZYOKODO, SKILL_ID_ZYUMONZIGIRI,
          SKILL_ID_ZYURYOKU_CHOSE, SKILL_ID_ZYUTSUSHIKI_KAIHO,
 } from '../../../roro/m/js/skill.dat.js';
-import { UsedSkillSearch, n_A_PassSkill3, n_A_PassSkill4, n_A_PassSkill7, n_A_PassSkill8, ID_BUFF_MANUK_ISHI, ID_BUFF_VESPER_HONEY } from './skillstate.js';
+import { UsedSkillSearch, n_A_PassSkill4, n_A_PassSkill7, n_A_PassSkill8, ID_BUFF_MANUK_ISHI, ID_BUFF_VESPER_HONEY } from './skillstate.js';
 import { DISP_DATA_KEY_STRDEX_BONUS, g_extraInfoDataBridge } from '../../../roro/m/js/CExtraInfoDataBridge.js';
 // === END AUTO-GENERATED IMPORTS ===
 // C-6: JOB 定数
@@ -14736,7 +14736,6 @@ export function GetIkariPow(mobData) {
  * 						CTimeItemAreaComponentManager.OnChangeConf	: アイテム時限効果
  * 						RefreshSkillColumnHeaderLearned				: 習得スキル
  * 						Click_A1									: パッシブ持続系
- * 						Click_A3									: 演奏/踊り系スキル
  * 						Click_A4									: ギルドスキル/ゴスペル/他
  * 						Click_A7									: アイテム(食品/他)
  * 						Click_A8									: その他の支援/設定 (暫定追加機能)
@@ -14764,7 +14763,6 @@ export function AutoCalc(callFrom) {
 				|| callFrom === "CTimeItemAreaComponentManager.OnChangeConf"
 				|| callFrom === "RefreshSkillColumnHeaderLearned"
 				|| callFrom === "Click_A1"
-				|| callFrom === "Click_A3"
 				|| callFrom === "Click_A4"
 				|| callFrom === "Click_A7"
 				|| callFrom === "Click_A8"
@@ -20862,22 +20860,6 @@ export function GetPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, spe
 		w1 += 100;
 	}
 
-	//----------------------------------------------------------------
-	// 「メランコリー」の、「各種スキル」強化
-	//----------------------------------------------------------------
-	if(n_A_PassSkill3[42]){
-		switch (n_A_ActiveSkill) {
-		case 73:
-		case 158:
-		case 159:
-		case 259:
-		case 324:
-		case 384:
-		case 442:
-		case 572:
-			w1 += (5 * n_A_PassSkill3[42]);
-		}
-	}
 
 	//----------------------------------------------------------------
 	// 「ダンスウィズウォーグ」の、「ウォーグ系スキル」強化

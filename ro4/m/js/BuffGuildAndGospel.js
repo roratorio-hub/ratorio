@@ -40,18 +40,18 @@ export function Click_Skill4SW(){
 		const name_CS4SW_SKILL = ["臨戦体勢","偉大なる指導力","栄光の傷","冷静な心","鋭い視線","ステータスALL+20","HP+100%","SP+100%","ATK+100%","HIT+50＆FLEE+50","被ダメージ半減"];
 		let html_CS4SW_SKILL = new Array();
 		for(let i = 0; i <= 10; i++) myInnerHtml("EN4"+i+"_1",name_CS4SW_SKILL[i],0);
-		html_CS4SW_SKILL[0] = '<input type="checkbox" name="A4_Skill0"onClick="StAllCalc(); Click_A4(true);">';
-		html_CS4SW_SKILL[1] = '<select name="A4_Skill1"onChange="StAllCalc() | Click_A4(true)"></select>';
-		html_CS4SW_SKILL[2] = '<select name="A4_Skill2"onChange="StAllCalc() | Click_A4(true)"></select>';
-		html_CS4SW_SKILL[3] = '<select name="A4_Skill3"onChange="StAllCalc() | Click_A4(true)"></select>';
-		html_CS4SW_SKILL[4] = '<select name="A4_Skill4"onChange="StAllCalc() | Click_A4(true)"></select>';
-		html_CS4SW_SKILL[5] = '<input type="checkbox" name="A4_Skill5"onClick="StAllCalc() | Click_A4(true)">';
-		html_CS4SW_SKILL[6] = '<input type="checkbox" name="A4_Skill6"onClick="StAllCalc() | Click_A4(true)">';
-		html_CS4SW_SKILL[7] = '<input type="checkbox" name="A4_Skill7"onClick="StAllCalc() | Click_A4(true)">';
-		html_CS4SW_SKILL[8] = '<input type="checkbox" name="A4_Skill8"onClick="StAllCalc() | Click_A4(true)">';
-		html_CS4SW_SKILL[9] = '<input type="checkbox" name="A4_Skill9"onClick="StAllCalc() | Click_A4(true)">';
-		html_CS4SW_SKILL[10] = '<input type="checkbox" name="A4_Skill10"onClick="StAllCalc() | Click_A4(true)">';
-		html_CS4SW_SKILL[11] = '<select name="A4_Skill11"onChange="StAllCalc(); Click_A4(true);"></select>';
+		html_CS4SW_SKILL[0] = '<input type="checkbox" name="A4_Skill0">';
+		html_CS4SW_SKILL[1] = '<select name="A4_Skill1"></select>';
+		html_CS4SW_SKILL[2] = '<select name="A4_Skill2"></select>';
+		html_CS4SW_SKILL[3] = '<select name="A4_Skill3"></select>';
+		html_CS4SW_SKILL[4] = '<select name="A4_Skill4"></select>';
+		html_CS4SW_SKILL[5] = '<input type="checkbox" name="A4_Skill5">';
+		html_CS4SW_SKILL[6] = '<input type="checkbox" name="A4_Skill6">';
+		html_CS4SW_SKILL[7] = '<input type="checkbox" name="A4_Skill7">';
+		html_CS4SW_SKILL[8] = '<input type="checkbox" name="A4_Skill8">';
+		html_CS4SW_SKILL[9] = '<input type="checkbox" name="A4_Skill9">';
+		html_CS4SW_SKILL[10] = '<input type="checkbox" name="A4_Skill10">';
+		html_CS4SW_SKILL[11] = '<select name="A4_Skill11"></select>';
 		for(let i = 0; i <= 11; i++) myInnerHtml("EN4"+i+"_2",html_CS4SW_SKILL[i],0);
 		myInnerHtml("EN430_1","STR",0);
 		myInnerHtml("EN431_1","AGI",0);
@@ -59,13 +59,23 @@ export function Click_Skill4SW(){
 		myInnerHtml("EN433_1","INT",0);
 		myInnerHtml("EN434_1","DEX",0);
 		myInnerHtml("EN435_1","LUK",0);
-		html_CS4SW_SKILL[30] = '<select name="A4_Skill30"onChange="StAllCalc(); Click_A4(true);"></select>';
-		html_CS4SW_SKILL[31] = '<select name="A4_Skill31"onChange="StAllCalc(); Click_A4(true);"></select>';
-		html_CS4SW_SKILL[32] = '<select name="A4_Skill32"onChange="StAllCalc(); Click_A4(true);"></select>';
-		html_CS4SW_SKILL[33] = '<select name="A4_Skill33"onChange="StAllCalc(); Click_A4(true);"></select>';
-		html_CS4SW_SKILL[34] = '<select name="A4_Skill34"onChange="StAllCalc(); Click_A4(true);"></select>';
-		html_CS4SW_SKILL[35] = '<select name="A4_Skill35"onChange="StAllCalc(); Click_A4(true);"></select>';
+		html_CS4SW_SKILL[30] = '<select name="A4_Skill30"></select>';
+		html_CS4SW_SKILL[31] = '<select name="A4_Skill31"></select>';
+		html_CS4SW_SKILL[32] = '<select name="A4_Skill32"></select>';
+		html_CS4SW_SKILL[33] = '<select name="A4_Skill33"></select>';
+		html_CS4SW_SKILL[34] = '<select name="A4_Skill34"></select>';
+		html_CS4SW_SKILL[35] = '<select name="A4_Skill35"></select>';
 		for(let i = 30; i <= 35; i++) myInnerHtml("EN4"+i+"_2",html_CS4SW_SKILL[i],0);
+		// 旧 inline handler の代替: 全コントロール共通で StAllCalc → Click_A4 を発火する
+		// （StAllCalc は workspace I/F として window に残る唯一の foot 関数 — Phase 4 で import 化予定）
+		for (let i = 0; i <= 11; i++) {
+			const wOBJ = document.calcForm["A4_Skill" + i];
+			wOBJ.addEventListener(wOBJ.tagName === "SELECT" ? "change" : "click", () => { window.StAllCalc(); Click_A4(true); });
+		}
+		for (let i = 30; i <= 35; i++) {
+			const wOBJ = document.calcForm["A4_Skill" + i];
+			wOBJ.addEventListener("change", () => { window.StAllCalc(); Click_A4(true); });
+		}
 		for(let i = 0; i <= 5; i++){
 			document.calcForm.A4_Skill1.options[i] = new Option(i,i);
 			document.calcForm.A4_Skill2.options[i] = new Option(i,i);
@@ -142,12 +152,4 @@ export function Click_A4(recalc = false){
 		document.getElementById('A4TD').style.backgroundColor = "#FF7777";
 		myInnerHtml("A4used","　<B>使用中</B>",0);
 	}
-}
-
-if (typeof window !== 'undefined') {
-}
-
-/* window compat — myInnerHtml の HTML 文字列 inline handler が参照（addEventListener 化は今後の課題） */
-if (typeof window !== 'undefined') {
-    window.Click_A4 = Click_A4;
 }

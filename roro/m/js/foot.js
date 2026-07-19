@@ -22,7 +22,6 @@ import { ITEM_SP_TIME_OBJ } from './timeitem.dat.js';
 import { Click_Skill4SW, n_A_PassSkill4, n_Skill4SW, setN_Skill4SW } from '../../../ro4/m/js/BuffGuildAndGospel.js';
 import { Click_Skill7SW, n_A_PassSkill7, n_Skill7SW, setN_Skill7SW } from '../../../ro4/m/js/BuffItemAndFood.js';
 import { Click_PassSkillSW, UsedSkillSearch, n_A_PassSkill, n_Skill1SW, setN_Skill1SW } from '../../../ro4/m/js/BuffJobSpecificSelf.js';
-import { Click_Skill3SW, n_A_PassSkill3, n_Skill3SW, setN_Skill3SW } from '../../../ro4/m/js/BuffMusicAndDance.js';
 import { Click_Skill8SW, n_A_PassSkill8, n_Skill8SW, setN_Skill8SW } from '../../../ro4/m/js/BuffOtherCategory.js';
 import { CAttackMethodAreaComponentManager } from '../../../ro4/m/js/CAttackMethodAreaComponentManager.js';
 import { enchSearch } from '../../../ro4/m/js/CEnchSearch.js';
@@ -1688,68 +1687,6 @@ export function StAllCalc(){
 			}
 		}
 
-		if(n_Skill3SW){
-			n_A_PassSkill3[0] = eval(calcForm.A3_Skill0_1.value);
-			n_A_PassSkill3[1] = eval(calcForm.A3_Skill1_1.value);
-			n_A_PassSkill3[2] = eval(calcForm.A3_Skill2_1.value);
-			n_A_PassSkill3[3] = eval(calcForm.A3_Skill3_1.value);
-			n_A_PassSkill3[4] = eval(calcForm.A3_Skill4_1.value);
-			n_A_PassSkill3[5] = eval(calcForm.A3_Skill5_1.value);
-			n_A_PassSkill3[6] = eval(calcForm.A3_Skill6_1.value);
-			n_A_PassSkill3[7] = eval(calcForm.A3_Skill7.value);
-			n_A_PassSkill3[8] = eval(calcForm.A3_Skill8.value);
-			n_A_PassSkill3[9] = eval(calcForm.A3_Skill9.value);
-			n_A_PassSkill3[10] = eval(calcForm.A3_Skill10.value);
-			n_A_PassSkill3[11] = 0;	// 廃止：旧メランコリー
-			n_A_PassSkill3[42] = 0; // 廃止：旧メランコリー
-			n_A_PassSkill3[12] = eval(calcForm.A3_Skill11_STR.value);
-			n_A_PassSkill3[13] = eval(calcForm.A3_Skill11_AGI.value);
-			n_A_PassSkill3[14] = eval(calcForm.A3_Skill11_VIT.value);
-			n_A_PassSkill3[15] = eval(calcForm.A3_Skill11_INT.value);
-			n_A_PassSkill3[16] = eval(calcForm.A3_Skill11_DEX.value);
-			n_A_PassSkill3[17] = eval(calcForm.A3_Skill11_LUK.value);
-			n_A_PassSkill3[18] = eval(calcForm.A3_Skill11a.checked);
-			n_A_PassSkill3[19] = eval(calcForm.A3_Skill12_0.value);
-			if(n_A_PassSkill3[0]){
-				n_A_PassSkill3[20] = eval(calcForm.A3_Skill0_2.value);
-				n_A_PassSkill3[28] = eval(calcForm.A3_Skill0_4.value);
-				n_A_PassSkill3[30] = eval(calcForm.A3_Skill0_3.value);
-			}
-			if(n_A_PassSkill3[1]){
-				n_A_PassSkill3[21] = eval(calcForm.A3_Skill1_2.value);
-				n_A_PassSkill3[31] = eval(calcForm.A3_Skill1_3.value);
-			}
-			if(n_A_PassSkill3[2]){
-				n_A_PassSkill3[22] = eval(calcForm.A3_Skill2_2.value);
-				n_A_PassSkill3[29] = eval(calcForm.A3_Skill2_3.value);
-				n_A_PassSkill3[32] = eval(calcForm.A3_Skill2_4.value);
-			}
-			if(n_A_PassSkill3[3]){
-				n_A_PassSkill3[23] = eval(calcForm.A3_Skill3_2.value);
-				n_A_PassSkill3[33] = eval(calcForm.A3_Skill3_3.value);
-			}
-			if(n_A_PassSkill3[4]){
-				n_A_PassSkill3[24] = eval(calcForm.A3_Skill4_2.value);
-				n_A_PassSkill3[34] = eval(calcForm.A3_Skill4_3.value);
-			}
-			if(n_A_PassSkill3[5]){
-				n_A_PassSkill3[25] = eval(calcForm.A3_Skill5_2.value);
-				n_A_PassSkill3[35] = eval(calcForm.A3_Skill5_3.value);
-			}
-			if(n_A_PassSkill3[6]){
-				n_A_PassSkill3[26] = eval(calcForm.A3_Skill6_2.value);
-				n_A_PassSkill3[36] = eval(calcForm.A3_Skill6_3.value);
-			}
-			if(n_A_PassSkill3[19]){
-				n_A_PassSkill3[37] = eval(calcForm.A3_Skill12_1.value);
-				n_A_PassSkill3[46] = eval(calcForm.A3_Skill12_2.value);
-				n_A_PassSkill3[38] = eval(calcForm.A3_Skill12_3.value);
-			}
-			if(n_A_PassSkill3[39]){
-				n_A_PassSkill3[40] = eval(calcForm.A3_Skill13_1.value);
-				n_A_PassSkill3[41] = eval(calcForm.A3_Skill13_2.value);
-			}
-		}
 		if(n_Skill4SW){
 			n_A_PassSkill4[0] = eval(calcForm.A4_Skill0.checked);
 			n_A_PassSkill4[1] = eval(calcForm.A4_Skill1.value);
@@ -16735,7 +16672,6 @@ export function getFlee() {
 
 	// その他未整理
     if (n_A_PassSkill4[9]) flee += 50;
-    if (n_A_PassSkill3[11]) flee -= (20 + 5 * n_A_PassSkill3[11]);
 
     if (n_A_PassSkill7[1]) flee += 30;
     else if (n_A_PassSkill7[27]) flee += 20;
@@ -22386,7 +22322,6 @@ export function GetAdditionalAspdPercent() {
     // 「星帝　星の構え」の効果
     //----------------------------------------------------------------
     tmp_percent += 5 * UsedSkillSearch(SKILL_ID_HOSHINO_KAMAE);
-    if (n_A_PassSkill3[11]) tmp_percent -= 3 * n_A_PassSkill3[11];
     if (g_confDataDebuff[CCharaConfDebuff.CONF_ID_FREEZING]) tmp_percent -= 30;
 
 	/**
@@ -22816,7 +22751,6 @@ export function GetAdditionalCriticalRate(mobData) {
     if (n_A_PassSkill7[28]) tmp_cri += 7;
     else if (n_A_PassSkill7[36]) tmp_cri += 7;
     if (0 < n_A_PassSkill7[46] && n_A_PassSkill7[46] <= 50) tmp_cri += n_A_PassSkill7[46];
-    // if (n_A_PassSkill3[5]) tmp_cri += 10 + n_A_PassSkill3[5] + Math.floor(n_A_PassSkill3[35] / 2) + n_A_PassSkill3[25];
 
     //----------------------------------------------------------------
     // 「性能カスタマイズ」の、効果
@@ -28346,43 +28280,6 @@ export function StPlusCalc() {
 		}
 	}
 
-	var w_marikon = 0;
-	for(var i=12;i<=17;i++){
-		if(n_A_PassSkill3[i] != 0) w_marikon = 1;
-	}
-	if(w_marikon == 1 && n_A_PassSkill3[18]==0){
-		if(n_A_STR + wSPC_STR <99){
-			if(n_A_STR + wSPC_STR + Math.floor(n_A_PassSkill3[12] /2) <99) wSPC_STR += Math.floor(n_A_PassSkill3[12] /2);
-			else wSPC_STR = (99 - n_A_STR);
-		}
-		if(n_A_AGI + wSPC_AGI <99){
-			if(n_A_AGI + wSPC_AGI + Math.floor(n_A_PassSkill3[13] /2) <99) wSPC_AGI += Math.floor(n_A_PassSkill3[13] /2);
-			else wSPC_AGI = (99 - n_A_AGI);
-		}
-		if(n_A_VIT + wSPC_VIT <99){
-			if(n_A_VIT + wSPC_VIT + Math.floor(n_A_PassSkill3[14] /2) <99) wSPC_VIT += Math.floor(n_A_PassSkill3[14] /2);
-			else wSPC_VIT = (99 - n_A_VIT);
-		}
-		if(n_A_INT + wSPC_INT <99){
-			if(n_A_INT + wSPC_INT + Math.floor(n_A_PassSkill3[15] /2) <99) wSPC_INT += Math.floor(n_A_PassSkill3[15] /2);
-			else wSPC_INT = (99 - n_A_INT);
-		}
-		if(n_A_DEX + wSPC_DEX <99){
-			if(n_A_DEX + wSPC_DEX + Math.floor(n_A_PassSkill3[16] /2) <99) wSPC_DEX += Math.floor(n_A_PassSkill3[16] /2);
-			else wSPC_DEX = (99 - n_A_DEX);
-		}
-		if(n_A_LUK + wSPC_LUK <99){
-			if(n_A_LUK + wSPC_LUK + Math.floor(n_A_PassSkill3[17] /2) <99) wSPC_LUK += Math.floor(n_A_PassSkill3[17] /2);
-			else wSPC_LUK = (99 - n_A_LUK);
-		}
-	}else if(w_marikon == 1 && n_A_PassSkill3[18]){
-		wSPC_STR += n_A_PassSkill3[12];
-		wSPC_AGI += n_A_PassSkill3[13];
-		wSPC_VIT += n_A_PassSkill3[14];
-		wSPC_INT += n_A_PassSkill3[15];
-		wSPC_DEX += n_A_PassSkill3[16];
-		wSPC_LUK += n_A_PassSkill3[17];
-	}
 
 	//----------------------------------------------------------------
 	// 「性能カスタマイズ」の、効果
@@ -30638,8 +30535,6 @@ export function Init(jobId){
 	n_A_PassSkill4.fill(0);
 	// アイテム・食品他 の初期化
 	n_A_PassSkill7.fill(0);
-	// 演奏・踊り系スキル の初期化
-	n_A_PassSkill3.fill(0);
 	// 職固有自己支援 の初期化
 	n_A_PassSkill.fill(0);
 	// その他の支援/設定 の初期化
@@ -30701,7 +30596,6 @@ export function Init(jobId){
 	ClearEquipAll();
 
 	setN_Skill1SW(false);
-	setN_Skill3SW(false);
 	setN_Skill4SW(false);
 	setN_Skill7SW(false);
 	setN_Skill8SW(false);
@@ -30742,7 +30636,6 @@ export function Init(jobId){
 	set_g_objCharaConfDebuff(new CCharaConfDebuff(g_confDataDebuff));
 	g_objCharaConfDebuff.BuildUpSelectArea(document.getElementById("OBJID_TD_CHARA_CONF_DEBUFF"), false);
 
-	document.calcForm.A3_SKILLSW.checked = 0;
 	document.calcForm.A4_SKILLSW.checked = 0;
 
 	// オートスペル設定欄
@@ -30821,7 +30714,6 @@ export function Init(jobId){
 	OnClickQuickControlSW();
 	Click_PassSkillSW();
 	OnClickSkillSWLearned();
-	Click_Skill3SW();
 	Click_Skill4SW();
 	OnClickExtractSettingAutoSpell();
 

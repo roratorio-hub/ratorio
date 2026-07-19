@@ -8,7 +8,6 @@ import { AutoCalc } from './head.js';
 import { CAttackMethodAreaComponentManager } from './CAttackMethodAreaComponentManager.js';
 import { CSaveController } from './CSaveController.js';
 import { Click_PassSkillSW } from './BuffJobSpecificSelf.js';
-import { Click_Skill3SW } from './BuffMusicAndDance.js';
 import { Click_Skill4SW } from './BuffGuildAndGospel.js';
 import { Click_Skill7SW } from './BuffItemAndFood.js';
 import { Click_Skill8SW } from './BuffOtherCategory.js';
@@ -50,7 +49,6 @@ wire('OBJID_ACCESSORY_2_COPY', 'click', () => copyAccs(2, 1));
 
 // スキルスイッチ（name 属性のみのもの）
 document.querySelector('[name="A1_SKILLSW"]')?.addEventListener('click', Click_PassSkillSW);
-document.querySelector('[name="A3_SKILLSW"]')?.addEventListener('click', Click_Skill3SW);
 document.querySelector('[name="A4_SKILLSW"]')?.addEventListener('click', Click_Skill4SW);
 document.querySelector('[name="A8_SKILLSW"]')?.addEventListener('click', Click_Skill8SW);
 wire('OBJID_CHECK_A7_SKILLSW', 'click', Click_Skill7SW);

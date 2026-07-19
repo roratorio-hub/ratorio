@@ -107,7 +107,7 @@ import {
 import { USABLE_SKILL_ID_CUSTOM_BIAS } from './usableskill.h.js';
 import { HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById, SetStatefullData, GetStatefullData, MallocArray, myInnerHtml } from '../../common/js/util.js';
 import { Click_A1, n_A_PassSkill, n_Skill1SW } from '../../../ro4/m/js/BuffJobSpecificSelf.js';
-import { Click_A3, n_A_PassSkill3 } from '../../../ro4/m/js/BuffMusicAndDance.js';
+import { n_A_PassSkill3 } from '../../../ro4/m/js/skillstate.js';
 import { Click_A4, n_A_PassSkill4 } from '../../../ro4/m/js/BuffGuildAndGospel.js';
 import { Click_A7, n_A_PassSkill7 } from '../../../ro4/m/js/BuffItemAndFood.js';
 import { Click_A8, n_A_PassSkill8 } from '../../../ro4/m/js/BuffOtherCategory.js';
@@ -586,7 +586,8 @@ export function SaveSystem(funcSaveDataModify = null){
 
 
 		//----------------------------------------------------------------
-		// [0448 - 0508] 支援スキル３
+		// [0448 - 0508] 支援スキル３（演奏/踊り系スキル — 機能削除済み・常にゼロ。
+		// 旧フォーマットの位置互換のため書き込みは維持する）
 		//----------------------------------------------------------------
 		for (idx = 0; idx < n_A_PassSkill3.length; idx++) {
 			SaveData[448 + idx] = n_A_PassSkill3[idx];
@@ -4687,11 +4688,9 @@ export function DecodeUrl(loadDataUrl){
 
 
 		//----------------------------------------------------------------
-		// 支援スキル３の読み込み
+		// 支援スキル３（演奏/踊り系スキル）は機能削除済み — 旧セーブの値は適用しない
+		// （n_A_PassSkill3 はゼロ固定。UI が無いため適用すると解除不能な隠しバフになる）
 		//----------------------------------------------------------------
-		for (idx = 0; idx < n_A_PassSkill3.length; idx++) {
-			n_A_PassSkill3[idx] = SaveData[448 + idx];
-		}
 
 
 		//----------------------------------------------------------------
@@ -5042,7 +5041,6 @@ export function DecodeUrl(loadDataUrl){
 	OnClickSkillSWLearned();
 	Click_A1(false);
 
-	Click_A3(false);
 	Click_A4(false);
 	OnChangeSettingAutoSpell(false);
 
