@@ -95,7 +95,7 @@ let finalRatioArray = 0;
 
 // C-6: ro4 側共有 state（旧 head.js window 変数）
 import {
-         n_A_ActiveSkill, n_A_Kotei_Cast_Keigen, delayDownForDisp, n_tok,
+         n_A_BaseLV, n_A_ActiveSkill, n_A_Kotei_Cast_Keigen, delayDownForDisp, n_tok,
          n_tok_no_limit,
 } from '../../../ro4/m/js/ro4-state.js';
 
