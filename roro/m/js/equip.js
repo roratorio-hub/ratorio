@@ -1993,12 +1993,6 @@ function setSelectValueSynced(selector, value) {
 	}
 }
 
-/** select の「装備なし／カードなし」値（先頭オプション）を返す。 */
-function getNoneValue(selector) {
-	const el = document.querySelector(selector);
-	return (el && el.options.length) ? el.options[0].value : '0';
-}
-
 export function copyAccs(from, to){
 	// ランダムオプション入力中はelementがないので処理できない
 	// 中途半端になるので何もしないようにする
@@ -2016,13 +2010,15 @@ export function copyAccs(from, to){
 		// カードは「値」でコピーする（index 不可・上記コメント参照）
 		[1,2,3,4].forEach((i)=>{
 			const fromEl = document.querySelector(`${id_from}_CARD_${i}`);
-			setSelectValueSynced(`${id_to}_CARD_${i}`, fromEl ? fromEl.value : getNoneValue(`${id_to}_CARD_${i}`));
+			setSelectValueSynced(`${id_to}_CARD_${i}`, fromEl ? fromEl.value : String(CARD_ID_NONE));
 		})
 	} else {
 		// ソースのアクセサリが対象に無い → 「装備なし」へリセット
-		setSelectValueSynced(id_to, getNoneValue(id_to));
+		// getNoneValue(selector) は TomSelect が選択 option を DOM 末尾へ移動した後に
+		// options[0] を読むため誤値を返す。定数を直接使う。
+		setSelectValueSynced(id_to, String(ITEM_ID_NOEQUIP_ACCESSORY));
 		[1,2,3,4].forEach((i)=>{
-			setSelectValueSynced(`${id_to}_CARD_${i}`, getNoneValue(`${id_to}_CARD_${i}`));
+			setSelectValueSynced(`${id_to}_CARD_${i}`, String(CARD_ID_NONE));
 		})
 	}
 }
