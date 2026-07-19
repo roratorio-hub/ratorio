@@ -7,11 +7,13 @@ import { CARD_REGION_ID_COUNT } from './common.js';
 import { ITEM_ID_NOEQUIP_SET, ItemObjNew } from './item.dat.js';
 import { PET_OBJ } from './pet.dat.js';
 import { n_A_PassSkill8 } from '../../../ro4/m/js/skillstate.js';
+import { ITEM_SET_PET_ID_OFFSET, w_SE } from './itemset.dat.js';
+import { __registerItemSetFunctions } from './itemset-bridge.js';
+import { n_A_Equip, n_A_card, set_n_A_Equip, set_n_A_card } from './roro-state.js';
 // === END AUTO-GENERATED IMPORTS ===
 
-// ペットID指定のオフセット（カードと同じように指定するので、カードIDで実現しないぐらい大きな値を設定）
-// TODO: いずれ修正予定
-export const ITEM_SET_PET_ID_OFFSET = 100000;
+// ペットID指定のオフセット（定義は itemset.dat.js へ移動 — 既存の参照元のために再エクスポート）
+export { ITEM_SET_PET_ID_OFFSET };
 
 export const ITEMSET_ID_LIMIT_WITH_ITEM = 200;
 export const ITEMSET_ID_LIMIT_WITH_CARD = 200;
@@ -35,7 +37,7 @@ export function GetItemSetMemberText(setId){
 
 
 	// セット定義データ取得
-	setData = window.w_SE[setId];
+	setData = w_SE[setId];
 
 	for (idxMember = 1; idxMember < setData.length; idxMember++) {
 
@@ -123,10 +125,10 @@ export function CheckAndApplyItemSetEquipping() {
 	modifiedCardIdArray = n_A_card.slice(0, CARD_REGION_ID_COUNT);
 
 	// すべてのセット定義をループ
-	for (idx = 0; idx < window.w_SE.length; idx++) {
+	for (idx = 0; idx < w_SE.length; idx++) {
 
 		// セット定義データ取得
-		setData = window.w_SE[idx];
+		setData = w_SE[idx];
 
 		// 無効な定義はスキップ
 		if (setData.length <= 1) {
@@ -204,14 +206,9 @@ export function CheckAndApplyItemSetEquipping() {
 	}
 
 	// 補正した配列を、本来の配列に設定
-	window.n_A_Equip = modifiedItemIdArray;
-	window.n_A_card = modifiedCardIdArray;
+	set_n_A_Equip(modifiedItemIdArray);
+	set_n_A_card(modifiedCardIdArray);
 }
 
-if (typeof window !== 'undefined') {
-	window.w_SE = new Array();
-	window.ItemIdToSetIdMap = new Array();
-	window.CardIdToSetIdMap = new Array();
-	window.PetIdToSetIdMap = new Array();
-	window.GetItemSetMemberText = GetItemSetMemberText;
-}
+// 循環 import 不可の呼び出し元（CItemInfoManager.js / item.h.js）向けにブリッジへ登録する
+__registerItemSetFunctions({ GetItemSetMemberText });

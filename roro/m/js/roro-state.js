@@ -153,3 +153,11 @@ export function set_BK_n_A_MATK(v) { BK_n_A_MATK = v; }
 export function set_g_lucky_over(v) { g_lucky_over = v; }
 export function set_n_CastCutForDisp(v) { n_CastCutForDisp = v; }
 export function set_n_A_Weapon2Type(v) { n_A_Weapon2Type = v; }
+
+// ---- 3f-5: 旧 foot.js の Object.defineProperties 管理だった装備・カード配列 ----
+// itemset.h.js の CheckAndApplyItemSetEquipping() が配列ごと差し替えるため set_ が必要
+export let n_A_Equip = [];
+export let n_A_card = [];
+
+export function set_n_A_Equip(v) { n_A_Equip = v; }
+export function set_n_A_card(v) { n_A_card = v; }

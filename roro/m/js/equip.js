@@ -1,4 +1,6 @@
 // === AUTO-GENERATED IMPORTS ===
+import { n_A_Equip, n_A_card } from './roro-state.js';
+import { CardIdToSetIdMap, ItemIdToSetIdMap, w_SE } from './itemset.dat.js';
 import { set_n_Nitou } from '../../../ro4/m/js/global.js';
 import { g_attackMethodBridge } from './CAttackMethodDataBridge.js';
 import './arrow.h.js';

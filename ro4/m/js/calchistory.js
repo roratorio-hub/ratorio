@@ -156,7 +156,6 @@ div.clip_memo {
       }
     });
     g_Chart = chart;
-    if (typeof window !== 'undefined') window.g_Chart = g_Chart;
     $("#history_clip").click(e => {
       // 直前の敵と同じか？
       if (target != $(".OBJID_MONSTER_MAP_MONSTER").val()) {
@@ -241,7 +240,7 @@ div.clip_memo {
       $(e.target).next("input").toggle().focus();
     });
     $(document).on("change", "input.clip_memo", (e) => {
-      if (typeof window !== 'undefined' && window.g_Chart !== chart) return;
+      if (g_Chart !== chart) return;
       const index = e.target.closest("tr").rowIndex - 1;
       data.datasets[0].metadata[index]["memo"] = e.target.value;
       chart.update();
@@ -253,7 +252,7 @@ div.clip_memo {
       $(e.target).prev("div").toggle();
     });
     $(document).on("click", ".up_clip", (e) => {
-      if (typeof window !== 'undefined' && window.g_Chart !== chart) return;
+      if (g_Chart !== chart) return;
       const row = e.target.closest("tr");
       if (row.previousElementSibling) {
         const index = row.rowIndex - 1;
@@ -264,7 +263,7 @@ div.clip_memo {
       }
     });
     $(document).on("click", ".down_clip", (e) => {
-      if (typeof window !== 'undefined' && window.g_Chart !== chart) return;
+      if (g_Chart !== chart) return;
       const row = e.target.closest("tr");
       if (row.nextElementSibling) {
         const index = row.rowIndex - 1;
@@ -275,7 +274,7 @@ div.clip_memo {
       }
     });
     $(document).on("click", ".remove_clip", (e) => {
-      if (typeof window !== 'undefined' && window.g_Chart !== chart) return;
+      if (g_Chart !== chart) return;
       const row = e.target.closest("tr");
       const index = row.rowIndex - 1;
       data.labels.pop();

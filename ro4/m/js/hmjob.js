@@ -1,4 +1,6 @@
 // === AUTO-GENERATED IMPORTS ===
+import { n_A_Equip } from '../../../roro/m/js/roro-state.js';
+import { SaveSystem } from '../../../roro/m/js/saveload-bridge.js';
 import '../../../roro/m/js/common.js';
 import '../../../roro/m/js/data/mig.itemsp.h.js';
 import '../../../roro/m/js/item.h.js';

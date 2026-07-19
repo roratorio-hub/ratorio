@@ -35,7 +35,7 @@ import {
 // === AUTO-GENERATED IMPORTS ===
 import '../../../../roro/m/js/item.h.js';
 import { CSaveDataConverter } from '../../../../roro/m/js/CSaveDataConverter.js';
-import { CSaveDataMappingManager } from '../../../../roro/m/js/CSaveDataMappingManager.js';
+import { CSaveDataMappingManager, CURRENT_VERSION } from '../../../../roro/m/js/CSaveDataMappingManager.js';
 import {
          ITEM_ID_ARROW_NONE, ITEM_ID_BULLET_NONE, ITEM_ID_ISHO_BEGINNER_BO,
          ITEM_ID_ISHO_NONE, ItemObjNew

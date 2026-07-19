@@ -1,4 +1,5 @@
 // === AUTO-GENERATED IMPORTS ===
+import { n_A_Equip, n_A_card } from './roro-state.js';
 import './card.h.js';
 import './common.js';
 import './item.h.js';
@@ -364,7 +365,4 @@ export function RefreshSkillColumnHeaderLearned(objSelect, changedIdx, newValue,
 	}
 	objText = document.createTextNode(sUsedText);
 	objUsedText.appendChild(objText);
-}
-
-if (typeof window !== 'undefined') {
 }

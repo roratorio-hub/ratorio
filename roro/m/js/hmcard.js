@@ -1,4 +1,5 @@
 // === AUTO-GENERATED IMPORTS ===
+import { n_A_Equip, n_A_card } from './roro-state.js';
 import { g_attackMethodBridge } from './CAttackMethodDataBridge.js';
 import './card.h.js';
 import { MigGetBorderFlagText } from './data/mig.itemsp.h.js';

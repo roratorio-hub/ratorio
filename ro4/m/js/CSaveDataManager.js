@@ -1,3 +1,4 @@
+import { n_A_Equip } from '../../../roro/m/js/roro-state.js';
 import { CSaveDataConst } from './savedata/CSaveDataConst.js';
 import { CSaveDataUnitTypeManager } from './savedata/CSaveDataUnitTypeManager.js';
 import { CSaveDataUnitParse } from './savedata/CSaveDataUnitParse.js';

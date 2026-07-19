@@ -1,3 +1,4 @@
+import { n_A_Equip, n_A_card } from '../../../roro/m/js/roro-state.js';
 import { CGlobalConstManager } from '../../../roro/m/js/CGlobalConstManager.js';
 // === AUTO-GENERATED IMPORTS ===
 import '../../../roro/m/js/card.h.js';

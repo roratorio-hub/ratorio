@@ -1,4 +1,5 @@
 import { CGlobalConstManager } from '../../../../roro/m/js/CGlobalConstManager.js';
+import { SaveSystem } from '../../../../roro/m/js/saveload-bridge.js';
 // === AUTO-GENERATED IMPORTS ===
 import '../../../../roro/m/js/common.js';
 import '../../../../roro/m/js/item.h.js';

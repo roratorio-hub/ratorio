@@ -1,4 +1,5 @@
 // === AUTO-GENERATED IMPORTS ===
+import { n_A_Equip, n_A_card } from '../../../roro/m/js/roro-state.js';
 import '../../../roro/m/js/autospell.h.js';
 import '../../../roro/m/js/card.h.js';
 import '../../../roro/m/js/common.js';

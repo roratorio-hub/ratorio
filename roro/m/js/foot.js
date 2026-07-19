@@ -982,6 +982,7 @@ import {
          setItemSpDexPlusPlaneForCalcData,
          setItemSpLukPlusPlaneForCalcData,
 } from './roro-state.js';
+import { n_A_Equip, n_A_card, set_n_A_Equip, set_n_A_card } from './roro-state.js';
 
 /**
  * 計算機の初期化コードが記述されたエントリーポイント
@@ -1000,7 +1001,6 @@ let n_A_POW = 0, n_A_CON = 0;
 let n_A_SpeedPOT = 0;
 let n_A_WeaponZokusei = 0;
 let n_B_HIT = 0, n_B_FLEE = 0;
-let n_A_Equip = [], n_A_card = [];
 // g_bSuperNoviceFullWeapon は equip.js が所有（import 済みのライブバインディング）。
 // 書き込みは SetSuperNoviceFullWeapon 経由で行う。
 export function RefreshSuperNoviceFullWeapon(bFull) {
@@ -30617,10 +30617,10 @@ export function Init(jobId){
 	set_n_A_SHOULDER_DEF_PLUS(0);
 	set_n_A_SHOES_DEF_PLUS(0);
 
-	n_A_Equip = new Array();
+	set_n_A_Equip(new Array());
 	for(let i = 0; i <= ITEMSET_ID_LIMIT_WITH_ITEM; i++) n_A_Equip[i] = 0;
 
-	n_A_card = new Array();
+	set_n_A_card(new Array());
 	for(let i = 0; i <= ITEMSET_ID_LIMIT_WITH_CARD; i++) n_A_card[i] = 0;
 
 	set_n_A_costume(new Array());
@@ -30972,12 +30972,6 @@ __registerFootFunctions({
 });
 
 if (typeof window !== 'undefined') {
-    // 残存2変数: itemset.h.js が window 経由で書き込むため 3f-5 で解消予定
-    Object.defineProperties(window, {
-        n_A_Equip: { get: () => n_A_Equip, set: v => { n_A_Equip = v; }, configurable: true },
-        n_A_card: { get: () => n_A_card, set: v => { n_A_card = v; }, configurable: true },
-    });
-
     Object.assign(window, {
         // Workspace I/F: workspace/src/rtxApiImport.ts が window 経由で呼ぶ（Phase 4 で解消）
         StAllCalc,

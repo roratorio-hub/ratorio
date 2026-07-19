@@ -1,3 +1,4 @@
+import { n_A_Equip } from './roro-state.js';
 import { CGlobalConstManager } from './CGlobalConstManager.js';
 import { CInstanceManager } from './CInstanceManager.js';
 // === AUTO-GENERATED IMPORTS ===

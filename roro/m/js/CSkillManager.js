@@ -1,4 +1,5 @@
 // === AUTO-GENERATED IMPORTS ===
+import { n_A_Equip } from './roro-state.js';
 import './common.js';
 import './data/mig.itemsp.h.js';
 import './item.h.js';
