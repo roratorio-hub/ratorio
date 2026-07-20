@@ -19,7 +19,7 @@ import {
          ITEM_ID_MICHINARU_SHUCHUNO_BOOTS, ITEM_ID_MICHINARU_SOZONO_BOOTS,
          ITEM_ID_NOEQUIP_SHIELD
 } from '../../../roro/m/js/item.dat.js';
-import { LEARNED_SKILL_MAX_COUNT, LearnedSkillSearch, OnClickSkillSWLearned } from '../../../roro/m/js/learnedskill.js';
+import { LEARNED_SKILL_MAX_COUNT, LearnedSkillSearch, OnClickSkillSWLearned, n_A_LearnedSkill } from '../../../roro/m/js/learnedskill.js';
 import { MOB_CONF_DEBUF_ID_JACK_FROST_NOVA, MOB_CONF_DEBUF_ID_TOXIN_OF_MANDARA, n_B_IJYOU } from '../../../roro/m/js/mobconfdebuf.js';
 import {
          SKILL_ID_ABYSS_SLAYER, SKILL_ID_ARUGUTUS_VITA, SKILL_ID_ATTACK_STANCE,
@@ -351,20 +351,12 @@ export function CalcStatusPoint(bIgnoreAutoCalc, bIgnorePointCap = false) {
 	g_CON = stValCON;
 	g_CRT = stValCRT;
 	g_BaseLV = Number(_cf.A_BaseLV.value);
-	// Pattern A: window sync
-	window.g_STR = g_STR; window.g_AGI = g_AGI; window.g_VIT = g_VIT;
-	window.g_INT = g_INT; window.g_DEX = g_DEX; window.g_LUK = g_LUK;
-	window.g_POW = g_POW; window.g_STA = g_STA; window.g_WIS = g_WIS;
-	window.g_SPL = g_SPL; window.g_CON = g_CON; window.g_CRT = g_CRT;
-	window.g_BaseLV = g_BaseLV;
 
 	myInnerHtml("A_STPOINT", stPointEarned - stPointUsed, 0);
 	myInnerHtml("OBJID_SPAN_STATUS_T_STATUS_POINT", stTSPointEarned - stTSPointUsed, 0);
 
 	// 特性ステータス仮処理
-	// とりあえず、グローバル空間を汚す
 	g_pureStatus = [];
-	window.g_pureStatus = g_pureStatus;
 	g_pureStatus[MIG_PARAM_ID_POW] = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_STATUS_POW", 0);
 	g_pureStatus[MIG_PARAM_ID_STA] = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_STATUS_STA", 0);
 	g_pureStatus[MIG_PARAM_ID_WIS] = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_STATUS_WIS", 0);
@@ -589,9 +581,7 @@ export function StoreSpecStatusBonusAll(valPOW, valSTA, valWIS, valSPL, valCON, 
 
 	var value = 0;
 
-	// とりあえず、グローバル空間を汚す
 	g_bonusStatus = [];
-	window.g_bonusStatus = g_bonusStatus;
 	g_bonusStatus[MIG_PARAM_ID_POW] = valPOW;
 	g_bonusStatus[MIG_PARAM_ID_STA] = valSTA;
 	g_bonusStatus[MIG_PARAM_ID_WIS] = valWIS;
@@ -1809,9 +1799,8 @@ export function migrateOtherJob(jobId) {
 		// 異なる職業系列へ変更する場合
 		if (!IsSameJobGroup(jobData.getMigIdNum(), recentJobMigId)) {
 			// 習得スキルの初期化
-			window.n_A_LearnedSkill = new Array();
 			for (let dmyidx = 0; dmyidx < LEARNED_SKILL_MAX_COUNT; dmyidx++) {
-				window.n_A_LearnedSkill[dmyidx] = 0;
+				n_A_LearnedSkill[dmyidx] = 0;
 			}
 			OnClickSkillSWLearned();
 			// 職固有自己支援・パッシブ持続系の初期化
