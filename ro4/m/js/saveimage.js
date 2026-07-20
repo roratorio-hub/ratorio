@@ -630,6 +630,5 @@ export function generateImage() {
     }
 }
 
-if (typeof window !== 'undefined') {
-    window.generateImage = generateImage;
-}
+import { register } from './engine-registry.js';
+register('generateImage', generateImage);

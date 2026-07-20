@@ -1,5 +1,6 @@
 import { loadFileAsUint8Array, zstdDecompressString } from "./funcZstd";
 import { load as loadYAML } from "js-yaml"
+import { get as registryGet } from "../../ro4/m/js/engine-registry.js";
 
 // ItemMapの型定義
 export interface ItemDataParameter {
@@ -129,7 +130,7 @@ export class ItemMap {
 
     /* migId から Id を取得 */
     static findItemByMigIdFromItem(migId: number): ItemData | undefined {
-        const itemObject = ItemObjNew[migId];
+        const itemObject = (registryGet('ItemObjNew') as Array<Array<string | number>>)[migId];
         if (!itemObject) return undefined;
         const displayName = itemObject[8] as string;
         return this.getByDisplayName(displayName);
@@ -137,7 +138,7 @@ export class ItemMap {
 
     /* migId から Id を取得 */
     static findItemByMigIdFromCardOrEnchant(migId: number, is_enchant: boolean = false): ItemData | undefined {
-        const itemObject = CardObjNew[migId];
+        const itemObject = (registryGet('CardObjNew') as Array<Array<string | number>>)[migId];
         if (!itemObject) {
             console.warn(`Item not found for migId: ${migId}`);
             return undefined;

@@ -26,6 +26,8 @@ import {
          IsMatchSpDefId, CheckSpDefFriendlyOver, CheckSpDefBaseLvOver, CheckSpDefJobRestrict,
          CheckSpDefPureStatus, CheckSpDefRefineOver,
 } from './foot-bridge.js';
+// Phase B: window.AutoCalc 廃止に伴い head-bridge 経由に移行
+import { AutoCalc } from '../../../ro4/m/js/head-bridge.js';
 
 // C-6: ro4 側共有 state（旧 head.js window 変数）
 import {

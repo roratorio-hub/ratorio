@@ -4,6 +4,8 @@ import { CGlobalConstManager } from './CGlobalConstManager.js';
 import { COLOR_CODE_TABLE_HEADER_IS_NOT_SET, COLOR_CODE_TABLE_HEADER_IS_SET } from './common.js';
 import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectCheckedById, ValueRangeModify } from '../../common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: head.js 公開関数（head-bridge 経由）
+import { AutoCalc } from '../../../ro4/m/js/head-bridge.js';
 
 // コントロール種別定義
 CGlobalConstManager.DefineEnum(

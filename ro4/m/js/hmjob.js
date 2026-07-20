@@ -7,6 +7,7 @@ import '../../../roro/m/js/item.h.js';
 import '../../../roro/m/js/monster.h.js';
 import { GetStatusMax, IsDualArmsJob, IsReincarnatedJob, IsSameJobGroup, IsYojiJob } from './data/mig.job.h.js';
 import { CSaveDataConst } from './savedata/CSaveDataConst.js';
+import { CSaveController } from './CSaveController.js';
 import { HtmlGetObjectValueByIdAsInteger, ValueRangeModify, myInnerHtml } from '../../../roro/common/js/util.js';
 import { CCharaConfCustomSpecStatus } from '../../../roro/m/js/CCharaConfCustomSpecStatus.js';
 import { CCharaConfNizi } from '../../../roro/m/js/CCharaConfNizi.js';
@@ -51,12 +52,12 @@ import {
 
 // C-6: head.js 公開関数（head-bridge 経由）
 import {
-         calc, ApplyPhysicalSpecializeMonster,
+         calc, ApplyPhysicalSpecializeMonster, AutoCalc,
 } from './head-bridge.js';
 
 // C-6: foot.js 公開関数（foot-bridge 経由）
 import {
-         GetEquippedTotalSPEquip, GetEquippedTotalSPCardAndElse, InitJobInfo,
+         GetEquippedTotalSPEquip, GetEquippedTotalSPCardAndElse, InitJobInfo, StAllCalc,
 } from '../../../roro/m/js/foot-bridge.js';
 
 // C-6: ro4 側共有 state（旧 head.js window 変数）
@@ -1877,10 +1878,8 @@ export const OnChangeStatus = _debounce(function() {
 	AutoCalc();
 }, 200);
 
-if (typeof window !== 'undefined') {
-	window.RebuildStatusSelect = RebuildStatusSelect;
-	window.CalcStatusPoint = CalcStatusPoint;
-	window.GetTotalPureBasicStatus = GetTotalPureBasicStatus;
-	window.GetTotalSpecStatus = GetTotalSpecStatus;
-	window.ApplySpecModify = ApplySpecModify;
-}
+import { register } from './engine-registry.js';
+register('CalcStatusPoint', CalcStatusPoint);
+register('RebuildStatusSelect', RebuildStatusSelect);
+import { __registerHmjobFunctions } from './hmjob-bridge.js';
+__registerHmjobFunctions({ ApplySpecModify, GetTotalPureBasicStatus, GetTotalSpecStatus });

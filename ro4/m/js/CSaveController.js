@@ -1448,6 +1448,6 @@ export class CSaveController {
 
 }
 
-if (typeof window !== 'undefined') {
-    window.CSaveController = CSaveController;
-}
+import { register } from './engine-registry.js';
+register('CSaveController', CSaveController);
+

@@ -561,7 +561,7 @@ let n_NitouCalc = false;
 import {
          GetCastScalingOfSkillForCastTimeVary, GetCastFixOfSkillForCastTimeVary, GetCastScalingOfSkillForCastTimeFixed, GetCastFixOfSkillForCastTimeFixed,
          GetAdditionalFixedCastTime, GetCoolFixOfSkill, GetEquippedTotalSPEquip, GetEquippedTotalSPCardAndElse,
-         GetEquippedTotalSPArrow, NumSearch, ROUNDDOWN,
+         GetEquippedTotalSPArrow, NumSearch, ROUNDDOWN, StAllCalc,
 } from '../../../roro/m/js/foot-bridge.js';
 
 import { __registerHeadFunctions } from './head-bridge.js';
@@ -11198,7 +11198,7 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 	objCell.classList.add("CSSCLS_BTLRSLT_VALUE");
 	HtmlCreateTextNode(funcDIG3PX(battleCalcResultAll.GetDamageSummaryMinPerAtk(), 0), objCell);
 
-	let bDPSActual = CSaveController.getSettingProp(CSaveDataConst.propNameDPSActual);
+	let bDPSActual = registryGet('CSaveController').getSettingProp(CSaveDataConst.propNameDPSActual);
 	// TODO: 詠唱時間等未実測スキル対応
 	if (g_bUnknownCasts) {
 		objCell = HtmlCreateElement("div", objGridDmg);
@@ -21874,11 +21874,8 @@ __registerHeadFunctions({
     GetActRateCritical,
     calc,
     ApplyPhysicalSpecializeMonster,
+    AutoCalc,
 });
 
-if (typeof window !== 'undefined') {
-    Object.assign(window, {
-        // Workspace I/F: workspace/src/rtxApiImport.ts が window 経由で呼ぶ（Phase 4 で解消）
-        AutoCalc,
-    });
-}
+import { register, get as registryGet } from './engine-registry.js';
+register('AutoCalc', AutoCalc);

@@ -30861,11 +30861,8 @@ __registerFootFunctions({
     EquipNumSearchFurubitaSet,
     ROUNDDOWN,
     Init,
+    StAllCalc,
 });
 
-if (typeof window !== 'undefined') {
-    Object.assign(window, {
-        // Workspace I/F: workspace/src/rtxApiImport.ts が window 経由で呼ぶ（Phase 4 で解消）
-        StAllCalc,
-    });
-}
+import { register } from '../../../ro4/m/js/engine-registry.js';
+register('StAllCalc', StAllCalc);

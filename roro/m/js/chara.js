@@ -406,6 +406,8 @@ import {
 import {
          GetEquippedTotalSPEquip, GetEquippedTotalSPCardAndElse, GetEquippedTotalSPArrow, EquipNumSearchFurubitaSet,
 } from './foot-bridge.js';
+// C-6: hmjob.js 公開関数（hmjob-bridge 経由・循環 import 回避）
+import { ApplySpecModify, GetTotalPureBasicStatus } from '../../../ro4/m/js/hmjob-bridge.js';
 
 // C-6: 旧 head.js の window 経由共有スクラッチ変数（宣言忘れ関数の var-leak 対応・ファイルローカル化）
 let itemCountRight = 0;

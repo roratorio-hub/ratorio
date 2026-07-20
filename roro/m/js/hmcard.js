@@ -64,6 +64,8 @@ import { HtmlGetElementById, HtmlCreateElement, HtmlCreateElementOption, HtmlRem
 import {
          n_Nitou,
 } from '../../../ro4/m/js/global.js';
+// C-6: foot.js 公開関数（foot-bridge 経由）
+import { StAllCalc } from './foot-bridge.js';
 
 
 export const CardShortObj =[

@@ -1,3 +1,5 @@
+import { get as registryGet } from "../../ro4/m/js/engine-registry.js";
+
 async function optInSavedata(): Promise<void> {
     // ダイアログを作成
     const dialog = document.createElement('div');
@@ -207,7 +209,7 @@ async function optInSavedata(): Promise<void> {
             dialogContent.appendChild(sendingMessage);
 
             // URL生成
-            OnClickUrlOutMIG();
+            (registryGet('OnClickUrlOutMIG') as () => void)();
 
             const outputUrlElement = document.getElementById('OBJID_INPUT_URL_OUT_MIG') as HTMLInputElement;
             if (!outputUrlElement) {
@@ -234,7 +236,7 @@ async function optInSavedata(): Promise<void> {
             const isIssue = issueToggleElement ? issueToggleElement.checked : false;
 
             // 画像生成
-            generateImage();
+            (registryGet('generateImage') as () => void)();
 
             const imageDiv = document.getElementById('imgdiv');
             if (!imageDiv) {

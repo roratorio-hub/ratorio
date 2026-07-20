@@ -5,6 +5,8 @@ import { CItemInfoManager } from '../../../roro/m/js/CItemInfoManager.js';
 import {
          calc,
 } from './head-bridge.js';
+// C-6: engine-registry（CSaveController.js との循環 import 回避）
+import { get as registryGet } from './engine-registry.js';
 
 $(function () {
   const buildForm = () => {
@@ -149,7 +151,7 @@ div.clip_memo {
           const dataX = chart.scales.x.getValueForPixel(canvasPosition.x);
           if (chart.data.datasets[0].data.length > dataX) {
             let url = chart.data.datasets[0].metadata[Math.abs(dataX)]["url"];
-            CSaveController.loadFromURL(url);
+            registryGet('CSaveController').loadFromURL(url);
             CItemInfoManager.OnClickExtractSwitch();
           }
         }
@@ -167,11 +169,11 @@ div.clip_memo {
         chart.data.datasets[3].data = [];
         target = $(".OBJID_MONSTER_MAP_MONSTER").val();
       }
-      const mgr = CSaveController.getSaveDataManagerCur();
+      const mgr = registryGet('CSaveController').getSaveDataManagerCur();
       mgr.ReCalcManager();
       calc();
       LoadTomSelect();
-      const metadata = { "memo": "", "url": CSaveController.encodeToURL() };
+      const metadata = { "memo": "", "url": registryGet('CSaveController').encodeToURL() };
       if ($("#clip_with_memo").prop('checked')) {
         let memo = prompt("clipメモ");
         if (memo) metadata["memo"] = memo;

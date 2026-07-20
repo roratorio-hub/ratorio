@@ -100,7 +100,7 @@ import {
 
 // C-6: foot.js 公開関数（foot-bridge 経由）
 import {
-         RefreshSuperNoviceFullWeapon,
+         RefreshSuperNoviceFullWeapon, StAllCalc,
 } from '../../../roro/m/js/foot-bridge.js';
 
 // C-6: ro4 側共有 state（旧 head.js window 変数）

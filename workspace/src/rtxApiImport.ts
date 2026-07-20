@@ -1,5 +1,6 @@
 import { load as loadYAML } from "js-yaml"
 import { decodeProcess, API_VERSION, RtxData, RtxEquipmentLocation, RtxEquipments, RtxStatus, CONTROL_CONF_LIST } from "./rtxApiCommon";
+import { get as registryGet } from "../../ro4/m/js/engine-registry.js";
 
 // LocalFile読み込み
 function loadFromLocalFile(): void {
@@ -362,9 +363,9 @@ async function importRtxDataObject(dataObject: RtxData): Promise<void> {
                 }
 
                 // 計算
-                CalcStatusPoint(true);
-                StAllCalc();
-                AutoCalc();
+                (registryGet('CalcStatusPoint') as (flag: boolean) => void)(true);
+                (registryGet('StAllCalc') as () => void)();
+                (registryGet('AutoCalc') as () => void)();
             } catch (err) {
                 console.error("importRtxDataObject 内でエラー:", err);
             } finally {

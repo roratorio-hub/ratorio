@@ -132,8 +132,10 @@ import {
 
 // C-6: foot.js 公開関数（foot-bridge 経由）
 import {
-         RefreshSuperNoviceFullWeapon,
+         RefreshSuperNoviceFullWeapon, StAllCalc,
 } from './foot-bridge.js';
+// C-6: engine-registry（CSaveController.js との循環 import 回避）
+import { get as registryGet } from '../../../ro4/m/js/engine-registry.js';
 
 // C-6: ro4 側共有 state（旧 head.js window 変数）
 import {
@@ -4089,7 +4091,7 @@ export function DecodeUrl(loadDataUrl){
 
 		// 新形式でのロードを試す
 		try {
-			CSaveController.loadFromURL(loadDataUrl);
+			registryGet('CSaveController').loadFromURL(loadDataUrl);
 		}
 		// 新形式もダメならエラー
 		catch (err) {

@@ -28,7 +28,7 @@ import {
 // C-6: foot.js 公開関数（foot-bridge 経由）
 import {
          GetEquippedTotalSPEquip,
-         InitJobInfo,
+         InitJobInfo, StAllCalc,
 } from './foot-bridge.js';
 
 
