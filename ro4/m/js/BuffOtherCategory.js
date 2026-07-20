@@ -16,6 +16,8 @@ import {
 
 import { CAttackMethodAreaComponentManager } from './CAttackMethodAreaComponentManager.js';
 import { CTimeItemAreaComponentManager } from '../../../roro/m/js/CTimeItemAreaComponentManager.js';
+import { StAllCalc } from '../../../roro/m/js/foot-bridge.js';
+import { RebuildStatusSelect, CalcStatusPoint } from './hmjob.js';
 "use strict"
 /**
  * 画面下部の「その他の支援/設定」のバフウィンドウ構築関数群
@@ -140,21 +142,18 @@ export function Click_Skill8SW(){
         } else {
             myInnerHtml("EN819",'<input id="OBJID_CHECK_A8_Skill19" type="checkbox" name="A8_Skill19"><label for="OBJID_CHECK_A8_Skill19"><Font size=2>武器属性付与をアカデミーの看板型付与にする<BR>　（素手Atk部分にも武器属性付与が適用される）</Font></label>',0);
         }
-		// 旧 inline handler の代替配線。
-		// StAllCalc / RebuildStatusSelect / CalcStatusPoint は循環 import 回避のため
-		// window 経由で呼ぶ（foot.js / hmjob.js の workspace I/F compat — Phase 4 で解消予定）
-		document.calcForm.A8_Skill0.addEventListener("change", () => { window.StAllCalc(); OnChangePetSelect(); });
+		document.calcForm.A8_Skill0.addEventListener("change", () => { StAllCalc(); OnChangePetSelect(); });
 		for (const idx of [1, 2, 3, 5, 6, 7, 12, 15, 17, 21, 22]) {
-			document.calcForm["A8_Skill" + idx].addEventListener("change", () => { window.StAllCalc(); Click_A8(true); });
+			document.calcForm["A8_Skill" + idx].addEventListener("change", () => { StAllCalc(); Click_A8(true); });
 		}
 		for (const idx of [4, 16, 19]) {
-			document.calcForm["A8_Skill" + idx].addEventListener("click", () => { window.StAllCalc(); Click_A8(true); });
+			document.calcForm["A8_Skill" + idx].addEventListener("click", () => { StAllCalc(); Click_A8(true); });
 		}
 		document.calcForm.A8_Skill13.addEventListener("click", () => {
-			window.StAllCalc();
+			StAllCalc();
 			Click_A8(true);
-			window.RebuildStatusSelect();
-			window.CalcStatusPoint(true);
+			RebuildStatusSelect();
+			CalcStatusPoint(true);
 		});
 		document.calcForm.A8_Skill0.value = n_A_PassSkill8[0];
 		document.calcForm.A8_Skill1.value = n_A_PassSkill8[1];

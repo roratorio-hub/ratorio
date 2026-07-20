@@ -6,6 +6,7 @@ import { myInnerHtml } from '../../../roro/common/js/util.js';
 import { n_A_PassSkill4 } from './skillstate.js';
 export { n_A_PassSkill4 } from './skillstate.js';
 // === END AUTO-GENERATED IMPORTS ===
+import { StAllCalc } from '../../../roro/m/js/foot-bridge.js';
 "use strict"
 /**
  * 画面下部の「ギルドスキル/ゴスペル/他」のバフウィンドウ構築関数群
@@ -70,11 +71,11 @@ export function Click_Skill4SW(){
 		// （StAllCalc は workspace I/F として window に残る唯一の foot 関数 — Phase 4 で import 化予定）
 		for (let i = 0; i <= 11; i++) {
 			const wOBJ = document.calcForm["A4_Skill" + i];
-			wOBJ.addEventListener(wOBJ.tagName === "SELECT" ? "change" : "click", () => { window.StAllCalc(); Click_A4(true); });
+			wOBJ.addEventListener(wOBJ.tagName === "SELECT" ? "change" : "click", () => { StAllCalc(); Click_A4(true); });
 		}
 		for (let i = 30; i <= 35; i++) {
 			const wOBJ = document.calcForm["A4_Skill" + i];
-			wOBJ.addEventListener("change", () => { window.StAllCalc(); Click_A4(true); });
+			wOBJ.addEventListener("change", () => { StAllCalc(); Click_A4(true); });
 		}
 		for(let i = 0; i <= 5; i++){
 			document.calcForm.A4_Skill1.options[i] = new Option(i,i);
