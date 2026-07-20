@@ -11,6 +11,11 @@ import {
 import { MONSTER_ID_PLAYER, MonsterObjNew } from './monster.dat.js';
 import { HtmlCreateElement } from '../../common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: foot.js 公開関数（foot-bridge 経由）
+import {
+         ROUNDDOWN,
+} from './foot-bridge.js';
+
 export function UpdateMobDataHtml(monsterId, mobData) {
 
 	var idx = 0;

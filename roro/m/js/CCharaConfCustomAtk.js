@@ -508,7 +508,7 @@ export function CCharaConfCustomAtk(confArray) {
 			// 選択セレクトボックスを生成
 			objSelect = document.createElement("select");
 			objSelect.setAttribute("id", controlId);
-			objSelect.setAttribute("onChange", "CConfBase.OnChangeValueHandler(" + this.instanceNo + ", true)");
+			objSelect.addEventListener("change", () => CConfBase.OnChangeValueHandler(this.instanceNo, true));
 			objTd.appendChild(objSelect);
 
 			// セレクトオプションを生成
@@ -533,7 +533,7 @@ export function CCharaConfCustomAtk(confArray) {
 			// 選択セレクトボックスを生成
 			objSelect = document.createElement("select");
 			objSelect.setAttribute("id", controlId);
-			objSelect.setAttribute("onChange", "CConfBase.OnChangeValueHandler(" + this.instanceNo + ", true)");
+			objSelect.addEventListener("change", () => CConfBase.OnChangeValueHandler(this.instanceNo, true));
 			objTd.appendChild(objSelect);
 
 			// セレクトオプションを生成
@@ -560,7 +560,7 @@ export function CCharaConfCustomAtk(confArray) {
 			// 選択セレクトボックスを生成
 			objSelect = document.createElement("select");
 			objSelect.setAttribute("id", controlId);
-			objSelect.setAttribute("onChange", "CConfBase.OnChangeValueHandler(" + this.instanceNo + ", true)");
+			objSelect.addEventListener("change", () => CConfBase.OnChangeValueHandler(this.instanceNo, true));
 			objTd.appendChild(objSelect);
 
 			// セレクトオプションを生成

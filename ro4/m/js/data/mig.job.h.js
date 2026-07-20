@@ -1,4 +1,5 @@
 import { CGlobalConstManager } from '../../../../roro/m/js/CGlobalConstManager.js';
+import { SaveSystem } from '../../../../roro/m/js/saveload-bridge.js';
 // === AUTO-GENERATED IMPORTS ===
 import '../../../../roro/m/js/common.js';
 import '../../../../roro/m/js/item.h.js';
@@ -93,6 +94,14 @@ import {
          MIG_JOB_ID_ZYPSY,
 } from './mig.job.id.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: 共有 state
+import { n_A_JOB } from '../../../../roro/m/js/roro-state.js';
+
+// C-6: head.js 公開関数（head-bridge 経由）
+import {
+         calc,
+} from '../head-bridge.js';
+
 
 //================================================================================================
 //================================================================================================
@@ -217,38 +226,38 @@ CGlobalConstManager.DefineEnum(
 );
 
 // Enum に登録するとマズイので
-window.JOB_ID_ANY = -1;
+export const JOB_ID_ANY = -1;
 
 // 職業系統
-window.JOB_SERIES_ID_NOVICE		= 0;
-window.JOB_SERIES_ID_SUPERNOVICE	= 20;
+export const JOB_SERIES_ID_NOVICE		= 0;
+export const JOB_SERIES_ID_SUPERNOVICE	= 20;
 
-window.JOB_SERIES_ID_SWORDMAN		= 1;
-window.JOB_SERIES_ID_THIEF			= 2;
-window.JOB_SERIES_ID_ACOLYTE		= 3;
-window.JOB_SERIES_ID_ARCHER		= 4;
-window.JOB_SERIES_ID_MAGICIAN		= 5;
-window.JOB_SERIES_ID_MERCHANT		= 6;
+export const JOB_SERIES_ID_SWORDMAN		= 1;
+export const JOB_SERIES_ID_THIEF			= 2;
+export const JOB_SERIES_ID_ACOLYTE		= 3;
+export const JOB_SERIES_ID_ARCHER		= 4;
+export const JOB_SERIES_ID_MAGICIAN		= 5;
+export const JOB_SERIES_ID_MERCHANT		= 6;
 
-window.JOB_SERIES_ID_KNIGHT		= 7;
-window.JOB_SERIES_ID_ASSASIN		= 8;
-window.JOB_SERIES_ID_PRIEST		= 9;
-window.JOB_SERIES_ID_HUNTER		= 10;
-window.JOB_SERIES_ID_WIZARD		= 11;
-window.JOB_SERIES_ID_BLACKSMITH	= 12;
-window.JOB_SERIES_ID_CRUSADER		= 13;
-window.JOB_SERIES_ID_ROGUE			= 14;
-window.JOB_SERIES_ID_MONK			= 15;
-window.JOB_SERIES_ID_BARD			= 16;
-window.JOB_SERIES_ID_DANCER		= 17;
-window.JOB_SERIES_ID_SAGE			= 18;
-window.JOB_SERIES_ID_ALCHEMIST		= 19;
+export const JOB_SERIES_ID_KNIGHT		= 7;
+export const JOB_SERIES_ID_ASSASIN		= 8;
+export const JOB_SERIES_ID_PRIEST		= 9;
+export const JOB_SERIES_ID_HUNTER		= 10;
+export const JOB_SERIES_ID_WIZARD		= 11;
+export const JOB_SERIES_ID_BLACKSMITH	= 12;
+export const JOB_SERIES_ID_CRUSADER		= 13;
+export const JOB_SERIES_ID_ROGUE			= 14;
+export const JOB_SERIES_ID_MONK			= 15;
+export const JOB_SERIES_ID_BARD			= 16;
+export const JOB_SERIES_ID_DANCER		= 17;
+export const JOB_SERIES_ID_SAGE			= 18;
+export const JOB_SERIES_ID_ALCHEMIST		= 19;
 
-window.JOB_SERIES_ID_TAEGKUON		= 41;
-window.JOB_SERIES_ID_NINJA			= 44;
-window.JOB_SERIES_ID_GUNSLINGER	= 45;
+export const JOB_SERIES_ID_TAEGKUON		= 41;
+export const JOB_SERIES_ID_NINJA			= 44;
+export const JOB_SERIES_ID_GUNSLINGER	= 45;
 
-window.JOB_SERIES_ID_SUMMONER		= 51;
+export const JOB_SERIES_ID_SUMMONER		= 51;
 
 /**
  * ジョブ名を取得する.

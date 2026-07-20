@@ -1,3 +1,5 @@
+import { w_SE } from './itemset.dat.js';
+import { GetItemSetMemberText } from './itemset-bridge.js';
 import { CGlobalConstManager } from './CGlobalConstManager.js';
 // === AUTO-GENERATED IMPORTS ===
 import './card.h.js';

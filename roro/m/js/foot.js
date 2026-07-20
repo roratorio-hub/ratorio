@@ -22,7 +22,6 @@ import { ITEM_SP_TIME_OBJ } from './timeitem.dat.js';
 import { Click_Skill4SW, n_A_PassSkill4, n_Skill4SW, setN_Skill4SW } from '../../../ro4/m/js/BuffGuildAndGospel.js';
 import { Click_Skill7SW, n_A_PassSkill7, n_Skill7SW, setN_Skill7SW } from '../../../ro4/m/js/BuffItemAndFood.js';
 import { Click_PassSkillSW, UsedSkillSearch, n_A_PassSkill, n_Skill1SW, setN_Skill1SW } from '../../../ro4/m/js/BuffJobSpecificSelf.js';
-import { Click_Skill3SW, n_A_PassSkill3, n_Skill3SW, setN_Skill3SW } from '../../../ro4/m/js/BuffMusicAndDance.js';
 import { Click_Skill8SW, n_A_PassSkill8, n_Skill8SW, setN_Skill8SW } from '../../../ro4/m/js/BuffOtherCategory.js';
 import { CAttackMethodAreaComponentManager } from '../../../ro4/m/js/CAttackMethodAreaComponentManager.js';
 import { enchSearch } from '../../../ro4/m/js/CEnchSearch.js';
@@ -740,7 +739,12 @@ import {
          SERE_SUPPORT_SKILL_ID_FIRE_CLOAK, SERE_SUPPORT_SKILL_ID_FLAME_ARMOR,
          SERE_SUPPORT_SKILL_ID_POISON_SHIELD, SERE_SUPPORT_SKILL_ID_STONE_SHIELD,
          SERE_SUPPORT_SKILL_ID_STRONG_PROTECTION, SERE_SUPPORT_SKILL_ID_WATER_DROP,
-         SERE_SUPPORT_SKILL_ID_WIND_CURTAIN
+         SERE_SUPPORT_SKILL_ID_WIND_CURTAIN,
+         SKILL_ID_BEASTY_NOSE, SKILL_ID_BLOOD_HOWLING, SKILL_ID_ENRAGE_RAPTOR, SKILL_ID_ENRAGE_WOLF,
+         SKILL_ID_FLIP_FLAP, SKILL_ID_NATURE_HARMONY, SKILL_ID_NATURE_LOGIC, SKILL_ID_NATURE_SHIELD,
+         SKILL_ID_NATURE_VIGOUR, SKILL_ID_NYANTOMO_KAMESETSU, SKILL_ID_PREENING, SKILL_ID_RAPTORIAL_INSTINCT,
+         SKILL_ID_SIXTH_SENSE, SKILL_ID_TRUTH_OF_EARTH, SKILL_ID_TRUTH_OF_ICE, SKILL_ID_TRUTH_OF_WIND,
+         SKILL_ID_WERERAPTOR, SKILL_ID_WEREWOLF, SKILL_ID_WOLF_INSTINCT,
 } from './skill.dat.js';
 import {
          BreakSlotOfCardAll, BreakSlotOfCostumeAll, BreakSlotOfRndEnchAll, GetSlotMode,
@@ -886,9 +890,99 @@ import {
          SKILL_ID_WASHINO_ME, SKILL_ID_WATER_DRAGON_BREATH, SKILL_ID_WEAPON_BLOCKING,
          SKILL_ID_WEAPON_CRUSH, SKILL_ID_WIND_CUTTER, SKILL_ID_WIND_WALK,
          SKILL_ID_WUG_RIDER, SKILL_ID_YARI_SHUREN, SKILL_ID_YASURAGINO_KOMORIUTA,
-         SKILL_ID_YOMIGAESHI, SKILL_ID_ZIRAISHIN, SKILL_ID_ZYUMONZIGIRI
+         SKILL_ID_YOMIGAESHI, SKILL_ID_ZIRAISHIN, SKILL_ID_ZYUMONZIGIRI,
 } from './skill.dat.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: JOB 定数（mig.job.h.js の export const 化に伴う）
+import {
+         JOB_SERIES_ID_NOVICE, JOB_SERIES_ID_SWORDMAN, JOB_SERIES_ID_MAGICIAN, JOB_SERIES_ID_ARCHER,
+         JOB_SERIES_ID_ACOLYTE, JOB_SERIES_ID_MERCHANT, JOB_SERIES_ID_THIEF, JOB_SERIES_ID_PRIEST,
+         JOB_SERIES_ID_WIZARD, JOB_SERIES_ID_BLACKSMITH, JOB_SERIES_ID_HUNTER, JOB_SERIES_ID_ASSASIN,
+         JOB_SERIES_ID_CRUSADER, JOB_SERIES_ID_MONK, JOB_SERIES_ID_ROGUE, JOB_SERIES_ID_BARD,
+         JOB_SERIES_ID_DANCER, JOB_SERIES_ID_GUNSLINGER, JOB_SERIES_ID_NINJA, JOB_SERIES_ID_TAEGKUON,
+         JOB_SERIES_ID_SUMMONER,
+} from '../../../ro4/m/js/data/mig.job.h.js';
+
+// C-6: global.js 管理の共有 conf state
+import {
+         g_confDataIchizi, set_g_confDataIchizi, g_confDataNizi,
+         set_g_confDataNizi, g_confDataSanzi, set_g_confDataSanzi,
+         g_confDataYozi, set_g_confDataYozi, g_confDataDebuff,
+         set_g_confDataDebuff, g_confDataCustomAtk, set_g_confDataCustomAtk,
+         g_confDataCustomDef, set_g_confDataCustomDef, g_confDataCustomSkill,
+         set_g_confDataCustomSkill, g_confDataCustomSpecStatus, set_g_confDataCustomSpecStatus,
+         g_confDataCustomStatus, set_g_confDataCustomStatus, g_objCharaConfIchizi,
+         set_g_objCharaConfIchizi, g_objCharaConfNizi, set_g_objCharaConfNizi,
+         g_objCharaConfSanzi, set_g_objCharaConfSanzi, g_objCharaConfYozi,
+         set_g_objCharaConfYozi, g_objCharaConfDebuff, set_g_objCharaConfDebuff,
+         n_Nitou, set_costDownForDisp, set_g_VariableCastTimeRate,
+         g_objCharaConfCustomAtk, set_g_objCharaConfCustomAtk, g_objCharaConfCustomDef,
+         set_g_objCharaConfCustomDef, g_objCharaConfCustomSkill, set_g_objCharaConfCustomSkill,
+         g_objCharaConfCustomSpecStatus, set_g_objCharaConfCustomSpecStatus, g_objCharaConfCustomStatus,
+         set_g_objCharaConfCustomStatus,
+} from '../../../ro4/m/js/global.js';
+
+import { __registerFootFunctions } from './foot-bridge.js';
+
+// C-6: 旧 head.js の window 経由共有スクラッチ変数（宣言忘れ関数の var-leak 対応・ファイルローカル化）
+let itemCountRight = 0;
+let itemCountLeft = 0;
+let cardCount = 0;
+
+// C-6: ro4 側共有 state（旧 head.js window 変数）
+import {
+         SaveDataAll, set_n_SiegeMode, n_A_BaseLV, set_n_A_BaseLV,
+         n_A_ActiveSkill, set_n_A_ActiveSkill, n_A_ActiveSkillLV, set_n_A_ActiveSkillLV,
+         n_A_Kotei_Cast_Keigen, set_n_A_Kotei_Cast_Keigen, n_A_QUAKE_KIRI, set_n_A_QUAKE_KIRI,
+         n_A_Arrow, set_n_A_Arrow, set_delayDownForDisp, set_aspdRaw,
+         set_n_A_Weapon_zokusei, n_Enekyori, n_Delay, n_tok,
+         n_tok_no_limit, n_Heal_MATK,
+} from '../../../ro4/m/js/ro4-state.js';
+
+import {
+         SU_STR, set_SU_STR, SU_AGI, set_SU_AGI,
+         SU_VIT, set_SU_VIT, SU_DEX, set_SU_DEX,
+         SU_INT, set_SU_INT, SU_LUK, set_SU_LUK,
+         n_A_JobLV, set_n_A_JobLV, n_A_STR, set_n_A_STR,
+         n_A_AGI, set_n_A_AGI, n_A_VIT, set_n_A_VIT,
+         n_A_DEX, set_n_A_DEX, n_A_INT, set_n_A_INT,
+         n_A_LUK, set_n_A_LUK, n_A_STA, set_n_A_STA,
+         n_A_WIS, set_n_A_WIS, n_A_SPL, set_n_A_SPL,
+         n_A_CRT, set_n_A_CRT, n_A_WeaponType, set_n_A_WeaponType,
+         n_A_HEAD_DEF_PLUS, set_n_A_HEAD_DEF_PLUS, n_A_BODY_DEF_PLUS, set_n_A_BODY_DEF_PLUS,
+         n_A_SHIELD_DEF_PLUS, set_n_A_SHIELD_DEF_PLUS, n_A_SHOULDER_DEF_PLUS, set_n_A_SHOULDER_DEF_PLUS,
+         n_A_SHOES_DEF_PLUS, set_n_A_SHOES_DEF_PLUS, n_A_Weapon_Transcendence, set_n_A_Weapon_Transcendence,
+         n_A_Weapon2_Transcendence, set_n_A_Weapon2_Transcendence, n_A_HEAD_DEF_Transcendence, set_n_A_HEAD_DEF_Transcendence,
+         n_A_SHIELD_DEF_Transcendence, set_n_A_SHIELD_DEF_Transcendence, n_A_BODY_DEF_Transcendence, set_n_A_BODY_DEF_Transcendence,
+         n_A_SHOULDER_DEF_Transcendence, set_n_A_SHOULDER_DEF_Transcendence, n_A_SHOES_DEF_Transcendence, set_n_A_SHOES_DEF_Transcendence,
+         n_A_WeaponLV, set_n_A_WeaponLV, n_A_Weapon_ATK, set_n_A_Weapon_ATK,
+         n_A_Weapon_ATKplus, set_n_A_Weapon_ATKplus, n_A_WeaponLV_seirenATK, set_n_A_WeaponLV_seirenATK,
+         n_A_WeaponLV_Minplus, set_n_A_WeaponLV_Minplus, n_A_WeaponLV_Maxplus, set_n_A_WeaponLV_Maxplus,
+         n_A_Weapon2LV, set_n_A_Weapon2LV, n_A_Weapon2_ATK, set_n_A_Weapon2_ATK,
+         n_A_Weapon2_ATKplus, set_n_A_Weapon2_ATKplus, n_A_Weapon2LV_seirenATK, set_n_A_Weapon2LV_seirenATK,
+         n_A_Weapon2LV_Minplus, set_n_A_Weapon2LV_Minplus, n_A_Weapon2LV_Maxplus, set_n_A_Weapon2LV_Maxplus,
+         n_A_BodyZokusei, set_n_A_BodyZokusei, n_B_DEF2, set_n_B_DEF2,
+         n_B_MDEF2, set_n_B_MDEF2, n_A_costume, set_n_A_costume,
+         n_A_PassSkill5, set_n_A_PassSkill5, g_itemIdArray, set_g_itemIdArray,
+         g_refinedArray, set_g_refinedArray, g_objMobConfInput, set_g_objMobConfInput,
+         SpeedPotName,
+         n_A_JOB, n_A_MATK, set_n_A_MATK, BK_n_A_MATK, set_BK_n_A_MATK, set_g_lucky_over, set_n_CastCutForDisp, n_A_Weapon2Type,
+} from './roro-state.js';
+
+// C-6: 共有 state（roro-state.js へ段階移行中）
+import {
+         setItemSpFleePlusForCalcData,
+         setItemSpSkillCastTimeForCalcData,
+         setItemSpAspdUpForCalcData,
+         setItemSpStrPlusPlaneForCalcData,
+         setItemSpAgiPlusPlaneForCalcData,
+         setItemSpVitPlusPlaneForCalcData,
+         setItemSpIntPlusPlaneForCalcData,
+         setItemSpDexPlusPlaneForCalcData,
+         setItemSpLukPlusPlaneForCalcData,
+} from './roro-state.js';
+import { n_A_Equip, n_A_card, set_n_A_Equip, set_n_A_card } from './roro-state.js';
+
 /**
  * 計算機の初期化コードが記述されたエントリーポイント
  * DOMContentLoaded をトリガーにして初期化が開始される
@@ -901,39 +995,13 @@ import {
  */
 
 // foot.js 専有のモジュールレベル変数（ESM化で新規宣言）
-let SU_STR = 0, SU_AGI = 0, SU_VIT = 0, SU_DEX = 0, SU_INT = 0, SU_LUK = 0;
 let SU_POW = 0, SU_STA = 0, SU_WIS = 0, SU_SPL = 0, SU_CON = 0, SU_CRT = 0;
-let n_A_JobLV = 1;
-let n_A_STR = 1, n_A_AGI = 1, n_A_VIT = 1, n_A_DEX = 1, n_A_INT = 1, n_A_LUK = 1;
-let n_A_POW = 0, n_A_STA = 0, n_A_WIS = 0, n_A_SPL = 0, n_A_CON = 0, n_A_CRT = 0;
+let n_A_POW = 0, n_A_CON = 0;
 let n_A_SpeedPOT = 0;
-let n_A_WeaponType = 0, n_A_WeaponZokusei = 0;
-let n_A_HEAD_DEF_PLUS = 0, n_A_BODY_DEF_PLUS = 0, n_A_SHIELD_DEF_PLUS = 0;
-let n_A_SHOULDER_DEF_PLUS = 0, n_A_SHOES_DEF_PLUS = 0;
-let n_A_Weapon_Transcendence = 0, n_A_Weapon2_Transcendence = 0;
-let n_A_HEAD_DEF_Transcendence = 0, n_A_SHIELD_DEF_Transcendence = 0;
-let n_A_BODY_DEF_Transcendence = 0, n_A_SHOULDER_DEF_Transcendence = 0, n_A_SHOES_DEF_Transcendence = 0;
-let n_A_WeaponLV = 0, n_A_Weapon_ATK = 0, n_A_Weapon_ATKplus = 0;
-let n_A_WeaponLV_seirenATK = 0, n_A_WeaponLV_Minplus = 0, n_A_WeaponLV_Maxplus = 0;
-let n_A_Weapon2LV = 0, n_A_Weapon2_ATK = 0, n_A_Weapon2_ATKplus = 0;
-let n_A_Weapon2LV_seirenATK = 0, n_A_Weapon2LV_Minplus = 0, n_A_Weapon2LV_Maxplus = 0;
-let n_A_BodyZokusei = 0;
-let n_B_DEF2 = [0, 0, 0], n_B_MDEF2 = 0, n_B_HIT = 0, n_B_FLEE = 0;
-let n_A_Equip = [], n_A_card = [], n_A_costume = [], n_A_PassSkill5 = [];
-let g_itemIdArray = [], g_refinedArray = [];
-let g_ITEM_SP_FLEE_PLUS_value_forCalcData = 0;
-let g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = 0;
-let g_ITEM_SP_ASPD_UP_value_forCalcData = 0;
-let g_ITEM_SP_STR_PLUS_PLANE_value_forCalcData = 0;
-let g_ITEM_SP_AGI_PLUS_PLANE_value_forCalcData = 0;
-let g_ITEM_SP_VIT_PLUS_PLANE_value_forCalcData = 0;
-let g_ITEM_SP_INT_PLUS_PLANE_value_forCalcData = 0;
-let g_ITEM_SP_DEX_PLUS_PLANE_value_forCalcData = 0;
-let g_ITEM_SP_LUK_PLUS_PLANE_value_forCalcData = 0;
+let n_A_WeaponZokusei = 0;
+let n_B_HIT = 0, n_B_FLEE = 0;
 // g_bSuperNoviceFullWeapon は equip.js が所有（import 済みのライブバインディング）。
 // 書き込みは SetSuperNoviceFullWeapon 経由で行う。
-let g_objMobConfInput = null;
-
 export function RefreshSuperNoviceFullWeapon(bFull) {
 
 	var idx = 0;
@@ -1218,9 +1286,9 @@ export function UpdateEquipItemDataByHtml() {
 	// ＨＴＭＬの入力値を元に、変数を更新する
 	var calcForm = document.calcForm;
 
-	n_A_WeaponType = eval(calcForm.A_WeaponType.value);
+	set_n_A_WeaponType(eval(calcForm.A_WeaponType.value));
 	n_A_WeaponZokusei = eval(calcForm.A_Weapon_zokusei.value);
-	window.n_A_Arrow = parseInt(HtmlGetObjectValueById("OBJID_SELECT_ARROW", ARROW_ID_NONE));
+	set_n_A_Arrow(parseInt(HtmlGetObjectValueById("OBJID_SELECT_ARROW", ARROW_ID_NONE)));
 
 	// 装備部位配列初期化
 	for (var idx = 0; idx < EQUIP_REGION_ID_COUNT; idx++) {
@@ -1244,16 +1312,16 @@ export function UpdateEquipItemDataByHtml() {
 	n_A_Equip[EQUIP_REGION_ID_COSTUME_HEAD_UNDER] = HtmlGetObjectValueByIdAsInteger("A_isyou3", 0);
 
 	// 各種精錬値
-	n_A_HEAD_DEF_PLUS = eval(calcForm.A_HEAD_DEF_PLUS.value);
-	n_A_BODY_DEF_PLUS = eval(calcForm.A_BODY_DEF_PLUS.value);
-	n_A_SHIELD_DEF_PLUS = eval(calcForm.A_SHIELD_DEF_PLUS.value);
-	n_A_SHOULDER_DEF_PLUS = eval(calcForm.A_SHOULDER_DEF_PLUS.value);
-	n_A_SHOES_DEF_PLUS = eval(calcForm.A_SHOES_DEF_PLUS.value);
+	set_n_A_HEAD_DEF_PLUS(eval(calcForm.A_HEAD_DEF_PLUS.value));
+	set_n_A_BODY_DEF_PLUS(eval(calcForm.A_BODY_DEF_PLUS.value));
+	set_n_A_SHIELD_DEF_PLUS(eval(calcForm.A_SHIELD_DEF_PLUS.value));
+	set_n_A_SHOULDER_DEF_PLUS(eval(calcForm.A_SHOULDER_DEF_PLUS.value));
+	set_n_A_SHOES_DEF_PLUS(eval(calcForm.A_SHOES_DEF_PLUS.value));
 
 
 	// シャドウ装備データ
-	g_itemIdArray = [];
-	g_refinedArray = [];
+	set_g_itemIdArray([]);
+	set_g_refinedArray([]);
 	// ルート要素の取得
 	if ((typeof g_shadowEquipController) !== "undefined") {
 		g_itemIdArray[EQUIP_REGION_ID_SHADOW_ARMS_RIGHT] = g_shadowEquipController.getEquippedID(CShadowEquipController.EQPRGN_NAME_ARMS_RIGHT);
@@ -1455,22 +1523,22 @@ export function StAllCalc(){
 		// 基本パラメタを取得する
 		//----------------------------------------------------------------
 
-		window.n_A_BaseLV = eval(calcForm.A_BaseLV.value);
-		n_A_JobLV = eval(calcForm.A_JobLV.value);
+		set_n_A_BaseLV(eval(calcForm.A_BaseLV.value));
+		set_n_A_JobLV(eval(calcForm.A_JobLV.value));
 
-		n_A_STR = eval(calcForm.A_STR.value);
-		n_A_AGI = eval(calcForm.A_AGI.value);
-		n_A_VIT = eval(calcForm.A_VIT.value);
-		n_A_DEX = eval(calcForm.A_DEX.value);
-		n_A_INT = eval(calcForm.A_INT.value);
-		n_A_LUK = eval(calcForm.A_LUK.value);
+		set_n_A_STR(eval(calcForm.A_STR.value));
+		set_n_A_AGI(eval(calcForm.A_AGI.value));
+		set_n_A_VIT(eval(calcForm.A_VIT.value));
+		set_n_A_DEX(eval(calcForm.A_DEX.value));
+		set_n_A_INT(eval(calcForm.A_INT.value));
+		set_n_A_LUK(eval(calcForm.A_LUK.value));
 
-		SU_STR = n_A_STR;
-		SU_AGI = n_A_AGI;
-		SU_VIT = n_A_VIT;
-		SU_DEX = n_A_DEX;
-		SU_INT = n_A_INT;
-		SU_LUK = n_A_LUK;
+		set_SU_STR(n_A_STR);
+		set_SU_AGI(n_A_AGI);
+		set_SU_VIT(n_A_VIT);
+		set_SU_DEX(n_A_DEX);
+		set_SU_INT(n_A_INT);
+		set_SU_LUK(n_A_LUK);
 
 
 		n_A_SpeedPOT = eval(calcForm.A_SpeedPOT.value);
@@ -1490,11 +1558,11 @@ export function StAllCalc(){
 		
 		// 合計値
 		n_A_POW = GetTotalSpecStatus(MIG_PARAM_ID_POW);
-		n_A_STA = GetTotalSpecStatus(MIG_PARAM_ID_STA);
-		n_A_WIS = GetTotalSpecStatus(MIG_PARAM_ID_WIS);
-		n_A_SPL = GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+		set_n_A_STA(GetTotalSpecStatus(MIG_PARAM_ID_STA));
+		set_n_A_WIS(GetTotalSpecStatus(MIG_PARAM_ID_WIS));
+		set_n_A_SPL(GetTotalSpecStatus(MIG_PARAM_ID_SPL));
 		n_A_CON = GetTotalSpecStatus(MIG_PARAM_ID_CON);
-		n_A_CRT = GetTotalSpecStatus(MIG_PARAM_ID_CRT);
+		set_n_A_CRT(GetTotalSpecStatus(MIG_PARAM_ID_CRT));
 
 		//----------------------------------------------------------------
 		// 装備を取得する
@@ -1503,92 +1571,92 @@ export function StAllCalc(){
 		UpdateEquipItemDataByHtml();
 
 		// 超越段階
-		n_A_Weapon_Transcendence = eval(calcForm.A_Weapon_Transcendence.value);
-		n_A_Weapon2_Transcendence = eval(calcForm.A_Weapon2_Transcendence.value);
-		n_A_HEAD_DEF_Transcendence = eval(calcForm.A_HEAD_DEF_Transcendence.value);
-		n_A_SHIELD_DEF_Transcendence = eval(calcForm.A_SHIELD_DEF_Transcendence.value);
-		n_A_BODY_DEF_Transcendence = eval(calcForm.A_BODY_DEF_Transcendence.value);
-		n_A_SHOULDER_DEF_Transcendence = eval(calcForm.A_SHOULDER_DEF_Transcendence.value);
-		n_A_SHOES_DEF_Transcendence = eval(calcForm.A_SHOES_DEF_Transcendence.value);
+		set_n_A_Weapon_Transcendence(eval(calcForm.A_Weapon_Transcendence.value));
+		set_n_A_Weapon2_Transcendence(eval(calcForm.A_Weapon2_Transcendence.value));
+		set_n_A_HEAD_DEF_Transcendence(eval(calcForm.A_HEAD_DEF_Transcendence.value));
+		set_n_A_SHIELD_DEF_Transcendence(eval(calcForm.A_SHIELD_DEF_Transcendence.value));
+		set_n_A_BODY_DEF_Transcendence(eval(calcForm.A_BODY_DEF_Transcendence.value));
+		set_n_A_SHOULDER_DEF_Transcendence(eval(calcForm.A_SHOULDER_DEF_Transcendence.value));
+		set_n_A_SHOES_DEF_Transcendence(eval(calcForm.A_SHOES_DEF_Transcendence.value));
 
 		//----------------------------------------------------------------
 		// 攻撃手段を取得する
 		//----------------------------------------------------------------
 		attackMethodConf = CAttackMethodAreaComponentManager.GetAttackMethodConf();
 
-		window.n_A_ActiveSkill = attackMethodConf.GetSkillId();
-		window.n_A_ActiveSkillLV = attackMethodConf.GetSkillLv();
+		set_n_A_ActiveSkill(attackMethodConf.GetSkillId());
+		set_n_A_ActiveSkillLV(attackMethodConf.GetSkillLv());
 
 		attackMethodConfArray = [attackMethodConf];
 
-		n_A_WeaponLV = Math.floor(ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS]][ITEM_DATA_INDEX_WPNLV] % 10);
+		set_n_A_WeaponLV(Math.floor(ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS]][ITEM_DATA_INDEX_WPNLV] % 10));
 
 		// 従来の処理
-		n_A_Weapon_ATK = ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS]][ITEM_DATA_INDEX_POWER];
+		set_n_A_Weapon_ATK(ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS]][ITEM_DATA_INDEX_POWER]);
 		
-		n_A_Weapon_ATKplus = eval(calcForm.A_Weapon_ATKplus.value);
-		n_A_WeaponLV_seirenATK = 0;
-		n_A_WeaponLV_Minplus = 0;
-		n_A_WeaponLV_Maxplus = 0;
+		set_n_A_Weapon_ATKplus(eval(calcForm.A_Weapon_ATKplus.value));
+		set_n_A_WeaponLV_seirenATK(0);
+		set_n_A_WeaponLV_Minplus(0);
+		set_n_A_WeaponLV_Maxplus(0);
 		if(n_A_WeaponLV == 1){
-			n_A_WeaponLV_seirenATK = n_A_Weapon_ATKplus * 2;
+			set_n_A_WeaponLV_seirenATK(n_A_Weapon_ATKplus * 2);
 			if(n_A_Weapon_ATKplus >= 8){
-				n_A_WeaponLV_Minplus = 1;
-				n_A_WeaponLV_Maxplus = 3 * (n_A_Weapon_ATKplus - 7);
+				set_n_A_WeaponLV_Minplus(1);
+				set_n_A_WeaponLV_Maxplus(3 * (n_A_Weapon_ATKplus - 7));
 			}
 		}else if(n_A_WeaponLV == 2){
-			n_A_WeaponLV_seirenATK = n_A_Weapon_ATKplus * 3;
+			set_n_A_WeaponLV_seirenATK(n_A_Weapon_ATKplus * 3);
 			if(n_A_Weapon_ATKplus >= 7){
-				n_A_WeaponLV_Minplus = 1;
-				n_A_WeaponLV_Maxplus = 5 * (n_A_Weapon_ATKplus - 6);
+				set_n_A_WeaponLV_Minplus(1);
+				set_n_A_WeaponLV_Maxplus(5 * (n_A_Weapon_ATKplus - 6));
 			}
 		}else if(n_A_WeaponLV == 3){
-			n_A_WeaponLV_seirenATK = n_A_Weapon_ATKplus * 5;
+			set_n_A_WeaponLV_seirenATK(n_A_Weapon_ATKplus * 5);
 			if(n_A_Weapon_ATKplus >= 6){
-				n_A_WeaponLV_Minplus = 1;
-				n_A_WeaponLV_Maxplus = 8 * (n_A_Weapon_ATKplus - 5);
+				set_n_A_WeaponLV_Minplus(1);
+				set_n_A_WeaponLV_Maxplus(8 * (n_A_Weapon_ATKplus - 5));
 			}
 		}else if(n_A_WeaponLV == 4){
-			n_A_WeaponLV_seirenATK = n_A_Weapon_ATKplus * 7;
+			set_n_A_WeaponLV_seirenATK(n_A_Weapon_ATKplus * 7);
 			if(n_A_Weapon_ATKplus >= 5){
-				n_A_WeaponLV_Minplus = 1;
-				n_A_WeaponLV_Maxplus = 14 * (n_A_Weapon_ATKplus - 4);
+				set_n_A_WeaponLV_Minplus(1);
+				set_n_A_WeaponLV_Maxplus(14 * (n_A_Weapon_ATKplus - 4));
 			}
 		}
 
-		n_A_Weapon2_ATKplus = 0;
+		set_n_A_Weapon2_ATKplus(0);
 		if (n_Nitou) {
-			n_A_Weapon2LV = Math.floor(ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS_LEFT]][ITEM_DATA_INDEX_WPNLV] % 10);
+			set_n_A_Weapon2LV(Math.floor(ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS_LEFT]][ITEM_DATA_INDEX_WPNLV] % 10));
 
-			n_A_Weapon2_ATK = ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS_LEFT]][ITEM_DATA_INDEX_POWER];
+			set_n_A_Weapon2_ATK(ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS_LEFT]][ITEM_DATA_INDEX_POWER]);
 
-			n_A_Weapon2_ATKplus = eval(document.calcForm.A_Weapon2_ATKplus.value);
-			n_A_Weapon2LV_seirenATK = 0;
-			n_A_Weapon2LV_Minplus = 0;
-			n_A_Weapon2LV_Maxplus = 0;
+			set_n_A_Weapon2_ATKplus(eval(document.calcForm.A_Weapon2_ATKplus.value));
+			set_n_A_Weapon2LV_seirenATK(0);
+			set_n_A_Weapon2LV_Minplus(0);
+			set_n_A_Weapon2LV_Maxplus(0);
 			if(n_A_Weapon2LV == 1){
-				n_A_Weapon2LV_seirenATK = n_A_Weapon2_ATKplus * 2;
+				set_n_A_Weapon2LV_seirenATK(n_A_Weapon2_ATKplus * 2);
 				if(n_A_Weapon2_ATKplus >= 8){
-					n_A_Weapon2LV_Minplus = 1;
-					n_A_Weapon2LV_Maxplus = 3 * (n_A_Weapon2_ATKplus - 7);
+					set_n_A_Weapon2LV_Minplus(1);
+					set_n_A_Weapon2LV_Maxplus(3 * (n_A_Weapon2_ATKplus - 7));
 				}
 			}else if(n_A_Weapon2LV == 2){
-				n_A_Weapon2LV_seirenATK = n_A_Weapon2_ATKplus * 3;
+				set_n_A_Weapon2LV_seirenATK(n_A_Weapon2_ATKplus * 3);
 				if(n_A_Weapon2_ATKplus >= 7){
-					n_A_Weapon2LV_Minplus = 1;
-					n_A_Weapon2LV_Maxplus = 5 * (n_A_Weapon2_ATKplus - 6);
+					set_n_A_Weapon2LV_Minplus(1);
+					set_n_A_Weapon2LV_Maxplus(5 * (n_A_Weapon2_ATKplus - 6));
 				}
 			}else if(n_A_Weapon2LV == 3){
-				n_A_Weapon2LV_seirenATK = n_A_Weapon2_ATKplus * 5;
+				set_n_A_Weapon2LV_seirenATK(n_A_Weapon2_ATKplus * 5);
 				if(n_A_Weapon2_ATKplus >= 6){
-					n_A_Weapon2LV_Minplus = 1;
-					n_A_Weapon2LV_Maxplus = 8 * (n_A_Weapon2_ATKplus - 5);
+					set_n_A_Weapon2LV_Minplus(1);
+					set_n_A_Weapon2LV_Maxplus(8 * (n_A_Weapon2_ATKplus - 5));
 				}
 			}else if(n_A_Weapon2LV == 4){
-				n_A_Weapon2LV_seirenATK = n_A_Weapon2_ATKplus * 7;
+				set_n_A_Weapon2LV_seirenATK(n_A_Weapon2_ATKplus * 7);
 				if(n_A_Weapon2_ATKplus >= 5){
-					n_A_Weapon2LV_Minplus = 1;
-					n_A_Weapon2LV_Maxplus = 14 * (n_A_Weapon2_ATKplus - 4);
+					set_n_A_Weapon2LV_Minplus(1);
+					set_n_A_Weapon2LV_Maxplus(14 * (n_A_Weapon2_ATKplus - 4));
 				}
 			}
 		}
@@ -1619,68 +1687,6 @@ export function StAllCalc(){
 			}
 		}
 
-		if(n_Skill3SW){
-			n_A_PassSkill3[0] = eval(calcForm.A3_Skill0_1.value);
-			n_A_PassSkill3[1] = eval(calcForm.A3_Skill1_1.value);
-			n_A_PassSkill3[2] = eval(calcForm.A3_Skill2_1.value);
-			n_A_PassSkill3[3] = eval(calcForm.A3_Skill3_1.value);
-			n_A_PassSkill3[4] = eval(calcForm.A3_Skill4_1.value);
-			n_A_PassSkill3[5] = eval(calcForm.A3_Skill5_1.value);
-			n_A_PassSkill3[6] = eval(calcForm.A3_Skill6_1.value);
-			n_A_PassSkill3[7] = eval(calcForm.A3_Skill7.value);
-			n_A_PassSkill3[8] = eval(calcForm.A3_Skill8.value);
-			n_A_PassSkill3[9] = eval(calcForm.A3_Skill9.value);
-			n_A_PassSkill3[10] = eval(calcForm.A3_Skill10.value);
-			n_A_PassSkill3[11] = 0;	// 廃止：旧メランコリー
-			n_A_PassSkill3[42] = 0; // 廃止：旧メランコリー
-			n_A_PassSkill3[12] = eval(calcForm.A3_Skill11_STR.value);
-			n_A_PassSkill3[13] = eval(calcForm.A3_Skill11_AGI.value);
-			n_A_PassSkill3[14] = eval(calcForm.A3_Skill11_VIT.value);
-			n_A_PassSkill3[15] = eval(calcForm.A3_Skill11_INT.value);
-			n_A_PassSkill3[16] = eval(calcForm.A3_Skill11_DEX.value);
-			n_A_PassSkill3[17] = eval(calcForm.A3_Skill11_LUK.value);
-			n_A_PassSkill3[18] = eval(calcForm.A3_Skill11a.checked);
-			n_A_PassSkill3[19] = eval(calcForm.A3_Skill12_0.value);
-			if(n_A_PassSkill3[0]){
-				n_A_PassSkill3[20] = eval(calcForm.A3_Skill0_2.value);
-				n_A_PassSkill3[28] = eval(calcForm.A3_Skill0_4.value);
-				n_A_PassSkill3[30] = eval(calcForm.A3_Skill0_3.value);
-			}
-			if(n_A_PassSkill3[1]){
-				n_A_PassSkill3[21] = eval(calcForm.A3_Skill1_2.value);
-				n_A_PassSkill3[31] = eval(calcForm.A3_Skill1_3.value);
-			}
-			if(n_A_PassSkill3[2]){
-				n_A_PassSkill3[22] = eval(calcForm.A3_Skill2_2.value);
-				n_A_PassSkill3[29] = eval(calcForm.A3_Skill2_3.value);
-				n_A_PassSkill3[32] = eval(calcForm.A3_Skill2_4.value);
-			}
-			if(n_A_PassSkill3[3]){
-				n_A_PassSkill3[23] = eval(calcForm.A3_Skill3_2.value);
-				n_A_PassSkill3[33] = eval(calcForm.A3_Skill3_3.value);
-			}
-			if(n_A_PassSkill3[4]){
-				n_A_PassSkill3[24] = eval(calcForm.A3_Skill4_2.value);
-				n_A_PassSkill3[34] = eval(calcForm.A3_Skill4_3.value);
-			}
-			if(n_A_PassSkill3[5]){
-				n_A_PassSkill3[25] = eval(calcForm.A3_Skill5_2.value);
-				n_A_PassSkill3[35] = eval(calcForm.A3_Skill5_3.value);
-			}
-			if(n_A_PassSkill3[6]){
-				n_A_PassSkill3[26] = eval(calcForm.A3_Skill6_2.value);
-				n_A_PassSkill3[36] = eval(calcForm.A3_Skill6_3.value);
-			}
-			if(n_A_PassSkill3[19]){
-				n_A_PassSkill3[37] = eval(calcForm.A3_Skill12_1.value);
-				n_A_PassSkill3[46] = eval(calcForm.A3_Skill12_2.value);
-				n_A_PassSkill3[38] = eval(calcForm.A3_Skill12_3.value);
-			}
-			if(n_A_PassSkill3[39]){
-				n_A_PassSkill3[40] = eval(calcForm.A3_Skill13_1.value);
-				n_A_PassSkill3[41] = eval(calcForm.A3_Skill13_2.value);
-			}
-		}
 		if(n_Skill4SW){
 			n_A_PassSkill4[0] = eval(calcForm.A4_Skill0.checked);
 			n_A_PassSkill4[1] = eval(calcForm.A4_Skill1.value);
@@ -1806,7 +1812,7 @@ export function StAllCalc(){
 		//----------------------------------------------------------------
 		confval = g_objCharaConfCustomAtk.GetConf(CCharaConfCustomAtk.CONF_ID_WEAPON_ATK);
 		if (confval != 0) {
-			n_A_Weapon_ATK = confval * 5;
+			set_n_A_Weapon_ATK(confval * 5);
 		}
 
 		//----------------------------------------------------------------
@@ -1814,33 +1820,33 @@ export function StAllCalc(){
 		//----------------------------------------------------------------
 		confval = g_objCharaConfCustomAtk.GetConf(CCharaConfCustomAtk.CONF_ID_WEAPON_LEVEL);
 		if (confval != 0) {
-			n_A_WeaponLV = confval;
-			n_A_WeaponLV_seirenATK = 0;
-			n_A_WeaponLV_Minplus = 0;
-			n_A_WeaponLV_Maxplus = 0;
+			set_n_A_WeaponLV(confval);
+			set_n_A_WeaponLV_seirenATK(0);
+			set_n_A_WeaponLV_Minplus(0);
+			set_n_A_WeaponLV_Maxplus(0);
 			if(n_A_WeaponLV == 1){
-				n_A_WeaponLV_seirenATK = n_A_Weapon_ATKplus * 2;
+				set_n_A_WeaponLV_seirenATK(n_A_Weapon_ATKplus * 2);
 				if(n_A_Weapon_ATKplus >= 8){
-					n_A_WeaponLV_Minplus = 1;
-					n_A_WeaponLV_Maxplus = 3 * (n_A_Weapon_ATKplus - 7);
+					set_n_A_WeaponLV_Minplus(1);
+					set_n_A_WeaponLV_Maxplus(3 * (n_A_Weapon_ATKplus - 7));
 				}
 			}else if(n_A_WeaponLV == 2){
-				n_A_WeaponLV_seirenATK = n_A_Weapon_ATKplus * 3;
+				set_n_A_WeaponLV_seirenATK(n_A_Weapon_ATKplus * 3);
 				if(n_A_Weapon_ATKplus >= 7){
-					n_A_WeaponLV_Minplus = 1;
-					n_A_WeaponLV_Maxplus = 5 * (n_A_Weapon_ATKplus - 6);
+					set_n_A_WeaponLV_Minplus(1);
+					set_n_A_WeaponLV_Maxplus(5 * (n_A_Weapon_ATKplus - 6));
 				}
 			}else if(n_A_WeaponLV == 3){
-				n_A_WeaponLV_seirenATK = n_A_Weapon_ATKplus * 5;
+				set_n_A_WeaponLV_seirenATK(n_A_Weapon_ATKplus * 5);
 				if(n_A_Weapon_ATKplus >= 6){
-					n_A_WeaponLV_Minplus = 1;
-					n_A_WeaponLV_Maxplus = 8 * (n_A_Weapon_ATKplus - 5);
+					set_n_A_WeaponLV_Minplus(1);
+					set_n_A_WeaponLV_Maxplus(8 * (n_A_Weapon_ATKplus - 5));
 				}
 			}else if(n_A_WeaponLV == 4){
-				n_A_WeaponLV_seirenATK = n_A_Weapon_ATKplus * 7;
+				set_n_A_WeaponLV_seirenATK(n_A_Weapon_ATKplus * 7);
 				if(n_A_Weapon_ATKplus >= 5){
-					n_A_WeaponLV_Minplus = 1;
-					n_A_WeaponLV_Maxplus = 14 * (n_A_Weapon_ATKplus - 4);
+					set_n_A_WeaponLV_Minplus(1);
+					set_n_A_WeaponLV_Maxplus(14 * (n_A_Weapon_ATKplus - 4));
 				}
 			}
 		}
@@ -1862,11 +1868,11 @@ export function StAllCalc(){
 		case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
 		case MOB_CONF_PLAYER_ID_SENTO_AREA_MH:
 		case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_SHINKIRO:
-			window.n_SiegeMode = true;
+			set_n_SiegeMode(true);
 			break;
 
 		default:
-			window.n_SiegeMode = false;
+			set_n_SiegeMode(false);
 		}
 
 
@@ -1910,7 +1916,7 @@ export function StAllCalc(){
 // プレイヤー防御属性の導出
 //================================================================================================
 
-	n_A_BodyZokusei = GetStatusModifyBodyElement();
+	set_n_A_BodyZokusei(GetStatusModifyBodyElement());
 
 //================================================================================================
 // 基本ステータスの算出
@@ -3934,7 +3940,7 @@ export function StAllCalc(){
 	    charaData[CHARA_DATA_INDEX_STATUS_MATK] = statusMatk;
 	    charaData[CHARA_DATA_INDEX_WEAPON_MATK] = weaponMatk;
 
-	    window.n_A_MATK = [0, 0, 0];
+	    set_n_A_MATK([0, 0, 0]);
 
 	    if (charaData[CHARA_DATA_INDEX_WEAPON_MATK] >= 1) {
 	        var wPENA = Math.floor(charaData[CHARA_DATA_INDEX_WEAPON_MATK] * 2 / 3) - Math.floor(Math.floor(n_A_INT / 5) * Math.floor(n_A_INT / 5) / n_A_WeaponLV);
@@ -3964,7 +3970,7 @@ export function StAllCalc(){
 
 	    n_A_MATK[0] += charaData[CHARA_DATA_INDEX_STATUS_MATK];
 	    n_A_MATK[2] += charaData[CHARA_DATA_INDEX_STATUS_MATK];
-	    window.BK_n_A_MATK = [0, 0, 0];
+	    set_BK_n_A_MATK([0, 0, 0]);
 	    BK_n_A_MATK[0] = n_A_MATK[0];
 	    BK_n_A_MATK[2] = n_A_MATK[2];
 
@@ -5600,7 +5606,7 @@ export function StAllCalc(){
 
 
 		// 範囲外補正
-		window.aspdRaw = aspd;
+		set_aspdRaw(aspd);
 		if(n_A_BaseLV >= 100){
 			if(aspd > 193) aspd = 193;
 		}else{
@@ -5656,7 +5662,7 @@ export function StAllCalc(){
 		charaData[CHARA_DATA_INDEX_CAST_PARAM] = Math.max(0, n_A_DEX) + Math.max(0, n_A_INT) / 2;
 
 		// 変動詠唱時間の割合減少効果を適用する
-		window.g_VariableCastTimeRate = getVariableCastTimeRate();
+		set_g_VariableCastTimeRate(getVariableCastTimeRate());
 
 		// 固定詠唱時間の軽減率をセットする
 		charaData[CHARA_DATA_INDEX_FIXED_TIME] = getFixedCastTimeReductionRate();
@@ -14744,16 +14750,16 @@ export function StAllCalc(){
 // グローバル変数の準備
 //================================================================================================
 
-	n_B_DEF2 = [0,0,0];
+	set_n_B_DEF2([0,0,0]);
 	n_B_DEF2[2] = mobData[MONSTER_DATA_EXTRA_INDEX_DEF_MINUS_MIN];
 	n_B_DEF2[0] = mobData[MONSTER_DATA_EXTRA_INDEX_DEF_MINUS_MAX];
 	n_B_DEF2[1] = Math.floor((n_B_DEF2[2] + n_B_DEF2[0]) /2);
-	n_B_MDEF2 = mobData[MONSTER_DATA_EXTRA_INDEX_MDEF_MINUS];
+	set_n_B_MDEF2(mobData[MONSTER_DATA_EXTRA_INDEX_MDEF_MINUS]);
 	n_B_HIT = mobData[MONSTER_DATA_EXTRA_INDEX_HIT];
 	n_B_FLEE = mobData[MONSTER_DATA_EXTRA_INDEX_FLEE];
 
 		// 錐効果の計算
-		window.n_A_QUAKE_KIRI = 0;
+		set_n_A_QUAKE_KIRI(0);
 
 		//----------------------------------------------------------------
 		// 「古びた迷彩ウサギフード」の、＋１０精錬による、錐効果
@@ -14838,20 +14844,20 @@ export function StAllCalc(){
 				ignoreDef += n_tok[ITEM_SP_IGNORE_DEF_RACE_SOLID + mobData[MONSTER_DATA_INDEX_RACE]];
 
 				// 錐効果値を計算
-				window.n_A_QUAKE_KIRI = mobData[MONSTER_DATA_INDEX_DEF_DIV_IGNORE_BUFF] * (100 - ignoreDef) / 100.0 / 2;
+				set_n_A_QUAKE_KIRI(mobData[MONSTER_DATA_INDEX_DEF_DIV_IGNORE_BUFF] * (100 - ignoreDef) / 100.0 / 2);
 
 				// エクスピアティオの効果で補正する
 				if (n_A_QUAKE_KIRI > 0) {
 					if (g_confDataSanzi[CCharaConfSanzi.CONF_ID_EXPIATIO] > 0) {
-						n_A_QUAKE_KIRI -= (n_A_QUAKE_KIRI * ((20 * g_confDataSanzi[CCharaConfSanzi.CONF_ID_EXPIATIO]) / 100));
+						set_n_A_QUAKE_KIRI(n_A_QUAKE_KIRI - (n_A_QUAKE_KIRI * ((20 * g_confDataSanzi[CCharaConfSanzi.CONF_ID_EXPIATIO]) / 100)));
 					}
 					else if (UsedSkillSearch(SKILL_ID_EXPIATIO)) {
-						n_A_QUAKE_KIRI -= (n_A_QUAKE_KIRI * ((20 * UsedSkillSearch(SKILL_ID_EXPIATIO)) / 100));
+						set_n_A_QUAKE_KIRI(n_A_QUAKE_KIRI - (n_A_QUAKE_KIRI * ((20 * UsedSkillSearch(SKILL_ID_EXPIATIO)) / 100)));
 					}
 				}
 
 				// 負数だと、floor 処理での丸め仕様が違うようなので。また、IE では Math.sign() 未サポート
-				window.n_A_QUAKE_KIRI = (n_A_QUAKE_KIRI >= 0 ? 1 : -1) * Math.floor(Math.abs(n_A_QUAKE_KIRI));
+				set_n_A_QUAKE_KIRI((n_A_QUAKE_KIRI >= 0 ? 1 : -1) * Math.floor(Math.abs(n_A_QUAKE_KIRI)));
 
 				n_tok[17] += n_A_QUAKE_KIRI;
 			}
@@ -15418,7 +15424,7 @@ export function getCompleteAvoidance() {
     if (lucky < 0) {
         lucky = 0;
     }
-    window.g_lucky_over = Math.max(0, Math.round(lucky * 10 - 950) / 10);
+    set_g_lucky_over(Math.max(0, Math.round(lucky * 10 - 950) / 10));
     lucky = Math.min(95, lucky);
 
     return lucky;
@@ -15432,7 +15438,7 @@ export function getCompleteAvoidance() {
  * @returns {Number}
  */
 export function getFixedCastTimeReductionRate() {
-    window.n_A_Kotei_Cast_Keigen = 0;
+    set_n_A_Kotei_Cast_Keigen(0);
     // チェック用変数初期化
     // （固定詠唱短縮効果は、加算等はされず、最大の効果のみが適用される）
     // （なので、ITEM_SP 定義を検索してやる方法では、共通化ができない）
@@ -16092,13 +16098,13 @@ export function getFixedCastTimeReductionRate() {
 
 
     // 最大値のみ有効
-    window.n_A_Kotei_Cast_Keigen = Math.max(...chkary);
+    set_n_A_Kotei_Cast_Keigen(Math.max(...chkary));
 
     /**
      * プレイヤー状態異常「氷結」の効果
      */
     if (g_confDataDebuff[CCharaConfDebuff.CONF_ID_FREEZING]) {
-        n_A_Kotei_Cast_Keigen -= 50;
+        set_n_A_Kotei_Cast_Keigen(n_A_Kotei_Cast_Keigen - 50);
     }
 
     return n_A_Kotei_Cast_Keigen;
@@ -16536,7 +16542,7 @@ export function getFlee() {
         flee += 20 * LearnedSkillSearch(SKILL_ID_CROSS_IMPACT) * itemCount;
     }
 
-    g_ITEM_SP_FLEE_PLUS_value_forCalcData = flee;
+    setItemSpFleePlusForCalcData(flee);
 
     //----------------------------------------------------------------
     // 基礎補正
@@ -16666,7 +16672,6 @@ export function getFlee() {
 
 	// その他未整理
     if (n_A_PassSkill4[9]) flee += 50;
-    if (n_A_PassSkill3[11]) flee -= (20 + 5 * n_A_PassSkill3[11]);
 
     if (n_A_PassSkill7[1]) flee += 30;
     else if (n_A_PassSkill7[27]) flee += 20;
@@ -19328,7 +19333,7 @@ export function getDelayTimeReductionRate() {
         delay_time_reduction += 10 + 2 * bufLv;
     }
 	// 拡張情報 > 詠唱/ディレイ 表示用に確保
-	window.delayDownForDisp = delay_time_reduction;
+	set_delayDownForDisp(delay_time_reduction);
 
     return Math.min(100, delay_time_reduction);
 }
@@ -20181,7 +20186,7 @@ export function getVariableCastTimeRate() {
     }
 
     // MIGRATION 暫定措置
-    g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = reduction_rate;
+    setItemSpSkillCastTimeForCalcData(reduction_rate);
 
 	/**
 	 * 「バード ブラギの詩」の効果
@@ -20217,7 +20222,7 @@ export function getVariableCastTimeRate() {
     }
 
     // 表示用変数に退避
-    window.n_CastCutForDisp = reduction_rate;
+    set_n_CastCutForDisp(reduction_rate);
 
     // ステータスによる詠唱時間軽減率に、装備・ステータスによる軽減率を適用する
     reduction_rate = Math.max(0, reduction_rate);
@@ -20539,7 +20544,7 @@ export function getSPCostReductionRate() {
         cost_reduction += confval;
     }
 
-    window.costDownForDisp = cost_reduction;
+    set_costDownForDisp(cost_reduction);
     cost_reduction = Math.min(100, cost_reduction);
     cost_reduction = 100 - cost_reduction;
 
@@ -22248,7 +22253,7 @@ export function GetAdditionalAspdPercent() {
     }
 
     // MIGRATION 暫定措置
-    g_ITEM_SP_ASPD_UP_value_forCalcData = tmp_percent;
+    setItemSpAspdUpForCalcData(tmp_percent);
 
     if (n_A_PassSkill7[22]) tmp_percent += 10;
 
@@ -22317,7 +22322,6 @@ export function GetAdditionalAspdPercent() {
     // 「星帝　星の構え」の効果
     //----------------------------------------------------------------
     tmp_percent += 5 * UsedSkillSearch(SKILL_ID_HOSHINO_KAMAE);
-    if (n_A_PassSkill3[11]) tmp_percent -= 3 * n_A_PassSkill3[11];
     if (g_confDataDebuff[CCharaConfDebuff.CONF_ID_FREEZING]) tmp_percent -= 30;
 
 	/**
@@ -22747,7 +22751,6 @@ export function GetAdditionalCriticalRate(mobData) {
     if (n_A_PassSkill7[28]) tmp_cri += 7;
     else if (n_A_PassSkill7[36]) tmp_cri += 7;
     if (0 < n_A_PassSkill7[46] && n_A_PassSkill7[46] <= 50) tmp_cri += n_A_PassSkill7[46];
-    // if (n_A_PassSkill3[5]) tmp_cri += 10 + n_A_PassSkill3[5] + Math.floor(n_A_PassSkill3[35] / 2) + n_A_PassSkill3[25];
 
     //----------------------------------------------------------------
     // 「性能カスタマイズ」の、効果
@@ -25901,7 +25904,7 @@ export function StPlusCalc() {
 
 	// ジョブ補正の算出
 	InitJobInfo();
-	n_A_JobLV = eval(document.calcForm.A_JobLV.value);
+	set_n_A_JobLV(eval(document.calcForm.A_JobLV.value));
 	jobBonusArray = GetJobBonus(n_A_JOB, n_A_JobLV);
 
 	// スーパーノービスの無死亡ボーナス
@@ -26027,12 +26030,12 @@ export function StPlusCalc() {
 	CExtraInfoAreaComponentManager.dispDataMap.set(ITEM_SP_LUK_PLUS_PLANE, wSPC_LUK - jobBonusArray[5]);
 
 	// 計算データ出力用のデータを格納
-	g_ITEM_SP_STR_PLUS_PLANE_value_forCalcData = wSPC_STR;
-	g_ITEM_SP_AGI_PLUS_PLANE_value_forCalcData = wSPC_AGI;
-	g_ITEM_SP_VIT_PLUS_PLANE_value_forCalcData = wSPC_VIT;
-	g_ITEM_SP_INT_PLUS_PLANE_value_forCalcData = wSPC_INT;
-	g_ITEM_SP_DEX_PLUS_PLANE_value_forCalcData = wSPC_DEX;
-	g_ITEM_SP_LUK_PLUS_PLANE_value_forCalcData = wSPC_LUK;
+	setItemSpStrPlusPlaneForCalcData(wSPC_STR);
+	setItemSpAgiPlusPlaneForCalcData(wSPC_AGI);
+	setItemSpVitPlusPlaneForCalcData(wSPC_VIT);
+	setItemSpIntPlusPlaneForCalcData(wSPC_INT);
+	setItemSpDexPlusPlaneForCalcData(wSPC_DEX);
+	setItemSpLukPlusPlaneForCalcData(wSPC_LUK);
 
 	//----------------------------------------------------------------
 	// 「アーチャー　集中力向上」の効果
@@ -28277,43 +28280,6 @@ export function StPlusCalc() {
 		}
 	}
 
-	var w_marikon = 0;
-	for(var i=12;i<=17;i++){
-		if(n_A_PassSkill3[i] != 0) w_marikon = 1;
-	}
-	if(w_marikon == 1 && n_A_PassSkill3[18]==0){
-		if(n_A_STR + wSPC_STR <99){
-			if(n_A_STR + wSPC_STR + Math.floor(n_A_PassSkill3[12] /2) <99) wSPC_STR += Math.floor(n_A_PassSkill3[12] /2);
-			else wSPC_STR = (99 - n_A_STR);
-		}
-		if(n_A_AGI + wSPC_AGI <99){
-			if(n_A_AGI + wSPC_AGI + Math.floor(n_A_PassSkill3[13] /2) <99) wSPC_AGI += Math.floor(n_A_PassSkill3[13] /2);
-			else wSPC_AGI = (99 - n_A_AGI);
-		}
-		if(n_A_VIT + wSPC_VIT <99){
-			if(n_A_VIT + wSPC_VIT + Math.floor(n_A_PassSkill3[14] /2) <99) wSPC_VIT += Math.floor(n_A_PassSkill3[14] /2);
-			else wSPC_VIT = (99 - n_A_VIT);
-		}
-		if(n_A_INT + wSPC_INT <99){
-			if(n_A_INT + wSPC_INT + Math.floor(n_A_PassSkill3[15] /2) <99) wSPC_INT += Math.floor(n_A_PassSkill3[15] /2);
-			else wSPC_INT = (99 - n_A_INT);
-		}
-		if(n_A_DEX + wSPC_DEX <99){
-			if(n_A_DEX + wSPC_DEX + Math.floor(n_A_PassSkill3[16] /2) <99) wSPC_DEX += Math.floor(n_A_PassSkill3[16] /2);
-			else wSPC_DEX = (99 - n_A_DEX);
-		}
-		if(n_A_LUK + wSPC_LUK <99){
-			if(n_A_LUK + wSPC_LUK + Math.floor(n_A_PassSkill3[17] /2) <99) wSPC_LUK += Math.floor(n_A_PassSkill3[17] /2);
-			else wSPC_LUK = (99 - n_A_LUK);
-		}
-	}else if(w_marikon == 1 && n_A_PassSkill3[18]){
-		wSPC_STR += n_A_PassSkill3[12];
-		wSPC_AGI += n_A_PassSkill3[13];
-		wSPC_VIT += n_A_PassSkill3[14];
-		wSPC_INT += n_A_PassSkill3[15];
-		wSPC_DEX += n_A_PassSkill3[16];
-		wSPC_LUK += n_A_PassSkill3[17];
-	}
 
 	//----------------------------------------------------------------
 	// 「性能カスタマイズ」の、効果
@@ -28367,12 +28333,12 @@ export function StPlusCalc() {
 	}
 	if(g_confDataDebuff[CCharaConfDebuff.CONF_ID_DECAGI]) wSPC_AGI -= (g_confDataDebuff[CCharaConfDebuff.CONF_ID_DECAGI] + 2);
 	if(g_confDataDebuff[CCharaConfDebuff.CONF_ID_CURSE]) wSPC_LUK = -1 * n_A_LUK;
-	n_A_STR += wSPC_STR;
-	n_A_AGI += wSPC_AGI;
-	n_A_VIT += wSPC_VIT;
-	n_A_INT += wSPC_INT;
-	n_A_DEX += wSPC_DEX;
-	n_A_LUK += wSPC_LUK;
+	set_n_A_STR(n_A_STR + (wSPC_STR));
+	set_n_A_AGI(n_A_AGI + (wSPC_AGI));
+	set_n_A_VIT(n_A_VIT + (wSPC_VIT));
+	set_n_A_INT(n_A_INT + (wSPC_INT));
+	set_n_A_DEX(n_A_DEX + (wSPC_DEX));
+	set_n_A_LUK(n_A_LUK + (wSPC_LUK));
 
 	// 拡張表示用のデータを格納
 	CExtraInfoAreaComponentManager.dispDataMap.set(ITEM_SP_STR_PLUS, wSPC_STR - jobBonusArray[0]);
@@ -30370,7 +30336,6 @@ export function ROUNDUP(num){
 	return num;
 }
 
-const SpeedPotName = ["なし","スピードアップポーション","ハイスピードポーション","バーサークポーション"];
 const EnName =["なし","水","地","火","風","毒","聖","闇","念","死"];
 
 // 他の関数実行に先駆けて初期化される必要があるので load だとタイミングが遅い. DOMContentLoaded を指定する必要がある.
@@ -30397,7 +30362,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		//--------------------------------
 		// モンスター手入力設定欄の初期化
 		//--------------------------------
-		g_objMobConfInput = new CMobConfInputAreaComponentManager(g_dataManagerMobConfInput);
+		set_g_objMobConfInput(new CMobConfInputAreaComponentManager(g_dataManagerMobConfInput));
 		g_objMobConfInput.BuildUpSelectArea(document.getElementById("OBJID_TD_MOB_CONF_INPUT_NEW"), false);
 
 		//--------------------------------
@@ -30516,46 +30481,46 @@ export function Init(jobId){
 
 	var i, idx = 0, objInput = null;
 
-	window.n_A_BaseLV = 1;
-	n_A_JobLV = 1;
+	set_n_A_BaseLV(1);
+	set_n_A_JobLV(1);
 
-	n_A_STR = 1;
-	n_A_AGI = 1;
-	n_A_VIT = 1;
-	n_A_DEX = 1;
-	n_A_INT = 1;
-	n_A_LUK = 1;
+	set_n_A_STR(1);
+	set_n_A_AGI(1);
+	set_n_A_VIT(1);
+	set_n_A_DEX(1);
+	set_n_A_INT(1);
+	set_n_A_LUK(1);
 
-	SU_STR = n_A_STR;
-	SU_AGI = n_A_AGI;
-	SU_VIT = n_A_VIT;
-	SU_DEX = n_A_DEX;
-	SU_INT = n_A_INT;
-	SU_LUK = n_A_LUK;
+	set_SU_STR(n_A_STR);
+	set_SU_AGI(n_A_AGI);
+	set_SU_VIT(n_A_VIT);
+	set_SU_DEX(n_A_DEX);
+	set_SU_INT(n_A_INT);
+	set_SU_LUK(n_A_LUK);
 
 	document.calcForm.A_Weapon_zokusei.value = 0;
-	window.n_A_Weapon_zokusei = 0;
+	set_n_A_Weapon_zokusei(0);
 	document.calcForm.A_Weapon_ATKplus.value = 0;
-	n_A_Weapon_ATKplus = 0;
-	n_A_Weapon2_ATKplus = 0;
+	set_n_A_Weapon_ATKplus(0);
+	set_n_A_Weapon2_ATKplus(0);
 	document.calcForm.A_HEAD_DEF_PLUS.value = 0;
 	document.calcForm.A_BODY_DEF_PLUS.value = 0;
 	document.calcForm.A_SHIELD_DEF_PLUS.value = 0;
 	document.calcForm.A_SHOULDER_DEF_PLUS.value = 0;
 	document.calcForm.A_SHOES_DEF_PLUS.value = 0;
-	n_A_HEAD_DEF_PLUS = 0;
-	n_A_BODY_DEF_PLUS = 0;
-	n_A_SHIELD_DEF_PLUS = 0;
-	n_A_SHOULDER_DEF_PLUS = 0;
-	n_A_SHOES_DEF_PLUS = 0;
+	set_n_A_HEAD_DEF_PLUS(0);
+	set_n_A_BODY_DEF_PLUS(0);
+	set_n_A_SHIELD_DEF_PLUS(0);
+	set_n_A_SHOULDER_DEF_PLUS(0);
+	set_n_A_SHOES_DEF_PLUS(0);
 
-	n_A_Equip = new Array();
+	set_n_A_Equip(new Array());
 	for(let i = 0; i <= ITEMSET_ID_LIMIT_WITH_ITEM; i++) n_A_Equip[i] = 0;
 
-	n_A_card = new Array();
+	set_n_A_card(new Array());
 	for(let i = 0; i <= ITEMSET_ID_LIMIT_WITH_CARD; i++) n_A_card[i] = 0;
 
-	n_A_costume = new Array();
+	set_n_A_costume(new Array());
 	for(i = 0; i < COSTUME_REGION_ID_COUNT; i++) {
 		n_A_costume[i] = 0;
 	}
@@ -30570,15 +30535,13 @@ export function Init(jobId){
 	n_A_PassSkill4.fill(0);
 	// アイテム・食品他 の初期化
 	n_A_PassSkill7.fill(0);
-	// 演奏・踊り系スキル の初期化
-	n_A_PassSkill3.fill(0);
 	// 職固有自己支援 の初期化
 	n_A_PassSkill.fill(0);
 	// その他の支援/設定 の初期化
 	n_A_PassSkill8.fill(0);
 
 	// オートスペル設定
-	n_A_PassSkill5 = new Array();
+	set_n_A_PassSkill5(new Array());
 	for (var idx = 0 ; idx < AUTO_SPELL_SETTING_COUNT; idx++) {
 		n_A_PassSkill5[OBJID_OFFSET_AS_SKILL_ID + idx] = 0;
 		n_A_PassSkill5[OBJID_OFFSET_AS_SKILL_LV + idx] = 0;
@@ -30586,7 +30549,7 @@ export function Init(jobId){
 	}
 
 	// プレイヤー状態異常設定
-	window.g_confDataDebuff = Array(50).fill(0);
+	set_g_confDataDebuff(Array(50).fill(0));
 
 	// 時限効果
 	for (idx = 0; idx < g_timeItemConf.length; idx++) {
@@ -30633,7 +30596,6 @@ export function Init(jobId){
 	ClearEquipAll();
 
 	setN_Skill1SW(false);
-	setN_Skill3SW(false);
 	setN_Skill4SW(false);
 	setN_Skill7SW(false);
 	setN_Skill8SW(false);
@@ -30642,39 +30604,38 @@ export function Init(jobId){
 	//--------------------------------
 	// 一次職支援設定欄の初期化
 	//--------------------------------
-	window.g_confDataIchizi = new Array();
-	window.g_objCharaConfIchizi = new CCharaConfIchizi(g_confDataIchizi);
+	set_g_confDataIchizi(new Array());
+	set_g_objCharaConfIchizi(new CCharaConfIchizi(g_confDataIchizi));
 	g_objCharaConfIchizi.BuildUpSelectArea(document.getElementById("OBJID_TD_CHARA_CONF_ICHIZI"), false);
 
 	//--------------------------------
 	// 二次職支援設定欄の初期化
 	//--------------------------------
-	window.g_confDataNizi = new Array();
-	window.g_objCharaConfNizi = new CCharaConfNizi(g_confDataNizi);
+	set_g_confDataNizi(new Array());
+	set_g_objCharaConfNizi(new CCharaConfNizi(g_confDataNizi));
 	g_objCharaConfNizi.BuildUpSelectArea(document.getElementById("OBJID_TD_CHARA_CONF_NIZI"), false);
 
 	//--------------------------------
 	// 三次職支援設定欄の初期化
 	//--------------------------------
-	window.g_confDataSanzi = new Array();
-	window.g_objCharaConfSanzi = new CCharaConfSanzi(g_confDataSanzi);
+	set_g_confDataSanzi(new Array());
+	set_g_objCharaConfSanzi(new CCharaConfSanzi(g_confDataSanzi));
 	g_objCharaConfSanzi.BuildUpSelectArea(document.getElementById("OBJID_TD_CHARA_CONF_SANZI"), false);
 
 	//--------------------------------
 	// 四次職支援設定欄の初期化
 	//--------------------------------
-	window.g_confDataYozi = new Array();
-	window.g_objCharaConfYozi = new CCharaConfYozi(g_confDataYozi);
+	set_g_confDataYozi(new Array());
+	set_g_objCharaConfYozi(new CCharaConfYozi(g_confDataYozi));
 	g_objCharaConfYozi.BuildUpSelectArea(document.getElementById("OBJID_TD_CHARA_CONF_YOZI"), false);
 
 	//--------------------------------
 	// デバフ設定欄の初期化
 	//--------------------------------
-	window.g_confDataDebuff = new Array();
-	window.g_objCharaConfDebuff = new CCharaConfDebuff(g_confDataDebuff);
+	set_g_confDataDebuff(new Array());
+	set_g_objCharaConfDebuff(new CCharaConfDebuff(g_confDataDebuff));
 	g_objCharaConfDebuff.BuildUpSelectArea(document.getElementById("OBJID_TD_CHARA_CONF_DEBUFF"), false);
 
-	document.calcForm.A3_SKILLSW.checked = 0;
 	document.calcForm.A4_SKILLSW.checked = 0;
 
 	// オートスペル設定欄
@@ -30708,24 +30669,24 @@ export function Init(jobId){
 	//--------------------------------
 	// 性能カスタマイズ欄の初期化
 	//--------------------------------
-	window.g_confDataCustomStatus = new Array();
-	window.g_objCharaConfCustomStatus = new CCharaConfCustomStatus(g_confDataCustomStatus);
+	set_g_confDataCustomStatus(new Array());
+	set_g_objCharaConfCustomStatus(new CCharaConfCustomStatus(g_confDataCustomStatus));
 	g_objCharaConfCustomStatus.BuildUpSelectArea(document.getElementById("OBJID_TD_CHARA_CONF_CUSTOM_STATUS"), false);
 
-	window.g_confDataCustomAtk = new Array();
-	window.g_objCharaConfCustomAtk = new CCharaConfCustomAtk(g_confDataCustomAtk);
+	set_g_confDataCustomAtk(new Array());
+	set_g_objCharaConfCustomAtk(new CCharaConfCustomAtk(g_confDataCustomAtk));
 	g_objCharaConfCustomAtk.BuildUpSelectArea(document.getElementById("OBJID_TD_CHARA_CONF_CUSTOM_ATK"), false);
 
-	window.g_confDataCustomDef = new Array();
-	window.g_objCharaConfCustomDef = new CCharaConfCustomDef(g_confDataCustomDef);
+	set_g_confDataCustomDef(new Array());
+	set_g_objCharaConfCustomDef(new CCharaConfCustomDef(g_confDataCustomDef));
 	g_objCharaConfCustomDef.BuildUpSelectArea(document.getElementById("OBJID_TD_CHARA_CONF_CUSTOM_DEF"), false);
 
-	window.g_confDataCustomSkill = new Array();
-	window.g_objCharaConfCustomSkill = new CCharaConfCustomSkill(g_confDataCustomSkill);
+	set_g_confDataCustomSkill(new Array());
+	set_g_objCharaConfCustomSkill(new CCharaConfCustomSkill(g_confDataCustomSkill));
 	g_objCharaConfCustomSkill.BuildUpSelectArea(document.getElementById("OBJID_TD_CHARA_CONF_CUSTOM_SKILL"), false);
 
-	window.g_confDataCustomSpecStatus = new Array();
-	window.g_objCharaConfCustomSpecStatus = new CCharaConfCustomSpecStatus(g_confDataCustomSpecStatus);
+	set_g_confDataCustomSpecStatus(new Array());
+	set_g_objCharaConfCustomSpecStatus(new CCharaConfCustomSpecStatus(g_confDataCustomSpecStatus));
 	g_objCharaConfCustomSpecStatus.BuildUpSelectArea(document.getElementById("OBJID_TD_CHARA_CONF_CUSTOM_SPECSTATUS"), false);
 
 
@@ -30753,7 +30714,6 @@ export function Init(jobId){
 	OnClickQuickControlSW();
 	Click_PassSkillSW();
 	OnClickSkillSWLearned();
-	Click_Skill3SW();
 	Click_Skill4SW();
 	OnClickExtractSettingAutoSpell();
 
@@ -30869,117 +30829,43 @@ export function OnClickSimulateCastTimeStop(castTime, delayTime) {
 }
 
 
-if (typeof window !== 'undefined') {
-    Object.defineProperties(window, {
-        SU_STR: { get: () => SU_STR, set: v => { SU_STR = v; }, configurable: true },
-        SU_AGI: { get: () => SU_AGI, set: v => { SU_AGI = v; }, configurable: true },
-        SU_VIT: { get: () => SU_VIT, set: v => { SU_VIT = v; }, configurable: true },
-        SU_DEX: { get: () => SU_DEX, set: v => { SU_DEX = v; }, configurable: true },
-        SU_INT: { get: () => SU_INT, set: v => { SU_INT = v; }, configurable: true },
-        SU_LUK: { get: () => SU_LUK, set: v => { SU_LUK = v; }, configurable: true },
-        SU_POW: { get: () => SU_POW, set: v => { SU_POW = v; }, configurable: true },
-        SU_STA: { get: () => SU_STA, set: v => { SU_STA = v; }, configurable: true },
-        SU_WIS: { get: () => SU_WIS, set: v => { SU_WIS = v; }, configurable: true },
-        SU_SPL: { get: () => SU_SPL, set: v => { SU_SPL = v; }, configurable: true },
-        SU_CON: { get: () => SU_CON, set: v => { SU_CON = v; }, configurable: true },
-        SU_CRT: { get: () => SU_CRT, set: v => { SU_CRT = v; }, configurable: true },
-        n_A_JobLV: { get: () => n_A_JobLV, set: v => { n_A_JobLV = v; }, configurable: true },
-        n_A_STR: { get: () => n_A_STR, set: v => { n_A_STR = v; }, configurable: true },
-        n_A_AGI: { get: () => n_A_AGI, set: v => { n_A_AGI = v; }, configurable: true },
-        n_A_VIT: { get: () => n_A_VIT, set: v => { n_A_VIT = v; }, configurable: true },
-        n_A_DEX: { get: () => n_A_DEX, set: v => { n_A_DEX = v; }, configurable: true },
-        n_A_INT: { get: () => n_A_INT, set: v => { n_A_INT = v; }, configurable: true },
-        n_A_LUK: { get: () => n_A_LUK, set: v => { n_A_LUK = v; }, configurable: true },
-        n_A_POW: { get: () => n_A_POW, set: v => { n_A_POW = v; }, configurable: true },
-        n_A_STA: { get: () => n_A_STA, set: v => { n_A_STA = v; }, configurable: true },
-        n_A_WIS: { get: () => n_A_WIS, set: v => { n_A_WIS = v; }, configurable: true },
-        n_A_SPL: { get: () => n_A_SPL, set: v => { n_A_SPL = v; }, configurable: true },
-        n_A_CON: { get: () => n_A_CON, set: v => { n_A_CON = v; }, configurable: true },
-        n_A_CRT: { get: () => n_A_CRT, set: v => { n_A_CRT = v; }, configurable: true },
-        n_A_SpeedPOT: { get: () => n_A_SpeedPOT, set: v => { n_A_SpeedPOT = v; }, configurable: true },
-        n_A_WeaponType: { get: () => n_A_WeaponType, set: v => { n_A_WeaponType = v; }, configurable: true },
-        n_A_WeaponZokusei: { get: () => n_A_WeaponZokusei, set: v => { n_A_WeaponZokusei = v; }, configurable: true },
-        n_A_HEAD_DEF_PLUS: { get: () => n_A_HEAD_DEF_PLUS, set: v => { n_A_HEAD_DEF_PLUS = v; }, configurable: true },
-        n_A_BODY_DEF_PLUS: { get: () => n_A_BODY_DEF_PLUS, set: v => { n_A_BODY_DEF_PLUS = v; }, configurable: true },
-        n_A_SHIELD_DEF_PLUS: { get: () => n_A_SHIELD_DEF_PLUS, set: v => { n_A_SHIELD_DEF_PLUS = v; }, configurable: true },
-        n_A_SHOULDER_DEF_PLUS: { get: () => n_A_SHOULDER_DEF_PLUS, set: v => { n_A_SHOULDER_DEF_PLUS = v; }, configurable: true },
-        n_A_SHOES_DEF_PLUS: { get: () => n_A_SHOES_DEF_PLUS, set: v => { n_A_SHOES_DEF_PLUS = v; }, configurable: true },
-        n_A_Weapon_Transcendence: { get: () => n_A_Weapon_Transcendence, set: v => { n_A_Weapon_Transcendence = v; }, configurable: true },
-        n_A_Weapon2_Transcendence: { get: () => n_A_Weapon2_Transcendence, set: v => { n_A_Weapon2_Transcendence = v; }, configurable: true },
-        n_A_HEAD_DEF_Transcendence: { get: () => n_A_HEAD_DEF_Transcendence, set: v => { n_A_HEAD_DEF_Transcendence = v; }, configurable: true },
-        n_A_SHIELD_DEF_Transcendence: { get: () => n_A_SHIELD_DEF_Transcendence, set: v => { n_A_SHIELD_DEF_Transcendence = v; }, configurable: true },
-        n_A_BODY_DEF_Transcendence: { get: () => n_A_BODY_DEF_Transcendence, set: v => { n_A_BODY_DEF_Transcendence = v; }, configurable: true },
-        n_A_SHOULDER_DEF_Transcendence: { get: () => n_A_SHOULDER_DEF_Transcendence, set: v => { n_A_SHOULDER_DEF_Transcendence = v; }, configurable: true },
-        n_A_SHOES_DEF_Transcendence: { get: () => n_A_SHOES_DEF_Transcendence, set: v => { n_A_SHOES_DEF_Transcendence = v; }, configurable: true },
-        n_A_WeaponLV: { get: () => n_A_WeaponLV, set: v => { n_A_WeaponLV = v; }, configurable: true },
-        n_A_Weapon_ATK: { get: () => n_A_Weapon_ATK, set: v => { n_A_Weapon_ATK = v; }, configurable: true },
-        n_A_Weapon_ATKplus: { get: () => n_A_Weapon_ATKplus, set: v => { n_A_Weapon_ATKplus = v; }, configurable: true },
-        n_A_WeaponLV_seirenATK: { get: () => n_A_WeaponLV_seirenATK, set: v => { n_A_WeaponLV_seirenATK = v; }, configurable: true },
-        n_A_WeaponLV_Minplus: { get: () => n_A_WeaponLV_Minplus, set: v => { n_A_WeaponLV_Minplus = v; }, configurable: true },
-        n_A_WeaponLV_Maxplus: { get: () => n_A_WeaponLV_Maxplus, set: v => { n_A_WeaponLV_Maxplus = v; }, configurable: true },
-        n_A_Weapon2LV: { get: () => n_A_Weapon2LV, set: v => { n_A_Weapon2LV = v; }, configurable: true },
-        n_A_Weapon2_ATK: { get: () => n_A_Weapon2_ATK, set: v => { n_A_Weapon2_ATK = v; }, configurable: true },
-        n_A_Weapon2_ATKplus: { get: () => n_A_Weapon2_ATKplus, set: v => { n_A_Weapon2_ATKplus = v; }, configurable: true },
-        n_A_Weapon2LV_seirenATK: { get: () => n_A_Weapon2LV_seirenATK, set: v => { n_A_Weapon2LV_seirenATK = v; }, configurable: true },
-        n_A_Weapon2LV_Minplus: { get: () => n_A_Weapon2LV_Minplus, set: v => { n_A_Weapon2LV_Minplus = v; }, configurable: true },
-        n_A_Weapon2LV_Maxplus: { get: () => n_A_Weapon2LV_Maxplus, set: v => { n_A_Weapon2LV_Maxplus = v; }, configurable: true },
-        n_A_BodyZokusei: { get: () => n_A_BodyZokusei, set: v => { n_A_BodyZokusei = v; }, configurable: true },
-        n_B_DEF2: { get: () => n_B_DEF2, set: v => { n_B_DEF2 = v; }, configurable: true },
-        n_B_MDEF2: { get: () => n_B_MDEF2, set: v => { n_B_MDEF2 = v; }, configurable: true },
-        n_B_HIT: { get: () => n_B_HIT, set: v => { n_B_HIT = v; }, configurable: true },
-        n_B_FLEE: { get: () => n_B_FLEE, set: v => { n_B_FLEE = v; }, configurable: true },
-        n_A_Equip: { get: () => n_A_Equip, set: v => { n_A_Equip = v; }, configurable: true },
-        n_A_card: { get: () => n_A_card, set: v => { n_A_card = v; }, configurable: true },
-        n_A_costume: { get: () => n_A_costume, set: v => { n_A_costume = v; }, configurable: true },
-        n_A_PassSkill5: { get: () => n_A_PassSkill5, set: v => { n_A_PassSkill5 = v; }, configurable: true },
-        g_itemIdArray: { get: () => g_itemIdArray, set: v => { g_itemIdArray = v; }, configurable: true },
-        g_refinedArray: { get: () => g_refinedArray, set: v => { g_refinedArray = v; }, configurable: true },
-        g_ITEM_SP_FLEE_PLUS_value_forCalcData: { get: () => g_ITEM_SP_FLEE_PLUS_value_forCalcData, set: v => { g_ITEM_SP_FLEE_PLUS_value_forCalcData = v; }, configurable: true },
-        g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData: { get: () => g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData, set: v => { g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = v; }, configurable: true },
-        g_ITEM_SP_ASPD_UP_value_forCalcData: { get: () => g_ITEM_SP_ASPD_UP_value_forCalcData, set: v => { g_ITEM_SP_ASPD_UP_value_forCalcData = v; }, configurable: true },
-        g_ITEM_SP_STR_PLUS_PLANE_value_forCalcData: { get: () => g_ITEM_SP_STR_PLUS_PLANE_value_forCalcData, set: v => { g_ITEM_SP_STR_PLUS_PLANE_value_forCalcData = v; }, configurable: true },
-        g_ITEM_SP_AGI_PLUS_PLANE_value_forCalcData: { get: () => g_ITEM_SP_AGI_PLUS_PLANE_value_forCalcData, set: v => { g_ITEM_SP_AGI_PLUS_PLANE_value_forCalcData = v; }, configurable: true },
-        g_ITEM_SP_VIT_PLUS_PLANE_value_forCalcData: { get: () => g_ITEM_SP_VIT_PLUS_PLANE_value_forCalcData, set: v => { g_ITEM_SP_VIT_PLUS_PLANE_value_forCalcData = v; }, configurable: true },
-        g_ITEM_SP_INT_PLUS_PLANE_value_forCalcData: { get: () => g_ITEM_SP_INT_PLUS_PLANE_value_forCalcData, set: v => { g_ITEM_SP_INT_PLUS_PLANE_value_forCalcData = v; }, configurable: true },
-        g_ITEM_SP_DEX_PLUS_PLANE_value_forCalcData: { get: () => g_ITEM_SP_DEX_PLUS_PLANE_value_forCalcData, set: v => { g_ITEM_SP_DEX_PLUS_PLANE_value_forCalcData = v; }, configurable: true },
-        g_ITEM_SP_LUK_PLUS_PLANE_value_forCalcData: { get: () => g_ITEM_SP_LUK_PLUS_PLANE_value_forCalcData, set: v => { g_ITEM_SP_LUK_PLUS_PLANE_value_forCalcData = v; }, configurable: true },
-        g_objMobConfInput: { get: () => g_objMobConfInput, set: v => { g_objMobConfInput = v; }, configurable: true },
-        g_intervalFunctionSimulateCastTime: { get: () => g_intervalFunctionSimulateCastTime, set: v => { g_intervalFunctionSimulateCastTime = v; }, configurable: true },
-        g_castProgressInterval: { get: () => g_castProgressInterval, set: v => { g_castProgressInterval = v; }, configurable: true },
-    });
-
-    Object.assign(window, {
-        SpeedPotName,
-        RefreshSuperNoviceFullWeapon,
-        StAllCalc,
-        GetCastScalingOfSkillForCastTimeVary,
-        GetCastFixOfSkillForCastTimeVary,
-        GetCastScalingOfSkillForCastTimeFixed,
-        GetCastFixOfSkillForCastTimeFixed,
-        GetAdditionalFixedCastTime,
-        GetCastScalingOfSkillForCastTimeForce,
-        GetCastFixOfSkillForCastTimeForce,
-        GetCoolFixOfSkill,
-        GetCostScalingOfSkill,
-        GetCostFixOfSkill,
-        GetEquippedTotalSPEquip,
-        GetEquippedSPListEquip,
-        GetEquippedSPValueArrayEquip,
-        GetEquippedTotalSPCardAndElse,
-        GetEquippedSPListCardAndElse,
-        GetEquippedSPValueArrayCardAndElse,
-        GetEquippedTotalSPArrow,
-        IsMatchSpDefId,
-        CheckSpDefFriendlyOver,
-        CheckSpDefBaseLvOver,
-        CheckSpDefJobRestrict,
-        CheckSpDefPureStatus,
-        CheckSpDefRefineOver,
-        InitJobInfo,
-        NumSearch,
-        NumSearch2,
-        EquipNumSearchFurubitaSet,
-        ROUNDDOWN,
-        Init,
+// 外部ファイル向けの関数公開は foot-bridge.js 経由（C-6 後半・reference.md 参照）
+__registerFootFunctions({
+    RefreshSuperNoviceFullWeapon,
+    GetCastScalingOfSkillForCastTimeVary,
+    GetCastFixOfSkillForCastTimeVary,
+    GetCastScalingOfSkillForCastTimeFixed,
+    GetCastFixOfSkillForCastTimeFixed,
+    GetAdditionalFixedCastTime,
+    GetCastScalingOfSkillForCastTimeForce,
+    GetCastFixOfSkillForCastTimeForce,
+    GetCoolFixOfSkill,
+    GetCostScalingOfSkill,
+    GetCostFixOfSkill,
+    GetEquippedTotalSPEquip,
+    GetEquippedSPListEquip,
+    GetEquippedSPValueArrayEquip,
+    GetEquippedTotalSPCardAndElse,
+    GetEquippedSPListCardAndElse,
+    GetEquippedSPValueArrayCardAndElse,
+    GetEquippedTotalSPArrow,
+    IsMatchSpDefId,
+    CheckSpDefFriendlyOver,
+    CheckSpDefBaseLvOver,
+    CheckSpDefJobRestrict,
+    CheckSpDefPureStatus,
+    CheckSpDefRefineOver,
+    InitJobInfo,
+    NumSearch,
+    NumSearch2,
+    EquipNumSearchFurubitaSet,
+    ROUNDDOWN,
+    Init,
 });
+
+if (typeof window !== 'undefined') {
+    Object.assign(window, {
+        // Workspace I/F: workspace/src/rtxApiImport.ts が window 経由で呼ぶ（Phase 4 で解消）
+        StAllCalc,
+    });
 }

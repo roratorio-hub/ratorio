@@ -1,4 +1,6 @@
 // === AUTO-GENERATED IMPORTS ===
+import { n_A_Equip } from '../../../roro/m/js/roro-state.js';
+import { SaveSystem } from '../../../roro/m/js/saveload-bridge.js';
 import '../../../roro/m/js/common.js';
 import '../../../roro/m/js/data/mig.itemsp.h.js';
 import '../../../roro/m/js/item.h.js';
@@ -31,11 +33,45 @@ import {
          SKILL_ID_SHADOW_SENSE, SKILL_ID_SHIHO_FU_ZYOTAI, SKILL_ID_SHIHO_GOGYO_ZIN,
          SKILL_ID_SHINKONO_ISHI, SKILL_ID_SPIRIT_MASTERY, SKILL_ID_STAGE_MANNER,
          SKILL_ID_TANKEN_YUMI_SHUREN, SKILL_ID_TATE_SHUREN, SKILL_ID_TWOHAND_DEFENDING,
-         SKILL_ID_TWO_AXE_DEFENDING, SKILL_ID_YARI_KATATE_KEN_SHUREN
+         SKILL_ID_TWO_AXE_DEFENDING, SKILL_ID_YARI_KATATE_KEN_SHUREN,
+         SKILL_ID_GOLDENE_TONE, SKILL_ID_NATURE_AID, SKILL_ID_OVERCOMING_CRISIS, SKILL_ID_SIXTH_SENSE,
+         SKILL_ID_TEMPERING,
 } from '../../../roro/m/js/skill.dat.js';
 import { UsedSkillSearch, n_A_PassSkill, n_A_PassSkill8 } from './skillstate.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: 共有 state 追加分
+import {
+         n_A_JOB,
+} from '../../../roro/m/js/roro-state.js';
+
+// C-6: global.js 管理の共有 conf state
+import {
+         g_confDataNizi, g_confDataYozi, g_objCharaConfCustomSpecStatus,
+} from './global.js';
+
+// C-6: head.js 公開関数（head-bridge 経由）
+import {
+         calc, ApplyPhysicalSpecializeMonster,
+} from './head-bridge.js';
+
+// C-6: foot.js 公開関数（foot-bridge 経由）
+import {
+         GetEquippedTotalSPEquip, GetEquippedTotalSPCardAndElse, InitJobInfo,
+} from '../../../roro/m/js/foot-bridge.js';
+
+// C-6: ro4 側共有 state（旧 head.js window 変数）
+import {
+         n_A_ActiveSkill, n_A_ActiveSkillLV, n_tok,
+} from './ro4-state.js';
+
+// C-6: 共有 state（旧 foot.js window 変数）
+import {
+         SU_STR, SU_AGI, SU_VIT, SU_DEX,
+         SU_INT, SU_LUK, n_A_WeaponType,
+} from '../../../roro/m/js/roro-state.js';
+
 import { CAttackMethodAreaComponentManager } from './CAttackMethodAreaComponentManager.js';
+import { set_n_Nitou } from './global.js';
 export let g_pureStatus = [];
 export let g_bonusStatus = [];
 
@@ -1763,7 +1799,7 @@ export function migrateOtherJob(jobId) {
 	showLoadingIndicator();
 	setTimeout(() => {
 		// 変更後の職業の二刀流可能性に合わせる
-		window.n_Nitou = IsDualArmsJob(jobData.getMigIdNum());
+		set_n_Nitou(IsDualArmsJob(jobData.getMigIdNum()));
 		// TODO: 暫定対処　旧形式の保存処理呼び出し
 		// 「プレイヤー状態異常設定」のように旧形式に存在しなかった入力項目は維持できないということ
 		dataURL = SaveSystem(funcModifySaveData);

@@ -16,13 +16,22 @@ describe('BuffJobSpecificSelf.js', () => {
         });
     });
 
-    describe('window互換確認', () => {
-        it('window.n_A_PassSkill が設定されている', () => {
-            expect((window as any).n_A_PassSkill).toBe(n_A_PassSkill);
+    // 3e-3: skillstate.js の window compat 除去に伴い window互換確認を behavior テストに置換
+    describe('UsedSkillSearch の動作', () => {
+        it('未設定のスキルIDに対して 0 を返す', () => {
+            expect(UsedSkillSearch(-999)).toBe(0);
         });
 
-        it('window.UsedSkillSearch が設定されている', () => {
-            expect((window as any).UsedSkillSearch).toBe(UsedSkillSearch);
+        it('bOnlyUsed=true で n_A_PassSkill の設定Lvを返す', () => {
+            // n_A_PassSkill は export let 配列 — 職の passiveSkillIdArray 先頭のスキルに Lv を設定
+            const jobData = (globalThis as any).g_constDataManager
+                ?.GetDataObject?.((globalThis as any).CONST_DATA_KIND_JOB, (globalThis as any).n_A_JOB ?? 0);
+            const passiveIds = jobData?.GetPassiveSkillIdArray?.() ?? [];
+            if (passiveIds.length === 0) return; // 対象職にパッシブが無い場合はスキップ
+            const prev = n_A_PassSkill[0];
+            n_A_PassSkill[0] = 3;
+            expect(UsedSkillSearchSubUsedOnly(passiveIds[0])).toBe(3);
+            n_A_PassSkill[0] = prev;
         });
     });
 });

@@ -1,4 +1,5 @@
 
+import { n_A_Equip, n_A_card } from './roro-state.js';
 import { CGlobalConstManager } from './CGlobalConstManager.js';
 // === AUTO-GENERATED IMPORTS ===
 import './item.h.js';
@@ -318,7 +319,10 @@ import {
 import {
          SERE_SUPPORT_SKILL_ID_CRYSTAL_ARMOR, SERE_SUPPORT_SKILL_ID_EYES_OF_STORM,
          SERE_SUPPORT_SKILL_ID_FLAME_ARMOR, SERE_SUPPORT_SKILL_ID_POISON_SHIELD,
-         SERE_SUPPORT_SKILL_ID_STRONG_PROTECTION
+         SERE_SUPPORT_SKILL_ID_STRONG_PROTECTION,
+         SKILL_ID_BLOOD_HOWLING, SKILL_ID_EARTH_BUD, SKILL_ID_NATURE_SHIELD, SKILL_ID_NATURE_VIGOUR,
+         SKILL_ID_NYANTOMO_KAMESETSU, SKILL_ID_OVERCOMING_CRISIS, SKILL_ID_SHARPE_EYES, SKILL_ID_WERERAPTOR,
+         SKILL_ID_WEREWOLF,
 } from './skill.dat.js';
 import {
          TIME_ITEM_ID_DEMI_FREYA, TIME_ITEM_ID_LUDE, TIME_ITEM_ID_MAKENSHI_SAKRAY_CARD,
@@ -375,10 +379,53 @@ import {
          SKILL_ID_TENRACHIMO, SKILL_ID_TRANSCENDENCE, SKILL_ID_TRAP_KENKYU,
          SKILL_ID_TRUE_SIGHT, SKILL_ID_TSUKINO_KAMAE, SKILL_ID_UMINO_CHIKARA,
          SKILL_ID_VACUUM_EXTREME, SKILL_ID_WASHINO_ME, SKILL_ID_WATER_DRAGON_BREATH,
-         SKILL_ID_WEAPON_CRUSH, SKILL_ID_WUG_RIDER, SKILL_ID_YARI_SEISAKU
+         SKILL_ID_WEAPON_CRUSH, SKILL_ID_WUG_RIDER, SKILL_ID_YARI_SEISAKU,
 } from './skill.dat.js';
-import { n_A_PassSkill3, n_A_PassSkill4, n_A_PassSkill7, n_A_PassSkill8, UsedSkillSearch } from '../../../ro4/m/js/skillstate.js';
+import { n_A_PassSkill4, n_A_PassSkill7, n_A_PassSkill8, UsedSkillSearch } from '../../../ro4/m/js/skillstate.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: JOB 定数
+import {
+         JOB_SERIES_ID_NOVICE, JOB_SERIES_ID_SWORDMAN, JOB_SERIES_ID_MAGICIAN, JOB_SERIES_ID_ARCHER,
+         JOB_SERIES_ID_ACOLYTE, JOB_SERIES_ID_MERCHANT, JOB_SERIES_ID_THIEF, JOB_SERIES_ID_PRIEST,
+         JOB_SERIES_ID_HUNTER, JOB_SERIES_ID_MONK, JOB_SERIES_ID_BARD, JOB_SERIES_ID_DANCER,
+         JOB_SERIES_ID_GUNSLINGER, JOB_SERIES_ID_NINJA, JOB_SERIES_ID_TAEGKUON,
+} from '../../../ro4/m/js/data/mig.job.h.js';
+
+// C-6: 共有 state 追加分
+import {
+         n_A_JOB, n_A_Weapon2Type,
+} from './roro-state.js';
+
+// C-6: global.js 管理の共有 conf state
+import {
+         g_confDataIchizi, g_confDataNizi, g_confDataSanzi, g_confDataDebuff,
+         g_objCharaConfCustomAtk, g_objCharaConfCustomDef, g_objCharaConfCustomStatus,
+} from '../../../ro4/m/js/global.js';
+
+// C-6: foot.js 公開関数（foot-bridge 経由）
+import {
+         GetEquippedTotalSPEquip, GetEquippedTotalSPCardAndElse, GetEquippedTotalSPArrow, EquipNumSearchFurubitaSet,
+} from './foot-bridge.js';
+
+// C-6: 旧 head.js の window 経由共有スクラッチ変数（宣言忘れ関数の var-leak 対応・ファイルローカル化）
+let itemCountRight = 0;
+let itemCountLeft = 0;
+let cardCount = 0;
+
+// C-6: ro4 側共有 state（旧 head.js window 変数）
+import {
+         n_A_BaseLV, n_A_ActiveSkill, n_A_ActiveSkillLV, n_A_Weapon_zokusei,
+         n_SieldSp,
+} from '../../../ro4/m/js/ro4-state.js';
+
+// C-6: 共有 state（旧 foot.js window 変数）
+import {
+         SU_STR, SU_AGI, SU_VIT, SU_DEX,
+         SU_INT, SU_LUK, n_A_JobLV, n_A_WeaponType,
+         n_A_HEAD_DEF_PLUS, n_A_BODY_DEF_PLUS, n_A_SHIELD_DEF_PLUS, n_A_SHOULDER_DEF_PLUS,
+         n_A_SHOES_DEF_PLUS, n_A_Weapon_ATKplus, n_A_Weapon2_ATKplus, n_A_costume,
+} from './roro-state.js';
+
 
 // キャラクターデータインデックス
 CGlobalConstManager.DefineEnum(
@@ -784,140 +831,36 @@ export function ExBuffNumSearch(exBufId) {
 
 	switch (exBufId) {
 
-	// 支援イドゥンの林檎
-	case EXBUF_ID_IDUNNNO_RINGO:
-		exBufNum = n_A_PassSkill3[3];
-		break;
 
-	// 支援イドゥンの林檎　支援者ＶＩＴランク
-	case EXBUF_ID_IDUNNNO_RINGO_BUFFER_VITRANK:
-		if (n_A_PassSkill3[3]) exBufNum = n_A_PassSkill3[23];
-		break;
 
-	// 支援イドゥンの林檎　支援者補助スキルレベル
-	case EXBUF_ID_IDUNNNO_RINGO_BUFFER_SKILLLV:
-		if (n_A_PassSkill3[3]) exBufNum = n_A_PassSkill3[33];
-		break;
 
-	// 支援ハミング
-	case EXBUF_ID_HUMMING:
-		exBufNum = n_A_PassSkill3[4];
-		break;
 
-	// 支援ハミング　支援者ＤＥＸランク
-	case EXBUF_ID_HUMMING_BUFFER_DEXRANK:
-		if (n_A_PassSkill3[3]) exBufNum = n_A_PassSkill3[24];
-		break;
 
-	// 支援ハミング　支援者補助スキルレベル
-	case EXBUF_ID_HUMMING_BUFFER_SKILLLV:
-		if (n_A_PassSkill3[3]) exBufNum = n_A_PassSkill3[34];
-		break;
 
-	// 支援サービスフォーユー
-	case EXBUF_ID_SERVICE_FOR_YOU:
-		exBufNum = n_A_PassSkill3[6];
-		break;
 
-	// 支援サービスフォーユー　支援者ＩＮＴランク
-	case EXBUF_ID_SERVICE_FOR_YOU_BUFFER_INTRANK:
-		if (n_A_PassSkill3[6]) exBufNum = n_A_PassSkill3[26];
-		break;
 
-	// 支援サービスフォーユー　支援者補助スキルレベル
-	case EXBUF_ID_SERVICE_FOR_YOU_BUFFER_SKILLLV:
-		if (n_A_PassSkill3[6]) exBufNum = n_A_PassSkill3[36];
-		break;
 
-	// 支援戦太鼓の響き
-	case EXBUF_ID_IKUSADAIKONO_HIBIKI:
-		exBufNum = n_A_PassSkill3[9];
-		break;
 
-	// 支援風車に向かって突撃
-	case EXBUF_ID_FUSHANIMUKATTE_TOTSUGEKI:
-		if (n_A_PassSkill3[19] == 1) exBufNum = n_A_PassSkill3[37];
-		break;
 
-	// 支援風車に向かって突撃　支援者ジョブレベル
-	case EXBUF_ID_FUSHANIMUKATTE_TOTSUGEKI_BUFFER_JOBLV:
-		if (n_A_PassSkill3[19] == 1) exBufNum = n_A_PassSkill3[46];
-		break;
 
-	// 支援風車に向かって突撃　支援者補助スキルレベル
-	case EXBUF_ID_FUSHANIMUKATTE_TOTSUGEKI_BUFFER_SKILLLV:
-		if (n_A_PassSkill3[19] == 1) exBufNum = n_A_PassSkill3[38];
-		break;
 
-	// 支援エコーの歌
-	case EXBUF_ID_ECHONO_UTA:
-		if (n_A_PassSkill3[19] == 2) exBufNum = n_A_PassSkill3[37];
-		break;
 
-	// 支援エコーの歌　支援者ジョブレベル
-	case EXBUF_ID_ECHONO_UTA_BUFFER_JOBLV:
-		if (n_A_PassSkill3[19] == 2) exBufNum = n_A_PassSkill3[46];
-		break;
 
-	// 支援エコーの歌　支援者補助スキルレベル
-	case EXBUF_ID_ECHONO_UTA_BUFFER_SKILLLV:
-		if (n_A_PassSkill3[19] == 2) exBufNum = n_A_PassSkill3[38];
-		break;
 
-	// 支援恋人たちのためのシンフォニー
-	case EXBUF_ID_KOIBITOTACHINOTAMENO_SYMPHONY:
-		if (n_A_PassSkill3[19] == 5) exBufNum = n_A_PassSkill3[37];
-		break;
 
-	// 支援恋人たちのためのシンフォニー　支援者ジョブレベル
-	case EXBUF_ID_KOIBITOTACHINOTAMENO_SYMPHONY_BUFFER_JOBLV:
-		if (n_A_PassSkill3[19] == 5) exBufNum = n_A_PassSkill3[46];
-		break;
 
-	// 支援恋人たちのためのシンフォニー　支援者補助スキルレベル
-	case EXBUF_ID_KOIBITOTACHINOTAMENO_SYMPHONY_BUFFER_SKILLLV:
-		if (n_A_PassSkill3[19] == 5) exBufNum = n_A_PassSkill3[38];
-		break;
 
 	// 支援フリッグの歌
 	case EXBUF_ID_FRIGGNO_UTA:
 		exBufNum = g_confDataSanzi[CCharaConfSanzi.CONF_ID_FRIGGNO_UTA];
 		break;
 
-	// 支援フライデーナイトフィーバー
-	case EXBUF_ID_FRYDAY_NIGHT_FEVER:
-		if (n_A_PassSkill3[39] == 1) exBufNum = n_A_PassSkill3[40];
-		break;
 
-	// 支援レーラズの霧
-	case EXBUF_ID_RELAZUNO_TSUYU:
-		if (n_A_PassSkill3[39] == 3) exBufNum = n_A_PassSkill3[40];
-		break;
 
-	// 支援レーラズの霧　ミンストレルワンダラーの数
-	case EXBUF_ID_RELAZUNO_TSUYU_COUNT_OF_MINWAN:
-		if (n_A_PassSkill3[39] == 3) exBufNum = n_A_PassSkill3[41];
-		break;
 
-	// 支援ビヨンドオブウォークライ（敵から）
-	case EXBUF_ID_BEYOND_OF_WARCRAY:
-		if (n_A_PassSkill3[39] == 4) exBufNum = n_A_PassSkill3[40];
-		break;
 
-	// 支援ビヨンドオブウォークライ（敵から）　ミンストレルワンダラーの数
-	case EXBUF_ID_BEYOND_OF_WARCRAY_COUNT_OF_MINWAN:
-		if (n_A_PassSkill3[39] == 4) exBufNum = n_A_PassSkill3[41];
-		break;
 
-	// 支援ダンスウィズウォーグ（レンジャー有）
-	case EXBUF_ID_DANCE_WITH_WUG:
-		if (n_A_PassSkill3[39] == 6) exBufNum = n_A_PassSkill3[40];
-		break;
 
-	// 支援ダンスウィズウォーグ（レンジャー有）　ミンストレルワンダラーの数
-	case EXBUF_ID_DANCE_WITH_WUG_COUNT_OF_MINWAN:
-		if (n_A_PassSkill3[39] == 6) exBufNum = n_A_PassSkill3[41];
-		break;
 
 	}
 

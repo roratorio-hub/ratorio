@@ -14,6 +14,11 @@ import { g_rndOptTypeArray } from '../../../roro/m/js/rndopttype.dat.js';
 import { IsMatchJobRestrict } from './data/mig.job.h.js';
 import { HtmlCreateElement, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlSelectObjectValueAsInteger } from '../../../roro/common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: 共有 state 追加分
+import {
+         n_A_JOB,
+} from '../../../roro/m/js/roro-state.js';
+
 
 // gen_imports.py は CShadowEquipController→slotpager→hmrndopt→CShadowEquipController の
 // 循環を検出して slotpager の import をスキップするが、SaveSlotStateCardAll は

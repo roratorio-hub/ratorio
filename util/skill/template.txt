@@ -1,5 +1,7 @@
 /** スキル名 */
-SKILL_ID_スキルID = skillId;
+// SKILL_ID_スキルID
+// ※ skill.dat.js に export const SKILL_ID_スキルID = <採番値>; を追加すること
+//    （整合確認: python3 util/skill/verify_skill_ids.py）
 skillData = new function() {
 	this.prototype = new CSkillData();
 	CSkillData.call(this);

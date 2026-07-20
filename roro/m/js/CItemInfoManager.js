@@ -1,10 +1,13 @@
 // === AUTO-GENERATED IMPORTS ===
+import { n_A_Equip, n_A_card } from './roro-state.js';
+import { CardIdToSetIdMap, ItemIdToSetIdMap, w_SE } from './itemset.dat.js';
+import { GetItemSetMemberText } from './itemset-bridge.js';
 import './card.h.js';
 import './common.js';
 import './costume.h.js';
 import './pet.h.js';
 import { g_constDataManager, g_timeItemConf } from '../../../ro4/m/js/global.js';
-import { CTimeItemAreaComponentManager } from './CTimeItemAreaComponentManager.js';
+import { g_timeItemDataBridge } from './CTimeItemDataBridge.js';
 import { CardObjNew } from './card.dat.js';
 import { COSTUME_ID_HEAD_UNDER_NONE, CostumeOBJ } from './costume.dat.js';
 import { GetFlagAppendedCardName, GetFlagAppendedItemName } from './equip.js';
@@ -21,6 +24,11 @@ import { HtmlCreateElement, HtmlCreateTextNode, HtmlRemoveOptionAll, HtmlCreateE
 import './timeitem.h.js';
 import { ITEM_SP_TIME_OBJ } from './timeitem.dat.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: 共有 state（旧 foot.js window 変数）
+import {
+         n_A_costume, g_itemIdArray,
+} from './roro-state.js';
+
 
 /**
  * アイテム情報マネージャクラス.
@@ -1312,11 +1320,11 @@ CItemInfoManager.AppendEfficiencyInfoSub = function (objRoot, dataKind, dataId, 
 CItemInfoManager.ApplyTimeItem = function (timeItemId) {
 
 	if (g_timeItemConf.indexOf(timeItemId) < 0) {
-		CTimeItemAreaComponentManager.OnChangeConf(-1, timeItemId);
+		g_timeItemDataBridge.onChangeConf?.(-1, timeItemId);
 	}
 
 	if (CItemInfoManager.ApplyAutoFocusFlag) {
-		CTimeItemAreaComponentManager.FocusArea(g_timeItemConf.indexOf(timeItemId), true);
+		g_timeItemDataBridge.focusArea?.(g_timeItemConf.indexOf(timeItemId), true);
 	}
 };
 

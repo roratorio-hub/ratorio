@@ -8,6 +8,24 @@ import { CSaveDataConst } from '../../../ro4/m/js/savedata/CSaveDataConst.js';
 import { GetJobName } from '../../../ro4/m/js/data/mig.job.h.js';
 import { HtmlCreateElement, HtmlCreateTextSpan, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectCheckedById, HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger } from '../../common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: 共有 state 追加分
+import {
+         n_A_JOB, g_lucky_over,
+} from './roro-state.js';
+
+// C-6: ro4 側共有 state（旧 head.js window 変数）
+import {
+         n_A_BaseLV,
+} from '../../../ro4/m/js/ro4-state.js';
+
+// C-6: 共有 state（旧 foot.js window 変数）
+import {
+         SU_STR, SU_AGI, SU_VIT, SU_DEX,
+         SU_INT, SU_LUK, n_A_JobLV, n_A_STR,
+         n_A_AGI, n_A_VIT, n_A_DEX, n_A_INT,
+         n_A_LUK,
+} from './roro-state.js';
+
 
 
 //----------------------------------------------------------------
