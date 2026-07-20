@@ -15,6 +15,8 @@ import { GetJobName } from './data/mig.job.h.js';
 import { floorBigInt32 } from '../../../roro/common/js/util.js';
 import { g_Chart, setG_Chart } from './calchistory.js';
 // === END AUTO-GENERATED IMPORTS ===
+// Chart.js ESM（calchistory.js と同一URL → 同一モジュールインスタンス = Chart.instances 共有）
+import Chart from 'https://cdn.jsdelivr.net/npm/chart.js@4.5.1/auto/+esm';
 // C-6: 共有 state 追加分
 import {
          n_A_JOB,
@@ -595,38 +597,34 @@ export class CSaveController {
 		if (canvas) {
 
 			// Canvas 上のすべての Chart インスタンスを破棄
-			// Chart.instances は配列またはオブジェクト形式の可能性があるため、
-			// より柔軟に対応
-			if (window.Chart) {
-				if (window.Chart.instances) {
-					// WeakMap また は Map, Array の場合に対応
-					if (Array.isArray(window.Chart.instances)) {
-						// 配列の場合
-						for (let i = window.Chart.instances.length - 1; i >= 0; i--) {
-							if (window.Chart.instances[i] && window.Chart.instances[i].canvas === canvas) {
-								window.Chart.instances[i].destroy();
-								window.Chart.instances.splice(i, 1);
-							}
+			if (Chart.instances) {
+				// WeakMap また は Map, Array の場合に対応
+				if (Array.isArray(Chart.instances)) {
+					// 配列の場合（Chart.js v2 互換）
+					for (let i = Chart.instances.length - 1; i >= 0; i--) {
+						if (Chart.instances[i] && Chart.instances[i].canvas === canvas) {
+							Chart.instances[i].destroy();
+							Chart.instances.splice(i, 1);
 						}
-					} else if (typeof window.Chart.instances.entries === 'function') {
-						// Map の場合
-						const toDelete = [];
-						window.Chart.instances.forEach((instance) => {
-							if (instance && instance.canvas === canvas) {
-								toDelete.push(instance);
-							}
-						});
-						toDelete.forEach(instance => {
-							instance.destroy();
-							window.Chart.instances.delete(instance);
-						});
 					}
+				} else if (typeof Chart.instances.entries === 'function') {
+					// Map の場合（Chart.js v3+）
+					const toDelete = [];
+					Chart.instances.forEach((instance) => {
+						if (instance && instance.canvas === canvas) {
+							toDelete.push(instance);
+						}
+					});
+					toDelete.forEach(instance => {
+						instance.destroy();
+						Chart.instances.delete(instance);
+					});
 				}
-				
-				// 既存の g_Chart インスタンスも破棄
-				if (g_Chart && typeof g_Chart.destroy === 'function') {
-					g_Chart.destroy();
-				}
+			}
+
+			// 既存の g_Chart インスタンスも破棄
+			if (g_Chart && typeof g_Chart.destroy === 'function') {
+				g_Chart.destroy();
 			}
 			canvas.remove();
 			cont.remove();
@@ -845,8 +843,8 @@ export class CSaveController {
 		    	  },
 		    	  onClick: (e) => {
 					showLoadingIndicator();
-		    	    const canvasPosition = Chart.helpers.getRelativePosition(e, chart);
-		    	    const dataX = chart.scales.x.getValueForPixel(canvasPosition.x);
+		    	    // v4: onClick の e は ChartEvent — e.x がキャンバス座標を直接保持
+		    	    const dataX = chart.scales.x.getValueForPixel(e.x);
 		    	    if (chart.data.datasets[0].data.length > dataX) {
 		    	    	let url = chart.data.datasets[0].metadata[Math.abs(dataX)]["url"];
 		    	    	CSaveController.loadFromURL(url);

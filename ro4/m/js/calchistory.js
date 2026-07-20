@@ -7,6 +7,8 @@ import {
 } from './head-bridge.js';
 // C-6: engine-registry（CSaveController.js との循環 import 回避）
 import { get as registryGet } from './engine-registry.js';
+// Chart.js ESM（auto = 全チャートタイプ登録済みビルド）
+import Chart from 'https://cdn.jsdelivr.net/npm/chart.js@4.5.1/auto/+esm';
 
 $(function () {
   const buildForm = () => {
@@ -147,8 +149,8 @@ div.clip_memo {
           }
         },
         onClick: (e) => {
-          const canvasPosition = Chart.helpers.getRelativePosition(e, chart);
-          const dataX = chart.scales.x.getValueForPixel(canvasPosition.x);
+          // v4: onClick の e は ChartEvent — e.x がキャンバス座標を直接保持
+          const dataX = chart.scales.x.getValueForPixel(e.x);
           if (chart.data.datasets[0].data.length > dataX) {
             let url = chart.data.datasets[0].metadata[Math.abs(dataX)]["url"];
             registryGet('CSaveController').loadFromURL(url);
