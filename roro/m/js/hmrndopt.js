@@ -7,6 +7,7 @@ import {
          HtmlSetObjectValueById
 } from '../../common/js/util.js';
 import { OnChangeRandomEnchant } from './equip.js';
+import { isShadowEquipAvailable } from '../../../ro4/m/js/CShadowEquipControllerDataBridge.js';
 import { ItemObjNew } from './item.dat.js';
 import { GetRndOptTypeId } from './item.h.js';
 import { g_rndOptArray } from './rndopt.dat.js';
@@ -548,7 +549,7 @@ export function GetRndOptTotalValue(spid, invalidItemIdArray, bListUp) {
 		listUpArray = listUpArray.concat(GetRndOptValue(EQUIP_REGION_ID_ACCESSORY_1, spid, invalidItemIdArray, bListUp));
 		listUpArray = listUpArray.concat(GetRndOptValue(EQUIP_REGION_ID_ACCESSORY_2, spid, invalidItemIdArray, bListUp));
 
-		if ((typeof g_shadowEquipController) !== "undefined") {
+		if (isShadowEquipAvailable()) {
 			listUpArray = listUpArray.concat(GetRndOptValue(EQUIP_REGION_ID_SHADOW_ARMS_RIGHT, spid, invalidItemIdArray, bListUp));
 			listUpArray = listUpArray.concat(GetRndOptValue(EQUIP_REGION_ID_SHADOW_ARMS_LEFT, spid, invalidItemIdArray, bListUp));
 			listUpArray = listUpArray.concat(GetRndOptValue(EQUIP_REGION_ID_SHADOW_BODY, spid, invalidItemIdArray, bListUp));
@@ -575,7 +576,7 @@ export function GetRndOptTotalValue(spid, invalidItemIdArray, bListUp) {
 		spVal += GetRndOptValue(EQUIP_REGION_ID_ACCESSORY_1, spid, invalidItemIdArray, bListUp);
 		spVal += GetRndOptValue(EQUIP_REGION_ID_ACCESSORY_2, spid, invalidItemIdArray, bListUp);
 
-		if ((typeof g_shadowEquipController) !== "undefined") {
+		if (isShadowEquipAvailable()) {
 			spVal += GetRndOptValue(EQUIP_REGION_ID_SHADOW_ARMS_RIGHT, spid, invalidItemIdArray, bListUp);
 			spVal += GetRndOptValue(EQUIP_REGION_ID_SHADOW_ARMS_LEFT, spid, invalidItemIdArray, bListUp);
 			spVal += GetRndOptValue(EQUIP_REGION_ID_SHADOW_BODY, spid, invalidItemIdArray, bListUp);

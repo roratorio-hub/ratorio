@@ -14,6 +14,7 @@ import { g_rndOptTypeArray } from '../../../roro/m/js/rndopttype.dat.js';
 import { IsMatchJobRestrict } from './data/mig.job.h.js';
 import { HtmlCreateElement, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlSelectObjectValueAsInteger } from '../../../roro/common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
+import { registerShadowEquipController } from './CShadowEquipControllerDataBridge.js';
 // C-6: 共有 state 追加分
 import {
          n_A_JOB,
@@ -662,7 +663,5 @@ export class CShadowEquipController {
 
 export const g_shadowEquipController = new CShadowEquipController();
 
-if (typeof window !== 'undefined') {
-    window.g_shadowEquipController = g_shadowEquipController;
-}
+registerShadowEquipController(g_shadowEquipController);
 g_shadowEquipController.initializeHTML();

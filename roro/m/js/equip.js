@@ -2,6 +2,7 @@
 import { n_A_Equip, n_A_card } from './roro-state.js';
 import { CardIdToSetIdMap, ItemIdToSetIdMap, w_SE } from './itemset.dat.js';
 import { set_n_Nitou } from '../../../ro4/m/js/global.js';
+import { shadowEquipRebuildAll } from '../../../ro4/m/js/CShadowEquipControllerDataBridge.js';
 import { g_attackMethodBridge } from './CAttackMethodDataBridge.js';
 import './arrow.h.js';
 import './card.h.js';
@@ -217,9 +218,7 @@ export function changeJobSettings(jobId) {
 	// 防具選択欄を再構築
 	RebuildArmorsSelect();
 	// シャドウ装備
-	if ((typeof g_shadowEquipController) !== "undefined") {
-		g_shadowEquipController.rebuildAll();
-	}
+	shadowEquipRebuildAll();
 	// 習得スキルの初期化
 	for (var dmyidx = 0; dmyidx < LEARNED_SKILL_MAX_COUNT; dmyidx++) {
 		n_A_LearnedSkill[dmyidx] = 0;
