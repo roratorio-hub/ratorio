@@ -15,6 +15,16 @@ import { GetJobName } from './data/mig.job.h.js';
 import { floorBigInt32 } from '../../../roro/common/js/util.js';
 import { g_Chart, setG_Chart } from './calchistory.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: 共有 state 追加分
+import {
+         n_A_JOB,
+} from '../../../roro/m/js/roro-state.js';
+
+// C-6: ro4 側共有 state（旧 head.js window 変数）
+import {
+         n_A_BaseLV,
+} from './ro4-state.js';
+
 
 /**
  * 計算機メインコントローラクラス.
@@ -934,7 +944,7 @@ export class CSaveController {
 		      $(e.target).next("input").toggle().focus();
 		    });
 		    $(document).on("change", "input.clip_memo", (e) => {
-		      if (window.g_Chart !== chart) return;
+		      if (g_Chart !== chart) return;
 		      const index = e.target.closest("tr").rowIndex - 1;
 		      data.datasets[0].metadata[index]["memo"] = e.target.value;
 		      chart.update();
@@ -946,7 +956,7 @@ export class CSaveController {
 		      $(e.target).prev("div").toggle();
 		    });
 		    $(document).on("click", ".up_clip", (e) => {
-		      if (window.g_Chart !== chart) return;
+		      if (g_Chart !== chart) return;
 		      const row = e.target.closest("tr");
 		      if (row && row.previousElementSibling) {
 		        const index = row.rowIndex - 1;
@@ -957,7 +967,7 @@ export class CSaveController {
 		      }
 		    });
 		    $(document).on("click", ".down_clip", (e) => {
-		      if (window.g_Chart !== chart) return;
+		      if (g_Chart !== chart) return;
 		      const row = e.target.closest("tr");
 		      if (row && row.nextElementSibling) {
 		        const index = row.rowIndex - 1;
@@ -968,7 +978,7 @@ export class CSaveController {
 		      }
 		    });
 		    $(document).on("click", ".remove_clip", (e) => {
-		      if (window.g_Chart !== chart) return;
+		      if (g_Chart !== chart) return;
 		      const row = e.target.closest("tr");
 		      const index = row.rowIndex - 1;
 		      data.labels.pop();

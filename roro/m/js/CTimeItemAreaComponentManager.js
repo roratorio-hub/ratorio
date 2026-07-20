@@ -5,6 +5,7 @@ import { g_timeItemConf, g_timeItemConfEffective } from '../../../ro4/m/js/globa
 import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById } from '../../common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
 import { CBattleQuickControlAreaComponentManager } from './CBattleQuickControlAreaComponentManager.js';
+import { g_timeItemDataBridge } from './CTimeItemDataBridge.js';
 /**
  * 時限アイテムエリアコンポーネントマネージャクラス.
  */
@@ -343,5 +344,10 @@ CTimeItemAreaComponentManager.FocusArea = function (idxConf, bForceOpen) {
 
 // 初期構築処理
 CTimeItemAreaComponentManager.RebuildControls();
+
+// roro/other ページから到達する CItemInfoManager.ApplyTimeItem 用のブリッジ登録
+// （このファイルは calcx.html でのみロードされるため、roro/other では未登録のまま no-op になる）
+g_timeItemDataBridge.onChangeConf = (idxConf, dataId) => CTimeItemAreaComponentManager.OnChangeConf(idxConf, dataId);
+g_timeItemDataBridge.focusArea = (idxConf, bForceOpen) => CTimeItemAreaComponentManager.FocusArea(idxConf, bForceOpen);
 
 

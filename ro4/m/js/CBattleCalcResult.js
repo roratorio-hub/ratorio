@@ -4,6 +4,11 @@ import { instobject } from './CBattleCalcResultAll.js';
 import { g_skillManager } from './global.js';
 import { GetArrayMax, GetArrayMin } from '../../../roro/common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: ro4 側共有 state（旧 head.js window 変数）
+import {
+         g_bDefinedDamageIntervals,
+} from './ro4-state.js';
+
 
 /**
  * 戦闘結果クラス.

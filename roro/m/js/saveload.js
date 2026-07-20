@@ -1,4 +1,5 @@
 // === AUTO-GENERATED IMPORTS ===
+import { g_attackMethodBridge } from './CAttackMethodDataBridge.js';
 import { GetHigherJobSeriesID, GetJobName, GetLowerJobSeriesID, IsSameJobClass } from '../../../ro4/m/js/data/mig.job.h.js';
 import { CMonsterMapAreaComponentManager } from '../../../ro4/m/js/CMonsterMapAreaComponentManager.js';
 import {
@@ -14,7 +15,8 @@ import { CExtraInfoAreaComponentManager } from './CExtraInfoAreaComponentManager
 import { CItemInfoManager } from './CItemInfoManager.js';
 import { GetMobConfInput, SetActiveIndexMobConfInput, SetMobConfInput } from './CMobConfInput.js';
 import { CSaveDataConverter } from './CSaveDataConverter.js';
-import { CSaveDataMappingManager } from './CSaveDataMappingManager.js';
+import { CSaveDataMappingManager, CURRENT_VERSION } from './CSaveDataMappingManager.js';
+import { __registerSaveloadFunctions } from './saveload-bridge.js';
 import { CTimeItemAreaComponentManager } from './CTimeItemAreaComponentManager.js';
 import {
          ARROW_ID_AP_BULLET, ARROW_ID_ATK1NO_YA, ARROW_ID_BLAZE_BULLET,
@@ -97,14 +99,53 @@ import {
          TIME_ITEM_ID_OWASHINO_GANKO
 } from './timeitem.dat.js';
 import { InsertSkill } from './usableskill.dat.js';
+import {
+	SKILL_ID_AIMED_BOLT, SKILL_ID_FREEZING_TRAP, SKILL_ID_HAMMER_OF_GOD,
+	SKILL_ID_MANGETSU_KYAKU, SKILL_ID_RYUSE_RAKKA, SKILL_ID_TAIYO_BAKUHATSU,
+	SKILL_ID_TUZYO_KOGEKI,
+} from './skill.dat.js';
 import { USABLE_SKILL_ID_CUSTOM_BIAS } from './usableskill.h.js';
 import { HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById, SetStatefullData, GetStatefullData, MallocArray, myInnerHtml } from '../../common/js/util.js';
 import { Click_A1, n_A_PassSkill, n_Skill1SW } from '../../../ro4/m/js/BuffJobSpecificSelf.js';
-import { Click_A3, n_A_PassSkill3 } from '../../../ro4/m/js/BuffMusicAndDance.js';
+import { n_A_PassSkill3 } from '../../../ro4/m/js/skillstate.js';
 import { Click_A4, n_A_PassSkill4 } from '../../../ro4/m/js/BuffGuildAndGospel.js';
 import { Click_A7, n_A_PassSkill7 } from '../../../ro4/m/js/BuffItemAndFood.js';
 import { Click_A8, n_A_PassSkill8 } from '../../../ro4/m/js/BuffOtherCategory.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: JOB 定数
+import {
+         JOB_SERIES_ID_ARCHER, JOB_SERIES_ID_THIEF, JOB_SERIES_ID_ASSASIN, JOB_SERIES_ID_GUNSLINGER,
+} from '../../../ro4/m/js/data/mig.job.h.js';
+
+// C-6: 共有 state 追加分
+import {
+         n_A_JOB,
+} from './roro-state.js';
+
+// C-6: global.js 管理の共有 conf state
+import {
+         g_confDataIchizi, g_confDataNizi, g_confDataSanzi, g_confDataYozi,
+         g_confDataCustomAtk, g_confDataCustomDef, g_confDataCustomSkill, g_confDataCustomSpecStatus,
+         g_confDataCustomStatus, g_objCharaConfCustomAtk, g_objCharaConfCustomDef, g_objCharaConfCustomSkill,
+         g_objCharaConfCustomSpecStatus, g_objCharaConfCustomStatus, n_Nitou,
+} from '../../../ro4/m/js/global.js';
+
+// C-6: foot.js 公開関数（foot-bridge 経由）
+import {
+         RefreshSuperNoviceFullWeapon,
+} from './foot-bridge.js';
+
+// C-6: ro4 側共有 state（旧 head.js window 変数）
+import {
+         SaveDataAll, set_SaveDataAll, SaveNameAll, set_SaveNameAll,
+         n_CONFIG,
+} from '../../../ro4/m/js/ro4-state.js';
+
+// C-6: 共有 state（旧 foot.js window 変数）
+import {
+         n_A_costume, n_A_PassSkill5, g_objMobConfInput,
+} from './roro-state.js';
+
 // ★★　VersionModify() 関数の修正も忘れずに　★★
 
 // CURRENT_VERSION = 11;	// ラトリオ様からフォーク
@@ -150,7 +191,8 @@ import { Click_A8, n_A_PassSkill8 } from '../../../ro4/m/js/BuffOtherCategory.js
 // CURRENT_VERSION = 51;	// ウルフオーブエンチャント定義対応
 // CURRENT_VERSION = 52;	// Lv240解放
 // CURRENT_VERSION = 53;	// 特性ステータスセーブ対応
-window.CURRENT_VERSION = 54;	// 対人データの拡張対応
+// CURRENT_VERSION = 54;	// 対人データの拡張対応
+// ↑ 現行バージョンの定義は CSaveDataMappingManager.js の export const CURRENT_VERSION へ移動（3f-6）
 // 旧データ構造は、最大でバージョン 99 まで
 
 
@@ -173,10 +215,10 @@ export function GetSaveDataVersion(saveDataStr) {
 }
 
 // 対プレイヤー設定用バイアス
-window.SAVE_DATA_BIAS_CONF_PLAYER_500 = 500;
+const SAVE_DATA_BIAS_CONF_PLAYER_500 = 500;
 
 // 対プレイヤー設定バイアス調整対象インデックス配列
-window.BIAS_TARGET_INDEX_ARRAY_CONF_PLAYER_500 = [
+const BIAS_TARGET_INDEX_ARRAY_CONF_PLAYER_500 = [
 	MOB_CONF_PLAYER_ID_NINGEN_KEI_TAISEI,
 	MOB_CONF_PLAYER_ID_CHUGATA_TAISEI,
 	MOB_CONF_PLAYER_ID_ENKYORI_BUTSURI_TAISEI,
@@ -517,7 +559,7 @@ export function SaveSystem(funcSaveDataModify = null){
 		//----------------------------------------------------------------
 		// [0276 - 0285] 攻撃手段
 		//----------------------------------------------------------------
-		attackMethodConf = CAttackMethodAreaComponentManager.GetAttackMethodConf();
+		attackMethodConf = g_attackMethodBridge.getAttackMethodConf?.();
 
 		SaveData[276] = attackMethodConf.GetSkillId();
 		SaveData[277] = attackMethodConf.GetSourceType();
@@ -544,7 +586,8 @@ export function SaveSystem(funcSaveDataModify = null){
 
 
 		//----------------------------------------------------------------
-		// [0448 - 0508] 支援スキル３
+		// [0448 - 0508] 支援スキル３（演奏/踊り系スキル — 機能削除済み・常にゼロ。
+		// 旧フォーマットの位置互換のため書き込みは維持する）
 		//----------------------------------------------------------------
 		for (idx = 0; idx < n_A_PassSkill3.length; idx++) {
 			SaveData[448 + idx] = n_A_PassSkill3[idx];
@@ -4645,11 +4688,9 @@ export function DecodeUrl(loadDataUrl){
 
 
 		//----------------------------------------------------------------
-		// 支援スキル３の読み込み
+		// 支援スキル３（演奏/踊り系スキル）は機能削除済み — 旧セーブの値は適用しない
+		// （n_A_PassSkill3 はゼロ固定。UI が無いため適用すると解除不能な隠しバフになる）
 		//----------------------------------------------------------------
-		for (idx = 0; idx < n_A_PassSkill3.length; idx++) {
-			n_A_PassSkill3[idx] = SaveData[448 + idx];
-		}
 
 
 		//----------------------------------------------------------------
@@ -4965,7 +5006,7 @@ export function DecodeUrl(loadDataUrl){
 		//----------------------------------------------------------------
 
 		// 攻撃手段エリアコンポーネントの再構築
-		CAttackMethodAreaComponentManager.RebuildControls();
+		g_attackMethodBridge.rebuildControls?.();
 
 		// レベルが上限を超えている場合は、最大レベルに補正（設定ミスのバグ対応）
 		var maxLv = g_skillManager.GetMaxLv(parseInt(SaveData[276], 10));
@@ -4990,7 +5031,7 @@ export function DecodeUrl(loadDataUrl){
 		);
 
 		//  攻撃手段の設定設定を変更
-		CAttackMethodAreaComponentManager.SetAttackMethodConf(attackMethodConf);
+		g_attackMethodBridge.setAttackMethodConf?.(attackMethodConf);
 
 
 		// TODO: これいる？
@@ -5000,7 +5041,6 @@ export function DecodeUrl(loadDataUrl){
 	OnClickSkillSWLearned();
 	Click_A1(false);
 
-	Click_A3(false);
 	Click_A4(false);
 	OnChangeSettingAutoSpell(false);
 
@@ -5086,7 +5126,7 @@ export function LoadCookie3(){
 	var ch = 0;
 
 	// 初期化
-	window.SaveDataAll = new Array();
+	set_SaveDataAll(new Array());
 	for (idx = 0; idx <= 500; idx++) {
 		SaveDataAll[idx] = "ZZZZ";
 	}
@@ -5105,7 +5145,7 @@ export function LoadCookie3(){
 		wStr = SaveData[idx].substr(searchIndex + searchKey.length, SaveData[idx].length);
 
 		// 読み込みデータを分割して、セーブデータに変換
-		window.SaveDataAll = wStr.split("?");
+		set_SaveDataAll(wStr.split("?"));
 
 		ch = 1;
 		break;
@@ -5120,7 +5160,7 @@ export function LoadCookie3(){
 
 
 			// 読み込みデータを分割して、セーブデータに変換
-			window.SaveDataAll = wStr.split("?");
+			set_SaveDataAll(wStr.split("?"));
 		}
 
 		ch = 2;
@@ -5315,7 +5355,7 @@ export function SaveCookieConf(){
 			// 名前の保存
 			if(localStorage.ROratorioDOM_SaveName){
 				var wStrX = localStorage.ROratorioDOM_SaveName;
-				window.SaveNameAll = wStrX.split("|");
+				set_SaveNameAll(wStrX.split("|"));
 			}
 
 			myInnerHtml("DELHTML",'　　<input type="text" name="SAVE_NAME" value="名前入力可能" size=30>　　<Font size=2><A Href="del2.html">セーブ削除</A></Font>',0);
@@ -5424,7 +5464,7 @@ export function LoadCookieConf(){
 			// 名前の読み込み
 			if(localStorage.ROratorioDOM_SaveName){
 				var wStrX = localStorage.ROratorioDOM_SaveName;
-				window.SaveNameAll = wStrX.split("|");
+				set_SaveNameAll(wStrX.split("|"));
 			}
 			myInnerHtml("DELHTML",'　　<input type="text" name="SAVE_NAME" value="名前入力可能" size=30>　　<Font size=2><A Href="del2.html">セーブ削除</A></Font>',0);
 		}
@@ -5472,7 +5512,7 @@ export function aaa(wnum){
 	for(var i=0;i<wnum;i++) wa += "a";
 	return wa;
 }
-window.n_NtoS2 =["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","0","1","2","3","4","5","6","7","8","9"];
+const n_NtoS2 =["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","0","1","2","3","4","5","6","7","8","9"];
 
 export function NumA(wstr){
 	for(var i=2;i<wstr.length;i++){
@@ -5548,6 +5588,5 @@ export function OnClickUrlIn() {
 	URLIN(strUrl);
 }
 
-if (typeof window !== 'undefined') {
-	Object.assign(window, { SaveSystem });
-}
+// 循環 import 不可の呼び出し元（hmjob.js / mig.job.h.js）向けにブリッジへ登録する
+__registerSaveloadFunctions({ SaveSystem });

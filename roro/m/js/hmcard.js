@@ -1,4 +1,6 @@
 // === AUTO-GENERATED IMPORTS ===
+import { n_A_Equip, n_A_card } from './roro-state.js';
+import { g_attackMethodBridge } from './CAttackMethodDataBridge.js';
 import './card.h.js';
 import { MigGetBorderFlagText } from './data/mig.itemsp.h.js';
 import { g_constDataManager } from '../../../ro4/m/js/global.js';
@@ -58,6 +60,11 @@ import { MIG_ENCH_LIST_ID_SHINENNO_KAIRO_UPGRADE, MIG_ENCH_LIST_ID_SHINENTAIBUKI
 import { SLOT_INDEX_CARD_MIN, SLOT_INDEX_CARD_MAX } from './slotpager.js';
 import { HtmlGetElementById, HtmlCreateElement, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueById, HtmlSetObjectValueById, SetStatefullData } from '../../common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: global.js 管理の共有 conf state
+import {
+         n_Nitou,
+} from '../../../ro4/m/js/global.js';
+
 
 export const CardShortObj =[
 	 [
@@ -1597,17 +1604,11 @@ export function ApplyCardShort(eqpRgnId, objidPrifix) {
 	StAllCalc();
 
 	// 攻撃手段の更新
-	CAttackMethodAreaComponentManager.RebuildControls();
+	g_attackMethodBridge.rebuildControls?.();
 
 	// 検索可能リスト更新
 	LoadTomSelect();
 }
 
-/* window compat — dewindow フェーズで除去予定 */
-if (typeof window !== 'undefined') {
-    Object.assign(window, {
-        ApplyCardShort,
-    });
-}
 
 

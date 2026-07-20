@@ -583,7 +583,7 @@ export function CCharaConfSanzi(confArray) {
 				// 選択セレクトボックスを生成
 				objSelect = document.createElement("select");
 				objSelect.setAttribute("id", controlId);
-				objSelect.setAttribute("onChange", "CConfBase.OnChangeValueHandler(" + this.instanceNo + ", true)");
+				objSelect.addEventListener("change", () => CConfBase.OnChangeValueHandler(this.instanceNo, true));
 				objTd.appendChild(objSelect);
 				// セレクトオプションを生成
 				objOption = HtmlCreateElementOption(0, "off", objSelect);
@@ -604,7 +604,7 @@ export function CCharaConfSanzi(confArray) {
 				// 選択セレクトボックスを生成
 				objSelect = document.createElement("select");
 				objSelect.setAttribute("id", controlId);
-				objSelect.setAttribute("onChange", "CConfBase.OnChangeValueHandler(" + this.instanceNo + ", true)");
+				objSelect.addEventListener("change", () => CConfBase.OnChangeValueHandler(this.instanceNo, true));
 				objTd.appendChild(objSelect);
 				// セレクトオプションを生成
 				objOption = HtmlCreateElementOption(0, "off", objSelect);
@@ -626,7 +626,7 @@ export function CCharaConfSanzi(confArray) {
 				// 選択セレクトボックスを生成
 				objSelect = document.createElement("select");
 				objSelect.setAttribute("id", controlId);
-				objSelect.setAttribute("onChange", "CConfBase.OnChangeValueHandler(" + this.instanceNo + ", true)");
+				objSelect.addEventListener("change", () => CConfBase.OnChangeValueHandler(this.instanceNo, true));
 				objTd.appendChild(objSelect);
 				// セレクトオプションを生成
 				for (var loopIdx = 0; loopIdx <= 18; loopIdx++) {

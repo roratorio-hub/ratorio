@@ -15,6 +15,30 @@ import { g_rndOptListArray } from './rndoptlist.dat.js';
 import { g_rndOptTypeArray } from './rndopttype.dat.js';
 import { GetEquipRndOptTableKind, GetEquipRndOptTableValue, SetEquipRndOptTable } from './rndopttype.h.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: global.js 管理の共有 conf state
+import {
+         n_Nitou,
+} from '../../../ro4/m/js/global.js';
+
+// C-6: foot.js 公開関数（foot-bridge 経由）
+import {
+         IsMatchSpDefId, CheckSpDefFriendlyOver, CheckSpDefBaseLvOver, CheckSpDefJobRestrict,
+         CheckSpDefPureStatus, CheckSpDefRefineOver,
+} from './foot-bridge.js';
+
+// C-6: ro4 側共有 state（旧 head.js window 変数）
+import {
+         n_A_BaseLV,
+} from '../../../ro4/m/js/ro4-state.js';
+
+// C-6: 共有 state（旧 foot.js window 変数）
+import {
+         SU_STR, n_A_HEAD_DEF_PLUS, n_A_BODY_DEF_PLUS, n_A_SHIELD_DEF_PLUS,
+         n_A_SHOULDER_DEF_PLUS, n_A_SHOES_DEF_PLUS, n_A_Weapon_ATKplus, n_A_Weapon2_ATKplus,
+         g_refinedArray,
+         SU_AGI, SU_VIT, SU_DEX, SU_INT, SU_LUK,
+} from './roro-state.js';
+
 
 
 export function GetObjectPrefixRndOpt(eqpRgnId) {
@@ -198,7 +222,7 @@ export function CreateRndOptKind(objRoot, eqpRgnId, slotIndex) {
 
 	objSelect = HtmlCreateElement("select", objTd);
 	HtmlSetAttribute(objSelect, "id", objIdKind);
-	HtmlSetAttribute(objSelect, "onChange", "OnChangeRndOptKind(" + eqpRgnId + ", " + slotIndex + ") | AutoCalc()");
+	objSelect.addEventListener("change", () => { OnChangeRndOptKind(eqpRgnId, slotIndex); AutoCalc(); });
 
 	return objSelect;
 }
@@ -223,7 +247,7 @@ export function CreateRndOptValue(objRoot, eqpRgnId, slotIndex) {
 
 	objSelect = HtmlCreateElement("select", objTd);
 	HtmlSetAttribute(objSelect, "id", objIdValue);
-	HtmlSetAttribute(objSelect, "onChange", "OnChangeRandomEnchant() | AutoCalc()");
+	objSelect.addEventListener("change", () => { OnChangeRandomEnchant(); AutoCalc(); });
 
 	return objSelect;
 }
@@ -778,10 +802,4 @@ export function GetRndOptValue(eqpRgnId, spid, invalidItemIdArray, bListUp) {
 	}
 }
 
-/* window compat — dewindow フェーズで除去予定 */
-if (typeof window !== 'undefined') {
-    Object.assign(window, {
-        OnChangeRndOptKind,
-    });
-}
 

@@ -5,6 +5,10 @@ export function CSaveDataMappingManager() {
 
 }
 
+// セーブデータ形式の現行バージョン
+// （3f-6 で saveload.js から移動 — マッピング配列の版数と対で管理する。改版履歴は saveload.js 参照）
+export const CURRENT_VERSION = 54;	// 対人データの拡張対応
+
 
 /**
  * マッピング配列を取得する.

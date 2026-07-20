@@ -56,7 +56,6 @@ export let g_skillManager = new CSkillManager();
 export let n_Nitou = false;
 
 /** 二刀流フラグ */
-export let n_NitouCalc = false;
 
 /** ステータス・装備・スキルなどで短縮された変動詠唱時間の残余率 */
 export let g_VariableCastTimeRate = 0;
@@ -132,25 +131,38 @@ export function __DIG3(value) {
 }
 
 if (typeof window !== 'undefined') {
-    window.g_confDataIchizi = g_confDataIchizi;
-    window.g_confDataNizi = g_confDataNizi;
-    window.g_confDataSanzi = g_confDataSanzi;
-    window.g_confDataYozi = g_confDataYozi;
-    window.g_confDataDebuff = g_confDataDebuff;
-    window.g_objCharaConfIchizi = g_objCharaConfIchizi;
-    window.g_objCharaConfNizi = g_objCharaConfNizi;
-    window.g_objCharaConfSanzi = g_objCharaConfSanzi;
-    window.g_objCharaConfYozi = g_objCharaConfYozi;
-    window.g_objCharaConfDebuff = g_objCharaConfDebuff;
     window.g_timeItemConfAllEffective = g_timeItemConfAllEffective;
-    window.n_Nitou = n_Nitou;
-    window.n_NitouCalc = n_NitouCalc;
-    window.g_VariableCastTimeRate = g_VariableCastTimeRate;
-    window.costDownForDisp = costDownForDisp;
     window.g_constDataManager = g_constDataManager;
-    window.g_confDataCustomStatus = g_confDataCustomStatus;
-    window.g_confDataCustomAtk = g_confDataCustomAtk;
-    window.g_confDataCustomDef = g_confDataCustomDef;
-    window.g_confDataCustomSkill = g_confDataCustomSkill;
-    window.g_confDataCustomSpecStatus = g_confDataCustomSpecStatus;
 }
+
+// C-6: 性能カスタマイズ系 conf オブジェクト（旧・foot.js が window 直書きしていた分）
+export let g_objCharaConfCustomAtk = null;
+export let g_objCharaConfCustomDef = null;
+export let g_objCharaConfCustomSkill = null;
+export let g_objCharaConfCustomSpecStatus = null;
+export let g_objCharaConfCustomStatus = null;
+
+// C-6: 書き込みは import binding では不可のためセッターを使用
+export function set_g_confDataIchizi(v) { g_confDataIchizi = v; }
+export function set_g_confDataNizi(v) { g_confDataNizi = v; }
+export function set_g_confDataSanzi(v) { g_confDataSanzi = v; }
+export function set_g_confDataYozi(v) { g_confDataYozi = v; }
+export function set_g_confDataDebuff(v) { g_confDataDebuff = v; }
+export function set_g_confDataCustomAtk(v) { g_confDataCustomAtk = v; }
+export function set_g_confDataCustomDef(v) { g_confDataCustomDef = v; }
+export function set_g_confDataCustomSkill(v) { g_confDataCustomSkill = v; }
+export function set_g_confDataCustomSpecStatus(v) { g_confDataCustomSpecStatus = v; }
+export function set_g_confDataCustomStatus(v) { g_confDataCustomStatus = v; }
+export function set_g_objCharaConfIchizi(v) { g_objCharaConfIchizi = v; }
+export function set_g_objCharaConfNizi(v) { g_objCharaConfNizi = v; }
+export function set_g_objCharaConfSanzi(v) { g_objCharaConfSanzi = v; }
+export function set_g_objCharaConfYozi(v) { g_objCharaConfYozi = v; }
+export function set_g_objCharaConfDebuff(v) { g_objCharaConfDebuff = v; }
+export function set_n_Nitou(v) { n_Nitou = v; }
+export function set_costDownForDisp(v) { costDownForDisp = v; }
+export function set_g_VariableCastTimeRate(v) { g_VariableCastTimeRate = v; }
+export function set_g_objCharaConfCustomAtk(v) { g_objCharaConfCustomAtk = v; }
+export function set_g_objCharaConfCustomDef(v) { g_objCharaConfCustomDef = v; }
+export function set_g_objCharaConfCustomSkill(v) { g_objCharaConfCustomSkill = v; }
+export function set_g_objCharaConfCustomSpecStatus(v) { g_objCharaConfCustomSpecStatus = v; }
+export function set_g_objCharaConfCustomStatus(v) { g_objCharaConfCustomStatus = v; }

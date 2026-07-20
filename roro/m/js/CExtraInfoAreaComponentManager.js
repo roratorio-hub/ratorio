@@ -1,3 +1,4 @@
+import { n_A_Equip } from './roro-state.js';
 import { CGlobalConstManager } from './CGlobalConstManager.js';
 import { CInstanceManager } from './CInstanceManager.js';
 // === AUTO-GENERATED IMPORTS ===
@@ -57,11 +58,56 @@ import {
          SKILL_ID_SANCTUARY, SKILL_ID_SHINSENNA_EBI, SKILL_ID_SHOZIGENKAIRYO_ZOKA,
          SKILL_ID_SHOZIGENKAIRYO_ZOKA_R, SKILL_ID_SHUGO_FU,
          SKILL_ID_SP_KAIFUKURYOKU_KOZYO, SKILL_ID_TEIOAPUCHAGI, SKILL_ID_ZANEI,
-         SKILL_ID_ZYOKODO
+         SKILL_ID_ZYOKODO,
+         SKILL_ID_TURTLE_SPRINKLER,
+         SKILL_ID_MADOGEAR,
 } from './skill.dat.js';
 import { UsedSkillSearch } from '../../../ro4/m/js/skillstate.js';
 import { DISP_DATA_KEY_STRDEX_BONUS, g_extraInfoDataBridge } from './CExtraInfoDataBridge.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: JOB 定数
+import {
+         JOB_ID_ANY,
+} from '../../../ro4/m/js/data/mig.job.h.js';
+
+// C-6: 共有 state 追加分
+import {
+         n_A_JOB, n_CastCutForDisp,
+} from './roro-state.js';
+
+// C-6: global.js 管理の共有 conf state
+import {
+         g_confDataYozi, g_objCharaConfCustomSpecStatus, costDownForDisp, g_VariableCastTimeRate,
+} from '../../../ro4/m/js/global.js';
+
+// C-6: foot.js 公開関数（foot-bridge 経由）
+import {
+         GetCastScalingOfSkillForCastTimeVary, GetCastFixOfSkillForCastTimeVary, GetCastScalingOfSkillForCastTimeFixed, GetCastFixOfSkillForCastTimeFixed,
+         GetCoolFixOfSkill, GetEquippedTotalSPCardAndElse,
+         GetEquippedTotalSPEquip,
+} from './foot-bridge.js';
+
+// C-6: 旧 head.js の window 経由共有スクラッチ変数（宣言忘れ関数の var-leak 対応・ファイルローカル化）
+let resistValueArray = [];
+let resistValueArrayOver = 0;
+let bodyElmRatioArray = 0;
+let finalRatioArray = 0;
+
+// C-6: ro4 側共有 state（旧 head.js window 変数）
+import {
+         n_A_BaseLV, n_A_ActiveSkill, n_A_Kotei_Cast_Keigen, delayDownForDisp, n_tok,
+         n_tok_no_limit,
+} from '../../../ro4/m/js/ro4-state.js';
+
+// C-6: 共有 state（旧 foot.js window 変数）
+import {
+         SU_STR, SU_AGI, SU_VIT, SU_DEX,
+         SU_INT, SU_LUK, n_A_JobLV, n_A_AGI,
+         n_A_VIT, n_A_DEX, n_A_INT, n_A_LUK,
+         n_A_STA, n_A_WIS, n_A_SPL, n_A_CRT,
+         n_A_BodyZokusei,
+} from './roro-state.js';
+
 //----------------------------------------------------------------
 // 拡張情報の種類
 //----------------------------------------------------------------
