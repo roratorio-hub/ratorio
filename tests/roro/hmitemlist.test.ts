@@ -27,6 +27,7 @@ beforeAll(async () => {
 	await import('/workspace/ratorio/ro4/m/js/global.js');       // g_constDataManager を window にセット
 	await import('/workspace/ratorio/ro4/m/js/data/mig.job.dat.js'); // 職業データを g_constDataManager にロード
 	await import('/workspace/ratorio/roro/m/js/itemset.dat.js'); // w_SE を window にセット（GetItemExplainText が参照）
+	await import('/workspace/ratorio/roro/m/js/itemset.h.js'); // GetItemSetMemberText を itemset-bridge に登録（GetItemExplainText が呼ぶ）
 	const itemDat = await import('/workspace/ratorio/roro/m/js/item.dat.js');
 	ItemObjNew = itemDat.ItemObjNew;
 	const hmitemlist = await import('/workspace/ratorio/roro/other/js/hmitemlist.js');

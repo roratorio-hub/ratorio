@@ -24,11 +24,17 @@ export default defineConfig({
         execArgv: ['--max-old-space-size=8192'],
     },
     resolve: {
-        alias: {
-            '@roro': path.resolve(__dirname, '../roro/m/js'),
-            '@ro4': path.resolve(__dirname, '../ro4/m/js'),
-            '@helpers': path.resolve(__dirname, './helpers'),
-            '@types-roro': path.resolve(__dirname, './types'),
-        },
+        alias: [
+            // Chart.js の CDN(https:) ESM import は Node/vitest では解決できないためスタブへ差し替える。
+            // 実ブラウザ（calcx.html）と integration(Playwright) は本物の CDN をそのまま使う。
+            {
+                find: /^https:\/\/cdn\.jsdelivr\.net\/npm\/chart\.js@[\d.]+\/auto\/\+esm$/,
+                replacement: path.resolve(__dirname, './helpers/chart-stub.js'),
+            },
+            { find: '@roro', replacement: path.resolve(__dirname, '../roro/m/js') },
+            { find: '@ro4', replacement: path.resolve(__dirname, '../ro4/m/js') },
+            { find: '@helpers', replacement: path.resolve(__dirname, './helpers') },
+            { find: '@types-roro', replacement: path.resolve(__dirname, './types') },
+        ],
     },
 });
