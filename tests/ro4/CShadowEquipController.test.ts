@@ -2,6 +2,7 @@ import { describe, it, expect, vi, beforeAll } from 'vitest';
 
 let CShadowEquipController: any;
 let g_shadowEquipController: any;
+let bridge: typeof import('@ro4/CShadowEquipControllerDataBridge.js');
 
 beforeAll(async () => {
     const mockRoot = {
@@ -14,6 +15,7 @@ beforeAll(async () => {
     const mod = await import('@ro4/CShadowEquipController.js');
     CShadowEquipController = mod.CShadowEquipController;
     g_shadowEquipController = mod.g_shadowEquipController;
+    bridge = await import('@ro4/CShadowEquipControllerDataBridge.js');
 });
 
 describe('CShadowEquipController.js', () => {
@@ -23,9 +25,12 @@ describe('CShadowEquipController.js', () => {
         });
     });
 
-    describe('window互換確認', () => {
-        it('window.g_shadowEquipController が設定されている', () => {
-            expect((window as any).g_shadowEquipController).toBe(g_shadowEquipController);
+    // 旧 window.g_shadowEquipController 互換テストを置換（48b20b91 で window 登録は除去）。
+    // モジュール評価時に registerShadowEquipController 経由で DataBridge へ実体が
+    // 配線されることを検証する（saveimage.js / equip.js / hmrndopt.js の参照経路）。
+    describe('DataBridge への登録（window 除去後の配線）', () => {
+        it('ロード後 isShadowEquipAvailable が true を返す', () => {
+            expect(bridge.isShadowEquipAvailable()).toBe(true);
         });
     });
 });
