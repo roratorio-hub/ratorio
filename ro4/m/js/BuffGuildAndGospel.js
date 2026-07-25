@@ -1,6 +1,6 @@
 // === AUTO-GENERATED IMPORTS ===
 import '../../../roro/m/js/skill.h.js';
-import { AutoCalc } from './head.js';
+import { AutoCalc } from './head-bridge.js';
 import { SkillObjNew } from '../../../roro/m/js/skill.dat.js';
 import { myInnerHtml } from '../../../roro/common/js/util.js';
 import { n_A_PassSkill4 } from './skillstate.js';

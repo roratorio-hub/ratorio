@@ -9,11 +9,11 @@ export default defineConfig({
         exclude: [
             'node_modules',
             'integration',
-            // head.js 経由で計算エンジン全体(~200K行)をロードするためワーカーがOOMで死ぬ
-            // Vite bundler 導入後にモジュールグラフが軽量化されたら再有効化する
+            // head.js（全エンジン ~200K 行）を import グラフに含むためワーカーが OOM/ハングする。
+            // subject が head.js 直接 import（または CAttackMethodAreaComponentManager / CSaveController
+            // 経由の head.js 到達）を断てば再有効化できる。BuffGuildAndGospel / BuffJobSpecificSelf は
+            // dewindow 済みで再有効化。残り3本は .claude/context/dewindow/roadmap.md「Phase 3g」参照。
             'ro4/hmjob.test.ts',
-            'ro4/BuffJobSpecificSelf.test.ts',
-            'ro4/BuffGuildAndGospel.test.ts',
             'ro4/BuffOtherCategory.test.ts',
             'ro4/BuffItemAndFood.test.ts',
         ],
