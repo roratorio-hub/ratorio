@@ -7,7 +7,8 @@
  * 未登録環境（roro/other ページ・ユニットテスト）では各ラッパーは no-op（undefined を返す）。
  *
  * ※ StAllCalc は workspace TS（rtxApiImport.ts）が window 経由で呼ぶ Workspace I/F のため
- *    引き続き foot.js が window に公開する（Phase 4 で解消）。
+ *    foot.js の window.StAllCalc は Phase B（engine-registry 導入）まで残置。
+ *    エンジン内部からは本ブリッジの StAllCalc を import して呼ぶ。
  */
 
 const _reg = {};
@@ -47,3 +48,4 @@ export function NumSearch2(...a) { return _reg.NumSearch2?.(...a); }
 export function EquipNumSearchFurubitaSet(...a) { return _reg.EquipNumSearchFurubitaSet?.(...a); }
 export function ROUNDDOWN(...a) { return _reg.ROUNDDOWN?.(...a); }
 export function Init(...a) { return _reg.Init?.(...a); }
+export function StAllCalc(...a) { return _reg.StAllCalc?.(...a); }

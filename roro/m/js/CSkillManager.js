@@ -467,6 +467,8 @@ import {
 import {
          GetActRateCritical,
 } from '../../../ro4/m/js/head-bridge.js';
+// C-6: hmjob.js 公開関数（hmjob-bridge 経由・循環 import 回避）
+import { GetTotalSpecStatus } from '../../../ro4/m/js/hmjob-bridge.js';
 
 // C-6: foot.js 公開関数（foot-bridge 経由）
 import {

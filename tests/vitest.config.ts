@@ -9,11 +9,12 @@ export default defineConfig({
         exclude: [
             'node_modules',
             'integration',
-            // head.js 経由で計算エンジン全体(~200K行)をロードするためワーカーがOOMで死ぬ
-            // Vite bundler 導入後にモジュールグラフが軽量化されたら再有効化する
+            // hmjob / BuffOtherCategory / BuffItemAndFood は head.js を外しても vitest がハングする。
+            // 原因は CAttackMethodAreaComponentManager を起点とする save-data 循環 import
+            // （CAttackMethod ↔ CSaveController ↔ CSaveDataManager ↔ saveload ↔ hmjob）で、
+            // vitest SSR ランナーが expensive モジュール(new CSkillManager 等)を再評価し CPU/メモリを食う。
+            // head.js 除去(Phase 3g)は完了済み。循環解消は roadmap.md「Phase 3g 残作業」参照。
             'ro4/hmjob.test.ts',
-            'ro4/BuffJobSpecificSelf.test.ts',
-            'ro4/BuffGuildAndGospel.test.ts',
             'ro4/BuffOtherCategory.test.ts',
             'ro4/BuffItemAndFood.test.ts',
         ],
@@ -24,11 +25,17 @@ export default defineConfig({
         execArgv: ['--max-old-space-size=8192'],
     },
     resolve: {
-        alias: {
-            '@roro': path.resolve(__dirname, '../roro/m/js'),
-            '@ro4': path.resolve(__dirname, '../ro4/m/js'),
-            '@helpers': path.resolve(__dirname, './helpers'),
-            '@types-roro': path.resolve(__dirname, './types'),
-        },
+        alias: [
+            // Chart.js の CDN(https:) ESM import は Node/vitest では解決できないためスタブへ差し替える。
+            // 実ブラウザ（calcx.html）と integration(Playwright) は本物の CDN をそのまま使う。
+            {
+                find: /^https:\/\/cdn\.jsdelivr\.net\/npm\/chart\.js@[\d.]+\/auto\/\+esm$/,
+                replacement: path.resolve(__dirname, './helpers/chart-stub.js'),
+            },
+            { find: '@roro', replacement: path.resolve(__dirname, '../roro/m/js') },
+            { find: '@ro4', replacement: path.resolve(__dirname, '../ro4/m/js') },
+            { find: '@helpers', replacement: path.resolve(__dirname, './helpers') },
+            { find: '@types-roro', replacement: path.resolve(__dirname, './types') },
+        ],
     },
 });

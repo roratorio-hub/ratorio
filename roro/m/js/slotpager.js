@@ -12,6 +12,8 @@ import { GetObjectIdRndOptKind, GetObjectIdRndOptKindTD, GetObjectIdRndOptValue,
 import {
          n_Nitou,
 } from '../../../ro4/m/js/global.js';
+// C-6: head.js 公開関数（head-bridge 経由）
+import { AutoCalc } from '../../../ro4/m/js/head-bridge.js';
 
 //================================================================================================
 //

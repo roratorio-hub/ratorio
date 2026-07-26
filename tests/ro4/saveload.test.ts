@@ -51,11 +51,17 @@ import {
     SaveDataChangeMIG,
     OnClickConfirmDialogSwitch,
 } from '@ro4/saveload.js';
+import { get as registryGet } from '@ro4/engine-registry.js';
 
 describe('saveload.js', () => {
-    describe('window互換確認', () => {
-        it('window.ConvertDataTextMIG が設定されている', () => {
-            expect((window as any).ConvertDataTextMIG).toBe(ConvertDataTextMIG);
+    // dewindow: window.ConvertDataTextMIG / OnClickUrlOutMIG は engine-registry へ移行（旧 window 互換テストを置換）。
+    // TypeScript 層（optInSavedata.ts）が registryGet('OnClickUrlOutMIG') 等で呼ぶ配線を検証する。
+    describe('engine-registry 登録', () => {
+        it('ConvertDataTextMIG が engine-registry に登録されている', () => {
+            expect(registryGet('ConvertDataTextMIG')).toBe(ConvertDataTextMIG);
+        });
+        it('OnClickUrlOutMIG が engine-registry に登録されている', () => {
+            expect(registryGet('OnClickUrlOutMIG')).toBe(OnClickUrlOutMIG);
         });
     });
 });

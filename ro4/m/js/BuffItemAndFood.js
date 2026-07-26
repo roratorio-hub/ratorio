@@ -1,9 +1,10 @@
 // === AUTO-GENERATED IMPORTS ===
-import { AutoCalc } from './head.js';
+import { AutoCalc } from './head-bridge.js';
 import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, myInnerHtml } from '../../../roro/common/js/util.js';
 import { n_A_PassSkill7, ID_BUFF_MANUK_ISHI, ID_BUFF_VESPER_HONEY } from './skillstate.js';
 export { n_A_PassSkill7 } from './skillstate.js';
 // === END AUTO-GENERATED IMPORTS ===
+import { StAllCalc } from '../../../roro/m/js/foot-bridge.js';
 import { CAttackMethodAreaComponentManager } from './CAttackMethodAreaComponentManager.js';
 "use strict"
 /**
@@ -183,7 +184,7 @@ export function Click_Skill7SW(){
                     objSelect = HtmlCreateElement("select", objTd);
                     objSelect.setAttribute("name", "A7_Skill" + subInfoArray[idxKind][0]);
 					objSelect.setAttribute("id", "OBJID_CHECK_A7_Skill" + subInfoArray[idxKind][0]);
-                    objSelect.addEventListener('change', () => { window.StAllCalc(); Click_A7(true); });
+                    objSelect.addEventListener('change', () => { StAllCalc(); Click_A7(true); });
                     HtmlCreateElementOption(0, subInfoArray[idxKind][1] + "+食品", objSelect);
                     for (let idxValue = 1; idxValue <= 10; idxValue++) {
                         HtmlCreateElementOption(idxValue, "+" + idxValue, objSelect);
@@ -195,19 +196,19 @@ export function Click_Skill7SW(){
                 objInput.setAttribute("type", "button");
                 objInput.setAttribute("id", "FOODOFF");
                 objInput.setAttribute("value", "全解除");
-                objInput.addEventListener('click', () => { Click_Food_Off(); window.StAllCalc(); });
+                objInput.addEventListener('click', () => { Click_Food_Off(); StAllCalc(); });
                 HtmlCreateTextNode(" ", objTd);
                 objInput = HtmlCreateElement("input", objTd);
                 objInput.setAttribute("type", "button");
                 objInput.setAttribute("name", "NETCAFE3");
                 objInput.setAttribute("value", "ALL＋10");
-                objInput.addEventListener('click', () => { setAllStatusBuff(10); window.StAllCalc(); });
+                objInput.addEventListener('click', () => { setAllStatusBuff(10); StAllCalc(); });
                 HtmlCreateTextNode(" ", objTd);
                 objInput = HtmlCreateElement("input", objTd);
                 objInput.setAttribute("type", "button");
                 objInput.setAttribute("name", "NETCAFE3");
                 objInput.setAttribute("value", "ALL＋6");
-                objInput.addEventListener('click', () => { setAllStatusBuff(6); window.StAllCalc(); });
+                objInput.addEventListener('click', () => { setAllStatusBuff(6); StAllCalc(); });
                 HtmlCreateElement("br", objTd);
                 HtmlCreateTextNode("※ネットカフェ/エクラージュ/手紙の「ステータスALL+◯」は食品扱いで、同時に発動できない", objTd);
                 break;
@@ -219,7 +220,7 @@ export function Click_Skill7SW(){
                 objInput.setAttribute("type", "checkbox");
                 objInput.setAttribute("id", "OBJID_CHECK_A7_Skill15");
                 objInput.setAttribute("name", "A7_Skill15");
-                objInput.addEventListener('click', () => { window.StAllCalc(); Click_A7(true); CAttackMethodAreaComponentManager.RebuildControls(); });
+                objInput.addEventListener('click', () => { StAllCalc(); Click_A7(true); CAttackMethodAreaComponentManager.RebuildControls(); });
                 objLabel = HtmlCreateElement("label", objTd);
                 objLabel.setAttribute("for", "OBJID_CHECK_A7_Skill15");
                 HtmlCreateTextNode("攻撃方法を追加する（魔女のスキルカード・攻撃魔法スクロール・イグドラシルの葉）", objLabel);
@@ -246,7 +247,7 @@ export function Click_Skill7SW(){
                     objInput.setAttribute("type", "checkbox");
                     objInput.setAttribute("id", "OBJID_CHECK_A7_Skill" + subInfoArray[idxKind][0]);
                     objInput.setAttribute("name", "A7_Skill" + subInfoArray[idxKind][0]);
-                    objInput.addEventListener('click', () => { window.StAllCalc(); Click_A7(true); });
+                    objInput.addEventListener('click', () => { StAllCalc(); Click_A7(true); });
                     objLabel = HtmlCreateElement("label", objTd);
                     objLabel.setAttribute("for", "OBJID_CHECK_A7_Skill" + subInfoArray[idxKind][0]);
                     HtmlCreateTextNode(subInfoArray[idxKind][1] + "+20", objLabel);
@@ -258,7 +259,7 @@ export function Click_Skill7SW(){
                 objInput = HtmlCreateElement("input", objTd);
                 objInput.setAttribute("type", "button");
                 objInput.setAttribute("value", "ALL＋20");
-                objInput.addEventListener('click', () => { toggleAllStatus20(); window.StAllCalc(); });
+                objInput.addEventListener('click', () => { toggleAllStatus20(); StAllCalc(); });
                 break;
 		}
 		objTr = HtmlCreateElement("tr", objTbody);
@@ -274,7 +275,7 @@ export function Click_Skill7SW(){
 				objInput.setAttribute("type", "checkbox");
 				objInput.setAttribute("id", "OBJID_CHECK_A7_Skill" + buildInfo[0]);
 				objInput.setAttribute("name", "A7_Skill" + buildInfo[0]);
-				objInput.addEventListener('click', () => { window.StAllCalc(); Click_A7(true); });
+				objInput.addEventListener('click', () => { StAllCalc(); Click_A7(true); });
 				objLabel = HtmlCreateElement("label", objTd);
 				objLabel.setAttribute("for", "OBJID_CHECK_A7_Skill" + buildInfo[0]);
 				HtmlCreateTextNode(buildInfo[1], objLabel);
@@ -287,7 +288,7 @@ export function Click_Skill7SW(){
 				HtmlCreateTextNode("　", objTd);
 				objSelect = HtmlCreateElement("select", objTd);
 				objSelect.setAttribute("name", "A7_Skill" + buildInfo[0]);
-				objSelect.addEventListener('change', () => { window.StAllCalc(); Click_A7(true); });
+				objSelect.addEventListener('change', () => { StAllCalc(); Click_A7(true); });
 				for (let idxValue = 0; idxValue < buildInfo[2].length; idxValue++) {
 					HtmlCreateElementOption(idxValue, buildInfo[2][idxValue], objSelect);
 				}
@@ -304,7 +305,7 @@ export function Click_Skill7SW(){
 	for (let idxKind = 0; idxKind < subInfoArray.length; idxKind++) {
 		objSelect = HtmlCreateElement("select", objTd);
 		objSelect.setAttribute("name", "A7_Skill" + subInfoArray[idxKind][0]);
-		objSelect.addEventListener('change', () => { window.StAllCalc(); Click_A7(true); });
+		objSelect.addEventListener('change', () => { StAllCalc(); Click_A7(true); });
 		HtmlCreateElementOption(0, "期間限定系[" + subInfoArray[idxKind][1] + "] なし", objSelect);
 		for (let idxValue = 1; idxValue <= 50; idxValue++) {
 			optText = subInfoArray[idxKind][1] + "+" + idxValue;

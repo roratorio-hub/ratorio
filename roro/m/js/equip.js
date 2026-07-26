@@ -2,6 +2,7 @@
 import { n_A_Equip, n_A_card } from './roro-state.js';
 import { CardIdToSetIdMap, ItemIdToSetIdMap, w_SE } from './itemset.dat.js';
 import { set_n_Nitou } from '../../../ro4/m/js/global.js';
+import { shadowEquipRebuildAll } from '../../../ro4/m/js/CShadowEquipControllerDataBridge.js';
 import { g_attackMethodBridge } from './CAttackMethodDataBridge.js';
 import './arrow.h.js';
 import './card.h.js';
@@ -73,13 +74,15 @@ import {
 
 // C-6: head.js 公開関数（head-bridge 経由）
 import {
-         calc,
+         calc, AutoCalc,
 } from '../../../ro4/m/js/head-bridge.js';
+// C-6: engine-registry（hmjob.js との循環 import 回避）
+import { get as registryGet } from '../../../ro4/m/js/engine-registry.js';
 
 // C-6: foot.js 公開関数（foot-bridge 経由）
 import {
          Init,
-         InitJobInfo,
+         InitJobInfo, StAllCalc,
 } from './foot-bridge.js';
 
 // C-6: 共有 state（旧 foot.js window 変数）
@@ -162,7 +165,7 @@ export function changeJobSettings(jobId) {
 	inputElem.value = lvMin.toString();
 
 	// ステータス選択セレクトボックスの設定
-	RebuildStatusSelect(jobId);
+	registryGet('RebuildStatusSelect')(jobId);
 
 	// 速度ＰＯＴ選択セレクトボックスの設定
 	// スピードアップポーション
@@ -217,9 +220,7 @@ export function changeJobSettings(jobId) {
 	// 防具選択欄を再構築
 	RebuildArmorsSelect();
 	// シャドウ装備
-	if ((typeof g_shadowEquipController) !== "undefined") {
-		g_shadowEquipController.rebuildAll();
-	}
+	shadowEquipRebuildAll();
 	// 習得スキルの初期化
 	for (var dmyidx = 0; dmyidx < LEARNED_SKILL_MAX_COUNT; dmyidx++) {
 		n_A_LearnedSkill[dmyidx] = 0;

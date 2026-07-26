@@ -8,6 +8,7 @@ import { CSaveDataConst } from '../../../ro4/m/js/savedata/CSaveDataConst.js';
 import { GetJobName } from '../../../ro4/m/js/data/mig.job.h.js';
 import { HtmlCreateElement, HtmlCreateTextSpan, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectCheckedById, HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger } from '../../common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
+import { get as registryGet } from '../../../ro4/m/js/engine-registry.js';
 // C-6: 共有 state 追加分
 import {
          n_A_JOB, g_lucky_over,
@@ -402,7 +403,7 @@ CFloatingInfoAreaComponentManager.RebuildControls = function () {
 CFloatingInfoAreaComponentManager.OnClickExtractSwitch = function () {
 	// セーブデータ更新
 	const status = document.getElementById("OBJID_FLOATING_INFO_AREA_EXTRACT_CHECKBOX").checked ? 1 : 0;
-	CSaveController.setSettingProp(CSaveDataConst.propNameFloatingInfoAreaSwitch, status);
+	registryGet('CSaveController').setSettingProp(CSaveDataConst.propNameFloatingInfoAreaSwitch, status);
 	// 再構築する
 	CFloatingInfoAreaComponentManager.RebuildControls();
 	if (status === 1) {
@@ -418,7 +419,7 @@ CFloatingInfoAreaComponentManager.OnClickExtractSwitch = function () {
 CFloatingInfoAreaComponentManager.OnChangeAreaCount = function () {
 	// セーブデータ更新
 	const count = document.getElementById("OBJID_SELECT_FLOATING_INFO_AREA_COUNT").value
-	CSaveController.setSettingProp(CSaveDataConst.propNameFloatingInfoAreaCount, count);
+	registryGet('CSaveController').setSettingProp(CSaveDataConst.propNameFloatingInfoAreaCount, count);
 	// 情報欄の数を更新
 	CFloatingInfoAreaComponentManager.areaCount = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_FLOATING_INFO_AREA_COUNT", 1);
 	// 全部品再構築処理呼び出し
@@ -436,7 +437,7 @@ CFloatingInfoAreaComponentManager.OnChangeInfo = function (idxArea) {
 	// 選択中のＩＤを更新
 	CFloatingInfoAreaComponentManager.infoUnitArray[idxArea].selectedInfoId = infoId;
 	// セーブデータ更新
-	CSaveController.setSettingProp(`floatingInfo${idxArea + 1}CategoryName`, infoId);
+	registryGet('CSaveController').setSettingProp(`floatingInfo${idxArea + 1}CategoryName`, infoId);
 	// 再構築処理呼び出し
 	CFloatingInfoAreaComponentManager.RebuildDispArea(idxArea);
 };
@@ -656,7 +657,7 @@ CFloatingInfoAreaComponentManager.OnChangeFontSize = function () {
 	CExtraInfoAreaComponentManager.fontSizeClassName = className;
 
 	// 文字サイズをセレクトナンバーで保存
-	CSaveController.setSettingProp(CSaveDataConst.propNameFloatingInfoAreaFontSize, this.FontSizeClassToSelect(className));
+	registryGet('CSaveController').setSettingProp(CSaveDataConst.propNameFloatingInfoAreaFontSize, this.FontSizeClassToSelect(className));
 
 	// 再構築する
 	CFloatingInfoAreaComponentManager.RebuildControls();
@@ -1343,19 +1344,19 @@ CFloatingInfoAreaComponentManager.RefreshDispAreaNotice = function (idxArea) {
 CFloatingInfoAreaComponentManager.LoadFromLocalStorage = function () {
 	const event = new Event('change', { bubbles: true });
 	// 表示欄の数を設定する
-	const floating_info_area_count = Number(CSaveController.getSettingProp(CSaveDataConst.propNameFloatingInfoAreaCount));
+	const floating_info_area_count = Number(registryGet('CSaveController').getSettingProp(CSaveDataConst.propNameFloatingInfoAreaCount));
 	let selectElement = document.getElementById("OBJID_SELECT_FLOATING_INFO_AREA_COUNT");
 	selectElement.value = floating_info_area_count;
 	selectElement.dispatchEvent(event);
 	// フォントサイズを設定する
-	const floating_info_font_size = Number(CSaveController.getSettingProp(CSaveDataConst.propNameFloatingInfoAreaFontSize));
+	const floating_info_font_size = Number(registryGet('CSaveController').getSettingProp(CSaveDataConst.propNameFloatingInfoAreaFontSize));
 	selectElement = document.getElementById("OBJID_SELECT_FLOATING_INFO_AREA_FONT_SIZE");
 	selectElement.value = this.FontSizeSelectToClass(floating_info_font_size);
 	selectElement.dispatchEvent(event);
 	for (let i=0; floating_info_area_count > i; i++) {
 		// { なし|ステータス|拡張情報|注意事項 } を設定する
-		const category_id = Number(CSaveController.getSettingProp(`floatingInfo${i + 1}CategoryName`));
-		const info_id = Number(CSaveController.getSettingProp(`floatingInfo${i + 1}InfoName`));
+		const category_id = Number(registryGet('CSaveController').getSettingProp(`floatingInfo${i + 1}CategoryName`));
+		const info_id = Number(registryGet('CSaveController').getSettingProp(`floatingInfo${i + 1}InfoName`));
 		const categoryElement = document.getElementById(`OBJID_SELECT_FLOATING_INFO_${i}`);
 		categoryElement.value = category_id;
 		categoryElement.dispatchEvent(event);

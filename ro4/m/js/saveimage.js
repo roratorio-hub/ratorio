@@ -10,6 +10,7 @@ import { GetRndOptDispName } from '../../../roro/m/js/rndopt.h.js';
 import { g_equipRndOptTable } from '../../../roro/m/js/rndopttype.h.js';
 import { g_extraInfoDataBridge } from '../../../roro/m/js/CExtraInfoDataBridge.js';
 // === END AUTO-GENERATED IMPORTS ===
+import { getShadowEquippedID, getShadowRefined, getShadowRndOptInfoArray } from '../../../ro4/m/js/CShadowEquipControllerDataBridge.js';
 // C-6: global.js 管理の共有 conf state
 import {
          n_Nitou,
@@ -112,16 +113,16 @@ export function generateImage() {
     return text;
   }
   const shadow_exists = (selector) => {
-    return g_shadowEquipController.getEquippedID(selector) != 0 ? "exists" : "";
+    return getShadowEquippedID(selector) != 0 ? "exists" : "";
   }
   const shadow = (selector) => {
-    const shadow_id = g_shadowEquipController.getEquippedID(selector);
+    const shadow_id = getShadowEquippedID(selector);
     if (shadow_id == 0) {
       return;
     }
-    const refined = g_shadowEquipController.getRefined(selector);
+    const refined = getShadowRefined(selector);
     const shadow_name = ItemObjNew[shadow_id][8];
-    const opt_info = g_shadowEquipController.getRndOptInfoArray(selector)
+    const opt_info = getShadowRndOptInfoArray(selector)
 
     let text = "";
     if (refined != 0) {
@@ -630,6 +631,5 @@ export function generateImage() {
     }
 }
 
-if (typeof window !== 'undefined') {
-    window.generateImage = generateImage;
-}
+import { register } from './engine-registry.js';
+register('generateImage', generateImage);

@@ -7447,6 +7447,5 @@ export const ordered_info_for_all = [
 		})).concat(ordered_info_for_all)
 	}
 
-if (typeof window !== 'undefined') {
-    window.CardObjNew = CardObjNew;
-}
+import { register } from '../../../ro4/m/js/engine-registry.js';
+register('CardObjNew', CardObjNew);

@@ -66,6 +66,7 @@ import {
 import {
          g_confDataCustomAtk, g_confDataCustomDef, g_confDataCustomSkill, g_confDataCustomStatus,
 } from '../global.js';
+import { get } from '../engine-registry.js';
 
 /**
  * セーブデータユニットクラス：パース開始用.
@@ -209,7 +210,7 @@ export class CSaveDataUnitParse extends CSaveDataUnitBase {
 		let bitOffset = 0;
 
 		// 旧形式の文字表現データを、数値の配列にデコード
-		const saveDataArrayOld = ConvertDataTextMIG(dataText);
+		const saveDataArrayOld = get('ConvertDataTextMIG')(dataText);
 
 
 		//--------------------------------

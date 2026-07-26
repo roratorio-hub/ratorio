@@ -3,6 +3,9 @@ import {
     n_A_LearnedSkill,
     RefreshSkillColumnHeaderLearned,
 } from '@roro/learnedskill.js';
+// dewindow: AutoCalc は head-bridge 経由になった（旧 bare global）。
+// テストは head-bridge にフェイクを登録して呼び出しを観測する。
+import { __registerHeadFunctions } from '@ro4/head-bridge.js';
 
 // RefreshSkillColumnHeaderLearned は末尾で header/usedtext 要素を操作するため事前作成が必要
 function setupLearnedSkillHeaderDOM() {
@@ -21,9 +24,8 @@ describe('learnedskill.js', () => {
 
         it('changedIdx のスキルレベルを newValue に更新する', () => {
             const el = document.createElement('select');
-            // AutoCalc は window グローバルのため unit test 環境では未定義 → throw するが
-            // n_A_LearnedSkill への代入はその前に完了している
-            try { RefreshSkillColumnHeaderLearned(el, 3, '7'); } catch {}
+            // AutoCalc は head-bridge 経由（未登録なら no-op）。状態代入は AutoCalc 呼び出し前に完了する。
+            RefreshSkillColumnHeaderLearned(el, 3, '7');
             expect(n_A_LearnedSkill[3]).toBe(7);
         });
 
@@ -44,23 +46,19 @@ describe('learnedskill.js', () => {
         // bSuppressAutoCalc=true のとき、状態は更新するが AutoCalc を呼ばないこと。
         it('bSuppressAutoCalc で AutoCalc 呼び出しが制御され、状態更新は常に行われる', () => {
             const spy = vi.fn();
-            (globalThis as any).AutoCalc = spy;
-            try {
-                const el = document.createElement('select');
+            __registerHeadFunctions({ AutoCalc: spy });
+            const el = document.createElement('select');
 
-                // 通常（第4引数省略）: 状態更新 + AutoCalc 1回
-                RefreshSkillColumnHeaderLearned(el, 2, '4');
-                expect(n_A_LearnedSkill[2]).toBe(4);
-                expect(spy).toHaveBeenCalledTimes(1);
+            // 通常（第4引数省略）: 状態更新 + AutoCalc 1回
+            RefreshSkillColumnHeaderLearned(el, 2, '4');
+            expect(n_A_LearnedSkill[2]).toBe(4);
+            expect(spy).toHaveBeenCalledTimes(1);
 
-                // 抑止（true）: 状態は更新するが AutoCalc は呼ばない
-                spy.mockClear();
-                RefreshSkillColumnHeaderLearned(el, 2, '6', true);
-                expect(n_A_LearnedSkill[2]).toBe(6);
-                expect(spy).not.toHaveBeenCalled();
-            } finally {
-                delete (globalThis as any).AutoCalc;
-            }
+            // 抑止（true）: 状態は更新するが AutoCalc は呼ばない
+            spy.mockClear();
+            RefreshSkillColumnHeaderLearned(el, 2, '6', true);
+            expect(n_A_LearnedSkill[2]).toBe(6);
+            expect(spy).not.toHaveBeenCalled();
         });
     });
 });

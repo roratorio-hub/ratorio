@@ -10,10 +10,10 @@ import { HtmlRemoveOptionAll, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlG
 // === END AUTO-GENERATED IMPORTS ===
 
 // カテゴリ選択セレクト
-window.g_customSelectCategory = new CCustomSelectMapCategory("MONSTER_MAP_CATEGORY");
+const g_customSelectCategory = new CCustomSelectMapCategory("MONSTER_MAP_CATEGORY");
 
 // マップ選択セレクト
-window.g_customSelectMap = new CCustomSelectMapMap("MONSTER_MAP_MAP", g_customSelectCategory);
+const g_customSelectMap = new CCustomSelectMapMap("MONSTER_MAP_MAP", g_customSelectCategory);
 g_customSelectMap.AddOnChangeSelectDataExtraHandller(RefreshMonsterList, null);
 
 // カテゴリ変更でマップの option がプログラム的に作り直されるため、
