@@ -2313,7 +2313,7 @@ export function GetItemExplainText(spId, spValue) {
 			break;
 
 		case ITEM_SP_SKILL_CAST_TIME:
-			textInfoArray.push(["", "詠唱時間" + sign + spValue + "%"]);
+			textInfoArray.push(["", "変動詠唱時間" + sign + spValue + "%"]);
 			break;
 
 		case ITEM_SP_SKILL_DELAY_DOWN:
