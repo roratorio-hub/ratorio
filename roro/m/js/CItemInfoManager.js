@@ -28,6 +28,8 @@ import { ITEM_SP_TIME_OBJ } from './timeitem.dat.js';
 import {
          n_A_costume, g_itemIdArray,
 } from './roro-state.js';
+// C-6: engine-registry（CSaveController.js との循環 import 回避）
+import { get as registryGet } from '../../../ro4/m/js/engine-registry.js';
 
 
 /**
@@ -285,7 +287,7 @@ CItemInfoManager.RebuildControls = function () {
 CItemInfoManager.OnClickExtractSwitch = function () {
 	// セーブデータ更新
 	const status = document.getElementById("OBJID_ITEM_INFO_EXTRACT_CHECKBOX").checked ? 1 : 0;
-	CSaveController.setSettingProp(CSaveDataConst.propNameItemInfoSwitch, status);
+	registryGet('CSaveController').setSettingProp(CSaveDataConst.propNameItemInfoSwitch, status);
 	// 再構築する
 	CItemInfoManager.RebuildControls();
 	if (status === 1) {
@@ -303,7 +305,7 @@ CItemInfoManager.OnChangeCheckAutoFlag = function () {
 	CItemInfoManager.AutoFlag = objInput.checked;
 	// セーブデータ更新
 	const status = objInput.checked?1:0;
-	CSaveController.setSettingProp(CSaveDataConst.propNameItemInfoAutoSwitch, status);
+	registryGet('CSaveController').setSettingProp(CSaveDataConst.propNameItemInfoAutoSwitch, status);
 };
 
 
@@ -316,7 +318,7 @@ CItemInfoManager.OnChangeCheckApplyAutoFocusFlag = function () {
 	CItemInfoManager.ApplyAutoFocusFlag = objInput.checked;
 	// セーブデータ更新
 	const status = objInput.checked?1:0;
-	CSaveController.setSettingProp(CSaveDataConst.propNameItemInfoTimeEffectSwitch, status);
+	registryGet('CSaveController').setSettingProp(CSaveDataConst.propNameItemInfoTimeEffectSwitch, status);
 };
 
 
@@ -1333,11 +1335,11 @@ CItemInfoManager.ApplyTimeItem = function (timeItemId) {
  */
 CItemInfoManager.LoadFromLocalStorage = function () {
 	// 自動表示の状態を設定する
-	let status = (CSaveController.getSettingProp(CSaveDataConst.propNameItemInfoAutoSwitch) === 1n);
+	let status = (registryGet('CSaveController').getSettingProp(CSaveDataConst.propNameItemInfoAutoSwitch) === 1n);
 	document.getElementById("OBJID_CHECK_ITEM_INFO_AUTO_FLAG").checked = status;
 	CItemInfoManager.AutoFlag = status;
 	// 時限効果フォーカスの状態を設定する
-	status = (CSaveController.getSettingProp(CSaveDataConst.propNameItemInfoTimeEffectSwitch) === 1n);
+	status = (registryGet('CSaveController').getSettingProp(CSaveDataConst.propNameItemInfoTimeEffectSwitch) === 1n);
 	document.getElementById("OBJID_CHECK_ITEM_INFO_APPLY_AUTO_FOCUS_FLAG").checked = status;
 	CItemInfoManager.ApplyAutoFocusFlag = status;
 }

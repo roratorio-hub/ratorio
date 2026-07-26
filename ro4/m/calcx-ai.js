@@ -1,4 +1,5 @@
 import { CreateMLCEngine } from "https://esm.run/@mlc-ai/web-llm";
+import { get as registryGet } from "./js/engine-registry.js";
 
 // ================================================================
 // チューニングパラメータ（ここを編集するだけで挙動を調整できる）
@@ -338,7 +339,7 @@ function extractBudget(query) {
  * @returns {number|null}
  */
 function findCardIdByName(name) {
-    const cardDb = window.CardObjNew;
+    const cardDb = registryGet('CardObjNew');
     if (!cardDb) return null;
     const CARD_NAME_IDX = 2;
     // CardObjNew のカード名は「カード」サフィックスなし（例: "アクアエレメンタル"）
@@ -1523,8 +1524,8 @@ function searchSimilarItemsDiversified(query, topPerSlot = 1, maxTotal = 10, all
  * @returns {{name:string, cardId:number, slotIndex:number}[]} 空配列になる場合は取得不能
  */
 function fetchAvailableEnchants(gameId) {
-    const dm = window.g_constDataManager;
-    const cardDb = window.CardObjNew;
+    const dm = registryGet('g_constDataManager');
+    const cardDb = registryGet('CardObjNew');
     const rebuildFn = window.RebuildCardSelectSubCollectEnchListData;
     if (!dm || !cardDb || !rebuildFn) return [];
 
@@ -1977,7 +1978,7 @@ function detectCurrentJob() {
  * ITEM_DATA_INDEX_NAME=8
  */
 function readCurrentEquipNames() {
-    const db = window.ItemObjNew;
+    const db = registryGet('ItemObjNew');
     if (!db) return [];
     const objIds = [
         "OBJID_ARMS_RIGHT", "OBJID_HEAD_TOP", "OBJID_HEAD_MID", "OBJID_HEAD_UNDER",
@@ -2741,7 +2742,7 @@ const SLOT_TO_OBJID = {
 function isEquippableByCurrentJob(gameId) {
     const fn  = window.IsMatchJobRestrict;
     const jobId = window.n_A_JOB;
-    const db  = window.ItemObjNew;
+    const db  = registryGet('ItemObjNew');
     if (!fn || jobId === undefined || jobId === null || !db) return true;
     try {
         const numId = parseInt(gameId);
@@ -2776,7 +2777,7 @@ function filterEquippableByCurrentJob(results, skipDomCheck = false) {
         if (r.item.is_enchant || (r.item.type || "") === "カード") return true;
         const gameId = findGameItemIdByName(r.item.displayname);
         if (!gameId) {
-            if (window.ItemObjNew) {
+            if (registryGet('ItemObjNew')) {
                 aiLog(`[ジョブフィルタ] ${r.item.displayname}: DB未収録のため除外`);
                 return false; // ItemObjNew 読込済みだがDBに存在しない → 装備不可扱いで除外
             }
@@ -2827,7 +2828,7 @@ function filterEquippableByCurrentJob(results, skipDomCheck = false) {
  * @returns {string|null} ゲーム内部 ID（文字列）、見つからなければ null
  */
 function findGameItemIdByName(name) {
-    const db = window.ItemObjNew;
+    const db = registryGet('ItemObjNew');
     // ITEM_DATA_INDEX_NAME=8, ITEM_DATA_INDEX_ID=0（item.h.js の EnumItemDataIndex による）
     const NAME_IDX = 8;
     const ID_IDX   = 0;
@@ -2966,8 +2967,8 @@ async function applyEquipmentSuggestions() {
         }
         // 武器スロットの場合: OBJID_ARMS_RIGHT は現在選択中の武器タイプしか持たないため、
         // 武器の KIND に合わせて OnChangeArmsTypeRight を呼んで options を再構築する
-        if (objId === "OBJID_ARMS_RIGHT" && window.ItemObjNew) {
-            const itemData = window.ItemObjNew[parseInt(gameId)];
+        if (objId === "OBJID_ARMS_RIGHT" && registryGet('ItemObjNew')) {
+            const itemData = registryGet('ItemObjNew')[parseInt(gameId)];
             if (itemData) {
                 const kind = itemData[1]; // ITEM_DATA_INDEX_KIND = 1
                 aiLog(`[武器タイプ変更] KIND=${kind} に設定して ${r.item.displayname} を装備可能にします`);

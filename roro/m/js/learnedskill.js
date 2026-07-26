@@ -16,6 +16,8 @@ import { RegisterLearnedSkillSearch } from './CSkillManager.js';
 import {
          n_A_JOB,
 } from './roro-state.js';
+// C-6: head.js 公開関数（head-bridge 経由）
+import { AutoCalc } from '../../../ro4/m/js/head-bridge.js';
 
 /**
  * 習得スキル欄の生成・更新・サーチなどの関数群

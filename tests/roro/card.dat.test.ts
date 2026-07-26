@@ -6,6 +6,7 @@ import {
     CARD_ID_MAX,
     CardObjNew,
 } from '@roro/card.dat.js';
+import { get as registryGet } from '@ro4/engine-registry.js';
 
 describe('card.dat.js', () => {
     describe('エクスポート確認', () => {
@@ -17,7 +18,11 @@ describe('card.dat.js', () => {
         it('CardObjNew[4][0] が 4',                       () => expect(CardObjNew[4][0]).toBe(4));
     });
 
-    describe('window互換確認', () => {
-        it('window.CardObjNew',                           () => expect((window as any).CardObjNew).toBe(CardObjNew));
+    // dewindow: window.CardObjNew は engine-registry へ移行（旧 window 互換テストを置換）。
+    // TypeScript 層（loadItemMap.ts）/ calcx-ai.js が registryGet('CardObjNew') で参照する配線を検証する。
+    describe('engine-registry 登録', () => {
+        it('CardObjNew が engine-registry に登録されている', () => {
+            expect(registryGet('CardObjNew')).toBe(CardObjNew);
+        });
     });
 });

@@ -76,6 +76,8 @@ import {
 } from '../../../../ro4/m/js/data/mig.job.id.js';
 import { CMigEquipableSpTag } from './CMigEquipableSpTag.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: global.js 管理の定数マネージャ
+import { g_constDataManager } from '../../../../ro4/m/js/global.js';
 
 
 // 移行後は common などに移動するもの

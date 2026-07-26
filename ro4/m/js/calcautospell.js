@@ -76,12 +76,12 @@ import {
 
 // C-6: head.js 公開関数（head-bridge 経由）
 import {
-         GetActRateSandansho,
+         GetActRateSandansho, AutoCalc,
 } from './head-bridge.js';
 
 // C-6: foot.js 公開関数（foot-bridge 経由）
 import {
-         GetEquippedSPValueArrayEquip, GetEquippedSPValueArrayCardAndElse,
+         GetEquippedSPValueArrayEquip, GetEquippedSPValueArrayCardAndElse, StAllCalc,
 } from '../../../roro/m/js/foot-bridge.js';
 
 // C-6: 旧 head.js の window 経由共有スクラッチ変数（宣言忘れ関数の var-leak 対応・ファイルローカル化）

@@ -6,6 +6,7 @@ import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRem
 // === END AUTO-GENERATED IMPORTS ===
 import { CBattleQuickControlAreaComponentManager } from './CBattleQuickControlAreaComponentManager.js';
 import { g_timeItemDataBridge } from './CTimeItemDataBridge.js';
+import { AutoCalc } from '../../../ro4/m/js/head-bridge.js';
 /**
  * 時限アイテムエリアコンポーネントマネージャクラス.
  */

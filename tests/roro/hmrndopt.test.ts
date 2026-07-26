@@ -8,6 +8,10 @@ import {
     CreateRndOptKind,
     CreateRndOptValue,
 } from '@roro/hmrndopt.js';
+// dewindow: AutoCalc/StAllCalc は bare global を廃し head-bridge/foot-bridge 経由になった。
+// テストは各 bridge にフェイクを登録して呼び出しを観測する（globalThis スパイは効かない）。
+import { __registerHeadFunctions } from '@ro4/head-bridge.js';
+import { __registerFootFunctions } from '@roro/foot-bridge.js';
 
 describe('hmrndopt.js', () => {
     describe('コアロジック確認', () => {
@@ -54,9 +58,13 @@ describe('hmrndopt.js', () => {
                 GetDefinedName: (id: number) => `EQUIP_REGION_${id}`,
             };
         });
+        let autoCalc: ReturnType<typeof vi.fn>;
+        let stAllCalc: ReturnType<typeof vi.fn>;
         beforeEach(() => {
-            (globalThis as any).AutoCalc = vi.fn();
-            (globalThis as any).StAllCalc = vi.fn();
+            autoCalc = vi.fn();
+            stAllCalc = vi.fn();
+            __registerHeadFunctions({ AutoCalc: autoCalc });
+            __registerFootFunctions({ StAllCalc: stAllCalc });
         });
         afterEach(() => {
             document.body.innerHTML = '';
@@ -79,8 +87,8 @@ describe('hmrndopt.js', () => {
 
             // OnChangeRndOptKind → SetUpRndOptValue により値セレクトが再構築される
             expect(valueSel.options.length).toBeGreaterThan(1);
-            expect((globalThis as any).StAllCalc).toHaveBeenCalled();
-            expect((globalThis as any).AutoCalc).toHaveBeenCalled();
+            expect(stAllCalc).toHaveBeenCalled();
+            expect(autoCalc).toHaveBeenCalled();
         });
 
         it('CreateRndOptValue の select 変更で StAllCalc / AutoCalc が呼ばれる', () => {
@@ -92,8 +100,8 @@ describe('hmrndopt.js', () => {
             valueSel.dispatchEvent(new Event('change'));
 
             // OnChangeRandomEnchant → StAllCalc、リスナー末尾で AutoCalc
-            expect((globalThis as any).StAllCalc).toHaveBeenCalled();
-            expect((globalThis as any).AutoCalc).toHaveBeenCalled();
+            expect(stAllCalc).toHaveBeenCalled();
+            expect(autoCalc).toHaveBeenCalled();
         });
     });
 });

@@ -10,11 +10,14 @@ vi.hoisted(() => {
 });
 
 import { generateImage } from '@ro4/saveimage.js';
+import { get as registryGet } from '@ro4/engine-registry.js';
 
 describe('saveimage.js', () => {
-    describe('window互換確認', () => {
-        it('window.generateImage が設定されている', () => {
-            expect((window as any).generateImage).toBe(generateImage);
+    // dewindow: window.generateImage は engine-registry へ移行（旧 window 互換テストを置換）。
+    // TypeScript 層（optInSavedata.ts）が registryGet('generateImage') で呼ぶ配線を検証する。
+    describe('engine-registry 登録', () => {
+        it('generateImage が engine-registry に登録されている', () => {
+            expect(registryGet('generateImage')).toBe(generateImage);
         });
     });
 });

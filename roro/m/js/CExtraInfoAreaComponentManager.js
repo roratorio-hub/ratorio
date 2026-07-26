@@ -86,6 +86,8 @@ import {
          GetCoolFixOfSkill, GetEquippedTotalSPCardAndElse,
          GetEquippedTotalSPEquip,
 } from './foot-bridge.js';
+// C-6: engine-registry（CSaveController.js との循環 import 回避）
+import { get as registryGet } from '../../../ro4/m/js/engine-registry.js';
 
 // C-6: 旧 head.js の window 経由共有スクラッチ変数（宣言忘れ関数の var-leak 対応・ファイルローカル化）
 let resistValueArray = [];
@@ -443,7 +445,7 @@ export function CExtraInfoAreaComponentManager () {
 		this.selectedInfoId = infoId;
 
 		// セーブデータ更新
-		CSaveController.setSettingProp(`floatingInfo${this.managerInstanceId}InfoName`, infoId);
+		registryGet('CSaveController').setSettingProp(`floatingInfo${this.managerInstanceId}InfoName`, infoId);
 		
 		// 再構築処理呼び出し
 		this.RebuildDispArea();

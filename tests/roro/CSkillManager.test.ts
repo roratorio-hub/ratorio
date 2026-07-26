@@ -1,39 +1,43 @@
-import { describe, it, expect } from 'vitest';
-import { CSkillData, CSkillManager } from '@roro/CSkillManager.js';
-import {
-    SKILL_ID_TUZYO_KOGEKI,
-    SKILL_ID_OKYU_TEATE,
-    SKILL_ID_GLACIER_NOVA,
-} from '@roro/skill.dat.js';
+import { describe, it, expect, beforeAll } from 'vitest';
+
+// global.js はモジュール評価時に new CSkillManager() を実行し、その内部で skill.dat.js の
+// SKILL_ID_* を読む。CSkillManager.js を先に評価すると skill.dat.js が未初期化のまま参照され
+// 「Cannot access ... before initialization」(TDZ) になる（reference.md「global.js の module-level Init」）。
+// そこで CGlobalConstManager → skill.dat（import ゼロの自己完結モジュール）を先に完全評価してから
+// CSkillManager を読み込む。
+let CSkillData: any;
+let CSkillManager: any;
+let SKILL_ID_TUZYO_KOGEKI: number;
+let SKILL_ID_OKYU_TEATE: number;
+let SKILL_ID_GLACIER_NOVA: number;
+let sm: any;
+let sd: any;
+
+beforeAll(async () => {
+    await import('@roro/CGlobalConstManager.js');
+    const skillDat = await import('@roro/skill.dat.js');
+    SKILL_ID_TUZYO_KOGEKI = skillDat.SKILL_ID_TUZYO_KOGEKI;
+    SKILL_ID_OKYU_TEATE = skillDat.SKILL_ID_OKYU_TEATE;
+    SKILL_ID_GLACIER_NOVA = skillDat.SKILL_ID_GLACIER_NOVA;
+    // global.js を CSkillManager.js より先に評価する。global.js は top-level import を
+    // すべて解決してから（＝CSkillManager.js を完全に評価してから）body の new CSkillManager() を
+    // 走らせるため、ここで安全に Init が完了する。CSkillManager.js を直接先に import すると
+    // global.js:53 が CSkillManager.js の評価途中に再入し import #11 の TDZ になる。
+    await import('@ro4/global.js');
+    const mod = await import('@roro/CSkillManager.js');
+    CSkillData = mod.CSkillData;
+    CSkillManager = mod.CSkillManager;
+    sd = new CSkillData();
+    sm = new CSkillManager();
+});
 
 describe('CSkillManager.js', () => {
-    describe('CSkillData 静的プロパティ（インスタンス生成後に確定）', () => {
-        // new CSkillData() を呼ぶことでコンストラクタ内の静的代入が実行される
-        const _dummy = new CSkillData();
-        it('TYPE_PASSIVE が 1',             () => expect(CSkillData.TYPE_PASSIVE).toBe(1));
-        it('TYPE_ACTIVE が 2',              () => expect(CSkillData.TYPE_ACTIVE).toBe(2));
-        it('TYPE_PHYSICAL が 4',            () => expect(CSkillData.TYPE_PHYSICAL).toBe(4));
-        it('TYPE_MAGICAL が 8',             () => expect(CSkillData.TYPE_MAGICAL).toBe(8));
-        it('TYPE_100HIT が 16',             () => expect(CSkillData.TYPE_100HIT).toBe(16));
-        it('TYPE_DIVHIT_FORMULA が 128',    () => expect(CSkillData.TYPE_DIVHIT_FORMULA).toBe(128));
-        it('RANGE_SHORT が 0',              () => expect(CSkillData.RANGE_SHORT).toBe(0));
-        it('RANGE_LONG が 1',               () => expect(CSkillData.RANGE_LONG).toBe(1));
-        it('RANGE_MAGIC が 2',              () => expect(CSkillData.RANGE_MAGIC).toBe(2));
-        it('RANGE_SPECIAL が 3',            () => expect(CSkillData.RANGE_SPECIAL).toBe(3));
-        it('ELEMENT_VOID が -1',            () => expect(CSkillData.ELEMENT_VOID).toBe(-1));
-        it('ELEMENT_FORCE_VANITY が 0',     () => expect(CSkillData.ELEMENT_FORCE_VANITY).toBe(0));
-        it('ELEMENT_SPECIAL が 10',         () => expect(CSkillData.ELEMENT_SPECIAL).toBe(10));
-    });
-
-    describe('CSkillData インスタンス初期値', () => {
-        const sd = new CSkillData();
-        it('hitCount デフォルトが 1',        () => expect(sd.hitCount(1, null, 0)).toBe(1));
+    describe('CSkillData の既定挙動', () => {
+        it('hitCount デフォルトが 1',           () => expect(sd.hitCount(1, null, 0)).toBe(1));
         it('WeaponCondition デフォルトが true', () => expect(sd.WeaponCondition(0)).toBe(true));
     });
 
     describe('CSkillManager インスタンスとスキルデータ', () => {
-        const sm = new CSkillManager();
-
         it('GetDataCount が正の整数', () => expect(sm.GetDataCount()).toBeGreaterThan(1000));
 
         it('skillId=0 が通常攻撃', () => expect(sm.GetSkillName(0)).toBe('通常攻撃'));

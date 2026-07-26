@@ -130,10 +130,10 @@ export function __DIG3(value) {
 	return ("" + value);
 }
 
-if (typeof window !== 'undefined') {
-    window.g_timeItemConfAllEffective = g_timeItemConfAllEffective;
-    window.g_constDataManager = g_constDataManager;
-}
+export function set_g_timeItemConfAllEffective(v) { g_timeItemConfAllEffective = v; }
+
+import { register } from './engine-registry.js';
+register('g_constDataManager', g_constDataManager);
 
 // C-6: 性能カスタマイズ系 conf オブジェクト（旧・foot.js が window 直書きしていた分）
 export let g_objCharaConfCustomAtk = null;
