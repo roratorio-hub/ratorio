@@ -1,5 +1,5 @@
 // === AUTO-GENERATED IMPORTS ===
-import { AutoCalc } from './head.js';
+import { AutoCalc } from './head-bridge.js';
 import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, myInnerHtml } from '../../../roro/common/js/util.js';
 import { n_A_PassSkill7, ID_BUFF_MANUK_ISHI, ID_BUFF_VESPER_HONEY } from './skillstate.js';
 export { n_A_PassSkill7 } from './skillstate.js';

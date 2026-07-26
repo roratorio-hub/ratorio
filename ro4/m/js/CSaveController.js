@@ -7,7 +7,7 @@ import { CSaveDataUnitParse } from './savedata/CSaveDataUnitParse.js';
 import { SAVE_DATA_UNIT_TYPE_SETTINGS } from './savedata/CSaveDataUnit.js';
 // === AUTO-GENERATED IMPORTS ===
 import { CSaveDataManager } from './CSaveDataManager.js';
-import { calc } from './head.js';
+import { calc } from './head-bridge.js';
 import { CItemInfoManager } from '../../../roro/m/js/CItemInfoManager.js';
 import { n_B_KYOUKA } from '../../../roro/m/js/mobconfbuf.js';
 import { n_B_IJYOU } from '../../../roro/m/js/mobconfdebuf.js';

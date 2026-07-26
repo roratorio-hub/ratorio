@@ -1,7 +1,7 @@
 // === AUTO-GENERATED IMPORTS ===
 import { PetIdToSetIdMap } from '../../../roro/m/js/itemset.dat.js';
 import '../../../roro/m/js/pet.h.js';
-import { AutoCalc } from './head.js';
+import { AutoCalc } from './head-bridge.js';
 import { CItemInfoManager } from '../../../roro/m/js/CItemInfoManager.js';
 import { GetFriendlityText } from '../../../roro/m/js/common.js';
 import { PET_OBJ } from '../../../roro/m/js/pet.dat.js';

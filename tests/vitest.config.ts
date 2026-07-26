@@ -9,10 +9,11 @@ export default defineConfig({
         exclude: [
             'node_modules',
             'integration',
-            // head.js（全エンジン ~200K 行）を import グラフに含むためワーカーが OOM/ハングする。
-            // subject が head.js 直接 import（または CAttackMethodAreaComponentManager / CSaveController
-            // 経由の head.js 到達）を断てば再有効化できる。BuffGuildAndGospel / BuffJobSpecificSelf は
-            // dewindow 済みで再有効化。残り3本は .claude/context/dewindow/roadmap.md「Phase 3g」参照。
+            // hmjob / BuffOtherCategory / BuffItemAndFood は head.js を外しても vitest がハングする。
+            // 原因は CAttackMethodAreaComponentManager を起点とする save-data 循環 import
+            // （CAttackMethod ↔ CSaveController ↔ CSaveDataManager ↔ saveload ↔ hmjob）で、
+            // vitest SSR ランナーが expensive モジュール(new CSkillManager 等)を再評価し CPU/メモリを食う。
+            // head.js 除去(Phase 3g)は完了済み。循環解消は roadmap.md「Phase 3g 残作業」参照。
             'ro4/hmjob.test.ts',
             'ro4/BuffOtherCategory.test.ts',
             'ro4/BuffItemAndFood.test.ts',

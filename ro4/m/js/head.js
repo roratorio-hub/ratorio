@@ -1,5 +1,8 @@
 import { n_A_Equip, n_A_card } from '../../../roro/m/js/roro-state.js';
 import { CGlobalConstManager } from '../../../roro/m/js/CGlobalConstManager.js';
+// 武器種テーブル（旧 head.js 定義）。内部のダメージ計算で使用しつつ後方互換で re-export する。
+import { SyurikenOBJ, KunaiOBJ, CanonOBJ } from './attackmethod.dat.js';
+export { SyurikenOBJ, KunaiOBJ, CanonOBJ };
 // === AUTO-GENERATED IMPORTS ===
 import '../../../roro/m/js/card.h.js';
 import '../../../roro/m/js/data/mig.itemsp.h.js';
@@ -824,12 +827,8 @@ let finalRatioArray = 0;
 export const CAST_PARAM_BORDER = 265;
 /** オートガードによるダメージ減衰率 */
 export const w_AG = [100,95,90,86,82,79,76,74,72,71,70];
-/** 手裏剣の種類 */
-export const SyurikenOBJ = [ [10,0,"手裏剣"] ,[30,0,"雨雲の手裏剣"] ,[45,0,"閃光の手裏剣"] ,[70,0,"鋭刃の手裏剣"] ,[100,0,"棘針の手裏剣"] ,[110,0,"星ヒトデ"] ];
-/** 苦無の種類 */
-export const KunaiOBJ = [ [30,3,"烈火の苦無"] ,[30,1,"氷柱の苦無"] ,[30,4,"狂風の苦無"] ,[30,2,"黒土の苦無"] ,[30,5,"猛毒の苦無"] ,[50,0,"スルメイカ"] ,[50,0,"トビウオ"] ];
-/** キャノンボールの種類 */
-export const CanonOBJ = [ [100,0,"キャノンボール"], [250,0,"アイアンキャノンボール"], [120,6,"ホーリーキャノンボール"], [120,7,"ダークキャノンボール"], [120,8,"ソウルキャノンボール"], [120,ELM_ID_WATER,"アイスキャノンボール"], [120,ELM_ID_EARTH,"ストーンキャノンボール"], [120,ELM_ID_FIRE,"フレアキャノンボール"], [120,ELM_ID_WIND,"ライトニングキャノンボール"] ];
+// SyurikenOBJ / KunaiOBJ / CanonOBJ は attackmethod.dat.js へ移動（dewindow Phase 3g）。
+// head.js 内部（ダメージ計算）と後方互換のため import + re-export する。
 /** 文字列定数 */
 export const SubName = ["％","秒","ダメージ","クリティカルダメージ","クリティカル(発動率)","10000回以上","計測不能","計算外","×","詠唱時間","なし","あり"];
 // n_SieldSpDum / n_SieldSpNum は ro4-state.js へ移動
