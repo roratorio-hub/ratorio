@@ -1,8 +1,8 @@
 // === AUTO-GENERATED IMPORTS ===
 import { GetJobName } from './data/mig.job.h.js';
 import { g_constDataManager } from './global.js';
-import { AutoCalc, n_SieldSpDum, n_SieldSpNum } from './head.js';
-import { n_SieldSp } from './ro4-state.js';
+import { AutoCalc } from './head-bridge.js';
+import { n_SieldSp, n_SieldSpDum, n_SieldSpNum } from './ro4-state.js';
 import { CCharaConfIchizi } from '../../../roro/m/js/CCharaConfIchizi.js';
 import { CCharaConfNizi } from '../../../roro/m/js/CCharaConfNizi.js';
 import { CCharaConfSanzi } from '../../../roro/m/js/CCharaConfSanzi.js';

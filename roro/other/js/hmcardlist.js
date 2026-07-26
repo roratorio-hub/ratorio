@@ -30,7 +30,7 @@ import { SLOT_INDEX_CARD_MIN, SLOT_INDEX_CARD_MAX } from '../../m/js/slotpager.j
 import { HtmlRemoveOptionAll, HtmlCreateElementOption, HtmlRemoveAllChild } from '../../common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
 // 定数定義
-window.CARD_KIND_DMY_FOR_ALL = -1;
+const CARD_KIND_DMY_FOR_ALL = -1;
 
 // 初期処理の実行
 export function OnLoadCardList () {
@@ -489,22 +489,6 @@ export function OnChangeShowEnchantInfo() {
 }
 
 
-/*
-	以下、slotpager.js からコピペ。
-*/
-
-window.SLOTPAGER_MODE_CARD = 0;
-window.SLOTPAGER_MODE_RNDENCH = 1;
-window.SLOTPAGER_MODE_RNDOPT = 1;		// 1 のエイリアス
-
-window.SLOT_INDEX_CARD_MIN = 1;
-window.SLOT_INDEX_CARD_MAX = 4;
-
-window.SLOT_INDEX_COSTUME_MIN = 1;
-window.SLOT_INDEX_COSTUME_MAX = 1;
-
-window.SLOT_INDEX_RNDENCH_MIN = 1;
-window.SLOT_INDEX_RNDENCH_MAX = 5;
 
 
 /*

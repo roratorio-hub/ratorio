@@ -1,7 +1,7 @@
 // === AUTO-GENERATED IMPORTS ===
 import './timeitem.h.js';
 import { ITEM_SP_TIME_OBJ } from './timeitem.dat.js';
-import { g_timeItemConf, g_timeItemConfEffective } from '../../../ro4/m/js/global.js';
+import { g_timeItemConf, g_timeItemConfEffective, g_timeItemConfAllEffective, set_g_timeItemConfAllEffective } from '../../../ro4/m/js/global.js';
 import { CTimeItemAreaComponentManager } from './CTimeItemAreaComponentManager.js';
 import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById } from '../../common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
@@ -315,7 +315,7 @@ CBattleQuickControlAreaComponentManager.AllSet = function (flg) {
 		flg = 0;
 	}
 	// 一斉変更ボタンの状態を保存する
-	g_timeItemConfAllEffective = flg;
+	set_g_timeItemConfAllEffective(flg);
 	// 時限効果の状態を個別に変更する
 	for (let idx = 0; idx < g_timeItemConf.length; idx++) {
 		objSelect = document.getElementById("OBJID_SELECT_BATTLE_QUICK_CONTROL_TIME_ITEM_" + idx);

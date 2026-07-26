@@ -96,6 +96,8 @@ import {
 // === END AUTO-GENERATED IMPORTS ===
 // C-6: 共有 state
 import { n_A_JOB } from '../../../../roro/m/js/roro-state.js';
+import { g_constDataManager } from '../global.js';
+import { get as registryGet } from '../engine-registry.js';
 
 // C-6: head.js 公開関数（head-bridge 経由）
 import {
@@ -3027,7 +3029,7 @@ export function UpgradeJobTo4th() {
 		// TODO: 暫定対処　旧形式の保存処理呼び出し
 		dataURL = SaveSystem(funcModifySaveData);
 		// URL入力を実行
-		CSaveController.loadFromURL(dataURL);
+		registryGet('CSaveController').loadFromURL(dataURL);
 		// インジケーター非表示
 		hideLoadingIndicator();
 		setTimeout(() => {

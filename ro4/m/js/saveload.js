@@ -367,7 +367,6 @@ export function OnClickConfirmDialogSwitch() {
 	CSaveController.setSettingProp(CSaveDataConst.propNameConfirmDialogSwitch, status);
 }
 
-if (typeof window !== 'undefined') {
-    window.OnClickUrlOutMIG = OnClickUrlOutMIG;
-    window.ConvertDataTextMIG = ConvertDataTextMIG;
-}
+import { register } from './engine-registry.js';
+register('OnClickUrlOutMIG', OnClickUrlOutMIG);
+register('ConvertDataTextMIG', ConvertDataTextMIG);

@@ -7,11 +7,11 @@ import {
          OBJID_OFFSET_AS_SKILL_LV, OBJID_OFFSET_AS_SKILL_PROB, OnChangeSettingAutoSpell
 } from '../../../ro4/m/js/calcautospell.js';
 import { g_charaData, g_constDataManager, g_skillManager, g_timeItemConf } from '../../../ro4/m/js/global.js';
-import { calc } from '../../../ro4/m/js/head.js';
+import { calc } from '../../../ro4/m/js/head-bridge.js';
 import { CalcStatusPoint } from '../../../ro4/m/js/hmjob.js';
 import { CAttackMethodConf } from './CAttackMethodConf.js';
 import { CBattleQuickControlAreaComponentManager } from './CBattleQuickControlAreaComponentManager.js';
-import { CExtraInfoAreaComponentManager } from './CExtraInfoAreaComponentManager.js';
+import { g_extraInfoDataBridge } from './CExtraInfoDataBridge.js';
 import { CItemInfoManager } from './CItemInfoManager.js';
 import { GetMobConfInput, SetActiveIndexMobConfInput, SetMobConfInput } from './CMobConfInput.js';
 import { CSaveDataConverter } from './CSaveDataConverter.js';
@@ -132,8 +132,10 @@ import {
 
 // C-6: foot.js 公開関数（foot-bridge 経由）
 import {
-         RefreshSuperNoviceFullWeapon,
+         RefreshSuperNoviceFullWeapon, StAllCalc,
 } from './foot-bridge.js';
+// C-6: engine-registry（CSaveController.js との循環 import 回避）
+import { get as registryGet } from '../../../ro4/m/js/engine-registry.js';
 
 // C-6: ro4 側共有 state（旧 head.js window 変数）
 import {
@@ -4089,7 +4091,7 @@ export function DecodeUrl(loadDataUrl){
 
 		// 新形式でのロードを試す
 		try {
-			CSaveController.loadFromURL(loadDataUrl);
+			registryGet('CSaveController').loadFromURL(loadDataUrl);
 		}
 		// 新形式もダメならエラー
 		catch (err) {
@@ -5082,7 +5084,7 @@ export function DecodeUrl(loadDataUrl){
 
 	// 拡張表示の選択値記憶のリセット
 	// 再計算が多重に呼ばれまくるので、この位置でリセットしないとリセットしきれない
-	CExtraInfoAreaComponentManager.ClearStoredValueAll(true);
+	g_extraInfoDataBridge.clearStoredValueAll?.(true);
 
 
 	//----------------------------------------------------------------

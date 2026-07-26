@@ -12,7 +12,7 @@ import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRem
 import { MIG_JOB_ID_DRAGON_KNIGHT } from '../../../ro4/m/js/data/mig.job.dat.js';
 // === END AUTO-GENERATED IMPORTS ===
 
-window.g_ExpTableInfoArray = [
+const g_ExpTableInfoArray = [
 	// [表示名, レベル表記名, 参照テーブル番号, テーブル内要素番号, 最小レベル, 最大レベル]
 	["BaseExp", "BaseLv", 0, BASE_EXP_TABLE_ID_NORMAL, GetBaseLevelMin(JOB_ID_NOVICE), GetBaseLevelMax(JOB_ID_NOVICE)],
 	["BaseExp 転生/サモナー", "BaseLv", 0, BASE_EXP_TABLE_ID_REINCANATED, GetBaseLevelMin(JOB_ID_HI_NOVICE), GetBaseLevelMax(JOB_ID_HI_NOVICE)],

@@ -1,5 +1,8 @@
 import { n_A_Equip, n_A_card } from '../../../roro/m/js/roro-state.js';
 import { CGlobalConstManager } from '../../../roro/m/js/CGlobalConstManager.js';
+// 武器種テーブル（旧 head.js 定義）。内部のダメージ計算で使用しつつ後方互換で re-export する。
+import { SyurikenOBJ, KunaiOBJ, CanonOBJ } from './attackmethod.dat.js';
+export { SyurikenOBJ, KunaiOBJ, CanonOBJ };
 // === AUTO-GENERATED IMPORTS ===
 import '../../../roro/m/js/card.h.js';
 import '../../../roro/m/js/data/mig.itemsp.h.js';
@@ -561,7 +564,7 @@ let n_NitouCalc = false;
 import {
          GetCastScalingOfSkillForCastTimeVary, GetCastFixOfSkillForCastTimeVary, GetCastScalingOfSkillForCastTimeFixed, GetCastFixOfSkillForCastTimeFixed,
          GetAdditionalFixedCastTime, GetCoolFixOfSkill, GetEquippedTotalSPEquip, GetEquippedTotalSPCardAndElse,
-         GetEquippedTotalSPArrow, NumSearch, ROUNDDOWN,
+         GetEquippedTotalSPArrow, NumSearch, ROUNDDOWN, StAllCalc,
 } from '../../../roro/m/js/foot-bridge.js';
 
 import { __registerHeadFunctions } from './head-bridge.js';
@@ -824,19 +827,13 @@ let finalRatioArray = 0;
 export const CAST_PARAM_BORDER = 265;
 /** オートガードによるダメージ減衰率 */
 export const w_AG = [100,95,90,86,82,79,76,74,72,71,70];
-/** 手裏剣の種類 */
-export const SyurikenOBJ = [ [10,0,"手裏剣"] ,[30,0,"雨雲の手裏剣"] ,[45,0,"閃光の手裏剣"] ,[70,0,"鋭刃の手裏剣"] ,[100,0,"棘針の手裏剣"] ,[110,0,"星ヒトデ"] ];
-/** 苦無の種類 */
-export const KunaiOBJ = [ [30,3,"烈火の苦無"] ,[30,1,"氷柱の苦無"] ,[30,4,"狂風の苦無"] ,[30,2,"黒土の苦無"] ,[30,5,"猛毒の苦無"] ,[50,0,"スルメイカ"] ,[50,0,"トビウオ"] ];
-/** キャノンボールの種類 */
-export const CanonOBJ = [ [100,0,"キャノンボール"], [250,0,"アイアンキャノンボール"], [120,6,"ホーリーキャノンボール"], [120,7,"ダークキャノンボール"], [120,8,"ソウルキャノンボール"], [120,ELM_ID_WATER,"アイスキャノンボール"], [120,ELM_ID_EARTH,"ストーンキャノンボール"], [120,ELM_ID_FIRE,"フレアキャノンボール"], [120,ELM_ID_WIND,"ライトニングキャノンボール"] ];
+// SyurikenOBJ / KunaiOBJ / CanonOBJ は attackmethod.dat.js へ移動（dewindow Phase 3g）。
+// head.js 内部（ダメージ計算）と後方互換のため import + re-export する。
 /** 文字列定数 */
 export const SubName = ["％","秒","ダメージ","クリティカルダメージ","クリティカル(発動率)","10000回以上","計測不能","計算外","×","詠唱時間","なし","あり"];
-/** シールドスペル：ATK加算値 */
-export const n_SieldSpDum = ["off","on",20,35,40,50,60,75,80,85,90,95,98,100,105,110,120,130,140,150,170];
-/** シールドスペル：ATK加算値（これは順序が違うので注意）*/
-/** シールドスペル：順序が違う配列を並び替えるために使われる index 値 */
-export const n_SieldSpNum = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12, 18, 13, 14, 15, 16, 19, 17, 20];
+// n_SieldSpDum / n_SieldSpNum は ro4-state.js へ移動
+// （dewindow: BuffJobSpecificSelf の head.js 直接 import を除去し単体テスト再有効化するため。
+//  head.js 内部では未使用の静的データだった。n_SieldSp と同じ場所に集約）
 /** 修練が乗らないスキルID */
 export const n_SP_SKILL = [66,159,162,193,197,244,248,263,321,324,328,384,394,395,405,423,432,438,554,669,723,738,768,769,810, SKILL_ID_ZYURYOKU_CHOSE];
 /** 回復スキル種類：ヒール */
@@ -11198,7 +11195,7 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 	objCell.classList.add("CSSCLS_BTLRSLT_VALUE");
 	HtmlCreateTextNode(funcDIG3PX(battleCalcResultAll.GetDamageSummaryMinPerAtk(), 0), objCell);
 
-	let bDPSActual = CSaveController.getSettingProp(CSaveDataConst.propNameDPSActual);
+	let bDPSActual = registryGet('CSaveController').getSettingProp(CSaveDataConst.propNameDPSActual);
 	// TODO: 詠唱時間等未実測スキル対応
 	if (g_bUnknownCasts) {
 		objCell = HtmlCreateElement("div", objGridDmg);
@@ -21874,11 +21871,8 @@ __registerHeadFunctions({
     GetActRateCritical,
     calc,
     ApplyPhysicalSpecializeMonster,
+    AutoCalc,
 });
 
-if (typeof window !== 'undefined') {
-    Object.assign(window, {
-        // Workspace I/F: workspace/src/rtxApiImport.ts が window 経由で呼ぶ（Phase 4 で解消）
-        AutoCalc,
-    });
-}
+import { register, get as registryGet } from './engine-registry.js';
+register('AutoCalc', AutoCalc);
