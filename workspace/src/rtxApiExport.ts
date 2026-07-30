@@ -1,5 +1,4 @@
 import { dump as dumpYAML } from "js-yaml"
-import { ItemData, ItemMap } from "./loadItemMap";
 import { encodeProcess, API_VERSION, CONTROL_CONF_LIST, RtxData, RtxStatus, RtxSkills, RtxEquipments, RtxShadowEquipments, RtxUseItems, RtxAdditionalInfo, RtxEquipmentLocation, RtxSupportOrCutomizations } from "./rtxApiCommon";
 
 // シミュレーション結果の出力
@@ -308,7 +307,6 @@ function exportRtxDataObject(): RtxData {
 }
 
 function getRecursiveItemValueById(dataObject: RtxData, equipmentLocation: RtxEquipmentLocation, objectIdPrefix: string, objectIdRndopt: string, slotMaxNum: number = 4): RtxData {
-    const itemData = getItemValueById(`${objectIdPrefix}`, "item") as ItemData | null | undefined;
     const itemRefine = getItemValueById(`${objectIdPrefix}_REFINE`, "refine") as number | null | undefined;
     const itemTranscendence = getItemValueById(`${objectIdPrefix}_TRANSCENDENCE`, "transcendence") as number | null | undefined;
     const itemSelectElement = document.getElementById(objectIdPrefix) as HTMLSelectElement | null;
@@ -316,10 +314,10 @@ function getRecursiveItemValueById(dataObject: RtxData, equipmentLocation: RtxEq
     if (equipmentLocation === "arms_right" || equipmentLocation === "arms_left") {
         //武器
         dataObject.equipments[equipmentLocation] = {
-            id_num: itemData?.getId() || null,
+            id_num: null, // item.yaml 廃止により常に null（_mig_id_num を使用する）
             refine: itemRefine || 0,
             transcendence: itemTranscendence || null,
-            name: itemData?.getDisplayName() || null,
+            name: null, // item.yaml 廃止により常に null
             _mig_id_num: itemSelectElement && itemSelectElement.value != "0" ? Number(itemSelectElement.value) : null, // 旧仕様互換用
             slot: {},
             element: null,
@@ -328,47 +326,34 @@ function getRecursiveItemValueById(dataObject: RtxData, equipmentLocation: RtxEq
     } else {
         //それ以外
         dataObject.equipments[equipmentLocation] = {
-            id_num: itemData?.getId() || null,
+            id_num: null, // item.yaml 廃止により常に null（_mig_id_num を使用する）
             refine: itemRefine || null,
             transcendence: itemTranscendence || null,
-            name: itemData?.getDisplayName() || null,
+            name: null, // item.yaml 廃止により常に null
             _mig_id_num: itemSelectElement && itemSelectElement.value != "0" ? Number(itemSelectElement.value) : null, // 旧仕様互換用
             slot: {},
             random_option: {}
         };
     }
     // カード、エンチャントスロット
+    // item.yaml 廃止により name/id_num は解決できないため常に null。
+    // カードとエンチャントの区別も不要になった（どちらも _mig_id_num のみ出力する）。
     for (let slotId = 1; slotId <= slotMaxNum; slotId++) {
-        const slotName = `${objectIdPrefix}_CARD_${slotId}`;
         const itemSelectElement = document.getElementById(`${objectIdPrefix}_CARD_${slotId}`) as HTMLSelectElement | null;
 
-        let value: ItemData | null | undefined;
-        if (itemData && itemData.getSlot() !== undefined && itemData.getSlot()! >= slotId) {
-            value = getItemValueById(slotName, "card") as ItemData | null | undefined;
-        } else {
-            value = getItemValueById(slotName, "enchant") as ItemData | null | undefined;
-        }
-        if (value === undefined) {
-            // 定義がない場合、Null扱いとする
-            // こうすることで、未使用のスロットもNull扱いとして上書きできる
-            // (ロード時に不整合を防ぐため)
-            value = null;
-        }
         dataObject.equipments[equipmentLocation].slot[slotId] = {
-            name: value?.getDisplayName() || null,
-            id_num: value?.getId() || null,
+            name: null,
+            id_num: null,
             _mig_id_num: itemSelectElement && itemSelectElement.value != "0" ? Number(itemSelectElement.value) : null
         };
     }
     // ランダムオプション
     for (let slotId = 0; slotId <= 5; slotId++) {
-        const kindName = `${objectIdRndopt}_KIND_${slotId}`;
-        const kindValue = getItemValueById(kindName, "random") as ItemData | null | undefined;
         const valueName = `${objectIdRndopt}_VALUE_${slotId}`;
         const value = getItemValueById(valueName, "random") as number | null | undefined;
         if (dataObject.equipments[equipmentLocation].random_option) {
             dataObject.equipments[equipmentLocation].random_option[slotId] = {
-                kind: kindValue?.getDisplayName() || null,
+                kind: null, // item.yaml 廃止により常に null
                 value: value || null
             };
         }
@@ -376,7 +361,7 @@ function getRecursiveItemValueById(dataObject: RtxData, equipmentLocation: RtxEq
     return dataObject;
 }
 
-function getItemValueById(elementId: string, objectType: string): ItemData | number | null | undefined {
+function getItemValueById(elementId: string, objectType: string): number | null | undefined {
     const selectElement = document.getElementById(elementId) as HTMLSelectElement;
     if (!selectElement || !selectElement.hasChildNodes()) {
         //console.warn(`Select element not found or has no child nodes for ID: ${elementId}`);
@@ -394,16 +379,9 @@ function getItemValueById(elementId: string, objectType: string): ItemData | num
             console.warn(`Invalid number in itemValue for ID: ${elementId}, Value: ${itemValue}`);
             return null;
         }
-        if (objectType === "item") {
-            return ItemMap.findItemByMigIdFromItem(numericValue);
-        } else if (objectType === "card") {
-            return ItemMap.findItemByMigIdFromCardOrEnchant(numericValue, false);
-        } else if (objectType === "enchant") {
-            return ItemMap.findItemByMigIdFromCardOrEnchant(numericValue, true);
-        } else {
-            // Refine or Transcendence or Random
-            return numericValue;
-        }
+        // item.yaml 廃止により item/card/enchant の名前解決は行わない。
+        // Refine / Transcendence / Random の数値のみを返す。
+        return numericValue;
     }
     return null;
 }

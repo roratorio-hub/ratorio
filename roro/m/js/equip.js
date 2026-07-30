@@ -8,7 +8,8 @@ import './arrow.h.js';
 import './card.h.js';
 import './skill.h.js';
 import {
-         GetHigherJobSeriesID, GetLowerJobSeriesID, IsMatchJobRestrict, IsSameJobClass,
+         GetBaseLevelMax, GetBaseLevelMin, GetHigherJobSeriesID, GetJobLevelMax,
+         GetLowerJobSeriesID, IsMatchJobRestrict, IsSameJobClass,
          IsUsableBSPJob, IsUsableHSPJob
 } from '../../../ro4/m/js/data/mig.job.h.js';
 import { g_constDataManager } from '../../../ro4/m/js/global.js';
@@ -124,10 +125,12 @@ export function changeJobSettings(jobId) {
 		selectJobElem.value = jobId;
 	}
 	// 職業IDが確定したら、ジョブデータを取得
-	let jobData = JobMap.getById(jobId);
+	// セレクトボックスの value は mig ID の数値文字列
+	const migId = parseInt(jobId, 10);
+	let jobData = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, migId);
 
 	// 移行中のため、MigIDをグローバル変数「n_A_JOB」を設定
-	set_n_A_JOB(jobData.getMigIdNum());
+	set_n_A_JOB(migId);
 
 	// 職業情報の初期化
 	InitJobInfo(jobId);
@@ -136,7 +139,7 @@ export function changeJobSettings(jobId) {
 	Init(jobId);
 
 	// 武器属性付与手段の名称の設定
-	if (41 <= jobData.getMigIdNum() && jobData.getMigIdNum() <= 43) {
+	if (41 <= migId && migId <= 43) {
 		myInnerHtml("ID_A_HUYO_NAME","暖かい風",0);
 	} else {
 		myInnerHtml("ID_A_HUYO_NAME","武器属性付与",0);
@@ -149,15 +152,15 @@ export function changeJobSettings(jobId) {
 	}
 
 	// ベースレベル選択セレクトボックスの設定
-	var lvMax = jobData.getBaseLvMax();
-	var lvMin = jobData.getBaseLvMin();
+	var lvMax = GetBaseLevelMax(migId);
+	var lvMin = GetBaseLevelMin(migId);
 	var inputElem = document.getElementById("OBJID_SELECT_BASE_LEVEL");
 	inputElem.min = lvMin;
 	inputElem.max = lvMax;
 	inputElem.value = lvMin.toString();
 
 	// ジョブレベル選択セレクトボックスの設定
-	var lvMax = jobData.getJobLvMax();
+	var lvMax = GetJobLevelMax(migId);
 	var lvMin = 1;
 	var inputElem = document.getElementById("OBJID_SELECT_JOB_LEVEL");
 	inputElem.min = lvMin;
@@ -173,13 +176,13 @@ export function changeJobSettings(jobId) {
 		document.getElementById("OBJID_SPEED_POT").options[2] = null;
 	}
 	// ハイスピードポーション
-	if (IsUsableHSPJob(jobData.getMigIdNum())) {
+	if (IsUsableHSPJob(migId)) {
 		document.getElementById("OBJID_SPEED_POT").options[2] = new Option(SpeedPotName[2] + "(Lv40)", "2");
 	} else {
 		document.getElementById("OBJID_SPEED_POT").options[2] = new Option("-", "0");
 	}
 	// バーサークポーション
-	if (IsUsableBSPJob(jobData.getMigIdNum())) {
+	if (IsUsableBSPJob(migId)) {
 		document.getElementById("OBJID_SPEED_POT").options[3] = new Option(SpeedPotName[3]+"(Lv85)", "3");
 	} else if(IsSameJobClass(JOB_ID_ASSASINCROSS) || IsSameJobClass(JOB_ID_GILOTINCROSS)) {
 		document.getElementById("OBJID_SPEED_POT").options[3] = new Option("■特殊("+ SkillObjNew[304][SKILL_DATA_INDEX_NAME] +"Lv85)/毒薬の瓶", "3");
@@ -203,7 +206,7 @@ export function changeJobSettings(jobId) {
 	var j = 0;
 	for (var i = 0; i <= 21; i++) {
 		// スパノビ系の両手斧は装備制限解除状態の時のみ可
-		if (GetHigherJobSeriesID(jobData.getMigIdNum()) == JOB_SERIES_ID_SUPERNOVICE) {
+		if (GetHigherJobSeriesID(migId) == JOB_SERIES_ID_SUPERNOVICE) {
 			if (i == ITEM_KIND_AXE_2HAND) {
 				if (!g_bSuperNoviceFullWeapon) {
 					continue;

@@ -782,7 +782,7 @@ describe('ro4/m/calcx.html 起動テスト', () => {
 
     // スロットモードボタンを2回クリックしてカード⇔ランダムオプション切替を往復する。
     // eventsetup.js で wire(id, 'click', OnClickSlotModeButton) と直接渡すと
-    // MouseEvent が jobId に渡り JobMap.getById(MouseEvent) → undefined → TypeError が
+    // MouseEvent が jobId に渡り、職業データ取得が null → TypeError が
     // 発生するリグレッションを検出する。
     it('スロットモードボタン カード→ランダムオプション→カード 往復で未捕捉 JS 例外が発生しない', async () => {
         const errors = await collectPageErrors(browser, async (page) => {
@@ -936,8 +936,11 @@ function evalObjidSnapshot(page: Page): Promise<Record<string, string>> {
         const snapshot: Record<string, string> = {};
         // 本番と意図的に乖離している要素（ローカル側で機能削除済み）。
         // OBJID_CHECK_A3_SKILLSW: 演奏/踊り系スキル欄の削除に伴い本番にのみ存在する。
+        // OBJID_SELECT_JOB: job.yaml 廃止により value が id_name（"NOVICE"）から
+        //   mig ID の数値文字列（"0"）へ変わった。選択されている職業そのものは
+        //   OBJID_SELECT_JOB-ts-control（表示名）の比較で引き続き検証される。
         // 本番へデプロイされたらこの除外は不要になるので削除すること。
-        const INTENTIONAL_DIVERGENCE_IDS = new Set(['OBJID_CHECK_A3_SKILLSW']);
+        const INTENTIONAL_DIVERGENCE_IDS = new Set(['OBJID_CHECK_A3_SKILLSW', 'OBJID_SELECT_JOB']);
         document.querySelectorAll<HTMLElement>('[id^="OBJID_"]').forEach((el) => {
             const id = el.id;
             if (INTENTIONAL_DIVERGENCE_IDS.has(id)) return;

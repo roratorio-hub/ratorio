@@ -1,21 +1,27 @@
-import { JobMap } from './loadJobMap';
-import { SkillMap } from './loadSkillMap';
-import { ItemMap } from './loadItemMap';
+import { get as registryGet } from "../../ro4/m/js/engine-registry.js";
 import { initializePageKeyListeners } from './calcxAddEventListener';
 import { loadFromBase64String } from './rtxApiImport';
 
 /**
- * YAMLデータのロード完了まで待機する関数
+ * 計算エンジンの職業データ配列を取得する。
+ * bundle.js は classic script のため、module script である計算エンジンより先に
+ * 実行される。トップレベルでは未登録なので、参照時に都度取得する。
+ */
+function getJobSourceArray(): any[] | null {
+    const gConst = registryGet('g_constDataManager') as any;
+    const sourceArray = gConst?.jobDataManager?.sourceArray;
+    return Array.isArray(sourceArray) ? sourceArray : null;
+}
+
+/**
+ * 計算エンジンの職業データが利用可能になるまで待機する関数
+ * （旧: YAML マップのロード待ち。yaml 廃止に伴いエンジンデータ待ちへ変更）
  */
 async function waitForDataLoaded() {
     const maxRetries = 300; // 100ms * 300 = 30 seconds
     let retries = 0;
     while (retries < maxRetries) {
-        const jobMapLoaded = await JobMap.isLoaded();
-        const skillMapLoaded = await SkillMap.isLoaded();
-        const itemMapLoaded = await ItemMap.isLoaded();
-
-        if (jobMapLoaded && skillMapLoaded && itemMapLoaded) {
+        if (getJobSourceArray()) {
             return;
         }
 
@@ -24,6 +30,31 @@ async function waitForDataLoaded() {
         retries++;
     }
     throw new Error('Timeout: Data failed to load within expected time.');
+}
+
+/**
+ * 職業選択セレクトボックスの選択肢を構築する。
+ * option の value は mig ID の数値文字列で、JS エンジン側は parseInt して利用する。
+ */
+export function buildJobSelectOptions(selectJobElem: HTMLSelectElement): void {
+    const sourceArray = getJobSourceArray();
+    if (!sourceArray) {
+        return;
+    }
+    const jobManager = (registryGet('g_constDataManager') as any).jobDataManager;
+    for (let migId = 0; migId < sourceArray.length; migId++) {
+        if (!sourceArray[migId]) {
+            continue; // 欠番はskip
+        }
+        const jobName = jobManager.GetName(migId);
+        if (!jobName) {
+            continue; // 名称がない場合はskip
+        }
+        const option = document.createElement('option');
+        option.text = jobName;
+        option.value = String(migId);
+        selectJobElem.appendChild(option);
+    }
 }
 
 /**
@@ -37,16 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // 職業選択セレクトボックスの構築
         const selectJobElem = document.getElementById("OBJID_SELECT_JOB") as HTMLSelectElement | null;
         if (selectJobElem) {
-            JobMap.getAll().forEach((jobData) => {
-                const job = jobData[1];
-                if (!job.name_ja) {
-                    return; //日本語名がない場合はskip
-                }
-                const option = document.createElement('option');
-                option.text = job.name_ja;
-                option.value = job.id_name;
-                selectJobElem.appendChild(option);
-            });
+            buildJobSelectOptions(selectJobElem);
         }
     });
 
@@ -114,19 +136,6 @@ window.addEventListener('load', () => {
         // RTXデータロード
         loadFromBase64String(window.location.hash.substring(1) || '');
     });
-});
-
-/**
- * YAMLデータのロード実行
- */
-Promise.all([
-    JobMap.load(),
-    SkillMap.load(),
-    ItemMap.load()
-]).then(() => {
-    console.log('🎉 All data loaded successfully.');
-}).catch((error) => {
-    console.error('⚠️ Error loading maps:', error);
 });
 
 (window as any).waitForDataLoaded = waitForDataLoaded;

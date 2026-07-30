@@ -20,7 +20,7 @@ describe('item.dat.js', () => {
     });
 
     // dewindow: window.ItemObjNew は engine-registry へ移行（旧 window 互換テストを置換）。
-    // TypeScript 層（loadItemMap.ts）/ calcx-ai.js が registryGet('ItemObjNew') で参照する配線を検証する。
+    // calcx-ai.js が registryGet('ItemObjNew') で参照する配線を検証する。
     describe('engine-registry 登録', () => {
         it('ItemObjNew が engine-registry に登録されている', () => {
             expect(registryGet('ItemObjNew')).toBe(ItemObjNew);

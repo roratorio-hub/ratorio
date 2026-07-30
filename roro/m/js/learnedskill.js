@@ -220,12 +220,11 @@ export function OnClickSkillSWLearned(){
 		objSelect.addEventListener('change', (e) => RefreshSkillColumnHeaderLearned(e.target, idx, e.target.value));
 
 		// RTX API用の属性追加
-		const skillData = SkillMap.getByMigIdNum(skillId);
-		if (skillData) {
-			objSelect.setAttribute("data-rtx-learned-skill-id", skillData.getId());
-		} else {
-			// SkillMapに存在しないスキルはdata-skill-name属性を付与せず、警告ログを出す
-			console.warn("SkillMap not found skillId=", skillId, SkillObjNew[skillId]);
+		// スキル文字列ID（"SM_BASH" 等）の正本は skill.dat.js の REFID。
+		// REFID を持たないスキル（「通常攻撃」等）は従来通り属性を付与しない。
+		const skillRefId = SkillObjNew[skillId][SKILL_DATA_INDEX_REFID];
+		if (skillRefId) {
+			objSelect.setAttribute("data-rtx-learned-skill-id", skillRefId);
 		}
 
 		objTd.appendChild(objSelect);

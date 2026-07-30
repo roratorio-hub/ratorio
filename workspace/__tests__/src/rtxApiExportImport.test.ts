@@ -4,9 +4,40 @@
  * rtxApiExport.ts, rtxApiImport.ts の基本機能テスト
  */
 
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { API_VERSION } from '../../src/rtxApiCommon';
+import { loadFromBase64String } from '../../src/rtxApiImport';
 
 describe('RTX API Export/Import機能', () => {
+
+    // item/job/skill.yaml 廃止で job_id・装備 id_num の形式が変わったため
+    // API_VERSION を上げた。旧バージョンのデータを黙って部分適用しないことを保証する。
+    describe('APIバージョンチェック', () => {
+        let alerts: string[];
+        let originalAlert: typeof window.alert;
+
+        beforeEach(() => {
+            alerts = [];
+            originalAlert = window.alert;
+            window.alert = (msg?: any) => { alerts.push(String(msg)); };
+        });
+
+        afterEach(() => { window.alert = originalAlert; });
+
+        it('API_VERSION と異なるバージョンのデータは読み込まず警告する', async () => {
+            await loadFromBase64String(`rtx${API_VERSION - 1}:ZHVtbXk=`);
+
+            expect(alerts).toHaveLength(1);
+            expect(alerts[0]).toContain('バージョン');
+        });
+
+        it('RTX 形式でない文字列は警告なしで無視する', async () => {
+            await loadFromBase64String('not-an-rtx-string');
+
+            expect(alerts).toHaveLength(0);
+        });
+    });
+
 
     describe('エクスポート機能の基本構造', () => {
         it('エクスポート関数がグローバルに登録されることをテストできる', () => {

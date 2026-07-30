@@ -398,8 +398,6 @@ export function SaveSystem(funcSaveDataModify = null){
 	if (typeof jobId === "undefined" || jobId === null) {
 		jobId = document.getElementById("OBJID_SELECT_JOB").value;
 	}
-	let jobData = JobMap.getById(jobId);
-
 
 		//----------------------------------------------------------------
 		// [0000 - 0000] バージョン情報
@@ -412,7 +410,8 @@ export function SaveSystem(funcSaveDataModify = null){
 		//----------------------------------------------------------------
 
 		// 基本情報
-		SaveData[1] = jobData.getMigIdNum();
+		// セレクトボックスの value は mig ID の数値文字列
+		SaveData[1] = parseInt(jobId, 10);
 		SaveData[2] = eval(document.calcForm.A_BaseLV.value);
 		SaveData[3] = eval(document.calcForm.A_JobLV.value);
 		SaveData[4] = eval(document.calcForm.A_STR.value);
