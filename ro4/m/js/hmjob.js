@@ -5,7 +5,7 @@ import '../../../roro/m/js/common.js';
 import '../../../roro/m/js/data/mig.itemsp.h.js';
 import '../../../roro/m/js/item.h.js';
 import '../../../roro/m/js/monster.h.js';
-import { GetStatusMax, IsDualArmsJob, IsReincarnatedJob, IsSameJobGroup, IsYojiJob } from './data/mig.job.h.js';
+import { GetBaseLevelMax, GetBaseLevelMin, GetStatusMax, IsDualArmsJob, IsReincarnatedJob, IsSameJobGroup, IsYojiJob } from './data/mig.job.h.js';
 import { CSaveDataConst } from './savedata/CSaveDataConst.js';
 import { CSaveController } from './CSaveController.js';
 import { HtmlGetObjectValueByIdAsInteger, ValueRangeModify, myInnerHtml } from '../../../roro/common/js/util.js';
@@ -97,7 +97,8 @@ export function RebuildStatusSelect(jobId) {
 	if (typeof jobId === "undefined" || jobId === null) {
 		jobId = document.getElementById("OBJID_SELECT_JOB").value;
 	}
-	let jobData = JobMap.getById(jobId);
+	// セレクトボックスの value は mig ID の数値文字列
+	const migId = parseInt(jobId, 10);
 
 	// 基本ステータス
 	let inputStr = document.getElementById("OBJID_SELECT_STATUS_STR");
@@ -107,7 +108,7 @@ export function RebuildStatusSelect(jobId) {
 	let inputDex = document.getElementById("OBJID_SELECT_STATUS_DEX");
 	let inputLuk = document.getElementById("OBJID_SELECT_STATUS_LUK");
 
-	let statusBaseMax = GetStatusMax(jobData.getMigIdNum(), n_A_PassSkill8[13]);
+	let statusBaseMax = GetStatusMax(migId, n_A_PassSkill8[13]);
 
 	inputStr.max = statusBaseMax;
 	inputAgi.max = statusBaseMax;
@@ -148,7 +149,7 @@ export function RebuildStatusSelect(jobId) {
 	inputCrt.value = 0;
 
 	// 四次職出ない場合は、特性ステータス欄は非表示
-	if (jobData.getBaseLvMin() < 200) {
+	if (GetBaseLevelMin(migId) < 200) {
 		document.getElementById("OBJID_TABLE_SPEC_STATUS").style.display = "none";
 	} else {
 		document.getElementById("OBJID_TABLE_SPEC_STATUS").style.display = "table";
@@ -191,8 +192,8 @@ export function CalcStatusPoint(bIgnoreAutoCalc, bIgnorePointCap = false) {
 	var stValCON = eval(_cf.A_CON.value);
 	var stValCRT = eval(_cf.A_CRT.value);
 
-	const jobData = JobMap.getById(jobId);
-	const migJobIdNum = jobData.getMigIdNum();
+	// セレクトボックスの value は mig ID の数値文字列
+	const migJobIdNum = parseInt(jobId, 10);
 
 	// 消費ステータスポイントを計算する
 	var stPointUsed = 0;
@@ -216,8 +217,8 @@ export function CalcStatusPoint(bIgnoreAutoCalc, bIgnorePointCap = false) {
 	InitJobInfo();
 
 	// ベースレベル情報の取得
-	var blvMin = jobData.getBaseLvMin();
-	var blvMax = jobData.getBaseLvMax();
+	var blvMin = GetBaseLevelMin(migJobIdNum);
+	var blvMax = GetBaseLevelMax(migJobIdNum);
 
 	// 初期ステータスポイントの決定
 	var stPointEarned = 48;
@@ -1775,13 +1776,14 @@ export function ApplySpecModify(spid, spVal) {
  * @param {string} jobId
  */
 export function migrateOtherJob(jobId) {
-	let jobData = JobMap.getById(jobId);
+	// セレクトボックスの value は mig ID の数値文字列
+	const migId = parseInt(jobId, 10);
 
 	const recentJobMigId = n_A_JOB;
 	let dataURL = "";
 	let funcModifySaveData = function (saveDataArrayF) {
 		// 職業ID
-		saveDataArrayF[1] = jobData.getMigIdNum();
+		saveDataArrayF[1] = migId;
 		// 自動レベル調整は強制OFF
 		saveDataArrayF[11] = 0;
 		return saveDataArrayF;
@@ -1790,14 +1792,14 @@ export function migrateOtherJob(jobId) {
 	showLoadingIndicator();
 	setTimeout(() => {
 		// 変更後の職業の二刀流可能性に合わせる
-		set_n_Nitou(IsDualArmsJob(jobData.getMigIdNum()));
+		set_n_Nitou(IsDualArmsJob(migId));
 		// TODO: 暫定対処　旧形式の保存処理呼び出し
 		// 「プレイヤー状態異常設定」のように旧形式に存在しなかった入力項目は維持できないということ
 		dataURL = SaveSystem(funcModifySaveData);
 		// URL入力を実行
 		CSaveController.loadFromURL(dataURL);
 		// 異なる職業系列へ変更する場合
-		if (!IsSameJobGroup(jobData.getMigIdNum(), recentJobMigId)) {
+		if (!IsSameJobGroup(migId, recentJobMigId)) {
 			// 習得スキルの初期化
 			for (let dmyidx = 0; dmyidx < LEARNED_SKILL_MAX_COUNT; dmyidx++) {
 				n_A_LearnedSkill[dmyidx] = 0;

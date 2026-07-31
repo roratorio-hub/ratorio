@@ -30415,7 +30415,8 @@ document.addEventListener('DOMContentLoaded', () => {
 			CSaveController.loadFromURL(param);
 		} else {
 			// URLロードがない場合は、ノービスを初期ジョブとして設定
-			changeJobSettings("NOVICE");
+			// job.yaml 廃止によりセレクトボックスの value は mig ID の数値文字列
+			changeJobSettings(String(JOB_ID_NOVICE));
 			// 検索可能ドロップダウンリストのロード
 			LoadTomSelect();
 		}
