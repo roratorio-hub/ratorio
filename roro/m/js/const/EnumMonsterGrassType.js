@@ -1,13 +1,14 @@
 /**
  * EnumMonsterGrassType の定数定義.
  *
- * !!! 自動生成ファイル。手で編集しない !!!
- * 生成: node util/enum/gen-const-modules.mjs
- * 値の一次情報: util/enum/enum-values.snapshot.json
+ * このファイルが値の一次情報。直接編集してよい（旧・自動生成方式は廃止）。
  *
- * 値は旧 CGlobalConstManager.DefineEnum が実行時に採番していたものを凍結したもの。
- * **値を変えるとセーブデータとアイテムデータの解釈が壊れる**ため、
- * 変更時は必ず node util/enum/verify-enum-values.mjs を通すこと。
+ * **既存の定数値を変えるとセーブデータとアイテムデータの解釈が壊れる。**
+ * 追加は末尾に足すこと（途中への挿入は後続の値をずらす）。
+ * 区切りコメント（列挙定数 / 疑似定数）は検証が種別判定に使うため残すこと。
+ * コンテナ併設ファイルでは createEnum の引数にも同じ定数名を追加する。
+ *
+ * 変更したら node util/enum/verify-enum-values.mjs を通すこと。
  */
 import { createEnum } from './createEnum.js';
 

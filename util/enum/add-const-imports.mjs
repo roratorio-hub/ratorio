@@ -104,7 +104,7 @@ function insertPos(src) {
 
 const symbols = buildSymbolMap();
 if (symbols.size === 0) {
-    console.log('const/ に定数がまだ無い。先に gen-const-modules.mjs を実行すること。');
+    console.log('roro/m/js/const/ に export const が1件も無い。パスかファイルの状態を確認すること。');
     process.exit(0);
 }
 
