@@ -812,8 +812,15 @@ export function CBattleCalcResult () {
 			var cooltime = this.coolTime;
 			var lifetime = this.objectLifeTime / 1000.0;
 			var interval = attackInterval;
-			
-			var skillinterval = casttime + Math.max(delay, cooltime);
+			// 重複設置ができないスキルは、強制ディレイに持続時間相当の値が入っている
+			// （n_Delay[3] = n_Delay[6] のほか、ストームガスト 4500・LoV 3100）。
+			// これを設置間隔に含めないと、重ね置き不可のスキルまで重ねて計算してしまう。
+			// delayForce の単位はミリ秒（CBattleCalcResultAll.GetOverLifeTime と同じ扱い）。
+			// n_Delay[3] には秒単位の代入もあるが、それらはいずれも設置スキルではないため
+			// bSimulateOverlap が false になり、ここには到達しない。
+			var delayForce = this.delayForce / 1000.0;
+
+			var skillinterval = casttime + Math.max(delay, cooltime, delayForce);
 			
 			// 十分な範囲の設置物を生成（定常状態を含むため）
 			// スキルinterval × 最大ヒット数分の時間で、十分な設置物が揃う
@@ -888,7 +895,14 @@ export function CBattleCalcResult () {
 			var totalHitsSum = 0;
 			
 			// 0.1秒刻みで1秒区間を調べる（精度と速度のバランス）
-			for (var windowStart = searchStartTime; windowStart <= searchEndTime; windowStart += 0.1) {
+			// windowStart は加算で進めない。0.1 の累積誤差で窓の開始位置がヒット時刻を
+			// わずかに下回り（例 1.0 が 0.9999999999999999）、境界のヒットを二重に数えて
+			// 最大値が 1 過大になるため、整数カウンタから毎回算出する。
+			for (var windowIdx = 0; ; windowIdx++) {
+				var windowStart = searchStartTime + windowIdx * 0.1;
+				if (windowStart > searchEndTime) {
+					break;
+				}
 				var windowEnd = windowStart + 1.0;
 				var hitsInWindow = 0;
 				

@@ -103,6 +103,71 @@ describe('CBattleCalcResult.js', () => {
             expect(hits.ave).toBeCloseTo(1 / 2.0, 10);
         });
 
+        it('重複設置できない設置スキルは 1/ダメージ間隔 を超えない', () => {
+            // デモンストレーション相当（持続 85 秒・ダメージ間隔 0.5 秒）。
+            // 強制ディレイに持続時間が入っている＝重ね置き不可なので、
+            // 同時に存在する設置物は常に1個であり 1/interval = 2 hit/sec が上限になる。
+            const demo = makeResult(1000, {
+                bGroundInstallation: true,
+                objectLifeTime: 85000,   // ms
+                delayForce: 85000,       // ms（重複設置はできない）
+                delaySkill: 1.0,
+                coolTime: 0,
+            });
+
+            const hits = demo._getHitsPerSecondActual(0, 0, 0.5, false);
+
+            expect(hits.max).toBeLessThanOrEqual(1 / 0.5);
+            expect(hits.ave).toBeLessThanOrEqual(1 / 0.5);
+        });
+
+        it('強制ディレイが無い設置スキルは従来どおり重ね置きされる', () => {
+            // メテオストーム・バスター相当（delayForce なし）。重ね置き計算は維持する
+            const msb = makeResult(1000, {
+                bGroundInstallation: true,
+                objectLifeTime: 4000,
+                delayForce: 0,
+                delaySkill: 1.0,
+                coolTime: 0,
+            });
+
+            const hits = msb._getHitsPerSecondActual(0.5, 0.5, 0.5, false);
+
+            // 設置物が重なるので 1/interval = 2 hit/sec を上回る
+            expect(hits.max).toBeGreaterThan(1 / 0.5);
+        });
+
+        it('重複設置の可否で hit/sec に差が出る', () => {
+            const base = {
+                bGroundInstallation: true,
+                objectLifeTime: 9000,
+                delaySkill: 1.0,
+                coolTime: 0,
+            };
+            const overlap = makeResult(1000, { ...base, delayForce: 0 })
+                ._getHitsPerSecondActual(0.5, 0.5, 0.5, false);
+            const noOverlap = makeResult(1000, { ...base, delayForce: 9000 })
+                ._getHitsPerSecondActual(0.5, 0.5, 0.5, false);
+
+            expect(noOverlap.ave).toBeLessThan(overlap.ave);
+        });
+
+        it('秒単位の強制ディレイを持つ非設置スキルは重ね置き計算に到達しない', () => {
+            // n_Delay[3] にはミリ秒と秒が混在するが、秒単位の代入は全て非設置スキル。
+            // 設置判定で弾かれるため、単位差が hit/sec に影響しないことを保証する
+            const waterBall = makeResult(1000, {
+                bGroundInstallation: false,
+                objectLifeTime: 0,
+                delayForce: 2.5,   // 秒単位
+                delaySkill: 1.0,
+                coolTime: 0,
+            });
+
+            const hits = waterBall._getHitsPerSecondActual(0.5, 0.5, 1.0, false);
+
+            expect(hits.ave).toBeCloseTo(1 / 2.0, 10);
+        });
+
         it('設置スキルでも攻撃間隔が 0 の場合はフォールバックする', () => {
             const broken = makeResult(1000, {
                 bGroundInstallation: true,
