@@ -1427,6 +1427,10 @@ export function BattleCalc999Body(battleCalcInfo, charaData, specData, mobData, 
 		battleCalcResult.delayInput = n_Delay[4];
 		battleCalcResult.damageInterval = n_Delay[5];
 		battleCalcResult.objectLifeTime = n_Delay[6];
+		// 設置スキル判定は結果インスタンスごとに確定させる。
+		// 描画は全計算の完了後なので、グローバル変数のままだと追撃・オートスペルが
+		// 最後に走ったときに「最後の計算結果」の値で描画されてしまう。
+		battleCalcResult.bGroundInstallation = g_bDefinedDamageIntervals;
 		battleCalcResult.coolTime = n_Delay[7];
 
 		// 修正量削減のために、グローバル変数で密結合になっているデータを取得
@@ -10939,7 +10943,7 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 	//----------------
 	// 設置系
 	//----------------
-	if (g_bDefinedDamageIntervals) {
+	if (battleCalcResult.bGroundInstallation) {
 
 		// サブラベル
 		objCell = HtmlCreateElement("div", objGridBasic);
@@ -11168,7 +11172,7 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 	objCell.classList.add("BTLRSLT_TAB_DAMAGE");
 	objCell.classList.add(partIdStr);
 	objCell.classList.add("CSSCLS_BTLRSLT_CENTERING");
-	if (g_bDefinedDamageIntervals) {
+	if (battleCalcResult.bGroundInstallation) {
 		HtmlCreateTextNode("1Hit", objCell);
 	}
 	else {
@@ -11351,7 +11355,7 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 	}
 	else {
 		// 秒数
-		if (g_bDefinedDamageIntervals == true) {
+		if (battleCalcResult.bGroundInstallation == true) {
 			valueWork = battleCalcResultAll.GetAttackSecondSummaryMinInterval();
 		} else {
 			valueWork = battleCalcResultAll.GetAttackSecondSummaryMin();
@@ -11391,7 +11395,7 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 	}
 	else {
 		// 秒数
-		if (g_bDefinedDamageIntervals == true) {
+		if (battleCalcResult.bGroundInstallation == true) {
 			valueWork = battleCalcResultAll.GetAttackSecondSummaryAveInterval();
 		} else {
 			valueWork = battleCalcResultAll.GetAttackSecondSummaryAve();
@@ -11428,7 +11432,7 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 	}
 	else {
 		// 秒数
-		if (g_bDefinedDamageIntervals == true) {
+		if (battleCalcResult.bGroundInstallation == true) {
 			valueWork = battleCalcResultAll.GetAttackSecondSummaryMaxInterval();
 		} else {
 			valueWork = battleCalcResultAll.GetAttackSecondSummaryMax();

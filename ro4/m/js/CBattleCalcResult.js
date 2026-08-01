@@ -4,10 +4,6 @@ import { instobject } from './CBattleCalcResultAll.js';
 import { g_skillManager } from './global.js';
 import { GetArrayMax, GetArrayMin } from '../../../roro/common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
-// C-6: ro4 側共有 state（旧 head.js window 変数）
-import {
-         g_bDefinedDamageIntervals,
-} from './ro4-state.js';
 
 
 /**
@@ -44,6 +40,12 @@ export function CBattleCalcResult () {
 
 	// オブジェクト持続時間
 	this.objectLifeTime = 0;
+
+	// 地面設置スキル（継続ダメージ発生スキル）フラグ
+	// この結果インスタンスを算出した時点の g_bDefinedDamageIntervals を保持する。
+	// 描画はすべての計算完了後に行われるため、グローバル変数を直接参照すると
+	// 「最後に計算した結果」の値を見てしまう（追撃・オートスペルがあると誤判定になる）。
+	this.bGroundInstallation = false;
 
 	// クールタイム
 	this.coolTime = 0;
@@ -109,6 +111,7 @@ export function CBattleCalcResult () {
 		this.delayInput = 0;
 		this.damageInterval = 0;
 		this.objectLifeTime = 0;
+		this.bGroundInstallation = false;
 		this.coolTime = 0;
 		this.attackInterval = 0;
 		this.actRate = 0;
@@ -503,7 +506,7 @@ export function CBattleCalcResult () {
 		var dmgArray = null;
 		var actInterval = 0;
 
-		if (g_bDefinedDamageIntervals && !bCollectChild){
+		if (this.bGroundInstallation && !bCollectChild){
 			// 子要素を持たない設置スキルの場合
 			actInterval = attackInterval;
 		}
@@ -565,7 +568,7 @@ export function CBattleCalcResult () {
 		var dmgArray = null;
 		var actInterval = 0;
 
-		if (g_bDefinedDamageIntervals && !bCollectChild){
+		if (this.bGroundInstallation && !bCollectChild){
 			// 子要素を持たない設置スキルの場合
 			actInterval = attackInterval;
 		}
@@ -612,7 +615,7 @@ export function CBattleCalcResult () {
 		var dmgArray = null;
 		var actInterval = 0;
 
-		if (g_bDefinedDamageIntervals && !bCollectChild){
+		if (this.bGroundInstallation && !bCollectChild){
 			// 子要素を持たない設置スキルの場合
 			actInterval = attackInterval;
 		}
@@ -791,18 +794,31 @@ export function CBattleCalcResult () {
 		var hitsMin = 1;
 		var hitsMax = 1;
 		var hitsAve = 1;
-		
-		if (g_bDefinedDamageIntervals || bCollectChild){
+
+		// 重ね置きシミュレーションの対象は「地面設置スキル」のみ。
+		// 追撃の子要素を持つか（bCollectChild）は設置か否かと無関係なので判定に含めない。
+		// また持続時間・ダメージ間隔が取れていない場合は instobject の maxhit が 0 になり
+		// DPS が無言で 0 になるため、通常スキルと同じ計算にフォールバックする。
+		var bSimulateOverlap = (this.bGroundInstallation
+			&& (this.objectLifeTime > 0)
+			&& (attackInterval > 0));
+
+		if (bSimulateOverlap){
 			// instobjectで正確に計算
-			let actInterval = attackInterval;
-			
 			var casttime = castVary + castFixed;
 			var delay = this.delaySkill;
 			var cooltime = this.coolTime;
 			var lifetime = this.objectLifeTime / 1000.0;
 			var interval = attackInterval;
-			
-			var skillinterval = casttime + Math.max(delay, cooltime);
+			// 重複設置ができないスキルは、強制ディレイに持続時間相当の値が入っている
+			// （n_Delay[3] = n_Delay[6] のほか、ストームガスト 4500・LoV 3100）。
+			// これを設置間隔に含めないと、重ね置き不可のスキルまで重ねて計算してしまう。
+			// delayForce の単位はミリ秒（CBattleCalcResultAll.GetOverLifeTime と同じ扱い）。
+			// n_Delay[3] には秒単位の代入もあるが、それらはいずれも設置スキルではないため
+			// bSimulateOverlap が false になり、ここには到達しない。
+			var delayForce = this.delayForce / 1000.0;
+
+			var skillinterval = casttime + Math.max(delay, cooltime, delayForce);
 			
 			// 十分な範囲の設置物を生成（定常状態を含むため）
 			// スキルinterval × 最大ヒット数分の時間で、十分な設置物が揃う
@@ -811,16 +827,11 @@ export function CBattleCalcResult () {
 			var currentTime = 0;
 			
 			while (currentTime < simulationTime) {
-				// この設置物がヒットを開始する時刻と終了時刻
-				var startHitTime = currentTime + casttime;
-				var endHitTime = startHitTime + lifetime;
-				
+				// この設置物がヒットを開始する時刻
 				placements.push({
-					startTime: startHitTime,
-					endTime: endHitTime,
-					interval: interval
+					startTime: currentTime + casttime
 				});
-				
+
 				currentTime += skillinterval;
 				if (skillinterval === 0) break; // 無限ループ対策
 			}
@@ -830,44 +841,10 @@ export function CBattleCalcResult () {
 				return { min: 0, ave: 0, max: 0 };
 			}
 			
-			// 重要なイベント時刻（設置開始/終了時刻）を収集
-			var eventTimes = new Set();
-			placements.forEach(function(p) {
-				eventTimes.add(p.startTime);
-				eventTimes.add(p.endTime);
-			});
-			eventTimes.add(1.0); // 1秒時点も追加
-			eventTimes = Array.from(eventTimes).sort(function(a, b) { return a - b; });
-			
-			// 各時刻での重ね合わせ数と総ヒット数を計算
-			var minOverlap = Infinity;
-			var maxOverlap = 0;
-			var timeWeightedSum = 0; // 時間加重合計
-			
-			// 各区間での設置物の数を計算し、時間加重平均を求める
-			for (var i = 0; i < eventTimes.length - 1; i++) {
-				var timeStart = eventTimes[i];
-				var timeEnd = eventTimes[i + 1];
-				var duration = timeEnd - timeStart;
-				
-				// この区間でアクティブな設置物の数
-				var activeCount = placements.filter(function(p) {
-					return timeStart >= p.startTime && timeStart < p.endTime;
-				}).length;
-				
-				if (activeCount > 0) {
-					minOverlap = Math.min(minOverlap, activeCount);
-					maxOverlap = Math.max(maxOverlap, activeCount);
-					timeWeightedSum += activeCount * duration;
-				}
-			}
-			
-			// 時間加重平均重ね合わせ数を計算
-			var aveOverlap = timeWeightedSum / 1.0;
-			
 			// 全ての1秒区間をスライディングウィンドウで調べる
-			// 定常状態を含む範囲を調査（立ち上がり期間を除く）
-			var steadyStateStart = Math.max(lifetime, skillinterval * 3); // 定常状態開始
+			// 走査は戦闘開始（0秒）から行う。設置物が積み上がるまでの立ち上がり期間も
+			// 実際に発生する時間変動であり、重ね置きモードはその変動を評価するための
+			// モードなので、定常状態に限定せず評価対象に含める。
 			var searchStartTime = 0;
 			var searchEndTime = simulationTime - lifetime - 1.0;
 			
@@ -877,19 +854,24 @@ export function CBattleCalcResult () {
 			var totalHitsSum = 0;
 			
 			// 0.1秒刻みで1秒区間を調べる（精度と速度のバランス）
-			for (var windowStart = searchStartTime; windowStart <= searchEndTime; windowStart += 0.1) {
+			// windowStart は加算で進めない。0.1 の累積誤差で窓の開始位置がヒット時刻を
+			// わずかに下回り（例 1.0 が 0.9999999999999999）、境界のヒットを二重に数えて
+			// 最大値が 1 過大になるため、整数カウンタから毎回算出する。
+			for (var windowIdx = 0; ; windowIdx++) {
+				var windowStart = searchStartTime + windowIdx * 0.1;
+				if (windowStart > searchEndTime) {
+					break;
+				}
 				var windowEnd = windowStart + 1.0;
 				var hitsInWindow = 0;
 				
 				placements.forEach(function(p) {
+					// getHitCount は引数の時刻のみで判定するため instobj.now の設定は不要
 					var instobj = new instobject();
 					instobj.init(0, 999999, p.startTime - casttime, casttime, delay, cooltime, lifetime, interval);
-					instobj.now = windowEnd;
 					var hitsAtEnd = instobj.getHitCount(windowEnd);
-					
-					instobj.now = windowStart;
 					var hitsAtStart = instobj.getHitCount(windowStart);
-					
+
 					hitsInWindow += (hitsAtEnd - hitsAtStart);
 				});
 				
@@ -942,6 +924,7 @@ export function CBattleCalcResult () {
 		result.delayInput = this.delayInput;
 		result.damageInterval = this.damageInterval;
 		result.objectLifeTime = this.objectLifeTime;
+		result.bGroundInstallation = this.bGroundInstallation;
 		result.coolTime = this.coolTime;
 		result.attackInterval = this.attackInterval;
 		result.actRate = this.actRate;
