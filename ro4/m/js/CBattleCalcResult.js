@@ -4,10 +4,6 @@ import { instobject } from './CBattleCalcResultAll.js';
 import { g_skillManager } from './global.js';
 import { GetArrayMax, GetArrayMin } from '../../../roro/common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
-// C-6: ro4 側共有 state（旧 head.js window 変数）
-import {
-         g_bDefinedDamageIntervals,
-} from './ro4-state.js';
 
 
 /**
@@ -44,6 +40,12 @@ export function CBattleCalcResult () {
 
 	// オブジェクト持続時間
 	this.objectLifeTime = 0;
+
+	// 地面設置スキル（継続ダメージ発生スキル）フラグ
+	// この結果インスタンスを算出した時点の g_bDefinedDamageIntervals を保持する。
+	// 描画はすべての計算完了後に行われるため、グローバル変数を直接参照すると
+	// 「最後に計算した結果」の値を見てしまう（追撃・オートスペルがあると誤判定になる）。
+	this.bGroundInstallation = false;
 
 	// クールタイム
 	this.coolTime = 0;
@@ -109,6 +111,7 @@ export function CBattleCalcResult () {
 		this.delayInput = 0;
 		this.damageInterval = 0;
 		this.objectLifeTime = 0;
+		this.bGroundInstallation = false;
 		this.coolTime = 0;
 		this.attackInterval = 0;
 		this.actRate = 0;
@@ -503,7 +506,7 @@ export function CBattleCalcResult () {
 		var dmgArray = null;
 		var actInterval = 0;
 
-		if (g_bDefinedDamageIntervals && !bCollectChild){
+		if (this.bGroundInstallation && !bCollectChild){
 			// 子要素を持たない設置スキルの場合
 			actInterval = attackInterval;
 		}
@@ -565,7 +568,7 @@ export function CBattleCalcResult () {
 		var dmgArray = null;
 		var actInterval = 0;
 
-		if (g_bDefinedDamageIntervals && !bCollectChild){
+		if (this.bGroundInstallation && !bCollectChild){
 			// 子要素を持たない設置スキルの場合
 			actInterval = attackInterval;
 		}
@@ -612,7 +615,7 @@ export function CBattleCalcResult () {
 		var dmgArray = null;
 		var actInterval = 0;
 
-		if (g_bDefinedDamageIntervals && !bCollectChild){
+		if (this.bGroundInstallation && !bCollectChild){
 			// 子要素を持たない設置スキルの場合
 			actInterval = attackInterval;
 		}
@@ -791,11 +794,19 @@ export function CBattleCalcResult () {
 		var hitsMin = 1;
 		var hitsMax = 1;
 		var hitsAve = 1;
-		
-		if (g_bDefinedDamageIntervals || bCollectChild){
+
+		// 重ね置きシミュレーションの対象は「地面設置スキル」のみ。
+		// 追撃の子要素を持つか（bCollectChild）は設置か否かと無関係なので判定に含めない。
+		// また持続時間・ダメージ間隔が取れていない場合は instobject の maxhit が 0 になり
+		// DPS が無言で 0 になるため、通常スキルと同じ計算にフォールバックする。
+		var bSimulateOverlap = (this.bGroundInstallation
+			&& (this.objectLifeTime > 0)
+			&& (attackInterval > 0));
+
+		if (bSimulateOverlap){
 			// instobjectで正確に計算
 			let actInterval = attackInterval;
-			
+
 			var casttime = castVary + castFixed;
 			var delay = this.delaySkill;
 			var cooltime = this.coolTime;
@@ -942,6 +953,7 @@ export function CBattleCalcResult () {
 		result.delayInput = this.delayInput;
 		result.damageInterval = this.damageInterval;
 		result.objectLifeTime = this.objectLifeTime;
+		result.bGroundInstallation = this.bGroundInstallation;
 		result.coolTime = this.coolTime;
 		result.attackInterval = this.attackInterval;
 		result.actRate = this.actRate;
