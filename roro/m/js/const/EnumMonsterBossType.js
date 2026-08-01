@@ -16,8 +16,8 @@ export const MONSTER_BOSSTYPE_NONE = 0;
 export const MONSTER_BOSSTYPE_BOSS = 1;
 
 /** 列挙型コンテナ（Count / For / GetDefinedName / GetDefinedValue）。 */
-export const EnumMonsterBossType = createEnum('EnumMonsterBossType', [
-    ['MONSTER_BOSSTYPE_NONE', 0],
-    ['MONSTER_BOSSTYPE_BOSS', 1],
-], [
-]);
+export const EnumMonsterBossType = createEnum('EnumMonsterBossType', {
+    MONSTER_BOSSTYPE_NONE,
+    MONSTER_BOSSTYPE_BOSS,
+}, {
+});

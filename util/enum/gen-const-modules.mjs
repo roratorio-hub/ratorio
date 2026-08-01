@@ -104,11 +104,13 @@ for (const e of snap.enums) {
 
     if (withContainer) {
         out.push(`/** 列挙型コンテナ（Count / For / GetDefinedName / GetDefinedValue）。 */`);
-        out.push(`export const ${e.name} = createEnum('${e.name}', [`);
-        for (const [n, v] of e.members) out.push(`    ['${n}', ${lit(v)}],`);
-        out.push(`], [`);
-        for (const [n, v] of e.pseudo) out.push(`    ['${n}', ${lit(v)}],`);
-        out.push(`]);`);
+        // 値は上で宣言した const をショートハンドで渡す。
+        // 名前も値も一度しか書かないため、宣言との食い違いが構文的に起こり得ない。
+        out.push(`export const ${e.name} = createEnum('${e.name}', {`);
+        for (const [n] of e.members) out.push(`    ${n},`);
+        out.push(`}, {`);
+        for (const [n] of e.pseudo) out.push(`    ${n},`);
+        out.push(`});`);
         out.push('');
     }
 

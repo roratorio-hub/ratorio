@@ -21,13 +21,13 @@ export const PARAM_LUK   = 5;
 export const PARAM_COUNT = 6;
 
 /** 列挙型コンテナ（Count / For / GetDefinedName / GetDefinedValue）。 */
-export const EnumParamId = createEnum('EnumParamId', [
-    ['PARAM_STR', 0],
-    ['PARAM_AGI', 1],
-    ['PARAM_VIT', 2],
-    ['PARAM_INT', 3],
-    ['PARAM_DEX', 4],
-    ['PARAM_LUK', 5],
-    ['PARAM_COUNT', 6],
-], [
-]);
+export const EnumParamId = createEnum('EnumParamId', {
+    PARAM_STR,
+    PARAM_AGI,
+    PARAM_VIT,
+    PARAM_INT,
+    PARAM_DEX,
+    PARAM_LUK,
+    PARAM_COUNT,
+}, {
+});

@@ -26,18 +26,18 @@ export const ITEM_DATA_INDEX_DETAIL  = 10;
 export const ITEM_DATA_INDEX_SPBEGIN = 11;
 
 /** 列挙型コンテナ（Count / For / GetDefinedName / GetDefinedValue）。 */
-export const EnumItemDataIndex = createEnum('EnumItemDataIndex', [
-    ['ITEM_DATA_INDEX_ID', 0],
-    ['ITEM_DATA_INDEX_KIND', 1],
-    ['ITEM_DATA_INDEX_EQPFLG', 2],
-    ['ITEM_DATA_INDEX_POWER', 3],
-    ['ITEM_DATA_INDEX_WPNLV', 4],
-    ['ITEM_DATA_INDEX_SLOT', 5],
-    ['ITEM_DATA_INDEX_WEIGHT', 6],
-    ['ITEM_DATA_INDEX_EQPLV', 7],
-    ['ITEM_DATA_INDEX_NAME', 8],
-    ['ITEM_DATA_INDEX_KANA', 9],
-    ['ITEM_DATA_INDEX_DETAIL', 10],
-    ['ITEM_DATA_INDEX_SPBEGIN', 11],
-], [
-]);
+export const EnumItemDataIndex = createEnum('EnumItemDataIndex', {
+    ITEM_DATA_INDEX_ID,
+    ITEM_DATA_INDEX_KIND,
+    ITEM_DATA_INDEX_EQPFLG,
+    ITEM_DATA_INDEX_POWER,
+    ITEM_DATA_INDEX_WPNLV,
+    ITEM_DATA_INDEX_SLOT,
+    ITEM_DATA_INDEX_WEIGHT,
+    ITEM_DATA_INDEX_EQPLV,
+    ITEM_DATA_INDEX_NAME,
+    ITEM_DATA_INDEX_KANA,
+    ITEM_DATA_INDEX_DETAIL,
+    ITEM_DATA_INDEX_SPBEGIN,
+}, {
+});

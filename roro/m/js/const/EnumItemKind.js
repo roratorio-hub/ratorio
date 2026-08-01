@@ -9,7 +9,6 @@
  * **値を変えるとセーブデータとアイテムデータの解釈が壊れる**ため、
  * 変更時は必ず node util/enum/verify-enum-values.mjs を通すこと。
  */
-import { createEnum } from './createEnum.js';
 
 // ---- 列挙定数 ----
 export const ITEM_KIND_NONE                 = 0;
@@ -64,60 +63,3 @@ export const ITEM_KIND_ARROW                = 93;
 export const ITEM_KIND_BULLET               = 94;
 export const ITEM_KIND_SET                  = 100;
 export const ITEM_KIND_UNKNOWN              = 999;
-
-/** 列挙型コンテナ（Count / For / GetDefinedName / GetDefinedValue）。 */
-export const EnumItemKind = createEnum('EnumItemKind', [
-    ['ITEM_KIND_NONE', 0],
-    ['ITEM_KIND_KNIFE', 1],
-    ['ITEM_KIND_SWORD', 2],
-    ['ITEM_KIND_SWORD_2HAND', 3],
-    ['ITEM_KIND_SPEAR', 4],
-    ['ITEM_KIND_SPEAR_2HAND', 5],
-    ['ITEM_KIND_AXE', 6],
-    ['ITEM_KIND_AXE_2HAND', 7],
-    ['ITEM_KIND_CLUB', 8],
-    ['ITEM_KIND_STUFF', 9],
-    ['ITEM_KIND_BOW', 10],
-    ['ITEM_KIND_KATAR', 11],
-    ['ITEM_KIND_BOOK', 12],
-    ['ITEM_KIND_FIST', 13],
-    ['ITEM_KIND_MUSICAL', 14],
-    ['ITEM_KIND_WHIP', 15],
-    ['ITEM_KIND_FUMA', 16],
-    ['ITEM_KIND_HANDGUN', 17],
-    ['ITEM_KIND_RIFLE', 18],
-    ['ITEM_KIND_SHOTGUN', 19],
-    ['ITEM_KIND_GATLINGGUN', 20],
-    ['ITEM_KIND_GRENADEGUN', 21],
-    ['ITEM_KIND_STUFF2HAND', 22],
-    ['ITEM_KIND_HEAD_TOP', 50],
-    ['ITEM_KIND_HEAD_MID', 51],
-    ['ITEM_KIND_HEAD_UNDER', 52],
-    ['ITEM_KIND_BODY', 60],
-    ['ITEM_KIND_SHIELD', 61],
-    ['ITEM_KIND_SHOULDER', 62],
-    ['ITEM_KIND_FOOT', 63],
-    ['ITEM_KIND_ACCESSORY', 64],
-    ['ITEM_KIND_ACCESSORY_ON1', 65],
-    ['ITEM_KIND_ACCESSORY_ON2', 66],
-    ['ITEM_KIND_SHADOW_ARMS_1HAND', 70],
-    ['ITEM_KIND_SHADOW_ARMS_2HAND', 71],
-    ['ITEM_KIND_SHADOW_ARMS_RIGHT', 72],
-    ['ITEM_KIND_SHADOW_ARMS_LEFT', 73],
-    ['ITEM_KIND_SHADOW_HEAD_TOP', 74],
-    ['ITEM_KIND_SHADOW_HEAD_MID', 75],
-    ['ITEM_KIND_SHADOW_HEAD_UNDER', 76],
-    ['ITEM_KIND_SHADOW_BODY', 77],
-    ['ITEM_KIND_SHADOW_SHIELD', 78],
-    ['ITEM_KIND_SHADOW_SHOULDER', 79],
-    ['ITEM_KIND_SHADOW_FOOT', 80],
-    ['ITEM_KIND_SHADOW_ACCESSORY', 81],
-    ['ITEM_KIND_SHADOW_ACCESSORY_ON1', 82],
-    ['ITEM_KIND_SHADOW_ACCESSORY_ON2', 83],
-    ['ITEM_KIND_COSTUME', 92],
-    ['ITEM_KIND_ARROW', 93],
-    ['ITEM_KIND_BULLET', 94],
-    ['ITEM_KIND_SET', 100],
-    ['ITEM_KIND_UNKNOWN', 999],
-], [
-]);

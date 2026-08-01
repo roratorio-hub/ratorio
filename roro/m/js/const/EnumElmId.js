@@ -28,18 +28,18 @@ export const ELM_ID_COUNT  = 10;
 export const ELM_ID_ANY    = 11;
 
 /** 列挙型コンテナ（Count / For / GetDefinedName / GetDefinedValue）。 */
-export const EnumElmId = createEnum('EnumElmId', [
-    ['ELM_ID_VANITY', 0],
-    ['ELM_ID_WATER', 1],
-    ['ELM_ID_EARTH', 2],
-    ['ELM_ID_FIRE', 3],
-    ['ELM_ID_WIND', 4],
-    ['ELM_ID_POISON', 5],
-    ['ELM_ID_HOLY', 6],
-    ['ELM_ID_DARK', 7],
-    ['ELM_ID_PSYCO', 8],
-    ['ELM_ID_UNDEAD', 9],
-], [
-    ['ELM_ID_COUNT', 10],
-    ['ELM_ID_ANY', 11],
-]);
+export const EnumElmId = createEnum('EnumElmId', {
+    ELM_ID_VANITY,
+    ELM_ID_WATER,
+    ELM_ID_EARTH,
+    ELM_ID_FIRE,
+    ELM_ID_WIND,
+    ELM_ID_POISON,
+    ELM_ID_HOLY,
+    ELM_ID_DARK,
+    ELM_ID_PSYCO,
+    ELM_ID_UNDEAD,
+}, {
+    ELM_ID_COUNT,
+    ELM_ID_ANY,
+});

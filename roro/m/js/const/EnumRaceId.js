@@ -28,18 +28,18 @@ export const RACE_ID_COUNT  = 10;
 export const RACE_ID_ANY    = 11;
 
 /** 列挙型コンテナ（Count / For / GetDefinedName / GetDefinedValue）。 */
-export const EnumRaceId = createEnum('EnumRaceId', [
-    ['RACE_ID_SOLID', 0],
-    ['RACE_ID_UNDEAD', 1],
-    ['RACE_ID_ANIMAL', 2],
-    ['RACE_ID_PLANT', 3],
-    ['RACE_ID_INSECT', 4],
-    ['RACE_ID_FISH', 5],
-    ['RACE_ID_DEMON', 6],
-    ['RACE_ID_HUMAN', 7],
-    ['RACE_ID_ANGEL', 8],
-    ['RACE_ID_DRAGON', 9],
-], [
-    ['RACE_ID_COUNT', 10],
-    ['RACE_ID_ANY', 11],
-]);
+export const EnumRaceId = createEnum('EnumRaceId', {
+    RACE_ID_SOLID,
+    RACE_ID_UNDEAD,
+    RACE_ID_ANIMAL,
+    RACE_ID_PLANT,
+    RACE_ID_INSECT,
+    RACE_ID_FISH,
+    RACE_ID_DEMON,
+    RACE_ID_HUMAN,
+    RACE_ID_ANGEL,
+    RACE_ID_DRAGON,
+}, {
+    RACE_ID_COUNT,
+    RACE_ID_ANY,
+});

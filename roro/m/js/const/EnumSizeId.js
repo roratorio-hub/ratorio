@@ -21,11 +21,11 @@ export const SIZE_ID_COUNT  = 3;
 export const SIZE_ID_ANY    = 4;
 
 /** 列挙型コンテナ（Count / For / GetDefinedName / GetDefinedValue）。 */
-export const EnumSizeId = createEnum('EnumSizeId', [
-    ['SIZE_ID_SMALL', 0],
-    ['SIZE_ID_MEDIUM', 1],
-    ['SIZE_ID_LARGE', 2],
-], [
-    ['SIZE_ID_COUNT', 3],
-    ['SIZE_ID_ANY', 4],
-]);
+export const EnumSizeId = createEnum('EnumSizeId', {
+    SIZE_ID_SMALL,
+    SIZE_ID_MEDIUM,
+    SIZE_ID_LARGE,
+}, {
+    SIZE_ID_COUNT,
+    SIZE_ID_ANY,
+});

@@ -18,10 +18,10 @@ export const MONSTER_GRASSTYPE_EMPERIUM  = 6;
 export const MONSTER_GRASSTYPE_GLASS_NEW = 7;
 
 /** 列挙型コンテナ（Count / For / GetDefinedName / GetDefinedValue）。 */
-export const EnumMonsterGrassType = createEnum('EnumMonsterGrassType', [
-    ['MONSTER_GRASSTYPE_NONE', 0],
-    ['MONSTER_GRASSTYPE_GLASS', 5],
-    ['MONSTER_GRASSTYPE_EMPERIUM', 6],
-    ['MONSTER_GRASSTYPE_GLASS_NEW', 7],
-], [
-]);
+export const EnumMonsterGrassType = createEnum('EnumMonsterGrassType', {
+    MONSTER_GRASSTYPE_NONE,
+    MONSTER_GRASSTYPE_GLASS,
+    MONSTER_GRASSTYPE_EMPERIUM,
+    MONSTER_GRASSTYPE_GLASS_NEW,
+}, {
+});
