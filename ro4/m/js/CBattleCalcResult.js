@@ -805,8 +805,6 @@ export function CBattleCalcResult () {
 
 		if (bSimulateOverlap){
 			// instobjectで正確に計算
-			let actInterval = attackInterval;
-
 			var casttime = castVary + castFixed;
 			var delay = this.delaySkill;
 			var cooltime = this.coolTime;
@@ -829,16 +827,11 @@ export function CBattleCalcResult () {
 			var currentTime = 0;
 			
 			while (currentTime < simulationTime) {
-				// この設置物がヒットを開始する時刻と終了時刻
-				var startHitTime = currentTime + casttime;
-				var endHitTime = startHitTime + lifetime;
-				
+				// この設置物がヒットを開始する時刻
 				placements.push({
-					startTime: startHitTime,
-					endTime: endHitTime,
-					interval: interval
+					startTime: currentTime + casttime
 				});
-				
+
 				currentTime += skillinterval;
 				if (skillinterval === 0) break; // 無限ループ対策
 			}
@@ -848,44 +841,10 @@ export function CBattleCalcResult () {
 				return { min: 0, ave: 0, max: 0 };
 			}
 			
-			// 重要なイベント時刻（設置開始/終了時刻）を収集
-			var eventTimes = new Set();
-			placements.forEach(function(p) {
-				eventTimes.add(p.startTime);
-				eventTimes.add(p.endTime);
-			});
-			eventTimes.add(1.0); // 1秒時点も追加
-			eventTimes = Array.from(eventTimes).sort(function(a, b) { return a - b; });
-			
-			// 各時刻での重ね合わせ数と総ヒット数を計算
-			var minOverlap = Infinity;
-			var maxOverlap = 0;
-			var timeWeightedSum = 0; // 時間加重合計
-			
-			// 各区間での設置物の数を計算し、時間加重平均を求める
-			for (var i = 0; i < eventTimes.length - 1; i++) {
-				var timeStart = eventTimes[i];
-				var timeEnd = eventTimes[i + 1];
-				var duration = timeEnd - timeStart;
-				
-				// この区間でアクティブな設置物の数
-				var activeCount = placements.filter(function(p) {
-					return timeStart >= p.startTime && timeStart < p.endTime;
-				}).length;
-				
-				if (activeCount > 0) {
-					minOverlap = Math.min(minOverlap, activeCount);
-					maxOverlap = Math.max(maxOverlap, activeCount);
-					timeWeightedSum += activeCount * duration;
-				}
-			}
-			
-			// 時間加重平均重ね合わせ数を計算
-			var aveOverlap = timeWeightedSum / 1.0;
-			
 			// 全ての1秒区間をスライディングウィンドウで調べる
-			// 定常状態を含む範囲を調査（立ち上がり期間を除く）
-			var steadyStateStart = Math.max(lifetime, skillinterval * 3); // 定常状態開始
+			// 走査は戦闘開始（0秒）から行う。設置物が積み上がるまでの立ち上がり期間も
+			// 実際に発生する時間変動であり、重ね置きモードはその変動を評価するための
+			// モードなので、定常状態に限定せず評価対象に含める。
 			var searchStartTime = 0;
 			var searchEndTime = simulationTime - lifetime - 1.0;
 			
@@ -907,14 +866,12 @@ export function CBattleCalcResult () {
 				var hitsInWindow = 0;
 				
 				placements.forEach(function(p) {
+					// getHitCount は引数の時刻のみで判定するため instobj.now の設定は不要
 					var instobj = new instobject();
 					instobj.init(0, 999999, p.startTime - casttime, casttime, delay, cooltime, lifetime, interval);
-					instobj.now = windowEnd;
 					var hitsAtEnd = instobj.getHitCount(windowEnd);
-					
-					instobj.now = windowStart;
 					var hitsAtStart = instobj.getHitCount(windowStart);
-					
+
 					hitsInWindow += (hitsAtEnd - hitsAtStart);
 				});
 				

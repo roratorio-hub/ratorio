@@ -168,6 +168,42 @@ describe('CBattleCalcResult.js', () => {
             expect(hits.ave).toBeCloseTo(1 / 2.0, 10);
         });
 
+        it('重ね置きが効く設置スキルの hit/sec が既知の値と一致する', () => {
+            // グラビテーションフィールド Lv5（詠唱5s・持続9s・ダメージ間隔0.5s・強制ディレイなし）。
+            // 走査は戦闘開始（0秒）起点なので、立ち上がり期間を含んだ値になる。
+            // リファクタリングで数値が動いていないことを検出するためのピン留め。
+            const gf = makeResult(1000, {
+                bGroundInstallation: true,
+                objectLifeTime: 9000,
+                delayForce: 0,
+                delaySkill: 0,
+                coolTime: 0,
+            });
+
+            const hits = gf._getHitsPerSecondActual(5.0, 0, 0.5, false);
+
+            expect(hits.min).toBe(0);
+            expect(hits.max).toBe(2);
+            expect(hits.ave).toBeCloseTo(0.8271604938271605, 12);
+        });
+
+        it('重複設置できない設置スキルの hit/sec が既知の値と一致する', () => {
+            // クラウドキル Lv10（詠唱3s・ディレイ1s・CT5s・持続26s・間隔0.5s・強制ディレイ26s）
+            const cloudKill = makeResult(1000, {
+                bGroundInstallation: true,
+                objectLifeTime: 26000,
+                delayForce: 26000,
+                delaySkill: 1.0,
+                coolTime: 5.0,
+            });
+
+            const hits = cloudKill._getHitsPerSecondActual(3.0, 0, 0.5, false);
+
+            expect(hits.min).toBe(0);
+            expect(hits.max).toBe(2);
+            expect(hits.ave).toBeCloseTo(1.7808764940239044, 12);
+        });
+
         it('設置スキルでも攻撃間隔が 0 の場合はフォールバックする', () => {
             const broken = makeResult(1000, {
                 bGroundInstallation: true,
