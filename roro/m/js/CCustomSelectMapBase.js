@@ -1,11 +1,10 @@
-
-
-
 import { CCustomSelectBase } from './CCustomSelectBase.js';
 // === AUTO-GENERATED IMPORTS ===
 import './CNameKana.js';
 import { TranslateAlias } from './alias.h.js';
 import { HtmlRemoveOptionAll, HtmlCreateElementOption } from '../../common/js/util.js';
+import { MONSTER_MAP_DATA_INDEX_ID, MONSTER_MAP_DATA_INDEX_NAME_KANA_ARRAY } from './const/EnumMonsterMapDataIndex.js';
+import { NAME_KANA_DATA_INDEX_KANA, NAME_KANA_DATA_INDEX_NAME, NAME_KANA_DATA_INDEX_SORT } from './const/EnumNameKanaDataIndex.js';
 // === END AUTO-GENERATED IMPORTS ===
 
 /**

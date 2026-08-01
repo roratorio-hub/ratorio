@@ -1,5 +1,4 @@
 import { describe, it, expect } from 'vitest';
-import '@roro/CGlobalConstManager.js';
 import * as common from '@roro/common.js';
 import {
     GetConstDataKindText,
@@ -11,31 +10,9 @@ import {
     GetStateText,
     GetFriendlityText,
 } from '@roro/common.js';
+import { CONST_DATA_KIND_ITEM } from '@roro/const/EnumConstDataKind.js';
 
 describe('common.js', () => {
-    describe('DefineEnum 副作用確認', () => {
-        it('EQUIP_REGION_ID_ARMS が 0 に定義される', () => {
-            expect((globalThis as any).EQUIP_REGION_ID_ARMS).toBe(0);
-        });
-        it('EQUIP_REGION_ID_ACCESSORY_2 が 10 に定義される', () => {
-            expect((globalThis as any).EQUIP_REGION_ID_ACCESSORY_2).toBe(10);
-        });
-        it('PARAM_STR が 0 に定義される', () => {
-            expect((globalThis as any).PARAM_STR).toBe(0);
-        });
-        it('ELM_ID_VANITY が 0 に定義される', () => {
-            expect((globalThis as any).ELM_ID_VANITY).toBe(0);
-        });
-        it('RACE_ID_SOLID が 0 に定義される', () => {
-            expect((globalThis as any).RACE_ID_SOLID).toBe(0);
-        });
-        it('SIZE_ID_SMALL が 0 に定義される', () => {
-            expect((globalThis as any).SIZE_ID_SMALL).toBe(0);
-        });
-        it('FRIENDLITY_ID_AUTO が 0 に定義される', () => {
-            expect((globalThis as any).FRIENDLITY_ID_AUTO).toBe(0);
-        });
-    });
 
     describe('エクスポート確認: CARD_REGION_ID_*', () => {
         it('CARD_REGION_ID_ARMS_RIGHT_1 が 0', () => {
@@ -90,7 +67,7 @@ describe('common.js', () => {
 
     describe('コアロジック確認', () => {
         it('GetConstDataKindText(1) が "アイテム"', () => {
-            expect(GetConstDataKindText((globalThis as any).CONST_DATA_KIND_ITEM)).toBe('アイテム');
+            expect(GetConstDataKindText(CONST_DATA_KIND_ITEM)).toBe('アイテム');
         });
         it('GetParamText(0) が "STR"', () => {
             expect(GetParamText(0)).toBe('STR');

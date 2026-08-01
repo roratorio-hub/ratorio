@@ -3,7 +3,7 @@ import { describe, it, expect, beforeAll } from 'vitest';
 // global.js はモジュール評価時に new CSkillManager() を実行し、その内部で skill.dat.js の
 // SKILL_ID_* を読む。CSkillManager.js を先に評価すると skill.dat.js が未初期化のまま参照され
 // 「Cannot access ... before initialization」(TDZ) になる（reference.md「global.js の module-level Init」）。
-// そこで CGlobalConstManager → skill.dat（import ゼロの自己完結モジュール）を先に完全評価してから
+// そこで skill.dat（import ゼロの自己完結モジュール）を先に完全評価してから
 // CSkillManager を読み込む。
 let CSkillData: any;
 let CSkillManager: any;
@@ -14,7 +14,6 @@ let sm: any;
 let sd: any;
 
 beforeAll(async () => {
-    await import('@roro/CGlobalConstManager.js');
     const skillDat = await import('@roro/skill.dat.js');
     SKILL_ID_TUZYO_KOGEKI = skillDat.SKILL_ID_TUZYO_KOGEKI;
     SKILL_ID_OKYU_TEATE = skillDat.SKILL_ID_OKYU_TEATE;

@@ -1,5 +1,6 @@
 import { vi, describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { IsEnableRandomEnchant } from '@roro/rndench.js';
+import { ITEM_DATA_INDEX_WPNLV } from '@roro/const/EnumItemDataIndex.js';
 
 const mockRefs = vi.hoisted(() => ({
     itemObjNew: [] as any[],
@@ -17,13 +18,11 @@ vi.mock('@roro/item.h.js', async (importActual) => {
 
 describe('rndench.js', () => {
     describe('IsEnableRandomEnchant の動作', () => {
+        // ITEM_DATA_INDEX_WPNLV は const 化され書き換え不能になったため、
+        // 偽装をやめて実際の添字をそのまま使う。
         beforeEach(() => {
-            (globalThis as any).ITEM_DATA_INDEX_WPNLV = 2;
             mockRefs.getRndOptTypeId = () => 0;
             mockRefs.itemObjNew = [];
-        });
-        afterEach(() => {
-            delete (globalThis as any).ITEM_DATA_INDEX_WPNLV;
         });
 
         it('GetRndOptTypeId が 1 以上なら true を返す', () => {

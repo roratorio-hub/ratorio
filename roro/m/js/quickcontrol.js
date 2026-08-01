@@ -1,8 +1,6 @@
 // === AUTO-GENERATED IMPORTS ===
-import './card.h.js';
 import './common.js';
 import './item.h.js';
-import './itempack.h.js';
 import { CardObjNew } from './card.dat.js';
 import { OnChangeArmsTypeLeft, OnChangeArmsTypeRight, OnChangeCard, OnChangeEquip } from './equip.js';
 import { ItemObjNew } from './item.dat.js';
@@ -30,6 +28,27 @@ import {
          GetEquippedTotalSPEquip,
          InitJobInfo, StAllCalc,
 } from './foot-bridge.js';
+import { CARD_DATA_INDEX_KIND, CARD_DATA_INDEX_NAME } from './const/EnumCardDataIndex.js';
+import {
+    CARD_KIND_ACCESSORY, CARD_KIND_ARMS, CARD_KIND_BODY, CARD_KIND_FOOT, CARD_KIND_HEAD, CARD_KIND_SHIELD,
+    CARD_KIND_SHOULDER,
+} from './const/EnumCardKind.js';
+import {
+    EQUIP_REGION_ID_ACCESSORY_1, EQUIP_REGION_ID_ACCESSORY_2, EQUIP_REGION_ID_ARMS, EQUIP_REGION_ID_ARMS_LEFT, EQUIP_REGION_ID_BODY, EQUIP_REGION_ID_HEAD_MID,
+    EQUIP_REGION_ID_HEAD_TOP, EQUIP_REGION_ID_HEAD_UNDER, EQUIP_REGION_ID_SHIELD, EQUIP_REGION_ID_SHOES, EQUIP_REGION_ID_SHOULDER,
+} from './const/EnumEquipRegionId.js';
+import { ITEM_DATA_INDEX_KIND, ITEM_DATA_INDEX_NAME } from './const/EnumItemDataIndex.js';
+import {
+    ITEM_KIND_ACCESSORY, ITEM_KIND_ACCESSORY_ON1, ITEM_KIND_ACCESSORY_ON2, ITEM_KIND_AXE, ITEM_KIND_AXE_2HAND, ITEM_KIND_BODY,
+    ITEM_KIND_BOOK, ITEM_KIND_BOW, ITEM_KIND_CLUB, ITEM_KIND_FIST, ITEM_KIND_FOOT, ITEM_KIND_FUMA,
+    ITEM_KIND_GATLINGGUN, ITEM_KIND_GRENADEGUN, ITEM_KIND_HANDGUN, ITEM_KIND_HEAD_MID, ITEM_KIND_HEAD_TOP, ITEM_KIND_HEAD_UNDER,
+    ITEM_KIND_KATAR, ITEM_KIND_KNIFE, ITEM_KIND_MUSICAL, ITEM_KIND_NONE, ITEM_KIND_RIFLE, ITEM_KIND_SHIELD,
+    ITEM_KIND_SHOTGUN, ITEM_KIND_SHOULDER, ITEM_KIND_SPEAR, ITEM_KIND_SPEAR_2HAND, ITEM_KIND_STUFF, ITEM_KIND_SWORD,
+    ITEM_KIND_SWORD_2HAND, ITEM_KIND_WHIP,
+} from './const/EnumItemKind.js';
+import { ITEM_PACK_DATA_INDEX_ITEMS, ITEM_PACK_DATA_INDEX_NAME } from './const/EnumItemPackDataIndex.js';
+import { ITEM_PACK_ITEMS_KIND_CARD, ITEM_PACK_ITEMS_KIND_ITEM } from './const/EnumItemPackItemsKind.js';
+import { ITEM_SP_STUFF2HAND } from './const/EnumItemSpId.js';
 
 
 export let g_QuickControlSW = false;

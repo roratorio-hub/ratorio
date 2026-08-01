@@ -1,4 +1,3 @@
-import { CGlobalConstManager } from './CGlobalConstManager.js';
 import { CExtraInfoAreaComponentManager } from './CExtraInfoAreaComponentManager.js';
 import { g_extraInfoDataBridge } from './CExtraInfoDataBridge.js';
 // === AUTO-GENERATED IMPORTS ===
@@ -26,25 +25,16 @@ import {
          n_A_AGI, n_A_VIT, n_A_DEX, n_A_INT,
          n_A_LUK,
 } from './roro-state.js';
-
+import {
+    CHARA_DATA_INDEX_DISP_ASPD, CHARA_DATA_INDEX_DISP_ATK_LEFT, CHARA_DATA_INDEX_DISP_ATK_RIGHT, CHARA_DATA_INDEX_DISP_CRI, CHARA_DATA_INDEX_DISP_DEF_LEFT, CHARA_DATA_INDEX_DISP_DEF_RIGHT,
+    CHARA_DATA_INDEX_DISP_FLEE, CHARA_DATA_INDEX_DISP_HIT, CHARA_DATA_INDEX_DISP_HPR, CHARA_DATA_INDEX_DISP_LUCKY, CHARA_DATA_INDEX_DISP_MATK_LEFT, CHARA_DATA_INDEX_DISP_MATK_RIGHT,
+    CHARA_DATA_INDEX_DISP_MAXHP, CHARA_DATA_INDEX_DISP_MAXSP, CHARA_DATA_INDEX_DISP_MDEF_LEFT, CHARA_DATA_INDEX_DISP_MDEF_RIGHT, CHARA_DATA_INDEX_DISP_SPR,
+} from './const/EnumCharaDataIndex.js';
+import { FLOATING_INFO_ID_EXTRA_INFO, FLOATING_INFO_ID_NONE, FLOATING_INFO_ID_NOTICE, FLOATING_INFO_ID_STATUS } from './const/EnumFloatingInfoIndex.js';
 
 
 //----------------------------------------------------------------
 // フローティング情報の種類
-//----------------------------------------------------------------
-CGlobalConstManager.DefineEnum(
-	"EnumFloatingInfoIndex",
-	[
-		"FLOATING_INFO_ID_NONE",
-
-		"FLOATING_INFO_ID_STATUS",
-		"FLOATING_INFO_ID_EXTRA_INFO",
-
-		"FLOATING_INFO_ID_NOTICE",
-	],
-	0,
-	1
-);
 
 
 /**

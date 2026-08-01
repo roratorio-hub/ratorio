@@ -1,32 +1,7 @@
-
-import { CGlobalConstManager } from '../CGlobalConstManager.js';
 // === AUTO-GENERATED IMPORTS ===
 import { CNameKana } from '../CNameKana.js';
+import { MIG_STATE_DATA_INDEX_NAME_KANA_ARRAY } from '../const/EnumMigStateDataIndex.js';
 // === END AUTO-GENERATED IMPORTS ===
-
-//----------------------------------------------------------------
-// データの要素番号
-//----------------------------------------------------------------
-CGlobalConstManager.DefineEnum(
-	"EnumMigStateDataIndex",
-	[
-		"MIG_STATE_DATA_INDEX_ID",
-
-		"MIG_STATE_DATA_INDEX_NAME_KANA_ARRAY",
-	],
-	0,
-	1
-);
-
-
-
-/*
-
-	基本的には、配列にデータを格納しており、そのまま操作する
-
-*/
-
-
 
 /**
  * 状態異常データマネージャクラス.
@@ -39,7 +14,6 @@ export function CMigStateData (dataArrayC) {
 
 	// 名称カナ配列
 	this.nameKanaArray = null;
-
 
 
 	/**
@@ -64,7 +38,6 @@ export function CMigStateData (dataArrayC) {
 		}
 
 	}).call(this);
-
 
 
 	/**

@@ -43,6 +43,13 @@ import {
 import {
          n_A_Kotei_Cast_Keigen, n_tok,
 } from '../../../ro4/m/js/ro4-state.js';
+import { AUTO_SPELL_DATA_INDEX_SKILL_ID } from './const/EnumAutoSpellDataIndex.js';
+import { CONST_DATA_KIND_JOB } from './const/EnumConstDataKind.js';
+import {
+    ITEM_SP_AUTO_SPELL, ITEM_SP_AUTO_SPELL_HIDDEN_DETAIL, ITEM_SP_AUTO_SPELL_LEVEL_UNSPECIFIED, ITEM_SP_COST_DOWN, ITEM_SP_LEARN_SKILL, ITEM_SP_LEARN_SKILL_HIDDEN_DETAIL,
+    ITEM_SP_LEARN_SKILL_LEVEL_UNSPECIFIED, ITEM_SP_SKILL_DELAY_DOWN, ITEM_SP_SKILL_FIXED_MINUS,
+} from './const/EnumItemSpId.js';
+import { USABLE_SKILL_DATA_INDEX_SKILL_ID } from './const/EnumUsableSkillDataIndex.js';
 
 
 

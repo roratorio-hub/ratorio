@@ -1,34 +1,15 @@
 import { g_attackMethodBridge } from './CAttackMethodDataBridge.js';
-import { CGlobalConstManager } from './CGlobalConstManager.js';
 // === AUTO-GENERATED IMPORTS ===
 import { COLOR_CODE_TABLE_HEADER_IS_NOT_SET, COLOR_CODE_TABLE_HEADER_IS_SET } from './common.js';
 import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectCheckedById, ValueRangeModify } from '../../common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
 // C-6: head.js 公開関数（head-bridge 経由）
 import { AutoCalc } from '../../../ro4/m/js/head-bridge.js';
+import {
+    CONTROL_TYPE_BLANK, CONTROL_TYPE_CHECKBOX, CONTROL_TYPE_CHECKBOX_SPECIAL, CONTROL_TYPE_DUMMY, CONTROL_TYPE_SELECTBOX_NUMBER, CONTROL_TYPE_SELECTBOX_PERCENT,
+    CONTROL_TYPE_SELECTBOX_SPECIAL, CONTROL_TYPE_SPECIAL, CONTROL_TYPE_TEXTBOX_NUMBER, CONTROL_TYPE_TEXTBOX_SPECIAL, CONTROL_TYPE_TEXT_NODE,
+} from './const/EnumControlType.js';
 
-// コントロール種別定義
-CGlobalConstManager.DefineEnum(
-	"EnumControlType",
-	[
-		"CONTROL_TYPE_DUMMY",
-		"CONTROL_TYPE_BLANK",
-		"CONTROL_TYPE_TEXT_NODE",			// 固定テキスト表示
-		"CONTROL_TYPE_SELECTBOX_NUMBER",
-		"CONTROL_TYPE_SELECTBOX_PERCENT",
-		"CONTROL_TYPE_SELECTBOX_SPECIAL",
-		"CONTROL_TYPE_CHECKBOX",
-		"CONTROL_TYPE_CHECKBOX_SPECIAL",
-		"CONTROL_TYPE_TEXTBOX_NUMBER",
-		"CONTROL_TYPE_TEXTBOX_SPECIAL",
-		"CONTROL_TYPE_SELECT",				// select	// ConfBase2 系のみ実装
-		"CONTROL_TYPE_TEXT",				// input type=text		// ConfBase2 系のみ実装
-		"CONTROL_TYPE_NUMBER",				// input type=number	// ConfBase2 系のみ実装
-		"CONTROL_TYPE_SPECIAL",
-	],
-	0,
-	1
-);
 
 /**
  * データ管理用クラス.

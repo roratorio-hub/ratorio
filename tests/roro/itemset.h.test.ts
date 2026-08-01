@@ -1,4 +1,5 @@
 import { describe, it, expect, beforeAll } from 'vitest';
+import { EQUIP_REGION_ID_COUNT } from '@roro/const/EnumMigItemParamId.js';
 
 let ITEM_SET_PET_ID_OFFSET: any;
 let ITEMSET_ID_LIMIT_WITH_ITEM: any;
@@ -23,7 +24,7 @@ describe('itemset.h', () => {
 
 	describe('CheckAndApplyItemSetEquipping', () => {
 		it('空の w_SE でエラーなく完了', () => {
-			(globalThis as any).EQUIP_REGION_ID_COUNT = 0;
+			// EQUIP_REGION_ID_COUNT は const 化され書き換え不能。実値のままループさせる。
 			(globalThis as any).CARD_REGION_ID_COUNT = 0;
 			(globalThis as any).ITEM_ID_NOEQUIP_SET = 0;
 			(globalThis as any).CARD_ID_NONE = 0;

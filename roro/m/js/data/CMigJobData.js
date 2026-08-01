@@ -1,42 +1,12 @@
-
-import { CGlobalConstManager } from '../CGlobalConstManager.js';
 // === AUTO-GENERATED IMPORTS ===
 import { CNameKana } from '../CNameKana.js';
 import { GetBaseLevelMin } from '../../../../ro4/m/js/data/mig.job.h.js';
+import {
+    MIG_JOB_DATA_INDEX_ATTACK_SKILL_ID_ARRAY, MIG_JOB_DATA_INDEX_BASE_EXP_TABLE_ID, MIG_JOB_DATA_INDEX_EQUIPABLE_EQUIP_FLAG_ARRAY, MIG_JOB_DATA_INDEX_HP_ARRAY, MIG_JOB_DATA_INDEX_ID, MIG_JOB_DATA_INDEX_JOB_BONUS_ARRAY,
+    MIG_JOB_DATA_INDEX_JOB_EXP_TABLE_ID, MIG_JOB_DATA_INDEX_LEARN_SKILL_ID_ARRAY, MIG_JOB_DATA_INDEX_NAME_KANA_ARRAY, MIG_JOB_DATA_INDEX_PASSIVE_SKILL_ID_ARRAY, MIG_JOB_DATA_INDEX_SP_ARRAY, MIG_JOB_DATA_INDEX_WEAPON_ASPD_ARRAY,
+    MIG_JOB_DATA_INDEX_WEIGHT_BONUS,
+} from '../const/EnumMigJobDataIndex.js';
 // === END AUTO-GENERATED IMPORTS ===
-
-//----------------------------------------------------------------
-// データの要素番号
-//----------------------------------------------------------------
-CGlobalConstManager.DefineEnum(
-	"EnumMigJobDataIndex",
-	[
-		"MIG_JOB_DATA_INDEX_ID",
-
-		"MIG_JOB_DATA_INDEX_NAME_KANA_ARRAY",
-
-		"MIG_JOB_DATA_INDEX_BASE_EXP_TABLE_ID",
-		"MIG_JOB_DATA_INDEX_JOB_EXP_TABLE_ID",
-		"MIG_JOB_DATA_INDEX_WEIGHT_BONUS",
-
-		"MIG_JOB_DATA_INDEX_WEAPON_ASPD_ARRAY",
-		"MIG_JOB_DATA_INDEX_JOB_BONUS_ARRAY",
-
-		"MIG_JOB_DATA_INDEX_HP_ARRAY",
-		"MIG_JOB_DATA_INDEX_SP_ARRAY",
-
-		"MIG_JOB_DATA_INDEX_LEARN_SKILL_ID_ARRAY",
-		"MIG_JOB_DATA_INDEX_PASSIVE_SKILL_ID_ARRAY",
-		"MIG_JOB_DATA_INDEX_ATTACK_SKILL_ID_ARRAY",
-		"MIG_JOB_DATA_INDEX_EQUIPABLE_EQUIP_FLAG_ARRAY",
-	],
-	0,
-	1
-);
-
-
-
-
 
 /**
  * 職業データクラス.
@@ -49,9 +19,6 @@ export function CMigJobData (dataArrayC) {
 
 	// 名称カナ配列
 	this.nameKanaArray = null;
-
-
-
 
 
 	/**
@@ -75,9 +42,6 @@ export function CMigJobData (dataArrayC) {
 		}
 
 	}).call(this);
-
-
-
 
 
 	/**
@@ -233,7 +197,6 @@ export function CMigJobData (dataArrayC) {
 	};
 
 
-
 	/**
 	 * 指定の装備フラグが装備可能かを判定する.
 	 * @return 攻撃スキルID配列
@@ -241,9 +204,6 @@ export function CMigJobData (dataArrayC) {
 	this.IsEquipableEquipFlag = function (eqpFlag) {
 		return (this.dataArray[MIG_JOB_DATA_INDEX_EQUIPABLE_EQUIP_FLAG_ARRAY].indexOf(eqpFlag) >= 0);
 	};
-
-
-
 
 
 }

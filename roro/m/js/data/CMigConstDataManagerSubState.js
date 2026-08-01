@@ -1,17 +1,12 @@
 // === AUTO-GENERATED IMPORTS ===
 import { CMigConstDataManagerSubBase } from './CMigConstDataManagerSubBase.js';
 import { CMigStateData } from './CMigStateData.js';
+import { MIG_STATE_DATA_INDEX_ID, MIG_STATE_DATA_INDEX_NAME_KANA_ARRAY } from '../const/EnumMigStateDataIndex.js';
 // === END AUTO-GENERATED IMPORTS ===
 /**
  * 状態異常データマネージャクラス.
  */
 export function CMigConstDataManagerSubState () {
-
-	//----------------
-	// 継承定義は、クラス本体の次に記述
-	//----------------
-
-
 
 	/**
 	 * 無名イニシャライザ.
@@ -25,8 +20,6 @@ export function CMigConstDataManagerSubState () {
 		this.sourceArray = [];
 		this.objectArray = [];
 
-		// TODO: データ移行過渡処理
-		this.idEnumObjectName = "EnumMigStateId";
 
 	}).call(this);
 

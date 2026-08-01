@@ -1,4 +1,3 @@
-import { CGlobalConstManager } from '../../../../roro/m/js/CGlobalConstManager.js';
 import { SaveSystem } from '../../../../roro/m/js/saveload-bridge.js';
 // === AUTO-GENERATED IMPORTS ===
 import '../../../../roro/m/js/common.js';
@@ -103,6 +102,29 @@ import { get as registryGet } from '../engine-registry.js';
 import {
          calc,
 } from '../head-bridge.js';
+import { BASE_EXP_TABLE_ID_NORMAL, BASE_EXP_TABLE_ID_REINCANATED } from '../../../../roro/m/js/const/BaseExpTableId.js';
+import { CONST_DATA_KIND_JOB } from '../../../../roro/m/js/const/EnumConstDataKind.js';
+import { ITEM_DATA_INDEX_EQPFLG, ITEM_DATA_INDEX_EQPLV, ITEM_DATA_INDEX_ID, ITEM_DATA_INDEX_KIND } from '../../../../roro/m/js/const/EnumItemDataIndex.js';
+import { ITEM_KIND_GRENADEGUN } from '../../../../roro/m/js/const/EnumItemKind.js';
+import {
+    JOB_ID_ACOLYTE, JOB_ID_ALCHEMIST, JOB_ID_ALITEA, JOB_ID_ARCBISHOP, JOB_ID_ARCHER, JOB_ID_ASSASIN,
+    JOB_ID_ASSASINCROSS, JOB_ID_BARD, JOB_ID_BLACKSMITH, JOB_ID_CHAMPION, JOB_ID_CHASER, JOB_ID_CREATOR,
+    JOB_ID_CROWN, JOB_ID_CRUSADER, JOB_ID_DANCER, JOB_ID_DRUID, JOB_ID_GENETIC, JOB_ID_GILOTINCROSS,
+    JOB_ID_GUNSLINGER, JOB_ID_HIGHPRIEST, JOB_ID_HIGHWIZARD, JOB_ID_HI_ACOLYTE, JOB_ID_HI_ARCHER, JOB_ID_HI_MAGICIAN,
+    JOB_ID_HI_MARCHANT, JOB_ID_HI_NOVICE, JOB_ID_HI_SWORDMAN, JOB_ID_HI_THIEF, JOB_ID_HUNTER, JOB_ID_KAGERO,
+    JOB_ID_KARNOS, JOB_ID_KNIGHT, JOB_ID_LORDKNIGHT, JOB_ID_MAGICIAN, JOB_ID_MARCHANT, JOB_ID_MECHANIC,
+    JOB_ID_MINSTREL, JOB_ID_MONK, JOB_ID_NINJA, JOB_ID_NOVICE, JOB_ID_OBORO, JOB_ID_PALADIN,
+    JOB_ID_PRIEST, JOB_ID_PROFESSOR, JOB_ID_RANGER, JOB_ID_REBELLION, JOB_ID_ROGUE, JOB_ID_ROYALGUARD,
+    JOB_ID_RUNEKNIGHT, JOB_ID_SAGE, JOB_ID_SHADOWCHASER, JOB_ID_SHURA, JOB_ID_SNIPER, JOB_ID_SORCERER,
+    JOB_ID_SOULLINKER, JOB_ID_SOUL_REAPER, JOB_ID_STARGRADIATOR, JOB_ID_STAR_EMPEROR, JOB_ID_SUMMONER, JOB_ID_SUPERNOVICE,
+    JOB_ID_SUPERNOVICE_PLUS, JOB_ID_SWORDMAN, JOB_ID_TAEGWON, JOB_ID_THIEF, JOB_ID_WANDERER, JOB_ID_WARLOCK,
+    JOB_ID_WHITESMITH, JOB_ID_WIZARD, JOB_ID_ZYPSY,
+} from '../../../../roro/m/js/const/EnumJobId.js';
+import {
+    JOB_EXP_TABLE_ID_1ST, JOB_EXP_TABLE_ID_1ST_REINCANATED, JOB_EXP_TABLE_ID_2ND, JOB_EXP_TABLE_ID_2ND_REINCANATED, JOB_EXP_TABLE_ID_3RD, JOB_EXP_TABLE_ID_4TH,
+    JOB_EXP_TABLE_ID_EXTRA_1ST, JOB_EXP_TABLE_ID_EXTRA_1ST_UPGRADE, JOB_EXP_TABLE_ID_NOVICE, JOB_EXP_TABLE_ID_NOVICE_REINCANATED, JOB_EXP_TABLE_ID_STAR_GRADIATOR, JOB_EXP_TABLE_ID_SUMMONER,
+    JOB_EXP_TABLE_ID_SUPER_NOVICE,
+} from '../../../../roro/m/js/const/JobExpTableId.js';
 
 
 //================================================================================================
@@ -113,119 +135,6 @@ import {
 //================================================================================================
 //================================================================================================
 
-CGlobalConstManager.DefineEnum(
-	"EnumJobId",
-	[
-		"JOB_ID_NOVICE",
-
-		// １次職
-		"JOB_ID_SWORDMAN",	//  1
-		"JOB_ID_THIEF",
-		"JOB_ID_ACOLYTE",
-		"JOB_ID_ARCHER",
-		"JOB_ID_MAGICIAN",
-		"JOB_ID_MARCHANT",	//  6
-
-		// ２次職
-		"JOB_ID_KNIGHT",	//  7
-		"JOB_ID_ASSASIN",
-		"JOB_ID_PRIEST",
-		"JOB_ID_HUNTER",	// 10
-		"JOB_ID_WIZARD",
-		"JOB_ID_BLACKSMITH",
-		"JOB_ID_CRUSADER",
-		"JOB_ID_ROGUE",
-		"JOB_ID_MONK",	// 15
-		"JOB_ID_BARD",
-		"JOB_ID_DANCER",
-		"JOB_ID_SAGE",
-		"JOB_ID_ALCHEMIST",	// 19
-
-		"JOB_ID_SUPERNOVICE",	// 20
-
-		// 転生２次職
-		"JOB_ID_LORDKNIGHT",	// 21
-		"JOB_ID_ASSASINCROSS",
-		"JOB_ID_HIGHPRIEST",
-		"JOB_ID_SNIPER",
-		"JOB_ID_HIGHWIZARD",	// 25
-		"JOB_ID_WHITESMITH",
-		"JOB_ID_PALADIN",
-		"JOB_ID_CHASER",
-		"JOB_ID_CHAMPION",
-		"JOB_ID_CROWN",	// 30
-		"JOB_ID_ZYPSY",
-		"JOB_ID_PROFESSOR",
-		"JOB_ID_CREATOR",	// 33
-
-		"JOB_ID_HI_NOVICE",	// 34
-
-		// 転生１次職
-		"JOB_ID_HI_SWORDMAN",	// 35
-		"JOB_ID_HI_THIEF",
-		"JOB_ID_HI_ACOLYTE",
-		"JOB_ID_HI_ARCHER",
-		"JOB_ID_HI_MAGICIAN",
-		"JOB_ID_HI_MARCHANT",	// 40
-
-		// 特殊２次職相当
-		"JOB_ID_TAEGWON",	// 41
-		"JOB_ID_STARGRADIATOR",
-		"JOB_ID_SOULLINKER",
-		"JOB_ID_NINJA",
-		"JOB_ID_GUNSLINGER",	// 45
-
-		// ３次職
-		"JOB_ID_RUNEKNIGHT",	// 46
-		"JOB_ID_GILOTINCROSS",	// 47
-		"JOB_ID_ARCBISHOP",		// 48
-		"JOB_ID_RANGER",		// 49
-		"JOB_ID_WARLOCK",		// 50
-		"JOB_ID_MECHANIC",		// 51
-		"JOB_ID_ROYALGUARD",	// 52
-		"JOB_ID_SHADOWCHASER",	// 53
-		"JOB_ID_SHURA",			// 54
-		"JOB_ID_MINSTREL",		// 55
-		"JOB_ID_WANDERER",		// 56
-		"JOB_ID_SORCERER",		// 57
-		"JOB_ID_GENETIC",		// 58
-
-		// 特殊３次職相当
-		"JOB_ID_KAGERO",			// 59
-		"JOB_ID_OBORO",				// 60
-		"JOB_ID_SUPERNOVICE_PLUS",	// 61
-		"JOB_ID_REBELLION",			// 62
-		"JOB_ID_SUMMONER",			// 63
-		"JOB_ID_STAR_EMPEROR",		// 64
-		"JOB_ID_SOUL_REAPER",		// 65
-
-		// ４次職
-		"JOB_ID_DRAGON_KNIGHT", 	// 66
-		"JOB_ID_SHADOW_CROSS",  	// 67
-		"JOB_ID_CARDINAL",  		// 68
-		"JOB_ID_WIND_HAWK",  		// 69
-		"JOB_ID_ARCH_MAGE",  		// 70
-		"JOB_ID_MEISTER",  			// 71
-		"JOB_ID_IMPERIAL_GUARD",	// 72
-		"JOB_ID_ABYSS_CHASER",  	// 73
-		"JOB_ID_INQUISITOR",  		// 74
-		"JOB_ID_TROUBADOUR",  		// 75
-		"JOB_ID_TROUVERE",  		// 76
-		"JOB_ID_ELEMENTAL_MASTER",  // 77
-		"JOB_ID_BIOLO",  			// 78
-		"JOB_ID_SKY_EMPEROR",  		// 79
-		"JOB_ID_SOUL_ASCETIC",  	// 80
-		"JOB_ID_SHINKIROU",  		// 81
-		"JOB_ID_SHIRANUI",  		// 82
-		"JOB_ID_NIGHT_WATCH",  		// 83
-		"JOB_ID_HYPER_NOVICE",  	// 84
-		"JOB_ID_SPIRIT_HANDLER",	// 85
-		// ドルイド系
-		"JOB_ID_DRUID",		// 86
-		"JOB_ID_KARNOS",	// 87
-		"JOB_ID_ALITEA",	// 88
-	]
-);
 
 // Enum に登録するとマズイので
 export const JOB_ID_ANY = -1;
@@ -1301,36 +1210,11 @@ export function GetSPBase(jobId, baseLv, bChild) {
  * - 4次職・拡張4次職
  */
 
-CGlobalConstManager.DefineEnum(
-	"BaseExpTableId",
-	[
-		"BASE_EXP_TABLE_ID_NORMAL",
-		"BASE_EXP_TABLE_ID_REINCANATED",
-	]
-);
 
 /**
  * 8と12は同じテーブルを参照するが
  * 一部のコードで本定数を職業分類として利用する場面があるので分けている
  */
-CGlobalConstManager.DefineEnum(
-	"JobExpTableId",
-	[
-		"JOB_EXP_TABLE_ID_NOVICE",				// 0: ノービスのみ
-		"JOB_EXP_TABLE_ID_NOVICE_REINCANATED",	// 1: 転生ノービスのみ
-		"JOB_EXP_TABLE_ID_1ST",					// 2: ソードマン、マーチャント、アコライトなど公式で「1次職」と表記される職業
-		"JOB_EXP_TABLE_ID_1ST_REINCANATED", 	// 3: 転生した「1次職」
-		"JOB_EXP_TABLE_ID_2ND",					// 4: ナイト、ブラックスミス、プリーストなど公式で「2次職」と表記される職業
-		"JOB_EXP_TABLE_ID_2ND_REINCANATED",		// 5: ロードナイト、ホワイトスミスなど公式で「上位2次職」と表記される職業
-		"JOB_EXP_TABLE_ID_EXTRA_1ST",			// 6: 忍者、ガンスリンガーなど公式で「特殊1次職」と表記される職業
-		"JOB_EXP_TABLE_ID_STAR_GRADIATOR",		// 7: 拳聖のみ
-		"JOB_EXP_TABLE_ID_3RD",					// 8: ルーンナイト、メカニック、アークビショップなど公式で「3次職」と表記される職業
-		"JOB_EXP_TABLE_ID_SUPER_NOVICE",		// 9: 限界突破していないスーパーノービス
-		"JOB_EXP_TABLE_ID_SUMMONER",			// 10: サモナーのみ
-		"JOB_EXP_TABLE_ID_4TH",					// 11: ドラゴンナイト、マイスターなど公式で「4次職」、または蜃気楼、不知火など公式で「上位特殊2次職」と表記される職業
-		"JOB_EXP_TABLE_ID_EXTRA_1ST_UPGRADE",	// 12 リベリオン、ソウルリーパー，星帝など公式で「上位特殊1次職」と表記される職業＋スパノビ限界突破
-	]
-);
 
 /**
  * ベース経験値テーブルを取得する.

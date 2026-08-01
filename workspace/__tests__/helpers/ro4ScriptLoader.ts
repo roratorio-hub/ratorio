@@ -87,7 +87,6 @@ export function loadRo4Dependencies(): void {
         'monstergroup.dat.js',
         'monstermap.h.js',
         'item.h.js',
-        'arrow.h.js',
         'card.h.js',
         'costume.h.js',
         'pet.h.js',

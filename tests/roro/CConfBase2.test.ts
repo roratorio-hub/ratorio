@@ -1,5 +1,4 @@
 import { describe, it, expect, vi } from 'vitest';
-import '/workspace/ratorio/roro/m/js/CGlobalConstManager.js';
 import {
     CConfBaseSelectData, CConfBaseConfData,
     CConfBaseRegisterParam, CConfBaseManagementParam,

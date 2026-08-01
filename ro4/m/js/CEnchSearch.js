@@ -3,6 +3,7 @@ import '../../../roro/m/js/common.js';
 import { g_constDataManager } from './global.js';
 import { CardObjNew } from '../../../roro/m/js/card.dat.js';
 import { RebuildCardSelectSubCollectEnchListData } from '../../../roro/m/js/hmcard.js';
+import { CONST_DATA_KIND_ENCHANT_LIST } from '../../../roro/m/js/const/EnumConstDataKind.js';
 // === END AUTO-GENERATED IMPORTS ===
 export class enchSearch {
     //エンチャント検索

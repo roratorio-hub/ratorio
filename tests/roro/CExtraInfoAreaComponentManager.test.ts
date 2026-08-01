@@ -44,7 +44,6 @@ vi.mock('@roro/monster.dat.js', async (importActual) => {
     return { ...actual, get MonsterObjNew() { return []; } };
 });
 
-import '@roro/CGlobalConstManager.js';
 import '@roro/CInstanceManager.js';
 import {
     GetExtraInfoText,

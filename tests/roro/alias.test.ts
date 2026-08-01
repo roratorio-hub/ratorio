@@ -1,5 +1,4 @@
 import { describe, it, expect } from 'vitest';
-import '@roro/CGlobalConstManager.js';
 import { g_AliasDataArray } from '@roro/alias.dat.js';
 import { TranslateAlias } from '@roro/alias.h.js';
 
@@ -12,17 +11,6 @@ describe('alias.dat.js', () => {
 });
 
 describe('alias.h.js', () => {
-    describe('DefineEnum 副作用確認', () => {
-        it('ALIAS_DATA_INDEX_ALIAS が 0 に定義される', () => {
-            expect((globalThis as any).ALIAS_DATA_INDEX_ALIAS).toBe(0);
-        });
-        it('ALIAS_DATA_INDEX_ORIGIN が 1 に定義される', () => {
-            expect((globalThis as any).ALIAS_DATA_INDEX_ORIGIN).toBe(1);
-        });
-        it('ALIAS_DATA_INDEX_COUNT が 2 に定義される', () => {
-            expect((globalThis as any).ALIAS_DATA_INDEX_COUNT).toBe(2);
-        });
-    });
 
     describe('TranslateAlias ロジック確認', () => {
         it('"GD" → "ゲフェン地下ダンジョン"', () => {

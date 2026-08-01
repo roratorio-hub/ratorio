@@ -29,7 +29,6 @@ vi.mock('@roro/monster.dat.js', async (importActual) => {
     return { ...actual, get MonsterObjNew() { return []; } };
 });
 
-import '/workspace/ratorio/roro/m/js/CGlobalConstManager.js';
 import { GetFloatingInfoText, CFloatingInfoAreaInfoUnit, CFloatingInfoAreaComponentManager } from '@roro/CFloatingInfoAreaComponentManager.js';
 import { g_extraInfoDataBridge } from '@roro/CExtraInfoDataBridge.js';
 

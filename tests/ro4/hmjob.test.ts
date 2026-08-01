@@ -34,6 +34,7 @@ import {
     ApplyResResist, ApplyMresResist, ApplyPAtkLeftHandPenalty,
     ApplySpecModify, migrateOtherJob, OnChangeJob,
 } from '@ro4/hmjob.js';
+import { MIG_PARAM_ID_CON, MIG_PARAM_ID_CRT, MIG_PARAM_ID_POW, MIG_PARAM_ID_SPL, MIG_PARAM_ID_STA, MIG_PARAM_ID_WIS } from '@roro/const/EnumMigItemParamId.js';
 
 describe('hmjob.js', () => {
     describe('window互換確認', () => {
@@ -65,20 +66,20 @@ describe('hmjob.js', () => {
         // GetTStatusPoint のような「scope-audit 偽陰性」バグを検出するための重要なテスト
         describe('MIG_PARAM_ID モック使用', () => {
             beforeAll(() => {
-                (globalThis as any).MIG_PARAM_ID_POW = 6;
-                (globalThis as any).MIG_PARAM_ID_STA = 7;
-                (globalThis as any).MIG_PARAM_ID_WIS = 8;
-                (globalThis as any).MIG_PARAM_ID_SPL = 9;
-                (globalThis as any).MIG_PARAM_ID_CON = 10;
-                (globalThis as any).MIG_PARAM_ID_CRT = 11;
+                MIG_PARAM_ID_POW = 6;
+                MIG_PARAM_ID_STA = 7;
+                MIG_PARAM_ID_WIS = 8;
+                MIG_PARAM_ID_SPL = 9;
+                MIG_PARAM_ID_CON = 10;
+                MIG_PARAM_ID_CRT = 11;
             });
             afterAll(() => {
-                delete (globalThis as any).MIG_PARAM_ID_POW;
-                delete (globalThis as any).MIG_PARAM_ID_STA;
-                delete (globalThis as any).MIG_PARAM_ID_WIS;
-                delete (globalThis as any).MIG_PARAM_ID_SPL;
-                delete (globalThis as any).MIG_PARAM_ID_CON;
-                delete (globalThis as any).MIG_PARAM_ID_CRT;
+                delete MIG_PARAM_ID_POW;
+                delete MIG_PARAM_ID_STA;
+                delete MIG_PARAM_ID_WIS;
+                delete MIG_PARAM_ID_SPL;
+                delete MIG_PARAM_ID_CON;
+                delete MIG_PARAM_ID_CRT;
             });
             it('GetTStatusPoint が呼び出し可能', () => {
                 expect(() => GetTStatusPoint(200)).not.toThrow();

@@ -2,6 +2,7 @@ import { CConfBase } from './CConfBase.js';
 // === AUTO-GENERATED IMPORTS ===
 import './CConfBase.js';
 import { HtmlCreateElementOption } from '../../common/js/util.js';
+import { CONTROL_TYPE_CHECKBOX, CONTROL_TYPE_DUMMY, CONTROL_TYPE_SELECTBOX_NUMBER, CONTROL_TYPE_SELECTBOX_SPECIAL } from './const/EnumControlType.js';
 // === END AUTO-GENERATED IMPORTS ===
 
 export function CCharaConfSanzi(confArray) {
