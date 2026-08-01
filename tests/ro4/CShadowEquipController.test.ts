@@ -33,4 +33,22 @@ describe('CShadowEquipController.js', () => {
             expect(bridge.isShadowEquipAvailable()).toBe(true);
         });
     });
+
+    // 仮引数は bDualShadowArms なのに本体が bDualArms を読んでおり、
+    // 呼び出すと必ず ReferenceError になっていた（現状は呼び出し元が無く潜伏）。
+    describe('getEqprgnNames', () => {
+        const EXPECTED = [
+            'eqprgn-arms-right', 'eqprgn-arms-left', 'eqprgn-body',
+            'eqprgn-foot', 'eqprgn-accessory-1', 'eqprgn-accessory-2',
+        ];
+
+        it('二刀流フラグ false で装備箇所名を返す', () => {
+            expect(CShadowEquipController.getEqprgnNames(false)).toEqual(EXPECTED);
+        });
+
+        // 二刀流は「現状そのような仕様はない」ため、今は同じ配列を返すのが正
+        it('二刀流フラグ true でも同じ装備箇所名を返す', () => {
+            expect(CShadowEquipController.getEqprgnNames(true)).toEqual(EXPECTED);
+        });
+    });
 });

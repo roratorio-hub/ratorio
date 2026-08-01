@@ -9,7 +9,9 @@
         "test:ui": "vitest --ui",
         "test:integration": "vitest run --config vitest.integration.config.ts",
         "test:staging-diff": "vitest run --config vitest.staging.config.ts",
-        "scan:undeclared": "node scan-undeclared-writes.mjs"
+        "scan:undeclared": "node scan-undeclared-writes.mjs && node scan-undeclared-reads.mjs",
+        "scan:undeclared-writes": "node scan-undeclared-writes.mjs",
+        "scan:undeclared-reads": "node scan-undeclared-reads.mjs"
     },
     "engines": {
         "node": ">=20.0.0",

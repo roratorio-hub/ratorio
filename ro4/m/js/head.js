@@ -587,7 +587,8 @@ import {
 
 // C-6: 共有 state（旧 foot.js window 変数）
 import {
-         SU_STR, n_A_JobLV, n_A_STR, n_A_AGI,
+         SU_STR, SU_AGI, SU_VIT, SU_INT, SU_DEX, SU_LUK,
+         n_A_JobLV, n_A_STR, n_A_AGI,
          n_A_VIT, n_A_DEX, n_A_INT, n_A_LUK,
          n_A_WeaponType, n_A_HEAD_DEF_PLUS, n_A_BODY_DEF_PLUS, n_A_SHIELD_DEF_PLUS,
          n_A_SHOULDER_DEF_PLUS, n_A_SHOES_DEF_PLUS, n_A_WeaponLV, n_A_Weapon_ATK,
@@ -6226,7 +6227,11 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			n_Delay[7] = 0;
 
 			// 威力に影響するＤＥＦは５００まで
-			var defpower =  B_Original_DEF > 500 ? 500 :  B_Original_DEF;
+			// dewindow: 旧 mob.js の暗黙グローバル B_Original_DEF（除算DEF補正前の値）を参照していたが、
+			// 移行時に mob.js 側が関数ローカル var 化され ReferenceError になっていた。
+			// 同値が mobData[MONSTER_DATA_INDEX_DEF_DIV_IGNORE_BUFF]（補正前の値を保持）に入っているためそれを使う。
+			var origDef = mobData[MONSTER_DATA_INDEX_DEF_DIV_IGNORE_BUFF];
+			var defpower =  origDef > 500 ? 500 :  origDef;
 			wbairitu = (200 + defpower) * n_A_ActiveSkillLV;
 
 			var AS_ATK = 0;
