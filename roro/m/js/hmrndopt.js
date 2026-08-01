@@ -743,10 +743,10 @@ export function GetRndOptValue(eqpRgnId, spid, invalidItemIdArray, bListUp) {
 			spValPureStatus = Math.floor(pureParamArray[spDefPureStatusBy - 1] / 10);
 		}
 		else if (7 == spDefPureStatusBy) {
-			spValPureStatus = pureStatusValue[PARAM_DEX];
+			spValPureStatus = pureParamArray[PARAM_DEX];
 		}
 		else if (8 == spDefPureStatusBy) {
-			spValPureStatus = pureStatusValue[PARAM_VIT];
+			spValPureStatus = pureParamArray[PARAM_VIT];
 		}
 		spDefRemain = spDefRemain % ITEM_SP_PURE_STR_BY_10_OFFSET;
 
