@@ -115,12 +115,12 @@ export class CShadowEquipController {
 
 	/**
 	 * 有効な装備箇所名の配列を取得する.
-	 * @param {boolean} bDualArms 二刀流フラグ
+	 * @param {boolean} bDualShadowArms 二刀流フラグ
 	 */
 	static getEqprgnNames (bDualShadowArms) {
 
 		// シャドウ装備二刀流の場合
-		if (bDualArms) {
+		if (bDualShadowArms) {
 			// TODO: 現状、そのような仕様はないので、未対応
 			return [
 				this.EQPRGN_NAME_ARMS_RIGHT,

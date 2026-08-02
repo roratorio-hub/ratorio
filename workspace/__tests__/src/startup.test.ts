@@ -5,6 +5,8 @@
  */
 
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { register } from '../../../ro4/m/js/engine-registry.js';
+import { buildJobSelectOptions } from '../../src/startup';
 
 describe('startup.ts - 起動時初期化処理', () => {
 
@@ -43,49 +45,72 @@ describe('startup.ts - 起動時初期化処理', () => {
         });
     });
 
-    describe('ジョブセレクトボックス構築', () => {
-        it('セレクトボックスが存在する場合、オプションが追加できる', () => {
-            const selectJob = document.createElement('select');
-            selectJob.id = 'OBJID_SELECT_JOB';
-            container.appendChild(selectJob);
-
-            // オプションを追加できることを確認
-            const option = document.createElement('option');
-            option.text = 'Test Job';
-            option.value = 'test_job';
-            selectJob.appendChild(option);
-
-            expect(selectJob.options.length).toBe(1);
-            expect(selectJob.options[0].text).toBe('Test Job');
-            expect(selectJob.options[0].value).toBe('test_job');
-        });
-
-        it('複数のジョブオプションを追加できる', () => {
-            const selectJob = document.createElement('select');
-            selectJob.id = 'OBJID_SELECT_JOB';
-            container.appendChild(selectJob);
-
-            const jobs = [
-                { text: 'Swordsman', value: 'swordsman' },
-                { text: 'Mage', value: 'mage' },
-                { text: 'Archer', value: 'archer' },
-            ];
-
-            jobs.forEach(job => {
-                const option = document.createElement('option');
-                option.text = job.text;
-                option.value = job.value;
-                selectJob.appendChild(option);
+    describe('ジョブセレクトボックス構築（buildJobSelectOptions）', () => {
+        // job.yaml 廃止後、選択肢は計算エンジンの職業データから構築される。
+        // option の value は mig ID の数値文字列でなければならない
+        // （JS エンジン側が parseInt して GetBaseLevelMin 等の数値引数に渡すため）。
+        function registerJobData(entries: (string | null)[]) {
+            register('g_constDataManager', {
+                jobDataManager: {
+                    sourceArray: entries.map((name) => (name === null ? null : {})),
+                    GetName: (migId: number) => entries[migId],
+                },
             });
+        }
 
-            expect(selectJob.options.length).toBe(3);
-            expect(selectJob.options[1].value).toBe('mage');
+        it('mig ID を value、職業名を表示テキストにした選択肢を構築する', () => {
+            const selectJob = document.createElement('select');
+            container.appendChild(selectJob);
+            registerJobData(['ノービス', 'ソードマン', 'マジシャン']);
+
+            buildJobSelectOptions(selectJob);
+
+            expect(Array.from(selectJob.options).map((o) => [o.value, o.text])).toEqual([
+                ['0', 'ノービス'],
+                ['1', 'ソードマン'],
+                ['2', 'マジシャン'],
+            ]);
         });
 
-        it('セレクトボックスが存在しない場合、セットアップはスキップできる', () => {
-            // 要素が存在しない場合、処理がスキップされることを確認
-            const nonExistentElement = document.getElementById('OBJID_SELECT_JOB_NOT_EXISTS');
-            expect(nonExistentElement).toBeNull();
+        it('value は parseInt で元の mig ID に戻せる', () => {
+            const selectJob = document.createElement('select');
+            container.appendChild(selectJob);
+            registerJobData(['ノービス', 'ソードマン', 'マジシャン']);
+
+            buildJobSelectOptions(selectJob);
+            selectJob.value = '2';
+
+            expect(parseInt(selectJob.value, 10)).toBe(2);
+        });
+
+        it('欠番（sourceArray が空）の mig ID は選択肢に含めない', () => {
+            const selectJob = document.createElement('select');
+            container.appendChild(selectJob);
+            registerJobData(['ノービス', null, 'マジシャン']);
+
+            buildJobSelectOptions(selectJob);
+
+            expect(Array.from(selectJob.options).map((o) => o.value)).toEqual(['0', '2']);
+        });
+
+        it('名称が空の職業は選択肢に含めない', () => {
+            const selectJob = document.createElement('select');
+            container.appendChild(selectJob);
+            registerJobData(['ノービス', '', 'マジシャン']);
+
+            buildJobSelectOptions(selectJob);
+
+            expect(Array.from(selectJob.options).map((o) => o.value)).toEqual(['0', '2']);
+        });
+
+        it('エンジンデータが未登録なら選択肢を追加しない', () => {
+            const selectJob = document.createElement('select');
+            container.appendChild(selectJob);
+            register('g_constDataManager', undefined);
+
+            buildJobSelectOptions(selectJob);
+
+            expect(selectJob.options.length).toBe(0);
         });
     });
 
@@ -243,21 +268,21 @@ describe('startup.ts - 起動時初期化処理', () => {
         });
     });
 
-    describe('データロード待機', () => {
-        it('データロード完了を待つ機構が実装されている', () => {
-            // waitForDataLoaded関数の概念テスト
-            // 実装では JobMap, SkillMap, ItemMap の isLoaded() を呼び出す
-            expect(true).toBe(true);
+    describe('データロード待機（waitForDataLoaded）', () => {
+        // bundle.js は classic script のため計算エンジン（module script）より先に走る。
+        // waitForDataLoaded はエンジンの職業データが登録されるまで待つ。
+        it('エンジンの職業データが登録済みなら即座に解決する', async () => {
+            register('g_constDataManager', { jobDataManager: { sourceArray: [{}] } });
+
+            await expect((window as any).waitForDataLoaded()).resolves.toBeUndefined();
         });
 
-        it('タイムアウト機構が実装されている', () => {
-            // maxRetries = 300 (30秒) でタイムアウト
-            expect(true).toBe(true);
-        });
+        it('職業データが後から登録された場合も解決する', async () => {
+            register('g_constDataManager', undefined);
+            const pending = (window as any).waitForDataLoaded();
+            register('g_constDataManager', { jobDataManager: { sourceArray: [{}] } });
 
-        it('すべてのデータが読み込まれるまで待機する', () => {
-            // JobMap, SkillMap, ItemMap がすべて isLoaded() = true になるまで待機
-            expect(true).toBe(true);
+            await expect(pending).resolves.toBeUndefined();
         });
     });
 

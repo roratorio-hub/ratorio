@@ -1257,8 +1257,8 @@ export class CSaveDataManager {
 
 		// 職業選択セレクトボックスの設定
 		HtmlSetObjectValueById(objID, propValue);
-		let jobData = JobMap.getByMigIdNum(propValue);
-		changeJobSettings(jobData.getId());
+		// セレクトボックスの value は mig ID の数値文字列
+		changeJobSettings(String(propValue));
 
 		// スパノビ　全武器チェック
 		if (IsSameJobClass(JOB_ID_SUPERNOVICE) || IsSameJobClass(JOB_ID_SUPERNOVICE_PLUS)) {

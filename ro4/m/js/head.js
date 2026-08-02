@@ -587,7 +587,8 @@ import {
 
 // C-6: 共有 state（旧 foot.js window 変数）
 import {
-         SU_STR, n_A_JobLV, n_A_STR, n_A_AGI,
+         SU_STR, SU_AGI, SU_VIT, SU_INT, SU_DEX, SU_LUK,
+         n_A_JobLV, n_A_STR, n_A_AGI,
          n_A_VIT, n_A_DEX, n_A_INT, n_A_LUK,
          n_A_WeaponType, n_A_HEAD_DEF_PLUS, n_A_BODY_DEF_PLUS, n_A_SHIELD_DEF_PLUS,
          n_A_SHOULDER_DEF_PLUS, n_A_SHOES_DEF_PLUS, n_A_WeaponLV, n_A_Weapon_ATK,
@@ -1426,6 +1427,10 @@ export function BattleCalc999Body(battleCalcInfo, charaData, specData, mobData, 
 		battleCalcResult.delayInput = n_Delay[4];
 		battleCalcResult.damageInterval = n_Delay[5];
 		battleCalcResult.objectLifeTime = n_Delay[6];
+		// 設置スキル判定は結果インスタンスごとに確定させる。
+		// 描画は全計算の完了後なので、グローバル変数のままだと追撃・オートスペルが
+		// 最後に走ったときに「最後の計算結果」の値で描画されてしまう。
+		battleCalcResult.bGroundInstallation = g_bDefinedDamageIntervals;
 		battleCalcResult.coolTime = n_Delay[7];
 
 		// 修正量削減のために、グローバル変数で密結合になっているデータを取得
@@ -6226,7 +6231,11 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			n_Delay[7] = 0;
 
 			// 威力に影響するＤＥＦは５００まで
-			var defpower =  B_Original_DEF > 500 ? 500 :  B_Original_DEF;
+			// dewindow: 旧 mob.js の暗黙グローバル B_Original_DEF（除算DEF補正前の値）を参照していたが、
+			// 移行時に mob.js 側が関数ローカル var 化され ReferenceError になっていた。
+			// 同値が mobData[MONSTER_DATA_INDEX_DEF_DIV_IGNORE_BUFF]（補正前の値を保持）に入っているためそれを使う。
+			var origDef = mobData[MONSTER_DATA_INDEX_DEF_DIV_IGNORE_BUFF];
+			var defpower =  origDef > 500 ? 500 :  origDef;
 			wbairitu = (200 + defpower) * n_A_ActiveSkillLV;
 
 			var AS_ATK = 0;
@@ -10934,7 +10943,7 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 	//----------------
 	// 設置系
 	//----------------
-	if (g_bDefinedDamageIntervals) {
+	if (battleCalcResult.bGroundInstallation) {
 
 		// サブラベル
 		objCell = HtmlCreateElement("div", objGridBasic);
@@ -11163,7 +11172,7 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 	objCell.classList.add("BTLRSLT_TAB_DAMAGE");
 	objCell.classList.add(partIdStr);
 	objCell.classList.add("CSSCLS_BTLRSLT_CENTERING");
-	if (g_bDefinedDamageIntervals) {
+	if (battleCalcResult.bGroundInstallation) {
 		HtmlCreateTextNode("1Hit", objCell);
 	}
 	else {
@@ -11346,7 +11355,7 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 	}
 	else {
 		// 秒数
-		if (g_bDefinedDamageIntervals == true) {
+		if (battleCalcResult.bGroundInstallation == true) {
 			valueWork = battleCalcResultAll.GetAttackSecondSummaryMinInterval();
 		} else {
 			valueWork = battleCalcResultAll.GetAttackSecondSummaryMin();
@@ -11386,7 +11395,7 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 	}
 	else {
 		// 秒数
-		if (g_bDefinedDamageIntervals == true) {
+		if (battleCalcResult.bGroundInstallation == true) {
 			valueWork = battleCalcResultAll.GetAttackSecondSummaryAveInterval();
 		} else {
 			valueWork = battleCalcResultAll.GetAttackSecondSummaryAve();
@@ -11423,7 +11432,7 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 	}
 	else {
 		// 秒数
-		if (g_bDefinedDamageIntervals == true) {
+		if (battleCalcResult.bGroundInstallation == true) {
 			valueWork = battleCalcResultAll.GetAttackSecondSummaryMaxInterval();
 		} else {
 			valueWork = battleCalcResultAll.GetAttackSecondSummaryMax();

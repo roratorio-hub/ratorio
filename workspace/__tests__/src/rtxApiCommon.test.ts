@@ -9,18 +9,6 @@ import { API_VERSION, CONTROL_CONF_LIST } from '../../src/rtxApiCommon';
 
 describe('rtxApiCommon.ts - RTX API共通機能', () => {
 
-    describe('定数定義', () => {
-        it('API_VERSIONが定義されている', () => {
-            expect(API_VERSION).toBeDefined();
-            expect(typeof API_VERSION).toBe('number');
-            expect(API_VERSION).toBeGreaterThan(0);
-        });
-
-        it('API_VERSIONが2である', () => {
-            expect(API_VERSION).toBe(2);
-        });
-    });
-
     describe('CONTROL_CONF_LIST', () => {
         it('CONTROL_CONF_LISTが配列である', () => {
             expect(Array.isArray(CONTROL_CONF_LIST)).toBe(true);

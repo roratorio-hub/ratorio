@@ -40,7 +40,6 @@ jobs:
         run: |
              pnpm install --frozen-lockfile
              pnpm run build
-             pnpm dlx ts-node --project tsconfig.node.json utils/yamlMergeAndCompress.ts
       # ------------ ここまでメインのワークフロー ----------
 
       # ワークフローがキックされた日時を json に書き出す

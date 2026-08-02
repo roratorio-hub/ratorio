@@ -398,8 +398,6 @@ export function SaveSystem(funcSaveDataModify = null){
 	if (typeof jobId === "undefined" || jobId === null) {
 		jobId = document.getElementById("OBJID_SELECT_JOB").value;
 	}
-	let jobData = JobMap.getById(jobId);
-
 
 		//----------------------------------------------------------------
 		// [0000 - 0000] バージョン情報
@@ -412,7 +410,8 @@ export function SaveSystem(funcSaveDataModify = null){
 		//----------------------------------------------------------------
 
 		// 基本情報
-		SaveData[1] = jobData.getMigIdNum();
+		// セレクトボックスの value は mig ID の数値文字列
+		SaveData[1] = parseInt(jobId, 10);
 		SaveData[2] = eval(document.calcForm.A_BaseLV.value);
 		SaveData[3] = eval(document.calcForm.A_JobLV.value);
 		SaveData[4] = eval(document.calcForm.A_STR.value);
@@ -5290,104 +5289,11 @@ export function SaveCookieConf(){
 	// アクティブスキルの限界攻撃間隔を取得し、クッキー文字列に変換
 	wStr += NtoS2(eval(document.calcForm.Conf01.value), 2);
 
-	if(n_CONFIG_SW){
-
-		// セーブデータの保存数を取得
-		// 基本＝１～１９番、拡張＝２０～５００番、全体＝１～５００番
-		var wMAX = eval(document.calcForm.Conf02.value);
-
-		// 保持しているセーブデータの保存数１９番までで、新たに入力された保存数が１９より大きい場合
-		// すなわち、拡張セーブデータが有効にされた場合
-		if(n_CONFIG[2] == 19 && wMAX > 19){
-
-			// 全体セーブデータが存在する場合
-			if(localStorage.ROratorioDOM_SaveData){
-
-				// 全体セーブデータの読み込み
-				var wSave = new Array();
-				var wYYY = localStorage.ROratorioDOM_SaveData;
-				wSave = wYYY.split("?");
-
-				// 拡張セーブデータに、読み込んだデータを設定
-				for(var i = 20; i <= 500; i++) {
-					SaveDataAll[i] = wSave[i];
-				}
-
-				// 基本セーブデータの存在検査
-				var ch = 0;
-				for(var i = 1; i <= 19; i++){
-					if(SaveDataAll[i] != "ZZZZ") ch = 1;
-				}
-
-				// 基本セーブデータが１件も無い場合
-				if(ch == 0){
-
-					// 基本セーブデータに、読み込んだデータを設定
-					for(var i = 1; i <= 19; i++) {
-						SaveDataAll[i] = wSave[i];
-					}
-
-					// 基本セーブデータ文字列をを生成
-					var wStrX = "" + SaveDataAll[0];
-					for(var i = 1; i <= 19; i++) {
-						wStrX += "?" + SaveDataAll[i];
-					}
-
-					// 有効期限を設定して、クッキーに基本セーブデータを保存
-					expireDateString = GetExpireDateString();
-					document.cookie = "ROratorioSave" +"="+ wStrX +";expires="+ expireDateString;
-				}
-			}
-
-			// 全体セーブデータが存在しない場合
-			else{
-				// 拡張セーブデータに、データなしを設定
-				for(var i = 20; i <= 500; i++) {
-					SaveDataAll[i] = "ZZZZ";
-				}
-			}
-
-			// 全体セーブデータ文字列を生成し、保存
-			var wXXX = "" + SaveDataAll[0];
-			for(var i = 1; i <= 500; i++) {
-				wXXX += "?" + SaveDataAll[i];
-			}
-			localStorage.ROratorioDOM_SaveData = wXXX;
-
-			// 名前の保存
-			if(localStorage.ROratorioDOM_SaveName){
-				var wStrX = localStorage.ROratorioDOM_SaveName;
-				set_SaveNameAll(wStrX.split("|"));
-			}
-
-			myInnerHtml("DELHTML",'　　<input type="text" name="SAVE_NAME" value="名前入力可能" size=30>　　<Font size=2><A Href="del2.html">セーブ削除</A></Font>',0);
-			kirikae=1;
-		}
-
-		// 保持しているセーブデータの保存数が、新たに入力された保存数より大きい場合
-		else if(n_CONFIG[2] < wMAX){
-			kirikae=1;
-		}
-
-		// 保持しているセーブデータの保存数より、新たに入力された保存数が小さい場合
-		else if(n_CONFIG[2] > wMAX){
-
-			// セーブスロットの選択肢を減らす
-			for(var i = n_CONFIG[2]; i != wMAX; i--) {
-				document.calcForm.A_SaveSlot.options[i-1] = null;
-			}
-
-			kirikae=1;
-
-			// １９番までしか使用できない場合は、名前入力を可能としない
-			if(wMAX == 19) {
-				myInnerHtml("DELHTML",'　　<Font size=2><A Href="del.html">セーブ削除</A></Font>',0);
-			}
-		}
-
-		// セーブデータの保存数を保持しておく
-		n_CONFIG[2] = eval(document.calcForm.Conf02.value);
-	}
+	// dewindow: ここにあった `if(n_CONFIG_SW){ ... }`（98行・拡張セーブデータ 20〜500番への移行処理）を除去した。
+	// n_CONFIG_SW は初期コミットから一度も定義されておらず、この行は常に ReferenceError を投げていたため、
+	// ブロックは一度も実行されていない。throw によって以降の cookie 保存（下記）まで到達できず、
+	// 旧 ConfData クッキー保持者の LoadSaveDataToCalculator() が中断していた。
+	// 「一度も実行されていない」実挙動を保存したまま throw のみを解消する。
 
 	// セーブデータの保存数を、クッキー文字列に変換＆追記
 	wStr += NtoS2(n_CONFIG[2],2);

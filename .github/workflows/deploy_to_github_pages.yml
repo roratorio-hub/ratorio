@@ -42,7 +42,6 @@ jobs:
         run: |
              pnpm install --frozen-lockfile
              pnpm run build
-             pnpm dlx ts-node --project tsconfig.node.json utils/yamlMergeAndCompress.ts
       # ------------ ここまでメインのワークフロー ----------
 
       # PR に release ラベルが付与されている時のみ PR がマージされた日時を json に書き出す

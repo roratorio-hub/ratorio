@@ -1,7 +1,9 @@
 import { load as loadYAML, dump as dumpYAML } from "js-yaml"
 import { base64ToUint8Array, uint8ArrayToBase64, zstdCompressString, zstdDecompressString } from "./funcZstd";
 
-export const API_VERSION = 2;
+// 3: item/job/skill.yaml 廃止に伴い job_id を mig ID の数値文字列へ変更し、
+//    装備の id_num / name を廃止（_mig_id_num のみ）した。旧データとは非互換。
+export const API_VERSION = 3;
 
 export const CONTROL_CONF_LIST = [
     {
