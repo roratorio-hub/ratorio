@@ -6,6 +6,7 @@ import { HtmlGetElementById, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlSe
 // === END AUTO-GENERATED IMPORTS ===
 // C-6: global.js 管理の共有 conf state
 import {
+         g_constDataManager,
          n_Nitou,
 } from '../../../ro4/m/js/global.js';
 
@@ -202,7 +203,8 @@ export function BuildUpCostumeSlotsCostume(eqpRgnId, itemId, objArySlots, jobId)
 	if (typeof jobId === "undefined" || jobId === null) {
 		jobId = document.getElementById("OBJID_SELECT_JOB").value;
 	}
-	let jobData = JobMap.getById(jobId);
+	// セレクトボックスの value は mig ID の数値文字列
+	let jobData = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, parseInt(jobId, 10));
 
 	var idx = 0;
 	var idxEquipable = 0;

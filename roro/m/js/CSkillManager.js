@@ -23387,7 +23387,7 @@ export function CSkillManager() {
 				pow = 60 * skillLv;
 				powCart = 50 * Math.max(LearnedSkillSearch(SKILL_ID_CART_KAIZO), UsedSkillSearch(SKILL_ID_CART_KAIZO));
 				powInt = charaDataManger.GetCharaInt() / 40;
-				pow += Math.floor(powCard * powInt);
+				pow += Math.floor(powCart * powInt);
 
 				return pow;
 			}
