@@ -1,45 +1,58 @@
 card_list:
-  - name: 潜在解放(ドラゴンナイトXXI)
-    yomi: センザイカイホウドラゴンナイト21
-    type: エンチャント
+  - name: 黒炎龍の夏休みカード
+    yomi: コクエンリュウノナツヤスミカード
+    type: 武器
+    capabilities:
+      - name: 物理ダメージ増加
+        value: 10
+      - name: 物理ダメージ増加
+        value: 1
+        per_lv: 10
     set_list:
       - set:
         entity_list:
-          - card_name: 豪傑
+          - card_name: 天与の才
         capabilities:
-          - name: スキル固定詠唱ミリ秒減少
-            skill: ドラゴニックブレス
-            value: 500
+          - name: クリティカルダメージ増加
+            value: 50
+          - name: サイズペナルティ無し
+            value: 1
 
-  - name: 潜在解放(インペリアルガードXXI)
-    yomi: センザイカイホウインペリアルガード21
-    type: エンチャント
+  - name: 廣命龍の夏休みカード
+    yomi: コウメイリュウノナツヤスミカード
+    type: 武器
+    capabilities:
+      - name: 物理ダメージ増加
+        value: 10
+      - name: 物理ダメージ増加
+        value: 1
+        per_lv: 10
     set_list:
       - set:
         entity_list:
-          - card_name: 豪傑
+          - card_name: 蒼穹の覇者
+        desc: 物理攻撃命中時、一定確率で敵に与えたダメージの10%をHP・SPとして吸収
         capabilities:
-          - name: 再使用待機時間減少
-            skill: インペリアルクロス
-            value: 200
+          - name: 武器攻撃力増加
+            value: 10
 
-  - name: 潜在解放(ソウルアセティックXVIII)
-    yomi: センザイカイホウソウルアセティック18
-    type: エンチャント
+  - name: マラムの夏休みカード
+    yomi: マラムノナツヤスミカード
+    desc: "[Mコメット]で受けるダメージ - 50%"
+    type: 兜
     set_list:
       - set:
         entity_list:
-          - card_name: 真理の解放
+          - card_name: 豊穣の女神
         capabilities:
-          - name: 再使用待機時間減少
-            skill: 青龍符
-            value: 100
-          - name: 再使用待機時間減少
-            skill: 白虎符
-            value: 100
-          - name: 再使用待機時間減少
-            skill: 朱雀符
-            value: 100
-          - name: 再使用待機時間減少
-            skill: 玄武符
-            value: 100
+          - name: MAXHP増加
+            value: 15
+          - name: 聖属性耐性
+            value: 10
+      - set:
+        entity_list:
+          - card_name: 祈りの晩鐘
+        desc: 物理攻撃命中時、一定確率で敵に与えたダメージの3%をSPとして吸収
+        capabilities:
+          - name: CRI加算
+            value: 25
