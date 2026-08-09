@@ -1,22 +1,7 @@
 import { describe, it, expect } from 'vitest';
-import '@roro/CGlobalConstManager.js';
 import { CAttackMethodConf } from '@roro/CAttackMethodConf.js';
 
 describe('CAttackMethodConf.js', () => {
-    describe('DefineEnum 副作用確認', () => {
-        it('ATTACK_METHOD_SOURCE_TYPE_JOB_LEARN が 0 に定義される', () => {
-            expect((globalThis as any).ATTACK_METHOD_SOURCE_TYPE_JOB_LEARN).toBe(0);
-        });
-        it('ATTACK_METHOD_SOURCE_TYPE_USABLE_SKILL が 1 に定義される', () => {
-            expect((globalThis as any).ATTACK_METHOD_SOURCE_TYPE_USABLE_SKILL).toBe(1);
-        });
-        it('ATTACK_METHOD_SOURCE_TYPE_AUTO_SPELL が 2 に定義される', () => {
-            expect((globalThis as any).ATTACK_METHOD_SOURCE_TYPE_AUTO_SPELL).toBe(2);
-        });
-        it('ATTACK_METHOD_BY_MIG_EQUIPABLE_SP_EFFECT が 3 に定義される', () => {
-            expect((globalThis as any).ATTACK_METHOD_BY_MIG_EQUIPABLE_SP_EFFECT).toBe(3);
-        });
-    });
 
     describe('インスタンスメソッド確認', () => {
         it('SetSkillId / GetSkillId が動作する', () => {

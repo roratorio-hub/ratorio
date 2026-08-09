@@ -4,6 +4,7 @@ import './CConfBase.js';
 import { CUSTOM_CONF_SPEC_LIMIT } from '../../../ro4/m/js/global.js';
 import { CCharaConfCustomStatus } from './CCharaConfCustomStatus.js';
 import { HtmlCreateElementOption } from '../../common/js/util.js';
+import { CONTROL_TYPE_BLANK, CONTROL_TYPE_SELECTBOX_NUMBER, CONTROL_TYPE_SELECTBOX_SPECIAL } from './const/EnumControlType.js';
 // === END AUTO-GENERATED IMPORTS ===
 
 export function CCharaConfCustomSpecStatus(confArray) {

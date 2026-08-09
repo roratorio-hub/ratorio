@@ -1,22 +1,3 @@
-
-import { CGlobalConstManager } from './CGlobalConstManager.js';
-
-//----------------------------------------------------------------
-// データの要素番号
-//----------------------------------------------------------------
-CGlobalConstManager.DefineEnum(
-	"EnumSkillDataIndex",
-	[
-		"SKILL_DATA_INDEX_ID",
-		"SKILL_DATA_INDEX_MAXLV",
-		"SKILL_DATA_INDEX_NAME",
-		"SKILL_DATA_INDEX_REFID",
-	],
-	0,
-	1
-);
-
-
 // TODO: 整理予定
 export const SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_100 = 4;
 export const SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_81 = 3;

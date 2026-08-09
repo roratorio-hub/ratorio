@@ -7,8 +7,9 @@
  * これは「その分岐を通る操作をしたときだけ」落ちるため、integration 全緑のまますり抜ける。
  * （実例: head.js の SU_INT 等20箇所 / CSkillManager の powCard タイポ / saveload の n_CONFIG_SW）
  *
- * bare read の大半は CGlobalConstManager.DefineEnum() が実行時に生成する定数なので、
- * その名前を全て収集して除外した上で、残ったものだけを報告する。
+ * かつて bare read の 97.6% は CGlobalConstManager.DefineEnum() が実行時生成する定数だったが、
+ * 現在は全て roro/m/js/const/EnumXxx.js の `export const` に移行済みのため除外は不要。
+ * DefineEnum が復活していないかも併せて検査する。
  *
  * 実行: cd tests && node scan-undeclared-reads.mjs
  * 終了コード: 検出 0 件で 0、検出ありで 1（CI gate に利用可）
@@ -63,10 +64,9 @@ const DEAD_CODE_ALLOWLIST = new Map([
     ['n_A_PassSkill8', 'mig.job.h.js UpgradeJobTo4th は呼び出し元なし（デッド）。import すると skillstate→item.h→mig.job.h の循環になるため据置'],
     ['Click_CONFIG', 'foot.js で try/catch に包まれた「次世代版では消える」暫定呼び出し'],
 ]);
-// mig.itemsp.h.js は export 15個中14個が未呼び出しのデッドファイル。
-// MIG_STATE_ID_* / MIG_JOB_SERIES_ID_* 等が未定義のまま残っているが到達しない。
-// ファイルごと削除するのが本筋（要承認）。それまではファイル単位で除外する。
-const DEAD_FILE_ALLOWLIST = new Set(['roro/m/js/data/mig.itemsp.h.js']);
+// ファイル単位の除外。現在は該当なし。
+// （mig.itemsp.h.js のデッド関数14個は削除済み。未定義 MIG_* 136箇所はその中にあった）
+const DEAD_FILE_ALLOWLIST = new Set();
 
 // ── 対象ファイル収集 ──
 function walk(dir, acc) {
@@ -83,39 +83,6 @@ for (const d of SCAN_DIRS) walk(join(ROOT, d), files);
 for (const f of EXTRA_FILES) {
     const p = join(ROOT, f);
     if (existsSync(p)) files.push(p);
-}
-
-// ── DefineEnum が実行時生成する定数名の収集 ──
-// CGlobalConstManager.DefineEnumSubCommon が Function(name + " = " + value + ";")() で
-// グローバルへ直接生やすため、静的には一切追えない。名前を集めて除外する。
-function collectEnumNames(srcFiles) {
-    const names = new Set();
-    const reCall = /CGlobalConstManager\.(?:DefineEnum|DefinePseudoEnum)\s*\(/g;
-    const reIdentStr = /["']([A-Za-z_$][\w$]*)["']/g;
-    for (const f of srcFiles) {
-        const src = readFileSync(f, 'utf8');
-        // 1) DefineEnum(...) の実引数に現れる識別子形の文字列リテラル
-        let m, mm;
-        while ((m = reCall.exec(src))) {
-            let i = src.indexOf('(', m.index);
-            let depth = 0, j = i;
-            for (; j < src.length; j++) {
-                if (src[j] === '(') depth++;
-                else if (src[j] === ')' && --depth === 0) break;
-            }
-            const arg = src.slice(i, j + 1)
-                .replace(/\/\*[\s\S]*?\*\//g, '')
-                .replace(/\/\/[^\n]*/g, '');
-
-            while ((mm = reIdentStr.exec(arg))) names.add(mm[1]);
-        }
-        // 2) SetEnumName("X") / enumName = "X" 経由（CConfBase 系の登録パターン）
-        for (const re of [/SetEnumName\s*\(\s*["']([A-Za-z_$][\w$]*)["']/g,
-                          /\benumName\s*=\s*["']([A-Za-z_$][\w$]*)["']/g]) {
-            while ((mm = re.exec(src))) names.add(mm[1]);
-        }
-    }
-    return names;
 }
 
 // ── classic script / TypeScript 層が生やすグローバルの収集 ──
@@ -152,8 +119,17 @@ function collectHostGlobals() {
     return names;
 }
 
-const enumNames = collectEnumNames(files);
 const hostGlobals = collectHostGlobals();
+
+// DefineEnum は全廃済み（定数は roro/m/js/const/EnumXxx.js の export const に移行）。
+// 復活すると「実行時にグローバルへ生える＝定義箇所が追えない定数」が戻ってくるので検出する。
+const resurrected = files.filter((f) =>
+    /CGlobalConstManager\.Define(?:Pseudo)?Enum\s*\(/.test(readFileSync(f, 'utf8')));
+if (resurrected.length) {
+    console.error('✗ DefineEnum が復活している（const 化の逆戻り）:');
+    for (const f of resurrected) console.error(`    ${f.replace(ROOT + '/', '')}`);
+    process.exit(1);
+}
 
 // engine-registry / bridge 経由で登録される Workspace I/F（window 残置の2件を含む）
 const REGISTRY_IF = new Set(['StAllCalc', 'AutoCalc']);
@@ -193,7 +169,6 @@ for (const f of files) {
         if (m.fatal) { parseErrors++; continue; }
         const n = m.message;
         if (BUILTINS.has(n)) continue;
-        if (enumNames.has(n)) continue;      // DefineEnum が実行時生成
         if (hostGlobals.has(n)) continue;    // classic script / TS 層のグローバル
         if (REGISTRY_IF.has(n)) continue;
         if (DEAD_CODE_ALLOWLIST.has(n)) continue;
@@ -204,7 +179,7 @@ for (const f of files) {
 const names = Object.keys(hits).sort();
 console.log(
     `scanned ${files.length - skippedDeadFile} files (parseErrors=${parseErrors}), ` +
-    `enum-known=${enumNames.size}, host-globals=${hostGlobals.size}, dead-files-skipped=${skippedDeadFile}`
+    `host-globals=${hostGlobals.size}, dead-files-skipped=${skippedDeadFile}`
 );
 if (names.length === 0) {
     console.log('✓ 未宣言変数の読み取りは検出されませんでした。');

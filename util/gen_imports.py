@@ -286,6 +286,8 @@ def build_global_window_assigned_set(all_files: list, symbol_map: dict) -> set:
 # ────────────────────────────────────────────────────────────────
 
 # CGlobalConstManager.DefineEnum("EnumName", ["CONST_A", "CONST_B", ...], ...)
+# ※ DefineEnum は廃止済み（定数は roro/m/js/const/EnumXxx.js の export const へ移行）。
+#    このマップは常に空になるが、旧形式のファイルが混入した場合の保険として残している。
 _DEFINE_ENUM_RE = re.compile(
     r'CGlobalConstManager\.Define(?:Pseudo)?Enum\s*\([^,]+,\s*\[(.*?)\]',
     re.DOTALL

@@ -3,6 +3,7 @@ import * as hmcard from '@roro/hmcard.js';
 import { __RebuildSlotAsCardShort } from '@roro/slotpager.js';
 // dewindow: AutoCalc は head-bridge 経由になった（旧 bare global）。
 import { __registerHeadFunctions } from '@ro4/head-bridge.js';
+import { EQUIP_REGION_ID_ARMS } from '@roro/const/EnumEquipRegionId.js';
 
 // 3e-1: inline handler → addEventListener 変換の wiring 検証。
 // change イベントで「ApplyCardShort(eqpRgnId, prefix) → AutoCalc()」の順に配線されていることを確認する。
@@ -23,7 +24,7 @@ describe('slotpager.js', () => {
         });
 
         it('__RebuildSlotAsCardShort が生成した select の変更で ApplyCardShort → AutoCalc が実行される', () => {
-            const eqpRgnId = (globalThis as any).EQUIP_REGION_ID_ARMS;
+            const eqpRgnId = EQUIP_REGION_ID_ARMS;
             const prefix = 'TESTPFX';
 
             // スロット欄ルートと、カード欄セレクトを用意

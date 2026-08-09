@@ -1,6 +1,5 @@
 // === AUTO-GENERATED IMPORTS ===
 import { PetIdToSetIdMap } from '../../../roro/m/js/itemset.dat.js';
-import '../../../roro/m/js/pet.h.js';
 import { AutoCalc } from './head-bridge.js';
 import { CItemInfoManager } from '../../../roro/m/js/CItemInfoManager.js';
 import { GetFriendlityText } from '../../../roro/m/js/common.js';
@@ -18,6 +17,9 @@ import { CAttackMethodAreaComponentManager } from './CAttackMethodAreaComponentM
 import { CTimeItemAreaComponentManager } from '../../../roro/m/js/CTimeItemAreaComponentManager.js';
 import { StAllCalc } from '../../../roro/m/js/foot-bridge.js';
 import { RebuildStatusSelect, CalcStatusPoint } from './hmjob.js';
+import { CONST_DATA_KIND_PET } from '../../../roro/m/js/const/EnumConstDataKind.js';
+import { FRIENDLITY_ID_AUTO, FRIENDLITY_ID_COUNT } from '../../../roro/m/js/const/EnumFriendlityId.js';
+import { PET_DATA_INDEX_ID, PET_DATA_INDEX_KANA, PET_DATA_INDEX_NAME } from '../../../roro/m/js/const/EnumPetDataIndex.js';
 "use strict"
 /**
  * 画面下部の「その他の支援/設定」のバフウィンドウ構築関数群

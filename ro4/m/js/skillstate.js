@@ -50,6 +50,8 @@ import {
 import {
          n_A_WeaponType, n_A_HEAD_DEF_PLUS, n_A_SHOULDER_DEF_PLUS, n_A_Weapon_ATKplus,
 } from '../../../roro/m/js/roro-state.js';
+import { CONST_DATA_KIND_JOB } from '../../../roro/m/js/const/EnumConstDataKind.js';
+import { ITEM_KIND_HANDGUN, ITEM_KIND_KNIFE } from '../../../roro/m/js/const/EnumItemKind.js';
 
 "use strict"
 

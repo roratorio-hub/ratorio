@@ -24,36 +24,40 @@ import {
     UpdateLearnedSkillNotice,
     sort,
 } from '@roro/equip.js';
+import { CARD_DATA_INDEX_SPBEGIN } from '@roro/const/EnumCardDataIndex.js';
+import { CONST_DATA_KIND_JOB } from '@roro/const/EnumConstDataKind.js';
+import { ITEM_DATA_INDEX_KANA } from '@roro/const/EnumItemDataIndex.js';
+import { ITEM_SP_END, ITEM_SP_LEARNED_SKILL_EFFECT } from '@roro/const/EnumItemSpId.js';
 
 describe('equip.js', () => {
     describe('呼び出しテスト', () => {
         // sort: ItemObjNew の KANA フィールドで挿入ソートする純粋関数に近い処理
         it('sort がカナ順に配列を並べ替える', () => {
-            (window as any).ITEM_DATA_INDEX_KANA = 0;
-            mockEquip.itemObjNew = { 0: [''], 1: ['あ'], 2: ['う'], 3: ['い'] };
+            // 旧テストは window.ITEM_DATA_INDEX_KANA を 0 に差し替えてモックを単純化していたが、
+            // const 化で定数は import 束縛になり書き換え不能。実際の添字にカナを置いて組む。
+            const row = (kana: string) => { const a: string[] = []; a[ITEM_DATA_INDEX_KANA] = kana; return a; };
+            mockEquip.itemObjNew = { 0: row(''), 1: row('あ'), 2: row('う'), 3: row('い') };
             const work: (number | string)[] = [2, 3, 1, 'EOF'];
             sort(work as any);
             expect(work[0]).toBe(1); // 'あ'
             expect(work[1]).toBe(3); // 'い'
             expect(work[2]).toBe(2); // 'う'
             mockEquip.itemObjNew = null;
-            delete (window as any).ITEM_DATA_INDEX_KANA;
         });
 
         // UpdateLearnedSkillNotice: n_A_card ループ内に let 宣言漏れがあると ReferenceError になる
         // このテストは cardId が未宣言だった equip.js:1053 の再発を検出するためのもの
         it('UpdateLearnedSkillNotice が n_A_card ループパスでエラーにならない', () => {
-            const MOCK_SP_END = 9999;
-            (window as any).ITEM_SP_END = MOCK_SP_END;
-            (window as any).ITEM_SP_LEARNED_SKILL_EFFECT = 1;
-            (window as any).CARD_DATA_INDEX_SPBEGIN = 0;
+            // 旧テストは定数をグローバルに差し替えていたが、const 化で import 束縛になり
+            // 書き換えられない。実際の定数値どおりにモックデータを組む。
             const cardArr: any[] = [];
-            cardArr[0] = [MOCK_SP_END]; // while ループを即座に抜ける
+            const row: any[] = [];
+            row[CARD_DATA_INDEX_SPBEGIN] = ITEM_SP_END; // while ループを即座に抜ける
+            cardArr[0] = row;
             mockEquip.cardObjNew = cardArr;
             (window as any).n_A_Equip = [];  // 装備ループをスキップ
             (window as any).n_A_card = [0];  // カードループを1回実行
             (window as any).n_A_JOB = 0;
-            (window as any).CONST_DATA_KIND_JOB = 0;
             mockEquip.constDataManager = {
                 GetDataObject: () => ({ GetLearnSkillIdArray: () => [] }),
             };

@@ -5,6 +5,9 @@ import '../../m/js/monstermap.h.js';
 import { g_MonsterMapDataArray, MONSTER_MAP_ID_MAP_ALL, MONSTER_MAP_ID_MVP_MONSTER } from '../../m/js/monstermap.dat.js';
 import { HtmlRemoveAllChild } from '../../common/js/util.js';
 import { MelonFes2026MonsterDropList } from './melonfes2026monsterdrop.dat.js';
+import { MONSTER_DATA_INDEX_ID, MONSTER_DATA_INDEX_LEVEL, MONSTER_DATA_INDEX_NAME } from '../../m/js/const/EnumMonsterDataIndex.js';
+import { MONSTER_MAP_DATA_INDEX_DATA_ARRAY, MONSTER_MAP_DATA_INDEX_ID, MONSTER_MAP_DATA_INDEX_NAME_KANA_ARRAY } from '../../m/js/const/EnumMonsterMapDataIndex.js';
+import { NAME_KANA_DATA_INDEX_NAME } from '../../m/js/const/EnumNameKanaDataIndex.js';
 // === END AUTO-GENERATED IMPORTS ===
 
 document.addEventListener('DOMContentLoaded', OnLoadMelonFes2026MonsterDrop);

@@ -1,6 +1,4 @@
 import { describe, it, expect, beforeAll } from 'vitest';
-import '@roro/CGlobalConstManager.js';
-
 // ELM_ID constants are defined in common.js (not yet migrated to ESM).
 // Pre-define them here so monster.h.js module-level DefineEnum calls succeed.
 const ELM_ID_VALUES: Record<string, number> = {
@@ -24,29 +22,6 @@ beforeAll(async () => {
 });
 
 describe('monster.h.js', () => {
-    describe('DefineEnum 副作用確認', () => {
-        it('MONSTER_DATA_INDEX_ID が 0 に定義される', () => {
-            expect((globalThis as any).MONSTER_DATA_INDEX_ID).toBe(0);
-        });
-        it('MONSTER_DATA_INDEX_HP が 3 に定義される', () => {
-            expect((globalThis as any).MONSTER_DATA_INDEX_HP).toBe(3);
-        });
-        it('MONSTER_ELM_VANITY_1 が 1 に定義される', () => {
-            expect((globalThis as any).MONSTER_ELM_VANITY_1).toBe(1);
-        });
-        it('MONSTER_ELM_WATER_1 が 11 に定義される', () => {
-            expect((globalThis as any).MONSTER_ELM_WATER_1).toBe(11);
-        });
-        it('MONSTER_BOSSTYPE_NONE が 0 に定義される', () => {
-            expect((globalThis as any).MONSTER_BOSSTYPE_NONE).toBe(0);
-        });
-        it('MONSTER_BOSSTYPE_BOSS が 1 に定義される', () => {
-            expect((globalThis as any).MONSTER_BOSSTYPE_BOSS).toBe(1);
-        });
-        it('MONSTER_GRASSTYPE_NONE が 0 に定義される', () => {
-            expect((globalThis as any).MONSTER_GRASSTYPE_NONE).toBe(0);
-        });
-    });
 
     describe('エクスポート確認', () => {
         it('GetMonseterElmBasicType(11) が 1（水）', () => {

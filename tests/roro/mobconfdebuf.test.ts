@@ -1,5 +1,4 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
-import '/workspace/ratorio/roro/m/js/CGlobalConstManager.js';
 import '/workspace/ratorio/roro/m/js/CConfBase.js';
 import {
     MOB_CONF_DEBUF_ID_PROVOKE,

@@ -1,6 +1,8 @@
 import { describe, it, expect, beforeAll } from 'vitest';
+import { ITEM_DATA_INDEX_ID, ITEM_DATA_INDEX_NAME } from '@roro/const/EnumItemDataIndex.js';
 
-// card.h.js がモジュール初期化時に参照するカード定数を事前設定
+// card.dat.js 等がモジュール初期化時に参照するカード定数を事前設定
+// （card.h.js は enum の const 化に伴い削除済み。ここの CARD_ID_* は card.dat.js 由来）
 (globalThis as any).toSafeBigInt = (value: unknown): bigint => BigInt(value as any);
 (globalThis as any).CARD_ID_NONE = 0;
 (globalThis as any).CARD_ID_MAX = 9999;
@@ -23,7 +25,6 @@ let MIG_JOB_ID_SKY_EMPEROR: number; // 天帝 = 79
 let MIG_JOB_ID_ALITEA: number;      // アリテア = 88
 
 beforeAll(async () => {
-	await import('/workspace/ratorio/roro/m/js/CGlobalConstManager.js');
 	await import('/workspace/ratorio/ro4/m/js/global.js');       // g_constDataManager を window にセット
 	await import('/workspace/ratorio/ro4/m/js/data/mig.job.dat.js'); // 職業データを g_constDataManager にロード
 	await import('/workspace/ratorio/roro/m/js/itemset.dat.js'); // w_SE を window にセット（GetItemExplainText が参照）
@@ -39,8 +40,6 @@ beforeAll(async () => {
 	MIG_JOB_ID_ALITEA = migJobId.MIG_JOB_ID_ALITEA;
 });
 
-const g = globalThis as any;
-
 describe('hmitemlist', () => {
 
 	describe('getItemList 名前検索', () => {
@@ -48,13 +47,13 @@ describe('hmitemlist', () => {
 			const result = getItemList(ItemObjNew, '暴食のクラウン');
 			expect(result.length).toBeGreaterThan(0);
 			for (const item of result) {
-				expect(String(item[g.ITEM_DATA_INDEX_NAME])).toContain('暴食のクラウン');
+				expect(String(item[ITEM_DATA_INDEX_NAME])).toContain('暴食のクラウン');
 			}
 		});
 
 		it('複数の職業バリアントをすべて返す', () => {
 			const result = getItemList(ItemObjNew, '暴食のクラウン');
-			const names = result.map((item: any) => item[g.ITEM_DATA_INDEX_NAME]);
+			const names = result.map((item: any) => item[ITEM_DATA_INDEX_NAME]);
 			expect(names).toContain('暴食のクラウン(天帝)');
 			expect(names).toContain('暴食のクラウン(アリテア)');
 			expect(names).toContain('暴食のクラウン(アークメイジ)');
@@ -64,9 +63,9 @@ describe('hmitemlist', () => {
 			const result = getItemList(ItemObjNew, '暴食のクラウン');
 			// 結果は compact array（index 0, 1, 2...）だが、各アイテムの ID は 5000 番台
 			// ループカウンタ (0,1,2...) を IsMatchJobRestrict に渡すと素手などを誤って参照する
-			expect(result[0][g.ITEM_DATA_INDEX_ID]).not.toBe(0);
+			expect(result[0][ITEM_DATA_INDEX_ID]).not.toBe(0);
 			// ItemObjNew[result[0][ITEM_DATA_INDEX_ID]] が result[0] と同一オブジェクトを指す
-			expect(ItemObjNew[result[0][g.ITEM_DATA_INDEX_ID]]).toBe(result[0]);
+			expect(ItemObjNew[result[0][ITEM_DATA_INDEX_ID]]).toBe(result[0]);
 		});
 	});
 
@@ -79,19 +78,19 @@ describe('hmitemlist', () => {
 		it('天帝 で絞ると 暴食のクラウン(天帝) だけが残る', () => {
 			const nameFiltered = getItemList(ItemObjNew, '暴食のクラウン');
 			const jobFiltered = nameFiltered.filter(
-				(item: any) => IsMatchJobRestrict(item[g.ITEM_DATA_INDEX_ID], MIG_JOB_ID_SKY_EMPEROR)
+				(item: any) => IsMatchJobRestrict(item[ITEM_DATA_INDEX_ID], MIG_JOB_ID_SKY_EMPEROR)
 			);
 			expect(jobFiltered).toHaveLength(1);
-			expect(jobFiltered[0][g.ITEM_DATA_INDEX_NAME]).toBe('暴食のクラウン(天帝)');
+			expect(jobFiltered[0][ITEM_DATA_INDEX_NAME]).toBe('暴食のクラウン(天帝)');
 		});
 
 		it('アリテア で絞ると 暴食のクラウン(アリテア) だけが残る', () => {
 			const nameFiltered = getItemList(ItemObjNew, '暴食のクラウン');
 			const jobFiltered = nameFiltered.filter(
-				(item: any) => IsMatchJobRestrict(item[g.ITEM_DATA_INDEX_ID], MIG_JOB_ID_ALITEA)
+				(item: any) => IsMatchJobRestrict(item[ITEM_DATA_INDEX_ID], MIG_JOB_ID_ALITEA)
 			);
 			expect(jobFiltered).toHaveLength(1);
-			expect(jobFiltered[0][g.ITEM_DATA_INDEX_NAME]).toBe('暴食のクラウン(アリテア)');
+			expect(jobFiltered[0][ITEM_DATA_INDEX_NAME]).toBe('暴食のクラウン(アリテア)');
 		});
 	});
 });

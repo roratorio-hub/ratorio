@@ -485,6 +485,21 @@ import {
          n_A_STR, n_A_AGI, n_A_DEX, n_A_INT,
          n_A_WeaponType, n_A_SHIELD_DEF_PLUS,
 } from './roro-state.js';
+import { ELM_ID_FIRE, ELM_ID_POISON, ELM_ID_VANITY, ELM_ID_WATER, ELM_ID_WIND } from './const/EnumElmId.js';
+import { RACE_ID_ANIMAL, RACE_ID_FISH, RACE_ID_HUMAN } from './const/EnumRaceId.js';
+import { CHARA_DATA_INDEX_MAXHP, CHARA_DATA_INDEX_MAXSP } from './const/EnumCharaDataIndex.js';
+import { EQUIP_REGION_ID_ARMS, EQUIP_REGION_ID_SHIELD } from './const/EnumEquipRegionId.js';
+import { ITEM_DATA_INDEX_WEIGHT, ITEM_DATA_INDEX_WPNLV } from './const/EnumItemDataIndex.js';
+import {
+    ITEM_KIND_AXE, ITEM_KIND_AXE_2HAND, ITEM_KIND_BOOK, ITEM_KIND_BOW, ITEM_KIND_CLUB, ITEM_KIND_GATLINGGUN,
+    ITEM_KIND_GRENADEGUN, ITEM_KIND_HANDGUN, ITEM_KIND_KATAR, ITEM_KIND_KNIFE, ITEM_KIND_MUSICAL, ITEM_KIND_RIFLE,
+    ITEM_KIND_SHOTGUN, ITEM_KIND_SPEAR, ITEM_KIND_SPEAR_2HAND, ITEM_KIND_SWORD, ITEM_KIND_SWORD_2HAND, ITEM_KIND_WHIP,
+} from './const/EnumItemKind.js';
+import { ITEM_SP_CRITICAL_DAMAGE_UP, ITEM_SP_ELEMENTAL } from './const/EnumItemSpId.js';
+import { MIG_PARAM_ID_CON, MIG_PARAM_ID_INT, MIG_PARAM_ID_POW, MIG_PARAM_ID_SPL } from './const/EnumMigItemParamId.js';
+import { MONSTER_BOSSTYPE_BOSS } from './const/EnumMonsterBossType.js';
+import { MONSTER_DATA_INDEX_ELEMENT, MONSTER_DATA_INDEX_RACE, MONSTER_DATA_INDEX_SIZE } from './const/EnumMonsterDataIndex.js';
+import { SIZE_ID_LARGE, SIZE_ID_MEDIUM, SIZE_ID_SMALL } from './const/EnumSizeId.js';
 
 
 // UsedSkillSearch は skillstate.js (ro4) から RegisterUsedSkillSearch で注入される。

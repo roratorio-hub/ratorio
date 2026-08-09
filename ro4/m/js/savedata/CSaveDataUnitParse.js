@@ -67,6 +67,8 @@ import {
          g_confDataCustomAtk, g_confDataCustomDef, g_confDataCustomSkill, g_confDataCustomStatus,
 } from '../global.js';
 import { get } from '../engine-registry.js';
+import { ITEM_DATA_INDEX_KIND } from '../../../../roro/m/js/const/EnumItemDataIndex.js';
+import { ITEM_KIND_SHIELD } from '../../../../roro/m/js/const/EnumItemKind.js';
 
 /**
  * セーブデータユニットクラス：パース開始用.

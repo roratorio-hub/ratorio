@@ -1,22 +1,3 @@
-
-import { CGlobalConstManager } from './CGlobalConstManager.js';
-
-//----------------------------------------------------------------
-// 攻撃手段の種別
-//----------------------------------------------------------------
-CGlobalConstManager.DefineEnum(
-	"EnumAttackMethodSource",
-	[
-		"ATTACK_METHOD_SOURCE_TYPE_JOB_LEARN",
-		"ATTACK_METHOD_SOURCE_TYPE_USABLE_SKILL",
-		"ATTACK_METHOD_SOURCE_TYPE_AUTO_SPELL",
-		"ATTACK_METHOD_BY_MIG_EQUIPABLE_SP_EFFECT",
-	],
-	0,
-	1
-);
-
-
 /**
  * 攻撃手段設定クラス.
  */

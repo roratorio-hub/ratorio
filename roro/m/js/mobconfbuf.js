@@ -5,6 +5,10 @@ import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRem
 // === END AUTO-GENERATED IMPORTS ===
 // C-6: head.js 公開関数（head-bridge 経由）
 import { AutoCalc } from '../../../ro4/m/js/head-bridge.js';
+import {
+    CONTROL_TYPE_CHECKBOX, CONTROL_TYPE_CHECKBOX_SPECIAL, CONTROL_TYPE_SELECTBOX_NUMBER, CONTROL_TYPE_SELECTBOX_SPECIAL, CONTROL_TYPE_SPECIAL, CONTROL_TYPE_TEXTBOX_NUMBER,
+    CONTROL_TYPE_TEXTBOX_SPECIAL,
+} from './const/EnumControlType.js';
 
 
 // モンスター状態強化設定の限界値

@@ -199,6 +199,44 @@ describe('ro4/m/calcx.html 起動テスト', () => {
         expect(errors, formatErrorMsg('職業変更操作中', errors)).toHaveLength(0);
     });
 
+    // 装備セレクトの change は OnChangeEquip(eqpRgnId, itemId) を呼ぶ。
+    // eqpRgnId を window['EQUIP_REGION_ID_XXX'] で引く実装だと、DefineEnum 廃止で
+    // 該当グローバルが消えたため undefined が渡り、
+    // SetEquipRndOptTable 内の g_equipRndOptTable[undefined] で TypeError になる。
+    // 静的解析では捕まらない（window への添字アクセスは未宣言変数ではない）ので、
+    // 全部位で実際に change を発火させて検出する。
+    it('装備セレクト変更（通常・シャドウ全部位）で未捕捉 JS 例外が発生しない', async () => {
+        const errors = await collectPageErrors(browser, async (page) => {
+            await page.goto(`${baseUrl}/ro4/m/calcx.html`, {
+                waitUntil: 'networkidle',
+                timeout: 60000,
+            });
+            const fired = await page.evaluate(() => {
+                const ids = [
+                    'OBJID_ARMS_RIGHT', 'OBJID_ARMS_LEFT', 'OBJID_HEAD_TOP',
+                    'OBJID_HEAD_MID', 'OBJID_HEAD_UNDER', 'OBJID_SHIELD',
+                    'OBJID_BODY', 'OBJID_SHOULDER', 'OBJID_SHOES',
+                    'OBJID_ACCESSORY_1', 'OBJID_ACCESSORY_2',
+                    'OBJID_SHADOW_WEAPON', 'OBJID_SHADOW_SHIELD', 'OBJID_SHADOW_BODY',
+                    'OBJID_SHADOW_SHOESE', 'OBJID_SHADOW_ACCESSORY1', 'OBJID_SHADOW_ACCESSORY2',
+                ];
+                let count = 0;
+                for (const id of ids) {
+                    const sel = document.getElementById(id) as HTMLSelectElement | null;
+                    if (!sel || sel.options.length < 2) continue;
+                    sel.value = sel.options[1].value;
+                    sel.dispatchEvent(new Event('change', { bubbles: true }));
+                    count++;
+                }
+                return count;
+            });
+            // 1件も発火していなければテスト前提が崩れている（無言で通過させない）
+            expect(fired, '装備セレクトが1件も見つからない（テスト前提の不成立）').toBeGreaterThan(0);
+            await page.waitForTimeout(500);
+        });
+        expect(errors, formatErrorMsg('装備セレクト変更中', errors)).toHaveLength(0);
+    });
+
     // 全折りたたみセクション + 全 CConfBase/CConfBase2 設定欄スイッチを展開する操作。
     // window.CConfBase / window.CConfBase2 が未登録（compat ブロック除去等）の場合に
     // "CConfBase is not defined" ReferenceError として現れるため検出する。
