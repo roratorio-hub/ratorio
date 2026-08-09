@@ -10,28 +10,6 @@
  * 書き込み: ESM の import binding は読み取り専用のため、必ず対応する setX() を使う。
  */
 
-// ---- 計算データテキスト用の ITEM_SP 集計値（書き込み元: foot.js / 読み取り: CCalcDataTextCreator.js）----
-
-export let g_ITEM_SP_FLEE_PLUS_value_forCalcData = 0;
-export let g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = 0;
-export let g_ITEM_SP_ASPD_UP_value_forCalcData = 0;
-export let g_ITEM_SP_STR_PLUS_PLANE_value_forCalcData = 0;
-export let g_ITEM_SP_AGI_PLUS_PLANE_value_forCalcData = 0;
-export let g_ITEM_SP_VIT_PLUS_PLANE_value_forCalcData = 0;
-export let g_ITEM_SP_INT_PLUS_PLANE_value_forCalcData = 0;
-export let g_ITEM_SP_DEX_PLUS_PLANE_value_forCalcData = 0;
-export let g_ITEM_SP_LUK_PLUS_PLANE_value_forCalcData = 0;
-
-export function setItemSpFleePlusForCalcData(v) { g_ITEM_SP_FLEE_PLUS_value_forCalcData = v; }
-export function setItemSpSkillCastTimeForCalcData(v) { g_ITEM_SP_SKILL_CAST_TIME_value_forCalcData = v; }
-export function setItemSpAspdUpForCalcData(v) { g_ITEM_SP_ASPD_UP_value_forCalcData = v; }
-export function setItemSpStrPlusPlaneForCalcData(v) { g_ITEM_SP_STR_PLUS_PLANE_value_forCalcData = v; }
-export function setItemSpAgiPlusPlaneForCalcData(v) { g_ITEM_SP_AGI_PLUS_PLANE_value_forCalcData = v; }
-export function setItemSpVitPlusPlaneForCalcData(v) { g_ITEM_SP_VIT_PLUS_PLANE_value_forCalcData = v; }
-export function setItemSpIntPlusPlaneForCalcData(v) { g_ITEM_SP_INT_PLUS_PLANE_value_forCalcData = v; }
-export function setItemSpDexPlusPlaneForCalcData(v) { g_ITEM_SP_DEX_PLUS_PLANE_value_forCalcData = v; }
-export function setItemSpLukPlusPlaneForCalcData(v) { g_ITEM_SP_LUK_PLUS_PLANE_value_forCalcData = v; }
-
 // ---- foot.js が公開する静的データ ----
 export const SpeedPotName = ["なし","スピードアップポーション","ハイスピードポーション","バーサークポーション"];
 

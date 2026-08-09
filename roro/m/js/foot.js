@@ -38,7 +38,6 @@ import {
 } from '../../../ro4/m/js/hmjob.js';
 import { CSaveDataConst } from '../../../ro4/m/js/savedata/CSaveDataConst.js';
 import { CBattleQuickControlAreaComponentManager } from './CBattleQuickControlAreaComponentManager.js';
-import { CCalcDataTextCreator } from './CCalcDataTextCreator.js';
 import { CCharaConfCustomAtk } from './CCharaConfCustomAtk.js';
 import { CCharaConfCustomDef } from './CCharaConfCustomDef.js';
 import { CCharaConfCustomSkill } from './CCharaConfCustomSkill.js';
@@ -965,18 +964,6 @@ import {
          n_A_JOB, n_A_MATK, set_n_A_MATK, BK_n_A_MATK, set_BK_n_A_MATK, set_g_lucky_over, set_n_CastCutForDisp, n_A_Weapon2Type,
 } from './roro-state.js';
 
-// C-6: 共有 state（roro-state.js へ段階移行中）
-import {
-         setItemSpFleePlusForCalcData,
-         setItemSpSkillCastTimeForCalcData,
-         setItemSpAspdUpForCalcData,
-         setItemSpStrPlusPlaneForCalcData,
-         setItemSpAgiPlusPlaneForCalcData,
-         setItemSpVitPlusPlaneForCalcData,
-         setItemSpIntPlusPlaneForCalcData,
-         setItemSpDexPlusPlaneForCalcData,
-         setItemSpLukPlusPlaneForCalcData,
-} from './roro-state.js';
 import { n_A_Equip, n_A_card, set_n_A_Equip, set_n_A_card } from './roro-state.js';
 
 /**
@@ -14964,11 +14951,6 @@ export function StAllCalc(){
 		charaData[CHARA_DATA_INDEX_SKILL_COST_SCALING] = GetCostScalingOfSkill(n_A_ActiveSkill);
 		charaData[CHARA_DATA_INDEX_SKILL_COST_FIX] = GetCostFixOfSkill(n_A_ActiveSkill);
 
-		// 計算データクラスに設定
-		CCalcDataTextCreator.refCharaData = charaData;
-		CCalcDataTextCreator.refSpecData = n_tok;
-		CCalcDataTextCreator.refMobData = mobData;
-
 		// 拡張表示を更新
 		CFloatingInfoAreaComponentManager.setReferData(charaData, n_tok, mobData);
 		CFloatingInfoAreaComponentManager.RefreshDispAreaAll();
@@ -16537,8 +16519,6 @@ export function getFlee() {
     if ((itemCount = EquipNumSearch(ITEM_ID_DEATH_BRINGER)) > 0) {
         flee += 20 * LearnedSkillSearch(SKILL_ID_CROSS_IMPACT) * itemCount;
     }
-
-    setItemSpFleePlusForCalcData(flee);
 
     //----------------------------------------------------------------
     // 基礎補正
@@ -20181,9 +20161,6 @@ export function getVariableCastTimeRate() {
         }
     }
 
-    // MIGRATION 暫定措置
-    setItemSpSkillCastTimeForCalcData(reduction_rate);
-
 	/**
 	 * 「バード ブラギの詩」の効果
 	 */
@@ -22247,9 +22224,6 @@ export function GetAdditionalAspdPercent() {
             tmp_percent += 15 * itemCount;
         }
     }
-
-    // MIGRATION 暫定措置
-    setItemSpAspdUpForCalcData(tmp_percent);
 
     if (n_A_PassSkill7[22]) tmp_percent += 10;
 
@@ -26024,14 +25998,6 @@ export function StPlusCalc() {
 	CExtraInfoAreaComponentManager.dispDataMap.set(ITEM_SP_INT_PLUS_PLANE, wSPC_INT - jobBonusArray[3]);
 	CExtraInfoAreaComponentManager.dispDataMap.set(ITEM_SP_DEX_PLUS_PLANE, wSPC_DEX - jobBonusArray[4]);
 	CExtraInfoAreaComponentManager.dispDataMap.set(ITEM_SP_LUK_PLUS_PLANE, wSPC_LUK - jobBonusArray[5]);
-
-	// 計算データ出力用のデータを格納
-	setItemSpStrPlusPlaneForCalcData(wSPC_STR);
-	setItemSpAgiPlusPlaneForCalcData(wSPC_AGI);
-	setItemSpVitPlusPlaneForCalcData(wSPC_VIT);
-	setItemSpIntPlusPlaneForCalcData(wSPC_INT);
-	setItemSpDexPlusPlaneForCalcData(wSPC_DEX);
-	setItemSpLukPlusPlaneForCalcData(wSPC_LUK);
 
 	//----------------------------------------------------------------
 	// 「アーチャー　集中力向上」の効果
