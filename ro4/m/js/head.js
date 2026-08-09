@@ -2,6 +2,8 @@ import { n_A_Equip, n_A_card } from '../../../roro/m/js/roro-state.js';
 // 武器種テーブル（旧 head.js 定義）。内部のダメージ計算で使用しつつ後方互換で re-export する。
 import { SyurikenOBJ, KunaiOBJ, CanonOBJ } from './attackmethod.dat.js';
 export { SyurikenOBJ, KunaiOBJ, CanonOBJ };
+// 四次スキルの強制属性の決定処理（物理・魔法共通、head.js 外なので単体テスト可能）
+import { GetForcedElementForCalc } from './battle-element.js';
 // === AUTO-GENERATED IMPORTS ===
 import '../../../roro/m/js/data/mig.itemsp.h.js';
 import { CBattleCalcInfo } from './CBattleCalcInfo.js';
@@ -24,7 +26,6 @@ import {
          HtmlCreateElement, HtmlCreateElementOption, HtmlCreateTextNode,
          HtmlGetObjectValueByIdAsInteger, HtmlRemoveAllChild, myInnerHtml
 } from '../../../roro/common/js/util.js';
-import { CCalcDataTextCreator } from '../../../roro/m/js/CCalcDataTextCreator.js';
 import { CCharaConfCustomAtk } from '../../../roro/m/js/CCharaConfCustomAtk.js';
 import { CCharaConfCustomDef } from '../../../roro/m/js/CCharaConfCustomDef.js';
 import { CCharaConfCustomSkill } from '../../../roro/m/js/CCharaConfCustomSkill.js';
@@ -826,6 +827,7 @@ export function BattleCalc999(battleCalcInfo, charaData, specData, mobData, atta
 	let bCommonAppend = true;
 	let battleCalcInfoArray = null;
 	let battleCalcResultAll = null;
+	let BK_AS_Weapon_zokusei = 0;
 	// 戻り値用インスタンス用意
 	battleCalcResultAll = new CBattleCalcResultAll();
 	// 基本情報を設定
@@ -1110,6 +1112,10 @@ export function BattleCalc999(battleCalcInfo, charaData, specData, mobData, atta
 		// オートスペルフラグ ON
 		n_AS_MODE = true;
 	}
+	// 主撃の武器属性を退避する.
+	// SET_ZOKUSEI() は StAllCalc() から主撃のスキルＩＤで一度だけ呼ばれるため、
+	// オートスペルごとの属性はここで面倒を見るしかない.
+	BK_AS_Weapon_zokusei = n_A_Weapon_zokusei;
 	for (idxAS = 0; idxAS < n_AS_SKILL.length; idxAS++) {
 		// 発動率不明は除外
 		if (n_AS_SKILL[idxAS][2] <= 0) {
@@ -1120,10 +1126,14 @@ export function BattleCalc999(battleCalcInfo, charaData, specData, mobData, atta
 		cloned.skillId = n_AS_SKILL[idxAS][0];
 		cloned.skillLv = n_AS_SKILL[idxAS][1];
 		cloned.actRate = n_AS_SKILL[idxAS][2] / 10;		// 千分率単位から百分率単位へ
+		// 直前のオートスペルが書き換えた武器属性を戻す（発動順でダメージが変わらないようにする）
+		set_n_A_Weapon_zokusei(BK_AS_Weapon_zokusei);
 		// 確率追撃配列に追加する
 		const autospell_result = BattleCalc999Body(cloned, charaData, specData, mobData, attackMethodConfArray, false);
 		battleCalcResultAll.AddAppendResult(undefined, autospell_result);
 	}
+	// 主撃の武器属性へ戻す（calc() が計算データ収集で読むため）
+	set_n_A_Weapon_zokusei(BK_AS_Weapon_zokusei);
 	// オートスペルフラグ OFF
 	n_AS_MODE = false;
 	return battleCalcResultAll;
@@ -1144,6 +1154,7 @@ export function BattleCalc999Body(battleCalcInfo, charaData, specData, mobData, 
 	let idxUnit = 0;
 	let battleCalcResult = null;
 	let dmgUnitArray = null;
+	let elmWork = 0;
 	/** クリティカル発生フラグ true/false */
 	const bCri = (g_skillManager.GetCriActRate(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData, specData, mobData, attackMethodConfArray[0], n_A_WeaponType) > 0);
 	// ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
@@ -1210,6 +1221,22 @@ export function BattleCalc999Body(battleCalcInfo, charaData, specData, mobData, 
 				}
 			}
 		}
+	}
+
+	//----------------------------------------------------------------
+	//
+	// 四次スキルの強制属性の適用（物理・魔法共通）
+	//
+	// 物理は直後の属性倍率適用、魔法は BattleCalc999Core() 内の
+	// ApplyMagicalSkillDamageRatioChange() で n_A_Weapon_zokusei を読む。
+	// 両方を支配するのはここしかないため、決定はこの位置で行う。
+	// （SET_ZOKUSEI() は StAllCalc() から主撃のスキルＩＤで一度だけ呼ばれるので、
+	//   オートスペルのスキルはここで面倒を見るしかない）
+	//
+	//----------------------------------------------------------------
+	elmWork = GetForcedElementForCalc(g_skillManager, battleCalcInfo, attackMethodConfArray[0], mobData);
+	if (elmWork != CSkillData.ELEMENT_VOID) {
+		set_n_A_Weapon_zokusei(elmWork);
 	}
 
 	//----------------------------------------------------------------
@@ -3054,6 +3081,9 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			case SKILL_ID_TYPHOON_WING:
 			case SKILL_ID_FEATHER_SPRINKLE:
 
+				// 属性は BattleCalc999Body() で設定済み。ここで設定しても、
+				// 物理の属性倍率は BattleCalc999Body() 内で先に適用されているため間に合わない
+				// （BattleCalcSubDamagePhysicalCommon() は ApplyElementRatio を呼ばない）。
 				// スキル使用条件の判定
 				n_Buki_Muri = !g_skillManager.MatchWeaponCondition(n_A_ActiveSkill, n_A_WeaponType);
 				if (n_Buki_Muri) {
@@ -7323,7 +7353,14 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			// ダメージ算出に関する情報
-			set_n_A_Weapon_zokusei(g_skillManager.GetElement(battleCalcInfo.skillId, attackMethodConfArray[0], mobData, battleCalcInfo.parentSkillId));
+			// ※このブロックは attackMethodConfArray[0] を常に渡す（オートスペルでも main の conf を使う、
+			//   従来どおりの挙動）。アドラムス等 option 依存の 999 未満スキルは main の conf で評価しないと
+			//   ダメージが変わってしまうため、ここでは bAutoSpell による null 化は行わない。
+			//   四次スキル（ID>=999）の強制属性は BattleCalc999Body() で決定済みなのでここでは基本上書きされない。
+			var elmWork = g_skillManager.GetForcedElement(battleCalcInfo.skillId, attackMethodConfArray[0], mobData, battleCalcInfo.parentSkillId);
+			if (elmWork != CSkillData.ELEMENT_VOID) {
+				set_n_A_Weapon_zokusei(elmWork);
+			}
 			wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], mobData, n_A_WeaponType, battleCalcInfo.parentSkillId);
 			g_bSkillNoDamage = (wbairitu == 0);
 			set_n_Enekyori(g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_WeaponType));
@@ -14753,9 +14790,6 @@ export function calc() {
 		g_damageTextArray[idx] = [];
 	}
 
-	// データ収集
-	CCalcDataTextCreator.refBattleData = [];
-
 	// ステータス等の計算（foot.js で定義しているアレ）
 	var retValArray = null;
 	retValArray = StAllCalc();
@@ -15453,65 +15487,10 @@ export function calc() {
 		myInnerHtml("strID_" + idx, innerHtmlText, 0);
 	}
 
-	// データ収集
-	CCalcDataTextCreator.refBattleData[BATTLE_DATA_INDEX_ACTIVE_SKILL] = n_A_ActiveSkill;
-	CCalcDataTextCreator.refBattleData[BATTLE_DATA_INDEX_ATTACK_ELEMENT] = n_A_Weapon_zokusei;
-	CCalcDataTextCreator.refBattleData[BATTLE_DATA_INDEX_RANGE_FLAG] = n_Enekyori;
-
-	CCalcDataTextCreator.refBattleData[BATTLE_DATA_INDEX_STRDEX_BONUS] = w_BONUS;
 	// StAllCalc() 内の RefreshDispAreaAll（foot.js）は w_BONUS 確定前に走るため、
 	// ここで再度リフレッシュして拡張情報パネルに最新値を反映する
 	g_extraInfoDataBridge.setDispDataValue?.(DISP_DATA_KEY_STRDEX_BONUS, w_BONUS);
 	g_extraInfoDataBridge.refreshFloatingDispAreaAll?.();
-
-	CCalcDataTextCreator.refBattleData[BATTLE_DATA_INDEX_SIZE_MODIFY] = wCSize;
-	CCalcDataTextCreator.refBattleData[BATTLE_DATA_INDEX_HIT_RATE] = w_HIT;
-	CCalcDataTextCreator.refBattleData[BATTLE_DATA_INDEX_HIT_RATE_AUTO_SPELL] = n_AS_HIT;
-	CCalcDataTextCreator.refBattleData[BATTLE_DATA_INDEX_HIT_RATE_DISP] = w_HIT_HYOUJI;
-	CCalcDataTextCreator.refBattleData[BATTLE_DATA_INDEX_CRITICAL_RATE] = w_Cri;
-	CCalcDataTextCreator.refBattleData[BATTLE_DATA_INDEX_AVOID_RATE] = w_FLEE;
-
-	CCalcDataTextCreator.refBattleData[BATTLE_DATA_INDEX_BASE_DAMAGE_MIN] = n_A_DMG[0];
-	CCalcDataTextCreator.refBattleData[BATTLE_DATA_INDEX_BASE_DAMAGE_AVE] = n_A_DMG[1];
-	CCalcDataTextCreator.refBattleData[BATTLE_DATA_INDEX_BASE_DAMAGE_MAX] = n_A_DMG[2];
-	CCalcDataTextCreator.refBattleData[BATTLE_DATA_INDEX_BASE_DAMAGE_MIN_GX] = n_A_DMG_GX[0];
-	CCalcDataTextCreator.refBattleData[BATTLE_DATA_INDEX_BASE_DAMAGE_AVE_GX] = n_A_DMG_GX[1];
-	CCalcDataTextCreator.refBattleData[BATTLE_DATA_INDEX_BASE_DAMAGE_MAX_GX] = n_A_DMG_GX[2];
-	CCalcDataTextCreator.refBattleData[BATTLE_DATA_INDEX_BASE_DAMAGE_MIN_QUAKE] = n_A_DMG_QUAKE[0];
-	CCalcDataTextCreator.refBattleData[BATTLE_DATA_INDEX_BASE_DAMAGE_AVE_QUAKE] = n_A_DMG_QUAKE[1];
-	CCalcDataTextCreator.refBattleData[BATTLE_DATA_INDEX_BASE_DAMAGE_MAX_QUAKE] = n_A_DMG_QUAKE[2];
-	CCalcDataTextCreator.refBattleData[BATTLE_DATA_INDEX_CRITICAL_ATK_MIN] = (n_A_ActiveSkill == SKILL_ID_TUZYO_KOGEKI) ? n_A_CriATK[0] : "（除外：スキル攻撃）";
-	CCalcDataTextCreator.refBattleData[BATTLE_DATA_INDEX_CRITICAL_ATK_AVE] = (n_A_ActiveSkill == SKILL_ID_TUZYO_KOGEKI) ? n_A_CriATK[1] : "（除外：スキル攻撃）";
-	CCalcDataTextCreator.refBattleData[BATTLE_DATA_INDEX_CRITICAL_ATK_MAX] = (n_A_ActiveSkill == SKILL_ID_TUZYO_KOGEKI) ? n_A_CriATK[2] : "（除外：スキル攻撃）";
-	CCalcDataTextCreator.refBattleData[BATTLE_DATA_INDEX_ARMS_ATK_MIN] = wBukiAtk[0];
-	CCalcDataTextCreator.refBattleData[BATTLE_DATA_INDEX_ARMS_ATK_AVE] = wBukiAtk[1];
-	CCalcDataTextCreator.refBattleData[BATTLE_DATA_INDEX_ARMS_ATK_MAX] = wBukiAtk[2];
-
-	CCalcDataTextCreator.refBattleData[BATTLE_DATA_INDEX_HAND_ATK_PSYCO_FIX] = psycoFix;
-	CCalcDataTextCreator.refBattleData[BATTLE_DATA_INDEX_HAND_ATK] = charaStatusAtk;
-
-	// 呼び出し先グローバル
-	CCalcDataTextCreator.refBattleData[BATTLE_DATA_INDEX_GUIDED_DAMAGE] = n_PerfectHIT_DMG;
-	CCalcDataTextCreator.refBattleData[BATTLE_DATA_INDEX_ATTACK_COUNT_MIN] = g_AttackCount[0];
-	CCalcDataTextCreator.refBattleData[BATTLE_DATA_INDEX_ATTACK_COUNT_AVE] = g_AttackCount[1];
-	CCalcDataTextCreator.refBattleData[BATTLE_DATA_INDEX_ATTACK_COUNT_MAX] = g_AttackCount[2];
-	CCalcDataTextCreator.refBattleData[BATTLE_DATA_INDEX_DAMAGE_PER_SECOND] = g_dps;
-	CCalcDataTextCreator.refBattleData[BATTLE_DATA_INDEX_FINAL_DAMAGE_MIN] = w_DMG[0];
-	CCalcDataTextCreator.refBattleData[BATTLE_DATA_INDEX_FINAL_DAMAGE_AVE] = w_DMG[1];
-	CCalcDataTextCreator.refBattleData[BATTLE_DATA_INDEX_FINAL_DAMAGE_MAX] = w_DMG[2];
-	CCalcDataTextCreator.refBattleData[BATTLE_DATA_INDEX_RECEIVE_DAMAGE_MIN] = w_HiDam[0];
-	CCalcDataTextCreator.refBattleData[BATTLE_DATA_INDEX_RECEIVE_DAMAGE_AVE] = g_receiveDamageAverage;
-	CCalcDataTextCreator.refBattleData[BATTLE_DATA_INDEX_RECEIVE_DAMAGE_MAX] = w_HiDam[6];
-	CCalcDataTextCreator.refBattleData[BATTLE_DATA_INDEX_REFLECT_DAMAGE_MIN_RS] = wRef1[1];
-	CCalcDataTextCreator.refBattleData[BATTLE_DATA_INDEX_REFLECT_DAMAGE_AVE_RS] = wRef1[0];
-	CCalcDataTextCreator.refBattleData[BATTLE_DATA_INDEX_REFLECT_DAMAGE_MAX_RS] = wRef1[2];
-	CCalcDataTextCreator.refBattleData[BATTLE_DATA_INDEX_REFLECT_DAMAGE_MIN_SPEC] = wRef2[1];
-	CCalcDataTextCreator.refBattleData[BATTLE_DATA_INDEX_REFLECT_DAMAGE_AVE_SPEC] = wRef2[0];
-	CCalcDataTextCreator.refBattleData[BATTLE_DATA_INDEX_REFLECT_DAMAGE_MAX_SPEC] = wRef2[2];
-	CCalcDataTextCreator.refBattleData[BATTLE_DATA_INDEX_REFLECT_DAMAGE_MIN_SHIELD_SPELL] = wRef3[1];
-	CCalcDataTextCreator.refBattleData[BATTLE_DATA_INDEX_REFLECT_DAMAGE_AVE_SHIELD_SPELL] = wRef3[0];
-	CCalcDataTextCreator.refBattleData[BATTLE_DATA_INDEX_REFLECT_DAMAGE_MAX_SHIELD_SPELL] = wRef3[2];
-	CCalcDataTextCreator.refBattleData[BATTLE_DATA_INDEX_RECEIVE_DAMAGE_AVOIDS] = g_receiveDamageAvoids;
 }
 
 /**
@@ -16513,8 +16492,8 @@ export function SET_ZOKUSEI(mobData, attackMethodConfArray) {
 
 			// 四次スキルはスキルデータを参照して設定する
 			if (n_A_ActiveSkill >= SKILL_ID_TUZYO_KOGEKI_CALC_RIGHT) {
-				var elmWork = g_skillManager.GetElement(n_A_ActiveSkill, attackMethodConfArray[0]);
-				if ((CSkillData.ELEMENT_FORCE_VANITY <= elmWork) && (elmWork <= CSkillData.ELEMENT_FORCE_UNDEAD)) {
+				var elmWork = g_skillManager.GetForcedElement(n_A_ActiveSkill, attackMethodConfArray[0], mobData);
+				if (elmWork != CSkillData.ELEMENT_VOID) {
 					set_n_A_Weapon_zokusei(elmWork);
 				}
 			}
@@ -21828,16 +21807,6 @@ import {
     RACE_ID_ANIMAL, RACE_ID_DEMON, RACE_ID_DRAGON, RACE_ID_FISH, RACE_ID_HUMAN, RACE_ID_INSECT,
     RACE_ID_PLANT, RACE_ID_SOLID, RACE_ID_UNDEAD,
 } from '../../../roro/m/js/const/EnumRaceId.js';
-import {
-    BATTLE_DATA_INDEX_ACTIVE_SKILL, BATTLE_DATA_INDEX_ARMS_ATK_AVE, BATTLE_DATA_INDEX_ARMS_ATK_MAX, BATTLE_DATA_INDEX_ARMS_ATK_MIN, BATTLE_DATA_INDEX_ATTACK_COUNT_AVE, BATTLE_DATA_INDEX_ATTACK_COUNT_MAX,
-    BATTLE_DATA_INDEX_ATTACK_COUNT_MIN, BATTLE_DATA_INDEX_ATTACK_ELEMENT, BATTLE_DATA_INDEX_AVOID_RATE, BATTLE_DATA_INDEX_BASE_DAMAGE_AVE, BATTLE_DATA_INDEX_BASE_DAMAGE_AVE_GX, BATTLE_DATA_INDEX_BASE_DAMAGE_AVE_QUAKE,
-    BATTLE_DATA_INDEX_BASE_DAMAGE_MAX, BATTLE_DATA_INDEX_BASE_DAMAGE_MAX_GX, BATTLE_DATA_INDEX_BASE_DAMAGE_MAX_QUAKE, BATTLE_DATA_INDEX_BASE_DAMAGE_MIN, BATTLE_DATA_INDEX_BASE_DAMAGE_MIN_GX, BATTLE_DATA_INDEX_BASE_DAMAGE_MIN_QUAKE,
-    BATTLE_DATA_INDEX_CRITICAL_ATK_AVE, BATTLE_DATA_INDEX_CRITICAL_ATK_MAX, BATTLE_DATA_INDEX_CRITICAL_ATK_MIN, BATTLE_DATA_INDEX_CRITICAL_RATE, BATTLE_DATA_INDEX_DAMAGE_PER_SECOND, BATTLE_DATA_INDEX_FINAL_DAMAGE_AVE,
-    BATTLE_DATA_INDEX_FINAL_DAMAGE_MAX, BATTLE_DATA_INDEX_FINAL_DAMAGE_MIN, BATTLE_DATA_INDEX_GUIDED_DAMAGE, BATTLE_DATA_INDEX_HAND_ATK, BATTLE_DATA_INDEX_HAND_ATK_PSYCO_FIX, BATTLE_DATA_INDEX_HIT_RATE,
-    BATTLE_DATA_INDEX_HIT_RATE_AUTO_SPELL, BATTLE_DATA_INDEX_HIT_RATE_DISP, BATTLE_DATA_INDEX_RANGE_FLAG, BATTLE_DATA_INDEX_RECEIVE_DAMAGE_AVE, BATTLE_DATA_INDEX_RECEIVE_DAMAGE_AVOIDS, BATTLE_DATA_INDEX_RECEIVE_DAMAGE_MAX,
-    BATTLE_DATA_INDEX_RECEIVE_DAMAGE_MIN, BATTLE_DATA_INDEX_REFLECT_DAMAGE_AVE_RS, BATTLE_DATA_INDEX_REFLECT_DAMAGE_AVE_SHIELD_SPELL, BATTLE_DATA_INDEX_REFLECT_DAMAGE_AVE_SPEC, BATTLE_DATA_INDEX_REFLECT_DAMAGE_MAX_RS, BATTLE_DATA_INDEX_REFLECT_DAMAGE_MAX_SHIELD_SPELL,
-    BATTLE_DATA_INDEX_REFLECT_DAMAGE_MAX_SPEC, BATTLE_DATA_INDEX_REFLECT_DAMAGE_MIN_RS, BATTLE_DATA_INDEX_REFLECT_DAMAGE_MIN_SHIELD_SPELL, BATTLE_DATA_INDEX_REFLECT_DAMAGE_MIN_SPEC, BATTLE_DATA_INDEX_SIZE_MODIFY, BATTLE_DATA_INDEX_STRDEX_BONUS,
-} from '../../../roro/m/js/const/EnumBattleDataIndex.js';
 import { CARD_DATA_INDEX_SPBEGIN } from '../../../roro/m/js/const/EnumCardDataIndex.js';
 import {
     CHARA_DATA_INDEX_ASPD, CHARA_DATA_INDEX_CAST_PARAM, CHARA_DATA_INDEX_CRI, CHARA_DATA_INDEX_DEF_DIV, CHARA_DATA_INDEX_DEF_MINUS, CHARA_DATA_INDEX_FLEE,

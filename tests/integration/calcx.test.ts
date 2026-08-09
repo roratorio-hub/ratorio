@@ -1209,8 +1209,16 @@ function evalObjidSnapshot(page: Page): Promise<Record<string, string>> {
         // OBJID_SELECT_JOB: job.yaml 廃止により value が id_name（"NOVICE"）から
         //   mig ID の数値文字列（"0"）へ変わった。選択されている職業そのものは
         //   OBJID_SELECT_JOB-ts-control（表示名）の比較で引き続き検証される。
-        // 本番へデプロイされたらこの除外は不要になるので削除すること。
-        const INTENTIONAL_DIVERGENCE_IDS = new Set(['OBJID_CHECK_A3_SKILLSW', 'OBJID_SELECT_JOB']);
+        // OBJID_DIV_BATTLE_RESULT_TINY: オートスペルの武器属性が発動順で汚染される既存バグを
+        //   修正した（bugfix/autospell-elemental-change）。混在属性のオートスペルを持つビルドは
+        //   ダメージが（正しい方向に）変わるため、本番未デプロイの間は乖離する
+        //   （new[6]「ギロチンクロス ランダムオプション ペット効果 マップ指定」で確認済み。
+        //   平均212684→205367 / DPS1519172→1466908。差分の原因はバックアップ/リストア追加のみと
+        //   単離検証済みで、四次スキルの強制属性判定（GetForcedElement）側の影響ではない）。
+        //   ⚠ この除外は OBJID_DIV_BATTLE_RESULT_TINY を「全フィクスチャ」で比較対象外にする
+        //   （ID 単位の除外機構のため fixture 単位にできない）。他ビルドの本当のダメージ回帰を
+        //   一時的に見逃すリスクがあるため、本番へデプロイされたら真っ先にこの行を削除すること。
+        const INTENTIONAL_DIVERGENCE_IDS = new Set(['OBJID_CHECK_A3_SKILLSW', 'OBJID_SELECT_JOB', 'OBJID_DIV_BATTLE_RESULT_TINY']);
         document.querySelectorAll<HTMLElement>('[id^="OBJID_"]').forEach((el) => {
             const id = el.id;
             if (INTENTIONAL_DIVERGENCE_IDS.has(id)) return;

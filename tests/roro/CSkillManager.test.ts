@@ -7,9 +7,17 @@ import { describe, it, expect, beforeAll } from 'vitest';
 // CSkillManager を読み込む。
 let CSkillData: any;
 let CSkillManager: any;
+let CAttackMethodConf: any;
 let SKILL_ID_TUZYO_KOGEKI: number;
 let SKILL_ID_OKYU_TEATE: number;
 let SKILL_ID_GLACIER_NOVA: number;
+let SKILL_ID_HAWK_RUSH: number;
+let SKILL_ID_HAWK_BOOMERANG: number;
+let SKILL_ID_LIGHTNING_LAND: number;
+let SKILL_ID_PETITIO: number;
+let SKILL_ID_ELEMENTAL_BASTER: number;
+let SKILL_ID_ADORAMUS: number;
+let AutoSpellSkill: any[];
 let sm: any;
 let sd: any;
 
@@ -18,6 +26,14 @@ beforeAll(async () => {
     SKILL_ID_TUZYO_KOGEKI = skillDat.SKILL_ID_TUZYO_KOGEKI;
     SKILL_ID_OKYU_TEATE = skillDat.SKILL_ID_OKYU_TEATE;
     SKILL_ID_GLACIER_NOVA = skillDat.SKILL_ID_GLACIER_NOVA;
+    SKILL_ID_HAWK_RUSH = skillDat.SKILL_ID_HAWK_RUSH;
+    SKILL_ID_HAWK_BOOMERANG = skillDat.SKILL_ID_HAWK_BOOMERANG;
+    SKILL_ID_LIGHTNING_LAND = skillDat.SKILL_ID_LIGHTNING_LAND;
+    SKILL_ID_PETITIO = skillDat.SKILL_ID_PETITIO;
+    SKILL_ID_ELEMENTAL_BASTER = skillDat.SKILL_ID_ELEMENTAL_BASTER;
+    SKILL_ID_ADORAMUS = skillDat.SKILL_ID_ADORAMUS;
+    const autospellDat = await import('@roro/autospell.dat.js');
+    AutoSpellSkill = autospellDat.AutoSpellSkill;
     // global.js を CSkillManager.js より先に評価する。global.js は top-level import を
     // すべて解決してから（＝CSkillManager.js を完全に評価してから）body の new CSkillManager() を
     // 走らせるため、ここで安全に Init が完了する。CSkillManager.js を直接先に import すると
@@ -26,6 +42,8 @@ beforeAll(async () => {
     const mod = await import('@roro/CSkillManager.js');
     CSkillData = mod.CSkillData;
     CSkillManager = mod.CSkillManager;
+    const conf = await import('@roro/CAttackMethodConf.js');
+    CAttackMethodConf = conf.CAttackMethodConf;
     sd = new CSkillData();
     sm = new CSkillManager();
 });
@@ -62,5 +80,33 @@ describe('CSkillManager.js', () => {
             () => expect(sm.GetSkillName(SKILL_ID_OKYU_TEATE)).toBe('応急手当'));
         it('3e-2 で追加した const（SKILL_ID_GLACIER_NOVA）が正しい登録位置を指す',
             () => expect(sm.GetSkillName(SKILL_ID_GLACIER_NOVA)).toBe('(△)グレイシアノヴァ'));
+    });
+
+    describe('GetForcedElement（強制属性の判定）', () => {
+        it('ホークラッシュは強制無属性を返す',
+            () => expect(sm.GetForcedElement(SKILL_ID_HAWK_RUSH, null)).toBe(CSkillData.ELEMENT_FORCE_VANITY));
+        it('ホークブーメランは強制無属性を返す',
+            () => expect(sm.GetForcedElement(SKILL_ID_HAWK_BOOMERANG, null)).toBe(CSkillData.ELEMENT_FORCE_VANITY));
+        it('ライトニングランドは強制風属性を返す',
+            () => expect(sm.GetForcedElement(SKILL_ID_LIGHTNING_LAND, null)).toBe(CSkillData.ELEMENT_FORCE_WIND));
+        it('強制属性を持たないスキルは ELEMENT_VOID を返す',
+            () => expect(sm.GetForcedElement(SKILL_ID_PETITIO, null)).toBe(CSkillData.ELEMENT_VOID));
+        it('複合属性スキルは ELEMENT_VOID を返す（範囲外を弾く）',
+            () => expect(sm.GetForcedElement(SKILL_ID_ELEMENTAL_BASTER, null)).toBe(CSkillData.ELEMENT_VOID));
+
+        // option 依存属性のガード（null で例外を出さず VOID を返すこと）
+        it('option 依存属性スキルは option 未指定なら ELEMENT_VOID を返す',
+            () => expect(sm.GetForcedElement(SKILL_ID_ADORAMUS, null)).toBe(CSkillData.ELEMENT_VOID));
+        it('option 依存属性スキルは option があれば評価される', () => {
+            const conf = new CAttackMethodConf();
+            conf.SetOptionValue(0, 1);   // アンシラ状態
+            expect(sm.GetForcedElement(SKILL_ID_ADORAMUS, conf)).toBe(CSkillData.ELEMENT_FORCE_VANITY);
+        });
+
+        // 報告されたバグに最も近い単体レベルの検証：AS テーブルの行 → 強制属性
+        it('オートスペル一覧のホークラッシュ(AS_ID 236)は強制無属性と判定される',
+            () => expect(sm.GetForcedElement(AutoSpellSkill[236][2], null)).toBe(CSkillData.ELEMENT_FORCE_VANITY));
+        it('オートスペル一覧のホークブーメラン(AS_ID 247)は強制無属性と判定される',
+            () => expect(sm.GetForcedElement(AutoSpellSkill[247][2], null)).toBe(CSkillData.ELEMENT_FORCE_VANITY));
     });
 });
