@@ -714,6 +714,238 @@ describe('ro4/m/calcx.html 起動テスト', () => {
         }
     });
 
+    // ↑↓ キーで Enter 無しに TomSelect の選択を確定できることを確認する（#1496）。
+    // 開いた状態でハイライトを移動するだけでは Enter を押すまで反映されず、ネイティブ
+    // <select>（精錬値・超越等）との操作感の差が「使いにくい」という要望につながっていた。
+    // 加えて、確定は 'change' を発火させ document の change リスナーが LoadTomSelect() を
+    // 呼ぶため、素朴に実装すると操作中のインスタンス自身が壊れてフォーカスが失われ、
+    // 連続した ↓ 送りが 1 回で途切れる（destroy()/再構築の副作用）。
+    // 3 連打してもフォーカスが保持され、期待どおりの選択肢まで進むことを検証する。
+    it('装備セレクトで ↓ キーだけで値が確定・再計算され、連打してもフォーカスを保持する', async () => {
+        const context = await browser.newContext();
+        const page = await context.newPage();
+        try {
+            await page.goto(`${baseUrl}/ro4/m/calcx.html`, { waitUntil: 'networkidle', timeout: 60000 });
+            await page.waitForFunction(() => {
+                const el = document.getElementById('OBJID_ARMS_RIGHT') as (HTMLSelectElement & { tomselect?: unknown }) | null;
+                return !!(el && el.tomselect);
+            }, { timeout: 15000 }).catch(() => {});
+            await page.waitForTimeout(300);
+
+            const setup = await page.evaluate(async () => {
+                const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+                type Sel = HTMLSelectElement & {
+                    tomselect?: { setValue(v: string): void; options: Record<string, unknown>; settings: { valueField: string } };
+                };
+                const el = document.getElementById('OBJID_ARMS_RIGHT') as Sel | null;
+                if (!el || !el.tomselect) return null;
+                const ts = el.tomselect as any;
+                const ordered = Object.values(ts.options)
+                    .sort((a: any, b: any) => a.$order - b.$order)
+                    .map((o: any) => String(o[ts.settings.valueField]));
+                if (ordered.length < 5) return null;
+                // 先頭付近に固定し、3 手先まで送れる余地を確保する
+                ts.setValue(ordered[0]);
+                await sleep(300);
+                return { ordered, startValue: el.value };
+            });
+            if (!setup) {
+                console.warn('スキップ: OBJID_ARMS_RIGHT の選択肢を用意できない環境');
+                return;
+            }
+
+            await page.click('#OBJID_ARMS_RIGHT-ts-control');
+            await page.keyboard.press('Escape'); // 開いた状態を閉じてフォーカスだけ残す
+            await page.waitForTimeout(100);
+            const isOpenAfterEscape = await page.evaluate(
+                () => !!(document.getElementById('OBJID_ARMS_RIGHT') as any).tomselect?.isOpen
+            );
+            expect(isOpenAfterEscape, '閉じた状態から検証を始められなかった').toBe(false);
+
+            await page.keyboard.press('ArrowDown');
+            await page.keyboard.press('ArrowDown');
+            await page.keyboard.press('ArrowDown');
+            await page.waitForTimeout(300); // コアレスされた LoadTomSelect() / 再計算の完了を待つ
+
+            const result = await page.evaluate(() => {
+                const el = document.getElementById('OBJID_ARMS_RIGHT') as (HTMLSelectElement & { tomselect?: any }) | null;
+                const wrapper = el?.nextElementSibling ?? null;
+                return {
+                    value: el?.value ?? '',
+                    isOpen: !!el?.tomselect?.isOpen,
+                    focusRetained: !!(wrapper && wrapper.contains(document.activeElement)),
+                };
+            });
+
+            expect(result.value, '↓ 3 回で 3 つ先の選択肢まで進んでいない').toBe(setup.ordered[3]);
+            expect(result.isOpen, 'リストが開いたままになっている').toBe(false);
+            expect(result.focusRetained, '連打の途中でフォーカスが失われた（再初期化で壊れた疑い）').toBe(true);
+        } finally {
+            await context.close();
+        }
+    });
+
+    // #1482「TomSelect再初期化時のoption末尾移動バグ」の回帰防止。
+    // ↓ キー確定は操作中インスタンスの再初期化を blur まで先送りする（#1496 実装）。
+    // 先送り中に DOM の option 順が崩れても、blur 後の destroy() が
+    // revertSettings.innerHTML（正しい50音順）を復元することを確認する。
+    it('↓ キーで確定を繰り返した後 blur すると option の DOM 順が50音順に戻る（#1482 回帰防止）', async () => {
+        const context = await browser.newContext();
+        const page = await context.newPage();
+        try {
+            await page.goto(`${baseUrl}/ro4/m/calcx.html`, { waitUntil: 'networkidle', timeout: 60000 });
+            await page.waitForFunction(() => {
+                const el = document.getElementById('OBJID_ARMS_RIGHT') as (HTMLSelectElement & { tomselect?: unknown }) | null;
+                return !!(el && el.tomselect);
+            }, { timeout: 15000 }).catch(() => {});
+            await page.waitForTimeout(300);
+
+            const setup = await page.evaluate(async () => {
+                const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+                const el = document.getElementById('OBJID_ARMS_RIGHT') as (HTMLSelectElement & { tomselect?: any }) | null;
+                if (!el || !el.tomselect) return null;
+                const ts = el.tomselect;
+                const orderedBefore = Array.from(el.options).map((o) => o.value).filter((v) => v !== '');
+                if (orderedBefore.length < 3) return null;
+                ts.setValue(orderedBefore[0]);
+                await sleep(300);
+                return { orderedBefore };
+            });
+            if (!setup) {
+                console.warn('スキップ: OBJID_ARMS_RIGHT の選択肢を用意できない環境');
+                return;
+            }
+
+            await page.click('#OBJID_ARMS_RIGHT-ts-control');
+            await page.keyboard.press('Escape');
+            await page.keyboard.press('ArrowDown');
+            await page.keyboard.press('ArrowDown');
+            await page.waitForTimeout(200);
+
+            // 別の要素へフォーカスを移して blur させ、先送りされていた再初期化を発火させる
+            await page.evaluate(() => (document.getElementById('OBJID_SELECT_JOB') as HTMLElement | null)?.focus());
+            await page.waitForTimeout(200);
+
+            const orderedAfter = await page.evaluate(() => {
+                const el = document.getElementById('OBJID_ARMS_RIGHT') as HTMLSelectElement | null;
+                return el ? Array.from(el.options).map((o) => o.value).filter((v) => v !== '') : [];
+            });
+
+            expect(orderedAfter, '確定を繰り返した後、選択中の装備が DOM 末尾に残っている').toEqual(setup.orderedBefore);
+        } finally {
+            await context.close();
+        }
+    });
+
+    // カード選択欄は INIT_TRIGGER_IDS に含まれない（LoadTomSelect() の起点にならない）ため、
+    // 装備本体と異なる再初期化経路を通る。↓ キー確定がこちらでも同様に効くことを確認する。
+    it('カード選択欄（OBJID_ARMS_RIGHT_CARD_1）でも ↓ キーで即座に確定する', async () => {
+        const context = await browser.newContext();
+        const page = await context.newPage();
+        try {
+            await page.goto(`${baseUrl}/ro4/m/calcx.html`, { waitUntil: 'networkidle', timeout: 60000 });
+            await page.waitForFunction(() => {
+                const el = document.getElementById('OBJID_ARMS_RIGHT_CARD_1') as (HTMLSelectElement & { tomselect?: unknown }) | null;
+                return !!(el && el.tomselect);
+            }, { timeout: 15000 }).catch(() => {});
+            await page.waitForTimeout(300);
+
+            const result = await page.evaluate(async () => {
+                const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+                const el = document.getElementById('OBJID_ARMS_RIGHT_CARD_1') as (HTMLSelectElement & { tomselect?: any }) | null;
+                if (!el || !el.tomselect) return null;
+                const ts = el.tomselect;
+                const ordered = Object.values(ts.options)
+                    .sort((a: any, b: any) => a.$order - b.$order)
+                    .map((o: any) => String(o[ts.settings.valueField]));
+                if (ordered.length < 2) return null;
+                ts.setValue(ordered[0]);
+                await sleep(300);
+                return { before: el.value, wantNext: ordered[1] };
+            });
+            if (!result) {
+                console.warn('スキップ: OBJID_ARMS_RIGHT_CARD_1 の選択肢を用意できない環境（未展開/カード不可の装備）');
+                return;
+            }
+
+            await page.click('#OBJID_ARMS_RIGHT_CARD_1-ts-control');
+            await page.keyboard.press('Escape');
+            await page.keyboard.press('ArrowDown');
+            await page.waitForTimeout(200);
+
+            const after = await page.evaluate(
+                () => (document.getElementById('OBJID_ARMS_RIGHT_CARD_1') as HTMLSelectElement | null)?.value ?? ''
+            );
+            expect(after, 'カード欄で ↓ による確定が効いていない').toBe(result.wantNext);
+        } finally {
+            await context.close();
+        }
+    });
+
+    // openOnFocus:false により Tab フォーカスだけでは開かないが、ネイティブ <select> と同じ
+    // 4 通りの手段（Alt+↓ / Alt+↑ / Space / クリック）では開く（#1496）。
+    // Tom Select 標準の onKeyDown は KEY_DOWN でしか open() しない（KEY_UP は開かず、
+    // Space は未対応でページスクロールしてしまう）ため、この 3 つは明示的に補っている。
+    it('Tab でフォーカスしてもドロップダウンは開かず、Alt+↑↓ / Space / クリックでは開く', async () => {
+        const context = await browser.newContext();
+        const page = await context.newPage();
+        try {
+            await page.goto(`${baseUrl}/ro4/m/calcx.html`, { waitUntil: 'networkidle', timeout: 60000 });
+            await page.waitForFunction(() => {
+                const el = document.getElementById('OBJID_ARMS_RIGHT') as (HTMLSelectElement & { tomselect?: unknown }) | null;
+                return !!(el && el.tomselect);
+            }, { timeout: 15000 }).catch(() => {});
+            await page.waitForTimeout(300);
+
+            const isOpen = () => page.evaluate(
+                () => !!(document.getElementById('OBJID_ARMS_RIGHT') as any).tomselect?.isOpen
+            );
+            const focusControl = () => page.evaluate(() => {
+                const wrapper = document.getElementById('OBJID_ARMS_RIGHT')?.nextElementSibling as HTMLElement | null;
+                (wrapper?.querySelector('.ts-control') as HTMLElement | null)?.focus();
+            });
+
+            // Tab フォーカス相当（.focus() 直接呼び出し）では開かない
+            await focusControl();
+            await page.waitForTimeout(100);
+            expect(await isOpen(), 'Tab 相当のフォーカスだけでリストが開いてしまっている').toBe(false);
+
+            // Alt+↓ で開く
+            await page.keyboard.press('Alt+ArrowDown');
+            await page.waitForTimeout(100);
+            expect(await isOpen(), 'Alt+↓ でリストが開かない').toBe(true);
+            await page.keyboard.press('Escape');
+            await page.waitForTimeout(100);
+            expect(await isOpen(), 'Escape の後で閉じていない（前提が崩れている）').toBe(false);
+
+            // Alt+↑ でも開く（Tom Select 標準の KEY_UP は開かないための明示対応）
+            await page.keyboard.press('Alt+ArrowUp');
+            await page.waitForTimeout(100);
+            expect(await isOpen(), 'Alt+↑ でリストが開かない').toBe(true);
+            await page.keyboard.press('Escape');
+            await page.waitForTimeout(100);
+
+            // Space で開き、かつページがスクロールしない（既定動作の抑止）
+            await focusControl();
+            await page.evaluate(() => window.scrollTo(0, 0));
+            const scrollBefore = await page.evaluate(() => window.scrollY);
+            await page.keyboard.press('Space');
+            await page.waitForTimeout(100);
+            expect(await isOpen(), 'Space でリストが開かない').toBe(true);
+            const scrollAfter = await page.evaluate(() => window.scrollY);
+            expect(scrollAfter, 'Space でページがスクロールしてしまっている').toBe(scrollBefore);
+            await page.keyboard.press('Escape');
+            await page.waitForTimeout(100);
+
+            // クリックでも開く（従来どおり）
+            await page.click('#OBJID_ARMS_RIGHT-ts-control');
+            await page.waitForTimeout(100);
+            expect(await isOpen(), 'クリックしてもリストが開かない（従来の挙動が壊れた）').toBe(true);
+        } finally {
+            await context.close();
+        }
+    });
+
     // 詠唱シミュレータ欄を展開し、スキル選択セレクトの change イベントで
     // ReferenceError が発生しないことを確認する。
     // dewindow フェーズで castsim.js の onChange 属性を addEventListener に切り替えた後、
