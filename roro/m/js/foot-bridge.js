@@ -45,6 +45,7 @@ export function CheckSpDefRefineOver(...a) { return _reg.CheckSpDefRefineOver?.(
 export function InitJobInfo(...a) { return _reg.InitJobInfo?.(...a); }
 export function NumSearch(...a) { return _reg.NumSearch?.(...a); }
 export function NumSearch2(...a) { return _reg.NumSearch2?.(...a); }
+export function EquipNumSearchFurubitaHead(...a) { return _reg.EquipNumSearchFurubitaHead?.(...a); }
 export function EquipNumSearchFurubitaSet(...a) { return _reg.EquipNumSearchFurubitaSet?.(...a); }
 export function ROUNDDOWN(...a) { return _reg.ROUNDDOWN?.(...a); }
 export function Init(...a) { return _reg.Init?.(...a); }
