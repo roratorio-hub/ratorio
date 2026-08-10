@@ -9,6 +9,7 @@ import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRem
 import {
          calc,
 } from '../../../ro4/m/js/head-bridge.js';
+import { TIME_ITEM_DATA_INDEX_EXPLAIN, TIME_ITEM_DATA_INDEX_NAME } from './const/EnumTimeItemDataIndex.js';
 
 /**
  * 時限アイテムエリアコンポーネントマネージャクラス.

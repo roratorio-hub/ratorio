@@ -2,10 +2,7 @@
 import { n_A_Equip, n_A_card } from './roro-state.js';
 import { CardIdToSetIdMap, ItemIdToSetIdMap, w_SE } from './itemset.dat.js';
 import { GetItemSetMemberText } from './itemset-bridge.js';
-import './card.h.js';
 import './common.js';
-import './costume.h.js';
-import './pet.h.js';
 import { g_constDataManager, g_timeItemConf } from '../../../ro4/m/js/global.js';
 import { g_timeItemDataBridge } from './CTimeItemDataBridge.js';
 import { CardObjNew } from './card.dat.js';
@@ -30,6 +27,34 @@ import {
 } from './roro-state.js';
 // C-6: engine-registry（CSaveController.js との循環 import 回避）
 import { get as registryGet } from '../../../ro4/m/js/engine-registry.js';
+import { CARD_DATA_INDEX_DETAIL, CARD_DATA_INDEX_KIND, CARD_DATA_INDEX_SPBEGIN } from './const/EnumCardDataIndex.js';
+import {
+    CARD_KIND_ACCESSORY, CARD_KIND_ACCESSORY_ON1, CARD_KIND_ACCESSORY_ON2, CARD_KIND_ANY, CARD_KIND_ARMS, CARD_KIND_BODY,
+    CARD_KIND_ENCHANT, CARD_KIND_FOOT, CARD_KIND_HEAD, CARD_KIND_MID, CARD_KIND_SHIELD, CARD_KIND_SHOULDER,
+    CARD_KIND_TOP, CARD_KIND_UNDER,
+} from './const/EnumCardKind.js';
+import { CONST_DATA_KIND_CARD, CONST_DATA_KIND_COSTUME, CONST_DATA_KIND_ITEM, CONST_DATA_KIND_PET } from './const/EnumConstDataKind.js';
+import { COSTUME_DATA_INDEX_DETAIL, COSTUME_DATA_INDEX_KIND, COSTUME_DATA_INDEX_NAME, COSTUME_DATA_INDEX_SPBEGIN } from './const/EnumCostumeDataIndex.js';
+import {
+    COSTUME_KIND_ACCESSORY, COSTUME_KIND_ARMS, COSTUME_KIND_BODY, COSTUME_KIND_FOOT, COSTUME_KIND_HEAD_MID, COSTUME_KIND_HEAD_TOP,
+    COSTUME_KIND_HEAD_UNDER, COSTUME_KIND_SHIELD, COSTUME_KIND_SHOULDER,
+} from './const/EnumCostumeKind.js';
+import { EQUIP_REGION_ID_SHADOW_ACCESSORY_1, EQUIP_REGION_ID_SHADOW_ACCESSORY_2, EQUIP_REGION_ID_SHADOW_ARMS_LEFT, EQUIP_REGION_ID_SHADOW_ARMS_RIGHT, EQUIP_REGION_ID_SHADOW_BODY, EQUIP_REGION_ID_SHADOW_FOOT } from './const/EnumEquipRegionId.js';
+import {
+    ITEM_DATA_INDEX_DETAIL, ITEM_DATA_INDEX_EQPLV, ITEM_DATA_INDEX_KIND, ITEM_DATA_INDEX_POWER, ITEM_DATA_INDEX_SLOT, ITEM_DATA_INDEX_SPBEGIN,
+    ITEM_DATA_INDEX_WEIGHT, ITEM_DATA_INDEX_WPNLV,
+} from './const/EnumItemDataIndex.js';
+import {
+    ITEM_KIND_ACCESSORY, ITEM_KIND_ACCESSORY_ON1, ITEM_KIND_ACCESSORY_ON2, ITEM_KIND_AXE, ITEM_KIND_AXE_2HAND, ITEM_KIND_BODY,
+    ITEM_KIND_BOOK, ITEM_KIND_BOW, ITEM_KIND_CLUB, ITEM_KIND_FIST, ITEM_KIND_FOOT, ITEM_KIND_FUMA,
+    ITEM_KIND_GATLINGGUN, ITEM_KIND_GRENADEGUN, ITEM_KIND_HANDGUN, ITEM_KIND_HEAD_MID, ITEM_KIND_HEAD_TOP, ITEM_KIND_HEAD_UNDER,
+    ITEM_KIND_KATAR, ITEM_KIND_KNIFE, ITEM_KIND_MUSICAL, ITEM_KIND_RIFLE, ITEM_KIND_SHIELD, ITEM_KIND_SHOTGUN,
+    ITEM_KIND_SHOULDER, ITEM_KIND_SPEAR, ITEM_KIND_SPEAR_2HAND, ITEM_KIND_STUFF, ITEM_KIND_STUFF2HAND, ITEM_KIND_SWORD,
+    ITEM_KIND_SWORD_2HAND, ITEM_KIND_WHIP,
+} from './const/EnumItemKind.js';
+import { PET_DATA_INDEX_DETAIL, PET_DATA_INDEX_SPBEGIN } from './const/EnumPetDataIndex.js';
+import { TIME_ITEM_DATA_INDEX_SRC_DATA_ARRAY } from './const/EnumTimeItemDataIndex.js';
+import { TIME_ITEM_DATA_INDEX_SRC_INDEX_ID, TIME_ITEM_DATA_INDEX_SRC_INDEX_KIND } from './const/EnumTimeItemDataIndexSrcIndex.js';
 
 
 /**

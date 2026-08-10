@@ -1,19 +1,7 @@
 import { describe, it, expect, beforeAll } from 'vitest';
-import { CGlobalConstManager } from '@roro/CGlobalConstManager.js';
 import { CNameKana } from '@roro/CNameKana.js';
 
 describe('CNameKana.js', () => {
-    describe('DefineEnum 副作用確認', () => {
-        it('NAME_KANA_DATA_INDEX_NAME が 0 に定義されている', () => {
-            expect((globalThis as any).NAME_KANA_DATA_INDEX_NAME).toBe(0);
-        });
-        it('NAME_KANA_DATA_INDEX_KANA が 1 に定義されている', () => {
-            expect((globalThis as any).NAME_KANA_DATA_INDEX_KANA).toBe(1);
-        });
-        it('NAME_KANA_DATA_INDEX_SORT が 2 に定義されている', () => {
-            expect((globalThis as any).NAME_KANA_DATA_INDEX_SORT).toBe(2);
-        });
-    });
 
     describe('静的メソッド確認', () => {
         it('GetSortCode: "z" を "d" に変換する', () => {

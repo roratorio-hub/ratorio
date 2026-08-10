@@ -1,28 +1,5 @@
-
-import { CGlobalConstManager } from './CGlobalConstManager.js';
 import { g_AliasDataArray } from './alias.dat.js';
-
-//----------------------------------------------------------------
-// データの要素番号
-//----------------------------------------------------------------
-CGlobalConstManager.DefineEnum(
-	"EnumAliasDataIndex",
-	[
-		"ALIAS_DATA_INDEX_ALIAS",
-		"ALIAS_DATA_INDEX_ORIGIN",
-	],
-	0,
-	1
-);
-CGlobalConstManager.DefinePseudoEnum(
-	"EnumAliasDataIndex",
-	[
-		"ALIAS_DATA_INDEX_COUNT",
-	],
-	EnumAliasDataIndex.Count,
-	1
-);
-
+import { ALIAS_DATA_INDEX_ALIAS, ALIAS_DATA_INDEX_ORIGIN } from './const/EnumAliasDataIndex.js';
 
 /**
  * エイリアスを変換する.

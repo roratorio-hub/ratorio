@@ -67,7 +67,6 @@ export function loadRoroDependencies(): void {
     loadRoroScriptSafe('item.h.js');
     loadRoroScriptSafe('pet.h.js');
     loadRoroScriptSafe('costume.h.js');
-    loadRoroScriptSafe('arrow.h.js');
     loadRoroScriptSafe('autospell.h.js');
     loadRoroScriptSafe('itempack.h.js');
     loadRoroScriptSafe('itemset.h.js');

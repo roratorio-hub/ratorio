@@ -1,20 +1,16 @@
 // === AUTO-GENERATED IMPORTS ===
 import '../CNameKana.js';
-import '../arrow.h.js';
 import { ArrowOBJNew } from '../arrow.dat.js';
 import { CMigConstDataManagerSubBase } from './CMigConstDataManagerSubBase.js';
 import { CMigEquipableData } from './CMigEquipableData.js';
+import { ARROW_DATA_INDEX_ID, ARROW_DATA_INDEX_NAME } from '../const/EnumArrowDataIndex.js';
+import { MIG_EQUIPABLE_DATA_INDEX_ID, MIG_EQUIPABLE_DATA_INDEX_NAME_KANA_ARRAY, MIG_EQUIPABLE_DATA_INDEX_OFFICIAL_ID, MIG_EQUIPABLE_DATA_INDEX_REF_ID } from '../const/EnumMigEquipableDataIndex.js';
+import { NAME_KANA_DATA_INDEX_NAME } from '../const/EnumNameKanaDataIndex.js';
 // === END AUTO-GENERATED IMPORTS ===
 /**
  * 矢データマネージャクラス.
  */
 export function CMigConstDataManagerSubArrow () {
-
-	//----------------
-	// 継承定義は、クラス本体の次に記述
-	//----------------
-
-
 
 	/**
 	 * 無名イニシャライザ.
@@ -30,8 +26,6 @@ export function CMigConstDataManagerSubArrow () {
 		this.sourceArray = [];
 		this.objectArray = [];
 
-		// TODO: データ移行過渡処理
-		this.idEnumObjectName = "EnumMigArrowId";
 
 	}).call(this);
 

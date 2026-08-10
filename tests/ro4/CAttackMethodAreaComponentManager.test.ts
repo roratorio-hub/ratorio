@@ -60,7 +60,6 @@ vi.mock('@roro/monster.dat.js', async (importActual) => {
     return { ...actual, get MonsterObjNew() { return []; } };
 });
 
-import '@roro/CGlobalConstManager.js';
 import '@roro/CAttackMethodConf.js';
 import { CAttackMethodAreaComponentManager } from '@ro4/CAttackMethodAreaComponentManager.js';
 

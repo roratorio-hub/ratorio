@@ -1,5 +1,4 @@
 // === AUTO-GENERATED IMPORTS ===
-import './costume.h.js';
 import { COSTUME_REGION_ID_HEAD_UNDER } from './common.js';
 import { CostumeOBJ } from './costume.dat.js';
 import { HtmlGetElementById, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlSetObjectValueById, SetStatefullData } from '../../common/js/util.js';
@@ -14,6 +13,13 @@ import {
 import {
          n_A_costume,
 } from './roro-state.js';
+import { CONST_DATA_KIND_JOB } from './const/EnumConstDataKind.js';
+import { COSTUME_DATA_INDEX_EQPFLG, COSTUME_DATA_INDEX_ID, COSTUME_DATA_INDEX_KANA, COSTUME_DATA_INDEX_KIND, COSTUME_DATA_INDEX_NAME } from './const/EnumCostumeDataIndex.js';
+import { COSTUME_KIND_HEAD_UNDER } from './const/EnumCostumeKind.js';
+import {
+    EQUIP_REGION_ID_ACCESSORY_1, EQUIP_REGION_ID_ACCESSORY_2, EQUIP_REGION_ID_ARMS, EQUIP_REGION_ID_ARMS_LEFT, EQUIP_REGION_ID_BODY, EQUIP_REGION_ID_HEAD_MID,
+    EQUIP_REGION_ID_HEAD_TOP, EQUIP_REGION_ID_HEAD_UNDER, EQUIP_REGION_ID_SHIELD, EQUIP_REGION_ID_SHOES, EQUIP_REGION_ID_SHOULDER,
+} from './const/EnumEquipRegionId.js';
 
 
 

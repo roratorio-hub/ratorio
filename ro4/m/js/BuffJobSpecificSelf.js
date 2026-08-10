@@ -77,6 +77,9 @@ import {
          NumSearch2,
          RefreshSuperNoviceFullWeapon,
 } from '../../../roro/m/js/foot-bridge.js';
+import { CONST_DATA_KIND_JOB } from '../../../roro/m/js/const/EnumConstDataKind.js';
+import { JOB_ID_CHAMPION, JOB_ID_MONK } from '../../../roro/m/js/const/EnumJobId.js';
+import { SKILL_DATA_INDEX_MAXLV, SKILL_DATA_INDEX_NAME } from '../../../roro/m/js/const/EnumSkillDataIndex.js';
 
 "use strict"
 /**

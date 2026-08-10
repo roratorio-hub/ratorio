@@ -1,41 +1,8 @@
-
-import { CGlobalConstManager } from './CGlobalConstManager.js';
 // === AUTO-GENERATED IMPORTS ===
 import './common.js';
+import { EQUIP_REGION_ID_COUNT } from './const/EnumMigItemParamId.js';
+import { RND_OPT_SLOT_COUNT } from './const/EnumRndOptTypeDataIndex.js';
 // === END AUTO-GENERATED IMPORTS ===
-
-//----------------------------------------------------------------
-// データの要素番号
-//----------------------------------------------------------------
-CGlobalConstManager.DefineEnum(
-	"EnumRndOptTypeDataIndex",
-	[
-		"RND_OPT_TYPE_DATA_INDEX_ID",
-		"RND_OPT_TYPE_DATA_INDEX_LIST_ID_ARRAY",
-	],
-	0,
-	1
-);
-
-
-//----------------------------------------------------------------
-// オプションスロットインデックス
-//----------------------------------------------------------------
-CGlobalConstManager.DefineEnum(
-	"EnumRndOptTypeDataIndex",
-	[
-		"RND_OPT_SLOT_1",
-		"RND_OPT_SLOT_2",
-		"RND_OPT_SLOT_3",
-		"RND_OPT_SLOT_4",
-		"RND_OPT_SLOT_5",
-
-		"RND_OPT_SLOT_COUNT",
-	],
-	0,
-	1
-);
-
 
 // ランダムオプション設定状況テーブル初期化
 export let g_equipRndOptTable = new Array();

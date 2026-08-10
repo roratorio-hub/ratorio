@@ -1,7 +1,5 @@
 // === AUTO-GENERATED IMPORTS ===
-import './card.h.js';
 import './item.h.js';
-import './pet.h.js';
 import { CARD_ID_NONE, CardObjNew } from './card.dat.js';
 import { CARD_REGION_ID_COUNT } from './common.js';
 import { ITEM_ID_NOEQUIP_SET, ItemObjNew } from './item.dat.js';
@@ -10,6 +8,11 @@ import { n_A_PassSkill8 } from '../../../ro4/m/js/skillstate.js';
 import { ITEM_SET_PET_ID_OFFSET, w_SE } from './itemset.dat.js';
 import { __registerItemSetFunctions } from './itemset-bridge.js';
 import { n_A_Equip, n_A_card, set_n_A_Equip, set_n_A_card } from './roro-state.js';
+import { CARD_DATA_INDEX_KIND, CARD_DATA_INDEX_NAME } from './const/EnumCardDataIndex.js';
+import { CARD_KIND_ENCHANT } from './const/EnumCardKind.js';
+import { ITEM_DATA_INDEX_KANA, ITEM_DATA_INDEX_NAME } from './const/EnumItemDataIndex.js';
+import { EQUIP_REGION_ID_COUNT } from './const/EnumMigItemParamId.js';
+import { PET_DATA_INDEX_NAME } from './const/EnumPetDataIndex.js';
 // === END AUTO-GENERATED IMPORTS ===
 
 // ペットID指定のオフセット（定義は itemset.dat.js へ移動 — 既存の参照元のために再エクスポート）

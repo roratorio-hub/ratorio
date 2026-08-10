@@ -1,17 +1,12 @@
 // === AUTO-GENERATED IMPORTS ===
 import { CMigConstDataManagerSubBase } from './CMigConstDataManagerSubBase.js';
 import { CMigJobData } from './CMigJobData.js';
+import { MIG_JOB_DATA_INDEX_ID, MIG_JOB_DATA_INDEX_NAME_KANA_ARRAY } from '../const/EnumMigJobDataIndex.js';
 // === END AUTO-GENERATED IMPORTS ===
 /**
  * 職業データマネージャクラス.
  */
 export function CMigConstDataManagerSubJob () {
-
-	//----------------
-	// 継承定義は、クラス本体の次に記述
-	//----------------
-
-
 
 	/**
 	 * 無名イニシャライザ.
@@ -25,8 +20,6 @@ export function CMigConstDataManagerSubJob () {
 		this.sourceArray = [];
 		this.objectArray = [];
 
-		// 職業ID定義オブジェクト
-		this.idEnumObjectName = "EnumMigJobId";
 
 	}).call(this);
 

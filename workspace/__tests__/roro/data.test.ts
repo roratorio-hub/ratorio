@@ -236,12 +236,6 @@ describe('roro/m/js/データ定義ファイル（その他）', () => {
         });
     });
 
-    describe('arrow.h.js', () => {
-        it('矢ヘッダー情報が定義されている', () => {
-            expect(true).toBe(true);
-        });
-    });
-
     describe('autospell.dat.js', () => {
         it('オートスペルデータが定義されている', () => {
             expect(true).toBe(true);

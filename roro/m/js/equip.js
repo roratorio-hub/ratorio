@@ -4,8 +4,6 @@ import { CardIdToSetIdMap, ItemIdToSetIdMap, w_SE } from './itemset.dat.js';
 import { set_n_Nitou } from '../../../ro4/m/js/global.js';
 import { shadowEquipRebuildAll } from '../../../ro4/m/js/CShadowEquipControllerDataBridge.js';
 import { g_attackMethodBridge } from './CAttackMethodDataBridge.js';
-import './arrow.h.js';
-import './card.h.js';
 import './skill.h.js';
 import {
          GetBaseLevelMax, GetBaseLevelMin, GetHigherJobSeriesID, GetJobLevelMax,
@@ -93,6 +91,26 @@ import {
          SpeedPotName,
          n_A_JOB, set_n_A_JOB, n_A_Weapon2Type, set_n_A_Weapon2Type,
 } from './roro-state.js';
+import { ARROW_DATA_INDEX_ID, ARROW_DATA_INDEX_KANA, ARROW_DATA_INDEX_KIND, ARROW_DATA_INDEX_NAME } from './const/EnumArrowDataIndex.js';
+import { ARROW_KIND_ARROW, ARROW_KIND_BULLET, ARROW_KIND_NONE } from './const/EnumArrowKind.js';
+import { CARD_DATA_INDEX_KIND, CARD_DATA_INDEX_NAME, CARD_DATA_INDEX_SPBEGIN } from './const/EnumCardDataIndex.js';
+import { CARD_KIND_ENCHANT } from './const/EnumCardKind.js';
+import { CONST_DATA_KIND_CARD, CONST_DATA_KIND_COSTUME, CONST_DATA_KIND_ITEM, CONST_DATA_KIND_JOB } from './const/EnumConstDataKind.js';
+import {
+    EQUIP_REGION_ID_ACCESSORY_1, EQUIP_REGION_ID_ACCESSORY_2, EQUIP_REGION_ID_ARMS, EQUIP_REGION_ID_ARMS_LEFT, EQUIP_REGION_ID_BODY, EQUIP_REGION_ID_HEAD_MID,
+    EQUIP_REGION_ID_HEAD_TOP, EQUIP_REGION_ID_HEAD_UNDER, EQUIP_REGION_ID_SHIELD, EQUIP_REGION_ID_SHOES, EQUIP_REGION_ID_SHOULDER,
+} from './const/EnumEquipRegionId.js';
+import { ITEM_DATA_INDEX_ID, ITEM_DATA_INDEX_KANA, ITEM_DATA_INDEX_KIND, ITEM_DATA_INDEX_NAME, ITEM_DATA_INDEX_SPBEGIN, ITEM_DATA_INDEX_WPNLV } from './const/EnumItemDataIndex.js';
+import {
+    ITEM_KIND_ACCESSORY, ITEM_KIND_ACCESSORY_ON1, ITEM_KIND_ACCESSORY_ON2, ITEM_KIND_AXE_2HAND, ITEM_KIND_BODY, ITEM_KIND_BOW,
+    ITEM_KIND_FOOT, ITEM_KIND_FUMA, ITEM_KIND_GATLINGGUN, ITEM_KIND_GRENADEGUN, ITEM_KIND_HANDGUN, ITEM_KIND_HEAD_MID,
+    ITEM_KIND_HEAD_TOP, ITEM_KIND_HEAD_UNDER, ITEM_KIND_KATAR, ITEM_KIND_NONE, ITEM_KIND_RIFLE, ITEM_KIND_SHIELD,
+    ITEM_KIND_SHOTGUN, ITEM_KIND_SHOULDER,
+} from './const/EnumItemKind.js';
+import { ITEM_SP_END, ITEM_SP_LEARNED_SKILL_EFFECT, ITEM_SP_SPECIAL_RANGE } from './const/EnumItemSpId.js';
+import { JOB_ID_ASSASINCROSS, JOB_ID_GILOTINCROSS, JOB_ID_KAGERO, JOB_ID_OBORO } from './const/EnumJobId.js';
+import { RND_OPT_SLOT_COUNT } from './const/EnumRndOptTypeDataIndex.js';
+import { SKILL_DATA_INDEX_NAME } from './const/EnumSkillDataIndex.js';
 
 // スパノビの魂による装備制限解除フラグ。本モジュールが所有者。
 // 書き手は foot.js の RefreshSuperNoviceFullWeapon（SetSuperNoviceFullWeapon 経由）と

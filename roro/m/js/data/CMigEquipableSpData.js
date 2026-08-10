@@ -1,6 +1,7 @@
 // === AUTO-GENERATED IMPORTS ===
 import './mig.itemsp.h.js';
 import { CMigEquipableSpTag } from './CMigEquipableSpTag.js';
+import { MIG_VALUE_UNIT_ID_NONE } from '../const/EnumMigValueUnitId.js';
 // === END AUTO-GENERATED IMPORTS ===
 
 /**

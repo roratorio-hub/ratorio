@@ -18,7 +18,6 @@ let learnedLv = 0;
 let usedLv = 0;
 
 beforeAll(async () => {
-    await import('@roro/CGlobalConstManager.js');
     const skillDat = await import('@roro/skill.dat.js');
     SKILL_ID_CART_CANNON = skillDat.SKILL_ID_CART_CANNON;
     SKILL_ID_CART_KAIZO = skillDat.SKILL_ID_CART_KAIZO;

@@ -1,4 +1,5 @@
 import { describe, it, expect, beforeAll } from 'vitest';
+import { MONSTER_DATA_INDEX_LEVEL, MONSTER_DATA_INDEX_NAME } from '@roro/const/EnumMonsterDataIndex.js';
 
 let BuildMelonFes2026MonsterDropEntries: any;
 let FilterMelonFes2026MonsterDropEntries: any;
@@ -7,7 +8,6 @@ let MonsterObjNew: any;
 let g_MonsterMapDataArray: any;
 
 beforeAll(async () => {
-	await import('/workspace/ratorio/roro/m/js/CGlobalConstManager.js');
 	await import('/workspace/ratorio/roro/m/js/monster.h.js');
 	const monsterDat = await import('/workspace/ratorio/roro/m/js/monster.dat.js');
 	MonsterObjNew = monsterDat.MonsterObjNew;
@@ -21,14 +21,12 @@ beforeAll(async () => {
 	SortMelonFes2026MonsterDropEntriesByLevel = mod.SortMelonFes2026MonsterDropEntriesByLevel;
 });
 
-const g = globalThis as any;
-
 describe('eventsetup-melonfes2026monsterdrop', () => {
 
 	describe('BuildMelonFes2026MonsterDropEntries', () => {
 
 		it('エンジン側に存在するモンスター名には Lv と生息マップが付与される', () => {
-			const idx = MonsterObjNew.findIndex((m: any) => m[g.MONSTER_DATA_INDEX_NAME] === 'アーチャースケルトン');
+			const idx = MonsterObjNew.findIndex((m: any) => m[MONSTER_DATA_INDEX_NAME] === 'アーチャースケルトン');
 			expect(idx).toBeGreaterThanOrEqual(0);
 			const monsterData = MonsterObjNew[idx];
 
@@ -36,7 +34,7 @@ describe('eventsetup-melonfes2026monsterdrop', () => {
 			const result = BuildMelonFes2026MonsterDropEntries(dropList, MonsterObjNew, g_MonsterMapDataArray);
 
 			expect(result).toHaveLength(1);
-			expect(result[0].level).toBe(monsterData[g.MONSTER_DATA_INDEX_LEVEL]);
+			expect(result[0].level).toBe(monsterData[MONSTER_DATA_INDEX_LEVEL]);
 			expect(Array.isArray(result[0].mapNames)).toBe(true);
 		});
 

@@ -1,6 +1,3 @@
-
-
-
 import { CCustomSelectMapBase } from './CCustomSelectMapBase.js';
 // === AUTO-GENERATED IMPORTS ===
 import './monstermap.h.js';
@@ -8,6 +5,8 @@ import {
          MONSTER_MAP_ID_CATEGORY_ALL, MONSTER_MAP_ID_CATEGORY_MEMORIAL_DUNGEON,
          g_MonsterMapCategoryDataArray, g_MonsterMapDataArray
 } from './monstermap.dat.js';
+import { MONSTER_MAP_DATA_INDEX_DATA_ARRAY, MONSTER_MAP_DATA_INDEX_ID, MONSTER_MAP_DATA_INDEX_KIND } from './const/EnumMonsterMapDataIndex.js';
+import { MONSTER_MAP_KIND_MEMORIAL_DUNGEON } from './const/EnumMonsterMapKind.js';
 // === END AUTO-GENERATED IMPORTS ===
 
 /**

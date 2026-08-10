@@ -1,12 +1,7 @@
 import { vi, describe, it, expect } from 'vitest';
 
-// EQUIP_REGION_ID_COUNT は common.js (未移行) で定義されるため、
-// モジュール読み込み前にモックを注入する
-vi.hoisted(() => {
-    (globalThis as any).EQUIP_REGION_ID_COUNT = 24;
-});
-
-import '@roro/CGlobalConstManager.js';
+// EQUIP_REGION_ID_COUNT は const 化され import で解決できるようになったため、
+// 旧来のグローバル注入（vi.hoisted で 24 を代入）は不要になった。
 import '@roro/rndopttype.dat.js';
 import {
     g_equipRndOptTable,
@@ -14,26 +9,9 @@ import {
     GetEquipRndOptTableKind,
     GetEquipRndOptTableValue,
 } from '@roro/rndopttype.h.js';
-
+import { EQUIP_REGION_ID_COUNT } from '@roro/const/EnumMigItemParamId.js';
 
 describe('rndopttype.h.js', () => {
-    describe('DefineEnum 副作用確認', () => {
-        it('RND_OPT_TYPE_DATA_INDEX_ID が 0 に定義される', () => {
-            expect((globalThis as any).RND_OPT_TYPE_DATA_INDEX_ID).toBe(0);
-        });
-        it('RND_OPT_TYPE_DATA_INDEX_LIST_ID_ARRAY が 1 に定義される', () => {
-            expect((globalThis as any).RND_OPT_TYPE_DATA_INDEX_LIST_ID_ARRAY).toBe(1);
-        });
-        it('RND_OPT_SLOT_1 が 0 に定義される', () => {
-            expect((globalThis as any).RND_OPT_SLOT_1).toBe(0);
-        });
-        it('RND_OPT_SLOT_5 が 4 に定義される', () => {
-            expect((globalThis as any).RND_OPT_SLOT_5).toBe(4);
-        });
-        it('RND_OPT_SLOT_COUNT が 5 に定義される', () => {
-            expect((globalThis as any).RND_OPT_SLOT_COUNT).toBe(5);
-        });
-    });
 
     describe('SetEquipRndOptTable ロジック確認', () => {
         it('rndOptId >= 0 のとき [id, value] にセットされる', () => {

@@ -1,5 +1,4 @@
 import { describe, it, expect } from 'vitest';
-import '/workspace/ratorio/roro/m/js/CGlobalConstManager.js';
 import { CCharaConfNizi } from '@roro/CCharaConfNizi.js';
 
 describe('CCharaConfNizi.js', () => {
